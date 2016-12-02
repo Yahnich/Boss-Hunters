@@ -1,0 +1,6 @@
+"DOTAAbilities"
+{      
+ 
+// ITEM SHOPS---------------------------------------------------
+		"item_radiance_inactive"				"REMOVE"
+}

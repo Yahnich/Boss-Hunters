@@ -1,0 +1,43 @@
+"itembuilds"
+{
+	"author"		"Valve"
+	"hero"			"npc_dota_hero_ogre_magi"
+	"Title"			"Recommended items for Ogre Magi"
+	
+	"Items"
+	{	
+		"#DOTA_Item_Build_Starting_Items"
+		{
+			"item"	"item_midas_2"
+			"item"	"item_magic_ring"
+			"item"	"item_blink_dagger"
+		}
+
+		"#DOTA_Item_Build_Early_Game"
+		{	
+			"item"	"item_midas_3"	
+			"item"	"item_octarine_core3"	
+			"item"	"item_veil_of_discord2"
+			"item"	"item_force_boots"
+		}
+		"#DOTA_Item_Build_Core_Items"
+		{
+			"item"	"item_octarine_core4"
+			"item"	"item_veil_of_discord3"
+			"item"	"item_sunium_lens"
+			"item"	"item_blink_boots"
+			"item"	"item_pixels_guard"
+		}
+		"#DOTA_Item_Build_Luxury"
+		{
+			"item"	"item_octarine_core5"
+			"item"	"item_omni_lens"
+			"item"	"item_veil_of_discord4"
+			"item"	"item_Dagon_Mystic"
+		}
+		"#DOTA_Item_Build_End_Game"
+		{
+			"item"	"item_ultimate_amulet"
+		}
+	}
+}

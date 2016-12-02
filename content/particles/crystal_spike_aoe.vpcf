@@ -1,0 +1,150 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 75
+	m_ConstantNormal =
+	[
+		1.000000,
+		0.000000,
+		0.000000,
+	]
+	m_nConstantSequenceNumber = 4
+	m_Renderers =
+	[
+		{
+			_class = "C_OP_RenderModels"
+			m_flAnimationRate = 0.000000
+			m_bIgnoreNormal = true
+			m_bSuppressTint = true
+			m_ModelList =
+			[
+				{
+					m_model = resource:"models/heroes/crystal_maiden/crystal_maiden_ice.vmdl"
+				},
+			]
+			m_bAnimated = true
+			m_nLOD = 1
+		},
+	]
+	m_Operators =
+	[
+		{
+			_class = "C_OP_Decay"
+		},
+		{
+			_class = "C_OP_BasicMovement"
+			m_Gravity =
+			[
+				0.000000,
+				0.000000,
+				-1500.000000,
+			]
+			m_fDrag = 0.125000
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flBias = 0.800000
+			m_flEndScale = 0.400000
+			m_flStartScale = 0.500000
+		},
+		{
+			_class = "C_OP_OrientTo2dDirection"
+			m_nFieldOutput = 12
+		},
+		{
+			_class = "C_OP_OscillateScalar"
+			m_RateMax = 32.000000
+			m_RateMin = -32.000000
+			m_nField = 4
+			m_bDisableOperator = true
+		},
+	]
+	m_Initializers =
+	[
+		{
+			_class = "C_INIT_RandomLifeTime"
+			m_fLifetimeMin = 0.830000
+			m_fLifetimeMax = 0.410000
+		},
+		{
+			_class = "C_INIT_RingWave"
+			m_flThickness = 10.000000
+			m_flInitialSpeedMax = 1800.000000
+			m_flInitialSpeedMin = 555.000000
+			m_flInitialRadius = 20.000000
+			m_bEvenDistribution = true
+			m_flParticlesPerOrbit = 32.000000
+		},
+		{
+			_class = "C_INIT_PositionOffset"
+			m_OffsetMax =
+			[
+				0.000000,
+				0.000000,
+				50.000000,
+			]
+			m_OffsetMin =
+			[
+				0.000000,
+				0.000000,
+				50.000000,
+			]
+		},
+		{
+			_class = "C_INIT_RandomRadius"
+			m_flRadiusMax = 2.000000
+		},
+		{
+			_class = "C_INIT_VelocityRandom"
+			m_LocalCoordinateSystemSpeedMax =
+			[
+				0.000000,
+				0.000000,
+				50.000000,
+			]
+		},
+		{
+			_class = "C_INIT_RandomRotation"
+			m_flDegreesMin = -90.000000
+			m_flDegreesMax = -90.000000
+			m_nFieldOutput = 20
+			m_flRotationRandExponent = 0.000000
+		},
+		{
+			_class = "C_INIT_CreateWithinSphere"
+			m_fRadiusMax = 250.000000
+			m_fSpeedMin = 1500.000000
+			m_fSpeedMax = 250.000000
+			m_bDisableOperator = true
+		},
+	]
+	m_Emitters =
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_bDisableOperator = true
+			m_nParticlesToEmit = 542
+		},
+		{
+			_class = "C_OP_ContinuousEmitter"
+			m_flEmissionDuration = 0.250000
+			m_flEmitRate = 500.000000
+		},
+	]
+	m_Children =
+	[
+		{
+			m_ChildRef = resource:"particles/econ/items/crystal_maiden/crystal_maiden_cowl_of_ice/maiden_crystal_nova_flash_c_cowlofice.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/econ/items/crystal_maiden/crystal_maiden_cowl_of_ice/maiden_crystal_nova_n_cowlofice.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/crystal_spikes_aoe_2.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/heavy_ground_raise.vpcf"
+		},
+	]
+}

@@ -1,0 +1,46 @@
+"itembuilds"
+{
+	"author"		"Valve"
+	"hero"			"npc_dota_hero_treant"
+	"Title"			"Recommended items for Treant Protector"
+	
+	"Items"
+	{	
+		"#DOTA_Item_Build_Starting_Items"
+		{
+			"item"	"item_midas_2"
+			"item"	"item_helm_of_mithril_will"
+			"item"	"item_helm_of_mithril_will"
+		}
+
+		"#DOTA_Item_Build_Early_Game"
+		{
+			"item"	"item_heart_titan"
+			"item"	"item_midas_3"	
+			"item"	"item_octarine_core3"
+			"item"	"item_blade_mail2"
+		}
+		"#DOTA_Item_Build_Core_Items"
+		{
+			"item"	"item_octarine_core4"
+			"item"	"item_heart_divine"
+			"item"	"item_blade_mail3"
+			"item"	"item_blood_booster"
+		}
+		"#DOTA_Item_Build_Luxury"
+		{
+			"item"	"item_heart_bahamut"
+			"item"	"item_octarine_core5"
+			"item"	"item_blade_mail4"
+			"item"	"item_booster_void"
+		}
+		"#DOTA_Item_Build_End_Game"
+		{
+			"item"	"item_ultimate_amulet"
+			"item"	"item_pixels_guard"
+			"item"	"item_blink_boots"
+			"item"	"item_omni_lens"
+		}
+	}
+}
+

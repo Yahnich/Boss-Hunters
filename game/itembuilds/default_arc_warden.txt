@@ -1,0 +1,42 @@
+"itembuilds"
+{
+	"author"		"Valve"
+	"hero"			"npc_dota_hero_arc_warden"
+	"Title"			"Recommended items for Arc Warden"
+	
+	"Items"
+	{	
+		"#DOTA_Item_Build_Starting_Items"
+		{
+			"item_midas_2"
+			"item_force_boots"
+			"item_talisman_of_evasion"
+		}
+		"#DOTA_Item_Build_Early_Game"
+		{	
+			"item_midas_2"	
+			"item_lifesteal2"	
+			"item_butterfly2"
+			"item_unstable_stone"
+			"item_desolator4"
+			"item_octarine_core"
+		}
+		"#DOTA_Item_Build_Core_Items"
+		{
+			"item_desolator5"
+			"item_midas_fury"
+			"item_gungnir_2"
+			"item_s_a_y_3" 
+			"item_pixels_guard"
+			"item_octarine_core3"
+		}
+		"#DOTA_Item_Build_Luxury"
+		{
+			"item_gungnir_3"
+			"item_bahamut_claw"
+			"item_bahamut_chest"
+			"item_butterfly5"
+			"item_octarine_core5"
+		}
+	}
+}

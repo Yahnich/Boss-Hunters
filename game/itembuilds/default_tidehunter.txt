@@ -1,0 +1,45 @@
+"itembuilds"
+{
+	"author"		"Valve"
+	"hero"			"npc_dota_hero_tidehunter"
+	"Title"			"Recommended items for Tidehunter"
+	
+	"Items"
+	{
+		"#DOTA_Item_Build_Starting_Items"
+		{
+			"item"	"item_hand_of_midas"
+			"item"	"item_heart"
+		}
+		"#DOTA_Item_Build_Early_Game"
+		{
+			"item"	"item_heart_titan"
+			"item"	"item_titan_armor"
+			"item"	"item_s_a_y_2"
+			"item"	"item_lifesteal2"
+			"item"	"item_midas_2"
+		}
+		"#DOTA_Item_Build_Mid_Game"
+		{
+			"item"	"item_lifestealtank"
+			"item"	"item_heart_divine"
+			"item"	"item_divine_armor"
+			"item"	"item_tank_booster"
+			"item"	"item_s_a_y_3"
+		}
+		"#DOTA_Item_Build_Late_Game"
+		{
+			"item"	"item_blood_booster"
+			"item"	"item_heart_bahamut"
+			"item"	"item_bahamut_chest"
+		}
+		"#DOTA_Item_Build_End_Game"
+		{
+			"item"	"item_booster_void"
+			"item"	"item_s_a_y_4"
+			"item"	"item_gungnir_3"
+			"item"	"item_bahamut_claw"
+			"item"	"item_ultimate_amulet"
+		}
+	}
+}

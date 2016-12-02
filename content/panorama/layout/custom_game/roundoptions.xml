@@ -1,0 +1,23 @@
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="file://{resources}/styles/custom_game/roundoptions.css" />
+	</styles> 
+	<scripts>
+		<include src="file://{resources}/scripts/custom_game/roundoptions.js" /> 
+	</scripts>
+	<Panel class="RoundOptionsPanel" hittest="false">
+		<Panel id="RoundOptions" hittest="false">
+			<Image id="BG_Image" src="file://{images}/custom_game/NG_Vote/BG.png"/>
+			<Label hittest="false" id="question" text="Vote to start next round early"/>
+			<Label hittest="false" id="confirmation"/>
+			<Label hittest="false" id="noheader" text="No"/>
+			<Label hittest="false" id="yesheader" text="Yes"/>
+			<Label hittest="false" id="noresults" text="0 votes"/>
+			<Label hittest="false" id="yesresults" text="0 votes"/>
+			<Button id="Vote_Yes" onactivate='Yes()'>
+				<Image id="yes_button" src="file://{images}/custom_game/NG_Vote/Yes_Button.png"/>
+			</Button>
+		</Panel>
+	</Panel>
+</root>

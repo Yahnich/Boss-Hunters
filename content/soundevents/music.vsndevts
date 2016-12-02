@@ -1,0 +1,50 @@
+"music.music"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"              "sos_reference_stack"
+				"reference_stack"       "dota_src1_3d"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							  "value0"        "sounds/music.vsnd"
+						}
+					}
+					"volume"            {   "value"     "3.00000"  }
+				}
+			}
+		}
+	}
+}
+"music.final"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"              "sos_reference_stack"
+				"reference_stack"       "dota_src1_3d"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							  "value0"        "sounds/final.vsnd"
+						}
+					}
+					"volume"            {   "value"     "4.00000"  }
+				}
+			}
+		}
+	}
+}

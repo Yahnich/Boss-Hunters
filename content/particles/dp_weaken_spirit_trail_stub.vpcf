@@ -1,0 +1,90 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 32
+	m_ConstantColor = [ 49, 192, 116, 255 ]
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderRopes"
+			m_nSequenceCombineMode = "SEQUENCE_COMBINE_MODE_USE_SEQUENCE_0"
+			m_nOrientationType = 3
+			m_hTexture = resource:"materials/particle/beam_blood_02.vtex"
+			m_flRadiusScale = 0.5
+			m_flTextureVWorldSize = 100.0
+			m_flTextureVScrollRate = -50.0
+			m_nMaxTesselation = 2
+			m_nMinTesselation = 2
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_BasicMovement"
+			m_fDrag = 0.05
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flStartScale = 0.0
+			m_flBias = 0.8
+		},
+		{
+			_class = "C_OP_Decay"
+			m_flOpEndFadeInTime = 3.0
+			m_flOpStartFadeInTime = 3.0
+		},
+		{
+			_class = "C_OP_FadeOutSimple"
+		},
+		{
+			_class = "C_OP_RampScalarLinearSimple"
+			m_nOpEndCapState = 1
+			m_nField = 16
+			m_Rate = -2.0
+			m_flEndTime = 999999.0
+		},
+		{
+			_class = "C_OP_ColorInterpolate"
+			m_ColorFade = [ 35, 127, 72, 255 ]
+		},
+		{
+			_class = "C_OP_PositionLock"
+		},
+		{
+			_class = "C_OP_FadeInSimple"
+			m_flFadeInTime = 0.1
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_RandomLifeTime"
+			m_fLifetimeMax = 0.35
+			m_fLifetimeMin = 0.35
+		},
+		{
+			_class = "C_INIT_RandomRadius"
+			m_flRadiusMax = 45.0
+			m_flRadiusMin = 35.0
+		},
+		{
+			_class = "C_INIT_CreateWithinSphere"
+			m_nControlPointNumber = 3
+		},
+		{
+			_class = "C_INIT_PositionOffset"
+			m_nControlPointNumber = 3
+			m_OffsetMin = [ 20.0, 0.0, 0.0 ]
+			m_OffsetMax = [ 20.0, 0.0, 0.0 ]
+			m_bLocalCoords = true
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_ContinuousEmitter"
+			m_flEmitRate = 10.0
+		},
+	]
+}

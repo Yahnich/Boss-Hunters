@@ -1,0 +1,100 @@
+@define TotalLength: 40s;
+@define TimingFunc: linear;
+@define IterationCount: 1;
+@define AnimationDelay: 0s;
+
+.AddonLoadingRoot
+{
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    overflow: clip;
+}
+#TitlePanel
+{
+  horizontal-align: left;
+  vertical-align: bottom;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  flow-children: right;
+}
+
+.staticImg
+{
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: 100% 100%;
+}
+
+#InfoGameDonator
+{
+  horizontal-align: left;
+  vertical-align: bottom;
+  margin-bottom: 100px;
+  margin-left: 75px;
+  flow-children: right;
+}
+
+#InfoGame
+{
+  horizontal-align: left;
+  vertical-align: bottom;
+  margin-bottom: 0px;
+  margin-left: 75px;
+  flow-children: right;
+}
+#gameinfo
+{
+  margin-bottom: 250px;
+   width: 750px;
+   height: 620px;
+}
+
+#gamedonator
+{
+  margin-bottom: 75px;
+   width: 750px;
+   height: 200px;
+}
+
+.SeqImg
+{
+  background-repeat: no-repeat;
+  background-position: 25% 25%;
+  background-size: 100% 100%;
+}
+
+
+#CustomBg
+{
+
+  margin-top: 0px;
+    overflow: clip;
+  pre-transform-scale2d: 1.0;
+  animation-name: gamemode_anim;
+  animation-delay: AnimationDelay;
+  animation-duration: TotalLength;
+  animation-timing-function: TimingFunc;
+  animation-iteration-count: IterationCount;
+}
+
+#gamemode
+{
+  margin-left: 0px;
+  margin-bottom: 0px;
+  
+}
+
+@keyframes 'gamemode_anim'
+{
+  0%
+  {
+    transform: translateX( 0px ) translateY( 0px );
+    pre-transform-scale2d: 1.3;
+  }
+
+  100%
+  {
+    transform: translateX( 0px ) translateY( 0px );
+  }
+}

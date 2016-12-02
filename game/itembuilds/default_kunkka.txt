@@ -1,0 +1,43 @@
+"itembuilds"
+{
+	"author"		"Valve"
+	"hero"			"npc_dota_hero_kunkka"
+	"Title"			"Recommended Items for Kunkka"
+	
+	"Items"
+	{	
+		"#DOTA_Item_Build_Starting_Items"
+		{
+			"item"	"item_midas_2"
+			"item"	"item_shivas_guard"
+			"item"	"item_talisman_of_evasion"
+		}
+		"#DOTA_Item_Build_Early_Game"
+		{	
+			"item"	"item_midas_3"	
+			"item"	"item_lifesteal2"	
+			"item"	"item_butterfly3"
+			"item"	"item_unstable_stone"
+			"item"	"item_tank_booster"
+		}
+		"#DOTA_Item_Build_Core_Items"
+		{
+			"item"	"item_midas_fury"
+			"item"	"item_melee_rage"
+			"item"	"item_s_a_y_3"
+			"item"	"item_desolator5"
+		}
+		"#DOTA_Item_Build_Luxury"
+		{
+			"item"	"item_gungnir_3"
+			"item"	"item_bahamut_claw"
+			"item"	"item_bahamut_chest"
+			"item"	"item_butterfly5"
+		}
+		"#DOTA_Item_Build_End_Game"
+		{
+			"item"	"item_ultimate_amulet"
+			"item"	"item_pixels_guard"
+		}
+	}
+}

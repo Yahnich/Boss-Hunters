@@ -1,0 +1,29 @@
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="file://{resources}/styles/custom_game/boss_master.css" />
+	</styles> 
+	<scripts>
+		<include src="file://{resources}/scripts/custom_game/boss_master.js" /> 
+	</scripts>
+	<Panel class="boss_master_panel" hittest="false">
+		<Panel id="boss_master" hittest="false">
+			<Image id="boss_master_image" src="file://{images}/custom_game/boss_master/panel.png"/>
+			<Button id="Mimmunity_button" onactivate='SendEvent_Boss_Master("magic_immunity_1")'>
+				<Image id="Mimmunity_image" src="file://{images}/custom_game/boss_master/magic_immunity_1.png"/>
+			</Button>
+			<Button id="Mimmunity_button_2" onactivate='SendEvent_Boss_Master("magic_immunity_2")'>
+				<Image id="Mimmunity_image_2" src="file://{images}/custom_game/boss_master/magic_immunity_2.png"/>
+			</Button>
+			<Button id="no_damage_button" onactivate='SendEvent_Boss_Master("damage_immunity")'>
+				<Image id="no_damage_image" src="file://{images}/custom_game/boss_master/damage_immunity.png"/>
+			</Button>
+			<Button id="double_damage_button" onactivate='SendEvent_Boss_Master("double_damage")'>
+				<Image id="double_damage_image" src="file://{images}/custom_game/boss_master/double_damage.png"/>
+			</Button>
+			<Button id="quad_damage_button" onactivate='SendEvent_Boss_Master("quad_damage")'>
+				<Image id="quad_damage_image" src="file://{images}/custom_game/boss_master/quad_damage.png"/>
+			</Button>
+		</Panel>
+	</Panel>
+</root>

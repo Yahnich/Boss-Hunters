@@ -1,0 +1,47 @@
+"itembuilds"
+{
+	"author"	 "Valve"
+	"hero"	 "npc_dota_hero_night_stalker"
+	"Title"	 "Recommended items for Night Stalker"
+	
+	"Items"
+	{	
+		"#DOTA_Item_Build_Starting_Items"
+		{
+			"item"		"item_midas_2"
+			"item"		"item_heart"
+		}
+		
+		"#DOTA_Item_Build_Early_Game"
+		{	
+			"item"	 	"item_heart_titan"
+			"item"	 	"item_titan_armor"
+			"item"		"item_lifesteal2"	
+			"item"		"item_crit3"
+		}
+		
+		"#DOTA_Item_Build_Core_Items"
+		{
+			"item"	 	"item_melee_rage"
+			"item"	 	"item_divine_armor"
+			"item"	 	"item_heart_divine"
+			"item"		"item_tank_booster"	
+		}
+		
+		"#DOTA_Item_Build_Luxury"
+		{
+			"item"		"item_desolator5"
+			"item"		"item_bahamut_chest"
+			"item"		"item_heart_bahamut"
+			"item"		"item_berserker_face"
+		}
+		"#DOTA_Item_Build_End_Game"
+		{
+			"item"	"item_booster_void"
+			"item"	"item_s_a_y_4"
+			"item"	"item_ultimate_amulet"
+			"item"	"item_octarine_core5"
+			"item"	"item_bahamut_claw"
+		}
+	}
+}

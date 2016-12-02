@@ -1,0 +1,69 @@
+.midas_gold_panel
+{
+    width: 100%;
+    height: 100%;
+    overflow: clip;
+}
+
+#midas_gold
+{
+  horizontal-align: right;
+  vertical-align: top;
+ margin-right: 30px;
+ margin-top: 50px;
+  width: 400px;
+    height: 100px;
+ }
+ 
+ #midas_gold_open
+{
+  horizontal-align: right;
+  vertical-align: top;
+ margin-right: 0px;
+ margin-top: 50px;
+  width: 55px;
+    height: 100px;
+ }
+ 
+  #midas_gold_close
+{
+  horizontal-align: right;
+  vertical-align: top;
+ margin-right: 390px;
+ margin-top: 50px;
+  width: 55px;
+    height: 100px;
+ }
+ 
+	#midas_gold_earned
+  {
+    horizontal-align: right;
+	vertical-align: top;
+	margin-right: 84px;
+	font-size: 25px;
+    font-weight: bold;
+	margin-top: 36px;
+	text-transform: uppercase;
+	color: #FFEA00;
+ }
+    #midas_gold_display
+{
+	margin-left: 50px;
+	font-size: 23px;
+    font-weight: bold;
+	margin-top: 36px;
+	color: #FFEA00;
+ }
+ 
+ #midas_gold_image
+{
+  width: 400px;
+    height: 100px;
+ }
+  #midas_gold_image_2
+{
+  width: 55px;
+    height: 100px;
+ }
+
+ 

@@ -1,0 +1,31 @@
+"addon"
+{
+	"Unassigned"      								"Unassigned Team"
+	"Spectator"       								"Spectator Team"
+	"Neutrals"        								"Neutral Team"
+	"NoTeam"          								"No Team"
+
+	"DOTA_GoodGuys"   								"Boss Slayer"
+	"DOTA_BadGuys"    								"Boss Master"
+	
+	"addonname"										"Epic Boss Fight"
+
+	"InstructionsTitle"								"Epic Boss Fight"
+	"InstructionsObjective"							"OBJECTIVE"
+	"InstructionsObjectiveText"						"."
+	"InstructionsHowToPlay"							"HOW TO PLAY"
+	"InstructionsLines"								"LISTEN TO YOUR TEAMMATE ! This game mode is based on teamplay.If there is no teamplay , there is no victory.<br>
+													-Think a way to kill boss , some boss can't be killed with just right click.<br>"
+
+	"game_info_header_objective"			"Objective:"
+	"brief_description"					"Kill boss , survive , and grow strong !"
+	"game_info_header_how_to_play"		"How To Play:"
+	"game_info_boss"					"Each round you will fight a <span class='midas_throne'>BOSS</span>, When you kill the last boss alive you gain lot of <span class='gold'>gold</span> and <span class='xp'>experience</span>."
+	"game_info_life"						"If you look , on the top left corner of your screen , you can see <span class='overboss'>Life</span> , each time you teamwipe , you lost one , if they reach 0 , you lose the map . Each time you lose a life , you gain bonus gold , based on left life , and current round. Under the boss' name you will find a number representing your <span class='midas_throne'>THREAT</span>. Try staying in green or orange as a dps and in orange or red as a tank. The boss will attack whoever's in red if they're near enough. IF YOU ARE PULLING AGGRO, STOP ATTACKING FOR 2 SECONDS TO LET THREAT DETERIORATE."
+	"game_info_items"						"If you look in the shop, you can see ton of new <span class='items'>items</span>, they are very powerful and will be the most important part of your power."
+	"game_info_tips_header"				"Tips:"
+	"game_info_tip01"						"LISTEN TO YOUR TEAMMATE ! This game mode is based on teamplay.If there is no teamplay , there is no victory."
+	"game_info_tip02"						"BOSSES WILL ATTACK WHOEVER HAS RED THREAT (look under boss' name), if you are tanking and losing aggro USE ABILITIES or BUY BLADEMAIL UPGRADES"
+	"game_info_tip03"						"some boss can't just be killed with right click attack , some hero are immune to magic dammag , some other are immune to physical , and even PURE !"
+	"game_info_tip04"						"MOST IMPORTANT : Have fun!"
+}

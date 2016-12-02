@@ -1,0 +1,46 @@
+"itembuilds"
+{
+	"author"		"Valve"
+	"hero"			"npc_dota_hero_visage"
+	"Title"			"Recommended items for Visage"
+	
+	"Items"
+	{		
+		"#DOTA_Item_Build_Starting_Items"
+		{
+			"item"		"item_midas_2"
+			"item"		"item_force_boots"	
+		}
+		
+		"#DOTA_Item_Build_Early_Game"
+		{
+			"item"		"item_bloodthorn2"
+			"item"		"item_overlord_ring"
+			"item"		"item_veil_of_discord"
+			"item"		"item_octarine_core"
+		}
+		
+		"#DOTA_Item_Build_Core_Items"
+		{
+			"item"		"item_divine_hammer"
+			"item"		"item_ultimate_scepter"
+			"item"		"item_divine_ring"
+			"item"		"item_veil_of_discord3"
+			"item"		"item_unstable_stone"
+		}
+		
+		"#DOTA_Item_Build_Luxury"
+		{
+			"item"		"item_scythe_of_decay"
+			"item"		"item_Dagon_Mystic"
+			"item"		"item_purethorn"
+		}
+		"#DOTA_Item_Build_End_Game"
+		{
+	        
+	        "item"		"item_abyssal_soul"
+			"item"		"item_veil_of_discord4"
+			"item"		"item_ultimate_amulet"
+		}
+	}
+}

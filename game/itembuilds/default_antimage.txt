@@ -1,0 +1,52 @@
+ "itembuilds"
+{
+	"author"	" "
+	"hero"	"npc_dota_hero_antimage"
+	"Title"	"Epic_Boss_Fight"
+
+	"Items"
+	{
+		"#DOTA_Item_Build_Starting_Items"
+		{
+			"item"	"item_midas_2"
+			"item"	"item_vladmir"
+		}
+
+		"#DOTA_Item_Build_Early_Game"
+		{
+			"item"	"item_butterfly_3"
+			"item"	"item_lifesteal2"
+			"item"	"item_celerity_stone"
+			"item"	"item_midas_3"
+		}
+
+		"#DOTA_Item_Build_Mid_Game"
+		{
+			"item"	"item_melee_rage"
+			"item"	"item_heart_divine"
+			"item"	"item_s_a_y_3"
+			"item"	"item_crit3"
+			"item"	"item_lifesteal3"
+			"item"	"item_butterfly3"
+		}
+
+		"#DOTA_Item_Build_Late_Game"
+		{
+			"item""item_heart_bahamut"
+			"item""item_lifesteal4"
+			"item""item_divine_hammer"
+			"item""item_butterfly5"
+		}
+
+		"#DOTA_Item_Build_Situational"
+		{
+			"item"	"item_booster_void"
+			"item"	"item_gungnir_3"
+			"item"	"item_s_a_y_4"
+			"item"	"item_scythe_of_decay"
+			"item"	"item_bahamut_claw"
+			"item"	"item_bahamut_chest"
+			"item"	"item_ultimate_amulet"
+		}
+	}
+}

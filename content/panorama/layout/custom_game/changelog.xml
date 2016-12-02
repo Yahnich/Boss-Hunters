@@ -1,0 +1,230 @@
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/styles/play.vcss_c" />
+		<include src="s2r://panorama/styles/dashboard_page_profile.vcss_c" />
+		<include src="file://{resources}/styles/custom_game/changelog.css" />
+	</styles>
+	<scripts>
+	    <include src="file://{resources}/scripts/custom_game/changelog.js" /> 
+	</scripts>
+	<snippets>
+		<snippet name="userPic">
+			<Panel class="userPicRoot">
+				<DOTAAvatarImage class="userPic" id="avatar"/>
+				<Panel class="userPicInfo">
+					<Label id="userPicName" class="userPicName" text="Nickname" />
+					<Label id="userPicDescription" class="userPicDescription" text="Info" />
+				</Panel>
+				<Panel class="userPicMessages" id="userPicMessages"/>
+			</Panel>
+		</snippet>
+		<snippet name="devMessage">
+			<Button class="devMessage">
+				<Label class="devMessageLabel" id="devMessageLabel" text="1" />
+			</Button>
+		</snippet>
+	</snippets>
+	<Panel class="changelogRoot" hittest="false">
+		<Panel id="changelogButton">
+			<Button id="showChangelogButton" onactivate='toggleChangelog()'>
+				<Image id="changelogIcon" src="file://{images}/custom_game/demon_shop/core.png"/>
+			</Button>
+		</Panel>
+		<Panel id="changelogDisplay" hittest="false">
+			<Button id="closeChangelogButton" class="CloseButton" onactivate='toggleChangelog()'>
+			</Button>
+			<Panel id="Title">
+				<Label id="TitleName" text="Demon Shop" />
+				<Label id="SubTitleName" text="Buy fantastic upgrades!" />
+				<Panel id="OptionSelect" hittest="false">
+					<RadioButton id="showDescriptionButton" class="ProfileContentRightTabOption" text="Items" onactivate="toggleDescription()"/>
+					<Label class="ProfileContentRightTabOptionSeparator" tabindex="auto" text="/" />
+					<RadioButton id="showUpdatesButton" class="ProfileContentRightTabOption" text="Perks" onactivate="toggleUpdates()"/>
+				</Panel>
+				<Panel class="horizontalSeparator"/>
+				<Panel id="currentDisplay" hittest="false" onmouseout="UIHideCustomLayoutTooltip( SendTooltip )">
+					<Panel class="displayPanel" id="descriptionDisplay" hittest="false">
+						<Panel class="displayHeader" hittest="false">
+							<Panel class="updateClipper" id="updateClipper" hittest="false">
+								<Panel class="displayHeader updateEntry" hittest="false">
+									<Label class="updateHeaderText" text="Asura Core" />
+									<Panel class="BuyRoot">
+										<Button class="core_image" onactivate='BuyCore()'>
+											<Image hittest="false" class="core_image" src="file://{images}/custom_game/demon_shop/core.png"/>
+										</Button>
+										<Label class="corePrice" text="25 000 Gold" />
+									</Panel>
+								</Panel>
+								<Panel class="displayHeader updateEntry" hittest="false">
+									<Label class="updateHeaderText" text="Asura's Essence" />
+									<Panel class="BuyRoot">
+										<Button class="shop_image" onactivate='BuyItem("item_asura_shard", 4, "none")'>
+											<Image hittest="false" class="shop_image" src="file://{images}/custom_game/demon_shop/asura_shard.png"/>
+										</Button>
+										<Panel class="requirementPanel" hittest="false">
+											<Label class="corePrice" text="4 Asura Cores" />
+											<Label class="corePrice" text="Sell for Gold" />
+										</Panel>
+									</Panel>
+								</Panel>
+								<Panel class="displayHeader updateEntry" hittest="false">
+									<Label class="updateHeaderText" text="Asura Plate" />
+									<Panel class="BuyRoot">
+										<Button class="shop_image" onactivate='BuyItem("item_asura_plate",10,"item_bahamut_chest")'>
+											<Image hittest="false" class="shop_image" src="file://{images}/custom_game/demon_shop/asura_plate.png"/>
+										</Button>
+										<Panel class="requirementPanel" hittest="false">
+											<Label class="corePrice" text="10 Asura Cores" />
+											<Label class="corePrice" text="Bahamut Chest" />
+										</Panel>
+									</Panel>
+								</Panel>
+								<Panel class="displayHeader updateEntry" hittest="false">
+									<Label class="updateHeaderText" text="Asura Heart" />
+									<Panel class="BuyRoot">
+										<Button class="shop_image" onactivate='BuyItem("item_asura_heart",8,"item_heart_bahamut")'>
+											<Image hittest="false" class="shop_image" src="file://{images}/custom_game/demon_shop/asura_heart.png"/>
+										</Button>
+										<Panel class="requirementPanel" hittest="false">
+											<Label class="corePrice" text="8 Asura Cores" />
+											<Label class="corePrice" text="Bahamut Heart" />
+										</Panel>
+									</Panel>
+								</Panel>
+								<Panel class="displayHeader updateEntry" hittest="false">
+									<Label class="updateHeaderText" text="Asura Rapier" />
+									<Panel class="BuyRoot">
+										<Button class="shop_image" onactivate='BuyItem("item_asura_rapier",9,"item_butterfly5")'>
+											<Image hittest="false" class="shop_image" src="file://{images}/custom_game/demon_shop/asura_rapier.png"/>
+										</Button>
+										<Panel class="requirementPanel" hittest="false">
+											<Label class="corePrice" text="9 Asura Cores" />
+											<Label class="corePrice" text="Bahamut Fang" />
+										</Panel>
+									</Panel>
+								</Panel>
+								<Panel class="displayHeader updateEntry" hittest="false">
+									<Label class="updateHeaderText" text="Asura Staff" />
+									<Panel class="BuyRoot">
+										<Button class="shop_image" onactivate='BuyItem("item_asura_staff",10,"item_Dagon_Mystic")'>
+											<Image hittest="false" class="shop_image" src="file://{images}/custom_game/demon_shop/asura_staff.png"/>
+										</Button>
+										<Panel class="requirementPanel" hittest="false">
+											<Label class="corePrice" text="10 Asura Cores" />
+											<Label class="corePrice" text="Mystical Dagon" />
+										</Panel>
+									</Panel>
+								</Panel>
+								<Panel class="displayHeader updateEntry" hittest="false">
+									<Label class="updateHeaderText" text="Demonic Lens" />
+									<Panel class="BuyRoot">
+										<Button class="shop_image" onactivate='BuyItem("item_asura_lens",12,"item_omni_lens")'>
+											<Image hittest="false" class="shop_image" src="file://{images}/custom_game/demon_shop/asura_lens.png"/>
+										</Button>
+										<Panel class="requirementPanel" hittest="false">
+											<Label class="corePrice" text="15 Asura Cores" />
+											<Label class="corePrice" text="Unobtanium Lens" />
+										</Panel>
+									</Panel>
+								</Panel>
+								<Panel class="displayHeader updateEntry" hittest="false">
+									<Label class="updateHeaderText" text="Dimensional Core" />
+									<Panel class="BuyRoot">
+										<Button class="shop_image" onactivate='BuyItem("item_asura_core",12,"item_octarine_core5")'>
+											<Image hittest="false" class="shop_image" src="file://{images}/custom_game/demon_shop/asura_core.png"/>
+										</Button>
+										<Panel class="requirementPanel" hittest="false">
+											<Label class="corePrice" text="12 Asura Cores" />
+											<Label class="corePrice" text="Otherworldly Core" />
+										</Panel>
+									</Panel>
+								</Panel>
+								<Panel class="horizontalSeparator"/>
+							</Panel>
+						</Panel>
+					</Panel>
+					<Panel class="displayPanel" id="updateDisplay" hittest="false">
+						<Panel class="displayHeader" hittest="false">
+							<Panel class="updateClipper" id="updateClipper" hittest="false">
+								<Panel class="displayHeader updateEntry" hittest="false">
+									<Label class="updateHeaderText" text="Enhanced Mobility" />
+									<Label class="corePrice" text="Lower mobility cooldowns by 20%/35%/50%/65%" />
+									<Panel class="BuyRoot">
+										<DOTAAbilityImage class="perk_image" abilityname="perk_mobility" onactivate='BuyPerk( "perk_mobility" , 2, 2)'/>
+										<Panel class="requirementPanel" hittest="false">
+											<Label id="perk_mobility" class="corePrice" text="2 Asura Cores" />
+											<Label id="perk_mobilityLevel" class="corePrice" text="Lv. 0" />
+										</Panel>
+									</Panel>
+								</Panel>
+								<Panel class="displayHeader updateEntry" hittest="false">
+									<Label class="updateHeaderText" text="Titan's Vitality" />
+									<Label class="corePrice" text="Increase HP by 10%/25%/50%/75%/100%" />
+									<Panel class="BuyRoot">
+										<DOTAAbilityImage class="perk_image" abilityname="perk_tank" onactivate='BuyPerk( "perk_tank" , 3, 2)'/>
+										<Panel class="requirementPanel" hittest="false">
+											<Label id="perk_tank" class="corePrice" text="3 Asura Cores" />
+											<Label id="perk_tankLevel" class="corePrice" text="Lv. 0" />
+										</Panel>
+									</Panel>
+								</Panel>
+								<Panel class="displayHeader updateEntry" hittest="false">
+									<Label class="updateHeaderText" text="Speedster's Blessing" />
+									<Label class="corePrice" text="Increase MS cap to 600/700/800/900/1000" />
+									<Panel class="BuyRoot">
+										<DOTAAbilityImage class="perk_image" abilityname="perk_movement" onactivate='BuyPerk( "perk_movement" , 2, 1)'/>
+										<Panel class="requirementPanel" hittest="false">
+											<Label id="perk_movement" class="corePrice" text="2 Asura Cores" />
+											<Label id="perk_movementLevel" class="corePrice" text="Lv. 0" />
+										</Panel>
+									</Panel>
+								</Panel>
+								<Panel class="displayHeader updateEntry" hittest="false">
+									<Label class="updateHeaderText" text="Guardian's Rage" />
+									<Label class="corePrice" text="Amplifies all damage by 20%/30%/40%/50%/60%/
+									70%/80%/100% of threat." />
+									<Panel class="BuyRoot">
+										<DOTAAbilityImage class="perk_image" abilityname="perk_enrage" onactivate='BuyPerk( "perk_enrage" , 4, 1)'/>
+										<Panel class="requirementPanel" hittest="false">
+											<Label id="perk_enrage" class="corePrice" text="4 Asura Cores" />
+											<Label id="perk_enrageLevel" class="corePrice" text="Lv. 0" />
+										</Panel>
+									</Panel>
+								</Panel>
+								<Panel class="displayHeader updateEntry" hittest="false">
+									<Label class="updateHeaderText" text="Trickster's Rewind" />
+									<Label class="corePrice" text="20%/25%/30%/35%/40% chance to refresh used spell
+									2%/4%/6%/8%/10% chance to refresh all spells on spell cast." />
+									<Panel class="BuyRoot">
+										<DOTAAbilityImage class="perk_image" abilityname="perk_spell_haste" onactivate='BuyPerk( "perk_spell_haste" , 3, 1)'/>
+										<Panel class="requirementPanel" hittest="false">
+											<Label id="perk_spell_haste" class="corePrice" text="3 Asura Cores" />
+											<Label id="perk_spell_hasteLevel" class="corePrice" text="Lv. 0" />
+										</Panel>
+									</Panel>
+								</Panel>
+								<Panel class="displayHeader updateEntry" hittest="false">
+									<Label class="updateHeaderText" text="Breaker's Hammer" />
+									<Label class="corePrice" text="5%/10%/15%/20%/25% chance for disables to pierce boss disable reduction." />
+									<Panel class="BuyRoot">
+										<DOTAAbilityImage class="perk_image" abilityname="perk_disable_piercing" onactivate='BuyPerk( "perk_disable_piercing" , 2, 2)'/>
+										<Panel class="requirementPanel" hittest="false">
+											<Label id="perk_disable_piercing" class="corePrice" text="2 Asura Cores" />
+											<Label id="perk_disable_piercingLevel" class="corePrice" text="Lv. 0" />
+										</Panel>
+									</Panel>
+								</Panel>
+								<Panel class="horizontalSeparator"/>
+							</Panel>
+						</Panel>
+					</Panel>
+					<Panel class="displayPanel" id="creditsDisplay" hittest="false">
+						<Panel id="creditsPanel" class="creditsPanel" hittest="false">
+						</Panel>
+					</Panel>
+				</Panel>
+			</Panel>	
+		</Panel>
+	</Panel>
+</root>

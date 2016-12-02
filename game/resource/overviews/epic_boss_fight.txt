@@ -1,0 +1,8 @@
+epic_boss_fight
+{
+	material materials/overviews/epic_boss_fight.vmat
+	pos_x -7424
+	pos_y 7168
+	scale 14.500
+}
+

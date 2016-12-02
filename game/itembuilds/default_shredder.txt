@@ -1,0 +1,44 @@
+"itembuilds"
+{
+	"author"		"Valve"
+	"hero"			"npc_dota_hero_shredder"
+	"Title"			"Recommended items for Timbersaw"
+	
+	"Items"
+	{	
+		"#DOTA_Item_Build_Starting_Items"
+		{
+			"item"	"item_midas_2"
+			"item"	"item_heart"
+		}
+
+		"#DOTA_Item_Build_Early_Game"
+		{
+			"item"	"item_heart_titan"
+			"item"	"item_midas_3"	
+			"item"	"item_octarine_core3"
+			"item"	"item_aether_lens"
+		}
+		"#DOTA_Item_Build_Core_Items"
+		{
+			"item"	"item_octarine_core4"
+			"item"	"item_heart_divine"
+			"item"	"item_redium_lens"
+			"item"	"item_blood_booster"
+		}
+		"#DOTA_Item_Build_Luxury"
+		{
+			"item"	"item_heart_bahamut"
+			"item"	"item_octarine_core5"
+			"item"	"item_sunium_lens"
+			"item"	"item_booster_void"
+		}
+		"#DOTA_Item_Build_End_Game"
+		{
+			"item"	"item_ultimate_amulet"
+			"item"	"item_pixels_guard"
+			"item"	"item_blink_boots"
+			"item"	"item_omni_lens"
+		}
+	}
+}
