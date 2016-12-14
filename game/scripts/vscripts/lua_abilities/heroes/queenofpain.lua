@@ -11,10 +11,10 @@ end
 modifier_queenofpain_sadomasochism = class({})
 
 function modifier_queenofpain_sadomasochism:OnCreated()
-	self.bonus = self:GetAbility():GetSpecialValueFor("abilityvalue_increase") / 100
-	self.expireTime = self:GetAbility():GetSpecialValueFor("duration")
-	self.attackspeed = self:GetAbility():GetSpecialValueFor("attackspeed")
-	self.bonusdamage = self:GetAbility():GetSpecialValueFor("bonus_damage")
+	self.bonus = self:GetAbility():GetTalentSpecialValueFor("abilityvalue_increase") / 100
+	self.expireTime = self:GetAbility():GetTalentSpecialValueFor("duration")
+	self.attackspeed = self:GetAbility():GetTalentSpecialValueFor("attackspeed")
+	self.bonusdamage = self:GetAbility():GetTalentSpecialValueFor("bonus_damage")
 	self:GetParent().painTable = {}
 	if IsServer() then
 		self:StartIntervalThink(0.1)
@@ -102,9 +102,9 @@ function ScreamTargets(keys)
 	local ability = keys.ability
 	local modifier = caster:FindModifierByName("modifier_queenofpain_sadomasochism")
 	local multiplier = modifier:GetStackCount() * modifier.bonus
-	local radius = ability:GetSpecialValueFor("area_of_effect")
+	local radius = ability:GetTalentSpecialValueFor("area_of_effect")
 	if caster:HasScepter() then radius = radius * 2 end
-	local speed = ability:GetSpecialValueFor("projectile_speed")
+	local speed = ability:GetTalentSpecialValueFor("projectile_speed")
 	print(radius + radius*multiplier)
 	local units = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(), caster, radius + radius*multiplier, ability:GetAbilityTargetTeam(), ability:GetAbilityTargetType(), 0, FIND_ANY_ORDER, false)
 	for _,unit in pairs(units) do
@@ -133,6 +133,6 @@ function ScreamDamage(keys)
 	local ability = keys.ability
 	local modifier = caster:FindModifierByName("modifier_queenofpain_sadomasochism")
 	local multiplier = modifier:GetStackCount() * modifier.bonus
-	local damage = ability:GetSpecialValueFor("damage")
+	local damage = ability:GetTalentSpecialValueFor("damage")
 	ApplyDamage({victim = keys.target, attacker = keys.caster, damage = damage + damage*multiplier, damage_type = keys.ability:GetAbilityDamageType(), ability = keys.ability})
 end

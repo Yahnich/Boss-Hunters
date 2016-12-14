@@ -82,9 +82,9 @@
         "item" "item_soul_gatherer"
         "item" "item_radiance"
         "item" "item_skadi"
-        "item" "item_zweihander"
-        "item" "item_scythe"
-        "item" "item_death_scythe"
+        "item" "item_mekansm"
+        "item" "item_scythe_of_decay"
+		"item" "item_echo_sabre"
     }
     // Level 2 - Blue Recipes
     "support"
@@ -101,8 +101,7 @@
 		"item" "item_zero"
 		"item" "item_skadi2"
 		"item" "item_guardian_greaves"
-		"item" "item_echo_sabre"
-		"item" "item_scythe_of_decay"
+		"item" "item_phase_boots"
     }
     "magics"
     {
@@ -118,6 +117,7 @@
         "item" "item_aether_lens"
         "item" "item_heart"
 		"item" "item_mekansm2"
+		"item" "item_phase_boots2"
     }
     // Level 3 - Purple Recipes
     "defense"
@@ -134,6 +134,7 @@
         "item" "item_sunium_lens"
         "item" "item_heart_divine"
 		"item" "item_mekansm4"
+		"item" "item_phase_boots4"
     }
     "weapons"
     {
@@ -149,6 +150,7 @@
 		"item" "item_redium_lens"
         "item" "item_heart_titan"
 		"item" "item_mekansm3"
+		"item" "item_phase_boots3"
     }
     // Level 4 - Orange / Orb / Artifacts
     "artifacts"
@@ -165,6 +167,7 @@
         "item" "item_omni_lens"
         "item" "item_heart_bahamut"
 		"item" "item_mekansm5"
+		"item" "item_phase_boots5"
     }
     //Leftover Storage
     "sideshop1"

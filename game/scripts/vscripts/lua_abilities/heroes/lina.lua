@@ -7,25 +7,25 @@ LinkLuaModifier( "modifier_lina_self_immolate", "lua_abilities/heroes/lina.lua" 
 --------------------------------------------------------------------------------
 
 function lina_self_immolate_kindled:OnSpellStart()
-	self.duration = self:GetSpecialValueFor( "buff_duration" )
+	self.duration = self:GetTalentSpecialValueFor( "buff_duration" )
 	-- kindle handling
-	self.fierysoulextend = self:GetSpecialValueFor("kindle_extension")
+	self.fierysoulextend = self:GetTalentSpecialValueFor("kindle_extension")
 	local kindle = self:GetCaster():FindModifierByName("modifier_fiery_soul_kindled")
 	kindle:SetDuration(kindle:GetRemainingTime() + self.fierysoulextend, true)
 	-- hp cost
-	local hpReduction = self:GetCaster():GetHealth() - self:GetCaster():GetMaxHealth() * self:GetSpecialValueFor("hp_cost") / 100
+	local hpReduction = self:GetCaster():GetHealth() - self:GetCaster():GetMaxHealth() * self:GetTalentSpecialValueFor("hp_cost") / 100
 	if hpReduction < 10 then hpReduction = 1 end
 	self:GetCaster():SetHealth( hpReduction )
 	self:GetCaster():AddNewModifier( self:GetCaster(), self,  "modifier_lina_self_immolate", { duration = self.duration} )
 end
 
 function lina_self_immolate:OnSpellStart()
-	self.duration = self:GetSpecialValueFor( "buff_duration" )
-	self.fierysoulstacks = self:GetSpecialValueFor("fiery_soul_stacks")
+	self.duration = self:GetTalentSpecialValueFor( "buff_duration" )
+	self.fierysoulstacks = self:GetTalentSpecialValueFor("fiery_soul_stacks")
 	local kindle = self:GetCaster():FindModifierByName("modifier_fiery_soul_buff_datadriven")
 	kindle:SetStackCount( kindle:GetStackCount() + self.fierysoulstacks )
 	if kindle:GetStackCount() >= 100 then kindle:SetStackCount(99) end
-	local hpReduction = self:GetCaster():GetHealth() - self:GetCaster():GetMaxHealth() * self:GetSpecialValueFor("hp_cost") / 100
+	local hpReduction = self:GetCaster():GetHealth() - self:GetCaster():GetMaxHealth() * self:GetTalentSpecialValueFor("hp_cost") / 100
 	if hpReduction < 10 then hpReduction = 1 end
 	self:GetCaster():SetHealth( hpReduction )
     self:GetCaster():AddNewModifier( self:GetCaster(), self,  "modifier_lina_self_immolate", { duration = self.duration} )
@@ -35,7 +35,7 @@ end
 modifier_lina_self_immolate = class({})
 
 function modifier_lina_self_immolate:OnCreated()
-	self.damagebonus = self:GetAbility():GetSpecialValueFor("magical_damage_on_hit")
+	self.damagebonus = self:GetAbility():GetTalentSpecialValueFor("magical_damage_on_hit")
 end
 
 function modifier_lina_self_immolate:DeclareFunctions()
@@ -53,7 +53,7 @@ end
 modifier_lina_self_immolate_kindled = class({})
 
 function modifier_lina_self_immolate_kindled:OnCreated()
-	self.damagebonus = self:GetAbility():GetSpecialValueFor("magical_damage_on_hit")
+	self.damagebonus = self:GetAbility():GetTalentSpecialValueFor("magical_damage_on_hit")
 end
 
 function modifier_lina_self_immolate_kindled:DeclareFunctions()
@@ -71,7 +71,7 @@ function FierySoul( keys )
 	local caster = keys.caster
 	if caster:HasModifier("modifier_fiery_soul_kindled") then return end
 	local ability = keys.ability
-	local maxStack = ability:GetLevelSpecialValueFor("trigger_stacks", (ability:GetLevel() - 1))
+	local maxStack = ability:GetTalentSpecialValueFor("trigger_stacks")
 	local currentStack = 0
 	local modifierStackName = "modifier_fiery_soul_buff_datadriven"
 	ability:ApplyDataDrivenModifier(caster, caster, modifierStackName, {duration = ability:GetDuration()}) -- refresh modifierStackName
@@ -97,7 +97,7 @@ function FierySoul( keys )
 		local blade = caster:FindAbilityByName("lina_laguna_blade")
 		blade_k:SetLevel(blade:GetLevel())
 		caster:SwapAbilities("lina_laguna_blade", "lina_laguna_blade_kindled", false, true)
-		kindle:ApplyDataDrivenModifier(caster, caster, "modifier_fiery_soul_kindled", {duration = kindle:GetSpecialValueFor("kindle_duration")})
+		kindle:ApplyDataDrivenModifier(caster, caster, "modifier_fiery_soul_kindled", {duration = kindle:GetTalentSpecialValueFor("kindle_duration")})
 	else
 		caster:SetModifierStackCount(modifierStackName, caster, stacks)
 	end	
@@ -131,7 +131,7 @@ end
 function KindledDragonSlave(keys)
 	local ability = keys.ability
 	local caster = keys.caster
-	local counter = ability:GetSpecialValueFor("total_dragon_slaves")
+	local counter = ability:GetTalentSpecialValueFor("total_dragon_slaves")
 	local maxcounter = counter
 	local delay = 0.1
 	Timers:CreateTimer(delay,function()
@@ -140,9 +140,9 @@ function KindledDragonSlave(keys)
 					Ability = ability,
 					EffectName = "particles/econ/items/lina/lina_head_headflame/lina_spell_dragon_slave_headflame.vpcf",
 					vSpawnOrigin = caster:GetAbsOrigin(),
-					fDistance = ability:GetSpecialValueFor("dragon_slave_distance"),
-					fStartRadius = ability:GetSpecialValueFor("dragon_slave_width_initial"),
-					fEndRadius = ability:GetSpecialValueFor("dragon_slave_width_end"),
+					fDistance = ability:GetTalentSpecialValueFor("dragon_slave_distance"),
+					fStartRadius = ability:GetTalentSpecialValueFor("dragon_slave_width_initial"),
+					fEndRadius = ability:GetTalentSpecialValueFor("dragon_slave_width_end"),
 					Source = caster,
 					bHasFrontalCone = true,
 					bReplaceExisting = false,
@@ -151,16 +151,16 @@ function KindledDragonSlave(keys)
 					iUnitTargetFlags = DOTA_UNIT_TARGET_FLAG_NONE,
 					iUnitTargetType = DOTA_UNIT_TARGET_ALL,
 					bDeleteOnHit = false,
-					vVelocity = RotateVector2D(caster:GetForwardVector(), (maxcounter-counter)*0.261799) * ability:GetSpecialValueFor("dragon_slave_speed")
+					vVelocity = RotateVector2D(caster:GetForwardVector(), (maxcounter-counter)*0.261799) * ability:GetTalentSpecialValueFor("dragon_slave_speed")
 					}
 				local dragonslave1 = ProjectileManager:CreateLinearProjectile( projectileTable )
 				local projectileTable = {
 					Ability = ability,
 					EffectName = "particles/econ/items/lina/lina_head_headflame/lina_spell_dragon_slave_headflame.vpcf",
 					vSpawnOrigin = caster:GetAbsOrigin(),
-					fDistance = ability:GetSpecialValueFor("dragon_slave_distance"),
-					fStartRadius = ability:GetSpecialValueFor("dragon_slave_width_initial"),
-					fEndRadius = ability:GetSpecialValueFor("dragon_slave_width_end"),
+					fDistance = ability:GetTalentSpecialValueFor("dragon_slave_distance"),
+					fStartRadius = ability:GetTalentSpecialValueFor("dragon_slave_width_initial"),
+					fEndRadius = ability:GetTalentSpecialValueFor("dragon_slave_width_end"),
 					Source = caster,
 					bHasFrontalCone = true,
 					bReplaceExisting = false,
@@ -169,7 +169,7 @@ function KindledDragonSlave(keys)
 					iUnitTargetFlags = DOTA_UNIT_TARGET_FLAG_NONE,
 					iUnitTargetType = DOTA_UNIT_TARGET_ALL,
 					bDeleteOnHit = false,
-					vVelocity = RotateVector2D(caster:GetForwardVector(), -(maxcounter-counter)*0.261799) * ability:GetSpecialValueFor("dragon_slave_speed")
+					vVelocity = RotateVector2D(caster:GetForwardVector(), -(maxcounter-counter)*0.261799) * ability:GetTalentSpecialValueFor("dragon_slave_speed")
 				}
 				local dragonslave2 = ProjectileManager:CreateLinearProjectile( projectileTable )
 			counter = counter - 2
@@ -179,9 +179,9 @@ function KindledDragonSlave(keys)
 					Ability = ability,
 					EffectName = "particles/econ/items/lina/lina_head_headflame/lina_spell_dragon_slave_headflame.vpcf",
 					vSpawnOrigin = caster:GetAbsOrigin(),
-					fDistance = ability:GetSpecialValueFor("dragon_slave_distance"),
-					fStartRadius = ability:GetSpecialValueFor("dragon_slave_width_initial"),
-					fEndRadius = ability:GetSpecialValueFor("dragon_slave_width_end"),
+					fDistance = ability:GetTalentSpecialValueFor("dragon_slave_distance"),
+					fStartRadius = ability:GetTalentSpecialValueFor("dragon_slave_width_initial"),
+					fEndRadius = ability:GetTalentSpecialValueFor("dragon_slave_width_end"),
 					Source = caster,
 					bHasFrontalCone = true,
 					bReplaceExisting = false,
@@ -190,7 +190,7 @@ function KindledDragonSlave(keys)
 					iUnitTargetFlags = DOTA_UNIT_TARGET_FLAG_NONE,
 					iUnitTargetType = DOTA_UNIT_TARGET_ALL,
 					bDeleteOnHit = false,
-					vVelocity = caster:GetForwardVector() * ability:GetSpecialValueFor("dragon_slave_speed")
+					vVelocity = caster:GetForwardVector() * ability:GetTalentSpecialValueFor("dragon_slave_speed")
 					}
 				local dragonslave1 = ProjectileManager:CreateLinearProjectile( projectileTable )
 			counter = counter - 2
@@ -227,7 +227,7 @@ function KindledLaguna(keys)
 	local ability = keys.ability
 	local caster = keys.caster
 	local target = keys.target
-	local damage = ability:GetSpecialValueFor("damage")
+	local damage = ability:GetTalentSpecialValueFor("damage")
 	local damage_type = ability:GetAbilityDamageType()
 	if caster:HasScepter() then damage_type = ability:AbilityScepterDamageType() end
 	ApplyDamage({victim = target, attacker = caster, damage = damage, damage_type = damage_type, ability = ability})

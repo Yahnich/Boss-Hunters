@@ -9,15 +9,15 @@ function Spawn( entityKeyValues )
 	thisEntity.odds = thisEntity:FindAbilityByName("boss_overwhelming_odds")
 	thisEntity.press = thisEntity:FindAbilityByName("boss_press_the_attack")
 	thisEntity.call = thisEntity:FindAbilityByName("boss_call_reinforcements")
-	if GetMapName() == "epic_boss_fight_challenger" then
+	if  math.floor(GameRules.gameDifficulty + 0.5) == 4 then
 		thisEntity.moment:SetLevel(4)
 		thisEntity.press:SetLevel(4)
 		thisEntity.odds:SetLevel(4)
-	elseif GetMapName() == "epic_boss_fight_impossible" then
+	elseif  math.floor(GameRules.gameDifficulty + 0.5) == 3 then
 		thisEntity.moment:SetLevel(3)
 		thisEntity.press:SetLevel(3)
 		thisEntity.odds:SetLevel(3)
-	elseif GetMapName() == "epic_boss_fight_hard" or GetMapName() == "epic_boss_fight_boss_master" then
+	elseif  math.floor(GameRules.gameDifficulty + 0.5) == 2 then
 		thisEntity.moment:SetLevel(2)
 		thisEntity.press:SetLevel(2)
 		thisEntity.odds:SetLevel(2)
@@ -56,7 +56,7 @@ function AIThink()
 		end
 		if thisEntity.press:IsFullyCastable() then
 			local hpregen = thisEntity.press:GetSpecialValueFor("hp_regen") *  thisEntity.press:GetSpecialValueFor("duration")
-			if thisEntity:IsAttacking() or thisEntity:GetHealthDeficit() > hpregen and RollPercentage(5) then
+			if (thisEntity:IsAttacking() or thisEntity:GetHealthDeficit() > hpregen) and RollPercentage(8) then
 				ExecuteOrderFromTable({
 					UnitIndex = thisEntity:entindex(),
 					OrderType = DOTA_UNIT_ORDER_CAST_TARGET,
@@ -66,7 +66,7 @@ function AIThink()
 				return 0.25
 			elseif AICore:TotalAlliedUnitsInRange( thisEntity, thisEntity.press:GetCastRange() ) then
 				local ally = AICore:WeakestAlliedUnitInRange( thisEntity, thisEntity.press:GetCastRange() , false)
-				if ally and ally:GetHealthDeficit() > hpregen then
+				if ally and ally:GetHealthDeficit() > hpregen and RollPercentage(8) then
 					ExecuteOrderFromTable({
 						UnitIndex = thisEntity:entindex(),
 						OrderType = DOTA_UNIT_ORDER_CAST_TARGET,

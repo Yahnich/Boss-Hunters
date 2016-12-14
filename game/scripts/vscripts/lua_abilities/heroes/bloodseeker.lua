@@ -4,7 +4,7 @@ function Blood_Seeker_Blood_Smell(keys)
     local ability = keys.ability
 	local modifier = keys.damageapplied
     local missing_health = target:GetMaxHealth() - target:GetHealth()
-    local damage = math.floor(ability:GetLevelSpecialValueFor("percent", ability:GetLevel()-1) * missing_health * 0.01) + 1
+    local damage = math.floor(ability:GetTalentSpecialValueFor("percent") * missing_health * 0.01) + 1
 	ability:ApplyDataDrivenModifier(caster, caster, modifier, {duration = 1})
 	caster:SetModifierStackCount( modifier, ability, damage )
     if caster.show_popup ~= true then
@@ -28,8 +28,8 @@ function DistanceCheck(keys)
 	local caster = keys.caster
 	local target = keys.target
 	local ability = keys.ability
-	local movement_damage_pct = ability:GetLevelSpecialValueFor( "movement_damage_pct", ability:GetLevel() - 1 )/100
-	local damage_cap_amount = ability:GetLevelSpecialValueFor( "damage_cap_amount", ability:GetLevel() - 1 )
+	local movement_damage_pct = ability:GetTalentSpecialValueFor( "movement_damage_pct")/100
+	local damage_cap_amount = ability:GetTalentSpecialValueFor( "damage_cap_amount")
 	local position = target:GetAbsOrigin()
 	local damage = 0
 	if target.damagetaken == nil then target.damagetaken = 0 end
@@ -51,8 +51,8 @@ function Damage(keys)
 	local caster = keys.caster
 	local target = keys.attacker
 	local ability = keys.ability
-	local movement_damage_pct = ability:GetLevelSpecialValueFor( "movement_damage_pct", ability:GetLevel() - 1 )/100
-	local damage_cap_amount = ability:GetLevelSpecialValueFor( "damage_cap_amount", ability:GetLevel() - 1 )
+	local movement_damage_pct = ability:GetTalentSpecialValueFor( "movement_damage_pct")/100
+	local damage_cap_amount = ability:GetTalentSpecialValueFor( "damage_cap_amount")
 	
 	damage = target:GetAttacksPerSecond() * target:GetBaseAttackTime() * 100 * movement_damage_pct * 1.7 --1.7 is the default BAT modifier to find adjusted BAT
 
@@ -67,8 +67,8 @@ function InitialDamage(keys)
 	local caster = keys.caster
 	local target = keys.target
 	local ability = keys.ability
-	local initial_damage = ability:GetLevelSpecialValueFor( "damage_initial", ability:GetLevel() - 1 )
-	local damage_cap_amount = ability:GetLevelSpecialValueFor( "damage_cap_amount", ability:GetLevel() - 1 )
+	local initial_damage = ability:GetTalentSpecialValueFor( "damage_initial")
+	local damage_cap_amount = ability:GetTalentSpecialValueFor( "damage_cap_amount")
 	local burst_effect = ParticleManager:CreateParticle("particles/units/heroes/hero_bloodseeker/bloodseeker_bloodritual_explode.vpcf", PATTACH_ABSORIGIN , target)
             ParticleManager:SetParticleControl(burst_effect, 0, target:GetAbsOrigin())
 			ParticleManager:SetParticleControl(burst_effect, 1, Vector(150,150,600))
@@ -92,8 +92,8 @@ function ApplyAghs(keys)
 	local caster = keys.caster
 	local target = keys.unit
 	local ability = keys.ability
-	local duration = ability:GetLevelSpecialValueFor( "duration", ability:GetLevel() - 1 )
-	local radius = ability:GetLevelSpecialValueFor( "radius_scepter", ability:GetLevel() - 1 )
+	local duration = ability:GetTalentSpecialValueFor( "duration")
+	local radius = ability:GetTalentSpecialValueFor( "radius_scepter")
 	local burst_effect = ParticleManager:CreateParticle("particles/bloodseeker_haemophillia_burst.vpcf", PATTACH_ABSORIGIN , target)
             ParticleManager:SetParticleControl(burst_effect, 0, target:GetAbsOrigin())
 	local aoe_effect = ParticleManager:CreateParticle("particles/units/heroes/hero_bloodseeker/bloodseeker_bloodritual_explode.vpcf", PATTACH_ABSORIGIN , target)

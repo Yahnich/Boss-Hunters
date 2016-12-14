@@ -5,7 +5,7 @@ function VampiricHeal(keys)
 	
 	print(target:GetName())
 	local hpMax = target:GetMaxHealth()
-	local hpPerc = ability:GetSpecialValueFor("aura_lifesteal") / 100
+	local hpPerc = ability:GetTalentSpecialValueFor("aura_lifesteal") / 100
 	target:Heal(hpMax*hpPerc, caster)
 end
 
@@ -14,7 +14,7 @@ function VampiricActiveHeal(keys)
 	local target = keys.target
 	local ability = keys.ability
 	
-	local healPerc = ability:GetSpecialValueFor("life_leeched") / 100
+	local healPerc = ability:GetTalentSpecialValueFor("life_leeched") / 100
 	local heal = ability:GetAbilityDamage() * healPerc
 	if caster:GetHealth() + heal > caster:GetMaxHealth() then
 		local difference = caster:GetMaxHealth() - caster:GetHealth()
@@ -26,7 +26,7 @@ function VampiricActiveHeal(keys)
 		local allies = FindUnitsInRadius(caster:GetTeam(),
                               caster:GetAbsOrigin(),
                               caster,
-                              ability:GetSpecialValueFor("aura_radius"),
+                              ability:GetTalentSpecialValueFor("aura_radius"),
                               DOTA_UNIT_TARGET_TEAM_FRIENDLY,
                               DOTA_UNIT_TARGET_ALL,
                               DOTA_UNIT_TARGET_FLAG_NONE,

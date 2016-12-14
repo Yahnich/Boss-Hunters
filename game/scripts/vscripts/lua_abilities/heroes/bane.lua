@@ -17,9 +17,9 @@ function ManaDrain( keys )
 	if not caster:IsChanneling() then
 		target:RemoveModifierByName("modifier_fiends_grip_datadriven")
 	end
-	local mana_drain = ability:GetLevelSpecialValueFor("fiend_grip_mana_drain", (ability:GetLevel() -1)) / 100
+	local mana_drain = ability:GetTalentSpecialValueFor("fiend_grip_mana_drain") / 100
 	if caster:HasScepter() then
-		mana_drain = ability:GetLevelSpecialValueFor("fiend_grip_mana_drain_scepter", (ability:GetLevel() -1)) / 100
+		mana_drain = ability:GetTalentSpecialValueFor("fiend_grip_mana_drain_scepter") / 100
 	end
 	
 	if target:GetMaxMana() then
@@ -55,11 +55,15 @@ function ApplyGripDamage(keys)
 	local target = keys.target
 	local ability = keys.ability
 	local damage = keys.damage
-	local duration = ability:GetLevelSpecialValueFor("fiend_grip_duration", (ability:GetLevel() -1))
+	local duration = ability:GetTalentSpecialValueFor("fiend_grip_duration")
 	if caster:HasScepter() then
-		damage = ability:GetLevelSpecialValueFor("fiend_grip_damage_scepter", (ability:GetLevel() -1))
+		damage = ability:GetTalentSpecialValueFor("fiend_grip_damage_scepter")
 	end
 	ApplyDamage({victim = target, attacker = caster, damage = damage/duration, damage_type = ability:GetAbilityDamageType(), ability = ability})
+	if not target:IsAlive() then
+		ability:EndChannel(true)
+		caster:Interrupt()
+	end
 end
 
 function ScepterCheck(keys)
@@ -83,15 +87,63 @@ function ScepterNightmare(keys)
 	end
 	
 	local duration1 = ability1:GetDuration()
-	local duration2 = ability2:GetLevelSpecialValueFor("duration", (ability2:GetLevel() -1))
+	local duration2 = ability2:GetTalentSpecialValueFor("duration")
 	if keys.ability:IsChanneling() and keys.target == keys.caster and not keys.ability:IsStolen() then
 		caster:SetCursorCastTarget(attacker)
 		ability1:OnSpellStart()
 		caster:SetCursorCastTarget(attacker)
 		ability2:OnSpellStart()
-	if keys.ability:IsStolen() then
+	elseif keys.ability:IsStolen() then
 		attacker:AddNewModifier(attacker, ability1, "modifier_bane_enfeeble", {duration = duration1})
 		attacker:AddNewModifier(attacker, ability2, "modifier_bane_nightmare", {duration = duration2})
 	end
+end
+
+function EnfeebleFilter(keys)
+	local caster = keys.caster
+	local ability = keys.ability
+	local target = keys.target
+	
+	local damageReduction = math.abs(ability:GetTalentSpecialValueFor("enfeeble_attack_reduction"))
+	local damageReductionAlt = math.abs( ability:GetTalentSpecialValueFor("enfeeble_attack_reduction_alt") * target:GetAverageBaseDamage() / 100 )
+	print(damageReduction, damageReductionAlt)
+	if damageReduction > damageReductionAlt then
+		ability:ApplyDataDrivenModifier(caster, target, "modifier_mass_enfeeble", {duration = ability:GetDuration()})
+	else
+		ability:ApplyDataDrivenModifier(caster, target, "modifier_mass_enfeeble_alt", {duration = ability:GetDuration()})
 	end
+end
+
+function BrainSapInit(keys)
+	local caster = keys.caster
+	local ability = keys.ability
+	local target = keys.target
+	ability.dmgCount = 0
+end
+
+function BrainSapDamage(keys)
+	local caster = keys.caster
+	local ability = keys.ability
+	local target = keys.target
+	ability.dmgCount = ability.dmgCount + 1
+	ApplyDamage({victim = target, attacker = caster, damage = ability:GetTalentSpecialValueFor("tooltip_brain_sap_heal_amt"), damage_type = ability:GetAbilityDamageType(), ability = ability})
+end
+
+function BrainSapHeal(keys)
+	local caster = keys.caster
+	local ability = keys.ability
+	local target = keys.target
+	
+	local pctHeal = ability:GetTalentSpecialValueFor("pct_heal")
+	local dmgHeal = ability:GetTalentSpecialValueFor("tooltip_brain_sap_heal_amt")
+	 
+	target:Heal(target:GetMaxHealth() * pctHeal + ability.dmgCount * dmgHeal,caster)
+end
+
+function NightmareStop(keys)
+	local caster = keys.caster
+	local ability = keys.ability
+	local target = keys.target
+	StopSoundEvent("Hero_Bane.Nightmare.Loop", target)
+	ApplyDamage({victim = target, attacker = caster, damage = ability:GetAbilityDamage(), damage_type = ability:GetAbilityDamageType(), ability = ability})
 end

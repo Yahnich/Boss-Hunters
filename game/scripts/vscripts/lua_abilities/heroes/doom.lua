@@ -4,10 +4,10 @@ function Devour_doom(keys)
     local target = keys.target
     local ability = keys.ability
     local level = ability:GetLevel()-1
-    local gold = ability:GetLevelSpecialValueFor("total_gold", level)
-    local duration = ability:GetLevelSpecialValueFor("duration", level)
+    local gold = ability:GetTalentSpecialValueFor("total_gold")
+    local duration = ability:GetTalentSpecialValueFor("duration")
 	
-	local death = ability:GetLevelSpecialValueFor("death_perc", level)
+	local death = ability:GetTalentSpecialValueFor("death_perc")
     local kill_rand = math.random(100)
 	local boss_curr = target:GetHealth()
 	local boss_max = target:GetMaxHealth()
@@ -59,8 +59,8 @@ function DamageTick( keys )
 	local caster = keys.caster
 	local target = keys.target
 	local ability = keys.ability
-	local damage = ability:GetSpecialValueFor("damage")
-	local duration = ability:GetSpecialValueFor("duration")
+	local damage = ability:GetTalentSpecialValueFor("damage")
+	local duration = ability:GetTalentSpecialValueFor("duration")
 	if not ability.duration then 
 		ability.duration = 0 -- ignore first damage tick
 	else

@@ -3,7 +3,7 @@ function ApplyExplosion(keys)
 	local target = keys.target
 	local ability = keys.ability
 	
-	local duration = ability:GetSpecialValueFor("base_duration")
+	local duration = ability:GetTalentSpecialValueFor("base_duration")
 	if caster:HasScepter() then
 		local affectedEnemies = 0
 		for _,unit in pairs(Entities:FindAllByName( "npc_dota_creature")) do
@@ -11,7 +11,7 @@ function ApplyExplosion(keys)
 				affectedEnemies = affectedEnemies + 1
 			end
 		end
-		local duration = duration + affectedEnemies * ability:GetSpecialValueFor("bonus_duration_per_aura_affected_scepter")
+		local duration = duration + affectedEnemies * ability:GetTalentSpecialValueFor("bonus_duration_per_aura_affected_scepter")
 	end
 	ability:ApplyDataDrivenModifier(caster, target, "modifier_underlord_expulsion_explosion", {duration = duration})
 end
@@ -21,7 +21,7 @@ function ExplosionDamage(keys)
 	local target = keys.target
 	local ability = keys.ability
 	
-	local damage = ability:GetSpecialValueFor("damage_per_sec")
+	local damage = ability:GetTalentSpecialValueFor("damage_per_sec")
 	if caster:HasScepter() then
 		local affectedEnemies = 0
 		for _,unit in pairs(Entities:FindAllByName( "npc_dota_creature")) do
@@ -29,9 +29,9 @@ function ExplosionDamage(keys)
 				affectedEnemies = affectedEnemies + 1
 			end
 		end
-		local damage = damage + affectedEnemies * ability:GetSpecialValueFor("bonus_damage_per_aura_affected_scepter")
+		local damage = damage + affectedEnemies * ability:GetTalentSpecialValueFor("bonus_damage_per_aura_affected_scepter")
 	end
-	local damage_tick = damage * ability:GetSpecialValueFor("explosion_interval")
+	local damage_tick = damage * ability:GetTalentSpecialValueFor("explosion_interval")
 	ApplyDamage({victim = target, attacker = caster, damage = damage_tick, damage_type = ability:GetAbilityDamageType(), ability = ability})
 end
 
@@ -40,7 +40,7 @@ function ExplosionHeal(keys)
 	local target = keys.target
 	local ability = keys.ability
 	
-	local heal = ability:GetSpecialValueFor("heal_per_sec")
+	local heal = ability:GetTalentSpecialValueFor("heal_per_sec")
 	if caster:HasScepter() then
 		local affectedEnemies = 0
 		for _,unit in pairs(Entities:FindAllByName( "npc_dota_creature")) do
@@ -48,8 +48,8 @@ function ExplosionHeal(keys)
 				affectedEnemies = affectedEnemies + 1
 			end
 		end
-		local heal = heal + affectedEnemies * ability:GetSpecialValueFor("bonus_heal_per_aura_affected_scepter")
+		local heal = heal + affectedEnemies * ability:GetTalentSpecialValueFor("bonus_heal_per_aura_affected_scepter")
 	end
-	local heal_tick = heal * ability:GetSpecialValueFor("explosion_interval")
+	local heal_tick = heal * ability:GetTalentSpecialValueFor("explosion_interval")
 	target:Heal(heal_tick, caster)
 end

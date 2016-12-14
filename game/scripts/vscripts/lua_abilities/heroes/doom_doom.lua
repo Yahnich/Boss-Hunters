@@ -11,8 +11,8 @@ function doom_doom_ebf:GetBehavior()
 end
 
 function doom_doom_ebf:OnSpellStart()
-	self.doomDamage = self:GetSpecialValueFor( "damage" )
-	self.doomDuration = self:GetSpecialValueFor("duration")
+	self.doomDamage = self:GetTalentSpecialValueFor( "damage" )
+	self.doomDuration = self:GetTalentSpecialValueFor("duration")
 	local hTarget = self:GetCursorTarget()
 	EmitSoundOn( "Hero_DoomBringer.LvlDeath", self:GetCaster())
 	if self:GetCaster():HasScepter() then

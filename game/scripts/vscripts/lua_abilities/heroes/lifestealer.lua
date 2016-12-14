@@ -47,7 +47,7 @@ function HealDamage(keys)
 	local ability = keys.ability
     local modifier_name = keys.modifier_counter_name
 	
-	local heal = ability:GetAbilityDamage() * ability:GetSpecialValueFor("heal")/100
+	local heal = ability:GetAbilityDamage() * ability:GetTalentSpecialValueFor("heal")/100
 
 	caster:Heal(heal, caster)
 	ApplyDamage({ victim = target, attacker = caster, damage = ability:GetAbilityDamage()/get_aether_multiplier(caster), damage_type = ability:GetAbilityDamageType(), ability = ability })

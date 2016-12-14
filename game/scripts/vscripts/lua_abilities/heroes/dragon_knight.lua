@@ -2,8 +2,8 @@ function Berserking( keys )
 	local caster = keys.caster
 	if not caster:IsRealHero() then return end
 	
-	local threatgen = keys.ability:GetSpecialValueFor("threat")
-	local threat_tick = keys.ability:GetSpecialValueFor("threat_tick")
+	local threatgen = keys.ability:GetTalentSpecialValueFor("threat")
+	local threat_tick = keys.ability:GetTalentSpecialValueFor("threat_tick")
 	local threat = threatgen*threat_tick
 	caster.threat = caster.threat + threat
 	local player = PlayerResource:GetPlayer(caster:GetPlayerID())
@@ -36,11 +36,11 @@ end
 function BerserkHeal(keys)
 	local caster = keys.caster
 	local ability = keys.ability
-	local chance = ability:GetSpecialValueFor("heal_chance")
-	local cooldown = ability:GetSpecialValueFor("internal_cooldown")
+	local chance = ability:GetTalentSpecialValueFor("heal_chance")
+	local cooldown = ability:GetTalentSpecialValueFor("internal_cooldown")
 	if not ability.lastproc then ability.lastproc = 0 end
 	if math.random(100) < chance and ability.lastproc + cooldown < GameRules:GetGameTime() and caster:GetHealth() <= caster:GetMaxHealth()*0.75 then
-		local amount = ability:GetSpecialValueFor("heal_amount")/100
+		local amount = ability:GetTalentSpecialValueFor("heal_amount")/100
 		local heal = caster:GetMaxHealth() * amount
 		caster:Heal(heal, caster)
 		SendOverheadEventMessage(nil, OVERHEAD_ALERT_HEAL, caster, heal, nil)
@@ -57,7 +57,7 @@ function ApplyBuff(keys)
 	local caster_origin = caster:GetAbsOrigin()
 	
 	local ability = keys.ability
-	local duration = ability:GetLevelSpecialValueFor("buff_duration", ability:GetLevel() -1)
+	local duration = ability:GetTalentSpecialValueFor("buff_duration")
 	
 	-- Checks if the ability is off cooldown and if the caster is attacking a target
 	if target then
@@ -90,8 +90,8 @@ function DistanceCheck(keys)
 	local target = ability.target
 	local min_distance = caster:GetAttackRange()
 	min_distance = min_distance + target:GetCollisionPadding() + target:GetHullRadius() + caster:GetCollisionPadding() + caster:GetHullRadius()
-	local duration = ability:GetLevelSpecialValueFor("heal_duration", -1)
-	local stun = ability:GetLevelSpecialValueFor("stun_duration", -1)
+	local duration = ability:GetTalentSpecialValueFor("heal_duration")
+	local stun = ability:GetTalentSpecialValueFor("stun_duration")
 	
 	-- Checks if Dragon Knight is in 'stun' range
 	local target_origin = ability.target:GetAbsOrigin()
@@ -142,7 +142,7 @@ function InterveneStacks(keys)
 	local ability = keys.ability
 	caster:RemoveModifierByName("modifier_intervene_stacks")
 	local healthregen = caster:GetHealthRegen()
-	local bonus = ability:GetSpecialValueFor("heal_bonus")
+	local bonus = ability:GetTalentSpecialValueFor("heal_bonus")
 	local stacks = healthregen * ((bonus - 100)/100) -- 200% means doubling; so remove original health regen percent
 	ability:ApplyDataDrivenModifier(caster, caster, "modifier_intervene_stacks", {})
 	keys.caster:SetModifierStackCount("modifier_intervene_stacks", caster, healthregen)

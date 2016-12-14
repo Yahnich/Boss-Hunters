@@ -8,21 +8,21 @@ function Spawn( entityKeyValues )
 	thisEntity.blink = thisEntity:FindAbilityByName("boss_blink")
 	thisEntity.strike = thisEntity:FindAbilityByName("boss_shadow_strike")
 	thisEntity.scream = thisEntity:FindAbilityByName("boss_scream_of_pain")
-	if GetMapName() == "epic_boss_fight_challenger" then
+	if  math.floor(GameRules.gameDifficulty + 0.5) > 3 then
 		thisEntity.blink:SetLevel(4)
 		thisEntity.strike:SetLevel(4)
 		thisEntity.scream:SetLevel(4)
 		thisEntity:SetMaxHealth(thisEntity:GetMaxHealth()*1.3)
 		thisEntity:SetBaseDamageMin(thisEntity:GetBaseDamageMin()*1.5)
 		thisEntity:SetBaseDamageMax(thisEntity:GetBaseDamageMax()*1.5)
-	elseif GetMapName() == "epic_boss_fight_impossible" then
+	elseif  math.floor(GameRules.gameDifficulty + 0.5) == 3 then
 		thisEntity.blink:SetLevel(3)
 		thisEntity.strike:SetLevel(3)
 		thisEntity.scream:SetLevel(3)
 		thisEntity:SetMaxHealth(thisEntity:GetMaxHealth()*1.25)
 		thisEntity:SetBaseDamageMin(thisEntity:GetBaseDamageMin()*1.25)
 		thisEntity:SetBaseDamageMax(thisEntity:GetBaseDamageMax()*1.25)
-	elseif GetMapName() == "epic_boss_fight_hard" or GetMapName() == "epic_boss_fight_boss_master" then
+	elseif  math.floor(GameRules.gameDifficulty + 0.5) == 2 then
 		thisEntity.blink:SetLevel(2)
 		thisEntity.strike:SetLevel(2)
 		thisEntity.scream:SetLevel(2)

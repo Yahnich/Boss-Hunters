@@ -2,9 +2,9 @@ function PierceDamage(keys)
     local caster = keys.caster
     local target = keys.target
     local ability = keys.ability
-    local pierce = ability:GetSpecialValueFor("pierce_pct") / 100
-	local duration = ability:GetSpecialValueFor("stun_duration")
-	local basedmg = ability:GetSpecialValueFor("base_damage")
+    local pierce = ability:GetTalentSpecialValueFor("pierce_pct") / 100
+	local duration = ability:GetTalentSpecialValueFor("stun_duration")
+	local basedmg = ability:GetTalentSpecialValueFor("base_damage")
     local damage = keys.damage*pierce + basedmg
 	if caster:IsIllusion() then return end
 	SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE, caster, damage, nil)
@@ -23,8 +23,8 @@ function PierceRNG(keys)
 	if not ability:IsCooldownReady() then return end
 	local caster = keys.caster
     local target = keys.target
-	local proc = ability:GetSpecialValueFor("proc_chance")
-	local cooldown = ability:GetSpecialValueFor("passive_cooldown")
+	local proc = ability:GetTalentSpecialValueFor("proc_chance")
+	local cooldown = ability:GetTalentSpecialValueFor("passive_cooldown")
 	if caster:HasModifier("modifier_focusfire_crit_scepter") then cooldown = 0 end
 	if not ability.prng then ability.prng = 0 end
 	if math.random(100) < proc + ability.prng then

@@ -14,14 +14,14 @@ function StatLoss(keys)
 	local caster = keys.caster
 	local target = keys.target
 	local ability = keys.ability
-	local duration = ability:GetSpecialValueFor("duration")
-	local damage = ability:GetSpecialValueFor("whirling_damage")
+	local duration = ability:GetTalentSpecialValueFor("duration")
+	local damage = ability:GetTalentSpecialValueFor("whirling_damage")
 	local damageType = ability:GetAbilityDamageType()
 	
 	if caster.nearTrees then
 		damageType = DAMAGE_TYPE_PURE
 	end
-	local statLoss = math.abs(ability:GetSpecialValueFor("stat_loss_pct") / 100)
+	local statLoss = math.abs(ability:GetTalentSpecialValueFor("stat_loss_pct") / 100)
 	target.hpLoss = target:GetMaxHealth() * statLoss
 	
 	local armorLoss = math.floor(target:GetPhysicalArmorBaseValue() * statLoss + 0.5)

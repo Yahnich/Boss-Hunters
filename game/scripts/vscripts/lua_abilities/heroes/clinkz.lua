@@ -3,7 +3,7 @@ function StrafeAttack(keys)
 	local radius = caster:GetAttackRange()+caster:GetAttackRangeBuffer()
 	local counter = 1
 	if caster:HasScepter() then
-		counter = keys.ability:GetSpecialValueFor("targets_scepter")
+		counter = keys.ability:GetTalentSpecialValueFor("targets_scepter")
 	end
 	local units = FindUnitsInRadius(caster:GetTeam(),
                                   caster:GetAbsOrigin(),
@@ -65,11 +65,11 @@ function DeathPact( event )
 	local caster = event.caster
 	local target = event.target
 	local ability = event.ability
-	local duration = ability:GetLevelSpecialValueFor( "duration" , ability:GetLevel() - 1 )
+	local duration = ability:GetTalentSpecialValueFor( "duration")
 	local target_health = target:GetHealth()
 
 	-- Health Gain
-	local health_gain_pct = ability:GetLevelSpecialValueFor( "hp_percent" , ability:GetLevel() - 1 ) * 0.01
+	local health_gain_pct = ability:GetTalentSpecialValueFor( "hp_percent") * 0.01
 	local health_gain = math.floor(target_health * health_gain_pct)
 
 	local health_modifier = "modifier_death_pact_health"
@@ -78,7 +78,7 @@ function DeathPact( event )
 	caster:Heal( health_gain, caster)
 
 	-- Damage Gain
-	local damage_gain_pct = ability:GetLevelSpecialValueFor( "damage_percent" , ability:GetLevel() - 1 ) * 0.01
+	local damage_gain_pct = ability:GetTalentSpecialValueFor( "damage_percent") * 0.01
 	local damage_gain = math.floor(target_health * damage_gain_pct)
 
 	local damage_modifier = "modifier_death_pact_damage"

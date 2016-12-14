@@ -18,7 +18,7 @@ end
 --------------------------------------------------------------------------------
 
 function pudge_dismember_lua:GetChannelTime()
-	self.duration = self:GetSpecialValueFor( "duration" )
+	self.duration = self:GetTalentSpecialValueFor( "duration" )
 
 	if IsServer() then
 		if self.hVictim ~= nil then

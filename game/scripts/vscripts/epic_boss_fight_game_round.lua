@@ -63,7 +63,7 @@ function GetAllPlayers()
 	
 	local base = GameRules.BasePlayers
 	
-	local challengemult = base
+	local challengemult = base or 7
 
 	for nPlayerID = 0, DOTA_MAX_TEAM_PLAYERS-1 do
 		if PlayerResource:GetTeam( nPlayerID ) == DOTA_TEAM_GOODGUYS then
@@ -96,6 +96,7 @@ function GetAllPlayers()
 	if counter - 1 <= abandon then abandon = counter - 1 end
 	abandon = abandon / 3
 	counter = (counter*(counter/(counter-abandon)))*(1 + challengemult)
+	print(counter, "counter")
 	return counter
 end
 
@@ -109,6 +110,7 @@ function CHoldoutGameRound:Begin()
 	}
 	self._nAsuraCoreRemaining = 0
 	local PlayerNumber = GetAllPlayers() or HeroList:GetHeroCount()
+	print(PlayerNumber, "playernumber")
 	local GoldMultiplier = (((PlayerNumber)+0.56)/1.8)*0.15
 
 	local roundNumber = self._nRoundNumber
@@ -131,13 +133,12 @@ function CHoldoutGameRound:Begin()
 	self._nElitesToSpawn = 0
 	self._EliteAbilities = {}
 	local elitemod = 0
-	if GetMapName() == "epic_boss_fight_challenger" then
-		elitemod = 3
+	if GetMapName() == "epic_boss_fight_hard" then
+		elitemod = 1
 	elseif GetMapName() == "epic_boss_fight_impossible" then
 		elitemod = 2
-	elseif GetMapName() == "epic_boss_fight_hard" then
-		elitemod = 1
 	end
+	elitemod = elitemod * GameRules.gameDifficulty
 	for i=1, self._nCoreUnitsTotal do
 		if RollPercentage(7+elitemod) and self._nRoundNumber > 1 then
 			self._nElitesToSpawn = self._nElitesToSpawn + 1
@@ -164,20 +165,7 @@ function CHoldoutGameRound:Begin()
 	self._nElitesRemaining = self._nElitesToSpawn
 	self._nCoreUnitsSpawned = self._nCoreUnitsTotal
 	self._nCoreUnitsKilled = 0
-
-	self._entQuest = SpawnEntityFromTableSynchronous( "quest", {
-		name = self._szRoundTitle,
-		title =  self._szRoundQuestTitle
-	})
-	self._entQuest:SetTextReplaceValue( QUEST_TEXT_REPLACE_VALUE_ROUND, self._nRoundNumber )
-	self._entQuest:SetTextReplaceString( self._gameMode:GetDifficultyString() )
-
-	self._entKillCountSubquest = SpawnEntityFromTableSynchronous( "subquest_base", {
-		show_progress_bar = true,
-		progress_bar_hue_shift = -119
-	} )
-	self._entQuest:AddSubquest( self._entKillCountSubquest )
-	self._entKillCountSubquest:SetTextReplaceValue( SUBQUEST_TEXT_REPLACE_VALUE_TARGET_VALUE, self._nCoreUnitsTotal )
+	-- CustomGameEventManager:Send_ServerToAllClients( "sendDifficultyNotification", { difficulty = GameRules.gameDifficulty, compromised = GameRules.difficultyCompromised } )
 end
 
 function CHoldoutGameRound:OnHoldoutReviveComplete( event )
@@ -271,14 +259,7 @@ function CHoldoutGameRound:OnNPCSpawned( event )
 					self._nCoreUnitsSpawned = self._nCoreUnitsSpawned - 1
 				end
 				if ((self._nElitesRemaining > 0 and (spawnedUnit.Holdout_IsCore or spawnedUnit:GetUnitName() == "npc_dota_boss36_guardian")) or spawnedUnit.elite == true) then
-					local elitemod = 1
-					if GetMapName() == "epic_boss_fight_challenger" then
-						elitemod = 1.5
-					elseif GetMapName() == "epic_boss_fight_impossible" then
-						elitemod = 1.25
-					elseif GetMapName() == "epic_boss_fight_hard" then
-						elitemod = 1.1
-					end
+					local elitemod = 1 + (GameRules.gameDifficulty - 1)* 0.15
 					local elitelist = {} -- change table with names to array type
 					local notcore = {  ["elite_disarming"] = true,
 									   ["elite_piercing"] = true,
@@ -303,7 +284,7 @@ function CHoldoutGameRound:OnNPCSpawned( event )
 						end
 					end
 					local eliteabstogive = 1
-					if GameRules._NewGamePlus == true then
+					if GameRules._NewGamePlus == true or GameRules.gameDifficulty == 4 then
 						eliteabstogive = 2
 					end
 					local eliteAbName = elitelist[math.random(#elitelist)]
@@ -411,7 +392,7 @@ function CHoldoutGameRound:OnNPCSpawned( event )
 		end
 		local ability = spawnedUnit:FindAbilityByName("true_sight_boss")
 		if ability == nil then
-			if GetMapName() == "epic_boss_fight_impossible" or GetMapName() == "epic_boss_fight_challenger" or GetMapName() == "epic_boss_fight_boss_master" then spawnedUnit:AddAbility('true_sight_boss') end
+			if GetMapName() == "epic_boss_fight_impossible" or GameRules.gameDifficulty > 2 then spawnedUnit:AddAbility('true_sight_boss') end
 		end
 		spawnedUnit:SetDeathXP( 0 )
 		spawnedUnit.unitName = spawnedUnit:GetUnitName()
@@ -510,12 +491,13 @@ function CHoldoutGameRound:_CheckForGoldBagDrop( killedUnit )
 	self._nGoldBagsRemaining = math.max( 0, self._nGoldBagsRemaining - 1 )
 	self._nExpRemainingInRound = math.max( 0,self._nExpRemainingInRound - exptogain)
 
-	local newItem = CreateItem( "item_bag_of_gold", nil, nil )
-	newItem:SetPurchaseTime( 0 )
-	newItem:SetCurrentCharges( nGoldToDrop )
-	local drop = CreateItemOnPositionSync( killedUnit:GetAbsOrigin(), newItem )
-	local dropTarget = killedUnit:GetAbsOrigin() + RandomVector( RandomFloat( 50, 350 ) )
-	newItem:LaunchLoot( true, 750, 0.75, dropTarget )
+	for _,unit in pairs ( Entities:FindAllByName( "npc_dota_hero*")) do
+		if unit:GetTeamNumber() == DOTA_TEAM_GOODGUYS and not unit:IsIllusion() and not (unit:HasModifier("modifier_monkey_king_fur_army_soldier") or unit:HasModifier("modifier_monkey_king_fur_army_soldier_hidden")) then
+			local totalgold = unit:GetGold() + nGoldToDrop / HeroList:GetRealHeroCount()
+			unit:SetGold(0 , false)
+			unit:SetGold(totalgold, true)
+		end
+	end
 end
 
 

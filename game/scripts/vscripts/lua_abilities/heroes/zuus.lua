@@ -31,10 +31,10 @@ function modifier_zuus_static_field_ebf:DeclareFunctions()
 end
 
 function modifier_zuus_static_field_ebf:OnCreated()
-	self.radius = self:GetAbility():GetSpecialValueFor("radius")
-	self.hpdamage = self:GetAbility():GetSpecialValueFor("damage_health_pct") / 100
-	self.pct_per_stack = self:GetAbility():GetSpecialValueFor("pct_per_stack") / 100
-	self.stack_duration = self:GetAbility():GetSpecialValueFor("stack_duration")
+	self.radius = self:GetAbility():GetTalentSpecialValueFor("radius")
+	self.hpdamage = self:GetAbility():GetTalentSpecialValueFor("damage_health_pct") / 100
+	self.pct_per_stack = self:GetAbility():GetTalentSpecialValueFor("pct_per_stack") / 100
+	self.stack_duration = self:GetAbility():GetTalentSpecialValueFor("stack_duration")
 end
 
 function modifier_zuus_static_field_ebf:OnAbilityFullyCast(params)
@@ -84,7 +84,7 @@ function StaticAegis(keys)
 		ParticleManager:SetParticleControl(particleUnit, 2, Vector(unit:GetAbsOrigin().x,unit:GetAbsOrigin().y,unit:GetAbsOrigin().z + unit:GetBoundingMaxs().z ))
 		-- Plays the sound on the unit
 		EmitSoundOn(keys.sound, unit)
-		ability:ApplyDataDrivenModifier(caster, unit, "modifier_thundergods_wrath_datadriven", {duration = ability:GetSpecialValueFor("buff_duration")})
+		ability:ApplyDataDrivenModifier(caster, unit, "modifier_thundergods_wrath_datadriven", {duration = ability:GetTalentSpecialValueFor("buff_duration")})
 	end
 end
 
@@ -94,14 +94,14 @@ function StaticAegisAttacked(keys)
 	local victim = keys.target
 	local ability = keys.ability
 	if caster:HasScepter() then
-		if RollPercentage( ability:GetSpecialValueFor("scepter_proc_chance") ) then
+		if RollPercentage( ability:GetTalentSpecialValueFor("scepter_proc_chance") ) then
 			caster:SetCursorCastTarget(target)
 			local bolt = caster:FindAbilityByName("zuus_lightning_bolt")
 			bolt:OnSpellStart()
 		end
 	end
-	if RollPercentage( ability:GetSpecialValueFor("heal_proc_chance") ) then
-		local heal = victim:GetMaxHealth() * ability:GetSpecialValueFor("self_heal") / 100
+	if RollPercentage( ability:GetTalentSpecialValueFor("heal_proc_chance") ) then
+		local heal = victim:GetMaxHealth() * ability:GetTalentSpecialValueFor("self_heal") / 100
 		victim:Heal(heal, caster)
 		SendOverheadEventMessage( caster, OVERHEAD_ALERT_HEAL , caster, heal, caster )
 	end

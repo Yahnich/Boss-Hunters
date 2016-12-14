@@ -2,7 +2,7 @@ function ShieldInit(keys)
 	local caster = keys.caster
 	local target = keys.target
 	local ability = keys.ability
-	local bounces = ability:GetLevelSpecialValueFor("bounces", (ability:GetLevel() -1))
+	local bounces = ability:GetTalentSpecialValueFor("bounces")
 	caster.bounces_left = bounces
 	local units = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(), nil, 9999, ability:GetAbilityTargetTeam(), ability:GetAbilityTargetType(), 0, 0, false)
 		for _,unit in pairs(units) do
@@ -14,11 +14,11 @@ function ShieldThrow(keys)
 	local caster = keys.caster
 	local target = keys.target
 	local ability = keys.ability
-	local bounce_range = ability:GetLevelSpecialValueFor("bounce_range", (ability:GetLevel() -1))
-	local bounce_delay = ability:GetLevelSpecialValueFor("bounce_delay", (ability:GetLevel() -1))
-	local speed = ability:GetLevelSpecialValueFor("speed", (ability:GetLevel() -1))
-	local duration = ability:GetLevelSpecialValueFor("duration", (ability:GetLevel() -1))
-	local damage = ability:GetLevelSpecialValueFor("damage", (ability:GetLevel() -1))
+	local bounce_range = ability:GetTalentSpecialValueFor("bounce_range")
+	local bounce_delay = ability:GetTalentSpecialValueFor("bounce_delay")
+	local speed = ability:GetTalentSpecialValueFor("speed")
+	local duration = ability:GetTalentSpecialValueFor("duration")
+	local damage = ability:GetTalentSpecialValueFor("damage")
 	
 
 	caster.bounces_left = caster.bounces_left - 1

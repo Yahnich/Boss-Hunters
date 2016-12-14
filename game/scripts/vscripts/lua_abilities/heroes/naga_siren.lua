@@ -28,7 +28,7 @@ function SpringTide( event )
 	local caster = event.caster
 	local ability = event.ability
 	local damage = ability:GetAbilityDamage()
-	local radius = ability:GetLevelSpecialValueFor( "radius", ( ability:GetLevel() - 1 ) )
+	local radius = ability:GetTalentSpecialValueFor( "radius")
 	local modifierName = "modifier_spring_tide_datadriven"
 	local dummyModifierName = "modifier_rip_tide_dummy_datadriven"
 
@@ -84,7 +84,7 @@ function DeadTide( event )
 	local caster = event.caster
 	local ability = event.ability
 	local damage = ability:GetAbilityDamage()
-	local radius = ability:GetLevelSpecialValueFor( "radius", ( ability:GetLevel() - 1 ) )
+	local radius = ability:GetTalentSpecialValueFor( "radius")
 	local modifierName = "modifier_dead_tide_datadriven"
 	local dummyModifierName = "modifier_rip_tide_dummy_datadriven"
 

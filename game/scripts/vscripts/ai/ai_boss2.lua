@@ -8,13 +8,13 @@ function Spawn( entityKeyValues )
 	thisEntity:SetContextThink( "AIThinker", AIThink, 0.25 )
 	thisEntity.throw = thisEntity:FindAbilityByName("boss_hard_throw")
 	thisEntity.toxic = thisEntity:FindAbilityByName("boss_toxic_weaponry")
-	if GetMapName() == "epic_boss_fight_challenger" then
+	if  math.floor(GameRules.gameDifficulty + 0.5) == 4 then
 		thisEntity.throw:SetLevel(4)
 		thisEntity.toxic:SetLevel(4)
-	elseif GetMapName() == "epic_boss_fight_impossible" then
+	elseif  math.floor(GameRules.gameDifficulty + 0.5) == 3 then
 		thisEntity.throw:SetLevel(3)
 		thisEntity.toxic:SetLevel(3)
-	elseif GetMapName() == "epic_boss_fight_hard" or GetMapName() == "epic_boss_fight_boss_master" then
+	elseif  math.floor(GameRules.gameDifficulty + 0.5) == 2 then
 		thisEntity.throw:SetLevel(2)
 		thisEntity.toxic:SetLevel(2)
 	else

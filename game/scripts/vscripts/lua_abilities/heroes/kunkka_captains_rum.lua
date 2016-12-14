@@ -7,7 +7,7 @@ kunkka_captains_rum = class({})
 --------------------------------------------------------------------------------
 
 function kunkka_captains_rum:OnSpellStart()
-	self:GetCursorTarget():AddNewModifier(self:GetCursorTarget(), self, "modifier_kunkka_captains_rum", {duration = self:GetSpecialValueFor("buff_duration")})
+	self:GetCursorTarget():AddNewModifier(self:GetCursorTarget(), self, "modifier_kunkka_captains_rum", {duration = self:GetTalentSpecialValueFor("buff_duration")})
 end
 
 function kunkka_captains_rum:OnUpgrade()
@@ -16,9 +16,9 @@ function kunkka_captains_rum:OnUpgrade()
 	self:GetCaster():RemoveModifierByName("modifier_rum_charges")
 	self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_rum_charges",
         {
-            max_count = self:GetSpecialValueFor("charge_count"),
+            max_count = self:GetTalentSpecialValueFor("charge_count"),
             start_count = self.charges,
-            replenish_time = self:GetSpecialValueFor("recharge_time")
+            replenish_time = self:GetTalentSpecialValueFor("recharge_time")
         }
     )
 end

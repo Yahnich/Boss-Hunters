@@ -103,10 +103,35 @@ function CDOTA_BaseNPC:GetAttackDamageType()
 	end
 end
 
+function CDOTA_BaseNPC:GetAverageBaseDamage()
+	return (self:GetBaseDamageMax() + self:GetBaseDamageMin())/2
+end
+
+function CDOTABaseAbility:Refresh()
+	if not self:IsActivated() then
+		self:SetActivated(true)
+	end
+    self:EndCooldown()
+end
 function CDOTA_BaseNPC:KillTarget()
 	if not ( self:IsInvulnerable() or self:IsOutOfGame() or self:IsUnselectable() or self:NoHealthBar() ) then
 		self:ForceKill(true)
 	end
+end
+
+function CDOTA_BaseNPC:HealDisabled()
+	if self:HasModifier("Disabled_silence") or 
+	   self:HasModifier("primal_avatar_miss_aura") or 
+	   self:HasModifier("modifier_reflection_invulnerability") or 
+	   self:HasModifier("modifier_elite_burning_health_regen_block") or 
+	   self:HasModifier("modifier_elite_entangling_health_regen_block") or 
+	   self:HasModifier("modifier_plague_damage") or 
+	   self:HasModifier("modifier_rupture_datadriven") or 
+	   self:HasModifier("fire_aura_debuff") or 
+	   self:HasModifier("item_sange_and_yasha_4_debuff") or 
+	   self:HasModifier("cursed_effect") then
+	return true
+	else return false end
 end
 
 function CDOTA_BaseNPC:GetDisableResistance()
@@ -126,6 +151,19 @@ function CDOTA_BaseNPC:GetProjectileModel()
 end
 
 function CDOTABaseAbility:PiercesDisableResistance()
+	if GameRules.AbilityKV[self:GetName()] then
+		local truefalse = GameRules.AbilityKV[self:GetName()]["PiercesDisableReduction"] or 0
+		if truefalse == 1 then
+			return true
+		else
+			return false
+		end
+	else
+		return false
+	end
+end
+
+function CDOTABaseAbility:HasBehavior(behavior)
 	if GameRules.AbilityKV[self:GetName()] then
 		local truefalse = GameRules.AbilityKV[self:GetName()]["PiercesDisableReduction"] or 0
 		if truefalse == 1 then
@@ -411,6 +449,17 @@ function CDOTA_BaseNPC:GetModifierPropertyValue(propertyname)
 	return value
 end
 
+function CDOTA_BaseNPC:FindModifierByAbility(abilityname)
+	local modifiers = self:FindAllModifiers()
+	local returnTable = {}
+	for _,modifier in pairs(modifiers) do
+		if modifier:GetAbility():GetName() == abilityname then
+			table.insert(returnTable, modifier)
+		end
+	end
+	return returnTable
+end
+
 function CDOTA_Buff:GetModifierPropertyValue(propertyname)
 	if not self:GetAbility() then return 0 end
 	local kv = self:GetAbility():GetAbilityKeyValues()
@@ -434,6 +483,25 @@ function CDOTA_Buff:GetModifierPropertyValue(propertyname)
 		end
 	end
 	return value
+end
+
+function CDOTABaseAbility:GetTalentSpecialValueFor(value)
+	local base = self:GetSpecialValueFor(value)
+	local talentName = ""
+	local kv = self:GetAbilityKeyValues()
+	for k,v in pairs(kv) do -- trawl through keyvalues
+		if k == "AbilitySpecial" then
+			for l,m in pairs(v) do
+				if m[value] then
+					talentName = m["LinkedSpecialBonus"]
+				end
+			end
+		end
+	end
+	local talent = self:GetCaster():FindAbilityByName(talentName)
+	if talent then print(talent:GetLevel()) end
+	if talent and talent:GetLevel() > 0 then base = base + talent:GetSpecialValueFor("value") end
+	return base
 end
 
 function CDOTA_Buff:HasBeenRefreshed()
@@ -460,6 +528,11 @@ function CDOTA_BaseNPC:IncreaseIntellect(amount)
 	local attribute = self:GetBaseIntellect()
 	local intellect = attribute + amount
 	self:SetBaseStrength(intellect)
+end
+
+function CDOTA_BaseNPC:StatsItemslot(index)
+	local item = self:GetItemInSlot(index)
+	if item then return item:GetName() else return 0 end
 end
 
 function CDOTA_BaseNPC:GetSpellDamageAmp()
@@ -536,6 +609,17 @@ function CDOTABaseAbility:GetTrueCooldown()
 	local octarineMult = get_octarine_multiplier(self:GetCaster())
 	cooldown = cooldown * octarineMult
 	return cooldown
+end
+
+function CScriptHeroList:GetRealHeroCount()
+	local heroes = self:GetAllHeroes()
+	local realHeroes = {}
+	for _,hero in pairs(heroes) do
+		if hero:IsRealHero() and not (hero:HasModifier("modifier_monkey_king_fur_army_soldier") or hero:HasModifier("modifier_monkey_king_fur_army_soldier_hidden")) then
+			table.insert(realHeroes, hero)
+		end
+	end
+	return #realHeroes
 end
 
 function RotateVector2D(vector, theta)
@@ -651,7 +735,7 @@ end
 
 function ApplyKnockback( keys )
 	keys.ability:ApplyDataDrivenModifier(keys.caster, keys.target, keys.modifier, {duration = keys.duration})
-
+	if keys.target:IsInvulnerable() or keys.target:IsMagicImmune() then return end
     local caster = keys.caster
     local target = keys.target
     local ability = keys.ability

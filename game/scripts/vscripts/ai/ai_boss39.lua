@@ -13,7 +13,7 @@ function Spawn( entityKeyValues )
 	if not thisEntity:HasModifier("modifier_boss_damagedecrease") then
 		thisEntity:AddNewModifier(spawnedUnit, nil, "modifier_boss_damagedecrease", {})
 	end
-	if GetMapName() == "epic_boss_fight_impossible" or GetMapName() == "epic_boss_fight_challenger" then 
+	if math.floor(GameRules.gameDifficulty + 0.5) >= 3 then 
 		thisEntity.well:SetLevel(3)
 		thisEntity.slam:SetLevel(3)
 		thisEntity.sweep:SetLevel(3)
@@ -23,7 +23,7 @@ function Spawn( entityKeyValues )
 		thisEntity:SetBaseDamageMax(thisEntity:GetBaseDamageMax()*2)
 		thisEntity:SetPhysicalArmorBaseValue(thisEntity:GetPhysicalArmorBaseValue()*1.5)
 		thisEntity:SetHealth(thisEntity:GetMaxHealth())
-	elseif GetMapName() == "epic_boss_fight_hard" or GetMapName() == "epic_boss_fight_boss_master"  then
+	elseif math.floor(GameRules.gameDifficulty + 0.5) == 2  then
 		thisEntity.well:SetLevel(2)
 		thisEntity.slam:SetLevel(2)
 		thisEntity.sweep:SetLevel(2)

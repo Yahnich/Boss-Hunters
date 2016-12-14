@@ -4,7 +4,7 @@
 	"ItemExpireTime"				"45"
 	"RestoreHPAfterRound"			"0"
 	"RestoreMPAfterRound"			"0"
-	
+
 	"RandomSpawns"
 	{
 		"1"

@@ -11,13 +11,13 @@ function refresher( keys )
     for i = 0, caster:GetAbilityCount() - 1 do
         local ability = caster:GetAbilityByIndex( i )
         if ability and ability ~= keys.ability and not no_refresh_skill[ ability:GetAbilityName() ] then
-            ability:EndCooldown()
+			ability:Refresh()
         end
     end
     for i=0, 5, 1 do
         local current_item = keys.caster:GetItemInSlot(i)
         if current_item ~= nil and current_item ~= item then
-            current_item:EndCooldown()
+			current_item:Refresh()
 			if refresher_shared[ current_item:GetName() ] then
 				current_item:StartCooldown(item:GetCooldownTimeRemaining())
 			end
@@ -133,15 +133,7 @@ function Cooldown_powder(keys)
     local caster = keys.caster
     local dust_effect = ParticleManager:CreateParticle("particles/chronos_powder.vpcf", PATTACH_ABSORIGIN  , caster)
     ParticleManager:SetParticleControl(dust_effect, 0, caster:GetAbsOrigin())
-    if GetMapName() == "epic_boss_fight_impossible" or GetMapName() == "epic_boss_fight_challenger" then
-        item:StartCooldown(45)
-    end
-    if GetMapName() == "epic_boss_fight_hard" or GetMapName() == "epic_boss_fight_boss_master" then
-        item:StartCooldown(35)
-    end
-    if GetMapName() == "epic_boss_fight_normal" then
-        item:StartCooldown(25)
-    end
+    item:StartCooldown(20+7.5*GameRules.gameDifficulty)
 end
 
 function Cooldown_pixels(keys)
@@ -945,7 +937,7 @@ function Splash_melee(keys)
     local radius = item:GetLevelSpecialValueFor("radius", 0)
     local percent = item:GetLevelSpecialValueFor("Pierce_percent", 0)
     local damage = keys.damage_on_hit*percent*0.01
-	if target:IsIllusion() then return end
+	if caster:IsIllusion() then return end
 	-- if caster:IsIllusion() then
 		-- damage = damage/7
 	-- end
@@ -958,7 +950,7 @@ function Splash_melee(keys)
                             -- }
         -- ApplyDamage(damageTable)
 		if not caster:IsIllusion() then
-		DoCleaveAttack( caster, target, item, damage/caster:GetSpellDamageAmp(), radius, "particles/econ/items/faceless_void/faceless_void_weapon_bfury/faceless_void_weapon_bfury_cleave.vpcf" )
+			DoCleaveAttack( caster, target, item, damage*caster:GetOriginalSpellDamageAmp() / caster:GetSpellDamageAmp(), radius+200, radius, radius, "particles/econ/items/faceless_void/faceless_void_weapon_bfury/faceless_void_weapon_bfury_cleave.vpcf" )
 		end
     end
 end

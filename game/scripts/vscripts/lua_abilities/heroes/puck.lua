@@ -17,7 +17,7 @@ function Thinker_ApplyModifierToEnemy( keys )
 	local ability	= keys.ability
 	local thinker	= ability.dream_coil_thinker
 	local enemy		= keys.target
-	local damage = ability:GetLevelSpecialValueFor("coil_init_damage_tooltip", ability:GetLevel()-1)
+	local damage = ability:GetTalentSpecialValueFor("coil_init_damage_tooltip")
 	ApplyDamage({victim = enemy, attacker = keys.caster, damage = damage, damage_type = ability:GetAbilityDamageType(), ability = ability})
 
 	ability:ApplyDataDrivenModifier( thinker, enemy, keys.modifier_name, {} )
@@ -36,7 +36,7 @@ function CheckCoilBreak( keys )
 	if not enemy.radius then
 		enemy.radius = breakradius
 	end
-	local tickrate = breakradius/(ability:GetLevelSpecialValueFor("coil_duration", ability:GetLevel()-1)/0.03) -- 0.03 is thinkinterval
+	local tickrate = breakradius/(ability:GetTalentSpecialValueFor("coil_duration")/0.03) -- 0.03 is thinkinterval
 	local dist	= (enemy:GetAbsOrigin() - thinker:GetAbsOrigin()):Length2D()
 	if dist > enemy.radius then
 		-- Link has been broken
@@ -53,14 +53,14 @@ end
 function BreakDamage(keys)
 	local enemy = keys.unit
 	local caster = keys.caster
-	local damage = keys.ability:GetLevelSpecialValueFor("coil_break_damage", keys.ability:GetLevel()-1)
+	local damage = keys.ability:GetTalentSpecialValueFor("coil_break_damage")
 	ApplyDamage({victim = enemy, attacker = caster, damage = damage, damage_type = keys.ability:GetAbilityDamageType(), ability = keys.ability})
 end
 
 function ApplyPull(keys)
 	local caster = keys.caster
-	local radius = keys.ability:GetLevelSpecialValueFor("suck_radius", keys.ability:GetLevel()-1)
-	local duration = keys.ability:GetLevelSpecialValueFor("suck_duration", keys.ability:GetLevel()-1)
+	local radius = keys.ability:GetTalentSpecialValueFor("suck_radius")
+	local duration = keys.ability:GetTalentSpecialValueFor("suck_duration")
 	local start_effect = ParticleManager:CreateParticle("particles/reverie_snap_pull_start.vpcf", PATTACH_ABSORIGIN_FOLLOW , caster)
             ParticleManager:SetParticleControl(start_effect, 0, caster:GetAbsOrigin())
 			ParticleManager:SetParticleControl(start_effect, 1, caster:GetAbsOrigin())
@@ -92,7 +92,7 @@ function PuckPull(keys)
 	local caster = keys.caster
 	local unit = keys.target
 	local ability = keys.ability
-	local coil_radius = ability:GetLevelSpecialValueFor("coil_radius", ability:GetLevel()-1)
+	local coil_radius = ability:GetTalentSpecialValueFor("coil_radius")
 	local distance = (unit:GetAbsOrigin()-caster:GetAbsOrigin()):Length2D()
 	local direction = (unit:GetAbsOrigin()-caster:GetAbsOrigin()):Normalized()
 	if distance > coil_radius/2 and unit:HasModifier("modifier_vacuum_pull_active") then

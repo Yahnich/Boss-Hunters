@@ -36,3 +36,9 @@ function AdamantiumShellAutoCast(keys)
 		ExecuteOrderFromTable(order)
 	end
 end
+
+modifier_autocast_generic = class({})
+
+function modifier_autocast_generic:OnCreated( kv )
+	
+end

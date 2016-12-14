@@ -14,8 +14,7 @@
 	"InstructionsObjective"							"OBJECTIVE"
 	"InstructionsObjectiveText"						"."
 	"InstructionsHowToPlay"							"HOW TO PLAY"
-	"InstructionsLines"								"LISTEN TO YOUR TEAMMATE ! This game mode is based on teamplay.If there is no teamplay , there is no victory.<br>
-													-Think a way to kill boss , some boss can't be killed with just right click.<br>"
+	"InstructionsLines"								"LISTEN TO YOUR TEAMMATE ! This game mode is based on teamplay.If there is no teamplay , there is no victory.<br> Think a way to kill boss , some boss can't be killed with just right click.<br>"
 
 	"game_info_header_objective"			"Objective:"
 	"brief_description"					"Kill boss , survive , and grow strong !"
@@ -28,4 +27,30 @@
 	"game_info_tip02"						"BOSSES WILL ATTACK WHOEVER HAS RED THREAT (look under boss' name), if you are tanking and losing aggro USE ABILITIES or BUY BLADEMAIL UPGRADES"
 	"game_info_tip03"						"some boss can't just be killed with right click attack , some hero are immune to magic dammag , some other are immune to physical , and even PURE !"
 	"game_info_tip04"						"MOST IMPORTANT : Have fun!"
+
+	"vote_difficulty"													"VOTE ON DIFFICULTY"
+	"vote_lives"														"VOTE ON LIVES"
+				
+	"difficultyHard"													"Normal"
+	"difficultyImpossible"												"Champion"
+	"difficultyPainful"													"Heroic"
+	"difficultySadistic"												"Legendary"
+	
+	"difficultyHardTooltip"													"Normal difficulty is the baseline difficulty."
+	"difficultyImpossibleTooltip"											"Champion difficulty no longer provides an additional life at round 13 and mobs are 25% stronger."
+	"difficultyPainfulTooltip"												"Heroic difficulty no longer provides an additional life at around 26, increases the amount of spawns and mobs are 40% stronger."
+	"difficultySadisticTooltip"												"Legendary difficulty grants elites two passives instead of one and all mobs are 60% stronger."
+				
+	"livesHard"															"7 Lives"
+	"livesImpossible"													"5 Lives"
+	"livesPainful"														"3 Lives"
+	"livesSadistic"														"1 Life"
+	
+	"NotificationCompromiseText" 										"The difficulty is between {s:bottom} and {s:top}."
+	"NotificationMajorityText" 											"The difficulty is {s:difficulty}."
+	
+	"QuestDifficultyText" 										"DIFFICULTY: {s:difficulty}"
+	"QuestRoundText" 											"ROUND {d:roundNumber}: {s:roundText}"
+	"QuestLifeText" 											"LIVES: {d:lives} OUT OF {d:maxLives}"
+	"QuestPrepText" 											"PREPARATION TIME LEFT: {d:prepTime}"
 }

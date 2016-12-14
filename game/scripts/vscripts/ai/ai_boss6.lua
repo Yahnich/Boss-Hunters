@@ -25,7 +25,7 @@ end
 function AIThink()
 	if not thisEntity:IsDominated() then
 		local hp = thisEntity:GetHealth()
-		if not thisEntity.prevHP then thisEntity.prevHP = thisEntity:GetHealth() end
+		if not thisEntity.prevHP then thisEntity.prevHP = hp end
 		if (hp < thisEntity.prevHP*0.6 or hp < thisEntity:GetMaxHealth()*0.4) and thisEntity.dance:IsFullyCastable() then
 			ExecuteOrderFromTable({
 				UnitIndex = thisEntity:entindex(),

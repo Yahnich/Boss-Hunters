@@ -1,0 +1,15 @@
+"dota"
+{
+	"vote_difficulty"														"VOTE ON DIFFICULTY"
+	"vote_lives"															"VOTE ON LIVES"
+				
+	"difficultyHard"														"100%"
+	"difficultyImpossible"													"150%"
+	"difficultyPainful"														"200%"
+	"difficultySadistic"													"300%"
+				
+	"livesHard"															"7 Lives"
+	"livesImpossible"													"5 Lives"
+	"livesPainful"														"3 Lives"
+	"livesSadistic"														"1 Lives"
+}

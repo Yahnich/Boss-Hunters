@@ -34,11 +34,11 @@ function decay( keys )
 	end
 	
     local dummyModifierName = "modifier_mystic_flare_dummy_vfx_datadriven"
-    local radius = ability:GetLevelSpecialValueFor( "radius", ability:GetLevel() - 1 )
-    local duration = ability:GetLevelSpecialValueFor( "duration", ability:GetLevel() - 1 )
+    local radius = ability:GetTalentSpecialValueFor( "radius"))
+    local duration = ability:GetTalentSpecialValueFor( "duration"))
     local target = keys.target_points[1]
-    local damage = ability:GetLevelSpecialValueFor( "damage", ability:GetLevel() - 1 )
-    local bonus_health = ability:GetLevelSpecialValueFor( "health_bonus_per_unit", ability:GetLevel() - 1 )
+    local damage = ability:GetTalentSpecialValueFor( "damage"))
+    local bonus_health = ability:GetTalentSpecialValueFor( "health_bonus_per_unit"))
     -- Create for VFX particles on ground
     local dummy = CreateUnitByName( "npc_dummy_unit", target, false, caster, caster, caster:GetTeamNumber() )
     ability:ApplyDataDrivenModifier( caster, dummy, dummyModifierName, {} )
@@ -99,9 +99,8 @@ function Soul_Rip(keys)
     local target = keys.target
     local caster = keys.caster
     local ability = keys.ability
-    local level = ability:GetLevel()-1
-    local health = ability:GetLevelSpecialValueFor("health_per_unit", level)
-    local radius = ability:GetLevelSpecialValueFor("range", level)
+    local health = ability:GetTalentSpecialValueFor("health_per_unit")
+    local radius = ability:GetTalentSpecialValueFor("range")
     local kill_rand = math.random(1,100)
     local unit_number = 0
     local nearbyUnits = FindUnitsInRadius(target:GetTeam(),

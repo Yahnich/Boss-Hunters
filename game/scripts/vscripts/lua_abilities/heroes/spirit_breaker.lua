@@ -24,9 +24,9 @@ function ground_smash(keys)
     local ability = keys.ability
     local ability_level = ability:GetLevel() - 1
 
-    local radius = ability:GetLevelSpecialValueFor("radius", ability_level)
+    local radius = ability:GetTalentSpecialValueFor("radius")
     local vRadius = Vector(radius,0,0)
-    local damage = ability:GetLevelSpecialValueFor("damage", ability_level)
+    local damage = ability:GetTalentSpecialValueFor("damage")
 
     local damage_type = DAMAGE_TYPE_MAGICAL
 

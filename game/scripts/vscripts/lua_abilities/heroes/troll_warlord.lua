@@ -7,9 +7,9 @@ function Fervor(keys)
 	local ability_level = ability:GetLevel() - 1
 	local modifier = keys.modifier
 	local standard_cap = GameRules:GetGameModeEntity():GetMaximumAttackSpeed()
-	local max_stacks = ability:GetLevelSpecialValueFor("max_stacks", ability_level)
-	local chance = ability:GetLevelSpecialValueFor("chance_per_stack", ability_level)
-	local duration = ability:GetSpecialValueFor("stack_duration")
+	local max_stacks = ability:GetTalentSpecialValueFor("max_stacks")
+	local chance = ability:GetTalentSpecialValueFor("chance_per_stack")
+	local duration = ability:GetTalentSpecialValueFor("stack_duration")
 	
 	if not ability.prng then ability.prng = 0 end
 	-- Check if we have an old target

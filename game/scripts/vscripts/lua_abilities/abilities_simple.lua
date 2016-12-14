@@ -99,7 +99,7 @@ function spawn_unit_arround( caster , unitname , radius , unit_number ,playerID,
 						end
 					end)
 				end
-				if string.match(unit:GetUnitName(), "npc_dota_boss35") and not GetMapName() == "epic_boss_fight_challenger" then
+				if string.match(unit:GetUnitName(), "npc_dota_boss35") and (GameRules.gameDifficulty < 3 or GetMapName() == "epic_boss_fight_hard") then
 					unit:RemoveAbility("boss_hell_tempest")
 				end
 			end,
@@ -141,15 +141,15 @@ function evil_core_summon(keys)
     end
 	if caster.dead then return end
     local sfx=""
-        if GetMapName() == "epic_boss_fight_impossible" or GetMapName() == "epic_boss_fight_challenger" then 
+        if GetMapName() == "epic_boss_fight_impossible" then 
             sfx="_vh" 
-        elseif GetMapName() == "epic_boss_fight_hard" or GetMapName() == "epic_boss_fight_boss_master" then
+        elseif GetMapName() == "epic_boss_fight_hard" and GameRules.gameDifficulty > 2 then
             sfx="_h"  
         end
 
     local number = 1
 
-    if GetMapName() == "epic_boss_fight_challenger" then 
+    if GameRules.gameDifficulty == 4 then 
         number = 2
     end
 
@@ -211,11 +211,11 @@ function boss_evil_core_spawn(keys)
         local sfx=""
         Timers:CreateTimer(0.06,function()
             caster:SetHealth(3500)
-            if GetMapName() == "epic_boss_fight_impossible" or GetMapName() == "epic_boss_fight_challenger" then 
+            if GetMapName() == "epic_boss_fight_impossible" and GameRules.gameDifficulty > 2 then 
                 sfx="_vh" 
                 caster:SetMaxHealth(5000)
                 caster:SetHealth(5000)
-            elseif GetMapName() == "epic_boss_fight_hard" or GetMapName() == "epic_boss_fight_boss_master" then
+            elseif ((GetMapName() == "epic_boss_fight_hard" or GetMapName() == "epic_boss_fight_boss_master") and GameRules.gameDifficulty < 2) or (GetMapName() == "epic_boss_fight_impossible" and GameRules.gameDifficulty < 2) then
                 sfx="_h"  
                 caster:SetMaxHealth(4250)
                 caster:SetHealth(4250)
@@ -270,7 +270,7 @@ function boss_evil_core_take_damage(keys)
         return
     end
 	local base = 7
-	if GetMapName() == "epic_boss_fight_normal" then base = 5 end
+	if GetMapName() == "epic_boss_fight_impossible" then base = 5 end
     caster.failed_attack = caster.failed_attack or 0
     if caster.weakness == true then
 		print((5+caster.UnitSpawned) * ((base + 1 - PlayerResource:GetPlayerCountForTeam(DOTA_TEAM_GOODGUYS))/base), (base + 1 - PlayerResource:GetPlayerCountForTeam(DOTA_TEAM_GOODGUYS)), base, PlayerResource:GetPlayerCountForTeam(DOTA_TEAM_GOODGUYS))
@@ -668,7 +668,7 @@ function boss_death_time( keys )
         caster:GetTeamNumber(), origin, caster, FIND_UNITS_EVERYWHERE, targetTeam, targetType, targetFlag, FIND_CLOSEST, false)
     for _,unit in pairs( units ) do
         local particle = ParticleManager:CreateParticle("particles/generic_aoe_persistent_circle_1/death_timer_glow_rev.vpcf",PATTACH_POINT_FOLLOW,unit)
-        if GetMapName() == "epic_boss_fight_impossible" or GetMapName() == "epic_boss_fight_challenger" or GetMapName() == "epic_boss_fight_boss_master" then timer = 5.0 else timer = 6.0 end
+        if GetMapName() == "epic_boss_fight_impossible" or GetMapName() == "epic_boss_fight_boss_master" then timer = 5.0 else timer = 6.0 end
         ability:ApplyDataDrivenModifier( caster, unit, "target_warning", {duration = timer} )
 		blink_ability:StartCooldown(timer+1)
         Timers:CreateTimer(timer,function()
@@ -693,7 +693,7 @@ function Chronosphere( keys )
 
     -- Special Variables
     local duration = 5
-    if GetMapName() == "epic_boss_fight_impossible" or GetMapName() == "epic_boss_fight_challenger" or GetMapName() == "epic_boss_fight_boss_master" then duration = 5.0 else duration = 6.0 end
+    if GetMapName() == "epic_boss_fight_impossible" or GetMapName() == "epic_boss_fight_boss_master" then duration = 5.0 else duration = 6.0 end
 
     -- Dummy
     local dummy_modifier = keys.dummy_aura
@@ -828,12 +828,12 @@ function projectile_death_orbs_hit( event )
             target.NoTombStone = false
         end)
     else 
-        if GetMapName() == "epic_boss_fight_impossible" or GetMapName() == "epic_boss_fight_challenger" or GetMapName() == "epic_boss_fight_boss_master" then
-            target:SetHealth(target:GetHealth()*0.1 + 1)
-        elseif GetMapName() == "epic_boss_fight_hard"then
-            target:SetHealth(target:GetHealth()*0.5 + 1)
+        if (GetMapName() == "epic_boss_fight_impossible" or GetMapName() == "epic_boss_fight_boss_master" ) and GameRules.gameDifficulty > 1 then
+            target:SetHealth(target:GetHealth()*0.2 + 1)
+        elseif (GetMapName() == "epic_boss_fight_hard" and GameRules.gameDifficulty > 2) or (GetMapName() == "epic_boss_fight_impossible" and GameRules.gameDifficulty < 1) then
+            target:SetHealth(target:GetHealth()*0.3 + 1)
         else 
-            target:SetHealth(target:GetHealth()*0.75 + 1)
+            target:SetHealth(target:GetHealth()*0.5 + 1)
         end
     end  
 end
@@ -870,7 +870,7 @@ function hell_tempest_charge( event )
             if caster.charge < caster:GetMaxMana() then
                 caster.charge = caster.charge + 0.25
                 caster:SetMana(math.ceil(caster.charge)) 
-                if GetMapName() == "epic_boss_fight_impossible" or GetMapName() == "epic_boss_fight_challenger" or GetMapName() == "epic_boss_fight_boss_master" then
+                if GetMapName() == "epic_boss_fight_impossible" or GetMapName() == "epic_boss_fight_boss_master" then
                     return 0.03
                 else
                     return 0.1
@@ -980,9 +980,9 @@ function hell_tempest_boss( keys )
     caster.charge = 0
     local casterPoint = caster:GetAbsOrigin()
     local delay = 0
-	if GetMapName() == "epic_boss_fight_challenger" or GetMapName() == "epic_boss_fight_impossible" then
+	if GetMapName() == "epic_boss_fight_impossible" then
 		delay = 5
-	elseif GetMapName() == "epic_boss_fight_hard" or GetMapName() == "epic_boss_fight_boss_master" then
+	elseif GetMapName() == "epic_boss_fight_hard" and GameRules.gameDifficulty < 3 then
 		delay = 6
 	else
 		delay = 7
@@ -1048,10 +1048,10 @@ function doom_bringer_boss( event )
     local caster = event.caster
     local time = GameRules:GetGameTime()
 	event.ability:ApplyDataDrivenModifier(caster, target, "fuckingdoomed", {duration = 10})
-    if GetMapName() == "epic_boss_fight_impossible" or GetMapName() == "epic_boss_fight_challenger" or GetMapName() == "epic_boss_fight_boss_master" then
+    if GetMapName() == "epic_boss_fight_impossible" or GetMapName() == "epic_boss_fight_boss_master" then
         Timers:CreateTimer(0.1,function() 
-            if target:GetHealth() > target:GetMaxHealth()*0.1 and GameRules:GetGameTime() <= time + 10 then
-                target:SetHealth(target:GetHealth()*(0.9))
+            if target:GetHealth() > target:GetMaxHealth()*0.10 + 0.015*GameRules.gameDifficulty and GameRules:GetGameTime() <= time + 10 then
+                target:SetHealth(target:GetHealth()*(0.9 - 0.125*GameRules.gameDifficulty))
                 return 0.5
             else
                 if GameRules:GetGameTime() <= time + 10 and caster:IsAlive() then
@@ -1061,8 +1061,8 @@ function doom_bringer_boss( event )
         end)
     elseif GetMapName() == "epic_boss_fight_hard" then
         Timers:CreateTimer(0.1,function() 
-            if target:GetHealth() > target:GetMaxHealth()*0.05 and GameRules:GetGameTime() <= time + 10 then
-                target:SetHealth(target:GetHealth()*(0.925))
+            if target:GetHealth() > target:GetMaxHealth()*0.05  + 0.015*GameRules.gameDifficulty and GameRules:GetGameTime() <= time + 10 then
+                target:SetHealth(target:GetHealth()*(0.92 - 0.1*GameRules.gameDifficulty))
                 return 0.5
             else
                 if GameRules:GetGameTime() <= time + 10 then
@@ -1194,7 +1194,7 @@ function rearm_refresh_cooldown( keys )
     for i = 0, caster:GetAbilityCount() - 1 do
         local ability = caster:GetAbilityByIndex( i )
         if ability and ability ~= keys.ability then
-            ability:EndCooldown()
+            ability:Refresh()
         end
     end
 
@@ -1224,7 +1224,7 @@ function rearm_refresh_cooldown( keys )
 		if item then
 			local cd = item:GetCooldownTimeRemaining()
 			if not no_refresh_item[ item:GetAbilityName() ] then
-				item:EndCooldown()
+				item:Refresh()
 			end
 			if cd > 1 and half_refresh_item[ item:GetAbilityName() ] then
 				item:StartCooldown(cd/2)
@@ -1362,6 +1362,7 @@ function RageFunction(keys)
 end
 
 function pudgeHP_shiftOnAttack(keys)
+	if keys.caster:IsIllusion() then return end
 		local previous_stack_count = 0
 		local threat = keys.ability:GetSpecialValueFor("health_bonus_perstack") / 100
 		if keys.target:HasModifier("modifier_hp_shift_datadriven_debuff_counter") then

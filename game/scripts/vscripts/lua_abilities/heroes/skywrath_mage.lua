@@ -7,7 +7,7 @@
 function mystic_flare_scepter_check(keys)
 	local caster = keys.caster
 	local ability = keys.ability
-	local scepter_cooldown = ability:GetLevelSpecialValueFor( "scepter_cooldown", ability:GetLevel() - 1 )
+	local scepter_cooldown = ability:GetTalentSpecialValueFor( "scepter_cooldown")
 	if HasCustomScepter(caster) == true or caster:HasScepter() then
 		ability:EndCooldown()
 		ability:StartCooldown(scepter_cooldown*get_octarine_multiplier(caster))
@@ -22,12 +22,12 @@ function mystic_flare_start( keys )
     local caster = keys.caster
     local current_instance = 0
     local dummyModifierName = "modifier_mystic_flare_dummy_vfx_datadriven"
-    local duration = ability:GetLevelSpecialValueFor( "duration", ability:GetLevel() - 1 )
-    local interval = ability:GetLevelSpecialValueFor( "damage_interval", ability:GetLevel() - 1 )
+    local duration = ability:GetTalentSpecialValueFor( "duration")
+    local interval = ability:GetTalentSpecialValueFor( "damage_interval")
     local max_instances = math.floor( duration / interval )
-    local radius = ability:GetLevelSpecialValueFor( "radius", ability:GetLevel() - 1 )
+    local radius = ability:GetTalentSpecialValueFor( "radius")
     local target = keys.target_points[1]
-    local total_damage = ability:GetLevelSpecialValueFor( "damage", ability:GetLevel() - 1 )
+    local total_damage = ability:GetTalentSpecialValueFor( "damage")
     local targetTeam = ability:GetAbilityTargetTeam() -- DOTA_UNIT_TARGET_TEAM_ENEMY
     local targetType = ability:GetAbilityTargetType() -- DOTA_UNIT_TARGET_HERO
     local targetFlag = ability:GetAbilityTargetFlags() -- DOTA_UNIT_TARGET_FLAG_NOT_ILLUSIONS
@@ -92,8 +92,8 @@ function concussive_shot_seek_target( keys )
     local caster = keys.caster
     local ability = keys.ability
     local particle_name = "particles/units/heroes/hero_skywrath_mage/skywrath_mage_concussive_shot.vpcf"
-    local radius = ability:GetLevelSpecialValueFor( "launch_radius", ability:GetLevel() - 1 )
-    local speed = ability:GetLevelSpecialValueFor( "speed", ability:GetLevel() - 1 )
+    local radius = ability:GetTalentSpecialValueFor( "launch_radius")
+    local speed = ability:GetTalentSpecialValueFor( "speed")
     local targetTeam = ability:GetAbilityTargetTeam() -- DOTA_UNIT_TARGET_TEAM_ENEMY
     local targetType = ability:GetAbilityTargetType() -- DOTA_UNIT_TARGET_HERO
     local targetFlag = ability:GetAbilityTargetFlags() -- DOTA_UNIT_TARGET_FLAG_NO_INVIS + DOTA_UNIT_TARGET_FLAG_NOT_ILLUSIONS

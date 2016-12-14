@@ -31,12 +31,14 @@
 		<CustomUIElement type="Hud"			layoutfile="file://{resources}/layout/custom_game/NG_Vote.xml" />
 		<CustomUIElement type="Hud" 		layoutfile="file://{resources}/layout/custom_game/changelog.xml" />
 		<CustomUIElement type="Hud"			layoutfile="file://{resources}/layout/custom_game/roundoptions.xml" />
+		<CustomUIElement type="Hud"			layoutfile="file://{resources}/layout/custom_game/quests.xml" />
 		<CustomUIElement type="GameInfo" 			layoutfile="file://{resources}/layout/custom_game/game_info.xml" />
 		<CustomUIElement type="HudTopBar"			layoutfile="file://{resources}/layout/custom_game/custom_top_scoreboard.xml" />
 		<CustomUIElement type="HudTopBar"			layoutfile="file://{resources}/layout/custom_game/Asura_Core_Display.xml" />
 		<CustomUIElement type="HudTopBar"			layoutfile="file://{resources}/layout/custom_game/midas_gold.xml" />
 		<CustomUIElement type="FlyoutScoreboard"	layoutfile="file://{resources}/layout/custom_game/multiteam_flyout_scoreboard.xml" />
 		<CustomUIElement type="HeroSelection" 		layoutfile="file://{resources}/layout/custom_game/multiteam_hero_select_overlay.xml" />
+		<CustomUIElement type="HeroSelection" layoutfile="file://{resources}/layout/custom_game/notifications.xml" /> 
 		<CustomUIElement type="EndScreen" 			layoutfile="file://{resources}/layout/custom_game/multiteam_end_screen.xml" />
   </Panel>
 </root>

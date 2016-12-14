@@ -18,10 +18,10 @@ function LandMinesPlant( keys )
     local modifier_land_mine_invisibility = keys.modifier_land_mine_invisibility
 
     -- Ability variables
-    local activation_time = ability:GetLevelSpecialValueFor("activation_time", ability_level) 
-    local max_mines = ability:GetLevelSpecialValueFor("max_mines", ability_level) 
-    local fade_time = ability:GetLevelSpecialValueFor("fade_time", ability_level)
-	local model_scale = ability:GetLevelSpecialValueFor("model_scale", ability_level) / 100
+    local activation_time = ability:GetTalentSpecialValueFor("activation_time") 
+    local max_mines = ability:GetTalentSpecialValueFor("max_mines") 
+    local fade_time = ability:GetTalentSpecialValueFor("fade_time")
+	local model_scale = ability:GetTalentSpecialValueFor("model_scale") / 100
 
     -- Create the land mine and apply the land mine modifier
     local land_mine = CreateUnitByName("npc_dota_techies_remote_mine", target_point, false, nil, nil, caster:GetTeamNumber())
@@ -61,8 +61,8 @@ function LandMinesDamage( keys )
 	local target = keys.target
 	local ability = keys.ability
 	ApplyDamage({ victim = target, attacker = caster, damage = ability:GetAbilityDamage(), damage_type = ability:GetAbilityDamageType(), ability = ability })
-	local distance = ability:GetSpecialValueFor("knockback_max_distance") - (target:GetAbsOrigin() - unit:GetAbsOrigin()):Length2D()
-	ApplyKnockback({duration = ability:GetSpecialValueFor("knockback_duration"), distance = distance, caster = unit, target = target, height = 250, modifier = "modifier_land_mine_knockback", ability = ability})
+	local distance = ability:GetTalentSpecialValueFor("knockback_max_distance") - (target:GetAbsOrigin() - unit:GetAbsOrigin()):Length2D()
+	ApplyKnockback({duration = ability:GetTalentSpecialValueFor("knockback_duration"), distance = distance, caster = unit, target = target, height = 250, modifier = "modifier_land_mine_knockback", ability = ability})
 end
 
 --[[Author: Pizzalol
@@ -77,8 +77,8 @@ function LandMinesDeath( keys )
 
     -- Ability variables
     local modifier_caster = keys.modifier_caster
-    local vision_radius = ability:GetLevelSpecialValueFor("vision_radius", ability_level) 
-    local vision_duration = ability:GetLevelSpecialValueFor("vision_duration", ability_level)
+    local vision_radius = ability:GetTalentSpecialValueFor("vision_radius") 
+    local vision_duration = ability:GetTalentSpecialValueFor("vision_duration")
 			
     -- Find the mine and remove it from the table
     for i = 1, #caster.land_mine_table do
@@ -118,8 +118,8 @@ function LandMinesTracker( keys )
     local ability_level = ability:GetLevel() - 1
 
     -- Ability variables
-    local trigger_radius = ability:GetLevelSpecialValueFor("radius", ability_level) 
-    local explode_delay = ability:GetLevelSpecialValueFor("explode_delay", ability_level) 
+    local trigger_radius = ability:GetTalentSpecialValueFor("radius") 
+    local explode_delay = ability:GetTalentSpecialValueFor("explode_delay") 
 
     -- Target variables
     local target_team = DOTA_UNIT_TARGET_TEAM_ENEMY
@@ -144,7 +144,7 @@ function OnDeath( keys )
 	local caster = keys.caster
 	local target = keys.target
 	local ability = keys.ability
-	local minesToDrop = ability:GetSpecialValueFor("mines_dropped")
+	local minesToDrop = ability:GetTalentSpecialValueFor("mines_dropped")
 	local level = caster:FindAbilityByName("techies_land_mines"):GetLevel()
 	local dummyModifierName = "modifier_death_dummy"
 	local dummy = CreateUnitByName( "npc_dummy_unit", caster:GetAbsOrigin(), false, caster, caster, caster:GetTeamNumber() )
@@ -156,7 +156,7 @@ function OnDeath( keys )
 		dummy:SetCursorPosition( caster:GetAbsOrigin() + RandomVector(150))
 		mine:OnSpellStart()
 	end
-	Timers:CreateTimer(ability:GetSpecialValueFor("mines_duration"), function()
+	Timers:CreateTimer(ability:GetTalentSpecialValueFor("mines_duration"), function()
 			for _,mine in pairs ( Entities:FindAllByName( "npc_dota_techies_mines")) do
 				if mine:GetUnitName() == "npc_dota_techies_land_mine" and mine:GetOwnerEntity() == dummy then
 					mine:RemoveSelf()
@@ -175,7 +175,7 @@ function NukePerDamage( keys )
 		local target = keys.target
 		local ability = keys.ability
 		
-		local maxhpdamage = ability:GetSpecialValueFor("max_health_damage") * target:GetMaxHealth()
+		local maxhpdamage = ability:GetTalentSpecialValueFor("max_health_damage") * target:GetMaxHealth()
 		local maxhpdamage2 = maxhpdamage / 100
 		local truedamage = maxhpdamage2 / caster:GetSpellDamageAmp()
 		ApplyDamage({ victim = target, attacker = caster, damage = truedamage, damage_type = ability:GetAbilityDamageType(), ability = ability })
@@ -187,7 +187,7 @@ function NukeDoTDamage( keys )
 		local target = keys.target
 		local ability = keys.ability
 		
-		local maxhpdamage = ability:GetSpecialValueFor("nuke_dot_damage") * target:GetMaxHealth()
+		local maxhpdamage = ability:GetTalentSpecialValueFor("nuke_dot_damage") * target:GetMaxHealth()
 		local maxhpdamage2 = maxhpdamage / 100
 		local truedamage = maxhpdamage2 / caster:GetSpellDamageAmp()
 		ApplyDamage({ victim = target, attacker = caster, damage = truedamage, damage_type = ability:GetAbilityDamageType(), ability = ability })
@@ -209,7 +209,7 @@ function NukeDummy( keys )
 	local dummyModifierName = "modifier_nuke_dummy_vfx_datadriven"
 	local dummy = CreateUnitByName( "npc_dummy_unit", target, false, caster, caster, caster:GetTeamNumber() )
     ability:ApplyDataDrivenModifier( caster, dummy, dummyModifierName, {} )
-	Timers:CreateTimer(ability:GetSpecialValueFor("nuke_fallout_duration"), function()
+	Timers:CreateTimer(ability:GetTalentSpecialValueFor("nuke_fallout_duration"), function()
 			dummy:Destroy()
 			return nil
 			end

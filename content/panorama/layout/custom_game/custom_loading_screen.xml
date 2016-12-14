@@ -2,16 +2,16 @@
   <styles>
     <include src="file://{resources}/styles/custom_game/custom_loading_screen.css" />
   </styles>
+  <scripts>
+	<include src="file://{resources}/scripts/custom_game/custom_loading_screen.js" />
+  </scripts>
   <Panel class="AddonLoadingRoot">
     <Panel id="CustomBg" >
-      <Image id="gamemode" class="SeqImg" src="file://{images}/custom_game/loading_screen/gamemode.png" />
+		<Image id="gamemode" class="SeqImg" src="file://{images}/custom_game/loading_screen/gamemode.png" />
+		<Panel id="InfoGame" >
+			<Image id="gameinfo" class="staticImg" src="file://{images}/custom_game/loading_screen/EBF_Special_Thank.png" />
+			<Image id="gamedonator" class="staticImg" src="file://{images}/custom_game/loading_screen/donator.png" />
+		</Panel>
     </Panel>
-	<Panel id="InfoGame" >
-		<Image id="gamedonator" class="staticImg" src="file://{images}/custom_game/loading_screen/donator.png" />
-	</Panel>
-	<Panel id="InfoGameDonator" >
-		<Image id="gameinfo" class="staticImg" src="file://{images}/custom_game/loading_screen/EBF_Special_Thank.png" />
-    </Panel>
-	
   </Panel>
 </root>

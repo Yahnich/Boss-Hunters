@@ -24,7 +24,7 @@ function ScreamApply(keys)
 	ability:ApplyDataDrivenModifier( caster, target, modifierName, {duration = ability:GetDuration()} )
 	ApplyDamage({ victim = target, attacker = caster, damage = ability:GetAbilityDamage(), damage_type = ability:GetAbilityDamageType(), ability = ability })
 	if caster:HasScepter() then
-		local stacks = ability:GetSpecialValueFor("scream_haunt_stacks")
+		local stacks = ability:GetTalentSpecialValueFor("scream_haunt_stacks")
 		for i = 1, stacks do
 			caster:PerformAttack(target, true, true, true, false, false)
 		end

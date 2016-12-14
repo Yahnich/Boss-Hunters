@@ -9296,7 +9296,7 @@
 		// General
 		//----------------------------------------------------------------
 		"BaseClass"					"npc_dota_courier"	// Class of entity of link to.
-		"Model"						"models/props_gameplay/donkey.mdl"	// Model.
+		"Model"						"models/props_gameplay/donkey.vmdl"	// Model.
 		"SoundSet"					""					// Name of sound set.
 		"Level"						"0"
 		"IsAncient"					"1"
@@ -9308,14 +9308,14 @@
 		"AbilityLayout"				"6"		// changes when we change to flying -> "5"
 
 		"Ability1"					"courier_return_to_base"
-		"Ability2"					"invincibility"	
+		"Ability2"					"courier_go_to_secretshop"		
 		"Ability3"					"courier_return_stash_items"
 		"Ability4"					"courier_take_stash_items"
 		"Ability5"					"courier_transfer_items"	
 		"Ability6"					"courier_burst"		
 		"Ability7"					"courier_morph"
 		"Ability8"					"courier_take_stash_and_transfer_items"
-		
+		"Ability9"					"courier_transfer_items_to_other_player"
 
 		// Bounds
 		//----------------------------------------------------------------
@@ -9330,9 +9330,8 @@
 	
 		// Bounty
 		//----------------------------------------------------------------
-		"BountyXP"					"0"			// Experience earn.
-		"BountyGoldMin"				"150"		// Gold earned min.
-		"BountyGoldMax"				"150"		// Gold earned max.
+		"BountyGoldMin"				"175"		// Gold earned min.
+		"BountyGoldMax"				"175"		// Gold earned max.
 
 			// Status
 		//----------------------------------------------------------------
@@ -9345,7 +9344,7 @@
 		//----------------------------------------------------------------
 		"TeamName"					"DOTA_TEAM_GOODGUYS"			// Team name.
 		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
-		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_SOFT"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
 		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_COURIER"
 		
 		// Vision
@@ -9360,7 +9359,7 @@
 		//Inventory
 		"HasInventory"				"1"
 		
-		"IdleExpression"			"scenes\default_idle.vcd"
+		"IdleExpression"			"scenes/default_idle.vcd"
 		
 		"WakesNeutrals"				"0"
 	}
@@ -9370,7 +9369,7 @@
 		// General
 		//----------------------------------------------------------------
 		"BaseClass"					"npc_dota_flying_courier"	// Class of entity of link to.
-		"Model"						"models/props_gameplay/donkey_wings.mdl"	// Model.
+		"Model"						"models/props_gameplay/donkey_wings.vmdl"	// Model.
 		"SoundSet"					""					// Name of sound set.
 		"Level"						"10"
 		"IsAncient"					"1"
@@ -9384,9 +9383,8 @@
 		"Ability2"					"courier_return_stash_items"		
 		"Ability3"					"courier_take_stash_items"			
 		"Ability4"					"courier_transfer_items"  	
-		"Ability5"					"invincibility"				
-		"Ability6"					"courier_burst"			
-
+		"Ability5"					"courier_go_to_secretshop"				
+		"Ability6"					"courier_burst"						
 		
 		// Armor
 		//----------------------------------------------------------------
@@ -9401,14 +9399,14 @@
 		// Movement
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_FLY"			// Type of locomotion - ground, air
-		"MovementSpeed"				"350"		// Speed
+		"MovementSpeed"				"275"		// Speed
 		"MovementTurnRate"			"0.5"		// Turning rate.
 	
 		// Bounty
 		//----------------------------------------------------------------
 		"BountyXP"					"349"			// Experience earn.
-		"BountyGoldMin"				"175"		// Gold earned min.
-		"BountyGoldMax"				"175"		// Gold earned max.
+		"BountyGoldMin"				"125"		// Gold earned min.
+		"BountyGoldMax"				"125"		// Gold earned max.
 
 			// Status
 		//----------------------------------------------------------------
@@ -9421,13 +9419,13 @@
 		//----------------------------------------------------------------
 		"TeamName"					"DOTA_TEAM_GOODGUYS"			// Team name.
 		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
-		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_SOFT"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
 		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_COURIER"
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"400"		// Range of vision during day light.
-		"VisionNighttimeRange"		"400"		// Range of vision at night time.
+		"VisionDaytimeRange"		"200"		// Range of vision during day light.
+		"VisionNighttimeRange"		"200"		// Range of vision at night time.
 
 		// Bots
 		//----------------------------------------------------------------
@@ -9436,7 +9434,7 @@
 		//Inventory
 		"HasInventory"				"1"
 
-		"IdleExpression"			"scenes\default_idle.vcd"
+		"IdleExpression"			"scenes/default_idle.vcd"
 		
 		"WakesNeutrals"				"0"
 	}

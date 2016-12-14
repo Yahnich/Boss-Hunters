@@ -51,7 +51,7 @@ end
 function HandleDynamo( keys )
 	local caster = keys.caster
 	local ability = keys.ability
-	local tick = ability:GetSpecialValueFor("tick_rate")
+	local tick = ability:GetTalentSpecialValueFor("tick_rate")
 	if ability:GetToggleState() == true then
 		ability:ApplyDataDrivenModifier(caster, caster, "storm_spirit_electric_dynamo_active", {} )
 		local stacks = caster:GetModifierStackCount("modifier_overload_damage_datadriven",caster)

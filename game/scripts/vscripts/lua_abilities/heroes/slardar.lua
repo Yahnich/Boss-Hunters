@@ -6,7 +6,7 @@ function SlardarCrush( keys )
 	local ability = keys.ability
 	local modifier = keys.modifier
 	-- Distance calculations
-	local speed = ability:GetLevelSpecialValueFor("speed", (ability:GetLevel() - 1))
+	local speed = ability:GetTalentSpecialValueFor("speed")
 	local distance = (target_point - caster_location):Length2D()
 	local direction = (target_point - caster_location):Normalized()
 	local duration = distance/speed
@@ -32,7 +32,7 @@ function SlardarCrush( keys )
 end
 function SlardarCrushDamage(keys)
 	local ability = keys.ability
-	ApplyDamage({victim = keys.target, attacker = keys.caster, damage = ability:GetSpecialValueFor("damage"), damage_type = ability:GetAbilityDamageType(), ability = ability})
+	ApplyDamage({victim = keys.target, attacker = keys.caster, damage = ability:GetTalentSpecialValueFor("damage"), damage_type = ability:GetAbilityDamageType(), ability = ability})
 end
 function SlardarCrushHorizontal( keys )
 	local caster = keys.target
@@ -98,7 +98,7 @@ function OathBreaker(keys)
 		end
 		caster:SetModifierStackCount("oathbreaker_charges", ability, caster.bash)
 	end
-	ApplyDamage({victim = keys.target, attacker = caster, damage = ability:GetSpecialValueFor("bonus_damage"), damage_type = ability:GetAbilityDamageType(), ability = ability})
+	ApplyDamage({victim = keys.target, attacker = caster, damage = ability:GetTalentSpecialValueFor("bonus_damage"), damage_type = ability:GetAbilityDamageType(), ability = ability})
 end
 
 function OathKeeper(keys)
@@ -107,7 +107,7 @@ function OathKeeper(keys)
 	local modifier = "modifier_oathkeeper_block"
 	if caster.hit ~= nil then
 		caster.hit = caster.hit + 1
-		local proc_hit = ability:GetLevelSpecialValueFor("hit_proc"	, ability:GetLevel()-1)
+		local proc_hit = ability:GetTalentSpecialValueFor("hit_proc")
 		if caster.hit > proc_hit then
 			ability:ApplyDataDrivenModifier(caster,caster,modifier,{})
 			caster.hitcharge = caster.hitcharge + 1
@@ -231,7 +231,7 @@ function SlardarSlithereenReprisalBreaker(keys)
 	local caster = keys.caster
 	local duration = keys.duration
 	local ability = keys.ability
-	local used_charges = ability:GetLevelSpecialValueFor("max_charge_reduction"	, ability:GetLevel()-1)
+	local used_charges = ability:GetTalentSpecialValueFor("max_charge_reduction")
 	local nearbyUnits = FindUnitsInRadius(caster:GetTeam(),
                                   caster:GetAbsOrigin(),
                                   nil,

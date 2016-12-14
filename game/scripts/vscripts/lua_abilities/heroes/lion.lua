@@ -15,7 +15,7 @@ function ManaDrain(keys)
 
 		-- Distance variables
 		local distance = (target_location - caster_location):Length2D()
-		local break_distance = ability:GetLevelSpecialValueFor("break_distance", (ability:GetLevel() - 1))
+		local break_distance = ability:GetTalentSpecialValueFor("break_distance")
 		local direction = (target_location - caster_location):Normalized()
 
 		-- If the leash is broken then stop the channel
@@ -31,8 +31,8 @@ function ManaDrain(keys)
 		caster:SetForwardVector(direction)
 
 		-- Mana calculation
-		local mana_per_second = ability:GetLevelSpecialValueFor("mana_per_second", (ability:GetLevel() - 1))
-		local tick_interval = ability:GetLevelSpecialValueFor("tick_interval", (ability:GetLevel() - 1))
+		local mana_per_second = ability:GetTalentSpecialValueFor("mana_per_second")
+		local tick_interval = ability:GetTalentSpecialValueFor("tick_interval")
 		local mana_drain = mana_per_second * tick_interval
 		
 		if not ability.channel then ability.channel = 0 end
@@ -57,7 +57,7 @@ function ManaBall(keys)
 	local caster = keys.caster
 	local target = keys.target
 	local ability = keys.ability
-	local manaradius = (ability:GetSpecialValueFor("mana_per_second"))/5
+	local manaradius = (ability:GetTalentSpecialValueFor("mana_per_second"))/5
 	local projectileTable = {
         Ability = ability,
         EffectName = "particles/ice_ball_final.vpcf",
@@ -84,7 +84,7 @@ function ManaBallHit(keys)
 	local target = keys.target
 	local ability = keys.ability
 	
-	local duration = ability:GetSpecialValueFor("duration")
+	local duration = ability:GetTalentSpecialValueFor("duration")
 	if ability.channel == 0 then ability.channel = 0.25 end
 	local damage = ability:GetAbilityDamage() * (ability.channel/duration)
 

@@ -3,7 +3,7 @@ function CreateTree(keys)
 	local ability = keys.ability
 	local point = ability:GetCursorPosition()
 	local duration = ability:GetDuration()
-	local vision_range = ability:GetLevelSpecialValueFor("vision_range", (ability:GetLevel() -1))
+	local vision_range = ability:GetTalentSpecialValueFor("vision_range")
 	local trees = 8
 	local radius = 150
 	local angle = math.pi/4
@@ -23,8 +23,8 @@ end
 
 function TreeDamage(keys)
 	local ability = keys.ability
-	local leechbase = math.abs(ability:GetSpecialValueFor("leech"))
-	local leech = keys.target:GetMaxHealth() * math.abs(ability:GetSpecialValueFor("leech_pct") / 100)
+	local leechbase = math.abs(ability:GetTalentSpecialValueFor("leech"))
+	local leech = keys.target:GetMaxHealth() * math.abs(ability:GetTalentSpecialValueFor("leech_pct") / 100)
 	ability.damage_flags = DOTA_DAMAGE_FLAG_HPLOSS
 	ApplyDamage({ victim = keys.target, attacker = keys.caster, damage = math.ceil(leechbase + leech) * 0.1, damage_type = DAMAGE_TYPE_PURE, ability = ability, damage_flags = DOTA_DAMAGE_FLAG_HPLOSS })
 end
@@ -43,9 +43,9 @@ function ApplyLivingArmor(keys)
 			end
 		end
 	end
-	ability:ApplyDataDrivenModifier(caster,target, "modifier_living_armor_ebf", {duration = ability:GetSpecialValueFor("duration")})
-	ability:ApplyDataDrivenModifier(caster,target, "modifier_living_armor_ebf_stacks", {duration = ability:GetSpecialValueFor("duration")})
-	target:SetModifierStackCount("modifier_living_armor_ebf_stacks", caster, ability:GetSpecialValueFor("damage_count"))
+	ability:ApplyDataDrivenModifier(caster,target, "modifier_living_armor_ebf", {duration = ability:GetTalentSpecialValueFor("duration")})
+	ability:ApplyDataDrivenModifier(caster,target, "modifier_living_armor_ebf_stacks", {duration = ability:GetTalentSpecialValueFor("duration")})
+	target:SetModifierStackCount("modifier_living_armor_ebf_stacks", caster, ability:GetTalentSpecialValueFor("damage_count"))
 	target.oldHealth = target:GetHealth()
 end
 
@@ -56,7 +56,7 @@ function HandleLivingArmor(keys)
 	local target = keys.unit
 
 	local damage = keys.damage
-	local block = ability:GetSpecialValueFor("damage_block")
+	local block = ability:GetTalentSpecialValueFor("damage_block")
 	-- heal handling --
 	local heal = damage
 	if damage > block then heal = block end
@@ -77,7 +77,7 @@ function DoubleHeal(keys)
 	target.oldHealth = target.oldHealth or target:GetHealth()
 	local newHp = target:GetHealth()
 	local ability = keys.ability
-	local heal = ( newHp - target.oldHealth ) * ability:GetSpecialValueFor("heal_increase") / 100
+	local heal = ( newHp - target.oldHealth ) * ability:GetTalentSpecialValueFor("heal_increase") / 100
 	target:SetHealth( newHp + heal )
 	target.oldHealth = target:GetHealth()
 end

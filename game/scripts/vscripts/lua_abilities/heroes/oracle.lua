@@ -12,7 +12,7 @@ function FlameHealCreate(keys)
 	local ability = keys.ability
 	local target = keys.target
 	local caster = keys.caster
-	local heal = ability:GetLevelSpecialValueFor("heal_per_second", ability:GetLevel()-1)
+	local heal = ability:GetTalentSpecialValueFor("heal_per_second")
 	if ability.stack == nil then ability.stack = 0 end
 	ability.stack = ability.stack + 1
 	target:RemoveModifierByName("purifying_flames_heal_counter")
@@ -25,7 +25,7 @@ function FlameHeal(keys)
 	local ability = keys.ability
 	local target = keys.target
 	local caster = keys.caster
-	local heal = ability:GetLevelSpecialValueFor("heal_per_second", ability:GetLevel()-1)
+	local heal = ability:GetTalentSpecialValueFor("heal_per_second")
 	if ability.stack == nil then ability.stack = 0 end
 	target:Heal(heal,keys.caster)
 end
@@ -78,8 +78,8 @@ function FateDelay(keys)
 	local ability = keys.ability
 	local caster = keys.caster
 	
-	local maxBlock = ability:GetSpecialValueFor("max_hp_block") / 100
-	local duration = ability:GetSpecialValueFor("duration")
+	local maxBlock = ability:GetTalentSpecialValueFor("max_hp_block") / 100
+	local duration = ability:GetTalentSpecialValueFor("duration")
 	
 	local target = ability:GetCursorPosition()
 	

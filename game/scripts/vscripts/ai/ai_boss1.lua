@@ -8,7 +8,7 @@ function Spawn( entityKeyValues )
 	thisEntity:SetContextThink( "AIThinker", AIThink, 0.25 )
 	thisEntity.ensnare = thisEntity:FindAbilityByName("dark_troll_warlord_ensnare")
 	thisEntity.vanish = thisEntity:FindAbilityByName("boss_vanish")
-	if GetMapName() == "epic_boss_fight_impossible" or GetMapName() == "epic_boss_fight_challenger" then
+	if  math.floor(GameRules.gameDifficulty + 0.5) > 2 then
 		thisEntity.vanish:SetLevel(2)
 	else
 		thisEntity.vanish:SetLevel(1)

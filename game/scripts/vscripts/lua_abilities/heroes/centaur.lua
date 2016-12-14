@@ -2,7 +2,7 @@ function DoubleEdgeSelfDamage( keys )
 	-- Variables
 	local caster = keys.caster
 	local ability = keys.ability
-	local self_damage = ability:GetSpecialValueFor( "edge_damage" )
+	local self_damage = ability:GetTalentSpecialValueFor( "edge_damage" )
 
 	-- Self damage
 	ApplyDamage({ victim = caster, attacker = caster, damage = self_damage,	damage_type = ability:GetAbilityDamageType(), damage_flags = DOTA_DAMAGE_FLAG_NON_LETHAL })
@@ -13,7 +13,7 @@ function DoubleEdgeDamage( keys )
 	local caster = keys.caster
 	local target = keys.target
 	local ability = keys.ability
-	local damage = ability:GetSpecialValueFor( "edge_damage" ) + caster:GetStrength() * ability:GetSpecialValueFor( "edge_str_damage" ) / 100
+	local damage = ability:GetTalentSpecialValueFor( "edge_damage" ) + caster:GetStrength() * ability:GetTalentSpecialValueFor( "edge_str_damage" ) / 100
 
 	ApplyDamage({ victim = target, attacker = caster, damage = damage,	damage_type = ability:GetAbilityDamageType(), ability = ability })
 end
@@ -37,8 +37,8 @@ function CentaurReturn( keys )
 	local ability = keys.ability
 	local modifier = keys.modifier
 	local casterSTR = caster:GetStrength()
-	local str_return = ability:GetLevelSpecialValueFor( "strength_pct" , ability:GetLevel() - 1  ) * 0.01
-	local damage = ability:GetLevelSpecialValueFor( "return_damage" , ability:GetLevel() - 1  )
+	local str_return = ability:GetTalentSpecialValueFor( "strength_pct") * 0.01
+	local damage = ability:GetTalentSpecialValueFor( "return_damage")
 	local damageType = ability:GetAbilityDamageType()
 	local return_damage = damage + ( casterSTR * str_return )
 

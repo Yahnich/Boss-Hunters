@@ -1,8 +1,8 @@
 
 function InitializeRonin(keys)
 	local caster = keys.caster
-	caster.critmult = keys.ability:GetLevelSpecialValueFor( "critical_bonus", keys.ability:GetLevel() - 1 )
-	caster.critchance = keys.ability:GetLevelSpecialValueFor( "critical_chance", keys.ability:GetLevel() - 1 )
+	caster.critmult = keys.ability:GetTalentSpecialValueFor( "critical_bonus")
+	caster.critchance = keys.ability:GetTalentSpecialValueFor( "critical_chance")
 end
 
 function QuickParry(keys)
@@ -85,7 +85,7 @@ function RoninSlice( keys )
 	local ability = keys.ability
 	local modifier = keys.modifier
 	-- Distance calculations
-	local speed = ability:GetLevelSpecialValueFor("speed", (ability:GetLevel() - 1))
+	local speed = ability:GetTalentSpecialValueFor("speed")
 	local distance = (target_point - caster_location):Length2D()
 	local direction = (target_point - caster_location):Normalized()
 	local duration = distance/speed
@@ -104,7 +104,7 @@ function RoninSliceDamage( keys )
 	local caster = keys.caster
 	local target = keys.target
 	local ability = keys.ability
-	local damage = ability:GetLevelSpecialValueFor("damage", (ability:GetLevel() - 1)) + caster:GetAverageTrueAttackDamage(caster)
+	local damage = ability:GetTalentSpecialValueFor("damage") + caster:GetAverageTrueAttackDamage(caster)
 	local critmult = 1
 	particle_slash = ParticleManager:CreateParticle("particles/units/heroes/hero_juggernaut/juggernaut_omni_slash_tgt.vpcf", PATTACH_ABSORIGIN  , target)
 	local critcheck = math.random(100)
@@ -145,7 +145,7 @@ function JuggernautMotion( keys )
 		-- Remove the motion controller once the distance has been traveled
 		caster:InterruptMotionControllers(false)
 		ParticleManager:DestroyParticle(particle_slash,true)
-		local duration = ability:GetLevelSpecialValueFor("duration", (ability:GetLevel() - 1))
+		local duration = ability:GetTalentSpecialValueFor("duration")
 		local modifier = "modifier_ronin_strength"
 		ability:ApplyDataDrivenModifier(caster, caster, modifier, {duration = duration})
 		caster:RemoveModifierByName("modifier_ronin_slice_move")

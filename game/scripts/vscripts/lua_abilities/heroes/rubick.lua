@@ -4,7 +4,7 @@ function SpellEcho(keys)
 	local caster = keys.caster
 	local ability = keys.ability
 	local echo = ability.echo
-	local delay = ability:GetLevelSpecialValueFor("delay",ability:GetLevel()-1)
+	local delay = ability:GetTalentSpecialValueFor("delay")
 	local no_echo = {["shredder_chakram"] = true,
 					 ["shredder_chakram_return"] = true,
 					 ["shredder_chakram_2"] = true,

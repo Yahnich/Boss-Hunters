@@ -7,11 +7,11 @@ function SlarkFunction(keys)
     local target = keys.target
     local ability = keys.ability
     local level = ability:GetLevel()-1
-    local cool_duration = ability:GetLevelSpecialValueFor("cooldown_duration", level)
+    local cool_duration = ability:GetTalentSpecialValueFor("cooldown_duration")
 	if caster:HasScepter() or HasCustomScepter(caster) then
 		cool_duration = 0
 	end
-    local duration = ability:GetLevelSpecialValueFor("duration", level)
+    local duration = ability:GetTalentSpecialValueFor("duration")
     if caster:IsIllusion() == false and ability:IsCooldownReady() then
         if target:HasModifier( modifierName_target ) then
             local current_stack = target:GetModifierStackCount( modifierName_target, ability )
@@ -62,7 +62,7 @@ function PounceHeal( keys )
 			ProjectileManager:ProjectileDodge(caster)
 			ability.leap_direction = keys.attacker:GetForwardVector()
 			ability.leap_distance = keys.distance
-			ability.leap_speed = ability:GetLevelSpecialValueFor("pounce_speed", ability_level) / 30
+			ability.leap_speed = ability:GetTalentSpecialValueFor("pounce_speed") / 30
 			ability.leap_traveled = 0
 			ability.leap_z = 0
 			local duration = ability.leap_distance/(ability.leap_speed*30)
@@ -90,7 +90,7 @@ function Pounce( keys )
 		ProjectileManager:ProjectileDodge(caster)
 		ability.leap_direction = caster:GetForwardVector()
 		ability.leap_distance = keys.distance
-		ability.leap_speed = ability:GetLevelSpecialValueFor("pounce_speed", ability_level) / 30
+		ability.leap_speed = ability:GetTalentSpecialValueFor("pounce_speed") / 30
 		ability.leap_traveled = 0
 		ability.leap_z = 0
 		local duration = ability.leap_distance/(ability.leap_speed*30)

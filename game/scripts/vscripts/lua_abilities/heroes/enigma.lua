@@ -9,8 +9,8 @@ function MoveUnits( keys )
 	ability.point_entity = target
 	
 	-- Ability variables
-	local radius = ability:GetLevelSpecialValueFor("radius", ability_level)
-	local tick_rate = ability:GetLevelSpecialValueFor("tick_rate", ability_level)
+	local radius = ability:GetTalentSpecialValueFor("radius")
+	local tick_rate = ability:GetTalentSpecialValueFor("tick_rate")
 	local damage = ability:GetAbilityDamage() * tick_rate
 
 	-- Targeting variables

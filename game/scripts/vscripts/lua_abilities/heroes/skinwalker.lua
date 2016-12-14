@@ -87,11 +87,11 @@ if not modifier_skinwalker_predator_form then modifier_skinwalker_predator_form 
 if not modifier_skinwalker_human_form then modifier_skinwalker_human_form = class({}) end
 
 function modifier_skinwalker_fortress_form:OnCreated()
-	self.bonushp = self:GetAbility():GetSpecialValueFor("bonus_hp")
+	self.bonushp = self:GetAbility():GetTalentSpecialValueFor("bonus_hp")
 end
 
 function modifier_skinwalker_fortress_form:OnRefresh()
-	self.bonushp = self:GetAbility():GetSpecialValueFor("bonus_hp")
+	self.bonushp = self:GetAbility():GetTalentSpecialValueFor("bonus_hp")
 end
 
 function modifier_skinwalker_fortress_form:RemoveOnDeath()
@@ -135,15 +135,15 @@ if not modifier_skinwalker_predator_form_bleed then modifier_skinwalker_predator
 ------------------------------------------------------------------------------------------------------
 
 function modifier_skinwalker_predator_form:OnCreated()
-	self.attackspeed = self:GetAbility():GetSpecialValueFor("bonus_attackspeed")
-	self.chance = self:GetAbility():GetSpecialValueFor("bleed_chance")
-	self.duration = self:GetAbility():GetSpecialValueFor("bleed_duration")
+	self.attackspeed = self:GetAbility():GetTalentSpecialValueFor("bonus_attackspeed")
+	self.chance = self:GetAbility():GetTalentSpecialValueFor("bleed_chance")
+	self.duration = self:GetAbility():GetTalentSpecialValueFor("bleed_duration")
 end
 
 function modifier_skinwalker_predator_form:OnRefresh()
-	self.attackspeed = self:GetAbility():GetSpecialValueFor("bonus_attackspeed")
-	self.chance = self:GetAbility():GetSpecialValueFor("bleed_chance")
-	self.duration = self:GetAbility():GetSpecialValueFor("bleed_duration")
+	self.attackspeed = self:GetAbility():GetTalentSpecialValueFor("bonus_attackspeed")
+	self.chance = self:GetAbility():GetTalentSpecialValueFor("bleed_chance")
+	self.duration = self:GetAbility():GetTalentSpecialValueFor("bleed_duration")
 end
 
 function modifier_skinwalker_predator_form:RemoveOnDeath()
@@ -190,8 +190,8 @@ function modifier_skinwalker_predator_form:OnRespawn()
 end
 
 function modifier_skinwalker_predator_form_bleed:OnCreated()
-	self.damage = self:GetAbility():GetSpecialValueFor("bleed_damage")
-	self.expireTime = self:GetAbility():GetSpecialValueFor("bleed_duration")
+	self.damage = self:GetAbility():GetTalentSpecialValueFor("bleed_damage")
+	self.expireTime = self:GetAbility():GetTalentSpecialValueFor("bleed_duration")
 	self.tickrate = 0.1
 	if IsServer() then
 		self:StartIntervalThink(self.tickrate)
@@ -219,12 +219,12 @@ end
 ------------------------------------------------------------------------------------------------------
 
 function modifier_skinwalker_human_form:OnCreated()
-	self.manaregen = self:GetAbility():GetSpecialValueFor("base_mana_regen")
-	self.range = self:GetAbility():GetSpecialValueFor("bonus_range")
+	self.manaregen = self:GetAbility():GetTalentSpecialValueFor("base_mana_regen")
+	self.range = self:GetAbility():GetTalentSpecialValueFor("bonus_range")
 end
 
 function modifier_skinwalker_human_form:OnRefresh()
-	self.manaregen = self:GetAbility():GetSpecialValueFor("base_mana_regen")
+	self.manaregen = self:GetAbility():GetTalentSpecialValueFor("base_mana_regen")
 end
 
 function modifier_skinwalker_human_form:RemoveOnDeath()
@@ -292,7 +292,7 @@ function MoonRay(keys)
 	local target = keys.target
 	local ability = keys.ability
 	
-	local damage = ability:GetSpecialValueFor("heal_damage")
+	local damage = ability:GetTalentSpecialValueFor("heal_damage")
 	if target:HasModifier("modifier_solarbolt_moon_bonus") then damage = damage*1.4 end
 	if target:GetTeamNumber() == caster:GetTeamNumber() then
 		target:Heal(damage, caster)
@@ -301,7 +301,7 @@ function MoonRay(keys)
 		SendOverheadEventMessage( target, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE , target, damage, caster )
 		ApplyDamage({victim = target, attacker = caster, damage = damage, damage_type = ability:GetAbilityDamageType(), ability = ability})
 	end
-	ability:ApplyDataDrivenModifier(caster, target, "modifier_moonray_sun_bonus", {duration = ability:GetSpecialValueFor("duration")})
+	ability:ApplyDataDrivenModifier(caster, target, "modifier_moonray_sun_bonus", {duration = ability:GetTalentSpecialValueFor("duration")})
 end
 
 function SolarBolt(keys)
@@ -309,7 +309,7 @@ function SolarBolt(keys)
 	local target = keys.target
 	local ability = keys.ability
 	
-	local damage = ability:GetSpecialValueFor("healdamage")
+	local damage = ability:GetTalentSpecialValueFor("healdamage")
 	if target:HasModifier("modifier_moonray_sun_bonus") then damage = damage*1.4 end
 	if target:GetTeamNumber() == caster:GetTeamNumber() then
 		target:Heal(damage, caster)
@@ -318,7 +318,7 @@ function SolarBolt(keys)
 		SendOverheadEventMessage( target, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE , target, damage, caster )
 		ApplyDamage({victim = target, attacker = caster, damage = damage, damage_type = ability:GetAbilityDamageType(), ability = ability})
 	end
-	ability:ApplyDataDrivenModifier(caster, target, "modifier_solarbolt_moon_bonus", {duration = ability:GetSpecialValueFor("duration")})
+	ability:ApplyDataDrivenModifier(caster, target, "modifier_solarbolt_moon_bonus", {duration = ability:GetTalentSpecialValueFor("duration")})
 end
 
 function RootDamage(keys)
@@ -334,7 +334,7 @@ function RootDamage(keys)
 		SendOverheadEventMessage( target, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE , target, damage, caster )
 		ApplyDamage({victim = target, attacker = caster, damage = damage, damage_type = ability:GetAbilityDamageType(), ability = ability})
 	end
-	ability:ApplyDataDrivenModifier(caster, target, "modifier_solarbolt_moon_bonus", {duration = ability:GetSpecialValueFor("duration")})
+	ability:ApplyDataDrivenModifier(caster, target, "modifier_solarbolt_moon_bonus", {duration = ability:GetTalentSpecialValueFor("duration")})
 end
 
 function ApplyRoot(keys)
@@ -342,9 +342,9 @@ function ApplyRoot(keys)
 	local target = keys.target
 	local ability = keys.ability
 	if target:GetTeamNumber() == caster:GetTeamNumber() then
-		ability:ApplyDataDrivenModifier(caster, target, "modifier_skinwalker_call_of_nature_human_root_ally", {duration = ability:GetSpecialValueFor("root_duration")})
+		ability:ApplyDataDrivenModifier(caster, target, "modifier_skinwalker_call_of_nature_human_root_ally", {duration = ability:GetTalentSpecialValueFor("root_duration")})
 	else
-		ability:ApplyDataDrivenModifier(caster, target, "modifier_skinwalker_call_of_nature_human_root", {duration = ability:GetSpecialValueFor("root_duration")})
+		ability:ApplyDataDrivenModifier(caster, target, "modifier_skinwalker_call_of_nature_human_root", {duration = ability:GetTalentSpecialValueFor("root_duration")})
 	end
 end
 
@@ -370,14 +370,14 @@ function Devastate(keys)
 	local target = keys.target
 	local ability = keys.ability
 	
-	local critdamage = ability:GetSpecialValueFor("critical_damage") / 100
+	local critdamage = ability:GetTalentSpecialValueFor("critical_damage") / 100
 	caster:RemoveModifierByName("critical_strike_h")
 	caster:RemoveModifierByName("critical_strike_2")
 	local damage_dealt = critdamage * caster:GetAverageTrueAttackDamage(target)
 	SendOverheadEventMessage( target, OVERHEAD_ALERT_CRITICAL , target, damage_dealt, caster )
 	ApplyDamage({victim = target, attacker = caster, damage = damage_dealt, damage_type = ability:GetAbilityDamageType(), ability = ability})
 	local predator = caster:FindAbilityByName("skinwalker_predator_form")
-	for i = 1, ability:GetSpecialValueFor("bleed_stacks") do
+	for i = 1, ability:GetTalentSpecialValueFor("bleed_stacks") do
 		if target:IsAlive() then
 			local modifier = target:FindModifierByName("modifier_skinwalker_predator_form_bleed")
 			if not modifier then
@@ -407,8 +407,8 @@ function Charge(keys)
 	local caster = keys.caster
 	local ability = keys.ability
 	
-	local skewer_speed = ability:GetLevelSpecialValueFor("charge_speed", ability:GetLevel() - 1)
-	local range = ability:GetLevelSpecialValueFor("charge_distance", ability:GetLevel() - 1)
+	local skewer_speed = ability:GetTalentSpecialValueFor("charge_speed")
+	local range = ability:GetTalentSpecialValueFor("charge_distance")
 	local point = ability:GetCursorPosition()
 	
 	-- Distance and direction variables
@@ -486,7 +486,7 @@ function Lunge( keys )
 	-- Ability variables
 	ability.leap_direction = (target:GetAbsOrigin() - caster:GetAbsOrigin()):Normalized()
 	ability.leap_distance = (target:GetAbsOrigin() - caster:GetAbsOrigin()):Length2D()
-	ability.leap_speed = ability:GetLevelSpecialValueFor("leap_speed", ability_level) * 1/30
+	ability.leap_speed = ability:GetTalentSpecialValueFor("leap_speed") * 1/30
 	ability.leap_traveled = 0
 	ability.leap_z = 0
 	ability.target = target
@@ -504,7 +504,7 @@ function LungeHorizonal( keys )
 	else
 		caster:InterruptMotionControllers(true)
 		local predator = caster:FindAbilityByName("skinwalker_predator_form")
-		for i = 1, ability:GetSpecialValueFor("bleed_stacks") do
+		for i = 1, ability:GetTalentSpecialValueFor("bleed_stacks") do
 			if target:IsAlive() then
 				local modifier = target:FindModifierByName("modifier_skinwalker_predator_form_bleed")
 				if not modifier then
@@ -541,7 +541,7 @@ function ApplyBleed(keys)
 	local ability = keys.ability
 	
 	local predator = caster:FindAbilityByName("skinwalker_predator_form")
-	for i = 1, ability:GetSpecialValueFor("bleed_stacks") do
+	for i = 1, ability:GetTalentSpecialValueFor("bleed_stacks") do
 		if target:IsAlive() then
 			local modifier = target:FindModifierByName("modifier_skinwalker_predator_form_bleed")
 			if not modifier then

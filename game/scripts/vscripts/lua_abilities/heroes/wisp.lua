@@ -20,7 +20,7 @@ function OverChargeBat( keys )
 	local target = keys.target
 	local ability = keys.ability
 	local modifier = keys.modifier
-	local new_bat = ability:GetLevelSpecialValueFor("base_attack_time", ability:GetLevel()-1)
+	local new_bat = ability:GetTalentSpecialValueFor("base_attack_time")
 	
 	target:RemoveModifierByName("modifier_overcharge_bat")
 	local bat = target:GetBaseAttackTime()
@@ -132,7 +132,7 @@ function HealthSteal(keys)
 	local steal = target:GetHealthRegen()*(keys.steal_pct/100)*(keys.tick)
 	ApplyDamage({victim = target, attacker = caster, damage = steal/get_aether_multiplier(caster), damage_type = DAMAGE_TYPE_PURE, ability = ability})
 	caster:Heal(steal, caster)
-	local new_bat = ability:GetLevelSpecialValueFor("base_attack_time", ability:GetLevel()-1)
+	local new_bat = ability:GetTalentSpecialValueFor("base_attack_time")
 	
 	target:RemoveModifierByName("modifier_evil_enemy_bat")
 	local bat = target:GetBaseAttackTime()

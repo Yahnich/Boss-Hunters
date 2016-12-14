@@ -3,8 +3,8 @@ function MidasPunch(keys)
     local ability = keys.ability
 	local target = keys.target
 	
-	local damage = ability:GetSpecialValueFor("base_dmg")
-	local bonusdamage = ability:GetSpecialValueFor("net_worth_bonus_dmg") / 100
+	local damage = ability:GetTalentSpecialValueFor("base_dmg")
+	local bonusdamage = ability:GetTalentSpecialValueFor("net_worth_bonus_dmg") / 100
 	local goldDamage = PlayerResource:GetTotalGoldSpent(caster:GetPlayerID()) * bonusdamage
 	local totDmg = damage + goldDamage
 	ApplyDamage({ victim = target, attacker = caster, damage = totDmg, damage_type = ability:GetAbilityDamageType(), ability = ability })
@@ -62,7 +62,7 @@ function AlchUltimate( keys )
 	local caster = keys.caster
 	local ability = keys.ability
 	local modifier = keys.modifier
-	local new_bat = ability:GetLevelSpecialValueFor("base_attack_time", ability:GetLevel()-1)
+	local new_bat = ability:GetTalentSpecialValueFor("base_attack_time")
 	
 	caster:RemoveModifierByName("modifier_chemical_rage_bat")
 	local bat = caster:GetBaseAttackTime()

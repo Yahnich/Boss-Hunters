@@ -13,20 +13,18 @@ var open = true
 			$('#'+"midas_gold").visible = true;
 		}
 	}
-Updatemidas()
-function Updatemidas(){
-	$.Schedule(0.025, Updatemidas);
-	data = CustomNetTables.GetTableValue( "midas", "total")
-	if (typeof data != 'undefined') {
-	if (open){
-		open_gold()
-	}else{
-		close_gold()
+GameEvents.Subscribe( "Update_Midas_gold", UpdateMidas);
+	function UpdateMidas(arg)
+	{
+		if (typeof arg != 'undefined') {
+		if (open){
+			open_gold()
+		}else{
+			close_gold()
+		}
+			$('#'+"midas_gold_earned").text = arg.gold;
+		}
 	}
-		$('#'+"midas_gold_earned").text = data.gold;
-	}
-	
-}
 	
 	function open_gold()
 	{	

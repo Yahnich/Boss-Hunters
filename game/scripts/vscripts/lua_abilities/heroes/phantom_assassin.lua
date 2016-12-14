@@ -33,20 +33,20 @@ function FanTheBladeHit(keys)
 	local target = keys.target
 
 	-- attack proc handling
-	local dmgPct = ability:GetSpecialValueFor("damage_percentage") / 100
+	local dmgPct = ability:GetTalentSpecialValueFor("damage_percentage") / 100
 	local bonusDamage = caster:GetAverageTrueAttackDamage(caster) * dmgPct
 	
-	ability:ApplyDataDrivenModifier(caster, caster, "modifier_stifling_dagger_bonusdamage_datadriven", {duration = ability:GetSpecialValueFor("slow_duration")})
+	ability:ApplyDataDrivenModifier(caster, caster, "modifier_stifling_dagger_bonusdamage_datadriven", {duration = ability:GetTalentSpecialValueFor("slow_duration")})
 	caster:SetModifierStackCount("modifier_stifling_dagger_bonusdamage_datadriven", caster, bonusDamage)
 	caster:PerformAttack(target, true, true, true, true, false)
 	caster:RemoveModifierByName("modifier_stifling_dagger_bonusdamage_datadriven")
 
 	
 	-- magic bonus damage
-	local magicDamage = ability:GetSpecialValueFor("magic_damage")
+	local magicDamage = ability:GetTalentSpecialValueFor("magic_damage")
 	ApplyDamage({victim = target, attacker = caster, damage = magicDamage, damage_type = DAMAGE_TYPE_MAGICAL, ability = ability})
 	-- apply slow
-	ability:ApplyDataDrivenModifier(caster, target, "modifier_stifling_dagger_slow_datadriven", {duration = ability:GetSpecialValueFor("slow_duration")})
+	ability:ApplyDataDrivenModifier(caster, target, "modifier_stifling_dagger_slow_datadriven", {duration = ability:GetTalentSpecialValueFor("slow_duration")})
 	
 	EmitSoundOn(keys.sound, target)
 end
@@ -63,7 +63,7 @@ function AssassinDanceInit( keys )
 	local targetPoint = keys.target_points[1]
 	local ability = keys.ability
 	local radius = 150
-	local attack_interval = ability:GetSpecialValueFor( "attack_interval" )
+	local attack_interval = ability:GetTalentSpecialValueFor( "attack_interval" )
 	local modifierTargetName = "modifier_sleight_of_fist_target_datadriven"
 	local modifierHeroName = "modifier_sleight_of_fist_target_hero_datadriven"
 	local modifierCreepName = "modifier_sleight_if_fist_target_creep_datadriven"

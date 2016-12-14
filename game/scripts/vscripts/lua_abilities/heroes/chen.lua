@@ -9,7 +9,7 @@ function DevilBless(keys)
 	caster:SetModifierStackCount( modifierName, ability, 0)
 	
     local damagebonus = caster:GetAverageTrueAttackDamage(caster) 
-    local percent = ability:GetLevelSpecialValueFor("damage_percent", ability:GetLevel()-1)
+    local percent = ability:GetTalentSpecialValueFor("damage_percent")
     local damage = damagebonus*percent*0.01
 	
     ability:ApplyDataDrivenModifier( caster, caster, modifierName, {duration = keys.duration} )
@@ -32,7 +32,7 @@ function PureBless(keys)
 	caster:SetModifierStackCount( modifierName, ability, 0)
 	
     local damagebonus = target:GetAverageTrueAttackDamage(caster) 
-    local percent = ability:GetLevelSpecialValueFor("damage_percent", ability:GetLevel()-1)
+    local percent = ability:GetTalentSpecialValueFor("damage_percent")
     local damage = damagebonus*percent*0.01
 
     ability:ApplyDataDrivenModifier( caster, target, modifierName, {duration = keys.duration} )
@@ -42,8 +42,8 @@ end
 function TestOfFaithHeal(keys)
 	local caster = keys.caster
 	local target = keys.target
-	local maxheal = keys.ability:GetLevelSpecialValueFor("max_heal", keys.ability:GetLevel()-1)
-	local minheal = keys.ability:GetLevelSpecialValueFor("min_heal", keys.ability:GetLevel()-1)
+	local maxheal = keys.ability:GetTalentSpecialValueFor("max_heal")
+	local minheal = keys.ability:GetTalentSpecialValueFor("min_heal")
 	local heal = target:GetMaxHealth()*(math.random(minheal,maxheal))/100
 	target:Heal(heal,keys.ability)
 end
@@ -51,7 +51,7 @@ end
 function PenitenceDamageAmp(keys)
 	local caster = keys.caster
 	local target = keys.unit
-	local amp = keys.ability:GetLevelSpecialValueFor("bonus_damage_taken", keys.ability:GetLevel()-1)/100
+	local amp = keys.ability:GetTalentSpecialValueFor("bonus_damage_taken")/100
 	local multiplier = get_aether_multiplier(caster)
 	local filter = ((caster:GetIntellect()/1600 + multiplier))
 	if keys.attacker == caster then

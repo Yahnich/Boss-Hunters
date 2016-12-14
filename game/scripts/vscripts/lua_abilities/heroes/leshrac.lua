@@ -16,7 +16,7 @@ end
 modifier_leshrac_inner_torment = class({})
 
 function modifier_leshrac_inner_torment:OnCreated()
-	self.piercing = self:GetAbility():GetSpecialValueFor("pure_damage_per_level")
+	self.piercing = self:GetAbility():GetTalentSpecialValueFor("pure_damage_per_level")
 	self:SetStackCount(self:GetCaster():GetLevel())
 end
 

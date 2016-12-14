@@ -3,7 +3,7 @@ function ReflectDamage(keys)
 	local attacker = keys.attacker
 	local ability = keys.ability
 	local damageTaken = keys.damage
-	local reflect_pct = ability:GetSpecialValueFor("reflect_pct")/100
+	local reflect_pct = ability:GetTalentSpecialValueFor("reflect_pct")/100
 	
 	-- Check if it's not already been hit
 	if not attacker:IsMagicImmune() then
@@ -37,10 +37,10 @@ function ScepterHandlingDodge(keys)
 	local caster = keys.caster
 	local ability = keys.ability
 	if caster:HasScepter() and caster:HasModifier("modifier_nyx_assassin_burrow") then
-		ability:ApplyDataDrivenModifier( caster, caster, "modifier_untouchable_scepter", { duration = ability:GetSpecialValueFor("duration") } )
+		ability:ApplyDataDrivenModifier( caster, caster, "modifier_untouchable_scepter", { duration = ability:GetTalentSpecialValueFor("duration") } )
 		caster.oldHealth = caster:GetHealth()
 	else
-		ability:ApplyDataDrivenModifier( caster, caster, "modifier_untouchable", { duration = ability:GetSpecialValueFor("duration") } )
+		ability:ApplyDataDrivenModifier( caster, caster, "modifier_untouchable", { duration = ability:GetTalentSpecialValueFor("duration") } )
 	end
 end
 
@@ -50,7 +50,7 @@ function ScepterHandlingCarapace(keys)
 	if caster:HasScepter() and caster:HasModifier("modifier_nyx_assassin_burrow") then
 		ability:ApplyDataDrivenModifier(caster, caster, "modifier_nyx_carapace_taunt", {duration = 0.1}) -- particles
 		caster.burrowAbility =  caster.burrowAbility or caster:FindAbilityByName("nyx_assassin_burrow")
-		local radius = caster.burrowAbility:GetSpecialValueFor("carapace_burrow_range_tooltip")
+		local radius = caster.burrowAbility:GetTalentSpecialValueFor("carapace_burrow_range_tooltip")
 		local units = FindUnitsInRadius(caster:GetTeam(),
                               caster:GetAbsOrigin(),
                               nil,

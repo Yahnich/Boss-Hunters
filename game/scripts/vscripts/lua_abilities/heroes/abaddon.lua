@@ -3,11 +3,11 @@ function DeathCoil( event )
 	local caster = event.caster
 	local target = event.target
 	local ability = event.ability
-	local damage = ability:GetSpecialValueFor( "target_damage")
-	local self_heal = ability:GetSpecialValueFor( "self_heal" )
-	local heal = ability:GetSpecialValueFor( "heal_amount" )
-	local heal_pct = ability:GetSpecialValueFor( "heal_pct" ) / 100
-	local projectile_speed = ability:GetSpecialValueFor( "projectile_speed" )
+	local damage = ability:GetTalentSpecialValueFor( "target_damage")
+	local self_heal = ability:GetTalentSpecialValueFor( "self_heal" )
+	local heal = ability:GetTalentSpecialValueFor( "heal_amount" )
+	local heal_pct = ability:GetTalentSpecialValueFor( "heal_pct" ) / 100
+	local projectile_speed = ability:GetTalentSpecialValueFor( "projectile_speed" )
 	local particle_name = "particles/units/heroes/hero_abaddon/abaddon_death_coil.vpcf"
 
 	-- Play the ability sound

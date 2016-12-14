@@ -43,7 +43,7 @@ function CooldownReduction(keys)
 end
 
 function LockDamage(keys)
-	ApplyDamage({victim = keys.target, attacker = keys.caster, damage = keys.ability:GetSpecialValueFor("bonus_damage"), damage_type = DAMAGE_TYPE_MAGICAL, ability = keys.ability})
+	ApplyDamage({victim = keys.target, attacker = keys.caster, damage = keys.ability:GetTalentSpecialValueFor("bonus_damage"), damage_type = DAMAGE_TYPE_MAGICAL, ability = keys.ability})
 end
 
 function TimeWalk( keys )
@@ -55,10 +55,15 @@ function TimeWalk( keys )
 	local modifier = keys.modifier
 
 	-- Distance calculations
-	local speed = ability:GetLevelSpecialValueFor("speed", (ability:GetLevel() - 1))
+	local speed = ability:GetTalentSpecialValueFor("speed")
+	local max_distance = ability:GetTalentSpecialValueFor("range")
+	print(max_distance)
+	
 	local distance = (target_point - caster_location):Length2D()
 	local direction = (target_point - caster_location):Normalized()
 	local duration = distance/speed
+	
+	if distance > max_distance then distance = max_distance end
 
 	-- Saving the data in the ability
 	ability.time_walk_distance = distance

@@ -279,3 +279,116 @@ margin-right: 450px;
 	vertical-align: middle;
 	color: #FFFFFF;
  }
+ 
+.NotificationsRoot
+{
+	height: 100%;
+	width: 100%;
+}
+.NotificationsGeneric
+{
+	height: 100%;
+	width: 100%;
+	flow-children: down;
+}
+
+.NotificationsFadeIn
+{
+
+	animation-name: FadeInText;
+	animation-duration: 0.5s;
+}
+
+.NotificationsFadeOut
+{
+	animation-name: FadeOutText;
+	animation-duration: 0.5s;
+}
+
+#NotificationCenter
+{
+	vertical-align: bottom;
+	visibility: collapse;
+	horizontal-align: middle;
+	height: 50px;
+	width: 50%;
+	margin-bottom: 32%;
+}
+
+#QuestCenter
+{
+	vertical-align: top;
+	horizontal-align: left;
+	height: 120px;
+	width: 50%;
+	margin-top: 6%;
+	margin-left: 50px;
+}
+
+
+@keyframes 'FadeInText'
+{
+	0%
+	{
+		opacity: 0;
+	}
+
+	100%
+	{
+		opacity: 1;
+	}
+}
+
+@keyframes 'FadeOutText'
+{
+	0%
+	{
+		opacity: 1;
+	}
+
+	100%
+	{
+		opacity: 0;
+	}
+}
+
+#NotificationCenterText
+{
+	align: center center;
+	font-family: TH Sarabun New,YDYGO 540,Gulim,MingLiU;
+	text-shadow: 2px 2px 1px 3.0 #333333b0;
+	text-transform: uppercase;
+	font-weight: bold;
+	color: #FFFFFF;
+	font-size: 40px;
+}
+
+#QuestPrepText
+{
+	visibility: visible;
+}
+.QuestGenericText
+{
+	font-family: TH Sarabun New,YDYGO 540,Gulim,MingLiU;
+	text-shadow: 2px 2px 1px 3.0 #333333b0;
+	text-transform: uppercase;
+	font-weight: bold;
+	color: #FFFFFF;
+	font-size: 20px;
+}
+
+.InfoTooltip {
+    text-align: center;
+    text-overflow: clip;
+    font-weight: thin;
+    font-size: 18px;
+    color: #FFFFFF;
+}
+
+.tooltipContents
+{
+    min-width: 80px;
+    max-width: 400px;
+    max-height: 600px;
+    flow-children: down;
+}

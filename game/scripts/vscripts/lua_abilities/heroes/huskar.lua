@@ -4,8 +4,8 @@ function FlashFire( keys )
 	local caster = keys.caster
 	local ability = keys.ability
 	local modifier = keys.modifier
-	local radius = ability:GetSpecialValueFor("radius")
-	local chance = ability:GetSpecialValueFor("chance")
+	local radius = ability:GetTalentSpecialValueFor("radius")
+	local chance = ability:GetTalentSpecialValueFor("chance")
 	if caster:IsIllusion() then return end
 	if not ability.burning_spears then 
 		ability.burning_spears = caster:FindAbilityByName("huskar_burning_spear")
@@ -29,7 +29,7 @@ end
 function FlashFireDamage( keys )
 	local caster = keys.caster
 	local ability = keys.ability
-	local radius = ability:GetSpecialValueFor("radius")
+	local radius = ability:GetTalentSpecialValueFor("radius")
 	local target = keys.target
 	local stacks = target:GetModifierStackCount("modifier_huskar_burning_spear_debuff", ability.burning_spears)
 

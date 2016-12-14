@@ -30,7 +30,7 @@
 {
   horizontal-align: left;
   vertical-align: bottom;
-  margin-bottom: 100px;
+  margin-bottom: 500px;
   margin-left: 75px;
   flow-children: right;
 }
@@ -41,11 +41,11 @@
   vertical-align: bottom;
   margin-bottom: 0px;
   margin-left: 75px;
-  flow-children: right;
+  flow-children: down;
 }
 #gameinfo
 {
-  margin-bottom: 250px;
+   margin-bottom: 200px;
    width: 750px;
    height: 620px;
 }
@@ -63,19 +63,24 @@
   background-position: 25% 25%;
   background-size: 100% 100%;
 }
-
+#VotePanel
+{
+	background-color: #222225;
+	border: 2px solid #555555;
+	vertical-align: top;
+	horizontal-align: right;
+	margin-right: 500px;
+    overflow: clip;
+	z-index: 999999;
+	width: 500px;
+	height: 300px;
+}
 
 #CustomBg
 {
 
-  margin-top: 0px;
+	margin-top: 0px;
     overflow: clip;
-  pre-transform-scale2d: 1.0;
-  animation-name: gamemode_anim;
-  animation-delay: AnimationDelay;
-  animation-duration: TotalLength;
-  animation-timing-function: TimingFunc;
-  animation-iteration-count: IterationCount;
 }
 
 #gamemode

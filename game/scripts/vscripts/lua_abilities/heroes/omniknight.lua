@@ -1,5 +1,5 @@
 function AOEPurificationDamage(keys)
-	ApplyDamage({victim = keys.target, attacker = keys.caster, damage = keys.ability:GetSpecialValueFor("damage"), damage_type = keys.ability:GetAbilityDamageType(), ability = keys.ability})
+	ApplyDamage({victim = keys.target, attacker = keys.caster, damage = keys.ability:GetTalentSpecialValueFor("damage"), damage_type = keys.ability:GetAbilityDamageType(), ability = keys.ability})
 end
 
 function CheckOmniScepter(keys)
@@ -13,10 +13,10 @@ function CheckOmniScepter(keys)
 	local units = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(), caster, FIND_UNITS_EVERYWHERE, targetTeam, targetType, ability:GetAbilityTargetFlags(), FIND_ANY_ORDER, false)
     for _,unit in pairs( units ) do
 		if caster:HasScepter() or HasCustomScepter(caster) then
-		local duration_scepter = ability:GetLevelSpecialValueFor("duration_scepter", ability:GetLevel()-1)
+		local duration_scepter = ability:GetTalentSpecialValueFor("duration_scepter")
 		ability:ApplyDataDrivenModifier(caster, unit, sceptermodifier, {duration = duration_scepter})
 		else
-		local duration = ability:GetLevelSpecialValueFor("duration", ability:GetLevel()-1)
+		local duration = ability:GetTalentSpecialValueFor("duration")
 		ability:ApplyDataDrivenModifier(caster, unit, modifier, {duration = duration})
 		end
 	end

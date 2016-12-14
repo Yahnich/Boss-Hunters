@@ -42,7 +42,7 @@ function MageRageVisual(keys)
 
 	if not caster.ragedelay then caster.ragedelay = GameRules:GetGameTime() end
 	if caster:HasScepter() and (caster:IsAttacking() or caster.ragedelay >= GameRules:GetGameTime() - 2) then
-		local generation = ability:GetSpecialValueFor("rage_gen_scepter")
+		local generation = ability:GetTalentSpecialValueFor("rage_gen_scepter")
 		caster.rage = caster.rage + generation * 0.1 / 2 --0.1 tick interval; split over bank and active
 		caster.bank = caster.bank + generation * 0.1 / 2
 		if caster:IsAttacking() then caster.ragedelay = GameRules:GetGameTime() end
@@ -69,7 +69,7 @@ function RageVoid(keys)
 	local targetLocation = target:GetAbsOrigin()
 	local ability = keys.ability
 	local multiplier = keys.multiplier
-	local radius = ability:GetLevelSpecialValueFor("mana_void_aoe_radius",ability:GetLevel()-1)
+	local radius = ability:GetTalentSpecialValueFor("mana_void_aoe_radius")
 	
 	-- if caster:HasScepter() then
 		-- multiplier = keys.multiplier_scepter

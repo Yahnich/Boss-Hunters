@@ -13,9 +13,9 @@ function Spawn( entityKeyValues )
 	thisEntity.stun = thisEntity:FindAbilityByName("creature_melee_smash_stun_vh")
 	thisEntity.drain = thisEntity:FindAbilityByName("boss_life_drain")
 	thisEntity.silence = thisEntity:FindAbilityByName("creature_silence")
-	if GetMapName() == "epic_boss_fight_normal" then 
+	if  math.floor(GameRules.gameDifficulty + 0.5) < 2 then 
 		thisEntity.drain:SetLevel(1)
-	elseif GetMapName() == "epic_boss_fight_impossible" or GetMapName() == "epic_boss_fight_challenger" then 
+	elseif  math.floor(GameRules.gameDifficulty + 0.5) == 2 then 
 		thisEntity.drain:SetLevel(3)
 	else
 		thisEntity.drain:SetLevel(2)

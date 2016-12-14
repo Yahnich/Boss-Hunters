@@ -1,0 +1,17 @@
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="file://{resources}/styles/custom_game/option.css" />
+	</styles> 
+	<scripts>
+		<include src="file://{resources}/scripts/custom_game/quests.js" />
+	</scripts>
+	<Panel class="NotificationsRoot" hittest="false">
+		<Panel class="NotificationsGeneric" id="QuestCenter" hittest="false">
+			<Label hittest="false" class="QuestGenericText" id="QuestDifficultyText" text="DIFFICULTY: JUST FUCK ME UP FAM"/>
+			<Label hittest="false" class="QuestGenericText" id="QuestRoundText" text="ROUND 2: THANKS VALVE FOR THE FUCKING"/>
+			<Label hittest="false" class="QuestGenericText" id="QuestLifeText" text="CURRENT LIVES: 7"/>
+			<Label hittest="false" class="QuestGenericText" id="QuestPrepText" text="TIME UNTIL NEXT ROUND: 28"/>
+		</Panel>
+	</Panel>
+</root>

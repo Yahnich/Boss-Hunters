@@ -19,7 +19,7 @@ function ProcBackstab(keys)
 	end
 	local ability_level = cloak_and_dagger:GetLevel()
 
-	local agility_damage_multiplier = cloak_and_dagger:GetLevelSpecialValueFor("agility_damage", ability_level)
+	local agility_damage_multiplier = cloak_and_dagger:GetTalentSpecialValueFor("agility_damage")
 	if ability_level > 0 then
 		-- Play the sound on the victim.
 		EmitSoundOn(keys.sound, keys.target)
@@ -59,7 +59,7 @@ end
 
 function CheckBackstab(params)
 	local ability = params.ability
-	local agility_damage_multiplier = ability:GetLevelSpecialValueFor("agility_damage", ability:GetLevel() - 1)
+	local agility_damage_multiplier = ability:GetTalentSpecialValueFor("agility_damage")
 	if params.attacker:HasModifier("modifier_banish") then agility_damage_multiplier = 0 end
 
 	-- The y value of the angles vector contains the angle we actually want: where units are directionally facing in the world.
@@ -83,7 +83,7 @@ function CheckBackstab(params)
 	local damageType = DAMAGE_TYPE_PURE
 	if  params.target:GetMagicalArmorValue() == 0 then damageType = DAMAGE_TYPE_MAGICAL end
 	-- Check for the backstab angle.
-	if result_angle >= (180 - (ability:GetSpecialValueFor("backstab_angle") / 2)) and result_angle <= (180 + (ability:GetSpecialValueFor("backstab_angle") / 2)) then 
+	if result_angle >= (180 - (ability:GetTalentSpecialValueFor("backstab_angle") / 2)) and result_angle <= (180 + (ability:GetTalentSpecialValueFor("backstab_angle") / 2)) then 
 		-- Play the sound on the victim.
 		EmitSoundOn(params.sound, params.target)
 		-- Create the back particle effect.

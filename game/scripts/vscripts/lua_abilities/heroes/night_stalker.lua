@@ -3,7 +3,7 @@ function HunterInTheNight( keys )
 	local ability = keys.ability
 	local modifier = keys.modifier
 	local bat = caster:GetBaseAttackTime()
-	local new_bat = ability:GetLevelSpecialValueFor("bonus_base_attack_time_night", ability:GetLevel()-1)
+	local new_bat = ability:GetTalentSpecialValueFor("bonus_base_attack_time_night")
 
 	if not GameRules:IsDaytime() then
 		ability:ApplyDataDrivenModifier(caster, caster, ("modifier_hunter_in_the_night_buff_ebf"), {})
@@ -32,13 +32,14 @@ function Void( keys )
 	local target = keys.target
 	local modifier = keys.modifier
 
-	local duration_day = ability:GetLevelSpecialValueFor("duration_day", (ability:GetLevel() - 1))
-	local duration_night = ability:GetLevelSpecialValueFor("duration_night", (ability:GetLevel() - 1))
-
+	local duration_day = ability:GetTalentSpecialValueFor("duration_day")
+	local duration_night = ability:GetTalentSpecialValueFor("duration_night")
+	local dmgmult = 1
 	if GameRules:IsDaytime() then
 		ability:ApplyDataDrivenModifier(caster, target, modifier, {duration = duration_day})
 	else
 		ability:ApplyDataDrivenModifier(caster, target, modifier, {duration = duration_night})
+		dmgmult = dmgmult + ability:GetTalentSpecialValueFor("damage_amp_night") / 100
 	end
-	ApplyDamage({victim = target, attacker = caster, damage = ability:GetAbilityDamage(), damage_type = ability:GetAbilityDamageType(), ability = ability})
+	ApplyDamage({victim = target, attacker = caster, damage = ability:GetAbilityDamage() * dmgmult, damage_type = ability:GetAbilityDamageType(), ability = ability})
 end

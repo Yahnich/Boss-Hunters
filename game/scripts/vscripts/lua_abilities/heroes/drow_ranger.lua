@@ -9,8 +9,8 @@ function ArrowHit( keys )
 	damage_table.victim = target
 	damage_table.damage_type = ability:GetAbilityDamageType()
 	damage_table.ability = ability	
-	damage_table.damage = ability:GetSpecialValueFor("arrow_agi_multiplier") * caster:GetAgility()
-	if not target:IsMagicImmune() then ability:ApplyDataDrivenModifier(caster, target, "modifier_bullseye_break", {duration = ability:GetSpecialValueFor("break_duration")}) end
+	damage_table.damage = ability:GetTalentSpecialValueFor("arrow_agi_multiplier") * caster:GetAgility()
+	if not target:IsMagicImmune() then ability:ApplyDataDrivenModifier(caster, target, "modifier_bullseye_break", {duration = ability:GetTalentSpecialValueFor("break_duration")}) end
 	ApplyDamage(damage_table)
 end
 
@@ -27,7 +27,7 @@ function trueshot_initialize( keys )
 	-- Check if its a valid target
 	if target and IsValidEntity(target) and target:HasModifier(trueshot_modifier) then
 		local agility = caster:GetAgility()
-		local percent = ability:GetLevelSpecialValueFor("trueshot_ranged_damage", ability_level) 
+		local percent = ability:GetTalentSpecialValueFor("trueshot_ranged_damage") 
 		local trueshot_damage = math.floor(agility * percent / 100)
 
 		-- If it doesnt have the stack modifier then apply it
@@ -70,8 +70,8 @@ function LeapShot( keys )
 
 	-- Ability variables
 	ability.leap_direction = -(caster:GetAbsOrigin() - ability:GetCursorPosition()):Normalized()
-	ability.leap_distance = ability:GetSpecialValueFor("leap_distance")
-	ability.leap_speed = ability:GetSpecialValueFor("leap_speed") * 1/30
+	ability.leap_distance = ability:GetTalentSpecialValueFor("leap_distance")
+	ability.leap_speed = ability:GetTalentSpecialValueFor("leap_speed") * 1/30
 	ability.leap_traveled = 0
 	ability.leap_z = 0
 	local duration = ability.leap_distance / (ability.leap_speed * 30)

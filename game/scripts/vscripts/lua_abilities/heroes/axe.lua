@@ -18,8 +18,11 @@ function CounterHelixDamage( keys )
     local ability = keys.ability
 	
 	local armor = caster:GetPhysicalArmorValue()
-	local armor_to_damage = ability:GetSpecialValueFor("armor_to_damage") * armor
+	local armor_to_damage = ability:GetTalentSpecialValueFor("armor_to_damage") * armor
     ApplyDamage({victim = target, attacker = caster, damage = ability:GetAbilityDamage() + armor_to_damage, damage_type = ability:GetAbilityDamageType(), ability = ability})
+end
+
+function ScepterDunkCheck(keys)
 end
 
 
@@ -28,11 +31,11 @@ function axe_culling_blade_fct(keys)
     local ability = keys.ability
     local target = keys.target
     local ability_level = ability:GetLevel() - 1
-    local kill_threshold = ability:GetLevelSpecialValueFor( "kill_threshold", ability_level ) / 100
+    local kill_threshold = ability:GetTalentSpecialValueFor( "kill_threshold") / 100
 	local damageType = DAMAGE_TYPE_PHYSICAL
-    local damage = ability:GetLevelSpecialValueFor( "damage", ability_level ) / 100
+    local damage = ability:GetTalentSpecialValueFor( "damage") / 100
 	if caster:HasScepter() then
-		kill_threshold = ability:GetLevelSpecialValueFor( "kill_threshold_scepter", ability_level ) / 100
+		kill_threshold = ability:GetTalentSpecialValueFor( "kill_threshold_scepter") / 100
 		damageType = DAMAGE_TYPE_MAGICAL
 	end
     if target:GetUnitName() ~= "npc_dota_boss36" then

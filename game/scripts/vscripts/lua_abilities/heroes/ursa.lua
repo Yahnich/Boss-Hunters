@@ -39,7 +39,7 @@ function fury_swipes_attack( keys )
 	if caster:IsIllusion() then return end
 
 	-- Necessary value from KV
-	local duration = ability:GetLevelSpecialValueFor( "duration", ability:GetLevel() - 1 )
+	local duration = ability:GetTalentSpecialValueFor( "duration")
 
 	local current_stack = target.stacks or 1
 
@@ -50,9 +50,9 @@ function fury_swipes_attack( keys )
 	
 	if caster:HasModifier( "modifier_claw_scepter" ) then
         local ability_claw = caster:FindAbilityByName("ursa_claw")
-		local damage = ( target.stacks ) * (ability:GetSpecialValueFor("bonus_damage_per_stack"))
-        local percent = ability_claw:GetLevelSpecialValueFor("Pierce_percent_fury", ability_claw:GetLevel()-1)*0.01
-        local multiplier = ability_claw:GetLevelSpecialValueFor("physical_fury_damage_mult", ability_claw:GetLevel()-1)*0.01
+		local damage = ( target.stacks ) * (ability:GetTalentSpecialValueFor("bonus_damage_per_stack"))
+        local percent = ability_claw:GetTalentSpecialValueFor("Pierce_percent_fury")*0.01
+        local multiplier = ability_claw:GetTalentSpecialValueFor("physical_fury_damage_mult")*0.01
         local damageTable_fury = {victim = target,
                         attacker = caster,
                         damage = damage*percent*multiplier/get_aether_multiplier(caster),
@@ -92,12 +92,12 @@ function modifier_fury_swipes_bonus_damage:GetModifierProcAttack_BonusDamage_Phy
     if caster:IsIllusion() then return 0 end
 	if caster:HasModifier( "Modifier_Claw" ) then
         local ability_claw = caster:FindAbilityByName("ursa_claw")
-		multiplier = ability_claw:GetLevelSpecialValueFor("physical_fury_damage_mult", ability_claw:GetLevel()-1)*0.01
+		multiplier = ability_claw:GetTalentSpecialValueFor("physical_fury_damage_mult")*0.01
 	end
 	if caster:HasModifier( "modifier_overpower_buff_datadriven" ) and caster:HasScepter() then
-		adder = caster:FindAbilityByName("ursa_overpower_ebf"):GetSpecialValueFor("fury_swipes_per_hit_scepter")
+		adder = caster:FindAbilityByName("ursa_overpower_ebf"):GetTalentSpecialValueFor("fury_swipes_per_hit_scepter")
 	end
-	local nFurySwipes = ( target.stacks + adder) * (self:GetAbility():GetLevelSpecialValueFor("bonus_damage_per_stack", self:GetAbility():GetLevel() - 1)) * multiplier
+	local nFurySwipes = ( target.stacks + adder) * (self:GetAbility():GetTalentSpecialValueFor("bonus_damage_per_stack")) * multiplier
     
     target.stacks = target.stacks + adder
     return nFurySwipes
@@ -107,7 +107,7 @@ function Pierce_skill(keys)
     local caster = keys.caster
     local target = keys.target
     local ability = keys.ability
-    local percent = ability:GetLevelSpecialValueFor("Pierce_percent", ability:GetLevel()-1)
+    local percent = ability:GetTalentSpecialValueFor("Pierce_percent", ability:GetLevel()-1)
     local damage = keys.damage_on_hit*percent*0.01
     local damageTable = {victim = target,
                 attacker = caster,
@@ -122,8 +122,8 @@ function overpower_init( keys )
 	local caster = keys.caster
 	local ability = keys.ability
 	local modifierName = "modifier_overpower_buff_datadriven"
-	local duration = ability:GetLevelSpecialValueFor( "duration_tooltip", ability:GetLevel() - 1 )
-	local max_stack = ability:GetLevelSpecialValueFor( "max_attacks", ability:GetLevel() - 1 )
+	local duration = ability:GetTalentSpecialValueFor( "duration_tooltip")
+	local max_stack = ability:GetTalentSpecialValueFor( "max_attacks")
 	
 	ability:ApplyDataDrivenModifier( caster, caster, modifierName, { } )
 	caster:SetModifierStackCount( modifierName, ability, max_stack )
@@ -134,9 +134,9 @@ function overpower_decrease_stack( keys )
 	local ability = keys.ability
 	local target = keys.target
 	
-	local max_stack = ability:GetSpecialValueFor( "max_attacks")
-	local armorreduc = ability:GetSpecialValueFor( "debuff_minus_armor")
-	local armorreducperc = ability:GetSpecialValueFor( "debuff_altminus_armor") / 100
+	local max_stack = ability:GetTalentSpecialValueFor( "max_attacks")
+	local armorreduc = ability:GetTalentSpecialValueFor( "debuff_minus_armor")
+	local armorreducperc = ability:GetTalentSpecialValueFor( "debuff_altminus_armor") / 100
 	local armor = target:GetPhysicalArmorBaseValue()
 	
 	local modifierName = "modifier_overpower_buff_datadriven"
@@ -146,7 +146,7 @@ function overpower_decrease_stack( keys )
 	end
 	local current_stack = caster:GetModifierStackCount( modifierName, ability )
 	local current_destack = target:GetModifierStackCount( demodifierName, ability )
-	local duration = ability:GetSpecialValueFor("debuff_duration")
+	local duration = ability:GetTalentSpecialValueFor("debuff_duration")
 	if demodifierName == "modifier_overpower_altdebuff_datadriven" then
 		local stackmodifier = "modifier_overpower_altdebuff_datadriven_stacks"
 		local sunder = armorreducperc*armor

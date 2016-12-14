@@ -7,8 +7,8 @@ function Reflection( event )
 	local ability = event.ability
 	local unit_name = target:GetUnitName()
 	local origin = target:GetAbsOrigin() + RandomVector(100)
-	local duration = ability:GetLevelSpecialValueFor( "illusion_duration", ability:GetLevel() - 1 )
-	local outgoingDamage = ability:GetLevelSpecialValueFor( "illusion_outgoing_damage", ability:GetLevel() - 1 )
+	local duration = ability:GetTalentSpecialValueFor( "illusion_duration")
+	local outgoingDamage = ability:GetTalentSpecialValueFor( "illusion_outgoing_damage")
 
 	-- handle_UnitOwner needs to be nil, else it will crash the game.
 	local illusion = CreateUnitByName(unit_name, origin, true, caster, nil, caster:GetTeamNumber())

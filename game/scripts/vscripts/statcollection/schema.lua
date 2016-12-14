@@ -22,12 +22,12 @@ function customSchema:init()
 
             -- Print the schema data to the console
             if statCollection.TESTING then
-                PrintSchema(game,players)
+                PrintSchema(game, players)
             end
 
             -- Send custom stats
             if statCollection.HAS_SCHEMA then
-                statCollection:sendCustom({game=game, players=players})
+                statCollection:sendCustom({ game = game, players = players })
             end
         end
     end, nil)
@@ -42,14 +42,12 @@ end
 function BuildGameArray()
     local game = {}
 
-    table.insert(game, {
-        G_T = math.floor(GameRules:GetGameTime()/60), --game time
-        M_R = GameRules._roundnumber, -- max round achiece
-        F_G = GameRules._finish,    --is the game had been finished (win)
-        life = GameRules._live,     --how many life left
-        U_L = GameRules._used_live,     -- Used Life
-        T_L = GameRules._used_live+ GameRules._live     --Total Life
-    })
+    -- Add game values here as game.someValue = GetSomeGameValue()
+    game.M_R = GameRules._roundnumber -- max round achieved
+    game.F_G = GameRules._finish -- has the game finished (win)
+    game.life = GameRules._live -- how many lives left
+    game.U_L = GameRules._used_live -- Used Life
+    game.T_L = GetMapName() -- map
 
     return game
 end
@@ -58,40 +56,35 @@ end
 function BuildPlayersArray()
     local players = {}
     for playerID = 0, DOTA_MAX_PLAYERS do
-        if PlayerResource:IsValidPlayerID(playerID) then
+        if PlayerResource:IsValidPlayerID(playerID) and PlayerResource:HasSelectedHero(playerID) then
             if not PlayerResource:IsBroadcaster(playerID) then
-
+				
                 local hero = PlayerResource:GetSelectedHeroEntity(playerID)
-
-                if hero:GetTeamNumber()==DOTA_TEAM_GOODGUYS then
-                    team = "Boss Slayer"
-                else
-                    team = "Boss Master"
-                end
-
+				if not hero then return end
+				local heroName = GetHeroName(playerID)
                 table.insert(players, {
                     -- steamID32 required in here
                     steamID32 = PlayerResource:GetSteamAccountID(playerID),
-                    HN = GetHeroName(playerID),                                             -- name
-                    P_L = hero:GetLevel(),                                                   -- level
-                    P_NW = GetNetworth(PlayerResource:GetSelectedHeroEntity(playerID)),      -- Networth
-                    P_T = team,                                           -- Hero's team
-                    P_K = hero:GetKills(),                                         -- Kills
-                    P_D = hero:GetDeaths(),                                       -- Deaths
-                    P_H = PlayerResource:GetHealing(hero:GetPlayerOwnerID()),       -- Healing
-                    P_R = hero.Ressurect,                   --ammount of time he ressurect someone
-                    P_GPM = math.floor(PlayerResource:GetGoldPerMin(hero:GetPlayerOwnerID())),        -- GPM
-                    T_D = hero.damageDone,
-                    --inventory :
-                    i1 = GetItemSlot(hero,0),
-                    i2 = GetItemSlot(hero,1),
-                    i3 = GetItemSlot(hero,2),
-                    i4 = GetItemSlot(hero,3),
-                    i5 = GetItemSlot(hero,4),
-                    i6 = GetItemSlot(hero,5)
+
                     -- Example functions for generic stats are defined in statcollection/lib/utilities.lua
                     -- Add player values here as someValue = GetSomePlayerValue(),
+                    HN = heroName, -- Hero
+                    P_L = hero:GetLevel(), -- Level
+                    P_NW = FindDPS(hero) or 0, -- Damage
+                    P_T = hero:GetTeam(), -- Team
+                    P_K = GetMapName(), -- Map
+                    P_D = hero:GetDeaths(), -- Deaths
+                    P_H = PlayerResource:GetHealing(hero:GetPlayerOwnerID()), -- Healing
+                    P_R = hero.Ressurect, -- Ressurections
+                    P_GPM = math.floor(PlayerResource:GetGoldPerMin(hero:GetPlayerOwnerID())), -- GPM
 
+                    --inventory :
+                    i1 = GetItemSlot(hero, 1),
+                    i2 = GetItemSlot(hero, 2),
+                    i3 = GetItemSlot(hero, 3),
+                    i4 = GetItemSlot(hero, 4),
+                    i5 = GetItemSlot(hero, 5),
+                    i6 = GetItemSlot(hero, 6),
                 })
             end
         end
@@ -100,19 +93,22 @@ function BuildPlayersArray()
     return players
 end
 
-function GetItemSlot(hero,slot)
-    local item = hero:GetItemInSlot(slot)
-    
-    if item then
-        local itemName = string.gsub(item:GetAbilityName(),"item_","") or nil
-    end
-    
-    return itemName
+function FindDPS(hero)
+	GameRules.EndTime = GameRules.EndTime or GameRules:GetGameTime()
+	hero.first_damage_time = hero.first_damage_time or 0
+	hero.damageDone = hero.damageDone or 0
+	local elapsedMinutes = (GameRules.EndTime - hero.first_damage_time)
+	return math.floor( hero.damageDone / elapsedMinutes + 0.5 )
 end
 
+function FindPercentualDamage(hero)
+	hero.damageDone = hero.damageDone or 0
+	GameRules.TeamDamage = GameRules.TeamDamage or 1
+	return math.floor( (hero.damageDone / GameRules.TeamDamage)*100 + 0.5)
+end
 
 -- Prints the custom schema, required to get an schemaID
-function PrintSchema( gameArray, playerArray )
+function PrintSchema(gameArray, playerArray)
     print("-------- GAME DATA --------")
     DeepPrintTable(gameArray)
     print("\n-------- PLAYER DATA --------")
@@ -122,7 +118,7 @@ end
 
 -- Write 'test_schema' on the console to test your current functions instead of having to end the game
 if Convars:GetBool('developer') then
-    Convars:RegisterCommand("test_schema", function() PrintSchema(BuildGameArray(),BuildPlayersArray()) end, "Test the custom schema arrays", 0)
+    Convars:RegisterCommand("test_schema", function() PrintSchema(BuildGameArray(), BuildPlayersArray()) end, "Test the custom schema arrays", 0)
 end
 
 -------------------------------------
@@ -136,10 +132,10 @@ function customSchema:submitRound(isLastRound)
     local game = BuildGameArray()
     local players = BuildPlayersArray()
 
-    statCollection:sendCustom({game=game, players=players})
+    statCollection:sendCustom({ game = game, players = players })
 
     isLastRound = isLastRound or false --If the function is passed with no parameter, default to false.
-    return {winners = winners, lastRound = isLastRound}
+    return { winners = winners, lastRound = isLastRound }
 end
 
 -- A list of players marking who won this round

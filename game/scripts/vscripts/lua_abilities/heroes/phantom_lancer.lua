@@ -7,9 +7,9 @@ function ApplyBuff(keys)
 	
 	local ability = keys.ability
 	local cooldown = ability:GetCooldown(ability:GetLevel() - 1)
-	local min_distance = ability:GetLevelSpecialValueFor("min_proc_distance", ability:GetLevel() -1)
-	local max_distance = ability:GetLevelSpecialValueFor("max_proc_distance", ability:GetLevel() -1)
-	local duration = ability:GetLevelSpecialValueFor("buff_duration", ability:GetLevel() -1)
+	local min_distance = ability:GetTalentSpecialValueFor("min_proc_distance")
+	local max_distance = ability:GetTalentSpecialValueFor("max_proc_distance")
+	local duration = ability:GetTalentSpecialValueFor("buff_duration")
 	
 	-- Checks if the ability is off cooldown and if the caster is attacking a target
 	if target ~= null and ability:IsCooldownReady() then
@@ -47,9 +47,9 @@ function DistanceCheck(keys)
 	
 	local ability = keys.ability
 	local cooldown = ability:GetCooldown(ability:GetLevel() - 1)
-	local min_distance = ability:GetLevelSpecialValueFor("min_proc_distance", ability:GetLevel() -1)
-	local max_distance = ability:GetLevelSpecialValueFor("max_proc_distance", ability:GetLevel() -1)
-	local duration = ability:GetLevelSpecialValueFor("buff_duration", ability:GetLevel() -1)
+	local min_distance = ability:GetTalentSpecialValueFor("min_proc_distance")
+	local max_distance = ability:GetTalentSpecialValueFor("max_proc_distance")
+	local duration = ability:GetTalentSpecialValueFor("buff_duration")
 	
 	-- Checks if the caster is still attacking the same target
 	if caster:GetAggroTarget() == ability.target then
@@ -92,16 +92,16 @@ function ConjureImage( event )
 	local caster = event.caster
 	local ability = event.ability
 	local player = caster:GetPlayerID()
-	local amount = ability:GetLevelSpecialValueFor( "illusion_amount", ability:GetLevel() - 1 )
+	local amount = ability:GetTalentSpecialValueFor( "illusion_amount" )
 	caster:RemoveModifierByName("modifier_speed_buff")
 	if not caster:IsIllusion() then
 		for i=0,amount-1 do
 			local target = event.target
 			local unit_name = caster:GetUnitName()
 			local origin = target:GetAbsOrigin() + RandomVector(100)
-			local duration = ability:GetLevelSpecialValueFor( "illusion_duration", ability:GetLevel() - 1 )
-			local outgoingDamage = ability:GetLevelSpecialValueFor( "illusion_outgoing_damage", ability:GetLevel() - 1 )
-			local incomingDamage = ability:GetLevelSpecialValueFor( "illusion_incoming_damage", ability:GetLevel() - 1 )
+			local duration = ability:GetTalentSpecialValueFor( "illusion_duration" )
+			local outgoingDamage = ability:GetTalentSpecialValueFor( "illusion_outgoing_damage" )
+			local incomingDamage = ability:GetTalentSpecialValueFor( "illusion_incoming_damage" )
 
 			-- handle_UnitOwner needs to be nil, else it will crash the game.
 			local illusion = CreateUnitByName(unit_name, origin, true, caster, nil, caster:GetTeamNumber())

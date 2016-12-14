@@ -18,13 +18,13 @@ function AddMoonEyePassive(keys)
 	local caster = keys.caster
 	local ability = keys.ability
 	local agility = math.floor(caster:GetAgility() - caster:GetModifierStackCount("mooneye_buff", caster) - caster:GetModifierStackCount("mooneye_passive_buff", caster))
-	local additionPct = ability:GetSpecialValueFor("passive_agi_mult") / 100
+	local additionPct = ability:GetTalentSpecialValueFor("passive_agi_mult") / 100
 	local addedAgi = math.floor(agility * additionPct + 0.5)
 	print(addedAgi, agility, caster:GetModifierStackCount("mooneye_passive_buff", caster))
 	ability.stackTable = ability.stackTable or {}
 	table.insert(ability.stackTable, GameRules:GetGameTime())
 	caster:SetModifierStackCount("mooneye_passive_buff", caster, addedAgi * #ability.stackTable)
-	ability:ApplyDataDrivenModifier(caster, caster, "mooneye_passive_counter", {ability:GetSpecialValueFor("passive_duration")})
+	ability:ApplyDataDrivenModifier(caster, caster, "mooneye_passive_counter", {ability:GetTalentSpecialValueFor("passive_duration")})
 	caster:SetModifierStackCount("mooneye_passive_counter", caster, #ability.stackTable)
 end
 
@@ -33,12 +33,12 @@ function HandleMoonEyePassive(keys)
 	local ability = keys.ability
 	ability.stackTable = ability.stackTable or {}
 	if #ability.stackTable > 0 then
-		local expireTime = ability:GetSpecialValueFor("passive_duration")
+		local expireTime = ability:GetTalentSpecialValueFor("passive_duration")
 		local modifier = caster:FindModifierByName("mooneye_passive_counter")
 		for i = #ability.stackTable, 1, -1 do
 			if ability.stackTable[i] + expireTime < GameRules:GetGameTime() then
 				local agility = caster:GetAgility() - caster:GetModifierStackCount("mooneye_buff", caster) - caster:GetModifierStackCount("mooneye_passive_buff", caster)
-				local additionPct = ability:GetSpecialValueFor("passive_agi_mult") / 100
+				local additionPct = ability:GetTalentSpecialValueFor("passive_agi_mult") / 100
 				local addedAgi = agility * additionPct
 				table.remove(ability.stackTable, i)
 				modifier:DecrementStackCount()

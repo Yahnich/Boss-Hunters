@@ -1,7 +1,7 @@
 function AdamantiumShell(keys)
 	local target = keys.target
 	local ability = keys.ability
-	local charges = ability:GetLevelSpecialValueFor("charges", -1)
+	local charges = ability:GetTalentSpecialValueFor("charges")
 	target.charges = charges
 	target:SetModifierStackCount( "modifier_shell_protection", ability, target.charges )
 	if target.shield then ParticleManager:DestroyParticle(target.shield,true) end
@@ -25,8 +25,8 @@ end
 function AdamantiumShellPop(keys)
 	local target = keys.target
 	local ability = keys.ability
-	local radius =	ability:GetLevelSpecialValueFor("radius", -1)
-	local damage =	ability:GetLevelSpecialValueFor("magic_burst", -1)
+	local radius =	ability:GetTalentSpecialValueFor("radius")
+	local damage =	ability:GetTalentSpecialValueFor("magic_burst")
 	local units = FindUnitsInRadius(keys.caster:GetTeamNumber(), target:GetAbsOrigin(), nil, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER , false)
     for _,unit in pairs( units ) do
         ApplyDamage({victim = unit, attacker = keys.caster, damage = damage, damage_type = ability:GetAbilityDamageType(), ability = ability})
@@ -34,13 +34,17 @@ function AdamantiumShellPop(keys)
 	local explosion = ParticleManager:CreateParticle("particles/adamantium_burst.vpcf",PATTACH_POINT_FOLLOW,target)
 	ParticleManager:DestroyParticle(target.shield,true)
 	target.shield = nil 
+	if not ability:IsActivated() then
+		ability:SetActivated(true)
+		ability:StartCooldown(ability:GetTrueCooldown())
+	end
 end
 
 function AdamantiumShellScepter(keys)
 	if keys.caster:HasScepter() then
 		local caster = keys.caster
 		local ability = keys.ability
-		local distance_check = ability:GetLevelSpecialValueFor("distance_scepter", -1)
+		local distance_check = ability:GetTalentSpecialValueFor("distance_scepter")
 		local position = caster:GetAbsOrigin()
 		if caster.distance == nil then caster.distance = 0 end
 		if caster.origin == nil then caster.origin = position end

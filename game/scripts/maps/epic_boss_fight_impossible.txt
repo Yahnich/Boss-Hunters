@@ -68,7 +68,7 @@
 			"NPCName"				"npc_dota_boss1_vh"
 			"TotalUnitsToSpawn"		"2"
 			"UnitsPerSpawn"			"1"
-			"SpawnInterval"			"1"
+			"SpawnInterval"			"10"
 		}
 	}
 	
@@ -87,14 +87,14 @@
 			"NPCName"				"npc_dota_boss2"
 			"TotalUnitsToSpawn"		"2"
 			"UnitsPerSpawn"			"2"
-			"SpawnInterval"			"1"
+			"SpawnInterval"			"5"
 		}
 		"UnitBoss_1" 
 		{
 			"NPCName"				"npc_dota_boss1"
 			"TotalUnitsToSpawn"		"3"
 			"UnitsPerSpawn"			"1"
-			"SpawnInterval"			"1"
+			"SpawnInterval"			"10"
 		}
 	}
 	
@@ -503,7 +503,7 @@
 		
 		"UnitBoss_8"
 		{
-			"NPCName"				"npc_dota_boss28"
+			"NPCName"				"npc_dota_boss28_vh"
 			"TotalUnitsToSpawn"		"3"
 			"UnitsPerSpawn"			"3"
 			"SpawnInterval"			"1"
@@ -520,7 +520,7 @@
 		
 		"UnitBoss_8"
 		{
-			"NPCName"				"npc_dota_boss30"
+			"NPCName"				"npc_dota_boss30_vh"
 			"TotalUnitsToSpawn"		"4"
 			"UnitsPerSpawn"			"2"
 			"SpawnInterval"			"70"
@@ -598,7 +598,7 @@
 			"NPCName"				"npc_dota_boss34_vh"
 			"TotalUnitsToSpawn"		"1"
 			"UnitsPerSpawn"			"1"
-			"SpawnInterval"			"1"
+			"SpawnInterval"			"35"
 		}
 	}
 	"Round28" // Boss 35
@@ -615,7 +615,7 @@
 			"NPCName"				"npc_dota_boss35_vh"
 			"TotalUnitsToSpawn"		"1"
 			"UnitsPerSpawn"			"1"
-			"SpawnInterval"			"1"
+			"SpawnInterval"			"40"
 		}
 	}
 	"Round29" // Boss 36
@@ -632,7 +632,7 @@
 			"NPCName"				"npc_dota_boss36"
 			"TotalUnitsToSpawn"		"1"
 			"UnitsPerSpawn"			"1"
-			"SpawnInterval"			"1"
+			"SpawnInterval"			"100"
 		}
 	}
 	"Round30" // Boss 37
@@ -649,7 +649,7 @@
 			"NPCName"				"npc_dota_boss37_vh"
 			"TotalUnitsToSpawn"		"1"
 			"UnitsPerSpawn"			"1"
-			"SpawnInterval"			"1"
+			"SpawnInterval"			"30"
 		}
 		"UnitBoss_8"
 		{
@@ -673,7 +673,7 @@
 			"NPCName"				"npc_dota_boss38"
 			"TotalUnitsToSpawn"		"1"
 			"UnitsPerSpawn"			"1"
-			"SpawnInterval"			"1"
+			"SpawnInterval"			"50"
 		}
 	}
 	"Round32" // Aether
@@ -690,7 +690,7 @@
 			"NPCName"				"npc_dota_boss39"
 			"TotalUnitsToSpawn"		"1"
 			"UnitsPerSpawn"			"1"
-			"SpawnInterval"			"1"
+			"SpawnInterval"			"35"
 		}
 	}
 }

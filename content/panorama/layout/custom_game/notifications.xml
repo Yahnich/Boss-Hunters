@@ -1,0 +1,14 @@
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="file://{resources}/styles/custom_game/option.css" />
+	</styles> 
+	<scripts>
+		<include src="file://{resources}/scripts/custom_game/notifications.js" />
+	</scripts>
+	<Panel class="NotificationsRoot" hittest="false">
+		<Panel class="NotificationsGeneric" id="NotificationCenter" hittest="false">
+			<Label hittest="false" class="NotificationsGenericText" id="NotificationCenterText" text="#NotificationCompromiseText"/>
+		</Panel>
+	</Panel>
+</root>

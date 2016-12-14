@@ -3,7 +3,7 @@ require("libraries/utility")
 function SelfDamage(keys)
 	local caster = keys.caster
 	local ability = keys.ability
-	local selfDamagePct = ability:GetSpecialValueFor("self_damage")/100
+	local selfDamagePct = ability:GetTalentSpecialValueFor("self_damage")/100
 	ability.sacrifice = selfDamagePct*caster:GetHealth()
 	caster:SetHealth(caster:GetHealth()-ability.sacrifice)
 	local selfhurt = ParticleManager:CreateParticle("particles/necrophos_plague.vpcf", PATTACH_ABSORIGIN  , keys.caster)
@@ -16,10 +16,10 @@ function AllyHeal(keys)
 	local target = keys.target
 	local caster = keys.caster
 	
-	local tickrate = ability:GetSpecialValueFor("tick_rate")
-	local duration = ability:GetSpecialValueFor("duration")
-	local healpct = ability:GetLevelSpecialValueFor("heal_per_health", -1)/100
-	local base_heal = ability:GetLevelSpecialValueFor("base_heal", -1)
+	local tickrate = ability:GetTalentSpecialValueFor("tick_rate")
+	local duration = ability:GetTalentSpecialValueFor("duration")
+	local healpct = ability:GetTalentSpecialValueFor("heal_per_health")/100
+	local base_heal = ability:GetTalentSpecialValueFor("base_heal")
 	local healtick = (ability.sacrifice*healpct + base_heal)/(duration/tickrate)
 	if target:GetMaxHealth() - target:GetHealth() < healtick then
 		local difference = healtick - (target:GetMaxHealth() - target:GetHealth())
@@ -54,10 +54,10 @@ function EnemyDamage(keys)
 	local ability = keys.ability
 	local target = keys.target
 	
-	local tickrate = ability:GetSpecialValueFor("tick_rate")
-	local duration = ability:GetSpecialValueFor("duration")
-	local damagepct = ability:GetLevelSpecialValueFor("damage_per_health", -1)/100
-	local base_damage = ability:GetLevelSpecialValueFor("base_damage", -1)
+	local tickrate = ability:GetTalentSpecialValueFor("tick_rate")
+	local duration = ability:GetTalentSpecialValueFor("duration")
+	local damagepct = ability:GetTalentSpecialValueFor("damage_per_health")/100
+	local base_damage = ability:GetTalentSpecialValueFor("base_damage")
 	local damagetick = (ability.sacrifice*damagepct+ base_damage)/(keys.caster:GetSpellDamageAmp()*(duration/tickrate))
 	local damageType = ability:GetAbilityDamageType()
 	if keys.caster:HasScepter() then damageType = DAMAGE_TYPE_PURE end

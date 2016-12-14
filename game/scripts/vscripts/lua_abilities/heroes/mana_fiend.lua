@@ -4,8 +4,8 @@ function LifeToMana(keys)
 	local ability = keys.ability
 	local caster = keys.caster
 	local currhp = caster:GetHealth()
-	local manatohppct = ability:GetSpecialValueFor("life_to_mana_pct")  / 100
-	local manatohp = manatohppct * ability:GetSpecialValueFor("life_efficiency")  / 100
+	local manatohppct = ability:GetTalentSpecialValueFor("life_to_mana_pct")  / 100
+	local manatohp = manatohppct * ability:GetTalentSpecialValueFor("life_efficiency")  / 100
 	
 	local mana = currhp * manatohp
 	local newhp = currhp - mana
@@ -27,12 +27,12 @@ end
 function SpendMana(keys)
 	local ability = keys.ability
 	local caster = keys.caster
-	local manapct = ability:GetSpecialValueFor("curr_mana_leech")  / 100
+	local manapct = ability:GetTalentSpecialValueFor("curr_mana_leech")  / 100
 	
 	ability.manaspent = caster:GetMana() * manapct
 	caster:SpendMana(ability.manaspent, ability)
 	
-	local manatodamage = ability:GetSpecialValueFor("mana_to_damage")
+	local manatodamage = ability:GetTalentSpecialValueFor("mana_to_damage")
 	ability.damagelance = ability.manaspent * manatodamage
 end
 
@@ -41,7 +41,7 @@ function ProjectileDamage(keys)
 	local caster = keys.caster
 	local target = keys.target
 	
-	local damage = ability.damagelance + ability:GetSpecialValueFor("base_damage")
+	local damage = ability.damagelance + ability:GetTalentSpecialValueFor("base_damage")
 	local messagesent = false
 	
 	if not caster.essence_crit_chance then caster.essence_crit_chance = 0 end
@@ -82,7 +82,7 @@ function MagicDamage( keys )
 	local target = keys.target
 	local damage = ability.damage
 	local messagesent = false
-	if not caster.essence_crit_chance then caster.essence_crit_chance = caster:FindAbilityByName():GetSpecialValueFor("crit_chance") end
+	if not caster.essence_crit_chance then caster.essence_crit_chance = caster:FindAbilityByName():GetTalentSpecialValueFor("crit_chance") end
 	if not caster.essence_crit_mult then caster.essence_crit_mult = 1 end
 	if not caster.critprng then caster.critprng = 0 end
 	local manaburn = ability:GetManaCost(-1) * caster.essence_crit_mult
@@ -123,8 +123,8 @@ function CritUpgrade(keys)
 	local caster = keys.caster
 	local ability = keys.ability
 	
-	caster.essence_crit_chance = ability:GetSpecialValueFor("crit_chance")
-	caster.essence_crit_mult = ability:GetSpecialValueFor("crit_amp") / 100
+	caster.essence_crit_chance = ability:GetTalentSpecialValueFor("crit_chance")
+	caster.essence_crit_mult = ability:GetTalentSpecialValueFor("crit_amp") / 100
 end
 
 function ManageToggle( keys )
@@ -135,7 +135,7 @@ function ManageToggle( keys )
 		caster:RemoveModifierByName("critical_strike_h")
 		caster:RemoveModifierByName("critical_strike_2")
 		local damage_caster = caster:GetAverageTrueAttackDamage(caster)
-		local magic_damage = ability:GetSpecialValueFor("damage_to_magic")  / 100
+		local magic_damage = ability:GetTalentSpecialValueFor("damage_to_magic")  / 100
 		if not caster:HasModifier(keys.orb) then ability:ApplyDataDrivenModifier(caster, caster, keys.orb, {}) end
 		
 		ability:ApplyDataDrivenModifier(caster, caster, keys.reduction, {})

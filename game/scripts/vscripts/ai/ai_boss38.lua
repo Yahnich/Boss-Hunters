@@ -10,7 +10,7 @@ function Spawn( entityKeyValues )
 	thisEntity.juncture = thisEntity:FindAbilityByName("boss_juncture")
 	thisEntity.overtime = thisEntity:FindAbilityByName("boss_overtime")
 	thisEntity.yesteryear = thisEntity:FindAbilityByName("boss_yesteryear")
-	if GetMapName() == "epic_boss_fight_impossible" or GetMapName() == "epic_boss_fight_challenger" then 
+	if  math.floor(GameRules.gameDifficulty + 0.5) > 2 then 
 		thisEntity.rewind:SetLevel(3)
 		thisEntity.juncture:SetLevel(3)
 		thisEntity.overtime:SetLevel(3)
@@ -18,7 +18,7 @@ function Spawn( entityKeyValues )
 		thisEntity:SetMaxHealth(thisEntity:GetMaxHealth()*1.35)
 		thisEntity:SetPhysicalArmorBaseValue(thisEntity:GetPhysicalArmorBaseValue()*2.5)
 		thisEntity:SetHealth(thisEntity:GetMaxHealth())
-	elseif GetMapName() == "epic_boss_fight_hard" or GetMapName() == "epic_boss_fight_boss_master"  then
+	elseif  math.floor(GameRules.gameDifficulty + 0.5) == 2  then
 		thisEntity.rewind:SetLevel(2)
 		thisEntity.juncture:SetLevel(2)
 		thisEntity.overtime:SetLevel(2)
