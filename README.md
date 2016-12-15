@@ -1,3 +1,3 @@
-# Epic-Boss-Fight
+# Epic Boss Fight: Houthakker Edition
 
 Please no stealerino
