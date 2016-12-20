@@ -9,6 +9,10 @@ function lua_attribute_bonus_modifier:DeclareFunctions()
 	return funcs
 end
 
+function lua_attribute_bonus_modifier:OnCreated()
+	self.agiamp = 100
+end
+
 function lua_attribute_bonus_modifier:IsHidden()
 	return true
 end
@@ -25,7 +29,8 @@ function lua_attribute_bonus_modifier:OnHealReceived (keys)
     if IsServer and keys.unit == self:GetParent() then
 		if not keys.process_procs and not self.healed then
             if self:GetParent():IsRealHero() and keys.unit:IsRealHero() and not self:GetParent():HealDisabled() then
-				local agihealamp = self:GetParent():GetAgility()/(100*self.agiamp)
+				local agiamp = self.agiamp or 100
+				local agihealamp = self:GetParent():GetAgility()/(100*agiamp)
                 local _heal = keys.gain * agihealamp
 				local hp = self:GetParent():GetHealth()
                 self:GetParent():SetHealth(hp + _heal)

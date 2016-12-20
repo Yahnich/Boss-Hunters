@@ -22,10 +22,18 @@ function CHoldoutGameRound:ReadConfiguration( kv, gameMode, roundNumber )
 
 	self._vSpawners = {}
 	for k, v in pairs( kv ) do
-		if type( v ) == "table" and v.NPCName then
-			local spawner = CHoldoutGameSpawner()
-			spawner:ReadConfiguration( k, v, self )
-			self._vSpawners[ k ] = spawner
+		if type( v ) == "table" then
+			local tabLen = tonumber(GetTableLength(v))
+			local index = tostring(RandomInt(1, tabLen))
+			if v[index] then
+				for l,m in pairs(v[index]) do
+					if type( m ) == "table" and m.NPCName then
+						local spawner = CHoldoutGameSpawner()
+						spawner:ReadConfiguration( l, m, self )
+						self._vSpawners[ l ] = spawner
+					end
+				end
+			end
 		end
 	end
 
@@ -195,7 +203,13 @@ function CHoldoutGameRound:End()
 			UTIL_Remove( unit )
 		end
 	end
-
+	if roundNumber == 1 then
+		for _,unit in pairs ( Entities:FindAllByName( "npc_dota_hero*")) do
+			while unit:GetLevel() < 7 do
+				unit:AddExperience (100,false,false)
+			end
+		end
+	end
 	for _,spawner in pairs( self._vSpawners ) do
 		spawner:End()
 	end

@@ -78,7 +78,7 @@
 	    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
 	    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
 	    "FightRecapLevel"               "1"
-	    "AbilityTextureName"            "evil_core_passive"
+	    "AbilityTextureName"			"custom/evil_core_passive"
 	    "MaxLevel"                      "1"
 		"PiercesDisableReduction"		"1"
 
@@ -183,7 +183,7 @@
 		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"FightRecapLevel"               "2"
-		"AbilityTextureName"            "techies_focused_detonate"
+		"AbilityTextureName"			"techies_focused_detonate"
 		
 		"AbilityCastRange"              "5000"
 		"AbilityCastPoint"              "2 2 2 2"
@@ -458,7 +458,7 @@
 		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
-		"AbilityTextureName"            "techies_knockback_mine_ebf"
+		"AbilityTextureName"			"custom/techies_knockback_mine_ebf"
 		"AOERadius"                     "%small_radius"
 
 		// Precache
@@ -506,6 +506,7 @@
 			{
 				"var_type"                  "FIELD_INTEGER"
 				"max_mines"                 "3"
+				"LinkedSpecialBonus"		"special_bonus_unique_techies"
 			}
 			"05"
 			{
@@ -709,7 +710,7 @@
 		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
 		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
-		"AbilityTextureName"            "techies_suicide"
+		"AbilityTextureName"			"techies_suicide"
 		"InnateAbility" 				"1"
 		"MaxLevel"						"1"
 
@@ -769,7 +770,7 @@
 	    //-------------------------------------------------------------------------------------------------------------
 	    "BaseClass"                     "ability_datadriven"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-	    "AbilityTextureName"            "spirit_breaker_charge_of_darkness_alt"
+	    "AbilityTextureName"			"spirit_breaker_charge_of_darkness_alt"
 	    "MaxLevel"                      "7"
 	    "LevelsBetweenUpgrades" 		"8"
 		     
@@ -860,7 +861,7 @@
 		//
 	    //-------------------------------------------------------------------------------------------------------------
 	    "BaseClass"                     "item_aether_lens"
- 		"AbilityTextureName"			"perk_spell_haste"
+ 		"AbilityTextureName"			"custom/perk_spell_haste"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 
 	    "AbilitySpecial"
@@ -882,7 +883,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ALLIES_YES"
 		"CastFilterRejectCaster" 		"1"
 		"MaxLevel" 						"1"
-		"AbilityTextureName"			"boss_master_domination"
+		"AbilityTextureName"			"custom/boss_master_domination"
 		
 		"AbilityCooldown"	"5"
 	
@@ -1230,7 +1231,7 @@
 	    "BaseClass"                     "ability_datadriven"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-	    "AbilityTextureName"            "death_blink"
+	    "AbilityTextureName"			"custom/death_blink"
 	    "MaxLevel"                      "7"
 	    "LevelsBetweenUpgrades" "9"
 	    "AbilityCastRange" "1200"     
@@ -1719,7 +1720,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
-	    "AbilityTextureName"            "ground_smash"
+	    "AbilityTextureName"			"custom/ground_smash"
 	    "MaxLevel"                      "7"
 	    "LevelsBetweenUpgrades"			"5"
 
@@ -1823,7 +1824,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
-		"AbilityTextureName"			"skeleton_king_sanguine_strike"
+		"AbilityTextureName"			"custom/skeleton_king_sanguine_strike"
 		"LevelsBetweenUpgrades"		    "6"
 		"MaxLevel"                      "7"
 		"RequiredLevel"					"5"
@@ -1850,6 +1851,7 @@
 			{
 				"var_type"				"FIELD_FLOAT"
 				"life_leeched"		"100"
+				"LinkedSpecialBonus"	"special_bonus_unique_wraith_king_2"
 			}
 		}
 
@@ -1945,7 +1947,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
-		"AbilityTextureName"			"skeleton_king_critical_strike_ebf"
+		"AbilityTextureName"			"custom/skeleton_king_critical_strike_ebf"
 		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
 
@@ -2069,7 +2071,7 @@
 		"BaseClass"                    "ability_datadriven"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-	    "AbilityTextureName"            "antimage_mage_rage"
+	    "AbilityTextureName"			"custom/antimage_mage_rage"
 	    "MaxLevel"                      "7"
 	    "LevelsBetweenUpgrades" 		"6"
 		"HasScepterUpgrade"				"1"
@@ -2210,7 +2212,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
-		"AbilityTextureName"			"antimage_hex_shield"
+		"AbilityTextureName"			"custom/antimage_hex_shield"
 		"MaxLevel"                      "7"
 	    "LevelsBetweenUpgrades" 		"6"
 		"AbilityCooldown"				"22 20 18 16 14 12 10"
@@ -2295,7 +2297,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"		
 		"FightRecapLevel"				"2"
-		"AbilityTextureName"			"antimage_ragevoid"
+		"AbilityTextureName"			"custom/antimage_ragevoid"
 		"AOERadius"						"%mana_void_aoe_radius"
 		"MaxLevel"                      "7"
 	    "LevelsBetweenUpgrades" 		"7"
@@ -2524,7 +2526,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"	
 		"SpellImmunityType"				"SPELL_IMMUNITY_ALLIES_YES"
-		"AbilityTextureName"			"oracle_purifying_flames_heal"
+		"AbilityTextureName"			"custom/oracle_purifying_flames_heal"
 		"MaxLevel"                      "7"
 	    "LevelsBetweenUpgrades" 		"5"
 		"HasScepterUpgrade"				"1"
@@ -2683,7 +2685,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityTextureName"			"oracle_purifying_flames_damage"
+		"AbilityTextureName"			"custom/oracle_purifying_flames_damage"
 		"MaxLevel"                      "7"
 	    "LevelsBetweenUpgrades" 		"5"
 		"HasScepterUpgrade"				"1"
@@ -2813,7 +2815,7 @@
 		"RequiredLevel"					"7"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"6"
-		"AbilityTextureName"			"tusk_frozen_wasteland"
+		"AbilityTextureName"			"custom/tusk_frozen_wasteland"
 
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
@@ -2958,7 +2960,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityTextureName"			"tusk_shield_throw"
+		"AbilityTextureName"			"custom/tusk_shield_throw"
 		"MaxLevel"                      "7"
 	    "LevelsBetweenUpgrades" 		"5"
 		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
@@ -3798,7 +3800,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"				"1"
 		"BaseClass"						"ability_lua"
-		"AbilityTextureName"					"pudge_rot_lua"
+		"AbilityTextureName"			"custom/pudge_rot_lua"
 		"ScriptFile"						"lua_abilities/heroes/pudge"
 		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
@@ -3857,7 +3859,7 @@
 	"MaxLevel"						"7"
 	"LevelsBetweenUpgrades"			"5"
 	"RequiredLevel"					"7"
-	"AbilityTextureName"			"pudge_flesh_heap_ebf"
+	"AbilityTextureName"			"custom/pudge_flesh_heap_ebf"
 	
 	// Special
 	//-------------------------------------------------------------------------------------------------------------
@@ -3967,7 +3969,7 @@
 		"LevelsBetweenUpgrades"			"7"
 		"MaxLevel"						"7"
 		"BaseClass"						"ability_lua"
-		"AbilityTextureName"					"pudge_dismember_lua"
+		"AbilityTextureName"					"custom/pudge_dismember_lua"
 		"ScriptFile"						"lua_abilities/heroes/pudge.lua"
 		"HasScepterUpgrade"				"1"
 
@@ -4031,7 +4033,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityTextureName"			"windrunner_skillshot"
+		"AbilityTextureName"			"custom/windrunner_skillshot"
 		"MaxLevel"						"7"
 		"RequiredLevel"					"7"
 		"LevelsBetweenUpgrades"			"6"	
@@ -4181,7 +4183,7 @@
 		"BaseClass"						"ability_datadriven"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
-		"AbilityTextureName"			"windrunner_focusfire_ebf"
+		"AbilityTextureName"			"custom/windrunner_focusfire_ebf"
 		"HasScepterUpgrade"				"1"
 		"LevelsBetweenUpgrades"			"7"
 		"MaxLevel"						"7"
@@ -4290,7 +4292,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"				"2"
-		"AbilityTextureName"			"enigma_whitehole"
+		"AbilityTextureName"			"custom/enigma_whitehole"
 		"MaxLevel"						"7"
 		"RequiredLevel"					"7"
 		"LevelsBetweenUpgrades"			"5"
@@ -4327,6 +4329,7 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"radius"				"500 550 600 650 700 750 800"
+				"LinkedSpecialBonus"	"special_bonus_unique_enigma"
 			}
 			"02"
 			{
@@ -4414,7 +4417,7 @@
 		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
 		"BaseClass"						"ability_datadriven"
-		"AbilityTextureName"			"rubick_spell_echo"
+		"AbilityTextureName"			"custom/rubick_spell_echo"
 
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
@@ -4464,7 +4467,7 @@
 	    //-------------------------------------------------------------------------------------------------------------
 	    "BaseClass"                     "ability_datadriven"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-	    "AbilityTextureName"            "invoker_exort"
+	    "AbilityTextureName"			"invoker_exort"
 	    "MaxLevel"                      "7"
 	    "LevelsBetweenUpgrades" "11"
 		"RequiredLevel"        "-2"
@@ -4546,7 +4549,7 @@
 	    //-------------------------------------------------------------------------------------------------------------
 	    "BaseClass"                     "ability_datadriven"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-	    "AbilityTextureName"            "invoker_wex"
+	    "AbilityTextureName"			"invoker_wex"
 	    "MaxLevel"                      "7"
 	    "LevelsBetweenUpgrades" "11"
 		"RequiredLevel"        "-2"
@@ -4632,7 +4635,7 @@
 	    //-------------------------------------------------------------------------------------------------------------
 	    "BaseClass"                     "ability_datadriven"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-	    "AbilityTextureName"            "invoker_quas"
+	    "AbilityTextureName"			"invoker_quas"
 	    "MaxLevel"                      "7"
 	    "LevelsBetweenUpgrades" "11"
 		"RequiredLevel"        "-2"
@@ -4710,7 +4713,7 @@
 	    //-------------------------------------------------------------------------------------------------------------
 	    "BaseClass"                     "ability_datadriven"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-	    "AbilityTextureName"            "reset_ellements"
+	    "AbilityTextureName"			"custom/reset_ellements"
 	    "MaxLevel"                      "1"
 		"InnateAbility"					"1"
 
@@ -4739,7 +4742,7 @@
 	    //-------------------------------------------------------------------------------------------------------------
 	    "BaseClass"                     "ability_datadriven"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-	    "AbilityTextureName"            "invoker_invoke"
+	    "AbilityTextureName"			"invoker_invoke"
 	    "AbilityCastAnimation"          "ACT_DOTA_CAST_TORNADO"
 	    "MaxLevel"                      "7"
 	    "LevelsBetweenUpgrades" "8"
@@ -5069,7 +5072,7 @@
 	    //-------------------------------------------------------------------------------------------------------------
 	    "BaseClass"                     "ability_datadriven"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-	    "AbilityTextureName"            "invoker_invoke"
+	    "AbilityTextureName"			"invoker_invoke"
 	    "AbilityCastAnimation"          "ACT_DOTA_CAST_TORNADO"
 	    "MaxLevel"                      "7"
 	    "LevelsBetweenUpgrades" "8"
@@ -5404,7 +5407,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"				"1"
-		"AbilityTextureName"			"dragon_knight_intervene"
+		"AbilityTextureName"			"custom/dragon_knight_intervene"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"5"
 		"RequiredLevel"					"7"
@@ -5583,7 +5586,7 @@
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"FightRecapLevel"				"2"
-		"AbilityTextureName"			"elder_dragon_berserker"
+		"AbilityTextureName"			"custom/elder_dragon_berserker"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"7"
 
@@ -5948,7 +5951,7 @@
 	    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
 	    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
 	    "FightRecapLevel"               "1"
-	    "AbilityTextureName"            "doom_bringer_doom"
+	    "AbilityTextureName"			"doom_bringer_doom"
 	    
 	    // Casting
 	    //-------------------------------------------------------------------------------------------------------------
@@ -6054,7 +6057,7 @@
 	    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
 	    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
 	    "FightRecapLevel"               "1"
-	    "AbilityTextureName"            "doom_bringer_doom"
+	    "AbilityTextureName"			"doom_bringer_doom"
 	    
 	    // Casting
 	    //-------------------------------------------------------------------------------------------------------------
@@ -6106,7 +6109,7 @@
 	    "AbilityUnitDamageType"         "DAMAGE_TYPE_PURE"   
 	    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
 	    "FightRecapLevel"               "1"
-	    "AbilityTextureName"            "nevermore_shadowraze2"
+	    "AbilityTextureName"			"nevermore_shadowraze2"
 	    
 	    // Casting
 	    //-------------------------------------------------------------------------------------------------------------
@@ -6159,7 +6162,7 @@
 	    "AbilityUnitDamageType"         "DAMAGE_TYPE_PURE"   
 	    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
 	    "FightRecapLevel"               "1"
-	    "AbilityTextureName"            "nevermore_shadowraze2"
+	    "AbilityTextureName"			"nevermore_shadowraze2"
 	    
 	    // Casting
 	    //-------------------------------------------------------------------------------------------------------------
@@ -6212,7 +6215,7 @@
 	    "AbilityUnitDamageType"         "DAMAGE_TYPE_PURE"   
 	    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
 	    "FightRecapLevel"               "1"
-	    "AbilityTextureName"            "nevermore_shadowraze2"
+	    "AbilityTextureName"			"nevermore_shadowraze3"
 	    
 	    // Casting
 	    //-------------------------------------------------------------------------------------------------------------
@@ -6269,7 +6272,7 @@
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
-		"AbilityTextureName"			"life_stealer_devour"
+		"AbilityTextureName"			"custom/life_stealer_devour"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"7"
 
@@ -6610,7 +6613,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityTextureName"			"Blood_Seeker_Blood_Smell"
+		"AbilityTextureName"			"custom/Blood_Seeker_Blood_Smell"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"5"
 
@@ -6837,7 +6840,7 @@
 		"BaseClass"						"ability_datadriven"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_TOGGLE"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityTextureName"			"storm_spirit_electric_dynamo"
+		"AbilityTextureName"			"custom/storm_spirit_electric_dynamo"
 		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
 		"RequiredLevel"					"7"
@@ -6939,7 +6942,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityTextureName"			"storm_spirit_overload_ebf"
+		"AbilityTextureName"			"custom/storm_spirit_overload_ebf"
 		"LevelsBetweenUpgrades"			"7"
 		"MaxLevel"						"7"
 		"RequiredLevel"					"7"
@@ -7366,7 +7369,7 @@
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"7"
 		"FightRecapLevel"				"2"
-		"AbilityTextureName"			"troll_war_song"
+		"AbilityTextureName"			"custom/troll_war_song"
 
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
@@ -7469,7 +7472,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"				"ability_datadriven"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityTextureName"			"troll_multistrike"
+		"AbilityTextureName"			"custom/troll_multistrike"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"5"
 		"RequiredLevel"					"7"
@@ -7686,7 +7689,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_AUTOCAST"
-		"AbilityTextureName"			"faceless_clock_stopper"
+		"AbilityTextureName"			"custom/faceless_clock_stopper"
 		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
 		"AbilityCooldown"				"20"
@@ -7770,7 +7773,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityTextureName"			"faceless_time_lord"
+		"AbilityTextureName"			"custom/faceless_time_lord"
 		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
 
@@ -8090,7 +8093,7 @@
 		"BaseClass"						"ability_datadriven"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
 		"FightRecapLevel"				"1"
-		"AbilityTextureName"			"treant_happy_little_tree"
+		"AbilityTextureName"			"custom/treant_happy_little_tree"
 		"MaxLevel"						"7"
 		"RequiredLevel"					"5"
 		"LevelsBetweenUpgrades"			"6"
@@ -8226,7 +8229,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"				"1"
-		"AbilityTextureName"			"alchemist_midas_knuckle"
+		"AbilityTextureName"			"custom/alchemist_midas_knuckle"
 		"AbilityCastAnimation"			"ACT_DOTA_ATTACK_STATUE"
 		"MaxLevel"						"7"
 		"RequiredLevel"					"7"
@@ -8559,7 +8562,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"AbilityTextureName"			"juggernaut_ronin_slice"
+		"AbilityTextureName"			"custom/juggernaut_ronin_slice"
 		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
 
@@ -8748,7 +8751,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityTextureName"			"juggernaut_quickparry"
+		"AbilityTextureName"			"custom/juggernaut_quickparry"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"6"
 		"RequiredLevel"					"7"
@@ -8970,7 +8973,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"				"1"
-		"AbilityTextureName"			"shredder_bonesplitter"
+		"AbilityTextureName"			"custom/shredder_bonesplitter"
 		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
 		"RequiredLevel"					"7"
@@ -9149,7 +9152,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
 		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
-		"AbilityTextureName"            "death_orb"
+		"AbilityTextureName"			"custom/death_orb"
 		
 		"precache"
 		{
@@ -9250,7 +9253,7 @@
 	    "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
 		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
 	    "FightRecapLevel"               "1"
-	    "AbilityTextureName"            "death_timer"
+	    "AbilityTextureName"			"custom/death_timer"
 	    
 
 	    // Casting
@@ -9367,7 +9370,7 @@
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
 	    "FightRecapLevel"               "1"
-	    "AbilityTextureName"            "death_blink"
+	    "AbilityTextureName"			"custom/death_blink"
 	    
 	    // Casting
 	    //-------------------------------------------------------------------------------------------------------------
@@ -9407,7 +9410,7 @@
 	    
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityTextureName"			"crystal_maiden_frozen_aura"
+		"AbilityTextureName"			"custom/crystal_maiden_frozen_aura"
 
 		"Modifiers"
 		{	
@@ -9454,6 +9457,7 @@
 			{
 				"var_type"				"FIELD_FLOAT"
 				"mana_percent_damage"		"1 1.5 2.0 2.5 3.0 3.5 4.0"
+				"LinkedSpecialBonus"		"special_bonus_unique_crystal_maiden_1"
 			}
 		}
 	}
@@ -9467,7 +9471,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"AbilityTextureName"            "crystal_maiden_crystal_spear"
+		"AbilityTextureName"			"custom/crystal_maiden_crystal_spear"
 		"MaxLevel"  "7"
 	    "LevelsBetweenUpgrades" "5"
 		
@@ -9573,7 +9577,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
-		"AbilityTextureName"            "shadow_demon_shadow_poison"
+		"AbilityTextureName"			"shadow_demon_shadow_poison"
 		
 		"precache"
 		{
@@ -9672,7 +9676,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
-		"AbilityTextureName"            "shadows_orb"
+		"AbilityTextureName"			"custom/shadows_orb"
 		
 		"precache"
 		{
@@ -9805,7 +9809,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
-		"AbilityTextureName"            "shadow_demon_shadow_poison"
+		"AbilityTextureName"			"shadow_demon_shadow_poison"
 		
 		"precache"
 		{
@@ -9904,7 +9908,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
-		"AbilityTextureName"            "shadows_orb"
+		"AbilityTextureName"			"custom/shadows_orb"
 		
 		"precache"
 		{
@@ -10035,7 +10039,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
-		"AbilityTextureName"            "shadow_demon_shadow_poison"
+		"AbilityTextureName"			"shadow_demon_shadow_poison"
 		
 		"precache"
 		{
@@ -10134,7 +10138,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
-		"AbilityTextureName"            "shadows_orb"
+		"AbilityTextureName"			"custom/shadows_orb"
 		
 		"precache"
 		{
@@ -10266,7 +10270,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"AbilityTextureName"            "light_spear"
+		"AbilityTextureName"			"custom/light_spear"
 		
 		"precache"
 		{
@@ -10357,7 +10361,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
-		"AbilityTextureName"            "shadow_demon_shadow_poison"
+		"AbilityTextureName"			"shadow_demon_shadow_poison"
 		
 		"precache"
 		{
@@ -10486,7 +10490,7 @@
 	    //-------------------------------------------------------------------------------------------------------------
 	    "BaseClass"             "ability_datadriven"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-	    "AbilityTextureName"            "dark_seer_wall_of_replica"
+	    "AbilityTextureName"			"dark_seer_wall_of_replica"
 	    "MaxLevel"						"1"
 
 	    // Precache
@@ -10516,7 +10520,7 @@
 	    //-------------------------------------------------------------------------------------------------------------
 	    "BaseClass"             "ability_datadriven"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-	    "AbilityTextureName"            "dark_seer_wall_of_replica"
+	    "AbilityTextureName"			"dark_seer_wall_of_replica"
 	    "MaxLevel"						"1"
 
 	    // Precache
@@ -10546,7 +10550,7 @@
 	    //-------------------------------------------------------------------------------------------------------------
 	    "BaseClass"             "ability_datadriven"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-	    "AbilityTextureName"            "dark_seer_wall_of_replica"
+	    "AbilityTextureName"			"dark_seer_wall_of_replica"
 	    "MaxLevel"						"1"
 
 	    // Precache
@@ -10576,7 +10580,7 @@
 	    //-------------------------------------------------------------------------------------------------------------
 	    "BaseClass"             "ability_datadriven"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-	    "AbilityTextureName"            "dark_seer_wall_of_replica"
+	    "AbilityTextureName"			"dark_seer_wall_of_replica"
 	    "MaxLevel"						"1"
 
 	    // Precache
@@ -10606,7 +10610,7 @@
 	    //-------------------------------------------------------------------------------------------------------------
 	    "BaseClass"             "ability_datadriven"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-	    "AbilityTextureName"            "dark_seer_wall_of_replica"
+	    "AbilityTextureName"			"dark_seer_wall_of_replica"
 	    "MaxLevel"						"1"
 
 	    // Precache
@@ -10636,7 +10640,7 @@
 	    //-------------------------------------------------------------------------------------------------------------
 	    "BaseClass"             "ability_datadriven"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-	    "AbilityTextureName"            "dark_seer_wall_of_replica"
+	    "AbilityTextureName"			"dark_seer_wall_of_replica"
 	    "MaxLevel"						"1"
 
 	    // Precache
@@ -10666,7 +10670,7 @@
 	    //-------------------------------------------------------------------------------------------------------------
 	    "BaseClass"             "ability_datadriven"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-	    "AbilityTextureName"            "dark_seer_wall_of_replica"
+	    "AbilityTextureName"			"dark_seer_wall_of_replica"
 	    "MaxLevel"						"1"
 
 	    // Precache
@@ -10700,7 +10704,7 @@
 	    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
 	    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
 	    "FightRecapLevel"               "1"
-	    "AbilityTextureName"            "hell_guardian_passive"
+	    "AbilityTextureName"			"custom/hell_guardian_passive"
 	    "MaxLevel"                      "1"
 
 	    // Special
@@ -11258,7 +11262,7 @@
 		"BaseClass"						"ability_datadriven"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityTextureName"            "hell_guardian_flaming_fist"
+		"AbilityTextureName"			"custom/hell_guardian_flaming_fist"
 		
 		"precache"
 	    {
@@ -11346,7 +11350,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
-		"AbilityTextureName"            "hell_guardian_hell_on_earth"
+		"AbilityTextureName"			"custom/hell_guardian_hell_on_earth"
 		
 		"precache"
 	    {
@@ -11399,7 +11403,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
-		"AbilityTextureName"            "invoker_chaos_meteor"
+		"AbilityTextureName"			"invoker_chaos_meteor"
 		
 		"precache"
 	    {
@@ -11542,7 +11546,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
-		"AbilityTextureName"            "ember_spirit_flame_guard"
+		"AbilityTextureName"			"ember_spirit_flame_guard"
 		
 		"precache"
 		{
@@ -11742,7 +11746,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
-		"AbilityTextureName"            "ember_spirit_flame_guard"
+		"AbilityTextureName"			"ember_spirit_flame_guard"
 		
 		"precache"
 		{
@@ -11942,7 +11946,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
-		"AbilityTextureName"            "ember_spirit_flame_guard"
+		"AbilityTextureName"			"ember_spirit_flame_guard"
 		
 		"precache"
 		{
@@ -12323,7 +12327,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityTextureName"			"fire_aura"
+		"AbilityTextureName"			"custom/fire_aura"
 
 		"AbilitySpecial"
 	    {
@@ -12370,7 +12374,7 @@
 	    "AbilityUnitDamageType"         "DAMAGE_TYPE_PURE"
 	    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
 	    "FightRecapLevel"               "1"
-	    "AbilityTextureName"            "nyx_assassin_spiked_carapace"
+	    "AbilityTextureName"			"nyx_assassin_spiked_carapace"
 
 	    // Stats        
 	    //-------------------------------------------------------------------------------------------------------------
@@ -12513,7 +12517,7 @@
 	    "AbilityUnitDamageType"         "DAMAGE_TYPE_PURE"
 	    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
 	    "FightRecapLevel"               "1"
-	    "AbilityTextureName"            "nyx_assassin_spiked_carapace"
+	    "AbilityTextureName"			"nyx_assassin_spiked_carapace"
 
 	    // Stats        
 	    //-------------------------------------------------------------------------------------------------------------
@@ -12657,7 +12661,7 @@
 	    "AbilityUnitDamageType"         "DAMAGE_TYPE_PURE"
 	    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
 	    "FightRecapLevel"               "1"
-	    "AbilityTextureName"            "nyx_assassin_spiked_carapace"
+	    "AbilityTextureName"			"nyx_assassin_spiked_carapace"
 
 	    // Stats        
 	    //-------------------------------------------------------------------------------------------------------------
@@ -12800,7 +12804,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
-		"AbilityTextureName"            "nyx_assassin_impale"
+		"AbilityTextureName"			"nyx_assassin_impale"
 		
 		"precache"
 		{
@@ -13111,7 +13115,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
-		"AbilityTextureName"            "nyx_assassin_impale"
+		"AbilityTextureName"			"nyx_assassin_impale"
 		
 		"precache"
 		{
@@ -13314,7 +13318,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
-		"AbilityTextureName"            "nyx_assassin_impale"
+		"AbilityTextureName"			"nyx_assassin_impale"
 		
 		"precache"
 		{
@@ -13628,7 +13632,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
-		"AbilityTextureName"            "nyx_assassin_impale"
+		"AbilityTextureName"			"nyx_assassin_impale"
 		
 		"precache"
 		{
@@ -13827,7 +13831,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
-		"AbilityTextureName"            "nyx_assassin_impale"
+		"AbilityTextureName"			"nyx_assassin_impale"
 		
 		"precache"
 		{
@@ -14140,7 +14144,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
-		"AbilityTextureName"            "nyx_assassin_impale"
+		"AbilityTextureName"			"nyx_assassin_impale"
 		
 		"precache"
 		{
@@ -14391,7 +14395,7 @@
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_PASSIVE"
 
-		"AbilityTextureName"			"splash"
+		"AbilityTextureName"			"custom/splash"
 		"Modifiers"
     	{	
     		"fury"
@@ -14455,7 +14459,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"AbilityTextureName"			"mana_fiend_aura_spike"
+		"AbilityTextureName"			"custom/mana_fiend_aura_spike"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"5"
 		"RequiredLevel"					"7"
@@ -14566,7 +14570,7 @@
 		"BaseClass"						"ability_datadriven"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"AbilityTextureName"			"mana_fiend_essence_amp"
+		"AbilityTextureName"			"custom/mana_fiend_essence_amp"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"5"
 		"RequiredLevel"					"7"
@@ -14615,7 +14619,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"	
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"				"1"
-		"AbilityTextureName"			"mana_fiend_mana_lance"
+		"AbilityTextureName"			"custom/mana_fiend_mana_lance"
 		"LevelsBetweenUpgrades"			"9"
 		"MaxLevel"						"7"
 		"HasScepterUpgrade"				"1"
@@ -14656,6 +14660,7 @@
 			{
 				"var_type"				"FIELD_FLOAT"
 				"mana_to_damage"		"1 1.1 1.2 1.4 1.6 1.8 2.0"
+				"LinkedSpecialBonus"	"special_bonus_unique_visage_2"
 			}
 			"04"
 			{
@@ -14715,7 +14720,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"	
 		"FightRecapLevel"				"1"
-		"AbilityTextureName"			"mana_fiend_arcane_infusion"
+		"AbilityTextureName"			"custom/mana_fiend_arcane_infusion"
 		"LevelsBetweenUpgrades"			"7"
 		"MaxLevel"						"7"
 		"HasScepterUpgrade"				"1"
@@ -14750,6 +14755,7 @@
 			{
 				"var_type"				"FIELD_FLOAT"
 				"life_efficiency"		"100"
+				"LinkedSpecialBonus"	"special_bonus_unique_visage_1"
 			}
 			"03"
 			{
@@ -14805,7 +14811,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"				"ability_lua"
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityTextureName"	"enchantress_siegebreaker"
+		"AbilityTextureName"	"custom/enchantress_siegebreaker"
 		"MaxLevel"				"7"
 		"LevelsBetweenUpgrades"	"7"
 		"ScriptFile"			"lua_abilities/heroes/enchantress_siegebreaker"
@@ -14852,7 +14858,7 @@
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-		"AbilityTextureName"	"kunkka_captains_rum"
+		"AbilityTextureName"	"custom/kunkka_captains_rum"
 		"MaxLevel"				"7"
 		"LevelsBetweenUpgrades"	"7"
 		"RequiredLevel"			"7"
@@ -15052,7 +15058,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityTextureName"			"chen_devil_penitence"
+		"AbilityTextureName"			"custom/chen_devil_penitence"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"5"
 
@@ -15228,11 +15234,13 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"damage_min"			"400 800 1600 3200 6400 12800 25000"
+				"LinkedSpecialBonus"			"special_bonus_unique_chen_2"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"damage_max"			"800 1600 3200 6400 12800 25000 50000"
+				"LinkedSpecialBonus"			"special_bonus_unique_chen_2"
 			}
 		}
 
@@ -15407,7 +15415,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
 		"FightRecapLevel"				"1"
-		"AbilityTextureName"			"chen_corrupted_test"
+		"AbilityTextureName"			"custom/chen_corrupted_test"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"5"
 
@@ -15440,11 +15448,13 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"damage_min"			"400 800 1600 3200 6400 12800 25000"
+				"LinkedSpecialBonus"			"special_bonus_unique_chen_2"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"damage_max"			"800 1600 3200 6400 12800 25000 50000"
+				"LinkedSpecialBonus"			"special_bonus_unique_chen_2"
 			}
 		}
 
@@ -15496,7 +15506,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
-		"AbilityTextureName"			"chen_corrupted_alt_test"
+		"AbilityTextureName"			"custom/chen_corrupted_alt_test"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"5"
 
@@ -15529,11 +15539,13 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"damage_min"			"400 800 1600 3200 6400 12800 25000"
+				"LinkedSpecialBonus"			"special_bonus_unique_chen_2"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"damage_max"			"800 1600 3200 6400 12800 25000 50000"
+				"LinkedSpecialBonus"			"special_bonus_unique_chen_2"
 			}
 		}
 
@@ -15582,7 +15594,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		"AbilityTextureName"			"chen_holy_bless"
+		"AbilityTextureName"			"custom/chen_holy_bless"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"5"
 		"FightRecapLevel"               "1"
@@ -15633,6 +15645,7 @@
 	        {
 	            "var_type"              "FIELD_INTEGER"
 	            "damage_percent"                "40 50 60 80 100 150 200"
+				"LinkedSpecialBonus"			"special_bonus_unique_chen_1"
 	        }
 	        "02"
 	        {
@@ -15757,6 +15770,7 @@
 	        {
 	            "var_type"              "FIELD_INTEGER"
 	            "damage_percent"                "20 40 60 80 100 120"
+				"LinkedSpecialBonus"			"special_bonus_unique_chen_1"
 	        }
 	        "02"
 	        {
@@ -15929,7 +15943,7 @@
 		"BaseClass"						"ability_datadriven"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityTextureName"			"chen_devil_toggle"
+		"AbilityTextureName"			"custom/chen_devil_toggle"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"7"
 		"FightRecapLevel"               "1"
@@ -16492,7 +16506,7 @@
 		"LevelsBetweenUpgrades"			"6"
 		"MaxLevel"						"7"
 
-		"AbilityTextureName"			"boss_ursa_rage"
+		"AbilityTextureName"			"custom/boss_ursa_rage"
 
 		"Modifiers"
 		{
@@ -16566,7 +16580,7 @@
 		"BaseClass"						"ability_datadriven"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET  | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE"
-		"AbilityTextureName"			"ursa_claw"
+		"AbilityTextureName"			"custom/ursa_claw"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"7"
 		"FightRecapLevel"               "1"
@@ -16763,7 +16777,7 @@
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"7"
 
-		"AbilityTextureName"			"zeus_ebf_thundergod_legacy"
+		"AbilityTextureName"			"custom/zeus_ebf_thundergod_legacy"
 
 
 		"Modifiers"
@@ -16844,7 +16858,7 @@
 		"LevelsBetweenUpgrades"			"5"
 		"AbilityCooldown"				"3.5 3 2.5 2 1.5 1 0.5"
 
-		"AbilityTextureName"			"huskar_flashfire"
+		"AbilityTextureName"			"custom/huskar_flashfire"
 		
 		"precache"
 		{
@@ -16929,7 +16943,7 @@
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"7"
 
-		"AbilityTextureName"			"lc_ebf_war_fury"
+		"AbilityTextureName"			"custom/lc_ebf_war_fury"
 
 
 		"Modifiers"
@@ -16997,7 +17011,7 @@
 		"AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
 		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"               "2"
-		"AbilityTextureName"            "skywrath_mage_mystic_flare"
+		"AbilityTextureName"			"skywrath_mage_mystic_flare"
 		"AOERadius"                     "170 180 190 200 250 300 400"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"7"
@@ -17151,7 +17165,7 @@
 		"AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
 		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"               "1"
-		"AbilityTextureName"            "skywrath_mage_concussive_shot"
+		"AbilityTextureName"			"skywrath_mage_concussive_shot"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"6"
 
@@ -17334,7 +17348,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"heal"					"4000 8000 16000 32000 64000 128000 564000"
+				"heal"					"2000 4000 8000 16000 32000 64000 128000"
 				"LinkedSpecialBonus"	"special_bonus_unique_omniknight_1"
 			}
 			"03"
@@ -17679,7 +17693,7 @@
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"5"
 		"AbilityCooldown"				"1.0 0.875 0.75 0.625 0.5 0.375 0.25"
-		"AbilityTextureName"			"slark_ebf_damage_steal"
+		"AbilityTextureName"			"custom/slark_ebf_damage_steal"
 		"HasScepterUpgrade"				"1"
 
 
@@ -17747,7 +17761,7 @@
 	{
 		"BaseClass"						"ability_datadriven"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityTextureName"			"phantom_lancer_spliner_strike"	
+		"AbilityTextureName"			"custom/phantom_lancer_spliner_strike"	
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"5"
 		
@@ -17888,7 +17902,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"FightRecapLevel"				"2"
-		"AbilityTextureName"			"phantom_assassin_fan_the_blade"
+		"AbilityTextureName"			"custom/phantom_assassin_fan_the_blade"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"5"
 		"RequiredLevel"					"5"
@@ -18015,7 +18029,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityTextureName"			"phantom_assassin_assassins_dance"
+		"AbilityTextureName"			"custom/phantom_assassin_assassins_dance"
 		"MaxLevel"						"7"
 		"RequiredLevel"					"6"
 		"LevelsBetweenUpgrades"			"5"
@@ -18273,7 +18287,7 @@
 		"ScriptFile"						"lua_abilities/heroes/queenofpain.lua"
 		"MaxLevel"							"1"
 		"InnateAbility"						"1"
-		"AbilityTextureName"				"queenofpain_sadomasochism"
+		"AbilityTextureName"			"custom/queenofpain_sadomasochism"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -18312,7 +18326,7 @@
 		"MaxLevel"							"1"
 		"InnateAbility"						"1"
 		"IsAetherAmplified"					"0" //Otherwise amp would be applied multiple times
-		"AbilityTextureName"				"leshrac_inner_torment"
+		"AbilityTextureName"				"custom/leshrac_inner_torment"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -18331,7 +18345,7 @@
 	    //-------------------------------------------------------------------------------------------------------------
 	    "BaseClass"             "ability_datadriven"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-	    "AbilityTextureName"            "nyx_assassin_hide"
+	    "AbilityTextureName"			"custom/nyx_assassin_hide"
 	    "AbilityCooldown" 				"16 15 14 13 12 11 10"
 		"HasPureCooldown"				"1"
 		"AbilityDuration"				"4.5"
@@ -18445,7 +18459,7 @@
 	    //-------------------------------------------------------------------------------------------------------------
 	    "BaseClass"             		"ability_datadriven"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-	    "AbilityTextureName"            "nyx_assassin_hardened_carapace"
+	    "AbilityTextureName"			"custom/nyx_assassin_hardened_carapace"
 	    "MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"5"
 		"RequiredLevel"					"6"
@@ -18472,6 +18486,7 @@
 			{
 				"var_type"                  "FIELD_INTEGER"
 	            "reflect_pct"             "50"
+				"LinkedSpecialBonus"	 "special_bonus_unique_nyx"
 			}
 	    }
 		
@@ -18580,7 +18595,7 @@
 		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityUnitDamageType"         "DAMAGE_TYPE_PURE"  
 		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
-		"AbilityTextureName"            "axe_counter_helix"
+		"AbilityTextureName"			"axe_counter_helix"
 		"AbilityCastRange"                     "%radius"
 
 		// Precache
@@ -18740,7 +18755,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityTextureName"			"axe_steeled_temper"
+		"AbilityTextureName"			"custom/axe_steeled_temper"
 		"InnateAbility"					"1"
 		"MaxLevel"						"1"
 
@@ -18887,7 +18902,7 @@
 	    //-------------------------------------------------------------------------------------------------------------
 	    "BaseClass"             "ability_datadriven"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-	    "AbilityTextureName"            "lycan_summon_wolves"
+	    "AbilityTextureName"			"lycan_summon_wolves"
 	    "MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"5"
 
@@ -18918,7 +18933,7 @@
 	        "01"
 	        {
 	            "var_type"                  "FIELD_INTEGER"
-	            "wolf_index"                "1 2 3 4"
+	            "wolf_index"                "1 2 3 4 5 6 7"
 	        }
 	        "02"
 	        {
@@ -18943,37 +18958,8 @@
 	        "06" // Extra variables for "SpawnUnit" to decide which level of wolves will be used
 	        {
 	            "var_type"                  "FIELD_INTEGER"
-	            "wolf_1_count"              "2 0 0 0 0 0 0"
-	        }
-	        "07"
-	        {
-	            "var_type"                  "FIELD_INTEGER"
-	            "wolf_2_count"              "0 2 0 0 0 0 0"
-	        }
-	        "08"
-	        {
-	            "var_type"                  "FIELD_INTEGER"
-	            "wolf_3_count"              "0 0 2 0 0 0 0"
-	        }
-	        "09"
-	        {
-	            "var_type"                  "FIELD_INTEGER"
-	            "wolf_4_count"              "0 0 0 2 0 0 0"
-	        }
-	        "10"
-	        {
-	            "var_type"                  "FIELD_INTEGER"
-	            "wolf_5_count"              "0 0 0 0 2 0 0"
-	        }
-	        "11"
-	        {
-	            "var_type"                  "FIELD_INTEGER"
-	            "wolf_6_count"              "0 0 0 0 0 2 0"
-	        }
-	        "12"
-	        {
-	            "var_type"                  "FIELD_INTEGER"
-	            "wolf_7_count"              "0 0 0 0 0 0 2"
+	            "wolf_count"              	"2"
+				"LinkedSpecialBonus"		"special_bonus_unique_lycan_2"
 	        }
 	        "13"
 	        {
@@ -18989,289 +18975,17 @@
 	            "EffectName"    "Hero_Lycan.SummonWolves"
 	            "Target"        "CASTER"
 	        }
-
 	        "AttachEffect"
 	        {
 	            "EffectName"    "particles/units/heroes/hero_lycan/lycan_summon_wolves_cast.vpcf"
 	            "EffectName"    "start_at_customorigin"
 	            "Target"        "CASTER"    
-	        }   
-
+	        }  
 	        "RunScript"
 	        {
-	            "ScriptFile"    "lua_abilities/abilities_simple.lua"
-	            "Function"      "KillWolves"
+	            "ScriptFile"    "lua_abilities/heroes/lycan"
+	            "Function"      "SummonWolves"
 	        }
-
-	        "SpawnUnit"
-	        {
-	            "UnitName"      "npc_dota_lycan_wolf1"
-	            "Target"
-	            {
-	                "Center"    "CASTER"
-	                "ScriptSelectPoints"
-	                {
-	                    "ScriptFile"    "lua_abilities/abilities_simple"
-	                    "Function"  "GetSummonPoints"
-	                    "Target"    "CASTER"
-	                    "Count" "2"
-	                    "distance"  "%spawn_distance"
-	                }
-	            }
-
-	            "Duration"  "%wolf_duration"
-	            "UnitCount" "%wolf_1_count / 2" 
-	            "UnitLimit" "2"
-	            "GrantsGold"    "1"
-	            "GrantsXP"      "1"
-	            "SpawnRadius"   "10"
-	            "OnSpawn"
-	            {
-	                "RunScript"
-	                {
-	                    "ScriptFile"    "lua_abilities/abilities_simple.lua"
-	                    "Function"      "SetUnitsMoveForward"
-	                }
-
-	                "ApplyModifier"
-	                {
-	                    "ModifierName"  "modifier_summon_wolves_datadriven"
-	                    "Target"        "TARGET"
-	                    "Duration"      "%duration"
-	                }
-	            }
-	        }
-
-	        "SpawnUnit"
-	        {
-	            "UnitName"      "npc_dota_lycan_wolf2"
-	            "Target"
-	            {
-	                "Center"    "CASTER"
-	                "ScriptSelectPoints"
-	                {
-	                    "ScriptFile"    "lua_abilities/abilities_simple.lua"
-	                    "Function"  "GetSummonPoints"
-	                    "Target"    "CASTER"
-	                    "Count" "2"
-	                    "distance"  "%spawn_distance"
-	                }
-	            }
-
-	            "Duration"  "%wolf_duration"
-	            "UnitCount" "%wolf_2_count / 2" 
-	            "UnitLimit" "2"
-	            "GrantsGold"    "1"
-	            "GrantsXP"      "1"
-	            "SpawnRadius"   "10"
-	            "OnSpawn"
-	            {
-	                "RunScript"
-	                {
-	                    "ScriptFile"    "lua_abilities/abilities_simple.lua"
-	                    "Function"      "SetUnitsMoveForward"
-	                }
-
-	                "ApplyModifier"
-	                {
-	                    "ModifierName"  "modifier_summon_wolves_datadriven"
-	                    "Target"        "TARGET"
-	                    "Duration"      "%duration"
-	                }
-	            }
-	        }
-
-	        "SpawnUnit"
-	        {
-	            "UnitName"      "npc_dota_lycan_wolf3"
-	            "Target"
-	            {
-	                "Center"    "CASTER"
-	                "ScriptSelectPoints"
-	                {
-	                    "ScriptFile"    "lua_abilities/abilities_simple.lua"
-	                    "Function"  "GetSummonPoints"
-	                    "Target"    "CASTER"
-	                    "Count" "2"
-	                    "distance"  "%spawn_distance"
-	                }
-	            }
-
-	            "Duration"  "%wolf_duration"
-	            "UnitCount" "%wolf_3_count / 2" 
-	            "UnitLimit" "2"
-	            "GrantsGold"    "1"
-	            "GrantsXP"      "1"
-	            "SpawnRadius"   "10"
-	            "OnSpawn"
-	            {
-	                "RunScript"
-	                {
-	                    "ScriptFile"    "lua_abilities/abilities_simple.lua"
-	                    "Function"      "SetUnitsMoveForward"
-	                }
-
-	                "ApplyModifier"
-	                {
-	                    "ModifierName"  "modifier_summon_wolves_datadriven"
-	                    "Target"        "TARGET"
-	                    "Duration"      "%duration"
-	                }
-	            }
-	        }
-
-	        "SpawnUnit"
-	        {
-	            "UnitName"      "npc_dota_lycan_wolf4"
-	            "Target"
-	            {
-	                "Center"    "CASTER"
-	                "ScriptSelectPoints"
-	                {
-	                    "ScriptFile"    "lua_abilities/abilities_simple.lua"
-	                    "Function"  "GetSummonPoints"
-	                    "Target"    "CASTER"
-	                    "Count" "2"
-	                    "distance"  "%spawn_distance"
-	                }
-	            }
-
-	            "Duration"  "%wolf_duration"
-	            "UnitCount" "%wolf_4_count / 2" 
-	            "UnitLimit" "2"
-	            "GrantsGold"    "1"
-	            "GrantsXP"      "1"
-	            "SpawnRadius"   "10"
-	            "OnSpawn"
-	            {
-	                "RunScript"
-	                {
-	                    "ScriptFile"    "lua_abilities/abilities_simple.lua"
-	                    "Function"      "SetUnitsMoveForward"
-	                }
-
-	                "ApplyModifier"
-	                {
-	                    "ModifierName"  "modifier_summon_wolves_datadriven"
-	                    "Target"        "TARGET"
-	                    "Duration"      "%duration"
-	                }
-	            }
-	        }
-	        "SpawnUnit"
-	        {
-	            "UnitName"      "npc_dota_lycan_wolf5"
-	            "Target"
-	            {
-	                "Center"    "CASTER"
-	                "ScriptSelectPoints"
-	                {
-	                    "ScriptFile"    "lua_abilities/abilities_simple.lua"
-	                    "Function"  "GetSummonPoints"
-	                    "Target"    "CASTER"
-	                    "Count" "2"
-	                    "distance"  "%spawn_distance"
-	                }
-	            }
-
-	            "Duration"  "%wolf_duration"
-	            "UnitCount" "%wolf_5_count / 2" 
-	            "UnitLimit" "2"
-	            "GrantsGold"    "1"
-	            "GrantsXP"      "1"
-	            "SpawnRadius"   "10"
-	            "OnSpawn"
-	            {
-	                "RunScript"
-	                {
-	                    "ScriptFile"    "lua_abilities/abilities_simple.lua"
-	                    "Function"      "SetUnitsMoveForward"
-	                }
-
-	                "ApplyModifier"
-	                {
-	                    "ModifierName"  "modifier_summon_wolves_datadriven"
-	                    "Target"        "TARGET"
-	                    "Duration"      "%duration"
-	                }
-	            }
-	        }
-	        "SpawnUnit"
-	        {
-	            "UnitName"      "npc_dota_lycan_wolf6"
-	            "Target"
-	            {
-	                "Center"    "CASTER"
-	                "ScriptSelectPoints"
-	                {
-	                    "ScriptFile"    "lua_abilities/abilities_simple.lua"
-	                    "Function"  "GetSummonPoints"
-	                    "Target"    "CASTER"
-	                    "Count" "2"
-	                    "distance"  "%spawn_distance"
-	                }
-	            }
-
-	            "Duration"  "%wolf_duration"
-	            "UnitCount" "%wolf_6_count / 2" 
-	            "UnitLimit" "2"
-	            "GrantsGold"    "1"
-	            "GrantsXP"      "1"
-	            "SpawnRadius"   "10"
-	            "OnSpawn"
-	            {
-	                "RunScript"
-	                {
-	                    "ScriptFile"    "lua_abilities/abilities_simple.lua"
-	                    "Function"      "SetUnitsMoveForward"
-	                }
-
-	                "ApplyModifier"
-	                {
-	                    "ModifierName"  "modifier_summon_wolves_datadriven"
-	                    "Target"        "TARGET"
-	                    "Duration"      "%duration"
-	                }
-	            }
-	        }
-	        "SpawnUnit"
-	        {
-	            "UnitName"      "npc_dota_lycan_wolf7"
-	            "Target"
-	            {
-	                "Center"    "CASTER"
-	                "ScriptSelectPoints"
-	                {
-	                    "ScriptFile"    "lua_abilities/abilities_simple.lua"
-	                    "Function"  "GetSummonPoints"
-	                    "Target"    "CASTER"
-	                    "Count" "2"
-	                    "distance"  "%spawn_distance"
-	                }
-	            }
-
-	            "Duration"  "%wolf_duration"
-	            "UnitCount" "%wolf_7_count / 2" 
-	            "UnitLimit" "2"
-	            "GrantsGold"    "1"
-	            "GrantsXP"      "1"
-	            "SpawnRadius"   "10"
-	            "OnSpawn"
-	            {
-	                "RunScript"
-	                {
-	                    "ScriptFile"    "lua_abilities/abilities_simple.lua"
-	                    "Function"      "SetUnitsMoveForward"
-	                }
-
-	                "ApplyModifier"
-	                {
-	                    "ModifierName"  "modifier_summon_wolves_datadriven"
-	                    "Target"        "TARGET"
-	                    "Duration"      "%duration"
-	                }
-	            }
-	        }               
 	    }
 
 	    "Modifiers"
@@ -19305,7 +19019,7 @@
 		"AbilityUnitTargetType"         "DOTA_UNIT_TARGET_ALL"
 		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"               "2"
-		"AbilityTextureName"            "undying_decay_ebf"
+		"AbilityTextureName"			"custom/undying_decay_ebf"
 		"AOERadius"                     "300 400 500 600 700 800 900"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"7"
@@ -19466,7 +19180,7 @@
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"				"20 18 16 14 11 7 3.0"
-		"AbilityTextureName"			"undying_soul_rip_ebf"
+		"AbilityTextureName"			"custom/undying_soul_rip_ebf"
 		"OnSpellStart"
 			{
 				"RunScript"
@@ -19494,6 +19208,7 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"health_per_unit"		"320 640 1280 2560 5000 10000 20000"
+				"LinkedSpecialBonus"	"special_bonus_unique_undying"
 			}
 			"02"
 			{
@@ -19512,7 +19227,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-	    "AbilityTextureName"            "undying_summon_zombies"
+	    "AbilityTextureName"			"custom/undying_summon_zombies"
 	    "MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"5"
 		"RequiredLevel"        			"7"
@@ -19632,7 +19347,7 @@
 	    //-------------------------------------------------------------------------------------------------------------
 	    "BaseClass"             "ability_datadriven"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-	    "AbilityTextureName"            "fire_aura"
+	    "AbilityTextureName"			"custom/fire_aura"
 	    "MaxLevel"						"1"
 
 	    // Precache
@@ -19667,7 +19382,7 @@
 	    //-------------------------------------------------------------------------------------------------------------
 	    "BaseClass"             "ability_datadriven"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-	    "AbilityTextureName"            "fire_aura"
+	    "AbilityTextureName"			"custom/fire_aura"
 	    "MaxLevel"						"1"
 
 	    // Precache
@@ -19701,7 +19416,7 @@
 	    //-------------------------------------------------------------------------------------------------------------
 	    "BaseClass"             "ability_datadriven"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-	    "AbilityTextureName"            "fire_aura"
+	    "AbilityTextureName"			"custom/fire_aura"
 	    "MaxLevel"						"1"
 
 	    // Precache
@@ -19741,7 +19456,7 @@
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"7"
 
-		"AbilityTextureName"			"spectre_ebf_haunt"
+		"AbilityTextureName"			"custom/spectre_ebf_haunt"
 		
 		"precache"
 		{
@@ -19855,7 +19570,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityTextureName"			"spectre_echo_scream"
+		"AbilityTextureName"			"custom/spectre_echo_scream"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"5"
 		"RequiredLevel"					"7"
@@ -19972,7 +19687,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityChannelTime"			"1"
 		"AbilityCooldown"				"20.0"
-		"AbilityTextureName"			"razor_damage_link"
+		"AbilityTextureName"			"custom/razor_damage_link"
 		"OnSpellStart"
 			{
 				"ApplyModifier"
@@ -20102,7 +19817,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityTextureName"			"razor_high_voltage"
+		"AbilityTextureName"			"custom/razor_high_voltage"
 		"MaxLevel"						"7"
 		"RequiredLevel"					"7"
 		"LevelsBetweenUpgrades"			"5"
@@ -20320,7 +20035,7 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityTextureName"			"disruptor_tesla_field"
+		"AbilityTextureName"			"custom/disruptor_tesla_field"
 		"AbilityDamage"					"750 1500 3000 4500 6000 7500 15000"
 		"AbilityCastRange"				"900 1000 1100 1200 1300 1400 1500"
 		
@@ -20419,7 +20134,7 @@
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"				"150.0"
-		"AbilityTextureName"			"doom_devour"
+		"AbilityTextureName"			"custom/doom_devour"
 		"OnSpellStart"
 			{
 				"RunScript"
@@ -20473,7 +20188,7 @@
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
 		"FightRecapLevel"				"2"
-		"AbilityTextureName"			"doom_bringer_apocalypse"
+		"AbilityTextureName"			"custom/doom_bringer_apocalypse"
 		"LevelsBetweenUpgrades"			"7"
 		"MaxLevel"						"7"
 		"HasScepterUpgrade"				"1"
@@ -20877,7 +20592,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityTextureName"			"morphling_cosmic_projection"
+		"AbilityTextureName"			"custom/morphling_cosmic_projection"
 		"MaxLevel"						"7"
 		"RequiredLevel"					"7"
 		"LevelsBetweenUpgrades"			"5"
@@ -21040,7 +20755,7 @@
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
-		"AbilityTextureName"			"brewmaster_primal_avatar"
+		"AbilityTextureName"			"custom/brewmaster_primal_avatar"
 		"LevelsBetweenUpgrades"			"7"
 		"MaxLevel"						"7"
 		"FightRecapLevel"				"1"
@@ -21105,6 +20820,7 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"aoe_blind"				"20 25 30 35 40 45 50"
+				"LinkedSpecialBonus"	"special_bonus_unique_brewmaster"
 			}
 			"07"
 			{
@@ -21895,7 +21611,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"				"ability_datadriven"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityTextureName"			"slardar_oathkeeper"
+		"AbilityTextureName"			"custom/slardar_oathkeeper"
 		"LevelsBetweenUpgrades"			"6"
 		"MaxLevel"						"7"
 		"RequiredLevel"					"5"
@@ -21996,7 +21712,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityTextureName"			"slardar_slithereen_reprisal"
+		"AbilityTextureName"			"custom/slardar_slithereen_reprisal"
 		"LevelsBetweenUpgrades"			"7"
 		"MaxLevel"						"7"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
@@ -22192,7 +21908,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
-		"AbilityTextureName"			"mirana_mooneye"
+		"AbilityTextureName"			"custom/mirana_mooneye"
 		"LevelsBetweenUpgrades"			"6"
 		"MaxLevel"						"7"
 		"FightRecapLevel"				"1"
@@ -22371,7 +22087,7 @@
 		"LevelsBetweenUpgrades"			"7"
 		"MaxLevel"						"7"
 		"FightRecapLevel"				"2"
-		"AbilityTextureName"			"mirana_stardust_reflection"
+		"AbilityTextureName"			"custom/mirana_stardust_reflection"
 
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
@@ -22703,6 +22419,7 @@
 			{
 				"var_type"					"FIELD_INTEGER"
 				"strength_pct"				"50 60 70 80 100 150 300"
+				"LinkedSpecialBonus"		"special_bonus_unique_centaur_2"
 			}
 		}
 
@@ -23076,7 +22793,7 @@
 		"HasPureCooldown"				"1"
 		
 
-		"AbilityTextureName"			"dark_seer_adamantium_shell"
+		"AbilityTextureName"			"custom/dark_seer_adamantium_shell"
 		"precache"
 		{
 			"particle"		"particles/adamantium_shield.vpcf"
@@ -23292,7 +23009,7 @@
 	    "BaseClass"             "ability_datadriven"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
 	    "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
-	    "AbilityTextureName"            "tinker_rearm"
+	    "AbilityTextureName"			"tinker_rearm"
 	    "AbilityCastAnimation"          "ACT_DOTA_CHANNEL_ABILITY_4"
 	    "MaxLevel"						"7"
 			"LevelsBetweenUpgrades"			"7"
@@ -23432,7 +23149,7 @@
 	    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
 	    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
 	    "FightRecapLevel"               "1"
-	    "AbilityTextureName"            "tinker_heat_seeking_missile"
+	    "AbilityTextureName"			"tinker_heat_seeking_missile"
 	    "MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"6"
 		"RequiredLevel"					"7"
@@ -24038,7 +23755,7 @@
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"				"250 240 230 220 210 200 190"
-		"AbilityTextureName"			"witch_doctor_witch_control"
+		"AbilityTextureName"			"custom/witch_doctor_witch_control"
 
 
 		"OnSpellStart"
@@ -24122,7 +23839,7 @@
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"7"
 
-		"AbilityTextureName"			"outworld_otherworld_ressource"
+		"AbilityTextureName"			"custom/outworld_otherworld_ressource"
 
 
 		"Modifiers"
@@ -24225,7 +23942,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"				"1"
-		"AbilityTextureName"			"lina_dragon_slave_kindled"
+		"AbilityTextureName"			"custom/lina_dragon_slave_kindled"
 
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
@@ -24325,7 +24042,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"				"1"
-		"AbilityTextureName"			"lina_light_strike_kindled"
+		"AbilityTextureName"			"custom/lina_light_strike_kindled"
 		"LevelsBetweenUpgrades"			"6"
 		"MaxLevel"						"7"
 		"RequiredLevel"					"6"
@@ -24510,7 +24227,7 @@
 		"FightRecapLevel"				"2"
 		"LevelsBetweenUpgrades"			"7"
 		"MaxLevel"						"7"
-		"AbilityTextureName"			"lina_laguna_blade_kindled"
+		"AbilityTextureName"			"custom/lina_laguna_blade_kindled"
 
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
@@ -24616,7 +24333,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityTextureName"			"lina_self_immolation"
+		"AbilityTextureName"			"custom/lina_self_immolation"
 		"ScriptFile"					"lua_abilities/heroes/lina.lua"
 		"MaxLevel"						"7"
 		"RequiredLevel"					"6"
@@ -24636,6 +24353,7 @@
 			{
 				"var_type"					"FIELD_INTEGER"
 				"hp_cost"					"15"
+				"LinkedSpecialBonus"		"special_bonus_unique_lina_2"
 			}
 			"02"
 			{
@@ -24661,7 +24379,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		"AbilityTextureName"			"lina_self_immolation_kindled"
+		"AbilityTextureName"			"custom/lina_self_immolation_kindled"
 		"ScriptFile"					"lua_abilities/heroes/lina.lua"
 		"MaxLevel"						"7"
 		"RequiredLevel"					"6"
@@ -24681,6 +24399,7 @@
 			{
 				"var_type"					"FIELD_INTEGER"
 				"hp_cost"					"20"
+				"LinkedSpecialBonus"		"special_bonus_unique_lina_2"
 			}
 			"02"
 			{
@@ -24706,7 +24425,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"				"ability_datadriven"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityTextureName"			"lina_unkindled_soul"
+		"AbilityTextureName"			"custom/lina_unkindled_soul"
 		"MaxLevel"						"1"
 		"InnateAbility"					"1"
 		
@@ -24786,7 +24505,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"				"ability_datadriven"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE  | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		"AbilityTextureName"			"lina_enkindled_soul"
+		"AbilityTextureName"			"custom/lina_enkindled_soul"
 		"MaxLevel"						"1"
 		
 		// Casting
@@ -24939,7 +24658,7 @@
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"7"
 		"HasScepterUpgrade"				"1"
-		"AbilityTextureName"			"zuus_static_aegis"
+		"AbilityTextureName"			"custom/zuus_static_aegis"
 
 		"precache"
 		{
@@ -25059,7 +24778,7 @@
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"5"
 		"RequiredLevel"					"6"
-		"AbilityTextureName"			"naga_siren_spring_tide"
+		"AbilityTextureName"			"custom/naga_siren_spring_tide"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_3"
 
 		// Casting
@@ -25178,7 +24897,7 @@
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"5"
 		"RequiredLevel"					"6"
-		"AbilityTextureName"			"naga_siren_dead_tide"
+		"AbilityTextureName"			"custom/naga_siren_dead_tide"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_3"
 
 		// Casting
@@ -25292,7 +25011,7 @@
 		"BaseClass"						"ability_datadriven"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
 		"FightRecapLevel"				"1"
-		"AbilityTextureName"			"naga_siren_ebb_and_flow"
+		"AbilityTextureName"			"custom/naga_siren_ebb_and_flow"
 		"MaxLevel"						"1"
 		"InnateAbility"					"1"
 
@@ -25363,7 +25082,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityTextureName"			"underlord_expulsion"
+		"AbilityTextureName"			"custom/underlord_expulsion"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"7"
 		"HasScepterUpgrade"				"1"
@@ -25640,7 +25359,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"	
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"				"1"
-		"AbilityTextureName"			"drow_ranger_bullseye"
+		"AbilityTextureName"			"custom/drow_ranger_bullseye"
 		"PiercesDisableReduction"		"1"
 		"RequiredLevel"					"6"
 		"MaxLevel"						"7"
@@ -25777,7 +25496,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_ALL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityTextureName"			"drow_ranger_leapshot"
+		"AbilityTextureName"			"custom/drow_ranger_leapshot"
 		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
 		"RequiredLevel"					"5"
@@ -25806,6 +25525,7 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"leap_distance"			"200 275 350 425 500 575 650"
+				"LinkedSpecialBonus"	"special_bonus_unique_drow_ranger_2"
 			}
 			"02"
 			{
@@ -26016,7 +25736,7 @@
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"lua_abilities/heroes/skinwalker"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityTextureName"			"skinwalker_fortress_form"
+		"AbilityTextureName"			"custom/skinwalker_fortress_form"
 		"MaxLevel"						"7"
 		"RequiredLevel"					"7"
 		"LevelsBetweenUpgrades"			"5"
@@ -26072,7 +25792,7 @@
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"lua_abilities/heroes/skinwalker"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityTextureName"			"skinwalker_predator_form"
+		"AbilityTextureName"			"custom/skinwalker_predator_form"
 		"MaxLevel"						"7"
 		"RequiredLevel"					"7"
 		"LevelsBetweenUpgrades"			"5"
@@ -26139,7 +25859,7 @@
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"lua_abilities/heroes/skinwalker"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityTextureName"			"skinwalker_human_form"
+		"AbilityTextureName"			"custom/skinwalker_human_form"
 		"MaxLevel"						"7"
 		"RequiredLevel"					"7"
 		"LevelsBetweenUpgrades"			"5"
@@ -26199,7 +25919,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"				"1"
-		"AbilityTextureName"			"skinwalker_solarbolt_human"
+		"AbilityTextureName"			"custom/skinwalker_solarbolt_human"
 		"MaxLevel"						"7"
 		"RequiredLevel"					"7"
 		"LevelsBetweenUpgrades"			"5"
@@ -26322,7 +26042,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"				"1"
-		"AbilityTextureName"			"skinwalker_moonray_human"
+		"AbilityTextureName"			"custom/skinwalker_moonray_human"
 		"MaxLevel"						"7"
 		"RequiredLevel"					"7"
 		"LevelsBetweenUpgrades"			"5"
@@ -26465,7 +26185,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"				"1"
-		"AbilityTextureName"			"skinwalker_charge_fortress"
+		"AbilityTextureName"			"custom/skinwalker_charge_fortress"
 		"MaxLevel"						"7"
 		"RequiredLevel"					"7"
 		"LevelsBetweenUpgrades"			"5"
@@ -26640,7 +26360,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
-		"AbilityTextureName"			"skinwalker_kickback_fortress"
+		"AbilityTextureName"			"custom/skinwalker_kickback_fortress"
 		"MaxLevel"						"7"
 		"RequiredLevel"					"7"
 		"LevelsBetweenUpgrades"			"5"
@@ -26739,7 +26459,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityTextureName"			"skinwalker_lunge_predator"
+		"AbilityTextureName"			"custom/skinwalker_lunge_predator"
 		"MaxLevel"						"7"
 		"RequiredLevel"					"7"
 		"LevelsBetweenUpgrades"			"5"
@@ -26882,7 +26602,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"				"1"
-		"AbilityTextureName"			"skinwalker_maul_predator"
+		"AbilityTextureName"			"custom/skinwalker_maul_predator"
 		"MaxLevel"						"7"
 		"RequiredLevel"					"7"
 		"LevelsBetweenUpgrades"			"5"
@@ -27130,7 +26850,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"				"1"
-		"AbilityTextureName"			"skinwalker_call_of_nature_human"
+		"AbilityTextureName"			"custom/skinwalker_call_of_nature_human"
 		"MaxLevel"						"7"
 		"RequiredLevel"					"7"
 		"LevelsBetweenUpgrades"			"5"
@@ -27312,7 +27032,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"				"1"
-		"AbilityTextureName"			"skinwalker_call_of_nature_fortress"
+		"AbilityTextureName"			"custom/skinwalker_call_of_nature_fortress"
 		"MaxLevel"						"7"
 		"RequiredLevel"					"7"
 		"LevelsBetweenUpgrades"			"5"
@@ -27507,7 +27227,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"	
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"FightRecapLevel"				"1"
-		"AbilityTextureName"			"skinwalker_call_of_nature_predator"
+		"AbilityTextureName"			"custom/skinwalker_call_of_nature_predator"
 		"MaxLevel"						"7"
 		"RequiredLevel"					"7"
 		"LevelsBetweenUpgrades"			"5"
@@ -27665,7 +27385,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"				"1"
-		"AbilityTextureName"			"ancient_apparition_entropy"
+		"AbilityTextureName"			"custom/ancient_apparition_entropy"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"5"
 		"RequiredLevel"					"6"
@@ -27770,6 +27490,20 @@
 
 		"Modifiers"
 		{
+			"modifier_entropy_talent_checker"
+			{
+				"IsHidden"	"1"
+				"Passive"	"1"
+				"ThinkInterval"	"0.1"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"lua_abilities/heroes/apparition.lua"
+						"Function"		"EntropyTalent"
+					}
+				}
+			}
 			"modifier_entropy_handler"
 			{
 				"IsDebuff"	"1"
@@ -27998,7 +27732,7 @@
 		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
 		"RequiredLevel"					"6"
-		"AbilityTextureName"			"gyro_support_rocket"
+		"AbilityTextureName"			"custom/gyro_support_rocket"
 		
 		"precache"
 		{
@@ -28054,6 +27788,7 @@
 			{
 				"var_type"					"FIELD_FLOAT"
 				"magic_reduction"			"-40"
+				"LinkedSpecialBonus"		"special_bonus_unique_gyrocopter_1"
 			}
 		}
 		"OnProjectileHitUnit"
@@ -28215,7 +27950,7 @@
 		"BaseClass"						"ability_datadriven"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_TOGGLE"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityTextureName"			"lich_lich_king"
+		"AbilityTextureName"			"custom/lich_lich_king"
 		"LevelsBetweenUpgrades"			"7"
 		"MaxLevel"						"7"
 
@@ -28452,7 +28187,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"FightRecapLevel"				"2"
 		"AbilitySharedCooldown"			"warlocksummon"
-		"AbilityTextureName"			"warlock_summon_naamah"
+		"AbilityTextureName"			"custom/warlock_summon_naamah"
 		"RequiredLevel"					"6"
 		"LevelsBetweenUpgrades"			"7"
 		"MaxLevel"						"7"
@@ -28590,7 +28325,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"				"1"
-		"AbilityTextureName"			"warlock_deepfire_ember"
+		"AbilityTextureName"			"custom/warlock_deepfire_ember"
 		"RequiredLevel"					"6"
 		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
@@ -28661,7 +28396,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"	
 		"SpellImmunityType"				"SPELL_IMMUNITY_ALLIES_TES"
 		"FightRecapLevel"				"1"
-		"AbilityTextureName"			"warlock_baphomet_pulse"
+		"AbilityTextureName"			"custom/warlock_baphomet_pulse"
 		"RequiredLevel"					"6"
 		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
@@ -28806,7 +28541,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"FightRecapLevel"				"1"
-		"AbilityTextureName"			"warlock_transfer_power"
+		"AbilityTextureName"			"custom/warlock_transfer_power"
 		"LevelsBetweenUpgrades"			"7"
 		"MaxLevel"						"7"
 		
@@ -29283,7 +29018,7 @@
 		"BaseClass"				"ability_datadriven"
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_PURE"
-		"AbilityTextureName"	"rattletrap_aegis_deflector"
+		"AbilityTextureName"	"custom/rattletrap_aegis_deflector"
 		
 		"RequiredLevel"					"6"
 		"LevelsBetweenUpgrades"			"5"
@@ -35191,7 +34926,7 @@
 		"LevelsBetweenUpgrades"			"1"
 		"MaxLevel"						"1"
 
-		"AbilityTextureName"			"boss_ursa_rage"
+		"AbilityTextureName"			"custom/boss_ursa_rage"
 
 		"Modifiers"
 		{
@@ -35267,7 +35002,7 @@
 		"LevelsBetweenUpgrades"			"1"
 		"MaxLevel"						"1"
 
-		"AbilityTextureName"			"boss_ursa_rage"
+		"AbilityTextureName"			"custom/boss_ursa_rage"
 
 		"Modifiers"
 		{
@@ -35343,7 +35078,7 @@
 		"LevelsBetweenUpgrades"			"1"
 		"MaxLevel"						"1"
 
-		"AbilityTextureName"			"boss_ursa_rage"
+		"AbilityTextureName"			"custom/boss_ursa_rage"
 
 		"Modifiers"
 		{
@@ -35418,7 +35153,7 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityTextureName"			"boss_lifesteal"
+		"AbilityTextureName"			"custom/boss_lifesteal"
 		
 		"precache"
 		{
@@ -37446,7 +37181,7 @@
 	    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
 	    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
 	    "FightRecapLevel"               "1"
-	    "AbilityTextureName"            "nevermore_shadowraze2"
+	    "AbilityTextureName"			"nevermore_shadowraze2"
 	    
 	    // Casting
 	    //-------------------------------------------------------------------------------------------------------------
@@ -37531,7 +37266,7 @@
 	    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
 	    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
 	    "FightRecapLevel"               "1"
-	    "AbilityTextureName"            "nevermore_shadowraze2"
+	    "AbilityTextureName"			"nevermore_shadowraze2"
 	    
 	    // Casting
 	    //-------------------------------------------------------------------------------------------------------------
@@ -37616,7 +37351,7 @@
 	    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
 	    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
 	    "FightRecapLevel"               "1"
-	    "AbilityTextureName"            "nevermore_shadowraze2"
+	    "AbilityTextureName"			"nevermore_shadowraze2"
 	    
 	    // Casting
 	    //-------------------------------------------------------------------------------------------------------------
@@ -37741,7 +37476,7 @@
 		"BaseClass"				"ability_datadriven"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"MaxLevel"						"1"
-		"AbilityTextureName"			"wisp_evil_tether_break"
+		"AbilityTextureName"			"custom/wisp_evil_tether_break"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -38213,7 +37948,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityTextureName"			"wisp_evil_tether"
+		"AbilityTextureName"			"custom/wisp_evil_tether"
 		"CastFilterRejectCaster" 		"1"
 		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
@@ -38794,7 +38529,7 @@
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"	
-		"AbilityTextureName"    "wisp_sacrifice"
+		"AbilityTextureName"    "custom/wisp_sacrifice"
 		"LevelsBetweenUpgrades"			"7"
 		"MaxLevel"						"7"
 		"HasScepterUpgrade"				"1"
@@ -39081,7 +38816,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
 		"BaseClass" 					"ability_datadriven"
-		"AbilityTextureName"            "broodmother_spawn_spiderlings"
+		"AbilityTextureName"			"broodmother_spawn_spiderlings"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
 
 		// Stats		
@@ -39114,7 +38849,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
 		"BaseClass" 					"ability_datadriven"
-		"AbilityTextureName"            "broodmother_insatiable_hunger"
+		"AbilityTextureName"			"broodmother_insatiable_hunger"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
 
 		// Stats		
@@ -39144,7 +38879,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
 		"BaseClass" 					"ability_datadriven"
-		"AbilityTextureName"            "broodmother_spawn_spiderlings"
+		"AbilityTextureName"			"broodmother_spawn_spiderlings"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
 
 		// Stats		
@@ -39185,7 +38920,7 @@
 	{
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
 		"BaseClass" 					"ability_datadriven"
-		"AbilityTextureName"            "broodmother_spawn_spiderlings"
+		"AbilityTextureName"			"broodmother_spawn_spiderlings"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
 
 		// Stats		
@@ -39237,7 +38972,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET| DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
 		"BaseClass" 					"ability_datadriven"
-		"AbilityTextureName"            "broodmother_spin_web"
+		"AbilityTextureName"			"broodmother_spin_web"
 		
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
@@ -39420,7 +39155,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET| DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
 		"BaseClass" 					"ability_datadriven"
-		"AbilityTextureName"            "broodmother_spin_web"
+		"AbilityTextureName"			"broodmother_spin_web"
 		
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
@@ -39859,7 +39594,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET| DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
 		"BaseClass" 					"ability_datadriven"
-		"AbilityTextureName"            "broodmother_spin_web"
+		"AbilityTextureName"			"broodmother_spin_web"
 		
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
@@ -40079,7 +39814,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
 		"BaseClass" 					"ability_datadriven"
-		"AbilityTextureName"            "slardar_sprint"
+		"AbilityTextureName"			"slardar_sprint"
 
 		// Stats		
 		//-------------------------------------------------------------------------------------------------------------
@@ -40189,7 +39924,7 @@
 	    //-------------------------------------------------------------------------------------------------------------
 	    "BaseClass"             		"ability_datadriven"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-	    "AbilityTextureName"            "neutral_spell_immunity"
+	    "AbilityTextureName"			"neutral_spell_immunity"
 	    "MaxLevel"						"1"
 
 	    // Precache
@@ -40369,7 +40104,7 @@
 		"AbilityName"					"zombie_berserk"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
 		"BaseClass" 					"ability_datadriven"
-		"AbilityTextureName"            "life_stealer_rage"
+		"AbilityTextureName"			"life_stealer_rage"
 
 		// Stats		
 		//-------------------------------------------------------------------------------------------------------------
@@ -41820,7 +41555,7 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityTextureName"			"perk_blink"
+		"AbilityTextureName"			"custom/perk_blink"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -41860,7 +41595,7 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityTextureName"			"perk_tank"
+		"AbilityTextureName"			"custom/perk_tank"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -41884,7 +41619,7 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityTextureName"			"perk_movement"
+		"AbilityTextureName"			"custom/perk_movement"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -41931,7 +41666,7 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityTextureName"			"perk_spell_haste"
+		"AbilityTextureName"			"custom/perk_spell_haste"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -41975,7 +41710,7 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityTextureName"			"perk_disable_piercing"
+		"AbilityTextureName"			"custom/perk_disable_piercing"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -42527,7 +42262,7 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityTextureName"			"boss_lifesteal"
+		"AbilityTextureName"			"custom/boss_lifesteal"
 		
 		"precache"
 		{
@@ -42881,7 +42616,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityTextureName"			"juggernaut_quickparry"
+		"AbilityTextureName"			"custom/juggernaut_quickparry"
 		"MaxLevel"						"1"
 		
 		"precache"

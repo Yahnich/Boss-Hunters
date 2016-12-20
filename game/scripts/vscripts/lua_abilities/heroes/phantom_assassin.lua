@@ -107,6 +107,9 @@ function AssassinDanceInit( keys )
 				
 				ability:ApplyDataDrivenModifier(caster, caster, "modifier_sleight_of_fist_target_hero_datadriven", {})
 				caster:PerformAttack(target, true, true, true, true, false)
+				if caster:HasTalent("special_bonus_unique_phantom_assassin") then -- Talent Double Hit
+					caster:PerformAttack(target, true, true, true, true, false)
+				end
 				caster:RemoveModifierByName("modifier_sleight_of_fist_target_hero_datadriven")
 				
 				Timers:CreateTimer(0.3, function() 

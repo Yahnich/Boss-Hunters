@@ -16,6 +16,15 @@ function CHoldoutGameSpawner:ReadConfiguration( name, kv, gameRound )
 	self._szGroupWithUnit = kv.GroupWithUnit or ""
 	self._szName = name
 	self._szNPCClassName = kv.NPCName or ""
+	self._RenderColour = kv.SetRenderColor or nil
+	if self._RenderColour then
+		local colourTable = {}
+		for token in string.gmatch(self._RenderColour, "[^%s]+") do
+		   table.insert(colourTable, tonumber(token))
+		   print(token)
+		end
+		self._RenderColour = Vector(colourTable[1], colourTable[2], colourTable[3])
+	end
 	self._szSpawnerName = kv.SpawnerName or ""
 	self._szWaitForUnit = kv.WaitForUnit or ""
 	self._szWaypointName = kv.Waypoint or ""
@@ -72,13 +81,11 @@ function CHoldoutGameSpawner:Begin()
 	self._nUnitsCurrentlyAlive = 0
 	
 	if GameRules.gameDifficulty >= 3 and GameRules._roundnumber > 1 and not self._bDifficultyChecked and GetMapName() == "epic_boss_fight_impossible" then
-		print(self._nTotalUnitsToSpawn, "doubled")
 		self._nTotalUnitsToSpawn = math.ceil(self._nTotalUnitsToSpawn * 1.4)
 		if self._flSpawnInterval < GameRules._roundnumber then self._flSpawnInterval = GameRules._roundnumber end
-		print(self._nTotalUnitsToSpawn, "after")
 		self._bDifficultyChecked = true
 	end
-	
+	print(self._nTotalUnitsToSpawn, "doubled")
 	self._vecSpawnLocation = nil
 	if self._szSpawnerName ~= "" then
 		local entSpawner = Entities:FindByName( nil, self._szSpawnerName )
@@ -250,6 +257,9 @@ function CHoldoutGameSpawner:_DoSpawn()
 						entUnit:SetModelScale( 1.1, 0 )
 					else
 						entUnit:CreatureLevelUp( self._nCreatureLevel - 1 )
+						if self._RenderColour then
+							entUnit:SetRenderColor(self._RenderColour.x, self._RenderColour.y, self._RenderColour.z)
+						end
 					end
 				end
 

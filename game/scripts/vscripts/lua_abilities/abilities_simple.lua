@@ -68,7 +68,7 @@ function DoomDenyCheck( keys )
     local ability = keys.ability
     local ability_level = ability:GetLevel() - 1
 
-    local deny_pct = ability:GetLevelSpecialValueFor("deniable_pct", ability_level)
+    local deny_pct = ability:GetTalentSpecialValueFor("deniable_pct")
     local modifier = keys.modifier
 
     local target_hp = target:GetHealth()
@@ -330,7 +330,7 @@ function Crystal_aura(keys)
 
     Timers:CreateTimer(0.5,function()
             if caster:IsAlive() then
-                local damage_total = ability:GetLevelSpecialValueFor("mana_percent_damage", ability:GetLevel()-1) * caster:GetMaxMana() * 0.01
+                local damage_total = ability:GetTalentSpecialValueFor("mana_percent_damage") * caster:GetMaxMana() * 0.01
                 for _,unit in pairs ( Entities:FindAllByName( "npc_dota_hero*")) do
                     if unit:IsAlive() then
                         ability:ApplyDataDrivenModifier( caster, unit, "crystal_aura_indication", {} )
@@ -367,7 +367,7 @@ function viper_nethertoxin(keys)
     local target = keys.target
     local ability = keys.ability
     local missing_health = target:GetMaxHealth() - target:GetHealth()
-    local damage = math.floor(ability:GetLevelSpecialValueFor("percent", ability:GetLevel()-1) * missing_health * 0.01) + 1
+    local damage = math.floor(ability:GetTalentSpecialValueFor("percent") * missing_health * 0.01) + 1
     local damageTable = {
         victim = target,
         attacker = caster,
@@ -450,10 +450,10 @@ end
 function projectile_crystal( keys )
     local ability = keys.ability
     local caster = keys.caster
-    local projectile_count = 7 --ability:GetLevelSpecialValueFor("projectile_count", ability:GetLevel()-1) -- If you want to make it more powerful with levels
-    local number_of_source = ability:GetLevelSpecialValueFor("source_count", ability:GetLevel()-1)
-    local delay = ability:GetLevelSpecialValueFor("delay", ability:GetLevel()-1)
-    local distance = ability:GetLevelSpecialValueFor("distance", ability:GetLevel()-1)
+    local projectile_count = 7 --ability:GetTalentSpecialValueFor("projectile_count") -- If you want to make it more powerful with levels
+    local number_of_source = ability:GetTalentSpecialValueFor("source_count")
+    local delay = ability:GetTalentSpecialValueFor("delay")
+    local distance = ability:GetTalentSpecialValueFor("distance")
     local time_interval = 0.20
     local speed = 600
     local forward = caster:GetForwardVector()
@@ -657,7 +657,7 @@ function boss_death_time( keys )
     local origin = caster:GetAbsOrigin()
     local ability = keys.ability
     local timer = 6.0
-    local Death_range = ability:GetLevelSpecialValueFor("radius", 0)
+    local Death_range = ability:GetTalentSpecialValueFor("radius")
     local targetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY
     local targetType = DOTA_UNIT_TARGET_ALL
     local targetFlag = ability:GetAbilityTargetFlags()
@@ -729,7 +729,7 @@ function projectile_dark_orbs( event )
     local caster = event.caster
     local ability = event.ability
     local origin = caster:GetAbsOrigin()
-    local projectile_count = 80 --ability:GetLevelSpecialValueFor("projectile_count", ability:GetLevel()-1) -- If you want to make it more powerful with levels
+    local projectile_count = 80 --ability:GetTalentSpecialValueFor("projectile_count") -- If you want to make it more powerful with levels
     local speed = 700
     local time_interval = 0.05 -- Time between each launch
 
@@ -776,7 +776,7 @@ function projectile_death_orbs( event )
     local caster = event.caster
     local ability = event.ability
     local origin = caster:GetAbsOrigin()
-    local projectile_count = 3 --ability:GetLevelSpecialValueFor("projectile_count", ability:GetLevel()-1) -- If you want to make it more powerful with levels
+    local projectile_count = 3 --ability:GetTalentSpecialValueFor("projectile_count") -- If you want to make it more powerful with levels
     local speed = 700
     local time_interval = 0.05 -- Time between each launch
 
@@ -955,7 +955,7 @@ function doom_raze( event )
     local location = caster:GetAbsOrigin() + fv*200
     caster.charge = caster.charge - 50
     if caster.charge < 0 then caster.Charge = 0 end
-    local damage = ability:GetLevelSpecialValueFor("damage", 0)
+    local damage = ability:GetTalentSpecialValueFor("damage")
     location = location - caster:GetRightVector() * 1000
     if GameRules._NewGamePlus == true then damage = damage*10 end
     local created_line = 0
@@ -1116,12 +1116,12 @@ end
 function End_Control( keys )
     local target = keys.target
     local caster = keys.caster
-    local level = keys.ability:GetLevelSpecialValueFor( "agh_level" , keys.ability:GetLevel() - 1 )
+    local level = keys.ability:GetTalentSpecialValueFor( "agh_level" )
 	if target:IsNull() or not target then return end
     target:SetTeam(DOTA_TEAM_BADGUYS)
     target:SetControllableByPlayer(-1, false)
 	target:SetControllableByPlayer(GameRules.boss_master_id, false)
-    local hp_percent = keys.ability:GetLevelSpecialValueFor( "hp_regen" , keys.ability:GetLevel() - 1 ) * 0.01
+    local hp_percent = keys.ability:GetTalentSpecialValueFor( "hp_regen" ) * 0.01
     local regen_health = target:GetMaxHealth()*hp_percent
     if caster:HasScepter() then
         if target:GetLevel() <= level then
@@ -1238,7 +1238,7 @@ function NecroAura(keys)
 	if keys.caster:IsIllusion() then return end
 	local ability = keys.ability
 	local target = keys.target
-	local reduction = ability:GetLevelSpecialValueFor("magical_ress_red", ability:GetLevel() - 1)
+	local reduction = ability:GetTalentSpecialValueFor("magical_ress_red")
 	local entry_modifier = keys.entry_modifier
 	local new_armor_target =  0
 	new_armor_target =  math.floor(target:GetBaseMagicalResistanceValue() + reduction*entry_modifier)
@@ -1252,16 +1252,16 @@ function heat_seeking_missile_seek_targets( keys )
     local particleName = "particles/units/heroes/hero_tinker/tinker_missile.vpcf"
     local modifierDudName = "modifier_heat_seeking_missile_dud"
     local projectileSpeed = 900
-    local radius = ability:GetLevelSpecialValueFor( "radius", ability:GetLevel() - 1 )
-    local max_targets = ability:GetLevelSpecialValueFor( "targets", ability:GetLevel() - 1 )
+    local radius = ability:GetTalentSpecialValueFor( "radius")
+    local max_targets = ability:GetTalentSpecialValueFor( "targets")
     local targetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY
     local targetType = DOTA_UNIT_TARGET_ALL
     local targetFlag = ability:GetAbilityTargetFlags() -- DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_NO_INVIS + DOTA_UNIT_TARGET_FLAG_NOT_ILLUSIONS
     local projectileDodgable = false
     local projectileProvidesVision = false
      if HasCustomScepter(caster) == true or caster:HasScepter() then
-		radius = ability:GetLevelSpecialValueFor( "radius_scepter", ability:GetLevel() - 1 )
-		max_targets = ability:GetLevelSpecialValueFor( "targets_scepter", ability:GetLevel() - 1 )
+		radius = ability:GetTalentSpecialValueFor( "radius_scepter")
+		max_targets = ability:GetTalentSpecialValueFor( "targets_scepter")
 	end
     -- pick up x nearest target heroes and create tracking projectile targeting the number of targets
     local units = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(), caster, radius, targetTeam, targetType, targetFlag, FIND_CLOSEST, false)  
@@ -1299,7 +1299,7 @@ function heat_seeking_missile_seek_damage( keys )
     local ability = keys.ability
     local damage = ability:GetAbilityDamage() 
 	if HasCustomScepter(caster) == true or caster:HasScepter() then
-        damage = ability:GetLevelSpecialValueFor("damage_scepter", ability:GetLevel()-1)
+        damage = ability:GetTalentSpecialValueFor("damage_scepter")
     end
 	
     local damageTable = {
@@ -1318,7 +1318,7 @@ end
 function Cooldown_Pure(keys)
     local ability = keys.ability
     local level = ability:GetLevel()-1
-    local duration = ability:GetLevelSpecialValueFor("cooldown_duration", level)
+    local duration = ability:GetTalentSpecialValueFor("cooldown_duration")
     ability:StartCooldown(duration)
 end
 
@@ -1342,7 +1342,7 @@ function RageFunction(keys)
     local target = keys.target
     local ability = keys.ability
     local current_stack = target:GetModifierStackCount( modifierName, ability )
-    local damagebase = ability:GetLevelSpecialValueFor("bonus_damage_per_stack", 0)
+    local damagebase = ability:GetTalentSpecialValueFor("bonus_damage_per_stack")
     local damage = damagebase*current_stack
     local damageTable = {victim = target,
                         attacker = caster,
@@ -1364,7 +1364,7 @@ end
 function pudgeHP_shiftOnAttack(keys)
 	if keys.caster:IsIllusion() then return end
 		local previous_stack_count = 0
-		local threat = keys.ability:GetSpecialValueFor("health_bonus_perstack") / 100
+		local threat = keys.ability:GetTalentSpecialValueFor("health_bonus_perstack") / 100
 		if keys.target:HasModifier("modifier_hp_shift_datadriven_debuff_counter") then
 			previous_stack_count = keys.target:GetModifierStackCount("modifier_hp_shift_datadriven_debuff_counter", keys.caster)
 			
@@ -1378,7 +1378,7 @@ function pudgeHP_shiftOnAttack(keys)
 		if keys.target:GetUnitName() ~= "npc_dota_boss36" then
 			local curr_max = keys.target:GetMaxHealth()
 			local curr_curr		= keys.target:GetHealth()
-			local reduction = keys.ability:GetLevelSpecialValueFor( "health_bonus_perstack", keys.ability:GetLevel() - 1 )
+			local reduction = keys.ability:GetTalentSpecialValueFor( "health_bonus_perstack")
 			keys.target:SetHealth(curr_curr - reduction)
 			keys.target:SetMaxHealth(curr_max - reduction)
 		end
@@ -1414,7 +1414,7 @@ function pudgeHP_shiftDebuffOnDestroy(keys)
 		end
 	end
 	local curr_max = keys.target:GetMaxHealth()
-	local reduction = keys.ability:GetLevelSpecialValueFor( "health_bonus_perstack", keys.ability:GetLevel() - 1 )
+	local reduction = keys.ability:GetTalentSpecialValueFor( "health_bonus_perstack")
 	keys.target:SetMaxHealth(curr_max + reduction)
 end
 
@@ -1474,8 +1474,8 @@ function GetSummonPoints( event )
     local origin = caster:GetAbsOrigin()
     local distance = event.distance
 -- Gets 2 points facing a distance away from the caster origin and separated from each other at 30 degrees left and right
-    ang_right = QAngle(0, -30, 0)
-    ang_left = QAngle(0, 30, 0)
+    ang_right = QAngle(0, -30)
+    ang_left = QAngle(0, 30)
 local front_position = origin + fv * distance
     point_left = RotatePosition(origin, ang_left, front_position)
     point_right = RotatePosition(origin, ang_right, front_position)
@@ -1517,7 +1517,7 @@ function spiked_carapace_reflect( keys )
     local attacker = keys.attacker
     local damageTaken = keys.DamageTaken
     local ability = keys.ability
-    local damage_multiplier = ability:GetSpecialValueFor( "damage_multplier") * 0.01
+    local damage_multiplier = ability:GetTalentSpecialValueFor( "damage_multplier") * 0.01
 	local damage = damageTaken*damage_multiplier
 	if damage > attacker:GetMaxHealth() * 0.8 then damage = attacker:GetMaxHealth() * 0.8 end -- no oneshotting, tears-b-gone
 	if (attacker:GetName() == "npc_dota_hero_centaur" and not attacker:IsAttacking()) or attacker:IsMagicImmune() then return end

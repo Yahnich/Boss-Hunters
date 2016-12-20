@@ -34,11 +34,11 @@ function decay( keys )
 	end
 	
     local dummyModifierName = "modifier_mystic_flare_dummy_vfx_datadriven"
-    local radius = ability:GetTalentSpecialValueFor( "radius"))
-    local duration = ability:GetTalentSpecialValueFor( "duration"))
+    local radius = ability:GetTalentSpecialValueFor( "radius")
+    local duration = ability:GetTalentSpecialValueFor( "duration")
     local target = keys.target_points[1]
-    local damage = ability:GetTalentSpecialValueFor( "damage"))
-    local bonus_health = ability:GetTalentSpecialValueFor( "health_bonus_per_unit"))
+    local damage = ability:GetTalentSpecialValueFor( "damage")
+    local bonus_health = ability:GetTalentSpecialValueFor( "health_bonus_per_unit")
     -- Create for VFX particles on ground
     local dummy = CreateUnitByName( "npc_dummy_unit", target, false, caster, caster, caster:GetTeamNumber() )
     ability:ApplyDataDrivenModifier( caster, dummy, dummyModifierName, {} )

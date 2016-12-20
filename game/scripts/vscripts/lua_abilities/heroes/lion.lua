@@ -58,6 +58,7 @@ function ManaBall(keys)
 	local target = keys.target
 	local ability = keys.ability
 	local manaradius = (ability:GetTalentSpecialValueFor("mana_per_second"))/5
+	local direction = (target:GetAbsOrigin() - caster:GetAbsOrigin()):Normalized()
 	local projectileTable = {
         Ability = ability,
         EffectName = "particles/ice_ball_final.vpcf",
@@ -74,9 +75,33 @@ function ManaBall(keys)
         iUnitTargetFlags = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
         iUnitTargetType = DOTA_UNIT_TARGET_ALL,
         bDeleteOnHit = false,
-        vVelocity = GetGroundPosition((target:GetAbsOrigin() - caster:GetAbsOrigin()):Normalized(), caster) * ability:GetCastRange()
+        vVelocity = GetGroundPosition(direction, caster) * ability:GetCastRange()
     }
-    ability.manaball = ProjectileManager:CreateLinearProjectile( projectileTable )
+    local manaball = ProjectileManager:CreateLinearProjectile( projectileTable )
+	if caster:HasTalent("special_bonus_unique_lion") then
+		for i=1, caster:FindTalentValue("special_bonus_unique_lion") do
+			local newEnd = RotateVector2D(direction, (-1)^i*0.261799)
+			local projectileTable = {
+				Ability = ability,
+				EffectName = "particles/ice_ball_final.vpcf",
+				vSpawnOrigin = caster:GetOrigin(),
+				fDistance = ability:GetCastRange(),
+				fStartRadius = 200 + manaradius,
+				fEndRadius = 200 + manaradius,
+				fExpireTime = GameRules:GetGameTime() + 1,
+				Source = caster,
+				bHasFrontalCone = true,
+				bReplaceExisting = false,
+				bProvidesVision = false,
+				iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY,
+				iUnitTargetFlags = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
+				iUnitTargetType = DOTA_UNIT_TARGET_ALL,
+				bDeleteOnHit = false,
+				vVelocity = GetGroundPosition(newEnd, caster) * ability:GetCastRange()
+			}
+			local manaball = ProjectileManager:CreateLinearProjectile( projectileTable )
+		end
+	end
 end
 
 function ManaBallHit(keys)

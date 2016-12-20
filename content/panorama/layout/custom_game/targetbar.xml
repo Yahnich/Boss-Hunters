@@ -1,0 +1,30 @@
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="file://{resources}/styles/custom_game/option.css" />
+	</styles> 
+	<scripts>
+		<include src="file://{resources}/scripts/custom_game/targetbar.js" />
+	</scripts>
+	
+	<Panel class="targetPanelRoot" hittest="false">
+		<Panel id="targetPanelMain" hittest="false">
+			<Panel id="bossNameContainer" hittestchildren="false">
+				<Label hittest="false" id="bossNameLabel" text="Dildo King" />
+			</Panel>
+			<Panel id="hpBarRoot" hittestchildren="false">
+				<Panel id="hpBarCurrent" hittestchildren="false"/>
+				<Label hittest="false" class="barCurrentText" id="hpBarCurrentText" text="10" />
+			</Panel>
+			<Panel id="mpBarRoot" hittestchildren="false">
+				<Panel id="mpBarCurrent" hittestchildren="false"/>
+				<Label hittest="false" class="barCurrentText" id="mpBarCurrentText" text="10" />
+			</Panel>
+			<Label hittest="false" id="eliteSpecsText" text="Freezing Burning Crotchrot" />
+			
+			<Button id="threatButton" onactivate='tell_threat()'>
+				<Label hittest="true" id="threatLabel" text= "85.3"/>
+			</Button>
+		</Panel>
+	</Panel>
+</root>

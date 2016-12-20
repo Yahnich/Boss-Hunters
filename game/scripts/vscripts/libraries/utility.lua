@@ -103,8 +103,89 @@ function CDOTA_BaseNPC:GetAttackDamageType()
 	end
 end
 
+function CDOTA_BaseNPC:HasTalent(talentName)
+	if self:HasAbility(talentName) then
+		if self:FindAbilityByName(talentName):GetLevel() > 0 then return true end
+	end
+	return false
+end
+
+function CDOTA_BaseNPC:HasTalentType(talentType)
+	for i = 0, 23 do
+		local talent = self:GetAbilityByIndex(i)
+		if talent and string.match(talent:GetName(), "special_bonus_"..talentType.."_(%d+)") then
+			if talent:GetLevel() > 0 then
+				return true
+			end
+		end
+	end
+	return false
+end
+
+function GetRandomUnselectedHero()
+	local heroList = GameRules.HeroList
+	local sortList = {}
+	for hero, activated in pairs(heroList) do
+		if activated == 1 then
+			sortList[hero] = true
+		end
+	end
+	for nPlayerID = 0, DOTA_MAX_TEAM_PLAYERS-1 do
+		local player = PlayerResource:GetPlayer(nPlayerID)
+		if player and PlayerResource:HasSelectedHero(nPlayerID) then
+			local pickedHero = PlayerResource:GetSelectedHeroName(nPlayerID)
+			if sortList[pickedHero] then
+				sortList[pickedHero] = nil
+			end
+		end
+	end
+	local randomList = {}
+	for hero, activated in pairs(sortList) do
+		if activated then
+			print(hero)
+			table.insert(randomList, hero)
+		end
+	end
+	local rndReturn = randomList[math.random(#randomList)]
+	print(rndReturn)
+	return rndReturn
+end
+
+function GetTableLength(rndTable)
+	local counter = 0
+	for k,v in pairs(rndTable) do
+		counter = counter + 1
+	end
+	return counter
+end
+
+function CDOTA_BaseNPC:HighestTalentTypeValue(talentType)
+	local value = 0
+	for i = 0, 23 do
+		local talent = self:GetAbilityByIndex(i)
+		if talent and string.match(talent:GetName(), "special_bonus_"..talentType.."_(%d+)") and self:FindTalentValue(talent:GetName()) > value then
+			value = self:FindTalentValue(talent:GetName())
+		end
+	end
+	print("value")
+	return value
+end
+
+function CDOTA_BaseNPC:FindTalentValue(talentName)
+	if self:HasAbility(talentName) then
+		return self:FindAbilityByName(talentName):GetSpecialValueFor("value")
+	end
+	return 0
+end
+
 function CDOTA_BaseNPC:GetAverageBaseDamage()
 	return (self:GetBaseDamageMax() + self:GetBaseDamageMin())/2
+end
+
+function CDOTA_BaseNPC:SetAverageBaseDamage(average, variance) -- variance is in percent (50 not 0.5)
+	local var = variance or 0
+	self:SetBaseDamageMax(average*(1+(var/100)))
+	self:SetBaseDamageMin(average*(1+(var/100)))
 end
 
 function CDOTABaseAbility:Refresh()
@@ -460,6 +541,14 @@ function CDOTA_BaseNPC:FindModifierByAbility(abilityname)
 	return returnTable
 end
 
+function CDOTA_BaseNPC:IsFakeHero()
+	if self:IsIllusion() or (self:HasModifier("modifier_monkey_king_fur_army_soldier") or self:HasModifier("modifier_monkey_king_fur_army_soldier_hidden")) then
+		return true
+	else return false end
+end
+
+
+
 function CDOTA_Buff:GetModifierPropertyValue(propertyname)
 	if not self:GetAbility() then return 0 end
 	local kv = self:GetAbility():GetAbilityKeyValues()
@@ -487,7 +576,7 @@ end
 
 function CDOTABaseAbility:GetTalentSpecialValueFor(value)
 	local base = self:GetSpecialValueFor(value)
-	local talentName = ""
+	local talentName
 	local kv = self:GetAbilityKeyValues()
 	for k,v in pairs(kv) do -- trawl through keyvalues
 		if k == "AbilitySpecial" then
@@ -498,9 +587,10 @@ function CDOTABaseAbility:GetTalentSpecialValueFor(value)
 			end
 		end
 	end
-	local talent = self:GetCaster():FindAbilityByName(talentName)
-	if talent then print(talent:GetLevel()) end
-	if talent and talent:GetLevel() > 0 then base = base + talent:GetSpecialValueFor("value") end
+	if talentName then 
+		local talent = self:GetCaster():FindAbilityByName(talentName)
+		if talent and talent:GetLevel() > 0 then base = base + talent:GetSpecialValueFor("value") end
+	end
 	return base
 end
 

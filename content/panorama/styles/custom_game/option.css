@@ -10,7 +10,7 @@
 {
   horizontal-align: right;
   vertical-align: top;
-margin-right: 450px;
+margin-right: 300px;
   margin-top: 53px;
   width: 400px;
     height: 100px;
@@ -81,8 +81,8 @@ margin-right: 450px;
 {
   horizontal-align: right;
   vertical-align: top;
-	  margin-right: 300px;
-  width: 200px;
+	  margin-right: 180px;
+  width: 220px;
     height: 40px;
  }
 
@@ -106,8 +106,8 @@ margin-right: 450px;
 {
   horizontal-align: right;
   vertical-align: top;
-  margin-right: 30px;
-  margin-top: 50px;
+  margin-right: 10px;
+  margin-top: 40px;
   width: 220px;
   height: 180px;
  }
@@ -391,4 +391,134 @@ margin-right: 450px;
     max-width: 400px;
     max-height: 600px;
     flow-children: down;
+}
+.targetPanelRoot
+{
+	flow-children: down;
+    width: 25%;
+	height: 15%;
+	vertical-align: top;
+	margin-top: 3.5%;
+	horizontal-align: center;
+}
+
+#bossNameContainer
+{
+	flow-children: down;
+	vertical-align: top;
+	horizontal-align: center;
+	z-index: 1;
+	margin-bottom: -12px;
+}
+#bossNameLabel
+{
+	align: center top;
+	font-family: TH Sarabun New,YDYGO 540,Gulim,MingLiU;
+	text-shadow: 2px 2px 1px 3.0 #333333b0;
+	text-transform: uppercase;
+	font-weight: bold;
+	color: #FFFFFF;
+	font-size: 28px;	
+}
+#targetPanelMain
+{
+	width: fill-parent-flow( 1.0 );
+	height: fill-parent-flow( 1.0 );
+	flow-children: down;
+}
+#threatButton
+{
+	horizontal-align: middle;
+	flow-children: down;
+	margin-top: -4px;
+}
+#threatLabel
+{
+	align: center center;
+	font-family: Radiance;
+	text-transform: uppercase;
+	color: #FFFFFF;
+	font-size: 20px;
+}
+#hpBarRoot
+{
+	width: 95%;
+	height: 18%;
+	horizontal-align: center;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #111111FF ), to( #222222FF ) );
+	border: 2px solid #003300;
+	border-bottom-left-radius: 5px;
+	border-top-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+#mpBarRoot
+{
+	width: 95%;
+	height: 18%;
+	horizontal-align: center;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #111111 ), to( #222222 ) );
+	border: 2px solid #003399;
+	border-bottom-left-radius: 5px;
+	border-top-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+#hpBarCurrent
+{
+	width: fill-parent-flow( 1.0 );
+	height: fill-parent-flow( 1.0 );
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #53c653 ), to( #003300 ) );
+	border: 2px solid #003300;
+	border-bottom-left-radius: 5px;
+	border-top-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+#mpBarCurrent
+{
+	width: fill-parent-flow( 1.0 );
+	height: fill-parent-flow( 1.0 );
+	horizontal-align: center;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #3494D8 ), to( #003399 ) );
+	border: 2px solid #003399;
+	border-bottom-left-radius: 5px;
+	border-top-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+.barCurrentText
+{
+	align: center center;
+	font-family: Radiance;
+	text-shadow: 2px 2px 1px 0.0 #333333b0;
+	text-transform: uppercase;
+	font-weight: bold;
+	color: #FFFFFF;
+	font-size: 20px;	
+}
+.verticalSeperator
+{
+	flow-children: down;
+    width: 75%;
+	height: 2px;
+	vertical-align: top;
+	margin-bottom: 20px;
+	horizontal-align: center;
+	background-color: #FFFFFFFF;
+}
+
+#eliteSpecsText
+{
+	align: center top;
+	font-family: Radiance;
+	text-shadow: 2px 2px 1px 3.0 #333333b0;
+	text-transform: uppercase;
+	color: #edcd3b;
+	font-size: 24px;
+	font-style: italic;
 }

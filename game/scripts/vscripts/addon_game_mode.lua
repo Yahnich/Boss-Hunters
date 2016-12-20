@@ -227,6 +227,8 @@ function CHoldoutGameMode:InitGameMode()
 	MergeTables(GameRules.AbilityKV, LoadKeyValues("scripts/npc/npc_items_custom.txt"))
 	MergeTables(GameRules.AbilityKV, LoadKeyValues("scripts/npc/items.txt"))
 	
+	GameRules.HeroList = LoadKeyValues("scripts/npc/herolist.txt")
+	
 	
 
 	
@@ -251,7 +253,7 @@ function CHoldoutGameMode:InitGameMode()
 	GameRules.boss_master_id = -1
 	
 	GameRules._life = 10
-	GameRules:SetHeroSelectionTime( 45.0 )
+	GameRules:SetHeroSelectionTime( 30.0 )
 	if GetMapName() == "epic_boss_fight_hard" then
 		GameRules.BasePlayers = 7
 	end
@@ -503,7 +505,6 @@ function CHoldoutGameMode:InitializeRoundSystem()
 	for playerID, vote in pairs(votesDifficulty) do
 		difficultyVoteTable[vote] = difficultyVoteTable[vote] or 0
 		difficultyVoteTable[vote] = difficultyVoteTable[vote] + 1
-		print(playerID, "wut")
 	end
 	
 	local livesVoteTable = {}
@@ -670,9 +671,13 @@ function CHoldoutGameMode:Update_Health_Bar()
 		Timers:CreateTimer(0.1,function()
 			if biggest_ennemy ~= nil and not biggest_ennemy:IsNull() and biggest_ennemy:IsAlive() then
 				if biggest_ennemy.have_shield == nil then biggest_ennemy.have_shield = false end
+				CustomGameEventManager:Send_ServerToAllClients("UpdateHealthBar", {Name = biggest_ennemy:GetUnitName(), elite =  abilityname, entIndex = biggest_ennemy:entindex()})
 				CustomNetTables:SetTableValue( "HB","HB", {HP = biggest_ennemy:GetHealth() , Max_HP = biggest_ennemy:GetMaxHealth() , MP = biggest_ennemy:GetMana() ,Max_MP = biggest_ennemy:GetMaxMana() , Name = biggest_ennemy:GetUnitName() , shield = biggest_ennemy.have_shield, elite =  abilityname})
 			elseif biggest_ennemy ~= nil and not biggest_ennemy:IsNull() and biggest_ennemy:IsAlive() == false then 
+				CustomGameEventManager:Send_ServerToAllClients("UpdateHealthBar", {Name = biggest_ennemy:GetUnitName(), elite =  abilityname, entIndex = biggest_ennemy:entindex()})
 				CustomNetTables:SetTableValue( "HB","HB", {HP = 0 , Max_HP = 1 , MP = biggest_ennemy:GetMana() ,Max_MP = biggest_ennemy:GetMaxMana() , Name = biggest_ennemy:GetUnitName() , shield = biggest_ennemy.have_shield, elite = abilityname})
+			elseif biggest_ennemy == nil then
+				CustomGameEventManager:Send_ServerToAllClients("UpdateHealthBar", {closebar = true})
 			end
 		end)
 
@@ -695,6 +700,7 @@ function CHoldoutGameMode:FilterModifiers( filterTable )
     local parent = EntIndexToHScript( parent_index )
     local caster = EntIndexToHScript( caster_index )
 	local ability = EntIndexToHScript( ability_index )
+	local name = filterTable["name_const"]
 	if ability:GetName() == "enigma_black_hole" 
 	or ability:GetName() == "life_stealer_devour" 
 	or ability:GetName() == "slardar_slithereen_reprisal"then return true end
@@ -709,7 +715,32 @@ function CHoldoutGameMode:FilterModifiers( filterTable )
 		end
 		local resistance = parent:GetDisableResistance() / 100
 		filterTable["duration"] = duration / (1 - resistance)
-		local name = filterTable["name_const"]
+		Timers:CreateTimer(0.04,function()
+ 			if parent:FindModifierByNameAndCaster(name, caster) then
+				local modifier = parent:FindModifierByNameAndCaster(name, caster)
+				if modifier:GetDuration() > duration then
+					modifier:SetDuration(duration, false)
+				end
+			end
+ 		end)
+	elseif parent:IsCreature() and caster:HasTalentType("respawn_reduction") then
+		local resistance = parent:GetDisableResistance() / 100
+		if resistance > caster:HighestTalentTypeValue("respawn_reduction") then
+			filterTable["duration"] = duration / (1 - resistance) * caster:HighestTalentTypeValue("respawn_reduction") / 100
+			Timers:CreateTimer(0.04,function()
+				if parent:FindModifierByNameAndCaster(name, caster) then
+					local modifier = parent:FindModifierByNameAndCaster(name, caster)
+					if modifier:GetDuration() > duration then
+						modifier:SetDuration(duration, false)
+					end
+				end
+			end)
+		end
+	end
+	if ability:GetName() == "centaur_hoof_stomp" and caster:HasTalent("special_bonus_unique_centaur_1") then
+		local resistance = parent:GetDisableResistance() / 100
+		filterTable["duration"] = duration / (1 - resistance)
+		filterTable["duration"] = duration * caster:FindTalentValue("special_bonus_unique_centaur_1") / 100
 		Timers:CreateTimer(0.04,function()
  			if parent:FindModifierByNameAndCaster(name, caster) then
 				local modifier = parent:FindModifierByNameAndCaster(name, caster)
@@ -938,7 +969,7 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 		end
 	end
 	-- TRUE OCTARINE HEALING --
-	if inflictor and attacker:HasModifier("spell_lifesteal") 
+	if inflictor and attacker:HasModifier("spell_lifesteal")
 	and EntIndexToHScript( inflictor ).damage_flags ~= DOTA_DAMAGE_FLAG_HPLOSS -- forced flags
 	and EntIndexToHScript( inflictor ):GetName() ~= "necrolyte_heartstopper_aura" then -- special heartstopper exception ty valve
 		local octarine = attacker:FindModifierByName("spell_lifesteal")
@@ -1060,7 +1091,7 @@ function CHoldoutGameMode:OnAbilityUsed(event)
 
 	local hero = PlayerResource:GetSelectedHeroEntity(PlayerID)
 	if not hero then return end
-
+	if not abilityname then return end
 	local abilityused = hero:FindAbilityByName(abilityname)
 	if abilityname == "item_bloodstone" then hero:ForceKill(true) end
 	if not abilityused then abilityused = hero:FindItemByName(abilityname) end
@@ -1069,12 +1100,20 @@ function CHoldoutGameMode:OnAbilityUsed(event)
 		local addedthreat = self._threat[abilityname] or abilityused:GetThreat()
 		local modifier = 0
 		local escapemod = 0
+		local talentmodifier = 0
+		local negtalentmodifier = 0
+		if hero:HasTalentType("mp_regen") then
+			talentmodifier = hero:HighestTalentTypeValue("mp_regen")
+		end
+		if hero:HasTalentType("mp") then
+			negtalentmodifier = hero:HighestTalentTypeValue("mp")
+		end
 		if addedthreat < 0 then
 			escapemod = 2
 		end
 		if abilityused and not abilityused:IsItem() then modifier = (addedthreat*abilityused:GetLevel())/abilityused:GetMaxLevel() end
 		if not hero.threat then hero.threat = addedthreat
-		else hero.threat = hero.threat + addedthreat + modifier end
+		else hero.threat = hero.threat + addedthreat + modifier + talentmodifier - negtalentmodifier end
 		local player = PlayerResource:GetPlayer(PlayerID)
 		hero.lastHit = GameRules:GetGameTime() - escapemod
 		PlayerResource:SortThreat()
@@ -1235,6 +1274,7 @@ function CHoldoutGameMode:Tell_threat(event)
 	local pID = event.pID
 	local player = PlayerResource:GetPlayer(pID)
 	local hero = player:GetAssignedHero() 
+	if not hero.threat then hero.threat = 0 end
 	local result = math.floor( hero.threat*10 + 0.5 ) / 10
 	if result == 0 then result = "no" end
 	local message = "I have "..result.." threat!"
@@ -1459,6 +1499,7 @@ end
 function CHoldoutGameMode:OnHeroPick (event)
  	local hero = EntIndexToHScript(event.heroindex)
 	if not hero then return end
+	if hero:IsFakeHero() then return end
 	hero:AddAbility('lua_attribute_bonus')
 	stats:ModifyStatBonuses(hero)
 	for i = 0, 17 do
@@ -1473,7 +1514,7 @@ function CHoldoutGameMode:OnHeroPick (event)
 	local ID = hero:GetPlayerID()
 
 	PlayerResource:SetCustomBuybackCooldown(ID, 120)
-	hero:SetGold(0 , true)
+	-- hero:SetGold(0 , true)
 
 	local player = PlayerResource:GetPlayer(ID)
  	player.HB = true
@@ -1674,18 +1715,22 @@ function CHoldoutGameMode:OnGameRulesStateChange()
 	elseif nNewState == DOTA_GAMERULES_STATE_PRE_GAME then
 		ShowGenericPopup( "#holdout_instructions_title", "#holdout_instructions_body", "", "", DOTA_SHOWGENERICPOPUP_TINT_SCREEN )
 		CHoldoutGameMode:InitializeRoundSystem()
-		
 		for nPlayerID = 0, DOTA_MAX_TEAM_PLAYERS-1 do
 			local player = PlayerResource:GetPlayer(nPlayerID)
-			if player ~= nil then
-				if not PlayerResource:HasSelectedHero(nPlayerID) then player:MakeRandomHeroSelection() end
+			if player then
+				if not PlayerResource:HasSelectedHero(nPlayerID) then 
+					-- CreateHeroForPlayer("npc_dota_hero_wisp", player)
+					-- local hero = PlayerResource:ReplaceHeroWith(nPlayerID, GetRandomUnselectedHero(), 0, 0)
+					-- hero:SetControllableByPlayer(nPlayerID, false)
+					-- hero:SetOwner(player)
+					-- ResolveNPCPositions(hero:GetAbsOrigin(), 300)
+				end
 			end
 		end
 	elseif nNewState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
 		for nPlayerID = 0, DOTA_MAX_TEAM_PLAYERS-1 do
 			local player = PlayerResource:GetPlayer(nPlayerID)
-			if player ~= nil then
-				if not PlayerResource:HasSelectedHero(nPlayerID) then player:MakeRandomHeroSelection() end
+			if player then
 				--print ("play music")
 				Timers:CreateTimer(0.1,function()
 								if player.NoMusic ~= true then
@@ -1899,7 +1944,7 @@ function CHoldoutGameMode:SetHealthMarkers()
 	local averagehp = 0
 	local heroes = Entities:FindAllByName( "npc_dota_hero*")
 	for _,unit in pairs ( heroes ) do
-		if not unit:IsIllusion() and not (unit:HasModifier("modifier_monkey_king_fur_army_soldier") or unit:HasModifier("modifier_monkey_king_fur_army_soldier_hidden")) then
+		if not unit:IsFakeHero() then
 			averagehp = averagehp + unit:GetMaxHealth()
 		end
 	end
@@ -2308,7 +2353,7 @@ LinkLuaModifier( "modifier_attack_animation_tweak", "lua_abilities/heroes/modifi
 
 function CHoldoutGameMode:OnNPCSpawned( event )
 	local spawnedUnit = EntIndexToHScript( event.entindex )
-	if not spawnedUnit or spawnedUnit:GetClassname() == "npc_dota_thinker" or spawnedUnit:IsPhantom() or spawnedUnit:IsIllusion() and not unit:HasModifier("modifier_monkey_king_fur_army_soldier") then
+	if not spawnedUnit or spawnedUnit:GetClassname() == "npc_dota_thinker" or spawnedUnit:IsPhantom() or spawnedUnit:IsFakeHero()then
 		return
 	end
 	if spawnedUnit:IsCourier() then
@@ -2383,12 +2428,12 @@ end
 function CHoldoutGameMode:OnEntityKilled( event )
 	local check_tombstone = true
 	local killedUnit = EntIndexToHScript( event.entindex_killed )
-	if killedUnit:GetUnitName() == "npc_dota_treasure" then
-		local count = -1
+	if killedUnit:GetUnitName() == "npc_dota_money_roshan" then
+		local count = 0
 		Timers:CreateTimer(0.5,function()
-			if count <= GameRules:GetCustomGameTeamMaxPlayers(DOTA_TEAM_GOODGUYS) then
+			if count < HeroList:GetRealHeroCount() then
 				count = count + 1
-				local Item_spawn = CreateItem( "item_present_treasure", nil, nil )
+				local Item_spawn = CreateItem( "item_midas_2", nil, nil )
 				local drop = CreateItemOnPositionForLaunch( killedUnit:GetAbsOrigin(), Item_spawn )
 				Item_spawn:LaunchLoot( false, 300, 0.75, killedUnit:GetAbsOrigin() + RandomVector( RandomFloat( 50, 350 ) ) )
 				return 0.25

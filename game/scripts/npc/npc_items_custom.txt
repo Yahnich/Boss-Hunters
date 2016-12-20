@@ -195,7 +195,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
 		"Model"							"models/props_gameplay/salve_blue.vmdl"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_greater_clarity"
+		"AbilityTextureName"			"custom/greater_clarity"
 		"ItemKillable"					"0"
 
 		// Stats
@@ -327,7 +327,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
 		"Model"							"models/props_gameplay/salve_red.vmdl"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_greater_salve"
+		"AbilityTextureName"			"custom/greater_salve"
 		"ItemKillable"					"0"
 
 		// Stats
@@ -443,7 +443,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_slippers_of_halcyon"
+		"AbilityTextureName"			"custom/slippers_of_halcyon"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
 
 		// Stats		
@@ -691,7 +691,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
 		"Model"							"models/props_gameplay/salve_blue.vmdl"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_greater_clarity_salve"
+		"AbilityTextureName"			"custom/greater_clarity_salve"
 		"ItemKillable"					"0"
 
 		// Stats
@@ -796,7 +796,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
 		"Model"							"models/props_gameplay/salve_blue.vmdl"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_greater_clarity"
+		"AbilityTextureName"			"custom/greater_clarity"
 		"ItemKillable"					"0"
 
 		// Stats
@@ -890,7 +890,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
 		"Model"							"models/props_gameplay/salve_red.vmdl"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_greater_salve"
+		"AbilityTextureName"			"custom/greater_salve"
 		"ItemKillable"					"0"
 
 		// Stats
@@ -977,7 +977,7 @@
 				"ID"														"23002"
 				"Model"														"models/props_gameplay/recipe.mdl"
 				"BaseClass"													"item_recipe_mjollnir"
-				"AbilityTextureName"										"item_charged_mjollnir"
+				"AbilityTextureName"										"custom/charged_mjollnir"
 
 			// Item Info
 			//-------------------------------------------------------------------------------------------------------------
@@ -1000,7 +1000,7 @@
 				//-------------------------------------------------------------------------------------------------------------
 				"ID"													"23003"												// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 				//
-				"AbilityTextureName"            "item_charged_mjollnir"
+				"AbilityTextureName"	"custom/charged_mjollnir"
 				"AbilityManaCost"               "0"
 				"AbilityCastRange"				"600"
 				
@@ -1139,7 +1139,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_datadriven"
 		"ItemShareability"				"ITEM_NOT_SHAREABLE"
-		"AbilityTextureName"			"item_orb_of_shadows"
+		"AbilityTextureName"			"custom/orb_of_shadows"
 		"ItemKillable"					"1"
 		"ItemCost"						"1400"
 		"ItemShopTags"					"str"
@@ -1220,6 +1220,7 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
 		"ItemPurchasable"				"1"
 		"AbilityCooldown"				"7.0"
+		"AbilityTextureName"			"custom/force_boots"
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
@@ -1295,7 +1296,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_desolator"
 		
-		"AbilityTextureName"			"item_desolator2"
+		"AbilityTextureName"			"custom/desolator2"
 
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -1535,7 +1536,7 @@
 		"ID"							"3023"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_claymore"
-		"AbilityTextureName"			"item_zweihander"
+		"AbilityTextureName"			"custom/zweihander"
 		
 
 		// Item Info
@@ -1592,7 +1593,7 @@
 		"ID"							"3025"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_helm_of_iron_will"
-		"AbilityTextureName"			"item_helm_of_mithril_will"
+		"AbilityTextureName"			"custom/helm_of_mithril_will"
 
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -1630,7 +1631,7 @@
 		"ID"							"3020"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_desolator"
 		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"			"item_desolator3"
+		"AbilityTextureName"			"custom/desolator3"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -1656,7 +1657,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 			"ID"							"3021"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 
-			"AbilityTextureName"            "item_desolator3"
+			"AbilityTextureName"	"custom/desolator3"
 			"ItemKillable"                  "1"
 			
 			"ItemSellable"                  "1"
@@ -1773,7 +1774,7 @@
 		"ID"							"3026"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"            "item_lifesteal2"
+		"AbilityTextureName"	"custom/lifesteal2"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -1803,7 +1804,7 @@
 		"ID"							"1040"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"            "item_crit2"
+		"AbilityTextureName"	"custom/crit2"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -1830,7 +1831,7 @@
 		"ID"							"1041"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_crit2"
+		"AbilityTextureName"			"custom/crit2"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
@@ -1929,7 +1930,7 @@
 				"ID"														"1142"
 				"Model"														"models/props_gameplay/recipe.mdl"
 				"BaseClass"													"item_recipe_mjollnir"
-				"AbilityTextureName"										"item_doom_hammer"
+				"AbilityTextureName"										"custom/doom_hammer"
 
 			// Item Info
 			//-------------------------------------------------------------------------------------------------------------
@@ -1952,7 +1953,7 @@
 				//-------------------------------------------------------------------------------------------------------------
 				"ID"													"1143"												// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 				//
-				"AbilityTextureName"            "item_doom_hammer"
+				"AbilityTextureName"	"custom/doom_hammer"
 				"AbilityManaCost"               "0"
 				"AbilityCastRange"				"600"
 				
@@ -2087,7 +2088,7 @@
 		"ID"							"1044"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"			"item_scythe"
+		"AbilityTextureName"			"custom/scythe"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -2115,7 +2116,7 @@
 		"ID"							"1045"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_claymore"
-		"AbilityTextureName"			"item_scythe"
+		"AbilityTextureName"			"custom/scythe"
 
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -2147,7 +2148,7 @@
 		"ID"							"1046"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_desolator"
 		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"			"item_desolator4"
+		"AbilityTextureName"			"custom/desolator4"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -2173,7 +2174,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 			"ID"							"1047"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 
-			"AbilityTextureName"            "item_desolator4"
+			"AbilityTextureName"	"custom/desolator4"
 			"ItemKillable"                  "1"
 			"ItemSellable"                  "1"
 			
@@ -2314,7 +2315,7 @@
 		"ID"							"1048"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"            "item_lifesteal3"
+		"AbilityTextureName"	"custom/lifesteal3"
 		
 		
 		// Item Info
@@ -2341,7 +2342,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"1049"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_lifesteal3"
+		"AbilityTextureName"			"custom/lifesteal3"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		
@@ -2510,7 +2511,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"22027"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_lifesteal2"
+		"AbilityTextureName"			"custom/lifesteal2"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
@@ -2680,7 +2681,7 @@
 		"ID"							"1050"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"            "item_crit3"
+		"AbilityTextureName"	"custom/crit3"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -2707,7 +2708,7 @@
 		"ID"							"1051"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_crit3"
+		"AbilityTextureName"			"custom/crit3"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
@@ -2814,7 +2815,7 @@
 		"ID"							"1152"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"            "item_heart_titan"
+		"AbilityTextureName"	"custom/heart_titan"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -2845,7 +2846,7 @@
 		"HasPureCooldown"				"1"
 		"AbilitySharedCooldown"			"heart"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_heart_titan"
+		"AbilityTextureName"			"custom/heart_titan"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		
@@ -2964,7 +2965,7 @@
 		"ID"							"1053"				// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_orb_of_doom"
+		"AbilityTextureName"			"custom/orb_of_doom"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
@@ -3029,7 +3030,7 @@
 		"ID"							"1055"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"            "item_heart_divine"
+		"AbilityTextureName"	"custom/heart_divine"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -3060,7 +3061,7 @@
 		"HasPureCooldown"				"1"
 		"AbilityDuration"				"5"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_heart_divine"
+		"AbilityTextureName"			"custom/heart_divine"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		
@@ -3152,7 +3153,7 @@
 		"ID"							"1057"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"            "item_titan_armor"
+		"AbilityTextureName"	"custom/titan_armor"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -3179,7 +3180,7 @@
 		"ID"							"1058"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_AURA | DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_titan_armor"
+		"AbilityTextureName"			"custom/titan_armor"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
@@ -3338,7 +3339,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"1059"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_tranquil_boots"
-		"AbilityTextureName"			"item_octarine_core2"
+		"AbilityTextureName"			"custom/octarine_core2"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -3372,7 +3373,7 @@
 		
 		"ItemAliases"					"mana;mb;octarine core"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_octarine_core2"
+		"AbilityTextureName"			"custom/octarine_core2"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
 		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_ALWAYS"
 		
@@ -3477,7 +3478,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"1161"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_tranquil_boots"
-		"AbilityTextureName"			"item_octarine_core3"
+		"AbilityTextureName"			"custom/octarine_core3"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -3512,7 +3513,7 @@
 		"ItemShareability"				"ITEM_PARTIALLY_SHAREABLE"
 		"ItemAliases"					"mana;mb;octarine core"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_octarine_core3"
+		"AbilityTextureName"			"custom/octarine_core3"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
 		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_ALWAYS"
 		
@@ -3653,7 +3654,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemCost"						"3030"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_bfury2"
+		"AbilityTextureName"			"custom/bfury2"
 		"ItemShopTags"					"damage;health_regen;mana_regen;hard_to_tag"
 		"ItemQuality"					"epic"
 		"ItemAliases"					"bf;battle fury"
@@ -3742,7 +3743,7 @@
 			"ID"														"1167"
 			"Model"														"models/props_gameplay/recipe.mdl"
 			"BaseClass"													"item_recipe_mjollnir"
-			"AbilityTextureName"										"item_divine_hammer"
+			"AbilityTextureName"										"custom/divine_hammer"
 
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -3764,7 +3765,7 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 			"ID"													"1168"												// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-			"AbilityTextureName"            "item_divine_hammer"
+			"AbilityTextureName"	"custom/divine_hammer"
 			"AbilityManaCost"               "0"
 			"AbilityCastRange"				"600"
 			
@@ -3986,7 +3987,7 @@
 		"ItemShareability"				"ITEM_PARTIALLY_SHAREABLE"
 		"ItemCost"						"4175"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_butterfly2"
+		"AbilityTextureName"			"custom/butterfly2"
 		"Model"                         "models/props_gameplay/red_box.vmdl" 
     	"Effect"                        "particles/generic_gameplay/dropped_item.vpcf"
 		"ItemShopTags"					"agi;damage;evasion;attack_speed"
@@ -4126,7 +4127,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_datadriven"
 		"ItemShareability"				"ITEM_PARTIALLY_SHAREABLE"
-		"AbilityTextureName"			"item_death_scythe"
+		"AbilityTextureName"			"custom/death_scythe"
 
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -4170,7 +4171,7 @@
 		"ID"							"1171"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"            "item_divine_armor"
+		"AbilityTextureName"	"custom/divine_armor"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -4197,7 +4198,7 @@
 		"ID"							"1172"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_divine_armor"
+		"AbilityTextureName"			"custom/divine_armor"
 		"ItemKillable"					"1"
 		"ItemShareability"				"ITEM_PARTIALLY_SHAREABLE"
 		"ItemSellable"					"1"
@@ -4404,7 +4405,7 @@
 		"ID"							"1173"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_soul"
+		"AbilityTextureName"			"custom/soul"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
@@ -4456,7 +4457,7 @@
 		"ID"							"1174"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"            "item_demonsoul"
+		"AbilityTextureName"	"custom/demonsoul"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -4483,7 +4484,7 @@
 		"ID"							"1175"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_demonsoul"
+		"AbilityTextureName"			"custom/demonsoul"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
@@ -4596,7 +4597,7 @@
 		"ID"							"1076"				// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_orb_divine"
+		"AbilityTextureName"			"custom/orb_divine"
 		"ItemShareability"				"ITEM_NOT_SHAREABLE"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
@@ -4661,7 +4662,7 @@
 		"ID"							"1177"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"            "item_divinesoul"
+		"AbilityTextureName"	"custom/divinesoul"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -4688,7 +4689,7 @@
 		"ID"							"1178"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_divinesoul"
+		"AbilityTextureName"			"custom/divinesoul"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemShareability"				"ITEM_PARTIALLY_SHAREABLE"
@@ -4792,7 +4793,7 @@
 		"ID"							"1179"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"            "item_desolator5"
+		"AbilityTextureName"	"custom/desolator5"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -4824,7 +4825,7 @@
 		"ID"							"1180"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_desolator5"
+		"AbilityTextureName"			"custom/desolator5"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemShareability"				"ITEM_PARTIALLY_SHAREABLE"
@@ -5029,7 +5030,7 @@
 			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 			"BaseClass"						"item_datadriven"
 			"ItemShareability"				"ITEM_FULLY_SHAREABLE_STACKING"
-			"AbilityTextureName"			"item_chronos_shard"
+			"AbilityTextureName"			"custom/chronos_shard"
 			"ItemKillable"					"0"
 
 			// Stats
@@ -5112,7 +5113,7 @@
 		"ID"							"1183"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"            "item_lifesteal4"
+		"AbilityTextureName"	"custom/lifesteal4"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -5138,7 +5139,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"1184"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_lifesteal4"
+		"AbilityTextureName"			"custom/lifesteal4"
 		
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		
@@ -5368,7 +5369,7 @@
 		"ItemShareability"				"ITEM_PARTIALLY_SHAREABLE"
 		"ItemCost"						"12455"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_butterfly3"
+		"AbilityTextureName"			"custom/butterfly3"
 		"Model"                         "models/props_gameplay/red_box.vmdl" 
     	"Effect"                        "particles/generic_gameplay/dropped_item.vpcf"
 		"ItemShopTags"					"agi;damage;evasion;attack_speed"
@@ -5522,7 +5523,7 @@
 		"ItemShareability"				"ITEM_PARTIALLY_SHAREABLE"
 		"ItemCost"						"31455"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_butterfly4"
+		"AbilityTextureName"			"custom/butterfly4"
 		"Model"                         "models/props_gameplay/red_box.vmdl" 
     	"Effect"                        "particles/generic_gameplay/dropped_item.vpcf"
 		"ItemShopTags"					"agi;damage;evasion;attack_speed"
@@ -5643,7 +5644,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"1189"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_tranquil_boots"
-		"AbilityTextureName"			"item_octarine_core4"
+		"AbilityTextureName"			"custom/octarine_core4"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -5681,7 +5682,7 @@
 		"ItemShareability"				"ITEM_PARTIALLY_SHAREABLE"
 		"ItemAliases"					"mana;mb;octarine core"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_octarine_core4"
+		"AbilityTextureName"			"custom/octarine_core4"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
 		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_ALWAYS"
 		
@@ -5810,7 +5811,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"1191"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_tranquil_boots"
-		"AbilityTextureName"			"item_veil_of_discord2"
+		"AbilityTextureName"			"custom/veil_of_discord2"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -5836,7 +5837,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"1500"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityTextureName"			"item_veil_of_discord2"
+		"AbilityTextureName"			"custom/veil_of_discord2"
 		"BaseClass" 					"item_datadriven"
 
 		// Stats		
@@ -6008,7 +6009,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"1193"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_tranquil_boots"
-		"AbilityTextureName"			"item_veil_of_discord3"
+		"AbilityTextureName"			"custom/veil_of_discord3"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -6034,7 +6035,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"1194"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DONT_CANCEL_MOVEMENT"
-		"AbilityTextureName"			"item_veil_of_discord3"
+		"AbilityTextureName"			"custom/veil_of_discord3"
 		"BaseClass" 					"item_datadriven"
 
 		// Stats		
@@ -6204,7 +6205,7 @@
 		"ID"							"1200"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"            "item_lifesteal4"
+		"AbilityTextureName"	"custom/lifesteal4"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -6236,7 +6237,7 @@
 		"AbilitySharedCooldown"			"titanheal"
 		"IsAetherAmplified"				"0"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_lifestealtank"
+		"AbilityTextureName"			"custom/lifestealtank"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
@@ -6379,7 +6380,7 @@
 		"AbilityCooldown"				"18"
 		"HasPureCooldown"				"1"
  		"BaseClass"						"item_datadriven"		
- 		"AbilityTextureName"			"item_tank_booster"		
+ 		"AbilityTextureName"			"custom/tank_booster"		
  		"ItemShareability"				"ITEM_PARTIALLY_SHAREABLE"		
  		"ItemKillable"					"1"		
  		"ItemSellable"					"1"		
@@ -6531,7 +6532,7 @@
 		"AbilitySharedCooldown"			"titanheal"
 		"IsAetherAmplified"				"0"		
  		"BaseClass"						"item_datadriven"		
- 		"AbilityTextureName"			"item_blood_booster"		
+ 		"AbilityTextureName"			"custom/blood_booster"		
  		"ItemShareability"				"ITEM_PARTIALLY_SHAREABLE"		
  		"ItemKillable"					"1"		
  		"ItemSellable"					"1"		
@@ -6735,7 +6736,7 @@
 			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 			"BaseClass"						"item_datadriven"
 			"ItemShareability"				"ITEM_FULLY_SHAREABLE_STACKING"
-			"AbilityTextureName"			"item_ress_stone"
+			"AbilityTextureName"			"custom/ress_stone"
 			"Model"							"models/props_gameplay/gem01.mdl"
 			"ItemKillable"					"0"
 
@@ -6794,7 +6795,7 @@
 		"ID"							"1206"				// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_orb_bahamut"
+		"AbilityTextureName"			"custom/orb_bahamut"
 		"ItemShareability"				"ITEM_NOT_SHAREABLE"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
@@ -6859,7 +6860,7 @@
 		"ID"							"1203"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"            "item_bahamut_chest"
+		"AbilityTextureName"	"custom/bahamut_chest"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -6882,7 +6883,7 @@
 		"ID"							"1204"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_bahamut_chest"
+		"AbilityTextureName"			"custom/bahamut_chest"
 		"ItemKillable"					"1"
 		"ItemShareability"				"ITEM_PARTIALLY_SHAREABLE"
 		"ItemSellable"					"1"
@@ -7089,7 +7090,7 @@
 		"ID"							"1207"				// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_magic_ring"
+		"AbilityTextureName"			"custom/magic_ring"
 		"ItemShareability"				"ITEM_PARTIALLY_SHAREABLE"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
@@ -7150,7 +7151,7 @@
 		"ID"							"1208"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"            "item_mystic_ring"
+		"AbilityTextureName"	"custom/mystic_ring"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -7173,7 +7174,7 @@
 		"ID"							"1209"				// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_mystic_ring"
+		"AbilityTextureName"			"custom/mystic_ring"
 		"ItemShareability"				"ITEM_PARTIALLY_SHAREABLE"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
@@ -7234,7 +7235,7 @@
 		"ID"							"1210"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"            "item_overlord_ring"
+		"AbilityTextureName"	"custom/overlord_ring"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -7257,7 +7258,7 @@
 		"ID"							"1211"				// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_overlord_ring"
+		"AbilityTextureName"			"custom/overlord_ring"
 		"ItemShareability"				"ITEM_PARTIALLY_SHAREABLE"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
@@ -7319,7 +7320,7 @@
 		"ID"							"1212"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"            "item_divine_ring"
+		"AbilityTextureName"	"custom/divine_ring"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -7342,7 +7343,7 @@
 		"ID"							"1213"				// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_divine_ring"
+		"AbilityTextureName"			"custom/divine_ring"
 		"ItemShareability"				"ITEM_PARTIALLY_SHAREABLE"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
@@ -7406,7 +7407,7 @@
 		"ID"							"1214"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"            "item_zero"
+		"AbilityTextureName"	"custom/zero"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -7429,7 +7430,7 @@
 		"ID"							"1215"				// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_zero"
+		"AbilityTextureName"			"custom/zero"
 		"ItemShareability"				"ITEM_PARTIALLY_SHAREABLE"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
@@ -7572,7 +7573,7 @@
 		"ID"							"1216"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"            "item_skadi2"
+		"AbilityTextureName"	"custom/skadi2"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -7595,7 +7596,7 @@
 		"ID"							"1217"				// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_skadi2"
+		"AbilityTextureName"			"custom/skadi2"
 		"ItemShareability"				"ITEM_PARTIALLY_SHAREABLE"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
@@ -7793,7 +7794,7 @@
 		"ID"							"64"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"            "item_midas_2"
+		"AbilityTextureName"	"custom/midas_2"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -7818,7 +7819,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"Model"							"models/props_gameplay/quelling_blade.mdl"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_midas_2"
+		"AbilityTextureName"			"custom/midas_2"
 		"ItemShareability"				"ITEM_PARTIALLY_SHAREABLE"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
@@ -7875,7 +7876,7 @@
 		"ID"							"1219"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"            "item_bloody_halberd"
+		"AbilityTextureName"	"custom/bloody_halberd"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -7900,7 +7901,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_bloody_halberd"
+		"AbilityTextureName"			"custom/bloody_halberd"
 		"ItemShareability"				"ITEM_PARTIALLY_SHAREABLE"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
@@ -8056,7 +8057,7 @@
 		"ID"							"1221"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"            "item_sange_and_yasha_2"
+		"AbilityTextureName"	"custom/sange_and_yasha_2"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -8081,7 +8082,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_s_a_y_2"
+		"AbilityTextureName"			"custom/s_a_y_2"
 		"ItemShareability"				"ITEM_PARTIALLY_SHAREABLE"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
@@ -8255,7 +8256,7 @@
 		"ID"							"1223"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"            "item_heart_bahamut"
+		"AbilityTextureName"	"custom/heart_bahamut"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -8286,7 +8287,7 @@
 		"AbilitySharedCooldown"			"heart"
 		"HasPureCooldown"				"1"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_heart_bahamut"
+		"AbilityTextureName"			"custom/heart_bahamut"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		
@@ -8374,7 +8375,7 @@
 		"ID"							"1225"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"            "item_celerity_stone"
+		"AbilityTextureName"	"custom/celerity_stone"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -8397,7 +8398,7 @@
 		"ID"							"1226"				// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_celerity_stone"
+		"AbilityTextureName"			"custom/celerity_stone"
 		"ItemShareability"				"ITEM_PARTIALLY_SHAREABLE"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
@@ -8450,7 +8451,7 @@
 		"ID"							"1227"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"            "item_unstable_stone"
+		"AbilityTextureName"	"custom/unstable_stone"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -8473,7 +8474,7 @@
 		"ID"							"1228"				// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_unstable_stone"
+		"AbilityTextureName"			"custom/unstable_stone"
 		"ItemShareability"				"ITEM_PARTIALLY_SHAREABLE"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
@@ -8525,7 +8526,7 @@
 		"ID"							"1229"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"            "item_unstable_stone"
+		"AbilityTextureName"	"custom/unstable_stone"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -8548,7 +8549,7 @@
 		"ID"							"1230"				// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_storm_fury"
+		"AbilityTextureName"			"custom/storm_fury"
 		"ItemShareability"				"ITEM_PARTIALLY_SHAREABLE"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
@@ -8678,7 +8679,7 @@
 		"ID"							"1232"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_bfury_custom"
+		"AbilityTextureName"			"custom/bfury_custom"
 		"ItemShareability"				"ITEM_PARTIALLY_SHAREABLE"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
@@ -8780,7 +8781,7 @@
 		"ID"							"1233"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"            "item_bfury_custom"
+		"AbilityTextureName"	"custom/bfury_custom"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -8806,7 +8807,7 @@
 		"ID"							"1234"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_melee_fury"
+		"AbilityTextureName"			"custom/melee_fury"
 		"ItemShareability"				"ITEM_PARTIALLY_SHAREABLE"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
@@ -8947,7 +8948,7 @@
 		"ID"							"1235"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"            "item_midas_fury"
+		"AbilityTextureName"	"custom/midas_fury"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -8970,7 +8971,7 @@
 		"ID"							"1236"				// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_midas_fury"
+		"AbilityTextureName"			"custom/midas_fury"
 		"ItemShareability"				"ITEM_PARTIALLY_SHAREABLE"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
@@ -9148,7 +9149,7 @@
 		"ID"							"1238"				// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_berserker_face"
+		"AbilityTextureName"			"custom/berserker_face"
 		"ItemShareability"				"ITEM_PARTIALLY_SHAREABLE"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
@@ -9350,7 +9351,7 @@
 		"ID"							"1239"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"            "item_skadi2"
+		"AbilityTextureName"	"custom/skadi2"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -9376,7 +9377,7 @@
 		"ID"							"17134"				// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_berserker_face_2"
+		"AbilityTextureName"			"custom/berserker_face_2"
 		"ItemShareability"				"ITEM_PARTIALLY_SHAREABLE"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
@@ -9578,7 +9579,7 @@
 		"ID"							"1241"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"            "item_skadi2"
+		"AbilityTextureName"	"custom/skadi2"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -9604,7 +9605,7 @@
 		"ID"							"1242"				// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_berserker_face_3"
+		"AbilityTextureName"			"custom/berserker_face_3"
 		"ItemShareability"				"ITEM_PARTIALLY_SHAREABLE"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
@@ -9806,7 +9807,7 @@
 		"ID"							"1243"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"            "item_skadi2"
+		"AbilityTextureName"	"custom/skadi2"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -9832,7 +9833,7 @@
 		"ID"							"1244"				// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_berserker_face_4"
+		"AbilityTextureName"			"custom/berserker_face_4"
 		"ItemShareability"				"ITEM_PARTIALLY_SHAREABLE"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
@@ -10035,7 +10036,7 @@
 		"ID"							"1245"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"            "item_moon_crest"
+		"AbilityTextureName"	"custom/moon_crest"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -10065,7 +10066,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
 		"AbilityCastAnimation"			"ACT_DOTA_CHANNEL_ABILITY_4"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_moon_crest"
+		"AbilityTextureName"			"custom/moon_crest"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemShareability"				"ITEM_PARTIALLY_SHAREABLE"
@@ -10229,7 +10230,7 @@
 		"ID"							"1247"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"            "item_moon_crest"
+		"AbilityTextureName"	"custom/moon_crest"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -10259,7 +10260,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
 		"AbilityCastAnimation"			"ACT_DOTA_CHANNEL_ABILITY_4"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_lunar_crest"
+		"AbilityTextureName"			"custom/lunar_crest"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemShareability"				"ITEM_PARTIALLY_SHAREABLE"
@@ -10445,7 +10446,7 @@
 		"ID"							"1250"				// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_gungnir"
+		"AbilityTextureName"			"custom/gungnir"
 		"ItemShareability"				"ITEM_PARTIALLY_SHAREABLE"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
@@ -10535,7 +10536,7 @@
 			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 			"BaseClass"						"item_datadriven"
 			"ItemShareability"				"ITEM_FULLY_SHAREABLE_STACKING"
-			"AbilityTextureName"			"item_ares_shard"
+			"AbilityTextureName"			"custom/ares_shard"
 			"ItemKillable"					"0"
 
 			// Stats
@@ -10638,7 +10639,7 @@
 		"ID"							"1257"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"            "item_heart_boots"
+		"AbilityTextureName"	"custom/heart_boots"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -10664,7 +10665,7 @@
 		"AbilityDuration"				"5"
 		"HasPureCooldown"				"1"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_heart_boots"
+		"AbilityTextureName"			"custom/heart_boots"
 		"ItemShareability"				"ITEM_PARTIALLY_SHAREABLE"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
@@ -10773,7 +10774,7 @@
 		"ID"							"9999"				// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_nerf_hammer"
+		"AbilityTextureName"			"custom/nerf_hammer"
 		"ItemShareability"				"ITEM_NOT_SHAREABLE"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
@@ -10842,7 +10843,7 @@
 		"ID"							"1259"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"            "item_skadi2"
+		"AbilityTextureName"	"custom/skadi2"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -10867,7 +10868,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"Model"							"models/props_gameplay/quelling_blade.mdl"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_midas_3"
+		"AbilityTextureName"			"custom/midas_3"
 		"ItemShareability"				"ITEM_PARTIALLY_SHAREABLE"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
@@ -10947,7 +10948,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_sheepstick_2"
+		"AbilityTextureName"			"custom/sheepstick_2"
 		"ItemShareability"				"ITEM_PARTIALLY_SHAREABLE"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
@@ -11152,7 +11153,7 @@
 		"ItemShareability"				"ITEM_PARTIALLY_SHAREABLE"
 		"ItemCost"						"80000"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_butterfly5"
+		"AbilityTextureName"			"custom/butterfly5"
 		"Model"                         "models/props_gameplay/red_box.vmdl" 
     	"Effect"                        "particles/generic_gameplay/dropped_item.vpcf"
 		"ItemShopTags"					"agi;damage;evasion;attack_speed"
@@ -11302,7 +11303,7 @@
 	    "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_ALL"
 	    "Model"                         "models/props_gameplay/red_box.vmdl" 
 	    "Effect"                        "particles/generic_gameplay/dropped_item.vpcf"
-	    "AbilityTextureName"            "item_dagon_mystic"
+	    "AbilityTextureName"	"custom/dagon_mystic"
 	    "FightRecapLevel"               "1"
 	    
 	    // Stats        
@@ -11411,7 +11412,7 @@
 		"ID"							"1268"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_gauntlet_cursed"
+		"AbilityTextureName"			"custom/gauntlet_cursed"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
@@ -11512,7 +11513,7 @@
 		"ID"							"1269"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_FrenchDeath_armor"
+		"AbilityTextureName"			"custom/FrenchDeath_armor"
 		"ItemKillable"					"1"
 		"ItemShareability"				"ITEM_PARTIALLY_SHAREABLE"
 		"ItemSellable"					"1"
@@ -11659,7 +11660,7 @@
 		"ID"							"1271"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_blink_boots"
+		"AbilityTextureName"			"custom/blink_boots"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
@@ -11788,7 +11789,7 @@
 		"ID"							"1273"				// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_gungnir_2"
+		"AbilityTextureName"			"custom/gungnir_2"
 		"ItemShareability"				"ITEM_PARTIALLY_SHAREABLE"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
@@ -11876,7 +11877,7 @@
 		"ID"							"1274"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"            "item_bahamut_claw"
+		"AbilityTextureName"	"custom/bahamut_claw"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -11903,7 +11904,7 @@
 		"ID"							"1275"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_bahamut_claw"
+		"AbilityTextureName"			"custom/bahamut_claw"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemShareability"				"ITEM_PARTIALLY_SHAREABLE"
@@ -12102,7 +12103,7 @@
 		"ID"							"1276"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"BaseClass"						"item_recipe_arcane_boots"
-		"AbilityTextureName"            "item_bfury_custom"
+		"AbilityTextureName"	"custom/bfury_custom"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -12129,7 +12130,7 @@
 		"ID"							"1277"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_melee_rage"
+		"AbilityTextureName"			"custom/melee_rage"
 		"ItemShareability"				"ITEM_PARTIALLY_SHAREABLE"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
@@ -12353,7 +12354,7 @@
 		"ID"							"1278"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_asura_plate"
+		"AbilityTextureName"			"custom/asura_plate"
 		"ItemKillable"					"0"
 		"ItemSellable"					"0"
 		"ItemDroppable"					"1"
@@ -12617,7 +12618,7 @@
 		"AbilitySharedCooldown"			"heart"
 		"HasPureCooldown"				"1"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_asura_heart"
+		"AbilityTextureName"			"custom/asura_heart"
 		"ItemKillable"					"1"
 		"ItemSellable"					"0"
 		"ItemDroppable"					"1"
@@ -12747,7 +12748,7 @@
 		"ID"							"1280"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"            "item_s_a_y_3"
+		"AbilityTextureName"	"custom/s_a_y_3"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -12772,7 +12773,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_s_a_y_3"
+		"AbilityTextureName"			"custom/s_a_y_3"
 		"ItemShareability"				"ITEM_PARTIALLY_SHAREABLE"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
@@ -13019,7 +13020,7 @@
 		"ID"							"1282"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_CHANNELLED|DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_gift"
+		"AbilityTextureName"			"custom/gift"
 		"ItemShareability"				"ITEM_PARTIALLY_SHAREABLE"
 		"Model"							"models/props_winter/present.vmdl"
 		"ItemKillable"					"0"
@@ -13086,7 +13087,7 @@
 		"ItemCost"						"7870"
 		"BaseClass"                     "item_aether_lens"
 		//"ScriptFile"                    "lua_items/redium_lens.lua"
-		"AbilityTextureName"			"item_redium_lens"
+		"AbilityTextureName"			"custom/redium_lens"
 		"ItemShopTags"					"damage;health_regen;mana_regen;hard_to_tag"
 		"ItemQuality"					"epic"
 		"ItemAliases"					"bf;battle fury"
@@ -13162,7 +13163,7 @@
 		"ItemCost"						"20000"
 		"BaseClass"                     "item_aether_lens"
 		//"ScriptFile"                    "lua_items/redium_lens.lua"
-		"AbilityTextureName"			"item_sunium_lens"
+		"AbilityTextureName"			"custom/sunium_lens"
 		"ItemShopTags"					"damage;health_regen;mana_regen;hard_to_tag"
 		"ItemQuality"					"epic"
 		"ItemAliases"					"lens;spell;amp"
@@ -13238,7 +13239,7 @@
 		"ItemCost"						"75000"
 		"BaseClass"                     "item_aether_lens"
 		//"ScriptFile"                    "lua_items/redium_lens.lua"
-		"AbilityTextureName"			"item_omni_lens"
+		"AbilityTextureName"			"custom/omni_lens"
 		"ItemShopTags"					"damage;health_regen;mana_regen;hard_to_tag"
 		"ItemQuality"					"epic"
 		"ItemAliases"					"bf;battle fury"
@@ -13307,7 +13308,7 @@
 		"ID"							"1290"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_element_refresher"
+		"AbilityTextureName"			"custom/element_refresher"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
@@ -13417,7 +13418,7 @@
 		
 		"AbilityManaCost"				"0"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_asura_rapier"
+		"AbilityTextureName"			"custom/asura_rapier"
 		"ItemKillable"					"1"
 		"ItemSellable"					"0"
 		"ItemDroppable"					"1"
@@ -13566,7 +13567,7 @@
 		"AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
 	    "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_ALL"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_asura_staff"
+		"AbilityTextureName"			"custom/asura_staff"
 		"ItemKillable"					"1"
 		"ItemSellable"					"0"
 		"ItemDroppable"					"1"
@@ -13697,7 +13698,7 @@
 		"ID"							"1293"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"BaseClass"						"item_recipe_arcane_boots"
-		"AbilityTextureName"            "item_bfury_custom"
+		"AbilityTextureName"	"custom/bfury_custom"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -13722,7 +13723,7 @@
 		"ID"							"1279"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_asura_sword"
+		"AbilityTextureName"			"custom/asura_sword"
 		"ItemKillable"					"1"
 		"ItemSellable"					"0"
 		"ItemDroppable"					"1"
@@ -13951,7 +13952,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_pixels_guard"
+		"AbilityTextureName"			"custom/pixels_guard"
 		"ItemKillable"					"0"
 
 		// Stats
@@ -14106,7 +14107,7 @@
 		"ID"							"1297"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_soul_gatherer"
+		"AbilityTextureName"			"custom/soul_gatherer"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
@@ -14245,7 +14246,7 @@
 //		"ItemCost"						"99999"
 //		"BaseClass"                     "ability_lua"
 //		"ScriptFile"                    "lua_items/redium_lens.lua"
-//		"AbilityTextureName"			"item_redium_lens"
+//		"AbilityTextureName"			"custom/redium_lens"
 //		"ItemShopTags"					"damage;health_regen;mana_regen;hard_to_tag"
 //		"ItemQuality"					"epic"
 //		"ItemAliases"					"bf;battle fury"
@@ -14293,7 +14294,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"1299"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_tranquil_boots"
-		"AbilityTextureName"			"item_octarine_core5"
+		"AbilityTextureName"			"custom/octarine_core5"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -14331,7 +14332,7 @@
 		"ItemShareability"				"ITEM_PARTIALLY_SHAREABLE"
 		"ItemAliases"					"mana;mb;octarine core"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_octarine_core5"
+		"AbilityTextureName"			"custom/octarine_core5"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
 		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_ALWAYS"
 		
@@ -14462,7 +14463,7 @@
 		"ID"							"1302"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"            "item_abyssal_soul"
+		"AbilityTextureName"	"custom/abyssal_soul"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -14489,7 +14490,7 @@
 		"ID"							"1303"									// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_abyssal_soul"
+		"AbilityTextureName"			"custom/abyssal_soul"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemShareability"				"ITEM_PARTIALLY_SHAREABLE"
@@ -14607,7 +14608,7 @@
 		"ID"							"1305"				// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_gungnir_3"
+		"AbilityTextureName"			"custom/gungnir_3"
 		"ItemShareability"				"ITEM_PARTIALLY_SHAREABLE"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
@@ -14825,7 +14826,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"1306"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_tranquil_boots"
-		"AbilityTextureName"			"item_veil_of_discord4"
+		"AbilityTextureName"			"custom/veil_of_discord4"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -14850,7 +14851,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"1307"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DONT_CANCEL_MOVEMENT"
-		"AbilityTextureName"			"item_veil_of_discord4"
+		"AbilityTextureName"			"custom/veil_of_discord4"
 		"BaseClass" 					"item_datadriven"
 
 		// Stats		
@@ -15023,7 +15024,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"1308"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_tranquil_boots"
-		"AbilityTextureName"			"item_scythe_of_decay"
+		"AbilityTextureName"			"custom/scythe_of_decay"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -15049,7 +15050,7 @@
 		"ID"							"1309"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_scythe_of_decay"
+		"AbilityTextureName"			"custom/scythe_of_decay"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemShareability"				"ITEM_PARTIALLY_SHAREABLE"
@@ -15283,7 +15284,7 @@
 			"ID"														"2000"
 			"Model"														"models/props_gameplay/recipe.mdl"
 			"BaseClass"													"item_recipe_mjollnir"
-			"AbilityTextureName"										"item_ultimate_amulet"
+			"AbilityTextureName"										"custom/ultimate_amulet"
 
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -15309,7 +15310,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_ultimate_amulet"
+		"AbilityTextureName"			"custom/ultimate_amulet"
 		"ItemKillable"					"1"
 
 		// Stats
@@ -15423,7 +15424,7 @@
 		"ID"							"2002"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"            "item_s_a_y_4"
+		"AbilityTextureName"	"custom/s_a_y_4"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -15448,7 +15449,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_s_a_y_4"
+		"AbilityTextureName"			"custom/s_a_y_4"
 		"ItemShareability"				"ITEM_PARTIALLY_SHAREABLE"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
@@ -15775,7 +15776,7 @@
 		"ID"							"2004"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"            "item_booster_void"
+		"AbilityTextureName"	"custom/booster_void"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -15815,7 +15816,7 @@
 		"IsAetherAmplified"				"0"
 		"Model"							"models/props_gameplay/red_box.vmdl" 
 		"Effect"						"particles/generic_gameplay/dropped_item.vpcf"
-		"AbilityTextureName"			"item_booster_void"
+		"AbilityTextureName"			"custom/booster_void"
 		"AbilityProcsMagicStick" 		"1"
 		
 		
@@ -16069,7 +16070,7 @@
 		"ID"							"2008"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"BaseClass"						"item_recipe_arcane_boots"
-		"AbilityTextureName"            "item_asura_wand"
+		"AbilityTextureName"	"custom/asura_wand"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -16094,7 +16095,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityCooldown"				"60"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_asura_wand"
+		"AbilityTextureName"			"custom/asura_wand"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
@@ -16281,7 +16282,7 @@
 		"ItemShareability"				"ITEM_PARTIALLY_SHAREABLE"
 		"ItemAliases"					"mana;mb;octarine core"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_asura_core"
+		"AbilityTextureName"			"custom/asura_core"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
 		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_ALWAYS"
 		
@@ -16437,7 +16438,7 @@
 		"ItemCost"						"750000"
 		"BaseClass"                     "item_aether_lens"
 		//"ScriptFile"                    "lua_items/redium_lens.lua"
-		"AbilityTextureName"			"item_asura_lens"
+		"AbilityTextureName"			"custom/asura_lens"
 		"ItemShopTags"					"damage;health_regen;mana_regen;hard_to_tag"
 		"ItemQuality"					"epic"
 		"ItemAliases"					"asura"
@@ -16480,7 +16481,7 @@
 		"ID"							"2012"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"BaseClass"						"item_recipe_blade_mail"
-		"AbilityTextureName"            "item_asura_wand"
+		"AbilityTextureName"	"custom/asura_wand"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -16506,7 +16507,7 @@
 		"ID"							"2013"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"            "item_blade_mail2"
+		"AbilityTextureName"	"custom/blade_mail2"
 		
 		"precache"
 		{
@@ -16738,7 +16739,7 @@
 		"ID"							"2014"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"BaseClass"						"item_recipe_blade_mail"
-		"AbilityTextureName"            "item_blade_mail3"
+		"AbilityTextureName"	"custom/blade_mail3"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -16764,7 +16765,7 @@
 		"ID"							"2015"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"            "item_blade_mail3"
+		"AbilityTextureName"	"custom/blade_mail3"
 		
 		"precache"
 		{
@@ -16985,7 +16986,7 @@
 		"ID"							"2016"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"BaseClass"						"item_recipe_blade_mail"
-		"AbilityTextureName"            "item_blade_mail4"
+		"AbilityTextureName"	"custom/blade_mail4"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -17011,7 +17012,7 @@
 		"ID"							"2017"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"            "item_blade_mail4"
+		"AbilityTextureName"	"custom/blade_mail4"
 		
 		"precache"
 		{
@@ -17233,7 +17234,7 @@
 		"ID"							"2018"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"BaseClass"						"item_recipe_blade_mail"
-		"AbilityTextureName"            "item_bloodthorn2"
+		"AbilityTextureName"	"custom/bloodthorn2"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -17255,7 +17256,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"2019"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_bloodthorn2"
+		"AbilityTextureName"			"custom/bloodthorn2"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
@@ -17497,7 +17498,7 @@
 		"ID"							"2020"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"BaseClass"						"item_recipe_blade_mail"
-		"AbilityTextureName"            "item_bloodthorn3"
+		"AbilityTextureName"	"custom/bloodthorn3"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -17519,7 +17520,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"2021"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_bloodthorn3"
+		"AbilityTextureName"			"custom/bloodthorn3"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
@@ -17761,7 +17762,7 @@
 		"ID"							"2022"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"BaseClass"						"item_recipe_blade_mail"
-		"AbilityTextureName"            "item_bloodthorn4"
+		"AbilityTextureName"	"custom/bloodthorn4"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -17783,7 +17784,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"2023"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_bloodthorn4"
+		"AbilityTextureName"			"custom/bloodthorn4"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
@@ -18049,7 +18050,7 @@
 		"ID"							"2024"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"BaseClass"						"item_recipe_blade_mail"
-		"AbilityTextureName"            "item_purethorn"
+		"AbilityTextureName"	"custom/purethorn"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -18071,7 +18072,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"2025"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_purethorn"
+		"AbilityTextureName"			"custom/purethorn"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
@@ -18380,7 +18381,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"2026"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_asura_shard"
+		"AbilityTextureName"			"custom/asura_shard"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"FightRecapLevel"				"1"
 
@@ -18401,7 +18402,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"2027"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_ancient_plate"
+		"AbilityTextureName"			"custom/ancient_plate"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"FightRecapLevel"				"1"
 
@@ -18460,7 +18461,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"2028"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_ancient_heart"
+		"AbilityTextureName"			"custom/ancient_heart"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"FightRecapLevel"				"1"
 
@@ -18527,7 +18528,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"2029"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_ancient_butterfly"
+		"AbilityTextureName"			"custom/ancient_butterfly"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityCooldown"				"30"
 		"FightRecapLevel"				"1"
@@ -18642,7 +18643,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"4000"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_ancient_staff"
+		"AbilityTextureName"			"custom/ancient_staff"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -18722,7 +18723,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"2031"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_aether_lens"
-		"AbilityTextureName"			"item_ancient_lens"
+		"AbilityTextureName"			"custom/ancient_lens"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"FightRecapLevel"				"1"
 
@@ -18768,7 +18769,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"2032"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_ancient_core"
+		"AbilityTextureName"			"custom/ancient_core"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"FightRecapLevel"				"1"
 
@@ -18858,7 +18859,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"2033"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_ancient_fury"
+		"AbilityTextureName"			"custom/ancient_fury"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"FightRecapLevel"				"1"
 
@@ -18937,7 +18938,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"2034"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_ancient_thorn"
+		"AbilityTextureName"			"custom/ancient_thorn"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
@@ -19104,7 +19105,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"2035"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_ancient_soul"
+		"AbilityTextureName"			"custom/ancient_soul"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"FightRecapLevel"				"1"
 
@@ -19187,7 +19188,7 @@
 		"ID"							"2036"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"BaseClass"						"item_recipe_blade_mail"
-		"AbilityTextureName"            "item_asura_shard_evasion"
+		"AbilityTextureName"	"custom/asura_shard_evasion"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -19209,7 +19210,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"2037"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_asura_shard_evasion"
+		"AbilityTextureName"			"custom/asura_shard_evasion"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"FightRecapLevel"				"1"
 
@@ -19232,7 +19233,7 @@
 		"ID"							"2038"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"BaseClass"						"item_recipe_blade_mail"
-		"AbilityTextureName"            "item_asura_shard_regen"
+		"AbilityTextureName"	"custom/asura_shard_regen"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -19254,7 +19255,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"2039"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_asura_shard_regen"
+		"AbilityTextureName"			"custom/asura_shard_regen"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"FightRecapLevel"				"1"
 
@@ -19277,7 +19278,7 @@
 		"ID"							"2040"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"BaseClass"						"item_recipe_blade_mail"
-		"AbilityTextureName"            "item_asura_shard_damage"
+		"AbilityTextureName"	"custom/asura_shard_damage"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -19299,7 +19300,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"2041"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_asura_shard_damage"
+		"AbilityTextureName"			"custom/asura_shard_damage"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"FightRecapLevel"				"1"
 
@@ -19322,7 +19323,7 @@
 		"ID"							"2042"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"BaseClass"						"item_recipe_blade_mail"
-		"AbilityTextureName"            "item_asura_shard_armor"
+		"AbilityTextureName"	"custom/asura_shard_armor"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -19344,7 +19345,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"2043"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_asura_shard_armor"
+		"AbilityTextureName"			"custom/asura_shard_armor"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"FightRecapLevel"				"1"
 
@@ -19367,7 +19368,7 @@
 		"ID"							"2044"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"BaseClass"						"item_recipe_blade_mail"
-		"AbilityTextureName"            "item_asura_shard_health"
+		"AbilityTextureName"	"custom/asura_shard_health"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -19389,7 +19390,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"2045"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_asura_shard_health"
+		"AbilityTextureName"			"custom/asura_shard_health"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"FightRecapLevel"				"1"
 
@@ -19412,7 +19413,7 @@
 		"ID"							"2046"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"BaseClass"						"item_recipe_blade_mail"
-		"AbilityTextureName"            "item_asura_shard_mana"
+		"AbilityTextureName"	"custom/asura_shard_mana"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -19434,7 +19435,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"2047"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_asura_shard_mana"
+		"AbilityTextureName"			"custom/asura_shard_mana"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"FightRecapLevel"				"1"
 
@@ -19457,7 +19458,7 @@
 		"ID"							"2048"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"BaseClass"						"item_recipe_blade_mail"
-		"AbilityTextureName"            "item_asura_shard_burn"
+		"AbilityTextureName"	"custom/asura_shard_burn"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -19479,7 +19480,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"2049"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_asura_shard_burn"
+		"AbilityTextureName"			"custom/asura_shard_burn"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"FightRecapLevel"				"1"
 
@@ -19502,7 +19503,7 @@
 		"ID"							"2050"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"BaseClass"						"item_recipe_blade_mail"
-		"AbilityTextureName"            "item_asura_shard_freeze"
+		"AbilityTextureName"	"custom/asura_shard_freeze"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -19524,7 +19525,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"2051"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_asura_shard_freeze"
+		"AbilityTextureName"			"custom/asura_shard_freeze"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"FightRecapLevel"				"1"
 
@@ -19547,7 +19548,7 @@
 		"ID"							"2052"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"BaseClass"						"item_recipe_blade_mail"
-		"AbilityTextureName"            "item_asura_shard_crit"
+		"AbilityTextureName"	"custom/asura_shard_crit"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -19569,7 +19570,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"2053"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_asura_shard_crit"
+		"AbilityTextureName"			"custom/asura_shard_crit"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"FightRecapLevel"				"1"
 
@@ -19592,7 +19593,7 @@
 		"ID"							"2054"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"BaseClass"						"item_recipe_blade_mail"
-		"AbilityTextureName"            "item_ghost_scepter2"
+		"AbilityTextureName"	"custom/ghost_scepter2"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -19614,7 +19615,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"2055"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_ghost_scepter2"
+		"AbilityTextureName"			"custom/ghost_scepter2"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"FightRecapLevel"				"1"
 		
@@ -19743,7 +19744,7 @@
 		"ID"							"2056"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"BaseClass"						"item_recipe_blade_mail"
-		"AbilityTextureName"            "item_ghost_scepter3"
+		"AbilityTextureName"	"custom/ghost_scepter3"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -19765,7 +19766,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"2057"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_ghost_scepter3"
+		"AbilityTextureName"			"custom/ghost_scepter3"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"FightRecapLevel"				"1"
 		
@@ -19894,7 +19895,7 @@
 		"ID"							"2058"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"BaseClass"						"item_recipe_blade_mail"
-		"AbilityTextureName"            "item_ghost_scepter4"
+		"AbilityTextureName"	"custom/ghost_scepter4"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -19916,7 +19917,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"2059"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_ghost_scepter4"
+		"AbilityTextureName"			"custom/ghost_scepter4"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"FightRecapLevel"				"1"
 		
@@ -20045,7 +20046,7 @@
 		"ID"							"2060"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"BaseClass"						"item_recipe_blade_mail"
-		"AbilityTextureName"            "item_ghost_scepter5"
+		"AbilityTextureName"	"custom/ghost_scepter5"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -20067,7 +20068,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"2061"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_ghost_scepter5"
+		"AbilityTextureName"			"custom/ghost_scepter5"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"FightRecapLevel"				"1"
 		
@@ -20191,7 +20192,7 @@
 		"ID"							"2062"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"BaseClass"						"item_recipe_blade_mail"
-		"AbilityTextureName"            "item_mekansm2"
+		"AbilityTextureName"	"custom/mekansm2"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -20216,7 +20217,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"Model"							"models/props_gameplay/red_box.vmdl" 
 		"Effect"						"particles/generic_gameplay/dropped_item.vpcf"
-		"AbilityTextureName"			"item_mekansm2"
+		"AbilityTextureName"			"custom/mekansm2"
 		"FightRecapLevel"				"2"
 		
 		"precache"
@@ -20375,7 +20376,7 @@
 		"ID"							"2064"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"BaseClass"						"item_recipe_blade_mail"
-		"AbilityTextureName"            "item_mekansm3"
+		"AbilityTextureName"	"custom/mekansm3"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -20400,7 +20401,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"Model"							"models/props_gameplay/red_box.vmdl" 
 		"Effect"						"particles/generic_gameplay/dropped_item.vpcf"
-		"AbilityTextureName"			"item_mekansm3"
+		"AbilityTextureName"			"custom/mekansm3"
 		"FightRecapLevel"				"2"
 		
 		"precache"
@@ -20559,7 +20560,7 @@
 		"ID"							"2066"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"BaseClass"						"item_recipe_blade_mail"
-		"AbilityTextureName"            "item_mekansm4"
+		"AbilityTextureName"	"custom/mekansm4"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -20584,7 +20585,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"Model"							"models/props_gameplay/red_box.vmdl" 
 		"Effect"						"particles/generic_gameplay/dropped_item.vpcf"
-		"AbilityTextureName"			"item_mekansm4"
+		"AbilityTextureName"			"custom/mekansm4"
 		"FightRecapLevel"				"2"
 		
 		"precache"
@@ -20781,7 +20782,7 @@
 		"ID"							"2068"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"BaseClass"						"item_recipe_blade_mail"
-		"AbilityTextureName"            "item_mekansm5"
+		"AbilityTextureName"	"custom/mekansm5"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -20806,7 +20807,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"Model"							"models/props_gameplay/red_box.vmdl" 
 		"Effect"						"particles/generic_gameplay/dropped_item.vpcf"
-		"AbilityTextureName"			"item_mekansm5"
+		"AbilityTextureName"			"custom/mekansm5"
 		"FightRecapLevel"				"2"
 		
 		"precache"
@@ -21025,7 +21026,7 @@
 		"ID"							"2070"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"item_cursed_amulet"
+		"AbilityTextureName"			"custom/cursed_amulet"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
@@ -21098,7 +21099,7 @@
 		"ID"							"2071"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"BaseClass"						"item_recipe_blade_mail"
-		"AbilityTextureName"            "item_phase_boots2"
+		"AbilityTextureName"	"custom/phase_boots2"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -21123,7 +21124,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"Model"							"models/props_gameplay/red_box.vmdl" 
 		"Effect"						"particles/generic_gameplay/dropped_item.vpcf"
-		"AbilityTextureName"			"item_phase_boots2"
+		"AbilityTextureName"			"custom/phase_boots2"
 		"FightRecapLevel"				"2"
 		
 		"precache"
@@ -21218,7 +21219,7 @@
 		"ID"							"2073"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"BaseClass"						"item_recipe_blade_mail"
-		"AbilityTextureName"            "item_phase_boots3"
+		"AbilityTextureName"	"custom/phase_boots3"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -21243,7 +21244,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"Model"							"models/props_gameplay/red_box.vmdl" 
 		"Effect"						"particles/generic_gameplay/dropped_item.vpcf"
-		"AbilityTextureName"			"item_phase_boots3"
+		"AbilityTextureName"			"custom/phase_boots3"
 		"FightRecapLevel"				"2"
 		
 		"precache"
@@ -21333,7 +21334,7 @@
 		"ID"							"2075"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"BaseClass"						"item_recipe_blade_mail"
-		"AbilityTextureName"            "item_phase_boots4"
+		"AbilityTextureName"	"custom/phase_boots4"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -21358,7 +21359,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"Model"							"models/props_gameplay/red_box.vmdl" 
 		"Effect"						"particles/generic_gameplay/dropped_item.vpcf"
-		"AbilityTextureName"			"item_phase_boots4"
+		"AbilityTextureName"			"custom/phase_boots4"
 		"FightRecapLevel"				"2"
 		
 		"precache"
@@ -21448,7 +21449,7 @@
 		"ID"							"2077"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"BaseClass"						"item_recipe_blade_mail"
-		"AbilityTextureName"            "item_phase_boots5"
+		"AbilityTextureName"	"custom/phase_boots5"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -21473,7 +21474,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"Model"							"models/props_gameplay/red_box.vmdl" 
 		"Effect"						"particles/generic_gameplay/dropped_item.vpcf"
-		"AbilityTextureName"			"item_phase_boots5"
+		"AbilityTextureName"			"custom/phase_boots5"
 		"FightRecapLevel"				"2"
 		
 		"precache"

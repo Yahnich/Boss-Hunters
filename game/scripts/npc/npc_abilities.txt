@@ -6258,12 +6258,12 @@
 			"01"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"cloud_duration"	"50"
+				"cloud_duration"	"15"
 			}
 			"02"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"cloud_bolt_interval"	"1"
+				"cloud_bolt_interval"	"1.5"
 			}
 			"03"
 			{
@@ -11735,10 +11735,6 @@
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"				"6.0 6.0 6.0 6.0"
-	
-		// Damage.
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"					"1000 2000 4000 8000 16000 32000 64000"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -11760,7 +11756,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"beam_damage"			"500 1000 2000 4000 8000 16000 32000"
+				"beam_damage"			"1000 2000 4000 8000 16000 32000 64000"
 				"LinkedSpecialBonus"	"special_bonus_unique_luna_1"
 			}
 		}
@@ -12369,9 +12365,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"				"80 90 100 110"
 		
-		// Damage.
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"					"800 1600 3200 6400 12800 25000 50000"
+
 			
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -13874,6 +13868,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
 		"LevelsBetweenUpgrades"			"6"
 		"MaxLevel"						"7"
+		"RequiredLevel"					"6"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -13895,7 +13890,8 @@
 			"01"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"damage_bonus"					"200 400 800 1600 3200 6400 12800"
+				"damage_bonus"					"400 800 1600 3200 6400 12800 19200"
+				"LinkedSpecialBonus"			"special_bonus_unique_clinkz_1"
 			}
 		}
 	}
@@ -15150,7 +15146,7 @@
 
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"12.0 10.0 8.0 6.0 4.0 2.0 1.0"
+		"AbilityCooldown"				"12.0 11.0 10.0 9.0 8.0 7.0 6.0"
 			
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -15391,6 +15387,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
+		"RequiredLevel"					"4"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -15412,7 +15409,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"200 400 600 1250 2500 5000 10000"
+				"damage"				"600 1250 2500 5000 10000 20000 40000"
 			}
 			"02"
 			{
@@ -15422,7 +15419,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"fade_time"				"0.30 0.25 0.20 0.15 0.10 0.05 0"
+				"fade_time"				"0"
 			}
 			"04"
 			{
@@ -20512,6 +20509,12 @@
 		"FightRecapLevel"				"2"
 		"LevelsBetweenUpgrades"			"7"
 		"MaxLevel"						"7"
+		"HasScepterUpgrade"				"1"
+		
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO"
+		"AbilityCastRange"				"1200"
 		"HasScepterUpgrade"			"1"
 		
 		// Casting
@@ -22897,7 +22900,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"damage_per_second"		"300.0 600.0 1200.0 2400.0 4800 10000 20000"
+				"damage_per_second"		"1200.0 2400.0 4800 10000 20000 40000 80000"
 			}
 			"02"
 			{
@@ -23167,7 +23170,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"teleport_delay"		"5.0 4.0 3.0 2.0 1.5 1.0 0.0"
+				"teleport_delay"		"3.0 2.5 2.0 1.5 1.0 0.5 0.0"
 			}
 		}
 	}
@@ -23213,7 +23216,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"miss_duration"			"1.0 1.5 2.0 2.5 3.0 3.5 4.0"
+				"miss_duration"			"4.0"
 			}
 			"03"
 			{
@@ -23267,6 +23270,7 @@
 		"FightRecapLevel"				"1"
 		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
+		"RequiredLevel"					"6"
 
 
 		// Casting
@@ -23289,7 +23293,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"damage_per_second"		"600.0 1200.0 2400.0 4800 10000 20000 40000"
+				"damage_per_second"		"1200.0 2400.0 4800 10000 20000 40000 80000"
 			}
 			"02"
 			{
@@ -24814,7 +24818,6 @@
 			{
 				"var_type"						"FIELD_FLOAT"
 				"stun_duration"					"2.0 2.25 2.5 2.75 3.0 3.25 3.5"
-				"LinkedSpecialBonus"			"special_bonus_unique_centaur_1"
 			}
 			"03"
 			{
@@ -27600,6 +27603,7 @@
 		"FightRecapLevel"				"1"
 		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
+		"RequiredLevel"					"5"
 
 
 		// Time		
@@ -27627,12 +27631,12 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"300 600 1200 2400 4800 9600 20000"
+				"damage"				"600 1200 2400 4800 9600 20000 40000"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage_per_unit"		"200 400 800 1600 3200 6400 12800"
+				"damage_per_unit"		"400 800 1600 3200 6400 12800 25600"
 			}
 			"04"
 			{
@@ -27673,10 +27677,10 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_ALL"
-		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NOT_MAGIC_IMMUNE_ALLIES"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ALLIES_NO"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ALLIES_YES"
 		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
+		"RequiredLevel"					"6"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -27703,7 +27707,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"5.0"
+				"duration"				"10.0"
 			}
 			"02"
 			{
@@ -27713,7 +27717,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"hp_regen"				"60 120 240 480 1000 2500 5000"
+				"hp_regen"				"240 480 1000 2500 5000 10000 20000"
 			}
 		}
 	}
@@ -35974,7 +35978,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"100"
+				"value"				"5000"
 			}
 		}
 	}
@@ -35997,7 +36001,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"125"
+				"value"				"6250"
 			}
 		}
 	}
@@ -36020,7 +36024,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"150"
+				"value"				"7500"
 			}
 		}
 	}
@@ -36043,7 +36047,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"175"
+				"value"				"8750"
 			}
 		}
 	}
@@ -36066,7 +36070,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"200"
+				"value"				"10000"
 			}
 		}
 	}
@@ -36089,7 +36093,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"250"
+				"value"				"12500"
 			}
 		}
 	}
@@ -36112,7 +36116,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"275"
+				"value"				"13750"
 			}
 		}
 	}
@@ -36135,7 +36139,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"300"
+				"value"				"15000"
 			}
 		}
 	}
@@ -36158,7 +36162,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"350"
+				"value"				"17500"
 			}
 		}
 	}
@@ -36181,7 +36185,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"400"
+				"value"				"20000"
 			}
 		}
 	}
@@ -36204,7 +36208,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"500"
+				"value"				"25000"
 			}
 		}
 	}
@@ -36227,7 +36231,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"100"
+				"value"				"5"
 			}
 		}
 	}
@@ -36250,7 +36254,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"125"
+				"value"				"10"
 			}
 		}
 	}
@@ -36273,7 +36277,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"150"
+				"value"				"15"
 			}
 		}
 	}
@@ -36296,7 +36300,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"175"
+				"value"				"20"
 			}
 		}
 	}
@@ -36319,7 +36323,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"200"
+				"value"				"25"
 			}
 		}
 	}
@@ -36342,7 +36346,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"250"
+				"value"				"30"
 			}
 		}
 	}
@@ -36365,7 +36369,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"300"
+				"value"				"35"
 			}
 		}
 	}
@@ -36388,7 +36392,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"350"
+				"value"				"40"
 			}
 		}
 	}
@@ -36411,7 +36415,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"400"
+				"value"				"45"
 			}
 		}
 	}
@@ -36434,7 +36438,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"500"
+				"value"				"50"
 			}
 		}
 	}
@@ -36457,7 +36461,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"10"
+				"value"				"30"
 			}
 		}
 	}
@@ -36480,7 +36484,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"15"
+				"value"				"45"
 			}
 		}
 	}
@@ -36503,7 +36507,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"20"
+				"value"				"60"
 			}
 		}
 	}
@@ -36526,7 +36530,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"25"
+				"value"				"75"
 			}
 		}
 	}
@@ -36549,7 +36553,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"30"
+				"value"				"90"
 			}
 		}
 	}
@@ -36572,7 +36576,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"35"
+				"value"				"105"
 			}
 		}
 	}
@@ -36595,7 +36599,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"40"
+				"value"				"120"
 			}
 		}
 	}
@@ -36618,7 +36622,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"45"
+				"value"				"135"
 			}
 		}
 	}
@@ -36641,7 +36645,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"50"
+				"value"				"150"
 			}
 		}
 	}
@@ -36664,7 +36668,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"60"
+				"value"				"180"
 			}
 		}
 	}
@@ -36687,7 +36691,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"80"
+				"value"				"240"
 			}
 		}
 	}
@@ -36710,7 +36714,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"100"
+				"value"				"300"
 			}
 		}
 	}
@@ -36733,7 +36737,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"4"
+				"value"				"200"
 			}
 		}
 	}
@@ -36756,7 +36760,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"5"
+				"value"				"250"
 			}
 		}
 	}
@@ -36779,7 +36783,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"6"
+				"value"				"300"
 			}
 		}
 	}
@@ -36802,7 +36806,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"7"
+				"value"				"350"
 			}
 		}
 	}
@@ -36825,7 +36829,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"8"
+				"value"				"400"
 			}
 		}
 	}
@@ -36848,7 +36852,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"10"
+				"value"				"500"
 			}
 		}
 	}
@@ -36871,7 +36875,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"14"
+				"value"				"700"
 			}
 		}
 	}
@@ -36894,7 +36898,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"15"
+				"value"				"750"
 			}
 		}
 	}
@@ -36917,7 +36921,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"20"
+				"value"				"1000"
 			}
 		}
 	}
@@ -36940,7 +36944,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"25"
+				"value"				"1250"
 			}
 		}
 	}
@@ -36963,7 +36967,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"40"
+				"value"				"2000"
 			}
 		}
 	}
@@ -36986,7 +36990,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"50"
+				"value"				"2500"
 			}
 		}
 	}
@@ -37009,7 +37013,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"1"
+				"value"				"5"
 			}
 		}
 	}
@@ -37032,7 +37036,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"2"
+				"value"				"10"
 			}
 		}
 	}
@@ -37055,7 +37059,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"4"
+				"value"				"20"
 			}
 		}
 	}
@@ -37078,7 +37082,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"3"
+				"value"				"15"
 			}
 		}
 	}
@@ -37101,7 +37105,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"6"
+				"value"				"30"
 			}
 		}
 	}
@@ -37124,7 +37128,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"8"
+				"value"				"40"
 			}
 		}
 	}
@@ -37147,7 +37151,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"10"
+				"value"				"50"
 			}
 		}
 	}
@@ -37170,7 +37174,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"14"
+				"value"				"70"
 			}
 		}
 	}
@@ -37527,7 +37531,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"4"
+				"value"				"80"
 			}
 		}
 	}
@@ -37552,7 +37556,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"5"
+				"value"				"100"
 			}
 		}
 	}
@@ -37577,7 +37581,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"6"
+				"value"				"120"
 			}
 		}
 	}
@@ -37602,7 +37606,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"7"
+				"value"				"140"
 			}
 		}
 	}
@@ -37627,7 +37631,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"8"
+				"value"				"160"
 			}
 		}
 	}
@@ -37652,7 +37656,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"10"
+				"value"				"200"
 			}
 		}
 	}
@@ -37677,7 +37681,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"12"
+				"value"				"240"
 			}
 		}
 	}
@@ -37702,7 +37706,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"14"
+				"value"				"280"
 			}
 		}
 	}
@@ -37727,7 +37731,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"15"
+				"value"				"300"
 			}
 		}
 	}
@@ -37752,7 +37756,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"20"
+				"value"				"400"
 			}
 		}
 	}
@@ -37775,7 +37779,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"6"
+				"value"				"240"
 			}
 		}
 	}
@@ -37798,7 +37802,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"7"
+				"value"				"280"
 			}
 		}
 	}
@@ -37821,7 +37825,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"8"
+				"value"				"320"
 			}
 		}
 	}
@@ -37844,7 +37848,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"10"
+				"value"				"400"
 			}
 		}
 	}
@@ -37867,7 +37871,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"12"
+				"value"				"480"
 			}
 		}
 	}
@@ -37890,7 +37894,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"13"
+				"value"				"520"
 			}
 		}
 	}
@@ -37913,7 +37917,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"15"
+				"value"				"600"
 			}
 		}
 	}
@@ -37936,7 +37940,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"20"
+				"value"				"800"
 			}
 		}
 	}
@@ -37959,7 +37963,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"25"
+				"value"				"1000"
 			}
 		}
 	}
@@ -37982,7 +37986,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"30"
+				"value"				"1200"
 			}
 		}
 	}
@@ -38005,7 +38009,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"35"
+				"value"				"1400"
 			}
 		}
 	}
@@ -38557,7 +38561,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"2"
+				"value"				"20"
 			}
 		}
 	}
@@ -38580,7 +38584,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"3"
+				"value"				"30"
 			}
 		}
 	}
@@ -38603,7 +38607,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"4"
+				"value"				"40"
 			}
 		}
 	}
@@ -38626,7 +38630,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"5"
+				"value"				"50"
 			}
 		}
 	}
@@ -38649,7 +38653,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"6"
+				"value"				"60"
 			}
 		}
 	}
@@ -38672,7 +38676,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"7"
+				"value"				"70"
 			}
 		}
 	}
@@ -38695,7 +38699,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"8"
+				"value"				"80"
 			}
 		}
 	}
@@ -38718,7 +38722,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"9"
+				"value"				"90"
 			}
 		}
 	}
@@ -38741,7 +38745,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"10"
+				"value"				"100"
 			}
 		}
 	}
@@ -38764,7 +38768,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"12"
+				"value"				"120"
 			}
 		}
 	}
@@ -38787,7 +38791,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"15"
+				"value"				"150"
 			}
 		}
 	}
@@ -39063,7 +39067,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"10"
+				"value"				"300"
 			}
 		}
 	}
@@ -39086,7 +39090,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"12"
+				"value"				"360"
 			}
 		}
 	}
@@ -39109,7 +39113,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"15"
+				"value"				"450"
 			}
 		}
 	}
@@ -39132,7 +39136,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"20"
+				"value"				"600"
 			}
 		}
 	}
@@ -39155,7 +39159,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"25"
+				"value"				"750"
 			}
 		}
 	}
@@ -39178,7 +39182,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"30"
+				"value"				"900"
 			}
 		}
 	}
@@ -39201,7 +39205,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"35"
+				"value"				"1050"
 			}
 		}
 	}
@@ -39224,7 +39228,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"40"
+				"value"				"1200"
 			}
 		}
 	}
@@ -39247,7 +39251,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"45"
+				"value"				"1350"
 			}
 		}
 	}
@@ -39270,7 +39274,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"50"
+				"value"				"1500"
 			}
 		}
 	}
@@ -39293,7 +39297,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"65"
+				"value"				"1950"
 			}
 		}
 	}
@@ -39316,7 +39320,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"75"
+				"value"				"2250"
 			}
 		}
 	}
@@ -39339,7 +39343,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"90"
+				"value"				"2700"
 			}
 		}
 	}
@@ -39362,7 +39366,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"100"
+				"value"				"3000"
 			}
 		}
 	}
@@ -39385,7 +39389,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"120"
+				"value"				"3600"
 			}
 		}
 	}
@@ -39408,7 +39412,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"150"
+				"value"				"4500"
 			}
 		}
 	}
@@ -39891,7 +39895,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"3"
+				"value"				"12"
 			}
 		}
 	}
@@ -39914,7 +39918,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"4"
+				"value"				"16"
 			}
 		}
 	}
@@ -39937,7 +39941,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"5"
+				"value"				"20"
 			}
 		}
 	}
@@ -39960,7 +39964,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"6"
+				"value"				"24"
 			}
 		}
 	}
@@ -39983,7 +39987,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"8"
+				"value"				"32"
 			}
 		}
 	}
@@ -40006,7 +40010,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"10"
+				"value"				"40"
 			}
 		}
 	}
@@ -40029,7 +40033,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"12"
+				"value"				"48"
 			}
 		}
 	}
@@ -40052,7 +40056,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"15"
+				"value"				"60"
 			}
 		}
 	}
@@ -40075,7 +40079,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"20"
+				"value"				"80"
 			}
 		}
 	}
@@ -40098,7 +40102,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"25"
+				"value"				"100"
 			}
 		}
 	}
@@ -40973,7 +40977,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"1"
+				"value"				"25"
 			}
 		}
 	}
@@ -40996,7 +41000,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"1"
+				"value"				"25"
 			}
 		}
 	}
@@ -41295,7 +41299,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"18"
+				"value"				"100"
 			}
 		}
 	}
@@ -41317,8 +41321,8 @@
 		{
 			"01"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"value"				"120"
+				"var_type"					"FIELD_FLOAT"
+				"value"				"0.5"
 			}
 		}
 	}
@@ -41461,7 +41465,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"70"
+				"value"				"4000"
 			}
 		}
 	}
@@ -41469,7 +41473,7 @@
 	//=================================================================================================================
 	// Ability: Special Bonus
 	//=================================================================================================================
-	"special_bonus_unique_dazzle_1"
+	"special_bonus_intelligence_35"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -41507,7 +41511,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"60"
+				"value"				"8000"
 			}
 		}
 	}
@@ -41829,7 +41833,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"8"
+				"value"				"150"
 			}
 		}
 	}
@@ -41990,7 +41994,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"200"
+				"value"				"9000"
 			}
 		}
 	}
@@ -42035,8 +42039,8 @@
 		{
 			"01"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"value"				"0"
+				"var_type"					"FIELD_FLOAT"
+				"value"				"1.5"
 			}
 		}
 	}
@@ -42059,7 +42063,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"14"
+				"value"				"15"
 			}
 		}
 	}
@@ -42289,7 +42293,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"20"
+				"value"				"100"
 			}
 		}
 	}
@@ -42519,7 +42523,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"30"
+				"value"				"1500"
 			}
 		}
 	}
@@ -42657,7 +42661,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"40"
+				"value"				"3200"
 			}
 		}
 	}
@@ -42749,7 +42753,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"200"
+				"value"				"50"
 			}
 		}
 	}
@@ -42772,7 +42776,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"30"
+				"value"				"1800"
 			}
 		}
 	}
@@ -43047,8 +43051,8 @@
 		{
 			"01"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"value"				"0.75"
+				"var_type"					"FIELD_INTEGER"
+				"value"				"4000"
 			}
 		}
 	}
@@ -43163,7 +43167,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"40"
+				"value"				"2000"
 			}
 		}
 	}
@@ -43347,7 +43351,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"3"
+				"value"				"2"
 			}
 			"02"
 			{
@@ -43421,7 +43425,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"40"
+				"value"				"100"
 			}
 		}
 	}
@@ -43927,7 +43931,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"1"
+				"value"				"-15"
 			}
 		}
 	}
@@ -44019,7 +44023,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"3"
+				"value"				"-25"
 			}
 		}
 	}
@@ -44088,7 +44092,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"200"
+				"value"				"12000"
 			}
 		}
 	}
@@ -44180,7 +44184,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"100"
+				"value"				"10000"
 			}
 		}
 	}
@@ -44295,7 +44299,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"2"
+				"value"				"35"
 			}
 		}
 	}
@@ -44318,7 +44322,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"200"
+				"value"				"4000"
 			}
 		}
 	}
@@ -44341,7 +44345,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"30"
+				"value"				"700"
 			}
 		}
 	}
@@ -44364,7 +44368,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"7"
+				"value"				"50"
 			}
 		}
 	}

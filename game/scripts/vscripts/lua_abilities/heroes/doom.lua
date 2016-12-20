@@ -5,6 +5,9 @@ function Devour_doom(keys)
     local ability = keys.ability
     local level = ability:GetLevel()-1
     local gold = ability:GetTalentSpecialValueFor("total_gold")
+	if caster:HasTalent("special_bonus_unique_doom_2") then 
+		gold = gold * caster:FindTalentValue("special_bonus_unique_doom_2")
+	end
     local duration = ability:GetTalentSpecialValueFor("duration")
 	
 	local death = ability:GetTalentSpecialValueFor("death_perc")

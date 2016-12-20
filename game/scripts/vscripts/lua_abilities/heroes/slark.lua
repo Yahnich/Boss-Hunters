@@ -53,7 +53,9 @@ function PounceHeal( keys )
 	local ability_level = ability:GetLevel()-1
 	if ability:IsCooldownReady() and not caster:HasModifier(keys.modifier) and keys.attacker ~= caster then
 		caster:StartGesture(ACT_DOTA_SLARK_POUNCE)
+		local hpDiff = math.abs(caster:GetHealth() - ability.caster_hp_old)
 		caster:SetHealth(ability.caster_hp_old)
+		caster:Heal(hpDiff, caster)
 		ability:StartCooldown( ability:GetCooldown(ability_level)*get_octarine_multiplier(caster) )
 
 		-- Ability variables
