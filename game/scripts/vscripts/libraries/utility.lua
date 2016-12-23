@@ -1,3 +1,5 @@
+EHP_PER_ARMOR = 0.01
+
 function get_aether_multiplier(caster)
     local aether_multiplier = 1
     for itemSlot = 0, 5, 1 do
@@ -415,6 +417,13 @@ end
 function CDOTA_BaseNPC:GetPhysicalArmorReduction()
 	local armornpc = self:GetPhysicalArmorValue()
 	local armor_reduction = 1 - (0.06 * armornpc) / (1 + (0.06 * math.abs(armornpc)))
+	armor_reduction = 100 - (armor_reduction * 100)
+	return armor_reduction
+end
+
+function CDOTA_BaseNPC:GetRealPhysicalArmorReduction()
+	local armornpc = self:GetPhysicalArmorValue()
+	local armor_reduction = 1 - (EHP_PER_ARMOR * armornpc) / (1 + (EHP_PER_ARMOR * math.abs(armornpc)))
 	armor_reduction = 100 - (armor_reduction * 100)
 	return armor_reduction
 end

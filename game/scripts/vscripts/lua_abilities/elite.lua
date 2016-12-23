@@ -345,8 +345,8 @@ function BlockPurgeHeal(keys)
 	local caster = keys.caster
 	if keys.caster:PassivesDisabled() then return end
 	caster:Purge(false, true, false, false, false)
-	local heal = (caster.totaldamage * caster.averagedps) * 0.05
-	if GameRules._NewGamePlus then heal = heal / 99.9 end
+	local heal = (caster.totaldamage * caster.averagedps) * 0.01
+	if GameRules._NewGamePlus then heal = heal / 99.95 end
 	caster:Heal(caster:GetMaxHealth() * 0.01 + heal, caster)
 end
 	

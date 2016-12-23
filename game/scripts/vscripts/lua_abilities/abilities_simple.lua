@@ -149,7 +149,7 @@ function evil_core_summon(keys)
 
     local number = 1
 
-    if GameRules.gameDifficulty == 4 then 
+    if GameRules.gameDifficulty >= 4 then 
         number = 2
     end
 

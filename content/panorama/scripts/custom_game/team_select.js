@@ -9,21 +9,27 @@ var g_PlayerPanels = [];
 
 var g_TEAM_SPECATOR = 1;
 
-// SetDefault();
+SetDefault();
 
-// function SetDefault(){
-	// if(Game.GetMapInfo().map_display_name == "epic_boss_fight_impossible"){
-		// $("#defaultLivesImpossible").checked = true;
-		// $("#defaultDifficultyImpossible").checked = true;
-		// OnVoteButtonPressed('difficulty', 2);
-		// OnVoteButtonPressed('lives', 3);
-	// } else{
-		// $("#defaultLives").checked = true;
-		// $("#defaultDifficulty").checked = true;
-		// OnVoteButtonPressed('difficulty', 1);
-		// OnVoteButtonPressed('lives', 7);
-	// }
-// }
+function SetDefault(){
+	$.Msg("mapname", Game.GetMapInfo())
+	if(Game.GetMapInfo().map_display_name == "epic_boss_fight_impossible"){
+		$("#defaultDifficulty").visible = false;
+		$("#exclusiveImpossibleDifficulty").visible = true;
+		$("#defaultDifficulty").enabled = false;
+		$("#exclusiveImpossibleDifficulty").enabled = true;
+	} else if(Game.GetMapInfo().map_display_name == "epic_boss_fight_hard" || Game.GetMapInfo().map_display_name == "epic_boss_fight_boss_master" ){
+		$("#defaultDifficulty").visible = true;
+		$("#exclusiveImpossibleDifficulty").visible = false;
+		$("#defaultDifficulty").enabled = true;
+		$("#exclusiveImpossibleDifficulty").enabled = false;
+	} else{
+		$("#defaultDifficulty").visible = false;
+		$("#exclusiveImpossibleDifficulty").visible = true;
+		$("#defaultDifficulty").enabled = false;
+		$("#exclusiveImpossibleDifficulty").enabled = true
+	}
+}
 
 
 //--------------------------------------------------------------------------------------------------

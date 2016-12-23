@@ -41,103 +41,13 @@ end
 -- Precache resources
 function Precache( context )
 	--PrecacheResource( "particle", "particles/generic_gameplay/winter_effects_hero.vpcf", context )
-	PrecacheUnitByNameSync("npc_dota_courier", context)
-	
-	
-	PrecacheUnitByNameSync("npc_dota_money", context)
-	PrecacheUnitByNameSync("npc_dota_boss1", context)
-	PrecacheUnitByNameSync("npc_dota_boss2", context)
-	PrecacheUnitByNameSync("npc_dota_boss3a", context)
-	PrecacheUnitByNameSync("npc_dota_boss3b", context)
-	PrecacheUnitByNameSync("npc_dota_boss4", context)
-	PrecacheUnitByNameSync("npc_dota_mini_boss1", context)
-	PrecacheUnitByNameSync("npc_dota_boss6", context)
-	PrecacheUnitByNameSync("npc_dota_boss6b", context)
-	PrecacheUnitByNameSync("npc_dota_boss7", context)
-	PrecacheUnitByNameSync("npc_dota_boss8a", context)
-	PrecacheUnitByNameSync("npc_dota_boss9", context)
-	PrecacheUnitByNameSync("npc_dota_mini_slither", context)
-	PrecacheUnitByNameSync("npc_dota_boss10_h", context)
-	PrecacheUnitByNameSync("npc_dota_boss11", context)
-	PrecacheUnitByNameSync("npc_dota_boss13", context)
-	PrecacheUnitByNameSync("npc_dota_boss14", context)
-	PrecacheUnitByNameSync("npc_dota_mini_boss2_he", context)
-	PrecacheUnitByNameSync("npc_dota_mini_boss2", context)
-	PrecacheUnitByNameSync("npc_dota_mini_tree", context)
-	PrecacheUnitByNameSync("npc_dota_mini_tree2", context)
-	PrecacheUnitByNameSync("npc_dota_boss16_h", context)
-	PrecacheUnitByNameSync("npc_dota_boss19_h", context)
-	PrecacheUnitByNameSync("npc_dota_boss18", context)
-	PrecacheUnitByNameSync("npc_dota_boss21", context)
-	PrecacheUnitByNameSync("npc_dota_boss33_eidolon", context)
-	PrecacheUnitByNameSync("npc_dota_boss36", context)
-	PrecacheUnitByNameSync("npc_dota_boss36_guardian", context)
-	PrecacheUnitByNameSync("npc_dota_creature_broodmother_egg", context)
-	PrecacheUnitByNameSync("npc_dota_creature_broodmother", context)
-	PrecacheUnitByNameSync("npc_dota_creature_spiderling", context)
-	PrecacheUnitByNameSync("npc_dota_boss38", context)
-	PrecacheUnitByNameSync("npc_dota_boss39", context)
-	if GetMapName() == "epic_boss_fight_boss_master" or  GetMapName() == "epic_boss_fight_hard" then
-		PrecacheUnitByNameSync("npc_dota_boss5_h", context)
-		PrecacheUnitByNameSync("npc_dota_boss12_a_h", context)
-		PrecacheUnitByNameSync("npc_dota_boss12_b_h", context)
-		PrecacheUnitByNameSync("npc_dota_boss12_c_h", context)
-		PrecacheUnitByNameSync("npc_dota_boss15_ns", context)
-		PrecacheUnitByNameSync("npc_dota_boss17_h", context)
-		PrecacheUnitByNameSync("npc_dota_boss22_h", context)
-		PrecacheUnitByNameSync("npc_dota_boss23_h", context)
-		PrecacheUnitByNameSync("npc_dota_boss23_m_h", context)
-		PrecacheUnitByNameSync("npc_dota_boss25_h", context)
-		PrecacheUnitByNameSync("npc_dota_boss24_archer_h", context)
-		PrecacheUnitByNameSync("npc_dota_boss24_stomper_h", context)
-		PrecacheUnitByNameSync("npc_dota_boss24_m", context)
-		PrecacheUnitByNameSync("npc_dota_boss27_h", context)
-		PrecacheUnitByNameSync("npc_dota_boss26_mini_h", context)
-		PrecacheUnitByNameSync("npc_dota_boss26_h", context)
-		PrecacheUnitByNameSync("npc_dota_boss28_h", context)
-		PrecacheUnitByNameSync("npc_dota_boss30_h", context)
-		PrecacheUnitByNameSync("npc_dota_boss31_h", context)
-		PrecacheUnitByNameSync("npc_dota_boss32_h", context)
-		PrecacheUnitByNameSync("npc_dota_boss32_trueform_h", context)
-		PrecacheUnitByNameSync("npc_dota_boss33_a_h", context)
-		PrecacheUnitByNameSync("npc_dota_boss33_b_h", context)
-		PrecacheUnitByNameSync("npc_dota_boss34_h", context)
-		PrecacheUnitByNameSync("npc_dota_boss35_h", context)
-		PrecacheUnitByNameSync("npc_dota_boss37_h", context)
-	elseif GetMapName() == "epic_boss_fight_impossible" then
-		PrecacheUnitByNameSync("npc_dota_boss1_vh", context)
-		PrecacheUnitByNameSync("npc_dota_boss5_vh", context)
-		PrecacheUnitByNameSync("npc_dota_boss12_a_vh", context)
-		PrecacheUnitByNameSync("npc_dota_boss12_b_vh", context)
-		PrecacheUnitByNameSync("npc_dota_boss12_c_vh", context)
-		PrecacheUnitByNameSync("npc_dota_boss12_d_vh", context)
-		PrecacheUnitByNameSync("npc_dota_boss17_vh", context)
-		PrecacheUnitByNameSync("npc_dota_boss22_vh", context)
-		PrecacheUnitByNameSync("npc_dota_boss23_vh", context)
-		PrecacheUnitByNameSync("npc_dota_boss23_m_vh", context)
-		PrecacheUnitByNameSync("npc_dota_boss25_vh", context)
-		PrecacheUnitByNameSync("npc_dota_boss24_archer_vh", context)
-		PrecacheUnitByNameSync("npc_dota_boss24_stomper_vh", context)
-		PrecacheUnitByNameSync("npc_dota_boss24_m_vh", context)
-		PrecacheUnitByNameSync("npc_dota_boss27_vh", context)
-		PrecacheUnitByNameSync("npc_dota_boss26_vh", context)
-		PrecacheUnitByNameSync("npc_dota_boss26_mini_vh", context)
-		PrecacheUnitByNameSync("npc_dota_boss28_vh", context)
-		PrecacheUnitByNameSync("npc_dota_boss30_vh", context)
-		PrecacheUnitByNameSync("npc_dota_boss31_vh", context)
-		PrecacheUnitByNameSync("npc_dota_boss32_vh", context)
-		PrecacheUnitByNameSync("npc_dota_boss32_trueform_vh", context)
-		PrecacheUnitByNameSync("npc_dota_boss33_a_vh", context)
-		PrecacheUnitByNameSync("npc_dota_boss33_b_vh", context)
-		PrecacheUnitByNameSync("npc_dota_boss34_vh", context)
-		PrecacheUnitByNameSync("npc_dota_boss35_vh", context)
-		PrecacheUnitByNameSync("npc_dota_boss37_vh", context)
-	end
 	
 	PrecacheUnitByNameSync("npc_dota_hero_venomancer", context)
 	PrecacheUnitByNameSync("npc_dota_hero_viper", context)
 	PrecacheUnitByNameSync("npc_dota_hero_zuus", context)
 	PrecacheUnitByNameSync("npc_dota_hero_monkey_king", context)
+	PrecacheUnitByNameSync("npc_dota_hero_tinker", context)
+	PrecacheUnitByNameSync("npc_dota_hero_techies", context)
 	
 	PrecacheUnitByNameSync("npc_dota_warlock_moloch", context)
     PrecacheUnitByNameSync("npc_dota_warlock_naamah", context)
@@ -229,8 +139,8 @@ function CHoldoutGameMode:InitGameMode()
 	
 	GameRules.HeroList = LoadKeyValues("scripts/npc/herolist.txt")
 	
+	print(GetMapName())
 	
-
 	
 	self._nRoundNumber = 1
 	GameRules._roundnumber = 1
@@ -908,7 +818,14 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 			SendOverheadEventMessage( victim, OVERHEAD_ALERT_BLOCK, victim, dmgBlock, victim )
 		end
 	end
-   -- remove int scaling thanks for fucking with my shit valve
+	-- change armor scaling from 6% ehp per armor to 1%
+	if damagetype == 1 then
+		local physdmg = filterTable["damage"]
+		local originalDmg = physdmg / (1 - victim:GetPhysicalArmorReduction() / 100 )
+		filterTable["damage"] = originalDmg * (1 - victim:GetRealPhysicalArmorReduction() / 100 )
+		print(victim:GetPhysicalArmorReduction(), victim:GetRealPhysicalArmorReduction())
+	end
+    -- remove int scaling thanks for fucking with my shit valve
 	if attacker == victim and attacker:FindAbilityByName("new_game_damage_increase") then -- stop self damaging abilities from ravaging bosses
 		local amp = attacker:FindAbilityByName("new_game_damage_increase")
 		local reduction = 1+(amp:GetSpecialValueFor("spell_amp")/100)
@@ -1710,8 +1627,7 @@ function CHoldoutGameMode:OnGameRulesStateChange()
 			statCollection.doneInit = true
         end
     end
-	if nNewState == DOTA_GAMERULES_STATE_HERO_SELECTION then
-
+	if nNewState == DOTA_GAMERULES_STATE_CUSTOM_GAME_SETUP then
 	elseif nNewState == DOTA_GAMERULES_STATE_PRE_GAME then
 		ShowGenericPopup( "#holdout_instructions_title", "#holdout_instructions_body", "", "", DOTA_SHOWGENERICPOPUP_TINT_SCREEN )
 		CHoldoutGameMode:InitializeRoundSystem()
@@ -1952,6 +1868,28 @@ function CHoldoutGameMode:SetHealthMarkers()
 	SendToConsole("dota_health_per_vertical_marker "..averagehp/16)
 end
 
+function CHoldoutGameMode:CheckMidas()
+	for _,unit in pairs ( Entities:FindAllByName( "npc_dota_hero*") ) do
+		if not unit:IsFakeHero() then
+			local midas_modifier = 0
+			local ngmodifier = 0
+			if self._NewGamePlus then ngmodifier = math.floor(37/2) end
+			local round = math.floor((self._nRoundNumber + ngmodifier))
+			if unit:HasModifier("passive_midas_3") then
+				midas_modifier = 15
+			elseif unit:HasModifier("passive_midas_2") then
+				midas_modifier = 10
+			elseif unit:HasModifier("passive_midas_1") or unit:FindItemByName("item_hand_of_midas") then
+				midas_modifier = 5
+			end
+			local interest = math.floor( unit:GetGold()*midas_modifier / 100 + 0.5 )
+			if interest > midas_modifier*10*round then interest = midas_modifier*10*round end
+			local player = unit:GetPlayerOwner()
+			unit.midasGold = unit.midasGold or 0
+			CustomGameEventManager:Send_ServerToPlayer( player, "Update_Midas_gold", { gold = unit.midasGold, interest = interest} )
+		end
+	end
+end
 
 function CHoldoutGameMode:OnThink()
 	if GameRules:State_Get() == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
@@ -1959,6 +1897,7 @@ function CHoldoutGameMode:OnThink()
 		self:_ThinkLootExpiry()
 		self:_regenlifecheck()
 		self:CheckHP()
+		self:CheckMidas()
 		self:DegradeThreat()
 		if self._flPrepTimeEnd then
 			local timeLeft = self._flPrepTimeEnd - GameRules:GetGameTime()
@@ -1989,7 +1928,7 @@ function CHoldoutGameMode:OnThink()
 							midas_modifier = 15
 						elseif unit:HasModifier("passive_midas_2") then
 							midas_modifier = 10
-						elseif unit:HasModifier("passive_midas_1") then
+						elseif unit:HasModifier("passive_midas_1") or unit:FindItemByName("item_hand_of_midas") then
 							midas_modifier = 5
 						end
 						local interest = math.floor( unit:GetGold()*midas_modifier / 100 + 0.5 )
@@ -1999,12 +1938,8 @@ function CHoldoutGameMode:OnThink()
 						unit.midasGold = unit.midasGold + interest
 				        unit:SetGold(0 , false)
 				        unit:SetGold(totalgold, true)
-						local event_data =
-						{
-							gold = unit.midasGold
-						}
 						local player = unit:GetPlayerOwner()
-						CustomGameEventManager:Send_ServerToPlayer( player, "Update_Midas_gold", event_data )
+						CustomGameEventManager:Send_ServerToPlayer( player, "Update_Midas_gold", { gold = unit.midasGold, interest = interest} )
 					end
 				end
 				self._nRoundNumber = self._nRoundNumber + 1

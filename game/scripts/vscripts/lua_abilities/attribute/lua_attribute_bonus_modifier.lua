@@ -28,7 +28,7 @@ end
 function lua_attribute_bonus_modifier:OnHealReceived (keys)
     if IsServer and keys.unit == self:GetParent() then
 		if not keys.process_procs and not self.healed then
-            if self:GetParent():IsRealHero() and keys.unit:IsRealHero() and not self:GetParent():HealDisabled() then
+            if self:GetParent():IsRealHero() and keys.unit:IsRealHero() and not self:GetParent():HealDisabled() and self:GetParent():IsAlive() then
 				local agiamp = self.agiamp or 100
 				local agihealamp = self:GetParent():GetAgility()/(100*agiamp)
                 local _heal = keys.gain * agihealamp

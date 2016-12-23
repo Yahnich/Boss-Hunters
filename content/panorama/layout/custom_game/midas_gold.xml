@@ -7,16 +7,6 @@
 		<include src="file://{resources}/scripts/custom_game/midas_gold.js" /> 
 	</scripts>
 	<Panel class="midas_gold_panel" hittest="false">
-		<Panel id="midas_gold" hittest="false">
-			<Image id="midas_gold_image" src="file://{images}/custom_game/custom/panel_midas_true.png"/>
-			<Label hittest="false" id="midas_gold_display" text="Total Midas Gold:"/>
-			<Label hittest="false" id="midas_gold_earned" text="0"/>
-		</Panel>
-		<Button id="midas_gold_open" onactivate='open_gold()'>
-			<Image id="midas_gold_image_2" src="file://{images}/custom_game/custom/panel_midas_open.png"/>
-		</Button>
-		<Button id="midas_gold_close" onactivate='close_gold()'>
-			<Image id="midas_gold_image_2" src="file://{images}/custom_game/custom/panel_midas_close.png"/>
-		</Button>
+		<Label hittest="false" id="midas_gold_display" text="0 (+0)"/>
 	</Panel>
 </root>

@@ -35,12 +35,14 @@
 	"difficultyImpossible"												"Champion"
 	"difficultyPainful"													"Heroic"
 	"difficultySadistic"												"Legendary"
+	"difficultyOutrageous"												"Epic"
 	
 	"difficultyHardTooltip"													"Normal difficulty is the baseline difficulty."
 	"difficultyImpossibleTooltip"											"Champion difficulty no longer provides an additional life at round 13 and mobs are 25% stronger."
 	"difficultyPainfulTooltip"												"Heroic difficulty no longer provides an additional life at around 26, increases the amount of spawns and mobs are 40% stronger."
 	"difficultySadisticTooltip"												"Legendary difficulty grants elites two passives instead of one and all mobs are 60% stronger."
-				
+	"difficultyOutrageousTooltip"											"Epic difficulty doubles elite chance and all mobs are 100% stronger."
+	
 	"livesHard"															"7 Lives"
 	"livesImpossible"													"5 Lives"
 	"livesPainful"														"3 Lives"

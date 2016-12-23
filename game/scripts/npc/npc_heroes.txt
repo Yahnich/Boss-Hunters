@@ -10207,6 +10207,7 @@
 		"HeroUnlockOrder"		"1"
 		"Role"			"Carry,Durable,Initiator,Disabler"
 		"Rolelevels"	"1,2,1,1"
+		"Complexity"	"1"
 		"Team"		"Bad"
 		"HeroID"		"47"
 		"ModelScale"		"0.740000"
@@ -10237,7 +10238,7 @@
 		"AttackDamageMin"		"23"
 		"AttackDamageMax"		"25"
 		"AttackRate"		"1.700000"
-		"AttackAnimationPoint"		"0.0"
+		"AttackAnimationPoint"		"0.330000"
 		"AttackAcquisitionRange"		"800"
 		"AttackRange"		"575"
 		"ProjectileModel"		"particles/units/heroes/hero_viper/viper_base_attack.vpcf"
@@ -10275,6 +10276,7 @@
 				}
 			}
 		}
+		
 		"ItemSlots"
 		{
 			"0"
@@ -10282,24 +10284,33 @@
 				"SlotIndex"		"0"
 				"SlotName"		"head"
 				"SlotText"		"#LoadoutSlot_Head_Accessory"
-				//"DisplayInLoadout"		"0"
-				//"TextureWidth"		"256"
-				//"TextureHeight"		"256"
-				//"MaxPolygonsLOD0"		"500"
-				//"MaxPolygonsLOD1"		"300"
+				"TextureWidth"		"256"
+				"TextureHeight"		"256"
+				"MaxPolygonsLOD0"		"1000"
+				"MaxPolygonsLOD1"		"500"
 			}
 			"1"
 			{
 				"SlotIndex"		"1"
-				"SlotName"		"taunt"
-				"SlotText"		"#LoadoutSlot_Taunt"
+				"SlotName"		"back"
+				"SlotText"		"#LoadoutSlot_Back"
+				"TextureWidth"		"512"
+				"TextureHeight"		"512"
+				"MaxPolygonsLOD0"		"3000"
+				"MaxPolygonsLOD1"		"1500"				
 			}
 			"2"
 			{
 				"SlotIndex"		"2"
+				"SlotName"		"taunt"
+				"SlotText"		"#LoadoutSlot_Taunt"
+			}
+			"3"
+			{
+				"SlotIndex"		"3"
 				"SlotName"		"ambient_effects"
 				"SlotText"		"#LoadoutSlot_Ambient_Effects"
-				"DisplayInLoadout"		"0"
+				"DisplayInLoadout"	"0"
 			}
 		}
 		"Bot"
@@ -10372,17 +10383,17 @@
 				"12"		"viper_nethertoxin"
 				"13"		"viper_poison_attack"
 				"14"		"viper_nethertoxin"
-				"15"		""
+				"15"		"attribute_bonus"
 				"16"		"viper_viper_strike"
-				"17"		""
-				"18"		""
-				"19"		""
-				"20"		""
-				"21"		""
-				"22"		""
-				"23"		""
-				"24"		""
-				"25"		""
+				"17"		"attribute_bonus"
+				"18"		"attribute_bonus"
+				"19"		"attribute_bonus"
+				"20"		"attribute_bonus"
+				"21"		"attribute_bonus"
+				"22"		"attribute_bonus"
+				"23"		"attribute_bonus"
+				"24"		"attribute_bonus"
+				"25"		"attribute_bonus"
 			}
 			"HeroType"		"DOTA_BOT_HARD_CARRY"
 			"LaningInfo"

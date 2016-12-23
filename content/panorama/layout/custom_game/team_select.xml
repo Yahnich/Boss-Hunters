@@ -64,6 +64,7 @@
 							<RadioButton class="CGSRadio" group="Difficulty" text="#difficultyImpossible" id="defaultDifficultyImpossible" onactivate="OnVoteButtonPressed('difficulty', 2)" onmouseover="UIShowCustomLayoutParametersTooltip( difficultyTooltip, file://{resources}/layout/custom_game/custom_tooltip.xml, text=difficultyImpossibleTooltip )" onmouseout="UIHideCustomLayoutTooltip( difficultyTooltip )"/>
 							<RadioButton class="CGSRadio" group="Difficulty" text="#difficultyPainful" onactivate="OnVoteButtonPressed('difficulty', 3)" onmouseover="UIShowCustomLayoutParametersTooltip( difficultyTooltip, file://{resources}/layout/custom_game/custom_tooltip.xml, text=difficultyPainfulTooltip )" onmouseout="UIHideCustomLayoutTooltip( difficultyTooltip )"/>
 							<RadioButton class="CGSRadio" group="Difficulty" text="#difficultySadistic" onactivate="OnVoteButtonPressed('difficulty', 4)" onmouseover="UIShowCustomLayoutParametersTooltip( difficultyTooltip, file://{resources}/layout/custom_game/custom_tooltip.xml, text=difficultySadisticTooltip )" onmouseout="UIHideCustomLayoutTooltip( difficultyTooltip )"/>
+							<RadioButton class="CGSRadio" group="Difficulty" text="#difficultyOutrageous" id="exclusiveImpossibleDifficulty" onactivate="OnVoteButtonPressed('difficulty', 5)" onmouseover="UIShowCustomLayoutParametersTooltip( difficultyTooltip, file://{resources}/layout/custom_game/custom_tooltip.xml, text=difficultyOutrageousTooltip )" onmouseout="UIHideCustomLayoutTooltip( difficultyTooltip )"/>
 						</Panel>
 					</Panel>
 				</Panel>

@@ -80,7 +80,7 @@ function CHoldoutGameSpawner:Begin()
 	self._nChampionsSpawnedThisRound = 0
 	self._nUnitsCurrentlyAlive = 0
 	
-	if GameRules.gameDifficulty >= 3 and GameRules._roundnumber > 1 and not self._bDifficultyChecked and GetMapName() == "epic_boss_fight_impossible" then
+	if GameRules.gameDifficulty >= 3 and GameRules._roundnumber > 1 and not self._bDifficultyChecked then
 		self._nTotalUnitsToSpawn = math.ceil(self._nTotalUnitsToSpawn * 1.4)
 		if self._flSpawnInterval < GameRules._roundnumber then self._flSpawnInterval = GameRules._roundnumber end
 		self._bDifficultyChecked = true

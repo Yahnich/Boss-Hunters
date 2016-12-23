@@ -82,6 +82,7 @@ function AICore:BeingAttacked( entity )
 end
 
 function AICore:AttackHighestPriority( entity )
+	if not entity:IsAlive() then return end
 	local flag = DOTA_UNIT_TARGET_FLAG_NOT_ATTACK_IMMUNE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
 	local range = entity:GetAttackRange() + entity:GetIdealSpeed()
 	if not entity:IsDominated() then
@@ -163,6 +164,26 @@ function AICore:BeAHugeCoward( entity, runbuffer )
 			})
 		end
 	end
+end
+
+function AICore:RunToRandomPosition( entity, spasticness )
+	local position = entity:GetOrigin() + Vector( RandomInt(-1000, 1000), RandomInt(-1000, 1000), 0)
+	if RollPercentage(spasticness) then
+		ExecuteOrderFromTable({
+			UnitIndex = entity:entindex(),
+			OrderType = DOTA_UNIT_ORDER_MOVE_TO_POSITION,
+			Position = position
+		})
+	end
+end
+
+function AICore:RunToTarget( entity, target )
+	local position = target:GetOrigin()
+	ExecuteOrderFromTable({
+		UnitIndex = entity:entindex(),
+		OrderType = DOTA_UNIT_ORDER_MOVE_TO_POSITION,
+		Position = position
+	})
 end
 
 function AICore:FarthestEnemyHeroInRange( entity, range , magic_immune)
@@ -323,6 +344,17 @@ function AICore:WeakestAlliedUnitInRange( entity, range , magic_immune)
 	end
 
 	return target
+end
+
+function AICore:SpecificAlliedUnitsInRange( entity, name, range )
+	local enemies = FindUnitsInRadius( entity:GetTeam(), entity:GetOrigin(), nil, 99999, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_ALL, 0, 0, false )
+	
+	for _,enemy in pairs(enemies) do
+		if enemy:IsAlive() and enemy ~= entity and (enemy:GetUnitName() == name or enemy:GetName() == name or enemy:GetUnitLabel() == name) then
+			return true
+		end
+	end
+	return false
 end
 
 function AICore:SpecificAlliedUnitsAlive( entity, name )

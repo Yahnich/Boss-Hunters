@@ -12,8 +12,6 @@ require("internal/util")
 function CHoldoutGameRound:ReadConfiguration( kv, gameMode, roundNumber )
 	self._gameMode = gameMode
 	self._nRoundNumber = roundNumber
-	self._szRoundQuestTitle = kv.round_quest_title or "#DOTA_Quest_Holdout_Round"
-	self._szRoundTitle = kv.round_title or string.format( "Round%d", roundNumber )
 
 	self._nMaxGold = tonumber( kv.MaxGold or 0 )
 	self._nBagCount = tonumber( kv.BagCount or 0 )
@@ -26,6 +24,8 @@ function CHoldoutGameRound:ReadConfiguration( kv, gameMode, roundNumber )
 			local tabLen = tonumber(GetTableLength(v))
 			local index = tostring(RandomInt(1, tabLen))
 			if v[index] then
+				self._szRoundQuestTitle = v[index].round_quest_title or kv.round_quest_title or "#DOTA_Quest_Holdout_Round"
+				self._szRoundTitle = v[index].round_title or string.format( "Round%d", roundNumber )
 				for l,m in pairs(v[index]) do
 					if type( m ) == "table" and m.NPCName then
 						local spawner = CHoldoutGameSpawner()
@@ -147,12 +147,14 @@ function CHoldoutGameRound:Begin()
 		elitemod = 2
 	end
 	elitemod = elitemod * GameRules.gameDifficulty
+	epicMod = 1
+	if GameRules.gameDifficulty == 5 then epicMod = 2 end
 	for i=1, self._nCoreUnitsTotal do
-		if RollPercentage(7+elitemod) and self._nRoundNumber > 1 then
+		if RollPercentage( (7+elitemod)*epicMod ) and self._nRoundNumber > 1 then
 			self._nElitesToSpawn = self._nElitesToSpawn + 1
 			local elitegold = 100 * self._nRoundNumber^0.2 * PlayerNumber / 4
 			if GameRules._NewGamePlus == true then
-				elitegold = 110 * self._nRoundNumber^0.3 * PlayerNumber / 4
+				elitegold = 200 * self._nRoundNumber^0.3 * PlayerNumber / 4
 			end
 			self._nGoldRemainingInRound = self._nGoldRemainingInRound + self._nRoundNumber * elitegold
 		end
@@ -203,7 +205,8 @@ function CHoldoutGameRound:End()
 			UTIL_Remove( unit )
 		end
 	end
-	if roundNumber == 1 then
+	print(self._nRoundNumber, "roundNumber")
+	if self._nRoundNumber == 1 then
 		for _,unit in pairs ( Entities:FindAllByName( "npc_dota_hero*")) do
 			while unit:GetLevel() < 7 do
 				unit:AddExperience (100,false,false)
@@ -298,7 +301,7 @@ function CHoldoutGameRound:OnNPCSpawned( event )
 						end
 					end
 					local eliteabstogive = 1
-					if GameRules._NewGamePlus == true or GameRules.gameDifficulty == 4 then
+					if GameRules._NewGamePlus == true or GameRules.gameDifficulty >= 4 then
 						eliteabstogive = 2
 					end
 					local eliteAbName = elitelist[math.random(#elitelist)]

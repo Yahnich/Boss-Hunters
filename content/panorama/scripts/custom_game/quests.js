@@ -45,5 +45,7 @@ function ReplaceIntWithToken(token){
 		return "#difficultyPainful"
 	} else if(token == 4){
 		return "#difficultySadistic"
+	} else if(token == 5){
+		return "#difficultyOutrageous"
 	}
 }
