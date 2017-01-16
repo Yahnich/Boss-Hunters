@@ -45,7 +45,7 @@ function BuildGameArray()
     -- Add game values here as game.someValue = GetSomeGameValue()
     game.M_R = GameRules._roundnumber -- max round achieved
     game.F_G = GameRules._finish -- has the game finished (win)
-    game.life = GameRules._live -- how many lives left
+    game.life = GetGameDifficulty() -- how many lives left
     game.U_L = GameRules._used_live -- Used Life
     game.T_L = GetMapName() -- map
 
@@ -62,6 +62,8 @@ function BuildPlayersArray()
                 local hero = PlayerResource:GetSelectedHeroEntity(playerID)
 				if not hero then return end
 				local heroName = GetHeroName(playerID)
+				if GameRules.gameDifficulty < 3 then heroName = "casual" end
+				if GetMapName() == "epic_boss_fight_boss_master" then heroName = "boss_master" end
                 table.insert(players, {
                     -- steamID32 required in here
                     steamID32 = PlayerResource:GetSteamAccountID(playerID),
@@ -73,7 +75,7 @@ function BuildPlayersArray()
                     P_NW = FindDPS(hero) or 0, -- Damage
                     P_T = hero:GetTeam(), -- Team
                     P_K = GetMapName(), -- Map
-                    P_D = hero:GetDeaths(), -- Deaths
+                    P_D = GetGameDifficulty(), -- Deaths
                     P_H = PlayerResource:GetHealing(hero:GetPlayerOwnerID()), -- Healing
                     P_R = hero.Ressurect, -- Ressurections
                     P_GPM = math.floor(PlayerResource:GetGoldPerMin(hero:GetPlayerOwnerID())), -- GPM

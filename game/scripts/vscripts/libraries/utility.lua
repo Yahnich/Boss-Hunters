@@ -1,5 +1,39 @@
 EHP_PER_ARMOR = 0.01
 
+function SendClientSync(key, value)
+	CustomNetTables:SetTableValue( "syncing_purposes",key, {value = value} )
+end
+
+function GetClientSync(key)
+ 	local value = CustomNetTables:GetTableValue( "syncing_purposes", key).value
+	return value
+end
+
+function CalculateDistance(ent1, ent2)
+	local pos1 = ent1
+	local pos2 = ent2
+	if ent1.GetAbsOrigin then pos1 = ent1:GetAbsOrigin() end
+	if ent2.GetAbsOrigin then pos2 = ent2:GetAbsOrigin() end
+	local distance = (pos1 - pos2):Length2D()
+	return distance
+end
+
+function CalculateDirection(ent1, ent2)
+	local pos1 = ent1
+	local pos2 = ent2
+	if ent1.GetAbsOrigin then pos1 = ent1:GetAbsOrigin() end
+	if ent2.GetAbsOrigin then pos2 = ent2:GetAbsOrigin() end
+	local direction = (pos1 - pos2):Normalized()
+	return direction
+end
+
+function CDOTA_BaseNPC:CreateDummy(position)
+	local dummy = CreateUnitByName("npc_dummy_unit", position, false, nil, nil, self:GetTeam())
+	dummy:AddAbility("hide_hero"):SetLevel(1)
+	return dummy
+end
+
+
 function get_aether_multiplier(caster)
     local aether_multiplier = 1
     for itemSlot = 0, 5, 1 do
@@ -24,6 +58,40 @@ function get_aether_multiplier(caster)
 		end
     end
     return aether_multiplier
+end
+
+function AllPlayersAbandoned()
+	local playerCounter = 0
+	local dcCounter = 0
+	for nPlayerID = 0, DOTA_MAX_TEAM_PLAYERS-1 do
+		if PlayerResource:GetTeam( nPlayerID ) == DOTA_TEAM_GOODGUYS then
+			local player = PlayerResource:GetPlayer(nPlayerID)
+			if player then
+				playerCounter = playerCounter + 1
+			end
+			local hero = PlayerResource:GetSelectedHeroEntity( nPlayerID )
+			if hero then
+				if hero:HasOwnerAbandoned() then
+					dcCounter = dcCounter + 1
+				end
+				if PlayerResource:GetConnectionState(hero:GetPlayerID()) == 3 then
+					if not hero.lastActiveTime then hero.lastActiveTime = GameRules:GetGameTime() end
+					if hero.lastActiveTime + 60*3 < GameRules:GetGameTime() then
+						dcCounter = dcCounter + 1
+					end
+				else
+					hero.lastActiveTime = GameRules:GetGameTime()
+				end
+			else
+				dcCounter = dcCounter + 1
+			end
+		end
+	end
+	if dcCounter >= playerCounter then
+		return true
+	else
+		return false
+	end
 end
 
 function MergeTables( t1, t2 )
@@ -105,6 +173,18 @@ function CDOTA_BaseNPC:GetAttackDamageType()
 	end
 end
 
+function CDOTA_BaseNPC:IsSpawner()
+	-- 1: DAMAGE_TYPE_ArmorPhysical
+	-- 2: DAMAGE_TYPE_ArmorMagical
+	-- 4: DAMAGE_TYPE_ArmorPure
+	local resourceType = GameRules.UnitKV[self:GetUnitName()]["IsSpawner"]
+	if resourceType then
+		return true
+	else
+		return false
+	end
+end
+
 function CDOTA_BaseNPC:HasTalent(talentName)
 	if self:HasAbility(talentName) then
 		if self:FindAbilityByName(talentName):GetLevel() > 0 then return true end
@@ -122,6 +202,17 @@ function CDOTA_BaseNPC:HasTalentType(talentType)
 		end
 	end
 	return false
+end
+
+function FindAllEntitiesByClassname(name)
+	local entList = {}
+	local sortList = FindUnitsInRadius(DOTA_TEAM_GOODGUYS, Vector(0,0,0), nil, 99999, 3, 63, DOTA_UNIT_TARGET_FLAG_DEAD + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD, -1, false)
+	for _, unit in pairs(sortList) do
+		if unit:GetClassname() == name then
+			table.insert(entList, unit)
+		end
+	end
+	return entList
 end
 
 function GetRandomUnselectedHero()
@@ -144,7 +235,6 @@ function GetRandomUnselectedHero()
 	local randomList = {}
 	for hero, activated in pairs(sortList) do
 		if activated then
-			print(hero)
 			table.insert(randomList, hero)
 		end
 	end
@@ -178,6 +268,17 @@ function CDOTA_BaseNPC:FindTalentValue(talentName)
 		return self:FindAbilityByName(talentName):GetSpecialValueFor("value")
 	end
 	return 0
+end
+
+function CDOTA_BaseNPC:NotDead()
+	if self:IsAlive() or 
+	self:IsReincarnating() or 
+	(self:WillReincarnate() and not self:HasModifier("modifier_skeleton_king_reincarnation_cooldown")) or 
+	(self:FindItemByName("item_ressurection_stone", true) and self:FindItemByName("item_ressurection_stone", true):IsCooldownReady()) then
+		return true
+	else
+		return false
+	end
 end
 
 function CDOTA_BaseNPC:GetAverageBaseDamage()
@@ -225,13 +326,83 @@ function CDOTA_BaseNPC:GetDisableResistance()
 	end
 end
 
-function CDOTA_BaseNPC:GetProjectileModel()
+function CDOTA_BaseNPC:GetBaseProjectileModel()
 	if self:IsRangedAttacker() then
 		return GameRules.UnitKV[self:GetUnitName()]["ProjectileModel"] or nil
 	else
 		return nil
 	end
 end
+
+function CDOTA_BaseNPC:GetProjectileModel()
+	if self:IsRangedAttacker() then
+		return self.currentProjectileModel or GameRules.UnitKV[self:GetUnitName()]["ProjectileModel"] or nil
+	else
+		return nil
+	end
+end
+
+function CDOTA_BaseNPC:SetProjectileModel(projectile)
+	self:SetRangedProjectileName(projectile)
+	self.currentProjectileModel = projectile
+end
+
+
+function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, specIllusionModifier )
+	local player = self:GetPlayerID()
+
+	local unit_name = self:GetUnitName()
+	local origin = position or self:GetAbsOrigin() + RandomVector(100)
+	local outgoingDamage = outgoing
+	local incomingDamage = incoming
+
+	-- handle_UnitOwner needs to be nil, else it will crash the game.
+	local illusion = CreateUnitByName(unit_name, origin, true, self, nil, self:GetTeamNumber())
+	illusion:SetPlayerID(self:GetPlayerID())
+	illusion:SetControllableByPlayer(player, true)
+		
+	-- Level Up the unit to the casters level
+	local casterLevel = self:GetLevel()
+	for i=1,casterLevel-1 do
+		illusion:HeroLevelUp(false)
+	end
+
+	-- Set the skill points to 0 and learn the skills of the caster
+	illusion:SetAbilityPoints(0)
+	for abilitySlot=0,15 do
+		local abilityillu = self:GetAbilityByIndex(abilitySlot)
+		if abilityillu ~= nil then 
+			local abilityLevel = abilityillu:GetLevel()
+			local abilityName = abilityillu:GetAbilityName()
+			if illusion:FindAbilityByName(abilityName) ~= nil and abilityName ~= "phantom_lancer_juxtapose" then
+				local illusionAbility = illusion:FindAbilityByName(abilityName)
+				illusionAbility:SetLevel(abilityLevel)
+			end
+		end
+	end
+
+			-- Recreate the items of the caster
+	for itemSlot=0,5 do
+		local item = self:GetItemInSlot(itemSlot)
+		if item ~= nil then
+			local itemName = item:GetName()
+			local newItem = CreateItem(itemName, illusion, illusion)
+			illusion:AddItem(newItem)
+		end
+	end
+
+	-- Set the unit as an illusion
+	-- modifier_illusion controls many illusion properties like +Green damage not adding to the unit damage, not being able to cast spells and the team-only blue particle
+	if specIllusionModifier then
+		illusion:AddNewModifier(self, ability, specIllusionModifier, { duration = duration, outgoing_damage = outgoingDamage, incoming_damage = incomingDamage })
+	end
+	illusion:AddNewModifier(self, ability, "modifier_illusion", { duration = duration, outgoing_damage = outgoingDamage, incoming_damage = incomingDamage })
+			
+	-- Without MakeIllusion the unit counts as a hero, e.g. if it dies to neutrals it says killed by neutrals, it respawns, etc.
+	illusion:MakeIllusion()
+end
+
+
 
 function CDOTABaseAbility:PiercesDisableResistance()
 	if GameRules.AbilityKV[self:GetName()] then
@@ -363,6 +534,19 @@ function CDOTABaseAbility:GetThreat()
 	end
 end
 
+function CDOTA_BaseNPC:GetThreat()
+	self.threat = self.threat or 0
+	return self.threat
+end
+
+function CDOTA_BaseNPC:SetThreat(val)
+	self.threat = val
+end
+
+function CDOTA_BaseNPC:ModifyThreat(val)
+	self.threat = self.threat + val
+end
+
 function get_aether_range(caster)
     local aether_range = 0
     for itemSlot = 0, 5, 1 do
@@ -428,10 +612,12 @@ function CDOTA_BaseNPC:GetRealPhysicalArmorReduction()
 	return armor_reduction
 end
 
-function CDOTA_BaseNPC:FindItemByName(itemname)
-	for i = 0, 6 do
+function CDOTA_BaseNPC:FindItemByName(sItemname, bBackpack)
+	local inventoryIndex = 5
+	if bBackpack then inventoryIndex = 8 end
+	for i = 0, inventoryIndex do
 		local item = self:GetItemInSlot(i)
-		if item and item:GetName() == itemname then 
+		if item and item:GetName() == sItemname then 
 			return item
 		end
 	end
@@ -825,6 +1011,53 @@ function get_octarine_multiplier(caster)
 		if Item ~= nil and Item:GetName() == "item_asura_core" then
             if octarine_multiplier > 0.25 then
                 octarine_multiplier = 0.25
+            end
+        end
+    end
+	local talentMult = 1 - caster:HighestTalentTypeValue("cooldown_reduction")/100
+	octarine_multiplier = octarine_multiplier*talentMult
+    return octarine_multiplier
+end
+
+
+function get_core_cdr(caster)
+    local octarine_multiplier = 1
+    for itemSlot = 0, 5, 1 do
+        local Item = caster:GetItemInSlot( itemSlot )
+        if Item ~= nil and Item:GetName() == "item_octarine_core" then
+			local cdr = 1 - Item:GetSpecialValueFor("bonus_cooldown") / 100
+            if octarine_multiplier > cdr then
+                octarine_multiplier = cdr
+            end
+        end
+        if Item ~= nil and Item:GetName() == "item_octarine_core2" then
+            local cdr = 1 - Item:GetSpecialValueFor("bonus_cooldown") / 100
+            if octarine_multiplier > cdr then
+                octarine_multiplier = cdr
+            end
+        end
+        if Item ~= nil and Item:GetName() == "item_octarine_core3" then
+            local cdr = 1 - Item:GetSpecialValueFor("bonus_cooldown") / 100
+            if octarine_multiplier > cdr then
+                octarine_multiplier = cdr
+            end
+        end
+        if Item ~= nil and Item:GetName() == "item_octarine_core4" then
+            local cdr = 1 - Item:GetSpecialValueFor("bonus_cooldown") / 100
+            if octarine_multiplier > cdr then
+                octarine_multiplier = cdr
+            end
+        end
+		if Item ~= nil and Item:GetName() == "item_octarine_core5" then
+            local cdr = 1 - Item:GetSpecialValueFor("bonus_cooldown") / 100
+            if octarine_multiplier > cdr then
+                octarine_multiplier = cdr
+            end
+        end
+		if Item ~= nil and Item:GetName() == "item_asura_core" then
+            local cdr = 1 - Item:GetSpecialValueFor("bonus_cooldown") / 100
+            if octarine_multiplier > cdr then
+                octarine_multiplier = cdr
             end
         end
     end

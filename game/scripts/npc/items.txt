@@ -56,7 +56,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_all_stats"		"5"
+				"bonus_all_stats"		"15"
 			}
 			"02"
 			{
@@ -665,48 +665,6 @@
 		}
 	}
 
-	//=================================================================================================================
-	// Stout Shield
-	//=================================================================================================================
-	"item_stout_shield"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"182"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"Model"							"models/props_gameplay/stout_shield.mdl"
-
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"40"
-		"ItemShopTags"					"block"
-		"ItemQuality"					"component"
-		"ItemAliases"					"stout shield"
-		"SideShop"						"1"
-
-		// Special	
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage_block_melee"	"16"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage_block_ranged"	"8"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"block_chance"			"50"
-			}
-		}
-	}
-	
-	
 	//=================================================================================================================
 	// Recipe: Moon Shard
 	//=================================================================================================================
@@ -3031,80 +2989,6 @@
 		}
 	}
 
-	//=================================================================================================================
-	// Recipe: Poor Man's Shield
-	//=================================================================================================================
-	"item_recipe_poor_mans_shield"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"70"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"Model"							"models/props_gameplay/recipe.mdl"
-		
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"0"	
-		"ItemShopTags"					""
-		
-		// Recipe
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemRecipe"					"1"
-		"ItemResult"					"item_poor_mans_shield"
-		"ItemRequirements"
-		{
-			"01"						"item_slippers;item_slippers;item_stout_shield"
-		}
-	}
-	
-	//=================================================================================================================
-	// Poor Man's Shield
-	//=================================================================================================================
-	"item_poor_mans_shield"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"71"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"100"
-		"ItemShopTags"					"agi;block"
-		"ItemQuality"					"common"
-		"ItemAliases"					"pms;poor man's shield"
-		
-		// Special	
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_agility"			"6"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage_block_melee"	"20"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage_block_ranged"	"10"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"block_chance"			"53"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"block_chance_hero"		"100"
-			}			
-		}
-	}
-	
 	//=================================================================================================================
 	// Recipe: Bracer
 	//=================================================================================================================
@@ -5952,22 +5836,22 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_health_regen"	"6"
+				"bonus_health_regen"	"40"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"block_chance"			"75"
+				"block_chance"			"100"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"block_damage_melee"	"40"
+				"block_damage_melee"	"250"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"block_damage_ranged"	"20"
+				"block_damage_ranged"	"150"
 			}
 		}
 	}
@@ -6046,17 +5930,17 @@
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"block_chance"			"75"
+				"block_chance"			"100"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"block_damage_melee"	"40"
+				"block_damage_melee"	"350"
 			}
 			"07"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"block_damage_ranged"	"20"
+				"block_damage_ranged"	"200"
 			}			
 			"08"
 			{
@@ -6076,12 +5960,12 @@
 			"11"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"block_damage_melee_active"	"55"
+				"block_damage_melee_active"	"550"
 			}
 			"12"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"block_damage_ranged_active"	"55"
+				"block_damage_ranged_active"	"550"
 			}		
 			"13"
 			{
@@ -6532,7 +6416,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"				"50.0"
 		"AbilityCastPoint"				"0.0"
-		"ItemPurchasable"				"0"
+		"ItemPurchasable"				"1"
 
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -7780,7 +7664,7 @@
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_cooldown"		"25"
+				"bonus_cooldown"		"10"
 			}
 			"07"
 			{

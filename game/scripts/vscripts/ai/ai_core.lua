@@ -82,20 +82,23 @@ function AICore:BeingAttacked( entity )
 end
 
 function AICore:AttackHighestPriority( entity )
-	if not entity:IsAlive() then return end
+	if not entity and not entity:IsAlive() then return end
 	local flag = DOTA_UNIT_TARGET_FLAG_NOT_ATTACK_IMMUNE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
 	local range = entity:GetAttackRange() + entity:GetIdealSpeed()
+	if range < 900 then range = 900 end
 	if not entity:IsDominated() then
 		local enemies = FindUnitsInRadius( entity:GetTeam(), entity:GetOrigin(), nil, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, flag, 0, false )
 		local target = nil
 		local minThreat = 0
-		if entity.previoustarget then 
+		if entity.previoustarget and not entity.previoustarget:IsNull() then 
 			target = entity.previoustarget
+			target.threat = target.threat or 0
 			minThreat = target.threat
 		end
 		for _,enemy in pairs(enemies) do
 			local distanceToEnemy = (entity:GetOrigin() - enemy:GetOrigin()):Length()
 			if not enemy.threat then enemy.threat = 0 end
+			if not minThreat then minThreat = 0 end
 			if enemy:IsAlive() and (enemy.threat or 0) > minThreat and distanceToEnemy < range and not entity.previoustarget then
 				minThreat = enemy.threat
 				target = enemy
@@ -140,13 +143,9 @@ function AICore:AttackHighestPriority( entity )
 				TargetIndex = target:entindex()
 			})
 			return 0.5
-		else -- no viable targets
-			-- ExecuteOrderFromTable({
-				-- UnitIndex = entity:entindex(),
-				-- OrderType = DOTA_UNIT_ORDER_MOVE_TO_POSITION,
-				-- Position = Vector(0,0)
-			-- })
-			-- return 0.1
+		else
+			AICore:RunToRandomPosition( entity, 5 )
+			return 0.1
 		end
 	end
 end
@@ -178,6 +177,7 @@ function AICore:RunToRandomPosition( entity, spasticness )
 end
 
 function AICore:RunToTarget( entity, target )
+	if not entity or not target then return end
 	local position = target:GetOrigin()
 	ExecuteOrderFromTable({
 		UnitIndex = entity:entindex(),
@@ -347,7 +347,7 @@ function AICore:WeakestAlliedUnitInRange( entity, range , magic_immune)
 end
 
 function AICore:SpecificAlliedUnitsInRange( entity, name, range )
-	local enemies = FindUnitsInRadius( entity:GetTeam(), entity:GetOrigin(), nil, 99999, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_ALL, 0, 0, false )
+	local enemies = FindUnitsInRadius( entity:GetTeam(), entity:GetOrigin(), nil, range, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_ALL, 0, 0, false )
 	
 	for _,enemy in pairs(enemies) do
 		if enemy:IsAlive() and enemy ~= entity and (enemy:GetUnitName() == name or enemy:GetName() == name or enemy:GetUnitLabel() == name) then

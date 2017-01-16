@@ -1,5 +1,3 @@
-require("libraries/utility")
-
 function SpellEcho(keys)
 	local caster = keys.caster
 	local ability = keys.ability
@@ -125,5 +123,30 @@ function SpellEcho(keys)
 				ability.echotarget = nil
 			end
 		end
+	end
+end
+
+rubick_lift_ebf = class({})
+
+function rubick_lift_ebf:GetAOERadius()
+	return self:GetSpecialValueFor("slam_radius")
+end
+
+if IsServer() then
+	function rubick_lift_ebf:OnSpellStart()
+		local caster = self:GetCaster()
+		local hTarget = self:GetCursorTarget()
+		local damage = self:GetSpecialValueFor("slam_damage")
+		local duration = self:GetSpecialValueFor("stun_duration")
+		local enemies = FindUnitsInRadius(caster:GetTeam(), hTarget:GetAbsOrigin(), nil, self:GetSpecialValueFor("slam_radius"), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, 0, false)
+		for _,enemy in pairs(enemies) do
+			ApplyDamage({ victim = enemy, attacker = caster, damage = damage, damage_type = DAMAGE_TYPE_MAGICAL, ability = self })
+			enemy:AddNewModifier(caster, self, "modifier_stunned",{duration = duration})
+		end
+		EmitSoundOn("Hero_Rubick.Telekinesis.Cast", caster)
+		EmitSoundOn("Hero_Rubick.Telekinesis.Stun", hTarget)
+		local slam = ParticleManager:CreateParticle("particles/econ/items/rubick/rubick_force_ambient/rubick_telekinesis_land_force.vpcf", PATTACH_ABSORIGIN , hTarget)
+			ParticleManager:SetParticleControl(slam, 0, hTarget:GetAbsOrigin())
+		ParticleManager:ReleaseParticleIndex(slam)
 	end
 end

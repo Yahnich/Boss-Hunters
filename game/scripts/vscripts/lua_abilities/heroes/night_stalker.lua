@@ -39,7 +39,7 @@ function Void( keys )
 		ability:ApplyDataDrivenModifier(caster, target, modifier, {duration = duration_day})
 	else
 		ability:ApplyDataDrivenModifier(caster, target, modifier, {duration = duration_night})
-		dmgmult = dmgmult + ability:GetTalentSpecialValueFor("damage_amp_night") / 100
+		dmgmult = ability:GetTalentSpecialValueFor("damage_amp_night") / 100
 	end
 	ApplyDamage({victim = target, attacker = caster, damage = ability:GetAbilityDamage() * dmgmult, damage_type = ability:GetAbilityDamageType(), ability = ability})
 end

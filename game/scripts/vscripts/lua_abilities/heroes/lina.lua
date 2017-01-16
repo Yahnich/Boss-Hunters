@@ -26,7 +26,7 @@ function lina_self_immolate:OnSpellStart()
 	kindle:SetStackCount( kindle:GetStackCount() + self.fierysoulstacks )
 	if kindle:GetStackCount() >= 100 then kindle:SetStackCount(99) end
 	local hpReduction = self:GetCaster():GetHealth() - self:GetCaster():GetMaxHealth() * self:GetTalentSpecialValueFor("hp_cost") / 100
-	if hpReduction < 10 then hpReduction = 1 end
+	if hpReduction < 1 then hpReduction = 1 end
 	self:GetCaster():SetHealth( hpReduction )
     self:GetCaster():AddNewModifier( self:GetCaster(), self,  "modifier_lina_self_immolate", { duration = self.duration} )
 end

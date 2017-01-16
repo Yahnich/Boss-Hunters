@@ -104,7 +104,6 @@ function GetAllPlayers()
 	if counter - 1 <= abandon then abandon = counter - 1 end
 	abandon = abandon / 3
 	counter = (counter*(counter/(counter-abandon)))*(1 + challengemult)
-	print(counter, "counter")
 	return counter
 end
 
@@ -118,7 +117,6 @@ function CHoldoutGameRound:Begin()
 	}
 	self._nAsuraCoreRemaining = 0
 	local PlayerNumber = GetAllPlayers() or HeroList:GetHeroCount()
-	print(PlayerNumber, "playernumber")
 	local GoldMultiplier = (((PlayerNumber)+0.56)/1.8)*0.15
 
 	local roundNumber = self._nRoundNumber
@@ -205,11 +203,13 @@ function CHoldoutGameRound:End()
 			UTIL_Remove( unit )
 		end
 	end
-	print(self._nRoundNumber, "roundNumber")
+
 	if self._nRoundNumber == 1 then
 		for _,unit in pairs ( Entities:FindAllByName( "npc_dota_hero*")) do
-			while unit:GetLevel() < 7 do
-				unit:AddExperience (100,false,false)
+			if not unit:IsFakeHero() then
+				while unit:GetLevel() < 7 do
+					unit:AddExperience (100,false,false)
+				end
 			end
 		end
 	end
@@ -277,6 +277,7 @@ function CHoldoutGameRound:OnNPCSpawned( event )
 				end
 				if ((self._nElitesRemaining > 0 and (spawnedUnit.Holdout_IsCore or spawnedUnit:GetUnitName() == "npc_dota_boss36_guardian")) or spawnedUnit.elite == true) then
 					local elitemod = 1 + (GameRules.gameDifficulty - 1)* 0.15
+					spawnedUnit.elite = true
 					local elitelist = {} -- change table with names to array type
 					local notcore = {  ["elite_disarming"] = true,
 									   ["elite_piercing"] = true,
@@ -292,7 +293,7 @@ function CHoldoutGameRound:OnNPCSpawned( event )
 									   ["elite_parrying"] = true,
 									   ["elite_blocking"] = true}
 					for k,v in pairs(GameRules._Elites) do
-						if not notcore[k] and spawnedUnit:GetUnitName() == "npc_dota_boss36" then
+						if not notcore[k] and spawnedUnit:IsSpawner() then
 							table.insert(elitelist, k)
 						elseif not (self._EliteAbilities["elite_disarming"] and k == "elite_silencing") and spawnedUnit:GetUnitName() ~= "npc_dota_boss36" then
 							table.insert(elitelist, k)
@@ -426,7 +427,7 @@ function CHoldoutGameRound:OnEntityKilled( event )
 	
 	if killedUnit:GetUnitName() == "npc_dota_boss38" then
 		for _,unit in pairs( FindUnitsInRadius( DOTA_TEAM_BADGUYS, Vector( 0, 0, 0 ), nil, FIND_UNITS_EVERYWHERE, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )) do
-			if not unit:IsTower() or unit:IsHero() == false then
+			if not unit:IsTower() or unit:IsHero() == false and not unit:GetName() == "npc_dota_creature" then -- remove dummy units
 				UTIL_Remove( unit )
 			end
 		end
@@ -475,14 +476,16 @@ function CHoldoutGameRound:_CheckForGoldBagDrop( killedUnit )
 		exptogain = self._nExpRemainingInRound
 	end
 	for _,unit in pairs ( Entities:FindAllByName( "npc_dota_hero*")) do
-		if unit:GetTeamNumber() == DOTA_TEAM_GOODGUYS then
+		if unit:GetTeamNumber() == DOTA_TEAM_GOODGUYS and not unit:IsFakeHero() then
 			unit:AddExperience (exptogain,false,false)
 		end
 	end
 	if killedUnit:GetUnitName() == "npc_dota_money" and self._nExpRemainingInRound == 0 then
 		for _,unit in pairs ( Entities:FindAllByName( "npc_dota_hero*")) do
-			while unit:GetLevel() < 7 do
-				unit:AddExperience (100,false,false)
+			if not unit:IsFakeHero() then
+				while unit:GetLevel() < 7 do
+					unit:AddExperience (100,false,false)
+				end
 			end
 		end
 	end
@@ -509,7 +512,7 @@ function CHoldoutGameRound:_CheckForGoldBagDrop( killedUnit )
 	self._nExpRemainingInRound = math.max( 0,self._nExpRemainingInRound - exptogain)
 
 	for _,unit in pairs ( Entities:FindAllByName( "npc_dota_hero*")) do
-		if unit:GetTeamNumber() == DOTA_TEAM_GOODGUYS and not unit:IsIllusion() and not (unit:HasModifier("modifier_monkey_king_fur_army_soldier") or unit:HasModifier("modifier_monkey_king_fur_army_soldier_hidden")) then
+		if unit:GetTeamNumber() == DOTA_TEAM_GOODGUYS and not unit:IsFakeHero() then
 			local totalgold = unit:GetGold() + nGoldToDrop / HeroList:GetRealHeroCount()
 			unit:SetGold(0 , false)
 			unit:SetGold(totalgold, true)

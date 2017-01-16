@@ -34,7 +34,9 @@ function TickDrain( event )
 	local deltaDrainPct	= event.drain_interval * event.drain_pct/100
 	local drainhp = caster:GetHealth()*deltaDrainPct
 	local drainmp = caster:GetMana()*deltaDrainPct
-	caster:SetHealth(caster:GetHealth() - math.floor(drainhp))
+	local newHp = caster:GetHealth() - math.floor(drainhp)
+	if newHp < 1 then newHp = 1 end
+	caster:SetHealth(newHp)
 	caster:SpendMana( drainmp, event.ability )
 end
 

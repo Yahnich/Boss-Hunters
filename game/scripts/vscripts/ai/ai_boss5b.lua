@@ -8,21 +8,15 @@ function Spawn( entityKeyValues )
 	thisEntity.blink = thisEntity:FindAbilityByName("boss_blink")
 	thisEntity.strike = thisEntity:FindAbilityByName("boss_shadow_strike")
 	thisEntity.scream = thisEntity:FindAbilityByName("boss_scream_of_pain")
-	if  math.floor(GameRules.gameDifficulty + 0.5) > 3 then
+	if math.floor(GameRules.gameDifficulty + 0.5) > 3 then
 		thisEntity.blink:SetLevel(4)
 		thisEntity.strike:SetLevel(4)
 		thisEntity.scream:SetLevel(4)
-		thisEntity:SetMaxHealth(thisEntity:GetMaxHealth()*1.3)
-		thisEntity:SetBaseDamageMin(thisEntity:GetBaseDamageMin()*1.5)
-		thisEntity:SetBaseDamageMax(thisEntity:GetBaseDamageMax()*1.5)
-	elseif  math.floor(GameRules.gameDifficulty + 0.5) == 3 then
+	elseif math.floor(GameRules.gameDifficulty + 0.5) == 3 then
 		thisEntity.blink:SetLevel(3)
 		thisEntity.strike:SetLevel(3)
 		thisEntity.scream:SetLevel(3)
-		thisEntity:SetMaxHealth(thisEntity:GetMaxHealth()*1.25)
-		thisEntity:SetBaseDamageMin(thisEntity:GetBaseDamageMin()*1.25)
-		thisEntity:SetBaseDamageMax(thisEntity:GetBaseDamageMax()*1.25)
-	elseif  math.floor(GameRules.gameDifficulty + 0.5) == 2 then
+	elseif math.floor(GameRules.gameDifficulty + 0.5) == 2 then
 		thisEntity.blink:SetLevel(2)
 		thisEntity.strike:SetLevel(2)
 		thisEntity.scream:SetLevel(2)
@@ -30,9 +24,6 @@ function Spawn( entityKeyValues )
 		thisEntity.blink:SetLevel(1)
 		thisEntity.strike:SetLevel(1)
 		thisEntity.scream:SetLevel(1)
-		thisEntity:SetMaxHealth(thisEntity:GetMaxHealth()*0.75)
-		thisEntity:SetBaseDamageMin(thisEntity:GetBaseDamageMin()*0.5)
-		thisEntity:SetBaseDamageMax(thisEntity:GetBaseDamageMax()*0.5)
 	end
 	thisEntity:SetHealth(thisEntity:GetMaxHealth())
 end

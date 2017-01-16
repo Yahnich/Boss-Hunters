@@ -105,6 +105,7 @@ function OathKeeper(keys)
 	local caster = keys.caster
 	local ability = keys.ability
 	local modifier = "modifier_oathkeeper_block"
+	if keys.damage < 25 then return end
 	if caster.hit ~= nil then
 		caster.hit = caster.hit + 1
 		local proc_hit = ability:GetTalentSpecialValueFor("hit_proc")

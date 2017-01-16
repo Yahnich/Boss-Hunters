@@ -23,6 +23,28 @@ function GetRoshanKills()
     return total_rosh_kills
 end
 
+function GetGameDifficulty()
+	local diff = GameRules.gameDifficulty
+	local diffString = "Normal"
+	if diff > 1 and diff < 2 then
+		diffString = "Normal/Champion"
+	elseif diff == 2 then
+		diffString = "Champion"
+	elseif diff > 2 and diff < 3 then
+		diffString = "Champion/Heroic"
+	elseif diff == 3 then
+		diffString = "Heroic"
+	elseif diff > 3 and diff < 4 then
+		diffString = "Heroic/Legendary"
+	elseif diff == 4 then
+		diffString = "Legendary"
+	elseif diff > 4 and diff < 5 then
+		diffString = "Legendary/Epic"
+	elseif diff == 5 then
+		diffString = "Epic"
+	end
+end
+
 ------------------------------
 -- Player Functions    --
 ------------------------------

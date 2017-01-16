@@ -3,10 +3,8 @@
   custom_net_tables =
   [
     "New_Game_plus",
-    "HB",
-    "Damage",
-    "time",
-    "midas",
     "Asura_core",
+	"hero_selection",
+	"syncing_purposes",
   ]
 }

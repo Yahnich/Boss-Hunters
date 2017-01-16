@@ -25,6 +25,31 @@ function refresher( keys )
     end
 end
 
+function SetCastPoints(keys)
+	local caster = keys.caster
+    local item = keys.ability
+	for i = 0, caster:GetAbilityCount() - 1 do
+        local ability = caster:GetAbilityByIndex( i )
+        if ability then
+			local castPoint = ability:GetCastPoint()
+			ability:SetOverrideCastPoint(castPoint * (1 - item:GetSpecialValueFor("bonus_cooldown")/100 ) )
+			ability.oldCastPoint = castPoint
+        end
+    end
+end
+
+function ResetCastPoints(keys)
+	local caster = keys.caster
+    local item = keys.ability
+	for i = 0, caster:GetAbilityCount() - 1 do
+        local ability = caster:GetAbilityByIndex( i )
+        if ability then
+			local castPoint = ability.oldCastPoint or ability:GetCastPoint()
+			ability:SetOverrideCastPoint(castPoint)
+        end
+    end
+end
+
 function ApplyNewBat(keys)
 	local caster = keys.caster
 	local item = keys.ability
@@ -156,14 +181,13 @@ LinkLuaModifier( "modifier_tauntmail", "lua_item/modifier_tauntmail.lua" ,LUA_MO
 
 function ApplyOrbEffect(keys)
 	local caster = keys.caster
-	caster:SetRangedProjectileName(keys.projectileName)
-	caster.currentProjectileModel = keys.projectileName
+	caster:SetProjectileModel(keys.projectileName)
 end
 
 function RemoveOrbEffect(keys)
 	local caster = keys.caster
-	if caster.currentProjectileModel == keys.projectileName then
-		caster:SetRangedProjectileName(caster:GetProjectileModel())
+	if caster:GetProjectileModel() == keys.projectileName then
+		caster:SetProjectileModel(caster:GetBaseProjectileModel())
 	end
 end
 
@@ -660,6 +684,7 @@ function item_blink_boots_blink(keys)
 			mult = 1 - (keys.caster:FindAbilityByName("perk_mobility"):GetSpecialValueFor("mobility_reduction"))/100
 		end
 		item.blink_next_charge = GameRules:GetGameTime() + 8*get_octarine_multiplier(caster)*mult
+		print(item.blink_next_charge - GameRules:GetGameTime())
         if item:GetCurrentCharges() == 0 then
             item:StartCooldown(item.blink_next_charge - GameRules:GetGameTime())
         end

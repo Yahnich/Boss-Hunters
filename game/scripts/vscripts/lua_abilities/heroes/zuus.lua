@@ -30,15 +30,15 @@ function modifier_zuus_static_field_ebf:DeclareFunctions()
 	return funcs
 end
 
-function modifier_zuus_static_field_ebf:OnCreated()
-	self.radius = self:GetAbility():GetTalentSpecialValueFor("radius")
-	self.hpdamage = self:GetAbility():GetTalentSpecialValueFor("damage_health_pct") / 100
-	self.pct_per_stack = self:GetAbility():GetTalentSpecialValueFor("pct_per_stack") / 100
-	self.stack_duration = self:GetAbility():GetTalentSpecialValueFor("stack_duration")
-end
+if IsServer() then
+	function modifier_zuus_static_field_ebf:OnCreated()
+		self.radius = self:GetAbility():GetTalentSpecialValueFor("radius")
+		self.hpdamage = self:GetAbility():GetTalentSpecialValueFor("damage_health_pct") / 100
+		self.pct_per_stack = self:GetAbility():GetTalentSpecialValueFor("pct_per_stack") / 100
+		self.stack_duration = self:GetAbility():GetTalentSpecialValueFor("stack_duration")
+	end
 
-function modifier_zuus_static_field_ebf:OnAbilityFullyCast(params)
-	if IsServer() then
+	function modifier_zuus_static_field_ebf:OnAbilityFullyCast(params)
 		if params.unit ~= self:GetParent() then return end
 		if self:GetParent():HasAbility(params.ability:GetName()) then -- check if caster has ability
 			local ability = self:GetAbility()
@@ -47,6 +47,7 @@ function modifier_zuus_static_field_ebf:OnAbilityFullyCast(params)
 				-- Attaches the particle
 				local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_zuus/zuus_static_field.vpcf", PATTACH_ABSORIGIN_FOLLOW, unit)
 				ParticleManager:SetParticleControl(particle,0,unit:GetAbsOrigin())
+				ParticleManager:ReleaseParticleIndex(particle)
 				-- Plays the sound on the unit
 				EmitSoundOn("sounds/weapons/hero/zuus/static_field.vsnd", unit)
 				if not unit:HasModifier("modifier_zuus_static_field_ebf_static_charge") then 
@@ -82,6 +83,7 @@ function StaticAegis(keys)
 		ParticleManager:SetParticleControl(particleUnit, 0, Vector(unit:GetAbsOrigin().x,unit:GetAbsOrigin().y,unit:GetAbsOrigin().z + unit:GetBoundingMaxs().z ))
 		ParticleManager:SetParticleControl(particleUnit, 1, Vector(unit:GetAbsOrigin().x,unit:GetAbsOrigin().y,1000 ))
 		ParticleManager:SetParticleControl(particleUnit, 2, Vector(unit:GetAbsOrigin().x,unit:GetAbsOrigin().y,unit:GetAbsOrigin().z + unit:GetBoundingMaxs().z ))
+		ParticleManager:ReleaseParticleIndex(particleUnit)
 		-- Plays the sound on the unit
 		EmitSoundOn(keys.sound, unit)
 		ability:ApplyDataDrivenModifier(caster, unit, "modifier_thundergods_wrath_datadriven", {duration = ability:GetTalentSpecialValueFor("buff_duration")})
@@ -108,6 +110,7 @@ function StaticAegisAttacked(keys)
 	local particleStrike = ParticleManager:CreateParticle(keys.particle, PATTACH_POINT_FOLLOW, victim)
 		ParticleManager:SetParticleControlEnt(particleStrike, 0, victim, PATTACH_POINT_FOLLOW, "attach_hitloc", victim:GetAbsOrigin(), true)
 		ParticleManager:SetParticleControlEnt(particleStrike, 1, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
+	ParticleManager:ReleaseParticleIndex(particleStrike)
 	ApplyDamage({victim = target, attacker = victim, damage = ability:GetAbilityDamage(), damage_type = ability:GetAbilityDamageType(), ability = ability})
 	EmitSoundOn("Item.Maelstrom.Chain_Lightning", target)
 end

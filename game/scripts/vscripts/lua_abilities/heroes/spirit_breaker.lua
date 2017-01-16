@@ -2,10 +2,13 @@ function haste_armor(keys)
     local caster = keys.caster
     local ability = keys.ability
     ability:ApplyDataDrivenModifier(caster, caster, "haste_armor_bonus", {})
+	local haste_armor = ParticleManager:CreateParticle("particles/spirit_breaker_haste_armor.vpcf", PATTACH_POINT_FOLLOW , caster)
+		ParticleManager:SetParticleControl(haste_armor, 0, caster:GetAbsOrigin())
     Timers:CreateTimer(0.03,function()
         if caster:IsAlive() then
             if caster:GetIdealSpeed() ~= caster:GetModifierStackCount( "haste_armor_bonus", ability ) then
                 caster:SetModifierStackCount( "haste_armor_bonus", ability, caster:GetIdealSpeed() )
+				ParticleManager:SetParticleControl(haste_armor, 1, Vector(caster:GetIdealSpeed(), 0, 0))
             end
             return 0.3
         end

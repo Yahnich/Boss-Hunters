@@ -8,6 +8,9 @@ function leshrac_inner_torment:GetIntrinsicModifierName()
     return "modifier_leshrac_inner_torment"
 end
 
+function leshrac_inner_torment:OnToggle()
+	return
+end
 
 function leshrac_inner_torment:OnHeroLevelUp()
     self:GetCaster():FindModifierByName("modifier_leshrac_inner_torment"):IncrementStackCount()
@@ -15,9 +18,11 @@ end
 
 modifier_leshrac_inner_torment = class({})
 
-function modifier_leshrac_inner_torment:OnCreated()
-	self.piercing = self:GetAbility():GetTalentSpecialValueFor("pure_damage_per_level")
-	self:SetStackCount(self:GetCaster():GetLevel())
+if IsServer() then
+	function modifier_leshrac_inner_torment:OnCreated()
+		self.piercing = self:GetAbility():GetTalentSpecialValueFor("pure_damage_per_level")
+		self:SetStackCount(self:GetCaster():GetLevel())
+	end
 end
 
 function modifier_leshrac_inner_torment:IsHidden()
@@ -35,7 +40,6 @@ function InnerTorment(filterTable)
     if not victim_index or not attacker_index then
         return filterTable
     end
-	
 	local damage = filterTable["damage"] --Post reduction
 	local inflictor = filterTable["entindex_inflictor_const"]
 	local ability = EntIndexToHScript( inflictor )
@@ -44,6 +48,9 @@ function InnerTorment(filterTable)
     local victim = EntIndexToHScript( victim_index )
     local attacker = EntIndexToHScript( attacker_index )
 	local torment = attacker:FindAbilityByName("leshrac_inner_torment")
+	if torment:GetToggleState() then 
+		return filterTable
+	end
     local damagetype = filterTable["damagetype_const"]
 	local modifier = attacker:FindModifierByName("modifier_leshrac_inner_torment")
 	local pierce = (modifier.piercing * modifier:GetStackCount()) / 100

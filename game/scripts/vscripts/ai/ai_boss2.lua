@@ -6,6 +6,7 @@ require( "ai/ai_core" )
 
 function Spawn( entityKeyValues )
 	thisEntity:SetContextThink( "AIThinker", AIThink, 0.25 )
+	if not thisEntity then return end
 	thisEntity.throw = thisEntity:FindAbilityByName("boss_hard_throw")
 	thisEntity.toxic = thisEntity:FindAbilityByName("boss_toxic_weaponry")
 	if  math.floor(GameRules.gameDifficulty + 0.5) == 4 then

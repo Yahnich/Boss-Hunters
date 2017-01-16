@@ -67,27 +67,33 @@ function DeathPact( event )
 	local ability = event.ability
 	local duration = ability:GetTalentSpecialValueFor( "duration")
 	local target_health = target:GetHealth()
-
+	
+	
 	-- Health Gain
 	local health_gain_pct = ability:GetTalentSpecialValueFor( "hp_percent") * 0.01
+	local max_hp = ability:GetTalentSpecialValueFor("max_hp") / 100 * caster:GetMaxHealth()
 	local health_gain = math.floor(target_health * health_gain_pct)
+	if health_gain > max_hp then health_gain = max_hp end
 
 	local health_modifier = "modifier_death_pact_health"
+	caster:RemoveModifierByName(health_modifier)
 	ability:ApplyDataDrivenModifier(caster, caster, health_modifier, { duration = duration })
 	caster:SetModifierStackCount( health_modifier, ability, health_gain )
-	caster:Heal( health_gain, caster)
 
 	-- Damage Gain
 	local damage_gain_pct = ability:GetTalentSpecialValueFor( "damage_percent") * 0.01
+	local max_dmg = ability:GetTalentSpecialValueFor("max_dmg") / 100 * caster:GetAverageBaseDamage()
 	local damage_gain = math.floor(target_health * damage_gain_pct)
+	if damage_gain > max_dmg then damage_gain = max_dmg end
 
 	local damage_modifier = "modifier_death_pact_damage"
+	caster:RemoveModifierByName(damage_modifier)
 	ability:ApplyDataDrivenModifier(caster, caster, damage_modifier, { duration = duration })
 	caster:SetModifierStackCount( damage_modifier, ability, damage_gain )
 	local damageTable = {victim = target, attacker = caster, damage = health_gain/get_aether_multiplier(caster), damage_type = DAMAGE_TYPE_PURE, ability = ability}
 
 	ApplyDamage(damageTable)
-
+	caster:Heal( health_gain, caster)
 	caster.death_pact_health = health_gain
 end
 

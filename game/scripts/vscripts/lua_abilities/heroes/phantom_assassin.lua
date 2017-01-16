@@ -1,5 +1,3 @@
-require( "libraries/Timers" )
-
 function FanTheBladeStart(keys)
 	local caster = keys.caster
 	local ability = keys.ability
@@ -90,6 +88,7 @@ function AssassinDanceInit( keys )
 						ParticleManager:SetParticleControl(blinkIn, 0, caster:GetAbsOrigin())
 	Timers:CreateTimer(0.1, function()
 		ParticleManager:DestroyParticle( blinkIn, false )
+		ParticleManager:ReleaseParticleIndex(blinkIn)
 		return nil
 		end
 	)
@@ -102,8 +101,6 @@ function AssassinDanceInit( keys )
 	for _, target in pairs( enemies ) do
 		Timers:CreateTimer(attack_interval*counter, function()
 				FindClearSpaceForUnit( caster, target:GetAbsOrigin(), false )
-				local dummy = CreateUnitByName( caster:GetName(), target:GetAbsOrigin(), false, caster, nil, caster:GetTeamNumber() )
-				ability:ApplyDataDrivenModifier( caster, dummy, dummyModifierName, {} )
 				
 				ability:ApplyDataDrivenModifier(caster, caster, "modifier_sleight_of_fist_target_hero_datadriven", {})
 				caster:PerformAttack(target, true, true, true, true, false)
@@ -112,8 +109,7 @@ function AssassinDanceInit( keys )
 				end
 				caster:RemoveModifierByName("modifier_sleight_of_fist_target_hero_datadriven")
 				
-				Timers:CreateTimer(0.3, function() 
-					dummy:RemoveSelf() 
+				Timers:CreateTimer(0.3, function()  
 					EmitSoundOn(displaceSound, target)
 				end)
 				EmitSoundOn(slashSound1, target)
@@ -124,7 +120,6 @@ function AssassinDanceInit( keys )
 	end
 	
 	-- Return caster to origin position
-	print(attack_interval)
 	Timers:CreateTimer(attack_interval*(counter+1), function()
 			EmitSoundOn(endSound, target)
 			FindClearSpaceForUnit( caster, endPos, false )
@@ -135,10 +130,84 @@ function AssassinDanceInit( keys )
 			ParticleManager:SetParticleControl(blinkIndex, 0, caster:GetAbsOrigin())
 			Timers:CreateTimer(0.1, function()
 				ParticleManager:DestroyParticle( blinkIndex, false )
+				ParticleManager:ReleaseParticleIndex(blinkIndex)
 				return nil
 				end
 			)
 			return nil
 		end
 	)
+end
+
+phantom_assassin_blur_ebf = class({})
+
+function phantom_assassin_blur_ebf:GetIntrinsicModifierName()
+	return "modifier_phantom_assassin_blur_ebf"
+end
+
+LinkLuaModifier( "modifier_phantom_assassin_blur_ebf", "lua_abilities/heroes/phantom_assassin.lua" ,LUA_MODIFIER_MOTION_NONE )
+modifier_phantom_assassin_blur_ebf = class({})
+
+function modifier_phantom_assassin_blur_ebf:OnCreated()
+	self.evasion = self:GetAbility():GetSpecialValueFor("bonus_evasion_tooltip")
+	self.evasion_stack = self:GetAbility():GetSpecialValueFor("evasion_stacks")
+	self.trueEvasion = self:GetAbility():GetSpecialValueFor("true_evasion")
+end
+
+function modifier_phantom_assassin_blur_ebf:DeclareFunctions()
+	funcs = {
+				MODIFIER_EVENT_ON_ATTACK_START,
+				MODIFIER_EVENT_ON_ATTACK_LANDED,
+				MODIFIER_EVENT_ON_ATTACK_FAIL,
+				MODIFIER_PROPERTY_EVASION_CONSTANT,
+			}
+	return funcs
+end
+
+function modifier_phantom_assassin_blur_ebf:OnAttackStart(params)
+	if IsServer() then
+		if params.target == self:GetParent() then
+			if RollPercentage(self.trueEvasion) then
+				params.attacker:AddNewModifier(params.target, self:GetAbility(), "modifier_phantom_assassin_blur_true_evasion", {})
+			end
+		else
+			params.attacker:RemoveModifierByName("modifier_phantom_assassin_blur_true_evasion")
+		end
+	end
+end
+
+function modifier_phantom_assassin_blur_ebf:OnAttackLanded(params)
+	if IsServer() then
+		if params.target == self:GetParent() then
+			params.attacker:RemoveModifierByName("modifier_phantom_assassin_blur_true_evasion")
+			self:IncrementStackCount()
+		end
+	end
+end
+
+function modifier_phantom_assassin_blur_ebf:OnAttackFail(params)
+	if IsServer() then
+		if params.target == self:GetParent() then
+			params.attacker:RemoveModifierByName("modifier_phantom_assassin_blur_true_evasion")
+			self:SetStackCount(0)
+		end
+	end
+end
+
+function modifier_phantom_assassin_blur_ebf:GetModifierEvasion_Constant(params)
+	return self.evasion + self:GetStackCount() * self.evasion_stack
+end
+
+LinkLuaModifier( "modifier_phantom_assassin_blur_true_evasion", "lua_abilities/heroes/phantom_assassin.lua" ,LUA_MODIFIER_MOTION_NONE )
+modifier_phantom_assassin_blur_true_evasion = class({})
+
+function modifier_phantom_assassin_blur_true_evasion:IsHidden()
+	return true
+end
+
+function modifier_phantom_assassin_blur_true_evasion:CheckState()
+    local state = {
+		[MODIFIER_STATE_CANNOT_MISS] = false,
+	}
+	return state
 end

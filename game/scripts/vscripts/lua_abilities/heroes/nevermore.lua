@@ -55,3 +55,23 @@ function LevelUpAbility( keys )
 		ability_handle2:SetLevel(this_abilityLevel)
 	end
 end
+
+function CheckNecroStacks(keys)
+	local caster = keys.caster
+	local ability = keys.ability
+	local necromasteryModifier = "modifier_nevermore_necromastery"
+	if keys.attacker == caster then return end -- Don't include creeps SF kills
+	if caster:HasModifier(necromasteryModifier) then
+		local necromastery = caster:FindAbilityByName("nevermore_necromastery")
+		local storage = necromastery:GetSpecialValueFor("passive_deaths_per_soul")
+		local limit = necromastery:GetSpecialValueFor("necromastery_max_souls")
+		if caster:HasScepter() then limit = necromastery:GetSpecialValueFor("necromastery_max_souls_scepter") end
+		local stacks = caster:FindModifierByName(necromasteryModifier)
+		stacks.passiveKills = stacks.passiveKills or 0
+		stacks.passiveKills = stacks.passiveKills + 1
+		if stacks.passiveKills >= storage and stacks:GetStackCount() < limit then
+			stacks:IncrementStackCount()
+			stacks.passiveKills = 0
+		end
+	end
+end

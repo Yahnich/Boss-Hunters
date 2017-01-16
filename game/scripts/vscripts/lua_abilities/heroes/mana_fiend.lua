@@ -20,6 +20,7 @@ function LifeToMana(keys)
 	
 	caster:GiveMana(mana)
 	if not caster:HasScepter() then
+		if newhp < 1 then newhp = 1 end
 		caster:SetHealth(newhp)
 	end
 end

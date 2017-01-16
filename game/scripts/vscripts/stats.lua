@@ -5,9 +5,10 @@ MR_PER_STR = 0.4
 HP_REGEN_PER_STR = 0.025
 MANA_PER_INT = 10
 MANA_REGEN_PER_INT = 0.035
-ARMOR_PER_AGI = 0.06
-ATKSPD_PER_AGI = 0.04
-DMG_PER_INT = 0.5
+ARMOR_PER_AGI = 0.07
+ATKSPD_PER_AGI = 0.08
+DMG_PER_AGI = 0.5
+CDR_PER_INT = 0.385
 MAX_MOVE_SPEED = 1500
 
 -- Default Dota Values
@@ -34,8 +35,8 @@ function stats:ModifyStatBonuses(unit)
 	local mana_regen_adjustment = math.abs(MANA_REGEN_PER_INT - DEFAULT_MANA_REGEN_PER_INT)
 	local armor_adjustment = math.abs(ARMOR_PER_AGI - DEFAULT_ARMOR_PER_AGI)
 	local attackspeed_adjustment = math.abs(ATKSPD_PER_AGI - DEFAULT_ATKSPD_PER_AGI)
-	local damage_adjustment = DMG_PER_INT
-
+	local damage_adjustment = DMG_PER_AGI
+	
 	Timers:CreateTimer(function()
 
 		if not IsValidEntity(hero) then return end
@@ -94,6 +95,13 @@ function stats:ModifyStatBonuses(unit)
 
 			local attackspeed_stacks = agility * attackspeed_adjustment
 			hero:SetModifierStackCount("modifier_attackspeed_bonus_constant", hero, attackspeed_stacks)
+			
+			if not hero:HasModifier("modifier_base_damage") then
+				applier:ApplyDataDrivenModifier(hero, hero, "modifier_base_damage", {})
+			end
+
+			local damage_stacks = math.floor(agility * damage_adjustment + 0.5)
+			hero:SetModifierStackCount("modifier_base_damage", hero, damage_stacks)
 		end
 
 		-- INT
@@ -112,16 +120,18 @@ function stats:ModifyStatBonuses(unit)
 
 			local mana_regen_stacks = math.abs(intellect * mana_regen_adjustment)
 			hero:SetModifierStackCount("modifier_base_mana_regen", hero, mana_regen_stacks)
-
-			if not hero:HasModifier("modifier_base_damage") then
-				applier:ApplyDataDrivenModifier(hero, hero, "modifier_base_damage", {})
+			
+			if not hero:HasModifier("modifier_cooldown_reduction") then
+				applier:ApplyDataDrivenModifier(hero, hero, "modifier_cooldown_reduction", {})
 			end
 
-			local damage_stacks = math.floor(intellect * damage_adjustment + 0.5)
-			hero:SetModifierStackCount("modifier_base_damage", hero, damage_stacks)
+			local cdr = 1 - math.floor(intellect ^ CDR_PER_INT + 0.5) / 100
+			local octarine = get_core_cdr(hero)
+			local cdr_stacks = (1 - (octarine * cdr))*100
+			print(cdr_stacks, cdr, octarine)
+			hero:SetModifierStackCount("modifier_cooldown_reduction", hero, cdr_stacks)
 		end
 		if hero:GetLevel() ~= hero.currentLevel or hero:IsRangedAttacker() ~= hero.attackCapability then
-			print(hero:GetLevel(), hero.currentLevel)
 			if hero:IsRangedAttacker() then
 				if not hero:HasModifier("modifier_ranged_bonus_constant") then
 					applier:ApplyDataDrivenModifier(hero, hero, "modifier_ranged_bonus_constant", {})

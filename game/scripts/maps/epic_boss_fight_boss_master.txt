@@ -96,18 +96,6 @@
 					"SpawnInterval"			"1"
 				}
 			}
-			"6"
-			{
-				"round_quest_title"			"#DOTA_Holdout_Round_Boss0_Quest_Title_alt"
-				"UnitBoss_money_roshan" 
-				{
-					"NPCName"				"npc_dota_money_roshan"
-					"TotalUnitsToSpawn"		"1"
-					"UnitsPerSpawn"			"5"
-					"SpawnInterval"			"1"
-					"SetRenderColor"		"255 255 0"
-				}
-			}
 		}
 	}
 	

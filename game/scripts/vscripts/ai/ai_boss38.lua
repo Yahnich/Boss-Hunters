@@ -39,10 +39,11 @@ function AIThink()
 	if not thisEntity:IsDominated() then
 		if not thisEntity:IsAlive() then
 			for _,unit in pairs( FindUnitsInRadius( DOTA_TEAM_BADGUYS, Vector( 0, 0, 0 ), nil, FIND_UNITS_EVERYWHERE, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )) do
-				if not unit:IsTower() or unit:IsHero() == false then
+				if not unit:IsTower() or unit:IsHero() == false and not unit:GetName() == "npc_dota_creature" then
 					unit:ForceKill(true)
 					UTIL_Remove( unit )
 				end
+				return -1
 			end
 		end
 		if not thisEntity:IsChanneling() then

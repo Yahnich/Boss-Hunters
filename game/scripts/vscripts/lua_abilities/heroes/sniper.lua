@@ -10,8 +10,8 @@ function HeadShot(keys)
 	if chance+ability.prng > math.random(100) then
 		local assassinate = caster:FindAbilityByName("sniper_assassinate_ebf")
 		ability.prng = 0
-		if assassinate:GetLevel() > 0 and assassinate:IsCooldownReady() and caster:GetMana() >= assassinate:GetManaCost() then
-			local cooldown = assassinate:GetCooldown(-1) * ability:GetTalentSpecialValueFor("assassinate_passive_cooldown_scepter") * get_octarine_multiplier(caster) / 100
+		if assassinate:GetLevel() > 0 and assassinate:IsCooldownReady() then
+			local cooldown = assassinate:GetCooldown(-1) * ability:GetTalentSpecialValueFor("assassinate_passive_cooldown") * get_octarine_multiplier(caster) / 100
 			caster:SetCursorCastTarget(target)
 			assassinate:OnSpellStart()
 			assassinate:StartCooldown(cooldown)

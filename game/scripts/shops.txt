@@ -113,7 +113,7 @@
         "item" "item_butterfly2"
         "item" "item_desolator3"
         "item" "item_bloodthorn2"
-        "item" "item_ghost_scepter2"
+        "item" "item_ghost_2"
         "item" "item_aether_lens"
         "item" "item_heart"
 		"item" "item_mekansm2"
@@ -121,22 +121,6 @@
     }
     // Level 3 - Purple Recipes
     "defense"
-    {
-        "item" "item_orb_divine"
-        "item" "item_divine_armor"
-        "item" "item_divinesoul"
-        "item" "item_divine_ring"
-        "item" "item_octarine_core4"
-        "item" "item_butterfly4"
-		 "item" "item_desolator5"
-        "item" "item_bloodthorn4"
-        "item" "item_ghost_scepter4"
-        "item" "item_sunium_lens"
-        "item" "item_heart_divine"
-		"item" "item_mekansm4"
-		"item" "item_phase_boots4"
-    }
-    "weapons"
     {
         "item" "item_orb_of_doom"
         "item" "item_titan_armor"
@@ -146,11 +130,27 @@
         "item" "item_butterfly3"
         "item" "item_desolator4"
         "item" "item_bloodthorn3"
-        "item" "item_ghost_scepter3"
+        "item" "item_ghost_3"
 		"item" "item_redium_lens"
         "item" "item_heart_titan"
 		"item" "item_mekansm3"
 		"item" "item_phase_boots3"
+    }
+	"weapons"
+    {
+        "item" "item_orb_divine"
+        "item" "item_divine_armor"
+        "item" "item_divinesoul"
+        "item" "item_divine_ring"
+        "item" "item_octarine_core4"
+        "item" "item_butterfly4"
+		 "item" "item_desolator5"
+        "item" "item_bloodthorn4"
+        "item" "item_ghost_4"
+        "item" "item_sunium_lens"
+        "item" "item_heart_divine"
+		"item" "item_mekansm4"
+		"item" "item_phase_boots4"
     }
     // Level 4 - Orange / Orb / Artifacts
     "artifacts"
@@ -163,67 +163,10 @@
         "item" "item_butterfly5"
         "item" "item_bahamut_claw"
         "item" "item_purethorn"
-        "item" "item_ghost_scepter5"
+        "item" "item_ghost_5"
         "item" "item_omni_lens"
         "item" "item_heart_bahamut"
 		"item" "item_mekansm5"
 		"item" "item_phase_boots5"
-    }
-    //Leftover Storage
-    "sideshop1"
-    {
-        "item"      "item_super_clarity"
-        "item"      "item_super_salve"
-        "item"      "item_axe_of_shadow"
-        "item"      "item_blade_of_shadow"
-        "item"      "item_staff_of_shadow"
-        "item" "item_refresher"
-        "item" "item_hood_of_defiance"
-        "item" "item_vanguard"
-        "item" "item_soul_booster"
-        "item" "item_manta"
-        "item" "item_bloodstone"
-        "item" "item_sphere"
- 
-    }
-    //Leftover Storage
-    "sideshop2"
-    {
-       
-        "item"      "item_desolator3"
-        "item"      "item_doom_hammer"
-        "item"      "item_frenetic_stone"
-        "item"      "item_battle_furry_2"
-        "item"      "item_crit3"
-        "item"      "item_scythe"
-        "item"      "item_heart_titan"
-        "item"      "item_lifesteal3"
-        "item" "item_armlet"
-        "item" "item_basher"
-        "item" "item_invis_sword"
-        "item" "item_bfury"
-        "item" "item_ethereal_blade"
-        "item" "item_radiance"
-        "item" "item_monkey_king_bar"
-        "item" "item_rapier"
-        "item" "item_abyssal_blade"
- 
-    }
-    "tier5shop"
-    {
-        "item"      "item_boss_clarity"
-        "item"      "item_boss_salve"
-        "item"      "item_heart_titan"
-       
-        "item"      "item_boss_desolator"
-       
-        "item"      "item_boss_crit"
-        "item"      "item_boss_armor"
-        "item"      "item_ultimate_rapier"
-        "item"      "item_boss_lifesteal"
-    }
-    "tier6shop"
-    {
-        "item"      "item_boss_destroyer"
     }
 }

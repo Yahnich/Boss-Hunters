@@ -269,11 +269,9 @@ function boss_evil_core_take_damage(keys)
     if caster:IsNull() then 
         return
     end
-	local base = 7
-	if GetMapName() == "epic_boss_fight_impossible" then base = 5 end
+	local base = GameRules.BasePlayers
     caster.failed_attack = caster.failed_attack or 0
     if caster.weakness == true then
-		print((5+caster.UnitSpawned) * ((base + 1 - PlayerResource:GetPlayerCountForTeam(DOTA_TEAM_GOODGUYS))/base), (base + 1 - PlayerResource:GetPlayerCountForTeam(DOTA_TEAM_GOODGUYS)), base, PlayerResource:GetPlayerCountForTeam(DOTA_TEAM_GOODGUYS))
         local increasedDamage = math.floor((5+caster.UnitSpawned) * ((base + 1 - PlayerResource:GetPlayerCountForTeam(DOTA_TEAM_GOODGUYS))/base))
 		caster:SetHealth( caster:GetHealth() - 5+caster.UnitSpawned - increasedDamage )
         caster.failed_attack = 0
@@ -323,76 +321,6 @@ function boss_evil_core_death(keys)
     end
 end
 
-function Crystal_aura(keys)
-    local caster = keys.caster
-    local target = keys.target
-    local ability = keys.ability
-
-    Timers:CreateTimer(0.5,function()
-            if caster:IsAlive() then
-                local damage_total = ability:GetTalentSpecialValueFor("mana_percent_damage") * caster:GetMaxMana() * 0.01
-                for _,unit in pairs ( Entities:FindAllByName( "npc_dota_hero*")) do
-                    if unit:IsAlive() then
-                        ability:ApplyDataDrivenModifier( caster, unit, "crystal_aura_indication", {} )
-                        if unit:GetModifierStackCount( "crystal_bonus_damage", ability ) ~= damage_total then
-                            if unit:IsRealHero() then
-                                ability:ApplyDataDrivenModifier(caster, unit, "crystal_bonus_damage", {})
-                                unit:SetModifierStackCount( "crystal_bonus_damage", ability, damage_total )
-                            end
-                        end
-                    end
-                end
-            end
-            return 0.5
-
-    end)
-end
-
-function Crystal_aura_death(keys)
-    local caster = keys.caster
-    local target = keys.target
-    local ability = keys.ability
-    for _,unit in pairs ( Entities:FindAllByName( "npc_dota_hero*")) do
-                    Timers:CreateTimer(0.1,function()
-                        unit:SetModifierStackCount( "crystal_bonus_damage", ability, 0 )
-                        unit:RemoveModifierByName( "crystal_bonus_damage" )
-                        unit:RemoveModifierByName( "crystal_aura_indication" )
-                    end)
-    end
-end
-
-	
-function viper_nethertoxin(keys)
-    local caster = keys.caster
-    local target = keys.target
-    local ability = keys.ability
-    local missing_health = target:GetMaxHealth() - target:GetHealth()
-    local damage = math.floor(ability:GetTalentSpecialValueFor("percent") * missing_health * 0.01) + 1
-    local damageTable = {
-        victim = target,
-        attacker = caster,
-        damage = damage,
-        damage_type = DAMAGE_TYPE_MAGICAL,
-        ability = keys.ability,
-    }
-
-    ApplyDamage( damageTable )
-    if caster.show_popup ~= true then
-                    caster.show_popup = true
-                    caster:ShowPopup( {
-                    PreSymbol = 1,
-                    PostSymbol = 5,
-                    Color = Vector( 50, 255, 100 ),
-                    Duration = 1.5,
-                    Number = damage,
-                    pfx = "damage",
-                    Player = true
-                } )
-                Timers:CreateTimer(3.0,function()
-                    caster.show_popup = false
-                end)
-    end
-end
 
 function projectile_cloud( keys )
     local ability = keys.ability
@@ -447,132 +375,7 @@ function projectile_spear( keys )
     }
     projectile = ProjectileManager:CreateLinearProjectile(projectileTable)
 end
-function projectile_crystal( keys )
-    local ability = keys.ability
-    local caster = keys.caster
-    local projectile_count = 7 --ability:GetTalentSpecialValueFor("projectile_count") -- If you want to make it more powerful with levels
-    local number_of_source = ability:GetTalentSpecialValueFor("source_count")
-    local delay = ability:GetTalentSpecialValueFor("delay")
-    local distance = ability:GetTalentSpecialValueFor("distance")
-    local time_interval = 0.20
-    local speed = 600
-    local forward = caster:GetForwardVector()
 
-    local casterPoint = caster:GetAbsOrigin()
-    -- Spawn projectile
-    local projectileTable = {
-        Ability = ability,
-        EffectName = "particles/crystal_maiden_projectil_spawner_work.vpcf",
-        vSpawnOrigin = casterPoint,
-        fDistance = 900 + (delay * 300),
-        fStartRadius = 50,
-        fEndRadius = 50,
-        fExpireTime = GameRules:GetGameTime() + 6,
-        Source = caster,
-        bHasFrontalCone = true,
-        bReplaceExisting = false,
-        bProvidesVision = false,
-        iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY,
-        iUnitTargetFlags = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
-        iUnitTargetType = DOTA_UNIT_TARGET_ALL,
-        bDeleteOnHit = false,
-        vVelocity = forward * 300,
-    }
-        projectile = ProjectileManager:CreateLinearProjectile(projectileTable)
-    local info = {
-        Ability = ability,
-        EffectName = "particles/ice_spear.vpcf",
-        vSpawnOrigin = casterPoint + forward * 600,
-        fDistance = distance,
-        fStartRadius = 50,
-        fEndRadius = 50,
-        fExpireTime = GameRules:GetGameTime() + 10,
-        Source = caster,
-        bHasFrontalCone = true,
-        bReplaceExisting = false,
-        bProvidesVision = false,
-        iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY,
-        iUnitTargetFlags = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
-        iUnitTargetType = DOTA_UNIT_TARGET_ALL,
-        bDeleteOnHit = true,
-        vVelocity = forward * 600,
-    }
-
-    --Creates the projectiles in 360 degrees
-    if number_of_source == 1 or number_of_source > 2 then
-        Timers:CreateTimer(delay,function()
-            local projectiles_created = 0
-            for i=-180,180,(180/projectile_count) do
-                i = i+180
-                local time = projectiles_created * time_interval
-                projectiles_created = projectiles_created + 1
-
-                --EmitSoundOn("", caster) --Add a sound if you wish!
-                Timers:CreateTimer(time, function()
-                    info.vSpawnOrigin = casterPoint + (forward * 300 * time) + forward * 300* delay + forward * 75
-                    info.vVelocity = RotatePosition(Vector(0,0,0), QAngle(0,i,0), forward) * speed
-                    small_projectile_1 = ProjectileManager:CreateLinearProjectile( info )
-                end)
-            end
-        end)
-    end
-    if number_of_source >=2 then
-        Timers:CreateTimer(delay,function()
-            local projectiles_created = 0
-            for i=-180,180,(180/projectile_count) do
-                if number_of_source == 3 then
-                    i = i - 30
-                end
-                i = i+90
-                local time = projectiles_created * time_interval
-                projectiles_created = projectiles_created + 1
-
-                --EmitSoundOn("", caster) --Add a sound if you wish!
-                Timers:CreateTimer(time, function()
-                    info.vSpawnOrigin = casterPoint + (forward * 300 * time) + forward * 300 * delay + forward * 75
-                    info.vVelocity = RotatePosition(Vector(0,0,0), QAngle(0,i,0), forward) * speed
-                    small_projectile_2 = ProjectileManager:CreateLinearProjectile( info )
-                end)
-            end
-        end)
-    end
-    if number_of_source >=2 then
-        Timers:CreateTimer(delay,function()
-            local projectiles_created = 0
-            for i=-180,180,(180/projectile_count) do
-                i = i+270
-                if number_of_source == 3 then
-                    i = i + 30
-                end
-                local time = projectiles_created * time_interval
-                projectiles_created = projectiles_created + 1
-
-                --EmitSoundOn("", caster) --Add a sound if you wish!
-                Timers:CreateTimer(time, function()
-                    info.vSpawnOrigin = casterPoint + (forward * 300 * time) + forward * 300* delay + forward * 75
-                    info.vVelocity = RotatePosition(Vector(0,0,0), QAngle(0,i,0), forward) * speed
-                    small_projectile_3 = ProjectileManager:CreateLinearProjectile( info )
-                end)
-            end
-        end)
-    end
-    if number_of_source == 4 then
-        Timers:CreateTimer(delay,function()
-            local projectiles_created = 0
-            for i=-180,180,(180/projectile_count) do
-                local time = projectiles_created * time_interval
-                projectiles_created = projectiles_created + 1
-
-                --EmitSoundOn("", caster) --Add a sound if you wish!
-                Timers:CreateTimer(time, function()
-                    info.vSpawnOrigin = casterPoint + (forward * 300 * time) + forward * 300* delay + forward * 75
-                    info.vVelocity = RotatePosition(Vector(0,0,0), QAngle(0,i,0), forward) * speed
-                    small_projectile_4 = ProjectileManager:CreateLinearProjectile( info )
-                end)
-            end
-        end)
-    end
-end
 function projectile_lol_orbs( keys )
     local ability = keys.ability
     local caster = keys.caster
@@ -935,16 +738,25 @@ end
 LinkLuaModifier( "modifier_neutral_power_passive", "scripts/vscripts/lua_abilities/heroes/modifiers/modifier_neutral_power_passive.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 function CreepScaling(keys)
-	local caster = keys.caster:GetOwnerEntity()
-	local creep = keys.caster
-	if not caster then caster = creep end
-	local treant = caster:FindAbilityByName("furion_force_of_nature")
-	if treant then
-		creep:AddNewModifier(creep, keys.ability, "modifier_neutral_power_passive", {})
-		creep:SetBaseDamageMin(creep:GetBaseDamageMin() + creep:GetBaseDamageMin()*caster:GetLevel()^0.4*treant:GetLevel()*GameRules._roundnumber^0.5)
-	else creep:SetBaseDamageMin(creep:GetBaseDamageMin()*GameRules._roundnumber^0.5) end
-	creep:SetBaseDamageMax(creep:GetBaseDamageMin())
-	creep:SetHealth(creep:GetMaxHealth())
+	Timers:CreateTimer(0.03,function() 
+		local caster = keys.caster:GetOwnerEntity()
+		local creep = keys.caster
+		if not caster then caster = creep end
+		local treant = caster:FindAbilityByName("furion_force_of_nature")
+		if treant then
+			creep:AddNewModifier(creep, keys.ability, "modifier_neutral_power_passive", {})
+			local damage = creep:GetBaseDamageMin() + creep:GetBaseDamageMin()*caster:GetLevel()^0.4*treant:GetLevel()*GameRules._roundnumber^0.5
+			if caster:HasTalent("special_bonus_unique_furion") then damage = damage * caster:FindTalentValue("special_bonus_unique_furion") end
+			creep:SetBaseDamageMin(damage)
+		else 
+			local damage = creep:GetBaseDamageMin()*GameRules._roundnumber^0.5
+			
+			if caster:HasTalent("special_bonus_unique_venomancer") then damage = damage * caster:FindTalentValue("special_bonus_unique_venomancer") end
+			creep:SetBaseDamageMin(damage) 
+		end
+		creep:SetBaseDamageMax(creep:GetBaseDamageMin())
+		creep:SetHealth(creep:GetMaxHealth())
+	end)
 end
 
 function doom_raze( event )
@@ -1050,8 +862,8 @@ function doom_bringer_boss( event )
 	event.ability:ApplyDataDrivenModifier(caster, target, "fuckingdoomed", {duration = 10})
     if GetMapName() == "epic_boss_fight_impossible" or GetMapName() == "epic_boss_fight_boss_master" then
         Timers:CreateTimer(0.1,function() 
-            if target:GetHealth() > target:GetMaxHealth()*0.10 + 0.015*GameRules.gameDifficulty and GameRules:GetGameTime() <= time + 10 then
-                target:SetHealth(target:GetHealth()*(0.9 - 0.125*GameRules.gameDifficulty))
+            if target:GetHealth() > target:GetMaxHealth()*0.10 + 0.0125*GameRules.gameDifficulty and GameRules:GetGameTime() <= time + 10 then
+                target:SetHealth(target:GetHealth()*(0.95 - 0.025*GameRules.gameDifficulty))
                 return 0.5
             else
                 if GameRules:GetGameTime() <= time + 10 and caster:IsAlive() then
@@ -1061,8 +873,8 @@ function doom_bringer_boss( event )
         end)
     elseif GetMapName() == "epic_boss_fight_hard" then
         Timers:CreateTimer(0.1,function() 
-            if target:GetHealth() > target:GetMaxHealth()*0.05  + 0.015*GameRules.gameDifficulty and GameRules:GetGameTime() <= time + 10 then
-                target:SetHealth(target:GetHealth()*(0.92 - 0.1*GameRules.gameDifficulty))
+            if target:GetHealth() > target:GetMaxHealth()*0.05  + 0.0125*GameRules.gameDifficulty and GameRules:GetGameTime() <= time + 10 then
+                target:SetHealth(target:GetHealth()*(0.98 - 0.01*GameRules.gameDifficulty))
                 return 0.5
             else
                 if GameRules:GetGameTime() <= time + 10 then

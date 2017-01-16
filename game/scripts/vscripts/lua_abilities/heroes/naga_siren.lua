@@ -150,9 +150,9 @@ function CheckCooldowns(keys)
 	local ability = keys.ability
 	
 	local counter = 0
-	for i = 0, 6 do
+	for i = 0, 5 do
 		local cooldownAb = caster:GetAbilityByIndex(i)
-		if cooldownAb and not cooldownAb:IsCooldownReady() then
+		if cooldownAb and not cooldownAb:IsCooldownReady() and not cooldownAb:IsPassive() then
 			counter = counter + 1
 		end
 	end

@@ -92,15 +92,35 @@ function IncreaseCD(keys)
 	local usedability = keys.event_ability
 	if keys.caster:PassivesDisabled() then return end
 	local cdreduction = 2
-	Timers:CreateTimer(0.01,function()
+	Timers:CreateTimer(0.03,function()
 		if not usedability:IsCooldownReady() then
 			local cd = usedability:GetCooldownTimeRemaining()
+			print(cd)
 			usedability:EndCooldown()
 			usedability:StartCooldown(cd * cdreduction)
-		else
-			return 0.01
 		end
 	end)
+end
+
+function MindBlast(keys)
+	local caster = keys.caster
+	if caster:PassivesDisabled() then return end
+	local ability = keys.ability
+	local mindblast = ParticleManager:CreateParticle("particles/units/heroes/hero_phoenix/phoenix_supernova_reborn_sphere_shockwave.vpcf", PATTACH_POINT_FOLLOW, caster)
+						ParticleManager:SetParticleControl(mindblast, 1, caster:GetOrigin())
+						ParticleManager:SetParticleControl(mindblast, 3, caster:GetOrigin())
+	local enemies = FindUnitsInRadius(caster:GetTeamNumber(), 
+									caster:GetAbsOrigin(), 
+									caster, 
+									900,
+									DOTA_UNIT_TARGET_TEAM_ENEMY,
+                                    DOTA_UNIT_TARGET_HERO,
+                                    DOTA_UNIT_TARGET_FLAG_NONE,
+                                    FIND_ANY_ORDER,
+                                    false)
+	for _,unit in pairs(enemies) do
+		ability:ApplyDataDrivenModifier(caster, unit, keys.modifierName, {duration = 4})
+	end
 end
 
 function BashDamage(keys)
@@ -154,16 +174,12 @@ function TestGravityFunc(keys)
 	if keys.caster:PassivesDisabled() then return end
 	if not keys.caster:IsAlive() then return end
     local direction = targetPos - casterPos
-    local vec = direction:Normalized() * 2.5
+    local vec = direction:Normalized() * 4
 	if direction:Length2D() <= 900 and direction:Length2D() >= 200 and keys.caster:IsAlive() then
 		keys.target:SetAbsOrigin(targetPos - vec)
 		ResolveNPCPositions(keys.target:GetAbsOrigin(), 100)
 	else
 		FindClearSpaceForUnit(target, targetPos, false)
-	end
-	local distanceDmg =  math.floor(keys.caster:GetMaxHealth()*0.001*((900-direction:Length2D())/900)^1.4)
-	if keys.caster:GetHealthPercent() > 10 then
-		ApplyDamage({ victim = keys.target, attacker = keys.caster, damage = distanceDmg/keys.caster:GetSpellDamageAmp(), damage_type = DAMAGE_TYPE_MAGICAL, ability = keys.ability })
 	end
 end
 

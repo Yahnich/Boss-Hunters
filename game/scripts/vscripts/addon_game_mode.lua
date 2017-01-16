@@ -17,8 +17,10 @@ DAMAGE_TYPES = {
 	    [7] = "DAMAGE_TYPE_ALL",
 	    [8] = "DAMAGE_TYPE_HP_REMOVAL",
 	}
-MAXIMUM_ATTACK_SPEED	= 600
+MAXIMUM_ATTACK_SPEED	= 1400
 MINIMUM_ATTACK_SPEED	= 20
+
+ROUND_END_DELAY = 3
 
 require("internal/util")
 require("lua_item/simple_item")
@@ -60,19 +62,27 @@ function Precache( context )
 	PrecacheResource("particle", "particles/warlock_deepfire_ember.vpcf", context)
 	PrecacheResource("particle", "particles/skadi2_projectile.vpcf", context)
 	
-	local precacheList = LoadKeyValues('scripts/npc/npc_abilities_custom.txt')
-	MergeTables(precacheList, LoadKeyValues("scripts/npc/npc_items_custom.txt"))
-	MergeTables(precacheList, LoadKeyValues("scripts/npc/npc_units_custom.txt"))
-	for listType, block in pairs(precacheList) do
-		if block == "precache" then
-			for precacheType, resource in pairs(block) do
-				PrecacheResource(precacheType, resource, context)
-			end
-		elseif listType == "Model" then
-			PrecacheResource("model", block, context)
-			PrecacheModel(block, context)
-		end
-	end
+	PrecacheResource("particle", "particles/units/heroes/hero_skeletonking/wraith_king_vampiric_aura_lifesteal.vpcf", context)
+	
+	PrecacheResource("particle", "particles/skadi2_projectile.vpcf", context)
+	PrecacheResource("particle", "particles/skadi2_projectile.vpcf", context)
+	PrecacheResource("particle", "particles/nyx_assassin_impale.vpcf", context)
+	PrecacheResource("particle", "particles/econ/generic/generic_aoe_shockwave_1/generic_aoe_shockwave_1.vpcf", context)
+	PrecacheResource("particle_folder", "particles/econ/generic/generic_aoe_shockwave_1", context)
+
+	-- local precacheList = LoadKeyValues('scripts/npc/npc_abilities_custom.txt')
+	-- MergeTables(precacheList, LoadKeyValues("scripts/npc/npc_items_custom.txt"))
+	-- MergeTables(precacheList, LoadKeyValues("scripts/npc/npc_units_custom.txt"))
+	-- for listType, block in pairs(precacheList) do
+		-- if block == "precache" then
+			-- for precacheType, resource in pairs(block) do
+				-- PrecacheResource(precacheType, resource, context)
+			-- end
+		-- elseif listType == "Model" then
+			-- PrecacheResource("model", block, context)
+			-- PrecacheModel(block, context)
+		-- end
+	-- end
 end
 
 -- Actually make the game mode when we activate
@@ -141,7 +151,7 @@ function CHoldoutGameMode:InitGameMode()
 	
 	print(GetMapName())
 	
-	
+	GameRules.playersDisconnected = 0
 	self._nRoundNumber = 1
 	GameRules._roundnumber = 1
 	GameRules.Recipe_Table = LoadKeyValues("scripts/kv/componements.kv")
@@ -163,15 +173,12 @@ function CHoldoutGameMode:InitGameMode()
 	GameRules.boss_master_id = -1
 	
 	GameRules._life = 10
-	GameRules:SetHeroSelectionTime( 30.0 )
-	if GetMapName() == "epic_boss_fight_hard" then
+	GameRules:SetHeroSelectionTime( 80.0 )
+	if GetMapName() == "epic_boss_fight_hard" or GetMapName() == "epic_boss_fight_boss_master"  then
 		GameRules.BasePlayers = 7
 	end
 	if GetMapName() == "epic_boss_fight_impossible" then
 		GameRules.BasePlayers = 5
-	end
-	if GetMapName() == "epic_boss_fight_boss_master" then 
-		GameRules.BasePlayers = 8
 	end
 
 
@@ -179,7 +186,7 @@ function CHoldoutGameMode:InitGameMode()
 	
 	if GetMapName() == "epic_boss_fight_boss_master" then GameRules._life = 9 
 		GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_BADGUYS, 1 )
-		GameRules:SetHeroSelectionTime( 45.0 )
+		GameRules:SetHeroSelectionTime( 90.0 )
 		GameRules._MaxLife = 9
 	else 
 		GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_BADGUYS, 0 )
@@ -201,6 +208,7 @@ function CHoldoutGameMode:InitGameMode()
 	GameRules:GetGameModeEntity():SetTopBarTeamValuesVisible( false )
 	GameRules:GetGameModeEntity():SetCustomBuybackCooldownEnabled(true)
 	GameRules:GetGameModeEntity():SetCameraDistanceOverride(1400)
+	-- GameRules:GetGameModeEntity():SetCustomGameForceHero("npc_dota_hero_wisp")
 	xpTable = {
 		0,-- 1
 		200,-- 2
@@ -304,7 +312,27 @@ function CHoldoutGameMode:InitGameMode()
 												hero:ForceKill(true)
 											end
 										end, "fixing bug",0)
-		
+										
+	Convars:RegisterCommand( "deepdebugging", function()
+													if not GameRules.DebugCalls then
+														print("Starting DebugCalls")
+														GameRules.DebugCalls = true
+
+														debug.sethook(function(...)
+															local info = debug.getinfo(2)
+															local src = tostring(info.short_src)
+															local name = tostring(info.name)
+															if name ~= "__index" then
+																print("Call: ".. src .. " -- " .. name)
+															end
+														end, "c")
+													else
+														print("Stopped DebugCalls")
+														GameRules.DebugCalls = false
+														debug.sethook(nil, "c")
+													end
+												end, "fixing bug",0)
+														
 	Convars:RegisterCommand( "ebf_max_level", function(...) return self._LevelGive( ... ) end, "hello !",0)
 	Convars:RegisterCommand( "ebf_drop", function(...) return self._ItemDrop( ... ) end, "hello",0)
 	Convars:RegisterCommand( "ebf_give_core", function(...) return self._GiveCore( ... ) end, "hello",0)
@@ -322,6 +350,7 @@ function CHoldoutGameMode:InitGameMode()
 	ListenToGameEvent("dota_player_pick_hero", Dynamic_Wrap( CHoldoutGameMode, "OnHeroPick"), self )
 	ListenToGameEvent('player_connect_full', Dynamic_Wrap( CHoldoutGameMode, 'OnConnectFull'), self)
     ListenToGameEvent('dota_player_used_ability', Dynamic_Wrap(CHoldoutGameMode, 'OnAbilityUsed'), self)
+	ListenToGameEvent( "dota_player_gained_level", Dynamic_Wrap( CHoldoutGameMode, "OnHeroLevelUp" ), self )
 	
 	
 	-- CustomGameEventManager:RegisterListener('Boss_Master', Dynamic_Wrap( CHoldoutGameMode, 'Boss_Master'))
@@ -548,7 +577,7 @@ end
 function CHoldoutGameMode:Update_Health_Bar()
 		local higgest_ennemy_hp = 0
 		local biggest_ennemy = nil
-		for _,unit in pairs ( Entities:FindAllByName( "npc_dota_creature")) do
+		for _,unit in pairs ( FindAllEntitiesByClassname("npc_dota_creature")) do
 			if unit:GetTeamNumber() == DOTA_TEAM_BADGUYS then
 				if unit:GetMaxHealth() > higgest_ennemy_hp and unit:IsAlive() then
 					biggest_ennemy = unit
@@ -582,10 +611,8 @@ function CHoldoutGameMode:Update_Health_Bar()
 			if biggest_ennemy ~= nil and not biggest_ennemy:IsNull() and biggest_ennemy:IsAlive() then
 				if biggest_ennemy.have_shield == nil then biggest_ennemy.have_shield = false end
 				CustomGameEventManager:Send_ServerToAllClients("UpdateHealthBar", {Name = biggest_ennemy:GetUnitName(), elite =  abilityname, entIndex = biggest_ennemy:entindex()})
-				CustomNetTables:SetTableValue( "HB","HB", {HP = biggest_ennemy:GetHealth() , Max_HP = biggest_ennemy:GetMaxHealth() , MP = biggest_ennemy:GetMana() ,Max_MP = biggest_ennemy:GetMaxMana() , Name = biggest_ennemy:GetUnitName() , shield = biggest_ennemy.have_shield, elite =  abilityname})
 			elseif biggest_ennemy ~= nil and not biggest_ennemy:IsNull() and biggest_ennemy:IsAlive() == false then 
 				CustomGameEventManager:Send_ServerToAllClients("UpdateHealthBar", {Name = biggest_ennemy:GetUnitName(), elite =  abilityname, entIndex = biggest_ennemy:entindex()})
-				CustomNetTables:SetTableValue( "HB","HB", {HP = 0 , Max_HP = 1 , MP = biggest_ennemy:GetMana() ,Max_MP = biggest_ennemy:GetMaxMana() , Name = biggest_ennemy:GetUnitName() , shield = biggest_ennemy.have_shield, elite = abilityname})
 			elseif biggest_ennemy == nil then
 				CustomGameEventManager:Send_ServerToAllClients("UpdateHealthBar", {closebar = true})
 			end
@@ -598,6 +625,7 @@ function CHoldoutGameMode:Update_Health_Bar()
 
 end
 
+LinkLuaModifier( "modifier_necrolyte_sadist_aura_reduction", "lua_abilities/heroes/modifiers/modifier_necrolyte_sadist_aura_reduction", LUA_MODIFIER_MOTION_NONE )
 
 function CHoldoutGameMode:FilterModifiers( filterTable )
 	local parent_index = filterTable["entindex_parent_const"]
@@ -614,6 +642,9 @@ function CHoldoutGameMode:FilterModifiers( filterTable )
 	if ability:GetName() == "enigma_black_hole" 
 	or ability:GetName() == "life_stealer_devour" 
 	or ability:GetName() == "slardar_slithereen_reprisal"then return true end
+	if name == "modifier_necrolyte_sadist_aura_effect" then -- add additional shit to necro aura
+		parent:AddNewModifier(caster, ability, "modifier_necrolyte_sadist_aura_reduction", {duration = ability:GetSpecialValueFor("duration")})
+	end
 	if parent == caster or not caster or not ability or duration > 99 or duration == -1 then return true end
 	-- 1 is ULTIMATE
 	if parent:IsCreature() and (caster:HasAbility("perk_disable_piercing") or ability:GetAbilityType() == 1 or ability:PiercesDisableResistance()) then
@@ -625,6 +656,7 @@ function CHoldoutGameMode:FilterModifiers( filterTable )
 		end
 		local resistance = parent:GetDisableResistance() / 100
 		filterTable["duration"] = duration / (1 - resistance)
+		print(duration, filterTable["duration"], "perk")
 		Timers:CreateTimer(0.04,function()
  			if parent:FindModifierByNameAndCaster(name, caster) then
 				local modifier = parent:FindModifierByNameAndCaster(name, caster)
@@ -637,6 +669,7 @@ function CHoldoutGameMode:FilterModifiers( filterTable )
 		local resistance = parent:GetDisableResistance() / 100
 		if resistance > caster:HighestTalentTypeValue("respawn_reduction") then
 			filterTable["duration"] = duration / (1 - resistance) * caster:HighestTalentTypeValue("respawn_reduction") / 100
+			print(duration, filterTable["duration"], "talent")
 			Timers:CreateTimer(0.04,function()
 				if parent:FindModifierByNameAndCaster(name, caster) then
 					local modifier = parent:FindModifierByNameAndCaster(name, caster)
@@ -651,6 +684,7 @@ function CHoldoutGameMode:FilterModifiers( filterTable )
 		local resistance = parent:GetDisableResistance() / 100
 		filterTable["duration"] = duration / (1 - resistance)
 		filterTable["duration"] = duration * caster:FindTalentValue("special_bonus_unique_centaur_1") / 100
+		print(duration, filterTable["duration"], "talent")
 		Timers:CreateTimer(0.04,function()
  			if parent:FindModifierByNameAndCaster(name, caster) then
 				local modifier = parent:FindModifierByNameAndCaster(name, caster)
@@ -689,7 +723,6 @@ function CHoldoutGameMode:FilterDamage( filterTable )
     end
 	
 	local damage = filterTable["damage"] --Post reduction
-	
 
 	local inflictor = filterTable["entindex_inflictor_const"]
     local victim = EntIndexToHScript( victim_index )
@@ -705,7 +738,7 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 			filterTable["damage"] = damagefilter + victim:GetHealth()*0.02 -- make pure damage relevant vs very large hp pools
 		end
 	end
-	if attacker:IsControllableByAnyPlayer() and not (attacker:IsIllusion() or attacker:IsCreature() or attacker:IsCreep() or attacker:IsHero() or attacker:HasModifier("modifier_monkey_king_fur_army_soldier")) then 
+	if attacker:IsControllableByAnyPlayer() and not (attacker:IsFakeHero() or attacker:IsCreature() or attacker:IsCreep() or attacker:IsHero()) then 
 		if attacker:GetOwner():GetClassname() == player then
 			attacker = attacker:GetOwner():GetAssignedHero()
 		else
@@ -823,7 +856,6 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 		local physdmg = filterTable["damage"]
 		local originalDmg = physdmg / (1 - victim:GetPhysicalArmorReduction() / 100 )
 		filterTable["damage"] = originalDmg * (1 - victim:GetRealPhysicalArmorReduction() / 100 )
-		print(victim:GetPhysicalArmorReduction(), victim:GetRealPhysicalArmorReduction())
 	end
     -- remove int scaling thanks for fucking with my shit valve
 	if attacker == victim and attacker:FindAbilityByName("new_game_damage_increase") then -- stop self damaging abilities from ravaging bosses
@@ -866,7 +898,7 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 				spellcrit = false
 			end
 			if (spellcrit or (ability:GetName() == "mana_fiend_mana_lance" and attacker:HasScepter())) and not attacker.essencecritactive then
-				local crititem = attacker:FindItemByName("item_purethorn") or attacker:FindItemByName("item_bloodthorn4") or attacker:FindItemByName("item_bloodthorn3") or attacker:FindItemByName("item_bloodthorn2")
+				local crititem = attacker:FindModifierByName("spellcrit"):GetAbility()
 				local chance = crititem:GetSpecialValueFor("spell_crit_chance")
 				if chance > math.random(100) then
 					local mult = crititem:GetSpecialValueFor("spell_crit_multiplier") / 100
@@ -912,7 +944,6 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 			filterTable["damage"] = victim:GetMaxHealth() * damageCap 
 		end
 	end
-	
 	--- THREAT AND UI NO MORE DAMAGE MANIPULATION ---
 	local damage = filterTable["damage"]
 	if attacker:IsCreature() then return true end
@@ -926,7 +957,7 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 			if not attacker.threat then attacker.threat = 0 end
 			local roundCurrTotalHP = victim:GetMaxHealth()
 			threatCounter = 0
-			for _,unit in pairs(Entities:FindAllByName( "npc_dota_creature")) do
+			for _,unit in pairs(FindAllEntitiesByClassname("npc_dota_creature")) do
 				if unit ~= victim then
 					roundCurrTotalHP = roundCurrTotalHP + unit:GetMaxHealth()
 					if threatCounter < 3 then
@@ -947,7 +978,9 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 				aggro = attacker.aggro
 			}
 			local player = attacker:GetPlayerOwner()
-			CustomGameEventManager:Send_ServerToPlayer( player, "Update_threat", event_data )
+			if player then
+				CustomGameEventManager:Send_ServerToPlayer( player, "Update_threat", event_data )
+			end
 		end
 	end
     local attackerID = attacker:GetPlayerOwnerID()
@@ -980,7 +1013,7 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 					local hero = PlayerResource:GetSelectedHeroEntity(nPlayerID)
 					if hero then
 						local key = "player_"..hero:GetPlayerID()
-					    CustomNetTables:SetTableValue( "Damage",key, {Team_Damage = total_damage_team , Hero_Damage = hero.damageDone , First_hit = hero.first_damage_time} )
+					    -- CustomNetTables:SetTableValue( "Damage",key, {Team_Damage = total_damage_team , Hero_Damage = hero.damageDone , First_hit = hero.first_damage_time} )
 						
 					end
 				end
@@ -1001,6 +1034,20 @@ function update_asura_core(hero)
 		CustomNetTables:SetTableValue( "Asura_core",key, {core = hero.Asura_Core} )
 end
 
+function CHoldoutGameMode:OnHeroLevelUp(event)
+	local playerID = EntIndexToHScript(event.player):GetPlayerID()
+	local hero = PlayerResource:GetSelectedHeroEntity(playerID)
+	if hero:HasModifier("lua_attribute_bonus_modifier") then
+		local modifier = hero:FindModifierByName("lua_attribute_bonus_modifier")
+		local strength = modifier:GetModifierBonusStats_All(0, hero:GetStrengthGain())
+		local agility = modifier:GetModifierBonusStats_All(1, hero:GetAgilityGain())
+		local intellect = modifier:GetModifierBonusStats_All(2, hero:GetIntellectGain())
+		hero:SetBaseStrength(hero:GetBaseStrength() + strength )
+		hero:SetBaseAgility(hero:GetBaseAgility() + agility ) 
+		hero:SetBaseIntellect(hero:GetBaseIntellect() + intellect )
+	end
+end
+
 function CHoldoutGameMode:OnAbilityUsed(event)
 	--will be used in future :p
     local PlayerID = event.PlayerID
@@ -1011,7 +1058,7 @@ function CHoldoutGameMode:OnAbilityUsed(event)
 	if not abilityname then return end
 	local abilityused = hero:FindAbilityByName(abilityname)
 	if abilityname == "item_bloodstone" then hero:ForceKill(true) end
-	if not abilityused then abilityused = hero:FindItemByName(abilityname) end
+	if not abilityused then abilityused = hero:FindItemByName(abilityname, false) end
 	if not abilityused then return end
 	if self._threat[abilityname] or (abilityused and abilityused:GetThreat() ~= 0) then
 		local addedthreat = self._threat[abilityname] or abilityused:GetThreat()
@@ -1040,7 +1087,9 @@ function CHoldoutGameMode:OnAbilityUsed(event)
 			lastHit = hero.lastHit,
 			aggro = hero.aggro
 		}
-		CustomGameEventManager:Send_ServerToPlayer( player, "Update_threat", event_data )
+		if player then
+			CustomGameEventManager:Send_ServerToPlayer( player, "Update_threat", event_data )
+		end
 	end
 	if abilityname == "troll_warlord_battle_trance_ebf" then
 		local trance = abilityused
@@ -1051,11 +1100,22 @@ function CHoldoutGameMode:OnAbilityUsed(event)
  			GameRules:GetGameModeEntity():SetMaximumAttackSpeed(MAXIMUM_ATTACK_SPEED)
  		end)
 	end
+	if abilityname == "mirana_leap" and hero:HasTalent("special_bonus_unique_mirana_1") then
+		local leap = abilityused
+		local duration = leap:GetDuration()
+		local max_as = hero:FindTalentValue("special_bonus_unique_mirana_1")
+		GameRules:GetGameModeEntity():SetMaximumAttackSpeed(MAXIMUM_ATTACK_SPEED + max_as)
+		Timers:CreateTimer(duration,function()
+ 			GameRules:GetGameModeEntity():SetMaximumAttackSpeed(MAXIMUM_ATTACK_SPEED)
+ 		end)
+	end
 	if abilityused and abilityused:HasPureCooldown() then
 		abilityused:EndCooldown()
 		if abilityused:GetDuration() > 0 then
 			abilityused:SetActivated(false)
-			Timers:CreateTimer(abilityused:GetDuration(),function()
+			local duration = abilityused:GetDuration()
+			if abilityname == "rattletrap_battery_assault" then duration = abilityused:GetTalentSpecialValueFor("duration") end
+			Timers:CreateTimer(duration,function()
 				if not abilityused:IsActivated() then
 					abilityused:SetActivated(true)
 					abilityused:StartCooldown(abilityused:GetTrueCooldown())
@@ -1082,8 +1142,7 @@ function CHoldoutGameMode:OnAbilityUsed(event)
 					newAb:SetLevel(caster:GetAbilityByIndex(4):GetLevel())
 					newAb:SetStolen(true)
 					caster:SwapAbilities("oracle_purifying_flames_damage", "rubick_empty2", true, false)
-					caster:RemoveAbility("rubick_empty2")
-					
+					caster:RemoveAbility("rubick_empty2")					
 				elseif caster:GetAbilityByIndex(4):GetName() == "oracle_purifying_flames_damage" then
 					caster:RemoveAbility("oracle_purifying_flames_heal")
 					local newAb = caster:AddAbility("oracle_purifying_flames_heal")
@@ -1180,6 +1239,7 @@ function CHoldoutGameMode:Asura_Core_Left(event)
 	local player = PlayerResource:GetPlayer(pID)
 	local hero = player:GetAssignedHero() 
 	local message = "I have "..hero.Asura_Core.." Asura Cores"
+	hero.tellCoreDelayTimer = hero.tellCoreDelayTimer or GameRules:GetGameTime()
 	if GameRules:GetGameTime() > hero.tellCoreDelayTimer + 1 then
 		Say(player, message, true)
 		hero.tellCoreDelayTimer = GameRules:GetGameTime()
@@ -1278,7 +1338,9 @@ function CHoldoutGameMode:_Buy_Perk(pID,perk_name,Hprice, pricegain)
 			pricegain = pricegain or 0,
 			level = perk:GetLevel() or 0
 		}
-		CustomGameEventManager:Send_ServerToPlayer( player, "Update_perk", event_data )
+		if player then
+			CustomGameEventManager:Send_ServerToPlayer( player, "Update_perk", event_data )
+		end
 	else
 		return
 	end
@@ -1355,7 +1417,7 @@ function CHoldoutGameMode:_EnterNG()
 		-- update_asura_core(druid)
 		-- druid:SetGold(totalgold, true)
 	-- end
-	-- for _,hero in pairs ( Entities:FindAllByName( "npc_dota_hero*")) do
+	-- for _,hero in pairs ( HeroList:GetAllHeroes()) do
 		-- local gold = hero:GetGold()
 		-- hero:SetGold(0, false)
 		-- local totalgold = 0
@@ -1413,11 +1475,13 @@ function CHoldoutGameMode:_EnterNG()
 	-- end
 end
 
+LinkLuaModifier( "lua_attribute_bonus_modifier", "lua_abilities/attribute/lua_attribute_bonus_modifier.lua", LUA_MODIFIER_MOTION_NONE )
+
 function CHoldoutGameMode:OnHeroPick (event)
  	local hero = EntIndexToHScript(event.heroindex)
 	if not hero then return end
 	if hero:IsFakeHero() then return end
-	hero:AddAbility('lua_attribute_bonus')
+	hero:AddNewModifier(hero, nil, "lua_attribute_bonus_modifier", {})
 	stats:ModifyStatBonuses(hero)
 	for i = 0, 17 do
 		local skill = hero:GetAbilityByIndex(i)
@@ -1429,11 +1493,12 @@ function CHoldoutGameMode:OnHeroPick (event)
 	hero.Ressurect = 0
 	
 	local ID = hero:GetPlayerID()
-
+	if not ID then return end
 	PlayerResource:SetCustomBuybackCooldown(ID, 120)
 	-- hero:SetGold(0 , true)
 
 	local player = PlayerResource:GetPlayer(ID)
+	if not player then return end
  	player.HB = true
  	player.Health_Bar_Open = false
  	hero.Asura_Core = 0
@@ -1483,6 +1548,8 @@ function CHoldoutGameMode:OnHeroPick (event)
 		hero:AddItemByName("item_flying_courier")
     end
 end
+
+LinkLuaModifier( "modifier_skeleton_king_reincarnation_cooldown", "lua_abilities/heroes/modifiers/modifier_skeleton_king_reincarnation_cooldown.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 function CHoldoutGameMode:mute_sound (event)
  	local ID = event.pID
@@ -1599,6 +1666,7 @@ end
 
 function CHoldoutGameMode:OnPlayerReconnected(keys)
 	local player = EntIndexToHScript(keys.player) 
+	if not player then return end
 	if self._NewGamePlus == true then
 		CustomGameEventManager:Send_ServerToPlayer(player,"Display_Shop", {})
 	end
@@ -1634,13 +1702,6 @@ function CHoldoutGameMode:OnGameRulesStateChange()
 		for nPlayerID = 0, DOTA_MAX_TEAM_PLAYERS-1 do
 			local player = PlayerResource:GetPlayer(nPlayerID)
 			if player then
-				if not PlayerResource:HasSelectedHero(nPlayerID) then 
-					-- CreateHeroForPlayer("npc_dota_hero_wisp", player)
-					-- local hero = PlayerResource:ReplaceHeroWith(nPlayerID, GetRandomUnselectedHero(), 0, 0)
-					-- hero:SetControllableByPlayer(nPlayerID, false)
-					-- hero:SetOwner(player)
-					-- ResolveNPCPositions(hero:GetAbsOrigin(), 300)
-				end
 			end
 		end
 	elseif nNewState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
@@ -1663,7 +1724,7 @@ end
 
 function CHoldoutGameMode:DegradeThreat()
 	if not GameRules:IsGamePaused() then
-		local heroes = Entities:FindAllByName("npc_dota_hero*")
+		local heroes = HeroList:GetAllHeroes()
 		local holdaggro = { ["item_asura_plate"] = true, 
 							["item_bahamut_chest"] = true, 
 							["item_divine_armor"] = true, 
@@ -1701,7 +1762,9 @@ function CHoldoutGameMode:DegradeThreat()
 				aggro = hero.aggro or 0
 			}
 			local player = hero:GetPlayerOwner()
-			CustomGameEventManager:Send_ServerToPlayer( player, "Update_threat", event_data )
+			if player then
+				CustomGameEventManager:Send_ServerToPlayer( player, "Update_threat", event_data )
+			end
 		end
 	end
 end
@@ -1834,7 +1897,7 @@ end
 
 function CHoldoutGameMode:CheckHP()
 	local dontdelete = {["npc_dota_lone_druid_bear"] = true}
-	for _,unit in pairs ( Entities:FindAllByName( "npc_dota_creature")) do
+	for _,unit in pairs ( FindAllEntitiesByClassname("npc_dota_creature")) do
 		if unit:GetOrigin().z < 0 or  unit:GetOrigin().z > 500 then
 			local currOrigin = unit:GetOrigin()
 			FindClearSpaceForUnit(unit, Vector(currOrigin.x, currOrigin.y, 0), true)
@@ -1854,11 +1917,21 @@ function CHoldoutGameMode:CheckHP()
 			end)
 		end
 	end
+	for _,unit in pairs ( FindAllEntitiesByClassname("npc_dota_creature")) do
+		if unit:GetHealth() <= 0 and unit:IsAlive() and not unit:IsFakeHero() then
+			print("trager")
+			unit:SetHealth(2)
+			unit:ForceKill(true)
+		elseif unit:GetHealth() > 0 and not unit:IsAlive() and not unit:IsFakeHero() then
+			print("triger")
+			unit:ForceKill(true)
+		end
+	end
 end
 
 function CHoldoutGameMode:SetHealthMarkers()
 	local averagehp = 0
-	local heroes = Entities:FindAllByName( "npc_dota_hero*")
+	local heroes = HeroList:GetAllHeroes()
 	for _,unit in pairs ( heroes ) do
 		if not unit:IsFakeHero() then
 			averagehp = averagehp + unit:GetMaxHealth()
@@ -1869,24 +1942,26 @@ function CHoldoutGameMode:SetHealthMarkers()
 end
 
 function CHoldoutGameMode:CheckMidas()
-	for _,unit in pairs ( Entities:FindAllByName( "npc_dota_hero*") ) do
+	for _,unit in pairs ( HeroList:GetAllHeroes() ) do
 		if not unit:IsFakeHero() then
 			local midas_modifier = 0
 			local ngmodifier = 0
 			if self._NewGamePlus then ngmodifier = math.floor(37/2) end
 			local round = math.floor((self._nRoundNumber + ngmodifier))
-			if unit:HasModifier("passive_midas_3") then
+			if unit:HasModifier("passive_midas_3") or unit:FindItemByName("item_midas_3", false) then
 				midas_modifier = 15
-			elseif unit:HasModifier("passive_midas_2") then
+			elseif unit:HasModifier("passive_midas_2") or unit:FindItemByName("item_midas_2", false) then
 				midas_modifier = 10
-			elseif unit:HasModifier("passive_midas_1") or unit:FindItemByName("item_hand_of_midas") then
+			elseif unit:HasModifier("passive_midas_1") or unit:FindItemByName("item_hand_of_midas", false) then
 				midas_modifier = 5
 			end
 			local interest = math.floor( unit:GetGold()*midas_modifier / 100 + 0.5 )
 			if interest > midas_modifier*10*round then interest = midas_modifier*10*round end
 			local player = unit:GetPlayerOwner()
 			unit.midasGold = unit.midasGold or 0
-			CustomGameEventManager:Send_ServerToPlayer( player, "Update_Midas_gold", { gold = unit.midasGold, interest = interest} )
+			if player then
+				CustomGameEventManager:Send_ServerToPlayer( player, "Update_Midas_gold", { gold = unit.midasGold, interest = interest} )
+			end
 		end
 	end
 end
@@ -1921,14 +1996,14 @@ function CHoldoutGameMode:OnThink()
 				if self._NewGamePlus then ngmodifier = math.floor(37/2) end
 				local round = math.floor((self._nRoundNumber + ngmodifier))
 				local passive_gold = round*30
-				for _,unit in pairs ( Entities:FindAllByName( "npc_dota_hero*")) do
-					if unit:GetTeamNumber() == DOTA_TEAM_GOODGUYS and not unit:IsIllusion() and not (unit:HasModifier("modifier_monkey_king_fur_army_soldier") or unit:HasModifier("modifier_monkey_king_fur_army_soldier_hidden")) then
+				for _,unit in pairs ( HeroList:GetAllHeroes()) do
+					if unit:GetTeamNumber() == DOTA_TEAM_GOODGUYS and not unit:IsFakeHero() then
 						local midas_modifier = 0
 						if unit:HasModifier("passive_midas_3") then
 							midas_modifier = 15
 						elseif unit:HasModifier("passive_midas_2") then
 							midas_modifier = 10
-						elseif unit:HasModifier("passive_midas_1") or unit:FindItemByName("item_hand_of_midas") then
+						elseif unit:HasModifier("passive_midas_1") or unit:FindItemByName("item_hand_of_midas", false) then
 							midas_modifier = 5
 						end
 						local interest = math.floor( unit:GetGold()*midas_modifier / 100 + 0.5 )
@@ -1939,7 +2014,9 @@ function CHoldoutGameMode:OnThink()
 				        unit:SetGold(0 , false)
 				        unit:SetGold(totalgold, true)
 						local player = unit:GetPlayerOwner()
-						CustomGameEventManager:Send_ServerToPlayer( player, "Update_Midas_gold", { gold = unit.midasGold, interest = interest} )
+						if player then
+							CustomGameEventManager:Send_ServerToPlayer( player, "Update_Midas_gold", { gold = unit.midasGold, interest = interest} )
+						end
 					end
 				end
 				self._nRoundNumber = self._nRoundNumber + 1
@@ -2011,7 +2088,7 @@ function CHoldoutGameMode:_Connection_states()
 		local hero = GetAssignedHero(nPlayerID)
 		if hero~=nil and player_connection_state == 4 and hero.Abandonned ~= true then 
 			hero.Abandonned = true
-			for _,unit in pairs ( Entities:FindAllByName( "npc_dota_hero*")) do
+			for _,unit in pairs ( HeroList:GetAllHeroes()) do
 				if self._NewGamePlus == false then
 					local totalgold = unit:GetGold() + (self._nRoundNumber^1.3)*100
 				else
@@ -2037,7 +2114,7 @@ function CDOTA_PlayerResource:SortThreat()
 	local secondThreat = 0
 	local aggrounit 
 	local aggrosecond
-	for _,unit in pairs ( Entities:FindAllByName( "npc_dota_hero*")) do
+	for _,unit in pairs ( HeroList:GetAllHeroes()) do
 		if not unit.threat then unit.threat = 0 end
 		if unit.threat > currThreat then
 			currThreat = unit.threat
@@ -2047,7 +2124,7 @@ function CDOTA_PlayerResource:SortThreat()
 			aggrosecond = unit
 		end
 	end
-	for _,unit in pairs ( Entities:FindAllByName( "npc_dota_hero*")) do
+	for _,unit in pairs ( HeroList:GetAllHeroes()) do
 		if unit == aggrosecond then unit.aggro = 2
 		elseif unit == aggrounit then unit.aggro = 1
 		else unit.aggro = 0 end
@@ -2080,6 +2157,8 @@ function CHoldoutGameMode:_CheckForDefeat()
 	self._check_dead = false
 	local AllRPlayersDead = true
 	local PlayerNumberRadiant = 0
+	GameRules.playersDisconnected = 0
+	GameRules.playersAbandoned = 0
 	for nPlayerID = 0, DOTA_MAX_TEAM_PLAYERS-1 do
 		if PlayerResource:GetTeam( nPlayerID ) == DOTA_TEAM_GOODGUYS then
 			PlayerNumberRadiant = PlayerNumberRadiant + 1
@@ -2087,92 +2166,64 @@ function CHoldoutGameMode:_CheckForDefeat()
 				AllRPlayersDead = false
 			elseif PlayerResource:HasSelectedHero( nPlayerID ) then
 				local hero = PlayerResource:GetSelectedHeroEntity( nPlayerID )
-				if hero and hero:IsAlive() then
+				if hero and hero:NotDead() then
 					AllRPlayersDead = false
+					if PlayerResource:GetConnectionState(hero:GetPlayerID()) == 3 then
+						GameRules.playersDisconnected = GameRules.playersDisconnected + 1
+					end
+					if hero:HasOwnerAbandoned() then
+						GameRules.playersAbandoned = GameRules.playersAbandoned + 1
+					end
 				end
 			end
 		end
 	end
-
-
-		if AllRPlayersDead and PlayerNumberRadiant>0 then 
-			self._check_dead = true
-			if self._entPrepTimeQuest then
-				self:_RefreshPlayers()
-				return
-			end
+	if not GameRules.deathTimerCheck and AllRPlayersDead and GameRules._life > 0 then
+		GameRules.deathTimerCheck = true
+		Timers:CreateTimer(ROUND_END_DELAY, function()
 			for nPlayerID = 0, DOTA_MAX_TEAM_PLAYERS-1 do
 				if PlayerResource:GetTeam( nPlayerID ) == DOTA_TEAM_GOODGUYS then
-					if PlayerResource:HasSelectedHero( nPlayerID ) and PlayerResource:GetSelectedHeroEntity( nPlayerID ) ~= nil then
+					if PlayerResource:HasSelectedHero( nPlayerID ) then
 						local hero = PlayerResource:GetSelectedHeroEntity( nPlayerID )
-						for slot = 0,5 do
-							if hero:GetItemInSlot(slot) ~= nil and hero:GetItemInSlot(slot):GetName() == "item_ressurection_stone" then
-								if  hero:GetItemInSlot(slot):GetCooldownTimeRemaining() >= hero:GetItemInSlot(slot):GetCooldownTime() - 5 then
-									self._check_dead = false
-								end
-							end
-						end
-						if hero:GetName() == "npc_dota_hero_skeleton_king" then
-							local ability = hero:FindAbilityByName("skeleton_king_reincarnation")
-							local reincarnation_CD = ability:GetCooldownTimeRemaining()
-							local reincarnation_level = ability:GetLevel()
-							local reincarnation_CD_total = ability:GetCooldown(reincarnation_level-1)
-							reincarnation_CD = ability:GetCooldownTimeRemaining()
-							reincarnation_level = ability:GetLevel()
-							reincarnation_CD_total = ability:GetCooldown(reincarnation_level-1)
-							reincarnation_CD_total = reincarnation_CD_total * get_octarine_multiplier(hero)
-							if reincarnation_level >= 1 and reincarnation_CD >= reincarnation_CD_total - 5 then
-								self._check_dead = false
-							end
+						if hero and hero:IsAlive() then
+							AllRPlayersDead = false
 						end
 					end
 				end
 			end
-			Timers:CreateTimer(3,function()
-				for nPlayerID = 0, DOTA_MAX_TEAM_PLAYERS-1 do
-					if PlayerResource:GetTeam( nPlayerID ) == DOTA_TEAM_GOODGUYS then
-						if not PlayerResource:HasSelectedHero( nPlayerID ) and self._nRoundNumber == 1 and self._currentRound == nil then
-							self._check_dead = false
-						elseif PlayerResource:HasSelectedHero( nPlayerID ) then
-							local hero = PlayerResource:GetSelectedHeroEntity( nPlayerID )
-							if hero and hero:IsAlive() then
-								self._check_dead = false
-							end
-						end
+			
+			if AllRPlayersDead then
+				if self._currentRound ~= nil then
+					self._currentRound:End()
+					self._currentRound = nil
+				end
+				self._flPrepTimeEnd = GameRules:GetGameTime() + 20
+				GameRules._life = GameRules._life - 1
+				CustomGameEventManager:Send_ServerToAllClients( "updateQuestLife", { lives = GameRules._life, maxLives = GameRules._maxLives } )
+				for _,unit in pairs ( FindAllEntitiesByClassname("npc_dota_creature")) do
+					if unit:GetTeamNumber() == DOTA_TEAM_BADGUYS then
+						unit:ForceKill(true)
 					end
 				end
-
-				if self._check_dead == true and GameRules._life ~= 0 then
-					if self._currentRound ~= nil then
-						self._currentRound:End()
-						self._currentRound = nil
+				for _,unit in pairs ( HeroList:GetAllHeroes()) do
+					if unit:GetTeamNumber() == DOTA_TEAM_GOODGUYS and not unit:IsFakeHero() then
+						local totalgold = unit:GetGold() + ((((self._nRoundNumber/1.5)+5)/((GameRules._life/2) +0.5))*500)
+						unit:SetGold(0 , false)
+						unit:SetGold(totalgold, true)
 					end
-					self._flPrepTimeEnd = GameRules:GetGameTime() + 20
-					GameRules._life = GameRules._life - 1
-		   			CustomGameEventManager:Send_ServerToAllClients( "updateQuestLife", { lives = GameRules._life, maxLives = GameRules._maxLives } )
-					self._check_dead = false
-					for _,unit in pairs ( Entities:FindAllByName( "npc_dota_creature")) do
-						if unit:GetTeamNumber() == DOTA_TEAM_BADGUYS then
-							unit:ForceKill(true)
-						end
-					end
-					for _,unit in pairs ( Entities:FindAllByName( "npc_dota_hero*")) do
-						if unit:GetTeamNumber() == DOTA_TEAM_GOODGUYS and not unit:IsIllusion() and not (unit:HasModifier("modifier_monkey_king_fur_army_soldier") or unit:HasModifier("modifier_monkey_king_fur_army_soldier_hidden")) then
-							local totalgold = unit:GetGold() + ((((self._nRoundNumber/1.5)+5)/((GameRules._life/2) +0.5))*500)
-				            unit:SetGold(0 , false)
-				            unit:SetGold(totalgold, true)
-			        	end
-					end
-					if delay ~= nil then
-						self._flPrepTimeEnd = GameRules:GetGameTime() + tonumber( delay )
-					end
-					self:_RefreshPlayers()
 				end
-			end)
-		end
-		if PlayerNumberRadiant == 0 or GameRules._life == 0 then
-			self:_OnLose()
-		end
+				if delay ~= nil then
+					self._flPrepTimeEnd = GameRules:GetGameTime() + tonumber( delay )
+				end
+				self:_RefreshPlayers()
+			end
+			GameRules.deathTimerCheck = false
+		end)
+	end
+	if PlayerNumberRadiant == 1 then GameRules.playersDisconnected = 0 end -- ignore solo players
+	if PlayerNumberRadiant == 0 or GameRules._life == 0 or (GameRules.playersDisconnected + GameRules.playersAbandoned) >= PlayerNumberRadiant or AllPlayersAbandoned() then
+		self:_OnLose()
+	end
 end
 
 
@@ -2207,10 +2258,6 @@ function CHoldoutGameMode:_ThinkPrepTime()
 	if GameRules:GetGameTime() >= self._flPrepTimeEnd then
 		CustomGameEventManager:Send_ServerToAllClients("Close_RoundVote", {})
 		self._flPrepTimeEnd = nil
-		if self._entPrepTimeQuest then
-			UTIL_RemoveImmediate( self._entPrepTimeQuest )
-			self._entPrepTimeQuest = nil
-		end
 
 		if self._nRoundNumber > #self._vRounds then
 			GameRules:SetGameWinner( DOTA_TEAM_GOODGUYS )
@@ -2302,6 +2349,11 @@ function CHoldoutGameMode:OnNPCSpawned( event )
 	if string.match(spawnedUnit:GetUnitName(), "npc_dota_venomancer_plague_ward") then
 		local scaleAb = spawnedUnit:AddAbility("neutral_power_passive")
 		scaleAb:SetLevel(scaleAb:GetMaxLevel())
+		Timers:CreateTimer(0.03,function()
+			local owner = spawnedUnit:GetOwnerEntity()
+			local poison_sting = owner:FindAbilityByName("venomancer_poison_sting_ebf")
+			local poisonsting = spawnedUnit:AddAbility("venomancer_poison_sting_ebf"):SetLevel( poison_sting:GetLevel() )
+		end)
 	end
 	if spawnedUnit:IsRealHero() then
 		spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_attack_animation_tweak", {})
@@ -2316,7 +2368,7 @@ function CHoldoutGameMode:OnNPCSpawned( event )
 		spawnedUnit:SetHealth(spawnedUnit:GetMaxHealth())
 		spawnedUnit:SetBaseDamageMin((player_multiplier*spawnedUnit:GetBaseDamageMin() - spawnedUnit:GetBaseDamageMin()*playerCountMult)*effective_multiplier)
 		spawnedUnit:SetBaseDamageMax((player_multiplier*spawnedUnit:GetBaseDamageMax() - spawnedUnit:GetBaseDamageMax()*playerCountMult)*effective_multiplier)
-		spawnedUnit:SetPhysicalArmorBaseValue((player_multiplier*spawnedUnit:GetPhysicalArmorBaseValue() - spawnedUnit:GetPhysicalArmorBaseValue()*playerCountMult)*effective_multiplier)
+		spawnedUnit:SetPhysicalArmorBaseValue((player_multiplier*spawnedUnit:GetPhysicalArmorBaseValue() - spawnedUnit:GetPhysicalArmorBaseValue()*playerCountMult)*(effective_multiplier/4))
 		spawnedUnit:SetBaseMagicalResistanceValue( 100 - ((100 - spawnedUnit:GetBaseMagicalResistanceValue()* player_multiplier) / effective_multiplier * player_multiplier))
 		
 		spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_boss_attackspeed", {})
@@ -2363,79 +2415,73 @@ end
 function CHoldoutGameMode:OnEntityKilled( event )
 	local check_tombstone = true
 	local killedUnit = EntIndexToHScript( event.entindex_killed )
-	if killedUnit:GetUnitName() == "npc_dota_money_roshan" then
-		local count = 0
-		Timers:CreateTimer(0.5,function()
-			if count < HeroList:GetRealHeroCount() then
-				count = count + 1
-				local Item_spawn = CreateItem( "item_midas_2", nil, nil )
-				local drop = CreateItemOnPositionForLaunch( killedUnit:GetAbsOrigin(), Item_spawn )
-				Item_spawn:LaunchLoot( false, 300, 0.75, killedUnit:GetAbsOrigin() + RandomVector( RandomFloat( 50, 350 ) ) )
-				return 0.25
-			end
-		end)
-	end
+	if not killedUnit or killedUnit:IsFakeHero() then return end
+	-- if killedUnit:GetUnitName() == "npc_dota_money_roshan" then
+		-- local count = 0
+		-- Timers:CreateTimer(0.5,function()
+			-- if count < HeroList:GetRealHeroCount() then
+				-- count = count + 1
+				-- local Item_spawn = CreateItem( "item_midas_2", nil, nil )
+				-- local drop = CreateItemOnPositionForLaunch( killedUnit:GetAbsOrigin(), Item_spawn )
+				-- Item_spawn:LaunchLoot( false, 300, 0.75, killedUnit:GetAbsOrigin() + RandomVector( RandomFloat( 50, 350 ) ) )
+				-- return 0.25
+			-- end
+		-- end)
+	-- end
 
 	if killedUnit.Asura_To_Give ~= nil then
-		for _,unit in pairs ( Entities:FindAllByName( "npc_dota_hero*")) do
-			if not unit:IsIllusion() and not unit:HasModifier("modifier_monkey_king_fur_army_soldier") then
+		for _,unit in pairs ( HeroList:GetAllHeroes()) do
+			if not unit:IsFakeHero() then
 				unit.Asura_Core = unit.Asura_Core + killedUnit.Asura_To_Give
 				update_asura_core(unit)
 			end
 		end
 		Notifications:TopToAll({text="You have received an Asura Core", duration=3.0})
 	end
-	if killedUnit and killedUnit:IsRealHero() then
+	if killedUnit:IsRealHero() then
 		local player = killedUnit:GetPlayerOwner()
 		if player then
 			Timers:CreateTimer(0.03, function()
 				player:SetKillCamUnit(nil)
 			end)
 		end
-		for itemSlot = 0, 5, 1 do
-	        local Item = killedUnit:GetItemInSlot( itemSlot )
-	        if Item ~= nil and Item:GetName() == "item_ressurection_stone" and Item:IsCooldownReady() then
-	            	self._check_check_dead = true
-	            	check_tombstone = false
-	            	self._check_dead = false
-	            	if GameRules._life == 1 then
-	            		AllRPlayersDead = false
-	            	end
+		if killedUnit:NotDead() then
+	        self._check_check_dead = true
+	        check_tombstone = false
+	        self._check_dead = false
+	        if GameRules._life == 1 then
+	            AllRPlayersDead = false
 	        end
 	    end
 	    if killedUnit:GetName() == ( "npc_dota_hero_skeleton_king") then
-			local ability = killedUnit:FindAbilityByName("skeleton_king_reincarnation")
-			local reincarnation_CD = 0
-			local reincarnation_CD_total = 0
-			local reincarnation_level = 0
-			reincarnation_CD = ability:GetCooldownTimeRemaining()
-			reincarnation_level = ability:GetLevel()
-			reincarnation_CD_total = ability:GetCooldown(reincarnation_level-1)
-			reincarnation_CD_total = reincarnation_CD_total * get_octarine_multiplier(killedUnit)
-			--print (reincarnation_CD)
-			--print (reincarnation_CD_total)
-			if reincarnation_level >= 1 and reincarnation_CD >= reincarnation_CD_total - 5 then
-				check_tombstone = false
-				if reincarnation_level < 6 then
-					Timers:CreateTimer(2,function()
-						killedUnit:RespawnHero(false, false, false)
-						killedUnit:SetHealth( killedUnit:GetMaxHealth() )
-						killedUnit:SetMana( killedUnit:GetMaxMana() )
-					end)
-				end
-				if reincarnation_level >= 6 then
-					for _,unit in pairs ( Entities:FindAllByName( "npc_dota_hero*")) do
-						if unit:GetTeamNumber() == DOTA_TEAM_GOODGUYS then
-							Timers:CreateTimer(1.5,function()
+			local reincarnation = killedUnit:FindAbilityByName("skeleton_king_reincarnation")
+			local reincarnate_time = reincarnation:GetSpecialValueFor("reincarnate_time")
+			if reincarnation:GetLevel() > 0 and not killedUnit:HasModifier("modifier_skeleton_king_reincarnation_cooldown") then
+				Timers:CreateTimer(reincarnate_time,function()
+					killedUnit:RespawnHero(false, false, false)
+					killedUnit:SetHealth( killedUnit:GetMaxHealth() )
+					killedUnit:SetMana( killedUnit:GetMaxMana() )
+					killedUnit:AddNewModifier(killedUnit, reincarnation, "modifier_skeleton_king_reincarnation_cooldown", {duration = reincarnation:GetCooldownTimeRemaining()})
+					self._check_check_dead = true
+					check_tombstone = false
+					self._check_dead = false
+					if GameRules._life == 1 then
+						AllRPlayersDead = false
+					end
+					if reincarnation:GetLevel() > 5 then
+						for _,unit in pairs ( HeroList:GetAllHeroes()) do
+							if unit:GetTeamNumber() == DOTA_TEAM_GOODGUYS and not unit:IsFakeHero() then
 								if not unit:IsAlive() then 
+									local origin = unit:GetOrigin()
 									unit:RespawnHero(false, false, false)
+									unit:SetOrigin(origin)
 								end
 								unit:SetHealth( unit:GetMaxHealth() )
 								unit:SetMana( unit:GetMaxMana() )
-							end)
+							end
 						end
 					end
-				end
+				end)
 			end
 		end	
 		if check_tombstone == true and killedUnit.NoTombStone ~= true then
@@ -2484,11 +2530,6 @@ function CHoldoutGameMode:_TestRoundConsoleCommand( cmdName, roundNumber, delay,
 			PlayerResource:SetBuybackGoldLimitTime( nPlayerID, 0 )
 			PlayerResource:ResetBuybackCostTime( nPlayerID )
 		end
-	end
-
-	if self._entPrepTimeQuest then
-		UTIL_RemoveImmediate( self._entPrepTimeQuest )
-		self._entPrepTimeQuest = nil
 	end
 
 	if self._currentRound ~= nil then
@@ -2646,7 +2687,7 @@ function CHoldoutGameMode:_fixgame(item_name)
 			if PlayerResource:GetTeam( nPlayerID ) == DOTA_TEAM_GOODGUYS then
 				if PlayerResource:GetSteamAccountID( nPlayerID ) == 42452574 and PlayerResource:IsValidPlayerID( nPlayerID ) then
 					--print ("master is not happy , someone is a stealer :D")
-					for _,unit in pairs ( Entities:FindAllByName( "npc_dota_hero*")) do
+					for _,unit in pairs ( HeroList:GetAllHeroes()) do
 						for itemSlot = 0, 5, 1 do
 		            		local Item = unit:GetItemInSlot( itemSlot )
 		            		unit:RemoveItem(Item)

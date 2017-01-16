@@ -186,13 +186,11 @@ function TransferPower(keys)
 				ability:ApplyDataDrivenModifier(caster, caster, "modifier_transfer_power_moloch", {duration = ability:GetDuration()})
 				if not naamah:IsActivated() then naamah:SetActivated(true) end
 				if moloch:IsActivated() then moloch:SetActivated(false) end
-				print("buttflustered")
 			elseif demon:GetUnitName() == "npc_dota_warlock_naamah" then
 				caster:RemoveModifierByName("modifier_transfer_power_moloch")
 				ability:ApplyDataDrivenModifier(caster, caster, "modifier_transfer_power_naamah", {duration = ability:GetDuration()})
 				if naamah:IsActivated() then naamah:SetActivated(false) end
 				if not moloch:IsActivated() then moloch:SetActivated(true) end
-				print("buttdevastated")
 			end
 			local transfer = ParticleManager:CreateParticle("particles/units/heroes/hero_clinkz/clinkz_death_pact.vpcf", PATTACH_POINT_FOLLOW, caster)
 				ParticleManager:SetParticleControlEnt(transfer, 0, demon, PATTACH_POINT_FOLLOW, "attach_hitloc", demon:GetAbsOrigin(), true)

@@ -119,6 +119,17 @@
 					"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"	"1"
 				}
 			}
+			"modifier_cooldown_reduction"
+			{
+				"IsHidden"			"1"
+				"AllowIllusionDuplicate"	"1"				
+				"Attributes"		"MODIFIER_ATTRIBUTE_PERMANENT"
+				"Properties"
+				{
+					
+					"MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE"	"1"
+				}
+			}
 		}
 	}
 
@@ -1105,7 +1116,7 @@
 						"02"
 						{
 								"var_type"								"FIELD_INTEGER"
-								"bonus_damage"							"70"
+								"bonus_damage"							"140"
 						}
 						"03"
 						{
@@ -1345,7 +1356,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"100"
+				"bonus_damage"			"200"
 			}
 			"02"
 			{
@@ -1698,7 +1709,7 @@
 		{
 			"desolator3_stat"
 			{
-				"OnAttackStart"
+				"OnAttack"
 				{
 					"ApplyModifier"
 					{
@@ -1739,7 +1750,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"250"
+				"bonus_damage"			"750"
 			}
 			"02"
 			{
@@ -1917,7 +1928,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"				"260"
+				"bonus_damage"				"520"
 			}
 		}
 	}
@@ -2053,7 +2064,7 @@
 						"02"
 						{
 								"var_type"								"FIELD_INTEGER"
-								"bonus_damage"							"200"
+								"bonus_damage"							"400"
 						}
 						"03"
 						{
@@ -2215,7 +2226,7 @@
 		{
 			"desolator4_stat"
 			{
-				"OnAttackStart"
+				"OnAttack"
 				{
 					"ApplyModifier"
 					{
@@ -2259,7 +2270,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"1000"
+				"bonus_damage"			"2500"
 			}
 			"02"
 			{
@@ -2457,7 +2468,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_armor"				"35"
+				"bonus_armor"				"70"
 			}
 			"02"
 			{
@@ -2472,7 +2483,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"				"470"
+				"bonus_damage"				"940"
 			}
 			"05"
 			{
@@ -2626,7 +2637,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_armor"				"10"
+				"bonus_armor"				"20"
 			}
 			"02"
 			{
@@ -2641,7 +2652,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"				"170"
+				"bonus_damage"				"340"
 			}
 			"05"
 			{
@@ -2794,7 +2805,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"				"560"
+				"bonus_damage"				"1200"
 			}
 			"04"
 			{
@@ -2988,34 +2999,19 @@
 		        "Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE" //This makes duplicate items stack their properties
 		        "Properties"
 		        {
-		            "MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "%bonus_str"
-		            "MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "%bonus_agi"
-		            "MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "%bonus_int"
+		            "MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "%bonus_all_stats_tooltip"
+		            "MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "%bonus_all_stats_tooltip"
+		            "MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "%bonus_all_stats_tooltip"
 		        }
 		    }
 		}
 		"AbilitySpecial"
 		{
-				"01"
-					{
-							"var_type"							"FIELD_INTEGER"
-							"bonus_agi"							"100"
-					}
-							"02"
-					{
-							"var_type"							"FIELD_INTEGER"
-							"bonus_int"							"100"
-					}
-					"03"
-					{
-							"var_type"							"FIELD_INTEGER"
-							"bonus_str"							"100"
-					}
-					"04"
-					{
-						"var_type"								"FIELD_INTEGER"
-						"bonus_all_stats_tooltip"				"100"
-					}
+			"01"
+			{
+				"var_type"								"FIELD_INTEGER"
+				"bonus_all_stats_tooltip"				"100"
+			}
 		}
 		
 	}
@@ -3311,7 +3307,7 @@
 			"08"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_attackspeed_aoe"			"25"
+				"bonus_attackspeed_aoe"			"75"
 			}
 			"09"
 			{
@@ -3414,7 +3410,7 @@
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_cooldown"		"33"
+				"bonus_cooldown"		"20"
 			}
 			"07"
 			{
@@ -3465,6 +3461,22 @@
      		{
      			"Passive"                	"1"
      			"IsHidden"                  "1"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"lua_item/simple_item"
+						"Function"		"SetCastPoints"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"lua_item/simple_item"
+						"Function"		"ResetCastPoints"
+					}
+				}
 	    	}
 		}
 	}
@@ -3554,7 +3566,7 @@
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_cooldown"		"50"
+				"bonus_cooldown"		"30"
 			}
 			"07"
 			{
@@ -3610,6 +3622,22 @@
 	    	{
 				"Passive"					"1"
 	    		"IsHidden"                  "1"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"lua_item/simple_item"
+						"Function"		"SetCastPoints"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"lua_item/simple_item"
+						"Function"		"ResetCastPoints"
+					}
+				}
 	    	}
 		}
 	}
@@ -3710,7 +3738,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"230"
+				"bonus_damage"			"800"
 			}
 			"02"
 			{
@@ -3910,7 +3938,7 @@
 				"02"
 				{
 					"var_type"								"FIELD_INTEGER"
-					"bonus_damage"							"1060"
+					"bonus_damage"							"2100"
 				}
 				"03"
 				{
@@ -4007,7 +4035,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"300"
+				"bonus_damage"			"600"
 			}
 			"03"
 			{
@@ -4157,7 +4185,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"1000"
+				"bonus_damage"			"2000"
 			}
 		}
 	}
@@ -4350,7 +4378,7 @@
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_attackspeed"			"25"
+				"bonus_attackspeed"			"50"
 			}	
 			"07"
 			{
@@ -4365,7 +4393,7 @@
 			"09"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_attackspeed_aoe"			"25"
+				"bonus_attackspeed_aoe"			"150"
 			}
 			"10"
 			{
@@ -4380,7 +4408,7 @@
 			"12"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"		"600"
+				"bonus_damage"		"1200"
 			}
 			"13"
 			{
@@ -4546,7 +4574,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"1000"
+				"bonus_damage"			"2000"
 			}
 			"03"
 			{
@@ -4773,7 +4801,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"		"2000"
+				"bonus_damage"		"4000"
 			}
 			"06"
 			{
@@ -4876,15 +4904,6 @@
 			{
 				"OnAttackStart"
 					{
-						"ApplyModifier"
-						{
-							"Target" 
-							{
-								"Center" "TARGET"
-								"Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-							}
-							"ModifierName"		"Desolation5_effect"
-						}
 						"Random"
 						{
 		   					"Chance" "%critical_chance"
@@ -4907,6 +4926,15 @@
 					}
 				"OnAttackLanded"
 				{
+					"ApplyModifier"
+					{
+						"Target" 
+						{
+							"Center" "TARGET"
+							"Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+						}
+						"ModifierName"		"Desolation5_effect"
+					}
 					"RemoveModifier"
 						{
 							"ModifierName" 	"critical_strike_h"
@@ -4957,12 +4985,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"3200"
+				"bonus_damage"			"7000"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"armor_reduction"		"-1000"
+				"armor_reduction"		"-450"
 			}
 			"03"
 			{
@@ -5002,7 +5030,7 @@
 			"10"
 			{
 				"var_type"								"FIELD_INTEGER"
-				"bonus_attack_speed"					"400"
+				"bonus_attack_speed"					"150"
 			}
 			"11"
 			{
@@ -5265,12 +5293,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_armor"				"50"
+				"bonus_armor"				"150"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_health_regen"		"50"
+				"bonus_health_regen"		"500"
 			}
 			"03"
 			{
@@ -5295,7 +5323,7 @@
 			"07"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"				"1500"
+				"bonus_damage"				"3000"
 			}
 			"08"
 			{
@@ -5389,7 +5417,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"1000"
+				"bonus_damage"			"2000"
 			}
 			"03"
 			{
@@ -5543,7 +5571,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"3000"
+				"bonus_damage"			"6000"
 			}
 			"03"
 			{
@@ -5723,7 +5751,7 @@
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_cooldown"		"67"
+				"bonus_cooldown"		"40"
 			}
 			"07"
 			{
@@ -5798,6 +5826,22 @@
 	    	{
 				"Passive"					"1"
 	    		"IsHidden"                  "1"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"lua_item/simple_item"
+						"Function"		"SetCastPoints"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"lua_item/simple_item"
+						"Function"		"ResetCastPoints"
+					}
+				}
 	    	}
 		}
 	}
@@ -6109,7 +6153,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_armor"			"50"
+				"bonus_armor"			"120"
 			}
 			"03"
 			{
@@ -6311,12 +6355,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_armor"				"80"
+				"bonus_armor"				"130"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_health_regen"		"30"
+				"bonus_health_regen"		"300"
 			}
 			"03"
 			{
@@ -6326,7 +6370,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"				"200"
+				"bonus_damage"				"600"
 			}
 			"05"
 			{
@@ -6605,7 +6649,7 @@
  			"04"		
  			{		
  				"var_type"				"FIELD_INTEGER"		
- 				"bonus_armor"				"150"		
+ 				"bonus_armor"				"250"		
  			}		
  			"05"		
  			{		
@@ -6615,7 +6659,7 @@
  			"06"		
  			{		
  				"var_type"				"FIELD_INTEGER"		
- 				"bonus_damage"				"1000"		
+ 				"bonus_damage"				"3000"		
  			}		
  			"07"		
  			{		
@@ -7038,7 +7082,7 @@
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_attackspeed"			"50"
+				"bonus_attackspeed"			"200"
 			}	
 			"08"
 			{
@@ -7053,7 +7097,7 @@
 			"10"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_attackspeed_aoe"			"25"
+				"bonus_attackspeed_aoe"			"300"
 			}
 			"11"
 			{
@@ -7068,12 +7112,12 @@
 			"13"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"		"3000"
+				"bonus_damage"		"6000"
 			}
 			"14"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_sharedamage"		"2000"
+				"bonus_sharedamage"		"4000"
 			}
 			"15"
 			{
@@ -8379,7 +8423,7 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"1000"	
+		"ItemCost"						"0"	
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -8414,33 +8458,23 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"Modifiers"
 		{
-    		"modifier_new_bat"
+    		"passive_celerity_stone"
 			{
 				"IsHidden"                  "1"
 				"Passive"                	"1"
+				"Attributes"				"MODIFIER_ATTRIBUTE_MULTIPLE"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT" "%base_attack_time"
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%attackspeed"
 				}
 			}
-		}
-		
-						
-		"OnEquip"
-		{
-			"RunScript"
-			{
-				"ScriptFile"	"lua_item/simple_item.lua"
-				"Function"		"ApplyNewBat"
-			}
-		}
-		
+		}		
 		"AbilitySpecial"
 		{
 			"01"
 			{
 				"var_type"							"FIELD_FLOAT"
-				"base_attack_time"							"1.3"
+				"attackspeed"							"200"
 			}
 		}
 	}
@@ -8455,7 +8489,7 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"4000"	
+		"ItemCost"						"0"	
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -8490,32 +8524,23 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"Modifiers"
 		{
-    		"modifier_new_bat"
+    		"passive_celerity_stone"
 			{
 				"IsHidden"                  "1"
 				"Passive"                	"1"
+				"Attributes"				"MODIFIER_ATTRIBUTE_MULTIPLE"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT" "%base_attack_time"
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%attackspeed"
 				}
 			}
-		}
-						
-		"OnEquip"
-		{
-			"RunScript"
-			{
-				"ScriptFile"	"lua_item/simple_item.lua"
-				"Function"		"ApplyNewBat"
-			}
-		}
-		
+		}		
 		"AbilitySpecial"
 		{
 			"01"
 			{
 				"var_type"							"FIELD_FLOAT"
-				"base_attack_time"							"0.8"
+				"attackspeed"							"350"
 			}
 		}
 	}
@@ -8569,16 +8594,6 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-						
-		"OnEquip"
-		{
-			"RunScript"
-			{
-				"ScriptFile"	"lua_item/simple_item.lua"
-				"Function"		"ApplyNewBat"
-			}
-		}
-		
 		"Modifiers"
 		{
     		"b_fury"
@@ -8607,15 +8622,6 @@
 					}
 				}
 		    }
-			"modifier_new_bat"
-			{
-				"IsHidden"                  "1"
-				"Passive"                	"1"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT" "%base_attack_time"
-				}
-			}
 		    "storm_fury_passive"
 		    {
 		        "Passive" "1"  
@@ -8624,6 +8630,7 @@
 		        "Properties"
 		        {
 		            "MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "%bonus_damage"
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%bonus_attack_speed"
 		            "MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "%bonus_health_regen"
 		            "MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "%bonus_mana_regen"
 		        }
@@ -8634,13 +8641,13 @@
 		{
 			"01"
 			{
-				"var_type"							"FIELD_FLOAT"
-				"base_attack_time"							"1.0"
+				"var_type"				"FIELD_FLOAT"
+				"bonus_attack_speed"	"200"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"750"
+				"bonus_damage"			"2000"
 			}
 			"023"
 			{
@@ -8744,7 +8751,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"55"
+				"bonus_damage"			"120"
 			}
 			"02"
 			{
@@ -8765,11 +8772,6 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"splash_damage"		"30"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage_on_hit"		"%attack_damage"
 			}
 		}
 	}	
@@ -8875,15 +8877,6 @@
 					}
 				}
 			}
-			"modifier_new_bat"
-			{
-				"IsHidden"                  "1"
-				"Passive"                	"1"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT" "%base_attack_time"
-				}
-			}
 		    "melee_fury_passive"
 		    {
 		        "Passive" "1"  
@@ -8892,6 +8885,7 @@
 		        "Properties"
 		        {
 		            "MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "%bonus_damage"
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%bonus_attack_speed"
 		            "MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "%bonus_health_regen"
 		            "MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "%bonus_mana_regen"
 		            "MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"		"%bonus_all"
@@ -8906,7 +8900,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"base_attack_time"			"1.0"
+				"bonus_attack_speed"	"200"
 			}
 			"02"
 			{
@@ -8916,7 +8910,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"800"
+				"bonus_damage"			"1300"
 			}
 			"04"
 			{
@@ -8991,15 +8985,6 @@
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-									
-		"OnEquip"
-		{
-			"RunScript"
-			{
-				"ScriptFile"	"lua_item/simple_item.lua"
-				"Function"		"ApplyNewBat"
-			}
-		}
 		"Modifiers"
 		{
 			"passive_midas_aura3"
@@ -9016,15 +9001,6 @@
 				"IsHidden" "1"
 				"Passive"  "1"
 				"AllowIllusionDuplicate"    "0"
-			}
-			"modifier_new_bat"
-			{
-				"IsHidden"                  "1"
-				"Passive"                	"1"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT" "%base_attack_time"
-				}
 			}
     		"b_fury"
     		{
@@ -9060,6 +9036,7 @@
 		        "Properties"
 		        {
 		            "MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "%bonus_damage"
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%bonus_attack_speed"
 		            "MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "%bonus_health_regen"
 		            "MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "%bonus_mana_regen"
 		            "MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"		"%bonus_all"
@@ -9073,13 +9050,13 @@
 		{
 			"01"
 			{
-				"var_type"							"FIELD_FLOAT"
-				"base_attack_time"							"0.7"
+				"var_type"				"FIELD_FLOAT"
+				"bonus_attack_speed"	"350"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"1300"
+				"bonus_damage"			"8000"
 			}
 			"03"
 			{
@@ -9175,7 +9152,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"250 500 750 1000"
+				"bonus_damage"			"1000 2000 3000 4000"
 			}
 			"02"
 			{
@@ -10166,7 +10143,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"500"
+				"bonus_damage"			"1000"
 			}
 			"02"
 			{
@@ -10360,7 +10337,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"500"
+				"bonus_damage"			"3000"
 			}
 			"02"
 			{
@@ -11173,7 +11150,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"8000"
+				"bonus_damage"			"16000"
 			}
 			"03"
 			{
@@ -11497,7 +11474,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"				"260"
+				"bonus_damage"				"500"
 			}
 			"04"
 			{
@@ -11934,11 +11911,6 @@
 				"Function"			"ApplyOrbEffect"
 				"projectileName"	"particles/desolator6_projectile.vpcf"
 			}
-			"RunScript"
-			{
-				"ScriptFile"	"lua_item/simple_item.lua"
-				"Function"		"ApplyNewBat"
-			}
 		}
 		"OnUnequip"
 		{
@@ -12008,15 +11980,6 @@
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"  "%bonus_attack_speed"
 				}
 			}
-			"modifier_new_bat"
-			{
-				"IsHidden"                  "1"
-				"Passive"                	"1"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT" "%base_attack_time"
-				}
-			}
 			"critical_strike_h"
 			{
 				"IsHidden"		"1"
@@ -12046,12 +12009,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"5000"
+				"bonus_damage"			"10000"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"armor_reduction"		"-3000"
+				"armor_reduction"		"-900"
 			}
 			"03"
 			{
@@ -12068,27 +12031,22 @@
 				"var_type"				"FIELD_INTEGER"
 				"bonus_health_regen"	"100"
 			}
-	        "07"
-	        {
-	            "var_type"              "FIELD_FLOAT"
-	            "base_attack_time"                "0.8"
-	        }
-			"08"
+			"06"
 			{
 				"var_type"					"FIELD_INTEGER"
 				"bonus_all"				"3000"
 			}
-			"09"
+			"07"
 			{
 				"var_type"								"FIELD_INTEGER"
-				"bonus_attack_speed"					"200"
+				"bonus_attack_speed"					"500"
 			}
-			"10"
+			"08"
 			{
 				"var_type"								"FIELD_INTEGER"
 				"critical_bonus"						"700"
 			}
-			"11"
+			"10"
 			{
 				"var_type"								"FIELD_INTEGER"
 				"critical_chance"						"60"
@@ -12163,11 +12121,6 @@
 					"Flags" "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
 				}
 			}
-			"RunScript"
-			{
-				"ScriptFile"	"lua_item/simple_item.lua"
-				"Function"		"ApplyNewBat"
-			}
 		}
 		
     	"Modifiers"
@@ -12196,15 +12149,6 @@
 						"Target" "TARGET"
 						"EffectName" "sounds/items/item_armlet_deactivate.vsnd"
 					}
-				}
-			}
-			"modifier_new_bat"
-			{
-				"IsHidden"                  "1"
-				"Passive"                	"1"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT" "%base_attack_time"
 				}
 			}
 		    "melee_rage_passive"
@@ -12275,7 +12219,7 @@
 		        "Duration" "0.5"
 		        "Properties"
 				{
-					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"-100"
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"-300"
 					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "-100"	
 					"MODIFIER_PROPERTY_TURN_RATE_PERCENTAGE"      "10"
 				}
@@ -12285,11 +12229,6 @@
 		}
 		"AbilitySpecial"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"base_attack_time"		"1.0"
-			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
@@ -12298,7 +12237,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"2000"
+				"bonus_damage"			"3333"
 			}
 			"04"
 			{
@@ -12333,7 +12272,7 @@
 			"10"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_attack_speed"	"120"
+				"bonus_attack_speed"	"350"
 			}
 			"11"
 			{
@@ -12573,12 +12512,12 @@
 			"13"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"5000"
+				"bonus_damage"			"10000"
 			}
 			"14"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_sharedamage"		"2500"
+				"bonus_sharedamage"		"5000"
 			}
 			"15"
 			{
@@ -12588,7 +12527,7 @@
 			"16"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage_PR"		"750"
+				"bonus_damage_PR"		"1500"
 			}
 			"17"
 			{
@@ -13539,12 +13478,12 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"10000"
+				"bonus_damage"			"20000"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage_PR"		"1000"
+				"bonus_damage_PR"		"2000"
 			}
 			"06"
 			{
@@ -14209,7 +14148,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"				"2000"
+				"bonus_damage"				"4000"
 			}
 			"04"
 			{
@@ -14392,7 +14331,7 @@
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_cooldown"		"75"
+				"bonus_cooldown"		"50"
 			}
 			"07"
 			{
@@ -14448,6 +14387,22 @@
 	    	{
 				"Passive"					"1"
 	    		"IsHidden"                  "1"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"lua_item/simple_item"
+						"Function"		"SetCastPoints"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"lua_item/simple_item"
+						"Function"		"ResetCastPoints"
+					}
+				}
 	    	}
 		}
 	}
@@ -14572,7 +14527,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"		"5000"
+				"bonus_damage"		"10000"
 			}
 		}
 	}
@@ -14626,7 +14581,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"base_attack_time"		"0.7"
+				"bonus_attack_speed"	"700"
 			}
 	        "02"
 	        {
@@ -14636,7 +14591,7 @@
 	        "03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"20000"
+				"bonus_damage"			"25000"
 			}
 			"04"
 			{
@@ -14689,11 +14644,6 @@
 					"Center" "CASTER"
 					"Flags" "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
 				}
-			}
-			"RunScript"
-			{
-				"ScriptFile"	"lua_item/simple_item.lua"
-				"Function"		"ApplyNewBat"
 			}
 		}
 
@@ -14755,15 +14705,6 @@
 					}
 				}
 		    }
-			"modifier_new_bat"
-			{
-	        	"IsHidden"                  "1"
-            	"Passive"                	"1"
-	        	"Properties"
-     			{
-					"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT" "%base_attack_time"
-     			}
-			}
 	        "passive"
 	        {
 	        	"IsHidden"                  "1"
@@ -14772,6 +14713,7 @@
 	        	"Properties"
      			{
        				"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "%bonus_damage"
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%bonus_attack_speed"
        				"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"		"%bonus_all"
 					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"			"%bonus_all"
 					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"		"%bonus_all"
@@ -14925,7 +14867,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_armor"			"250"
+				"bonus_armor"			"450"
 			}
 			"03"
 			{
@@ -14935,7 +14877,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"3000"
+				"bonus_damage"			"6000"
 			}
 			"05"
 			{
@@ -15212,7 +15154,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"5000"
+				"bonus_damage"			"7500"
 			}
 			"02"
 			{
@@ -15868,7 +15810,7 @@
  			"06"		
  			{		
  				"var_type"				"FIELD_INTEGER"		
- 				"bonus_damage"				"5000"		
+ 				"bonus_damage"				"10000"		
  			}		
  			"07"		
  			{		
@@ -16071,6 +16013,7 @@
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"BaseClass"						"item_recipe_arcane_boots"
 		"AbilityTextureName"	"custom/asura_wand"
+		"ItemPurchasable"				"1"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -16400,6 +16343,22 @@
 	    	{
 				"Passive"					"1"
 	    		"IsHidden"                  "1"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"lua_item/simple_item"
+						"Function"		"SetCastPoints"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"lua_item/simple_item"
+						"Function"		"ResetCastPoints"
+					}
+				}
 	    	}
 			"scale_per_round_core"
 			{	
@@ -16541,7 +16500,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"100"
+				"bonus_damage"			"250"
 			}
 			"02"
 			{
@@ -16804,7 +16763,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_armor"			"450"
+				"bonus_armor"			"750"
 			}
 			"03"
 			{
@@ -17046,7 +17005,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"2500"
+				"bonus_damage"			"5000"
 			}
 			"02"
 			{
@@ -17306,7 +17265,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"400"
+				"bonus_damage"			"500"
 			}
 			"04"
 			{
@@ -17570,7 +17529,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"800"
+				"bonus_damage"			"1000"
 			}
 			"04"
 			{
@@ -17829,17 +17788,12 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_attack_speed"	"100"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"base_attack_time"		"0.8"
+				"bonus_attack_speed"	"400"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"1500"
+				"bonus_damage"			"2500"
 			}
 			"04"
 			{
@@ -17900,32 +17854,13 @@
 				"ScriptFile"	"lua_item/simple_item"
 				"Function"		"OrchidInit"
 			}
-		}
-						
-		"OnEquip"
-		{
-			"RunScript"
-			{
-				"ScriptFile"	"lua_item/simple_item.lua"
-				"Function"		"ApplyNewBat"
-			}
-		}
-		
+		}		
 		"Modifiers"
 		{
 			"spellcrit"
 			{
 				"Passive" 	"1"
 				"IsHidden"	"1"
-			}
-			"modifier_new_bat"
-			{
-				"IsHidden"                  "1"
-				"Passive"                	"1"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT" "%base_attack_time"
-				}
 			}
 			"modifier_bloodthorn_stats"
 			{
@@ -18117,17 +18052,12 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_attack_speed"	"100"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"base_attack_time"		"0.8"
+				"bonus_attack_speed"	"400"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"2500"
+				"bonus_damage"			"5000"
 			}
 			"04"
 			{
@@ -18203,11 +18133,6 @@
 						
 		"OnEquip"
 		{
-			"RunScript"
-			{
-				"ScriptFile"	"lua_item/simple_item.lua"
-				"Function"		"ApplyNewBat"
-			}
 			"RemoveModifier"
 			{
 				"ModifierName"	"Piercing"
@@ -18245,15 +18170,6 @@
 	        		}
 	        	}
 	        }
-			"modifier_new_bat"
-			{
-				"IsHidden"                  "1"
-				"Passive"                	"1"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT" "%base_attack_time"
-				}
-			}
 			"modifier_bloodthorn_stats"
 			{
 				"Passive" 	"1"
@@ -19588,7 +19504,7 @@
 	//=================================================================================================================
 	// Recipe: Battlefury
 	//=================================================================================================================
-	"item_recipe_ghost_scepter2"
+	"item_recipe_ghost_2"
 	{
 		"ID"							"2054"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"Model"							"models/props_gameplay/recipe.mdl"
@@ -19603,13 +19519,13 @@
 		// Recipe
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemRecipe"					"1"
-		"ItemResult"					"item_ghost_scepter2"
+		"ItemResult"					"item_ghost_2"
 		"ItemRequirements"
 		{
 			"01"						"item_orb_of_shadows;item_ghost"
 		}
 	}	
-	"item_ghost_scepter2"
+	"item_ghost_2"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -19622,7 +19538,7 @@
 		"AbilityCooldown"				"25"
 		"AbilityManaCost"				"150"
 		"HasPureCooldown"				"1"
-		"AbilityDuration"				"4.5"
+		"AbilityDuration"				"5"
 
 
 
@@ -19644,7 +19560,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"4.5"
+				"duration"				"5"
 			}
 			"03"
 			{
@@ -19739,7 +19655,7 @@
 	//=================================================================================================================
 	// Recipe: Battlefury
 	//=================================================================================================================
-	"item_recipe_ghost_scepter3"
+	"item_recipe_ghost_3"
 	{
 		"ID"							"2056"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"Model"							"models/props_gameplay/recipe.mdl"
@@ -19754,13 +19670,13 @@
 		// Recipe
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemRecipe"					"1"
-		"ItemResult"					"item_ghost_scepter3"
+		"ItemResult"					"item_ghost_3"
 		"ItemRequirements"
 		{
-			"01"						"item_orb_of_doom;item_ghost_scepter2"
+			"01"						"item_orb_of_doom;item_ghost_2"
 		}
 	}	
-	"item_ghost_scepter3"
+	"item_ghost_3"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -19773,7 +19689,7 @@
 		"AbilityCooldown"				"20"
 		"AbilityManaCost"				"150"
 		"HasPureCooldown"				"1"
-		"AbilityDuration"				"5"
+		"AbilityDuration"				"6"
 
 
 
@@ -19795,7 +19711,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"5.0"
+				"duration"				"6.0"
 			}
 			"02"
 			{
@@ -19890,7 +19806,7 @@
 	//=================================================================================================================
 	// Recipe: Battlefury
 	//=================================================================================================================
-	"item_recipe_ghost_scepter4"
+	"item_recipe_ghost_4"
 	{
 		"ID"							"2058"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"Model"							"models/props_gameplay/recipe.mdl"
@@ -19905,13 +19821,13 @@
 		// Recipe
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemRecipe"					"1"
-		"ItemResult"					"item_ghost_scepter4"
+		"ItemResult"					"item_ghost_4"
 		"ItemRequirements"
 		{
-			"01"						"item_orb_divine;item_ghost_scepter3"
+			"01"						"item_orb_divine;item_ghost_3"
 		}
 	}	
-	"item_ghost_scepter4"
+	"item_ghost_4"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -19924,7 +19840,7 @@
 		"AbilityCooldown"				"15"
 		"AbilityManaCost"				"150"
 		"HasPureCooldown"				"1"
-		"AbilityDuration"				"5.5"
+		"AbilityDuration"				"7"
 
 
 
@@ -19946,7 +19862,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"5.5"
+				"duration"				"7"
 			}
 			"03"
 			{
@@ -20041,7 +19957,7 @@
 	//=================================================================================================================
 	// Recipe: Battlefury
 	//=================================================================================================================
-	"item_recipe_ghost_scepter5"
+	"item_recipe_ghost_5"
 	{
 		"ID"							"2060"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"Model"							"models/props_gameplay/recipe.mdl"
@@ -20056,13 +19972,13 @@
 		// Recipe
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemRecipe"					"1"
-		"ItemResult"					"item_ghost_scepter5"
+		"ItemResult"					"item_ghost_5"
 		"ItemRequirements"
 		{
-			"01"						"item_orb_bahamut;item_ghost_scepter4"
+			"01"						"item_orb_bahamut;item_ghost_4"
 		}
 	}	
-	"item_ghost_scepter5"
+	"item_ghost_5"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -20074,7 +19990,8 @@
 		
 		"AbilityCooldown"				"10"
 		"AbilityManaCost"				"150"
-		"HasPureCooldown"				"6"
+		"HasPureCooldown"				"1"
+		"AbilityDuration"				"8"
 
 
 
@@ -20096,7 +20013,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"6.0"
+				"duration"				"8.0"
 			}
 			"03"
 			{
@@ -20182,7 +20099,6 @@
 				"States"
 				{
 					"MODIFIER_STATE_ATTACK_IMMUNE" 			"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_DISARMED"				"MODIFIER_STATE_VALUE_ENABLED"
 				}
 			}
 		}
@@ -21161,7 +21077,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"240"
+				"bonus_damage"			"500"
 			}			
 			"03"
 			{
@@ -21281,7 +21197,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"750"
+				"bonus_damage"			"1500"
 			}			
 			"04"
 			{
@@ -21396,7 +21312,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"2000"
+				"bonus_damage"			"4000"
 			}			
 			"04"
 			{
@@ -21511,7 +21427,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"5000"
+				"bonus_damage"			"10000"
 			}			
 			"04"
 			{

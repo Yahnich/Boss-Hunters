@@ -9,7 +9,7 @@ function Spawn( entityKeyValues )
 	thisEntity.odds = thisEntity:FindAbilityByName("boss_overwhelming_odds")
 	thisEntity.press = thisEntity:FindAbilityByName("boss_press_the_attack")
 	thisEntity.call = thisEntity:FindAbilityByName("boss_call_reinforcements")
-	if  math.floor(GameRules.gameDifficulty + 0.5) == 4 then
+	if  math.floor(GameRules.gameDifficulty + 0.5) > 3 then
 		thisEntity.moment:SetLevel(4)
 		thisEntity.press:SetLevel(4)
 		thisEntity.odds:SetLevel(4)
@@ -21,16 +21,10 @@ function Spawn( entityKeyValues )
 		thisEntity.moment:SetLevel(2)
 		thisEntity.press:SetLevel(2)
 		thisEntity.odds:SetLevel(2)
-		thisEntity:SetMaxHealth(thisEntity:GetMaxHealth()*0.9)
-		thisEntity:SetBaseDamageMin(thisEntity:GetBaseDamageMin()*0.8)
-		thisEntity:SetBaseDamageMax(thisEntity:GetBaseDamageMax()*0.8)
 	else
 		thisEntity.moment:SetLevel(1)
 		thisEntity.press:SetLevel(1)
 		thisEntity.odds:SetLevel(1)
-		thisEntity:SetMaxHealth(thisEntity:GetMaxHealth()*0.8)
-		thisEntity:SetBaseDamageMin(thisEntity:GetBaseDamageMin()*0.7)
-		thisEntity:SetBaseDamageMax(thisEntity:GetBaseDamageMax()*0.7)
 	end
 	thisEntity:SetHealth(thisEntity:GetMaxHealth())
 end

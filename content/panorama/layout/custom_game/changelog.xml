@@ -123,7 +123,7 @@
 											<Image hittest="false" class="shop_image" src="file://{images}/custom_game/demon_shop/asura_lens.png"/>
 										</Button>
 										<Panel class="requirementPanel" hittest="false">
-											<Label class="corePrice" text="15 Asura Cores" />
+											<Label class="corePrice" text="12 Asura Cores" />
 											<Label class="corePrice" text="Unobtanium Lens" />
 										</Panel>
 									</Panel>

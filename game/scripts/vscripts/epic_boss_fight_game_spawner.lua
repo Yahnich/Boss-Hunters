@@ -21,7 +21,6 @@ function CHoldoutGameSpawner:ReadConfiguration( name, kv, gameRound )
 		local colourTable = {}
 		for token in string.gmatch(self._RenderColour, "[^%s]+") do
 		   table.insert(colourTable, tonumber(token))
-		   print(token)
 		end
 		self._RenderColour = Vector(colourTable[1], colourTable[2], colourTable[3])
 	end
@@ -82,10 +81,8 @@ function CHoldoutGameSpawner:Begin()
 	
 	if GameRules.gameDifficulty >= 3 and GameRules._roundnumber > 1 and not self._bDifficultyChecked then
 		self._nTotalUnitsToSpawn = math.ceil(self._nTotalUnitsToSpawn * 1.4)
-		if self._flSpawnInterval < GameRules._roundnumber then self._flSpawnInterval = GameRules._roundnumber end
 		self._bDifficultyChecked = true
 	end
-	print(self._nTotalUnitsToSpawn, "doubled")
 	self._vecSpawnLocation = nil
 	if self._szSpawnerName ~= "" then
 		local entSpawner = Entities:FindByName( nil, self._szSpawnerName )
@@ -138,7 +135,6 @@ function CHoldoutGameSpawner:Think()
 	if not self._flNextSpawnTime then
 		return
 	end
-	
 	if GameRules:GetGameTime() >= self._flNextSpawnTime then
 		self:_DoSpawn()
 		self.recheck = true
@@ -153,7 +149,6 @@ function CHoldoutGameSpawner:Think()
 		end
 	elseif self._nUnitsCurrentlyAlive == 0 and self.recheck then
 		self._flNextSpawnTime = GameRules:GetGameTime() + self._flReducedSpawnInterval
-		print(self._flNextSpawnTime, GameRules:GetGameTime(), self._flReducedSpawnInterval)
 		self.recheck = false
 	end
 end

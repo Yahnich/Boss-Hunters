@@ -24,8 +24,8 @@
 	
     vertical-align: top;
 	horizontal-align: right;
-	margin-right: 100px;
-    margin-top: 5px;
+	margin-right: 175px;
+    margin-top: 0px;
 	border-radius: 5px;
     padding: 1px 10px;
     vertical-align: top;
@@ -97,8 +97,8 @@
 
 #showChangelogButton
 {
-	width: 30px;
-	height: 30px;
+	width: 35px;
+	height: 35px;
 	wash-color: #00000030;
 }
 
@@ -112,12 +112,12 @@
 {
 	flow-children: down;
 	background-size: 435px 825px;
-	background-position: -35px -75px;
+	background-position: -40px -75px;
 	background-image: url("file://{images}/custom_game/demon_shop/background.png");
     vertical-align: top;
 	horizontal-align: right;
     margin-top: 50px;
-	margin-right: -395px;
+	margin-right: -400px;
     height: 700px;
 	width: 400px;
 

@@ -9,6 +9,23 @@ function Spawn( entityKeyValues )
 	thisEntity.rockets = thisEntity:FindAbilityByName("boss_rockets")
 	thisEntity.march = thisEntity:FindAbilityByName("boss_march")
 	thisEntity.rearm = thisEntity:FindAbilityByName("boss_rearm")
+	if  math.floor(GameRules.gameDifficulty + 0.5) > 3 then
+		thisEntity.rockets:SetLevel(4)
+		thisEntity.march:SetLevel(4)
+		thisEntity.rearm:SetLevel(4)
+	elseif  math.floor(GameRules.gameDifficulty + 0.5) == 3 then
+		thisEntity.rockets:SetLevel(3)
+		thisEntity.march:SetLevel(3)
+		thisEntity.rearm:SetLevel(3)
+	elseif  math.floor(GameRules.gameDifficulty + 0.5) == 2 then
+		thisEntity.rockets:SetLevel(2)
+		thisEntity.march:SetLevel(2)
+		thisEntity.rearm:SetLevel(2)
+	else
+		thisEntity.rockets:SetLevel(1)
+		thisEntity.march:SetLevel(1)
+		thisEntity.rearm:SetLevel(1)
+	end
 end
 
 
