@@ -153,7 +153,19 @@ function modifier_bounty_hunter_jinada_dash:OnCreated()
 	if IsServer() then
 		local hunterLvl = self:GetCaster():FindAbilityByName("bounty_hunter_veteran_hunter"):GetSpecialValueFor("bonus_jinada_targets")
 		self:SetStackCount(hunterLvl + 1)
+		self:StartIntervalThink(0.5)
 	end
+end
+
+function modifier_bounty_hunter_jinada_dash:OnIntervalThink()
+	if not (self:GetParent():IsMoving() or self:GetParent():IsAttacking()) then
+		self:GetParent():SetForceAttackTarget(nil)
+		self:Destroy()
+	end
+end
+
+function modifier_bounty_hunter_jinada_dash:OnDestroy()
+	self:GetParent():SetForceAttackTarget(nil)
 end
 
 function modifier_bounty_hunter_jinada_dash:IsHidden()
@@ -201,6 +213,10 @@ function modifier_bounty_hunter_jinada_talent:IsHidden()
 	return true
 end
 
+function modifier_bounty_hunter_jinada_talent:RemoveOnDeath()
+	return false
+end
+
 
 bounty_hunter_veteran_hunter = class({})
 
@@ -241,6 +257,7 @@ function modifier_bounty_hunter_veteran_hunter:OnAbilityFullyCast(params)
 						params.unit:SetCursorCastTarget(unit)
 						params.ability:OnSpellStart()
 						shurikens = shurikens - 1
+						if shurikens < 1 then break end
 					end
 				end
 				if shurikens > 0 then

@@ -99,12 +99,13 @@ templar_assassin_trap_ebf = class({})
 if IsServer() then
 	function templar_assassin_trap_ebf:OnSpellStart()
 		local caster = self:GetCaster()
+		local point = self:GetCursorPosition()
 		local trapAbility = caster:FindAbilityByName("templar_assassin_psionic_trap_ebf")
 		local trap
 		local closest = 100000
 		if #trapAbility.traps > 0 then
 			for _,tableTrap in pairs(trapAbility.traps) do
-				local distance = (caster:GetAbsOrigin() - tableTrap:GetAbsOrigin()):Length2D()
+				local distance = (point - tableTrap:GetAbsOrigin()):Length2D()
 			
 				-- Notes the closest distance and closest trap
 				if distance < closest then
@@ -144,12 +145,13 @@ templar_assassin_traptp_ebf = class({})
 if IsServer() then
 	function templar_assassin_traptp_ebf:OnSpellStart()
 		local caster = self:GetCaster()
+		local point = self:GetCursorPosition()
 		local trapAbility = caster:FindAbilityByName("templar_assassin_psionic_trap_ebf")
 		local trap
 		local closest = 100000
 		if #trapAbility.traps > 0 then
 			for _,tableTrap in pairs(trapAbility.traps) do
-				local distance = (caster:GetAbsOrigin() - tableTrap:GetAbsOrigin()):Length2D()
+				local distance = (point - tableTrap:GetAbsOrigin()):Length2D()
 			
 				-- Notes the closest distance and closest trap
 				if distance < closest then
