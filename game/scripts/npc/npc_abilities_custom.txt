@@ -7583,7 +7583,7 @@
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"750"
-		"AbilityCastPoint"				"0.1 0.1 0.1"
+		"AbilityCastPoint"				"0.01"
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -7703,6 +7703,10 @@
 						"ScriptFile"    "lua_abilities/heroes/puck.lua"
 						"HorizontalControlFunction" "PuckPull"
 					}
+				}
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
 				}
 			}
 			"modifier_dream_coil_thinker_datadriven"
@@ -25341,7 +25345,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bounces_scepter"		"9"
+				"bounces_scepter"		"4"
 			}
 			"04"
 			{

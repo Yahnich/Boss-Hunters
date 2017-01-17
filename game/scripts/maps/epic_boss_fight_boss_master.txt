@@ -845,7 +845,7 @@
 		{
 			"1"
 			{
-				"round_quest_title"				"#DOTA_Holdout_Round_Boss25_Title_time"
+				"round_quest_title"				"#DOTA_Holdout_Round_Boss25_Quest_Title_time"
 				"UnitBoss_Aeon"
 				{
 					"NPCName"				"npc_dota_boss38"
@@ -856,7 +856,7 @@
 			}
 			"2"
 			{
-				"round_quest_title"				"#DOTA_Holdout_Round_Boss25_Title_space"
+				"round_quest_title"				"#DOTA_Holdout_Round_Boss25_Quest_Title_space"
 				"UnitBoss_Aether"
 				{
 					"NPCName"				"npc_dota_boss39"

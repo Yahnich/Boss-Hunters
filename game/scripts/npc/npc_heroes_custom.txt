@@ -435,9 +435,9 @@
 	{
 		"override_hero"			"npc_dota_hero_invoker"
 		"AbilityLayout"				"6"
-		"Ability1"					"invoker_fire_ellement"					// Ability 1
-		"Ability2"					"invoker_ice_ellement"					// Ability 2
-		"Ability3"					"invoker_wind_ellement"					// Ability 3
+		"Ability1"					"invoker_ice_ellement"					// Ability 2
+		"Ability2"					"invoker_wind_ellement"					// Ability 3
+		"Ability3"					"invoker_fire_ellement"					// Ability 1
 		"Ability4"					"invoker_combine1"					// Ability 4
 		"Ability5"					"invoker_combine2"					// Ability 5
 		"Ability6"					"invoker_reset"					// Ability 6

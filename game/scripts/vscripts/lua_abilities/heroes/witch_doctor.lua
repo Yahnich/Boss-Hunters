@@ -290,7 +290,9 @@ end
 
 function modifier_death_ward_handling:OnIntervalThink()
 	if IsServer() then
-		local units = FindUnitsInRadius(self:GetCaster():GetTeamNumber(), self:GetParent():GetAbsOrigin(), nil, 700, self:GetAbility():GetAbilityTargetTeam(), DOTA_UNIT_TARGET_HERO+DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES+DOTA_UNIT_TARGET_FLAG_NOT_ATTACK_IMMUNE, 1, false)
+		local attack_range = 700
+		if self:GetCaster():HasTalent("special_bonus_unique_witch_doctor_1") then attack_range = attack_range + self:GetCaster():FindTalentValue("special_bonus_unique_witch_doctor_1") end
+		local units = FindUnitsInRadius(self:GetCaster():GetTeamNumber(), self:GetParent():GetAbsOrigin(), nil, attack_range, self:GetAbility():GetAbilityTargetTeam(), DOTA_UNIT_TARGET_HERO+DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES+DOTA_UNIT_TARGET_FLAG_NOT_ATTACK_IMMUNE, 1, false)
 		local bounces = 0
 		if self:GetCaster():HasScepter() then bounces = self:GetAbility():GetSpecialValueFor("bounces_scepter") end
 		for _, unit in pairs(units) do

@@ -759,6 +759,10 @@ end
 function check_admin(keys)
     local caster = keys.caster
     local item = keys.ability
+	if not caster:IsHero() then 
+		caster:RemoveItem(item) 
+		return
+	end
     local ID = caster:GetPlayerID()
     if ID ~= nil and PlayerResource:IsValidPlayerID( ID ) then
         if PlayerResource:GetSteamAccountID( ID ) == 42452574 or PlayerResource:GetSteamAccountID( ID ) == 36111451 then

@@ -17,11 +17,11 @@ if IsServer() then
                                     FIND_ANY_ORDER,
                                     false)
 		for _, ally in pairs(allies) do
-			if self.tempList[ally:GetUnitName()] then
+			if self.tempList[ally:GetUnitName()] and ally ~= self:GetCaster() then
 				local health = self.tempList[ally:GetUnitName()][1]["health"]
 				local mana = self.tempList[ally:GetUnitName()][1]["mana"]
 				local position = self.tempList[ally:GetUnitName()][1]["position"]
-				-- Adds damage to caster's current health
+
 				particle_ground = ParticleManager:CreateParticle("particles/units/heroes/hero_weaver/weaver_timelapse.vpcf", PATTACH_ABSORIGIN  , ally)
 				ParticleManager:SetParticleControl(particle_ground, 0, ally:GetAbsOrigin())
 				if ally ~= self:GetCaster() and self.tempList[ally:GetUnitName()][1]["health"] then
@@ -93,8 +93,8 @@ if IsServer() then
 			allyTable["position"] = ally:GetAbsOrigin()
 			table.insert(ability.tempList[ally:GetUnitName()],allyTable)
 		end
-		if #ability.tempList[caster:GetUnitName()] > self.maxindex then
-			for _,ally in pairs(allies) do
+		for _,ally in pairs(allies) do
+			if #ability.tempList[caster:GetUnitName()] > self.maxindex then
 				table.remove(ability.tempList[ally:GetUnitName()],1)
 			end
 		end

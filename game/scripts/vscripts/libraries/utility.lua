@@ -65,10 +65,7 @@ function AllPlayersAbandoned()
 	local dcCounter = 0
 	for nPlayerID = 0, DOTA_MAX_TEAM_PLAYERS-1 do
 		if PlayerResource:GetTeam( nPlayerID ) == DOTA_TEAM_GOODGUYS then
-			local player = PlayerResource:GetPlayer(nPlayerID)
-			if player then
-				playerCounter = playerCounter + 1
-			end
+			playerCounter = playerCounter + 1
 			local hero = PlayerResource:GetSelectedHeroEntity( nPlayerID )
 			if hero then
 				if hero:HasOwnerAbandoned() then
@@ -297,6 +294,13 @@ function CDOTABaseAbility:Refresh()
 	end
     self:EndCooldown()
 end
+
+function CDOTABaseAbility:GetTrueCastRange()
+	local castrange = self:GetCastRange()
+	castrange = castrange + get_aether_range(self:GetCaster())
+	return castrange
+end
+
 function CDOTA_BaseNPC:KillTarget()
 	if not ( self:IsInvulnerable() or self:IsOutOfGame() or self:IsUnselectable() or self:NoHealthBar() ) then
 		self:ForceKill(true)
@@ -580,6 +584,8 @@ function get_aether_range(caster)
 			end
 		end
 	end
+	local talentMult = caster:HighestTalentTypeValue("cast_range")
+	aether_range = aether_range+talentMult
     return aether_range
 end
 

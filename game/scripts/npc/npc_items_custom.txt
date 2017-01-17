@@ -1867,7 +1867,7 @@
 				{
 					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"		"%bonus_damage"
 				}
-				"OnAttackStart"
+				"OnAttackLanded"
 				{
 					"Random"
 					{
@@ -1889,14 +1889,6 @@
    						{}
 					}
 				}
-				"OnAttackLanded"
-				{
-   					"RemoveModifier"
-					{
-						"ModifierName" 	"critical_strike_2"
-						"Target" 		"CASTER"
-					}
-				}
 			}
 			"critical_strike_2"
 			{
@@ -1905,6 +1897,14 @@
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE" 	"%critical_bonus"
+				}
+				"OnAttackLanded"
+				{
+					"RemoveModifier"
+					{
+						"ModifierName" 	"critical_strike_2"
+						"Target" 		"CASTER"
+					}
 				}
 			}
 		}
@@ -2744,7 +2744,7 @@
 				{
 					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"		"%bonus_damage"
 				}
-				"OnAttackStart"
+				"OnAttackLanded"
 				{
 					"Random"
 					{
@@ -2766,14 +2766,6 @@
    						{}
 					}
 				}
-				"OnAttackLanded"
-				{
-   					"RemoveModifier"
-					{
-						"ModifierName" 	"critical_strike_3"
-						"Target" 		"CASTER"
-					}
-				}
 			}
 			"critical_strike_3"
 			{
@@ -2782,6 +2774,14 @@
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE" 	"%critical_bonus"
+				}
+				"OnAttackLanded"
+				{
+					"RemoveModifier"
+					{
+						"ModifierName" 	"critical_strike_3"
+						"Target" 		"CASTER"
+					}
 				}
 			}
 		}
@@ -3849,19 +3849,10 @@
 									"Function"		"NewInstance"
 									"particle"		"particles/units/heroes/hero_zuus/zuus_arc_lightning_.vpcf"
 								}
-								"RemoveModifier"
-								{
-									"ModifierName" 	"critical_strike_h"
-									"Target" 
-									{
-										"Center" "CASTER"
-										"Flags" "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
-									}
-								}
 							}
 						}
 					}					
-					"OnAttackStart"
+					"OnAttackLanded"
 					{
 						"Random"
 						{
@@ -3882,14 +3873,6 @@
 		   					{}
 						}
 					}
-					"OnAttackLanded"
-					{
-		   				"RemoveModifier"
-						{
-							"ModifierName" 	"critical_strike_h"
-							"Target" 		"CASTER"
-						}
-					}
 				}
 				"critical_strike_h"
 				{
@@ -3898,6 +3881,18 @@
 					"Properties"
 					{
 						"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE" 	"%critical_bonus"
+					}
+					"OnAttackLanded"
+					{
+		   				"RemoveModifier"
+						{
+							"ModifierName" 	"critical_strike_h"
+							"Target" 
+							{
+								"Center" "CASTER"
+								"Flags" "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+							}
+						}
 					}
 				}
 				"modifier_arc_lightning_hammer"
@@ -4902,28 +4897,27 @@
 		{
 			"desolator5_stat"
 			{
-				"OnAttackStart"
+				"OnAttackLanded"
+				{
+					"Random"
 					{
-						"Random"
-						{
-		   					"Chance" "%critical_chance"
-		   					"OnSuccess"
-		   					{
-								"ApplyModifier"
+		   				"Chance" "%critical_chance"
+		   				"OnSuccess"
+		   				{
+							"ApplyModifier"
+							{
+								"ModifierName" 	"critical_strike_h"
+								"Target" 
 								{
-									"ModifierName" 	"critical_strike_h"
-									"Target" 
-									{
-										"Center" "CASTER"
-										"Flags" "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
-									}
+									"Center" "CASTER"
+									"Flags" "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
 								}
 							}
-							"OnFailure"
-							{}
 						}
-						
-					}
+						"OnFailure"
+						{}
+					}	
+				}
 				"OnAttackLanded"
 				{
 					"ApplyModifier"
@@ -4935,11 +4929,6 @@
 						}
 						"ModifierName"		"Desolation5_effect"
 					}
-					"RemoveModifier"
-						{
-							"ModifierName" 	"critical_strike_h"
-							"Target" 		"CASTER"
-						}
 				}
 				"Passive"	 	"1"
 				"Attributes"    "MODIFIER_ATTRIBUTE_MULTIPLE"
@@ -4963,6 +4952,14 @@
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE" 	"%critical_bonus"
+				}
+				"OnAttackLanded"
+				{
+					"RemoveModifier"
+					{
+						"ModifierName" 	"critical_strike_h"
+						"Target" 		"CASTER"
+					}
 				}
 			}
 
@@ -11926,7 +11923,7 @@
 		{
 			"desolator5_stat"
 			{
-				"OnAttackStart"
+				"OnAttackLanded"
 					{
 						"Random"
 						{
@@ -11959,11 +11956,6 @@
 						}
 						"ModifierName"		"bahamut_claw_effect"
 					}
-					"RemoveModifier"
-						{
-							"ModifierName" 	"critical_strike_h"
-							"Target" 		"CASTER"
-						}
 				}
 				"Passive"	 	"1"
 				"Attributes"    "MODIFIER_ATTRIBUTE_MULTIPLE"
@@ -11987,6 +11979,14 @@
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE" 	"%critical_bonus"
+				}
+				"OnAttackLanded"
+				{
+					"RemoveModifier"
+					{
+						"ModifierName" 	"critical_strike_h"
+						"Target" 		"CASTER"
+					}
 				}
 			}
 
@@ -13705,28 +13705,27 @@
 					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"			"%bonus_damage"
 					"MODIFIER_PROPERTY_EVASION_CONSTANT"			"%bonus_dodge"
 				}
-				"OnAttackStart"
+				"OnAttackLanded"
+				{
+					"Random"
 					{
-						"Random"
-						{
-		   					"Chance" "%crit_chance"
-		   					"OnSuccess"
-		   					{
-								"ApplyModifier"
+		   				"Chance" "%crit_chance"
+		   				"OnSuccess"
+		   				{
+							"ApplyModifier"
+							{
+								"ModifierName" 	"critical_strike_h"
+								"Target" 
 								{
-									"ModifierName" 	"critical_strike_h"
-									"Target" 
-									{
-										"Center" "CASTER"
-										"Flags" "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
-									}
+									"Center" "CASTER"
+									"Flags" "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
 								}
 							}
-							"OnFailure"
-							{}
 						}
-						
-					}
+						"OnFailure"
+						{}
+					}	
+				}
 				"OnAttackLanded"
 				{
 					"Lifesteal"
@@ -13739,11 +13738,6 @@
 						"Target"				"TARGET"
 						"ModifierName"		"bahamut_claw_effect"
 					}
-					"RemoveModifier"
-						{
-							"ModifierName" 	"critical_strike_h"
-							"Target" 		"CASTER"
-						}
 				}
 			}
 			"hearth_regen_bahamut"
@@ -13783,6 +13777,14 @@
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE" 	"%crit_damage"
+				}
+				"OnAttackLanded"
+				{
+					"RemoveModifier"
+					{
+						"ModifierName" 	"critical_strike_h"
+						"Target" 		"CASTER"
+					}
 				}
 			}
 
@@ -15013,7 +15015,7 @@
 		{
 			"desolator5_stat"
 			{
-				"OnAttackStart"
+				"OnAttackLanded"
 					{
 						"Random"
 						{
@@ -15042,11 +15044,6 @@
 						"Target"			"TARGET"
 						"ModifierName"		"veil_debuff"
 						"Duration" 			"%duration"
-					}
-					"RemoveModifier"
-					{
-						"ModifierName" 	"critical_strike_h"
-						"Target" 		"CASTER"
 					}
 					"Random"
 					{
@@ -15089,6 +15086,14 @@
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE" 	"%critical_bonus"
+				}
+				"OnAttackLanded"
+				{
+					"RemoveModifier"
+					{
+						"ModifierName" 	"critical_strikecritical_strike_h"
+						"Target" 		"CASTER"
+					}
 				}
 			}
 
@@ -17346,7 +17351,7 @@
 					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"	"%bonus_damage"
 					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE"	"%bonus_mana_regen"
 				}
-				"OnAttackStart"
+				"OnAttackLanded"
 				{
 					"Random"
 					{
@@ -17368,14 +17373,6 @@
    						{}
 					}
 				}
-				"OnAttackLanded"
-				{
-   					"RemoveModifier"
-					{
-						"ModifierName" 	"critical_strike_2"
-						"Target" 		"CASTER"
-					}
-				}
 			}
 			"critical_strike_2"
 			{
@@ -17384,6 +17381,14 @@
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE" 	"%crit_multiplier"
+				}
+				"OnAttackLanded"
+				{
+					"RemoveModifier"
+					{
+						"ModifierName" 	"critical_strike_2"
+						"Target" 		"CASTER"
+					}
 				}
 			}
 			"modifier_bloodthorn_silence_amp"
@@ -17610,7 +17615,7 @@
 					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"	"%bonus_damage"
 					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE"	"%bonus_mana_regen"
 				}
-				"OnAttackStart"
+				"OnAttackLanded"
 				{
 					"Random"
 					{
@@ -17632,14 +17637,6 @@
    						{}
 					}
 				}
-				"OnAttackLanded"
-				{
-   					"RemoveModifier"
-					{
-						"ModifierName" 	"critical_strike_2"
-						"Target" 		"CASTER"
-					}
-				}
 			}
 			"critical_strike_2"
 			{
@@ -17648,6 +17645,14 @@
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE" 	"%crit_multiplier"
+				}
+				"OnAttackLanded"
+				{
+					"RemoveModifier"
+					{
+						"ModifierName" 	"critical_strike_2"
+						"Target" 		"CASTER"
+					}
 				}
 			}
 			"modifier_bloodthorn_silence_amp"
@@ -17874,7 +17879,7 @@
 					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"	"%bonus_damage"
 					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE"	"%bonus_mana_regen"
 				}
-				"OnAttackStart"
+				"OnAttackLanded"
 				{
 					"Random"
 					{
@@ -17896,14 +17901,6 @@
    						{}
 					}
 				}
-				"OnAttackLanded"
-				{
-   					"RemoveModifier"
-					{
-						"ModifierName" 	"critical_strike_2"
-						"Target" 		"CASTER"
-					}
-				}
 			}
 			"critical_strike_2"
 			{
@@ -17912,6 +17909,14 @@
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE" 	"%crit_multiplier"
+				}
+				"OnAttackLanded"
+				{
+					"RemoveModifier"
+					{
+						"ModifierName" 	"critical_strike_2"
+						"Target" 		"CASTER"
+					}
 				}
 			}
 			"modifier_bloodthorn_silence_amp"
@@ -18182,7 +18187,7 @@
 					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"	"%bonus_damage"
 					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE"	"%bonus_mana_regen"
 				}
-				"OnAttackStart"
+				"OnAttackLanded"
 				{
 					"Random"
 					{
@@ -18204,14 +18209,6 @@
    						{}
 					}
 				}
-				"OnAttackLanded"
-				{
-   					"RemoveModifier"
-					{
-						"ModifierName" 	"critical_strike_2"
-						"Target" 		"CASTER"
-					}
-				}
 			}
 			"critical_strike_2"
 			{
@@ -18220,6 +18217,14 @@
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE" 	"%crit_multiplier"
+				}
+				"OnAttackLanded"
+				{
+					"RemoveModifier"
+					{
+						"ModifierName" 	"critical_strike_h"
+						"Target" 		"CASTER"
+					}
 				}
 			}
 			"modifier_bloodthorn_silence_amp"
