@@ -3,6 +3,7 @@ function Ressurection(keys)
         local Item = keys.ability
         if not killedUnit:IsAlive() and Item:IsCooldownReady() then
             print ('BY THE POWER OF THE GREAT RESSURECTION STONE ! I CALL YOU SHINERON ! RESSURECT ME !')
+			killedUnit.resurrectionStoned = true
             if killedUnit:GetName() == ( "npc_dota_hero_skeleton_king") then
                 local ability = killedUnit:FindAbilityByName("skeleton_king_reincarnation")
 				local delay = ability:GetSpecialValueFor("reincarnate_time")
@@ -20,6 +21,7 @@ function Ressurection(keys)
 			else
 				Timers:CreateTimer(3,function()
 					killedUnit:RespawnHero(false, false, false)
+					killedUnit.resurrectionStoned = false
 					Item:StartCooldown(60)
 					if Item:GetCurrentCharges() > 1 then
 						Item:SetCurrentCharges(Item:GetCurrentCharges()-1)

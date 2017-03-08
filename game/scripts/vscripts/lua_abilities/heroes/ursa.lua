@@ -126,6 +126,7 @@ function overpower_init( keys )
 	local max_stack = ability:GetTalentSpecialValueFor( "max_attacks")
 	
 	ability:ApplyDataDrivenModifier( caster, caster, modifierName, { } )
+	ability:ApplyDataDrivenModifier( caster, caster, "modifier_overpower_attackspeed", {duration = duration} )
 	caster:SetModifierStackCount( modifierName, ability, max_stack )
 end
 

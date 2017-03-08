@@ -31,7 +31,7 @@ function Fervor(keys)
 						caster.stuntattack = true
 						caster:StartGestureWithPlaybackRate(ACT_DOTA_ATTACK, (2*caster:GetAttacksPerSecond()))
 						Timers:CreateTimer(caster:GetSecondsPerAttack()/2,function()
-								caster:PerformAttack(target, true, true, true, false, true)
+								caster:PerformAttack(target, true, true, true, false, false, false, true)
 								caster.stuntattack = true
 							end)
 						ability.prng = 0
@@ -48,7 +48,7 @@ function Fervor(keys)
 						caster:StartGestureWithPlaybackRate(ACT_DOTA_ATTACK, (2*caster:GetAttacksPerSecond()))
 						Timers:CreateTimer(0.2,function()
 								caster.stuntattack = true
-								caster:PerformAttack(target, true, true, true, false, true)	
+								caster:PerformAttack(target, true, true, true, false, false, false, true)
 							end)
 						ability.prng = 0
 						end
@@ -65,7 +65,7 @@ function Fervor(keys)
 					caster.stuntattack = true
 					caster:StartGestureWithPlaybackRate(ACT_DOTA_ATTACK, (2*caster:GetAttacksPerSecond()))
 					Timers:CreateTimer(0.2,function()
-								caster:PerformAttack(target, true, true, true, false, true)
+								caster:PerformAttack(target, true, true, true, false, false, false, true)
 								ability.prng = 0
 							end)
 				else

@@ -89,6 +89,9 @@ doom_scorched_earth_ebf = class({})
 function doom_scorched_earth_ebf:OnSpellStart()
 	if IsServer() then
 		self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_doom_scorched_earth_aura", {duration = self:GetSpecialValueFor("duration")})
+		if self:GetCaster():HasTalent("special_bonus_unique_doom_4") and not self:GetCaster():HasModifier("modifier_doom_scorched_earth_talent") then
+			self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_doom_scorched_earth_talent", {})
+		end
 	end
 end
 
@@ -151,6 +154,17 @@ function modifier_doom_scorched_earth_aura:IsPurgable()
     return false
 end
 
+LinkLuaModifier( "modifier_doom_scorched_earth_talent", "lua_abilities/heroes/doom.lua" ,LUA_MODIFIER_MOTION_NONE )
+modifier_doom_scorched_earth_talent = class({})
+
+function modifier_doom_scorched_earth_talent:IsHidden()
+	return true
+end
+
+function modifier_doom_scorched_earth_talent:RemoveOnDeath()
+	return false
+end
+
 
 LinkLuaModifier( "modifier_doom_scorched_earth_buff", "lua_abilities/heroes/doom.lua" ,LUA_MODIFIER_MOTION_NONE )
 modifier_doom_scorched_earth_buff = class({})
@@ -158,10 +172,19 @@ modifier_doom_scorched_earth_buff = class({})
 function modifier_doom_scorched_earth_buff:OnCreated()
 	self.healthregen = self:GetAbility():GetSpecialValueFor("damage_per_second")
 	self.movespeed = self:GetAbility():GetSpecialValueFor("bonus_movement_speed_pct")
+	
+	if self:GetCaster():HasModifier("modifier_doom_scorched_earth_talent") then
+		if IsServer() then
+			self.healthregen = self:GetAbility():GetTalentSpecialValueFor("damage_per_second")
+			SendClientSync("scorched_earth_talent", self.healthregen)
+		else
+			self.healthregen = nil
+		end
+	end
 	if self:GetParent():GetTeamNumber() ~= self:GetCaster():GetTeamNumber() then
 		self.healthregen = 0
 		self.movespeed = self.movespeed * -1
-		self.damage = self:GetAbility():GetSpecialValueFor("damage_per_second")
+		self.damage = self:GetAbility():GetTalentSpecialValueFor("damage_per_second")
 		if IsServer() then
 			ApplyDamage({victim = self:GetParent(), attacker = self:GetCaster(), damage = self.damage, damage_type = self:GetAbility():GetAbilityDamageType(), ability = self:GetAbility()})
 			self:StartIntervalThink(1)
@@ -218,6 +241,10 @@ function modifier_doom_scorched_earth_buff:DeclareFunctions()
 end
 
 function modifier_doom_scorched_earth_buff:GetModifierConstantHealthRegen()
+	if IsServer() and not CustomNetTables:GetTableValue( "syncing_purposes", "scorched_earth_talent") then
+		SendClientSync("scorched_earth_talent", self.healthregen)
+	end
+	self.healthregen = self.healthregen or CustomNetTables:GetTableValue( "syncing_purposes", "scorched_earth_talent").value
 	return self.healthregen
 end
 

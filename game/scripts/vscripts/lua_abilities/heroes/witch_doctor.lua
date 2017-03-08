@@ -25,7 +25,7 @@ function witch_doctor_paralyzing_cask_ebf:OnProjectileHit(target, vLocation)
 	local bounce_range = self:GetSpecialValueFor("bounce_range")
 	local caster = self:GetCaster()
 	if not target then return end
-	if target:IsRealHero() then
+	if target:IsRealHero() or target:IsCore() then
 		if self.remainingBounces then self.remainingBounces = self.remainingBounces - 1 end
 		local healdmg = self:GetSpecialValueFor("hero_damage")
 		if target:GetTeamNumber() ~= caster:GetTeamNumber() then
@@ -179,6 +179,7 @@ end
 
 function witch_doctor_voodoo_restoration_ebf_heal:OnRefresh()
 	self.burstHeal = self:GetAbility():GetSpecialValueFor("cleanse_heal") / 100
+	self.burstHeal = self:GetAbility():GetSpecialValueFor("cleanse_heal") / 100
 	if IsServer() then
 		self.heal = (self:GetAbility():GetTalentSpecialValueFor("heal") + self:GetCaster():GetIntellect()*self:GetAbility():GetSpecialValueFor("int_to_heal")/100 ) * self.interval
 	end
@@ -239,7 +240,7 @@ end
 
 function witch_doctor_death_ward_ebf:OnProjectileHit_ExtraData(target, vLocation, extraData)
 	if not self.death_ward:IsNull() then
-		self.death_ward:PerformAttack(target, false, true, true, true, false)
+		self.death_ward:PerformAttack(target, false, true, true, true, false, false, true)
 		if extraData.bounces_left > 0 and self:GetCaster():HasScepter() then
 			extraData.bounces_left = extraData.bounces_left - 1
 			extraData[tostring(target:GetEntityIndex())] = 1

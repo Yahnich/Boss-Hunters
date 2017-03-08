@@ -1318,7 +1318,7 @@
 			"03"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"base_heal"				"150 350 1000 2500 5000 10000"
+				"base_heal"				"150 350 1000 2500 5000 10000 20000"
 			}
 			"04"
 			{
@@ -2553,6 +2553,7 @@
 			{
 				"var_type"						"FIELD_FLOAT"
 				"mana_void_ministun"			"0.3 0.6 0.9 1.2 1.5 1.8 2.1"
+				"LinkedSpecialBonus"			"special_bonus_unique_antimage_2"
 			}
 		}
 
@@ -4763,6 +4764,7 @@
 			{
 				"var_type"					"FIELD_FLOAT"
 				"slam_radius"				"300 350 400 450 500 550 600"
+				"LinkedSpecialBonus"		"special_bonus_unique_rubick"
 			}
 			"06"
 			{
@@ -6185,6 +6187,7 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"damage"				"200 400 800 1600 3200 6400 12800"
+				"LinkedSpecialBonus"	"special_bonus_unique_doom_5"
 			}
 			"03"
 			{
@@ -6195,6 +6198,7 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"damage_scepter"		"400 800 1600 3200 6400 12800 25000"
+				"LinkedSpecialBonus"	"special_bonus_unique_doom_5"
 			}
 			"05"
 			{
@@ -7126,6 +7130,7 @@
 			{
 				"var_type"					"FIELD_FLOAT"
 				"duration"					"12.0"
+				"LinkedSpecialBonus"		"special_bonus_unique_bloodseeker_3"
 			}
 			"02"
 			{
@@ -8191,7 +8196,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"4.0"
+				"duration"				"1 1.5 2 2.5 3 3.5 4.0"
 			}
 		}
 		"OnSpellStart"
@@ -8720,7 +8725,7 @@
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityGoldCost"				"5 15 25 35 45 65 75"
+		"AbilityGoldCost"				"10"
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -8735,6 +8740,7 @@
 			{
 				"var_type"					"FIELD_INTEGER"
 				"net_worth_bonus_dmg"		"10"
+				"LinkedSpecialBonus"		"special_bonus_unique_alchemist_2"
 			}
 			"03"
 			{
@@ -11909,8 +11915,8 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
-		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NOT_ILLUSIONS"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NOT_MAGIC_IMMUNE_ALLIES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ALLIES_NO"
 		"FightRecapLevel"				"1"
 		"AbilityTextureName"			"terrorblade_reflection"
 		"MaxLevel"						"7"
@@ -12003,7 +12009,7 @@
 			"02"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"illusion_explosion_damage"		"1750 3250 6750 125000 25000 50000 100000"
+				"illusion_explosion_damage"		"1750 3250 6750 12500 25000 50000 100000"
 			}		
 			"03"
 			{
@@ -13652,7 +13658,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"think_time_extra"			"1.5"
+				"think_time_extra"			"7.0"
 			}
 			"05"
 			{
@@ -13710,7 +13716,7 @@
 			}
 			"spike_think"
 			{
-				"Duration"					"%think_time + 6.5" // Should work without the added time but appears to have a off by one error so time added so it doesnt destroy itself before occuring
+				"Duration"					"%think_time_extra" // Should work without the added time but appears to have a off by one error so time added so it doesnt destroy itself before occuring
 				"ThinkInterval"				"1.5"
 				
 				"OnIntervalThink"
@@ -14169,7 +14175,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"think_time_extra"			"1.5"
+				"think_time_extra"			"7.5"
 			}
 			"05"
 			{
@@ -14227,7 +14233,7 @@
 			}
 			"spike_think"
 			{
-				"Duration"					"%think_time + 6.5" // Should work without the added time but appears to have a off by one error so time added so it doesnt destroy itself before occuring
+				"Duration"					"%think_time_extra" // Should work without the added time but appears to have a off by one error so time added so it doesnt destroy itself before occuring
 				"ThinkInterval"				"1.5"
 				
 				"OnIntervalThink"
@@ -14681,7 +14687,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"think_time_extra"			"1.5"
+				"think_time_extra"			"7.5"
 			}
 			"05"
 			{
@@ -14739,7 +14745,7 @@
 			}
 			"spike_think"
 			{
-				"Duration"					"%think_time + 6.5" // Should work without the added time but appears to have a off by one error so time added so it doesnt destroy itself before occuring
+				"Duration"					"%think_time_extra" // Should work without the added time but appears to have a off by one error so time added so it doesnt destroy itself before occuring
 				"ThinkInterval"				"1.0"
 				
 				"OnIntervalThink"
@@ -17228,7 +17234,18 @@
 						"Function"				"overpower_decrease_stack"
 					}
 				}
-				
+				"OnDestroy"
+				{
+					"RemoveModifier"
+					{
+						"ModifierName"	"modifier_overpower_attackspeed"
+						"Target"		"CASTER"
+					}
+				}
+			}
+			"modifier_overpower_attackspeed"
+			{
+				"IsHidden"	"1"
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%attack_speed_bonus_pct"
@@ -17934,7 +17951,7 @@
 			"05"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"duration"	"10"
+				"duration"	"15"
 			}
 		}
 	}
@@ -18857,7 +18874,7 @@
 		"BaseClass"				"ability_datadriven"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"		   
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
 		"FightRecapLevel"				"2"
 		"AbilityTextureName"			"custom/phantom_assassin_fan_the_blade"
 		"MaxLevel"						"7"
@@ -18914,7 +18931,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage_percentage"			"100 200 300 400 500 600 700"
+				"damage_percentage"			"200"
 			}
 			"06"
 			{
@@ -20193,7 +20210,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"             "ability_datadriven"
+		"BaseClass"             		"ability_datadriven"
 		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
 		"AbilityUnitTargetType"         "DOTA_UNIT_TARGET_ALL"
@@ -21318,6 +21335,7 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"damage_per_second"		"500 1000 2500 5000 10000 20000 40000"
+				"LinkedSpecialBonus"	"special_bonus_unique_doom_4"
 			}
 			"02"
 			{
@@ -21392,6 +21410,7 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"damage"				"1000 2000 4000 8000 16000 32000 64000"
+				"LinkedSpecialBonus"	"special_bonus_unique_doom_5"
 			}
 		}
 	}
@@ -23301,11 +23320,13 @@
 			{
 				"var_type"				"FIELD_FLOAT"
 				"agi_mult"				"2 3 4 6 8 12 16"
+				"LinkedSpecialBonus"    "special_bonus_unique_mirana_3"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"duration"				"5.0"
+				"LinkedSpecialBonus"    "special_bonus_unique_mirana_2"
 			}
 			"03"
 			{
@@ -23334,11 +23355,6 @@
 			{
 				"ScriptFile"	"lua_abilities/heroes/mirana"
 				"Function"		"MoonEye"
-			}
-			"ApplyModifier"
-			{
-				"ModifierName"	"mooneye_counter"
-				"Target"		"CASTER"
 			}
 		}
 		"Modifiers"
@@ -23372,7 +23388,7 @@
 				"Duration"	"%duration"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "%agi_mult"
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "1"
 				}
 			}
 			"mooneye_passive_counter"
@@ -29752,13 +29768,14 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"proc_chance"		"10 15 20 25 30 35 40"
+				"var_type"				"FIELD_FLOAT"
+				"proc_chance"			"6 10 14 18 22 26 30"
+				"LinkedSpecialBonus"	"special_bonus_unique_lich_1"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"proc_interval"		"0.5"
+				"proc_interval"			"0.5"
 			}
 			"03"
 			{
@@ -29790,38 +29807,16 @@
 			"modifier_lich_king_aura_debuff"
 			{
 				"IsHidden" "1"
-				"Duration"	"0.5"
-				"OnCreated"
-				{
-					"Random"
-					{
-   						"Chance" "%proc_chance"
-   						"OnSuccess"
-   						{
-   							"RunScript"
-							{
-								"ScriptFile"	"lua_abilities/heroes/lich"
-								"Function"		"FrostBlastProc"
-							}
-   						}
-					}
-					
-				}
+				"Duration"	"%proc_interval"
+
 				"ThinkInterval"	"%proc_interval"
 				"OnIntervalThink"
 				{
-					"Random"
+   					"RunScript"
 					{
-   						"Chance" "%proc_chance"
-   						"OnSuccess"
-   						{
-   							"RunScript"
-							{
-								"ScriptFile"	"lua_abilities/heroes/lich"
-								"Function"		"FrostBlastProc"
-							}
-   						}
-					}
+						"ScriptFile"	"lua_abilities/heroes/lich"
+						"Function"		"FrostBlastProc"
+					}			
 				}
 			}
 		}
@@ -32407,6 +32402,7 @@
 			{
 				"var_type"					"FIELD_FLOAT"
 				"dmg_mult"					"1.0 1.5 2.0 2.5 3 3.5 4"
+				"LinkedSpecialBonus"		"special_bonus_unique_pugna_3"
 			}
 		}
 
@@ -33190,6 +33186,11 @@
 			{
 				"var_type"				"FIELD_FLOAT"
 				"think_time"			"1.5"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"think_time_extra"		"2"
 			}
 		}
 	}
@@ -35193,12 +35194,6 @@
 	}
 
 
-
-
-
-	
-
-
 	"creature_melee_smash_h"
 	{
 		// General
@@ -35868,65 +35863,7 @@
 	}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-"boss_ogre_magi_bloodlust"
+	"boss_ogre_magi_bloodlust"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -35984,7 +35921,7 @@
 		}
 	}
 
-"boss_ogre_magi_bloodlust_champ"
+	"boss_ogre_magi_bloodlust_champ"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -39531,7 +39468,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"1.25"
+				"duration"				"0.75"
 			}
 		}
 	}
@@ -45358,6 +45295,7 @@
 		{
 			"particle"					"particles/econ/courier/courier_onibi/courier_onibi_yellow_ambient_smoke_lvl21.vpcf"
 			"particle"					"particles/status_fx/status_effect_repel.vpcf"
+			"soundfile"					"sounds/items/mask_of_madness.vsnd"
 		}
 		
 		// Special
@@ -45378,8 +45316,8 @@
 				"IsHidden"	"1"
 				
 				"EffectName"	"particles/econ/courier/courier_onibi/courier_onibi_yellow_ambient_smoke_lvl21.vpcf"
-				
-				"OnCreated"
+				"ThinkInterval"	"1"
+				"OnIntervalThink"
 				{
 					"RunScript"
 					{
@@ -45387,10 +45325,16 @@
 						"Function"		"FrenzyStacks"
 					}
 				}
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" "25"
+				}
 			}
 			"modifier_elite_frenzied_bonus"
 			{
-				"IsHidden"	"1"
+				"IsHidden"		"0"
+				"EffectName"	"particles/items2_fx/mask_of_madness.vpcf"
+				"IsPurgable"	"1"
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"1"
@@ -45405,7 +45349,7 @@
 					"AttachEffect"
 					{
 						"Target"					"CASTER"
-						"EffectName"				"particles/econ/generic/generic_buff_1/generic_buff_1.vpcf"
+						"EffectName"				"particles/elite_warning.vpcf"
 						"EffectAttachType"			"follow_overhead"
 						"EffectLifeDurationScale"	"1"
 						"EffectColorA"				"125 55 255"
@@ -45431,6 +45375,8 @@
 		{
 			"particle"					"particles/econ/courier/courier_onibi/courier_onibi_yellow_ambient_smoke_lvl21.vpcf"
 			"particle"					"particles/status_fx/status_effect_repel.vpcf"
+			"particle"					"particles/units/heroes/hero_jakiro/jakiro_macropyre.vpcf"
+			"soundfile"					"sounds/weapons/creep/neutral/black_dragon_fire.vsnd"
 		}
 		
 		// Special
@@ -45445,17 +45391,35 @@
 		}
 		"Modifiers"
 		{
-			"modifier_elite_burning_passive"
+			"modifier_elite_burning_think"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+
+				"ThinkInterval"	"1"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"lua_abilities/elite"
+						"Function"		"ApplyFire"
+					}
+				}
+			}
+			"modifier_elite_burning_dummy"
 			{
 				"Passive"	"1"
 				"IsHidden"	"1"
 				"Aura" "modifier_elite_burning_aura"
-				"Aura_Radius" "450"
+				"Aura_Radius" "240"
 				"Aura_Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
 				"Aura_Types" "DOTA_UNIT_TARGET_ALL"
 				
-				"EffectName"	"particles/econ/courier/courier_onibi/courier_onibi_yellow_ambient_smoke_lvl21.vpcf"
-				
+				"EffectName"	"particles/units/heroes/hero_jakiro/jakiro_macropyre.vpcf"
+			}
+			"modifier_elite_burning_aura"
+			{
+				"IsDebuff"	"1"
 				"ThinkInterval"	"1"
 				"OnIntervalThink"
 				{
@@ -45465,10 +45429,6 @@
 						"Function"		"BurningAura"
 					}
 				}
-			}
-			"modifier_elite_burning_aura"
-			{
-				"IsDebuff"	"1"
 			}
 			"modifier_elite_burning_health_regen_block"
 			{
@@ -45487,10 +45447,10 @@
 					"AttachEffect"
 					{
 						"Target"					"CASTER"
-						"EffectName"				"particles/econ/generic/generic_buff_1/generic_buff_1.vpcf"
+						"EffectName"				"particles/elite_warning.vpcf"
 						"EffectAttachType"			"follow_overhead"
 						"EffectLifeDurationScale"	"1"
-						"EffectColorA"				"255 255 0"
+						"EffectColorA"				"255 125 0"
 						"EffectAlphaScale"			"1"
 					}
 				}
@@ -45591,6 +45551,23 @@
 					}
 				}
 			}
+			"acid_spray_fx"
+			{
+				"Passive"			"1"
+				"IsHidden"			"1"
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target"					"CASTER"
+						"EffectName"				"particles/elite_warning.vpcf"
+						"EffectAttachType"			"follow_overhead"
+						"EffectLifeDurationScale"	"1"
+						"EffectColorA"				"175 175 255"
+						"EffectAlphaScale"			"1"
+					}
+				}
+			}
 		}
 	}
 	"elite_temporal"
@@ -45654,7 +45631,7 @@
 					"AttachEffect"
 					{
 						"Target"					"CASTER"
-						"EffectName"				"particles/econ/generic/generic_buff_1/generic_buff_1.vpcf"
+						"EffectName"				"particles/elite_warning.vpcf"
 						"EffectAttachType"			"follow_overhead"
 						"EffectLifeDurationScale"	"1"
 						"EffectColorA"				"255 0 255"
@@ -45680,6 +45657,8 @@
 		{
 			"particle"					"particles/econ/courier/courier_onibi/courier_onibi_yellow_ambient_smoke_lvl21.vpcf"
 			"particle"					"particles/status_fx/status_effect_repel.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_crystalmaiden.vsndevts"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_ancient_apparition.vsndevts" 
 		}
 		
 		// Special
@@ -45698,54 +45677,79 @@
 			{
 				"Passive"	"1"
 				"IsHidden"	"1"
-				"Aura" "modifier_elite_freezing_aura"
-				"Aura_Radius" "900"
-				"Aura_Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
-				"Aura_Types" "DOTA_UNIT_TARGET_ALL"		
-				"Aura_Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"				
-				"EffectName"	"particles/econ/courier/courier_onibi/courier_onibi_yellow_ambient_smoke_lvl21.vpcf"
+				"ThinkInterval"	"1"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"lua_abilities/elite"
+						"Function"		"CreateFrostShards"
+					}
+				}
 			}
-			"modifier_elite_freezing_aura"
+			"modifier_elite_coldsnapped"
+			{
+				"Duration"	"2"
+				
+				"StatusEffectName"	"particles/status_fx/status_effect_frost.vpcf"
+				
+				"EffectName"	"particles/units/heroes/hero_crystalmaiden/maiden_frostbite_buff.vpcf"
+				
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_FROZEN"		"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"OnDestroy"
+				{
+					"ApplyModifier"
+					{
+						"ModifierName"	"modifier_elite_afterfrost"
+						"Target"		"TARGET"
+					}
+				}
+				
+			}
+			"modifier_elite_afterfrost"
 			{
 				"IsDebuff"	"1"
-				"Duration"	"0.5"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"-30"
-				}
+				"Duration"	"5"
 				"OnCreated"
 				{
 					"RunScript"
 					{
 						"ScriptFile"	"lua_abilities/elite"
 						"Function"		"ApplyAttackSlow"
-						"slowmod"		"modifier_elite_freezing_attackslow"
 					}
 				}
-				"ThinkInterval"	"0.5"
+				"ThinkInterval"	"1"
 				"OnIntervalThink"
 				{
 					"RunScript"
 					{
 						"ScriptFile"	"lua_abilities/elite"
-						"Function"		"ApplyAttackSlow"
-						"slowmod"		"modifier_elite_freezing_attackslow"
+						"Function"		"AdjustAttackSlow"
 					}
 				}
-				"OnDestroy"
+			}
+			"modifier_elite_freezing_moveslow"
+			{
+				"IsHidden"	"1"
+				"Duration"	"5"
+				
+				"StatusEffectName"	"particles/status_fx/status_effect_frost.vpcf"
+				
+				"Properties"
 				{
-					"RemoveModifier"
-					{
-						"ModifierName"	"modifier_elite_freezing_attackslow"
-						"Target"		"TARGET"
-					}
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"-1"
 				}
+				
 			}
 			"modifier_elite_freezing_attackslow"
 			{
 				"IsHidden"	"1"
 				"IsDebuff"	"1"
-				"Duration"	"0.5"
+				"Duration"	"5"
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"-1"
@@ -45760,7 +45764,7 @@
 					"AttachEffect"
 					{
 						"Target"					"CASTER"
-						"EffectName"				"particles/econ/generic/generic_buff_1/generic_buff_1.vpcf"
+						"EffectName"				"particles/elite_warning.vpcf"
 						"EffectAttachType"			"follow_overhead"
 						"EffectLifeDurationScale"	"1"
 						"EffectColorA"				"255 255 255"
@@ -45861,7 +45865,7 @@
 					"AttachEffect"
 					{
 						"Target"					"CASTER"
-						"EffectName"				"particles/econ/generic/generic_buff_1/generic_buff_1.vpcf"
+						"EffectName"				"particles/elite_warning.vpcf"
 						"EffectAttachType"			"follow_overhead"
 						"EffectLifeDurationScale"	"1"
 						"EffectColorA"				"28 255 28"
@@ -46027,7 +46031,7 @@
 					"AttachEffect"
 					{
 						"Target"					"CASTER"
-						"EffectName"				"particles/econ/generic/generic_buff_1/generic_buff_1.vpcf"
+						"EffectName"				"particles/elite_warning.vpcf"
 						"EffectAttachType"			"follow_overhead"
 						"EffectLifeDurationScale"	"1"
 						"EffectColorA"				"255 0 0"
@@ -46219,10 +46223,10 @@
 					"AttachEffect"
 					{
 						"Target"					"CASTER"
-						"EffectName"				"particles/econ/generic/generic_buff_1/generic_buff_1.vpcf"
+						"EffectName"				"particles/elite_warning.vpcf"
 						"EffectAttachType"			"follow_overhead"
 						"EffectLifeDurationScale"	"1"
-						"EffectColorA"				"125 255 0"
+						"EffectColorA"				"125 150 0"
 						"EffectAlphaScale"			"1"
 					}
 				}
@@ -46264,10 +46268,10 @@
 					"AttachEffect"
 					{
 						"Target"					"CASTER"
-						"EffectName"				"particles/econ/generic/generic_buff_1/generic_buff_1.vpcf"
+						"EffectName"				"particles/elite_warning.vpcf"
 						"EffectAttachType"			"follow_overhead"
 						"EffectLifeDurationScale"	"1"
-						"EffectColorA"				"255 0 0"
+						"EffectColorA"				"170 100 20"
 						"EffectAlphaScale"			"1"
 					}
 				}
@@ -46343,7 +46347,7 @@
 					"AttachEffect"
 					{
 						"Target"					"CASTER"
-						"EffectName"				"particles/econ/generic/generic_buff_1/generic_buff_1.vpcf"
+						"EffectName"				"particles/elite_warning.vpcf"
 						"EffectAttachType"			"follow_overhead"
 						"EffectLifeDurationScale"	"1"
 						"EffectColorA"				"0 255 255"
@@ -46430,7 +46434,7 @@
 					"AttachEffect"
 					{
 						"Target"					"CASTER"
-						"EffectName"				"particles/econ/generic/generic_buff_1/generic_buff_1.vpcf"
+						"EffectName"				"particles/elite_warning.vpcf"
 						"EffectAttachType"			"follow_overhead"
 						"EffectLifeDurationScale"	"1"
 						"EffectColorA"				"255 255 255"
@@ -46460,8 +46464,9 @@
 			"particle"			"particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_shadowraze.vpcf"
 			"particle"			"particles/units/heroes/hero_lina/lina_spell_light_strike_array.vpcf"
 			"particle"			"particles/econ/items/kunkka/kunkka_weapon_whaleblade/kunkka_spell_torrent_splash_whaleblade.vpcf"
-			"particle"					"particles/econ/courier/courier_onibi/courier_onibi_yellow_ambient_smoke_lvl21.vpcf"
-			"particle"					"particles/status_fx/status_effect_repel.vpcf"
+			"particle"			"particles/econ/courier/courier_onibi/courier_onibi_yellow_ambient_smoke_lvl21.vpcf"
+			"particle"			"particles/status_fx/status_effect_repel.vpcf"
+			"soundfile"     	"soundevents/game_sounds_heroes/game_sounds_enigma.vsndevts" 
 		}
 		
 		// Special
@@ -46472,7 +46477,7 @@
 			{
 				"Passive"	"1"
 				"IsHidden"	"1"
-				"EffectName"	"particles/econ/courier/courier_onibi/courier_onibi_yellow_ambient_smoke_lvl21.vpcf"
+
 				"ThinkInterval"	"0.4"
 				"OnIntervalThink"
 				{
@@ -46507,7 +46512,7 @@
 					"AttachEffect"
 					{
 						"Target"					"CASTER"
-						"EffectName"				"particles/econ/generic/generic_buff_1/generic_buff_1.vpcf"
+						"EffectName"				"particles/elite_warning.vpcf"
 						"EffectAttachType"			"follow_overhead"
 						"EffectLifeDurationScale"	"1"
 						"EffectColorA"				"80 125 255"
@@ -46571,7 +46576,7 @@
 					"AttachEffect"
 					{
 						"Target"					"CASTER"
-						"EffectName"				"particles/econ/generic/generic_buff_1/generic_buff_1.vpcf"
+						"EffectName"				"particles/elite_warning.vpcf"
 						"EffectAttachType"			"follow_overhead"
 						"EffectLifeDurationScale"	"1"
 						"EffectColorA"				"255 255 255"
@@ -46643,10 +46648,10 @@
 					"AttachEffect"
 					{
 						"Target"					"CASTER"
-						"EffectName"				"particles/econ/generic/generic_buff_1/generic_buff_1.vpcf"
+						"EffectName"				"particles/elite_warning.vpcf"
 						"EffectAttachType"			"follow_overhead"
 						"EffectLifeDurationScale"	"1"
-						"EffectColorA"				"120 255 120"
+						"EffectColorA"				"150 255 150"
 						"EffectAlphaScale"			"1"
 					}
 				}
@@ -46707,10 +46712,10 @@
 					"AttachEffect"
 					{
 						"Target"					"CASTER"
-						"EffectName"				"particles/econ/generic/generic_buff_1/generic_buff_1.vpcf"
+						"EffectName"				"particles/elite_warning.vpcf"
 						"EffectAttachType"			"follow_overhead"
 						"EffectLifeDurationScale"	"1"
-						"EffectColorA"				"150 0 150"
+						"EffectColorA"				"0 0 0"
 						"EffectAlphaScale"			"1"
 					}
 				}
@@ -46819,10 +46824,10 @@
 					"AttachEffect"
 					{
 						"Target"					"CASTER"
-						"EffectName"				"particles/econ/generic/generic_buff_1/generic_buff_1.vpcf"
+						"EffectName"				"particles/elite_warning.vpcf"
 						"EffectAttachType"			"follow_overhead"
 						"EffectLifeDurationScale"	"1"
-						"EffectColorA"				"255 255 180"
+						"EffectColorA"				"150 150 150"
 						"EffectAlphaScale"			"1"
 					}
 				}
@@ -46915,10 +46920,10 @@
 					"AttachEffect"
 					{
 						"Target"					"CASTER"
-						"EffectName"				"particles/econ/generic/generic_buff_1/generic_buff_1.vpcf"
+						"EffectName"				"particles/elite_warning.vpcf"
 						"EffectAttachType"			"follow_overhead"
 						"EffectLifeDurationScale"	"1"
-						"EffectColorA"				"0 255 255"
+						"EffectColorA"				"125 0 0"
 						"EffectAlphaScale"			"1"
 					}
 				}
@@ -46974,7 +46979,7 @@
 					"AttachEffect"
 					{
 						"Target"					"CASTER"
-						"EffectName"				"particles/econ/generic/generic_buff_1/generic_buff_1.vpcf"
+						"EffectName"				"particles/elite_warning.vpcf"
 						"EffectAttachType"			"follow_overhead"
 						"EffectLifeDurationScale"	"1"
 						"EffectColorA"				"125 255 0"
@@ -47063,10 +47068,10 @@
 					"AttachEffect"
 					{
 						"Target"					"CASTER"
-						"EffectName"				"particles/econ/generic/generic_buff_1/generic_buff_1.vpcf"
+						"EffectName"				"particles/elite_warning.vpcf"
 						"EffectAttachType"			"follow_overhead"
 						"EffectLifeDurationScale"	"1"
-						"EffectColorA"				"0 255 0"
+						"EffectColorA"				"255 175 175"
 						"EffectAlphaScale"			"1"
 					}
 				}
@@ -47127,7 +47132,7 @@
 					"AttachEffect"
 					{
 						"Target"					"CASTER"
-						"EffectName"				"particles/econ/generic/generic_buff_1/generic_buff_1.vpcf"
+						"EffectName"				"particles/elite_warning.vpcf"
 						"EffectAttachType"			"follow_overhead"
 						"EffectLifeDurationScale"	"1"
 						"EffectColorA"				"255 255 255"
@@ -47184,7 +47189,7 @@
 					"AttachEffect"
 					{
 						"Target"					"CASTER"
-						"EffectName"				"particles/econ/generic/generic_buff_1/generic_buff_1.vpcf"
+						"EffectName"				"particles/elite_warning.vpcf"
 						"EffectAttachType"			"follow_overhead"
 						"EffectLifeDurationScale"	"1"
 						"EffectColorA"				"255 255 80"

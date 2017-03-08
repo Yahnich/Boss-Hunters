@@ -1116,7 +1116,7 @@
 						"02"
 						{
 								"var_type"								"FIELD_INTEGER"
-								"bonus_damage"							"140"
+								"bonus_damage"							"70"
 						}
 						"03"
 						{
@@ -1356,7 +1356,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"200"
+				"bonus_damage"			"100"
 			}
 			"02"
 			{
@@ -1564,7 +1564,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"120"
+				"bonus_damage"			"60"
 			}
 		}
 	}
@@ -1750,7 +1750,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"750"
+				"bonus_damage"			"375"
 			}
 			"02"
 			{
@@ -1928,7 +1928,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"				"520"
+				"bonus_damage"				"270"
 			}
 		}
 	}
@@ -2064,7 +2064,7 @@
 						"02"
 						{
 								"var_type"								"FIELD_INTEGER"
-								"bonus_damage"							"400"
+								"bonus_damage"							"200"
 						}
 						"03"
 						{
@@ -2144,7 +2144,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"300"
+				"bonus_damage"			"150"
 			}
 		}
 	}
@@ -2270,7 +2270,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"2500"
+				"bonus_damage"			"1250"
 			}
 			"02"
 			{
@@ -2483,7 +2483,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"				"940"
+				"bonus_damage"				"470"
 			}
 			"05"
 			{
@@ -2652,7 +2652,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"				"340"
+				"bonus_damage"				"170"
 			}
 			"05"
 			{
@@ -2805,7 +2805,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"				"1200"
+				"bonus_damage"				"600"
 			}
 			"04"
 			{
@@ -3703,7 +3703,7 @@
 					{
 						"ScriptFile"			"lua_item/simple_item.lua"
 						"Function"				"Splash"
-						"damage_on_hit"		"%attack_damage"
+						"damage_on_hit"			"%attack_damage"
 					}
 					"FireEffect"
 					{
@@ -3711,11 +3711,6 @@
 						"TARGET" "Target"
 						"EffectAttachType" "follow_origin"
 						"EffectRadius" "600"
-					}
-					"FireSound"
-					{
-						"Target" "Target"
-						"EffectName" "sounds/items/item_armlet_deactivate.vsnd"
 					}
 				}
 			}
@@ -3738,7 +3733,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"800"
+				"bonus_damage"			"400"
 			}
 			"02"
 			{
@@ -3818,6 +3813,33 @@
 		//-------------------------------------------------------------------------------------------------------------
 			"Modifiers"
 			{
+				"crit_passive"
+				{
+					"IsHidden"		"1"
+					"Passive"	 "1"
+					"Attributes"    "MODIFIER_ATTRIBUTE_MULTIPLE"
+					"OnAttackLanded"
+					{
+						"Random"
+						{
+		   					"Chance" "%critical_chance"
+		   					"OnSuccess"
+		   					{
+		   						"ApplyModifier"
+								{
+									"ModifierName" 	"critical_strike_h"
+									"Target" 
+									{
+										"Center" "CASTER"
+										"Flags" "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+									}
+								}
+		   					}
+		   					"OnFailure"
+		   					{}
+						}
+					}
+				}
 				"mjollnir_stat"
 				{
 					"IsHidden"		"1"
@@ -3852,27 +3874,6 @@
 							}
 						}
 					}					
-					"OnAttackLanded"
-					{
-						"Random"
-						{
-		   					"Chance" "%critical_chance"
-		   					"OnSuccess"
-		   					{
-		   						"ApplyModifier"
-								{
-									"ModifierName" 	"critical_strike_h"
-									"Target" 
-									{
-										"Center" "CASTER"
-										"Flags" "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
-									}
-								}
-		   					}
-		   					"OnFailure"
-		   					{}
-						}
-					}
 				}
 				"critical_strike_h"
 				{
@@ -3933,7 +3934,7 @@
 				"02"
 				{
 					"var_type"								"FIELD_INTEGER"
-					"bonus_damage"							"2100"
+					"bonus_damage"							"1050"
 				}
 				"03"
 				{
@@ -4030,7 +4031,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"600"
+				"bonus_damage"			"300"
 			}
 			"03"
 			{
@@ -4180,7 +4181,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"2000"
+				"bonus_damage"			"1100"
 			}
 		}
 	}
@@ -4403,7 +4404,7 @@
 			"12"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"		"1200"
+				"bonus_damage"		"600"
 			}
 			"13"
 			{
@@ -4569,7 +4570,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"2000"
+				"bonus_damage"			"1100"
 			}
 			"03"
 			{
@@ -4796,7 +4797,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"		"4000"
+				"bonus_damage"		"2000"
 			}
 			"06"
 			{
@@ -4899,6 +4900,15 @@
 			{
 				"OnAttackLanded"
 				{
+					"ApplyModifier"
+					{
+						"Target" 
+						{
+							"Center" "TARGET"
+							"Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+						}
+						"ModifierName"		"Desolation5_effect"
+					}
 					"Random"
 					{
 		   				"Chance" "%critical_chance"
@@ -4917,18 +4927,6 @@
 						"OnFailure"
 						{}
 					}	
-				}
-				"OnAttackLanded"
-				{
-					"ApplyModifier"
-					{
-						"Target" 
-						{
-							"Center" "TARGET"
-							"Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-						}
-						"ModifierName"		"Desolation5_effect"
-					}
 				}
 				"Passive"	 	"1"
 				"Attributes"    "MODIFIER_ATTRIBUTE_MULTIPLE"
@@ -4982,7 +4980,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"7000"
+				"bonus_damage"			"3500"
 			}
 			"02"
 			{
@@ -5320,7 +5318,7 @@
 			"07"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"				"3000"
+				"bonus_damage"				"1500"
 			}
 			"08"
 			{
@@ -5414,7 +5412,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"2000"
+				"bonus_damage"			"1000"
 			}
 			"03"
 			{
@@ -5568,7 +5566,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"6000"
+				"bonus_damage"			"3000"
 			}
 			"03"
 			{
@@ -6367,7 +6365,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"				"600"
+				"bonus_damage"				"300"
 			}
 			"05"
 			{
@@ -6656,7 +6654,7 @@
  			"06"		
  			{		
  				"var_type"				"FIELD_INTEGER"		
- 				"bonus_damage"				"3000"		
+ 				"bonus_damage"				"1500"		
  			}		
  			"07"		
  			{		
@@ -6803,7 +6801,6 @@
 					"Function"				"Ressurection"
 				}
 			}
-
 		}
 	//=================================================================================================================
 	// bahamut Orb
@@ -7109,7 +7106,7 @@
 			"13"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"		"6000"
+				"bonus_damage"		"3000"
 			}
 			"14"
 			{
@@ -8644,7 +8641,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"2000"
+				"bonus_damage"			"1250"
 			}
 			"023"
 			{
@@ -8748,7 +8745,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"120"
+				"bonus_damage"			"80"
 			}
 			"02"
 			{
@@ -8907,7 +8904,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"1300"
+				"bonus_damage"			"750"
 			}
 			"04"
 			{
@@ -9048,12 +9045,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"bonus_attack_speed"	"350"
+				"bonus_attack_speed"	"550"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"8000"
+				"bonus_damage"			"4000"
 			}
 			"03"
 			{
@@ -9377,7 +9374,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"250 500 750 1000"
+				"bonus_damage"			"1000 2000 3000 4000"
 			}
 			"02"
 			{
@@ -9605,7 +9602,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"250 500 750 1000"
+				"bonus_damage"			"1000 2000 3000 4000"
 			}
 			"02"
 			{
@@ -9833,7 +9830,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"250 500 750 1000"
+				"bonus_damage"			"1000 2000 3000 4000"
 			}
 			"02"
 			{
@@ -10140,7 +10137,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"1000"
+				"bonus_damage"			"500"
 			}
 			"02"
 			{
@@ -10334,7 +10331,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"3000"
+				"bonus_damage"			"1500"
 			}
 			"02"
 			{
@@ -11147,7 +11144,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"16000"
+				"bonus_damage"			"8000"
 			}
 			"03"
 			{
@@ -11925,28 +11922,6 @@
 			{
 				"OnAttackLanded"
 					{
-						"Random"
-						{
-		   					"Chance" "%critical_chance"
-		   					"OnSuccess"
-		   					{
-								"ApplyModifier"
-								{
-									"ModifierName" 	"critical_strike_h"
-									"Target" 
-									{
-										"Center" "CASTER"
-										"Flags" "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
-									}
-								}
-							}
-							"OnFailure"
-							{}
-						}
-						
-					}
-				"OnAttackLanded"
-				{
 					"ApplyModifier"
 					{
 						"Target" 
@@ -11956,6 +11931,25 @@
 						}
 						"ModifierName"		"bahamut_claw_effect"
 					}
+					"Random"
+					{
+		   				"Chance" "%critical_chance"
+		   				"OnSuccess"
+		   				{
+							"ApplyModifier"
+							{
+								"ModifierName" 	"critical_strike_h"
+								"Target" 
+								{
+									"Center" "CASTER"
+									"Flags" "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+								}
+							}
+						}
+						"OnFailure"
+						{}
+					}
+					
 				}
 				"Passive"	 	"1"
 				"Attributes"    "MODIFIER_ATTRIBUTE_MULTIPLE"
@@ -12009,7 +12003,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"10000"
+				"bonus_damage"			"5000"
 			}
 			"02"
 			{
@@ -13707,6 +13701,16 @@
 				}
 				"OnAttackLanded"
 				{
+					"Lifesteal"
+					{
+						"Target"				"ATTACKER"
+						"LifestealPercent"		"%lifesteal"
+					}
+					"ApplyModifier"
+					{
+						"Target"				"TARGET"
+						"ModifierName"		"bahamut_claw_effect"
+					}
 					"Random"
 					{
 		   				"Chance" "%crit_chance"
@@ -13725,19 +13729,6 @@
 						"OnFailure"
 						{}
 					}	
-				}
-				"OnAttackLanded"
-				{
-					"Lifesteal"
-					{
-						"Target"				"ATTACKER"
-						"LifestealPercent"		"%lifesteal"
-					}
-					"ApplyModifier"
-					{
-						"Target"				"TARGET"
-						"ModifierName"		"bahamut_claw_effect"
-					}
 				}
 			}
 			"hearth_regen_bahamut"
@@ -14150,7 +14141,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"				"4000"
+				"bonus_damage"				"3000"
 			}
 			"04"
 			{
@@ -14529,7 +14520,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"		"10000"
+				"bonus_damage"		"8000"
 			}
 		}
 	}
@@ -14593,7 +14584,7 @@
 	        "03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"25000"
+				"bonus_damage"			"15000"
 			}
 			"04"
 			{
@@ -14664,6 +14655,13 @@
 						"Function"				"Pierce_Splash"
 						"damage_on_hit"			"%attack_damage"
 	        		}
+					"FireEffect"
+					{
+						"EffectName" "particles/storm_fury_effect.vpcf"
+						"Target" "TARGET"
+						"EffectAttachType" "follow_origin"
+						"EffectRadius" "600"
+					}
 	        	}
 	        }
 			"passive_midas_aura3"
@@ -14683,30 +14681,6 @@
 				"AllowIllusionDuplicate"    "0"
 				
 			}
-    		"b_fury"
-    		{
-		        "Passive" "1"  
-		        "IsHidden" "1"  
-		        "Properties"
-		        {
-		            
-		        }
-		        "OnAttackLanded"
-				{
-					"FireEffect"
-					{
-						"EffectName" "particles/storm_fury_effect.vpcf"
-						"Target" "TARGET"
-						"EffectAttachType" "follow_origin"
-						"EffectRadius" "600"
-					}
-					"FireSound"
-					{
-						"Target" "TARGET"
-						"EffectName" "sounds/items/item_armlet_deactivate.vsnd"
-					}
-				}
-		    }
 	        "passive"
 	        {
 	        	"IsHidden"                  "1"
@@ -14879,7 +14853,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"6000"
+				"bonus_damage"			"4500"
 			}
 			"05"
 			{
@@ -15013,30 +14987,11 @@
 
 		"Modifiers"
 		{
-			"desolator5_stat"
-			{
-				"OnAttackLanded"
-					{
-						"Random"
-						{
-		   					"Chance" "%critical_chance"
-		   					"OnSuccess"
-		   					{
-								"ApplyModifier"
-								{
-									"ModifierName" 	"critical_strike_h"
-									"Target" 
-									{
-										"Center" "CASTER"
-										"Flags" "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
-									}
-								}
-							}
-							"OnFailure"
-							{}
-						}
-						
-					}
+			"chain_lightning"
+			{	
+				"Passive"	 	"1"
+				"Attributes"    "MODIFIER_ATTRIBUTE_MULTIPLE"
+				"IsHidden"		"1"
 				"OnAttackLanded"
 				{
 					"ApplyModifier"
@@ -15063,6 +15018,30 @@
 							}
 						}
 					}
+				}
+			}
+			"desolator5_stat"
+			{
+				"OnAttackLanded"
+				{
+					"Random"
+					{
+		   				"Chance" "%critical_chance"
+		   				"OnSuccess"
+		   					{
+							"ApplyModifier"
+							{
+								"ModifierName" 	"critical_strike_h"
+								"Target" 
+								{
+									"Center" "CASTER"
+									"Flags" "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+								}
+							}
+						}
+						"OnFailure"
+						{}
+					}						
 				}
 				"Passive"	 	"1"
 				"Attributes"    "MODIFIER_ATTRIBUTE_MULTIPLE"
@@ -15091,7 +15070,7 @@
 				{
 					"RemoveModifier"
 					{
-						"ModifierName" 	"critical_strikecritical_strike_h"
+						"ModifierName" 	"critical_strike_h"
 						"Target" 		"CASTER"
 					}
 				}
@@ -15159,7 +15138,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"7500"
+				"bonus_damage"			"4500"
 			}
 			"02"
 			{
@@ -15815,7 +15794,7 @@
  			"06"		
  			{		
  				"var_type"				"FIELD_INTEGER"		
- 				"bonus_damage"				"10000"		
+ 				"bonus_damage"				"6000"		
  			}		
  			"07"		
  			{		
@@ -16289,7 +16268,7 @@
 			"08"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_cooldown"		"75"
+				"bonus_cooldown"		"60"
 			}
 			"09"
 			{
@@ -17270,7 +17249,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"500"
+				"bonus_damage"			"250"
 			}
 			"04"
 			{
@@ -17534,7 +17513,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"1000"
+				"bonus_damage"			"500"
 			}
 			"04"
 			{
@@ -17798,7 +17777,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"2500"
+				"bonus_damage"			"1250"
 			}
 			"04"
 			{
@@ -18062,7 +18041,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"5000"
+				"bonus_damage"			"2500"
 			}
 			"04"
 			{
@@ -18222,7 +18201,7 @@
 				{
 					"RemoveModifier"
 					{
-						"ModifierName" 	"critical_strike_h"
+						"ModifierName" 	"critical_strike_2"
 						"Target" 		"CASTER"
 					}
 				}
@@ -21082,7 +21061,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"500"
+				"bonus_damage"			"300"
 			}			
 			"03"
 			{
@@ -21202,7 +21181,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"1500"
+				"bonus_damage"			"750"
 			}			
 			"04"
 			{
@@ -21317,7 +21296,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"4000"
+				"bonus_damage"			"2000"
 			}			
 			"04"
 			{
@@ -21432,7 +21411,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"10000"
+				"bonus_damage"			"5000"
 			}			
 			"04"
 			{

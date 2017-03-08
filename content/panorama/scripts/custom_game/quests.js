@@ -3,7 +3,7 @@ GameEvents.Subscribe( "updateQuestPrepTime", UpdateTimer);
 GameEvents.Subscribe( "updateQuestRound", UpdateRound);
 GameEvents.Subscribe( "sendDifficultyNotification", Initialize);
 
-var tooltips = $.GetContextPanel().GetParent().GetParent().GetParent().GetParent().FindChildTraverse("Tooltips").FindChildTraverse("DOTAAbilityTooltip").FindChildTraverse("Contents");
+var tooltips = $.GetContextPanel().GetParent().GetParent().GetParent().FindChildTraverse("Tooltips").FindChildTraverse("DOTAAbilityTooltip").FindChildTraverse("Contents");
 tooltips.style.width = "550px";
 var tooltipLabels = tooltips.FindChildTraverse("AbilityDetails").FindChildTraverse("AbilityCoreDetails").FindChildTraverse("AbilityCosts");
 var tooltipMana = tooltipLabels.FindChildTraverse("AbilityManaCost");
@@ -17,11 +17,11 @@ tooltipMana.style.marginLeft = "-55px";
 
 function Initialize(arg){
 	var diffLocToken =  $.Localize( ReplaceIntWithToken( arg.difficulty ) )
-
 	$("#QuestDifficultyText").SetDialogVariable( "difficulty", diffLocToken );
 	$("#QuestDifficultyText").text =  $.Localize( "#QuestDifficultyText", $("#QuestDifficultyText") );
-	$("#QuestRoundText").visible =  false
-	$("#QuestPrepText").visible = false
+	$("#QuestDifficultyText") =  false;
+	$("#QuestRoundText").visible =  false;
+	$("#QuestPrepText").visible = false;
 }
 
 function UpdateLives(arg){

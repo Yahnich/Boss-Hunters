@@ -17,6 +17,7 @@ function CHoldoutGameSpawner:ReadConfiguration( name, kv, gameRound )
 	self._szName = name
 	self._szNPCClassName = kv.NPCName or ""
 	self._RenderColour = kv.SetRenderColor or nil
+	self._DoNotIncrease = kv.DoNotIncrease or nil
 	if self._RenderColour then
 		local colourTable = {}
 		for token in string.gmatch(self._RenderColour, "[^%s]+") do
@@ -79,8 +80,10 @@ function CHoldoutGameSpawner:Begin()
 	self._nChampionsSpawnedThisRound = 0
 	self._nUnitsCurrentlyAlive = 0
 	
-	if GameRules.gameDifficulty >= 3 and GameRules._roundnumber > 1 and not self._bDifficultyChecked then
+	if GameRules.gameDifficulty > 3 and not self._bDifficultyChecked and not self._DoNotIncrease then
+		local preIncrease = self._nTotalUnitsToSpawn
 		self._nTotalUnitsToSpawn = math.ceil(self._nTotalUnitsToSpawn * 1.4)
+		print("Units spawned increased from "..preIncrease.." to "..self._nTotalUnitsToSpawn)
 		self._bDifficultyChecked = true
 	end
 	self._vecSpawnLocation = nil

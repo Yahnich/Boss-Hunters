@@ -4,7 +4,7 @@ if IsServer() then
 	function venomancer_venomous_gale_ebf:OnSpellStart()
 		self.speed = self:GetSpecialValueFor( "speed" )
 		self.width = self:GetSpecialValueFor( "radius" )
-		self.distance = self:GetCastRange(self:GetCursorPosition(), self:GetCaster())
+		self.distance = self:GetTrueCastRange()
 		self.strike_damage = self:GetSpecialValueFor( "strike_damage" ) 
 
 		EmitSoundOn( "Hero_Venomancer.VenomousGale", self:GetCaster() )
@@ -19,8 +19,6 @@ if IsServer() then
 		local vDirection = vPos - self:GetCaster():GetOrigin()
 		vDirection.z = 0.0
 		vDirection = vDirection:Normalized()
-
-		self.speed = self.speed
 
 		local info = {
 			EffectName = "particles/units/heroes/hero_venomancer/venomancer_venomous_gale.vpcf",

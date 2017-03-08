@@ -137,7 +137,7 @@ function flaming_fist(keys)
                     -- Move hero there
                     FindClearSpaceForUnit( caster, target:GetAbsOrigin(), false )
                     
-                    caster:PerformAttack( target, true, false, true, false, false )
+                    caster:PerformAttack( target, true, false, true, false, false, false, true)
                     
                     -- Slash particles
                     local slashFxIndex = ParticleManager:CreateParticle( particleSlashName, PATTACH_ABSORIGIN_FOLLOW, target )

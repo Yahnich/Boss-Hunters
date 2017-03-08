@@ -2,13 +2,17 @@ function MoonEye(keys)
 	local caster = keys.caster
 	local ability = keys.ability
 	local agility = caster:GetAgility()
-	local buff_duration = keys.duration
+	local buff_duration = ability:GetTalentSpecialValueFor("duration")
+	local agi_mult = ability:GetTalentSpecialValueFor("agi_mult")
 	local modifier = "mooneye_buff"
+	ability:ApplyDataDrivenModifier(caster, caster, "mooneye_counter", { duration = buff_duration })
 	if not caster:HasModifier(modifier) then
 		ability:ApplyDataDrivenModifier(caster, caster, modifier, { duration = buff_duration })
-		caster:SetModifierStackCount( modifier, ability, agility )
+		caster:SetModifierStackCount( modifier, ability, agility * agi_mult )
 	else
-		caster:RemoveModifierByName(modifier)
+		local stacks = caster:GetModifierStackCount( modifier, caster )
+		agility = (agility - stacks)*agi_mult
+		print(agility, stacks)
 		ability:ApplyDataDrivenModifier(caster, caster, modifier, { duration = buff_duration })
 		caster:SetModifierStackCount( modifier, caster, agility )
 	end

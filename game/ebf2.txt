@@ -1,0 +1,345 @@
+First 15 heroes for Ebf 2.0:
+
+8 skills, 9 passives, 1 innate
+
+You get to pick 4 skills and 2 passives
+
+Chill: Status effect, slows ms/as or both and if a chill is applied on a chilled target; the target will freeze for the chill duration
+Daze: Randomly interrupts orders
+
+Drow Ranger: Skadi RANGED SINGLE TARGET CROWD CONTROL DPS
+-- Innate: Cold-Hearted: Whenever a Chill placed by Skadi runs out without freezing the enemy, Skadi gains a stack of Cold-Hearted. After 4 stacks her next Chill will instantly Freeze the enemy instead.
+
+-- Skill 1: Frozen Arrow: Chills singular enemy and deals bonus damage.
+-- Skill 2: Gust: Blows cold wind in a cone infront, chilling enemies and pushing them. Attempting to cast an ability will ministun the enemy or slows cast point significantly.
+-- Skill 3: Icicle Shot: Shoots an icicle that splinters upon impact, dealing damage to all enemies
+-- Skill 4: Cryofreeze: Roots Skadi in place, but granting her damage reduction and health regeneration																																															
+-- Skill 5: Cold Prison: Skadi roots an enemy, dealing damage over time. Also applies Chill.
+-- Skill 6: Winter's Embrace: Chills all enemies in a radius, every enemy chilled will grants Skadi a damage bonus, regardless of the origin of the Chill.
+-- Skill 7: Ice Barrage: Channeling; shoots arrows in the direction of the mouse cursor, but decreases turnrate. Chills enemies hit
+-- Skill 8: Snowfall: Blankets a zone in a snowstorm, granting all allies within it minor bonus evasion and whenever an enemy successfully hits an allied unit they become chilled
+
+-- Passive 1: Cold-Hearted stack requirement reduced to 3.
+-- Passive 2: Frozen Arrow now shoots through enemies instead of disappearing on the first enemy hit
+-- Passive 3: Gust range doubled
+-- Passive 4: Icicle Shot now applies chill
+-- Passive 5: Cryofreeze no longer roots Skadi, instead slows for 100%
+-- Passive 6: Cold Prison now traps all enemies near the target
+-- Passive 7: Winter's Embrace freezes instead of chills (still chills stun-immune enemies)
+-- Passive 8: Ice Barrage turn rate slow removed/halved
+-- Passive 9: Snowfall deals damage to all enemies in the snowstorm
+
+Aghs:
+Gives her split shot
+
+Windrunner: Lelantae EVASIVE HIGH DPS
+-- Innate: Zephyr: Every consecutive hit on the same target increases Lelantae's movement speed up to 8 stacks (flat ms)
+
+-- Skill 1: Mistral Breeze: Blows a piercing wind, damaging all enemies hit and pushing them aside, enemies are also blinded.
+-- Skill 2: Immaterialize: Becomes mist, granting 100% evasion and haste, but disarms Lelantae.
+-- Skill 3: Cyclone: Creates a swirling hurricane around Lelantae, pushing enemies away from her and damaging them
+-- Skill 4: Jetstream: Lelantae dashes rapidly to the target location, attacking all enemies within range
+-- Skill 5: Wind's Aid: Grants truestrike on all attacks, consumes all Zephyr stacks to grant critical strike based on the amount consumed
+-- Skill 6: Aerodynamic: Grants bonus attackspeed at the cost of miss chance.
+-- Skill 7: Rapid Fire: Shoots multiple arrows infront of Lelantae with spread, amount of arrows depends on attackspeed
+-- Skill 8: Updraft: Blows all enemies within point radius upward, skill lets you choose their land position; deals damage on impact and they're stunned during upward motion
+
+-- Passive 1: Zephyr stacks increased to 12
+-- Passive 2: Mistral Breeze grants bonus movement speed per enemy hit. (pct ms)
+-- Passive 3: Immaterialize also slows enemies within radius
+-- Passive 4: Cyclone duration increased
+-- Passive 5: Jetstream attacks twice now
+-- Passive 6: Wind's Aid passively grants bonus damage per Zephyr stack
+-- Passive 7: Aerodynamic knocks back enemies slightly
+-- Passive 8: Reduces Rapid Fire's spread
+-- Passive 9: Pressurize stuns enemies on arrival as well
+
+Aghs:
+Allies benefit from Zephyr bonuses
+
+Legion Commander: Morrighain SUSTAIN/SPELL ROTATION TANK
+-- Innate: Fearless Assault: Chance to attack again with lifesteal while attacking or being attacked.
+
+-- Skill 1: War Fury: Grants damage, armor and lifesteal while standing inside the arena, point target
+-- Skill 2: Victorious Advance: Deals damage to enemies and grants armor to all allies hit for every unit hit, point target
+-- Skill 3: Unbreakable Morale: Heals target unit and grants attackspeed, hard purge
+-- Skill 4: Valiant Rush: Rushes towards the targeted unit, taunting all enemies in radius when the rush ends
+-- Skill 5: Imperious Shout: Removes armor and magic resistance from units within radius, no target
+-- Skill 6: Cross Cut: Damage all enemies in a cone infront of LC and heals her for a % of the damage done, no target
+-- Skill 7: Adrenaline: Grants high damage reduction and heal amp, no target
+-- Skill 8: Leg Sweep: Stuns the enemy briefly, dazing them afterwards, unit target
+
+-- Passive 1: Fearless Assault procs grants temporary bonus armor based on Morrighain's base armor.
+-- Passive 2: War Fury radius increased
+-- Passive 3: Victorious Advance buff duration increased
+-- Passive 4: Unbreakable Morale purges for the whole buff duration
+-- Passive 5: Slows enemy attackspeed while taunted
+-- Passive 6: Imperious Shout grants Morrighain the cumulative (magic) armor lost by the enemy units
+-- Passive 7: Increases cone radius
+-- Passive 8: Increase damage reduction to 100% but damage taken over base damage reduction is dealt over time after the duration ends
+-- Passive 9: Leg Sweep hits all enemies in a 90° cone instead of only 1
+
+Aghs:
+Grants all allies bonus damage and armor for 5s after they cast any spell
+
+
+Lina: Sekhmet
+-- Innate: Kindled Soul: every 4th spell, Sekhmet's spell will be a supercharged version
+
+-- Skill 1: Fire Surge: literally dragon slave but with an added fire DoT; damage decreases with distance traveled KINDLED: multiple dragon slaves
+-- Skill 2: Solar Jet: literally light strike array but with an added fire DoT  KINDLED: multicasts it on the same location
+-- Skill 3: Self-Immolation: Deals damage to self to grants bonus magic damage on attack KINDLED: also grants attackspeed
+-- Skill 4: Searing Heat: literally laguna blade KINDLED: removes cooldown
+-- Skill 5: Overheat: Removes all fire DoTs and deals 2x their remaining potential damage in burst, if no DoTs adds a minor DoT KINDLED: becomes aoe burst
+-- Skill 6: Inferno: AOE inferno, self explanatory KINDLED: adds additional stacking fire dot (like chaos meteor)
+-- Skill 7: Firebat: Becomes a fireball that moves to target location, applies a stacking fire dot to nearby enemies KINDLED: increases displacement speed
+-- Skill 8: Blaze Geyser: Places stationary well that spits out fireballs to nearby enemies KINDLED: spits fireballs to ALL nearby enemies
+
+-- Passive 1: Kindled Soul lasts for 2 spells
+-- Passive 2: Dragon Slave distance-based damage decrease removed
+-- Passive 3: Solar Jet is now 5 jets in a cross shape
+-- Passive 4: Self-Immolation now instantly procs Kindled Soul
+-- Passive 5: Searing Heat now hits the nearest enemy unit on overkill
+-- Passive 5: Overheat DOT now deals instant damage and is always applied even without DoTs active
+-- Passive 6: Inferno is now unit target and follows the targeted unit
+-- Passive 7: Firebat refreshes on kill
+-- Passive 8: Blaze Geyser fireballs now apply stacking DoTs
+
+Aghs:
+Halves DOT duration and increases DOT damage
+
+Crystal Maiden: Khione
+-- Innate: Frostbrand: Deals bonus damage to chilled enemies and chills enemies near enemies frozen by Khione
+
+-- Skill 1: Frost Blast: literally crystal nova with chill
+-- Skill 2: Ice Shard: Flings an ice shard that deals damage, damage is tripled against frozen enemies
+-- Skill 3: Cold Ray: phoenix sun ray but applies chill and freezes after 3s of exposure, deals non% damage
+-- Skill 4: Arcane Blizzard: CM ult but point target, every blast applies a short chill, so 2 blasts hitting freezes
+-- Skill 5: Orb of Winter: sends out a serpentine moving orb that chills enemies and deals damage
+-- Skill 6: Endothermic: Casting spells heals you for their mana cost and their cooldowns are reduced for 20 seconds
+-- Skill 7: Arctic Avatar: auto-attacks apply chill for 30 seconds and all chills instantly become freezes.
+-- Skill 8: Frigid Slide: Toggle, turn rate is slowed drastically; Khione slides forwards, chilling and damaging all enemies caught in the path; if the enemy stands in the ice path for 2 seconds they become frozen for 1s. costs mana per 100 units traveled
+
+-- Passive 1: Enemies that die while frozen explode and freeze all enemies in radius
+-- Passive 2: Ice Shard now splinters and deals 60% damage to the nearest enemy
+-- Passive 3: Cold Ray freezes after 1.5s
+-- Passive 4: Arcane Blizzard chill duration increased
+-- Passive 5: Orb of Winter larger radius
+-- Passive 6: Endothermic applies a hard dispel on use
+-- Passive 7: Arctic Avatar refunds 50% mana cost of spells and removes cast points
+-- Passive 8: Frigid Slide speed increased
+
+Aghs:
+Whenever an enemy gets frozen, grants all allies Ice Armor, Khione passively gets Ice Armor
+
+Templar Assassin: Anahita
+-- Innate: 
+
+-- Skill 1:
+-- Skill 2:
+-- Skill 3:
+-- Skill 4:
+-- Skill 5:
+-- Skill 6:
+-- Skill 7:
+-- Skill 8:
+
+-- Passive 1:
+-- Passive 2:
+-- Passive 3:
+-- Passive 4:
+-- Passive 5:
+-- Passive 6:
+-- Passive 7:
+-- Passive 8:
+
+Sven: Ares
+-- Innate: 
+
+-- Skill 1:
+-- Skill 2:
+-- Skill 3:
+-- Skill 4:
+-- Skill 5:
+-- Skill 6:
+-- Skill 7:
+-- Skill 8:
+
+-- Passive 1:
+-- Passive 2:
+-- Passive 3:
+-- Passive 4:
+-- Passive 5:
+-- Passive 6:
+-- Passive 7:
+-- Passive 8:
+
+Omniknight: Hyperion
+-- Innate: 
+
+-- Skill 1:
+-- Skill 2:
+-- Skill 3:
+-- Skill 4:
+-- Skill 5:
+-- Skill 6:
+-- Skill 7:
+-- Skill 8:
+
+-- Passive 1:
+-- Passive 2:
+-- Passive 3:
+-- Passive 4:
+-- Passive 5:
+-- Passive 6:
+-- Passive 7:
+-- Passive 8:
+
+Slardar: Amemasu
+-- Innate: 
+
+-- Skill 1:
+-- Skill 2:
+-- Skill 3:
+-- Skill 4:
+-- Skill 5:
+-- Skill 6:
+-- Skill 7:
+-- Skill 8:
+
+-- Passive 1:
+-- Passive 2:
+-- Passive 3:
+-- Passive 4:
+-- Passive 5:
+-- Passive 6:
+-- Passive 7:
+-- Passive 8:
+
+Juggernaut: Susanoo
+-- Innate: 
+
+-- Skill 1:
+-- Skill 2:
+-- Skill 3:
+-- Skill 4:
+-- Skill 5:
+-- Skill 6:
+-- Skill 7:
+-- Skill 8:
+
+-- Passive 1:
+-- Passive 2:
+-- Passive 3:
+-- Passive 4:
+-- Passive 5:
+-- Passive 6:
+-- Passive 7:
+-- Passive 8:
+
+Phantom Assassin: Persephone
+-- Innate: 
+
+-- Skill 1:
+-- Skill 2:
+-- Skill 3:
+-- Skill 4:
+-- Skill 5:
+-- Skill 6:
+-- Skill 7:
+-- Skill 8:
+
+-- Passive 1:
+-- Passive 2:
+-- Passive 3:
+-- Passive 4:
+-- Passive 5:
+-- Passive 6:
+-- Passive 7:
+-- Passive 8:
+
+Disruptor: Chaac
+-- Innate: 
+
+-- Skill 1:
+-- Skill 2:
+-- Skill 3:
+-- Skill 4:
+-- Skill 5:
+-- Skill 6:
+-- Skill 7:
+-- Skill 8:
+
+-- Passive 1:
+-- Passive 2:
+-- Passive 3:
+-- Passive 4:
+-- Passive 5:
+-- Passive 6:
+-- Passive 7:
+-- Passive 8:
+
+Lone Druid: Loki
+-- Innate: 
+
+-- Skill 1:
+-- Skill 2:
+-- Skill 3:
+-- Skill 4:
+-- Skill 5:
+-- Skill 6:
+-- Skill 7:
+-- Skill 8:
+
+-- Passive 1:
+-- Passive 2:
+-- Passive 3:
+-- Passive 4:
+-- Passive 5:
+-- Passive 6:
+-- Passive 7:
+-- Passive 8:
+
+Warlock: Nergal
+-- Innate: 
+
+-- Skill 1:
+-- Skill 2:
+-- Skill 3:
+-- Skill 4:
+-- Skill 5:
+-- Skill 6:
+-- Skill 7:
+-- Skill 8:
+
+-- Passive 1:
+-- Passive 2:
+-- Passive 3:
+-- Passive 4:
+-- Passive 5:
+-- Passive 6:
+-- Passive 7:
+-- Passive 8:
+
+Necrophos: Namtar
+-- Innate: 
+
+-- Skill 1:
+-- Skill 2:
+-- Skill 3:
+-- Skill 4:
+-- Skill 5:
+-- Skill 6:
+-- Skill 7:
+-- Skill 8:
+
+-- Passive 1:
+-- Passive 2:
+-- Passive 3:
+-- Passive 4:
+-- Passive 5:
+-- Passive 6:
+-- Passive 7:
+-- Passive 8:
+
++ find some popular supports

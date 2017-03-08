@@ -7,6 +7,7 @@ function MidasPunch(keys)
 	local bonusdamage = ability:GetTalentSpecialValueFor("net_worth_bonus_dmg") / 100
 	local goldDamage = PlayerResource:GetTotalGoldSpent(caster:GetPlayerID()) * bonusdamage
 	local totDmg = damage + goldDamage
+	print(damage, goldDamage)
 	ApplyDamage({ victim = target, attacker = caster, damage = totDmg, damage_type = ability:GetAbilityDamageType(), ability = ability })
 	goldFountain = ParticleManager:CreateParticle("particles/econ/items/necrolyte/necrophos_sullen_gold/necro_sullen_pulse_enemy_explosion_gold.vpcf", PATTACH_POINT_FOLLOW, target)
 			ParticleManager:SetParticleControlEnt(goldFountain, 0, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
@@ -26,7 +27,6 @@ function AlchGreed(keys)
 		caster.greedRemainder = caster.greedRemainder or 0
 		caster.greedRemainder = caster.greedRemainder + excess
 	end
-	print("+gold")
 	bonus_gold = math.floor(bonus_gold)
 	if caster.greedRemainder >= 1 then
 		bonus_gold = bonus_gold + caster.greedRemainder

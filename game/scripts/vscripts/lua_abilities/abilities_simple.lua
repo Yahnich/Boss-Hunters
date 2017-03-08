@@ -749,7 +749,7 @@ function CreepScaling(keys)
 			if caster:HasTalent("special_bonus_unique_furion") then damage = damage * caster:FindTalentValue("special_bonus_unique_furion") end
 			creep:SetBaseDamageMin(damage)
 		else 
-			local damage = creep:GetBaseDamageMin()*GameRules._roundnumber^0.5
+			local damage = creep:GetBaseDamageMin() + 2*creep:GetBaseDamageMin()*caster:GetLevel()/80
 			
 			if caster:HasTalent("special_bonus_unique_venomancer") then damage = damage * caster:FindTalentValue("special_bonus_unique_venomancer") end
 			creep:SetBaseDamageMin(damage) 

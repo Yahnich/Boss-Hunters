@@ -119,7 +119,9 @@ modifier_pugna_nether_turret_thinker = class({})
 
 function modifier_pugna_nether_turret_thinker:OnCreated( kv )
 	self.aura_radius = self:GetAbility():GetSpecialValueFor( "radius" )
-	self.dmg_mult = self:GetAbility():GetSpecialValueFor( "dmg_mult" )
+	if IsServer() then
+		self.dmg_mult = self:GetAbility():GetTalentSpecialValueFor( "dmg_mult" )
+	end
 end
 
 function modifier_pugna_nether_turret_thinker:OnDestroy( kv )

@@ -16,9 +16,9 @@ end
 
 function modifier_doom_doom_ebf:OnCreated( kv )
 	self.duration = self:GetAbility():GetSpecialValueFor( "duration" )
-	self.damage = self:GetAbility():GetSpecialValueFor( "damage" )
 	EmitSoundOn( "Hero_DoomBringer.Doom", self:GetParent())
 	if IsServer() then
+		self.damage = self:GetAbility():GetTalentSpecialValueFor( "damage" )
 		self:OnIntervalThink()
 		self:StartIntervalThink( 1 )
 	end

@@ -21,6 +21,6 @@ function modifier_neutral_power_passive:GetModifierExtraHealthBonus(params)
 end
 
 function modifier_neutral_power_passive:IsHidden()
-    return true
+    return false
 end
 

@@ -468,7 +468,7 @@ function Turmoil(keys)
 	-- Damage
 	if attacker:GetTeamNumber() ~= caster:GetTeamNumber() then
 		ability:ApplyDataDrivenModifier(caster, caster, "modifier_turmoil_bonus_damage", {})
-		caster:PerformAttack(attacker, true, true, true, true, false)
+		caster:PerformAttack(attacker, true, true, true, true, false, false, true)
 		caster:RemoveModifierByName("modifier_turmoil_bonus_damage")
 	end
 end

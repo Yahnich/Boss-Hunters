@@ -36,7 +36,7 @@ function FanTheBladeHit(keys)
 	
 	ability:ApplyDataDrivenModifier(caster, caster, "modifier_stifling_dagger_bonusdamage_datadriven", {duration = ability:GetTalentSpecialValueFor("slow_duration")})
 	caster:SetModifierStackCount("modifier_stifling_dagger_bonusdamage_datadriven", caster, bonusDamage)
-	caster:PerformAttack(target, true, true, true, true, false)
+	caster:PerformAttack(target, true, true, true, true, false, false, true)
 	caster:RemoveModifierByName("modifier_stifling_dagger_bonusdamage_datadriven")
 
 	
@@ -103,9 +103,9 @@ function AssassinDanceInit( keys )
 				FindClearSpaceForUnit( caster, target:GetAbsOrigin(), false )
 				
 				ability:ApplyDataDrivenModifier(caster, caster, "modifier_sleight_of_fist_target_hero_datadriven", {})
-				caster:PerformAttack(target, true, true, true, true, false)
+				caster:PerformAttack(target, true, true, true, true, false, false, true)
 				if caster:HasTalent("special_bonus_unique_phantom_assassin") then -- Talent Double Hit
-					caster:PerformAttack(target, true, true, true, true, false)
+					caster:PerformAttack(target, true, true, true, true, false, false, true)
 				end
 				caster:RemoveModifierByName("modifier_sleight_of_fist_target_hero_datadriven")
 				

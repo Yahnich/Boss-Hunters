@@ -65,7 +65,7 @@ function LeapShot( keys )
                                   FIND_ANY_ORDER,
                                   false)
 	for _, enemy in pairs( enemies ) do
-		caster:PerformAttack(enemy, true, true, true, false, true)
+		caster:PerformAttack(enemy, true, true, true, false, false, false, true)
 	end
 
 	-- Ability variables

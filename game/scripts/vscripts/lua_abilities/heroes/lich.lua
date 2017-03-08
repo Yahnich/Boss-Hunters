@@ -2,11 +2,16 @@ function FrostBlastProc(keys)
 	local caster = keys.caster
 	local ability = keys.ability
 	local target = keys.target
-
+	local chance = ability:GetTalentSpecialValueFor("proc_chance")
+	target.FrostNovaPRNG = target.FrostNovaPRNG or -10
 	local frostnova = caster:FindAbilityByName("lich_frost_nova")
 	if frostnova:GetLevel() < 1 or ability:GetToggleState() then return end
-	caster:SetCursorCastTarget(target)
-	frostnova:OnSpellStart()
+	if RollPercentage(chance + target.FrostNovaPRNG) then
+		caster:SetCursorCastTarget(target)
+		frostnova:OnSpellStart()
+	else
+		target.FrostNovaPRNG = target.FrostNovaPRNG + 2
+	end
 end
 
 function IceArmorCheck(keys)

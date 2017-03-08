@@ -136,19 +136,24 @@ function CHoldoutGameRound:Begin()
 			self._nCoreUnitsTotal = self._nCoreUnitsTotal + 1
 		end
 	end
+	
+	-- ELITE HANDLING
 	self._nElitesToSpawn = 0
 	self._EliteAbilities = {}
 	local elitemod = 0
-	if GetMapName() == "epic_boss_fight_hard" then
+	local elitePct = 0
+	if GetMapName() == "epic_boss_fight_impossible" then
 		elitemod = 1
-	elseif GetMapName() == "epic_boss_fight_impossible" then
+		elitePct = 10
+	elseif GetMapName() == "epic_boss_fight_challenger" then
 		elitemod = 2
+		elitePct = 15
 	end
 	elitemod = elitemod * GameRules.gameDifficulty
 	epicMod = 1
 	if GameRules.gameDifficulty == 5 then epicMod = 2 end
 	for i=1, self._nCoreUnitsTotal do
-		if RollPercentage( (7+elitemod)*epicMod ) and self._nRoundNumber > 1 then
+		if RollPercentage( elitePct ) and self._nRoundNumber > 1 then
 			self._nElitesToSpawn = self._nElitesToSpawn + 1
 			local elitegold = 100 * self._nRoundNumber^0.2 * PlayerNumber / 4
 			if GameRules._NewGamePlus == true then
@@ -157,6 +162,7 @@ function CHoldoutGameRound:Begin()
 			self._nGoldRemainingInRound = self._nGoldRemainingInRound + self._nRoundNumber * elitegold
 		end
 	end
+	
 	if GameRules._NewGamePlus == true then
 		self._nGoldRemainingInRound = self._nGoldRemainingInRound * (1.3*roundNumber^0.4)
 		if self._nGoldRemainingInRound > 50000 or self._nRoundNumber == 1 then
@@ -272,131 +278,8 @@ function CHoldoutGameRound:OnNPCSpawned( event )
 	end
 	local nCoreUnitsRemaining = self._nCoreUnitsTotal - self._nCoreUnitsKilled
 	Timers:CreateTimer(0.1,function()
-				if spawnedUnit.Holdout_IsCore or spawnedUnit:GetUnitName() == "npc_dota_boss36_guardian" then
-					self._nCoreUnitsSpawned = self._nCoreUnitsSpawned - 1
-				end
-				if ((self._nElitesRemaining > 0 and (spawnedUnit.Holdout_IsCore or spawnedUnit:GetUnitName() == "npc_dota_boss36_guardian")) or spawnedUnit.elite == true) then
-					local elitemod = 1 + (GameRules.gameDifficulty - 1)* 0.15
-					spawnedUnit.elite = true
-					local elitelist = {} -- change table with names to array type
-					local notcore = {  ["elite_disarming"] = true,
-									   ["elite_piercing"] = true,
-									   ["elite_sweeping"] = true,
-									   ["elite_berserker"] = true,
-									   ["elite_entangling"] = true,
-									   ["elite_assassin"] = true,
-									   ["elite_plagued"] = true,
-									   ["elite_farseer"] = true,
-									   ["elite_accurate"] = true,
-									   ["elite_blinking"] = true,
-									   ["elite_frenzied"] = true,
-									   ["elite_parrying"] = true,
-									   ["elite_blocking"] = true}
-					for k,v in pairs(GameRules._Elites) do
-						if not notcore[k] and spawnedUnit:IsSpawner() then
-							table.insert(elitelist, k)
-						elseif not (self._EliteAbilities["elite_disarming"] and k == "elite_silencing") and spawnedUnit:GetUnitName() ~= "npc_dota_boss36" then
-							table.insert(elitelist, k)
-						elseif not (self._EliteAbilities["elite_silencing"] and k == "elite_disarming") and spawnedUnit:GetUnitName() ~= "npc_dota_boss36" then
-							table.insert(elitelist, k)
-						end
-					end
-					local eliteabstogive = 1
-					if GameRules._NewGamePlus == true or GameRules.gameDifficulty >= 4 then
-						eliteabstogive = 2
-					end
-					local eliteAbName = elitelist[math.random(#elitelist)]
-					if spawnedUnit.elite and spawnedUnit.eliteAb then -- if elite spawned through other ways
-						if spawnedUnit:GetMaxHealth() < self._nRoundNumber * 2000 then
-							spawnedUnit:SetMaxHealth(spawnedUnit:GetMaxHealth()+self._nRoundNumber * 2000)
-						end
-						spawnedUnit:SetMaxHealth(spawnedUnit:GetMaxHealth()*(2 - 0.90 * self._nRoundNumber/38)*elitemod )
-						spawnedUnit:SetHealth(spawnedUnit:GetMaxHealth())
-						spawnedUnit:SetModelScale(spawnedUnit:GetModelScale()*1.5)
-						while eliteabstogive > 0 do
-							eliteAbName = spawnedUnit.eliteAb[eliteabstogive]
-							local eliteAb = spawnedUnit:AddAbility(eliteAbName)
-							eliteAb:SetLevel(eliteAb:GetMaxLevel())
-							eliteAbType = eliteAbType.." "..GameRules._Elites[eliteAbName]
-							table.removekey(elitelist,eliteAbName)
-							if eliteAbName == "elite_disarming" or eliteAbName == "elite_silencing" then
-								table.removekey(elitelist,"elite_disarming")
-								table.removekey(elitelist,"elite_silencing")
-							else
-								table.removekey(elitelist,eliteAbName)
-							end
-							eliteAbName = elitelist[math.random(#elitelist)]
-							eliteabstogive = eliteabstogive - 1
-						end
-						local messageinfo = {
-						message = "An elite boss has spawned with the "..eliteAbType.." ability!",
-						duration = 5
-						}
-						FireGameEvent("show_center_message",messageinfo)
-					elseif self._nCoreUnitsSpawned > self._nElitesRemaining then
-						if math.random(100) < 25 then
-							if spawnedUnit:GetMaxHealth() < self._nRoundNumber * 2500 and spawnedUnit:GetName() ~= "npc_dota_money" and spawnedUnit:GetUnitName() ~= "npc_dota_boss36" then
-								spawnedUnit:SetMaxHealth(spawnedUnit:GetMaxHealth()+self._nRoundNumber * 2500)
-							end
-							spawnedUnit:SetMaxHealth(spawnedUnit:GetMaxHealth()*(2 - 0.90 * self._nRoundNumber/38)*elitemod )
-							spawnedUnit:SetHealth(spawnedUnit:GetMaxHealth())
-							spawnedUnit:SetModelScale(spawnedUnit:GetModelScale()*1.5)
-							spawnedUnit.elite = true
-							local eliteAbType = ""
-							while eliteabstogive > 0 do
-								local eliteAb = spawnedUnit:AddAbility(eliteAbName)
-								eliteAb:SetLevel(eliteAb:GetMaxLevel())
-								eliteAbType = eliteAbType.." "..GameRules._Elites[eliteAbName]
-								if eliteAbName == "elite_disarming" or eliteAbName == "elite_silencing" then
-									table.removekey(elitelist,"elite_disarming")
-									table.removekey(elitelist,"elite_silencing")
-								else
-									table.removekey(elitelist,eliteAbName)
-								end
-								self._EliteAbilities[eliteAbName] = true
-								eliteAbName = elitelist[math.random(#elitelist)]
-								eliteabstogive = eliteabstogive - 1
-							end
-							self._nElitesRemaining = self._nElitesRemaining - 1					
-							local messageinfo = {
-							message = "An elite boss has spawned with the "..eliteAbType.." ability!",
-							duration = 5
-							}
-							FireGameEvent("show_center_message",messageinfo)
-						end
-					else
-						if spawnedUnit:GetMaxHealth() < self._nRoundNumber * 2500 and spawnedUnit:GetName() ~= "npc_dota_money" and spawnedUnit:GetUnitName() ~= "npc_dota_boss36" then
-							spawnedUnit:SetMaxHealth(spawnedUnit:GetMaxHealth()+self._nRoundNumber * 2500)
-						end
-						spawnedUnit:SetMaxHealth(spawnedUnit:GetMaxHealth()*(2 - 0.90 * self._nRoundNumber/38) )
-						spawnedUnit:SetHealth(spawnedUnit:GetMaxHealth())
-						spawnedUnit:SetModelScale(spawnedUnit:GetModelScale()*1.5)
-						spawnedUnit.elite = true
-						local eliteAbType = ""
-						while eliteabstogive > 0 do
-							local eliteAb = spawnedUnit:AddAbility(eliteAbName)
-							eliteAb:SetLevel(eliteAb:GetMaxLevel())
-							eliteAbType = eliteAbType.." "..GameRules._Elites[eliteAbName]
-							self._EliteAbilities[eliteAbName] = true
-							if eliteAbName == "elite_disarming" or eliteAbName == "elite_silencing" then
-								table.removekey(elitelist,"elite_disarming")
-								table.removekey(elitelist,"elite_silencing")
-							else
-								table.removekey(elitelist,eliteAbName)
-							end
-							eliteAbName = elitelist[math.random(#elitelist)]
-							eliteabstogive = eliteabstogive - 1
-						end
-						self._nElitesRemaining = self._nElitesRemaining - 1
-						local messageinfo = {
-						message = "An elite boss has spawned with "..eliteAbType.." ability!",
-						duration = 5
-						}
-						FireGameEvent("show_center_message",messageinfo)
-					end
-				end
+				self:HandleElites(spawnedUnit)
 	        end)
-
 	if spawnedUnit:GetTeamNumber() == DOTA_TEAM_BADGUYS and spawnedUnit:IsCreature() then
 		table.insert( self._vEnemiesRemaining, spawnedUnit )
 		if self._nAsuraCoreRemaining>0 then
@@ -516,6 +399,100 @@ function CHoldoutGameRound:_CheckForGoldBagDrop( killedUnit )
 			local totalgold = unit:GetGold() + nGoldToDrop / HeroList:GetRealHeroCount()
 			unit:SetGold(0 , false)
 			unit:SetGold(totalgold, true)
+		end
+	end
+end
+
+function CHoldoutGameRound:HandleElites(spawnedUnit)
+	if spawnedUnit:IsCore() then
+		self._nCoreUnitsSpawned = self._nCoreUnitsSpawned - 1
+		if self._nElitesRemaining > 0 or spawnedUnit:IsElite() then
+			local elitemod = 1 + (GameRules.gameDifficulty - 1)* 0.15 -- Power scaling
+			spawnedUnit.elite = true
+			local elitelist = {} -- change table with names to array type
+			-- Block non-attacking units from having these
+			local notcore = {   ["elite_disarming"] = true,
+							    ["elite_piercing"] = true,
+								["elite_sweeping"] = true,
+								["elite_berserker"] = true,
+								["elite_entangling"] = true,
+								["elite_assassin"] = true,
+								["elite_plagued"] = true,
+								["elite_farseer"] = true,
+								["elite_accurate"] = true,
+								["elite_blinking"] = true,
+								["elite_frenzied"] = true,
+								["elite_parrying"] = true,
+								["elite_nimble"] = true,
+								["elite_blocking"] = true}
+			-- Block certain combos
+			local blocked = {	["elite_disarming"] = "elite_silencing",
+								["elite_silencing"] = "elite_disarming",
+								["elite_sweeping"] = "elite_piercing",
+								["elite_piercing"] = "elite_sweeping"}
+			for k,v in pairs(GameRules._Elites) do
+				if not (notcore[k] and spawnedUnit:IsSpawner()) then
+					table.insert(elitelist, k)
+				elseif not (blocked[k] and self._EliteAbilities[blocked[k]]) and spawnedUnit:IsSpawner() then
+					table.insert(elitelist, k)
+				elseif k == "elite_farseer" and self._nRoundNumber > 4 then
+					table.insert(elitelist, k)
+				end
+			end
+			
+			local eliteabstogive = 1
+			if GameRules._NewGamePlus == true or GameRules.gameDifficulty >= 4 then
+				eliteabstogive = 2
+			end
+			
+			local eliteAbName = elitelist[RandomInt(1,#elitelist)]
+			if spawnedUnit:IsElite() and spawnedUnit.eliteAb then -- if elite spawned through other ways
+				if spawnedUnit:GetMaxHealth() < self._nRoundNumber * 200 then
+					spawnedUnit:SetMaxHealth(spawnedUnit:GetMaxHealth()+self._nRoundNumber * 200)
+				end
+				spawnedUnit:SetMaxHealth(spawnedUnit:GetMaxHealth()*(2 - 0.90 * self._nRoundNumber/GameRules:GetMaxRound())*elitemod )
+			elseif self._nCoreUnitsSpawned > self._nElitesRemaining then -- If leftover enemies, randomize
+				if RollPercentage(33) then
+					if spawnedUnit:GetMaxHealth() < self._nRoundNumber * 250 and spawnedUnit:GetName() ~= "npc_dota_money" and spawnedUnit:GetUnitName() ~= "npc_dota_boss36" then
+						spawnedUnit:SetMaxHealth(spawnedUnit:GetMaxHealth()+self._nRoundNumber * 250)
+					end
+					spawnedUnit:SetMaxHealth(spawnedUnit:GetMaxHealth()*(2 - 0.90 * self._nRoundNumber/GameRules:GetMaxRound())*elitemod )
+					spawnedUnit.elite = true
+				end
+			else
+				if spawnedUnit:GetMaxHealth() < self._nRoundNumber * 250 and spawnedUnit:GetName() ~= "npc_dota_money" and spawnedUnit:GetUnitName() ~= "npc_dota_boss36" then
+					spawnedUnit:SetMaxHealth(spawnedUnit:GetMaxHealth()+self._nRoundNumber * 250)
+				end
+				spawnedUnit:SetMaxHealth(spawnedUnit:GetMaxHealth()*(2 - 0.90 * self._nRoundNumber/GameRules:GetMaxRound())*elitemod )
+				spawnedUnit.elite = true
+			end
+			if spawnedUnit:IsElite() then -- is elite, has passed initial checks
+			
+				local nParticle = ParticleManager:CreateParticle( "particles/econ/courier/courier_onibi/courier_onibi_yellow_ambient_smoke_lvl21.vpcf", PATTACH_ABSORIGIN_FOLLOW, spawnedUnit )
+				ParticleManager:ReleaseParticleIndex( nParticle )
+				
+				spawnedUnit:SetHealth(spawnedUnit:GetMaxHealth())
+				spawnedUnit:SetModelScale(spawnedUnit:GetModelScale()*1.5)
+				
+				local eliteAbType = ""
+				while eliteabstogive > 0 do
+					local eliteAb = spawnedUnit:AddAbilityPrecache(eliteAbName)
+					eliteAb:SetLevel(eliteAb:GetMaxLevel())
+					eliteAbType = eliteAbType.." "..GameRules._Elites[eliteAbName]
+					self._EliteAbilities[eliteAbName] = true
+					if blocked[eliteAbName] then
+						table.removekey(elitelist,blocked[eliteAbName])
+					end
+					table.removekey(elitelist,eliteAbName)
+					eliteAbName = elitelist[RandomInt(1,#elitelist)]
+					eliteabstogive = eliteabstogive - 1
+				end
+				self._nElitesRemaining = self._nElitesRemaining - 1
+				local messageinfo = {
+					message = "An elite boss has spawned with "..eliteAbType.." ability!",
+					duration = 5}
+				FireGameEvent("show_center_message",messageinfo)
+			end
 		end
 	end
 end

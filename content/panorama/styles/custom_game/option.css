@@ -365,8 +365,14 @@ margin-right: 300px;
 
 #QuestPrepText
 {
-	visibility: visible;
+	visibility: collapse;
 }
+
+#QuestRoundText
+{
+	visibility: collapse;
+}
+
 .QuestGenericText
 {
 	font-family: TH Sarabun New,YDYGO 540,Gulim,MingLiU;

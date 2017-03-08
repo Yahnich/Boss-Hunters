@@ -2,7 +2,7 @@ function PerformAttacks(keys)
 	local caster = keys.caster
 	local target = keys.target
 	
-	caster:PerformAttack(target, true, true, true, false, false)
+	caster:PerformAttack(target, true, true, true, false, false, false, true)
 end
 
 --[[Author: YOLOSPAGHETTI

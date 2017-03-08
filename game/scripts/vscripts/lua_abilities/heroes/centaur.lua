@@ -45,3 +45,12 @@ function CentaurReturn( keys )
 	-- Damage
 	ApplyDamage({ victim = attacker, attacker = caster, damage = return_damage, damage_type = damageType, ability = ability })
 end
+
+special_bonus_unique_centaur_3 = special_bonus_unique_centaur_3 or class({})
+
+function special_bonus_unique_centaur_3:GetIntrinsicModifierName()
+	return "modifier_special_bonus_unique_centaur_3"
+end
+
+LinkLuaModifier( "modifier_special_bonus_unique_centaur_3", "lua_abilities/heroes/centaur.lua" ,LUA_MODIFIER_MOTION_NONE )
+modifier_special_bonus_unique_centaur_3 = class({})

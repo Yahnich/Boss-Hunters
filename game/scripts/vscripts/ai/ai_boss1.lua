@@ -5,13 +5,15 @@ Broodking AI
 require( "ai/ai_core" )
 
 function Spawn( entityKeyValues )
-	thisEntity:SetContextThink( "AIThinker", AIThink, 0.25 )
-	thisEntity.ensnare = thisEntity:FindAbilityByName("dark_troll_warlord_ensnare")
-	thisEntity.vanish = thisEntity:FindAbilityByName("boss_vanish")
-	if  math.floor(GameRules.gameDifficulty + 0.5) > 2 then
-		thisEntity.vanish:SetLevel(2)
-	else
-		thisEntity.vanish:SetLevel(1)
+	if IsServer() then
+		thisEntity:SetContextThink( "AIThinker", AIThink, 0.25 )
+		thisEntity.ensnare = thisEntity:FindAbilityByName("dark_troll_warlord_ensnare")
+		thisEntity.vanish = thisEntity:FindAbilityByName("boss_vanish")
+		if  math.floor(GameRules.gameDifficulty + 0.5) > 2 then
+			thisEntity.vanish:SetLevel(2)
+		else
+			thisEntity.vanish:SetLevel(1)
+		end
 	end
 end
 

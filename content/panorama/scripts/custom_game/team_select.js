@@ -9,7 +9,11 @@ var g_PlayerPanels = [];
 
 var g_TEAM_SPECATOR = 1;
 
-SetDefault();
+// Fix Valve breaking team selection
+Game.SetRemainingSetupTime( 5 ); 
+Game.SetAutoLaunchEnabled( true );
+
+// SetDefault();
 
 function SetDefault(){
 	$.Msg("mapname", Game.GetMapInfo())
@@ -18,16 +22,32 @@ function SetDefault(){
 		$("#exclusiveImpossibleDifficulty").visible = true;
 		$("#defaultDifficulty").enabled = false;
 		$("#exclusiveImpossibleDifficulty").enabled = true;
+		$("#defaultLives").GetChild(1).text = $.Localize("#livesHard");
+		$("#fiveLives").GetChild(1).text = $.Localize("#livesImpossible");
+		$("#defaultLivesImpossible").GetChild(1).text = $.Localize("#livesPainful");
+		$("#oneLives").GetChild(1).text = $.Localize("#livesSadistic");
 	} else if(Game.GetMapInfo().map_display_name == "epic_boss_fight_hard" || Game.GetMapInfo().map_display_name == "epic_boss_fight_boss_master" ){
 		$("#defaultDifficulty").visible = true;
 		$("#exclusiveImpossibleDifficulty").visible = false;
 		$("#defaultDifficulty").enabled = true;
 		$("#exclusiveImpossibleDifficulty").enabled = false;
+		if($("#defaultLives").GetChild(1) != null){
+			$("#defaultLives").GetChild(1).text = $.Localize("#livesHardCasual");
+			$("#fiveLives").GetChild(1).text = $.Localize("#livesImpossibleCasual");
+			$("#defaultLivesImpossible").GetChild(1).text = $.Localize("#livesPainfulCasual");
+			$("#oneLives").GetChild(1).text = $.Localize("#livesSadisticCasual");
+		}
 	} else{
 		$("#defaultDifficulty").visible = false;
 		$("#exclusiveImpossibleDifficulty").visible = true;
 		$("#defaultDifficulty").enabled = false;
 		$("#exclusiveImpossibleDifficulty").enabled = true
+		if($("#defaultLives").GetChild(1) != null){
+			$("#defaultLives").GetChild(1).text = $.Localize("#livesHardCasual");
+			$("#fiveLives").GetChild(1).text = $.Localize("#livesImpossibleCasual");
+			$("#defaultLivesImpossible").GetChild(1).text = $.Localize("#livesPainfulCasual");
+			$("#oneLives").GetChild(1).text = $.Localize("#livesSadisticCasual");
+		}
 	}
 }
 
@@ -58,7 +78,7 @@ function OnLockAndStartPressed()
 	Game.SetAutoLaunchEnabled( false );
 
 	// Set the remaining time before the game starts
-	Game.SetRemainingSetupTime( 10 ); 
+	Game.SetRemainingSetupTime( 0 ); 
 }
 
 
@@ -71,7 +91,7 @@ function OnCancelAndUnlockPressed()
 	Game.SetTeamSelectionLocked( false );
 
 	// Stop the countdown timer
-	Game.SetRemainingSetupTime( -1 ); 
+	Game.SetRemainingSetupTime( 0 ); 
 }
 
 

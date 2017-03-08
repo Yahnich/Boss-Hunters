@@ -26,7 +26,7 @@ function ScreamApply(keys)
 	if caster:HasScepter() then
 		local stacks = ability:GetTalentSpecialValueFor("scream_haunt_stacks")
 		for i = 1, stacks do
-			caster:PerformAttack(target, true, true, true, false, false)
+			caster:PerformAttack(target, true, true, true, false, false, false, true)
 		end
 	end
 end

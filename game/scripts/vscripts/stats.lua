@@ -128,7 +128,6 @@ function stats:ModifyStatBonuses(unit)
 			local cdr = 1 - math.floor(intellect ^ CDR_PER_INT + 0.5) / 100
 			local octarine = get_core_cdr(hero)
 			local cdr_stacks = (1 - (octarine * cdr))*100
-			print(cdr_stacks, cdr, octarine)
 			hero:SetModifierStackCount("modifier_cooldown_reduction", hero, cdr_stacks)
 		end
 		if hero:GetLevel() ~= hero.currentLevel or hero:IsRangedAttacker() ~= hero.attackCapability then

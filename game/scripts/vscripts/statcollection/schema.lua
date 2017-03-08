@@ -125,6 +125,29 @@ end
 
 -------------------------------------
 
+function GetGameDifficulty()
+	local diff = GameRules.gameDifficulty
+	local diffString = "Normal"
+	if diff > 1 and diff < 2 then
+		diffString = "Normal/Champion"
+	elseif diff == 2 then
+		diffString = "Champion"
+	elseif diff > 2 and diff < 3 then
+		diffString = "Champion/Heroic"
+	elseif diff == 3 then
+		diffString = "Heroic"
+	elseif diff > 3 and diff < 4 then
+		diffString = "Heroic/Legendary"
+	elseif diff == 4 then
+		diffString = "Legendary"
+	elseif diff > 4 and diff < 5 then
+		diffString = "Legendary/Epic"
+	elseif diff == 5 then
+		diffString = "Epic"
+	end
+	print(diffString)
+end
+
 -- If your gamemode is round-based, you can use statCollection:submitRound(bLastRound) at any point of your main game logic code to send a round
 -- If you intend to send rounds, make sure your settings.kv has the 'HAS_ROUNDS' set to true. Each round will send the game and player arrays defined earlier
 -- The round number is incremented internally, lastRound can be marked to notify that the game ended properly

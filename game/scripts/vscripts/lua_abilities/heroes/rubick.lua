@@ -2,6 +2,7 @@ function SpellEcho(keys)
 	local caster = keys.caster
 	local ability = keys.ability
 	local echo = ability.echo
+	if not echo then return end
 	local delay = ability:GetTalentSpecialValueFor("delay")
 	local no_echo = {["shredder_chakram"] = true,
 					 ["shredder_chakram_return"] = true,
@@ -41,6 +42,7 @@ function SpellEcho(keys)
 				local echo_effect = ParticleManager:CreateParticle("particles/rubick_spell_echo.vpcf", PATTACH_ABSORIGIN , caster)
 				ParticleManager:SetParticleControl(echo_effect, 0, caster:GetAbsOrigin())
 				ParticleManager:SetParticleControl(echo_effect, 1, Vector(1,0,0))
+				ability:UseResources(false, false, true)
 				caster:StartGesture(ACT_DOTA_CAST_ABILITY_5)
 				if echo:GetChannelTime() > 0 and target_type ~= DOTA_ABILITY_BEHAVIOR_NO_TARGET then
 					local player = caster:GetPlayerID()
@@ -48,13 +50,12 @@ function SpellEcho(keys)
 					if target_type == DOTA_ABILITY_BEHAVIOR_UNIT_TARGET then
 						spawnloc = target:GetAbsOrigin()
 					end
-					local echoUnit = CreateUnitByName(caster:GetUnitName(), spawnloc, false, caster, nil, caster:GetTeamNumber())
+					local echoUnit = CreateUnitByName(caster:GetUnitName(), caster:GetAbsOrigin(), false, caster, nil, caster:GetTeamNumber())
 					while echoUnit:GetLevel() < caster:GetLevel() do
 						echoUnit:HeroLevelUp(false)
 					end
 					echoUnit:AddAbility(echo:GetName())
-					local stats = echoUnit:AddAbility("lua_attribute_bonus")
-					stats:SetLevel(caster:FindAbilityByName("lua_attribute_bonus"):GetLevel())
+
 					echoUnit:SwapAbilities("rubick_empty1", echo:GetName(), false,true)
 					echoUnit:AddNewModifier(echoUnit, nil, 'modifier_invulnerable', {})
 					echoUnit:AddNewModifier(echoUnit, nil, 'modifier_item_phase_boots_active', {})
@@ -83,7 +84,6 @@ function SpellEcho(keys)
 									Queue = true
 								}
 							ExecuteOrderFromTable(order)
-							ability:StartCooldown(cooldown)
 						elseif target_type == DOTA_ABILITY_BEHAVIOR_UNIT_TARGET then
 							echoUnit:Interrupt()
 							local order = 
@@ -95,7 +95,6 @@ function SpellEcho(keys)
 									Queue = true
 								}
 							ExecuteOrderFromTable(order)
-							ability:StartCooldown(cooldown)
 						end
 					end
 					Timers:CreateTimer(echo:GetChannelTime()/2, function()
@@ -115,7 +114,7 @@ function SpellEcho(keys)
 																end)
 				else 
 					echo:OnSpellStart()
-					ability:StartCooldown(cooldown)
+					ability.echo = nil
 				end
 			elseif not ability:IsCooldownReady() then
 				ability.echo = nil
@@ -138,7 +137,7 @@ if IsServer() then
 		local hTarget = self:GetCursorTarget()
 		local damage = self:GetSpecialValueFor("slam_damage")
 		local duration = self:GetSpecialValueFor("stun_duration")
-		local enemies = FindUnitsInRadius(caster:GetTeam(), hTarget:GetAbsOrigin(), nil, self:GetSpecialValueFor("slam_radius"), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, 0, false)
+		local enemies = FindUnitsInRadius(caster:GetTeam(), hTarget:GetAbsOrigin(), nil, self:GetTalentSpecialValueFor("slam_radius"), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, 0, false)
 		for _,enemy in pairs(enemies) do
 			ApplyDamage({ victim = enemy, attacker = caster, damage = damage, damage_type = DAMAGE_TYPE_MAGICAL, ability = self })
 			enemy:AddNewModifier(caster, self, "modifier_stunned",{duration = duration})

@@ -183,7 +183,7 @@ function modifier_rot_death_lua_aura:DeclareFunctions()
 end
 
 function modifier_rot_death_lua_aura:OnDeath(params)
-	if IsServer() and params.unit:HasModifier("modifier_rot_death_lua_aura") and params.unit.Holdout_IsCore and not params.unit.triggered then
+	if IsServer() and params.unit:HasModifier("modifier_rot_death_lua_aura") and params.unit:IsCore() and not params.unit.triggered then
 		local modifier = self:GetCaster():FindModifierByName("modifier_rot_death_lua")
 		modifier:SetStackCount(modifier:GetStackCount() +1)
 		params.unit.triggered = true

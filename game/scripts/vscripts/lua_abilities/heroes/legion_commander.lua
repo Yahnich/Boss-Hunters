@@ -213,7 +213,7 @@ end
 function modifier_legion_commander_moment_of_courage_ebf_passive:OnIntervalThink()
 	if self:GetParent():IsAttacking() and self:GetParent():HasModifier("modifier_legion_commander_moment_of_courage_ebf_buff") then
 		Timers:CreateTimer(0.06,function()
-			self:GetParent():PerformAttack(self:GetParent():GetAttackTarget(), false, true, true, false, false)
+			self:GetParent():PerformAttack(self:GetParent():GetAttackTarget(), false, true, true, false, false, false, true)
 			EmitSoundOn("Hero_LegionCommander.Courage", self:GetParent())
 			local hit1 = ParticleManager:CreateParticle("particles/units/heroes/hero_legion_commander/legion_commander_courage_tgt.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
 				ParticleManager:SetParticleControlEnt(hit1, 0, self:GetCaster(), PATTACH_POINT_FOLLOW, "attach_attack1", self:GetCaster():GetAbsOrigin(), true)
@@ -379,7 +379,7 @@ function modifier_legion_commander_war_fury_buff:OnCreated()
 		SendClientSync("war_fury_bonus_damage", self.bonusDamage)
 	end
 	self.lifesteal = self:GetAbility():GetSpecialValueFor("lifesteal")
-	self.bonusArmor = self:GetAbility():GetSpecialValueFor("bonus_damage_aura")
+	self.bonusArmor = self:GetAbility():GetSpecialValueFor("armor")
 end
 
 function modifier_legion_commander_war_fury_buff:DeclareFunctions()
@@ -414,7 +414,7 @@ end
 function modifier_legion_commander_war_fury_buff:OnAttackLanded(params)
 	if IsServer() then
 		if params.attacker == self:GetParent() then
-			local flHeal = params.original_damage * (1 - params.target:GetRealPhysicalArmorReduction() / 100 ) * self.lifesteal / 100
+			local flHeal = params.original_damage * (1 - params.target:GetPhysicalArmorReduction() / 100 ) * self.lifesteal / 100
 			params.attacker:Heal(flHeal, params.attacker)
 			local lifesteal = ParticleManager:CreateParticle("particles/units/heroes/hero_skeletonking/wraith_king_vampiric_aura_lifesteal.vpcf", PATTACH_ABSORIGIN_FOLLOW, params.attacker)
 				ParticleManager:SetParticleControlEnt(lifesteal, 0, params.attacker, PATTACH_POINT_FOLLOW, "attach_hitloc", params.attacker:GetAbsOrigin(), true)

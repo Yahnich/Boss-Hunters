@@ -34,27 +34,19 @@ function CDOTA_BaseNPC:CreateDummy(position)
 end
 
 
+
+function CDOTA_BaseNPC:AddAbilityPrecache(abName)
+	PrecacheItemByNameAsync( abName, function() end)
+	return self:AddAbility(abName)
+end
+
 function get_aether_multiplier(caster)
     local aether_multiplier = 1
     for itemSlot = 0, 5, 1 do
         local Item = caster:GetItemInSlot( itemSlot )
 		if Item ~= nil then
 			local itemAmp = Item:GetSpecialValueFor("spell_amp")/100
-			if Item:GetName() == "item_aether_lens" then
-				aether_multiplier = aether_multiplier + itemAmp
-			end
-			if Item:GetName() == "item_redium_lens" then
-				aether_multiplier = aether_multiplier + itemAmp
-			end
-			if Item:GetName() == "item_sunium_lens" then
-				aether_multiplier = aether_multiplier + itemAmp
-			end
-			if Item:GetName() == "item_omni_lens" then
-				aether_multiplier = aether_multiplier + itemAmp
-			end
-			if Item:GetName() == "item_asura_lens" then
-				aether_multiplier = aether_multiplier + itemAmp
-			end
+			aether_multiplier = aether_multiplier + itemAmp
 		end
     end
     return aether_multiplier
@@ -171,15 +163,26 @@ function CDOTA_BaseNPC:GetAttackDamageType()
 end
 
 function CDOTA_BaseNPC:IsSpawner()
-	-- 1: DAMAGE_TYPE_ArmorPhysical
-	-- 2: DAMAGE_TYPE_ArmorMagical
-	-- 4: DAMAGE_TYPE_ArmorPure
 	local resourceType = GameRules.UnitKV[self:GetUnitName()]["IsSpawner"]
 	if resourceType then
 		return true
 	else
 		return false
 	end
+end
+
+function CDOTA_BaseNPC:IsCore()
+	local resourceType = GameRules.UnitKV[self:GetUnitName()]["IsCore"]
+	if resourceType == 1 or self.Holdout_IsCore then
+		return true
+	else
+		return false
+	end
+end
+
+function CDOTA_BaseNPC:IsElite()
+	self.elite = self.elite or false
+	return self.elite
 end
 
 function CDOTA_BaseNPC:HasTalent(talentName)
@@ -236,7 +239,6 @@ function GetRandomUnselectedHero()
 		end
 	end
 	local rndReturn = randomList[math.random(#randomList)]
-	print(rndReturn)
 	return rndReturn
 end
 
@@ -256,7 +258,6 @@ function CDOTA_BaseNPC:HighestTalentTypeValue(talentType)
 			value = self:FindTalentValue(talent:GetName())
 		end
 	end
-	print("value")
 	return value
 end
 
@@ -270,8 +271,7 @@ end
 function CDOTA_BaseNPC:NotDead()
 	if self:IsAlive() or 
 	self:IsReincarnating() or 
-	(self:WillReincarnate() and not self:HasModifier("modifier_skeleton_king_reincarnation_cooldown")) or 
-	(self:FindItemByName("item_ressurection_stone", true) and self:FindItemByName("item_ressurection_stone", true):IsCooldownReady()) then
+	self.resurrectionStoned then
 		return true
 	else
 		return false
@@ -297,6 +297,12 @@ end
 
 function CDOTABaseAbility:GetTrueCastRange()
 	local castrange = self:GetCastRange()
+	castrange = castrange + get_aether_range(self:GetCaster())
+	return castrange
+end
+
+function CDOTA_Ability_Lua:GetTrueCastRange()
+	local castrange = self:GetCastRange(self:GetCaster():GetAbsOrigin(), self:GetCaster())
 	castrange = castrange + get_aether_range(self:GetCaster())
 	return castrange
 end
@@ -557,30 +563,8 @@ function get_aether_range(caster)
         local Item = caster:GetItemInSlot( itemSlot )
 		if Item ~= nil then
 			local itemRange = Item:GetSpecialValueFor("cast_range_bonus")
-			if Item:GetName() == "item_asura_lens" then
-				if aether_range < itemRange then
-					aether_range = itemRange
-				end
-			end
-			if Item:GetName() == "item_omni_lens" then
-				if aether_range < itemRange then
-					aether_range = itemRange
-				end
-			end
-			if Item:GetName() == "item_sunium_lens" then
-				if aether_range < itemRange then
-					aether_range = itemRange
-				end
-			end
-			if Item:GetName() ==  "item_redium_lens" then
-				if aether_range < itemRange then
-					aether_range = itemRange
-				end
-			end
-			if Item:GetName() == "item_aether_lens" then
-				if aether_range < itemRange then
-					aether_range = itemRange
-				end
+			if aether_range < itemRange then
+				aether_range = itemRange
 			end
 		end
 	end
@@ -926,100 +910,81 @@ function CDOTA_BaseNPC:SwapAbilityIndexes(index, swapname)
 	swapability:SetAbilityIndex(index)
 end
 
-function CDOTABaseAbility:ApplyAOE(particles, sound, location, radius, damage, damage_type, modifier, duration)
-    if duration == nil then
-        duration = self:GetAbilityDuration()
+function CDOTABaseAbility:ApplyAOE(eventTable)
+    if eventTable.duration == nil and eventTable.modifier then
+        eventTable.duration = self:GetAbilityDuration()
+	elseif not eventTable.duration then
+		eventTable.duration = 0
     end
-    if radius == nil then
-        radius = self:GetCaster():GetHullRadius()*2
+    if eventTable.radius == nil then
+        eventTable.radius = self:GetCaster():GetHullRadius()*2
     end
-    if damage_type == nil then
-        damage_type = self:GetAbilityDamageType()
+    if eventTable.damage_type == nil then
+        eventTable.damage_type = self:GetAbilityDamageType()
     end
-    if sound ~= nil then
-        StartSoundEventFromPosition(sound,location)
+	if eventTable.damage == nil then
+        eventTable.damage_type = self:GetAbilityDamage()
     end
-	if location == nil then
-		location = self:GetCaster():GetAbsOrigin()
+	if eventTable.location == nil then
+		eventTable.location = self:GetCaster():GetAbsOrigin()
 	end
-	if particles then
-		local AOE_effect = ParticleManager:CreateParticle(particles, PATTACH_ABSORIGIN  , self:GetCaster())
-		ParticleManager:SetParticleControl(AOE_effect, 0, location)
-		ParticleManager:SetParticleControl(AOE_effect, 1, location)
-		Timers:CreateTimer(duration,function()
-			ParticleManager:DestroyParticle(AOE_effect, false)
-		end)
+	eventTable.location.z = eventTable.location.z + GetGroundHeight(eventTable.location, nil) / 2
+	if eventTable.delay then
+		local thinker = ParticleManager:CreateParticle("particles/econ/generic/generic_aoe_shockwave_1/generic_aoe_shockwave_1.vpcf", PATTACH_WORLDORIGIN , nil)
+			ParticleManager:SetParticleControl(thinker, 0, eventTable.location)
+			ParticleManager:SetParticleControl(thinker, 2, Vector(6,0,1))
+			ParticleManager:SetParticleControl(thinker, 1, Vector(eventTable.radius,0,0))
+			ParticleManager:SetParticleControl(thinker, 3, Vector(255,0,0))
+			ParticleManager:SetParticleControl(thinker, 4, Vector(0,0,0))
+		ParticleManager:ReleaseParticleIndex(thinker)
+	else
+		eventTable.delay = 0
 	end
+	Timers:CreateTimer(eventTable.delay,function()
+		if eventTable.sound ~= nil then
+			EmitSoundOnLocationWithCaster(eventTable.location, eventTable.sound, self:GetCaster())
+		end
+		if eventTable.particles then
+			local AOE_effect = ParticleManager:CreateParticle(eventTable.particles, PATTACH_ABSORIGIN  , self:GetCaster())
+			ParticleManager:SetParticleControl(AOE_effect, 0, eventTable.location)
+			ParticleManager:SetParticleControl(AOE_effect, 1, eventTable.location)
+			Timers:CreateTimer(eventTable.duration,function()
+				ParticleManager:DestroyParticle(AOE_effect, false)
+			end)
+		end
+		local nearbyUnits = FindUnitsInRadius(self:GetCaster():GetTeam(),
+									  eventTable.location,
+									  nil,
+									  eventTable.radius,
+									  self:GetAbilityTargetTeam(),
+									  self:GetAbilityTargetType(),
+									  self:GetAbilityTargetFlags(),
+									  FIND_ANY_ORDER,
+									  false)
 
-    local nearbyUnits = FindUnitsInRadius(self:GetCaster():GetTeam(),
-                                  location,
-                                  nil,
-                                  radius,
-                                  self:GetAbilityTargetTeam(),
-                                  self:GetAbilityTargetType(),
-                                  self:GetAbilityTargetFlags(),
-                                  FIND_ANY_ORDER,
-                                  false)
-
-    for _,unit in pairs(nearbyUnits) do
-        if unit ~= self:GetCaster() then
-                if unit:GetUnitName()~="npc_dota_courier" and unit:GetUnitName()~="npc_dota_flying_courier" then
-					if damage and damage_type then
-						local damageTableAoe = {victim = unit,
-									attacker = self:GetCaster(),
-									damage = damage,
-									damage_type = damage_type,
-									ability = self,
-									}
-						ApplyDamage(damageTableAoe)
+		for _,unit in pairs(nearbyUnits) do
+			if unit ~= self:GetCaster() then
+				if unit:GetUnitName()~="npc_dota_courier" and unit:GetUnitName()~="npc_dota_flying_courier" then
+					if eventTable.damage and eventTable.damage_type then
+						ApplyDamage({victim = unit, attacker = self:GetCaster(), damage = eventTable.damage, damage_type = eventTable.damage_type, ability = self})
 					end
-					if modifier and unit:IsAlive() and not unit:HasModifier(modifier) then
-						if self:GetClassname() == "ability_lua" then
-							unit:AddNewModifier( self:GetCaster(), self, modifier, { duration = duration } )
-						elseif self:GetClassname() == "ability_datadriven" then
-							self:ApplyDataDrivenModifier(self:GetCaster(), unit, modifier , { duration = duration })
+					if not unit:IsMagicImmune() or (unit:IsMagicImmune() and eventTable.magic_immune) then
+						if eventTable.modifier and unit:IsAlive() and not unit:HasModifier(eventTable.modifier) then
+							if self:GetClassname() == "ability_lua" then
+								unit:AddNewModifier( self:GetCaster(), self, eventTable.modifier, { duration = eventTable.duration } )
+							elseif self:GetClassname() == "ability_datadriven" then
+								self:ApplyDataDrivenModifier(self:GetCaster(), unit, eventTable.modifier , { duration = eventTable.duration })
+							end
 						end
 					end
-                end
-        end
-    end
+				end
+			end
+		end
+	end)
 end
 
 function get_octarine_multiplier(caster)
-    local octarine_multiplier = 1
-    for itemSlot = 0, 5, 1 do
-        local Item = caster:GetItemInSlot( itemSlot )
-        if Item ~= nil and Item:GetName() == "item_octarine_core" then
-            if octarine_multiplier > 0.75 then
-                octarine_multiplier = 0.75
-            end
-        end
-        if Item ~= nil and Item:GetName() == "item_octarine_core2" then
-            if octarine_multiplier > 0.67 then
-                octarine_multiplier = 0.67
-            end
-        end
-        if Item ~= nil and Item:GetName() == "item_octarine_core3" then
-            if octarine_multiplier > 0.5 then
-                octarine_multiplier = 0.5
-            end
-        end
-        if Item ~= nil and Item:GetName() == "item_octarine_core4" then
-            if octarine_multiplier > 0.33 then
-                octarine_multiplier =0.33
-            end
-        end
-		if Item ~= nil and Item:GetName() == "item_octarine_core5" then
-            if octarine_multiplier > 0.25 then
-                octarine_multiplier = 0.25
-            end
-        end
-		if Item ~= nil and Item:GetName() == "item_asura_core" then
-            if octarine_multiplier > 0.25 then
-                octarine_multiplier = 0.25
-            end
-        end
-    end
+    local octarine_multiplier = 1 - caster:GetModifierStackCount("modifier_cooldown_reduction", caster) / 100	
 	local talentMult = 1 - caster:HighestTalentTypeValue("cooldown_reduction")/100
 	octarine_multiplier = octarine_multiplier*talentMult
     return octarine_multiplier
@@ -1030,37 +995,7 @@ function get_core_cdr(caster)
     local octarine_multiplier = 1
     for itemSlot = 0, 5, 1 do
         local Item = caster:GetItemInSlot( itemSlot )
-        if Item ~= nil and Item:GetName() == "item_octarine_core" then
-			local cdr = 1 - Item:GetSpecialValueFor("bonus_cooldown") / 100
-            if octarine_multiplier > cdr then
-                octarine_multiplier = cdr
-            end
-        end
-        if Item ~= nil and Item:GetName() == "item_octarine_core2" then
-            local cdr = 1 - Item:GetSpecialValueFor("bonus_cooldown") / 100
-            if octarine_multiplier > cdr then
-                octarine_multiplier = cdr
-            end
-        end
-        if Item ~= nil and Item:GetName() == "item_octarine_core3" then
-            local cdr = 1 - Item:GetSpecialValueFor("bonus_cooldown") / 100
-            if octarine_multiplier > cdr then
-                octarine_multiplier = cdr
-            end
-        end
-        if Item ~= nil and Item:GetName() == "item_octarine_core4" then
-            local cdr = 1 - Item:GetSpecialValueFor("bonus_cooldown") / 100
-            if octarine_multiplier > cdr then
-                octarine_multiplier = cdr
-            end
-        end
-		if Item ~= nil and Item:GetName() == "item_octarine_core5" then
-            local cdr = 1 - Item:GetSpecialValueFor("bonus_cooldown") / 100
-            if octarine_multiplier > cdr then
-                octarine_multiplier = cdr
-            end
-        end
-		if Item ~= nil and Item:GetName() == "item_asura_core" then
+        if Item ~= nil then
             local cdr = 1 - Item:GetSpecialValueFor("bonus_cooldown") / 100
             if octarine_multiplier > cdr then
                 octarine_multiplier = cdr
@@ -1070,6 +1005,9 @@ function get_core_cdr(caster)
     return octarine_multiplier
 end
 
+function CDOTAGamerules:GetMaxRound()
+	return GameRules.maxRounds
+end
 
 function ApplyKnockback( keys )
 	keys.ability:ApplyDataDrivenModifier(keys.caster, keys.target, keys.modifier, {duration = keys.duration})
@@ -1096,7 +1034,6 @@ function ApplyKnockback( keys )
    		Timers:CreateTimer(duration,function()
    			FindClearSpaceForUnit(target, position, true)
    		end)
-   		print (travel_distance_per_frame)
    		Timers:CreateTimer(0.03 ,function()
    			if GameRules:GetGameTime() <= begin_time+duration then
 	   			position = position+travel_distance_per_frame
@@ -1151,7 +1088,6 @@ function ApplyKnockback( keys )
 	        
 	        -- First send the target to the cyclone's initial height.
 	        if position.z < cyclone_initial_height and time_in_air <= time_to_reach_initial_height then
-	            --print("+",initial_ascent_height_per_frame,position.z)
 	            position.z = position.z + initial_ascent_height_per_frame
 	            target:SetAbsOrigin(position)
 	            return 0.03
@@ -1162,12 +1098,9 @@ function ApplyKnockback( keys )
 	            --the descending height per frame must be calculated when that begins, so the unit will end up right on the ground when the duration is supposed to end.
 	            if final_descent_height_per_frame == nil then
 	                local descent_initial_height_above_ground = position.z - ground_position.z
-	                --print("ground position: " .. GetGroundPosition(position, target).z)
-	                --print("position.z : " .. position.z)
 	                final_descent_height_per_frame = (descent_initial_height_above_ground / time_to_reach_initial_height) * .03
 	            end
 	            
-	            --print("-",final_descent_height_per_frame,position.z)
 	            position.z = position.z - final_descent_height_per_frame
 	            target:SetAbsOrigin(position)
 	            return 0.03
@@ -1176,7 +1109,6 @@ function ApplyKnockback( keys )
 	        elseif time_in_air <= duration then
 	            -- Up
 	            if position.z < cyclone_max_height and going_up then 
-	                --print("going up")
 	                position.z = position.z + up_down_cycle_height_per_frame
 	                target:SetAbsOrigin(position)
 	                return 0.03
@@ -1184,22 +1116,15 @@ function ApplyKnockback( keys )
 	            -- Down
 	            elseif position.z >= cyclone_min_height then
 	                going_up = false
-	                --print("going down")
 	                position.z = position.z - up_down_cycle_height_per_frame
 	                target:SetAbsOrigin(position)
 	                return 0.03
 
 	            -- Go up again
 	            else
-	                --print("going up again")
 	                going_up = true
 	                return 0.03
 	            end
-
-	        -- End
-	        else
-	            --print(GetGroundPosition(target:GetAbsOrigin(), target))
-	            --print("End TornadoHeight")
 	        end
 	    end)
 	end

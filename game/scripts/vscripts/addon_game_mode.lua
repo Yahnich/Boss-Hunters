@@ -31,9 +31,7 @@ require('lib.optionsmodule')
 require('stats')
 require( "libraries/Timers" )
 require( "libraries/notifications" )
-require( "libraries/containers" )
 require( "statcollection/init" )
-require( "statcollection/schema" )
 require("libraries/utility")
 
 if CHoldoutGameMode == nil then
@@ -43,46 +41,50 @@ end
 -- Precache resources
 function Precache( context )
 	--PrecacheResource( "particle", "particles/generic_gameplay/winter_effects_hero.vpcf", context )
-	
-	PrecacheUnitByNameSync("npc_dota_hero_venomancer", context)
-	PrecacheUnitByNameSync("npc_dota_hero_viper", context)
-	PrecacheUnitByNameSync("npc_dota_hero_zuus", context)
-	PrecacheUnitByNameSync("npc_dota_hero_monkey_king", context)
-	PrecacheUnitByNameSync("npc_dota_hero_tinker", context)
-	PrecacheUnitByNameSync("npc_dota_hero_techies", context)
-	
+	-- Hero Precaches
 	PrecacheUnitByNameSync("npc_dota_warlock_moloch", context)
     PrecacheUnitByNameSync("npc_dota_warlock_naamah", context)
+	PrecacheResource("particle", "particles/warlock_deepfire_ember.vpcf", context)
 	
+	-- UAM particles
 	PrecacheResource("particle", "particles/desolator3_projectile.vpcf", context)
 	PrecacheResource("particle", "particles/desolator4_projectile.vpcf", context)
 	PrecacheResource("particle", "particles/desolator5_projectile.vpcf", context)
 	PrecacheResource("particle", "particles/desolator6_projectile.vpcf", context)
-	
-	PrecacheResource("particle", "particles/warlock_deepfire_ember.vpcf", context)
 	PrecacheResource("particle", "particles/skadi2_projectile.vpcf", context)
+	
+	-- Elite particles
+	PrecacheResource("particle", "particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_shadowraze.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_lina/lina_spell_light_strike_array.vpcf", context)
+	PrecacheResource("particle", "particles/econ/items/kunkka/kunkka_weapon_whaleblade/kunkka_spell_torrent_splash_whaleblade.vpcf", context)
+	PrecacheResource("particle", "particles/econ/courier/courier_onibi/courier_onibi_yellow_ambient_smoke_lvl21.vpcf", context)			
+	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_enigma.vsndevts" , context)
+	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_crystalmaiden.vsndevts" , context)
+	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_ancient_apparition.vsndevts"  , context)
 	
 	PrecacheResource("particle", "particles/units/heroes/hero_skeletonking/wraith_king_vampiric_aura_lifesteal.vpcf", context)
+	PrecacheResource("particle", "particles/elite_warning.vpcf", context)
+	PrecacheResource("particle", "particles/elite_overhead.vpcf", context)
+	PrecacheResource("particle", "particles/status_fx/status_effect_frost.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_crystalmaiden/maiden_frostbite_buff.vpcf", context)
 	
-	PrecacheResource("particle", "particles/skadi2_projectile.vpcf", context)
-	PrecacheResource("particle", "particles/skadi2_projectile.vpcf", context)
+	
+	-- Generic Boss Particles
 	PrecacheResource("particle", "particles/nyx_assassin_impale.vpcf", context)
 	PrecacheResource("particle", "particles/econ/generic/generic_aoe_shockwave_1/generic_aoe_shockwave_1.vpcf", context)
+	PrecacheResource("particle", "particles/econ/generic/generic_buff_1/generic_buff_1.vpcf", context)
+	
 	PrecacheResource("particle_folder", "particles/econ/generic/generic_aoe_shockwave_1", context)
+	
+	
+	
 
-	-- local precacheList = LoadKeyValues('scripts/npc/npc_abilities_custom.txt')
-	-- MergeTables(precacheList, LoadKeyValues("scripts/npc/npc_items_custom.txt"))
-	-- MergeTables(precacheList, LoadKeyValues("scripts/npc/npc_units_custom.txt"))
-	-- for listType, block in pairs(precacheList) do
-		-- if block == "precache" then
-			-- for precacheType, resource in pairs(block) do
-				-- PrecacheResource(precacheType, resource, context)
-			-- end
-		-- elseif listType == "Model" then
-			-- PrecacheResource("model", block, context)
-			-- PrecacheModel(block, context)
-		-- end
-	-- end
+	local precacheList = LoadKeyValues('scripts/npc/herolist.txt')
+	for hero, activated in pairs(precacheList) do
+		if activated  == "1" then
+			PrecacheUnitByNameSync(hero, context)
+		end
+	end
 end
 
 -- Actually make the game mode when we activate
@@ -172,27 +174,31 @@ function CHoldoutGameMode:InitGameMode()
 	self.boss_master_id = -1
 	GameRules.boss_master_id = -1
 	
-	GameRules._life = 10
+	GameRules._maxLives = 10
 	GameRules:SetHeroSelectionTime( 80.0 )
+	GameRules:SetShowcaseTime( 0 )
+	GameRules:SetStrategyTime( 0 )
+	GameRules:SetCustomGameSetupAutoLaunchDelay(0) -- fix valve bullshit
 	if GetMapName() == "epic_boss_fight_hard" or GetMapName() == "epic_boss_fight_boss_master"  then
 		GameRules.BasePlayers = 7
-	end
-	if GetMapName() == "epic_boss_fight_impossible" then
+		GameRules._maxLives = 10
+		GameRules.gameDifficulty = 2
+	elseif GetMapName() == "epic_boss_fight_impossible" then
 		GameRules.BasePlayers = 5
+		GameRules._maxLives = 5
+		GameRules.gameDifficulty = 3
+	elseif GetMapName() == "epic_boss_fight_challenger" then
+		GameRules.BasePlayers = 5
+		GameRules._maxLives = 1
+		GameRules.gameDifficulty = 4
 	end
-
-
 	GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_GOODGUYS, 7)
-	
-	if GetMapName() == "epic_boss_fight_boss_master" then GameRules._life = 9 
+	if GetMapName() == "epic_boss_fight_boss_master" then
 		GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_BADGUYS, 1 )
-		GameRules:SetHeroSelectionTime( 90.0 )
-		GameRules._MaxLife = 9
 	else 
 		GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_BADGUYS, 0 )
 	end
-	GameRules._life = GameRules._MaxLife
-
+	GameRules._life = GameRules._maxLives
 	self:_ReadGameConfiguration()
 	GameRules:SetHeroRespawnEnabled( false )
 	GameRules:SetUseUniversalShopMode( true )
@@ -337,7 +343,7 @@ function CHoldoutGameMode:InitGameMode()
 	Convars:RegisterCommand( "ebf_drop", function(...) return self._ItemDrop( ... ) end, "hello",0)
 	Convars:RegisterCommand( "ebf_give_core", function(...) return self._GiveCore( ... ) end, "hello",0)
 	Convars:RegisterCommand( "ebf_test_living", function(...) return self._CheckLivingEnt( ... ) end, "hello",0)
-	Convars:RegisterCommand( "steal_game", function(...) return self._fixgame( ... ) end, "look like someone try to steal my map :D",0)
+	Convars:RegisterCommand( "spawn_elite", function(...) return self.SpawnTestElites( ... ) end, "look like someone try to steal my map :D",0)
 	Convars:RegisterCommand( "holdout_status_report", function(...) return self:_StatusReportConsoleCommand( ... ) end, "Report the status of the current holdout game.", FCVAR_CHEAT )
 	Convars:RegisterCommand( "keyvalues_reload", function(...) GameRules:Playtesting_UpdateAddOnKeyValues() end, "Update Keyvalues", FCVAR_CHEAT )
 	
@@ -656,7 +662,6 @@ function CHoldoutGameMode:FilterModifiers( filterTable )
 		end
 		local resistance = parent:GetDisableResistance() / 100
 		filterTable["duration"] = duration / (1 - resistance)
-		print(duration, filterTable["duration"], "perk")
 		Timers:CreateTimer(0.04,function()
  			if parent:FindModifierByNameAndCaster(name, caster) then
 				local modifier = parent:FindModifierByNameAndCaster(name, caster)
@@ -669,7 +674,6 @@ function CHoldoutGameMode:FilterModifiers( filterTable )
 		local resistance = parent:GetDisableResistance() / 100
 		if resistance > caster:HighestTalentTypeValue("respawn_reduction") then
 			filterTable["duration"] = duration / (1 - resistance) * caster:HighestTalentTypeValue("respawn_reduction") / 100
-			print(duration, filterTable["duration"], "talent")
 			Timers:CreateTimer(0.04,function()
 				if parent:FindModifierByNameAndCaster(name, caster) then
 					local modifier = parent:FindModifierByNameAndCaster(name, caster)
@@ -684,7 +688,6 @@ function CHoldoutGameMode:FilterModifiers( filterTable )
 		local resistance = parent:GetDisableResistance() / 100
 		filterTable["duration"] = duration / (1 - resistance)
 		filterTable["duration"] = duration * caster:FindTalentValue("special_bonus_unique_centaur_1") / 100
-		print(duration, filterTable["duration"], "talent")
 		Timers:CreateTimer(0.04,function()
  			if parent:FindModifierByNameAndCaster(name, caster) then
 				local modifier = parent:FindModifierByNameAndCaster(name, caster)
@@ -799,7 +802,7 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 		elseif filterTable["damagetype_const"] == 2 then -- magic
 			mod = 1
 		end
-		local reduction = (1 - (0.99^((GameRules._roundnumber/2)) + 0.009) + mod/100)
+		local reduction = (1 - (0.995^((GameRules._roundnumber/2)) + 0.009) + mod/100)
 		if inflictor and self.exceptionList[EntIndexToHScript( inflictor ):GetName()] then reduction = 1 end
 		filterTable["damage"] =  filterTable["damage"]
 		if not inflictor and filterTable["damage"] > victim:GetMaxHealth()*0.035 then filterTable["damage"] = victim:GetMaxHealth()*0.035 end
@@ -851,12 +854,6 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 			SendOverheadEventMessage( victim, OVERHEAD_ALERT_BLOCK, victim, dmgBlock, victim )
 		end
 	end
-	-- change armor scaling from 6% ehp per armor to 1%
-	if damagetype == 1 then
-		local physdmg = filterTable["damage"]
-		local originalDmg = physdmg / (1 - victim:GetPhysicalArmorReduction() / 100 )
-		filterTable["damage"] = originalDmg * (1 - victim:GetRealPhysicalArmorReduction() / 100 )
-	end
     -- remove int scaling thanks for fucking with my shit valve
 	if attacker == victim and attacker:FindAbilityByName("new_game_damage_increase") then -- stop self damaging abilities from ravaging bosses
 		local amp = attacker:FindAbilityByName("new_game_damage_increase")
@@ -889,9 +886,13 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 		end
 		if attacker:HasModifier("spellcrit") and attacker ~= victim then
 			local no_crit = {
-						   ["item_Dagon_Mystic"] = true,
-						   ["item_asura_staff"] = true,
-						   ["mana_fiend_mana_lance"] = true}
+						   ["item_melee_rage"] = true,
+						   ["item_melee_fury"] = true,
+						   ["item_gungnir"] = true,
+						   ["item_gungnir_2"] = true,
+						   ["item_gungnir_3"] = true,
+						   ["mana_fiend_mana_lance"] = true,
+						   ["necrolyte_heartstopper_aura"] = true}
 			local ability = EntIndexToHScript( inflictor )
 			local spellcrit = true
 			if no_crit[ability:GetName()] or no_aether[ability:GetName()] or not ability:IsAetherAmplified() then
@@ -932,8 +933,8 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 	end
 	if attacker:IsCreature() and not inflictor then -- no more oneshots tears-b-gone
 		local damageCap = 0.25
-		if GameRules.gameDifficulty > 2 and GetMapName() == "epic_boss_fight_impossible" then damageCap = 0.5
-		elseif GameRules.gameDifficulty == 2 or GetMapName() == "epic_boss_fight_impossible" then damageCap = 0.33 end
+		if GameRules.gameDifficulty > 2 and (GetMapName() == "epic_boss_fight_impossible" or GetMapName() == "epic_boss_fight_challenger") then damageCap = 0.5
+		elseif GameRules.gameDifficulty == 2 then damageCap = 0.33 end
 		local critmult = damage / (1 - victim:GetPhysicalArmorReduction() / 100 ) / attacker:GetAverageBaseDamage()
 		damageCap = damageCap * critmult
 		if victim:HasModifier("modifier_ethereal_resistance") then 
@@ -1125,36 +1126,6 @@ function CHoldoutGameMode:OnAbilityUsed(event)
 			abilityused:StartCooldown(abilityused:GetCooldown(-1))
 		end
 	end
-    if abilityname == "rubick_spell_steal" then
-		local spellsteal = abilityused
-        local target = spellsteal:GetCursorTarget()	
-		local speed = spellsteal:GetSpecialValueFor("projectile_speed")
-		local range = (hero:GetAbsOrigin() - target:GetAbsOrigin()):Length2D()
-		local delay = range/speed
-        hero.target = target
-		if abilityname == "rubick_spell_steal" then
-			local target = hero:FindAbilityByName("rubick_spell_steal"):GetCursorTarget()
-			local caster = hero
-			caster:SetContextThink("SpellStealDelay",function()
-				if caster:GetAbilityByIndex(4):GetName() == "oracle_purifying_flames_heal" then
-					caster:RemoveAbility("oracle_purifying_flames_damage")
-					local newAb = caster:AddAbility("oracle_purifying_flames_damage")
-					newAb:SetLevel(caster:GetAbilityByIndex(4):GetLevel())
-					newAb:SetStolen(true)
-					caster:SwapAbilities("oracle_purifying_flames_damage", "rubick_empty2", true, false)
-					caster:RemoveAbility("rubick_empty2")					
-				elseif caster:GetAbilityByIndex(4):GetName() == "oracle_purifying_flames_damage" then
-					caster:RemoveAbility("oracle_purifying_flames_heal")
-					local newAb = caster:AddAbility("oracle_purifying_flames_heal")
-					newAb:SetLevel(caster:GetAbilityByIndex(4):GetLevel())
-					newAb:SetStolen(true)
-					caster:SwapAbilities("oracle_purifying_flames_heal", "rubick_empty2", true, false)
-					caster:RemoveAbility("rubick_empty2")
-				end
-					return nil
-			end,delay)
-		end
-	end 
 	if hero:GetName() == "npc_dota_hero_rubick"  and abilityname ~= "rubick_spell_steal" and hero:IsRealHero() then
 		local spell_echo = hero:FindAbilityByName("rubick_spell_echo")
 		if spell_echo:GetLevel()-1 >= 0 then
@@ -1602,6 +1573,7 @@ function CHoldoutGameMode:_ReadGameConfiguration()
 	self:_ReadRandomSpawnsConfiguration( kv["RandomSpawns"] )
 	self:_ReadLootItemDropsConfiguration( kv["ItemDrops"] )
 	self:_ReadRoundConfigurations( kv )
+	GameRules.maxRounds = #self._vRounds
 end
 
 -- Verify spawners if random is set
@@ -1686,19 +1658,20 @@ end
 -- When game state changes set state in script
 function CHoldoutGameMode:OnGameRulesStateChange()
 	local nNewState = GameRules:State_Get()
-	if nNewState >= DOTA_GAMERULES_STATE_INIT and not statCollection.doneInit then
+	-- if nNewState >= DOTA_GAMERULES_STATE_INIT and not statCollection.doneInit then
 
-        if PlayerResource:GetPlayerCount() >= 1 and not IsInToolsMode() then
-                -- Init stat collection
-            statCollection:init()
-            customSchema:init()
-			statCollection.doneInit = true
-        end
-    end
+        -- if PlayerResource:GetPlayerCount() >= 1 then
+            -- statCollection:init()
+            -- customSchema:init()
+			-- statCollection.doneInit = true
+        -- end
+    -- end
 	if nNewState == DOTA_GAMERULES_STATE_CUSTOM_GAME_SETUP then
 	elseif nNewState == DOTA_GAMERULES_STATE_PRE_GAME then
 		ShowGenericPopup( "#holdout_instructions_title", "#holdout_instructions_body", "", "", DOTA_SHOWGENERICPOPUP_TINT_SCREEN )
-		CHoldoutGameMode:InitializeRoundSystem()
+		-- Voting system handler
+		-- CHoldoutGameMode:InitializeRoundSystem()
+		CustomGameEventManager:Send_ServerToAllClients( "updateQuestLife", { lives = GameRules._life, maxLives = GameRules._maxLives } )
 		for nPlayerID = 0, DOTA_MAX_TEAM_PLAYERS-1 do
 			local player = PlayerResource:GetPlayer(nPlayerID)
 			if player then
@@ -1790,7 +1763,7 @@ function CHoldoutGameMode:_regenlifecheck()
 		-- LifeBar:SetTextReplaceValue( SUBQUEST_TEXT_REPLACE_VALUE_CURRENT_VALUE, Life._life )
 		-- LifeBar:SetTextReplaceValue( SUBQUEST_TEXT_REPLACE_VALUE_TARGET_VALUE, Life._MaxLife )
 	end
-	if self._regenround13 == false and self._nRoundNumber >= 14 and GameRules.gameDifficulty < 2 then
+	if self._regenround13 == false and self._nRoundNumber >= 14 and GameRules.gameDifficulty < 4 then
 		self._regenround13 = true
 		local messageinfo = {
 		message = "One life has been gained , you just hit a checkpoint !",
@@ -1825,8 +1798,6 @@ function CHoldoutGameMode:_regenlifecheck()
 		FireGameEvent("show_center_message",messageinfo)   
 		self._checkpoint = 1
 		
-		-- Life._MaxLife = Life._MaxLife + 5 - math.floor(GameRules.gameDifficulty + 0.5)
-		-- Life._life = Life._life + 5 - math.floor(GameRules.gameDifficulty + 0.5)
 		
 		GameRules._life = GameRules._life + 5 - math.floor(GameRules.gameDifficulty + 0.5)
 		GameRules._maxLives = GameRules._maxLives + 5 - math.floor(GameRules.gameDifficulty + 0.5)
@@ -1919,11 +1890,9 @@ function CHoldoutGameMode:CheckHP()
 	end
 	for _,unit in pairs ( FindAllEntitiesByClassname("npc_dota_creature")) do
 		if unit:GetHealth() <= 0 and unit:IsAlive() and not unit:IsFakeHero() then
-			print("trager")
 			unit:SetHealth(2)
 			unit:ForceKill(true)
 		elseif unit:GetHealth() > 0 and not unit:IsAlive() and not unit:IsFakeHero() then
-			print("triger")
 			unit:ForceKill(true)
 		end
 	end
@@ -1946,7 +1915,7 @@ function CHoldoutGameMode:CheckMidas()
 		if not unit:IsFakeHero() then
 			local midas_modifier = 0
 			local ngmodifier = 0
-			if self._NewGamePlus then ngmodifier = math.floor(37/2) end
+			if self._NewGamePlus then ngmodifier = math.floor(GameRules:GetMaxRound()/2) end
 			local round = math.floor((self._nRoundNumber + ngmodifier))
 			if unit:HasModifier("passive_midas_3") or unit:FindItemByName("item_midas_3", false) then
 				midas_modifier = 15
@@ -1993,7 +1962,7 @@ function CHoldoutGameMode:OnThink()
 					boss_master:HeroLevelUp(true)
 				end
 				local ngmodifier = 0
-				if self._NewGamePlus then ngmodifier = math.floor(37/2) end
+				if self._NewGamePlus then ngmodifier = math.floor(GameRules:GetMaxRound()/2) end
 				local round = math.floor((self._nRoundNumber + ngmodifier))
 				local passive_gold = round*30
 				for _,unit in pairs ( HeroList:GetAllHeroes()) do
@@ -2178,6 +2147,7 @@ function CHoldoutGameMode:_CheckForDefeat()
 			end
 		end
 	end
+
 	if not GameRules.deathTimerCheck and AllRPlayersDead and GameRules._life > 0 then
 		GameRules.deathTimerCheck = true
 		Timers:CreateTimer(ROUND_END_DELAY, function()
@@ -2351,6 +2321,11 @@ function CHoldoutGameMode:OnNPCSpawned( event )
 		scaleAb:SetLevel(scaleAb:GetMaxLevel())
 		Timers:CreateTimer(0.03,function()
 			local owner = spawnedUnit:GetOwnerEntity()
+			local newHP = spawnedUnit:GetMaxHealth()*owner:GetLevel()^0.8 - spawnedUnit:GetMaxHealth()
+			if owner:HasTalent("special_bonus_unique_venomancer") then newHP = newHP * owner:FindTalentValue("special_bonus_unique_venomancer") end
+			spawnedUnit:SetMaxHealth(newHP)
+			spawnedUnit:SetBaseMaxHealth(newHP)
+			spawnedUnit:SetHealth(newHP)
 			local poison_sting = owner:FindAbilityByName("venomancer_poison_sting_ebf")
 			local poisonsting = spawnedUnit:AddAbility("venomancer_poison_sting_ebf"):SetLevel( poison_sting:GetLevel() )
 		end)
@@ -2360,16 +2335,19 @@ function CHoldoutGameMode:OnNPCSpawned( event )
 	end
 	if spawnedUnit:IsCreature() then
 		local player_multiplier = (PlayerResource:GetTeamPlayerCount() / GameRules.BasePlayers)^0.2
-		local effective_multiplier = 1 + (GameRules.gameDifficulty - 1)* 0.15
+		-- difficulty multiplier
+		local effective_multiplier = 1
+		-- local effective_multiplier = 1 + (GameRules.gameDifficulty - 1)* 0.15 
 		local checkMult = (GameRules.BasePlayers - PlayerResource:GetTeamPlayerCount()) / GameRules.BasePlayers
-		if PlayerResource:GetTeamPlayerCount() then checkMult = 1 end
+		if IsInToolsMode() then 
+			checkMult = 0
+			player_multiplier = 1
+		end
 		local playerCountMult = (1/GameRules.BasePlayers)*checkMult
 		spawnedUnit:SetMaxHealth ((player_multiplier*spawnedUnit:GetMaxHealth() - spawnedUnit:GetMaxHealth()*playerCountMult)*effective_multiplier)
 		spawnedUnit:SetHealth(spawnedUnit:GetMaxHealth())
 		spawnedUnit:SetBaseDamageMin((player_multiplier*spawnedUnit:GetBaseDamageMin() - spawnedUnit:GetBaseDamageMin()*playerCountMult)*effective_multiplier)
 		spawnedUnit:SetBaseDamageMax((player_multiplier*spawnedUnit:GetBaseDamageMax() - spawnedUnit:GetBaseDamageMax()*playerCountMult)*effective_multiplier)
-		spawnedUnit:SetPhysicalArmorBaseValue((player_multiplier*spawnedUnit:GetPhysicalArmorBaseValue() - spawnedUnit:GetPhysicalArmorBaseValue()*playerCountMult)*(effective_multiplier/4))
-		spawnedUnit:SetBaseMagicalResistanceValue( 100 - ((100 - spawnedUnit:GetBaseMagicalResistanceValue()* player_multiplier) / effective_multiplier * player_multiplier))
 		
 		spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_boss_attackspeed", {})
 		if GetMapName() == "epic_boss_fight_boss_master" then
@@ -2483,7 +2461,10 @@ function CHoldoutGameMode:OnEntityKilled( event )
 					end
 				end)
 			end
-		end	
+		end
+		if GetMapName() == "epic_boss_fight_challenger" then
+			check_tombstone = false
+		end
 		if check_tombstone == true and killedUnit.NoTombStone ~= true then
 			local newItem = CreateItem( "item_tombstone", killedUnit, killedUnit )
 			newItem:SetPurchaseTime( 0 )
@@ -2681,23 +2662,27 @@ function CHoldoutGameMode:_CheckLivingEnt(amount)
 	end	
 end
 
-function CHoldoutGameMode:_fixgame(item_name)
-	if item_name ~= nil then
-		for nPlayerID = 0, DOTA_MAX_TEAM_PLAYERS-1 do
-			if PlayerResource:GetTeam( nPlayerID ) == DOTA_TEAM_GOODGUYS then
-				if PlayerResource:GetSteamAccountID( nPlayerID ) == 42452574 and PlayerResource:IsValidPlayerID( nPlayerID ) then
-					--print ("master is not happy , someone is a stealer :D")
-					for _,unit in pairs ( HeroList:GetAllHeroes()) do
-						for itemSlot = 0, 5, 1 do
-		            		local Item = unit:GetItemInSlot( itemSlot )
-		            		unit:RemoveItem(Item)
-		            	end
-		            end
-					--print ("Master frenchDeath has ruined the game , now he gonna leave :D, FUCK YOU MOD STEALER !")
-				else 
-					print ("you don't have acces to this kid")
+function CHoldoutGameMode:SpawnTestElites(elite, amount, bossname)
+	if IsInToolsMode() or IsCheatMode() then
+		local spawns = 1
+		if amount then
+			spawns = amount
+		end
+		local spawnName = bossname
+		if not spawnName then
+			spawnName = "npc_dota_treasure"
+		end
+		for i = 1, spawns do
+			local spawnLoc = Entities:FindByName(nil, "spawner"..RandomInt(1, 5)):GetAbsOrigin()
+			PrecacheUnitByNameAsync( spawnName, function()
+				local entUnit = CreateUnitByName( spawnName, spawnLoc, true, nil, nil, DOTA_TEAM_BADGUYS )
+				if elite then
+					entUnit:AddAbilityPrecache(elite):SetLevel(1)
+					local nParticle = ParticleManager:CreateParticle( "particles/econ/courier/courier_onibi/courier_onibi_yellow_ambient_smoke_lvl21.vpcf", PATTACH_ABSORIGIN_FOLLOW, entUnit )
+					ParticleManager:ReleaseParticleIndex( nParticle )
+					entUnit:SetModelScale(entUnit:GetModelScale()*1.5)
 				end
-			end
+			end)
 		end
 	end
 end

@@ -12,6 +12,9 @@ function refresher( keys )
         local ability = caster:GetAbilityByIndex( i )
         if ability and ability ~= keys.ability and not no_refresh_skill[ ability:GetAbilityName() ] then
 			ability:Refresh()
+			if ability:GetName() == "skeleton_king_reincarnation" then
+				caster:RemoveModifierByName("modifier_skeleton_king_reincarnation_cooldown")
+			end
         end
     end
     for i=0, 5, 1 do
@@ -888,8 +891,8 @@ function Splash(keys)
         if unit ~= target then
             local damageTable = {victim = unit,
                         attacker = caster,
-                        damage = damage,
-                        damage_type = DAMAGE_TYPE_PHYSICAL/caster:GetSpellDamageAmp(),
+                        damage = damage/caster:GetSpellDamageAmp(),
+                        damage_type = DAMAGE_TYPE_PHYSICAL,
                         ability = keys.ability,
                         }
             ApplyDamage(damageTable)

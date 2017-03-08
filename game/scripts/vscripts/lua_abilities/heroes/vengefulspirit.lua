@@ -2,7 +2,9 @@ vengefulspirit_magic_missile_ebf = class({})
 
 if IsServer() then
 	function vengefulspirit_magic_missile_ebf:OnSpellStart()
-		local enemies = FindUnitsInRadius(self:GetCaster():GetTeam(), self:GetCaster():GetAbsOrigin(), nil, self:GetCastRange(self:GetCaster():GetAbsOrigin(), self:GetCaster()) + get_aether_range(self:GetCaster()), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO, 0, 0, false)
+		local distance = self:GetTrueCastRange()
+		print(distance)
+		local enemies = FindUnitsInRadius(self:GetCaster():GetTeam(), self:GetCaster():GetAbsOrigin(), nil, distance, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO, 0, 0, false)
 		for _,enemy in pairs(enemies) do
 			local projectile = {
 				Target = enemy,
@@ -20,6 +22,7 @@ if IsServer() then
 	end
 
 	function vengefulspirit_magic_missile_ebf:OnProjectileHit(target, position)
+		if not target then return end
 		EmitSoundOn("Hero_VengefulSpirit.MagicMissile", target)
 		target:AddNewModifier(caster, self, "modifier_stunned", {duration = self:GetTalentSpecialValueFor("magic_missile_stun")})
 		ApplyDamage({victim = target, attacker = self:GetCaster(), damage = self:GetTalentSpecialValueFor("magic_missile_damage"), damage_type = self:GetAbilityDamageType(), ability = self})

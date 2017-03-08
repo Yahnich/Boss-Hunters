@@ -54,6 +54,7 @@
 					"TotalUnitsToSpawn"		"1"
 					"UnitsPerSpawn"			"1"
 					"SpawnInterval"			"1"
+					"DoNotIncrease"			"1"
 				}
 			}
 			"2"
@@ -64,6 +65,7 @@
 					"TotalUnitsToSpawn"		"2"
 					"UnitsPerSpawn"			"1"
 					"SpawnInterval"			"1"
+					"DoNotIncrease"			"1"
 				}
 			}
 			"3"
@@ -74,6 +76,7 @@
 					"TotalUnitsToSpawn"		"3"
 					"UnitsPerSpawn"			"1"
 					"SpawnInterval"			"1"
+					"DoNotIncrease"			"1"
 				}
 			}
 			"4"
@@ -84,6 +87,7 @@
 					"TotalUnitsToSpawn"		"4"
 					"UnitsPerSpawn"			"1"
 					"SpawnInterval"			"1"
+					"DoNotIncrease"			"1"
 				}
 			}
 			"5"
@@ -94,6 +98,20 @@
 					"TotalUnitsToSpawn"		"5"
 					"UnitsPerSpawn"			"1"
 					"SpawnInterval"			"1"
+					"DoNotIncrease"			"1"
+				}
+			}
+			"6"
+			{
+				"round_quest_title"		"#DOTA_Holdout_Round_Boss0_Quest_Title_alt"
+				"UnitBoss_money_roshan" 
+				{
+					"NPCName"				"npc_dota_money_roshan"
+					"TotalUnitsToSpawn"		"1"
+					"UnitsPerSpawn"			"5"
+					"SpawnInterval"			"1"
+					"SetRenderColor"		"255 255 0"
+					"DoNotIncrease"			"1"
 				}
 			}
 		}
@@ -797,6 +815,7 @@
 				"UnitBoss_6"
 				{
 					"NPCName"				"npc_dota_boss36"
+					"DoNotIncrease"			"1"
 					"TotalUnitsToSpawn"		"1"
 					"UnitsPerSpawn"			"1"
 					"SpawnInterval"			"100"

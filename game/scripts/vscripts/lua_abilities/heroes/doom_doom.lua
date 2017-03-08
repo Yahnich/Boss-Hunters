@@ -27,19 +27,40 @@ function doom_doom_ebf:OnSpellStart()
 			local direction = (vTargetPosition - self:GetCaster():GetAbsOrigin()):Normalized()
 			local location = self:GetCaster():GetOrigin() + direction * 150
 			for i=1,8,1 do
-                self:ApplyAOE("particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_shadowraze.vpcf",nil,location,250,self.doomDamage,self:GetAbilityDamageType(), "modifier_doom_doom_ebf", self.doomDuration)
+                self:ApplyAOE({particles = "particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_shadowraze.vpcf",
+							   location = location,
+							   radius = 250,
+							   damage = self.doomDamage,
+							   damage_type = self:GetAbilityDamageType(), 
+							   modifier = "modifier_doom_doom_ebf", 
+							   duration = self.doomDuration,
+							   magic_immune = true})
                 location = location + direction * 150
             end
 			local newdira = RotateVector2D(direction, 0.261799)
 			local newloca = self:GetCaster():GetOrigin() + newdira * 150
 			for i=1,8,1 do
-                self:ApplyAOE("particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_shadowraze.vpcf",nil,newloca,250,self.doomDamage,self:GetAbilityDamageType(), "modifier_doom_doom_ebf", self.doomDuration)
+                self:ApplyAOE({particles = "particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_shadowraze.vpcf",
+							   location = newloca,
+							   radius = 250,
+							   damage = self.doomDamage,
+							   damage_type = self:GetAbilityDamageType(), 
+							   modifier = "modifier_doom_doom_ebf", 
+							   duration = self.doomDuration,
+							   magic_immune = true})
                 newloca = newloca + newdira * 150
             end
 			local newdirb = RotateVector2D(direction, -0.261799)
 			local newlocb = self:GetCaster():GetOrigin() + newdirb * 150
 			for i=1,8,1 do
-                self:ApplyAOE("particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_shadowraze.vpcf",nil,newlocb,250,self.doomDamage,self:GetAbilityDamageType(), "modifier_doom_doom_ebf", self.doomDuration)
+                self:ApplyAOE({particles = "particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_shadowraze.vpcf",
+							   location = newlocb,
+							   radius = 250,
+							   damage = self.doomDamage,
+							   damage_type = self:GetAbilityDamageType(), 
+							   modifier = "modifier_doom_doom_ebf", 
+							   duration = self.doomDuration,
+							   magic_immune = true})
                 newlocb = newlocb + newdirb * 150
             end
 		end

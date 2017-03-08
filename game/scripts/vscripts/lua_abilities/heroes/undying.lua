@@ -1,4 +1,3 @@
-require("libraries/Timers")
 
 function ZombieLeech(keys)
 	local target = keys.target
@@ -78,7 +77,10 @@ function decay( keys )
 		ability:ApplyDataDrivenModifier( caster, caster, modifierName, {duration = duration})
 		
     end
-	
+	local cooldown = ability:GetCooldownTimeRemaining()
+	ability:EndCooldown()
+	ability:StartCooldown( math.floor(cooldown - caster:FindTalentValue("special_bonus_unique_undying_2") * #units) )
+	print(cooldown, caster:FindTalentValue("special_bonus_unique_undying_2") , #units )
 	ability:ApplyDataDrivenModifier(caster, caster, modifierName_display, {duration = duration})
 	caster:SetModifierStackCount(modifierName_display, caster, previous_stack_count + unit_number_decay)
 end

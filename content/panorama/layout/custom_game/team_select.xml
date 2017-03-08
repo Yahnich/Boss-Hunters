@@ -53,6 +53,7 @@
 					
 				</Panel>
 				
+				<!-- VOTING PANELS
 				<Panel id="VoteDifficultyPanel" >
 					<Panel class="VoteListRoot" >
 						<Panel id="VoteDifficultyPanelHeader">
@@ -77,13 +78,13 @@
 						<Panel class="VoteDivider" />
 						<Panel class="ContainerCustomGameSettingOptions" hittest="false">
 							<RadioButton class="CGSRadio" group="Lives" text="#livesHard" id="defaultLives" onactivate="OnVoteButtonPressed('lives', 7)"/>
-							<RadioButton class="CGSRadio" group="Lives" text="#livesImpossible" onactivate="OnVoteButtonPressed('lives', 5)"/>
+							<RadioButton class="CGSRadio" group="Lives" text="#livesImpossible" id="fiveLives" onactivate="OnVoteButtonPressed('lives', 5)"/>
 							<RadioButton class="CGSRadio" group="Lives" text="#livesPainful" id="defaultLivesImpossible" onactivate="OnVoteButtonPressed('lives', 3)"/>
-							<RadioButton class="CGSRadio" group="Lives" text="#livesSadistic" onactivate="OnVoteButtonPressed('lives', 1)"/>
+							<RadioButton class="CGSRadio" group="Lives" text="#livesSadistic" id="oneLives" onactivate="OnVoteButtonPressed('lives', 1)"/>
 						</Panel>
 					</Panel>
 				</Panel>
-
+				-->
 				<!--Unassigned players-->
 				<Panel id="UnassignedPlayerPanel" >
 					<Button id="UnassignedPlayersButton" onactivate="OnLeaveTeamPressed()">

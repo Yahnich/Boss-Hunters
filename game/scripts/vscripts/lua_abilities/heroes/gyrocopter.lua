@@ -36,7 +36,7 @@ if IsServer() then
 	
 	function gyrocopter_flak_cannon_ebf:OnProjectileHit(target, position)
 		self.disableLoop = true
-		self:GetCaster():PerformAttack(target, true, true, true, true, false)
+		self:GetCaster():PerformAttack(target, true, true, true, false, false, false, true)
 	end
 end
 

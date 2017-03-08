@@ -1,8 +1,0 @@
-KOTL
-EARTH SPIRIT
-WEAVER	
-WARLOCK
-SHADOW SHAMAN
-
-
-尝试修复了部分物品和技能中文翻译失踪的问题，希望有用。

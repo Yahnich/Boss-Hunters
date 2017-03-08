@@ -197,7 +197,7 @@ end
 function modifier_abaddon_brume_weaver_handler_buff:OnTakeDamage(params)
 	if params.unit == self:GetParent() then
 		local damage = params.damage
-		local flHeal = math.ceil(params.original_damage * (1 - params.unit:GetRealPhysicalArmorReduction() / 100 ) * self.healFactor / self.healDuration)
+		local flHeal = math.ceil(params.original_damage * (1 - params.unit:GetPhysicalArmorReduction() / 100 ) * self.healFactor / self.healDuration)
 		local healModifier = self:GetParent():AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_abaddon_brume_weaver_handler_heal", {duration = self.healDuration})
 		healModifier:SetStackCount(flHeal)
 		local procBrume = ParticleManager:CreateParticle("particles/abaddon_brume_proc.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetParent())

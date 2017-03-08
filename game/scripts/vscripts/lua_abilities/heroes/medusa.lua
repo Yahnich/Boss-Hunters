@@ -11,7 +11,7 @@ if IsServer() then
 	
 	function medusa_splitshot_ebf:OnProjectileHit(target, position)
 		self.disableLoop = true
-		self:GetCaster():PerformAttack(target, true, true, true, true, false)
+		self:GetCaster():PerformAttack(target, true, true, true, false, false, false, true)
 	end
 end
 

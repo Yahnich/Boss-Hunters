@@ -19,7 +19,8 @@ function UpdateHealthBar(arg)
 		$("#targetPanelMain").visible = true;
 		$("#bossNameLabel").text = $.Localize("#" + arg.Name);
 		$("#hpBarCurrentText").text = Entities.GetHealth( arg.entIndex ) + " / " + Entities.GetMaxHealth( arg.entIndex );
-		$("#hpBarCurrent").style.clip = "rect( 0% ," + Entities.GetHealthPercent( arg.entIndex ) + "%" + ", 100% ,0% )";
+		var hpPct = Entities.GetHealth( arg.entIndex )/Entities.GetMaxHealth( arg.entIndex ) * 100
+		$("#hpBarCurrent").style.clip = "rect( 0% ," + hpPct + "%" + ", 100% ,0% )";
 		if(arg.elite != ""){
 			$("#eliteSpecsText").visible = true;
 			$("#eliteSpecsText").text = arg.elite;
@@ -30,8 +31,9 @@ function UpdateHealthBar(arg)
 		var maxMana = Entities.GetMaxMana( arg.entIndex )
 		if(maxMana > 0){
 			$("#mpBarRoot").visible = true;
-			$("#mpBarCurrentText").text = Entities.GetMana( arg.entIndex ) + " / " + Entities.GetMaxMana( arg.entIndex );
-			$("#mpBarCurrent").style.clip = "rect( 0% ," + Entities.ManaFraction( arg.entIndex )*100 + "%" + ", 100% ,0% )";
+			$("#mpBarCurrentText").text = Entities.GetMana( arg.entIndex ) + " / " + maxMana;
+			var manaPct = Entities.GetMana( arg.entIndex ) / maxMana * 100
+			$("#mpBarCurrent").style.clip = "rect( 0% ," + manaPct + "%" + ", 100% ,0% )";
 		} else {
 			$("#mpBarRoot").visible = false;
 		}
