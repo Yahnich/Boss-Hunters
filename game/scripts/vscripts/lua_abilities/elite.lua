@@ -272,7 +272,7 @@ function TestGravityFunc(keys)
 	if not keys.caster:IsAlive() then return end
     local direction = targetPos - casterPos
 	local gravMod = 1
-	if caster:HasModifier("elite_massive_increase") then gravMod = 2 end
+	if keys.caster:HasModifier("elite_massive_increase") then gravMod = 2 end
     local vec = direction:Normalized() * 4 * gravMod
 	if direction:Length2D() <= 900 and direction:Length2D() >= 200 and keys.caster:IsAlive() then
 		keys.target:SetAbsOrigin(targetPos - vec)

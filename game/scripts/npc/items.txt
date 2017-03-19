@@ -4212,7 +4212,7 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"250"	
+		"ItemCost"						"3000"
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -4330,7 +4330,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"600 650 700 750 800"
 		"AbilityCastPoint"				"0.0"
-		"AbilityCooldown"				"35.0 30.0 25.0 20.0 15.0"
+		"AbilityCooldown"				"15.0"
 		"AbilitySharedCooldown"			"dagon"
 		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"1"
@@ -4354,22 +4354,22 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_intellect"		"13 16 19 22 25"
+				"bonus_intellect"		"20 30 40 50 60"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_all_stats"		"3"
+				"bonus_all_stats"		"10 15 20 25 30"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"9"
+				"bonus_damage"			"9 18 27 36 45"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"400 500 600 700 800"
+				"damage"				"1250 2500 5000 10000 20000"
 			}
 			"05"
 			{
@@ -4398,7 +4398,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"600 650 700 750 800"
 		"AbilityCastPoint"				"0.0"
-		"AbilityCooldown"				"35.0 30.0 25.0 20.0 15.0"
+		"AbilityCooldown"				"15.0"
 		"AbilitySharedCooldown"			"dagon"
 		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"2"
@@ -4422,22 +4422,22 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_intellect"		"13 16 19 22 25"
+				"bonus_intellect"		"20 30 40 50 60"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_all_stats"		"3"
+				"bonus_all_stats"		"10 15 20 25 30"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"9"
+				"bonus_damage"			"9 18 27 36 45"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"400 500 600 700 800"
+				"damage"				"1250 2500 5000 10000 20000"
 			}
 			"05"
 			{
@@ -4466,7 +4466,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"600 650 700 750 800"
 		"AbilityCastPoint"				"0.0"
-		"AbilityCooldown"				"35.0 30.0 25.0 20.0 15.0"
+		"AbilityCooldown"				"15.0"
 		"AbilitySharedCooldown"			"dagon"
 		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"3"
@@ -4490,22 +4490,22 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_intellect"		"13 16 19 22 25"
+				"bonus_intellect"		"20 30 40 50 60"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_all_stats"		"3"
+				"bonus_all_stats"		"10 15 20 25 30"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"9"
+				"bonus_damage"			"9 18 27 36 45"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"400 500 600 700 800"
+				"damage"				"1250 2500 5000 10000 20000"
 			}
 			"05"
 			{
@@ -4534,7 +4534,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"600 650 700 750 800"
 		"AbilityCastPoint"				"0.0"
-		"AbilityCooldown"				"35.0 30.0 25.0 20.0 15.0"
+		"AbilityCooldown"				"15.0"
 		"AbilitySharedCooldown"			"dagon"
 		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"4"
@@ -4558,22 +4558,22 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_intellect"		"13 16 19 22 25"
+				"bonus_intellect"		"20 30 40 50 60"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_all_stats"		"3"
+				"bonus_all_stats"		"10 15 20 25 30"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"9"
+				"bonus_damage"			"9 18 27 36 45"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"400 500 600 700 800"
+				"damage"				"1250 2500 5000 10000 20000"
 			}
 			"05"
 			{
@@ -4602,7 +4602,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"600 650 700 750 800"
 		"AbilityCastPoint"				"0.0"
-		"AbilityCooldown"				"35.0 30.0 25.0 20.0 15.0"
+		"AbilityCooldown"				"15.0"
 		"AbilitySharedCooldown"			"dagon"
 		"MaxUpgradeLevel"				"5"
 		"ItemBaseLevel"					"5"
@@ -4623,22 +4623,22 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_intellect"		"13 16 19 22 25"
+				"bonus_intellect"		"20 30 40 50 60"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_all_stats"		"3"
+				"bonus_all_stats"		"10 15 20 25 30"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"9"
+				"bonus_damage"			"9 18 27 36 45"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"400 500 600 700 800"
+				"damage"				"1250 2500 5000 10000 20000"
 			}
 			"05"
 			{
@@ -5511,7 +5511,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"blast_damage"			"200"
+				"blast_damage"			"1200"
 			}
 			"06"
 			{
@@ -6222,7 +6222,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"aura_damage"			"50"
+				"aura_damage"			"200"
 			}
 			"03"
 			{
@@ -7783,7 +7783,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"poison_damage"			"3.0"
+				"poison_damage"			"75.0"
 			}
 			"02"
 			{

@@ -121,11 +121,12 @@ function warlock_deepfire_ember:OnProjectileHit_ExtraData(target, vLocation, ext
 		for _, enemy in pairs(units) do
 			ApplyDamage({victim = enemy, attacker = self:GetCaster(), damage = extraData.damage, ability = self, damage_type = self:GetAbilityDamageType()})
 		end
-		self:GetCaster():Heal(extraData.damage*self:GetTalentSpecialValueFor("empower_heal")*100, self:GetCaster())
+		local dmgheal = extraData.damage*self:GetTalentSpecialValueFor("empower_heal")*100
+		self:GetCaster():Heal(dmgheal, self:GetCaster())
 		SendOverheadEventMessage( self:GetCaster(), OVERHEAD_ALERT_HEAL , self:GetCaster(), dmgheal, self:GetCaster() )
 		local demons = Entities:FindAllByClassname("npc_dota_warlock_golem")
 		for _,demon in pairs(demons) do -- heal demon
-			demon:Heal(extraData.damage*self:GetTalentSpecialValueFor("empower_heal")*100, self:GetCaster())
+			demon:Heal(dmgheal, self:GetCaster())
 			SendOverheadEventMessage( demon, OVERHEAD_ALERT_HEAL , demon, dmgheal, self:GetCaster() )
 		end
 	end

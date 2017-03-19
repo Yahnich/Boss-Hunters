@@ -24,38 +24,38 @@ function PrintAll(t)
 	end
 end
 
-function CDOTA_BaseNPC:HasTalent(talentName)
+function C_DOTA_BaseNPC:HasTalent(talentName)
 	if self:HasAbility(talentName) then
-		if self:HasModifier("modifier_"...talentName) then return true end
+		if self:HasModifier("modifier_"..talentName ) then return true end
 	end
 	return false
 end
 
-function CDOTA_BaseNPC:FindTalentValue(talentName)
+function C_DOTA_BaseNPC:FindTalentValue(talentName)
 	if self:HasAbility(talentName) then
 		local specialVal = GameRules.AbilityKV[talentName]["AbilitySpecial"]
 		for l,m in pairs(v) do
 			if m["value"] then
-				return m["value"]
+				return tonumber(m["value"])
 			end
 		end
 	end
 	return 0
 end
 
-function CDOTA_BaseNPC:FindSpecificTalentValue(talentName, valname)
+function C_DOTA_BaseNPC:FindSpecificTalentValue(talentName, valname)
 	if self:HasAbility(talentName) then
 		local specialVal = GameRules.AbilityKV[talentName]["AbilitySpecial"]
 		for l,m in pairs(v) do
 			if m[valname] then
-				return m[valname]
+				return tonumber(m[valname])
 			end
 		end
 	end
 	return 0
 end
 
-function CDOTABaseAbility:GetTalentSpecialValueFor(value)
+function C_DOTABaseAbility:GetTalentSpecialValueFor(value)
 	local base = self:GetSpecialValueFor(value)
 	local talentName
 	local kv = GameRules.AbilityKV[talentName]
@@ -69,12 +69,12 @@ function CDOTABaseAbility:GetTalentSpecialValueFor(value)
 		end
 	end
 	if talentName and self:GetCaster():HasTalent(talentName) then 
-		base = base + self:GetCaster():FindTalentValue(talentName) end
+		base = base + self:GetCaster():FindTalentValue(talentName)
 	end
 	return base
 end
 
-function CDOTA_BaseNPC:HealDisabled()
+function C_DOTA_BaseNPC:HealDisabled()
 	if self:HasModifier("Disabled_silence") or 
 	   self:HasModifier("primal_avatar_miss_aura") or 
 	   self:HasModifier("modifier_reflection_invulnerability") or 

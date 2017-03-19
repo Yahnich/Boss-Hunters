@@ -299,13 +299,47 @@
 		{
 			"1"
 			{
+				"UnitBoss_clockwerk"
+				{
+					"NPCName"				"npc_dota_boss8a"
+					"TotalUnitsToSpawn"		"2"
+					"UnitsPerSpawn"			"1"
+					"SpawnInterval"			"6"
+				}
+				"UnitBoss_tinker"
+				{
+					"NPCName"				"npc_dota_boss8b"
+					"TotalUnitsToSpawn"		"2"
+					"UnitsPerSpawn"			"1"
+					"SpawnInterval"			"6"
+				}
+			}
+			"2"
+			{
+				"UnitBoss_clockwerk"
+				{
+					"NPCName"				"npc_dota_boss8a"
+					"TotalUnitsToSpawn"		"1"
+					"UnitsPerSpawn"			"1"
+					"SpawnInterval"			"3"
+				}
+				"UnitBoss_tinker"
+				{
+					"NPCName"				"npc_dota_boss8b"
+					"TotalUnitsToSpawn"		"3"
+					"UnitsPerSpawn"			"1"
+					"SpawnInterval"			"5"
+				}
+			}
+			"3"
+			{
 				"round_quest_title"		"#DOTA_Holdout_Round_Boss6_Quest_Title_alt"
 				"UnitBoss_clockwerk"
 				{
 					"NPCName"				"npc_dota_boss8c_spawner"
 					"TotalUnitsToSpawn"		"6"
 					"UnitsPerSpawn"			"1"
-					"SpawnInterval"			"5"
+					"SpawnInterval"			"15"
 				}
 			}
 		}

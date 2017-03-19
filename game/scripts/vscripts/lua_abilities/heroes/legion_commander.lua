@@ -115,6 +115,11 @@ function legion_commander_press_the_attack_ebf:OnSpellStart()
 		EmitSoundOn("Hero_LegionCommander.PressTheAttack", hTarget)
 		hTarget:Purge(false, true, false, true, true)
 		hTarget:AddNewModifier(self:GetCaster(), self, "modifier_legion_commander_press_the_attack_buff", {duration = self:GetSpecialValueFor("duration")})
+		if hTarget.press then
+			ParticleManager:DestroyParticle(hTarget.press, true)
+			ParticleManager:ReleaseParticleIndex(hTarget.press)
+			hTarget.press = nil
+		end
 		hTarget.press = ParticleManager:CreateParticle("particles/units/heroes/hero_legion_commander/legion_commander_press.vpcf", PATTACH_ABSORIGIN_FOLLOW, hTarget)
 				ParticleManager:SetParticleControl(hTarget.press, 0, hTarget:GetAbsOrigin())
 				ParticleManager:SetParticleControl(hTarget.press, 1, hTarget:GetAbsOrigin())
@@ -172,6 +177,7 @@ function modifier_legion_commander_press_the_attack_buff:OnDestroy()
 	if IsServer() then
 		ParticleManager:DestroyParticle(self:GetParent().press, false)
 		ParticleManager:ReleaseParticleIndex(self:GetParent().press)
+		self:GetParent().press.press = nil
 	end
 end
 

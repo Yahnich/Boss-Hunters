@@ -5,7 +5,9 @@ function sacrifice(keys)
 
     for _,unit in pairs ( Entities:FindAllByName( "npc_dota_hero*")) do
         if not unit:IsAlive() and caster:HasScepter() == true then
-            unit:RespawnUnit()
+            local origin = unit:GetOrigin()
+			unit:RespawnHero(false, false, false)
+			unit:SetOrigin(origin)
         end
         if unit:IsAlive() then
             unit:SetHealth( unit:GetMaxHealth() )

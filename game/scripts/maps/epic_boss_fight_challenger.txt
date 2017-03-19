@@ -33,7 +33,6 @@
 			"Waypoint"				"path_invader1_1"
 		}
 	}
-
 	"Round1" // Boss 0 just money
 	{
 		"MaxGold"					"15000"
@@ -299,13 +298,47 @@
 		{
 			"1"
 			{
+				"UnitBoss_clockwerk"
+				{
+					"NPCName"				"npc_dota_boss8a"
+					"TotalUnitsToSpawn"		"6"
+					"UnitsPerSpawn"			"1"
+					"SpawnInterval"			"6"
+				}
+				"UnitBoss_tinker"
+				{
+					"NPCName"				"npc_dota_boss8b"
+					"TotalUnitsToSpawn"		"2"
+					"UnitsPerSpawn"			"1"
+					"SpawnInterval"			"6"
+				}
+			}
+			"2"
+			{
+				"UnitBoss_clockwerk"
+				{
+					"NPCName"				"npc_dota_boss8a"
+					"TotalUnitsToSpawn"		"3"
+					"UnitsPerSpawn"			"1"
+					"SpawnInterval"			"3"
+				}
+				"UnitBoss_tinker"
+				{
+					"NPCName"				"npc_dota_boss8b"
+					"TotalUnitsToSpawn"		"3"
+					"UnitsPerSpawn"			"1"
+					"SpawnInterval"			"5"
+				}
+			}
+			"3"
+			{
 				"round_quest_title"		"#DOTA_Holdout_Round_Boss6_Quest_Title_alt"
 				"UnitBoss_clockwerk"
 				{
 					"NPCName"				"npc_dota_boss8c_spawner"
-					"TotalUnitsToSpawn"		"6"
+					"TotalUnitsToSpawn"		"9"
 					"UnitsPerSpawn"			"1"
-					"SpawnInterval"			"5"
+					"SpawnInterval"			"15"
 				}
 			}
 		}
@@ -327,9 +360,9 @@
 				"UnitBoss_7"
 				{
 					"NPCName"				"npc_dota_boss9"
-					"TotalUnitsToSpawn"		"4"
+					"TotalUnitsToSpawn"		"5"
 					"UnitsPerSpawn"			"1"
-					"SpawnInterval"			"20"
+					"SpawnInterval"			"15"
 				}
 			}
 		}

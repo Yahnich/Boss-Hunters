@@ -192,6 +192,12 @@ function CHoldoutGameMode:InitGameMode()
 		GameRules._maxLives = 1
 		GameRules.gameDifficulty = 4
 	end
+	
+	GameRules._used_life = 0
+	GameRules._life = GameRules._maxLives
+	
+	CustomGameEventManager:Send_ServerToAllClients( "updateQuestLife", { lives = GameRules._life, maxLives = GameRules._maxLives } )
+	
 	GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_GOODGUYS, 7)
 	if GetMapName() == "epic_boss_fight_boss_master" then
 		GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_BADGUYS, 1 )
@@ -199,6 +205,7 @@ function CHoldoutGameMode:InitGameMode()
 		GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_BADGUYS, 0 )
 	end
 	GameRules._life = GameRules._maxLives
+	
 	self:_ReadGameConfiguration()
 	GameRules:SetHeroRespawnEnabled( false )
 	GameRules:SetUseUniversalShopMode( true )
@@ -357,6 +364,7 @@ function CHoldoutGameMode:InitGameMode()
 	ListenToGameEvent('player_connect_full', Dynamic_Wrap( CHoldoutGameMode, 'OnConnectFull'), self)
     ListenToGameEvent('dota_player_used_ability', Dynamic_Wrap(CHoldoutGameMode, 'OnAbilityUsed'), self)
 	ListenToGameEvent( "dota_player_gained_level", Dynamic_Wrap( CHoldoutGameMode, "OnHeroLevelUp" ), self )
+	
 	
 	
 	-- CustomGameEventManager:RegisterListener('Boss_Master', Dynamic_Wrap( CHoldoutGameMode, 'Boss_Master'))
@@ -798,16 +806,17 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 		end
 		local mod = 0
 		if filterTable["damagetype_const"] == 4 then -- pure
-			mod = 0.8
+			mod = 5
 		elseif filterTable["damagetype_const"] == 2 then -- magic
-			mod = 1
+			mod = 10
 		end
-		local reduction = (1 - (0.995^((GameRules._roundnumber/2)) + 0.009) + mod/100)
+		local reduction = (1 - (0.990^((GameRules._roundnumber/2)) + 0.008) + mod/100)
+		if reduction < 0 then reduction = (1 - 0.992) end
 		if inflictor and self.exceptionList[EntIndexToHScript( inflictor ):GetName()] then reduction = 1 end
-		filterTable["damage"] =  filterTable["damage"]
+		filterTable["damage"] =  filterTable["damage"] * reduction
 		if not inflictor and filterTable["damage"] > victim:GetMaxHealth()*0.035 then filterTable["damage"] = victim:GetMaxHealth()*0.035 end
 		if inflictor and self.gungnirList[EntIndexToHScript( inflictor ):GetName()] and filterTable["damage"] > victim:GetMaxHealth()*0.02 then filterTable["damage"] = victim:GetMaxHealth()*0.02 end
-		if filterTable["damage"] > victim:GetMaxHealth()*0.20 and ( ( inflictor and not self.exceptionList[EntIndexToHScript( inflictor ):GetName()]) or not inflictor ) then filterTable["damage"] = victim:GetMaxHealth()*0.2 end
+		if filterTable["damage"] > victim:GetMaxHealth()*0.5 and ( ( inflictor and not self.exceptionList[EntIndexToHScript( inflictor ):GetName()]) or not inflictor ) then filterTable["damage"] = victim:GetMaxHealth()*0.5 end
 	end
 	if not inflictor and not attacker:IsCreature() and attacker:HasModifier("Piercing") and filterTable["damagetype_const"] == 1 then -- APPLY piercing damage to certain damage
 		local originaldamage =  damage / (1 - victim:GetPhysicalArmorReduction() / 100 )
@@ -823,7 +832,7 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 			local originaldamage =  damage / (1 - victim:GetPhysicalArmorReduction() / 100 )
 			local pierce = attacker:FindModifierByName("Piercing"):GetAbility():GetSpecialValueFor("Pierce_percent") / 100
 			ApplyDamage({victim = victim, attacker = attacker, damage = originaldamage * pierce / attacker:GetSpellDamageAmp(), damage_type = DAMAGE_TYPE_PURE, ability = attacker:FindModifierByName("Piercing"):GetAbility()})
-			-- filterTable["damage"] = filterTable["damage"] - filterTable["damage"]*pierce
+			filterTable["damage"] = filterTable["damage"] - filterTable["damage"]*pierce
 		end
 	end
 	
@@ -1451,73 +1460,60 @@ LinkLuaModifier( "lua_attribute_bonus_modifier", "lua_abilities/attribute/lua_at
 function CHoldoutGameMode:OnHeroPick (event)
  	local hero = EntIndexToHScript(event.heroindex)
 	if not hero then return end
+	if hero.hasBeenInitialized then return end
 	if hero:IsFakeHero() then return end
-	hero:AddNewModifier(hero, nil, "lua_attribute_bonus_modifier", {})
-	stats:ModifyStatBonuses(hero)
-	for i = 0, 17 do
-		local skill = hero:GetAbilityByIndex(i)
-		if skill and skill:IsInnateAbility() then
-			skill:SetLevel(1)
+	Timers:CreateTimer(0.03, function() 
+		if hero:IsFakeHero() then return end
+		stats:ModifyStatBonuses(hero) 
+		hero:AddNewModifier(hero, nil, "lua_attribute_bonus_modifier", {})
+		for i = 0, 17 do
+			local skill = hero:GetAbilityByIndex(i)
+			if skill and skill:IsInnateAbility() then
+				skill:SetLevel(1)
+			end
 		end
-	end
-	hero.damageDone = 0
-	hero.Ressurect = 0
-	
-	local ID = hero:GetPlayerID()
-	if not ID then return end
-	PlayerResource:SetCustomBuybackCooldown(ID, 120)
-	-- hero:SetGold(0 , true)
+		hero.damageDone = 0
+		hero.Ressurect = 0
+		
+		local ID = hero:GetPlayerID()
+		if not ID then return end
+		PlayerResource:SetCustomBuybackCooldown(ID, 120)
+		-- hero:SetGold(0 , true)
 
-	local player = PlayerResource:GetPlayer(ID)
-	if not player then return end
- 	player.HB = true
- 	player.Health_Bar_Open = false
- 	hero.Asura_Core = 0
- 	Timers:CreateTimer(2.5,function()
- 			if self._NewGamePlus == true and PlayerResource:GetGold(ID)>= 80000 then
- 				self._Buy_Asura_Core(ID)
- 			end
- 			return 2.5
- 		end)
-	--[[if PlayerResource:GetSteamAccountID( ID ) == 42452574 then
-		print ("look like maker of map is here :D")
-		message_creator =f true
-	end ]]
-	--[[if PlayerResource:GetSteamAccountID( ID ) == 86736807 then
-		print ("look like a chalenger is here :D")
-		message_chalenger = true
-		self.chalenger = hero
-		GameRules:GetGameModeEntity():SetThink( "Chalenger", self, 0.25 ) 
-	end]]
-	--[[if PlayerResource:GetSteamAccountID( ID ) == 99364848 then
-		print ("look like a naughty guy is here :D")
-		message_chalenger = true
-		Timers:CreateTimer(0.1,function()
-			if hero:GetHealth() >= 2  then hero:SetHealth (1) end
-			return 0.1
+		local player = PlayerResource:GetPlayer(ID)
+		if not player then return end
+		player.HB = true
+		player.Health_Bar_Open = false
+		hero.Asura_Core = 0
+		Timers:CreateTimer(2.5,function()
+			if self._NewGamePlus == true and PlayerResource:GetGold(ID)>= 80000 then
+				self._Buy_Asura_Core(ID)
+			end
+			return 2.5
 		end)
-	end]]
-	if hero:GetTeamNumber() == DOTA_TEAM_BADGUYS then 
-		DeleteAbility(hero)
-		TeachAbility (hero , "hide_hero")
-		hero:AddNoDraw()
-		self.boss_master_id = ID
-		GameRules.boss_master_id = ID
-		LinkLuaModifier( "setabilitylayout", "lua_abilities/heroes/modifiers/setabilitylayout.lua" ,LUA_MODIFIER_MOTION_NONE )
-		hero:AddNewModifier(hero, nil, "setabilitylayout", nil)
-		local dominate = hero:AddAbility("boss_master_domination")
-		dominate:SetLevel(1)
-		hero:AddAbility("boss_master_slow_aura")
-		hero:AddAbility("boss_master_damage_aura")
-		hero:AddAbility("boss_master_armor_aura")
-		hero:AddAbility("boss_master_health_aura")
-		hero:AddAbility("boss_master_evasion_aura")
-	elseif hero:GetTeamNumber() == DOTA_TEAM_GOODGUYS then 
-		hero:AddItemByName("item_courier")
-		local playerID = hero:GetPlayerOwnerID()
-		hero:CastAbilityImmediately(item, playerID)
-		hero:AddItemByName("item_flying_courier")
-    end
+
+		if hero:GetTeamNumber() == DOTA_TEAM_BADGUYS then 
+			DeleteAbility(hero)
+			TeachAbility (hero , "hide_hero")
+			hero:AddNoDraw()
+			self.boss_master_id = ID
+			GameRules.boss_master_id = ID
+			LinkLuaModifier( "setabilitylayout", "lua_abilities/heroes/modifiers/setabilitylayout.lua" ,LUA_MODIFIER_MOTION_NONE )
+			hero:AddNewModifier(hero, nil, "setabilitylayout", nil)
+			local dominate = hero:AddAbility("boss_master_domination")
+			dominate:SetLevel(1)
+			hero:AddAbility("boss_master_slow_aura")
+			hero:AddAbility("boss_master_damage_aura")
+			hero:AddAbility("boss_master_armor_aura")
+			hero:AddAbility("boss_master_health_aura")
+			hero:AddAbility("boss_master_evasion_aura")
+		elseif hero:GetTeamNumber() == DOTA_TEAM_GOODGUYS then 
+			hero:AddItemByName("item_courier")
+			local playerID = hero:GetPlayerOwnerID()
+			hero:CastAbilityImmediately(item, playerID)
+			hero:AddItemByName("item_flying_courier")
+		end
+	end)
 end
 
 LinkLuaModifier( "modifier_skeleton_king_reincarnation_cooldown", "lua_abilities/heroes/modifiers/modifier_skeleton_king_reincarnation_cooldown.lua" ,LUA_MODIFIER_MOTION_NONE )
@@ -1642,6 +1638,12 @@ function CHoldoutGameMode:OnPlayerReconnected(keys)
 	if self._NewGamePlus == true then
 		CustomGameEventManager:Send_ServerToPlayer(player,"Display_Shop", {})
 	end
+	CustomGameEventManager:Send_ServerToAllClients( "updateQuestLife", { lives = GameRules._life, maxLives = GameRules._maxLives } )
+	if self._flPrepTimeEnd then
+		local timeLeft = self._flPrepTimeEnd - GameRules:GetGameTime()
+		CustomGameEventManager:Send_ServerToAllClients( "updateQuestPrepTime", { prepTime = math.floor(timeLeft + 0.5) } )
+	end
+	CustomGameEventManager:Send_ServerToAllClients( "updateQuestRound", { roundNumber = self._nRoundNumber, roundText = self._currentRound._szRoundQuestTitle } )
 	if player then
 		Timers:CreateTimer(0.03, function()
 			player:SetKillCamUnit(nil)
@@ -1658,6 +1660,7 @@ end
 -- When game state changes set state in script
 function CHoldoutGameMode:OnGameRulesStateChange()
 	local nNewState = GameRules:State_Get()
+	print(nNewState)
 	-- if nNewState >= DOTA_GAMERULES_STATE_INIT and not statCollection.doneInit then
 
         -- if PlayerResource:GetPlayerCount() >= 1 then
@@ -1667,28 +1670,18 @@ function CHoldoutGameMode:OnGameRulesStateChange()
         -- end
     -- end
 	if nNewState == DOTA_GAMERULES_STATE_CUSTOM_GAME_SETUP then
-	elseif nNewState == DOTA_GAMERULES_STATE_PRE_GAME then
-		ShowGenericPopup( "#holdout_instructions_title", "#holdout_instructions_body", "", "", DOTA_SHOWGENERICPOPUP_TINT_SCREEN )
+	elseif nNewState == 7 then
+		
 		-- Voting system handler
 		-- CHoldoutGameMode:InitializeRoundSystem()
+		Timers:CreateTimer(0.1,function()
+			CustomGameEventManager:Send_ServerToAllClients( "updateQuestLife", { lives = GameRules._life, maxLives = GameRules._maxLives } )
+		end)
+	elseif nNewState == 8 then
 		CustomGameEventManager:Send_ServerToAllClients( "updateQuestLife", { lives = GameRules._life, maxLives = GameRules._maxLives } )
 		for nPlayerID = 0, DOTA_MAX_TEAM_PLAYERS-1 do
 			local player = PlayerResource:GetPlayer(nPlayerID)
 			if player then
-			end
-		end
-	elseif nNewState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
-		for nPlayerID = 0, DOTA_MAX_TEAM_PLAYERS-1 do
-			local player = PlayerResource:GetPlayer(nPlayerID)
-			if player then
-				--print ("play music")
-				Timers:CreateTimer(0.1,function()
-								if player.NoMusic ~= true then
-								    player:SetMusicStatus(0, 0)
-									EmitSoundOnClient("music.music",player)
-									return 480
-								end
-							end)
 				self._flPrepTimeEnd = GameRules:GetGameTime() + self._flPrepTimeBetweenRounds
 			end
 		end
@@ -2169,6 +2162,7 @@ function CHoldoutGameMode:_CheckForDefeat()
 				end
 				self._flPrepTimeEnd = GameRules:GetGameTime() + 20
 				GameRules._life = GameRules._life - 1
+				GameRules._used_life = GameRules._used_life + 1
 				CustomGameEventManager:Send_ServerToAllClients( "updateQuestLife", { lives = GameRules._life, maxLives = GameRules._maxLives } )
 				for _,unit in pairs ( FindAllEntitiesByClassname("npc_dota_creature")) do
 					if unit:GetTeamNumber() == DOTA_TEAM_BADGUYS then
@@ -2366,14 +2360,14 @@ function CHoldoutGameMode:OnNPCSpawned( event )
 							modifiermin = -50000
 							modifiermax = -50000
 						end
-						spawnedUnit:SetBaseDamageMin(spawnedUnit:GetBaseDamageMin()*(750/(Number_Round^0.2)) + modifiermin)
-						spawnedUnit:SetBaseDamageMax(spawnedUnit:GetBaseDamageMax()*(750/(Number_Round^0.3)) + modifiermax)
+						spawnedUnit:SetBaseDamageMin(spawnedUnit:GetBaseDamageMin()*(750/(Number_Round*10)) + modifiermin)
+						spawnedUnit:SetBaseDamageMax(spawnedUnit:GetBaseDamageMax()*(750/(Number_Round*9)) + modifiermax)
 						
 						spawnedUnit:AddAbility("new_game_damage_increase")
 						spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_boss_damagedecrease", {})
 					elseif self._NewGamePlus == true and not spawnedUnit.Holdout_IsCore then	
-						spawnedUnit:SetBaseDamageMin(spawnedUnit:GetBaseDamageMin()*(375/(Number_Round^0.6)) + 600000)
-						spawnedUnit:SetBaseDamageMax(spawnedUnit:GetBaseDamageMax()*(375/(Number_Round^0.7)) + 800000)
+						spawnedUnit:SetBaseDamageMin(spawnedUnit:GetBaseDamageMin()*(375/(Number_Round*10)) + 600000)
+						spawnedUnit:SetBaseDamageMax(spawnedUnit:GetBaseDamageMax()*(375/(Number_Round*9)) + 800000)
 						spawnedUnit:AddAbility("new_game_damage_increase")
 						spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_boss_damagedecrease", {})
 					end

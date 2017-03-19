@@ -43,6 +43,7 @@ function GetGameDifficulty()
 	elseif diff == 5 then
 		diffString = "Epic"
 	end
+	return diffString
 end
 
 ------------------------------
@@ -54,7 +55,6 @@ end
 function GetHeroName(playerID)
     local heroName = PlayerResource:GetSelectedHeroName(playerID)
     heroName = string.gsub(heroName, "npc_dota_hero_", "") --Cuts the npc_dota_hero_ prefix
-
     return heroName
 end
 

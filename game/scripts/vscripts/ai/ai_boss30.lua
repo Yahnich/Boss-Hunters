@@ -14,7 +14,6 @@ function Spawn( entityKeyValues )
 		thisEntity.suffix = ""
 	end
 	thisEntity.impale = thisEntity:FindAbilityByName("boss_melee_impale"..thisEntity.suffix)
-	thisEntity.carapace = thisEntity:FindAbilityByName("boss_carapace"..thisEntity.suffix)
 	thisEntity.impale2 = thisEntity:FindAbilityByName("boss_melee_impale_b"..thisEntity.suffix)
 end
 
@@ -45,16 +44,6 @@ function AIThink()
 					OrderType = DOTA_UNIT_ORDER_CAST_POSITION,
 					Position = target:GetOrigin(),
 					AbilityIndex = thisEntity.impale2:entindex()
-				})
-				return 0.25
-			end
-		end
-		if thisEntity.carapace:IsFullyCastable() then
-			if  AICore:BeingAttacked( thisEntity ) >= 1 then
-				ExecuteOrderFromTable({
-					UnitIndex = thisEntity:entindex(),
-					OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
-					AbilityIndex = thisEntity.carapace:entindex()
 				})
 				return 0.25
 			end

@@ -43,11 +43,12 @@ function BuildGameArray()
     local game = {}
 
     -- Add game values here as game.someValue = GetSomeGameValue()
-    game.M_R = GameRules._roundnumber -- max round achieved
-    game.F_G = GameRules._finish -- has the game finished (win)
-    game.life = GetGameDifficulty() -- how many lives left
-    game.U_L = GameRules._used_live -- Used Life
-    game.T_L = GetMapName() -- map
+    game.mr = GameRules._roundnumber -- max round achieved
+    game.cg = GameRules._finish -- has the game finished (win)
+    game.ll = GameRules._life -- how many lives left
+    game.lu = GameRules._used_life -- Used Life
+    game.lt = GameRules._maxLives -- max lives
+	game.gd = GameRules.gameDifficulty -- difficulty
 
     return game
 end
@@ -61,24 +62,23 @@ function BuildPlayersArray()
 				
                 local hero = PlayerResource:GetSelectedHeroEntity(playerID)
 				if not hero then return end
-				local heroName = GetHeroName(playerID)
+				local heroName = string.gsub(hero:GetUnitName(), "npc_dota_hero_", "")
 				if GameRules.gameDifficulty < 3 then heroName = "casual" end
 				if GetMapName() == "epic_boss_fight_boss_master" then heroName = "boss_master" end
+				print(heroName)
                 table.insert(players, {
                     -- steamID32 required in here
                     steamID32 = PlayerResource:GetSteamAccountID(playerID),
 
                     -- Example functions for generic stats are defined in statcollection/lib/utilities.lua
                     -- Add player values here as someValue = GetSomePlayerValue(),
-                    HN = heroName, -- Hero
-                    P_L = hero:GetLevel(), -- Level
-                    P_NW = FindDPS(hero) or 0, -- Damage
-                    P_T = hero:GetTeam(), -- Team
-                    P_K = GetMapName(), -- Map
-                    P_D = GetGameDifficulty(), -- Deaths
-                    P_H = PlayerResource:GetHealing(hero:GetPlayerOwnerID()), -- Healing
-                    P_R = hero.Ressurect, -- Ressurections
-                    P_GPM = math.floor(PlayerResource:GetGoldPerMin(hero:GetPlayerOwnerID())), -- GPM
+                    ph = heroName, -- Hero
+                    dp = FindDPS(hero) or 0, -- Damage
+                    pt = hero:GetTeam(), -- Team
+                    td = FindPercentualDamage(hero), -- Map
+                    pd = hero:GetDeaths(), -- Deaths
+                    hp = FindHPS(hero), -- Healing
+                    pr = hero.Ressurect, -- Ressurections
 
                     --inventory :
                     i1 = GetItemSlot(hero, 1),
@@ -93,6 +93,15 @@ function BuildPlayersArray()
     end
 
     return players
+end
+
+function FindHPS(hero)
+	GameRules.EndTime = GameRules.EndTime or GameRules:GetGameTime()
+	hero.first_damage_time = hero.first_damage_time or GameRules:GetGameTime() - 1
+	local elapsedMinutes = (GameRules.EndTime - hero.first_damage_time)
+	local totalHps = math.floor( PlayerResource:GetHealing(hero:GetPlayerOwnerID()) / elapsedMinutes + 0.5 )
+	if totalHps < 50 then totalHps = '' end
+	return totalHps
 end
 
 function FindDPS(hero)
@@ -124,30 +133,6 @@ if Convars:GetBool('developer') then
 end
 
 -------------------------------------
-
-function GetGameDifficulty()
-	local diff = GameRules.gameDifficulty
-	local diffString = "Normal"
-	if diff > 1 and diff < 2 then
-		diffString = "Normal/Champion"
-	elseif diff == 2 then
-		diffString = "Champion"
-	elseif diff > 2 and diff < 3 then
-		diffString = "Champion/Heroic"
-	elseif diff == 3 then
-		diffString = "Heroic"
-	elseif diff > 3 and diff < 4 then
-		diffString = "Heroic/Legendary"
-	elseif diff == 4 then
-		diffString = "Legendary"
-	elseif diff > 4 and diff < 5 then
-		diffString = "Legendary/Epic"
-	elseif diff == 5 then
-		diffString = "Epic"
-	end
-	print(diffString)
-end
-
 -- If your gamemode is round-based, you can use statCollection:submitRound(bLastRound) at any point of your main game logic code to send a round
 -- If you intend to send rounds, make sure your settings.kv has the 'HAS_ROUNDS' set to true. Each round will send the game and player arrays defined earlier
 -- The round number is incremented internally, lastRound can be marked to notify that the game ended properly

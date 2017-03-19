@@ -1010,8 +1010,7 @@ function rearm_refresh_cooldown( keys )
         end
     end
 
-    local no_refresh_item = {["item_sheepstick_2"] = true,
-							 ["item_ressurection_stone"] = true,
+    local no_refresh_item = {["item_ressurection_stone"] = true,
 							 ["item_refresher"] = true,
 							 ["item_bahamut_chest"]= true,
 							 ["item_asura_plate"]= true,
@@ -1027,9 +1026,7 @@ function rearm_refresh_cooldown( keys )
 							   ["item_blade_mail3"] = true,
 							   ["item_blade_mail4"] = true,
 							   ["item_pixels_guard"] = true,
-							   ["item_Dagon_Mystic"] = true,
-							   ["item_asura_staff"] = true,
-							   ["item_asura_wand"] = true}
+							   ["item_sheepstick_2"] = true,}
 	
     for i = 0, 5 do
         local item = caster:GetItemInSlot( i )
@@ -1136,6 +1133,7 @@ end
 
 function KillTarget(keys)
     local target = keys.target
+	if not keys.caster:IsAlive() then return end
     if target:GetUnitName() ~= "npc_dota_boss36" then
         target:ForceKill(true)
     else 

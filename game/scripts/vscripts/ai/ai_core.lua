@@ -39,7 +39,7 @@ function AICore:RandomEnemyHeroInRange( entity, range , magic_immune)
 	if magic_immune then
 		flags = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
 	end
-	local enemies = FindUnitsInRadius( entity:GetTeam(), entity:GetOrigin(), nil, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, flags, 0, false )
+	local enemies = FindUnitsInRadius( entity:GetTeamNumber(), entity:GetOrigin(), nil, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, flags, 0, false )
 	if #enemies > 0 then
 		local index = RandomInt( 1, #enemies )
 		return enemies[index]
@@ -53,7 +53,7 @@ function AICore:NearestEnemyHeroInRange( entity, range , magic_immune)
 	if magic_immune then
 		flags = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
 	end
-	local enemies = FindUnitsInRadius( entity:GetTeam(), entity:GetOrigin(), nil, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, flags, 0, false )
+	local enemies = FindUnitsInRadius( entity:GetTeamNumber(), entity:GetOrigin(), nil, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, flags, 0, false )
 	
 	local minRange = range
 	local target = nil
@@ -69,7 +69,7 @@ function AICore:NearestEnemyHeroInRange( entity, range , magic_immune)
 end
 
 function AICore:BeingAttacked( entity )
-	local enemies = FindUnitsInRadius( entity:GetTeam(), entity:GetOrigin(), nil, 9999, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false )
+	local enemies = FindUnitsInRadius( entity:GetTeamNumber(), entity:GetOrigin(), nil, 9999, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false )
 	local count = 0
 	
 	for _,enemy in pairs(enemies) do
@@ -87,7 +87,7 @@ function AICore:AttackHighestPriority( entity )
 	local range = entity:GetAttackRange() + entity:GetIdealSpeed()
 	if range < 900 then range = 900 end
 	if not entity:IsDominated() then
-		local enemies = FindUnitsInRadius( entity:GetTeam(), entity:GetOrigin(), nil, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, flag, 0, false )
+		local enemies = FindUnitsInRadius( entity:GetTeamNumber(), entity:GetOrigin(), nil, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, flag, 0, false )
 		local target = nil
 		local minThreat = 0
 		if entity.previoustarget and not entity.previoustarget:IsNull() then 
@@ -112,7 +112,7 @@ function AICore:AttackHighestPriority( entity )
 		if not target then 
 			local minHP = nil
 			local target = nil
-			enemies = FindUnitsInRadius( entity:GetTeam(), entity:GetOrigin(), nil, range*2, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, flag, 0, false )
+			enemies = FindUnitsInRadius( entity:GetTeamNumber(), entity:GetOrigin(), nil, range*2, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, flag, 0, false )
 			for _,enemy in pairs(enemies) do
 				local distanceToEnemy = (entity:GetOrigin() - enemy:GetOrigin()):Length()
 				local HP = enemy:GetHealth()
@@ -126,7 +126,7 @@ function AICore:AttackHighestPriority( entity )
 		if not target then 
 			local minRange = 9999
 			local target = nil
-			enemies = FindUnitsInRadius( entity:GetTeam(), entity:GetOrigin(), nil, minRange, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, flag, 0, false )
+			enemies = FindUnitsInRadius( entity:GetTeamNumber(), entity:GetOrigin(), nil, minRange, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, flag, 0, false )
 			for _,enemy in pairs(enemies) do
 				local distanceToEnemy = (entity:GetOrigin() - enemy:GetOrigin()):Length2D()
 				if enemy:IsAlive() and distanceToEnemy < minRange then
@@ -192,7 +192,7 @@ function AICore:FarthestEnemyHeroInRange( entity, range , magic_immune)
 		flags = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
 	end
 	
-	local enemies = FindUnitsInRadius( entity:GetTeam(), entity:GetOrigin(), nil, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, flags, 0, false )
+	local enemies = FindUnitsInRadius( entity:GetTeamNumber(), entity:GetOrigin(), nil, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, flags, 0, false )
 	
 	local minRange = nil
 	local target = nil
@@ -213,7 +213,7 @@ function AICore:NearestDisabledEnemyHeroInRange( entity, range , magic_immune)
 		flags = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
 	end
 	
-	local enemies = FindUnitsInRadius( entity:GetTeam(), entity:GetOrigin(), nil, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, flags, 0, false )
+	local enemies = FindUnitsInRadius( entity:GetTeamNumber(), entity:GetOrigin(), nil, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, flags, 0, false )
 	
 	local minRange = range
 	local target = nil
@@ -229,7 +229,7 @@ end
 
 function AICore:TotalEnemyHeroesInRange( entity, range)
 	local flags = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
-	local enemies = FindUnitsInRadius( entity:GetTeam(), entity:GetOrigin(), nil, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, flags, 0, false )
+	local enemies = FindUnitsInRadius( entity:GetTeamNumber(), entity:GetOrigin(), nil, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, flags, 0, false )
 	
 	local count = 0
 	
@@ -247,7 +247,7 @@ function AICore:OptimalHitPosition(entity, range, radius)
 	if magic_immune then
 		flags = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
 	end
-	local enemies = FindUnitsInRadius( entity:GetTeam(), entity:GetOrigin(), nil, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, flags, 0, false )
+	local enemies = FindUnitsInRadius( entity:GetTeamNumber(), entity:GetOrigin(), nil, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, flags, 0, false )
 	local meanPos
 	for _,enemy in pairs(enemies) do
 		local distanceToEnemy = (entity:GetOrigin() - enemy:GetOrigin()):Length()
@@ -268,7 +268,7 @@ function AICore:TotalNotDisabledEnemyHeroesInRange( entity, range , magic_immune
 		flags = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
 	end
 	
-	local enemies = FindUnitsInRadius( entity:GetTeam(), entity:GetOrigin(), nil, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, flags, 0, false )
+	local enemies = FindUnitsInRadius( entity:GetTeamNumber(), entity:GetOrigin(), nil, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, flags, 0, false )
 	
 	local count = 0
 	
@@ -284,7 +284,7 @@ end
 function AICore:TotalUnitsInRange( entity, range )
 	
 	flags = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
-	local enemies = FindUnitsInRadius( entity:GetTeam(), entity:GetOrigin(), nil, range, DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_ALL, flags, 0, false )
+	local enemies = FindUnitsInRadius( entity:GetTeamNumber(), entity:GetOrigin(), nil, range, DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_ALL, flags, 0, false )
 	
 	local count = 0
 	
@@ -298,7 +298,7 @@ function AICore:TotalUnitsInRange( entity, range )
 end
 
 function AICore:TotalAlliedUnitsInRange( entity, range	)
-	local enemies = FindUnitsInRadius( entity:GetTeam(), entity:GetOrigin(), nil, range, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_ALL, 0, 0, false )
+	local enemies = FindUnitsInRadius( entity:GetTeamNumber(), entity:GetOrigin(), nil, range, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_ALL, 0, 0, false )
 	
 	local count = 0
 	
@@ -312,7 +312,7 @@ function AICore:TotalAlliedUnitsInRange( entity, range	)
 end
 
 function AICore:AlliedUnitsAlive( entity )
-	local allies = FindUnitsInRadius( entity:GetTeam(), entity:GetOrigin(), nil, 99999, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_ALL, 0, 0, false )
+	local allies = FindUnitsInRadius( entity:GetTeamNumber(), entity:GetOrigin(), nil, 99999, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_ALL, 0, 0, false )
 	
 	local count = 0
 	
@@ -329,7 +329,7 @@ function AICore:WeakestAlliedUnitInRange( entity, range , magic_immune)
 	if magic_immune then
 		flags = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
 	end
-	local allies = FindUnitsInRadius( entity:GetTeam(), entity:GetOrigin(), nil, range, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_ALL, flags, 0, false )
+	local allies = FindUnitsInRadius( entity:GetTeamNumber(), entity:GetOrigin(), nil, range, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_ALL, flags, 0, false )
 
 	local minHP = nil
 	local target = nil
@@ -347,7 +347,7 @@ function AICore:WeakestAlliedUnitInRange( entity, range , magic_immune)
 end
 
 function AICore:SpecificAlliedUnitsInRange( entity, name, range )
-	local enemies = FindUnitsInRadius( entity:GetTeam(), entity:GetOrigin(), nil, range, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_ALL, 0, 0, false )
+	local enemies = FindUnitsInRadius( entity:GetTeamNumber(), entity:GetOrigin(), nil, range, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_ALL, 0, 0, false )
 	
 	for _,enemy in pairs(enemies) do
 		if enemy:IsAlive() and enemy ~= entity and (enemy:GetUnitName() == name or enemy:GetName() == name or enemy:GetUnitLabel() == name) then
@@ -358,7 +358,7 @@ function AICore:SpecificAlliedUnitsInRange( entity, name, range )
 end
 
 function AICore:SpecificAlliedUnitsAlive( entity, name )
-	local enemies = FindUnitsInRadius( entity:GetTeam(), entity:GetOrigin(), nil, 99999, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_ALL, 0, 0, false )
+	local enemies = FindUnitsInRadius( entity:GetTeamNumber(), entity:GetOrigin(), nil, 99999, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_ALL, 0, 0, false )
 	
 	local count = 0
 	
@@ -375,7 +375,7 @@ function AICore:EnemiesInLine(entity, range, width, magic_immune)
 	if magic_immune then
 		flags = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
 	end
-	local enemies = FindUnitsInLine(entity:GetTeam(), entity:GetOrigin(),  entity:GetOrigin() + entity:GetForwardVector()*range, nil, width, DOTA_UNIT_TARGET_TEAM_ENEMY,DOTA_UNIT_TARGET_ALL, flags)
+	local enemies = FindUnitsInLine(entity:GetTeamNumber(), entity:GetOrigin(),  entity:GetOrigin() + entity:GetForwardVector()*range, nil, width, DOTA_UNIT_TARGET_TEAM_ENEMY,DOTA_UNIT_TARGET_ALL, flags)
 	if enemies then
 		return true
 	else
@@ -388,7 +388,7 @@ function AICore:WeakestEnemyHeroInRange( entity, range , magic_immune)
 	if magic_immune then
 		flags = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
 	end
-	local enemies = FindUnitsInRadius( entity:GetTeam(), entity:GetOrigin(), nil, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, flags, 0, false )
+	local enemies = FindUnitsInRadius( entity:GetTeamNumber(), entity:GetOrigin(), nil, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, flags, 0, false )
 
 	local minHP = nil
 	local target = nil
@@ -410,7 +410,7 @@ function AICore:StrongestEnemyHeroInRange( entity, range , magic_immune)
 	if magic_immune then
 		flags = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
 	end
-	local enemies = FindUnitsInRadius( entity:GetTeam(), entity:GetOrigin(), nil, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, flags, 0, false )
+	local enemies = FindUnitsInRadius( entity:GetTeamNumber(), entity:GetOrigin(), nil, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, flags, 0, false )
 
 	local minHP = nil
 	local target = nil
@@ -432,7 +432,7 @@ function AICore:HighestThreatHeroInRange(entity, range, basethreat, magic_immune
 	if magic_immune then
 		flags = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
 	end
-    local enemies = FindUnitsInRadius( entity:GetTeam(), entity:GetOrigin(), nil, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, flags, 0, false )
+    local enemies = FindUnitsInRadius( entity:GetTeamNumber(), entity:GetOrigin(), nil, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, flags, 0, false )
 
 	local target = nil
 	local minThreat = basethreat
