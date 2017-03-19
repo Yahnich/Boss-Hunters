@@ -15,9 +15,13 @@ $RECYCLE.BIN/
 *.msp
 
 # Compiled assets
-.vpcf_c
-.vsndevts_c
-.vtex_c
+*.vpcf_c
+*.vsndevts_c
+*.vtex_c
+*.vjs_c
+*.vxml_c
+*.vcss_c
+*.bin
 
 # Game key
 settings.kv
