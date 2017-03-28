@@ -13401,7 +13401,7 @@
 	}
 	"npc_dota_hero_jakiro"
 	{
-		"Model"		"models/heroes/twin_headed_dragon/twin_headed_dragon.vmdl"
+		"Model"		"models/heroes/jakiro/jakiro.vmdl"
 		"Portrait"		"vgui/hud/heroportraits/portrait_jakiro"
 		"IdleExpression"		"scenes/jakiro/jakiro_exp_idle_01.vcd"
 		"SoundSet"		"Hero_Jakiro"

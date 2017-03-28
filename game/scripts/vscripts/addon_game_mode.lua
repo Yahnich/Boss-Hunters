@@ -1464,6 +1464,7 @@ function CHoldoutGameMode:OnHeroPick (event)
 	if hero:IsFakeHero() then return end
 	Timers:CreateTimer(0.03, function() 
 		if hero:IsFakeHero() then return end
+		print("test")
 		stats:ModifyStatBonuses(hero) 
 		hero:AddNewModifier(hero, nil, "lua_attribute_bonus_modifier", {})
 		for i = 0, 17 do
@@ -1507,11 +1508,11 @@ function CHoldoutGameMode:OnHeroPick (event)
 			hero:AddAbility("boss_master_armor_aura")
 			hero:AddAbility("boss_master_health_aura")
 			hero:AddAbility("boss_master_evasion_aura")
-		elseif hero:GetTeamNumber() == DOTA_TEAM_GOODGUYS then 
-			hero:AddItemByName("item_courier")
+		elseif hero:GetTeamNumber() == DOTA_TEAM_GOODGUYS then
+			local item = hero:AddItemByName("item_courier")
+			hero:AddItemByName("item_flying_courier")
 			local playerID = hero:GetPlayerOwnerID()
 			hero:CastAbilityImmediately(item, playerID)
-			hero:AddItemByName("item_flying_courier")
 		end
 	end)
 end
@@ -1679,12 +1680,7 @@ function CHoldoutGameMode:OnGameRulesStateChange()
 		end)
 	elseif nNewState == 8 then
 		CustomGameEventManager:Send_ServerToAllClients( "updateQuestLife", { lives = GameRules._life, maxLives = GameRules._maxLives } )
-		for nPlayerID = 0, DOTA_MAX_TEAM_PLAYERS-1 do
-			local player = PlayerResource:GetPlayer(nPlayerID)
-			if player then
-				self._flPrepTimeEnd = GameRules:GetGameTime() + self._flPrepTimeBetweenRounds
-			end
-		end
+		self._flPrepTimeEnd = GameRules:GetGameTime() + self._flPrepTimeBetweenRounds
 	end
 end
 
@@ -1807,16 +1803,16 @@ end
 
 function CHoldoutGameMode:_Start_Vote()
 	CustomGameEventManager:Send_ServerToAllClients("Display_Vote", {})
-	local time = 0
+	local tickTime = 0
 	Timers:CreateTimer(1,function()
-		time = time + 1
-		CustomGameEventManager:Send_ServerToAllClients("refresh_time", {time = 60-time})
-		if time >= 60 or (GameRules.vote_Yes + GameRules.vote_No) == PlayerResource:GetTeamPlayerCount() then
+		tickTime = tickTime + 1
+		CustomGameEventManager:Send_ServerToAllClients("refresh_time", {tickTime = 60-tickTime})
+		if tickTime >= 60 or (GameRules.vote_Yes + GameRules.vote_No) == PlayerResource:GetTeamPlayerCount() then
 			CustomGameEventManager:Send_ServerToAllClients("Close_Vote", {})
 			if GameRules.vote_Yes >= GameRules.vote_No then
 				self:_EnterNG()
 				self._nRoundNumber = 1
-				self._flPrepTimeEnd = GameRules:GetGameTime() + 70-time
+				self._flPrepTimeEnd = GameRules:GetGameTime() + 70-tickTime
 			else
 				SendToConsole("dota_health_per_vertical_marker 250")
 				GameRules:SetCustomVictoryMessage ("Congratulations!")
@@ -1939,8 +1935,6 @@ function CHoldoutGameMode:OnThink()
 		if self._flPrepTimeEnd then
 			local timeLeft = self._flPrepTimeEnd - GameRules:GetGameTime()
 			CustomGameEventManager:Send_ServerToAllClients( "updateQuestPrepTime", { prepTime = math.floor(timeLeft + 0.5) } )
-		end
-		if self._flPrepTimeEnd ~= nil then
 			self:_ThinkPrepTime()
 		elseif self._currentRound ~= nil then
 			self._currentRound:Think()

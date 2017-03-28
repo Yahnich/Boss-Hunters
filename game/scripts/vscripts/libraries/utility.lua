@@ -727,7 +727,7 @@ function CDOTA_BaseNPC:FindModifierByAbility(abilityname)
 end
 
 function CDOTA_BaseNPC:IsFakeHero()
-	if self:IsIllusion() or (self:HasModifier("modifier_monkey_king_fur_army_soldier") or self:HasModifier("modifier_monkey_king_fur_army_soldier_hidden")) then
+	if self:IsIllusion() or (self:HasModifier("modifier_monkey_king_fur_army_soldier") or self:HasModifier("modifier_monkey_king_fur_army_soldier_hidden")) or self:IsTempestDouble() then
 		return true
 	else return false end
 end
