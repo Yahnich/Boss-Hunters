@@ -1,0 +1,1189 @@
+	"item_ancient_plate"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2027"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"custom/ancient_plate"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"FightRecapLevel"				"1"
+
+
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"4000"
+		"ItemShopTags"					"asura;hard_to_tag"
+		"ItemQuality"					"artifact"
+		"ItemAliases"					"ancient"
+		"ItemPurchasable"				"0"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_armor"			"75"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_damage_aura"		"15"
+			}
+		}
+		"Modifiers"
+		{
+			"ancient_plate_passive"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Aura"		"ancient_plate_aura"
+				"Aura_Radius"	"1500"
+				"Aura_Teams"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"%bonus_armor"
+				}
+			}
+			"ancient_plate_aura"
+			{
+				"Passive"	"1"
+				"IsBuff"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE"	"%bonus_damage_aura"
+				}
+			}
+		}
+	}
+	"item_ancient_heart"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2028"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"custom/ancient_heart"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"FightRecapLevel"				"1"
+
+
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"4000"
+		"ItemShopTags"					"asura;hard_to_tag"
+		"ItemQuality"					"artifact"
+		"ItemAliases"					"ancient"
+		"ItemPurchasable"				"0"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"health_regen_percent"			"2.5"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_strength"			"500"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_health_max"			"5000"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"ancient_heart_passive"
+			{	
+				"IsHidden"	 "1"
+				"Passive"	 "1"
+				"Attributes"    "MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_HEALTH_BONUS"			"%bonus_health_max"
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"		"%bonus_strength"
+				}
+			}
+			"hearth_regen"
+			{
+				"IsHidden"	 "1"
+				"Passive"	 "1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE"		"%health_regen_percent"
+				}
+			}
+		}
+	}
+	"item_ancient_butterfly"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2029"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"custom/ancient_butterfly"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityCooldown"				"30"
+		"FightRecapLevel"				"1"
+
+
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"4000"
+		"ItemShopTags"					"asura;hard_to_tag"
+		"ItemQuality"					"artifact"
+		"ItemAliases"					"ancient"
+		"ItemPurchasable"				"0"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_agility"			"150"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_damage"			"150"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_evasion"			"25"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_attack_speed"	"25"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"flutter_speed"			"25"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"flutter_duration"		"4"
+			}
+		}
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"ModifierName"		"modifier_item_butterfly_flutter"
+				"Target"			"CASTER"
+			}
+			"FireEffect"
+			{
+				"EffectName"		"particles/butterfly5_active.vpcf"	
+				"EffectAttachType"  "start_at_customorigin"
+				"Target"        "CASTER"
+		        "ControlPointEntities"
+		        {
+		            "CASTER"    "follow_overhead"
+					"CASTER"    "follow_overhead"
+		        }
+			}
+			"FireSound"
+			{
+				"EffectName"	"DOTA_Item.Butterfly"
+				"Target"        "CASTER"
+			}
+		}
+		"precache"
+		{
+			"particle"				"particles/butterfly5_active.vpcf"	
+			"particle"				"particles/butterfly5_buff.vpcf"
+			"soundfile"				"sounds/items/butterfly.vsnd"
+		}
+	    "Modifiers"
+	    {
+			"modifier_item_butterfly_flutter"
+			{
+				"IsBuff"           "1"	      
+				"Duration"			"%flutter_duration"		
+				"EffectName"		"particles/butterfly5_buff.vpcf"
+				"EffectAttachType"	"follow_origin"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"                "%flutter_speed"
+				}
+			}
+	        "item_butterfly_passive"
+	        {
+	            "Passive"           "1"
+	            "IsHidden"          "1"
+	            "Attributes"        "MODIFIER_ATTRIBUTE_MULTIPLE"
+	            
+	            "Properties"
+	            {
+	                "MODIFIER_PROPERTY_STATS_AGILITY_BONUS"             "%bonus_agility"
+	                "MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"          "%bonus_damage"
+	                "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"      "%bonus_attack_speed"
+	                "MODIFIER_PROPERTY_EVASION_CONSTANT"                "%bonus_evasion"
+	            }
+	            
+	        }
+	    }
+	}
+	"item_ancient_staff"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"4000"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"custom/ancient_staff"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityCooldown"				"20"
+		"FightRecapLevel"				"1"
+
+
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"8000"
+		"ItemShopTags"					"asura;hard_to_tag"
+		"ItemQuality"					"artifact"
+		"ItemAliases"					"ancient"
+		"ItemPurchasable"				"0"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		"precache"
+		{
+			"particle"				"particles/dagon_mystic.vpcf"
+		}
+	    
+	    
+	    "AbilitySpecial"
+	    {
+	        "01"
+	        {
+	            "var_type"              "FIELD_INTEGER"
+	            "bonus_intellect"       "250"
+	        }
+	        "02"
+	        {
+	            "var_type"              "FIELD_INTEGER"
+	            "damage_base"                "36000"
+	        }
+	        "03"
+	        {
+	            "var_type"              "FIELD_INTEGER"
+	            "damage_per_int"                "3"
+	        }
+	        "04"
+	        {
+	            "var_type"              "FIELD_INTEGER"
+	            "range_tooltip"         "1200"
+	        }
+	       
+	    }
+	    
+	    "OnSpellStart"
+	    {
+	        "RunScript"
+	        {
+	        	"ScriptFile"		"lua_item/simple_item.lua"
+	            "Function"          "item_dagon_datadriven_on_spell_start"
+	        }
+	    }
+	    
+	    "Modifiers"
+	    {
+	        "modifier_item_dagon_datadriven"
+	        {
+	            "Passive"           "1"
+	            "IsHidden"          "1"
+	            "Attributes"        "MODIFIER_ATTRIBUTE_MULTIPLE"
+	            
+	            "Properties"
+	            {
+	                "MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"       "%bonus_intellect"
+	            }
+	        }
+	    }
+	}
+	"item_ancient_lens"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2031"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_aether_lens"
+		"AbilityTextureName"			"custom/ancient_lens"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"FightRecapLevel"				"1"
+
+
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"4000"
+		"ItemShopTags"					"asura;hard_to_tag"
+		"ItemQuality"					"artifact"
+		"ItemAliases"					"ancient"
+		"ItemPurchasable"				"0"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_mana"			"1000"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_health_regen"	"50"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"cast_range_bonus"			"450"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"spell_amp"				"20"
+			}
+		}
+	}
+	"item_ancient_core"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2032"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"custom/ancient_core"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"FightRecapLevel"				"1"
+
+
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"4000"
+		"ItemShopTags"					"asura;hard_to_tag"
+		"ItemQuality"					"artifact"
+		"ItemAliases"					"ancient"
+		"ItemPurchasable"				"0"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		"precache"
+		{
+			"particle" "particles/items3_fx/octarine_core_lifesteal.vpcf"
+		}
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_intelligence"	"150"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_health"			"2500"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_mana"			"2500"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_health_regen"	"500"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_mana_regen"		"100"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_cooldown"		"30"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"hero_lifesteal"		"10"
+			}				
+		}
+		"Modifiers"
+		{
+			"passive"
+			{
+				"Passive" "1"
+				"IsHidden"		"1"
+				"Attributes"    "MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"  		"%bonus_health_regen"
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"  		"%bonus_mana_regen"
+					"MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE"			"%bonus_cooldown"
+					"MODIFIER_PROPERTY_HEALTH_BONUS"				"%bonus_health"
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"		"%bonus_intelligence"
+					"MODIFIER_PROPERTY_MANA_BONUS"					"%bonus_mana"
+				}
+			}
+	    	"spell_lifesteal"
+	    	{
+	    		"IsHidden"                  "1"
+				"Passive"					"1"
+	    	}
+		}
+	}
+	"item_ancient_fury"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2033"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"custom/ancient_fury"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"FightRecapLevel"				"1"
+
+
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"4000"
+		"ItemShopTags"					"asura;hard_to_tag"
+		"ItemQuality"					"artifact"
+		"ItemAliases"					"ancient"
+		"ItemPurchasable"				"0"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		"AbilitySpecial"
+	    {
+	        "01"
+	        {
+	            "var_type"              "FIELD_INTEGER"
+	            "Pierce_percent"                "10"
+	        }
+	        "02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_damage"			"750"
+			}
+	    }
+		"OnEquip"
+		{
+			"RemoveModifier"
+			{
+				"ModifierName"	"Piercing"
+				"Target"	"CASTER"
+			}
+			"ApplyModifier"
+			{
+				"ModifierName"	"Piercing"
+				"Target" 
+				{
+					"Center" "CASTER"
+					"Flags" "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+				}
+			}
+		}
+	    "Modifiers"
+	    {
+	        "Piercing"
+	        {
+	        	"IsHidden"                  "1"
+            	"Passive"                	"1"
+	        	"OnAttackLanded"
+	        	{
+	        		"RunScript"
+	        		{
+	        			"ScriptFile"			"lua_item/simple_item.lua"
+						"Function"				"Pierce"
+						"damage_on_hit"			"%attack_damage"
+	        		}
+	        	}
+	        }
+	        "passive"
+	        {
+	        	"IsHidden"                  "1"
+            	"Passive"                	"1"
+            	"Attributes"    "MODIFIER_ATTRIBUTE_MULTIPLE"
+	        	"Properties"
+     			{
+       				"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "%bonus_damage"
+     			}
+	    	}
+	    }
+		
+	}
+	"item_ancient_thorn"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2034"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"custom/ancient_thorn"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"FightRecapLevel"				"1"
+
+
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"4000"
+		"ItemShopTags"					"asura;hard_to_tag"
+		"ItemQuality"					"artifact"
+		"ItemAliases"					"ancient"
+		"ItemPurchasable"				"0"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_intellect"		"500"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_damage"			"500"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_mana_regen"		"100"
+			}			
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"silence_damage_percent"	"10"
+			}	
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"silence_duration"		"5"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"target_crit_multiplier"		"150"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"spell_crit_multiplier"		"125"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"spell_crit_chance"		"25"
+			}
+		}
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_bloodthorn_silence_amp"
+				"Target"		"TARGET"
+				"Duration"		"%silence_duration"
+			}
+			"FireSound"
+			{
+				"EffectName"	"DOTA_Item.Orchid.Activate"
+				"Target"		"TARGET"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"lua_item/simple_item"
+				"Function"		"OrchidInit"
+			}
+		}
+		"Modifiers"
+		{
+			"spellcrit"
+			{
+				"Passive" 	"1"
+				"IsHidden"	"1"
+			}
+			"modifier_bloodthorn_stats"
+			{
+				"Passive" 	"1"
+				"IsHidden"	"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"%bonus_intellect"
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"	"%bonus_damage"
+					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE"	"%bonus_mana_regen"
+				}
+			}
+			"modifier_bloodthorn_silence_amp"
+			{
+				"IsDebuff"	"1"
+				"EffectName"	"particles/items2_fx/orchid.vpcf"
+				"EffectAttachType"	"follow_overhead"
+				"OnAttacked"
+				{
+					"ApplyModifier"
+					{
+						"ModifierName"	"modifier_bloodthorn_silence_crit"
+						"Target" 
+						{
+							"Center" "ATTACKER"
+							"Flags" "DOTA_UNIT_TARGET_FLAG_INVULNERABLE | DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+						}
+					}
+				}
+				"OnTakeDamage"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"lua_item/simple_item"
+						"Function"		"OrchidAmp"
+						"damage"		"%attack_damage"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"lua_item/simple_item"
+						"Function"		"OrchidPop"
+					}
+					"FireEffect"
+					{
+						"EffectName"	"particles/items2_fx/orchid_pop.vpcf"
+						"EffectAttachType"	"attach_origin"
+						"Target"			"TARGET"
+					}
+				}
+				"States"
+				{
+					"MODIFIER_STATE_SILENCED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+			"modifier_bloodthorn_silence_crit"
+			{
+				"IsHidden"	"1"
+				"OnAttackLanded"
+				{
+					"RemoveModifier"
+					{
+						"ModifierName"	"modifier_bloodthorn_silence_crit"
+						"Target"		"ATTACKER"
+					}
+				}
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE" 	"%target_crit_multiplier"
+				}
+			}
+		}
+	}
+	"item_ancient_soul"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2035"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"custom/ancient_soul"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"FightRecapLevel"				"1"
+
+
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"4000"
+		"ItemShopTags"					"asura;hard_to_tag"
+		"ItemQuality"					"artifact"
+		"ItemAliases"					"ancient"
+		"ItemPurchasable"				"0"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"health_regen_percent"			"2"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_all"				"350"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_range"				"300"
+			}
+		}
+		
+		
+		"Modifiers"
+		{
+
+			"soulpassive"
+			{	
+				"IsHidden"	 "1"
+				"Passive"	 "1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACK_RANGE_BONUS"		"%bonus_range"
+				}
+			}
+
+			"stats_soul"
+			{	
+				"IsHidden"	 "1"
+				"Passive"	 "1"
+				"Attributes"    "MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"		"%bonus_all"
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"		"%bonus_all"
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"		"%bonus_all"
+				}
+			}
+
+			"hearth_regen"
+			{
+				"IsHidden"	 "1"
+				"Passive"	 "1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE"		"%health_regen_percent"
+				}
+			}
+ 
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Battlefury
+	//=================================================================================================================
+	"item__recipe_asura_shard_evasion"
+	{
+		"ID"							"2036"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"BaseClass"						"item_recipe_blade_mail"
+		"AbilityTextureName"	"custom/asura_shard_evasion"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"1"
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_asura_shard_evasion"
+		"ItemRequirements"
+		{
+			"01"						"item_asura_shard;item_butterfly"
+		}
+	}	
+	"item_asura_shard_evasion"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2037"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"custom/asura_shard_evasion"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"FightRecapLevel"				"1"
+
+
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"10000"
+		"ItemShopTags"					"asura;hard_to_tag"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"asura part"
+		"ItemPurchasable"				"0"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+	}
+	//=================================================================================================================
+	// Recipe: Battlefury
+	//=================================================================================================================
+	"item__recipe_asura_shard_regen"
+	{
+		"ID"							"2038"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"BaseClass"						"item_recipe_blade_mail"
+		"AbilityTextureName"	"custom/asura_shard_regen"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"1"
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_asura_shard_regen"
+		"ItemRequirements"
+		{
+			"01"						"item_asura_shard;item_heart"
+		}
+	}	
+	"item_asura_shard_regen"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2039"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"custom/asura_shard_regen"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"FightRecapLevel"				"1"
+
+
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"10000"
+		"ItemShopTags"					"asura;hard_to_tag"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"asura part"
+		"ItemPurchasable"				"0"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+	}
+	//=================================================================================================================
+	// Recipe: Battlefury
+	//=================================================================================================================
+	"item__recipe_asura_shard_damage"
+	{
+		"ID"							"2040"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"BaseClass"						"item_recipe_blade_mail"
+		"AbilityTextureName"	"custom/asura_shard_damage"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"1"
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_asura_shard_damage"
+		"ItemRequirements"
+		{
+			"01"						"item_asura_shard;item_claymore"
+		}
+	}	
+	"item_asura_shard_damage"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2041"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"custom/asura_shard_damage"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"FightRecapLevel"				"1"
+
+
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"10000"
+		"ItemShopTags"					"asura;hard_to_tag"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"asura part"
+		"ItemPurchasable"				"0"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+	}
+	//=================================================================================================================
+	// Recipe: Battlefury
+	//=================================================================================================================
+	"item__recipe_asura_shard_armor"
+	{
+		"ID"							"2042"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"BaseClass"						"item_recipe_blade_mail"
+		"AbilityTextureName"	"custom/asura_shard_armor"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"1"
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_asura_shard_armor"
+		"ItemRequirements"
+		{
+			"01"						"item_asura_shard;item_assault"
+		}
+	}	
+	"item_asura_shard_armor"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2043"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"custom/asura_shard_armor"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"FightRecapLevel"				"1"
+
+
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"10000"
+		"ItemShopTags"					"asura;hard_to_tag"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"asura part"
+		"ItemPurchasable"				"0"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+	}
+	//=================================================================================================================
+	// Recipe: Battlefury
+	//=================================================================================================================
+	"item__recipe_asura_shard_health"
+	{
+		"ID"							"2044"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"BaseClass"						"item_recipe_blade_mail"
+		"AbilityTextureName"	"custom/asura_shard_health"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"1"
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_asura_shard_health"
+		"ItemRequirements"
+		{
+			"01"						"item_asura_shard;item_vitality_booster"
+		}
+	}	
+	"item_asura_shard_health"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2045"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"custom/asura_shard_health"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"FightRecapLevel"				"1"
+
+
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"10000"
+		"ItemShopTags"					"asura;hard_to_tag"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"asura part"
+		"ItemPurchasable"				"0"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+	}
+	//=================================================================================================================
+	// Recipe: Battlefury
+	//=================================================================================================================
+	"item__recipe_asura_shard_mana"
+	{
+		"ID"							"2046"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"BaseClass"						"item_recipe_blade_mail"
+		"AbilityTextureName"	"custom/asura_shard_mana"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"1"
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_asura_shard_mana"
+		"ItemRequirements"
+		{
+			"01"						"item_asura_shard;item_energy_booster"
+		}
+	}	
+	"item_asura_shard_mana"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2047"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"custom/asura_shard_mana"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"FightRecapLevel"				"1"
+
+
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"10000"
+		"ItemShopTags"					"asura;hard_to_tag"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"asura part"
+		"ItemPurchasable"				"0"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+	}
+	//=================================================================================================================
+	// Recipe: Battlefury
+	//=================================================================================================================
+	"item__recipe_asura_shard_burn"
+	{
+		"ID"							"2048"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"BaseClass"						"item_recipe_blade_mail"
+		"AbilityTextureName"	"custom/asura_shard_burn"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"1"
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_asura_shard_burn"
+		"ItemRequirements"
+		{
+			"01"						"item_asura_shard;item_radiance"
+		}
+	}	
+	"item_asura_shard_burn"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2049"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"custom/asura_shard_burn"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"FightRecapLevel"				"1"
+
+
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"10000"
+		"ItemShopTags"					"asura;hard_to_tag"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"asura part"
+		"ItemPurchasable"				"0"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+	}
+	//=================================================================================================================
+	// Recipe: Battlefury
+	//=================================================================================================================
+	"item__recipe_asura_shard_freeze"
+	{
+		"ID"							"2050"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"BaseClass"						"item_recipe_blade_mail"
+		"AbilityTextureName"	"custom/asura_shard_freeze"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"1"
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_asura_shard_freeze"
+		"ItemRequirements"
+		{
+			"01"						"item_asura_shard;item_skadi"
+		}
+	}	
+	"item_asura_shard_freeze"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2051"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"custom/asura_shard_freeze"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"FightRecapLevel"				"1"
+
+
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"10000"
+		"ItemShopTags"					"asura;hard_to_tag"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"asura part"
+		"ItemPurchasable"				"0"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+	}
+	//=================================================================================================================
+	// Recipe: Battlefury
+	//=================================================================================================================
+	"item__recipe_asura_shard_crit"
+	{
+		"ID"							"2052"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"BaseClass"						"item_recipe_blade_mail"
+		"AbilityTextureName"	"custom/asura_shard_crit"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"1"
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_asura_shard_evasion"
+		"ItemRequirements"
+		{
+			"01"						"item_asura_shard;item_greater_crit"
+		}
+	}	
+	"item_asura_shard_crit"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"2053"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"custom/asura_shard_crit"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"FightRecapLevel"				"1"
+
+
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"10000"
+		"ItemShopTags"					"asura;hard_to_tag"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"asura part"
+		"ItemPurchasable"				"0"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+	}

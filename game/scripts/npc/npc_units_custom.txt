@@ -2398,7 +2398,7 @@
 
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"60000"		// Base health.
+		"StatusHealth"				"80000"		// Base health.
 		"StatusHealthRegen"			"40"			// Health regeneration rate.
 		"StatusMana"				"3000"		// Base mana.
 		"StatusManaRegen"			"5.0"		// Mana regeneration rate.		 
@@ -9980,7 +9980,7 @@
 		//----------------------------------------------------------------
 		"AbilityLayout"				"6"
 		"Ability1"					"boss_melee_impale"			
-		"Ability2"					""
+		"Ability2"					"boss_carapace"
 		"Ability3"					"boss_melee_impale_b"
 		// Armor
 		//----------------------------------------------------------------
@@ -10088,7 +10088,7 @@
 		//----------------------------------------------------------------
 		"AbilityLayout"				"6"
 		"Ability1"					"boss_melee_impale_h"			
-		"Ability2"					""
+		"Ability2"					"boss_carapace_h"
 		"Ability3"					"boss_melee_impale_b_h"
 		// Armor
 		//----------------------------------------------------------------
@@ -10196,7 +10196,7 @@
 		//----------------------------------------------------------------
 		"AbilityLayout"				"6"
 		"Ability1"					"boss_melee_impale_vh"			
-		"Ability2"					""
+		"Ability2"					"boss_carapace_vh"
 		"Ability3"					"boss_melee_impale_b_vh"
 		// Armor
 		//----------------------------------------------------------------
