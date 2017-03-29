@@ -317,7 +317,7 @@
 			"07"
 	        {
 	            "var_type"                      "FIELD_INTEGER"
-	            "projectile_damage"     		"0"
+	            "projectile_damage"     		"500 1000 2000 4000 8000 16000 32000"
 	        }
 			"08"
 	        {

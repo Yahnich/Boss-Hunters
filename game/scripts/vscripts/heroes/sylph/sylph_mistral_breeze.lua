@@ -30,28 +30,26 @@ function sylph_mistral_breeze:OnProjectileHit_ExtraData( hTarget, vLocation, ext
 			ability = self}
 		ApplyDamage( damage )
 		EmitSoundOn("Hero_Windrunner.PowershotDamage", hTarget)
-		if not hTarget:HasModifier("modifier_sylph_mistral_breeze_knockback") then
-			local originPoint = Vector(extraData.originPointx, extraData.originPointy)
-			local directionVector = vLocation - originPoint -- Original vectors
-			local rotateVector = Vector(directionVector.y, -directionVector.x, 0) -- Normal vector
-			local compareVector = hTarget:GetAbsOrigin() - originPoint -- Comparative vector
-			local sideResult = rotateVector:Dot(compareVector)
-			local pushDir = (hTarget:GetAbsOrigin() - self:GetCaster():GetAbsOrigin())
-			local distanceCap = (self:GetSpecialValueFor("projectile_distance") - directionVector:Length2D()) / self:GetSpecialValueFor("projectile_distance")
-			if (hTarget:GetAbsOrigin() - self:GetCaster():GetAbsOrigin()):Length2D() > 450 or sideResult ~= 0 then
-				if sideResult > 0 then
-					pushDir = Vector(directionVector.y, -directionVector.x, 0)
-				else
-					pushDir = Vector(-directionVector.y, directionVector.x, 0)
-				end
+		local originPoint = Vector(extraData.originPointx, extraData.originPointy)
+		local directionVector = vLocation - originPoint -- Original vectors
+		local rotateVector = Vector(directionVector.y, -directionVector.x, 0) -- Normal vector
+		local compareVector = hTarget:GetAbsOrigin() - originPoint -- Comparative vector
+		local sideResult = rotateVector:Dot(compareVector)
+		local pushDir = (hTarget:GetAbsOrigin() - self:GetCaster():GetAbsOrigin())
+		local distanceCap = (self:GetSpecialValueFor("projectile_distance") - directionVector:Length2D()) / self:GetSpecialValueFor("projectile_distance")
+		if (hTarget:GetAbsOrigin() - self:GetCaster():GetAbsOrigin()):Length2D() > 450 or sideResult ~= 0 then
+			if sideResult > 0 then
+				pushDir = Vector(directionVector.y, -directionVector.x, 0)
 			else
-				distanceCap = distanceCap * 1.5
+				pushDir = Vector(-directionVector.y, directionVector.x, 0)
 			end
-			pushDir = pushDir:Normalized()
-			
-			hTarget:AddNewModifier(self:GetCaster(), self, "modifier_sylph_mistral_breeze_knockback", {pushMod = distanceCap, pushDirx = pushDir.x, pushDiry = pushDir.y})
-			hTarget:AddNewModifier(self:GetCaster(), self, "modifier_sylph_mistral_breeze_blind", {duration = self:GetSpecialValueFor("blind_duration")})
+		else
+			distanceCap = distanceCap * 1.5
 		end
+		pushDir = pushDir:Normalized()
+			
+		hTarget:AddNewModifier(self:GetCaster(), self, "modifier_sylph_mistral_breeze_knockback", {pushMod = distanceCap, pushDirx = pushDir.x, pushDiry = pushDir.y})
+		hTarget:AddNewModifier(self:GetCaster(), self, "modifier_sylph_mistral_breeze_blind", {duration = self:GetSpecialValueFor("blind_duration")})
 	end
 	return false
 end
@@ -60,6 +58,21 @@ LinkLuaModifier( "modifier_sylph_mistral_breeze_knockback", "heroes/sylph/sylph_
 modifier_sylph_mistral_breeze_knockback = modifier_sylph_mistral_breeze_knockback or class({})
 
 function modifier_sylph_mistral_breeze_knockback:OnCreated(kv)
+	if IsServer() then
+		if self:ApplyHorizontalMotionController() == false then 
+			self:Destroy()
+		end
+		EmitSoundOn("Hero_Tiny.Toss.Target", self:GetParent())
+		self.max_distance = self:GetAbility():GetSpecialValueFor("max_push")
+		self.distance_to_travel = self.max_distance * kv.pushMod
+		self.pushDir = Vector(tonumber(kv.pushDirx), tonumber(kv.pushDiry), 0)
+		if self.distance_to_travel < self:GetAbility():GetSpecialValueFor("min_push") then self.distance_to_travel = self:GetAbility():GetSpecialValueFor("min_push") end
+		self.distance = 0
+		self.speed = self:GetAbility():GetSpecialValueFor("knockback_speed")
+	end
+end
+
+function modifier_sylph_mistral_breeze_knockback:OnRefresh(kv)
 	if IsServer() then
 		if self:ApplyHorizontalMotionController() == false then 
 			self:Destroy()
@@ -90,9 +103,9 @@ end
 function modifier_sylph_mistral_breeze_knockback:UpdateHorizontalMotion( me, dt )
 	if IsServer() then
 		local parent = self:GetParent()
-		if self.distance < self.distance_to_travel then
+		if self.distance < self.distance_to_travel and self:GetParent():IsAlive() then
 			parent:SetAbsOrigin(parent:GetAbsOrigin() + self.pushDir * self.speed*dt)
-			self.distance = self.distance + self.speed*dt
+			self.distance = self.distance + self.speed*0.03
 		else
 			parent:InterruptMotionControllers(true)
 			self:Destroy()
