@@ -9092,7 +9092,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"area_of_effect"		"600"
+				"area_of_effect"		"1000"
 			}
 			"02"
 			{

@@ -1435,7 +1435,7 @@
 		
 		// Cast Range
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"600"
+		"AbilityCastRange"				"1000"
 
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
@@ -10126,17 +10126,17 @@
 			"01"
 	        {
 	            "var_type"              "FIELD_FLOAT"
-	            "damage"             "500 1000 2000 4000 8000 16000 32000"  //The meteor lands on the ground this many seconds after it was cast.
+	            "damage"            	 "500 1500 3000 6000 12000 24000 48000"  //The meteor lands on the ground this many seconds after it was cast.
 	        }
 	        "02"
 	        {
 	            "var_type"              "FIELD_FLOAT"
-	            "delay"             "3.0 2.75 2.5 2.25 2.0 1.75 1.5"  //The meteor lands on the ground this many seconds after it was cast.
+	            "delay"             	"1.5"  //The meteor lands on the ground this many seconds after it was cast.
 	        }
 	        "03"
 	        {
 	            "var_type"              "FIELD_FLOAT"
-	            "source_count"             "1 1 2 2 3 3 4"  //The meteor lands on the ground this many seconds after it was cast.
+	            "source_count"             "4"  //The meteor lands on the ground this many seconds after it was cast.
 	        }
 	        "04"
 	        {
@@ -10146,7 +10146,7 @@
 	        "05"
 	        {
 	            "var_type"              "FIELD_FLOAT"
-	            "slow_percent"             "-10 -12 -14 -16 -18 -20 -25"  //The meteor lands on the ground this many seconds after it was cast.
+	            "slow_percent"             "-25"  //The meteor lands on the ground this many seconds after it was cast.
 	        }
 		}
 	}	

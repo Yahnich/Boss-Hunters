@@ -63,9 +63,6 @@ function BuildPlayersArray()
                 local hero = PlayerResource:GetSelectedHeroEntity(playerID)
 				if not hero then return end
 				local heroName = string.gsub(hero:GetUnitName(), "npc_dota_hero_", "")
-				if GameRules.gameDifficulty < 3 then heroName = "casual" end
-				if GetMapName() == "epic_boss_fight_boss_master" then heroName = "boss_master" end
-				print(heroName)
                 table.insert(players, {
                     -- steamID32 required in here
                     steamID32 = PlayerResource:GetSteamAccountID(playerID),
