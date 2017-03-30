@@ -238,6 +238,174 @@
 	    }
 	}
 	//=================================================================================================================
+	// PEACEKEEPER - TEMPLAR ASSASSIN
+	//=================================================================================================================
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	//=================================================================================================================
+	"peacekeeper_innate_lady_justice"
+	{
+	    "BaseClass"                     "ability_lua"
+	    "ScriptFile"                    "heroes/huntress/peacekeeper_innate_lady_justice.lua"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"custom/peacekeeper_innate_lady_justice"
+	    "RequiredLevel"  				"7"
+		"MaxLevel"						"7"
+		"LevelsBetweenUpgrades"			"5"
+		"InnateAbility"					"1"
+	    "AbilitySpecial"
+	    {
+	        "01"
+	        {
+	            "var_type"                      "FIELD_FLOAT"
+	            "attribute_bonus_per_level"     "5.0"
+	        }
+	    }
+	}
+	"peacekeeper_vindication"
+	{
+	    "BaseClass"                     "ability_lua"
+	    "ScriptFile"                    "heroes/huntress/peacekeeper_vindication.lua"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName"			"custom/peacekeeper_vindication"
+	    "RequiredLevel"  				"7"
+		"MaxLevel"						"7"
+		"LevelsBetweenUpgrades"			"5"
+	    "AbilitySpecial"
+	    {
+	        "01"
+	        {
+	            "var_type"                      "FIELD_FLOAT"
+	            "attribute_bonus_per_level"     "5.0"
+	        }
+	    }
+	}
+	"peacekeeper_adjudicator"
+	{
+	    "BaseClass"                     "ability_lua"
+	    "ScriptFile"                    "heroes/huntress/huntress_gust.lua"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName"			"custom/huntress_gust"
+	    "RequiredLevel"  				"7"
+		"MaxLevel"						"7"
+		"LevelsBetweenUpgrades"			"5"
+	    "AbilitySpecial"
+	    {
+	        "01"
+	        {
+	            "var_type"                      "FIELD_FLOAT"
+	            "attribute_bonus_per_level"     "5.0"
+	        }
+	    }
+	}
+	"peacekeeper_mistrial"
+	{
+	    "BaseClass"                     "ability_lua"
+	    "ScriptFile"                    "heroes/huntress/huntress_icicle_shot.lua"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName"			"custom/huntress_icicle_shot"
+	    "RequiredLevel"  				"7"
+		"MaxLevel"						"7"
+		"LevelsBetweenUpgrades"			"5"
+	    "AbilitySpecial"
+	    {
+	        "01"
+	        {
+	            "var_type"                      "FIELD_FLOAT"
+	            "attribute_bonus_per_level"     "5.0"
+	        }
+	    }
+	}
+	"peacekeeper_indictment"
+	{
+	    "BaseClass"                     "ability_lua"
+	    "ScriptFile"                    "heroes/huntress/huntress_cryofreeze.lua"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName"			"custom/huntress_cryofreeze"
+	    "RequiredLevel"  				"7"
+		"MaxLevel"						"7"
+		"LevelsBetweenUpgrades"			"5"
+	    "AbilitySpecial"
+	    {
+	        "01"
+	        {
+	            "var_type"                      "FIELD_FLOAT"
+	            "attribute_bonus_per_level"     "5.0"
+	        }
+	    }
+	}
+	"peacekeeper_conviction"
+	{
+	    "BaseClass"                     "ability_lua"
+	    "ScriptFile"                    "heroes/huntress/huntress_cold_prison.lua"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityTextureName"			"custom/huntress_cold_prison"
+	    "RequiredLevel"  				"7"
+		"MaxLevel"						"7"
+		"LevelsBetweenUpgrades"			"5"
+	    "AbilitySpecial"
+	    {
+	        "01"
+	        {
+	            "var_type"                      "FIELD_FLOAT"
+	            "attribute_bonus_per_level"     "5.0"
+	        }
+	    }
+	}
+	"peacekeeper_casus_belli"
+	{
+	    "BaseClass"                     "ability_lua"
+	    "ScriptFile"                    "heroes/huntress/huntress_winters_embrace.lua"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName"			"custom/huntress_winters_embrace"
+	    "RequiredLevel"  				"7"
+		"MaxLevel"						"7"
+		"LevelsBetweenUpgrades"			"5"
+	    "AbilitySpecial"
+	    {
+	        "01"
+	        {
+	            "var_type"                      "FIELD_FLOAT"
+	            "attribute_bonus_per_level"     "5.0"
+	        }
+	    }
+	}
+	"peacekeeper_mens_rea"
+	{
+	    "BaseClass"                     "ability_lua"
+	    "ScriptFile"                    "heroes/huntress/huntress_ice_barrage.lua"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityTextureName"			"custom/huntress_ice_barrage"
+	    "RequiredLevel"  				"7"
+		"MaxLevel"						"7"
+		"LevelsBetweenUpgrades"			"5"
+	    "AbilitySpecial"
+	    {
+	        "01"
+	        {
+	            "var_type"                      "FIELD_FLOAT"
+	            "attribute_bonus_per_level"     "5.0"
+	        }
+	    }
+	}
+	"peacekeeper_corpis_juris"
+	{
+	    "BaseClass"                     "ability_lua"
+	    "ScriptFile"                    "heroes/huntress/huntress_snowfall.lua"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName"			"custom/huntress_snowfall"
+	    "RequiredLevel"  				"7"
+		"MaxLevel"						"7"
+		"LevelsBetweenUpgrades"			"5"
+	    "AbilitySpecial"
+	    {
+	        "01"
+	        {
+	            "var_type"                      "FIELD_FLOAT"
+	            "attribute_bonus_per_level"     "5.0"
+	        }
+	    }
+	}
+	//=================================================================================================================
 	// SYLPH - WINDRUNNER
 	//=================================================================================================================
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1270,12 +1438,12 @@
 	        }
 	    }
 	}
-	"justicar_penitance"
+	"justicar_penitence"
 	{
 	    "BaseClass"                     "ability_lua"
-	    "ScriptFile"                    "heroes/justicar/justicar_penitance.lua"
+	    "ScriptFile"                    "heroes/justicar/justicar_penitence.lua"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityTextureName"			"custom/justicar_penitance"
+		"AbilityTextureName"			"custom/justicar_penitence"
 	    "RequiredLevel"  				"7"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"5"
@@ -1515,12 +1683,12 @@
 	//=================================================================================================================
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	//=================================================================================================================
-	"ronin_innate_"
+	"ronin_innate_stolen_power"
 	{
 	    "BaseClass"                     "ability_lua"
-	    "ScriptFile"                    "heroes/ronin/ronin_innate_cold_hearted.lua"
+	    "ScriptFile"                    "heroes/ronin/ronin_innate_stolen_power.lua"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityTextureName"			"custom/ronin_innate_cold_hearted"
+		"AbilityTextureName"			"custom/ronin_innate_stolen_power"
 	    "RequiredLevel"  				"7"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"5"
@@ -1534,12 +1702,12 @@
 	        }
 	    }
 	}
-	"ronin_"
+	"ronin_ronins_dance"
 	{
 	    "BaseClass"                     "ability_lua"
-	    "ScriptFile"                    "heroes/ronin/ronin_frozen_arrow.lua"
+	    "ScriptFile"                    "heroes/ronin/ronin_ronins_dance.lua"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityTextureName"			"custom/ronin_frozen_arrow"
+		"AbilityTextureName"			"custom/ronin_ronins_dance"
 	    "RequiredLevel"  				"7"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"5"
@@ -1552,12 +1720,12 @@
 	        }
 	    }
 	}
-	"ronin_"
+	"ronin_boundless_slice"
 	{
 	    "BaseClass"                     "ability_lua"
-	    "ScriptFile"                    "heroes/ronin/ronin_gust.lua"
+	    "ScriptFile"                    "heroes/ronin/ronin_boundless_slice.lua"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityTextureName"			"custom/ronin_gust"
+		"AbilityTextureName"			"custom/ronin_boundless_slice"
 	    "RequiredLevel"  				"7"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"5"
@@ -1570,12 +1738,12 @@
 	        }
 	    }
 	}
-	"ronin_"
+	"ronin_samurai_song"
 	{
 	    "BaseClass"                     "ability_lua"
-	    "ScriptFile"                    "heroes/ronin/ronin_icicle_shot.lua"
+	    "ScriptFile"                    "heroes/ronin/ronin_samurai_song.lua"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityTextureName"			"custom/ronin_icicle_shot"
+		"AbilityTextureName"			"custom/ronin_samurai_song"
 	    "RequiredLevel"  				"7"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"5"
@@ -1588,12 +1756,12 @@
 	        }
 	    }
 	}
-	"ronin_"
+	"ronin_vengeance"
 	{
 	    "BaseClass"                     "ability_lua"
-	    "ScriptFile"                    "heroes/ronin/ronin_cryofreeze.lua"
+	    "ScriptFile"                    "heroes/ronin/ronin_vengeance.lua"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityTextureName"			"custom/ronin_cryofreeze"
+		"AbilityTextureName"			"custom/ronin_vengeance"
 	    "RequiredLevel"  				"7"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"5"
@@ -1606,12 +1774,12 @@
 	        }
 	    }
 	}
-	"ronin_"
+	"ronin_steady_mind"
 	{
 	    "BaseClass"                     "ability_lua"
-	    "ScriptFile"                    "heroes/ronin/ronin_cold_prison.lua"
+	    "ScriptFile"                    "heroes/ronin/ronin_steady_mind.lua"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityTextureName"			"custom/ronin_cold_prison"
+		"AbilityTextureName"			"custom/ronin_steady_mind"
 	    "RequiredLevel"  				"7"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"5"
@@ -1624,12 +1792,12 @@
 	        }
 	    }
 	}
-	"ronin_"
+	"ronin_whirling_dervish"
 	{
 	    "BaseClass"                     "ability_lua"
-	    "ScriptFile"                    "heroes/ronin/ronin_winters_embrace.lua"
+	    "ScriptFile"                    "heroes/ronin/ronin_whirling_dervish.lua"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityTextureName"			"custom/ronin_winters_embrace"
+		"AbilityTextureName"			"custom/ronin_whirling_dervish"
 	    "RequiredLevel"  				"7"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"5"
@@ -1642,12 +1810,12 @@
 	        }
 	    }
 	}
-	"ronin_"
+	"ronin_executioners_blade"
 	{
 	    "BaseClass"                     "ability_lua"
-	    "ScriptFile"                    "heroes/ronin/ronin_ice_barrage.lua"
+	    "ScriptFile"                    "heroes/ronin/ronin_executioners_blade.lua"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
-		"AbilityTextureName"			"custom/ronin_ice_barrage"
+		"AbilityTextureName"			"custom/ronin_executioners_blade"
 	    "RequiredLevel"  				"7"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"5"
@@ -1660,12 +1828,12 @@
 	        }
 	    }
 	}
-	"ronin_"
+	"ronin_deflection"
 	{
 	    "BaseClass"                     "ability_lua"
-	    "ScriptFile"                    "heroes/ronin/ronin_snowfall.lua"
+	    "ScriptFile"                    "heroes/ronin/ronin_deflection.lua"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityTextureName"			"custom/ronin_snowfall"
+		"AbilityTextureName"			"custom/ronin_deflection"
 	    "RequiredLevel"  				"7"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"5"
@@ -1851,12 +2019,12 @@
 	//=================================================================================================================
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	//=================================================================================================================
-	"stormcaster_innate_"
+	"stormcaster_innate_static_link"
 	{
 	    "BaseClass"                     "ability_lua"
-	    "ScriptFile"                    "heroes/huntress/huntress_innate_cold_hearted.lua"
+	    "ScriptFile"                    "heroes/huntress/stormcaster_innate_static_link.lua"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityTextureName"			"custom/huntress_innate_cold_hearted"
+		"AbilityTextureName"			"custom/stormcaster_innate_static_link"
 	    "RequiredLevel"  				"7"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"5"
@@ -1870,12 +2038,12 @@
 	        }
 	    }
 	}
-	"stormcaster_"
+	"stormcaster_volt_hurricane"
 	{
 	    "BaseClass"                     "ability_lua"
-	    "ScriptFile"                    "heroes/huntress/huntress_frozen_arrow.lua"
+	    "ScriptFile"                    "heroes/huntress/stormcaster_volt_hurricane.lua"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityTextureName"			"custom/huntress_frozen_arrow"
+		"AbilityTextureName"			"custom/stormcaster_volt_hurricane"
 	    "RequiredLevel"  				"7"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"5"
@@ -1888,12 +2056,12 @@
 	        }
 	    }
 	}
-	"stormcaster_"
+	"stormcaster_thunder_strike"
 	{
 	    "BaseClass"                     "ability_lua"
-	    "ScriptFile"                    "heroes/huntress/huntress_gust.lua"
+	    "ScriptFile"                    "heroes/huntress/stormcaster_thunder_strike.lua"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityTextureName"			"custom/huntress_gust"
+		"AbilityTextureName"			"custom/stormcaster_thunder_strike"
 	    "RequiredLevel"  				"7"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"5"
@@ -1906,12 +2074,12 @@
 	        }
 	    }
 	}
-	"stormcaster_"
+	"stormcaster_electro_charge"
 	{
 	    "BaseClass"                     "ability_lua"
-	    "ScriptFile"                    "heroes/huntress/huntress_icicle_shot.lua"
+	    "ScriptFile"                    "heroes/huntress/stormcaster_electro_charge.lua"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityTextureName"			"custom/huntress_icicle_shot"
+		"AbilityTextureName"			"custom/stormcaster_electro_charge"
 	    "RequiredLevel"  				"7"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"5"
@@ -1924,12 +2092,12 @@
 	        }
 	    }
 	}
-	"stormcaster_"
+	"stormcaster_ball_lightning"
 	{
 	    "BaseClass"                     "ability_lua"
-	    "ScriptFile"                    "heroes/huntress/huntress_cryofreeze.lua"
+	    "ScriptFile"                    "heroes/huntress/stormcaster_ball_lightning.lua"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityTextureName"			"custom/huntress_cryofreeze"
+		"AbilityTextureName"			"custom/stormcaster_ball_lightning"
 	    "RequiredLevel"  				"7"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"5"
@@ -1942,12 +2110,12 @@
 	        }
 	    }
 	}
-	"stormcaster_"
+	"stormcaster_energize"
 	{
 	    "BaseClass"                     "ability_lua"
-	    "ScriptFile"                    "heroes/huntress/huntress_cold_prison.lua"
+	    "ScriptFile"                    "heroes/huntress/stormcaster_energize.lua"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityTextureName"			"custom/huntress_cold_prison"
+		"AbilityTextureName"			"custom/stormcaster_energize"
 	    "RequiredLevel"  				"7"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"5"
@@ -1960,12 +2128,12 @@
 	        }
 	    }
 	}
-	"stormcaster_"
+	"stormcaster_tesla_storm"
 	{
 	    "BaseClass"                     "ability_lua"
-	    "ScriptFile"                    "heroes/huntress/huntress_winters_embrace.lua"
+	    "ScriptFile"                    "heroes/huntress/stormcaster_tesla_storm.lua"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityTextureName"			"custom/huntress_winters_embrace"
+		"AbilityTextureName"			"custom/stormcaster_tesla_storm"
 	    "RequiredLevel"  				"7"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"5"
@@ -1978,12 +2146,12 @@
 	        }
 	    }
 	}
-	"stormcaster_"
+	"stormcaster_conductive_shield"
 	{
 	    "BaseClass"                     "ability_lua"
-	    "ScriptFile"                    "heroes/huntress/huntress_ice_barrage.lua"
+	    "ScriptFile"                    "heroes/huntress/stormcaster_conductive_shield.lua"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
-		"AbilityTextureName"			"custom/huntress_ice_barrage"
+		"AbilityTextureName"			"custom/stormcaster_conductive_shield"
 	    "RequiredLevel"  				"7"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"5"
@@ -1996,12 +2164,12 @@
 	        }
 	    }
 	}
-	"stormcaster_"
+	"stormcaster_fulmination"
 	{
 	    "BaseClass"                     "ability_lua"
-	    "ScriptFile"                    "heroes/huntress/huntress_snowfall.lua"
+	    "ScriptFile"                    "heroes/huntress/stormcaster_fulmination.lua"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityTextureName"			"custom/huntress_snowfall"
+		"AbilityTextureName"			"custom/stormcaster_fulmination"
 	    "RequiredLevel"  				"7"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"5"
@@ -2015,16 +2183,16 @@
 	    }
 	}
 	//=================================================================================================================
-	// SKINWALKER - LONE DRUID
+	// SAGE - LONE DRUID
 	//=================================================================================================================
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	//=================================================================================================================
-	"skinwalker_innate_"
+	"sage_innate_summon_familiar"
 	{
 	    "BaseClass"                     "ability_lua"
-	    "ScriptFile"                    "heroes/huntress/huntress_innate_cold_hearted.lua"
+	    "ScriptFile"                    "heroes/huntress/sage_innate_summon_familiar.lua"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityTextureName"			"custom/huntress_innate_cold_hearted"
+		"AbilityTextureName"			"custom/sage_innate_summon_familiar"
 	    "RequiredLevel"  				"7"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"5"
@@ -2038,7 +2206,7 @@
 	        }
 	    }
 	}
-	"skinwalker_"
+	"sage_entangling_roots"
 	{
 	    "BaseClass"                     "ability_lua"
 	    "ScriptFile"                    "heroes/huntress/huntress_frozen_arrow.lua"
@@ -2056,7 +2224,7 @@
 	        }
 	    }
 	}
-	"skinwalker_"
+	"sage_grasping_thorns"
 	{
 	    "BaseClass"                     "ability_lua"
 	    "ScriptFile"                    "heroes/huntress/huntress_gust.lua"
@@ -2074,7 +2242,7 @@
 	        }
 	    }
 	}
-	"skinwalker_"
+	"sage_rabid_frenzy"
 	{
 	    "BaseClass"                     "ability_lua"
 	    "ScriptFile"                    "heroes/huntress/huntress_icicle_shot.lua"
@@ -2092,7 +2260,7 @@
 	        }
 	    }
 	}
-	"skinwalker_"
+	"sage_predator_form"
 	{
 	    "BaseClass"                     "ability_lua"
 	    "ScriptFile"                    "heroes/huntress/huntress_cryofreeze.lua"
@@ -2110,7 +2278,7 @@
 	        }
 	    }
 	}
-	"skinwalker_"
+	"sage_protector_form"
 	{
 	    "BaseClass"                     "ability_lua"
 	    "ScriptFile"                    "heroes/huntress/huntress_cold_prison.lua"
@@ -2128,7 +2296,7 @@
 	        }
 	    }
 	}
-	"skinwalker_"
+	"sage_battle_cry"
 	{
 	    "BaseClass"                     "ability_lua"
 	    "ScriptFile"                    "heroes/huntress/huntress_winters_embrace.lua"
@@ -2146,7 +2314,7 @@
 	        }
 	    }
 	}
-	"skinwalker_"
+	"sage_intimidating_roar"
 	{
 	    "BaseClass"                     "ability_lua"
 	    "ScriptFile"                    "heroes/huntress/huntress_ice_barrage.lua"
@@ -2164,7 +2332,7 @@
 	        }
 	    }
 	}
-	"skinwalker_"
+	"sage_living_bark"
 	{
 	    "BaseClass"                     "ability_lua"
 	    "ScriptFile"                    "heroes/huntress/huntress_snowfall.lua"
@@ -2518,7 +2686,174 @@
 	        }
 	    }
 	}
-	
+	//=================================================================================================================
+	// MYSTIC - DAZZLE
+	//=================================================================================================================
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	//=================================================================================================================
+	"mystic_innate_life_weaver"
+	{
+	    "BaseClass"                     "ability_lua"
+	    "ScriptFile"                    "heroes/huntress/mystic_innate_life_weaver.lua"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"custom/mystic_innate_life_weaver"
+	    "RequiredLevel"  				"7"
+		"MaxLevel"						"7"
+		"LevelsBetweenUpgrades"			"5"
+		"InnateAbility"					"1"
+	    "AbilitySpecial"
+	    {
+	        "01"
+	        {
+	            "var_type"                      "FIELD_FLOAT"
+	            "attribute_bonus_per_level"     "5.0"
+	        }
+	    }
+	}
+	"mystic_mending_wave"
+	{
+	    "BaseClass"                     "ability_lua"
+	    "ScriptFile"                    "heroes/huntress/mystic_mending_wave.lua"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName"			"custom/mystic_mending_wave"
+	    "RequiredLevel"  				"7"
+		"MaxLevel"						"7"
+		"LevelsBetweenUpgrades"			"5"
+	    "AbilitySpecial"
+	    {
+	        "01"
+	        {
+	            "var_type"                      "FIELD_FLOAT"
+	            "attribute_bonus_per_level"     "5.0"
+	        }
+	    }
+	}
+	"mystic_unyielding"
+	{
+	    "BaseClass"                     "ability_lua"
+	    "ScriptFile"                    "heroes/huntress/mystic_unyielding.lua"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName"			"custom/mystic_unyielding"
+	    "RequiredLevel"  				"7"
+		"MaxLevel"						"7"
+		"LevelsBetweenUpgrades"			"5"
+	    "AbilitySpecial"
+	    {
+	        "01"
+	        {
+	            "var_type"                      "FIELD_FLOAT"
+	            "attribute_bonus_per_level"     "5.0"
+	        }
+	    }
+	}
+	"mystic_mist_barrier"
+	{
+	    "BaseClass"                     "ability_lua"
+	    "ScriptFile"                    "heroes/huntress/mystic_mist_barrier.lua"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName"			"custom/mystic_mist_barrier"
+	    "RequiredLevel"  				"7"
+		"MaxLevel"						"7"
+		"LevelsBetweenUpgrades"			"5"
+	    "AbilitySpecial"
+	    {
+	        "01"
+	        {
+	            "var_type"                      "FIELD_FLOAT"
+	            "attribute_bonus_per_level"     "5.0"
+	        }
+	    }
+	}
+	"mystic_death_clasp"
+	{
+	    "BaseClass"                     "ability_lua"
+	    "ScriptFile"                    "heroes/huntress/mystic_death_clasp.lua"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName"			"custom/mystic_death_clasp"
+	    "RequiredLevel"  				"7"
+		"MaxLevel"						"7"
+		"LevelsBetweenUpgrades"			"5"
+	    "AbilitySpecial"
+	    {
+	        "01"
+	        {
+	            "var_type"                      "FIELD_FLOAT"
+	            "attribute_bonus_per_level"     "5.0"
+	        }
+	    }
+	}
+	"mystic_sacrifical_rite"
+	{
+	    "BaseClass"                     "ability_lua"
+	    "ScriptFile"                    "heroes/huntress/mystic_sacrifical_rite.lua"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityTextureName"			"custom/mystic_sacrifical_rite"
+	    "RequiredLevel"  				"7"
+		"MaxLevel"						"7"
+		"LevelsBetweenUpgrades"			"5"
+	    "AbilitySpecial"
+	    {
+	        "01"
+	        {
+	            "var_type"                      "FIELD_FLOAT"
+	            "attribute_bonus_per_level"     "5.0"
+	        }
+	    }
+	}
+	"mystic_eternal_feast"
+	{
+	    "BaseClass"                     "ability_lua"
+	    "ScriptFile"                    "heroes/huntress/mystic_eternal_feast.lua"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName"			"custom/mystic_eternal_feast"
+	    "RequiredLevel"  				"7"
+		"MaxLevel"						"7"
+		"LevelsBetweenUpgrades"			"5"
+	    "AbilitySpecial"
+	    {
+	        "01"
+	        {
+	            "var_type"                      "FIELD_FLOAT"
+	            "attribute_bonus_per_level"     "5.0"
+	        }
+	    }
+	}
+	"mystic_grim_harvest"
+	{
+	    "BaseClass"                     "ability_lua"
+	    "ScriptFile"                    "heroes/huntress/mystic_grim_harvest.lua"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityTextureName"			"custom/mystic_grim_harvest"
+	    "RequiredLevel"  				"7"
+		"MaxLevel"						"7"
+		"LevelsBetweenUpgrades"			"5"
+	    "AbilitySpecial"
+	    {
+	        "01"
+	        {
+	            "var_type"                      "FIELD_FLOAT"
+	            "attribute_bonus_per_level"     "5.0"
+	        }
+	    }
+	}
+	"mystic_lifeswap"
+	{
+	    "BaseClass"                     "ability_lua"
+	    "ScriptFile"                    "heroes/huntress/mystic_lifeswap.lua"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName"			"custom/mystic_lifeswap"
+	    "RequiredLevel"  				"7"
+		"MaxLevel"						"7"
+		"LevelsBetweenUpgrades"			"5"
+	    "AbilitySpecial"
+	    {
+	        "01"
+	        {
+	            "var_type"                      "FIELD_FLOAT"
+	            "attribute_bonus_per_level"     "5.0"
+	        }
+	    }
+	}
 	
 	
 	

@@ -1,0 +1,1 @@
+sylph_aerodynamic = sylph_aerodynamic or class({})

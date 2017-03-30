@@ -1,0 +1,1 @@
+sylph_updraft = sylph_updraft or class({})
