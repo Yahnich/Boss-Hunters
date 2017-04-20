@@ -282,9 +282,9 @@
 	"peacekeeper_adjudicator"
 	{
 	    "BaseClass"                     "ability_lua"
-	    "ScriptFile"                    "heroes/huntress/huntress_gust.lua"
+	    "ScriptFile"                    "heroes/huntress/peacekeeper_adjudicator.lua"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityTextureName"			"custom/huntress_gust"
+		"AbilityTextureName"			"custom/peacekeeper_adjudicator"
 	    "RequiredLevel"  				"7"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"5"
@@ -300,9 +300,9 @@
 	"peacekeeper_mistrial"
 	{
 	    "BaseClass"                     "ability_lua"
-	    "ScriptFile"                    "heroes/huntress/huntress_icicle_shot.lua"
+	    "ScriptFile"                    "heroes/huntress/peacekeeper_mistrial.lua"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityTextureName"			"custom/huntress_icicle_shot"
+		"AbilityTextureName"			"custom/peacekeeper_mistrial"
 	    "RequiredLevel"  				"7"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"5"
@@ -318,9 +318,9 @@
 	"peacekeeper_indictment"
 	{
 	    "BaseClass"                     "ability_lua"
-	    "ScriptFile"                    "heroes/huntress/huntress_cryofreeze.lua"
+	    "ScriptFile"                    "heroes/huntress/peacekeeper_indictment.lua"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityTextureName"			"custom/huntress_cryofreeze"
+		"AbilityTextureName"			"custom/peacekeeper_indictment"
 	    "RequiredLevel"  				"7"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"5"
@@ -336,9 +336,9 @@
 	"peacekeeper_conviction"
 	{
 	    "BaseClass"                     "ability_lua"
-	    "ScriptFile"                    "heroes/huntress/huntress_cold_prison.lua"
+	    "ScriptFile"                    "heroes/huntress/peacekeeper_conviction.lua"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityTextureName"			"custom/huntress_cold_prison"
+		"AbilityTextureName"			"custom/peacekeeper_conviction"
 	    "RequiredLevel"  				"7"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"5"
@@ -354,9 +354,9 @@
 	"peacekeeper_casus_belli"
 	{
 	    "BaseClass"                     "ability_lua"
-	    "ScriptFile"                    "heroes/huntress/huntress_winters_embrace.lua"
+	    "ScriptFile"                    "heroes/huntress/peacekeeper_casus_belli.lua"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityTextureName"			"custom/huntress_winters_embrace"
+		"AbilityTextureName"			"custom/peacekeeper_casus_belli"
 	    "RequiredLevel"  				"7"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"5"
@@ -372,9 +372,9 @@
 	"peacekeeper_mens_rea"
 	{
 	    "BaseClass"                     "ability_lua"
-	    "ScriptFile"                    "heroes/huntress/huntress_ice_barrage.lua"
+	    "ScriptFile"                    "heroes/huntress/peacekeeper_mens_rea.lua"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
-		"AbilityTextureName"			"custom/huntress_ice_barrage"
+		"AbilityTextureName"			"custom/peacekeeper_mens_rea"
 	    "RequiredLevel"  				"7"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"5"
@@ -387,12 +387,12 @@
 	        }
 	    }
 	}
-	"peacekeeper_corpis_juris"
+	"peacekeeper_corpus_juris"
 	{
 	    "BaseClass"                     "ability_lua"
-	    "ScriptFile"                    "heroes/huntress/huntress_snowfall.lua"
+	    "ScriptFile"                    "heroes/huntress/peacekeeper_corpus_juris.lua"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityTextureName"			"custom/huntress_snowfall"
+		"AbilityTextureName"			"custom/peacekeeper_corpus_juris"
 	    "RequiredLevel"  				"7"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"5"
@@ -518,7 +518,7 @@
 			"02"
 	        {
 	            "var_type"                      "FIELD_INTEGER"
-	            "haste"    						"550"
+	            "movespeed_bonus"    			"12 16 20 24 28 32 36"
 	        }
 			"01"
 	        {
@@ -546,23 +546,23 @@
 	    {
 	        "01"
 	        {
-	            "var_type"                      "FIELD_FLOAT"
-	            "effect_radius"     "450"
+	            "var_type"                      "FIELD_INTEGER"
+	            "effect_radius"     			"450"
 	        }
 			"02"
 	        {
 	            "var_type"                      "FIELD_FLOAT"
-	            "duration"     		"15"
+	            "duration"     					"15"
 	        }
 			"02"
 	        {
-	            "var_type"                      "FIELD_FLOAT"
-	            "damage_mult"     	"1.2"
+	            "var_type"                      "FIELD_INTEGER"
+	            "damage_mult"     				"150 175 200 225 250 275 300"
 	        }
 			"02"
 	        {
-	            "var_type"                      "FIELD_FLOAT"
-	            "damage"     		"100"
+	            "var_type"                      "FIELD_INTEGER"
+	            "damage"     					"250 500 1000 2000 4000 8000 16000"
 	        }
 	    }
 	}
@@ -607,7 +607,7 @@
 	        "01"
 	        {
 	            "var_type"                      "FIELD_INTEGER"
-	            "crit_per_stack"     			"20"
+	            "crit_per_stack"     			"20 25 30 35 40 45 50"
 	        }
 			"01"
 	        {
@@ -630,7 +630,17 @@
 	        "01"
 	        {
 	            "var_type"                      "FIELD_FLOAT"
-	            "attribute_bonus_per_level"     "5.0"
+	            "duration"     					"5.0"
+	        }
+			"01"
+	        {
+	            "var_type"                      "FIELD_FLOAT"
+	            "miss_chance"    				 "30"
+	        }
+			"01"
+	        {
+	            "var_type"                      "FIELD_FLOAT"
+	            "attackspeed"     				"100 00 300 400 500 600 700"
 	        }
 	    }
 	}
@@ -675,12 +685,12 @@
 	//=================================================================================================================
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	//=================================================================================================================
-	"cryomancer_innate_frostband"
+	"cryomancer_innate_frostbrand"
 	{
 	    "BaseClass"                     "ability_lua"
-	    "ScriptFile"                    "heroes/cryomancer/cryomancer_innate_frostband.lua"
+	    "ScriptFile"                    "heroes/cryomancer/cryomancer_innate_frostbrand.lua"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityTextureName"			"custom/cryomancer_innate_frostband"
+		"AbilityTextureName"			"custom/cryomancer_innate_frostbrand"
 	    "RequiredLevel"  				"7"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"5"
@@ -2209,9 +2219,9 @@
 	"sage_entangling_roots"
 	{
 	    "BaseClass"                     "ability_lua"
-	    "ScriptFile"                    "heroes/huntress/huntress_frozen_arrow.lua"
+	    "ScriptFile"                    "heroes/huntress/sage_entangling_roots.lua"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityTextureName"			"custom/huntress_frozen_arrow"
+		"AbilityTextureName"			"custom/sage_entangling_roots"
 	    "RequiredLevel"  				"7"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"5"
@@ -2227,9 +2237,9 @@
 	"sage_grasping_thorns"
 	{
 	    "BaseClass"                     "ability_lua"
-	    "ScriptFile"                    "heroes/huntress/huntress_gust.lua"
+	    "ScriptFile"                    "heroes/huntress/sage_grasping_thorns.lua"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityTextureName"			"custom/huntress_gust"
+		"AbilityTextureName"			"custom/sage_grasping_thorns"
 	    "RequiredLevel"  				"7"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"5"
@@ -2245,9 +2255,9 @@
 	"sage_rabid_frenzy"
 	{
 	    "BaseClass"                     "ability_lua"
-	    "ScriptFile"                    "heroes/huntress/huntress_icicle_shot.lua"
+	    "ScriptFile"                    "heroes/huntress/sage_rabid_frenzy.lua"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityTextureName"			"custom/huntress_icicle_shot"
+		"AbilityTextureName"			"custom/sage_rabid_frenzy"
 	    "RequiredLevel"  				"7"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"5"
@@ -2263,9 +2273,9 @@
 	"sage_predator_form"
 	{
 	    "BaseClass"                     "ability_lua"
-	    "ScriptFile"                    "heroes/huntress/huntress_cryofreeze.lua"
+	    "ScriptFile"                    "heroes/huntress/sage_predator_form.lua"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityTextureName"			"custom/huntress_cryofreeze"
+		"AbilityTextureName"			"custom/sage_predator_form"
 	    "RequiredLevel"  				"7"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"5"
@@ -2281,9 +2291,9 @@
 	"sage_protector_form"
 	{
 	    "BaseClass"                     "ability_lua"
-	    "ScriptFile"                    "heroes/huntress/huntress_cold_prison.lua"
+	    "ScriptFile"                    "heroes/huntress/sage_protector_form.lua"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityTextureName"			"custom/huntress_cold_prison"
+		"AbilityTextureName"			"custom/sage_protector_form"
 	    "RequiredLevel"  				"7"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"5"
@@ -2299,9 +2309,9 @@
 	"sage_battle_cry"
 	{
 	    "BaseClass"                     "ability_lua"
-	    "ScriptFile"                    "heroes/huntress/huntress_winters_embrace.lua"
+	    "ScriptFile"                    "heroes/huntress/sage_battle_cry.lua"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityTextureName"			"custom/huntress_winters_embrace"
+		"AbilityTextureName"			"custom/sage_battle_cry"
 	    "RequiredLevel"  				"7"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"5"
@@ -2317,9 +2327,9 @@
 	"sage_intimidating_roar"
 	{
 	    "BaseClass"                     "ability_lua"
-	    "ScriptFile"                    "heroes/huntress/huntress_ice_barrage.lua"
+	    "ScriptFile"                    "heroes/huntress/sage_intimidating_roar.lua"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
-		"AbilityTextureName"			"custom/huntress_ice_barrage"
+		"AbilityTextureName"			"custom/sage_intimidating_roar"
 	    "RequiredLevel"  				"7"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"5"
@@ -2335,9 +2345,9 @@
 	"sage_living_bark"
 	{
 	    "BaseClass"                     "ability_lua"
-	    "ScriptFile"                    "heroes/huntress/huntress_snowfall.lua"
+	    "ScriptFile"                    "heroes/huntress/sage_living_bark.lua"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityTextureName"			"custom/huntress_snowfall"
+		"AbilityTextureName"			"custom/sage_living_bark"
 	    "RequiredLevel"  				"7"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"5"
@@ -2358,9 +2368,9 @@
 	"cultist_innate_demonic_power"
 	{
 	    "BaseClass"                     "ability_lua"
-	    "ScriptFile"                    "heroes/huntress/huntress_innate_cold_hearted.lua"
+	    "ScriptFile"                    "heroes/huntress/cultist_innate_demonic_power.lua"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityTextureName"			"custom/huntress_innate_cold_hearted"
+		"AbilityTextureName"			"custom/cultist_innate_demonic_power"
 	    "RequiredLevel"  				"7"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"5"
@@ -2377,9 +2387,9 @@
 	"cultist_solomons_key"
 	{
 	    "BaseClass"                     "ability_lua"
-	    "ScriptFile"                    "heroes/huntress/huntress_frozen_arrow.lua"
+	    "ScriptFile"                    "heroes/huntress/cultist_solomons_key.lua"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityTextureName"			"custom/huntress_frozen_arrow"
+		"AbilityTextureName"			"custom/cultist_solomons_key"
 	    "RequiredLevel"  				"7"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"5"
@@ -2395,9 +2405,9 @@
 	"cultist_moloch_rises"
 	{
 	    "BaseClass"                     "ability_lua"
-	    "ScriptFile"                    "heroes/huntress/huntress_gust.lua"
+	    "ScriptFile"                    "heroes/huntress/cultist_moloch_rises.lua"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityTextureName"			"custom/huntress_gust"
+		"AbilityTextureName"			"custom/cultist_moloch_rises"
 	    "RequiredLevel"  				"7"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"5"
@@ -2413,9 +2423,9 @@
 	"cultist_awaken_naamah"
 	{
 	    "BaseClass"                     "ability_lua"
-	    "ScriptFile"                    "heroes/huntress/huntress_icicle_shot.lua"
+	    "ScriptFile"                    "heroes/huntress/cultist_awaken_naamah.lua"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityTextureName"			"custom/huntress_icicle_shot"
+		"AbilityTextureName"			"custom/cultist_awaken_naamah"
 	    "RequiredLevel"  				"7"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"5"
@@ -2431,9 +2441,9 @@
 	"cultist_demonic_rift"
 	{
 	    "BaseClass"                     "ability_lua"
-	    "ScriptFile"                    "heroes/huntress/huntress_cryofreeze.lua"
+	    "ScriptFile"                    "heroes/huntress/cultist_demonic_rift.lua"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityTextureName"			"custom/huntress_cryofreeze"
+		"AbilityTextureName"			"custom/cultist_demonic_rift"
 	    "RequiredLevel"  				"7"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"5"
@@ -2449,9 +2459,9 @@
 	"cultist_cerberean_claws"
 	{
 	    "BaseClass"                     "ability_lua"
-	    "ScriptFile"                    "heroes/huntress/huntress_cold_prison.lua"
+	    "ScriptFile"                    "heroes/huntress/cultist_cerberean_claws.lua"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityTextureName"			"custom/huntress_cold_prison"
+		"AbilityTextureName"			"custom/cultist_cerberean_claws"
 	    "RequiredLevel"  				"7"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"5"
@@ -2467,9 +2477,9 @@
 	"cultist_chiones_breath"
 	{
 	    "BaseClass"                     "ability_lua"
-	    "ScriptFile"                    "heroes/huntress/huntress_winters_embrace.lua"
+	    "ScriptFile"                    "heroes/huntress/cultist_chiones_breath.lua"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityTextureName"			"custom/huntress_winters_embrace"
+		"AbilityTextureName"			"custom/cultist_chiones_breath"
 	    "RequiredLevel"  				"7"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"5"
@@ -2485,9 +2495,9 @@
 	"cultist_baphomet_pulse"
 	{
 	    "BaseClass"                     "ability_lua"
-	    "ScriptFile"                    "heroes/huntress/huntress_ice_barrage.lua"
+	    "ScriptFile"                    "heroes/huntress/cultist_baphomet_pulse.lua"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
-		"AbilityTextureName"			"custom/huntress_ice_barrage"
+		"AbilityTextureName"			"custom/cultist_baphomet_pulse"
 	    "RequiredLevel"  				"7"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"5"
@@ -2503,9 +2513,9 @@
 	"cultist_dread_symbiosis"
 	{
 	    "BaseClass"                     "ability_lua"
-	    "ScriptFile"                    "heroes/huntress/huntress_snowfall.lua"
+	    "ScriptFile"                    "heroes/huntress/cultist_dread_symbiosis.lua"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityTextureName"			"custom/huntress_snowfall"
+		"AbilityTextureName"			"custom/cultist_dread_symbiosis"
 	    "RequiredLevel"  				"7"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"5"
@@ -2782,12 +2792,12 @@
 	        }
 	    }
 	}
-	"mystic_sacrifical_rite"
+	"mystic_sacrificial_rite"
 	{
 	    "BaseClass"                     "ability_lua"
-	    "ScriptFile"                    "heroes/huntress/mystic_sacrifical_rite.lua"
+	    "ScriptFile"                    "heroes/huntress/mystic_sacrificial_rite.lua"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityTextureName"			"custom/mystic_sacrifical_rite"
+		"AbilityTextureName"			"custom/mystic_sacrificial_rite"
 	    "RequiredLevel"  				"7"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"5"

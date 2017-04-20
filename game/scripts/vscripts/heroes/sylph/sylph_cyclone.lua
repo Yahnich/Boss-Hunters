@@ -11,7 +11,7 @@ function modifier_sylph_cyclone_buff:OnCreated()
 	EmitSoundOn("Ability.Windrun", self:GetParent())
 	if IsServer() then self:StartIntervalThink(0) end
 	self.radius = self:GetAbility():GetSpecialValueFor("effect_radius")
-	self.damage_mult = self:GetAbility():GetSpecialValueFor("damage_mult")
+	self.damage_mult = self:GetAbility():GetSpecialValueFor("damage_mult") / 100
 	self.base_damage = self:GetAbility():GetSpecialValueFor("base_damage")
 end
 
@@ -24,7 +24,7 @@ function modifier_sylph_cyclone_buff:OnIntervalThink()
 	for _,unit in pairs(units) do
 		local direction = (unit:GetAbsOrigin() - casterPos):Normalized()
 		local knockback = self:GetCaster():GetIdealSpeed() * 0.0333 * 0.6
-		local damage = knockback * self.damage_mult + self.base_damage * 0.0333
+		local damage = knockback / (100*0.0333*0.6) * self.damage_mult + self.base_damage * 0.0333
 		ApplyDamage( {victim = unit, attacker = self:GetCaster(), damage = damage, damage_type = DAMAGE_TYPE_MAGICAL, ability = self} )
 		unit:SetAbsOrigin(unit:GetAbsOrigin() + direction * knockback)
 	end
