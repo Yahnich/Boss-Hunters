@@ -113,6 +113,10 @@ function modifier_sylph_mistral_breeze_knockback:UpdateHorizontalMotion( me, dt 
 	end
 end
 
+function modifier_sylph_mistral_breeze_knockback:IsPurgable()
+	return false
+end
+
 LinkLuaModifier( "modifier_sylph_mistral_breeze_blind", "heroes/sylph/sylph_mistral_breeze.lua", LUA_MODIFIER_MOTION_HORIZONTAL )
 modifier_sylph_mistral_breeze_blind = modifier_sylph_mistral_breeze_blind or class({})
 

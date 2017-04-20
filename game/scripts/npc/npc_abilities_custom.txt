@@ -657,8 +657,23 @@
 	    {
 	        "01"
 	        {
+	            "var_type"                      "FIELD_INTEGER"
+	            "min_arrows"     				"5"
+	        }
+			"02"
+	        {
 	            "var_type"                      "FIELD_FLOAT"
-	            "attribute_bonus_per_level"     "5.0"
+	            "fire_duration"     			"0.5"
+	        }
+			"03"
+	        {
+	            "var_type"                      "FIELD_FLOAT"
+	            "spread_rad"     				"90"
+	        }
+			"04"
+	        {
+	            "var_type"                      "FIELD_FLOAT"
+	            "bonus_damage"     				"500 1000 2000 4000 8000 16000 32000"
 	        }
 	    }
 	}
