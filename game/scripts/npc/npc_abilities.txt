@@ -6619,6 +6619,7 @@
 		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
 		"RequiredLevel"					"6"
+		"HasScepterUpgrade"			"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -8100,7 +8101,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"bounces"					"2 3 4"
+				"bounces"					"2"
 			}
 			"03"
 			{
@@ -8110,12 +8111,12 @@
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"scepter_bounces"			"4 6 8"
+				"scepter_bounces"			"4"
 			}
 			"05"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"bounce_radius"				"1200 1500 1800"
+				"bounce_radius"				"900"
 			}
 		}
 	}
@@ -12036,7 +12037,7 @@
 			"06"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"4 5 6 7 8 9 10"
+				"duration"				"8"
 			}
 		}
 	}
@@ -12348,6 +12349,7 @@
 		"FightRecapLevel"				"1"
 		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
+		"HasScepterUpgrade"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -12371,12 +12373,17 @@
 			"01"
 			{	
 				"var_type"			"FIELD_FLOAT"
-				"duration_tooltip"		"4 5 6 7 8 9 10"
+				"duration_tooltip"	"4 5 6 7 8 9 10"
 			}
 			"02"
 			{	
 				"var_type"			"FIELD_INTEGER"
 				"range_tooltip"		"550 700 850 1000"
+			}
+			"03"
+			{	
+				"var_type"			"FIELD_INTEGER"
+				"scepter_radius"	"750"
 			}
 		}
 	}
@@ -12498,21 +12505,6 @@
 			{	
 				"var_type"					"FIELD_FLOAT"
 				"duration"					"24.0"
-			}
-			"05"
-			{	
-				"var_type"					"FIELD_INTEGER"
-				"radius_scepter"			"775 800 825 850 875 900 925"
-			}
-			"06"
-			{	
-				"var_type"					"FIELD_INTEGER"
-				"duration_scepter"			"24"
-			}
-			"07"
-			{	
-				"var_type"					"FIELD_FLOAT"
-				"armor_per_second_scepter"	"6.0 8.0 10.0 12.0 20.0 35.0 50.0"
 			}
 		}
 	}
@@ -12925,7 +12917,10 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"				"1"
 		"LevelsBetweenUpgrades"			"5"
-		"MaxLevel"						"7"
+		"MaxLevel"						"7"	
+		"AbilitySound"					"Hero_Leshrac.Lightning_Storm"
+		
+		"HasScepterUpgrade"			"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -12974,6 +12969,16 @@
 				"var_type"				"FIELD_FLOAT"
 				"slow_duration"			"0.8 1.0 1.2 1.4 1.6 1.8 2.0"
 				"LinkedSpecialBonus"	"special_bonus_unique_leshrac_2"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"interval_scepter"		"1.5"
+			}		
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius_scepter"		"800"
 			}
 		}
 	}
@@ -19050,6 +19055,7 @@
 		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
 		"RequiredLevel"					"5"
+		"HasScepterUpgrade"			"1"
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -19067,7 +19073,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"intellect_damage_pct"	"10 20 30 40 50 60 70"
+				"intellect_damage_pct"	"35 40 45 50 55 65 70"
 			}
 			"02"
 			{
@@ -19144,7 +19150,6 @@
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
-		"HasScepterUpgrade"				"1"
 		"FightRecapLevel"				"2"
 		"LevelsBetweenUpgrades"			"7"
 		"MaxLevel"						"7"
@@ -24378,8 +24383,10 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"7"
-		"LevelsBetweenUpgrades"					"5"
-		"IgnoresDamageFilterOverride"		"1"
+		"LevelsBetweenUpgrades"			"5"
+		"IgnoresDamageFilterOverride"	"1"
+		"HasScepterUpgrade"				"1"
+		"PiercesDisableReduction"		"1"
 
 		
 		// Casting
@@ -24438,6 +24445,16 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"return_speed"			"800"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"stone_form_scepter_base"		"1.0"
+			}
+			"10"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"stone_form_scepter_increment"		"0.2"
 			}
 		}
 	}
@@ -25533,6 +25550,7 @@
 		"FightRecapLevel"				"1"
 		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
+		"HasScepterUpgrade"			"1"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -25562,17 +25580,32 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"shock_width"				"150"
+				"shock_width"				"300"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"shock_distance"			"1150"
+				"shock_damage"				"400 800 1800 3500 6000 14000 28000"
 			}
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"shock_damage"				"400 800 1800 3500 6000 14000 28000"
+				"movement_slow"				"60"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"slow_duration"				"2"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"scepter_distance"			"1725"
+			}
+			"07"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"scepter_speed"				"1575"
 			}
 		}
 	}
@@ -25591,7 +25624,6 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ALLIES_YES"
 		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
-		"IsAetherAmplified"				"0"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -35417,11 +35449,13 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		
 		"AbilityCastRange"				"750"
-		"AbilityCastPoint"				"0.6"
+		"AbilityCastPoint"				"0.45"
 		"FightRecapLevel"				"1"
 		"LevelsBetweenUpgrades"			"7"
 		"MaxLevel"						"7"
 		"RequiredLevel"					"5"
+		
+		"PiercesDisableReduction"		"1"
 
 		
 		// Time		
@@ -35449,7 +35483,7 @@
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"pit_interval"					"8 7 6 5 4 3 2"
+				"pit_interval"					"5 4.5 4 3.5 3 2.5 2"
 			}
 			"04"
 			{
@@ -35459,7 +35493,7 @@
 			"05"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"ensnare_duration"				"2"
+				"ensnare_duration"				"0.75"
 				"LinkedSpecialBonus"			"special_bonus_unique_underlord"
 			}
 		}
@@ -35479,7 +35513,7 @@
 		"MaxLevel"						"7"
 		"RequiredLevel"					"4"
 
-		
+		"HasScepterUpgrade"				"1"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -35511,6 +35545,11 @@
 			{
 				"var_type"						"FIELD_FLOAT"
 				"bonus_damage_duration"			"120"
+			}
+			"06"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"bonus_damage_duration_scepter"		"70 80 90 100"
 			}
 		}
 	}
@@ -41525,7 +41564,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"25"
+				"value"				"20"
 			}
 		}
 	}
@@ -43521,7 +43560,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"3"
+				"value"				"2"
 			}
 		}
 	}

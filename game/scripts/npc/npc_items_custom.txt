@@ -15997,7 +15997,7 @@
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"BaseClass"						"item_recipe_arcane_boots"
 		"AbilityTextureName"	"custom/asura_wand"
-		"ItemPurchasable"				"1"
+		"ItemPurchasable"				"0"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------

@@ -88,6 +88,18 @@ if not modifier_skinwalker_human_form then modifier_skinwalker_human_form = clas
 
 function modifier_skinwalker_fortress_form:OnCreated()
 	self.bonushp = self:GetAbility():GetTalentSpecialValueFor("bonus_hp")
+	if IsServer() then
+		self:StartIntervalThink(0.5)
+	end
+end
+
+function modifier_skinwalker_fortress_form:OnIntervalThink()
+	if self:GetCaster():HasTalent("special_bonus_unique_beastmaster") then
+		self:GetCaster():FindAbilityByName("skinwalker_fortress_form"):SetOverrideCastPoint(0)
+		self:GetCaster():FindAbilityByName("skinwalker_predator_form"):SetOverrideCastPoint(0)
+		self:GetCaster():FindAbilityByName("skinwalker_human_form"):SetOverrideCastPoint(0)
+		self:StartIntervalThink(-1)
+	end
 end
 
 function modifier_skinwalker_fortress_form:OnRefresh()
@@ -138,7 +150,20 @@ function modifier_skinwalker_predator_form:OnCreated()
 	self.attackspeed = self:GetAbility():GetTalentSpecialValueFor("bonus_attackspeed")
 	self.chance = self:GetAbility():GetTalentSpecialValueFor("bleed_chance")
 	self.duration = self:GetAbility():GetTalentSpecialValueFor("bleed_duration")
+	if IsServer() then
+		self:StartIntervalThink(0.5)
+	end
 end
+
+function modifier_skinwalker_predator_form:OnIntervalThink()
+	if self:GetCaster():HasTalent("special_bonus_unique_beastmaster") then
+		self:GetCaster():FindAbilityByName("skinwalker_fortress_form"):SetOverrideCastPoint(0)
+		self:GetCaster():FindAbilityByName("skinwalker_predator_form"):SetOverrideCastPoint(0)
+		self:GetCaster():FindAbilityByName("skinwalker_human_form"):SetOverrideCastPoint(0)
+		self:StartIntervalThink(-1)
+	end
+end
+
 
 function modifier_skinwalker_predator_form:OnRefresh()
 	self.attackspeed = self:GetAbility():GetTalentSpecialValueFor("bonus_attackspeed")
@@ -221,6 +246,18 @@ end
 function modifier_skinwalker_human_form:OnCreated()
 	self.manaregen = self:GetAbility():GetTalentSpecialValueFor("base_mana_regen")
 	self.range = self:GetAbility():GetTalentSpecialValueFor("bonus_range")
+	if IsServer() then
+		self:StartIntervalThink(0.5)
+	end
+end
+
+function modifier_skinwalker_human_form:OnIntervalThink()
+	if self:GetCaster():HasTalent("special_bonus_unique_beastmaster") then
+		self:GetCaster():FindAbilityByName("skinwalker_fortress_form"):SetOverrideCastPoint(0)
+		self:GetCaster():FindAbilityByName("skinwalker_predator_form"):SetOverrideCastPoint(0)
+		self:GetCaster():FindAbilityByName("skinwalker_human_form"):SetOverrideCastPoint(0)
+		self:StartIntervalThink(-1)
+	end
 end
 
 function modifier_skinwalker_human_form:OnRefresh()

@@ -78,7 +78,7 @@
   "npc_dota_hero_obsidian_destroyer" "1"
   "npc_dota_hero_shadow_demon" "0"
   "npc_dota_hero_lycan" "1"
-  "npc_dota_hero_lone_druid" "1"
+  "npc_dota_hero_lone_druid" "0"
   "npc_dota_hero_brewmaster" "1"
   "npc_dota_hero_phantom_lancer" "1"
   "npc_dota_hero_treant" "1"
@@ -115,6 +115,6 @@
   "npc_dota_hero_phoenix" "1"
   "npc_dota_hero_oracle" "1"
   "npc_dota_hero_terrorblade" "1"
-  "npc_dota_hero_arc_warden" "1"
+  "npc_dota_hero_arc_warden" "0"
   "npc_dota_hero_monkey_king" "1"
 }

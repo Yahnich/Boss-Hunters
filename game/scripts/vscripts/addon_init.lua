@@ -1,5 +1,4 @@
 if IsClient() then -- Load clientside utility lib
-	require("libraries/client_util")
 
 	if ClientGameMode == nil then
 		ClientGameMode = class({})
@@ -25,5 +24,6 @@ if IsClient() then -- Load clientside utility lib
 		MergeTables(GameRules.AbilityKV, LoadKeyValues("scripts/npc/npc_abilities.txt"))
 		MergeTables(GameRules.AbilityKV, LoadKeyValues("scripts/npc/npc_items_custom.txt"))
 		MergeTables(GameRules.AbilityKV, LoadKeyValues("scripts/npc/items.txt"))
+		require("libraries/client_util")
 	end
 end

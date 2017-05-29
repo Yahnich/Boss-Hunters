@@ -24,6 +24,7 @@ function SpellEcho(keys)
 					 ["phoenix_sun_ray_toggle_move"] = true,
 					 ["phoenix_supernova"] = true,
 					 ["phoenix_launch_fire_spirit"] = true,
+					 ["earth_spirit_rolling_boulder"] = true,
 					 ["juggernaut_ronin_slice"] = true
 					}
 	if echo and ability.echotarget and caster:IsRealHero() then
