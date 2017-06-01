@@ -8,40 +8,65 @@
 	{		
 		"#DOTA_Item_Build_Starting_Items"
 		{
-			"item"		"item_tango"
-			"item"		"item_flask"
-			"item"		"item_clarity"
-			"item"		"item_stout_shield"
-			"item"		"item_branches"
+			"item"	"item_hand_of_midas"
+			"item"	"item_heart"
+			"item"  "item_talisman_of_evasion"
+			"item"	"item_vladimir"
+			"item"	"item_blink_dagger"
+			
 		}
 		
 		"#DOTA_Item_Build_Early_Game"
 		{	
-			"item"		"item_magic_stick"
-			"item"		"item_boots"
-			"item"		"item_bracer"
-			"item"		"item_ring_of_basilius"		
+			"item"  "item_blade_mail2"
+			"item"	"item_titan_armor"
+			"item"	"item_midas_2"	
+			"item"	"item_heart_titan"
+			"item"	"item_melee_fury"
+			"item"  "item_storm_fury"
+			"item"	"item_octarine_core3"
+			"item"  "item_redium_lens"
+			"item"	"item_veil_of_discord2"
 		}
 		
 		"#DOTA_Item_Build_Core_Items"
 		{
-			"item"		"item_magic_wand"
-			"item"		"item_power_treads"
-			"item"		"item_ancient_janggo"
-			"item"		"item_tpscroll"				
+			"item"  "item_blade_mail3"
+			"item"	"item_heart_divine"
+			"item"	"item_divine_armor"
+			"item"	"item_melee_rage"
+			"item"	"item_midas_fury"
+			"item"  "item_s_a_y_3"
+			"item"	"item_octarine_core4"
+			"item"  "item_sunium_lens"
+			"item"	"item_veil_of_discord3"
 		}
 		
 		"#DOTA_Item_Build_Luxury"
 		{
-			"item"		"item_necronomicon_3"
-			"item"		"item_pipe"
-			"item"		"item_ultimate_scepter"
-			"item"		"item_blink"	
-			"item"		"item_heart"
-			"item"		"item_assault"
-			"item"		"item_heavens_halberd"
-			"item"		"item_vladmir"
-			"item"		"item_refresher"
+			
+			"item"	"item_blade_mail4"
+			"item"	"item_heart_bahamut"
+			"item"	"item_bahamut_chest"
+			"item"	"item_desolator5"
+			"item"	"item_gungnir_3"
+			"item"  "item_s_a_y_4"
+			"item"	"item_octarine_core5"
+			"item"	"item_omni_lens"
+			"item"	"item_veil_of_discord4"
+		]
+		
+		"#DOTA_Item_Build_Situational"
+		{
+			"item"	"item_booster_void"
+			"item"	"item_bahamut_claw"
+			"item"  "item_blink_boots"
+			"item"  "item_heart_boots"
+			"item"  "item_mekansm5"
+			"item"	"item_Dagon_Mystic"
+			"item"	"item_pixels_guard"
+			"item"	"item_scythe_of_decay"
+			
 		}
 	}
 }
