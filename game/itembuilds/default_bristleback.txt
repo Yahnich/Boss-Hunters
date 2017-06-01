@@ -9,36 +9,38 @@
 		{
 			"item"	"item_hand_of_midas"
 			"item"	"item_heart"
+			"item"  "item_talisman_of_evasion"
 		}
 		"#DOTA_Item_Build_Early_Game"
 		{
 			"item"	"item_heart_titan"
+			"item"  "item_blade_mail2"
 			"item"	"item_titan_armor"
-			"item"	"item_octarine_core2"
-			"item"	"item_lifesteal2"
 			"item"	"item_midas_2"
+			"item"	"item_tank_booster"
 		}
 		"#DOTA_Item_Build_Mid_Game"
 		{
-			"item"	"item_lifestealtank"
+			"item"  "item_blade_mail3"
 			"item"	"item_heart_divine"
 			"item"	"item_divine_armor"
-			"item"	"item_tank_booster"
-			"item"	"item_octarine_core3"
-		}
+			"item"  "item_s_a_y_3"
+		
+					}
 		"#DOTA_Item_Build_Late_Game"
 		{
-			"item"	"item_blood_booster"
+			"item"	"item_blade_mail4"
 			"item"	"item_heart_bahamut"
 			"item"	"item_bahamut_chest"
-			"item"	"item_octarine_core5"
+			"item"	"item_blood_booster"
+			"item"  "item_s_a_y_4"
 		}
 		"#DOTA_Item_Build_Situational"
 		{
 			"item"	"item_booster_void"
-			"item"	"item_s_a_y_4"
-			"item"	"item_gungnir_3"
-			"item"	"item_bahamut_claw"
+			"item"	"item_octarine_core5"
+			"item"  "item_blink_boots"
+			"item"  "item_heart_boots"
 			"item"	"item_ultimate_amulet"
 		}
 	}
