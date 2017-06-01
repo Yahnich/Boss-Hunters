@@ -9,8 +9,7 @@
 		"#DOTA_Item_Build_Starting_Items"
 		{
 			"item"	"item_midas_2"
-			"item"	"item_helm_of_mithril_will"
-			"item"	"item_helm_of_mithril_will"
+			"item"	"item_heart"
 		}
 
 		"#DOTA_Item_Build_Early_Game"
@@ -18,13 +17,18 @@
 			"item"	"item_heart_titan"
 			"item"	"item_midas_3"	
 			"item"	"item_octarine_core3"
+			"item"  "item_ultimate_scepter"
+			"item"  "item_mekansm2"
 			"item"	"item_titan_armor"
+			"item"  "item_redium_lens"
 		}
 		"#DOTA_Item_Build_Core_Items"
 		{
 			"item"	"item_octarine_core4"
 			"item"	"item_heart_divine"
 			"item"	"item_divine_armor"
+			"item"  "item_sunium_lens"
+			"item"  "item_mekansm3"
 			"item"	"item_blood_booster"
 		}
 		"#DOTA_Item_Build_Luxury"
@@ -32,6 +36,8 @@
 			"item"	"item_heart_bahamut"
 			"item"	"item_octarine_core5"
 			"item"	"item_bahamut_chest"
+			"item"  "item_omni_lens"
+			"item"  "item_mekansm5"
 			"item"	"item_booster_void"
 		}
 		"#DOTA_Item_Build_End_Game"
