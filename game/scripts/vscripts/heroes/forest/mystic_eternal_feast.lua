@@ -1,0 +1,1 @@
+sylph_rapid_fire = sylph_rapid_fire or class({})

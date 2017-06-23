@@ -1,0 +1,1 @@
+lich_mage_damage_amp = lich_mage_damage_amp or class({})

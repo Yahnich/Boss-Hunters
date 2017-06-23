@@ -1,0 +1,4 @@
+"HeroNames" 
+{ 	
+	"npc_dota_hero_windrunner"	"npc_dota_hero_sylph"
+}
