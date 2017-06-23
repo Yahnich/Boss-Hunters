@@ -72,7 +72,7 @@ Legion Commander: Morrighain, the Gladiatrix SUSTAIN/SPELL ROTATION TANK
 -- Skill 8: Leg Sweep: Stuns the enemy briefly, dazing them afterwards, unit target
 
 -- Passive 1: Fearless Assault procs grants temporary bonus armor based on Morrighain's base armor.
--- Passive 2: War Fury radius increased
+-- Passive 2: Units inside War Fury will be drawn towards Legion Commander if she is also within it
 -- Passive 3: Victorious Advance buff duration increased
 -- Passive 4: Unbreakable Morale purges for the whole buff duration
 -- Passive 5: Slows enemy attackspeed while taunted
@@ -104,7 +104,7 @@ Lina: Sekhmet, the Phoenix
 -- Passive 5: Searing Heat now also hits the nearest enemy unit
 -- Passive 5: Overheat DOT now deals instant damage and is always applied even with DoTs active
 -- Passive 6: Inferno is now unit target and follows the targeted unit
--- Passive 7: Firebat refreshes on kill
+-- Passive 7: Firebat now moves in direction caster is facing
 -- Passive 8: Blaze Geyser fireballs now apply stacking DoTs
 
 Aghs:
@@ -192,7 +192,7 @@ Omniknight: Hyperion, the Justicar
 -- Skill 3: Judgement: deals damage to everyone who attacks Justicar for the duration, when the effect ends a part of the damage taken is converted into healing over time
 -- Skill 4: Absolution: heals the target over time and reduces status effect duration
 -- Skill 5: Penitence: Deals damage to self, damage dealt to self is also dealt to enemies; allies gain barrier; for every enemy hit gains armor, for every ally hit gains bonus damage
--- Skill 6: Avenging Wrath: Line beam, enemies hit are slowed and take bonus damage; grants lifesteal to allies damaging this unit
+-- Skill 6: Glorious Wrath: Line beam, enemies hit are slowed and take bonus damage; grants lifesteal to allies damaging these units
 -- Skill 7: Radiant Glory: unleashes a massive, slow blast of expanding light that damages and blinds enemies
 -- Skill 8: Sacred Ground: Creates a circle on the floor, all enemies within it will be drawn towards Justicar; all allied spell effects are amplified within it, including buff and debuff durations
 
@@ -202,14 +202,14 @@ Omniknight: Hyperion, the Justicar
 -- Passive 4: Judgement is now unit target instead of no target
 -- Passive 5: Absolution heal is now always considered overheal
 -- Passive 6: Penitence also gives a barrier that blocks damage equal to self damage taken
--- Passive 7: Avenging Wrath now shoots out of Justicar in a cross pattern
+-- Passive 7: Glorious Wrath now shoots out of Justicar in a cross pattern
 -- Passive 8: Radiant Glory now also heals all allies
 -- Passive 9: Sacred Ground now slows enemies and makes them take more damage
 
 Aghs:
 Units affected by Justicar's heals have status effect durations reduced by 20%
 
-Slardar: Amemasu, the Leviathan: 
+Slardar: Amemasu, the Leviathan
 -- Innate: Dreadvenom: Every damage dealt to an enemy weakens them, increasing debuff durations on them.
 
 -- Skill 1: Eldritch Pull: Pulls the enemy closer with a tentacle, deals damage; enemy is taunted after arriving
@@ -260,7 +260,7 @@ Aghs:
 Any form of overheal heals the weakest allied unit instead.
 
 Phantom Assassin: Persephone, the Shinigami DAMAGEDAMAGEDAMAGEDAMAGEDAMAGEDAMAGEIWANTTODEALDAMAGE
--- Innate: Deep Wounds: Every damage instance applies a stack that slows ms and turnrate for 5% per stack and deals damage over time based on the initial damage done; Each stack lasts 10 seconds 
+-- Innate: Deep Wounds: Every damage instance applies a stack that slows ms and turnrate for 5% per stack and deals damage over time based on the initial damage done; Each stack lasts 5 seconds 
 
 -- Skill 1: Grievous Strike: Deals massive damage to a single target and refreshes all deep wound stacks back to their full duration
 -- Skill 2: Slice 'n Dice: Jumps to point; attacking every unit on your path, attacks are dealt instantly. 
@@ -271,7 +271,7 @@ Phantom Assassin: Persephone, the Shinigami DAMAGEDAMAGEDAMAGEDAMAGEDAMAGEDAMAGE
 -- Skill 7: Fan the Blades: Throws several daggers, slowing enemies hit and dealing damage based on attack damage
 -- Skill 8: Reaper: Becomes empowered, gaining attackspeed, chance to crit and increased movement speed; every stack of deep wounds will grants 5% lifesteal
 
--- Passive 1: Deep Wound stacks gain +1s duration if damage source is an ability instead of an autoattack
+-- Passive 1: Deep Wound stacks gain +5s duration if damage source is an ability instead of an autoattack
 -- Passive 2: Grievous Strike cooldown reduced by 1 second every time another ability is used.
 -- Passive 3: Slice 'n Dice deals a minimum of 4 damage instances (meaning a single target will take 4 instant attacks)
 -- Passive 4: Whirling Slash slices in a full circle
@@ -366,6 +366,30 @@ Dazzle: Amaterasu, the Mystic
 -- Passive 8: Grim Harvest's stays stationary now, but appears at point target immediately
 -- Passive 9: Lifeswap renders the Mystic attack immune and gives him phased, hasted movement briefly
 
+
+Treant: Yggdrasil, The Forest
+-- Innate: Iron Bark: Every time Yggrasil casts an ability, he and all allies near him receive a stacking armor bonus
+
+-- Skill 1: Growing Armor: Grants health regeneration and blocks x damage instances
+-- Skill 2: Parasitic Growth: Slows an enemy, enemy sends out pulses that heal allies near it, every pulse deals equal damage
+-- Skill 3: Nature's Grove: Sprouts many trees in a radius, trees heal nearby enemies and deal DoT to enemies, if an enemy stands in the grove for 3s they are slept, can only happen once per grove, lasts like 9s
+-- Skill 4: Overgrowth: Yggrasil becomes a massive tree, granting him a major health bonus, every time he casts an ability while in this form all enemies around him are rooted for 2s
+-- Skill 5: Vine Whip: Sends out a vine that knocks all enemies it hits back and stuns them 
+-- Skill 6: Ancient Tether: Links an ally with Yggrasil, the ally is granted Yggrasil's health regeneration and Yggrasil's HP is slowly equalized with the ally (both equal amounts of hp), reuse on same ally to break
+-- Skill 7: Envelop: Yggrasil loses control of his movement and wraps himself around his ally. All damage that ally takes will instead be transferred to Yggrasil. Reuse to cancel (can still cast spells)
+-- Skill 8: Become One: Yggrasil targets a tree and instantly replaces the tree. Yggdrasil is healed for 20% of his HP as well
+
+-- Passive 1: Iron Bark now also grants magic resistance and debuff resistance
+-- Passive 2: Growing Armor health regeneration now includes %hp on top of base
+-- Passive 3: Parasitic Growth will now spread to nearby enemies
+-- Passive 4: Nature's Grove will now keep growing until the duration ends
+-- Passive 5: Overgrowth now roots all enemies on spell activation and heals all allies for 100% of their health over its active duration
+-- Passive 6: Vine Whip will briefly be changed by Snapback for 1s after an enemy is hit, when Snapback is activated, Yggrasil will slingshot himself towards the enemy, dealing damage and stunning any enemy he hits while in motion
+-- Passive 7: Ancient Tether: Also grants damage reduction to the tethered ally
+-- Passive 8: Envelop: Yggrasil now gains his ally's HP for himself while Enveloping
+-- Passive 9: Become One now heals all allies around his original position for 20% of Yggrasil's max hp
+
+
 Warlock: Nergal, the Cultist BIG ASS MINIONS
 -- Innate: Demonic Power: Activateable, kills all of Warlock's minions and grants him buffs based on the minions sacrificed.
 
@@ -391,6 +415,7 @@ Warlock: Nergal, the Cultist BIG ASS MINIONS
 Aghs:
 Can now have both Moloch and Naamah active at the same time; if only one is active the single demon is stronger
 
+
 Necrophos: Namtar, the Puppeteer SMALL ASS MINIONS
 -- Innate: Black Plague: Casting any ability makes a mist around the Puppeteer and his minions, units in the mist gain one stack of Black Plague. Black Plague spreads to nearby units at a rate of 1 stack per second. Lasts 20 seconds, deals damage over time.
 
@@ -398,7 +423,7 @@ Necrophos: Namtar, the Puppeteer SMALL ASS MINIONS
 -- Skill 2: Mass of Flesh: A wall of flesh rises in a line; enemies caught take Nature DoT and are stunned; enemies on the side are dealt one time Nature damage; the wall spreads a plague aura that deals nature damage
 -- Skill 3: Skeleton Archer: Summons a skeletal archer
 -- Skill 4: Zombie Brute: Summons a zombie tanky frontliner
--- Skill 5: Carnethrus: Summons a weak, fast hound unit
+-- Skill 5: Lich Mage: Summons a caster unit that can debuff enemies to take more damage and heal allies
 -- Skill 6: Bone Wave: Cultist rides a wave of bones that pushes all enemies out of the way and damages them 
 -- Skill 7: Fleshcraft: Heals an allied unit, burst-healing them once and then giving them a minor HoT; deals minor damage over time to enemies; damage increases based on Black Plague stacks
 -- Skill 8: Pestilence: Sacrifices ALL summoned units; making them explode for one time Nature damage and applying Black Plague stacks
@@ -408,10 +433,92 @@ Necrophos: Namtar, the Puppeteer SMALL ASS MINIONS
 -- Passive 3: Mass of Flesh is now circle-shaped instead of a line
 -- Passive 4: Skeleton Archers resurrect once upon death, this includes time-out death; fully refreshes health, mana and their timer
 -- Passive 5: if two Zombie Brutes are near each other they merge into Zombie Behemoths, tankier and spread Black Plague to units near them (350 radius)
--- Passive 6: Summons 2 Carnethrus
+-- Passive 6: Lich Mage abilities go from single target to aoe
 -- Passive 7: Enemies hit by Bone Wave are attacked by a Skeleton Skirmisher (Skeletal Rush minions)
--- Passive 8: Fleshcraft increases status effect durations applied
+-- Passive 8: Fleshcraft decreases/increases status effect durations applied
 -- Passive 9: Units killed by Pestilence will resurrect on your side with 10% hp
 
 Aghs:
 Units afflicted by Black Plague do less damage.
+
+
+Earthshaker: Ruamoko, the Tremor SUPPORT SPECIALIST
+-- Innate: Aftershock: Every ability cast will stun and deal damage to nearby enemies
+
+-- Skill 1: Fissure: Erects a wall of rock that is impassible to non-flying units, deals damage to units near the formation
+	-- Imbue Totem Effect: Units hit are slowed and dazed
+-- Skill 2: Earthquake: Creates shockwaves that damage everyone they hit, damaged targets create more shockwaves
+	-- Imbue Totem Effect: Doubles created shockwaves and shockwaves from targets
+-- Skill 3: Imbue Totem: Next ability or right click dealt will have a special effect. (Rightclick: deals % bonus damage)
+	-- Imbue Totem Effect: Totem explodes in AOE, next ability is still powered up
+-- Skill 4: Seismic Leap: Jumps into the air and lands on a spot, stunning and dealing damage to enemies in aoe	
+	-- Imbue Totem Effect: Jump ends faster and deals double damage and stun duration																																										
+-- Skill 5: Quicksand: Turns the ground around Ruamoko to quicksand (does not follow ruamoko), slowing enemies and rooting them if they stand still for 3 seconds.
+	-- Imbue Totem Effect: Increases slow and reduces root timer to 1.5s
+-- Skill 6: Obsidian Flesh: Grants heavy damage reduction to targeted ally, but also slows them
+	-- Imbue Totem Effect: 100% damage reduction for the first second and tapers off to original damage reduction as duration passes (so if 60% is default goes from 100%->60%)
+-- Skill 7: Churning Ground: The ground around Ruamoko begins to shake violently for 5s (follows ruamoko), stunning enemies briefly every second
+	-- Imbue Totem Effect: Every new tremor grown in radius
+-- Skill 8: Rock Slide: Ruamoko quickly slides through the ground, dealing damage behind his original position and stunning everyone he passes through
+	-- Imbue Totem Effect: Constantly deals damage in a circle around him while sliding
+
+-- Passive 1: Aftershock now completely recasts the ability as well, but this version deals less damage/doesn't offer mobility (Rock Slide deals damage behind Tremor but does not move him)
+-- Passive 2: Fissure
+-- Passive 3: Earthquake
+-- Passive 4: Imbue Totem
+-- Passive 5: Seismic Leap
+-- Passive 6: Quicksand
+-- Passive 7: Obisidian Flesh
+-- Passive 8: Churning Ground
+-- Passive 9: Rock Slide
+
+
+Rikimaru: Samael, the Trickster 
+-- Innate: Stacking DoTs and bleed will increase all of Samael's damage to the target
+
+-- Skill 1: Xbow: skillshot, heals allies, damages enemies (over time) Increased potency per 100 units traveled by the arrow
+-- Skill 2: Debuff Smokebomb. -attack damage and attackspeed, short silence. Possibly miss chance for bosses.
+-- Skill 3: Cloak, bounty hunter invis With Break/DoT/Bleed if rightclicking enemy to break it.
+-- Skill 4: Escape, current PA blink that does bonus damage (Should have been backstab)																																										
+-- Skill 5: Poison Dart: applies strong slow and deals poison DoT, has a minor impact hit damage though should not be TOO low unless the DoT is VERY strong.
+-- Skill 6: Shiv: Deals % of riki's damage and applies a poison and bleed DoT
+-- Skill 7: Concoction: Buffs allies, maybe some kind of frenzy mode + heal
+-- Skill 8: Current Riki ult but maybe applies some DoTs
+
+-- Passive 1: Increases his innate's damage per DoT/Adds a stacking effect (Slowing them more/causing them to miss more/etc Some extra debuff) on bosses the more DoTs on a boss.
+-- Passive 2: Arrow now pierces through everything
+-- Passive 3: Adds A Decent DoT to Debuff Smoke
+-- Passive 4: Adds Phased movement and increases MS when cloaked. Also gives minor evasion bonuses passively even when not cloaked.
+-- Passive 5: Allows Samael to do 2 hits of bonus DoTs on targets hit using escape. Basically having him atk a target twice with it.
+-- Passive 6: Shiv Damage is now always a Strong crit (PA tier?) with a damage % based on the level of the skill (or you decide Hou)
+-- Passive 7: Poison Dart now does an extra debuff on enemies. (I'm thinking decently high miss chance, but you can possibly change this. Could also mute the bosses as well if it's too weak.)
+-- Passive 8: Concoction is now always active (Could be like WW's Aghs if you think it's too OP. Change it to a toggle rather than using it and having to deal with a CD.)
+-- Passive 9: Ulti does more damage for every hit he does in sucession to the same target, but there should be a cap to prevent OPness? (Since he already does more with tons of DoTs on enemies?)
+
+Aghs: Also affected by DoTs/Bleeds caused by allies? Could be his selfish aghs buff. The more teamwork one would be to allow all allies to deal the same boosted damage to the targets. Or maybe even both?
+
+
+
+Techies: Samael, the Bomber 
+-- Innate: Stacking DoTs and bleed will increase all of Samael's damage to the target
+
+-- Skill 1:
+-- Skill 2:
+-- Skill 3:
+-- Skill 4:																																							
+-- Skill 5:
+-- Skill 6:
+-- Skill 7:
+-- Skill 8: Plan B(omb): current techies nuke
+
+-- Passive 1:
+-- Passive 2:
+-- Passive 3:
+-- Passive 4:
+-- Passive 5:
+-- Passive 6:
+-- Passive 7: 
+-- Passive 8:
+-- Passive 9: 
+
+Aghs: 

@@ -4,7 +4,7 @@ function sylph_cyclone:OnSpellStart()
 	self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_sylph_cyclone_buff", {duration = self:GetSpecialValueFor("duration")})
 end
 
-LinkLuaModifier( "modifier_sylph_cyclone_buff", "heroes/sylph/sylph_cyclone.lua", LUA_MODIFIER_MOTION_HORIZONTAL )
+LinkLuaModifier( "modifier_sylph_cyclone_buff", "heroes/sylph/sylph_cyclone.lua", LUA_MODIFIER_MOTION_NONE )
 modifier_sylph_cyclone_buff = modifier_sylph_cyclone_buff or class({})
 
 function modifier_sylph_cyclone_buff:OnCreated()
@@ -33,4 +33,15 @@ end
 
 function modifier_sylph_cyclone_buff:GetEffectName()
 	return "particles/heroes/sylph/sylph_cyclone.vpcf"
+end
+
+LinkLuaModifier( "modifier_sylph_cyclone_talent_1", "heroes/sylph/sylph_cyclone.lua", LUA_MODIFIER_MOTION_NONE )
+modifier_sylph_cyclone_talent_1 = modifier_sylph_cyclone_talent_1 or class({})
+
+function modifier_sylph_cyclone_talent_1:IsHidden()
+	return true
+end
+
+function modifier_sylph_cyclone_talent_1:RemoveOnDeath()
+	return false
 end

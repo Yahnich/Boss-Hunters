@@ -8,7 +8,7 @@ function sylph_rapid_fire:OnSpellStart()
 	local fireDelay = self:GetSpecialValueFor("fire_duration") / arrowAmount
 	local firesPerVolley = math.floor(FrameTime()/fireDelay)
 	if fireDelay > FrameTime() then fireDelay = FrameTime() end
-	local spread = self:GetSpecialValueFor("spread_rad")
+	local spread = self:GetTalentSpecialValueFor("spread_rad")
 	self.arrows = self.arrows or 0
 	self.arrows = self.arrows + arrowAmount
 	Timers:CreateTimer(0, function()
@@ -25,7 +25,6 @@ function sylph_rapid_fire:OnSpellStart()
 				return nil
 			end
 		end
-		print(firesPerVolley, self.arrows)
 		return fireDelay
 	end)
 end
@@ -56,4 +55,16 @@ function sylph_rapid_fire:OnProjectileHit(hTarget, vLocation)
 		EmitSoundOn("Hero_Windrunner.PowershotDamage", hTarget)
 		return true
 	end
+end
+
+
+LinkLuaModifier( "modifier_sylph_rapid_fire_talent_1", "heroes/sylph/sylph_rapid_fire.lua", LUA_MODIFIER_MOTION_NONE )
+modifier_sylph_rapid_fire_talent_1 = modifier_sylph_rapid_fire_talent_1 or class({})
+
+function modifier_sylph_rapid_fire_talent_1:IsHidden()
+	return true
+end
+
+function modifier_sylph_rapid_fire_talent_1:RemoveOnDeath()
+	return false
 end

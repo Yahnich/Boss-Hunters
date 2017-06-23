@@ -1,16 +1,13 @@
 sylph_jetstream = sylph_jetstream or class({})
 
--- "Hero_Windrunner.ShackleshotStun" attack sound
--- "Hero_Windrunner.ShackleshotCast" leap sound
 
 function sylph_jetstream:OnSpellStart()
 	EmitSoundOn("Hero_Windrunner.ShackleshotCast", self:GetCaster())
-	print(self:GetCursorPosition())
 	self:GetCaster():MoveToPosition(self:GetCursorPosition())
 	self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_sylph_jetstream_rush", {})
 end
 
-LinkLuaModifier( "modifier_sylph_jetstream_rush", "heroes/sylph/sylph_jetstream.lua", LUA_MODIFIER_MOTION_HORIZONTAL )
+LinkLuaModifier( "modifier_sylph_jetstream_rush", "heroes/sylph/sylph_jetstream.lua", LUA_MODIFIER_MOTION_NONE )
 modifier_sylph_jetstream_rush = modifier_sylph_jetstream_rush or class({})
 
 function modifier_sylph_jetstream_rush:OnCreated()
@@ -29,6 +26,9 @@ function modifier_sylph_jetstream_rush:OnIntervalThink()
 		local units = FindUnitsInRadius(self:GetCaster():GetTeam(), self:GetCaster():GetAbsOrigin(), nil, self:GetCaster():GetAttackRange(), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false)
 		for _,unit in pairs(units) do
 			self:GetParent():PerformAttack(unit, true, true, true, true, true, false, false)
+			if self:GetParent():HasTalent("sylph_jetstream_talent_1") then
+				Timers:CreateTimer(0.1, function() self:GetParent():PerformAttack(unit, true, true, true, true, true, false, false) end)
+			end
 		end
 	end
 end
@@ -61,4 +61,16 @@ end
 
 function modifier_sylph_jetstream_rush:GetEffectName()
 	return "particles/units/heroes/hero_windrunner/windrunner_windrun.vpcf"
+end
+
+
+LinkLuaModifier( "modifier_sylph_jetstream_talent_1", "heroes/sylph/sylph_jetstream.lua", LUA_MODIFIER_MOTION_NONE )
+modifier_sylph_jetstream_talent_1 = modifier_sylph_jetstream_talent_1 or class({})
+
+function modifier_sylph_jetstream_talent_1:IsHidden()
+	return true
+end
+
+function modifier_sylph_jetstream_talent_1:RemoveOnDeath()
+	return false
 end

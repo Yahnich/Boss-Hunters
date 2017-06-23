@@ -12,7 +12,7 @@ function FanTheBladeStart(keys)
 					Target = enemy,
 					Source = caster,
 					Ability = ability,
-					EffectName = keys.particle,
+					EffectName = "particles/units/heroes/hero_phantom_assassin/phantom_assassin_stifling_dagger.vpcf",
 					bDodgeable = true,
 					bProvidesVision = true,
 					iMoveSpeed = keys.speed,

@@ -1,36 +1,75 @@
-sylph_winds_aid = sylph_winds_aid or class({})
+puppeteer_pestilence = class({})
 
-function sylph_winds_aid:OnSpellStart()
-	EmitSoundOn("Hero_Windrunner.ShackleshotStun", self:GetCaster())
-	local windbuff = self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_sylph_winds_aid_buff", {duration = self:GetSpecialValueFor("duration")})
-	local zephyr = self:GetCaster():FindModifierByName("modifier_sylph_innate_zephyr_passive")
-	windbuff:SetStackCount(zephyr:GetStackCount())
-	zephyr:SetStackCount(0)
+function puppeteer_pestilence:OnSpellStart()
+	local caster = self:GetCaster()
+	caster.summonTable = caster.summonTable or {}
+	EmitSoundOn("Hero_Venomancer.Plague_Ward", caster)
+	local explodeTable = {}
+	for _,summon in pairs(caster.summonTable) do -- insert global table in local table
+		if summon:IsNull() or not summon:IsAlive() then
+			table.remove(caster.summonTable, _)
+		else
+			table.insert(explodeTable, summon)
+		end
+	end
+	for _, explodeSummon in pairs(explodeTable) do
+		self:ExplodeSummon(explodeSummon)
+	end
 end
 
-LinkLuaModifier( "modifier_sylph_winds_aid_buff", "heroes/sylph/sylph_winds_aid.lua", LUA_MODIFIER_MOTION_HORIZONTAL )
-modifier_sylph_winds_aid_buff = modifier_sylph_winds_aid_buff or class({})
 
-function modifier_sylph_winds_aid_buff:OnCreated()
-	self.critical_strike = self:GetAbility():GetSpecialValueFor("crit_per_stack")
+function puppeteer_pestilence:ExplodeSummon(entity)
+	local radius = self:GetSpecialValueFor("explode_radius")
+	local enemies = FindUnitsInRadius(self:GetCaster():GetTeam(), entity:GetAbsOrigin(), nil, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false)
+	for _, enemy in pairs(enemies) do
+		if self:GetCaster():HasTalent("puppeteer_pestilence_talent_1") then
+			enemy:AddNewModifier(self:GetCaster(), self, "modifier_puppeteer_pestilence_talent_resurrect", {duration = self:GetCaster():FindTalentValue("puppeteer_pestilence_talent_1")})
+		end
+		ApplyDamage({victim = enemy, attacker = self:GetCaster(), damage = self:GetSpecialValueFor("explode_damage"), damage_type = self:GetAbilityDamageType(), ability = self})
+		local plague = self:GetCaster():FindAbilityByName("puppeteer_black_plague")
+		for i = 1, self:GetSpecialValueFor("plague_increase") do
+			enemy:AddNewModifier(self:GetCaster(), plague, "modifier_puppeteer_black_plague_stack", {duration = plague:GetSpecialValueFor("duration")})
+		end
+	end
+	EmitSoundOn("Hero_Venomancer.PoisonNovaImpact", entity)
+	local pestilence = ParticleManager:CreateParticle("particles/units/heroes/hero_venomancer/venomancer_poison_nova.vpcf", PATTACH_POINT_FOLLOW, entity)
+	ParticleManager:SetParticleControl(pestilence, 0, entity:GetAbsOrigin())
+	ParticleManager:SetParticleControl(pestilence, 1, Vector(radius,1, radius))
+	ParticleManager:ReleaseParticleIndex(pestilence)
+	entity:ForceKill(true)
 end
 
-function modifier_sylph_winds_aid_buff:DeclareFunctions()
-	local funcs = {
-		MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE,
-	}
+
+LinkLuaModifier("modifier_puppeteer_pestilence_talent_resurrect", "heroes/puppeteer/puppeteer_pestilence.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_summon_handler", "heroes/generic/modifier_summon_handler.lua", LUA_MODIFIER_MOTION_NONE)
+
+modifier_puppeteer_pestilence_talent_resurrect = class({})
+
+if IsServer() then
+	function modifier_puppeteer_pestilence_talent_resurrect:OnDeath(params)
+		if params.unit == self:GetParent() then
+			local caster = self:GetCaster()
+			local summon = caster:CreateSummon(self:GetParent():GetUnitName(), self:GetParent():GetAbsOrigin())
+			StartAnimation(summon, {activity = ACT_DOTA_SPAWN, rate = 1.5, duration = 2})
+			summon:AddNewModifier(caster, self, "modifier_kill", {duration = caster:FindSpecificTalentValue("puppeteer_pestilence_talent_1", "duration")})
+			summon:AddNewModifier(caster, self, "modifier_summon_handler", {duration = caster:FindSpecificTalentValue("puppeteer_pestilence_talent_1", "duration")})
+			local timer = 0
+			Timers:CreateTimer(FrameTime(), function()
+				summon:SetHealth(summon:GetMaxHealth() * caster:FindTalentValue("puppeteer_pestilence_talent_1") / 100)
+				if timer < 0.5 then
+					timer = timer + FrameTime()
+					return FrameTime()
+				end
+			end)
+			
+		end
+	end
+end
+
+function modifier_puppeteer_pestilence_talent_resurrect:DeclareFunctions()
+	funcs = {
+				MODIFIER_EVENT_ON_DEATH,
+			}
 	return funcs
 end
 
-function modifier_sylph_winds_aid_buff:CheckState()
-	local state = {[MODIFIER_STATE_CANNOT_MISS] = true}
-	return state
-end
-
-function modifier_sylph_winds_aid_buff:GetModifierPreAttack_CriticalStrike()
-	return 100 + self.critical_strike * self:GetStackCount()
-end
-
-function modifier_sylph_winds_aid_buff:GetEffectName()
-	return "particles/heroes/sylph/sylph_winds_aid.vpcf"
-end

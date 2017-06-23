@@ -1,51 +1,71 @@
-sylph_innate_zephyr = sylph_innate_zephyr or class({})
+shinigami_whirling_slash = class({})
 
-function sylph_innate_zephyr:GetIntrinsicModifierName()
-	return "modifier_sylph_innate_zephyr_passive"
+function shinigami_whirling_slash:GetCastRange(entity, position)
+	return self:GetCaster():GetAttackRange()+150
 end
 
-LinkLuaModifier( "modifier_sylph_innate_zephyr_passive", "heroes/sylph/sylph_innate_zephyr.lua" ,LUA_MODIFIER_MOTION_NONE )
-modifier_sylph_innate_zephyr_passive = modifier_sylph_innate_zephyr_passive or class({})
-
-function modifier_sylph_innate_zephyr_passive:OnCreated()
-	self.max = self:GetAbility():GetSpecialValueFor("max_stacks")
-	self.ms = self:GetAbility():GetSpecialValueFor("ms_per_stack")
+function shinigami_whirling_slash:OnSpellStart()
+	local caster = self:GetCaster()
+	local angles = caster:GetAnglesAsVector()
+	local angleSet = - 90
+	local maxRotation = self:GetTalentSpecialValueFor("rotation_degree")
+	local angVel = maxRotation / self:GetTalentSpecialValueFor("duration") * FrameTime()
+	
+	local reduction = 1 - self:GetSpecialValueFor("damage_reduction") / 100
+	local bonusDamage = caster:GetAverageTrueAttackDamage(caster)
+	
+	EmitSoundOn("Hero_SkeletonKing.CriticalStrike", caster)
+	caster:SetAngles(angles.x , angles.y + angleSet, angles.z)
+	local modifier = caster:AddNewModifier(caster, self, "modifier_shinigami_whirling_slash_stop_movement", {})
+	modifier:SetStackCount(bonusDamage)
+	local attackblur = ParticleManager:CreateParticle("particles/heroes/shinigami/shinigami_whirling_slash.vpcf", PATTACH_ABSORIGIN, caster)
+	ParticleManager:SetParticleControlEnt(attackblur, 0, caster, PATTACH_POINT_FOLLOW, "attach_attack1", caster:GetAbsOrigin(), true)
+	ParticleManager:ReleaseParticleIndex(attackblur)
+	local alreadyAttacked = {}
+	Timers:CreateTimer(0, function()
+		local enemiesInLine = FindUnitsInLine(caster:GetTeamNumber(), caster:GetAbsOrigin(), caster:GetAbsOrigin()+caster:GetForwardVector()*(caster:GetAttackRange()+150), nil, 125, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0)
+		for _, enemy in ipairs(enemiesInLine) do
+			if not alreadyAttacked[enemy:entindex()] then
+				caster:PerformAttack(enemy,true,true,true,false,false,false,true)
+				EmitSoundOn("Hero_Shredder.Attack.Post", enemy)
+				modifier:SetStackCount(bonusDamage*reduction)
+				alreadyAttacked[enemy:entindex()] = true
+			end
+		end
+		if angleSet < maxRotation - 90 then
+			caster:SetAngles(angles.x , angles.y + angleSet, angles.z)
+			angleSet = angleSet + angVel
+			return FrameTime()
+		else
+			caster:SetAngles(angles.x , angles.y + angleSet, angles.z)
+			caster:RemoveModifierByName("modifier_shinigami_whirling_slash_stop_movement")
+		end
+	end)
 end
 
-function modifier_sylph_innate_zephyr_passive:IsPurgable()
-	return false
-end
 
-function modifier_sylph_innate_zephyr_passive:IsHidden()
-	return false
-end
 
-function modifier_sylph_innate_zephyr_passive:IsPassive()
+modifier_shinigami_whirling_slash_stop_movement = class({})
+LinkLuaModifier("modifier_shinigami_whirling_slash_stop_movement", "heroes/shinigami/shinigami_whirling_slash.lua", 0)
+
+function modifier_shinigami_whirling_slash_stop_movement:IsHidden()
 	return true
 end
 
-function modifier_sylph_innate_zephyr_passive:DeclareFunctions()
+function modifier_shinigami_whirling_slash_stop_movement:CheckState()
+	local state = { [MODIFIER_STATE_COMMAND_RESTRICTED] = true}
+	return state
+end
+
+function modifier_shinigami_whirling_slash_stop_movement:DeclareFunctions()
 	funcs = {
-				MODIFIER_EVENT_ON_ATTACK_START,
-				MODIFIER_EVENT_ON_ATTACK_LANDED,
-				MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,
+				MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
 			}
 	return funcs
 end
 
-function modifier_sylph_innate_zephyr_passive:OnAttackStart(params)
-	if self.currentTarget ~= params.target and params.attacker == self:GetParent() then
-		self.currentTarget = params.target
-		self:SetStackCount(0)
+if IsServer() then
+	function modifier_shinigami_whirling_slash_stop_movement:GetModifierPreAttack_BonusDamage()
+		return self:GetStackCount()
 	end
-end
-
-function modifier_sylph_innate_zephyr_passive:OnAttackLanded(params)
-	if self.currentTarget == params.target and params.attacker == self:GetParent() and self:GetStackCount() < self.max then
-		self:IncrementStackCount()
-	end
-end
-
-function modifier_sylph_innate_zephyr_passive:GetModifierMoveSpeedBonus_Constant()
-	return self.ms * self:GetStackCount()
 end

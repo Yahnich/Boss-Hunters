@@ -1,136 +1,94 @@
-sylph_mistral_breeze = sylph_mistral_breeze or class({})
+gladiatrix_imperious_shout = class({})
 
-function sylph_mistral_breeze:OnSpellStart()
-	local direction = (self:GetCursorPosition() - self:GetCaster():GetAbsOrigin()):Normalized() * Vector(1,1,0)
-	EmitSoundOn("Hero_Windrunner.Powershot.FalconBow", self:GetCaster())
-	local projectileTable = {
-        Ability = self,
-        EffectName = "particles/heroes/sylph/sylph_mistral_breeze.vpcf",
-        vSpawnOrigin = self:GetCaster():GetAbsOrigin(),
-        fDistance = self:GetSpecialValueFor("projectile_distance"),
-        fStartRadius = self:GetSpecialValueFor("projectile_radius"),
-        fEndRadius = self:GetSpecialValueFor("projectile_radius"),
-        Source = self:GetCaster(),
-        iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY,
-        iUnitTargetType = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-        bDeleteOnHit = false,
-        vVelocity = direction * self:GetSpecialValueFor("projectile_speed"),
-		ExtraData = {originPointx = self:GetCaster():GetAbsOrigin().x, originPointy = self:GetCaster():GetAbsOrigin().y}
-    }
-    ProjectileManager:CreateLinearProjectile( projectileTable )
-end
-
-function sylph_mistral_breeze:OnProjectileHit_ExtraData( hTarget, vLocation, extraData )
-	if hTarget ~= nil and ( not hTarget:IsMagicImmune() ) and ( not hTarget:IsInvulnerable() ) then
-		local damage = {
-			victim = hTarget,
-			attacker = self:GetCaster(),
-			damage = self:GetSpecialValueFor("projectile_damage"),
-			damage_type = DAMAGE_TYPE_MAGICAL,
-			ability = self}
-		ApplyDamage( damage )
-		EmitSoundOn("Hero_Windrunner.PowershotDamage", hTarget)
-		local originPoint = Vector(extraData.originPointx, extraData.originPointy)
-		local directionVector = vLocation - originPoint -- Original vectors
-		local rotateVector = Vector(directionVector.y, -directionVector.x, 0) -- Normal vector
-		local compareVector = hTarget:GetAbsOrigin() - originPoint -- Comparative vector
-		local sideResult = rotateVector:Dot(compareVector)
-		local pushDir = (hTarget:GetAbsOrigin() - self:GetCaster():GetAbsOrigin())
-		local distanceCap = (self:GetSpecialValueFor("projectile_distance") - directionVector:Length2D()) / self:GetSpecialValueFor("projectile_distance")
-		if (hTarget:GetAbsOrigin() - self:GetCaster():GetAbsOrigin()):Length2D() > 450 or sideResult ~= 0 then
-			if sideResult > 0 then
-				pushDir = Vector(directionVector.y, -directionVector.x, 0)
-			else
-				pushDir = Vector(-directionVector.y, directionVector.x, 0)
-			end
-		else
-			distanceCap = distanceCap * 1.5
-		end
-		pushDir = pushDir:Normalized()
-			
-		hTarget:AddNewModifier(self:GetCaster(), self, "modifier_sylph_mistral_breeze_knockback", {pushMod = distanceCap, pushDirx = pushDir.x, pushDiry = pushDir.y})
-		hTarget:AddNewModifier(self:GetCaster(), self, "modifier_sylph_mistral_breeze_blind", {duration = self:GetSpecialValueFor("blind_duration")})
-	end
-	return false
-end
-
-LinkLuaModifier( "modifier_sylph_mistral_breeze_knockback", "heroes/sylph/sylph_mistral_breeze.lua", LUA_MODIFIER_MOTION_HORIZONTAL )
-modifier_sylph_mistral_breeze_knockback = modifier_sylph_mistral_breeze_knockback or class({})
-
-function modifier_sylph_mistral_breeze_knockback:OnCreated(kv)
-	if IsServer() then
-		if self:ApplyHorizontalMotionController() == false then 
-			self:Destroy()
-		end
-		EmitSoundOn("Hero_Tiny.Toss.Target", self:GetParent())
-		self.max_distance = self:GetAbility():GetSpecialValueFor("max_push")
-		self.distance_to_travel = self.max_distance * kv.pushMod
-		self.pushDir = Vector(tonumber(kv.pushDirx), tonumber(kv.pushDiry), 0)
-		if self.distance_to_travel < self:GetAbility():GetSpecialValueFor("min_push") then self.distance_to_travel = self:GetAbility():GetSpecialValueFor("min_push") end
-		self.distance = 0
-		self.speed = self:GetAbility():GetSpecialValueFor("knockback_speed")
-	end
-end
-
-function modifier_sylph_mistral_breeze_knockback:OnRefresh(kv)
-	if IsServer() then
-		if self:ApplyHorizontalMotionController() == false then 
-			self:Destroy()
-		end
-		EmitSoundOn("Hero_Tiny.Toss.Target", self:GetParent())
-		self.max_distance = self:GetAbility():GetSpecialValueFor("max_push")
-		self.distance_to_travel = self.max_distance * kv.pushMod
-		self.pushDir = Vector(tonumber(kv.pushDirx), tonumber(kv.pushDiry), 0)
-		if self.distance_to_travel < self:GetAbility():GetSpecialValueFor("min_push") then self.distance_to_travel = self:GetAbility():GetSpecialValueFor("min_push") end
-		self.distance = 0
-		self.speed = self:GetAbility():GetSpecialValueFor("knockback_speed")
-	end
-end
-
-function modifier_sylph_mistral_breeze_knockback:IsHidden()
+function gladiatrix_imperious_shout:OnAbilityPhaseStart()
+	EmitSoundOn("Gladiatrix.Imperious_Shout.Yell", self:GetCaster())
 	return true
 end
 
-function modifier_sylph_mistral_breeze_knockback:GetEffectName()
-	return "particles/econ/items/windrunner/windrunner_cape_sparrowhawk/windrunner_windrun_sparrowhawk.vpcf"
+function gladiatrix_imperious_shout:OnAbilityPhaseInterrupted()
+	StopSoundOn("Gladiatrix.Imperious_Shout.Yell", self:GetCaster())
 end
 
-function modifier_sylph_mistral_breeze_knockback:CheckState()
-	local state = {[MODIFIER_STATE_STUNNED] = true}
-	return state
-end
-
-function modifier_sylph_mistral_breeze_knockback:UpdateHorizontalMotion( me, dt )
-	if IsServer() then
-		local parent = self:GetParent()
-		if self.distance < self.distance_to_travel and self:GetParent():IsAlive() then
-			parent:SetAbsOrigin(parent:GetAbsOrigin() + self.pushDir * self.speed*dt)
-			self.distance = self.distance + self.speed*0.03
-		else
-			parent:InterruptMotionControllers(true)
-			self:Destroy()
-		end       
+function gladiatrix_imperious_shout:OnSpellStart()
+	local caster = self:GetCaster()
+	EmitSoundOn("Hero_LegionCommander.Duel.Victory", self:GetCaster())
+	local shout = ParticleManager:CreateParticle("particles/heroes/gladiatrix/gladiatrix_imperious_shout.vpcf", PATTACH_POINT_FOLLOW, caster)
+	ParticleManager:ReleaseParticleIndex(shout)
+	
+	local affectedEnemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), self:GetTalentSpecialValueFor("steal_radius"), {})
+	for _, enemy in ipairs(affectedEnemies) do
+		enemy:AddNewModifier(caster, self, "modifier_gladiatrix_imperious_shout_debuff", {duration = self:GetTalentSpecialValueFor("steal_duration")})
+	end
+	if caster:HasTalent("gladiatrix_imperious_shout_talent_1") and #affectedEnemies > 0 then
+		caster:AddNewModifier(caster, self, "modifier_gladiatrix_imperious_shout_buff_talent", {duration = self:GetTalentSpecialValueFor("steal_duration")}):SetStackCount(#affectedEnemies)
 	end
 end
 
-LinkLuaModifier( "modifier_sylph_mistral_breeze_blind", "heroes/sylph/sylph_mistral_breeze.lua", LUA_MODIFIER_MOTION_HORIZONTAL )
-modifier_sylph_mistral_breeze_blind = modifier_sylph_mistral_breeze_blind or class({})
 
-function modifier_sylph_mistral_breeze_blind:OnCreated()
-	self.blind = self:GetAbility():GetSpecialValueFor("blind_pct")
+LinkLuaModifier( "modifier_gladiatrix_imperious_shout_debuff", "heroes/gladiatrix/gladiatrix_imperious_shout.lua" ,LUA_MODIFIER_MOTION_NONE )
+--------------------------------------------------------------------------------------------------------
+modifier_gladiatrix_imperious_shout_debuff = class({}) 
+--------------------------------------------------------------------------------------------------------
+function modifier_gladiatrix_imperious_shout_debuff:OnCreated()
+	self.armor = self:GetAbility():GetSpecialValueFor("armor_steal")
+	self.resistance = self:GetAbility():GetSpecialValueFor("resist_steal")
+end
+--------------------------------------------------------------------------------------------------------
+function modifier_gladiatrix_imperious_shout_debuff:OnRefresh()
+	return true
 end
 
-function modifier_sylph_mistral_breeze_blind:DeclareFunctions()
+function modifier_gladiatrix_imperious_shout_debuff:DeclareFunctions()
 	local funcs = {
-		MODIFIER_PROPERTY_MISS_PERCENTAGE,
+		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
+		MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
 	}
 	return funcs
 end
 
-function modifier_sylph_mistral_breeze_blind:GetModifierMiss_Percentage()
-	return self.blind
+function modifier_gladiatrix_imperious_shout_debuff:GetModifierPhysicalArmorBonus()
+	return self.armor
 end
 
-function modifier_sylph_mistral_breeze_blind:GetEffectName()
-	return "particles/units/heroes/hero_keeper_of_the_light/keeper_of_the_light_blinding_light_debuff.vpcf"
+function modifier_gladiatrix_imperious_shout_debuff:GetModifierMagicalResistanceBonus()
+	return self.resistance
+end
+
+function modifier_gladiatrix_imperious_shout_debuff:GetStatusEffectName()
+	return "particles/heroes/gladiatrix/status_effect_gladiatrix_imperious_shout.vpcf"
+end
+
+function modifier_gladiatrix_imperious_shout_debuff:StatusEffectPriority()
+	return 10
+end
+
+
+LinkLuaModifier( "modifier_gladiatrix_imperious_shout_buff_talent", "heroes/gladiatrix/gladiatrix_imperious_shout.lua" ,LUA_MODIFIER_MOTION_NONE )
+--------------------------------------------------------------------------------------------------------
+modifier_gladiatrix_imperious_shout_buff_talent = class({}) 
+
+--------------------------------------------------------------------------------------------------------
+function modifier_gladiatrix_imperious_shout_buff_talent:OnCreated()
+	self.armor = self:GetAbility():GetSpecialValueFor("armor_steal") * -1
+	self.resistance = self:GetAbility():GetSpecialValueFor("resist_steal") * -1
+end
+--------------------------------------------------------------------------------------------------------
+function modifier_gladiatrix_imperious_shout_buff_talent:OnRefresh()
+	return true
+end
+
+function modifier_gladiatrix_imperious_shout_buff_talent:DeclareFunctions()
+	local funcs = {
+		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
+		MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
+	}
+	return funcs
+end
+
+function modifier_gladiatrix_imperious_shout_buff_talent:GetModifierPhysicalArmorBonus()
+	return self.armor * self:GetStackCount()
+end
+
+function modifier_gladiatrix_imperious_shout_buff_talent:GetModifierMagicalResistanceBonus()
+	return self.resistance * self:GetStackCount()
 end

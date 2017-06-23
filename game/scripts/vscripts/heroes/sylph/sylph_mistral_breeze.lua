@@ -50,18 +50,19 @@ function sylph_mistral_breeze:OnProjectileHit_ExtraData( hTarget, vLocation, ext
 			
 		hTarget:AddNewModifier(self:GetCaster(), self, "modifier_sylph_mistral_breeze_knockback", {pushMod = distanceCap, pushDirx = pushDir.x, pushDiry = pushDir.y})
 		hTarget:AddNewModifier(self:GetCaster(), self, "modifier_sylph_mistral_breeze_blind", {duration = self:GetSpecialValueFor("blind_duration")})
+		if self:GetCaster():HasTalent("sylph_mistral_breeze_talent_1") then
+			self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_sylph_mistral_breeze_talent_buff", {duration = self:GetCaster():FindSpecificTalentValue("sylph_immaterialize_talent_1", "duration")})
+		end
 	end
 	return false
 end
 
-LinkLuaModifier( "modifier_sylph_mistral_breeze_knockback", "heroes/sylph/sylph_mistral_breeze.lua", LUA_MODIFIER_MOTION_HORIZONTAL )
+LinkLuaModifier( "modifier_sylph_mistral_breeze_knockback", "heroes/sylph/sylph_mistral_breeze.lua", LUA_MODIFIER_MOTION_NONE )
 modifier_sylph_mistral_breeze_knockback = modifier_sylph_mistral_breeze_knockback or class({})
 
 function modifier_sylph_mistral_breeze_knockback:OnCreated(kv)
 	if IsServer() then
-		if self:ApplyHorizontalMotionController() == false then 
-			self:Destroy()
-		end
+		self.parent = self:GetParent()
 		EmitSoundOn("Hero_Tiny.Toss.Target", self:GetParent())
 		self.max_distance = self:GetAbility():GetSpecialValueFor("max_push")
 		self.distance_to_travel = self.max_distance * kv.pushMod
@@ -69,14 +70,12 @@ function modifier_sylph_mistral_breeze_knockback:OnCreated(kv)
 		if self.distance_to_travel < self:GetAbility():GetSpecialValueFor("min_push") then self.distance_to_travel = self:GetAbility():GetSpecialValueFor("min_push") end
 		self.distance = 0
 		self.speed = self:GetAbility():GetSpecialValueFor("knockback_speed")
+		self:StartMotionController()
 	end
 end
 
 function modifier_sylph_mistral_breeze_knockback:OnRefresh(kv)
 	if IsServer() then
-		if self:ApplyHorizontalMotionController() == false then 
-			self:Destroy()
-		end
 		EmitSoundOn("Hero_Tiny.Toss.Target", self:GetParent())
 		self.max_distance = self:GetAbility():GetSpecialValueFor("max_push")
 		self.distance_to_travel = self.max_distance * kv.pushMod
@@ -85,6 +84,18 @@ function modifier_sylph_mistral_breeze_knockback:OnRefresh(kv)
 		self.distance = 0
 		self.speed = self:GetAbility():GetSpecialValueFor("knockback_speed")
 	end
+end
+
+function modifier_sylph_mistral_breeze_knockback:DoControlledMotion()
+	local parent = self.parent
+	if self.distance < self.distance_to_travel and self:GetParent():IsAlive() and not self:GetParent():IsNull() then
+		parent:SetAbsOrigin(parent:GetAbsOrigin() + self.pushDir * self.speed*FrameTime())
+		self.distance = self.distance + self.speed*FrameTime()
+	else
+		FindClearSpaceForUnit(parent, parent:GetAbsOrigin(), true)
+		self:Destroy()
+		return nil
+	end       
 end
 
 function modifier_sylph_mistral_breeze_knockback:IsHidden()
@@ -100,24 +111,11 @@ function modifier_sylph_mistral_breeze_knockback:CheckState()
 	return state
 end
 
-function modifier_sylph_mistral_breeze_knockback:UpdateHorizontalMotion( me, dt )
-	if IsServer() then
-		local parent = self:GetParent()
-		if self.distance < self.distance_to_travel and self:GetParent():IsAlive() then
-			parent:SetAbsOrigin(parent:GetAbsOrigin() + self.pushDir * self.speed*dt)
-			self.distance = self.distance + self.speed*0.03
-		else
-			parent:InterruptMotionControllers(true)
-			self:Destroy()
-		end       
-	end
-end
-
 function modifier_sylph_mistral_breeze_knockback:IsPurgable()
 	return false
 end
 
-LinkLuaModifier( "modifier_sylph_mistral_breeze_blind", "heroes/sylph/sylph_mistral_breeze.lua", LUA_MODIFIER_MOTION_HORIZONTAL )
+LinkLuaModifier( "modifier_sylph_mistral_breeze_blind", "heroes/sylph/sylph_mistral_breeze.lua", LUA_MODIFIER_MOTION_NONE )
 modifier_sylph_mistral_breeze_blind = modifier_sylph_mistral_breeze_blind or class({})
 
 function modifier_sylph_mistral_breeze_blind:OnCreated()
@@ -137,4 +135,42 @@ end
 
 function modifier_sylph_mistral_breeze_blind:GetEffectName()
 	return "particles/units/heroes/hero_keeper_of_the_light/keeper_of_the_light_blinding_light_debuff.vpcf"
+end
+
+LinkLuaModifier( "modifier_sylph_mistral_breeze_talent_buff", "heroes/sylph/sylph_mistral_breeze.lua", LUA_MODIFIER_MOTION_NONE )
+modifier_sylph_mistral_breeze_talent_buff = class({})
+
+function modifier_sylph_mistral_breeze_talent_buff:OnCreated()
+	self.speed = self:GetCaster():FindTalentValue("sylph_mistral_breeze_talent_1")
+	print(self.speed)
+end
+
+function modifier_sylph_mistral_breeze_talent_buff:OnRefresh()
+	self:IncrementStackCount()
+end
+
+function modifier_sylph_mistral_breeze_talent_buff:DeclareFunctions()
+	local funcs = {
+		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
+	}
+	return funcs
+end
+
+function modifier_sylph_mistral_breeze_talent_buff:GetModifierMoveSpeedBonus_Percentage()
+	return self.speed * self:GetStackCount()
+end
+
+function modifier_sylph_mistral_breeze_talent_buff:GetEffectName()
+	return "particles/units/heroes/hero_windrunner/windrunner_windrun.vpcf"
+end
+
+LinkLuaModifier( "modifier_sylph_mistral_breeze_talent_1", "heroes/sylph/sylph_mistral_breeze.lua", LUA_MODIFIER_MOTION_NONE )
+modifier_sylph_mistral_breeze_talent_1 = modifier_sylph_mistral_breeze_talent_1 or class({})
+
+function modifier_sylph_mistral_breeze_talent_1:IsHidden()
+	return true
+end
+
+function modifier_sylph_mistral_breeze_talent_1:RemoveOnDeath()
+	return false
 end

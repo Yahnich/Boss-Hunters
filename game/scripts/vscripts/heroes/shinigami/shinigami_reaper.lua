@@ -1,36 +1,78 @@
-sylph_winds_aid = sylph_winds_aid or class({})
+shinigami_reaper = class({})
 
-function sylph_winds_aid:OnSpellStart()
-	EmitSoundOn("Hero_Windrunner.ShackleshotStun", self:GetCaster())
-	local windbuff = self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_sylph_winds_aid_buff", {duration = self:GetSpecialValueFor("duration")})
-	local zephyr = self:GetCaster():FindModifierByName("modifier_sylph_innate_zephyr_passive")
-	windbuff:SetStackCount(zephyr:GetStackCount())
-	zephyr:SetStackCount(0)
+function shinigami_reaper:OnSpellStart()
+	local caster = self:GetCaster()
+	caster:AddNewModifier(caster, self, "modifier_shinigami_reaper_buff", {duration = self:GetSpecialValueFor("duration")})
+	EmitSoundOn("Hero_PhantomAssassin.Arcana_Layer", caster)
+	EmitSoundOn("Hero_Treant.Overgrowth.CastAnim", caster)
+	
+	if caster:HasTalent("shinigami_reaper_talent_1") then
+		caster:RefreshAllCooldowns(false)
+	end
 end
 
-LinkLuaModifier( "modifier_sylph_winds_aid_buff", "heroes/sylph/sylph_winds_aid.lua", LUA_MODIFIER_MOTION_HORIZONTAL )
-modifier_sylph_winds_aid_buff = modifier_sylph_winds_aid_buff or class({})
+LinkLuaModifier("modifier_shinigami_reaper_buff", "heroes/shinigami/shinigami_reaper.lua", 0)
+modifier_shinigami_reaper_buff = class({})
 
-function modifier_sylph_winds_aid_buff:OnCreated()
-	self.critical_strike = self:GetAbility():GetSpecialValueFor("crit_per_stack")
+
+function modifier_shinigami_reaper_buff:OnCreated()
+	self.crit_chance = self:GetAbility():GetSpecialValueFor("crit_chance")
+	self.crit_damage = self:GetAbility():GetSpecialValueFor("crit_amount")
+	self.attackspeed = self:GetAbility():GetSpecialValueFor("attackspeed_bonus")
+	self.movespeed = self:GetAbility():GetSpecialValueFor("movespeed_bonus")
+	self.lifesteal = self:GetAbility():GetSpecialValueFor("deep_wounds_lifesteal") / 100
 end
 
-function modifier_sylph_winds_aid_buff:DeclareFunctions()
-	local funcs = {
-		MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE,
-	}
+
+function modifier_shinigami_reaper_buff:DeclareFunctions()
+	funcs = {
+				MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+				MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE, 
+				MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,
+				MODIFIER_PROPERTY_MODEL_SCALE,
+				MODIFIER_EVENT_ON_ATTACK_LANDED
+			}
 	return funcs
 end
 
-function modifier_sylph_winds_aid_buff:CheckState()
-	local state = {[MODIFIER_STATE_CANNOT_MISS] = true}
-	return state
+function modifier_shinigami_reaper_buff:GetModifierAttackSpeedBonus_Constant()
+	return self.attackspeed
 end
 
-function modifier_sylph_winds_aid_buff:GetModifierPreAttack_CriticalStrike()
-	return 100 + self.critical_strike * self:GetStackCount()
+function modifier_shinigami_reaper_buff:GetModifierModelScale()
+	return 35
 end
 
-function modifier_sylph_winds_aid_buff:GetEffectName()
-	return "particles/heroes/sylph/sylph_winds_aid.vpcf"
+function modifier_shinigami_reaper_buff:GetModifierMoveSpeedBonus_Constant()
+	return self.movespeed
+end
+
+function modifier_shinigami_reaper_buff:GetModifierPreAttack_CriticalStrike()
+	if RollPercentage(self.crit_chance) then
+		return self.crit_damage
+	end
+	return nil
+end
+
+function modifier_shinigami_reaper_buff:OnAttackLanded(params)
+	if IsServer() then
+		if params.attacker == self:GetParent() and params.target:HasModifier("modifier_shinigami_deep_wounds_stacks") then
+			local modifier = params.target:FindModifierByName("modifier_shinigami_deep_wounds_stacks")
+			local heal_pct = self.lifesteal * modifier:GetStackCount() * (100 - params.target:GetPhysicalArmorReduction())/100
+			local heal = params.damage * heal_pct
+			params.attacker:HealEvent(heal, params.attacker, {})
+		end
+	end
+end
+
+function modifier_shinigami_reaper_buff:GetEffectName()
+	return "particles/heroes/shinigami/shinigami_reaper_buff_effect.vpcf"
+end
+
+function modifier_shinigami_reaper_buff:GetStatusEffectName()
+	return "particles/status_fx/status_effect_electrical.vpcf"
+end
+
+function modifier_shinigami_reaper_buff:StatusEffectPriority()
+	return 10
 end

@@ -1,1 +1,1 @@
-sylph_rapid_fire = sylph_rapid_fire or class({})
+gladiatrix_cross_cut = class({})

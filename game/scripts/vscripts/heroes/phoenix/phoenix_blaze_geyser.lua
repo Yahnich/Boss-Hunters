@@ -1,36 +1,103 @@
-sylph_winds_aid = sylph_winds_aid or class({})
+phoenix_blaze_geyser = class({})
 
-function sylph_winds_aid:OnSpellStart()
-	EmitSoundOn("Hero_Windrunner.ShackleshotStun", self:GetCaster())
-	local windbuff = self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_sylph_winds_aid_buff", {duration = self:GetSpecialValueFor("duration")})
-	local zephyr = self:GetCaster():FindModifierByName("modifier_sylph_innate_zephyr_passive")
-	windbuff:SetStackCount(zephyr:GetStackCount())
-	zephyr:SetStackCount(0)
+function phoenix_blaze_geyser:GetAbilityTextureName()
+	if self:GetCaster():HasModifier("modifier_phoenix_kindled_soul_active") then
+		return "custom/phoenix_blaze_geyser_kindled"
+	else
+		return "custom/phoenix_blaze_geyser"
+	end
 end
 
-LinkLuaModifier( "modifier_sylph_winds_aid_buff", "heroes/sylph/sylph_winds_aid.lua", LUA_MODIFIER_MOTION_HORIZONTAL )
-modifier_sylph_winds_aid_buff = modifier_sylph_winds_aid_buff or class({})
-
-function modifier_sylph_winds_aid_buff:OnCreated()
-	self.critical_strike = self:GetAbility():GetSpecialValueFor("crit_per_stack")
+function phoenix_blaze_geyser:OnSpellStart()
+	local dummy = CreateModifierThinker( self:GetCaster(), self, "modifier_phoenix_blaze_geyser_thinker", {duration = self:GetTalentSpecialValueFor("geyser_duration"), kindled = tostring(self:GetCaster():HasModifier("modifier_phoenix_kindled_soul_active"))}, self:GetCursorPosition(), self:GetCaster():GetTeamNumber(), false )
 end
 
-function modifier_sylph_winds_aid_buff:DeclareFunctions()
-	local funcs = {
-		MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE,
-	}
-	return funcs
+function phoenix_blaze_geyser:OnProjectileHit(target, position)
+	self:DealDamage(self:GetCaster(), target, self:GetTalentSpecialValueFor("geyser_damage") + (self:GetCaster().selfImmolationDamageBonus or 0))
+	if self:GetCaster():HasTalent("phoenix_blaze_geyser_talent_1") then
+		local duration = self:GetCaster():FindSpecificTalentValue("phoenix_blaze_geyser_talent_1", "duration")
+		if self:GetCaster():HasScepter() then duration = duration / 2 end
+		target:AddNewModifier(self:GetCaster(), self, "modifier_phoenix_blaze_geyser_burn", {duration = duration})
+	end
+	EmitSoundOn("Hero_Jakiro.LiquidFire", target)
 end
 
-function modifier_sylph_winds_aid_buff:CheckState()
-	local state = {[MODIFIER_STATE_CANNOT_MISS] = true}
-	return state
+modifier_phoenix_blaze_geyser_thinker = class({})
+LinkLuaModifier( "modifier_phoenix_blaze_geyser_thinker", "heroes/phoenix/phoenix_blaze_geyser.lua", LUA_MODIFIER_MOTION_NONE )
+
+if IsServer() then
+	function modifier_phoenix_blaze_geyser_thinker:OnCreated(kv)
+		self.kindled = toboolean(kv.kindled)
+		self.damage = self:GetAbility():GetTalentSpecialValueFor("geyser_damage") + (self:GetCaster().selfImmolationDamageBonus or 0)
+		self.radius = self:GetAbility():GetTalentSpecialValueFor("geyser_attack_range")
+		
+		self:StartIntervalThink(self:GetAbility():GetTalentSpecialValueFor("geyser_attack_rate"))
+	
+		self.nFXIndex = ParticleManager:CreateParticle( "particles/heroes/phoenix/phoenix_blaze_geyser.vpcf", PATTACH_WORLDORIGIN, nil )
+		ParticleManager:SetParticleControl( self.nFXIndex, 0, self:GetParent():GetOrigin() )
+	end
+	
+	function modifier_phoenix_blaze_geyser_thinker:OnDestroy()
+		ParticleManager:DestroyParticle(self.nFXIndex, false)
+		ParticleManager:ReleaseParticleIndex(self.nFXIndex)
+		UTIL_Remove( self:GetParent() )
+	end
+	
+	function modifier_phoenix_blaze_geyser_thinker:OnIntervalThink()
+		local enemies = self:GetCaster():FindEnemyUnitsInRadius(self:GetParent():GetAbsOrigin(), self.radius, {})
+		for _, enemy in pairs(enemies) do
+			local projectile = {
+				Target = enemy,
+				Source = self:GetParent(),
+				Ability = self:GetAbility(),
+				EffectName = "particles/units/heroes/hero_jakiro/jakiro_base_attack_fire.vpcf",
+				bDodgable = true,
+				bProvidesVision = false,
+				iMoveSpeed = 900,
+				iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_HITLOCATION,
+			}
+			
+			ProjectileManager:CreateTrackingProjectile(projectile)
+			if not self.kindled then
+				break
+			end
+		end
+		if #enemies > 0 then EmitSoundOn("hero_jakiro.attack", self:GetParent()) end
+	end
 end
 
-function modifier_sylph_winds_aid_buff:GetModifierPreAttack_CriticalStrike()
-	return 100 + self.critical_strike * self:GetStackCount()
+LinkLuaModifier( "modifier_phoenix_blaze_geyser_burn", "heroes/phoenix/phoenix_blaze_geyser.lua", LUA_MODIFIER_MOTION_NONE )
+modifier_phoenix_blaze_geyser_burn = class({})
+
+function modifier_phoenix_blaze_geyser_burn:OnCreated()
+	self.damage_over_time = self:GetCaster():FindTalentValue("modifier_phoenix_blaze_geyser_burn")
+	self.tick_interval = 1
+	if self:GetCaster():HasScepter() then self.damage_over_time = self.damage_over_time * 2 end
+	if IsServer() then self:StartIntervalThink(self.tick_interval) end
 end
 
-function modifier_sylph_winds_aid_buff:GetEffectName()
-	return "particles/heroes/sylph/sylph_winds_aid.vpcf"
+function modifier_phoenix_blaze_geyser_burn:OnRefresh()
+	self.damage_over_time = self:GetAbility():GetTalentSpecialValueFor("damage_over_time")
+	if self:GetCaster():HasScepter() then self.damage_over_time = self.damage_over_time * 2 end
+end
+
+function modifier_phoenix_blaze_geyser_burn:OnIntervalThink()
+	ApplyDamage( {victim = self:GetParent(), attacker = self:GetCaster(), damage = self.damage_over_time, damage_type = DAMAGE_TYPE_MAGICAL, ability = self:GetAbility()} )
+end
+
+--------------------------------------------------------------------------------
+
+function modifier_phoenix_blaze_geyser_burn:IsDebuff()
+	return true
+end
+
+--------------------------------------------------------------------------------
+
+function modifier_phoenix_blaze_geyser_burn:GetEffectName()
+	return "particles/units/heroes/hero_jakiro/jakiro_liquid_fire_debuff.vpcf"
+end
+
+
+function modifier_phoenix_blaze_geyser_burn:IsFireDebuff()
+	return true
 end

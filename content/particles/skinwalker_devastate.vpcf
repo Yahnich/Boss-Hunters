@@ -12,6 +12,7 @@
 			m_nSequenceCombineMode = "SEQUENCE_COMBINE_MODE_USE_SEQUENCE_0"
 			m_bAdditive = true
 			m_hTexture = resource:"materials/particle/ursa/claws.vtex"
+			m_bDisableOperator = true
 		},
 	]
 	m_Operators = 
@@ -55,6 +56,21 @@
 		},
 		{
 			m_ChildRef = resource:"particles/skinwalker_devastate_c.vpcf"
+		},
+	]
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 0.0, 0.0, 0.0 ]
+					m_angOffset = [ null, null, null ]
+					m_entityName = "self"
+				},
+			]
 		},
 	]
 }

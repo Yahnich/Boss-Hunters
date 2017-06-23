@@ -33,6 +33,7 @@ require( "libraries/Timers" )
 require( "libraries/notifications" )
 require( "statcollection/init" )
 require("libraries/utility")
+require("libraries/animations")
 
 if CHoldoutGameMode == nil then
 	CHoldoutGameMode = class({})
@@ -73,6 +74,8 @@ function Precache( context )
 	PrecacheResource("particle", "particles/nyx_assassin_impale.vpcf", context)
 	PrecacheResource("particle", "particles/econ/generic/generic_aoe_shockwave_1/generic_aoe_shockwave_1.vpcf", context)
 	PrecacheResource("particle", "particles/econ/generic/generic_buff_1/generic_buff_1.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_tinker/tinker_rockets.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_tinker/tinker_machine.vpcf", context)
 	
 	PrecacheResource("particle_folder", "particles/econ/generic/generic_aoe_shockwave_1", context)
 	
@@ -151,7 +154,31 @@ function CHoldoutGameMode:InitGameMode()
 	
 	GameRules.HeroList = LoadKeyValues("scripts/npc/herolist.txt")
 	
+	GameRules.IngameHeroNames = LoadKeyValues("scripts/kv/heronames.txt")
+	
 	print(GetMapName())
+	
+	
+	-- talent shit
+	Timers:CreateTimer(20,function()
+		local current_hero_list = HeroList:GetAllHeroes()
+		for _, hero in pairs(current_hero_list) do
+			local hero_name = string.match(GameRules.IngameHeroNames[hero:GetName()],"npc_dota_hero_(.*)")
+			for i = 0, 8 do
+				local ability = hero:GetAbilityByIndex(i)
+				if ability then
+					local abilityFilteredName = string.match(ability:GetName(), hero_name.."_(.*)")
+					local talent_name = hero_name.."_"..abilityFilteredName.."_talent_".."1"
+					local modifier_name = "modifier_"..talent_name
+					if hero:HasTalent(talent_name) and not hero:HasModifier(modifier_name) then
+						hero:AddNewModifier(hero, hero:FindAbilityByName(talent_name), modifier_name, {})
+					end
+				end
+			end
+		end
+		return 0.5
+	end)
+	
 	
 	GameRules.playersDisconnected = 0
 	self._nRoundNumber = 1
@@ -640,6 +667,8 @@ function CHoldoutGameMode:Update_Health_Bar()
 end
 
 LinkLuaModifier( "modifier_necrolyte_sadist_aura_reduction", "lua_abilities/heroes/modifiers/modifier_necrolyte_sadist_aura_reduction", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_stunned_generic", "heroes/generic/modifier_stunned_generic.lua", LUA_MODIFIER_MOTION_NONE )
+
 
 function CHoldoutGameMode:FilterModifiers( filterTable )
 	local parent_index = filterTable["entindex_parent_const"]
@@ -648,63 +677,6 @@ function CHoldoutGameMode:FilterModifiers( filterTable )
     if not parent_index or not caster_index or not ability_index then
         return true
     end
-	local duration = filterTable["duration"]
-    local parent = EntIndexToHScript( parent_index )
-    local caster = EntIndexToHScript( caster_index )
-	local ability = EntIndexToHScript( ability_index )
-	local name = filterTable["name_const"]
-	if ability:GetName() == "enigma_black_hole" 
-	or ability:GetName() == "life_stealer_devour" 
-	or ability:GetName() == "slardar_slithereen_reprisal"then return true end
-	if name == "modifier_necrolyte_sadist_aura_effect" then -- add additional shit to necro aura
-		parent:AddNewModifier(caster, ability, "modifier_necrolyte_sadist_aura_reduction", {duration = ability:GetSpecialValueFor("duration")})
-	end
-	if parent == caster or not caster or not ability or duration > 99 or duration == -1 then return true end
-	-- 1 is ULTIMATE
-	if parent:IsCreature() and (caster:HasAbility("perk_disable_piercing") or ability:GetAbilityType() == 1 or ability:PiercesDisableResistance()) then
-		if caster:HasAbility("perk_disable_piercing") and ability:GetAbilityType() ~= 1 and not ability:PiercesDisableResistance() then -- ignore perk if already pierces
-			local chance = caster:FindAbilityByName("perk_disable_piercing"):GetSpecialValueFor("chance")
-			if math.random(100) > chance then
-				return true
-			end
-		end
-		local resistance = parent:GetDisableResistance() / 100
-		filterTable["duration"] = duration / (1 - resistance)
-		Timers:CreateTimer(0.04,function()
- 			if parent:FindModifierByNameAndCaster(name, caster) then
-				local modifier = parent:FindModifierByNameAndCaster(name, caster)
-				if modifier:GetDuration() > duration then
-					modifier:SetDuration(duration, false)
-				end
-			end
- 		end)
-	elseif parent:IsCreature() and caster:HasTalentType("respawn_reduction") then
-		local resistance = parent:GetDisableResistance() / 100
-		if resistance > caster:HighestTalentTypeValue("respawn_reduction") then
-			filterTable["duration"] = duration / (1 - resistance) * caster:HighestTalentTypeValue("respawn_reduction") / 100
-			Timers:CreateTimer(0.04,function()
-				if parent:FindModifierByNameAndCaster(name, caster) then
-					local modifier = parent:FindModifierByNameAndCaster(name, caster)
-					if modifier:GetDuration() > duration then
-						modifier:SetDuration(duration, false)
-					end
-				end
-			end)
-		end
-	end
-	if ability:GetName() == "centaur_hoof_stomp" and caster:HasTalent("special_bonus_unique_centaur_1") then
-		local resistance = parent:GetDisableResistance() / 100
-		filterTable["duration"] = duration / (1 - resistance)
-		filterTable["duration"] = duration * caster:FindTalentValue("special_bonus_unique_centaur_1") / 100
-		Timers:CreateTimer(0.04,function()
- 			if parent:FindModifierByNameAndCaster(name, caster) then
-				local modifier = parent:FindModifierByNameAndCaster(name, caster)
-				if modifier:GetDuration() > duration then
-					modifier:SetDuration(duration, false)
-				end
-			end
- 		end)
-	end
 	return true
 end
 
@@ -714,13 +686,6 @@ function CHoldoutGameMode:FilterAbilityValues( filterTable )
     if not caster_index or not ability_index then
         return true
     end
-	local caster = EntIndexToHScript( caster_index )
-    local ability = EntIndexToHScript( ability_index )
-	
-	if caster:GetName() == "npc_dota_hero_queenofpain" and caster:HasAbility(ability:GetName()) then
-		require('lua_abilities/heroes/queenofpain')
-		filterTable = SadoMasochism(filterTable)
-	end
 	return true
 end
 

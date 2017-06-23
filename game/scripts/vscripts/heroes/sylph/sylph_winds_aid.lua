@@ -8,7 +8,7 @@ function sylph_winds_aid:OnSpellStart()
 	zephyr:SetStackCount(0)
 end
 
-LinkLuaModifier( "modifier_sylph_winds_aid_buff", "heroes/sylph/sylph_winds_aid.lua", LUA_MODIFIER_MOTION_HORIZONTAL )
+LinkLuaModifier( "modifier_sylph_winds_aid_buff", "heroes/sylph/sylph_winds_aid.lua", LUA_MODIFIER_MOTION_NONE )
 modifier_sylph_winds_aid_buff = modifier_sylph_winds_aid_buff or class({})
 
 function modifier_sylph_winds_aid_buff:OnCreated()
@@ -33,4 +33,39 @@ end
 
 function modifier_sylph_winds_aid_buff:GetEffectName()
 	return "particles/heroes/sylph/sylph_winds_aid.vpcf"
+end
+
+
+LinkLuaModifier( "modifier_sylph_winds_aid_talent_1", "heroes/sylph/sylph_winds_aid.lua", LUA_MODIFIER_MOTION_NONE )
+modifier_sylph_winds_aid_talent_1 = modifier_sylph_winds_aid_talent_1 or class({})
+
+function modifier_sylph_winds_aid_talent_1:OnCreated()
+	self.damage = self:GetAbility():GetSpecialValueFor("value")
+	if IsServer() then
+		self:StartIntervalThink(0)
+	end
+end
+
+function modifier_sylph_winds_aid_talent_1:OnIntervalThink()
+	self:SetStackCount( self:GetCaster():FindModifierByName("modifier_sylph_zephyr_passive"):GetStackCount())
+end
+
+function modifier_sylph_winds_aid_talent_1:IsHidden()
+	return true
+end
+
+function modifier_sylph_winds_aid_talent_1:RemoveOnDeath()
+	return false
+end
+
+function modifier_sylph_winds_aid_talent_1:DeclareFunctions()
+	funcs = {
+				MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
+			}
+	return funcs
+end
+
+
+function modifier_sylph_winds_aid_talent_1:GetModifierPreAttack_BonusDamage()
+	return self.damage * self:GetStackCount()
 end
