@@ -1,0 +1,1 @@
+shinigami_whirling_slash = class({})

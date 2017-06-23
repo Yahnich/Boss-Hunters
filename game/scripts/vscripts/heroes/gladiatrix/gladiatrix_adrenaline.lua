@@ -1,0 +1,1 @@
+gladiatrix_adrenaline = class({})

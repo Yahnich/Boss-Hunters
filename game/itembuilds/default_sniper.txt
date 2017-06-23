@@ -1,42 +1,40 @@
 "itembuilds"
 {
-	"author"		"Valve"
-	"hero"			"npc_dota_hero_sniper"
-	"Title"			"Recommended items for Sniper"
-	
-	"Items"
-	{	
-		"#DOTA_Item_Build_Starting_Items"
-		{
-			"item"	"item_midas_2"
-			"item"	"item_force_boots"
-		}
-		"#DOTA_Item_Build_Early_Game"
-		{	
-			"item"	"item_midas_2"	
-			"item"	"item_lifesteal2"	
-			"item"	"item_butterfly2"
-			"item"	"item_unstable_stone"
-			"item"	"item_desolator4"
-		}
-		"#DOTA_Item_Build_Core_Items"
-		{
-			"item"	"item_desolator5"
-			"item"	"item_midas_fury"
-			"item"	"item_gungnir_2"
-			"item"	"item_s_a_y_3" 
-		}
-		"#DOTA_Item_Build_Luxury"
-		{
-			"item"	"item_gungnir_3"
-			"item"	"item_bahamut_claw"
-			"item"	"item_bahamut_chest"
-			"item"	"item_butterfly5"
-		}
-		"#DOTA_Item_Build_End_Game"
-		{
-			"item"	"item_pixels_guard"
-			"item"	"item_octarine_core5"
-		}
-	}
+    "author"        "An annoyed Kitten"
+    "hero"            "npc_dota_hero_sniper"
+    "Title"            "Magic DPS Sniper FFS. EAT THE AGHS AS WELL."
+
+    "Items"
+    {
+        "#DOTA_Item_Build_Starting_Items"
+        {
+            "item"    "item_midas_2"
+            "item"    "item_blink"
+        }
+        "#DOTA_Item_Build_Early_Game"
+        {
+            "item"    "item_midas_3"
+            "item"    "item_aether_lens"
+            "item"    "item_octarine_core2"
+            "item"    "item_ultimate_scepter"
+            "item"    "item_bloodthorn2"
+        }
+        "#DOTA_Item_Build_Core_Items"
+        {
+            "item"    "item_blink_boots"
+            "item"    "item_octarine_core5"
+            "item"    "item_purethorn"
+            "item"    "item_omni_lens"
+            "item"    "item_scythe_of_decay"
+            "item"    "item_butterfly5"
+        }
+        "#DOTA_Item_Build_Luxury"
+        {
+            "item"    "item_pixels_guard"
+            "item"    "item_Dagon_Mystic"
+            "item"    "item_chronos_shard"
+            "item"    "item_manta"
+			"item"    "item_ultimate_amulet"
+        }
+    }
 }

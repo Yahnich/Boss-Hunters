@@ -1,0 +1,1 @@
+shinigami_fan_the_blades = class({})

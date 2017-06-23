@@ -1361,7 +1361,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"corruption_armor"		"-25"
+				"corruption_armor"		"-14"
 			}
 			"03"
 			{
@@ -1755,7 +1755,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"armor_reduction"		"-40"
+				"armor_reduction"		"-25"
 			}
 			"03"
 			{
@@ -2275,7 +2275,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"armor_reduction"		"-170"
+				"armor_reduction"		"-50"
 			}
 			"03"
 			{
@@ -4985,7 +4985,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"armor_reduction"		"-450"
+				"armor_reduction"		"-100"
 			}
 			"03"
 			{
@@ -11852,7 +11852,7 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"33000"	
+		"ItemCost"						"8960"	
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -12008,7 +12008,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"armor_reduction"		"-900"
+				"armor_reduction"		"-200"
 			}
 			"03"
 			{

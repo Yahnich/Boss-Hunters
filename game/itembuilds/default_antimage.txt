@@ -1,48 +1,41 @@
- "itembuilds"
+"itembuilds"
 {
-	"author"	" "
-	"hero"	"npc_dota_hero_antimage"
-	"Title"	"Epic_Boss_Fight"
+    "author"        "An annoyed Kitten"
+    "hero"            "npc_dota_hero_antimage"
+    "Title"            "Magic DPS AM FFS. EAT THE AGHS AS WELL."
 
-	"Items"
-	{
-		"#DOTA_Item_Build_Starting_Items"
-		{
-			"item"	"item_midas_2"
-			"item"	"item_orchid"
-		}
+    "Items"
+    {
+        "#DOTA_Item_Build_Starting_Items"
+        {
+            "item"    "item_midas_2"
+            "item"    "item_blink"
+        }
+        "#DOTA_Item_Build_Early_Game"
+        {
+            "item"    "item_midas_3"
+            "item"    "item_butterfly2"
+            "item"    "item_octarine_core2"
+            "item"    "item_ultimate_scepter"
+            "item"    "item_bloodthorn2"
+        }
+        "#DOTA_Item_Build_Core_Items"
+        {
+            "item"    "item_blink_boots"
+            "item"    "item_octarine_core5"
+            "item"    "item_purethorn"
+            "item"    "item_melee_rage"
+            "item"    "item_scythe_of_decay"
+            "item"    "item_butterfly5"
+            "item"    "item_ultimate_amulet"
+        }
+        "#DOTA_Item_Build_Luxury"
+        {
+            "item"    "item_pixels_guard"
+            "item"    "item_Dagon_Mystic"
+            "item"    "item_chronos_shard"
+            "item"    "item_manta"
 
-		"#DOTA_Item_Build_Early_Game"
-		{
-			"item"	"item_butterfly_3"
-			"item"	"item_bloodthorn2"
-		}
-
-		"#DOTA_Item_Build_Mid_Game"
-		{
-			"item"	"item_melee_rage"
-			"item"	"item_ultimate_scepter"
-			"item"	"item_s_a_y_3"
-			"item"	"item_bloodthorn3"
-			"item"	"item_butterfly3"
-		}
-
-		"#DOTA_Item_Build_Late_Game"
-		{
-			"item""item_scythe_of_decay"
-			"item""item_purethorn"
-			"item""item_butterfly5"
-		}
-
-		"#DOTA_Item_Build_Situational"
-		{
-			"item"	"item_booster_void"
-			"item"	"item_gungnir_3"
-			"item"	"item_s_a_y_4"
-			"item"	"item_scythe_of_decay"
-			"item"	"item_bahamut_claw"
-			"item"	"item_bahamut_chest"
-			"item"	"item_ultimate_amulet"
-		}
-	}
+        }
+    }
 }

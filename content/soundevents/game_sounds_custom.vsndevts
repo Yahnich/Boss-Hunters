@@ -510,7 +510,7 @@
 							"value9"        "sounds/vo/legion_commander/legcom_duel_09.vsnd"
                         }
                     }
-                    "volume"            {   "value"     "12.00000"  }
+                    "volume"            {   "value"     "1.00000"  }
                     "soundlevel"        {   "value"     "100.00000" }
                     "distance_max"      {   "value"     "1200.000"  }
                     "event_type"        {   "value"     "1.000000"  }

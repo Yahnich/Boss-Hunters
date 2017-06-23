@@ -9,6 +9,26 @@ function GetClientSync(key)
 	return value
 end
 
+function HasValInTable(checkTable, val)
+	for key, value in pairs(checkTable) do
+		if value == val then return true end
+	end
+	return false
+end
+
+
+function toboolean(thing)
+	if type(thing) == "number" then
+		if thing == 1 then return true
+		elseif thing == 0 then return false
+		else error("number type not 1 or 0") end
+	elseif type(thing) == "string" then
+		if thing == "true" then return true
+		elseif thing == "false" then return false
+		else error("string type not true or false") end
+	end
+end
+
 function CalculateDistance(ent1, ent2)
 	local pos1 = ent1
 	local pos2 = ent2
@@ -31,6 +51,90 @@ function CDOTA_BaseNPC:CreateDummy(position)
 	local dummy = CreateUnitByName("npc_dummy_unit", position, false, nil, nil, self:GetTeam())
 	dummy:AddAbility("hide_hero"):SetLevel(1)
 	return dummy
+end
+
+function CDOTA_BaseNPC_Hero:CreateSummon(unitName, position, duration)
+	local summon = CreateUnitByName(unitName, position, true, self, nil, self:GetTeam())
+	summon:SetControllableByPlayer(self:GetPlayerID(), true)
+	self.summonTable = self.summonTable or {}
+	table.insert(self.summonTable, summon)
+	summon:SetOwner(self)
+	summon:AddNewModifier(self, nil, "modifier_summon_handler", {duration = duration})
+	if not duration or duration > 0 then
+		summon:AddNewModifier(self, nil, "modifier_kill", {duration = duration})
+	end
+	StartAnimation(summon, {activity = ACT_DOTA_SPAWN, rate = 1.5, duration = 2})
+	return summon
+end
+
+function CDOTA_BaseNPC_Hero:RemoveSummon(entity)
+	for id,ent in pairs(self.summonTable) do
+		if ent == entity then
+			table.remove(self.summonTable, id)
+		end
+	end
+end
+
+function CDOTA_BaseNPC:IsBeingAttacked()
+	local enemies = FindUnitsInRadius(self:GetTeam(), self:GetAbsOrigin(), nil, 999999, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_INVULNERABLE, 0, false)
+	for _, enemy in pairs(enemies) do
+		if enemy:IsAttackingEntity(self) then return true end
+	end
+	return false
+end
+
+function CDOTA_BaseNPC:PerformAbilityAttack(target)
+	self.autoAttackFromAbilityState = true
+	self:PerformAttack(target,true,true,true,false,false,false,true)
+	self.autoAttackFromAbilityState = false
+end
+
+function CDOTA_Modifier_Lua:AttachEffect(pID)
+	self:AddParticle(pID, false, false, 0, false, false)
+end
+
+function CDOTA_BaseNPC:DealAOEDamage(position, radius, damageTable)
+	local team = self:GetTeamNumber()
+	local iTeam = DOTA_UNIT_TARGET_TEAM_ENEMY
+	local iType = DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
+	local iFlag = DOTA_UNIT_TARGET_FLAG_NONE
+	local iOrder = FIND_ANY_ORDER
+	local AOETargets = FindUnitsInRadius(team, position, nil, radius, iTeam, iType, iFlag, iOrder, false)
+	for _, target in pairs(AOETargets) do
+		ApplyDamage({ victim = target, attacker = self, damage = damageTable.damage, damage_type = damageTable.damage_type, ability = damageTable.ability})
+	end
+end
+
+function CDOTA_BaseNPC:DealMaxHPAOEDamage(position, radius, damage_pct, damage_type)
+	local team = self:GetTeamNumber()
+	local iTeam = DOTA_UNIT_TARGET_TEAM_ENEMY
+	local iType = DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
+	local iFlag = DOTA_UNIT_TARGET_FLAG_NONE
+	local iOrder = FIND_ANY_ORDER
+	local AOETargets = FindUnitsInRadius(team, position, nil, radius, iTeam, iType, iFlag, iOrder, false)
+	for _, target in pairs(AOETargets) do
+		ApplyDamage({ victim = target, attacker = self, damage = target:GetMaxHealth() * damage_pct / 100, damage_type = damage_type})
+	end
+end
+
+
+function FindUnitsInCone(teamNumber, vDirection, vPosition, flSideRadius, flLength, hCacheUnit, targetTeam, targetUnit, targetFlags, findOrder, bCache)
+	local vDirectionCone = Vector( vDirection.y, -vDirection.x, 0.0 )
+	local enemies = FindUnitsInRadius(teamNumber, vPosition, hCacheUnit, flSideRadius + flLength, targetTeam, targetUnit, targetFlags, findOrder, bCache )
+	local unitTable = {}
+	if #enemies > 0 then
+		for _,enemy in pairs(enemies) do
+			if enemy ~= nil then
+				local vToPotentialTarget = enemy:GetOrigin() - vPosition
+				local flSideAmount = math.abs( vToPotentialTarget.x * vDirectionCone.x + vToPotentialTarget.y * vDirectionCone.y + vToPotentialTarget.z * vDirectionCone.z )
+				local flLengthAmount = ( vToPotentialTarget.x * vDirection.x + vToPotentialTarget.y * vDirection.y + vToPotentialTarget.z * vDirection.z )
+				if ( flSideAmount < flSideRadius ) and ( flLengthAmount > 0.0 ) and ( flLengthAmount < flLength ) then
+					table.insert(unitTable, enemy)
+				end
+			end
+		end
+	end
+	return unitTable
 end
 
 
@@ -98,6 +202,14 @@ end
 function table.removekey(t1, key)
     for k,v in pairs(t1) do
 		if t1[k] == key then
+			table.remove(t1,k)
+		end
+	end
+end
+
+function table.removeval(t1, val)
+    for k,v in pairs(t1) do
+		if t1[k] == val then
 			table.remove(t1,k)
 		end
 	end
@@ -268,6 +380,13 @@ function CDOTA_BaseNPC:FindTalentValue(talentName)
 	return 0
 end
 
+function CDOTA_BaseNPC:FindSpecificTalentValue(talentName, value)
+	if self:HasAbility(talentName) then
+		return self:FindAbilityByName(talentName):GetSpecialValueFor(value)
+	end
+	return 0
+end
+
 function CDOTA_BaseNPC:NotDead()
 	if self:IsAlive() or 
 	self:IsReincarnating() or 
@@ -354,7 +473,66 @@ end
 
 function CDOTA_BaseNPC:SetProjectileModel(projectile)
 	self:SetRangedProjectileName(projectile)
+	self.previousProjectileModel = self.currentProjectileModel or self:GetBaseProjectileModel()
 	self.currentProjectileModel = projectile
+end
+
+function CDOTA_BaseNPC:RevertProjectile()
+	self:SetRangedProjectileName(self.previousProjectileModel)
+	local newModel = self.previousProjectileModel
+	self.previousProjectileModel = self.currentProjectileModel
+	self.currentProjectileModel = newModel
+end
+
+
+function CDOTA_BaseNPC:GetAngleDifference(hEntity)
+	-- The y value of the angles vector contains the angle we actually want: where units are directionally facing in the world.
+	local victim_angle = hEntity:GetAnglesAsVector().y
+	local origin_difference = hEntity:GetAbsOrigin() - self:GetAbsOrigin()
+
+	-- Get the radian of the origin difference between the attacker and Riki. We use this to figure out at what angle the victim is at relative to Riki.
+	local origin_difference_radian = math.atan2(origin_difference.y, origin_difference.x)
+	
+	-- Convert the radian to degrees.
+	origin_difference_radian = origin_difference_radian * 180
+	local attacker_angle = origin_difference_radian / math.pi
+	-- Makes angle "0 to 360 degrees" as opposed to "-180 to 180 degrees" aka standard dota angles.
+	attacker_angle = attacker_angle + 180.0
+	
+	-- Finally, get the angle at which the victim is facing Riki.
+	local result_angle = (attacker_angle - victim_angle)
+	result_angle = math.abs(result_angle)
+	return result_angle
+end
+
+function CDOTA_BaseNPC:IsAtAngleWithEntity(hEntity, flDesiredAngle)
+	local angleDiff = self:GetAngleDifference(hEntity)
+	if angleDiff >= (180 - flDesiredAngle / 2) and angleDiff <= (180 + flDesiredAngle / 2) then 
+		return true
+	else
+		return false
+	end
+end
+	
+
+function CDOTA_BaseNPC:RefreshAllCooldowns(bItems)
+    for i = 0, self:GetAbilityCount() - 1 do
+        local ability = self:GetAbilityByIndex( i )
+        if ability then
+			ability:Refresh()
+			if ability:GetName() == "skeleton_king_reincarnation" then
+				self:RemoveModifierByName("modifier_skeleton_king_reincarnation_cooldown")
+			end
+        end
+    end
+	if bItems then
+		for i=0, 5, 1 do
+			local current_item = self:GetItemInSlot(i)
+			if current_item ~= nil and current_item ~= item then
+				current_item:Refresh()
+			end
+		end
+	end
 end
 
 
@@ -873,7 +1051,7 @@ function CDOTA_BaseNPC:GetOriginalSpellDamageAmp()
 	end
 	local ampint = 0
 	if self:IsHero() then
-		ampint = self:GetIntellect() / 1600
+		ampint = self:GetIntellect() / 1400
 	end
 	local totalamp = aether_multiplier + ampint
 	return totalamp
@@ -903,11 +1081,88 @@ function RotateVector2D(vector, theta)
     return Vector(xp,yp,vector.z):Normalized()
 end
 
+function CDOTA_BaseNPC:IsSameTeam(unit)
+	return (self:GetTeam() == unit:GetTeam())
+end
+
+function CDOTA_BaseNPC:Lifesteal(lifestealPct, damage, target, damage_type, bReduced)
+	local flHeal = damage * lifestealPct / 100
+	if bReduced then
+		if damage_type == DAMAGE_TYPE_PHYSICAL then
+			flHeal = damage * (1 - target:GetPhysicalArmorReduction() / 100 ) 
+		else
+			flHeal = damage * target:GetMagicalArmorValue()
+		end
+	end
+	self:HealEvent(flHeal, self, {})
+	local lifesteal = ParticleManager:CreateParticle("particles/units/heroes/hero_skeletonking/wraith_king_vampiric_aura_lifesteal.vpcf", PATTACH_ABSORIGIN_FOLLOW, self)
+		ParticleManager:SetParticleControlEnt(lifesteal, 0, self, PATTACH_POINT_FOLLOW, "attach_hitloc", self:GetAbsOrigin(), true)
+		ParticleManager:SetParticleControlEnt(lifesteal, 1, self, PATTACH_POINT_FOLLOW, "attach_hitloc", self:GetAbsOrigin(), true)
+	ParticleManager:ReleaseParticleIndex(lifesteal)
+end
+
+function CDOTA_BaseNPC:HealEvent(amount, source, data) -- for future shit
+	self:Heal(amount, source)
+end
+
 function CDOTA_BaseNPC:SwapAbilityIndexes(index, swapname)
 	local ability = self:GetAbilityByIndex(index)
 	local swapability = self:FindAbilityByName(swapname)
 	self:SwapAbilities(ability:GetName(), swapname, false, true)
 	swapability:SetAbilityIndex(index)
+end
+
+function CDOTA_BaseNPC:ApplyLinearKnockback(distance, strength, source)
+	local direction = (self:GetAbsOrigin() - source:GetAbsOrigin()):Normalized()
+	self.isInKnockbackState = true
+	local distance_traveled = 0
+	local distAdded = (distance/0.2)*FrameTime() * strength
+	StartAnimation(self, {activity = ACT_DOTA_FLAIL, rate = 1, duration = distAdded/distance})
+	Timers:CreateTimer(function ()
+		if distance_traveled < distance and self:IsAlive() and not self:IsNull() then
+			self:SetAbsOrigin(self:GetAbsOrigin() + direction * distAdded)
+			distance_traveled = distance_traveled + distAdded
+			return FrameTime()
+		else
+			FindClearSpaceForUnit(self, self:GetAbsOrigin(), true)
+			self.isInKnockbackState = false
+			return nil
+		end 
+	end)
+end
+
+function CDOTA_BaseNPC:IsKnockedBack()
+	return self.isInKnockbackState
+end
+
+function CDOTA_BaseNPC:FindEnemyUnitsInRadius(position, radius, data)
+	local team = self:GetTeamNumber()
+	local iTeam = DOTA_UNIT_TARGET_TEAM_ENEMY
+	local iType = data.type or DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
+	local iFlag = data.flag or DOTA_UNIT_TARGET_FLAG_NONE
+	local iOrder = data.order or FIND_ANY_ORDER
+	return FindUnitsInRadius(team, position, nil, radius, iTeam, iType, iFlag, iOrder, false)
+end
+
+function CDOTA_BaseNPC:FindRandomEnemyInRadius(position, radius, data)
+	for _, unit in ipairs(self:FindEnemyUnitsInRadius(position, radius, data)) do
+		return unit
+	end
+end
+
+function CDOTA_BaseNPC:FindFriendlyUnitsInRadius(position, radius, data)
+	local team = self:GetTeamNumber()
+	local iTeam = DOTA_UNIT_TARGET_TEAM_FRIENDLY
+	local iType = data.type or DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
+	local iFlag = data.flag or DOTA_UNIT_TARGET_FLAG_NONE
+	local iOrder = data.order or FIND_ANY_ORDER
+	return FindUnitsInRadius(team, position, nil, radius, iTeam, iType, iFlag, iOrder, false)
+end
+
+function CDOTABaseAbility:DealDamage(attacker, victim, damage)
+	local damageType = self:GetAbilityDamageType()
+	if damageType == 0 then damageType = DAMAGE_TYPE_MAGICAL end
+	ApplyDamage({victim = victim, attacker = attacker, ability = self, damage_type = damageType, damage = damage})
 end
 
 function CDOTABaseAbility:ApplyAOE(eventTable)
@@ -984,7 +1239,7 @@ function CDOTABaseAbility:ApplyAOE(eventTable)
 end
 
 function get_octarine_multiplier(caster)
-    local octarine_multiplier = 1 - caster:GetModifierStackCount("modifier_cooldown_reduction", caster) / 100	
+    local octarine_multiplier = 1 - caster:GetModifierStackCount("modifier_stat_adjustment_cdr_per_int", caster) / 100	
 	local talentMult = 1 - caster:HighestTalentTypeValue("cooldown_reduction")/100
 	octarine_multiplier = octarine_multiplier*talentMult
     return octarine_multiplier

@@ -33,6 +33,7 @@ require( "libraries/Timers" )
 require( "libraries/notifications" )
 require( "statcollection/init" )
 require("libraries/utility")
+require("libraries/animations")
 
 if CHoldoutGameMode == nil then
 	CHoldoutGameMode = class({})
@@ -73,6 +74,11 @@ function Precache( context )
 	PrecacheResource("particle", "particles/nyx_assassin_impale.vpcf", context)
 	PrecacheResource("particle", "particles/econ/generic/generic_aoe_shockwave_1/generic_aoe_shockwave_1.vpcf", context)
 	PrecacheResource("particle", "particles/econ/generic/generic_buff_1/generic_buff_1.vpcf", context)
+	
+	-- fix these fucking particles
+	PrecacheResource("particle", "particles/units/heroes/hero_tinker/tinker_rockets.vpcf", context)
+	PrecacheResource("particle", "particles/econ/items/tinker/tinker_motm_rollermaw/tinker_rollermaw_spawn.vpcf", context)
+	PrecacheResource("particle", "particles/econ/items/tinker/tinker_motm_rollermaw/tinker_rollermaw_motm.vpcf", context)
 	
 	PrecacheResource("particle_folder", "particles/econ/generic/generic_aoe_shockwave_1", context)
 	
@@ -653,9 +659,7 @@ function CHoldoutGameMode:FilterModifiers( filterTable )
     local caster = EntIndexToHScript( caster_index )
 	local ability = EntIndexToHScript( ability_index )
 	local name = filterTable["name_const"]
-	if ability:GetName() == "enigma_black_hole" 
-	or ability:GetName() == "life_stealer_devour" 
-	or ability:GetName() == "slardar_slithereen_reprisal"then return true end
+
 	if name == "modifier_necrolyte_sadist_aura_effect" then -- add additional shit to necro aura
 		parent:AddNewModifier(caster, ability, "modifier_necrolyte_sadist_aura_reduction", {duration = ability:GetSpecialValueFor("duration")})
 	end
@@ -680,7 +684,7 @@ function CHoldoutGameMode:FilterModifiers( filterTable )
  		end)
 	elseif parent:IsCreature() and caster:HasTalentType("respawn_reduction") then
 		local resistance = parent:GetDisableResistance() / 100
-		if resistance > caster:HighestTalentTypeValue("respawn_reduction") then
+		if resistance > caster:HighestTalentTypeValue("respawn_reduction") / 100 then
 			filterTable["duration"] = duration / (1 - resistance) * caster:HighestTalentTypeValue("respawn_reduction") / 100
 			Timers:CreateTimer(0.04,function()
 				if parent:FindModifierByNameAndCaster(name, caster) then
@@ -738,17 +742,12 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 	local inflictor = filterTable["entindex_inflictor_const"]
     local victim = EntIndexToHScript( victim_index )
     local attacker = EntIndexToHScript( attacker_index )
+	local original_attacker = attacker -- make a copy for threat
     local damagetype = filterTable["damagetype_const"]
 	if damage <= 0 then return true end
-	if not inflictor and attacker:IsCreature() then -- modifying right click damage types
-		damagetype = attacker:GetAttackDamageType()
-		local damagefilter = attacker:GetAverageTrueAttackDamage(attacker)
-		if damagetype == 2 then -- magical damage
-			filterTable["damage"] = damagefilter *  (1 - victim:GetMagicalArmorValue())
-		elseif damagetype == 4 then -- pure damage
-			filterTable["damage"] = damagefilter + victim:GetHealth()*0.02 -- make pure damage relevant vs very large hp pools
-		end
-	end
+	
+	-- VVVVVVVVVVVVVV REMOVE THIS SHIT IN THE FUTURE VVVVVVVVVVV --
+	
 	if attacker:IsControllableByAnyPlayer() and not (attacker:IsFakeHero() or attacker:IsCreature() or attacker:IsCreep() or attacker:IsHero()) then 
 		if attacker:GetOwner():GetClassname() == player then
 			attacker = attacker:GetOwner():GetAssignedHero()
@@ -784,6 +783,7 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 			end
 		end
 	end
+	
 	if victim:HasModifier("modifier_boss_damagedecrease") and GameRules._NewGamePlus then
 		if not self.exceptionList then 
 		self.exceptionList = {["huskar_life_break"] = true,
@@ -823,7 +823,7 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 		local item = attacker:FindModifierByName("Piercing"):GetAbility()
 		local pierce = item:GetSpecialValueFor("Pierce_percent") / 100
 		if attacker:IsIllusion() then pierce = pierce / 7 end
-		ApplyDamage({victim = victim, attacker = attacker, damage = originaldamage * pierce / attacker:GetSpellDamageAmp(), damage_type = DAMAGE_TYPE_PURE, ability = item})
+		ApplyDamage({victim = victim, attacker = attacker, damage = originaldamage * pierce, damage_type = DAMAGE_TYPE_PURE, ability = item, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
 		filterTable["damage"] = filterTable["damage"] - filterTable["damage"]*pierce
 	end
 	if inflictor and not attacker:IsCreature() and attacker:HasModifier("Piercing") and filterTable["damagetype_const"] == 1 then -- APPLY piercing damage to certain damage
@@ -831,7 +831,7 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 		if ability:AbilityPierces() and attacker:HasAbility(ability:GetName()) then
 			local originaldamage =  damage / (1 - victim:GetPhysicalArmorReduction() / 100 )
 			local pierce = attacker:FindModifierByName("Piercing"):GetAbility():GetSpecialValueFor("Pierce_percent") / 100
-			ApplyDamage({victim = victim, attacker = attacker, damage = originaldamage * pierce / attacker:GetSpellDamageAmp(), damage_type = DAMAGE_TYPE_PURE, ability = attacker:FindModifierByName("Piercing"):GetAbility()})
+			ApplyDamage({victim = victim, attacker = attacker, damage = originaldamage * pierce, damage_type = DAMAGE_TYPE_PURE, ability = attacker:FindModifierByName("Piercing"):GetAbility(), damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
 			filterTable["damage"] = filterTable["damage"] - filterTable["damage"]*pierce
 		end
 	end
@@ -863,12 +863,14 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 			SendOverheadEventMessage( victim, OVERHEAD_ALERT_BLOCK, victim, dmgBlock, victim )
 		end
 	end
+	
     -- remove int scaling thanks for fucking with my shit valve
 	if attacker == victim and attacker:FindAbilityByName("new_game_damage_increase") then -- stop self damaging abilities from ravaging bosses
 		local amp = attacker:FindAbilityByName("new_game_damage_increase")
 		local reduction = 1+(amp:GetSpecialValueFor("spell_amp")/100)
 		filterTable["damage"] = filterTable["damage"]/reduction
 	end
+	
 	if inflictor and attacker:IsHero() and not attacker:IsCreature() then
 		local ability = EntIndexToHScript( inflictor )
 		if ability:GetName() == "item_blade_mail" then
@@ -907,10 +909,12 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 			if no_crit[ability:GetName()] or no_aether[ability:GetName()] or not ability:IsAetherAmplified() then
 				spellcrit = false
 			end
+			print(spellcrit, no_crit[ability:GetName()], no_aether[ability:GetName()], ability:IsAetherAmplified())
 			if (spellcrit or (ability:GetName() == "mana_fiend_mana_lance" and attacker:HasScepter())) and not attacker.essencecritactive then
 				local crititem = attacker:FindModifierByName("spellcrit"):GetAbility()
 				local chance = crititem:GetSpecialValueFor("spell_crit_chance")
-				if chance > math.random(100) then
+				print(chance)
+				if RollPercentage(chance) then
 					local mult = crititem:GetSpecialValueFor("spell_crit_multiplier") / 100
 					filterTable["damage"] = filterTable["damage"]*mult
 					victim:ShowPopup( {
@@ -956,6 +960,7 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 	end
 	--- THREAT AND UI NO MORE DAMAGE MANIPULATION ---
 	local damage = filterTable["damage"]
+	local attacker = original_attacker
 	if attacker:IsCreature() then return true end
 	if not victim:IsHero() and victim ~= attacker then
 		local ability
@@ -1024,7 +1029,6 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 					if hero then
 						local key = "player_"..hero:GetPlayerID()
 					    -- CustomNetTables:SetTableValue( "Damage",key, {Team_Damage = total_damage_team , Hero_Damage = hero.damageDone , First_hit = hero.first_damage_time} )
-						
 					end
 				end
 			end
@@ -1125,10 +1129,12 @@ function CHoldoutGameMode:OnAbilityUsed(event)
 			abilityused:SetActivated(false)
 			local duration = abilityused:GetDuration()
 			if abilityname == "rattletrap_battery_assault" then duration = abilityused:GetTalentSpecialValueFor("duration") end
+			abilityused:StartCooldown(duration)
 			Timers:CreateTimer(duration,function()
 				if not abilityused:IsActivated() then
+					abilityused:EndCooldown()
 					abilityused:SetActivated(true)
-					abilityused:StartCooldown(abilityused:GetTrueCooldown())
+					abilityused:UseResources(false, false, true)
 				end
 			end)
 		else
@@ -1456,6 +1462,8 @@ function CHoldoutGameMode:_EnterNG()
 end
 
 LinkLuaModifier( "lua_attribute_bonus_modifier", "lua_abilities/attribute/lua_attribute_bonus_modifier.lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier("modifier_summon_handler", "heroes/generic/modifier_summon_handler.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_stunned_generic", "heroes/generic/modifier_stunned_generic.lua", LUA_MODIFIER_MOTION_NONE)
 
 function CHoldoutGameMode:OnHeroPick (event)
  	local hero = EntIndexToHScript(event.heroindex)
@@ -2293,6 +2301,42 @@ LinkLuaModifier( "modifier_attack_animation_tweak", "lua_abilities/heroes/modifi
 
 function CHoldoutGameMode:OnNPCSpawned( event )
 	local spawnedUnit = EntIndexToHScript( event.entindex )
+	Timers:CreateTimer(0.03, function() 
+		if spawnedUnit:IsIllusion() then
+			local owner = spawnedUnit:GetOwnerEntity():GetAssignedHero()
+			
+			local armor_adjustment = math.abs(ARMOR_PER_AGI - DEFAULT_ARMOR_PER_AGI)
+			local attackspeed_adjustment = math.abs(ATKSPD_PER_AGI - DEFAULT_ATKSPD_PER_AGI)
+			local damage_adjustment = DMG_PER_AGI
+			local spell_amp_adjustment = math.abs(SPELL_AMP_PER_INT - SPELL_AMP_PER_INT)
+			
+			spawnedUnit:SetBaseStrength(owner:GetBaseStrength() )
+			spawnedUnit:SetBaseAgility(owner:GetBaseAgility() ) 
+			spawnedUnit:SetBaseIntellect(owner:GetBaseIntellect() )
+			-- Get player attribute values
+			local strength = spawnedUnit:GetStrength()
+			local agility = spawnedUnit:GetAgility()
+			local intellect = spawnedUnit:GetIntellect()
+			local movespeed = spawnedUnit:GetIdealSpeed()
+			
+			spawnedUnit:SetBaseMagicalResistanceValue(math.floor(strength^MR_PER_STR + 0.5))
+			spawnedUnit:SetPhysicalArmorBaseValue(spawnedUnit:GetPhysicalArmorBaseValue() + agility * -armor_adjustment)
+			spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_stat_adjustment_as_per_agi", {}):SetStackCount(agility * attackspeed_adjustment)
+			spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_stat_adjustment_dmg_per_agi", {}):SetStackCount(math.floor(agility * damage_adjustment + 0.5))
+			local cdr = 1 - math.floor(intellect ^ CDR_PER_INT + 0.5) / 100
+			local octarine = get_core_cdr(spawnedUnit)
+			local cdr_stacks = math.floor((1 - (octarine * cdr))*100)
+			spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_stat_adjustment_cdr_per_int", {}):SetStackCount(cdr_stacks)
+			spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_stat_adjustment_amp_per_int", {}):SetStackCount(math.floor(spell_amp_adjustment * intellect + 0.5))
+			if spawnedUnit:IsRangedAttacker() then
+				spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_stat_adjustment_range_ranged", {}):SetStackCount(math.floor(2.5*spawnedUnit:GetLevel() + 0.5) )
+			else
+				spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_stat_adjustment_armor_melee", {}):SetStackCount(math.floor(2.5*spawnedUnit:GetLevel() + 0.5) )
+			end
+				
+			spawnedUnit:CalculateStatBonus()
+		end
+	end)
 	if not spawnedUnit or spawnedUnit:GetClassname() == "npc_dota_thinker" or spawnedUnit:IsPhantom() or spawnedUnit:IsFakeHero()then
 		return
 	end

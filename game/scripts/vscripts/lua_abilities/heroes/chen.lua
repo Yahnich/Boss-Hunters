@@ -19,6 +19,7 @@ end
 function RNDamage(keys)
 	local mindmg = keys.damagemin
 	local maxdmg = keys.damagemax * math.random()
+	print("trigger")
 	ApplyDamage({victim = keys.target, attacker = keys.caster, damage = mindmg + maxdmg, damage_type = keys.ability:GetAbilityDamageType(), ability = keys.ability})
 end
 

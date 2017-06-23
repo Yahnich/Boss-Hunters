@@ -350,8 +350,8 @@
 		// Attack
 		//----------------------------------------------------------------
 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"			"70"		// Damage range min.
-		"AttackDamageMax"			"80"        // Damage range max.
+		"AttackDamageMin"			"10"		// Damage range min.
+		"AttackDamageMax"			"20"        // Damage range max.
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"				"3"		// Speed of attack.
 		"AttackAnimationPoint"		"0.467"		// Normalized time in animation cycle to attack.
@@ -529,7 +529,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"15"			// Physical protection.
+		"ArmorPhysical"				"8"			// Physical protection.
 
 		// Attack
 		//----------------------------------------------------------------
@@ -634,7 +634,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"30"			// Physical protection.
+		"ArmorPhysical"				"14"			// Physical protection.
 
 		// Attack
 		//----------------------------------------------------------------
@@ -742,7 +742,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"40"			// Physical protection.
+		"ArmorPhysical"				"6"			// Physical protection.
 
 		// Attack
 		//----------------------------------------------------------------
@@ -839,7 +839,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"30"			// Physical protection.
+		"ArmorPhysical"				"15"			// Physical protection.
 		"MagicalResistance"			"30"		// Magical protection.
 
 		// Attack
@@ -959,7 +959,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"25"			// Physical protection.
+		"ArmorPhysical"				"18"			// Physical protection.
 		"MagicalResistance"			"33"		// Magical protection.
 
 		// Attack
@@ -1072,7 +1072,7 @@
 
 
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"50"			// Physical protection.
+		"ArmorPhysical"				"9"			// Physical protection.
 		"MagicalResistance"			"33"		// Magical protection.
 
 		// Attack
@@ -1092,7 +1092,9 @@
 		// Bounds
 		//----------------------------------------------------------------
 		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"	
-
+		"HealthBarOffset"			"350"
+		
+		
 		// Movement
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"			// Type of locomotion - ground, air
@@ -1174,7 +1176,7 @@
 
 
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"125"			// Physical protection.
+		"ArmorPhysical"				"25"			// Physical protection.
 		"MagicalResistance"			"50"		// Magical protection.
 
 		// Attack
@@ -1278,7 +1280,7 @@
 
 
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"120"			// Physical protection.
+		"ArmorPhysical"				"26"			// Physical protection.
 		"MagicalResistance"			"60"		// Magical protection.
 
 		// Attack
@@ -1382,7 +1384,7 @@
 
 
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"50"			// Physical protection.
+		"ArmorPhysical"				"27"			// Physical protection.
 		"MagicalResistance"			"65"		// Magical protection.
 
 		// Attack
@@ -1485,7 +1487,7 @@
 
 
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"15"			// Physical protection.
+		"ArmorPhysical"				"7"			// Physical protection.
 		"MagicalResistance"			"0"		// Magical protection.
 
 		// Attack
@@ -1592,7 +1594,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"7"			// Physical protection.
+		"ArmorPhysical"				"4"			// Physical protection.
 		"MagicalResistance"			"30"		// Magical protection.
 
 		// Attack
@@ -1692,7 +1694,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"80"			// Physical protection.
+		"ArmorPhysical"				"28"			// Physical protection.
 		"MagicalResistance"			"0"			// Magical protection.
 
 		// Attack
@@ -1824,7 +1826,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"100"			// Physical protection.
+		"ArmorPhysical"				"13"			// Physical protection.
 		"MagicalResistance"			"0"			// Magical protection.
 
 		// Attack
@@ -1947,7 +1949,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"70"			// Physical protection.
+		"ArmorPhysical"				"24"			// Physical protection.
 		"MagicalResistance"			"50"		// Magical protection.
 
 		// Attack
@@ -2061,7 +2063,7 @@
 
 		// Armor
 		//-------------------------------------------------------------------------------------------------------------
-		"ArmorPhysical"				"100"								// Physical protection.
+		"ArmorPhysical"				"35"								// Physical protection.
 
 		"AbilityLayout"				"6"
 		"Ability1"					"boss_spear"			// Ability 1.
@@ -2163,7 +2165,7 @@
 
 		// Armor
 		//-------------------------------------------------------------------------------------------------------------
-		"ArmorPhysical"				"100"								// Physical protection.
+		"ArmorPhysical"				"15"								// Physical protection.
 
 		"AbilityLayout"				"6"
 		"Ability1"					"boss_march"			// Ability 1.
@@ -2269,7 +2271,7 @@
 
 		// Armor
 		//-------------------------------------------------------------------------------------------------------------
-		"ArmorPhysical"				"30"								// Physical protection.
+		"ArmorPhysical"				"5"								// Physical protection.
 
 		"AbilityLayout"				"6"
 		"Ability1"					"boss_proximity"			// Ability 1.
@@ -2370,7 +2372,7 @@
 
 		// Armor
 		//-------------------------------------------------------------------------------------------------------------
-		"ArmorPhysical"				"80"								// Physical protection.
+		"ArmorPhysical"				"20"								// Physical protection.
 
 		"AbilityLayout"				"6"
 		"Ability1"					"boss_spawn_techies"			// Ability 1.
@@ -2476,7 +2478,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"100"			// Physical protection.
+		"ArmorPhysical"				"38"			// Physical protection.
 		"MagicalResistance"			"33"		// Magical protection.
 
 		// Attack
@@ -2601,7 +2603,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"25"			// Physical protection.
+		"ArmorPhysical"				"10"			// Physical protection.
 		"MagicalResistance"			"0"		// Magical protection.
 
 		// Attack
@@ -2722,7 +2724,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"115"			// Physical protection.
+		"ArmorPhysical"				"40"			// Physical protection.
 		"MagicalResistance"			"50"		// Magical protection (percentage).
 
 		// Attack
@@ -2833,7 +2835,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"150"			// Physical protection.
+		"ArmorPhysical"				"42"			// Physical protection.
 		"MagicalResistance"			"90"		// Magical protection (percentage).
 
 		// Attack
@@ -2939,7 +2941,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"140"			// Physical protection.
+		"ArmorPhysical"				"36"			// Physical protection.
 		"MagicalResistance"			"66"		// Magical protection.
 
 		// Attack
@@ -3150,7 +3152,7 @@
 		"Ability1"					"splitted_a_h"			// Ability 1.
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"60"			// Physical protection.
+		"ArmorPhysical"				"50"			// Physical protection.
 		"MagicalResistance"			"60"		// Magical protection.
 
 		// Attack
@@ -3247,7 +3249,7 @@
 		"Ability1"					"splitted_a_vh"			// Ability 1.
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"100"			// Physical protection.
+		"ArmorPhysical"				"50"			// Physical protection.
 		"MagicalResistance"			"100"		// Magical protection.
 
 		// Attack
@@ -3353,7 +3355,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"20"			// Physical protection.
+		"ArmorPhysical"				"40"			// Physical protection.
 		"MagicalResistance"			"20"		// Magical protection.
 
 		// Attack
@@ -3458,7 +3460,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"30"			// Physical protection.
+		"ArmorPhysical"				"40"			// Physical protection.
 		"MagicalResistance"			"30"		// Magical protection.
 
 		// Attack
@@ -3563,7 +3565,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"50"			// Physical protection.
+		"ArmorPhysical"				"40"			// Physical protection.
 		"MagicalResistance"			"50"		// Magical protection.
 
 		// Attack
@@ -3662,7 +3664,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"10"			// Physical protection.
+		"ArmorPhysical"				"30"			// Physical protection.
 		"MagicalResistance"			"10"		// Magical protection.
 
 		// Attack
@@ -3760,7 +3762,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"15"			// Physical protection.
+		"ArmorPhysical"				"30"			// Physical protection.
 		"MagicalResistance"			"15"		// Magical protection.
 
 		// Attack
@@ -3858,7 +3860,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"25"			// Physical protection.
+		"ArmorPhysical"				"30"			// Physical protection.
 		"MagicalResistance"			"25"		// Magical protection.
 
 		// Attack
@@ -3956,7 +3958,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"0"			// Physical protection.
+		"ArmorPhysical"				"25"			// Physical protection.
 		"MagicalResistance"			"0"		// Magical protection.
 
 		// Attack
@@ -4055,7 +4057,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"150"			// Physical protection.
+		"ArmorPhysical"				"50"			// Physical protection.
 		"MagicalResistance"			"60"		// Magical protection.
 
 		// Attack
@@ -4161,7 +4163,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"150"			// Physical protection.
+		"ArmorPhysical"				"35"			// Physical protection.
 		"MagicalResistance"			"70"		// Magical protection.
 
 		// Attack
@@ -4275,7 +4277,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"200"			// Physical protection.
+		"ArmorPhysical"				"20"			// Physical protection.
 		"MagicalResistance"			"75"		// Magical protection.
 		
 		// Attack
@@ -4386,7 +4388,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"200"			// Physical protection.
+		"ArmorPhysical"				"50"			// Physical protection.
 		"MagicalResistance"			"80"		// Magical protection.
 		
 		// Attack
@@ -4498,7 +4500,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"250"			// Physical protection.
+		"ArmorPhysical"				"52"			// Physical protection.
 		"MagicalResistance"			"80"		// Magical protection.
 		
 		// Attack
@@ -4612,7 +4614,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"175"			// Physical protection.
+		"ArmorPhysical"				"60"			// Physical protection.
 		"MagicalResistance"			"80"		// Magical protection.
 		
 		// Attack
@@ -4725,7 +4727,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"200"			// Physical protection.
+		"ArmorPhysical"				"62"			// Physical protection.
 		"MagicalResistance"			"85"		// Magical protection.
 		
 		// Attack
@@ -4838,7 +4840,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"200"			// Physical protection.
+		"ArmorPhysical"				"20"			// Physical protection.
 		"MagicalResistance"			"50"		// Magical protection.
 
 		// Attack
@@ -4946,7 +4948,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"120"			// Physical protection.
+		"ArmorPhysical"				"25"			// Physical protection.
 		"MagicalResistance"			"50"		// Magical protection.
 
 		// Attack
@@ -5059,7 +5061,7 @@
 		"Ability4"					"creature_kick"
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"270"			// Physical protection.
+		"ArmorPhysical"				"50"			// Physical protection.
 		"MagicalResistance"			"85"		// Magical protection.
 		
 		// Attack
@@ -5184,7 +5186,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"300"			// Physical protection.
+		"ArmorPhysical"				"52"			// Physical protection.
 		"MagicalResistance"			"85"		// Magical protection.
 		
 		// Attack
@@ -5306,7 +5308,7 @@
 		
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"300"			// Physical protection.
+		"ArmorPhysical"				"55"			// Physical protection.
 		"MagicalResistance"			"85"		// Magical protection.
 		
 		// Attack
@@ -5431,7 +5433,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"100"			// Physical protection.
+		"ArmorPhysical"				"75"			// Physical protection.
 		"MagicalResistance"			"20"		// Magical protection (percentage).
 
 		// Attack
@@ -5551,7 +5553,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"150"			// Physical protection.
+		"ArmorPhysical"				"30"			// Physical protection.
 		"MagicalResistance"			"20"		// Magical protection (percentage).
 
 		// Attack
@@ -5663,7 +5665,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"100"			// Physical protection.
+		"ArmorPhysical"				"35"			// Physical protection.
 		"MagicalResistance"			"20"		// Magical protection (percentage).
 
 		// Attack
@@ -5784,7 +5786,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"200"			// Physical protection.
+		"ArmorPhysical"				"32"			// Physical protection.
 		"MagicalResistance"			"0"		// Magical protection (percentage).
 
 		// Attack
@@ -5896,7 +5898,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"175"			// Physical protection.
+		"ArmorPhysical"				"32"			// Physical protection.
 		"MagicalResistance"			"0"		// Magical protection (percentage).
 
 		// Attack
@@ -6014,7 +6016,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"800"			// Physical protection.
+		"ArmorPhysical"				"400"			// Physical protection.
 		"MagicalResistance"			"90"		// Magical protection.
 
 		// Attack
@@ -6146,7 +6148,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"1500"			// Physical protection.
+		"ArmorPhysical"				"500"			// Physical protection.
 		"MagicalResistance"			"99"		// Magical protection.
 
 		// Attack
@@ -6265,7 +6267,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"500"			// Physical protection.
+		"ArmorPhysical"				"100"			// Physical protection.
 		"MagicalResistance"			"30"		// Magical protection.
 		
 		// Attack
@@ -6552,7 +6554,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"350"			// Physical protection.
+		"ArmorPhysical"				"120"			// Physical protection.
 		"MagicalResistance"			"70"		// Magical protection.
 		
 		// Attack
@@ -6672,7 +6674,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"400"			// Physical protection.
+		"ArmorPhysical"				"125"			// Physical protection.
 		"MagicalResistance"			"70"		// Magical protection.
 		
 		// Attack
@@ -6793,7 +6795,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"500"			// Physical protection.
+		"ArmorPhysical"				"130"			// Physical protection.
 		"MagicalResistance"			"70"		// Magical protection.
 		
 		// Attack
@@ -6908,7 +6910,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"300"			// Physical protection.
+		"ArmorPhysical"				"140"			// Physical protection.
 		"MagicalResistance"			"70"		// Magical protection.
 		
 		// Attack
@@ -7018,7 +7020,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"350"			// Physical protection.
+		"ArmorPhysical"				"140"			// Physical protection.
 		"MagicalResistance"			"80"		// Magical protection.
 		
 		// Attack
@@ -7128,7 +7130,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"550"			// Physical protection.
+		"ArmorPhysical"				"145"			// Physical protection.
 		"MagicalResistance"			"80"		// Magical protection.
 		
 		// Attack
@@ -7236,7 +7238,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"200"			// Physical protection.
+		"ArmorPhysical"				"100"			// Physical protection.
 		"MagicalResistance"			"80"		// Magical protection.
 		
 		// Attack
@@ -7344,7 +7346,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"250"			// Physical protection.
+		"ArmorPhysical"				"100"			// Physical protection.
 		"MagicalResistance"			"80"		// Magical protection.
 		
 		// Attack
@@ -7452,7 +7454,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"300"			// Physical protection.
+		"ArmorPhysical"				"100"			// Physical protection.
 		"MagicalResistance"			"80"		// Magical protection.
 		
 		// Attack
@@ -7561,7 +7563,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"200"			// Physical protection.
+		"ArmorPhysical"				"80"			// Physical protection.
 		"MagicalResistance"			"50"		// Magical protection.
 		
 		// Attack
@@ -7666,7 +7668,7 @@
 		"Ability1"					"creature_melee_smash2"			// Ability 1.
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"300"			// Physical protection.
+		"ArmorPhysical"				"125"			// Physical protection.
 		"MagicalResistance"			"80"		// Magical protection.
 		
 		// Attack
@@ -7763,7 +7765,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"250"			// Physical protection.
+		"ArmorPhysical"				"85"			// Physical protection.
 		"MagicalResistance"			"60"		// Magical protection.
 		
 		// Attack
@@ -7869,7 +7871,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"350"			// Physical protection.
+		"ArmorPhysical"				"130"			// Physical protection.
 		"MagicalResistance"			"65"		// Magical protection.
 		
 		// Attack
@@ -7966,7 +7968,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"180"			// Physical protection.
+		"ArmorPhysical"				"90"			// Physical protection.
 		"MagicalResistance"			"50"		// Magical protection.
 		
 		// Attack
@@ -8071,7 +8073,7 @@
 		"Ability1"					"creature_melee_smash2_vh"			// Ability 1.
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"200"			// Physical protection.
+		"ArmorPhysical"				"140"			// Physical protection.
 		"MagicalResistance"			"80"		// Magical protection.
 		
 		// Attack
@@ -8165,7 +8167,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"150"			// Physical protection.
+		"ArmorPhysical"				"70"			// Physical protection.
 		"MagicalResistance"			"50"		// Magical protection.
 		
 		// Attack
@@ -8272,7 +8274,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"300"			// Physical protection.
+		"ArmorPhysical"				"75"			// Physical protection.
 		"MagicalResistance"			"60"		// Magical protection.
 		
 		// Attack
@@ -8384,7 +8386,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"400"			// Physical protection.
+		"ArmorPhysical"				"150"			// Physical protection.
 		"MagicalResistance"			"10"		// Magical protection.
 		
 		// Attack
@@ -8498,7 +8500,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"500"			// Physical protection.
+		"ArmorPhysical"				"160"			// Physical protection.
 		"MagicalResistance"			"10"		// Magical protection.
 		
 		// Attack
@@ -8602,7 +8604,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"750"			// Physical protection.
+		"ArmorPhysical"				"170"			// Physical protection.
 		"MagicalResistance"			"10"		// Magical protection.
 		
 		// Attack
@@ -8699,7 +8701,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"498"			// Physical protection.
+		"ArmorPhysical"				"80"			// Physical protection.
 		"MagicalResistance"			"10"		// Magical protection.
 		
 		// Attack
@@ -8807,7 +8809,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"1200"			// Physical protection.
+		"ArmorPhysical"				"120"			// Physical protection.
 		"MagicalResistance"			"10"		// Magical protection.
 		
 		// Attack
@@ -8919,7 +8921,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"490"			// Physical protection.
+		"ArmorPhysical"				"100"			// Physical protection.
 		"MagicalResistance"			"10"		// Magical protection.
 		
 		// Attack
@@ -9022,7 +9024,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"598"			// Physical protection.
+		"ArmorPhysical"				"120"			// Physical protection.
 		"MagicalResistance"			"50"		// Magical protection.
 		
 		// Attack
@@ -9128,7 +9130,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"580"			// Physical protection.
+		"ArmorPhysical"				"125"			// Physical protection.
 		"MagicalResistance"			"50"		// Magical protection.
 		
 		// Attack
@@ -9231,7 +9233,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"720"			// Physical protection.
+		"ArmorPhysical"				"150"			// Physical protection.
 		"MagicalResistance"			"70"		// Magical protection.
 		
 		// Attack
@@ -9335,7 +9337,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"670"			// Physical protection.
+		"ArmorPhysical"				"180"			// Physical protection.
 		"MagicalResistance"			"80"		// Magical protection.
 		
 		// Attack
@@ -9440,7 +9442,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"670"			// Physical protection.
+		"ArmorPhysical"				"185"			// Physical protection.
 		"MagicalResistance"			"80"		// Magical protection.
 		
 		// Attack
@@ -9546,7 +9548,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"670"			// Physical protection.
+		"ArmorPhysical"				"195"			// Physical protection.
 		"MagicalResistance"			"80"		// Magical protection.
 		
 		// Attack
@@ -9654,7 +9656,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"670"			// Physical protection.
+		"ArmorPhysical"				"175"			// Physical protection.
 		"MagicalResistance"			"70"		// Magical protection.
 		
 		// Attack
@@ -9764,7 +9766,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"1250"			// Physical protection.
+		"ArmorPhysical"				"180"			// Physical protection.
 		"MagicalResistance"			"70"		// Magical protection.
 		
 		// Attack
@@ -9874,7 +9876,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"1500"			// Physical protection.
+		"ArmorPhysical"				"200"			// Physical protection.
 		"MagicalResistance"			"70"		// Magical protection.
 		
 		// Attack
@@ -9984,7 +9986,7 @@
 		"Ability3"					"boss_melee_impale_b"
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"2000"			// Physical protection.
+		"ArmorPhysical"				"220"			// Physical protection.
 		"MagicalResistance"			"70"		// Magical protection.
 		
 		// Attack
@@ -10092,7 +10094,7 @@
 		"Ability3"					"boss_melee_impale_b_h"
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"2000"			// Physical protection.
+		"ArmorPhysical"				"225"			// Physical protection.
 		"MagicalResistance"			"70"		// Magical protection.
 		
 		// Attack
@@ -10200,7 +10202,7 @@
 		"Ability3"					"boss_melee_impale_b_vh"
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"2000"			// Physical protection.
+		"ArmorPhysical"				"230"			// Physical protection.
 		"MagicalResistance"			"70"		// Magical protection.
 		
 		// Attack
@@ -10311,7 +10313,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"4500"			// Physical protection.
+		"ArmorPhysical"				"1000"			// Physical protection.
 		"MagicalResistance"			"-150"		// Magical protection.
 		
 		// Attack
@@ -10424,7 +10426,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"1500"			// Physical protection.
+		"ArmorPhysical"				"1000"			// Physical protection.
 		"MagicalResistance"			"-100"		// Magical protection.
 		
 		// Attack
@@ -10537,7 +10539,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"2000"			// Physical protection.
+		"ArmorPhysical"				"1000"			// Physical protection.
 		"MagicalResistance"			"-50"		// Magical protection.
 		
 		// Attack
@@ -10634,7 +10636,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"600"			// Physical protection.
+		"ArmorPhysical"				"300"			// Physical protection.
 		"MagicalResistance"			"90"		// Magical protection.
 		
 		// Attack
@@ -10730,7 +10732,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"2000"			// Physical protection.
+		"ArmorPhysical"				"300"			// Physical protection.
 		"MagicalResistance"			"0"		// Magical protection.
 		
 		// Attack
@@ -10826,7 +10828,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"2500"			// Physical protection.
+		"ArmorPhysical"				"300"			// Physical protection.
 		"MagicalResistance"			"90"		// Magical protection.
 		
 		// Attack
@@ -10922,7 +10924,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"700"			// Physical protection.
+		"ArmorPhysical"				"300"			// Physical protection.
 		"MagicalResistance"			"10"		// Magical protection.
 		
 		// Attack
@@ -11017,7 +11019,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"600"			// Physical protection.
+		"ArmorPhysical"				"300"			// Physical protection.
 		"MagicalResistance"			"90"		// Magical protection.
 		
 		// Attack
@@ -11116,7 +11118,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"1000"			// Physical protection.
+		"ArmorPhysical"				"300"			// Physical protection.
 		"MagicalResistance"			"0"		// Magical protection.
 		
 		// Attack
@@ -11990,7 +11992,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"1000"			// Physical protection.
+		"ArmorPhysical"				"250"			// Physical protection.
 		"MagicalResistance"			"30"		// Magical protection.
 		
 		// Attack
@@ -12099,7 +12101,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"2000"			// Physical protection.
+		"ArmorPhysical"				"255"			// Physical protection.
 		"MagicalResistance"			"25"		// Magical protection.
 		
 		// Attack
@@ -12209,7 +12211,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"2250"			// Physical protection.
+		"ArmorPhysical"				"260"			// Physical protection.
 		"MagicalResistance"			"50"		// Magical protection.
 		
 		// Attack
@@ -12319,7 +12321,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"3333"			// Physical protection.
+		"ArmorPhysical"				"270"			// Physical protection.
 		"MagicalResistance"			"66.6"		// Magical protection.
 		
 		// Attack
@@ -12461,7 +12463,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"2250"			// Physical protection.
+		"ArmorPhysical"				"275"			// Physical protection.
 		"MagicalResistance"			"66.6"		// Magical protection.
 		
 		// Attack
@@ -12602,7 +12604,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"2500"			// Physical protection.
+		"ArmorPhysical"				"280"			// Physical protection.
 		"MagicalResistance"			"66.6"		// Magical protection.
 		
 		// Attack
@@ -12864,7 +12866,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"2750"			// Physical protection.
+		"ArmorPhysical"				"300"			// Physical protection.
 		"MagicalResistance"			"66.6"		// Magical protection.
 		
 		// Attack
@@ -12987,7 +12989,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"2750"		// Physical protection.
+		"ArmorPhysical"				"325"		// Physical protection.
 		"MagicalResistance"			"50"		// Magical protection.
 
 		// Attack
@@ -13121,7 +13123,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"2750"		// Physical protection.
+		"ArmorPhysical"				"325"		// Physical protection.
 		"MagicalResistance"			"50"		// Magical protection.
 
 		// Attack
@@ -13256,7 +13258,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"2750"		// Physical protection.
+		"ArmorPhysical"				"325"		// Physical protection.
 		"MagicalResistance"			"50"		// Magical protection.
 
 		// Attack
@@ -13366,7 +13368,7 @@
 		"AbilityLayout"				"6"
 		"Ability1"					"creature_hatch_broodmother"
 
-		"ArmorPhysical"				"200"
+		"ArmorPhysical"				"50"
 		"MagicalResistance"			"200"
 
 		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
@@ -13439,7 +13441,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"500"			// Physical protection.
+		"ArmorPhysical"				"75"			// Physical protection.
 		"MagicalResistance"			"25"		// Magical protection.
 
 		// Attack
@@ -13580,7 +13582,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"100"			// Physical protection.
+		"ArmorPhysical"				"80"			// Physical protection.
 		"MagicalResistance"				"25"		// Magical protection.
 
 		// Attack
@@ -13690,7 +13692,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"2750"		// Physical protection.
+		"ArmorPhysical"				"280"		// Physical protection.
 		"MagicalResistance"			"80"		// Magical protection.
 
 		// Attack
@@ -13818,7 +13820,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"2750"		// Physical protection.
+		"ArmorPhysical"				"310"		// Physical protection.
 		"MagicalResistance"			"75"		// Magical protection.
 
 		// Attack
@@ -14118,6 +14120,464 @@
 			"CombatClassAttack"     "DOTA_COMBAT_CLASS_ATTACK_HERO"
 			"CombatClassDefend"     "DOTA_COMBAT_CLASS_DEFEND_STRONG"
 			"UnitRelationShipClass" "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
+	}
+	"npc_dota_puppeteer_zombie_brute"
+	{										
+		// General
+		//----------------------------------------------------------------
+		"Model"						"models/heroes/undying/undying.vmdl"	// Model.
+		"BaseClass"					"npc_dota_base_additive"
+		"SoundSet"					"Hero_Undying"			// Name of sound set.
+		"IdleSoundLoop"				"Hero_Undying.IdleLoop"
+		"IsSummoned"				"1"
+		"IsAncient"					"1"
+		"ModelScale"				"0.8"
+		"ConsideredHero"			"1"
+		"UnitLabel"					"puppeteer_minion"
+	
+		// Abilities
+		//----------------------------------------------------------------
+
+		// Armor
+		//----------------------------------------------------------------
+		"ArmorPhysical"				"20"			// Physical protection.
+		"MagicalResistance"				"80"		// Magical protection.  // this should be 33, switch it back once we implement Resistant Skin
+
+		// Attack
+		//----------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"			"150"		// Damage range min.
+		"AttackDamageMax"			"150"		// Damage range max.	
+		"AttackRate"				"1.2"		// Speed of attack.
+		"AttackAnimationPoint"		"0.26"		// Normalized time in animation cycle to attack.
+		"AttackAcquisitionRange"	"500"		// Range within a target can be acquired.
+		"AttackRange"				"225"		// Range within a target can be attacked.
+		"ProjectileModel"			""			// Particle system model for projectile.
+		"ProjectileSpeed"			"0"			// Speed of projectile.		   
+
+		// Bounds
+		//----------------------------------------------------------------
+		"HealthBarOffset"			"260"
+
+		// Bounty
+		//----------------------------------------------------------------
+		"BountyXP"					"98"		// Experience earn.
+		"BountyGoldMin"				"150"		// Gold earned min.
+		"BountyGoldMax"				"150"		// Gold earned max.
+
+		// Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"400"		// Speed.
+
+		// Status
+		//----------------------------------------------------------------
+		"StatusHealth"				"1000"		// Base health.
+		"StatusHealthRegen"			"10"		// Health regeneration rate.
+		"StatusMana"				"64000"			// Base mana.
+		"StatusManaRegen"			"6400"			// Mana regeneration rate.
+		
+		// Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange"		"1800"		// Range of vision during day light.
+		"VisionNighttimeRange"		"1800"		// Range of vision at night time.
+
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"					"DOTA_TEAM_NEUTRALS"							// Team name.
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_LIGHT"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+
+		"VoiceFile" 				"scripts/voscripts/game_sounds_vo_warlock_golem.txt"
+		//Inventory
+		"HasInventory"				"0"
+	}
+	"npc_dota_puppeteer_flesh_behemoth"
+	{										
+		// General
+		//----------------------------------------------------------------
+		"Model"						"models/items/undying/flesh_golem/corrupted_scourge_corpse_hive/corrupted_scourge_corpse_hive.vmdl"	// Model.
+		"BaseClass"					"npc_dota_base_additive"
+		"SoundSet"					"Hero_Undying"			// Name of sound set.
+		"IdleSoundLoop"				"Hero_Undying.IdleLoop"
+		"IsSummoned"				"1"
+		"IsAncient"					"1"
+		"ModelScale"				"0.8"
+		"ConsideredHero"			"1"
+		"UnitLabel"					"puppeteer_minion"
+	
+		// Abilities
+		//----------------------------------------------------------------
+		"Ability1"					"flesh_behemoth_plague_aura"			// Ability 1
+
+		// Armor
+		//----------------------------------------------------------------
+		"ArmorPhysical"				"20"			// Physical protection.
+		"MagicalResistance"				"80"		// Magical protection.  // this should be 33, switch it back once we implement Resistant Skin
+
+		// Attack
+		//----------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"			"150"		// Damage range min.
+		"AttackDamageMax"			"150"		// Damage range max.	
+		"AttackRate"				"1.2"		// Speed of attack.
+		"AttackAnimationPoint"		"0.26"		// Normalized time in animation cycle to attack.
+		"AttackAcquisitionRange"	"500"		// Range within a target can be acquired.
+		"AttackRange"				"225"		// Range within a target can be attacked.
+		"ProjectileModel"			""			// Particle system model for projectile.
+		"ProjectileSpeed"			"0"			// Speed of projectile.		   
+
+		// Bounds
+		//----------------------------------------------------------------
+		"HealthBarOffset"			"260"
+
+		// Bounty
+		//----------------------------------------------------------------
+		"BountyXP"					"98"		// Experience earn.
+		"BountyGoldMin"				"150"		// Gold earned min.
+		"BountyGoldMax"				"150"		// Gold earned max.
+
+		// Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"400"		// Speed.
+
+		// Status
+		//----------------------------------------------------------------
+		"StatusHealth"				"1000"		// Base health.
+		"StatusHealthRegen"			"10"		// Health regeneration rate.
+		"StatusMana"				"64000"			// Base mana.
+		"StatusManaRegen"			"6400"			// Mana regeneration rate.
+		
+		// Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange"		"1800"		// Range of vision during day light.
+		"VisionNighttimeRange"		"1800"		// Range of vision at night time.
+
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"					"DOTA_TEAM_NEUTRALS"							// Team name.
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_LIGHT"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+
+		"VoiceFile" 				"scripts/voscripts/game_sounds_vo_warlock_golem.txt"
+		//Inventory
+		"HasInventory"				"0"
+	}
+	"npc_dota_puppeteer_skeleton_archer"
+	{										
+		// General
+		//----------------------------------------------------------------
+		"Model"						"models/heroes/clinkz/clinkz.vmdl"	// Model.
+		"BaseClass"					"npc_dota_base_additive"
+		"SoundSet"					"Hero_Clinkz"
+		"IdleSoundLoop"				"Hero_Clinkz.IdleLoop"
+		"IsSummoned"				"1"
+		"IsAncient"					"1"
+		"ModelScale"				"0.8"
+		"ConsideredHero"			"1"
+		"UnitLabel"					"puppeteer_minion"
+		
+		"precache"
+		{
+			"particle"				"particles/units/heroes/hero_windrunner/windrunner_base_attack.vpcf"
+		}
+	
+		// Abilities
+		//----------------------------------------------------------------
+
+		// Armor
+		//----------------------------------------------------------------
+		"ArmorPhysical"				"20"			// Physical protection.
+		"MagicalResistance"				"66"		// Magical protection.  // this should be 33, switch it back once we implement Resistant Skin
+
+		// Attack
+		//----------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"			"150"		// Damage range min.
+		"AttackDamageMax"			"150"		// Damage range max.	
+		"AttackRate"				"0.8"		// Speed of attack.
+		"AttackAnimationPoint"		"0.26"		// Normalized time in animation cycle to attack.
+		"AttackAcquisitionRange"	"500"		// Range within a target can be acquired.
+		"AttackRange"				"800"		// Range within a target can be attacked.
+		"ProjectileModel"			"particles/units/heroes/hero_windrunner/windrunner_base_attack.vpcf"			// Particle system model for projectile.
+		"ProjectileSpeed"			"900"			// Speed of projectile.		   
+
+		// Bounds
+		//----------------------------------------------------------------
+		"HealthBarOffset"			"260"
+
+		// Bounty
+		//----------------------------------------------------------------
+		"BountyXP"					"98"		// Experience earn.
+		"BountyGoldMin"				"150"		// Gold earned min.
+		"BountyGoldMax"				"150"		// Gold earned max.
+
+		// Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"400"		// Speed.
+
+		// Status
+		//----------------------------------------------------------------
+		"StatusHealth"				"1000"		// Base health.
+		"StatusHealthRegen"			"10"		// Health regeneration rate.
+		"StatusMana"				"64000"			// Base mana.
+		"StatusManaRegen"			"6400"			// Mana regeneration rate.
+		
+		// Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange"		"1800"		// Range of vision during day light.
+		"VisionNighttimeRange"		"1800"		// Range of vision at night time.
+
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"					"DOTA_TEAM_NEUTRALS"							// Team name.
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_LIGHT"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+
+		"VoiceFile" 				"scripts/voscripts/game_sounds_vo_warlock_golem.txt"
+		//Inventory
+		"HasInventory"				"0"
+		
+	}
+	"npc_dota_puppeteer_lich_mage"
+	{										
+		// General
+		//----------------------------------------------------------------
+		"Model"						"models/heroes/lich/lich.vmdl"	// Model.
+		"BaseClass"					"npc_dota_base_additive"
+		"SoundSet"					"Hero_Lich"
+		"IdleSoundLoop"				"Hero_Lich.IdleLoop"
+		"IsSummoned"				"1"
+		"IsAncient"					"1"
+		"ModelScale"				"0.8"
+		"ConsideredHero"			"1"
+		"UnitLabel"					"puppeteer_minion"
+		
+		"precache"
+		{
+			"particle"				"particles/units/heroes/hero_lich/lich_base_attack.vpcf"
+		}
+
+		// Armor
+		//----------------------------------------------------------------
+		"ArmorPhysical"				"20"			// Physical protection.
+		"MagicalResistance"				"80"		// Magical protection.  // this should be 33, switch it back once we implement Resistant Skin
+
+		// Attack
+		//----------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"			"150"		// Damage range min.
+		"AttackDamageMax"			"150"		// Damage range max.	
+		"AttackRate"				"1"		// Speed of attack.
+		"AttackAnimationPoint"		"0.26"		// Normalized time in animation cycle to attack.
+		"AttackAcquisitionRange"	"500"		// Range within a target can be acquired.
+		"AttackRange"				"550"		// Range within a target can be attacked.
+		"ProjectileModel"			"particles/units/heroes/hero_lich/lich_base_attack.vpcf"			// Particle system model for projectile.
+		"ProjectileSpeed"			"600"			// Speed of projectile.		   
+
+		// Bounds
+		//----------------------------------------------------------------
+		"HealthBarOffset"			"260"
+
+		// Bounty
+		//----------------------------------------------------------------
+		"BountyXP"					"98"		// Experience earn.
+		"BountyGoldMin"				"150"		// Gold earned min.
+		"BountyGoldMax"				"150"		// Gold earned max.
+
+		// Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"400"		// Speed.
+
+		// Status
+		//----------------------------------------------------------------
+		"StatusHealth"				"1000"		// Base health.
+		"StatusHealthRegen"			"10"		// Health regeneration rate.
+		"StatusMana"				"64000"			// Base mana.
+		"StatusManaRegen"			"6400"			// Mana regeneration rate.
+		
+		// Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange"		"1800"		// Range of vision during day light.
+		"VisionNighttimeRange"		"1800"		// Range of vision at night time.
+
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"					"DOTA_TEAM_NEUTRALS"							// Team name.
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_LIGHT"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+
+		"VoiceFile" 				"scripts/voscripts/game_sounds_vo_warlock_golem.txt"
+		//Inventory
+		"HasInventory"				"0"
+	}
+	"npc_dota_puppeteer_skeleton_skirmisher"
+	{										
+		// General
+		//----------------------------------------------------------------
+		"Model"						"models/creeps/neutral_creeps/n_creep_troll_skeleton/n_creep_skeleton_melee.vmdl"	// Model.
+		"BaseClass"					"npc_dota_base_additive"
+		"SoundSet"					"Hero_Lich"
+		"IdleSoundLoop"				"Hero_Lich.IdleLoop"
+		"IsSummoned"				"1"
+		"IsAncient"					"1"
+		"ModelScale"				"1.2"
+		"ConsideredHero"			"1"
+		"UnitLabel"					"puppeteer_minion"
+		
+		"Ability1"					"skeleton_skirmisher_magic_conversion"
+
+		// Armor
+		//----------------------------------------------------------------
+		"ArmorPhysical"				"20"			// Physical protection.
+		"MagicalResistance"				"33"		// Magical protection.  // this should be 33, switch it back once we implement Resistant Skin
+
+		// Attack
+		//----------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"			"150"		// Damage range min.
+		"AttackDamageMax"			"150"		// Damage range max.	
+		"AttackRate"				"1"		// Speed of attack.
+		"AttackAnimationPoint"		"0.26"		// Normalized time in animation cycle to attack.
+		"AttackAcquisitionRange"	"500"		// Range within a target can be acquired.
+		"AttackRange"				"150"		// Range within a target can be attacked.
+		"ProjectileModel"			""			// Particle system model for projectile.
+		"ProjectileSpeed"			"0"			// Speed of projectile.		   
+
+		// Bounds
+		//----------------------------------------------------------------
+		"HealthBarOffset"			"260"
+
+		// Bounty
+		//----------------------------------------------------------------
+		"BountyXP"					"98"		// Experience earn.
+		"BountyGoldMin"				"150"		// Gold earned min.
+		"BountyGoldMax"				"150"		// Gold earned max.
+
+		// Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"550"		// Speed.
+
+		// Status
+		//----------------------------------------------------------------
+		"StatusHealth"				"1000"		// Base health.
+		"StatusHealthRegen"			"10"		// Health regeneration rate.
+		"StatusMana"				"64000"			// Base mana.
+		"StatusManaRegen"			"6400"			// Mana regeneration rate.
+		
+		// Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange"		"1800"		// Range of vision during day light.
+		"VisionNighttimeRange"		"1800"		// Range of vision at night time.
+
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"					"DOTA_TEAM_NEUTRALS"							// Team name.
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_LIGHT"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+
+		"VoiceFile" 				"scripts/voscripts/game_sounds_vo_warlock_golem.txt"
+		//Inventory
+		"HasInventory"				"0"
+	}
+	
+	"npc_dota_puppeteer_mass_of_flesh"
+	{
+		// General
+		//
+		"BaseClass"         "npc_dota_base_additive"  // Class of entity of link to.
+		"Model"           	"models/development/invisiblebox.vmdl"  // Model.
+		"SoundSet"          "Creep_Good_Range"          // Name of sound set.
+		"Level"           "0"
+		"UnitLabel"         "healing_ward"
+		
+		// Abilities
+		//----------------------------------------------------------------
+		
+		"Ability2"          ""      // Ability 2.
+		"Ability3"          ""      // Ability 3.
+		"Ability4"          ""      // Ability 4.
+		"Ability5"          ""      // Ability 5.
+		"Ability6"          ""      // Ability 6 - Extra.
+		"Ability7"          ""      // Ability 7 - Extra.
+		"Ability8"          ""      // Ability 8 - Extra.
+
+		// Armor
+		//----------------------------------------------------------------
+		"ArmorPhysical"       "0"     // Physical protection.
+		"MagicalResistance"       "0"     // Magical protection.
+
+		// Attack
+		//----------------------------------------------------------------
+		"AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"     // Type of attack - melee, ranged, etc.
+		"AttackDamageMin"     "0"     // Damage range min.
+		"AttackDamageMax"     "0"     // Damage range max.
+		"AttackDamageType"      "DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"        "1"     // Speed of attack.
+		"AttackAnimationPoint"    "0.5"   // Normalized time in animation cycle to attack.
+		"AttackAcquisitionRange"  "800"   // Range within a target can be acquired.
+		"AttackRange"       "500"   // Range within a target can be attacked.
+		"ProjectileModel"     "" // Particle system model for projectile.
+		"ProjectileSpeed"     "900"   // Speed of projectile.
+
+		// Attributes
+		//----------------------------------------------------------------
+		"AttributePrimary"      "DOTA_ATTRIBUTE_STRENGTH"
+		"AttributeBaseStrength"   "0"     // Base strength
+		"AttributeStrengthGain"   "0"     // Strength bonus per level.
+		"AttributeBaseIntelligence" "0"     // Base intelligence
+		"AttributeIntelligenceGain" "0"     // Intelligence bonus per level.
+		"AttributeBaseAgility"    "0"     // Base agility
+		"AttributeAgilityGain"    "0"     // Agility bonus per level.
+
+		// Bounty
+		//----------------------------------------------------------------
+		"BountyXP"          "0"     // Experience earn.
+		"BountyGoldMin"       "0"     // Gold earned min.
+		"BountyGoldMax"       "0"     // Gold earned max.
+
+		// Bounds
+		//----------------------------------------------------------------
+		"BoundsHullName"      "DOTA_HULL_SIZE_HUGE"      // Hull type used for navigation/locomotion.
+
+		// Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities"    "DOTA_UNIT_CAP_MOVE_GROUND"     // Type of locomotion - ground, air
+		"MovementSpeed"       "450"   // Speed
+		"MovementTurnRate"      "1.0"   // Turning rate.
+		"FollowRange"       "250"   // Distance to keep when following
+
+		// Status
+		//----------------------------------------------------------------
+		"StatusHealth"        "99999"     // Base health.
+		"StatusHealthRegen"     "0"     // Health regeneration rate.
+		"StatusMana"        "99999"     // Base mana.
+		"StatusManaRegen"     "0"     // Mana regeneration rate.
+
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"          "DOTA_TEAM_GOODGUYS"      // Team name.
+		"CombatClassAttack"     "DOTA_COMBAT_CLASS_ATTACK_PIERCE"
+		"CombatClassDefend"     "DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"UnitRelationshipClass"   "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
+		
+		// Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange"    "0"   // Range of vision during day HERO.
+		"VisionNighttimeRange"    "0"   // Range of vision at night time.
+
+		// Bots
+		//----------------------------------------------------------------
+		"AttackDesire"        "1.5"   // How much bots want to attack them vs other non-hero things
 	}
 }
 

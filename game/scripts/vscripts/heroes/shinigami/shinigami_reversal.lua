@@ -1,0 +1,1 @@
+shinigami_reversal = class({})

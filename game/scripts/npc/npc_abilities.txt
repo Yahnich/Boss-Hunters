@@ -1307,6 +1307,7 @@
 		"FightRecapLevel"				"1"
 		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
+		"RequiredLevel"					"5"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -1315,7 +1316,7 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"18"
+		"AbilityCooldown"				"12"
 		"AbilityDuration"				"1.0 1.25 1.5 1.75 2.0 2.25 2.5"
 
 		// Damage.
@@ -1334,6 +1335,7 @@
 			{
 				"var_type"					"FIELD_INTEGER"
 				"fissure_range"				"1400"
+				"LinkedSpecialBonus"		"special_bonus_unique_earthshaker_3"
 			}
 			"02"
 			{
@@ -1362,7 +1364,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"					"5024"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"LevelsBetweenUpgrades"			"5"
+		"LevelsBetweenUpgrades"			"6"
 		"MaxLevel"						"7"
 
 		// Casting
@@ -1373,7 +1375,7 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"7.0"
+		"AbilityCooldown"				"4.0"
 		"AbilityDuration"				"14.0"
 
 		// Damage.
@@ -1391,7 +1393,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"totem_damage_percentage"	"100 200 300 400 600 800 1000"
+				"totem_damage_percentage"	"200 400 600 800 1000 1200 1400"
 			}
 			"02"
 			{
@@ -1481,7 +1483,7 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"180.0 170.0 160.0 150.0 140.0 130.0 120.0"
+		"AbilityCooldown"				"120.0"
 
 		// Damage.
 		//-------------------------------------------------------------------------------------------------------------
@@ -1740,6 +1742,7 @@
 		"FightRecapLevel"				"1"
 		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
+		"RequiredLevel"					"6"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -1752,7 +1755,7 @@
 
 		// Damage.
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"					"500 1000 2000 3500 6000 12000 25000"
+		"AbilityDamage"					"1000 2000 3500 6000 12000 25000 50000"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -1769,7 +1772,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"radius"					"225 250 275 300 325 350 375"
+				"radius"					"375"
 				"LinkedSpecialBonus"		"special_bonus_unique_kunkka"
 			}
 			"02"
@@ -1780,7 +1783,7 @@
 			"03"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"slow_duration"				"1.0 2.0 3.0 4.0"
+				"slow_duration"				"4.0"
 			}
 			"04"
 			{
@@ -1790,7 +1793,7 @@
 			"05"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"delay"						"1.6 1.6 1.6 1.6"
+				"delay"						"1.0"
 			}
 		}		
 	}
@@ -1954,7 +1957,7 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"60.0 50.0 40.0"
+		"AbilityCooldown"				"50.0 45.0 40.0 35 30 25 20"
 
 		// Damage.
 		//-------------------------------------------------------------------------------------------------------------
@@ -1981,7 +1984,7 @@
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"ghostship_width"			"425 475 525 575 625 675 725"
+				"ghostship_width"			"575"
 			}			
 			"04"
 			{
@@ -2011,7 +2014,7 @@
 			"09"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"ghostship_width_scepter"	"425 475 525 575 625 675 725"
+				"ghostship_width_scepter"	"575"
 			}
 		}
 	}
@@ -3330,7 +3333,7 @@
 			"02"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"necromastery_max_souls"	"35"
+				"necromastery_max_souls"		"35"
 			}
 			"03"
 			{
@@ -4447,7 +4450,7 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"150"
+		"AbilityCooldown"				"90"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -4728,7 +4731,7 @@
 			"06"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"strike_interval_scepter"	"0.5 0.4 0.3 0.2 0.15 0.1 0.05"		
+				"strike_interval_scepter"	"0.5 0.4 0.3 0.22 0.18 0.12 0.08"		
 			}
 		}
 	}
@@ -5299,7 +5302,12 @@
 			"01"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"gods_strength_damage"		"150 200 250 300 350 400 500"		
+				"gods_strength_damage"		"300"		
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"gods_strength_bonus_str"		"125 250 500 750 1250 2500 5000"		
 			}
 			"02"
 			{
@@ -5309,7 +5317,7 @@
 			"03"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"gods_strength_damage_scepter"	"50 100 150 200 250 300 350"		
+				"gods_strength_damage_scepter"	"50 75 100 150 200 250 300"
 			}
 		}
 	}
@@ -6656,7 +6664,7 @@
 			"03"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"negative_armor"		"10 20 40 80 120 160 320"
+				"negative_armor"		"5 10 20 40 80 120 160"
 				"LinkedSpecialBonus"	"special_bonus_unique_tidehunter"
 			}
 			"04"
@@ -6967,7 +6975,7 @@
 			"03"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"armor_reduction"	"-10 -20 -40 -70 -100 -150 -300"
+				"armor_reduction"	"-5 -10 -20 -40 -70 -100 -150"
 			}
 			"04"
 			{
@@ -9080,7 +9088,7 @@
 
 		// Damage.
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"					"1200 1600 3200 6400 12800 25000 50000"
+		"AbilityDamage"					"1200 1800 3200 6400 12800 25000 50000"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -9098,7 +9106,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"heal"					"1200 1600 3200 6400 12800 25000 50000"
+				"heal"					"1200 1800 3200 6400 12800 25000 50000"
 			}
 			"03"
 			{
@@ -9194,12 +9202,12 @@
 			"01"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"duration"			"3.5 3.75 4 4.25 4.5 4.75 5"
+				"duration"			"5"
 			}				
 			"02"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"heal_bonus"		"50"
+				"heal_bonus"		"100"
 			}			
 			"03"
 			{
@@ -9209,7 +9217,7 @@
 			"04"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"slow_aoe"			"900"
+				"slow_aoe"			"1200"
 			}		
 			"05"
 			{
@@ -11309,7 +11317,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"bonus_armor"				"-25 -50 -75 -100 -150 -200 -300"
+				"bonus_armor"				"-10 -25 -50 -75 -100 -150 -200"
 			}
 			"03"
 			{
@@ -12476,7 +12484,9 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"300 250 200"
+		"AbilityCooldown"				"20"
+		"HasPureCooldown"				"1"
+		"AbilityDuration"				"24"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -12973,12 +12983,12 @@
 			"06"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"interval_scepter"		"1.5"
+				"interval_scepter"		"1"
 			}		
 			"07"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius_scepter"		"800"
+				"radius_scepter"		"900 950 1000 1050 1100 1150 1200"
 			}
 		}
 	}
@@ -15404,8 +15414,8 @@
 			}
 			"04"
 			{
-				"var_type"			"FIELD_INTEGER"
-				"armor_reduction"	"12.5"
+				"var_type"			"FIELD_FLOAT"
+				"armor_reduction"	"2.5"
 			}
 			"05"
 			{
@@ -17859,7 +17869,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"armor_reduction"		"8 16 32 64 128 172 356"
+				"armor_reduction"		"4 8 16 32 64 96 128"
 				"LinkedSpecialBonus"	"special_bonus_unique_alchemist"
 			}
 			"05"
@@ -20517,7 +20527,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"armor_reduction"			"-10 -20 -40 -70 -140 -200 -400"
+				"armor_reduction"			"-10 -25 -50 -75 -100 -125 -150"
 			}		
 			"03"
 			{
@@ -22828,7 +22838,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"armor_reduction"			"-10 -20 -40 -70 -100 -150 -300"
+				"armor_reduction"			"-5 -10 -20 -40 -70 -100 -150"
 			}
 			"02"
 			{
@@ -27539,12 +27549,12 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"armor_reduction_pct"	    "10 15 20 25 30 35 40"
+				"armor_reduction_pct"	    "30 35 40 45 50 55 60"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"magic_resistance_pct"		"10 15 20 25 30 35 40"
+				"magic_resistance_pct"		"30 35 40 45 50 55 60"
 			}
 		}
 	}
@@ -41549,6 +41559,28 @@
 	//=================================================================================================================
 	// Ability: Special Bonus
 	//=================================================================================================================
+	"special_bonus_unique_earthshaker_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6511"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"600"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
 	"special_bonus_unique_lich_1"
 	{
 		// General
@@ -42141,7 +42173,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"7"
+				"value"				"50"
 			}
 		}
 	}

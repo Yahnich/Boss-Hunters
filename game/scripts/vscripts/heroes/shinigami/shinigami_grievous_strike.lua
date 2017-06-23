@@ -1,0 +1,1 @@
+shinigami_grievous_strike = class({})

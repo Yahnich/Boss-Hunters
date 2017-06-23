@@ -26,6 +26,17 @@
 		"VisionNighttimeRange"		"1800"									// Range of vision at night time.
 	}
 	//=================================================================================================================
+	// HERO: Rhastafarian
+	//=================================================================================================================
+	"npc_dota_hero_shadow_shaman_ebf"
+	{
+		"override_hero"				"npc_dota_hero_shadow_shaman"
+		"Ability1"					"shadow_shaman_ether_lightning"
+		"Ability2"					"shadow_shaman_ignited_voodoo"
+		"Ability3"					"shadow_shaman_binding_shackle"
+		"VisionNighttimeRange"		"1800"									// Range of vision at night time.
+	}
+	//=================================================================================================================
 	// HERO: Cockwerk
 	//=================================================================================================================
 	"npc_dota_hero_rattletrap_ebf"
@@ -135,16 +146,11 @@
 	{
 		"override_hero"			"npc_dota_hero_lina"
 		"AbilityLayout"			"5"
-		"Ability1"					"lina_dragon_slave"
-		"Ability2"					"lina_light_strike_array"
-		"Ability3"					"lina_self_immolate"
-		"Ability4"					"lina_kindled_soul"
-		"Ability5"					"lina_laguna_blade"	
-		"Ability6"					"lina_dragon_slave_kindled"
-		"Ability7"					"lina_light_strike_array_kindled"			
-		"Ability8"					"lina_self_immolate_kindled"	
-		"Ability9"					"lina_kindled_soul_kindled"
-		"Ability10"					"lina_laguna_blade_kindled"	
+		"Ability1"					"phoenix_fire_surge"
+		"Ability2"					"phoenix_solar_jet"
+		"Ability3"					"phoenix_self_immolation"
+		"Ability4"					"phoenix_kindled_soul"
+		"Ability5"					"phoenix_searing_heat"	
 		"VisionNighttimeRange"		"1800"									// Range of vision at night time.
 	}
 	//=================================================================================================================
@@ -163,9 +169,11 @@
 	"npc_dota_hero_phantom_assassin_ebf"
 	{
 		"override_hero"			"npc_dota_hero_phantom_assassin"
-		"Ability1"					"phantom_assassin_fan_the_blade"
-		"Ability2"					"phantom_assassin_assassins_dance"
-		"Ability3"					"phantom_assassin_blur_ebf"
+		"Ability1"					"shinigami_cutthroat_slice"
+		"Ability2"					"shinigami_slice_n_dice"
+		"Ability3"					"shinigami_flurry_of_blows"
+		"Ability4"					"shinigami_deep_wounds"
+		"Ability5"					"shinigami_reaper"
 		"VisionNighttimeRange"		"1800"									// Range of vision at night time.
 	}
 	//=================================================================================================================
@@ -196,8 +204,11 @@
 	"npc_dota_hero_windrunner_ebf"
 	{
 		"override_hero"			"npc_dota_hero_windrunner"
-		"Ability1"				"windrunner_skillshot"
-		"Ability4"				"windrunner_focusfire_datadriven"
+		"Ability1"				"sylph_immaterialize"
+		"Ability2"				"sylph_aerodynamic"
+		"Ability3"				"sylph_rapid_fire"
+		"Ability4"				"sylph_zephyr"
+		"Ability5"				"sylph_winds_aid"
 		"VisionNighttimeRange"		"1800"									// Range of vision at night time.
 	}
 	//=================================================================================================================
@@ -617,10 +628,11 @@
 	"npc_dota_hero_legion_ebf"
 	{
 		"override_hero"			"npc_dota_hero_legion_commander"
-		"Ability1"				"legion_commander_overwhelming_odds_ebf"					// Ability 1
-		"Ability2"				"legion_commander_press_the_attack_ebf"					// Ability 2
-		"Ability3"				"legion_commander_moment_of_courage_ebf"						// Ability 3
-		"Ability4"				"lc_ebf_war_fury"
+		"Ability1"				"gladiatrix_victorious_advance"					// Ability 1
+		"Ability2"				"gladiatrix_unbreakable_morale"					// Ability 2
+		"Ability3"				"gladiatrix_imperious_shout"						// Ability 3
+		"Ability4"				"gladiatrix_fearless_assault"
+		"Ability5"				"gladiatrix_war_fury"
 		"VisionNighttimeRange"		"1800"									// Range of vision at night time.
 	}
 	"npc_dota_hero_naga_siren_ebf"
@@ -845,8 +857,11 @@
 	"npc_dota_hero_necrolyte_ebf"
 	{
 		"override_hero"			"npc_dota_hero_necrolyte"
-		"Ability3"				"necrolyte_sadist"
-		"Ability4"				"necro_plaguebearer_dirge"
+		"Ability1"					"puppeteer_bone_wave"
+		"Ability2"					"puppeteer_mass_of_flesh"
+		"Ability3"					"puppeteer_fleshcraft"
+		"Ability4"					"puppeteer_black_plague"
+		"Ability5"					"puppeteer_skeletal_rush"
 		"VisionNighttimeRange"		"1800"									// Range of vision at night time.
 	}
 	"npc_dota_hero_pugna_ebf"
