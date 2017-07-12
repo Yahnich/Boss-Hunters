@@ -169,15 +169,7 @@ function Cooldown_pixels(keys)
     local caster = keys.caster
     local dust_effect = ParticleManager:CreateParticle("particles/chronos_powder.vpcf", PATTACH_ABSORIGIN  , caster)
     ParticleManager:SetParticleControl(dust_effect, 0, caster:GetAbsOrigin())
-    if GetMapName() == "epic_boss_fight_impossible" or GetMapName() == "epic_boss_fight_challenger" then
-        item:StartCooldown(18)
-    end
-    if GetMapName() == "epic_boss_fight_hard" or GetMapName() == "epic_boss_fight_boss_master" then
-        item:StartCooldown(16)
-    end
-    if GetMapName() == "epic_boss_fight_normal" then
-        item:StartCooldown(14)
-    end
+    item:StartCooldown(14 + GameRules.gameDifficulty)
 end
 
 LinkLuaModifier( "modifier_tauntmail", "lua_item/modifier_tauntmail.lua" ,LUA_MODIFIER_MOTION_NONE )
@@ -946,7 +938,7 @@ function MekHeal(keys)
 		DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
 		
 	for i, nearby_ally in ipairs(nearby_allied_units) do  --Restore health and play a particle effect for every found ally.
-		nearby_ally:Heal(keys.HealAmount + nearby_ally:GetMaxHealth() * pct, keys.caster)
+		nearby_ally:Heal(keys.HealAmount + nearby_ally:GetMaxHealth() * pct, keys.ability)
 		nearby_ally:GiveMana(keys.ManaAmount)
 		
 		nearby_ally:EmitSound("DOTA_Item.Mekansm.Target")

@@ -26,8 +26,85 @@
 		"VisionNighttimeRange" "0"
 		"BoundsHullName" "DOTA_HULL_SIZE_SMALL"
 		"RingRadius" "0"
-		"HealthBarOffset" 
-		"10000"
+		"HealthBarOffset" "10000"
+	}
+	"npc_dummy_vision"
+	{
+		// General
+		//
+		"BaseClass" "npc_dota_base_additive" // Class of entity of link to.
+		"Model" "models/development/invisiblebox.vmdl" // Model.
+		"SoundSet" "Creep_Good_Range" // Name of sound set.
+		"Level" "0"
+		"UnitLabel" "healing_ward"
+		// Abilities
+		//----------------------------------------------------------------
+		"Ability1" "hide_hero" // Ability 1.
+		"Ability2" "" // Ability 2.
+		"Ability3" "" // Ability 3.
+		"Ability4" "" // Ability 4.
+		"Ability5" "" // Ability 5.
+		"Ability6" "" // Ability 6 - Extra.
+		"Ability7" "" // Ability 7 - Extra.
+		"Ability8" "" // Ability 8 - Extra.
+		// Armor
+		//----------------------------------------------------------------
+		"ArmorPhysical" "0" // Physical protection.
+		"MagicalResistance" "0" // Magical protection.
+		// Attack
+		//----------------------------------------------------------------
+		"AttackCapabilities" "DOTA_UNIT_CAP_NO_ATTACK" // Type of attack - melee, ranged, etc.
+		"AttackDamageMin" "0" // Damage range min.
+		"AttackDamageMax" "0" // Damage range max.
+		"AttackDamageType" "DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate" "1" // Speed of attack.
+		"AttackAnimationPoint" "0.5" // Normalized time in animation cycle to attack.
+		"AttackAcquisitionRange" "800" // Range within a target can be acquired.
+		"AttackRange" "500" // Range within a target can be attacked.
+		"ProjectileModel" "" // Particle system model for projectile.
+		"ProjectileSpeed" "900" // Speed of projectile.
+		// Attributes
+		//----------------------------------------------------------------
+		"AttributePrimary" "DOTA_ATTRIBUTE_STRENGTH"
+		"AttributeBaseStrength" "0" // Base strength
+		"AttributeStrengthGain" "0" // Strength bonus per level.
+		"AttributeBaseIntelligence" "0" // Base intelligence
+		"AttributeIntelligenceGain" "0" // Intelligence bonus per level.
+		"AttributeBaseAgility" "0" // Base agility
+		"AttributeAgilityGain" "0" // Agility bonus per level.
+		// Bounty
+		//----------------------------------------------------------------
+		"BountyXP" "0" // Experience earn.
+		"BountyGoldMin" "0" // Gold earned min.
+		"BountyGoldMax" "0" // Gold earned max.
+		// Bounds
+		//----------------------------------------------------------------
+		"BoundsHullName" "DOTA_HULL_SIZE_SMALL" // Hull type used for navigation/locomotion.
+		// Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities" "DOTA_UNIT_CAP_MOVE_FLY" // Type of locomotion - ground, air
+		"MovementSpeed" "450" // Speed
+		"MovementTurnRate" "10" // Turning rate.
+		"FollowRange" "250" // Distance to keep when following
+		// Status
+		//----------------------------------------------------------------
+		"StatusHealth" "1" // Base health.
+		"StatusHealthRegen" "0" // Health regeneration rate.
+		"StatusMana" "0" // Base mana.
+		"StatusManaRegen" "0" // Mana regeneration rate.
+		// Team
+		//----------------------------------------------------------------
+		"TeamName" "DOTA_TEAM_GOODGUYS" // Team name.
+		"CombatClassAttack" "DOTA_COMBAT_CLASS_ATTACK_PIERCE"
+		"CombatClassDefend"           "DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"UnitRelationshipClass" "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
+		// Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange" "20000" // Range of vision during day HERO.
+		"VisionNighttimeRange" "20000" // Range of vision at night time.
+		// Bots
+		//----------------------------------------------------------------
+		"AttackDesire" "1.5" // How much bots want to attack them vs other non-hero things
 	}
 	"npc_dummy_blank"
 	{
@@ -804,7 +881,7 @@
 			"MoveSpeedGain"				"1"
 			"BountyGain"				"1000"
 			"XPGain"					"1000"
-			"DisableResistance"			"10.0"
+			"StunResistance"			"10.0"
 		}
 	}
 	
@@ -2033,7 +2110,7 @@
 
 			//Ability Usage Parameters
 			//-----------------------------------------------------------------
-			"DisableResistance"			"80.0"
+			"StunResistance"			"80.0"
 			"AttachWearables"
 			{
 				"Wearable1" { "ItemDef" "6260" }
@@ -2251,7 +2328,6 @@
 				"Wearable2" { "ItemDef" "7969" }
 				"Wearable3" { "ItemDef" "7970" }
 				"Wearable4" { "ItemDef" "7972" }
-				"Wearable5" { "ItemDef" "7143" }
 			}
 		}
 	}
@@ -2568,7 +2644,7 @@
 				}
 			}
 			
-			"DisableResistance"			"60.0"
+			"StunResistance"			"60.0"
 		}
 	}
 
@@ -2914,7 +2990,7 @@
 			"BountyGain"				"5000"
 			"XPGain"					"5000"
 		}
-		"DisableResistance"			"90.0"
+		"StunResistance"			"90.0"
 	}	
 
 	//=================================================================================
@@ -3023,7 +3099,7 @@
 			"BountyGain"				"6000"
 			"XPGain"					"6000"
 
-			"DisableResistance"			"60.0"
+			"StunResistance"			"60.0"
 			"AttachWearables"
 			{
 				"Wearable1" { "ItemDef" "8111" }
@@ -3128,7 +3204,7 @@
 			"DefaultState"				"Invade"
 
 			"DisableClumpingBehavior"	"1"
-			"DisableResistance"			"60.0"
+			"StunResistance"			"60.0"
 		}
 	}
 	//=================================================================================
@@ -3225,7 +3301,7 @@
 			"DefaultState"				"Invade"
 
 			"DisableClumpingBehavior"	"1"
-			"DisableResistance"			"60.0"
+			"StunResistance"			"60.0"
 		}
 	}
 	//=================================================================================
@@ -3322,7 +3398,7 @@
 			"DefaultState"				"Invade"
 
 			"DisableClumpingBehavior"	"1"
-			"DisableResistance"			"60.0"
+			"StunResistance"			"60.0"
 		}
 	}
 
@@ -4135,7 +4211,7 @@
 			"MoveSpeedGain"				"10"
 			"BountyGain"				"6500"
 			"XPGain"					"6500"
-			"DisableResistance"			"50.0"
+			"StunResistance"			"50.0"
 		}
 	}	
 
@@ -4248,7 +4324,7 @@
 			{
 				"Wearable1" { "ItemDef" "105" }
 			}
-			"DisableResistance"			"60.0"
+			"StunResistance"			"60.0"
 		}
 	}
 	//=================================================================================
@@ -4359,7 +4435,7 @@
 			
 			"DefaultState"				"Invade"
 			
-			"DisableResistance"			"80.0"
+			"StunResistance"			"80.0"
 		}
 	}
 	//=================================================================================
@@ -4470,7 +4546,7 @@
 			
 			"DefaultState"				"Invade"
 			
-			"DisableResistance"			"90.0"
+			"StunResistance"			"90.0"
 		}
 	}
 
@@ -4582,7 +4658,7 @@
 			
 			"DefaultState"				"Invade"
 			
-			"DisableResistance"			"60.0"
+			"StunResistance"			"60.0"
 		}
 	}
 
@@ -4696,7 +4772,7 @@
 			
 			"DefaultState"				"Invade"
 			
-			"DisableResistance"			"60.0"
+			"StunResistance"			"60.0"
 		}
 	}
 
@@ -4809,7 +4885,7 @@
 			
 			"DefaultState"				"Invade"
 			
-			"DisableResistance"			"60.0"
+			"StunResistance"			"60.0"
 		}
 	}
 
@@ -5144,7 +5220,7 @@
 			"DefaultState"				"Invade"
 			
 			
-			"DisableResistance"			"60.0"
+			"StunResistance"			"60.0"
 			
 			"AttachWearables" // Default npc_dota_hero_omniknight
 			{
@@ -5268,7 +5344,7 @@
 			
 			"DefaultState"				"Invade"
 			
-			"DisableResistance"			"60.0"
+			"StunResistance"			"60.0"
 			"AttachWearables" // Default npc_dota_hero_omniknight
 			{
 				"1" { "ItemDef" "379" } 
@@ -5390,7 +5466,7 @@
 			
 			"DefaultState"				"Invade"
 			
-			"DisableResistance"			"60.0"
+			"StunResistance"			"60.0"
 			"AttachWearables" // Default npc_dota_hero_omniknight
 			{
 				"1" { "ItemDef" "379" } 
@@ -5513,7 +5589,7 @@
 				"3" { "ItemDef" "8181" } 
 				"4" { "ItemDef" "7300" } 
 			}
-			"DisableResistance"			"80.0"
+			"StunResistance"			"80.0"
 		}
 	}	
 
@@ -6107,7 +6183,7 @@
 				"Wearable4" { "ItemDef" "32" }
 				"Wearable5" { "ItemDef" "33" }
 			}
-			"DisableResistance"			"90.0"
+			"StunResistance"			"90.0"
 		}
 	}
 
@@ -6382,7 +6458,7 @@
 			"Wearable5" { "ItemDef" "6395" }
 			}
 			
-			"DisableResistance"			"60.0"
+			"StunResistance"			"60.0"
 		}
 	}
 	"npc_dota_boss21_h"
@@ -6517,7 +6593,7 @@
 				}
 			}
 			
-			"DisableResistance"			"60.0"
+			"StunResistance"			"60.0"
 			"AttachWearables"
 			{
 			"Wearable1" { "ItemDef" "5110" }
@@ -6637,7 +6713,7 @@
 			
 			"DefaultState"				"Invade"
 
-			"DisableResistance"			"60.0"
+			"StunResistance"			"60.0"
 			"AttachWearables"
 			{
 			"Wearable1" { "ItemDef" "7086" }
@@ -6756,7 +6832,7 @@
 			
 			"DefaultState"				"Invade"
 			
-			"DisableResistance"			"60.0"
+			"StunResistance"			"60.0"
 			"AttachWearables"
 			{
 			"Wearable1" { "ItemDef" "5095" }
@@ -6876,7 +6952,7 @@
 			
 			"DefaultState"				"Invade"
 
-			"DisableResistance"			"60.0"
+			"StunResistance"			"60.0"
 			"AttachWearables"
 			{
 			"Wearable1" { "ItemDef" "9731" }
@@ -6993,7 +7069,7 @@
 			
 			"DefaultState"				"Invade"
 			
-			"DisableResistance"			"60.0"
+			"StunResistance"			"60.0"
 		}
 	}
 	
@@ -7103,7 +7179,7 @@
 			
 			"DefaultState"				"Invade"
 			
-			"DisableResistance"			"60.0"
+			"StunResistance"			"60.0"
 		}
 	}
 	
@@ -7211,7 +7287,7 @@
 			"BountyGain"				"0"
 			"XPGain"					"200"
 			
-			"DisableResistance"			"60.0"
+			"StunResistance"			"60.0"
 		}
 	}
 	
@@ -7319,7 +7395,7 @@
 			"BountyGain"				"0"
 			"XPGain"					"200"
 			
-			"DisableResistance"			"60.0"
+			"StunResistance"			"60.0"
 		}
 	}
 	
@@ -7427,7 +7503,7 @@
 			"BountyGain"				"0"
 			"XPGain"					"200"
 			
-			"DisableResistance"			"60.0"
+			"StunResistance"			"60.0"
 		}
 	}
 
@@ -7535,7 +7611,7 @@
 			"BountyGain"				"0"
 			"XPGain"					"200"
 			
-			"DisableResistance"			"60.0"
+			"StunResistance"			"60.0"
 		}
 	}
 
@@ -8248,7 +8324,7 @@
 			"BountyGain"				"0"
 			"XPGain"					"200"
 			
-			"DisableResistance"			"90.0"
+			"StunResistance"			"90.0"
 		}
 	}
 
@@ -8355,7 +8431,7 @@
 			"BountyGain"				"0"
 			"XPGain"					"200"
 			
-			"DisableResistance"			"90.0"
+			"StunResistance"			"90.0"
 		}
 	}
 
@@ -8467,7 +8543,7 @@
 			
 			"DefaultState"				"Invade"
 			
-			"DisableResistance"			"60.0"
+			"StunResistance"			"60.0"
 		}
 	}
 
@@ -8571,7 +8647,7 @@
 			
 			"DefaultState"				"Invade"
 
-			"DisableResistance"			"60.0"
+			"StunResistance"			"60.0"
 		}
 	}
 
@@ -8673,7 +8749,7 @@
 				}
 			}
 
-			"DisableResistance"			"60.0"
+			"StunResistance"			"60.0"
 		}
 	}
 	
@@ -8782,7 +8858,7 @@
 			
 			"DefaultState"				"Invade"
 			
-			"DisableResistance"			"60.0"
+			"StunResistance"			"60.0"
 		}
 	}
 	"npc_dota_boss26"
@@ -8894,7 +8970,7 @@
 			{
 			"Wearable1" { "ItemDef" "5794" }
 			}
-			"DisableResistance"			"60.0"
+			"StunResistance"			"60.0"
 		}
 	}
 	"npc_dota_boss26_mini_h"
@@ -8995,7 +9071,7 @@
 				"Wearable1" { "ItemDef" "6893" }
 				"Wearable2" { "ItemDef" "4292" }
 			}
-			"DisableResistance"			"60.0"
+			"StunResistance"			"60.0"
 		}
 	}
 	"npc_dota_boss26_h"
@@ -9102,7 +9178,7 @@
 				"Wearable5" { "ItemDef" "6893" }
 			}
 
-			"DisableResistance"			"60.0"
+			"StunResistance"			"60.0"
 		}
 	}
 	"npc_dota_boss26_mini_vh"
@@ -9205,7 +9281,7 @@
 				"Wearable2" { "ItemDef" "5666" }
 			}
 
-			"DisableResistance"			"60.0"
+			"StunResistance"			"60.0"
 		}
 	}
 	"npc_dota_boss26_vh"
@@ -9310,7 +9386,7 @@
 				"Wearable4" { "ItemDef" "5668" }
 			}
 		
-			"DisableResistance"			"60.0"
+			"StunResistance"			"60.0"
 		}
 	}
 	"npc_dota_boss27"
@@ -9415,7 +9491,7 @@
 				"Wearable4" { "ItemDef" "4295" }
 				"Wearable5" { "ItemDef" "6893" }
 			}
-			"DisableResistance"			"60.0"
+			"StunResistance"			"60.0"
 		}
 	}
 	"npc_dota_boss27_h"
@@ -9521,7 +9597,7 @@
 				"Wearable4" { "ItemDef" "4295" }
 				"Wearable5" { "ItemDef" "6893" }
 			}
-			"DisableResistance"			"60.0"
+			"StunResistance"			"60.0"
 		}
 	}
 	"npc_dota_boss27_vh"
@@ -9627,7 +9703,7 @@
 				"Wearable4" { "ItemDef" "4295" }
 				"Wearable5" { "ItemDef" "6893" }
 			}
-			"DisableResistance"			"60.0"
+			"StunResistance"			"60.0"
 		}
 	}
 	"npc_dota_boss28"
@@ -9736,7 +9812,7 @@
 				"Wearable6" { "ItemDef" "6555" }
 			}
 		
-			"DisableResistance"			"60.0"
+			"StunResistance"			"60.0"
 		}
 	}
 	"npc_dota_boss28_h"
@@ -9846,7 +9922,7 @@
 				"Wearable6" { "ItemDef" "6555" }
 			}
 		
-			"DisableResistance"			"60.0"
+			"StunResistance"			"60.0"
 		}
 	}
 	"npc_dota_boss28_vh"
@@ -9958,7 +10034,7 @@
 				"Wearable6" { "ItemDef" "6555" }
 			}
 		
-			"DisableResistance"			"60.0"
+			"StunResistance"			"60.0"
 		}
 	}
 
@@ -10066,7 +10142,7 @@
 				"Wearable4" { "ItemDef" "8117" }
 			}
 		
-			"DisableResistance"			"60.0"
+			"StunResistance"			"60.0"
 		}
 	}
 
@@ -10174,7 +10250,7 @@
 				"Wearable4" { "ItemDef" "8117" }
 			}
 		
-			"DisableResistance"			"60.0"
+			"StunResistance"			"60.0"
 		}
 	}
 
@@ -10282,7 +10358,7 @@
 				"Wearable4" { "ItemDef" "8117" }
 			}
 		
-			"DisableResistance"			"60.0"
+			"StunResistance"			"60.0"
 		}
 	}
 
@@ -10395,7 +10471,7 @@
 			
 			"DefaultState"				"Invade"
 			
-			"DisableResistance"			"99.0"
+			"StunResistance"			"99.0"
 		}
 	}
 
@@ -10508,7 +10584,7 @@
 			
 			"DefaultState"				"Invade"
 			
-			"DisableResistance"			"99.0"
+			"StunResistance"			"99.0"
 		}
 	}
 
@@ -10611,7 +10687,7 @@
 			
 			"DefaultState"				"Invade"
 			
-			"DisableResistance"			"99.0"
+			"StunResistance"			"99.0"
 		}
 	}
 
@@ -10803,7 +10879,7 @@
 			}
 			
 			"DefaultState"				"Invade"
-			"DisableResistance"			"80.0"
+			"StunResistance"			"80.0"
 		}
 	}
 
@@ -10995,7 +11071,7 @@
 			}
 			
 			"DefaultState"				"Invade"
-			"DisableResistance"			"90.0"
+			"StunResistance"			"90.0"
 		}
 	}
 	"npc_dota_boss32_vh"
@@ -11090,7 +11166,7 @@
 			}
 			
 			"DefaultState"				"Invade"
-			"DisableResistance"			"99.0"
+			"StunResistance"			"99.0"
 		}
 	}
 
@@ -11189,7 +11265,7 @@
 			}
 			
 			"DefaultState"				"Invade"
-			"DisableResistance"			"99.0"
+			"StunResistance"			"99.0"
 		}
 	}
 
@@ -11288,7 +11364,7 @@
 			}
 
 			"DefaultState"				"Invade"
-			"DisableResistance"			"99.0"
+			"StunResistance"			"99.0"
 			"AttachWearables" // Default npc_dota_hero_omniknight
 			{
 				"1" { "ItemDef" "396" } 
@@ -11403,7 +11479,7 @@
 			
 			"DefaultState"				"Invade"
 
-			"DisableResistance"			"5.0"
+			"StunResistance"			"5.0"
 		}
 	}
 	"npc_dota_boss33_b"
@@ -11501,7 +11577,7 @@
 			}
 			
 			"DefaultState"				"Invade"
-			"DisableResistance"			"99.0"
+			"StunResistance"			"99.0"
 			
 			"AttachWearables"
 			{
@@ -11619,7 +11695,7 @@
 			}
 
 			"DefaultState"				"Invade"
-			"DisableResistance"			"99.0"
+			"StunResistance"			"99.0"
 			"AttachWearables" // Default npc_dota_hero_omniknight
 			{
 				"1" { "ItemDef" "6718" } 
@@ -11725,7 +11801,7 @@
 			}
 	
 			"DefaultState"				"Invade"
-			"DisableResistance"			"99.0"
+			"StunResistance"			"99.0"
 			
 			"AttachWearables"
 			{
@@ -11843,7 +11919,7 @@
 			}
 			
 			"DefaultState"				"Invade"
-			"DisableResistance"			"99.0"
+			"StunResistance"			"99.0"
 			"AttachWearables" // Default npc_dota_hero_omniknight
 			{
 				"1" { "ItemDef" "7182" } 
@@ -11949,7 +12025,7 @@
 			}
 
 			"DefaultState"				"Invade"
-			"DisableResistance"			"99.0"
+			"StunResistance"			"99.0"
 	
 			"AttachWearables"
 			{
@@ -12074,7 +12150,7 @@
 			
 			"DefaultState"				"Invade"
 
-			"DisableResistance"			"90.0"
+			"StunResistance"			"90.0"
 		}
 	}
 	"npc_dota_boss34_h"
@@ -12183,7 +12259,7 @@
 			
 			"DefaultState"				"Invade"
 
-			"DisableResistance"			"95.0"
+			"StunResistance"			"95.0"
 		}
 	}
 	"npc_dota_boss34_vh"
@@ -12293,7 +12369,7 @@
 			
 			"DefaultState"				"Invade"
 
-			"DisableResistance"			"95.0"
+			"StunResistance"			"95.0"
 		}
 	}
 
@@ -12435,7 +12511,7 @@
 				}
 			}
 
-			"DisableResistance"			"99.0"
+			"StunResistance"			"99.0"
 		}
 	}
 
@@ -12577,7 +12653,7 @@
 				}
 			}
 
-			"DisableResistance"			"99.0"
+			"StunResistance"			"99.0"
 		}
 	}
 	"npc_dota_boss35_vh"
@@ -12718,7 +12794,7 @@
 				}
 			}
 
-			"DisableResistance"			"99.0"
+			"StunResistance"			"99.0"
 		}
 	}
 
@@ -12837,7 +12913,7 @@
 				}
 			}
 
-			"DisableResistance"			"100.0"
+			"StunResistance"			"100.0"
 		}
 	}
 
@@ -12861,7 +12937,7 @@
 		"AbilityLayout"				"6"
 		"Ability1"					"guardian_hell_passive"			// Ability 1.
 		"Ability2"					"guardian_hell_hell_on_earth"			// Ability 2.
-		//"Ability3"					"guardian_hell_pantagram"			// Ability 2.
+		//"Ability3"				"guardian_hell_pantagram"			// Ability 2.
 		"Ability4"					"guardian_hell_flaming_fist"			// Ability 2.
 
 		// Armor
@@ -12948,7 +13024,7 @@
 			
 			"DefaultState"				"Invade"
 
-			"DisableResistance"			"99.0"
+			"StunResistance"			"99.0"
 		}
 	}
 	
@@ -13083,7 +13159,7 @@
 				}
 			}
 
-			"DisableResistance"			"50.0"
+			"StunResistance"			"50.0"
 		}
 	}
 	"npc_dota_boss37_h"
@@ -13218,7 +13294,7 @@
 				}
 			}
 
-			"DisableResistance"			"75.0"
+			"StunResistance"			"75.0"
 		}
 	}
 	"npc_dota_boss37_vh"
@@ -13353,7 +13429,7 @@
 				}
 			}
 
-			"DisableResistance"			"99.0"
+			"StunResistance"			"99.0"
 		}
 	}
 	//=================================================================
@@ -13779,7 +13855,7 @@
 				"Wearable4"{"ItemDef"			"6134"}
 			}
 
-			"DisableResistance"			"99.0"
+			"StunResistance"			"99.0"
 		}
 	}
 	
@@ -13906,7 +13982,7 @@
 				
 			}
 
-			"DisableResistance"			"99.0"
+			"StunResistance"			"99.0"
 		}
 	}
 	

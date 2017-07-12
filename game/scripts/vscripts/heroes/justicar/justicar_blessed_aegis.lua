@@ -1,1 +1,1 @@
-sylph_immaterialize = sylph_immaterialize or class({})
+justicar_blessed_aegis = class({})

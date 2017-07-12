@@ -1,4 +1,7 @@
 EHP_PER_ARMOR = 0.01
+DOTA_LIFESTEAL_SOURCE_NONE = 0
+DOTA_LIFESTEAL_SOURCE_ATTACK = 1
+DOTA_LIFESTEAL_SOURCE_ABILITY = 2
 
 function SendClientSync(key, value)
 	CustomNetTables:SetTableValue( "syncing_purposes",key, {value = value} )
@@ -83,9 +86,9 @@ function CDOTA_BaseNPC:IsBeingAttacked()
 	return false
 end
 
-function CDOTA_BaseNPC:PerformAbilityAttack(target)
+function CDOTA_BaseNPC:PerformAbilityAttack(target, bProcs)
 	self.autoAttackFromAbilityState = true
-	self:PerformAttack(target,true,true,true,false,false,false,true)
+	self:PerformAttack(target,true, bProcs,true,false,false,false,true)
 	self.autoAttackFromAbilityState = false
 end
 
@@ -447,9 +450,9 @@ function CDOTA_BaseNPC:HealDisabled()
 	else return false end
 end
 
-function CDOTA_BaseNPC:GetDisableResistance()
+function CDOTA_BaseNPC:GetStunResistance()
 	if self:IsCreature() then
-		return GameRules.UnitKV[self:GetUnitName()]["Creature"]["DisableResistance"] or 0
+		return GameRules.UnitKV[self:GetUnitName()]["Creature"]["StunResistance"] or 0
 	else
 		return 0
 	end
@@ -910,7 +913,9 @@ function CDOTA_BaseNPC:IsFakeHero()
 	else return false end
 end
 
-
+function CDOTA_Buff:IsStun()
+	if GLOBAL_STUN_LIST[self:GetName()] then return true else return false end
+end
 
 function CDOTA_Buff:GetModifierPropertyValue(propertyname)
 	if not self:GetAbility() then return 0 end
@@ -1064,6 +1069,34 @@ function CDOTABaseAbility:GetTrueCooldown()
 	return cooldown
 end
 
+function CDOTABaseAbility:StartDelayedCooldown(flDelay, bAutomatic)
+	self:SetActivated(false)
+	self:EndCooldown()
+	self:UseResources(false, false, true)
+	local cd = self:GetCooldownTimeRemaining()
+	self.isOnDelayedCooldown = true
+	Timers:CreateTimer(FrameTime(), function() 
+		if self.isOnDelayedCooldown then
+			self:StartCooldown(cd)
+			return FrameTime()
+		end
+	end)
+	if bAutomatic then
+		Timers:CreateTimer(flDelay, function() self:EndDelayedCooldown() end)
+	end
+end
+
+function CDOTABaseAbility:EndDelayedCooldown()
+	self:SetActivated(true)
+	self.isOnDelayedCooldown = false
+end
+
+function CDOTABaseAbility:ModifyCooldown(amt)
+	local currCD = self:GetCooldownTimeRemaining()
+	self:EndCooldown()
+	self:StartCooldown(currCD + amt)
+end
+
 function CScriptHeroList:GetRealHeroCount()
 	local heroes = self:GetAllHeroes()
 	local realHeroes = {}
@@ -1081,28 +1114,50 @@ function RotateVector2D(vector, theta)
     return Vector(xp,yp,vector.z):Normalized()
 end
 
+function ToRadians(degrees)
+	return degrees * math.pi / 180
+end
+
 function CDOTA_BaseNPC:IsSameTeam(unit)
 	return (self:GetTeam() == unit:GetTeam())
 end
 
-function CDOTA_BaseNPC:Lifesteal(lifestealPct, damage, target, damage_type, bReduced)
-	local flHeal = damage * lifestealPct / 100
-	if bReduced then
-		if damage_type == DAMAGE_TYPE_PHYSICAL then
-			flHeal = damage * (1 - target:GetPhysicalArmorReduction() / 100 ) 
-		else
-			flHeal = damage * target:GetMagicalArmorValue()
-		end
+function CDOTA_BaseNPC:Lifesteal(source, lifestealPct, damage, target, damage_type, iSource)
+	local damageDealt = damage
+	print(DOTA_LIFESTEAL_SOURCE_ABILITY, iSource)
+	if iSource == DOTA_LIFESTEAL_SOURCE_ABILITY then
+		local oldHP = target:GetHealth()
+		ApplyDamage({victim = target, attacker = self, damage = damage, damage_type = damage_type, ability = source})
+		damageDealt = math.abs(oldHP - target:GetHealth())
+	elseif iSource == DOTA_LIFESTEAL_SOURCE_ATTACK then
+		local oldHP = target:GetHealth()
+		self:PerformAttack(target, true, true, true, true, false, false, false)
+		damageDealt = math.abs(oldHP - target:GetHealth())
 	end
-	self:HealEvent(flHeal, self, {})
+	local flHeal = damageDealt * lifestealPct / 100
+	self:HealEvent(flHeal, source, self)
 	local lifesteal = ParticleManager:CreateParticle("particles/units/heroes/hero_skeletonking/wraith_king_vampiric_aura_lifesteal.vpcf", PATTACH_ABSORIGIN_FOLLOW, self)
 		ParticleManager:SetParticleControlEnt(lifesteal, 0, self, PATTACH_POINT_FOLLOW, "attach_hitloc", self:GetAbsOrigin(), true)
 		ParticleManager:SetParticleControlEnt(lifesteal, 1, self, PATTACH_POINT_FOLLOW, "attach_hitloc", self:GetAbsOrigin(), true)
 	ParticleManager:ReleaseParticleIndex(lifesteal)
 end
 
-function CDOTA_BaseNPC:HealEvent(amount, source, data) -- for future shit
-	self:Heal(amount, source)
+function CDOTA_BaseNPC:HealEvent(amount, sourceAb, healer) -- for future shit
+	local params = {amount = amount, source = sourceAb, unit = healer}
+	for k,v in pairs(data) do
+		data[k] = v
+	end
+	for k,v in pairs( self:FindAllModifiers() ) do
+		if modifier.OnHealed then
+			modifier:OnHealed(params)
+		end
+	end
+	for k,v in pairs( healer:FindAllModifiers() ) do
+		if modifier.OnHeal then
+			modifier:OnHeal(params)
+		end
+	end
+	self:Heal(amount, sourceAb)
 end
 
 function CDOTA_BaseNPC:SwapAbilityIndexes(index, swapname)
@@ -1142,6 +1197,17 @@ function CDOTA_BaseNPC:FindEnemyUnitsInRadius(position, radius, data)
 	local iFlag = data.flag or DOTA_UNIT_TARGET_FLAG_NONE
 	local iOrder = data.order or FIND_ANY_ORDER
 	return FindUnitsInRadius(team, position, nil, radius, iTeam, iType, iFlag, iOrder, false)
+end
+
+function CDOTA_Modifier_Lua:StartMotionController()
+	if self.DoControlledMotion then
+		Timers:CreateTimer(FrameTime(), function() 
+			self:DoControlledMotion() 
+			return FrameTime()
+		end)
+	else
+		print("no motion detected")
+	end
 end
 
 function CDOTA_BaseNPC:FindRandomEnemyInRadius(position, radius, data)

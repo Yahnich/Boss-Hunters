@@ -13,9 +13,7 @@ function modifier_shinigami_flurry_of_blows_buff:OnCreated()
 	self.radius = self:GetAbility():GetSpecialValueFor("radius")
 	if IsServer() then
 		self:StartIntervalThink(self.attack_interval)
-		self:GetAbility():SetActivated(false)
-		self:GetAbility():EndCooldown()
-		self:GetAbility():StartCooldown(self:GetRemainingTime())
+		self:GetAbility():StartDelayedCooldown(self:GetRemainingTime(), false)
 	end
 end
 
@@ -23,17 +21,13 @@ function modifier_shinigami_flurry_of_blows_buff:OnRefresh()
 	self.attack_interval = 1 / self:GetAbility():GetTalentSpecialValueFor("attacks_per_second")
 	self.radius = self:GetAbility():GetSpecialValueFor("radius")
 	if IsServer() then 
-		self:GetAbility():SetActivated(false)
-		self:GetAbility():EndCooldown()
-		self:GetAbility():StartCooldown(self:GetRemainingTime())
+		self:GetAbility():StartDelayedCooldown(self:GetRemainingTime(), false)
 	end
 end
 
 function modifier_shinigami_flurry_of_blows_buff:OnDestroy()
 	if IsServer() then 
-		self:GetAbility():EndCooldown()
-		self:GetAbility():UseResources(false, false, true)
-		self:GetAbility():SetActivated(true)
+		self:GetAbility():EndDelayedCooldown()
 	end
 end
 
@@ -55,7 +49,7 @@ function modifier_shinigami_flurry_of_blows_buff:OnIntervalThink()
 	for _, unit in ipairs(nearbyUnits) do
 		EmitSoundOn("Hero_PhantomAssassin.Attack", unit)
 		EmitSoundOn("Hero_PhantomAssassin.Attack.Rip", unit)
-		self:GetParent():PerformAbilityAttack(unit)
+		self:GetParent():PerformAbilityAttack(unit, true)
 		local attack = ParticleManager:CreateParticle("particles/heroes/shinigami/shinigami_flurry_of_blows_blur.vpcf", PATTACH_POINT_FOLLOW, unit)
 		ParticleManager:SetParticleControlEnt(attack, 0, unit, PATTACH_POINT_FOLLOW, "attach_hitloc", unit:GetAbsOrigin(), true)
 		ParticleManager:ReleaseParticleIndex(attack)

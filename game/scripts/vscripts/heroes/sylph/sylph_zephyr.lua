@@ -56,6 +56,8 @@ function modifier_sylph_zephyr_passive:DeclareFunctions()
 				MODIFIER_EVENT_ON_ATTACK_START,
 				MODIFIER_EVENT_ON_ATTACK_LANDED,
 				MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,
+				MODIFIER_PROPERTY_MOVESPEED_LIMIT,
+				MODIFIER_PROPERTY_MOVESPEED_MAX,
 				MODIFIER_PROPERTY_EVASION_CONSTANT,
 			}
 	return funcs
@@ -76,6 +78,14 @@ end
 
 function modifier_sylph_zephyr_passive:GetModifierMoveSpeedBonus_Constant()
 	return self.ms * self:GetStackCount()
+end
+
+function modifier_sylph_zephyr_passive:GetModifierMoveSpeed_Max()
+	return 550 + self.ms * self:GetStackCount()
+end
+
+function modifier_sylph_zephyr_passive:GetModifierMoveSpeed_Limit()
+	return 550 + self.ms * self:GetStackCount()
 end
 
 

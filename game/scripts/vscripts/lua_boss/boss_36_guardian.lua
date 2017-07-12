@@ -24,17 +24,7 @@ function creation(keys)
 		end
 	end)
 
-    if GetMapName() == "epic_boss_fight_impossible" then
-        caster:SetMaxHealth(15000000) 
-    elseif GetMapName() == "epic_boss_fight_challenger" then
-        caster:SetMaxHealth(20000000) 
-    elseif  GetMapName() == "epic_boss_fight_hard" then
-        caster:SetMaxHealth(10000000) 
-    elseif GetMapName() == "epic_boss_fight_boss_master" then
-        caster:SetMaxHealth(7500000) 
-    else
-        caster:SetMaxHealth(5000000) 
-    end
+    caster:SetMaxHealth(5000000 * GameRules.gameDifficulty) 
 
 	Timers:CreateTimer( 0.1, function()
 		if caster:IsAlive() == true then
@@ -46,32 +36,11 @@ function creation(keys)
 					caster:RemoveModifierByName( "invincible" )
                     caster.have_shield = false
 				else
-					if GetMapName() == "epic_boss_fight_impossible" then
-							caster.Charge = caster.Charge - 2
-						elseif GetMapName() == "epic_boss_fight_challenger" then
-							caster.Charge = caster.Charge - 1
-						elseif  GetMapName() == "epic_boss_fight_hard" then
-							caster.Charge = caster.Charge - 3
-						elseif GetMapName() == "epic_boss_fight_boss_master" then
-							caster.Charge = caster.Charge - 1
-						else
-							caster.Charge = caster.Charge - 4
-						end
+					caster.Charge = caster.Charge - 1 - (4 - GameRules.gameDifficulty)
 				end
 			else
 				if caster.Charge < caster:GetMaxMana() then
-					local chargeSpeed
-				    if GetMapName() == "epic_boss_fight_impossible" then
-						chargeSpeed = 10
-					elseif GetMapName() == "epic_boss_fight_challenger" then
-						chargeSpeed = 10
-					elseif  GetMapName() == "epic_boss_fight_hard" then
-						chargeSpeed = 15
-					elseif GetMapName() == "epic_boss_fight_boss_master" then
-						chargeSpeed = 10
-					else
-						chargeSpeed = 20
-					end
+					local chargeSpeed = GameRules.gameDifficulty * 5
 					caster.Charge = caster.Charge + (1000/(7.5*chargeSpeed))
 				else
 					caster.weak = false
@@ -171,23 +140,8 @@ end
 function hell_on_earth(keys)
 	local caster = keys.caster
 	caster.Charge = caster.Charge - keys.ability:GetManaCost(-1)
-	local damage = 50000
-	if GetMapName() == "epic_boss_fight_impossible" then
-		damage = 300000
-        if GameRules._NewGamePlus == true then damage = 3000000 end
-	elseif GetMapName() == "epic_boss_fight_challenger" then
-		damage = 500000
-        if GameRules._NewGamePlus == true then damage = 5000000 end
-	elseif	GetMapName() == "epic_boss_fight_hard" then
-		damage = 200000
-        if GameRules._NewGamePlus == true then damage = 2000000 end
-	elseif GetMapName() == "epic_boss_fight_boss_master" then
-		damage = 150000
-        if GameRules._NewGamePlus == true then damage = 1500000 end
-	else
-		damage = 100000
-        if GameRules._NewGamePlus == true then damage = 1000000 end
-	end
+	local damage = 100000 * GameRules.gameDifficulty
+	
 	if caster.Charge < 0 then caster.Charge = 0 end
 	local created_projectile = 0
 	local fv = caster:GetForwardVector()
@@ -211,7 +165,7 @@ function hell_on_earth(keys)
     Timers:CreateTimer(0.09, function()
 		if not caster:IsAlive() then return end
         created_projectile = created_projectile + 1
-        createAOEDamage(keys,"particles/doom_ring.vpcf",position,250,damage,DAMAGE_TYPE_PURE,2.1,"soundevents/game_sounds_heroes/game_sounds_nevermore.vsndevts",1.5)
+        createAOEDamage(keys,"particles/doom_ring.vpcf",position,200,damage,DAMAGE_TYPE_PURE,2.1,"soundevents/game_sounds_heroes/game_sounds_nevermore.vsndevts",1.5)
         angle = (created_projectile*1200)/total_projectile
        	position = GetGroundPosition(RotatePosition(Vector(0,0,0), QAngle(0,angle,0), fv) * distance + origin,nil)
 
@@ -257,7 +211,7 @@ function createAOEDamage(keys,particlesname,location,size,damage,damage_type,dur
 	                                  DOTA_UNIT_TARGET_FLAG_NONE,
 	                                  FIND_ANY_ORDER,
 	                                  false)
-        if GetMapName() == "epic_boss_fight_challenger" or GetMapName() == "epic_boss_fight_impossible" then
+        if GameRules.gameDifficulty > 2 then
             nearbyUnits = FindUnitsInRadius(keys.caster:GetTeam(),
                                       location,
                                       nil,
@@ -285,19 +239,8 @@ end
 
 function Charge_damage( event )
     local caster = event.caster
-	if not caster.weak then
-		if GetMapName() == "epic_boss_fight_impossible" then
-			caster.Charge = caster.Charge - 1
-		elseif GetMapName() == "epic_boss_fight_challenger" then
-			caster.Charge = caster.Charge - 1
-		elseif  GetMapName() == "epic_boss_fight_hard" then
-			caster.Charge = caster.Charge - 2
-		elseif GetMapName() == "epic_boss_fight_boss_master" then
-			caster.Charge = caster.Charge - 1
-		else
-			caster.Charge = caster.Charge - 3
-		end
-		print(caster.Charge)
+	if not caster.weak and caster.Charge > 0 then
+		caster.Charge = caster.Charge - 1 - (4 - GameRules.gameDifficulty)
 	end
     if caster.Charge <= 0 then caster.Charge = 0 end
 end

@@ -36,7 +36,7 @@ function shinigami_slice_n_dice:OnSpellStart()
 			else
 				caster:SetAbsOrigin( caster:GetAbsOrigin() + CalculateDirection(orderedUnits[pathNr], caster) * speed * FrameTime() )
 				for i = 1, attacks_per_unit do
-					caster:PerformAbilityAttack(orderedUnits[pathNr])
+					caster:PerformAbilityAttack(orderedUnits[pathNr], true)
 				
 					local attack = ParticleManager:CreateParticle("particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_attack_blink_blur.vpcf", PATTACH_ABSORIGIN, orderedUnits[pathNr])
 					ParticleManager:SetParticleControl(attack, 0, orderedUnits[pathNr]:GetAbsOrigin())

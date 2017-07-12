@@ -16,7 +16,7 @@
 		"#DOTA_Item_Build_Early_Game"
 		{	
 			"item"	"item_heart_titan"
- +			"item"  "item_blade_mail2"
+			"item"  "item_blade_mail2"
   			"item"	"item_titan_armor"
 			"item"	"item_midas_2"
 		}

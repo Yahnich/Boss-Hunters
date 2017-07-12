@@ -3,17 +3,6 @@ GameEvents.Subscribe( "updateQuestPrepTime", UpdateTimer);
 GameEvents.Subscribe( "updateQuestRound", UpdateRound);
 GameEvents.Subscribe( "sendDifficultyNotification", Initialize);
 
-var tooltips = $.GetContextPanel().GetParent().GetParent().GetParent().FindChildTraverse("Tooltips").FindChildTraverse("DOTAAbilityTooltip").FindChildTraverse("Contents");
-tooltips.style.width = "550px";
-var tooltipLabels = tooltips.FindChildTraverse("AbilityDetails").FindChildTraverse("AbilityCoreDetails").FindChildTraverse("AbilityCosts");
-var tooltipMana = tooltipLabels.FindChildTraverse("AbilityManaCost");
-var tooltipCd = tooltipLabels.FindChildTraverse("AbilityCooldown");
-tooltipLabels.style.paddingLeft = "5px";
-tooltipLabels.style.paddingRight = "5px";
-tooltipMana.style.fontSize = "15px";
-tooltipCd.style.fontSize = "15px";
-tooltipMana.style.marginLeft = "-55px";
-
 
 function Initialize(arg){
 	var diffLocToken =  $.Localize( ReplaceIntWithToken( arg.difficulty ) )

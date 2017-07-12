@@ -80,12 +80,12 @@ function CHoldoutGameSpawner:Begin()
 	self._nChampionsSpawnedThisRound = 0
 	self._nUnitsCurrentlyAlive = 0
 	
-	if GameRules.gameDifficulty > 3 and not self._bDifficultyChecked and not self._DoNotIncrease then
-		local preIncrease = self._nTotalUnitsToSpawn
-		self._nTotalUnitsToSpawn = math.ceil(self._nTotalUnitsToSpawn * 1.4)
-		print("Units spawned increased from "..preIncrease.." to "..self._nTotalUnitsToSpawn)
-		self._bDifficultyChecked = true
-	end
+	-- if GameRules.gameDifficulty > 3 and not self._bDifficultyChecked and not self._DoNotIncrease then
+		-- local preIncrease = self._nTotalUnitsToSpawn
+		-- self._nTotalUnitsToSpawn = math.ceil(self._nTotalUnitsToSpawn * 1.4)
+		-- print("Units spawned increased from "..preIncrease.." to "..self._nTotalUnitsToSpawn)
+		-- self._bDifficultyChecked = true
+	-- end
 	self._vecSpawnLocation = nil
 	if self._szSpawnerName ~= "" then
 		local entSpawner = Entities:FindByName( nil, self._szSpawnerName )
@@ -244,6 +244,7 @@ function CHoldoutGameSpawner:_DoSpawn()
 		end
 		PrecacheUnitByNameAsync( szNPCClassToSpawn, function()
 			local entUnit = CreateUnitByName( szNPCClassToSpawn, vSpawnLocation, true, nil, nil, DOTA_TEAM_BADGUYS )
+			AddFOWViewer(DOTA_TEAM_GOODGUYS, vSpawnLocation, 516, 3, false) -- show spawns
 			if entUnit then
 				if entUnit:IsCreature() then
 					if bIsChampion then

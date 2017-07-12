@@ -22,6 +22,10 @@ MINIMUM_ATTACK_SPEED	= 20
 
 ROUND_END_DELAY = 3
 
+DOTA_LIFESTEAL_SOURCE_NONE = 0
+DOTA_LIFESTEAL_SOURCE_ATTACK = 1
+DOTA_LIFESTEAL_SOURCE_ABILITY = 2
+
 require("internal/util")
 require("lua_item/simple_item")
 require("lua_boss/boss_32_meteor")
@@ -34,6 +38,8 @@ require( "libraries/notifications" )
 require( "statcollection/init" )
 require("libraries/utility")
 require("libraries/animations")
+
+MAP_CENTER = Vector(332, -1545)
 
 if CHoldoutGameMode == nil then
 	CHoldoutGameMode = class({})
@@ -79,6 +85,9 @@ function Precache( context )
 	PrecacheResource("particle", "particles/units/heroes/hero_tinker/tinker_rockets.vpcf", context)
 	PrecacheResource("particle", "particles/econ/items/tinker/tinker_motm_rollermaw/tinker_rollermaw_spawn.vpcf", context)
 	PrecacheResource("particle", "particles/econ/items/tinker/tinker_motm_rollermaw/tinker_rollermaw_motm.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_tinker/tinker_missile.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_tinker/tinker_missile_dud.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_tinker/tinker_machine.vpcf", context)
 	
 	PrecacheResource("particle_folder", "particles/econ/generic/generic_aoe_shockwave_1", context)
 	
@@ -156,6 +165,7 @@ function CHoldoutGameMode:InitGameMode()
 	MergeTables(GameRules.AbilityKV, LoadKeyValues("scripts/npc/items.txt"))
 	
 	GameRules.HeroList = LoadKeyValues("scripts/npc/herolist.txt")
+	GameRules.SkillList = LoadKeyValues("scripts/kv/skillbuild.kv")
 	
 	print(GetMapName())
 	
@@ -182,29 +192,24 @@ function CHoldoutGameMode:InitGameMode()
 	
 	GameRules._maxLives = 10
 	GameRules:SetHeroSelectionTime( 80.0 )
+	GameRules:SetPreGameTime( 30.0 )
+	GameRules:SetStartingGold(0)
 	GameRules:SetShowcaseTime( 0 )
 	GameRules:SetStrategyTime( 0 )
 	GameRules:SetCustomGameSetupAutoLaunchDelay(0) -- fix valve bullshit
-	if GetMapName() == "epic_boss_fight_hard" or GetMapName() == "epic_boss_fight_boss_master"  then
-		GameRules.BasePlayers = 7
-		GameRules._maxLives = 10
-		GameRules.gameDifficulty = 2
-	elseif GetMapName() == "epic_boss_fight_impossible" then
-		GameRules.BasePlayers = 5
-		GameRules._maxLives = 5
-		GameRules.gameDifficulty = 3
-	elseif GetMapName() == "epic_boss_fight_challenger" then
-		GameRules.BasePlayers = 5
-		GameRules._maxLives = 1
-		GameRules.gameDifficulty = 4
-	end
+	
+	local mapInfo = LoadKeyValues( "addoninfo.txt" )[GetMapName()]
+	
+	GameRules.BasePlayers = mapInfo.MaxPlayers
+	GameRules._maxLives =  mapInfo.Lives
+	GameRules.gameDifficulty =  mapInfo.Difficulty
 	
 	GameRules._used_life = 0
 	GameRules._life = GameRules._maxLives
 	
 	CustomGameEventManager:Send_ServerToAllClients( "updateQuestLife", { lives = GameRules._life, maxLives = GameRules._maxLives } )
 	
-	GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_GOODGUYS, 7)
+	GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_GOODGUYS, mapInfo.MaxPlayers)
 	if GetMapName() == "epic_boss_fight_boss_master" then
 		GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_BADGUYS, 1 )
 	else 
@@ -379,6 +384,8 @@ function CHoldoutGameMode:InitGameMode()
 	CustomGameEventManager:RegisterListener('Buy_Perk', Dynamic_Wrap( CHoldoutGameMode, 'Buy_Perk_check'))
 	CustomGameEventManager:RegisterListener('Asura_Core', Dynamic_Wrap( CHoldoutGameMode, 'Buy_Asura_Core_shop'))
 	CustomGameEventManager:RegisterListener('Tell_Core', Dynamic_Wrap( CHoldoutGameMode, 'Asura_Core_Left'))
+	CustomGameEventManager:RegisterListener('hasSelectedAbility', Dynamic_Wrap( CHoldoutGameMode, 'AbilitySelectionQuery'))
+	CustomGameEventManager:RegisterListener('initializeAbilities', Dynamic_Wrap( CHoldoutGameMode, 'InitializeQueriedAbilities'))
 	
 	CustomGameEventManager:RegisterListener('preGameVoting', Dynamic_Wrap( CHoldoutGameMode, 'PreGameVotingHandler'))
 
@@ -647,6 +654,8 @@ end
 
 LinkLuaModifier( "modifier_necrolyte_sadist_aura_reduction", "lua_abilities/heroes/modifiers/modifier_necrolyte_sadist_aura_reduction", LUA_MODIFIER_MOTION_NONE )
 
+GLOBAL_STUN_LIST = {}
+
 function CHoldoutGameMode:FilterModifiers( filterTable )
 	local parent_index = filterTable["entindex_parent_const"]
     local caster_index = filterTable["entindex_caster_const"]
@@ -659,55 +668,67 @@ function CHoldoutGameMode:FilterModifiers( filterTable )
     local caster = EntIndexToHScript( caster_index )
 	local ability = EntIndexToHScript( ability_index )
 	local name = filterTable["name_const"]
-
-	if name == "modifier_necrolyte_sadist_aura_effect" then -- add additional shit to necro aura
-		parent:AddNewModifier(caster, ability, "modifier_necrolyte_sadist_aura_reduction", {duration = ability:GetSpecialValueFor("duration")})
-	end
-	if parent == caster or not caster or not ability or duration > 99 or duration == -1 then return true end
-	-- 1 is ULTIMATE
-	if parent:IsCreature() and (caster:HasAbility("perk_disable_piercing") or ability:GetAbilityType() == 1 or ability:PiercesDisableResistance()) then
-		if caster:HasAbility("perk_disable_piercing") and ability:GetAbilityType() ~= 1 and not ability:PiercesDisableResistance() then -- ignore perk if already pierces
-			local chance = caster:FindAbilityByName("perk_disable_piercing"):GetSpecialValueFor("chance")
-			if math.random(100) > chance then
-				return true
-			end
+	
+	if parent == caster or not caster or not ability or duration == -1 then return true end
+	
+	local parentBuffIncrease = 1
+	local parentDebuffIncrease = 1
+	local casterBuffIncrease = 1
+	local casterDebuffIncrease = 1
+	
+	for _, modifier in pairs( parent:FindAllModifiers() ) do
+		if modifier.BonusDebuffDuration_Constant then
+			parentDebuffIncrease = parentDebuffIncrease + (modifier:BonusDebuffDuration_Constant() / 100)
 		end
-		local resistance = parent:GetDisableResistance() / 100
-		filterTable["duration"] = duration / (1 - resistance)
-		Timers:CreateTimer(0.04,function()
- 			if parent:FindModifierByNameAndCaster(name, caster) then
-				local modifier = parent:FindModifierByNameAndCaster(name, caster)
-				if modifier:GetDuration() > duration then
-					modifier:SetDuration(duration, false)
-				end
-			end
- 		end)
-	elseif parent:IsCreature() and caster:HasTalentType("respawn_reduction") then
-		local resistance = parent:GetDisableResistance() / 100
-		if resistance > caster:HighestTalentTypeValue("respawn_reduction") / 100 then
-			filterTable["duration"] = duration / (1 - resistance) * caster:HighestTalentTypeValue("respawn_reduction") / 100
-			Timers:CreateTimer(0.04,function()
-				if parent:FindModifierByNameAndCaster(name, caster) then
-					local modifier = parent:FindModifierByNameAndCaster(name, caster)
-					if modifier:GetDuration() > duration then
-						modifier:SetDuration(duration, false)
-					end
-				end
-			end)
+		if modifier.BonusBuffDuration_Constant then
+			parentBuffIncrease = parentBuffIncrease + (modifier:BonusBuffDuration_Constant() / 100)
 		end
 	end
-	if ability:GetName() == "centaur_hoof_stomp" and caster:HasTalent("special_bonus_unique_centaur_1") then
-		local resistance = parent:GetDisableResistance() / 100
-		filterTable["duration"] = duration / (1 - resistance)
-		filterTable["duration"] = duration * caster:FindTalentValue("special_bonus_unique_centaur_1") / 100
-		Timers:CreateTimer(0.04,function()
- 			if parent:FindModifierByNameAndCaster(name, caster) then
-				local modifier = parent:FindModifierByNameAndCaster(name, caster)
-				if modifier:GetDuration() > duration then
-					modifier:SetDuration(duration, false)
-				end
+	for _, modifier in ipairs( caster:FindAllModifiers() ) do
+		if modifier.BonusAppliedDebuffDuration_Constant then
+			casterDebuffIncrease = casterDebuffIncrease + (modifier:BonusAppliedDebuffDuration_Constant() / 100)
+		end
+		if modifier.BonusAppliedBuffDuration_Constant then
+			casterBuffIncrease = casterBuffIncrease + (modifier:BonusAppliedBuffDuration_Constant() / 100)
+		end
+	end
+	
+	Timers:CreateTimer(0.04,function()
+		local modifier = parent:FindModifierByNameAndCaster(name, caster)
+		if modifier then
+			if modifier.IsDebuff or parent:GetTeam() ~= caster:GetTeam() and (parentDebuffIncrease > 1 or casterDebuffIncrease > 1) then
+				local duration = modifier:GetRemainingTime()
+				modifier:SetDuration(duration * parentDebuffIncrease * casterDebuffIncrease, true)
+			elseif modifier.IsBuff or parent:GetTeam() == caster:GetTeam() and (parentBuffIncrease > 1 or casterBuffIncrease > 1) then
+				local duration = modifier:GetRemainingTime()
+				modifier:SetDuration(duration * parentBuffIncrease * casterBuffIncrease, true)
 			end
- 		end)
+		end
+	end)
+	-- DISABLE RESISTANCE HANDLING
+	if caster:IsChanneling() 
+	or ability:GetAbilityType() == 1
+	or ability:PiercesDisableResistance() 
+	or (caster:HasAbility("perk_disable_piercing") and RollPercentage(caster:FindAbilityByName("perk_disable_piercing"):GetSpecialValueFor("chance"))) then return true end
+	if parent:IsCreature() then
+		local stunned = parent:IsStunned() or parent:IsHexed()
+		Timers:CreateTimer(0.04,function()
+			local modifier = parent:FindModifierByNameAndCaster(name, caster)
+			if not stunned and (parent:IsStunned() or parent:IsHexed()) and GLOBAL_STUN_LIST[name] == nil then GLOBAL_STUN_LIST[name] = true end -- machine learning lul
+			if not (parent:IsStunned() or parent:IsHexed()) and GLOBAL_STUN_LIST[name] then GLOBAL_STUN_LIST[name] = false end
+			if modifier and ( (modifier.CheckState and (modifier:CheckState().MODIFIER_STATE_STUNNED or modifier:CheckState().MODIFIER_STATE_HEXED)) or GLOBAL_STUN_LIST[name]) or modifier:IsStunDebuff() then
+				local resistance = parent:GetStunResistance()
+				if caster:HasTalentType("respawn_reduction") then resistance = resistance * (1 - caster:HighestTalentTypeValue("respawn_reduction") / 100) end
+				print(resistance)
+				if RollPercentage(resistance) then 
+					modifier:Destroy() 
+				end
+			elseif ability:GetName() == "centaur_hoof_stomp" and caster:HasTalent("special_bonus_unique_centaur_1") then
+				local resistance = parent:GetStunResistance()
+				if caster:HasTalentType("respawn_reduction") then resistance = resistance * (1 - caster:FindTalentValue("special_bonus_unique_centaur_1") / 100) end
+				if RollPercentage(resistance) then modifier:Destroy() end
+			end
+		end)
 	end
 	return true
 end
@@ -941,13 +962,12 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 		if attacker:GetHealth() > filterTable["damage"] and not attacker:HealDisabled() then -- prevent preheal
 			attacker:Heal(heal, attacker)
 			local healParticle = ParticleManager:CreateParticle("particles/items3_fx/octarine_core_lifesteal.vpcf", PATTACH_ABSORIGIN_FOLLOW, attacker)
-			Timers:CreateTimer(0.1, function() ParticleManager:DestroyParticle(healParticle, false) end)
+			ParticleManager:ReleaseParticleIndex(healParticle) 
 		end
 	end
 	if attacker:IsCreature() and not inflictor then -- no more oneshots tears-b-gone
 		local damageCap = 0.25
-		if GameRules.gameDifficulty > 2 and (GetMapName() == "epic_boss_fight_impossible" or GetMapName() == "epic_boss_fight_challenger") then damageCap = 0.5
-		elseif GameRules.gameDifficulty == 2 then damageCap = 0.33 end
+		if GetMapName() == "epic_boss_fight_hardcore" then damageCap = 0.33 end
 		local critmult = damage / (1 - victim:GetPhysicalArmorReduction() / 100 ) / attacker:GetAverageBaseDamage()
 		damageCap = damageCap * critmult
 		if victim:HasModifier("modifier_ethereal_resistance") then 
@@ -1066,7 +1086,7 @@ function CHoldoutGameMode:OnAbilityUsed(event)
 	--will be used in future :p
     local PlayerID = event.PlayerID
     local abilityname = event.abilityname
-
+	
 	local hero = PlayerResource:GetSelectedHeroEntity(PlayerID)
 	if not hero then return end
 	if not abilityname then return end
@@ -1126,17 +1146,9 @@ function CHoldoutGameMode:OnAbilityUsed(event)
 	if abilityused and abilityused:HasPureCooldown() then
 		abilityused:EndCooldown()
 		if abilityused:GetDuration() > 0 then
-			abilityused:SetActivated(false)
 			local duration = abilityused:GetDuration()
 			if abilityname == "rattletrap_battery_assault" then duration = abilityused:GetTalentSpecialValueFor("duration") end
-			abilityused:StartCooldown(duration)
-			Timers:CreateTimer(duration,function()
-				if not abilityused:IsActivated() then
-					abilityused:EndCooldown()
-					abilityused:SetActivated(true)
-					abilityused:UseResources(false, false, true)
-				end
-			end)
+			abilityused:StartDelayedCooldown(duration, true)
 		else
 			abilityused:StartCooldown(abilityused:GetCooldown(-1))
 		end
@@ -1232,6 +1244,95 @@ function CHoldoutGameMode:Asura_Core_Left(event)
 	end
 end
 
+function CHoldoutGameMode:AbilitySelectionQuery(event)
+	local pID = event.pID
+	local player = PlayerResource:GetPlayer(pID)
+	local hero = player:GetAssignedHero() 
+	local abilityName = event.ability
+
+	hero.selectedSkills[abilityName] = (not hero.selectedSkills[abilityName])
+	local trueCount = 0
+	for ability, state in pairs(hero.selectedSkills) do
+		if state then trueCount = trueCount + 1 end
+	end
+	if trueCount > 4 then
+		hero.selectedSkills[abilityName] = false
+	end
+	for ability, state in pairs(hero.selectedSkills) do
+		CustomGameEventManager:Send_ServerToPlayer(player, "sendAbilityQuery"..ability, {confirmed = hero.selectedSkills[ability]})
+	end
+end
+	
+
+function CHoldoutGameMode:InitializeQueriedAbilities(event)
+	local pID = event.pID
+	local player = PlayerResource:GetPlayer(pID)
+	local hero = player:GetAssignedHero() 
+	if not hero then return nil end
+	local trueCount = 0
+	for ability, state in pairs(hero.selectedSkills) do
+		if state then trueCount = trueCount + 1 end
+	end
+	if trueCount == 4 then
+		LoadHeroSkills(hero)
+		hero.HasBeenInitialized = true
+		CustomGameEventManager:Send_ServerToPlayer(player, "finishedAbilityQuery", {})
+	end
+end
+
+function LoadHeroSkills(hero)
+	for ability, state in pairs(hero.selectedSkills) do
+		local index = FindNextAbilityIndex(hero)
+		local talentIndex = FindNextTalentIndex(hero)
+		if index and state and talentIndex then
+			hero:RemoveAbility(hero:GetAbilityByIndex(index):GetName())
+			hero:AddAbilityPrecache(ability):SetAbilityIndex(index)
+			
+			hero:RemoveAbility(hero:GetAbilityByIndex(talentIndex):GetName())
+			hero:AddAbility(ability.."_talent_1"):SetAbilityIndex(talentIndex)
+		end
+	end
+end
+
+function RandomAbilitiesFromList(hero)
+	local trueCount = 0
+	local count = 0
+	for ability, state in pairs(hero.selectedSkills) do
+		count = count + 1
+	end
+	for ability, state in pairs(hero.selectedSkills) do
+		if state then
+			trueCount = trueCount + 1
+		elseif RollPercentage( math.ceil(100 / math.max(1, (count - 4 + trueCount)) ) ) then
+			trueCount = trueCount + 1
+			print("we did it reddit")
+			hero.selectedSkills[ability] = true
+		end
+		count = count - 1
+	end
+	print(trueCount)
+end
+
+function FindNextAbilityIndex(hero)
+	for i = 0, 23 do
+		if hero:GetAbilityByIndex(i) then
+			if string.match(hero:GetAbilityByIndex(i):GetName(), "empty") then
+				return i 
+			end
+		end
+	end
+end
+
+function FindNextTalentIndex(hero)
+	for i = 0, 23 do
+		if hero:GetAbilityByIndex(i) then
+			if string.match(hero:GetAbilityByIndex(i):GetName(), "generic_empty_talent") then
+				return i 
+			end
+		end
+	end
+end
+	
 function CHoldoutGameMode:Tell_threat(event)
 	--print ("show asura core count")
 	local pID = event.pID
@@ -1464,6 +1565,7 @@ end
 LinkLuaModifier( "lua_attribute_bonus_modifier", "lua_abilities/attribute/lua_attribute_bonus_modifier.lua", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier("modifier_summon_handler", "heroes/generic/modifier_summon_handler.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_stunned_generic", "heroes/generic/modifier_stunned_generic.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_dazed_generic", "heroes/generic/modifier_dazed_generic.lua", LUA_MODIFIER_MOTION_NONE)
 
 function CHoldoutGameMode:OnHeroPick (event)
  	local hero = EntIndexToHScript(event.heroindex)
@@ -1482,7 +1584,23 @@ function CHoldoutGameMode:OnHeroPick (event)
 			end
 		end
 		hero.damageDone = 0
-		hero.Ressurect = 0
+		hero.hasBeenInitialized = true
+		
+		CustomGameEventManager:Send_ServerToPlayer(hero:GetPlayerOwner(), "heroLoadIn", {}) -- wtf is this retarded shit stop force-setting my garbage
+		
+		if GameRules.SkillList[hero:GetUnitName()] then
+			local skillTable = {}
+			local i = 0
+			hero.selectedSkills = {}
+			for skill,_ in pairs(GameRules.SkillList[hero:GetUnitName()]) do
+				skillTable[i] = skill
+				hero.selectedSkills[skill] = false
+				i = i + 1
+			end
+			CustomNetTables:SetTableValue("skillList", hero:GetUnitName()..hero:GetPlayerID(), skillTable)
+			CustomGameEventManager:Send_ServerToPlayer(hero:GetPlayerOwner(), "checkNewHero", {})
+		end
+		
 		
 		local ID = hero:GetPlayerID()
 		if not ID then return end
@@ -1644,6 +1762,15 @@ end
 function CHoldoutGameMode:OnPlayerReconnected(keys)
 	local player = EntIndexToHScript(keys.player) 
 	if not player then return end
+	-- if not player:HasSelectedHero() then
+		-- local playerID = player:GetPlayerID()
+		-- player:MakeRandomHeroSelection()
+		-- local hero = CreateHeroForPlayer(PlayerResource:GetSelectedHeroName( playerID ), player)
+		-- hero:RespawnHero(false, true, false)
+		-- hero:SetPlayerID( playerID )
+		-- hero:SetOwner( player )
+		-- hero:SetControllableByPlayer(playerID, true)
+	-- end
 	if self._NewGamePlus == true then
 		CustomGameEventManager:Send_ServerToPlayer(player,"Display_Shop", {})
 	end
@@ -1651,6 +1778,18 @@ function CHoldoutGameMode:OnPlayerReconnected(keys)
 	if self._flPrepTimeEnd then
 		local timeLeft = self._flPrepTimeEnd - GameRules:GetGameTime()
 		CustomGameEventManager:Send_ServerToAllClients( "updateQuestPrepTime", { prepTime = math.floor(timeLeft + 0.5) } )
+	end
+	if GameRules.SkillList[hero:GetUnitName()] then
+		local skillTable = {}
+		local i = 0
+		hero.selectedSkills = {}
+		for skill,_ in pairs(GameRules.SkillList[hero:GetUnitName()]) do
+			skillTable[i] = skill
+			hero.selectedSkills[skill] = false
+			i = i + 1
+		end
+		CustomNetTables:SetTableValue("skillList", hero:GetUnitName()..hero:GetPlayerID(), skillTable)
+		CustomGameEventManager:Send_ServerToPlayer(hero:GetPlayerOwner(), "checkNewHero", {})
 	end
 	CustomGameEventManager:Send_ServerToAllClients( "updateQuestRound", { roundNumber = self._nRoundNumber, roundText = self._currentRound._szRoundQuestTitle } )
 	if player then
@@ -1669,7 +1808,6 @@ end
 -- When game state changes set state in script
 function CHoldoutGameMode:OnGameRulesStateChange()
 	local nNewState = GameRules:State_Get()
-	print(nNewState)
 	-- if nNewState >= DOTA_GAMERULES_STATE_INIT and not statCollection.doneInit then
 
         -- if PlayerResource:GetPlayerCount() >= 1 then
@@ -1679,12 +1817,43 @@ function CHoldoutGameMode:OnGameRulesStateChange()
         -- end
     -- end
 	if nNewState == DOTA_GAMERULES_STATE_CUSTOM_GAME_SETUP then
+	elseif nNewState == 3 then
+		Timers:CreateTimer(79,function()
+			if GameRules:State_Get() == 3 then
+				for nPlayerID = 0, DOTA_MAX_TEAM_PLAYERS-1 do
+					if not PlayerResource:HasSelectedHero( nPlayerID ) and PlayerResource:GetPlayer( nPlayerID ) then
+						local player = PlayerResource:GetPlayer( nPlayerID )
+						player:MakeRandomHeroSelection()
+					end
+				end
+			end
+		end)
 	elseif nNewState == 7 then
 		
 		-- Voting system handler
 		-- CHoldoutGameMode:InitializeRoundSystem()
+		for _,dummy_target in ipairs(Entities:FindAllByName("dummy_target")) do
+			local dummy = CreateUnitByName("npc_dummy_vision", dummy_target:GetAbsOrigin(), true, nil, nil, DOTA_TEAM_BADGUYS)
+			dummy:FindAbilityByName("hide_hero"):SetLevel(1)
+			if GameRules.gameDifficulty <= 2 then
+				local dummy = CreateUnitByName("npc_dummy_vision", dummy_target:GetAbsOrigin(), true, nil, nil, DOTA_TEAM_GOODGUYS)
+				dummy:FindAbilityByName("hide_hero"):SetLevel(1)
+			end
+		end
 		Timers:CreateTimer(0.1,function()
 			CustomGameEventManager:Send_ServerToAllClients( "updateQuestLife", { lives = GameRules._life, maxLives = GameRules._maxLives } )
+			CustomGameEventManager:Send_ServerToAllClients("heroLoadIn", {})
+			-- for nPlayerID = 0, DOTA_MAX_TEAM_PLAYERS-1 do
+				-- if not PlayerResource:HasSelectedHero( nPlayerID ) and PlayerResource:GetPlayer( nPlayerID ) then
+					-- local player = PlayerResource:GetPlayer( nPlayerID )
+					-- player:MakeRandomHeroSelection()
+					-- CreateHeroForPlayer(PlayerResource:GetSelectedHeroName( nPlayerID ), player)
+					-- local hero = PlayerResource:ReplaceHeroWith(nPlayerID, PlayerResource:GetSelectedHeroName( nPlayerID ), 650, 0)
+					-- hero:SetPlayerID( nPlayerID )
+					-- hero:SetOwner( player )
+					-- hero:SetControllableByPlayer(nPlayerID, true)
+				-- end
+			-- end
 		end)
 	elseif nNewState == 8 then
 		CustomGameEventManager:Send_ServerToAllClients( "updateQuestLife", { lives = GameRules._life, maxLives = GameRules._maxLives } )
@@ -1869,8 +2038,6 @@ function CHoldoutGameMode:CheckHP()
 		if unit:GetOrigin().z < 0 or  unit:GetOrigin().z > 500 then
 			local currOrigin = unit:GetOrigin()
 			FindClearSpaceForUnit(unit, Vector(currOrigin.x, currOrigin.y, 0), true)
-		elseif unit:GetOrigin().x < -3657 or unit:GetOrigin().y < -3908 or unit:GetOrigin().x > 3150 or unit:GetOrigin().y > 4668 then
-			FindClearSpaceForUnit(unit, Vector(0, 0, 0), true)
 		end
 		if unit:GetHealth() <= 0 and not unit:IsRealHero() and not dontdelete[unit:GetClassname()] and not unit:IsNull() then
 			unit:SetHealth(2)
@@ -1947,6 +2114,17 @@ function CHoldoutGameMode:OnThink()
 		elseif self._currentRound ~= nil then
 			self._currentRound:Think()
 			if self._currentRound:IsFinished() then
+				if self._nRoundNumber == 1 then
+					local heroes = HeroList:GetAllHeroes()
+					for _, hero in ipairs(heroes) do
+						if not hero.HasBeenInitialized and hero.selectedSkills then
+							RandomAbilitiesFromList(hero)
+							LoadHeroSkills(hero)
+							hero.HasBeenInitialized = true
+							CustomGameEventManager:Send_ServerToPlayer(hero:GetPlayerOwner(), "finishedAbilityQuery", {})
+						end
+					end
+				end
 				self:SetHealthMarkers()
 				self._currentRound:End()
 				self._currentRound = nil
@@ -2494,9 +2672,9 @@ function CHoldoutGameMode:OnEntityKilled( event )
 				end)
 			end
 		end
-		if GetMapName() == "epic_boss_fight_challenger" then
-			check_tombstone = false
-		end
+		-- if GetMapName() == "epic_boss_fight_hardcore" then
+			-- check_tombstone = false
+		-- end
 		if check_tombstone == true and killedUnit.NoTombStone ~= true then
 			local newItem = CreateItem( "item_tombstone", killedUnit, killedUnit )
 			newItem:SetPurchaseTime( 0 )

@@ -140,18 +140,8 @@ function CHoldoutGameRound:Begin()
 	-- ELITE HANDLING
 	self._nElitesToSpawn = 0
 	self._EliteAbilities = {}
-	local elitemod = 0
-	local elitePct = 0
-	if GetMapName() == "epic_boss_fight_impossible" then
-		elitemod = 1
-		elitePct = 10
-	elseif GetMapName() == "epic_boss_fight_challenger" then
-		elitemod = 2
-		elitePct = 15
-	end
-	elitemod = elitemod * GameRules.gameDifficulty
-	epicMod = 1
-	if GameRules.gameDifficulty == 5 then epicMod = 2 end
+	local elitePct = 15
+
 	for i=1, self._nCoreUnitsTotal do
 		if RollPercentage( elitePct ) and self._nRoundNumber > 1 then
 			self._nElitesToSpawn = self._nElitesToSpawn + 1
@@ -186,7 +176,7 @@ function CHoldoutGameRound:OnHoldoutReviveComplete( event )
 	local castingHero = EntIndexToHScript( event.caster )
 	
 	if castingHero then
-		castingHero.Ressurect = castingHero.Ressurect + 1
+		castingHero.Resurrections = (castingHero.Resurrections or 0) + 1
 		local ngmodifier = 0
 		if GameRules._NewGamePlus == true then ngmodifier = 37 end
 		local totalgold = castingHero:GetGold() + (self._nRoundNumber+ngmodifier)*5
@@ -293,7 +283,7 @@ function CHoldoutGameRound:OnNPCSpawned( event )
 		end
 		local ability = spawnedUnit:FindAbilityByName("true_sight_boss")
 		if ability == nil then
-			if GetMapName() == "epic_boss_fight_impossible" or GameRules.gameDifficulty > 2 then spawnedUnit:AddAbility('true_sight_boss') end
+			spawnedUnit:AddAbility('true_sight_boss')
 		end
 		spawnedUnit:SetDeathXP( 0 )
 		spawnedUnit.unitName = spawnedUnit:GetUnitName()

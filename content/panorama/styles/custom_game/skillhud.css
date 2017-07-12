@@ -1,0 +1,97 @@
+.SkillSelectorRoot
+{
+	width: 50%;
+	height: 40%;
+	vertical-align: center;
+	horizontal-align: center;	
+	padding-top: 3px;
+	padding-bottom: 50px;
+}
+
+#SkillSelectorMain
+{
+	width: 100%;
+	height: 100%;
+	visibility: collapse;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #191919FF ), color-stop( .1, #25282aFF), color-stop( .9, #25282aFF), to( #191919FF ) );
+	border: 2px solid #111111FF;
+	border-radius: 5px 5px;
+	flow-children: down;
+}
+
+#SkillSelectorText
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #191919FF ), color-stop( .1, #25282aFF), color-stop( .9, #25282aFF), to( #191919FF ) );
+	border: 2px solid #111111FF;
+	border-radius: 5px 5px;
+	flow-children: down;
+}
+
+#SkillSelectorContainer
+{
+	horizontal-align: middle;
+	flow-children: right-wrap;
+}
+
+.ConfirmButton
+{
+	vertical-align: bottom;
+	horizontal-align: center;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #32CD32FF ), color-stop( .1, #006400FF), color-stop( .9, #006400FF), to( #32CD32FF ) );
+	border: 2px solid #006400FF;
+	border-radius: 5px 5px;
+	padding: 6px;
+	margin-bottom: 20px;
+}
+
+.SkillSelectorHeader
+{
+	color: #ffd700;
+	font-weight: thin;
+	font-size: 24px;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	text-align: center;
+	horizontal-align: center;
+	text-shadow: 1px 1px 2px 2 #000000;
+	padding: 6px;
+	padding-left: 10px;
+	padding-right: 10px;
+	font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
+}
+
+.ConfirmText
+{
+	color: #FFFFFF;
+	font-weight: thin;
+	font-size: 24px;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	text-align: center;
+	horizontal-align: center;
+	text-shadow: 1px 1px 2px 2 #000000;
+	padding: 6px;
+	padding-left: 10px;
+	padding-right: 10px;
+	font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
+}
+
+.Hidden
+{
+	visibility: collapse;
+    border: 3px solid #000000;
+    box-shadow: #33333377 -4px -4px 8px 8px;
+}
+
+.AbilityIcon
+{
+	width: 92px;
+	height: 92px;
+	padding: 5px;
+	margin: 10px;
+}
+
+.AbilitySelected
+{
+	border: 3px solid #ffd70066;
+}

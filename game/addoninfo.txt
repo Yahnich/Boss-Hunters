@@ -1,22 +1,18 @@
 "AddonInfo"
 {
-	maps			"epic_boss_fight_hard epic_boss_fight_impossible epic_boss_fight_boss_master epic_boss_fight_challenger"
+	maps			"epic_boss_fight_casual epic_boss_fight_hardcore"
 	"IsPlayable"	"1"
-	"epic_boss_fight_hard"
+	"epic_boss_fight_casual"
 	{
-					"MaxPlayers"                    "7"
+		"MaxPlayers"                    "7"
+		"Lives"							"7"
+		"Difficulty"					"2"
 	}
-	"epic_boss_fight_impossible"
+	"epic_boss_fight_hardcore"
 	{
-					"MaxPlayers"                    "5"
-	}
-	"epic_boss_fight_challenger"
-	{
-					"MaxPlayers"                    "5"
-	}
-	"epic_boss_fight_boss_master"
-	{
-					"MaxPlayers"                    "8"
+		"MaxPlayers"                    "5"
+		"Lives"							"3"
+		"Difficulty"					"4"
 	}
 }
 

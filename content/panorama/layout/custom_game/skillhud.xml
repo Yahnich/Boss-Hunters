@@ -1,0 +1,29 @@
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="file://{resources}/styles/custom_game/skillhud.css" />
+	</styles> 
+	<scripts>
+		<include src="file://{resources}/scripts/custom_game/skillhud.js" />
+	</scripts>
+	
+	<snippets>
+		<snippet name="Ability">
+			<Button class="AbilityIcon" hittestchildren="true">
+				<DOTAAbilityImage class="AbilityStyle" abilityname="xxxxabilityNamexxx" />
+			</Button>
+        </snippet>
+	</snippets>
+	<Panel class="SkillSelectorRoot" hittest="false">
+		<Panel id="SkillSelectorMain" hittest="false">
+			<Panel id="SkillSelectorText" hittest="false">
+				<Label class="SkillSelectorHeader" text="You are currently playing an Epic Boss Fight 2.0 Hero! These heroes will have 8 skills to pick from. You can pick 4 out of 8."/>
+			</Panel>
+			<Panel id="SkillSelectorContainer" hittest="false">
+			</Panel>
+			<Button class="ConfirmButton" hittestchildren="true" onactivate="SendQueriedAbilities()">
+				<Label class="ConfirmText" text="Confirm"/>
+			</Button>
+		</Panel>
+	</Panel>
+</root>

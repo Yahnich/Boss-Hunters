@@ -48,7 +48,7 @@ function modifier_puppeteer_fleshcraft_heal:GetEffectName()
 	return "particles/items2_fx/urn_of_shadows_heal.vpcf"
 end
 
-function modifier_puppeteer_fleshcraft_heal:BonusStatusEffectDuration_Constant()
+function modifier_puppeteer_fleshcraft_heal:BonusDebuffDuration_Constant()
 	return self.debuff_decrease
 end
 
@@ -75,6 +75,6 @@ function modifier_puppeteer_fleshcraft_damage:GetEffectName()
 	return "particles/items2_fx/urn_of_shadows_damage.vpcf"
 end
 
-function modifier_puppeteer_fleshcraft_damage:BonusStatusEffectDuration_Constant()
+function modifier_puppeteer_fleshcraft_damage:BonusDebuffDuration_Constant()
 	return -self.debuff_increase
 end

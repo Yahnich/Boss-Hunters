@@ -163,7 +163,7 @@ function modifier_sylph_mistral_breeze_talent_buff:GetModifierMoveSpeedBonus_Per
 end
 
 function modifier_sylph_mistral_breeze_talent_buff:GetEffectName()
-	return "particles/units/heroes/hero_windrunner/windrunner_windrun.vpcf"
+	return "particles/econ/items/windrunner/windrunner_cape_sparrowhawk/windrunner_windrun_sparrowhawk.vpcf"
 end
 
 LinkLuaModifier( "modifier_sylph_mistral_breeze_talent_1", "heroes/sylph/sylph_mistral_breeze.lua", LUA_MODIFIER_MOTION_NONE )

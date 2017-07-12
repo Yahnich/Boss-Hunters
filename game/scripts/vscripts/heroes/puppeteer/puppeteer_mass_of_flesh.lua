@@ -199,7 +199,8 @@ function modifier_wall_of_flesh_segment_handler:CheckState()
 		[MODIFIER_STATE_INVULNERABLE] = true,
 		[MODIFIER_STATE_NOT_ON_MINIMAP] = true,
 		[MODIFIER_STATE_UNSELECTABLE] = true,
-		[MODIFIER_STATE_NO_HEALTH_BAR] = true
+		[MODIFIER_STATE_NO_HEALTH_BAR] = true,
+		[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
 	}
 	return state
 end

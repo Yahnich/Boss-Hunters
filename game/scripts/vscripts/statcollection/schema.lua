@@ -75,7 +75,7 @@ function BuildPlayersArray()
                     td = FindPercentualDamage(hero), -- Map
                     pd = hero:GetDeaths(), -- Deaths
                     hp = FindHPS(hero), -- Healing
-                    pr = hero.Ressurect, -- Ressurections
+                    pr = hero.Resurrections or 0, -- Revived Teammates
 
                     --inventory :
                     i1 = GetItemSlot(hero, 1),
@@ -84,12 +84,23 @@ function BuildPlayersArray()
                     i4 = GetItemSlot(hero, 4),
                     i5 = GetItemSlot(hero, 5),
                     i6 = GetItemSlot(hero, 6),
+					
+					-- ability picking
+					a1 = FindAbilityNameInSlot(hero, 0),
+					a2 = FindAbilityNameInSlot(hero, 1),
+					a3 = FindAbilityNameInSlot(hero, 2),
+					a4 = FindAbilityNameInSlot(hero, 5),
                 })
             end
         end
     end
 
     return players
+end
+
+function FindAbilityNameInSlot(hero, index)
+	if hero:GetAbilityByIndex(index) then return hero:GetAbilityByIndex(index):GetName() end
+	return ""
 end
 
 function FindHPS(hero)

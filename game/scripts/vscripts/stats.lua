@@ -142,13 +142,13 @@ LinkLuaModifier("modifier_stat_adjustment_cdr_per_int", "stats.lua", 0)
 
 function modifier_stat_adjustment_cdr_per_int:DeclareFunctions()
     local funcs = {
-        MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE_STACKING ,
+        MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE ,
     }
 
     return funcs
 end
 
-function modifier_stat_adjustment_cdr_per_int:GetModifierPercentageCooldownStacking( params )
+function modifier_stat_adjustment_cdr_per_int:GetModifierPercentageCooldown( params )
     return self:GetStackCount()
 end
 

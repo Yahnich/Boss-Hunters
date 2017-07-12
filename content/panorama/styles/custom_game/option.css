@@ -279,41 +279,7 @@ margin-right: 300px;
 	vertical-align: middle;
 	color: #FFFFFF;
  }
- 
-.NotificationsRoot
-{
-	height: 100%;
-	width: 100%;
-}
-.NotificationsGeneric
-{
-	height: 100%;
-	width: 100%;
-	flow-children: down;
-}
 
-.NotificationsFadeIn
-{
-
-	animation-name: FadeInText;
-	animation-duration: 0.5s;
-}
-
-.NotificationsFadeOut
-{
-	animation-name: FadeOutText;
-	animation-duration: 0.5s;
-}
-
-#NotificationCenter
-{
-	vertical-align: bottom;
-	visibility: collapse;
-	horizontal-align: middle;
-	height: 50px;
-	width: 50%;
-	margin-bottom: 32%;
-}
 
 #QuestCenter
 {
@@ -325,6 +291,17 @@ margin-right: 300px;
 	margin-left: 50px;
 }
 
+.QuestsRoot
+{
+	height: 100%;
+	width: 100%;
+}
+.QuestsContainer
+{
+	height: 100%;
+	width: 100%;
+	flow-children: down;
+}
 
 @keyframes 'FadeInText'
 {

@@ -26,10 +26,6 @@ function ShadowRaze(keys)
 		ApplyDamage({victim = unit, attacker = caster, damage = damage, damage_type = ability:GetAbilityDamageType(), ability = ability})
 		ability:ApplyDataDrivenModifier(caster, unit, keys.combo, {duration = ability:GetTalentSpecialValueFor("combo_time")})
 	end
-	if caster:FindAbilityByName("special_bonus_unique_nevermore_2"):GetLevel() > 0 then
-		ability:EndCooldown()
-		ability:StartCooldown( (ability:GetCooldown(-1) - caster:FindAbilityByName("special_bonus_unique_nevermore_2"):GetSpecialValueFor("value") ) * get_octarine_multiplier(caster))
-	end
 end
 
 function LevelUpAbility( keys )

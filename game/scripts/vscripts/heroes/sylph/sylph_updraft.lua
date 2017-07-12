@@ -19,7 +19,7 @@ modifier_sylph_updraft_lift = modifier_sylph_updraft_lift or class({})
 
 if IsServer() then
 	function modifier_sylph_updraft_lift:OnRemoved()
-		self:GetParent():AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_sylph_updraft_smash", {duration = self:GetAbility():GetSpecialValueFor("fall_duration")})
+		self:GetParent():AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_sylph_updraft_smash", {})
 		self:GetParent():SetAngularVelocity(0, 0, 0)
 	end
 
@@ -91,9 +91,10 @@ function modifier_sylph_updraft_smash:OnDestroy()
 end
 
 function modifier_sylph_updraft_smash:DoControlledMotion()
-	local parent = self.parent
-	if (self.parent:GetAbsOrigin() - self.targetPosition):Length2D() > 1 and self:GetParent():IsAlive() and not self:GetParent():IsNull() then
+	local parent = self:GetParent()
+	if self.fall_distance  > 0 and self:GetParent():IsAlive() and not self:GetParent():IsNull() then
 		parent:SetAbsOrigin(parent:GetAbsOrigin() + self.direction * self.fall_speed*FrameTime())
+		self.fall_distance = self.fall_distance - self.fall_speed*FrameTime()
 	else
 		FindClearSpaceForUnit(parent, parent:GetAbsOrigin(), true)
 		self:Destroy()

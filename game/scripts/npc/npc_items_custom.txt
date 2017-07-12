@@ -1,138 +1,5 @@
 "DOTAAbilities"
 {
-	"item_stat_modifier"
-	{
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"BaseClass"						"item_datadriven"
-
-		"Modifiers"
-		{
-			"modifier_ranged_bonus_constant"
-			{
-				"IsHidden"			"1"  
-				"AllowIllusionDuplicate"	"1"
-				"Attributes"		"MODIFIER_ATTRIBUTE_PERMANENT"
-				"Properties"
-				{
-					
-					"MODIFIER_PROPERTY_ATTACK_RANGE_BONUS"	"1"
-				}
-			}
-			"modifier_melee_bonus_constant"
-			{
-				"IsHidden"			"1"  
-				"AllowIllusionDuplicate"	"1"
-				"Attributes"		"MODIFIER_ATTRIBUTE_PERMANENT"
-				"Properties"
-				{
-					
-					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"1"
-				}
-			}
-			"modifier_health_bonus"
-			{
-				"IsHidden"			"1"  
-				"AllowIllusionDuplicate"	"1"
-				"Attributes"		"MODIFIER_ATTRIBUTE_PERMANENT"
-				"Properties"
-				{
-					
-					"MODIFIER_PROPERTY_HEALTH_BONUS"	"-1"
-				}
-			}
-			"modifier_magic_resistance_bonus"
-			{
-				"IsHidden"			"1"  
-				"AllowIllusionDuplicate"	"1"
-				"Attributes"		"MODIFIER_ATTRIBUTE_PERMANENT"
-				"Properties"
-				{
-					
-					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS"	"1"
-				}
-			}	
-			"modifier_health_regen_constant"
-			{
-				"IsHidden"			"1"  
-				"AllowIllusionDuplicate"	"1"
-				"Attributes"		"MODIFIER_ATTRIBUTE_PERMANENT"
-				"Properties"
-				{
-					
-					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"	"-0.01"
-				}
-			}
-
-			"modifier_mana_bonus"
-			{
-				"IsHidden"			"1"  
-				"AllowIllusionDuplicate"	"1"
-				"Attributes"		"MODIFIER_ATTRIBUTE_PERMANENT"
-				"Properties"
-				{
-					
-					"MODIFIER_PROPERTY_MANA_BONUS"	"-1"
-				}
-			}
-
-			"modifier_base_mana_regen"
-			{
-				"IsHidden"			"1"  
-				"AllowIllusionDuplicate"	"1"
-				"Attributes"		"MODIFIER_ATTRIBUTE_PERMANENT"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_BASE_MANA_REGEN"	"-0.01"
-				}
-			}
-
-			"modifier_physical_armor_bonus"
-			{
-				"IsHidden"			"1"
-				"AllowIllusionDuplicate"	"1"
-				"Attributes"		"MODIFIER_ATTRIBUTE_PERMANENT"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"-1"
-				}
-			}
-
-			"modifier_attackspeed_bonus_constant"
-			{
-				"IsHidden"			"1"  
-				"AllowIllusionDuplicate"	"1"
-				"Attributes"		"MODIFIER_ATTRIBUTE_PERMANENT"
-				"Properties"
-				{
-					
-					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"-1"
-				}
-			}
-			"modifier_base_damage"
-			{
-				"IsHidden"			"1"
-				"AllowIllusionDuplicate"	"1"				
-				"Attributes"		"MODIFIER_ATTRIBUTE_PERMANENT"
-				"Properties"
-				{
-					
-					"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"	"1"
-				}
-			}
-			"modifier_cooldown_reduction"
-			{
-				"IsHidden"			"1"
-				"AllowIllusionDuplicate"	"1"				
-				"Attributes"		"MODIFIER_ATTRIBUTE_PERMANENT"
-				"Properties"
-				{
-					
-					"MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE"	"1"
-				}
-			}
-		}
-	}
-
 	"item_exitmap_modifier"
 		{
 			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
@@ -3317,7 +3184,7 @@
 			"10"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_armor_debuff"		"-35"
+				"bonus_armor_debuff"		"-20"
 			}
 			"11"
 			{
@@ -7101,7 +6968,7 @@
 			"12"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_armor_debuff"		"-400"
+				"bonus_armor_debuff"		"-100"
 			}
 			"13"
 			{
@@ -12501,7 +12368,7 @@
 			"12"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_armor_debuff"		"-1000"
+				"bonus_armor_debuff"		"-250"
 			}
 			"13"
 			{

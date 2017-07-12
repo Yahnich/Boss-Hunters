@@ -27,6 +27,7 @@ end
 
 function OnWaterExit(trigger)
     local ent = trigger.activator
+	print("shit")
     if not ent then return end
     ent.InWater = false
     return

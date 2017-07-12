@@ -5,6 +5,7 @@
     "New_Game_plus",
     "Asura_core",
 	"hero_selection",
+	"skillList",
 	"syncing_purposes",
   ]
 }

@@ -3571,27 +3571,27 @@
 			"04"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"illusion_duration"			"4.0"
+				"illusion_duration"			"8.0"
 			}
 			"05"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"illusion_damage_out_pct"	"100"
+				"illusion_damage_out_pct"	"50"
 			}
 			"06"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"tooltip_illusion_damage"	"100"
+				"tooltip_illusion_damage"	"50"
 			}
 			"07"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"illusion_damage_in_pct"	"100"
+				"illusion_damage_in_pct"	"200"
 			}
 			"08"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"tooltip_illusion_total_damage_in_pct"	"100"
+				"tooltip_illusion_total_damage_in_pct"	"200"
 			}			
 			"09"
 			{
@@ -3601,12 +3601,12 @@
 			"10"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"scepter_radius"		"400"
+				"scepter_radius"			"400"
 			}
 			"11"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"scepter_jumps"		"5"
+				"scepter_jumps"				"5"
 			}
 			"12"
 			{
@@ -3684,7 +3684,7 @@
 			"08"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"illusion_duration"			"4"
+				"illusion_duration"			"8"
 			}
 		}
 	}
@@ -3709,32 +3709,32 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"max_illusions"			"2 3 4 5 6 7 8"
+				"max_illusions"			"1 1 2 2 3 3 4"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"proc_chance_pct"		"5 10 15 20 25 30 35"
+				"proc_chance_pct"		"20"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"illusion_proc_chance_pct"		"4 6 8 10 12 14 16"
+				"illusion_proc_chance_pct"		"5"
 			}			
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"illusion_duration"			"6"
+				"illusion_duration"			"12"
 			}
 			"05"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"illusion_damage_out_pct"	"0"
+				"illusion_damage_out_pct"	"100"
 			}
 			"06"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"tooltip_illusion_damage"	"100"
+				"tooltip_illusion_damage"	"200"
 			}
 			"07"
 			{
@@ -3749,7 +3749,7 @@
 			"09"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"illusion_from_illusion_duration"	"4"
+				"illusion_from_illusion_duration"	"8"
 			}
 		}
 	}
@@ -3768,7 +3768,7 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"16 12 8 4 3 2 1"
+		"AbilityCooldown"				"16 14 12 10 8 6 4"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -3777,17 +3777,27 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"min_distance"		"300"
+				"min_distance"				"300"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"max_distance"	"600 700 800 900"
+				"max_distance"				"1200"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"bonus_speed"		"1000"
+				"bonus_speed"				"1000"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_agility"				"100 250 500 1000 1500 2000 4000"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"agility_duration"			"8"
 			}
 		}
 	}
@@ -28900,6 +28910,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"				"1"
+		"AbilitySound"					"Hero_Phoenix.IcarusDive.Cast"
 		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
 
@@ -28972,7 +28983,6 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"5624"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
-		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
@@ -29043,7 +29053,8 @@
 			"07"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"damage_per_second"				"750 1500 3000 6000 9000 12000 24000"
+				"damage_per_second"				"1000 2000 4000 8000 12000 24000 48000"
+				"LinkedSpecialBonus"			"special_bonus_unique_phoenix_3"
 			}
 			"08"
 			{
@@ -29179,24 +29190,13 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"5628"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"MaxLevel"						"1"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
-	}
-
-	//=================================================================================================================
-	// Doom Bringer: Sun Ray Toggle Move Empty
-	//=================================================================================================================
-	"phoenix_sun_ray_toggle_move_empty"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"5629"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-		"MaxLevel"						"0"
-	}
+	}	
 
 	//=================================================================================================================
 	// Phoenix: Supernova
@@ -42494,6 +42494,29 @@
 			{
 				"var_type"					"FIELD_INTEGER"
 				"value"				"1"
+			}
+		}
+	}
+	
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_phoenix_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6401"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"4000"
 			}
 		}
 	}

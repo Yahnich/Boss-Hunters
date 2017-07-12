@@ -50,7 +50,7 @@ function modifier_gladiatrix_fearless_assault_passive:OnAttackLanded(params)
 	if IsServer() then
 		if params.attacker == self:GetParent() or params.target == self:GetParent() then
 			if params.attacker == self:GetParent() and self:GetParent():HasModifier("modifier_gladiatrix_fearless_assault_buff") then
-				self:GetParent():Lifesteal(self.lifesteal, params.damage, params.target, DAMAGE_TYPE_PHYSICAL, true)
+				self:GetParent():Lifesteal(self:GetAbility(), self.lifesteal, params.damage, params.target, DAMAGE_TYPE_PHYSICAL, DOTA_LIFESTEAL_SOURCE_NONE)
 				self:GetParent():RemoveModifierByName("modifier_gladiatrix_fearless_assault_buff")
 			elseif self:GetAbility():IsCooldownReady() and RollPercentage(self.procChance) then
 				self:GetAbility():UseResources(false,false,true)

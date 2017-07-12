@@ -56,7 +56,7 @@ function meteor_on_spell_start(keys)
             end
 
             local fire_aura_duration = 5
-            if GetMapName() == "epic_boss_fight_impossible" or GetMapName() == "epic_boss_fight_challenger" or GetMapName() == "epic_boss_fight_hard" then
+            if GameRules.gameDifficulty > 2 then
                 fire_aura_duration = 7
             end
             for _,unit in pairs ( Entities:FindAllByName( "npc_dota_hero*")) do
@@ -131,7 +131,7 @@ function money_and_exp_gain(keys)
             local caster = keys.caster
             for _,unit in pairs ( Entities:FindAllByName( "npc_dota_hero*")) do
                 if unit:GetTeamNumber() == DOTA_TEAM_GOODGUYS then
-                    if GetMapName() == "epic_boss_fight_impossible" or GetMapName() == "epic_boss_fight_challenger" then
+                    if GameRules.gameDifficulty > 2 then
                         unit:AddExperience (200000,false,false)
                         if GameRules._NewGamePlus == true then
                             unit:AddExperience (2500000,false,false)
@@ -148,7 +148,7 @@ function money_and_exp_gain(keys)
             local gold = 0
             local PlayerNumber = PlayerResource:GetTeamPlayerCount() 
             local GoldMultiplier = (((PlayerNumber)+0.56)/1.8)*0.17
-            if GetMapName() == "epic_boss_fight_impossible" or GetMapName() == "epic_boss_fight_challenger" then
+            if GameRules.gameDifficulty > 2 then
                 gold = 4000 * GoldMultiplier
             else
                 gold = 8000 * GoldMultiplier

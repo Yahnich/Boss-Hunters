@@ -9245,8 +9245,8 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"1600"		// Range of vision during day light.
-		"VisionNighttimeRange"		"1600"		// Range of vision at night time.
+		"VisionDaytimeRange"		"4500"		// Range of vision during day light.
+		"VisionNighttimeRange"		"4500"		// Range of vision at night time.
 	}	
 	
 	"npc_dota_sentry_wards"

@@ -99,7 +99,7 @@ function spawn_unit_arround( caster , unitname , radius , unit_number ,playerID,
 						end
 					end)
 				end
-				if string.match(unit:GetUnitName(), "npc_dota_boss35") and (GameRules.gameDifficulty < 3 or GetMapName() == "epic_boss_fight_hard") then
+				if string.match(unit:GetUnitName(), "npc_dota_boss35") and (GameRules.gameDifficulty <= 2) then
 					unit:RemoveAbility("boss_hell_tempest")
 				end
 			end,
@@ -141,9 +141,9 @@ function evil_core_summon(keys)
     end
 	if caster.dead then return end
     local sfx=""
-        if GetMapName() == "epic_boss_fight_impossible" then 
+        if GameRules.gameDifficulty > 2 then 
             sfx="_vh" 
-        elseif GetMapName() == "epic_boss_fight_hard" and GameRules.gameDifficulty > 2 then
+        elseif GameRules.gameDifficulty <= 2 then
             sfx="_h"  
         end
 
@@ -211,11 +211,11 @@ function boss_evil_core_spawn(keys)
         local sfx=""
         Timers:CreateTimer(0.06,function()
             caster:SetHealth(3500)
-            if GetMapName() == "epic_boss_fight_impossible" and GameRules.gameDifficulty > 2 then 
+            if GameRules.gameDifficulty > 2 then 
                 sfx="_vh" 
                 caster:SetMaxHealth(5000)
                 caster:SetHealth(5000)
-            elseif ((GetMapName() == "epic_boss_fight_hard" or GetMapName() == "epic_boss_fight_boss_master") and GameRules.gameDifficulty < 2) or (GetMapName() == "epic_boss_fight_impossible" and GameRules.gameDifficulty < 2) then
+            elseif GameRules.gameDifficulty <= 2 then
                 sfx="_h"  
                 caster:SetMaxHealth(4250)
                 caster:SetHealth(4250)
@@ -273,7 +273,7 @@ function boss_evil_core_take_damage(keys)
     caster.failed_attack = caster.failed_attack or 0
     if caster.weakness == true then
         local increasedDamage = math.floor((5+caster.UnitSpawned) * ((base + 1 - PlayerResource:GetPlayerCountForTeam(DOTA_TEAM_GOODGUYS))/base))
-		caster:SetHealth( caster:GetHealth() - 5+caster.UnitSpawned - increasedDamage )
+		caster:SetHealth( caster:GetHealth() - (5+caster.UnitSpawned) - increasedDamage )
         caster.failed_attack = 0
     else
         caster.failed_attack = caster.failed_attack + 1
@@ -471,7 +471,7 @@ function boss_death_time( keys )
         caster:GetTeamNumber(), origin, caster, FIND_UNITS_EVERYWHERE, targetTeam, targetType, targetFlag, FIND_CLOSEST, false)
     for _,unit in pairs( units ) do
         local particle = ParticleManager:CreateParticle("particles/generic_aoe_persistent_circle_1/death_timer_glow_rev.vpcf",PATTACH_POINT_FOLLOW,unit)
-        if GetMapName() == "epic_boss_fight_impossible" or GetMapName() == "epic_boss_fight_boss_master" then timer = 5.0 else timer = 6.0 end
+        if GameRules.gameDifficulty > 2 then timer = 5.0 else timer = 6.0 end
         ability:ApplyDataDrivenModifier( caster, unit, "target_warning", {duration = timer} )
 		blink_ability:StartCooldown(timer+1)
         Timers:CreateTimer(timer,function()
@@ -496,7 +496,7 @@ function Chronosphere( keys )
 
     -- Special Variables
     local duration = 5
-    if GetMapName() == "epic_boss_fight_impossible" or GetMapName() == "epic_boss_fight_boss_master" then duration = 5.0 else duration = 6.0 end
+    if GameRules.gameDifficulty > 2 then duration = 5.0 else duration = 6.0 end
 
     -- Dummy
     local dummy_modifier = keys.dummy_aura
@@ -588,8 +588,8 @@ function projectile_death_orbs( event )
         Ability = ability,
         vSpawnOrigin = origin,
         fDistance = 3000,
-        fStartRadius = 75,
-        fEndRadius = 75,
+        fStartRadius = 50,
+        fEndRadius = 50,
         Source = caster,
         bHasFrontalCone = false,
         iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY,
@@ -631,9 +631,7 @@ function projectile_death_orbs_hit( event )
             target.NoTombStone = false
         end)
     else 
-        if (GetMapName() == "epic_boss_fight_impossible" or GetMapName() == "epic_boss_fight_boss_master" ) and GameRules.gameDifficulty > 1 then
-            target:SetHealth(target:GetHealth()*0.2 + 1)
-        elseif (GetMapName() == "epic_boss_fight_hard" and GameRules.gameDifficulty > 2) or (GetMapName() == "epic_boss_fight_impossible" and GameRules.gameDifficulty < 1) then
+        if GameRules.gameDifficulty <= 2 then
             target:SetHealth(target:GetHealth()*0.3 + 1)
         else 
             target:SetHealth(target:GetHealth()*0.5 + 1)
@@ -673,7 +671,7 @@ function hell_tempest_charge( event )
             if caster.charge < caster:GetMaxMana() then
                 caster.charge = caster.charge + 0.25
                 caster:SetMana(math.ceil(caster.charge)) 
-                if GetMapName() == "epic_boss_fight_impossible" or GetMapName() == "epic_boss_fight_boss_master" then
+                if GameRules.gameDifficulty > 2 then
                     return 0.03
                 else
                     return 0.1
@@ -792,15 +790,15 @@ function hell_tempest_boss( keys )
     caster.charge = 0
     local casterPoint = caster:GetAbsOrigin()
     local delay = 0
-	if GetMapName() == "epic_boss_fight_impossible" then
+	if GameRules.gameDifficulty > 2 then
 		delay = 5
-	elseif GetMapName() == "epic_boss_fight_hard" and GameRules.gameDifficulty < 3 then
+	elseif GameRules.gameDifficulty <= 2 then
 		delay = 6
 	else
 		delay = 7
 	end
     local messageinfo = {
-    message = "The boss is casting Hell Tempest , reach the water !",
+    message = "The boss is casting Hell Tempest, get in the water!",
     duration = 2
     }
     if caster.warning == nil then messageinfo.duration = 5 caster.warning = true end
@@ -813,8 +811,8 @@ function hell_tempest_boss( keys )
             EffectName = "particles/fire_tornado.vpcf",
             vSpawnOrigin = casterPoint - caster:GetForwardVector()*4000,
             fDistance = 5000,
-            fStartRadius = 1500,
-            fEndRadius = 1500,
+            fStartRadius = 250,
+            fEndRadius = 250,
             fExpireTime = GameRules:GetGameTime() + 10,
             Source = caster,
             bHasFrontalCone = true,
@@ -850,50 +848,21 @@ function hell_tempest_boss( keys )
     end)
 end
 
-
-
-
-
-
 function doom_bringer_boss( event )
     local target = event.target
     local caster = event.caster
     local time = GameRules:GetGameTime()
 	event.ability:ApplyDataDrivenModifier(caster, target, "fuckingdoomed", {duration = 10})
-    if GetMapName() == "epic_boss_fight_impossible" or GetMapName() == "epic_boss_fight_boss_master" then
-        Timers:CreateTimer(0.1,function() 
-            if target:GetHealth() > target:GetMaxHealth()*0.10 + 0.0125*GameRules.gameDifficulty and GameRules:GetGameTime() <= time + 10 then
-                target:SetHealth(target:GetHealth()*(0.95 - 0.025*GameRules.gameDifficulty))
-                return 0.5
-            else
-                if GameRules:GetGameTime() <= time + 10 and caster:IsAlive() then
-                    target:KillTarget()
-                end
-            end
-        end)
-    elseif GetMapName() == "epic_boss_fight_hard" then
-        Timers:CreateTimer(0.1,function() 
-            if target:GetHealth() > target:GetMaxHealth()*0.05  + 0.0125*GameRules.gameDifficulty and GameRules:GetGameTime() <= time + 10 then
-                target:SetHealth(target:GetHealth()*(0.98 - 0.01*GameRules.gameDifficulty))
-                return 0.5
-            else
-                if GameRules:GetGameTime() <= time + 10 then
-                    target:KillTarget()
-                end
-            end
-        end)
-    else
-        Timers:CreateTimer(0.1,function() 
-            if target:GetHealth() > target:GetMaxHealth()*0.01 and GameRules:GetGameTime() <= time + 10 then
-                target:SetHealth(target:GetHealth()*(0.95))
-                return 0.5
-            else
-                if GameRules:GetGameTime() <= time + 10 then
-                    target:KillTarget()
-                end
-            end
-        end)
-    end
+	Timers:CreateTimer(0.1,function() 
+		if target:GetHealth() > target:GetMaxHealth() * 0.025 * GameRules.gameDifficulty and GameRules:GetGameTime() <= time + 10 then
+			target:SetHealth(target:GetHealth()*(1 - 0.01*GameRules.gameDifficulty))
+			return 0.5
+		else
+			if GameRules:GetGameTime() <= time + 10 and caster:IsAlive() then
+				target:KillTarget()
+			end
+		end
+	end)
 end
 
 
@@ -969,7 +938,11 @@ function spawn_unit( keys )
 	end
     if keys.number_of_unit==nil then keys.number_of_unit=1 end
     for i = 1, keys.number_of_unit do
-        local entUnit = CreateUnitByName( unit ,caster:GetAbsOrigin() + RandomVector(RandomInt(250,500)), true, nil, nil, DOTA_TEAM_BADGUYS )
+		if caster:GetOwner() and caster:GetOwnerEntity():IsRealHero() then
+			caster:GetOwnerEntity():CreateSummon(unit, caster:GetAbsOrigin() + RandomVector(RandomInt(250,500)), 30)
+		else
+			local entUnit = CreateUnitByName( unit, caster:GetAbsOrigin() + RandomVector(RandomInt(250,500)), true, nil, nil, caster:GetTeamNumber() )
+		end
 		if entUnit then
 			if #abilityname > 0 and RollPercentage(100/i) then
 				entUnit.elite = true
