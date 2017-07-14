@@ -135,7 +135,7 @@ function HealthSteal(keys)
 	local overcharge = caster:FindAbilityByName("wisp_overcharge_datadriven")
 	local steal = target:GetHealthRegen()*(keys.steal_pct/100)*(keys.tick)
 	ApplyDamage({victim = target, attacker = caster, damage = steal/get_aether_multiplier(caster), damage_type = DAMAGE_TYPE_PURE, ability = ability})
-	caster:Heal(steal, caster)
+	caster:HealEvent(steal, ability, caster)
 	local new_bat = ability:GetTalentSpecialValueFor("base_attack_time")
 	
 	target:RemoveModifierByName("modifier_evil_enemy_bat")
@@ -251,7 +251,7 @@ function HealAlly( event )
 	end
 
 	-- Heal the tethered ally
-	target:Heal( healthGained * event.tether_heal_amp / 100, ability )
+	target:HealEvent( healthGained * event.tether_heal_amp / 100, ability, caster )
 end
 
 --[[

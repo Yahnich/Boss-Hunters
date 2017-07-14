@@ -137,7 +137,7 @@ function BrainSapHeal(keys)
 	local pctHeal = ability:GetTalentSpecialValueFor("pct_heal")
 	local dmgHeal = ability:GetTalentSpecialValueFor("tooltip_brain_sap_heal_amt")
 	 
-	target:Heal(target:GetMaxHealth() * pctHeal + ability.dmgCount * dmgHeal,caster)
+	target:HealEvent(target:GetMaxHealth() * pctHeal + ability.dmgCount * dmgHeal, ability, caster)
 end
 
 function NightmareStop(keys)

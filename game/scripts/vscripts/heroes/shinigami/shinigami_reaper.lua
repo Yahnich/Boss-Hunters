@@ -61,7 +61,7 @@ function modifier_shinigami_reaper_buff:OnAttackLanded(params)
 			local modifier = params.target:FindModifierByName("modifier_shinigami_deep_wounds_stacks")
 			local heal_pct = self.lifesteal * modifier:GetStackCount() * (100 - params.target:GetPhysicalArmorReduction())/100
 			local heal = params.damage * heal_pct
-			params.attacker:HealEvent(heal, params.attacker, {})
+			params.attacker:HealEvent(heal, self:GetAbility(), params.attacker)
 		end
 	end
 end

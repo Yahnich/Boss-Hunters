@@ -51,5 +51,5 @@ function ExplosionHeal(keys)
 		local heal = heal + affectedEnemies * ability:GetTalentSpecialValueFor("bonus_heal_per_aura_affected_scepter")
 	end
 	local heal_tick = heal * ability:GetTalentSpecialValueFor("explosion_interval")
-	target:Heal(heal_tick, caster)
+	target:HealEvent(heal_tick, ability, caster)
 end

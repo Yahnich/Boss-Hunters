@@ -6,7 +6,7 @@ function puppeteer_fleshcraft:OnSpellStart()
 	if target:IsSameTeam(caster) then
 		target:AddNewModifier(caster, self, "modifier_puppeteer_fleshcraft_heal", {duration = self:GetSpecialValueFor("duration")})
 		local healAmt = self:GetSpecialValueFor("base_heal") + target:GetMaxHealth() * self:GetSpecialValueFor("base_heal_pct") / 100
-		target:HealEvent(healAmt, caster, {})
+		target:HealEvent(healAmt, self, caster)
 	else
 		target:AddNewModifier(caster, self, "modifier_puppeteer_fleshcraft_damage", {duration = self:GetSpecialValueFor("duration")})
 		local modifier = target:FindModifierByName("modifier_puppeteer_black_plague_stack")
@@ -40,8 +40,9 @@ end
 function modifier_puppeteer_fleshcraft_heal:OnIntervalThink()
 	local caster = self:GetCaster()
 	local target = self:GetParent()
-	local healAmt = (self:GetAbility():GetSpecialValueFor("base_regen") + target:GetMaxHealth() * self:GetAbility():GetSpecialValueFor("base_regen_pct") / 100) * self.tickrate
-	target:HealEvent(healAmt, caster, {})
+	local ability = self:GetAbility()
+	local healAmt = (ability:GetSpecialValueFor("base_regen") + target:GetMaxHealth() * ability:GetSpecialValueFor("base_regen_pct") / 100) * self.tickrate
+	target:HealEvent(healAmt, ability, caster)
 end
 
 function modifier_puppeteer_fleshcraft_heal:GetEffectName()

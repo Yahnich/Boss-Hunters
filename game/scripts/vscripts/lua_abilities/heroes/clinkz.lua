@@ -93,7 +93,7 @@ function DeathPact( event )
 	local damageTable = {victim = target, attacker = caster, damage = health_gain/get_aether_multiplier(caster), damage_type = DAMAGE_TYPE_PURE, ability = ability}
 
 	ApplyDamage(damageTable)
-	caster:Heal( health_gain, caster)
+	caster:HealEvent( health_gain, ability, caster)
 	caster.death_pact_health = health_gain
 end
 

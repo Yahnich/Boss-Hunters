@@ -10,8 +10,7 @@ function VampiricHeal(keys)
 		local bonusheal = wraithfire:GetTalentSpecialValueFor("blast_dot_lifesteal") / 100
 		hpPerc = hpPerc + bonusheal
 	end
-	print(hpPerc)
-	target:Heal(hpMax*hpPerc, caster)
+	target:HealEvent(hpMax*hpPerc, ability, caster)
 end
 
 function VampiricActiveHeal(keys)
@@ -23,7 +22,7 @@ function VampiricActiveHeal(keys)
 	local heal = ability:GetAbilityDamage() * healPerc
 	if caster:GetHealth() + heal > caster:GetMaxHealth() then
 		local difference = caster:GetMaxHealth() - caster:GetHealth()
-		caster:Heal(difference, caster)
+		caster:HealEvent(difference, ability, caster)
 		local particle1 = ParticleManager:CreateParticle("particles/units/heroes/hero_undying/undying_soul_rip_heal.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
 		ParticleManager:SetParticleControlEnt(particle1, 0, caster, PATTACH_POINT_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), true) 
 		ParticleManager:SetParticleControlEnt(particle1, 1, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
@@ -43,14 +42,14 @@ function VampiricActiveHeal(keys)
 				if ally:GetHealth() < ally:GetMaxHealth() then
 					if ally:GetHealth() + spreadheal > ally:GetMaxHealth() then
 						local consumed = ally:GetMaxHealth() - ally:GetHealth()
-						ally:Heal(consumed, caster)
+						ally:HealEvent(consumed, ability, caster)
 						local particle2 = ParticleManager:CreateParticle("particles/units/heroes/hero_undying/undying_soul_rip_heal.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
 						ParticleManager:SetParticleControlEnt(particle2, 0, ally, PATTACH_POINT_FOLLOW, "attach_hitloc", ally:GetAbsOrigin(), true) 
 						ParticleManager:SetParticleControlEnt(particle2, 1, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true) 
 						ParticleManager:ReleaseParticleIndex(particle2)
 						spreadheal = heal - consumed
 					else
-						ally:Heal(spreadheal, caster)
+						ally:HealEvent(spreadheal, ability, caster)
 						local particle2 = ParticleManager:CreateParticle("particles/units/heroes/hero_undying/undying_soul_rip_heal.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
 						ParticleManager:SetParticleControlEnt(particle2, 0, ally, PATTACH_POINT_FOLLOW, "attach_hitloc", ally:GetAbsOrigin(), true) 
 						ParticleManager:SetParticleControlEnt(particle2, 1, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
@@ -63,7 +62,7 @@ function VampiricActiveHeal(keys)
 			end
 		end
 	else
-		caster:Heal(heal, caster)
+		caster:HealEvent(heal, ability, caster)
 		local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_undying/undying_soul_rip_heal.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
 		ParticleManager:SetParticleControlEnt(particle, 0, caster, PATTACH_POINT_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), true) 
 		ParticleManager:SetParticleControlEnt(particle, 1, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)

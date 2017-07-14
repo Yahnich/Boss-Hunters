@@ -7,5 +7,6 @@
 	"hero_selection",
 	"skillList",
 	"syncing_purposes",
+	"hero_properties",
   ]
 }

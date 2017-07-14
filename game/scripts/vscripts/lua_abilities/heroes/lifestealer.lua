@@ -49,7 +49,7 @@ function HealDamage(keys)
 	
 	local heal = ability:GetAbilityDamage() * ability:GetTalentSpecialValueFor("heal")/100
 
-	caster:Heal(heal, caster)
+	caster:HealEvent(heal, ability, caster)
 	ApplyDamage({ victim = target, attacker = caster, damage = ability:GetAbilityDamage()/get_aether_multiplier(caster), damage_type = ability:GetAbilityDamageType(), ability = ability })
 end
 
@@ -114,7 +114,7 @@ function modifier_life_stealer_hunger:OnAttackLanded(params)
 	if IsServer() then
 		if params.attacker == self:GetParent() then
 			local flHeal = params.original_damage * (1 - params.target:GetPhysicalArmorReduction() / 100 ) * self.currentlifesteal
-			params.attacker:Heal(flHeal, params.attacker)
+			params.attacker:HealEvent(flHeal, self:GetAbility(), params.attacker)
 			local lifesteal = ParticleManager:CreateParticle("particles/units/heroes/hero_skeletonking/wraith_king_vampiric_aura_lifesteal.vpcf", PATTACH_ABSORIGIN_FOLLOW, params.attacker)
 				ParticleManager:SetParticleControlEnt(lifesteal, 0, params.attacker, PATTACH_POINT_FOLLOW, "attach_hitloc", params.attacker:GetAbsOrigin(), true)
 				ParticleManager:SetParticleControlEnt(lifesteal, 1, params.attacker, PATTACH_POINT_FOLLOW, "attach_hitloc", params.attacker:GetAbsOrigin(), true)

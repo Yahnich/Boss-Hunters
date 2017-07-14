@@ -68,7 +68,7 @@ function pudge_dismember:OnIntervalThink()
 		end
 		local flDamage = self.dismember_damage
 		flDamage = flDamage + ( self:GetCaster():GetStrength() * self.strength_damage )
-		self:GetCaster():Heal( flDamage, self:GetAbility() )
+		self:GetCaster():Heal( flDamage, self:GetAbility(), self:GetCaster() )
 		local damage = {
 			victim = self:GetParent(),
 			attacker = self:GetCaster(),

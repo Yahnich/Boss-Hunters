@@ -237,7 +237,7 @@ function modifier_nyx_assassin_ultimyr_justicar_swarm_active:OnIntervalThink()
 		if ally:HasModifier("modifier_nyx_assassin_ultimyr_justicar_swarm_active") then
 			local heal = self.damage * self.heal / #allies
 			print(self.damage, self.heal, #allies)
-			ally:Heal(heal, self:GetCaster())
+			ally:HealEvent(heal, ability, self:GetCaster())
 			SendOverheadEventMessage(nil, OVERHEAD_ALERT_HEAL, ally, heal, nil)
 		end
 	end

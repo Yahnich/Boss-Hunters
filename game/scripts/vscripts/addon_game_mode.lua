@@ -2099,6 +2099,39 @@ function CHoldoutGameMode:CheckMidas()
 	end
 end
 
+Timers:CreateTimer(0.1, function()
+	if not GameRules:IsGamePaused() and GameRules:State_Get() >= 7 and GameRules:State_Get() <= 8 then
+		for _,unit in ipairs ( HeroList:GetAllHeroes() ) do
+			if not unit:IsFakeHero() then
+				local key = unit:GetUnitName()..unit:GetPlayerID()
+				local data = CustomNetTables:GetTableValue("hero_properties", unit:GetUnitName()..unit:entindex() ) or {}
+				local barrier = 0
+				for _, modifier in ipairs( unit:FindAllModifiers() ) do
+					if modifier.ModifierBarrier_Bonus and unit:IsRealHero() then
+						local barrierToDegrade = math.max(0, modifier:ModifierBarrier_Bonus() - 1)
+						if barrierToDegrade > 0 then
+							modifier.ModifierBarrier_Bonus = function() return barrierToDegrade end
+							barrier = barrier + barrierToDegrade
+						end
+					end
+				end
+				if barrier > 0 then
+					unit:SetBarrier(barrier)
+					data.barrier = math.floor(barrier)
+					CustomNetTables:SetTableValue("hero_properties", unit:GetUnitName()..unit:entindex(), data )
+				elseif unit:GetBarrier() ~= barrier then
+					unit:SetBarrier(barrier)
+					data.barrier = math.floor(barrier)
+					CustomNetTables:SetTableValue("hero_properties", unit:GetUnitName()..unit:entindex(), data )
+				end
+			end
+		end
+	end
+	return 0.1
+end)
+
+
+
 function CHoldoutGameMode:OnThink()
 	if GameRules:State_Get() == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
 		self:_CheckForDefeat()
@@ -2125,7 +2158,6 @@ function CHoldoutGameMode:OnThink()
 						end
 					end
 				end
-				self:SetHealthMarkers()
 				self._currentRound:End()
 				self._currentRound = nil
 				-- Heal all players

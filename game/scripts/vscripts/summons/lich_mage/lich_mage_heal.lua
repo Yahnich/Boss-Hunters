@@ -12,14 +12,14 @@ function lich_mage_heal:OnSpellStart()
 	if caster:GetOwnerEntity():HasTalent("puppeteer_lich_mage_talent_1") then
 		local allies = FindUnitsInRadius(self:GetCaster():GetTeam(), target:GetAbsOrigin(), nil, caster:GetOwnerEntity():FindTalentValue("puppeteer_lich_mage_talent_1"), DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false)
 		for _, ally in pairs(allies) do
-			ally:Heal(ally:GetMaxHealth() * self:GetSpecialValueFor("heal") / 100, caster)
+			ally:HealEvent(ally:GetMaxHealth() * self:GetSpecialValueFor("heal") / 100, self, caster)
 			local heal = ParticleManager:CreateParticle("particles/units/heroes/hero_lich/lich_dark_ritual.vpcf", PATTACH_POINT_FOLLOW, ally)
 			ParticleManager:SetParticleControl(heal, 0, caster:GetAbsOrigin())
 			ParticleManager:SetParticleControl(heal, 1, ally:GetAbsOrigin())
 			ParticleManager:ReleaseParticleIndex(heal)
 		end
 	else
-		target:Heal(target:GetMaxHealth() * self:GetSpecialValueFor("heal") / 100, caster)
+		target:HealEvent(target:GetMaxHealth() * self:GetSpecialValueFor("heal") / 100, self, caster)
 		local heal = ParticleManager:CreateParticle("particles/units/heroes/hero_lich/lich_dark_ritual.vpcf", PATTACH_POINT_FOLLOW, target)
 		ParticleManager:SetParticleControl(heal, 0, caster:GetAbsOrigin())
 		ParticleManager:SetParticleControl(heal, 1, target:GetAbsOrigin())

@@ -18,7 +18,8 @@ function FlameHealCreate(keys)
 	target:RemoveModifierByName("purifying_flames_heal_counter")
 	ability:ApplyDataDrivenModifier(caster,target,"purifying_flames_heal_counter",nil)
 	target:SetModifierStackCount( "purifying_flames_heal_counter", ability, ability.stack)
-	target:Heal(heal,keys.caster)
+	target:HealEvent(heal, ability, keys.caster)
+	
 end
 
 function FlameHeal(keys)
@@ -27,7 +28,7 @@ function FlameHeal(keys)
 	local caster = keys.caster
 	local heal = ability:GetTalentSpecialValueFor("heal_per_second")
 	if ability.stack == nil then ability.stack = 0 end
-	target:Heal(heal,keys.caster)
+	target:HealEvent(heal, ability, keys.caster)
 end
 
 function FlameHealDestroy(keys)

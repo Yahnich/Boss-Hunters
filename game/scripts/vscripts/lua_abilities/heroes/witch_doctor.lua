@@ -32,8 +32,7 @@ function witch_doctor_paralyzing_cask_ebf:OnProjectileHit(target, vLocation)
 			target:AddNewModifier(target, self, "modifier_stunned", {Duration = self:GetSpecialValueFor("hero_duration")})
 			ApplyDamage({victim = target, attacker = caster, damage = healdmg, damage_type = self:GetAbilityDamageType()})
 		else
-			target:Heal(healdmg, caster)
-			SendOverheadEventMessage(nil, OVERHEAD_ALERT_HEAL, target, healdmg, nil)
+			target:HealEvent(healdmg, self, caster)
 		end
 	else
 		local healdmg_creep = self:GetSpecialValueFor("creep_damage")
@@ -41,8 +40,7 @@ function witch_doctor_paralyzing_cask_ebf:OnProjectileHit(target, vLocation)
 			target:AddNewModifier(target, self, "modifier_stunned", {Duration = self:GetSpecialValueFor("creep_duration")})
 			ApplyDamage({victim = target, attacker = caster, damage = healdmg_creep, damage_type = self:GetAbilityDamageType()})
 		else
-			target:Heal(healdmg_creep, caster)
-			SendOverheadEventMessage(target, OVERHEAD_ALERT_HEAL, target, healdmg_creep, target)
+			target:HealEvent(healdmg, self, caster)
 		end
 	end
 	if self.remainingBounces and self.remainingBounces > 0 then
@@ -192,15 +190,14 @@ end
 
 
 function witch_doctor_voodoo_restoration_ebf_heal:OnIntervalThink()
-	self:GetParent():Heal(self.heal, self:GetCaster())
-	SendOverheadEventMessage(self:GetParent(), OVERHEAD_ALERT_HEAL, self:GetParent(), self.heal, self:GetParent())
+	self:GetParent():HealEvent(self.heal, self:GetAbility(), self:GetCaster())
 	self.purgeCounter = self.purgeCounter + self.interval
 	if self.purgeCounter > self.purgeTimer then
 		EmitSoundOn("Hero_WitchDoctor.Attack", self:GetParent())
 		local burst = ParticleManager:CreateParticle("particles/units/heroes/hero_witchdoctor/witchdoctor_ward_attack_explosion.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
 		ParticleManager:SetParticleControlEnt(burst, 3, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_hitloc", self:GetParent():GetAbsOrigin(), true)
 		ParticleManager:ReleaseParticleIndex(burst)
-		self:GetParent():Heal(self:GetParent():GetMaxHealth()*self.burstHeal, self:GetCaster())
+		self:GetParent():HealEvent(self:GetParent():GetMaxHealth()*self.burstHeal, self:GetAbility(), self:GetCaster())
 		self.purgeCounter = 0
 	end
 end

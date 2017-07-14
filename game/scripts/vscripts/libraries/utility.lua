@@ -78,6 +78,15 @@ function CDOTA_BaseNPC_Hero:RemoveSummon(entity)
 	end
 end
 
+function CDOTA_BaseNPC_Hero:GetBarrier()
+	return self._barrierHP or 0
+end
+
+function CDOTA_BaseNPC_Hero:SetBarrier(amt)
+	self._barrierHP = amt
+end
+
+
 function CDOTA_BaseNPC:IsBeingAttacked()
 	local enemies = FindUnitsInRadius(self:GetTeam(), self:GetAbsOrigin(), nil, 999999, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_INVULNERABLE, 0, false)
 	for _, enemy in pairs(enemies) do
@@ -1124,7 +1133,6 @@ end
 
 function CDOTA_BaseNPC:Lifesteal(source, lifestealPct, damage, target, damage_type, iSource)
 	local damageDealt = damage
-	print(DOTA_LIFESTEAL_SOURCE_ABILITY, iSource)
 	if iSource == DOTA_LIFESTEAL_SOURCE_ABILITY then
 		local oldHP = target:GetHealth()
 		ApplyDamage({victim = target, attacker = self, damage = damage, damage_type = damage_type, ability = source})
@@ -1157,6 +1165,7 @@ function CDOTA_BaseNPC:HealEvent(amount, sourceAb, healer) -- for future shit
 			modifier:OnHeal(params)
 		end
 	end
+	SendOverheadEventMessage(self, OVERHEAD_ALERT_HEAL, self, amount, healer)
 	self:Heal(amount, sourceAb)
 end
 
@@ -1192,7 +1201,7 @@ end
 
 function CDOTA_BaseNPC:FindEnemyUnitsInRadius(position, radius, data)
 	local team = self:GetTeamNumber()
-	local iTeam = DOTA_UNIT_TARGET_TEAM_ENEMY
+	local iTeam = data.team or DOTA_UNIT_TARGET_TEAM_ENEMY
 	local iType = data.type or DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
 	local iFlag = data.flag or DOTA_UNIT_TARGET_FLAG_NONE
 	local iOrder = data.order or FIND_ANY_ORDER

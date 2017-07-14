@@ -42,8 +42,7 @@ function BerserkHeal(keys)
 	if math.random(100) < chance and ability.lastproc + cooldown < GameRules:GetGameTime() and caster:GetHealth() <= caster:GetMaxHealth()*0.75 then
 		local amount = ability:GetTalentSpecialValueFor("heal_amount")/100
 		local heal = caster:GetMaxHealth() * amount
-		caster:Heal(heal, caster)
-		SendOverheadEventMessage(nil, OVERHEAD_ALERT_HEAL, caster, heal, nil)
+		caster:HealEvent(heal, ability, caster)
 		ability.lastproc = GameRules:GetGameTime()
 		ability:ApplyDataDrivenModifier(caster, caster, "modifier_internal_cooldown", {duration = cooldown})
 	end

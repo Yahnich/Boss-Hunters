@@ -360,6 +360,30 @@ margin-right: 300px;
 	font-size: 20px;
 }
 
+.ShieldOverlay
+{
+	box-shadow: inset #c0c0c0ff 1px 1px 1px 10px;
+}
+
+.HealthContainerShieldLabel
+{
+	width: 100%;
+	margin-top: 1px;
+	color: white;
+	font-weight: bold;
+	text-align: center;
+	vertical-align: center;
+	text-shadow: 1px 1px 0px 3.0 #000000CC;
+	z-index: 4;
+	font-family: RadianceM,Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
+}
+
+
+.Hidden
+{
+	visibility: collapse;
+}
+
 .InfoTooltip {
     text-align: center;
     text-overflow: clip;

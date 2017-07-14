@@ -122,11 +122,11 @@ function warlock_deepfire_ember:OnProjectileHit_ExtraData(target, vLocation, ext
 			ApplyDamage({victim = enemy, attacker = self:GetCaster(), damage = extraData.damage, ability = self, damage_type = self:GetAbilityDamageType()})
 		end
 		local dmgheal = extraData.damage*self:GetTalentSpecialValueFor("empower_heal")*100
-		self:GetCaster():Heal(dmgheal, self:GetCaster())
+		self:GetCaster():HealEvent(dmgheal, self, self:GetCaster())
 		SendOverheadEventMessage( self:GetCaster(), OVERHEAD_ALERT_HEAL , self:GetCaster(), dmgheal, self:GetCaster() )
 		local demons = Entities:FindAllByClassname("npc_dota_warlock_golem")
 		for _,demon in pairs(demons) do -- heal demon
-			demon:Heal(dmgheal, self:GetCaster())
+			demon:HealEvent(dmgheal, self, self:GetCaster())
 			SendOverheadEventMessage( demon, OVERHEAD_ALERT_HEAL , demon, dmgheal, self:GetCaster() )
 		end
 	end
@@ -240,8 +240,7 @@ function ShadowWord(keys)
 		if caster:HasModifier("modifier_transfer_power_moloch") then
 			dmgheal = dmgheal + dmgheal * power:GetTalentSpecialValueFor("shadowword_moloch_bonus_dmg") / 100
 		end
-		target:Heal(dmgheal, caster)
-		SendOverheadEventMessage( target, OVERHEAD_ALERT_HEAL , target, dmgheal, caster )
+		target:HealEvent(dmgheal, ability, caster)
 	end
 end
 
@@ -278,7 +277,7 @@ function BaphometPulseHeal(keys)
 		heal = heal + target:GetMaxHealth()*ability:GetTalentSpecialValueFor("base_heal") / 100
 	end
 	
-	target:Heal(math.floor(heal), caster)
+	target:HealEvent(math.floor(heal), ability, caster)
 	
 	local pulse = ParticleManager:CreateParticle("particles/warlock_baphomet_pulse.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
 		ParticleManager:SetParticleControl(pulse, 0, target:GetAbsOrigin())

@@ -18,11 +18,11 @@ function DeathCoil( event )
 	if target:GetTeamNumber() ~= caster:GetTeamNumber() then
 		ApplyDamage({ victim = target, attacker = caster, damage = damage,	damage_type = DAMAGE_TYPE_MAGICAL, ability = ability})
 	else
-		target:Heal( heal + target:GetMaxHealth()*heal_pct, caster)
+		target:HealEvent(heal + target:GetMaxHealth()*heal_pct, ability, caster)
 	end
 
 	-- Self Damage
-	caster:Heal(self_heal + caster:GetMaxHealth()*heal_pct, caster)
+	caster:HealEvent(self_heal + caster:GetMaxHealth()*heal_pct, ability, caster)
 
 	local projectile = {
 		Target = target,

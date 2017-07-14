@@ -104,7 +104,7 @@ function StaticAegisAttacked(keys)
 	end
 	if RollPercentage( ability:GetTalentSpecialValueFor("heal_proc_chance") ) then
 		local heal = victim:GetMaxHealth() * ability:GetTalentSpecialValueFor("self_heal") / 100
-		victim:Heal(heal, caster)
+		victim:HealEvent(heal, ability, caster)
 		SendOverheadEventMessage( caster, OVERHEAD_ALERT_HEAL , caster, heal, caster )
 	end
 	local particleStrike = ParticleManager:CreateParticle(keys.particle, PATTACH_POINT_FOLLOW, victim)

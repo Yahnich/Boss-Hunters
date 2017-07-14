@@ -63,3 +63,4 @@ game/demoheader.tmp
 game/rich_presence_persistent_data.txt
 game/server_log.txt
 *.vsnd_c
+game/screenshots/

@@ -332,7 +332,7 @@ function MoonRay(keys)
 	local damage = ability:GetTalentSpecialValueFor("heal_damage")
 	if target:HasModifier("modifier_solarbolt_moon_bonus") then damage = damage*1.4 end
 	if target:GetTeamNumber() == caster:GetTeamNumber() then
-		target:Heal(damage, caster)
+		target:HealEvent(damage, ability, caster)
 		SendOverheadEventMessage( target, OVERHEAD_ALERT_HEAL , target, damage, caster )
 	else
 		SendOverheadEventMessage( target, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE , target, damage, caster )
@@ -349,7 +349,7 @@ function SolarBolt(keys)
 	local damage = ability:GetTalentSpecialValueFor("healdamage")
 	if target:HasModifier("modifier_moonray_sun_bonus") then damage = damage*1.4 end
 	if target:GetTeamNumber() == caster:GetTeamNumber() then
-		target:Heal(damage, caster)
+		target:HealEvent(damage, ability, caster)
 		SendOverheadEventMessage( target, OVERHEAD_ALERT_HEAL , target, damage, caster )
 	else
 		SendOverheadEventMessage( target, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE , target, damage, caster )
@@ -365,7 +365,7 @@ function RootDamage(keys)
 	
 	local damage = ability:GetAbilityDamage()
 	if target:GetTeamNumber() == caster:GetTeamNumber() then
-		target:Heal(damage, caster)
+		target:HealEvent(damage, ability, caster)
 		SendOverheadEventMessage( target, OVERHEAD_ALERT_HEAL , target, damage, caster )
 	else
 		SendOverheadEventMessage( target, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE , target, damage, caster )

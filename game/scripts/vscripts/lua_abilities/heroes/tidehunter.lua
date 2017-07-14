@@ -32,7 +32,7 @@ function modifier_tidehunter_kraken_shell_passive:GetModifierPhysical_ConstantBl
 		if params.damage * self.blockPct > self.currBlock then self.currBlock = params.damage * self.blockPct end
 		if RollPercentage(self.crit) then 
 			self.currBlock = self.currBlock * 2
-			self:GetParent():Heal(self:GetParent():GetMaxHealth() * self.heal, self:GetParent())
+			self:GetParent():HealEvent(self:GetParent():GetMaxHealth() * self.heal, self:GetAbility(), self:GetParent())
 			local FXIndex = ParticleManager:CreateParticle( "particles/units/heroes/hero_tidehunter/tidehunter_krakenshell_purge.vpcf", PATTACH_POINT_FOLLOW, self:GetParent() )
 				ParticleManager:SetParticleControl( FXIndex, 0, self:GetParent():GetOrigin() )
 			ParticleManager:ReleaseParticleIndex(FXIndex)
