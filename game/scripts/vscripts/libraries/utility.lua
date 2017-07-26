@@ -103,10 +103,10 @@ function CDOTA_BaseNPC:IsBeingAttacked()
 	return false
 end
 
-function CDOTA_BaseNPC:PerformAbilityAttack(target, bProcs)
-	self.autoAttackFromAbilityState = true
-	self:PerformAttack(target,true, bProcs,true,false,false,false,true)
-	self.autoAttackFromAbilityState = false
+function CDOTA_BaseNPC:PerformAbilityAttack(target, bProcs, ability)
+	self.autoAttackFromAbilityState = {} -- basically the same as setting it to true
+	self.autoAttackFromAbilityState.ability = ability
+	self:PerformAttack(target,true,bProcs,true,false,false,false,true)
 end
 
 function CDOTA_Modifier_Lua:AttachEffect(pID)

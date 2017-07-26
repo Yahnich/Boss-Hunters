@@ -22,12 +22,11 @@ if IsServer() then
 		local dmgPct = self:GetAbility():GetTalentSpecialValueFor("bonus_damage") / 100
 		local caster = self:GetCaster()
 		local bonusDamage = caster:GetAverageTrueAttackDamage(caster) * dmgPct
-		if caster:HasTalent("shinigami_reversal_talent_1") then
-			caster:HealEvent(params.damage, caster, {})
+		if caster:HasTalent("shinigami_reversal_talent_1") then	
 			caster:HealEvent(params.damage, self:GetAbility(), caster)
 		end
 		caster:AddNewModifier(caster, self, "modifier_shinigami_reversal_bonusdamage", {}):SetStackCount(bonusDamage)
-		caster:PerformAbilityAttack(params.attacker, true)
+		caster:PerformAbilityAttack(params.attacker, true, self:GetAbility())
 		caster:RemoveModifierByName("modifier_shinigami_reversal_bonusdamage")
 		return -100
 	end

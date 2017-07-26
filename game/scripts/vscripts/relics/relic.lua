@@ -24,7 +24,7 @@ function RelicEntity:constructor(data)
 	self:RollStats()
 	local modifier = self.owner:AddNewModifier(self.owner, nil, self.type, data)
 	self.passive = modifier
-	print("relic creation done")
+	print("relic creation done; "..self.type.." created")
 end
 
 function RelicEntity:RollStats()

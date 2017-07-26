@@ -39,7 +39,7 @@ if IsServer() then
 	end
 
 	function modifier_justicar_blessed_aegis_barrier:OnRefresh(kv)
-		self.barrier = (self.barrier or 0) + kv.barrier * (math.max(1, self.barrier / kv.barrier) )
+		self.barrier = (self.barrier or 0) + kv.barrier
 		self.ModifierBarrier_Bonus = function() return self.barrier end
 	end
 

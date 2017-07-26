@@ -724,10 +724,11 @@ function CHoldoutGameMode:FilterModifiers( filterTable )
 	if parent:IsCreature() then
 		local stunned = parent:IsStunned() or parent:IsHexed()
 		Timers:CreateTimer(0.04,function()
+			if not parent:IsAlive() or parent:IsNull() then return nil end
 			local modifier = parent:FindModifierByNameAndCaster(name, caster)
 			if not stunned and (parent:IsStunned() or parent:IsHexed()) and GLOBAL_STUN_LIST[name] == nil then GLOBAL_STUN_LIST[name] = true end -- machine learning lul
 			if not (parent:IsStunned() or parent:IsHexed()) and GLOBAL_STUN_LIST[name] then GLOBAL_STUN_LIST[name] = false end
-			if modifier and ( (modifier.CheckState and (modifier:CheckState().MODIFIER_STATE_STUNNED or modifier:CheckState().MODIFIER_STATE_HEXED)) or GLOBAL_STUN_LIST[name]) or modifier:IsStunDebuff() then
+			if modifier and not modifier:IsNull() and ( (modifier.CheckState and (modifier:CheckState().MODIFIER_STATE_STUNNED or modifier:CheckState().MODIFIER_STATE_HEXED)) or GLOBAL_STUN_LIST[name]) or modifier:IsStunDebuff() then
 				local resistance = parent:GetStunResistance()
 				if caster:HasTalentType("respawn_reduction") then resistance = resistance * (1 - caster:HighestTalentTypeValue("respawn_reduction") / 100) end
 				if RollPercentage(resistance) then 
@@ -940,11 +941,9 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 			if no_crit[ability:GetName()] or no_aether[ability:GetName()] or not ability:IsAetherAmplified() then
 				spellcrit = false
 			end
-			print(spellcrit, no_crit[ability:GetName()], no_aether[ability:GetName()], ability:IsAetherAmplified())
 			if (spellcrit or (ability:GetName() == "mana_fiend_mana_lance" and attacker:HasScepter())) and not attacker.essencecritactive then
 				local crititem = attacker:FindModifierByName("spellcrit"):GetAbility()
 				local chance = crititem:GetSpecialValueFor("spell_crit_chance")
-				print(chance)
 				if RollPercentage(chance) then
 					local mult = crititem:GetSpecialValueFor("spell_crit_multiplier") / 100
 					filterTable["damage"] = filterTable["damage"]*mult
@@ -969,11 +968,11 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 		local octarine = attacker:FindModifierByName("spell_lifesteal")
 		local tHeal = octarine:GetAbility():GetSpecialValueFor("creep_lifesteal") / 100
 		local heal = filterTable["damage"] * tHeal
-		if attacker:GetHealth() > filterTable["damage"] and not attacker:HealDisabled() then -- prevent preheal
+		Timers:CreateTimer(function()
 			attacker:Heal(heal, attacker)
 			local healParticle = ParticleManager:CreateParticle("particles/items3_fx/octarine_core_lifesteal.vpcf", PATTACH_ABSORIGIN_FOLLOW, attacker)
 			ParticleManager:ReleaseParticleIndex(healParticle) 
-		end
+		end)
 	end
 	if attacker:IsCreature() and not inflictor then -- no more oneshots tears-b-gone
 		local damageCap = 0.25
@@ -1586,7 +1585,6 @@ function CHoldoutGameMode:OnHeroPick (event)
 	if hero:IsFakeHero() then return end
 	Timers:CreateTimer(0.03, function() 
 		if hero:IsFakeHero() then return end
-		print("test")
 		stats:ModifyStatBonuses(hero) 
 		hero:AddNewModifier(hero, nil, "lua_attribute_bonus_modifier", {})
 		for i = 0, 17 do

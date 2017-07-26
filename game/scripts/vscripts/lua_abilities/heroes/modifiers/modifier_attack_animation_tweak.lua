@@ -2,7 +2,8 @@ modifier_attack_animation_tweak = class({})
 
 function modifier_attack_animation_tweak:OnAttackStart(params)
 	if IsServer() and params.attacker == self:GetParent() then
-		self:GetParent():StartGestureWithPlaybackRate(ACT_DOTA_ATTACK, self:GetParent():GetAttacksPerSecond()*2)
+		self:GetParent():RemoveGesture(ACT_DOTA_ATTACK)
+		self:GetParent():StartGestureWithPlaybackRate(ACT_DOTA_ATTACK, (1 + self:GetParent():GetIncreasedAttackSpeed()) )
 	end
 end
 

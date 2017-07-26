@@ -49,7 +49,7 @@ function modifier_shinigami_flurry_of_blows_buff:OnIntervalThink()
 	for _, unit in ipairs(nearbyUnits) do
 		EmitSoundOn("Hero_PhantomAssassin.Attack", unit)
 		EmitSoundOn("Hero_PhantomAssassin.Attack.Rip", unit)
-		self:GetParent():PerformAbilityAttack(unit, true)
+		self:GetParent():PerformAbilityAttack(unit, true, self:GetAbility())
 		local attack = ParticleManager:CreateParticle("particles/heroes/shinigami/shinigami_flurry_of_blows_blur.vpcf", PATTACH_POINT_FOLLOW, unit)
 		ParticleManager:SetParticleControlEnt(attack, 0, unit, PATTACH_POINT_FOLLOW, "attach_hitloc", unit:GetAbsOrigin(), true)
 		ParticleManager:ReleaseParticleIndex(attack)

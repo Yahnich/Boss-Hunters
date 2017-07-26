@@ -246,6 +246,14 @@ function CHoldoutGameSpawner:_DoSpawn()
 			vSpawnLocation = vSpawnLocation + RandomVector( RandomFloat( 0, 200 ) )
 		end
 		local entUnit = CreateUnitByName( szNPCClassToSpawn, vSpawnLocation, true, nil, nil, DOTA_TEAM_BADGUYS )
+		Timers:CreateTimer(0, function() 
+			for i = 0, 20 do
+				local ability = entUnit:GetAbilityByIndex(i)
+				if ability then
+					PrecacheItemByNameAsync( ability:GetName(), function() end )
+				end
+			end
+		end)
 		AddFOWViewer(DOTA_TEAM_GOODGUYS, vSpawnLocation, 516, 3, false) -- show spawns
 		if entUnit then
 			if entUnit:IsCreature() then

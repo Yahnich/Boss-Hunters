@@ -6194,7 +6194,7 @@
 				"Wearable4" { "ItemDef" "32" }
 				"Wearable5" { "ItemDef" "33" }
 			}
-			"StunResistance"			"90.0"
+			"StunResistance"			"80.0"
 		}
 	}
 
@@ -8442,7 +8442,7 @@
 			"BountyGain"				"0"
 			"XPGain"					"200"
 			
-			"StunResistance"			"90.0"
+			"StunResistance"			"80.0"
 		}
 	}
 
@@ -10482,7 +10482,7 @@
 			
 			"DefaultState"				"Invade"
 			
-			"StunResistance"			"99.0"
+			"StunResistance"			"80.0"
 		}
 	}
 
@@ -10595,7 +10595,7 @@
 			
 			"DefaultState"				"Invade"
 			
-			"StunResistance"			"99.0"
+			"StunResistance"			"80.0"
 		}
 	}
 
@@ -10698,7 +10698,7 @@
 			
 			"DefaultState"				"Invade"
 			
-			"StunResistance"			"99.0"
+			"StunResistance"			"80.0"
 		}
 	}
 
@@ -11082,7 +11082,7 @@
 			}
 			
 			"DefaultState"				"Invade"
-			"StunResistance"			"90.0"
+			"StunResistance"			"80.0"
 		}
 	}
 	"npc_dota_boss32_vh"
@@ -11177,7 +11177,7 @@
 			}
 			
 			"DefaultState"				"Invade"
-			"StunResistance"			"99.0"
+			"StunResistance"			"80.0"
 		}
 	}
 
@@ -11276,7 +11276,7 @@
 			}
 			
 			"DefaultState"				"Invade"
-			"StunResistance"			"99.0"
+			"StunResistance"			"80.0"
 		}
 	}
 
@@ -11375,7 +11375,7 @@
 			}
 
 			"DefaultState"				"Invade"
-			"StunResistance"			"99.0"
+			"StunResistance"			"80.0"
 			"AttachWearables" // Default npc_dota_hero_omniknight
 			{
 				"1" { "ItemDef" "396" } 
@@ -11588,7 +11588,7 @@
 			}
 			
 			"DefaultState"				"Invade"
-			"StunResistance"			"99.0"
+			"StunResistance"			"80.0"
 			
 			"AttachWearables"
 			{
@@ -11706,7 +11706,7 @@
 			}
 
 			"DefaultState"				"Invade"
-			"StunResistance"			"99.0"
+			"StunResistance"			"80.0"
 			"AttachWearables" // Default npc_dota_hero_omniknight
 			{
 				"1" { "ItemDef" "6718" } 
@@ -11812,7 +11812,7 @@
 			}
 	
 			"DefaultState"				"Invade"
-			"StunResistance"			"99.0"
+			"StunResistance"			"80.0"
 			
 			"AttachWearables"
 			{
@@ -11930,7 +11930,7 @@
 			}
 			
 			"DefaultState"				"Invade"
-			"StunResistance"			"99.0"
+			"StunResistance"			"80.0"
 			"AttachWearables" // Default npc_dota_hero_omniknight
 			{
 				"1" { "ItemDef" "7182" } 
@@ -12036,7 +12036,7 @@
 			}
 
 			"DefaultState"				"Invade"
-			"StunResistance"			"99.0"
+			"StunResistance"			"80.0"
 	
 			"AttachWearables"
 			{
@@ -12161,7 +12161,7 @@
 			
 			"DefaultState"				"Invade"
 
-			"StunResistance"			"90.0"
+			"StunResistance"			"80.0"
 		}
 	}
 	"npc_dota_boss34_h"
@@ -12270,7 +12270,7 @@
 			
 			"DefaultState"				"Invade"
 
-			"StunResistance"			"95.0"
+			"StunResistance"			"80.0"
 		}
 	}
 	"npc_dota_boss34_vh"
@@ -12380,7 +12380,7 @@
 			
 			"DefaultState"				"Invade"
 
-			"StunResistance"			"95.0"
+			"StunResistance"			"80.0"
 		}
 	}
 
@@ -12522,7 +12522,7 @@
 				}
 			}
 
-			"StunResistance"			"99.0"
+			"StunResistance"			"80.0"
 		}
 	}
 
@@ -12664,7 +12664,7 @@
 				}
 			}
 
-			"StunResistance"			"99.0"
+			"StunResistance"			"80.0"
 		}
 	}
 	"npc_dota_boss35_vh"
@@ -12805,7 +12805,7 @@
 				}
 			}
 
-			"StunResistance"			"99.0"
+			"StunResistance"			"80.0"
 		}
 	}
 
@@ -13035,7 +13035,7 @@
 			
 			"DefaultState"				"Invade"
 
-			"StunResistance"			"99.0"
+			"StunResistance"			"80.0"
 		}
 	}
 	
@@ -13440,7 +13440,7 @@
 				}
 			}
 
-			"StunResistance"			"99.0"
+			"StunResistance"			"80.0"
 		}
 	}
 	//=================================================================
@@ -13866,7 +13866,7 @@
 				"Wearable4"{"ItemDef"			"6134"}
 			}
 
-			"StunResistance"			"99.0"
+			"StunResistance"			"80.0"
 		}
 	}
 	
@@ -13993,7 +13993,7 @@
 				
 			}
 
-			"StunResistance"			"99.0"
+			"StunResistance"			"80.0"
 		}
 	}
 	

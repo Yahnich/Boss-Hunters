@@ -25,7 +25,7 @@ function shinigami_cutthroat_slice:OnSpellStart()
 	
 	ApplyDamage({victim = target, attacker = caster, damage = self:GetSpecialValueFor("base_damage") * backstabMultiplier, damage_type = self:GetAbilityDamageType(), ability = self})
 	for i = 1, math.floor(self:GetSpecialValueFor("deep_wound_stacks") * backstabMultiplier + 0.5) do
-		caster:PerformAbilityAttack(target, false)
+		caster:PerformAbilityAttack(target, false, self)
 	end
 	target:AddNewModifier(caster, self, "modifier_shinigami_cutthroat_slice_debuff", {duration = self:GetSpecialValueFor("silence_duration")})
 end

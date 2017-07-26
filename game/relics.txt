@@ -1,0 +1,20 @@
+RELICS:
+
+TANK:
+-- Second Wind: heals 50%hp over 5s when below 25% hp
+-- Stone Armor: Every hit taken increases armor, stacks with itself every stack has its own duration
+-- Divine Rights: Enemies who attack this unit are struck by lightning, ministunning them and dealing damage
+-- Seething Rage: Cooldowns are reduced by 1 second for every 5% of health lost
+
+
+DPS:
+-- Aggrievance: autoattacks chance to deal ignore armor
+-- Annihilation: Attacks splinter and go to other enemies for reduced damage
+-- Acceleratation: Cooldowns are reduced by 0.1s for every attack landed
+-- Ambuscade: Renders you invisible after not attacking for 5 seconds, deals major bonus damage out of invis
+
+CASTER:
+-- Time Rewind: Spells chance to cost no mana and no cd
+-- Arcane Catalyst: Gives 80% cdr, but -60% damage
+-- Liquid Lava: Casting spells drops lava on the ground where it was cast (around caster for no target) that burns enemies on it
+-- Quad Cast: spells are casted 4x, cds increased by 2.5x

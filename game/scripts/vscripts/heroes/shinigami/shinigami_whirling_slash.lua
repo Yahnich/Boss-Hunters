@@ -31,7 +31,7 @@ function shinigami_whirling_slash:OnSpellStart()
 		local enemiesInLine = FindUnitsInLine(caster:GetTeamNumber(), caster:GetAbsOrigin(), caster:GetAbsOrigin()+caster:GetForwardVector()*(caster:GetAttackRange()+150), nil, 125, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES)
 		for _, enemy in ipairs(enemiesInLine) do
 			if not alreadyAttacked[enemy:entindex()] then
-				caster:PerformAbilityAttack(enemy, false)
+				caster:PerformAbilityAttack(enemy, true, self)
 				EmitSoundOn("Hero_Shredder.Attack.Post", enemy)
 				modifier:SetStackCount(bonusDamage*reduction)
 				alreadyAttacked[enemy:entindex()] = true

@@ -43,7 +43,7 @@ function shinigami_fan_the_blades:OnProjectileHit(target, position)
 	local bonusDamage = caster:GetAverageTrueAttackDamage(caster) * dmgPct + baseDamage
 	
 	caster:AddNewModifier(caster, self, "modifier_shinigami_fan_the_blades_bonusdamage", {}):SetStackCount(baseDamage)
-	caster:PerformAbilityAttack(target, false)
+	caster:PerformAbilityAttack(target, true, self)
 	caster:RemoveModifierByName("modifier_shinigami_fan_the_blades_bonusdamage")
 	if caster:HasTalent("shinigami_fan_the_blades_talent_1") then
 		target:AddNewModifier(caster, self, "modifier_stunned_generic", {duration = 0.4})

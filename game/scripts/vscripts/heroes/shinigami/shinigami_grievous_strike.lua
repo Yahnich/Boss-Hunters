@@ -8,11 +8,23 @@ function shinigami_grievous_strike:GetIntrinsicModifierName()
 	return "modifier_shinigami_grievous_strike_handler"
 end
 
+function shinigami_grievous_strike:OnAbilityPhaseStart()
+	self:GetCaster():StartGesture(ACT_DOTA_ATTACK)
+	self.grievousFX = ParticleManager:CreateParticle("particles/units/heroes/hero_phantom_assassin/phantom_assassin_attack_blur_crit.vpcf", PATTACH_ABSORIGIN, self:GetCaster())
+		ParticleManager:SetParticleControlEnt(self.grievousFX, 0, self:GetCaster(), PATTACH_POINT_FOLLOW, "attach_attack1", self:GetCaster():GetAbsOrigin(), true)
+	return true
+end
+
+function shinigami_grievous_strike:OnAbilityPhaseInterrupted()
+	self:GetCaster():RemoveGesture(ACT_DOTA_ATTACK)
+end
 
 function shinigami_grievous_strike:OnSpellStart()
 	local caster = self:GetCaster()
-	print("the fuck")
 	caster:AddNewModifier(caster, self, "modifier_shinigami_grievous_strike", {duration = self:GetTalentSpecialValueFor("duration")})
+	caster:PerformAbilityAttack(self:GetCursorTarget(), true, self)
+	ParticleManager:ReleaseParticleIndex(self.grievousFX)
+	ParticleManager:DestroyParticle(self.grievousFX, false)
 end
 
 modifier_shinigami_grievous_strike_handler = class({})
@@ -27,6 +39,7 @@ if IsServer() then
 		local ability = self:GetAbility()
 		local parent = self:GetParent()
 		if ability:IsFullyCastable() and ability:GetAutoCastState() and parent:GetAttackTarget() and parent:IsAttacking() then
+			parent:Stop()
 			parent:CastAbilityOnTarget(parent:GetAttackTarget(), ability, parent:GetPlayerID())
 		end
 	end
@@ -67,23 +80,14 @@ end
 
 function modifier_shinigami_grievous_strike:DeclareFunctions()
 	funcs = {MODIFIER_EVENT_ON_ATTACK_LANDED,
-			 MODIFIER_EVENT_ON_ATTACK_START,
 			 MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE
 			}
 	return funcs
 end
 
-function modifier_shinigami_grievous_strike:OnAttackStart(params)
-	if params.attacker == self:GetParent() then
-		local attackblur = ParticleManager:CreateParticle("particles/units/heroes/hero_phantom_assassin/phantom_assassin_attack_blur_crit.vpcf", PATTACH_ABSORIGIN, params.attacker)
-		ParticleManager:SetParticleControlEnt(attackblur, 0, params.attacker, PATTACH_POINT_FOLLOW, "attach_attack1", params.attacker:GetAbsOrigin(), true)
-		ParticleManager:ReleaseParticleIndex(attackblur)
-	end
-end
-
 function modifier_shinigami_grievous_strike:OnAttackLanded(params)
 	if params.attacker == self:GetParent() then
-		EmitSoundOn("Hero_PhantomAssassin.CoupDeGrace.Arcana", caster)
+		EmitSoundOn("Hero_PhantomAssassin.CoupDeGrace.Arcana", params.target)
 		local nFXIndex = ParticleManager:CreateParticle( "particles/units/heroes/hero_phantom_assassin/phantom_assassin_crit_impact.vpcf", PATTACH_CUSTOMORIGIN, nil )
 		ParticleManager:SetParticleControlEnt( nFXIndex, 0, params.target, PATTACH_POINT_FOLLOW, "attach_hitloc", params.target:GetAbsOrigin(), true )
 		ParticleManager:SetParticleControl( nFXIndex, 1, params.target:GetAbsOrigin() )
