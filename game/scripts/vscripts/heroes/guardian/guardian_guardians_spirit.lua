@@ -1,1 +1,1 @@
-sylph_updraft = sylph_updraft or class({})
+guardian_guardians_spirit = class({})

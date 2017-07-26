@@ -1,19 +1,34 @@
 GameEvents.Subscribe( "updateQuestLife", UpdateLives);
 GameEvents.Subscribe( "updateQuestPrepTime", UpdateTimer);
 GameEvents.Subscribe( "updateQuestRound", UpdateRound);
-GameEvents.Subscribe( "sendDifficultyNotification", Initialize);
+GameEvents.Subscribe( "heroLoadIn", Initialize);
 CustomNetTables.SubscribeNetTableListener( "hero_properties", UpdateCustomHud);
+
+
 
 var ID = Players.GetLocalPlayer();
 var playerHero = Players.GetPlayerSelectedHero(ID);
 
+var dotaHud = $.GetContextPanel().GetParent().GetParent().GetParent()
+
 var newUI = $.GetContextPanel().GetParent().GetParent().GetParent().GetParent().FindChildTraverse("HUDElements").FindChildTraverse("lower_hud").FindChildTraverse("center_with_stats").FindChildTraverse("center_block");
-var healthBar = newUI.FindChildTraverse("health_mana").FindChildTraverse("HealthManaContainer").FindChildTraverse("HealthContainer");
+var healthBar = dotaHud.FindChildTraverse("HealthContainer");
 
 
 var shieldLabel = $.CreatePanel( "Label", $.GetContextPanel(), "ShieldLabel");
 shieldLabel.SetParent(healthBar);
 shieldLabel.AddClass("HealthContainerShieldLabel");
+
+UpdateTooltipUI()
+function UpdateTooltipUI(){
+	var tooltips = dotaHud.FindChildTraverse("DOTAAbilityTooltip")
+	if(tooltips != null){
+		tooltips.FindChildTraverse("AbilityCosts").style.flowChildren = "down";
+	} else {
+		$.Schedule(0.1, UpdateTooltipUI);
+	}
+}
+
 
 function UpdateCustomHud(playerHero){
 	var index = Players.GetLocalPlayerPortraitUnit();
@@ -42,12 +57,12 @@ function UpdateCustomHud(playerHero){
 
 
 function Initialize(arg){
-	var diffLocToken =  $.Localize( ReplaceIntWithToken( arg.difficulty ) )
-	$("#QuestDifficultyText").SetDialogVariable( "difficulty", diffLocToken );
-	$("#QuestDifficultyText").text =  $.Localize( "#QuestDifficultyText", $("#QuestDifficultyText") );
-	$("#QuestDifficultyText") =  false;
-	$("#QuestRoundText").visible =  false;
-	$("#QuestPrepText").visible = false;
+	var shop = dotaHud.FindChildTraverse("shop")    
+	shop.RemoveClass("GuidesDisabled")
+	var killCS = dotaHud.FindChildTraverse("quickstats");
+	var newUI = dotaHud.FindChildTraverse("lower_hud");
+	killCS.FindChildTraverse("QuickStatsContainer").style.visibility = "collapse";
+	dotaHud.FindChildTraverse("GlyphScanContainer").style.visibility = "collapse";
 }
 
 function UpdateLives(arg){

@@ -1,1 +1,1 @@
-sylph_rapid_fire = sylph_rapid_fire or class({})
+guardian_rallying_cry = class({})

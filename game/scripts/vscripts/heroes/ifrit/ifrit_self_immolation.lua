@@ -41,7 +41,7 @@ LinkLuaModifier( "modifier_ifrit_self_immolation", "heroes/ifrit/ifrit_self_immo
 modifier_ifrit_self_immolation = class({})
 
 function modifier_ifrit_self_immolation:OnCreated()
-	self.damagebonus = self:GetAbility():GetTalentSpecialValueFor("magical_damage_on_hit")
+	self.damagebonus = self:GetAbility():GetTalentSpecialValueFor("damage_increase")
 	self:GetParent().selfImmolationDamageBonus = self.damagebonus
 	if IsServer() then
 		self:GetParent():SetProjectileModel("particles/heroes/phoenix/phoenix_self_immolation_projectile.vpcf")
@@ -49,11 +49,10 @@ function modifier_ifrit_self_immolation:OnCreated()
 end
 
 function modifier_ifrit_self_immolation:OnRefresh()
-	self.damagebonus = self:GetAbility():GetTalentSpecialValueFor("magical_damage_on_hit")
+	self.damagebonus = self:GetAbility():GetTalentSpecialValueFor("damage_increase")
 end
 
 function modifier_ifrit_self_immolation:OnDestroy()
-	self.damagebonus = self:GetAbility():GetTalentSpecialValueFor("magical_damage_on_hit")
 	self:GetParent().selfImmolationDamageBonus = 0
 	if IsServer() then
 		self:GetParent():RevertProjectile()
@@ -69,6 +68,7 @@ end
 
 function modifier_ifrit_self_immolation:OnAttackLanded(params)
 	if params.attacker == self:GetParent() then
+		print(params.target, params.attacker, self.damagebonus, self:GetAbility():GetAbilityDamageType(), self:GetAbility())
 		ApplyDamage({victim = params.target, attacker = params.attacker, damage = self.damagebonus, damage_type = self:GetAbility():GetAbilityDamageType(), ability = self:GetAbility()})
 	end
 end

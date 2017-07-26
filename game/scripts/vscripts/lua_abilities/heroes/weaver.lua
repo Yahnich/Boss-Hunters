@@ -6,6 +6,7 @@ end
 
 if IsServer() then
 	function weaver_timelapse_ebf:OnSpellStart()
+		print("activated")
 		local caster = self:GetCaster()
 		local allies = FindUnitsInRadius(caster:GetTeam(),
                                     caster:GetAbsOrigin(),
@@ -17,14 +18,14 @@ if IsServer() then
                                     FIND_ANY_ORDER,
                                     false)
 		for _, ally in pairs(allies) do
-			if self.tempList[ally:GetUnitName()] and ally ~= self:GetCaster() then
+			if self.tempList[ally:GetUnitName()] and self.tempList[ally:GetUnitName()][1]["health"] then
 				local health = self.tempList[ally:GetUnitName()][1]["health"]
 				local mana = self.tempList[ally:GetUnitName()][1]["mana"]
 				local position = self.tempList[ally:GetUnitName()][1]["position"]
 
 				particle_ground = ParticleManager:CreateParticle("particles/units/heroes/hero_weaver/weaver_timelapse.vpcf", PATTACH_ABSORIGIN  , ally)
 				ParticleManager:SetParticleControl(particle_ground, 0, ally:GetAbsOrigin())
-				if ally ~= self:GetCaster() and self.tempList[ally:GetUnitName()][1]["health"] then
+				if ally ~= self:GetCaster() then
 					if health > ally:GetHealth() and ally:IsAlive() then
 						ally:SetHealth(health)
 					elseif health > ally:GetHealth() and not ally:IsAlive() then
@@ -86,16 +87,16 @@ if IsServer() then
 										FIND_ANY_ORDER,
 										false)
 		for _,ally in pairs(allies) do
-			if not ability.tempList[ally:GetUnitName()] then ability.tempList[ally:GetUnitName()] = {} end
+			if not ability.tempList[ally:entindex()] then ability.tempList[ally:entindex()] = {} end
 			local allyTable = {}
 			allyTable["health"] = ally:GetHealth()
 			allyTable["mana"] = ally:GetMana()
 			allyTable["position"] = ally:GetAbsOrigin()
-			table.insert(ability.tempList[ally:GetUnitName()],allyTable)
+			table.insert(ability.tempList[ally:entindex()],allyTable)
 		end
 		for _,ally in pairs(allies) do
-			if #ability.tempList[caster:GetUnitName()] > self.maxindex then
-				table.remove(ability.tempList[ally:GetUnitName()],1)
+			if #ability.tempList[ally:entindex()] > self.maxindex then
+				table.remove(ability.tempList[ally:entindex()],1)
 			end
 		end
 	end

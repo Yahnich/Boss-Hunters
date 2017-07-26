@@ -4,7 +4,7 @@
 	"IsPlayable"	"1"
 	"epic_boss_fight_casual"
 	{
-		"MaxPlayers"                    "7"
+		"MaxPlayers"                    "5"
 		"Lives"							"7"
 		"Difficulty"					"2"
 	}

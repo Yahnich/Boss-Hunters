@@ -23,6 +23,10 @@ function modifier_gladiatrix_unbreakable_morale_passive:OnCreated()
 	self.procChance = self:GetAbility():GetSpecialValueFor("passive_chance")
 end
 
+function modifier_gladiatrix_unbreakable_morale_passive:OnRefresh()
+	self.procChance = self:GetAbility():GetSpecialValueFor("passive_chance")
+end
+
 function modifier_gladiatrix_unbreakable_morale_passive:IsHidden()
 	return true
 end
@@ -36,7 +40,8 @@ end
 
 function modifier_gladiatrix_unbreakable_morale_passive:OnAttackLanded(params)
 	if IsServer() then
-		if params.target:GetTeam() == self:GetParent():GetTeam() and CalculateDistance(params.target, self:GetParent()) <= self:GetAbility():GetCastRange(self:GetParent():GetAbsOrigin(), params.target) and not self:GetParent():HasModifier("modifier_gladiatrix_unbreakable_morale_passive_cooldown") and not params.target:HasModifier("modifier_gladiatrix_unbreakable_morale_buff") then
+		if params.target:IsSameTeam(self:GetParent()) and CalculateDistance(params.target, self:GetParent()) <= self:GetAbility():GetCastRange(self:GetParent():GetAbsOrigin(), params.target) and not self:GetParent():HasModifier("modifier_gladiatrix_unbreakable_morale_passive_cooldown") and not params.target:HasModifier("modifier_gladiatrix_unbreakable_morale_buff") then
+			print(self.procChance)
 			if RollPercentage(self.procChance) and self:GetParent():IsAlive() then
 				self:GetParent():SetCursorCastTarget(params.target)
 				self:GetAbility():OnSpellStart()

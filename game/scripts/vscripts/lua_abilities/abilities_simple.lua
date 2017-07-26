@@ -537,7 +537,7 @@ function projectile_dark_orbs( event )
     local time_interval = 0.05 -- Time between each launch
 
     local info = {
-        EffectName =  "particles/boss/boss_shadows_orb.vpcf",
+        EffectName =  "particles/dark_orb.vpcf",
         Ability = ability,
         vSpawnOrigin = origin,
         fDistance = 1250,

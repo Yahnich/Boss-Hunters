@@ -86,6 +86,14 @@ function CDOTA_BaseNPC_Hero:SetBarrier(amt)
 	self._barrierHP = amt
 end
 
+function CDOTA_BaseNPC_Hero:SetRelic(relicEntity)
+	if self.equippedRelic then self.equippedRelic:Destroy() end
+	self.equippedRelic = relicEntity
+end
+
+function CDOTA_BaseNPC_Hero:GetRelic()
+	return self.equippedRelic
+end
 
 function CDOTA_BaseNPC:IsBeingAttacked()
 	local enemies = FindUnitsInRadius(self:GetTeam(), self:GetAbsOrigin(), nil, 999999, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_INVULNERABLE, 0, false)
@@ -461,7 +469,11 @@ end
 
 function CDOTA_BaseNPC:GetStunResistance()
 	if self:IsCreature() then
-		return GameRules.UnitKV[self:GetUnitName()]["Creature"]["StunResistance"] or 0
+		local stunResist = GameRules.UnitKV[self:GetUnitName()]["Creature"]["StunResistance"] or 0
+		for _, modifier in pairs( self:FindAllModifiers() ) do
+			if modifier.BonusStunResistance_Constant then stunResist = stunResist + modifier:BonusStunResistance_Constant() end
+		end
+		return  math.max(0, stunResist)
 	else
 		return 0
 	end
@@ -740,12 +752,20 @@ function CDOTA_BaseNPC:GetThreat()
 end
 
 function CDOTA_BaseNPC:SetThreat(val)
+	self.lastHit = GameRules:GetGameTime()
 	self.threat = val
 end
 
 function CDOTA_BaseNPC:ModifyThreat(val)
+	self.lastHit = GameRules:GetGameTime()
 	self.threat = self.threat + val
 end
+
+function CDOTA_BaseNPC:GetLastHitTime()
+	return self.lastHit
+end
+
+
 
 function get_aether_range(caster)
     local aether_range = 0
@@ -1131,6 +1151,10 @@ function CDOTA_BaseNPC:IsSameTeam(unit)
 	return (self:GetTeam() == unit:GetTeam())
 end
 
+function CDOTA_BaseNPC:AddBarrier(amount, caster, ability, duration)
+	self:AddNewModifier(caster, ability, "modifier_generic_barrier", {duration = duration, barrier = amount})
+end
+
 function CDOTA_BaseNPC:Lifesteal(source, lifestealPct, damage, target, damage_type, iSource)
 	local damageDealt = damage
 	if iSource == DOTA_LIFESTEAL_SOURCE_ABILITY then
@@ -1151,16 +1175,13 @@ function CDOTA_BaseNPC:Lifesteal(source, lifestealPct, damage, target, damage_ty
 end
 
 function CDOTA_BaseNPC:HealEvent(amount, sourceAb, healer) -- for future shit
-	local params = {amount = amount, source = sourceAb, unit = healer}
-	for k,v in pairs(data) do
-		data[k] = v
-	end
-	for k,v in pairs( self:FindAllModifiers() ) do
+	local params = {amount = amount, source = sourceAb, unit = healer, target = self}
+	for _,modifier in ipairs( self:FindAllModifiers() ) do
 		if modifier.OnHealed then
 			modifier:OnHealed(params)
 		end
 	end
-	for k,v in pairs( healer:FindAllModifiers() ) do
+	for _,modifier in ipairs( healer:FindAllModifiers() ) do
 		if modifier.OnHeal then
 			modifier:OnHeal(params)
 		end
@@ -1219,10 +1240,31 @@ function CDOTA_Modifier_Lua:StartMotionController()
 	end
 end
 
+function CDOTA_Modifier_Lua:AddEffect(id)
+	self:AddParticle(id, false, false, 0, false, false)
+end
+
+function CDOTA_Modifier_Lua:AddStatusEffect(id, priority)
+	self:AddParticle(id, false, true, priority, false, false)
+end
+
+function CDOTA_Modifier_Lua:AddOverHeadEffect(id)
+	self:AddParticle(id, false, false, 0, false, true)
+end
+
+function CDOTA_Modifier_Lua:AddHeroEffect(id)
+	self:AddParticle(id, false, false, 0, true, false)
+end
+
 function CDOTA_BaseNPC:FindRandomEnemyInRadius(position, radius, data)
 	for _, unit in ipairs(self:FindEnemyUnitsInRadius(position, radius, data)) do
 		return unit
 	end
+end
+
+function CDOTA_BaseNPC:Dispel(hCaster, bHard)
+	local sameTeam = (hCaster:GetTeam() == self:GetTeam())
+	self:Purge(not sameTeam, sameTeam, false, bHard, bHard)
 end
 
 function CDOTA_BaseNPC:FindFriendlyUnitsInRadius(position, radius, data)
@@ -1235,7 +1277,7 @@ function CDOTA_BaseNPC:FindFriendlyUnitsInRadius(position, radius, data)
 end
 
 function CDOTABaseAbility:DealDamage(attacker, victim, damage)
-	local damageType = self:GetAbilityDamageType()
+	local damageType = self:GetAbilityDamageType() or 0
 	if damageType == 0 then damageType = DAMAGE_TYPE_MAGICAL end
 	ApplyDamage({victim = victim, attacker = attacker, ability = self, damage_type = damageType, damage = damage})
 end

@@ -63,13 +63,14 @@ function BuildPlayersArray()
                 local hero = PlayerResource:GetSelectedHeroEntity(playerID)
 				if not hero then return end
 				local heroName = string.gsub(hero:GetUnitName(), "npc_dota_hero_", "")
+				local mapName = string.gsub(GetMapName(), "epic_boss_fight_", "")
                 table.insert(players, {
                     -- steamID32 required in here
                     steamID32 = PlayerResource:GetSteamAccountID(playerID),
 
                     -- Example functions for generic stats are defined in statcollection/lib/utilities.lua
                     -- Add player values here as someValue = GetSomePlayerValue(),
-                    ph = heroName, -- Hero
+                    ph = heroName.."/"..mapName, -- Hero
                     dp = FindDPS(hero) or 0, -- Damage
                     pt = hero:GetTeam(), -- Team
                     td = FindPercentualDamage(hero), -- Map

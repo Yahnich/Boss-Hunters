@@ -28,6 +28,7 @@ DOTA_LIFESTEAL_SOURCE_ABILITY = 2
 
 require("internal/util")
 require("lua_item/simple_item")
+require("lua_map/map")
 require("lua_boss/boss_32_meteor")
 require( "epic_boss_fight_game_round" )
 require( "epic_boss_fight_game_spawner" )
@@ -38,6 +39,9 @@ require( "libraries/notifications" )
 require( "statcollection/init" )
 require("libraries/utility")
 require("libraries/animations")
+
+require("relics/relic")
+require("relics/relicpool")
 
 MAP_CENTER = Vector(332, -1545)
 
@@ -88,6 +92,11 @@ function Precache( context )
 	PrecacheResource("particle", "particles/units/heroes/hero_tinker/tinker_missile.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_tinker/tinker_missile_dud.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_tinker/tinker_machine.vpcf", context)
+	
+	
+	PrecacheResource("particle", "particles/death_spear.vpcf", context)
+	PrecacheResource("particle", "particles/boss/boss_shadows_orb.vpcf", context)
+	PrecacheResource("particle", "particles/dark_orb.vpcf", context)
 	
 	PrecacheResource("particle_folder", "particles/econ/generic/generic_aoe_shockwave_1", context)
 	
@@ -150,6 +159,8 @@ function CHoldoutGameMode:InitGameMode()
 	GameRules.voteRound_No = 0;
 	GameRules.voteTableDifficulty = {};
 	GameRules.voteTableLives = {};
+	
+	GameRules.relicPool = RelicPool()
 	
 	GameRules._Elites = LoadKeyValues( "scripts/kv/elites.kv" )
 	GameRules.UnitKV = LoadKeyValues("scripts/npc/npc_units_custom.txt")
@@ -222,7 +233,7 @@ function CHoldoutGameMode:InitGameMode()
 	GameRules:SetUseUniversalShopMode( true )
 
 
-	GameRules:SetTreeRegrowTime( 15.0 )
+	GameRules:SetTreeRegrowTime( 60.0 )
 	GameRules:SetCreepMinimapIconScale( 4 )
 	GameRules:SetRuneMinimapIconScale( 1.5 )
 	GameRules:SetGoldTickTime( 600.0 )
@@ -693,15 +704,15 @@ function CHoldoutGameMode:FilterModifiers( filterTable )
 		end
 	end
 	
-	Timers:CreateTimer(0.04,function()
+	Timers:CreateTimer(0,function()
 		local modifier = parent:FindModifierByNameAndCaster(name, caster)
 		if modifier then
 			if modifier.IsDebuff or parent:GetTeam() ~= caster:GetTeam() and (parentDebuffIncrease > 1 or casterDebuffIncrease > 1) then
 				local duration = modifier:GetRemainingTime()
-				modifier:SetDuration(duration * parentDebuffIncrease * casterDebuffIncrease, true)
+				modifier:SetDuration(duration * math.max(0, parentDebuffIncrease * casterDebuffIncrease), true)
 			elseif modifier.IsBuff or parent:GetTeam() == caster:GetTeam() and (parentBuffIncrease > 1 or casterBuffIncrease > 1) then
 				local duration = modifier:GetRemainingTime()
-				modifier:SetDuration(duration * parentBuffIncrease * casterBuffIncrease, true)
+				modifier:SetDuration(duration * math.max(0, parentBuffIncrease * casterBuffIncrease), true)
 			end
 		end
 	end)
@@ -719,7 +730,6 @@ function CHoldoutGameMode:FilterModifiers( filterTable )
 			if modifier and ( (modifier.CheckState and (modifier:CheckState().MODIFIER_STATE_STUNNED or modifier:CheckState().MODIFIER_STATE_HEXED)) or GLOBAL_STUN_LIST[name]) or modifier:IsStunDebuff() then
 				local resistance = parent:GetStunResistance()
 				if caster:HasTalentType("respawn_reduction") then resistance = resistance * (1 - caster:HighestTalentTypeValue("respawn_reduction") / 100) end
-				print(resistance)
 				if RollPercentage(resistance) then 
 					modifier:Destroy() 
 				end
@@ -1094,7 +1104,7 @@ function CHoldoutGameMode:OnAbilityUsed(event)
 	if abilityname == "item_bloodstone" then hero:ForceKill(true) end
 	if not abilityused then abilityused = hero:FindItemByName(abilityname, false) end
 	if not abilityused then return end
-	if self._threat[abilityname] or (abilityused and abilityused:GetThreat() ~= 0) then
+	if self._threat[abilityname] or (abilityused) then
 		local addedthreat = self._threat[abilityname] or abilityused:GetThreat()
 		local modifier = 0
 		local escapemod = 0
@@ -1566,6 +1576,8 @@ LinkLuaModifier( "lua_attribute_bonus_modifier", "lua_abilities/attribute/lua_at
 LinkLuaModifier("modifier_summon_handler", "heroes/generic/modifier_summon_handler.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_stunned_generic", "heroes/generic/modifier_stunned_generic.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_dazed_generic", "heroes/generic/modifier_dazed_generic.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_generic_barrier", "heroes/generic/modifier_generic_barrier.lua", LUA_MODIFIER_MOTION_NONE)
+
 
 function CHoldoutGameMode:OnHeroPick (event)
  	local hero = EntIndexToHScript(event.heroindex)
@@ -1801,6 +1813,7 @@ end
 
 function CHoldoutGameMode:OnPlayerDisconnected(keys) 
 	local playerID = keys.playerID
+	if not playerID then return end
 	local hero = PlayerResource:GetSelectedHeroEntity(playerID)
 	if hero then hero.disconnect = GameRules:GetGameTime() end
 end
@@ -2099,7 +2112,19 @@ function CHoldoutGameMode:CheckMidas()
 	end
 end
 
-Timers:CreateTimer(0.1, function()
+Timers:CreateTimer(0, function()
+	if not GameRules:IsGamePaused() and GameRules:State_Get() >= 7 and GameRules:State_Get() <= 8 then
+		for _,unit in ipairs ( HeroList:GetAllHeroes() ) do
+			if not unit:IsFakeHero() then
+				MapHandler:CheckAndResolvePositions(unit)
+			end
+		end
+	end
+	return 0
+end)
+
+BARRIER_DEGRADE_RATE = 0.995
+Timers:CreateTimer(0.3, function()
 	if not GameRules:IsGamePaused() and GameRules:State_Get() >= 7 and GameRules:State_Get() <= 8 then
 		for _,unit in ipairs ( HeroList:GetAllHeroes() ) do
 			if not unit:IsFakeHero() then
@@ -2108,7 +2133,7 @@ Timers:CreateTimer(0.1, function()
 				local barrier = 0
 				for _, modifier in ipairs( unit:FindAllModifiers() ) do
 					if modifier.ModifierBarrier_Bonus and unit:IsRealHero() then
-						local barrierToDegrade = math.max(0, modifier:ModifierBarrier_Bonus() - 1)
+						local barrierToDegrade = math.max(0, math.floor(modifier:ModifierBarrier_Bonus() * BARRIER_DEGRADE_RATE))
 						if barrierToDegrade > 0 then
 							modifier.ModifierBarrier_Bonus = function() return barrierToDegrade end
 							barrier = barrier + barrierToDegrade
@@ -2150,6 +2175,7 @@ function CHoldoutGameMode:OnThink()
 				if self._nRoundNumber == 1 then
 					local heroes = HeroList:GetAllHeroes()
 					for _, hero in ipairs(heroes) do
+						-- GameRules.relicPool:DropTankRelic(hero)
 						if not hero.HasBeenInitialized and hero.selectedSkills then
 							RandomAbilitiesFromList(hero)
 							LoadHeroSkills(hero)
@@ -2553,6 +2579,9 @@ function CHoldoutGameMode:OnNPCSpawned( event )
 	if spawnedUnit:IsCourier() then
 		spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_invulnerable", {})
 	end
+	if spawnedUnit:IsCourier() then
+		spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_invulnerable", {})
+	end
 	-- Attach client side hero effects on spawning players
 	if spawnedUnit:GetUnitName() == "npc_dota_furion_treant" then
 		local scaleAb = spawnedUnit:AddAbility("neutral_power_passive")
@@ -2597,38 +2626,37 @@ function CHoldoutGameMode:OnNPCSpawned( event )
 			spawnedUnit:SetControllableByPlayer(self.boss_master_id,true)
 			spawnedUnit.boss_master = self.boss_master_id
 		end
-		if spawnedUnit:GetTeamNumber() == DOTA_TEAM_BADGUYS then
+		if self._NewGamePlus == true and spawnedUnit:GetTeamNumber() == DOTA_TEAM_BADGUYS and spawnedUnit:GetUnitName() ~= "npc_dota_boss36" and spawnedUnit:GetUnitName() ~= "npc_dota_money" then
+			local Number_Round = self._nRoundNumber
 			Timers:CreateTimer(0.03,function()
-				if spawnedUnit:GetUnitName() ~= "npc_dota_boss36" and spawnedUnit:GetUnitName() ~= "npc_dota_money" then
-					local Number_Round = self._nRoundNumber
-					if self._NewGamePlus == true and spawnedUnit.Holdout_IsCore and spawnedUnit:GetUnitName() ~= "npc_dota_money" then
-						local modifiermin = 2000000
-						local modifiermax = 3000000
-						if spawnedUnit:GetUnitName() == "npc_dota_boss39" then
-							modifiermin = -50000
-							modifiermax = -50000
-						end
-						spawnedUnit:SetBaseDamageMin(spawnedUnit:GetBaseDamageMin()*(750/(Number_Round*10)) + modifiermin)
-						spawnedUnit:SetBaseDamageMax(spawnedUnit:GetBaseDamageMax()*(750/(Number_Round*9)) + modifiermax)
-						
-						spawnedUnit:AddAbility("new_game_damage_increase")
-						spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_boss_damagedecrease", {})
-					elseif self._NewGamePlus == true and not spawnedUnit.Holdout_IsCore then	
-						spawnedUnit:SetBaseDamageMin(spawnedUnit:GetBaseDamageMin()*(375/(Number_Round*10)) + 600000)
-						spawnedUnit:SetBaseDamageMax(spawnedUnit:GetBaseDamageMax()*(375/(Number_Round*9)) + 800000)
-						spawnedUnit:AddAbility("new_game_damage_increase")
-						spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_boss_damagedecrease", {})
+				if spawnedUnit.Holdout_IsCore then
+					local modifiermin = 2000000
+					local modifiermax = 3000000
+					if spawnedUnit:GetUnitName() == "npc_dota_boss39" then
+						modifiermin = -50000
+						modifiermax = -50000
 					end
+					spawnedUnit:SetBaseDamageMin(spawnedUnit:GetBaseDamageMin()*(750/(Number_Round*10)) + modifiermin)
+					spawnedUnit:SetBaseDamageMax(spawnedUnit:GetBaseDamageMax()*(750/(Number_Round*9)) + modifiermax)
+					
+					spawnedUnit:AddAbility("new_game_damage_increase")
+					spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_boss_damagedecrease", {})
+				elseif not spawnedUnit.Holdout_IsCore then	
+					spawnedUnit:SetBaseDamageMin(spawnedUnit:GetBaseDamageMin()*(375/(Number_Round*10)) + 600000)
+					spawnedUnit:SetBaseDamageMax(spawnedUnit:GetBaseDamageMax()*(375/(Number_Round*9)) + 800000)
+					spawnedUnit:AddAbility("new_game_damage_increase")
+					spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_boss_damagedecrease", {})
 				end
 			end)
 		end
 		local ticks = 5
-		Timers:CreateTimer(0.03,function() if ticks > 0 then 
-											spawnedUnit:SetHealth(spawnedUnit:GetMaxHealth()) 
-											ticks = ticks - 1
-											return 0.03 
-										end
-							end)
+		Timers:CreateTimer(0.03,function() 
+			if ticks > 0 then 
+				spawnedUnit:SetHealth(spawnedUnit:GetMaxHealth()) 
+				ticks = ticks - 1
+				return 0.03 
+			end
+		end)
 	end
 end
 

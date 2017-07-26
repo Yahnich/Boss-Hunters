@@ -5124,6 +5124,7 @@
 		"precache"
 		{
 			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_tusk.vsndevts"
+			"model"				"models/heroes/troll_warlord/troll_warlord.vmdl"
 		}
 		"IsCore"					"1"
 		"vscripts"					"ai/ai_boss17.lua"
@@ -5251,6 +5252,11 @@
 		"MinimapIconSize"			"275"
 		"IsCore"					"1"
 		"vscripts"					"ai/ai_boss17.lua"
+		"precache"
+		{
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_tusk.vsndevts"
+			"model"				"models/heroes/troll_warlord/troll_warlord.vmdl"
+		}
 
 		// Abilities
 		//----------------------------------------------------------------
@@ -5373,6 +5379,11 @@
 		"MinimapIconSize"			"275"
 		"IsCore"					"1"
 		"vscripts"					"ai/ai_boss17.lua"
+		"precache"
+		{
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_tusk.vsndevts"
+			"model"				"models/heroes/troll_warlord/troll_warlord.vmdl"
+		}
 
 		// Abilities
 		//----------------------------------------------------------------

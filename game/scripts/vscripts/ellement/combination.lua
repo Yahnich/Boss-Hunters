@@ -421,6 +421,7 @@ function arcana_laser(keys,ice,fire)
             StopSoundEvent( "Hero_Phoenix.SunRay.Cast", caster )
             StopSoundEvent( "Hero_Phoenix.SunRay.Loop", caster )
             ParticleManager:DestroyParticle(arcana_laser_effect, false)
+			ParticleManager:ReleaseParticleIndex(arcana_laser_effect)
             return
         end
     end)
