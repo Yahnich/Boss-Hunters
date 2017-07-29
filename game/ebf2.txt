@@ -4,10 +4,12 @@ First 15 heroes for Ebf 2.0:
 
 You get to pick 4 skills and 2 passives
 
-Chill: Status effect, slows ms/as or both and if a chill is applied on a chilled target; the target will freeze for the chill duration
+Chill: Status effect, slows ms/as or both and if a chill is applied on a chilled target; Once a chilled unit reaches 100ms they are frozen
 Daze: Randomly interrupts orders
 
-Drow Ranger: Skadi RANGED SINGLE TARGET CROWD CONTROL DPS
+If "for every enemy unit" is mentioned; true bosses (not adds) count as 5-10(?) units
+
+Drow Ranger: Skadi, the Huntress; Ranged single target crowd control focused DPS
 -- Innate: Cold-Hearted: Whenever a Chill placed by Skadi runs out without freezing the enemy, Skadi gains a stack of Cold-Hearted. After 4 stacks her next Chill will instantly Freeze the enemy instead.
 
 -- Skill 1: Frozen Arrow: Chills singular enemy and deals bonus damage.
@@ -32,7 +34,7 @@ Drow Ranger: Skadi RANGED SINGLE TARGET CROWD CONTROL DPS
 Aghs:
 Gives her split shot
 
-Windrunner: Lelantae EVASIVE HIGH DPS
+Windrunner: Lelentae, the Sylph EVASIVE HIGH DPS
 -- Innate: Zephyr: Every consecutive hit on the same target increases Lelantae's movement speed up to 8 stacks (flat ms)
 
 -- Skill 1: Mistral Breeze: Blows a piercing wind, damaging all enemies hit and pushing them aside, enemies are also blinded.
@@ -57,7 +59,7 @@ Windrunner: Lelantae EVASIVE HIGH DPS
 Aghs:
 Allies benefit from Zephyr bonuses
 
-Legion Commander: Morrighain SUSTAIN/SPELL ROTATION TANK
+Legion Commander: Morrighain, the Gladiatrix SUSTAIN/SPELL ROTATION TANK
 -- Innate: Fearless Assault: Chance to attack again with lifesteal while attacking or being attacked.
 
 -- Skill 1: War Fury: Grants damage, armor and lifesteal while standing inside the arena, point target
@@ -83,7 +85,7 @@ Aghs:
 Grants all allies bonus damage and armor for 5s after they cast any spell
 
 
-Lina: Sekhmet
+Lina: Sekhmet, the Phoenix
 -- Innate: Kindled Soul: every 4th spell, Sekhmet's spell will be a supercharged version
 
 -- Skill 1: Fire Surge: literally dragon slave but with an added fire DoT; damage decreases with distance traveled KINDLED: multiple dragon slaves
@@ -99,16 +101,16 @@ Lina: Sekhmet
 -- Passive 2: Dragon Slave distance-based damage decrease removed
 -- Passive 3: Solar Jet is now 5 jets in a cross shape
 -- Passive 4: Self-Immolation now instantly procs Kindled Soul
--- Passive 5: Searing Heat now hits the nearest enemy unit on overkill
--- Passive 5: Overheat DOT now deals instant damage and is always applied even without DoTs active
+-- Passive 5: Searing Heat now also hits the nearest enemy unit
+-- Passive 5: Overheat DOT now deals instant damage and is always applied even with DoTs active
 -- Passive 6: Inferno is now unit target and follows the targeted unit
 -- Passive 7: Firebat refreshes on kill
 -- Passive 8: Blaze Geyser fireballs now apply stacking DoTs
 
 Aghs:
-Halves DOT duration and increases DOT damage
+increases DOT damage
 
-Crystal Maiden: Khione
+Crystal Maiden: Khione, the Cryomancer
 -- Innate: Frostbrand: Deals bonus damage to chilled enemies and chills enemies near enemies frozen by Khione
 
 -- Skill 1: Frost Blast: literally crystal nova with chill
@@ -132,17 +134,460 @@ Crystal Maiden: Khione
 Aghs:
 Whenever an enemy gets frozen, grants all allies Ice Armor, Khione passively gets Ice Armor
 
-Templar Assassin: Anahita
+Templar Assassin: Anahita, the Peacekeeper SPELL-BASED ASSASSIN
+-- Innate: Lady Justice: All damage undone/prevented/healed by Peacekeeper increases her damage for x seconds.
+
+-- Skill 1: Vindication: Places a debuff on an enemy, while this debuff is active Peacekeeper gains bonus movement speed and all damage dealt to the target will grant lifesteal to allies
+-- Skill 2: Adjudicator: Peacekeeper's next attack will reduce armor and lifesteal. Deals bonus damage based on how fast the attack fires after casting.
+-- Skill 3: Mistrial: Undoes all damage taken by Peacekeeper in the past 2 seconds.
+-- Skill 4: Indictment: Peacekeeper places a debuff on an enemy that prevents all attack and cast orders to go through, this counts as preventing damage.
+-- Skill 5: Conviction: Buffs all her allies' attackspeed
+-- Skill 6: Casus Belli: Grants a barrier around Peacekeeper that blocks x amount of damage instances. While the barrier is active she deals double damage.
+-- Skill 7: Mens Rea: Peacekeeper marks an enemy, all damage taken by allies will be dealt to the enemy instead.
+-- Skill 8: Corpus Juris: Peacekeeper refreshes all of her cooldowns, she gains a damage and movement speed bonus for every cooldown refreshed.
+
+-- Passive 1: Lady Justice becomes a small aoe aura (600-900)
+-- Passive 2: Allies benefit from Vindication's bonus movement speed.
+-- Passive 3: Adjudicator will also reduce magic resistance.
+-- Passive 4: Mistrial damage undo from 2s to 3s
+-- Passive 5: Indictment will pass from one enemy to the next on death.
+-- Passive 6: Conviction now also grants bonus attack damage
+-- Passive 7: Casus Belli block instances increased
+-- Passive 8: Mens Rea damage dealt to enemy doubled
+-- Passive 9: Corpus Juris now also heals Peacekeeper for every cooldown refreshed
+
+Aghs:
+Grants Peacekeeper a passive healing aura
+
+Sven: Ares, the Guardian
+-- Innate: Fortitude: Decreases all damage taken and status effect durations
+
+-- Skill 1: Anchor Howl: Taunts all enemies to you, dealing massive damage to them if they change targets within x seconds of the debuff ending. 
+-- Skill 2: Glorious Shield: Blinds enemies in a cone, and damages them.
+-- Skill 3: Shield Bash: Smashes your shield into all enemies infront of you, dealing damage, knocking them back and ministunning them.
+-- Skill 4: Punish: Deals damage to a single target, reducing all their resistances for x seconds.
+-- Skill 5: Challenge: Debuffs an enemy, slowing its attackspeed taunting it and causing Guardian to take decreased damage from all sources.
+-- Skill 6: Rallying Cry: Grants all allies armor, magic resistance and movement speed for the duration.
+-- Skill 7: Guardian's Spirit: Gain massive armor and bonus damage for a duration.
+-- Skill 8: Stone Fortress: Becomes immune to all damage, for x seconds or until an order is given. Can be cast through stun.
+
+-- Passive 1: All abilities grants increased aggro.
+-- Passive 2: Anchor Howl grants bonus armor during its duration.
+-- Passive 3: Blinded enemies take bonus damage
+-- Passive 4: Shield Bash now decreases enemy damage
+-- Passive 5: Using Punish now gives you a temporary buff that grants your HP as damage block (20% chance to block)
+-- Passive 6: Challenge no longer taunts, instead causes fear
+-- Passive 7: Using Rallying Cry redirects 30% of damage taken by allies to you
+-- Passive 8: Guardian's Spirit deals aoe damage on activating and expiring
+-- Passive 9: Stone Fortress: Silenced, muted and disarmed instead of unable to act.
+
+Aghs:
+Increases status effect reduction and grants it to all allies.
+
+Omniknight: Hyperion, the Justicar
+-- Innate: : Inner Sun: All forms of overheal and overkill are stored and added to the next spell's effects; passively grants heal amp to himself
+
+-- Skill 1: Shining Light: purifies a single target, purging them, dealing damage if its an enemy and healing if it's an ally.
+-- Skill 2: Blessed Aegis: buffs an ally, shielding them for x damage
+-- Skill 3: Judgement: deals damage to everyone who attacks Justicar for the duration, when the effect ends a part of the damage taken is converted into healing over time
+-- Skill 4: Absolution: heals the target over time and reduces status effect duration
+-- Skill 5: Penitence: Deals damage to self, damage dealt to self is also dealt to enemies; allies gain barrier; grants bonus armor and damage per unit hit
+-- Skill 6: Avenging Wrath: Line beam, enemies hit are slowed and take bonus damage; grants lifesteal to allies damaging these units
+-- Skill 7: Radiant Glory: unleashes a massive, slow blast of expanding light that damages and blinds enemies
+-- Skill 8: Sacred Ground: Creates a circle on the floor, all enemies within it will be drawn towards Justicar; all allied spell effects are amplified within it, including buff and debuff durations
+
+-- Passive 1: Inner Sun now grants a permanent slowly degrading barrier equal to overkill/overheal done
+-- Passive 2: Shining Light now also affects allies and enemies within 350 radius of main target
+-- Passive 3: Part of Justicar's HP is added to the shield.
+-- Passive 4: Judgement is now unit target instead of no target
+-- Passive 5: Absolution also grants. minor damage reflection
+-- Passive 6: Penitence replaces health with a degrading barrier instead of completely removing it
+-- Passive 7: Avenging Wrath now shoots out of Justicar in a cross pattern
+-- Passive 8: Radiant Glory now also heals all allies
+-- Passive 9: Sacred Ground now slows enemies and makes them take more damage
+
+Aghs:
+Units affected by Justicar's heals have status effect durations reduced by 20%
+
+Slardar: Amemasu, the Leviathan: 
+-- Innate: Dreadvenom: Every damage dealt to an enemy weakens them, increasing debuff durations on them.
+
+-- Skill 1: Eldritch Pull: Pulls the enemy closer with a tentacle, deals damage; enemy is taunted after arriving
+-- Skill 2: Void Maw: Unleashes a swirling torrent around Leviathan, dealing damage over time and slowing harshly
+-- Skill 3: Abyssal Strike: Stuns an enemy, dealing bonus damage based on Leviathan's armor
+-- Skill 4: Kraken's Hide: doubles armor and adds damage block for a duration
+-- Skill 5: Deep Six: Leviathan goes underground and stuns all enemies around him when he reemerges
+-- Skill 6: Crushing Depth: Removes all armor from target for 2 seconds and deals damage
+-- Skill 7: Leviathan's Kiss: Taunts an enemy and applies damage over time
+-- Skill 8: Terror Hold: Fears an enemy and messed with their walk orders
+
+-- Passive 1: Dreadvenom also increases damage taken by the enemy
+-- Passive 2: Eldritch Pull now no target instead of unit target; pulls in all enemies in cast range
+-- Passive 3: Void Maw now pulls in enemies
+-- Passive 4: Abyssal Strike cast range increased, now Leviathan leaps to the enemy if outside of original cast range
+-- Passive 5: Kraken's Hide cooldown has a 20% chance to be reduced every damage instance taken
+-- Passive 6: Deep Six speed increased, grants a movement speed bonus after reemerging
+-- Passive 7: Crushing Depth affects everyone within 375 radius of the main target
+-- Passive 8: Leviathan's Kiss has 3 charges
+-- Passive 9: Enemies no longer run away during Terror Hold's fear, instead they remain stationary
+
+Aghs:
+All allies gain a percentage of Leviathan's armor
+
+Juggernaut: Susanoo, the Ronin
+-- Innate: Stolen Power: Gives a bonus chance to crit, any and all crits proccing will heal the Ronin for full damage.
+
+-- Skill 1: Ronin's Dance: While activated the Ronin will jump towards the opposite side his target is currently facing, always crits.
+-- Skill 2: Boundless Slice: The Ronin leaps towards a point target or unit target, quickly slashing all enemies along the way with bonus damage. If unit target Ronin faces the target and is placed at its back
+-- Skill 3: Samurai's Song: The Ronin becomes invulnerable and quickly slashes around, hitting random enemies, while active he cannot issue move orders
+-- Skill 4: Vengeance: The Ronin briefly becomes immune to all damage, but every attempt to harm him will buff his attackspeed and damage; getting damaged has a chance to refresh this; dropping to critical health always refreshes this
+-- Skill 5: Steady Mind: The Ronin gains bonus crit damage for every form of crit for every enemy around him.
+-- Skill 6: Whirling Dervish: The Ronin spins around, attacking every unit hit, every unit hit reduces Dervish cooldown by 1
+-- Skill 7: Executioner's Blade: Deals one massive crit instance and stuns the enemy, if they were under a certain hp threshold they are instantly killed and Ronin is healed for their remaining health.
+-- Skill 8: Deflection: Ronin deflects all projectiles back to their source point, but is disarmed while doing so; spells unaffected
+
+-- Passive 1: Every non-crit increases the damage the next crit will do.
+-- Passive 2: Ronin's Dance will now jump Ronin towards his attack target if they are within 450 range.
+-- Passive 3: Boundless Slice refreshes when an enemy Ronin hits with Slice dies within 1s.
+-- Passive 4: Samurai's Song gains additional bounces
+-- Passive 5: Vengeance now grants Ronin barriers for a percentage of the damage he should have taken.
+-- Passive 6: Steady Mind now also grants evasion per enemy around him
+-- Passive 7: Whirling Dervish now spins twice
+-- Passive 8: Executioner's Blade now refreshes on kill
+-- Passive 9: Deflection no longer disarms
+
+Aghs:
+Any form of overheal heals the weakest allied unit instead.
+
+Phantom Assassin: Persephone, the Shinigami DAMAGEDAMAGEDAMAGEDAMAGEDAMAGEDAMAGEIWANTTODEALDAMAGE
+-- Innate: Deep Wounds: Every damage instance applies a stack that slows ms and turnrate for 5% per stack and deals damage over time based on the initial damage done; Each stack lasts 10 seconds 
+
+-- Skill 1: Grievous Strike: Deals massive damage to a single target and refreshes all deep wound stacks back to their full duration
+-- Skill 2: Slice 'n Dice: Jumps to point; attacking every unit on your path, attacks are dealt instantly. 
+-- Skill 3: Whirling Slash: Slices all enemies in a cone infront of you; deals additional bonus damage to the first target, deals reduced bonus damage to every target after (-20% bonus damage per target)
+-- Skill 4: Flurry of Blows: Attacks in a cone infront of you rapidly for 3 seconds; allowing you to move (disarmed during it) while dealing multiple damage instances
+-- Skill 5: Reversal: Blocks all incoming physical attacks for 2s, dealing a counterattack for every blow; disarmed during it
+-- Skill 6: Cutthroat Slice: Silences the enemy, while applying multiple Deep Wounds stacks; deals more damage and applies more stacks when backstabbing/ 5 STAMINA
+-- Skill 7: Fan the Blades: Throws several daggers, slowing enemies hit and dealing damage based on attack damage
+-- Skill 8: Reaper: Becomes empowered, gaining attackspeed, chance to crit and increased movement speed; every stack of deep wounds will grants 5% lifesteal
+
+-- Passive 1: Deep Wound stacks gain +1s duration if damage source is an ability instead of an autoattack
+-- Passive 2: Grievous Strike cooldown reduced by 1 second every time another ability is used.
+-- Passive 3: Slice 'n Dice deals a minimum of 4 damage instances (meaning a single target will take 4 instant attacks)
+-- Passive 4: Whirling Slash slices in a full circle
+-- Passive 5: Flurry of Blows damage instances doubled
+-- Passive 6: Reversal cooldown refreshed whenever an enemy dies near Shinigami
+-- Passive 7: Cutthroat Slice also breaks
+-- Passive 8: Fan the Blades ministuns on hit
+-- Passive 9: Activating Reaper refreshes all cooldowns
+
+Aghs:
+All damage is doubled when dealt from the enemy's back
+
+Disruptor: Chaac the Stormcrafter
+-- Innate: Static Link - Enemies hit by the Stormcrafter receive a debuff that causes them to take part of the damage dealt to any other unit damaged by Stormcrafter
+
+-- Skill 1: Volt Hurricane - Creates a large AOE storm that deals damage to enemies and silences them.
+-- Skill 2: Thunder Strike - Damages a single enemy and stuns them for 1 second, then slows them for 100%->25% over 3 seconds
+-- Skill 3: Electro Charge - Deals minor DoT to a single enemy, pulling nearby enemies closer and also damaging them with a minor DoT.
+-- Skill 4: Ball Lightning - Throws a rapidly moving ball lightning to the targeted enemy, on hit bounces to a random nearby enemy, prioritizes unbounced enemies but can bounce to enemies already hit.
+-- Skill 5: Energize - Buffs an allied unit, granting them temporary increased attack speed and movement speed.
+-- Skill 6: Tesla Storm - Random thunderbolts drop from the sky over 3 seconds, locking into enemies within 350 range of the impact site, should they exist.
+-- Skill 7: Conductive Shield - Grants allies a shield that zaps any enemy that attacks them, damage dealt to enemies by Stormcrafter will heal allies affected. Always affects Stormcrafter
+-- Skill 8: Fulmination - Throws a lightning spear at point target, all enemies hit are broken and are randomly ministunned for its duration.
+
+-- Passive 1: Static Link now also causes debuffs to be shared. (full duration? idk how to do decaying debuffs with lower duration, some getduration shit probably)
+-- Passive 2: Volt Hurricane grants increasing attack speed and cooldown reduction for any allies standing within it. (starts at like 10/5% and ends at smth like 300/30%)
+-- Passive 3: Thunder Strike grants the stolen movement speed to Stormcrafter
+-- Passive 4: Electro Charge doubles pull radius
+-- Passive 5: Ball Lightning increass bounces
+-- Passive 6: Energize buffs Stormcrafter for free as well
+-- Passive 7: Tesla Storm duration and bolts per second increased
+-- Passive 8: Conductive Shield makes allies a viable target for Stormcrafter's spells, healing them for full intended damage.
+-- Passive 9: Fulmination splinters once when hitting an enemy, removing itself but instead creating 2-3 new projectiles towards nearby enemy units
+
+Lone Druid: Odin the Sage
+-- Innate: Summon Familiar: Summons a familiar to fight for the Sage; only one familiar can be active at any time; the familiar has double the Sage's health; but half his damage.
+
+-- Skill 1: Entangling Roots: Slows an enemy and deals damage, damage dealt heals the Sage and his familiar
+---- PREDATOR: Leeching Claws - Becomes No Target, while active, every enemy that is attacked by the Sage procs the Entangling Roots effect
+---- GUARDIAN: Entangling Growth - Becomes No Target, while active, every enemy that attacks the Sage procs the Entangling Roots effect
+-- Skill 2: Grasping Thorns: Roots an enemy, every damage an ally does deals bonus damage and removes a stack, if the amount of stacks reaches 0 deals another burst of damage.
+---- PREDATOR: Every auto attack that the Sage or his familiar lands take out 2 stacks instead of 1.
+---- GUARDIAN: Enemy attacks on Sage removes stacks from the attacking enemy and deal bonus damage based on the enemy's attack damage 
+-- Skill 3: Rabid Frenzy: Grants bonus attackspeed and movement speed to Sage and his familiar.
+---- PREDATOR: Grants damage amplification on top
+---- GUARDIAN: Grants damage reduction on top
+-- Skill 4: Predator Form: Transforms the Sage into a wolf. Wolf form grants him bonus movement speed and +% damage. Passive Crit
+---- PREDATOR: Passive: Familiar becomes a wolf as well
+---- GUARDIAN: Nothing?
+-- Skill 5: Protector Form: Transforms the Sage into a bear. Bear form grants him bonus health and armor. Passive Bash
+---- PREDATOR: Nothing?
+---- GUARDIAN: Passive: Familiar becomes a bear as well
+-- Skill 6: Battle Cry: Briefly grants Odin and his familiar bonus armor and damage.
+---- PREDATOR: Bonus damage increased
+---- GUARDIAN: Bonus armor increased
+-- Skill 7: Intimidating Roar: Fears enemies around Odin and his familiar.
+---- PREDATOR: Piercing Howl: All of your and your familiar's attacks pierce 40% of target's armor while they are feared.
+---- GUARDIAN: Ferocious Bellow: After fear ends, enemy attack damage is reduced by 40% for a duration.
+-- Skill 8: Living Bark: Grants an allied unit bonus armor, health regeneration and damage block for a certain amount of damage instances. (its living armor)
+---- PREDATOR: Verdant Armour: Can only be used on self, lowered stack count, but stacks regenerate over time.
+---- GUARDIAN: Stonebark Hide: Increased armor and damage block, but can only be used on self.
+
+-- Passive 1: The familiar now has half of Odin's health and double his damage.
+-- Passive 2: Entangling Roots now spread out to nearby enemies should they get close to an afflicted enemy receiving the debuff for its remaining duration.
+-- Passive 3: Grasping Thorns now fully stuns
+-- Passive 4: Rabid Frenzy affects allies
+-- Passive 5: Being in Predator Form now changes all of the Sage's abilities.
+-- Passive 6: Being in Protector Form now changes all of the Sage's abilities.
+-- Passive 7: Battle Cry affects allies
+-- Passive 8: Intimidating Roar no longer causes enemies to run away, isntead they stand still.
+-- Passive 9: Living Bark stacks now only disappear when they fully consume their damage block.
+
+Dazzle: Amaterasu, the Mystic
+-- Innate: Life-Weaver: Every heal the Mystic performs is granted a bonus amount of healing over time to the current and previous target
+
+-- Skill 1: Mending Wave: literally dazzle shadow wave (because of how its targeting works, all units affected benefit from Life-Weaver)
+-- Skill 2: Unyielding: literally shallow grave (preheal counts for lifeweaver)
+-- Skill 3: Mist Barrier: Barrier that regenerates when not damaged, infinite duration
+-- Skill 4: Death Clasp: Mystic channels and stuns a single target, every second channeled; another target near the main target is also stunned; lasts until channel ends. Deals damage and heals the Mystic
+-- Skill 5: Sacrificial Rite: the Mystic removes all his health, becoming invulnerable for 3 seconds and healing every ally for his sacrificed life over 3 seconds. (all benefit from Life-Weaver), does not self-heal
+-- Skill 6: Eternal Feast: The Mystic damages enemies and debuffs them, enemies who die while debuffed will drop orbs that restore health to allied units. Explodes on expiration or use for damage
+-- Skill 7: Grim Harvest: The Mystic sends out an orb that homes on targets if any are near and otherwise holds its direction. Targets hit will be damaged and grant lifesteal when attacked. Can be cast again while the orb is active to change position with the orb. Does not consume the orb.
+-- Skill 8: Lifeswap: the Mystic directly gives his health to an ally, giving them increases maximum health until their current health drops under their original health. Also increases currenth health by an equal amount.
+
+-- Passive 1: Life-Weaver now grants any overheal as a temporary 10 second Barrier.
+-- Passive 2: Mending Wave bounces doubles, now also bounces to enemies, damagin them directly and healing allies in the AoE
+-- Passive 3: Unyielding now grants double healing while active.
+-- Passive 4: Mist Barrier gains a % bonus amount based on target's max hp
+-- Passive 5: Death Clasp now stuns every valid target within range every second.
+-- Passive 6: Sacrificial Rite now grants damage reduction to everyone, including the Mystic
+-- Passive 7: Eternal Feast orbs will slowly roll towards the nearest ally or enemy
+-- Passive 8: Grim Harvest's stays stationary now, but appears at point target immediately
+-- Passive 9: Lifeswap renders the Mystic attack immune and gives him phased, hasted movement briefly
+
+Aghs: Life-weaver empowers Mystic's heals, increasing their amount per ally healed in the past 15 seconds.
+
+
+Treant: Yggdrasil, The Forest
+-- Innate: Iron Bark: Every time Yggrasil casts an ability, he and all allies near him receive a stacking armor bonus
+
+-- Skill 1: Growing Armor: Grants health regeneration and blocks x damage instances
+-- Skill 2: Parasitic Growth: Slows an enemy, enemy sends out pulses that heal allies near it, every pulse deals equal damage
+-- Skill 3: Nature's Grove: Sprouts many trees in a radius, trees heal nearby allies and deal DoT to enemies, if an enemy stands in the grove for 3s they are slept, can only happen once per grove, lasts like 9s
+-- Skill 4: Overgrowth: Yggrasil becomes a massive tree, granting him a major health bonus, every time he casts an ability while in this form all enemies around him are rooted for 2s
+-- Skill 5: Vine Whip: Sends out a vine that knocks all enemies it hits back and stuns them 
+-- Skill 6: Ancient Tether: Links an ally with Yggrasil, the ally is granted Yggrasil's health regeneration and Yggrasil's HP is slowly equalized with the ally (both equal amounts of hp), reuse on same ally to break
+-- Skill 7: Envelop: Yggrasil loses control of his movement and wraps himself around his ally. All damage that ally takes will instead be transferred to Yggrasil. Reuse to cancel (can still cast spells)
+-- Skill 8: Become One: Yggrasil targets a tree and instantly replaces the tree. Yggdrasil is healed for 20% of his HP as well
+
+-- Passive 1: Iron Bark now also grants magic resistance and debuff resistance
+-- Passive 2: Growing Armor health regeneration now includes %hp on top of base
+-- Passive 3: Parasitic Growth will now spread to nearby enemies
+-- Passive 4: Nature's Grove will now keep growing until the duration ends
+-- Passive 5: Overgrowth now roots all enemies on spell activation and heals all allies for 100% of their health over its active duration
+-- Passive 6: Vine Whip will briefly be changed by Snapback for 1s after an enemy is hit, when Snapback is activated, Yggrasil will slingshot himself towards the enemy, dealing damage and stunning any enemy he hits while in motion
+-- Passive 7: Ancient Tether: Also grants damage reduction to the tethered ally
+-- Passive 8: Envelop: Yggrasil now gains his ally's HP for himself while Enveloping
+-- Passive 9: Become One now heals all allies around his original position for 20% of Yggrasil's max hp
+
+
+Warlock: Nergal, the Cultist BIG ASS MINIONS
+-- Innate: Demonic Power: Activateable, kills all of Warlock's minions and grants him buffs based on the minions sacrificed.
+
+-- Skill 1: Solomon's Key: Summons a random temporary strong demon (Ziminar of the North, Amaymon of the East, Corson of the South, Gaap of the West) (Ziminar: Ice, slows)(Amaymon: Nature, weakens)(Corson: Fire damage, -armor, DOT)(Gaap: Spirit, charms)
+-- Skill 2: Moloch Rises: permanent lightning based demon; permanent - ability goes on cooldown when Moloch dies; disabled until Moloch dies; disabled if Naamah is alive
+-- Skill 3: Awaken Naamah: permanent cc and poison based demon; permanent - ability goes on cooldown when Naamah dies; disabled until Naamah dies; disabled if Moloch is alive
+-- Skill 4: Demonic Rift: Creates a portal lasting 10 seconds at the point target and a portal randomly placed around the Cultist
+-- Skill 5: Cerberean Claws: Briefly turns melee; granting a major damage buff
+-- Skill 6: Chione's Breath: Grants attack and moveslow on hit effect to Cultist and all his minions; toggle; consumes mana per slow applied
+-- Skill 7: Baphomet Pulse: AOE shockwave around the Cultist and all his minions, damage instances stack
+-- Skill 8: Dread Symbiosis: Every allied unit in range's health and mana gets redistributed so everyone has an equal % of health and mana
+
+-- Passive 1: Demonic Power no longer kills the minion, instead brings it to critical health
+-- Passive 2: Solomon's Key's demons gain a bonus ability
+-- Passive 3: Moloch gains bonus armor for every enemy unit near him
+-- Passive 4: Naamah gains bonus damage for every enemy unit around the unit he's attacking
+-- Passive 5: Demonic Rift now releases damaging shockwaves at both portals whenever someone uses them
+-- Passive 6: Cerberean Claws now grants a movement speed bonus
+-- Passive 7: Chione's Breath now chills every 4 hits.
+-- Passive 8: Baphomet Pulse heals Cultist and his minions for the damage dealt
+-- Passive 9: Dread Symbiosis heals Cultist after redistributing
+
+Aghs:
+Can now have both Moloch and Naamah active at the same time; if only one is active the single demon is stronger
+
+Necrophos: Namtar, the Puppeteer SMALL ASS MINIONS
+-- Innate: Black Plague: Casting any ability makes a mist around the Puppeteer and his minions, units in the mist gain one stack of Black Plague. Black Plague spreads to nearby units at a rate of 1 stack per second. Lasts 20 seconds, deals damage over time.
+
+-- Skill 1: Skeletal Rush: Skeletons rise from the ground running at the enemies; dying when they attack the first target they reach
+-- Skill 2: Mass of Flesh: A wall of flesh rises in a line; enemies caught take Nature DoT and are stunned; enemies on the side are dealt one time Nature damage; the wall spreads a plague aura that deals nature damage
+-- Skill 3: Skeleton Archer: Summons a skeletal archer
+-- Skill 4: Zombie Brute: Summons a zombie tanky frontliner
+-- Skill 5: Lich Mage: Summons a caster unit that can debuff enemies to take more damage and heal allies
+-- Skill 6: Bone Wave: Cultist rides a wave of bones that pushes all enemies out of the way and damages them 
+-- Skill 7: Fleshcraft: Heals an allied unit, burst-healing them once and then giving them a minor HoT; deals minor damage over time to enemies; damage increases based on Black Plague stacks
+-- Skill 8: Pestilence: Sacrifices ALL summoned units; making them explode for one time Nature damage and applying Black Plague stacks
+
+-- Passive 1: Black Plague now spreads at 2 stacks per second and when a unit that did not have Black Plague gains Black Plague the unit that spread it will have its stacks refreshed
+-- Passive 2: Skeletal Rush summons no longer disappear upon attacking the target, instead they last 5 seconds and keep moving forward.
+-- Passive 3: Mass of Flesh is now circle-shaped instead of a line
+-- Passive 4: Skeleton Archers resurrect once upon death, this includes time-out death; fully refreshes health, mana and their timer
+-- Passive 5: if two Zombie Brutes are near each other they merge into Zombie Behemoths, tankier and spread Black Plague to units near them (350 radius)
+-- Passive 6: Lich Mage abilities go from single target to aoe
+-- Passive 7: Enemies hit by Bone Wave are attacked by a Skeleton Skirmisher (Skeletal Rush minions)
+-- Passive 8: Fleshcraft increases status effect durations applied
+-- Passive 9: Units killed by Pestilence will resurrect on your side with 10% hp
+
+Aghs:
+Units afflicted by Black Plague do less damage.
+
+Earthshaker: Ruamoko, the Tremor SUPPORT SPECIALIST
+-- Innate: Aftershock: Every ability cast will stun and deal damage to nearby enemies
+
+-- Skill 1: Fissure: Erects a wall of rock that is impassible to non-flying units, deals damage to units near the formation
+	-- Imbue Totem Effect: Units hit are slowed and dazed
+-- Skill 2: Earthquake: Creates shockwaves that damage everyone they hit, damaged targets create more shockwaves
+	-- Imbue Totem Effect: Doubles created shockwaves and shockwaves from targets
+-- Skill 3: Imbue Totem: Next ability or right click dealt will have a special effect. (Rightclick: deals % bonus damage)
+	-- Imbue Totem Effect: Totem explodes in AOE, next ability is still powered up
+-- Skill 4: Seismic Leap: Jumps into the air and lands on a spot, stunning and dealing damage to enemies in aoe	
+	-- Imbue Totem Effect: Jump ends faster and deals double damage and stun duration																																										
+-- Skill 5: Quicksand: Turns the ground around Ruamoko to quicksand (does not follow ruamoko), slowing enemies and rooting them if they stand still for 3 seconds.
+	-- Imbue Totem Effect: Increases slow and reduces root timer to 1.5s
+-- Skill 6: Obsidian Flesh: Grants heavy damage reduction to targeted ally, but also slows them
+	-- Imbue Totem Effect: 100% damage reduction for the first second and tapers off to original damage reduction as duration passes (so if 60% is default goes from 100%->60%)
+-- Skill 7: Churning Ground: The ground around Ruamoko begins to shake violently for 5s (follows ruamoko), stunning enemies briefly every second
+	-- Imbue Totem Effect: Every new tremor grown in radius
+-- Skill 8: Rock Slide: Ruamoko quickly slides through the ground, dealing damage behind his original position and stunning everyone he passes through
+	-- Imbue Totem Effect: Constantly deals damage in a circle around him while sliding
+
+-- Passive 1: Aftershock now completely recasts the ability as well, but this version deals less damage/doesn't offer mobility (Rock Slide deals damage behind Tremor but does not move him)
+-- Passive 2: Fissure now creates a split wave (splits in two and recasts itself a few times, opening the gap)
+-- Passive 3: Enemies hit by Earthquake are slowed in ms and as
+-- Passive 4: Imbue Totem now works for the next 2 right clicks/casts
+-- Passive 5: Seismic Leap grants Tremor bonus armor when he lands
+-- Passive 6: Quicksand grants Tremor and his allies evasion and bonus movement speed
+-- Passive 7: Obisidian Flesh now explodes when the unit under Obsidian Flesh takes x damage before OF reductions
+-- Passive 8: Churning Ground reduces all cooldowns by 1 second every tremor
+-- Passive 9: Rock Slide grants a very strong movement speed upon ending
+
+
+Wraith King: Hades, the Wraith HIGH RISK DPS TANK
+-- Innate: One For All: Takes a % of all damage allies take, but also takes a % of allied regeneration / All For One: When ability is toggled, allies will take a % of the damage WK takes (damage is percentual not absolute; so if he takes 25% max hp in damage all allies will take 5% of their hp as damage)
+
+-- Skill 1: Blood Ritual: Hades targets an enemy, devouring their essence and granting him lifesteal while he attacks them, the lower their health the more he lifesteals
+-- Skill 2: Sanguine Berserker: Toggle - Grants 80% damage reduction but drains 5% curr hp/s, he is granted attackspeed and damage for every % of his health missing
+-- Skill 3: Bloodletter: Bleeds out an enemy, slowing their attack and movespeed and their turnrate
+-- Skill 4: Essence Aura: Toggle - While active slows Hades' movement speed drastically, but grants him and his allies major lifesteal
+-- Skill 5: Wraithfire: Sends out haunted skulls towards his enemies, stunning and damaging them on impact and burning them afterwards
+-- Skill 6: Undying: Targets an ally, while this buff is active the ally will come back upon dying. Lasts like 60 seconds. Passively brings Wraith back if spell is off cooldown.
+-- Skill 7: Life Strike: Sends out a shockwave that damages enemies and heals Wraith for a % of the damage done; in case of overheal the heal is passed to the ally with the most health missing.
+-- Skill 8: Wraith's Will: Tethers all enemies around Wraith, taunting them to him and stealing hp from them per second.
+
+-- Passive 1: One For All grants Wraith and allies healing amp
+-- Passive 2: Can be casted on allies; gives them lifesteal that increases in strength
+-- Passive 3: While Sanguine Berserker is toggled, is granted a crit, chance is %hp missing
+-- Passive 4: Bloodletter afflicted enemies leave a trail on the ground that heals allies while they stand in it
+-- Passive 5: Essence Aura also grants a passive health regeneration aura
+-- Passive 6: Wraithfire debuffs enemies, granting heal amp to allies that attack them
+-- Passive 7: Undying now has 2 charges.
+-- Passive 8: Life Strike is now sent out all around Wraith (8 waves)
+-- Passive 9: Wraith's Will also tethers allies, healing them for an equal amount that Wraith is stealing.
+
+Aghs:
+Current WK Aghs effect
+
+
+Chaos Knight: Ebisu, the Fortune RNG UTILITY DPS
+-- Innate: Loaded Dice: Ebisu guarantees a good roll while this is off cd. Also passively grants critical strike
+
+-- Skill 1: Chaos Storm: current iteration - loaded dice makes it stun full duration and deal full damage
+-- Skill 2: Chaotic Assault: Deals a random amount of attacks, up to 25 in rapid succession, every strike removes 5 armor
+-- Skill 3: Meteor Strike: Leaps up into the air, becoming out of this world then leaps down on a random enemy - Loaded Dice creates copies, each landing on an enemy hitting every enemy in radius
+-- Skill 4: Disorder Reigns: Removes a random amount of seconds from every cooldown; granting a stack of damage bonus per second of cooldown removes. - Loaded Dice refreshes all cooldowns
+-- Skill 5: Rift Strike: Pulls enemy and Fortune towards each other, meeting point is random. Deals bonus damage - Loaded Dice always pulls the enemy completely towards Fortune
+-- Skill 6: Blessed Chaos: Buffs an ally, all damage this ally takes is redirected to a random target, damage cannot kill - Loaded Dice always redirects damage to an enemy
+-- Skill 7: Entropy: Slows all enemies and increases allied movement speed for random amounts - Loaded Dice maxed slow and ms boost
+-- Skill 8: Ataxia: Dazes a random amount of enemies - Loaded Dice dazes all enemies
+
+-- Passive 1: Crits reduce Loaded Dice cooldown by 1 second.
+-- Passive 2: 
+-- Passive 3: 
+-- Passive 4: 
+-- Passive 5:
+-- Passive 6: Rift Strike  
+-- Passive 7: Blessed Chaos spreads damage over all alies or deals full damage to all enemies in range
+-- Passive 8: Entropy also buffs and reduces attackspeed
+-- Passive 9: Daze procs stun the enemy for 1 second
+
+Aghs
+
+
+
+
+Bane: Phobetor, the Nightmare
+-- Innate: Terrifying Presence: Any enemy within 900 range deals less auto-attack damage, this effect is always applied with doubled effect, for 15 seconds on any enemy Nightmare casts an abiliy on
+
+-- Skill 1: Nightmare Feast: current aoe brain sap
+-- Skill 2: Horrify: Fears enemies and grants Bane armor and spell amp for every enemy horrified
+-- Skill 3: Broken Will: current aoe enfeeble
+-- Skill 4: Hypnogogic State: current nightmare
+-- Skill 5: Mutual Nightmare: Fiends grip but grips more people in intervals
+-- Skill 6: Somnambulism: Nightmare buffs himself, granting him spell amp, magic resistance and damage reduction but making him auto-cast spells for 10 seconds. 
+-- Skill 7: Insomnia: Removes all debuffs (including stuns) from Bane; also grants him movement speed, attack speed and increased damage.
+-- Skill 8: Night Terror: Stuns all enemies in radius, lifestealing from them while stunned.
+
+-- Passive 1: 
+-- Passive 2: 
+-- Passive 3: 
+-- Passive 4: 
+-- Passive 5: 
+-- Passive 6: 
+-- Passive 7: 
+-- Passive 8: 
+-- Passive 9: 
+
+Aghs:
+
+
+Rikimaru: Samael, the Trickster 
+-- Innate: Stacking DoTs and bleed will increase all of Samael's damage to the target
+
+-- Skill 1: Xbow: skillshot, heals allies, damages enemies (over time) Increased potency per 100 units traveled by the arrow
+-- Skill 2: Debuff Smokebomb. -attack damage and attackspeed, short silence. Possibly miss chance for bosses.
+-- Skill 3: Cloak, bounty hunter invis With Break/DoT/Bleed if rightclicking enemy to break it.
+-- Skill 4: Escape, current PA blink that does bonus damage (Should have been backstab)																																										
+-- Skill 5: Poison Dart: applies strong slow and deals poison DoT, has a minor impact hit damage though should not be TOO low unless the DoT is VERY strong.
+-- Skill 6: Shiv: Deals % of riki's damage and applies a poison and bleed DoT
+-- Skill 7: Concoction: Buffs allies, maybe some kind of frenzy mode + heal
+-- Skill 8: Current Riki ult but maybe applies some DoTs
+
+-- Passive 1: Increases his innate's damage per DoT/Adds a stacking effect (Slowing them more/causing them to miss more/etc Some extra debuff) on bosses the more DoTs on a boss.
+-- Passive 2: Arrow now pierces through everything
+-- Passive 3: Adds A Decent DoT to Debuff Smoke
+-- Passive 4: Adds Phased movement and increases MS when cloaked. Also gives minor evasion bonuses passively even when not cloaked.
+-- Passive 5: Allows Samael to do 2 hits of bonus DoTs on targets hit using escape. Basically having him atk a target twice with it.
+-- Passive 6: Shiv Damage is now always a Strong crit (PA tier?) with a damage % based on the level of the skill (or you decide Hou)
+-- Passive 7: Poison Dart now does an extra debuff on enemies. (I'm thinking decently high miss chance, but you can possibly change this. Could also mute the bosses as well if it's too weak.)
+-- Passive 8: Concoction is now always active (Could be like WW's Aghs if you think it's too OP. Change it to a toggle rather than using it and having to deal with a CD.)
+-- Passive 9: Ulti does more damage for every hit he does in sucession to the same target, but there should be a cap to prevent OPness? (Since he already does more with tons of DoTs on enemies?)
+
+Aghs: Also affected by DoTs/Bleeds caused by allies? Could be his selfish aghs buff. The more teamwork one would be to allow all allies to deal the same boosted damage to the targets. Or maybe even both?
+
+
+
+Techies: Chantico, the Bomber 
 -- Innate: 
 
 -- Skill 1:
 -- Skill 2:
 -- Skill 3:
--- Skill 4:
+-- Skill 4:																																							
 -- Skill 5:
 -- Skill 6:
 -- Skill 7:
--- Skill 8:
+-- Skill 8: Plan B(omb): current techies nuke
 
 -- Passive 1:
 -- Passive 2:
@@ -150,196 +595,35 @@ Templar Assassin: Anahita
 -- Passive 4:
 -- Passive 5:
 -- Passive 6:
--- Passive 7:
+-- Passive 7: 
 -- Passive 8:
+-- Passive 9: 
 
-Sven: Ares
--- Innate: 
+Aghs: 
 
--- Skill 1:
--- Skill 2:
--- Skill 3:
--- Skill 4:
--- Skill 5:
--- Skill 6:
--- Skill 7:
--- Skill 8:
 
--- Passive 1:
--- Passive 2:
--- Passive 3:
--- Passive 4:
--- Passive 5:
--- Passive 6:
--- Passive 7:
--- Passive 8:
 
-Omniknight: Hyperion
--- Innate: 
 
--- Skill 1:
--- Skill 2:
--- Skill 3:
--- Skill 4:
--- Skill 5:
--- Skill 6:
--- Skill 7:
--- Skill 8:
 
--- Passive 1:
--- Passive 2:
--- Passive 3:
--- Passive 4:
--- Passive 5:
--- Passive 6:
--- Passive 7:
--- Passive 8:
 
-Slardar: Amemasu
--- Innate: 
 
--- Skill 1:
--- Skill 2:
--- Skill 3:
--- Skill 4:
--- Skill 5:
--- Skill 6:
--- Skill 7:
--- Skill 8:
 
--- Passive 1:
--- Passive 2:
--- Passive 3:
--- Passive 4:
--- Passive 5:
--- Passive 6:
--- Passive 7:
--- Passive 8:
 
-Juggernaut: Susanoo
--- Innate: 
 
--- Skill 1:
--- Skill 2:
--- Skill 3:
--- Skill 4:
--- Skill 5:
--- Skill 6:
--- Skill 7:
--- Skill 8:
 
--- Passive 1:
--- Passive 2:
--- Passive 3:
--- Passive 4:
--- Passive 5:
--- Passive 6:
--- Passive 7:
--- Passive 8:
 
-Phantom Assassin: Persephone
--- Innate: 
+BOSS CONCEPTS:
 
--- Skill 1:
--- Skill 2:
--- Skill 3:
--- Skill 4:
--- Skill 5:
--- Skill 6:
--- Skill 7:
--- Skill 8:
+WAVE 1A:
+Vhoul Assassin: Sneak n Reap
 
--- Passive 1:
--- Passive 2:
--- Passive 3:
--- Passive 4:
--- Passive 5:
--- Passive 6:
--- Passive 7:
--- Passive 8:
+Ability 1: Invis, bonus damage out of invis
+Ability 2: Blink Strike (blinks towards enemy and slashes in cone infront)
+Ability 3: Rushdown (Rapidly runs forwards, slashes everyone infront)
 
-Disruptor: Chaac
--- Innate: 
+WAVE 1B:
+Vhoul Champion: Spear Thrower
 
--- Skill 1:
--- Skill 2:
--- Skill 3:
--- Skill 4:
--- Skill 5:
--- Skill 6:
--- Skill 7:
--- Skill 8:
-
--- Passive 1:
--- Passive 2:
--- Passive 3:
--- Passive 4:
--- Passive 5:
--- Passive 6:
--- Passive 7:
--- Passive 8:
-
-Lone Druid: Loki
--- Innate: 
-
--- Skill 1:
--- Skill 2:
--- Skill 3:
--- Skill 4:
--- Skill 5:
--- Skill 6:
--- Skill 7:
--- Skill 8:
-
--- Passive 1:
--- Passive 2:
--- Passive 3:
--- Passive 4:
--- Passive 5:
--- Passive 6:
--- Passive 7:
--- Passive 8:
-
-Warlock: Nergal
--- Innate: 
-
--- Skill 1:
--- Skill 2:
--- Skill 3:
--- Skill 4:
--- Skill 5:
--- Skill 6:
--- Skill 7:
--- Skill 8:
-
--- Passive 1:
--- Passive 2:
--- Passive 3:
--- Passive 4:
--- Passive 5:
--- Passive 6:
--- Passive 7:
--- Passive 8:
-
-Necrophos: Namtar
--- Innate: 
-
--- Skill 1:
--- Skill 2:
--- Skill 3:
--- Skill 4:
--- Skill 5:
--- Skill 6:
--- Skill 7:
--- Skill 8:
-
--- Passive 1:
--- Passive 2:
--- Passive 3:
--- Passive 4:
--- Passive 5:
--- Passive 6:
--- Passive 7:
--- Passive 8:
-
-+ find some popular supports
+Ability 1: Spear Throw: Mirana Arrow style spear throw, pierces and breaks
+Ability 2: Spear Pin: Mirana arrow style, stuns and disappears
+Ability 2: Spear Strike: Jumps into the air and stuns on land

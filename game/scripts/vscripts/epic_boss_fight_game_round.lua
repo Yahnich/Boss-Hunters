@@ -287,7 +287,8 @@ function CHoldoutGameRound:OnNPCSpawned( event )
 		end
 		spawnedUnit:SetDeathXP( 0 )
 		spawnedUnit.unitName = spawnedUnit:GetUnitName()
-
+		DestroyTreesAroundPoint(spawnedUnit:GetAbsOrigin(), spawnedUnit:GetHullRadius() + spawnedUnit:GetCollisionPadding() + 16, true)
+		FindClearSpaceForUnit(spawnedUnit, spawnedUnit:GetAbsOrigin(), true)
 	end
 end
 

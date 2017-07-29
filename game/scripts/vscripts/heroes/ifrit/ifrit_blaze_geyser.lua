@@ -17,6 +17,7 @@ function ifrit_blaze_geyser:OnSpellStart()
 end
 
 function ifrit_blaze_geyser:OnProjectileHit(target, position)
+	if not target then return end
 	self:DealDamage(self:GetCaster(), target, self:GetTalentSpecialValueFor("geyser_damage") + (self:GetCaster().selfImmolationDamageBonus or 0))
 	if self:GetCaster():HasTalent("ifrit_blaze_geyser_talent_1") then
 		local duration = self:GetCaster():FindSpecificTalentValue("ifrit_blaze_geyser_talent_1", "duration")

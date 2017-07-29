@@ -39978,6 +39978,8 @@
 		"precache"
 		{
 			"soundfile"					"soundevents/game_sounds/ability_summon_undead.vsndevts"
+			"particle"					"particles/econ/generic/generic_aoe_explosion_sphere_1/generic_aoe_explosion_sphere_1.vpcf"
+			"particle"					"particles/generic_aoe_persistent_circle_1/death_time_head_timer.vpcf"
 		}
 		
 		// Casting
@@ -40132,18 +40134,9 @@
 		        "duration" "%duration"
 		        "Properties"
 		        {
-		            "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "20"
+		            "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "-20"
 		        }
 		    }
-		}
-		
-		"OnChannelFinish"
-		{
-			"RemoveModifier"
-			{
-				"Target"				"CASTER"
-				"ModifierName"			"channel_started"
-			}
 		}
 	}
 
@@ -49180,7 +49173,7 @@
 			"modifier_elite_temporal_aura_handler"
 			{
 				"Aura" "modifier_elite_temporal_aura"
-				"Aura_Radius" "450"
+				"Aura_Radius" "300"
 				"Aura_Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
 				"Aura_Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"			
 				"EffectName"	"particles/econ/courier/courier_onibi/courier_onibi_yellow_ambient_smoke_lvl21.vpcf"

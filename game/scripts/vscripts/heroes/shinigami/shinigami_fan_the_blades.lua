@@ -59,7 +59,7 @@ modifier_shinigami_fan_the_blades_slow = class({})
 LinkLuaModifier("modifier_shinigami_fan_the_blades_slow", "heroes/shinigami/shinigami_fan_the_blades.lua", 0)
 
 function modifier_shinigami_fan_the_blades_slow:OnCreated()
-	self.slow = self:GetSpecialValueFor("slow_amount")
+	self.slow = self:GetAbility():GetSpecialValueFor("slow_amount")
 end
 
 function modifier_shinigami_fan_the_blades_slow:DeclareFunctions()

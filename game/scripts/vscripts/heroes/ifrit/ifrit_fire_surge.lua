@@ -86,7 +86,7 @@ function ifrit_fire_surge:OnProjectileHitHandle( hTarget, vLocation, projectileI
 		ParticleManager:SetParticleControlForward( nFXIndex, 1, vDirection )
 		ParticleManager:ReleaseParticleIndex( nFXIndex )
 	end
-	self.projectileTable[projectileID] = nil
+	self.projectileTable[projectileID] = nil -- clear memory space
 	return false
 end
 
@@ -109,15 +109,14 @@ modifier_ifrit_fire_surge_fire_debuff = class({})
 
 function modifier_ifrit_fire_surge_fire_debuff:OnCreated(kv)
 	self.damage_over_time = tonumber(kv.damage)
-	print(self.damage_over_time)
 	self.tick_interval = 1
-	if self:GetCaster():HasScepter() then self.damage_over_time = self.damage_over_time * 2 end
+	if self:GetCaster():HasScepter() then self.damage_over_time = (self.damage_over_time or 0) * 2 end
 	if IsServer() then self:StartIntervalThink(self.tick_interval) end
 end
 
 function modifier_ifrit_fire_surge_fire_debuff:OnRefresh(kv)
 	self.damage_over_time = tonumber(kv.damage)
-	if self:GetCaster():HasScepter() then self.damage_over_time = self.damage_over_time * 2 end
+	if self:GetCaster():HasScepter() then self.damage_over_time = (self.damage_over_time or 0) * 2 end
 end
 
 function modifier_ifrit_fire_surge_fire_debuff:OnIntervalThink()

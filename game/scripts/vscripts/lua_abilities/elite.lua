@@ -150,14 +150,13 @@ function CreateBubbles(keys)
 	if #units == 0 then return end
 	ability:StartCooldown(14)
 	for _, unit in pairs(units) do
-		print("triggered")
-		local shardLoc = unit:GetAbsOrigin() + RandomVector(350)
+		local shardLoc = unit:GetAbsOrigin() + RandomVector(250)
 		EmitSoundOnLocationWithCaster(shardLoc, "hero_Crystal.frostbite", caster)
 		local bubble = caster:CreateDummy(shardLoc)
 		ability:ApplyDataDrivenModifier(caster, bubble, "modifier_elite_temporal_aura_handler", {duration = 8})
 		local bubbleFX = ParticleManager:CreateParticle("particles/units/heroes/hero_faceless_void/faceless_void_chronosphere.vpcf", PATTACH_ABSORIGIN, bubble)
 			ParticleManager:SetParticleControl(bubbleFX, 0, shardLoc)
-			ParticleManager:SetParticleControl(bubbleFX, 1, Vector(450,450,450)) --radius
+			ParticleManager:SetParticleControl(bubbleFX, 1, Vector(300,300,300)) --radius
 			ParticleManager:SetParticleControl(bubbleFX, 6, shardLoc)
 			ParticleManager:SetParticleControl(bubbleFX, 10, shardLoc)
 		Timers:CreateTimer(8, function() 
@@ -173,13 +172,12 @@ end
 function IncreaseCD(keys)
 	local ability = keys.ability
 	local target = keys.target
-
+	if target:IsMagicImmune() then return end
 	for i = 0, 12 do
 		local checkedAb = target:GetAbilityByIndex(i)
 		if checkedAb  and not checkedAb:IsPassive() then
 			if not checkedAb:IsCooldownReady() then
 				local cd = checkedAb:GetCooldownTimeRemaining()
-				print(cd)
 				checkedAb:EndCooldown()
 				checkedAb:StartCooldown(cd + 0.06)
 			else

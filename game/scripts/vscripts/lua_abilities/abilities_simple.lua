@@ -191,14 +191,14 @@ function boss_evil_core_spawn(keys)
                 return 0.2
             end
     end)
-    local origin = Vector(0,0,0)
+    local origin = Vector(-545,-2367)
     for nPlayerID = 0, DOTA_MAX_PLAYERS-1 do
         if PlayerResource:IsValidPlayer( nPlayerID ) and PlayerResource:GetTeam(nPlayerID) == DOTA_TEAM_BADGUYS then
             local boss_master_id = nPlayerID
         end
     end
     Timers:CreateTimer(0.03,function()
-        caster:SetAbsOrigin(origin)
+        FindClearSpaceForUnit(caster, origin, true)
         local size = Vector(200,200,0)
         FindClearSpaceForUnit(caster, origin, true)
         caster.have_shield = true
