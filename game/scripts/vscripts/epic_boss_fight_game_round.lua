@@ -36,6 +36,8 @@ function CHoldoutGameRound:ReadConfiguration( kv, gameMode, roundNumber )
 			end
 		end
 	end
+	
+	self:Precache()
 
 	for _, spawner in pairs( self._vSpawners ) do
 		spawner:PostLoad( self._vSpawners )
@@ -287,7 +289,7 @@ function CHoldoutGameRound:OnNPCSpawned( event )
 		end
 		spawnedUnit:SetDeathXP( 0 )
 		spawnedUnit.unitName = spawnedUnit:GetUnitName()
-		DestroyTreesAroundPoint(spawnedUnit:GetAbsOrigin(), spawnedUnit:GetHullRadius() + spawnedUnit:GetCollisionPadding() + 16, true)
+		GridNav:DestroyTreesAroundPoint(spawnedUnit:GetAbsOrigin(), spawnedUnit:GetHullRadius() + spawnedUnit:GetCollisionPadding() + 16, true)
 		FindClearSpaceForUnit(spawnedUnit, spawnedUnit:GetAbsOrigin(), true)
 	end
 end

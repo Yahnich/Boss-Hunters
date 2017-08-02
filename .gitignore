@@ -68,3 +68,5 @@ game/flashsource/optionsmodule.as
 game/flashsource/optionsmodule.fla
 game/network_measurement.txt
 game/panorama_debugger.cfg
+game/materials/
+game/panorama/

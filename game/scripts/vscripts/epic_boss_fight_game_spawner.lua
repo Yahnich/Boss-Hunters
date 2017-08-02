@@ -68,6 +68,7 @@ end
 
 
 function CHoldoutGameSpawner:Precache()
+	print( self._szNPCClassName, "precached" )
 	PrecacheUnitByNameAsync( self._szNPCClassName, function( sg ) self._sg = sg end )
 	if self._szChampionNPCClassName ~= "" then
 		PrecacheUnitByNameAsync( self._szChampionNPCClassName, function( sg ) self._sgChampion = sg end )
