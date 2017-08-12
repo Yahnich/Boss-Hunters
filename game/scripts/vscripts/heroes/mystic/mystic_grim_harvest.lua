@@ -1,1 +1,1 @@
-sylph_updraft = sylph_updraft or class({})
+mystic_grim_harvest = class({})

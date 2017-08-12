@@ -2257,20 +2257,12 @@
 		"HasScepterUpgrade"				"1"
 		"MaxLevel"						"1"
 		"InnateAbility"					"1"
-		
-		"precache"
-		{
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_sandking.vsndevts"
-			"particle"					"particles/units/heroes/hero_sandking/sandking_caustic_finale_explode.vpcf"
-			"particle"					"particles/heroes/shinigami/shinigami_deep_wounds_debuff.vpcf"
-		}
-		
 	    "AbilitySpecial"
 	    {
 	        "01"
 	        {
 	            "var_type"                      "FIELD_INTEGER"
-	            "damage_pct"     				"25"
+	            "damage_pct"     				"35"
 	        }
 			"02"
 	        {
@@ -2280,19 +2272,14 @@
 			"03"
 	        {
 	            "var_type"                      "FIELD_INTEGER"
-	            "moveslow"     					"-1"
+	            "moveslow"     					"1"
 	        }
 			"04"
 	        {
 	            "var_type"                      "FIELD_INTEGER"
-	            "turnslow"     					"-1"
+	            "turnslow"     					"1"
 	        }
 			"05"
-	        {
-	            "var_type"                      "FIELD_INTEGER"
-	            "burst_threshold"     			"15"
-	        }
-			"06"
 	        {
 	            "var_type"                      "FIELD_INTEGER"
 	            "scepter_damage_amp"     		"50"
@@ -20890,7 +20877,7 @@
 	"guardian_fortitude"
 	{
 	    "BaseClass"                     "ability_lua"
-	    "ScriptFile"                    "heroes/justicar/guardian_fortitude.lua"
+	    "ScriptFile"                    "heroes/guardian/guardian_fortitude.lua"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityTextureName"			"custom/guardian_fortitude"
 		"MaxLevel"						"1"
@@ -20904,6 +20891,11 @@
 				"var_type"					"FIELD_INTEGER"
 				"total_resistance"			"-20"
 			}
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"scepter_total_resistance"	"-30"
+			}
 	    }
 	}
 	"guardian_anchor_howl"
@@ -20911,40 +20903,51 @@
 	    "BaseClass"                     "ability_lua"
 	    "ScriptFile"                    "heroes/guardian/guardian_anchor_howl.lua"
 		"AbilityTextureName"			"custom/guardian_anchor_howl"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ALLIES_YES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
 	    "RequiredLevel"  				"7"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"5"
 		
-		"AbilityCastRange"				"600"
-		"AbilityCooldown"				"12"
+		"AbilityCastRange"				"900"
+		"AbilityCooldown"				"15 14 13 12 11 10 9"
 		"AbilityManaCost"				"200 300 400 800 1200 1600 2000"
 		
 		"precache"
 		{
-			"particle"					"particles/units/heroes/hero_omniknight/omniknight_purification.vpcf"
+			"particle"					"particles/status_fx/status_effect_beserkers_call.vpcf"
+			"particle"					"particles/heroes/guardian/guardian_anchor_howl.vpcf"
+			"particle"					"particles/status_fx/status_effect_beserkers_call.vpcf"
+			"soundfile"					"sounds/weapons/hero/axe/berserkers_call.vsnd"
 		}
 		
 	    "AbilitySpecial"
 	    {
 			"01"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"taunt_duration"		"20"
+				"var_type"				"FIELD_INTEGER"
+				"taunt_radius"			"900"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"switch_damage"			"1250 2500 5000 10000 20000 40000 80000"
+				"var_type"				"FIELD_FLOAT"
+				"taunt_duration"		"3 3.5 4 4.5 5 5.5 6"
 			}
 			"03"
 			{
+				"var_type"				"FIELD_INTEGER"
+				"break_damage"			"1250 2500 5000 10000 20000 40000 80000"
+			}
+			"04"
+			{
 				"var_type"				"FIELD_FLOAT"
-				"switch_duration"		"6"
+				"break_duration"		"6"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"talent_bonus_armor"	"75 150 250 500 750 1000 1500"
 			}
 	    }
 	}
@@ -20952,9 +20955,8 @@
 	{
 	    "BaseClass"                     "ability_lua"
 	    "ScriptFile"                    "heroes/guardian/guardian_challenge.lua"
-	    "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+	    "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityTextureName"			"custom/guardian_challenge"
 	    "RequiredLevel"  				"7"
 		"MaxLevel"						"7"
@@ -20962,22 +20964,21 @@
 		
 		"precache"
 		{
+			"particle"					"particles/heroes/guardian/guardian_challenge.vpcf"
 		}
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"25"
-		"HasPureCooldown"				"1"
-		"AbilityDuration"				"16"
+		"AbilityCooldown"				"20"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"1000"
+		"AbilityCastRange"				"1500"
 		"AbilityCastPoint"				"0.3 0.3 0.3 0.3"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"100 100 100 100"
+		"AbilityManaCost"				"100"
 
 		
 	    "AbilitySpecial"
@@ -20985,17 +20986,17 @@
 	        "01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"debuff_duration"		"6"
+				"debuff_duration"		"9"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"attackspeed_slow"		"-50 -60 -70 -80 -90 -100 -110"
+				"attackspeed_slow"		"-30 -45 -60 -75 -90 -105 -120"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"damage_reduction"		"-15"
+				"var_type"				"FIELD_INTEGER"
+				"movespeed_slow"		"-10 -15 -20 -25 -30 -35 -40"
 			}
 	    }
 	}
@@ -21003,7 +21004,7 @@
 	{
 	    "BaseClass"                     "ability_lua"
 	    "ScriptFile"                    "heroes/guardian/guardian_glorious_shield.lua"
-	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT_TARGET"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"custom/guardian_glorious_shield"
 	    "RequiredLevel"  				"7"
@@ -21012,7 +21013,7 @@
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"800"
+		"AbilityCastRange"				"200"
 		"AbilityCastPoint"				"0.3 0.3 0.3 0.3"
 		
 		// Time		
@@ -21044,7 +21045,12 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"duration"				"12"
-			}		
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"cone_radius"			"400"
+			}				
 	    }
 	}
 	"guardian_shield_bash"
@@ -21060,7 +21066,631 @@
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"400"
+		"AbilityCastRange"				"150"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"16.0"
+		
+		"precache"
+		{
+			"particle"					"particles/heroes/guardian/guardian_shield_smash.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_dragon_knight.vsndevts"
+		}
+		
+	    "AbilitySpecial"
+	    {
+	        "01"
+	        {
+	            "var_type"                      "FIELD_INTEGER"
+	            "damage"     					"1000 2000 4000 8000 16000 32000 64000"
+	        }
+			"02"
+	        {	
+	            "var_type"                      "FIELD_INTEGER"
+	            "knockback"     				"400"
+	        }
+			"03"
+	        {
+	            "var_type"                      "FIELD_FLOAT"
+	            "stun_duration"     			"1.2 1.35 1.5 1.65 1.8 1.95 2.1"
+	        }
+			"04"
+	        {
+	            "var_type"                      "FIELD_FLOAT"
+	            "talent_damage_reduction"     	"25"
+	        }
+	    }
+	}
+	"guardian_punish"
+	{
+	    "BaseClass"                     "ability_lua"
+	    "ScriptFile"                    "heroes/guardian/guardian_punish.lua"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+		"AbilityTextureName"			"custom/guardian_punish"
+	    "RequiredLevel"  				"7"
+		"MaxLevel"						"7"
+		"LevelsBetweenUpgrades"			"5"
+		
+		"AbilityCastPoint"				"0.3"
+		"AbilityCastRange"				"300"
+		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
+		
+		"AbilityCooldown"				"15"
+		
+		"precache"
+		{
+		}
+		
+	    "AbilitySpecial"
+	    {
+	        "01"
+	        {
+	            "var_type"                      "FIELD_INTEGER"
+	            "damage"     					"1200 2400 4800 9600 19200 38400 76800"
+	        }
+			"02"
+	        {
+	            "var_type"                      "FIELD_FLOAT"
+	            "armor_reduction"	     		"-4 -8 -12 -24 -48 -96 -144"
+	        }
+			"03"
+	        {
+	            "var_type"                      "FIELD_INTEGER"
+	            "magic_reduction"     			"-15 -25 -35 -45 -55 -65 -75"
+	        }
+			"04"
+	        {
+	            "var_type"                      "FIELD_FLOAT"
+	            "stun_reduction"     			"-20"
+	        }
+			"05"
+	        {
+	            "var_type"                      "FIELD_FLOAT"
+	            "debuff_duration"     			"10"
+	        }
+	    }
+	}
+	
+	"guardian_rallying_cry"
+	{
+	    "BaseClass"                     "ability_lua"
+	    "ScriptFile"                    "heroes/guardian/guardian_rallying_cry.lua"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName"			"custom/guardian_rallying_cry"
+	    "RequiredLevel"  				"7"
+		"MaxLevel"						"7"
+		"LevelsBetweenUpgrades"			"5"
+		
+		"AbilityCastPoint"				"0.3"
+		"AbilityCastRange"				"900"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_3"
+		
+		"AbilityCooldown"				"22 21 20 19 18 17 16"
+		
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_sven/sven_spell_warcry.vpcf"
+			"particle"					"particles/units/heroes/hero_sven/sven_warcry_buff.vpcf"
+			"particle"					"particles/heroes/guardian/guardian_rallying_cry_redirect.vpcf"
+		}
+		
+	    "AbilitySpecial"
+	    {
+	        "01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_armor"				"40 80 120 160 240 360 520"	
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_movespeed"			"35"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_magic_resist"		"20 28 36 44 52 60 68"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"900"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"duration"					"6"
+			}
+	    }
+	}
+	"guardian_guardians_spirit"
+	{
+	    "BaseClass"                     "ability_lua"
+	    "ScriptFile"                    "heroes/guardian/guardian_guardians_spirit.lua"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName"			"custom/guardian_guardians_spirit"
+	    "RequiredLevel"  				"7"
+		"MaxLevel"						"7"
+		"LevelsBetweenUpgrades"			"5"
+		
+		"AbilityCooldown"				"45"
+		"AbilityCastRange"				"800"
+		
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+		
+		"precache"
+		{
+			"particle"					"particles/fire_ball_explosion.vpcf"
+			"particle"					"particles/units/heroes/hero_sven/sven_spell_gods_strength_ambient.vpcf"
+			particle"					"particles/units/heroes/hero_sven/sven_gods_strength_hero_effect.vpcf"
+			particle"					"particles/status_fx/status_effect_gods_strength.vpcf"
+		}
+		
+	    "AbilitySpecial"
+	    {
+	        "01"
+	        {
+	            "var_type"                      "FIELD_INTEGER"
+	            "bonus_damage"     				"300"
+	        }
+			"02"
+	        {
+	            "var_type"                      "FIELD_INTEGER"
+	            "bonus_str"     				"125 250 500 750 1250 2500 5000"
+	        }
+			"03"
+	        {
+	            "var_type"                      "FIELD_INTEGER"
+	            "bonus_armor"     				"100 200 350 500 650 800 1000"
+	        }
+			"04"
+	        {
+	            "var_type"                      "FIELD_FLOAT"
+	            "duration"     					"30"
+	        }
+			"05"
+	        {
+	            "var_type"                      "FIELD_FLOAT"
+	            "talent_damage"     	"1500 3000 6000 12000 24000 48000 96000"
+	        }
+	    }
+	}
+	"guardian_stone_fortress"
+	{
+	    "BaseClass"                     "ability_lua"
+	    "ScriptFile"                    "heroes/guardian/guardian_stone_fortress.lua"
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE"
+		"AbilityTextureName"			"custom/guardian_stone_fortress"
+	    "RequiredLevel"  				"7"
+		"MaxLevel"						"7"
+		"LevelsBetweenUpgrades"			"5"
+		
+		"AbilityCastPoint"				"0.3"
+		"AbilityCastRange"				"450"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST3_STATUE"
+		
+		"AbilityCooldown"				"25 22.5 20 17.5 15 12.5 10"
+		
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_earth_spirit/earthspirit_petrify_debuff_stoned.vpcf"
+			"particle"					"particles/status_fx/status_effect_earth_spirit_petrify.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_earth_spirit.vsndevts"
+		}
+		
+	    "AbilitySpecial"
+	    {
+	        "01"
+	        {
+	            "var_type"                      "FIELD_INTEGER"
+	            "duration"     					"5"
+	        }
+			"02"
+	        {
+	            "var_type"                      "FIELD_INTEGER"
+	            "explosion_damage"     			"800 1600 3200 6400 12800 25600 51200"
+	        }
+	    }
+	}
+	
+	// GUARDIAN TALENTS
+	//=================================================================================================================
+	// Ability: Bonus Threat on Cast
+	//=================================================================================================================
+	"guardian_fortitude_talent_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"1"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Anchor Howl Bonus Armor
+	//=================================================================================================================
+	"guardian_anchor_howl_talent_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"12"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Challenge Fears
+	//=================================================================================================================
+	"guardian_challenge_talent_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"5"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Shield Bash Reduces Enemy Damage Dealt
+	//=================================================================================================================
+	"guardian_shield_bash_talent_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"10"
+			}
+		}
+	}
+	//================================================================================================================
+	// Talent: Glorious Shield Damage Increase
+	//=================================================================================================================
+	"guardian_glorious_shield_talent_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"15"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Adds 20% of Guardian's max HP as barrier
+	//=================================================================================================================
+	"guardian_punish_talent_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"20"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Rallying Cry Redirect Damage Taken
+	//=================================================================================================================
+	"guardian_rallying_cry_talent_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"20"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Talent: Guardian Spirit AOE Damage
+	//=================================================================================================================
+	"guardian_guardians_spirit_talent_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"1"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Talent: Stone Fortress Can Move
+	//=================================================================================================================
+	"guardian_stone_fortress_talent_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"3"
+			}
+		}
+	}
+	//=================================================================================================================
+	// MYSTIC - DAZZLE
+	//=================================================================================================================
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	//=================================================================================================================
+	"mystic_life_weaver"
+	{
+	    "BaseClass"                     "ability_lua"
+	    "ScriptFile"                    "heroes/justicar/mystic_life_weaver.lua"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"custom/mystic_life_weaver"
+		"MaxLevel"						"1"
+		"InnateAbility"					"1"
+		"HasScepterUpgrade"				"1"
+		
+	    "AbilitySpecial"
+	    {
+	        "01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"heal_share"				"35"
+			}
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"10"
+			}
+	    }
+	}
+	"mystic_anchor_howl"
+	{
+	    "BaseClass"                     "ability_lua"
+	    "ScriptFile"                    "heroes/mystic/mystic_anchor_howl.lua"
+		"AbilityTextureName"			"custom/mystic_anchor_howl"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+	    "RequiredLevel"  				"7"
+		"MaxLevel"						"7"
+		"LevelsBetweenUpgrades"			"5"
+		
+		"AbilityCastRange"				"900"
+		"AbilityCooldown"				"15 14 13 12 11 10 9"
+		"AbilityManaCost"				"200 300 400 800 1200 1600 2000"
+		
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_omniknight/omniknight_purification.vpcf"
+		}
+		
+	    "AbilitySpecial"
+	    {
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"taunt_radius"			"900"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"taunt_duration"		"3 3.5 4 4.5 5 5.5 6"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"break_damage"			"1250 2500 5000 10000 20000 40000 80000"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"break_duration"		"6"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"talent_bonus_armor"	"75 150 250 500 750 1000 1500"
+			}
+	    }
+	}
+	"mystic_challenge"
+	{
+	    "BaseClass"                     "ability_lua"
+	    "ScriptFile"                    "heroes/mystic/mystic_challenge.lua"
+	    "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityTextureName"			"custom/mystic_challenge"
+	    "RequiredLevel"  				"7"
+		"MaxLevel"						"7"
+		"LevelsBetweenUpgrades"			"5"
+		
+		"precache"
+		{
+		}
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"20"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1500"
+		"AbilityCastPoint"				"0.3 0.3 0.3 0.3"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"100"
+
+		
+	    "AbilitySpecial"
+	    {
+	        "01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"debuff_duration"		"9"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"attackspeed_slow"		"-30 -45 -60 -75 -90 -105 -120"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"movespeed_slow"		"-10 -15 -20 -25 -30 -35 -40"
+			}
+	    }
+	}
+	"mystic_glorious_shield"
+	{
+	    "BaseClass"                     "ability_lua"
+	    "ScriptFile"                    "heroes/mystic/mystic_glorious_shield.lua"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"custom/mystic_glorious_shield"
+	    "RequiredLevel"  				"7"
+		"MaxLevel"						"7"
+		"LevelsBetweenUpgrades"			"5"
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"200"
+		"AbilityCastPoint"				"0.3 0.3 0.3 0.3"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"16.0 15.0 14.0 13.0 12.0 11.0 10.0"
+		
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"110"
+		
+		"precache"
+		{
+			"particle"					"particles/heroes/mystic/mystic_glorious_shield.vpcf"
+		}
+		
+	    "AbilitySpecial"
+	    {
+	        "01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"miss_chance"			"25"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"800 1600 3200 6400 12800 25600 51200"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"duration"				"12"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"cone_radius"			"400"
+			}				
+	    }
+	}
+	"mystic_shield_bash"
+	{
+	    "BaseClass"                     "ability_lua"
+	    "ScriptFile"                    "heroes/mystic/mystic_shield_bash.lua"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT_TARGET"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+		"AbilityTextureName"			"custom/mystic_shield_bash"
+	    "RequiredLevel"  				"7"
+		"MaxLevel"						"7"
+		"LevelsBetweenUpgrades"			"5"
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"150"
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -21085,19 +21715,24 @@
 			"03"
 	        {
 	            "var_type"                      "FIELD_FLOAT"
-	            "stun_duration"     			"1.2"
+	            "stun_duration"     			"1.2 1.35 1.5 1.65 1.8 1.95 2.1"
+	        }
+			"04"
+	        {
+	            "var_type"                      "FIELD_FLOAT"
+	            "talent_damage_reduction"     	"25"
 	        }
 	    }
 	}
-	"guardian_punish"
+	"mystic_punish"
 	{
 	    "BaseClass"                     "ability_lua"
-	    "ScriptFile"                    "heroes/guardian/guardian_punish.lua"
+	    "ScriptFile"                    "heroes/mystic/mystic_punish.lua"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
-		"AbilityTextureName"			"custom/guardian_punish"
+		"AbilityTextureName"			"custom/mystic_punish"
 	    "RequiredLevel"  				"7"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"5"
@@ -21119,22 +21754,22 @@
 	            "var_type"                      "FIELD_INTEGER"
 	            "damage"     					"1200 2400 4800 9600 19200 38400 76800"
 	        }
-			"01"
+			"02"
 	        {
 	            "var_type"                      "FIELD_FLOAT"
 	            "armor_reduction"	     		"-4 -8 -12 -24 -48 -96 -144"
 	        }
-			"01"
+			"03"
 	        {
 	            "var_type"                      "FIELD_INTEGER"
 	            "magic_reduction"     			"-15 -25 -35 -45 -55 -65 -75"
 	        }
-			"01"
+			"04"
 	        {
 	            "var_type"                      "FIELD_FLOAT"
 	            "stun_reduction"     			"-20"
 	        }
-			"01"
+			"05"
 	        {
 	            "var_type"                      "FIELD_FLOAT"
 	            "debuff_duration"     			"10"
@@ -21142,23 +21777,21 @@
 	    }
 	}
 	
-	"guardian_rallying_cry"
+	"mystic_rallying_cry"
 	{
 	    "BaseClass"                     "ability_lua"
-	    "ScriptFile"                    "heroes/guardian/guardian_rallying_cry.lua"
-	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityTextureName"			"custom/guardian_rallying_cry"
+	    "ScriptFile"                    "heroes/mystic/mystic_rallying_cry.lua"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName"			"custom/mystic_rallying_cry"
 	    "RequiredLevel"  				"7"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"5"
 		
 		"AbilityCastPoint"				"0.3"
-		"AbilityCastRange"				"450"
+		"AbilityCastRange"				"900"
 		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
 		
-		"AbilityCooldown"				"16"
+		"AbilityCooldown"				"22 21 20 19 18 17 16"
 		
 		"precache"
 		{
@@ -21179,7 +21812,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"bonus_movespeed"			"20 28 36 44 52 60 68"
+				"bonus_magic_resist"		"20 28 36 44 52 60 68"
 			}
 			"04"
 			{
@@ -21189,16 +21822,16 @@
 			"05"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"duration"					"8"
+				"duration"					"6"
 			}
 	    }
 	}
-	"guardian_guardians_spirit"
+	"mystic_mystics_spirit"
 	{
 	    "BaseClass"                     "ability_lua"
-	    "ScriptFile"                    "heroes/guardian/guardian_guardians_spirit.lua"
-	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE"
-		"AbilityTextureName"			"custom/guardian_guardians_spirit"
+	    "ScriptFile"                    "heroes/mystic/mystic_mystics_spirit.lua"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName"			"custom/mystic_mystics_spirit"
 	    "RequiredLevel"  				"7"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"5"
@@ -21225,21 +21858,31 @@
 			"03"
 	        {
 	            "var_type"                      "FIELD_INTEGER"
-	            "bonus_armor"     				"1000"
+	            "bonus_armor"     				"100 200 350 500 650 800 1000"
 	        }
 			"04"
 	        {
 	            "var_type"                      "FIELD_FLOAT"
-	            "duration"     					"20"
+	            "duration"     					"30"
+	        }
+			"05"
+	        {
+	            "var_type"                      "FIELD_INTEGER"
+	            "talent_damage"     			"1500 3000 6000 12000 24000 48000 96000"
+	        }
+			"06"
+	        {
+	            "var_type"                      "FIELD_INTEGER"
+	            "talent_radius"     			"900"
 	        }
 	    }
 	}
-	"guardian_stone_fortress"
+	"mystic_stone_fortress"
 	{
 	    "BaseClass"                     "ability_lua"
-	    "ScriptFile"                    "heroes/guardian/guardian_stone_fortress.lua"
-	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityTextureName"			"custom/guardian_stone_fortress"
+	    "ScriptFile"                    "heroes/mystic/mystic_stone_fortress.lua"
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE"
+		"AbilityTextureName"			"custom/mystic_stone_fortress"
 	    "RequiredLevel"  				"7"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"5"
@@ -21270,11 +21913,11 @@
 	    }
 	}
 	
-	// PHOENIX TALENTS
+	// mystic TALENTS
 	//=================================================================================================================
-	// Ability: Inner Sun grants Barrier
+	// Ability: Bonus Threat on Cast
 	//=================================================================================================================
-	"guardian_fortitude_talent_1" 
+	"mystic_life_weaver_talent_1" 
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -21294,9 +21937,9 @@
 		}
 	}
 	//=================================================================================================================
-	// Ability: Shining Light 600 aoe
+	// Ability: Anchor Howl Bonus Armor
 	//=================================================================================================================
-	"guardian_anchor_howl_talent_1" 
+	"mystic_anchor_howl_talent_1" 
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -21311,14 +21954,14 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"600"
+				"value"					"12"
 			}
 		}
 	}
 	//=================================================================================================================
-	// Ability: +5s Victorious Advance Buff Duration
+	// Ability: Challenge Fears
 	//=================================================================================================================
-	"guardian_challenge_talent_1" 
+	"mystic_challenge_talent_1" 
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -21338,9 +21981,9 @@
 		}
 	}
 	//=================================================================================================================
-	// Ability: Valiant Rush Taunt Reduces Attackspeed
+	// Ability: Shield Bash Reduces Enemy Damage Dealt
 	//=================================================================================================================
-	"guardian_shield_bash_talent_1" 
+	"mystic_shield_bash_talent_1" 
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -21355,14 +21998,14 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
+				"value"						"10"
 			}
 		}
 	}
 	//================================================================================================================
-	// Ability: Reduction becomes reflection
+	// Talent: Glorious Shield Damage Increase
 	//=================================================================================================================
-	"guardian_glorious_shield_talent_1" 
+	"mystic_glorious_shield_talent_1" 
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -21382,9 +22025,9 @@
 		}
 	}
 	//=================================================================================================================
-	// Ability: Imperious Shout Steals Armor Removed
+	// Ability: Adds 20% of mystic's max HP as barrier
 	//=================================================================================================================
-	"guardian_punish_talent_1" 
+	"mystic_punish_talent_1" 
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -21399,14 +22042,14 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"1"
+				"value"				"20"
 			}
 		}
 	}
 	//=================================================================================================================
-	// Ability: guardian Curr Health to Barrier
+	// Ability: Rallying Cry Redirect Damage Taken
 	//=================================================================================================================
-	"guardian_rallying_cry_talent_1" 
+	"mystic_rallying_cry_talent_1" 
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -21427,9 +22070,9 @@
 	}
 
 	//=================================================================================================================
-	// Ability: Radiant Glory also Heals Allies
+	// Talent: mystic Spirit AOE Damage
 	//=================================================================================================================
-	"guardian_guardians_spirit_talent_1" 
+	"mystic_mystics_spirit_talent_1" 
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -21449,9 +22092,9 @@
 		}
 	}
 	//=================================================================================================================
-	// Ability: Leg Sweep Hits All Enemies In A Cone
+	// Talent: Stone Fortress Can Move
 	//=================================================================================================================
-	"guardian_stone_fortress_talent_1" 
+	"mystic_stone_fortress_talent_1" 
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -43476,12 +44119,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"strike_damage"			"350 400 450 500"
+				"strike_damage"			"300 450 600 700"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"duration_damage"		"75 125 175 225"
+				"duration_damage"		"100 150 200 250"
 			}
 			"03"
 			{
@@ -43572,7 +44215,7 @@
 
 		// Damage.
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"					"400 500 600 750"
+		"AbilityDamage"					"600 750 1000 1000"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------

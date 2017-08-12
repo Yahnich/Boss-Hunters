@@ -157,7 +157,18 @@ function FindUnitsInCone(teamNumber, vDirection, vPosition, flSideRadius, flLeng
 	return unitTable
 end
 
-
+-- New taunt mechanics
+function CDOTA_BaseNPC:GetTauntTarget()
+	local target = nil
+	for _, modifier in pairs(self:FindAllModifiers()) do
+		if modifier.GetTauntTarget and not target then 
+			target = modifier:GetTauntTarget()
+		elseif modifier.GetTauntTarget and target and CalculateDistance(target, self) < CalculateDistance(modifier:GetTauntTarget(), self) then 
+			target = modifier:GetTauntTarget()
+		end
+	end
+	return target
+end
 
 function CDOTA_BaseNPC:AddAbilityPrecache(abName)
 	PrecacheItemByNameAsync( abName, function() end)
@@ -431,6 +442,7 @@ function CDOTABaseAbility:Refresh()
 	if not self:IsActivated() then
 		self:SetActivated(true)
 	end
+	if self.isOnDelayedCooldown then self:EndDelayedCooldown() end
     self:EndCooldown()
 end
 
@@ -471,9 +483,9 @@ function CDOTA_BaseNPC:GetStunResistance()
 	if self:IsCreature() then
 		local stunResist = GameRules.UnitKV[self:GetUnitName()]["Creature"]["StunResistance"] or 0
 		for _, modifier in pairs( self:FindAllModifiers() ) do
-			if modifier.BonusStunResistance_Constant then stunResist = stunResist + modifier:BonusStunResistance_Constant() end
+			if modifier.GetModifierBonusStunResistance_Constant then stunResist = stunResist + modifier:GetModifierBonusStunResistance_Constant() end
 		end
-		return  math.max(0, stunResist)
+		return  math.min(100, math.max(0, stunResist))
 	else
 		return 0
 	end
@@ -1099,15 +1111,18 @@ function CDOTABaseAbility:GetTrueCooldown()
 end
 
 function CDOTABaseAbility:StartDelayedCooldown(flDelay, bAutomatic)
+	if self.delayedCooldownTimer then
+		self:EndDelayedCooldown()
+	end
 	self:SetActivated(false)
 	self:EndCooldown()
 	self:UseResources(false, false, true)
 	local cd = self:GetCooldownTimeRemaining()
 	self.isOnDelayedCooldown = true
-	Timers:CreateTimer(FrameTime(), function() 
+	self.delayedCooldownTimer = Timers:CreateTimer(0, function()
 		if self.isOnDelayedCooldown then
 			self:StartCooldown(cd)
-			return FrameTime()
+			return 0
 		end
 	end)
 	if bAutomatic then
@@ -1117,6 +1132,8 @@ end
 
 function CDOTABaseAbility:EndDelayedCooldown()
 	self:SetActivated(true)
+	Timers:RemoveTimer(self.delayedCooldownTimer)
+	self.delayedCooldownTimer = nil
 	self.isOnDelayedCooldown = false
 end
 
@@ -1227,6 +1244,25 @@ function CDOTA_BaseNPC:FindEnemyUnitsInRadius(position, radius, data)
 	local iFlag = data.flag or DOTA_UNIT_TARGET_FLAG_NONE
 	local iOrder = data.order or FIND_ANY_ORDER
 	return FindUnitsInRadius(team, position, nil, radius, iTeam, iType, iFlag, iOrder, false)
+end
+
+function ParticleManager:FireParticle(effect, attach, owner, cps)
+	local FX = ParticleManager:CreateParticle(effect, attach, owner)
+	if cps then
+		for cp, value in pairs(cps) do
+			ParticleManager:SetParticleControl(FX, tonumber(cp), value)
+		end
+	end
+	ParticleManager:ReleaseParticleIndex(FX)
+end
+
+function ParticleManager:FireRopeParticle(effect, attach, owner, target)
+	local FX = ParticleManager:CreateParticle(effect, attach, owner)
+
+	ParticleManager:SetParticleControlEnt(FX, 0, owner, PATTACH_POINT_FOLLOW, "attach_hitloc", ownerGetAbsOrigin(), true)
+	ParticleManager:SetParticleControlEnt(FX, 1, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
+	
+	ParticleManager:ReleaseParticleIndex(FX)
 end
 
 function CDOTA_Modifier_Lua:StartMotionController()
@@ -1405,6 +1441,16 @@ function ApplyKnockback( keys )
    		local travel_distance_per_frame = travel_distance/number_of_frame
    		Timers:CreateTimer(duration,function()
    			FindClearSpaceForUnit(target, position, true)
+			for i = 0, 23 do
+				local sourceAb = caster:GetAbilityByIndex(i)
+				if sourceAb and sourceAb.onKnockBack then
+					sourceAb:onKnockBack()
+				end
+				local victimAb = target:GetAbilityByIndex(i)
+				if victimAb and victimAb.onKnockedBack then
+					victimAb:onKnockedBack()
+				end
+			end
    		end)
    		Timers:CreateTimer(0.03 ,function()
    			if GameRules:GetGameTime() <= begin_time+duration then

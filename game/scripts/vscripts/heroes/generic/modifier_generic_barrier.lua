@@ -6,9 +6,17 @@ if IsServer() then
 		if IsServer() then self:StartIntervalThink(0.5) end
 	end
 
+	function modifier_generic_barrier:OnIntervalThink(kv)
+		if self.barrier <= 0 then self:Destroy() end
+	end
+	
 	function modifier_generic_barrier:OnRefresh(kv)
 		self.barrier = (self.barrier or 0) + kv.barrier
 		self.ModifierBarrier_Bonus = function() return self.barrier end
+	end
+	
+	function modifier_generic_barrier:GetAttributes(kv)
+		return MODIFIER_ATTRIBUTE_MULTIPLE
 	end
 	
 	function modifier_generic_barrier:IsHidden(kv)

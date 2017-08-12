@@ -32,7 +32,7 @@ function gladiatrix_leg_sweep:OnSpellStart()
 		local targets = caster:FindEnemyUnitsInRadius(targetPoint, caster:FindTalentValueFor("gladiatrix_leg_sweep_talent_1"), {})
 		for _, target in pairs(target) do
 			target:AddNewModifier(caster, self, "modifier_stunned_generic", {duration = self:GetTalentSpecialValueFor("stun_duration")})
-			target:AddNewModifier(caster, self, "modifier_dazed_generic", {duration = self:GetTalentSpecialValueFor("daze_duration")})
+			target:AddNewModifier(caster, self, "modifier_dazed_generic", {duration = self:GetTalentSpecialValueFor("stun_duration") + self:GetTalentSpecialValueFor("daze_duration")})
 		end
 	else
 		local target = self:GetCursorTarget()

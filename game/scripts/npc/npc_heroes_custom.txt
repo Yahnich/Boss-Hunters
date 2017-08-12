@@ -631,7 +631,7 @@
 	//=================================================================================================================
 	// HERO: Legion comander
 	//=================================================================================================================
-	"npc_dota_hero_legion_ebf"
+	"npc_dota_hero_gladiatrix"
 	{
 		"override_hero"			"npc_dota_hero_legion_commander"
 		"Ability1"				"class_empty_1"					// Ability 1
@@ -639,8 +639,7 @@
 		"Ability3"				"class_empty_3"						// Ability 3
 		"Ability4"				"gladiatrix_fearless_assault"
 		"Ability5"				"class_filler"
-		"Ability6"				"class_empty_4"
-		
+		"Ability6"				"class_empty_4"	
 	}
 	"npc_dota_hero_naga_siren_ebf"
 	{
@@ -926,15 +925,27 @@
 	"npc_dota_hero_chaos_knight_ebf"
 	{
 		"override_hero"			"npc_dota_hero_chaos_knight"
-		"Ability1"				"chaos_knight_chaos_bolt_ebf"
-		
+		"Ability1"				"chaos_knight_chaos_bolt_ebf"	
 	}
-	"npc_dota_hero_sven_ebf"
+	"npc_dota_hero_guardian"
 	{
 		"override_hero"			"npc_dota_hero_sven"
-		"Ability2"				"sven_great_cleave_ebf"
-		"Ability3"				"sven_warcry_ebf"
-		
+		"Ability1"				"class_empty_1"					// Ability 1
+		"Ability2"				"class_empty_2"					// Ability 2
+		"Ability3"				"class_empty_3"						// Ability 3
+		"Ability4"				"guardian_fortitude"
+		"Ability5"				"class_filler"
+		"Ability6"				"class_empty_4"
+	}
+	"npc_dota_hero_mystic"
+	{
+		"override_hero"			"npc_dota_hero_dazzle"
+		"Ability1"				"class_empty_1"					// Ability 1
+		"Ability2"				"class_empty_2"					// Ability 2
+		"Ability3"				"class_empty_3"						// Ability 3
+		"Ability4"				"mystic_life_weaver"
+		"Ability5"				"class_filler"
+		"Ability6"				"class_empty_4"
 	}
 	"npc_dota_hero_bounty_hunter_ebf"
 	{
@@ -957,7 +968,6 @@
 	"npc_dota_hero_medusa_ebf"
 	{
 		"override_hero"			"npc_dota_hero_medusa"
-		"Ability1"				"medusa_splitshot_ebf"
-		
+		"Ability1"				"medusa_splitshot_ebf"	
 	}
 }
