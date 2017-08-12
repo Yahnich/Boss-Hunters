@@ -242,6 +242,7 @@ end
 
 
 function PlagueDamage(keys)
+	if not keys.ability or not keys.caster then return end
 	if keys.caster:PassivesDisabled() then return end
 	local damage = keys.target:GetHealth()*0.03 / keys.caster:GetSpellDamageAmp()
 	ApplyDamage({ victim = keys.target, attacker = keys.caster, damage = damage, damage_type = DAMAGE_TYPE_MAGICAL, ability = keys.ability })

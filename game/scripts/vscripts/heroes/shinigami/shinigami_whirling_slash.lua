@@ -28,12 +28,12 @@ function shinigami_whirling_slash:OnSpellStart()
 	ParticleManager:ReleaseParticleIndex(attackblur)
 	local alreadyAttacked = {}
 	Timers:CreateTimer(function()
-		local enemiesInLine = FindUnitsInLine(caster:GetTeamNumber(), caster:GetAbsOrigin(), caster:GetAbsOrigin()+caster:GetForwardVector()*(caster:GetAttackRange()+150), nil, 125, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES)
+		local enemiesInLine = FindUnitsInLine(caster:GetTeamNumber(), caster:GetAbsOrigin(), caster:GetAbsOrigin()+caster:GetForwardVector()*(caster:GetAttackRange()+150), nil, 200, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES)
 		for _, enemy in ipairs(enemiesInLine) do
 			if not alreadyAttacked[enemy:entindex()] then
 				caster:PerformAbilityAttack(enemy, true, self)
 				EmitSoundOn("Hero_Shredder.Attack.Post", enemy)
-				modifier:SetStackCount(bonusDamage*reduction)
+				modifier:SetStackCount(math.max(1,bonusDamage*reduction))
 				alreadyAttacked[enemy:entindex()] = true
 			end
 		end

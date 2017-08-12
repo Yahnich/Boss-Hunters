@@ -20,7 +20,7 @@ function justicar_penitence:OnSpellStart()
 			self:DealDamage(caster, target, damage + caster:GetInnerSun())
 			caster:ResetInnerSun()
 		elseif caster ~= target or caster:HasTalent("justicar_penitence_talent_1") then
-			target:AddBarrier(hpDamage * hpToBarrier, caster, self, nil)
+			target:AddBarrier(hpDamage * hpToBarrier / 2, caster, self, nil)
 		end
 	end
 	EmitSoundOn("Hero_Chen.PenitenceImpact", caster)

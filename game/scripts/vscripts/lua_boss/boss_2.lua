@@ -1,4 +1,5 @@
 function DamageOverTime(keys)
+	if not keys.ability or not keys.caster then return end
 	local caster = keys.caster
 	local ability = keys.ability
 	local target = keys.target
@@ -18,6 +19,7 @@ function DamageOverTime(keys)
 end
 
 function HandleStacks(keys)
+	if not keys.ability or not keys.caster then return end
 	local caster = keys.caster
 	local ability = keys.ability
 	local target = keys.target

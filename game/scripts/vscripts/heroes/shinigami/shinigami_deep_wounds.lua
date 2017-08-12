@@ -35,7 +35,7 @@ function modifier_shinigami_deep_wounds_passive:OnTakeDamage(params)
 		if params.attacker == self:GetParent() and params.inflictor ~= self:GetAbility() and params.damage > 0 and (not params.inflictor or self:GetParent():HasAbility(params.inflictor:GetName())) then
 			local duration = self.duration
 			if (params.inflictor or self:GetParent().autoAttackFromAbilityState) and self:GetParent():HasTalent("shinigami_deep_wounds_talent_1") then duration = duration + self:GetParent():FindTalentValue("shinigami_deep_wounds_talent_1") end
-			params.unit:AddNewModifier(params.attacker, self:GetAbility(), "modifier_shinigami_deep_wounds_stacks", {duration = duration, damage = math.ceil((params.damage * self.damage_pct * 0.2) / self.duration)})
+			params.unit:AddNewModifier(params.attacker, self:GetAbility(), "modifier_shinigami_deep_wounds_stacks", {duration = duration, damage = math.ceil(params.damage * self.damage_pct)})
 		end
 	end
 end
@@ -51,22 +51,26 @@ LinkLuaModifier("modifier_shinigami_deep_wounds_stacks", "heroes/shinigami/shini
 function modifier_shinigami_deep_wounds_stacks:OnCreated(kv)
 	self.moveslow = self:GetAbility():GetSpecialValueFor("moveslow")
 	self.turnslow = self:GetAbility():GetSpecialValueFor("turnslow")
+	self.burstHP = self:GetAbility():GetSpecialValueFor("burst_threshold") / 100
+	self.internalTime = 0
 	if IsServer() then
+		self.owner = self:GetCaster():GetOwner():GetAssignedHero()
 		local expireTime = tonumber(kv.duration)
 		self.deepWoundsTable = {}
 		table.insert(self.deepWoundsTable, {insertTime = GameRules:GetGameTime(), damage = tonumber(kv.damage), expireTime = GameRules:GetGameTime() + expireTime})
 		self:SetStackCount(1)
 		self.woundFX = ParticleManager:CreateParticle("particles/heroes/shinigami/shinigami_deep_wounds_debuff.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
 		ParticleManager:SetParticleControlEnt(self.woundFX, 0, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_hitloc", self:GetParent():GetAbsOrigin(), true)
-		ParticleManager:SetParticleControl(self.woundFX, 0, Vector(self:GetStackCount(),0,0))
 		self:AddParticle(self.woundFX, false, false, 0, false, false)
-		self:StartIntervalThink(0.2)
+		ParticleManager:ReleaseParticleIndex(self.woundFX)
+		self:StartIntervalThink(0.1)
 	end
 end
 
 function modifier_shinigami_deep_wounds_stacks:OnRefresh(kv)
 	self.moveslow = self:GetAbility():GetSpecialValueFor("moveslow")
 	self.turnslow = self:GetAbility():GetSpecialValueFor("turnslow")
+	self.burstHP = self:GetAbility():GetSpecialValueFor("burst_threshold") / 100
 	if IsServer() then
 		local expireTime = tonumber(kv.duration)
 		table.insert(self.deepWoundsTable, {insertTime = GameRules:GetGameTime(), damage = tonumber(kv.damage), expireTime = GameRules:GetGameTime() + expireTime})
@@ -74,24 +78,38 @@ function modifier_shinigami_deep_wounds_stacks:OnRefresh(kv)
 end
 
 function modifier_shinigami_deep_wounds_stacks:OnIntervalThink()
+	self.internalTime = self.internalTime + 0.1
 	local damage = 0
+	local potDamage = 0
 	if #self.deepWoundsTable > 0 then
 		for i = #self.deepWoundsTable, 1, -1 do	
 			if self.deepWoundsTable[i].expireTime < GameRules:GetGameTime() then
 				table.remove(self.deepWoundsTable, i)		
 			else
 				damage = damage + self.deepWoundsTable[i].damage
+				potDamage = potDamage + (self.deepWoundsTable[i].damage * (self.deepWoundsTable[i].expireTime - GameRules:GetGameTime()))
 			end
 		end
 		self:SetStackCount(#self.deepWoundsTable)
-		ParticleManager:SetParticleControl(self.woundFX, 1, Vector(self:GetStackCount(),0,0))
 		if #self.deepWoundsTable == 0 then
 			self:Destroy()
 		end
 	else
 		self:Destroy()
 	end
-	ApplyDamage({victim = self:GetParent(), attacker = self:GetCaster(), damage = damage, damage_type = self:GetAbility():GetAbilityDamageType(), ability = self:GetAbility()})
+	if self.internalTime >= 1 then
+		self.internalTime = 0
+		print(potDamage)
+		if potDamage > self:GetParent():GetMaxHealth() * self.burstHP then
+			EmitSoundOn("Ability.SandKing_CausticFinale", self:GetParent())
+			local boomFX = ParticleManager:CreateParticle("particles/units/heroes/hero_sandking/sandking_caustic_finale_explode.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
+			ParticleManager:ReleaseParticleIndex(boomFX)
+			ApplyDamage({victim = self:GetParent(), attacker = self:GetCaster() or self.owner, damage = potDamage, damage_type = self:GetAbility():GetAbilityDamageType(), ability = self:GetAbility()})
+			self:Destroy()
+		else
+			ApplyDamage({victim = self:GetParent(), attacker = self:GetCaster() or self.owner, damage = damage, damage_type = self:GetAbility():GetAbilityDamageType(), ability = self:GetAbility()})
+		end
+	end
 end
 
 function modifier_shinigami_deep_wounds_stacks:DeclareFunctions()
