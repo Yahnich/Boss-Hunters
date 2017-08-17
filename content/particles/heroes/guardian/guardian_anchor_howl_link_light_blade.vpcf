@@ -10,7 +10,7 @@
 	[
 		{
 			_class = "C_OP_RenderDeferredLight"
-			m_ColorScale = [ 104, 180, 251 ]
+			m_ColorScale = [ 240, 230, 140 ]
 			m_flStartFalloff = 0.1
 			m_flAlphaScale = 7.0
 			m_flRadiusScale = 1.5

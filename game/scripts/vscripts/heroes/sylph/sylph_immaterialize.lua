@@ -34,7 +34,7 @@ function modifier_sylph_immaterialize_buff:DeclareFunctions()
 	return funcs
 end
 
-function modifier_sylph_immaterialize_buff:GetModifierIncomingDamage_Percentage()
+function modifier_sylph_immaterialize_buff:GetModifierIncomingDamage_Percentage(params)
 	return self.evasion
 end
 

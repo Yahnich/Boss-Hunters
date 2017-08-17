@@ -31,7 +31,7 @@ end
 
 function modifier_guardian_fortitude_passive:GetAuraEntityReject( entity )
 	if IsServer() then
-		return (not ( self:GetParent() ~= entity and (self:GetTeamNumber() == unit:GetTeamNumber()) ))
+		return self:GetParent() == entity
 	end
 end
 
@@ -85,7 +85,7 @@ end
 
 function modifier_guardian_fortitude_passive:OnAbilityFullyCast(params)
 	if params.unit == self:GetParent() and self:GetParent():HasAbility( params.ability:GetName() ) and self:GetParent():HasTalent("guardian_fortitude_talent_1") then
-		params.unit:ModifyThreat( params.unit:FindTalentValue("guardian_fortitude_talent_1") )
+		params.unit:ModifyThreat( params.unit:FindTalentValue("guardian_fortitude_talent_1") * params.unit:GetLevel() )
 	end
 end
 

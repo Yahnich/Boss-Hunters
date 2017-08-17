@@ -8,7 +8,7 @@ function guardian_glorious_shield:OnSpellStart()
 	local caster = self:GetCaster()
 	
 	local radius = self:GetTalentSpecialValueFor("cone_radius")
-	local fwPos = self:GetCaster:GetForwardVector() * radius
+	local fwPos = caster:GetAbsOrigin() + self:GetCaster():GetForwardVector() * radius
 	
 	local targets = caster:FindEnemyUnitsInRadius(fwPos, radius, {})
 	local damage = self:GetTalentSpecialValueFor("damage")
@@ -19,8 +19,9 @@ function guardian_glorious_shield:OnSpellStart()
 	end
 	
 	EmitSoundOn("Hero_Sven.GreatCleave.ti7", caster)
-	local shieldFX = ParticleManager:CreateParticle("particles/heroes/guardian/guardian_glorious_shield.vpcf", PATTACH_POINT_FOLLOW, caster)
-	ParticleManager:SetParticleControl(shieldFX, 1, fwPos)
+	local shieldFX = ParticleManager:CreateParticle("particles/heroes/guardian/guardian_glorious_shield.vpcf", PATTACH_CUSTOMORIGIN, nil)
+	ParticleManager:SetParticleControl(shieldFX, 1, caster:GetAbsOrigin() + self:GetCaster():GetForwardVector() * radius * 50)
+	ParticleManager:SetParticleControl(shieldFX, 3,  caster:GetAbsOrigin() + self:GetCaster():GetForwardVector() * 75)
 end
 
 modifier_guardian_glorious_shield_debuff = class({})
@@ -51,4 +52,8 @@ end
 
 function modifier_guardian_glorious_shield_debuff:GetModifierMiss_Percentage()
 	return self.miss
+end
+
+function modifier_guardian_glorious_shield_debuff:GetEffectName()
+	return "particles/units/heroes/hero_keeper_of_the_light/keeper_of_the_light_blinding_light_debuff.vpcf"
 end

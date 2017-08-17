@@ -59,7 +59,8 @@
 		{
 			_class = "C_OP_InterpolateRadius"
 			m_flStartScale = 0.1
-			m_flEndScale = 5.0
+			m_flEndScale = 50.0
+			m_flEndTime = 3.0
 		},
 	]
 	m_Initializers = 
@@ -68,15 +69,15 @@
 			_class = "C_INIT_RandomRadius"
 			m_flOpStrengthMinScale = 0.0
 			m_flOpTimeOffsetMax = -1.0
-			m_flRadiusMax = 150.0
-			m_flRadiusMin = 150.0
+			m_flRadiusMax = 15.0
+			m_flRadiusMin = 15.0
 		},
 		{
 			_class = "C_INIT_RandomLifeTime"
 			m_flOpStrengthMinScale = 0.0
 			m_flOpTimeOffsetMax = 1.0
-			m_fLifetimeMax = 0.5
-			m_fLifetimeMin = 0.5
+			m_fLifetimeMax = 0.25
+			m_fLifetimeMin = 0.25
 		},
 		{
 			_class = "C_INIT_NormalAlignToCP"

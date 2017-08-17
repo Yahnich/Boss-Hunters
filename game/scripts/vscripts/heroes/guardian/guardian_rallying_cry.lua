@@ -44,8 +44,8 @@ end
 
 function modifier_guardian_rallying_cry_buff:GetModifierIncomingDamage_Percentage(params)
 	if self:GetCaster():HasTalent("guardian_rallying_cry_talent_1") and self:GetParent() ~= self:GetCaster() then
-		local redirect = self:GetCaster():FindTalentVaue("guardian_rallying_cry_talent_1")
-		ParticleManager:FireRopeParticle("particles/heroes/guardian/guardian_rallying_cry_redirect.vpcf", PATTACH_POINT_FOLLOW, self:GetParent(), self:GetCaster())
+		local redirect = self:GetCaster():FindTalentValue("guardian_rallying_cry_talent_1")
+		ParticleManager:FireRopeParticle("particles/heroes/guardian/guardian_rallying_cry_redirect.vpcf", PATTACH_POINT_FOLLOW, self:GetCaster(), self:GetParent())
 		ApplyDamage({victim = self:GetCaster(), attacker = params.attacker, damage = params.damage * redirect, damage_type = params.damage_type, ability = self:GetAbility(), damage_flag = DOTA_DAMAGE_FLAG_NON_LETHAL})
 		return redirect
 	end

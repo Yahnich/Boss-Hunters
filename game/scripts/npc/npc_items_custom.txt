@@ -4119,6 +4119,12 @@
 			"RunScript"
 			{
 				"ScriptFile"			"lua_item/simple_item.lua"
+				"Function"				"Purge"
+				"HardPurge"				"1"
+			}
+			"RunScript"
+			{
+				"ScriptFile"			"lua_item/simple_item.lua"
 				"Function"				"CD_pure"
 				"cooldown"				"%AbilityCooldown"
 			}
@@ -6816,6 +6822,12 @@
 				"ScriptFile"			"lua_item/simple_item.lua"
 				"Function"				"CD_Bahamut"
 				"cooldown"              "%AbilityCooldown"
+			}
+			"RunScript"
+			{
+				"ScriptFile"			"lua_item/simple_item.lua"
+				"Function"				"Purge"
+				"HardPurge"				"1"
 			}
 		}
 
@@ -12179,6 +12191,12 @@
 			"RunScript"
 			{
 				"ScriptFile"			"lua_item/simple_item.lua"
+				"Function"				"Purge"
+				"HardPurge"				"1"
+			}
+			"RunScript"
+			{
+				"ScriptFile"			"lua_item/simple_item.lua"
 				"Function"				"CD_Bahamut"
 				"cooldown"              "%AbilityCooldown"
 			}
@@ -13774,6 +13792,12 @@
 			{
 				"ScriptFile"			"lua_item/simple_item.lua"
 				"Function"				"Cooldown_pixels"
+			}
+			"RunScript"
+			{
+				"ScriptFile"			"lua_item/simple_item.lua"
+				"Function"				"Purge"
+				"HardPurge"				"1"
 			}
 			"ApplyModifier"
 			{
@@ -15701,6 +15725,12 @@
 			{
 				"ScriptFile"			"lua_item/simple_item.lua"
 				"Function"				"TankSelfHeal"
+			}
+			"RunScript"
+			{
+				"ScriptFile"			"lua_item/simple_item.lua"
+				"Function"				"Purge"
+				"HardPurge"				"1"
 			}
 			"ApplyModifier"
 			{
@@ -20549,7 +20579,7 @@
 		"ID"							"2068"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"BaseClass"						"item_recipe_blade_mail"
-		"AbilityTextureName"	"custom/mekansm5"
+		"AbilityTextureName"			"custom/mekansm5"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -20680,6 +20710,12 @@
 				"HealAmount"			"%heal_amount"
 				"HealRadius"			"%heal_radius"
 				"ManaAmount"			"%mana_amount"
+			}
+			"RunScript"
+			{
+				"ScriptFile"			"lua_item/simple_item.lua"
+				"Function"				"Purge"
+				"HardPurge"				"1"
 			}
 			"ApplyModifier"
 			{

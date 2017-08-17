@@ -120,7 +120,9 @@ function CDOTA_BaseNPC:DealAOEDamage(position, radius, damageTable)
 	local iFlag = DOTA_UNIT_TARGET_FLAG_NONE
 	local iOrder = FIND_ANY_ORDER
 	local AOETargets = FindUnitsInRadius(team, position, nil, radius, iTeam, iType, iFlag, iOrder, false)
+	print(radius)
 	for _, target in pairs(AOETargets) do
+		print(damageTable.damage, damageTable.damage_type)
 		ApplyDamage({ victim = target, attacker = self, damage = damageTable.damage, damage_type = damageTable.damage_type, ability = damageTable.ability})
 	end
 end
@@ -1259,7 +1261,7 @@ end
 function ParticleManager:FireRopeParticle(effect, attach, owner, target)
 	local FX = ParticleManager:CreateParticle(effect, attach, owner)
 
-	ParticleManager:SetParticleControlEnt(FX, 0, owner, PATTACH_POINT_FOLLOW, "attach_hitloc", ownerGetAbsOrigin(), true)
+	ParticleManager:SetParticleControlEnt(FX, 0, owner, PATTACH_POINT_FOLLOW, "attach_hitloc", owner:GetAbsOrigin(), true)
 	ParticleManager:SetParticleControlEnt(FX, 1, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
 	
 	ParticleManager:ReleaseParticleIndex(FX)

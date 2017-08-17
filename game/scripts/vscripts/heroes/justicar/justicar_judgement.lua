@@ -46,7 +46,7 @@ if IsServer() then
 	end
 
 	function modifier_justicar_judgement_buff:OnTakeDamage(params)
-		if params.unit == self:GetParent() and params.damage > params.unit:GetMaxHealth() * 0.005 then
+		if params.unit == self:GetParent() and params.original_damage > params.unit:GetMaxHealth() * 0.01 then
 			self.healvalue = (self.healvalue or 0) + params.damage * self.damageheal
 			self:GetAbility():DealDamage(self:GetParent(), params.attacker, self.reflect + self:GetCaster():GetInnerSun())
 			self:GetCaster():ResetInnerSun()

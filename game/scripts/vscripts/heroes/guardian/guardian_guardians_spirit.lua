@@ -14,7 +14,7 @@ function modifier_guardian_guardians_spirit_buff:OnCreated()
 	self.bonus_damage = self:GetAbility():GetSpecialValueFor("bonus_damage")
 	self.str = self:GetAbility():GetSpecialValueFor("bonus_str")
 	self.armor = self:GetAbility():GetSpecialValueFor("bonus_armor")
-	self.damage = self:GetAbility():GetSpecialValueFor("talent_activation_damage")
+	self.damage = self:GetAbility():GetSpecialValueFor("talent_damage")
 	if IsServer() then
 		self:GetAbility():StartDelayedCooldown(self:GetRemainingTime(), false)
 		if self:GetCaster():HasTalent("guardian_guardians_spirit_talent_1") then
@@ -28,7 +28,7 @@ function modifier_guardian_guardians_spirit_buff:OnRefresh()
 	self.bonus_damage = self:GetAbility():GetSpecialValueFor("bonus_damage")
 	self.str = self:GetAbility():GetSpecialValueFor("bonus_str")
 	self.armor = self:GetAbility():GetSpecialValueFor("bonus_armor")
-	self.damage = self:GetAbility():GetSpecialValueFor("talent_activation_damage")
+	self.damage = self:GetAbility():GetSpecialValueFor("talent_damage")
 	if IsServer() then
 		self:GetAbility():StartDelayedCooldown(self:GetRemainingTime(), false)
 		if self:GetCaster():HasTalent("guardian_guardians_spirit_talent_1") then

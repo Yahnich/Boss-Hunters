@@ -1,5 +1,9 @@
 modifier_generic_barrier = class({})
 
+function modifier_generic_barrier:IsHidden()
+	return true
+end
+
 if IsServer() then
 	function modifier_generic_barrier:OnCreated(kv)
 		self.barrier = kv.barrier or 0
@@ -19,12 +23,8 @@ if IsServer() then
 		return MODIFIER_ATTRIBUTE_MULTIPLE
 	end
 	
-	function modifier_generic_barrier:IsHidden(kv)
-		return true
-	end
-
 	function modifier_generic_barrier:OnIntervalThink()
-		if self.barrier <= 0 then self:Destroy() end
+		if self:ModifierBarrier_Bonus() <= 0 then self:Destroy() end
 	end
 
 	function modifier_generic_barrier:DeclareFunctions()

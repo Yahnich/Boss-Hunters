@@ -15,13 +15,13 @@
 	[
 		{
 			m_flDelay = 0.35
-			m_ChildRef = resource:"particles/econ/items/razor/razor_punctured_crest/razor_static_link_new_arc_dark_blade.vpcf"
+			m_ChildRef = resource:"particles/heroes/guardian/guardian_anchor_howl_link_new_arc_dark_blade.vpcf"
 		},
 		{
 			m_ChildRef = resource:"particles/heroes/guardian/guardian_anchor_howl_link_light_blade.vpcf"
 		},
 		{
-			m_ChildRef = resource:"particles/econ/items/razor/razor_punctured_crest/razor_static_link_new_arc_blade.vpcf"
+			m_ChildRef = resource:"particles/heroes/guardian/guardian_anchor_howl_link_new_arc_blade.vpcf"
 		},
 		{
 			m_ChildRef = resource:"particles/econ/items/razor/razor_punctured_crest/razor_static_link_beam_2d_blade.vpcf"

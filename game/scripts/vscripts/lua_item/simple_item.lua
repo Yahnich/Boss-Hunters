@@ -28,6 +28,13 @@ function refresher( keys )
     end
 end
 
+function Purge(keys)
+	local hardDispel = false
+	local caster = keys.caster
+	if keys.HardPurge then hardDispel = true end
+	caster:Dispel(caster, hardDispel)
+end
+
 function SetCastPoints(keys)
 	local caster = keys.caster
     local item = keys.ability

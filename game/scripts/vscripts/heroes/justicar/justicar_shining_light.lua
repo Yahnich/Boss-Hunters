@@ -4,7 +4,7 @@ function justicar_shining_light:OnSpellStart()
 	local caster = self:GetCaster()
 	local cursorTarget = self:GetCursorTarget()
 	
-	EmitSoundOn("Hero_Omniknight.Purification", target)
+	EmitSoundOn("Hero_Omniknight.Purification", cursorTarget)
 	
 	if caster:HasTalent("justicar_shining_light_talent_1") then
 		local radius = caster:FindTalentValue("justicar_shining_light_talent_1")

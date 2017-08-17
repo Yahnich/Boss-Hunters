@@ -44,7 +44,7 @@ if IsServer() then
 	end
 
 	function modifier_justicar_blessed_aegis_barrier:OnIntervalThink()
-		if self.barrier <= 0 then self:Destroy() end
+		if self:ModifierBarrier_Bonus() <= 1 then self:Destroy() end
 	end
 
 	function modifier_justicar_blessed_aegis_barrier:DeclareFunctions()

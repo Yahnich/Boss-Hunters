@@ -2,7 +2,7 @@ guardian_anchor_howl = class({})
 
 function guardian_anchor_howl:OnSpellStart()
 	local caster = self:GetCaster()
-	local targets = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin, self:GetSpecialValueFor("taunt_radius"), {})
+	local targets = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), self:GetSpecialValueFor("taunt_radius"), {})
 	EmitSoundOn("Hero_Axe.Berserkers_Call", caster)
 	local anchorFX = ParticleManager:FireParticle("particles/heroes/guardian/guardian_anchor_howl.vpcf", PATTACH_POINT_FOLLOW, caster, nil)
 	local tDuration = self:GetSpecialValueFor("taunt_duration")
@@ -12,7 +12,7 @@ function guardian_anchor_howl:OnSpellStart()
 	end
 	if #targets > 0 then self:StartDelayedCooldown(tDuration, true) end
 	if caster:HasTalent("guardian_anchor_howl_talent_1") then
-		target:AddNewModifier(caster, self, "modifier_guardian_anchor_howl_talent", {duration = caster:FindTalentValue("guardian_anchor_howl_talent_1")})
+		caster:AddNewModifier(caster, self, "modifier_guardian_anchor_howl_talent", {duration = caster:FindTalentValue("guardian_anchor_howl_talent_1")})
 	end
 end
 
@@ -37,8 +37,14 @@ LinkLuaModifier("modifier_guardian_anchor_howl_break_effect", "heroes/guardian/g
 
 function modifier_guardian_anchor_howl_break_effect:OnCreated()
 	self.damage = self:GetAbility():GetTalentSpecialValueFor("break_damage")
-	local anchorFX = ParticleManager:CreateParticle("", PATTACH_POINT_FOLLOW, caster)
-	if IsServer() then self:StartIntervalThink(0.1) end
+	if IsServer() then
+		self.anchorFX = ParticleManager:CreateParticle("particles/heroes/guardian/guardian_anchor_howl_link.vpcf", PATTACH_POINT_FOLLOW, self:GetCaster())
+		ParticleManager:SetParticleControlEnt(self.anchorFX, 0, self:GetCaster(), PATTACH_POINT_FOLLOW, "attach_hitloc", self:GetCaster():GetAbsOrigin(), true)
+		ParticleManager:SetParticleControlEnt(self.anchorFX, 1, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_hitloc", self:GetParent():GetAbsOrigin(), true)
+		self:AddEffect(self.anchorFX)
+	
+		self:StartIntervalThink(0.1) 
+	end
 end
 
 function modifier_guardian_anchor_howl_break_effect:OnRefresh()
@@ -47,12 +53,18 @@ function modifier_guardian_anchor_howl_break_effect:OnRefresh()
 end
 
 function modifier_guardian_anchor_howl_break_effect:Break()
-	self:GetAbility:DealDamage(self:GetCaster(), self:GetParent(), self.damage)
-	ParticleManager:FireParticle("", PATTACH_POINT_FOLLOW, self:GetParent(), nil)
+	if IsServer() then
+		self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self.damage)
+		ParticleManager:FireParticle("particles/econ/events/ti7/hero_levelup_ti7.vpcf", PATTACH_POINT_FOLLOW, self:GetParent(), nil)
+	end
 end
 
 function modifier_guardian_anchor_howl_break_effect:OnDestroy()
 	self:Break()
+	if IsServer() then
+		ParticleManager:DestroyParticle(self.anchorFX, true)
+		ParticleManager:ReleaseParticleIndex(self.anchorFX)
+	end
 end
 
 function modifier_guardian_anchor_howl_break_effect:DeclareFunctions()
@@ -62,7 +74,7 @@ function modifier_guardian_anchor_howl_break_effect:DeclareFunctions()
 end
 
 function modifier_guardian_anchor_howl_break_effect:OnTakeDamage(params)
-	if params.attacker == self:GetParent() then
+	if params.attacker == self:GetParent() and params.unit ~= self:GetCaster() then
 		self:Destroy()
 	end
 end
@@ -72,11 +84,11 @@ modifier_guardian_anchor_howl_talent = class({})
 LinkLuaModifier("modifier_guardian_anchor_howl_talent", "heroes/guardian/guardian_anchor_howl.lua", 0)
 
 function modifier_guardian_anchor_howl_talent:OnCreated()
-	self.armor = self:GetSpecialValueFor("talent_bonus_armor")
+	self.armor = self:GetAbility():GetSpecialValueFor("talent_bonus_armor")
 end
 
 function modifier_guardian_anchor_howl_talent:OnRefresh()
-	self.armor = self:GetSpecialValueFor("talent_bonus_armor")
+	self.armor = self:GetAbility():GetSpecialValueFor("talent_bonus_armor")
 end
 
 function modifier_guardian_anchor_howl_talent:DeclareFunctions()

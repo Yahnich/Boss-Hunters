@@ -49,10 +49,10 @@ function modifier_guardian_stone_fortress_buff:DeclareFunctions()
 	return funcs
 end
 
-function modifier_guardian_stone_fortress_buff:OnOrder()
+function modifier_guardian_stone_fortress_buff:OnOrder(params)
 	if params.unit == self:GetParent() then
 		if self:GetParent():HasTalent("guardian_stone_fortress_talent_1") then
-			if params.order > 2 then
+			if params.order_type > 2 and params.order_type < 10 then
 				self:Destroy()
 			end
 		else

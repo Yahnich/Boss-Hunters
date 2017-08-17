@@ -53,3 +53,7 @@ end
 function modifier_guardian_punish_debuff:BonusDebuffDuration_Constant()
 	return self.debuff
 end
+
+function modifier_guardian_punish_debuff:GetEffectName()
+	return "particles/heroes/guardian/guardian_punish_debuff.vpcf"
+end
