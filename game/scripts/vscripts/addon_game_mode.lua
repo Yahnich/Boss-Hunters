@@ -84,6 +84,7 @@ function Precache( context )
 	PrecacheResource("particle", "particles/nyx_assassin_impale.vpcf", context)
 	PrecacheResource("particle", "particles/econ/generic/generic_aoe_shockwave_1/generic_aoe_shockwave_1.vpcf", context)
 	PrecacheResource("particle", "particles/econ/generic/generic_buff_1/generic_buff_1.vpcf", context)
+	PrecacheResource("particle", "particles/generic_linear_indicator.vpcf", context)
 	
 	-- fix these fucking particles
 	PrecacheResource("particle", "particles/units/heroes/hero_tinker/tinker_rockets.vpcf", context)

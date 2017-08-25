@@ -2388,7 +2388,7 @@
 	{
 	    "BaseClass"                     "ability_lua"
 	    "ScriptFile"                    "heroes/shinigami/shinigami_whirling_slash.lua"
-	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityTextureName"			"custom/shinigami_whirling_slash"
 	    "RequiredLevel"  				"7"
 		"MaxLevel"						"7"
@@ -36808,11 +36808,12 @@
 	/////////////////
 	////////////////
 	//----------------------------  BOSSES
-	"boss_vanish"
+	"boss1a_vanish"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_datadriven"
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss1a/boss1a_vanish"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
@@ -36822,8 +36823,8 @@
 
 		// Stats		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"12"
-		"AbilityCastPoint"				"0.1"
+		"AbilityCooldown"				"15"
+		"AbilityCastPoint"				"0.5 0.3"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -36837,12 +36838,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"3 4"
+				"duration"				"8"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"fade_time"				"0.0"
+				"fade_time"				"1.5 1.0"
 			}
 			"03"
 			{
@@ -36865,79 +36866,95 @@
 			"particle"						"particles/units/heroes/hero_keeper_of_the_light/keeper_of_the_light_recall_poof.vpcf"
 			"particle"						"particles/units/heroes/hero_nyx_assassin/nyx_assassin_vendetta_start.vpcf"
 		}
-		"OnAbilityPhaseStart"
+	}
+	"boss1a_rushdown"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss1a/boss1a_rushdown"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"FightRecapLevel"				"2"
+		"AbilityTextureName"			"riki_backstab"
+		"MaxLevel"						"2"
+
+		// Stats		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"7"
+		"AbilityCastPoint"				"0.5 0.3"
+		"AbilityCastRange"				"1200"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
 		{
-			"RunScript"
+			
+			"01"
 			{
-				"ScriptFile"	"lua_boss/boss_1"
-				"Function"		"vendetta_particle"
-				"particle"		"particles/units/heroes/hero_keeper_of_the_light/keeper_of_the_light_recall_poof.vpcf"
-			}
-		}
-		"OnSpellStart"
-		{
-			"DelayedAction"
-			{
-				"Delay"						"%fade_time"
-				"Action"
-				{
-					"FireSound"
-					{
-						"Target"				"CASTER"
-						"EffectName"			"Hero_NyxAssassin.Vendetta"
-					}
-					"ApplyModifier"
-					{
-						"Target"				"CASTER"
-						"ModifierName"			"modifier_vendetta_buff_datadriven"
-					}
-					
-					"ApplyModifier"
-					{
-						"Target"				"CASTER"
-						"ModifierName"			"modifier_invisible"
-						"Duration"				"%duration"
-					}
-				}
+				"var_type"				"FIELD_FLOAT"
+				"rush_speed"			"900 1200"
 			}
 		}
 		
-		"Modifiers"
+		// Data driven
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
 		{
-			"modifier_vendetta_buff_datadriven"
+			"soundfile"						"soundevents/game_sounds_heroes/game_sounds_nyx_assassin.vsndevts"
+			"particle"						"particles/status_fx/status_effect_base.vpcf"
+			"particle"						"particles/units/heroes/hero_keeper_of_the_light/keeper_of_the_light_recall_poof.vpcf"
+			"particle"						"particles/units/heroes/hero_nyx_assassin/nyx_assassin_vendetta_start.vpcf"
+		}
+	}
+	"boss1a_blink_strike"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss1a/boss1a_blink_strike"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"FightRecapLevel"				"2"
+		"AbilityTextureName"			"riki_blink_strike"
+		"MaxLevel"						"2"
+
+		// Stats		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"10 8"
+		"AbilityCastPoint"				"0.5 0.3"
+		"AbilityCastRange"				"600"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			
+			"01"
 			{
-				"Duration"					"%duration"
-			
-				"OnCreated"
-				{
-					"AttachEffect"
-					{
-						"Target"			"TARGET"
-						"EffectName"		"particles/units/heroes/hero_nyx_assassin/nyx_assassin_vendetta_start.vpcf"
-						"EffectAttachType"	"start_at_origin"
-					}
-				}
-			
-				"OnAttack"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"lua_boss/boss_1"
-						"Function"		"vendetta_attack"
-					}
-				}
-			
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%movement_speed"
-				}
-			
-				"States"
-				{
-					"MODIFIER_STATE_NO_UNIT_COLLISION"		"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_INVISIBLE"			"MODIFIER_STATE_VALUE_ENABLED"
-				}
+				"var_type"				"FIELD_FLOAT"
+				"strike_radius"			"250 275"
 			}
+		}
+		
+		// Data driven
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"						"soundevents/game_sounds_heroes/game_sounds_nyx_assassin.vsndevts"
+			"particle"						"particles/status_fx/status_effect_base.vpcf"
+			"particle"						"particles/units/heroes/hero_keeper_of_the_light/keeper_of_the_light_recall_poof.vpcf"
+			"particle"						"particles/units/heroes/hero_nyx_assassin/nyx_assassin_vendetta_start.vpcf"
 		}
 	}
 	"boss_toxic_weaponry"

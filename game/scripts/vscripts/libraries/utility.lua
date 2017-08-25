@@ -107,11 +107,21 @@ function CDOTA_BaseNPC:PerformAbilityAttack(target, bProcs, ability)
 	self.autoAttackFromAbilityState = {} -- basically the same as setting it to true
 	self.autoAttackFromAbilityState.ability = ability
 	self:PerformAttack(target,true,bProcs,true,false,false,false,true)
+	Timers:CreateTimer(function() self.autoAttackFromAbilityState = nil end)
+end
+
+function CDOTA_BaseNPC:PerformGenericAttack(target, immediate)
+	self:PerformAttack(target, true, true, true, false, not immediate, false, true)
 end
 
 function CDOTA_Modifier_Lua:AttachEffect(pID)
 	self:AddParticle(pID, false, false, 0, false, false)
 end
+
+function CDOTA_Modifier_Lua:GetSpecialValueFor(specVal)
+	return self:GetAbility():GetSpecialValueFor(specVal)
+end
+
 
 function CDOTA_BaseNPC:DealAOEDamage(position, radius, damageTable)
 	local team = self:GetTeamNumber()
@@ -1239,13 +1249,24 @@ function CDOTA_BaseNPC:IsKnockedBack()
 	return self.isInKnockbackState
 end
 
-function CDOTA_BaseNPC:FindEnemyUnitsInRadius(position, radius, data)
+function CDOTA_BaseNPC:FindEnemyUnitsInRadius(position, radius, hData)
 	local team = self:GetTeamNumber()
+	local data = hData or {}
 	local iTeam = data.team or DOTA_UNIT_TARGET_TEAM_ENEMY
 	local iType = data.type or DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
 	local iFlag = data.flag or DOTA_UNIT_TARGET_FLAG_NONE
 	local iOrder = data.order or FIND_ANY_ORDER
 	return FindUnitsInRadius(team, position, nil, radius, iTeam, iType, iFlag, iOrder, false)
+end
+
+function ParticleManager:FireWarningParticle(position, radius)
+	local thinker = ParticleManager:CreateParticle("particles/econ/generic/generic_aoe_shockwave_1/generic_aoe_shockwave_1.vpcf", PATTACH_WORLDORIGIN, nil)
+			ParticleManager:SetParticleControl(thinker, 0, position)
+			ParticleManager:SetParticleControl(thinker, 2, Vector(6,0,1))
+			ParticleManager:SetParticleControl(thinker, 1, Vector(radius,0,0))
+			ParticleManager:SetParticleControl(thinker, 3, Vector(255,0,0))
+			ParticleManager:SetParticleControl(thinker, 4, Vector(0,0,0))
+	ParticleManager:ReleaseParticleIndex(thinker)
 end
 
 function ParticleManager:FireParticle(effect, attach, owner, cps)

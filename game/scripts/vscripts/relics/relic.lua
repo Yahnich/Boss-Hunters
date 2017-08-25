@@ -1,4 +1,4 @@
-RelicEntity = RelicEntity or class({})
+RelicEntity = class({})
 
 RelicTypes = {
 ["RELIC_TYPE_TANK"] = 1,
@@ -18,13 +18,14 @@ local InternalTranslator = {
 function RelicEntity:constructor(data)
 	self.owner = data.owner
 	self.owner:SetRelic(self)
-	self.type = data.relicType
+	self.ID = data.relicID
+	self.relicType = data.relicType
 	self.rarity = data.rarity or 1
 	self.stats = {}
 	self:RollStats()
-	local modifier = self.owner:AddNewModifier(self.owner, nil, self.type, data)
+	local modifier = self.owner:AddNewModifier(self.owner, nil, self.ID, data)
 	self.passive = modifier
-	print("relic creation done; "..self.type.." created")
+	print("relic creation done; "..self.ID.." created")
 end
 
 function RelicEntity:RollStats()
@@ -42,7 +43,7 @@ function RelicEntity:GetPassiveModifier()
 end
 
 function RelicEntity:GetType()
-	return self.type
+	return self.relicType
 end
 
 function RelicEntity:GetRarity()

@@ -12,6 +12,7 @@ DPS:
 -- Annihilation: Attacks splinter and go to other enemies for reduced damage
 -- Acceleratation: Cooldowns are reduced by 0.1s for every attack landed
 -- Ambuscade: Renders you invisible after not attacking for 5 seconds, deals major bonus damage out of invis
+-- Ampérage: Mjollnir effect
 
 CASTER:
 -- Time Rewind: Spells chance to cost no mana and no cd

@@ -12,16 +12,17 @@ end
 function shinigami_whirling_slash:OnSpellStart()
 	local caster = self:GetCaster()
 	local angles = caster:GetAnglesAsVector()
-	local angleSet = - 90
+	local angleSet = -90
+	local duration = self:GetTalentSpecialValueFor("duration")
 	local maxRotation = self:GetTalentSpecialValueFor("rotation_degree")
-	local angVel = maxRotation / self:GetTalentSpecialValueFor("duration") * FrameTime()
+	local angVel = (maxRotation / duration) * FrameTime()
 	
 	local reduction = 1 - self:GetSpecialValueFor("damage_reduction") / 100
 	local bonusDamage = caster:GetAverageTrueAttackDamage(caster) * self:GetTalentSpecialValueFor("bonus_damage") / 100
 	
 	EmitSoundOn("Hero_SkeletonKing.CriticalStrike", caster)
 	caster:SetForwardVector( RotateVector2D(caster:GetForwardVector(), ToRadians(angleSet)) )
-	local modifier = caster:AddNewModifier(caster, self, "modifier_shinigami_whirling_slash_stop_movement", {})
+	local modifier = caster:AddNewModifier(caster, self, "modifier_shinigami_whirling_slash_stop_movement", {duration = duration})
 	modifier:SetStackCount(bonusDamage)
 	local attackblur = ParticleManager:CreateParticle("particles/heroes/shinigami/shinigami_whirling_slash.vpcf", PATTACH_ABSORIGIN, caster)
 	ParticleManager:SetParticleControlEnt(attackblur, 0, caster, PATTACH_POINT_FOLLOW, "attach_attack1", caster:GetAbsOrigin(), true)
@@ -39,9 +40,9 @@ function shinigami_whirling_slash:OnSpellStart()
 				alreadyAttacked[enemy:entindex()] = true
 			end
 		end
+		angleSet = angleSet + angVel
 		if angleSet < maxRotation - 90 then	
 			caster:SetForwardVector( RotateVector2D(caster:GetForwardVector(), ToRadians(angVel)))
-			angleSet = angleSet + angVel
 			return FrameTime()
 		else
 			caster:SetForwardVector( RotateVector2D(caster:GetForwardVector(), ToRadians(angleSet - (maxRotation - 90))))

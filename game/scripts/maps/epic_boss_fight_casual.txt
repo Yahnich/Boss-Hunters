@@ -139,16 +139,6 @@
 					"SpawnInterval"			"10"
 				}
 			}
-			"2"
-			{
-				"UnitBoss_1" 
-				{
-					"NPCName"				"npc_dota_boss2"
-					"TotalUnitsToSpawn"		"1"
-					"UnitsPerSpawn"			"1"
-					"SpawnInterval"			"10"
-				}
-			}
 		}
 	}
 	"Round3" // Zambees

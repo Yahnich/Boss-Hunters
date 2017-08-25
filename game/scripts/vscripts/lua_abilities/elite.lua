@@ -1,7 +1,7 @@
 function FrenzyStacks(keys)
 	local caster = keys.caster
 	if not keys.ability:IsFullyCastable() then return end
-	
+	keys.ability:StartCooldown(11)
 	local ability = keys.ability
 	EmitSoundOn("DOTA_Item.MaskOfMadness.Activate", caster)
 	ability:ApplyDataDrivenModifier(caster,caster, "modifier_elite_frenzied_bonus", {duration = 5})

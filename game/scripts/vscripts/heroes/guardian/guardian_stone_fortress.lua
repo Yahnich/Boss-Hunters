@@ -49,6 +49,14 @@ function modifier_guardian_stone_fortress_buff:DeclareFunctions()
 	return funcs
 end
 
+function modifier_guardian_stone_fortress_buff:CheckState()
+	state = {
+		MODIFIER_STATE_NO_HEALTH_BAR,
+		MODIFIER_STATE_MAGIC_IMMUNE
+	}
+	return state
+end
+
 function modifier_guardian_stone_fortress_buff:OnOrder(params)
 	if params.unit == self:GetParent() then
 		if self:GetParent():HasTalent("guardian_stone_fortress_talent_1") then

@@ -65,9 +65,10 @@ end
 
 function modifier_gladiatrix_fearless_assault_passive:OnAbilityFullyCast(params)
 	if IsServer() and self:GetParent():HasScepter() then
+		print(CalculateDistance(params.unit, self:GetParent()), params.unit:IsSameTeam(self:GetParent()))
 		if params.unit:IsSameTeam(self:GetParent()) and CalculateDistance(params.unit, self:GetParent()) <= 900 then
 			print("ok")
-			self:GetParent():AddNewModifier(self:GetParent(), self:GetAbility(), "modifier_gladiatrix_fearless_assault_armor_scepter", {duration = self:GetAbility():GetSpecialValueFor("scepter_armor_duration")})
+			params.unit:AddNewModifier(self:GetParent(), self:GetAbility(), "modifier_gladiatrix_fearless_assault_armor_scepter", {duration = self:GetAbility():GetSpecialValueFor("scepter_armor_duration")})
 		end
 	end
 end

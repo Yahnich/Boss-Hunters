@@ -70,3 +70,7 @@ game/network_measurement.txt
 game/panorama_debugger.cfg
 game/materials/
 game/panorama/
+content/maps/epic_boss_fight_boss_master.vmap
+content/maps/epic_boss_fight_challenger.vmap
+content/maps/epic_boss_fight_hard.vmap
+content/maps/epic_boss_fight_impossible.vmap

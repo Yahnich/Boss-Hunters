@@ -29,8 +29,9 @@ function gladiatrix_leg_sweep:OnSpellStart()
 	ParticleManager:ReleaseParticleIndex(spin)
 	EmitSoundOn("Hero_Axe.CounterHelix", caster)
 	if caster:HasTalent("gladiatrix_leg_sweep_talent_1") then
-		local targets = caster:FindEnemyUnitsInRadius(targetPoint, caster:FindTalentValueFor("gladiatrix_leg_sweep_talent_1"), {})
-		for _, target in pairs(target) do
+		local targetPoint = self:GetCursorTarget():GetAbsOrigin()
+		local targets = caster:FindEnemyUnitsInRadius(targetPoint, caster:FindTalentValue("gladiatrix_leg_sweep_talent_1"), {})
+		for _, target in pairs(targets) do
 			target:AddNewModifier(caster, self, "modifier_stunned_generic", {duration = self:GetTalentSpecialValueFor("stun_duration")})
 			target:AddNewModifier(caster, self, "modifier_dazed_generic", {duration = self:GetTalentSpecialValueFor("stun_duration") + self:GetTalentSpecialValueFor("daze_duration")})
 		end

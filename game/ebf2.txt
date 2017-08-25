@@ -515,8 +515,8 @@ Chaos Knight: Ebisu, the Fortune RNG UTILITY DPS
 -- Passive 2: 
 -- Passive 3: 
 -- Passive 4: 
--- Passive 5:
--- Passive 6: Rift Strike  
+-- Passive 5: Grants attackspeed per second of cooldown Disorder Reigns reduces
+-- Passive 6: Rift Strike removes armor from the enemy and gives it to Fortune
 -- Passive 7: Blessed Chaos spreads damage over all alies or deals full damage to all enemies in range
 -- Passive 8: Entropy also buffs and reduces attackspeed
 -- Passive 9: Daze procs stun the enemy for 1 second

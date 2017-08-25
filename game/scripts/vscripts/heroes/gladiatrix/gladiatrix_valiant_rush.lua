@@ -116,7 +116,7 @@ LinkLuaModifier( "modifier_valiant_rush_taunt_slow_talent", "heroes/gladiatrix/g
 modifier_valiant_rush_taunt_slow_talent = class({})
 
 function modifier_valiant_rush_taunt_slow_talent:OnCreated(kv)
-	self.slow = self:GetSpecialValueFor("talent_slow")
+	self.slow = self:GetAbility():GetSpecialValueFor("talent_slow")
 end
 
 function modifier_valiant_rush_taunt_slow_talent:DeclareFunctions()
