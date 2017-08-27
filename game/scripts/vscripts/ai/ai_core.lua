@@ -36,8 +36,8 @@ AICore = {}
 
 
 AI_BEHAVIOR_AGGRESSIVE = 1 -- Threat is weighted towards damage
-AI_BEHAVIOR_HARRASSING = 2 -- Threat is weighted towards health
-AI_BEHAVIOR_PERSISTENT = 3 -- Threat is weighted towards heals and debuffs, requires bigger threat difference to switch aggro
+AI_BEHAVIOR_CAUTIOUS = 2 -- Threat is weighted towards health
+AI_BEHAVIOR_SAFE = 3 -- Threat is weighted towards heals and debuffs, requires bigger threat difference to switch aggro
 
 function AICore:RandomEnemyHeroInRange( entity, range , magic_immune)
 	local flags = DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE + DOTA_UNIT_TARGET_FLAG_NO_INVIS
@@ -78,15 +78,26 @@ end
 
 function AICore:BeingAttacked( entity )
 	local enemies = FindUnitsInRadius( entity:GetTeamNumber(), entity:GetAbsOrigin(), nil, 9999, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false )
-	local count = nil
+	local count = 0
 	
 	for _,enemy in pairs(enemies) do
 		if enemy:IsAlive() and enemy:IsAttackingEntity(entity) then
-			minRange = distanceToEnemy
 			count = (count or 0) + 1
 		end
 	end
 	return count
+end
+
+function AICore:BeingAttackedBy( entity )
+	local enemies = FindUnitsInRadius( entity:GetTeamNumber(), entity:GetAbsOrigin(), nil, 9999, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false )
+	local attackers = {}
+	
+	for _,enemy in pairs(enemies) do
+		if enemy:IsAlive() and enemy:IsAttackingEntity(entity) then
+			table.insert(attackers, enemy)
+		end
+	end
+	return attackers
 end
 
 function AICore:GetHighestPriorityTarget(entity)
@@ -273,7 +284,7 @@ function AICore:NearestDisabledEnemyHeroInRange( entity, range , magic_immune)
 end
 
 function AICore:TotalEnemyHeroesInRange( entity, range)
-	local flags = flags + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE + DOTA_UNIT_TARGET_FLAG_NO_INVIS
+	local flags = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE + DOTA_UNIT_TARGET_FLAG_NO_INVIS
 	local enemies = FindUnitsInRadius( entity:GetTeamNumber(), entity:GetAbsOrigin(), nil, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, flags, 0, false )
 	
 	local count = 0

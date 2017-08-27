@@ -46,30 +46,65 @@ function modifier_sylph_immaterialize_buff:GetEffectName()
 	return "particles/heroes/sylph/sylph_immaterialize.vpcf"
 end
 
+function modifier_sylph_immaterialize_buff:IsAura()
+	return self:GetParent():HasTalent("sylph_immaterialize_talent_1")
+end
+
+function modifier_sylph_immaterialize_buff:GetAuraEntityReject( entity )
+	if IsServer() then
+		return self:GetParent() == entity
+	end
+end
+
+--------------------------------------------------------------------------------
+
+function modifier_sylph_immaterialize_buff:GetModifierAura()
+	if self:GetParent():HasTalent("sylph_immaterialize_talent_1") then
+		return "modifier_sylph_immaterialize_buff"
+	end
+end
+
+--------------------------------------------------------------------------------
+
+function modifier_sylph_immaterialize_buff:GetAuraSearchTeam()
+	return DOTA_UNIT_TARGET_TEAM_FRIENDLY
+end
+
+--------------------------------------------------------------------------------
+
+function modifier_sylph_immaterialize_buff:GetAuraSearchType()
+	return DOTA_UNIT_TARGET_HERO
+end
+
+--------------------------------------------------------------------------------
+
+function modifier_sylph_immaterialize_buff:GetAuraRadius()
+	return self:GetParent():GetIdealSpeed() * self:GetParent():FindTalentValue("sylph_immaterialize_talent_1")
+end
+
+--------------------------------------------------------------------------------
+function modifier_sylph_immaterialize_buff:IsPurgable()
+    return false
+end
+
 
 LinkLuaModifier( "modifier_sylph_immaterialize_talent_slow", "heroes/sylph/sylph_immaterialize.lua", LUA_MODIFIER_MOTION_NONE )
 modifier_sylph_immaterialize_talent_slow = modifier_sylph_immaterialize_talent_slow or class({})
 
 function modifier_sylph_immaterialize_talent_slow:OnCreated()
 	self.speed = self:GetAbility():GetSpecialValueFor("move_slow")
-	self.miss = self:GetCaster():FindTalentValue("sylph_immaterialize_talent_1")
 end
 
 
 function modifier_sylph_immaterialize_talent_slow:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-		MODIFIER_PROPERTY_MISS_PERCENTAGE,
 	}
 	return funcs
 end
 
 function modifier_sylph_immaterialize_talent_slow:GetModifierMoveSpeedBonus_Percentage()
 	return self.speed
-end
-
-function modifier_sylph_immaterialize_talent_slow:GetModifierMiss_Percentage()
-	return self.miss
 end
 
 function modifier_sylph_immaterialize_talent_slow:GetEffectName()

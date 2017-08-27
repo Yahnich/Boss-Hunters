@@ -22,10 +22,11 @@ end
 
 function sylph_mistral_breeze:OnProjectileHit_ExtraData( hTarget, vLocation, extraData )
 	if hTarget ~= nil and ( not hTarget:IsMagicImmune() ) and ( not hTarget:IsInvulnerable() ) then
+		local caster = self:GetCaster()
 		local damage = {
 			victim = hTarget,
-			attacker = self:GetCaster(),
-			damage = self:GetSpecialValueFor("projectile_damage"),
+			attacker = caster,
+			damage = self:GetSpecialValueFor("projectile_damage") + self:GetSpecialValueFor("ms_damage") * caster:GetIdealSpeed(),
 			damage_type = DAMAGE_TYPE_MAGICAL,
 			ability = self}
 		ApplyDamage( damage )
@@ -35,9 +36,9 @@ function sylph_mistral_breeze:OnProjectileHit_ExtraData( hTarget, vLocation, ext
 		local rotateVector = Vector(directionVector.y, -directionVector.x, 0) -- Normal vector
 		local compareVector = hTarget:GetAbsOrigin() - originPoint -- Comparative vector
 		local sideResult = rotateVector:Dot(compareVector)
-		local pushDir = (hTarget:GetAbsOrigin() - self:GetCaster():GetAbsOrigin())
+		local pushDir = (hTarget:GetAbsOrigin() - caster:GetAbsOrigin())
 		local distanceCap = (self:GetSpecialValueFor("projectile_distance") - directionVector:Length2D()) / self:GetSpecialValueFor("projectile_distance")
-		if (hTarget:GetAbsOrigin() - self:GetCaster():GetAbsOrigin()):Length2D() > 450 or sideResult ~= 0 then
+		if (hTarget:GetAbsOrigin() - caster:GetAbsOrigin()):Length2D() > 450 or sideResult ~= 0 then
 			if sideResult > 0 then
 				pushDir = Vector(directionVector.y, -directionVector.x, 0)
 			else
@@ -48,10 +49,10 @@ function sylph_mistral_breeze:OnProjectileHit_ExtraData( hTarget, vLocation, ext
 		end
 		pushDir = pushDir:Normalized()
 			
-		hTarget:AddNewModifier(self:GetCaster(), self, "modifier_sylph_mistral_breeze_knockback", {pushMod = distanceCap, pushDirx = pushDir.x, pushDiry = pushDir.y})
-		hTarget:AddNewModifier(self:GetCaster(), self, "modifier_sylph_mistral_breeze_blind", {duration = self:GetSpecialValueFor("blind_duration")})
-		if self:GetCaster():HasTalent("sylph_mistral_breeze_talent_1") then
-			self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_sylph_mistral_breeze_talent_buff", {duration = self:GetCaster():FindSpecificTalentValue("sylph_immaterialize_talent_1", "duration")})
+		hTarget:AddNewModifier(caster, self, "modifier_sylph_mistral_breeze_knockback", {pushMod = distanceCap, pushDirx = pushDir.x, pushDiry = pushDir.y})
+		hTarget:AddNewModifier(caster, self, "modifier_sylph_mistral_breeze_blind", {duration = self:GetSpecialValueFor("blind_duration")})
+		if caster:HasTalent("sylph_mistral_breeze_talent_1") then
+			caster:AddNewModifier(caster, self, "modifier_sylph_mistral_breeze_talent_buff", {duration = caster:FindSpecificTalentValue("sylph_immaterialize_talent_1", "duration")})
 		end
 	end
 	return false
