@@ -17,6 +17,12 @@ if IsServer() then
 			thisEntity.vanish:SetLevel(2)
 			thisEntity.blink:SetLevel(2)
 			thisEntity.rush:SetLevel(2)
+			
+			thisEntity:SetBaseMaxHealth(thisEntity:GetMaxHealth()*1.5)
+			thisEntity:SetMaxHealth(thisEntity:GetMaxHealth()*1.5)
+			thisEntity:SetHealth(thisEntity:GetMaxHealth())
+			
+			 thisEntity:SetAverageBaseDamage(thisEntity:GetAverageBaseDamage()*1.2, 25)
 		else
 			thisEntity.vanish:SetLevel(1)
 			thisEntity.blink:SetLevel(1)
@@ -49,6 +55,7 @@ if IsServer() then
 									Position = targetPos,
 									AbilityIndex = thisEntity.blink:entindex()
 								})
+								return 0.25
 							elseif thisEntity.rush:IsFullyCastable() then
 								if AICore:NumEnemiesInLine(thisEntity, thisEntity.rush:GetTrueCastRange(), 175, true) >= 2 then
 									ExecuteOrderFromTable({
@@ -74,6 +81,40 @@ if IsServer() then
 									Position = targetPos,
 									AbilityIndex = thisEntity.blink:entindex()
 								})
+								return 0.25
+							elseif pathLength < thisEntity.rush:GetTrueCastRange() and thisEntity.rush:IsFullyCastable() then
+								local rushTarget = AICore:FindFarthestEnemyInLine(thisEntity, thisEntity.rush:GetTrueCastRange(), 175, true)
+								local rushPos = target:GetAbsOrigin()
+								if rushTarget then rushPos = rushTarget:GetAbsOrigin() end
+								rushPos = rushPos + CalculateDirection(rushPos, thisEntity) * thisEntity:GetAttackRange()
+								ExecuteOrderFromTable({
+									UnitIndex = thisEntity:entindex(),
+									OrderType = DOTA_UNIT_ORDER_CAST_POSITION,
+									Position = rushPos,
+									AbilityIndex = thisEntity.rush:entindex()
+								})
+								return 0.25
+							end
+						end
+					end
+				elseif thisEntity.AIbehavior == AI_BEHAVIOR_CAUTIOUS then -- uses abilities to get in and out
+					local target = AICore:GetHighestPriorityTarget(thisEntity)
+					if target then
+						local hasBothSpells = thisEntity.rush:IsFullyCastable() and thisEntity.blink:IsFullyCastable()
+						local hasOneSpell = thisEntity.rush:IsFullyCastable() or thisEntity.blink:IsFullyCastable()
+						local attackedByOthers = (AICore:BeingAttacked( thisEntity ) > 1 and target:IsAttackingEntity(thisEntity) )
+						if hasBothSpells then
+							local distance = CalculateDistance(thisEntity, target)
+							local pathLength = GridNav:FindPathLength(thisEntity:GetAbsOrigin(), target:GetAbsOrigin())
+							if (pathLength < 0 or AICore:NumEnemiesInLine(thisEntity, thisEntity.rush:GetTrueCastRange(), 175, true) < 2) and thisEntity.blink:IsFullyCastable() then
+								local targetPos = AICore:OptimalHitPosition(thisEntity, distance, thisEntity.blink:GetSpecialValueFor("strike_radius"), true)
+								ExecuteOrderFromTable({
+									UnitIndex = thisEntity:entindex(),
+									OrderType = DOTA_UNIT_ORDER_CAST_POSITION,
+									Position = targetPos,
+									AbilityIndex = thisEntity.blink:entindex()
+								})
+								return 0.25
 							elseif pathLength > distance and thisEntity.rush:IsFullyCastable() then
 								ExecuteOrderFromTable({
 									UnitIndex = thisEntity:entindex(),
@@ -81,17 +122,147 @@ if IsServer() then
 									Position = AICore:FindFarthestEnemyInLine(thisEntity, thisEntity.rush:GetTrueCastRange(), 175, true):GetAbsOrigin(),
 									AbilityIndex = thisEntity.rush:entindex()
 								})
+								return 0.25
+							end
+						elseif hasOneSpell then
+							if attackedByOthers then
+								local targetPos
+								for _, attacker in ipairs( AICore:BeingAttackedBy( thisEntity ) ) do
+									targetPos = ((targetPos or attacker:GetAbsOrigin()) + attacker:GetAbsOrigin()) / 2
+								end
+								local runDir = CalculateDirection(thisEntity, targetPos)
+								if thisEntity.blink:IsFullyCastable() then
+									ExecuteOrderFromTable({
+										UnitIndex = thisEntity:entindex(),
+										OrderType = DOTA_UNIT_ORDER_CAST_POSITION,
+										Position = thisEntity:GetAbsOrigin() + runDir * thisEntity.blink:GetTrueCastRange(),
+										AbilityIndex = blink.blink:entindex()
+									})
+									return 0.25
+								elseif thisEntity.rush:IsFullyCastable() then
+									ExecuteOrderFromTable({
+										UnitIndex = thisEntity:entindex(),
+										OrderType = DOTA_UNIT_ORDER_CAST_POSITION,
+										Position = thisEntity:GetAbsOrigin() + runDir * thisEntity.rush:GetTrueCastRange(),
+										AbilityIndex = thisEntity.rush:entindex()
+									})
+									return 0.25
+								end
+							end
+						else
+							AICore:BeAHugeCoward( thisEntity, self:GetIdealSpeed() )
+						end
+					elseif not thisEntity:IsInvisible() then
+						if thisEntity.vanish:IsFullyCastable() then
+							ExecuteOrderFromTable({
+								UnitIndex = thisEntity:entindex(),
+								OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
+								AbilityIndex = thisEntity.vanish:entindex()
+							})
+							return 0.25
+						end
+					end
+				elseif thisEntity.AIbehavior == AI_BEHAVIOR_SAFE then -- tries to use mobility and invis to focus a target down and runs if it gets attacked by others, unless if it has no other choice
+					local target = AICore:GetHighestPriorityTarget(thisEntity)
+					if target then 
+						if (AICore:BeingAttacked( thisEntity ) > 2 and target:IsAttackingEntity(thisEntity) ) or (AICore:BeingAttacked( thisEntity ) > 0 and not target:IsAttackingEntity(thisEntity)) and not thisEntity:IsInvisible() then
+							if thisEntity.vanish:IsFullyCastable() then
+								ExecuteOrderFromTable({
+									UnitIndex = thisEntity:entindex(),
+									OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
+									AbilityIndex = thisEntity.vanish:entindex()
+								})
+								return 0.25
+							elseif thisEntity.rush:IsFullyCastable() then
+								local targetPos = thisEntity:GetAbsOrigin() + CalculateDirection(thisEntity, target) * thisEntity.rush:GetTrueCastRange()
+								ExecuteOrderFromTable({
+									UnitIndex = thisEntity:entindex(),
+									OrderType = DOTA_UNIT_ORDER_CAST_POSITION,
+									Position = targetPos,
+									AbilityIndex = thisEntity.rush:entindex()
+								})
+								return 0.25
+							elseif thisEntity.blink:IsFullyCastable() then
+								local targetPos
+								for _, attacker in ipairs( AICore:BeingAttackedBy( thisEntity ) ) do
+									targetPos = ((targetPos or attacker:GetAbsOrigin()) + attacker:GetAbsOrigin()) / 2
+								end
+								targetPos = thisEntity:GetAbsOrigin() + CalculateDirection(thisEntity, targetPos) * CalculateDistance(thisEntity, targetPos)
+								ExecuteOrderFromTable({
+									UnitIndex = thisEntity:entindex(),
+									OrderType = DOTA_UNIT_ORDER_CAST_POSITION,
+									Position = targetPos,
+									AbilityIndex = thisEntity.blink:entindex()
+								})
+								return 0.25
+							end
+						else
+							if thisEntity:IsAttacking() and not thisEntity:IsInvisible() then
+								if thisEntity.vanish:IsFullyCastable() then
+									ExecuteOrderFromTable({
+										UnitIndex = thisEntity:entindex(),
+										OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
+										AbilityIndex = thisEntity.vanish:entindex()
+									})
+									return 0.25
+								elseif thisEntity.blink:IsFullyCastable() then
+									ExecuteOrderFromTable({
+										UnitIndex = thisEntity:entindex(),
+										OrderType = DOTA_UNIT_ORDER_CAST_POSITION,
+										Position = target:GetAbsOrigin(),
+										AbilityIndex = thisEntity.blink:entindex()
+									})
+									return 0.25
+								elseif thisEntity.rush:IsFullyCastable() then
+									ExecuteOrderFromTable({
+										UnitIndex = thisEntity:entindex(),
+										OrderType = DOTA_UNIT_ORDER_CAST_POSITION,
+										Position = target:GetAbsOrigin() + CalculateDirection(target, thisEntity) * (target:GetAttackRange() - 50),
+										AbilityIndex = thisEntity.rush:entindex()
+									})
+									return 0.25
+								end
 							end
 						end
 					end
-				elseif thisEntity.AIbehavior == AI_BEHAVIOR_HARRASSING then -- uses abilities to get in and out
-				elseif thisEntity.AIbehavior == AI_BEHAVIOR_PERSISTENT then -- tries to use mobility and invis to focus a target down and runs if it gets attacked by others, unless if it has no other choice
 				end
-
 			elseif thisEntity.AIstate == AI_STATE_CHASING then
 				local target = AICore:GetHighestPriorityTarget(thisEntity)
+				if target then
+					local distance = CalculateDistance(thisEntity, target)
+					local pathLength = GridNav:FindPathLength(thisEntity:GetAbsOrigin(), target:GetAbsOrigin())
+					if (pathLength <= distance and thisEntity.blink:IsFullyCastable()) then
+						local distToReach = math.min(thisEntity.blink:GetTrueCastRange(), distance)
+						local targetPos = thisEntity:GetAbsOrigin() + CalculateDirection(target, thisEntity) * distToReach
+						ExecuteOrderFromTable({
+							UnitIndex = thisEntity:entindex(),
+							OrderType = DOTA_UNIT_ORDER_CAST_POSITION,
+							Position = targetPos,
+							AbilityIndex = thisEntity.blink:entindex()
+						})
+						return 0.25
+					elseif thisEntity.rush:IsFullyCastable() then
+						local distToReach = math.min(thisEntity.rush:GetTrueCastRange(), distance)
+						local targetPos = thisEntity:GetAbsOrigin() + CalculateDirection(target, thisEntity) * distToReach
+						ExecuteOrderFromTable({
+							UnitIndex = thisEntity:entindex(),
+							OrderType = DOTA_UNIT_ORDER_CAST_POSITION,
+							Position = targetPos,
+							AbilityIndex = thisEntity.rush:entindex()
+						})
+						return 0.25
+					end
+				end
 			elseif thisEntity.AIstate == AI_STATE_STEALTH then
 				local target = AICore:GetHighestPriorityTarget(thisEntity)
+				if thisEntity.vanish:IsFullyCastable() and not thisEntity:IsInvisible() then
+					ExecuteOrderFromTable({
+						UnitIndex = thisEntity:entindex(),
+						OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
+						AbilityIndex = thisEntity.vanish:entindex()
+					})
+					return 0.25
+				end
 			end
 			AICore:AttackHighestPriority( thisEntity )
 			return 0.25
@@ -100,7 +271,7 @@ if IsServer() then
 	
 	function EvaluateBehavior(entity)
 		if AICore:IsNearEnemyUnit(entity, 1500) then
-			if AICore:IsNearEnemyUnit(entity, entity:GetAttackRange() + entity:GetIdealSpeed() * 0.2 ) then
+			if AICore:IsNearEnemyUnit(entity, entity:GetAttackRange() + entity:GetIdealSpeed() * 0.8 ) then
 				entity.AIstate = AI_STATE_CLOSE_COMBAT
 			else
 				entity.AIstate = AI_STATE_CHASING

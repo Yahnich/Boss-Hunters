@@ -9,6 +9,11 @@ function sylph_rapid_fire:OnSpellStart()
 	local firesPerVolley = math.max(1,math.floor(FrameTime()/fireDelay))
 	if fireDelay > FrameTime() then fireDelay = FrameTime() end
 	local spread = self:GetTalentSpecialValueFor("spread_rad")
+	local minspread = self:GetTalentSpecialValueFor("min_spread")
+	local spreadDiff = (spread - minspread) * (self.caster:GetIdealSpeed()-self.caster:GetBaseMoveSpeed())/580
+	
+	spread = spread - spreadDiff
+	
 	self.arrows = self.arrows or 0
 	self.arrows = self.arrows + arrowAmount
 	Timers:CreateTimer(0, function()
@@ -30,6 +35,7 @@ function sylph_rapid_fire:OnSpellStart()
 end
 
 function sylph_rapid_fire:ShootArrow( vDir )
+	if not self.arrows then return end
 	if self.arrows >= 1 then
 		local projectileTable = {
 			Ability = self,

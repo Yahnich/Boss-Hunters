@@ -1,0 +1,23 @@
+Jetstream:
+AOE damage where Jetstream ends; damage is based on movement speed
+
+Immaterialize:
+Make new talent: Becomes AOE Aura, radius based on ms
+
+Rapid Fire:
+Nerf spread to 90° but let ms bonuses decrease spread to like 60-70° (a buff for max ms builds)
+ 
+Zephyr:
+Base MS bonus from 15 to 19
+Max MS bonus from 15 to 25
+Evasion bonus from 5 to 6.25
+Stacks are now gained every full second of attacking/moving instead of every second moved/every attack landed
+
+default ms -20
+
+Mistral Breeze:
+bonus damage per point of ms -- 60 dmg/ms
+
+Updraft:
+Movement speed increases the radius of updraft
+attackspeed deals minor pure damage while lifted

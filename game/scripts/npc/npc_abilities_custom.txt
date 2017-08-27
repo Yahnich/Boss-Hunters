@@ -5792,12 +5792,17 @@
 	        "01"
 	        {
 	            "var_type"                      "FIELD_INTEGER"
-	            "ms_per_stack"     				"15"
+	            "ms_per_stack"     				"19"
 	        }
 			"02"
 	        {
 	            "var_type"                      "FIELD_INTEGER"
-	            "evasion_per_stack"     		"5"
+	            "max_ms_per_stack"     				"25"
+	        }
+			"02"
+	        {
+	            "var_type"                      "FIELD_FLOAT"
+	            "evasion_per_stack"     		"6.25"
 	        }
 			"03"
 	        {
@@ -5883,9 +5888,14 @@
 			"08"
 	        {
 	            "var_type"                      "FIELD_INTEGER"
+	            "ms_damage"     				"1 3 6 10 20 40 60"
+	        }
+			"09"
+	        {
+	            "var_type"                      "FIELD_INTEGER"
 	            "knockback_speed"     			"950"
 	        }
-			"08"
+			"10"
 	        {
 	            "var_type"                      "FIELD_INTEGER"
 	            "projectile_radius"     		"325"
@@ -5987,7 +5997,8 @@
 	{
 	    "BaseClass"                     "ability_lua"
 	    "ScriptFile"                    "heroes/sylph/sylph_jetstream.lua"
-	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"AbilityTextureName"			"custom/sylph_jetstream"
 	    "RequiredLevel"  				"7"
 		"MaxLevel"						"7"
@@ -5999,7 +6010,7 @@
 		"precache"
 		{
 			"particle"	"particles/units/heroes/hero_windrunner/windrunner_windrun.vpcf"
-			"particle"	"particles/heroes/sylph/sylph_jetstream_start.vpcf"
+			"particle"	"particles/heroes/sylph/sylph_jetstream_poof.vpcf"
 		}
 	    "AbilitySpecial"
 	    {
@@ -6012,6 +6023,16 @@
 	        {
 	            "var_type"                      "FIELD_FLOAT"
 	            "cast_range"     				"1000 1100 1200 1300 1400 1500 1600"
+	        }
+			"02"
+	        {
+	            "var_type"                      "FIELD_FLOAT"
+	            "damage_radius"     			"100"
+	        }
+			"02"
+	        {
+	            "var_type"                      "FIELD_FLOAT"
+	            "damage"     					"1000 2000 4000 8000 16000 32000 64000"
 	        }
 	    }
 	}
@@ -6110,12 +6131,18 @@
 			"02"
 	        {
 	            "var_type"                      "FIELD_FLOAT"
-	            "fire_duration"     			"0.5"
+	            "fire_duration"     			"1"
 	        }
 			"03"
 	        {
 	            "var_type"                      "FIELD_INTEGER"
-	            "spread_rad"     				"75"
+	            "spread_rad"     				"90"
+				"LinkedSpecialBonus"			"sylph_rapid_fire_talent_1"
+	        }
+			"04"
+	        {
+	            "var_type"                      "FIELD_INTEGER"
+	            "min_spread"     				"60"
 				"LinkedSpecialBonus"			"sylph_rapid_fire_talent_1"
 	        }
 	    }
@@ -6159,6 +6186,11 @@
 	            "var_type"                      "FIELD_FLOAT"
 	            "lift_duration"     			"1.1"
 	        }
+			"01"
+	        {
+	            "var_type"                      "FIELD_INTEGER"
+	            "as_to_lift_damage"     		"5 10 15 25 30 35 40"
+	        }
 			"02"
 	        {
 	            "var_type"                      "FIELD_FLOAT"
@@ -6166,18 +6198,23 @@
 	        }
 			"03"
 	        {
-	            "var_type"                      "FIELD_FLOAT"
+	            "var_type"                      "FIELD_INTEGER"
 	            "smash_damage"     				"1500 3000 6000 12000 24000 48000 96000"
 	        }
 			"04"
 	        {
-	            "var_type"                      "FIELD_FLOAT"
-	            "grab_radius"     				"750"
+	            "var_type"                      "FIELD_INTEGER"
+	            "grab_radius"     				"350"
+	        }
+			"01"
+	        {
+	            "var_type"                      "FIELD_INTEGER"
+	            "ms_to_radius"     				"100"
 	        }
 			"05"
 	        {
 	            "var_type"                      "FIELD_FLOAT"
-	            "talent_stun_duration"     				"0.8"
+	            "talent_stun_duration"     		"0.8"
 	        }
 	    }
 	}
@@ -6233,7 +6270,7 @@
 		}
 	}
 	//=================================================================================================================
-	// Ability: Immaterialize Slows
+	// Ability: Immaterialize Aura
 	//=================================================================================================================
 	"sylph_immaterialize_talent_1" 
 	{
@@ -6249,8 +6286,8 @@
 		{
 			"01"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"value"				"-100"
+				"var_type"					"FIELD_FLOAT"
+				"value"						"1"
 			}
 		}
 	}
@@ -8697,7 +8734,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"850"
 		"AbilityCastPoint"				"0.3 0.3 0.3 0.3"
-		"AbilityChannelTime"			"3.1"
+		"AbilityChannelTime"			"3.1 2.8 2.5 2.2 1.9 1.6 1.3"
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -9400,7 +9437,7 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"85.0 85.0 85.0"
+		"AbilityCooldown"				"90 85 80 75 70 65 60"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -36942,8 +36979,8 @@
 			
 			"01"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"strike_radius"			"250 275"
+				"var_type"				"FIELD_INTEGER"
+				"strike_radius"			"200 235"
 			}
 		}
 		

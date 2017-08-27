@@ -1,5 +1,8 @@
 sylph_jetstream = sylph_jetstream or class({})
 
+function sylph_jetstream:GetAOERadius()
+	return self:GetCaster():GetIdealSpeed() * self:GetSpecialValueFor("damage_radius") / 100
+end
 
 function sylph_jetstream:OnSpellStart()
 	EmitSoundOn("Hero_Windrunner.ShackleshotCast", self:GetCaster())
@@ -14,6 +17,16 @@ function modifier_sylph_jetstream_rush:OnCreated()
 	if IsServer() then self:StartIntervalThink(0.05) end
 	self.speed = self:GetAbility():GetSpecialValueFor("speed")
 	self.timer = self:GetParent():GetSecondsPerAttack() / 1.5
+	if IsServer() then
+		ParticleManager:FireParticle("particles/heroes/sylph/sylph_jetstream_poof.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
+	end
+end
+
+function modifier_sylph_jetstream_rush:OnDestroy()
+	if IsServer() then
+		ParticleManager:FireParticle("particles/heroes/sylph/sylph_jetstream_poof.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
+	end
+	self:GetAbility():ApplyAOE({radius = self:GetAbility():GetAOERadius() , damage = self:GetSpecialValueFor("damage"), damage_type = DAMAGE_TYPE_MAGICAL})
 end
 
 function modifier_sylph_jetstream_rush:OnIntervalThink()

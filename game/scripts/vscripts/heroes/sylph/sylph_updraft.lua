@@ -1,14 +1,14 @@
 sylph_updraft = sylph_updraft or class({})
 
 function sylph_updraft:GetAOERadius()
-	return self:GetSpecialValueFor("grab_radius")
+	return self:GetSpecialValueFor("grab_radius") + (self:GetSpecialValueFor("ms_to_radius") / 100) * self:GetCaster():GetIdealSpeed()
 end
 
 function sylph_updraft:OnSpellStart()
 	local caster = self:GetCaster()
 	self.targetPosition = self:GetCursorPosition()
-	local enemies = FindUnitsInRadius(caster:GetTeam(), self.targetPosition, nil, self:GetSpecialValueFor("grab_radius"), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, FIND_ANY_ORDER, false)
-	for _, enemy in pairs(enemies) do
+	local enemies = FindUnitsInRadius(caster:GetTeam(), self.targetPosition, nil, self:GetAOERadius(), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, FIND_ANY_ORDER, false)
+	for _, enemy in ipairs(enemies) do
 		enemy:AddNewModifier(caster, self, "modifier_sylph_updraft_lift", {duration = self:GetSpecialValueFor("lift_duration")})
 	end
 	if #enemies > 0 then EmitSoundOn("DOTA_Item.Cyclone.Activate", caster) end
@@ -25,6 +25,11 @@ if IsServer() then
 
 	function modifier_sylph_updraft_lift:OnCreated()
 		self:GetParent():SetAngularVelocity(90,90, 90)
+		self:StartIntervalThink(0.1)
+	end
+	
+	function modifier_sylph_updraft_lift:OnIntervalThink()
+		self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self:GetCaster():GetAttackSpeed()*100*self:GetSpecialValueFor("as_to_lift_damage")*0.1, {damage_type = DAMAGE_TYPE_PURE})
 	end
 end
 

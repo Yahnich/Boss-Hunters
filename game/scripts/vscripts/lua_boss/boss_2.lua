@@ -27,5 +27,5 @@ function HandleStacks(keys)
 	table.insert(target.stackTable, GameRules:GetGameTime())
 	ability:ApplyDataDrivenModifier(caster, target, "modifier_boss_toxic_weaponry_debuff", {duration = ability:GetSpecialValueFor("debuff_duration")})
 	local modifier = target:FindModifierByName("modifier_boss_toxic_weaponry_debuff")
-	modifier:SetStackCount(#target.stackTable)
+	if modifier then modifier:SetStackCount(#target.stackTable) end
 end

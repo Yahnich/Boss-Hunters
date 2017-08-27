@@ -9,6 +9,7 @@ end
 
 function GetClientSync(key)
  	local value = CustomNetTables:GetTableValue( "syncing_purposes", key).value
+	CustomNetTables:SetTableValue( "syncing_purposes",key, {} )
 	return value
 end
 
@@ -130,9 +131,7 @@ function CDOTA_BaseNPC:DealAOEDamage(position, radius, damageTable)
 	local iFlag = DOTA_UNIT_TARGET_FLAG_NONE
 	local iOrder = FIND_ANY_ORDER
 	local AOETargets = FindUnitsInRadius(team, position, nil, radius, iTeam, iType, iFlag, iOrder, false)
-	print(radius)
 	for _, target in pairs(AOETargets) do
-		print(damageTable.damage, damageTable.damage_type)
 		ApplyDamage({ victim = target, attacker = self, damage = damageTable.damage, damage_type = damageTable.damage_type, ability = damageTable.ability})
 	end
 end
@@ -244,7 +243,7 @@ end
 
 function table.removekey(t1, key)
     for k,v in pairs(t1) do
-		if t1[k] == key then
+		if k == key then
 			table.remove(t1,k)
 		end
 	end
@@ -1233,6 +1232,7 @@ function CDOTA_BaseNPC:ApplyLinearKnockback(distance, strength, source)
 	local distAdded = (distance/0.2)*FrameTime() * strength
 	StartAnimation(self, {activity = ACT_DOTA_FLAIL, rate = 1, duration = distAdded/distance})
 	Timers:CreateTimer(function ()
+		if not self:GetParent():HasMovementCapability() then return end
 		if distance_traveled < distance and self:IsAlive() and not self:IsNull() then
 			self:SetAbsOrigin(self:GetAbsOrigin() + direction * distAdded)
 			distance_traveled = distance_traveled + distAdded
@@ -1289,13 +1289,12 @@ function ParticleManager:FireRopeParticle(effect, attach, owner, target)
 end
 
 function CDOTA_Modifier_Lua:StartMotionController()
-	if self.DoControlledMotion then
+	if self.DoControlledMotion and self:GetParent():HasMovementCapability() then
 		Timers:CreateTimer(FrameTime(), function() 
 			self:DoControlledMotion() 
 			return FrameTime()
 		end)
 	else
-		print("no motion detected")
 	end
 end
 
@@ -1335,10 +1334,12 @@ function CDOTA_BaseNPC:FindFriendlyUnitsInRadius(position, radius, data)
 	return FindUnitsInRadius(team, position, nil, radius, iTeam, iType, iFlag, iOrder, false)
 end
 
-function CDOTABaseAbility:DealDamage(attacker, victim, damage)
-	local damageType = self:GetAbilityDamageType() or 0
+function CDOTABaseAbility:DealDamage(attacker, victim, damage, data)
+	local damageType = self:GetAbilityDamageType()
+	local localdamage = damage or self:GetAbilityDamage()
+	if data and data.damage_type then damageType = data.damage_type end
 	if damageType == 0 then damageType = DAMAGE_TYPE_MAGICAL end
-	ApplyDamage({victim = victim, attacker = attacker, ability = self, damage_type = damageType, damage = damage})
+	ApplyDamage({victim = victim, attacker = attacker, ability = self, damage_type = damageType, damage = localdamage})
 end
 
 function CDOTABaseAbility:ApplyAOE(eventTable)
@@ -1476,6 +1477,7 @@ function ApplyKnockback( keys )
 			end
    		end)
    		Timers:CreateTimer(0.03 ,function()
+			if not self:GetParent():HasMovementCapability() then return end
    			if GameRules:GetGameTime() <= begin_time+duration then
 	   			position = position+travel_distance_per_frame
 	   			target:SetAbsOrigin(position)

@@ -4677,7 +4677,7 @@
 		"AttributeAgilityGain"		"1.400000"
 		"BoundsHullName"		"DOTA_HULL_SIZE_HERO"
 		"HealthBarOffset"		"160"
-		"MovementSpeed"		"295"
+		"MovementSpeed"		"270"
 		"MovementTurnRate"		"0.600000"
 		"particle_folder"		"particles/units/heroes/hero_windrunner"
 		"GameSoundsFile"		"soundevents/game_sounds_heroes/game_sounds_windrunner.vsndevts"
