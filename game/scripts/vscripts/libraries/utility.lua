@@ -1143,8 +1143,10 @@ end
 
 function CDOTABaseAbility:EndDelayedCooldown()
 	self:SetActivated(true)
-	Timers:RemoveTimer(self.delayedCooldownTimer)
-	self.delayedCooldownTimer = nil
+	if self.delayedCooldownTimer then
+		Timers:RemoveTimer(self.delayedCooldownTimer)
+		self.delayedCooldownTimer = nil
+	end
 	self.isOnDelayedCooldown = false
 end
 

@@ -150,7 +150,7 @@ if IsServer() then
 								end
 							end
 						else
-							AICore:BeAHugeCoward( thisEntity, self:GetIdealSpeed() )
+							AICore:BeAHugeCoward( thisEntity, thisEntity:GetIdealSpeed() )
 						end
 					elseif not thisEntity:IsInvisible() then
 						if thisEntity.vanish:IsFullyCastable() then

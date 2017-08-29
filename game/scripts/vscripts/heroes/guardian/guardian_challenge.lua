@@ -15,7 +15,7 @@ function modifier_guardian_challenge_debuff:OnCreated()
 	self.attackslow = self:GetAbility():GetTalentSpecialValueFor("attackspeed_slow")
 	self.moveslow = self:GetAbility():GetTalentSpecialValueFor("movespeed_slow")
 	if IsServer() then
-		self:GetAbility():StartDelayedCooldown(self:GetRemainingTime(), false)
+		self:GetAbility():StartDelayedCooldown(self:GetRemainingTime(), true)
 		if self:GetCaster():HasTalent("guardian_challenge_talent_1") then self:StartIntervalThink(0.1) end
 	end
 end
@@ -24,7 +24,7 @@ function modifier_guardian_challenge_debuff:OnRefresh()
 	self.attackslow = self:GetAbility():GetTalentSpecialValueFor("attackspeed_slow")
 	self.moveslow = self:GetAbility():GetTalentSpecialValueFor("movespeed_slow")
 	if IsServer() then
-		self:GetAbility():StartDelayedCooldown(self:GetRemainingTime(), false)
+		self:GetAbility():StartDelayedCooldown(self:GetRemainingTime(), true)
 	end
 end
 

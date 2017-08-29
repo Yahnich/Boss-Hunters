@@ -32,42 +32,140 @@ function PickAbilities(arg){
 function CreateAbilityPanel(parentPanel, abilityName){
 	var newChildPanel = $.CreatePanel( "Button", parentPanel, abilityName);
 	newChildPanel.BLoadLayoutSnippet( "Ability" );
+
 	var icon = newChildPanel.FindChildrenWithClassTraverse("AbilityStyle")[0];
 	var playerID = Game.GetLocalPlayerID();
 	var heroID = Players.GetPlayerHeroEntityIndex( playerID );
 	icon.abilityname = abilityName;
-	newChildPanel.heroID = heroID
-	newChildPanel.abilityname = abilityName
-	newChildPanel.selected = newChildPanel.BHasClass("AbilitySelected")
+	newChildPanel.heroID = heroID;
+	newChildPanel.abilityname = abilityName;
+	newChildPanel.selected = newChildPanel.BHasClass("AbilitySelected");
+	newChildPanel.SetDraggable(true);
+	
 	newChildPanel.showTooltip = function(){
 		$.DispatchEvent("DOTAShowAbilityTooltipForEntityIndex", newChildPanel, newChildPanel.abilityname, newChildPanel.heroID);
 	}
 	newChildPanel.hideTooltip = function(){ 
 		$.DispatchEvent("DOTAHideAbilityTooltip", newChildPanel);
 	}
-	newChildPanel.selectAbility = function(){
-		GameEvents.SendCustomGameEventToServer( "hasSelectedAbility", {pID : playerID, ability : abilityName, selected : newChildPanel.selected} )
-	}
 	newChildPanel.processAbilityQuery = function(arg){
 		if(arg.confirmed == 1){
-			newChildPanel.SetHasClass("AbilitySelected", true)
+			newChildPanel.SetHasClass("AbilitySelected", true);
 		} else{
-			newChildPanel.SetHasClass("AbilitySelected", false)
+			newChildPanel.SetHasClass("AbilitySelected", false);
 		}
 	}
-	GameEvents.Subscribe( "sendAbilityQuery"+abilityName, newChildPanel.processAbilityQuery);
+	newChildPanel.OnDragStart = function( panelId, dragCallbacks ){
+		var dummyPanel = $.CreatePanel( "DOTAAbilityImage", newChildPanel, abilityName+"_dummy" );
+		dummyPanel.AddClass("AbilityIcon");
+		dummyPanel.abilityname = abilityName;
+		
+		dragCallbacks.displayPanel = dummyPanel;
+		dragCallbacks.offsetX = 0;
+		dragCallbacks.offsetY = 0;
+		
+		return true;
+	}
+	newChildPanel.OnDragEnd = function( panelId, draggedPanel  ){
+		draggedPanel.DeleteAsync( 0 );
+		return true;
+	}
+
+	$.RegisterEventHandler( 'DragStart', newChildPanel, newChildPanel.OnDragStart );
+	$.RegisterEventHandler( 'DragEnd', newChildPanel, newChildPanel.OnDragEnd );
+	
 	newChildPanel.SetPanelEvent("onmouseover", newChildPanel.showTooltip );
 	newChildPanel.SetPanelEvent("onmouseout", newChildPanel.hideTooltip );
-	newChildPanel.SetPanelEvent("onmouseactivate", newChildPanel.selectAbility);
 }
+
+
+
+function RandomAbilities(){
+	var playerID = Game.GetLocalPlayerID();
+	var hero = Players.GetPlayerHeroEntityIndex( playerID )
+	GameEvents.SendCustomGameEventToServer( "randomAbilities", {pID : playerID, heroID : hero } );
+}
+
 
 function SendQueriedAbilities(){
 	var playerID = Game.GetLocalPlayerID();
-	GameEvents.SendCustomGameEventToServer( "initializeAbilities", {pID : playerID} )
+	var allFilled = true;
+	abilityList = []
+	slotPosPanel = $("#SkillPositionContainer");
+	var slots = slotPosPanel.Children()
+	slots.forEach(function(item, index){
+		if(item.abilityname == "no_ability" ){
+			allFilled = false;
+		} else {
+			abilityList.push(item.abilityname)
+		}
+	})
+	if (allFilled){GameEvents.SendCustomGameEventToServer( "initializeAbilities", {pID : playerID, abList : abilityList } );}
 }
 
 GameEvents.Subscribe( "finishedAbilityQuery", deletePanels);
 
 function deletePanels(){
-	$("#SkillSelectorMain").visible = false
+	$("#SkillSelectorMain").visible = false;
 }
+
+(function()
+{
+	var slotPosPanel = $("#SkillPositionContainer");
+	var slots = slotPosPanel.Children()
+	slots.forEach(function(item, index){
+		
+		item.OnDragEnter = function( a, draggedPanel )
+		{
+			item.AddClass( "AbilitySelected" );
+			return true;
+		}
+		item.OnDragDrop = function( panelId, draggedPanel ){
+			item.RemoveClass( "AbilitySelected" );
+			var found = false;
+			var sisterPanel;
+			slots.forEach(function(item, index){
+				if(item.abilityname == draggedPanel.abilityname){
+					found = true;
+					sisterPanel = item;
+				}
+			})
+			if( found ){
+				sisterPanel.abilityname = item.abilityname
+			}
+			item.abilityname = draggedPanel.abilityname
+			item.SetDraggable(true)
+			return true;
+		}
+		item.OnDragLeave = function( panelId, draggedPanel )
+		{
+			item.RemoveClass( "AbilitySelected" );
+			return true;
+		}
+		
+		item.OnDragStart = function( panelId, dragCallbacks ){
+			if(item.abilityname != "no_ability" ){
+				var dummyPanel = $.CreatePanel( "DOTAAbilityImage", item, item.abilityname+"_dummy" );
+				dummyPanel.AddClass("AbilityIcon");
+				dummyPanel.abilityname = item.abilityname;
+				
+				dragCallbacks.displayPanel = dummyPanel;
+				dragCallbacks.offsetX = 0;
+				dragCallbacks.offsetY = 0;
+				
+				return true;
+			} else { return false; }
+		}
+		item.OnDragEnd = function( panelId, draggedPanel  ){
+			draggedPanel.DeleteAsync( 0 );
+			return true;
+		}
+		
+		$.RegisterEventHandler( 'DragEnter', item, item.OnDragEnter );
+		$.RegisterEventHandler( 'DragDrop', item, item.OnDragDrop );
+		$.RegisterEventHandler( 'DragLeave', item, item.OnDragLeave );
+		$.RegisterEventHandler( 'DragStart', item, item.OnDragStart );
+		$.RegisterEventHandler( 'DragEnd', item, item.OnDragEnd );
+	})
+})();
+

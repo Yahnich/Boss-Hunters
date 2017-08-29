@@ -25,8 +25,8 @@ end
 function modifier_sylph_jetstream_rush:OnDestroy()
 	if IsServer() then
 		ParticleManager:FireParticle("particles/heroes/sylph/sylph_jetstream_poof.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
+		self:GetAbility():ApplyAOE({radius = self:GetAbility():GetAOERadius() , damage = self:GetSpecialValueFor("damage"), damage_type = DAMAGE_TYPE_MAGICAL})
 	end
-	self:GetAbility():ApplyAOE({radius = self:GetAbility():GetAOERadius() , damage = self:GetSpecialValueFor("damage"), damage_type = DAMAGE_TYPE_MAGICAL})
 end
 
 function modifier_sylph_jetstream_rush:OnIntervalThink()
@@ -43,12 +43,18 @@ function modifier_sylph_jetstream_rush:OnIntervalThink()
 	end
 end
 
+function modifier_sylph_jetstream_rush:GetPriority()
+	return MODIFIER_PRIORITY_ULTRA
+end
+
 function modifier_sylph_jetstream_rush:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE,
 		MODIFIER_PROPERTY_MOVESPEED_LIMIT,
 		MODIFIER_PROPERTY_MOVESPEED_MAX,
 		MODIFIER_EVENT_ON_ORDER,
+		MODIFIER_EVENT_ON_ATTACK_START,
+		MODIFIER_EVENT_ON_ABILITY_FULLY_CAST,
 	}
 	return funcs
 end
@@ -60,8 +66,19 @@ function modifier_sylph_jetstream_rush:CheckState()
 end
 
 function modifier_sylph_jetstream_rush:OnOrder(params)
-	for k,v in pairs(params) do print(k,v) end
+	if self:GetParent() == params.unit and params.order_type > 0 and params.order_type < 5 then
+		self:Destroy()
+	end
+end
+
+function modifier_sylph_jetstream_rush:OnAttackStart(params)
 	if self:GetParent() == params.unit then
+		self:Destroy()
+	end
+end
+
+function modifier_sylph_jetstream_rush:OnAbilityFullyCast(params)
+	if self:GetParent() == params.unit and params.ability ~= self:GetAbility() then
 		self:Destroy()
 	end
 end
