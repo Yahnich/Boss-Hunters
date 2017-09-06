@@ -10285,129 +10285,67 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_datadriven"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_ALL | DOTA_UNIT_TARGET_BUILDING"					
-		"SpellImmunityType"				"SPELL_IMMUNITY_ALLIES_YES"
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/forest/fg_growing_armor.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_OPTIONAL_POINT"
 		"AbilityTextureName"			"treant_living_armor"
-		
-		"AbilityCastRange"				"0"
-		"AbilityCastPoint"				"0.4"
-		"FightRecapLevel"				"1"
 		"MaxLevel"						"7"
-		"LevelsBetweenUpgrades"			"6"
-		"RequiredLevel"					"5"
-		
+		"LevelsBetweenUpgrades"  		"0"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+    	"AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
+
+    	"AbilityCastRange"				"500"
+    	"AbilityCastPoint"				"0.5"
+    	"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_3"
+
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"12.0"
-		"AbilityThreat"					"8"
-		
-		"precache"
-		{
-			"particle"	"particles/units/heroes/hero_treant/treant_livingarmor.vpcf"
-		}
+		"AbilityCooldown"				"16"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"				"50"
 
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
 			"01"
 			{
 				"var_type"			"FIELD_INTEGER"
 				"damage_count"		"10"
-				"LinkedSpecialBonus"		"special_bonus_unique_treant"
 			}
 			"02"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"heal_increase"		"100"
+				"regen_bonus"		"4 8 12 16 24 32 40"
 			}
 			"03"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"bonus_armor"		"20 40 60 90 125 200 300"
+				"regen_bonus_percent"	"2"
+				"LinkedSpecialBonus"	"special_bonus_unique_treant"
 			}
 			"04"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"damage_block"		"200 450 750 1500 2500 5000 10000"
+				"damage_block"		"5 10 15 20 30"
 			}
 			"05"
 			{
 				"var_type"			"FIELD_FLOAT"
 				"duration"			"30"
-			}
+			}	
 		}
-		"OnSpellStart"
+
+		"precache"
 		{
-			"RunScript"
-			{
-				"ScriptFile"	"lua_abilities/heroes/treant_protector.lua"
-				"Function"		"ApplyLivingArmor"
-			}
-		}
-		"Modifiers"
-		{
-			"modifier_living_armor_ebf_stacks"
-			{
-				"IsPurgable"	"1"
-			}
-			"modifier_living_armor_ebf"
-			{
-				"IsHidden"	"1"
-				"IsPurgable"	"1"
-				"OnCreated"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"lua_abilities/heroes/treant_protector.lua"
-						"Function"		"AddParticle"
-					}
-				}
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"%bonus_armor"
-				}
-				"OnTakeDamage"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"lua_abilities/heroes/treant_protector.lua"
-						"Function"		"HandleLivingArmor"
-						"damage"		"%attack_damage"
-					}
-				}
-				"OnHealReceived"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"lua_abilities/heroes/treant_protector.lua"
-						"Function"		"DoubleHeal"
-						"source"		"heal"
-					}					
-				}
-				"OnHealthGained"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"lua_abilities/heroes/treant_protector.lua"
-						"Function"		"DoubleHeal"
-						"source"		"health"
-					}				
-				}
-				"OnDestroy"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"lua_abilities/heroes/treant_protector.lua"
-						"Function"		"RemoveParticle"
-					}	
-				}
-			}
+			"particle"  "particles/units/heroes/hero_treant/treant_livingarmor.vpcf"
+			"particle"  "particles/units/heroes/hero_ac/ac_gatling_gun_projectile_launch.vpcf"
+
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_gyrocopter.vsndevts"
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_sniper.vsndevts"
+			"soundfile" 	"sounds/weapons/hero/gyrocopter/rocket_barrage_target01.vsnd"
 		}
 	}
 	"treant_happy_little_tree"
