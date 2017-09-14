@@ -9,6 +9,7 @@ function boss1a_blink_strike:OnSpellStart()
 	local caster = self:GetCaster()
 	local position = self:GetCursorPosition()
 	
+	EmitSoundOn("Hero_Riki.Blink_Strike", caster)
 	ParticleManager:FireParticle("particles/units/heroes/hero_riki/riki_blink_strike.vpcf", PATTACH_POINT_FOLLOW, caster, {[0] = caster:GetAbsOrigin(),[1] = position})
 	FindClearSpaceForUnit(caster, position, true)
 

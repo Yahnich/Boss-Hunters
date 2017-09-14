@@ -8,7 +8,7 @@ function DevilBless(keys)
 	caster:RemoveModifierByName(modifierName)
 	caster:SetModifierStackCount( modifierName, ability, 0)
 	
-    local damagebonus = caster:GetAverageTrueAttackDamage(caster) 
+    local damagebonus = caster:GetAverageBaseDamage() 
     local percent = ability:GetTalentSpecialValueFor("damage_percent")
     local damage = damagebonus*percent*0.01
 	
@@ -32,7 +32,7 @@ function PureBless(keys)
 	caster:RemoveModifierByName(modifierName)
 	caster:SetModifierStackCount( modifierName, ability, 0)
 	
-    local damagebonus = target:GetAverageTrueAttackDamage(caster) 
+    local damagebonus = caster:GetAverageBaseDamage()
     local percent = ability:GetTalentSpecialValueFor("damage_percent")
     local damage = damagebonus*percent*0.01
 

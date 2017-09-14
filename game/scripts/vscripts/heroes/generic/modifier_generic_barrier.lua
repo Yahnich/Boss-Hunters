@@ -7,11 +7,12 @@ end
 if IsServer() then
 	function modifier_generic_barrier:OnCreated(kv)
 		self.barrier = kv.barrier or 0
-		if IsServer() then self:StartIntervalThink(0.5) end
+		if IsServer() then self:StartIntervalThink(0.3) end
 	end
 
-	function modifier_generic_barrier:OnIntervalThink(kv)
-		if self.barrier <= 0 then self:Destroy() end
+	function modifier_generic_barrier:OnIntervalThink()
+		self.barrier = math.max( 0, self.barrier - math.max( 1, self.barrier * self:ModifierBarrier_DegradeRate() ) )
+		if self:ModifierBarrier_Bonus() <= 0 then self:Destroy() end
 	end
 	
 	function modifier_generic_barrier:OnRefresh(kv)
@@ -22,10 +23,7 @@ if IsServer() then
 	function modifier_generic_barrier:GetAttributes(kv)
 		return MODIFIER_ATTRIBUTE_MULTIPLE
 	end
-	
-	function modifier_generic_barrier:OnIntervalThink()
-		if self:ModifierBarrier_Bonus() <= 0 then self:Destroy() end
-	end
+
 
 	function modifier_generic_barrier:DeclareFunctions()
 		local funcs = {
@@ -37,6 +35,10 @@ if IsServer() then
 	function modifier_generic_barrier:ModifierBarrier_Bonus()
 		return (self.barrier or 0)
 	end
+	
+	function modifier_generic_barrier:ModifierBarrier_DegradeRate()
+		return 0.01
+	end
 
 	function modifier_generic_barrier:GetModifierIncomingDamage_Percentage(params)
 		if params.damage < self:ModifierBarrier_Bonus() then
@@ -44,9 +46,8 @@ if IsServer() then
 			self.ModifierBarrier_Bonus = function() return self.barrier end
 			return -100
 		elseif self:ModifierBarrier_Bonus() > 0 then
-			self.barrier = 0
 			local dmgRed = (params.damage / self:ModifierBarrier_Bonus()) * (-1)
-			self.ModifierBarrier_Bonus = function() return self.barrier end
+			self.barrier = 0
 			return dmgRed
 		else
 			self:Destroy()

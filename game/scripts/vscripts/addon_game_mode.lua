@@ -77,6 +77,7 @@ function Precache( context )
 	PrecacheResource("particle", "particles/elite_warning.vpcf", context)
 	PrecacheResource("particle", "particles/elite_overhead.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_frost.vpcf", context)
+	
 	PrecacheResource("particle", "particles/units/heroes/hero_crystalmaiden/maiden_frostbite_buff.vpcf", context)
 	
 	
@@ -84,6 +85,7 @@ function Precache( context )
 	PrecacheResource("particle", "particles/nyx_assassin_impale.vpcf", context)
 	PrecacheResource("particle", "particles/econ/generic/generic_aoe_shockwave_1/generic_aoe_shockwave_1.vpcf", context)
 	PrecacheResource("particle", "particles/econ/generic/generic_buff_1/generic_buff_1.vpcf", context)
+	PrecacheResource("particle", "particles/generic_gameplay/generic_stunned.vpcf", context)
 	PrecacheResource("particle", "particles/generic_linear_indicator.vpcf", context)
 	
 	-- fix these fucking particles
@@ -100,7 +102,7 @@ function Precache( context )
 	PrecacheResource("particle", "particles/dark_orb.vpcf", context)
 	
 	PrecacheResource("particle_folder", "particles/econ/generic/generic_aoe_shockwave_1", context)
-	
+
 	
 	
 
@@ -164,12 +166,12 @@ function CHoldoutGameMode:InitGameMode()
 	GameRules.relicPool = RelicPool()
 	
 	GameRules._Elites = LoadKeyValues( "scripts/kv/elites.kv" )
-	GameRules.UnitKV = LoadKeyValues("scripts/npc/npc_units_custom.txt")
+	GameRules.UnitKV = LoadKeyValues("scripts/npc/npc_heroes.txt")
 
 	 --Load unit KVs into main kv
 	MergeTables(GameRules.UnitKV, LoadKeyValues("scripts/npc/npc_heroes_custom.txt"))
-	MergeTables(GameRules.UnitKV, LoadKeyValues("scripts/npc/npc_heroes.txt"))
 	MergeTables(GameRules.UnitKV, LoadKeyValues("scripts/npc/npc_units.txt"))
+	MergeTables(GameRules.UnitKV, LoadKeyValues("scripts/npc/npc_units_custom.txt"))
 	
 	GameRules.AbilityKV = LoadKeyValues("scripts/npc/npc_abilities_custom.txt")
 	MergeTables(GameRules.AbilityKV, LoadKeyValues("scripts/npc/npc_abilities.txt"))
@@ -177,7 +179,6 @@ function CHoldoutGameMode:InitGameMode()
 	MergeTables(GameRules.AbilityKV, LoadKeyValues("scripts/npc/items.txt"))
 	
 	GameRules.HeroList = LoadKeyValues("scripts/npc/herolist.txt")
-	GameRules.SkillList = LoadKeyValues("scripts/kv/skillbuild.kv")
 	
 	print(GetMapName())
 	
@@ -1270,7 +1271,7 @@ end
 function CHoldoutGameMode:InitializeQueriedAbilities(event)
 	local pID = event.pID
 	local abilityList = event.abList
-	for k,v in pairs(abilityList) do print(k,v) end
+
 	local player = PlayerResource:GetPlayer(pID)
 	local hero = player:GetAssignedHero() 
 	if not hero then return nil end
@@ -1284,6 +1285,7 @@ function CHoldoutGameMode:InitializeQueriedAbilities(event)
 		hero.abilityIndexingList = orderedList
 		LoadHeroSkills(hero)
 		hero.HasBeenInitialized = true
+		hero.hasSkillsSelected = true
 		CustomGameEventManager:Send_ServerToPlayer(player, "finishedAbilityQuery", {})
 	end
 end
@@ -1293,6 +1295,7 @@ function LoadHeroSkills(hero)
 		local index = FindNextAbilityIndex(hero)
 		local ability = hero.abilityIndexingList[i]
 		local talentIndex = FindNextTalentIndex(hero)
+		
 		if ability and index and talentIndex then
 			hero:RemoveAbility(hero:GetAbilityByIndex(index):GetName())
 			hero:AddAbilityPrecache(ability):SetAbilityIndex(index)
@@ -1578,18 +1581,19 @@ function CHoldoutGameMode:OnHeroPick (event)
 		hero.hasBeenInitialized = true
 		
 		CustomGameEventManager:Send_ServerToPlayer(hero:GetPlayerOwner(), "heroLoadIn", {}) -- wtf is this retarded shit stop force-setting my garbage
-		
-		if GameRules.SkillList[hero:GetUnitName()] then
+		if GameRules.UnitKV[hero:GetUnitName()]["Abilities"] then
 			local skillTable = {}
 			local i = 0
 			hero.selectedSkills = {}
-			for skill,_ in pairs(GameRules.SkillList[hero:GetUnitName()]) do
+			for skill,_ in pairs( GameRules.UnitKV[hero:GetUnitName()]["Abilities"] ) do
 				skillTable[i] = skill
 				hero.selectedSkills[skill] = false
 				i = i + 1
 			end
 			CustomNetTables:SetTableValue("skillList", hero:GetUnitName()..hero:GetPlayerID(), skillTable)
 			CustomGameEventManager:Send_ServerToPlayer(hero:GetPlayerOwner(), "checkNewHero", {})
+		else
+			hero.hasSkillsSelected = true
 		end
 		
 		
@@ -1750,8 +1754,10 @@ function CHoldoutGameMode:_ReadRoundConfigurations( kv )
 	end
 end
 
-function CHoldoutGameMode:OnPlayerReconnected(keys)
-	local player = EntIndexToHScript(keys.player) 
+function OnPlayerReconnected(keys)
+	local player = EntIndexToHScript(keys.player)
+	PrintAll(keys)
+	print("reconnected")
 	if not player then return end
 	-- if not player:HasSelectedHero() then
 		-- local playerID = player:GetPlayerID()
@@ -1770,18 +1776,19 @@ function CHoldoutGameMode:OnPlayerReconnected(keys)
 		local timeLeft = self._flPrepTimeEnd - GameRules:GetGameTime()
 		CustomGameEventManager:Send_ServerToAllClients( "updateQuestPrepTime", { prepTime = math.floor(timeLeft + 0.5) } )
 	end
-	if GameRules.SkillList[hero:GetUnitName()] then
+
+	if GameRules.UnitKV[hero:GetUnitName()]["Abilities"] and not hero.hasBeenInitialized then
 		local skillTable = {}
 		local i = 0
 		hero.selectedSkills = {}
-		for skill,_ in pairs(GameRules.SkillList[hero:GetUnitName()]) do
+		for skill,_ in pairs( GameRules.UnitKV[hero:GetUnitName()]["Abilities"] ) do
 			skillTable[i] = skill
-			hero.selectedSkills[skill] = false
 			i = i + 1
 		end
 		CustomNetTables:SetTableValue("skillList", hero:GetUnitName()..hero:GetPlayerID(), skillTable)
 		CustomGameEventManager:Send_ServerToPlayer(hero:GetPlayerOwner(), "checkNewHero", {})
 	end
+	
 	CustomGameEventManager:Send_ServerToAllClients( "updateQuestRound", { roundNumber = self._nRoundNumber, roundText = self._currentRound._szRoundQuestTitle } )
 	if player then
 		Timers:CreateTimer(0.03, function()
@@ -1793,6 +1800,7 @@ end
 function CHoldoutGameMode:OnPlayerDisconnected(keys) 
 	local playerID = keys.playerID
 	if not playerID then return end
+	print("disconnect")
 	local hero = PlayerResource:GetSelectedHeroEntity(playerID)
 	if hero then hero.disconnect = GameRules:GetGameTime() end
 end
@@ -2107,23 +2115,14 @@ Timers:CreateTimer(0.3, function()
 	if not GameRules:IsGamePaused() and GameRules:State_Get() >= 7 and GameRules:State_Get() <= 8 then
 		for _,unit in ipairs ( HeroList:GetAllHeroes() ) do
 			if not unit:IsFakeHero() then
-				local key = unit:GetUnitName()..unit:GetPlayerID()
 				local data = CustomNetTables:GetTableValue("hero_properties", unit:GetUnitName()..unit:entindex() ) or {}
 				local barrier = 0
 				for _, modifier in ipairs( unit:FindAllModifiers() ) do
 					if modifier.ModifierBarrier_Bonus and unit:IsRealHero() then
-						local barrierToDegrade = math.max(0, math.floor(modifier:ModifierBarrier_Bonus() * BARRIER_DEGRADE_RATE))
-						if barrierToDegrade > 0 then
-							modifier.ModifierBarrier_Bonus = function() return barrierToDegrade end
-							barrier = barrier + barrierToDegrade
-						end
+						barrier = barrier + modifier:ModifierBarrier_Bonus()
 					end
 				end
-				if barrier > 0 then
-					unit:SetBarrier(barrier)
-					data.barrier = math.floor(barrier)
-					CustomNetTables:SetTableValue("hero_properties", unit:GetUnitName()..unit:entindex(), data )
-				elseif unit:GetBarrier() ~= barrier then
+				if barrier > 0 or unit:GetBarrier() ~= barrier then
 					unit:SetBarrier(barrier)
 					data.barrier = math.floor(barrier)
 					CustomNetTables:SetTableValue("hero_properties", unit:GetUnitName()..unit:entindex(), data )
@@ -2134,8 +2133,6 @@ Timers:CreateTimer(0.3, function()
 	return 0.1
 end)
 
-
-
 function CHoldoutGameMode:OnThink()
 	if GameRules:State_Get() == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
 		self:_CheckForDefeat()
@@ -2144,6 +2141,14 @@ function CHoldoutGameMode:OnThink()
 		self:CheckHP()
 		self:CheckMidas()
 		self:DegradeThreat()
+		
+		local heroes = HeroList:GetAllHeroes()
+		for _, hero in ipairs(heroes) do
+			if not hero:IsFakeHero() and GameRules.UnitKV[hero:GetUnitName()]["Abilities"] and not hero.hasSkillsSelected then
+				CustomGameEventManager:Send_ServerToPlayer(hero:GetPlayerOwner(), "checkNewHero", {})
+			end
+		end
+		
 		if self._flPrepTimeEnd then
 			local timeLeft = self._flPrepTimeEnd - GameRules:GetGameTime()
 			CustomGameEventManager:Send_ServerToAllClients( "updateQuestPrepTime", { prepTime = math.floor(timeLeft + 0.5) } )
@@ -2151,11 +2156,11 @@ function CHoldoutGameMode:OnThink()
 		elseif self._currentRound ~= nil then
 			self._currentRound:Think()
 			if self._currentRound:IsFinished() then
-				if self._nRoundNumber == 1 then
+				if self._nRoundNumber > 1 then
 					local heroes = HeroList:GetAllHeroes()
 					for _, hero in ipairs(heroes) do
 						-- GameRules.relicPool:DropTankRelic(hero)
-						if not hero.HasBeenInitialized and hero.selectedSkills then
+						if hero:HasOwnerAbandoned() and not hero.HasBeenInitialized and hero.selectedSkills then
 							GameRules.holdOut:RandomAbilitiesFromList({heroID = hero:entindex()})
 						end
 					end

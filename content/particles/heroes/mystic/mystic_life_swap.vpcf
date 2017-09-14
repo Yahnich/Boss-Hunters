@@ -1,0 +1,165 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 1
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderScreenShake"
+			m_flDurationScale = 0.25
+			m_flFrequencyScale = 3.0
+			m_flAmplitudeScale = 6.0
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_SetControlPointRotation"
+			m_vecRotAxis = [ 9.0, -9.0, 9.0 ]
+			m_nCP = 1
+			m_flRotRate = 1800.0
+		},
+		{
+			_class = "C_OP_StopAfterCPDuration"
+			m_flDuration = 0.6
+		},
+		{
+			_class = "C_OP_Decay"
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_CreateWithinSphere"
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_nParticlesToEmit = 1
+			m_flStartTime = 0.2
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/heroes/mystic/mystic_life_swap_b.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/heroes/mystic/mystic_life_swap_c.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/heroes/mystic/mystic_life_swap_d.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/heroes/mystic/mystic_life_swap_e.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/heroes/mystic/mystic_life_swap_f.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/heroes/mystic/mystic_life_swap_light.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/heroes/mystic/mystic_life_swap_body.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/heroes/mystic/mystic_life_swap_h.vpcf"
+		},
+		{
+			m_flDelay = 0.15
+			m_ChildRef = resource:"particles/heroes/mystic/mystic_life_swap_h.vpcf"
+		},
+		{
+			m_flDelay = 0.1
+			m_ChildRef = resource:"particles/heroes/mystic/mystic_life_swap_h.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/heroes/mystic/mystic_life_swap_i.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/heroes/mystic/mystic_life_swap_j.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/heroes/mystic/mystic_life_swap_k.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/heroes/mystic/mystic_life_swap_l.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/heroes/mystic/mystic_life_swap_l.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/heroes/mystic/mystic_life_swap_l.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/heroes/mystic/mystic_life_swap_l.vpcf"
+		},
+	]
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 0.0, 0.0, 0.0 ]
+					m_angOffset = [ null, null, null ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 0.0, 0.0, 0.0 ]
+					m_angOffset = [ null, null, null ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 3
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 0.0, 0.0, 0.0 ]
+					m_angOffset = [ null, null, null ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 8
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 0.0, 0.0, 0.0 ]
+					m_angOffset = [ null, null, null ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 10
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 1.0, 0.0, 0.0 ]
+					m_angOffset = [ null, null, null ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 11
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 1.0, 0.0, 0.0 ]
+					m_angOffset = [ null, null, null ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 15
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 255.0, 255.0, 255.0 ]
+					m_angOffset = [ null, null, null ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 16
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 1.0, 0.0, 0.0 ]
+					m_angOffset = [ null, null, null ]
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+}

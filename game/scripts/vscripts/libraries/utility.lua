@@ -64,7 +64,7 @@ function CDOTA_BaseNPC_Hero:CreateSummon(unitName, position, duration)
 	table.insert(self.summonTable, summon)
 	summon:SetOwner(self)
 	summon:AddNewModifier(self, nil, "modifier_summon_handler", {duration = duration})
-	if not duration or duration > 0 then
+	if duration and duration > 0 then
 		summon:AddNewModifier(self, nil, "modifier_kill", {duration = duration})
 	end
 	StartAnimation(summon, {activity = ACT_DOTA_SPAWN, rate = 1.5, duration = 2})
@@ -229,10 +229,32 @@ function AllPlayersAbandoned()
 	end
 end
 
+function CDOTA_PlayerResource:FindActivePlayerCount()
+	local playerCounter = 0
+	for nPlayerID = 0, DOTA_MAX_TEAM_PLAYERS-1 do
+		if PlayerResource:GetTeam( nPlayerID ) == DOTA_TEAM_GOODGUYS then
+			local hero = PlayerResource:GetSelectedHeroEntity( nPlayerID )
+			if hero then
+				if PlayerResource:GetConnectionState(hero:GetPlayerID()) == 2 then
+					if not hero.lastActiveTime then hero.lastActiveTime = GameRules:GetGameTime() end
+					if hero.lastActiveTime + 60*3 > GameRules:GetGameTime() then
+						playerCounter = playerCounter + 1
+					end
+				end
+			end
+		end
+	end
+	return playerCounter
+end
+
 function MergeTables( t1, t2 )
     for name,info in pairs(t2) do
-        t1[name] = info
-    end
+		if type(info) == "table"  and type(t1[name]) == "table" then
+			MergeTables(t1[name], info)
+		else
+			t1[name] = info
+		end
+	end
 end
 
 function PrintAll(t)
@@ -1178,7 +1200,7 @@ function ToRadians(degrees)
 end
 
 function CDOTA_BaseNPC:IsSameTeam(unit)
-	return (self:GetTeam() == unit:GetTeam())
+	return (self:GetTeamNumber() == unit:GetTeamNumber())
 end
 
 function CDOTA_BaseNPC:AddBarrier(amount, caster, ability, duration)
@@ -1186,12 +1208,13 @@ function CDOTA_BaseNPC:AddBarrier(amount, caster, ability, duration)
 end
 
 function CDOTA_BaseNPC:Lifesteal(source, lifestealPct, damage, target, damage_type, iSource)
-	local damageDealt = damage
-	if iSource == DOTA_LIFESTEAL_SOURCE_ABILITY then
+	local damageDealt = damage or 0
+	local sourceType = iSource or 0
+	if sourceType == DOTA_LIFESTEAL_SOURCE_ABILITY then
 		local oldHP = target:GetHealth()
 		ApplyDamage({victim = target, attacker = self, damage = damage, damage_type = damage_type, ability = source})
 		damageDealt = math.abs(oldHP - target:GetHealth())
-	elseif iSource == DOTA_LIFESTEAL_SOURCE_ATTACK then
+	elseif sourceType == DOTA_LIFESTEAL_SOURCE_ATTACK then
 		local oldHP = target:GetHealth()
 		self:PerformAttack(target, true, true, true, true, false, false, false)
 		damageDealt = math.abs(oldHP - target:GetHealth())
@@ -1205,15 +1228,27 @@ function CDOTA_BaseNPC:Lifesteal(source, lifestealPct, damage, target, damage_ty
 end
 
 function CDOTA_BaseNPC:HealEvent(amount, sourceAb, healer) -- for future shit
-	local params = {amount = amount, source = sourceAb, unit = healer, target = self}
+	local healBonus = 1
+	local flAmount = amount
+	if healer then
+		for _,modifier in ipairs( healer:FindAllModifiers() ) do
+			if modifier.GetOnHealBonus then
+				healBonus = healBonus + ((modifier:GetOnHealBonus() or 0)/100)
+			end
+		end
+	end
+	flAmount = flAmount * healBonus
+	local params = {amount = flAmount, source = sourceAb, unit = healer, target = self}
 	for _,modifier in ipairs( self:FindAllModifiers() ) do
 		if modifier.OnHealed then
 			modifier:OnHealed(params)
 		end
 	end
-	for _,modifier in ipairs( healer:FindAllModifiers() ) do
-		if modifier.OnHeal then
-			modifier:OnHeal(params)
+	if healer then
+		for _,modifier in ipairs( healer:FindAllModifiers() ) do
+			if modifier.OnHeal then
+				modifier:OnHeal(params)
+			end
 		end
 	end
 	SendOverheadEventMessage(self, OVERHEAD_ALERT_HEAL, self, amount, healer)
@@ -1261,6 +1296,26 @@ function CDOTA_BaseNPC:FindEnemyUnitsInRadius(position, radius, hData)
 	return FindUnitsInRadius(team, position, nil, radius, iTeam, iType, iFlag, iOrder, false)
 end
 
+function CDOTA_BaseNPC:FindFriendlyUnitsInRadius(position, radius, hData)
+	local team = self:GetTeamNumber()
+	local data = hData or {}
+	local iTeam = DOTA_UNIT_TARGET_TEAM_FRIENDLY
+	local iType = data.type or DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
+	local iFlag = data.flag or DOTA_UNIT_TARGET_FLAG_INVULNERABLE
+	local iOrder = data.order or FIND_ANY_ORDER
+	return FindUnitsInRadius(team, position, nil, radius, iTeam, iType, iFlag, iOrder, false)
+end
+
+function CDOTA_BaseNPC:FindAllUnitsInRadius(position, radius, hData)
+	local team = self:GetTeamNumber()
+	local data = hData or {}
+	local iTeam = data.team or DOTA_UNIT_TARGET_TEAM_BOTH
+	local iType = data.type or DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
+	local iFlag = data.flag or DOTA_UNIT_TARGET_FLAG_NONE
+	local iOrder = data.order or FIND_ANY_ORDER
+	return FindUnitsInRadius(team, position, nil, radius, iTeam, iType, iFlag, iOrder, false)
+end
+
 function ParticleManager:FireWarningParticle(position, radius)
 	local thinker = ParticleManager:CreateParticle("particles/econ/generic/generic_aoe_shockwave_1/generic_aoe_shockwave_1.vpcf", PATTACH_WORLDORIGIN, nil)
 			ParticleManager:SetParticleControl(thinker, 0, position)
@@ -1269,6 +1324,11 @@ function ParticleManager:FireWarningParticle(position, radius)
 			ParticleManager:SetParticleControl(thinker, 3, Vector(255,0,0))
 			ParticleManager:SetParticleControl(thinker, 4, Vector(0,0,0))
 	ParticleManager:ReleaseParticleIndex(thinker)
+end
+
+function ParticleManager:FireLinearWarningParticle(startPos, endPos)
+	ParticleManager:FireParticle("particles/generic_linear_indicator.vpcf", PATTACH_WORLDORIGIN, nil, { [0] = startPos,
+																										[1] = endPos} )
 end
 
 function ParticleManager:FireParticle(effect, attach, owner, cps)
@@ -1291,13 +1351,18 @@ function ParticleManager:FireRopeParticle(effect, attach, owner, target)
 end
 
 function CDOTA_Modifier_Lua:StartMotionController()
-	if self.DoControlledMotion and self:GetParent():HasMovementCapability() then
-		Timers:CreateTimer(FrameTime(), function() 
+	if not self:GetParent():IsNull() and not self:IsNull() and self.DoControlledMotion and self:GetParent():HasMovementCapability() then
+		self.controlledMotionTimer = Timers:CreateTimer(FrameTime(), function()
+			if self:IsNull() or self:GetParent():IsNull() then return end
 			self:DoControlledMotion() 
 			return FrameTime()
 		end)
 	else
 	end
+end
+
+function CDOTA_Modifier_Lua:StopMotionController()
+	Timers:RemoveTimers(self.controlledMotionTimer)
 end
 
 function CDOTA_Modifier_Lua:AddEffect(id)
@@ -1327,21 +1392,29 @@ function CDOTA_BaseNPC:Dispel(hCaster, bHard)
 	self:Purge(not sameTeam, sameTeam, false, bHard, bHard)
 end
 
-function CDOTA_BaseNPC:FindFriendlyUnitsInRadius(position, radius, data)
-	local team = self:GetTeamNumber()
-	local iTeam = DOTA_UNIT_TARGET_TEAM_FRIENDLY
-	local iType = data.type or DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
-	local iFlag = data.flag or DOTA_UNIT_TARGET_FLAG_NONE
-	local iOrder = data.order or FIND_ANY_ORDER
-	return FindUnitsInRadius(team, position, nil, radius, iTeam, iType, iFlag, iOrder, false)
-end
-
 function CDOTABaseAbility:DealDamage(attacker, victim, damage, data)
 	local damageType = self:GetAbilityDamageType()
 	local localdamage = damage or self:GetAbilityDamage()
 	if data and data.damage_type then damageType = data.damage_type end
 	if damageType == 0 then damageType = DAMAGE_TYPE_MAGICAL end
 	ApplyDamage({victim = victim, attacker = attacker, ability = self, damage_type = damageType, damage = localdamage})
+end
+
+function CDOTABaseAbility:FireLinearProjectile(FX, velocity, distance, width, data)
+	local internalData = data or {}
+	local info = {
+		EffectName = FX,
+		Ability = self,
+		vSpawnOrigin = internalData.origin or self:GetCaster():GetAbsOrigin(), 
+		fStartRadius = width,
+		fEndRadius = internalData.width_end or width,
+		vVelocity = velocity,
+		fDistance = distance,
+		Source = internalData.source or self:GetCaster(),
+		iUnitTargetTeam = internalData.team or DOTA_UNIT_TARGET_TEAM_ENEMY,
+		iUnitTargetType = internalData.type or DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+	}
+	ProjectileManager:CreateLinearProjectile( info )
 end
 
 function CDOTABaseAbility:ApplyAOE(eventTable)

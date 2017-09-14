@@ -185,7 +185,7 @@ Aghs:
 Increases status effect reduction and grants it to all allies.
 
 Omniknight: Hyperion, the Justicar
--- Innate: : Inner Sun: All forms of overheal and overkill are stored and added to the next spell's effects; passively grants heal amp to himself
+-- Innate: Inner Sun: All forms of overheal and overkill are stored and added to the next spell's effects; passively grants heal amp to himself
 
 -- Skill 1: Shining Light: purifies a single target, purging them, dealing damage if its an enemy and healing if it's an ally.
 -- Skill 2: Blessed Aegis: buffs an ally, shielding them for x damage
@@ -350,7 +350,7 @@ Dazzle: Amaterasu, the Mystic
 -- Skill 1: Mending Wave: literally dazzle shadow wave (because of how its targeting works, all units affected benefit from Life-Weaver)
 -- Skill 2: Unyielding: literally shallow grave (preheal counts for lifeweaver)
 -- Skill 3: Mist Barrier: Barrier that regenerates when not damaged, infinite duration
--- Skill 4: Death Clasp: Mystic channels and stuns a single target, every second channeled; another target near the main target is also stunned; lasts until channel ends. Deals damage and heals the Mystic
+-- Skill 4: Death Clasp: Mystic channels and slows all enemies around him, radius grows every second channeled; Deals damage and heals the Mystic
 -- Skill 5: Sacrificial Rite: the Mystic removes all his health, becoming invulnerable for 3 seconds and healing every ally for his sacrificed life over 3 seconds. (all benefit from Life-Weaver), does not self-heal
 -- Skill 6: Eternal Feast: The Mystic damages enemies and debuffs them, enemies who die while debuffed will drop orbs that restore health to allied units. Explodes on expiration or use for damage
 -- Skill 7: Grim Harvest: The Mystic sends out an orb that homes on targets if any are near and otherwise holds its direction. Targets hit will be damaged and grant lifesteal when attacked. Can be cast again while the orb is active to change position with the orb. Does not consume the orb.
@@ -360,7 +360,7 @@ Dazzle: Amaterasu, the Mystic
 -- Passive 2: Mending Wave bounces doubles, now also bounces to enemies, damagin them directly and healing allies in the AoE
 -- Passive 3: Unyielding now grants double healing while active.
 -- Passive 4: Mist Barrier gains a % bonus amount based on target's max hp
--- Passive 5: Death Clasp now stuns every valid target within range every second.
+-- Passive 5: Death Clasp now heals all allies in range too
 -- Passive 6: Sacrificial Rite now grants damage reduction to everyone, including the Mystic
 -- Passive 7: Eternal Feast orbs will slowly roll towards the nearest ally or enemy
 -- Passive 8: Grim Harvest's stays stationary now, but appears at point target immediately
@@ -385,7 +385,7 @@ Treant: Yggdrasil, The Forest
 -- Passive 2: Growing Armor health regeneration now includes %hp on top of base
 -- Passive 3: Parasitic Growth will now spread to nearby enemies
 -- Passive 4: Nature's Grove will now keep growing until the duration ends
--- Passive 5: Overgrowth now roots all enemies on spell activation and heals all allies for 100% of their health over its active duration
+-- Passive 5: Overgrowth now heals all allies for 100% of their health over its active duration
 -- Passive 6: Vine Whip will briefly be changed by Snapback for 1s after an enemy is hit, when Snapback is activated, Yggrasil will slingshot himself towards the enemy, dealing damage and stunning any enemy he hits while in motion
 -- Passive 7: Ancient Tether: Also grants damage reduction to the tethered ally
 -- Passive 8: Envelop: Yggrasil now gains his ally's HP for himself while Enveloping
@@ -602,28 +602,27 @@ Techies: Chantico, the Bomber
 Aghs: 
 
 
+Magnus: Apollo, The Song 
+-- Innate: Reverb - Whenever the Song applies a buff to an ally, he grants it to all allies as well; but this buff decreases over time from 100% to 10% efficiency over 10 seconds. It stays at 10% afterwards. Casting a new buff removes the old team buff
 
+-- Skill 1: Battle Ballad: Buffs ally with attack speed
+-- Skill 2: Dissonant Howl: Debuffs enemies with slow and attack slow, minor damage
+-- Skill 3: Empowering Song: Grants minor cleave/splash and bonus damage
+-- Skill 4: Healing Trance: Grants regen and a max hp buff														
+-- Skill 5: Inspiring Beat: Grants movement speed and evasion
+-- Skill 6:	Solo Slide: skewer basically
+-- Skill 7: Grand Finale: rp basically but no stun and amplifies buffs on allies too
+-- Skill 8: Soundwave: shockwave basically
 
+-- Passive 1: Reverb now decreases logarithmically instead of linearly (meaning it has high efficiency longer but drops off faster)
+-- Passive 2: Battle Ballad now lowers BAT too (-0.1 BAT)
+-- Passive 3: Dissonant Howl now pushes away enemies
+-- Passive 4: Empowering Song bonus damage now amps all forms of damage
+-- Passive 5: Healing Trance now burst-heals the allied unit as well (and through Reverb all allies too)
+-- Passive 6: Inspiring Beat now grants increased max and min movement speed while active
+-- Passive 7: Solo Slide now sucks in enemies
+-- Passive 8: Grand Finale now deals 350% crit damage to all enemies
+-- Passive 9: Soundwave comes back after reaching its endpoint (shockwave aghs)
 
-
-
-
-
-
-
-
-BOSS CONCEPTS:
-
-WAVE 1A:
-Vhoul Assassin: Sneak n Reap
-
-Ability 1: Invis, bonus damage out of invis
-Ability 2: Blink Strike (blinks towards enemy and slashes in cone infront)
-Ability 3: Rushdown (Rapidly runs forwards, slashes everyone infront)
-
-WAVE 1B:
-Vhoul Champion: Spear Thrower
-
-Ability 1: Spear Throw: Mirana Arrow style spear throw, pierces and breaks
-Ability 2: Spear Pin: Mirana arrow style, stuns and disappears
-Ability 2: Spear Strike: Jumps into the air and stuns on land
+Aghs: 
+Reverb buffs now stack

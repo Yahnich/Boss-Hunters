@@ -12,21 +12,27 @@
 GameEvents.Subscribe( "checkNewHero", PickAbilities);
 
 function PickAbilities(arg){
-	$("#SkillSelectorMain").visible = true
-	var parentPanel = $("#SkillSelectorContainer");
-	var playerID = Game.GetLocalPlayerID();
-	var heroID = Players.GetPlayerHeroEntityIndex( playerID );
-	var skillList = CustomNetTables.GetTableValue( "skillList", Entities.GetUnitName( heroID ) + playerID );
-	var inProgress = true;
-	var i = 0;
-	while(inProgress){
-		if(skillList[i] != undefined){
-			CreateAbilityPanel(parentPanel, skillList[i])
-			i++;
-		} else {
-			inProgress = false;
+	if($("#SkillSelectorMain").visible){
+		
+	}
+	else {
+		$("#SkillSelectorMain").visible = true
+		var parentPanel = $("#SkillSelectorContainer");
+		var playerID = Game.GetLocalPlayerID();
+		var heroID = Players.GetPlayerHeroEntityIndex( playerID );
+		var skillList = CustomNetTables.GetTableValue( "skillList", Entities.GetUnitName( heroID ) + playerID );
+		var inProgress = true;
+		var i = 0;
+		while(inProgress){
+			if(skillList[i] != undefined){
+				CreateAbilityPanel(parentPanel, skillList[i])
+				i++;
+			} else {
+				inProgress = false;
+			}
 		}
 	}
+	
 }
 
 function CreateAbilityPanel(parentPanel, abilityName){

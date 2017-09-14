@@ -616,7 +616,7 @@
 		"AttackRate"				"3.00"		// Speed of attack.
 		"AttackAnimationPoint"		"0.38"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
-		"AttackRange"				"150"		// Range within a target can be attacked.
+		"AttackRange"				"200"		// Range within a target can be attacked.
 		"ProjectileModel"			""			// Particle system model for projectile.
 		"ProjectileSpeed"			"0"			// Speed of projectile.		   
 
@@ -639,7 +639,7 @@
 		// Status
 		//----------------------------------------------------------------
 		"StatusHealth"				"10000"		// Base health.
-		"StatusHealthRegen"			"4"		// Health regeneration rate.
+		"StatusHealthRegen"			"10"		// Health regeneration rate.
 		"StatusMana"				"0"			// Base mana.
 		"StatusManaRegen"			"0.0"		// Mana regeneration rate.		 
 		
@@ -692,7 +692,7 @@
 		"ModelScale" 				"1.3"
 		"ConsideredHero"			"1"
 		"IsCore"					"1"
-		"vscripts"				"ai/ai_boss2.lua"
+		"vscripts"					"ai/ai_boss2.lua"
 		
 		"precache"
 		{
@@ -703,10 +703,9 @@
 		// Abilities
 		//----------------------------------------------------------------
 		"AbilityLayout"				"6"
-		"Ability1"					"boss_toxic_weaponry"			// Ability 1
-		"Ability2"					"boss_hard_throw"			// Ability 2
-		"Ability3"					""			// Ability 3
-		"Ability4"					""			// Ability 4
+		"Ability1"					"boss1b_leap"			// Ability 1
+		"Ability2"					"boss1b_spear_pierce"			// Ability 2
+		"Ability3"					"boss1b_spear_pin"			// Ability 3
 
 		// Armor
 		//----------------------------------------------------------------
@@ -717,7 +716,7 @@
 		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
 		"AttackDamageMin"			"475"		// Damage range min.
 		"AttackDamageMax"			"550"		// Damage range max.
-		"AttackRate"				"4.5"		// Speed of attack.
+		"AttackRate"				"3.5"		// Speed of attack.
 		"AttackAnimationPoint"		"0.4"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
 		"AttackRange"				"600"		// Range within a target can be attacked.
@@ -742,7 +741,7 @@
 
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"20000"		// Base health.
+		"StatusHealth"				"8000"		// Base health.
 		"StatusHealthRegen"			"5"		// Health regeneration rate.
 		"StatusMana"				"0"			// Base mana.
 		"StatusManaRegen"			"0.0"		// Mana regeneration rate.		 

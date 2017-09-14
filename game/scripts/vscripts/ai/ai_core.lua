@@ -101,20 +101,48 @@ function AICore:BeingAttackedBy( entity )
 end
 
 function AICore:GetHighestPriorityTarget(entity)
-	return entity.AIprevioustarget
+	local target = entity.AIprevioustarget
+	if not entity.AIprevioustarget then
+		target = AICore:NearestEnemyHeroInRange( entity, 15000 , true )
+	end
+	return target
 end
 
 function AICore:AttackHighestPriority( entity )
 	if not entity and not entity:IsAlive() then return end
 	local flag = DOTA_UNIT_TARGET_FLAG_NOT_ATTACK_IMMUNE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE + DOTA_UNIT_TARGET_FLAG_NO_INVIS
-	local range = entity:GetAttackRange() + entity:GetIdealSpeed()
+	local range = entity:GetAttackRange() + entity:GetIdealSpeed() * 1.5
 	if range < 900 then range = 900 end
 	if not entity:IsDominated() then
 		local enemies = FindUnitsInRadius( entity:GetTeamNumber(), entity:GetAbsOrigin(), nil, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, flag, 0, false )
 		local target = nil
 		local minThreat = 0
-		
-		if entity.AIprevioustarget and not entity.AIprevioustarget:IsNull() then 
+		if not entity.AIPreviousTargetTimerTicker then entity.AIPreviousTargetTimerTicker = 0 end
+		if entity.AIprevioustarget and not entity:CanEntityBeSeenByMyTeam( entity.AIprevioustarget ) then
+			if not entity.AIPreviousTargetTimer then
+				entity.AIPreviousTargetTimerTicker = 0 
+				entity.AIPreviousTargetTimerEntity = entity.AIprevioustarget:entindex()
+				entity.AIPreviousTargetTimer = Timers:CreateTimer(0.1, function()
+					if entity.AIPreviousTargetTimerEntity == entity.AIprevioustarget:entindex() then
+						entity.AIPreviousTargetTimerTicker = entity.AIPreviousTargetTimerTicker + 0.1
+					end
+				end)
+			elseif entity.AIPreviousTargetTimerEntity ~= entity.AIprevioustarget:entindex() then
+				Timers:RemoveTimer( entity.AIPreviousTargetTimer )
+				entity.AIPreviousTargetTimerTicker = 0 
+				entity.AIPreviousTargetTimerEntity = entity.AIprevioustarget:entindex()
+				entity.AIPreviousTargetTimer = Timers:CreateTimer(0.1, function()
+					if entity.AIPreviousTargetTimerEntity == entity.AIprevioustarget:entindex() then
+						entity.AIPreviousTargetTimerTicker = entity.AIPreviousTargetTimerTicker + 0.1
+					end
+				end)
+			end
+		elseif entity.AIPreviousTargetTimer then
+			Timers:RemoveTimer( entity.AIPreviousTargetTimer )
+			entity.AIPreviousTargetTimerTicker = 0 
+			entity.AIPreviousTargetTimerEntity = nil
+		end
+		if entity.AIprevioustarget and entity.AIprevioustarget:IsAlive() and not entity.AIprevioustarget:IsInvisible() and not entity.AIprevioustarget:IsNull() and entity.AIPreviousTargetTimerTicker < 1.5 then 
 			target = entity.AIprevioustarget
 			target.threat = target.threat or 0
 			minThreat = target.threat
@@ -359,7 +387,7 @@ end
 
 function AICore:TotalUnitsInRange( entity, range )
 	
-	flags = flags + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
+	local flags = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
 	local enemies = FindUnitsInRadius( entity:GetTeamNumber(), entity:GetAbsOrigin(), nil, range, DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, flags, 0, false )
 	
 	local count = 0
@@ -606,4 +634,12 @@ function AICore:CreateBehaviorSystem( behaviors )
 	end
 
 	return BehaviorSystem
+end
+
+---
+---
+
+function CDOTA_BaseNPC:GetAIBehavior()
+	self.AIbehavior = self.AIbehavior or RandomInt(1,3)
+	return self.AIbehavior
 end

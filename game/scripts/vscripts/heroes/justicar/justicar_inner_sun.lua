@@ -13,7 +13,7 @@ function modifier_justicar_inner_sun_passive:OnCreated()
 	self.levelcap = self:GetAbility():GetSpecialValueFor("level_cap")
 	self.min_trigger = self:GetAbility():GetSpecialValueFor("min_heal") / 100
 	self:InitFunctions()
-	if IsServer() then self:StartIntervalThink(0.1) end
+	if IsServer() then self:StartIntervalThink(0.3) end
 end
 
 function modifier_justicar_inner_sun_passive:OnRefresh()
@@ -26,6 +26,11 @@ function modifier_justicar_inner_sun_passive:OnIntervalThink()
 	local newInner = math.min(self:GetParent():GetLevel() * self.levelcap, self:GetParent():GetInnerSun())
 	self:GetParent():SetInnerSun(newInner)
 	self:SetStackCount(newInner)
+	if self:GetParent():HasTalent("justicar_inner_sun_talent_1") then
+		self.overhealBarrier = self.overhealBarrier or 0
+		math.max( 0, self.overhealBarrier - math.max( 1, self.overhealBarrier * self:ModifierBarrier_DegradeRate() ) )
+		if self:ModifierBarrier_Bonus() <= 0 then self:Destroy() end
+	end
 end
 
 function modifier_justicar_inner_sun_passive:InitFunctions()
@@ -78,7 +83,6 @@ function modifier_justicar_inner_sun_passive:OnHeal(params)
 			self:GetParent():ModifyInnerSun(overheal)
 			if self:GetCaster():HasTalent("justicar_inner_sun_talent_1") then
 				self.overhealBarrier = math.min( (self:ModifierBarrier_Bonus() or 0) + overheal, self.levelcap * self:GetParent():GetLevel() )
-				self.ModifierBarrier_Bonus = function() return self.overhealBarrier end -- public set/get behavior
 			end
 			if self:GetCaster():HasScepter() then
 				params.target:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_justicar_inner_sun_scepter_buff", {duration = self:GetAbility():GetTalentSpecialValueFor("scepter_buff_duration")})
@@ -95,7 +99,6 @@ function modifier_justicar_inner_sun_passive:OnTakeDamage(params)
 			self:GetParent():ModifyInnerSun(overkill)
 			if self:GetCaster():HasTalent("justicar_inner_sun_talent_1") then
 				self.overhealBarrier = math.min(self.levelcap * self:GetParent():GetLevel(), (self:ModifierBarrier_Bonus() or 0) + overkill)
-				self.ModifierBarrier_Bonus = function() return self.overhealBarrier end
 			end
 		end
 		params.unit.lastCheckedHealth = params.unit:GetHealth()
@@ -106,6 +109,10 @@ function modifier_justicar_inner_sun_passive:ModifierBarrier_Bonus()
 	return (self.overhealBarrier or 0)
 end
 
+function modifier_justicar_inner_sun_passive:ModifierBarrier_DegradeRate()
+	return 0.01
+end
+
 function modifier_justicar_inner_sun_passive:GetModifierIncomingDamage_Percentage(params)
 	if self:GetCaster():HasTalent("justicar_inner_sun_talent_1") then
 		if params.damage < self:ModifierBarrier_Bonus() then
@@ -113,9 +120,8 @@ function modifier_justicar_inner_sun_passive:GetModifierIncomingDamage_Percentag
 			self.ModifierBarrier_Bonus = function() return self.overhealBarrier end
 			return -100
 		elseif self:ModifierBarrier_Bonus() > 0 then
-			self.overhealBarrier = 0
 			local dmgRed = (params.damage / self:ModifierBarrier_Bonus()) * (-1)
-			self.ModifierBarrier_Bonus = function() return self.overhealBarrier end
+			self.overhealBarrier = 0
 			return dmgRed
 		else
 			return 0

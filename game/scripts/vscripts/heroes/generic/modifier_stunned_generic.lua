@@ -1,5 +1,15 @@
 modifier_stunned_generic = modifier_stunned_generic or class({})
 
+if IsServer() then
+	function modifier_stunned_generic:OnCreated()
+		self:GetAbility():StartDelayedCooldown(self:GetRemainingTime(), false)
+	end
+	
+	function modifier_stunned_generic:OnDestroy()
+		self:GetAbility():EndDelayedCooldown()
+	end
+end
+
 function modifier_stunned_generic:GetEffectName()
 	return "particles/generic_gameplay/generic_stunned.vpcf"
 end

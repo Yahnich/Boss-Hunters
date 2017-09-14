@@ -20,7 +20,7 @@ function justicar_blessed_aegis:OnSpellStart()
 	if caster:HasTalent("justicar_blessed_aegis_talent_1") then
 		barrier = barrier + caster:FindTalentValue("justicar_blessed_aegis_talent_1") / 100 * caster:GetHealth()
 	end
-	
+	print(barrier)
 	target:AddNewModifier(caster, self, "modifier_justicar_blessed_aegis_barrier", {barrier = barrier})
 end
 
@@ -30,12 +30,13 @@ LinkLuaModifier("modifier_justicar_blessed_aegis_barrier", "heroes/justicar/just
 if IsServer() then
 	function modifier_justicar_blessed_aegis_barrier:OnCreated(kv)
 		self.barrier = kv.barrier or 0
+		print(kv.barrier)
 		self.particle = ParticleManager:CreateParticle("particles/heroes/justicar/justicar_blessed_aegis.vpcf", PATTACH_OVERHEAD_FOLLOW, self:GetParent())
 		ParticleManager:SetParticleControl(self.particle, 0, self:GetParent():GetAbsOrigin())
 		ParticleManager:SetParticleControlEnt(self.particle, 1, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_origin", self:GetParent():GetAbsOrigin(), true)
 		ParticleManager:SetParticleControl(self.particle, 2, Vector(self:GetParent():GetModelRadius() * 1.1,0,0))
 		self:AddParticle(self.particle, false, false, 0, false, false)
-		if IsServer() then self:StartIntervalThink(0.5) end
+		if IsServer() then self:StartIntervalThink(0.3) end
 	end
 
 	function modifier_justicar_blessed_aegis_barrier:OnRefresh(kv)
@@ -44,7 +45,8 @@ if IsServer() then
 	end
 
 	function modifier_justicar_blessed_aegis_barrier:OnIntervalThink()
-		if self:ModifierBarrier_Bonus() <= 1 then self:Destroy() end
+		self.barrier = math.max( 0, self.barrier - math.max( 1, self.barrier * self:ModifierBarrier_DegradeRate() ) )
+		if self:ModifierBarrier_Bonus() <= 0 then self:Destroy() end
 	end
 
 	function modifier_justicar_blessed_aegis_barrier:DeclareFunctions()
@@ -57,6 +59,10 @@ if IsServer() then
 	function modifier_justicar_blessed_aegis_barrier:ModifierBarrier_Bonus()
 		return (self.barrier or 0)
 	end
+	
+	function modifier_justicar_blessed_aegis_barrier:ModifierBarrier_DegradeRate()
+		return 0.01
+	end
 
 	function modifier_justicar_blessed_aegis_barrier:GetModifierIncomingDamage_Percentage(params)
 		if params.damage < self:ModifierBarrier_Bonus() then
@@ -64,9 +70,8 @@ if IsServer() then
 			self.ModifierBarrier_Bonus = function() return self.barrier end
 			return -100
 		elseif self:ModifierBarrier_Bonus() > 0 then
-			self.barrier = 0
 			local dmgRed = (params.damage / self:ModifierBarrier_Bonus()) * (-1)
-			self.ModifierBarrier_Bonus = function() return self.barrier end
+			self.barrier = 0
 			return dmgRed
 		else
 			self:Destroy()

@@ -86,8 +86,8 @@ function spawn_unit_arround( caster , unitname , radius , unit_number ,playerID,
     if unit_number == nil then unit_number = 1 end
 	if caster:IsNull() or not caster:IsAlive() then return end
     for i = 0, unit_number-1 do
-        PrecacheUnitByNameAsync( unitname, function() 
-			local unit = CreateUnitByName( unitname ,caster:GetAbsOrigin() + RandomVector(RandomInt(radius,radius)), true, nil, nil, DOTA_TEAM_BADGUYS )
+        PrecacheUnitByNameAsync( unitname, function()
+			local unit = CreateUnitByName( unitname ,caster:GetAbsOrigin() + RandomVector(RandomInt(radius,radius)), true, nil, nil, caster:GetTeam() )
 				if GetMapName() == "epic_boss_fight_boss_master" then
 					Timers:CreateTimer(0.03,function()
 						if playerID ~= nil and PlayerResource:IsValidPlayerID( playerID ) then
@@ -101,6 +101,19 @@ function spawn_unit_arround( caster , unitname , radius , unit_number ,playerID,
 				end
 				if string.match(unit:GetUnitName(), "npc_dota_boss35") and (GameRules.gameDifficulty <= 2) then
 					unit:RemoveAbility("boss_hell_tempest")
+				end
+				if caster:GetOwnerEntity() and caster:GetOwnerEntity():GetUnitName() == "npc_dota_Hero_necrolyte" then
+					summon:AddNewModifier(caster, self, "modifier_kill", {duration = caster:FindSpecificTalentValue("puppeteer_pestilence_talent_1", "duration")})
+					summon:AddNewModifier(caster, self, "modifier_summon_handler", {duration = caster:FindSpecificTalentValue("puppeteer_pestilence_talent_1", "duration")})
+					for i = 0, 16 do
+						local ability = summon:GetAbilityByIndex(i)
+						if ability then ability:SetActivated(false) end
+					end
+					Timers:CreateTimer(FrameTime(), function()
+						summon:SetHealth(summon:GetMaxHealth() * caster:FindTalentValue("puppeteer_pestilence_talent_1") / 100)
+						summon:SetMaxHealth(summon:GetMaxHealth() * caster:FindTalentValue("puppeteer_pestilence_talent_1") / 100)
+						summon:SetBaseMaxHealth(summon:GetMaxHealth() * caster:FindTalentValue("puppeteer_pestilence_talent_1") / 100)
+					end)
 				end
 			end,
         nil)
@@ -290,6 +303,7 @@ end
 
 function boss_evil_core_death(keys)
 	keys.caster.dead = true
+	if keys.caster:GetTeam() ~= DOTA_TEAM_BADGUYS then return end
 	local ticker = 1 -- fuck this gay earth
 	Timers:CreateTimer(0.1,function()
             for _,unit in pairs ( Entities:FindAllByName( "npc_dota_creature")) do
@@ -302,7 +316,7 @@ function boss_evil_core_death(keys)
 				return 0.1
 			end
         end)
-	local dummy = CreateUnitByName( "npc_dota_boss36_guardian" , keys.caster:GetAbsOrigin(), true, nil, nil, DOTA_TEAM_BADGUYS )
+	local dummy = CreateUnitByName( "npc_dota_boss36_guardian" , keys.caster:GetAbsOrigin(), true, nil, nil, keys.caster:GetTeam() )
 	keys.ability:ApplyDataDrivenModifier(keys.caster, dummy, "modifier_spawn_timer", {duration = 5})
 	for nPlayerID = 0, DOTA_MAX_PLAYERS-1 do
         if PlayerResource:IsValidPlayer( nPlayerID ) then

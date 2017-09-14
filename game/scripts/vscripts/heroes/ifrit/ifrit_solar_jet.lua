@@ -1,6 +1,5 @@
 ifrit_solar_jet = class({})
 
-LinkLuaModifier( "modifier_ifrit_solar_jet", "heroes/ifrit/ifrit_solar_jet.lua", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_ifrit_solar_jet_thinker", "heroes/ifrit/ifrit_solar_jet.lua", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_ifrit_solar_jet_fire_debuff", "heroes/ifrit/ifrit_solar_jet.lua", LUA_MODIFIER_MOTION_NONE )
 
@@ -57,67 +56,6 @@ function ifrit_solar_jet:CreateSolarJet(position)
 	end
 end
 
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
-
-
-modifier_ifrit_solar_jet = class({})
-
---------------------------------------------------------------------------------
-
-function modifier_ifrit_solar_jet:IsDebuff()
-	return true
-end
-
---------------------------------------------------------------------------------
-
-function modifier_ifrit_solar_jet:IsStunDebuff()
-	return true
-end
-
---------------------------------------------------------------------------------
-
-function modifier_ifrit_solar_jet:GetEffectName()
-	return "particles/generic_gameplay/generic_stunned.vpcf"
-end
-
---------------------------------------------------------------------------------
-
-function modifier_ifrit_solar_jet:GetEffectAttachType()
-	return PATTACH_OVERHEAD_FOLLOW
-end
-
---------------------------------------------------------------------------------
-
-function modifier_ifrit_solar_jet:DeclareFunctions()
-	local funcs = {
-		MODIFIER_PROPERTY_OVERRIDE_ANIMATION,
-	}
-
-	return funcs
-end
-
---------------------------------------------------------------------------------
-
-function modifier_ifrit_solar_jet:GetOverrideAnimation( params )
-	return ACT_DOTA_DISABLED
-end
-
---------------------------------------------------------------------------------
-
-function modifier_ifrit_solar_jet:CheckState()
-	local state = {
-	[MODIFIER_STATE_STUNNED] = true,
-	}
-
-	return state
-end
-
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
-
-
-
 modifier_ifrit_solar_jet_thinker = class({})
 
 --------------------------------------------------------------------------------
@@ -155,7 +93,7 @@ function modifier_ifrit_solar_jet_thinker:OnIntervalThink()
 				if enemy ~= nil and ( not enemy:IsMagicImmune() ) and ( not enemy:IsInvulnerable() ) then
 					self:GetCaster().selfImmolationDamageBonus = self:GetCaster().selfImmolationDamageBonus or 0
 					ApplyDamage( {victim = enemy, attacker = self:GetCaster(), damage = self.damage + self:GetCaster().selfImmolationDamageBonus, damage_type = DAMAGE_TYPE_MAGICAL, ability = self:GetAbility()} )
-					enemy:AddNewModifier( self:GetCaster(), self:GetAbility(), "modifier_ifrit_solar_jet", { duration = self.stun_duration } )
+					enemy:AddNewModifier( self:GetCaster(), self:GetAbility(), "modifier_stunned_generic", { duration = self.stun_duration } )
 					enemy:AddNewModifier( self:GetCaster(), self:GetAbility(), "modifier_ifrit_solar_jet_fire_debuff", { duration = self.dot_duration } )
 				end
 			end

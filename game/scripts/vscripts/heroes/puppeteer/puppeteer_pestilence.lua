@@ -46,15 +46,12 @@ if IsServer() then
 	function modifier_puppeteer_pestilence_talent_resurrect:OnDeath(params)
 		if params.unit == self:GetParent() and not params.unit:GetUnitName() ~= "npc_dota_boss36" then
 			local caster = self:GetCaster()
-			local summon = caster:CreateSummon(self:GetParent():GetUnitName(), self:GetParent():GetAbsOrigin())
+			local summon = caster:CreateSummon(self:GetParent():GetUnitName(), self:GetParent():GetAbsOrigin(), caster:FindSpecificTalentValue("puppeteer_pestilence_talent_1", "duration"))
 			StartAnimation(summon, {activity = ACT_DOTA_SPAWN, rate = 1.5, duration = 2})
-			summon:AddNewModifier(caster, self, "modifier_kill", {duration = caster:FindSpecificTalentValue("puppeteer_pestilence_talent_1", "duration")})
-			summon:AddNewModifier(caster, self, "modifier_summon_handler", {duration = caster:FindSpecificTalentValue("puppeteer_pestilence_talent_1", "duration")})
 			for i = 0, 16 do
 				local ability = summon:GetAbilityByIndex(i)
 				if ability then ability:SetActivated(false) end
 			end
-			local timer = 0
 			Timers:CreateTimer(FrameTime(), function()
 				summon:SetHealth(summon:GetMaxHealth() * caster:FindTalentValue("puppeteer_pestilence_talent_1") / 100)
 				summon:SetMaxHealth(summon:GetMaxHealth() * caster:FindTalentValue("puppeteer_pestilence_talent_1") / 100)

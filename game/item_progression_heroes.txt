@@ -1,0 +1,134 @@
+CRIT REPRESENTATION:
+10%/200% crit means 10% chance for a 200% crit ; Crits count for spells and auto-attacks
+
+-----------------------
+GUARDIAN ITEM PROGRESS:
+-----------------------
+
+Armor: 
+-- Worn Armor (+1000 Max HP, +10 armor) -> Platemail Armor (+2500 Max HP, +10 armor) -> Heavy Platemail (+5000 Max HP, 15 armor) -> Veteran's Platemail (+7500 Max HP, 15 armor) -> Siegebreaker (15000 Max HP, 20 armor)
+
+Weapon: 
+-- Dull Bastard Sword (+100 damage, 20%/220% crit) -> Heavy Bastard Sword (+150 damage, 20%/220% crit) -> Defender's Greatsword (+200 damage, 20%/220% crit) -> Honed Greatsword (+250 damage, 20%/220% crit) -> Guillotine (+300 damage, 20%/220% crit)
+
+
+Offhand: 
+-- Bent Round Shield (+25 block, +5 armor) -> Buckler (+50 block, +5 armor) -> Kiteshield (+150 block, 10 armor -> Greatshield (+500 block, 10 armor) -> Warstopper (+1000 block, +15 armor)
+
+--------------------
+SYLPH ITEM PROGRESS:
+--------------------
+
+Armor: 
+-- Ragged Leather (+750 Max HP, 15% evasion) -> Leather Armor (+1500 Max HP, +20% evasion) -> Studded Tunic (+3000 Max HP, 25% evasion) -> Hunter's Tunic (+5000 Max HP, 30% evasion) -> Wind's Guidance (+10000 Max HP, 35% evasion)
+
+Weapon: 
+-- Bent Bow (+50 range, 5%/150% crit) -> Shortbow (+100 range, 10%/150% crit) -> Longbow (+125 range, 15%/175% crit) -> Hunter's Bow (+150 range, 15%/200% crit) -> Typhoon (+200 range, 20%/200% crit)
+
+
+Offhand: 
+-- Crooked Arrows (+35 damage, +20 attackspeed) -> Iron Arrows (+50 damage, +30 attackspeed) -> Sharpened Arrows (+75 damage, +40 attackspeed) -> Piercing Arrows (+125 damage, +50 attackspeed) -> Razorwind (+200 damage, +75 attackspeed)
+
+
+------------------------
+PUPPETEER ITEM PROGRESS:
+------------------------
+
+Armor:
+-- Worn Rags (+800 Max HP, +3 armor) -> Silk Robe (+1350 Max HP, 5 armor) -> Enchanted Robes (+2000 Max HP, 7 armor, 20% magic resist) -> Plaguebearer's Robes (+4000 Max HP, 9 armor, 25% magic resist) -> Robes of Sin (+9000 Max HP, 11 armor, 30% magic resist)
+
+Weapon:
+-- Dull Scythe (+70 damage, 15%/150% crit) -> Sharpened Scythe (+140 damage, 15%/150% crit) -> War Scythe(210 damage, 15%/150% crit) -> Reaping Scythe (280 damage, 15%/150% crit) -> Baron Samedi (350 damage, 15%/150% crit)
+
+Offhand:
+-- Decrepit Skull (+20% spell amp, 0% cdr) -> Bleached Skull (+50% spell amp, 15% cdr) -> Engraved Skull (+75% spell amp, 30% cdr) -> Runic Skull (+100% spell amp, 40% cdr) -> Contagion (+125% spell amp, 40% cdr)
+
+
+------------------------
+SHINIGAMI ITEM PROGRESS:
+------------------------
+
+Armor:
+-- Leather Rags (+1200 Max HP, +5 armor) -> Hard Leather Armor (+2000 Max HP, +7 armor) -> Studded Guard (+4000 Max HP, +9 armor) -> Assassin's Protectors (+6000 Max HP, +11 armor) -> Bogyo Kekkai (+12500 Max HP, +13 armor)
+
+Weapon:
+-- Chipped Cleaver (+50 damage, +20 attackspeed) -> Maintained Cleaver (+80 damage, +25 attackspeed)-> Honed Cleaver (+120 damage, +30 attackspeed) -> Sonic Cleaver (+150 damage, +35 attackspeed) -> Headhunter (+250 damage, +50 attackspeed)
+
+Offhand: 
+-- Old Parrying Dagger (+15% evasion) -> Main-Gauche (+25% evasion) -> Duelist's Swordbreaker (+35% evasion) -> Reaper's Poignard (+45% evasion) -> Orochi (+60% evasion)
+
+
+-----------------------
+IFRIT ITEM PROGRESS:
+-----------------------
+
+Armor: 
+-- Old Robes (+800 Max HP) -> Initiat's Robes (+1200 Max HP) -> Apprentice's Robes (+1800 Max HP) -> Archmage's Robes (+3750 Max HP) -> Hades (+7500 Max HP)
+
+Weapon: 
+-- Embers (+50 damage, 35%/180% crit) -> Dim Flame (+100 damage, 35%/185% crit) -> Ignited Flames (+150 damage, 35%/190% crit) -> Devouring Flame (+200 damage, 35%/195% crit) -> Inferno (+250 damage, 35%/200% crit)
+
+
+Offhand: 
+-- Faded Marks (10% CDR) -> Initiat's Marks (20% CDR) -> Inscribed Glyphs (30% CDR) -> Enchanted Glyphs (40% CDR) -> Incandescence (50% CDR)
+
+
+
+-----------------------
+GLADIATRIX ITEM PROGRESS:
+-----------------------
+
+Armor: 
+-- Tattered Armor (+1500 Max HP, 3 armor, 10% evasion) -> Heavy Plate (+3000 Max HP, 6 armor, 10% evasion) -> Reinforced Plate (+5000 Max HP, 9 armor, 10% evasion) -> Commander's Plate (+7500 Max HP, 12 armor, 15% evasion) -> Victory (+13500 Max HP, 15 armor, 20% evasion)
+
+Weapon: 
+-- Dull Glaive (+50 damage) -> Sharpened Glaive (+100 damage) -> Heavy Glaive (+150 damage) -> Legionnaire's Glaive (+200 damage) -> Defeat (+250 damage)
+
+
+Offhand: 
+-- Bent Pole (+15 attackspeed, 15%/240% crit) -> Reforged Pole (+30 attackspeed, 15%/240% crit) -> Stable Pole (+45 attackspeed, 15%/240% crit) -> Masterwork Pole (+60 attackspeed, 15%/240% crit) -> Pyrrhus (+60 attackspeed, 25%/250% crit)
+
+
+-----------------------
+JUSTICAR ITEM PROGRESS:
+-----------------------
+
+Armor: 
+-- Ancient Hosen (+1500 Max HP, 5 armor, 20% magic resistance) -> Initiate's Hosen (+3000 Max HP, 6 armor, 25% magic resistance) -> Blessed Hosen (+6000 Max HP, 7 armor, 30% magic resistance) -> Archpriest's Hosen (+8000 Max HP, 8 armor, 35% magic resistance) -> Lumen (+12000 Max HP, 10 armor, 40% magic resistance)
+
+Weapon: 
+-- Cracked Warhammer (+150 damage, +10 attackspeed) -> Ornate Warhammer (+175 damage, +15 attackspeed) -> Blessed Warhammer (+200 damage, +20 attackspeed) -> Lightbringer's Warhammer (+225 damage, +25 attackspeed) -> Noctis Pacem (+250 damage, +30 attackspeed)
+
+
+Offhand: 
+-- Faded Text (+15% CDR, 20% Spell Amp) -> Initiate's Scroll (+20% CDR, 40% Spell Amp) -> Priestly Book (+25% CDR, 60% Spell Amp) -> Holy Scripture (+30% CDR, 80% Spell Amp) -> Deus Vult (+35% CDR, 100% Spell Amp)
+
+
+-----------------------
+MYSTIC ITEM PROGRESS:
+-----------------------
+
+Armor: 
+-- Old Garments (+700 Max HP, 10% magic resistance) -> Initiate's Garments (+1000 Max HP, 15% magic resistance) -> Apprentice's Garments (+1500 Max HP, 20% magic resistance) -> Master's Garments (+3250 Max HP, 25% magic resistance) -> Nephilim's Embrace (+6500 Max HP, 30% magic resistance)
+
+Weapon: 
+-- Ancient Staff (+60 damage, +5% cdr) -> Powerless Staff (+120 damage, +15% cdr) -> Apprentice's Staff (+180 damage, +25% cdr) -> Mystic Staff (+240 damage, +35% cdr) -> Daeva's Kiss (+300 damage, +50% cdr)
+
+
+Offhand: 
+-- Drained Trinket (10%/180% crit, 25% Spell Amp) -> Petty Soul (10%/180% crit, 25% Spell Amp) -> Charged Trinket (10%/180% crit, 25% Spell Amp) -> Demonic Trinket (10%/180% crit, 25% Spell Amp) -> Cambion's Despair (10%/180% crit, 25% Spell Amp)
+
+
+-----------------------
+FOREST ITEM PROGRESS:
+-----------------------
+
+Armor: 
+-- Withered Bark (+2000 Max HP) -> Thick Bark (+3500 Max HP) -> Fortified Bark (+7500 Max HP) -> Enduring Bark (+12500 Max HP) -> World Tree (+17500 Max HP)
+
+Weapon: 
+-- Dried Roots (+150 damage, 5%/300% crit) -> Nourished Roots (+175 damage, 5%/300% crit) -> Gorged Roots (+200 damage, 5%/300% crit) -> Lifebearing Roots (+225 damage, 7.5%/300% crit) -> Verdant Green (+250 damage, 10%/300% crit)
+
+
+Offhand: 
+-- Faded Engravings (0% cdr, +3 armor) -> Powerful Engravings (5% cdr, +5 armor) -> Enchanted Engravings (15% cdr, +7 armor) -> Engraved Glyphs (30% cdr, +9 armor) -> Ancient Being (50% cdr, +12 armor)

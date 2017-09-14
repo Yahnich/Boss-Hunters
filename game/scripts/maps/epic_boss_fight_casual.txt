@@ -134,21 +134,55 @@
 				"UnitBoss_1" 
 				{
 					"NPCName"				"npc_dota_boss1"
-					"TotalUnitsToSpawn"		"2"
-					"UnitsPerSpawn"			"2"
+					"TotalUnitsToSpawn"		"3"
+					"UnitsPerSpawn"			"1"
+					"SpawnInterval"			"6"
+				}
+			}
+			"2"
+			{
+				"UnitBoss_1" 
+				{
+					"NPCName"				"npc_dota_boss2"
+					"TotalUnitsToSpawn"		"3"
+					"UnitsPerSpawn"			"1"
 					"SpawnInterval"			"10"
 				}
 			}
-			// "2"
-			// {
-				// "UnitBoss_1" 
-				// {
-					// "NPCName"				"npc_dota_boss2"
-					// "TotalUnitsToSpawn"		"2"
-					// "UnitsPerSpawn"			"1"
-					// "SpawnInterval"			"10"
-				// }
-			// }
+			"3"
+			{
+				"UnitBoss_1" 
+				{
+					"NPCName"				"npc_dota_boss2"
+					"TotalUnitsToSpawn"		"1"
+					"UnitsPerSpawn"			"1"
+					"SpawnInterval"			"10"
+				}
+				"UnitBoss_2" 
+				{
+					"NPCName"				"npc_dota_boss1"
+					"TotalUnitsToSpawn"		"2"
+					"UnitsPerSpawn"			"1"
+					"SpawnInterval"			"10"
+				}
+			}
+			"4"
+			{
+				"UnitBoss_1" 
+				{
+					"NPCName"				"npc_dota_boss2"
+					"TotalUnitsToSpawn"		"2"
+					"UnitsPerSpawn"			"1"
+					"SpawnInterval"			"10"
+				}
+				"UnitBoss_2" 
+				{
+					"NPCName"				"npc_dota_boss1"
+					"TotalUnitsToSpawn"		"1"
+					"UnitsPerSpawn"			"1"
+					"SpawnInterval"			"10"
+				}
+			}
 		}
 	}
 	"Round3" // Zambees
@@ -167,16 +201,16 @@
 				"UnitBoss_1" 
 				{
 					"NPCName"				"npc_dota_boss3a"
-					"TotalUnitsToSpawn"		"2"
+					"TotalUnitsToSpawn"		"4"
 					"UnitsPerSpawn"			"1"
 					"SpawnInterval"			"15"
 				}
 				"UnitBoss_3"
 				{
 					"NPCName"				"npc_dota_boss3b"
-					"TotalUnitsToSpawn"		"2"
-					"UnitsPerSpawn"			"2"
-					"SpawnInterval"			"8"
+					"TotalUnitsToSpawn"		"3"
+					"UnitsPerSpawn"			"1"
+					"SpawnInterval"			"12"
 				}
 			}
 			"2"
@@ -184,7 +218,7 @@
 				"UnitBoss_5"
 				{
 					"NPCName"				"npc_dota_boss4"
-					"TotalUnitsToSpawn"		"1"
+					"TotalUnitsToSpawn"		"2"
 					"UnitsPerSpawn"			"1"
 					"SpawnInterval"			"12"
 				}

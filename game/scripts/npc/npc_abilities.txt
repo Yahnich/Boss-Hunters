@@ -25569,9 +25569,10 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"				"1"
+		"RequiredLevel"					"6"
 		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
-		"HasScepterUpgrade"			"1"
+		"HasScepterUpgrade"				"1"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -25580,7 +25581,7 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"12.0 11.0 10.0 9.0 8.0 7.0 7.0"
+		"AbilityCooldown"				"12.0 11.0 10.0 9.0 8.0 7.0 6.0"
 		"AbilityDuration"				"0.6875 0.6875 0.6875 0.6875"
 
 
@@ -25606,7 +25607,7 @@
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"shock_damage"				"400 800 1800 3500 6000 14000 28000"
+				"shock_damage"				"900 1800 3500 6000 14000 28000 56000"
 			}
 			"04"
 			{
@@ -25626,7 +25627,7 @@
 			"07"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"scepter_speed"				"1575"
+				"scepter_speed"				"2050"
 			}
 		}
 	}
@@ -25670,7 +25671,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"empower_duration"		"25"
+				"empower_duration"		"40"
 			}
 			"02"
 			{
@@ -25739,7 +25740,7 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"30 25 20 15 10 5 2"
+		"AbilityCooldown"				"20 17.5 15 12.5 10 7.5 5"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -25752,7 +25753,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"skewer_speed"					"950"
+				"skewer_speed"			"750 900 1050 1200 1350 1500 1650"
 			}
 			"02"
 			{
@@ -25762,27 +25763,27 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"slow_pct"				"20 30 40"
+				"slow_pct"				"20 25 30 35 40 45 50"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"skewer_radius"				"125"
+				"skewer_radius"			"125"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"slow_duration"				"2.5"
+				"slow_duration"			"2.5"
 			}			
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"skewer_damage"			"400 1000 2000 4000 8000 12000 24000"
+				"skewer_damage"			"1000 2000 4000 8000 12000 24000 48000"
 			}			
 			"07"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"tree_radius"				"200"
+				"tree_radius"			"200"
 			}
 		}
 	}
@@ -25806,9 +25807,9 @@
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastPoint"				"0.3 0.3 0.3"
-		"AbilityCooldown"				"120 110 100 90"
+		"AbilityCooldown"				"120 115 110 105 100 95 90"
 		"AbilityManaCost"				"200 250 300"
-		"AbilityCastRange"				"410 410 410"
+		"AbilityCastRange"				"450 500 550 600 650 700 750"
 
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
@@ -25821,7 +25822,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"pull_radius"					"450 500 550 600 650 700 750"
+				"pull_radius"			"450 500 550 600 650 700 750"
 			}
 			"02"
 			{

@@ -29,6 +29,10 @@ function PrintAll(t)
 	end
 end
 
+function C_DOTA_BaseNPC:IsSameTeam(unit)
+	return (self:GetTeamNumber() == unit:GetTeamNumber())
+end
+
 function C_DOTA_BaseNPC:HasTalent(talentName)
 	if self:HasModifier("modifier_"..talentName) then
 		return true 

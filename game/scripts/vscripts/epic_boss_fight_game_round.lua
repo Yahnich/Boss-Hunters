@@ -289,7 +289,7 @@ function CHoldoutGameRound:OnNPCSpawned( event )
 		end
 		spawnedUnit:SetDeathXP( 0 )
 		spawnedUnit.unitName = spawnedUnit:GetUnitName()
-		GridNav:DestroyTreesAroundPoint(spawnedUnit:GetAbsOrigin(), spawnedUnit:GetHullRadius() + spawnedUnit:GetCollisionPadding() + 100, true)
+		GridNav:DestroyTreesAroundPoint(spawnedUnit:GetAbsOrigin(), spawnedUnit:GetHullRadius() + spawnedUnit:GetCollisionPadding() + 350, true)
 		FindClearSpaceForUnit(spawnedUnit, spawnedUnit:GetAbsOrigin(), true)
 	end
 end
