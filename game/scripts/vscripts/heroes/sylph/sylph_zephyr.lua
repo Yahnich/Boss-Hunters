@@ -81,11 +81,15 @@ function modifier_sylph_zephyr_passive:GetModifierMoveSpeedBonus_Constant()
 end
 
 function modifier_sylph_zephyr_passive:GetModifierMoveSpeed_Max()
-	return 550 + self.ms * self:GetStackCount()
+	if not self:GetParent():HasModifier("modifier_sylph_jetstream_rush") then
+		return 550 + self.ms * self:GetStackCount()
+	end
 end
 
 function modifier_sylph_zephyr_passive:GetModifierMoveSpeed_Limit()
-	return 550 + self.ms * self:GetStackCount()
+	if not self:GetParent():HasModifier("modifier_sylph_jetstream_rush") then
+		return 550 + self.ms * self:GetStackCount()
+	end
 end
 
 

@@ -396,7 +396,7 @@ function CHoldoutGameMode:InitGameMode()
 	CustomGameEventManager:RegisterListener('Buy_Perk', Dynamic_Wrap( CHoldoutGameMode, 'Buy_Perk_check'))
 	CustomGameEventManager:RegisterListener('Asura_Core', Dynamic_Wrap( CHoldoutGameMode, 'Buy_Asura_Core_shop'))
 	CustomGameEventManager:RegisterListener('Tell_Core', Dynamic_Wrap( CHoldoutGameMode, 'Asura_Core_Left'))
-	CustomGameEventManager:RegisterListener('hasSelectedAbility', Dynamic_Wrap( CHoldoutGameMode, 'AbilitySelectionQuery'))
+	CustomGameEventManager:RegisterListener('randomAbilities', Dynamic_Wrap( CHoldoutGameMode, 'RandomAbilitiesFromList'))
 	CustomGameEventManager:RegisterListener('initializeAbilities', Dynamic_Wrap( CHoldoutGameMode, 'InitializeQueriedAbilities'))
 	
 	CustomGameEventManager:RegisterListener('preGameVoting', Dynamic_Wrap( CHoldoutGameMode, 'PreGameVotingHandler'))
@@ -1254,36 +1254,34 @@ function CHoldoutGameMode:Asura_Core_Left(event)
 	end
 end
 
-function CHoldoutGameMode:AbilitySelectionQuery(event)
-	local pID = event.pID
-	local player = PlayerResource:GetPlayer(pID)
-	local hero = player:GetAssignedHero() 
-	local abilityName = event.ability
-
-	hero.selectedSkills[abilityName] = (not hero.selectedSkills[abilityName])
-	local trueCount = 0
+function CHoldoutGameMode:RandomAbilitiesFromList(event)
+	local hero = EntIndexToHScript(event.heroID)
+	local orderedList = {}
 	for ability, state in pairs(hero.selectedSkills) do
-		if state then trueCount = trueCount + 1 end
+		table.insert(orderedList, ability)
 	end
-	if trueCount > 4 then
-		hero.selectedSkills[abilityName] = false
+	while #orderedList ~= 4 do
+		table.remove(orderedList, RandomInt(1, #orderedList))
 	end
-	for ability, state in pairs(hero.selectedSkills) do
-		CustomGameEventManager:Send_ServerToPlayer(player, "sendAbilityQuery"..ability, {confirmed = hero.selectedSkills[ability]})
-	end
+	event = {pID = hero:GetPlayerID(), abList = orderedList}
+	GameRules.holdOut:InitializeQueriedAbilities(event)
 end
-	
 
 function CHoldoutGameMode:InitializeQueriedAbilities(event)
 	local pID = event.pID
+	local abilityList = event.abList
+	for k,v in pairs(abilityList) do print(k,v) end
 	local player = PlayerResource:GetPlayer(pID)
 	local hero = player:GetAssignedHero() 
 	if not hero then return nil end
 	local trueCount = 0
-	for ability, state in pairs(hero.selectedSkills) do
-		if state then trueCount = trueCount + 1 end
+	local orderedList = {}
+	for index, ability in pairs(abilityList) do
+		orderedList[tonumber(index)] = ability
+		trueCount = trueCount + 1
 	end
 	if trueCount == 4 then
+		hero.abilityIndexingList = orderedList
 		LoadHeroSkills(hero)
 		hero.HasBeenInitialized = true
 		CustomGameEventManager:Send_ServerToPlayer(player, "finishedAbilityQuery", {})
@@ -1291,10 +1289,11 @@ function CHoldoutGameMode:InitializeQueriedAbilities(event)
 end
 
 function LoadHeroSkills(hero)
-	for ability, state in pairs(hero.selectedSkills) do
+	for i = 0, #hero.abilityIndexingList do
 		local index = FindNextAbilityIndex(hero)
+		local ability = hero.abilityIndexingList[i]
 		local talentIndex = FindNextTalentIndex(hero)
-		if index and state and talentIndex then
+		if ability and index and talentIndex then
 			hero:RemoveAbility(hero:GetAbilityByIndex(index):GetName())
 			hero:AddAbilityPrecache(ability):SetAbilityIndex(index)
 			
@@ -1302,25 +1301,6 @@ function LoadHeroSkills(hero)
 			hero:AddAbility(ability.."_talent_1"):SetAbilityIndex(talentIndex)
 		end
 	end
-end
-
-function RandomAbilitiesFromList(hero)
-	local trueCount = 0
-	local count = 0
-	for ability, state in pairs(hero.selectedSkills) do
-		count = count + 1
-	end
-	for ability, state in pairs(hero.selectedSkills) do
-		if state then
-			trueCount = trueCount + 1
-		elseif RollPercentage( math.ceil(100 / math.max(1, (count - 4 + trueCount)) ) ) then
-			trueCount = trueCount + 1
-			print("we did it reddit")
-			hero.selectedSkills[ability] = true
-		end
-		count = count - 1
-	end
-	print(trueCount)
 end
 
 function FindNextAbilityIndex(hero)
@@ -2176,10 +2156,7 @@ function CHoldoutGameMode:OnThink()
 					for _, hero in ipairs(heroes) do
 						-- GameRules.relicPool:DropTankRelic(hero)
 						if not hero.HasBeenInitialized and hero.selectedSkills then
-							RandomAbilitiesFromList(hero)
-							LoadHeroSkills(hero)
-							hero.HasBeenInitialized = true
-							CustomGameEventManager:Send_ServerToPlayer(hero:GetPlayerOwner(), "finishedAbilityQuery", {})
+							GameRules.holdOut:RandomAbilitiesFromList({heroID = hero:entindex()})
 						end
 					end
 				end

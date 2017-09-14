@@ -11,8 +11,8 @@ function sylph_rapid_fire:OnSpellStart()
 	local spread = self:GetTalentSpecialValueFor("spread_rad")
 	local minspread = self:GetTalentSpecialValueFor("min_spread")
 	local spreadDiff = (spread - minspread) * (self.caster:GetIdealSpeed()-self.caster:GetBaseMoveSpeed())/580
-	
-	spread = spread - spreadDiff
+	print(spreadDiff)
+	spread = math.max(minspread, spread - spreadDiff)
 	
 	self.arrows = self.arrows or 0
 	self.arrows = self.arrows + arrowAmount
@@ -25,7 +25,7 @@ function sylph_rapid_fire:OnSpellStart()
 		EmitSoundOn( "Ability.Powershot", self.caster)
 		for i = 1, firesPerVolley do
 			self:ShootArrow( Vector( dirX, dirY, 0 ) )
-			if self.arrows < 1 then
+			if not self.arrows or self.arrows < 1 then
 				self.arrows = nil
 				return nil
 			end
