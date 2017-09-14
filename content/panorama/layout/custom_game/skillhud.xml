@@ -9,9 +9,9 @@
 	
 	<snippets>
 		<snippet name="Ability">
-			<Button class="AbilityIcon" hittestchildren="true">
-				<DOTAAbilityImage class="AbilityStyle" abilityname="xxxxabilityNamexxx" />
-			</Button>
+			<Panel class="AbilityIcon" draggable="true">
+				<DOTAAbilityImage class="AbilityStyle" abilityname="xxxxabilityNamexxx" hittest="false" />
+			</Panel>
         </snippet>
 	</snippets>
 	<Panel class="SkillSelectorRoot" hittest="false">
@@ -21,9 +21,21 @@
 			</Panel>
 			<Panel id="SkillSelectorContainer" hittest="false">
 			</Panel>
-			<Button class="ConfirmButton" hittestchildren="true" onactivate="SendQueriedAbilities()">
-				<Label class="ConfirmText" text="Confirm"/>
-			</Button>
+			<Panel id="SkillPositionContainer" hittest="false">
+				<DOTAAbilityImage class="AbilityIcon" id="AbilitySlotQ" abilityname="no_ability" draggable="true"/>
+				<DOTAAbilityImage class="AbilityIcon" id="AbilitySlotW" abilityname="no_ability" draggable="true"/>
+				<DOTAAbilityImage class="AbilityIcon" id="AbilitySlotE" abilityname="no_ability" draggable="true"/>
+				<DOTAAbilityImage class="AbilityIcon" id="AbilitySlotR" abilityname="no_ability" draggable="true"/>
+			</Panel>
+			<Panel id="SkillSelectorButtonContainer" hittest="false">
+				<Button class="ConfirmButton" hittestchildren="true" onactivate="SendQueriedAbilities()">
+					<Label class="ConfirmText" text="Confirm"/>
+				</Button>
+				<Button class="RandomButton" hittestchildren="true" onactivate="RandomAbilities()">
+					<Label class="RandomText" text="Random"/>
+				</Button>
+			</Panel>
+			
 		</Panel>
 	</Panel>
 </root>

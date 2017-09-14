@@ -1,7 +1,7 @@
 .SkillSelectorRoot
 {
 	width: 60%;
-	height: 40%;
+	height: 50%;
 	vertical-align: center;
 	horizontal-align: center;	
 	padding-top: 3px;
@@ -33,6 +33,24 @@
 	flow-children: right-wrap;
 }
 
+#SkillPositionContainer
+{
+	horizontal-align: middle;
+	flow-children: right-wrap;
+	border: 2px solid #111111FF;
+	border-radius: 5px 5px;
+	padding: 5px;
+	margin-top: 45px;
+}
+
+#SkillSelectorButtonContainer
+{
+	vertical-align: bottom;
+	horizontal-align: middle;
+	flow-children: right;
+	padding: 5px;
+}
+
 .ConfirmButton
 {
 	vertical-align: bottom;
@@ -44,6 +62,16 @@
 	margin-bottom: 20px;
 }
 
+.RandomButton
+{
+	vertical-align: bottom;
+	horizontal-align: center;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #ee5959 ), color-stop( .1, #cc0404), color-stop( .9, #cc0404), to( #ee5959 ) );
+	border: 2px solid #b40000;
+	border-radius: 5px 5px;
+	padding: 6px;
+	margin-bottom: 20px;
+}
 .SkillSelectorHeader
 {
 	color: #ffd700;
@@ -75,6 +103,23 @@
 	padding-right: 10px;
 	font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
 }
+
+.RandomText
+{
+	color: #FFFFFF;
+	font-weight: thin;
+	font-size: 24px;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	text-align: center;
+	horizontal-align: center;
+	text-shadow: 1px 1px 2px 2 #000000;
+	padding: 6px;
+	padding-left: 10px;
+	padding-right: 10px;
+	font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
+}
+
 
 .Hidden
 {
