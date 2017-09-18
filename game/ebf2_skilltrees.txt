@@ -128,3 +128,75 @@ Level 4b: Dagger stun for 1 second upon hit, slow is applied afterwards -- 3 SP
 Lv 35:
 Level 5a (needs 3a): Powerless: Daggers silence, mute and break the target -- 5 SP
 Level 5b (needs 3b): Thanatophobia: Units hit are slowed in attackspeed by 80% of their attackspeed -- 5SP
+
+
+
+Nature's Call
+
+Path 1: Behemoth
+AOE Stomps that slow movespeed and attackspeed
+
+Rank 0 - Lv1 1 (base)
++ radius
+
+Rank 1 - Lv 5 - 1 SP
++ slow
+
+Rank 2 - Lv 10 - 1 SP
++ pulses
+
+Rank 3 - Lv 15 - 1 SP
++ less channel time
+
+Rank 4 - Lv 25 - 3 SP
+- Stomps now stun, debuff duration reduced by 80% (from like 2s to 0.4s) (still slows for 2s)
+- Stomp grants armor per pulse
+
+Rank 5 - Lv 35 - 5 SP
+- Stomps now root enemies instead of slow
+- Stomps now make the ground around them Flattened Ground, grants a movement speed buff to allies
+
+Path 2: Warlock
+AOE team heal and enemy aoe dot
+
+Rank 0 - Lv1 1 (base)
++ aoe radius
+
+Rank 1 - Lv 5 - 1 SP
++ duration
+
+Rank 2 - Lv 10 - 1 SP
++ aoe radius
+
+Rank 3 - Lv 15 - 1 SP
++ duration
+
+Rank 4 - Lv 25 - 3 SP
+- AOE is now point target instead of no target
+- No longer damages but heal is doubled
+
+Rank 5 - Lv 35 - 5 SP
+- radius and heal/damage grows over time
+- Heal gives an ms buff and debuff gives slow
+
+Path 3: Predator
+Leap and crit with high bleed DOT
+
+Rank 0 - Lv1 1 (base)
+
+Rank 1 - Lv 5 - 1 SP
++ Leap range
+
+Rank 2 - Lv 10 - 1 SP
++ Leap range
+
+Rank 3 - Lv 15 - 1 SP
++ Crit
+
+Rank 4 - Lv 25 - 3 SP
+- Slow added to DOT debuff
+- Leap is AOE on land
+
+Rank 5 - Lv 35 - 5 SP
+- Attackspeed buff after leap
+- Leap refreshes on kill

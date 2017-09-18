@@ -101,3 +101,7 @@ end
 function C_DOTA_Modifier_Lua:GetSpecialValueFor(specVal)
 	return self:GetAbility():GetSpecialValueFor(specVal)
 end
+
+function C_DOTA_Modifier_Lua:AddIndependentStack()
+	self:IncrementStackCount()
+end

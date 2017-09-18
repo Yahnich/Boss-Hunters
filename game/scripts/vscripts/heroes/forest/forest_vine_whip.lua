@@ -1,36 +1,57 @@
-sylph_cyclone = sylph_cyclone or class({})
+forest_vine_whip = class({})
 
-function sylph_cyclone:OnSpellStart()
-	self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_sylph_cyclone_buff", {duration = self:GetSpecialValueFor("duration")})
-end
+function forest_vine_whip:OnSpellStart()
+	local caster = self:GetCaster()
+	local ability = self
+	local vDir = CalculateDirection( self:GetCursorPosition(), caster ) * Vector(1,1,0)
+	
+	local distance = self:GetTrueCastRange()
+	local speed = self:GetSpecialValueFor("speed") * FrameTime()
+	local width = self:GetSpecialValueFor("width")
+	local damage = self:GetSpecialValueFor("damage")
+	local stunDuration = self:GetSpecialValueFor("stun_duration")
 
-LinkLuaModifier( "modifier_sylph_cyclone_buff", "heroes/sylph/sylph_cyclone.lua", LUA_MODIFIER_MOTION_HORIZONTAL )
-modifier_sylph_cyclone_buff = modifier_sylph_cyclone_buff or class({})
-
-function modifier_sylph_cyclone_buff:OnCreated()
-	EmitSoundOn("Ability.Windrun", self:GetParent())
-	if IsServer() then self:StartIntervalThink(0) end
-	self.radius = self:GetAbility():GetSpecialValueFor("effect_radius")
-	self.damage_mult = self:GetAbility():GetSpecialValueFor("damage_mult")
-	self.base_damage = self:GetAbility():GetSpecialValueFor("base_damage")
-end
-
-function modifier_sylph_cyclone_buff:OnIntervalThink()
-	if RollPercentage(1) then
-		EmitSoundOn("Ability.Windrun", self:GetParent())
-	end
-	local casterPos = self:GetCaster():GetAbsOrigin()
-	local units = FindUnitsInRadius(self:GetCaster():GetTeam(), casterPos, nil, self.radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false)
-	for _,unit in pairs(units) do
-		local direction = (unit:GetAbsOrigin() - casterPos):Normalized()
-		local knockback = self:GetCaster():GetIdealSpeed() * 0.0333 * 0.6
-		local damage = knockback * self.damage_mult + self.base_damage * 0.0333
-		ApplyDamage( {victim = unit, attacker = self:GetCaster(), damage = damage, damage_type = DAMAGE_TYPE_MAGICAL, ability = self} )
-		unit:SetAbsOrigin(unit:GetAbsOrigin() + direction * knockback)
-	end
-	ResolveNPCPositions(casterPos, self.radius + 500)
-end
-
-function modifier_sylph_cyclone_buff:GetEffectName()
-	return "particles/heroes/sylph/sylph_cyclone.vpcf"
+	local projectilePos = caster:GetAbsOrigin() + Vector(0,0,100)
+	
+	EmitSoundOn("Hero_Enchantress.EnchantCast", caster)
+	
+	local projectile = ParticleManager:CreateParticle("particles/heroes/forest/forest_vine_whip_projectile.vpcf", PATTACH_CUSTOMORIGIN, caster)
+	ParticleManager:SetParticleControl(projectile, 0, projectilePos)
+	ParticleManager:SetParticleControlEnt(projectile, 3, caster, PATTACH_POINT_FOLLOW, "attach_attack1", caster:GetAbsOrigin(), true)
+	
+	local distTravelled = 0
+	hitTargets = {}
+	Timers:CreateTimer(function()
+		projectilePos = projectilePos + vDir * speed
+		ParticleManager:SetParticleControl(projectile, 0, projectilePos)
+		distTravelled = distTravelled + speed
+		
+		local enemies = caster:FindEnemyUnitsInRadius(projectilePos, width)
+		for _, enemy in ipairs(enemies) do
+			if not hitTargets[enemy:entindex()] then
+				ability:DealDamage(caster, enemy, damage)
+				enemy:AddNewModifier(caster, ability, "modifier_stunned_generic", {duration = stunDuration})
+				hitTargets[enemy:entindex()] = true
+				EmitSoundOn("Hero_Enchantress.Untouchable", caster)
+			end
+		end
+		if caster:HasTalent("forest_vine_whip_talent_1") then
+			local allies = caster:FindFriendlyUnitsInRadius(projectilePos, width)
+			for _, ally in ipairs(allies) do
+				if not hitTargets[ally:entindex()] then
+					ally:HealEvent(damage, ability, caster)
+					ally:Dispel(caster, true)
+					hitTargets[ally:entindex()] = true
+					EmitSoundOn("Hero_Enchantress.Untouchable", caster)
+				end
+			end
+		end
+		
+		if distTravelled < distance then
+			return FrameTime()
+		else
+			ParticleManager:DestroyParticle(projectile, true)
+			ParticleManager:ReleaseParticleIndex(projectile)
+		end
+	end)
 end

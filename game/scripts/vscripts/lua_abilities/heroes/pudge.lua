@@ -248,7 +248,7 @@ if IsServer() then
 		local hook_damage_scepter = self:GetTalentSpecialValueFor("damage_scepter")
 		local enemy_disable_linger = self:GetTalentSpecialValueFor("enemy_disable_linger")
 		local caster_loc = caster:GetAbsOrigin()
-		local start_loc = caster_loc + (self:GetCursorPosition() - caster_loc):Normalized() * hook_width
+		local start_loc = caster_loc + ((self:GetCursorPosition() - caster_loc) * Vector(1,1,0)):Normalized() * hook_width
 
 		-- Prevent Pudge from using tps while the hook is out
 		local flFollowthroughDuration = ( hook_range / hook_speed * 0.75 )
@@ -287,7 +287,7 @@ if IsServer() then
 		hook_speed = hook_speed * tick_rate
 
 		local travel_distance = (hook_loc - caster_loc):Length2D()
-		local hook_step = (self:GetCursorPosition() - caster_loc):Normalized() * hook_speed
+		local hook_step = ((self:GetCursorPosition() - caster_loc) * Vector(1,1,0)):Normalized() * hook_speed
 
 		local target_hit = false
 		local target

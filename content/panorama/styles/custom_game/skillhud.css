@@ -8,6 +8,12 @@
 	padding-bottom: 50px;
 }
 
+ .AspectRatio4x3 .SkillSelectorRoot
+{
+	width: 85%;
+	height: 50%;
+}
+
 #SkillSelectorMain
 {
 	width: 100%;

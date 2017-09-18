@@ -86,6 +86,7 @@ function Precache( context )
 	PrecacheResource("particle", "particles/econ/generic/generic_aoe_shockwave_1/generic_aoe_shockwave_1.vpcf", context)
 	PrecacheResource("particle", "particles/econ/generic/generic_buff_1/generic_buff_1.vpcf", context)
 	PrecacheResource("particle", "particles/generic_gameplay/generic_stunned.vpcf", context)
+	PrecacheResource("particle", "particles/generic_gameplay/generic_sleep.vpcf", context)
 	PrecacheResource("particle", "particles/generic_linear_indicator.vpcf", context)
 	
 	-- fix these fucking particles
@@ -681,7 +682,7 @@ function CHoldoutGameMode:FilterModifiers( filterTable )
     local caster = EntIndexToHScript( caster_index )
 	local ability = EntIndexToHScript( ability_index )
 	local name = filterTable["name_const"]
-	
+
 	if parent == caster or not caster or not ability or duration == -1 then return true end
 	
 	local parentBuffIncrease = 1
@@ -772,12 +773,12 @@ function CHoldoutGameMode:FilterDamage( filterTable )
     end
 	
 	local damage = filterTable["damage"] --Post reduction
-
 	local inflictor = filterTable["entindex_inflictor_const"]
     local victim = EntIndexToHScript( victim_index )
     local attacker = EntIndexToHScript( attacker_index )
 	local original_attacker = attacker -- make a copy for threat
     local damagetype = filterTable["damagetype_const"]
+
 	if damage <= 0 then return true end
 	
 	-- VVVVVVVVVVVVVV REMOVE THIS SHIT IN THE FUTURE VVVVVVVVVVV --
@@ -2039,7 +2040,7 @@ function CHoldoutGameMode:CheckHP()
 			local currOrigin = unit:GetOrigin()
 			FindClearSpaceForUnit(unit, Vector(currOrigin.x, currOrigin.y, 0), true)
 		end
-		if unit:GetHealth() <= 0 and not unit:IsRealHero() and not dontdelete[unit:GetClassname()] and not unit:IsNull() then
+		if unit:GetHealth() <= 0 and not unit:IsRealHero() and not dontdelete[unit:GetClassname()] and not unit:IsNull() and unit:IsAlive() then
 			unit:SetHealth(2)
 			unit:ForceKill(true)
 			Timers:CreateTimer(10,function()
@@ -2056,8 +2057,10 @@ function CHoldoutGameMode:CheckHP()
 		if unit:GetHealth() <= 0 and unit:IsAlive() and not unit:IsFakeHero() then
 			unit:SetHealth(2)
 			unit:ForceKill(true)
+			print("or is it this")
 		elseif unit:GetHealth() > 0 and not unit:IsAlive() and not unit:IsFakeHero() then
 			unit:ForceKill(true)
+			print("this maybe")
 		end
 	end
 end
@@ -2144,7 +2147,7 @@ function CHoldoutGameMode:OnThink()
 		
 		local heroes = HeroList:GetAllHeroes()
 		for _, hero in ipairs(heroes) do
-			if not hero:IsFakeHero() and GameRules.UnitKV[hero:GetUnitName()]["Abilities"] and not hero.hasSkillsSelected then
+			if hero and hero:GetPlayerOwner() and not hero:IsFakeHero() and GameRules.UnitKV[hero:GetUnitName()]["Abilities"] and not hero.hasSkillsSelected then
 				CustomGameEventManager:Send_ServerToPlayer(hero:GetPlayerOwner(), "checkNewHero", {})
 			end
 		end
@@ -2386,6 +2389,7 @@ function CHoldoutGameMode:_CheckForDefeat()
 				for _,unit in pairs ( FindAllEntitiesByClassname("npc_dota_creature")) do
 					if unit:GetTeamNumber() == DOTA_TEAM_BADGUYS then
 						unit:ForceKill(true)
+						print("what is this")
 					end
 				end
 				for _,unit in pairs ( HeroList:GetAllHeroes()) do

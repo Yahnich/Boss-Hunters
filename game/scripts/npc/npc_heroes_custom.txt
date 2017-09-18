@@ -394,8 +394,13 @@
 	"npc_dota_hero_treant" // Forest
 	{
 		"override_hero"				"npc_dota_hero_treant"
-		"Ability1"					"treant_happy_little_tree"					// Ability 4
-		"Ability3"					"treant_living_armor_ebf"					// Ability 4
+		
+		"Ability1"				"class_empty_1"
+		"Ability2"				"class_empty_2"
+		"Ability3"				"class_empty_3"
+		"Ability4"				"forest_iron_bark"
+		"Ability5"				"class_filler"
+		"Ability6"				"class_empty_4"
 		
 		"Items"
 		{
@@ -427,14 +432,14 @@
 		
 		"Abilities"
 		{
-			"forest_anchor_howl"					"true"
-			"forest_challenge"					"true"
-			"forest_glorious_shield"				"true"
-			"forest_forests_spirit"				"true"
-			"forest_punish"						"true"
-			"forest_rallying_cry"					"true"
-			"forest_shield_bash"					"true"
-			"forest_stone_fortress"				"true"
+			"forest_growing_armor"			"true"
+			"forest_parasitic_growth"		"true"
+			"forest_natures_grove"			"true"
+			"forest_overgrowth"				"true"
+			"forest_vine_whip"				"true"
+			"forest_ancient_tether"			"true"
+			"forest_envelop"				"true"
+			"forest_become_one"				"true"
 		}
 	}
 	//=================================================================================================================

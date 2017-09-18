@@ -55,6 +55,12 @@
 			m_nFieldOutput = 7
 			m_flOutput = 0.0
 		},
+		{
+			_class = "C_OP_RemapCPtoScalar"
+			m_nCPInput = 1
+			m_flInputMax = 9999.0
+			m_flOutputMax = 9999.0
+		},
 	]
 	m_Initializers = 
 	[
@@ -77,8 +83,8 @@
 		},
 		{
 			_class = "C_INIT_RandomRadius"
-			m_flRadiusMin = 236.672
-			m_flRadiusMax = 267.181
+			m_flRadiusMin = 300.0
+			m_flRadiusMax = 300.0
 		},
 		{
 			_class = "C_INIT_RandomSequence"
@@ -90,7 +96,7 @@
 		},
 		{
 			_class = "C_INIT_RingWave"
-			m_flInitialRadius = 300.0
+			m_flInitialRadius = 900.0
 		},
 	]
 	m_Emitters = 

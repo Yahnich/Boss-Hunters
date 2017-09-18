@@ -20,6 +20,14 @@ function HasValInTable(checkTable, val)
 	return false
 end
 
+function ActualRandomVector(maxLength, minLength)
+	local vDir = RandomVector(maxLength):Normalized()
+	
+	local flMinLength = minLength or 1
+	local flLength = RandomInt(flMinLength, maxLength)
+	return vDir * flLength
+end
+
 
 function toboolean(thing)
 	if type(thing) == "number" then
@@ -1360,6 +1368,12 @@ function CDOTA_Modifier_Lua:StartMotionController()
 	else
 	end
 end
+
+function CDOTA_Modifier_Lua:AddIndependentStack()
+	self:IncrementStackCount()
+	Timers:CreateTimer(self:GetDuration(), function() if not self:IsNull() then self:DecrementStackCount() end end)
+end
+
 
 function CDOTA_Modifier_Lua:StopMotionController()
 	Timers:RemoveTimers(self.controlledMotionTimer)

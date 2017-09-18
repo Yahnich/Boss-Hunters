@@ -6436,7 +6436,13 @@
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"5"
 		
-		"AbilityCooldown"				"8"
+		"AbilityCooldown"				"12"
+		
+		"precache"
+		{
+			"particle"					"particles/heroes/sylph/sylph_aerodynamic_poof.vpcf"
+			"particle"					"particles/heroes/sylph/sylph_aerodynamic.vpcf"
+		}
 		
 	    "AbilitySpecial"
 	    {
@@ -10632,266 +10638,6 @@
 					}
 				}
 			}			
-		}
-	}
-	"treant_living_armor_ebf"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_datadriven"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_ALL | DOTA_UNIT_TARGET_BUILDING"					
-		"SpellImmunityType"				"SPELL_IMMUNITY_ALLIES_YES"
-		"AbilityTextureName"			"treant_living_armor"
-		
-		"AbilityCastRange"				"0"
-		"AbilityCastPoint"				"0.4"
-		"FightRecapLevel"				"1"
-		"MaxLevel"						"7"
-		"LevelsBetweenUpgrades"			"6"
-		"RequiredLevel"					"5"
-		
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"12.0"
-		"AbilityThreat"					"8"
-		
-		"precache"
-		{
-			"particle"	"particles/units/heroes/hero_treant/treant_livingarmor.vpcf"
-		}
-
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"50"
-
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"damage_count"		"10"
-				"LinkedSpecialBonus"		"special_bonus_unique_treant"
-			}
-			"02"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"heal_increase"		"100"
-			}
-			"03"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"bonus_armor"		"20 40 60 90 125 200 300"
-			}
-			"04"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"damage_block"		"200 450 750 1500 2500 5000 10000"
-			}
-			"05"
-			{
-				"var_type"			"FIELD_FLOAT"
-				"duration"			"30"
-			}
-		}
-		"OnSpellStart"
-		{
-			"RunScript"
-			{
-				"ScriptFile"	"lua_abilities/heroes/treant_protector.lua"
-				"Function"		"ApplyLivingArmor"
-			}
-		}
-		"Modifiers"
-		{
-			"modifier_living_armor_ebf_stacks"
-			{
-				"IsPurgable"	"1"
-			}
-			"modifier_living_armor_ebf"
-			{
-				"IsHidden"	"1"
-				"IsPurgable"	"1"
-				"OnCreated"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"lua_abilities/heroes/treant_protector.lua"
-						"Function"		"AddParticle"
-					}
-				}
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"%bonus_armor"
-				}
-				"OnTakeDamage"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"lua_abilities/heroes/treant_protector.lua"
-						"Function"		"HandleLivingArmor"
-						"damage"		"%attack_damage"
-					}
-				}
-				"OnHealReceived"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"lua_abilities/heroes/treant_protector.lua"
-						"Function"		"DoubleHeal"
-						"source"		"heal"
-					}					
-				}
-				"OnHealthGained"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"lua_abilities/heroes/treant_protector.lua"
-						"Function"		"DoubleHeal"
-						"source"		"health"
-					}				
-				}
-				"OnDestroy"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"lua_abilities/heroes/treant_protector.lua"
-						"Function"		"RemoveParticle"
-					}	
-				}
-			}
-		}
-	}
-	"treant_happy_little_tree"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_datadriven"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
-		"FightRecapLevel"				"1"
-		"AbilityTextureName"			"custom/treant_happy_little_tree"
-		"MaxLevel"						"7"
-		"RequiredLevel"					"5"
-		"LevelsBetweenUpgrades"			"6"
-
-		"precache"
-		{
-			"particle"	"particles/items_fx/ironwood_tree.vpcf"
-		}
-		// Stats
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"300"
-		"AbilityCastPoint"				"0.2"
-		"AbilityCooldown"				"20"
-		"AbilityDuration"				"20"
-		"AbilityThreat"					"6"
-		"AbilityManaCost"				"120"
-		
-		"IsAetherAmplified"				"0"
-		"NoThreatFlag"				"1"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"aura_radius"			"450 500 550 600 650 700 750"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"leech"					"50 100 250 750 2500 7500 20000"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"leech_pct"				"-1"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"heal"					"50 100 250 750 2500 7500 20000"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"heal_pct"				"1.6"
-			}
-		}
-		
-		"OnSpellStart"
-		{
-			"RunScript"
-			{
-				"ScriptFile"	"lua_abilities/heroes/treant_protector.lua"
-				"Function"		"CreateTree"
-			}
-		}
-		"Modifiers"
-		{
-			"modifier_happy_little_tree_aura_enemy"
-			{
-				"EffectName" "particles/items_fx/ironwood_tree.vpcf"
-				"EffectAttachType" "follow_overhead"
-				
-				"IsHidden"	"1"
-				"Aura" "happy_tree_enemy"
-				"Aura_Radius" "%aura_radius"
-				"Aura_Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
-				"Aura_Types" "DOTA_UNIT_TARGET_ALL"
-				
-				"States"
-				{
-					"MODIFIER_STATE_NO_HEALTH_BAR"	"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_UNSELECTABLE"	"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_NOT_ON_MINIMAP"	"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_MAGIC_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_ATTACK_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_NO_UNIT_COLLISION"	"MODIFIER_STATE_VALUE_ENABLED"
-				}
-				"ThinkInterval"	"0.5"
-				"OnIntervalThink"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"lua_abilities/heroes/treant_protector.lua"
-						"Function"		"TreeCheck"
-					}
-				}
-			}
-			"modifier_happy_little_tree_aura_ally"
-			{
-				"IsHidden"	"1"
-				"Aura" "happy_tree_ally"
-				"Aura_Radius" "%aura_radius"
-				"Aura_Teams" "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-				"Aura_Types" "DOTA_UNIT_TARGET_ALL"
-			}
-			"happy_tree_enemy"
-			{
-				"IsDebuff"	"1"
-				"ThinkInterval"	"0.1"
-				"OnIntervalThink"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"lua_abilities/heroes/treant_protector.lua"
-						"Function"		"TreeDamage"
-					}
-				}
-			}
-			"happy_tree_ally"
-			{
-				"IsBuff"	"1"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"		"%heal"
-					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" 	"%heal_pct"
-				}
-			}
 		}
 	}
 	///////////////////
@@ -22607,8 +22353,8 @@
 	    {
 	        "01"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"heal_share"				"35"
+				"var_type"					"FIELD_FLOAT"
+				"armor_per_level"			"1"
 			}
 			"02"
 			{
@@ -22618,26 +22364,30 @@
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"scepter_bonus_heal"		"10"
+				"radius"					"900"
 			}
 			"04"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"scepter_duration"			"7.5"
+				"var_type"					"FIELD_INTEGER"
+				"scepter_bonus_stacks"		"1"
 			}
-			"04"
+			"05"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"talent_overheal_barrier"	"25"
+				"talent_mr_per_level"		"0.2"
 			}
-			
+			"06"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"talent_dr_per_level"		"0.2"
+			}
 	    }
 	}
-	"forest_growing_armour"
+	"forest_growing_armor"
 	{
 	    "BaseClass"                     "ability_lua"
-	    "ScriptFile"                    "heroes/forest/forest_growing_armour.lua"
-		"AbilityTextureName"			"custom/forest_growing_armour"
+	    "ScriptFile"                    "heroes/forest/forest_growing_armor.lua"
+		"AbilityTextureName"			"custom/forest_growing_armor"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
@@ -22645,63 +22395,54 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
 	    "RequiredLevel"  				"7"
 		"MaxLevel"						"7"
-		"LevelsBetweenUpgrades"			"5"
+		"LevelsBetweenUpgrades"			"6"
 		
 		"AbilityCastRange"				"900"
-		"AbilityCooldown"				"15 14 13 12 11 10 9"
+		"AbilityCooldown"				"20"
 		"AbilityManaCost"				"200 300 400 800 1200 1600 2000"
-		
-		"precache"
-		{
-			"particle"					"particles/heroes/forest/forest_growing_armour.vpcf"
-		}
 		
 	    "AbilitySpecial"
 	    {
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"bounces"				"4 5 6 7 8 9 10"
+				"var_type"			"FIELD_INTEGER"
+				"damage_block"		"300 450 600 1250 2500 5000 7500"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"bounce_tick"			"0.2"
+				"var_type"			"FIELD_INTEGER"
+				"damage_count"		"10"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"search_radius"			"750"
+				"var_type"			"FIELD_FLOAT"
+				"duration"			"30"
 			}
 			"04"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"healdamage"			"1000 2000 4000 8000 16000 32000 64000"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"damage_radius"			"300"
-			}
-	    }
+				"var_type"			"FIELD_INTEGER"
+				"regen_bonus"		"125 250 500 1000 2000 4000 8000"
+			}	
+		}
+
+		"precache"
+		{
+			"particle"  	"particles/units/heroes/hero_treant/treant_livingarmor.vpcf"
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_treant.vsndevts"
+		}
 	}
 	"forest_parasitic_growth"
 	{
 	    "BaseClass"                     "ability_lua"
 	    "ScriptFile"                    "heroes/forest/forest_parasitic_growth.lua"
 	    "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ALLIES_YES"
 		"AbilityTextureName"			"custom/forest_parasitic_growth"
 	    "RequiredLevel"  				"7"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"5"
-		
-		"precache"
-		{
-			"particle"					"particles/heroes/forest/forest_parasitic_growth.vpcf"
-		}
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -22717,36 +22458,63 @@
 		"AbilityManaCost"				"100"
 
 		
-	    "AbilitySpecial"
-	    {
-	        "01"
+	   "AbilitySpecial"
+		{
+			"01"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"5"
+				"var_type"			"FIELD_FLOAT"
+				"duration"			"4.5"
 			}
-	    }
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"healdamage"		"500 1000 2500 5000 10000 25000 50000"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"move_speed"		"-16 -20 -24 -28"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"pulse_interval"	"0.75"
+			}
+			"05"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"radius"			"500"
+			}	
+		}
+
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_treant/treant_leech_seed.vpcf"
+			"particle"  "particles/units/heroes/hero_treant/treant_leech_seed_projectile.vpcf"
+
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_treant.vsndevts"
+		}
 	}
-	"forest_mist_barrier"
+	"forest_natures_grove"
 	{
 	    "BaseClass"                     "ability_lua"
-	    "ScriptFile"                    "heroes/forest/forest_mist_barrier.lua"
-	    "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+	    "ScriptFile"                    "heroes/forest/forest_natures_grove.lua"
+	    "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityTextureName"			"custom/forest_mist_barrier"
+		"AbilityTextureName"			"custom/forest_natures_grove"
 	    "RequiredLevel"  				"7"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"5"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"200"
+		"AbilityCastRange"				"600"
 		"AbilityCastPoint"				"0.3 0.3 0.3 0.3"
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"16.0 15.0 14.0 13.0 12.0 11.0 10.0"
+		"AbilityCooldown"				"25"
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -22754,8 +22522,9 @@
 		
 		"precache"
 		{
-			"particle"					"particles/heroes/forest/forest_mist_barrier.vpcf"
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_abaddon.vsndevts"
+			"particle"					"particles/heroes/forest/forest_natures_grove_ring.vpcf"
+			"particle"					"particles/heroes/forest/forest_natures_grove_sleep.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_furion.vsndevts"
 		}
 		
 	    "AbilitySpecial"
@@ -22764,51 +22533,60 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"barrier_amt"			"1000 2500 5000 7500 12500 25000 37500"
+				"grove_radius"			"300 350 400 450 500 550 600"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"barrier_regen"			"2"
+				"tree_radius"			"120"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"duration"				"20"
+				"duration"				"9"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"talent_barrier"		"5"
+				"damage_over_time"		"350 500 1000 2000 4000 8000 16000"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"sleep_delay"			"3"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"sleep_duration"		"6 7 8 9 10 11 12"
 			}			
 	    }
 	}
-	"forest_death_clasp"
+	"forest_overgrowth"
 	{
 	    "BaseClass"                     "ability_lua"
-	    "ScriptFile"                    "heroes/forest/forest_death_clasp.lua"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_DONT_CANCEL_CHANNEL"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
-		"AbilityTextureName"			"custom/forest_death_clasp"
+	    "ScriptFile"                    "heroes/forest/forest_overgrowth.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_CANCEL_CHANNEL"
+		"AbilityTextureName"			"custom/forest_overgrowth"
 	    "RequiredLevel"  				"7"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"5"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"150"
+		"AbilityCastRange"				"600"
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityChannelTime"			"2.5"
-		"AbilityCooldown"				"16.0"
+		"AbilityCooldown"				"40.0"
 		
 		"precache"
 		{
-			"particle"					"particles/heroes/forest/forest_death_clasp_ring.vpcf"
-			"particle"					"particles/heroes/forest/forest_death_clasp_slow.vpcf"
+			"particle"					"particles/units/heroes/hero_treant/treant_overgrowth_cast.vpcf"
+			"particle"					"particles/units/heroes/hero_treant/treant_overgrowth_trails.vpcf"
+			"particle"					"particles/units/heroes/hero_treant/treant_overgrowth_vines.vpcf"
+			"particle"					"particles/items_fx/healing_tango.vpcf"
+			"particle"					"particles/units/heroes/hero_treant/treant_leech_seed_afromhand.vpcf"
 		}
 		
 	    "AbilitySpecial"
@@ -22816,101 +22594,85 @@
 			"01"
 	        {	
 	            "var_type"                      "FIELD_INTEGER"
-	            "initial_radius"     			"400"
+	            "duration"     					"25"
 	        }
 			"02"
 	        {	
 	            "var_type"                      "FIELD_INTEGER"
-	            "radius_growth_speed"     		"240"
+	            "root_radius"     				"600"
 	        }
 			"03"
-	        {
+	        {	
 	            "var_type"                      "FIELD_INTEGER"
-	            "slow"     						"-100"
+	            "root_duration"     			"2"
 	        }
 			"04"
 	        {
-	            "var_type"                      "FIELD_FLOAT"
-	            "slow_duration"     			"2"
+	            "var_type"                      "FIELD_INTEGER"
+	            "bonus_max_hp"     				"1000 3500 7500 15000 40000 75000 125000"
 	        }
-			"05"
+			"04"
 	        {
 	            "var_type"                      "FIELD_INTEGER"
-	            "pulse_damage"     				"350 1000 2000 4000 8000 16000 32000"
-	        }
-			"06"
-	        {
-	            "var_type"                      "FIELD_INTEGER"
-	            "heal_percentage"     			"50"
+	            "talent_heal"     				"100"
 	        }
 	    }
 	}
-	"forest_sacrificial_rite"
+	"forest_vine_whip"
 	{
 	    "BaseClass"                     "ability_lua"
-	    "ScriptFile"                    "heroes/forest/forest_sacrificial_rite.lua"
-	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityTextureName"			"custom/forest_sacrificial_rite"
+	    "ScriptFile"                    "heroes/forest/forest_vine_whip.lua"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/forest_vine_whip"
 	    "RequiredLevel"  				"7"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"5"
 		
 		"AbilityCastPoint"				"0.3"
-		"AbilityCastRange"				"300"
+		"AbilityCastRange"				"900"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
 		
 		"AbilityCooldown"				"20"
 		
 		"precache"
 		{
-			"particle"					"particles/heroes/forest/forest_sacrificial_rite_cast.vpcf"
-			"particle"					"particles/units/heroes/hero_bloodseeker/bloodseeker_bloodritual_ring.vpcf"
-			"particle"					"particles/heroes/forest/forest_sacrificial_rite_invulnerability_status_effect.vpcf"
-			"particle"					"particles/items_fx/aura_endurance.vpcf"
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_bloodseeker.vsndevts"
+			"particle"					"particles/heroes/forest/forest_vine_whip_projectile.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_enchantress.vsndevts"
 		}
 		
 	    "AbilitySpecial"
 	    {
 	        "01"
 	        {
-	            "var_type"                      "FIELD_FLOAT"
-	            "invuln_duration"     			"5 5.5 6 6.5 7 7.5 8"
+	            "var_type"                      "FIELD_INTEGER"
+	            "speed"     					"1500"
 	        }
 			"02"
 	        {
 	            "var_type"                      "FIELD_INTEGER"
-	            "hp_to_heal"	     			"90 100 110 120 130 140 150"
+	            "width"	     					"150"
 	        }
 			"03"
 	        {
-	            "var_type"                      "FIELD_FLOAT"
-	            "heal_duration"     			"5"
+	            "var_type"                      "FIELD_INTEGER"
+	            "damage"     					"750 1500 3000 6000 12000 24000 48000"
 	        }
 			"04"
 	        {
 	            "var_type"                      "FIELD_FLOAT"
-	            "debuff_duration"     			"5"
-	        }
-			"05"
-	        {
-	            "var_type"                      "FIELD_INTEGER"
-	            "talent_dmg_reduction"     		"-40"
-	        }
-			"05"
-	        {
-	            "var_type"                      "FIELD_FLOAT"
-	            "talent_buff_duration"     		"5 5.5 6 6.5 7 7.5 8"
+	            "stun_duration"     			"1.5"
 	        }
 	    }
 	}
-	
-	"forest_eternal_feast"
+	"forest_ancient_tether"
 	{
 	    "BaseClass"                     "ability_lua"
-	    "ScriptFile"                    "heroes/forest/forest_eternal_feast.lua"
-	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
-		"AbilityTextureName"			"custom/forest_eternal_feast"
+	    "ScriptFile"                    "heroes/forest/forest_ancient_tether.lua"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"AbilityTextureName"			"custom/forest_ancient_tether"
 	    "RequiredLevel"  				"7"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"5"
@@ -22923,10 +22685,8 @@
 		
 		"precache"
 		{
-			"particle"					"particles/heroes/forest/forest_eternal_feast_debuff.vpcf"
-			"particle"					"particles/heroes/forest/forest_eternal_feast_orb.vpcf"
-			"particle"					"particles/heroes/forest/forest_eternal_feast_orb_explosion_explosion.vpcf"
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_invoker.vsndevts"
+			"particle"					"particles/heroes/forest/forest_ancient_tether.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_enchantress.vsndevts"
 		}
 		
 	    "AbilitySpecial"
@@ -22934,48 +22694,49 @@
 	        "01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"initial_radius"			"600"	
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"initial_damage"			"800 1600 3200 6400 12800 25600 51200"
+				"duration"					"30"	
 			}
 			"02"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"debuff_duration"			"7.5"
+				"ally_regen"				"50 62.5 75 87.5 100 112.5 125"
 			}
-			"04"
+			"03"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"healdamage"				"400 800 1600 3200 6400 9600 19200"
+				"var_type"					"FIELD_FLOAT"
+				"equalize_rate"				"1 2 3 4 5 6 7"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"break_buffer"				"400"
 			}
 			"05"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage_radius"				"400"
+				"talent_damage_reduction"	"-20"
 			}
 	    }
 	}
-	"forest_grim_harvest"
+	"forest_envelop"
 	{
 	    "BaseClass"                     "ability_lua"
-	    "ScriptFile"                    "heroes/forest/forest_grim_harvest.lua"
-	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL"
-		"AbilityTextureName"			"custom/forest_grim_harvest"
+	    "ScriptFile"                    "heroes/forest/forest_envelop.lua"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"CastFilterRejectCaster"		"1"
+		"AbilityTextureName"			"custom/forest_envelop"
 	    "RequiredLevel"  				"7"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"5"
 		
-		"AbilityCooldown"				"30"
+		"AbilityCooldown"				"50 45 40 35 30 25 20"
 		"AbilityCastRange"				"800"
 		
 		"precache"
 		{
-			"particle"					"particles/heroes/forest/forest_grim_harvest.vpcf"
-			"particle"					"particles/heroes/forest/forest_grim_harvest_debuff.vpcf"
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_bloodseeker.vsndevts"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_furion.vsndevts"
 		}
 		
 	    "AbilitySpecial"
@@ -22983,55 +22744,39 @@
 	        "01"
 	        {
 	            "var_type"                      "FIELD_FLOAT"
-	            "damage_amp"     				"35 37.5 40 42.5 45 47.5 50"
+	            "cooldown_reduction"     		"15 17.5 20 22.5 25 27.5 30"
 	        }
 			"02"
 	        {
-	            "var_type"                      "FIELD_FLOAT"
-	            "lifesteal"     				"50"
-	        }
-			"03"
-	        {
 	            "var_type"                      "FIELD_INTEGER"
-	            "orb_speed"     				"300"
-	        }
-			"04"
-	        {
-	            "var_type"                      "FIELD_FLOAT"
-	            "orb_lifetime"     				"5 6.5 8 9.5 11 12.5 14"
-	        }
-			"05"
-	        {
-	            "var_type"                      "FIELD_INTEGER"
-	            "orb_radius"     				"450 525 600 675 750 825 900"
+	            "armor_to_ally"     			"58 65 72 79 86 93 100"
 	        }
 	    }
 	}
-	"forest_life_swap"
+	"forest_become_one"
 	{
 	    "BaseClass"                     "ability_lua"
-	    "ScriptFile"                    "heroes/forest/forest_life_swap.lua"
+	    "ScriptFile"                    "heroes/forest/forest_become_one.lua"
 		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
-		"AbilityTextureName"			"custom/forest_life_swap"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_TREE"
+		"AbilityTextureName"			"custom/forest_become_one"
 	    "RequiredLevel"  				"7"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"5"
 		
-		"AbilityCastPoint"				"0.3"
+		"AbilityCastPoint"				"1 0.9 0.8 0.7 0.6 0.5 0.4"
 		"AbilityCastRange"				"600 700 800 900 1000 1100 1200"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST3_STATUE"
 		
-		"AbilityCooldown"				"30"
+		"AbilityCooldown"				"8"
 		
 		"precache"
 		{
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_bloodseeker.vsndevts"
-			"particle"					"particles/heroes/forest/forest_life_swap.vpcf"
-			"particle"					"particles/heroes/forest/forest_life_swap_buff.vpcf"
-			"particle"					"particles/status_fx/status_effect_ghost.vpcf"
-			"particle"					"particles/items_fx/ghost.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_furion.vsndevts"
+			"particle"					"particles/units/heroes/hero_furion/furion_teleport_end.vpcf"
+			"particle"					"particles/units/heroes/hero_furion/furion_teleport.vpcf"
+			"particle"					"particles/units/heroes/hero_furion/furion_teleport_flash.vpcf"
 		}
 		
 	    "AbilitySpecial"
@@ -23039,22 +22784,22 @@
 	        "01"
 	        {
 	            "var_type"                      "FIELD_INTEGER"
-	            "hp_swap"     					"40 45 50 55 60 65 70"
+	            "heal"     						"300 900 2700 7500 15000 30000 45000"
 	        }
 			"02"
 	        {
 	            "var_type"                      "FIELD_INTEGER"
-	            "duration"     					"30"
+	            "max_hp_heal"     				"10"
+	        }
+			"03"
+	        {
+	            "var_type"                      "FIELD_FLOAT"
+	            "tp_delay"     					"1 0.9 0.8 0.7 0.6 0.5 0.4"
 	        }
 			"03"
 	        {
 	            "var_type"                      "FIELD_INTEGER"
-	            "cast_range"     				"600 700 800 900 1000 1100 1200"
-	        }
-			"03"
-	        {
-	            "var_type"                      "FIELD_INTEGER"
-	            "talent_duration"     			"5"
+	            "talent_radius"     			"800"
 	        }
 	    }
 	}
@@ -23085,7 +22830,7 @@
 	//=================================================================================================================
 	// Ability: Anchor Howl Bonus Armor
 	//=================================================================================================================
-	"forest_growing_armour_talent_1" 
+	"forest_growing_armor_talent_1" 
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -23129,7 +22874,7 @@
 	//=================================================================================================================
 	// Ability: Shield Bash Reduces Enemy Damage Dealt
 	//=================================================================================================================
-	"forest_death_clasp_talent_1" 
+	"forest_overgrowth_talent_1" 
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -23151,7 +22896,7 @@
 	//================================================================================================================
 	// Talent: Glorious Shield Damage Increase
 	//=================================================================================================================
-	"forest_mist_barrier_talent_1" 
+	"forest_natures_grove_talent_1" 
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -23173,7 +22918,7 @@
 	//=================================================================================================================
 	// Ability: Adds 20% of forest's max HP as barrier
 	//=================================================================================================================
-	"forest_sacrificial_rite_talent_1" 
+	"forest_vine_whip_talent_1" 
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -23195,7 +22940,7 @@
 	//=================================================================================================================
 	// Ability: Rallying Cry Redirect Damage Taken
 	//=================================================================================================================
-	"forest_eternal_feast_talent_1" 
+	"forest_ancient_tether_talent_1" 
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -23218,7 +22963,7 @@
 	//=================================================================================================================
 	// Talent: forest Spirit AOE Damage
 	//=================================================================================================================
-	"forest_grim_harvest_talent_1" 
+	"forest_envelop_talent_1" 
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -23240,7 +22985,7 @@
 	//=================================================================================================================
 	// Talent: Stone Fortress Can Move
 	//=================================================================================================================
-	"forest_life_swap_talent_1" 
+	"forest_become_one_talent_1" 
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------

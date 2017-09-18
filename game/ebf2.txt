@@ -306,6 +306,9 @@ Disruptor: Chaac the Stormcrafter
 -- Passive 8: Conductive Shield makes allies a viable target for Stormcrafter's spells, healing them for full intended damage.
 -- Passive 9: Fulmination splinters once when hitting an enemy, removing itself but instead creating 2-3 new projectiles towards nearby enemy units
 
+Aghs:
+Damage of all allies is spread, but spread amount is reduced from 25% to 10%
+
 Lone Druid: Odin the Sage
 -- Innate: Summon Familiar: Summons a familiar to fight for the Sage; only one familiar can be active at any time; the familiar has double the Sage's health; but half his damage.
 
@@ -343,6 +346,8 @@ Lone Druid: Odin the Sage
 -- Passive 7: Battle Cry affects allies
 -- Passive 8: Intimidating Roar no longer causes enemies to run away, isntead they stand still.
 -- Passive 9: Living Bark stacks now only disappear when they fully consume their damage block.
+
+Aghs: Can be both in Predator and Protector forms
 
 Dazzle: Amaterasu, the Mystic
 -- Innate: Life-Weaver: Every heal the Mystic performs is granted a bonus amount of healing over time to the current and previous target
@@ -625,4 +630,4 @@ Magnus: Apollo, The Song
 -- Passive 9: Soundwave comes back after reaching its endpoint (shockwave aghs)
 
 Aghs: 
-Reverb buffs now stack
+Reverb buffs now stack, but drop down to 0% efficiency in 8 seconds and are destroyed after

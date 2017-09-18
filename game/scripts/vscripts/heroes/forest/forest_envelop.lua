@@ -1,136 +1,124 @@
-sylph_mistral_breeze = sylph_mistral_breeze or class({})
+forest_envelop = class({})
 
-function sylph_mistral_breeze:OnSpellStart()
-	local direction = (self:GetCursorPosition() - self:GetCaster():GetAbsOrigin()):Normalized() * Vector(1,1,0)
-	EmitSoundOn("Hero_Windrunner.Powershot.FalconBow", self:GetCaster())
-	local projectileTable = {
-        Ability = self,
-        EffectName = "particles/heroes/sylph/sylph_mistral_breeze.vpcf",
-        vSpawnOrigin = self:GetCaster():GetAbsOrigin(),
-        fDistance = self:GetSpecialValueFor("projectile_distance"),
-        fStartRadius = self:GetSpecialValueFor("projectile_radius"),
-        fEndRadius = self:GetSpecialValueFor("projectile_radius"),
-        Source = self:GetCaster(),
-        iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY,
-        iUnitTargetType = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-        bDeleteOnHit = false,
-        vVelocity = direction * self:GetSpecialValueFor("projectile_speed"),
-		ExtraData = {originPointx = self:GetCaster():GetAbsOrigin().x, originPointy = self:GetCaster():GetAbsOrigin().y}
-    }
-    ProjectileManager:CreateLinearProjectile( projectileTable )
-end
-
-function sylph_mistral_breeze:OnProjectileHit_ExtraData( hTarget, vLocation, extraData )
-	if hTarget ~= nil and ( not hTarget:IsMagicImmune() ) and ( not hTarget:IsInvulnerable() ) then
-		local damage = {
-			victim = hTarget,
-			attacker = self:GetCaster(),
-			damage = self:GetSpecialValueFor("projectile_damage"),
-			damage_type = DAMAGE_TYPE_MAGICAL,
-			ability = self}
-		ApplyDamage( damage )
-		EmitSoundOn("Hero_Windrunner.PowershotDamage", hTarget)
-		local originPoint = Vector(extraData.originPointx, extraData.originPointy)
-		local directionVector = vLocation - originPoint -- Original vectors
-		local rotateVector = Vector(directionVector.y, -directionVector.x, 0) -- Normal vector
-		local compareVector = hTarget:GetAbsOrigin() - originPoint -- Comparative vector
-		local sideResult = rotateVector:Dot(compareVector)
-		local pushDir = (hTarget:GetAbsOrigin() - self:GetCaster():GetAbsOrigin())
-		local distanceCap = (self:GetSpecialValueFor("projectile_distance") - directionVector:Length2D()) / self:GetSpecialValueFor("projectile_distance")
-		if (hTarget:GetAbsOrigin() - self:GetCaster():GetAbsOrigin()):Length2D() > 450 or sideResult ~= 0 then
-			if sideResult > 0 then
-				pushDir = Vector(directionVector.y, -directionVector.x, 0)
-			else
-				pushDir = Vector(-directionVector.y, directionVector.x, 0)
-			end
-		else
-			distanceCap = distanceCap * 1.5
-		end
-		pushDir = pushDir:Normalized()
-			
-		hTarget:AddNewModifier(self:GetCaster(), self, "modifier_sylph_mistral_breeze_knockback", {pushMod = distanceCap, pushDirx = pushDir.x, pushDiry = pushDir.y})
-		hTarget:AddNewModifier(self:GetCaster(), self, "modifier_sylph_mistral_breeze_blind", {duration = self:GetSpecialValueFor("blind_duration")})
+function forest_envelop:CastFilterResultTarget(target)
+	local caster = self:GetCaster()
+	if caster ~= target then
+		return UnitFilter(target, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, 0, caster:GetTeamNumber())
+	else
+		return UF_FAIL_CUSTOM
 	end
-	return false
 end
 
-LinkLuaModifier( "modifier_sylph_mistral_breeze_knockback", "heroes/sylph/sylph_mistral_breeze.lua", LUA_MODIFIER_MOTION_HORIZONTAL )
-modifier_sylph_mistral_breeze_knockback = modifier_sylph_mistral_breeze_knockback or class({})
+function forest_envelop:GetCustomCastErrorTarget(target)
+	return "Skill cannot target caster"
+end
 
-function modifier_sylph_mistral_breeze_knockback:OnCreated(kv)
+
+function forest_envelop:GetBehavior()
+	if not self:GetCaster():HasModifier("modifier_forest_envelop_self") then
+		return DOTA_ABILITY_BEHAVIOR_UNIT_TARGET
+	else
+		return DOTA_ABILITY_BEHAVIOR_NO_TARGET + DOTA_ABILITY_BEHAVIOR_IMMEDIATE
+	end
+end
+
+function forest_envelop:OnSpellStart()
+	local caster = self:GetCaster()
+	local target = self:GetCursorTarget()
+	
+	if self:GetCaster():HasModifier("modifier_forest_envelop_self") then
+		caster:RemoveModifierByName("modifier_forest_envelop_self")
+		EmitSoundOn("Hero_Furion.Teleport_Disappear", caster)
+	else
+		EmitSoundOn("Hero_Furion.Sprout", caster)
+		caster:AddNewModifier(caster, self, "modifier_forest_envelop_self", {})
+		self:EndCooldown()
+	end
+end
+
+modifier_forest_envelop_self = class({})
+LinkLuaModifier("modifier_forest_envelop_self", "heroes/forest/forest_envelop.lua", 0)
+
+
+function modifier_forest_envelop_self:OnCreated()
+	self.cdr = self:GetSpecialValueFor("cooldown_reduction")
 	if IsServer() then
-		if self:ApplyHorizontalMotionController() == false then 
-			self:Destroy()
-		end
-		EmitSoundOn("Hero_Tiny.Toss.Target", self:GetParent())
-		self.max_distance = self:GetAbility():GetSpecialValueFor("max_push")
-		self.distance_to_travel = self.max_distance * kv.pushMod
-		self.pushDir = Vector(tonumber(kv.pushDirx), tonumber(kv.pushDiry), 0)
-		if self.distance_to_travel < self:GetAbility():GetSpecialValueFor("min_push") then self.distance_to_travel = self:GetAbility():GetSpecialValueFor("min_push") end
-		self.distance = 0
-		self.speed = self:GetAbility():GetSpecialValueFor("knockback_speed")
+		self.parentUnit = self:GetAbility():GetCursorTarget()
+		self.parentUnit:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_forest_envelop_target", {})
+		self:GetParent():SetAbsOrigin(self.parentUnit:GetAbsOrigin())
+		self:StartIntervalThink(0.03)
+		if self:GetParent():HasTalent("forest_envelop_talent_1") then self:SetStackCount(self.parentUnit:GetMaxHealth()) end
 	end
 end
 
-function modifier_sylph_mistral_breeze_knockback:OnRefresh(kv)
-	if IsServer() then
-		if self:ApplyHorizontalMotionController() == false then 
-			self:Destroy()
-		end
-		EmitSoundOn("Hero_Tiny.Toss.Target", self:GetParent())
-		self.max_distance = self:GetAbility():GetSpecialValueFor("max_push")
-		self.distance_to_travel = self.max_distance * kv.pushMod
-		self.pushDir = Vector(tonumber(kv.pushDirx), tonumber(kv.pushDiry), 0)
-		if self.distance_to_travel < self:GetAbility():GetSpecialValueFor("min_push") then self.distance_to_travel = self:GetAbility():GetSpecialValueFor("min_push") end
-		self.distance = 0
-		self.speed = self:GetAbility():GetSpecialValueFor("knockback_speed")
-	end
-end
-
-function modifier_sylph_mistral_breeze_knockback:IsHidden()
+function modifier_forest_envelop_self:IsHidden()
 	return true
 end
 
-function modifier_sylph_mistral_breeze_knockback:GetEffectName()
-	return "particles/econ/items/windrunner/windrunner_cape_sparrowhawk/windrunner_windrun_sparrowhawk.vpcf"
-end
-
-function modifier_sylph_mistral_breeze_knockback:CheckState()
-	local state = {[MODIFIER_STATE_STUNNED] = true}
-	return state
-end
-
-function modifier_sylph_mistral_breeze_knockback:UpdateHorizontalMotion( me, dt )
-	if IsServer() then
-		local parent = self:GetParent()
-		if self.distance < self.distance_to_travel and self:GetParent():IsAlive() then
-			parent:SetAbsOrigin(parent:GetAbsOrigin() + self.pushDir * self.speed*dt)
-			self.distance = self.distance + self.speed*0.03
-		else
-			parent:InterruptMotionControllers(true)
-			self:Destroy()
-		end       
+function modifier_forest_envelop_self:OnIntervalThink()
+	if not self.parentUnit:IsAlive() then self:Destroy() end
+	if self:GetParent():HasTalent("forest_envelop_talent_1") then self:SetStackCount(self.parentUnit:GetMaxHealth()) end
+	if CalculateDistance(self:GetParent(), self.parentUnit) < 300 then
+		self:GetParent():SetAbsOrigin(self.parentUnit:GetAbsOrigin())
+	else
+		self.parentUnit:SetAbsOrigin(self:GetParent():GetAbsOrigin())
 	end
 end
 
-LinkLuaModifier( "modifier_sylph_mistral_breeze_blind", "heroes/sylph/sylph_mistral_breeze.lua", LUA_MODIFIER_MOTION_HORIZONTAL )
-modifier_sylph_mistral_breeze_blind = modifier_sylph_mistral_breeze_blind or class({})
-
-function modifier_sylph_mistral_breeze_blind:OnCreated()
-	self.blind = self:GetAbility():GetSpecialValueFor("blind_pct")
+function modifier_forest_envelop_self:OnDestroy()
+	if IsServer() then self.parentUnit:RemoveModifierByName("modifier_forest_envelop_target") end
 end
 
-function modifier_sylph_mistral_breeze_blind:DeclareFunctions()
-	local funcs = {
-		MODIFIER_PROPERTY_MISS_PERCENTAGE,
+function modifier_forest_envelop_self:CheckState()
+	return {[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
+			[MODIFIER_STATE_ROOTED] = true,
+			[MODIFIER_STATE_DISARMED] = true,
 	}
-	return funcs
 end
 
-function modifier_sylph_mistral_breeze_blind:GetModifierMiss_Percentage()
-	return self.blind
+function modifier_forest_envelop_self:DeclareFunctions()
+	return {MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE_STACKING, MODIFIER_PROPERTY_HEALTH_BONUS, MODIFIER_PROPERTY_MODEL_SCALE}
 end
 
-function modifier_sylph_mistral_breeze_blind:GetEffectName()
-	return "particles/units/heroes/hero_keeper_of_the_light/keeper_of_the_light_blinding_light_debuff.vpcf"
+function modifier_forest_envelop_self:GetModifierModelScale()
+	return -35
+end
+
+function modifier_forest_envelop_self:GetModifierPercentageCooldownStacking()
+	return self.cdr
+end
+
+function modifier_forest_envelop_self:GetModifierHealthBonus()
+	return self:GetStackCount()
+end
+
+modifier_forest_envelop_target = class({})
+LinkLuaModifier("modifier_forest_envelop_target", "heroes/forest/forest_envelop.lua", 0)
+
+function modifier_forest_envelop_target:OnCreated()
+	self.armor = self:GetCaster():GetPhysicalArmorValue()
+	self.armorToAlly = self:GetSpecialValueFor("armor_to_ally") / 100
+	self:StartIntervalThink(1)
+end
+
+function modifier_forest_envelop_target:OnDestroy()
+	if IsServer() then self:GetAbility():UseResources(false, false, true) end
+end
+
+
+
+function modifier_forest_envelop_target:OnIntervalThink()
+	self.armor = self:GetCaster():GetPhysicalArmorValue()
+end
+
+function modifier_forest_envelop_target:DeclareFunctions()
+	return {MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE, MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS}
+end
+
+function modifier_forest_envelop_target:GetModifierIncomingDamage_Percentage(params)
+	ApplyDamage({victim = self:GetCaster(), attacker = params.attacker, damage = params.damage, damage_type = DAMAGE_TYPE_PURE, ability = params.inflictor})
+	return -100
+end
+function modifier_forest_envelop_target:GetModifierPhysicalArmorBonus()
+	return self.armor * self.armorToAlly
 end

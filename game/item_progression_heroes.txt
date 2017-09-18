@@ -109,7 +109,7 @@ MYSTIC ITEM PROGRESS:
 -----------------------
 
 Armor: 
--- Old Garments (+700 Max HP, 10% magic resistance) -> Initiate's Garments (+1000 Max HP, 15% magic resistance) -> Apprentice's Garments (+1500 Max HP, 20% magic resistance) -> Master's Garments (+3250 Max HP, 25% magic resistance) -> Nephilim's Embrace (+6500 Max HP, 30% magic resistance)
+-- Old Garments (+700 Max HP, 10% magic resistance) -> Initiate's Garments (+1000 Max HP, 15% magic resistance) -> Apprentice's Garments (+1750 Max HP, 20% magic resistance) -> Master's Garments (+3250 Max HP, 25% magic resistance) -> Nephilim's Embrace (+6500 Max HP, 30% magic resistance)
 
 Weapon: 
 -- Ancient Staff (+60 damage, +5% cdr) -> Powerless Staff (+120 damage, +15% cdr) -> Apprentice's Staff (+180 damage, +25% cdr) -> Mystic Staff (+240 damage, +35% cdr) -> Daeva's Kiss (+300 damage, +50% cdr)
@@ -132,3 +132,48 @@ Weapon:
 
 Offhand: 
 -- Faded Engravings (0% cdr, +3 armor) -> Powerful Engravings (5% cdr, +5 armor) -> Enchanted Engravings (15% cdr, +7 armor) -> Engraved Glyphs (30% cdr, +9 armor) -> Ancient Being (50% cdr, +12 armor)
+
+
+-----------------------
+CULTIST ITEM PROGRESS:
+-----------------------
+
+Armor: 
+-- Old Robes (+1000 Max HP, 10 attackspeed) -> Initiate's Robes (+2000 Max HP, 15 attackspeed) -> Cultist's Robes  (+4000 Max HP, 20 attackspeed) -> Elder's Robes (+6000 Max HP, 25 attackspeed) -> Abaddon (+8000 Max HP, 30 attackspeed)
+
+Weapon: 
+-- Worn Dagger (+60 damage, 35%/160% crit) -> Sharp Dagger (+75 damage, 35%/165% crit) -> Sacrificial Dagger (+90 damage, 35%/170% crit) -> Eldritch Dagger (+105 damage, 35%/175% crit) -> The Pact (+120 damage, 35%/200% crit)
+
+
+Offhand: 
+-- Wooden Stick (0% cdr, +20% spell amp) -> Wooden Wand (5% cdr, +40% spell amp) -> Bone Wand (10% cdr, +60% spell amp) -> Elder Wand (20% cdr, +80% spell amp) -> Mortis (40% cdr, +100% spell amp)
+
+
+-----------------------
+PEACEKEEPER ITEM PROGRESS:
+-----------------------
+
+Armor: 
+-- Worn Raiment (+800 Max HP, 20% evasion) -> Rookie's Raiment (+1500 Max HP, 25% evasion) -> Officer's Raiment (+3000 Max HP, 25% evasion) -> Lawful Raiment (+5000 Max HP, 30% evasion) -> Justitia (+7500 Max HP, 40% evasion)
+
+Weapon: 
+-- Blunt Dirk (+60 damage, 10%/250% crit) -> Sharpened Dirk (+80 damage, 11%/250% crit) -> Exquisite Dirk (+100 damage, 12%/250% crit) -> Peaceful Dirk (+120 damage, 13%/250% crit) -> Law (+160 damage, 15%/250% crit)
+
+
+Offhand: 
+-- Dull Dagger (30 attackspeed, 0% cdr) -> Honed Dagger (55 attackspeed, 5% cdr) -> Gentle Dagger (70 attackspeed, 10% cdr) -> Serene Dagger (85 attackspeed, 15% cdr) -> Order (100 attackspeed, 20% cdr)
+
+
+-----------------------
+LEVIATHAN ITEM PROGRESS:
+-----------------------
+
+Armor: 
+-- Fry's Scales (+1250 Max HP, +10 armor) -> Fingerling's Scales (+2500 Max HP, +10 armor) -> Rigid Scales (+5000 Max HP, +10 armor) -> Plated Hide (+7500 Max HP, +13 armor) -> Kraken's Hide (+10000 Max HP, +16 armor)
+
+Weapon: 
+-- Old Mace (+60 damage, 10%/250% crit) -> Heavy Mace (+80 damage, 11%/250% crit) -> Ornate Trident (+100 damage, 12%/250% crit) -> Deep King's Trident (+120 damage, 13%/250% crit) -> Poseidon (+160 damage, 15%/250% crit)
+
+
+Offhand: 
+-- Dim Lure (30 attackspeed, 0% cdr) -> Hunter's Lure (55 attackspeed, 5% cdr) ->  Radiant Lure (70 attackspeed, 10% cdr) -> Deep King's Lure (85 attackspeed, 15% cdr) -> Spring Tide (100 attackspeed, 20% cdr)
