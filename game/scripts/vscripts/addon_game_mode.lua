@@ -384,6 +384,9 @@ function CHoldoutGameMode:InitGameMode()
 
 	CustomGameEventManager:RegisterListener('Vote_NG', Dynamic_Wrap( CHoldoutGameMode, 'vote_NG_fct'))
 	CustomGameEventManager:RegisterListener('Vote_Round', Dynamic_Wrap( CHoldoutGameMode, 'vote_Round'))
+	
+	CustomGameEventManager:RegisterListener('playerUILoaded', Dynamic_Wrap( CHoldoutGameMode, 'OnPlayerUIInitialized'))
+	
 
 
 
@@ -1661,7 +1664,7 @@ end
 
 function CHoldoutGameMode:OnPlayerUIInitialized(keys)
 	local player = PlayerResource:GetPlayer(keys.PlayerID)
-	Timers:CreateTimer(0.5, function()
+	Timers:CreateTimer(0.1, function()
 		if PlayerResource:GetPlayerLoadedCompletely(keys.PlayerID) then
 			if not player:HasSelectedHero() then
 				local playerID = player:GetPlayerID()
@@ -1695,7 +1698,7 @@ function CHoldoutGameMode:OnPlayerUIInitialized(keys)
 			end
 			CustomGameEventManager:Send_ServerToAllClients( "updateQuestRound", { roundNumber = self._nRoundNumber, roundText = self._currentRound._szRoundQuestTitle } )
 		else
-			return 0.5
+			return 0.1
 		end
 	end)
 end

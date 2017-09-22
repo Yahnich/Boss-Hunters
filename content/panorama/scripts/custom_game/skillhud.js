@@ -113,7 +113,8 @@ function deletePanels(){
 	$("#SkillSelectorMain").visible = false;
 }
 (function(){
-	
+	$.Msg("Loaded UI")
+	GameEvents.SendCustomGameEventToServer( "playerUILoaded", {pID : Game.GetLocalPlayerID() }
 })();
 
 (function()
