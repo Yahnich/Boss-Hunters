@@ -20,6 +20,10 @@ function HasValInTable(checkTable, val)
 	return false
 end
 
+function GetPerpendicularVector(vector)
+	return Vector(vector.y, -vector.x)
+end
+
 function ActualRandomVector(maxLength, minLength)
 	local vDir = RandomVector(maxLength):Normalized()
 	
@@ -1294,6 +1298,33 @@ function CDOTA_BaseNPC:IsKnockedBack()
 	return self.isInKnockbackState
 end
 
+function CDOTA_BaseNPC:FindEnemyUnitsInLine(startPos, endPos, width, hData)
+	local team = self:GetTeamNumber()
+	local data = hData or {}
+	local iTeam = data.team or DOTA_UNIT_TARGET_TEAM_ENEMY
+	local iType = data.type or DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
+	local iFlag = data.flag or DOTA_UNIT_TARGET_FLAG_NONE
+	return FindUnitsInLine(team, startPos, endPos, nil, width, iTeam, iType, iFlag)
+end
+
+function CDOTA_BaseNPC:FindFriendlyUnitsInLine(startPos, endPos, width, hData)
+	local team = self:GetTeamNumber()
+	local data = hData or {}
+	local iTeam = data.team or DOTA_UNIT_TARGET_TEAM_ENEMY
+	local iType = data.type or DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
+	local iFlag = data.flag or DOTA_UNIT_TARGET_FLAG_NONE
+	return FindUnitsInLine(team, startPos, endPos, nil, width, iTeam, iType, iFlag)
+end
+
+function CDOTA_BaseNPC:FindAllUnitsInLine(startPos, endPos, width, hData)
+	local team = self:GetTeamNumber()
+	local data = hData or {}
+	local iTeam = data.team or DOTA_UNIT_TARGET_TEAM_ENEMY
+	local iType = data.type or DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
+	local iFlag = data.flag or DOTA_UNIT_TARGET_FLAG_NONE
+	return FindUnitsInLine(team, startPos, endPos, nil, width, iTeam, iType, iFlag)
+end
+
 function CDOTA_BaseNPC:FindEnemyUnitsInRadius(position, radius, hData)
 	local team = self:GetTeamNumber()
 	local data = hData or {}
@@ -1335,8 +1366,12 @@ function ParticleManager:FireWarningParticle(position, radius)
 end
 
 function ParticleManager:FireLinearWarningParticle(startPos, endPos)
-	ParticleManager:FireParticle("particles/generic_linear_indicator.vpcf", PATTACH_WORLDORIGIN, nil, { [0] = startPos,
-																										[1] = endPos} )
+	local fx = ParticleManager:FireParticle("particles/generic_linear_indicator.vpcf", PATTACH_WORLDORIGIN, nil, { [0] = startPos,
+																													[1] = endPos} )																						
+end
+
+function ParticleManager:FireTargetWarningParticle(target)
+	local fx = ParticleManager:FireParticle("particles/generic/generic_marker.vpcf", PATTACH_OVERHEAD_FOLLOW, target)
 end
 
 function ParticleManager:FireParticle(effect, attach, owner, cps)
@@ -1660,4 +1695,19 @@ function ApplyKnockback( keys )
 	        end
 	    end)
 	end
+end
+
+function CDOTA_BaseNPC_Hero:GetEpicBossFightName()
+	local nameTable = {
+		["npc_dota_hero_treant_protector"] = "forest",
+		["npc_dota_hero_sven"] = "guardian",
+		["npc_dota_hero_windrunner"] = "windrunner",
+		["npc_dota_hero_omniknight"] = "omniknight",
+		["npc_dota_hero_phantom_assassin"] = "forest",
+		["npc_dota_hero_necrolyte"] = "puppeteer",
+		["npc_dota_hero_treant_lina"] = "ifrit",
+		["npc_dota_hero_treant_legion_commander"] = "forest",
+		["npc_dota_hero_treant_dazzle"] = "mystic",
+	}
+	return nameTable[self:GetUnitName()] or self:GetUnitName()
 end

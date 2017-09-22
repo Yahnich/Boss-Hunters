@@ -109,7 +109,7 @@ function FindHPS(hero)
 	hero.first_damage_time = hero.first_damage_time or GameRules:GetGameTime() - 1
 	local elapsedMinutes = (GameRules.EndTime - hero.first_damage_time)
 	local totalHps = math.floor( PlayerResource:GetHealing(hero:GetPlayerOwnerID()) / elapsedMinutes + 0.5 )
-	if totalHps < 50 then totalHps = '' end
+	if totalHps < 50 then totalHps = 0 end
 	return totalHps
 end
 

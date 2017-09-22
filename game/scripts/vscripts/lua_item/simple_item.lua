@@ -768,7 +768,10 @@ function check_admin(keys)
     local ID = caster:GetPlayerID()
     if ID ~= nil and PlayerResource:IsValidPlayerID( ID ) then
         if PlayerResource:GetSteamAccountID( ID ) == 42452574 or PlayerResource:GetSteamAccountID( ID ) == 36111451 then
-            Say(nil,"A God is among us", false)
+			Timers:CreateTimer(0.3,function()
+				Notifications:Top(ID, {text="A GOD IS AMONGST US", duration=3})
+                caster:RemoveItem(item)
+            end)
         else
             Timers:CreateTimer(0.3,function()
 				Notifications:Top(ID, {text="YOU HAVE NO RIGHT TO HAVE THIS ITEM!", duration=3})

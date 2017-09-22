@@ -124,3 +124,6 @@ end
 function modifier_forest_parasitic_growth_debuff:IsPermanent()
 	return true
 end
+
+
+modifier_forest_parasitic_growth_talent_1 = class({IsHidden = function(self) return true end, RemoveOnDeath = function(self) return false end, AllowIllusionDuplicate = function(self) return true end})

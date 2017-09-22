@@ -27441,7 +27441,7 @@
 		
 		"AbilityCastRange"				"1200"
 		"AbilityCastPoint"				"0.4 0.4 0.4 0.4"
-		"MaxLevel"						"4"
+		"RequiredLevel"					"6"
 		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
 
@@ -27466,7 +27466,7 @@
 			"02"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"pass_damage"					"400 800 1600 3200 6400 12800 25000"
+				"pass_damage"					"800 1600 3200 6400 12800 25000"
 			}
 						
 			"03"
@@ -27497,13 +27497,13 @@
 			"08"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"damage_creeps"					"100 200 400 800 1600 3200 6400"
+				"damage_creeps"					"50 100 200 400 800 1600 3200"
 				"LinkedSpecialBonus"			"special_bonus_unique_elder_titan"
 			}
 			"09"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"damage_heroes"					"100 200 400 800 1600 3200 6400"
+				"damage_heroes"					"50 100 200 400 800 1600 3200"
 				"LinkedSpecialBonus"			"special_bonus_unique_elder_titan"
 			}	
 			"10"
@@ -27563,12 +27563,12 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"armor_reduction_pct"	    "30 35 40 45 50 55 60"
+				"armor_reduction_pct"	    "20 25 30 35 40 45 50"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"magic_resistance_pct"		"30 35 40 45 50 55 60"
+				"magic_resistance_pct"		"20 25 30 35 40 45 50"
 			}
 		}
 	}
@@ -27600,12 +27600,12 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"armor_reduction_pct"	    "10 15 20 25 30 35 40"
+				"armor_reduction_pct"	    "20 25 30 35 40 45 50"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"magic_resistance_pct"		"10 15 20 25 30 35 40"
+				"magic_resistance_pct"		"20 25 30 35 40 45 50"
 			}
 		}
 	}
@@ -43710,7 +43710,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"80"
+				"value"				"400"
 			}
 		}
 	}

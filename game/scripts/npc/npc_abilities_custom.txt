@@ -5870,7 +5870,7 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityTextureName"			"custom/windrunner_skillshot"
@@ -28767,12 +28767,12 @@
 			"01"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"edge_damage"					"1500 3000 6000 12000 24000 48000 96000"
+				"edge_damage"					"500 1000 2000 4000 8000 16000 32000"
 			}
 			"02"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"edge_str_damage"				"300"
+				"edge_str_damage"				"450"
 			}
 			"03"
 			{
@@ -38003,169 +38003,208 @@
 			"particle" 	"particles/bosses/boss1b/boss1b_spear_pierce.vpcf"
 		}
 	}
-	"creature_aoe_spikes_2"
+	"boss15_exorcise"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_datadriven"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
-		"AbilityTextureName" 			"leshrac_split_earth"
-		
-		"precache"
-		{
-			"particle_folder"				"particles/units/heroes/hero_leshrac"
-			"particle_folder"				"particles/econ/generic/generic_aoe_shockwave_1"
-			"soundfile"						"soundevents/game_sounds/ability_aoe_spikes.vsndevts"
-		}
-		
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"500"
-		"AbilityCastPoint"				"0"
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss15/boss15_exorcise"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"FightRecapLevel"				"2"
+		"AbilityTextureName"			"death_prophet_carrion_swarm"
+		"MaxLevel"						"2"
 
-		// Time		
+		// Stats		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"25.0"
+		"AbilityCooldown"				"9"
+		"AbilityCastPoint"				"0.5 0.3"
+		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"100 100 100 100"
-
-		"OnSpellStart"
-		{
-			"CreateThinker"
-			{
-				"ModifierName"	"target_telegraph_fx"
-				"Target"		"POINT"
-			}
-			
-			"CreateThinker"
-			{
-				"ModifierName"	"aoe_spike_thinker"
-				"Target"		"POINT"
-			}
-		}
+		"AbilityManaCost"				"0"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
+			
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"impact_radius"			"210 220 230 240"
+				"var_type"				"FIELD_FLOAT"
+				"speed"					"900"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"duration_stun"			"2.0"
+				"var_type"				"FIELD_INTEGER"
+				"width_initial"			"150"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"10000"
+				"width_end"				"400"
 			}
 			"04"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"think_time"			"1.0"
+				"var_type"				"FIELD_INTEGER"
+				"distance"				"700 1200"
 			}
 			"05"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"think_time_extra"			"1.5"
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"5000 7000"
 			}
-		}
-		
-		// Modifiers
-		//-------------------------------------------------------------------------------------------------------------	
-		"Modifiers"
-		{
-			"target_telegraph_fx"
+			"06"
 			{
-				"Duration"				"%think_time"
-
-				"OnCreated"
-				{
-					"AttachEffect"
-					{
-						"EffectName"		"particles/econ/generic/generic_aoe_shockwave_1/generic_aoe_shockwave_1.vpcf"
-						"EffectAttachType"	"follow_origin"
-						"Target"			"TARGET"
-						"ControlPoints"
-						{
-							"00" "0 0 0"
-							"01" "%impact_radius 0 0"
-							"02" "6 0 1" // telegraph
-							"03" "200 0 0"
-							"04" "0 0 0"
-						}
-					}
-				}
+				"var_type"				"FIELD_INTEGER"
+				"debuff_duration"		"5"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"stun_duration"			"3"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_reduction"		"-50"
 			}
 			
-			"aoe_spike_thinker"
-			{
-				"Duration"					"%think_time_extra" // Should work without the added time but appears to have a off by one error so time added so it doesnt destroy itself before occuring
-				"ThinkInterval"				"%think_time"
-				
-				"OnIntervalThink"
-				{
-					"Damage"
-					{
-						"Type"			"DAMAGE_TYPE_MAGICAL"
-						"Damage"		"%damage"
-						"Target"
-						{
-							"Center"	"TARGET"
-							"Radius"	"%impact_radius"
-							"Teams"		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-							"Types"		"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_MECHANICAL | DOTA_UNIT_TARGET_OTHER"
-						}
-					}
-					
-					"Stun"
-					{
-						"Duration"		"%stun_duration"
-						"Target"
-						{
-							"Center"	"TARGET"
-							"Radius"	"%impact_radius"
-							"Teams"		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-							"Types"		"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_MECHANICAL | DOTA_UNIT_TARGET_OTHER"
-						}
-					}
-					
-					"AttachEffect"
-					{
-						"EffectName"		"particles/units/heroes/hero_leshrac/leshrac_split_earth.vpcf"
-						"EffectAttachType"	"follow_origin"
-						"Target"			"TARGET"
-						
-						"ControlPoints"
-						{
-							"00"		"0 0 0"
-							"01"		"%impact_radius 0 0"
-							"02"		"0 0 0"
-						}
-					}
-
-					"DestroyTrees"
-					{
-						"Target"			"TARGET"
-						"Radius"			"%impact_radius"
-					}
-					
-					"FireSound"
-					{
-						"EffectName"		"Creature.AOESpikes.Cast"
-						"Target"			"TARGET"
-					}
-				}
-			}
+		}
+		"precache"
+		{
+			"particle" 	"particles/units/heroes/hero_death_prophet/death_prophet_carrion_swarm_impact.vpcf"
+			"particle" 	"particles/units/heroes/hero_death_prophet/death_prophet_carrion_swarm.vpcf"
+			"particle"	"particles/units/heroes/hero_queenofpain/queen_shadow_strike_debuff_poison.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_death_prophet.vsndevts"
 		}
 	}
+	"boss15_peel_the_veil"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss15/boss15_peel_the_veil"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"FightRecapLevel"				"2"
+		"AbilityTextureName"			"death_prophet_exorcism"
+		"MaxLevel"						"2"
+
+		// Stats		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"30"
+		"AbilityChannelTime"			"5"
+		"AbilityCastPoint"				"0.5 0.3"
+		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"
 		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"ghost_damage"			"2"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"ghost_health"			"1"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"ghost_count"			"50"
+			}
+		}
+		"precache"
+		{
+			"particle" 			"particles/units/heroes/hero_death_prophet/death_prophet_spiritsiphon.vpcf"
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_death_prophet.vsndevts"
+		}
+	}
+	"boss15_thread_of_life"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss15/boss15_thread_of_life"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"FightRecapLevel"				"2"
+		"AbilityTextureName"			"death_prophet_spirit_siphon"
+		"MaxLevel"						"3"
+
+		// Stats		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"10"
+		"AbilityCastPoint"				"0.5 0.4 0.3"
+		"AbilityCastRange"				"900 1050 1200"
+		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"hp_damage"					"2.5 3.5 3.5"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"500 750 1000"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"max_hp_damage"				"20"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"max_damage_rampup"			"15 12 10"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"tether_damage_reduction"	"-20"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"aoe_cooldown_increase"		"5"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius_buffer"				"400"
+			}
+		}
+		"precache"
+		{
+			"particle" 			"particles/units/heroes/hero_death_prophet/death_prophet_spiritsiphon.vpcf"
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_death_prophet.vsndevts"
+		}
+	}
 	"creature_aoe_spikes"
 	{
 		// General
@@ -38327,344 +38366,6 @@
 			{
 				"var_type"				"FIELD_FLOAT"
 				"think_time_extra"		"2"
-			}
-		}
-	}
-
-	//=================================================================================================================
-	// Ability: Area of Effect Spikes
-	//=================================================================================================================
-	"creature_aoe_spikes_2_h"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_datadriven"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
-		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
-		"AbilityTextureName" 			"leshrac_split_earth"
-		
-		"precache"
-		{
-			"particle_folder"				"particles/units/heroes/hero_leshrac"
-			"particle_folder"				"particles/econ/generic/generic_aoe_shockwave_1"
-			"soundfile"					"soundevents/game_sounds/ability_aoe_spikes.vsndevts"
-		}
-		
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"2000"
-		"AbilityCastPoint"				"0"
-
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"25.0"
-
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"100 100 100 100"
-
-		"OnSpellStart"
-		{
-			"CreateThinker"
-			{
-				"ModifierName"	"target_telegraph_fx"
-				"Target"		"POINT"
-			}
-			
-			"CreateThinker"
-			{
-				"ModifierName"	"aoe_spike_thinker"
-				"Target"		"POINT"
-			}
-		}
-		
-		// Modifiers
-		//-------------------------------------------------------------------------------------------------------------	
-		"Modifiers"
-		{
-			"target_telegraph_fx"
-			{
-				"Duration"				"%think_time"
-
-				"OnCreated"
-				{
-					"AttachEffect"
-					{
-						"EffectName"		"particles/econ/generic/generic_aoe_shockwave_1/generic_aoe_shockwave_1.vpcf"
-						"EffectAttachType"	"follow_origin"
-						"Target"			"TARGET"
-						"ControlPoints"
-						{
-							"00" "0 0 0"
-							"01" "%impact_radius 0 0"
-							"02" "6 0 1" // telegraph
-							"03" "200 0 0"
-							"04" "0 0 0"
-						}
-					}
-				}
-			}
-			
-			"aoe_spike_thinker"
-			{
-				"Duration"					"%think_time_extra" // Should work without the added time but appears to have a off by one error so time added so it doesnt destroy itself before occuring
-				"ThinkInterval"				"%think_time"
-				
-				"OnIntervalThink"
-				{
-					"Damage"
-					{
-						"Type"			"DAMAGE_TYPE_MAGICAL"
-						"Damage"		"%damage"
-						"Target"
-						{
-							"Center"	"TARGET"
-							"Radius"	"%impact_radius"
-							"Teams"		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-							"Types"		"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_MECHANICAL | DOTA_UNIT_TARGET_OTHER"
-						}
-					}
-					
-					"Stun"
-					{
-						"Duration"		"%stun_duration"
-						"Target"
-						{
-							"Center"	"TARGET"
-							"Radius"	"%impact_radius"
-							"Teams"		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-							"Types"		"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_MECHANICAL | DOTA_UNIT_TARGET_OTHER"
-						}
-					}
-					
-					"AttachEffect"
-					{
-						"EffectName"		"particles/units/heroes/hero_leshrac/leshrac_split_earth.vpcf"
-						"EffectAttachType"	"follow_origin"
-						"Target"			"TARGET"
-						
-						"ControlPoints"
-						{
-							"00"		"0 0 0"
-							"01"		"%impact_radius 0 0"
-							"02"		"0 0 0"
-						}
-					}
-
-					"DestroyTrees"
-					{
-						"Target"			"TARGET"
-						"Radius"			"%impact_radius"
-					}
-					
-					"FireSound"
-					{
-						"EffectName"		"Creature.AOESpikes.Cast"
-						"Target"			"TARGET"
-					}
-				}
-			}
-		}
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"impact_radius"			"210 220 230 240"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration_stun"			"4.0 5.0 6.0 7.0"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"20000"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"think_time"			"2.0"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"think_time_extra"			"2.5"
-			}
-		}
-	}
-
-	//=================================================================================================================
-	// Ability: Area of Effect Spikes
-	//=================================================================================================================
-	"creature_aoe_spikes_2_vh"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_datadriven"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
-		"AbilityTextureName" 			"leshrac_split_earth"
-		
-		"precache"
-		{
-			"particle_folder"				"particles/units/heroes/hero_leshrac"
-			"particle_folder"				"particles/econ/generic/generic_aoe_shockwave_1"
-			"soundfile"					"soundevents/game_sounds/ability_aoe_spikes.vsndevts"
-		}
-		
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"2000"
-		"AbilityCastPoint"				"0"
-
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"25.0"
-
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"100 100 100 100"
-
-		"OnSpellStart"
-		{
-			"CreateThinker"
-			{
-				"ModifierName"	"target_telegraph_fx"
-				"Target"		"POINT"
-			}
-			
-			"CreateThinker"
-			{
-				"ModifierName"	"aoe_spike_thinker"
-				"Target"		"POINT"
-			}
-		}
-		
-		// Modifiers
-		//-------------------------------------------------------------------------------------------------------------	
-		"Modifiers"
-		{
-			"target_telegraph_fx"
-			{
-				"Duration"				"%think_time"
-
-				"OnCreated"
-				{
-					"AttachEffect"
-					{
-						"EffectName"		"particles/econ/generic/generic_aoe_shockwave_1/generic_aoe_shockwave_1.vpcf"
-						"EffectAttachType"	"follow_origin"
-						"Target"			"TARGET"
-						"ControlPoints"
-						{
-							"00" "0 0 0"
-							"01" "%impact_radius 0 0"
-							"02" "6 0 1" // telegraph
-							"03" "200 0 0"
-							"04" "0 0 0"
-						}
-					}
-				}
-			}
-			
-			"aoe_spike_thinker"
-			{
-				"Duration"					"%think_time_extra" // Should work without the added time but appears to have a off by one error so time added so it doesnt destroy itself before occuring
-				"ThinkInterval"				"%think_time"
-				
-				"OnIntervalThink"
-				{
-					"Damage"
-					{
-						"Type"			"DAMAGE_TYPE_MAGICAL"
-						"Damage"		"%damage"
-						"Target"
-						{
-							"Center"	"TARGET"
-							"Radius"	"%impact_radius"
-							"Teams"		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-							"Types"		"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_MECHANICAL | DOTA_UNIT_TARGET_OTHER"
-						}
-					}
-					
-					"Stun"
-					{
-						"Duration"		"%stun_duration"
-						"Target"
-						{
-							"Center"	"TARGET"
-							"Radius"	"%impact_radius"
-							"Teams"		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-							"Types"		"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_MECHANICAL | DOTA_UNIT_TARGET_OTHER"
-						}
-					}
-					
-					"AttachEffect"
-					{
-						"EffectName"		"particles/units/heroes/hero_leshrac/leshrac_split_earth.vpcf"
-						"EffectAttachType"	"follow_origin"
-						"Target"			"TARGET"
-						
-						"ControlPoints"
-						{
-							"00"		"0 0 0"
-							"01"		"%impact_radius 0 0"
-							"02"		"0 0 0"
-						}
-					}
-
-					"DestroyTrees"
-					{
-						"Target"			"TARGET"
-						"Radius"			"%impact_radius"
-					}
-					
-					"FireSound"
-					{
-						"EffectName"		"Creature.AOESpikes.Cast"
-						"Target"			"TARGET"
-					}
-				}
-			}
-		}
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"impact_radius"			"500"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration_stun"			"6.0"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"30000"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"think_time"			"2.0"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"think_time_extra"			"2.5"
 			}
 		}
 	}

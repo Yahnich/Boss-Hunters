@@ -33,8 +33,9 @@ function forest_become_one:OnSpellStart()
 	end
 	
 	EmitSoundOn("Hero_Furion.Teleport_Disappear", caster)
-	tree:CutDownRegrowAfter(20, caster:GetTeamNumber() )
-	FindClearSpaceForUnit(caster, tree:GetAbsOrigin(), true)
+	local newPos = tree:GetAbsOrigin()
+	GridNav:DestroyTreesAroundPoint(newPos, caster:GetHullRadius() + 25, true)
+	FindClearSpaceForUnit(caster, newPos, true)
 	EmitSoundOn("Hero_Furion.Teleport_Appear", caster)
 	
 	local heal = self:GetSpecialValueFor("heal")

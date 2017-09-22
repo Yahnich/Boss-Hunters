@@ -1,22 +1,3 @@
---[[
-Holdout Example
-
-	Underscore prefix such as "_function()" denotes a local function and is used to improve readability
-	
-	Variable Prefix Examples
-		"fl"	Float
-		"n"		Int
-		"v"		Table
-		"b"		Boolean
-]]
-DAMAGE_TYPES = {
-	    [0] = "DAMAGE_TYPE_NONE",
-	    [1] = "DAMAGE_TYPE_PHYSICAL",
-	    [2] = "DAMAGE_TYPE_MAGICAL",
-	    [4] = "DAMAGE_TYPE_PURE",
-	    [7] = "DAMAGE_TYPE_ALL",
-	    [8] = "DAMAGE_TYPE_HP_REMOVAL",
-	}
 MAXIMUM_ATTACK_SPEED	= 1400
 MINIMUM_ATTACK_SPEED	= 20
 
@@ -26,13 +7,12 @@ DOTA_LIFESTEAL_SOURCE_NONE = 0
 DOTA_LIFESTEAL_SOURCE_ATTACK = 1
 DOTA_LIFESTEAL_SOURCE_ABILITY = 2
 
-require("internal/util")
 require("lua_item/simple_item")
 require("lua_map/map")
 require("lua_boss/boss_32_meteor")
 require( "epic_boss_fight_game_round" )
 require( "epic_boss_fight_game_spawner" )
-require('lib.optionsmodule')
+require( "abilitymanager" )
 require('stats')
 require( "libraries/Timers" )
 require( "libraries/notifications" )
@@ -88,6 +68,7 @@ function Precache( context )
 	PrecacheResource("particle", "particles/generic_gameplay/generic_stunned.vpcf", context)
 	PrecacheResource("particle", "particles/generic_gameplay/generic_sleep.vpcf", context)
 	PrecacheResource("particle", "particles/generic_linear_indicator.vpcf", context)
+	PrecacheResource("particle", "particles/generic/generic_marker.vpcf", context)
 	
 	-- fix these fucking particles
 	PrecacheResource("particle", "particles/units/heroes/hero_tinker/tinker_rockets.vpcf", context)
@@ -152,9 +133,7 @@ end
 
 
 function CHoldoutGameMode:InitGameMode()
-	print ("Epic Boss Fight loaded Version 0.09.01-03")
-	print ("Made By FrenchDeath , a noob in coding ")
-	print ("Thank to DrTeaSpoon and Noya from Moddota.com for all the help they give :D")
+	print ("Epic Boss Fight Loaded")
 	GameRules._finish = false
 	GameRules.vote_Yes = 0
 	GameRules.vote_No = 0
@@ -165,6 +144,7 @@ function CHoldoutGameMode:InitGameMode()
 	GameRules.voteTableLives = {};
 	
 	GameRules.relicPool = RelicPool()
+	GameRules.abilityManager = AbilityManager()
 	
 	GameRules._Elites = LoadKeyValues( "scripts/kv/elites.kv" )
 	GameRules.UnitKV = LoadKeyValues("scripts/npc/npc_heroes.txt")
@@ -186,7 +166,6 @@ function CHoldoutGameMode:InitGameMode()
 	GameRules.playersDisconnected = 0
 	self._nRoundNumber = 1
 	GameRules._roundnumber = 1
-	GameRules.Recipe_Table = LoadKeyValues("scripts/kv/componements.kv")
 	self._NewGamePlus = false
 	self._message = false
 	self.Last_Target_HB = nil
@@ -207,7 +186,6 @@ function CHoldoutGameMode:InitGameMode()
 	GameRules._maxLives = 10
 	GameRules:SetHeroSelectionTime( 80.0 )
 	GameRules:SetPreGameTime( 30.0 )
-	GameRules:SetStartingGold(0)
 	GameRules:SetShowcaseTime( 0 )
 	GameRules:SetStrategyTime( 0 )
 	GameRules:SetCustomGameSetupAutoLaunchDelay(0) -- fix valve bullshit
@@ -236,7 +214,7 @@ function CHoldoutGameMode:InitGameMode()
 	GameRules:SetUseUniversalShopMode( true )
 
 
-	GameRules:SetTreeRegrowTime( 60.0 )
+	GameRules:SetTreeRegrowTime( 30.0 )
 	GameRules:SetCreepMinimapIconScale( 4 )
 	GameRules:SetRuneMinimapIconScale( 1.5 )
 	GameRules:SetGoldTickTime( 600.0 )
@@ -381,12 +359,10 @@ function CHoldoutGameMode:InitGameMode()
 	
 	-- Hook into game events allowing reload of functions at run time
 	ListenToGameEvent( "npc_spawned", Dynamic_Wrap( CHoldoutGameMode, "OnNPCSpawned" ), self )
-	ListenToGameEvent( "player_reconnected", Dynamic_Wrap( CHoldoutGameMode, 'OnPlayerReconnected' ), self )
 	ListenToGameEvent( "player_disconnect", Dynamic_Wrap( CHoldoutGameMode, 'OnPlayerDisconnected' ), self )
 	ListenToGameEvent( "entity_killed", Dynamic_Wrap( CHoldoutGameMode, 'OnEntityKilled' ), self )
 	ListenToGameEvent( "game_rules_state_change", Dynamic_Wrap( CHoldoutGameMode, "OnGameRulesStateChange" ), self )
 	ListenToGameEvent("dota_player_pick_hero", Dynamic_Wrap( CHoldoutGameMode, "OnHeroPick"), self )
-	ListenToGameEvent('player_connect_full', Dynamic_Wrap( CHoldoutGameMode, 'OnConnectFull'), self)
     ListenToGameEvent('dota_player_used_ability', Dynamic_Wrap(CHoldoutGameMode, 'OnAbilityUsed'), self)
 	ListenToGameEvent( "dota_player_gained_level", Dynamic_Wrap( CHoldoutGameMode, "OnHeroLevelUp" ), self )
 	
@@ -398,8 +374,7 @@ function CHoldoutGameMode:InitGameMode()
 	CustomGameEventManager:RegisterListener('Buy_Perk', Dynamic_Wrap( CHoldoutGameMode, 'Buy_Perk_check'))
 	CustomGameEventManager:RegisterListener('Asura_Core', Dynamic_Wrap( CHoldoutGameMode, 'Buy_Asura_Core_shop'))
 	CustomGameEventManager:RegisterListener('Tell_Core', Dynamic_Wrap( CHoldoutGameMode, 'Asura_Core_Left'))
-	CustomGameEventManager:RegisterListener('randomAbilities', Dynamic_Wrap( CHoldoutGameMode, 'RandomAbilitiesFromList'))
-	CustomGameEventManager:RegisterListener('initializeAbilities', Dynamic_Wrap( CHoldoutGameMode, 'InitializeQueriedAbilities'))
+	
 	
 	CustomGameEventManager:RegisterListener('preGameVoting', Dynamic_Wrap( CHoldoutGameMode, 'PreGameVotingHandler'))
 
@@ -1255,77 +1230,6 @@ function CHoldoutGameMode:Asura_Core_Left(event)
 		hero.tellCoreDelayTimer = GameRules:GetGameTime()
 	end
 end
-
-function CHoldoutGameMode:RandomAbilitiesFromList(event)
-	local hero = EntIndexToHScript(event.heroID)
-	local orderedList = {}
-	for ability, state in pairs(hero.selectedSkills) do
-		table.insert(orderedList, ability)
-	end
-	while #orderedList ~= 4 do
-		table.remove(orderedList, RandomInt(1, #orderedList))
-	end
-	event = {pID = hero:GetPlayerID(), abList = orderedList}
-	GameRules.holdOut:InitializeQueriedAbilities(event)
-end
-
-function CHoldoutGameMode:InitializeQueriedAbilities(event)
-	local pID = event.pID
-	local abilityList = event.abList
-
-	local player = PlayerResource:GetPlayer(pID)
-	local hero = player:GetAssignedHero() 
-	if not hero then return nil end
-	local trueCount = 0
-	local orderedList = {}
-	for index, ability in pairs(abilityList) do
-		orderedList[tonumber(index)] = ability
-		trueCount = trueCount + 1
-	end
-	if trueCount == 4 then
-		hero.abilityIndexingList = orderedList
-		LoadHeroSkills(hero)
-		hero.HasBeenInitialized = true
-		hero.hasSkillsSelected = true
-		CustomGameEventManager:Send_ServerToPlayer(player, "finishedAbilityQuery", {})
-	end
-end
-
-function LoadHeroSkills(hero)
-	for i = 0, #hero.abilityIndexingList do
-		local index = FindNextAbilityIndex(hero)
-		local ability = hero.abilityIndexingList[i]
-		local talentIndex = FindNextTalentIndex(hero)
-		
-		if ability and index and talentIndex then
-			hero:RemoveAbility(hero:GetAbilityByIndex(index):GetName())
-			hero:AddAbilityPrecache(ability):SetAbilityIndex(index)
-			
-			hero:RemoveAbility(hero:GetAbilityByIndex(talentIndex):GetName())
-			hero:AddAbility(ability.."_talent_1"):SetAbilityIndex(talentIndex)
-		end
-	end
-end
-
-function FindNextAbilityIndex(hero)
-	for i = 0, 23 do
-		if hero:GetAbilityByIndex(i) then
-			if string.match(hero:GetAbilityByIndex(i):GetName(), "empty") then
-				return i 
-			end
-		end
-	end
-end
-
-function FindNextTalentIndex(hero)
-	for i = 0, 23 do
-		if hero:GetAbilityByIndex(i) then
-			if string.match(hero:GetAbilityByIndex(i):GetName(), "generic_empty_talent") then
-				return i 
-			end
-		end
-	end
-end
 	
 function CHoldoutGameMode:Tell_threat(event)
 	--print ("show asura core count")
@@ -1755,51 +1659,50 @@ function CHoldoutGameMode:_ReadRoundConfigurations( kv )
 	end
 end
 
-function OnPlayerReconnected(keys)
-	local player = EntIndexToHScript(keys.player)
-	PrintAll(keys)
-	print("reconnected")
-	if not player then return end
-	-- if not player:HasSelectedHero() then
-		-- local playerID = player:GetPlayerID()
-		-- player:MakeRandomHeroSelection()
-		-- local hero = CreateHeroForPlayer(PlayerResource:GetSelectedHeroName( playerID ), player)
-		-- hero:RespawnHero(false, true, false)
-		-- hero:SetPlayerID( playerID )
-		-- hero:SetOwner( player )
-		-- hero:SetControllableByPlayer(playerID, true)
-	-- end
-	if self._NewGamePlus == true then
-		CustomGameEventManager:Send_ServerToPlayer(player,"Display_Shop", {})
-	end
-	CustomGameEventManager:Send_ServerToAllClients( "updateQuestLife", { lives = GameRules._life, maxLives = GameRules._maxLives } )
-	if self._flPrepTimeEnd then
-		local timeLeft = self._flPrepTimeEnd - GameRules:GetGameTime()
-		CustomGameEventManager:Send_ServerToAllClients( "updateQuestPrepTime", { prepTime = math.floor(timeLeft + 0.5) } )
-	end
-
-	if GameRules.UnitKV[hero:GetUnitName()]["Abilities"] and not hero.hasBeenInitialized then
-		local skillTable = {}
-		local i = 0
-		hero.selectedSkills = {}
-		for skill,_ in pairs( GameRules.UnitKV[hero:GetUnitName()]["Abilities"] ) do
-			skillTable[i] = skill
-			i = i + 1
+function CHoldoutGameMode:OnPlayerUIInitialized(keys)
+	local player = PlayerResource:GetPlayer(keys.PlayerID)
+	Timers:CreateTimer(0.5, function()
+		if PlayerResource:GetPlayerLoadedCompletely(keys.PlayerID) then
+			if not player:HasSelectedHero() then
+				local playerID = player:GetPlayerID()
+				player:MakeRandomHeroSelection()
+				local hero = CreateHeroForPlayer(PlayerResource:GetSelectedHeroName( playerID ), player)
+				hero:RespawnHero(false, true, false)
+				hero:SetPlayerID( playerID )
+				hero:SetOwner( player )
+				hero:SetControllableByPlayer(playerID, true)
+			end
+			if self._NewGamePlus == true then
+				CustomGameEventManager:Send_ServerToPlayer(player,"Display_Shop", {})
+			end
+			CustomGameEventManager:Send_ServerToAllClients( "updateQuestLife", { lives = GameRules._life, maxLives = GameRules._maxLives } )
+			CustomGameEventManager:Send_ServerToPlayer(player, "heroLoadIn", {})
+			if self._flPrepTimeEnd then
+				local timeLeft = self._flPrepTimeEnd - GameRules:GetGameTime()
+				CustomGameEventManager:Send_ServerToAllClients( "updateQuestPrepTime", { prepTime = math.floor(timeLeft + 0.5) } )
+			end
+			if GameRules.SkillList[hero:GetUnitName()] then
+				local skillTable = {}
+				local i = 0
+				hero.selectedSkills = {}
+				for skill,_ in pairs(GameRules.SkillList[hero:GetUnitName()]) do
+					skillTable[i] = skill
+					hero.selectedSkills[skill] = false
+					i = i + 1
+				end
+				CustomNetTables:SetTableValue("skillList", hero:GetUnitName()..hero:GetPlayerID(), skillTable)
+				CustomGameEventManager:Send_ServerToPlayer(hero:GetPlayerOwner(), "checkNewHero", {})
+			end
+			CustomGameEventManager:Send_ServerToAllClients( "updateQuestRound", { roundNumber = self._nRoundNumber, roundText = self._currentRound._szRoundQuestTitle } )
+		else
+			return 0.5
 		end
-		CustomNetTables:SetTableValue("skillList", hero:GetUnitName()..hero:GetPlayerID(), skillTable)
-		CustomGameEventManager:Send_ServerToPlayer(hero:GetPlayerOwner(), "checkNewHero", {})
-	end
-	
-	CustomGameEventManager:Send_ServerToAllClients( "updateQuestRound", { roundNumber = self._nRoundNumber, roundText = self._currentRound._szRoundQuestTitle } )
-	if player then
-		Timers:CreateTimer(0.03, function()
-			player:SetKillCamUnit(nil)
-		end)
-	end
+	end)
 end
 
 function CHoldoutGameMode:OnPlayerDisconnected(keys) 
 	local playerID = keys.playerID
+	PrintAll(keys)
 	if not playerID then return end
 	print("disconnect")
 	local hero = PlayerResource:GetSelectedHeroEntity(playerID)
@@ -2164,7 +2067,7 @@ function CHoldoutGameMode:OnThink()
 					for _, hero in ipairs(heroes) do
 						-- GameRules.relicPool:DropTankRelic(hero)
 						if hero:HasOwnerAbandoned() and not hero.HasBeenInitialized and hero.selectedSkills then
-							GameRules.holdOut:RandomAbilitiesFromList({heroID = hero:entindex()})
+							GameRules.abilityManager:RandomAbilitiesFromList({heroID = hero:entindex()})
 						end
 					end
 				end

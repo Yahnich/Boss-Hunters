@@ -21,7 +21,6 @@ function modifier_boss_attackspeed:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
 		MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,
-		MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE,
 		MODIFIER_PROPERTY_MANA_REGEN_CONSTANT,
 		MODIFIER_PROPERTY_MANA_BONUS,
 		MODIFIER_EVENT_ON_ABILITY_FULLY_CAST,
@@ -36,10 +35,6 @@ end
 
 function modifier_boss_attackspeed:GetModifierMoveSpeedBonus_Constant( params )
 	return (self:GetStackCount() - 1) * 15
-end
-
-function modifier_boss_attackspeed:GetModifierPercentageCooldown( params )
-	return self:GetStackCount()*5
 end
 
 function modifier_boss_attackspeed:GetModifierConstantManaRegen( params )

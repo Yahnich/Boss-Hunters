@@ -55,3 +55,6 @@ function forest_vine_whip:OnSpellStart()
 		end
 	end)
 end
+
+
+modifier_forest_vine_whip_talent_1 = class({IsHidden = function(self) return true end, RemoveOnDeath = function(self) return false end, AllowIllusionDuplicate = function(self) return true end})

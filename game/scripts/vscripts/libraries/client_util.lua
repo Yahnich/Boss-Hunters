@@ -1,3 +1,5 @@
+AbilityKV = LoadKeyValues("scripts/npc/npc_abilities_custom.txt")
+
 function GetClientSync(key)
 	local value = CustomNetTables:GetTableValue( "syncing_purposes", key).value
 	return value

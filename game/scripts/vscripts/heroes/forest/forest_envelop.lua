@@ -25,7 +25,6 @@ end
 function forest_envelop:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
-	
 	if self:GetCaster():HasModifier("modifier_forest_envelop_self") then
 		caster:RemoveModifierByName("modifier_forest_envelop_self")
 		EmitSoundOn("Hero_Furion.Teleport_Disappear", caster)
@@ -116,7 +115,13 @@ function modifier_forest_envelop_target:DeclareFunctions()
 end
 
 function modifier_forest_envelop_target:GetModifierIncomingDamage_Percentage(params)
-	ApplyDamage({victim = self:GetCaster(), attacker = params.attacker, damage = params.damage, damage_type = DAMAGE_TYPE_PURE, ability = params.inflictor})
+	local damage = params.original_damage
+	if params.damage_type == DAMAGE_TYPE_PHYSICAL then
+		damage = params.damage * (100 - self:GetCaster():GetPhysicalArmorReduction())/100
+	elseif params.damage_type == DAMAGE_TYPE_MAGICAL then
+		damage = params.damage * (1 - self:GetCaster():GetMagicalArmorValue())
+	end
+	ApplyDamage({victim = self:GetCaster(), attacker = params.attacker, damage = params.original_damage, damage_type = params.damage_type, ability = params.inflictor})
 	return -100
 end
 function modifier_forest_envelop_target:GetModifierPhysicalArmorBonus()

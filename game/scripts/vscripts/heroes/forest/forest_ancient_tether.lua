@@ -44,16 +44,14 @@ end
 function modifier_forest_ancient_tether_buff:OnIntervalThink()
 	local caster = self:GetCaster()
 	local parent = self:GetParent()
-	if not parent:IsAlive() then self:Destroy() end
+	if not (parent:IsAlive() and caster:IsAlive()) then self:Destroy() end
 	if CalculateDistance(parent, caster) > self:GetAbility():GetTrueCastRange() + self.breakrange then self:Destroy() end
 	local hpDiff = parent:GetHealthPercent() - caster:GetHealthPercent()
 	if hpDiff < 0 then -- caster has more hp
-		print("healing parent", hpDiff, self.eqRate)
 		local heal = (caster:GetMaxHealth() * math.min( math.abs(hpDiff), self.eqRate ) / 100) * 0.3
 		caster:SetHealth( caster:GetHealth() - heal )
 		parent:HealEvent(heal, self:GetAbility(), caster)
 	elseif hpDiff > 0 then -- parent has more hp
-		print("healing caster", hpDiff, self.eqRate)
 		local heal = (parent:GetMaxHealth() * math.min( math.abs(hpDiff), self.eqRate ) / 100) * 0.3
 		parent:SetHealth( parent:GetHealth() - heal )
 		caster:HealEvent(heal, self:GetAbility(), caster)
@@ -68,3 +66,7 @@ end
 function modifier_forest_ancient_tether_buff:GetModifierIncomingDamage_Percentage()
 	return self.talent
 end
+
+
+
+modifier_forest_ancient_tether_talent_1 = class({IsHidden = function(self) return true end, RemoveOnDeath = function(self) return false end, AllowIllusionDuplicate = function(self) return true end})

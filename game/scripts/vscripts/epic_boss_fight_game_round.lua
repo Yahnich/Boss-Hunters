@@ -6,8 +6,6 @@ if CHoldoutGameRound == nil then
 	CHoldoutGameRound = class({})
 end
 require( "libraries/Timers" )
-require("internal/util")
-
 
 function CHoldoutGameRound:ReadConfiguration( kv, gameMode, roundNumber )
 	self._gameMode = gameMode
