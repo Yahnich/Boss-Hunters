@@ -3,6 +3,7 @@ GameEvents.Subscribe( "updateQuestPrepTime", UpdateTimer);
 GameEvents.Subscribe( "updateQuestRound", UpdateRound);
 GameEvents.Subscribe( "heroLoadIn", Initialize);
 CustomNetTables.SubscribeNetTableListener( "hero_properties", UpdateCustomHud);
+GameEvents.Subscribe("dota_player_update_query_unit", UpdateCustomHud);
 
 
 
@@ -10,8 +11,6 @@ var ID = Players.GetLocalPlayer();
 var playerHero = Players.GetPlayerSelectedHero(ID);
 
 var dotaHud = $.GetContextPanel().GetParent().GetParent().GetParent()
-
-var newUI = $.GetContextPanel().GetParent().GetParent().GetParent().GetParent().FindChildTraverse("HUDElements").FindChildTraverse("lower_hud").FindChildTraverse("center_with_stats").FindChildTraverse("center_block");
 var healthBar = dotaHud.FindChildTraverse("HealthContainer");
 
 
@@ -30,7 +29,7 @@ function UpdateTooltipUI(){
 }
 
 
-function UpdateCustomHud(playerHero){
+function UpdateCustomHud(){
 	var index = Players.GetLocalPlayerPortraitUnit();
 	var bReset = true
 	var healthText = healthBar.FindChildTraverse("HealthLabel");
@@ -41,7 +40,7 @@ function UpdateCustomHud(playerHero){
 				var barrier = netTable.barrier;
 				shieldLabel.visible = true;
 				healthText.style.visibility = "collapse";
-				shieldLabel.text = healthText.text + " (" + barrier + ")";
+				shieldLabel.text = healthText.text + " (+" + barrier + ")";
 				var pixelPct = Math.min(Math.max(barrier / Entities.GetMaxHealth(index) * 10, 2), 10);
 				healthBar.style.boxShadow = "inset #c0c0c0aa " + pixelPct + "px " + pixelPct + "px " + pixelPct + "px " + (pixelPct*2) + "px";
 				bReset = false
@@ -60,7 +59,6 @@ function Initialize(arg){
 	var shop = dotaHud.FindChildTraverse("shop")    
 	shop.RemoveClass("GuidesDisabled")
 	var killCS = dotaHud.FindChildTraverse("quickstats");
-	var newUI = dotaHud.FindChildTraverse("lower_hud");
 	killCS.FindChildTraverse("QuickStatsContainer").style.visibility = "collapse";
 	dotaHud.FindChildTraverse("GlyphScanContainer").style.visibility = "collapse";
 }

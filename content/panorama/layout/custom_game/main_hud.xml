@@ -1,0 +1,9 @@
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+	</styles> 
+	<scripts>
+		<include src="file://{resources}/scripts/custom_game/main_hud.js" />
+	</scripts>
+	<Panel class="MainHudRoot" hittest="false"/>
+</root>

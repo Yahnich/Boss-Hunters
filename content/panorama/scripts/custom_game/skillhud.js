@@ -112,9 +112,9 @@ GameEvents.Subscribe( "finishedAbilityQuery", deletePanels);
 function deletePanels(){
 	$("#SkillSelectorMain").visible = false;
 }
+
 (function(){
-	$.Msg("Loaded UI")
-	GameEvents.SendCustomGameEventToServer( "playerUILoaded", {pID : Game.GetLocalPlayerID() }
+	GameEvents.SendCustomGameEventToServer( "playerUILoaded", {PlayerID : Game.GetLocalPlayerID() } )
 })();
 
 (function()
