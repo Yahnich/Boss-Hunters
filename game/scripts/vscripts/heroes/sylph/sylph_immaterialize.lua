@@ -11,7 +11,21 @@ modifier_sylph_immaterialize_buff = modifier_sylph_immaterialize_buff or class({
 function modifier_sylph_immaterialize_buff:OnCreated()
 	self.movespeed = self:GetAbility():GetSpecialValueFor("movespeed_bonus")
 	self.evasion = self:GetAbility():GetSpecialValueFor("evasion")
-	if IsServer() then self:StartIntervalThink(0.1) end
+	if IsServer() then
+		self:StartIntervalThink(0)
+		self:GetAbility():StartDelayedCooldown() 
+	end
+end
+
+function modifier_sylph_immaterialize_buff:OnRefresh()
+	self.movespeed = self:GetAbility():GetSpecialValueFor("movespeed_bonus")
+	self.evasion = self:GetAbility():GetSpecialValueFor("evasion")
+	if IsServer() then self:GetAbility():StartDelayedCooldown() end
+end
+
+
+function modifier_sylph_immaterialize_buff:OnDestroy()
+	if IsServer() then self:GetAbility():EndDelayedCooldown() end
 end
 
 function modifier_sylph_immaterialize_buff:OnIntervalThink()

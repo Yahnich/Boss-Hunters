@@ -284,277 +284,6 @@
 			}
 		}
 	}
-
-	//=================================================================================================================
-	// Recipe: Slippers of Halcyon
-	//=================================================================================================================
-	"item_recipe_slippers_of_halcyon"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"1002"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"BaseClass"						"item_recipe_tranquil_boots"
-		
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"0"	
-		"ItemShopTags"					""
-		
-		// Recipe
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemRecipe"					"1"
-		"ItemResult"					"item_slippers_of_halcyon"
-		"ItemRequirements"
-		{
-			"01"						"item_tranquil_boots;item_vitality_booster"
-		}
-	}
-	
-	//=================================================================================================================
-	// Slippers of Halcyon
-	//=================================================================================================================
-	"item_slippers_of_halcyon"
-	{
-		"ID"							"1003"
-
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
-		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"custom/slippers_of_halcyon"
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
-
-		// Stats		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"40.0"
-		"AbilityChannelTime"			"20.0"
-
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"							"80"
-		"ItemCost"						"2075"
-		"ItemShopTags"					"move_speed;boost_mana;mana_pool"
-		"ItemQuality"					"rare"
-		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
-		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_ALWAYS"
-		"ItemAlertable"					"1"
-		"ItemAliases"					"mana;mb"
-	
-		"OnSpellStart"
-		{
-			"ApplyModifier"
-			{
-				"Target" "CASTER"
-				"ModifierName" "modifier_slippers_of_halcyon_caster"
-			}
-		}
-
-		"OnChannelFinish"
-		{
-			"RemoveModifier"
-			{
-				"Target" "CASTER"
-				"ModifierName" "modifier_slippers_of_halcyon_caster"
-			}
-		}
-
-		"OnUnequip"
-		{
-			"RemoveModifier"
-			{
-				"Target" "CASTER"
-				"ModifierName" "modifier_slippers_of_halcyon_caster"
-			}
-		}
-
-		"Modifiers"
-		{
-			"modifier_slippers_of_halcyon"
-			{
-				"Passive"	 "1"
-				"IsHidden"	 "1"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE"  "%bonus_movement"
-					"MODIFIER_PROPERTY_HEALTH_BONUS"			 "%bonus_hp"
-					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"%bonus_armor"
-				}
-			}
-
-			"modifier_slippers_of_halcyon_caster"
-			{
-				"ThinkInterval"		"%tick_rate"
-				"OnIntervalThink"
-				{
-					"Heal"
-					{
-						"Target"
-						{
-							"Center"	 "CASTER"
-							"Radius"	 "%radius"
-							"Teams"		"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-							"Types"		"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
-						}
-						"HealAmount"   "%hp_per_tick"
-					}
-					"AttachEffect"
-					{
-						"Target"
-						{
-							"Center" "CASTER"
-							"Radius" "%radius"
-							"Teams" "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-							"Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
-						}
-						"EffectName"		"particles/neutral_fx/troll_heal.vpcf"
-						"EffectAttachType"	"follow_origin"
-					}
-					"FireSound"
-					{
-						"Target"
-						{
-							"Center" "CASTER"
-							"Radius" "%radius"
-							"Teams" "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-							"Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
-						}
-						"EffectName" "n_creep_ForestTrollHighPriest.Heal"
-					}
-					"AttachEffect"
-					{
-						"Target" "CASTER"
-						"EffectName"		"particles/units/heroes/hero_huskar/huskar_inner_vitality.vpcf"
-						"EffectAttachType"	"follow_origin"
-						"EffectRadius"		"%radius"
-					}
-				
-				}
-				
-			}
-		}
-		
-		// Special	
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_movement"		"75"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_hp"				"275"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_armor"			"4"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"hp_per_tick"			"20"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"tick_rate"				"0.5"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"700"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"15.0"
-			}
-		}
-	}
-	
-	
-	//=================================================================================================================
-	// Recipe: Arcane Boots
-	//=================================================================================================================
-	"item_recipe_arcane_boots2"
-	{
-		"ID"							"1005"
-
-		"BaseClass"						"item_recipe_arcane_boots"
-
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"0"	
-		"ItemShopTags"					""
-		
-		// Recipe
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemRecipe"					"1"
-		"ItemResult"					"item_arcane_boots2"
-		"ItemRequirements"
-		{
-			"01"						"item_energy_booster;item_arcane_boots"
-		}
-	}
-	
-	//=================================================================================================================
-	// Arcane Boots 2
-	//=================================================================================================================
-	"item_arcane_boots2"
-	{
-		"ID"							"1006"
-
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"BaseClass"						"item_arcane_boots"
-
-		// Stats		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"55.0"
-
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"25"
-		"ItemCost"						"2450"
-		"ItemShopTags"					"move_speed;boost_mana;mana_pool"
-		"ItemQuality"					"rare"
-		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
-		"ItemDisassembleRule"			"0"
-		"ItemAlertable"					"1"
-		"ItemAliases"					"mana;mb"
-		
-		// Special	
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_movement"		"75"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_mana"			"500"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"replenish_radius"		"600"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"replenish_amount"		"250"
-			}
-		}
-	}
-
-
 	//=================================================================================================================
 	// Hyper Clarity Salve
 	//=================================================================================================================
@@ -1318,92 +1047,6 @@
 			}
 		}
 	}
-
-	//=================================================================================================================
-	// Recipe: Vermillion Robe
-	//=================================================================================================================
-	"item_recipe_vermillion_robe"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"3018"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"Model"							"models/props_gameplay/recipe.mdl"
-		
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"0"	
-		"ItemShopTags"					""
-		
-		// Recipe
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemRecipe"					"1"
-		"ItemResult"					"item_vermillion_robe"
-		"ItemRequirements"
-		{
-			"01"						"item_reaver;item_eagle;item_mystic_staff;item_cloak"
-		}
-	}
-
-	//=================================================================================================================
-	// Vermillion Robe
-	//=================================================================================================================
-	"item_vermillion_robe"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"3019"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"9750"
-		"ItemShopTags"					"regen_health;block;health_pool"
-		"ItemQuality"					"epic"
-		
-		"ItemAliases"					"vermillion"
-		"ItemDeclarations"				"DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-		"AbilityCooldown"				"20.0"
-		"AOERadius"						"%radius"
-		
-		
-		// Special	
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_stats"			"25"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"mana_regen_pct"		"10"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"move_speed_bonus"		"2"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"300"
-			}
-			"05"
-			{
-				"var_type"									"FIELD_FLOAT"
-				"delay"										"1.6"
-			}
-			"06"
-			{
-				"var_type"									"FIELD_FLOAT"
-				"damage_per_health_missing"					"0.5"
-			}
-		}
-	}
-
-
 	//=================================================================================================================
 	// Zweihander
 	//=================================================================================================================
@@ -1785,12 +1428,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"critical_bonus"			"300"
+				"critical_bonus"			"200"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"critical_chance"			"35"
+				"critical_chance"			"30"
 			}
 			"03"
 			{
@@ -2662,22 +2305,17 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"critical_bonus"			"450"
+				"critical_bonus"			"225"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"critical_chance"			"43"
+				"critical_chance"			"35"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"bonus_damage"				"600"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"critical_bonus_tooltip"			"450"
 			}
 		}
 	}
@@ -2792,12 +2430,12 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_strength"			"200"
+				"bonus_strength"			"250"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_health_max"			"5000"
+				"bonus_health_max"			"4000"
 			}
 			"04"
 			{
@@ -2991,12 +2629,12 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_strength"			"1000"
+				"bonus_strength"			"2000"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_health_max"			"40000"
+				"bonus_health_max"			"20000"
 			}
 			"03"
 			{
@@ -3791,49 +3429,49 @@
 			}
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
-			"AbilitySpecial"
+		"AbilitySpecial"
+		{
+			"01"
 			{
-				"01"
-				{
-					"var_type"								"FIELD_INTEGER"
-					"bonus_all_stats_tooltip"				"200"
-				}
-				"02"
-				{
-					"var_type"								"FIELD_INTEGER"
-					"bonus_damage"							"1050"
-				}
-				"03"
-				{
-					"var_type"								"FIELD_INTEGER"
-					"bonus_attack_speed"					"150"
-				}
-				"04"
-				{
-					"var_type"								"FIELD_INTEGER"
-					"bonus_all"							"200"
-				}
-				"05"
-				{
-					"var_type"								"FIELD_INTEGER"
-					"jump_damage"						"3600"
-				}
-				"06"
-				{
-					"var_type"								"FIELD_INTEGER"
-					"jump_count"						"16"
-				}
-				"07"
-				{
-					"var_type"								"FIELD_INTEGER"
-					"critical_bonus"						"450"
-				}
-				"08"
-				{
-					"var_type"								"FIELD_INTEGER"
-					"critical_chance"						"55"
-				}
+				"var_type"								"FIELD_INTEGER"
+				"bonus_all_stats_tooltip"				"200"
 			}
+			"02"
+			{
+				"var_type"								"FIELD_INTEGER"
+				"bonus_damage"							"1050"
+			}
+			"03"
+			{
+				"var_type"								"FIELD_INTEGER"
+				"bonus_attack_speed"					"150"
+			}
+			"04"
+			{
+				"var_type"								"FIELD_INTEGER"
+				"bonus_all"							"200"
+			}
+			"05"
+			{
+				"var_type"								"FIELD_INTEGER"
+				"jump_damage"						"3600"
+			}
+			"06"
+			{
+				"var_type"								"FIELD_INTEGER"
+				"jump_count"						"16"
+			}
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"critical_bonus"			"250"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"critical_chance"			"35"
+			}
+		}
 	}
 
 	//=================================================================================================================
@@ -4903,12 +4541,12 @@
 			"11"
 			{
 				"var_type"								"FIELD_INTEGER"
-				"critical_bonus"						"600"
+				"critical_bonus"						"300"
 			}
 			"12"
 			{
 				"var_type"								"FIELD_INTEGER"
-				"critical_chance"						"60"
+				"critical_chance"						"35"
 			}
 
 		}
@@ -5567,7 +5205,7 @@
 		"ID"							"1190"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		
-	    "AbilityCooldown"               "195.0"
+	    "AbilityCooldown"               "150.0"
 	    "AbilityManaCost"               "3000"
 
 		// Item Info
@@ -8271,12 +7909,12 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_strength"			"8000"
+				"bonus_strength"			"10500"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_health_max"			"130000"
+				"bonus_health_max"			"80000"
 			}
 			"03"
 			{
@@ -11917,12 +11555,12 @@
 			"08"
 			{
 				"var_type"								"FIELD_INTEGER"
-				"critical_bonus"						"700"
+				"critical_bonus"						"350"
 			}
 			"10"
 			{
 				"var_type"								"FIELD_INTEGER"
-				"critical_chance"						"60"
+				"critical_chance"						"35"
 			}
 		}
 	}
@@ -12532,22 +12170,22 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_strength"			"8000"
+				"bonus_strength"			"12000"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_health_max"			"150000"
+				"bonus_health_max"			"100000"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_strength_PR"			"500"
+				"bonus_strength_PR"			"1000"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_health_max_PR"		"25000"
+				"bonus_health_max_PR"		"10000"
 			}
 			"06"
 			{
@@ -12875,7 +12513,7 @@
 
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"7400"	
+		"ItemCost"						"4300"	
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -12904,7 +12542,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemCost"						"7870"
 		"BaseClass"                     "item_aether_lens"
-		//"ScriptFile"                    "lua_items/redium_lens.lua"
+		//"ScriptFile"                  "lua_items/redium_lens.lua"
 		"AbilityTextureName"			"custom/redium_lens"
 		"ItemShopTags"					"damage;health_regen;mana_regen;hard_to_tag"
 		"ItemQuality"					"epic"
@@ -12930,12 +12568,12 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"cast_range_bonus"			"400"
+				"cast_range_bonus"		"500"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"spell_amp"				"30"
+				"spell_amp"				"20"
 			}
 		}
 	}
@@ -12951,7 +12589,7 @@
 
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"12130"	
+		"ItemCost"						"7640"	
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -13006,12 +12644,12 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"cast_range_bonus"			"600"
+				"cast_range_bonus"		"750"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"spell_amp"				"75"
+				"spell_amp"				"40"
 			}
 		}
 	}
@@ -13054,7 +12692,7 @@
 
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"75000"
+		"ItemCost"						"34600"
 		"BaseClass"                     "item_aether_lens"
 		//"ScriptFile"                    "lua_items/redium_lens.lua"
 		"AbilityTextureName"			"custom/omni_lens"
@@ -13082,12 +12720,12 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"cast_range_bonus"			"800"
+				"cast_range_bonus"		"1250"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"spell_amp"				"150"
+				"spell_amp"				"80"
 			}
 			
 		}
@@ -14144,7 +13782,7 @@
 		"ID"							"1300"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		
-	    "AbilityCooldown"               "195.0"
+	    "AbilityCooldown"               "150.0"
 	    "AbilityManaCost"               "3000"
 
 		// Item Info
@@ -15069,17 +14707,17 @@
 			"09"
 			{
 				"var_type"								"FIELD_INTEGER"
-				"critical_bonus"						"600"
+				"critical_bonus"						"275"
 			}
 			"10"
 			{
 				"var_type"								"FIELD_INTEGER"
-				"critical_chance"						"60"
+				"critical_chance"						"35"
 			}
 			"11"
 			{
 				"var_type"								"FIELD_INTEGER"
-				"resist_debuff"						"-120"
+				"resist_debuff"							"-120"
 			}
 			"12"
 			{
@@ -15616,6 +15254,7 @@
 		"ID"                            "2005"
 		"BaseClass"                     "item_datadriven"
 		"ItemBaseLevel"                 "1"
+		"ItemPurchasable"				"0"
 	}
 
 	"item_booster_void"
@@ -16303,7 +15942,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"cast_range_bonus"			"1000"
+				"cast_range_bonus"			"2000"
 			}
 			"04"
 			{
@@ -16644,17 +16283,17 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_armor"			"750"
+				"bonus_armor"			"425"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_stats"			"500"
+				"bonus_stats"			"750"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"health_regen"			"1000"
+				"health_regen"			"2500"
 			}
 			"05"
 			{
@@ -16896,7 +16535,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_stats"			"1000"
+				"bonus_stats"			"1500"
 			}
 			"04"
 			{
@@ -17156,12 +16795,12 @@
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"crit_chance"			"35"
+				"crit_chance"			"30"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"crit_multiplier"		"300"
+				"crit_multiplier"		"200"
 			}	
 			"07"
 			{
@@ -17176,7 +16815,7 @@
 			"09"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"target_crit_multiplier"		"250"
+				"target_crit_multiplier"		"150"
 			}
 			"10"
 			{
@@ -17420,12 +17059,12 @@
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"crit_chance"			"45"
+				"crit_chance"			"35"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"crit_multiplier"		"450"
+				"crit_multiplier"		"225"
 			}	
 			"07"
 			{
@@ -17440,7 +17079,7 @@
 			"09"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"target_crit_multiplier"		"200"
+				"target_crit_multiplier"		"175"
 			}
 			"10"
 			{
@@ -17684,13 +17323,13 @@
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"crit_chance"			"45"
+				"crit_chance"			"35"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"crit_multiplier"		"450"
-			}	
+				"crit_multiplier"		"250"
+			}
 			"07"
 			{
 				"var_type"				"FIELD_FLOAT"
@@ -17704,7 +17343,7 @@
 			"09"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"target_crit_multiplier"		"250"
+				"target_crit_multiplier"		"200"
 			}
 			"10"
 			{
@@ -17948,13 +17587,13 @@
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"crit_chance"			"60"
+				"crit_chance"			"40"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"crit_multiplier"		"500"
-			}	
+				"crit_multiplier"		"300"
+			}
 			"07"
 			{
 				"var_type"				"FIELD_INTEGER"
@@ -17973,7 +17612,7 @@
 			"10"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"target_crit_multiplier"		"350"
+				"target_crit_multiplier"		"225"
 			}
 			"11"
 			{

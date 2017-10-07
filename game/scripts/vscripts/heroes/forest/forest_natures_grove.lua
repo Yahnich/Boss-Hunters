@@ -43,6 +43,7 @@ function forest_natures_grove:OnSpellStart()
 	
 	local sleptTargets = {}
 	local internalTimer = 0
+	AddFOWViewer(caster:GetTeam(), target, groveRadius + treeRadius, treeDuration, false)
 	Timers:CreateTimer(function()
 		local targets = caster:FindAllUnitsInRadius(target, groveRadius + treeRadius)
 		for _, treeTarget in ipairs(targets) do
@@ -77,7 +78,7 @@ function forest_natures_grove:OnSpellStart()
 			treeFX = ParticleManager:CreateParticle( "particles/heroes/forest/forest_natures_grove_ring.vpcf", PATTACH_WORLDORIGIN, nil)
 			ParticleManager:SetParticleControl( treeFX, 0, target)
 			ParticleManager:SetParticleControl( treeFX, 1, Vector(groveRadius + treeRadius, groveRadius + treeRadius, groveRadius + treeRadius) )
-
+			AddFOWViewer(caster:GetTeam(), target, groveRadius + treeRadius, 0.35, false)
 			
 			ParticleManager:SetParticleControl( sleepFX, 1, Vector(groveRadius + treeRadius, groveRadius + treeRadius, groveRadius + treeRadius) )
 				

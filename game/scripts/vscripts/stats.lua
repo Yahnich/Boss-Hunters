@@ -17,7 +17,7 @@ DEFAULT_MANA_PER_INT = 12
 DEFAULT_MANA_REGEN_PER_INT = 0.01
 DEFAULT_ARMOR_PER_AGI = 0.14
 DEFAULT_ATKSPD_PER_AGI = 1.0
-SPELL_AMP_PER_INT = 0.0714
+DEFAULT_SPELL_AMP_PER_INT = 0.0714
 
 THINK_INTERVAL = 0.03
 
@@ -31,7 +31,7 @@ function stats:ModifyStatBonuses(unit)
 	local armor_adjustment = math.abs(ARMOR_PER_AGI - DEFAULT_ARMOR_PER_AGI)
 	local attackspeed_adjustment = math.abs(ATKSPD_PER_AGI - DEFAULT_ATKSPD_PER_AGI)
 	local damage_adjustment = DMG_PER_AGI
-	local spell_amp_adjustment = math.abs(SPELL_AMP_PER_INT - SPELL_AMP_PER_INT)
+	local spell_amp_adjustment = math.abs(SPELL_AMP_PER_INT - DEFAULT_SPELL_AMP_PER_INT)
 	
 	Timers:CreateTimer(function()
 
@@ -173,13 +173,13 @@ LinkLuaModifier("modifier_stat_adjustment_amp_per_int", "stats.lua", 0)
 
 function modifier_stat_adjustment_amp_per_int:DeclareFunctions()
     local funcs = {
-        MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE ,
+        MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,
     }
 
     return funcs
 end
 
-function modifier_stat_adjustment_amp_per_int:GetModifierSpellAmplify_Percentage( params )
+function modifier_stat_adjustment_amp_per_int:GetModifierSpellAmplify_Percentage()
     return self:GetStackCount() * -1
 end
 

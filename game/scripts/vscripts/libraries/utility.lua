@@ -32,6 +32,9 @@ function ActualRandomVector(maxLength, minLength)
 	return vDir * flLength
 end
 
+function HasBit(checker, value)
+	return bit.band(checker, value) == value
+end
 
 function toboolean(thing)
 	if type(thing) == "number" then
@@ -39,8 +42,8 @@ function toboolean(thing)
 		elseif thing == 0 then return false
 		else error("number type not 1 or 0") end
 	elseif type(thing) == "string" then
-		if thing == "true" then return true
-		elseif thing == "false" then return false
+		if thing == "true" or thing == "1" then return true
+		elseif thing == "false" or thing == "0" then return false
 		else error("string type not true or false") end
 	end
 end
@@ -119,12 +122,12 @@ end
 function CDOTA_BaseNPC:PerformAbilityAttack(target, bProcs, ability)
 	self.autoAttackFromAbilityState = {} -- basically the same as setting it to true
 	self.autoAttackFromAbilityState.ability = ability
-	self:PerformAttack(target,true,bProcs,true,false,false,false,true)
+	self:PerformAttack(target,bProcs,bProcs,true,false,false,false,true)
 	Timers:CreateTimer(function() self.autoAttackFromAbilityState = nil end)
 end
 
 function CDOTA_BaseNPC:PerformGenericAttack(target, immediate)
-	self:PerformAttack(target, true, true, true, false, not immediate, false, true)
+	self:PerformAttack(target, true, true, true, false, not immediate, false, false)
 end
 
 function CDOTA_Modifier_Lua:AttachEffect(pID)
@@ -487,7 +490,7 @@ function CDOTABaseAbility:Refresh()
 	if not self:IsActivated() then
 		self:SetActivated(true)
 	end
-	if self.isOnDelayedCooldown then self:EndDelayedCooldown() end
+	if self.delayedCooldownTimer then self:EndDelayedCooldown() end
     self:EndCooldown()
 end
 
@@ -1048,6 +1051,27 @@ function CDOTABaseAbility:GetTalentSpecialValueFor(value)
 	return base
 end
 
+function CDOTA_Modifier_Lua:GetTalentSpecialValueFor(value)
+	local base = self:GetAbility():GetSpecialValueFor(value)
+	local talentName
+	local kv = self:GetAbility():GetAbilityKeyValues()
+	for k,v in pairs(kv) do -- trawl through keyvalues
+		if k == "AbilitySpecial" then
+			for l,m in pairs(v) do
+				if m[value] then
+					talentName = m["LinkedSpecialBonus"]
+				end
+			end
+		end
+	end
+	if talentName then 
+		local talent = self:GetCaster():FindAbilityByName(talentName)
+		if talent and talent:GetLevel() > 0 then base = base + talent:GetSpecialValueFor("value") end
+	end
+	return base
+end
+
+
 function CDOTA_Buff:HasBeenRefreshed()
 	if self:GetCreationTime() + self:GetDuration() < self:GetDieTime() then -- if original destroy time is smaller than new destroy time
 		return true
@@ -1159,29 +1183,24 @@ function CDOTABaseAbility:StartDelayedCooldown(flDelay, bAutomatic)
 	if self.delayedCooldownTimer then
 		self:EndDelayedCooldown()
 	end
-	self:SetActivated(false)
 	self:EndCooldown()
 	self:UseResources(false, false, true)
 	local cd = self:GetCooldownTimeRemaining()
-	self.isOnDelayedCooldown = true
+	local ability = self
 	self.delayedCooldownTimer = Timers:CreateTimer(0, function()
-		if self.isOnDelayedCooldown then
-			self:StartCooldown(cd)
-			return 0
-		end
+		ability:EndCooldown()
+		ability:StartCooldown(cd)
 	end)
 	if bAutomatic then
-		Timers:CreateTimer(flDelay, function() self:EndDelayedCooldown() end)
+		Timers:CreateTimer(flDelay, function() ability:EndDelayedCooldown() end)
 	end
 end
 
 function CDOTABaseAbility:EndDelayedCooldown()
-	self:SetActivated(true)
 	if self.delayedCooldownTimer then
 		Timers:RemoveTimer(self.delayedCooldownTimer)
 		self.delayedCooldownTimer = nil
 	end
-	self.isOnDelayedCooldown = false
 end
 
 function CDOTABaseAbility:ModifyCooldown(amt)
@@ -1249,22 +1268,29 @@ function CDOTA_BaseNPC:HealEvent(amount, sourceAb, healer) -- for future shit
 			end
 		end
 	end
+	
 	flAmount = flAmount * healBonus
 	local params = {amount = flAmount, source = sourceAb, unit = healer, target = self}
-	for _,modifier in ipairs( self:FindAllModifiers() ) do
-		if modifier.OnHealed then
-			modifier:OnHealed(params)
-		end
-	end
-	if healer then
-		for _,modifier in ipairs( healer:FindAllModifiers() ) do
-			if modifier.OnHeal then
-				modifier:OnHeal(params)
+	local units = self:FindAllUnitsInRadius(self:GetAbsOrigin(), -1)
+	
+	for _, unit in ipairs(units) do
+		if unit.FindAllModifiers then
+			for _, modifier in ipairs( unit:FindAllModifiers() ) do
+				if modifier.OnHealed then
+					modifier:OnHealed(params)
+				end
+				if modifier.OnHeal then
+					modifier:OnHeal(params)
+				end
+				if modifier.OnHealRedirect then
+					local reduction = modifier:OnHealRedirect(params) or 0
+					flAmount = flAmount + reduction
+				end
 			end
 		end
 	end
-	SendOverheadEventMessage(self, OVERHEAD_ALERT_HEAL, self, amount, healer)
-	self:Heal(amount, sourceAb)
+	SendOverheadEventMessage(self, OVERHEAD_ALERT_HEAL, self, flAmount, healer)
+	self:Heal(flAmount, sourceAb)
 end
 
 function CDOTA_BaseNPC:SwapAbilityIndexes(index, swapname)
@@ -1296,6 +1322,17 @@ end
 
 function CDOTA_BaseNPC:IsKnockedBack()
 	return self.isInKnockbackState
+end
+
+
+function FindAllUnits()
+	local team = DOTA_TEAM_GOODGUYS
+	local data = hData or {}
+	local iTeam = data.team or DOTA_UNIT_TARGET_TEAM_BOTH
+	local iType = data.type or DOTA_UNIT_TARGET_ALL
+	local iFlag = data.flag or DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_INVULNERABLE
+	local iOrder = data.order or FIND_ANY_ORDER
+	return FindUnitsInRadius(team, Vector(0,0), nil, -1, iTeam, iType, iFlag, iOrder, false)
 end
 
 function CDOTA_BaseNPC:FindEnemyUnitsInLine(startPos, endPos, width, hData)
@@ -1340,7 +1377,7 @@ function CDOTA_BaseNPC:FindFriendlyUnitsInRadius(position, radius, hData)
 	local data = hData or {}
 	local iTeam = DOTA_UNIT_TARGET_TEAM_FRIENDLY
 	local iType = data.type or DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
-	local iFlag = data.flag or DOTA_UNIT_TARGET_FLAG_INVULNERABLE
+	local iFlag = data.flag or DOTA_UNIT_TARGET_FLAG_NONE
 	local iOrder = data.order or FIND_ANY_ORDER
 	return FindUnitsInRadius(team, position, nil, radius, iTeam, iType, iFlag, iOrder, false)
 end
@@ -1441,12 +1478,23 @@ function CDOTA_BaseNPC:Dispel(hCaster, bHard)
 	self:Purge(not sameTeam, sameTeam, false, bHard, bHard)
 end
 
+function CDOTA_BaseNPC:SmoothFindClearSpace(position)
+	self:SetAbsOrigin(position)
+	ResolveNPCPositions(position, self:GetHullRadius() + self:GetCollisionPadding())
+end
+
+function CDOTABaseAbility:Stun(target, duration, bDelay)
+	target:AddNewModifier(self:GetCaster(), self, "modifier_stunned_generic", {duration = duration, delay = bDelay})
+end
+
 function CDOTABaseAbility:DealDamage(attacker, victim, damage, data)
 	local damageType = self:GetAbilityDamageType()
+	local damageFlags = 0
 	local localdamage = damage or self:GetAbilityDamage()
 	if data and data.damage_type then damageType = data.damage_type end
+	if data then damageFlags = data.damage_flags end
 	if damageType == 0 then damageType = DAMAGE_TYPE_MAGICAL end
-	ApplyDamage({victim = victim, attacker = attacker, ability = self, damage_type = damageType, damage = localdamage})
+	ApplyDamage({victim = victim, attacker = attacker, ability = self, damage_type = damageType, damage = localdamage, damage_flags = damageFlags})
 end
 
 function CDOTABaseAbility:FireLinearProjectile(FX, velocity, distance, width, data)

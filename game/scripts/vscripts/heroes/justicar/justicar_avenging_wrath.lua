@@ -19,8 +19,6 @@ function justicar_avenging_wrath:OnSpellStart()
 		local newDir = RotateVector2D(vDir, angleOffSet * i)
 		self:CreateWave(newDir, fVelocity, fWidth, fDistance)
 	end
-	
-	
 end
 
 function justicar_avenging_wrath:CreateWave(vDir, fVelocity, fWidth, fDistance)
@@ -65,7 +63,7 @@ end
 
 function justicar_avenging_wrath:OnProjectileHit(hTarget, vLocation)
 	if hTarget ~= nil and ( not hTarget:IsMagicImmune() ) and ( not hTarget:IsInvulnerable() ) then
-		local Innersun = self:GetCaster():GetInnerSun()
+		local innerSun = self:GetCaster():GetInnerSun()
 		self:GetCaster():ResetInnerSun()
 		self:DealDamage(self:GetCaster(), hTarget, self:GetTalentSpecialValueFor("damage") + innerSun)
 		

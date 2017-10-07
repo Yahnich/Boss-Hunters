@@ -637,16 +637,9 @@
 			{
 				"UnitBoss_8"
 				{
-					"NPCName"				"npc_dota_boss23_vh"
-					"TotalUnitsToSpawn"		"2"
+					"NPCName"				"npc_dota_boss23"
+					"TotalUnitsToSpawn"		"1"
 					"UnitsPerSpawn"			"2"
-					"SpawnInterval"			"1"
-				}
-				"UnitBoss_7"
-				{
-					"NPCName"				"npc_dota_boss23_m_vh"
-					"TotalUnitsToSpawn"		"8"
-					"UnitsPerSpawn"			"4"
 					"SpawnInterval"			"1"
 				}
 			}
@@ -717,10 +710,10 @@
 				"round_quest_title"			"#DOTA_Holdout_Round_Boss17_Quest_Title_alt"
 				"UnitBoss_8"
 				{
-					"NPCName"				"npc_dota_boss28_vh"
-					"TotalUnitsToSpawn"		"3"
-					"UnitsPerSpawn"			"3"
-					"SpawnInterval"			"1"
+					"NPCName"				"npc_dota_boss28"
+					"TotalUnitsToSpawn"		"1"
+					"UnitsPerSpawn"			"1"
+					"SpawnInterval"			"10"
 				}
 			}
 		}
@@ -740,9 +733,9 @@
 			{
 				"UnitBoss_8"
 				{
-					"NPCName"				"npc_dota_boss30_vh"
-					"TotalUnitsToSpawn"		"4"
-					"UnitsPerSpawn"			"2"
+					"NPCName"				"npc_dota_boss30"
+					"TotalUnitsToSpawn"		"1"
+					"UnitsPerSpawn"			"1"
 					"SpawnInterval"			"70"
 				}
 			}

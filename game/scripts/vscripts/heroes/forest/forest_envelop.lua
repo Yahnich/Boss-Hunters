@@ -2,7 +2,7 @@ forest_envelop = class({})
 
 function forest_envelop:CastFilterResultTarget(target)
 	local caster = self:GetCaster()
-	if caster ~= target then
+	if caster ~= target and not target:HasModifier("modifier_forest_envelop_self") and not target:HasModifier("modifier_forest_envelop_target") then
 		return UnitFilter(target, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, 0, caster:GetTeamNumber())
 	else
 		return UF_FAIL_CUSTOM
@@ -10,7 +10,7 @@ function forest_envelop:CastFilterResultTarget(target)
 end
 
 function forest_envelop:GetCustomCastErrorTarget(target)
-	return "Skill cannot target caster"
+	return "Skill cannot target caster or enveloped/enveloping units."
 end
 
 
@@ -115,14 +115,18 @@ function modifier_forest_envelop_target:DeclareFunctions()
 end
 
 function modifier_forest_envelop_target:GetModifierIncomingDamage_Percentage(params)
-	local damage = params.original_damage
-	if params.damage_type == DAMAGE_TYPE_PHYSICAL then
-		damage = params.damage * (100 - self:GetCaster():GetPhysicalArmorReduction())/100
-	elseif params.damage_type == DAMAGE_TYPE_MAGICAL then
-		damage = params.damage * (1 - self:GetCaster():GetMagicalArmorValue())
+	if not HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION) then
+		local damage = params.original_damage
+		if params.damage_type == DAMAGE_TYPE_PHYSICAL then
+			damage = params.damage / (100 - self:GetCaster():GetPhysicalArmorReduction())/100
+		elseif params.damage_type == DAMAGE_TYPE_MAGICAL then
+			damage = params.damage / (1 - self:GetCaster():GetMagicalArmorValue())
+		end
+		ApplyDamage({victim = self:GetCaster(), attacker = params.attacker, damage = damage, damage_type = params.damage_type, ability = params.inflictor, damage_flags = DOTA_DAMAGE_FLAG_REFLECTION})
+		return -1000
+	else
+		return -1000
 	end
-	ApplyDamage({victim = self:GetCaster(), attacker = params.attacker, damage = params.original_damage, damage_type = params.damage_type, ability = params.inflictor})
-	return -100
 end
 function modifier_forest_envelop_target:GetModifierPhysicalArmorBonus()
 	return self.armor * self.armorToAlly

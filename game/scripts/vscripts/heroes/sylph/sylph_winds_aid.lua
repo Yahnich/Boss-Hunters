@@ -17,6 +17,16 @@ modifier_sylph_winds_aid_buff = modifier_sylph_winds_aid_buff or class({})
 
 function modifier_sylph_winds_aid_buff:OnCreated()
 	self.critical_strike = self:GetAbility():GetSpecialValueFor("crit_per_stack")
+	if IsServer() then self:GetAbility():StartDelayedCooldown() end
+end
+
+function modifier_sylph_winds_aid_buff:OnRefresh()
+	self.critical_strike = self:GetAbility():GetSpecialValueFor("crit_per_stack")
+	if IsServer() then self:GetAbility():StartDelayedCooldown() end
+end
+
+function modifier_sylph_winds_aid_buff:OnDestroy()
+	if IsServer() then self:GetAbility():EndDelayedCooldown() end
 end
 
 function modifier_sylph_winds_aid_buff:DeclareFunctions()

@@ -1,13 +1,5 @@
 lua_attribute_bonus_modifier = class({})
 
-function lua_attribute_bonus_modifier:DeclareFunctions()
-	local funcs = {
-		MODIFIER_EVENT_ON_HEALTH_GAINED,
-		MODIFIER_EVENT_ON_HEAL_RECEIVED,
-	}
-	return funcs
-end
-
 function lua_attribute_bonus_modifier:OnCreated()
 	self.agiamp = 50
 	if IsServer() then
@@ -47,18 +39,4 @@ end
 
 function lua_attribute_bonus_modifier:AllowIllusionDuplicate()
 	return true
-end
-
-function lua_attribute_bonus_modifier:OnHealReceived (keys)
-    if IsServer and keys.unit == self:GetParent() then
-		if not keys.process_procs and not self.healed then
-            if self:GetParent():IsRealHero() and keys.unit:IsRealHero() and not self:GetParent():HealDisabled() and self:GetParent():IsAlive() and self:GetParent():GetHealth() > 0 then
-				local agiamp = self.agiamp or 50
-				local agihealamp = self:GetParent():GetAgility()/(100*agiamp)
-                local _heal = keys.gain * agihealamp
-				local hp = self:GetParent():GetHealth()
-                self:GetParent():SetHealth(hp + _heal)
-            end
-        end
-    end
 end

@@ -36,8 +36,19 @@ function modifier_mystic_life_weaver_passive:IsPurgable()
 	return false
 end
 
+function modifier_mystic_life_weaver_passive:DeclareFunctions()
+	return {MODIFIER_EVENT_ON_ABILITY_FULLY_CAST}
+end
+
+function modifier_mystic_life_weaver_passive:OnAbilityFullyCast(params)
+	if params.unit == self:GetParent() and self:GetCaster():HasScepter() and params.unit:HasAbility(params.ability:GetName()) then
+		self:IncrementStackCount()
+		Timers:CreateTimer(self:GetSpecialValueFor("scepter_duration"), function() self:DecrementStackCount() end)
+	end
+end
+
 function modifier_mystic_life_weaver_passive:OnHeal(params)
-	if params.unit == self:GetParent() and self:GetParent():HasTalent("mystic_life_weaver_talent_1") and params.amount - params.target:GetHealthDeficit() > 0 then
+	if params.unit == self:GetParent() and self:GetParent():HasTalent("mystic_life_weaver_talent_1") and params.amount - params.target:GetHealthDeficit() > 0 and params.target:GetHealthDeficit() > params.target:GetMaxHealth() * 0.02 then
 		local overheal = (params.amount - params.target:GetHealthDeficit()) * self:GetSpecialValueFor("talent_overheal_barrier") / 100
 		params.target:AddBarrier(overheal, params.unit, self:GetAbility(), nil)
 	end
@@ -53,11 +64,6 @@ function modifier_mystic_life_weaver_passive:OnHeal(params)
 		local duration = self:GetAbility():GetTalentSpecialValueFor("duration")
 		prevHealUnit:AddNewModifier(params.unit, self:GetAbility(), "modifier_mystic_life_weaver_hot", {duration = duration, totalheal = params.amount * self.heal_share})
 		currHealUnit:AddNewModifier(params.unit, self:GetAbility(), "modifier_mystic_life_weaver_hot", {duration = duration, totalheal = params.amount * self.heal_share})
-		
-		if self:GetCaster():HasScepter() then
-			self:IncrementStackCount()
-			Timers:CreateTimer(self:GetSpecialValueFor("scepter_duration"), function() self:DecrementStackCount() end)
-		end
 	end
 end
 

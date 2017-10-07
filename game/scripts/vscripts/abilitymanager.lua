@@ -30,9 +30,11 @@ function AbilityManager:InitializeQueriedAbilities(event)
 	local trueCount = 0
 	local orderedList = {}
 	for index, ability in pairs(abilityList) do
+		print(ability)
 		orderedList[tonumber(index)] = ability
 		trueCount = trueCount + 1
 	end
+	print("done")
 	if trueCount == 4 then
 		hero.abilityIndexingList = orderedList
 		GameRules.abilityManager:LoadHeroSkills(hero)

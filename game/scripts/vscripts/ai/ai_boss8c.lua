@@ -23,6 +23,7 @@ function Spawn( entityKeyValues )
 		thisEntity.suicide:SetLevel(1)
 		thisEntity.mine:SetLevel(1)
 	end
+	thisEntity.suicide:StartCooldown(5)
 end
 
 

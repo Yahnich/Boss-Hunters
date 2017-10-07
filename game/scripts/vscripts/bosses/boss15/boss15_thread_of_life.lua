@@ -37,10 +37,8 @@ end
 
 function boss15_thread_of_life:CreateTether(target)
 	local caster = self:GetCaster()
-	target:AddNewModifier(caster, self, "modifier_boss15_thread_of_life_tether", {})
-	caster:AddNewModifier(caster, self, "modifier_boss15_thread_of_life_reduction", {})
 	self.tetherList = self.tetherList or {}
-	table.insert(self.tetherList, target:entindex())
+	target:AddNewModifier(caster, self, "modifier_boss15_thread_of_life_tether", {})
 end
 
 function boss15_thread_of_life:RemoveTether(target)
@@ -75,13 +73,16 @@ if IsServer() then
 		ParticleManager:SetParticleControlEnt(tetherFX, 1, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_hitloc", self:GetParent():GetAbsOrigin(), true)
 		ParticleManager:SetParticleControl(tetherFX, 5, Vector(999,0,0) )
 		self:AddEffect(tetherFX)
+		
+		self:GetCaster():AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_boss15_thread_of_life_reduction", {})
+		table.insert(self:GetAbility().tetherList, self:GetParent():entindex())
 	end
 	
 	function modifier_boss15_thread_of_life_tether:OnIntervalThink()
 		local parent = self:GetParent()
 		local caster = self:GetCaster()
 		
-		if CalculateDistance(caster, parent) > self.distance + self.buffer or caster:IsSilenced() or not caster:IsAlive() then
+		if not caster or caster:IsNull() or not caster:IsAlive() or CalculateDistance(caster, parent) > self.distance + self.buffer  then
 			self:Destroy()
 			return
 		end
@@ -97,7 +98,7 @@ if IsServer() then
 	
 	function modifier_boss15_thread_of_life_tether:OnDestroy()
 		StopSoundOn("Hero_DeathProphet.SpiritSiphon.Target", target)
-		self:GetAbility():RemoveTether(self:GetParent())
+		if self:GetAbility() then self:GetAbility():RemoveTether(self:GetParent()) end
 	end
 end
 

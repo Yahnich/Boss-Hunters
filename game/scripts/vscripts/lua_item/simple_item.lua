@@ -12,9 +12,6 @@ function refresher( keys )
         local ability = caster:GetAbilityByIndex( i )
         if ability and ability ~= keys.ability and not no_refresh_skill[ ability:GetAbilityName() ] then
 			ability:Refresh()
-			if ability:GetName() == "skeleton_king_reincarnation" then
-				caster:RemoveModifierByName("modifier_skeleton_king_reincarnation_cooldown")
-			end
         end
     end
     for i=0, 5, 1 do
@@ -770,7 +767,6 @@ function check_admin(keys)
         if PlayerResource:GetSteamAccountID( ID ) == 42452574 or PlayerResource:GetSteamAccountID( ID ) == 36111451 then
 			Timers:CreateTimer(0.3,function()
 				Notifications:Top(ID, {text="A GOD IS AMONGST US", duration=3})
-                caster:RemoveItem(item)
             end)
         else
             Timers:CreateTimer(0.3,function()

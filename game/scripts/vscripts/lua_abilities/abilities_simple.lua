@@ -952,7 +952,7 @@ function spawn_unit( keys )
 	end
     if keys.number_of_unit==nil then keys.number_of_unit=1 end
     for i = 1, keys.number_of_unit do
-		if caster:GetOwner() and caster:GetOwnerEntity():IsRealHero() then
+		if caster:GetOwnerEntity() and caster:GetOwnerEntity().IsRealHero and caster:GetOwnerEntity():IsRealHero() then
 			caster:GetOwnerEntity():CreateSummon(unit, caster:GetAbsOrigin() + RandomVector(RandomInt(250,500)), 30)
 		else
 			local entUnit = CreateUnitByName( unit, caster:GetAbsOrigin() + RandomVector(RandomInt(250,500)), true, nil, nil, caster:GetTeamNumber() )
@@ -1178,6 +1178,7 @@ function pudgeHP_shiftOnAttack(keys)
 			local reduction = keys.ability:GetTalentSpecialValueFor( "health_bonus_perstack")
 			keys.target:SetHealth(curr_curr - reduction)
 			keys.target:SetMaxHealth(curr_max - reduction)
+			keys.target:SetBaseMaxHealth(curr_max - reduction)
 		end
 		keys.ability:ApplyDataDrivenModifier(keys.caster, keys.target, "modifier_hp_shift_datadriven_debuff", nil)
 		
@@ -1213,6 +1214,7 @@ function pudgeHP_shiftDebuffOnDestroy(keys)
 	local curr_max = keys.target:GetMaxHealth()
 	local reduction = keys.ability:GetTalentSpecialValueFor( "health_bonus_perstack")
 	keys.target:SetMaxHealth(curr_max + reduction)
+	keys.target:SetBaseMaxHealth(curr_max + reduction)
 end
 
 

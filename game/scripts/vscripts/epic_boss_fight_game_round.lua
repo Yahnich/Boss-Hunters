@@ -180,8 +180,8 @@ function CHoldoutGameRound:OnHoldoutReviveComplete( event )
 		local ngmodifier = 0
 		if GameRules._NewGamePlus == true then ngmodifier = 37 end
 		local totalgold = castingHero:GetGold() + (self._nRoundNumber+ngmodifier)*5
-	            castingHero:SetGold(0 , false)
-	            castingHero:SetGold(totalgold, true)
+		castingHero:SetGold(0 , false)
+		castingHero:SetGold(totalgold, true)
 	end
 end
 

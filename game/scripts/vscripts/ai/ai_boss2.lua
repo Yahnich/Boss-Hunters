@@ -9,20 +9,27 @@ if IsServer() then
 		thisEntity.leap = thisEntity:FindAbilityByName("boss1b_leap")
 		thisEntity.pin = thisEntity:FindAbilityByName("boss1b_spear_pin")
 		thisEntity.pierce = thisEntity:FindAbilityByName("boss1b_spear_pierce")
+		
+		Timers:CreateTimer(0.1, function()
+			if  math.floor(GameRules.gameDifficulty + 0.5) <= 2 then
+				thisEntity.leap:SetLevel(1)
+				thisEntity.pin:SetLevel(1)
+				thisEntity.pierce:SetLevel(1)
+			else
+				thisEntity.leap:SetLevel(2)
+				thisEntity.pin:SetLevel(2)
+				thisEntity.pierce:SetLevel(2)
+			end
+		end)
+		
 		if  math.floor(GameRules.gameDifficulty + 0.5) > 2 then
-			thisEntity.leap:SetLevel(2)
-			thisEntity.pin:SetLevel(2)
-			thisEntity.pierce:SetLevel(2)
-			
 			thisEntity:SetBaseMaxHealth(thisEntity:GetMaxHealth()*1.5)
 			thisEntity:SetMaxHealth(thisEntity:GetMaxHealth()*1.5)
 			thisEntity:SetHealth(thisEntity:GetMaxHealth())
 			
 			 thisEntity:SetAverageBaseDamage(thisEntity:GetAverageBaseDamage()*1.2, 30)
 		else
-			thisEntity.leap:SetLevel(1)
-			thisEntity.pin:SetLevel(1)
-			thisEntity.pierce:SetLevel(1)
+			
 		end
 	end
 

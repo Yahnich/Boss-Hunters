@@ -12,6 +12,7 @@ function ArrowHit( keys )
 	damage_table.damage = ability:GetTalentSpecialValueFor("arrow_agi_multiplier") * caster:GetAgility()
 	if not target:IsMagicImmune() then ability:ApplyDataDrivenModifier(caster, target, "modifier_bullseye_break", {duration = ability:GetTalentSpecialValueFor("break_duration")}) end
 	ApplyDamage(damage_table)
+	caster:PerformAttack(target, true, true, true, false, false, true, true)
 end
 
 

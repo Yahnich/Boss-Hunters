@@ -6,7 +6,7 @@ require( "ai/ai_core" )
 
 function Spawn( entityKeyValues )
 	thisEntity:SetContextThink( "AIThinker", AIThink, 1 )
-	thisEntity.berserk = thisEntity:FindAbilityByName("creature_zombie_berserk")
+	thisEntity.berserk = thisEntity:FindAbilityByName("boss3a_berserk")
 end
 
 

@@ -13,20 +13,23 @@ if IsServer() then
 		thisEntity.rush = thisEntity:FindAbilityByName("boss1a_rushdown")
 		thisEntity.blink = thisEntity:FindAbilityByName("boss1a_blink_strike")
 		thisEntity.vanish = thisEntity:FindAbilityByName("boss1a_vanish")
+		Timers:CreateTimer(0.1, function()
+			if  math.floor(GameRules.gameDifficulty + 0.5) > 2 then
+				thisEntity.vanish:SetLevel(2)
+				thisEntity.blink:SetLevel(2)
+				thisEntity.rush:SetLevel(2)
+			else
+				thisEntity.vanish:SetLevel(1)
+				thisEntity.blink:SetLevel(1)
+				thisEntity.rush:SetLevel(1)
+			end
+		end)
 		if  math.floor(GameRules.gameDifficulty + 0.5) > 2 then
-			thisEntity.vanish:SetLevel(2)
-			thisEntity.blink:SetLevel(2)
-			thisEntity.rush:SetLevel(2)
-			
 			thisEntity:SetBaseMaxHealth(thisEntity:GetMaxHealth()*1.5)
 			thisEntity:SetMaxHealth(thisEntity:GetMaxHealth()*1.5)
 			thisEntity:SetHealth(thisEntity:GetMaxHealth())
 			
 			 thisEntity:SetAverageBaseDamage(thisEntity:GetAverageBaseDamage()*1.2, 25)
-		else
-			thisEntity.vanish:SetLevel(1)
-			thisEntity.blink:SetLevel(1)
-			thisEntity.rush:SetLevel(1)
 		end
 		thisEntity.AIbehavior = RandomInt(1,3)
 	end

@@ -35,6 +35,12 @@ function C_DOTA_BaseNPC:IsSameTeam(unit)
 	return (self:GetTeamNumber() == unit:GetTeamNumber())
 end
 
+function C_DOTA_BaseNPC:GetThreat()
+	local data = CustomNetTables:GetTableValue("hero_properties", unit:GetUnitName()..unit:entindex() ) or {}
+	local threat = data.threat or 0
+	return self.threat
+end
+
 function C_DOTA_BaseNPC:HasTalent(talentName)
 	if self:HasModifier("modifier_"..talentName) then
 		return true 
@@ -70,6 +76,25 @@ function C_DOTABaseAbility:GetTalentSpecialValueFor(value)
 	local base = self:GetSpecialValueFor(value)
 	local talentName
 	local kv = AbilityKV[self:GetName()]
+	for k,v in pairs(kv) do -- trawl through keyvalues
+		if k == "AbilitySpecial" then
+			for l,m in pairs(v) do
+				if m[value] then
+					talentName = m["LinkedSpecialBonus"]
+				end
+			end
+		end
+	end
+	if talentName and self:GetCaster():HasModifier("modifier_"..talentName) then 
+		base = base + self:GetCaster():FindTalentValue(talentName) 
+	end
+	return base
+end
+
+function C_DOTA_Modifier_Lua:GetTalentSpecialValueFor(value)
+	local base = self:GetAbility():GetSpecialValueFor(value)
+	local talentName
+	local kv = AbilityKV[self:GetAbility():GetName()]
 	for k,v in pairs(kv) do -- trawl through keyvalues
 		if k == "AbilitySpecial" then
 			for l,m in pairs(v) do

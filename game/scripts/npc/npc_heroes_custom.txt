@@ -148,7 +148,14 @@
 		"Ability3"					"class_empty_3"
 		"Ability4"					"ifrit_kindled_soul"
 		"Ability5"					"class_filler"
-		"Ability6"					"class_empty_4"	
+		"Ability6"					"class_empty_4"
+		
+		"HeroValues"
+		{
+			"Support"			"2"
+			"Damage"			"5"
+			"Tank"				"1"
+		}
 		
 		"Items"
 		{
@@ -213,6 +220,13 @@
 		"Ability4"					"shinigami_deep_wounds"
 		"Ability5"					"class_filler"
 		"Ability6"					"class_empty_4"
+		
+		"HeroValues"
+		{
+			"Support"			"2"
+			"Damage"			"5"
+			"Tank"				"3"
+		}
 		
 		"Items"
 		{
@@ -286,6 +300,13 @@
 		"Ability4"				"sylph_zephyr"
 		"Ability5"				"class_filler"
 		"Ability6"				"class_empty_4"
+		
+		"HeroValues"
+		{
+			"Support"			"3"
+			"Damage"			"5"
+			"Tank"				"2"
+		}
 		
 		"Items"
 		{
@@ -401,6 +422,13 @@
 		"Ability4"				"forest_iron_bark"
 		"Ability5"				"class_filler"
 		"Ability6"				"class_empty_4"
+		
+		"HeroValues"
+		{
+			"Support"			"5"
+			"Damage"			"1"
+			"Tank"				"3"
+		}
 		
 		"Items"
 		{
@@ -722,6 +750,13 @@
 		"Ability5"				"class_filler"
 		"Ability6"				"class_empty_4"
 		
+		"HeroValues"
+		{
+			"Support"			"4"
+			"Damage"			"3"
+			"Tank"				"4"
+		}
+		
 		"Items"
 		{
 			"Armor"
@@ -832,6 +867,13 @@
 		"Ability4"				"gladiatrix_fearless_assault"
 		"Ability5"				"class_filler"
 		"Ability6"				"class_empty_4"
+		
+		"HeroValues"
+		{
+			"Support"			"2"
+			"Damage"			"4"
+			"Tank"				"4"
+		}
 
 		"Items"
 		{
@@ -1045,12 +1087,62 @@
 		"Ability4"				"mana_fiend_mana_lance"
 		
 	}
-	"npc_dota_hero_skeleton_king_ebf"
+	"npc_dota_hero_skeleton_king"
 	{
 		"override_hero"			"npc_dota_hero_skeleton_king"
-		"Ability1"				"skeleton_king_wraithfire_blast_ebf"
-		"Ability2"				"skeleton_king_vampiric_aura_ebf"
-		"Ability3"				"skeleton_king_mortal_strike_ebf"
+		"Ability1"					"class_empty_1"
+		"Ability2"					"class_empty_2"
+		"Ability3"					"class_empty_3"
+		"Ability4"					"wraith_one_for_all"
+		"Ability5"					"class_filler"
+		"Ability6"					"class_empty_4"
+		
+		"HeroValues"
+		{
+			"Support"			"2"
+			"Damage"			"4"
+			"Tank"				"4"
+		}
+		
+		"Items"
+		{
+			"Armor"
+			{
+				"1"				"item_wraith_armor_1"
+				"2"				"item_wraith_armor_2"
+				"3"				"item_wraith_armor_3"
+				"4"				"item_wraith_armor_4"
+				"5"				"item_wraith_armor_5"
+			}
+			"Weapon"
+			{
+				"1"				"item_wraith_weapon_1"
+				"2"				"item_wraith_weapon_2"
+				"3"				"item_wraith_weapon_3"
+				"4"				"item_wraith_weapon_4"
+				"5"				"item_wraith_weapon_5"
+			}
+			"Other"
+			{
+				"1"				"item_wraith_other_1"
+				"2"				"item_wraith_other_2"
+				"3"				"item_wraith_other_3"
+				"4"				"item_wraith_other_4"
+				"5"				"item_wraith_other_5"
+			}
+		}
+		
+		"Abilities"
+		{
+			"wraith_bloodletter"				"true"
+			"wraith_crimson_berserker"			"true"
+			"wraith_sanguine_aura"				"true"
+			"wraith_blood_ritual"				"true"
+			"wraith_wraithfire"					"true"
+			"wraith_undying"					"true"
+			"wraith_life_strike"				"true"
+			"wraith_wraiths_will"				"true"
+		}
 		
 	}
 	"npc_dota_hero_viper_ebf"
@@ -1101,6 +1193,13 @@
 		"Ability4"					"puppeteer_black_plague"
 		"Ability5"					"class_filler"
 		"Ability6"					"class_empty_4"
+		
+		"HeroValues"
+		{
+			"Support"			"3"
+			"Damage"			"3"
+			"Tank"				"3"
+		}
 		
 		"Items"
 		{
@@ -1209,6 +1308,13 @@
 		"Ability5"				"class_filler"
 		"Ability6"				"class_empty_4"
 		
+		"HeroValues"
+		{
+			"Support"			"2"
+			"Damage"			"2"
+			"Tank"				"5"
+		}
+		
 		"Items"
 		{
 			"Armor"
@@ -1258,6 +1364,13 @@
 		"Ability4"				"mystic_life_weaver"
 		"Ability5"				"class_filler"
 		"Ability6"				"class_empty_4"
+		
+		"HeroValues"
+		{
+			"Support"			"5"
+			"Damage"			"2"
+			"Tank"				"2"
+		}
 		
 		"Items"
 		{

@@ -54,6 +54,7 @@ function Precache( context )
 	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_ancient_apparition.vsndevts"  , context)
 	
 	PrecacheResource("particle", "particles/units/heroes/hero_skeletonking/wraith_king_vampiric_aura_lifesteal.vpcf", context)
+	PrecacheResource("particle", "particles/items3_fx/octarine_core_lifesteal.vpcf", context)
 	PrecacheResource("particle", "particles/elite_warning.vpcf", context)
 	PrecacheResource("particle", "particles/elite_overhead.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_frost.vpcf", context)
@@ -113,17 +114,10 @@ function DeleteAbility( unit)
 					end
 				end
 end
+
 function TeachAbility( unit, ability_name, level )
     if not level then level = 1 end
         unit:AddAbility(ability_name)
-        local ability = unit:FindAbilityByName(ability_name)
-        if ability then
-            ability:SetLevel(tonumber(level))
-            return ability
-        end
-end
-function levelAbility( unit, ability_name, level )
-    if not level then level = 1 end
         local ability = unit:FindAbilityByName(ability_name)
         if ability then
             ability:SetLevel(tonumber(level))
@@ -698,8 +692,9 @@ function CHoldoutGameMode:FilterModifiers( filterTable )
 		end
 	end)
 	-- DISABLE RESISTANCE HANDLING
-	if caster:IsChanneling() 
+	if caster:IsChanneling()
 	or ability:GetAbilityType() == 1
+	or parent == caster
 	or ability:PiercesDisableResistance() 
 	or (caster:HasAbility("perk_disable_piercing") and RollPercentage(caster:FindAbilityByName("perk_disable_piercing"):GetSpecialValueFor("chance"))) then return true end
 	if parent:IsCreature() then
@@ -890,8 +885,6 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 			local reflect = ability:GetSpecialValueFor("reflect_pct") / 100
 			filterTable["damage"] = filterTable["damage"] * reflect
 		end
-		local aether_multiplier = get_aether_multiplier(attacker)
-		local realmult = aether_multiplier
 		local no_aether = {["elder_titan_earth_splitter"] = true,
 						   ["enigma_midnight_pulse"] = true,
 						   ["cloak_and_dagger_ebf"] = true,
@@ -904,10 +897,6 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 						   ["item_purethorn"] = true,
 						   ["abyssal_underlord_firestorm"] = true,
 						   ["huskar_life_break"] = true} -- stop %hp based and right click damage abilities from being amped by aether lens
-		filterTable["damage"] = filterTable["damage"]/attacker:GetOriginalSpellDamageAmp() -- remove old amp
-		if not (no_aether[ability:GetName()] or not ability:IsAetherAmplified()) then
-			filterTable["damage"] = filterTable["damage"]*attacker:GetSpellDamageAmp() -- readd amp if applicable
-		end
 		if attacker:HasModifier("spellcrit") and attacker ~= victim then
 			local no_crit = {
 						   ["item_melee_rage"] = true,
@@ -980,14 +969,12 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 		if not inflictor or (ability and not ability:HasNoThreatFlag()) then
 			if not victim.threatTable then victim.threatTable = {} end
 			if not attacker.threat then attacker.threat = 0 end
-			local roundCurrTotalHP = victim:GetMaxHealth()
-			threatCounter = 0
+			local roundCurrTotalHP = 0
+			local threatCounter = 0
 			for _,unit in pairs(FindAllEntitiesByClassname("npc_dota_creature")) do
-				if unit ~= victim then
-					roundCurrTotalHP = roundCurrTotalHP + unit:GetMaxHealth()
-					if threatCounter < 3 then
-						threatCounter = threatCounter + 1
-					end
+				roundCurrTotalHP = roundCurrTotalHP + unit:GetMaxHealth()
+				if threatCounter < 3 then
+					threatCounter = threatCounter + 1
 				end
 			end
 			local addedthreat = (damage / roundCurrTotalHP)*threatCounter*100
@@ -1081,7 +1068,6 @@ function CHoldoutGameMode:OnAbilityUsed(event)
 	if not hero then return end
 	if not abilityname then return end
 	local abilityused = hero:FindAbilityByName(abilityname)
-	if abilityname == "item_bloodstone" then hero:ForceKill(true) end
 	if not abilityused then abilityused = hero:FindItemByName(abilityname, false) end
 	if not abilityused then return end
 	if self._threat[abilityname] or (abilityused) then
@@ -1134,6 +1120,7 @@ function CHoldoutGameMode:OnAbilityUsed(event)
  		end)
 	end
 	if abilityused and abilityused:HasPureCooldown() then
+		print(abilityname)
 		abilityused:EndCooldown()
 		if abilityused:GetDuration() > 0 then
 			local duration = abilityused:GetDuration()
@@ -1663,42 +1650,36 @@ function CHoldoutGameMode:_ReadRoundConfigurations( kv )
 end
 
 function CHoldoutGameMode:OnPlayerUIInitialized(keys)
-	local player = PlayerResource:GetPlayer(keys.PlayerID)
-	Timers:CreateTimer(0.1, function()
-		if PlayerResource:GetPlayerLoadedCompletely(keys.PlayerID) then
-			if not player:HasSelectedHero() then
-				local playerID = player:GetPlayerID()
-				player:MakeRandomHeroSelection()
-				local hero = CreateHeroForPlayer(PlayerResource:GetSelectedHeroName( playerID ), player)
-				hero:RespawnHero(false, true, false)
-				hero:SetPlayerID( playerID )
-				hero:SetOwner( player )
-				hero:SetControllableByPlayer(playerID, true)
-			end
-			if self._NewGamePlus == true then
+	local playerID = keys.PlayerID
+	local player = PlayerResource:GetPlayer(playerID)
+	print(keys.PlayerID, "UI Initialized")
+	Timers:CreateTimer(0.03, function()
+		if PlayerResource:GetSelectedHeroEntity(playerID) then
+			local hero = PlayerResource:GetSelectedHeroEntity(playerID)
+			if GameRules.holdOut._NewGamePlus == true then
 				CustomGameEventManager:Send_ServerToPlayer(player,"Display_Shop", {})
 			end
 			CustomGameEventManager:Send_ServerToAllClients( "updateQuestLife", { lives = GameRules._life, maxLives = GameRules._maxLives } )
 			CustomGameEventManager:Send_ServerToPlayer(player, "heroLoadIn", {})
-			if self._flPrepTimeEnd then
-				local timeLeft = self._flPrepTimeEnd - GameRules:GetGameTime()
+			if GameRules.holdOut._flPrepTimeEnd then
+				local timeLeft = GameRules.holdOut._flPrepTimeEnd - GameRules:GetGameTime()
 				CustomGameEventManager:Send_ServerToAllClients( "updateQuestPrepTime", { prepTime = math.floor(timeLeft + 0.5) } )
 			end
-			if GameRules.SkillList[hero:GetUnitName()] then
-				local skillTable = {}
-				local i = 0
-				hero.selectedSkills = {}
-				for skill,_ in pairs(GameRules.SkillList[hero:GetUnitName()]) do
-					skillTable[i] = skill
-					hero.selectedSkills[skill] = false
-					i = i + 1
-				end
-				CustomNetTables:SetTableValue("skillList", hero:GetUnitName()..hero:GetPlayerID(), skillTable)
+			if GameRules.UnitKV[hero:GetUnitName()]["Abilities"] and not hero.hasSkillsSelected then
 				CustomGameEventManager:Send_ServerToPlayer(hero:GetPlayerOwner(), "checkNewHero", {})
 			end
-			CustomGameEventManager:Send_ServerToAllClients( "updateQuestRound", { roundNumber = self._nRoundNumber, roundText = self._currentRound._szRoundQuestTitle } )
+			if GameRules.holdOut._currentRound then CustomGameEventManager:Send_ServerToAllClients( "updateQuestRound", { roundNumber = GameRules.holdOut._nRoundNumber, roundText = GameRules.holdOut._currentRound._szRoundQuestTitle } ) end
+		elseif not PlayerResource:HasSelectedHero(playerID) then
+			print("making garbage")
+			player:MakeRandomHeroSelection()
+			local newHero = CreateHeroForPlayer(PlayerResource:GetSelectedHeroName( playerID ), player)
+			newHero:RespawnHero(false, true, false)
+			newHero:SetPlayerID( playerID )
+			newHero:SetOwner( player )
+			newHero:SetControllableByPlayer(playerID, true)
+			return 0.03
 		else
-			return 0.1
+			return 0.03
 		end
 	end)
 end
@@ -1963,10 +1944,26 @@ function CHoldoutGameMode:CheckHP()
 		if unit:GetHealth() <= 0 and unit:IsAlive() and not unit:IsFakeHero() then
 			unit:SetHealth(2)
 			unit:ForceKill(true)
-			print("or is it this")
 		elseif unit:GetHealth() > 0 and not unit:IsAlive() and not unit:IsFakeHero() then
 			unit:ForceKill(true)
-			print("this maybe")
+		end
+	end
+	if not GameRules:IsGamePaused() then
+		for _,unit in ipairs ( HeroList:GetAllHeroes() ) do
+			if not unit:IsFakeHero() then
+				local data = CustomNetTables:GetTableValue("hero_properties", unit:GetUnitName()..unit:entindex() ) or {}
+				local barrier = 0
+				for _, modifier in ipairs( unit:FindAllModifiers() ) do
+					if modifier.ModifierBarrier_Bonus and unit:IsRealHero() then
+						barrier = barrier + modifier:ModifierBarrier_Bonus()
+					end
+				end
+				if barrier > 0 or unit:GetBarrier() ~= barrier then
+					unit:SetBarrier(barrier)
+					data.barrier = math.floor(barrier)
+					CustomNetTables:SetTableValue("hero_properties", unit:GetUnitName()..unit:entindex(), data )
+				end
+			end
 		end
 	end
 end
@@ -2020,30 +2017,9 @@ Timers:CreateTimer(0, function()
 end)
 
 BARRIER_DEGRADE_RATE = 0.995
-Timers:CreateTimer(0.3, function()
-	if not GameRules:IsGamePaused() and GameRules:State_Get() >= 7 and GameRules:State_Get() <= 8 then
-		for _,unit in ipairs ( HeroList:GetAllHeroes() ) do
-			if not unit:IsFakeHero() then
-				local data = CustomNetTables:GetTableValue("hero_properties", unit:GetUnitName()..unit:entindex() ) or {}
-				local barrier = 0
-				for _, modifier in ipairs( unit:FindAllModifiers() ) do
-					if modifier.ModifierBarrier_Bonus and unit:IsRealHero() then
-						barrier = barrier + modifier:ModifierBarrier_Bonus()
-					end
-				end
-				if barrier > 0 or unit:GetBarrier() ~= barrier then
-					unit:SetBarrier(barrier)
-					data.barrier = math.floor(barrier)
-					CustomNetTables:SetTableValue("hero_properties", unit:GetUnitName()..unit:entindex(), data )
-				end
-			end
-		end
-	end
-	return 0.1
-end)
 
 function CHoldoutGameMode:OnThink()
-	if GameRules:State_Get() == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
+	if GameRules:State_Get() >= 7 and GameRules:State_Get() <= 8 then
 		self:_CheckForDefeat()
 		self:_ThinkLootExpiry()
 		self:_regenlifecheck()
@@ -2051,12 +2027,6 @@ function CHoldoutGameMode:OnThink()
 		self:CheckMidas()
 		self:DegradeThreat()
 		
-		local heroes = HeroList:GetAllHeroes()
-		for _, hero in ipairs(heroes) do
-			if hero and hero:GetPlayerOwner() and not hero:IsFakeHero() and GameRules.UnitKV[hero:GetUnitName()]["Abilities"] and not hero.hasSkillsSelected then
-				CustomGameEventManager:Send_ServerToPlayer(hero:GetPlayerOwner(), "checkNewHero", {})
-			end
-		end
 		
 		if self._flPrepTimeEnd then
 			local timeLeft = self._flPrepTimeEnd - GameRules:GetGameTime()
@@ -2069,7 +2039,7 @@ function CHoldoutGameMode:OnThink()
 					local heroes = HeroList:GetAllHeroes()
 					for _, hero in ipairs(heroes) do
 						-- GameRules.relicPool:DropTankRelic(hero)
-						if hero:HasOwnerAbandoned() and not hero.HasBeenInitialized and hero.selectedSkills then
+						if (hero:HasOwnerAbandoned() or PlayerResource:GetConnectionState(hero:GetPlayerID()) == 0 or PlayerResource:GetConnectionState(hero:GetPlayerID()) == 1) and not hero.HasBeenInitialized and not hero.hasSkillsSelected then
 							GameRules.abilityManager:RandomAbilitiesFromList({heroID = hero:entindex()})
 						end
 					end
@@ -2153,7 +2123,7 @@ function CHoldoutGameMode:OnThink()
 					CustomGameEventManager:Send_ServerToAllClients("RoundVoteResults", event_data)
 
 					Timers:CreateTimer(1,function()
-						if GameRules.voteRound_Yes == PlayerResource:GetTeamPlayerCount() then
+						if GameRules.voteRound_No <= 0 then
 							CustomGameEventManager:Send_ServerToAllClients("Close_RoundVote", {})
 							if self._flPrepTimeEnd~= nil then
 								self._flPrepTimeEnd = 0
@@ -2206,6 +2176,9 @@ function CDOTA_PlayerResource:SortThreat()
 	local aggrosecond
 	for _,unit in pairs ( HeroList:GetAllHeroes()) do
 		if not unit.threat then unit.threat = 0 end
+		local data = CustomNetTables:GetTableValue("hero_properties", unit:GetUnitName()..unit:entindex() ) or {}
+		data.threat = unit.threat
+		CustomNetTables:SetTableValue("hero_properties", unit:GetUnitName()..unit:entindex(), data )
 		if unit.threat > currThreat then
 			currThreat = unit.threat
 			aggrounit = unit
@@ -2233,6 +2206,7 @@ function CHoldoutGameMode:_RefreshPlayers()
 					hero:SetHealth( hero:GetMaxHealth() )
 					hero:SetMana( hero:GetMaxMana() )
 					hero.threat = 0
+					ResolveNPCPositions( hero:GetAbsOrigin(), hero:GetHullRadius() + hero:GetCollisionPadding() )
 				end
 			end
 		end
@@ -2295,7 +2269,6 @@ function CHoldoutGameMode:_CheckForDefeat()
 				for _,unit in pairs ( FindAllEntitiesByClassname("npc_dota_creature")) do
 					if unit:GetTeamNumber() == DOTA_TEAM_BADGUYS then
 						unit:ForceKill(true)
-						print("what is this")
 					end
 				end
 				for _,unit in pairs ( HeroList:GetAllHeroes()) do
@@ -2470,9 +2443,6 @@ function CHoldoutGameMode:OnNPCSpawned( event )
 	if spawnedUnit:IsCourier() then
 		spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_invulnerable", {})
 	end
-	if spawnedUnit:IsCourier() then
-		spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_invulnerable", {})
-	end
 	-- Attach client side hero effects on spawning players
 	if spawnedUnit:GetUnitName() == "npc_dota_furion_treant" then
 		local scaleAb = spawnedUnit:AddAbility("neutral_power_passive")
@@ -2592,37 +2562,6 @@ function CHoldoutGameMode:OnEntityKilled( event )
 	            AllRPlayersDead = false
 	        end
 	    end
-	    if killedUnit:GetName() == ( "npc_dota_hero_skeleton_king") then
-			local reincarnation = killedUnit:FindAbilityByName("skeleton_king_reincarnation")
-			local reincarnate_time = reincarnation:GetSpecialValueFor("reincarnate_time")
-			if reincarnation:GetLevel() > 0 and not killedUnit:HasModifier("modifier_skeleton_king_reincarnation_cooldown") then
-				Timers:CreateTimer(reincarnate_time,function()
-					killedUnit:RespawnHero(false, false, false)
-					killedUnit:SetHealth( killedUnit:GetMaxHealth() )
-					killedUnit:SetMana( killedUnit:GetMaxMana() )
-					killedUnit:AddNewModifier(killedUnit, reincarnation, "modifier_skeleton_king_reincarnation_cooldown", {duration = reincarnation:GetCooldownTimeRemaining()})
-					self._check_check_dead = true
-					check_tombstone = false
-					self._check_dead = false
-					if GameRules._life == 1 then
-						AllRPlayersDead = false
-					end
-					if reincarnation:GetLevel() > 5 then
-						for _,unit in pairs ( HeroList:GetAllHeroes()) do
-							if unit:GetTeamNumber() == DOTA_TEAM_GOODGUYS and not unit:IsFakeHero() then
-								if not unit:IsAlive() then 
-									local origin = unit:GetOrigin()
-									unit:RespawnHero(false, false, false)
-									unit:SetOrigin(origin)
-								end
-								unit:SetHealth( unit:GetMaxHealth() )
-								unit:SetMana( unit:GetMaxMana() )
-							end
-						end
-					end
-				end)
-			end
-		end
 		-- if GetMapName() == "epic_boss_fight_hardcore" then
 			-- check_tombstone = false
 		-- end

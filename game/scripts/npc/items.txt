@@ -159,7 +159,7 @@
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"crit_multiplier"		"175"
+				"crit_multiplier"		"150"
 			}	
 			"07"
 			{
@@ -174,7 +174,7 @@
 			"09"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"target_crit_multiplier"		"145"
+				"target_crit_multiplier"		"125"
 			}
 		}
 	}
@@ -6332,7 +6332,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"crit_multiplier"		"240"
+				"crit_multiplier"		"175"
 			}
 		}
 	}
@@ -6564,7 +6564,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"crit_multiplier"		"175"
+				"crit_multiplier"		"150"
 			}
 		}
 	}
@@ -10160,7 +10160,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"cast_range_bonus"			"200"
+				"cast_range_bonus"		"200"
 			}
 			"05"
 			{

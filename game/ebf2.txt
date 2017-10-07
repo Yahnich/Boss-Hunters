@@ -479,26 +479,26 @@ Earthshaker: Ruamoko, the Tremor SUPPORT SPECIALIST
 
 
 Wraith King: Hades, the Wraith HIGH RISK DPS TANK
--- Innate: One For All: Takes a % of all damage allies take, but also takes a % of allied regeneration / All For One: When ability is toggled, allies will take a % of the damage WK takes (damage is percentual not absolute; so if he takes 25% max hp in damage all allies will take 5% of their hp as damage)
+-- Innate: One For All: Takes a % of all damage allies take, but also takes a % of allied heals / All For One: When ability is toggled, allies will take a % of the damage WK takes (damage is percentual not absolute; so if he takes 25% max hp in damage all allies will take 5% of their hp as damage)
 
--- Skill 1: Blood Ritual: Hades targets an enemy, devouring their essence and granting him lifesteal while he attacks them, the lower their health the more he lifesteals
--- Skill 2: Sanguine Berserker: Toggle - Grants 80% damage reduction but drains 5% curr hp/s, he is granted attackspeed and damage for every % of his health missing
+-- Skill 1: Blood Ritual: Hades heals the targeted ally, taking health from Wraith and nearby enemies to do so.
+-- Skill 2: Crimson Berserker: Toggle - Grants damage reduction but drains curr hp/s, he is granted attackspeed and damage for every % of his health missing
 -- Skill 3: Bloodletter: Bleeds out an enemy, slowing their attack and movespeed and their turnrate
--- Skill 4: Essence Aura: Toggle - While active slows Hades' movement speed drastically, but grants him and his allies major lifesteal
+-- Skill 4: Sanguine Aura: Toggle - While active slows Hades' movement speed drastically, but grants him and his allies major lifesteal
 -- Skill 5: Wraithfire: Sends out haunted skulls towards his enemies, stunning and damaging them on impact and burning them afterwards
 -- Skill 6: Undying: Targets an ally, while this buff is active the ally will come back upon dying. Lasts like 60 seconds. Passively brings Wraith back if spell is off cooldown.
 -- Skill 7: Life Strike: Sends out a shockwave that damages enemies and heals Wraith for a % of the damage done; in case of overheal the heal is passed to the ally with the most health missing.
 -- Skill 8: Wraith's Will: Tethers all enemies around Wraith, taunting them to him and stealing hp from them per second.
 
 -- Passive 1: One For All grants Wraith and allies healing amp
--- Passive 2: Can be casted on allies; gives them lifesteal that increases in strength
--- Passive 3: While Sanguine Berserker is toggled, is granted a crit, chance is %hp missing
+-- Passive 2: Can be cast on enemies, damaging enemies and healing allies
+-- Passive 3: While Crimson Berserker is toggled, is granted a crit, chance is %hp missing; drain is doubled
 -- Passive 4: Bloodletter afflicted enemies leave a trail on the ground that heals allies while they stand in it
--- Passive 5: Essence Aura also grants a passive health regeneration aura
--- Passive 6: Wraithfire debuffs enemies, granting heal amp to allies that attack them
--- Passive 7: Undying now has 2 charges.
+-- Passive 5: Sanguine Aura also grants a passive health regeneration aura
+-- Passive 6: Wraithfire disables healing
+-- Passive 7: Undying grants brief invulnerability for 3s after resurrecting
 -- Passive 8: Life Strike is now sent out all around Wraith (8 waves)
--- Passive 9: Wraith's Will also tethers allies, healing them for an equal amount that Wraith is stealing.
+-- Passive 9: Wraith's Will no longer taunts, tethers allies and heals them instead
 
 Aghs:
 Current WK Aghs effect

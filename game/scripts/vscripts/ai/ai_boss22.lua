@@ -9,36 +9,38 @@ if IsServer() then
 		thisEntity.thread = thisEntity:FindAbilityByName("boss15_thread_of_life")
 		thisEntity.peel = thisEntity:FindAbilityByName("boss15_peel_the_veil")
 		thisEntity.exorcise = thisEntity:FindAbilityByName("boss15_exorcise")
-		if  math.floor(GameRules.gameDifficulty + 0.5) < 2 then 
-			thisEntity.thread:SetLevel(1)
-			thisEntity.peel:SetLevel(1)
-			thisEntity.exorcise:SetLevel(1)
-		elseif  math.floor(GameRules.gameDifficulty + 0.5) == 2 then 
-			thisEntity.thread:SetLevel(2)
-			thisEntity.peel:SetLevel(2)
-			thisEntity.exorcise:SetLevel(2)
-			
-			thisEntity:SetBaseMaxHealth(thisEntity:GetMaxHealth()*1.2)
-			thisEntity:SetMaxHealth(thisEntity:GetMaxHealth()*1.2)
-			thisEntity:SetHealth(thisEntity:GetMaxHealth())
-		else
-			thisEntity.thread:SetLevel(3)
-			thisEntity.peel:SetLevel(3)
-			thisEntity.exorcise:SetLevel(3)
-			
-			thisEntity:SetBaseMaxHealth(thisEntity:GetMaxHealth()*1.5)
-			thisEntity:SetMaxHealth(thisEntity:GetMaxHealth()*1.5)
-			thisEntity:SetHealth(thisEntity:GetMaxHealth())
-		end
+		Timers:CreateTimer(0.1, function()
+			if  math.floor(GameRules.gameDifficulty + 0.5) < 2 then 
+				thisEntity.thread:SetLevel(1)
+				thisEntity.peel:SetLevel(1)
+				thisEntity.exorcise:SetLevel(1)
+			elseif  math.floor(GameRules.gameDifficulty + 0.5) == 2 then 
+				thisEntity.thread:SetLevel(2)
+				thisEntity.peel:SetLevel(2)
+				thisEntity.exorcise:SetLevel(2)
+				
+				thisEntity:SetBaseMaxHealth(thisEntity:GetMaxHealth()*1.2)
+				thisEntity:SetMaxHealth(thisEntity:GetMaxHealth()*1.2)
+				thisEntity:SetHealth(thisEntity:GetMaxHealth())
+			else
+				thisEntity.thread:SetLevel(3)
+				thisEntity.peel:SetLevel(3)
+				thisEntity.exorcise:SetLevel(3)
+				
+				thisEntity:SetBaseMaxHealth(thisEntity:GetMaxHealth()*1.5)
+				thisEntity:SetMaxHealth(thisEntity:GetMaxHealth()*1.5)
+				thisEntity:SetHealth(thisEntity:GetMaxHealth())
+			end
+		end)
 	end
 
 
 	function AIThink()
 		if not thisEntity:IsDominated() and not thisEntity:IsChanneling() then
 			local target = AICore:GetHighestPriorityTarget(thisEntity)
-			if target then
+			if target and not target:IsNull() then
 				if thisEntity:GetHealthPercent() < 66 and thisEntity:GetHealthPercent() > 33 then
-					if thisEntity.thread:GetTethers() < 1 and thisEntity.thread:IsFullyCastable() then
+					if #thisEntity.thread:GetTethers() < 1 and thisEntity.thread:IsFullyCastable() then
 						ExecuteOrderFromTable({
 							UnitIndex = thisEntity:entindex(),
 							OrderType = DOTA_UNIT_ORDER_CAST_TARGET,

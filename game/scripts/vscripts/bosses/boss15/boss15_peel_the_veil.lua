@@ -25,8 +25,9 @@ function boss15_peel_the_veil:CreateGhost()
 	ghost:SetBaseMaxHealth(self:GetCaster():GetBaseMaxHealth() * self:GetSpecialValueFor("ghost_health")/100)
 	ghost:SetMaxHealth(self:GetCaster():GetMaxHealth() * self:GetSpecialValueFor("ghost_health")/100)
 	ghost:SetHealth(ghost:GetMaxHealth())
+	ghost:AddNewModifier(self:GetCaster(), self, "modifier_boss15_peel_the_veil_phased", {})
 	Timers:CreateTimer(0.2, function()
-		if ghost:IsAlive() then
+		if not ghost:IsNull() and ghost:IsAlive() then
 			return 0.2
 		else
 			self.ghostCount = self.ghostCount - 1
@@ -36,4 +37,15 @@ end
 
 function boss15_peel_the_veil:GetGhostCount()
 	return self.ghostCount or 0
+end
+
+modifier_boss15_peel_the_veil_phased = class({})
+LinkLuaModifier("modifier_boss15_peel_the_veil_phased", "bosses/boss15/boss15_peel_the_veil.lua", 0)
+
+function modifier_boss15_peel_the_veil_phased:IsHidden()
+	return true
+end
+
+function modifier_boss15_peel_the_veil_phased:CheckState()
+	return {[MODIFIER_STATE_NO_UNIT_COLLISION] = true}
 end
