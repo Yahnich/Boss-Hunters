@@ -1,0 +1,1 @@
+boss4_death_ball = class({})

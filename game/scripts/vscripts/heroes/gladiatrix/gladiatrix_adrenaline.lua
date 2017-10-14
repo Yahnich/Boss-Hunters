@@ -51,11 +51,7 @@ if IsServer() then
 			local damage = (storeDamage or 0) * 0.3
 			Timers:CreateTimer(0.3, function()
 				if damage > storeDamage then damage = storeDamage end
-				if damage > parent:GetHealth() then	
-					parent:SetHealth(1)
-				else
-					parent:SetHealth(parent:GetHealth() - damage)
-				end
+				parent:SetHealth( math.max(1, parent:GetHealth() - math.min( damage, storeDamage ) ) )
 				storeDamage = storeDamage - damage
 				if storeDamage > 0 then return 0.3 end
 			end)

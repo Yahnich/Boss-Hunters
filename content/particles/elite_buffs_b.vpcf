@@ -2,23 +2,22 @@
 {
 	_class = "CParticleSystemDefinition"
 	m_bShouldHitboxesFallbackToRenderBounds = false
-	m_nMaxParticles = 256
+	m_nMaxParticles = 120
+	m_ConstantColor = [ 255, 255, 255, 128 ]
 	m_Renderers = 
 	[
 		{
-			_class = "C_OP_RenderTrails"
+			_class = "C_OP_RenderSprites"
+			VisibilityInputs = 
+			{
+				m_flCameraBias = 24.0
+			}
 			m_nSequenceCombineMode = "SEQUENCE_COMBINE_MODE_USE_SEQUENCE_0"
+			m_bMod2X = true
+			m_flStartFadeSize = 0.5
+			m_flEndFadeSize = 0.75
 			m_flOverbrightFactor = 2.0
-			m_hTexture = resource:"materials/particle/smoke/steam/steam.vtex"
-			m_flMaxLength = 500.0
-			m_bIgnoreDT = true
-			m_flLengthFadeInTime = 1.0
-			m_flAnimationRate = 1.0
-			m_flRadiusScale = 0.5
-			m_flFinalTextureScaleV = -1.0
-			m_flFinalTextureOffsetV = 1.0
-			m_vEndTrailTintFactor = [ 1.0, 1.0, 1.0, 0.0 ]
-			m_flAddSelfAmount = 1.0
+			m_hTexture = resource:"materials/particle/particle_flares/particle_flare_004b_mod.vtex"
 		},
 	]
 	m_Operators = 
@@ -27,7 +26,7 @@
 			_class = "C_OP_InterpolateRadius"
 			m_nOpEndCapState = 0
 			m_flBias = 0.75
-			m_flEndScale = 0.5
+			m_flEndScale = 1.2
 		},
 		{
 			_class = "C_OP_FadeOutSimple"
@@ -50,7 +49,7 @@
 			_class = "C_OP_LockToBone"
 			m_flLifeTimeFadeEnd = 1.0
 			m_flLifeTimeFadeStart = 1.0
-			m_flPrevPosScale = 0.75
+			m_flPrevPosScale = 0.95
 		},
 		{
 			_class = "C_OP_LerpEndCapScalar"
@@ -61,29 +60,20 @@
 	m_Initializers = 
 	[
 		{
-			_class = "C_INIT_RandomSequence"
-			m_nSequenceMax = 4
-		},
-		{
 			_class = "C_INIT_CreateOnModel"
-			m_flHitBoxScale = 0.75
-			m_nForceInModel = 1
 		},
 		{
 			_class = "C_INIT_RandomRadius"
-			m_flRadiusMax = 200.0
-			m_flRadiusMin = 200.0
+			m_flRadiusMax = 80.0
+			m_flRadiusMin = 56.0
 		},
 		{
 			_class = "C_INIT_RandomRotation"
 		},
 		{
 			_class = "C_INIT_InitialVelocityNoise"
-			m_vecOutputMax = [ 128.0, 128.0, 128.0 ]
-			m_vecOutputMin = [ -128.0, -128.0, -128.0 ]
-			m_vecAbsVal = [ 5.0, 5.0, 5.0 ]
-			m_vecAbsValInv = [ 5.0, 5.0, 5.0 ]
-			m_vecOffsetLoc = [ 5.0, 5.0, 5.0 ]
+			m_vecOutputMax = [ 32.0, 32.0, 32.0 ]
+			m_vecOutputMin = [ -32.0, -32.0, -32.0 ]
 		},
 		{
 			_class = "C_INIT_RandomLifeTime"
@@ -91,18 +81,13 @@
 			m_fLifetimeMin = 1.0
 		},
 		{
-			_class = "C_INIT_OffsetVectorToVector"
-			m_vecOutputMax = [ 0.0, 0.0, 250.0 ]
-			m_vecOutputMin = [ 0.0, 0.0, 50.0 ]
-			m_nFieldOutput = 2
-		},
-		{
 			_class = "C_INIT_RandomTrailLength"
-			m_flMaxLength = 5.0
-			m_flMinLength = 0.7
+			m_flMaxLength = 1.0
 		},
 		{
 			_class = "C_INIT_RandomRotation"
+			m_flDegreesMax = 60.0
+			m_flDegreesMin = -60.0
 			m_nFieldOutput = 12
 		},
 		{
@@ -123,8 +108,10 @@
 		},
 		{
 			_class = "C_INIT_RemapCPtoScalar"
+			m_flOutputMax = 4.0
+			m_flInputMax = 4.0
 			m_bScaleInitialRange = true
-			m_nFieldOutput = 16
+			m_nFieldOutput = 7
 			m_nField = 2
 			m_nCPInput = 14
 			m_flOutputMin = 0.2
@@ -143,13 +130,7 @@
 	[
 		{
 			_class = "C_OP_ContinuousEmitter"
-			m_flEmitRate = 60.0
-		},
-	]
-	m_Children = 
-	[
-		{
-			m_ChildRef = resource:"particles/econ/generic/generic_buff_1/generic_buff_1_b.vpcf"
+			m_flEmitRate = 30.0
 		},
 	]
 	m_controlPointConfigurations = 

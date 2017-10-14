@@ -25,28 +25,6 @@ end
 LinkLuaModifier( "modifier_zombie_screech_taunted", "summons/zombie_brute/zombie_screech.lua" ,LUA_MODIFIER_MOTION_NONE )
 modifier_zombie_screech_taunted = class({})
 
-if IsServer() then
-	function modifier_zombie_screech_taunted:OnCreated()
-		self:StartIntervalThink(0.1)
-	end
-
-	function modifier_zombie_screech_taunted:OnIntervalThink()
-		local caster = self:GetCaster()
-		local unit = self:GetParent()
-		if caster:IsAlive() and not unit:GetAttackTarget() ~= caster then
-			local order = 
-			{
-				UnitIndex = unit:entindex(),
-				OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
-				TargetIndex = caster:entindex()
-			}
-			ExecuteOrderFromTable(order)
-		else
-			unit:Stop()
-		end
-	end
-end
-
 function modifier_zombie_screech_taunted:IsPurgable()
 	return false
 end
@@ -63,6 +41,10 @@ function modifier_zombie_screech_taunted:GetHeroEffectName()
 	return "particles/units/heroes/hero_axe/axe_beserkers_call_hero_effect.vpcf"
 end
 
+
+function modifier_zombie_screech_taunted:GetTauntTarget()
+	return self:GetCaster()
+end
 
 
 LinkLuaModifier("modifier_zombie_screech_ai", "summons/zombie_brute/zombie_screech.lua", LUA_MODIFIER_MOTION_NONE)

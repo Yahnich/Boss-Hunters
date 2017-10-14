@@ -53,7 +53,7 @@ function wraith_wraithfire:OnProjectileHit(target, position)
 	ParticleManager:ReleaseParticleIndex(explosion)
 end
 
-LinkLuaModifier( "modifier_wraith_wraithfire_dot", "lua_abilities/heroes/wraith_king.lua" ,LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_wraith_wraithfire_dot", "heroes/wraith/wraith_wraithfire.lua" ,LUA_MODIFIER_MOTION_NONE )
 modifier_wraith_wraithfire_dot = class({})
 
 function modifier_wraith_wraithfire_dot:OnCreated()

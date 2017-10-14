@@ -5,48 +5,34 @@ Broodking AI
 require( "ai/ai_core" )
 function Spawn( entityKeyValues )
 	thisEntity:SetContextThink( "AIThink", AIThink, 0.25 )
-	thisEntity.rip = thisEntity:FindAbilityByName("undying_soul_rip")
-	thisEntity.summon = thisEntity:FindAbilityByName("creature_summon_undead")
+	thisEntity.ball = thisEntity:FindAbilityByName("boss4_death_ball")
+	thisEntity.summon = thisEntity:FindAbilityByName("boss4_summon_zombies")
+	thisEntity.sacrifice = thisEntity:FindAbilityByName("boss4_sacrifice")
+	thisEntity.tombstone = thisEntity:FindAbilityByName("boss4_tombstone")
+	
+	Timers:CreateTimer(function()
+		if  math.floor(GameRules.gameDifficulty + 0.5) <= 2 then 
+			thisEntity.ball:SetLevel(1)
+			thisEntity.summon:SetLevel(1)
+			thisEntity.sacrifice:SetLevel(1)
+			thisEntity.tombstone:SetLevel(1)
+		else
+			thisEntity.ball:SetLevel(2)
+			thisEntity.summon:SetLevel(2)
+			thisEntity.sacrifice:SetLevel(2)
+			thisEntity.tombstone:SetLevel(2)
+			
+			thisEntity:SetBaseMaxHealth(thisEntity:GetMaxHealth()*1.5)
+			thisEntity:SetMaxHealth(thisEntity:GetMaxHealth()*1.5)
+			thisEntity:SetHealth(thisEntity:GetMaxHealth())
+		end
+	end)
 end
 
 
 function AIThink()
 	if not thisEntity:IsDominated() then
-		local interval = 0.25
-		if thisEntity.summon:IsFullyCastable() and AICore:SpecificAlliedUnitsAlive( thisEntity, "npc_dota_mini_boss1") < 7 then
-			ExecuteOrderFromTable({
-					UnitIndex = thisEntity:entindex(),
-					OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
-					AbilityIndex = thisEntity.summon:entindex()
-				})
-			interval = 2
-			return interval
-		end
-		if thisEntity:GetHealth() > (thisEntity:GetMaxHealth() / 2) then
-			local target = AICore:WeakestEnemyHeroInRange( thisEntity, thisEntity.rip:GetCastRange(), false)
-			local count = AICore:TotalUnitsInRange( thisEntity, thisEntity.rip:GetCastRange() )
-			if target and thisEntity.rip:IsFullyCastable() and count > 3 then
-				ExecuteOrderFromTable({
-					UnitIndex = thisEntity:entindex(),
-					OrderType = DOTA_UNIT_ORDER_CAST_TARGET,
-					TargetIndex = target:entindex(),
-					AbilityIndex = thisEntity.rip:entindex()
-				})
-				return interval
-			end
-		else
-			local count = AICore:TotalUnitsInRange( thisEntity, thisEntity.rip:GetCastRange() )
-			if thisEntity.rip:IsFullyCastable() and count > 3 then
-				ExecuteOrderFromTable({
-					UnitIndex = thisEntity:entindex(),
-					OrderType = DOTA_UNIT_ORDER_CAST_TARGET,
-					TargetIndex = thisEntity:entindex(),
-					AbilityIndex = thisEntity.rip:entindex()
-				})
-				return interval
-			end
-		end
-		AICore:AttackHighestPriority( thisEntity )
-		return interval
+		-- AICore:AttackHighestPriority( thisEntity )
+		return 0.25
 	else return 0.25 end
 end

@@ -97,7 +97,7 @@ function stats:ModifyStatBonuses(unit)
 			local cdr_stacks = math.floor((1 - (octarine * cdr))*100)
 			hero:FindModifierByName("modifier_stat_adjustment_cdr_per_int"):SetStackCount(cdr_stacks)
 			
-			local spell_amp_stacks = math.floor(spell_amp_adjustment * intellect + 0.5)
+			local spell_amp_stacks = spell_amp_adjustment * intellect * 100
 			if not hero:HasModifier("modifier_stat_adjustment_amp_per_int") then
 				hero:AddNewModifier(hero, nil, "modifier_stat_adjustment_amp_per_int", {})
 			end
@@ -180,7 +180,7 @@ function modifier_stat_adjustment_amp_per_int:DeclareFunctions()
 end
 
 function modifier_stat_adjustment_amp_per_int:GetModifierSpellAmplify_Percentage()
-    return self:GetStackCount() * -1
+    return self:GetStackCount() * -0.01
 end
 
 function modifier_stat_adjustment_amp_per_int:IsHidden()

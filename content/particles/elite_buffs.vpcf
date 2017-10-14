@@ -8,7 +8,8 @@
 		{
 			_class = "C_OP_RenderTrails"
 			m_nSequenceCombineMode = "SEQUENCE_COMBINE_MODE_USE_SEQUENCE_0"
-			m_flOverbrightFactor = 2.0
+			m_bAdditive = true
+			m_flOverbrightFactor = 5.0
 			m_hTexture = resource:"materials/particle/smoke/steam/steam.vtex"
 			m_flMaxLength = 500.0
 			m_bIgnoreDT = true
@@ -18,7 +19,6 @@
 			m_flFinalTextureScaleV = -1.0
 			m_flFinalTextureOffsetV = 1.0
 			m_vEndTrailTintFactor = [ 1.0, 1.0, 1.0, 0.0 ]
-			m_flAddSelfAmount = 1.0
 		},
 	]
 	m_Operators = 
@@ -62,28 +62,24 @@
 	[
 		{
 			_class = "C_INIT_RandomSequence"
-			m_nSequenceMax = 4
+			m_nSequenceMax = 1
 		},
 		{
 			_class = "C_INIT_CreateOnModel"
 			m_flHitBoxScale = 0.75
-			m_nForceInModel = 1
 		},
 		{
 			_class = "C_INIT_RandomRadius"
-			m_flRadiusMax = 200.0
-			m_flRadiusMin = 200.0
+			m_flRadiusMax = 156.0
+			m_flRadiusMin = 156.0
 		},
 		{
 			_class = "C_INIT_RandomRotation"
 		},
 		{
 			_class = "C_INIT_InitialVelocityNoise"
-			m_vecOutputMax = [ 128.0, 128.0, 128.0 ]
-			m_vecOutputMin = [ -128.0, -128.0, -128.0 ]
-			m_vecAbsVal = [ 5.0, 5.0, 5.0 ]
-			m_vecAbsValInv = [ 5.0, 5.0, 5.0 ]
-			m_vecOffsetLoc = [ 5.0, 5.0, 5.0 ]
+			m_vecOutputMax = [ 32.0, 32.0, 32.0 ]
+			m_vecOutputMin = [ -32.0, -32.0, -32.0 ]
 		},
 		{
 			_class = "C_INIT_RandomLifeTime"
@@ -98,8 +94,7 @@
 		},
 		{
 			_class = "C_INIT_RandomTrailLength"
-			m_flMaxLength = 5.0
-			m_flMinLength = 0.7
+			m_flMaxLength = 2.0
 		},
 		{
 			_class = "C_INIT_RandomRotation"

@@ -1,1 +1,0 @@
-mystic_lifeswap = class({})

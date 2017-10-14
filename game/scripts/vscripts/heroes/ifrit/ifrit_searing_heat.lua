@@ -43,6 +43,7 @@ function ifrit_searing_heat:CreateSearingHeat(target, origin)
 	EmitSoundOn("Ability.LagunaBladeImpact", target)
 	self:GetCaster().selfImmolationDamageBonus = self:GetCaster().selfImmolationDamageBonus or 0
 	ApplyDamage({victim = target, attacker = self:GetCaster(), damage = self:GetTalentSpecialValueFor("damage") + self:GetCaster().selfImmolationDamageBonus, damage_type = self:GetAbilityDamageType(), ability = self})
+	Timers:CreateTimer(0.25, function() if not target:IsAlive() then self:Refresh() end)
 	if caster:HasTalent("ifrit_searing_heat_talent_1") then
 		local newTarget
 		local enemies = FindUnitsInRadius(self:GetCaster():GetTeam(), target:GetAbsOrigin(), nil, caster:FindTalentValue("ifrit_searing_heat_talent_1"), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, FIND_CLOSEST, false)
@@ -57,6 +58,7 @@ function ifrit_searing_heat:CreateSearingHeat(target, origin)
 				EmitSoundOn("Ability.LagunaBladeImpact", newTarget)
 				self:GetCaster().selfImmolationDamageBonus = self:GetCaster().selfImmolationDamageBonus or 0
 				ApplyDamage({victim = newTarget, attacker = self:GetCaster(), damage = self:GetTalentSpecialValueFor("damage") + self:GetCaster().selfImmolationDamageBonus, damage_type = self:GetAbilityDamageType(), ability = self})
+				Timers:CreateTimer(0.25, function() if not newTarget:IsAlive() then self:Refresh() end)
 			end)
 		end
 	end

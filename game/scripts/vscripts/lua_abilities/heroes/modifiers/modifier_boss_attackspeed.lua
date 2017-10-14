@@ -23,6 +23,7 @@ function modifier_boss_attackspeed:DeclareFunctions()
 		MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,
 		MODIFIER_PROPERTY_MANA_REGEN_CONSTANT,
 		MODIFIER_PROPERTY_MANA_BONUS,
+		MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,
 		MODIFIER_EVENT_ON_ABILITY_FULLY_CAST,
 		MODIFIER_EVENT_ON_ABILITY_START
 	}
@@ -56,4 +57,3 @@ function modifier_boss_attackspeed:OnAbilityFullyCast( params )
 		AddFOWViewer(DOTA_TEAM_GOODGUYS, self:GetParent():GetAbsOrigin(), 516, 3, false)
 	end
 end
-

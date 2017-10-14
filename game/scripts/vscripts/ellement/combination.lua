@@ -41,7 +41,7 @@ function On_Spell_Start( keys )
 	caster.invocation_power_wind = 0
 	caster.invocation_power_ice = 0
     keys.ability:ApplyDataDrivenModifier(caster, caster, "cast_animation", {duration = 1})
-	local number_of_orb = table.getn(caster.invoked_orbs_particle_attach)
+	local number_of_orb = table.getn(caster.invoked_orbs_particle_attach or {})
 
 	local invoke_particle_effect = ParticleManager:CreateParticle("particles/units/heroes/hero_invoker/invoker_invoke.vpcf", PATTACH_ABSORIGIN_FOLLOW, keys.caster)
 

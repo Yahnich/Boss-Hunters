@@ -27,10 +27,10 @@ function RainOfArrows(keys)
 	for _,unit in pairs(units) do -- check units
 		if unit:IsHero() then
 			damageToApply = damageToApply + damage_hero
-			if unit:IsIllusion() then
+			if not unit:IsRealHero() then
 				local illuDamage = unit:GetMaxHealth() * illusion_dmg
 				if illuDamage < unit:GetHealth() then
-					unit:SetHealth(unit:GetHealth() - illuDamage)
+					unit:SetHealth( unit:GetHealth() - illuDamage)
 				else
 					unit:ForceKill(true)
 				end

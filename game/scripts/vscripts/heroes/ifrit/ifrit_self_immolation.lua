@@ -20,7 +20,7 @@ function ifrit_self_immolation:OnSpellStart()
 	EmitSoundOn("Hero_DragonKnight.DragonTail.DragonFormCast", caster)
 	
 	if hpReduction < 10 then hpReduction = 1 end
-	caster:SetHealth( hpReduction )
+	caster:SetHealth( math.max(1, hpReduction) )
 	
 	caster:AddNewModifier( caster, self,  "modifier_ifrit_self_immolation", { duration = self:GetTalentSpecialValueFor("buff_duration")} )
 	if caster:HasModifier("modifier_ifrit_kindled_soul_active") then

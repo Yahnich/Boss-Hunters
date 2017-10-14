@@ -48,6 +48,13 @@ function modifier_boss14_whirlwind:OnIntervalThink()
 	end
 end
 
+function modifier_boss14_whirlwind:OnDestroy()
+	if IsServer() then 
+		self:GetCaster():RemoveGesture( ACT_DOTA_CAST_ABILITY_3 )
+		self:GetCaster():StartGesture( ACT_DOTA_SPAWN )
+	end
+end
+
 function modifier_boss14_whirlwind:CheckState()
 	return {[MODIFIER_STATE_DISARMED] = true}
 end

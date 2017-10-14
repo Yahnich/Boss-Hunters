@@ -1,24 +1,6 @@
-
-
-WAVE 2 REWORKS
-UNDYING WAVE:
-UNDYING:
-skill 1: Sacrifices all summoned zombies to heal himself for the zombies killed - long cooldown and has a 5s channel, every 0.5s channeled heals
-skill 2: Steals hp from every summoned zombie to send out a ball of blood that damages all units hit
-skill 3: Tombstone - drops a tombstone that creates a link to the undying; undying takes 50% less damage while active; tombstone requires 12 hits to die; spells count as 1 hit - long cooldown
-skill 4: Summon Zombies - obvious
-
-BABY ZOMBIE:
-baby zombies deal less damage the less hp they have
-baby zombies deal a stacking slow (1% per attack)
-
-
-
-baby zombies and undying will defend tombstones if any exist, attacking anyone that attacks them
-
 WAVE 18 REWORKS:
 BEASTMASTER:
-Doesn't attack at all, unless all bears are dead and he's being attacked, just summons bears; can give out orders but only one order can exist at a time
+Doesn't attack at all, unless all bears are dead or he's being attacked, just summons bears; can give out orders but only one order can exist at a time
 
 Kill them! - Marks an enemy unit, all ursas will attack this unit and unit takes 50% bonus damage from all sources.
 Destroy! - Buffs all bears with movement speed and cooldown reduction

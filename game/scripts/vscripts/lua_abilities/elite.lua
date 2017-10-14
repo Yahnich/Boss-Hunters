@@ -57,7 +57,8 @@ function CreateFrostShards(keys)
 		local  frostShard = ParticleManager:CreateParticle("particles/elite_freezing_parent.vpcf", PATTACH_WORLDORIGIN, nil)
 			ParticleManager:SetParticleControl(frostShard, 0, shardLoc)
 		EmitSoundOnLocationWithCaster(shardLoc, "hero_Crystal.frostbite", caster)
-		Timers:CreateTimer(5, function() 
+		ParticleManager:FireWarningParticle(shardLoc, 400)
+		Timers:CreateTimer(5, function()
 			ParticleManager:DestroyParticle(frostShard, false)
 			ParticleManager:ReleaseParticleIndex(frostShard)
 			EmitSoundOn("Hero_Ancient_Apparition.IceBlast.Target", caster)
@@ -375,8 +376,8 @@ end
 function NimbleHeal( keys )
 	local caster = keys.caster
 	local ability = keys.ability
-	if keys.caster:PassivesDisabled() then return end
-	caster:SetHealth(ability.caster_hp_old)
+	if keys.caster:PassivesDisabled() and keys.caster:IsAlive() then return end
+	caster:SetHealth(math.max(1, ability.caster_hp_old) )
 end
 
 function UnstableFunction(keys)

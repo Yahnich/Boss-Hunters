@@ -1676,7 +1676,7 @@
 	        "01"
 	        {
 	            "var_type"                      "FIELD_INTEGER"
-	            "damage_on_attack"     			"10000 2000 4000 8000 16000 32000 64000"
+	            "damage_on_attack"     			"1000 2000 4000 8000 16000 32000 64000"
 	        }
 			"02"
 	        {
@@ -19034,7 +19034,7 @@
 	        "01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"heal_share"				"35"
+				"heal_share"				"30"
 			}
 			"02"
 			{
@@ -19074,7 +19074,7 @@
 		"LevelsBetweenUpgrades"			"5"
 		
 		"AbilityCastRange"				"900"
-		"AbilityCooldown"				"15 14 13 12 11 10 9"
+		"AbilityCooldown"				"9"
 		"AbilityManaCost"				"200 300 400 800 1200 1600 2000"
 		
 		"precache"
@@ -19102,7 +19102,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"healdamage"			"1000 2000 4000 8000 16000 32000 64000"
+				"healdamage"			"600 1200 2400 4800 9600 19200 38400"
 			}
 			"05"
 			{
@@ -19414,7 +19414,7 @@
 			"02"
 	        {
 	            "var_type"                      "FIELD_FLOAT"
-	            "lifesteal"     				"50"
+	            "lifesteal"     				"35"
 	        }
 			"03"
 	        {
@@ -20407,7 +20407,7 @@
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"scepter_duration"			"5"
+				"scepter_duration"			"7"
 			}
 			"05"
 			{
@@ -29028,7 +29028,7 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"60.0 55 50 45 40 35 30"
+		"AbilityCooldown"				"30"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -29045,7 +29045,7 @@
 	        "01"
 	        {
 	            "var_type"                      "FIELD_INTEGER"
-	            "damage"     					"2000 4000 6000 12000 24000 48000 96000"
+	            "damage"     					"2000 4000 8000 16000 32000 64000 128000"
 	        }
 			"02"
 	        {
@@ -29142,7 +29142,7 @@
 	        "01"
 	        {
 	            "var_type"                      "FIELD_FLOAT"
-	            "inferno_duration"     			"10.0"
+	            "inferno_duration"     			"15.0"
 	        }
 			"02"
 	        {
@@ -29152,7 +29152,7 @@
 			"03"
 	        {
 	            "var_type"                      "FIELD_INTEGER"
-	            "inferno_radius"     			"600"
+	            "inferno_radius"     			"800"
 	        }
 			"04"
 	        {
@@ -29250,7 +29250,7 @@
 	        "01"
 	        {
 	            "var_type"                      "FIELD_FLOAT"
-	            "geyser_duration"     			"5.0"
+	            "geyser_duration"     			"15.0"
 	        }
 			"02"
 	        {
@@ -29509,14 +29509,16 @@
 			}
 			"02"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"damage_health_pct"			"4"
-				"LinkedSpecialBonus"		"special_bonus_unique_zeus"
+				"var_type"						"FIELD_FLOAT"
+				"damage_health_pct"				"4"
+				"CalculateSpellDamageTooltip"	"0"
+				"LinkedSpecialBonus"			"special_bonus_unique_zeus"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_FLOAT"
 				"pct_per_stack"				"0.25 0.5 0.75 1 1.25 1.5 1.75"
+				"CalculateSpellDamageTooltip"	"0"
 			}
 			"04"
 			{
@@ -36250,6 +36252,114 @@
 			}
 		}
 	}
+	"boss4_summon_zombies"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass" 					"ability_lua"
+		"ScriptFile"					"bosses/boss4/boss4_summon_zombies"
+		"AbilityTextureName"			"undying_soul_rip"
+		
+		"AbilityCastPoint"				"0.75 0.5"
+		
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_alchemist/alchemist_acid_spray_debuff.vpcf"
+		}
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"stack_armor_reduction"	"-1"
+			}
+		}
+	}
+	"boss4_death_ball"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass" 					"ability_lua"
+		"ScriptFile"					"bosses/boss4/boss4_death_ball"
+		"AbilityTextureName"			"undying_soul_rip"
+		
+		"AbilityCastPoint"				"0.75 0.5"
+		
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_alchemist/alchemist_acid_spray_debuff.vpcf"
+		}
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"stack_armor_reduction"	"-1"
+			}
+		}
+	}
+	"boss4_sacrifice"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass" 					"ability_lua"
+		"ScriptFile"					"bosses/boss4/boss4_sacrifice"
+		"AbilityTextureName"			"undying_soul_rip"
+		
+		"AbilityCastPoint"				"0.75 0.5"
+		
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_alchemist/alchemist_acid_spray_debuff.vpcf"
+		}
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"stack_armor_reduction"	"-1"
+			}
+		}
+	}
+	"boss4_tombstone"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass" 					"ability_lua"
+		"ScriptFile"					"bosses/boss4/boss4_tombstone"
+		"AbilityTextureName"			"undying_soul_rip"
+		
+		"AbilityCastPoint"				"0.75 0.5"
+		
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_alchemist/alchemist_acid_spray_debuff.vpcf"
+		}
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"stack_armor_reduction"	"-1"
+			}
+		}
+	}
 	"boss14_bloodlust"
 	{
 		// General
@@ -36645,7 +36755,7 @@
 
 		// Stats		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"30"
+		"AbilityCooldown"				"40 35"
 		"AbilityCastPoint"				"0.75 0.5"
 		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
 
@@ -36660,17 +36770,17 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"drake_damage"			"33"
+				"drake_damage"			"33 35"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"drake_health"			"35"
+				"drake_health"			"35 45"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"drake_count"			"4"
+				"drake_count"			"4 5"
 			}
 		}
 		"precache"
@@ -37134,7 +37244,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"spike_count"			"3 4"
+				"spike_count"			"5 6"
 			}
 			"02"
 			{
@@ -37270,7 +37380,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"knockup_damage"		"15000 17500"
+				"knockup_damage"		"17500 20000"
 			}
 			"03"
 			{
@@ -37280,12 +37390,12 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"proj_speed"			"600 900"
+				"proj_speed"			"750 1000"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"proj_width"			"90"
+				"proj_width"			"110"
 			}
 			"06"
 			{
@@ -41994,150 +42104,6 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"number_of_zombies"		"10"
-			}
-		}
-	}
-
-	//=================================================================================================================
-	// Ability: Summon Undead
-	//=================================================================================================================
-	"creature_summon_undead"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_datadriven"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
-		"AbilityTextureName" 			"undying_soul_rip"
-		
-		"precache"
-		{
-			"soundfile"					"soundevents/game_sounds_custom.vsndevts"
-			"soundfile"					"soundevents/game_sounds/game_sounds_undying.vsndevts"
-		}
-		
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"0"
-		"AbilityCastPoint"				"0"
-		"AbilityChannelTime"			"2.2 2.1 2.0 1.9"
-		"AbilityCastAnimation"			"ACT_DOTA_VICTORY"
-
-		// Time
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"10.0 10.0 10.0 10.0"
-
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"100 100 100 100"
-
-		"OnSpellStart"
-		{
-			"ApplyModifier"
-			{
-				"Target"				"CASTER"
-				"ModifierName"			"channel_started"
-			}	
-			"FireSound"
-			{
-				"EffectName"			"Creature.Scream"
-				"Target"				"CASTER"
-			}
-		}
-		
-		"OnChannelSucceeded"
-		{
-			"SpawnUnit"
-			{
-				"UnitName"			"npc_dota_mini_boss1"
-				"UnitCount"			"%number_of_zombies"
-				"UnitLimit"			"8"
-				"SpawnRadius"		"750"
-				"Target"			"CASTER"
-				"OnSpawn"
-				{
-					"FireSound"
-					{
-						"EffectName"			"Creature.ZombieSpawn"
-						"Target"				"TARGET"
-					}
-					"AttachEffect"
-					{
-						"EffectName"		"particles/econ/generic/generic_aoe_explosion_sphere_1/generic_aoe_explosion_sphere_1.vpcf"
-						"EffectAttachType"	"follow_origin"
-						"Target"			"TARGET"
-						
-						"ControlPoints"
-						{
-							"00"		"0 0 0"
-							"01"		"50 100 0"
-							"02"		"4 10 .5"
-							"03"		"20 200 0"
-							"04"		"0 0 0"
-							"05"		"0 0 0"
-						}
-					}
-					
-					"FireSound"
-					{
-						"EffectName"		"Ability.SummonUndeadSuccess"
-						"Target"			"CASTER"
-					}
-				}
-			}
-		}
-		
-		"OnChannelFinish"
-		{
-			"RemoveModifier"
-			{
-				"Target"				"CASTER"
-				"ModifierName"			"channel_started"
-			}
-		}
-		
-		// Modifiers
-		//-------------------------------------------------------------------------------------------------------------	
-		"Modifiers"
-		{
-			"channel_started"
-			{
-				"OnCreated"
-				{
-					"AttachEffect"
-					{
-						"EffectName"		"particles/generic_aoe_persistent_circle_1/death_time_head_timer.vpcf"
-						"EffectAttachType"	"follow_overhead"
-						"Target"			"CASTER"
-					}
-				}
-			}
-			
-			"summoned_units"
-			{				
-				"AttachEffect"
-				{
-					"EffectName"		"particles/units/heroes/hero_leshrac/leshrac_split_earth.vpcf"
-					"EffectAttachType"	"follow_origin"
-					"Target"			"TARGET"
-					
-					"ControlPoints"
-					{
-						"00"		"0 0 0"
-						"01"		"200 0 0"
-						"02"		"0 0 0"
-					}
-				}
-			}
-		}
-		
-		// Special	
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"number_of_zombies"		"4"
 			}
 		}
 	}

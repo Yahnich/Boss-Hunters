@@ -111,7 +111,7 @@ function StaticAegisAttacked(keys)
 		ParticleManager:SetParticleControlEnt(particleStrike, 0, victim, PATTACH_POINT_FOLLOW, "attach_hitloc", victim:GetAbsOrigin(), true)
 		ParticleManager:SetParticleControlEnt(particleStrike, 1, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
 	ParticleManager:ReleaseParticleIndex(particleStrike)
-	ApplyDamage({victim = target, attacker = victim, damage = ability:GetAbilityDamage(), damage_type = ability:GetAbilityDamageType(), ability = ability})
+	ApplyDamage({victim = target, attacker = victim, damage = ability:GetAbilityDamage(), damage_type = ability:GetAbilityDamageType(), ability = ability, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
 	EmitSoundOn("Item.Maelstrom.Chain_Lightning", target)
 end
 

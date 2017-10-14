@@ -16,7 +16,7 @@ end
 
 function boss16_the_flock:ReplaceDrakes()
 	for _, drake in ipairs(self.drakeCount) do
-		if drake then drake:ForceKill(false) end
+		if drake and not drake:IsNull() then drake:ForceKill(false) end
 	end
 	self.drakeCount = {}
 end
@@ -62,6 +62,7 @@ function modifier_boss16_the_flock_manager:OnDeath(params)
 				break
 			end
 		end
+		if not dragon then return end
 		local dragonAb = dragon:FindAbilityByName("boss16_the_flock")
 		dragonAb.drakeCount = {}
 		for _, drake in pairs(self:GetAbility().drakeCount) do

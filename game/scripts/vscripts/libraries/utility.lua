@@ -1190,6 +1190,7 @@ function CDOTABaseAbility:StartDelayedCooldown(flDelay, bAutomatic)
 	self.delayedCooldownTimer = Timers:CreateTimer(0, function()
 		ability:EndCooldown()
 		ability:StartCooldown(cd)
+		return 0
 	end)
 	if bAutomatic then
 		Timers:CreateTimer(flDelay, function() ability:EndDelayedCooldown() end)
@@ -1363,13 +1364,15 @@ function CDOTA_BaseNPC:FindAllUnitsInLine(startPos, endPos, width, hData)
 end
 
 function CDOTA_BaseNPC:FindEnemyUnitsInRadius(position, radius, hData)
-	local team = self:GetTeamNumber()
-	local data = hData or {}
-	local iTeam = data.team or DOTA_UNIT_TARGET_TEAM_ENEMY
-	local iType = data.type or DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
-	local iFlag = data.flag or DOTA_UNIT_TARGET_FLAG_NONE
-	local iOrder = data.order or FIND_ANY_ORDER
-	return FindUnitsInRadius(team, position, nil, radius, iTeam, iType, iFlag, iOrder, false)
+	if not self:IsNull() then
+		local team = self:GetTeamNumber()
+		local data = hData or {}
+		local iTeam = data.team or DOTA_UNIT_TARGET_TEAM_ENEMY
+		local iType = data.type or DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
+		local iFlag = data.flag or DOTA_UNIT_TARGET_FLAG_NONE
+		local iOrder = data.order or FIND_ANY_ORDER
+		return FindUnitsInRadius(team, position, nil, radius, iTeam, iType, iFlag, iOrder, false)
+	else return {} end
 end
 
 function CDOTA_BaseNPC:FindFriendlyUnitsInRadius(position, radius, hData)
@@ -1611,6 +1614,10 @@ end
 
 function CDOTAGamerules:GetMaxRound()
 	return GameRules.maxRounds
+end
+
+function CDOTAGamerules:GetCurrentRound()
+	return GameRules._roundnumber
 end
 
 function ApplyKnockback( keys )

@@ -49,11 +49,11 @@ function modifier_forest_ancient_tether_buff:OnIntervalThink()
 	local hpDiff = parent:GetHealthPercent() - caster:GetHealthPercent()
 	if hpDiff < 0 then -- caster has more hp
 		local heal = (caster:GetMaxHealth() * math.min( math.abs(hpDiff), self.eqRate ) / 100) * 0.3
-		caster:SetHealth( caster:GetHealth() - heal )
+		caster:SetHealth( math.max(1, caster:GetHealth() - heal) )
 		parent:HealEvent(heal, self:GetAbility(), caster)
 	elseif hpDiff > 0 then -- parent has more hp
 		local heal = (parent:GetMaxHealth() * math.min( math.abs(hpDiff), self.eqRate ) / 100) * 0.3
-		parent:SetHealth( parent:GetHealth() - heal )
+		parent:SetHealth( math.min(1, parent:GetHealth() - heal) )
 		caster:HealEvent(heal, self:GetAbility(), caster)
 	end
 	parent:HealEvent(caster:GetHealthRegen() * self.regen)

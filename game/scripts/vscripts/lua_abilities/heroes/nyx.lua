@@ -6,12 +6,13 @@ function ReflectDamage(keys)
 	local reflect_pct = ability:GetTalentSpecialValueFor("reflect_pct")/100
 	-- Check if it's not already been hit
 	if not attacker:IsMagicImmune() then
-		attacker:SetHealth( attacker:GetHealth() - damageTaken*reflect_pct )
+		attacker:SetHealth( math.max(1, attacker:GetHealth() - damageTaken*reflect_pct) )
 		if attacker:GetHealth() < damageTaken*reflect_pct then
 			attacker:Kill(ability, caster)
 		else
-			caster:SetHealth( caster:GetHealth() + damageTaken*reflect_pct )
+			attacker:SetHealth( math.max(1, attacker:GetHealth() - damageTaken*reflect_pct) )
 		end
+		caster:SetHealth( math.min(caster:GetMaxHealth(), caster:GetHealth() + damageTaken*reflect_pct) )
 	end
 end
 

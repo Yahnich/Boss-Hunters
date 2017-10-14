@@ -37,7 +37,7 @@ if IsServer() then
 					})
 					return thisEntity.spit:GetCastPoint() + 0.1
 				else
-					local castRadius = thisEntity.spit:GetTrueCastRange() + self:GetIdealSpeed()
+					local castRadius = thisEntity.spit:GetTrueCastRange() + thisEntity:GetIdealSpeed()
 					local searchRadius = thisEntity.spit:GetSpecialValueFor("radius") + castRadius
 					local potentialEnemies = thisEntity:FindEnemyUnitsInRadius(thisEntity:GetAbsOrigin(), searchRadius)
 					local newTarget 

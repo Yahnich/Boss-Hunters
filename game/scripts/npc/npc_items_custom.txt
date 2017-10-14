@@ -879,7 +879,7 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"0"	
+		"ItemCost"						"475"	
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -888,7 +888,7 @@
 		"ItemResult"					"item_desolator2"
 		"ItemRequirements"
 		{
-			"01"						"item_desolator;item_claymore;item_medallion_of_courage"
+			"01"						"item_desolator;item_claymore"
 		}
 	}
 	
@@ -957,7 +957,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"corruption_armor"		"-14"
+				"corruption_armor"		"-10"
 			}
 			"03"
 			{
@@ -1265,7 +1265,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"armor_reduction"		"-25"
+				"armor_reduction"		"-20"
 			}
 			"03"
 			{
@@ -1785,7 +1785,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"armor_reduction"		"-50"
+				"armor_reduction"		"-40"
 			}
 			"03"
 			{
@@ -4496,7 +4496,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"armor_reduction"		"-100"
+				"armor_reduction"		"-80"
 			}
 			"03"
 			{
@@ -9514,394 +9514,6 @@
 		   	}
 		}
 	}
-	//=================================================================================================================
-	// Recipe: Lunar Crest
-	//=================================================================================================================
-	"item_recipe_moon_crest"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"1245"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"BaseClass"						"item_recipe_arcane_boots"
-		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"	"custom/moon_crest"
-		
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"8000"	
-		"ItemShopTags"					""
-		
-		// Recipe
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemRecipe"					"1"
-		"ItemResult"					"item_moon_crest"
-		"ItemRequirements"
-		{
-			"01"						"item_desolator3;item_solar_crest;item_orb_of_doom"
-		}
-	}
-
-	//=================================================================================================================
-	// Lunar
-	//=================================================================================================================
-	"item_moon_crest"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"1246"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
-		"AbilityCastAnimation"			"ACT_DOTA_CHANNEL_ABILITY_4"
-		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"custom/moon_crest"
-		"ItemKillable"					"1"
-		"ItemSellable"					"1"
-		"ItemShareability"				"ITEM_PARTIALLY_SHAREABLE"
-		"ItemDroppable"					"1"
-		"ItemCost"						"9135"
-		"ItemShopTags"					"damage;unique;health"
-		"ItemQuality"					"artifact"
-		"ItemAliases"					"crest"
-		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_ALWAYS"
-		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-
-		
-		"AbilityCastRange"	"800"
-		"AbilityCooldown"	"40"
-		"AbilityManaCost"	"0"
-
-		"OnSpellStart"
-		{
-			"RemoveModifier"
-	        {
-	            "ModifierName"  "crest_armor_reduction"
-	            "Target"        "CASTER"
-	        }
-		    "RemoveModifier"
-	        {
-	            "ModifierName"  "crest_armor_reduction"
-	            "Target"        "TARGET"
-	        }
-			"RunScript"
-			{
-				"ScriptFile"			"lua_item/simple_item.lua"
-				"Function"				"Crests"
-			}
-		}
-
-		"Modifiers"
-		{
-			"moon_crest_passive"
-			{
-				"Passive"	 	"1"
-				"Attributes"    "MODIFIER_ATTRIBUTE_MULTIPLE"
-				"IsHidden"		"1"
-				
-				"OnAttackLanded"
-				{
-					"ApplyModifier"
-					{
-						"Target"				"TARGET"
-						"ModifierName"		"moon_crest_effect"
-					}
-				}
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_EVASION_CONSTANT"  		"%bonus_evasion"
-					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"		"%bonus_armor"
-					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"		"%bonus_damage"
-					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"		"%bonus_all"
-					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"			"%bonus_all"
-					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"		"%bonus_all"
-					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE"  "%bonus_mana_regen"
-				}
-			}
-
-			"moon_crest_effect"
-			{
-				"IsDebuff" "1"
-    			"IsPurgable" "0"
-    			"Duration" "%duration"
-     			"Properties"
-     			{
-       				"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "%armor_reduction"
-     			}
-			}
-			"crest_debuff"
-			{
-				"IsDebuff" "1"
-				"Properties"
-     			{
-       				"MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE" "%active_damage_reduction"
-     			}
-			}
-			"crest_armor_reduction"
-			{
-				"IsHidden" "1"
-				"Attributes"        "MODIFIER_ATTRIBUTE_MULTIPLE"
-				"Properties"
-     			{
-       				"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "-1"
-     			}
-			}
-		}
-		
-		// Special	
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"500"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"armor_reduction"		"-120"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"	"15.0"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_armor"			"100"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_evasion"			"40"
-			}
-			"06"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"bonus_all"				"100"
-			}
-			"07"
-			{
-				"var_type"								"FIELD_INTEGER"
-				"bonus_mana_regen"					"125"
-			}
-			"08"
-			{
-				"var_type"								"FIELD_INTEGER"
-				"active_armor_percent"					"70"
-			}
-			"09"
-			{
-				"var_type"								"FIELD_INTEGER"
-				"active_damage_reduction"					"-70"
-			}
-			"10"
-			{
-				"var_type"								"FIELD_INTEGER"
-				"active_duration"					"15"
-			}
-			"11"
-			{
-				"var_type"								"FIELD_INTEGER"
-				"active_damage_reduction_tooltip"					"70"
-			}
-		}
-	}
-	//=================================================================================================================
-	// Recipe: Lunar Crest
-	//=================================================================================================================
-	"item_recipe_lunar_crest"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"1247"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"BaseClass"						"item_recipe_arcane_boots"
-		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"	"custom/moon_crest"
-		
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"8000"	
-		"ItemShopTags"					""
-		
-		// Recipe
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemRecipe"					"1"
-		"ItemResult"					"item_lunar_crest"
-		"ItemRequirements"
-		{
-			"01"						"item_desolator4;item_moon_crest;item_orb_divine"
-		}
-	}
-
-	//=================================================================================================================
-	// Lunar
-	//=================================================================================================================
-	"item_lunar_crest"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"1248"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
-		"AbilityCastAnimation"			"ACT_DOTA_CHANNEL_ABILITY_4"
-		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"custom/lunar_crest"
-		"ItemKillable"					"1"
-		"ItemSellable"					"1"
-		"ItemShareability"				"ITEM_PARTIALLY_SHAREABLE"
-		"ItemDroppable"					"1"
-		"ItemCost"						"51440"
-		"ItemShopTags"					"damage;unique;health"
-		"ItemQuality"					"artifact"
-		"ItemAliases"					"crest"
-		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_ALWAYS"
-		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-
-		
-		"AbilityCastRange"				"800"
-		"AbilityCooldown"	"40"
-		"AbilityManaCost"	"0"
-
-		"OnSpellStart"
-		{
-			"RemoveModifier"
-	        {
-	            "ModifierName"  "crest_armor_reduction"
-	            "Target"        "CASTER"
-	        }
-		    "RemoveModifier"
-	        {
-	            "ModifierName"  "crest_armor_reduction"
-	            "Target"        "TARGET"
-	        }
-			"RunScript"
-			{
-				"ScriptFile"			"lua_item/simple_item.lua"
-				"Function"				"Crests"
-			}
-		}
-
-		"Modifiers"
-		{
-			"desolator5_lunar_crest"
-			{
-				
-				"OnAttackLanded"
-				{
-					"ApplyModifier"
-					{
-						"Target"				"TARGET"
-						"ModifierName"		"lunar_crest_effect"
-					}
-				}
-				"Passive"	 	"1"
-				"Attributes"    "MODIFIER_ATTRIBUTE_MULTIPLE"
-				"IsHidden"		"1"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_EVASION_CONSTANT"  		"%bonus_evasion"
-					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"		"%bonus_armor"
-					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"		"%bonus_damage"
-					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"		"%bonus_all"
-					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"			"%bonus_all"
-					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"		"%bonus_all"
-					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE"  "%bonus_mana_regen"
-				}
-			}
-
-			"lunar_crest_effect"
-			{
-				"IsDebuff" "1"
-    			"IsPurgable" "0"
-    			"Duration" "%duration"
-     			"Properties"
-     			{
-       				"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "%armor_reduction"
-     			}
-			}
-			"crest_debuff"
-			{
-				"IsDebuff" "1"
-				"Properties"
-     			{
-       				"MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE" "%active_damage_reduction"
-     			}
-			}
-			"crest_armor_reduction"
-			{
-				"IsHidden" "1"
-				"Attributes"        "MODIFIER_ATTRIBUTE_MULTIPLE"
-				"Properties"
-     			{
-       				"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "-1"
-     			}
-			}
-		}
-		
-		// Special	
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"1500"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"armor_reduction"		"-400"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"	"15.0"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_armor"			"400"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_evasion"			"40"
-			}
-			"06"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"bonus_all"				"100"
-			}
-			"07"
-			{
-				"var_type"								"FIELD_INTEGER"
-				"bonus_mana_regen"					"125"
-			}
-			"08"
-			{
-				"var_type"								"FIELD_INTEGER"
-				"active_armor_percent"					"85"
-			}
-			"09"
-			{
-				"var_type"								"FIELD_INTEGER"
-				"active_damage_reduction"					"-80"
-			}
-			"10"
-			{
-				"var_type"								"FIELD_INTEGER"
-				"active_duration"					"15"
-			}
-			"11"
-			{
-				"var_type"								"FIELD_INTEGER"
-				"active_damage_reduction_tooltip"					"80"
-			}
-		}
-	}
 	//======================================================================================================
 	//==============Gungnir================================================================================
 	//======================================================================================================
@@ -11525,7 +11137,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"armor_reduction"		"-200"
+				"armor_reduction"		"-150"
 			}
 			"03"
 			{
@@ -14277,7 +13889,7 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"16666"	
+		"ItemCost"						"1666"	
 		"ItemShopTags"					""
 		
 		// Recipe

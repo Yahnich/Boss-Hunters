@@ -18,7 +18,6 @@ function modifier_spectre_dispersion_ebf:OnCreated( kv )
     self.reflect = self:GetAbility():GetSpecialValueFor( "damage_reflection_pct" )
 	self.max_range = self:GetAbility():GetSpecialValueFor( "max_radius" )
 	self.min_range = self:GetAbility():GetSpecialValueFor( "min_radius" )
-	print("test")
 end
 
 --------------------------------------------------------------------------------
@@ -39,7 +38,7 @@ function modifier_spectre_dispersion_ebf:OnTakeDamage(params)
     local nHeroHeal = self.reflect / 100
 	if attacker and attacker:GetTeamNumber()  ~= hero:GetTeamNumber() then
 		if params.unit == hero and hero:GetHealth() >= 1 then
-			hero:SetHealth(hero:GetHealth()+dmg*nHeroHeal)
+			hero:SetHealth( math.min(hero:GetMaxHealth(), hero:GetHealth()+dmg*nHeroHeal)
 			local units = FindUnitsInRadius(self:GetParent():GetTeamNumber(), 
 			hero:GetAbsOrigin(), 
 			hero, 

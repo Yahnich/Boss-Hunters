@@ -28,8 +28,10 @@ if IsServer() then
 	function AIThink()
 		if not thisEntity:IsDominated() and not thisEntity:IsChanneling() then
 			local target = AICore:GetHighestPriorityTarget(thisEntity)
+			print("thinking")
 			if target then
 				if thisEntity.flock:IsFullyCastable() then
+					print("fire")
 					local noDrakes = (thisEntity.flock:GetDrakeCount() == 0)
 					local reachedHPThreshold1 = (thisEntity:GetHealthPercent() < 66 and not thisEntity.reachedFirstThreshold)
 					local reachedHPThreshold2 = (thisEntity:GetHealthPercent() < 33 and not thisEntity.reachedSecondThreshold)
@@ -45,6 +47,7 @@ if IsServer() then
 					end
 				end
 				if thisEntity.conflag:IsFullyCastable() then
+					print("fire")
 					ExecuteOrderFromTable({
 						UnitIndex = thisEntity:entindex(),
 						OrderType = DOTA_UNIT_ORDER_CAST_POSITION,
@@ -54,6 +57,7 @@ if IsServer() then
 					return thisEntity.conflag:GetCastPoint() + 0.1
 				end
 				if thisEntity.dragonfire:IsFullyCastable() then
+					print("dargon")
 					ExecuteOrderFromTable({
 						UnitIndex = thisEntity:entindex(),
 						OrderType = DOTA_UNIT_ORDER_CAST_POSITION,

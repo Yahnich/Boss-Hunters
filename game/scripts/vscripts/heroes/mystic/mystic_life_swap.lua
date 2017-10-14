@@ -24,7 +24,7 @@ function mystic_life_swap:OnSpellStart()
 	ParticleManager:SetParticleControl( FX, 15, Vector(255,0,0) )
 	
 	local hpSacrifice = caster:GetHealth() * self:GetSpecialValueFor("hp_swap") / 100
-	caster:SetHealth( caster:GetHealth() - hpSacrifice )
+	caster:SetHealth( math.max(1, caster:GetHealth() - hpSacrifice) )
 	target:AddNewModifier(caster, self, "modifier_mystic_life_swap_buff", {duration = self:GetSpecialValueFor("duration")}):SetStackCount(hpSacrifice)
 	if caster:HasTalent("mystic_life_swap_talent_1") then
 		caster:AddNewModifier(caster, self, "modifier_mystic_life_swap_talent", {duration = self:GetSpecialValueFor("talent_duration")})

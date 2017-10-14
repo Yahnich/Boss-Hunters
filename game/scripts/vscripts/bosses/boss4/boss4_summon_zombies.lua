@@ -1,0 +1,1 @@
+boss4_summon_zombies = class({})

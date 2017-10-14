@@ -7,6 +7,13 @@ DOTA_LIFESTEAL_SOURCE_NONE = 0
 DOTA_LIFESTEAL_SOURCE_ATTACK = 1
 DOTA_LIFESTEAL_SOURCE_ABILITY = 2
 
+MAP_CENTER = Vector(332, -1545)
+
+if CHoldoutGameMode == nil then
+	CHoldoutGameMode = class({})
+end
+
+
 require("lua_item/simple_item")
 require("lua_map/map")
 require("lua_boss/boss_32_meteor")
@@ -22,12 +29,6 @@ require("libraries/animations")
 
 require("relics/relic")
 require("relics/relicpool")
-
-MAP_CENTER = Vector(332, -1545)
-
-if CHoldoutGameMode == nil then
-	CHoldoutGameMode = class({})
-end
 
 -- Precache resources
 function Precache( context )
@@ -65,6 +66,7 @@ function Precache( context )
 	-- Generic Boss Particles
 	PrecacheResource("particle", "particles/nyx_assassin_impale.vpcf", context)
 	PrecacheResource("particle", "particles/econ/generic/generic_aoe_shockwave_1/generic_aoe_shockwave_1.vpcf", context)
+	PrecacheResource("particle", "particles/generic_aoe_persistent_circle_1/death_timer_glow_rev.vpcf", context)
 	PrecacheResource("particle", "particles/econ/generic/generic_buff_1/generic_buff_1.vpcf", context)
 	PrecacheResource("particle", "particles/generic_gameplay/generic_stunned.vpcf", context)
 	PrecacheResource("particle", "particles/generic_gameplay/generic_sleep.vpcf", context)
@@ -100,7 +102,8 @@ end
 -- Actually make the game mode when we activate
 function Activate()
 	GameRules.holdOut = CHoldoutGameMode()
-	GameRules.holdOut:InitGameMode()	
+	GameRules.holdOut:InitGameMode()
+	require("projectilemanager")
 end
 
 function DeleteAbility( unit)
@@ -890,13 +893,11 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 						   ["cloak_and_dagger_ebf"] = true,
 						   ["tricks_of_the_trade_datadriven"] = true,
 						   ["phoenix_sun_ray"] = true,
-						   ["item_bloodthorn"] = true,
-						   ["item_bloodthorn2"] = true,
-						   ["item_bloodthorn3"] = true,
-						   ["item_bloodthorn4"] = true,
-						   ["item_purethorn"] = true,
 						   ["abyssal_underlord_firestorm"] = true,
 						   ["huskar_life_break"] = true} -- stop %hp based and right click damage abilities from being amped by aether lens
+		if no_aether[ability:GetName()] or not ability:IsAetherAmplified() then
+			filterTable["damage"] = filterTable["damage"] / caster:GetOriginalSpellDamageAmp()
+		end
 		if attacker:HasModifier("spellcrit") and attacker ~= victim then
 			local no_crit = {
 						   ["item_melee_rage"] = true,
@@ -1063,7 +1064,7 @@ function CHoldoutGameMode:OnAbilityUsed(event)
 	--will be used in future :p
     local PlayerID = event.PlayerID
     local abilityname = event.abilityname
-	
+		
 	local hero = PlayerResource:GetSelectedHeroEntity(PlayerID)
 	if not hero then return end
 	if not abilityname then return end
@@ -1120,7 +1121,6 @@ function CHoldoutGameMode:OnAbilityUsed(event)
  		end)
 	end
 	if abilityused and abilityused:HasPureCooldown() then
-		print(abilityname)
 		abilityused:EndCooldown()
 		if abilityused:GetDuration() > 0 then
 			local duration = abilityused:GetDuration()
@@ -1685,10 +1685,8 @@ function CHoldoutGameMode:OnPlayerUIInitialized(keys)
 end
 
 function CHoldoutGameMode:OnPlayerDisconnected(keys) 
-	local playerID = keys.playerID
-	PrintAll(keys)
+	local playerID = keys.PlayerID
 	if not playerID then return end
-	print("disconnect")
 	local hero = PlayerResource:GetSelectedHeroEntity(playerID)
 	if hero then hero.disconnect = GameRules:GetGameTime() end
 end
@@ -1923,29 +1921,16 @@ end
 function CHoldoutGameMode:CheckHP()
 	local dontdelete = {["npc_dota_lone_druid_bear"] = true}
 	for _,unit in pairs ( FindAllEntitiesByClassname("npc_dota_creature")) do
-		if unit:GetOrigin().z < 0 or  unit:GetOrigin().z > 500 then
-			local currOrigin = unit:GetOrigin()
-			FindClearSpaceForUnit(unit, Vector(currOrigin.x, currOrigin.y, 0), true)
+		if unit:GetAbsOrigin().z < 0 or  unit:GetAbsOrigin().z > 500 then
+			local currOrigin = unit:GetAbsOrigin()
+			FindClearSpaceForUnit(unit, GetGroundPosition(currOrigin, unit), true)
 		end
-		if unit:GetHealth() <= 0 and not unit:IsRealHero() and not dontdelete[unit:GetClassname()] and not unit:IsNull() and unit:IsAlive() then
-			unit:SetHealth(2)
-			unit:ForceKill(true)
-			Timers:CreateTimer(10,function()
-				if not unit:IsNull() then
-					unit:RemoveSelf()
-				end
+		if unit:GetHealth() <= 0 and not unit:IsRealHero() and not dontdelete[unit:GetClassname()] then
+			Timers:CreateTimer(10, function()
 				if not unit:IsNull() then
 					UTIL_Remove(unit)
 				end
 			end)
-		end
-	end
-	for _,unit in pairs ( FindAllEntitiesByClassname("npc_dota_creature")) do
-		if unit:GetHealth() <= 0 and unit:IsAlive() and not unit:IsFakeHero() then
-			unit:SetHealth(2)
-			unit:ForceKill(true)
-		elseif unit:GetHealth() > 0 and not unit:IsAlive() and not unit:IsFakeHero() then
-			unit:ForceKill(true)
 		end
 	end
 	if not GameRules:IsGamePaused() then
@@ -2267,8 +2252,8 @@ function CHoldoutGameMode:_CheckForDefeat()
 				GameRules._used_life = GameRules._used_life + 1
 				CustomGameEventManager:Send_ServerToAllClients( "updateQuestLife", { lives = GameRules._life, maxLives = GameRules._maxLives } )
 				for _,unit in pairs ( FindAllEntitiesByClassname("npc_dota_creature")) do
-					if unit:GetTeamNumber() == DOTA_TEAM_BADGUYS then
-						unit:ForceKill(true)
+					if unit and unit:GetTeamNumber() == DOTA_TEAM_BADGUYS then
+						UTIL_Remove(unit)
 					end
 				end
 				for _,unit in pairs ( HeroList:GetAllHeroes()) do
@@ -2277,9 +2262,6 @@ function CHoldoutGameMode:_CheckForDefeat()
 						unit:SetGold(0 , false)
 						unit:SetGold(totalgold, true)
 					end
-				end
-				if delay ~= nil then
-					self._flPrepTimeEnd = GameRules:GetGameTime() + tonumber( delay )
 				end
 				self:_RefreshPlayers()
 			end
@@ -2466,17 +2448,20 @@ function CHoldoutGameMode:OnNPCSpawned( event )
 		spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_attack_animation_tweak", {})
 	end
 	if spawnedUnit:IsCreature() then
-		local player_multiplier = (PlayerResource:GetTeamPlayerCount() / GameRules.BasePlayers)^0.2
+		local players = HeroList:GetRealHeroCount()
+		local player_multiplier = 1 + (0.25 * (players - 1))
 		-- difficulty multiplier
 		local effective_multiplier = 1
 		-- local effective_multiplier = 1 + (GameRules.gameDifficulty - 1)* 0.15 
 		local checkMult = (GameRules.BasePlayers - PlayerResource:GetTeamPlayerCount()) / GameRules.BasePlayers
-		if IsInToolsMode() then 
-			checkMult = 0
-			player_multiplier = 1
-		end
+		-- if IsInToolsMode() then 
+			-- checkMult = 0
+			-- player_multiplier = 1
+		-- end
 		local playerCountMult = (1/GameRules.BasePlayers)*checkMult
-		spawnedUnit:SetMaxHealth ((player_multiplier*spawnedUnit:GetMaxHealth() - spawnedUnit:GetMaxHealth()*playerCountMult)*effective_multiplier)
+		print(player_multiplier, PlayerResource:GetTeamPlayerCount(), players)
+		spawnedUnit:SetBaseMaxHealth ((player_multiplier*spawnedUnit:GetMaxHealth())*effective_multiplier)
+		spawnedUnit:SetMaxHealth ((player_multiplier*spawnedUnit:GetMaxHealth())*effective_multiplier)
 		spawnedUnit:SetHealth(spawnedUnit:GetMaxHealth())
 		spawnedUnit:SetBaseDamageMin((player_multiplier*spawnedUnit:GetBaseDamageMin() - spawnedUnit:GetBaseDamageMin()*playerCountMult)*effective_multiplier)
 		spawnedUnit:SetBaseDamageMax((player_multiplier*spawnedUnit:GetBaseDamageMax() - spawnedUnit:GetBaseDamageMax()*playerCountMult)*effective_multiplier)

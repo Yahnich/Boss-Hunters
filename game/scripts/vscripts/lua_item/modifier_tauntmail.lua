@@ -53,7 +53,7 @@ function modifier_tauntmail:OnTakeDamage(params)
 					local dmgmultattacker = 100 - attacker:GetPhysicalArmorReduction()
 					dmgreturn = origdmg*dmgmultattacker
 				end
-				ApplyDamage({victim = attacker, attacker = hero, damage = dmgreturn/get_aether_multiplier(hero), damage_type = DAMAGE_TYPE_PURE, ability = self:GetAbility()})
+				ApplyDamage({victim = attacker, attacker = hero, damage = dmgreturn/get_aether_multiplier(hero), damage_type = DAMAGE_TYPE_PURE, ability = self:GetAbility(), damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
 			elseif dmgtype == DAMAGE_TYPE_MAGICAL then
 				local armorhero = hero:GetMagicalArmorValue()
 				local armorattacker = attacker:GetMagicalArmorValue()
@@ -61,9 +61,9 @@ function modifier_tauntmail:OnTakeDamage(params)
 				if armorhero > armorattacker and not GameRules._NewGamePlus then
 					dmgreturn = dmg * (armorattacker/armorhero)
 				end
-				ApplyDamage({victim = attacker, attacker = hero, damage = dmgreturn/get_aether_multiplier(hero), damage_type = DAMAGE_TYPE_PURE, ability = self:GetAbility()})
+				ApplyDamage({victim = attacker, attacker = hero, damage = dmgreturn/get_aether_multiplier(hero), damage_type = DAMAGE_TYPE_PURE, ability = self:GetAbility(), damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
 			else
-				ApplyDamage({victim = attacker, attacker = hero, damage = dmg/get_aether_multiplier(hero), damage_type = DAMAGE_TYPE_PURE, ability = self:GetAbility()})
+				ApplyDamage({victim = attacker, attacker = hero, damage = dmg/get_aether_multiplier(hero), damage_type = DAMAGE_TYPE_PURE, ability = self:GetAbility(), damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
 			end
 		end
 	end

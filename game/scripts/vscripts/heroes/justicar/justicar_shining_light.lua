@@ -40,7 +40,6 @@ function justicar_shining_light:AllyEnemyActions(target)
 		target:Dispel(caster, true)
 		target:HealEvent(damageheal + target:GetMaxHealth() * baseheal, self, self:GetCaster())
 	else
-		print(debuff_duration
 		target:AddNewModifier(caster, self, "modifier_justicar_shining_light_debuff", {duration = self:GetTalentSpecialValueFor("debuff_duration")})
 		self:DealDamage(caster, target, damageheal)
 	end

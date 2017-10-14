@@ -631,3 +631,195 @@ Magnus: Apollo, The Song
 
 Aghs: 
 Reverb buffs now stack, but drop down to 0% efficiency in 8 seconds and are destroyed after
+
+
+Visage: Thoth, The Archon 
+-- Innate: Unstable Core - Has a chance to proc on every spell cast, giving 50% damage amp but increasing mana costs by 300% for 3 seconds and amplifying the casted spell's effect
+
+-- Skill 1: Mana Surge: Toggle - Turns a percentage of your auto-attack damage to magical damage. - Unstable Core damage becomes AOE
+-- Skill 2: Arcane Lance: Costs a percentage of your total mana and deals a percentage the mana cost as damage - Unstable Core, ability instantly refreshes
+-- Skill 3: Vitality Drain: Turns a percentage of your current health into mana - Unstable core, health cost is transferred to a random enemy
+-- Skill 4: Mindblast: Targets unit, silencing and damaging the target and all units around it - Unstable Core silence 	
+-- Skill 5:	Energy Orb: Sends out an orb that explodes on first unit it hits, dealing damage in an aoe and amping all damage they take in the future - Unstable Core, orb pierces and explodes on every enemy
+-- Skill 6: Magic Missiles: Sends out small rockets every 0.2s that go towards the nearest enemy unit and damage them - Unstable Core missiles go to all nearby enemy units
+-- Skill 7:	Force Wave: Damages and knocks back all enemy units, slowing them after knockback - Unstable Core; slow changes to stun
+-- Skill 8: Magic Barrier: Use on an ally take reduce the damage they take by 20%; but damage absorbed is dealt to your mana pool; lasts 30 seconds - Unstable Core no mana cost on absorption
+
+-- Passive 1: Unstable Core buff also lowers cooldowns by 25%
+-- Passive 2: Mana Surge no longer costs mana
+-- Passive 3: Arcane Lance now ministuns, duration depends on mana spent compared to max mana
+-- Passive 4: Vitality Drain is now a toggle that constantly drain health for mana
+-- Passive 5: Mindblast now also breaks
+-- Passive 6: Energy Orb now homes in on enemies
+-- Passive 7: Every Magic missile hit applies a 1% magic resistance debuff
+-- Passive 8: Force Wave no longer knocks back and slows, instead hexes the enemies
+-- Passive 9: Magic Barrier steals 20% of the ally's mana regeneration
+
+Aghs: 
+Doubles damage amp and mana cost on proc
+
+
+
+Invoker: Chaos, The Primordial
+-- Innate: Lingering Elements - Using a type of magic either adds new effects to other types of magic or amplifies the effects of magic of the same type, every lingering element lasts 5 seconds.
+
+-- Skill 1: Twister: Sends out a tornado projectile, enemies hit are knocked up, stunned during knockup - Wind type
+			-- Lingering Wind: Sends out 3 tornadoes
+			-- Lingering Fire: Fire tornado, adds fire DOT and lowers armor
+			-- Lingering Water: Knocks back enemies backwards
+			-- Lingering Ice: Ice tornado, chills enemy
+-- Skill 2: Hurricane: Blows back all enemies and damages them - Wind Type
+			-- Lingering Wind: Blows back in 360°
+			-- Lingering Fire: Applies a fire DOT
+			-- Lingering Water: Dazes enemy at the end of the knockback
+			-- Lingering Ice: Chills enemy
+-- Skill 3: Fire Jet: Moves forward like force staff, damaging all enemies you pass through - Fire Type
+			-- Lingering Wind: Knocks enemies nearby away from you
+			-- Lingering Fire: Doubles distance traveled and damage
+			-- Lingering Water: Self-heals for damage dealt
+			-- Lingering Ice: Chills enemy
+-- Skill 4: Inner Explosion: Explodes around yourself - Fire Type
+			-- Lingering Wind: Knocks back enemies
+			-- Lingering Fire: AOE and damage doubled
+			-- Lingering Water: Heals allies
+			-- Lingering Ice: Chills enemies
+-- Skill 5:	Winter Armor: Grants armor and slows enemies tha attack buffed target - Ice Type
+			-- Lingering Wind: Enemies are ministunned upon attacking buffed target
+			-- Lingering Fire: Enemies receive a fire DOT upon attacking buffed target
+			-- Lingering Water: Heals ally over time
+			-- Lingering Ice: Enemies are rooted upon attacking buffed target
+-- Skill 6: Frostbite: Roots enemy and deals damage over time - Ice Type
+			-- Lingering Wind: Full stun
+			-- Lingering Fire: Lowers magic resistance
+			-- Lingering Water: Allies that attack this unit lifesteal from it
+			-- Lingering Ice: duration doubled
+-- Skill 7: Water Drops: Drops down an orb on location, healing all allies in radius for 5s - Water Type
+			-- Lingering Wind: Pushes back nearby enemies
+			-- Lingering Fire: Damages nearby enemies
+			-- Lingering Water: orb duration doubled
+			-- Lingering Ice: nearby enemies are chilled
+-- Skill 8: Soothing River: Sends out a gush of water, heals allies hit and damages and silences enemies hit - Water Type
+			-- Lingering Wind: Knocks back enemies hit and grants allies a movement speed buff
+			-- Lingering Fire: Applies heal over time and damage over time on allies and enemies respectively
+			-- Lingering Water: doubled healing
+			-- Lingering Ice: chills enemy
+
+-- Passive 1: Lingering Elements grant passive bonuses depending on the type (Wind:MS, Ice:Armor, Fire:Damage, Water:Health Regen)
+-- Passive 2: Twister no longer a projectile, is now a randomly moving twister
+-- Passive 3: Hurricane grants a self movement speed buff
+-- Passive 4: Fire Jet damage aura lasts for 5 seconds after the end of Fire Jet
+-- Passive 5: Inner Explosion explodes several times per cast
+-- Passive 6: Winter Armor grants a 350 radius slowing aura (lingering effects are applied as if they're attacking
+-- Passive 7: Frostbite is now AOE
+-- Passive 8: Water Drops grants lowered cooldown to allies in range
+-- Passive 9: Soothing River bounces between allies and enemies hit instead of being a linear projectile
+
+Aghs: 
+Lingering Elements last 10 seconds
+
+
+
+Lone Druid: Veles, The Shifter 
+-- Innate: Form of the Predator - Change into a wolf, granting bonus damage and movement speed
+-- Innate: Form of the Protector - Change into a bear, granting bonus armor, max health and threat generation
+-- Innate: Form of the Mage - Change into a human, granting bonus cooldown reduction and spell amp.
+
+-- Skill 1: Mobility skill
+-- Skill 2: Offensive single target skill
+-- Skill 3: Offensive aoe skill
+-- Skill 4: Misc
+-- Skill 5:	Debuffing skill
+-- Skill 6: Buffing skill
+-- Skill 7:	Healing skill
+-- Skill 8: Defensive skill
+
+-- Passive 1: Unstable Core buff also lowers cooldowns by 25%
+-- Passive 2: 
+-- Passive 3: 
+-- Passive 4: 
+-- Passive 5: 
+-- Passive 6: 
+-- Passive 7: 
+-- Passive 8: 
+-- Passive 9: 
+
+Aghs: 
+Removes transformation cooldowns and cast point
+
+
+Venomancer: Sopona, The Toxin
+-- Innate: Stored Toxins - Toxin's abilities have no cooldown, instead using Stored Toxins that recharges a charge every second. Can be used on a weak minion to kill it and max out on charges; can store like 100 charges. If an ability is cast with insufficient charges, a cooldown will be applied to the casted ability equal to double the charge cost.
+
+-- Skill 1: Toxic Discharge: its venomous gale but stacking - 15 charge cost
+-- Skill 2: Venomous Eruption: its poison nova but stacking - 60 charge cost
+-- Skill 3: Oozing Corruption: Toggle, costs 2 charges per second and stops Stored Toxin charge regeneration (so costs 3 charges actually); drops poisonous ooze on the ground thats damages enemies and grants flying movement to allies on the path; both allies and enemies are slowed. Ooze puddles lasts 10 seconds
+-- Skill 4:    Plagued Saliva: Toggle, costs 1 charge per attack; deals DoT on enemy and slows them minorly (its poison sting with a cost), first attack applies 5 stacks and further attacks add 1 stacks
+-- Skill 5: Poison Shield: Buffs a target, granting them magic resistance; anyone that attacks the target has its magic resistance reduced and takes minor DoT - 12 charge cost
+-- Skill 6:    Acid Cloud: Spits out a lingering cloud of poison that damages all enemies that pass through it and reduces their armor and magic resistance over time - 18 charge cost
+-- Skill 7: Corrode Weapons: Unit target, disarms enemy and damages them - 15 charge cost
+-- Skill 8: Toxic Shock: Stuns unit for 1s, then roots them for 1 second, then applies a 100% slow that reduces in strength over 4 seconds. No damage - 10 charge cost
+-- Passive 1: Now grants a poison aura around Toxin depending on the charges of Stored Toxins he has
+-- Passive 2: Toxic Discharge now reduces enemy stun and debuff resistance
+-- Passive 3: Venomous Eruption is refreshed when Stored Toxins is used on a creep
+-- Passive 4: Oozing Corruption strength is now doubled on creation, and drops down to original damage over 5 seconds
+-- Passive 5: Plagued Saliva now has a 10% chance to ministun on hit
+-- Passive 6: Poison Shield now has a chance to return 1 Stored Toxin charge when target gets damaged
+-- Passive 7: Acid Cloud radius grows over time.
+-- Passive 8: Corrode Weapons now also breaks.
+-- Passive 9: Toxic Shock now returns its charge cost if affected unit dies.
+
+Aghs: 
+Can now target Stored Toxins on self, costing 1% health per charge missing, killing Toxin if at 0 charges
+
+
+
+Axe: Nerio, the Reaver
+-- Innate: Steeled Temper - Grants Reaver a stack every time he takes damage, this increases all damage he does by 1% per stack
+
+-- Skill 1: Offensive Mockery - Taunts all units in radius to the Reaver and reduces the damage they deal.
+-- Skill 2: Stare Down - Reduces one unit's armor and dazes them.
+-- Skill 3: Leaping Smash - Leaps towards target location, slowing (ms+as) all enemies in radius on land and damaging them
+-- Skill 4: Wild Howl - Increases all allied attackspeed and movement speed
+-- Skill 5: Berserker's Rage - Lose control of your unit, it attacks the nearest unit; but you receive a major attackspeed, movement speed and attack damage bonus; you snap out of it when you take significant damage or after 10s.
+-- Skill 6: Dervish Whirl - Disarms self and spins for 3 seconds, granted bonus armor and evasion during Dervish Whirl
+-- Skill 7: Vicious Execution - Kills any unit below a threshold, refreshing itself if it was a killing blow.
+-- Skill 8: Antagonism - Debuffs an enemy, slowing their movement speed, reducing their max health and buffing Reaver's movespeed and strength. 
+
+-- Passive 1: Steeled Temper now grants Reaver lifesteal from all sources at half value (50 stacks is 25% lifesteal)
+-- Passive 2: Offensive Mockery reduces Reaver's cooldowns per unit taunted.
+-- Passive 3: Stare Down now also lowers enemy attackspeed
+-- Passive 4: Leaping Smash now has 3 charges, but +5s cooldown
+-- Passive 5: Wild Howl dazes nearby enemies as well
+-- Passive 6: Berserker's Rage now silences and mutes you instead of losing all control
+-- Passive 7: Dervish Whirl is now a toggle
+-- Passive 8: Vicious Execution cast range increased by 600 and now Reaver leaps towards the target
+-- Passive 9: Antagonism duration is now paused while debuffed unit is attacking Reaver
+
+Aghs:
+Every ability Reaver casts grants him temporary bonus strength
+
+
+
+Beastmaster: Aristaeus, the Nomad
+-- Innate: Canine Aid - Nomad has a canine familiar that deals 25% of Nomad's damage, the canine has a chance to bleed and slow enemies, non-stacking. 
+
+-- Skill 1: Uppercut - stuns the enemy for 2s and reduces the damage they do for 5s afterwards
+-- Skill 2: Pocket Spikes - Throws down caltrops, dealing impct damage as well as damage over time and a slow to enemies inside the affected area.
+-- Skill 3: Smokescreen - Throws down smoke, rendering allies inside of it invisibility and dealing damage to any enemy inside.
+-- Skill 4:    Bear Traps - Sets down a trap, if an enemy walks in it, they are rooted and take bonus damage from all sources.
+-- Skill 5: Lick Wounds - Nomad's canine heals an ally and grants them minor heal over time.
+-- Skill 6:    Inspiring Howl - Nomad's canine howls, briefly granting all allies bonus attack speed and damage.
+-- Skill 7: Canine Steed - Toggle, Nomad rides his canine, setting his minimum movement speed at 500. Can only ride for 15 seconds before doggie is tired, cooldown is equal to time on dog (moves you as well as the dog when sic em or lick wounds are used) 
+-- Skill 8: Sic Em - Nomad grants his Good Boy(TM) crit for the next attack, rooting the enemy briefly; increases bleed and slow amount
+-- Passive 1: Canine Aid now grants Nomad 25% evasion as long as doggo isn't tired (hasn't done a spell in the past 5 seconds)
+-- Passive 2: Uppercut adds a stacking 10% stun resistance reduction every time its cast, lasts 30s per stack
+-- Passive 3: Pocket Spikes now poisons enemies, dot and slow persist for 5 seconds after leaving caltrops area
+-- Passive 4: Smokescreen is now around Nomand instead of on the ground
+-- Passive 5: Bear Traps now disarm the enemy
+-- Passive 6: Lick Wounds now reduces the duration of all debuffs by 1s or 25% whichever is bigger
+-- Passive 7: Inspiring Howl now also grants spell amp and cooldown reduction
+-- Passive 8: Can now ride doggo as long as it has mana (stamina)
+-- Passive 9: Sic Em also attacks the nearest enemy
+
+Aghs:
+Canine has a passive 20% damage aura and can crit naturally for 150% now

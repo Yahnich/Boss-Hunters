@@ -72,19 +72,18 @@
     "basics"
     {
         "item" "item_ultimate_scepter"
+		"item" "item_ultimate_amulet"
         "item" "item_gungnir"
         "item" "item_gungnir_2"
-        "item" "item_gungnir_3"
-        "item" "item_moon_crest"
-        "item" "item_lunar_crest"
+        "item" "item_gungnir_3"	
+		"item" "item_echo_sabre"
 		"item" "item_cursed_amulet"
         "item" "item_gauntlet_cursed"
         "item" "item_soul_gatherer"
         "item" "item_radiance"
         "item" "item_skadi"
         "item" "item_mekansm"
-        "item" "item_scythe_of_decay"
-		"item" "item_echo_sabre"
+		"item" "item_scythe_of_decay"
     }
     // Level 2 - Blue Recipes
     "support"

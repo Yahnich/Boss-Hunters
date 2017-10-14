@@ -30,6 +30,7 @@ function wraith_blood_ritual:OnSpellStart()
 	if target:IsSameTeam(caster) then
 		local enemies = caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), self:GetSpecialValueFor("search_radius") )
 		local spreadCount = #enemies + 1
+		local heal = baseHeal + pctHeal * target:GetMaxHealth()
 		for _, enemy in ipairs( enemies ) do
 			self:DealDamage(caster, enemy, heal/spreadCount, {damage_type = DAMAGE_TYPE_PURE})
 			ParticleManager:FireRopeParticle("particles/units/heroes/hero_undying/undying_soul_rip_damage.vpcf", PATTACH_POINT_FOLLOW, caster, enemy)
@@ -40,7 +41,7 @@ function wraith_blood_ritual:OnSpellStart()
 		ParticleManager:FireRopeParticle("particles/units/heroes/hero_undying/undying_soul_rip_heal.vpcf", PATTACH_POINT_FOLLOW, target, caster)
 		
 		EmitSoundOn("Hero_Undying.SoulRip.Ally", target)
-		target:HealEvent(baseHeal + pctHeal * target:GetMaxHealth(), self, caster)
+		target:HealEvent(heal, self, caster)
 	else
 		local allies = caster:FindFriendlyUnitsInRadius( caster:GetAbsOrigin(), self:GetSpecialValueFor("search_radius") )
 		local spreadCount = #allies + 1

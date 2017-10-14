@@ -35,7 +35,7 @@ if IsServer() then
 			local target = AICore:GetHighestPriorityTarget(thisEntity)
 			if target and not target:IsNull() then
 				if thisEntity:GetHealthPercent() > 50 then
-					if thisEntity.quake:IsFullyCastable() then
+					if thisEntity.quake and thisEntity.quake:IsFullyCastable() then
 						local radius = thisEntity.quake:GetSpecialValueFor("radius")
 						if AICore:TotalNotDisabledEnemyHeroesInRange( thisEntity, radius, false ) >= AICore:TotalEnemyHeroesInRange( thisEntity, radius ) and not AICore:TotalNotDisabledEnemyHeroesInRange( thisEntity, radius, false ) == 0 then
 							ExecuteOrderFromTable({
@@ -47,7 +47,7 @@ if IsServer() then
 							return thisEntity.quake:GetCastPoint() + 0.1
 						end
 					end
-					if thisEntity.execute:IsFullyCastable() then
+					if thisEntity.execute and thisEntity.execute:IsFullyCastable() then
 						local executeTarget = thisEntity.execute:NearestExecuteableTarget( thisEntity.execute:GetTrueCastRange() + thisEntity:GetIdealSpeed() ) or target
 						if executeTarget and not executeTarget:IsNull() then
 							ExecuteOrderFromTable({
@@ -59,7 +59,7 @@ if IsServer() then
 							return thisEntity.execute:GetCastPoint() + 1.2
 						end
 					end
-					if thisEntity.whirlwind:IsFullyCastable() and AICore:TotalEnemyHeroesInRange( thisEntity,  thisEntity.whirlwind:GetSpecialValueFor("radius") ) then
+					if thisEntity.whirlwind and thisEntity.whirlwind:IsFullyCastable() and AICore:TotalEnemyHeroesInRange( thisEntity,  thisEntity.whirlwind:GetSpecialValueFor("radius") ) > 1 then
 						ExecuteOrderFromTable({
 							UnitIndex = thisEntity:entindex(),
 							OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
@@ -68,7 +68,7 @@ if IsServer() then
 						return thisEntity.whirlwind:GetCastPoint() + 0.1
 					end
 				else
-					if thisEntity.quake:IsFullyCastable() then
+					if thisEntity.quake and thisEntity.quake:IsFullyCastable() then
 						local radius = thisEntity.quake:GetSpecialValueFor("radius")
 						if AICore:TotalNotDisabledEnemyHeroesInRange( thisEntity, radius, false ) >= AICore:TotalEnemyHeroesInRange( thisEntity, radius ) then
 							ExecuteOrderFromTable({
@@ -80,7 +80,7 @@ if IsServer() then
 							return thisEntity.quake:GetCastPoint() + 0.1
 						end
 					end
-					if thisEntity.whirlwind:IsFullyCastable() then
+					if thisEntity.whirlwind and thisEntity.whirlwind:IsFullyCastable() then
 						ExecuteOrderFromTable({
 							UnitIndex = thisEntity:entindex(),
 							OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
@@ -88,7 +88,7 @@ if IsServer() then
 						})
 						return thisEntity.whirlwind:GetCastPoint() + 0.1
 					end
-					if thisEntity.execute:IsFullyCastable() then
+					if thisEntity.execute and thisEntity.execute:IsFullyCastable() then
 						local executeTarget = thisEntity.execute:NearestExecuteableTarget( thisEntity.execute:GetTrueCastRange() + thisEntity:GetIdealSpeed() ) or target
 						if executeTarget then
 							ExecuteOrderFromTable({

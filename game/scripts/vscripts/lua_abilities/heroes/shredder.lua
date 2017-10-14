@@ -32,7 +32,7 @@ function StatLoss(keys)
 	if not target.BoneSplitted then
 		local hpPct = target:GetHealthPercent() / 100
 		target:SetMaxHealth(target:GetMaxHealth() - target.hpLoss)
-		target:SetHealth(target:GetMaxHealth() * hpPct)
+		target:SetHealth( math.max(1, target:GetMaxHealth() * hpPct) )
 		target.BoneSplitted = true
 	end
 end

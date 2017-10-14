@@ -102,7 +102,7 @@ function TankSelfHeal(keys)
                               FIND_ANY_ORDER,
                               false)
 	for _,unit in pairs(units) do
-		ApplyDamage({victim = unit, attacker = caster, damage = hp * selfHeal / 2, damage_type = DAMAGE_TYPE_PURE, ability = item})
+		ApplyDamage({victim = unit, attacker = caster, damage = hp * selfHeal / 2, damage_type = DAMAGE_TYPE_PURE, ability = item, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
 	end
 end
 
@@ -125,7 +125,7 @@ end
 
 function OrchidPop(keys)
 	local target = keys.target
-	ApplyDamage({victim = keys.target, attacker = keys.caster, damage = target.orchiddamage, damage_type = keys.ability:GetAbilityDamageType(), ability = keys.ability})
+	ApplyDamage({victim = keys.target, attacker = keys.caster, damage = target.orchiddamage, damage_type = keys.ability:GetAbilityDamageType(), ability = keys.ability, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
 	target.orchiddamage = 0
 end
 
@@ -136,7 +136,7 @@ function Bash(keys)
 	damage_table.damage_type = DAMAGE_TYPE_PURE
 	damage_table.ability = keys.ability
 	damage_table.victim = keys.target
-	damage_table.damage = keys.bash/keys.caster:GetSpellDamageAmp()
+	damage_table.damage = keys.bash
 
 	ApplyDamage(damage_table)
 end
@@ -176,8 +176,6 @@ function Cooldown_pixels(keys)
     item:StartCooldown(14 + GameRules.gameDifficulty)
 end
 
-LinkLuaModifier( "modifier_tauntmail", "lua_item/modifier_tauntmail.lua" ,LUA_MODIFIER_MOTION_NONE )
-
 function ApplyOrbEffect(keys)
 	local caster = keys.caster
 	caster:SetProjectileModel(keys.projectileName)
@@ -190,6 +188,8 @@ function RemoveOrbEffect(keys)
 	end
 end
 
+
+LinkLuaModifier( "modifier_tauntmail", "lua_item/modifier_tauntmail.lua" ,LUA_MODIFIER_MOTION_NONE )
 function tauntarmor(keys)
     local caster = keys.caster
     local radius = keys.ability:GetSpecialValueFor("radius")
@@ -411,9 +411,10 @@ function SharedPierce(keys)
 	end
     local damageTable = {victim = target,
                 attacker = caster,
-                damage = damage/caster:GetSpellDamageAmp(),
+                damage = damage,
                 damage_type = DAMAGE_TYPE_PURE,
                 ability = item,
+				damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION
                 }
     ApplyDamage(damageTable)
 end
@@ -442,12 +443,14 @@ function Pierce_Splash(keys)
                               false)
 	for _,unit in pairs(nearbyUnits) do
 		if target ~= unit then
-			local damageTable = {victim = unit,
-					attacker = caster,
-					damage = (damage*percent_p)/caster:GetSpellDamageAmp(),
-					damage_type = DAMAGE_TYPE_PURE,
-					ability = item
-					}
+			local damageTable = {
+				victim = unit,
+				attacker = caster,
+				damage = (damage*percent_p),
+				damage_type = DAMAGE_TYPE_PURE,
+				ability = item,
+				damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION
+			}
 			ApplyDamage(damageTable)
 		end
 	end
@@ -956,7 +959,7 @@ end
 
 function MekDegen(keys)	
 	local degen = keys.ability:GetSpecialValueFor("aura_health_regen")
-	ApplyDamage({victim = keys.target, attacker = keys.caster, damage = degen*keys.tick_rate, damage_type = DAMAGE_TYPE_PURE, ability = keys.ability, damage_flags = DOTA_DAMAGE_FLAG_HPLOSS})
+	ApplyDamage({victim = keys.target, attacker = keys.caster, damage = degen*keys.tick_rate, damage_type = DAMAGE_TYPE_PURE, ability = keys.ability, damage_flags = DOTA_DAMAGE_FLAG_HPLOSS + DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
 end
 
 
