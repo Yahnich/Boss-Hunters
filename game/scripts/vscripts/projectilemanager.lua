@@ -28,13 +28,20 @@ function ProjectileHandler:ProjectileThink()
 			print(err)
 			projectile:Remove()
 		end
-		projectile.aliveTime = projectile.aliveTime + FrameTime()
-		projectile.distanceTravelled = projectile.distanceTravelled + projectile:GetVelocity():Length2D() * FrameTime()
-		if (projectile.aliveTime and projectile.duration and projectile.aliveTime >= projectile.duration) or (projectile.distance and projectile.distanceTravelled and projectile.distance >= projectile.distanceTravelled) then
+		projectile.aliveTime = (projectile.aliveTime or 0) + FrameTime()
+		projectile.distanceTravelled = (projectile.distanceTravelled or 0) + projectile:GetVelocity():Length2D() * FrameTime()
+		if (projectile.aliveTime and projectile.duration and projectile.aliveTime >= projectile.duration) or (projectile.distance and projectile.distanceTravelled and projectile.distance <= projectile.distanceTravelled) then
 			projectile:Remove()
 		end
 	end
 	return PROJECTILE_THINK
+end
+
+PROJECTILE_LINEAR = function(self)
+	local position = self:GetPosition()
+	local velocity = self:GetVelocity()
+	if velocity.z > 0 then velocity.z = 0 end
+	self:SetPosition( position + (velocity*FrameTime()) )
 end
 
 

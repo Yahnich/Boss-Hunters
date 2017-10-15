@@ -21,7 +21,6 @@ function mystic_grim_harvest:OnSpellStart()
 	
 	local ProjectileThink = function(self, ... )
 		local caster = self:GetCaster()
-		local ability = self:GetAbility()
 		local position = self:GetPosition()
 		local orbRadius = self:GetRadius()
 		local orbSpeed = self:GetSpeed()
@@ -52,14 +51,14 @@ function mystic_grim_harvest:OnSpellStart()
 		target:AddNewModifier(caster, ability, "modifier_mystic_grim_harvest_debuff", {duration = 0.5})
 		return true
 	end
-	ProjectileHandler:CreateProjectile(ProjectileThink, ProjectileHit, {FX = "particles/heroes/mystic/mystic_grim_harvest.vpcf",
-															  position = position,
-															  caster = caster,
-															  ability = self,
-															  speed = orbSpeed,
-															  radius = orbRadius,
-															  velocity = vVelocity,
-															  duration = orbDuration})
+	ProjectileHandler:CreateProjectile(ProjectileThink, ProjectileHit, {  FX = "particles/heroes/mystic/mystic_grim_harvest.vpcf",
+																		  position = position,
+																		  caster = caster,
+																		  ability = self,
+																		  speed = orbSpeed,
+																		  radius = orbRadius,
+																		  velocity = vVelocity,
+																		  duration = orbDuration})
 end
 
 modifier_mystic_grim_harvest_debuff = class({})

@@ -47,6 +47,7 @@ function Projectile:ProjectileThink()
 		local status, err, ret = xpcall(self.hitBehavior, debug.traceback, self, enemy, position)
 		if not status then
 			print(err)
+			self:Remove()
 		elseif not err then -- if no errors then xpcall doesn't return to err; so ret gets shoved back
 			self:Remove()
 			return nil

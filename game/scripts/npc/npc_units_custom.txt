@@ -1125,8 +1125,8 @@
 		"AbilityLayout"				"6"
 		"Ability1"					"boss4_summon_zombies"			// Ability 1.
 		"Ability2"					"boss4_death_ball"			// Ability 2.
-		"Ability2"					"boss4_sacrifice"			// Ability 2.
-		"Ability2"					"boss4_tombstone"			// Ability 2.
+		"Ability3"					"boss4_sacrifice"			// Ability 2.
+		"Ability4"					"boss4_tombstone"			// Ability 2.
 
 
 		//----------------------------------------------------------------

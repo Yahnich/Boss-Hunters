@@ -36262,6 +36262,7 @@
 		"AbilityTextureName"			"undying_soul_rip"
 		
 		"AbilityCastPoint"				"0.75 0.5"
+		"AbilityCastAnimation"			"ACT_DOTA_TELEPORT"
 		
 		"precache"
 		{
@@ -36283,16 +36284,23 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
 		"BaseClass" 					"ability_lua"
 		"ScriptFile"					"bosses/boss4/boss4_death_ball"
-		"AbilityTextureName"			"undying_soul_rip"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"puck_illusory_orb"
 		
 		"AbilityCastPoint"				"0.75 0.5"
+		"AbilityCastRange"				"1200"
+		"AbilityCastAnimation"			"ACT_DOTA_UNDYING_SOUL_RIP"
 		
 		"precache"
 		{
-			"particle"					"particles/units/heroes/hero_alchemist/alchemist_acid_spray_debuff.vpcf"
+			"particle"					"particles/bosses/boss4/boss4_death_ball.vpcf"
+			"particle"					"particles/units/heroes/hero_undying/undying_soul_rip_damage.vpcf"
+			"particle"					"particles/econ/items/bloodseeker/bloodseeker_eztzhok_weapon/bloodseeker_bloodbath_eztzhok_burst.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_undying.vsndevts"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_bloodseeker.vsndevts"
 		}
 		
 		// Special	
@@ -36301,8 +36309,28 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"stack_armor_reduction"	"-1"
+				"var_type"				"FIELD_INTEGER"
+				"damage_per_unit"		"75 100"
+			}
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"search_radius"			"600"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"115"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"speed"					"600 750"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"distance"				"1200"
 			}
 		}
 	}
@@ -36316,6 +36344,7 @@
 		"AbilityTextureName"			"undying_soul_rip"
 		
 		"AbilityCastPoint"				"0.75 0.5"
+		"AbilityCastAnimation"			"ACT_DOTA_UNDYING_DECAY"
 		
 		"precache"
 		{
@@ -36343,6 +36372,7 @@
 		"AbilityTextureName"			"undying_soul_rip"
 		
 		"AbilityCastPoint"				"0.75 0.5"
+		"AbilityCastAnimation"			"ACT_DOTA_UNDYING_TOMBSTONE"
 		
 		"precache"
 		{
