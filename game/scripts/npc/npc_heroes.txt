@@ -17775,7 +17775,7 @@
 		"Ability12"		"special_bonus_hp_200"
 		"Ability13"		"special_bonus_all_stats_14"
 		"Ability14"		"special_bonus_cooldown_reduction_15"
-		"Ability15"		"special_bonus_spell_amplify_10"
+		"Ability15"		"special_bonus_spell_amplify_5"
 		"Ability16"		"special_bonus_unique_disruptor"
 		"Ability17"		"special_bonus_magic_resistance_30"
 		"ArmorPhysical"		"-1.000000"

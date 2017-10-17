@@ -108,10 +108,16 @@ if IsServer() then
 	function modifier_boss15_thread_of_life_reduction:OnCreated()
 		self.damage_reduction = self:GetSpecialValueFor("tether_damage_reduction")
 		self:SetStackCount(1)
+		self:StartIntervalThink(0.25)
 	end
 
 	function modifier_boss15_thread_of_life_reduction:OnRefresh()
 		self:IncrementStackCount()
+	end
+	
+	function modifier_boss15_thread_of_life_reduction:OnIntervalThink()
+		if self:GetStackCount() ~= #self:GetAbility():GetTethers() then self:SetStackCount(#self:GetAbility():GetTethers()) end
+		if self:GetStackCount() == 0 then self:Destroy() end
 	end
 
 	function modifier_boss15_thread_of_life_reduction:DeclareFunctions()

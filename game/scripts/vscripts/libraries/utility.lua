@@ -24,12 +24,9 @@ function GetPerpendicularVector(vector)
 	return Vector(vector.y, -vector.x)
 end
 
-function ActualRandomVector(maxLength, minLength)
-	local vDir = RandomVector(maxLength):Normalized()
-	
-	local flMinLength = minLength or 1
-	local flLength = RandomInt(flMinLength, maxLength)
-	return vDir * flLength
+function ActualRandomVector(maxLength, flMinLength)
+	local minLength = flMinLength or 0
+	return RandomVector(RandomInt(minLength, maxLength))
 end
 
 function HasBit(checker, value)
@@ -818,7 +815,7 @@ end
 
 function CDOTA_BaseNPC:ModifyThreat(val)
 	self.lastHit = GameRules:GetGameTime()
-	self.threat = self.threat + val
+	self.threat = (self.threat or 0) + val
 end
 
 function CDOTA_BaseNPC:GetLastHitTime()
@@ -1433,6 +1430,11 @@ function ParticleManager:FireRopeParticle(effect, attach, owner, target)
 	ParticleManager:ReleaseParticleIndex(FX)
 end
 
+function ParticleManager:ClearParticle(cFX)
+	ParticleManager:DestroyParticle(cFX, false)
+	ParticleManager:ReleaseParticleIndex(cFX)
+end
+
 function CDOTA_Modifier_Lua:StartMotionController()
 	if not self:GetParent():IsNull() and not self:IsNull() and self.DoControlledMotion and self:GetParent():HasMovementCapability() then
 		self.controlledMotionTimer = Timers:CreateTimer(FrameTime(), function()
@@ -1656,7 +1658,7 @@ function ApplyKnockback( keys )
 			end
    		end)
    		Timers:CreateTimer(0.03 ,function()
-			if not self:GetParent():HasMovementCapability() then return end
+			if self:GetParent() and not self:GetParent():IsNull() and not self:GetParent():HasMovementCapability() then return end
    			if GameRules:GetGameTime() <= begin_time+duration then
 	   			position = position+travel_distance_per_frame
 	   			target:SetAbsOrigin(position)

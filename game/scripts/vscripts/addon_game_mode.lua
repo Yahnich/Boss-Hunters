@@ -67,6 +67,7 @@ function Precache( context )
 	PrecacheResource("particle", "particles/nyx_assassin_impale.vpcf", context)
 	PrecacheResource("particle", "particles/econ/generic/generic_aoe_shockwave_1/generic_aoe_shockwave_1.vpcf", context)
 	PrecacheResource("particle", "particles/generic_aoe_persistent_circle_1/death_timer_glow_rev.vpcf", context)
+	PrecacheResource("particle", "particles/econ/generic/generic_aoe_explosion_sphere_1/generic_aoe_explosion_sphere_1.vpcf", context)
 	PrecacheResource("particle", "particles/econ/generic/generic_buff_1/generic_buff_1.vpcf", context)
 	PrecacheResource("particle", "particles/generic_gameplay/generic_stunned.vpcf", context)
 	PrecacheResource("particle", "particles/generic_gameplay/generic_sleep.vpcf", context)
@@ -1670,7 +1671,6 @@ function CHoldoutGameMode:OnPlayerUIInitialized(keys)
 			end
 			if GameRules.holdOut._currentRound then CustomGameEventManager:Send_ServerToAllClients( "updateQuestRound", { roundNumber = GameRules.holdOut._nRoundNumber, roundText = GameRules.holdOut._currentRound._szRoundQuestTitle } ) end
 		elseif not PlayerResource:HasSelectedHero(playerID) then
-			print("making garbage")
 			player:MakeRandomHeroSelection()
 			local newHero = CreateHeroForPlayer(PlayerResource:GetSelectedHeroName( playerID ), player)
 			newHero:RespawnHero(false, true, false)
@@ -2459,12 +2459,11 @@ function CHoldoutGameMode:OnNPCSpawned( event )
 			-- player_multiplier = 1
 		-- end
 		local playerCountMult = (1/GameRules.BasePlayers)*checkMult
-		print(player_multiplier, PlayerResource:GetTeamPlayerCount(), players)
 		spawnedUnit:SetBaseMaxHealth ((player_multiplier*spawnedUnit:GetMaxHealth())*effective_multiplier)
 		spawnedUnit:SetMaxHealth ((player_multiplier*spawnedUnit:GetMaxHealth())*effective_multiplier)
 		spawnedUnit:SetHealth(spawnedUnit:GetMaxHealth())
-		spawnedUnit:SetBaseDamageMin((player_multiplier*spawnedUnit:GetBaseDamageMin() - spawnedUnit:GetBaseDamageMin()*playerCountMult)*effective_multiplier)
-		spawnedUnit:SetBaseDamageMax((player_multiplier*spawnedUnit:GetBaseDamageMax() - spawnedUnit:GetBaseDamageMax()*playerCountMult)*effective_multiplier)
+		spawnedUnit:SetBaseDamageMin((spawnedUnit:GetBaseDamageMin())*effective_multiplier)
+		spawnedUnit:SetBaseDamageMax((spawnedUnit:GetBaseDamageMax())*effective_multiplier)
 		
 		spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_boss_attackspeed", {})
 		if GetMapName() == "epic_boss_fight_boss_master" then

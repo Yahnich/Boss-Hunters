@@ -118,7 +118,7 @@ function AICore:AttackHighestPriority( entity )
 		local target = nil
 		local minThreat = 0
 		if not entity.AIPreviousTargetTimerTicker then entity.AIPreviousTargetTimerTicker = 0 end
-		if entity.AIprevioustarget and not entity:CanEntityBeSeenByMyTeam( entity.AIprevioustarget ) then
+		if entity.AIprevioustarget and not entity.AIprevioustarget:IsNull() and not entity:CanEntityBeSeenByMyTeam( entity.AIprevioustarget ) then
 			if not entity.AIPreviousTargetTimer then
 				entity.AIPreviousTargetTimerTicker = 0 
 				entity.AIPreviousTargetTimerEntity = entity.AIprevioustarget:entindex()
@@ -142,7 +142,7 @@ function AICore:AttackHighestPriority( entity )
 			entity.AIPreviousTargetTimerTicker = 0 
 			entity.AIPreviousTargetTimerEntity = nil
 		end
-		if entity.AIprevioustarget and entity.AIprevioustarget:IsAlive() and not entity.AIprevioustarget:IsInvisible() and not entity.AIprevioustarget:IsNull() and entity.AIPreviousTargetTimerTicker < 1.5 then 
+		if entity.AIprevioustarget and not entity.AIprevioustarget:IsNull() and entity.AIprevioustarget:IsAlive() and not entity.AIprevioustarget:IsInvisible() and not entity.AIprevioustarget:IsNull() and entity.AIPreviousTargetTimerTicker < 1.5 then 
 			target = entity.AIprevioustarget
 			target.threat = target.threat or 0
 			minThreat = target.threat
@@ -361,7 +361,27 @@ function AICore:FindFarthestEnemyInLine(entity, range, width, magic_immune)
 	local distance = 0
 	local target
 	for _, enemy in ipairs(enemies) do
-		if CalculateDistance(enemy, entity) > distance then target = enemy end
+		if CalculateDistance(enemy, entity) > distance then
+			distance = CalculateDistance(enemy, entity)
+			target = enemy 
+		end
+	end
+	return target
+end
+
+function AICore:FindNearestEnemyInLine(entity, range, width, magic_immune)
+	local flags = DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE + DOTA_UNIT_TARGET_FLAG_NO_INVIS
+	if magic_immune then
+		flags = flags + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
+	end
+	local enemies = FindUnitsInLine(entity:GetTeamNumber(), entity:GetAbsOrigin(),  entity:GetAbsOrigin() + entity:GetForwardVector()*range, nil, width, DOTA_UNIT_TARGET_TEAM_ENEMY,DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, flags)
+	local distance = 0
+	local target
+	for _, enemy in ipairs(enemies) do
+		if CalculateDistance(enemy, entity) < distance then
+			distance = CalculateDistance(enemy, entity)
+			target = enemy 
+		end
 	end
 	return target
 end

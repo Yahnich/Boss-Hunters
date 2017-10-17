@@ -389,7 +389,7 @@
 					"NPCName"				"npc_dota_boss8c_spawner"
 					"TotalUnitsToSpawn"		"9"
 					"UnitsPerSpawn"			"1"
-					"SpawnInterval"			"15"
+					"SpawnInterval"			"5"
 				}
 			}
 		}

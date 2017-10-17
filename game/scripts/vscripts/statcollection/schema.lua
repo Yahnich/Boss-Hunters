@@ -150,7 +150,6 @@ function customSchema:submitRound(isLastRound)
     local winners = BuildRoundWinnerArray()
     local game = BuildGameArray()
     local players = BuildPlayersArray()
-
     statCollection:sendCustom({ game = game, players = players })
 
     isLastRound = isLastRound or false --If the function is passed with no parameter, default to false.

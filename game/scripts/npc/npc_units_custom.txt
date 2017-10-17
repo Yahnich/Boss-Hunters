@@ -1161,7 +1161,7 @@
 
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"22500"		// Base health.
+		"StatusHealth"				"15500"		// Base health.
 		"StatusHealthRegen"			"50"			// Health regeneration rate.
 		"StatusMana"				"200"		// Base mana.
 		"StatusManaRegen"			"5"			// Mana regeneration rate.
@@ -1203,6 +1203,210 @@
 				"Wearable1" { "ItemDef"			"7973" }
 				"Wearable2" { "ItemDef"			"7960" }
 				"Wearable3" { "ItemDef"			"7961" }
+			}
+		}
+	}
+	
+	//=================================================================================
+	// Creature: Boss 5
+	//=================================================================================
+	"npc_dota_boss4_tomb"
+	{
+		// General
+		//
+		"BaseClass"					"npc_dota_creature"	// Class of entity of link to.
+		"Model"						"models/items/undying/idol_of_ruination/idol_tower_sim.vmdl"	// Model.
+		"SoundSet"					"Undying_Zombie"					// Name of sound set.
+		"GameSoundsFile"			"soundevents/game_sounds_heroes/game_sounds_undying.vsndevts"
+		"ModelScale"				"0.8"
+		"Level"						"5"
+		"ConsideredHero"			"1"
+		"precache"
+		{
+			"particle_folder"		"particles/units/heroes/hero_undying"
+		}
+		
+		//----------------------------------------------------------------
+		
+		"AbilityLayout"				"6"
+		"Ability1"					""			// Ability 1.
+		"Ability2"					""			// Ability 2.
+		"Ability3"					""			// Ability 2.
+		"Ability4"					""			// Ability 2.
+
+
+		//----------------------------------------------------------------
+		"ArmorPhysical"				"9"			// Physical protection.
+		"MagicalResistance"			"33"		// Magical protection.
+
+		// Attack
+		//----------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+		"AttackDamageMin"			"0"		// Damage range min.
+		"AttackDamageMax"			"0"		// Damage range max.
+		"AttackRate"				"3.75"		// Speed of attack.
+		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
+		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
+		"AttackRange"				"128"		// Range within a target can be attacked.
+
+		// Bounty
+		//----------------------------------------------------------------
+		"BountyXP"					"5000"		// Experience earn.
+
+		// Bounds
+		//----------------------------------------------------------------
+		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"	
+		"HealthBarOffset"			"350"
+		
+		
+		// Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_NONE"			// Type of locomotion - ground, air
+		"MovementSpeed"				"125"		// Speed
+		"MovementTurnRate"			"0.5"		// Turning rate.
+
+		// Status
+		//----------------------------------------------------------------
+		"StatusHealth"				"16"		// Base health.
+		"StatusHealthRegen"			"0"			// Health regeneration rate.
+		"StatusMana"				"0"		// Base mana.
+		"StatusManaRegen"			"0"			// Mana regeneration rate.
+
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"					"DOTA_TEAM_BADGUYS"			// Team name.
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		
+		// Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange"		"1400"		// Range of vision during day HERO.
+		"VisionNighttimeRange"		"1400"		// Range of vision at night time.
+
+		// Creature Data
+		//----------------------------------------------------------------------------------------------------------------------
+		"Creature"
+		{
+			"CanRespawn"				"0"
+			
+			//HERO AI State
+			//-----------------------------------------------------------------
+			"DefaultState"				"Invade"
+			"States"
+			{
+				"Invade"
+				{
+					"Name"				"Invade"
+					"Aggression"		"100.0"
+					"Avoidance"			"0.0"
+					"Support"			"25.0"
+				}
+			}
+			
+			"AttachWearables"
+			{
+				"Wearable1" { "ItemDef"			"7973" }
+				"Wearable2" { "ItemDef"			"7960" }
+				"Wearable3" { "ItemDef"			"7961" }
+			}
+		}
+	}
+	//=================================================================================
+	// Creature: mini boss 1
+	//=================================================================================
+	"npc_dota_mini_boss1"
+	{
+		// General
+		//
+		"BaseClass"					"npc_dota_creature"	// Class of entity of link to.
+		"Model"						"models/items/undying/idol_of_ruination/ruin_wight_minion.vmdl"	// Model.
+		"SoundSet"					"Undying_Zombie"					// Name of sound set.
+		"GameSoundsFile"			"soundevents/game_sounds_heroes/game_sounds_undying.vsndevts"
+		"ModelScale"				"1.3"
+		"Level"						"2"
+		"ConsideredHero"			"1"
+		
+		"vscripts"					"ai/ai_generic.lua"
+				
+		// Abilities
+		//----------------------------------------------------------------
+		"AbilityLayout"				"6"
+		"Ability1"					"boss4_horde_power"
+
+		// Armor
+		//----------------------------------------------------------------
+		"ArmorPhysical"				"4"			// Physical protection.
+		"MagicalResistance"			"30"		// Magical protection.
+
+		// Attack
+		//----------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"			"800"		// Damage range min.
+		"AttackDamageMax"			"1200"		// Damage range max.
+		"AttackRate"				"3.0"		// Speed of attack.
+		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
+		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
+		"AttackRange"				"128"		// Range within a target can be attacked.
+		"ProjectileModel"			""			// Particle system model for projectile.
+		"ProjectileSpeed"			""			// Speed of projectile.
+
+		// Bounty
+		//----------------------------------------------------------------
+		"BountyXP"					"300"	// Experience earn.
+		"BountyGoldMin"				"0"		// Gold earned min.
+		"BountyGoldMax"				"0"		// Gold earned max.
+
+		// Bounds
+		//----------------------------------------------------------------
+		"RingRadius"				"70"
+		"HealthBarOffset"			"320"
+		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"	
+
+		// Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"			// Type of locomotion - ground, air
+		"MovementSpeed"				"120"		// Speed
+		"MovementTurnRate"			"0.5"		// Turning rate.
+
+		// Status
+		//----------------------------------------------------------------
+		"StatusHealth"				"1500"		// Base health.
+		"StatusHealthRegen"			"2"		// Health regeneration rate.
+		"StatusMana"				"0"			// Base mana.
+		"StatusManaRegen"			"0"			// Mana regeneration rate.
+
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"					"DOTA_TEAM_BADGUYS"			// Team name.
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_PIERCE"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		
+		// Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange"		"8000"		// Range of vision during day HERO.
+		"VisionNighttimeRange"		"8000"		// Range of vision at night time.
+		
+		// Creature Data
+		//----------------------------------------------------------------------------------------------------------------------
+		"Creature"
+		{
+			"CanRespawn"				"0"
+			
+			//HERO AI State
+			//-----------------------------------------------------------------
+			"DefaultState"				"Invade"
+			
+			"States"
+			{
+				"Invade"
+				{
+					"Name"				"Invade"
+					"Aggression"		"100.0"
+					"Avoidance"			"0.0"
+					"Support"			"0.0"
+				}
 			}
 		}
 	}
@@ -1622,112 +1826,6 @@
 			}
 		}
 	}
-	//=================================================================================
-	// Creature: mini boss 1
-	//=================================================================================
-	"npc_dota_mini_boss1"
-	{
-		// General
-		//
-		"BaseClass"					"npc_dota_creature"	// Class of entity of link to.
-		"Model"						"models/items/undying/idol_of_ruination/ruin_wight_minion.vmdl"	// Model.
-		"SoundSet"					"Undying_Zombie"					// Name of sound set.
-		"GameSoundsFile"			"soundevents/game_sounds_heroes/game_sounds_undying.vsndevts"
-		"ModelScale"				"1.3"
-		"Level"						"2"
-		"ConsideredHero"			"1"
-		
-		"vscripts"				"ai/ai_generic.lua"
-				
-		// Abilities
-		//----------------------------------------------------------------
-		"AbilityLayout"				"6"
-		"Ability1"					"antimage_mana_break"			// Ability 2.
-		"Ability2"					"true_sight_boss"			// Ability 3.
-		"Ability4"					""			// Ability 4.
-		"Ability5"					""			// Ability 5.
-		"Ability6"					""			// Ability 6 - Extra.
-		"Ability7"					""			// Ability 7 - Extra.
-		"Ability8"					""			// Ability 8 - Extra.
-
-		// Armor
-		//----------------------------------------------------------------
-		"ArmorPhysical"				"4"			// Physical protection.
-		"MagicalResistance"			"30"		// Magical protection.
-
-		// Attack
-		//----------------------------------------------------------------
-		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"			"1750"		// Damage range min.
-		"AttackDamageMax"			"2250"		// Damage range max.
-		"AttackRate"				"3.0"		// Speed of attack.
-		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
-		"AttackRange"				"128"		// Range within a target can be attacked.
-		"ProjectileModel"			""			// Particle system model for projectile.
-		"ProjectileSpeed"			""			// Speed of projectile.
-
-		// Bounty
-		//----------------------------------------------------------------
-		"BountyXP"					"300"	// Experience earn.
-		"BountyGoldMin"				"0"		// Gold earned min.
-		"BountyGoldMax"				"0"		// Gold earned max.
-
-		// Bounds
-		//----------------------------------------------------------------
-		"RingRadius"				"70"
-		"HealthBarOffset"			"320"
-		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"	
-
-		// Movement
-		//----------------------------------------------------------------
-		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"			// Type of locomotion - ground, air
-		"MovementSpeed"				"120"		// Speed
-		"MovementTurnRate"			"0.5"		// Turning rate.
-
-		// Status
-		//----------------------------------------------------------------
-		"StatusHealth"				"2500"		// Base health.
-		"StatusHealthRegen"			"2"		// Health regeneration rate.
-		"StatusMana"				"0"			// Base mana.
-		"StatusManaRegen"			"0"			// Mana regeneration rate.
-
-		// Team
-		//----------------------------------------------------------------
-		"TeamName"					"DOTA_TEAM_BADGUYS"			// Team name.
-		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_PIERCE"
-		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_HERO"
-		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
-		
-		// Vision
-		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"8000"		// Range of vision during day HERO.
-		"VisionNighttimeRange"		"8000"		// Range of vision at night time.
-		
-		// Creature Data
-		//----------------------------------------------------------------------------------------------------------------------
-		"Creature"
-		{
-			"CanRespawn"				"0"
-			
-			//HERO AI State
-			//-----------------------------------------------------------------
-			"DefaultState"				"Invade"
-			
-			"States"
-			{
-				"Invade"
-				{
-					"Name"				"Invade"
-					"Aggression"		"100.0"
-					"Avoidance"			"0.0"
-					"Support"			"0.0"
-				}
-			}
-		}
-	}
-
-
 	//=================================================================================
 	// Creature: Smark Boss 6
 	//=================================================================================
@@ -7991,436 +8089,7 @@
 			"StunResistance"			"60.0"
 		}
 	}
-	
 	"npc_dota_boss26_mini"
-	{
-		// General
-		//----------------------------------------------------------------
-		"Model"						"models/heroes/ursa/ursa.vmdl"
-		"BaseClass"					"npc_dota_creature"
-		"SoundSet"					"n_creep_Melee"
-		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
-		"Level"						"30"
-		"ModelScale" 				"0.5"
-		"ConsideredHero"			"1"
-		"MinimapIcon"				"minimap_enemyicon"
-		"MinimapIconSize"			"275"
-		
-		"vscripts"					"ai/ai_bear"
-
-		// Abilities
-		//----------------------------------------------------------------
-		"AbilityLayout"				"6"
-		"Ability1"					"boss_ursa_rage"			// Ability 1.
-		"Ability2"					"creature_earthshock"			// Ability 1.
-
-		// Armor
-		//----------------------------------------------------------------
-		"ArmorPhysical"				"80"			// Physical protection.
-		"MagicalResistance"			"10"		// Magical protection.
-		
-		// Attack
-		//----------------------------------------------------------------
-		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"			"1000"		// Damage range min.
-		"AttackDamageMax"			"2000"		// Damage range max.
-		"AttackRate"				"1.8"		// Speed of attack.
-		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
-		"AttackRange"				"200"		// Range within a target can be attacked.
-		"ProjectileModel"			""			// Particle system model for projectile.
-		"ProjectileSpeed"			"0"			// Speed of projectile.		
-		// Bounds
-		//----------------------------------------------------------------
-		"BoundsHullName"			"DOTA_HULL_SIZE_REGULAR"			// Hull type used for navigation/locomotion.
-		"RingRadius"				"100"
-		"HealthBarOffset"			"320"
-
-		// Bounty
-		//----------------------------------------------------------------
-		"BountyXP"					"60000"		// Experience earn.
-		"BountyGoldMin"				"0"			// Gold earned min.
-		"BountyGoldMax"				"0"			// Gold earned max.
-
-		// Movement
-		//----------------------------------------------------------------
-		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
-		"MovementSpeed"				"542"		// Speed.
-		"MovementTurnRate"			"0.1"		// Turning rate.
-
-		// Status
-		//----------------------------------------------------------------
-		"StatusHealth"				"200000"		// Base health.
-		"StatusHealthRegen"			"8"			// Health regeneration rate.
-		"StatusMana"				"5000"			// Base mana.
-		"StatusManaRegen"			"50"			// Mana regeneration rate.		 
-		
-		// Vision
-		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"800"		// Range of vision during day HERO.
-		"VisionNighttimeRange"		"800"		// Range of vision at night time.
-
-		// Team
-		//----------------------------------------------------------------
-		"TeamName"					"DOTA_TEAM_BADGUYS"
-		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_HERO"
-		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_HERO"
-		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
-		
-		// Creature Data
-		//----------------------------------------------------------------
-		"Creature"
-		{
-			//HERO AI State
-			//------------------------------------------------------------
-			"DefaultState"				"Invade"
-			"States"
-			{
-				"Invade"
-				{
-					"Name"				"Invade"
-					"Aggression"		"100.0"
-					"Avoidance"			"0.0"
-					"Support"			"0.0"
-				}
-			}
-
-			//Level Up Parameters
-			//------------------------------------------------------------
-			"HPGain"					"8000"
-			"DamageGain"				"300"
-			"ArmorGain"					"10"
-			"MagicResistGain"			"50"
-			"MoveSpeedGain"				"0"
-			"BountyGain"				"0"
-			"XPGain"					"200"
-			
-			"DefaultState"				"Invade"
-			
-			"StunResistance"			"60.0"
-		}
-	}
-	"npc_dota_boss26"
-	{
-		// General
-		//----------------------------------------------------------------
-		"Model"						"models/heroes/ursa/ursa.vmdl"
-		"BaseClass"					"npc_dota_creature"
-		"SoundSet"					"n_creep_Melee"
-		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
-		"Level"						"32"
-		"ModelScale" 				"2"
-		"ConsideredHero"			"1"
-		"MinimapIcon"				"minimap_enemyicon"
-		"MinimapIconSize"			"275"
-		"IsCore"					"1"
-		"vscripts"					"ai/ai_bear"
-
-		// Abilities
-		//----------------------------------------------------------------
-		"AbilityLayout"				"6"
-		"Ability1"					"boss_ursa_rage"			// Ability 1.
-		"Ability2"					"creature_earthshock"			// Ability 1.
-
-		// Armor
-		//----------------------------------------------------------------
-		"ArmorPhysical"				"120"			// Physical protection.
-		"MagicalResistance"			"10"		// Magical protection.
-		
-		// Attack
-		//----------------------------------------------------------------
-		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"			"520"		// Damage range min.
-		"AttackDamageMax"			"2000"		// Damage range max.
-		"AttackRate"				"1.8"		// Speed of attack.
-		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
-		"AttackRange"				"200"		// Range within a target can be attacked.
-		"ProjectileModel"			""			// Particle system model for projectile.
-		"ProjectileSpeed"			"0"			// Speed of projectile.		
-		// Bounds
-		//----------------------------------------------------------------
-		"BoundsHullName"			"DOTA_HULL_SIZE_REGULAR"			// Hull type used for navigation/locomotion.
-		"RingRadius"				"100"
-		"HealthBarOffset"			"320"
-
-		// Bounty
-		//----------------------------------------------------------------
-		"BountyXP"					"60000"		// Experience earn.
-		"BountyGoldMin"				"0"			// Gold earned min.
-		"BountyGoldMax"				"0"			// Gold earned max.
-
-		// Movement
-		//----------------------------------------------------------------
-		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
-		"MovementSpeed"				"542"		// Speed.
-		"MovementTurnRate"			"0.1"		// Turning rate.
-
-		// Status
-		//----------------------------------------------------------------
-		"StatusHealth"				"1000000"		// Base health.
-		"StatusHealthRegen"			"8"			// Health regeneration rate.
-		"StatusMana"				"5000"			// Base mana.
-		"StatusManaRegen"			"50"			// Mana regeneration rate.		 
-		
-		// Vision
-		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"800"		// Range of vision during day HERO.
-		"VisionNighttimeRange"		"800"		// Range of vision at night time.
-
-		// Team
-		//----------------------------------------------------------------
-		"TeamName"					"DOTA_TEAM_BADGUYS"
-		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_HERO"
-		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_HERO"
-		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
-		
-		// Creature Data
-		//----------------------------------------------------------------
-		"Creature"
-		{
-			//HERO AI State
-			//------------------------------------------------------------
-			"DefaultState"				"Invade"
-			"States"
-			{
-				"Invade"
-				{
-					"Name"				"Invade"
-					"Aggression"		"100.0"
-					"Avoidance"			"0.0"
-					"Support"			"0.0"
-				}
-			}
-
-			//Level Up Parameters
-			//------------------------------------------------------------
-			"HPGain"					"8000"
-			"DamageGain"				"300"
-			"ArmorGain"					"10"
-			"MagicResistGain"			"50"
-			"MoveSpeedGain"				"0"
-			"BountyGain"				"0"
-			"XPGain"					"200"
-			
-			"DefaultState"				"Invade"
-			
-			"AttachWearables"
-			{
-			"Wearable1" { "ItemDef" "5794" }
-			}
-			"StunResistance"			"60.0"
-		}
-	}
-	"npc_dota_boss26_mini_h"
-	{
-		// General
-		//----------------------------------------------------------------
-		"Model"						"models/heroes/ursa/ursa.vmdl"
-		"BaseClass"					"npc_dota_creature"
-		"SoundSet"					"n_creep_Melee"
-		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
-		"Level"						"34"
-		"ModelScale" 				"0.75"
-		"ConsideredHero"			"1"
-		"MinimapIcon"				"minimap_enemyicon"
-		"MinimapIconSize"			"275"
-		
-		"vscripts"					"ai/ai_bear"
-
-		// Abilities
-		//----------------------------------------------------------------
-		"AbilityLayout"				"6"
-		"Ability1"					"boss_ursa_rage"			// Ability 1.
-		"Ability2"					"creature_earthshock"			// Ability 1.
-
-		// Armor
-		//----------------------------------------------------------------
-		"ArmorPhysical"				"100"			// Physical protection.
-		"MagicalResistance"			"10"		// Magical protection.
-		
-		// Attack
-		//----------------------------------------------------------------
-		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"			"1000"		// Damage range min.
-		"AttackDamageMax"			"2000"		// Damage range max.
-		"AttackRate"				"1.8"		// Speed of attack.
-		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
-		"AttackRange"				"200"		// Range within a target can be attacked.
-		"ProjectileModel"			""			// Particle system model for projectile.
-		"ProjectileSpeed"			"0"			// Speed of projectile.		
-		// Bounds
-		//----------------------------------------------------------------
-		"BoundsHullName"			"DOTA_HULL_SIZE_REGULAR"			// Hull type used for navigation/locomotion.
-		"RingRadius"				"100"
-		"HealthBarOffset"			"320"
-
-		// Bounty
-		//----------------------------------------------------------------
-		"BountyXP"					"60000"		// Experience earn.
-		"BountyGoldMin"				"0"			// Gold earned min.
-		"BountyGoldMax"				"0"			// Gold earned max.
-
-		// Movement
-		//----------------------------------------------------------------
-		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
-		"MovementSpeed"				"542"		// Speed.
-		"MovementTurnRate"			"0.1"		// Turning rate.
-
-		// Status
-		//----------------------------------------------------------------
-		"StatusHealth"				"400000"		// Base health.
-		"StatusHealthRegen"			"8"			// Health regeneration rate.
-		"StatusMana"				"5000"			// Base mana.
-		"StatusManaRegen"			"50"			// Mana regeneration rate.		 
-		
-		// Vision
-		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"800"		// Range of vision during day HERO.
-		"VisionNighttimeRange"		"800"		// Range of vision at night time.
-
-		// Team
-		//----------------------------------------------------------------
-		"TeamName"					"DOTA_TEAM_BADGUYS"
-		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_HERO"
-		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_HERO"
-		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
-		
-		// Creature Data
-		//----------------------------------------------------------------
-		"Creature"
-		{
-			//HERO AI State
-			//------------------------------------------------------------
-			"DefaultState"				"Invade"
-			"States"
-			{
-				"Invade"
-				{
-					"Name"				"Invade"
-					"Aggression"		"100.0"
-					"Avoidance"			"0.0"
-					"Support"			"0.0"
-				}
-			}
-
-			"AttachWearables"
-			{
-				"Wearable1" { "ItemDef" "6893" }
-				"Wearable2" { "ItemDef" "4292" }
-			}
-			"StunResistance"			"60.0"
-		}
-	}
-	"npc_dota_boss26_h"
-	{
-		// General
-		//----------------------------------------------------------------
-		"Model"						"models/heroes/ursa/ursa.vmdl"
-		"BaseClass"					"npc_dota_creature"
-		"SoundSet"					"n_creep_Melee"
-		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
-		"Level"						"36"
-		"ModelScale" 				"2"
-		"ConsideredHero"			"1"
-		"MinimapIcon"				"minimap_enemyicon"
-		"MinimapIconSize"			"275"
-		"IsCore"					"1"
-		"vscripts"					"ai/ai_bear"
-
-		// Abilities
-		//----------------------------------------------------------------
-		"AbilityLayout"				"6"
-		"Ability1"					"boss_ursa_rage_h"			// Ability 1.
-		"Ability2"					"creature_earthshock"			// Ability 1.
-		"Ability3"					"boss_lifesteal"			// Ability 1.
-		"Ability4"					"true_sight_boss"
-
-		// Armor
-		//----------------------------------------------------------------
-		"ArmorPhysical"				"120"			// Physical protection.
-		"MagicalResistance"			"50"		// Magical protection.
-		
-		// Attack
-		//----------------------------------------------------------------
-		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"			"5000"		// Damage range min.
-		"AttackDamageMax"			"5000"		// Damage range max.
-		"AttackRate"				"1.2"		// Speed of attack.
-		"AttackAnimationPoint"		"0.2"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
-		"AttackRange"				"200"		// Range within a target can be attacked.
-		"ProjectileModel"			""			// Particle system model for projectile.
-		"ProjectileSpeed"			"0"			// Speed of projectile.		
-		// Bounds
-		//----------------------------------------------------------------
-		"BoundsHullName"			"DOTA_HULL_SIZE_REGULAR"			// Hull type used for navigation/locomotion.
-		"RingRadius"				"100"
-		"HealthBarOffset"			"320"
-
-		// Bounty
-		//----------------------------------------------------------------
-		"BountyXP"					"60000"		// Experience earn.
-		"BountyGoldMin"				"0"			// Gold earned min.
-		"BountyGoldMax"				"0"			// Gold earned max.
-
-		// Movement
-		//----------------------------------------------------------------
-		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
-		"MovementSpeed"				"542"		// Speed.
-		"MovementTurnRate"			"0.1"		// Turning rate.
-
-		// Status
-		//----------------------------------------------------------------
-		"StatusHealth"				"1500000"		// Base health.
-		"StatusHealthRegen"			"8"			// Health regeneration rate.
-		"StatusMana"				"5000"			// Base mana.
-		"StatusManaRegen"			"50"			// Mana regeneration rate.		 
-		
-		// Vision
-		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"800"		// Range of vision during day HERO.
-		"VisionNighttimeRange"		"800"		// Range of vision at night time.
-
-		// Team
-		//----------------------------------------------------------------
-		"TeamName"					"DOTA_TEAM_BADGUYS"
-		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_HERO"
-		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_HERO"
-		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
-		
-		// Creature Data
-		//----------------------------------------------------------------
-		"Creature"
-		{
-			//HERO AI State
-			//------------------------------------------------------------
-			"DefaultState"				"Invade"
-			"States"
-			{
-				"Invade"
-				{
-					"Name"				"Invade"
-					"Aggression"		"100.0"
-					"Avoidance"			"0.0"
-					"Support"			"0.0"
-				}
-			}
-
-			"AttachWearables"
-			{
-				"Wearable1" { "ItemDef" "6893" }
-				"Wearable2" { "ItemDef" "4292" }
-				"Wearable3" { "ItemDef" "4293" }
-				"Wearable4" { "ItemDef" "4295" }
-				"Wearable5" { "ItemDef" "6893" }
-			}
-
-			"StunResistance"			"60.0"
-		}
-	}
-	"npc_dota_boss26_mini_vh"
 	{
 		// General
 		//----------------------------------------------------------------
@@ -8439,9 +8108,9 @@
 		// Abilities
 		//----------------------------------------------------------------
 		"AbilityLayout"				"6"
-		"Ability1"					"boss_ursa_rage"			// Ability 1.
-		"Ability2"					"creature_earthshock"			// Ability 1.
-		"Ability3"					"boss_lifesteal"			// Ability 1.
+		"Ability1"					"boss26b_ankle_biter"			// Ability 1.
+		"Ability2"					"boss26b_screech"			// Ability 1.
+		"Ability3"					"boss26b_wound"			// Ability 1.
 
 		// Armor
 		//----------------------------------------------------------------
@@ -8523,7 +8192,7 @@
 			"StunResistance"			"60.0"
 		}
 	}
-	"npc_dota_boss26_vh"
+	"npc_dota_boss26"
 	{
 		// General
 		//----------------------------------------------------------------
@@ -8542,9 +8211,9 @@
 		// Abilities
 		//----------------------------------------------------------------
 		"AbilityLayout"				"6"
-		"Ability1"					"boss_ursa_rage_vh"			// Ability 1.
-		"Ability2"					"creature_earthshock"			// Ability 1.
-		"Ability3"					"boss_lifesteal"			// Ability 1.
+		"Ability1"					"boss26_smash"			// Ability 1.
+		"Ability2"					"boss26_rend"			// Ability 1.
+		"Ability3"					"boss26_ravage"			// Ability 1.
 
 		// Armor
 		//----------------------------------------------------------------
@@ -8647,8 +8316,11 @@
 		// Abilities
 		//----------------------------------------------------------------
 		"AbilityLayout"				"6"
-		"Ability1"					"boss_ursa_rage"			// Ability 1.
-		"Ability2"					"boss_summon_beast"			// Ability 1.
+		"Ability1"					"boss27_kill_them"			// Ability 1.
+		"Ability2"					"boss27_destroy"			// Ability 1.
+		"Ability3"					"boss27_protect_me"			// Ability 1.
+		"Ability4"					"boss27_ursa_giant"			// Ability 1.
+		"Ability5"					"boss27_ursa_warrior"			// Ability 1.
 
 		// Armor
 		//----------------------------------------------------------------
@@ -12342,7 +12014,7 @@
 
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"1000000"		// Base health.
+		"StatusHealth"				"750000"		// Base health.
 		"StatusHealthRegen"			"15.0"		// Health regeneration rate.
 		"StatusMana"				"0"			// Base mana.
 		"StatusManaRegen"			"0"			// Mana regeneration rate.
@@ -12454,7 +12126,7 @@
 		// Attack
 		//----------------------------------------------------------------
 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"			"1000000"		// Damage range min.
+		"AttackDamageMin"			"750000"		// Damage range min.
 		"AttackDamageMax"			"1000000"		// Damage range max.
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"				"0.2"		// Speed of attack.
@@ -12483,7 +12155,7 @@
 
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"500000"		// Base health.
+		"StatusHealth"				"300000"		// Base health.
 		"StatusHealthRegen"			"0.5"		// Health regeneration rate.
 		"StatusMana"				"0"			// Base mana.
 		"StatusManaRegen"			"0"			// Mana regeneration rate.

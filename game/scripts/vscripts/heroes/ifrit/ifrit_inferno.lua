@@ -40,7 +40,7 @@ if IsServer() then
 		EmitSoundOn("Hero_EmberSpirit.FlameGuard.Cast", self:GetParent())
 		EmitSoundOn("Hero_EmberSpirit.FlameGuard.Loop", self:GetParent())
 		
-		self.nFXIndex = ParticleManager:CreateParticle( "particles/heroes/phoenix/phoenix_inferno.vpcf", PATTACH_POINT_FOLLOW, self:GetParent() )
+		self.nFXIndex = ParticleManager:CreateParticle( "particles/heroes/ifrit/ifrit_inferno.vpcf", PATTACH_POINT_FOLLOW, self:GetParent() )
 		ParticleManager:SetParticleControl( self.nFXIndex, 0, self:GetParent():GetOrigin() )
 	end
 	
@@ -75,14 +75,14 @@ LinkLuaModifier( "modifier_ifrit_inferno_fire_debuff", "heroes/ifrit/ifrit_infer
 modifier_ifrit_inferno_fire_debuff = class({})
 
 function modifier_ifrit_inferno_fire_debuff:OnCreated()
-	self.damage_over_time = self:GetAbility():GetTalentSpecialValueFor("burn_dot")
+	self.damage_over_time = self:GetAbility():GetTalentSpecialValueFor("kindled_burn_dot")
 	self.tick_interval = 1
 	if self:GetCaster():HasScepter() then self.damage_over_time = self.damage_over_time * 2 end
 	if IsServer() then self:StartIntervalThink(self.tick_interval) end
 end
 
 function modifier_ifrit_inferno_fire_debuff:OnRefresh()
-	local addedDamage = self:GetAbility():GetTalentSpecialValueFor("burn_dot")
+	local addedDamage = self:GetAbility():GetTalentSpecialValueFor("kindled_burn_dot")
 	if self:GetCaster():HasScepter() then addedDamage = addedDamage * 2 end
 	self.damage_over_time = self.damage_over_time + addedDamage
 end

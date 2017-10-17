@@ -24196,8 +24196,8 @@
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityTextureName"			"custom/disruptor_tesla_field"
-		"AbilityDamage"					"500 1250 2500 3500 6500 10000 15000"
-		"AbilityCastRange"				"900 1000 1100 1200 1300 1400 1500"
+		"AbilityDamage"					"500 1250 2500 3500 6500 10000 13500"
+		"AbilityCastRange"				"900"
 		
 		"precache"
 		{
@@ -24216,7 +24216,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"silence_duration"		"0.6"
+				"silence_duration"		"0.5"
 			}
 		}
 		"Modifiers"
@@ -29134,7 +29134,7 @@
 		"precache"
 		{
 			"particle"					"particles/units/heroes/hero_warlock/warlock_rainofchaos_start_breakout.vpcf"
-			"particle"					"particles/heroes/phoenix/phoenix_inferno.vpcf"
+			"particle"					"particles/heroes/ifrit/ifrit_inferno.vpcf"
 		}
 		
 	    "AbilitySpecial"
@@ -29203,7 +29203,7 @@
 			"03"
 	        {
 	            "var_type"                      "FIELD_FLOAT"
-	            "burn_dot"     					"350 700 1500 3500 8000 18000 38000"
+	            "burn_dot"     					"100 350 700 1200 2400 4800 9600"
 	        }
 			"04"
 	        {
@@ -36256,17 +36256,21 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
 		"BaseClass" 					"ability_lua"
 		"ScriptFile"					"bosses/boss4/boss4_summon_zombies"
 		"AbilityTextureName"			"undying_soul_rip"
 		
-		"AbilityCastPoint"				"0.75 0.5"
+		"AbilityCastPoint"				"0.3"
+		"AbilityCooldown"				"25 20"
 		"AbilityCastAnimation"			"ACT_DOTA_TELEPORT"
+		"AbilityChannelTime"			"2"
 		
 		"precache"
 		{
-			"particle"					"particles/units/heroes/hero_alchemist/alchemist_acid_spray_debuff.vpcf"
+			"particle"					"particles/bosses/boss4/boss4_summon_zombies_spawn.vpcf"
+			"particle"					"particles/bosses/boss4/boss4_summon_zombies_summon.vpcf"
+			"soundfile"					"soundevents/game_sounds_custom.vsndevts"
 		}
 		
 		// Special	
@@ -36276,7 +36280,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"stack_armor_reduction"	"-1"
+				"zombie_count"			"4 5"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"spawn_radius"			"600"
 			}
 		}
 	}
@@ -36291,6 +36300,7 @@
 		"AbilityTextureName"			"puck_illusory_orb"
 		
 		"AbilityCastPoint"				"0.75 0.5"
+		"AbilityCooldown"				"8 6"
 		"AbilityCastRange"				"1200"
 		"AbilityCastAnimation"			"ACT_DOTA_UNDYING_SOUL_RIP"
 		
@@ -36310,7 +36320,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage_per_unit"		"75 100"
+				"damage_per_unit"		"100 150"
 			}
 			"01"
 			{
@@ -36338,17 +36348,19 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
 		"BaseClass" 					"ability_lua"
 		"ScriptFile"					"bosses/boss4/boss4_sacrifice"
-		"AbilityTextureName"			"undying_soul_rip"
+		"AbilityTextureName"			"undying_flesh_golem"
 		
 		"AbilityCastPoint"				"0.75 0.5"
+		"AbilityCooldown"				"35 30"
 		"AbilityCastAnimation"			"ACT_DOTA_UNDYING_DECAY"
+		"AbilityChannelTime"			"7 5"
 		
 		"precache"
 		{
-			"particle"					"particles/units/heroes/hero_alchemist/alchemist_acid_spray_debuff.vpcf"
+			"particle"					"particles/units/heroes/hero_undying/undying_soul_rip_heal.vpcf"
 		}
 		
 		// Special	
@@ -36366,17 +36378,53 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
 		"BaseClass" 					"ability_lua"
 		"ScriptFile"					"bosses/boss4/boss4_tombstone"
-		"AbilityTextureName"			"undying_soul_rip"
+		"AbilityTextureName"			"undying_tombstone"
 		
 		"AbilityCastPoint"				"0.75 0.5"
+		"AbilityCastRange"				"20"
 		"AbilityCastAnimation"			"ACT_DOTA_UNDYING_TOMBSTONE"
 		
 		"precache"
 		{
-			"particle"					"particles/units/heroes/hero_alchemist/alchemist_acid_spray_debuff.vpcf"
+			"particle"					"particles/units/heroes/hero_undying/undying_tombstone.vpcf"
+			"particle"					"particles/units/heroes/hero_pugna/pugna_life_drain_beam.vpcf"
+		}
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage_reduction"			"-35 -50"
+			}
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"break_distance"			"750 900"
+			}
+		}
+	}
+	"boss4_horde_power"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"BaseClass" 					"ability_lua"
+		"ScriptFile"					"bosses/boss4/boss4_horde_power"
+		"AbilityTextureName"			"undying_soul_rip"
+		
+		"AbilityCastPoint"				"0.3"
+		"AbilityCastAnimation"			"ACT_DOTA_TELEPORT"
+		"AbilityChannelTime"			"2"
+		
+		"precache"
+		{
+			"particle"					"particles/bosses/boss4/boss4_summon_zombies_spawn.vpcf"
 		}
 		
 		// Special	
@@ -36386,7 +36434,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"stack_armor_reduction"	"-1"
+				"zombie_count"			"4 5"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"spawn_radius"			"600"
 			}
 		}
 	}
@@ -36586,7 +36639,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"				"9"
 		"AbilityCastPoint"				"0.75 0.5"
-		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -36665,7 +36718,7 @@
 		"AbilityCooldown"				"30"
 		"AbilityChannelTime"			"5"
 		"AbilityCastPoint"				"0.75 0.5"
-		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -36718,7 +36771,7 @@
 		"AbilityCooldown"				"10"
 		"AbilityCastPoint"				"0.5 0.4 0.3"
 		"AbilityCastRange"				"900 1050 1200"
-		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
+		"AbilityCastAnimation"			"ACT_DOTA_DP_SPIRIT_SIPHON"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
