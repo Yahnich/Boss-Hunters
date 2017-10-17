@@ -897,7 +897,7 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 						   ["abyssal_underlord_firestorm"] = true,
 						   ["huskar_life_break"] = true} -- stop %hp based and right click damage abilities from being amped by aether lens
 		if no_aether[ability:GetName()] or not ability:IsAetherAmplified() then
-			filterTable["damage"] = filterTable["damage"] / caster:GetOriginalSpellDamageAmp()
+			filterTable["damage"] = filterTable["damage"] / attacker:GetOriginalSpellDamageAmp()
 		end
 		if attacker:HasModifier("spellcrit") and attacker ~= victim then
 			local no_crit = {
@@ -2002,16 +2002,39 @@ Timers:CreateTimer(0, function()
 end)
 
 BARRIER_DEGRADE_RATE = 0.995
+function CHoldoutGameMode:SendErrorReport(err)
+	if not self.gameHasBeenBroken then 
+		self.gameHasBeenBroken = true
+		Notifications:BottomToAll({text="An error has occurred! Please screenshot this: "..err, duration=15.0})
+	end
+end
 
 function CHoldoutGameMode:OnThink()
 	if GameRules:State_Get() >= 7 and GameRules:State_Get() <= 8 then
-		self:_CheckForDefeat()
-		self:_ThinkLootExpiry()
-		self:_regenlifecheck()
-		self:CheckHP()
-		self:CheckMidas()
-		self:DegradeThreat()
-		
+		local status, err, ret = xpcall(self._CheckForDefeat, debug.traceback, self)
+		if not status  and not self.gameHasBeenBroken then
+			self:SendErrorReport(err)
+		end
+		status, err, ret = xpcall(self._ThinkLootExpiry, debug.traceback, self)
+		if not status  and not self.gameHasBeenBroken then
+			self:SendErrorReport(err)
+		end
+		status, err, ret = xpcall(self._regenlifecheck, debug.traceback, self)
+		if not status  and not self.gameHasBeenBroken then
+			self:SendErrorReport(err)
+		end
+		status, err, ret = xpcall(self.CheckHP, debug.traceback, self)
+		if not status  and not self.gameHasBeenBroken then
+			self:SendErrorReport(err)
+		end
+		status, err, ret = xpcall(self.CheckMidas, debug.traceback, self)
+		if not status  and not self.gameHasBeenBroken then
+			self:SendErrorReport(err)
+		end
+		status, err, ret = xpcall(self.DegradeThreat, debug.traceback, self)
+		if not status  and not self.gameHasBeenBroken then
+			self:SendErrorReport(err)
+		end
 		
 		if self._flPrepTimeEnd then
 			local timeLeft = self._flPrepTimeEnd - GameRules:GetGameTime()
@@ -2509,6 +2532,49 @@ function CHoldoutGameMode:OnEntityKilled( event )
 	local check_tombstone = true
 	local killedUnit = EntIndexToHScript( event.entindex_killed )
 	if not killedUnit or killedUnit:IsFakeHero() then return end
+	local DeathHandler = function(self, killedUnit )
+		if killedUnit.Asura_To_Give ~= nil then
+			for _,unit in pairs ( HeroList:GetAllHeroes()) do
+				if not unit:IsFakeHero() then
+					unit.Asura_Core = unit.Asura_Core + killedUnit.Asura_To_Give
+					update_asura_core(unit)
+				end
+			end
+			Notifications:TopToAll({text="You have received an Asura Core", duration=3.0})
+		end
+		if killedUnit:IsRealHero() then
+			local player = killedUnit:GetPlayerOwner()
+			if player then
+				Timers:CreateTimer(0.03, function()
+					player:SetKillCamUnit(nil)
+				end)
+			end
+			if killedUnit:NotDead() then
+				self._check_check_dead = true
+				check_tombstone = false
+				self._check_dead = false
+				if GameRules._life == 1 then
+					AllRPlayersDead = false
+				end
+			end
+			-- if GetMapName() == "epic_boss_fight_hardcore" then
+				-- check_tombstone = false
+			-- end
+			if check_tombstone == true and killedUnit.NoTombStone ~= true then
+				local newItem = CreateItem( "item_tombstone", killedUnit, killedUnit )
+				newItem:SetPurchaseTime( 0 )
+				newItem:SetPurchaser( killedUnit )
+				local tombstone = SpawnEntityFromTableSynchronous( "dota_item_tombstone_drop", {} )
+				tombstone:SetContainedItem( newItem )
+				tombstone:SetAngles( 0, RandomFloat( 0, 360 ), 0 )
+				FindClearSpaceForUnit( tombstone, killedUnit:GetAbsOrigin(), true )	
+			end
+		end
+	end
+	status, err, ret = xpcall(DeathHandler, debug.traceback, self, killedUnit)
+	if not status  and not self.gameHasBeenBroken then
+		self:SendErrorReport(err)
+	end
 	-- if killedUnit:GetUnitName() == "npc_dota_money_roshan" then
 		-- local count = 0
 		-- Timers:CreateTimer(0.5,function()
@@ -2521,44 +2587,8 @@ function CHoldoutGameMode:OnEntityKilled( event )
 			-- end
 		-- end)
 	-- end
-
-	if killedUnit.Asura_To_Give ~= nil then
-		for _,unit in pairs ( HeroList:GetAllHeroes()) do
-			if not unit:IsFakeHero() then
-				unit.Asura_Core = unit.Asura_Core + killedUnit.Asura_To_Give
-				update_asura_core(unit)
-			end
-		end
-		Notifications:TopToAll({text="You have received an Asura Core", duration=3.0})
-	end
-	if killedUnit:IsRealHero() then
-		local player = killedUnit:GetPlayerOwner()
-		if player then
-			Timers:CreateTimer(0.03, function()
-				player:SetKillCamUnit(nil)
-			end)
-		end
-		if killedUnit:NotDead() then
-	        self._check_check_dead = true
-	        check_tombstone = false
-	        self._check_dead = false
-	        if GameRules._life == 1 then
-	            AllRPlayersDead = false
-	        end
-	    end
-		-- if GetMapName() == "epic_boss_fight_hardcore" then
-			-- check_tombstone = false
-		-- end
-		if check_tombstone == true and killedUnit.NoTombStone ~= true then
-			local newItem = CreateItem( "item_tombstone", killedUnit, killedUnit )
-			newItem:SetPurchaseTime( 0 )
-			newItem:SetPurchaser( killedUnit )
-			local tombstone = SpawnEntityFromTableSynchronous( "dota_item_tombstone_drop", {} )
-			tombstone:SetContainedItem( newItem )
-			tombstone:SetAngles( 0, RandomFloat( 0, 360 ), 0 )
-			FindClearSpaceForUnit( tombstone, killedUnit:GetAbsOrigin(), true )	
-		end
-	end
+	
+	
 end
 
 function CHoldoutGameMode:CheckForLootItemDrop( killedUnit )

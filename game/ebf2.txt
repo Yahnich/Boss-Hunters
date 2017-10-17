@@ -806,9 +806,9 @@ Beastmaster: Aristaeus, the Nomad
 -- Skill 1: Uppercut - stuns the enemy for 2s and reduces the damage they do for 5s afterwards
 -- Skill 2: Pocket Spikes - Throws down caltrops, dealing impct damage as well as damage over time and a slow to enemies inside the affected area.
 -- Skill 3: Smokescreen - Throws down smoke, rendering allies inside of it invisibility and dealing damage to any enemy inside.
--- Skill 4:    Bear Traps - Sets down a trap, if an enemy walks in it, they are rooted and take bonus damage from all sources.
+-- Skill 4: Bear Traps - Sets down a trap, if an enemy walks in it, they are rooted and take bonus damage from all sources.
 -- Skill 5: Lick Wounds - Nomad's canine heals an ally and grants them minor heal over time.
--- Skill 6:    Inspiring Howl - Nomad's canine howls, briefly granting all allies bonus attack speed and damage.
+-- Skill 6: Inspiring Howl - Nomad's canine howls, briefly granting all allies bonus attack speed and damage.
 -- Skill 7: Canine Steed - Toggle, Nomad rides his canine, setting his minimum movement speed at 500. Can only ride for 15 seconds before doggie is tired, cooldown is equal to time on dog (moves you as well as the dog when sic em or lick wounds are used) 
 -- Skill 8: Sic Em - Nomad grants his Good Boy(TM) crit for the next attack, rooting the enemy briefly; increases bleed and slow amount
 -- Passive 1: Canine Aid now grants Nomad 25% evasion as long as doggo isn't tired (hasn't done a spell in the past 5 seconds)
@@ -823,3 +823,6 @@ Beastmaster: Aristaeus, the Nomad
 
 Aghs:
 Canine has a passive 20% damage aura and can crit naturally for 150% now
+
+Tusk: Tyr, the Brawler
+-- Innate: War God - Every 4th hit deals crit damage and stuns the target
