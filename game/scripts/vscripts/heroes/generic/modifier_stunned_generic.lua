@@ -3,12 +3,13 @@ modifier_stunned_generic = modifier_stunned_generic or class({})
 if IsServer() then
 	function modifier_stunned_generic:OnCreated(kv)
 		if kv.delay == nil or toboolean(kv.delay) == true then
+			self.delay = true
 			self:GetAbility():StartDelayedCooldown(self:GetRemainingTime(), false)
 		end
 	end
 	
 	function modifier_stunned_generic:OnDestroy()
-		self:GetAbility():EndDelayedCooldown()
+		if self.delay then self:GetAbility():EndDelayedCooldown() end
 	end
 end
 

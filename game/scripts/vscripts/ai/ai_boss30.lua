@@ -10,17 +10,20 @@ if IsServer() then
 		thisEntity.ground = thisEntity:FindAbilityByName("boss19_cracked_ground")
 		thisEntity.swarm = thisEntity:FindAbilityByName("boss19_the_swarm")
 		thisEntity.chasm = thisEntity:FindAbilityByName("boss19_chasm")
+		thisEntity.shield = thisEntity:FindAbilityByName("boss19_shield")
 		Timers:CreateTimer(0.1, function()
 			if  math.floor(GameRules.gameDifficulty + 0.5) <= 2 then
 				thisEntity.burrow:SetLevel(1)
 				thisEntity.ground:SetLevel(1)
 				thisEntity.swarm:SetLevel(1)
 				thisEntity.chasm:SetLevel(1)
+				thisEntity.shield:SetLevel(1)
 			else
 				thisEntity.burrow:SetLevel(2)
 				thisEntity.ground:SetLevel(2)
 				thisEntity.swarm:SetLevel(2)
 				thisEntity.chasm:SetLevel(2)
+				thisEntity.shield:SetLevel(2)
 			end
 		end)
 		thisEntity.ground.uses = 4

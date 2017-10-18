@@ -1,26 +1,3 @@
-WAVE 18 REWORKS:
-BEASTMASTER:
-Doesn't attack at all, unless all bears are dead or he's being attacked, just summons bears; can give out orders but only one order can exist at a time
-
-Kill them! - Marks an enemy unit, all ursas will attack this unit and unit takes 50% bonus damage from all sources.
-Destroy! - Buffs all bears with movement speed and cooldown reduction
-Protect me! - As long as any bear is alive, will have 80% damage reduction and bears will focus down anyone that attacks the beastmaster
-Summon Ursa Giant - Summons a single ursa, ursa has a lot of health and damage
-Summon Ursa Warriors - Summons 3 smaller ursas
-
-URSA:
-
-Smash: Earthshock
-Rend: Slices infront of him, giving a stack of Rend, every stack increases the damage it deals by 20%, refreshes fully not seperate stacks
-Ravage: Jumps a small amount forwards, stunning and mauling the first target it hits; channeled ability.
-
-BABY URSA:
-
-Ankle Biter: Channeled ability, bites down on the enemy and slows them while dealing damage to them; sticks to them
-Screech: Dazes enemy units in an aoe
-Wound: Every autoattack deals minor stacking bonus damage.
-
-
 WAVE 21 
 SHADOW FIEND
 Loses magic immunity when shadow demon dies but gains 50% damage reduction from all sources

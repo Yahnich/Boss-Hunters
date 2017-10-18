@@ -685,7 +685,7 @@ function CHoldoutGameMode:FilterModifiers( filterTable )
 	
 	Timers:CreateTimer(0,function()
 		local modifier = parent:FindModifierByNameAndCaster(name, caster)
-		if modifier then
+		if modifier and not modifier:IsNull() then
 			if modifier.IsDebuff or parent:GetTeam() ~= caster:GetTeam() and (parentDebuffIncrease > 1 or casterDebuffIncrease > 1) then
 				local duration = modifier:GetRemainingTime()
 				modifier:SetDuration(duration * math.max(0, parentDebuffIncrease * casterDebuffIncrease), true)
@@ -2472,7 +2472,6 @@ function CHoldoutGameMode:OnNPCSpawned( event )
 	end
 	if spawnedUnit:IsCreature() then
 		local players = HeroList:GetRealHeroCount()
-		local player_multiplier = 1 + (0.25 * (players - 1))
 		-- difficulty multiplier
 		local effective_multiplier = 1
 		-- local effective_multiplier = 1 + (GameRules.gameDifficulty - 1)* 0.15 
@@ -2482,8 +2481,8 @@ function CHoldoutGameMode:OnNPCSpawned( event )
 			-- player_multiplier = 1
 		-- end
 		local playerCountMult = (1/GameRules.BasePlayers)*checkMult
-		spawnedUnit:SetBaseMaxHealth ((player_multiplier*spawnedUnit:GetMaxHealth())*effective_multiplier)
-		spawnedUnit:SetMaxHealth ((player_multiplier*spawnedUnit:GetMaxHealth())*effective_multiplier)
+		spawnedUnit:SetBaseMaxHealth (spawnedUnit:GetBaseMaxHealth()*effective_multiplier)
+		spawnedUnit:SetMaxHealth(spawnedUnit:GetMaxHealth()*effective_multiplier)
 		spawnedUnit:SetHealth(spawnedUnit:GetMaxHealth())
 		spawnedUnit:SetBaseDamageMin((spawnedUnit:GetBaseDamageMin())*effective_multiplier)
 		spawnedUnit:SetBaseDamageMax((spawnedUnit:GetBaseDamageMax())*effective_multiplier)

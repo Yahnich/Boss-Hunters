@@ -222,7 +222,7 @@ function AICore:BeAHugeCoward( entity, runbuffer )
 			ExecuteOrderFromTable({
 				UnitIndex = entity:entindex(),
 				OrderType = DOTA_UNIT_ORDER_MOVE_TO_POSITION,
-				Position = (-direction)*distance
+				Position = (-direction)*RandomInt(100,300)
 			})
 		end
 	elseif entity:GetTauntTarget() then

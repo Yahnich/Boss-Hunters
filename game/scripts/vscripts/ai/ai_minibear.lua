@@ -6,19 +6,16 @@ require( "ai/ai_core" )
 
 function Spawn( entityKeyValues )
 	thisEntity:SetContextThink( "AIThinker", AIThink, 1 )
-	thisEntity.ravage = thisEntity:FindAbilityByName("boss26_ravage")
-	thisEntity.smash = thisEntity:FindAbilityByName("boss26_smash")
-	thisEntity.rend = thisEntity:FindAbilityByName("boss26_rend")
+	thisEntity.ankle = thisEntity:FindAbilityByName("boss26b_ankle_biter")
+	thisEntity.wound = thisEntity:FindAbilityByName("boss26b_wound")
 	
 	Timers:CreateTimer(0.1, function()
 		if  math.floor(GameRules.gameDifficulty + 0.5) <= 2 then
-			thisEntity.ravage:SetLevel(1)
-			thisEntity.smash:SetLevel(1)
-			thisEntity.rend:SetLevel(1)
+			thisEntity.ankle:SetLevel(1)
+			thisEntity.wound:SetLevel(1)
 		else
-			thisEntity.ravage:SetLevel(2)
-			thisEntity.smash:SetLevel(2)
-			thisEntity.rend:SetLevel(2)
+			thisEntity.ankle:SetLevel(2)
+			thisEntity.wound:SetLevel(2)
 		end
 	end)
 	if  math.floor(GameRules.gameDifficulty + 0.5) > 2 then
@@ -33,34 +30,15 @@ function AIThink()
 	if not thisEntity:IsDominated() and not thisEntity:IsChanneling() then
 		local target = thisEntity:GetTauntTarget() or FindMarkedTarget(thisEntity) or AttackingMaster(thisEntity) or AICore:GetHighestPriorityTarget(thisEntity)
 		if target then
-			if thisEntity.ravage:IsFullyCastable() then
-				ExecuteOrderFromTable({
-					UnitIndex = thisEntity:entindex(),
-					OrderType = DOTA_UNIT_ORDER_CAST_POSITION,
-					Position = target:GetAbsOrigin(),
-					AbilityIndex = thisEntity.ravage:entindex()
-				})
-				return thisEntity.ravage:GetCastPoint() + 0.1
-			end
-			if thisEntity.rend:IsFullyCastable() then
-				ExecuteOrderFromTable({
-					UnitIndex = thisEntity:entindex(),
-					OrderType = DOTA_UNIT_ORDER_CAST_POSITION,
-					Position = target:GetAbsOrigin(),
-					AbilityIndex = thisEntity.rend:entindex()
-				})
-				return thisEntity.rend:GetCastPoint() + 0.1
-				
-			end
-		end
-		if thisEntity.smash:IsFullyCastable() and AICore:IsNearEnemyUnit(thisEntity, thisEntity.smash:GetSpecialValueFor("radius")) then
 			ExecuteOrderFromTable({
 				UnitIndex = thisEntity:entindex(),
-				OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
-				AbilityIndex = thisEntity.smash:entindex()
+				OrderType = DOTA_UNIT_ORDER_CAST_TARGET,
+				TargetIndex = target:entindex(),
+				AbilityIndex = thisEntity.ankle:entindex()
 			})
-			return thisEntity.smash:GetCastPoint() + 0.1
+			return thisEntity.ankle:GetCastPoint() + 0.1
 		end
+		
 		if not target then
 			AICore:AttackHighestPriority( thisEntity )
 		else
@@ -75,6 +53,7 @@ function AIThink()
 	else return 0.25 end
 end
 
+
 function FindMarkedTarget(entity)
 	local flags = DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE + DOTA_UNIT_TARGET_FLAG_NO_INVIS
 	if magic_immune then
@@ -84,6 +63,7 @@ function FindMarkedTarget(entity)
 	for _, target in ipairs(targets) do
 		if target:HasModifier("modifier_boss27_kill_them_debuff") then return target end
 	end
+	return nil
 end
 
 function AttackingMaster(entity)
@@ -91,4 +71,5 @@ function AttackingMaster(entity)
 	for _, attacker in ipairs(attackers) do
 		return attacker
 	end
+	return nil
 end
