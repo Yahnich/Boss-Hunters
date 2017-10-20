@@ -1228,6 +1228,10 @@ function ToRadians(degrees)
 	return degrees * math.pi / 180
 end
 
+function ToDegrees(radians)
+	return radians * 180 / math.pi 
+end
+
 function CDOTA_BaseNPC:IsSameTeam(unit)
 	return (self:GetTeamNumber() == unit:GetTeamNumber())
 end

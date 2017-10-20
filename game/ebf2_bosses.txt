@@ -31,5 +31,5 @@ Shadow Poison: Casts 8 instances of it around him
 Illusory Orb: current orb spam
 
 Phase 2 SF dies:
-Shadow Poison: has one constant shadow poison projectile circling him
-Illusory Orb: current orb spam, can teleport to random locations during it
+Shadow Poison: has one constant shadow poison projectile circling him + other phase stuff
+Illusory Orb: can teleport to random locations during current phase
