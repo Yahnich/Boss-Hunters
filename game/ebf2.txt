@@ -515,45 +515,42 @@ Chaos Knight: Ebisu, the Fortune RNG UTILITY DPS
 -- Skill 6: Blessed Chaos: Buffs an ally, all damage this ally takes is redirected to a random target, damage cannot kill - Loaded Dice always redirects damage to an enemy
 -- Skill 7: Entropy: Slows all enemies and increases allied movement speed for random amounts - Loaded Dice maxed slow and ms boost
 -- Skill 8: Ataxia: Dazes a random amount of enemies - Loaded Dice dazes all enemies
-
 -- Passive 1: Crits reduce Loaded Dice cooldown by 1 second.
--- Passive 2: 
--- Passive 3: 
--- Passive 4: 
+-- Passive 2: Chaos Storm refreshes Loaded Dice when it hits a natural full duration stun or natural full duration damage
+-- Passive 3: Chaotic Assault grants Ebisu the removed armor
+-- Passive 4: Meteor Strike breaks on impact
 -- Passive 5: Grants attackspeed per second of cooldown Disorder Reigns reduces
 -- Passive 6: Rift Strike removes armor from the enemy and gives it to Fortune
 -- Passive 7: Blessed Chaos spreads damage over all alies or deals full damage to all enemies in range
 -- Passive 8: Entropy also buffs and reduces attackspeed
 -- Passive 9: Daze procs stun the enemy for 1 second
 
-Aghs
-
-
-
-
-Bane: Phobetor, the Nightmare
+Aghs:
+Loaded Dice cooldown reduced, guarantees a crit when it's off cooldown, but the guaranteed crit puts Loaded Dice on cooldown.
+Bane: Phobetor, the Nightmare CC TANK/SUPPORT
 -- Innate: Terrifying Presence: Any enemy within 900 range deals less auto-attack damage, this effect is always applied with doubled effect, for 15 seconds on any enemy Nightmare casts an abiliy on
 
 -- Skill 1: Nightmare Feast: current aoe brain sap
--- Skill 2: Horrify: Fears enemies and grants Bane armor and spell amp for every enemy horrified
--- Skill 3: Broken Will: current aoe enfeeble
+-- Skill 2: Horrify: Fears enemies and grants Nightmare armor and spell amp for every enemy horrified
+-- Skill 3: Dreamcatcher: Puts an enemy to sleep, enemy takes damage and heals Nightmare for duration; enemy wakes up if it takes damage from any source except Dreamcatcher
 -- Skill 4: Hypnogogic State: current nightmare
 -- Skill 5: Mutual Nightmare: Fiends grip but grips more people in intervals
--- Skill 6: Somnambulism: Nightmare buffs himself, granting him spell amp, magic resistance and damage reduction but making him auto-cast spells for 10 seconds. 
--- Skill 7: Insomnia: Removes all debuffs (including stuns) from Bane; also grants him movement speed, attack speed and increased damage.
--- Skill 8: Night Terror: Stuns all enemies in radius, lifestealing from them while stunned.
+-- Skill 6: Hypnic Jerk: Pulls an enemy towards Phobetor, taunting them 
+-- Skill 7: Insomnia: Removes all debuffs (including stuns) from Nightmare; also him 100% debuff resistance and some magic resistance and armor briefly
+-- Skill 8: Night Terror: Slows all enemies in radius, draining their health, lasts 5 seconds
 
--- Passive 1: 
--- Passive 2: 
--- Passive 3: 
--- Passive 4: 
--- Passive 5: 
--- Passive 6: 
--- Passive 7: 
--- Passive 8: 
--- Passive 9: 
+-- Passive 1: Terrifying Presence becomes activateable, adding a 30% attack and moveslow to all enemies in the aura, but aura is disabled while on cooldown
+-- Passive 2: Nightmare Feast's heal increased, but now heals its amount over 5 seconds.
+-- Passive 3: Horrify feared enemies no longer run away
+-- Passive 4: Dreamcatcher can be applied on allies, rapidly healing them and Nightmare
+-- Passive 5: Hypnogogic State target causes their allies to attack them
+-- Passive 6: Mutual Nightmare ignores threat generation
+-- Passive 7: Hypnic Jerk now pulls all nearby allies towards Nightmare
+-- Passive 8: Insomnia cooldown halved
+-- Passive 9: Night Terror is now a toggled ability, costing 25% of the original mana cost per second
 
 Aghs:
+Non-summoned enemies that die under Terrifying Presence grant Phobetor bonus permanent 1% spell amp
 
 
 Rikimaru: Samael, the Trickster 
@@ -724,24 +721,39 @@ Lone Druid: Veles, The Shifter
 -- Innate: Form of the Protector - Change into a bear, granting bonus armor, max health and threat generation
 -- Innate: Form of the Mage - Change into a human, granting bonus cooldown reduction and spell amp.
 
--- Skill 1: Mobility skill
--- Skill 2: Offensive single target skill
--- Skill 3: Offensive aoe skill
--- Skill 4: Misc
--- Skill 5:	Debuffing skill
--- Skill 6: Buffing skill
--- Skill 7:	Healing skill
--- Skill 8: Defensive skill
+-- Skill 1PRED: Lunge - Lunges towards a single target, applying a bleed
+-- Skill 1PROT: Charge - CHarges towards targeted point, stunning and damaging all enemies he runs over
+-- Skill 1MAGE: Blink - simple blink
 
--- Passive 1: Unstable Core buff also lowers cooldowns by 25%
--- Passive 2: 
--- Passive 3: 
--- Passive 4: 
--- Passive 5: 
--- Passive 6: 
--- Passive 7: 
--- Passive 8: 
--- Passive 9: 
+-- Skill 2PRED: Rabid Claws - Damages all enemies infront of Shifter in a cone
+-- Skill 2PROT: Seismic Clap - Channeled, stomps the ground dealing damage to all enemies in aoe
+-- Skill 2MAGE: Stellar Drops - AOE heal/damage, damages all enemies in radius and heals all allies in radius.
+
+-- Skill 3PRED: Maul - Lunges towards a single target, applying a bleed
+-- Skill 3PROT: Gore - Slows enemy attackspeed and deals a damage over time
+-- Skill 3MAGE: Coruscating Bolt - Single target heal on ally, damage on enemy; Increases the damage/heal from Shifter's further spells for 5 seconds (does not amp Coruscating Bolt damage)
+
+-- Skill 4PRED: Traumatize - Unit target, applies fear on the target
+-- Skill 4PROT: Provoke - Unit target, taunts the target
+-- Skill 4MAGE: Dazing Echo - AOE, dazes all enemies for 3s
+
+-- Skill 5PRED: Shred - Reduces enemy armor
+-- Skill 5PROT: Ferocious Palm - Slams into an enemy, dazing them and dealing damage
+-- Skill 5MAGE: Weakening Pulse - Reduces damage enemies deal for 5 seconds
+
+-- Skill 6PRED: Howl to the Moon - Buffs all allies with a 50% damage increase
+-- Skill 6PROT: Ursine Inspiration - Grants all allies bonus armor and magic resistance
+-- Skill 6MAGE: Revitalize - Burst-heals an ally for 20% of their health and grants them bonus movement and attackspeed for 10 seconds
+
+-- Skill 7PRED: Feast or Famine - Debuffs the enemy, granting lifesteal to any allied unit that damages the unit
+-- Skill 7PROT: Endure - Grants a small barrier to self, as long as barrier is active will increase health regeneration.
+-- Skill 7MAGE: Sudden Growth - Channeling, wraps allies in roots healing them increasingly for every second channeled. After it ends, they receive a heal over time for 5 seconds that heals based on how long it was channeled.
+
+-- Skill 8PRED: Guard Dog - Defends an ally, automatically attacking units that attack the ally if they are within attack range.
+-- Skill 8PROT: Turmoil - Applies an auto-attack with bonus damage to any enemy that attacks Shifter
+-- Skill 8MAGE: Shock Barrier - Applies a minor barrier to the target that shocks anyone that attacks the buffed unit.
+
+Has no unique talents
 
 Aghs: 
 Removes transformation cooldowns and cast point
@@ -823,3 +835,52 @@ Beastmaster: Aristaeus, the Nomad
 
 Aghs:
 Canine has a passive 20% damage aura and can crit naturally for 150% now
+
+
+28. Skywrath Mage: Enlil, the Paragon/Hierophant/Apostle
+-- Innate: Lightbringer - Paragon emits a 450 radius aura that grants bonus regen to allies and a mild blind on enemies. All of his spells carry the aura
+
+-- Skill 1: Hammer of God - Turns invulnerable, flying into the skying and crashing down on the target point; all units affected by the impact are stunned, damaged and knocked back; sends out multiple aftershocks that deal less damage per shock and knocks back enemies less per shock
+-- Skill 2: Contrition - Drops down a ward on the ground that continuously silences all enemies within AOE and amplifies magic damage they take
+-- Skill 3: Cleanse - Creates a mildly homing mystic flare effect that travels forwards for 10 seconds, enemies hit take damage while in the flare's AOE and on first hit creates two mystic flares that start perpendicularly to the target.
+-- Skill 4: Divine Intervention - Targets an allied unit, healing it and granting it a 5% max hp barrier
+-- Skill 5: Devout Apostle - Refreshes all of Paragon's cooldowns and sends out bolts of energy towards all nearby enemies, slowing their movement and attackspeed.
+-- Skill 6: Holy Wings - Paragon quickly flies towards a point target, applying a HoT to all allied units, and applying DoT to all enemy units
+-- Skill 7: Inner Sanctum - Paragon channels for 5 seconds, healing himself, allies are granted a stacking damage reduction bonus for every second channeled, maxing out at 50% that lasts for 5s after channel ends
+-- Skill 8: Fluttering Cherub - Sends out a ball of light towards an enemy, dealing damage to it. (its arcane bolt)
+-- Passive 1: Lightbringer no longer blinds, but heal aura is doubled
+-- Passive 2: Hammer of God damage removed, instead heals allies
+-- Passive 3: Contrition no longer silences and amplifies magic damage, instead disarms and reduces armor
+-- Passive 4: Initial Cleanse is now point target and has no velocity (split waves use paragon to point as their perpendicular vector)
+-- Passive 5: Divine Intervention now taunts whoever is attacking the allied unit to Paragon
+-- Passive 6: Devout Apostle now also refills Paragon's mana
+-- Passive 7: Holy Wings is now a toggle
+-- Passive 8: Inner Sanctum no longer heals Paragon, instead heals all allies for a % of full heal per ally (1 ally is healed for 100% of original heal, 2 for 50% etc)
+-- Passive 9: Fluttering Cherub chains towards the nearest enemy
+
+Aghs:
+Grants an aura that grants allies a stacking spell amp buff for 10 sec
+
+Tusk: Tyr, the Brawler 
+-- Innate: War God - Passively gains damageblock based on damage, upon critting damage block is buffed for 5 seconds based on crit amount
+
+-- Skill 1: Colossus Smash - Launches Brawler forward, stunning and stopping at the first unit it hits, critting them
+-- Skill 2: Shatter - Deals crit damage and reduces armor of damaged unit
+-- Skill 3: Rising Fist - Knocks enemy upwards, critting them, they are slowed and upon landing they damage nearby units
+-- Skill 4: Jet Kick - Kicks enemy backwards and grants Brawler a movement speed buff, 
+-- Skill 5: Ground Pound - Smashes the ground around the Brawler, damaging and slowing all units around.
+-- Skill 6: Launcher - Throws the nearest ally towards the targeted position, target is invulnerable during travel and for 0.5s after landing
+-- Skill 7: Headbutt - Stuns enemy for 1s, then dazes them for 4s and reduces their stun resistance for 10 seconds afterwards.
+-- Skill 8: Dropkick - Kicks enemy, launching Brawler away from them, the enemy is ministunned
+-- Passive 1: War God now applies a barrier based on damage dealt upon crit, caps at 10% max hp 
+-- Passive 2: Colossus Smash now pierces through enemies
+-- Passive 3: Shatter now also reduces magic resistance
+-- Passive 4: Rising Fist cast range increased and now teleports Brawler behind the targeted enemy
+-- Passive 5: Enemy hit by Jet Kick deals damage to all units it passes through
+-- Passive 6: Ground Pound now stays on the ground for 5 seconds, affecting units on it
+-- Passive 7: Launcher now deals AOE damage upon impact and stuns all enemies it passes through for 0.8s
+-- Passive 8: Headbutt daze duration doubled, but Brawler is dazed for 50% of the duration
+-- Passive 9: Brawler can now dropkick the air
+
+Aghs:
+Grants War God passive crit chance
