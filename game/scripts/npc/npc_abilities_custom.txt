@@ -37123,22 +37123,23 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"bosses/boss33/boss33a_devitalize.lua"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"FightRecapLevel"				"2"
 		"AbilityTextureName"			"shadow_demon_shadow_poison"
 		"MaxLevel"						"2"
 		
-		"AbilityCooldown"				"18 15"
-		"AbilityChannelTime"			"1.5 1.25"
+		"AbilityCooldown"				"7 5"
+		"AbilityCastRange"				"1200"
+		"AbilityCastPoint"				"0.75 0.5"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_3"
 		
 		"precache"
 		{
-			"particle"					"particles/bosses/boss27/boss27_summon_lilbears_summon.vpcf"
-			"particle"					"particles/units/heroes/hero_ursa/ursa_earthshock_energy.vpcf"
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_ursa.vsndevts"
-			"soundfile"					"soundevents/voscripts/game_sounds_vo_ursa.vsndevts"
+			"particle"					"particles/bosses/boss33/boss3a_devitalize.vpcf"
+			"particle"					"particles/units/heroes/hero_shadow_demon/shadow_demon_shadow_poison_release.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_shadow_demon.vsndevts"
 		}
 		
 		// Special	
@@ -37147,13 +37148,18 @@
 		{			
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"spawn_count"			"4 6"
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"2"
 			}
-			"02"
+			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"spawn_radius"			"600"
+				"speed"					"600 700"
+			}
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"190"
 			}
 		}
 	}
@@ -37163,22 +37169,23 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"bosses/boss33/boss33a_dark_orb.lua"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"FightRecapLevel"				"2"
 		"AbilityTextureName"			"puck_illusory_orb"
 		"MaxLevel"						"2"
 		
-		"AbilityCooldown"				"18 15"
-		"AbilityChannelTime"			"1.5 1.25"
+		"AbilityCooldown"				"14 12"
+		"AbilityCastRange"				"1200"
+		"AbilityCastPoint"				"0.75 0.5"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
 		
 		"precache"
 		{
-			"particle"					"particles/bosses/boss27/boss27_summon_lilbears_summon.vpcf"
-			"particle"					"particles/units/heroes/hero_ursa/ursa_earthshock_energy.vpcf"
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_ursa.vsndevts"
-			"soundfile"					"soundevents/voscripts/game_sounds_vo_ursa.vsndevts"
+			"particle"					"particles/bosses/boss33/boss33_dark_orb.vpcf"
+			"particle"					"particles/units/heroes/hero_puck/puck_illusory_orb_blink_out.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_puck.vsndevts"
 		}
 		
 		// Special	
@@ -37188,12 +37195,32 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"spawn_count"			"4 6"
+				"damage"				"45000 60000"
 			}
 			"02"
 			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"3.5"
+			}
+			"03"
+			{
 				"var_type"				"FIELD_INTEGER"
-				"spawn_radius"			"600"
+				"orb_speed"				"500 600"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"orb_radius"			"100"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"phase2_angle_velocity"	"15"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"phase2_duration"		"1.5"
 			}
 		}
 	}
@@ -37203,22 +37230,16 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"bosses/boss33/boss33a_protective_ward.lua"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"FightRecapLevel"				"2"
-		"AbilityTextureName"			"shadow_demon_shadow_poison"
+		"AbilityTextureName"			"shadow_demon_demonic_purge"
 		"MaxLevel"						"2"
-		
-		"AbilityCooldown"				"18 15"
-		"AbilityChannelTime"			"1.5 1.25"
 		
 		"precache"
 		{
-			"particle"					"particles/bosses/boss27/boss27_summon_lilbears_summon.vpcf"
-			"particle"					"particles/units/heroes/hero_ursa/ursa_earthshock_energy.vpcf"
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_ursa.vsndevts"
-			"soundfile"					"soundevents/voscripts/game_sounds_vo_ursa.vsndevts"
+			"particle"					"particles/bosses/boss33/boss33a_protection_poof.vpcf"
 		}
 		
 		// Special	
@@ -37228,12 +37249,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"spawn_count"			"4 6"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"spawn_radius"			"600"
+				"sf_death_reduction"	"-50"
 			}
 		}
 	}
@@ -37278,7 +37294,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"32000 45000"
+				"damage"				"20000 30000"
 			}
 			"04"
 			{
@@ -37338,7 +37354,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"32000 45000"
+				"damage"				"20000 30000"
 			}
 			"04"
 			{
@@ -37398,7 +37414,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"32000 45000"
+				"damage"				"20000 30000"
 			}
 			"04"
 			{
@@ -37432,7 +37448,7 @@
 		
 		"precache"
 		{
-			"particle"					"particles/econ/courier/courier_donkey_ti7/courier_donkey_ti7_ambient_poof.vpcf"
+			"particle"					"particles/bosses/boss33/boss33b_protection_poof.vpcf"
 		}
 		
 		// Special	
@@ -37442,12 +37458,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"spawn_count"			"4 6"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"spawn_radius"			"600"
+				"sd_death_reduction"	"-50"
 			}
 		}
 	}

@@ -4,14 +4,13 @@ function boss33b_shadowrazeM:OnAbilityPhaseStart(forceWarning, position)
 	local caster = self:GetCaster()
 	local distance = self:GetSpecialValueFor("distance")
 	local radius = self:GetSpecialValueFor("radius")
-	local position = position or caster:GetAbsOrigin() + caster:GetForwardVector() * distance
 	local belowHPThreshold = caster:GetHealthPercent() < 50 or forceWarning
 	if not belowHPThreshold then
-		ParticleManager:FireWarningParticle(GetGroundPosition(position,caster), radius)
+		ParticleManager:FireWarningParticle(GetGroundPosition( position or caster:GetAbsOrigin() + caster:GetForwardVector() * distance ,caster), radius)
 	else
 		local count = self:GetSpecialValueFor("phase2_raze_count")
 		for i = 1, count do
-			local newPos = position + RotateVector2D(caster:GetForwardVector(), ToRadians(360*i/count)) * distance
+			local newPos = (position or caster:GetAbsOrigin()) + RotateVector2D(caster:GetForwardVector(), ToRadians(360*i/count)) * distance
 			ParticleManager:FireWarningParticle(GetGroundPosition(newPos, caster), radius)
 		end
 	end
@@ -30,8 +29,7 @@ function boss33b_shadowrazeM:OnSpellStart()
 	if belowHPThreshold then razePos = caster:GetAbsOrigin() end
 	self:CreateRazePattern(belowHPThreshold, razePos, radius, damage)
 	
-	local sdCheck = caster:FindFriendlyUnitsInRadius(caster:GetAbsOrigin(),-1)
-	local sdDeath = #sdCheck > 0
+	local sdDeath = not caster:IsTwinAlive()
 	
 	if sdDeath then
 		local duration = self:GetSpecialValueFor("sd_death_duration")

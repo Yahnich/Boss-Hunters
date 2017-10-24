@@ -51,7 +51,9 @@ function modifier_boss1b_leap_attack_thinker:DoControlledMotion()
 	if self:GetParent():IsNull() then return end
 	local parent = self:GetParent()
 	if parent:IsAlive() then
-		parent:SetAbsOrigin( (self.prevLoc or parent:GetAbsOrigin()) + Vector(0,0,self.verSpeed) + self.direction * self.horSpeed * Vector(1,1,0) )
+		parent:SetAbsOrigin( (self.prevLoc or parent:GetAbsOrigin()) + self.direction * self.horSpeed * Vector(1,1,0) )
+		parent:SetAbsOrigin( parent:GetAbsOrigin() + Vector(0,0,self.verSpeed) )
+		
 		self.prevLoc = parent:GetAbsOrigin()
 		self.verSpeed = self.verSpeed + self.verAcc
 	else

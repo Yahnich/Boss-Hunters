@@ -27,8 +27,7 @@ function boss33b_shadowrazeF:OnSpellStart()
 	local belowHPThreshold = caster:GetHealthPercent() < 50
 	self:CreateRazePattern(belowHPThreshold, razePos, radius, damage)
 	
-	local sdCheck = caster:FindFriendlyUnitsInRadius(caster:GetAbsOrigin(),-1)
-	local sdDeath = #sdCheck > 0
+	local sdDeath = not caster:IsTwinAlive()
 	
 	if sdDeath then
 		local degrees = 360
@@ -43,7 +42,7 @@ function boss33b_shadowrazeF:OnSpellStart()
 		Timers:CreateTimer(1, function()
 			vDir = RotateVector2D(vDir, ToRadians(angleDiff))
 			razePos = ogPos + vDir * distance
-			self:CreateRazePattern(belowHPThreshold, razePos, radius + bonusRadius, damage)
+			self:CreateRazePattern(belowHPThreshold, razePos, radius + bonusRadius, damage, ogPos)
 			degrees = degrees - angleDiff
 			if degrees > 0 then 
 				self:OnAbilityPhaseStart(belowHPThreshold, RotateVector2D(vDir, ToRadians(angleDiff)), ogPos)
@@ -53,12 +52,12 @@ function boss33b_shadowrazeF:OnSpellStart()
 	end
 end
 
-function boss33b_shadowrazeF:CreateRazePattern(hpThreshold, position, radius, damage)
+function boss33b_shadowrazeF:CreateRazePattern(hpThreshold, position, radius, damage, ogPos)
 	local caster = self:GetCaster()
 	if hpThreshold then
 		local count = self:GetSpecialValueFor("phase2_raze_count")
 		for i = -3, count do
-			local newPos = position + CalculateDirection(position, caster) * (self:GetSpecialValueFor("distance")/3) * i
+			local newPos = position + CalculateDirection(position, ogPos or caster) * (self:GetSpecialValueFor("distance")/3) * i
 			self:CreateRaze(newPos, radius, damage)
 		end
 	else

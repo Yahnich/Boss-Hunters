@@ -1364,6 +1364,36 @@ function CDOTA_BaseNPC:FindAllUnitsInLine(startPos, endPos, width, hData)
 	return FindUnitsInLine(team, startPos, endPos, nil, width, iTeam, iType, iFlag)
 end
 
+
+function CDOTA_BaseNPC:FindEnemyUnitsInRing(position, maxRadius, minRadius, hData)
+	if not self:IsNull() then
+		local team = self:GetTeamNumber()
+		local data = hData or {}
+		local iTeam = data.team or DOTA_UNIT_TARGET_TEAM_ENEMY
+		local iType = data.type or DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
+		local iFlag = data.flag or DOTA_UNIT_TARGET_FLAG_NONE
+	
+		local innerRing = FindUnitsInRadius(team, position, nil, radius, iTeam, iType, iFlag, iOrder, false)
+		local outerRing = FindUnitsInRadius(team, position, nil, radius, iTeam, iType, iFlag, iOrder, false)
+		
+		local resultTable = {}
+		for _, unit in ipairs(outerRing) do
+			local addToTable = true
+			for _, exclude in ipairs(innerRing) do
+				if unit == exclude then
+					addToTable = false
+					break
+				end
+			end
+			if addToTable then
+				table.insert(resultTable, unit)
+			end
+		end
+		return resultTable
+		
+	else return {} end
+end
+
 function CDOTA_BaseNPC:FindEnemyUnitsInRadius(position, radius, hData)
 	if not self:IsNull() then
 		local team = self:GetTeamNumber()
@@ -1503,6 +1533,7 @@ function CDOTABaseAbility:DealDamage(attacker, victim, damage, data)
 	if data and data.damage_type then damageType = data.damage_type end
 	if data then damageFlags = data.damage_flags end
 	if damageType == 0 then damageType = DAMAGE_TYPE_MAGICAL end
+	local hp = victim:GetHealth()
 	ApplyDamage({victim = victim, attacker = attacker, ability = self, damage_type = damageType, damage = localdamage, damage_flags = damageFlags})
 end
 

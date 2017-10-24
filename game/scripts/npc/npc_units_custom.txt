@@ -9648,21 +9648,20 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				""			// Physical protection.
+		"ArmorPhysical"				"0"			// Physical protection.
 		"MagicalResistance"			"0"		// Magical protection.
 		
 		// Attack
 		//----------------------------------------------------------------
 		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
-		"AttackDamageMin"			"20000"		// Damage range min.
-		"AttackDamageMax"			"30000"		// Damage range max.
+		"AttackDamageMin"			"6000"		// Damage range min.
+		"AttackDamageMax"			"8000"		// Damage range max.
 		"AttackRate"				"3.0"		// Speed of attack.
 		"AttackAnimationPoint"		"0.4"		// Normalized time in animation cycle to attack.
-		"AttackDamageType"			"DAMAGE_TYPE_ArmorMagical"
 		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
 		"AttackRange"				"1200"		// Range within a target can be attacked.
-		"ProjectileModel"			"particles/base_attacks/ranged_tower_bad.vpcf"							// Particle system model for projectile.
-		"ProjectileSpeed"			"1000"									// Speed of projectile.
+		"ProjectileModel"			"particles/units/heroes/hero_shadow_demon/shadow_demon_base_attack.vpcf"							// Particle system model for projectile.
+		"ProjectileSpeed"			"800"									// Speed of projectile.
 	
 		// Bounds
 		//----------------------------------------------------------------
@@ -9684,7 +9683,7 @@
 
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"12500000"		// Base health.
+		"StatusHealth"				"6250000"		// Base health.
 		"StatusHealthRegen"			"1000"			// Health regeneration rate.
 		"StatusMana"				"500"			// Base mana.
 		"StatusManaRegen"			"50"			// Mana regeneration rate.		 
@@ -9755,18 +9754,18 @@
 		"Ability4"					"boss33b_protective_shield"			// Ability 2.
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"50"			// Physical protection.
-		"MagicalResistance"			"999"		// Magical protection.
+		"ArmorPhysical"				"20"			// Physical protection.
+		"MagicalResistance"			"0"		// Magical protection.
 		
 		// Attack
 		//----------------------------------------------------------------
 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
 		"AttackDamageMin"			"3000000"		// Damage range min.
 		"AttackDamageMax"			"4000000"		// Damage range max.
-		"AttackRate"				"1.2"		// Speed of attack.
+		"AttackRate"				"2.4"		// Speed of attack.
 		"AttackAnimationPoint"		"0.8"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
-		"AttackRange"				"450"		// Range within a target can be attacked.
+		"AttackRange"				"400"		// Range within a target can be attacked.
 		"ProjectileModel"			""							// Particle system model for projectile.
 		"ProjectileSpeed"			"0"									// Speed of projectile.
 	

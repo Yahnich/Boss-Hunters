@@ -19,8 +19,7 @@ function boss33b_shadowrazeN:OnSpellStart()
 	local belowHPThreshold = caster:GetHealthPercent() < 50
 	self:CreateRazePattern(belowHPThreshold, razePos, radius, damage)
 	
-	local sdCheck = caster:FindFriendlyUnitsInRadius(caster:GetAbsOrigin(),-1)
-	local sdDeath = #sdCheck > 0
+	local sdDeath = not caster:IsTwinAlive()
 	
 	if sdDeath then
 		local duration = self:GetSpecialValueFor("sd_death_duration")
