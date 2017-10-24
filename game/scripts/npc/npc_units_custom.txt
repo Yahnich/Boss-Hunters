@@ -9535,7 +9535,7 @@
 		// Abilities
 		//----------------------------------------------------------------
 		"AbilityLayout"				"6"
-		"Ability1"					"boss_eidolon_slow"			// Ability 1.
+		"Ability1"					"boss33_eidolon_amp"			// Ability 1.
 
 		// Armor
 		//----------------------------------------------------------------
@@ -9766,7 +9766,7 @@
 		"AttackRate"				"1.2"		// Speed of attack.
 		"AttackAnimationPoint"		"0.8"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
-		"AttackRange"				"600"		// Range within a target can be attacked.
+		"AttackRange"				"450"		// Range within a target can be attacked.
 		"ProjectileModel"			""							// Particle system model for projectile.
 		"ProjectileSpeed"			"0"									// Speed of projectile.
 	

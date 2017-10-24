@@ -1,7 +1,3 @@
---[[
-Broodking AI
-]]
-
 if IsServer() then
 	require( "ai/ai_core" )
 	function Spawn( entityKeyValues )

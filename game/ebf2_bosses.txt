@@ -14,9 +14,9 @@ Raze Med: Razes go in a circle all around
 Raze Long: Attacks an entire line infront of him
 
 Phase 2 SD dies:
-Raze Short: Creates a reoccuring raze, raze zone lasts 5 seconds and raze radius is larger
-Raze Medium: Creates random razes in a 450 radius around himself for 5 seconds
-Raze Long: Razes become like a projectile and a wave of razes moves forward for 1200 units
+Raze Short: Creates random razes in a 450 radius around himself for 5 seconds
+Raze Medium:  Creates a reoccuring raze, raze zone lasts 5 seconds and raze radius is larger
+Raze Long: Razes become like a projectile and is a wave that rotates around himself
 
 SHADOW DEMON
 Loses physical and pure immunity with shadow fiend dies; but gains 50% damage reduction from all sources

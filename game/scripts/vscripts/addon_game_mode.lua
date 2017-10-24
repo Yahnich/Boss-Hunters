@@ -1992,8 +1992,8 @@ end
 
 Timers:CreateTimer(0, function()
 	if not GameRules:IsGamePaused() and GameRules:State_Get() >= 7 and GameRules:State_Get() <= 8 then
-		for _,unit in ipairs ( HeroList:GetAllHeroes() ) do
-			if not unit:IsFakeHero() then
+		for _,unit in ipairs ( FindUnitsInRadius(DOTA_TEAM_GOODGUYS, Vector(0,0), nil, -1, DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_ALL, 0, FIND_ANY_ORDER, false) ) do
+			if (not unit:IsFakeHero()) or unit:IsCreature() then
 				MapHandler:CheckAndResolvePositions(unit)
 			end
 		end

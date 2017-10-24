@@ -11,19 +11,21 @@ SPAWN_POS = Vector(73, -6219, 0)
 function MapHandler:CheckAndResolvePositions(hero)
 	if MapHandler:IsOutsideMapBounds(hero) then
 		hero:SetOrigin(SPAWN_POS)
-		hero.lastAllowedPosition = Vector(0,0, hero:GetOrigin().z) + SPAWN_POS
-	elseif hero.lastAllowedPosition and not GridNav:CanFindPath(hero.lastAllowedPosition, hero:GetOrigin()) then
+		hero.lastAllowedPosition = Vector(0,0, hero:GetAbsOrigin().z) + SPAWN_POS
+	elseif hero.lastAllowedPosition and not GridNav:CanFindPath(hero.lastAllowedPosition, hero:GetAbsOrigin()) and not hero:IsStunned() then
 		if not hero:HasFlyMovementCapability() then
 			hero.positionResetBuffer = hero.positionResetBuffer or 0
 			if hero.positionResetBuffer > 1 then
-				hero:SetOrigin(hero.lastAllowedPosition or hero:GetOrigin())
+				hero:SetOrigin(hero.lastAllowedPosition or hero:GetAbsOrigin())
 				hero.positionResetBuffer = 0
 			else
 				hero.positionResetBuffer = hero.positionResetBuffer + FrameTime()
 			end
 		end
+	elseif not GridNav:CanFindPath(hero:GetAbsOrigin(), hero:GetAbsOrigin()) and not hero:IsStunned() then
+		FindClearSpaceForUnit(hero, hero:GetAbsOrigin(), true)
 	else
-		hero.lastAllowedPosition = hero:GetOrigin()
+		hero.lastAllowedPosition = hero:GetAbsOrigin()
 	end
 end
 
