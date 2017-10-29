@@ -1,51 +1,52 @@
-sylph_innate_zephyr = sylph_innate_zephyr or class({})
-
-function sylph_innate_zephyr:GetIntrinsicModifierName()
-	return "modifier_sylph_innate_zephyr_passive"
+peacekeeper_mistrial = class({})
+LinkLuaModifier( "modifier_mistrial", "heroes/peacekeeper/peacekeeper_mistrial.lua" ,LUA_MODIFIER_MOTION_NONE )
+--------------------------------------------------------------------------------
+function peacekeeper_mistrial:GetIntrinsicModifierName()
+	return "modifier_mistrial"
 end
 
-LinkLuaModifier( "modifier_sylph_innate_zephyr_passive", "heroes/sylph/sylph_innate_zephyr.lua" ,LUA_MODIFIER_MOTION_NONE )
-modifier_sylph_innate_zephyr_passive = modifier_sylph_innate_zephyr_passive or class({})
-
-function modifier_sylph_innate_zephyr_passive:OnCreated()
-	self.max = self:GetAbility():GetSpecialValueFor("max_stacks")
-	self.ms = self:GetAbility():GetSpecialValueFor("ms_per_stack")
+function peacekeeper_mistrial:OnSpellStart()
+	self:StartCooldown(self:GetCooldown(self:GetLevel()))
 end
 
-function modifier_sylph_innate_zephyr_passive:IsPurgable()
-	return false
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+modifier_mistrial = class({})
+
+function modifier_mistrial:OnCreated(table)
+	self.caster = self:GetCaster()
+
+	self.backtrack_time = self:GetAbility():GetSpecialValueFor("backtrack_time")
+
+	self.health = 0
+
+	self:StartIntervalThink(self.backtrack_time)
 end
 
-function modifier_sylph_innate_zephyr_passive:IsHidden()
-	return false
+function modifier_mistrial:OnIntervalThink()
+	if IsServer() then
+		self.health = self.caster:GetHealth()
+		--print(self.health)
+	end
 end
 
-function modifier_sylph_innate_zephyr_passive:IsPassive()
-	return true
-end
-
-function modifier_sylph_innate_zephyr_passive:DeclareFunctions()
-	funcs = {
-				MODIFIER_EVENT_ON_ATTACK_START,
-				MODIFIER_EVENT_ON_ATTACK_LANDED,
-				MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,
-			}
+function modifier_mistrial:DeclareFunctions()
+	local funcs = {
+		MODIFIER_EVENT_ON_ABILITY_EXECUTED
+	}
 	return funcs
 end
 
-function modifier_sylph_innate_zephyr_passive:OnAttackStart(params)
-	if self.currentTarget ~= params.target and params.attacker == self:GetParent() then
-		self.currentTarget = params.target
-		self:SetStackCount(0)
+function modifier_mistrial:OnAbilityExecuted( params )
+	if IsServer() then
+		if params.ability == self:GetAbility() then
+			if self.caster:GetHealth() < self.health then
+				SendOverheadEventMessage(self.caster:GetPlayerOwner(),OVERHEAD_ALERT_HEAL,self.caster,self.health-self.caster:GetHealth(),self.caster:GetPlayerOwner())
+				self.caster:SetHealth(self.health)
+			else
+				self:GetAbility():EndCooldown()
+				self:GetAbility():RefundManaCost()
+			end
+		end
 	end
-end
-
-function modifier_sylph_innate_zephyr_passive:OnAttackLanded(params)
-	if self.currentTarget == params.target and params.attacker == self:GetParent() and self:GetStackCount() < self.max then
-		self:IncrementStackCount()
-	end
-end
-
-function modifier_sylph_innate_zephyr_passive:GetModifierMoveSpeedBonus_Constant()
-	return self.ms * self:GetStackCount()
 end
