@@ -1,8 +1,8 @@
-pk_mens_rae = class({})
-LinkLuaModifier( "modifier_mens_rae", "heroes/peacekeeper/pk_mens_rae.lua" ,LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "modifier_mens_rae_effect", "heroes/peacekeeper/pk_mens_rae.lua" ,LUA_MODIFIER_MOTION_NONE )
+peacekeeper_mens_rea = class({})
+LinkLuaModifier( "modifier_mens_rae", "heroes/peacekeeper/peacekeeper_mens_rea.lua" ,LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_mens_rae_effect", "heroes/peacekeeper/peacekeeper_mens_rea.lua" ,LUA_MODIFIER_MOTION_NONE )
 --------------------------------------------------------------------------------
-function pk_mens_rae:OnSpellStart()
+function peacekeeper_mens_rea:OnSpellStart()
 	self.caster = self:GetCaster()
 	self.cursorTar = self:GetCursorTarget()
 
