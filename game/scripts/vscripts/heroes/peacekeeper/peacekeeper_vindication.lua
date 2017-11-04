@@ -1,6 +1,6 @@
 peacekeeper_vindication = class({})
-LinkLuaModifier( "modifier_vindication", "heroes/hero_peacekeeper/peacekeeper_vindication.lua" ,LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "modifier_vindication_ally", "heroes/hero_peacekeeper/peacekeeper_vindication.lua" ,LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_vindication", "heroes/peacekeeper/peacekeeper_vindication.lua" ,LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_vindication_ally", "heroes/peacekeeper/peacekeeper_vindication.lua" ,LUA_MODIFIER_MOTION_NONE )
 --------------------------------------------------------------------------------
 function peacekeeper_vindication:OnSpellStart()
 	self.caster = self:GetCaster()
@@ -23,11 +23,9 @@ end
 modifier_vindication_ally = class({})
 
 function modifier_vindication_ally:OnCreated(table)
-	if IsServer() then
-		self.caster = self:GetCaster()
+	self.caster = self:GetCaster()
 
-		self.move_speed = self:GetSpecialValueFor("move_speed")
-	end
+	self.move_speed = self:GetSpecialValueFor("move_speed")
 end
 
 function modifier_vindication_ally:DeclareFunctions()
@@ -37,7 +35,7 @@ function modifier_vindication_ally:DeclareFunctions()
 	return funcs
 end
 
-function modifier_vindication_ally:GetModifierMoveSpeedBonus_Percentage()
+function modifier_vindication_ally:GetModifierMoveSpeedBonus_Percentage( params )
 	return self.move_speed
 end
 
@@ -69,6 +67,10 @@ function modifier_vindication:GetEffectAttachType()
 	return PATTACH_OVERHEAD_FOLLOW
 end
 
+function modifier_vindication:IsDebuff()
+	return true
+end
+
 function modifier_vindication:DeclareFunctions()
 	local funcs = {
 		MODIFIER_EVENT_ON_TAKEDAMAGE
@@ -83,13 +85,7 @@ function modifier_vindication:OnTakeDamage( params )
 			local attacker = params.attacker
 
 			if attacker:GetTeam() == self.caster:GetTeam() then
-				SendOverheadEventMessage(attacker:GetPlayerOwner(),OVERHEAD_ALERT_HEAL,attacker,damage*self.lifesteal,attacker:GetPlayerOwner())
-				attacker:Heal(damage*self.lifesteal,attacker)
-
-				local lifesteal = ParticleManager:CreateParticle("particles/units/heroes/hero_skeletonking/wraith_king_vampiric_aura_lifesteal.vpcf", PATTACH_ABSORIGIN_FOLLOW, attacker)
-				ParticleManager:SetParticleControlEnt(lifesteal, 0, attacker, PATTACH_POINT_FOLLOW, "attach_hitloc", attacker:GetAbsOrigin(), true)
-				ParticleManager:SetParticleControlEnt(lifesteal, 1, attacker, PATTACH_POINT_FOLLOW, "attach_hitloc", attacker:GetAbsOrigin(), true)
-				ParticleManager:ReleaseParticleIndex(lifesteal)
+				attacker:Lifesteal(self.lifesteal, damage)
 			end
 		end
 	end

@@ -6,7 +6,18 @@ function peacekeeper_mistrial:GetIntrinsicModifierName()
 end
 
 function peacekeeper_mistrial:OnSpellStart()
-	self:StartCooldown(self:GetCooldown(self:GetLevel()))
+	self.caster = self:GetCaster()
+	self.modifier = self.caster:FindModifierByName("modifier_mistrial")
+	if self.caster:GetHealth() < self.modifier.health then
+		SendOverheadEventMessage(self.caster:GetPlayerOwner(),OVERHEAD_ALERT_HEAL,self.caster,self.modifier.health-self.caster:GetHealth(),self.caster:GetPlayerOwner())
+		self.nFXIndex = ParticleManager:CreateParticle( "particles/units/heroes/hero_templar_assassin/templar_assassin_refraction_form.vpcf", PATTACH_POINT, self.caster )
+		ParticleManager:SetParticleControl(self.nFXIndex,1,self.caster:GetAbsOrigin())
+		ParticleManager:ReleaseParticleIndex(self.nFXIndex)
+		self.caster:Heal(self.modifier.health,self.caster)
+	else
+		self:EndCooldown()
+		self:RefundManaCost()
+	end
 end
 
 --------------------------------------------------------------------------------
@@ -16,11 +27,13 @@ modifier_mistrial = class({})
 function modifier_mistrial:OnCreated(table)
 	self.caster = self:GetCaster()
 
-	self.backtrack_time = self:GetAbility():GetSpecialValueFor("backtrack_time")
+	self.backtrack_time = self:GetSpecialValueFor("backtrack_time")
 
 	self.health = 0
 
-	self:StartIntervalThink(self.backtrack_time)
+	if IsServer() then
+		self:StartIntervalThink(self.backtrack_time)
+	end
 end
 
 function modifier_mistrial:OnIntervalThink()
@@ -30,23 +43,6 @@ function modifier_mistrial:OnIntervalThink()
 	end
 end
 
-function modifier_mistrial:DeclareFunctions()
-	local funcs = {
-		MODIFIER_EVENT_ON_ABILITY_EXECUTED
-	}
-	return funcs
-end
-
-function modifier_mistrial:OnAbilityExecuted( params )
-	if IsServer() then
-		if params.ability == self:GetAbility() then
-			if self.caster:GetHealth() < self.health then
-				SendOverheadEventMessage(self.caster:GetPlayerOwner(),OVERHEAD_ALERT_HEAL,self.caster,self.health-self.caster:GetHealth(),self.caster:GetPlayerOwner())
-				self.caster:SetHealth(self.health)
-			else
-				self:GetAbility():EndCooldown()
-				self:GetAbility():RefundManaCost()
-			end
-		end
-	end
+function modifier_mistrial:IsHidden()
+	return true
 end

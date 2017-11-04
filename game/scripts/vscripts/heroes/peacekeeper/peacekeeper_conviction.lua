@@ -1,5 +1,5 @@
 peacekeeper_conviction = class({})
-LinkLuaModifier( "modifier_conviction", "heroes/peacekeeper/peacekeeper_conviction.lua" ,LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_conviction", "heroes/hero_ma/peacekeeper_conviction.lua" ,LUA_MODIFIER_MOTION_NONE )
 --------------------------------------------------------------------------------
 function peacekeeper_conviction:OnSpellStart()
 	self.caster = self:GetCaster()
@@ -16,11 +16,9 @@ end
 modifier_conviction = class({})
 
 function modifier_conviction:OnCreated(table)
-	if IsServer() then
-		self.caster = self:GetCaster()
+	self.caster = self:GetCaster()
 
-		self.attack_speed = self:GetAbility():GetSpecialValueFor("attack_speed")
-	end
+	self.attack_speed = self:GetAbility():GetSpecialValueFor("attack_speed")
 end
 
 function modifier_conviction:DeclareFunctions()
