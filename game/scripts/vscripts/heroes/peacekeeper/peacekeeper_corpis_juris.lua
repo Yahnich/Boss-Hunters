@@ -1,36 +1,55 @@
-sylph_winds_aid = sylph_winds_aid or class({})
+peacekeeper_corpus_jurius = class({})
+LinkLuaModifier( "modifier_corpus_jurius", "heroes/peacekeeper/peacekeeper_corpus_jurius.lua" ,LUA_MODIFIER_MOTION_NONE )
+--------------------------------------------------------------------------------
+function peacekeeper_corpus_jurius:OnSpellStart()
+	self.caster = self:GetCaster()
+	self.cursorTar = self:GetCursorTarget()
 
-function sylph_winds_aid:OnSpellStart()
-	EmitSoundOn("Hero_Windrunner.ShackleshotStun", self:GetCaster())
-	local windbuff = self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_sylph_winds_aid_buff", {duration = self:GetSpecialValueFor("duration")})
-	local zephyr = self:GetCaster():FindModifierByName("modifier_sylph_innate_zephyr_passive")
-	windbuff:SetStackCount(zephyr:GetStackCount())
-	zephyr:SetStackCount(0)
+	self.duration = self:GetSpecialValueFor("duration")
+
+	self.multiplier = 0 
+
+	for i=0,9 do
+		local ability = self.caster:GetAbilityByIndex(i)
+		
+		if not ability:IsCooldownReady() and ability ~= self and ability:GetAbilityType() == self:GetAbilityType() then
+			ability:EndCooldown()
+			self.multiplier = self.multiplier + 1
+		end
+	end
+
+	if self.multiplier > 0 then
+		self.caster:AddNewModifier(self.caster,self,"modifier_corpus_jurius",{Duration=self.duration}):SetStackCount(self.multiplier)
+	else
+		self:EndCooldown()
+		self:RefundManaCost()
+	end
 end
 
-LinkLuaModifier( "modifier_sylph_winds_aid_buff", "heroes/sylph/sylph_winds_aid.lua", LUA_MODIFIER_MOTION_HORIZONTAL )
-modifier_sylph_winds_aid_buff = modifier_sylph_winds_aid_buff or class({})
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+modifier_corpus_jurius = class({})
 
-function modifier_sylph_winds_aid_buff:OnCreated()
-	self.critical_strike = self:GetAbility():GetSpecialValueFor("crit_per_stack")
+function modifier_corpus_jurius:OnCreated(table)
+	self.caster = self:GetCaster()
+
+	self.bonus_damage = self:GetSpecialValueFor("bonus_damage") * self:GetStackCount()
+	self.bonus_move = self:GetSpecialValueFor("bonus_move") * self:GetStackCount()
 end
 
-function modifier_sylph_winds_aid_buff:DeclareFunctions()
+function modifier_corpus_jurius:DeclareFunctions()
 	local funcs = {
-		MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE,
+		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
+		MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE
 	}
 	return funcs
 end
 
-function modifier_sylph_winds_aid_buff:CheckState()
-	local state = {[MODIFIER_STATE_CANNOT_MISS] = true}
-	return state
+
+function modifier_corpus_jurius:GetModifierMoveSpeedBonus_Percentage( params )
+	return self.bonus_move
 end
 
-function modifier_sylph_winds_aid_buff:GetModifierPreAttack_CriticalStrike()
-	return 100 + self.critical_strike * self:GetStackCount()
-end
-
-function modifier_sylph_winds_aid_buff:GetEffectName()
-	return "particles/heroes/sylph/sylph_winds_aid.vpcf"
+function modifier_corpus_jurius:GetModifierDamageOutgoing_Percentage( params )
+	return self.bonus_damage
 end
