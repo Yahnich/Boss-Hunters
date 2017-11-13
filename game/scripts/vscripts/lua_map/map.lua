@@ -16,7 +16,8 @@ function MapHandler:CheckAndResolvePositions(hero)
 		if not hero:HasFlyMovementCapability() then
 			hero.positionResetBuffer = hero.positionResetBuffer or 0
 			if hero.positionResetBuffer > 1 then
-				hero:SetOrigin(hero.lastAllowedPosition or hero:GetAbsOrigin())
+				hero:SetAbsOrigin(hero.lastAllowedPosition or hero:GetAbsOrigin())
+				FindClearSpaceForUnit(hero, hero:GetAbsOrigin(), true)
 				hero.positionResetBuffer = 0
 			else
 				hero.positionResetBuffer = hero.positionResetBuffer + FrameTime()

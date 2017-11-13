@@ -28,7 +28,7 @@ function guardian_shield_bash:OnSpellStart()
 		StartAnimation(target, {activity = ACT_DOTA_FLAIL, rate = 1, duration = 0.2})
 		target:AddNewModifier(caster, self, "modifier_stunned_generic", {duration = 0.2})
 		Timers:CreateTimer(function ()
-			if distance_traveled < distance and target:IsAlive() and not target:IsNull() and self:GetParent():HasMovementCapability() then
+			if distance_traveled < distance and not target:IsNull() and target:IsAlive() and self:GetParent():HasMovementCapability() then
 				target:SetAbsOrigin(target:GetAbsOrigin() + direction * distAdded)
 				distance_traveled = distance_traveled + distAdded
 				return FrameTime()

@@ -13,7 +13,7 @@ Weapon:
 
 
 Offhand: 
--- Bent Round Shield (+25 block, +5 armor) -> Buckler (+50 block, +5 armor) -> Kiteshield (+150 block, 10 armor -> Greatshield (+500 block, 10 armor) -> Warstopper (+1000 block, +15 armor)
+-- Bent Round Shield (+10/50% block, +5 armor) -> Buckler (+20/50% block, +5 armor) -> Kiteshield (+30/50% block, 10 armor -> Greatshield (+40/65% block, 10 armor) -> Warstopper (+50/80% block, +15 armor)
 
 --------------------
 SYLPH ITEM PROGRESS:
@@ -52,7 +52,7 @@ Armor:
 -- Leather Rags (+1200 Max HP, +5 armor) -> Hard Leather Armor (+2000 Max HP, +7 armor) -> Studded Guard (+4000 Max HP, +9 armor) -> Assassin's Protectors (+6000 Max HP, +11 armor) -> Bogyo Kekkai (+12500 Max HP, +13 armor)
 
 Weapon:
--- Chipped Cleaver (+50 damage, +20 attackspeed) -> Maintained Cleaver (+80 damage, +25 attackspeed)-> Honed Cleaver (+120 damage, +30 attackspeed) -> Sonic Cleaver (+150 damage, +35 attackspeed) -> Headhunter (+250 damage, +50 attackspeed)
+-- Chipped Cleaver (+50 damage, +20 attackspeed) -> Maintained Cleaver (+80 damage, +25 attackspeed)-> Honed Cleaver (+120 damage, +30 attackspeed) -> Sonic Cleaver (+150 damage, +35 attackspeed) -> Shikaku (+250 damage, +50 attackspeed)
 
 Offhand: 
 -- Old Parrying Dagger (+15% evasion) -> Main-Gauche (+25% evasion) -> Duelist's Swordbreaker (+35% evasion) -> Reaper's Poignard (+45% evasion) -> Orochi (+60% evasion)
@@ -177,3 +177,20 @@ Weapon:
 
 Offhand: 
 -- Dim Lure (30 attackspeed, 0% cdr) -> Hunter's Lure (55 attackspeed, 5% cdr) ->  Radiant Lure (70 attackspeed, 10% cdr) -> Deep King's Lure (85 attackspeed, 15% cdr) -> Spring Tide (100 attackspeed, 20% cdr)
+
+
+
+-----------------------
+WRAITH ITEM PROGRESS:
+-----------------------
+
+Armor: 
+-- Worn Mail (+800 Max HP, 20% evasion) -> Iron Mail (+1500 Max HP, 25% evasion) -> Soldier's Mail (+3000 Max HP, 25% evasion) -> Conqueror's Mail (+5000 Max HP, 30% evasion) -> The Undying (+7500 Max HP, 40% evasion)
+
+Weapon: 
+-- Bloody Zweihander (+60 damage, 10%/250% crit) -> Restored Zweihander (+80 damage, 11%/250% crit) -> Executioner's Zweihander (+100 damage, 12%/250% crit) -> Royal Zweihander (+120 damage, 13%/250% crit) -> Death (+160 damage, 15%/250% crit)
+
+
+Offhand: 
+--  Rusted Gauntlet (2 armor) -> Heavy Gauntlet ( 4 armor) -> Sleeved Gauntlet ( 6 armor ) -> Monarch's Gauntlet ( 8 armor ) -> Resurrection ( 10 armor )
+

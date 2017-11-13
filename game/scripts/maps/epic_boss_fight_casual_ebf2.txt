@@ -1,0 +1,892 @@
+"dota_holdout"
+{
+	"PrepTimeBetweenRounds"			"20"
+	"ItemExpireTime"				"45"
+	"RestoreHPAfterRound"			"1"
+	"RestoreMPAfterRound"			"0"
+	
+	"RandomSpawns"
+	{
+		"1"
+		{
+			"SpawnerName"			"spawner1"
+			"Waypoint"				"path_invader1_1"
+		}
+		"2"
+		{
+			"SpawnerName"			"spawner2"
+			"Waypoint"				"path_invader2_1"
+		}
+		"3"
+		{
+			"SpawnerName"			"spawner3"
+			"Waypoint"				"path_invader3_1"
+		}
+		"4"
+		{
+			"SpawnerName"			"spawner4"
+			"Waypoint"				"path_invader4_1"
+		}
+		"5"
+		{
+			"SpawnerName"			"spawner5"
+			"Waypoint"				"path_invader5_1"
+		}
+	}
+
+	"Round1" // Boss 0 just money
+	{
+		"round_quest_title"			"#DOTA_Holdout_Round_Boss0_Quest_Title"
+		"round_title"				"#DOTA_Holdout_Round_Boss0_Title"
+		"MaxGold"					"15000"
+		"BagCount"					"1"
+		"BagVariance"				"0"
+		"FixedXP"					"3000"
+		
+		// Stage 0 ================================================
+		"RoundBranches"
+		{
+			"1"
+			{
+				"UnitBoss_money" 
+				{
+					"NPCName"				"npc_dota_money"
+					"TotalUnitsToSpawn"		"1"
+					"UnitsPerSpawn"			"1"
+					"SpawnInterval"			"1"
+					"DoNotIncrease"			"1"
+				}
+			}
+			"2"
+			{
+				"UnitBoss_money" 
+				{
+					"NPCName"				"npc_dota_money"
+					"TotalUnitsToSpawn"		"2"
+					"UnitsPerSpawn"			"1"
+					"SpawnInterval"			"1"
+					"DoNotIncrease"			"1"
+				}
+			}
+			"3"
+			{
+				"UnitBoss_money" 
+				{
+					"NPCName"				"npc_dota_money"
+					"TotalUnitsToSpawn"		"3"
+					"UnitsPerSpawn"			"1"
+					"SpawnInterval"			"1"
+					"DoNotIncrease"			"1"
+				}
+			}
+			"4"
+			{
+				"UnitBoss_money" 
+				{
+					"NPCName"				"npc_dota_money"
+					"TotalUnitsToSpawn"		"4"
+					"UnitsPerSpawn"			"1"
+					"SpawnInterval"			"1"
+					"DoNotIncrease"			"1"
+				}
+			}
+			"5"
+			{
+				"UnitBoss_money" 
+				{
+					"NPCName"				"npc_dota_money"
+					"TotalUnitsToSpawn"		"5"
+					"UnitsPerSpawn"			"1"
+					"SpawnInterval"			"1"
+					"DoNotIncrease"			"1"
+				}
+			}
+			"6"
+			{
+				"round_quest_title"		"#DOTA_Holdout_Round_Boss0_Quest_Title_alt"
+				"UnitBoss_money_roshan" 
+				{
+					"NPCName"				"npc_dota_money_roshan"
+					"TotalUnitsToSpawn"		"1"
+					"UnitsPerSpawn"			"5"
+					"SpawnInterval"			"1"
+					"SetRenderColor"		"255 255 0"
+					"DoNotIncrease"			"1"
+				}
+			}
+		}
+	}
+	
+	"Round2" // Boss 1 Kobolt king
+	{
+		"round_quest_title"			"#DOTA_Holdout_Round_Boss1_Quest_Title"
+		"round_title"				"#DOTA_Holdout_Round_Boss1_Title"
+		"MaxGold"					"3500"
+		"BagCount"					"2"
+		"BagVariance"				"0"
+		"FixedXP"					"1000"
+		
+		// Stage 1 ================================================
+		"RoundBranches"
+		{
+			"1"
+			{
+				"UnitBoss_1" 
+				{
+					"NPCName"				"npc_dota_boss1"
+					"TotalUnitsToSpawn"		"3"
+					"UnitsPerSpawn"			"1"
+					"SpawnInterval"			"6"
+				}
+			}
+			"2"
+			{
+				"UnitBoss_1" 
+				{
+					"NPCName"				"npc_dota_boss2"
+					"TotalUnitsToSpawn"		"3"
+					"UnitsPerSpawn"			"1"
+					"SpawnInterval"			"10"
+				}
+			}
+			"3"
+			{
+				"UnitBoss_1" 
+				{
+					"NPCName"				"npc_dota_boss2"
+					"TotalUnitsToSpawn"		"1"
+					"UnitsPerSpawn"			"1"
+					"SpawnInterval"			"10"
+				}
+				"UnitBoss_2" 
+				{
+					"NPCName"				"npc_dota_boss1"
+					"TotalUnitsToSpawn"		"2"
+					"UnitsPerSpawn"			"1"
+					"SpawnInterval"			"10"
+				}
+			}
+			"4"
+			{
+				"UnitBoss_1" 
+				{
+					"NPCName"				"npc_dota_boss2"
+					"TotalUnitsToSpawn"		"2"
+					"UnitsPerSpawn"			"1"
+					"SpawnInterval"			"10"
+				}
+				"UnitBoss_2" 
+				{
+					"NPCName"				"npc_dota_boss1"
+					"TotalUnitsToSpawn"		"1"
+					"UnitsPerSpawn"			"1"
+					"SpawnInterval"			"10"
+				}
+			}
+		}
+	}
+	"Round3" // Zambees
+	{
+		"round_quest_title"			"#DOTA_Holdout_Round_Boss2_Quest_Title"
+		"round_title"				"#DOTA_Holdout_Round_Boss2_Title"
+		"MaxGold"					"4000"
+		"BagCount"					"50"
+		"BagVariance"				"2"
+		"FixedXP"					"3500"
+		
+		"RoundBranches"
+		{
+			"1"
+			{
+				"UnitBoss_1" 
+				{
+					"NPCName"				"npc_dota_boss3a"
+					"TotalUnitsToSpawn"		"4"
+					"UnitsPerSpawn"			"1"
+					"SpawnInterval"			"15"
+				}
+				"UnitBoss_3"
+				{
+					"NPCName"				"npc_dota_boss3b"
+					"TotalUnitsToSpawn"		"3"
+					"UnitsPerSpawn"			"1"
+					"SpawnInterval"			"12"
+				}
+			}
+			"2"
+			{
+				"UnitBoss_5"
+				{
+					"NPCName"				"npc_dota_boss4"
+					"TotalUnitsToSpawn"		"2"
+					"UnitsPerSpawn"			"1"
+					"SpawnInterval"			"12"
+				}
+			}
+		}
+	}	
+	"Round4" // Boss 5
+	{
+		"round_quest_title"			"#DOTA_Holdout_Round_Boss3_Quest_Title"
+		"round_title"				"#DOTA_Holdout_Round_Boss3_Title"
+		"MaxGold"					"4500"
+		"BagCount"					"50"
+		"BagVariance"				"5"
+		"FixedXP"					"6000"
+		"RoundBranches"
+		{
+			"1"
+			{
+				"UnitBoss_4"
+				{
+					"NPCName"				"npc_dota_boss5"
+					"TotalUnitsToSpawn"		"1"
+					"UnitsPerSpawn"			"1"
+					"SpawnInterval"			"30"
+				}
+			}
+		}
+	}
+	"Round5" // Boss 6
+	{
+		"round_quest_title"			"#DOTA_Holdout_Round_Boss4_Quest_Title"
+		"round_title"				"#DOTA_Holdout_Round_Boss4_Title"
+		"MaxGold"					"5000"
+		"BagCount"					"50"
+		"BagVariance"				"5"
+		"FixedXP"					"7000"
+		
+		"RoundBranches"
+		{
+			"1"
+			{
+				"UnitBoss_6"
+				{
+					"NPCName"				"npc_dota_boss6"
+					"TotalUnitsToSpawn"		"2"
+					"UnitsPerSpawn"			"1"
+					"SpawnInterval"			"6"
+				}
+				"UnitBoss_7"
+				{
+					"NPCName"				"npc_dota_boss6_b"
+					"TotalUnitsToSpawn"		"1"
+					"UnitsPerSpawn"			"1"
+					"SpawnInterval"			"3"
+				}
+			}
+			"2"
+			{
+				"UnitBoss_6"
+				{
+					"NPCName"				"npc_dota_boss6"
+					"TotalUnitsToSpawn"		"3"
+					"UnitsPerSpawn"			"1"
+					"SpawnInterval"			"9"
+				}
+			}
+		}
+	}
+	"Round6" // Boss 7
+	{
+		"round_quest_title"			"#DOTA_Holdout_Round_Boss5_Quest_Title"
+		"round_title"				"#DOTA_Holdout_Round_Boss5_Title"
+		"MaxGold"					"5500"
+		"BagCount"					"50"
+		"BagVariance"				"5"
+		"FixedXP"					"8000"
+		
+		"RoundBranches"
+		{
+			"1"
+			{
+				"UnitBoss_7"
+				{
+					"NPCName"				"npc_dota_boss7"
+					"TotalUnitsToSpawn"		"2"
+					"UnitsPerSpawn"			"1"
+					"SpawnInterval"			"20"
+				}
+			}
+		}
+	}
+	"Round7" // Boss 8
+	{
+		"round_quest_title"			"#DOTA_Holdout_Round_Boss6_Quest_Title"
+		"round_title"				"#DOTA_Holdout_Round_Boss6_Title"
+		"MaxGold"					"6000"
+		"BagCount"					"50"
+		"BagVariance"				"5"
+		"FixedXP"					"10000"
+		
+		"RoundBranches"
+		{
+			"1"
+			{
+				"UnitBoss_clockwerk"
+				{
+					"NPCName"				"npc_dota_boss8a"
+					"TotalUnitsToSpawn"		"2"
+					"UnitsPerSpawn"			"1"
+					"SpawnInterval"			"3"
+				}
+				"UnitBoss_tinker"
+				{
+					"NPCName"				"npc_dota_boss8b"
+					"TotalUnitsToSpawn"		"2"
+					"UnitsPerSpawn"			"1"
+					"SpawnInterval"			"3"
+				}
+			}
+			"2"
+			{
+				"UnitBoss_clockwerk"
+				{
+					"NPCName"				"npc_dota_boss8a"
+					"TotalUnitsToSpawn"		"1"
+					"UnitsPerSpawn"			"1"
+					"SpawnInterval"			"3"
+				}
+				"UnitBoss_tinker"
+				{
+					"NPCName"				"npc_dota_boss8b"
+					"TotalUnitsToSpawn"		"3"
+					"UnitsPerSpawn"			"1"
+					"SpawnInterval"			"5"
+				}
+			}
+			"3"
+			{
+				"round_quest_title"		"#DOTA_Holdout_Round_Boss6_Quest_Title_alt"
+				"UnitBoss_clockwerk"
+				{
+					"NPCName"				"npc_dota_boss8c_spawner"
+					"TotalUnitsToSpawn"		"3"
+					"UnitsPerSpawn"			"1"
+					"SpawnInterval"			"10"
+				}
+			}
+		}
+	}
+	"Round8" // Boss 9
+	{
+		"round_quest_title"			"#DOTA_Holdout_Round_Boss7_Quest_Title"
+		"round_title"				"#DOTA_Holdout_Round_Boss7_Title"
+		"MaxGold"					"6500"
+		"BagCount"					"300"
+		"BagVariance"				"5"
+		"FixedXP"					"12500"
+		
+		"RoundBranches"
+		{
+			"1"
+			{
+				"UnitBoss_7"
+				{
+					"NPCName"				"npc_dota_boss9"
+					"TotalUnitsToSpawn"		"2"
+					"UnitsPerSpawn"			"1"
+					"SpawnInterval"			"10"
+				}
+			}
+		}
+	}
+
+	"Round9" // Boss 10
+	{
+		"round_quest_title"			"#DOTA_Holdout_Round_Boss8_Quest_Title"
+		"round_title"				"#DOTA_Holdout_Round_Boss8_Title"
+		"MaxGold"					"7000"
+		"BagCount"					"50"
+		"BagVariance"				"5"
+		"FixedXP"					"15000"
+		
+		"RoundBranches"
+		{
+			"1"
+			{
+				"UnitBoss_8"
+				{
+					"NPCName"				"npc_dota_boss10"
+					"TotalUnitsToSpawn"		"3"
+					"UnitsPerSpawn"			"1"
+					"SpawnInterval"			"10"
+				}
+			}
+		}
+	}
+	"Round10" // Boss 11
+	{
+		"round_quest_title"			"#DOTA_Holdout_Round_Boss9_Quest_Title"
+		"round_title"				"#DOTA_Holdout_Round_Boss9_Title"
+		"MaxGold"					"7500"
+		"BagCount"					"50"
+		"BagVariance"				"5"
+		"FixedXP"					"14000"
+		
+		"RoundBranches"
+		{
+			"1"
+			{
+				"UnitBoss_8"
+				{
+					"NPCName"				"npc_dota_boss11"
+					"TotalUnitsToSpawn"		"2"
+					"UnitsPerSpawn"			"1"
+					"SpawnInterval"			"8"
+				}
+			}
+		}
+	}
+	"Round11" // Boss 12
+	{
+		"round_quest_title"			"#DOTA_Holdout_Round_Boss10_Quest_Title"
+		"round_title"				"#DOTA_Holdout_Round_Boss10_Title"
+		"MaxGold"					"8000"
+		"BagCount"					"50"
+		"BagVariance"				"50"
+		"FixedXP"					"17500"
+		
+		"RoundBranches"
+		{
+			"1"
+			{
+				"UnitBoss_8"
+				{
+					"NPCName"				"npc_dota_boss12_a"
+					"TotalUnitsToSpawn"		"1"
+					"UnitsPerSpawn"			"1"
+					"SpawnInterval"			"1"
+				}
+			}
+		}
+	}
+	"Round12" // Boss 16
+	{
+		"round_quest_title"			"#DOTA_Holdout_Round_Boss11_Quest_Title"
+		"round_title"				"#DOTA_Holdout_Round_Boss11_Title"
+		"MaxGold"					"8500"
+		"BagCount"					"300"
+		"BagVariance"				"5000"
+		"FixedXP"					"20000"
+		
+		"RoundBranches"
+		{
+			"1"
+			{
+				"UnitBoss_1"
+				{
+					"NPCName"				"npc_dota_boss16"
+					"TotalUnitsToSpawn"		"2"
+					"UnitsPerSpawn"			"1"
+					"SpawnInterval"			"3"
+				}
+				"UnitBoss_2"
+				{
+					"NPCName"				"npc_dota_boss15"
+					"TotalUnitsToSpawn"		"2"
+					"UnitsPerSpawn"			"1"
+					"SpawnInterval"			"3"
+				}
+				"UnitBoss_3"
+				{
+					"NPCName"				"npc_dota_boss14"
+					"TotalUnitsToSpawn"		"1"
+					"UnitsPerSpawn"			"1"
+					"SpawnInterval"			"3"
+				}
+			}
+			"2"
+			{
+				"round_quest_title"			"#DOTA_Holdout_Round_Boss11_Quest_Title_alt"
+				"UnitBoss_8"
+				{
+					"NPCName"				"npc_dota_boss17"
+					"TotalUnitsToSpawn"		"2"
+					"UnitsPerSpawn"			"1"
+					"SpawnInterval"			"15"
+				}
+				"UnitBoss_2"
+				{
+					"NPCName"				"npc_dota_boss15"
+					"TotalUnitsToSpawn"		"2"
+					"UnitsPerSpawn"			"1"
+					"SpawnInterval"			"10"
+				}
+			}
+		}
+	}
+	"Round13" // Boss 20
+	{
+		"round_quest_title"			"#DOTA_Holdout_Round_Boss12_Quest_Title"
+		"round_title"				"#DOTA_Holdout_Round_Boss12_Title"
+		"MaxGold"					"9000"
+		"BagCount"					"300"
+		"BagVariance"				"5000"
+		"FixedXP"					"25000"
+		
+		"RoundBranches"
+		{
+			"1"
+			{
+				"UnitBoss_8"
+				{
+					"NPCName"				"npc_dota_boss19"
+					"TotalUnitsToSpawn"		"2"
+					"UnitsPerSpawn"			"1"
+					"SpawnInterval"			"10"
+				}
+				"UnitBoss_7"
+				{
+					"NPCName"				"npc_dota_boss18"
+					"TotalUnitsToSpawn"		"2"
+					"UnitsPerSpawn"			"1"
+					"SpawnInterval"			"10"
+				}
+			}
+		}
+	}
+	"Round14" // Boss 21
+	{
+		"round_quest_title"			"#DOTA_Holdout_Round_Boss13_Quest_Title"
+		"round_title"				"#DOTA_Holdout_Round_Boss13_Title"
+		"MaxGold"					"9500"
+		"BagCount"					"300"
+		"BagVariance"				"5000"
+		"FixedXP"					"30000"
+		
+		"RoundBranches"
+		{
+			"1"
+			{
+				"UnitBoss_2"
+				{
+					"NPCName"				"npc_dota_boss21"
+					"TotalUnitsToSpawn"		"1"
+					"UnitsPerSpawn"			"1"
+					"SpawnInterval"			"1"
+				}
+			}
+		}
+	}
+	"Round15" // Boss 22
+	{
+		"round_quest_title"			"#DOTA_Holdout_Round_Boss14_Quest_Title"
+		"round_title"				"#DOTA_Holdout_Round_Boss14_Title"
+		"MaxGold"					"10000"
+		"BagCount"					"1"
+		"BagVariance"				"5000"
+		"FixedXP"					"35000"
+		
+		"RoundBranches"
+		{
+			"1"
+			{
+				"UnitBoss_1"
+				{
+					"NPCName"				"npc_dota_boss22"
+					"TotalUnitsToSpawn"		"1"
+					"UnitsPerSpawn"			"1"
+					"SpawnInterval"			"1"
+				}
+			}
+		}
+	}
+	"Round16" // Boss 23
+	{
+		"round_quest_title"			"#DOTA_Holdout_Round_Boss15_Quest_Title"
+		"round_title"				"#DOTA_Holdout_Round_Boss15_Title"
+		"MaxGold"					"10500"
+		"BagCount"					"50"
+		"BagVariance"				"5000"
+		"FixedXP"					"40000"
+		"RoundBranches"
+		{
+			"1"
+			{	
+				"UnitBoss_8"
+				{
+					"NPCName"				"npc_dota_boss23"
+					"TotalUnitsToSpawn"		"1"
+					"UnitsPerSpawn"			"1"
+					"SpawnInterval"			"10"
+				}
+			}
+		}
+	}
+	"Round17" // Boss 25
+	{
+		"round_quest_title"			"#DOTA_Holdout_Round_Boss16_Quest_Title"
+		"round_title"				"#DOTA_Holdout_Round_Boss16_Title"
+		"MaxGold"					"11000"
+		"BagCount"					"30"
+		"BagVariance"				"5000"
+		"FixedXP"					"50000"
+		"RoundBranches"
+		{
+			"1"
+			{
+				"UnitBoss_2"
+				{
+					"NPCName"				"npc_dota_boss25"
+					"TotalUnitsToSpawn"		"2"
+					"UnitsPerSpawn"			"1"
+					"SpawnInterval"			"5"
+				}
+			}
+		}
+	}
+	"Round18" // Boss 27
+	{
+		"round_quest_title"			"#DOTA_Holdout_Round_Boss17_Quest_Title"
+		"round_title"				"#DOTA_Holdout_Round_Boss17_Title"
+		"MaxGold"					"11500"
+		"BagCount"					"6"
+		"BagVariance"				"5000"
+		"FixedXP"					"75000"
+		"RoundBranches"
+		{
+			"1"
+			{
+				"UnitBoss_6"
+				{
+					"NPCName"				"npc_dota_boss27"
+					"TotalUnitsToSpawn"		"1"
+					"UnitsPerSpawn"			"1"
+					"SpawnInterval"			"1"
+				}
+			}
+			"2"
+			{
+				"round_quest_title"			"#DOTA_Holdout_Round_Boss17_Quest_Title_alt"
+				"UnitBoss_8"
+				{
+					"NPCName"				"npc_dota_boss28"
+					"TotalUnitsToSpawn"		"1"
+					"UnitsPerSpawn"			"1"
+					"SpawnInterval"			"5"
+				}
+			}
+		}
+	}
+	"Round19" // Boss 30
+	{
+		"round_quest_title"			"#DOTA_Holdout_Round_Boss18_Quest_Title"
+		"round_title"				"#DOTA_Holdout_Round_Boss18_Title"
+		"MaxGold"					"12000"
+		"BagCount"					"1"
+		"BagVariance"				"5000"
+		"FixedXP"					"200000"
+		
+		"RoundBranches"
+		{
+			"1"
+			{
+				"UnitBoss_8"
+				{
+					"NPCName"				"npc_dota_boss30"
+					"TotalUnitsToSpawn"		"1"
+					"UnitsPerSpawn"			"1"
+					"SpawnInterval"			"40"
+				}
+			}
+		}
+	}
+	"Round20" // Boss 31
+	{
+		"round_quest_title"			"#DOTA_Holdout_Round_Boss19_Quest_Title"
+		"round_title"				"#DOTA_Holdout_Round_Boss19_Title"
+		"MaxGold"					"12500"
+		"BagCount"					"1"
+		"BagVariance"				"5000"
+		"FixedXP"					"300000"
+		
+		"RoundBranches"
+		{
+			"1"
+			{
+				"UnitBoss_8"
+				{
+					"NPCName"				"npc_dota_boss31"
+					"TotalUnitsToSpawn"		"1"
+					"UnitsPerSpawn"			"1"
+					"SpawnInterval"			"60"
+				}
+			}
+			"2"
+			{
+				"round_quest_title"			"#DOTA_Holdout_Round_Boss19_Quest_Title_alt"
+				"UnitBoss_8"
+				{
+					"NPCName"				"npc_dota_boss32"
+					"TotalUnitsToSpawn"		"1"
+					"UnitsPerSpawn"			"1"
+					"SpawnInterval"			"1"
+				}
+			}
+		}
+	}
+	"Round21" // Boss 33
+	{
+		"round_quest_title"			"#DOTA_Holdout_Round_Boss20_Quest_Title"
+		"round_title"				"#DOTA_Holdout_Round_Boss20_Title"
+		"MaxGold"					"13000"
+		"BagCount"					"2"
+		"BagVariance"				"25000"
+		"FixedXP"					"500000"
+		
+		"RoundBranches"
+		{
+			"1"
+			{
+				"UnitBoss_8"
+				{
+					"NPCName"				"npc_dota_boss33_a"
+					"TotalUnitsToSpawn"		"1"
+					"UnitsPerSpawn"			"1"
+					"SpawnInterval"			"1"
+				}
+				"UnitBoss_7"
+				{
+					"NPCName"				"npc_dota_boss33_b"
+					"TotalUnitsToSpawn"		"1"
+					"UnitsPerSpawn"			"1"
+					"SpawnInterval"			"1"
+				}
+			}
+		}
+	}
+	"Round22" // Boss 34
+	{
+		"round_quest_title"			"#DOTA_Holdout_Round_Boss21_Quest_Title"
+		"round_title"				"#DOTA_Holdout_Round_Boss21_Title"
+		"MaxGold"					"13500"
+		"BagCount"					"1"
+		"BagVariance"				"0"
+		"FixedXP"					"600000"
+		
+		"RoundBranches"
+		{
+			"1"
+			{
+				"UnitBoss_8"
+				{
+					"NPCName"				"npc_dota_boss34"
+					"TotalUnitsToSpawn"		"1"
+					"UnitsPerSpawn"			"1"
+					"SpawnInterval"			"35"
+				}
+			}
+		}
+	}
+	"Round23" // Boss 35
+	{
+		"round_quest_title"			"#DOTA_Holdout_Round_Boss22_Quest_Title"
+		"round_title"				"#DOTA_Holdout_Round_Boss22_Title"
+		"MaxGold"					"14000"
+		"BagCount"					"1"
+		"BagVariance"				"0"
+		"FixedXP"					"1000000"
+		
+		"RoundBranches"
+		{
+			"1"
+			{
+				"UnitBoss_8"
+				{
+					"NPCName"				"npc_dota_boss35"
+					"TotalUnitsToSpawn"		"1"
+					"UnitsPerSpawn"			"1"
+					"SpawnInterval"			"40"
+				}
+			}
+		}
+	}
+	"Round24" // Boss 36
+	{
+		"round_quest_title"			"#DOTA_Holdout_Round_Boss23_Quest_Title"
+		"round_title"				"#DOTA_Holdout_Round_Boss23_Title"
+		"MaxGold"					"14500"
+		"BagCount"					"1"
+		"BagVariance"				"0"
+		"FixedXP"					"1500000"
+		
+		"RoundBranches"
+		{
+			"1"
+			{
+				"UnitBoss_6"
+				{
+					"NPCName"				"npc_dota_boss36"
+					"DoNotIncrease"			"1"
+					"TotalUnitsToSpawn"		"1"
+					"UnitsPerSpawn"			"1"
+					"SpawnInterval"			"100"
+				}
+			}
+		}
+	}
+	"Round25" // Boss 37
+	{
+		"round_quest_title"			"#DOTA_Holdout_Round_Boss24_Quest_Title"
+		"round_title"				"#DOTA_Holdout_Round_Boss24_Title"
+		"MaxGold"					"15000"
+		"BagCount"					"1"
+		"BagVariance"				"0"
+		"FixedXP"					"2000000"
+		
+		"RoundBranches"
+		{
+			"1"
+			{
+				"UnitBoss_7"
+				{
+					"NPCName"				"npc_dota_boss37"
+					"TotalUnitsToSpawn"		"1"
+					"UnitsPerSpawn"			"1"
+					"SpawnInterval"			"30"
+				}
+				"UnitBoss_8"
+				{
+					"NPCName"				"npc_dota_creature_broodmother"
+					"TotalUnitsToSpawn"		"2"
+					"UnitsPerSpawn"			"1"
+					"SpawnInterval"			"10"
+				}
+			}
+		}
+	}
+	"Round26" // Aeon
+	{
+		"MaxGold"					"15500"
+		"BagCount"					"1"
+		"BagVariance"				"0"
+		"FixedXP"					"4000000"
+		
+		"RoundBranches"
+		{
+			"1"
+			{
+				"round_quest_title"				"#DOTA_Holdout_Round_Boss25_Quest_Title_time"
+				"UnitBoss_Aeon"
+				{
+					"NPCName"				"npc_dota_boss38"
+					"TotalUnitsToSpawn"		"1"
+					"UnitsPerSpawn"			"1"
+					"SpawnInterval"			"50"
+				}
+			}
+			"2"
+			{
+				"round_quest_title"				"#DOTA_Holdout_Round_Boss25_Quest_Title_space"
+				"UnitBoss_Aether"
+				{
+					"NPCName"				"npc_dota_boss39"
+					"TotalUnitsToSpawn"		"1"
+					"UnitsPerSpawn"			"1"
+					"SpawnInterval"			"35"
+				}
+			}
+		}
+	}
+}

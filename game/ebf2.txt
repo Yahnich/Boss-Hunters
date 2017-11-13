@@ -884,3 +884,28 @@ Tusk: Tyr, the Brawler
 
 Aghs:
 Grants War God passive crit chance
+
+
+Kunkka: Poseidon, the Buccaneer
+-- Innate: X Marked - 2 charges, 15s charge time; marks an enemy for 30 seconds; marked enemies take 15% more damage and Buccaneer's spells react differently. Also passively gives a chance to gain gold on hit, guarantees gold from marked units
+
+-- Skill 1: Hand Cannon - Fires a very fast (3000ish speed?) linear projectile, knocks Buccaneer back and the first target it hits, target takes auto-attack damage + knockback distance as physical damage. Marked enemies will be slowed 100% for 2s afterwards
+-- Skill 2: Call the Fleet - Summons a ghost ship that moves to the target point, ghost ship always travels 2000 units; upon reaching target point will stun and damage all units in an aoe; allies that touch the ship receive a buff reducing the damage they take. This damage is then dealt over time as HP removal (its kunkka's ghost ship). Marked enemies will be dazed afterwards, moving in random directions.
+-- Skill 3: Wavebreaker - point target, throws a wave in the targeted direction that travels 1200 units and deals auto-attack damage + base damage to all enemies it hits. Enemies hit will be travel 200 units with the wave, marked enemies will be stunned instead
+-- Skill 4: Crestrider - Buccaneer will ride a wave, moving forwards constantly for 5 seconds and his turnrate will be slowed. Enemies swept up by the wave will be stunned and will move with the Buccaneer. Marked enemies will take constant damage.
+-- Skill 5: Captain's Rum - Grants an ally a strong damage and movement speed buff. Charge-based, 20s charge time; buffed allies gain X Marked's gold on hit against marked units
+-- Skill 6: Cannon Barrage - Call a massive cannon barrage on the target location. After a brief delay, the barrage begins. A number of cannon balls are launched in a radius around the target point. Each cannon ball is unique and as such enemies may be struck multiple times. Cannon balls deal damage and slow. Marked enemies have their armor removed.
+-- Skill 7: Gangplank - Forces an enemy to walk forward for 2 seconds, stunning and damaging them for 1s afterwards. Marked enemies grant bonus gold on cast
+-- Skill 8: Maelstrom - it's kunkka's torrent but it also suck in people. If a marked enemy is hit, it will repeat the torrent, dealing half damage to all units in radius
+-- Passive 1: Marked enemies are slowed by 25%
+-- Passive 2: Hand Cannon knockback doubled
+-- Passive 3: Call the Fleet now has 4 additional ships that move with the main ship
+-- Passive 4: Wavebreaker will drag enemies for its full remaining distance
+-- Passive 5: Crestrider wave speed and radius increased
+-- Passive 6: Captain's Rum allies gain 35% debuff resistance and 35% debuff amp
+-- Passive 7: Cannon Barrage now always reduces armor, marked enemies take additional damage instead
+-- Passive 8: Gangplank now fears (run away from Buccaneer)
+-- Passive 9: Maelstrom launches 3 additional maelstroms after a 0.5s delay; these deal 75% of the main one's damage
+
+Aghs:
+Allies standing within 450 radius of a marked unit take -15% damage

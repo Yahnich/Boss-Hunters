@@ -45,7 +45,7 @@ LinkLuaModifier("modifier_forest_iron_bark_buff", "heroes/forest/forest_iron_bar
 
 function modifier_forest_iron_bark_buff:OnCreated()
 	self.armorLvl = self:GetSpecialValueFor("armor_per_level")
-	self.casterLvl = self:GetCaster():GetLevel()
+	self.casterLvl = 1
 	
 	self:SetStackCount(1)
 	
@@ -59,7 +59,7 @@ end
 
 function modifier_forest_iron_bark_buff:OnRefresh()
 	self.armorLvl = self:GetSpecialValueFor("armor_per_level")
-	self.casterLvl = self:GetCaster():GetLevel()
+	self.casterLvl = 1
 	
 	self:AddIndependentStack()
 end
@@ -80,7 +80,7 @@ function modifier_forest_iron_bark_buff_talent:OnCreated()
 	self.mrLvl = self:GetSpecialValueFor("talent_mr_per_level")
 	self.drLvl = self:GetSpecialValueFor("talent_dr_per_level")
 	
-	self.casterLvl = self:GetCaster():GetLevel()
+	self.casterLvl = 1
 	
 	self:SetStackCount(1)
 end
@@ -90,7 +90,7 @@ function modifier_forest_iron_bark_buff_talent:OnRefresh()
 	self.mrLvl = self:GetSpecialValueFor("talent_mr_per_level")
 	self.drLvl = self:GetSpecialValueFor("talent_dr_per_level")
 	
-	self.casterLvl = self:GetCaster():GetLevel()
+	self.casterLvl = 1
 	
 	self:AddIndependentStack()
 end

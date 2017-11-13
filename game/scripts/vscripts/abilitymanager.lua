@@ -10,6 +10,16 @@ end
 function AbilityManager:RandomAbilitiesFromList(event)
 	local hero = EntIndexToHScript(event.heroID)
 	local orderedList = {}
+	if not hero then return end
+	if not hero.selectedSkills and GameRules.UnitKV[hero:GetUnitName()]["Abilities"] then
+		hero.selectedSkills = {}
+		for skill,_ in pairs( GameRules.UnitKV[hero:GetUnitName()]["Abilities"] ) do
+			skillTable[i] = skill
+			hero.selectedSkills[skill] = false
+			i = i + 1
+		end
+	end
+	if not hero.selectedSkills then return end
 	for ability, state in pairs(hero.selectedSkills) do
 		table.insert(orderedList, ability)
 	end
@@ -25,16 +35,14 @@ function AbilityManager:InitializeQueriedAbilities(event)
 	local abilityList = event.abList
 
 	local player = PlayerResource:GetPlayer(pID)
-	local hero = player:GetAssignedHero() 
+	local hero = PlayerResource:GetSelectedHeroEntity(pID) 
 	if not hero then return nil end
 	local trueCount = 0
 	local orderedList = {}
 	for index, ability in pairs(abilityList) do
-		print(ability)
 		orderedList[tonumber(index)] = ability
 		trueCount = trueCount + 1
 	end
-	print("done")
 	if trueCount == 4 then
 		hero.abilityIndexingList = orderedList
 		GameRules.abilityManager:LoadHeroSkills(hero)

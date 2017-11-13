@@ -22,16 +22,23 @@ function ProjectileHandler:start()
 end
 
 function ProjectileHandler:ProjectileThink()
-	for id, projectile in pairs( self.projectiles ) do
-		local status, err, ret = xpcall (projectile.ProjectileThink, debug.traceback, projectile)
-		if not status then
-			print(err)
-			projectile:Remove()
-		end
-		projectile.aliveTime = (projectile.aliveTime or 0) + FrameTime()
-		projectile.distanceTravelled = (projectile.distanceTravelled or 0) + projectile:GetVelocity():Length2D() * FrameTime()
-		if (projectile.aliveTime and projectile.duration and projectile.aliveTime >= projectile.duration) or (projectile.distance and projectile.distanceTravelled and projectile.distance <= projectile.distanceTravelled) then
-			projectile:Remove()
+	if not GameRules:IsGamePaused() then
+		for id, projectile in pairs( self.projectiles ) do
+			local status, err, ret = xpcall (projectile.ProjectileThink, debug.traceback, projectile)
+			if not status then
+				print(err)
+				projectile:Remove()
+			end
+			projectile.aliveTime = (projectile.aliveTime or 0) + FrameTime()
+			projectile.distanceTravelled = (projectile.distanceTravelled or 0) + projectile:GetVelocity():Length2D() * FrameTime()
+			if (projectile.aliveTime and projectile.duration and projectile.aliveTime >= projectile.duration) or (projectile.distance and projectile.distanceTravelled and projectile.distance <= projectile.distanceTravelled) then
+				local position = projectile:GetPosition()
+				local radius = projectile:GetRadius()
+				local caster = projectile:GetCaster()
+
+				local status, err, ret = xpcall(projectile.hitBehavior, debug.traceback, projectile, nil, position)
+				projectile:Remove()
+			end
 		end
 	end
 	return PROJECTILE_THINK
@@ -44,6 +51,7 @@ PROJECTILE_LINEAR = function(self)
 	self:SetPosition( position + (velocity*FrameTime()) )
 end
 
+PROJECTILE_GRAVITY = 300
 
 function ProjectileHandler:CreateProjectile(thinkBehavior, hitBehavior, data)
 	local newProjectile = Projectile(thinkBehavior, hitBehavior, data)

@@ -75,20 +75,23 @@ LinkLuaModifier( "modifier_ifrit_inferno_fire_debuff", "heroes/ifrit/ifrit_infer
 modifier_ifrit_inferno_fire_debuff = class({})
 
 function modifier_ifrit_inferno_fire_debuff:OnCreated()
-	self.damage_over_time = self:GetAbility():GetTalentSpecialValueFor("kindled_burn_dot")
+	self.damage_per_tick = self:GetAbility():GetTalentSpecialValueFor("kindled_burn_dot")
+	self.total_damage = self.damage_per_tick * self:GetRemainingTime()
 	self.tick_interval = 1
-	if self:GetCaster():HasScepter() then self.damage_over_time = self.damage_over_time * 2 end
+	if self:GetCaster():HasScepter() then self.damage_per_tick = self.damage_per_tick * 2 end
 	if IsServer() then self:StartIntervalThink(self.tick_interval) end
 end
 
 function modifier_ifrit_inferno_fire_debuff:OnRefresh()
 	local addedDamage = self:GetAbility():GetTalentSpecialValueFor("kindled_burn_dot")
 	if self:GetCaster():HasScepter() then addedDamage = addedDamage * 2 end
-	self.damage_over_time = self.damage_over_time + addedDamage
+	self.total_damage = self.total_damage + addedDamage * self:GetRemainingTime()
+	self.damage_per_tick = self.total_damage / self:GetRemainingTime()
 end
 
 function modifier_ifrit_inferno_fire_debuff:OnIntervalThink()
-	ApplyDamage( {victim = self:GetParent(), attacker = self:GetCaster(), damage = self.damage_over_time, damage_type = DAMAGE_TYPE_MAGICAL, ability = self:GetAbility()} )
+	self.total_damage = self.total_damage - self.damage_per_tick
+	ApplyDamage( {victim = self:GetParent(), attacker = self:GetCaster(), damage = self.damage_per_tick, damage_type = DAMAGE_TYPE_MAGICAL, ability = self:GetAbility()} )
 end
 
 --------------------------------------------------------------------------------

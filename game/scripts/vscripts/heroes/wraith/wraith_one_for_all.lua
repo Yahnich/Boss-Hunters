@@ -356,7 +356,7 @@ function modifier_wraith_one_for_all_scepter_passive:OnDeath(params)
 	and not params.unit:WillReincarnate() then
 		local position = params.unit:GetAbsOrigin()
 		Timers:CreateTimer(function()
-			params.unit:RespawnHero(false, false, false)
+			params.unit:RespawnHero(false, false)
 			FindClearSpaceForUnit(params.unit, position, true)
 			params.unit:SetHealth(1)
 			params.unit:AddNewModifier(self:GetParent(), self:GetAbility(), "modifier_wraith_one_for_all_scepter", {duration = self:GetSpecialValueFor("scepter_duration")})

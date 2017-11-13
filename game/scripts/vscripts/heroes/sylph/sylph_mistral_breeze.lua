@@ -26,7 +26,7 @@ function sylph_mistral_breeze:OnProjectileHit_ExtraData( hTarget, vLocation, ext
 		local damage = {
 			victim = hTarget,
 			attacker = caster,
-			damage = self:GetSpecialValueFor("projectile_damage") + self:GetSpecialValueFor("ms_damage") * caster:GetIdealSpeed(),
+			damage = self:GetSpecialValueFor("projectile_damage") +  caster:GetIdealSpeed() * self:GetSpecialValueFor("ms_damage") / 100,
 			damage_type = DAMAGE_TYPE_MAGICAL,
 			ability = self}
 		ApplyDamage( damage )

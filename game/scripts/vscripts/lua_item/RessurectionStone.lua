@@ -6,7 +6,7 @@ function Ressurection(keys)
 		killedUnit.resurrectionStoned = true
 		if not killedUnit:WillReincarnate() then
 			Timers:CreateTimer(3,function()
-				killedUnit:RespawnHero(false, false, false)
+				killedUnit:RespawnHero(false, false)
 				killedUnit.resurrectionStoned = false
 				Item:StartCooldown(60)
 				if Item:GetCurrentCharges() > 1 then

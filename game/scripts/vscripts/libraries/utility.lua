@@ -857,7 +857,7 @@ end
 
 function CDOTA_BaseNPC:GetPhysicalArmorReduction()
 	local armornpc = self:GetPhysicalArmorValue()
-	local armor_reduction = 1 - (0.06 * armornpc) / (1 + (0.06 * math.abs(armornpc)))
+	local armor_reduction = 1 - (0.05 * armornpc) / (1 + (0.05 * math.abs(armornpc)))
 	armor_reduction = 100 - (armor_reduction * 100)
 	return armor_reduction
 end
@@ -1176,7 +1176,7 @@ function CDOTABaseAbility:GetTrueCooldown()
 	return cooldown
 end
 
-function CDOTABaseAbility:StartDelayedCooldown(flDelay, bAutomatic)
+function CDOTABaseAbility:StartDelayedCooldown(flDelay)
 	if self.delayedCooldownTimer then
 		self:EndDelayedCooldown()
 	end
@@ -1189,7 +1189,7 @@ function CDOTABaseAbility:StartDelayedCooldown(flDelay, bAutomatic)
 		ability:StartCooldown(cd)
 		return 0
 	end)
-	if bAutomatic then
+	if flDelay then
 		Timers:CreateTimer(flDelay, function() ability:EndDelayedCooldown() end)
 	end
 end

@@ -1,4 +1,4 @@
-MAXIMUM_ATTACK_SPEED	= 1400
+MAXIMUM_ATTACK_SPEED	= 700
 MINIMUM_ATTACK_SPEED	= 20
 
 ROUND_END_DELAY = 3
@@ -20,7 +20,7 @@ require("lua_boss/boss_32_meteor")
 require( "epic_boss_fight_game_round" )
 require( "epic_boss_fight_game_spawner" )
 require( "abilitymanager" )
-require('stats')
+
 require( "libraries/Timers" )
 require( "libraries/notifications" )
 require( "statcollection/init" )
@@ -92,7 +92,7 @@ function Precache( context )
 	
 	
 
-	local precacheList = LoadKeyValues('scripts/npc/herolist.txt')
+	local precacheList = LoadKeyValues('scripts/npc/activelist.txt')
 	for hero, activated in pairs(precacheList) do
 		if activated  == "1" then
 			PrecacheUnitByNameSync(hero, context)
@@ -105,6 +105,7 @@ function Activate()
 	GameRules.holdOut = CHoldoutGameMode()
 	GameRules.holdOut:InitGameMode()
 	require("projectilemanager")
+	-- require('statsmanager')
 end
 
 function DeleteAbility( unit)
@@ -145,9 +146,14 @@ function CHoldoutGameMode:InitGameMode()
 	GameRules.abilityManager = AbilityManager()
 	
 	GameRules._Elites = LoadKeyValues( "scripts/kv/elites.kv" )
+	-- Load unit KVs into main kv
+	-- GameRules.UnitKV = LoadKeyValues("scripts/npc/npc_heroes_custom.txt")
+	-- MergeTables(GameRules.UnitKV, LoadKeyValues("scripts/npc/npc_units_custom.txt"))
+	
+	-- GameRules.AbilityKV = LoadKeyValues("scripts/npc/npc_abilities_custom.txt")
+	-- MergeTables(GameRules.AbilityKV, LoadKeyValues("scripts/npc/npc_items_custom.txt"))
+	
 	GameRules.UnitKV = LoadKeyValues("scripts/npc/npc_heroes.txt")
-
-	 --Load unit KVs into main kv
 	MergeTables(GameRules.UnitKV, LoadKeyValues("scripts/npc/npc_heroes_custom.txt"))
 	MergeTables(GameRules.UnitKV, LoadKeyValues("scripts/npc/npc_units.txt"))
 	MergeTables(GameRules.UnitKV, LoadKeyValues("scripts/npc/npc_units_custom.txt"))
@@ -160,6 +166,21 @@ function CHoldoutGameMode:InitGameMode()
 	GameRules.HeroList = LoadKeyValues("scripts/npc/herolist.txt")
 	
 	print(GetMapName())
+	
+	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue( DOTA_ATTRIBUTE_STRENGTH_HP_REGEN_PERCENT, 0.0001 )
+	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue( DOTA_ATTRIBUTE_STRENGTH_STATUS_RESISTANCE_PERCENT, 0.00005 )
+	
+	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue( DOTA_ATTRIBUTE_AGILITY_DAMAGE, 1.25 )
+	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue( DOTA_ATTRIBUTE_AGILITY_ARMOR, 0.07 )
+	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue( DOTA_ATTRIBUTE_AGILITY_ATTACK_SPEED, 0.05	 )
+	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue( DOTA_ATTRIBUTE_AGILITY_MOVE_SPEED_PERCENT, 0.00006 )
+	
+	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue( DOTA_ATTRIBUTE_INTELLIGENCE_MANA_REGEN_PERCENT, 0.0005 )
+	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue( DOTA_ATTRIBUTE_INTELLIGENCE_SPELL_AMP_PERCENT, 0.009 )
+	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue( DOTA_ATTRIBUTE_INTELLIGENCE_MAGIC_RESISTANCE_PERCENT, 0.000055 ) 
+	
+	
+	
 	
 	GameRules.playersDisconnected = 0
 	self._nRoundNumber = 1
@@ -759,7 +780,6 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 	if damage <= 0 then return true end
 	
 	-- VVVVVVVVVVVVVV REMOVE THIS SHIT IN THE FUTURE VVVVVVVVVVV --
-	
 	if attacker:IsControllableByAnyPlayer() and not (attacker:IsFakeHero() or attacker:IsCreature() or attacker:IsCreep() or attacker:IsHero()) then 
 		if attacker:GetOwner():GetClassname() == player then
 			attacker = attacker:GetOwner():GetAssignedHero()
@@ -767,198 +787,7 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 			attacker = attacker:GetOwner()
 		end
 	end
-	if inflictor and not attacker:IsCreature() and damagetype ~= 0 then -- modifying default dota damage types
-		local ability = EntIndexToHScript( inflictor )
-		if ability:IgnoresDamageFilterOverride() then
-			local truedamageType = ability:GetAbilityDamageType()
-			if attacker:HasScepter() then truedamageType = ability:AbilityScepterDamageType() end
-			if truedamageType ~= damagetype and truedamageType ~= 0 then
-				local damagefilter = damage
-				if damagetype == 1 then -- physical
-					trueDamage = damagefilter / (1 - victim:GetPhysicalArmorReduction() / 100 )
-				elseif damagetype == 2 then -- magical damage
-					trueDamage = damagefilter /  (1 - victim:GetMagicalArmorValue())
-				elseif damagetype == 4 then -- pure damage
-					trueDamage = damagefilter
-				end
-				
-				if truedamageType == 1 then -- physical
-					trueDamage = trueDamage * (1 - victim:GetPhysicalArmorReduction() / 100 )
-				elseif truedamageType == 2 then -- magical damage
-					trueDamage = trueDamage *  (1 - victim:GetMagicalArmorValue())
-				elseif truedamageType == 4 then -- pure damage
-					trueDamage = trueDamage
-				end
-				
-				filterTable["damage"] = 0
-				ApplyDamage({victim = victim, attacker = attacker, damage = math.ceil(trueDamage), damage_type = truedamageType, ability = ability})
-			end
-		end
-	end
 	
-	if victim:HasModifier("modifier_boss_damagedecrease") and GameRules._NewGamePlus then
-		if not self.exceptionList then 
-		self.exceptionList = {["huskar_life_break"] = true,
-					  ["phoenix_sun_ray"] = true,
-					  ["elder_titan_earth_splitter"] = true,
-					  ["necrolyte_heartstopper_aura"] = true,
-					  ["death_prophet_spirit_siphon"] = true,
-					  ["doom_bringer_infernal_blade"] = true,
-					  ["abyssal_underlord_firestorm"] = true,
-					  ["techies_nuke_ebf"] = true,
-					  ["zuus_static_field_ebf"] = true}
-		end
-		if not self.gungnirList then 
-		self.gungnirList = {["item_gungnir"] = true,
-					  ["item_gungnir_2"] = true,
-					  ["item_gungnir_3"] = true,
-					  ["item_melee_fury"] = true,
-					  ["item_melee_rage"] = true,
-					  ["item_purethorn"] = true,}
-		end
-		local mod = 0
-		if filterTable["damagetype_const"] == 4 then -- pure
-			mod = 5
-		elseif filterTable["damagetype_const"] == 2 then -- magic
-			mod = 10
-		end
-		local reduction = (1 - (0.990^((GameRules._roundnumber/2)) + 0.008) + mod/100)
-		if reduction < 0 then reduction = (1 - 0.992) end
-		if inflictor and self.exceptionList[EntIndexToHScript( inflictor ):GetName()] then reduction = 1 end
-		filterTable["damage"] =  filterTable["damage"] * reduction
-		if not inflictor and filterTable["damage"] > victim:GetMaxHealth()*0.035 then filterTable["damage"] = victim:GetMaxHealth()*0.035 end
-		if inflictor and self.gungnirList[EntIndexToHScript( inflictor ):GetName()] and filterTable["damage"] > victim:GetMaxHealth()*0.02 then filterTable["damage"] = victim:GetMaxHealth()*0.02 end
-		if filterTable["damage"] > victim:GetMaxHealth()*0.5 and ( ( inflictor and not self.exceptionList[EntIndexToHScript( inflictor ):GetName()]) or not inflictor ) then filterTable["damage"] = victim:GetMaxHealth()*0.5 end
-	end
-	if not inflictor and not attacker:IsCreature() and attacker:HasModifier("Piercing") and filterTable["damagetype_const"] == 1 then -- APPLY piercing damage to certain damage
-		local originaldamage =  damage / (1 - victim:GetPhysicalArmorReduction() / 100 )
-		local item = attacker:FindModifierByName("Piercing"):GetAbility()
-		local pierce = item:GetSpecialValueFor("Pierce_percent") / 100
-		if attacker:IsIllusion() then pierce = pierce / 7 end
-		ApplyDamage({victim = victim, attacker = attacker, damage = originaldamage * pierce, damage_type = DAMAGE_TYPE_PURE, ability = item, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
-		filterTable["damage"] = filterTable["damage"] - filterTable["damage"]*pierce
-	end
-	if inflictor and not attacker:IsCreature() and attacker:HasModifier("Piercing") and filterTable["damagetype_const"] == 1 then -- APPLY piercing damage to certain damage
-		local ability = EntIndexToHScript( inflictor )
-		if ability:AbilityPierces() and attacker:HasAbility(ability:GetName()) then
-			local originaldamage =  damage / (1 - victim:GetPhysicalArmorReduction() / 100 )
-			local pierce = attacker:FindModifierByName("Piercing"):GetAbility():GetSpecialValueFor("Pierce_percent") / 100
-			ApplyDamage({victim = victim, attacker = attacker, damage = originaldamage * pierce, damage_type = DAMAGE_TYPE_PURE, ability = attacker:FindModifierByName("Piercing"):GetAbility(), damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
-			filterTable["damage"] = filterTable["damage"] - filterTable["damage"]*pierce
-		end
-	end
-	
-	-- CUSTOM DAMAGE PROPERTIES
-	-- MODIFIER_PROPERTY_ALLDAMAGE_CONSTANT_BLOCK
-	local modifierPropertyAllBlock = victim:GetModifierPropertyValue("MODIFIER_PROPERTY_ALLDAMAGE_CONSTANT_BLOCK")
-	if modifierPropertyAllBlock > 0 and victim:IsHero() then
-		local damagetype = filterTable["damagetype_const"]
-		local block = modifierPropertyAllBlock
-		local dmgBlock = damage
-		if damagetype == 1 then -- physical
-			dmgBlock = damage * (1- victim:GetPhysicalArmorReduction() / 100 )
-		elseif damagetype == 2 then -- magical damage
-			dmgBlock = damage *  (1 - victim:GetMagicalArmorValue())
-		elseif damagetype == 4 then -- pure damage
-			dmgBlock = damagefilter
-		end
-		if dmgBlock > block then
-			dmgBlock = dmgBlock - block
-			if damagetype == 1 then -- physical
-				dmgBlock = dmgBlock / (1- victim:GetPhysicalArmorReduction() / 100 )
-			elseif damagetype == 2 then -- magical damage
-				dmgBlock = dmgBlock / (1 - victim:GetMagicalArmorValue())
-			end
-			SendOverheadEventMessage( victim, OVERHEAD_ALERT_BLOCK, victim, block, victim )
-		else
-			filterTable["damage"] = 0
-			SendOverheadEventMessage( victim, OVERHEAD_ALERT_BLOCK, victim, dmgBlock, victim )
-		end
-	end
-	
-    -- remove int scaling thanks for fucking with my shit valve
-	if attacker == victim and attacker:FindAbilityByName("new_game_damage_increase") then -- stop self damaging abilities from ravaging bosses
-		local amp = attacker:FindAbilityByName("new_game_damage_increase")
-		local reduction = 1+(amp:GetSpecialValueFor("spell_amp")/100)
-		filterTable["damage"] = filterTable["damage"]/reduction
-	end
-	
-	if inflictor and attacker:IsHero() and not attacker:IsCreature() then
-		local ability = EntIndexToHScript( inflictor )
-		if ability:GetName() == "item_blade_mail" then
-			local reflect = ability:GetSpecialValueFor("reflect_pct") / 100
-			filterTable["damage"] = filterTable["damage"] * reflect
-		end
-		local no_aether = {["elder_titan_earth_splitter"] = true,
-						   ["enigma_midnight_pulse"] = true,
-						   ["cloak_and_dagger_ebf"] = true,
-						   ["tricks_of_the_trade_datadriven"] = true,
-						   ["phoenix_sun_ray"] = true,
-						   ["abyssal_underlord_firestorm"] = true,
-						   ["huskar_life_break"] = true} -- stop %hp based and right click damage abilities from being amped by aether lens
-		if no_aether[ability:GetName()] or not ability:IsAetherAmplified() then
-			filterTable["damage"] = filterTable["damage"] / attacker:GetOriginalSpellDamageAmp()
-		end
-		if attacker:HasModifier("spellcrit") and attacker ~= victim then
-			local no_crit = {
-						   ["item_melee_rage"] = true,
-						   ["item_melee_fury"] = true,
-						   ["item_gungnir"] = true,
-						   ["item_gungnir_2"] = true,
-						   ["item_gungnir_3"] = true,
-						   ["mana_fiend_mana_lance"] = true,
-						   ["necrolyte_heartstopper_aura"] = true}
-			local ability = EntIndexToHScript( inflictor )
-			local spellcrit = true
-			if no_crit[ability:GetName()] or no_aether[ability:GetName()] or not ability:IsAetherAmplified() then
-				spellcrit = false
-			end
-			if (spellcrit or (ability:GetName() == "mana_fiend_mana_lance" and attacker:HasScepter())) and not attacker.essencecritactive then
-				local crititem = attacker:FindModifierByName("spellcrit"):GetAbility()
-				local chance = crititem:GetSpecialValueFor("spell_crit_chance")
-				if RollPercentage(chance) then
-					local mult = crititem:GetSpecialValueFor("spell_crit_multiplier") / 100
-					filterTable["damage"] = filterTable["damage"]*mult
-					victim:ShowPopup( {
-                    PostSymbol = 4,
-                    Color = Vector( 125, 125, 255 ),
-                    Duration = 0.7,
-                    Number = filterTable["damage"],
-                    pfx = "spell_custom"} )
-				end
-			end
-		end
-		if attacker:GetName() == "npc_dota_hero_leshrac" and attacker:HasAbility(ability:GetName()) then -- reapply damage in pure after all amp/crit
-			require('lua_abilities/heroes/leshrac')
-			filterTable = InnerTorment(filterTable)
-		end
-	end
-	-- TRUE OCTARINE HEALING --
-	if inflictor and attacker:HasModifier("spell_lifesteal")
-	and EntIndexToHScript( inflictor ).damage_flags ~= DOTA_DAMAGE_FLAG_HPLOSS -- forced flags
-	and EntIndexToHScript( inflictor ):GetName() ~= "necrolyte_heartstopper_aura" then -- special heartstopper exception ty valve
-		local octarine = attacker:FindModifierByName("spell_lifesteal")
-		local tHeal = octarine:GetAbility():GetSpecialValueFor("creep_lifesteal") / 100
-		local heal = filterTable["damage"] * tHeal
-		Timers:CreateTimer(function()
-			attacker:Heal(heal, attacker)
-			local healParticle = ParticleManager:CreateParticle("particles/items3_fx/octarine_core_lifesteal.vpcf", PATTACH_ABSORIGIN_FOLLOW, attacker)
-			ParticleManager:ReleaseParticleIndex(healParticle) 
-		end)
-	end
-	if attacker:IsCreature() and not inflictor then -- no more oneshots tears-b-gone
-		local damageCap = 0.25
-		if GetMapName() == "epic_boss_fight_hardcore" then damageCap = 0.33 end
-		local critmult = damage / (1 - victim:GetPhysicalArmorReduction() / 100 ) / attacker:GetAverageBaseDamage()
-		damageCap = damageCap * critmult
-		if victim:HasModifier("modifier_ethereal_resistance") then 
-			local newdamageCap = victim:FindModifierByName("modifier_ethereal_resistance"):GetAbility():GetSpecialValueFor("spooky_block") / 100
-			if newdamageCap < damageCap then damageCap = newdamageCap end
-		end
-		if filterTable["damage"] > victim:GetMaxHealth() * damageCap then
-			filterTable["damage"] = victim:GetMaxHealth() * damageCap 
-		end
-	end
 	--- THREAT AND UI NO MORE DAMAGE MANIPULATION ---
 	local damage = filterTable["damage"]
 	local attacker = original_attacker
@@ -1047,18 +876,19 @@ function update_asura_core(hero)
 		CustomNetTables:SetTableValue( "Asura_core",key, {core = hero.Asura_Core} )
 end
 
+LinkLuaModifier( "lua_attribute_bonus_modifier", "lua_abilities/attribute/lua_attribute_bonus_modifier.lua", LUA_MODIFIER_MOTION_NONE )
 function CHoldoutGameMode:OnHeroLevelUp(event)
 	local playerID = EntIndexToHScript(event.player):GetPlayerID()
 	local hero = PlayerResource:GetSelectedHeroEntity(playerID)
-	if hero:HasModifier("lua_attribute_bonus_modifier") then
-		local modifier = hero:FindModifierByName("lua_attribute_bonus_modifier")
-		local strength = modifier:GetModifierBonusStats_All(0, hero:GetStrengthGain())
-		local agility = modifier:GetModifierBonusStats_All(1, hero:GetAgilityGain())
-		local intellect = modifier:GetModifierBonusStats_All(2, hero:GetIntellectGain())
-		hero:SetBaseStrength(hero:GetBaseStrength() + strength )
-		hero:SetBaseAgility(hero:GetBaseAgility() + agility ) 
-		hero:SetBaseIntellect(hero:GetBaseIntellect() + intellect )
-	end
+	
+	local modifier = hero:FindModifierByName("lua_attribute_bonus_modifier") or hero:AddNewModifier(hero, nil, "lua_attribute_bonus_modifier", {})
+	local strength = modifier:GetModifierBonusStats_All(0, hero:GetStrengthGain())
+	local agility = modifier:GetModifierBonusStats_All(1, hero:GetAgilityGain())
+	local intellect = modifier:GetModifierBonusStats_All(2, hero:GetIntellectGain())
+	hero:SetBaseStrength(hero:GetBaseStrength() + strength )
+	hero:SetBaseAgility(hero:GetBaseAgility() + agility ) 
+	hero:SetBaseIntellect(hero:GetBaseIntellect() + intellect )
+	-- hero.customStatEntity:ManageStats(hero)
 end
 
 function CHoldoutGameMode:OnAbilityUsed(event)
@@ -1103,24 +933,6 @@ function CHoldoutGameMode:OnAbilityUsed(event)
 			CustomGameEventManager:Send_ServerToPlayer( player, "Update_threat", event_data )
 		end
 	end
-	if abilityname == "troll_warlord_battle_trance_ebf" then
-		local trance = abilityused
-		local duration = trance:GetSpecialValueFor("trance_duration")
-		local max_as = trance:GetSpecialValueFor("attack_speed_max")
-		GameRules:GetGameModeEntity():SetMaximumAttackSpeed(MAXIMUM_ATTACK_SPEED + max_as)
-		Timers:CreateTimer(duration,function()
- 			GameRules:GetGameModeEntity():SetMaximumAttackSpeed(MAXIMUM_ATTACK_SPEED)
- 		end)
-	end
-	if abilityname == "mirana_leap" and hero:HasTalent("special_bonus_unique_mirana_1") then
-		local leap = abilityused
-		local duration = leap:GetDuration()
-		local max_as = hero:FindTalentValue("special_bonus_unique_mirana_1")
-		GameRules:GetGameModeEntity():SetMaximumAttackSpeed(MAXIMUM_ATTACK_SPEED + max_as)
-		Timers:CreateTimer(duration,function()
- 			GameRules:GetGameModeEntity():SetMaximumAttackSpeed(MAXIMUM_ATTACK_SPEED)
- 		end)
-	end
 	if abilityused and abilityused:HasPureCooldown() then
 		abilityused:EndCooldown()
 		if abilityused:GetDuration() > 0 then
@@ -1131,27 +943,6 @@ function CHoldoutGameMode:OnAbilityUsed(event)
 			abilityused:StartCooldown(abilityused:GetCooldown(-1))
 		end
 	end
-	if hero:GetName() == "npc_dota_hero_rubick"  and abilityname ~= "rubick_spell_steal" and hero:IsRealHero() then
-		local spell_echo = hero:FindAbilityByName("rubick_spell_echo")
-		if spell_echo:GetLevel()-1 >= 0 then
-			if hero:FindAbilityByName(abilityname) then
-				local ability = hero:FindAbilityByName(abilityname)
-				spell_echo.echo = ability
-				spell_echo.echotime = GameRules:GetGameTime()
-				if ability:GetCursorTarget() then
-					spell_echo.echotarget = ability:GetCursorTarget()
-					spell_echo.type = DOTA_ABILITY_BEHAVIOR_UNIT_TARGET
-				elseif ability:GetCursorTargetingNothing() then
-					spell_echo.echotarget = ability:GetCursorTargetingNothing()
-					spell_echo.type = DOTA_ABILITY_BEHAVIOR_NO_TARGET
-				elseif ability:GetCursorPosition() then
-					spell_echo.echotarget = ability:GetCursorPosition()
-					spell_echo.type = DOTA_ABILITY_BEHAVIOR_POINT
-				end
-			end
-		end
-	end
-	--print (abilityname)
 end
 
 function CHoldoutGameMode:Buy_Asura_Core_shop(event)
@@ -1161,7 +952,7 @@ function CHoldoutGameMode:Buy_Asura_Core_shop(event)
 	--print ("bought item")
 	if hero:GetGold() >= 24999 then
 		PlayerResource:SpendGold(pID, 24999, 0)
-	 	hero.Asura_Core = hero.Asura_Core + 1
+	 	hero.Asura_Core = (hero.Asura_Core or 0) + 1
 		Notifications:Top(pID, {text="You have purchased an Asura Core", duration=3})
 		update_asura_core(hero)
 	else
@@ -1188,8 +979,8 @@ function CHoldoutGameMode:_Buy_Demon_Shop(pID,item_name,Hprice,item_recipe)
 		Have_Recipe = true
 	end
 	if Have_Recipe == true then
-		if hero.Asura_Core >= Hprice or money > 24999 then
-			if hero.Asura_Core < Hprice then
+		if (hero.Asura_Core or 0) >= Hprice or money > 24999 then
+			if (hero.Asura_Core or 0) < Hprice then
 				self:_Buy_Asura_Core(pID)
 			end
 			local found_recipe = false
@@ -1200,7 +991,7 @@ function CHoldoutGameMode:_Buy_Demon_Shop(pID,item_name,Hprice,item_recipe)
 					found_recipe = true
 				end
 			end
-			hero.Asura_Core = hero.Asura_Core - Hprice
+			hero.Asura_Core = (hero.Asura_Core or 0) - Hprice
 			update_asura_core(hero)
 			hero:AddItemByName(item_name)
 		else
@@ -1214,7 +1005,7 @@ function CHoldoutGameMode:Asura_Core_Left(event)
 	local pID = event.pID
 	local player = PlayerResource:GetPlayer(pID)
 	local hero = player:GetAssignedHero() 
-	local message = "I have "..hero.Asura_Core.." Asura Cores"
+	local message = "I have "..(hero.Asura_Core or 0).." Asura Cores"
 	hero.tellCoreDelayTimer = hero.tellCoreDelayTimer or GameRules:GetGameTime()
 	if GameRules:GetGameTime() > hero.tellCoreDelayTimer + 1 then
 		Say(player, message, true)
@@ -1249,7 +1040,7 @@ function CHoldoutGameMode:Buy_Demon_Shop_check(event)
 	local hero = player:GetAssignedHero()
 	if hero ~= nil then
 		--print (hero.Asura_Core)
-		if hero.Asura_Core+1 >= price then --check if player have enought Asura Heart (or have enought if he buy one) to buy item
+		if (hero.Asura_Core or 0) + 1 >= price then --check if player have enought Asura Heart (or have enought if he buy one) to buy item
 			CHoldoutGameMode:_Buy_Demon_Shop(pID,item_name,price,item_recipe)
 		else
 		    Notifications:Top(pID, {text="You don't have enough Asura Cores to purchase this", duration=3})
@@ -1273,7 +1064,7 @@ function CHoldoutGameMode:Buy_Perk_check(event)
 		if perk and perk:GetLevel() >= perk:GetMaxLevel() then
 			checksum = false
 		end
-		if hero.Asura_Core+1 >= price and checksum then --check if player asura core count is sufficient and perk not maxed
+		if (hero.Asura_Core or 0) + 1 >= price and checksum then --check if player asura core count is sufficient and perk not maxed
 			CHoldoutGameMode:_Buy_Perk(pID, perk_name, price, pricegain)
 		elseif not message and checksum then
 		    Notifications:Top(pID, {text="You need "..(price - hero.Asura_Core).." more Asura Cores", duration=2})
@@ -1295,12 +1086,12 @@ function CHoldoutGameMode:_Buy_Perk(pID,perk_name,Hprice, pricegain)
 	local player = PlayerResource:GetPlayer(pID)
 	local hero = PlayerResource:GetSelectedHeroEntity(pID)
 	local money = hero:GetGold()
-	local difference = hero.Asura_Core - Hprice
+	local difference = (hero.Asura_Core or 0) - Hprice
 	if difference >= 0 or -difference >= (money/24999) then
 		while difference < 0 do
 			self:_Buy_Asura_Core(pID)
 		end
-		hero.Asura_Core = hero.Asura_Core - Hprice
+		hero.Asura_Core = (hero.Asura_Core or 0) - Hprice
 		update_asura_core(hero)
 		if not hero:FindAbilityByName(perk_name) then
 			hero:AddAbility(perk_name)
@@ -1451,7 +1242,6 @@ function CHoldoutGameMode:_EnterNG()
 	-- end
 end
 
-LinkLuaModifier( "lua_attribute_bonus_modifier", "lua_abilities/attribute/lua_attribute_bonus_modifier.lua", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier("modifier_summon_handler", "heroes/generic/modifier_summon_handler.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_stunned_generic", "heroes/generic/modifier_stunned_generic.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_dazed_generic", "heroes/generic/modifier_dazed_generic.lua", LUA_MODIFIER_MOTION_NONE)
@@ -1464,9 +1254,7 @@ function CHoldoutGameMode:OnHeroPick (event)
 	if hero.hasBeenInitialized then return end
 	if hero:IsFakeHero() then return end
 	Timers:CreateTimer(0.03, function() 
-		if hero:IsFakeHero() then return end
-		stats:ModifyStatBonuses(hero) 
-		hero:AddNewModifier(hero, nil, "lua_attribute_bonus_modifier", {})
+		if hero:IsFakeHero() or hero:IsIllusion() then return end
 		for i = 0, 17 do
 			local skill = hero:GetAbilityByIndex(i)
 			if skill and skill:IsInnateAbility() then
@@ -1475,6 +1263,8 @@ function CHoldoutGameMode:OnHeroPick (event)
 		end
 		hero.damageDone = 0
 		hero.hasBeenInitialized = true
+		
+		-- StatsManager:CreateCustomStatsForHero(hero)
 		
 		CustomGameEventManager:Send_ServerToPlayer(hero:GetPlayerOwner(), "heroLoadIn", {}) -- wtf is this retarded shit stop force-setting my garbage
 		if GameRules.UnitKV[hero:GetUnitName()]["Abilities"] then
@@ -1510,27 +1300,10 @@ function CHoldoutGameMode:OnHeroPick (event)
 			return 2.5
 		end)
 
-		if hero:GetTeamNumber() == DOTA_TEAM_BADGUYS then 
-			DeleteAbility(hero)
-			TeachAbility (hero , "hide_hero")
-			hero:AddNoDraw()
-			self.boss_master_id = ID
-			GameRules.boss_master_id = ID
-			LinkLuaModifier( "setabilitylayout", "lua_abilities/heroes/modifiers/setabilitylayout.lua" ,LUA_MODIFIER_MOTION_NONE )
-			hero:AddNewModifier(hero, nil, "setabilitylayout", nil)
-			local dominate = hero:AddAbility("boss_master_domination")
-			dominate:SetLevel(1)
-			hero:AddAbility("boss_master_slow_aura")
-			hero:AddAbility("boss_master_damage_aura")
-			hero:AddAbility("boss_master_armor_aura")
-			hero:AddAbility("boss_master_health_aura")
-			hero:AddAbility("boss_master_evasion_aura")
-		elseif hero:GetTeamNumber() == DOTA_TEAM_GOODGUYS then
-			local item = hero:AddItemByName("item_courier")
-			hero:AddItemByName("item_flying_courier")
-			local playerID = hero:GetPlayerOwnerID()
-			hero:CastAbilityImmediately(item, playerID)
-		end
+		local item = hero:AddItemByName("item_courier")
+		hero:AddItemByName("item_flying_courier")
+		local playerID = hero:GetPlayerOwnerID()
+		hero:CastAbilityImmediately(item, playerID)
 	end)
 end
 
@@ -1992,7 +1765,7 @@ end
 
 Timers:CreateTimer(0, function()
 	if not GameRules:IsGamePaused() and GameRules:State_Get() >= 7 and GameRules:State_Get() <= 8 then
-		for _,unit in ipairs ( FindUnitsInRadius(DOTA_TEAM_GOODGUYS, Vector(0,0), nil, -1, DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_ALL, 0, FIND_ANY_ORDER, false) ) do
+		for _,unit in ipairs ( FindUnitsInRadius(DOTA_TEAM_GOODGUYS, Vector(0,0), nil, -1, DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, FIND_ANY_ORDER, false) ) do
 			if (not unit:IsFakeHero()) or unit:IsCreature() then
 				MapHandler:CheckAndResolvePositions(unit)
 			end
@@ -2011,137 +1784,143 @@ end
 
 function CHoldoutGameMode:OnThink()
 	if GameRules:State_Get() >= 7 and GameRules:State_Get() <= 8 then
-		local status, err, ret = xpcall(self._CheckForDefeat, debug.traceback, self)
-		if not status  and not self.gameHasBeenBroken then
-			self:SendErrorReport(err)
-		end
-		status, err, ret = xpcall(self._ThinkLootExpiry, debug.traceback, self)
-		if not status  and not self.gameHasBeenBroken then
-			self:SendErrorReport(err)
-		end
-		status, err, ret = xpcall(self._regenlifecheck, debug.traceback, self)
-		if not status  and not self.gameHasBeenBroken then
-			self:SendErrorReport(err)
-		end
-		status, err, ret = xpcall(self.CheckHP, debug.traceback, self)
-		if not status  and not self.gameHasBeenBroken then
-			self:SendErrorReport(err)
-		end
-		status, err, ret = xpcall(self.CheckMidas, debug.traceback, self)
-		if not status  and not self.gameHasBeenBroken then
-			self:SendErrorReport(err)
-		end
-		status, err, ret = xpcall(self.DegradeThreat, debug.traceback, self)
-		if not status  and not self.gameHasBeenBroken then
-			self:SendErrorReport(err)
-		end
-		
-		if self._flPrepTimeEnd then
-			local timeLeft = self._flPrepTimeEnd - GameRules:GetGameTime()
-			CustomGameEventManager:Send_ServerToAllClients( "updateQuestPrepTime", { prepTime = math.floor(timeLeft + 0.5) } )
-			self:_ThinkPrepTime()
-		elseif self._currentRound ~= nil then
-			self._currentRound:Think()
-			if self._currentRound:IsFinished() then
-				if self._nRoundNumber > 1 then
-					local heroes = HeroList:GetAllHeroes()
-					for _, hero in ipairs(heroes) do
-						-- GameRules.relicPool:DropTankRelic(hero)
-						if (hero:HasOwnerAbandoned() or PlayerResource:GetConnectionState(hero:GetPlayerID()) == 0 or PlayerResource:GetConnectionState(hero:GetPlayerID()) == 1) and not hero.HasBeenInitialized and not hero.hasSkillsSelected then
-							GameRules.abilityManager:RandomAbilitiesFromList({heroID = hero:entindex()})
-						end
-					end
-				end
-				self._currentRound:End()
-				self._currentRound = nil
-				-- Heal all players
-				self:_RefreshPlayers()
-				if self.boss_master_id ~= -1 then
-					local boss_master = PlayerResource:GetSelectedHeroEntity(self.boss_master_id)
-					boss_master:HeroLevelUp(true)
-				end
-				local ngmodifier = 0
-				if self._NewGamePlus then ngmodifier = math.floor(GameRules:GetMaxRound()/2) end
-				local round = math.floor((self._nRoundNumber + ngmodifier))
-				local passive_gold = round*30
-				for _,unit in pairs ( HeroList:GetAllHeroes()) do
-					if unit:GetTeamNumber() == DOTA_TEAM_GOODGUYS and not unit:IsFakeHero() then
-						local midas_modifier = 0
-						if unit:HasModifier("passive_midas_3") then
-							midas_modifier = 15
-						elseif unit:HasModifier("passive_midas_2") then
-							midas_modifier = 10
-						elseif unit:HasModifier("passive_midas_1") or unit:FindItemByName("item_hand_of_midas", false) then
-							midas_modifier = 5
-						end
-						local interest = math.floor( unit:GetGold()*midas_modifier / 100 + 0.5 )
-						if interest > midas_modifier*10*round then interest = midas_modifier*10*round end
-						local totalgold = unit:GetGold() + passive_gold + interest
-						unit.midasGold = unit.midasGold or 0
-						unit.midasGold = unit.midasGold + interest
-				        unit:SetGold(0 , false)
-				        unit:SetGold(totalgold, true)
-						local player = unit:GetPlayerOwner()
-						if player then
-							CustomGameEventManager:Send_ServerToPlayer( player, "Update_Midas_gold", { gold = unit.midasGold, interest = interest} )
-						end
-					end
-				end
-				self._nRoundNumber = self._nRoundNumber + 1
-				boss_meteor:SetRoundNumer(self._nRoundNumber)
-				GameRules._roundnumber = self._nRoundNumber
-				-- if math.random(1,25) == 25 then
-					-- self:spawn_unit( Vector(0,0,0) , "npc_dota_treasure" , 2000)
-					-- for _,unit in pairs ( Entities:FindAllByModel( "models/courier/flopjaw/flopjaw.vmdl")) do
-						-- Waypoint = Entities:FindByName( nil, "path_invader1_1" )
-						-- unit:SetInitialGoalEntity(Waypoint) 
-						-- Timers:CreateTimer(15,function()
-							-- unit:ForceKill(true)
-						-- end)
-					-- end
-					-- self._flPrepTimeEnd = GameRules:GetGameTime() + self._flPrepTimeBetweenRounds + 15
-
-				-- end 
-				if self._nRoundNumber > #self._vRounds then
-					if self._NewGamePlus == false then
-						self:_Start_Vote()
-					else
-						SendToConsole("dota_health_per_vertical_marker 250")
-						GameRules:SetCustomVictoryMessage ("Congratulations!")
-						GameRules:SetGameWinner(DOTA_TEAM_GOODGUYS)
-						GameRules.Winner = DOTA_TEAM_GOODGUYS
-						GameRules._finish = true
-						GameRules.EndTime = GameRules:GetGameTime()
-						statCollection:submitRound(true)
-					end
-				else
-					self._flPrepTimeEnd = GameRules:GetGameTime() + self._flPrepTimeBetweenRounds
-					
-					GameRules.voteRound_No = PlayerResource:GetTeamPlayerCount()
-					GameRules.voteRound_Yes = 0
-					
-					
-		
-					CustomGameEventManager:Send_ServerToAllClients("Display_RoundVote", {})
-					local event_data =
-					{
-						No = GameRules.voteRound_No,
-						Yes = GameRules.voteRound_Yes,
-					}
-					CustomGameEventManager:Send_ServerToAllClients("RoundVoteResults", event_data)
-
-					Timers:CreateTimer(1,function()
-						if GameRules.voteRound_No <= 0 then
-							CustomGameEventManager:Send_ServerToAllClients("Close_RoundVote", {})
-							if self._flPrepTimeEnd~= nil then
-								self._flPrepTimeEnd = 0
+		local OnPThink = function(self)
+			local status, err, ret = xpcall(self._CheckForDefeat, debug.traceback, self)
+			if not status  and not self.gameHasBeenBroken then
+				self:SendErrorReport(err)
+			end
+			status, err, ret = xpcall(self._ThinkLootExpiry, debug.traceback, self)
+			if not status  and not self.gameHasBeenBroken then
+				self:SendErrorReport(err)
+			end
+			status, err, ret = xpcall(self._regenlifecheck, debug.traceback, self)
+			if not status  and not self.gameHasBeenBroken then
+				self:SendErrorReport(err)
+			end
+			status, err, ret = xpcall(self.CheckHP, debug.traceback, self)
+			if not status  and not self.gameHasBeenBroken then
+				self:SendErrorReport(err)
+			end
+			status, err, ret = xpcall(self.CheckMidas, debug.traceback, self)
+			if not status  and not self.gameHasBeenBroken then
+				self:SendErrorReport(err)
+			end
+			status, err, ret = xpcall(self.DegradeThreat, debug.traceback, self)
+			if not status  and not self.gameHasBeenBroken then
+				self:SendErrorReport(err)
+			end
+			
+			if self._flPrepTimeEnd then
+				local timeLeft = self._flPrepTimeEnd - GameRules:GetGameTime()
+				CustomGameEventManager:Send_ServerToAllClients( "updateQuestPrepTime", { prepTime = math.floor(timeLeft + 0.5) } )
+				self:_ThinkPrepTime()
+			elseif self._currentRound ~= nil then
+				self._currentRound:Think()
+				if self._currentRound:IsFinished() then
+					if self._nRoundNumber > 1 then
+						local heroes = HeroList:GetAllHeroes()
+						for _, hero in ipairs(heroes) do
+							-- GameRules.relicPool:DropTankRelic(hero)
+							if (hero:HasOwnerAbandoned() or PlayerResource:GetConnectionState(hero:GetPlayerID()) == 0 or PlayerResource:GetConnectionState(hero:GetPlayerID()) == 1) and not hero.HasBeenInitialized and not hero.hasSkillsSelected then
+								GameRules.abilityManager:RandomAbilitiesFromList({heroID = hero:entindex()})
 							end
-						else
-							return 1
 						end
-					end)
+					end
+					self._currentRound:End()
+					self._currentRound = nil
+					-- Heal all players
+					self:_RefreshPlayers()
+					if self.boss_master_id ~= -1 then
+						local boss_master = PlayerResource:GetSelectedHeroEntity(self.boss_master_id)
+						boss_master:HeroLevelUp(true)
+					end
+					local ngmodifier = 0
+					if self._NewGamePlus then ngmodifier = math.floor(GameRules:GetMaxRound()/2) end
+					local round = math.floor((self._nRoundNumber + ngmodifier))
+					local passive_gold = round*30
+					for _,unit in pairs ( HeroList:GetAllHeroes()) do
+						if unit:GetTeamNumber() == DOTA_TEAM_GOODGUYS and not unit:IsFakeHero() then
+							local midas_modifier = 0
+							if unit:HasModifier("passive_midas_3") then
+								midas_modifier = 15
+							elseif unit:HasModifier("passive_midas_2") then
+								midas_modifier = 10
+							elseif unit:HasModifier("passive_midas_1") or unit:FindItemByName("item_hand_of_midas", false) then
+								midas_modifier = 5
+							end
+							local interest = math.floor( unit:GetGold()*midas_modifier / 100 + 0.5 )
+							if interest > midas_modifier*10*round then interest = midas_modifier*10*round end
+							local totalgold = unit:GetGold() + passive_gold + interest
+							unit.midasGold = unit.midasGold or 0
+							unit.midasGold = unit.midasGold + interest
+							unit:SetGold(0 , false)
+							unit:SetGold(totalgold, true)
+							local player = unit:GetPlayerOwner()
+							if player then
+								CustomGameEventManager:Send_ServerToPlayer( player, "Update_Midas_gold", { gold = unit.midasGold, interest = interest} )
+							end
+						end
+					end
+					self._nRoundNumber = self._nRoundNumber + 1
+					boss_meteor:SetRoundNumer(self._nRoundNumber)
+					GameRules._roundnumber = self._nRoundNumber
+					-- if math.random(1,25) == 25 then
+						-- self:spawn_unit( Vector(0,0,0) , "npc_dota_treasure" , 2000)
+						-- for _,unit in pairs ( Entities:FindAllByModel( "models/courier/flopjaw/flopjaw.vmdl")) do
+							-- Waypoint = Entities:FindByName( nil, "path_invader1_1" )
+							-- unit:SetInitialGoalEntity(Waypoint) 
+							-- Timers:CreateTimer(15,function()
+								-- unit:ForceKill(true)
+							-- end)
+						-- end
+						-- self._flPrepTimeEnd = GameRules:GetGameTime() + self._flPrepTimeBetweenRounds + 15
+
+					-- end 
+					if self._nRoundNumber > #self._vRounds then
+						-- if self._NewGamePlus == false then
+							-- self:_Start_Vote()
+						-- else
+							SendToConsole("dota_health_per_vertical_marker 250")
+							GameRules:SetCustomVictoryMessage ("Congratulations!")
+							GameRules:SetGameWinner(DOTA_TEAM_GOODGUYS)
+							GameRules.Winner = DOTA_TEAM_GOODGUYS
+							GameRules._finish = true
+							GameRules.EndTime = GameRules:GetGameTime()
+							statCollection:submitRound(true)
+						-- end
+					else
+						self._flPrepTimeEnd = GameRules:GetGameTime() + self._flPrepTimeBetweenRounds
+						
+						GameRules.voteRound_No = PlayerResource:GetTeamPlayerCount()
+						GameRules.voteRound_Yes = 0
+						
+						
+			
+						CustomGameEventManager:Send_ServerToAllClients("Display_RoundVote", {})
+						local event_data =
+						{
+							No = GameRules.voteRound_No,
+							Yes = GameRules.voteRound_Yes,
+						}
+						CustomGameEventManager:Send_ServerToAllClients("RoundVoteResults", event_data)
+
+						Timers:CreateTimer(1,function()
+							if GameRules.voteRound_No <= 0 then
+								CustomGameEventManager:Send_ServerToAllClients("Close_RoundVote", {})
+								if self._flPrepTimeEnd~= nil then
+									self._flPrepTimeEnd = 0
+								end
+							else
+								return 1
+							end
+						end)
+					end
 				end
 			end
+		end
+		local status, err, ret = xpcall(OnPThink, debug.traceback, self)
+		if not status  and not self.gameHasBeenBroken then
+			self:SendErrorReport(err)
 		end
 	elseif GameRules:State_Get() >= DOTA_GAMERULES_STATE_POST_GAME then		-- Safe guard catching any state that may exist beyond DOTA_GAMERULES_STATE_POST_GAME
 		return nil
@@ -2209,7 +1988,7 @@ function CHoldoutGameMode:_RefreshPlayers()
 				local hero = PlayerResource:GetSelectedHeroEntity( nPlayerID )
 				if hero ~=nil then
 					if not hero:IsAlive() then
-						hero:RespawnHero(false, false, false)
+						hero:RespawnHero(false, false)
 					end
 					hero:SetHealth( hero:GetMaxHealth() )
 					hero:SetMana( hero:GetMaxMana() )
@@ -2401,98 +2180,25 @@ end
 
 LinkLuaModifier( "modifier_boss_attackspeed", "lua_abilities/heroes/modifiers/modifier_boss_attackspeed.lua" ,LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_boss_damagedecrease", "lua_abilities/heroes/modifiers/modifier_boss_damagedecrease.lua" ,LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "modifier_attack_animation_tweak", "lua_abilities/heroes/modifiers/modifier_attack_animation_tweak.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 
 function CHoldoutGameMode:OnNPCSpawned( event )
 	local spawnedUnit = EntIndexToHScript( event.entindex )
-	Timers:CreateTimer(0.03, function() 
-		if spawnedUnit:IsIllusion() then
-			local owner = spawnedUnit:GetOwnerEntity():GetAssignedHero()
-			
-			local armor_adjustment = math.abs(ARMOR_PER_AGI - DEFAULT_ARMOR_PER_AGI)
-			local attackspeed_adjustment = math.abs(ATKSPD_PER_AGI - DEFAULT_ATKSPD_PER_AGI)
-			local damage_adjustment = DMG_PER_AGI
-			local spell_amp_adjustment = math.abs(SPELL_AMP_PER_INT - SPELL_AMP_PER_INT)
-			
-			spawnedUnit:SetBaseStrength(owner:GetBaseStrength() )
-			spawnedUnit:SetBaseAgility(owner:GetBaseAgility() ) 
-			spawnedUnit:SetBaseIntellect(owner:GetBaseIntellect() )
-			-- Get player attribute values
-			local strength = spawnedUnit:GetStrength()
-			local agility = spawnedUnit:GetAgility()
-			local intellect = spawnedUnit:GetIntellect()
-			local movespeed = spawnedUnit:GetIdealSpeed()
-			
-			spawnedUnit:SetBaseMagicalResistanceValue(math.floor(strength^MR_PER_STR + 0.5))
-			spawnedUnit:SetPhysicalArmorBaseValue(spawnedUnit:GetPhysicalArmorBaseValue() + agility * -armor_adjustment)
-			spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_stat_adjustment_as_per_agi", {}):SetStackCount(agility * attackspeed_adjustment)
-			spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_stat_adjustment_dmg_per_agi", {}):SetStackCount(math.floor(agility * damage_adjustment + 0.5))
-			local cdr = 1 - math.floor(intellect ^ CDR_PER_INT + 0.5) / 100
-			local octarine = get_core_cdr(spawnedUnit)
-			local cdr_stacks = math.floor((1 - (octarine * cdr))*100)
-			spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_stat_adjustment_cdr_per_int", {}):SetStackCount(cdr_stacks)
-			spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_stat_adjustment_amp_per_int", {}):SetStackCount(math.floor(spell_amp_adjustment * intellect + 0.5))
-			if spawnedUnit:IsRangedAttacker() then
-				spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_stat_adjustment_range_ranged", {}):SetStackCount(math.floor(2.5*spawnedUnit:GetLevel() + 0.5) )
-			else
-				spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_stat_adjustment_armor_melee", {}):SetStackCount(math.floor(2.5*spawnedUnit:GetLevel() + 0.5) )
-			end
-				
-			spawnedUnit:CalculateStatBonus()
-		end
-	end)
 	if not spawnedUnit or spawnedUnit:GetClassname() == "npc_dota_thinker" or spawnedUnit:IsPhantom() or spawnedUnit:IsFakeHero()then
 		return
 	end
 	if spawnedUnit:IsCourier() then
 		spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_invulnerable", {})
 	end
-	-- Attach client side hero effects on spawning players
-	if spawnedUnit:GetUnitName() == "npc_dota_furion_treant" then
-		local scaleAb = spawnedUnit:AddAbility("neutral_power_passive")
-		scaleAb:SetLevel(scaleAb:GetMaxLevel())
-	end
-	if string.match(spawnedUnit:GetUnitName(), "npc_dota_venomancer_plague_ward") then
-		local scaleAb = spawnedUnit:AddAbility("neutral_power_passive")
-		scaleAb:SetLevel(scaleAb:GetMaxLevel())
-		Timers:CreateTimer(0.03,function()
-			local owner = spawnedUnit:GetOwnerEntity()
-			local newHP = spawnedUnit:GetMaxHealth()*owner:GetLevel()^0.8 - spawnedUnit:GetMaxHealth()
-			if owner:HasTalent("special_bonus_unique_venomancer") then newHP = newHP * owner:FindTalentValue("special_bonus_unique_venomancer") end
-			spawnedUnit:SetMaxHealth(newHP)
-			spawnedUnit:SetBaseMaxHealth(newHP)
-			spawnedUnit:SetHealth(newHP)
-			local poison_sting = owner:FindAbilityByName("venomancer_poison_sting_ebf")
-			local poisonsting = spawnedUnit:AddAbility("venomancer_poison_sting_ebf"):SetLevel( poison_sting:GetLevel() )
-		end)
-	end
-	if spawnedUnit:IsRealHero() then
-		spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_attack_animation_tweak", {})
-	end
 	if spawnedUnit:IsCreature() then
-		local players = HeroList:GetRealHeroCount()
-		-- difficulty multiplier
-		local effective_multiplier = 1
-		-- local effective_multiplier = 1 + (GameRules.gameDifficulty - 1)* 0.15 
-		local checkMult = (GameRules.BasePlayers - PlayerResource:GetTeamPlayerCount()) / GameRules.BasePlayers
-		-- if IsInToolsMode() then 
-			-- checkMult = 0
-			-- player_multiplier = 1
-		-- end
-		local playerCountMult = (1/GameRules.BasePlayers)*checkMult
-		spawnedUnit:SetBaseMaxHealth (spawnedUnit:GetBaseMaxHealth()*effective_multiplier)
+		local effective_multiplier = 1 + (HeroList:GetRealHeroCount() - 1)*0.25
+
+		spawnedUnit:SetBaseMaxHealth(spawnedUnit:GetBaseMaxHealth()*effective_multiplier)
 		spawnedUnit:SetMaxHealth(spawnedUnit:GetMaxHealth()*effective_multiplier)
 		spawnedUnit:SetHealth(spawnedUnit:GetMaxHealth())
-		spawnedUnit:SetBaseDamageMin((spawnedUnit:GetBaseDamageMin())*effective_multiplier)
-		spawnedUnit:SetBaseDamageMax((spawnedUnit:GetBaseDamageMax())*effective_multiplier)
 		
 		spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_boss_attackspeed", {})
-		if GetMapName() == "epic_boss_fight_boss_master" then
-			spawnedUnit:SetOwner(PlayerResource:GetSelectedHeroEntity(self.boss_master_id))
-			spawnedUnit:SetControllableByPlayer(self.boss_master_id,true)
-			spawnedUnit.boss_master = self.boss_master_id
-		end
+
 		if self._NewGamePlus == true and spawnedUnit:GetTeamNumber() == DOTA_TEAM_BADGUYS and spawnedUnit:GetUnitName() ~= "npc_dota_boss36" and spawnedUnit:GetUnitName() ~= "npc_dota_money" then
 			local Number_Round = self._nRoundNumber
 			Timers:CreateTimer(0.03,function()
@@ -2533,10 +2239,10 @@ function CHoldoutGameMode:OnEntityKilled( event )
 	if not killedUnit or killedUnit:IsFakeHero() then return end
 	local DeathHandler = function(self, killedUnit )
 		if killedUnit.Asura_To_Give ~= nil then
-			for _,unit in pairs ( HeroList:GetAllHeroes()) do
-				if not unit:IsFakeHero() then
-					unit.Asura_Core = unit.Asura_Core + killedUnit.Asura_To_Give
-					update_asura_core(unit)
+			for _,hero in pairs ( HeroList:GetAllHeroes()) do
+				if not hero:IsFakeHero() then
+					hero.Asura_Core = (hero.Asura_Core or 0) + killedUnit.Asura_To_Give
+					update_asura_core(hero)
 				end
 			end
 			Notifications:TopToAll({text="You have received an Asura Core", duration=3.0})
@@ -2758,7 +2464,7 @@ function CHoldoutGameMode:_GiveCore(amount)
 				if PlayerResource:GetSteamAccountID( nPlayerID ) == 42452574 or PlayerResource:GetSteamAccountID( nPlayerID ) == 36111451 then
 					local heroEnt = PlayerResource:GetSelectedHeroEntity( nPlayerID )
 					if heroEnt ~= nil then
-						heroEnt.Asura_Core = heroEnt.Asura_Core + amount
+						heroEnt.Asura_Core = (heroEnt.Asura_Core or 0) + amount
 						update_asura_core(heroEnt)
 					end
 				end

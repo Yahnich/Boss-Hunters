@@ -1,0 +1,899 @@
+"DOTAHeroes"
+{
+	"npc_dota_hero_lina" // Ifrit
+	{
+		"override_hero"				"npc_dota_hero_lina"
+		"DisableWearables"			"0"
+		"Ability1"					"class_empty_1"
+		"Ability2"					"class_empty_2"
+		"Ability3"					"class_empty_3"
+		"Ability4"					"ifrit_kindled_soul"
+		"Ability5"					"class_filler"
+		"Ability6"					"class_empty_4"
+		// Talents
+		"Ability11"		"generic_empty_talent_1"
+		"Ability12"		"special_bonus_attack_damage_20"
+		"Ability13"		"generic_empty_talent_2"
+		"Ability14"		"special_bonus_cast_range_100"
+		"Ability15"		"ifrit_kindled_soul_talent_1"
+		"Ability16"		"special_bonus_attack_range_150"
+		"Ability17"		"generic_empty_talent_3"
+		"Ability18"		"generic_empty_talent_4"
+		
+		"HeroValues"
+		{
+			"Support"			"2"
+			"Damage"			"5"
+			"Tank"				"1"
+		}
+		
+		"Items"
+		{
+			"Armor"
+			{
+				"1"				"item_ifrit_armor_1"
+				"2"				"item_ifrit_armor_2"
+				"3"				"item_ifrit_armor_3"
+				"4"				"item_ifrit_armor_4"
+				"5"				"item_ifrit_armor_5"
+			}
+			"Weapon"
+			{
+				"1"				"item_ifrit_weapon_1"
+				"2"				"item_ifrit_weapon_2"
+				"3"				"item_ifrit_weapon_3"
+				"4"				"item_ifrit_weapon_4"
+				"5"				"item_ifrit_weapon_5"
+			}
+			"Other"
+			{
+				"1"				"item_ifrit_other_1"
+				"2"				"item_ifrit_other_2"
+				"3"				"item_ifrit_other_3"
+				"4"				"item_ifrit_other_4"
+				"5"				"item_ifrit_other_5"
+			}
+		}
+		
+		"Abilities"
+		{
+			"ifrit_fire_surge"						"true"
+			"ifrit_solar_jet"						"true"
+			"ifrit_self_immolation"					"true"
+			"ifrit_searing_heat"					"true"
+			"ifrit_overheat"						"true"
+			"ifrit_inferno"							"true"
+			"ifrit_firebat"							"true"
+			"ifrit_blaze_geyser"					"true"
+		}
+		
+		// Custom Attributes
+		"AttributePrimary"							"DOTA_ATTRIBUTE_INTELLECT"
+		"BaseStrength"								"15"
+		"BaseIntellect"								"27"
+		"BaseAgility"								"20"
+		"BaseLuck"									"0"
+		"BaseVitality"								"0"
+		"BaseStrengthGain"							"1.5"
+		"BaseIntellectGain"							"2.4"
+		"BaseAgilityGain"							"2"
+		"BaseLuckGain"								"0"
+		"BaseVitalityGain"							"1"
+		// Override Default DOTA
+		"AttributeBaseStrength"			"0"
+		"AttributeStrengthGain"			"0"
+		"AttributeBaseIntelligence"		"0"
+		"AttributeIntelligenceGain"		"0"
+		"AttributeBaseAgility"			"0"
+		"AttributeAgilityGain"			"0"
+		
+		"MovementTurnRate"			"1.5"
+		
+	}
+	"npc_dota_hero_phantom_assassin" // Shinigami
+	{
+		"override_hero"				"npc_dota_hero_phantom_assassin"
+		"DisableWearables"			"0"
+		"Ability1"					"class_empty_1"
+		"Ability2"					"class_empty_2"
+		"Ability3"					"class_empty_3"
+		"Ability4"					"shinigami_deep_wounds"
+		"Ability5"					"class_filler"
+		"Ability6"					"class_empty_4"
+		// Talents
+		"Ability10"		"special_bonus_hp_150"
+		"Ability11"		"generic_empty_talent_1"
+		"Ability12"		"special_bonus_attack_damage_15"
+		"Ability13"		"shinigami_deep_wounds_talent_1"
+		"Ability14"		"generic_empty_talent_2"
+		"Ability15"		"generic_empty_talent_3"
+		"Ability16"		"special_bonus_attack_speed_40"
+		"Ability17"		"generic_empty_talent_4"
+		
+		"HeroValues"
+		{
+			"Support"			"2"
+			"Damage"			"5"
+			"Tank"				"3"
+		}
+		
+		"Items"
+		{
+			"Armor"
+			{
+				"1"				"item_shinigami_armor_1"
+				"2"				"item_shinigami_armor_2"
+				"3"				"item_shinigami_armor_3"
+				"4"				"item_shinigami_armor_4"
+				"5"				"item_shinigami_armor_5"
+			}
+			"Weapon"
+			{
+				"1"				"item_shinigami_weapon_1"
+				"2"				"item_shinigami_weapon_2"
+				"3"				"item_shinigami_weapon_3"
+				"4"				"item_shinigami_weapon_4"
+				"5"				"item_shinigami_weapon_5"
+			}
+			"Other"
+			{
+				"1"				"item_shinigami_other_1"
+				"2"				"item_shinigami_other_2"
+				"3"				"item_shinigami_other_3"
+				"4"				"item_shinigami_other_4"
+				"5"				"item_shinigami_other_5"
+			}
+		}
+		
+		"Abilities"
+		{
+			"shinigami_fan_the_blades"				"true"
+			"shinigami_reaper"						"true"
+			"shinigami_cutthroat_slice"				"true"
+			"shinigami_reversal"					"true"
+			"shinigami_flurry_of_blows"				"true"
+			"shinigami_whirling_slash"				"true"
+			"shinigami_slice_n_dice"				"true"
+			"shinigami_grievous_strike"				"true"
+		}
+		
+		// Custom Attributes
+		"AttributePrimary"							"DOTA_ATTRIBUTE_AGILITY"
+		"BaseStrength"								"23"
+		"BaseIntellect"								"15"
+		"BaseAgility"								"31"
+		"BaseLuck"									"0"
+		"BaseVitality"								"0"
+		"BaseStrengthGain"							"2.1"
+		"BaseIntellectGain"							"1.4"
+		"BaseAgilityGain"							"3.5"
+		"BaseLuckGain"								"0"
+		"BaseVitalityGain"							"1"
+		// Override Default DOTA
+		"AttributeBaseStrength"			"0"
+		"AttributeStrengthGain"			"0"
+		"AttributeBaseIntelligence"		"0"
+		"AttributeIntelligenceGain"		"0"
+		"AttributeBaseAgility"			"0"
+		"AttributeAgilityGain"			"0"
+		
+		"MovementTurnRate"			"1.5"
+		
+	}
+	"npc_dota_hero_windrunner" // Sylph
+	{
+		"override_hero"			"npc_dota_hero_windrunner"
+		"DisableWearables"			"0"
+		"Ability1"				"class_empty_1"
+		"Ability2"				"class_empty_2"
+		"Ability3"				"class_empty_3"
+		"Ability4"				"sylph_zephyr"
+		"Ability5"				"class_filler"
+		"Ability6"				"class_empty_4"
+		// Talents
+		"Ability10"		"special_bonus_attack_damage_15"
+		"Ability11"		"generic_empty_talent_1"
+		"Ability12"		"special_bonus_hp_150"
+		"Ability13"		"sylph_zephyr_talent_1"
+		"Ability14"		"generic_empty_talent_2"
+		"Ability15"		"generic_empty_talent_3"
+		"Ability16"		"special_bonus_attack_range_100"
+		"Ability17"		"generic_empty_talent_4"
+		
+		"HeroValues"
+		{
+			"Support"			"3"
+			"Damage"			"5"
+			"Tank"				"2"
+		}
+		
+		"Items"
+		{
+			"Armor"
+			{
+				"1"				"item_sylph_armor_1"
+				"2"				"item_sylph_armor_2"
+				"3"				"item_sylph_armor_3"
+				"4"				"item_sylph_armor_4"
+				"5"				"item_sylph_armor_5"
+			}
+			"Weapon"
+			{
+				"1"				"item_sylph_weapon_1"
+				"2"				"item_sylph_weapon_2"
+				"3"				"item_sylph_weapon_3"
+				"4"				"item_sylph_weapon_4"
+				"5"				"item_sylph_weapon_5"
+			}
+			"Other"
+			{
+				"1"				"item_sylph_other_1"
+				"2"				"item_sylph_other_2"
+				"3"				"item_sylph_other_3"
+				"4"				"item_sylph_other_4"
+				"5"				"item_sylph_other_5"
+			}
+		}
+		
+		"Abilities"
+		{
+			"sylph_mistral_breeze"					"true"
+			"sylph_immaterialize"					"true"
+			"sylph_cyclone"							"true"
+			"sylph_jetstream"						"true"
+			"sylph_winds_aid"						"true"
+			"sylph_aerodynamic"						"true"
+			"sylph_rapid_fire"						"true"
+			"sylph_updraft"							"true"
+		}
+		
+		// Custom Attributes
+		"AttributePrimary"							"DOTA_ATTRIBUTE_AGILITY"
+		"BaseStrength"								"18"
+		"BaseIntellect"								"30"
+		"BaseAgility"								"20"
+		"BaseLuck"									"0"
+		"BaseVitality"								"0"
+		"BaseStrengthGain"							"1.5"
+		"BaseIntellectGain"							"2.4"
+		"BaseAgilityGain"							"2.4"
+		"BaseLuckGain"								"0"
+		"BaseVitalityGain"							"1"
+		// Override Default DOTA
+		"AttributeBaseStrength"			"0"
+		"AttributeStrengthGain"			"0"
+		"AttributeBaseIntelligence"		"0"
+		"AttributeIntelligenceGain"		"0"
+		"AttributeBaseAgility"			"0"
+		"AttributeAgilityGain"			"0"
+		
+		"MovementTurnRate"			"1.5"
+		
+	}
+	"npc_dota_hero_treant" // Forest
+	{
+		"override_hero"				"npc_dota_hero_treant"
+		"DisableWearables"			"0"
+		"Ability1"				"class_empty_1"
+		"Ability2"				"class_empty_2"
+		"Ability3"				"class_empty_3"
+		"Ability4"				"forest_iron_bark"
+		"Ability5"				"class_filler"
+		"Ability6"				"class_empty_4"
+		// Talents 
+		"Ability10"		"generic_empty_talent_1"
+		"Ability11"		"special_bonus_mp_regen_2"
+		"Ability12"		"forest_iron_bark_talent_1"
+		"Ability13"		"special_bonus_movement_speed_25"
+		"Ability14"		"special_bonus_cooldown_reduction_15"
+		"Ability15"		"generic_empty_talent_2"
+		"Ability16"		"generic_empty_talent_4"
+		"Ability17"		"generic_empty_talent_3"
+		
+		"HeroValues"
+		{
+			"Support"			"5"
+			"Damage"			"1"
+			"Tank"				"3"
+		}
+		
+		"Items"
+		{
+			"Armor"
+			{
+				"1"				"item_forest_armor_1"
+				"2"				"item_forest_armor_2"
+				"3"				"item_forest_armor_3"
+				"4"				"item_forest_armor_4"
+				"5"				"item_forest_armor_5"
+			}
+			"Weapon"
+			{
+				"1"				"item_forest_weapon_1"
+				"2"				"item_forest_weapon_2"
+				"3"				"item_forest_weapon_3"
+				"4"				"item_forest_weapon_4"
+				"5"				"item_forest_weapon_5"
+			}
+			"Other"
+			{
+				"1"				"item_forest_other_1"
+				"2"				"item_forest_other_2"
+				"3"				"item_forest_other_3"
+				"4"				"item_forest_other_4"
+				"5"				"item_forest_other_5"
+			}
+		}
+		
+		"Abilities"
+		{
+			"forest_growing_armor"			"true"
+			"forest_parasitic_growth"		"true"
+			"forest_natures_grove"			"true"
+			"forest_overgrowth"				"true"
+			"forest_vine_whip"				"true"
+			"forest_ancient_tether"			"true"
+			"forest_envelop"				"true"
+			"forest_become_one"				"true"
+		}
+		
+		// Custom Attributes
+		"AttributePrimary"							"DOTA_ATTRIBUTE_STRENGTH"
+		"BaseStrength"								"30"
+		"BaseIntellect"								"20"
+		"BaseAgility"								"10"
+		"BaseLuck"									"0"
+		"BaseVitality"								"0"
+		"BaseStrengthGain"							"2.8"
+		"BaseIntellectGain"							"2.8"
+		"BaseAgilityGain"							"0.8"
+		"BaseLuckGain"								"0"
+		"BaseVitalityGain"							"1"
+		// Override Default DOTA
+		"AttributeBaseStrength"			"0"
+		"AttributeStrengthGain"			"0"
+		"AttributeBaseIntelligence"		"0"
+		"AttributeIntelligenceGain"		"0"
+		"AttributeBaseAgility"			"0"
+		"AttributeAgilityGain"			"0"
+		
+		"MovementTurnRate"			"1.5"
+	}
+	"npc_dota_hero_omniknight" // Justicar
+	{
+		"override_hero"			"npc_dota_hero_omniknight"
+		"DisableWearables"			"0"
+		"Ability1"				"class_empty_1"					// Ability 1
+		"Ability2"				"class_empty_2"
+		"Ability3"				"class_empty_3"
+		"Ability4"				"justicar_inner_sun"
+		"Ability5"				"class_filler"
+		"Ability6"				"class_empty_4"
+		// Talents
+		"Ability10"		"special_bonus_armor_5"
+		"Ability11"		"generic_empty_talent_1"
+		"Ability12"		"generic_empty_talent_2"
+		"Ability13"		"special_bonus_hp_200"
+		"Ability14"		"justicar_inner_sun_talent_1"
+		"Ability15"		"special_bonus_mp_regen_6"
+		"Ability16"		"generic_empty_talent_3"
+		"Ability17"		"generic_empty_talent_4"
+		
+		"HeroValues"
+		{
+			"Support"			"4"
+			"Damage"			"3"
+			"Tank"				"4"
+		}
+		
+		"Items"
+		{
+			"Armor"
+			{
+				"1"				"item_justicar_armor_1"
+				"2"				"item_justicar_armor_2"
+				"3"				"item_justicar_armor_3"
+				"4"				"item_justicar_armor_4"
+				"5"				"item_justicar_armor_5"
+			}
+			"Weapon"
+			{
+				"1"				"item_justicar_weapon_1"
+				"2"				"item_justicar_weapon_2"
+				"3"				"item_justicar_weapon_3"
+				"4"				"item_justicar_weapon_4"
+				"5"				"item_justicar_weapon_5"
+			}
+			"Other"
+			{
+				"1"				"item_justicar_other_1"
+				"2"				"item_justicar_other_2"
+				"3"				"item_justicar_other_3"
+				"4"				"item_justicar_other_4"
+				"5"				"item_justicar_other_5"
+			}
+		}
+		
+		"Abilities"
+		{
+			"justicar_shining_light"				"true"
+			"justicar_sacred_ground"				"true"
+			"justicar_penitence"					"true"
+			"justicar_absolution"					"true"
+			"justicar_judgement"					"true"
+			"justicar_blessed_aegis"				"true"
+			"justicar_radiant_glory"				"true"
+			"justicar_avenging_wrath"				"true"
+		}
+		
+		// Custom Attributes
+		"AttributePrimary"							"DOTA_ATTRIBUTE_STRENGTH"
+		"BaseStrength"								"27"
+		"BaseIntellect"								"27"
+		"BaseAgility"								"27"
+		"BaseLuck"									"27"
+		"BaseVitality"								"27"
+		"BaseStrengthGain"							"1.5"
+		"BaseIntellectGain"							"2.4"
+		"BaseAgilityGain"							"2"
+		"BaseLuckGain"								"0"
+		"BaseVitalityGain"							"1"
+		// Override Default DOTA
+		"AttributeBaseStrength"			"0"
+		"AttributeStrengthGain"			"0"
+		"AttributeBaseIntelligence"		"0"
+		"AttributeIntelligenceGain"		"0"
+		"AttributeBaseAgility"			"0"
+		"AttributeAgilityGain"			"0"
+		
+		"MovementTurnRate"			"1.5"
+		
+	}
+	//=================================================================================================================
+	// HERO: Gladiatrix
+	//=================================================================================================================
+	"npc_dota_hero_legion_commander"
+	{
+		"override_hero"			"npc_dota_hero_legion_commander"
+		"DisableWearables"			"0"
+		"Ability1"				"class_empty_1"					// Ability 1
+		"Ability2"				"class_empty_2"					// Ability 2
+		"Ability3"				"class_empty_3"						// Ability 3
+		"Ability4"				"gladiatrix_fearless_assault"
+		"Ability5"				"class_filler"
+		"Ability6"				"class_empty_4"
+		// Talents
+		"Ability10"		"generic_empty_talent_1"
+		"Ability11"		"gladiatrix_fearless_assault_talent_1"
+		"Ability12"		"special_bonus_armor_7"
+		"Ability13"		"generic_empty_talent_2"
+		"Ability14"		"special_bonus_attack_damage_30"
+		"Ability15"		"special_bonus_hp_400"
+		"Ability16"		"generic_empty_talent_3"
+		"Ability17"		"generic_empty_talent_4"
+		
+		"HeroValues"
+		{
+			"Support"			"2"
+			"Damage"			"4"
+			"Tank"				"4"
+		}
+
+		"Items"
+		{
+			"Armor"
+			{
+				"1"				"item_gladiatrix_armor_1"
+				"2"				"item_gladiatrix_armor_2"
+				"3"				"item_gladiatrix_armor_3"
+				"4"				"item_gladiatrix_armor_4"
+				"5"				"item_gladiatrix_armor_5"
+			}
+			"Weapon"
+			{
+				"1"				"item_gladiatrix_weapon_1"
+				"2"				"item_gladiatrix_weapon_2"
+				"3"				"item_gladiatrix_weapon_3"
+				"4"				"item_gladiatrix_weapon_4"
+				"5"				"item_gladiatrix_weapon_5"
+			}
+			"Other"
+			{
+				"1"				"item_gladiatrix_other_1"
+				"2"				"item_gladiatrix_other_2"
+				"3"				"item_gladiatrix_other_3"
+				"4"				"item_gladiatrix_other_4"
+				"5"				"item_gladiatrix_other_5"
+			}
+		}
+		
+		"Abilities"
+		{
+			"gladiatrix_victorious_advance"			"true"
+			"gladiatrix_unbreakable_morale"			"true"
+			"gladiatrix_imperious_shout"			"true"
+			"gladiatrix_war_fury"					"true"
+			"gladiatrix_valiant_rush"				"true"
+			"gladiatrix_cross_cut"					"true"
+			"gladiatrix_adrenaline"					"true"
+			"gladiatrix_leg_sweep"					"true"
+		}
+		
+		// Custom Attributes
+		"BaseStrength"								"27"
+		"BaseIntellect"								"10"
+		"BaseAgility"								"27"
+		"BaseLuck"									"0"
+		"BaseVitality"								"0"
+		"BaseStrengthGain"							"3"
+		"BaseIntellectGain"							"0.6"
+		"BaseAgilityGain"							"1.8"
+		"BaseLuckGain"								"0"
+		"BaseVitalityGain"							"1"
+		// Override Default DOTA
+		"AttributeBaseStrength"			"0"
+		"AttributeStrengthGain"			"0"
+		"AttributeBaseIntelligence"		"0"
+		"AttributeIntelligenceGain"		"0"
+		"AttributeBaseAgility"			"0"
+		"AttributeAgilityGain"			"0"
+		
+		"MovementTurnRate"			"1.5"
+	}
+	"npc_dota_hero_skeleton_king" // Wraith
+	{
+		"override_hero"			"npc_dota_hero_skeleton_king"
+		"DisableWearables"			"0"
+		"Ability1"					"class_empty_1"
+		"Ability2"					"class_empty_2"
+		"Ability3"					"class_empty_3"
+		"Ability4"					"wraith_one_for_all"
+		"Ability5"					"class_filler"
+		"Ability6"					"class_empty_4"
+		// Talents
+		"Ability10"		"special_bonus_attack_damage_15"
+		"Ability11"		"generic_empty_talent_1"
+		"Ability12"		"generic_empty_talent_3"
+		"Ability13"		"special_bonus_hp_200"
+		"Ability14"		"special_bonus_attack_speed_40"
+		"Ability15"		"generic_empty_talent_2"
+		"Ability16"		"wraith_one_for_all_talent_1"
+		"Ability17"		"generic_empty_talent_4"
+		
+		"HeroValues"
+		{
+			"Support"			"2"
+			"Damage"			"4"
+			"Tank"				"4"
+		}
+		
+		"Items"
+		{
+			"Armor"
+			{
+				"1"				"item_wraith_armor_1"
+				"2"				"item_wraith_armor_2"
+				"3"				"item_wraith_armor_3"
+				"4"				"item_wraith_armor_4"
+				"5"				"item_wraith_armor_5"
+			}
+			"Weapon"
+			{
+				"1"				"item_wraith_weapon_1"
+				"2"				"item_wraith_weapon_2"
+				"3"				"item_wraith_weapon_3"
+				"4"				"item_wraith_weapon_4"
+				"5"				"item_wraith_weapon_5"
+			}
+			"Other"
+			{
+				"1"				"item_wraith_other_1"
+				"2"				"item_wraith_other_2"
+				"3"				"item_wraith_other_3"
+				"4"				"item_wraith_other_4"
+				"5"				"item_wraith_other_5"
+			}
+		}
+		
+		"Abilities"
+		{
+			"wraith_bloodletter"				"true"
+			"wraith_crimson_berserker"			"true"
+			"wraith_sanguine_aura"				"true"
+			"wraith_blood_ritual"				"true"
+			"wraith_wraithfire"					"true"
+			"wraith_undying"					"true"
+			"wraith_life_strike"				"true"
+			"wraith_wraiths_will"				"true"
+		}
+		
+		// Custom Attributes
+		"BaseStrength"								"30"
+		"BaseIntellect"								"15"
+		"BaseAgility"								"15"
+		"BaseLuck"									"0"
+		"BaseVitality"								"27"
+		"BaseStrengthGain"							"3"
+		"BaseIntellectGain"							"1.5"
+		"BaseAgilityGain"							"1.5"
+		"BaseLuckGain"								"0"
+		"BaseVitalityGain"							"1"
+		// Override Default DOTA
+		"AttributeBaseStrength"			"0"
+		"AttributeStrengthGain"			"0"
+		"AttributeBaseIntelligence"		"0"
+		"AttributeIntelligenceGain"		"0"
+		"AttributeBaseAgility"			"0"
+		"AttributeAgilityGain"			"0"
+		
+		"MovementTurnRate"			"1.5"
+		
+	}
+	"npc_dota_hero_necrolyte"
+	{
+		"override_hero"			"npc_dota_hero_necrolyte"
+		"DisableWearables"			"0"
+		"Ability1"					"class_empty_1"
+		"Ability2"					"class_empty_2"
+		"Ability3"					"class_empty_3"
+		"Ability4"					"puppeteer_black_plague"
+		"Ability5"					"class_filler"
+		"Ability6"					"class_empty_4"
+		// Talents
+		"Ability10"		"special_bonus_attack_damage_40"
+		"Ability11"		"generic_empty_talent_1"
+		"Ability12"		"special_bonus_spell_amplify_12"
+		"Ability13"		"generic_empty_talent_2"
+		"Ability14"		"puppeteer_black_plague_talent_1"
+		"Ability15"		"generic_empty_talent_3"
+		"Ability16"		"special_bonus_hp_400"
+		"Ability17"		"generic_empty_talent_4"
+		
+		"HeroValues"
+		{
+			"Support"			"3"
+			"Damage"			"3"
+			"Tank"				"3"
+		}
+		
+		"Items"
+		{
+			"Armor"
+			{
+				"1"				"item_puppeteer_armor_1"
+				"2"				"item_puppeteer_armor_2"
+				"3"				"item_puppeteer_armor_3"
+				"4"				"item_puppeteer_armor_4"
+				"5"				"item_puppeteer_armor_5"
+			}
+			"Weapon"
+			{
+				"1"				"item_puppeteer_weapon_1"
+				"2"				"item_puppeteer_weapon_2"
+				"3"				"item_puppeteer_weapon_3"
+				"4"				"item_puppeteer_weapon_4"
+				"5"				"item_puppeteer_weapon_5"
+			}
+			"Other"
+			{
+				"1"				"item_puppeteer_other_1"
+				"2"				"item_puppeteer_other_2"
+				"3"				"item_puppeteer_other_3"
+				"4"				"item_puppeteer_other_4"
+				"5"				"item_puppeteer_other_5"
+			}
+		}
+		
+		"Abilities"
+		{
+			"puppeteer_skeletal_rush"				"true"
+			"puppeteer_mass_of_flesh"				"true"
+			"puppeteer_skeleton_archer"				"true"
+			"puppeteer_zombie_brute"				"true"
+			"puppeteer_lich_mage"					"true"
+			"puppeteer_bone_wave"					"true"
+			"puppeteer_fleshcraft"					"true"
+			"puppeteer_pestilence"					"true"
+		}
+		
+		// Custom Attributes
+		"AttributePrimary"							"DOTA_ATTRIBUTE_INTELLECT"
+		"BaseStrength"								"20"
+		"BaseIntellect"								"34"
+		"BaseAgility"								"12"
+		"BaseLuck"									"27"
+		"BaseVitality"								"27"
+		"BaseStrengthGain"							"1.5"
+		"BaseIntellectGain"							"3.4"
+		"BaseAgilityGain"							"1.3"
+		"BaseLuckGain"								"0"
+		"BaseVitalityGain"							"1"
+		// Override Default DOTA
+		"AttributeBaseStrength"			"0"
+		"AttributeStrengthGain"			"0"
+		"AttributeBaseIntelligence"		"0"
+		"AttributeIntelligenceGain"		"0"
+		"AttributeBaseAgility"			"0"
+		"AttributeAgilityGain"			"0"
+		
+		"MovementTurnRate"			"1.5"
+		
+	}
+	"npc_dota_hero_sven" // Guardian
+	{
+		"override_hero"			"npc_dota_hero_sven"
+		"DisableWearables"			"0"
+		"Ability1"				"class_empty_1"					// Ability 1
+		"Ability2"				"class_empty_2"					// Ability 2
+		"Ability3"				"class_empty_3"						// Ability 3
+		"Ability4"				"guardian_fortitude"
+		"Ability5"				"class_filler"
+		"Ability6"				"class_empty_4"
+		// Talents
+		"Ability10"		"guardian_fortitude_talent_1"
+		"Ability11"		"special_bonus_mp_200"
+		"Ability12"		"special_bonus_attack_speed_30"
+		"Ability13"		"generic_empty_talent_2"
+		"Ability14"		"generic_empty_talent_1"
+		"Ability15"		"generic_empty_talent_3"
+		"Ability16"		"special_bonus_attack_damage_65"
+		"Ability17"		"generic_empty_talent_4"
+		
+		"HeroValues"
+		{
+			"Support"			"2"
+			"Damage"			"2"
+			"Tank"				"5"
+		}
+		
+		"Items"
+		{
+			"Armor"
+			{
+				"1"				"item_guardian_armor_1"
+				"2"				"item_guardian_armor_2"
+				"3"				"item_guardian_armor_3"
+				"4"				"item_guardian_armor_4"
+				"5"				"item_guardian_armor_5"
+			}
+			"Weapon"
+			{
+				"1"				"item_guardian_weapon_1"
+				"2"				"item_guardian_weapon_2"
+				"3"				"item_guardian_weapon_3"
+				"4"				"item_guardian_weapon_4"
+				"5"				"item_guardian_weapon_5"
+			}
+			"Other"
+			{
+				"1"				"item_guardian_other_1"
+				"2"				"item_guardian_other_2"
+				"3"				"item_guardian_other_3"
+				"4"				"item_guardian_other_4"
+				"5"				"item_guardian_other_5"
+			}
+		}
+		
+		"Abilities"
+		{
+			"guardian_anchor_howl"					"true"
+			"guardian_challenge"					"true"
+			"guardian_glorious_shield"				"true"
+			"guardian_guardians_spirit"				"true"
+			"guardian_punish"						"true"
+			"guardian_rallying_cry"					"true"
+			"guardian_shield_bash"					"true"
+			"guardian_stone_fortress"				"true"
+		}
+		
+		// Custom Attributes
+		"BaseStrength"								"38"
+		"BaseIntellect"								"18"
+		"BaseAgility"								"15"
+		"BaseLuck"									"27"
+		"BaseVitality"								"27"
+		"BaseStrengthGain"							"3.2"
+		"BaseIntellectGain"							"1.6"
+		"BaseAgilityGain"							"1.2"
+		"BaseLuckGain"								"0"
+		"BaseVitalityGain"							"1"
+		// Override Default DOTA
+		"AttributeBaseStrength"			"0"
+		"AttributeStrengthGain"			"0"
+		"AttributeBaseIntelligence"		"0"
+		"AttributeIntelligenceGain"		"0"
+		"AttributeBaseAgility"			"0"
+		"AttributeAgilityGain"			"0"
+		
+		"MovementTurnRate"			"1.5"
+	}
+	"npc_dota_hero_dazzle" // Mystic -> need to do it like this for mergetables
+	{
+		"override_hero"			"npc_dota_hero_dazzle"
+		"DisableWearables"			"0"
+		"Ability1"				"class_empty_1"					// Ability 1
+		"Ability2"				"class_empty_2"					// Ability 2
+		"Ability3"				"class_empty_3"						// Ability 3
+		"Ability4"				"mystic_life_weaver"
+		"Ability5"				"class_filler"
+		"Ability6"				"class_empty_4"
+		// Talents
+		"Ability10"		"generic_empty_talent_1"
+		"Ability11"		"special_bonus_hp_125"
+		"Ability12"		"special_bonus_cast_range_100"
+		"Ability13"		"generic_empty_talent_2"
+		"Ability14"		"mystic_life_weaver_talent_1"
+		"Ability15"		"special_bonus_mp_200"
+		"Ability16"		"generic_empty_talent_3"
+		"Ability17"		"generic_empty_talent_4"
+		
+		"HeroValues"
+		{
+			"Support"			"5"
+			"Damage"			"2"
+			"Tank"				"2"
+		}
+		
+		"Items"
+		{
+			"Armor"
+			{
+				"1"				"item_mystic_armor_1"
+				"2"				"item_mystic_armor_2"
+				"3"				"item_mystic_armor_3"
+				"4"				"item_mystic_armor_4"
+				"5"				"item_mystic_armor_5"
+			}
+			"Weapon"
+			{
+				"1"				"item_mystic_weapon_1"
+				"2"				"item_mystic_weapon_2"
+				"3"				"item_mystic_weapon_3"
+				"4"				"item_mystic_weapon_4"
+				"5"				"item_mystic_weapon_5"
+			}
+			"Other"
+			{
+				"1"				"item_mystic_other_1"
+				"2"				"item_mystic_other_2"
+				"3"				"item_mystic_other_3"
+				"4"				"item_mystic_other_4"
+				"5"				"item_mystic_other_5"
+			}
+		}
+		
+		"Abilities"
+		{
+			"mystic_death_clasp"					"true"
+			"mystic_eternal_feast"					"true"
+			"mystic_grim_harvest"					"true"
+			"mystic_life_swap"						"true"
+			"mystic_mending_wave"					"true"
+			"mystic_mist_barrier"					"true"
+			"mystic_sacrificial_rite"				"true"
+			"mystic_unyielding"						"true"
+		}
+		
+		// Custom Attributes
+		"AttributePrimary"							"DOTA_ATTRIBUTE_INTELLECT"
+		"BaseStrength"								"16"
+		"BaseIntellect"								"31"
+		"BaseAgility"								"20"
+		"BaseLuck"									"27"
+		"BaseVitality"								"27"
+		"BaseStrengthGain"							"1.5"
+		"BaseIntellectGain"							"3.2"
+		"BaseAgilityGain"							"1.6"
+		"BaseLuckGain"								"0"
+		"BaseVitalityGain"							"1"
+		// Override Default DOTA
+		"AttributeBaseStrength"			"0"
+		"AttributeStrengthGain"			"0"
+		"AttributeBaseIntelligence"		"0"
+		"AttributeIntelligenceGain"		"0"
+		"AttributeBaseAgility"			"0"
+		"AttributeAgilityGain"			"0"
+		
+		"MovementTurnRate"			"1.5"
+	}
+}

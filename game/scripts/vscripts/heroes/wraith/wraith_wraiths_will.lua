@@ -65,7 +65,6 @@ if IsServer() then
 	
 	function modifier_wraith_wraiths_will_talent:OnIntervalThink()
 		self:GetParent():HealEvent(self.heal, self:GetAbility(), self:GetCaster())
-		print(self.damage, self:GetAbility():GetTetheredCount())
 		self:GetAbility():DealDamage(self:GetCaster(), self:GetCaster(), self.damage / math.max(self:GetAbility():GetTetheredCount(), 1), {damage_flags = DOTA_DAMAGE_FLAG_NON_LETHAL} )
 		EmitSoundOn("Hero_Necrolyte.PreAttack", self:GetParent())
 	end
@@ -79,7 +78,7 @@ if IsServer() then
 	function modifier_wraith_wraiths_will_taunt:OnCreated()
 		self.heal = self:GetSpecialValueFor("heal")
 		self.damage = self:GetSpecialValueFor("damage")
-		if self:GetAbility():GetTetheredCount() == 1 then self:GetAbility():StartDelayedCooldown() end
+		if self:GetAbility():GetTetheredCount() >= 1 then self:GetAbility():StartDelayedCooldown() end
 		
 		local fx = ParticleManager:CreateParticle("particles/heroes/wraith/wraith_wraiths_will_blade_golden.vpcf", PATTACH_POINT_FOLLOW, self:GetCaster())
 		ParticleManager:SetParticleControlEnt(fx, 0, self:GetCaster(), PATTACH_POINT_FOLLOW, "attach_hitloc", self:GetCaster():GetAbsOrigin(), true)

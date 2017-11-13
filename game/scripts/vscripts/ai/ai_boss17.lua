@@ -18,7 +18,7 @@ end
 
 function AIThink()
 	if thisEntity.internalClock + 15 < GameRules:GetGameTime() then
-		CreateUnitByName( "npc_dota_mini_boss2_he" ,thisEntity:GetAbsOrigin() + RandomVector(RandomInt(250,500)), true, nil, nil, DOTA_TEAM_BADGUYS )
+		CreateUnitByName( "npc_dota_mini_boss2" ,thisEntity:GetAbsOrigin() + RandomVector(RandomInt(250,500)), true, nil, nil, DOTA_TEAM_BADGUYS )
 		thisEntity.internalClock = GameRules:GetGameTime()
 	end
 	if not thisEntity:IsDominated() then
@@ -32,7 +32,7 @@ function AIThink()
 			return 0.25
 		end
 		if thisEntity.kick:IsFullyCastable() then
-			local target = AICore:RandomEnemyHeroInRange( thisEntity, thisEntity.kick:GetCastRange() + 50, true)
+			local target = AICore:RandomEnemyHeroInRange( thisEntity, thisEntity.kick:GetCastRange() + 150, true)
 			if target then
 				ExecuteOrderFromTable({
 					UnitIndex = thisEntity:entindex(),

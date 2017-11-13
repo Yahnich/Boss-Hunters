@@ -19,17 +19,19 @@ function mystic_death_clasp:OnChannelThink(dt)
 	self.radius = self.radius + self.radiusGrowth * dt
 	ParticleManager:SetParticleControl(self.FX, 1, Vector(self.radius, self.radius, 1))
 	local caster = self:GetCaster()
-	local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), self.radius)
-	local allies = caster:FindFriendlyUnitsInRadius(caster:GetAbsOrigin(), self.radius)
 	
-	local damage = self:GetSpecialValueFor("pulse_damage")
-	local heal = damage * self:GetSpecialValueFor("heal_percentage") / 100
+	if self.timerThinker > 0.5 then
+		local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), self.radius)
+		local allies = caster:FindFriendlyUnitsInRadius(caster:GetAbsOrigin(), self.radius)
+		
+		local total_damage = self:GetSpecialValueFor("total_damage")
+		local damage = total_damage / self:GetChannelTime() * 0.5
+		local heal = damage * self:GetSpecialValueFor("heal_percentage") / 100
 	
-	for _, enemy in pairs(enemies) do
-		enemy:AddNewModifier(caster, self, "modifier_mystic_death_clasp_slow", {duration = self:GetSpecialValueFor("slow_duration")})
-		if self.timerThinker > 1 then
+		for _, enemy in pairs(enemies) do
+			enemy:AddNewModifier(caster, self, "modifier_mystic_death_clasp_slow", {duration = self:GetSpecialValueFor("slow_duration")})		
 			self:DealDamage(caster, enemy, damage)
-			if caster:HasTalent("mystic_death_clasp_talent_1") then
+			if not caster:HasTalent("mystic_death_clasp_talent_1") then
 				caster:HealEvent(heal, self, caster)
 			else
 				for _, ally in ipairs(allies) do
@@ -37,8 +39,6 @@ function mystic_death_clasp:OnChannelThink(dt)
 				end
 			end
 		end
-	end
-	if self.timerThinker > 1 then
 		self.timerThinker = 0
 	end
 end

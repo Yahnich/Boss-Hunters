@@ -110,17 +110,22 @@ modifier_ifrit_fire_surge_fire_debuff = class({})
 function modifier_ifrit_fire_surge_fire_debuff:OnCreated(kv)
 	self.damage_over_time = tonumber(kv.damage)
 	self.tick_interval = 1
+	self.damage_tick = ( self.damage_over_time / self:GetRemainingTime() ) * self.tick_interval
 	if self:GetCaster():HasScepter() then self.damage_over_time = (self.damage_over_time or 0) * 2 end
 	if IsServer() then self:StartIntervalThink(self.tick_interval) end
 end
 
 function modifier_ifrit_fire_surge_fire_debuff:OnRefresh(kv)
-	self.damage_over_time = tonumber(kv.damage)
+	self.damage_over_time = self.damage_over_time + tonumber(kv.damage)
+	self.damage_tick = ( self.damage_over_time / self:GetRemainingTime() ) * self.tick_interval
 	if self:GetCaster():HasScepter() then self.damage_over_time = (self.damage_over_time or 0) * 2 end
 end
 
 function modifier_ifrit_fire_surge_fire_debuff:OnIntervalThink()
-	ApplyDamage( {victim = self:GetParent(), attacker = self:GetCaster(), damage = self.damage_over_time, damage_type = DAMAGE_TYPE_MAGICAL, ability = self:GetAbility()} )
+	self.damage_over_time = math.max(0, self.damage_over_time - self.damage_tick)
+	local damage = self.damage_tick
+	if self:GetCaster():HasScepter() then damage = damage * 2 end
+	ApplyDamage( {victim = self:GetParent(), attacker = self:GetCaster(), damage = self.damage_tick, damage_type = DAMAGE_TYPE_MAGICAL, ability = self:GetAbility()} )
 end
 
 --------------------------------------------------------------------------------

@@ -77,17 +77,21 @@ LinkLuaModifier("modifier_wraith_sanguine_aura_toggle_aura", "heroes/wraith/wrai
 
 function modifier_wraith_sanguine_aura_toggle_aura:OnCreated()
 	self.lifesteal = self:GetSpecialValueFor("lifesteal") / 100
-	self.regen = self:GetSpecialValueFor("talent_regen")
+	if IsServer() and self:GetCaster():HasTalent("wraith_sanguine_aura_talent_1") then self:GetParent():AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_wraith_sanguine_aura_toggle_talent", {}) end
+end
+
+function modifier_wraith_sanguine_aura_toggle_aura:OnRefresh()
+	self.lifesteal = self:GetSpecialValueFor("lifesteal") / 100
+	if IsServer() and self:GetCaster():HasTalent("wraith_sanguine_aura_talent_1") then self:GetParent():AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_wraith_sanguine_aura_toggle_talent", {}) end
+end
+
+function modifier_wraith_sanguine_aura_toggle_aura:OnDestroy()
+	self.lifesteal = self:GetSpecialValueFor("lifesteal") / 100
+	if IsServer() and self:GetCaster():HasTalent("wraith_sanguine_aura_talent_1") then self:GetParent():RemoveModifierByName("modifier_wraith_sanguine_aura_toggle_talent") end
 end
 
 function modifier_wraith_sanguine_aura_toggle_aura:DeclareFunctions(self)
-	return {MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE, MODIFIER_EVENT_ON_TAKEDAMAGE}
-end
-
-function modifier_wraith_sanguine_aura_toggle_aura:GetModifierHealthRegenPercentage()
-	if self:GetCaster():HasTalent("wraith_sanguine_aura_talent_1") then
-		return self.regen
-	end
+	return {MODIFIER_EVENT_ON_TAKEDAMAGE}
 end
 
 function modifier_wraith_sanguine_aura_toggle_aura:OnTakeDamage(params)
@@ -98,4 +102,23 @@ function modifier_wraith_sanguine_aura_toggle_aura:OnTakeDamage(params)
 		
 		params.unit.lastCheckedHealth = params.unit:GetHealth()
 	end
+end
+
+modifier_wraith_sanguine_aura_toggle_talent = class({})
+LinkLuaModifier("modifier_wraith_sanguine_aura_toggle_talent", "heroes/wraith/wraith_sanguine_aura.lua", 0)
+
+function modifier_wraith_sanguine_aura_toggle_talent:OnCreated()
+	self.regen = self:GetSpecialValueFor("talent_regen")
+end
+
+function modifier_wraith_sanguine_aura_toggle_talent:DeclareFunctions(self)
+	return {MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE}
+end
+
+function modifier_wraith_sanguine_aura_toggle_talent:GetModifierHealthRegenPercentage()
+	return self.regen
+end
+
+function modifier_wraith_sanguine_aura_toggle_talent:IsHidden()
+	return true
 end

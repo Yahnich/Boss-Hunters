@@ -3,8 +3,9 @@ gladiatrix_cross_cut = class({})
 function gladiatrix_cross_cut:OnSpellStart()
 	local caster = self:GetCaster()
 	local targetPoint = self:GetCaster():GetAbsOrigin() 
+	local vDir = CalculateDirection(self:GetCursorPosition(), caster) 
 	local radius = self:GetTalentSpecialValueFor("area_of_effect")
-	if not caster:HasTalent("gladiatrix_cross_cut_talent_1") then targetPoint = targetPoint + self:GetCaster():GetForwardVector() * radius end
+	if not caster:HasTalent("gladiatrix_cross_cut_talent_1") then targetPoint = targetPoint + vDir * radius / 2 end
 	
 	local enemies = caster:FindEnemyUnitsInRadius(targetPoint, radius, {flag = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES})
 	for _, enemy in pairs(enemies) do

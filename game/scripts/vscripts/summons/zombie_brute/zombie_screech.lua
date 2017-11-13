@@ -14,12 +14,7 @@ function zombie_screech:OnSpellStart()
 	EmitSoundOn("Hero_Undying.FleshGolem.Cast", caster)
 	local scream = ParticleManager:CreateParticle("particles/heroes/puppeteer/puppeteer_zombie_screech.vpcf", PATTACH_POINT_FOLLOW, caster)
 	ParticleManager:ReleaseParticleIndex(scream)
-	self:SetActivated(false)
-	self:EndCooldown()
-	Timers:CreateTimer(delay, function() 
-		self:SetActivated(true)	
-		self:UseResources( false, false, true )
-	end)
+	self:StartDelayedCooldown(delay)
 end
 
 LinkLuaModifier( "modifier_zombie_screech_taunted", "summons/zombie_brute/zombie_screech.lua" ,LUA_MODIFIER_MOTION_NONE )

@@ -54,15 +54,17 @@ function boss33a_dark_orb:CreateDarkOrb(direction)
 	local duration = self:GetSpecialValueFor("duration")
 	
 	local ProjectileHit = function(self, target, position)
-		local caster = self:GetCaster()
-		local ability = self:GetAbility()
-		if not self.hitUnits[target:entindex()] then
-			ability:DealDamage(caster, target, self.damage)
-			EmitSoundOn("Hero_Puck.IIllusory_Orb_Damage", caster)
-			ParticleManager:FireParticle("particles/units/heroes/hero_puck/puck_illusory_orb_blink_out.vpcf", PATTACH_POINT_FOLLOW, target)
-			target:AddNewModifier(caster, ability, "modifier_silence", {duration = duration})
-			target:AddNewModifier(caster, ability, "modifier_disarmed", {duration = duration})
-			self.hitUnits[target:entindex()] = true
+		if target then
+			local caster = self:GetCaster()
+			local ability = self:GetAbility()
+			if not self.hitUnits[target:entindex()] then
+				ability:DealDamage(caster, target, self.damage)
+				EmitSoundOn("Hero_Puck.IIllusory_Orb_Damage", caster)
+				ParticleManager:FireParticle("particles/units/heroes/hero_puck/puck_illusory_orb_blink_out.vpcf", PATTACH_POINT_FOLLOW, target)
+				target:AddNewModifier(caster, ability, "modifier_silence", {duration = duration})
+				target:AddNewModifier(caster, ability, "modifier_disarmed", {duration = duration})
+				self.hitUnits[target:entindex()] = true
+			end
 		end
 		return true
 	end

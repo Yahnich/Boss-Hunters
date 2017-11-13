@@ -46,9 +46,11 @@ function mystic_grim_harvest:OnSpellStart()
 		homeEnemies = nil
 	end
 	local ProjectileHit = function(self, target, position)
-		local caster = self:GetCaster()
-		local ability = self:GetAbility()
-		target:AddNewModifier(caster, ability, "modifier_mystic_grim_harvest_debuff", {duration = 0.5})
+		if target then
+			local caster = self:GetCaster()
+			local ability = self:GetAbility()
+			target:AddNewModifier(caster, ability, "modifier_mystic_grim_harvest_debuff", {duration = 0.5})
+		end
 		return true
 	end
 	ProjectileHandler:CreateProjectile(ProjectileThink, ProjectileHit, {  FX = "particles/heroes/mystic/mystic_grim_harvest.vpcf",

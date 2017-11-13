@@ -69,7 +69,6 @@ function modifier_guardian_guardians_spirit_buff:DeclareFunctions()
 	funcs = {
 		MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE,
 		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
-		MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
 	}
 	return funcs
 end

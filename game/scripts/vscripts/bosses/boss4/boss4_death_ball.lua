@@ -32,14 +32,16 @@ function boss4_death_ball:OnSpellStart()
 	end
 	
 	local ProjectileHit = function(self, target, position)
-		local caster = self:GetCaster()
-		local ability = self:GetAbility()
-		if not self.hitUnits[target:entindex()] then
-			ability:DealDamage(caster, target, self.damage)
-			caster:HealEvent(self.damage, ability, caster)
-			EmitSoundOn("Hero_Undying.PreAttack", caster)
-			ParticleManager:FireParticle("particles/econ/items/bloodseeker/bloodseeker_eztzhok_weapon/bloodseeker_bloodbath_eztzhok_burst.vpcf", PATTACH_POINT_FOLLOW, target)
-			self.hitUnits[target:entindex()] = true
+		if target then
+			local caster = self:GetCaster()
+			local ability = self:GetAbility()
+			if not self.hitUnits[target:entindex()] then
+				ability:DealDamage(caster, target, self.damage)
+				caster:HealEvent(self.damage, ability, caster)
+				EmitSoundOn("Hero_Undying.PreAttack", caster)
+				ParticleManager:FireParticle("particles/econ/items/bloodseeker/bloodseeker_eztzhok_weapon/bloodseeker_bloodbath_eztzhok_burst.vpcf", PATTACH_POINT_FOLLOW, target)
+				self.hitUnits[target:entindex()] = true
+			end
 		end
 		return true
 	end

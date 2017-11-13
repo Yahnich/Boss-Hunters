@@ -94,6 +94,7 @@ modifier_ifrit_firebat_fire_debuff = class({})
 
 function modifier_ifrit_firebat_fire_debuff:OnCreated()
 	self.damage_over_time = self:GetAbility():GetTalentSpecialValueFor("burn_dot")
+	self.total_damage = self.damage_over_time * self:GetRemainingTime()
 	self.tick_interval = 1
 	if self:GetCaster():HasScepter() then self.damage_over_time = self.damage_over_time * 2 end
 	if IsServer() then 
@@ -102,8 +103,11 @@ function modifier_ifrit_firebat_fire_debuff:OnCreated()
 end
 
 function modifier_ifrit_firebat_fire_debuff:OnRefresh()
-	self.damage_over_time = self.damage_over_time + self:GetAbility():GetTalentSpecialValueFor("burn_dot")
-	if self:GetCaster():HasScepter() then self.damage_over_time = self.damage_over_time * 2 end
+	local addedDamage = self:GetAbility():GetTalentSpecialValueFor("burn_dot")
+	if self:GetCaster():HasScepter() then addedDamage = addedDamage * 2 end
+	self.total_damage = self.total_damage + addedDamage * self:GetRemainingTime()
+	self.damage_over_time = self.total_damage / self:GetRemainingTime() 
+	
 end
 
 function modifier_ifrit_firebat_fire_debuff:OnIntervalThink()

@@ -1,0 +1,12 @@
+Trinket List (you can hold 2):
+Sanguine Amulet - +15% Lifesteal (all)
+Ring of Power - +20% Damage (all)
+Bowstring of Swiftness - +50 attackspeed, +10% movespeed
+Wand of Haste - +20% cdr
+Grand Bulwark - +6 armor
+Gem of Absorption - Absorbs 1 spell per 15 seconds (projectile, damage and stun whatever)
+Ankh - Rez stone with a cooldown
+Stone of Vitality - Grants +1% health regen
+Talisman of Strength - +15% Strength
+Talisman of Agility - +15% Agility
+Talisman of Intellect - +15% Intelligence

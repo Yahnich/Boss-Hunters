@@ -1,36 +1,37 @@
 Projectile = class({})
 
-	function Projectile:constructor(thinkBehavior, hitBehavior, data)
-		for key, value in pairs(data) do
-			self[key] = value
-		end
-		
-		self.uniqueProjectileID = DoUniqueString("projectile")
-	
-		self.originalCaster = data.caster
-		self.currentCaster = data.caster
-		self.abilitySource = data.ability
-		
-		self.position = data.position or self.currentCaster:GetAbsOrigin()
-		self.radius = data.radius or 0
-		self.speed = data.speed or 0
-		self.velocity = data.velocity
-		
-		self.aliveTime = data.aliveTime or 0
-		self.duration = data.duration
-		
-		self.distanceTravelled = data.distanceTravelled or 0
-		self.distance = data.distance
-		
-		self.FX = ParticleManager:CreateParticle(data.FX, PATTACH_CUSTOMORIGIN, nil)
-			ParticleManager:SetParticleControl( self.FX, 2, Vector(self.speed,0,0) )
-			ParticleManager:SetParticleControl( self.FX, 0, self.position )
-			ParticleManager:SetParticleControl( self.FX, 1, self.position )
-			ParticleManager:SetParticleControl( self.FX, 3, self.position )
-		
-		self.thinkBehavior = thinkBehavior
-		self.hitBehavior = hitBehavior
+
+function Projectile:constructor(thinkBehavior, hitBehavior, data)
+	for key, value in pairs(data) do
+		self[key] = value
 	end
+	
+	self.uniqueProjectileID = DoUniqueString("projectile")
+
+	self.originalCaster = data.caster
+	self.currentCaster = data.caster
+	self.abilitySource = data.ability
+	
+	self.position = data.position or self.currentCaster:GetAbsOrigin()
+	self.radius = data.radius or 0
+	self.speed = data.speed or 0
+	self.velocity = data.velocity
+	
+	self.aliveTime = data.aliveTime or 0
+	self.duration = data.duration
+	
+	self.distanceTravelled = data.distanceTravelled or 0
+	self.distance = data.distance
+	
+	self.FX = ParticleManager:CreateParticle(data.FX, PATTACH_CUSTOMORIGIN, nil)
+		ParticleManager:SetParticleControl( self.FX, 2, Vector(self.speed,0,0) )
+		ParticleManager:SetParticleControl( self.FX, 0, self.position )
+		ParticleManager:SetParticleControl( self.FX, 1, self.position )
+		ParticleManager:SetParticleControl( self.FX, 3, self.position )
+	
+	self.thinkBehavior = thinkBehavior
+	self.hitBehavior = hitBehavior
+end
 
 function Projectile:ProjectileThink()
 	self:thinkBehavior()
@@ -43,14 +44,16 @@ function Projectile:ProjectileThink()
 	local radius = self:GetRadius()
 	local caster = self:GetCaster()
 	local enemies = caster:FindEnemyUnitsInRadius(position, radius)
-	for _, enemy in ipairs(enemies) do
-		local status, err, ret = xpcall(self.hitBehavior, debug.traceback, self, enemy, position)
-		if not status then
-			print(err)
-			self:Remove()
-		elseif not err then -- if no errors then xpcall doesn't return to err; so ret gets shoved back
-			self:Remove()
-			return nil
+	if not self.isUniqueProjectile then -- generic behavior
+		for _, enemy in ipairs(enemies) do
+			local status, err, ret = xpcall(self.hitBehavior, debug.traceback, self, enemy, position)
+			if not status then
+				print(err)
+				self:Remove()
+			elseif not err then -- if no errors then xpcall doesn't return to err; so ret gets shoved back
+				self:Remove()
+				return nil
+			end
 		end
 	end
 end

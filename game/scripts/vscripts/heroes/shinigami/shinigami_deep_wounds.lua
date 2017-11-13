@@ -34,8 +34,11 @@ function modifier_shinigami_deep_wounds_passive:OnTakeDamage(params)
 	if IsServer() then
 		if params.attacker == self:GetParent() and params.inflictor ~= self:GetAbility() and params.damage > 0 and (not params.inflictor or self:GetParent():HasAbility(params.inflictor:GetName())) then
 			local duration = self.duration
-			if (params.inflictor or self:GetParent().autoAttackFromAbilityState) and self:GetParent():HasTalent("shinigami_deep_wounds_talent_1") then duration = duration + self:GetParent():FindTalentValue("shinigami_deep_wounds_talent_1") end
-			params.unit:AddNewModifier(params.attacker, self:GetAbility(), "modifier_shinigami_deep_wounds_stacks", {duration = duration, damage = math.ceil(params.damage * self.damage_pct)})
+			local damageOverTime = math.ceil(params.damage * self.damage_pct) / duration
+			if (params.inflictor or self:GetParent().autoAttackFromAbilityState) and self:GetParent():HasTalent("shinigami_deep_wounds_talent_1") then 
+				duration = duration + self:GetParent():FindTalentValue("shinigami_deep_wounds_talent_1") 
+			end
+			params.unit:AddNewModifier(params.attacker, self:GetAbility(), "modifier_shinigami_deep_wounds_stacks", {duration = duration, damage = damageOverTime})
 		end
 	end
 end

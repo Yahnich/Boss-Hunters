@@ -1,4 +1,5 @@
 AbilityKV = LoadKeyValues("scripts/npc/npc_abilities_custom.txt")
+UnitKV = LoadKeyValues("scripts/npc/npc_heroes_custom.txt")
 
 function GetClientSync(key)
 	local value = CustomNetTables:GetTableValue( "syncing_purposes", key).value
@@ -131,4 +132,51 @@ end
 
 function C_DOTA_Modifier_Lua:AddIndependentStack()
 	self:IncrementStackCount()
+end
+
+
+function C_DOTA_BaseNPC:GetStrength()
+	local netTable = CustomNetTables:GetTableValue("hero_properties", self:GetUnitName()..self:entindex())
+	if netTable and netTable.strength then return netTable.strength end
+	return 0
+end
+
+function C_DOTA_BaseNPC:GetIntellect()
+	local netTable = CustomNetTables:GetTableValue("hero_properties", self:GetUnitName()..self:entindex())
+	if netTable and netTable.intellect then return netTable.intellect end
+	return 0
+end
+
+function C_DOTA_BaseNPC:GetAgility()
+	local netTable = CustomNetTables:GetTableValue("hero_properties", self:GetUnitName()..self:entindex())
+	if netTable and netTable.agility then return netTable.agility end
+	return 0
+end
+
+function C_DOTA_BaseNPC:GetVitality()
+	local netTable = CustomNetTables:GetTableValue("hero_properties", self:GetUnitName()..self:entindex())
+	if netTable and netTable.vitality then return netTable.vitality end
+	return 0
+end
+
+function C_DOTA_BaseNPC:GetLuck()
+	local netTable = CustomNetTables:GetTableValue("hero_properties", self:GetUnitName()..self:entindex())
+	if netTable and netTable.luck then return netTable.luck end
+	return 0
+end
+
+function C_DOTA_BaseNPC:GetPrimaryAttribute()
+	if UnitKV[self:GetUnitName()] then
+		attribute = UnitKV[self:GetUnitName()]["AttributePrimary"]
+		if attribute then
+			if attribute == "DOTA_ATTRIBUTE_STRENGTH" then
+				return DOTA_ATTRIBUTE_STRENGTH
+			elseif attribute == "DOTA_ATTRIBUTE_INTELLECT" then
+				return DOTA_ATTRIBUTE_INTELLECT
+			elseif attribute == "DOTA_ATTRIBUTE_AGILITY" then
+				return DOTA_ATTRIBUTE_AGILITY
+			end
+		end
+	end
+	return -1
 end

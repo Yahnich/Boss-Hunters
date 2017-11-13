@@ -28,8 +28,6 @@ if IsServer() then
 			thisEntity:SetBaseMaxHealth(thisEntity:GetMaxHealth()*1.5)
 			thisEntity:SetMaxHealth(thisEntity:GetMaxHealth()*1.5)
 			thisEntity:SetHealth(thisEntity:GetMaxHealth())
-			
-			 thisEntity:SetAverageBaseDamage(thisEntity:GetAverageBaseDamage()*1.2, 25)
 		end
 		thisEntity.AIbehavior = RandomInt(1,3)
 	end

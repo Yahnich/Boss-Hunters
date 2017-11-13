@@ -825,8 +825,8 @@ function hell_tempest_boss( keys )
             EffectName = "particles/fire_tornado.vpcf",
             vSpawnOrigin = casterPoint - caster:GetForwardVector()*4000,
             fDistance = 5000,
-            fStartRadius = 250,
-            fEndRadius = 250,
+            fStartRadius = 100,
+            fEndRadius = 100,
             fExpireTime = GameRules:GetGameTime() + 10,
             Source = caster,
             bHasFrontalCone = true,
@@ -834,7 +834,7 @@ function hell_tempest_boss( keys )
             bProvidesVision = false,
             iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY,
             iUnitTargetFlags = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
-            iUnitTargetType = DOTA_UNIT_TARGET_ALL,
+            iUnitTargetType = DOTA_UNIT_TARGET_HERO,
             bDeleteOnHit = false,
             vVelocity = caster:GetRightVector() * 1000,
             vAcceleration = caster:GetForwardVector() * 200
@@ -869,7 +869,7 @@ function doom_bringer_boss( event )
 	event.ability:ApplyDataDrivenModifier(caster, target, "fuckingdoomed", {duration = 10})
 	Timers:CreateTimer(0.1,function() 
 		if target:GetHealth() > target:GetMaxHealth() * 0.025 * GameRules.gameDifficulty and GameRules:GetGameTime() <= time + 10 then
-			target:SetHealth(target:GetHealth()*(1 - 0.01*GameRules.gameDifficulty))
+			target:SetHealth( math.max(1, target:GetHealth()*(1 - 0.0075*GameRules.gameDifficulty)) )
 			return 0.5
 		else
 			if GameRules:GetGameTime() <= time + 10 and caster:IsAlive() then

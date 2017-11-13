@@ -3203,7 +3203,7 @@
 		        {
 		            "MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "%bonus_damage"
 		            "MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "%bonus_health_regen"
-		            "MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "%bonus_mana_regen"
+		            "MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "%bonus_mana_regen"
 		        }
 		    }
 
@@ -5491,7 +5491,7 @@
 					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"		"%bonus_all"
 					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"			"%bonus_all"
 					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"		"%bonus_all"
-					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE"  "%bonus_mana_regen"
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"  		"%bonus_mana_regen"
 				}
 			}
 
@@ -5689,7 +5689,7 @@
 					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"		"%bonus_all"
 					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"			"%bonus_all"
 					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"		"%bonus_all"
-					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE"  "%bonus_mana_regen"
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"  "%bonus_mana_regen"
 				}
 			}
 
@@ -6644,7 +6644,7 @@
 		        "Properties"
 		        {
 		            "MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "%bonus_mana_regen"
-					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE"	"%bonus_mana_pct"
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"	"%bonus_mana_pct"
 		            "MODIFIER_PROPERTY_MANA_BONUS " "%bonus_mana"
 		            "MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "%bonus_int"
 		        }
@@ -6728,7 +6728,7 @@
 		        "Properties"
 		        {
 		            "MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "%bonus_mana_regen"
-					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE"	"%bonus_mana_pct"
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"	"%bonus_mana_pct"
 		            "MODIFIER_PROPERTY_MANA_BONUS " "%bonus_mana"
 		            "MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "%bonus_int"
 		        }
@@ -6813,7 +6813,7 @@
 		        {
 		            "MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "%bonus_mana_regen"
 		            "MODIFIER_PROPERTY_MANA_BONUS " "%bonus_mana"
-					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE"	"%bonus_mana_pct"
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"	"%bonus_mana_pct"
 		            "MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "%bonus_int"
 		        }
 		    }
@@ -6897,7 +6897,7 @@
 		        "Properties"
 		        {
 		            "MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "%bonus_mana_regen"
-					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE"	"%bonus_mana_pct"
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"	"%bonus_mana_pct"
 		            "MODIFIER_PROPERTY_MANA_BONUS " "%bonus_mana"
 		            "MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "%bonus_int"
 		        }
@@ -8118,7 +8118,7 @@
 		            "MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "%bonus_damage"
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%bonus_attack_speed"
 		            "MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "%bonus_health_regen"
-		            "MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "%bonus_mana_regen"
+		            "MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "%bonus_mana_regen"
 		        }
 		    }
 
@@ -8227,7 +8227,7 @@
 		        {
 		            "MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "%bonus_damage"
 		            "MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "%bonus_health_regen"
-		            "MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "%bonus_mana_regen"
+		            "MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "%bonus_mana_regen"
 		        }
 		    }
 
@@ -8373,7 +8373,7 @@
 		            "MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "%bonus_damage"
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%bonus_attack_speed"
 		            "MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "%bonus_health_regen"
-		            "MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "%bonus_mana_regen"
+		            "MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "%bonus_mana_regen"
 		            "MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"		"%bonus_all"
 					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"			"%bonus_all"
 					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"		"%bonus_all"
@@ -8524,7 +8524,7 @@
 		            "MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "%bonus_damage"
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%bonus_attack_speed"
 		            "MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "%bonus_health_regen"
-		            "MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "%bonus_mana_regen"
+		            "MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "%bonus_mana_regen"
 		            "MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"		"%bonus_all"
 					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"		"%bonus_all"
 					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"		"%bonus_all"
@@ -8767,7 +8767,7 @@
 		        {
 		            "MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "%bonus_damage"
 		            "MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "%bonus_health_regen"
-		            "MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "%bonus_mana_regen"
+		            "MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "%bonus_mana_regen"
 		            "MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"		"%bonus_all"
 					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"		"%bonus_all"
 					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"		"%bonus_all"
@@ -8995,7 +8995,7 @@
 		        {
 		            "MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "%bonus_damage"
 		            "MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "%bonus_health_regen"
-		            "MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "%bonus_mana_regen"
+		            "MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "%bonus_mana_regen"
 		            "MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"		"%bonus_all"
 					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"		"%bonus_all"
 					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"		"%bonus_all"
@@ -9223,7 +9223,7 @@
 		        {
 		            "MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "%bonus_damage"
 		            "MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "%bonus_health_regen"
-		            "MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "%bonus_mana_regen"
+		            "MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "%bonus_mana_regen"
 		            "MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"		"%bonus_all"
 					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"		"%bonus_all"
 					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"		"%bonus_all"
@@ -9449,7 +9449,7 @@
 		        {
 		            "MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "%bonus_damage"
 		            "MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "%bonus_health_regen"
-		            "MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "%bonus_mana_regen"
+		            "MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "%bonus_mana_regen"
 		            "MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"		"%bonus_all"
 					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"		"%bonus_all"
 					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"		"%bonus_all"
@@ -10090,7 +10090,7 @@
 		        {
 					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"		"%bonus_agi"
 					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"		"%bonus_int"
-					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE"			"%mana_regen"
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"			"%mana_regen"
 					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"		"%bonus_str"
 		        }
 
@@ -11258,7 +11258,7 @@
 		        {
 		            "MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "%bonus_damage"
 		            "MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "%bonus_health_regen"
-		            "MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "%bonus_mana_regen"
+		            "MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "%bonus_mana_regen"
 		            "MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"		"%bonus_all"
 					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"			"%bonus_all"
 					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"		"%bonus_all"
@@ -14014,7 +14014,7 @@
 					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"		"%bonus_all"
 					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"			"%bonus_all"
 					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"		"%bonus_all"
-					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE"  "%bonus_mana_regen"
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"  "%bonus_mana_regen"
 				}
 			}
 
@@ -16451,7 +16451,7 @@
 					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"%bonus_intellect"
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%bonus_attack_speed"
 					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"	"%bonus_damage"
-					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE"	"%bonus_mana_regen"
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"	"%bonus_mana_regen"
 				}
 				"OnAttackLanded"
 				{
@@ -16715,7 +16715,7 @@
 					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"%bonus_intellect"
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%bonus_attack_speed"
 					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"	"%bonus_damage"
-					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE"	"%bonus_mana_regen"
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"	"%bonus_mana_regen"
 				}
 				"OnAttackLanded"
 				{
@@ -16979,7 +16979,7 @@
 					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"%bonus_intellect"
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%bonus_attack_speed"
 					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"	"%bonus_damage"
-					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE"	"%bonus_mana_regen"
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"	"%bonus_mana_regen"
 				}
 				"OnAttackLanded"
 				{
@@ -17287,7 +17287,7 @@
 					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"%bonus_intellect"
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%bonus_attack_speed"
 					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"	"%bonus_damage"
-					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE"	"%bonus_mana_regen"
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"	"%bonus_mana_regen"
 				}
 				"OnAttackLanded"
 				{
@@ -18056,7 +18056,7 @@
 				{
 					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"%bonus_intellect"
 					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"	"%bonus_damage"
-					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE"	"%bonus_mana_regen"
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"	"%bonus_mana_regen"
 				}
 			}
 			"modifier_bloodthorn_silence_amp"
