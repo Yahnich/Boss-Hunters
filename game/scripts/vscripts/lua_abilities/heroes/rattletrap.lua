@@ -51,7 +51,7 @@ if IsServer() then
 		target:RemoveSelf()
 		for _, enemy in pairs(enemies) do
 			enemy:AddNewModifier(caster, self, "modifier_rocket_flare_blind", {duration = duration})
-			ApplyDamage({victim = enemy, attacker = caster, damage = self:GetAbilityDamage(), damage_type = self:GetAbilityDamageType(), ability = self})
+			ApplyDamage({victim = enemy, attacker = caster, damage = self:GetTalentSpecialValueFor("damage"), damage_type = self:GetAbilityDamageType(), ability = self})
 		end
 	end
 end
@@ -60,7 +60,7 @@ LinkLuaModifier( "modifier_rocket_flare_blind", "lua_abilities/heroes/rattletrap
 modifier_rocket_flare_blind = class({})
 
 function modifier_rocket_flare_blind:OnCreated()
-	self.miss = self:GetAbility():GetSpecialValueFor("blind")
+	self.miss = self:GetAbility():GetTalentSpecialValueFor("blind")
 end
 
 function modifier_rocket_flare_blind:DeclareFunctions()

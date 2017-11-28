@@ -17,11 +17,15 @@ function HunterInTheNight( keys )
 		else 
 			caster:RemoveModifierByName("modifier_hunter_in_the_night_scepter")
 		end
+		if caster:HasTalent("special_bonus_unique_night_stalker_2") then
+			ability:ApplyDataDrivenModifier(caster, caster, ("modifier_hunter_in_the_night_talent"), {})
+		end
 	else
 		if caster:HasModifier(modifier) then 
 			caster:RemoveModifierByName(modifier)
 			caster:RemoveModifierByName("modifier_hunter_in_the_night_bat_ebf")
 			caster:RemoveModifierByName("modifier_hunter_in_the_night_scepter")
+			caster:RemoveModifierByName("modifier_hunter_in_the_night_talent")
 		end
 	end
 end

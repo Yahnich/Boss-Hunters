@@ -24,7 +24,7 @@ function HighVoltageDamage(keys)
 		local damageTable = {
 			victim = keys.attacker,
 			attacker = keys.caster,
-			damage = keys.ability:GetAbilityDamage(),
+			damage = keys.ability:GetTalentSpecialValueFor("damage"),
 			damage_type = keys.ability:GetAbilityDamageType(),
 			ability = keys.ability
 		}

@@ -42,6 +42,9 @@ function SableDjinnDamage(keys)
 	
 	for _,enemy in pairs( enemies ) do
         ApplyDamage({victim = enemy, attacker = keys.caster, damage = caster.sandStormDamage*thinkinterval, damage_type = ability:GetAbilityDamageType(), ability = ability})
+		if caster:HasTalent("special_bonus_unique_sand_king_4") then
+			ability:ApplyDataDrivenModifier(caster, target, "modifier_sable_djinn_sandstorm_talent", {duration = 0.5})
+		end
     end
 end
 

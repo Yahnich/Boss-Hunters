@@ -23,7 +23,7 @@ function QuickParry(keys)
 		critmult = caster.critmult/100
 		particle_slash = ParticleManager:CreateParticle("particles/units/heroes/hero_pudge/pudge_dismember.vpcf", PATTACH_ABSORIGIN  , target)
 	end
-	local damage = ability:GetAbilityDamage()
+	local damage = ability:GetTalentSpecialValueFor("damage")
 	local damageTable = {victim = target,
                         attacker = caster,
                         damage = damage*critmult,

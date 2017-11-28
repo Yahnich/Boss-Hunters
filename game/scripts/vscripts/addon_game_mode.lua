@@ -203,10 +203,10 @@ function CHoldoutGameMode:InitGameMode()
 	GameRules.boss_master_id = -1
 	
 	GameRules._maxLives = 10
-	GameRules:SetHeroSelectionTime( 80.0 )
-	GameRules:SetPreGameTime( 30.0 )
+	GameRules:SetHeroSelectionTime( 8000.0 )
+	GameRules:SetPreGameTime( 8000.0 )
 	GameRules:SetShowcaseTime( 0 )
-	GameRules:SetStrategyTime( 0 )
+	GameRules:SetStrategyTime( 8000 )
 	GameRules:SetCustomGameSetupAutoLaunchDelay(0) -- fix valve bullshit
 	
 	local mapInfo = LoadKeyValues( "addoninfo.txt" )[GetMapName()]
@@ -785,6 +785,198 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 			attacker = attacker:GetOwner():GetAssignedHero()
 		else
 			attacker = attacker:GetOwner()
+		end
+	end
+	if inflictor and not attacker:IsCreature() and damagetype ~= 0 then -- modifying default dota damage types
+		local ability = EntIndexToHScript( inflictor )
+		if ability:IgnoresDamageFilterOverride() then
+			local truedamageType = ability:GetAbilityDamageType()
+			if attacker:HasScepter() then truedamageType = ability:AbilityScepterDamageType() end
+			if truedamageType ~= damagetype and truedamageType ~= 0 then
+				local damagefilter = damage
+				if damagetype == 1 then -- physical
+					trueDamage = damagefilter / (1 - victim:GetPhysicalArmorReduction() / 100 )
+				elseif damagetype == 2 then -- magical damage
+					trueDamage = damagefilter /  (1 - victim:GetMagicalArmorValue())
+				elseif damagetype == 4 then -- pure damage
+					trueDamage = damagefilter
+				end
+				
+				if truedamageType == 1 then -- physical
+					trueDamage = trueDamage * (1 - victim:GetPhysicalArmorReduction() / 100 )
+				elseif truedamageType == 2 then -- magical damage
+					trueDamage = trueDamage *  (1 - victim:GetMagicalArmorValue())
+				elseif truedamageType == 4 then -- pure damage
+					trueDamage = trueDamage
+				end
+				
+				filterTable["damage"] = 0
+				ApplyDamage({victim = victim, attacker = attacker, damage = math.ceil(trueDamage), damage_type = truedamageType, ability = ability})
+			end
+		end
+	end
+	
+	if victim:HasModifier("modifier_boss_damagedecrease") and GameRules._NewGamePlus then
+		if not self.exceptionList then 
+		self.exceptionList = {["huskar_life_break"] = true,
+					  ["phoenix_sun_ray"] = true,
+					  ["elder_titan_earth_splitter"] = true,
+					  ["necrolyte_heartstopper_aura"] = true,
+					  ["death_prophet_spirit_siphon"] = true,
+					  ["doom_bringer_infernal_blade"] = true,
+					  ["abyssal_underlord_firestorm"] = true,
+					  ["techies_nuke_ebf"] = true,
+					  ["zuus_static_field_ebf"] = true}
+		end
+		if not self.gungnirList then 
+		self.gungnirList = {["item_gungnir"] = true,
+					  ["item_gungnir_2"] = true,
+					  ["item_gungnir_3"] = true,
+					  ["item_melee_fury"] = true,
+					  ["item_melee_rage"] = true,
+					  ["item_purethorn"] = true,}
+		end
+		local mod = 0
+		if filterTable["damagetype_const"] == 4 then -- pure
+			mod = 5
+		elseif filterTable["damagetype_const"] == 2 then -- magic
+			mod = 10
+		end
+		local reduction = (1 - (0.990^((GameRules._roundnumber/2)) + 0.008) + mod/100)
+		if reduction < 0 then reduction = (1 - 0.992) end
+		if inflictor and self.exceptionList[EntIndexToHScript( inflictor ):GetName()] then reduction = 1 end
+		filterTable["damage"] =  filterTable["damage"] * reduction
+		if not inflictor and filterTable["damage"] > victim:GetMaxHealth()*0.035 then filterTable["damage"] = victim:GetMaxHealth()*0.035 end
+		if inflictor and self.gungnirList[EntIndexToHScript( inflictor ):GetName()] and filterTable["damage"] > victim:GetMaxHealth()*0.02 then filterTable["damage"] = victim:GetMaxHealth()*0.02 end
+		if filterTable["damage"] > victim:GetMaxHealth()*0.5 and ( ( inflictor and not self.exceptionList[EntIndexToHScript( inflictor ):GetName()]) or not inflictor ) then filterTable["damage"] = victim:GetMaxHealth()*0.5 end
+	end
+	if not inflictor and not attacker:IsCreature() and attacker:HasModifier("Piercing") and filterTable["damagetype_const"] == 1 then -- APPLY piercing damage to certain damage
+		local originaldamage =  damage / (1 - victim:GetPhysicalArmorReduction() / 100 )
+		local item = attacker:FindModifierByName("Piercing"):GetAbility()
+		local pierce = item:GetSpecialValueFor("Pierce_percent") / 100
+		if attacker:IsIllusion() then pierce = pierce / 7 end
+		ApplyDamage({victim = victim, attacker = attacker, damage = originaldamage * pierce, damage_type = DAMAGE_TYPE_PURE, ability = item, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
+		filterTable["damage"] = filterTable["damage"] - filterTable["damage"]*pierce
+	end
+	if inflictor and not attacker:IsCreature() and attacker:HasModifier("Piercing") and filterTable["damagetype_const"] == 1 then -- APPLY piercing damage to certain damage
+		local ability = EntIndexToHScript( inflictor )
+		if ability:AbilityPierces() and attacker:HasAbility(ability:GetName()) then
+			local originaldamage =  damage / (1 - victim:GetPhysicalArmorReduction() / 100 )
+			local pierce = attacker:FindModifierByName("Piercing"):GetAbility():GetSpecialValueFor("Pierce_percent") / 100
+			ApplyDamage({victim = victim, attacker = attacker, damage = originaldamage * pierce, damage_type = DAMAGE_TYPE_PURE, ability = attacker:FindModifierByName("Piercing"):GetAbility(), damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
+			filterTable["damage"] = filterTable["damage"] - filterTable["damage"]*pierce
+		end
+	end
+	
+	-- CUSTOM DAMAGE PROPERTIES
+	-- MODIFIER_PROPERTY_ALLDAMAGE_CONSTANT_BLOCK
+	local modifierPropertyAllBlock = victim:GetModifierPropertyValue("MODIFIER_PROPERTY_ALLDAMAGE_CONSTANT_BLOCK")
+	if modifierPropertyAllBlock > 0 and victim:IsHero() then
+		local damagetype = filterTable["damagetype_const"]
+		local block = modifierPropertyAllBlock
+		local dmgBlock = damage
+		if damagetype == 1 then -- physical
+			dmgBlock = damage * (1- victim:GetPhysicalArmorReduction() / 100 )
+		elseif damagetype == 2 then -- magical damage
+			dmgBlock = damage *  (1 - victim:GetMagicalArmorValue())
+		elseif damagetype == 4 then -- pure damage
+			dmgBlock = damagefilter
+		end
+		if dmgBlock > block then
+			dmgBlock = dmgBlock - block
+			if damagetype == 1 then -- physical
+				dmgBlock = dmgBlock / (1- victim:GetPhysicalArmorReduction() / 100 )
+			elseif damagetype == 2 then -- magical damage
+				dmgBlock = dmgBlock / (1 - victim:GetMagicalArmorValue())
+			end
+			SendOverheadEventMessage( victim, OVERHEAD_ALERT_BLOCK, victim, block, victim )
+		else
+			filterTable["damage"] = 0
+			SendOverheadEventMessage( victim, OVERHEAD_ALERT_BLOCK, victim, dmgBlock, victim )
+		end
+	end
+	
+    -- remove int scaling thanks for fucking with my shit valve
+	if attacker == victim and attacker:FindAbilityByName("new_game_damage_increase") then -- stop self damaging abilities from ravaging bosses
+		local amp = attacker:FindAbilityByName("new_game_damage_increase")
+		local reduction = 1+(amp:GetSpecialValueFor("spell_amp")/100)
+		filterTable["damage"] = filterTable["damage"]/reduction
+	end
+	
+	if inflictor and attacker:IsHero() and not attacker:IsCreature() then
+		local ability = EntIndexToHScript( inflictor )
+		if ability:GetName() == "item_blade_mail" then
+			local reflect = ability:GetSpecialValueFor("reflect_pct") / 100
+			filterTable["damage"] = filterTable["damage"] * reflect
+		end
+		local no_aether = {["elder_titan_earth_splitter"] = true,
+						   ["enigma_midnight_pulse"] = true,
+						   ["cloak_and_dagger_ebf"] = true,
+						   ["tricks_of_the_trade_datadriven"] = true,
+						   ["phoenix_sun_ray"] = true,
+						   ["abyssal_underlord_firestorm"] = true,
+						   ["huskar_life_break"] = true} -- stop %hp based and right click damage abilities from being amped by aether lens
+		if no_aether[ability:GetName()] or not ability:IsAetherAmplified() then
+			filterTable["damage"] = filterTable["damage"] / attacker:GetOriginalSpellDamageAmp()
+		end
+		if attacker:HasModifier("spellcrit") and attacker ~= victim then
+			local no_crit = {
+						   ["item_melee_rage"] = true,
+						   ["item_melee_fury"] = true,
+						   ["item_gungnir"] = true,
+						   ["item_gungnir_2"] = true,
+						   ["item_gungnir_3"] = true,
+						   ["mana_fiend_mana_lance"] = true,
+						   ["necrolyte_heartstopper_aura"] = true}
+			local ability = EntIndexToHScript( inflictor )
+			local spellcrit = true
+			if no_crit[ability:GetName()] or no_aether[ability:GetName()] or not ability:IsAetherAmplified() then
+				spellcrit = false
+			end
+			if (spellcrit or (ability:GetName() == "mana_fiend_mana_lance" and attacker:HasScepter())) and not attacker.essencecritactive then
+				local crititem = attacker:FindModifierByName("spellcrit"):GetAbility()
+				local chance = crititem:GetSpecialValueFor("spell_crit_chance")
+				if RollPercentage(chance) then
+					local mult = crititem:GetSpecialValueFor("spell_crit_multiplier") / 100
+					filterTable["damage"] = filterTable["damage"]*mult
+					victim:ShowPopup( {
+                    PostSymbol = 4,
+                    Color = Vector( 125, 125, 255 ),
+                    Duration = 0.7,
+                    Number = filterTable["damage"],
+                    pfx = "spell_custom"} )
+				end
+			end
+		end
+		if attacker:GetName() == "npc_dota_hero_leshrac" and attacker:HasAbility(ability:GetName()) then -- reapply damage in pure after all amp/crit
+			require('lua_abilities/heroes/leshrac')
+			filterTable = InnerTorment(filterTable)
+		end
+	end
+	-- TRUE OCTARINE HEALING --
+	if inflictor and attacker:HasModifier("spell_lifesteal")
+	and EntIndexToHScript( inflictor ).damage_flags ~= DOTA_DAMAGE_FLAG_HPLOSS -- forced flags
+	and EntIndexToHScript( inflictor ):GetName() ~= "necrolyte_heartstopper_aura" then -- special heartstopper exception ty valve
+		local octarine = attacker:FindModifierByName("spell_lifesteal")
+		local tHeal = octarine:GetAbility():GetSpecialValueFor("creep_lifesteal") / 100
+		local heal = filterTable["damage"] * tHeal
+		Timers:CreateTimer(function()
+			attacker:Heal(heal, attacker)
+			local healParticle = ParticleManager:CreateParticle("particles/items3_fx/octarine_core_lifesteal.vpcf", PATTACH_ABSORIGIN_FOLLOW, attacker)
+			ParticleManager:ReleaseParticleIndex(healParticle) 
+		end)
+	end
+	if attacker:IsCreature() and not inflictor then -- no more oneshots tears-b-gone
+		local damageCap = 0.25
+		if GetMapName() == "epic_boss_fight_hardcore" then damageCap = 0.33 end
+		local critmult = damage / (1 - victim:GetPhysicalArmorReduction() / 100 ) / attacker:GetAverageBaseDamage()
+		damageCap = damageCap * critmult
+		if victim:HasModifier("modifier_ethereal_resistance") then 
+			local newdamageCap = victim:FindModifierByName("modifier_ethereal_resistance"):GetAbility():GetSpecialValueFor("spooky_block") / 100
+			if newdamageCap < damageCap then damageCap = newdamageCap end
+		end
+		if filterTable["damage"] > victim:GetMaxHealth() * damageCap then
+			filterTable["damage"] = victim:GetMaxHealth() * damageCap 
 		end
 	end
 	
@@ -2184,6 +2376,13 @@ LinkLuaModifier( "modifier_boss_damagedecrease", "lua_abilities/heroes/modifiers
 
 function CHoldoutGameMode:OnNPCSpawned( event )
 	local spawnedUnit = EntIndexToHScript( event.entindex )
+
+	if spawnedUnit:IsIllusion() then
+		local owner = PlayerResource:GetSelectedHeroEntity( spawnedUnit:GetPlayerID() )
+		spawnedUnit:ModifyAgility( owner:GetAgility() - spawnedUnit:GetAgility() )
+		spawnedUnit:ModifyStrength( owner:GetStrength() - spawnedUnit:GetStrength() )
+		spawnedUnit:ModifyIntellect( owner:GetIntellect() - spawnedUnit:GetIntellect() )
+	end
 	if not spawnedUnit or spawnedUnit:GetClassname() == "npc_dota_thinker" or spawnedUnit:IsPhantom() or spawnedUnit:IsFakeHero()then
 		return
 	end

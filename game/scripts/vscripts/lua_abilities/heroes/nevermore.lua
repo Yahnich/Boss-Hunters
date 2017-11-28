@@ -1,3 +1,9 @@
+function ApplyAuraModifier(keys)
+	local caster = keys.caster
+	local ability = keys.ability
+	ability:ApplyDataDrivenModifier(caster, caster, "active_dark_lord", {duration = ability:GetTalentSpecialValueFor("active_duration")})
+end
+
 function ShadowRaze(keys)
 	local ability = keys.ability
 	local caster = keys.caster

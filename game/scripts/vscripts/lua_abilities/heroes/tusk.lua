@@ -71,7 +71,7 @@ function ShieldThrow(keys)
 end
 
 function FreezeDamage(keys)
-	ApplyDamage({victim = keys.target, attacker = keys.caster, damage = keys.ability:GetAbilityDamage(), damage_type = keys.ability:GetAbilityDamageType(), ability = keys.ability})
+	ApplyDamage({victim = keys.target, attacker = keys.caster, damage = keys.ability:GetTalentSpecialValueFor("damage"), damage_type = keys.ability:GetAbilityDamageType(), ability = keys.ability})
 end
 
 function StopFreezeSound(keys)

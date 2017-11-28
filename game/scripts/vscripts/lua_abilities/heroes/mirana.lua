@@ -1,3 +1,14 @@
+function MoonLightShadow(keys)
+	local caster = keys.caster
+	local ability = keys.ability
+	local target = keys.target
+	
+	ability:ApplyDataDrivenModifier(caster, target, "modifier_moonlight_duration_datadriven", { duration = ability:GetTalentSpecialValueFor("duration") })
+	ability:ApplyDataDrivenModifier(caster, target, "modifier_moonlight_fade_datadriven", { duration = ability:GetTalentSpecialValueFor("fade_delay") })
+end
+
+					
+
 function MoonEye(keys)
 	local caster = keys.caster
 	local ability = keys.ability

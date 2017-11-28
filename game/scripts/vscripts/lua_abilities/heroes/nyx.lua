@@ -119,10 +119,22 @@ nyx_assassin_ultimyr_justicar = class({})
 if IsServer() then
 	function nyx_assassin_ultimyr_justicar:OnSpellStart()
 		self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_nyx_assassin_ultimyr_justicar_swarm", {duration = self:GetDuration()})
+		if self:GetCaster():HasTalent("special_bonus_unique_nyx_3") then self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_nyx_assassin_ultimyr_justicar_swarm_talent", {duration = self:GetDuration()})
 	end
 end
 function nyx_assassin_ultimyr_justicar:GetCastRange(pos, handle)
 	return self:GetSpecialValueFor("swarm_radius")
+end
+
+LinkLuaModifier( "modifier_nyx_assassin_ultimyr_justicar_swarm_talent", "lua_abilities/heroes/nyx.lua" ,LUA_MODIFIER_MOTION_NONE )
+modifier_nyx_assassin_ultimyr_justicar_swarm_talent = class({})
+
+function modifier_nyx_assassin_ultimyr_justicar_swarm_talent:DeclareFunctions()
+	return {[MODIFIER_STATE_FLYING_FOR_PATHING_PURPOSES_ONLY] = true}
+end
+
+function modifier_nyx_assassin_ultimyr_justicar_swarm_talent:IsHidden()
+	return true
 end
 
 LinkLuaModifier( "modifier_nyx_assassin_ultimyr_justicar_swarm", "lua_abilities/heroes/nyx.lua" ,LUA_MODIFIER_MOTION_NONE )

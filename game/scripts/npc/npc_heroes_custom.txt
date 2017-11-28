@@ -11,7 +11,7 @@
 		"Ability2"					"drow_ranger_leapshot"
 		"Ability3"					"drow_ranger_trueshot_ebf"
 		"Ability4"					"drow_ranger_frost_arrows"
-		"Ability5"					"drow_ranger_marksmanship"
+		"Ability6"					"drow_ranger_marksmanship"
 		
 	}
 	//=================================================================================================================
@@ -24,6 +24,14 @@
 		"Ability1"					"sandking_burrowstrike_ebf"
 		"Ability2"					"sandking_sable_djinn"
 		
+		"Ability10"		"special_bonus_movement_speed_30"
+		"Ability11"		"special_bonus_hp_200"
+		"Ability12"		"special_bonus_unique_sand_king_2"
+		"Ability13"		"special_bonus_unique_sand_king_3"
+		"Ability14"		"special_bonus_armor_10"
+		"Ability15"		"special_bonus_unique_sand_king"
+		"Ability16"		"special_bonus_hp_regen_35"
+		"Ability17"		"special_bonus_unique_sand_king_4"
 	}
 	//=================================================================================================================
 	// HERO: Rhastafarian
@@ -52,13 +60,7 @@
 	{
 		"override_hero"				"npc_dota_hero_warlock"
 		"AbilityLayout"				"6"
-		"Ability1"					"warlock_deepfire_ember"
-		"Ability2"					"warlock_baphomet_pulse"
-		"Ability3"					"warlock_shadow_word_ebf"
-		"Ability4"					"warlock_summon_moloch"
-		"Ability5"					"warlock_summon_naamah"
-		"Ability6"					"warlock_transfer_power"
-		
+		"Ability2"					"warlock_shadow_word_ebf"
 	}
 	"npc_dota_hero_ancient_apparition_ebf"
 	{
@@ -91,6 +93,7 @@
 		"Ability18"					"special_bonus_hp_300"
 		"Ability19"					"special_bonus_attack_damage_120"
 		"Ability20"					"special_bonus_unique_beastmaster"
+		
 		"Model"						"models/creeps/neutral_creeps/n_creep_satyr_b/n_creep_satyr_b.vmdl"
 		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
 		"ProjectileModel"		"particles/econ/items/enigma/enigma_geodesic/enigma_base_attack_eidolon_geodesic.vpcf"
@@ -104,9 +107,11 @@
 	{
 		"override_hero"				"npc_dota_hero_abyssal_underlord"
 		"AbilityLayout"				"4"
-		"Ability4"					"underlord_expulsion"
-		"Ability5"					""
+		"Ability6"					"underlord_expulsion"
 		
+
+		"Ability13"					"special_bonus_strength_8"
+		"Ability17"					"special_bonus_armor_12"
 	}
 	//=================================================================================================================
 	// HERO: Techies
@@ -129,74 +134,26 @@
 		"Ability1"					"chen_penitence_ebf"
 		"Ability2"					"chen_test_of_faith_ebf"
 		"Ability3"					"chen_test_of_faith_teleport_ebf"
-		"Ability4"					"chen_pure_bless"	
-		"Ability5"					""
+		"Ability4"					"chen_pure_bless"
 		"Ability6"					"chen_devil_toggle"			
 		"Ability7"					"chen_devil_penitence"	
 		"Ability8"					"chen_corrupted_test"	
 		"Ability9"					"chen_corrupted_test_alt"		
 		"Ability10"					"chen_devil_bless"			// Ability 4
-		"Ability11"					"chen_holy_toggle"		
+		"Ability11"					"chen_holy_toggle"
 		
+		"Ability12"		"special_bonus_exp_boost_20"
+		"Ability13"		"special_bonus_cast_range_125"
+		"Ability14"		"special_bonus_armor_7"
+		"Ability15"		"special_bonus_unique_chen_3"
+		"Ability16"		"special_bonus_gold_income_30"
+		"Ability17"		"special_bonus_unique_chen_4"
+		"Ability18"		"special_bonus_unique_chen_1"
+		"Ability19"		"special_bonus_unique_chen_2"
 	}
 	"npc_dota_hero_lina" // Ifrit
 	{
 		"override_hero"				"npc_dota_hero_lina"
-		"AbilityLayout"				"5"
-		"Ability1"					"class_empty_1"
-		"Ability2"					"class_empty_2"
-		"Ability3"					"class_empty_3"
-		"Ability4"					"ifrit_kindled_soul"
-		"Ability5"					"class_filler"
-		"Ability6"					"class_empty_4"
-		
-		"HeroValues"
-		{
-			"Support"			"2"
-			"Damage"			"5"
-			"Tank"				"1"
-		}
-		
-		"Items"
-		{
-			"Armor"
-			{
-				"1"				"item_ifrit_armor_1"
-				"2"				"item_ifrit_armor_2"
-				"3"				"item_ifrit_armor_3"
-				"4"				"item_ifrit_armor_4"
-				"5"				"item_ifrit_armor_5"
-			}
-			"Weapon"
-			{
-				"1"				"item_ifrit_weapon_1"
-				"2"				"item_ifrit_weapon_2"
-				"3"				"item_ifrit_weapon_3"
-				"4"				"item_ifrit_weapon_4"
-				"5"				"item_ifrit_weapon_5"
-			}
-			"Other"
-			{
-				"1"				"item_ifrit_other_1"
-				"2"				"item_ifrit_other_2"
-				"3"				"item_ifrit_other_3"
-				"4"				"item_ifrit_other_4"
-				"5"				"item_ifrit_other_5"
-			}
-		}
-		
-		"Abilities"
-		{
-			"ifrit_fire_surge"						"true"
-			"ifrit_solar_jet"						"true"
-			"ifrit_self_immolation"					"true"
-			"ifrit_searing_heat"					"true"
-			"ifrit_overheat"						"true"
-			"ifrit_inferno"							"true"
-			"ifrit_firebat"							"true"
-			"ifrit_blaze_geyser"					"true"
-		}
-		
 	}
 	//=================================================================================================================
 	// HERO: DK
@@ -205,69 +162,35 @@
 	{
 		"override_hero"			"npc_dota_hero_dragon_knight"
 		"Ability2"					"dragon_knight_intervene"
-		"Ability4"					"elder_dragon_berserker"					// Ability 4
+		"Ability6"					"elder_dragon_berserker"					// Ability 4
+		"Ability14"					"special_bonus_all_stats_15"
 		
 	}
+	//=================================================================================================================
+	// HERO: es
+	//=================================================================================================================
+	"npc_dota_hero_earth_spirit_ebf"
+	{
+		"override_hero"				"npc_dota_hero_earth_spirit"
+		"Ability13"					"special_bonus_all_stats_12"
+		"Ability15"					"special_bonus_movement_speed_50"
+		
+	}
+	//=================================================================================================================
+	// HERO: et
+	//================================================================================================================
+	"npc_dota_hero_elder_titan_ebf"
+	{
+		"override_hero"				"npc_dota_hero_elder_titan"
+		"Ability13"					"special_bonus_all_stats_12"	
+	}
+	
 	//=================================================================================================================
 	// HERO: PA
 	//=================================================================================================================
 	"npc_dota_hero_phantom_assassin" // Shinigami
 	{
 		"override_hero"				"npc_dota_hero_phantom_assassin"
-		"Ability1"					"class_empty_1"
-		"Ability2"					"class_empty_2"
-		"Ability3"					"class_empty_3"
-		"Ability4"					"shinigami_deep_wounds"
-		"Ability5"					"class_filler"
-		"Ability6"					"class_empty_4"
-		
-		"HeroValues"
-		{
-			"Support"			"2"
-			"Damage"			"5"
-			"Tank"				"3"
-		}
-		
-		"Items"
-		{
-			"Armor"
-			{
-				"1"				"item_shinigami_armor_1"
-				"2"				"item_shinigami_armor_2"
-				"3"				"item_shinigami_armor_3"
-				"4"				"item_shinigami_armor_4"
-				"5"				"item_shinigami_armor_5"
-			}
-			"Weapon"
-			{
-				"1"				"item_shinigami_weapon_1"
-				"2"				"item_shinigami_weapon_2"
-				"3"				"item_shinigami_weapon_3"
-				"4"				"item_shinigami_weapon_4"
-				"5"				"item_shinigami_weapon_5"
-			}
-			"Other"
-			{
-				"1"				"item_shinigami_other_1"
-				"2"				"item_shinigami_other_2"
-				"3"				"item_shinigami_other_3"
-				"4"				"item_shinigami_other_4"
-				"5"				"item_shinigami_other_5"
-			}
-		}
-		
-		"Abilities"
-		{
-			"shinigami_fan_the_blades"				"true"
-			"shinigami_reaper"						"true"
-			"shinigami_cutthroat_slice"				"true"
-			"shinigami_reversal"					"true"
-			"shinigami_flurry_of_blows"				"true"
-			"shinigami_whirling_slash"				"true"
-			"shinigami_slice_n_dice"				"true"
-			"shinigami_grievous_strike"				"true"
-		}
-		
 	}
 	//=================================================================================================================
 	// HERO: Kunkka
@@ -277,9 +200,7 @@
 		"override_hero"			"npc_dota_hero_kunkka"
 		"AbilityLayout"				"4"
 		"Ability3"					"kunkka_captains_rum"
-		"Ability4"					"kunkka_ghostship"					// Ability 4
-		"Ability5"					""
-		"Ability6"					""
+		"Ability6"					"kunkka_ghostship"					// Ability 4
 		
 	}
 	//=================================================================================================================
@@ -294,60 +215,6 @@
 	"npc_dota_hero_windrunner" // Sylph
 	{
 		"override_hero"			"npc_dota_hero_windrunner"
-		"Ability1"				"class_empty_1"
-		"Ability2"				"class_empty_2"
-		"Ability3"				"class_empty_3"
-		"Ability4"				"sylph_zephyr"
-		"Ability5"				"class_filler"
-		"Ability6"				"class_empty_4"
-		
-		"HeroValues"
-		{
-			"Support"			"3"
-			"Damage"			"5"
-			"Tank"				"2"
-		}
-		
-		"Items"
-		{
-			"Armor"
-			{
-				"1"				"item_sylph_armor_1"
-				"2"				"item_sylph_armor_2"
-				"3"				"item_sylph_armor_3"
-				"4"				"item_sylph_armor_4"
-				"5"				"item_sylph_armor_5"
-			}
-			"Weapon"
-			{
-				"1"				"item_sylph_weapon_1"
-				"2"				"item_sylph_weapon_2"
-				"3"				"item_sylph_weapon_3"
-				"4"				"item_sylph_weapon_4"
-				"5"				"item_sylph_weapon_5"
-			}
-			"Other"
-			{
-				"1"				"item_sylph_other_1"
-				"2"				"item_sylph_other_2"
-				"3"				"item_sylph_other_3"
-				"4"				"item_sylph_other_4"
-				"5"				"item_sylph_other_5"
-			}
-		}
-		
-		"Abilities"
-		{
-			"sylph_mistral_breeze"					"true"
-			"sylph_immaterialize"					"true"
-			"sylph_cyclone"							"true"
-			"sylph_jetstream"						"true"
-			"sylph_winds_aid"						"true"
-			"sylph_aerodynamic"						"true"
-			"sylph_rapid_fire"						"true"
-			"sylph_updraft"							"true"
-		}
-		
 	}
 	//=================================================================================================================
 	// HERO: Troll Warlord
@@ -356,8 +223,7 @@
 	{
 		"override_hero"			"npc_dota_hero_troll_warlord"
 		"Ability4"				"troll_warlord_fervor_ebf"
-		"Ability5"				"troll_warlord_battle_trance_ebf"				// Ability 4
-		
+		"Ability6"				"troll_warlord_battle_trance_ebf"				// Ability 4
 	}
 	//=================================================================================================================
 	// HERO: Clinkz
@@ -367,7 +233,7 @@
 		"override_hero"			"npc_dota_hero_clinkz"
 		"Ability1"					"clinkz_strafe_ebf"
 		"Ability3"					"ebf_blinkz"
-		"Ability4"					"clinkz_death_pact_custom"					// Ability 4
+		"Ability6"					"clinkz_death_pact_custom"					// Ability 4
 		
 	}
 	//=================================================================================================================
@@ -379,7 +245,7 @@
 		"Ability1"				"nevermore_shadowraze1_ebf"
 		"Ability2"				"nevermore_shadowraze2_ebf"
 		"Ability3"				"nevermore_shadowraze3_ebf"
-		"Ability5"					"nevermore_oppressive_aura"					// Ability 4
+		"Ability5"				"nevermore_oppressive_aura"					// Ability 4
 		
 	}
 	//=================================================================================================================
@@ -399,7 +265,7 @@
 		"override_hero"			"npc_dota_hero_antimage"
 		"Ability1"					"antimage_mage_rage"					// Ability 4
 		"Ability3"					"spell_shield_datadriven"
-		"Ability4"					"antimage_ragevoid"					// Ability 4
+		"Ability6"					"antimage_ragevoid"					// Ability 4
 		
 	}
 	//=================================================================================================================
@@ -409,66 +275,24 @@
 	{
 		"override_hero"				"npc_dota_hero_riki"
 		"Ability3"					"cloak_and_dagger_ebf"					// Ability 4
-		"Ability4"					"tricks_of_the_trade_datadriven"					// Ability 4
+		"Ability6"					"tricks_of_the_trade_datadriven"					// Ability 4
 		
 	}
 	"npc_dota_hero_treant" // Forest
 	{
 		"override_hero"				"npc_dota_hero_treant"
 		
-		"Ability1"				"class_empty_1"
-		"Ability2"				"class_empty_2"
-		"Ability3"				"class_empty_3"
-		"Ability4"				"forest_iron_bark"
-		"Ability5"				"class_filler"
-		"Ability6"				"class_empty_4"
-		
-		"HeroValues"
-		{
-			"Support"			"5"
-			"Damage"			"1"
-			"Tank"				"3"
-		}
-		
-		"Items"
-		{
-			"Armor"
-			{
-				"1"				"item_forest_armor_1"
-				"2"				"item_forest_armor_2"
-				"3"				"item_forest_armor_3"
-				"4"				"item_forest_armor_4"
-				"5"				"item_forest_armor_5"
-			}
-			"Weapon"
-			{
-				"1"				"item_forest_weapon_1"
-				"2"				"item_forest_weapon_2"
-				"3"				"item_forest_weapon_3"
-				"4"				"item_forest_weapon_4"
-				"5"				"item_forest_weapon_5"
-			}
-			"Other"
-			{
-				"1"				"item_forest_other_1"
-				"2"				"item_forest_other_2"
-				"3"				"item_forest_other_3"
-				"4"				"item_forest_other_4"
-				"5"				"item_forest_other_5"
-			}
-		}
-		
-		"Abilities"
-		{
-			"forest_growing_armor"			"true"
-			"forest_parasitic_growth"		"true"
-			"forest_natures_grove"			"true"
-			"forest_overgrowth"				"true"
-			"forest_vine_whip"				"true"
-			"forest_ancient_tether"			"true"
-			"forest_envelop"				"true"
-			"forest_become_one"				"true"
-		}
+		"Ability1"					"treant_happy_little_tree"
+		"Ability3"					"treant_living_armor_ebf"
+
+		"Ability10"		"special_bonus_mp_125"
+		"Ability11"		"special_bonus_mp_regen_4"
+		"Ability12"		"special_bonus_attack_damage_90"
+		"Ability13"		"special_bonus_cooldown_reduction_20"
+		"Ability14"		"special_bonus_unique_treant_4"
+		"Ability15"		"special_bonus_unique_treant_2"
+		"Ability16"		"special_bonus_unique_treant"
+		"Ability17"		"special_bonus_unique_treant_5"
 	}
 	//=================================================================================================================
 	// HERO: Alchemist
@@ -477,9 +301,7 @@
 	{
 		"override_hero"				"npc_dota_hero_alchemist"
 		"Ability2"					"alchemist_midas_knuckle"	
-		"Ability3"					"alchemist_greed_ebf"					// Ability 4
-		"Ability4"					"chemical_rage_datadriven"				// Ability 4
-		
+		"Ability3"					"alchemist_greed_ebf"					// Ability 4	
 	}
 	//=================================================================================================================
 	// HERO: Brewmaster
@@ -488,15 +310,7 @@
 	{
 		"override_hero"				"npc_dota_hero_brewmaster"
 		"Ability2"					"brewmaster_drunken_haze_ebf"
-		"Ability4"					"brewmaster_primal_avatar"					// Ability 4
-		
-	}
-	//=================================================================================================================
-	// HERO: Phantom Lancer
-	//=================================================================================================================
-	"npc_dota_hero_phantom_lancer_ebf"
-	{
-		"override_hero"				"npc_dota_hero_phantom_lancer"
+		"Ability6"					"brewmaster_primal_avatar"					// Ability 4
 		
 	}
 	// =================================================================================================================
@@ -508,8 +322,8 @@
 		"AbilityLayout"			"4"
 		"Ability1"				"doom_devour"					// Ability 2
 		"Ability2"				"doom_scorched_earth_ebf"
-		"Ability5"				""
-		"Ability4"				""
+		"Ability5"				"generic_hidden"
+		"Ability4"				"generic_hidden"
 		"Ability6"				"doom_doom_ebf"
 		
 	}
@@ -521,7 +335,8 @@
 		"Ability2"				"oracle_fate_extension"
 		"Ability3"				"oracle_purifying_flames_damage"
 		"Ability4"				"oracle_purifying_flames_heal"
-		"Ability5"				"oracle_false_promise"
+		"Ability5"				"generic_hidden"
+		"Ability6"				"oracle_false_promise"
 		
 	}
 	//=================================================================================================================
@@ -539,7 +354,8 @@
 	{
 		"override_hero"			"npc_dota_hero_tidehunter"
 		"Ability2"				"tidehunter_kraken_shell_ebf"
-		
+
+		"Ability12"		"special_bonus_strength_10"
 	}
 	//=================================================================================================================
 	// HERO: Storm
@@ -552,7 +368,7 @@
 		"Ability2"				"queenofpain_blink"
 		"Ability3"				"queenofpain_scream_of_pain_ebf"
 		"Ability4"				"queenofpain_sadomasochism"
-		"Ability5"				"queenofpain_sonic_wave"
+		"Ability6"				"queenofpain_sonic_wave"
 		
 	}
 	//=================================================================================================================
@@ -566,7 +382,7 @@
 		"Ability2"				"leshrac_diabolic_edict"
 		"Ability3"				"leshrac_lightning_storm"
 		"Ability4"				"leshrac_inner_torment"
-		"Ability5"				"leshrac_pulse_nova"
+		"Ability6"				"leshrac_pulse_nova"
 		
 	}
 	//=================================================================================================================
@@ -579,10 +395,21 @@
 		"Ability1"				"gyrocopter_rocket_barrage_ebf"
 		"Ability2"				"gyrocopter_supporting_rockets"
 		"Ability3"				"gyrocopter_flak_cannon_ebf"
-		"Ability4"				"gyrocopter_call_down"
-		"Ability6"				""
-		
 	}
+	"npc_dota_hero_monkey_king"
+	{
+		"override_hero"			"npc_dota_hero_monkey_king"
+		
+		"Ability10"		"special_bonus_hp_100"
+		"Ability11"		"special_bonus_attack_speed_20"
+		"Ability12"		"special_bonus_unique_monkey_king_7"
+		"Ability13"		"special_bonus_unique_monkey_king_2"
+		"Ability14"		"special_bonus_unique_monkey_king"
+		"Ability15"		"special_bonus_unique_monkey_king_3"
+		"Ability16"		"special_bonus_unique_monkey_king_4"
+		"Ability17"		"special_bonus_unique_monkey_king_6"
+	}
+	
 	//=================================================================================================================
 	// HERO: Gyrochopter
 	//=================================================================================================================
@@ -591,7 +418,7 @@
 		"override_hero"			"npc_dota_hero_lich"
 		"AbilityLayout"			"4"
 		"Ability3"				"lich_chain_frost"
-		"Ability4"				"lich_lich_king"
+		"Ability6"				"lich_lich_king"
 		
 	}
 	//=================================================================================================================
@@ -601,7 +428,7 @@
 	{
 		"override_hero"			"npc_dota_hero_mirana"
 		"Ability2"				"mirana_mooneye"					// Ability 2
-		"Ability4"				"mirana_stardust_reflection"
+		"Ability6"				"mirana_stardust_reflection"
 		
 	}
 	//=================================================================================================================
@@ -611,7 +438,7 @@
 	{
 		"override_hero"			"npc_dota_hero_dark_seer"
 		"Ability3"				"dark_seer_adamantium_shell"
-		"Ability4"				"dark_seer_battlemaster_command"
+		"Ability6"				"dark_seer_battlemaster_command"
 		
 	}
 	//=================================================================================================================
@@ -656,7 +483,6 @@
 	{
 		"override_hero"			"npc_dota_hero_lycan"
 		"Ability1"					"lycan_summon_wolves_datadriven"					// Ability 4
-		
 	}
 	//=================================================================================================================
 	// HERO: outworld
@@ -665,7 +491,7 @@
 	{
 		"override_hero"			"npc_dota_hero_obsidian_destroyer"
 		"Ability2"					"obsidian_destroyer_astral_imprisonment_ebf"
-		"Ability4"					"obsidian_destroyer_sanitys_eclipse_ebf"					// Ability 2
+		"Ability6"					"obsidian_destroyer_sanitys_eclipse_ebf"					// Ability 2
 		
 	}
 	//=================================================================================================================
@@ -675,7 +501,7 @@
 	{
 		"override_hero"			"npc_dota_hero_terrorblade"
 		"Ability1"				"terrorblade_disruption"				// Ability 2
-		"Ability4"				"terrorblade_zeal"	
+		"Ability6"				"terrorblade_zeal"	
 		
 	}
 	//=================================================================================================================
@@ -687,8 +513,15 @@
 		"Ability1"					"pudge_meat_hook_ebf"
 		"Ability2"					"pudge_rot_lua"					// Ability 4
 		"Ability3"					"pudge_flesh_heap_datadriven"					// Ability 4
-		"Ability4"					"pudge_dismember_lua"
-		
+
+		"Ability10"		"special_bonus_armor_5"
+		"Ability11"		"special_bonus_unique_pudge_2"
+		"Ability12"		"special_bonus_spell_lifesteal_13"
+		"Ability13"		"special_bonus_attack_damage_75"
+		"Ability14"		"special_bonus_magic_resistance_20"
+		"Ability15"		"special_bonus_cooldown_reduction_15"
+		"Ability16"		"special_bonus_unique_pudge_3"
+		"Ability17"		"special_bonus_unique_pudge_1"
 	}
 	//=================================================================================================================
 	// HERO: Rubick
@@ -697,7 +530,8 @@
 	{
 		"override_hero"				"npc_dota_hero_rubick"
 		"Ability1"					"rubick_lift_ebf"
-		"Ability4"					"rubick_spell_echo"					// Ability 4
+		"Ability3"					"rubick_spell_echo"					// Ability 4
+		"Ability7"					""
 		
 	}
 	//=================================================================================================================
@@ -727,7 +561,7 @@
 	{
 		"override_hero"			"npc_dota_hero_skywrath_mage"
 		"Ability2"					"skywrath_mage_concussive_shot_datadriven"					// Ability 4
-		"Ability4"					"skywrath_mage_mystic_flare_datadriven"					// Ability 4
+		"Ability6"					"skywrath_mage_mystic_flare_datadriven"					// Ability 4
 		
 	}
 	//=================================================================================================================
@@ -743,61 +577,27 @@
 	"npc_dota_hero_omniknight" // Justicar
 	{
 		"override_hero"			"npc_dota_hero_omniknight"
-		"Ability1"				"class_empty_1"					// Ability 1
-		"Ability2"				"class_empty_2"
-		"Ability3"				"class_empty_3"
-		"Ability4"				"justicar_inner_sun"
-		"Ability5"				"class_filler"
-		"Ability6"				"class_empty_4"
-		
-		"HeroValues"
-		{
-			"Support"			"4"
-			"Damage"			"3"
-			"Tank"				"4"
-		}
-		
-		"Items"
-		{
-			"Armor"
-			{
-				"1"				"item_justicar_armor_1"
-				"2"				"item_justicar_armor_2"
-				"3"				"item_justicar_armor_3"
-				"4"				"item_justicar_armor_4"
-				"5"				"item_justicar_armor_5"
-			}
-			"Weapon"
-			{
-				"1"				"item_justicar_weapon_1"
-				"2"				"item_justicar_weapon_2"
-				"3"				"item_justicar_weapon_3"
-				"4"				"item_justicar_weapon_4"
-				"5"				"item_justicar_weapon_5"
-			}
-			"Other"
-			{
-				"1"				"item_justicar_other_1"
-				"2"				"item_justicar_other_2"
-				"3"				"item_justicar_other_3"
-				"4"				"item_justicar_other_4"
-				"5"				"item_justicar_other_5"
-			}
-		}
-		
-		"Abilities"
-		{
-			"justicar_shining_light"				"true"
-			"justicar_sacred_ground"				"true"
-			"justicar_penitence"					"true"
-			"justicar_absolution"					"true"
-			"justicar_judgement"					"true"
-			"justicar_blessed_aegis"				"true"
-			"justicar_radiant_glory"				"true"
-			"justicar_avenging_wrath"				"true"
-		}
-		
+		"Ability1"				"omniknight_purification_datadriven"
+		"Ability6"				"omniknight_guardian_angel_datadriven"
+
+		"Ability10"		"special_bonus_movement_speed_15"
+		"Ability12"		"special_bonus_strength_10"
 	}
+	"npc_dota_hero_phoenix" // Justicar
+	{
+		"override_hero"			"npc_dota_hero_phoenix"
+
+		"Ability10"		"special_bonus_strength_8"
+		"Ability11"		"special_bonus_spell_amplify_8"
+		"Ability12"		"special_bonus_unique_phoenix_3"
+		"Ability13"		"special_bonus_armor_7"
+		"Ability14"		"special_bonus_unique_phoenix_4"
+		"Ability15"		"special_bonus_unique_phoenix_2"
+		"Ability16"		"special_bonus_unique_phoenix_1"
+		"Ability17"		"special_bonus_unique_phoenix_5"
+	}
+
+
 	//=================================================================================================================
 	// HERO: Spectre
 	//=================================================================================================================
@@ -808,9 +608,7 @@
 		"Ability1"					"spectre_spectral_dagger"					// Ability 1
 		"Ability2"					"spectre_echo_scream"					// Ability 2
 		"Ability3"					"spectre_dispersion_ebf"						// Ability 3
-		"Ability4"					"spectre_ebf_haunt"
-		"Ability5"					""
-		
+		"Ability6"					"spectre_ebf_haunt"
 	}
 	//=================================================================================================================
 	// HERO: undying
@@ -821,7 +619,6 @@
 		"Ability1"					"undying_decay_ebf"					// Ability 4
 		"Ability2"					"undying_soul_rip_ebf"					// Ability 4
 		"Ability3"					"undying_summon_zombies"					// Ability 4
-		
 	}
 	
 	
@@ -835,8 +632,7 @@
 		"AbilityLayout"				"4"
 		"Ability2"					"ursa_overpower_ebf"
 		"Ability3"					"ursa_fury_swipes_ebf"					// Ability 4
-		"Ability4"					"ursa_claw"					// Ability 4
-		"Ability6"					""					// Ability 4
+		"Ability6"					"ursa_claw"					// Ability 4
 		
 	}
 	//=================================================================================================================
@@ -846,13 +642,13 @@
 	{
 		"override_hero"			"npc_dota_hero_sniper"
 		"Ability2"				"sniper_headshot_ebf"
-		"Ability4"				"sniper_assassinate_ebf"
+		"Ability6"				"sniper_assassinate_ebf"
 		
 	}
 	"npc_dota_hero_monkey_king_ebf"
 	{
 		"override_hero"			"npc_dota_hero_monkey_king"
-		"Ability5"				"monkey_king_jingu_mastery_ebf"
+		"Ability4"				"monkey_king_jingu_mastery_ebf"
 		
 	}
 	//=================================================================================================================
@@ -861,59 +657,21 @@
 	"npc_dota_hero_legion_commander"
 	{
 		"override_hero"			"npc_dota_hero_legion_commander"
-		"Ability1"				"class_empty_1"					// Ability 1
-		"Ability2"				"class_empty_2"					// Ability 2
-		"Ability3"				"class_empty_3"						// Ability 3
-		"Ability4"				"gladiatrix_fearless_assault"
-		"Ability5"				"class_filler"
-		"Ability6"				"class_empty_4"
-		
-		"HeroValues"
-		{
-			"Support"			"2"
-			"Damage"			"4"
-			"Tank"				"4"
-		}
+		"Ability1"				"legion_commander_overwhelming_odds_ebf"
+		"Ability2"				"legion_commander_press_the_attack_ebf"
+		"Ability3"				"legion_commander_moment_of_courage_ebf"
+		"Ability4"				"generic_hidden"
+		"Ability5"				"generic_hidden"
+		"Ability6"				"lc_ebf_war_fury"
 
-		"Items"
-		{
-			"Armor"
-			{
-				"1"				"item_gladiatrix_armor_1"
-				"2"				"item_gladiatrix_armor_2"
-				"3"				"item_gladiatrix_armor_3"
-				"4"				"item_gladiatrix_armor_4"
-				"5"				"item_gladiatrix_armor_5"
-			}
-			"Weapon"
-			{
-				"1"				"item_gladiatrix_weapon_1"
-				"2"				"item_gladiatrix_weapon_2"
-				"3"				"item_gladiatrix_weapon_3"
-				"4"				"item_gladiatrix_weapon_4"
-				"5"				"item_gladiatrix_weapon_5"
-			}
-			"Other"
-			{
-				"1"				"item_gladiatrix_other_1"
-				"2"				"item_gladiatrix_other_2"
-				"3"				"item_gladiatrix_other_3"
-				"4"				"item_gladiatrix_other_4"
-				"5"				"item_gladiatrix_other_5"
-			}
-		}
-		
-		"Abilities"
-		{
-			"gladiatrix_victorious_advance"			"true"
-			"gladiatrix_unbreakable_morale"			"true"
-			"gladiatrix_imperious_shout"			"true"
-			"gladiatrix_war_fury"					"true"
-			"gladiatrix_valiant_rush"				"true"
-			"gladiatrix_cross_cut"					"true"
-			"gladiatrix_adrenaline"					"true"
-			"gladiatrix_leg_sweep"					"true"
-		}		
+		"Ability10"		"special_bonus_strength_8"
+		"Ability11"		"special_bonus_attack_damage_35"
+		"Ability12"		"special_bonus_attack_speed_30"
+		"Ability13"		"special_bonus_unique_legion_commander_4"
+		"Ability14"		"special_bonus_movement_speed_60"
+		"Ability15"		"special_bonus_unique_legion_commander_3"
+		"Ability16"		"special_bonus_unique_legion_commander"
+		"Ability17"		"special_bonus_unique_legion_commander_2"
 	}
 	"npc_dota_hero_naga_siren_ebf"
 	{
@@ -922,22 +680,29 @@
 		"Ability1"				"naga_siren_spring_tide"	
 		"Ability2"				"naga_siren_dead_tide"
 		"Ability4"				"naga_siren_ebb_and_flow"
-		"Ability5"				"naga_siren_mirror_image"
-		"Ability6"				""
+		"Ability6"				"naga_siren_mirror_image"
 		
+		"Ability10"		"special_bonus_movement_speed_25"
+		"Ability11"		"special_bonus_unique_naga_siren_4"
+		"Ability12"		"special_bonus_agility_15"
+		"Ability13"		"special_bonus_strength_14"
+		"Ability14"		"special_bonus_lifesteal_20"
+		"Ability15"		"special_bonus_unique_naga_siren"
+		"Ability16"		"special_bonus_evasion_30"
+		"Ability17"		"special_bonus_unique_naga_siren_3"
 	}
 	"npc_dota_hero_zuus_ebf"
 	{
 		"override_hero"			"npc_dota_hero_zuus"
 		"Ability3"				"zuus_static_field_ebf"	
-		"Ability5"				"zuus_static_aegis"
+		"Ability6"				"zuus_static_aegis"
 		
 	}
 	"npc_dota_hero_tinker_ebf"
 	{
 		"override_hero"			"npc_dota_hero_tinker"
 		"Ability2"				"tinker_missile_ebf"
-		"Ability4"				"tinker_rearm_datadriven"
+		"Ability6"				"tinker_rearm_datadriven"
 		
 	}
 	"npc_dota_hero_axe_ebf"
@@ -947,7 +712,7 @@
 		"Ability2"				"axe_battle_hunger_ebf"
 		"Ability3"				"axe_counter_helix_datadriven"
 		"Ability4"				"axe_steeled_temper"
-		"Ability5"				"axe_ultimate"
+		"Ability6"				"axe_ultimate"
 		
 	}
 	"npc_dota_hero_nyx_assassin_ebf"
@@ -956,27 +721,30 @@
 		"Ability2"				"nyx_hide"
 		"Ability3"				"nyx_assassin_carapace"
 		"Ability6"				"nyx_assassin_ultimyr_justicar"
-		
+
+		"Ability10"		"special_bonus_spell_amplify_6"
+		"Ability11"		"special_bonus_hp_325"
+		"Ability12"		"special_bonus_cooldown_reduction_15"
+		"Ability13"		"special_bonus_movement_speed_35"
+		"Ability14"		"special_bonus_unique_nyx"
+		"Ability15"		"special_bonus_unique_nyx_2"
+		"Ability16"		"special_bonus_agility_100"
+		"Ability17"		"special_bonus_unique_nyx_3"
 	}
 	"npc_dota_hero_witch_doctor_ebf"
 	{
 		"override_hero"			"npc_dota_hero_witch_doctor"
 		"Ability1"				"witch_doctor_paralyzing_cask_ebf"
 		"Ability2"				"witch_doctor_voodoo_restoration_ebf"
-		"Ability4"				"witch_doctor_death_ward_ebf"
+		"Ability6"				"witch_doctor_death_ward_ebf"
 		
 	}
 	"npc_dota_hero_wisp_ebf"
 	{
 		"AbilityLayout"			"4"
 		"override_hero"			"npc_dota_hero_wisp"
-		"Ability1"				"wisp_tether_datadriven"
-		"Ability2"				"wisp_tether_break_datadriven"
-		"Ability3"				"wisp_evil_tether"
-		"Ability4"				"wisp_evil_tether_break"
-		"Ability5"				"wisp_overcharge_datadriven"
 		"Ability6"				"wisp_sacrifice"
-		"Ability7"				""
+		"Ability15"				"special_bonus_all_stats_15"
 		
 	}
 	"npc_dota_hero_crystal_maiden_ebf"
@@ -984,8 +752,7 @@
 		"override_hero"			"npc_dota_hero_crystal_maiden"
 		"Ability2"				"crystal_maiden_crystal_spear"
 		"Ability3"				"crystal_maiden_frozen_aura"
-		"Ability4"				"crystal_maiden_frozen_field_ebf"
-			
+		"Ability6"				"crystal_maiden_frozen_field_ebf"
 	}	
 	"npc_dota_hero_abaddon_ebf"
 	{
@@ -993,7 +760,16 @@
 		"Ability1"				"death_coil_ebf"
 		"Ability3"				"abaddon_brume_weaver"
 		"Ability4"				"abaddon_curse_ebf"
-		"Ability5"				"abaddon_borrowed_time"
+		"Ability6"				"abaddon_borrowed_time"
+		
+		"Ability10"				"special_bonus_mp_200"
+		"Ability11"				"special_bonus_armor_4"
+		"Ability12"				"special_bonus_cast_range_125"
+		"Ability13"				"special_bonus_hp_400"
+		"Ability14"				"special_bonus_movement_speed_25"
+		"Ability15"				"special_bonus_cooldown_reduction_15"
+		"Ability16"				"special_bonus_strength_25"
+		"Ability17"				"special_bonus_unique_abaddon"
 			
 	}
 	"npc_dota_hero_tusk_ebf"
@@ -1001,35 +777,37 @@
 		"override_hero"			"npc_dota_hero_tusk"
 		"Ability2"				"tusk_shield_throw"
 		"Ability3"				"tusk_frozen_wasteland"
-		"Ability5"				"tusk_walrus_kick"
-			
+		"Ability4"				"tusk_walrus_kick"
+
+		"Ability10"				"special_bonus_attack_damage_20"
+		"Ability11"				"special_bonus_armor_3"
 	}
-	"npc_dota_hero_bane_ebf"
+	"npc_dota_hero_bane"
 	{
 		"override_hero"			"npc_dota_hero_bane"
 		"Ability1"				"bane_mass_enfeeble"
 		"Ability2"				"bane_brain_feast"
 		"Ability3"				"bane_nightmare_prison"
-		"Ability4"				"fiends_grip_datadriven"
-			
+		"Ability6"				"fiends_grip_datadriven"
 	}
-	"npc_dota_hero_shredder_ebf"
+	"npc_dota_hero_shredder"
 	{
 		"override_hero"			"npc_dota_hero_shredder"
 		"Ability1"				"shredder_bonesplitter"
-			
+
+		"Ability11"			"special_bonus_armor_6"
 	}
 	"npc_dota_hero_bloodseeker_ebf"
 	{
 		"override_hero"			"npc_dota_hero_bloodseeker"
 		"Ability3"				"Blood_Seeker_Blood_Smell"
-		"Ability4"				"rupture_datadriven"
+		"Ability6"				"rupture_datadriven"
 		
 	}
 	"npc_dota_hero_puck_ebf"
 	{
 		"override_hero"			"npc_dota_hero_puck"
-		"Ability5"				"puck_reverie_snap"
+		"Ability6"				"puck_reverie_snap"
 		
 	}
 	"npc_dota_hero_centaur_ebf"
@@ -1037,8 +815,6 @@
 		"override_hero"			"npc_dota_hero_centaur"
 		"Ability2"				"centaur_double_edge_ebf"
 		"Ability3"				"centaur_return_ebf"
-		"Ability17"		"special_bonus_unique_centaur_3"
-		
 	}
 	"npc_dota_hero_lion_ebf"
 	{
@@ -1076,6 +852,15 @@
 	{
 		"override_hero"			"npc_dota_hero_morphling"
 		"Ability6"				"morphling_cosmic_projection"
+
+		"Ability15"		"special_bonus_all_stats_8"
+		"Ability16"		"special_bonus_unique_morphling_1"
+		"Ability17"		"special_bonus_unique_morphling_4"
+		"Ability18"		"special_bonus_attack_speed_30"
+		"Ability19"		"special_bonus_agility_20"
+		"Ability20"		"special_bonus_strength_20"
+		"Ability21"		"special_bonus_unique_morphling_6"
+		"Ability22"		"special_bonus_unique_morphling_3"
 		
 	}
 	"npc_dota_hero_visage_ebf"
@@ -1084,72 +869,27 @@
 		"Ability1"				"mana_fiend_aura_spike"
 		"Ability2"				"mana_fiend_arcane_infusion"
 		"Ability3"				"mana_fiend_essence_amp"
-		"Ability4"				"mana_fiend_mana_lance"
+		"Ability6"				"mana_fiend_mana_lance"
 		
 	}
-	"npc_dota_hero_skeleton_king"
+	"npc_dota_hero_skeleton_king" // Wraith
 	{
 		"override_hero"			"npc_dota_hero_skeleton_king"
-		"Ability1"					"class_empty_1"
-		"Ability2"					"class_empty_2"
-		"Ability3"					"class_empty_3"
-		"Ability4"					"wraith_one_for_all"
-		"Ability5"					"class_filler"
-		"Ability6"					"class_empty_4"
-		
-		"HeroValues"
-		{
-			"Support"			"2"
-			"Damage"			"4"
-			"Tank"				"4"
-		}
-		
-		"Items"
-		{
-			"Armor"
-			{
-				"1"				"item_wraith_armor_1"
-				"2"				"item_wraith_armor_2"
-				"3"				"item_wraith_armor_3"
-				"4"				"item_wraith_armor_4"
-				"5"				"item_wraith_armor_5"
-			}
-			"Weapon"
-			{
-				"1"				"item_wraith_weapon_1"
-				"2"				"item_wraith_weapon_2"
-				"3"				"item_wraith_weapon_3"
-				"4"				"item_wraith_weapon_4"
-				"5"				"item_wraith_weapon_5"
-			}
-			"Other"
-			{
-				"1"				"item_wraith_other_1"
-				"2"				"item_wraith_other_2"
-				"3"				"item_wraith_other_3"
-				"4"				"item_wraith_other_4"
-				"5"				"item_wraith_other_5"
-			}
-		}
-		
-		"Abilities"
-		{
-			"wraith_bloodletter"				"true"
-			"wraith_crimson_berserker"			"true"
-			"wraith_sanguine_aura"				"true"
-			"wraith_blood_ritual"				"true"
-			"wraith_wraithfire"					"true"
-			"wraith_undying"					"true"
-			"wraith_life_strike"				"true"
-			"wraith_wraiths_will"				"true"
-		}
-		
+		"Ability3"				"skeleton_king_mortal_strike_ebf"
+
+		"Ability10"		"special_bonus_unique_wraith_king_3"
+		"Ability11"		"special_bonus_attack_speed_20"
+		"Ability12"		"special_bonus_strength_15"
+		"Ability13"		"special_bonus_armor_4"
+		"Ability14"		"special_bonus_hp_150"
+		"Ability15"		"special_bonus_attack_damage_35"
+		"Ability16"		"special_bonus_unique_wraith_king_2"
+		"Ability17"		"special_bonus_unique_wraith_king_4"
 	}
 	"npc_dota_hero_viper_ebf"
 	{
 		"override_hero"			"npc_dota_hero_viper"
-		"Ability2"				"viper_nethertoxin"
-		"Ability4"				"viper_viper_strike_ebf"
+		"Ability6"				"viper_viper_strike_ebf"
 		
 	}
 	"npc_dota_hero_juggernaut_ebf"
@@ -1174,7 +914,16 @@
 		"Ability1"				"slardar_rush_to_defend"
 		"Ability2"				"slardar_guardian_crush"
 		"Ability3"				"slardar_oathbreaker"
-		"Ability4"				"slardar_slithereen_reprisal"
+		"Ability6"				"slardar_slithereen_reprisal"
+		
+		"Ability10"		"special_bonus_hp_regen_5"
+		"Ability11"		"special_bonus_attack_damage_20"
+		"Ability12"		"special_bonus_hp_300"
+		"Ability13"		"special_bonus_armor_4"
+		"Ability14"		"special_bonus_attack_speed_50"
+		"Ability15"		"special_bonus_night_vision_1000"
+		"Ability16"		"special_bonus_unique_slardar"
+		"Ability17"		"special_bonus_all_stats_20"
 		
 	}
 	"npc_dota_hero_spirit_breaker"
@@ -1182,65 +931,16 @@
 		"override_hero"			"npc_dota_hero_spirit_breaker"
 		"Ability1"				"spirit_breaker_ground_smash"
 		"Ability2"				"spirit_breaker_haste_armor"
+
+		"Ability10"		"special_bonus_strength_8"
+		"Ability15"		"special_bonus_movement_speed_100"
+
+
 		
 	}
 	"npc_dota_hero_necrolyte"
 	{
 		"override_hero"			"npc_dota_hero_necrolyte"
-		"Ability1"					"class_empty_1"
-		"Ability2"					"class_empty_2"
-		"Ability3"					"class_empty_3"
-		"Ability4"					"puppeteer_black_plague"
-		"Ability5"					"class_filler"
-		"Ability6"					"class_empty_4"
-		
-		"HeroValues"
-		{
-			"Support"			"3"
-			"Damage"			"3"
-			"Tank"				"3"
-		}
-		
-		"Items"
-		{
-			"Armor"
-			{
-				"1"				"item_puppeteer_armor_1"
-				"2"				"item_puppeteer_armor_2"
-				"3"				"item_puppeteer_armor_3"
-				"4"				"item_puppeteer_armor_4"
-				"5"				"item_puppeteer_armor_5"
-			}
-			"Weapon"
-			{
-				"1"				"item_puppeteer_weapon_1"
-				"2"				"item_puppeteer_weapon_2"
-				"3"				"item_puppeteer_weapon_3"
-				"4"				"item_puppeteer_weapon_4"
-				"5"				"item_puppeteer_weapon_5"
-			}
-			"Other"
-			{
-				"1"				"item_puppeteer_other_1"
-				"2"				"item_puppeteer_other_2"
-				"3"				"item_puppeteer_other_3"
-				"4"				"item_puppeteer_other_4"
-				"5"				"item_puppeteer_other_5"
-			}
-		}
-		
-		"Abilities"
-		{
-			"puppeteer_skeletal_rush"				"true"
-			"puppeteer_mass_of_flesh"				"true"
-			"puppeteer_skeleton_archer"				"true"
-			"puppeteer_zombie_brute"				"true"
-			"puppeteer_lich_mage"					"true"
-			"puppeteer_bone_wave"					"true"
-			"puppeteer_fleshcraft"					"true"
-			"puppeteer_pestilence"					"true"
-		}
-		
 	}
 	"npc_dota_hero_pugna_ebf"
 	{
@@ -1248,7 +948,7 @@
 		"Ability2"				"pugna_decrepify_ebf"
 		"Ability3"				"pugna_nether_turret"
 		"Ability4"				"pugna_lifedrain_end"
-		"Ability5"				"pugna_lifedrain_ebf"
+		"Ability6"				"pugna_lifedrain_ebf"
 		
 	}
 	"npc_dota_hero_furion_ebf"
@@ -1267,7 +967,7 @@
 	"npc_dota_hero_weaver_ebf"
 	{
 		"override_hero"			"npc_dota_hero_weaver"
-		"Ability4"				"weaver_timelapse_ebf"
+		"Ability6"				"weaver_timelapse_ebf"
 		
 	}
 	"npc_dota_hero_venomancer_ebf"
@@ -1275,14 +975,14 @@
 		"override_hero"			"npc_dota_hero_venomancer"
 		"Ability1"				"venomancer_venomous_gale_ebf"
 		"Ability2"				"venomancer_poison_sting_ebf"
-		"Ability4"				"venomancer_poison_nova_ebf"
+		"Ability6"				"venomancer_poison_nova_ebf"
 		
 	}
 	"npc_dota_hero_vengefulspirit_ebf"
 	{
 		"override_hero"			"npc_dota_hero_vengefulspirit"
 		"Ability1"				"vengefulspirit_magic_missile_ebf"
-		"Ability4"				"vengefulspirit_nether_furor"
+		"Ability6"				"vengefulspirit_nether_furor"
 		
 	}
 	"npc_dota_hero_templar_assassin_ebf"
@@ -1296,128 +996,27 @@
 	"npc_dota_hero_chaos_knight_ebf"
 	{
 		"override_hero"			"npc_dota_hero_chaos_knight"
-		"Ability1"				"chaos_knight_chaos_bolt_ebf"	
+		"Ability1"				"chaos_knight_chaos_bolt_ebf"
+		"Ability14"				"special_bonus_armor_5"
 	}
 	"npc_dota_hero_sven" // Guardian
 	{
 		"override_hero"			"npc_dota_hero_sven"
-		"Ability1"				"class_empty_1"					// Ability 1
-		"Ability2"				"class_empty_2"					// Ability 2
-		"Ability3"				"class_empty_3"						// Ability 3
-		"Ability4"				"guardian_fortitude"
-		"Ability5"				"class_filler"
-		"Ability6"				"class_empty_4"
-		
-		"HeroValues"
-		{
-			"Support"			"2"
-			"Damage"			"2"
-			"Tank"				"5"
-		}
-		
-		"Items"
-		{
-			"Armor"
-			{
-				"1"				"item_guardian_armor_1"
-				"2"				"item_guardian_armor_2"
-				"3"				"item_guardian_armor_3"
-				"4"				"item_guardian_armor_4"
-				"5"				"item_guardian_armor_5"
-			}
-			"Weapon"
-			{
-				"1"				"item_guardian_weapon_1"
-				"2"				"item_guardian_weapon_2"
-				"3"				"item_guardian_weapon_3"
-				"4"				"item_guardian_weapon_4"
-				"5"				"item_guardian_weapon_5"
-			}
-			"Other"
-			{
-				"1"				"item_guardian_other_1"
-				"2"				"item_guardian_other_2"
-				"3"				"item_guardian_other_3"
-				"4"				"item_guardian_other_4"
-				"5"				"item_guardian_other_5"
-			}
-		}
-		
-		"Abilities"
-		{
-			"guardian_anchor_howl"					"true"
-			"guardian_challenge"					"true"
-			"guardian_glorious_shield"				"true"
-			"guardian_guardians_spirit"				"true"
-			"guardian_punish"						"true"
-			"guardian_rallying_cry"					"true"
-			"guardian_shield_bash"					"true"
-			"guardian_stone_fortress"				"true"
-		}
+		"Ability2"				"sven_great_cleave_ebf"
+		"Ability3"				"sven_warcry_ebf"
 	}
 	"npc_dota_hero_dazzle" // Mystic -> need to do it like this for mergetables
 	{
 		"override_hero"			"npc_dota_hero_dazzle"
-		"Ability1"				"class_empty_1"					// Ability 1
-		"Ability2"				"class_empty_2"					// Ability 2
-		"Ability3"				"class_empty_3"						// Ability 3
-		"Ability4"				"mystic_life_weaver"
-		"Ability5"				"class_filler"
-		"Ability6"				"class_empty_4"
-		
-		"HeroValues"
-		{
-			"Support"			"5"
-			"Damage"			"2"
-			"Tank"				"2"
-		}
-		
-		"Items"
-		{
-			"Armor"
-			{
-				"1"				"item_mystic_armor_1"
-				"2"				"item_mystic_armor_2"
-				"3"				"item_mystic_armor_3"
-				"4"				"item_mystic_armor_4"
-				"5"				"item_mystic_armor_5"
-			}
-			"Weapon"
-			{
-				"1"				"item_mystic_weapon_1"
-				"2"				"item_mystic_weapon_2"
-				"3"				"item_mystic_weapon_3"
-				"4"				"item_mystic_weapon_4"
-				"5"				"item_mystic_weapon_5"
-			}
-			"Other"
-			{
-				"1"				"item_mystic_other_1"
-				"2"				"item_mystic_other_2"
-				"3"				"item_mystic_other_3"
-				"4"				"item_mystic_other_4"
-				"5"				"item_mystic_other_5"
-			}
-		}
-		
-		"Abilities"
-		{
-			"mystic_death_clasp"					"true"
-			"mystic_eternal_feast"					"true"
-			"mystic_grim_harvest"					"true"
-			"mystic_life_swap"						"true"
-			"mystic_mending_wave"					"true"
-			"mystic_mist_barrier"					"true"
-			"mystic_sacrificial_rite"				"true"
-			"mystic_unyielding"						"true"
-		}
+
 	}
 	"npc_dota_hero_bounty_hunter_ebf"
 	{
 		"override_hero"			"npc_dota_hero_bounty_hunter"
 		"Ability2"				"bounty_hunter_jinada_ebf"
 		"Ability3"				"bounty_hunter_veteran_hunter"
-		
+
+		"Ability11"		"special_bonus_attack_damage_15"
 	}
 	"npc_dota_hero_luna_ebf"
 	{
@@ -1426,13 +1025,8 @@
 		"Ability2"		"luna_nightsilver_resolve"
 		"Ability3"		"luna_lunar_blessing_ebf"
 		"Ability4"		"luna_moon_glaive"
-		"Ability5"		"luna_eclipse"
+		"Ability6"		"luna_eclipse"
 		"VisionDaytimeRange"		"3000"
 		"VisionNighttimeRange"		"3000"
-	}
-	"npc_dota_hero_medusa_ebf"
-	{
-		"override_hero"			"npc_dota_hero_medusa"
-		"Ability1"				"medusa_splitshot_ebf"	
 	}
 }

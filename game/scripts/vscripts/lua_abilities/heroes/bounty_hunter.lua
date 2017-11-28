@@ -2,7 +2,7 @@ bounty_hunter_jinada_ebf = class({})
 
 function bounty_hunter_jinada_ebf:GetCooldown(nLevel)
 	local cooldown = self.BaseClass.GetCooldown( self, nLevel )
-	if self:GetCaster():HasModifier("modifier_bounty_hunter_jinada_talent") then cooldown = cooldown - 5 end
+	if self:GetCaster():HasModifier("modifier_bounty_hunter_jinada_talent") then cooldown = cooldown - 4 end
 	return cooldown
 end
 

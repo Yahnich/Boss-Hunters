@@ -81,9 +81,9 @@ function modifier_terrorblade_zeal_passive:OnDeath(params)
 	if IsServer() then
 		if params.unit == self:GetParent() then
 			local multiplier = 1
-			if self:GetParent():HasTalent("special_bonus_unique_terrorblade") then multiplier = 1 + self:GetParent():FindTalentValue("special_bonus_unique_terrorblade")/100 end
-			local radius = self:GetAbility():GetTalentSpecialValueFor("illusion_explosion_radius") * multiplier
-			local damage = self:GetAbility():GetTalentSpecialValueFor("illusion_explosion_damage") * multiplier
+			if self:GetParent():HasTalent("special_bonus_unique_terrorblade") then multiplier = self:GetParent():FindTalentValue("special_bonus_unique_terrorblade") end
+			local radius = self:GetAbility():GetSpecialValueFor("illusion_explosion_radius") * multiplier
+			local damage = self:GetAbility():GetSpecialValueFor("illusion_explosion_damage") * multiplier
 			local owner = self:GetParent()
 			if owner:IsIllusion() then owner = owner:GetOwnerEntity() end
 			EmitSoundOn("Hero_Terrorblade.Sunder.Cast", owner)

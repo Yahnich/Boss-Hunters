@@ -1,4 +1,8 @@
-require("libraries/utility")
+function Dispel(keys)
+	local caster = keys.caster
+	local target = keys.target
+	if caster:HasTalent("special_bonus_unique_troll_warlord_4") then target:Dispel(caster, true) end
+end
 
 function Fervor(keys)
 	local caster = keys.caster

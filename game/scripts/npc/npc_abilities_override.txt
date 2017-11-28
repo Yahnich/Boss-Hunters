@@ -158,7 +158,7 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"12.0 9.0 7.0 5.0 4.0 3.0 2.0"
+		"AbilityCooldown"				"12.0 11.0 10.0 9.0 8.0 7.0 6.0"
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -172,6 +172,7 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"blink_range"			"1000 1075 1150 1150 1150 1150 1500"
+				"LinkedSpecialBonus"	"special_bonus_unique_antimage_3"
 			}
 			
 			"02"
@@ -292,7 +293,7 @@
 		"AbilityCooldown"				"14"
 		"HasPureCooldown"				"1"
 		"AbilityDuration"				"5"
-		"AbilityCastRange"				"300 500 1000 1500 1500 2000 2500"
+		"AbilityCastRange"				"600"
 
 		// Damage.
 		//-------------------------------------------------------------------------------------------------------------
@@ -309,7 +310,8 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius"				"300 500 1000 1500 1500 2000 2500"
+				"radius"				"600"
+				"LinkedSpecialBonus"	"special_bonus_unique_axe_2"
 			}
 			"02"
 			{
@@ -1704,6 +1706,7 @@
 			{
 				"var_type"					"FIELD_INTEGER"
 				"omni_slash_jumps"			"3 6 12 18 24 36 48"
+				"LinkedSpecialBonus"		"special_bonus_unique_juggernaut_2"
 			}
 			"03"
 			{
@@ -1719,6 +1722,7 @@
 			{
 				"var_type"						"FIELD_INTEGER"
 				"omni_slash_jumps_scepter"		"6 12 18 24 36 48 96"
+				"LinkedSpecialBonus"			"special_bonus_unique_juggernaut_2"
 			}
 			"06"
 			{
@@ -1843,7 +1847,8 @@
 			"05"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"cleave_damage"				"100 105 110 115 120 125 130"
+				"cleave_damage"				"100"
+				"LinkedSpecialBonus"		"special_bonus_unique_kunkka_4"
 			}
 		}
 	}
@@ -2645,33 +2650,43 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"leap_distance"			"600 700 800 900 1000 1100 1200"
+				"leap_distance"			"550"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"leap_speed"			"1600.0"
+				"leap_speed"			"1300.0"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"leap_acceleration"		"7000.0"
+				"leap_acceleration"		"6000.0"
 			}
 			"04"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"leap_radius"		"775"
+				"leap_speedbonus"	"16 24 32 40 48 56"
 			}
 			"05"
 			{
-				"var_type"			"FIELD_INTEGER"
-				"leap_speedbonus"	"30"
+				"var_type"				"FIELD_INTEGER"
+				"leap_speedbonus_as"	"50 75 100 125 150 175"
+				"LinkedSpecialBonus"	"special_bonus_unique_mirana_1"
 			}
 			"06"
 			{
-				"var_type"			"FIELD_INTEGER"
-				"leap_speedbonus_as"	"60"
-				"LinkedSpecialBonus"	"special_bonus_unique_mirana_1"
+				"var_type"				"FIELD_FLOAT"
+				"leap_bonus_duration"	"2.0"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"max_charges"			"3"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"charge_restore_time"	"50 45 40 35 30 25 20"
 			}
 		}
 	}
@@ -2770,12 +2785,17 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"speed"					"1250 1500 1750 2000 2250 2500 2750"
+				"speed"					"1250"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"width"					"200 300 400 500 600 700 800"
+				"width"					"350"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"charge_restore_time"	"11"
 			}
 		}
 	}
@@ -2783,7 +2803,7 @@
 	//=================================================================================================================
 	// Morphling: Adaptive Strike
 	//=================================================================================================================
-	"morphling_adaptive_strike"
+	"morphling_adaptive_strike_agi"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -2836,36 +2856,97 @@
 			"04"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"stun_min"						"0.25 0.5 0.75 1"
+				"range_tooltip"					"600 700 800 900 1000 1100 1200"
 			}
 			"05"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"stun_max"						"1 1.5 2 2.5 3 4 5"
+				"projectile_speed"				"1150"
 			}
 			"06"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"shared_cooldown"				"3"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Morphling: Adaptive Strike
+	//=================================================================================================================
+	"morphling_adaptive_strike_str"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"7000"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES_STRONG"
+		"FightRecapLevel"				"1"
+		"AbilitySound"					"Hero_Morphling.AdaptiveStrike"
+		"LinkedAbility"					"morphling_adaptive_strike_agi"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"600 700 800 900 1000 1100 1200"
+		"AbilityCastPoint"				"0.25"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_3"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"10 9 8 7 6 5 4"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"80"		
+
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityModifierSupportValue"	"0.3"	// Primarily about the damage
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"stun_min"						"0.5"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"stun_max"						"1.5 2.0 2.5 3.0"
+			}
+			"03"
 			{
 				"var_type"						"FIELD_INTEGER"
 				"knockback_min"					"100"
 			}
-			"07"
+			"04"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"knockback_max"					"300"
+				"knockback_max"					"500"
 			}
-			"08"
+			"05"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"range_tooltip"					"600 700 800 900 1000 1100 1200"
 			}
-			"09"
+			"06"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"projectile_speed"					"1150"
 			}
+			"07"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"shared_cooldown"					"3"
+			}
 		}
 	}
-	
 	//=================================================================================================================
 	// Morphling: Morph
 	//=================================================================================================================
@@ -2912,25 +2993,26 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
+
 			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"mana_cost"				"10 8 6 4 2 1 0"
-			}
-			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"points_per_tick"		"5 10 25 50 100 200 400"
 			}
-			"03"
+			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"morph_cooldown"		"0.1"
 			}
-			"04"
+			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"bonus_attributes"		"100 250 500 1000 2500 5000 7500"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"morph_rate_tooltip"	"50 100 250 500 1000 2000 4000"
 			}
 		}
 	}
@@ -2960,22 +3042,22 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"mana_cost"				"10 8 6 4 2 1 0"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
 				"points_per_tick"		"5 10 25 50 100 200 400"
 			}
-			"03"
+			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"morph_cooldown"		"0.1"
 			}
-			"04"
+			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"bonus_attributes"		"100 250 500 1000 2500 5000 7500"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"morph_rate_tooltip"	"50 100 250 500 1000 2000 4000"
 			}
 		}
 	}
@@ -3535,11 +3617,6 @@
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"				"27.5 25.0 22.5 20.0 17.5 15.0 12.5"
-		"AbilityDuration"				"%duration"
-
-		// Damage.
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"					"1000 2500 5000 10000 20000 40000 80000"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -3556,59 +3633,65 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"lance_speed"				"1000 1000 1000 1000"
+				"lance_damage"				"1000 2500 5000 10000 20000 40000 80000"
+				"LinkedSpecialBonus"		"special_bonus_unique_phantom_lancer_2"
 			}
 			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"lance_speed"				"1000 1000 1000 1000"
+			}
+			"03"
 			{
 				"var_type"					"FIELD_FLOAT"
 				"duration"					"3.25"
 			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"movement_speed_pct"		"-10 -15 -20 -25 -30 -35 -40"
-			}
 			"04"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"illusion_duration"			"8.0"
+				"var_type"					"FIELD_INTEGER"
+				"movement_speed_pct"		"-10 -20 -30 -40"
 			}
 			"05"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"illusion_damage_out_pct"	"50"
+				"var_type"					"FIELD_FLOAT"
+				"illusion_duration"			"2.0 4.0 6.0 8.0"
 			}
 			"06"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"tooltip_illusion_damage"	"50"
+				"illusion_damage_out_pct"	"-80"
 			}
 			"07"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"illusion_damage_in_pct"	"200"
+				"tooltip_illusion_damage"	"20"
 			}
 			"08"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"tooltip_illusion_total_damage_in_pct"	"200"
-			}			
+				"illusion_damage_in_pct"	"300 300 300 300"
+			}
 			"09"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"tooltip_illusion_total_damage_in_pct"	"400 400 400 400"
+			}			
+			"10"
 			{
 				"var_type"					"FIELD_INTEGER"
 				"fake_lance_distance"		"675"
 			}
-			"10"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"scepter_radius"			"400"
-			}
 			"11"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"scepter_jumps"				"5"
+				"scepter_radius"		"400"
 			}
 			"12"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"scepter_jumps"		"5"
+			}
+			"13"
 			{
 				"var_type"					"FIELD_INTEGER"
 				"lance_speed_bounces"		"700"
@@ -3709,7 +3792,8 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"max_illusions"			"1 1 2 2 3 3 4"
+				"max_illusions"			"1 2 3 4 5 6 7"
+				"LinkedSpecialBonus"	"special_bonus_unique_phantom_lancer_3"
 			}
 			"02"
 			{
@@ -3729,12 +3813,12 @@
 			"05"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"illusion_damage_out_pct"	"100"
+				"illusion_damage_out_pct"	"-50"
 			}
 			"06"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"tooltip_illusion_damage"	"200"
+				"tooltip_illusion_damage"	"50"
 			}
 			"07"
 			{
@@ -3744,7 +3828,7 @@
 			"08"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"tooltip_total_illusion_damage_in_pct"	"100"
+				"tooltip_total_illusion_damage_in_pct"	"200"
 			}
 			"09"
 			{
@@ -3777,12 +3861,13 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"min_distance"				"300"
+				"min_distance"				"50"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"max_distance"				"1200"
+				"max_distance"				"900"
+				"LinkedSpecialBonus"		"special_bonus_unique_phantom_lancer"
 			}
 			"03"
 			{
@@ -4233,7 +4318,7 @@
 		"ID"					"5077"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
-		"AbilityUnitTargetTeam"				"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_ALL"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
@@ -4246,10 +4331,12 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"160"
 		"AbilityCastPoint"				"0.3 0.3 0.3"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+		"AbilityChannelAnimation"		"ACT_DOTA_CHANNEL_ABILITY_4"
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityChannelTime"			"2.05 3.05 4.05"
+		"AbilityChannelTime"			"3.0 3.0 3.0"
 		"AbilityCooldown"				"30.0 25.0 20.0"
 
 		// Cost
@@ -4266,7 +4353,22 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"strength_damage"		"1 2 3 5 8 12 16"
+				"strength_damage"		"0.6 0.9 1.2 1.5 1.8 2.1 2.4"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"ticks"		"3"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"pull_units_per_second"		"75"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"pull_distance_limit"		"125"
 			}
 		}
 	}
@@ -4597,12 +4699,13 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"drain_rate"			"50 100 200 300 500 2500 5000"
+				"drain_rate"			"50 100 200 300 500 1000 2000"
+				"LinkedSpecialBonus"	"special_bonus_unique_razor"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"drain_range"			"1000"
+				"drain_range_buffer"	"200"
 			}
 			"05"
 			{
@@ -4722,12 +4825,13 @@
 			"02"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"duration"			"30.0"		
+				"duration"			"40.0"		
 			}
 			"03"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"strike_interval"	"1.0 0.8 0.6 0.4 0.3 0.2 0.1"		
+				"strike_interval"	"0.9 0.8 0.7 0.6 0.5 0.4 0.3"
+				"LinkedSpecialBonus"	"special_bonus_unique_razor_2"
 			}
 			"04"
 			{
@@ -4737,12 +4841,13 @@
 			"05"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"damage"			"800 1800 3800 8000 16000 32000 64000"		
+				"damage"			"500 750 1250 2500 5000 10000 20000"		
 			}
 			"06"
 			{
-				"var_type"			"FIELD_FLOAT"
-				"strike_interval_scepter"	"0.5 0.4 0.3 0.22 0.18 0.12 0.08"		
+				"var_type"					"FIELD_FLOAT"
+				"strike_interval_scepter"	"0.8 0.7 0.6 0.5 0.4 0.3 0.2"
+				"LinkedSpecialBonus"	"special_bonus_unique_razor_2"
 			}
 		}
 	}
@@ -4763,6 +4868,7 @@
 		"FightRecapLevel"				"1"
 		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
+		"RequiredLevel"					"6"
 
 		
 		// Casting
@@ -4776,7 +4882,7 @@
 
 		// Damage.
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"					"500 1000 2000 4000 8000 16000 32000"
+		"AbilityDamage"					"1000 2000 4000 8000 16000 32000 64000"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -4823,10 +4929,9 @@
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"blast_dot_damage"		"100 200 300 400 800 1600 3200"
+				"blast_dot_damage"		"200 300 400 800 1600 3200 6400"
+				"LinkedSpecialBonus"	"special_bonus_unique_wraith_king_3"
 			}
-			
-			
 		}
 	}
 	
@@ -4842,6 +4947,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
+		"RequiredLevel"					"6"
 		
 		"AbilitySpecial"
 		{
@@ -4853,7 +4959,8 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"vampiric_aura"			"30 35 40 45 50 60 70"
+				"vampiric_aura"			"15 25 35 45 55 65 75"
+				"LinkedSpecialBonus"	"special_bonus_unique_wraith_king_2"
 			}
 		}
 	}
@@ -5149,7 +5256,7 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"13.0 12.0 11.0 10.0"
+		"AbilityCooldown"				"12.0"
 
 		// Damage.
 		//-------------------------------------------------------------------------------------------------------------
@@ -5299,7 +5406,7 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"80.0 80.0 80.0 70.0 60.0 50.0 40.0"
+		"AbilityCooldown"				"60.0"
 		"AbilityDuration"				"25.0 25.0 25.0"
 	
 		// Cost
@@ -5317,15 +5424,16 @@
 			}
 			"02"
 			{
-				"var_type"			"FIELD_INTEGER"
-				"gods_strength_bonus_str"		"125 250 500 750 1250 2500 5000"		
+				"var_type"					"FIELD_INTEGER"
+				"gods_strength_bonus_str"	"125 250 500 750 1250 2500 5000"
+				"LinkedSpecialBonus"		"special_bonus_unique_sven_2"
 			}
-			"02"
+			"03"
 			{
 				"var_type"			"FIELD_INTEGER"
 				"radius_scepter"		"900"		
 			}
-			"03"
+			"04"
 			{
 				"var_type"			"FIELD_INTEGER"
 				"gods_strength_damage_scepter"	"50 75 100 150 200 250 300"
@@ -5754,22 +5862,17 @@
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"caustic_finale_damage_expire_tooltip"		"500 750 1500 4000 16000 32000 64000"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"caustic_finale_damage_reduced"	"25"
+				"caustic_finale_damage_expire"		"500 750 1500 4000 16000 32000 64000"
 			}
 			"05"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"caustic_finale_duration"	"1"
+				"caustic_finale_duration"	"2"
 			}
 			"06"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"caustic_finale_slow"		"-20"
+				"caustic_finale_slow"		"-30"
 			}
 			"07"
 			{
@@ -5844,6 +5947,7 @@
 			{
 				"var_type"			"FIELD_INTEGER"
 				"epicenter_slow_as"	"-60 -70 -80 -90 -100 -110 -120"
+				"LinkedSpecialBonus"	"special_bonus_unique_sand_king_3"
 			}
 			"06"
 			{
@@ -6650,9 +6754,6 @@
 		"AbilityCooldown"				"12.0 12.0 12.0 12.0"
 		"AbilityDuration"				"4.0 4.0 4.0 4.0"
 
-		// Damage.
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"					"1000 2000 4500 9000 18000 36000 72000"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -6664,36 +6765,42 @@
 		{
 			"01"
 			{
-				"var_type"			"FIELD_INTEGER"
-				"projectile_speed"	"4000 4000 4000 4000"
+				"var_type"				"FIELD_INTEGER"
+				"gush_damage"			"1000 2000 4500 9000 18000 36000 72000"
+				"LinkedSpecialBonus"	"special_bonus_unique_tidehunter_2"
 			}
 			"02"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"movement_speed"	"-40 -40 -40 -40"
+				"projectile_speed"	"4000 4000 4000 4000"
 			}
 			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"movement_speed"	"-40 -40 -40 -40"
+			}
+			"04"
 			{
 				"var_type"			"FIELD_FLOAT"
 				"negative_armor"		"5 10 20 40 80 120 160"
 				"LinkedSpecialBonus"	"special_bonus_unique_tidehunter"
 			}
-			"04"
+			"05"
 			{
 				"var_type"			"FIELD_INTEGER"
 				"speed_scepter"		"1500"
 			}
-			"05"
+			"06"
 			{
 				"var_type"			"FIELD_INTEGER"
 				"aoe_scepter"		"240"
 			}
-			"06"
+			"07"
 			{
 				"var_type"			"FIELD_INTEGER"
 				"cooldown_scepter"		"7"
 			}
-			"07"
+			"08"
 			{
 				"var_type"			"FIELD_INTEGER"
 				"cast_range_scepter"		"1800"
@@ -6775,7 +6882,8 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage_reduction"		"-40"
+				"damage_reduction"		"-35"
+				"LinkedSpecialBonus"	"special_bonus_unique_tidehunter_3"
 			}
 			"02"
 			{
@@ -6785,7 +6893,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius"				"450 500 550 600 650 700 750"
+				"radius"				"500"
 			}
 		}
 	}
@@ -8238,11 +8346,12 @@
 			{
 				"var_type"					"FIELD_INTEGER"
 				"tooltip_range"				"800 1000 1200 1400 1600 1800 2000"
+				"LinkedSpecialBonus"		"special_bonus_unique_riki_3"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"1200 2400 4800 9600 20000 40000 80000"
+				"bonus_damage"			"1200 2400 4800 9600 20000 40000 60000"
 			}
 		}
 	}
@@ -10775,6 +10884,7 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"radius"				"325 350 375 400 425 450 475"
+				"LinkedSpecialBonus"	"special_bonus_unique_faceless_void_2"
 			}
 			"02"
 			{
@@ -10795,6 +10905,11 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"vision_radius"			"475"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_attack_speed"	"50"
 			}
 		}
 	}
@@ -11071,7 +11186,7 @@
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"				"6"
-		"AbilityDuration"				"1.0 2.0 3.0 4.0"
+		"AbilityDuration"				"5"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -11084,7 +11199,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"move_slow"					"-10 -20 -30 -40 -50 -60 -70"
+				"move_slow"				"-50"
 			}
 			"02"
 			{
@@ -11094,7 +11209,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"duration"			"1 1 2 2 3 3 4"
+				"duration"				"5"
 			}
 			"04"
 			{
@@ -11104,12 +11219,12 @@
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"attack_factor"			"0 50 100 200 400 650 900"
+				"attack_factor"			"0"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"attack_factor_tooltip"	"100 150 200 300 500 750 1000"
+				"attack_factor_tooltip"	"100"
 			}
 		}
 	}
@@ -11131,12 +11246,12 @@
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"1000 1200 1400 1600 1800 2000 2000"
+		"AbilityCastRange"				"1000 1200 1400 1600 1800 2000 2200"
 		"AbilityCastPoint"				"0.3 0.3 0.3 0.3"
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"14 11 8 5 4 3 2"
+		"AbilityCooldown"				"14 12 10 8 6 4 2"
 
 		// Duration
 		//-------------------------------------------------------------------------------------------------------------
@@ -11153,7 +11268,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_attack_speed"	"130 150 200 300 400 500 600"
+				"bonus_attack_speed"	"500"
 			}
 			
 			"02"
@@ -11189,6 +11304,7 @@
 			{
 				"var_type"					"FIELD_INTEGER"
 				"bonus_evasion"				"20 25 30 35 40 45 50"
+				"LinkedSpecialBonus"		"special_bonus_unique_phantom_assassin_3"
 			}
 			"02"
 			{
@@ -11224,12 +11340,13 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"crit_bonus"				"500 600 800 1000 1250 1500 2000"
+				"crit_bonus"				"400 500 600 700 800 900 1000"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"crit_chance"				"15"
+				"crit_chance"				"12"
+				"LinkedSpecialBonus"		"special_bonus_unique_phantom_assassin_2"
 			}
 		}
 	}
@@ -11329,6 +11446,7 @@
 			{
 				"var_type"					"FIELD_INTEGER"
 				"bonus_armor"				"-10 -25 -50 -75 -100 -150 -200"
+				"LinkedSpecialBonus"		"special_bonus_unique_templar_assassin_2"
 			}
 			"03"
 			{
@@ -12134,12 +12252,14 @@
 				"var_type"					"FIELD_INTEGER"
 				"bonus_health_regen"		"60 100 200 400 800 1600 3200"
 				"LinkedSpecialBonus"		"special_bonus_unique_dragon_knight"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
 				"bonus_armor"				"45 60 85 100 150 200 300"
 				"LinkedSpecialBonus"		"special_bonus_unique_dragon_knight"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
 		}
 	}
@@ -12581,12 +12701,12 @@
 			{	
 				"var_type"			"FIELD_FLOAT"
 				"duration"				"8"
-				"LinkedSpecialBonus"	"special_bonus_unique_clockwerk"
 			}
 			"03"
 			{	
-				"var_type"			"FIELD_FLOAT"
-				"interval"			"0.8 0.7 0.6 0.5 0.4 0.3 0.2"
+				"var_type"					"FIELD_FLOAT"
+				"interval"					"0.6 0.55 0.5 0.45 0.4 0.35 0.3"
+				"LinkedSpecialBonus"		"special_bonus_unique_clockwerk"
 			}
 		}
 	}
@@ -13375,6 +13495,7 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"heal_percent"			"40 50 60 70 80 90 100"
+				"LinkedSpecialBonus"	"special_bonus_unique_lifestealer_2"
 			}
 			"03"
 			{
@@ -14152,7 +14273,8 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"2.0 4.0 6.0 8.0 10.0 12.0 14.0"
+				"duration"				"4.0 5.0 6.0 7.0 8.0 9.0 10.0"
+				"LinkedSpecialBonus"	"special_bonus_unique_omniknight_3"
 			}
 		}
 	}
@@ -15191,6 +15313,7 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"bonus_damage"			"800 1600 3200 6400 12800 25000 50000"
+				"LinkedSpecialBonus"	"special_bonus_unique_bounty_hunter_2"
 			}
 			"02"
 			{
@@ -15328,7 +15451,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"1200"
 		"AbilityCastPoint"				"0.3 0.3 0.3"
-		"AbilityCooldown"				"15 14 13 12 11 10 8"
+		"AbilityCooldown"				"16"
 		"AbilityManaCost"				"50 100 200 400 800 1600 3200"
 			
 		// Special
@@ -15354,11 +15477,13 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"bonus_gold_self"		"45 90 150 225 315 420 540"
+				"LinkedSpecialBonus"	"special_bonus_unique_bounty_hunter_3"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"bonus_gold"			"40 80 120 160 210 260 400"
+				"LinkedSpecialBonus"	"special_bonus_unique_bounty_hunter_3"
 			}
 			"06"
 			{
@@ -16447,6 +16572,7 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"bonus_movespeed"		"8 12 16 20 24 28 32"
+				"LinkedSpecialBonus"		"special_bonus_unique_spectre_3"
 			}
 			"03"
 			{
@@ -17225,7 +17351,7 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"4.5"
+		"AbilityCooldown"				"0.5"
 
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
@@ -17238,18 +17364,19 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"chance_pct"			"5 10 15 20 25 30 35"
+				"chance_pct"			"20"
 				"LinkedSpecialBonus"	"special_bonus_unique_spirit_breaker_1"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"damage"				"50 100 400 1600 6400 25000 75000"
+				"damage"				"50 100 150 200 250 300 350"
+				"LinkedSpecialBonus"	"special_bonus_unique_spirit_breaker_3"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"0.2 0.4 0.8 1.0 1.2 1.4 1.6"
+				"duration"				"0.5"
 			}
 			"04"
 			{
@@ -18105,41 +18232,43 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
-			// "01"
-			// {
-				// "var_type"				"FIELD_FLOAT"
-				// "duration"				"25.0"
-			// }
-			// "02"
-			// {
-				// "var_type"				"FIELD_FLOAT"
-				// "transformation_time"	"0.35"
-			// }
-			// "03"
-			// {
-				// "var_type"				"FIELD_FLOAT"
-				// "base_attack_time"		"1.4 1.3 1.2 1.1 1.0 0.8 0.6"
-			// }
-			// "04"
-			// {
-				// "var_type"				"FIELD_INTEGER"
-				// "bonus_health"			"400 800 1600 3200 6400 12800 25000"
-			// }
-			// "05"
-			// {
-				// "var_type"				"FIELD_INTEGER"
-				// "bonus_health_regen"	"100 250 500 1000 2500 5000 10000"
-			// }
-			// "06"
-			// {
-				// "var_type"				"FIELD_FLOAT"
-				// "bonus_mana_regen"		"3.0 6.0 12.0 24.0 48.0 100.0"
-			// }
-			// "07"
-			// {
-				// "var_type"				"FIELD_INTEGER"
-				// "bonus_movespeed"		"20 30 40 50 60 70 80"
-			// }
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"25.0"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"transformation_time"	"0.35"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"base_attack_time"		"1.6 1.5 1.4 1.3 1.2 1.1 1.0"
+				"LinkedSpecialBonus"	"special_bonus_unique_alchemist_3"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_health"			"400 800 1600 3200 6400 12800 25000"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_health_regen"	"100 250 500 1000 2500 5000 10000"
+				"LinkedSpecialBonus"	"special_bonus_unique_alchemist_4"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bonus_mana_regen"		"3.0 6.0 12.0 24.0 48.0 100.0"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_movespeed"		"20 30 40 50 60 70 80"
+			}
 		}
 	}
 //=================================================================================================================
@@ -19533,6 +19662,7 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"hero_bonus_hp"			"1000 2000 4000 8000 16000 32000 64000"
+				"LinkedSpecialBonus"	"special_bonus_unique_lycan_5"
 			}
 			"05"
 			{
@@ -19566,12 +19696,14 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"30 45 60 75 90 100 110"
+				"bonus_damage"			"15 30 45 60 75 90 105"
+				"LinkedSpecialBonus"	"special_bonus_unique_lycan_4"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"bonus_hp_regen"		"50 150 350 700 1400 2800 5600"
+				"LinkedSpecialBonus"	"special_bonus_unique_lycan_3"
 			}
 		}
 	}
@@ -20539,6 +20671,7 @@
 			{
 				"var_type"					"FIELD_INTEGER"
 				"armor_reduction"			"-10 -25 -50 -75 -100 -125 -150"
+				"LinkedSpecialBonus"		"special_bonus_unique_chaos_knight_2"
 			}		
 			"03"
 			{
@@ -20567,12 +20700,12 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"crit_damage"				"300 375 450 525 600 675 750"
+				"crit_chance"				"10"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"crit_chance"				"10"
+				"crit_damage"				"300 375 450 525 600 675 750"
 			}
 			"03"
 			{
@@ -20965,6 +21098,7 @@
 			{
 				"var_type"						"FIELD_INTEGER"
 				"leech_damage"					"500 1000 2500 5000 10000 25000 50000"
+				"LinkedSpecialBonus"			"special_bonus_unique_treant_2"
 			}		
 			"03"
 			{
@@ -22419,10 +22553,7 @@
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"				"95 115 135 155"
-		
-		// Damage.
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"					"600 1200 2400 4800 10000 20000 40000"
+
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -22452,6 +22583,12 @@
 			{
 				"var_type"			"FIELD_INTEGER"
 				"cooldown_upgrade"	"9"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"impale_damage"			"600 1200 2400 4800 10000 20000 40000"
+				"LinkedSpecialBonus"	"special_bonus_unique_nyx_2"
 			}
 		}
 	}
@@ -22695,7 +22832,6 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"5467"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"7"
 		
@@ -22705,7 +22841,7 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"70"
+		"AbilityCooldown"				"100"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -22718,32 +22854,34 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"illusion_duration"			"30.0 30.0 30.0 30.0"
+				"illusion_duration"			"40"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"outgoing_damage"			"-70 -60 -60 -50 -50 -40 -40"
+				"outgoing_damage"			"-30 -25 -20 -15 -10 -5 -0"
+				"LinkedSpecialBonus"		"special_bonus_unique_naga_siren_4"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"outgoing_damage_tooltip"	"30 40 40 50 50 60 60"
+				"outgoing_damage_tooltip"	"70 75 80 85 90 95 100"
+				"LinkedSpecialBonus"		"special_bonus_unique_naga_siren_4"
 			}
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"incoming_damage"			"400 300 300 200 200 100 100"
+				"incoming_damage"			"350 325 300 275 250 225 200"
 			}
 			"05"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"tooltip_incoming_damage_total_pct"			"600 500 400 300"
+				"var_type"								"FIELD_INTEGER"
+				"tooltip_incoming_damage_total_pct"		"450 425 400 375 350 325 300"
 			}
 			"06"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"images_count"				"2 2 3 3 4 4 5"
+				"images_count"				"5"
 				"LinkedSpecialBonus"		"special_bonus_unique_naga_siren"
 			}
 			"07"
@@ -22850,6 +22988,7 @@
 			{
 				"var_type"					"FIELD_INTEGER"
 				"armor_reduction"			"-5 -10 -20 -40 -70 -100 -150"
+				"LinkedSpecialBonus"		"special_bonus_unique_naga_siren_3"
 			}
 			"02"
 			{
@@ -23818,7 +23957,7 @@
 			"06"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"tether_heal_amp"			"0.5 1 1.5 2.0 2.5 3.0 3.5"
+				"tether_heal_amp"			"1.5"
 			}
 			"07"
 			{
@@ -23828,12 +23967,12 @@
 			"08"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"attackslow_tooltip"			"-100"
+				"attackslow_tooltip"		"-100"
 			}
 			"09"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"stun_duration"				"2"
+				"stun_duration"				"0.75 1.25 1.75 2.25"
 			}
 		}
 	}
@@ -23879,6 +24018,7 @@
 			{
 				"var_type"					"FIELD_INTEGER"
 				"hero_damage"				"300 600 1200 2400 4800 9600 20000"
+				"LinkedSpecialBonus"		"special_bonus_unique_wisp"
 			}
 			"04"
 			{
@@ -23893,7 +24033,8 @@
 			"06"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"max_range"					"875 875 875 875"
+				"max_range"					"700"
+				"LinkedSpecialBonus"		"special_bonus_unique_wisp_3"
 			}
 			"07"
 			{
@@ -23923,7 +24064,7 @@
 			"12"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"spirit_duration"			"20.0 18.0 16.0 14.0"
+				"spirit_duration"			"15.0"
 			}
 		}
 	}	
@@ -24149,6 +24290,7 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"total_damage"			"400 800 1600 3200 6400 12800 25000"
+				"LinkedSpecialBonus"	"special_bonus_unique_slark_2"
 			}
 			"05"
 			{
@@ -24293,6 +24435,7 @@
 			{
 				"var_type"					"FIELD_FLOAT"
 				"duration"					"6.0"
+				"LinkedSpecialBonus"		"special_bonus_unique_slark_3"
 			}
 			"02"
 			{
@@ -24340,8 +24483,9 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"					"5504"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
 		"MaxLevel"						"7"
 		"LevelsBetweenUpgrades"			"5"
 		"RequiredLevel"					"6"
@@ -24359,32 +24503,23 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage_modifier"		"-20"
+				"damage_modifier"		"-60 -50 -40 -30 -20 -10 -0"
 			}
 			"02"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"damage_modifier_tooltip"		"80"
+				"damage_modifier_tooltip"		"40 50 60 70 80 90 100"
 			}
 			"03"
 			{	
 				"var_type"					"FIELD_INTEGER"
-				"arrow_count"				"1 3 5 7 9 11 13"
+				"arrow_count"				"3"
+				"LinkedSpecialBonus"		"special_bonus_unique_medusa_2"
 			}
 			"04"
-			{	
-				"var_type"					"FIELD_INTEGER"
-				"total_arrow_count"				"2 4 6 8 10 12 14"
-			}
-			"05"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"range"					"700 800 900 1200 1500 2000"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"projectile_speed"		"1200"
+				"var_type"						"FIELD_INTEGER"
+				"split_shot_bonus_range"		"100"
 			}
 		}
 	}
@@ -24714,6 +24849,7 @@
 			{
 				"var_type"					"FIELD_INTEGER"
 				"axe_damage"				"400 800 1600 3200 6400 12800 25000"
+				"LinkedSpecialBonus"		"special_bonus_unique_troll_warlord_3"
 			}
 			"05"
 			{
@@ -24746,7 +24882,7 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"					"5510"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"				"1"
@@ -24774,6 +24910,7 @@
 			{
 				"var_type"					"FIELD_INTEGER"
 				"damage"					"400 800 1600 3200 6400 12800 25000"
+				"LinkedSpecialBonus"		"special_bonus_unique_troll_warlord_3"
 			}
 			"02"
 			{
@@ -24916,6 +25053,7 @@
 			{
 				"var_type"						"FIELD_FLOAT"
 				"stun_duration"					"2.0 2.25 2.5 2.75 3.0 3.25 3.5"
+				"LinkedSpecialBonus"			"special_bonus_unique_centaur_2"
 			}
 			"03"
 			{
@@ -25231,11 +25369,13 @@
 			{
 				"var_type"					"FIELD_INTEGER"
 				"dodge_chance"				"35"
+				"LinkedSpecialBonus"		"special_bonus_unique_brewmaster_4"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
 				"crit_chance"				"35"
+				"LinkedSpecialBonus"		"special_bonus_unique_brewmaster_4"
 			}
 			"03"
 			{
@@ -25608,6 +25748,7 @@
 			{
 				"var_type"					"FIELD_INTEGER"
 				"shock_damage"				"900 1800 3500 6000 14000 28000 56000"
+				"LinkedSpecialBonus"		"special_bonus_unique_magnus_4"
 			}
 			"04"
 			{
@@ -25759,6 +25900,7 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"range"					"750 900 1050 1200 1350 1500 1650"
+				"LinkedSpecialBonus"	"special_bonus_unique_magnus_3"
 			}
 			"03"
 			{
@@ -25833,6 +25975,7 @@
 			{
 				"var_type"				"FIELD_FLOAT"
 				"hero_stun_duration"	"2 2.5 3.0 3.5 4.0 4.50 5.0"
+				"LinkedSpecialBonus"	"special_bonus_unique_magnus_5"
 			}
 			"04"
 			{
@@ -25949,6 +26092,7 @@
 			{
 				"var_type"			"FIELD_INTEGER"
 				"range"				"850 1050 1250 1450 1700 1900 2100"
+				"LinkedSpecialBonus"	"special_bonus_unique_timbersaw_3"
 			}
 			"03"
 			{
@@ -25999,6 +26143,7 @@
 			{
 				"var_type"							"FIELD_INTEGER"
 				"stack_limit"						"20"
+				"LinkedSpecialBonus"				"special_bonus_unique_timbersaw_2"
 			}
 			"04"
 			{
@@ -26409,11 +26554,12 @@
 		"ID"							"5551"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
 		"LevelsBetweenUpgrades"			"7"
 		"MaxLevel"						"7"
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityDuration"				"10.0 10.0 10.0 10.0 10.0 10.0 10.0"
+		"AbilityDuration"				"60"
 				
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -26422,32 +26568,23 @@
 			"01"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"base_damage"						"50 100 150 200 300 400 500"
+				"damage_per_stack"				"75 100 125 150 175 200 225"
+				"LinkedSpecialBonus"			"special_bonus_unique_bristleback_3"
 			}
 			"02"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"damage_per_stack"					"75 150 250 325 400 500 600"
+				"move_speed_per_stack"			"1 2 3 4 5 6 7"
 			}
 			"03"
 			{
-				"var_type"						"FIELD_INTEGER"
-				"base_move_speed"					"1 2 3 4 5 6 7"
+				"var_type"						"FIELD_FLOAT"
+				"stack_duration"				"60.0"
 			}
 			"04"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"move_speed_per_stack"				"2 2 3 3 3 4 4"
-			}
-			"05"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"stack_duration"				"15.0 20.0 25.0 30.0 40.0 50.0 60.0"
-			}
-			"06"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"max_stacks"					"5 8 13 15 17 17 17"
+				"max_stacks"					"3 5 7 9 11 13 15 17"
 			}
 		}
 	}
@@ -26740,7 +26877,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"crit_multiplier"			"750 875 1000 1125 1250 1375 1500"
+				"crit_multiplier"			"350 400 450 500 550 600 650"
 				"LinkedSpecialBonus"		"special_bonus_unique_tusk"
 			}
 			"02"
@@ -27636,7 +27773,7 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"120 110 100 90 80 70 60"
+		"AbilityCooldown"				"100"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -28120,6 +28257,7 @@
 			{
 				"var_type"						"FIELD_INTEGER"
 				"damage_per_second"				"750 1500 3000 6000 12000 25000 50000"
+				"LinkedSpecialBonus"			"special_bonus_unique_ember_spirit_3"
 			}
 		}
 	}
@@ -28169,8 +28307,8 @@
 			}
 			"03"
 			{
-				"var_type"							"FIELD_FLOAT"
-				"charge_restore_time"				"40.0 35.0 30.0 25.0 20.0 15.0 10.0"
+				"var_type"				"FIELD_FLOAT"
+				"charge_restore_time"	"35.0"
 			}
 			"04"
 			{
@@ -28226,7 +28364,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"speed_multiplier"				"250 300 400 500 700 900 1200"
+				"speed_multiplier"		"300"
 			}
 			"02"
 			{
@@ -28235,13 +28373,13 @@
 			}
 			"03"
 			{
-				"var_type"							"FIELD_FLOAT"
-				"charge_restore_time"				"33.0 30.0 27.0 24.0 21.0 18.0 15.0"
+				"var_type"				"FIELD_FLOAT"
+				"charge_restore_time"	"35"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"2500 5000 7500 10000 35000 50000 100000"
+				"damage"				"2500 5000 7500 10000 35000 70000 140000"
 			}
 			"05"
 			{
@@ -28311,6 +28449,7 @@
 			{
 				"var_type"				"FIELD_FLOAT"
 				"stun_duration"			"2.25"
+				"LinkedSpecialBonus"	"special_bonus_unique_earth_spirit_3"
 			}
 			"05"
 			{
@@ -28840,12 +28979,13 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_range"			"422 472 522 572 622 672 722"
+				"bonus_range"			"350 400 450 500 550 600 650"
+				"LinkedSpecialBonus"	"special_bonus_unique_terrorblade_3"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"tooltip_attack_range"			"550 600 650 700 750 800 850"
+				"tooltip_attack_range"	"500 550 600 650 700 750 800"
 			}
 			"06"
 			{
@@ -28944,6 +29084,7 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"dash_length"			"1400"
+				"LinkedSpecialBonus"	"special_bonus_unique_phoenix_4"
 			}
 			"03"
 			{
@@ -29121,6 +29262,7 @@
 			{
 				"var_type"			"FIELD_FLOAT"
 				"hp_perc_damage"		"1.2"
+				"LinkedSpecialBonus"	"special_bonus_unique_phoenix_5"
 			}
 			"04"
 			{
@@ -33755,11 +33897,11 @@
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"160 150 140 130 120 110 0"
+		"AbilityManaCost"				"200"
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"260 200 170 140 110 400 300"
+		"AbilityCooldown"				"230 200 170 140 110 80 50"
 
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
@@ -35422,6 +35564,7 @@
 			{
 				"var_type"						"FIELD_INTEGER"
 				"wave_damage"					"1000 2000 4000 9000 16000 36000 72000"
+				"LinkedSpecialBonus"			"special_bonus_unique_underlord_2"
 			}
 			"05"
 			{
@@ -35432,6 +35575,7 @@
 			{
 				"var_type"						"FIELD_FLOAT"
 				"burn_damage"					"0.8 1.0 1.2 1.4 1.6 1.8 2"
+				"CalculateSpellDamageTooltip"			"0"
 			}
 			"07"
 			{
@@ -35628,7 +35772,9 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
 	}
-//=================================================================================================================
+
+
+	//=================================================================================================================
 	// Monkey King: Boundless Strike
 	//=================================================================================================================
 	"monkey_king_boundless_strike"
@@ -35670,7 +35816,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"strike_crit_mult"			"500 550 600 650 700 750 800"
+				"strike_crit_mult"			"700 750 800 850 900 950 1000"
 				"LinkedSpecialBonus"		"special_bonus_unique_monkey_king"
 			}
 			"03"
@@ -35805,11 +35951,13 @@
 			{
 				"var_type"					"FIELD_INTEGER"
 				"ground_jump_distance"		"1000 1100 1200 1300 1400 1500 1700"
+				"LinkedSpecialBonus"		"special_bonus_unique_monkey_king_7"
 			}
 			"05"
 			{
 				"var_type"					"FIELD_INTEGER"
 				"perched_jump_distance"		"1000 1100 1200 1300 1400 1500 1700"
+				"LinkedSpecialBonus"		"special_bonus_unique_monkey_king_7"
 			}
 			"06"
 			{
@@ -35819,22 +35967,38 @@
 			"07"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"perched_vision"			"800"
+				"perched_day_vision"			"800"
 			}
 			"08"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"perched_spot_height"		"192.0"
+				"perched_night_vision"			"400"
 			}
 			"09"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"unperched_stunned_duration"	"2.0"
+				"perched_spot_height"		"192.0"
 			}
 			"10"
 			{
+				"var_type"					"FIELD_FLOAT"
+				"unperched_stunned_duration"	"4.0"
+			}
+			"11"
+			{
 				"var_type"					"FIELD_INTEGER"
 				"top_level_height"			"500"
+			}
+			"12"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"impact_damage_tooltip"		"1200 2400 3600 7200 14400 28800 57200"
+				"LinkedSpecialBonus"		"special_bonus_unique_monkey_king_3"
+			}
+			"13"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"impact_movement_slow_tooltip"	"40 45 50 55 60 65 70"
 			}
 		}
 	}
@@ -35877,11 +36041,12 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"impact_damage"			"1200 2400 3600 7200 14400 28800 57200"
+				"LinkedSpecialBonus"		"special_bonus_unique_monkey_king_3"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"impact_movement_slow"	"40 50 60 70"
+				"impact_movement_slow"	"40 45 50 55 60 65 70"
 			}
 			"03"
 			{
@@ -35978,12 +36143,13 @@
 			"06"
 			{
 				"var_type"							"FIELD_INTEGER"
-				"bonus_damage"						"200 400 800 1600 3200 6400 12800"
+				"bonus_armor"						"50 100 150 200 300 400 500"
+				"LinkedSpecialBonus"				"special_bonus_unique_monkey_king_4"
 			}
 			"07"
 			{
 				"var_type"							"FIELD_FLOAT"
-				"attack_speed"						"2.0"
+				"attack_speed"						"1.4"
 			}
 			"08"
 			{
@@ -35993,7 +36159,7 @@
 			"09"
 			{
 				"var_type"							"FIELD_INTEGER"
-				"leadership_radius"					"780"
+				"leadership_radius_buffer"			"300"
 			}
 			"10"
 			{
@@ -36079,6 +36245,54 @@
 			{
 				"var_type"					"FIELD_INTEGER"
 				"value"				"0"
+			}
+		}
+	}
+	
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_corruption_4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"7011"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"				"phantom_assassin_armor_corruption_debuff"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"40"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_corruption_5"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"7011"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"				"phantom_assassin_armor_corruption_debuff"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"50"
 			}
 		}
 	}
@@ -36266,6 +36480,29 @@
 			}
 		}
 	}
+	
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_hp_325"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6423"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"16250"
+			}
+		}
+	}
 
 	//=================================================================================================================
 	// Ability: Special Bonus
@@ -36332,6 +36569,74 @@
 			{
 				"var_type"					"FIELD_INTEGER"
 				"value"				"25000"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_hp_600"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6235"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"30000"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_hp_700"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6415"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"35000"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_hp_800"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6905"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"40000"
 			}
 		}
 	}
@@ -38481,6 +38786,52 @@
 			}
 		}
 	}
+	
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_strength_30"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6633"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"1200"
+			}
+		}
+	}
+	
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_strength_40"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6633"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"1600"
+			}
+		}
+	}
 
 	//=================================================================================================================
 	// Ability: Special Bonus
@@ -38662,6 +39013,75 @@
 			{
 				"var_type"					"FIELD_INTEGER"
 				"value"				"1000"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_agility_30"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6406"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"1200"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_agility_40"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6430"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"1600"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_agility_100"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6705"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"4000"
 			}
 		}
 	}
@@ -39401,7 +39821,28 @@
 			}
 		}
 	}
-
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_attack_damage_60"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6366"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"900"
+			}
+		}
+	}
 	//=================================================================================================================
 	// Ability: Special Bonus
 	//=================================================================================================================
@@ -39536,6 +39977,29 @@
 			{
 				"var_type"					"FIELD_INTEGER"
 				"value"				"2250"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_attack_damage_250"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6556"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"3750"
 			}
 		}
 	}
@@ -41031,7 +41495,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"10"
+				"value"				"0.1"
 			}
 		}
 	}
@@ -41053,10 +41517,55 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"75"
+				"value"				"3800"
 			}
 		}
 	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_clockwerk_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"6512"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"3000"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_clockwerk_4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"7028"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"25"
+			}
+		}
+	}
+
 	//=================================================================================================================
 	// Ability: Special Bonus
 	//=================================================================================================================
@@ -41145,6 +41654,29 @@
 			{
 				"var_type"					"FIELD_INTEGER"
 				"value"				"25"
+			}
+		}
+	}
+	
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_centaur_4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6617"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"4000"
 			}
 		}
 	}
@@ -41331,6 +41863,28 @@
 			}
 		}
 	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_mirana_4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6692"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"12"
+			}
+		}
+	}
 	
 	//=================================================================================================================
 	// Ability: Special Bonus
@@ -41350,10 +41904,33 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"5"
+				"value"				"4"
 			}
 		}
 	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_bounty_hunter_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6358"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"4000"
+			}
+		}
+	}
+
 
 	//=================================================================================================================
 	// Ability: Special Bonus
@@ -41374,6 +41951,75 @@
 			{
 				"var_type"					"FIELD_FLOAT"
 				"value"				"0.4"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_underlord_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6967"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"3500"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_underlord_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6968"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"200"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_underlord_4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6969"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"25"
 			}
 		}
 	}
@@ -41450,6 +42096,52 @@
 	//=================================================================================================================
 	// Ability: Special Bonus
 	//=================================================================================================================
+	"special_bonus_unique_treant_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6531"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"5000"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_treant_4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6956"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"value"						"0.5"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
 	"special_bonus_unique_razor"
 	{
 		// General
@@ -41466,6 +42158,51 @@
 			{
 				"var_type"					"FIELD_INTEGER"
 				"value"				"5000"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_razor_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6860"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"3000"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_razor_4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6861"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"3"
 			}
 		}
 	}
@@ -41696,11 +42433,32 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"5"
+				"value"				"9"
 			}
 		}
 	}
-
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_sven_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6910"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"500"
+			}
+		}
+	}
 	//=================================================================================================================
 	// Ability: Special Bonus
 	//=================================================================================================================
@@ -42181,6 +42939,74 @@
 			}
 		}
 	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_nevermore_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6875"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"10"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_nevermore_4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6876"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"20"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_nevermore_5"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6912"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"-30"
+			}
+		}
+	}
 
 	//=================================================================================================================
 	// Ability: Special Bonus
@@ -42190,6 +43016,126 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"					"6071"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"4"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_templar_assassin_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6545"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"-40"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_templar_assassin_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6938"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"4000"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_templar_assassin_4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6939"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"0"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_templar_assassin_5"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6940"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"100"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"value2"				"1.0"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_templar_assassin_6"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"7058"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		
@@ -42293,6 +43239,26 @@
 			{
 				"var_type"					"FIELD_FLOAT"
 				"value"				"2"
+			}
+		}
+	}
+	
+	"special_bonus_unique_doom_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6369"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"10"
 			}
 		}
 	}
@@ -42680,7 +43646,29 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"100"
+				"value"				"25"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_wraith_king_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6414"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"600"
 			}
 		}
 	}
@@ -42911,6 +43899,29 @@
 			}
 		}
 	}
+	
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_axe_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6815"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"2"
+			}
+		}
+	}
 
 	//=================================================================================================================
 	// Ability: Special Bonus
@@ -43003,6 +44014,51 @@
 			}
 		}
 	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_juggernaut_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6662"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"16"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_juggernaut_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"7021"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"2000"
+			}
+		}
+	}
 
 	//=================================================================================================================
 	// Ability: Special Bonus
@@ -43067,8 +44123,8 @@
 		{
 			"01"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"value"				"30"
+				"var_type"					"FIELD_FLOAT"
+				"value"				"1.3"
 			}
 		}
 	}
@@ -43119,6 +44175,30 @@
 		}
 	}
 
+	
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_luna_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6682"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"5250"
+			}
+		}
+	}
+
 	//=================================================================================================================
 	// Ability: Special Bonus
 	//=================================================================================================================
@@ -43138,6 +44218,74 @@
 			{
 				"var_type"					"FIELD_INTEGER"
 				"value"				"600"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_faceless_void_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6651"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"175"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_faceless_void_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6807"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"1500"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_faceless_void_4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"7001"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"dodge_chance_pct"				"25"
 			}
 		}
 	}
@@ -43187,7 +44335,50 @@
 			}
 		}
 	}
-
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_nyx_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6399"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"3000"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_nyx_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6814"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"1"
+			}
+		}
+	}
 	//=================================================================================================================
 	// Ability: Special Bonus
 	//=================================================================================================================
@@ -43279,6 +44470,52 @@
 			}
 		}
 	}
+	
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_chaos_knight_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6618"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"-35"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_chaos_knight_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6619"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"value"				"2"
+			}
+		}
+	}
 
 	//=================================================================================================================
 	// Ability: Special Bonus
@@ -43325,6 +44562,52 @@
 			}
 		}
 	}
+	
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_lycan_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6519"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"600"
+			}
+		}
+	}
+	
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_lycan_5"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6685"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"16000"
+			}
+		}
+	}
 
 	//=================================================================================================================
 	// Ability: Special Bonus
@@ -43367,7 +44650,75 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"600"
+				"value"				"500"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_phantom_lancer_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6400"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"3500"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_phantom_lancer_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6849"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"4"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_phantom_lancer_4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6850"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"5"
 			}
 		}
 	}
@@ -43394,6 +44745,75 @@
 			}
 		}
 	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_slark_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6892"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"1500"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_slark_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6893"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"value"				"1"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_slark_4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6894"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"20"
+			}
+		}
+	}
+
 
 	//=================================================================================================================
 	// Ability: Special Bonus
@@ -43413,7 +44833,98 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"10"
+				"value"				"8"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_spectre_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6900"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"3"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_spectre_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6901"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"20"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_spectre_4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6902"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"20"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_spectre_5"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6903"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"15"
 			}
 		}
 	}
@@ -43509,6 +45020,47 @@
 			}
 		}
 	}
+	"special_bonus_unique_tidehunter_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6945"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"5000"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_tidehunter_4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6947"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"5"
+			}
+		}
+	}
 
 	//=================================================================================================================
 	// Ability: Special Bonus
@@ -43574,7 +45126,76 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"7"
+				"value"				"6"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_troll_warlord_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6958"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"3"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_troll_warlord_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6959"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"3000"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_troll_warlord_4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6960"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"0"
 			}
 		}
 	}
@@ -43620,6 +45241,74 @@
 			{
 				"var_type"					"FIELD_INTEGER"
 				"value"				"2"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_undying_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6546"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"1"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_undying_4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6971"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"20"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_undying_5"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6972"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"3"
 			}
 		}
 	}
@@ -43778,10 +45467,34 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"2"
+				"value"				"50000"
 			}
 		}
 	}
+
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_ember_spirit_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6647"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"4500"
+			}
+		}
+	}
+
 
 	//=================================================================================================================
 	// Ability: Special Bonus
@@ -43805,6 +45518,30 @@
 			}
 		}
 	}
+	
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_lifestealer_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"7012"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"2"
+			}
+		}
+	}
+
 
 	//=================================================================================================================
 	// Ability: Special Bonus
@@ -44043,6 +45780,98 @@
 	//=================================================================================================================
 	// Ability: Special Bonus
 	//=================================================================================================================
+	"special_bonus_unique_riki_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6193"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"5"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_riki_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6865"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"900"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_riki_4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6866"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"400"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_riki_5"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6867"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"40"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
 	"special_bonus_unique_tusk"
 	{
 		// General
@@ -44058,11 +45887,55 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"150"
+				"value"				"100"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_tusk_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6411"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"4"
 			}
 		}
 	}
 
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_tusk_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6961"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"3500"
+			}
+		}
+	}
 	//=================================================================================================================
 	// Ability: Special Bonus
 	//=================================================================================================================
@@ -44104,7 +45977,53 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"4"
+				"value"				"6"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_sniper_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6896"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"3"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_sniper_4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6897"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"value"				"1.4"
 			}
 		}
 	}
@@ -44151,6 +46070,48 @@
 			}
 		}
 	}
+	
+	"special_bonus_unique_magnus_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6390"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"15"
+			}
+		}
+	}
+
+	
+	"special_bonus_unique_magnus_4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6390"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"3200"
+			}
+		}
+	}
+
 
 	//=================================================================================================================
 	// Ability: Special Bonus
@@ -44312,6 +46273,74 @@
 			}
 		}
 	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_naga_siren_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6398"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"5"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_naga_siren_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6701"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"-35"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_naga_siren_4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"7029"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"10"
+			}
+		}
+	}
 
 	//=================================================================================================================
 	// Ability: Special Bonus
@@ -44358,7 +46387,74 @@
 			}
 		}
 	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_sand_king_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6409"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"50"
+			}
+		}
+	}
 
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_sand_king_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6530"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"-50"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_sand_king_4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6872"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"1250"
+			}
+		}
+	}
 	//=================================================================================================================
 	// Ability: Special Bonus
 	//=================================================================================================================
@@ -44423,7 +46519,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"3"
+				"value"				"7"
 			}
 		}
 	}
@@ -44606,6 +46702,74 @@
 			{
 				"var_type"					"FIELD_INTEGER"
 				"value"				"4"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_gyrocopter_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6652"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"3"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_gyrocopter_4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6653"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"25"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_gyrocopter_5"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6654"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"0"
 			}
 		}
 	}
@@ -44862,6 +47026,28 @@
 	//=================================================================================================================
 	// Ability: Special Bonus
 	//=================================================================================================================
+	"special_bonus_unique_bloodseeker_4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6809"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"value"				"0.3"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
 	"special_bonus_unique_broodmother_1"
 	{
 		// General
@@ -45061,7 +47247,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"150"
+				"value"				"4000"
 			}
 		}
 	}
@@ -45174,7 +47360,126 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"100"
+				"value"				"250"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_monkey_king_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6421"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"4"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_monkey_king_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6696"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"3000"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_monkey_king_4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6697"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"1000"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_monkey_king_5"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"7024"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"150"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_monkey_king_6"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"7025"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"1100"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value2"				"7"
 			}
 		}
 	}

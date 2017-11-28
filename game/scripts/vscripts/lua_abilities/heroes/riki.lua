@@ -33,7 +33,6 @@ function ProcBackstab(keys)
 		if target:GetMagicalArmorValue() >= 100 then armormult = (100 - target:GetBaseMagicalResistanceValue())/100 end
 		local damageType = DAMAGE_TYPE_PURE
 		if target:GetMagicalArmorValue() == 0 then damageType = DAMAGE_TYPE_MAGICAL end
-		print(caster:GetAgility() * agility_damage_multiplier * armormult)
 		local backstabdmg = caster:GetAgility() * agility_damage_multiplier * armormult
 		ApplyDamage({victim = target, attacker = caster, damage = backstabdmg/get_aether_multiplier(caster), damage_type = damageType, ability = keys.ability})
 	end
@@ -59,6 +58,7 @@ end
 
 function CheckBackstab(params)
 	local ability = params.ability
+	local caster = keys.caster
 	local agility_damage_multiplier = ability:GetTalentSpecialValueFor("agility_damage")
 	if params.attacker:HasModifier("modifier_banish") then agility_damage_multiplier = 0 end
 
@@ -83,6 +83,7 @@ function CheckBackstab(params)
 	local damageType = DAMAGE_TYPE_PURE
 	if  params.target:GetMagicalArmorValue() == 0 then damageType = DAMAGE_TYPE_MAGICAL end
 	-- Check for the backstab angle.
+	local damage = params.attacker:GetAgility() * agility_damage_multiplier * armormult
 	if result_angle >= (180 - (ability:GetTalentSpecialValueFor("backstab_angle") / 2)) and result_angle <= (180 + (ability:GetTalentSpecialValueFor("backstab_angle") / 2)) then 
 		-- Play the sound on the victim.
 		EmitSoundOn(params.sound, params.target)
@@ -91,8 +92,12 @@ function CheckBackstab(params)
 		-- Set Control Point 1 for the backstab particle; this controls where it's positioned in the world. In this case, it should be positioned on the victim.
 		ParticleManager:SetParticleControlEnt(particle, 1, params.target, PATTACH_POINT_FOLLOW, "attach_hitloc", params.target:GetAbsOrigin(), true) 
 		-- Apply extra backstab damage based on Riki's agility
-		ApplyDamage({victim = params.target, attacker = params.attacker, damage = params.attacker:GetAgility() * agility_damage_multiplier * armormult, damage_type = damageType})
-	else
+		ApplyDamage({victim = params.target, attacker = params.attacker, damage = damage, damage_type = damageType})
+	elseif caster:HasTalent("special_bonus_unique_riki_5") then
+		local multiplier = caster:FindTalentValue("special_bonus_unique_riki_5") / 100
+		ApplyDamage({victim = params.target, attacker = params.attacker, damage = damage * multiplier, damage_type = damageType})
+	end
+		
 		--EmitSoundOn(params.sound2, params.target)
 		-- uncomment this if regular (non-backstab) attack has no sound
 	end

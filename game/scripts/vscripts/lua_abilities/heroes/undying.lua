@@ -1,3 +1,25 @@
+function ZombieTalent(keys)
+	local caster = keys.caster
+	if caster:HasTalent("special_bonus_unique_undying_5") then
+		local ability = keys.ability
+		local targets = FindUnitsInRadius
+		local units = FindUnitsInRadius(caster:GetTeam(),
+								  target,
+								  caster,
+								  radius,
+								  DOTA_UNIT_TARGET_TEAM_ENEMY,
+								  DOTA_UNIT_TARGET_ALL,
+								  DOTA_UNIT_TARGET_FLAG_NONE,
+								  FIND_ANY_ORDER,
+								  false)
+								  
+								  
+		EmitSoundOn("Hero_Undying.Decay.Cast", caster)
+		for _,unit in pairs(units) do
+			ability:ApplyDataDrivenModifier(caster, unit, "modifier_zombie_leech", {duration = ability:GetTalentSpecialValueFor("zombie_duration")})
+		end
+	end
+end
 
 function ZombieLeech(keys)
 	local target = keys.target
