@@ -157,6 +157,7 @@ function concussive_shot_seek_target( keys )
     local ability = keys.ability
     local particle_name = "particles/units/heroes/hero_skywrath_mage/skywrath_mage_concussive_shot.vpcf"
     local radius = ability:GetTalentSpecialValueFor( "launch_radius")
+	if caster:HasTalent("special_bonus_unique_skywrath_4") then radius = -1 end
     local speed = ability:GetTalentSpecialValueFor( "speed")
     local targetTeam = ability:GetAbilityTargetTeam() -- DOTA_UNIT_TARGET_TEAM_ENEMY
     local targetType = ability:GetAbilityTargetType() -- DOTA_UNIT_TARGET_HERO

@@ -9760,12 +9760,12 @@
 		"Model"						"models/heroes/venomancer/venomancer_ward.mdl"	// Model.
 		"SoundSet"					"Hero_VenomancerWard"					// Name of sound set.
 		"Level"						"1"
-		"ModelScale" 				"0.8"
+		"ModelScale" 				"0.6"
 		"SelectionGroup"			"Venomancer_Wards"
 
 		// Abilities
 		//----------------------------------------------------------------
-		"Ability1"					""			// Ability 1.
+		"Ability1"					"venomancer_poison_sting_ebf"			// Ability 1.
 		"Ability2"					""			// Ability 2.
 		"Ability3"					""			// Ability 3.
 		"Ability4"					""			// Ability 4.
@@ -9837,12 +9837,12 @@
 		"Model"						"models/heroes/venomancer/venomancer_ward.mdl"	// Model.
 		"SoundSet"					"Hero_VenomancerWard"					// Name of sound set.
 		"Level"						"1"
-		"ModelScale" 				"0.8"
+		"ModelScale" 				"0.7"
 		"SelectionGroup"			"Venomancer_Wards"
 
 		// Abilities
 		//----------------------------------------------------------------
-		"Ability1"					""			// Ability 1.
+		"Ability1"					"venomancer_poison_sting_ebf"			// Ability 1.
 		"Ability2"					""			// Ability 2.
 		"Ability3"					""			// Ability 3.
 		"Ability4"					""			// Ability 4.
@@ -9920,7 +9920,7 @@
 
 		// Abilities
 		//----------------------------------------------------------------
-		"Ability1"					""			// Ability 1.
+		"Ability1"					"venomancer_poison_sting_ebf"			// Ability 1.
 		"Ability2"					""			// Ability 2.
 		"Ability3"					""			// Ability 3.
 		"Ability4"					""			// Ability 4.
@@ -9992,13 +9992,13 @@
 		"Model"						"models/heroes/venomancer/venomancer_ward.mdl"	// Model.
 		"SoundSet"					"Hero_VenomancerWard"					// Name of sound set.
 		"Level"						"1"
-		"ModelScale" 				"0.8"
+		"ModelScale" 				"0.9"
 		"SelectionGroup"			"Venomancer_Wards"
 
 
 		// Abilities
 		//----------------------------------------------------------------
-		"Ability1"					""			// Ability 1.
+		"Ability1"					"venomancer_poison_sting_ebf"			// Ability 1.
 		"Ability2"					""			// Ability 2.
 		"Ability3"					""			// Ability 3.
 		"Ability4"					""			// Ability 4.
@@ -10070,13 +10070,13 @@
 		"Model"						"models/heroes/venomancer/venomancer_ward.mdl"	// Model.
 		"SoundSet"					"Hero_VenomancerWard"					// Name of sound set.
 		"Level"						"1"
-		"ModelScale" 				"0.8"
+		"ModelScale" 				"1"
 		"SelectionGroup"			"Venomancer_Wards"
 
 
 		// Abilities
 		//----------------------------------------------------------------
-		"Ability1"					""			// Ability 1.
+		"Ability1"					"venomancer_poison_sting_ebf"			// Ability 1.
 		"Ability2"					""			// Ability 2.
 		"Ability3"					""			// Ability 3.
 		"Ability4"					""			// Ability 4.
@@ -10148,13 +10148,13 @@
 		"Model"						"models/heroes/venomancer/venomancer_ward.mdl"	// Model.
 		"SoundSet"					"Hero_VenomancerWard"					// Name of sound set.
 		"Level"						"1"
-		"ModelScale" 				"0.8"
+		"ModelScale" 				"1.1"
 		"SelectionGroup"			"Venomancer_Wards"
 
 
 		// Abilities
 		//----------------------------------------------------------------
-		"Ability1"					""			// Ability 1.
+		"Ability1"					"venomancer_poison_sting_ebf"			// Ability 1.
 		"Ability2"					""			// Ability 2.
 		"Ability3"					""			// Ability 3.
 		"Ability4"					""			// Ability 4.
@@ -10226,13 +10226,13 @@
 		"Model"						"models/heroes/venomancer/venomancer_ward.mdl"	// Model.
 		"SoundSet"					"Hero_VenomancerWard"					// Name of sound set.
 		"Level"						"1"
-		"ModelScale" 				"0.8"
+		"ModelScale" 				"1.2"
 		"SelectionGroup"			"Venomancer_Wards"
 
 
 		// Abilities
 		//----------------------------------------------------------------
-		"Ability1"					""			// Ability 1.
+		"Ability1"					"venomancer_poison_sting_ebf"			// Ability 1.
 		"Ability2"					""			// Ability 2.
 		"Ability3"					""			// Ability 3.
 		"Ability4"					""			// Ability 4.

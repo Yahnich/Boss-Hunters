@@ -1,3 +1,11 @@
+
+function ApplyAttack(keys)
+	local ability	= keys.ability
+	local caster	= keys.caster
+	local thinker	= keys.target
+	caster:PerformAttack(target, true, true, true, false, true, false, false)
+end
+
 function Thinker_StoreCaster( keys )
 	local ability	= keys.ability
 	local caster	= keys.caster

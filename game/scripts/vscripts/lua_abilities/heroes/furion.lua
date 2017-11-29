@@ -7,7 +7,7 @@ if IsServer() then
 		if self:GetCursorTarget() then
 			local point = self:GetCursorTarget():GetAbsOrigin()
 		end
-		local duration = self:GetSpecialValueFor("duration")
+		local duration = self:GetTalentSpecialValueFor("duration")
 		local vision_range = self:GetSpecialValueFor("vision_range")
 		local trees = 8
 		local radius = 150

@@ -2,13 +2,29 @@ function AdamantiumShell(keys)
 	local target = keys.target
 	local ability = keys.ability
 	local charges = ability:GetTalentSpecialValueFor("charges")
-	target.charges = charges
-	target:SetModifierStackCount( "modifier_shell_protection", ability, target.charges )
-	if target.shield then ParticleManager:DestroyParticle(target.shield,true) end
-	target.shield = ParticleManager:CreateParticle("particles/adamantium_shield.vpcf", PATTACH_ABSORIGIN_FOLLOW , target)
-            ParticleManager:SetParticleControl(target.shield, 0, target:GetAbsOrigin())
-            ParticleManager:SetParticleControl(target.shield, 1, Vector(150,150,150))
-            ParticleManager:SetParticleControl(target.shield, 2, target:GetAbsOrigin())
+	local charges = ability:GetTalentSpecialValueFor("duration")
+	if caster:HasTalent("special_bonus_unique_dark_seer_3") then
+		local units = caster:FindFriendlyUnitsInRadius(caster:GetAbsOrigin(), caster:FindTalentValue("special_bonus_unique_dark_seer_3"))
+		for _,unit in pairs( units ) do
+			ApplyDataDrivenModifier(caster, unit, "modifier_shell_protection", {duration = duration})
+			unit.charges = charges
+			unit:SetModifierStackCount( "modifier_shell_protection", ability, unit.charges )
+			if unit.shield then ParticleManager:DestroyParticle(unit.shield,true) end
+			unit.shield = ParticleManager:CreateParticle("particles/adamantium_shield.vpcf", PATTACH_ABSORIGIN_FOLLOW , unit)
+			ParticleManager:SetParticleControl(unit.shield, 0, unit:GetAbsOrigin())
+			ParticleManager:SetParticleControl(unit.shield, 1, Vector(150,150,150))
+			ParticleManager:SetParticleControl(unit.shield, 2, unit:GetAbsOrigin())
+		end
+	else
+		ApplyDataDrivenModifier(caster, target, "modifier_shell_protection", {duration = duration})
+		target.charges = charges
+		target:SetModifierStackCount( "modifier_shell_protection", ability, target.charges )
+		if target.shield then ParticleManager:DestroyParticle(target.shield,true) end
+		target.shield = ParticleManager:CreateParticle("particles/adamantium_shield.vpcf", PATTACH_ABSORIGIN_FOLLOW , target)
+		ParticleManager:SetParticleControl(target.shield, 0, target:GetAbsOrigin())
+		ParticleManager:SetParticleControl(target.shield, 1, Vector(150,150,150))
+		ParticleManager:SetParticleControl(target.shield, 2, target:GetAbsOrigin())
+	end
 end
 
 function AdamantiumShellHit(keys)

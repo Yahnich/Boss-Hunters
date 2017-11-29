@@ -286,6 +286,7 @@
 			{
 				"var_type"					"FIELD_INTEGER"
 				"damage"					"1000 2000 4000 8000 16000 32000 64000"
+				"LinkedSpecialBonus"		"special_bonus_unique_shadow_shaman_3"
 			}
 		}
 
@@ -351,6 +352,7 @@
 			{
 				"var_type"				"FIELD_FLOAT"
 				"aftershackle_duration"	"1.0"
+				"LinkedSpecialBonus"	"special_bonus_unique_shadow_shaman_2"
 			}
 		}
 
@@ -515,6 +517,7 @@
 			{
 				"var_type"					"FIELD_FLOAT"
 				"max_health_damage"			"10"
+				"LinkedSpecialBonus"		"special_bonus_unique_techies_2"
 			}
 			
 			"07"
@@ -3877,6 +3880,7 @@
 			{
 				"var_type"				"FIELD_FLOAT"
 				"duration"				"6.0"
+				"LinkedSpecialBonus"	"special_bonus_unique_oracle_3"
 			}
 			"02"
 			{
@@ -4785,7 +4789,6 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
 		"AbilityTextureName"			"bane_nightmare"
 		"PiercesDisableReduction"		"1"
-		"HasPureCooldown"				"1"
 		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
 		"RequiredLevel"					"6"
@@ -4828,6 +4831,7 @@
 			{
 				"var_type"					"FIELD_FLOAT"
 				"duration"					"1.5"
+				"LinkedSpecialBonus"		"special_bonus_unique_bane_3"
 			}
 			"02"
 			{
@@ -4843,12 +4847,12 @@
 				"EffectName"	"Hero_Bane.Nightmare"
 				"Target"		"TARGET"
 			}
-
-			"ApplyModifier"
+			"RunScript"
 			{
-				"ModifierName"	"modifier_nightmare_datadriven"
-				"Target"		"TARGET"
-			}
+				"ScriptFile"	"lua_abilities/heroes/bane"
+				"Function"		"StartNightmare"
+				"sound"			"Hero_Bane.Nightmare.Loop"
+			} 
 		}
 		"Modifiers"
 		{
@@ -6238,6 +6242,12 @@
 			{
 				"var_type"				"FIELD_FLOAT"
 				"tick_rate"				"0.1"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"damage"				"1000 2000 3000 6000 12000 24000 48000"
+				"LinkedSpecialBonus"	"special_bonus_unique_enigma_3"
 			}
 		}
 		
@@ -9322,6 +9332,30 @@
 			{
 				"Duration"	"%coil_duration"
 				
+				"ThinkInterval"		"0.6"
+				"OnIntervalThink"
+				{
+					"ActOnTargets"
+					{
+						"Target"
+						{
+							"Center"	"TARGET"
+							"Radius"	"%coil_radius"
+							"Teams" 	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+							"Types" 	"DOTA_UNIT_TARGET_ALL"
+						}
+						
+						"Action"
+						{
+							"RunScript"
+							{
+								"ScriptFile"	"lua_abilities/heroes/puck.lua"
+								"Function"		"ApplyAttack"
+							}
+						}
+					}
+				}
+				
 				"OnCreated"
 				{
 					"FireSound"
@@ -10047,6 +10081,297 @@
 					}
 				}
 			}			
+		}
+	}
+	
+	"necro_plaguebearer_dirge"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"		
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"HasScepterUpgrade"				"1"
+		"FightRecapLevel"				"2"
+		"AbilityTextureName"			"necrolyte_reapers_scythe"
+		"MaxLevel"						"7"
+		"LevelsBetweenUpgrades"			"7"
+
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_necrolyte.vsndevts"
+			"particle"			"particles/units/heroes/hero_necrolyte/necrolyte_scythe.vpcf"
+			"particle"			"particles/units/heroes/hero_necrolyte/necrolyte_scythe_model.vpcf"
+			"particle"			"particles/units/heroes/hero_necrolyte/necrolyte_scythe_orig.vpcf"
+			"particle"			"particles/generic_gameplay/generic_stunned.vpcf"
+			"particle"			"particles/necrophos_plague.vpcf"
+			"particle"			"particles/units/heroes/hero_necrolyte/necrolyte_scythe_mist.vpcf"
+		}
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.5 0.5 0.5"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"100 95 90 85 80 75 70"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"175 340 500 750 1000 2000 4000"		
+		
+		// Cast Range
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1000"
+
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityModifierSupportValue"	"0.1"	// Primarily about the damage
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage_per_health"			"30 35 40 45 50 55 60"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"base_damage"				"1600 3200 6400 12800 25000 50000 100000"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"heal_per_health"			"70 75 80 85 90 95 100"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"base_heal"					"1600 3200 6400 12800 25000 50000 100000"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"900"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"duration"					"10"
+			}
+			"07"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"stun_duration"				"1.5"
+			}
+			"08"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"self_damage"				"80"
+			}
+			"09"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"tick_rate"					"1.0"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_plague_sacrifice"
+				"Target"		"CASTER"
+			}
+			"FireSound"
+			{
+				"EffectName"	"Hero_Necrolyte.ReapersScythe.Cast"
+				"Target"		"CASTER"
+			}
+
+			"FireSound"
+			{
+				"EffectName"	"Hero_Necrolyte.ReapersScythe.Target"
+				"Target"		"CASTER"
+			}
+
+			"DelayedAction"
+			{
+				"Delay"		"%stun_duration"
+
+				"Action"
+				{
+					"FireEffect"
+					{
+						"EffectName"	"particles/units/heroes/hero_necrolyte/necrolyte_scythe_orig.vpcf"
+						"EffectAttachType"	"start_at_customorigin"
+						
+						"ControlPointEntities"
+						{
+							"CASTER"	"follow_origin"
+							"CASTER"	"follow_origin"
+						}
+					}
+				}
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_plague_sacrifice"
+			{
+				"IsDebuff"	"1"
+				"Duration"	"%stun_duration"
+
+				"OverrideAnimation"	"ACT_DOTA_DISABLED"
+
+				"EffectName" "particles/generic_gameplay/generic_stunned.vpcf"
+				"EffectAttachType" "follow_overhead"
+
+				
+
+				"OnCreated"
+				{
+					"DelayedAction"
+					{
+						// Scythe animation has a 0.7 sec travel time
+						"Delay"		"%stun_duration - 0.7"
+
+						"Action"
+						{
+							"FireEffect"
+							{
+								"EffectName"	"particles/units/heroes/hero_necrolyte/necrolyte_scythe_model.vpcf"
+								"EffectAttachType"	"follow_origin"
+
+								"ControlPointEntities"
+								{
+									"CASTER"	"follow_origin"
+									"CASTER"	"follow_origin"
+								}
+							}
+							"RunScript"
+							{
+								"ScriptFile"		"lua_abilities/heroes/necrophos.lua"
+								"Function"			"SelfDamage"
+							}
+						}
+					}
+					"AttachEffect"
+					{
+						"EffectName"	"particles/units/heroes/hero_necrolyte/necrolyte_scythe.vpcf"
+						"EffectAttachType"	"follow_origin"
+						"Target"		"CASTER"
+					}
+					"ApplyModifier"
+					{
+						"ModifierName"	"modifier_plague_heal"
+						"Duration"	"%duration"
+						"Target"
+						{
+							"Center"  	"CASTER"
+							"Teams" 	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+							"Types" 	"DOTA_UNIT_TARGET_ALL"
+							"Radius"	"%radius"
+						}
+						
+					}
+					"RemoveModifier"
+					{
+						"ModifierName"	"modifier_plague_heal"
+						"Target"	"CASTER"
+					}
+					"ApplyModifier"
+					{
+						"ModifierName"	"modifier_plague_damage"
+						"Duration"	"%duration"
+						"Target"
+						{
+							"Center"  	"TARGET"
+							"Teams" 	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+							"Types" 	"DOTA_UNIT_TARGET_ALL"
+							"Flags"     "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+							"Radius"	"%radius"
+						}
+					}
+				}
+
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+			"modifier_plague_heal"
+			{
+				"IsBuff"	"1"
+
+				"ThinkInterval"	"%tick_rate"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"lua_abilities/heroes/necrophos.lua"
+						"Function"			"AllyHeal"
+					}
+					"AttachEffect"
+					{
+						"EffectName"	"particles/units/heroes/hero_necrolyte/necrolyte_scythe_mist.vpcf"
+						"EffectAttachType"	"follow_origin"
+						"Target"		"TARGET"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"lua_abilities/heroes/necrophos.lua"
+						"Function"			"RemoveBonusHealth"
+					}
+				}
+			}
+			"modifier_plague_health_increase"
+			{
+				"IsHidden" "0"
+				"Attributes"    "MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_HEALTH_BONUS"	"1"
+				}
+			}
+			"modifier_plague_damage"
+			{
+				"IsDebuff"	"1"
+				"ThinkInterval"	"%tick_rate"
+				
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"lua_abilities/heroes/necrophos.lua"
+						"Function"			"EnemyDamage"
+					}
+					"AttachEffect"
+					{
+						"EffectName"	"particles/units/heroes/hero_necrolyte/necrolyte_scythe_mist.vpcf"
+						"EffectAttachType"	"follow_origin"
+						"Target"		"TARGET"
+					}
+				}
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_DISABLE_HEALING"			"1"
+				}
+			}
 		}
 	}
 	///////////////////
@@ -11590,13 +11915,15 @@
 			}
 			"10"
 			{
-				"var_type"			"FIELD_INTEGER"
-				"damage"			"1000 2000 4000 8000 16000 32000 64000"
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"1000 2000 4000 8000 16000 32000 64000"
+				"LinkedSpecialBonus"	"special_bonus_unique_crystal_maiden_3"
 			}
 			"11"
 			{
 				"var_type"			"FIELD_INTEGER"
 				"damage_scepter"	"1400 2800 5600 11200 22500 45000 90000"
+				"LinkedSpecialBonus"	"special_bonus_unique_crystal_maiden_3"
 			}
 			"12"
 			{
@@ -13772,7 +14099,8 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"damage_to_magic"	"100 110 120 130 140 150 160"
+				"damage_to_magic"		"100 110 120 130 140 150 160"
+				"LinkedSpecialBonus"	"special_bonus_unique_visage_4"
 			}
 		}
 		
@@ -13874,6 +14202,7 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"crit_chance"			"25"
+				"LinkedSpecialBonus"	"special_bonus_unique_visage_5"
 			}
 			"02"
 			{
@@ -14129,6 +14458,7 @@
 			{
 				"var_type"						"FIELD_INTEGER"
 				"moveslow"						"20 40 60 80 100 125 150"
+				"LinkedSpecialBonus"			"special_bonus_unique_enchantress_1"
 			}
 		}
 	}
@@ -15898,29 +16228,14 @@
 			"RunScript"
 			{
 				"ScriptFile"	"lua_abilities/heroes/ursa.lua"
-				"Function"		"ScepterFunction"
+				"Function"		"ApplyFireClaws"
 			}
 			"FireSound"
 	        {
 	            "Target"                    "CASTER"
 	            "EffectName"                "Hero_Ursa.Enrage"
 	        }
-			"ApplyModifier"
-	        {
-	            "Target"                    "CASTER"
-	            "ModifierName"              "Modifier_Claw"
-	        }
-			"ApplyModifier"
-	        {
-	            "Target"                    "CASTER"
-	            "ModifierName"              "modifier_claw_damage_reduction"
-	        }
-			"ApplyModifier"
-	        {
-	            "Target"                    "CASTER"
-	            "ModifierName"              "modifier_ursa_enrage"
-				"Duration"					"%duration"
-	        }
+			
 		}
 
 		"AbilitySpecial"
@@ -15933,7 +16248,8 @@
 	        "02"
 	        {
 	            "var_type"              "FIELD_FLOAT"
-	            "duration"                "4.0"
+	            "duration"              "4.0"
+				"LinkedSpecialBonus"	"special_bonus_unique_ursa_3"
 	        }
 	        "03"
 	        {
@@ -16019,48 +16335,6 @@
 	    }
 	}
 
-	"true_sight_boss"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_datadriven"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-
-		"AbilitySpecial"
-	    {
-	        "01"
-	        {
-	            "var_type"              "FIELD_INTEGER"
-	            "radius"                "2500"
-	        }
-	    }
-
-	    "Modifiers"
-	    {
-	        "modifier_truesight_datadriven"
-	        {
-	            "Passive"           "1"
-	            "IsHidden"          "1"
-	            "Aura" "modifier_truesight_reveal"
-				"Aura_Radius" "%radius"
-				"Aura_Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
-				"Aura_Types" "DOTA_UNIT_TARGET_ALL"
-				"Aura_Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-	        }
-
-	        "modifier_truesight_reveal"
-	        {
-	            "Duration"          "2.0"   //The True Sight effect lingers for 0.5 seconds.
-	            "IsHidden"          "1"
-	            "Priority"          "MODIFIER_PRIORITY_HIGH"
-	            "States"
-	            {
-	                "MODIFIER_STATE_INVISIBLE"  "MODIFIER_STATE_VALUE_DISABLED"
-	            }
-	        }
-	    }
-	}
 	"sven_great_cleave_ebf"
 	{
 		// General
@@ -16676,6 +16950,7 @@
 			{
 				"var_type"              "FIELD_INTEGER"
 				"damage"                "4000 8000 20000 40000 80000 160000 320000"
+				"LinkedSpecialBonus"	"special_bonus_unique_skywrath_5"
 			}
 			"04"
 			{
@@ -19923,7 +20198,8 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"chance"				"10"
+				"chance"				"8"
+				"LinkedSpecialBonus"	"special_bonus_unique_disruptor_4"
 			}
 			"02"
 			{
@@ -19940,25 +20216,11 @@
 				"IsHidden"	"1"
 				"OnDealDamage"
 				{
-					"Random"
+					"RunScript"
 					{
-						"Chance"	"%chance"
-						"PseudoRandom"		"DOTA_PSEUDO_RANDOM_SLARDAR_BASH"
-
-						"OnSuccess"
-						{
-							"FireSound"
-							{
-								"EffectName"		"Item.Maelstrom.Chain_Lightning"
-								"Target" 			"CASTER"
-							}
-							"RunScript"
-							{
-								"ScriptFile"	"lua_abilities/heroes/disruptor"
-								"Function"		"ApplyTeslaEffects"
-								"modifier"		"disruptor_tesla_field_silence"
-							}
-						}
+						"ScriptFile"	"lua_abilities/heroes/disruptor"
+						"Function"		"ApplyTeslaEffects"
+						"modifier"		"disruptor_tesla_field_silence"
 					}
 				}
 				"OnAbilityExecuted"
@@ -20046,6 +20308,7 @@
 			{
 				"var_type"					"FIELD_FLOAT"
 				"pull_duration"				"3 3.5 4 4.5 5 5.5 6"
+				"LinkedSpecialBonus"		"special_bonus_unique_disruptor_4"
 			}
 		}
 	}
@@ -22954,12 +23217,6 @@
 				"EffectName"	"Hero_DarkSeer.PreAttack"
 				"Target"		"CASTER"
 			}
-			"ApplyModifier"
-			{
-				"ModifierName"		"modifier_shell_protection"
-				"Target"			"TARGET"
-				"Duration"			"%duration"
-			}
 			"FireSound"
 			{
 				"EffectName"	"Hero_Dark_Seer.Surge"
@@ -23043,7 +23300,8 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"charges"			"2 3 4 5 6 7 8"
+				"charges"				"2 3 4 5 6 7 8"
+				"LinkedSpecialBonus"	"special_bonus_unique_dark_seer_4"
 			}
 			"02"
 			{
@@ -23146,7 +23404,266 @@
 			}
 		}
 	}
+	//=================================================================================================================
+	// Holdout: Windrunner: Shackleshot
+	//=================================================================================================================
+	"windrunner_skillshot"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityTextureName"			"custom/windrunner_skillshot"
+		"MaxLevel"						"7"
+		"RequiredLevel"					"7"
+		"LevelsBetweenUpgrades"			"6"	
+		
+		"precache"
+		{
+			"particle"		"particles/skillshot.vpcf"
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_windrunner.vsndevts"
+		}
 
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"12.0"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"passive_cooldown"		"2.5 2.25 2.0 1.75 1.5 1.25 1.0"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"stun_duration"			"1.0"
+				"LinkedSpecialBonus"	"special_bonus_unique_windranger_5"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"proc_chance"			"10"
+				"LinkedSpecialBonus"	"special_bonus_unique_windranger_4"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"pierce_pct"			"40"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"base_damage"			"100 250 500 750 1500 2500 5000"
+			}
+		}
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_windrunner_skillshot_proc"
+				"Target"		"CASTER"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_windrunner_skillshot"
+			{
+				"IsHidden"	"1"
+				"Passive"	"1"
+				"OnAttackStart"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"lua_abilities/heroes/windrunner"
+						"Function"		"PierceRNG"
+						"modifier"		"modifier_windrunner_skillshot_proc"
+					}
+				}
+			}
+			"modifier_windrunner_skillshot_proc"
+			{
+				"IsHidden"	"0"
+				"OnCreated"
+				{
+					"FireSound"
+					{
+						"EffectName"	"Hero_Windrunner.ShackleshotCast"
+						"Target"		"TARGET"
+					}
+				}
+				"OnAttack"
+				{
+					"TrackingProjectile"
+					{
+						"Target"           	"TARGET"
+						"EffectName"       	"particles/skillshot.vpcf"
+						"Dodgeable"        	"1"
+						"ProvidesVision"   	"0"
+						"MoveSpeed"        	"2500"
+						"SourceAttachment"  "DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
+						"TargetTypes"    	"DOTA_UNIT_TARGET_ALL"
+						"TargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+					}
+					"ApplyModifier"
+					{
+						"ModifierName"	"modifier_windrunner_skillshot_damage"
+						"Target"		"CASTER"
+					}
+					"RemoveModifier"
+					{
+						"ModifierName"	"modifier_windrunner_skillshot_proc"
+						"Target"		"CASTER"
+					}
+				}
+			}
+			"modifier_windrunner_skillshot_damage"
+			{
+				"IsHidden"	"1"
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"lua_abilities/heroes/windrunner"
+						"Function"		"PierceDamage"
+						"damage"		"%attack_damage"
+					}
+					"FireSound"
+					{
+						"EffectName"	"Hero_Windrunner.ShackleshotStun"
+						"Target"		"TARGET"
+					}
+					"RemoveModifier"
+					{
+						"ModifierName"	"modifier_windrunner_skillshot_damage"
+						"Target"		"CASTER"
+					}
+				}
+				"OnAttackFailed"
+				{
+					"RemoveModifier"
+					{
+						"ModifierName"	"modifier_windrunner_skillshot_damage"
+						"Target"		"CASTER"
+					}
+				}
+			}
+		}
+	}
+	
+	"windrunner_focusfire_datadriven"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityTextureName"			"custom/windrunner_focusfire_ebf"
+		"HasScepterUpgrade"				"1"
+		"LevelsBetweenUpgrades"			"7"
+		"MaxLevel"						"7"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"600"
+		"AbilityCastPoint"				"0"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"40.0"
+		"AbilityDuration"				"10.0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"75 100 125"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"focusfire_crit"				"150 200 250 300 400 500 600"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"base_attack_time"				"1"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"focusfire_crit_scepter"		"250 300 400 500 600 700 800"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"duration"		"10"
+			}
+		}
+		
+		// Data driven
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"							"soundevents/game_sounds_heroes/game_sounds_windrunner.vsndevts"
+		}
+		
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"Target"						"CASTER"
+				"EffectName"					"Ability.Focusfire"
+			}
+	
+			"RunScript"
+			{
+				"ScriptFile"					"lua_abilities/heroes/windrunner"
+				"Function"						"FocusFireScepterCheck"
+				"modifier"						"modifier_focusfire_crit"
+				"bat"							"modifier_focusfire_bat"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_focusfire_crit_scepter"
+			{
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE"	"%focusfire_crit_scepter"
+				}
+			}
+			"modifier_focusfire_crit"
+			{
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE"	"%focusfire_crit"
+				}
+			}
+			"modifier_focusfire_bat"
+			{
+				"IsHidden"	"1"
+				"Priority"                     					"MODIFIER_PRIORITY_ULTRA"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT"	"%base_attack_time"
+				}
+			}
+			
+		}
+	}
 	"tinker_rearm_datadriven"
 	{
 	    // General
@@ -23210,7 +23727,7 @@
 	    
 	        "RunScript"
 	        {
-	            "ScriptFile"        "lua_abilities/abilities_simple.lua"
+	            "ScriptFile"        "lua_abilities/heroes/tinker.lua"
 	            "Function"          "rearm_start"
 	        }
 	    }
@@ -23240,7 +23757,7 @@
 	    {
 	        "RunScript"
 	        {
-	            "ScriptFile"        "lua_abilities/abilities_simple.lua"
+	            "ScriptFile"        "lua_abilities/heroes/tinker.lua"
 	            "Function"          "rearm_refresh_cooldown"
 	        }
 	    }
@@ -23372,7 +23889,7 @@
 	    
 	        "RunScript"
 	        {
-	            "ScriptFile"        "lua_abilities/abilities_simple.lua"
+	            "ScriptFile"        "lua_abilities/heroes/tinker.lua"
 	            "Function"          "heat_seeking_missile_seek_targets"
 	        }
 	    }
@@ -23399,7 +23916,7 @@
 	        "RunScript"
 	        {
 	        	"Target"			"TARGET"
-	            "ScriptFile"        "lua_abilities/abilities_simple.lua"
+	            "ScriptFile"        "lua_abilities/heroes/tinker.lua"
 	            "Function"          "heat_seeking_missile_seek_damage"
 	        }
 	    }
@@ -23980,6 +24497,7 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"bounces"				"6 8 10 12 14 16 18"
+				"LinkedSpecialBonus"	"special_bonus_unique_witch_doctor_3"
 			}
 			"07"
 			{
@@ -24121,6 +24639,7 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"damage"				"500 1000 1750 3000 6000 12000 24000"
+				"LinkedSpecialBonus"	"special_bonus_unique_witch_doctor_5"
 			}
 			"02"
 			{
@@ -24360,6 +24879,7 @@
 			{
 				"var_type"						"FIELD_INTEGER"
 				"damage_multiplier"				"14 16 18 20 22 24 26"
+				"LinkedSpecialBonus"			"special_bonus_unique_outworld_devourer_3"
 			}
 			"02"
 			{
@@ -31280,6 +31800,7 @@
 			{
 				"var_type"					"FIELD_FLOAT"
 				"duration"					"12.0"
+				"LinkedSpecialBonus"		"special_bonus_unique_venomancer_2"
 			}
 			"02"
 			{
@@ -31353,6 +31874,7 @@
 			{
 				"var_type"					"FIELD_INTEGER"
 				"radius"					"830 850 870 890 910 930 950"
+				"LinkedSpecialBonus"		"special_bonus_unique_venomancer_6"
 			}
 			"02"
 			{
@@ -31363,6 +31885,7 @@
 			{
 				"var_type"					"FIELD_FLOAT"
 				"duration"					"15.0"
+				"LinkedSpecialBonus"		"special_bonus_unique_venomancer_4"
 			}
 			"04"
 			{
@@ -31618,6 +32141,7 @@
 			{
 				"var_type"				"FIELD_FLOAT"
 				"duration"				"3.0 3.5 4.0 4.5 5.0 5.5 6.0"
+				"LinkedSpecialBonus"	"special_bonus_unique_furion_4"
 			}
 			"03"
 			{
@@ -31697,7 +32221,8 @@
 			"05"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"tooltip_duration"		"4.0"
+				"tooltip_duration"			"4.0"
+				"LinkedSpecialBonus"		"special_bonus_unique_pugna_5"
 			}
 		}
 

@@ -185,35 +185,32 @@ end
 LinkLuaModifier( "modifier_crystal_maiden_frozen_field_dummy", "lua_abilities/heroes/crystal_maiden.lua" ,LUA_MODIFIER_MOTION_NONE )
 modifier_crystal_maiden_frozen_field_dummy = class({})
 
-function modifier_crystal_maiden_frozen_field_dummy:OnCreated( kv )
-	self.aura_radius = self:GetAbility():GetSpecialValueFor( "radius" )
-	self.abilityDamage = self:GetAbility():GetSpecialValueFor( "damage" )
-	self.minDistance = self:GetAbility():GetSpecialValueFor( "explosion_min_dist" )
-	self.maxDistance = self:GetAbility():GetSpecialValueFor( "explosion_max_dist" )
-	self.radius = self:GetAbility():GetSpecialValueFor( "explosion_radius" )
-	self.damage = self:GetAbility():GetSpecialValueFor( "damage" )
-	if self:GetCaster():HasScepter() then self.damage = self:GetAbility():GetSpecialValueFor( "damage_scepter" ) end
-	self.minAngle = 0
-	self.maxAngle = 90
-	if IsServer() then
+if IsServer() then
+	function modifier_crystal_maiden_frozen_field_dummy:OnCreated( kv )
+		self.aura_radius = self:GetAbility():GetTalentSpecialValueFor( "radius" )
+		self.abilityDamage = self:GetAbility():GetTalentSpecialValueFor( "damage" )
+		self.minDistance = self:GetAbility():GetTalentSpecialValueFor( "explosion_min_dist" )
+		self.maxDistance = self:GetAbility():GetTalentSpecialValueFor( "explosion_max_dist" )
+		self.radius = self:GetAbility():GetTalentSpecialValueFor( "explosion_radius" )
+		self.damage = self:GetAbility():GetTalentSpecialValueFor( "damage" )
+		if self:GetCaster():HasScepter() then self.damage = self:GetAbility():GetTalentSpecialValueFor( "damage_scepter" ) end
+		self.minAngle = 0
+		self.maxAngle = 90
 		self.FXIndex = ParticleManager:CreateParticle( "particles/units/heroes/hero_crystalmaiden/maiden_freezing_field_snow.vpcf", PATTACH_ABSORIGIN, self:GetParent() )
 		ParticleManager:SetParticleControl( self.FXIndex, 0, self:GetParent():GetOrigin() )
 		ParticleManager:SetParticleControl( self.FXIndex, 1, Vector( self.aura_radius, self.aura_radius, self.aura_radius) )
 		self:StartIntervalThink(0.1)
 	end
-end
 
-function modifier_crystal_maiden_frozen_field_dummy:OnDestroy( kv )
-	if IsServer() then
+	function modifier_crystal_maiden_frozen_field_dummy:OnDestroy( kv )
 		self:GetParent():RemoveSelf()
 		ParticleManager:DestroyParticle(self.FXIndex, false)
 		ParticleManager:ReleaseParticleIndex(self.FXIndex)
 	end
-end
 
 
-function modifier_crystal_maiden_frozen_field_dummy:OnIntervalThink( kv )
-	if IsServer() then
+	function modifier_crystal_maiden_frozen_field_dummy:OnIntervalThink( kv )
+		
 		local ability = self:GetAbility()
 		local caster = self:GetCaster()
 		local dummy = self:GetParent()

@@ -13,7 +13,8 @@ end
 
 function ScepterFunction(keys) -- handles purge rules
 	local caster = keys.caster
-
+	local ability = keys.ability
+	
 	local RemovePositiveBuffs = false
 	local RemoveDebuffs = true
 	local BuffsCreatedThisFrameOnly = false
@@ -22,9 +23,14 @@ function ScepterFunction(keys) -- handles purge rules
 	if caster:HasScepter() then
 		RemoveStuns = true
 		RemoveExceptions = true
-		keys.ability:ApplyDataDrivenModifier(caster,caster, "modifier_claw_scepter", {})
+		ability:ApplyDataDrivenModifier(caster,caster, "modifier_claw_scepter", {})
 	end
+	
+	local duration = ability:GetTalentSpecialValueFor("duration")
 	caster:Purge( RemovePositiveBuffs, RemoveDebuffs, BuffsCreatedThisFrameOnly, RemoveStuns, RemoveExceptions)
+	ability:ApplyDataDrivenModifier( caster, caster, "Modifier_Claw", {duration = duration} )
+	ability:ApplyDataDrivenModifier( caster, caster, "modifier_claw_damage_reduction", {duration = duration} )
+	ability:ApplyDataDrivenModifier( caster, caster, "modifier_ursa_enrage", {duration = duration} )
 end
 
 function fury_swipes_attack( keys )

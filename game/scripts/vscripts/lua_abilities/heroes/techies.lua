@@ -25,6 +25,7 @@ function LandMinesPlant( keys )
 
     -- Create the land mine and apply the land mine modifier
     local land_mine = CreateUnitByName("npc_dota_techies_remote_mine", target_point, false, nil, nil, caster:GetTeamNumber())
+	if caster:HasTalent("special_bonus_unique_techies_4") then land_mine:SetBaseMoveSpeed( caster:FindTalentValue("special_bonus_unique_techies_4") ) end
     ability:ApplyDataDrivenModifier(caster, land_mine, modifier_land_mine, {})
 	land_mine:SetModelScale(1.7 + model_scale)
 

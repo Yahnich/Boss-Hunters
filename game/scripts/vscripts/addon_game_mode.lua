@@ -203,10 +203,10 @@ function CHoldoutGameMode:InitGameMode()
 	GameRules.boss_master_id = -1
 	
 	GameRules._maxLives = 10
-	GameRules:SetHeroSelectionTime( 8000.0 )
-	GameRules:SetPreGameTime( 8000.0 )
+	GameRules:SetHeroSelectionTime( 80.0 )
+	GameRules:SetPreGameTime( 30.0 )
 	GameRules:SetShowcaseTime( 0 )
-	GameRules:SetStrategyTime( 8000 )
+	GameRules:SetStrategyTime( 0 )
 	GameRules:SetCustomGameSetupAutoLaunchDelay(0) -- fix valve bullshit
 	
 	local mapInfo = LoadKeyValues( "addoninfo.txt" )[GetMapName()]

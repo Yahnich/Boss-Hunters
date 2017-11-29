@@ -140,10 +140,21 @@ function BrainSapHeal(keys)
 	target:HealEvent(target:GetMaxHealth() * pctHeal + ability.dmgCount * dmgHeal, ability, caster)
 end
 
+function StartNightmare(keys)
+	local caster = keys.caster
+	local target = keys.target
+	local ability = keys.ability
+	
+	local duration = ability:GetTalentSpecialValueFor("duration")
+	ability:ApplyDataDrivenModifier(caster, target, "modifier_nightmare_datadriven", {duration = duration})
+	ability:StartDelayedCooldown(duration)
+end
+
 function NightmareStop(keys)
 	local caster = keys.caster
 	local ability = keys.ability
 	local target = keys.target
 	StopSoundEvent("Hero_Bane.Nightmare.Loop", target)
 	ApplyDamage({victim = target, attacker = caster, damage = ability:GetAbilityDamage(), damage_type = ability:GetAbilityDamageType(), ability = ability})
+	ability:EndDelayedCooldown()
 end

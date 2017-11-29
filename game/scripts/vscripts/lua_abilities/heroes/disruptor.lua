@@ -1,13 +1,16 @@
 function ApplyTeslaEffects(keys)
 	local caster = keys.caster
 	local ability = keys.ability
-	local unit = keys.unit
-	ApplyDamage({ victim = unit, attacker = caster, damage = ability:GetAbilityDamage(), damage_type = ability:GetAbilityDamageType(), ability = ability })
-	ability:ApplyDataDrivenModifier(caster, unit, keys.modifier, {duration = ability:GetTalentSpecialValueFor("silence_duration")})
-	local AOE_effect = ParticleManager:CreateParticle("particles/units/heroes/hero_rhasta/rhasta_spell_forked_lightning.vpcf", PATTACH_POINT_FOLLOW  , caster)
-		ParticleManager:SetParticleControlEnt(AOE_effect, 0, caster, PATTACH_POINT_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), true)
-		ParticleManager:SetParticleControlEnt(AOE_effect, 1, unit, PATTACH_POINT_FOLLOW, "attach_hitloc", unit:GetAbsOrigin(), true)
-	ParticleManager:ReleaseParticleIndex(AOE_effect)
+	local target = keys.target
+	if RollPercentage( ability:GetTalentSpecialValueFor("chance") ) then
+		EmitSoundOn("Item.Maelstrom.Chain_Lightning", target)
+		ApplyDamage({ victim = target, attacker = caster, damage = ability:GetAbilityDamage(), damage_type = ability:GetAbilityDamageType(), ability = ability })
+		ability:ApplyDataDrivenModifier(caster, target, keys.modifier, {duration = ability:GetTalentSpecialValueFor("silence_duration")})
+		local AOE_effect = ParticleManager:CreateParticle("particles/units/heroes/hero_rhasta/rhasta_spell_forked_lightning.vpcf", PATTACH_POINT_FOLLOW  , caster)
+			ParticleManager:SetParticleControlEnt(AOE_effect, 0, caster, PATTACH_POINT_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), true)
+			ParticleManager:SetParticleControlEnt(AOE_effect, 1, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
+		ParticleManager:ReleaseParticleIndex(AOE_effect)
+	end
 end
 
 function ApplyTeslaEffectsNearest(keys)

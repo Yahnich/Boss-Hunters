@@ -19,7 +19,7 @@ function LifeToMana(keys)
 	end
 	
 	caster:GiveMana(mana)
-	if not caster:HasScepter() then
+	if not caster:HasTalent("special_bonus_unique_visage_6") then
 		if newhp < 1 then newhp = 1 end
 		caster:SetHealth(newhp)
 	end
@@ -107,7 +107,11 @@ function MagicDamage( keys )
 	end
 
 	local damage_table = {}
-
+	if caster:HasTalent("special_bonus_unique_visage_3") and RollPercentage( caster:FindTalentValue("special_bonus_unique_visage_3") ) then
+		local attackTarget = caster:FindRandomEnemyInRadius(caster:GetAbsOrigin(), caster:GetAttackRange())
+		caster:PerformAttack(attackTarget, false, true, true, true, true, false, false)
+	end
+	
 	damage_table.attacker = caster
 	damage_table.damage_type = ability:GetAbilityDamageType()
 	damage_table.ability = ability

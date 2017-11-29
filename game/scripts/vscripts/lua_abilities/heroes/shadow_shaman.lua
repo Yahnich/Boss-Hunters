@@ -226,7 +226,7 @@ function modifier_shadow_shaman_bound_shackles:OnDestroy()
 	StopSoundOn("Hero_ShadowShaman.Shackles", self:GetParent())
 	if IsServer() then
 		self:GetCaster():InterruptChannel()
-		self:GetParent():AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_shadow_shaman_bound_shackles_post", {duration = self:GetAbility():GetSpecialValueFor("aftershackle_duration")})
+		self:GetParent():AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_shadow_shaman_bound_shackles_post", {duration = self:GetAbility():GetTalentSpecialValueFor("aftershackle_duration")})
 	end
 end
 

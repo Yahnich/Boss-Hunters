@@ -40,6 +40,7 @@ if IsServer() then
 
 	function venomancer_venomous_gale_ebf:OnProjectileHit( hTarget, vLocation )
 		if hTarget ~= nil and ( not hTarget:IsMagicImmune() ) and ( not hTarget:IsInvulnerable() ) then
+			local caster = self:GetCaster()
 			hTarget:AddNewModifier(self:GetCaster(), self, "modifier_venomancer_venomous_gale_cancer", {duration = self:GetSpecialValueFor("duration")})
 			EmitSoundOn( "Hero_Venomancer.VenomousGaleImpact", hTarget )
 			
@@ -51,6 +52,8 @@ if IsServer() then
 			ParticleManager:SetParticleControlForward( nFXIndex, 1, vDirection )
 			ParticleManager:ReleaseParticleIndex( nFXIndex )
 			
+			
+			
 			local damage = {
 				victim = hTarget,
 				attacker = self:GetCaster(),
@@ -59,8 +62,14 @@ if IsServer() then
 				ability = self
 			}
 			ApplyDamage( damage )
+			if caster:HasTalent("special_bonus_unique_venomancer_5") then
+				local ward = caster:FindAbilityByName("venomancer_plague_ward")
+				for i = 1, 2 do
+					caster:SetCursorPosition( hTarget:GetAbsOrigin() + RandomVector(250) )
+					ward:OnSpellStart()
+				end
+			end
 		end
-
 		return false
 	end
 end
@@ -193,11 +202,11 @@ if IsServer() then
 	function venomancer_poison_nova_ebf:OnSpellStart()
 		local caster = self:GetCaster()
 		
-		local radius = self:GetSpecialValueFor("start_radius")
-		local maxRadius = self:GetSpecialValueFor("radius")
-		local radiusGrowth = self:GetSpecialValueFor("speed") * 0.1
-		local duration = self:GetSpecialValueFor("duration")
-		if caster:HasScepter() then duration = self:GetSpecialValueFor("duration_scepter") end
+		local radius = self:GetTalentSpecialValueFor("start_radius")
+		local maxRadius = self:GetTalentSpecialValueFor("radius")
+		local radiusGrowth = self:GetTalentSpecialValueFor("speed") * 0.1
+		local duration = self:GetTalentSpecialValueFor("duration")
+		if caster:HasScepter() then duration = self:GetTalentSpecialValueFor("duration_scepter") end
 		local enemies = FindUnitsInRadius(caster:GetTeam(), caster:GetAbsOrigin(), nil, maxRadius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO, 0, 0, false)
 		for _,enemy in pairs(enemies) do
 			enemy:AddNewModifier(caster, self, "modifier_venomancer_poison_nova_cancer", {duration = duration})
