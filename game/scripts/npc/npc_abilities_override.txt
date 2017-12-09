@@ -2161,12 +2161,12 @@
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"fiery_soul_max_stacks"		"3"
+				"fiery_soul_max_stacks"		"5"
 			}
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"duration_tooltip"		"10"
+				"duration_tooltip"			"10"
 			}
 		}
 	}
@@ -10324,6 +10324,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
+		"RequiredLevel"					"5"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -10336,7 +10337,7 @@
 
 		// Damage.
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"					"%damage"
+		"AbilityDamage"					"1000 2000 4000 8000 16000 32000 64000"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -11347,13 +11348,13 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"crit_bonus"				"400 500 600 700 800 900 1000"
+				"crit_chance"				"12"
+				"LinkedSpecialBonus"		"special_bonus_unique_phantom_assassin_2"
 			}
 			"02"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"crit_chance"				"12"
-				"LinkedSpecialBonus"		"special_bonus_unique_phantom_assassin_2"
+				"var_type"					"FIELD_INTEGER"
+				"crit_bonus"				"400 500 600 700 800 900 1000"
 			}
 		}
 	}
@@ -11710,7 +11711,7 @@
 			"02"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"damage"						"240 480 960 3200 6400 12800 25600"
+				"damage"						"4 8 16 32 64 128 256"
 			}
 			"03"
 			{
@@ -11733,14 +11734,27 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"					"5219"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"	
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
-		"LevelsBetweenUpgrades"			"5"
-		"MaxLevel"						"7"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"RequiredLevel"					"5"
+		"MaxLevel"						"7"
+		"LevelsBetweenUpgrades"			"5"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.2"
+		"AbilityCastRange"				"900"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"5.0"
 		
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"75"
 		
+	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
@@ -11748,19 +11762,30 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"bonus_damage"			"125 250 500 1000 2000 3000 4000"
+				"damage"				"250 500 1000 2000 4000 8000 16000"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"non_hero_damage_pct"	"100"
+				"radius"				"300 325 350 375 400 425 450"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"max_damage_tooltip"	"2000 4000 8000 16000 32000 48000 64000"
+				"magic_resistance"		"-10 -15 -20 -25 -30 -35 -40"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"8"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"projectile_speed"		"2000"
 			}
 		}
+		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_2"
 	}
 
 	//=================================================================================================================
@@ -17939,7 +17964,8 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"				"2"
 		"HasScepterUpgrade"				"1"
-		"MaxLevel"						"0"
+		"LevelsBetweenUpgrades"			"7"
+		"MaxLevel"						"7"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -47264,7 +47290,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"50000"
+				"value"				"3"
 			}
 		}
 	}
