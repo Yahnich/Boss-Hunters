@@ -12128,8 +12128,8 @@
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemCost"						"7870"
-		"BaseClass"                     "item_aether_lens"
-		//"ScriptFile"                  "lua_items/redium_lens.lua"
+		"BaseClass"                     "item_lua"
+		"ScriptFile"                  	"lua_item/aether_lens.lua"
 		"AbilityTextureName"			"custom/redium_lens"
 		"ItemShopTags"					"damage;health_regen;mana_regen;hard_to_tag"
 		"ItemQuality"					"epic"
@@ -12204,8 +12204,8 @@
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemCost"						"20000"
-		"BaseClass"                     "item_aether_lens"
-		//"ScriptFile"                    "lua_items/redium_lens.lua"
+		"BaseClass"                     "item_lua"
+		"ScriptFile"                  	"lua_item/aether_lens.lua"
 		"AbilityTextureName"			"custom/sunium_lens"
 		"ItemShopTags"					"damage;health_regen;mana_regen;hard_to_tag"
 		"ItemQuality"					"epic"
@@ -12280,8 +12280,8 @@
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemCost"						"34600"
-		"BaseClass"                     "item_aether_lens"
-		//"ScriptFile"                    "lua_items/redium_lens.lua"
+		"BaseClass"                     "item_lua"
+		"ScriptFile"                  	"lua_item/aether_lens.lua"
 		"AbilityTextureName"			"custom/omni_lens"
 		"ItemShopTags"					"damage;health_regen;mana_regen;hard_to_tag"
 		"ItemQuality"					"epic"
@@ -13293,7 +13293,7 @@
 //		//-------------------------------------------------------------------------------------------------------------
 //		"ItemCost"						"99999"
 //		"BaseClass"                     "ability_lua"
-//		"ScriptFile"                    "lua_items/redium_lens.lua"
+//		"ScriptFile"                    "lua_item/redium_lens.lua"
 //		"AbilityTextureName"			"custom/redium_lens"
 //		"ItemShopTags"					"damage;health_regen;mana_regen;hard_to_tag"
 //		"ItemQuality"					"epic"
@@ -15502,8 +15502,8 @@
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemCost"						"750000"
-		"BaseClass"                     "item_aether_lens"
-		//"ScriptFile"                    "lua_items/redium_lens.lua"
+		"BaseClass"                     "item_lua"
+		"ScriptFile"                    "lua_item/aether_lens.lua"
 		"AbilityTextureName"			"custom/asura_lens"
 		"ItemShopTags"					"damage;health_regen;mana_regen;hard_to_tag"
 		"ItemQuality"					"epic"

@@ -116,12 +116,11 @@ end
 
 nyx_assassin_ultimyr_justicar = class({})
 
-if IsServer() then
-	function nyx_assassin_ultimyr_justicar:OnSpellStart()
-		self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_nyx_assassin_ultimyr_justicar_swarm", {duration = self:GetDuration()})
-		if self:GetCaster():HasTalent("special_bonus_unique_nyx_3") then self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_nyx_assassin_ultimyr_justicar_swarm_talent", {duration = self:GetDuration()})
-	end
+function nyx_assassin_ultimyr_justicar:OnSpellStart()
+	self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_nyx_assassin_ultimyr_justicar_swarm", {duration = self:GetDuration()})
+	if self:GetCaster():HasTalent("special_bonus_unique_nyx_3") then self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_nyx_assassin_ultimyr_justicar_swarm_talent", {duration = self:GetDuration()}) end
 end
+	
 function nyx_assassin_ultimyr_justicar:GetCastRange(pos, handle)
 	return self:GetSpecialValueFor("swarm_radius")
 end

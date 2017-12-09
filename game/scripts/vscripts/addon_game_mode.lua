@@ -176,7 +176,7 @@ function CHoldoutGameMode:InitGameMode()
 	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue( DOTA_ATTRIBUTE_AGILITY_MOVE_SPEED_PERCENT, 0.00006 )
 	
 	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue( DOTA_ATTRIBUTE_INTELLIGENCE_MANA_REGEN_PERCENT, 0.0005 )
-	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue( DOTA_ATTRIBUTE_INTELLIGENCE_SPELL_AMP_PERCENT, 0.009 )
+	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue( DOTA_ATTRIBUTE_INTELLIGENCE_SPELL_AMP_PERCENT, 0.01 )
 	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue( DOTA_ATTRIBUTE_INTELLIGENCE_MAGIC_RESISTANCE_PERCENT, 0.000055 ) 
 	
 	
@@ -1135,6 +1135,35 @@ function CHoldoutGameMode:OnAbilityUsed(event)
 			abilityused:StartCooldown(abilityused:GetCooldown(-1))
 		end
 	end
+	if abilityname == "troll_warlord_battle_trance_ebf" then
+		local trance = abilityused
+		local duration = trance:GetSpecialValueFor("trance_duration")
+		local max_as = trance:GetSpecialValueFor("attack_speed_max")
+		GameRules:GetGameModeEntity():SetMaximumAttackSpeed(MAXIMUM_ATTACK_SPEED + max_as)
+		Timers:CreateTimer(duration,function()
+ 			GameRules:GetGameModeEntity():SetMaximumAttackSpeed(MAXIMUM_ATTACK_SPEED)
+ 		end)
+	end
+	if hero:GetName() == "npc_dota_hero_rubick"  and abilityname ~= "rubick_spell_steal" and hero:IsRealHero() then
+		local spell_echo = hero:FindAbilityByName("rubick_spell_echo")
+		if spell_echo:GetLevel()-1 >= 0 then
+			if hero:FindAbilityByName(abilityname) then
+				local ability = hero:FindAbilityByName(abilityname)
+				spell_echo.echo = ability
+				spell_echo.echotime = GameRules:GetGameTime()
+				if ability:GetCursorTarget() then
+					spell_echo.echotarget = ability:GetCursorTarget()
+					spell_echo.type = DOTA_ABILITY_BEHAVIOR_UNIT_TARGET
+				elseif ability:GetCursorTargetingNothing() then
+					spell_echo.echotarget = ability:GetCursorTargetingNothing()
+					spell_echo.type = DOTA_ABILITY_BEHAVIOR_NO_TARGET
+				elseif ability:GetCursorPosition() then
+					spell_echo.echotarget = ability:GetCursorPosition()
+					spell_echo.type = DOTA_ABILITY_BEHAVIOR_POINT
+				end
+			end
+		end
+	end
 end
 
 function CHoldoutGameMode:Buy_Asura_Core_shop(event)
@@ -1434,10 +1463,10 @@ function CHoldoutGameMode:_EnterNG()
 	-- end
 end
 
-LinkLuaModifier("modifier_summon_handler", "heroes/generic/modifier_summon_handler.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_stunned_generic", "heroes/generic/modifier_stunned_generic.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_dazed_generic", "heroes/generic/modifier_dazed_generic.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_generic_barrier", "heroes/generic/modifier_generic_barrier.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_summon_handler", "libraries/modifiers/modifier_summon_handler.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_stunned_generic", "libraries/modifiers/modifier_stunned_generic.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_dazed_generic", "libraries/modifiers/modifier_dazed_generic.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_generic_barrier", "libraries/modifiers/modifier_generic_barrier.lua", LUA_MODIFIER_MOTION_NONE)
 
 
 function CHoldoutGameMode:OnHeroPick (event)
