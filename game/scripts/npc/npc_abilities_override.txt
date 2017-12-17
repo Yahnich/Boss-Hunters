@@ -861,6 +861,7 @@
 			{
 				"var_type"					"FIELD_INTEGER"
 				"damage"					"1200 1600 2000 2400 5000 12000 18000"
+				"LinkedSpecialBonus"		"special_bonus_unique_bloodseeker_2"
 			}
 			"04"
 			{
@@ -24779,6 +24780,7 @@
 			{
 				"var_type"					"FIELD_FLOAT"
 				"duration"					"3.0 3.5 4.0 4.5 5.0 5.5 6.0"
+				"LinkedSpecialBonus"		"special_bonus_unique_medusa"
 			}
 			"03"
 			{
@@ -24789,7 +24791,6 @@
 			{
 				"var_type"					"FIELD_FLOAT"
 				"stone_duration"			"1.0 1.5 2.0 2.5 3.0 3.5 4.0"
-				"LinkedSpecialBonus"		"special_bonus_unique_medusa"
 			}
 			"05"
 			{
@@ -29900,9 +29901,9 @@
 			}
 			"05"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"100 200 400 800 1600 3200 4800"
-				"LinkedSpecialBonus"	"special_bonus_unique_pangolier_3"
+				"var_type"						"FIELD_INTEGER"
+				"damage"						"200 400 800 1600 3200 4800 8000"
+				"LinkedSpecialBonus"			"special_bonus_unique_pangolier_3"
 				"CalculateSpellDamageTooltip"	"0"
 			}
 			"03"
@@ -29928,7 +29929,7 @@
 			"08"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"strikes"				"4 5 6 7 8 9 10"
+				"strikes"				"10"
 			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
@@ -30129,7 +30130,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"turn_rate"				"120"
+				"turn_rate"				"165"
 			}
 			"06"
 			{
@@ -30149,7 +30150,7 @@
 			"09"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"stun_duration"			"1.0 1.25 1.5"
+				"stun_duration"			"2"
 			}			
 			"10"
 			{
@@ -30159,7 +30160,7 @@
 			"11"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"6.0 7.0 8.0"
+				"duration"				"8.0"
 			}
 			"12"
 			{
@@ -30185,7 +30186,341 @@
 		"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
 		"AbilityCastAnimation"			"ACT_INVALID"
 	}
+	
+	//=================================================================================================================
+	// Dark Willow: Bramble Maze
+	//=================================================================================================================
+	"dark_willow_bramble_maze"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"6339"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
+		"RequiredLevel"					"6"
+		"MaxLevel"						"7"
+		"LevelsBetweenUpgrades"			"5"
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1200"
+		"AbilityCastPoint"				"0.3 0.3 0.3 0.3"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"40 35 30 25"
 
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"140 150 160 170"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"placement_range"		"500"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"placement_count"		"8"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"placement_duration"	"15"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"latch_duration"		"1.5"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"latch_range"			"90"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"latch_damage"			"1250 2500 5000 10000 20000 40000 80000"
+			}
+			"07"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"latch_creation_interval"	"0.075"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"latch_creation_delay"	"0.1"
+			}
+			"09"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"initial_creation_delay"	"0.5"
+			}
+		}
+		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
+	}
+
+	//=================================================================================================================
+	// Dark Willow: Bedlam
+	//=================================================================================================================
+	"dark_willow_bedlam"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"6340"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.		
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"MaxLevel"						"3"
+		"FightRecapLevel"				"1"
+		"LinkedAbility"					"dark_willow_terrorize"
+		"RequiredLevel"					"7"
+		"MaxLevel"						"7"
+		"LevelsBetweenUpgrades"			"7"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------		
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+
+		"AbilityCooldown"				"35"
+		
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"100 150 200"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"attack_damage"			"200 400 800 1600 3200 6400 12800"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"attack_interval"		"0.1"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"attack_radius"			"450 500 550 600 650 700 750"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"attack_targets"		"10"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"roaming_radius"		"200"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"roaming_seconds_per_rotation"				"1.5"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"roaming_duration"		"4.0"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Dark Willow: Terrorize
+	//=================================================================================================================
+	"dark_willow_terrorize"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"8340"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.		
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"				"1"
+		"LinkedAbility"					"dark_willow_bedlam"
+		"RequiredLevel"					"7"
+		"MaxLevel"						"7"
+		"LevelsBetweenUpgrades"			"7"
+
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1500"
+		"AbilityCastPoint"				"0.8"
+		"AbilityCooldown"				"100 90 80 70 60 50 40"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_5"
+		
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"150"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"destination_travel_speed"	"2000"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"destination_radius"		"400"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"destination_status_duration"	"4"
+				"LinkedSpecialBonus"		"special_bonus_unique_dark_willow_2"
+			}	
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"return_travel_speed"	"500"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"initial_delay"			"0.8"
+			}	
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"starting_height"		"300"
+			}	
+		}
+
+		"AbilityDraftPreAbility"		"dark_willow_bedlam"
+
+	}
+
+	//=================================================================================================================
+	// Dark Willow: Shadow Realm
+	//=================================================================================================================
+	"dark_willow_shadow_realm"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"6341"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.		
+		
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"RequiredLevel"					"6"
+		"MaxLevel"						"7"
+		"LevelsBetweenUpgrades"			"5"
+	
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"12"
+		
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"70 80 90 100"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"duration"						"5"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"damage"						"1250 2500 5000 10000 20000 40000 80000"
+				"LinkedSpecialBonus"			"special_bonus_unique_dark_willow_1"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"attack_range_bonus"			"600 700 800 900 1000 1100 1200"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"max_damage_duration"			"1"
+			}
+		}
+		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_2"
+	}
+
+	//=================================================================================================================
+	// Dark Willow: Cursed Crown
+	//=================================================================================================================
+	"dark_willow_cursed_crown"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"6342"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.		
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"PiercesDisableReduction"		"1"
+		"RequiredLevel"					"6"
+		"MaxLevel"						"7"
+		"LevelsBetweenUpgrades"			"5"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"600"
+		"AbilityCastPoint"				"0.1"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"18 17 16 15 14 13 12"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"100 120 140 160"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"delay"					"4"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"stun_duration"			"1.5"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"stun_radius"			"250 325 400 475 550 625 700"
+			}
+		}
+		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
+	}
 
 	
 //=============================================================================================================================================================================
@@ -50044,6 +50379,50 @@
 			{
 				"var_type"			"FIELD_FLOAT"
 				"value"				"16.0"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_dark_willow_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6464"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"4000"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_dark_willow_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6465"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"value"				"1"
 			}
 		}
 	}

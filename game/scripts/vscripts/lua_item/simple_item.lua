@@ -686,7 +686,6 @@ function item_blink_boots_blink(keys)
 			mult = 1 - (keys.caster:FindAbilityByName("perk_mobility"):GetSpecialValueFor("mobility_reduction"))/100
 		end
 		item.blink_next_charge = GameRules:GetGameTime() + 8*get_octarine_multiplier(caster)*mult
-		print(item.blink_next_charge - GameRules:GetGameTime())
         if item:GetCurrentCharges() == 0 then
             item:StartCooldown(item.blink_next_charge - GameRules:GetGameTime())
         end

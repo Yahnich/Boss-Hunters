@@ -1628,7 +1628,11 @@ function CDOTABaseAbility:ApplyAOE(eventTable)
 end
 
 function get_octarine_multiplier(caster)
-    local octarine_multiplier = 1 - caster:GetModifierStackCount("modifier_stat_adjustment_cdr_per_int", caster) / 100	
+	local cooldown = caster:FindModifierByName("spell_lifesteal") or caster:FindModifierByName("modifier_item_octarine_core")
+	local octarine_multiplier = 1
+	if cooldown then
+		octarine_multiplier = octarine_multiplier - cooldown:GetAbility():GetSpecialValueFor("bonus_cooldown")/100
+	end
 	local talentMult = 1 - caster:HighestTalentTypeValue("cooldown_reduction")/100
 	octarine_multiplier = octarine_multiplier*talentMult
     return octarine_multiplier

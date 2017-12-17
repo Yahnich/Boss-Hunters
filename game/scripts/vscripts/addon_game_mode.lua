@@ -1,4 +1,4 @@
-MAXIMUM_ATTACK_SPEED	= 1400
+MAXIMUM_ATTACK_SPEED	= 1000
 MINIMUM_ATTACK_SPEED	= 20
 
 ROUND_END_DELAY = 3
@@ -139,9 +139,6 @@ function CHoldoutGameMode:InitGameMode()
 	GameRules.voteTableDifficulty = {};
 	GameRules.voteTableLives = {};
 	
-	GameRules.relicPool = RelicPool()
-	GameRules.abilityManager = AbilityManager()
-	
 	GameRules._Elites = LoadKeyValues( "scripts/kv/elites.kv" )
 	-- Load unit KVs into main kv
 	-- GameRules.UnitKV = LoadKeyValues("scripts/npc/npc_heroes_custom.txt")
@@ -156,7 +153,7 @@ function CHoldoutGameMode:InitGameMode()
 	MergeTables(GameRules.UnitKV, LoadKeyValues("scripts/npc/npc_units_custom.txt"))
 	
 	GameRules.AbilityKV = LoadKeyValues("scripts/npc/npc_abilities_custom.txt")
-	MergeTables(GameRules.AbilityKV, LoadKeyValues("scripts/npc/npc_abilities.txt"))
+	MergeTables(GameRules.AbilityKV, LoadKeyValues("scripts/npc/npc_abilities_override.txt"))
 	MergeTables(GameRules.AbilityKV, LoadKeyValues("scripts/npc/npc_items_custom.txt"))
 	MergeTables(GameRules.AbilityKV, LoadKeyValues("scripts/npc/items.txt"))
 	
