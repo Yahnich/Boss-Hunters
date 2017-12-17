@@ -1,4 +1,4 @@
-MAXIMUM_ATTACK_SPEED	= 700
+MAXIMUM_ATTACK_SPEED	= 1400
 MINIMUM_ATTACK_SPEED	= 20
 
 ROUND_END_DELAY = 3
@@ -19,16 +19,13 @@ require("lua_map/map")
 require("lua_boss/boss_32_meteor")
 require( "epic_boss_fight_game_round" )
 require( "epic_boss_fight_game_spawner" )
-require( "abilitymanager" )
 
 require( "libraries/Timers" )
 require( "libraries/notifications" )
 require( "statcollection/init" )
 require("libraries/utility")
-require("libraries/animations")
 
-require("relics/relic")
-require("relics/relicpool")
+require("libraries/animations")
 
 -- Precache resources
 function Precache( context )
@@ -2405,15 +2402,17 @@ LinkLuaModifier( "modifier_boss_damagedecrease", "lua_abilities/heroes/modifiers
 
 function CHoldoutGameMode:OnNPCSpawned( event )
 	local spawnedUnit = EntIndexToHScript( event.entindex )
-
+	if not spawnedUnit or spawnedUnit:GetClassname() == "npc_dota_thinker" or spawnedUnit:IsPhantom() or spawnedUnit:IsFakeHero()then
+		return
+	end
 	if spawnedUnit:IsIllusion() then
 		local owner = PlayerResource:GetSelectedHeroEntity( spawnedUnit:GetPlayerID() )
 		spawnedUnit:ModifyAgility( owner:GetAgility() - spawnedUnit:GetAgility() )
 		spawnedUnit:ModifyStrength( owner:GetStrength() - spawnedUnit:GetStrength() )
 		spawnedUnit:ModifyIntellect( owner:GetIntellect() - spawnedUnit:GetIntellect() )
 	end
-	if not spawnedUnit or spawnedUnit:GetClassname() == "npc_dota_thinker" or spawnedUnit:IsPhantom() or spawnedUnit:IsFakeHero()then
-		return
+	if spawnedUnit:GetName() == "npc_dota_venomancer_plagueward" then
+		spawnedUnit:FindAbilityByName("venomancer_poison_sting_ebf"):SetLevel( spawnedUnit:GetOwnerEntity():FindAbilityByName("venomancer_poison_sting_ebf"):GetLevel() )
 	end
 	if spawnedUnit:IsCourier() then
 		spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_invulnerable", {})

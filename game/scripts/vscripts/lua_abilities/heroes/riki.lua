@@ -58,7 +58,7 @@ end
 
 function CheckBackstab(params)
 	local ability = params.ability
-	local caster = keys.caster
+	local caster = params.caster
 	local agility_damage_multiplier = ability:GetTalentSpecialValueFor("agility_damage")
 	if params.attacker:HasModifier("modifier_banish") then agility_damage_multiplier = 0 end
 
@@ -94,11 +94,17 @@ function CheckBackstab(params)
 		-- Apply extra backstab damage based on Riki's agility
 		ApplyDamage({victim = params.target, attacker = params.attacker, damage = damage, damage_type = damageType})
 	elseif caster:HasTalent("special_bonus_unique_riki_5") then
+		EmitSoundOn(params.sound, params.target)
+		-- Create the back particle effect.
+		local particle = ParticleManager:CreateParticle(params.particle, PATTACH_ABSORIGIN_FOLLOW, params.target) 
+		-- Set Control Point 1 for the backstab particle; this controls where it's positioned in the world. In this case, it should be positioned on the victim.
+		ParticleManager:SetParticleControlEnt(particle, 1, params.target, PATTACH_POINT_FOLLOW, "attach_hitloc", params.target:GetAbsOrigin(), true) 
+		-- Apply extra backstab damage based on Riki's agility
 		local multiplier = caster:FindTalentValue("special_bonus_unique_riki_5") / 100
 		ApplyDamage({victim = params.target, attacker = params.attacker, damage = damage * multiplier, damage_type = damageType})
 	end
 		
 		--EmitSoundOn(params.sound2, params.target)
 		-- uncomment this if regular (non-backstab) attack has no sound
-	end
+	-- end
 end

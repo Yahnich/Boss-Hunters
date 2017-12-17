@@ -1,6 +1,6 @@
 doom_doom_ebf = class({})
 
-LinkLuaModifier( "modifier_doom_doom_ebf", "lua_abilities/heroes/modifiers/modifier_doom_doom.lua" ,LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_doom_doom_ebf", "lua_abilities/heroes/modifiers/modifier_doom_doom_ebf.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 function doom_doom_ebf:GetBehavior()
 	if self:GetCaster():HasScepter() then

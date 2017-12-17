@@ -3976,7 +3976,7 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"4"
+		"AbilityCooldown"				"5"
 		"AbilityDuration"				"4.5"
 
 
@@ -9280,7 +9280,7 @@
 			"02"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"aura_damage"		"0.90 1.05 1.2 1.35 1.5 1.65 1.8" 
+				"aura_damage"		"0.90 1.0 1.1 1.2 1.3 1.4 1.5" 
 				"LinkedSpecialBonus"		"special_bonus_unique_necrophos_2"
 			} 
 		}
@@ -49218,7 +49218,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"5"
+				"value"				"4"
 			}
 		}
 	}
