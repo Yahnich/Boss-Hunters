@@ -3,7 +3,7 @@ function AdamantiumShell(keys)
 	local caster = keys.caster
 	local ability = keys.ability
 	local charges = ability:GetTalentSpecialValueFor("charges")
-	local charges = ability:GetTalentSpecialValueFor("duration")
+	local duration = ability:GetTalentSpecialValueFor("duration")
 	
 	local AddShell = function(target)
 		ability:ApplyDataDrivenModifier(caster, target, "modifier_shell_protection", {duration = duration})

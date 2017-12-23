@@ -132,6 +132,16 @@ function rubick_lift_ebf:GetAOERadius()
 	return self:GetSpecialValueFor("slam_radius")
 end
 
+function rubick_lift_ebf:GetIntrinsicModifierName()
+	return "modifier_rubick_talent_thinker"
+end
+
+function rubick_lift_ebf:GetCooldown(nLevel)
+	local cooldown = self.BaseClass.GetCooldown( self, nLevel )
+	if self:GetCaster():HasModifier("modifier_special_bonus_unique_rubick_4") then cooldown = cooldown - 15 end
+	return cooldown
+end
+
 if IsServer() then
 	function rubick_lift_ebf:OnSpellStart()
 		local caster = self:GetCaster()
@@ -149,4 +159,32 @@ if IsServer() then
 			ParticleManager:SetParticleControl(slam, 0, hTarget:GetAbsOrigin())
 		ParticleManager:ReleaseParticleIndex(slam)
 	end
+end
+
+LinkLuaModifier( "modifier_rubick_talent_thinker", "lua_abilities/heroes/rubick.lua" ,LUA_MODIFIER_MOTION_NONE )
+modifier_rubick_talent_thinker = class({})
+
+function modifier_rubick_talent_thinker:OnCreated()
+	if IsServer() then
+		self:StartIntervalThink(0.1)
+	end
+end
+
+function modifier_rubick_talent_thinker:OnIntervalThink()
+	if self:GetCaster():HasTalent("special_bonus_unique_rubick_4") then
+		self:GetCaster():AddNewModifier(self:GetCaster(), self:GetCaster():FindAbilityByName("special_bonus_unique_rubick_4"), "modifier_special_bonus_unique_rubick_4", {})
+		self:StartIntervalThink(-1)
+	end
+end
+
+
+LinkLuaModifier( "modifier_special_bonus_unique_rubick_4", "lua_abilities/heroes/rubick.lua" ,LUA_MODIFIER_MOTION_NONE )
+modifier_special_bonus_unique_rubick_4 = class({})
+
+function modifier_special_bonus_unique_rubick_4:IsHidden()
+	return true
+end
+
+function modifier_special_bonus_unique_rubick_4:RemoveOnDeath()
+	return false
 end

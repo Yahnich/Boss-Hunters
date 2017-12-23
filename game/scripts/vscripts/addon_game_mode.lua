@@ -2032,15 +2032,6 @@ function CHoldoutGameMode:OnThink()
 			elseif self._currentRound ~= nil then
 				self._currentRound:Think()
 				if self._currentRound:IsFinished() then
-					if self._nRoundNumber > 1 then
-						local heroes = HeroList:GetAllHeroes()
-						for _, hero in ipairs(heroes) do
-							-- GameRules.relicPool:DropTankRelic(hero)
-							if (hero:HasOwnerAbandoned() or PlayerResource:GetConnectionState(hero:GetPlayerID()) == 0 or PlayerResource:GetConnectionState(hero:GetPlayerID()) == 1) and not hero.HasBeenInitialized and not hero.hasSkillsSelected then
-								GameRules.abilityManager:RandomAbilitiesFromList({heroID = hero:entindex()})
-							end
-						end
-					end
 					self._currentRound:End()
 					self._currentRound = nil
 					-- Heal all players
