@@ -6101,8 +6101,12 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"					"5108"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_TREE | DOTA_UNIT_TARGET_CUSTOM"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_CUSTOM"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilitySound"					"Hero_Tiny.CraggyExterior.Stun"
 		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
 		"RequiredLevel"					"5"
@@ -6244,7 +6248,7 @@
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"attack_speed_reduction"	"50 100 200"
+				"attack_speed_reduction"	"50 100 150"
 			}
 		}
 	}
@@ -11783,6 +11787,8 @@
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"				"5.0"
+		"HasPureCooldown"				"1"
+		"AbilityDuration"				"8"
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -45495,7 +45501,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"200"
+				"value"				"6"
 			}
 		}
 	}

@@ -592,8 +592,10 @@
 	"npc_dota_hero_obsidian_destroyer_ebf"
 	{
 		"override_hero"			"npc_dota_hero_obsidian_destroyer"
-		"Ability2"					"obsidian_destroyer_astral_imprisonment_ebf"
-		"Ability6"					"obsidian_destroyer_sanitys_eclipse_ebf"					// Ability 2
+		"Ability1"				"obsidian_destroyer_arcane_orb_ebf"
+		"Ability2"				"obsidian_destroyer_astral_imprisonment_ebf"
+		"Ability3"				"obsidian_destroyer_essence_aura_ebf"
+		"Ability6"				"obsidian_destroyer_sanitys_eclipse_ebf"					// Ability 2
 		
 	}
 	//=================================================================================================================
@@ -1009,6 +1011,44 @@
 		"override_hero"			"npc_dota_hero_centaur"
 		"Ability2"				"centaur_double_edge_ebf"
 		"Ability3"				"centaur_return_ebf"
+		
+		
+		"AttributePrimary"			"DOTA_ATTRIBUTE_STRENGTH"
+		"AttributeBaseStrength"		"23"
+		"AttributeStrengthGain"		"4.3"
+		"AttributeBaseIntelligence"	"15"
+		"AttributeIntelligenceGain"	"1.6"
+		"AttributeBaseAgility"		"25"
+		"AttributeAgilityGain"		"3.2"
+	}
+	
+	}
+	"npc_dota_hero_tiny"
+	{
+		"override_hero"			"npc_dota_hero_tiny"
+		"Ability1"		"tiny_avalanche"
+		"Ability2"		"tiny_toss"
+		"Ability3"		"tiny_craggy_exterior"
+		"Ability4"		"generic_hidden"
+		"Ability5"		"generic_hidden"
+		"Ability6"		"tiny_grow"
+		"Ability7"		"tiny_toss_tree"
+		"Ability10"		"special_bonus_magic_resistance_20"
+		"Ability11"		"special_bonus_attack_damage_30"
+		"Ability12"		"special_bonus_hp_350"
+		"Ability13"		"special_bonus_unique_tiny"
+		"Ability14"		"special_bonus_unique_tiny_4"
+		"Ability15"		"special_bonus_unique_tiny_5"
+		"Ability16"		"special_bonus_unique_tiny_3"
+		"Ability17"		"special_bonus_unique_tiny_2"
+		
+		"AttributePrimary"				"DOTA_ATTRIBUTE_STRENGTH"
+		"AttributeBaseStrength"			"30"
+		"AttributeStrengthGain"			"3.300000"
+		"AttributeBaseIntelligence"		"17"
+		"AttributeIntelligenceGain"		"1.600000"
+		"AttributeBaseAgility"			"18"
+		"AttributeAgilityGain"			"1.2"
 	}
 	"npc_dota_hero_lion_ebf"
 	{

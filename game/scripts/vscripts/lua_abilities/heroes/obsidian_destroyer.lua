@@ -1,3 +1,91 @@
+obsidian_destroyer_arcane_orb_ebf = class({})
+
+function obsidian_destroyer_arcane_orb_ebf:GetIntrinsicModifierName()
+	return "modifier_obsidian_destroyer_autocast"
+end
+
+function obsidian_destroyer_arcane_orb_ebf:OnSpellStart()
+	local target = self:GetCursorTarget()
+	self:LaunchArcaneOrb(target, true)
+end
+
+function obsidian_destroyer_arcane_orb_ebf:IsStealable()
+	return false
+end
+
+function obsidian_destroyer_arcane_orb_ebf:GetCastRange(location, target)
+	return self:GetCaster():GetAttackRange()
+end
+
+function obsidian_destroyer_arcane_orb_ebf:GetAOERadius()
+	return self:GetSpecialValueFor("int_splash_radius")	
+end
+
+function obsidian_destroyer_arcane_orb_ebf:LaunchArcaneOrb(target, bAttack)
+	local caster = self:GetCaster()
+	caster:SetProjectileModel("particles/empty_projectile.vcpf")
+	EmitSoundOn("Hero_ObsidianDestroyer.ArcaneOrb", caster)
+	if bAttack then self:GetCaster():PerformGenericAttack(target, false) end
+	local projTable = {
+		EffectName = "particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_arcane_orb.vpcf",
+		Ability = self,
+		Target = target,
+		Source = caster,
+		bDodgeable = true,
+		bProvidesVision = false,
+		vSpawnOrigin = caster:GetAbsOrigin(),
+		iMoveSpeed = caster:GetProjectileSpeed(),
+		iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_ATTACK_1
+	}
+	ProjectileManager:CreateTrackingProjectile( projTable )
+	caster:RevertProjectile()
+end
+
+function obsidian_destroyer_arcane_orb_ebf:OnProjectileHit(target, position)
+	if target then
+		local caster = self:GetCaster()
+		ParticleManager:FireParticle("particles/units/hero_obsidian_destroyer/obsidian_destroyer_arcane_orb_aoe.vpcf", PATTACH_POINT_FOLLOW, target)
+		self:DealDamage(caster, target, caster:GetMana() * self:GetSpecialValueFor("mana_pool_damage_pct") / 100)
+		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius(target:GetAbsOrigin(), self:GetSpecialValueFor("int_splash_radius")) ) do
+			if enemy ~= target then
+				self:DealDamage(caster, enemy, self:GetSpecialValueFor("int_splash") * caster:GetIntellect() / 100)
+			end
+		end
+	end
+end
+
+modifier_obsidian_destroyer_autocast = class({})
+LinkLuaModifier("modifier_obsidian_destroyer_autocast", "lua_abilities/heroes/obsidian_destroyer.lua", 0)
+
+function modifier_obsidian_destroyer_autocast:IsHidden()
+	return true
+end
+
+if IsServer() then
+	function modifier_obsidian_destroyer_autocast:OnCreated()
+		self:StartIntervalThink(0.03)
+	end
+	
+	function modifier_obsidian_destroyer_autocast:OnIntervalThink()
+		local caster = self:GetCaster()
+		if self:GetAbility():GetAutoCastState() then
+			caster:SetProjectileModel("particles/empty_projectile.vcpf")
+		else
+			caster:SetProjectileModel("particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_base_attack.vpcf")
+		end
+	end
+	
+	function modifier_obsidian_destroyer_autocast:DeclareFunctions()
+		return {MODIFIER_EVENT_ON_ATTACK}
+	end
+	
+	function modifier_obsidian_destroyer_autocast:OnAttack(params)
+		if params.attacker == self:GetParent() and params.target and self:GetAbility():GetAutoCastState() then
+			self:GetAbility():LaunchArcaneOrb(params.target)
+		end
+	end
+end
+
 obsidian_destroyer_astral_imprisonment_ebf = class({})
 
 function obsidian_destroyer_astral_imprisonment_ebf:OnSpellStart()
@@ -119,6 +207,103 @@ end
 
 function modifier_obsidian_destroyer_astral_imprisonment_prison:GetEffectName()
 	return "particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_prison.vpcf"
+end
+
+obsidian_destroyer_essence_aura_ebf = class({})
+
+function  obsidian_destroyer_essence_aura_ebf:GetIntrinsicModifierName()
+	return "modifier_obsidian_destroyer_essence_aura_ebf_passive"
+end
+
+function obsidian_destroyer_essence_aura_ebf:OnSpellStart()
+	self:GetCaster():AddNewModifier( self:GetCaster(), self, "modifier_obsidian_destroyer_essence_aura_ebf_active", {duration = self:GetSpecialValueFor("buff_duration")})
+end
+
+modifier_obsidian_destroyer_essence_aura_ebf_active = class({})
+LinkLuaModifier("modifier_obsidian_destroyer_essence_aura_ebf_active", "lua_abilities/heroes/obsidian_destroyer", 0)
+
+function modifier_obsidian_destroyer_essence_aura_ebf_active:OnCreated()
+	if IsServer() then
+		ParticleManager:FireParticle("particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_essence_effect.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
+	end
+end
+
+function modifier_obsidian_destroyer_essence_aura_ebf_active:DeclareFunctions()
+	return {MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE}
+end
+
+function modifier_obsidian_destroyer_essence_aura_ebf_active:GetModifierIncomingDamage_Percentage(params)
+	if params.damage < self:GetParent():GetMana() then
+		self:GetParent():SpendMana(params.damage, self:GetAbility() )
+		return -100
+	else
+		local dmgPct = self:GetParent():GetMana() / params.damage
+		self:GetParent():SpendMana(self:GetParent():GetMana(), self:GetAbility() )
+		return -(100 - dmgPct*100)
+	end
+end
+
+function modifier_obsidian_destroyer_essence_aura_ebf_active:GetStatusEffectName()
+	return "particles/status_fx/status_effect_siren_song.vpcf"
+end
+
+function modifier_obsidian_destroyer_essence_aura_ebf_active:StatusEffectPriority()
+	return 10
+end
+
+function modifier_obsidian_destroyer_essence_aura_ebf_active:GetEffectName()
+	return "particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_avatar.vpcf"
+end
+
+modifier_obsidian_destroyer_essence_aura_ebf_passive = class({})
+LinkLuaModifier("modifier_obsidian_destroyer_essence_aura_ebf_passive", "lua_abilities/heroes/obsidian_destroyer", 0)
+
+
+function modifier_obsidian_destroyer_essence_aura_ebf_passive:OnCreated()
+	self.mana = self:GetSpecialValueFor("bonus_mana")
+	self.manaregen = self:GetSpecialValueFor("bonus_mana_regen")
+	self.spellamp = self:GetSpecialValueFor("bonus_spell_amp")
+	if IsServer() then self:StartIntervalThink(0.1) end
+end
+
+function modifier_obsidian_destroyer_essence_aura_ebf_passive:OnRefresh()
+	self.mana = self:GetSpecialValueFor("bonus_mana")
+	self.manaregen = self:GetSpecialValueFor("bonus_mana_regen")
+	self.spellamp = self:GetSpecialValueFor("bonus_spell_amp")
+end
+
+function modifier_obsidian_destroyer_essence_aura_ebf_passive:OnIntervalThink()
+	if self:GetAbility():IsCooldownReady() then
+		self:SetStackCount( 0 )
+	else
+		self:SetStackCount( 1 )
+	end
+end
+	
+function modifier_obsidian_destroyer_essence_aura_ebf_passive:IsHidden()
+	return self:GetStackCount() == 1
+end
+
+function modifier_obsidian_destroyer_essence_aura_ebf_passive:DeclareFunctions()
+	return {MODIFIER_PROPERTY_MANA_BONUS, MODIFIER_PROPERTY_MANA_REGEN_CONSTANT, MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE	}
+end
+
+function modifier_obsidian_destroyer_essence_aura_ebf_passive:GetModifierManaBonus()
+	if not self:IsHidden() then
+		return self.mana
+	end
+end
+
+function modifier_obsidian_destroyer_essence_aura_ebf_passive:GetModifierConstantManaRegen()
+	if not self:IsHidden() then
+		return self.manaregen
+	end
+end
+
+function modifier_obsidian_destroyer_essence_aura_ebf_passive:GetModifierSpellAmplify_Percentage()
+	if not self:IsHidden() then
+		return self.spellamp
+	end
 end
 
 obsidian_destroyer_sanitys_eclipse_ebf = class({})

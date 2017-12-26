@@ -12160,7 +12160,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"spell_amp"				"20"
+				"spell_amp"				"30"
 			}
 		}
 	}
@@ -12236,7 +12236,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"spell_amp"				"40"
+				"spell_amp"				"60"
 			}
 		}
 	}
@@ -12312,7 +12312,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"spell_amp"				"80"
+				"spell_amp"				"120"
 			}
 			
 		}

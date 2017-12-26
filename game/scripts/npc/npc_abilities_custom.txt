@@ -13392,7 +13392,7 @@
 		"precache"
 		{
 			"particle"				"particles/nyx_assassin_impale.vpcf"
-			"paricle"				"particles/econ/generic/generic_aoe_shockwave_1/generic_aoe_shockwave_1.vpcf"
+			"particle"				"particles/econ/generic/generic_aoe_shockwave_1/generic_aoe_shockwave_1.vpcf"
 			"soundfile"				"soundevents/voscripts/game_sounds_vo_warlock_golem.vsndevts"
 		}
 		
@@ -24753,6 +24753,59 @@
 			}
 		}
 	}
+	//=================================================================================================================
+	// Obsidian Destroyer: Arcane Orb
+	//=================================================================================================================
+	"obsidian_destroyer_arcane_orb_ebf"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/heroes/obsidian_destroyer"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"LevelsBetweenUpgrades"			"8"
+		"MaxLevel"						"7"
+		"RequiredLevel"					"5"
+		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
+		"AbilityTextureName"			"obsidian_destroyer_arcane_orb"
+		"AbilityCastRange"				"450"
+		"AbilityCastPoint"				"0.3"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"100 140 240 360 480 600 720"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_arcane_orb.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_obsidian_destroyer.vsndevts"
+		}
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mana_pool_damage_pct"	"1.5 3.0 4.5 6.0 7.5 9.0 11.5"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"int_splash"			"40"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"int_splash_radius"		"350 375 400 425 450 475 500"
+			}
+		}
+	}	
 	"obsidian_destroyer_astral_imprisonment_ebf"
 	{
 		// General
@@ -24827,7 +24880,58 @@
 			}
 		}
 	}
-	
+	//=================================================================================================================
+	// Obsidian Destroyer: Essence Aura
+	//=================================================================================================================
+	"obsidian_destroyer_essence_aura_ebf"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/heroes/obsidian_destroyer"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"AbilityTextureName"			"obsidian_destroyer_essence_aura"
+		"LevelsBetweenUpgrades"			"5"
+		"MaxLevel"						"7"
+		"RequiredLevel"					"6"
+		"AbilityCooldown"				"20"
+		
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_essence_effect.vpcf"
+			"particle"					"particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_avatar.vpcf"
+			"particle"					"particles/status_fx/status_effect_siren_song.vpcf"
+		}
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_mana"	    	"400 800 1600 3200 6400 12800 25000"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bonus_mana_regen"		"1 2 4 8 16 32 64"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_spell_amp"		"20 25 30 35 40 45 50"
+				"LinkedSpecialBonus"	"special_bonus_unique_outworld_devourer_2"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"buff_duration"			"5"
+			}
+		}
+	}
 	"obsidian_destroyer_sanitys_eclipse_ebf"
 	{
 		// General
@@ -33424,7 +33528,7 @@
 
 		// Stats		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"30"
+		"AbilityCooldown"				"40 35"
 		"AbilityChannelTime"			"5"
 		"AbilityCastPoint"				"0.75 0.5"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
@@ -40825,7 +40929,7 @@
 			"03"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"damage_block"		"20000"
+				"damage_block"		"5000"
 			}
 			"04"
 			{

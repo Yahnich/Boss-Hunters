@@ -246,7 +246,7 @@
 					"NPCName"				"npc_dota_boss3b"
 					"TotalUnitsToSpawn"		"6"
 					"UnitsPerSpawn"			"1"
-					"SpawnInterval"			"6"
+					"SpawnInterval"			"6"             
 				}
 			}
 			"4"

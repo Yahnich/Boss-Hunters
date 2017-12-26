@@ -1207,6 +1207,17 @@ function CDOTABaseAbility:ModifyCooldown(amt)
 	self:StartCooldown(currCD + amt)
 end
 
+function CScriptHeroList:GetRealHeroes()
+	local heroes = self:GetAllHeroes()
+	local realHeroes = {}
+	for _,hero in pairs(heroes) do
+		if hero:IsRealHero() and not (hero:HasModifier("modifier_monkey_king_fur_army_soldier") or hero:HasModifier("modifier_monkey_king_fur_army_soldier_hidden")) then
+			table.insert(realHeroes, hero)
+		end
+	end
+	return realHeroes
+end
+
 function CScriptHeroList:GetRealHeroCount()
 	local heroes = self:GetAllHeroes()
 	local realHeroes = {}
@@ -1215,7 +1226,22 @@ function CScriptHeroList:GetRealHeroCount()
 			table.insert(realHeroes, hero)
 		end
 	end
-	return #realHeroes
+	return #self:GetRealHeroes()
+end
+
+function CScriptHeroList:GetActiveHeroes()
+	local heroes = self:GetAllHeroes()
+	local activeHeroes = {}
+	for _, hero in pairs(heroes) do
+		if hero:GetPlayerOwner() then
+			table.insert(activeHeroes, hero)
+		end
+	end
+	return activeHeroes
+end
+
+function CScriptHeroList:GetActiveHeroCount()
+	return #self:GetActiveHeroes()
 end
 
 function RotateVector2D(vector, theta)

@@ -169,7 +169,7 @@ function CHoldoutGameMode:InitGameMode()
 	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue( DOTA_ATTRIBUTE_AGILITY_ATTACK_SPEED, 0.05	 )
 	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue( DOTA_ATTRIBUTE_AGILITY_MOVE_SPEED_PERCENT, 0.00006 )
 	
-	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue( DOTA_ATTRIBUTE_INTELLIGENCE_MANA_REGEN_PERCENT, 0.0005 )
+	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue( DOTA_ATTRIBUTE_INTELLIGENCE_MANA_REGEN_PERCENT, 0.0002 )
 	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue( DOTA_ATTRIBUTE_INTELLIGENCE_SPELL_AMP_PERCENT, 0.01 )
 	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue( DOTA_ATTRIBUTE_INTELLIGENCE_MAGIC_RESISTANCE_PERCENT, 0.000055 ) 
 	
@@ -1954,7 +1954,15 @@ function CHoldoutGameMode:SetHealthMarkers()
 end
 
 function CHoldoutGameMode:CheckMidas()
+	local abandonGold = 0
+	local shareCount = 0
 	for _,unit in pairs ( HeroList:GetAllHeroes() ) do
+		if unit:HasOwnerAbandoned() then
+			abandonGold = abandonGold + unit:GetGold()
+			unit:SetGold(0 , false)
+		else
+			shareCount = shareCount + 1
+		end
 		if not unit:IsFakeHero() then
 			local midas_modifier = 0
 			local ngmodifier = 0
@@ -1975,6 +1983,10 @@ function CHoldoutGameMode:CheckMidas()
 				CustomGameEventManager:Send_ServerToPlayer( player, "Update_Midas_gold", { gold = unit.midasGold, interest = interest} )
 			end
 		end
+	end
+	for _,unit in pairs ( HeroList:GetActiveHeroes() ) do
+		local giveGold = abandonGold / shareCount
+		unit:SetGold(unit:GetGold() + giveGold, true)
 	end
 end
 
@@ -2406,7 +2418,7 @@ function CHoldoutGameMode:OnNPCSpawned( event )
 		spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_invulnerable", {})
 	end
 	if spawnedUnit:IsCreature() then
-		local effective_multiplier = 1 + (HeroList:GetRealHeroCount() - 1)*0.25
+		local effective_multiplier = 1 + (HeroList:GetActiveHeroCount() - 1)*0.25
 
 		spawnedUnit:SetBaseMaxHealth(spawnedUnit:GetBaseMaxHealth()*effective_multiplier)
 		spawnedUnit:SetMaxHealth(spawnedUnit:GetMaxHealth()*effective_multiplier)
@@ -2414,29 +2426,6 @@ function CHoldoutGameMode:OnNPCSpawned( event )
 		
 		spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_boss_attackspeed", {})
 
-		if self._NewGamePlus == true and spawnedUnit:GetTeamNumber() == DOTA_TEAM_BADGUYS and spawnedUnit:GetUnitName() ~= "npc_dota_boss36" and spawnedUnit:GetUnitName() ~= "npc_dota_money" then
-			local Number_Round = self._nRoundNumber
-			Timers:CreateTimer(0.03,function()
-				if spawnedUnit.Holdout_IsCore then
-					local modifiermin = 2000000
-					local modifiermax = 3000000
-					if spawnedUnit:GetUnitName() == "npc_dota_boss39" then
-						modifiermin = -50000
-						modifiermax = -50000
-					end
-					spawnedUnit:SetBaseDamageMin(spawnedUnit:GetBaseDamageMin()*(750/(Number_Round*10)) + modifiermin)
-					spawnedUnit:SetBaseDamageMax(spawnedUnit:GetBaseDamageMax()*(750/(Number_Round*9)) + modifiermax)
-					
-					spawnedUnit:AddAbility("new_game_damage_increase")
-					spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_boss_damagedecrease", {})
-				elseif not spawnedUnit.Holdout_IsCore then	
-					spawnedUnit:SetBaseDamageMin(spawnedUnit:GetBaseDamageMin()*(375/(Number_Round*10)) + 600000)
-					spawnedUnit:SetBaseDamageMax(spawnedUnit:GetBaseDamageMax()*(375/(Number_Round*9)) + 800000)
-					spawnedUnit:AddAbility("new_game_damage_increase")
-					spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_boss_damagedecrease", {})
-				end
-			end)
-		end
 		local ticks = 5
 		Timers:CreateTimer(0.03,function() 
 			if ticks > 0 then 
@@ -2454,7 +2443,7 @@ function CHoldoutGameMode:OnEntityKilled( event )
 	if not killedUnit or killedUnit:IsFakeHero() then return end
 	local DeathHandler = function(self, killedUnit )
 		if killedUnit.Asura_To_Give ~= nil then
-			for _,hero in pairs ( HeroList:GetAllHeroes()) do
+			for _,hero in pairs ( HeroList:GetRealHeroCount()) do
 				if not hero:IsFakeHero() then
 					hero.Asura_Core = (hero.Asura_Core or 0) + killedUnit.Asura_To_Give
 					update_asura_core(hero)
