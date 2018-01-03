@@ -1,5 +1,27 @@
-function AOEPurificationDamage(keys)
-	ApplyDamage({victim = keys.target, attacker = keys.caster, damage = keys.ability:GetTalentSpecialValueFor("damage"), damage_type = keys.ability:GetAbilityDamageType(), ability = keys.ability})
+omniknight_purification_ebf = class({})
+
+function omniknight_purification_ebf:GetAOERadius()
+	return self:GetTalentSpecialValueFor("area_of_effect")
+end
+
+function omniknight_purification_ebf:OnSpellStart()
+	local caster = self:GetCaster()
+	local target = self:GetCursorTarget()
+	
+	local damage = self:GetTalentSpecialValueFor("damage")
+	local heal = self:GetTalentSpecialValueFor("heal")
+	local radius = self:GetTalentSpecialValueFor("area_of_effect")
+	
+	EmitSoundOn("Hero_Omniknight.Purification", caster)
+	ParticleManager:FireParticle("particles/units/heroes/hero_omniknight/omniknight_purification.vpcf", PATTACH_POINT_FOLLOW, target, {[1] = Vector(radius, radius, radius)})
+	
+	target:HealEvent(heal, self, caster)
+	
+	local enemies = caster:FindEnemyUnitsInRadius(target:GetAbsOrigin(), radius)
+	for _, enemy in ipairs(enemies) do
+		ParticleManager:FireParticle("particles/units/heroes/hero_omniknight/omniknight_purification_hit.vpcf", PATTACH_POINT_FOLLOW, enemy)
+		ApplyDamage({victim = enemy, attacker = caster, damage = damage, damage_type = self:GetAbilityDamageType(), ability = self})
+	end
 end
 
 function CheckOmniScepter(keys)

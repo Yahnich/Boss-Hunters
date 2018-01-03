@@ -377,6 +377,7 @@ function CHoldoutGameMode:InitGameMode()
 	ListenToGameEvent( "game_rules_state_change", Dynamic_Wrap( CHoldoutGameMode, "OnGameRulesStateChange" ), self )
 	ListenToGameEvent("dota_player_pick_hero", Dynamic_Wrap( CHoldoutGameMode, "OnHeroPick"), self )
     ListenToGameEvent('dota_player_used_ability', Dynamic_Wrap(CHoldoutGameMode, 'OnAbilityUsed'), self)
+	ListenToGameEvent('dota_player_learned_ability', Dynamic_Wrap(CHoldoutGameMode, 'OnAbilityLearned'), self)
 	ListenToGameEvent( "dota_player_gained_level", Dynamic_Wrap( CHoldoutGameMode, "OnHeroLevelUp" ), self )
 	
 	
@@ -1077,6 +1078,19 @@ function CHoldoutGameMode:OnHeroLevelUp(event)
 	-- hero.customStatEntity:ManageStats(hero)
 end
 
+function CHoldoutGameMode:OnAbilityLearned(event)
+	local abilityname = event.abilityname
+	local player = EntIndexToHScript(event.player)
+	if player then
+		if string.match(abilityname, "special_bonus_unique") then
+			local pID = player:GetPlayerID()
+			local talentData = CustomNetTables:GetTableValue("talents", tostring(pID)) or {}
+			talentData[abilityname] = true
+			CustomNetTables:SetTableValue( "talents", tostring(pID), talentData )
+		end
+	end
+end
+
 function CHoldoutGameMode:OnAbilityUsed(event)
 	--will be used in future :p
     local PlayerID = event.PlayerID
@@ -1124,6 +1138,7 @@ function CHoldoutGameMode:OnAbilityUsed(event)
 		if abilityused:GetDuration() > 0 then
 			local duration = abilityused:GetDuration()
 			if abilityname == "rattletrap_battery_assault" then duration = abilityused:GetTalentSpecialValueFor("duration") end
+			if abilityname == "night_stalker_crippling_fear" and not GameRules:IsDayTime() then duration = abilityused:GetTalentSpecialValueFor("duration_night") end
 			abilityused:StartDelayedCooldown(duration, true)
 		else
 			abilityused:StartCooldown(abilityused:GetCooldown(-1))
@@ -1954,15 +1969,7 @@ function CHoldoutGameMode:SetHealthMarkers()
 end
 
 function CHoldoutGameMode:CheckMidas()
-	local abandonGold = 0
-	local shareCount = 0
 	for _,unit in pairs ( HeroList:GetAllHeroes() ) do
-		if unit:HasOwnerAbandoned() then
-			abandonGold = abandonGold + unit:GetGold()
-			unit:SetGold(0 , false)
-		else
-			shareCount = shareCount + 1
-		end
 		if not unit:IsFakeHero() then
 			local midas_modifier = 0
 			local ngmodifier = 0
@@ -1983,10 +1990,6 @@ function CHoldoutGameMode:CheckMidas()
 				CustomGameEventManager:Send_ServerToPlayer( player, "Update_Midas_gold", { gold = unit.midasGold, interest = interest} )
 			end
 		end
-	end
-	for _,unit in pairs ( HeroList:GetActiveHeroes() ) do
-		local giveGold = abandonGold / shareCount
-		unit:SetGold(unit:GetGold() + giveGold, true)
 	end
 end
 
@@ -2056,8 +2059,17 @@ function CHoldoutGameMode:OnThink()
 					if self._NewGamePlus then ngmodifier = math.floor(GameRules:GetMaxRound()/2) end
 					local round = math.floor((self._nRoundNumber + ngmodifier))
 					local passive_gold = round*30
+					local abandonGold = 0
+					local shareCount = 0
 					for _,unit in pairs ( HeroList:GetAllHeroes()) do
 						if unit:GetTeamNumber() == DOTA_TEAM_GOODGUYS and not unit:IsFakeHero() then
+							if unit:HasOwnerAbandoned() then
+								abandonGold = abandonGold + unit:GetGold()
+								unit:SetGold(0, false)
+								unit:SetGold(0, true)
+							else
+								shareCount = shareCount + 1
+							end
 							local midas_modifier = 0
 							if unit:HasModifier("passive_midas_3") then
 								midas_modifier = 15
@@ -2077,6 +2089,13 @@ function CHoldoutGameMode:OnThink()
 							if player then
 								CustomGameEventManager:Send_ServerToPlayer( player, "Update_Midas_gold", { gold = unit.midasGold, interest = interest} )
 							end
+						end
+					end
+					for _, unit in ipairs( HeroList:GetActiveHeroes() ) do
+						if not unit:HasOwnerAbandoned() then
+							local newGold = unit:GetGold() + math.floor(abandonGold / shareCount)
+							unit:SetGold(0 , false)
+							unit:SetGold(newGold, true)
 						end
 					end
 					self._nRoundNumber = self._nRoundNumber + 1
@@ -2144,34 +2163,6 @@ function CHoldoutGameMode:OnThink()
 		return nil
 	end
 	return 0.25
-end
-
-
-function CHoldoutGameMode:_Connection_states()
-	for nPlayerID = 0, DOTA_MAX_TEAM_PLAYERS-1 do
-		local player_connection_state = PlayerResource:GetConnectionState(nPlayerID)
-		local hero = GetAssignedHero(nPlayerID)
-		if hero~=nil and player_connection_state == 4 and hero.Abandonned ~= true then 
-			hero.Abandonned = true
-			for _,unit in pairs ( HeroList:GetAllHeroes()) do
-				if self._NewGamePlus == false then
-					local totalgold = unit:GetGold() + (self._nRoundNumber^1.3)*100
-				else
-					local totalgold = unit:GetGold() + ((36+self._nRoundNumber)^1.3)*100
-				end
-				unit:SetGold(0 , false)
-				unit:SetGold(totalgold, true)
-			end
-			for itemSlot = 0, 5, 1 do
-	          	local Item = hero:GetItemInSlot( itemSlot )
-	           	hero:RemoveItem(Item)
-	        end
-	        Timers:CreateTimer(0.1,function()
-	        	hero:SetGold(0, true)
-	        	return 0.5
-	        end)
-		end
-	end
 end
 
 function CDOTA_PlayerResource:SortThreat()

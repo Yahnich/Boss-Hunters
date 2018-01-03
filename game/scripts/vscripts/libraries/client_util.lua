@@ -1,6 +1,3 @@
-AbilityKV = LoadKeyValues("scripts/npc/npc_abilities_custom.txt")
-UnitKV = LoadKeyValues("scripts/npc/npc_heroes_custom.txt")
-
 function GetClientSync(key)
 	local value = CustomNetTables:GetTableValue( "syncing_purposes", key).value
 	return value
@@ -32,6 +29,12 @@ function PrintAll(t)
 	end
 end
 
+AbilityKV = LoadKeyValues("scripts/npc/npc_abilities_custom.txt")
+MergeTables(AbilityKV, LoadKeyValues("scripts/npc/npc_abilities_override.txt"))
+MergeTables(AbilityKV, LoadKeyValues("scripts/npc/npc_items_custom.txt"))
+MergeTables(AbilityKV, LoadKeyValues("scripts/npc/items.txt"))
+UnitKV = LoadKeyValues("scripts/npc/npc_heroes_custom.txt")
+
 function C_DOTA_BaseNPC:IsSameTeam(unit)
 	return (self:GetTeamNumber() == unit:GetTeamNumber())
 end
@@ -43,18 +46,20 @@ function C_DOTA_BaseNPC:GetThreat()
 end
 
 function C_DOTA_BaseNPC:HasTalent(talentName)
-	if self:HasModifier("modifier_"..talentName) then
+	local data = CustomNetTables:GetTableValue("talents", tostring(self:GetPlayerOwnerID())) or {}
+	if data[talentName] then
 		return true 
 	end
 	return false
 end
 
-function C_DOTA_BaseNPC:FindTalentValue(talentName)
-	if self:HasModifier("modifier_"..talentName) then  
+function C_DOTA_BaseNPC:FindTalentValue(talentName, valname)
+	local value = valname or "value"
+	if self:HasTalent(talentName) and AbilityKV[talentName] then  
 		local specialVal = AbilityKV[talentName]["AbilitySpecial"]
 		for l,m in pairs(specialVal) do
-			if m["value"] then
-				return m["value"]
+			if m[value] then
+				return m[value]
 			end
 		end
 	end    
@@ -76,36 +81,13 @@ end
 function C_DOTABaseAbility:GetTalentSpecialValueFor(value)
 	local base = self:GetSpecialValueFor(value)
 	local talentName
-	local kv = AbilityKV[self:GetName()]
+	local kv = AbilityKV[self:GetName()]["AbilitySpecial"]
 	for k,v in pairs(kv) do -- trawl through keyvalues
-		if k == "AbilitySpecial" then
-			for l,m in pairs(v) do
-				if m[value] then
-					talentName = m["LinkedSpecialBonus"]
-				end
-			end
+		if v[value] then
+			talentName = v["LinkedSpecialBonus"]
 		end
 	end
-	if talentName and self:GetCaster():HasModifier("modifier_"..talentName) then 
-		base = base + self:GetCaster():FindTalentValue(talentName) 
-	end
-	return base
-end
-
-function C_DOTA_Modifier_Lua:GetTalentSpecialValueFor(value)
-	local base = self:GetAbility():GetSpecialValueFor(value)
-	local talentName
-	local kv = AbilityKV[self:GetAbility():GetName()]
-	for k,v in pairs(kv) do -- trawl through keyvalues
-		if k == "AbilitySpecial" then
-			for l,m in pairs(v) do
-				if m[value] then
-					talentName = m["LinkedSpecialBonus"]
-				end
-			end
-		end
-	end
-	if talentName and self:GetCaster():HasModifier("modifier_"..talentName) then 
+	if talentName and self:GetCaster():HasTalent(talentName) then 
 		base = base + self:GetCaster():FindTalentValue(talentName) 
 	end
 	return base
@@ -128,6 +110,10 @@ end
 
 function C_DOTA_Modifier_Lua:GetSpecialValueFor(specVal)
 	return self:GetAbility():GetSpecialValueFor(specVal)
+end
+
+function C_DOTA_Modifier_Lua:GetTalentSpecialValueFor(specVal)
+	return self:GetAbility():GetTalentSpecialValueFor(specVal)
 end
 
 function C_DOTA_Modifier_Lua:AddIndependentStack()

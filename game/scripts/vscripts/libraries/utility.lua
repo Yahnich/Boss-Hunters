@@ -1031,41 +1031,27 @@ end
 function CDOTABaseAbility:GetTalentSpecialValueFor(value)
 	local base = self:GetSpecialValueFor(value)
 	local talentName
+	local valname = "value"
 	local kv = self:GetAbilityKeyValues()
 	for k,v in pairs(kv) do -- trawl through keyvalues
 		if k == "AbilitySpecial" then
 			for l,m in pairs(v) do
 				if m[value] then
 					talentName = m["LinkedSpecialBonus"]
+					if m["LinkedSpecialBonusField"] then valname = m["LinkedSpecialBonusField"] end
 				end
 			end
 		end
 	end
 	if talentName then 
 		local talent = self:GetCaster():FindAbilityByName(talentName)
-		if talent and talent:GetLevel() > 0 then base = base + talent:GetSpecialValueFor("value") end
+		if talent and talent:GetLevel() > 0 then base = base + talent:GetSpecialValueFor(valname) end
 	end
 	return base
 end
 
 function CDOTA_Modifier_Lua:GetTalentSpecialValueFor(value)
-	local base = self:GetAbility():GetSpecialValueFor(value)
-	local talentName
-	local kv = self:GetAbility():GetAbilityKeyValues()
-	for k,v in pairs(kv) do -- trawl through keyvalues
-		if k == "AbilitySpecial" then
-			for l,m in pairs(v) do
-				if m[value] then
-					talentName = m["LinkedSpecialBonus"]
-				end
-			end
-		end
-	end
-	if talentName then 
-		local talent = self:GetCaster():FindAbilityByName(talentName)
-		if talent and talent:GetLevel() > 0 then base = base + talent:GetSpecialValueFor("value") end
-	end
-	return base
+	return self:GetAbility():GetTalentSpecialValueFor(value)
 end
 
 

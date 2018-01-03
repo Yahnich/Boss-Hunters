@@ -7890,7 +7890,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
-		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS | DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NONE | DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO"
 		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"0"
 		
@@ -8190,7 +8190,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"radius"					"180"
+				"radius"					"220 230 240 250 260 270 280"
 			}
 			"02"
 			{
@@ -8758,17 +8758,20 @@
 		"ID"					"5150"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"	
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"FightRecapLevel"				"1"
+		"HasScepterUpgrade"				"1"
+		"AbilitySound"					"Hero_Tinker.Laser"
 		"LevelsBetweenUpgrades"			"6"
 		"MaxLevel"						"7"
 		"RequiredLevel"					"6"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"550"
+		"AbilityCastRange"				"650"
 		"AbilityCastPoint"				"0.53 0.53 0.53 0.53"
 
 		// Time		
@@ -8812,12 +8815,12 @@
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"cast_range_tooltip"	"550"
+				"cast_range_tooltip"	"650"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"cast_range_scepter"	"1100"
+				"cast_range_scepter"	"650"
 			}
 		}
 	}
@@ -9480,6 +9483,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"				"1"
 		"LevelsBetweenUpgrades"			"5"
+		"RequiredLevel"					"5"
 		"MaxLevel"						"7"
 
 		// Casting
@@ -9513,7 +9517,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"count"						"10"
+				"count"						"10 11 12 13 14 15 16"
 			}
 			"02"
 			{
@@ -9562,7 +9566,7 @@
 
 		// Damage.
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"					"750 1500 2500 5000 7500 15000 30000"
+		"AbilityDamage"					"750 1500 2500 6000 8500 25000 42000"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -9583,12 +9587,12 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"duration"					"5.0"
+				"duration"					"3.0"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"tick_interval"				"1.0"
+				"tick_interval"				"0.5"
 			}
 		}
 	}	
@@ -9625,7 +9629,7 @@
 		
 		// Cast Range
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"1200"
+		"AbilityCastRange"				"5000"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -9676,7 +9680,7 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"200 180 160 140 120 100 80"
+		"AbilityCooldown"				"60 50 40 30 25 20 15"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -9697,12 +9701,12 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"golem_duration"			"60"
+				"golem_duration"			"120"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"stun_duration"				"2.0"
+				"stun_duration"				"1.0"
 			}
 			"03"
 			{
@@ -9815,7 +9819,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"aura_radius"			"600"
+				"aura_radius"			"800"
 			}
 			"02"
 			{
@@ -14247,7 +14251,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
-		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS | DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 
 		// Casting
@@ -14986,6 +14990,7 @@
 		"MaxLevel"						"7"
 		"RequiredLevel"					"7"
 		"PiercesDisableReduction"		"1"
+		"HasPureCooldown"				"1"
 		
 		// Unit Targeting
 		//-------------------------------------------------------------------------------------------------------------
@@ -14997,7 +15002,8 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"500"
 		"AbilityCastPoint"				"0.3 0.3 0.3 0.3"
-		"AbilityCooldown"				"40"
+		"AbilityCooldown"				"12"
+		"AbilityDuration"				"1.0 2.0 3.0 4.0 5.0 6.0 7.0"
 		"AbilityManaCost"				"50"
 			
 		// Special
@@ -42632,7 +42638,51 @@
 			}
 		}
 	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_omniknight_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6709"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"3"
+			}
+		}
+	}
 
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_omniknight_4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"7010"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"75"
+			}
+		}
+	}
 	//=================================================================================================================
 	// Ability: Special Bonus
 	//=================================================================================================================
@@ -43226,9 +43276,36 @@
 				"var_type"					"FIELD_FLOAT"
 				"value"						"0.5"
 			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"value2"					"-0.5"
+			}
 		}
 	}
-
+	
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_treant_5"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6957"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"350"
+			}
+		}
+	}
 	//=================================================================================================================
 	// Ability: Special Bonus
 	//=================================================================================================================
@@ -43977,7 +44054,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"200"
+				"value"				"400"
 			}
 		}
 	}
@@ -44069,7 +44146,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"250"
+				"value"				"350"
 			}
 		}
 	}
@@ -50344,8 +50421,8 @@
 		{
 			"01"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"value"				"1100"
+				"var_type"					"FIELD_FLOAT"
+				"value"				"-0.4"
 			}
 			"02"
 			{

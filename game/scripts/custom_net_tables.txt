@@ -4,8 +4,7 @@
   [
     "New_Game_plus",
     "Asura_core",
-	"hero_selection",
-	"skillList",
+	"talents",
 	"syncing_purposes",
 	"hero_properties",
   ]

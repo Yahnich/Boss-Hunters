@@ -288,7 +288,7 @@
 		"GameSoundsFile"			"soundevents/game_sounds_heroes/game_sounds_furion.vsndevts"
 		"ModelScale"				"5"
 		"Level"						"1"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"vscripts"					"ai/ai_generic"
 		
 		"precache"
@@ -395,7 +395,7 @@
 		"GameSoundsFile"			"soundevents/game_sounds_heroes/game_sounds_furion.vsndevts"
 		"ModelScale"				"2"
 		"Level"						"1"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"vscripts"					"ai/ai_generic"
 		
 		"precache"
@@ -505,7 +505,7 @@
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"ModelScale"				"2"
 		"Level"						"999"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 
 		
 		// Abilities
@@ -586,7 +586,7 @@
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"1"
 		"ModelScale" 				"1.2"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"IsCore"					"1"
 		"vscripts"					"ai/ai_boss1.lua"
 		
@@ -690,7 +690,7 @@
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"2"
 		"ModelScale" 				"1.3"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"IsCore"					"1"
 		"vscripts"					"ai/ai_boss2.lua"
 		
@@ -788,7 +788,7 @@
 		"GameSoundsFile"			"soundevents/game_sounds_heroes/game_sounds_undying.vsndevts"
 		"ModelScale"				"1.2"
 		"Level"						"3"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"IsCore"					"1"
 		"vscripts"					"ai/ai_boss3a.lua"
 				
@@ -904,7 +904,7 @@
 		"GameSoundsFile"			"soundevents/game_sounds_heroes/game_sounds_undying.vsndevts"
 		"ModelScale"				"1.2"
 		"Level"						"3"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"IsCore"					"1"
 		"vscripts"					"ai/ai_zombie.lua"
 				
@@ -996,7 +996,7 @@
 		"GameSoundsFile"			"soundevents/game_sounds_heroes/game_sounds_undying.vsndevts"
 		"ModelScale"				"1.15"
 		"Level"						"4"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"IsCore"					"1"
 		"vscripts"					"ai/ai_boss3b.lua"
 		
@@ -1112,7 +1112,7 @@
 		"GameSoundsFile"			"soundevents/game_sounds_heroes/game_sounds_undying.vsndevts"
 		"ModelScale"				"2"
 		"Level"						"5"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"precache"
 		{
 			"particle_folder"		"particles/units/heroes/hero_undying"
@@ -1220,7 +1220,7 @@
 		"GameSoundsFile"			"soundevents/game_sounds_heroes/game_sounds_undying.vsndevts"
 		"ModelScale"				"0.8"
 		"Level"						"5"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"precache"
 		{
 			"particle_folder"		"particles/units/heroes/hero_undying"
@@ -1325,7 +1325,7 @@
 		"GameSoundsFile"			"soundevents/game_sounds_heroes/game_sounds_undying.vsndevts"
 		"ModelScale"				"1.3"
 		"Level"						"2"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		
 		"vscripts"					"ai/ai_generic.lua"
 				
@@ -1420,7 +1420,7 @@
 		"GameSoundsFile"			"soundevents/game_sounds_heroes/game_sounds_legion_commander.vsndevts"
 		"ModelScale"				"2"
 		"Level"						"5"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"precache"
 		{
 			"particle_folder"		"particles/units/heroes/hero_legion_commander"
@@ -1444,8 +1444,8 @@
 		// Attack
 		//----------------------------------------------------------------
 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"			"3500"		// Damage range min.
-		"AttackDamageMax"			"4000"		// Damage range max.
+		"AttackDamageMin"			"3000"		// Damage range min.
+		"AttackDamageMax"			"3250"		// Damage range max.
 		"AttackRate"				"3.75"		// Speed of attack.
 		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
@@ -1524,7 +1524,7 @@
 		"GameSoundsFile"			"soundevents/game_sounds_heroes/game_sounds_legion_commander.vsndevts"
 		"ModelScale"				"2"
 		"Level"						"5"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"precache"
 		{
 			"particle_folder"		"particles/units/heroes/hero_legion_commander"
@@ -1548,8 +1548,8 @@
 		// Attack
 		//----------------------------------------------------------------
 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"			"3500"		// Damage range min.
-		"AttackDamageMax"			"4000"		// Damage range max.
+		"AttackDamageMin"			"3000"		// Damage range min.
+		"AttackDamageMax"			"3250"		// Damage range max.
 		"AttackRate"				"3.75"		// Speed of attack.
 		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
@@ -1628,7 +1628,7 @@
 		"GameSoundsFile"			"soundevents/game_sounds_heroes/game_sounds_legion_commander.vsndevts"
 		"ModelScale"				"1.75"
 		"Level"						"5"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"precache"
 		{
 			"particle_folder"		"particles/units/heroes/hero_legion_commander"
@@ -1652,8 +1652,8 @@
 		// Attack
 		//----------------------------------------------------------------
 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"			"3750"		// Damage range min.
-		"AttackDamageMax"			"4250"		// Damage range max.
+		"AttackDamageMin"			"3000"		// Damage range min.
+		"AttackDamageMax"			"3250"		// Damage range max.
 		"AttackRate"				"3.75"		// Speed of attack.
 		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
@@ -1732,7 +1732,7 @@
 		"GameSoundsFile"			"soundevents/game_sounds_heroes/game_sounds_legion_commander.vsndevts"
 		"ModelScale"				"1.4"
 		"Level"						"5"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"precache"
 		{
 			"particle_folder"		"particles/units/heroes/hero_legion_commander"
@@ -1837,7 +1837,7 @@
 		"Model"						"models/heroes/slark/slark.vmdl"	// Model.	
 		"ModelScale"				"1.5"
 		"Level"						"6"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"IsCore"					"1"
 		"vscripts"					"ai/ai_boss6.lua"
 		
@@ -1969,7 +1969,7 @@
 		"Model"						"models/heroes/blood_seeker/blood_seeker.vmdl"	// Model.	
 		"ModelScale"				"1.5"
 		"Level"						"10"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"IsCore"					"1"
 		"vscripts"					"ai/ai_boss6_b.lua"
 		
@@ -2091,7 +2091,7 @@
 		"GameSoundsFile"			"soundevents/game_sounds_heroes/game_sounds_life_stealer.vsndevts"
 		"ModelScale"				"2.5"
 		"Level"						"7"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"IsCore"					"1"
 		"vscripts"					"ai/ai_boss7.lua"
 		
@@ -2213,7 +2213,7 @@
 		"GameSoundsFile"			"soundevents/game_sounds_heroes/game_sounds_rattletrap.vsndevts"
 		"ModelScale" 				"1.85"
 		"Level"						"8"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"IsCore"					"1"
 		"vscripts"				"ai/ai_boss8.lua"
 
@@ -2315,7 +2315,7 @@
 		"ModelScale" 				"1.6"
 		"Level"						"8"
 		"CanBeDominated"			"0"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"IsCore"					"1"
 		"vscripts"					"ai/ai_boss8b.lua"
 
@@ -2421,7 +2421,7 @@
 		"ModelScale" 				"0.8"
 		"Level"						"8"
 		"CanBeDominated"			"0"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"vscripts"					"ai/ai_boss8c.lua"
 
 		// Armor
@@ -2520,7 +2520,7 @@
 		"ModelScale" 				"1.6"
 		"Level"						"8"
 		"CanBeDominated"			"0"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"IsCore"					"1"
 		"IsSpawner"					"1"
 		"vscripts"					"ai/ai_boss8c_spawner.lua"
@@ -2614,7 +2614,7 @@
 		"IdleSoundLoop"				"Hero_NagaSiren.IdleLoop"
 		"ModelScale"				"2"
 		"Level"						"9"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"IsCore"					"1"
 		"vscripts"					"ai/ai_boss9"
 		
@@ -2739,7 +2739,7 @@
 		"IdleSoundLoop"				"Hero_NagaSiren.IdleLoop"
 		"ModelScale"				"0.7"
 		"Level"						"7"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		
 		"vscripts"					"ai/ai_generic"
 		
@@ -2861,7 +2861,7 @@
 		"SoundSet"					"Roshan"					// Name of sound set.
 		"ModelScale"				"1.4"
 		"Level"						"10"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"IsCore"					"1"
 		"vscripts"					"ai/ai_boss10"
 		
@@ -2972,7 +2972,7 @@
 		"SoundSet"					"Roshan"					// Name of sound set.
 		"ModelScale"				"1.8"
 		"Level"						"10"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"IsCore"					"1"
 		"vscripts"					"ai/ai_boss10.lua"
 		
@@ -3083,7 +3083,7 @@
 		"Model"						"models/heroes/leshrac/leshrac.vmdl"	// Model.
 		"ModelScale"				"2.25"
 		"Level"						"11"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"IsCore"					"1"
 		"vscripts"					"ai/ai_boss11.lua"
 		
@@ -3200,7 +3200,7 @@
 		"Model"						"models/creeps/neutral_creeps/n_creep_golem_b/n_creep_golem_b.vmdl"	// Model.
 		"ModelScale"				"2.3"
 		"Level"						"12"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"IsCore"					"1"
 		"vscripts"					"ai/ai_generic.lua"
 
@@ -3297,7 +3297,7 @@
 		"Model"						"models/creeps/neutral_creeps/n_creep_golem_b/n_creep_golem_b.vmdl"	// Model.
 		"ModelScale"				"2.3"
 		"Level"						"12"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"IsCore"					"1"
 		"vscripts"					"ai/ai_generic.lua"
 
@@ -3394,7 +3394,7 @@
 		"Model"						"models/creeps/neutral_creeps/n_creep_golem_b/n_creep_golem_b.vmdl"	// Model.
 		"ModelScale"				"2.3"
 		"Level"						"12"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"IsCore"					"1"
 		"vscripts"					"ai/ai_generic.lua"
 
@@ -3492,7 +3492,7 @@
 		"Model"						"models/creeps/neutral_creeps/n_creep_golem_b/n_creep_golem_b.vmdl"	// Model.
 		"ModelScale"				"1.15"
 		"Level"						"1"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		
 		"vscripts"					"ai/ai_generic.lua"
 		
@@ -3597,7 +3597,7 @@
 		"Model"						"models/creeps/neutral_creeps/n_creep_golem_b/n_creep_golem_b.vmdl"	// Model.
 		"ModelScale"				"1.15"
 		"Level"						"1"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		
 		"vscripts"					"ai/ai_generic.lua"
 		
@@ -3702,7 +3702,7 @@
 		"Model"						"models/creeps/neutral_creeps/n_creep_golem_b/n_creep_golem_b.vmdl"	// Model.
 		"ModelScale"				"1.15"
 		"Level"						"1"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		
 		"vscripts"					"ai/ai_generic.lua"
 		
@@ -3808,7 +3808,7 @@
 		"Model"						"models/creeps/neutral_creeps/n_creep_golem_b/n_creep_golem_b.vmdl"	// Model.
 		"ModelScale"				"0.6"
 		"Level"						"1"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		
 		"vscripts"					"ai/ai_generic.lua"
 		
@@ -3906,7 +3906,7 @@
 		"Model"						"models/creeps/neutral_creeps/n_creep_golem_b/n_creep_golem_b.vmdl"	// Model.
 		"ModelScale"				"0.6"
 		"Level"						"1"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		
 		"vscripts"					"ai/ai_generic.lua"
 		
@@ -4004,7 +4004,7 @@
 		"Model"						"models/creeps/neutral_creeps/n_creep_golem_b/n_creep_golem_b.vmdl"	// Model.
 		"ModelScale"				"0.6"
 		"Level"						"1"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		
 		"vscripts"					"ai/ai_generic.lua"
 		
@@ -4102,7 +4102,7 @@
 		"Model"						"models/creeps/neutral_creeps/n_creep_golem_b/n_creep_golem_b.vmdl"	// Model.
 		"ModelScale"				"0.3"
 		"Level"						"1"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		
 		"vscripts"					"ai/ai_generic.lua"
 		
@@ -4203,7 +4203,7 @@
 		"SoundSet"					"n_creep_Melee"
 		"Level"						"5"
 		"ModelScale" 				"2.45"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"IsCore"					"1"
 		"vscripts"					"ai/ai_generic.lua"
 	
@@ -4307,7 +4307,7 @@
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"14"
 		"ModelScale" 				"2.4"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"IsCore"					"1"
 		"vscripts"					"ai/ai_boss14.lua"
 
@@ -4419,7 +4419,7 @@
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"1"
 		"ModelScale" 				"2.7"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"275"
 		
@@ -4530,7 +4530,7 @@
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"1"
 		"ModelScale" 				"2.7"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"275"
 		"IsCore"					"1"
@@ -4642,7 +4642,7 @@
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"1"
 		"ModelScale" 				"3"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"275"
 		"IsCore"					"1"
@@ -4755,7 +4755,7 @@
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"1"
 		"ModelScale" 				"2.6"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"275"
 		"IsCore"					"1"
@@ -4868,7 +4868,7 @@
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"1"
 		"ModelScale" 				"3"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"275"
 		"IsCore"					"1"
@@ -4981,7 +4981,7 @@
 		"SoundSet"					"n_creep_Melee"
 		"Level"						"13"
 		"ModelScale" 				"2.0"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		
 		"vscripts"					"ai/ai_generic"
 	
@@ -5089,7 +5089,7 @@
 		"SoundSet"					"n_creep_Melee"
 		"Level"						"13"
 		"ModelScale" 				"2.0"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		
 		"vscripts"					"ai/ai_generic"
 	
@@ -5197,7 +5197,7 @@
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"1"
 		"ModelScale" 				"1.2"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"275"
 		"precache"
@@ -5326,7 +5326,7 @@
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"1"
 		"ModelScale" 				"1.2"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"275"
 		"IsCore"					"1"
@@ -5453,7 +5453,7 @@
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"1"
 		"ModelScale" 				"1.2"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"275"
 		"IsCore"					"1"
@@ -5581,7 +5581,7 @@
 		"SoundSet"					""					// Name of sound set.
 		"ModelScale"				"2.5"
 		"Level"						"4"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"275"
 		"precache"
@@ -5697,7 +5697,7 @@
 		"Level"						"4"
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"275"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"precache"
 		{
 			"particle_folder"	"particles/units/heroes/hero_treant"
@@ -5807,7 +5807,7 @@
 		"SoundSet"					""					// Name of sound set.
 		"ModelScale"				"1.5"
 		"Level"						"4"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"275"
 		"precache"
@@ -5931,7 +5931,7 @@
 		"Level"						"4"
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"275"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"precache"
 		{
 			"particle_folder"	"particles/units/heroes/hero_treant"
@@ -6041,7 +6041,7 @@
 		"SoundSet"					""					// Name of sound set.
 		"ModelScale"				"1.5"
 		"Level"						"4"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"275"
 		"precache"
@@ -6161,7 +6161,7 @@
 		"Model"						"models/heroes/furion/furion.vmdl"	// Model.
 		"Level"						"1"
 		"ModelScale" 				"0.2"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"275"
 		"IsCore"					"1"
@@ -6288,7 +6288,7 @@
 		"Model"						"models/heroes/furion/furion.vmdl"	// Model.
 		"Level"						"1"
 		"ModelScale" 				"0.3"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"275"
 		"IsCore"					"1"
@@ -6418,7 +6418,7 @@
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"1"
 		"ModelScale" 				"2"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"275"
 		"vscripts"				"ai/ai_boss21"
@@ -6514,7 +6514,7 @@
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"22"
 		"ModelScale" 				"1.5"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"275"
 		"IsCore"					"1"
@@ -6633,7 +6633,7 @@
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"22"
 		"ModelScale" 				"1"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"275"
 		"IsCore"					"1"
@@ -6745,7 +6745,7 @@
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"22"
 		"ModelScale" 				"1.8"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"275"
 		"IsCore"					"1"
@@ -6854,7 +6854,7 @@
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"23"
 		"ModelScale" 				"1.4"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"275"
 		
@@ -6962,7 +6962,7 @@
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"24"
 		"ModelScale" 				"2.3"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"275"
 		
@@ -7069,7 +7069,7 @@
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"24"
 		"ModelScale" 				"3.3"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"275"
 		
@@ -7164,7 +7164,7 @@
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"24"
 		"ModelScale" 				"2.3"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"275"
 
@@ -7271,7 +7271,7 @@
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"24"
 		"ModelScale" 				"3.3"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"275"
 		
@@ -7367,7 +7367,7 @@
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"24"
 		"ModelScale" 				"2.3"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"275"
 		
@@ -7474,7 +7474,7 @@
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"24"
 		"ModelScale" 				"3.3"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"275"
 		
@@ -7569,7 +7569,7 @@
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"24"
 		"ModelScale" 				"1.0"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"275"
 		
@@ -7676,7 +7676,7 @@
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"25"
 		"ModelScale" 				"2.1"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"275"
 		
@@ -7782,7 +7782,7 @@
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"30"
 		"ModelScale" 				"2"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"275"
 		"IsCore"					"1"
@@ -7894,7 +7894,7 @@
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"35"
 		"ModelScale" 				"2.2"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"275"
 		"CanRespawn"                "1"
@@ -7998,7 +7998,7 @@
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"40"
 		"ModelScale" 				"2.4"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"275"
 		"CanRespawn"                "1"
@@ -8099,7 +8099,7 @@
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"38"
 		"ModelScale" 				"1.0"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"275"
 		
@@ -8201,7 +8201,7 @@
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"40"
 		"ModelScale" 				"2"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"275"
 		"IsCore"					"1"
@@ -8306,7 +8306,7 @@
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"60"
 		"ModelScale" 				"3"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"275"
 		"IsCore"					"1"
@@ -8414,7 +8414,7 @@
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"65"
 		"ModelScale" 				"2.5"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"275"
 		"IsCore"					"1"
@@ -8526,7 +8526,7 @@
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"70"
 		"ModelScale" 				"1.5"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"275"
 		"IsCore"					"1"
@@ -8622,7 +8622,7 @@
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"70"
 		"ModelScale" 				"1.8"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"275"
 		"IsCore"					"1"
@@ -8735,7 +8735,7 @@
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"75"
 		"ModelScale" 				"2.2"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"275"
 		"IsCore"					"1"
@@ -8848,7 +8848,7 @@
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"80"
 		"ModelScale" 				"2.6"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"275"
 		"IsCore"					"1"
@@ -8949,7 +8949,7 @@
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"51"
 		"ModelScale" 				"2.0"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"300"
 		"IsCore"					"1"
@@ -9042,7 +9042,7 @@
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"99"
 		"ModelScale" 				"2.0"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"350"
 		"IsCore"					"1"
@@ -9141,7 +9141,7 @@
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"51"
 		"ModelScale" 				"2.0"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"300"
 		"IsCore"					"1"
@@ -9234,7 +9234,7 @@
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"99"
 		"ModelScale" 				"2.0"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"350"
 		"IsCore"					"1"
@@ -9332,7 +9332,7 @@
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"51"
 		"ModelScale" 				"2.0"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"300"
 		"IsCore"					"1"
@@ -9428,7 +9428,7 @@
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"99"
 		"ModelScale" 				"2.0"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"350"
 		"IsCore"					"1"
@@ -9526,7 +9526,7 @@
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"1"
 		"ModelScale" 				"2.0"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"350"
 		
@@ -9633,7 +9633,7 @@
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"66"
 		"ModelScale" 				"2.0"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"350"
 		"IsCore"					"1"
@@ -9739,7 +9739,7 @@
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"66"
 		"ModelScale" 				"2.0"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"350"
 		"IsCore"					"1"
@@ -9853,7 +9853,7 @@
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"99"
 		"ModelScale" 				"2.0"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"350"
 		"IsCore"					"1"
@@ -9962,7 +9962,7 @@
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"99"
 		"ModelScale" 				"2.0"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"350"
 		"IsCore"					"1"
@@ -10071,7 +10071,7 @@
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"99"
 		"ModelScale" 				"2.0"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"350"
 		"IsCore"					"1"
@@ -10182,7 +10182,7 @@
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"665"
 		"ModelScale" 				"1.675"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"66.6"
 		"IsCore"					"1"
@@ -10324,7 +10324,7 @@
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"665"
 		"ModelScale" 				"1.80"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"66.6"
 		"IsCore"					"1"
@@ -10465,7 +10465,7 @@
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"665"
 		"ModelScale" 				"2.0"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"66.6"
 		"IsCore"					"1"
@@ -10608,7 +10608,7 @@
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"665"
 		"ModelScale" 				"0.5"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"50"
 
@@ -10726,7 +10726,7 @@
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"666"
 		"ModelScale" 				"1.5"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"50"
 		"IsCore"					"1"
@@ -10838,7 +10838,7 @@
 		"GameSoundsFile"			"soundevents/game_sounds_heroes/game_sounds_broodmother.vsndevts"
 		"ModelScale"				"2.5"								// old 1.0
 		"Level"						"300"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"MinimapIcon"				"minimap_roshancamp"
 		"MinimapIconSize"			"200"
 		"UseNeutralCreepBehavior" "0"
@@ -10972,7 +10972,7 @@
 		"GameSoundsFile"			"soundevents/game_sounds_heroes/game_sounds_broodmother.vsndevts"
 		"ModelScale"				"2.5"								// old 1.0
 		"Level"						"300"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"MinimapIcon"				"minimap_roshancamp"
 		"MinimapIconSize"			"200"
 		"UseNeutralCreepBehavior" "0"
@@ -11107,7 +11107,7 @@
 		"GameSoundsFile"			"soundevents/game_sounds_heroes/game_sounds_broodmother.vsndevts"
 		"ModelScale"				"2.5"								// old 1.0
 		"Level"						"300"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"MinimapIcon"				"minimap_roshancamp"
 		"MinimapIconSize"			"200"
 		"UseNeutralCreepBehavior" "0"
@@ -11300,7 +11300,7 @@
 		"GameSoundsFile"			"soundevents/game_sounds_heroes/game_sounds_broodmother.vsndevts"
 		"ModelScale"				"0.7"								// old 1.0
 		"Level"						"1"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		
 		// Abilities
 		//----------------------------------------------------------------
@@ -11541,7 +11541,7 @@
 		"GameSoundsFile"			"soundevents/game_sounds_heroes/game_sounds_weaver.vsndevts"
 		"ModelScale"				"2"								// old 1.0
 		"Level"						"999"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"MinimapIcon"				"minimap_roshancamp"
 		"MinimapIconSize"			"200"
 		"IsCore"					"1"
@@ -11669,7 +11669,7 @@
 		"GameSoundsFile"			"soundevents/game_sounds_heroes/game_sounds_invoker.vsndevts"
 		"ModelScale"				"3.5"								// old 1.0
 		"Level"						"999"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"MinimapIcon"				"minimap_roshancamp"
 		"MinimapIconSize"			"200"
 		"IsCore"					"1"
@@ -11799,7 +11799,7 @@
 		"IsSummoned"				"1"
 		"IsAncient"					"1"
 		"ModelScale"				"1.0"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"UnitLabel"					"golem"
 		"vscripts"					"ai/ai_moloch"
 	
@@ -11876,7 +11876,7 @@
 		"IsSummoned"				"1"
 		"IsAncient"					"1"
 		"ModelScale"				"1.0"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"UnitLabel"					"golem"
 		"vscripts"					"ai/ai_naamah"
 	
@@ -12008,7 +12008,7 @@
 		"IsSummoned"				"1"
 		"IsAncient"					"1"
 		"ModelScale"				"0.8"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"UnitLabel"					"puppeteer_minion"
 	
 		// Abilities
@@ -12080,7 +12080,7 @@
 		"IsSummoned"				"1"
 		"IsAncient"					"1"
 		"ModelScale"				"0.8"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"UnitLabel"					"puppeteer_minion"
 	
 		// Abilities
@@ -12153,7 +12153,7 @@
 		"IsSummoned"				"1"
 		"IsAncient"					"1"
 		"ModelScale"				"0.8"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"UnitLabel"					"puppeteer_minion"
 		
 		"precache"
@@ -12231,7 +12231,7 @@
 		"IsSummoned"				"1"
 		"IsAncient"					"1"
 		"ModelScale"				"0.8"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"UnitLabel"					"puppeteer_minion"
 		
 		"precache"
@@ -12305,7 +12305,7 @@
 		"IsSummoned"				"1"
 		"IsAncient"					"1"
 		"ModelScale"				"1.2"
-		"IsAncient"			"1"
+		"IsAncient"			"0"
 		"UnitLabel"					"puppeteer_minion"
 		
 		"Ability1"					"skeleton_skirmisher_magic_conversion"

@@ -360,6 +360,7 @@
 		
 		"Ability1"					"treant_happy_little_tree"
 		"Ability3"					"treant_living_armor_ebf"
+		"Ability6"					"treant_great_protector"
 
 		"Ability10"		"special_bonus_mp_125"
 		"Ability11"		"special_bonus_mp_regen_4"
@@ -484,6 +485,7 @@
 	"npc_dota_hero_monkey_king"
 	{
 		"override_hero"			"npc_dota_hero_monkey_king"
+		"Ability6"		"monkey_king_wukongs_stature"
 		
 		"Ability10"		"special_bonus_hp_100"
 		"Ability11"		"special_bonus_attack_speed_20"
@@ -716,7 +718,7 @@
 	"npc_dota_hero_omniknight" // Justicar
 	{
 		"override_hero"			"npc_dota_hero_omniknight"
-		"Ability1"				"omniknight_purification_datadriven"
+		"Ability1"				"omniknight_purification_ebf"
 		"Ability6"				"omniknight_guardian_angel_datadriven"
 
 		"Ability10"		"special_bonus_movement_speed_15"
@@ -856,9 +858,9 @@
 	"npc_dota_hero_tinker_ebf"
 	{
 		"override_hero"			"npc_dota_hero_tinker"
+		"Ability1"				"tinker_laser_ebf"
 		"Ability2"				"tinker_missile_ebf"
 		"Ability6"				"tinker_rearm_datadriven"
-		
 	}
 	"npc_dota_hero_axe_ebf"
 	{
@@ -1020,8 +1022,6 @@
 		"AttributeIntelligenceGain"	"1.6"
 		"AttributeBaseAgility"		"25"
 		"AttributeAgilityGain"		"3.2"
-	}
-	
 	}
 	"npc_dota_hero_tiny"
 	{

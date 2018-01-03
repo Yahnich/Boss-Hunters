@@ -4519,7 +4519,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NONE"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"bane_enfeeble"
 		"LevelsBetweenUpgrades"			"6"
@@ -16458,12 +16458,13 @@
 		}
 	}
 
-	"omniknight_purification_datadriven"
+	"omniknight_purification_ebf"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_datadriven"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/heroes/omniknight"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_MECHANICAL"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
@@ -16505,8 +16506,8 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius"				"350"
-				"LinkedspecialBonus"	"special_bonus_unique_omniknight_4"
+				"area_of_effect"		"350"
+				"LinkedSpecialBonus"	"special_bonus_unique_omniknight_4"
 			}
 		}
 
@@ -16517,66 +16518,6 @@
 			"particle"	"particles/units/heroes/hero_omniknight/omniknight_purification_hit.vpcf"
 			"particle"	"particles/units/heroes/hero_omniknight/omniknight_purification_cast.vpcf"
 
-		}
-
-		"OnSpellStart"
-		{
-			"FireSound"
-			{
-				"EffectName"	"Hero_Omniknight.Purification"
-				"Target"		"TARGET"
-			}
-
-			"FireEffect"
-			{
-				"Target"			"TARGET"
-				"EffectName"		"particles/units/heroes/hero_omniknight/omniknight_purification.vpcf"
-				"EffectAttachType"	"follow_origin"
-				"ControlPoints"
-				{
-					"00"	"0 0 0"
-					"01"	"%radius %radius %radius"
-				}
-			}
-			
-			"FireEffect"
-			{
-				"Target"			"TARGET"
-				"EffectName"		"particles/units/heroes/hero_omniknight/omniknight_purification_cast.vpcf"
-				"EffectAttachType"	"follow_origin"
-			}
-
-			"Heal"
-			{
-				"Target" 		"TARGET"
-				"HealAmount"	"%heal"
-			}
-
-			"ActOnTargets"
-			{
-				"Target"
-				{
-					"Center"  			"TARGET"
-					"Radius"			"%radius"
-					"Teams" 			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-					"Types" 			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-				}
-
-				"Action"
-				{
-					"RunScript"
-					{
-							"ScriptFile"		"lua_abilities/heroes/omniknight"
-							"Function"			"AOEPurificationDamage"
-					}
-					"FireEffect"
-					{
-						"Target"			"TARGET"
-						"EffectName"		"particles/units/heroes/hero_omniknight/omniknight_purification_hit.vpcf"
-						"EffectAttachType"	"follow_origin"
-					}
-				}
-			}
 		}
 	}
 	
@@ -17210,127 +17151,6 @@
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"  "%movement_speed_pct"
-				}
-			}
-		}
-	}
-
-	"omniknight_purification_datadriven"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_datadriven"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_MECHANICAL"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ALLIES_YES"
-		"FightRecapLevel"				"1"
-		"AbilityTextureName"			"omniknight_purification"
-		"LevelsBetweenUpgrades"			"6"
-		"MaxLevel"						"7"
-
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"700"
-		"AbilityCastPoint"				"0.5 0.5 0.5 0.5"
-		
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"12"
-		
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"100 120 140 160 180 200 220"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"1000 2000 4000 8000 16000 32000 64000"
-				"LinkedSpecialBonus"	"special_bonus_unique_omniknight_1"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"heal"					"2000 4000 8000 16000 32000 64000 128000"
-				"LinkedSpecialBonus"	"special_bonus_unique_omniknight_1"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"350"
-			}
-		}
-
-		"precache"
-		{
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_omniknight.vsndevts"
-			"particle"	"particles/units/heroes/hero_omniknight/omniknight_purification.vpcf"
-			"particle"	"particles/units/heroes/hero_omniknight/omniknight_purification_hit.vpcf"
-			"particle"	"particles/units/heroes/hero_omniknight/omniknight_purification_cast.vpcf"
-
-		}
-
-		"OnSpellStart"
-		{
-			"FireSound"
-			{
-				"EffectName"	"Hero_Omniknight.Purification"
-				"Target"		"TARGET"
-			}
-
-			"FireEffect"
-			{
-				"Target"			"TARGET"
-				"EffectName"		"particles/units/heroes/hero_omniknight/omniknight_purification.vpcf"
-				"EffectAttachType"	"follow_origin"
-				"ControlPoints"
-				{
-					"00"	"0 0 0"
-					"01"	"%radius %radius %radius"
-				}
-			}
-			
-			"FireEffect"
-			{
-				"Target"			"TARGET"
-				"EffectName"		"particles/units/heroes/hero_omniknight/omniknight_purification_cast.vpcf"
-				"EffectAttachType"	"follow_origin"
-			}
-
-			"Heal"
-			{
-				"Target" 		"TARGET"
-				"HealAmount"	"%heal"
-			}
-
-			"ActOnTargets"
-			{
-				"Target"
-				{
-					"Center"  			"TARGET"
-					"Radius"			"%radius"
-					"Teams" 			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-					"Types" 			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-				}
-
-				"Action"
-				{
-					"RunScript"
-					{
-							"ScriptFile"		"lua_abilities/heroes/omniknight"
-							"Function"			"AOEPurificationDamage"
-					}
-					"FireEffect"
-					{
-						"Target"			"TARGET"
-						"EffectName"		"particles/units/heroes/hero_omniknight/omniknight_purification_hit.vpcf"
-						"EffectAttachType"	"follow_origin"
-					}
 				}
 			}
 		}
@@ -18677,7 +18497,6 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"				"1"
@@ -23664,6 +23483,86 @@
 			
 		}
 	}
+	//=================================================================================================================
+	// Tinker: Laser
+	//=================================================================================================================
+	"tinker_laser_ebf"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/heroes/tinker"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"AbilityTextureName"			"tinker_laser"
+		"FightRecapLevel"				"1"
+		"HasScepterUpgrade"				"1"
+		"AbilitySound"					"Hero_Tinker.Laser"
+		"LevelsBetweenUpgrades"			"6"
+		"MaxLevel"						"7"
+		"RequiredLevel"					"6"
+		
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_tinker.vsndevts"
+			"particle"					"particles/units/heroes/hero_tinker/tinker_laser.vpcf"
+			"particle"					"particles/units/heroes/hero_tinker/tinker_laser_debuff.vpcf"
+		}
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"650"
+		"AbilityCastPoint"				"0.53 0.53 0.53 0.53"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"14.0 14.0 14.0 14.0"
+
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"95 120 145 170"
+
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityModifierSupportValue"	"0.3"	// Primarily about the damageo
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"miss_rate"				"70"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"4.5"
+			}		
+			"03"	
+			{
+				"var_type"				"FIELD_INTEGER"
+				"laser_damage"			"1000 2500 5000 10000 20000 40000 80000"
+				"LinkedSpecialBonus"	"special_bonus_unique_tinker"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"cast_range_tooltip"	"650"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"cast_range_scepter"	"650"
+			}
+		}
+	}
 	"tinker_rearm_datadriven"
 	{
 	    // General
@@ -23674,7 +23573,7 @@
 	    "AbilityTextureName"			"tinker_rearm"
 	    "AbilityCastAnimation"          "ACT_DOTA_CHANNEL_ABILITY_4"
 	    "MaxLevel"						"7"
-			"LevelsBetweenUpgrades"			"7"
+		"LevelsBetweenUpgrades"			"7"
 
 	    // Casting
 	    //-------------------------------------------------------------------------------------------------------------
@@ -28729,9 +28628,10 @@
 			}
 			"02"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"leech_pct"				"-1"
-				"LinkedSpecialBonus"	"special_bonus_unique_treant_4"
+				"var_type"					"FIELD_FLOAT"
+				"leech_pct"					"-1"
+				"LinkedSpecialBonus"		"special_bonus_unique_treant_4"
+				"LinkedSpecialBonusField"	"value2"
 			}
 			"03"
 			{
@@ -28818,7 +28718,82 @@
 			}
 		}
 	}
+	//=================================================================================================================
+	// Treant Protector: Great Protector
+	//=================================================================================================================
+	"treant_great_protector"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"AbilityTextureName"			"treant_natures_guise"
+		"ScriptFile"					"lua_abilities/heroes/treant_protector"
 
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"		
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		
+		"MaxLevel"						"7"
+		"RequiredLevel"					"5"
+		"LevelsBetweenUpgrades"			"6"
+		
+		"AbilityCastPoint"				"0.0"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"45"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"125"
+		
+		"precache"
+		{
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_treant.vsndevts"
+			"particle"			"particles/units/heroes/hero_lone_druid/lone_druid_bear_entangle.vpcf"
+			"particle"			"particles/units/heroes/hero_treant/treant_overgrowth_cast.vpcf"
+		}
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"duration"						"20"
+			}		
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"bonus_strength"				"125 250 500 1000 2000 4000 8000"
+			}			
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"move_speed"					"150 175 200 225 250 275 300"
+			}	
+			"04"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"model_scale"					"40 50 60 70 80 90 100"
+			}	
+			"05"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"root_duration"					"3.5"
+			}
+			"05"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"root_aoe"						"450"
+				"LinkedSpecialBonus"			"special_bonus_unique_treant_5"
+			}
+		}
+	}
 	"legion_commander_overwhelming_odds_ebf"
 	{
 		// General
@@ -31082,6 +31057,93 @@
 			}
 		}
 	}
+	
+	//=================================================================================================================
+	// Monkey King: Wukong's Stature
+	//=================================================================================================================
+	"monkey_king_wukongs_stature"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/heroes/monkey_king"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityTextureName"			"monkey_king_wukongs_command"
+		"FightRecapLevel"				"2"
+		"LevelsBetweenUpgrades"			"5"
+		"MaxLevel"						"7"
+		"HasScepterUpgrade"				"1"
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.3"
+		"AbilityCastRange"				"0"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"60"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"100"
+		
+		"precache"
+		{
+			"particle"					"particles/status_fx/status_effect_monkey_king_fur_army.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_monkey_king.vsndevts"
+		}
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"							"FIELD_INTEGER"
+				"move_speed"						"700"
+			}
+			"02"
+			{
+				"var_type"							"FIELD_INTEGER"
+				"bonus_armor"						"50 100 200 400 700 1000 1400"
+				"LinkedSpecialBonus"				"special_bonus_unique_monkey_king_4"
+			}
+			"03"
+			{
+				"var_type"							"FIELD_INTEGER"
+				"bonus_model_scale"					"50"
+			}
+			"04"
+			{
+				"var_type"							"FIELD_FLOAT"
+				"bonus_attack_range"				"400"
+			}
+			"05"
+			{
+				"var_type"							"FIELD_FLOAT"
+				"bonus_damage"						"350 700 1400 2800 5600 12800 25600"
+			}
+			"06"
+			{
+				"var_type"							"FIELD_FLOAT"
+				"base_attack_time"					"1.4"
+				"LinkedSpecialBonus"				"special_bonus_unique_monkey_king_6"
+			}
+			"07"
+			{
+				"var_type"							"FIELD_FLOAT"
+				"duration"							"15.0 17.5 20 22.5 25 27.5 30"
+			}
+			"08"
+			{
+				"var_type"							"FIELD_FLOAT"
+				"scepter_passive_bonus"				"8 10 12 14 16 18 20"
+			}
+		}
+	}
+	
 	"bounty_hunter_jinada_ebf"
 	{
 		// General
@@ -32223,7 +32285,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NONE"
 
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
