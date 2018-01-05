@@ -1,5 +1,10 @@
 venomancer_venomous_gale_ebf = class({})
 
+function venomancer_venomous_gale_ebf:GetCooldown(nLevel)
+	local cooldown = self.BaseClass.GetCooldown( self, nLevel ) - self:GetCaster():FindTalentValue("special_bonus_unique_venomancer_3")
+	return cooldown
+end
+
 if IsServer() then
 	function venomancer_venomous_gale_ebf:OnSpellStart()
 		self.speed = self:GetSpecialValueFor( "speed" )

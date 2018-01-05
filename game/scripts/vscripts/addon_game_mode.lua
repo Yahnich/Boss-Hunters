@@ -1138,7 +1138,7 @@ function CHoldoutGameMode:OnAbilityUsed(event)
 		if abilityused:GetDuration() > 0 then
 			local duration = abilityused:GetDuration()
 			if abilityname == "rattletrap_battery_assault" then duration = abilityused:GetTalentSpecialValueFor("duration") end
-			if abilityname == "night_stalker_crippling_fear" and not GameRules:IsDayTime() then duration = abilityused:GetTalentSpecialValueFor("duration_night") end
+			if abilityname == "night_stalker_crippling_fear" and not GameRules:IsDaytime() then duration = abilityused:GetTalentSpecialValueFor("duration_night") end
 			abilityused:StartDelayedCooldown(duration, true)
 		else
 			abilityused:StartCooldown(abilityused:GetCooldown(-1))
