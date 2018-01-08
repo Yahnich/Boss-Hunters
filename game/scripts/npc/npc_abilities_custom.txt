@@ -451,7 +451,7 @@
 		"LevelsBetweenUpgrades"			"8"
 		"MaxLevel"						"7"
 		"RequiredLevel"					"7"
-		"AOERadius"                     "%nuke_target_aoe"
+		"AOERadius"                     "200"
 
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
@@ -468,7 +468,7 @@
 		
 		// Time     
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"               "160"
+		"AbilityCooldown"               "100"
 		"AbilityDuration"               "10 10 10 10"
 
 		// Damage.
@@ -491,26 +491,26 @@
 			
 			"02"
 			{
-				"var_type"                      "FIELD_FLOAT"
-				"nuke_delay_time" 				"5"
+				"var_type"					"FIELD_FLOAT"
+				"nuke_delay_time"			"5"
 			}
 						
 			"03"
 			{
-				"var_type"                      "FIELD_FLOAT"
-				"nuke_fallout_duration"  		"10 10 10 10"
+				"var_type"					"FIELD_FLOAT"
+				"nuke_fallout_duration"		"10 10 10 10"
 			}
 			
 			"04"
 			{
-				"var_type"						"FIELD_INTEGER"
-				"nuke_small_aoe"				"1000"
+				"var_type"					"FIELD_INTEGER"
+				"nuke_small_aoe"			"1000"
 			}
 			
 			"05"
 			{
-				"var_type"						"FIELD_INTEGER"
-				"nuke_target_aoe"				"200"
+				"var_type"					"FIELD_INTEGER"
+				"nuke_target_aoe"			"200"
 			}
 			
 			"06"
@@ -529,12 +529,12 @@
 			"08"
 			{
 				"var_type"                  "FIELD_INTEGER"
-				"Damage"            	"5000 10000 20000 40000 80000 160000 320000"
+				"Damage"            		"5000 10000 20000 40000 80000 160000 320000"
 			}
 			"09"
 			{
 				"var_type"                  "FIELD_INTEGER"
-				"slow"            	"-20"
+				"slow"            			"-20"
 			}
 		}
 
@@ -721,7 +721,7 @@
 		"AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityTextureName"			"custom/techies_knockback_mine_ebf"
-		"AOERadius"                     "%small_radius"
+		"AOERadius"                     "650 700 750 800 850 900 1000"
 
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
@@ -737,9 +737,9 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"              "125"
 		"AbilityCastPoint"              "0.0 0.0 0.0 0.0"
-		"AbilityCooldown"               "30 28 26 24 22 20 18"
+		"AbilityCooldown"               "24 23 22 21 20 18 16"
 		"AbilityManaCost"               "200 200 200 200"
-		"AbilityDamage"					"1200 2400 4800 9600 19200 38400 57600"
+		"AbilityDamage"					"2800 4400 8600 16600 32200 64400 92500"
 		"PiercesDisableReduction"		"1"
 		"LevelsBetweenUpgrades"			"6"
 		"MaxLevel"						"7"
@@ -752,12 +752,12 @@
 			"01"
 			{
 				"var_type"                  "FIELD_INTEGER"
-				"damage"                    "1200 2400 4800 9600 19200 38400 57600"
+				"damage"					"2800 4400 8600 16600 32200 64400 92500"
 			}
 			"02"
 			{
 				"var_type"                  "FIELD_INTEGER"
-				"radius"             	 "600 650 700 750 800 850 900"
+				"radius"             	 	"600 650 700 750 800 850 900"
 			}
 			"03"
 			{
@@ -767,7 +767,7 @@
 			"04"
 			{
 				"var_type"                  "FIELD_INTEGER"
-				"max_mines"                 "3"
+				"max_mines"                 "5"
 				"LinkedSpecialBonus"		"special_bonus_unique_techies"
 			}
 			"05"
@@ -990,12 +990,12 @@
 			"01"
 			{
 				"var_type"                  "FIELD_INTEGER"
-				"mines_dropped"            	"3"
+				"mines_dropped"            	"5"
 			}
 			"02"
 			{
 				"var_type"                  "FIELD_INTEGER"
-				"mines_duration"           	"5"
+				"mines_duration"           	"10"
 			}
 		}
 		"OnOwnerDied"
@@ -5257,7 +5257,7 @@
 			"02"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"hook_width"		"100"
+				"hook_width"		"150"
 			}
 			"03"
 			{
@@ -5276,13 +5276,13 @@
 			}
 			"06"
 			{
-				"var_type"						"FIELD_FLOAT"
-				"threat_reduction"	"-40 -45 -50 -55 -60 -65 -70"
+				"var_type"			"FIELD_FLOAT"
+				"threat_reduction"	"-45 -50 -55 -60 -65 -70 -75"
 			}
 			"07"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"hook_damage"		"1000 2000 4000 8000 16000 32000 64000"
+				"hook_damage"		"1500 2500 4500 8500 16500 32500 64500"
 			}
 			"08"
 			{
@@ -5292,7 +5292,7 @@
 			"09"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage_scepter"		"1500 3000 6000 12000 24000 48000 92000"
+				"damage_scepter"		"2000 3500 6500 12500 24500 48500 92500"
 			}
 		}
 	}
@@ -5330,7 +5330,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rot_radius"			"500"
+				"rot_radius"			"700"
 			}
 			"02"
 			{
@@ -5351,7 +5351,7 @@
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rot_damage_per_creep"	"50 100 150 200 300 400 500"
+				"rot_damage_per_creep"	"55 150 200 250 350 450 550"
 			}
 		}
 	}
@@ -5373,18 +5373,18 @@
 		"01"
 		{
 			"var_type"				"FIELD_INTEGER"
-			"health_bonus_perstack"		"100 200 400 800 1600 3200 4800"
+			"health_bonus_perstack"		"120 240 460 880 1700 3320 4940"
 		}
 		"02"
 		{
-			"var_type"				"FIELD_INTEGER"
-			"str_bonus_perstack"		"10 15 20 25 50 100 150"
+			"var_type"					"FIELD_INTEGER"
+			"str_bonus_perstack"		"15 20 25 30 55 105 155"
 			"LinkedSpecialBonus"		"special_bonus_unique_pudge_1"
 		}
 		"03"
 		{
 			"var_type"				"FIELD_FLOAT"
-			"duration"		"8 11 14 17 20 27 35"
+			"duration"				"40"
 		}
 	}
 		
@@ -5488,7 +5488,7 @@
 			
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"160"
+		"AbilityCastRange"				"400"
 		"AbilityCastPoint"				"0.3 0.3 0.3"
 
 		"AbilityCooldown"				"30.0"
@@ -5512,17 +5512,17 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"scepter_flesh_stacks"		"5 6 7 8 9 10 11"
+				"scepter_flesh_stacks"	"6 7 8 9 10 11 12"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"3.0"
+				"duration"				"5.0"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"tick_rate"				"1.01"
+				"tick_rate"				"0.99"
 			}
 		}
 	}
@@ -10722,6 +10722,7 @@
 		"AbilityTextureName"			"custom/juggernaut_ronin_slice"
 		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
+		"RequiredLevel"					"6"
 
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
@@ -10741,11 +10742,11 @@
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"800 850 900 950 1000 1100 1200"
-		"AbilityCastPoint"				"0.3 0.25 0.2 0.15 0.1 0.05 0.0"
+		"AbilityCastPoint"				"0.0"
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"24.0 22.0 20.0 18.0 16.0 14.0 12.0"
+		"AbilityCooldown"				"20.0 18.0 16.0 14.0 12.0 10.0 8.0"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -10921,7 +10922,7 @@
 			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_juggernaut.vsndevts"
 		}
 		
-		"AbilityCooldown"				"3"
+		"AbilityCooldown"				"0"
 		"AbilityDamage"					"1000 2000 3000 6000 12000 18000 24000"
 
 		"AbilitySpecial"
@@ -10929,7 +10930,7 @@
 	        "01"
 	        {
 	            "var_type"              "FIELD_FLOAT"
-	            "parry_chance"                "70 75 80 85 90 95 100"
+	            "parry_chance"          "10 12.5 15 17.5 20 22.5 25"
 	        }
 			"01"
 	        {
@@ -10986,7 +10987,7 @@
 	        "01"
 	        {
 	            "var_type"              "FIELD_FLOAT"
-	            "critical_bonus"        "200"
+	            "critical_bonus"        "250"
 	        }
 	        "02"
 	        {
@@ -47451,4 +47452,4 @@
 			}
 		}
 	}
-}
+}}
