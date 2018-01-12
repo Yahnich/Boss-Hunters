@@ -45,8 +45,8 @@ function modifier_winters_kiss:OnIntervalThink()
         local enemies = self:GetCaster():FindEnemyUnitsInRadius(self:GetParent():GetAbsOrigin(), self:GetSpecialValueFor("radius"), {})
         for _,enemy in pairs(enemies) do
             if enemy ~= self:GetParent() then
-                enemy:SetForceAttackTargetAlly(self:GetParent())
-                enemy:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_winters_kiss_enemy", {})
+                --enemy:SetForceAttackTargetAlly(self:GetParent())
+                enemy:AddNewModifier(self:GetParent(), self:GetAbility(), "modifier_winters_kiss_enemy", {})
             end
         end
     end
@@ -58,7 +58,7 @@ function modifier_winters_kiss:OnRemoved()
         for _,enemy in pairs(enemies) do
             if enemy:HasModifier("modifier_winters_kiss_enemy") then
                 enemy:FindModifierByName("modifier_winters_kiss_enemy"):Destroy()
-                enemy:SetForceAttackTargetAlly(nil)
+                --enemy:SetForceAttackTargetAlly(nil)
             end
         end
     end
@@ -85,10 +85,6 @@ function modifier_winters_kiss:IsDebuff()
     return true
 end
 
-function modifier_winters_kiss:GetEffectAttachType()
-    return PATTACH_OVERHEAD_FOLLOW
-end
-
 function modifier_winters_kiss:GetEffectName()
     return "particles/units/heroes/hero_winterw/winterw_winters_kiss_debuff.vpcf"
 end
@@ -111,6 +107,10 @@ end
 
 function modifier_winters_kiss_enemy:GetModifierAttackSpeedBonus_Constant()
     return self:GetSpecialValueFor("bonus_as")
+end
+
+function modifier_winters_kiss_enemy:GetTauntTarget()
+    return self:GetCaster()
 end
 
 function modifier_winters_kiss_enemy:GetEffectName()

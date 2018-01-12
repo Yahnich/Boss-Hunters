@@ -1,18 +1,6 @@
 modifier_taunt_generic = class({})
-function modifier_taunt_generic:OnCreated(table)
-	if IsServer() then
-		self:StartIntervalThink(FrameTime())
-	end
-end
-
-function modifier_taunt_generic:OnIntervalThink()
-	self:GetParent():SetForceAttackTarget(self:GetCaster())
-end
-
-function modifier_taunt_generic:OnRemoved()
-	if IsServer() then
-		self:GetParent():SetForceAttackTarget(nil)
-	end
+function modifier_taunt_generic:GetTauntTarget()
+	return self:GetCaster()
 end
 
 function modifier_taunt_generic:GetEffectName()

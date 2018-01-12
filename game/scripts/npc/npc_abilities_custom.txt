@@ -1,5 +1,296 @@
 "DOTAAbilities"
 {
+	"necro_plaguebearer_dirge"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"		
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"HasScepterUpgrade"				"1"
+		"FightRecapLevel"				"2"
+		"AbilityTextureName"			"necrolyte_reapers_scythe"
+		"MaxLevel"						"7"
+		"LevelsBetweenUpgrades"			"7"
+
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_necrolyte.vsndevts"
+			"particle"			"particles/units/heroes/hero_necrolyte/necrolyte_scythe.vpcf"
+			"particle"			"particles/units/heroes/hero_necrolyte/necrolyte_scythe_model.vpcf"
+			"particle"			"particles/units/heroes/hero_necrolyte/necrolyte_scythe_orig.vpcf"
+			"particle"			"particles/generic_gameplay/generic_stunned.vpcf"
+			"particle"			"particles/necrophos_plague.vpcf"
+			"particle"			"particles/units/heroes/hero_necrolyte/necrolyte_scythe_mist.vpcf"
+		}
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.5 0.5 0.5"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"100 95 90 85 80 75 70"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"175 340 500 750 1000 2000 4000"		
+		
+		// Cast Range
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1000"
+
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityModifierSupportValue"	"0.1"	// Primarily about the damage
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage_per_health"			"30 35 40 45 50 55 60"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"base_damage"				"1600 3200 6400 12800 25000 50000 100000"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"heal_per_health"			"70 75 80 85 90 95 100"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"base_heal"					"1600 3200 6400 12800 25000 50000 100000"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"900"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"duration"					"10"
+			}
+			"07"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"stun_duration"				"1.5"
+			}
+			"08"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"self_damage"				"80"
+			}
+			"09"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"tick_rate"					"1.0"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_plague_sacrifice"
+				"Target"		"CASTER"
+			}
+			"FireSound"
+			{
+				"EffectName"	"Hero_Necrolyte.ReapersScythe.Cast"
+				"Target"		"CASTER"
+			}
+
+			"FireSound"
+			{
+				"EffectName"	"Hero_Necrolyte.ReapersScythe.Target"
+				"Target"		"CASTER"
+			}
+
+			"DelayedAction"
+			{
+				"Delay"		"%stun_duration"
+
+				"Action"
+				{
+					"FireEffect"
+					{
+						"EffectName"	"particles/units/heroes/hero_necrolyte/necrolyte_scythe_orig.vpcf"
+						"EffectAttachType"	"start_at_customorigin"
+						
+						"ControlPointEntities"
+						{
+							"CASTER"	"follow_origin"
+							"CASTER"	"follow_origin"
+						}
+					}
+				}
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_plague_sacrifice"
+			{
+				"IsDebuff"	"1"
+				"Duration"	"%stun_duration"
+
+				"OverrideAnimation"	"ACT_DOTA_DISABLED"
+
+				"EffectName" "particles/generic_gameplay/generic_stunned.vpcf"
+				"EffectAttachType" "follow_overhead"
+
+				
+
+				"OnCreated"
+				{
+					"DelayedAction"
+					{
+						// Scythe animation has a 0.7 sec travel time
+						"Delay"		"%stun_duration - 0.7"
+
+						"Action"
+						{
+							"FireEffect"
+							{
+								"EffectName"	"particles/units/heroes/hero_necrolyte/necrolyte_scythe_model.vpcf"
+								"EffectAttachType"	"follow_origin"
+
+								"ControlPointEntities"
+								{
+									"CASTER"	"follow_origin"
+									"CASTER"	"follow_origin"
+								}
+							}
+							"RunScript"
+							{
+								"ScriptFile"		"lua_abilities/heroes/necrophos.lua"
+								"Function"			"SelfDamage"
+							}
+						}
+					}
+					"AttachEffect"
+					{
+						"EffectName"	"particles/units/heroes/hero_necrolyte/necrolyte_scythe.vpcf"
+						"EffectAttachType"	"follow_origin"
+						"Target"		"CASTER"
+					}
+					"ApplyModifier"
+					{
+						"ModifierName"	"modifier_plague_heal"
+						"Duration"	"%duration"
+						"Target"
+						{
+							"Center"  	"CASTER"
+							"Teams" 	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+							"Types" 	"DOTA_UNIT_TARGET_ALL"
+							"Radius"	"%radius"
+						}
+						
+					}
+					"RemoveModifier"
+					{
+						"ModifierName"	"modifier_plague_heal"
+						"Target"	"CASTER"
+					}
+					"ApplyModifier"
+					{
+						"ModifierName"	"modifier_plague_damage"
+						"Duration"	"%duration"
+						"Target"
+						{
+							"Center"  	"TARGET"
+							"Teams" 	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+							"Types" 	"DOTA_UNIT_TARGET_ALL"
+							"Flags"     "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+							"Radius"	"%radius"
+						}
+					}
+				}
+
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+			"modifier_plague_heal"
+			{
+				"IsBuff"	"1"
+
+				"ThinkInterval"	"%tick_rate"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"lua_abilities/heroes/necrophos.lua"
+						"Function"			"AllyHeal"
+					}
+					"AttachEffect"
+					{
+						"EffectName"	"particles/units/heroes/hero_necrolyte/necrolyte_scythe_mist.vpcf"
+						"EffectAttachType"	"follow_origin"
+						"Target"		"TARGET"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"lua_abilities/heroes/necrophos.lua"
+						"Function"			"RemoveBonusHealth"
+					}
+				}
+			}
+			"modifier_plague_health_increase"
+			{
+				"IsHidden" "0"
+				"Attributes"    "MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_HEALTH_BONUS"	"1"
+				}
+			}
+			"modifier_plague_damage"
+			{
+				"IsDebuff"	"1"
+				"ThinkInterval"	"%tick_rate"
+				
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"lua_abilities/heroes/necrophos.lua"
+						"Function"			"EnemyDamage"
+					}
+					"AttachEffect"
+					{
+						"EffectName"	"particles/units/heroes/hero_necrolyte/necrolyte_scythe_mist.vpcf"
+						"EffectAttachType"	"follow_origin"
+						"Target"		"TARGET"
+					}
+				}
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_DISABLE_HEALING"			"1"
+				}
+			}
+		}
+	}
+	
 	"abaddon_brume_weaver"
 	{
 		// General

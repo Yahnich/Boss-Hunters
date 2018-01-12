@@ -68,14 +68,7 @@
 	}
 	"npc_dota_hero_axe_ebf"
 	{
-		"AbilityLayout"   "6"
 	    "override_hero"   "npc_dota_hero_axe"
-	
-	    "Enabled"           "1"
-	    "Role"              "Support,Durable,Initiator"
-	    "Rolelevels"        "1,3,3"
-	    "Complexity"        "2"
-	    "Team"              "Bad"
 	
 	    "Ability1"        "brd_forced_shout"
 	    "Ability2"        "brd_blood_hunger" 
@@ -83,9 +76,7 @@
 	    "Ability4"        "axe_steeled_temper"
 	    "Ability5"        "barebones_empty1" 
 	    "Ability6"        "brd_ground_pound"
-	    "Ability7"        ""
-	    "Ability8"        ""
-	    "Ability9"        ""
+	
 	    "Ability10"       "special_bonus_unique_brd_forced_shout_2"
 	    "Ability11"       "special_bonus_unique_brd_forced_shout"
 	    "Ability12"       "special_bonus_unique_brd_blood_hunger"
