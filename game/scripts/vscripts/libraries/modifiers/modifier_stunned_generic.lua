@@ -17,6 +17,10 @@ function modifier_stunned_generic:GetEffectName()
 	return "particles/generic_gameplay/generic_stunned.vpcf"
 end
 
+function modifier_stunned_generic:GetTexture()
+	return "filler_ability"
+end
+
 function modifier_stunned_generic:GetEffectAttachType()
 	return PATTACH_OVERHEAD_FOLLOW
 end

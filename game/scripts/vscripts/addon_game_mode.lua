@@ -9,6 +9,8 @@ DOTA_LIFESTEAL_SOURCE_ABILITY = 2
 
 MAP_CENTER = Vector(332, -1545)
 
+GLOBAL_STUN_LIST = {}
+
 if CHoldoutGameMode == nil then
 	CHoldoutGameMode = class({})
 end
@@ -27,9 +29,30 @@ require("libraries/utility")
 
 require("libraries/animations")
 
+LinkLuaModifier("modifier_summon_handler", "libraries/modifiers/modifier_summon_handler.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_stunned_generic", "libraries/modifiers/modifier_stunned_generic.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_dazed_generic", "libraries/modifiers/modifier_dazed_generic.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_generic_barrier", "libraries/modifiers/modifier_generic_barrier.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_taunt_generic", "libraries/modifiers/modifier_taunt_generic.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_chill_generic", "libraries/modifiers/modifier_chill_generic.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_frozen_generic", "libraries/modifiers/modifier_frozen_generic.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_hidden_generic", "libraries/modifiers/modifier_hidden_generic.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier( "modifier_necrolyte_sadist_aura_reduction", "lua_abilities/heroes/modifiers/modifier_necrolyte_sadist_aura_reduction", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "lua_attribute_bonus_modifier", "lua_abilities/attribute/lua_attribute_bonus_modifier.lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_skeleton_king_reincarnation_cooldown", "lua_abilities/heroes/modifiers/modifier_skeleton_king_reincarnation_cooldown.lua" ,LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_boss_attackspeed", "lua_abilities/heroes/modifiers/modifier_boss_attackspeed.lua" ,LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_boss_damagedecrease", "lua_abilities/heroes/modifiers/modifier_boss_damagedecrease.lua" ,LUA_MODIFIER_MOTION_NONE )
+
 -- Precache resources
 function Precache( context )
-	--PrecacheResource( "particle", "particles/generic_gameplay/winter_effects_hero.vpcf", context )
+	PrecacheResource( "particle", "particles/range_ability_line.vpcf", context )
+	PrecacheResource( "particle", "particles/generic_gameplay/generic_stunned.vpcf", context )
+	PrecacheResource( "particle", "particles/generic_dazed_side.vpcf", context )
+	PrecacheResource( "particle", "particles/generic_gameplay/generic_slowed_cold.vpcf", context )
+	PrecacheResource( "particle", "particles/brd_taunt/brd_taunt_mark_base.vpcf", context )
+	PrecacheResource( "particle", "particles/status_fx/status_effect_beserkers_call.vpcf", context )
+	PrecacheResource( "particle", "particles/econ/items/effigies/status_fx_effigies/status_effect_effigy_frosty_dire.vpcf", context )
+
 	-- Hero Precaches
 	PrecacheUnitByNameSync("npc_dota_warlock_moloch", context)
     PrecacheUnitByNameSync("npc_dota_warlock_naamah", context)
@@ -58,8 +81,7 @@ function Precache( context )
 	PrecacheResource("particle", "particles/status_fx/status_effect_frost.vpcf", context)
 	
 	PrecacheResource("particle", "particles/units/heroes/hero_crystalmaiden/maiden_frostbite_buff.vpcf", context)
-	
-	
+		
 	-- Generic Boss Particles
 	PrecacheResource("particle", "particles/nyx_assassin_impale.vpcf", context)
 	PrecacheResource("particle", "particles/econ/generic/generic_aoe_shockwave_1/generic_aoe_shockwave_1.vpcf", context)
@@ -79,16 +101,12 @@ function Precache( context )
 	PrecacheResource("particle", "particles/units/heroes/hero_tinker/tinker_missile_dud.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_tinker/tinker_machine.vpcf", context)
 	
-	
 	PrecacheResource("particle", "particles/death_spear.vpcf", context)
 	PrecacheResource("particle", "particles/boss/boss_shadows_orb.vpcf", context)
 	PrecacheResource("particle", "particles/dark_orb.vpcf", context)
 	
 	PrecacheResource("particle_folder", "particles/econ/generic/generic_aoe_shockwave_1", context)
-
 	
-	
-
 	local precacheList = LoadKeyValues('scripts/npc/activelist.txt')
 	for hero, activated in pairs(precacheList) do
 		if activated  == "1" then
@@ -126,7 +144,6 @@ function TeachAbility( unit, ability_name, level )
             return ability
         end
 end
-
 
 function CHoldoutGameMode:InitGameMode()
 	print ("Epic Boss Fight Loaded")
@@ -172,8 +189,6 @@ function CHoldoutGameMode:InitGameMode()
 	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue( DOTA_ATTRIBUTE_INTELLIGENCE_MANA_REGEN_PERCENT, 0.0002 )
 	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue( DOTA_ATTRIBUTE_INTELLIGENCE_SPELL_AMP_PERCENT, 0.01 )
 	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue( DOTA_ATTRIBUTE_INTELLIGENCE_MAGIC_RESISTANCE_PERCENT, 0.000055 ) 
-	
-	
 	
 	
 	GameRules.playersDisconnected = 0
@@ -225,7 +240,6 @@ function CHoldoutGameMode:InitGameMode()
 	self:_ReadGameConfiguration()
 	GameRules:SetHeroRespawnEnabled( false )
 	GameRules:SetUseUniversalShopMode( true )
-
 
 	GameRules:SetTreeRegrowTime( 30.0 )
 	GameRules:SetCreepMinimapIconScale( 4 )
@@ -400,9 +414,6 @@ function CHoldoutGameMode:InitGameMode()
 	CustomGameEventManager:RegisterListener('Vote_Round', Dynamic_Wrap( CHoldoutGameMode, 'vote_Round'))
 	
 	CustomGameEventManager:RegisterListener('playerUILoaded', Dynamic_Wrap( CHoldoutGameMode, 'OnPlayerUIInitialized'))
-	
-
-
 
 	-- Register OnThink with the game engine so it is called every 0.25 seconds
 	GameRules:GetGameModeEntity():SetDamageFilter( Dynamic_Wrap( CHoldoutGameMode, "FilterDamage" ), self )
@@ -657,10 +668,6 @@ function CHoldoutGameMode:Update_Health_Bar()
 	return 0.09
 
 end
-
-LinkLuaModifier( "modifier_necrolyte_sadist_aura_reduction", "lua_abilities/heroes/modifiers/modifier_necrolyte_sadist_aura_reduction", LUA_MODIFIER_MOTION_NONE )
-
-GLOBAL_STUN_LIST = {}
 
 function CHoldoutGameMode:FilterModifiers( filterTable )
 	local parent_index = filterTable["entindex_parent_const"]
@@ -1063,7 +1070,6 @@ function update_asura_core(hero)
 		CustomNetTables:SetTableValue( "Asura_core",key, {core = hero.Asura_Core} )
 end
 
-LinkLuaModifier( "lua_attribute_bonus_modifier", "lua_abilities/attribute/lua_attribute_bonus_modifier.lua", LUA_MODIFIER_MOTION_NONE )
 function CHoldoutGameMode:OnHeroLevelUp(event)
 	local playerID = EntIndexToHScript(event.player):GetPlayerID()
 	local hero = PlayerResource:GetSelectedHeroEntity(playerID)
@@ -1472,10 +1478,7 @@ function CHoldoutGameMode:_EnterNG()
 	-- end
 end
 
-LinkLuaModifier("modifier_summon_handler", "libraries/modifiers/modifier_summon_handler.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_stunned_generic", "libraries/modifiers/modifier_stunned_generic.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_dazed_generic", "libraries/modifiers/modifier_dazed_generic.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_generic_barrier", "libraries/modifiers/modifier_generic_barrier.lua", LUA_MODIFIER_MOTION_NONE)
+
 
 
 function CHoldoutGameMode:OnHeroPick (event)
@@ -1536,8 +1539,6 @@ function CHoldoutGameMode:OnHeroPick (event)
 		hero:CastAbilityImmediately(item, playerID)
 	end)
 end
-
-LinkLuaModifier( "modifier_skeleton_king_reincarnation_cooldown", "lua_abilities/heroes/modifiers/modifier_skeleton_king_reincarnation_cooldown.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 function CHoldoutGameMode:mute_sound (event)
  	local ID = event.pID
@@ -2386,10 +2387,6 @@ function CHoldoutGameMode:GetDifficultyString()
 		return ""
 	end
 end
-
-LinkLuaModifier( "modifier_boss_attackspeed", "lua_abilities/heroes/modifiers/modifier_boss_attackspeed.lua" ,LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "modifier_boss_damagedecrease", "lua_abilities/heroes/modifiers/modifier_boss_damagedecrease.lua" ,LUA_MODIFIER_MOTION_NONE )
-
 
 function CHoldoutGameMode:OnNPCSpawned( event )
 	local spawnedUnit = EntIndexToHScript( event.entindex )
