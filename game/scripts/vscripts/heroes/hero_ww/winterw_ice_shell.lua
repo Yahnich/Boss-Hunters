@@ -61,11 +61,11 @@ function modifier_ice_shell:DeclareFunctions()
 end
 
 function modifier_ice_shell:GetAbsoluteNoDamagePhysical()
-    return true
+    return 1
 end
 
 function modifier_ice_shell:GetAbsoluteNoDamageMagical()
-    return true
+    return 1
 end
 
 function modifier_ice_shell:IsDebuff()
