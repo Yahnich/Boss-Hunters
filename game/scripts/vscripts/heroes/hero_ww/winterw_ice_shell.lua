@@ -20,6 +20,8 @@ end
 modifier_ice_shell = ({})
 function modifier_ice_shell:OnCreated(table)
     if IsServer() then
+    	self:GetParent():SetThreat(0)
+
     	if self:GetCaster():HasTalent("special_bonus_unique_winterw_frozen_ice_shell_1") then
     		self:StartIntervalThink(0.33)
     	else
@@ -45,7 +47,8 @@ end
 function modifier_ice_shell:CheckState()
 	local state = { [MODIFIER_STATE_STUNNED] = true,
 					[MODIFIER_STATE_MAGIC_IMMUNE] = true,
-					[MODIFIER_STATE_FROZEN] = true}
+					[MODIFIER_STATE_FROZEN] = true,
+					[MODIFIER_STATE_ATTACK_IMMUNE] = true}
 	return state
 end
 
@@ -58,11 +61,11 @@ function modifier_ice_shell:DeclareFunctions()
 end
 
 function modifier_ice_shell:GetAbsoluteNoDamagePhysical()
-    return true
+    return 1
 end
 
 function modifier_ice_shell:GetAbsoluteNoDamageMagical()
-    return true
+    return 1
 end
 
 function modifier_ice_shell:IsDebuff()

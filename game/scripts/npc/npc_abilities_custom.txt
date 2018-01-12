@@ -1,296 +1,5 @@
 "DOTAAbilities"
 {
-	"necro_plaguebearer_dirge"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_datadriven"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"		
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
-		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
-		"HasScepterUpgrade"				"1"
-		"FightRecapLevel"				"2"
-		"AbilityTextureName"			"necrolyte_reapers_scythe"
-		"MaxLevel"						"7"
-		"LevelsBetweenUpgrades"			"7"
-
-		// Precache
-		//-------------------------------------------------------------------------------------------------------------
-		"precache"
-		{
-			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_necrolyte.vsndevts"
-			"particle"			"particles/units/heroes/hero_necrolyte/necrolyte_scythe.vpcf"
-			"particle"			"particles/units/heroes/hero_necrolyte/necrolyte_scythe_model.vpcf"
-			"particle"			"particles/units/heroes/hero_necrolyte/necrolyte_scythe_orig.vpcf"
-			"particle"			"particles/generic_gameplay/generic_stunned.vpcf"
-			"particle"			"particles/necrophos_plague.vpcf"
-			"particle"			"particles/units/heroes/hero_necrolyte/necrolyte_scythe_mist.vpcf"
-		}
-
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0.5 0.5 0.5"
-
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"100 95 90 85 80 75 70"
-
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"175 340 500 750 1000 2000 4000"		
-		
-		// Cast Range
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"1000"
-
-		// Stats
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityModifierSupportValue"	"0.1"	// Primarily about the damage
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage_per_health"			"30 35 40 45 50 55 60"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"base_damage"				"1600 3200 6400 12800 25000 50000 100000"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"heal_per_health"			"70 75 80 85 90 95 100"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"base_heal"					"1600 3200 6400 12800 25000 50000 100000"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"900"
-			}
-			"06"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"duration"					"10"
-			}
-			"07"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"stun_duration"				"1.5"
-			}
-			"08"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"self_damage"				"80"
-			}
-			"09"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"tick_rate"					"1.0"
-			}
-		}
-
-		"OnSpellStart"
-		{
-			"ApplyModifier"
-			{
-				"ModifierName"	"modifier_plague_sacrifice"
-				"Target"		"CASTER"
-			}
-			"FireSound"
-			{
-				"EffectName"	"Hero_Necrolyte.ReapersScythe.Cast"
-				"Target"		"CASTER"
-			}
-
-			"FireSound"
-			{
-				"EffectName"	"Hero_Necrolyte.ReapersScythe.Target"
-				"Target"		"CASTER"
-			}
-
-			"DelayedAction"
-			{
-				"Delay"		"%stun_duration"
-
-				"Action"
-				{
-					"FireEffect"
-					{
-						"EffectName"	"particles/units/heroes/hero_necrolyte/necrolyte_scythe_orig.vpcf"
-						"EffectAttachType"	"start_at_customorigin"
-						
-						"ControlPointEntities"
-						{
-							"CASTER"	"follow_origin"
-							"CASTER"	"follow_origin"
-						}
-					}
-				}
-			}
-		}
-
-		"Modifiers"
-		{
-			"modifier_plague_sacrifice"
-			{
-				"IsDebuff"	"1"
-				"Duration"	"%stun_duration"
-
-				"OverrideAnimation"	"ACT_DOTA_DISABLED"
-
-				"EffectName" "particles/generic_gameplay/generic_stunned.vpcf"
-				"EffectAttachType" "follow_overhead"
-
-				
-
-				"OnCreated"
-				{
-					"DelayedAction"
-					{
-						// Scythe animation has a 0.7 sec travel time
-						"Delay"		"%stun_duration - 0.7"
-
-						"Action"
-						{
-							"FireEffect"
-							{
-								"EffectName"	"particles/units/heroes/hero_necrolyte/necrolyte_scythe_model.vpcf"
-								"EffectAttachType"	"follow_origin"
-
-								"ControlPointEntities"
-								{
-									"CASTER"	"follow_origin"
-									"CASTER"	"follow_origin"
-								}
-							}
-							"RunScript"
-							{
-								"ScriptFile"		"lua_abilities/heroes/necrophos.lua"
-								"Function"			"SelfDamage"
-							}
-						}
-					}
-					"AttachEffect"
-					{
-						"EffectName"	"particles/units/heroes/hero_necrolyte/necrolyte_scythe.vpcf"
-						"EffectAttachType"	"follow_origin"
-						"Target"		"CASTER"
-					}
-					"ApplyModifier"
-					{
-						"ModifierName"	"modifier_plague_heal"
-						"Duration"	"%duration"
-						"Target"
-						{
-							"Center"  	"CASTER"
-							"Teams" 	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-							"Types" 	"DOTA_UNIT_TARGET_ALL"
-							"Radius"	"%radius"
-						}
-						
-					}
-					"RemoveModifier"
-					{
-						"ModifierName"	"modifier_plague_heal"
-						"Target"	"CASTER"
-					}
-					"ApplyModifier"
-					{
-						"ModifierName"	"modifier_plague_damage"
-						"Duration"	"%duration"
-						"Target"
-						{
-							"Center"  	"TARGET"
-							"Teams" 	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-							"Types" 	"DOTA_UNIT_TARGET_ALL"
-							"Flags"     "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-							"Radius"	"%radius"
-						}
-					}
-				}
-
-				"States"
-				{
-					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
-				}
-			}
-			"modifier_plague_heal"
-			{
-				"IsBuff"	"1"
-
-				"ThinkInterval"	"%tick_rate"
-				"OnIntervalThink"
-				{
-					"RunScript"
-					{
-						"ScriptFile"		"lua_abilities/heroes/necrophos.lua"
-						"Function"			"AllyHeal"
-					}
-					"AttachEffect"
-					{
-						"EffectName"	"particles/units/heroes/hero_necrolyte/necrolyte_scythe_mist.vpcf"
-						"EffectAttachType"	"follow_origin"
-						"Target"		"TARGET"
-					}
-				}
-				"OnDestroy"
-				{
-					"RunScript"
-					{
-						"ScriptFile"		"lua_abilities/heroes/necrophos.lua"
-						"Function"			"RemoveBonusHealth"
-					}
-				}
-			}
-			"modifier_plague_health_increase"
-			{
-				"IsHidden" "0"
-				"Attributes"    "MODIFIER_ATTRIBUTE_MULTIPLE"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_HEALTH_BONUS"	"1"
-				}
-			}
-			"modifier_plague_damage"
-			{
-				"IsDebuff"	"1"
-				"ThinkInterval"	"%tick_rate"
-				
-				"OnIntervalThink"
-				{
-					"RunScript"
-					{
-						"ScriptFile"		"lua_abilities/heroes/necrophos.lua"
-						"Function"			"EnemyDamage"
-					}
-					"AttachEffect"
-					{
-						"EffectName"	"particles/units/heroes/hero_necrolyte/necrolyte_scythe_mist.vpcf"
-						"EffectAttachType"	"follow_origin"
-						"Target"		"TARGET"
-					}
-				}
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_DISABLE_HEALING"			"1"
-				}
-			}
-		}
-	}
-	
 	"abaddon_brume_weaver"
 	{
 		// General
@@ -422,6 +131,1098 @@
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_MIN_HEALTH"		"1"
+				}
+			}
+		}
+	}
+	//=================================================================================================================
+	// Apache Chief Gatling Gun
+	//=================================================================================================================
+	"ac_gatling_gun"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"FightRecapLevel"				"1"
+		"AbilityTextureName"			"gyrocopter_skyhigh_flak_cannon"
+		"MaxLevel"						"7"
+		"LevelsBetweenUpgrades"  		"0"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	    "AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
+	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+	    "AbilityUnitDamageType" 		"DAMAGE_TYPE_PHYSICAL"
+	    "SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+	
+	    "AbilityCastRange"				"500"
+	    "AbilityCastPoint"				"0.0"
+	    //"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+	
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"16"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"50"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"7 12 17 22 27 32 37"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"4.0"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"range"					"500"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"reduc_armor"			"-7 -12 -17 -22 -27 -32 -37"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"reduc_mr"				"-7 -12 -17 -22 -27 -32 -37"
+			}
+			
+		}
+	
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_ac/ac_gatling_gun_projectile.vpcf"
+			"particle"  "particles/units/heroes/hero_ac/ac_gatling_gun_projectile_launch.vpcf"
+	
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_gyrocopter.vsndevts"
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_sniper.vsndevts"
+			"soundfile" 	"sounds/weapons/hero/gyrocopter/rocket_barrage_target01.vsnd"
+		}
+	
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"EffectName"	"Ability.MKG_AssassinateLoad"
+				"Target" 		"CASTER"
+			}
+	
+			"DelayedAction"
+			{
+				"Delay"     "0.5"
+				"Action"    
+				{
+					"ApplyModifier"
+					{
+						"ModifierName"	"modifier_gatling_gun"
+						"Target" 		"CASTER"
+						"Duration"		"%duration"
+					}
+				}
+			}	
+		}
+	
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"0"
+	
+			"Damage"
+			{
+				"Target"		"TARGET"
+				"Type"			"DAMAGE_TYPE_PHYSICAL"
+				"Damage"		"%damage"
+			}
+	
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_armor_shred"
+				"Target" 		"TARGET"
+				"Duration"		"%duration"
+			}
+		}
+	
+		"Modifiers"
+		{
+			"modifier_gatling_gun"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+		
+				//"EffectName"		"particle_name"
+				//"EffectAttachType"	"follow_origin"
+	
+				"States"
+				{
+					"MODIFIER_STATE_DISARMED"		"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"heroes/hero_ac/ac_gatling_gun.lua"
+						"Function"		"gatlingGun"
+					}
+				}
+	
+				"ThinkInterval"  "0.125"
+				"OnIntervalThink"
+				{
+					"FireEffect"
+					{
+						"EffectName"        "particles/units/heroes/hero_ac/ac_gatling_gun_projectile_launch.vpcf"
+						"EffectAttachType"  "follow_origin"
+						"Target"            "CASTER"
+						"ControlPointEntities"
+						{
+							"CASTER"	"attach_prop1"
+							"CASTER"	"attach_prop1"
+							"CASTER"	"attach_prop1"
+							"CASTER"	"attach_prop1"
+						}
+					}
+				}
+			}
+	
+			"modifier_armor_shred"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"1"
+			
+				//"EffectName"		"particle_name"
+				//"EffectAttachType"	"follow_origin"
+			
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "%reduc_armor"
+				    "MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "%reduc_mr" 
+				}
+			}
+		}
+	}
+	//=================================================================================================================
+	// Apache Chief Homing Missile
+	//=================================================================================================================
+	"ac_homing_missile"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"FightRecapLevel"				"1"
+		"AbilityTextureName"			"custom/gyro_support_rocket"
+		"MaxLevel"						"7"
+		"LevelsBetweenUpgrades"  		"0"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	    "AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
+	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+	    "AbilityUnitDamageType" 		"DAMAGE_TYPE_MAGICAL"
+	    "SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+	
+	    "AbilityCastRange"				"750"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"missile_damage"			"125 150 175 200 225 250 275"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"missile_explos_radius"		"250"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"missile_recharge_time"		"10.0 9.0 8.0 7.0 6.0 5.0 4.0"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"search_radius"				"750"
+			}
+			
+		}
+	
+		"precache"
+		{
+			"particle"		"particles/units/heroes/hero_gyrocopter/gyro_guided_missile_target.vpcf"
+			"particle"		"particles/units/heroes/hero_gyrocopter/gyro_guided_missile_death.vpcf"
+			"particle"		"particles/units/heroes/hero_gyrocopter/gyro_guided_missile_explosion.vpcf"
+			"particle"		"particles/units/heroes/hero_gyrocopter/gyro_homing_missile_fuse.vpcf"
+			"particle"  	"particles/econ/items/gyrocopter/hero_gyrocopter_gyrotechnics/gyro_guided_missile.vpcf"
+	
+			"soundfile"		"sounds/weapons/hero/gyrocopter/homing_missile.vsnd"
+			"soundfile"		"sounds/weapons/hero/gyrocopter/homing_missile_enemy.vsnd"
+			"soundfile"		"sounds/weapons/hero/gyrocopter/homing_missile_destroy.vsnd"
+			"soundfile"		"sounds/weapons/hero/gyrocopter/homing_missile_target.vsnd"
+		}
+	
+		"Modifiers"
+		{
+			"modifier_homing_missile"
+			{
+				"Passive"			"1"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+		
+				"ThinkInterval"  	"%missile_recharge_time"
+				"OnIntervalThink"
+				{
+					"ActOnTargets"
+					{
+						"Target"
+						{
+							"Center"  	"CASTER"
+							"Radius" 	"%search_radius"
+							"Teams" 	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+							"Types" 	"DOTA_UNIT_TARGET_ALL"
+							"MaxTargets" "1"
+							"Random"     "1"
+						}
+					
+						"Action"    
+						{
+							"RunScript"
+							{
+								"ScriptFile"	"heroes/hero_ac/ac_homing_missile.lua"
+								"Function"		"homingMissileCreate"
+								"particle"		"particles/units/heroes/hero_gyrocopter/gyro_homing_missile_fuse.vpcf"
+								"particle2"		"particles/units/heroes/hero_gyrocopter/gyro_guided_missile_explosion.vpcf"
+								"particle3"		"particles/econ/items/gyrocopter/hero_gyrocopter_gyrotechnics/gyro_guided_missile.vpcf"
+							}
+						}
+					}
+				}
+			}
+	
+			"modifier_frozen_fakie"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+			
+				"States"
+				{
+					"MODIFIER_STATE_FROZEN"		"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+	
+			"modifier_restricted"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+			
+				"States"
+				{
+					"MODIFIER_STATE_COMMAND_RESTRICTED"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_MAGIC_IMMUNE"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_ATTACK_IMMUNE"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_UNIT_COLLISION"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_UNSELECTABLE"			"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_FLYING_FOR_PATHING_PURPOSES_ONLY"					"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_HEALTH_BAR"					"MODIFIER_STATE_VALUE_ENABLED"
+				}
+	
+				"OnDeath"
+				{
+					"DestroyTrees"
+					{
+						"Target" 		"UNIT"
+						"Radius"		"%missile_explos_radius"
+					}
+	
+					"ActOnTargets"
+					{
+						"Target"
+						{
+							"Center"  	"UNIT"
+							"Radius" 	"%missile_explos_radius"
+							"Teams" 	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+							"Types" 	"DOTA_UNIT_TARGET_ALL"
+						}
+					
+						"Action"    
+						{
+							"Damage"
+							{
+								"Target"		"TARGET"
+								"Type"			"DAMAGE_TYPE_MAGICAL"
+								"Damage"		"%missile_damage"
+							}
+	
+							"Knockback"
+							{
+								"Target"            "TARGET"
+								"Center" 	        "UNIT"
+								"Distance"	        "%missile_explos_radius"
+								"Duration"	        "0.5"
+								"Height"	        "100"
+								"IsFixedDistance"	"1"
+								"ShouldStun"        "1"	
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	//=================================================================================================================
+	// Apache Chief Rocket Launch
+	//=================================================================================================================
+	"ac_rocket_launch"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"FightRecapLevel"				"1"
+		"AbilityTextureName"			"gyrocopter_skyhigh_call_down"
+		"MaxLevel"						"7"
+		"LevelsBetweenUpgrades"  		"0"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	    "AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
+	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+	    "AbilityUnitDamageType" 		"DAMAGE_TYPE_MAGICAL"
+	    "SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+	
+	    "AbilityCastRange"				"1225"
+	    "AbilityCastPoint"				"0.3"
+	    "AbilityCastAnimation"			"ACT_DOTA_OVERRIDE_ABILITY_4"
+	
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"2"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"20"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"base_damage"			"75 100 125 150 175 200 225"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_ad_damage"		"15 25 35 45 55 65 75" //percent
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_int_damage"		"20"				//percent
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"speed"					"1950"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rocket_stock"			"7"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"150"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"range"					"1225"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"recharge_time"			"12 11 10 9 8 7 6"
+			}
+			
+		}
+	
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_ac/ac_homing_missile/ac_homing_missile_base.vpcf"
+			"particle"  "particles/units/heroes/hero_ac/ac_valkyrie_explosion.vpcf"
+	
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_tinker.vsndevts"
+			"soundfile"		"sounds/weapons/hero/gyrocopter/rocket_barrage_fire.vsnd"
+			"soundfile" 	"sounds/weapons/hero/gyrocopter/rocket_barrage_target01.vsnd"
+		}
+	
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"EffectName"	"Hero_Tinker.Heat-Seeking_Missile"
+				"Target" 		"CASTER"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"heroes/hero_ac/ac_rocket_launch.lua"
+				"Function"		"rocketLaunch"
+			}
+		}
+	
+		"OnUpgrade"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"heroes/hero_ac/ac_rocket_launch.lua"
+				"Function"		"rocketUpgrade"
+			}
+		}
+	
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"1"
+	
+			"FireSound"
+			{
+				"EffectName"	"Hero_Tinker.Heat-Seeking_Missile.Impact"
+				"Target" 		"PROJECTILE"
+			}
+	
+			"ActOnTargets"
+			{
+				"Target"
+				{
+					"Center"  	"PROJECTILE"
+					"Radius" 	"%radius"
+					"Teams" 	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+					"Types" 	"DOTA_UNIT_TARGET_ALL"
+				}
+			
+				"Action"    
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"heroes/hero_ac/ac_rocket_launch.lua"
+						"Function"		"rocketDamage"
+					}
+				}
+			}
+		}
+	
+		"OnProjectileFinish"
+		{
+			"FireSound"
+			{
+				"EffectName"	"Hero_Tinker.Heat-Seeking_Missile.Impact"
+				"Target" 		"PROJECTILE"
+			}
+			
+			"ActOnTargets"
+			{
+				"Target"
+				{
+					"Center"  	"PROJECTILE"
+					"Radius" 	"%radius"
+					"Teams" 	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+					"Types" 	"DOTA_UNIT_TARGET_ALL"
+				}
+			
+				"Action"    
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"heroes/hero_ac/ac_rocket_launch.lua"
+						"Function"		"rocketDamage"
+					}
+				}
+			}
+		}
+	
+		"Modifiers"
+		{
+			"modifier_rocket_launch_passive"
+			{
+				"Passive"			"1"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+	
+				"ThinkInterval"  "%recharge_time"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"heroes/hero_ac/ac_rocket_launch.lua"
+						"Function"		"rocketReset"
+					}
+				}
+			}
+	
+			"modifier_rocket_launch_stack"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Apache Chief Rocket Salvo
+	//=================================================================================================================
+	"ac_rocket_salvo"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_TOGGLE"
+		"FightRecapLevel"				"1"
+		"AbilityTextureName"			"gyrocopter_rocket_barrage"
+		"MaxLevel"						"7"
+		"LevelsBetweenUpgrades"  		"0"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	    "AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
+	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+	    "AbilityUnitDamageType" 		"DAMAGE_TYPE_MAGICAL"
+	    "SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+	
+	    "AbilityCastRange"				"500"
+	    "AbilityCastPoint"				"0.0"
+	    //"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+	
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"10"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"1"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"7 12 17 22 27 32 37"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"fire_rate"				"0.1"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"max_targets"			"1 1 1 1 2 2 2"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"500"
+			}
+			
+		}
+	
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_ac/ac_rocket_salvo_base.vpcf"
+			"particle"  "particles/units/heroes/hero_gyrocopter/gyro_rocket_barrage.vpcf"
+	
+			"soundfile"		"sounds/weapons/hero/gyrocopter/rocket_barrage_active.vsnd"
+			"soundfile"		"sounds/weapons/hero/gyrocopter/rocket_barrage_fire.vsnd"
+			"soundfile" 	"sounds/weapons/hero/gyrocopter/rocket_barrage_target01.vsnd"
+		}
+	
+		"OnToggleOn"
+		{
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_rocket_salvo"
+				"Target" 		"CASTER"
+				//"Duration"		"%duration"
+			}
+			"FireSound"
+			{
+				"EffectName"	"Hero_Gyrocopter.Rocket_Barrage"
+				"Target"		"CASTER"
+			}
+		}
+		
+		"OnToggleOff"
+		{
+			"RemoveModifier"
+			{
+				"ModifierName"	"modifier_rocket_salvo"
+				"Target" 		"CASTER"
+			}
+			"FireSound"
+			{
+				"EffectName"	"Hero_Gyrocopter.Rocket_Barrage"
+				"Target"		"CASTER"
+			}
+		}
+	
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"1"
+	
+			"FireSound"
+			{
+				"EffectName"	"Hero_Gyrocopter.Rocket_Barrage.Impact"
+				"Target"		"TARGET"
+			}
+	
+			"SpendMana"
+			{
+				"Mana"		"%AbilityManaCost"
+			}
+	
+			"Damage"
+			{
+				"Target"		"TARGET"
+				"Type"			"DAMAGE_TYPE_MAGICAL"
+				"Damage"		"%damage"
+			}
+		}
+	
+		"Modifiers"
+		{
+			"modifier_rocket_salvo"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+		
+				"ThinkInterval"  "%fire_rate"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"heroes/hero_ac/ac_rocket_salvo.lua"
+						"Function"		"animation"
+					}
+	
+					"ActOnTargets"
+					{
+						"Target"
+						{
+							"Center"  	"CASTER"
+							"Radius" 	"%radius"
+							"Teams" 	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+							"Types" 	"DOTA_UNIT_TARGET_ALL"
+							"MaxTargets" "%max_targets"
+							"Random"     "1"
+						}
+					
+						"Action"    
+						{
+							"FireSound"
+							{
+								"EffectName"	"Hero_Gyrocopter.Rocket_Barrage.Launch"
+								"Target"		"CASTER"
+							}
+	
+							"Random"
+							{
+								"Chance"			"50"
+								"PseudoRandom" 		"DOTA_PSEUDO_RANDOM_SLARDAR_BASH"
+								"OnSuccess"
+								{
+									"TrackingProjectile"
+									{
+										"Target"           	"TARGET"
+										"EffectName"		"particles/units/heroes/hero_gyrocopter/gyro_rocket_barrage.vpcf"
+										"Dodgeable"			"0"
+										"ProvidesVision"	"0"
+										"VisionRadius"		"0"
+										"MoveSpeed"        	"1000"
+										"SourceAttachment"	"DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
+									}
+								}
+								"OnFailure"
+								{
+									"TrackingProjectile"
+									{
+										"Target"           	"TARGET"
+										"EffectName"		"particles/units/heroes/hero_gyrocopter/gyro_rocket_barrage.vpcf"
+										"Dodgeable"			"0"
+										"ProvidesVision"	"0"
+										"VisionRadius"		"0"
+										"MoveSpeed"        	"1000"
+										"SourceAttachment"	"DOTA_PROJECTILE_ATTACHMENT_ATTACK_2"
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	//=================================================================================================================
+	// Apache Chief Tail Gunner
+	//=================================================================================================================
+	"ac_tailgunner"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"FightRecapLevel"				"1"
+		"AbilityTextureName"			"gyrocopter_flak_cannon"
+		"MaxLevel"						"7"
+		"LevelsBetweenUpgrades"  		"0"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	    "AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
+	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+	    "AbilityUnitDamageType" 		"DAMAGE_TYPE_PHYSICAL"
+	    "SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+	
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"1"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"max_projectiles"		"3"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"max_targets"			"1 1 1 2 2 2 3"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"600"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"recharge_rate"			"5.0 4.5 4.0 3.5 3.0 2.5 2.0"
+			}		
+		}
+	
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_gyrocopter/gyro_base_attack.vpcf"
+			"particle"  "particles/units/heroes/hero_ac/ac_gatling_gun_projectile_launch.vpcf"
+	
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_gyrocopter.vsndevts"
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_sniper.vsndevts"
+			"soundfile" 	"sounds/weapons/hero/gyrocopter/rocket_barrage_target01.vsnd"
+		}
+	
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"1"
+	
+			"RunScript"
+			{
+				"ScriptFile"	"heroes/hero_ac/ac_tailgunner.lua"
+				"Function"		"damage"
+			}
+		}
+	
+		"Modifiers"
+		{
+			"modifier_tailgunner"
+			{
+				"Passive"			"1"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+		
+				"ThinkInterval"  "%recharge_rate"
+				"OnIntervalThink"
+				{
+					"ActOnTargets"
+					{
+						"Target"
+						{
+							"Center"  	"CASTER"
+							"Radius" 	"%radius"
+							"Teams" 	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+							"Types" 	"DOTA_UNIT_TARGET_ALL"
+							"MaxTargets" "%max_targets"
+							"Random"     "1"
+						}
+					
+						"Action"    
+						{
+							"RunScript"
+							{
+								"ScriptFile"	"heroes/hero_ac/ac_tailgunner.lua"
+								"Function"		"tailGunner"
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	//=================================================================================================================
+	// Apache Chief Valkyrie
+	//=================================================================================================================
+	"ac_valkyrie"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"FightRecapLevel"				"1"
+		"AbilityTextureName"			"custom/gyrocopter_skyhigh_call_down"
+		"MaxLevel"						"7"
+		"LevelsBetweenUpgrades"  		"0"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	    "AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
+	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+	    "AbilityUnitDamageType" 		"DAMAGE_TYPE_MAGICAL"
+	    "SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+	
+	    "AbilityCastRange"				"1000"
+	    "AbilityCastPoint"				"0.3"
+	    "AbilityCastAnimation"			"ACT_DOTA_OVERRIDE_ABILITY_4"
+	
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"20 19 18 17 16 15 14"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"100"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"7 12 17 22 27 32 37"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"6.0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"speed"					"200" //percent
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"150"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"reduc_move_speed"		"-50"
+			}
+			
+		}
+	
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_batrider/batrider_firefly_ember.vpcf"
+			"particle"  "particles/units/heroes/hero_ac/ac_valkyrie_explosion.vpcf"
+	
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_techies.vsndevts"
+			"soundfile"		"sounds/weapons/hero/gyrocopter/rocket_barrage_fire.vsnd"
+			"soundfile" 	"sounds/weapons/hero/gyrocopter/rocket_barrage_target01.vsnd"
+		}
+	
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"EffectName"	"Hero_Techies.Attack"
+				"Target" 		"CASTER"
+			}
+	
+			"RunScript"
+			{
+				"ScriptFile"	"heroes/hero_ac/ac_valkyrie.lua"
+				"Function"		"valkyrie"
+			}
+		}
+	
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"0"
+	
+			"Knockback"
+			{
+				"Target"            "TARGET"
+				"Center" 	        "CASTER"
+				"Distance"	        "250"
+				"Duration"	        "0.5"
+				"Height"	        "0"
+				"IsFixedDistance"	"1"
+				"ShouldStun"        "1"	
+			}
+		}
+	
+		"Modifiers"
+		{
+			"modifier_valkyrie"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+		
+				//"EffectName"		"particles/units/heroes/hero_batrider/batrider_firefly_ember.vpcf"
+				//"EffectAttachType"	"follow_origin"
+		
+				"States"
+				{
+					"MODIFIER_STATE_COMMAND_RESTRICTED"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_UNIT_COLLISION"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_FLYING"					"MODIFIER_STATE_VALUE_ENABLED"
+				}
+	
+				"Properties"
+				{
+				    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%speed" 
+				}
+	
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"EffectName"        "particles/units/heroes/hero_batrider/batrider_firefly_ember.vpcf"
+						"EffectAttachType"  "follow_origin"
+						"Target"            "CASTER"
+						"ControlPoints"
+						{
+							"00"	"0 0 0"
+							"01"	"0 0 0"
+							"03"	"0 0 0"
+							"11"	"1 0 0"
+						}
+					}
+	
+					"CreateThinker"
+					{
+						"ModifierName"	"modifier_valkyrie_aoe"
+						"Target" 		"CASTER"
+					}
+				}
+	
+				"ThinkInterval"  "0.25"
+				"OnIntervalThink"
+				{
+					"CreateThinker"
+					{
+						"ModifierName"	"modifier_valkyrie_aoe"
+						"Target" 		"CASTER"
+					}
+				}
+			}
+	
+			"modifier_valkyrie_aoe"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"Duration"			"%duration"
+				
+				"Aura"          	"modifier_valkyrie_aura"
+				"Aura_Radius"   	"%radius"
+				"Aura_Teams"    	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"Aura_Types"    	"DOTA_UNIT_TARGET_ALL"
+				"Aura_Flags"    	"DOTA_UNIT_TARGET_FLAG_NONE"
+				"Aura_ApplyToCaster" "0"
+	
+				"OnCreated"
+				{
+					"FireSound"
+					{
+						"EffectName"	"Hero_Techies.LandMine.Detonate"
+						"Target" 		"TARGET"
+					}
+					
+					"AttachEffect"
+					{
+						"EffectName"        "particles/units/heroes/hero_ac/ac_valkyrie_explosion.vpcf"
+						"EffectAttachType"  "follow_origin"
+						"Target"            "TARGET"
+						"ControlPoints"
+						{
+							"00"	"0 0 0"
+							"01"	"%radius %radius %radius"
+							"03"	"0 0 0"
+						}
+					}
+	
+					"ActOnTargets"
+					{
+						"Target"
+						{
+							"Center"  	"TARGET"
+							"Radius" 	"%radius"
+							"Teams" 	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+							"Types" 	"DOTA_UNIT_TARGET_ALL"
+						}
+					
+						"Action"    
+						{
+							"Damage"
+							{
+								"Target"		"TARGET"
+								"Type"			"DAMAGE_TYPE_MAGICAL"
+								"Damage"		"%damage"
+							}
+	
+							"Knockback"
+							{
+								"Target"            "TARGET"
+								"Center" 	        "CASTER"
+								"Distance"	        "%radius"
+								"Duration"	        "0.5"
+								"Height"	        "0"
+								"IsFixedDistance"	"1"
+								"ShouldStun"        "1"	
+							}
+						}
+					}
+				}
+			}
+	
+			"modifier_valkyrie_aura"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"1"
+			
+				//"EffectName"		"particle_name"
+				//"EffectAttachType"	"follow_origin"
+			
+				"Properties"
+				{
+				    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%reduc_move_speed" 
 				}
 			}
 		}
@@ -37119,6 +37920,296 @@
 			}
 		}
 	}
+	"necro_plaguebearer_dirge"
+		{
+			// General
+			//-------------------------------------------------------------------------------------------------------------
+			"BaseClass"						"ability_datadriven"
+			"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"		
+			"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+			"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+			"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+			"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+			"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+			"HasScepterUpgrade"				"1"
+			"FightRecapLevel"				"2"
+			"AbilityTextureName"			"necrolyte_reapers_scythe"
+			"MaxLevel"						"7"
+			"LevelsBetweenUpgrades"			"7"
+	
+			// Precache
+			//-------------------------------------------------------------------------------------------------------------
+			"precache"
+			{
+				"soundfile"			"soundevents/game_sounds_heroes/game_sounds_necrolyte.vsndevts"
+				"particle"			"particles/units/heroes/hero_necrolyte/necrolyte_scythe.vpcf"
+				"particle"			"particles/units/heroes/hero_necrolyte/necrolyte_scythe_model.vpcf"
+				"particle"			"particles/units/heroes/hero_necrolyte/necrolyte_scythe_orig.vpcf"
+				"particle"			"particles/generic_gameplay/generic_stunned.vpcf"
+				"particle"			"particles/necrophos_plague.vpcf"
+				"particle"			"particles/units/heroes/hero_necrolyte/necrolyte_scythe_mist.vpcf"
+			}
+	
+			// Casting
+			//-------------------------------------------------------------------------------------------------------------
+			"AbilityCastPoint"				"0.5 0.5 0.5"
+	
+			// Time		
+			//-------------------------------------------------------------------------------------------------------------
+			"AbilityCooldown"				"100 95 90 85 80 75 70"
+	
+			// Cost
+			//-------------------------------------------------------------------------------------------------------------
+			"AbilityManaCost"				"175 340 500 750 1000 2000 4000"		
+			
+			// Cast Range
+			//-------------------------------------------------------------------------------------------------------------
+			"AbilityCastRange"				"1000"
+	
+			// Stats
+			//-------------------------------------------------------------------------------------------------------------
+			"AbilityModifierSupportValue"	"0.1"	// Primarily about the damage
+			
+			// Special
+			//-------------------------------------------------------------------------------------------------------------
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"					"FIELD_INTEGER"
+					"damage_per_health"			"30 35 40 45 50 55 60"
+				}
+				"02"
+				{
+					"var_type"					"FIELD_INTEGER"
+					"base_damage"				"1600 3200 6400 12800 25000 50000 100000"
+				}
+				"03"
+				{
+					"var_type"					"FIELD_INTEGER"
+					"heal_per_health"			"70 75 80 85 90 95 100"
+				}
+				"03"
+				{
+					"var_type"					"FIELD_INTEGER"
+					"base_heal"					"1600 3200 6400 12800 25000 50000 100000"
+				}
+				"05"
+				{
+					"var_type"					"FIELD_INTEGER"
+					"radius"					"900"
+				}
+				"06"
+				{
+					"var_type"					"FIELD_INTEGER"
+					"duration"					"10"
+				}
+				"07"
+				{
+					"var_type"					"FIELD_FLOAT"
+					"stun_duration"				"1.5"
+				}
+				"08"
+				{
+					"var_type"					"FIELD_INTEGER"
+					"self_damage"				"80"
+				}
+				"09"
+				{
+					"var_type"					"FIELD_FLOAT"
+					"tick_rate"					"1.0"
+				}
+			}
+	
+			"OnSpellStart"
+			{
+				"ApplyModifier"
+				{
+					"ModifierName"	"modifier_plague_sacrifice"
+					"Target"		"CASTER"
+				}
+				"FireSound"
+				{
+					"EffectName"	"Hero_Necrolyte.ReapersScythe.Cast"
+					"Target"		"CASTER"
+				}
+	
+				"FireSound"
+				{
+					"EffectName"	"Hero_Necrolyte.ReapersScythe.Target"
+					"Target"		"CASTER"
+				}
+	
+				"DelayedAction"
+				{
+					"Delay"		"%stun_duration"
+	
+					"Action"
+					{
+						"FireEffect"
+						{
+							"EffectName"	"particles/units/heroes/hero_necrolyte/necrolyte_scythe_orig.vpcf"
+							"EffectAttachType"	"start_at_customorigin"
+							
+							"ControlPointEntities"
+							{
+								"CASTER"	"follow_origin"
+								"CASTER"	"follow_origin"
+							}
+						}
+					}
+				}
+			}
+	
+			"Modifiers"
+			{
+				"modifier_plague_sacrifice"
+				{
+					"IsDebuff"	"1"
+					"Duration"	"%stun_duration"
+	
+					"OverrideAnimation"	"ACT_DOTA_DISABLED"
+	
+					"EffectName" "particles/generic_gameplay/generic_stunned.vpcf"
+					"EffectAttachType" "follow_overhead"
+	
+					
+	
+					"OnCreated"
+					{
+						"DelayedAction"
+						{
+							// Scythe animation has a 0.7 sec travel time
+							"Delay"		"%stun_duration - 0.7"
+	
+							"Action"
+							{
+								"FireEffect"
+								{
+									"EffectName"	"particles/units/heroes/hero_necrolyte/necrolyte_scythe_model.vpcf"
+									"EffectAttachType"	"follow_origin"
+	
+									"ControlPointEntities"
+									{
+										"CASTER"	"follow_origin"
+										"CASTER"	"follow_origin"
+									}
+								}
+								"RunScript"
+								{
+									"ScriptFile"		"lua_abilities/heroes/necrophos.lua"
+									"Function"			"SelfDamage"
+								}
+							}
+						}
+						"AttachEffect"
+						{
+							"EffectName"	"particles/units/heroes/hero_necrolyte/necrolyte_scythe.vpcf"
+							"EffectAttachType"	"follow_origin"
+							"Target"		"CASTER"
+						}
+						"ApplyModifier"
+						{
+							"ModifierName"	"modifier_plague_heal"
+							"Duration"	"%duration"
+							"Target"
+							{
+								"Center"  	"CASTER"
+								"Teams" 	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+								"Types" 	"DOTA_UNIT_TARGET_ALL"
+								"Radius"	"%radius"
+							}
+							
+						}
+						"RemoveModifier"
+						{
+							"ModifierName"	"modifier_plague_heal"
+							"Target"	"CASTER"
+						}
+						"ApplyModifier"
+						{
+							"ModifierName"	"modifier_plague_damage"
+							"Duration"	"%duration"
+							"Target"
+							{
+								"Center"  	"TARGET"
+								"Teams" 	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+								"Types" 	"DOTA_UNIT_TARGET_ALL"
+								"Flags"     "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+								"Radius"	"%radius"
+							}
+						}
+					}
+	
+					"States"
+					{
+						"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
+					}
+				}
+				"modifier_plague_heal"
+				{
+					"IsBuff"	"1"
+	
+					"ThinkInterval"	"%tick_rate"
+					"OnIntervalThink"
+					{
+						"RunScript"
+						{
+							"ScriptFile"		"lua_abilities/heroes/necrophos.lua"
+							"Function"			"AllyHeal"
+						}
+						"AttachEffect"
+						{
+							"EffectName"	"particles/units/heroes/hero_necrolyte/necrolyte_scythe_mist.vpcf"
+							"EffectAttachType"	"follow_origin"
+							"Target"		"TARGET"
+						}
+					}
+					"OnDestroy"
+					{
+						"RunScript"
+						{
+							"ScriptFile"		"lua_abilities/heroes/necrophos.lua"
+							"Function"			"RemoveBonusHealth"
+						}
+					}
+				}
+				"modifier_plague_health_increase"
+				{
+					"IsHidden" "0"
+					"Attributes"    "MODIFIER_ATTRIBUTE_MULTIPLE"
+					"Properties"
+					{
+						"MODIFIER_PROPERTY_HEALTH_BONUS"	"1"
+					}
+				}
+				"modifier_plague_damage"
+				{
+					"IsDebuff"	"1"
+					"ThinkInterval"	"%tick_rate"
+					
+					"OnIntervalThink"
+					{
+						"RunScript"
+						{
+							"ScriptFile"		"lua_abilities/heroes/necrophos.lua"
+							"Function"			"EnemyDamage"
+						}
+						"AttachEffect"
+						{
+							"EffectName"	"particles/units/heroes/hero_necrolyte/necrolyte_scythe_mist.vpcf"
+							"EffectAttachType"	"follow_origin"
+							"Target"		"TARGET"
+						}
+					}
+					"Properties"
+					{
+						"MODIFIER_PROPERTY_DISABLE_HEALING"			"1"
+					}
+				}
+			}
+		}
 	"neutral_power_passive"
 	{
 	    // General
@@ -53224,6 +54315,8 @@
 		"LevelsBetweenUpgrades"			"6"
 		"MaxLevel"						"7"
 		"RequiredLevel"					"7"
+	
+		"PiercesDisableReduction"		"1"
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------

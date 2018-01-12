@@ -2,6 +2,10 @@ winterw_winters_kiss = class({})
 LinkLuaModifier( "modifier_winters_kiss", "heroes/hero_ww/winterw_winters_kiss.lua" ,LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_winters_kiss_enemy", "heroes/hero_ww/winterw_winters_kiss.lua" ,LUA_MODIFIER_MOTION_NONE )
 
+function winterw_winters_kiss:PiercesDisableResistance()
+    return true
+end
+
 function winterw_winters_kiss:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
