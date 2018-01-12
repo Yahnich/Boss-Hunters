@@ -1,0 +1,126 @@
+winterw_winters_kiss = class({})
+LinkLuaModifier( "modifier_winters_kiss", "heroes/hero_ww/winterw_winters_kiss.lua" ,LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_winters_kiss_enemy", "heroes/hero_ww/winterw_winters_kiss.lua" ,LUA_MODIFIER_MOTION_NONE )
+
+function winterw_winters_kiss:OnSpellStart()
+	local caster = self:GetCaster()
+	local target = self:GetCursorTarget()
+
+	EmitSoundOn("Hero_Winter_Wyvern.WintersCurse.Cast", caster)
+	EmitSoundOn("Hero_Winter_Wyvern.WintersCurse.Target", target)
+
+    local startFX = ParticleManager:CreateParticle("particles/units/heroes/hero_winter_wyvern/wyvern_winters_curse_ground.vpcf", PATTACH_POINT, caster)
+    ParticleManager:SetParticleControl(startFX, 0, target:GetAbsOrigin())
+    ParticleManager:SetParticleControl(startFX, 2, Vector(self:GetSpecialValueFor("radius"),self:GetSpecialValueFor("radius"),self:GetSpecialValueFor("radius")))
+    ParticleManager:ReleaseParticleIndex(startFX)
+
+    local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_winter_wyvern/wyvern_winters_curse_ring_rope.vpcf", PATTACH_POINT, caster)
+    ParticleManager:SetParticleControl(nfx, 0, target:GetAbsOrigin())
+    ParticleManager:SetParticleControl(nfx, 2, Vector(self:GetSpecialValueFor("radius"),self:GetSpecialValueFor("radius"),self:GetSpecialValueFor("radius")))
+    ParticleManager:ReleaseParticleIndex(nfx)
+
+    local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), FIND_UNITS_EVERYWHERE, {})
+    for _,enemy in pairs(enemies) do
+        if enemy:HasModifier("modifier_winters_kiss") then
+            enemy:FindModifierByName("modifier_winters_kiss"):Destroy()
+        end
+    end
+	target:AddNewModifier(caster, self, "modifier_winters_kiss", {Duration = self:GetTalentSpecialValueFor("duration")})
+end
+
+modifier_winters_kiss = ({})
+function modifier_winters_kiss:OnCreated(table)
+    if self:GetCaster():HasTalent("special_bonus_unique_winterw_winters_kiss_2") then
+        self.damageReduc = self:GetCaster():FindTalentValue("special_bonus_unique_winterw_winters_kiss_2")
+    else
+        self.damageReduc = 0
+    end
+    if IsServer() then
+    	self:StartIntervalThink(FrameTime())
+    end
+end
+
+function modifier_winters_kiss:OnIntervalThink()
+	if self:GetParent():HasModifier("modifier_winters_kiss") then
+        local enemies = self:GetCaster():FindEnemyUnitsInRadius(self:GetParent():GetAbsOrigin(), self:GetSpecialValueFor("radius"), {})
+        for _,enemy in pairs(enemies) do
+            if enemy ~= self:GetParent() then
+                enemy:SetForceAttackTargetAlly(self:GetParent())
+                enemy:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_winters_kiss_enemy", {})
+            end
+        end
+    end
+end
+
+function modifier_winters_kiss:OnRemoved()
+    if IsServer() then
+        local enemies = self:GetCaster():FindEnemyUnitsInRadius(self:GetParent():GetAbsOrigin(), FIND_UNITS_EVERYWHERE, {})
+        for _,enemy in pairs(enemies) do
+            if enemy:HasModifier("modifier_winters_kiss_enemy") then
+                enemy:FindModifierByName("modifier_winters_kiss_enemy"):Destroy()
+                enemy:SetForceAttackTargetAlly(nil)
+            end
+        end
+    end
+end
+
+function modifier_winters_kiss:CheckState()
+	local state = { [MODIFIER_STATE_STUNNED] = true,
+					[MODIFIER_STATE_FROZEN] = true}
+	return state
+end
+
+function modifier_winters_kiss:DeclareFunctions()
+    local funcs = {
+        MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE
+    }
+    return funcs
+end
+
+function modifier_winters_kiss:GetModifierIncomingDamage_Percentage(params)
+    return self.damageReduc
+end
+
+function modifier_winters_kiss:IsDebuff()
+    return true
+end
+
+function modifier_winters_kiss:GetEffectAttachType()
+    return PATTACH_OVERHEAD_FOLLOW
+end
+
+function modifier_winters_kiss:GetEffectName()
+    return "particles/units/heroes/hero_winterw/winterw_winters_kiss_debuff.vpcf"
+end
+
+function modifier_winters_kiss:GetStatusEffectName()
+    return "particles/econ/items/effigies/status_fx_effigies/status_effect_effigy_frosty_dire.vpcf"
+end
+
+function modifier_winters_kiss:StatusEffectPriority()
+    return 10
+end
+
+modifier_winters_kiss_enemy = ({})
+function modifier_winters_kiss_enemy:DeclareFunctions()
+    local funcs = {
+        MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+    }
+    return funcs
+end
+
+function modifier_winters_kiss_enemy:GetModifierAttackSpeedBonus_Constant()
+    return self:GetSpecialValueFor("bonus_as")
+end
+
+function modifier_winters_kiss_enemy:GetEffectName()
+    return "particles/units/heroes/hero_winter_wyvern/wyvern_winters_curse_buff.vpcf"
+end
+
+function modifier_winters_kiss:GetStatusEffectName()
+    return "particles/econ/items/effigies/status_fx_effigies/status_effect_effigy_frosty_dire.vpcf"
+end
+
+function modifier_winters_kiss:StatusEffectPriority()
+    return 10
+end

@@ -135,6 +135,21 @@ function CDOTA_Modifier_Lua:GetSpecialValueFor(specVal)
 	return self:GetAbility():GetSpecialValueFor(specVal)
 end
 
+function CDOTABaseAbility:DealDamage(attacker, victim, damage, data, spellText)
+	--OVERHEAD_ALERT_BONUS_SPELL_DAMAGE, OVERHEAD_ALERT_DAMAGE, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, OVERHEAD_ALERT_MANA_LOSS
+	local damageType = DAMAGE_TYPE_MAGICAL or data.damage_type 
+	local damageFlags = DOTA_DAMAGE_FLAG_NONE or data.damage_flags
+	local localdamage = damage
+	local spellText = spellText or 0
+	local ability = self or data.ability 
+	if spellText > 0 then
+		local damage = ApplyDamage({victim = victim, attacker = attacker, ability = ability, damage_type = damageType, damage = localdamage, damage_flags = damageFlags})
+		SendOverheadEventMessage(attacker:GetPlayerOwner(),spellText,victim,damage,attacker:GetPlayerOwner()) --Substract the starting health by the new health to get exact damage taken values.
+		return damage
+	else
+		return ApplyDamage({victim = victim, attacker = attacker, ability = ability, damage_type = damageType, damage = localdamage, damage_flags = damageFlags})
+	end
+end
 
 function CDOTA_BaseNPC:DealAOEDamage(position, radius, damageTable)
 	local team = self:GetTeamNumber()
@@ -1448,9 +1463,10 @@ function ParticleManager:FireWarningParticle(position, radius)
 	ParticleManager:ReleaseParticleIndex(thinker)
 end
 
-function ParticleManager:FireLinearWarningParticle(startPos, endPos)
-	local fx = ParticleManager:FireParticle("particles/generic_linear_indicator.vpcf", PATTACH_WORLDORIGIN, nil, { [0] = startPos,
-																													[1] = endPos} )																						
+function ParticleManager:FireLinearWarningParticle(vStartPos, vEndPos, vWidth)
+	local fx = ParticleManager:FireParticle("particles/range_ability_line.vpcf", PATTACH_WORLDORIGIN, nil, { [0] = vStartPos,
+																											[1] = vEndPos,
+																											[2] = vWidth} )																						
 end
 
 function ParticleManager:FireTargetWarningParticle(target)
@@ -1536,17 +1552,6 @@ end
 
 function CDOTABaseAbility:Stun(target, duration, bDelay)
 	target:AddNewModifier(self:GetCaster(), self, "modifier_stunned_generic", {duration = duration, delay = bDelay})
-end
-
-function CDOTABaseAbility:DealDamage(attacker, victim, damage, data)
-	local damageType = self:GetAbilityDamageType()
-	local damageFlags = 0
-	local localdamage = damage or self:GetAbilityDamage()
-	if data and data.damage_type then damageType = data.damage_type end
-	if data then damageFlags = data.damage_flags end
-	if damageType == 0 then damageType = DAMAGE_TYPE_MAGICAL end
-	local hp = victim:GetHealth()
-	ApplyDamage({victim = victim, attacker = attacker, ability = self, damage_type = damageType, damage = localdamage, damage_flags = damageFlags})
 end
 
 function CDOTABaseAbility:FireLinearProjectile(FX, velocity, distance, width, data)
@@ -1818,4 +1823,125 @@ function CDOTA_BaseNPC_Hero:GetEpicBossFightName()
 		["npc_dota_hero_treant_dazzle"] = "mystic",
 	}
 	return nameTable[self:GetUnitName()] or self:GetUnitName()
+end
+
+function CDOTA_BaseNPC:AddChill(hAbility, hCaster, chillDuration)
+	self:AddNewModifier(hCaster, hAbility, "modifier_chill_generic", {Duration = chillDuration}):IncrementStackCount()
+end
+
+function CDOTA_BaseNPC:GetChillCount()
+	if self:HasModifier("modifier_chill_generic") then
+		return self:FindModifierByName("modifier_chill_generic"):GetStackCount()
+	else
+		return 0
+	end
+end
+
+function CDOTA_BaseNPC:SetChillCount( count )
+	if self:HasModifier("modifier_chill_generic") then
+		self:FindModifierByName("modifier_chill_generic"):SetStackCount(count)
+	end
+end
+
+function CDOTA_BaseNPC:IsChilled()
+	if self:HasModifier("modifier_chill_generic") then
+		return true
+	else
+		return false
+	end
+end
+
+function CDOTA_BaseNPC:RemoveChill()
+	if self:HasModifier("modifier_chill_generic") then
+		self:RemoveModifierByName("modifier_chill_generic")
+	end
+end
+
+function CDOTA_BaseNPC:Freeze(hAbility, hCaster, duration)
+	self:RemoveModifierByName("modifier_chill_generic")
+	self:AddNewModifier(hCaster, hAbility, "modifier_frozen_generic", {Duration = duration})
+end
+
+function CDOTA_BaseNPC:IsFrozenGeneric()
+	if self:HasModifier("modifier_frozen_generic") then
+		return true
+	else
+		return false
+	end
+end
+
+function CDOTA_BaseNPC:RemoveFreeze()
+	if self:HasModifier("modifier_frozen_generic") then
+		self:RemoveModifierByName("modifier_frozen_generic")
+	end
+end
+
+function CDOTA_BaseNPC:Hide()
+	self:AddNewModifier(self, nil, "modifier_hidden_generic", {})
+end
+
+function CDOTA_BaseNPC:IsHidden()
+	if self:HasModifier("modifier_hidden_generic") then
+		return true
+	else
+		return false
+	end
+end
+
+function CDOTA_BaseNPC:RemoveHidden()
+	if self:HasModifier("modifier_hidden_generic") then
+		self:RemoveModifierByName("modifier_hidden_generic")
+	end
+end
+
+function CDOTA_BaseNPC:Taunt(hAbility, hCaster, tauntDuration)
+	self:AddNewModifier(hCaster, hAbility, "modifier_taunt_generic", {Duration = tauntDuration})
+end
+
+function CDOTA_BaseNPC:IsTaunted()
+	if self:HasModifier("modifier_taunt_generic") then
+		return true
+	else
+		return false
+	end
+end
+
+function CDOTA_BaseNPC:RemoveTaunt()
+	if self:HasModifier("modifier_taunt_generic") then
+		self:RemoveModifierByName("modifier_taunt_generic")
+	end
+end
+
+function CDOTA_BaseNPC:Daze(hAbility, hCaster, dazeDuration)
+	self:AddNewModifier(hCaster, hAbility, "modifier_daze_generic", {Duration = dazeDuration})
+end
+
+function CDOTA_BaseNPC:IsDazeed()
+	if self:HasModifier("modifier_daze_generic") then
+		return true
+	else
+		return false
+	end
+end
+
+function CDOTA_BaseNPC:RemoveDaze()
+	if self:HasModifier("modifier_daze_generic") then
+		self:RemoveModifierByName("modifier_daze_generic")
+	end
+end
+
+function CDOTA_BaseNPC:ApplyKnockBack(position, stunDuration, knockbackDuration, distance, height, caster, ability)
+	local caster = caster or nil
+	local ability = ability or nil
+
+	local modifierKnockback = {
+		center_x = position.x,
+		center_y = position.y,
+		center_z = position.z,
+		duration = stunDuration,
+		knockback_duration = knockbackDuration,
+		knockback_distance = distance,
+		knockback_height = height,
+	}
+	self:AddNewModifier(caster, ability, "modifier_knockback", modifierKnockback )
 end

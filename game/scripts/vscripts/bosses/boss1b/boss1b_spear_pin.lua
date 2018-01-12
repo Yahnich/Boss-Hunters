@@ -1,7 +1,7 @@
 boss1b_spear_pin = class({})
 
 function boss1b_spear_pin:OnAbilityPhaseStart()
-	ParticleManager:FireLinearWarningParticle(self:GetCaster():GetAbsOrigin(), self:GetCaster():GetAbsOrigin() + CalculateDirection(self:GetCursorPosition(), self:GetCaster()) * self:GetSpecialValueFor("spear_distance"))
+	ParticleManager:FireLinearWarningParticle(self:GetCaster():GetAbsOrigin(), self:GetCaster():GetAbsOrigin() + CalculateDirection(self:GetCursorPosition(), self:GetCaster()) * self:GetSpecialValueFor("spear_distance"), self:GetSpecialValueFor("spear_width"))
 	return true
 end
 
