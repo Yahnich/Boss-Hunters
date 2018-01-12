@@ -1,6 +1,10 @@
 brd_cleave_strike = class({})
 LinkLuaModifier( "modifier_cleave_strike", "heroes/hero_brd/brd_cleave_strike.lua" ,LUA_MODIFIER_MOTION_NONE )
 
+function brd_cleave_strike:PiercesDisableResistance()
+    return true
+end
+
 function brd_cleave_strike:GetIntrinsicModifierName()
 	return "modifier_cleave_strike"
 end
