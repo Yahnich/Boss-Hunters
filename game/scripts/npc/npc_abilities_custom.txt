@@ -13079,6 +13079,9 @@
 		"MaxLevel"						"7"
 		"RequiredLevel"					"7"
 	
+		"AbilityThreat"					"10.0"
+		"PiercesDisableReduction"		"1"
+	
 		"AbilityCastRange"				"500"
 	
 		// Time		
@@ -13400,6 +13403,9 @@
 		"LevelsBetweenUpgrades"			"8"
 		"MaxLevel"						"7"
 		"RequiredLevel"					"3"
+	
+		"AbilityThreat"					"50.0"
+		"PiercesDisableReduction"		"1"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -13455,6 +13461,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_brd/brd_ground_pound.lua"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
 	    "AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
@@ -13466,6 +13473,8 @@
 		"MaxLevel"						"7"
 		"RequiredLevel"					"7"
 		"IsAetherAmplified"				"0"
+	
+		"AbilityThreat"					"30.0"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -54307,6 +54316,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_ww/winterw_winters_kiss.lua"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
 	    "AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
@@ -54316,7 +54326,7 @@
 		"MaxLevel"						"7"
 		"RequiredLevel"					"7"
 	
-		"PiercesDisableReduction"		"1"
+		"AbilityThreat"					"20.0"
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
