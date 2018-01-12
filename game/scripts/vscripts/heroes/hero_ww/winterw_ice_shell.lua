@@ -47,7 +47,7 @@ end
 function modifier_ice_shell:CheckState()
 	local state = { [MODIFIER_STATE_STUNNED] = true,
 					[MODIFIER_STATE_MAGIC_IMMUNE] = true,
-					[MODIFIER_STATE_FROZEN] = true},
+					[MODIFIER_STATE_FROZEN] = true,
 					[MODIFIER_STATE_ATTACK_IMMUNE] = true}
 	return state
 end
