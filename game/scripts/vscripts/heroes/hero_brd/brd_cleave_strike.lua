@@ -37,7 +37,7 @@ function modifier_cleave_strike:OnTakeDamage(params)
 			local enemies = self:GetCaster():FindEnemyUnitsInRadius(self:GetCaster():GetAbsOrigin(), self:GetSpecialValueFor("radius"), {})
 			for _,enemy in pairs(enemies) do
 				self:GetCaster():PerformAttack(enemy, true, true, true, false, false, false, true)
-				self:GetAbility():DealDamage(self:GetCaster(), enemy, armorDamage, {}, 0)
+				self:GetAbility():DealDamage(self:GetCaster(), enemy, self:GetCaster():GetAttackDamage()+ armorDamage, {}, 0)
 			end
 
 			self:GetAbility():StartCooldown(self:GetAbility():GetCooldown(self:GetAbility():GetLevel()))
