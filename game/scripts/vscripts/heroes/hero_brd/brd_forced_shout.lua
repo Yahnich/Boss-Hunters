@@ -1,5 +1,10 @@
 brd_forced_shout = class({})
 LinkLuaModifier( "modifier_forced_shout", "heroes/hero_brd/brd_forced_shout.lua" ,LUA_MODIFIER_MOTION_NONE )
+
+function brd_forced_shout:PiercesDisableResistance()
+    return true
+end
+
 --------------------------------------------------------------------------------
 function brd_forced_shout:OnSpellStart()
 	local caster = self:GetCaster()
