@@ -1,8 +1,7 @@
 boss1a_rushdown = class({})
 
 function boss1a_rushdown:OnAbilityPhaseStart()
-	ParticleManager:FireParticle("particles/generic_linear_indicator.vpcf", PATTACH_POINT_FOLLOW, self:GetCaster(), { [0] = self:GetCaster():GetAbsOrigin(),
-																													  [1] = self:GetCursorPosition()} )
+	ParticleManager:FireLinearWarningParticle(self:GetCaster():GetAbsOrigin(), self:GetCursorPosition(), 250)
 	return true
 end
 

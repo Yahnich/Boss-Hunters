@@ -30,12 +30,6 @@ end
 modifier_blood_hunger = class({})
 
 function modifier_blood_hunger:OnCreated(table)
-	if self:GetParent():GetOpposingTeamNumber() == self:GetCaster():GetOpposingTeamNumber() then
-		self.blind = 0
-	else
-		self.blind = self:GetSpecialValueFor("blind")
-	end
-
 	if IsServer() then
 		self:StartIntervalThink(1.0)
 	end
@@ -79,7 +73,11 @@ function modifier_blood_hunger:GetModifierAttackSpeedBonus_Constant()
 end
 
 function modifier_blood_hunger:GetModifierMiss_Percentage()
-	return self.blind
+	local blind = self:GetSpecialValueFor("blind")
+	if self:GetParent():GetTeam() == self:GetCaster():GetTeam() then
+		blind = 0
+	end
+	return blind
 end
 
 function modifier_blood_hunger:GetEffectName()

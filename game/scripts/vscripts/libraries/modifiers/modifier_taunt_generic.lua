@@ -1,4 +1,16 @@
 modifier_taunt_generic = class({})
+function modifier_taunt_generic:OnCreated(table)
+	if IsServer() then
+		self:GetParent():SetForceAttackTarget(self:GetCaster())
+	end
+end
+
+function modifier_taunt_generic:OnDestroy()
+	if IsServer() then
+		self:GetParent():SetForceAttackTarget(nil)
+	end
+end
+
 function modifier_taunt_generic:GetTauntTarget()
 	return self:GetCaster()
 end

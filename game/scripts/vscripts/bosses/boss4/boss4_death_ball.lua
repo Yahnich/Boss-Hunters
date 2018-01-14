@@ -4,7 +4,7 @@ function boss4_death_ball:OnAbilityPhaseStart()
 	local caster = self:GetCaster()
 	local casterPos = caster:GetAbsOrigin()
 	local direction = CalculateDirection(self:GetCursorPosition(), casterPos)
-	ParticleManager:FireLinearWarningParticle(casterPos, casterPos + direction * self:GetSpecialValueFor("distance"))
+	ParticleManager:FireLinearWarningParticle(casterPos, casterPos + direction * self:GetSpecialValueFor("distance"), self:GetSpecialValueFor("radius"))
 	EmitSoundOn("Hero_Undying.SoulRip.Cast", caster)
 	return true
 end

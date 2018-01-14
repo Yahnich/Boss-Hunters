@@ -96,11 +96,11 @@ function modifier_arctic_sting:OnAttackLanded(params)
 
     	if self:GetCaster():HasScepter() then
             EmitSoundOn("Hero_Winter_Wyvern.ArcticBurn.projectileImpact", params.target)
-    		params.target:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_arctic_sting_target", {Duration = self:GetSpecialValueFor("damage_duration")})
+    		params.target:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_arctic_sting_target", {Duration = self:GetSpecialValueFor("burn_duration")})
     	else
     		if not params.target:HasModifier("modifier_arctic_sting_target") then
                 EmitSoundOn("Hero_Winter_Wyvern.ArcticBurn.projectileImpact", params.target)
-    			params.target:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_arctic_sting_target", {Duration = self:GetSpecialValueFor("damage_duration")})
+    			params.target:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_arctic_sting_target", {Duration = self:GetSpecialValueFor("burn_duration")})
     		end
     	end
     end
@@ -131,8 +131,8 @@ end
 
 function modifier_arctic_sting_target:OnIntervalThink()
 	local currentHealth = self:GetParent():GetHealth()
-	local damage = currentHealth * self:GetSpecialValueFor("damage")/100
-    self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), damage, {}, OVERHEAD_ALERT_BONUS_POISON_DAMAGE)
+	local damage = currentHealth * self:GetSpecialValueFor("burn")/100
+    self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), damage, {damage_flags=DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION}, OVERHEAD_ALERT_BONUS_POISON_DAMAGE)
 end
 
 function modifier_arctic_sting_target:DeclareFunctions()

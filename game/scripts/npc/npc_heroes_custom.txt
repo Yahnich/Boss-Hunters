@@ -369,9 +369,12 @@
 	{
 		"override_hero"			"npc_dota_hero_gyrocopter"
 		"AbilityLayout"			"4"
-		"Ability1"				"gyrocopter_rocket_barrage_ebf"
-		"Ability2"				"gyrocopter_supporting_rockets"
+		"Ability1"				"gyro_rocket_salvo"
+		"Ability2"				"ac_valkyrie"
 		"Ability3"				"gyrocopter_flak_cannon_ebf"
+		"Ability4"				"ac_homing_missile"
+		"Ability5"				"barebones_empty1"
+		"Ability6"        		"gyrocopter_call_down" 
 	}
 	//=================================================================================================================
 	// HERO: Huskar

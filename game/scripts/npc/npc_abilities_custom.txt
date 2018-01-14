@@ -682,200 +682,6 @@
 		}
 	}
 	//=================================================================================================================
-	// Apache Chief Rocket Salvo
-	//=================================================================================================================
-	"ac_rocket_salvo"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_datadriven"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_TOGGLE"
-		"FightRecapLevel"				"1"
-		"AbilityTextureName"			"gyrocopter_rocket_barrage"
-		"MaxLevel"						"7"
-		"LevelsBetweenUpgrades"  		"0"
-		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-	    "AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
-	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-	    "AbilityUnitDamageType" 		"DAMAGE_TYPE_MAGICAL"
-	    "SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
-	
-	    "AbilityCastRange"				"500"
-	    "AbilityCastPoint"				"0.0"
-	    //"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
-	
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"10"
-	
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"1"
-	
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"7 12 17 22 27 32 37"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"fire_rate"				"0.1"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"max_targets"			"1 1 1 1 2 2 2"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"500"
-			}
-			
-		}
-	
-		"precache"
-		{
-			"particle"  "particles/units/heroes/hero_ac/ac_rocket_salvo_base.vpcf"
-			"particle"  "particles/units/heroes/hero_gyrocopter/gyro_rocket_barrage.vpcf"
-	
-			"soundfile"		"sounds/weapons/hero/gyrocopter/rocket_barrage_active.vsnd"
-			"soundfile"		"sounds/weapons/hero/gyrocopter/rocket_barrage_fire.vsnd"
-			"soundfile" 	"sounds/weapons/hero/gyrocopter/rocket_barrage_target01.vsnd"
-		}
-	
-		"OnToggleOn"
-		{
-			"ApplyModifier"
-			{
-				"ModifierName"	"modifier_rocket_salvo"
-				"Target" 		"CASTER"
-				//"Duration"		"%duration"
-			}
-			"FireSound"
-			{
-				"EffectName"	"Hero_Gyrocopter.Rocket_Barrage"
-				"Target"		"CASTER"
-			}
-		}
-		
-		"OnToggleOff"
-		{
-			"RemoveModifier"
-			{
-				"ModifierName"	"modifier_rocket_salvo"
-				"Target" 		"CASTER"
-			}
-			"FireSound"
-			{
-				"EffectName"	"Hero_Gyrocopter.Rocket_Barrage"
-				"Target"		"CASTER"
-			}
-		}
-	
-		"OnProjectileHitUnit"
-		{
-			"DeleteOnHit"	"1"
-	
-			"FireSound"
-			{
-				"EffectName"	"Hero_Gyrocopter.Rocket_Barrage.Impact"
-				"Target"		"TARGET"
-			}
-	
-			"SpendMana"
-			{
-				"Mana"		"%AbilityManaCost"
-			}
-	
-			"Damage"
-			{
-				"Target"		"TARGET"
-				"Type"			"DAMAGE_TYPE_MAGICAL"
-				"Damage"		"%damage"
-			}
-		}
-	
-		"Modifiers"
-		{
-			"modifier_rocket_salvo"
-			{
-				"Passive"			"0"
-				"IsHidden"			"0"
-				"IsDebuff"			"0"
-		
-				"ThinkInterval"  "%fire_rate"
-				"OnIntervalThink"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"heroes/hero_ac/ac_rocket_salvo.lua"
-						"Function"		"animation"
-					}
-	
-					"ActOnTargets"
-					{
-						"Target"
-						{
-							"Center"  	"CASTER"
-							"Radius" 	"%radius"
-							"Teams" 	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-							"Types" 	"DOTA_UNIT_TARGET_ALL"
-							"MaxTargets" "%max_targets"
-							"Random"     "1"
-						}
-					
-						"Action"    
-						{
-							"FireSound"
-							{
-								"EffectName"	"Hero_Gyrocopter.Rocket_Barrage.Launch"
-								"Target"		"CASTER"
-							}
-	
-							"Random"
-							{
-								"Chance"			"50"
-								"PseudoRandom" 		"DOTA_PSEUDO_RANDOM_SLARDAR_BASH"
-								"OnSuccess"
-								{
-									"TrackingProjectile"
-									{
-										"Target"           	"TARGET"
-										"EffectName"		"particles/units/heroes/hero_gyrocopter/gyro_rocket_barrage.vpcf"
-										"Dodgeable"			"0"
-										"ProvidesVision"	"0"
-										"VisionRadius"		"0"
-										"MoveSpeed"        	"1000"
-										"SourceAttachment"	"DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
-									}
-								}
-								"OnFailure"
-								{
-									"TrackingProjectile"
-									{
-										"Target"           	"TARGET"
-										"EffectName"		"particles/units/heroes/hero_gyrocopter/gyro_rocket_barrage.vpcf"
-										"Dodgeable"			"0"
-										"ProvidesVision"	"0"
-										"VisionRadius"		"0"
-										"MoveSpeed"        	"1000"
-										"SourceAttachment"	"DOTA_PROJECTILE_ATTACHMENT_ATTACK_2"
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-	}
-	//=================================================================================================================
 	// Apache Chief Tail Gunner
 	//=================================================================================================================
 	"ac_tailgunner"
@@ -13404,7 +13210,6 @@
 		"MaxLevel"						"7"
 		"RequiredLevel"					"3"
 	
-		"AbilityThreat"					"50.0"
 		"PiercesDisableReduction"		"1"
 		
 		// Casting
@@ -13442,6 +13247,16 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"radius"				"600"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"base_threat"			"30"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"threat_per_enemy"		"7.5"
 			}
 		}
 	
@@ -28660,6 +28475,72 @@
 					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS"	"%magic_reduction"
 				}
 			}
+		}
+	}
+	//=================================================================================================================
+	// Apache Chief Rocket Salvo
+	//=================================================================================================================
+	"gyro_rocket_salvo"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_gyro/gyro_rocket_salvo.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_TOGGLE"
+		"AbilityTextureName"			"gyrocopter_rocket_barrage"
+		"MaxLevel"						"7"
+		"LevelsBetweenUpgrades"  		"0"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	    "AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
+	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+	    "AbilityUnitDamageType" 		"DAMAGE_TYPE_MAGICAL"
+	    "SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+	
+	    "AbilityCastRange"				"500"
+	
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"10"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"1"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"7 12 17 22 27 32 37"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"fire_rate"				"0.1"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"max_targets"			"1 1 1 1 2 2 2"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"500"
+			}
+			
+		}
+	
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_ac/ac_rocket_salvo_base.vpcf"
+			"particle"  "particles/units/heroes/hero_gyrocopter/gyro_rocket_barrage.vpcf"
+	
+			"soundfile"		"sounds/weapons/hero/gyrocopter/rocket_barrage_active.vsnd"
+			"soundfile"		"sounds/weapons/hero/gyrocopter/rocket_barrage_fire.vsnd"
+			"soundfile" 	"sounds/weapons/hero/gyrocopter/rocket_barrage_target01.vsnd"
 		}
 	}
 	"hide_hero"
@@ -54120,12 +54001,12 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"damage"				"3 4 5 6 7 8 9"
+				"burn"					"3 4 5 6 7 8 9"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"damage_duration"		"5.0"
+				"burn_duration"			"5.0"
 			}
 			"05"
 			{

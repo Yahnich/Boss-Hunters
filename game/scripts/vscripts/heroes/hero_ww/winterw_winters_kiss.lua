@@ -2,10 +2,6 @@ winterw_winters_kiss = class({})
 LinkLuaModifier( "modifier_winters_kiss", "heroes/hero_ww/winterw_winters_kiss.lua" ,LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_winters_kiss_enemy", "heroes/hero_ww/winterw_winters_kiss.lua" ,LUA_MODIFIER_MOTION_NONE )
 
-function winterw_winters_kiss:PiercesDisableResistance()
-    return true
-end
-
 function winterw_winters_kiss:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
@@ -30,6 +26,7 @@ function winterw_winters_kiss:OnSpellStart()
         end
     end
 	target:AddNewModifier(caster, self, "modifier_winters_kiss", {Duration = self:GetTalentSpecialValueFor("duration")})
+    self:StartDelayedCooldown(self:GetTalentSpecialValueFor("duration"))
 end
 
 modifier_winters_kiss = ({})
@@ -49,7 +46,7 @@ function modifier_winters_kiss:OnIntervalThink()
         local enemies = self:GetCaster():FindEnemyUnitsInRadius(self:GetParent():GetAbsOrigin(), self:GetSpecialValueFor("radius"), {})
         for _,enemy in pairs(enemies) do
             if enemy ~= self:GetParent() then
-                --enemy:SetForceAttackTargetAlly(self:GetParent())
+                enemy:SetForceAttackTargetAlly(self:GetParent())
                 enemy:AddNewModifier(self:GetParent(), self:GetAbility(), "modifier_winters_kiss_enemy", {})
             end
         end
@@ -62,7 +59,7 @@ function modifier_winters_kiss:OnRemoved()
         for _,enemy in pairs(enemies) do
             if enemy:HasModifier("modifier_winters_kiss_enemy") then
                 enemy:FindModifierByName("modifier_winters_kiss_enemy"):Destroy()
-                --enemy:SetForceAttackTargetAlly(nil)
+                enemy:SetForceAttackTargetAlly(nil)
             end
         end
     end

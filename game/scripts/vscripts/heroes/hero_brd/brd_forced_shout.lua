@@ -15,12 +15,30 @@ function brd_forced_shout:OnSpellStart()
 	ParticleManager:SetParticleControl(nfx, 0, caster:GetAbsOrigin())
 	ParticleManager:SetParticleControlEnt(nfx, 1, caster, PATTACH_POINT_FOLLOW, "attach_mouth", caster:GetAbsOrigin(), true)
 
+	if not caster:GetThreat() then caster:SetThreat(0) end
+	caster:ModifyThreat(self:GetSpecialValueFor("base_threat"))
+	caster.lastHit = GameRules:GetGameTime()
 	local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), self:GetSpecialValueFor("radius"), {})
 	for _,enemy in pairs(enemies) do
-		enemy:Taunt(self,caster,self:GetSpecialValueFor("duration"))
+		if caster:IsAlive() and enemy then
+        	enemy:Taunt(self,caster,self:GetSpecialValueFor("duration"))
+			caster:ModifyThreat(self:GetSpecialValueFor("threat_per_enemy"))
+        else
+            enemy:Stop()
+        end
 	end
+	local event_data =
+	{
+		threat = caster:GetThreat(),
+		lastHit = caster.lastHit,
+		aggro = caster.aggro or 0
+	}
+	local player = caster:GetPlayerOwner()
+	CustomGameEventManager:Send_ServerToPlayer( player, "Update_threat", event_data )
 
 	caster:AddNewModifier(caster,self,"modifier_forced_shout",{Duration = self:GetTalentSpecialValueFor("duration")})
+
+	self:StartDelayedCooldown(self:GetSpecialValueFor("duration"))
 end
 
 --------------------------------------------------------------------------------
