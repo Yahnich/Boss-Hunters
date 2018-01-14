@@ -12892,7 +12892,7 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"2.0"
+		"AbilityCooldown"				"1.0"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -12901,7 +12901,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"armor_to_damage"		"8 8.5 9 9.5 10 10.5 11"
+				"armor_to_damage"		"200 350 500 650 800 950 1100"
 			}
 			"02"
 			{
@@ -26592,7 +26592,6 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
-		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"MaxLevel"						"1"
 	
 		// Time		

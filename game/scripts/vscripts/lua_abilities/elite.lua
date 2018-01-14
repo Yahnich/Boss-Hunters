@@ -76,6 +76,7 @@ function ApplyAttackSlow(keys)
 	local ability = keys.ability
 	if not ability then return end
 	local target = keys.target
+	if target:IsMagicImmune() then return end
 	ability:ApplyDataDrivenModifier(caster,target, "modifier_elite_freezing_moveslow", {duration = 5})
 	ability:ApplyDataDrivenModifier(caster,target, "modifier_elite_freezing_attackslow", {duration = 5})
 	local attackspeed = math.ceil(100 + target:GetIncreasedAttackSpeed() * 100)
@@ -90,6 +91,7 @@ function AdjustAttackSlow(keys)
 	local ability = keys.ability
 	local target = keys.target
 	local freezeMod = target:FindModifierByName("modifier_elite_afterfrost")
+	if target:IsMagicImmune() then freezeMod:Destroy() end
 	local oldTick = freezeMod:GetRemainingTime() + 1
 	local stacks = target:GetModifierStackCount("modifier_elite_freezing_moveslow", caster)
 	target:SetModifierStackCount("modifier_elite_freezing_moveslow", caster, (stacks * freezeMod:GetRemainingTime()) / oldTick)
@@ -225,6 +227,7 @@ function ApplyPlague(keys)
 	local target = keys.target
 	local caster = keys.caster
 	if caster:PassivesDisabled() then return end
+	if target:IsMagicImmune() then return end
 	local ability = keys.ability
 	local currstack = target:GetModifierStackCount(keys.counter, caster)
 	target:RemoveModifierByName(keys.counter)
@@ -269,6 +272,7 @@ function TestGravityFunc(keys)
     local targetPos = keys.target:GetAbsOrigin()
     local casterPos = keys.caster:GetAbsOrigin()
 	if keys.caster:PassivesDisabled() then return end
+	if keys.target:IsMagicImmune() then return end
 	if not keys.caster:IsAlive() then return end
     local direction = targetPos - casterPos
 	local gravMod = 1
@@ -327,6 +331,7 @@ function ArmorDebuff(keys)
 	local target = keys.target
 	local caster = keys.caster
 	if keys.caster:PassivesDisabled() then return end
+	if target:IsMagicImmune() then return end
 	local ability = keys.ability
 	local armordebuff = math.ceil(ability.armor * 0.04)
 	ability:ApplyDataDrivenModifier(caster,target, keys.modifier, {duration = 10})
@@ -340,6 +345,7 @@ function ArmorDebuffAura(keys)
 	local target = keys.target
 	local caster = keys.caster
 	if keys.caster:PassivesDisabled() then return end
+	if target:IsMagicImmune() then return end
 	local ability = keys.ability
 	if not ability.armor then
 		local enemies = FindUnitsInRadius(caster:GetTeamNumber(), 
