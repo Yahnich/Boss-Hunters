@@ -10,6 +10,8 @@ function boss14_execute:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 	
+	if target:TriggerSpellAbsorb(self) then return end
+	
 	self:DealDamage(caster, target, target:GetMaxHealth() * self:GetSpecialValueFor("execution_damage") / 100)
 	if target:GetHealth() == 0 then
 		EmitSoundOn("Hero_Axe.Culling_Blade_Success", target)

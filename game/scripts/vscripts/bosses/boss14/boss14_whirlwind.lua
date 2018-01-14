@@ -23,7 +23,7 @@ function modifier_boss14_whirlwind:OnCreated()
 			local suck = self:GetSpecialValueFor("suck_power") * FrameTime()
 			local radius = self.radius * 2
 			Timers:CreateTimer(function()
-				local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), radius, {flag = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES})
+				local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), radius)
 				for _, enemy in ipairs(enemies) do
 					local dir = CalculateDirection(caster, enemy)
 					enemy:SetAbsOrigin(enemy:GetAbsOrigin() + dir*suck)
