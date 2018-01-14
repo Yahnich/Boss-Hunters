@@ -1464,9 +1464,10 @@ function ParticleManager:FireWarningParticle(position, radius)
 end
 
 function ParticleManager:FireLinearWarningParticle(vStartPos, vEndPos, vWidth)
+	local width = Vector(vWidth, vWidth, vWidth)
 	local fx = ParticleManager:FireParticle("particles/range_ability_line.vpcf", PATTACH_WORLDORIGIN, nil, { [0] = vStartPos,
 																											[1] = vEndPos,
-																											[2] = vWidth} )																						
+																											[2] = width} )																						
 end
 
 function ParticleManager:FireTargetWarningParticle(target)
@@ -1944,4 +1945,12 @@ function CDOTA_BaseNPC:ApplyKnockBack(position, stunDuration, knockbackDuration,
 		knockback_height = height,
 	}
 	self:AddNewModifier(caster, ability, "modifier_knockback", modifierKnockback )
+end
+
+function CDOTABaseAbility:CD_pure()
+    local CD = self:GetCooldown(-1)
+    if self:GetCooldownTimeRemaining() <= CD then
+		self:EndCooldown()
+        self:StartCooldown(CD)
+    end
 end

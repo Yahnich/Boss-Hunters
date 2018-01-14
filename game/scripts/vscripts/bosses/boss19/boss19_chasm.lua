@@ -5,7 +5,7 @@ function boss19_chasm:OnAbilityPhaseStart()
 	local position = self:GetCursorPosition()
 	local startPos = caster:GetAbsOrigin()
 	local endPos = startPos + CalculateDirection(position, caster) * self:GetSpecialValueFor("proj_distance")
-	ParticleManager:FireLinearWarningParticle(startPos, endPos)
+	ParticleManager:FireLinearWarningParticle(startPos, endPos, self:GetSpecialValueFor("proj_width"))
 	return true
 end
 

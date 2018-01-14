@@ -15,10 +15,10 @@ function boss19_the_swarm:OnAbilityPhaseStart()
 		for i = 1, frenzyCount do
 			vDir = RotateVector2D(vDir, dirAngle)
 			newPos = casterPos + vDir * distance
-			ParticleManager:FireLinearWarningParticle(casterPos, newPos)
+			ParticleManager:FireLinearWarningParticle(casterPos, newPos,self:GetSpecialValueFor("proj_width"))
 		end
 	else
-		ParticleManager:FireLinearWarningParticle(casterPos, newPos)
+		ParticleManager:FireLinearWarningParticle(casterPos, newPos, self:GetSpecialValueFor("proj_width"))
 	end
 	return true
 end
