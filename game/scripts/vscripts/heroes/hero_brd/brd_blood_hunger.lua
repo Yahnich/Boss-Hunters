@@ -1,5 +1,6 @@
 brd_blood_hunger = class({})
 LinkLuaModifier( "modifier_blood_hunger", "heroes/hero_brd/brd_blood_hunger.lua" ,LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_blood_hunger_strength", "heroes/hero_brd/brd_blood_hunger.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 function brd_blood_hunger:OnSpellStart()
 	local caster = self:GetCaster()
@@ -11,6 +12,7 @@ function brd_blood_hunger:OnSpellStart()
 		if currentUnits < maxUnits then
 			EmitSoundOn("Hero_Axe.Battle_Hunger", enemy)
 			enemy:AddNewModifier(caster, self, "modifier_blood_hunger", {Duration = self:GetSpecialValueFor("duration")})
+			caster:AddNewModifier(caster, self, "modifier_blood_hunger_strength", {Duration = self:GetSpecialValueFor("duration")}):IncrementStackCount()
 			currentUnits = currentUnits + 1
 		end
 	end
@@ -21,6 +23,7 @@ function brd_blood_hunger:OnSpellStart()
 			if ally ~= caster then
 				EmitSoundOn("Hero_Axe.Battle_Hunger", ally)
 				ally:AddNewModifier(caster, self, "modifier_blood_hunger", {Duration = self:GetSpecialValueFor("duration")})
+				caster:AddNewModifier(caster, self, "modifier_blood_hunger_strength", {Duration = self:GetSpecialValueFor("duration")}):IncrementStackCount()
 			end
 			break
 		end
@@ -98,4 +101,17 @@ end
 
 function modifier_blood_hunger:IsDebuff()
 	return true
+end
+
+modifier_blood_hunger_strength = class({})
+
+function modifier_blood_hunger_strength:DeclareFunctions()
+	local funcs = {
+		MODIFIER_PROPERTY_STATS_STRENGTH_BONUS
+	}
+	return funcs
+end
+
+function modifier_blood_hunger_strength:GetModifierBonusStats_Strength()
+	return self:GetTalentSpecialValueFor("strength_bonus") + self:GetStackCount()
 end
