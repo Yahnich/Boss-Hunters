@@ -60,7 +60,7 @@ if IsServer() then
 				end
 				local damage_health_pct = self.hpdamage + unit:FindModifierByName("modifier_zuus_static_field_ebf_static_charge"):GetStackCount() * self.pct_per_stack
 				-- Deals the damage based on the unit's current health
-				ApplyDamage({victim = unit, attacker = self:GetCaster(), damage = unit:GetHealth() * damage_health_pct, damage_type = ability:GetAbilityDamageType(), ability = ability})
+				ApplyDamage({victim = unit, attacker = self:GetCaster(), damage = unit:GetHealth() * damage_health_pct, damage_type = ability:GetAbilityDamageType(), ability = ability, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
 			end
 		end
 	end
@@ -111,7 +111,7 @@ function StaticAegisAttacked(keys)
 		ParticleManager:SetParticleControlEnt(particleStrike, 0, victim, PATTACH_POINT_FOLLOW, "attach_hitloc", victim:GetAbsOrigin(), true)
 		ParticleManager:SetParticleControlEnt(particleStrike, 1, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
 	ParticleManager:ReleaseParticleIndex(particleStrike)
-	ApplyDamage({victim = target, attacker = victim, damage = ability:GetAbilityDamage(), damage_type = ability:GetAbilityDamageType(), ability = ability, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
+	ApplyDamage({victim = target, attacker = victim, damage = ability:GetAbilityDamage(), damage_type = ability:GetAbilityDamageType(), ability = ability})
 	EmitSoundOn("Item.Maelstrom.Chain_Lightning", target)
 end
 

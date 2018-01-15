@@ -23,3 +23,83 @@ function EntropyTalent(keys)
         })
 	end
 end
+
+
+ancient_apparition_ice_blast_ebf = class({})
+
+function ancient_apparition_ice_blast_ebf:OnSpellStart()
+	local caster = self:GetCaster()
+	local targetPos = self:GetCursorPosition()
+	
+	local vDir = CalculateDirection(targetPos, caster)
+	local vDistance = CalculateDistance(targetPos, caster)
+	local speed = self:GetTalentSpecialValueFor("speed")
+	local initWidth = self:GetTalentSpecialValueFor("radius_min")
+	local endWidth = math.min( initWidth + (vDistance / speed) * self:GetTalentSpecialValueFor("radius_grow"), self:GetTalentSpecialValueFor("radius_max" ) )
+	extraData = {}
+	extraData["endWidth"] = endWidth
+	
+	EmitSoundOn("Hero_Ancient_Apparition.IceBlastRelease.Cast", caster)
+	
+	self:FireLinearProjectile("particles/frostivus_gameplay/holdout_ancient_apparition_ice_blast_final.vpcf", vDir * speed, vDistance, initWidth, {width_end = endWidth, extraData = extraData})
+end
+
+function ancient_apparition_ice_blast_ebf:OnProjectileHit_ExtraData(target, position, extraData)
+	local caster = self:GetCaster()
+	local duration = TernaryOperator(self:GetTalentSpecialValueFor("frostbite_duration_scepter"), caster:HasScepter(), self:GetTalentSpecialValueFor("frostbite_duration"))
+	if target then
+		target:AddNewModifier(caster, self, "modifier_ancient_apparition_ice_blast_ebf", {duration = duration})
+	else
+		EmitSoundOnLocationWithCaster(position, "Hero_Ancient_Apparition.IceBlast.Target", self:GetCaster())
+		local targets = caster:FindEnemyUnitsInRadius(position, tonumber(extraData["endWidth"]))
+		for _, target in ipairs(targets) do
+			target:AddNewModifier(caster, self, "modifier_ancient_apparition_ice_blast_ebf", {duration = duration})
+			self:DealDamage(caster, target, self:GetTalentSpecialValueFor("damage"))
+		end
+	end
+end
+
+modifier_ancient_apparition_ice_blast_ebf = class({})
+LinkLuaModifier("modifier_ancient_apparition_ice_blast_ebf", "lua_abilities/heroes/apparition", LUA_MODIFIER_MOTION_NONE)
+
+function modifier_ancient_apparition_ice_blast_ebf:OnCreated()
+	self.damage = self:GetTalentSpecialValueFor("dot_damage")
+	self.shatter = self:GetTalentSpecialValueFor("kill_pct")
+	if IsServer() then self:StartIntervalThink(1) end
+end
+
+function modifier_ancient_apparition_ice_blast_ebf:OnRefresh()
+	self.damage = self:GetTalentSpecialValueFor("dot_damage")
+	self.shatter = self:GetTalentSpecialValueFor("kill_pct")
+end
+
+function modifier_ancient_apparition_ice_blast_ebf:OnIntervalThink()
+	EmitSoundOn("Hero_Ancient_Apparition.IceBlastRelease.Tick", self:GetParent())
+	self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self.damage)
+end
+
+function modifier_ancient_apparition_ice_blast_ebf:DeclareFunctions()
+	return {MODIFIER_PROPERTY_DISABLE_HEALING, MODIFIER_EVENT_ON_TAKEDAMAGE}
+end
+
+function modifier_ancient_apparition_ice_blast_ebf:GetDisableHealing()
+	return 1
+end
+
+function modifier_ancient_apparition_ice_blast_ebf:OnTakeDamage(params)
+	if params.unit == self:GetParent() and params.unit:GetHealthPercent() <= self.shatter then
+		self:GetParent():Kill( self:GetAbility(), self:GetCaster() )
+	end
+end
+
+function modifier_ancient_apparition_ice_blast_ebf:GetEffectName()
+	return "particles/units/heroes/hero_ancient_apparition/ancient_apparition_ice_blast_debuff.vpcf"
+end
+
+function modifier_ancient_apparition_ice_blast_ebf:GetStatusEffectName()
+	return "particles/status_fx/status_effect_iceblast.vpcf"
+end
+
+function modifier_ancient_apparition_ice_blast_ebf:StatusEffectPriority()
+	return 10
+end

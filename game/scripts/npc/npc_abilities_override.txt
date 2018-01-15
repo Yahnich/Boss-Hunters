@@ -2199,7 +2199,7 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"75.0 72.5 70.0 67.5 65.0 62.5 60.0"
+		"AbilityCooldown"				"60.0"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -8200,7 +8200,7 @@
 			"03"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"bonus_damage"				"40"
+				"bonus_damage"				"15"
 			}
 			"04"
 			{
@@ -10626,24 +10626,19 @@
 			}
 			"02"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"ward_hp_tooltip"		"100 200 300 400 500 600 700"
+				"var_type"						"FIELD_INTEGER"
+				"ward_hp_tooltip"				"100 200 300 400 500 600 700"
+				"LinkedSpecialBonus"			"special_bonus_unique_venomancer"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"ward_damage_tooltip"	"100 200 400 800 1600 3200 6400"
+				"var_type"						"FIELD_INTEGER"
+				"ward_damage_tooltip"			"100 200 300 400 800 1200 2400"
+				"LinkedSpecialBonus"			"special_bonus_unique_venomancer"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
-			"04" // For special bonus at level 25
-			{
-				"var_type"				"FIELD_INTEGER"
-				"ward_hp"				"200 400 600 800 1000 1200 1400"
-			}
-			"05" // For special bonus at level 25
-			{
-				"var_type"				"FIELD_INTEGER"
-				"ward_damage"			"200 400 800 1600 3200 6400 12800"
-			}
+
 		}
 	}
 	
@@ -28577,7 +28572,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rock_damage"			"1000 2000 4000 8000 16000 32000 64000"
+				"rock_damage"			"2000 4000 8000 12000 18000 35000 68000"
 			}
 			"04"
 			{
@@ -28621,6 +28616,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
+		"RequiredLevel"					"6"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -28648,32 +28644,32 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"speed"					"800"
+				"speed"					"1000"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rock_speed"			"1600"
+				"rock_speed"			"2000"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"distance"				"800.0"
+				"distance"				"1000.0"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"rock_distance"			"1600.0"
+				"rock_distance"			"2000.0"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"delay"					"0.6"
+				"delay"					"0.1"
 			}
 			"07"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"750 1000 2000 4000 8000 16000 32000"
+				"damage"				"1200 2200 4200 8200 16500 32500 65000"
 			}
 			"08"
 			{
@@ -28706,6 +28702,7 @@
 		"FightRecapLevel"				"1"
 		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
+		"RequiredLevel"					"6"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -28732,27 +28729,27 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"miss_rate"			"75"
+				"miss_rate"				"75"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"miss_duration"			"2.5 3 3.5 4"
+				"miss_duration"			"4"
 			}
 			"04"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"pull_units_per_second_heroes"		"600"
+				"var_type"							"FIELD_FLOAT"
+				"pull_units_per_second_heroes"		"1000"
 			}				
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rock_damage"			"1000 2000 4000 8000 16000 32000 64000"
+				"rock_damage"			"1200 2200 4200 8400 16600 32800 65000"
 			}				
 			"06"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"pull_units_per_second"		"1000"
+				"pull_units_per_second"		"1200"
 			}
 			"07"
 			{
@@ -28810,7 +28807,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"120.0"
+				"duration"				"150.0"
 			}
 		}
 	}
@@ -28853,19 +28850,19 @@
 			"01"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"duration"		"3"
+				"duration"			"3"
 			}
 
 			"02"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"damage"	"80000"
+				"damage"			"88888"
 			}
 
 			"03"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"aoe"		"1000"
+				"aoe"				"1000"
 			}
 		}
 	}

@@ -6,15 +6,41 @@ function SableDjinnHandler(keys)
 			caster.sandStorm = ParticleManager:CreateParticle("particles/units/heroes/hero_sandking/sandking_sandstorm.vpcf",PATTACH_POINT_FOLLOW,caster)
 		end
 		ability:ApplyDataDrivenModifier(caster, caster, "modifier_sable_djinn_sandstorm", {})
+		local thinkinterval = ability:GetTalentSpecialValueFor("sand_storm_think")
+		local maxtime = ability:GetTalentSpecialValueFor("sand_storm_grow_time")
+		caster.growthReached = caster.growthReached or 0
+		if caster.growthReached < maxtime then
+			if not caster.sandStormRadius then caster.sandStormRadius = ability:GetTalentSpecialValueFor("sand_storm_base_radius") 
+			else caster.sandStormRadius = caster.sandStormRadius + ability:GetTalentSpecialValueFor("sand_storm_radius_grow")*thinkinterval end
+			
+			if not caster.sandStormDamage then caster.sandStormDamage = ability:GetTalentSpecialValueFor("sand_storm_base_damage") 
+			else caster.sandStormDamage = caster.sandStormDamage + ability:GetTalentSpecialValueFor("sand_storm_damage_grow")*thinkinterval end
+			caster.growthReached = caster.growthReached + thinkinterval
+			
+			ParticleManager:SetParticleControl(caster.sandStorm, 1, Vector(caster.sandStormRadius,caster.sandStormRadius,caster.sandStormRadius))
+		end
 	else
-		caster:RemoveModifierByName("modifier_sable_djinn_sandstorm")
-		if caster.sandStorm then
-			ParticleManager:DestroyParticle(caster.sandStorm, false)
-			ParticleManager:ReleaseParticleIndex(caster.sandStorm)
-			caster.sandStorm = nil
-			caster.growthReached = 0
-			caster.sandStormRadius = nil
-			caster.sandStormDamage = nil
+		if caster.growthReached == 0 then 
+			caster:RemoveModifierByName("modifier_sable_djinn_sandstorm")
+			if caster.sandStorm then
+				ParticleManager:DestroyParticle(caster.sandStorm, false)
+				ParticleManager:ReleaseParticleIndex(caster.sandStorm)
+				caster.sandStorm = nil
+				caster.growthReached = 0
+				caster.sandStormRadius = nil
+				caster.sandStormDamage = nil
+			end
+		else
+			local thinkinterval = ability:GetTalentSpecialValueFor("sand_storm_think")
+			local maxtime = ability:GetTalentSpecialValueFor("sand_storm_grow_time")
+			if not caster.sandStormRadius then caster.sandStormRadius = ability:GetTalentSpecialValueFor("sand_storm_base_radius") 
+			else caster.sandStormRadius = caster.sandStormRadius - ability:GetTalentSpecialValueFor("sand_storm_radius_grow")*thinkinterval end
+			
+			if not caster.sandStormDamage then caster.sandStormDamage = ability:GetTalentSpecialValueFor("sand_storm_base_damage") 
+			else caster.sandStormDamage = caster.sandStormDamage - ability:GetTalentSpecialValueFor("sand_storm_damage_grow")*thinkinterval end
+			caster.growthReached = caster.growthReached - thinkinterval
+			
+			ParticleManager:SetParticleControl(caster.sandStorm, 1, Vector(caster.sandStormRadius,caster.sandStormRadius,caster.sandStormRadius))
 		end
 	end
 end
@@ -22,21 +48,6 @@ end
 function SableDjinnDamage(keys)
 	local caster = keys.caster
 	local ability = keys.ability
-	
-	local thinkinterval = ability:GetTalentSpecialValueFor("sand_storm_think")
-	local maxtime = ability:GetTalentSpecialValueFor("sand_storm_grow_time")
-	caster.growthReached = caster.growthReached or 0
-	if caster.growthReached < maxtime then
-		if not caster.sandStormRadius then caster.sandStormRadius = ability:GetTalentSpecialValueFor("sand_storm_base_radius") 
-		else caster.sandStormRadius = caster.sandStormRadius + ability:GetTalentSpecialValueFor("sand_storm_radius_grow")*thinkinterval end
-		
-		if not caster.sandStormDamage then caster.sandStormDamage = ability:GetTalentSpecialValueFor("sand_storm_base_damage") 
-		else caster.sandStormDamage = caster.sandStormDamage + ability:GetTalentSpecialValueFor("sand_storm_damage_grow")*thinkinterval end
-		caster.growthReached = caster.growthReached + thinkinterval
-	end
-	
-	ParticleManager:SetParticleControl(caster.sandStorm, 0, caster:GetAbsOrigin())
-	ParticleManager:SetParticleControl(caster.sandStorm, 1, Vector(caster.sandStormRadius,caster.sandStormRadius,caster.sandStormRadius))
 	
 	local enemies = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(), nil, caster.sandStormRadius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER , false)
 	

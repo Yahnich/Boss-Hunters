@@ -2,21 +2,19 @@ modifier_enchantress_siegebreaker = class({})
 
 
 function modifier_enchantress_siegebreaker:OnCreated( kv )
-	self.attackrange = self:GetAbility():GetSpecialValueFor( "bonus_attack_range" )
-	self.projectilespeed = self:GetAbility():GetSpecialValueFor( "bonus_projectile_speed" )
-	self.damageamp = self:GetAbility():GetSpecialValueFor( "damage_amp" )
-	self.selfslow = self:GetAbility():GetSpecialValueFor( "moveslow" )
+	self.attackrange = self:GetAbility():GetTalentSpecialValueFor( "bonus_attack_range" )
+	self.projectilespeed = self:GetAbility():GetTalentSpecialValueFor( "bonus_projectile_speed" )
+	self.damageamp = self:GetAbility():GetTalentSpecialValueFor( "damage_amp" )
+	self.selfslow = self:GetAbility():GetTalentSpecialValueFor( "moveslow" )
 end
 
 --------------------------------------------------------------------------------
 
 function modifier_enchantress_siegebreaker:OnRefresh( kv )
-	self.attackrange = self:GetAbility():GetSpecialValueFor( "bonus_attack_range" )
-	self.projectilespeed = self:GetAbility():GetSpecialValueFor( "bonus_projectile_speed" )
-	self.damageamp = self:GetAbility():GetSpecialValueFor( "damage_amp" )
-	if IsServer() then
-		self.selfslow = self:GetAbility():GetTalentSpecialValueFor( "moveslow" )
-	end
+	self.attackrange = self:GetAbility():GetTalentSpecialValueFor( "bonus_attack_range" )
+	self.projectilespeed = self:GetAbility():GetTalentSpecialValueFor( "bonus_projectile_speed" )
+	self.damageamp = self:GetAbility():GetTalentSpecialValueFor( "damage_amp" )
+	self.selfslow = self:GetAbility():GetTalentSpecialValueFor( "moveslow" )
 end
 
 --------------------------------------------------------------------------------
