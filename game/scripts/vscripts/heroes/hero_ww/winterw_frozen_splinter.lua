@@ -1,6 +1,10 @@
 winterw_frozen_splinter = class({})
 LinkLuaModifier( "modifier_frozen_splinter", "heroes/hero_ww/winterw_frozen_splinter.lua" ,LUA_MODIFIER_MOTION_NONE )
 
+function winterw_frozen_splinter:PiercesDisableResistance()
+    return true
+end
+
 function winterw_frozen_splinter:OnSpellStart()
 	local caster = self:GetCaster()
 

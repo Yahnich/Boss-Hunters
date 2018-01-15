@@ -11,24 +11,34 @@ function gyro_rocket_salvo:OnToggle()
 	else
 		caster:RemoveModifierByName("modifier_rocket_salvo")
 		self:RefundManaCost()
+		self:StartCooldown(self:GetCooldown(self:GetLevel()))
 	end
 end
 
 function gyro_rocket_salvo:OnProjectileHit(hTarget, vLocation)
+	local target = hTarget
 	EmitSoundOn("Hero_Gyrocopter.Rocket_Barrage.Impact", caster)
-	self:DealDamage(self:GetCaster(), hTarget, self:GetSpecialValueFor("damage"), {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
+	self:DealDamage(self:GetCaster(), target, self:GetSpecialValueFor("damage"), {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
 end
 
 modifier_rocket_salvo = class({})
 
 function modifier_rocket_salvo:OnCreated(table)
 	if IsServer() then
-		self:StartIntervalThink(self:GetSpecialValueFor("fire_rate"))
+		self:StartIntervalThink(self:GetTalentSpecialValueFor("fire_rate"))
+	end
+end
+
+function modifier_rocket_salvo:OnRemoved()
+	if IsServer() then
+		self:GetCaster():RemoveGesture(ACT_DOTA_OVERRIDE_ABILITY_1)
 	end
 end
 
 function modifier_rocket_salvo:OnIntervalThink()
 	local caster = self:GetCaster()
+
+	caster:StartGestureWithPlaybackRate(ACT_DOTA_OVERRIDE_ABILITY_1, 0.5)
 
 	if caster:GetMana() >= self:GetAbility():GetManaCost(self:GetAbility():GetLevel()) then
 		local currentTargets = 0
@@ -37,18 +47,18 @@ function modifier_rocket_salvo:OnIntervalThink()
 			EmitSoundOn("Hero_Gyrocopter.Rocket_Barrage.Launch", caster)
 			caster:SpendMana(self:GetAbility():GetManaCost(self:GetAbility():GetLevel()), self:GetAbility())
 			for _,enemy in pairs(enemies) do
-				if currentTargets < self:GetSpecialValueFor("max_targets") then
+				if currentTargets < self:GetTalentSpecialValueFor("max_targets") then
 					if RollPercentage(50) then
 						local info = 
 						{
 							Target = enemy,
 							Source = caster,
-							Ability = self,	
+							Ability = self:GetAbility(),	
 							EffectName = "particles/units/heroes/hero_gyrocopter/gyro_rocket_barrage.vpcf",
 						    iMoveSpeed = 1000,
 							iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_ATTACK_1,
 							bDrawsOnMinimap = false,                          -- Optional
-					        bDodgeable = true,                                -- Optional
+					        bDodgeable = false,                                -- Optional
 					        bIsAttack = false,                                -- Optional
 					        bVisibleToEnemies = true,                         -- Optional
 					        bReplaceExisting = false,                         -- Optional
@@ -59,16 +69,16 @@ function modifier_rocket_salvo:OnIntervalThink()
 						}
 						ProjectileManager:CreateTrackingProjectile(info)
 					else
-						local info = 
+						local info2 = 
 						{
 							Target = enemy,
 							Source = caster,
-							Ability = self,	
+							Ability = self:GetAbility(),	
 							EffectName = "particles/units/heroes/hero_gyrocopter/gyro_rocket_barrage.vpcf",
 						    iMoveSpeed = 1000,
 							iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_ATTACK_2,
 							bDrawsOnMinimap = false,                          -- Optional
-					        bDodgeable = true,                                -- Optional
+					        bDodgeable = false,                                -- Optional
 					        bIsAttack = false,                                -- Optional
 					        bVisibleToEnemies = true,                         -- Optional
 					        bReplaceExisting = false,                         -- Optional
@@ -77,7 +87,7 @@ function modifier_rocket_salvo:OnIntervalThink()
 							iVisionRadius = 100,                              -- Optional
 							iVisionTeamNumber = caster:GetTeamNumber(),        -- Optional
 						}
-						ProjectileManager:CreateTrackingProjectile(info)
+						ProjectileManager:CreateTrackingProjectile(info2)
 					end
 					currentTargets = currentTargets + 1
 				end

@@ -4,6 +4,10 @@ LinkLuaModifier( "modifier_ground_pound", "heroes/hero_brd/brd_ground_pound.lua"
 LinkLuaModifier( "modifier_ground_pound_damage_reduction", "heroes/hero_brd/brd_ground_pound.lua" ,LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_blood_hunger", "heroes/hero_brd/brd_blood_hunger.lua" ,LUA_MODIFIER_MOTION_NONE )
 
+function brd_ground_pound:PiercesDisableResistance()
+    return true
+end
+
 function brd_ground_pound:OnSpellStart()
 	local caster = self:GetCaster()
 
