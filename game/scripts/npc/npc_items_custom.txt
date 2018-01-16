@@ -2449,6 +2449,7 @@
 		"AbilityCooldown"				"16.0"
 		"AbilitySharedCooldown"			"blademail"
 		"IsAetherAmplified"				"0"
+		"HasPureCooldown"				"1"
 	
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -2538,6 +2539,7 @@
 		"AbilityCooldown"				"15.0"
 		"AbilitySharedCooldown"			"blademail"
 		"IsAetherAmplified"				"0"
+		"HasPureCooldown"				"1"
 	
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -12906,7 +12908,7 @@
 		"ID"							"2012"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"BaseClass"						"item_recipe_blade_mail"
-		"AbilityTextureName"	"custom/asura_wand"
+		"AbilityTextureName"			"custom/asura_wand"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
