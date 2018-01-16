@@ -20,6 +20,14 @@ function HasValInTable(checkTable, val)
 	return false
 end
 
+function TernaryOperator(value, bCheck, default)
+	if bCheck then 
+		return value 
+	else 
+		return default
+	end
+end
+
 function GetPerpendicularVector(vector)
 	return Vector(vector.y, -vector.x)
 end
@@ -1568,6 +1576,7 @@ function CDOTABaseAbility:FireLinearProjectile(FX, velocity, distance, width, da
 		Source = internalData.source or self:GetCaster(),
 		iUnitTargetTeam = internalData.team or DOTA_UNIT_TARGET_TEAM_ENEMY,
 		iUnitTargetType = internalData.type or DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+		ExtraData = internalData.extraData
 	}
 	ProjectileManager:CreateLinearProjectile( info )
 end

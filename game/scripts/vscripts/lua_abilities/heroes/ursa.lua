@@ -1,4 +1,4 @@
-LinkLuaModifier( "modifier_fury_swipes_bonus_damage", "scripts/vscripts/lua_abilities/heroes/ursa.lua" ,LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_fury_swipes_bonus_damage", "scripts/vscripts/lua_abilities/heroes/ursa.lua", LUA_MODIFIER_MOTION_NONE )
 
 function fury_swipes_check_stacks( keys )
 	local caster = keys.caster
@@ -9,28 +9,6 @@ function fury_swipes_check_stacks( keys )
 	
 	target.stacks = target:GetModifierStackCount( modifierName, ability )
 	ability:ApplyDataDrivenModifier( caster, caster, modifierNameB, {} )
-end
-
-function ScepterFunction(keys) -- handles purge rules
-	local caster = keys.caster
-	local ability = keys.ability
-	
-	local RemovePositiveBuffs = false
-	local RemoveDebuffs = true
-	local BuffsCreatedThisFrameOnly = false
-	local RemoveStuns = false
-	local RemoveExceptions = false
-	if caster:HasScepter() then
-		RemoveStuns = true
-		RemoveExceptions = true
-		ability:ApplyDataDrivenModifier(caster,caster, "modifier_claw_scepter", {})
-	end
-	
-	local duration = ability:GetTalentSpecialValueFor("duration")
-	caster:Purge( RemovePositiveBuffs, RemoveDebuffs, BuffsCreatedThisFrameOnly, RemoveStuns, RemoveExceptions)
-	ability:ApplyDataDrivenModifier( caster, caster, "Modifier_Claw", {duration = duration} )
-	ability:ApplyDataDrivenModifier( caster, caster, "modifier_claw_damage_reduction", {duration = duration} )
-	ability:ApplyDataDrivenModifier( caster, caster, "modifier_ursa_enrage", {duration = duration} )
 end
 
 function fury_swipes_attack( keys )
@@ -54,16 +32,17 @@ function fury_swipes_attack( keys )
 	ability:ApplyDataDrivenModifier( caster, target, modifierName, { Duration = duration } )
 	target:SetModifierStackCount( modifierName, ability, current_stack )
 	
-	if caster:HasModifier( "modifier_claw_scepter" ) then
+	if caster:HasModifier("modifier_ursa_claw") and caster:HasScepter() then
         local ability_claw = caster:FindAbilityByName("ursa_claw")
 		local damage = ( target.stacks ) * (ability:GetTalentSpecialValueFor("bonus_damage_per_stack"))
         local percent = ability_claw:GetTalentSpecialValueFor("Pierce_percent_fury")*0.01
         local multiplier = ability_claw:GetTalentSpecialValueFor("physical_fury_damage_mult")*0.01
         local damageTable_fury = {victim = target,
                         attacker = caster,
-                        damage = damage*percent*multiplier/get_aether_multiplier(caster),
+                        damage = damage*percent*multiplier,
                         ability = keys.ability,
                         damage_type = DAMAGE_TYPE_PURE,
+						damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION
                         }
         ApplyDamage(damageTable_fury)
     end
@@ -96,7 +75,7 @@ function modifier_fury_swipes_bonus_damage:GetModifierProcAttack_BonusDamage_Phy
 	local multiplier = 1
 	local adder = 1
     if caster:IsIllusion() then return 0 end
-	if caster:HasModifier( "Modifier_Claw" ) then
+	if caster:HasModifier( "modifier_ursa_claw" ) then
         local ability_claw = caster:FindAbilityByName("ursa_claw")
 		multiplier = ability_claw:GetTalentSpecialValueFor("physical_fury_damage_mult")*0.01
 	end
@@ -174,4 +153,62 @@ function overpower_decrease_stack( keys )
 	else
 		caster:RemoveModifierByName( modifierName )
 	end
+end
+
+
+ursa_claw = class({})
+
+function ursa_claw:GetBehavior()
+	local val = DOTA_ABILITY_BEHAVIOR_NO_TARGET + DOTA_ABILITY_BEHAVIOR_IMMEDIATE
+	if self:GetCaster():HasScepter() then val = val + DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE end
+	return val
+end
+
+function ursa_claw:OnSpellStart()
+	local caster = self:GetCaster()
+	
+	EmitSoundOn("Hero_Ursa.Enrage", caster)
+	if caster:HasScepter() then
+		caster:Dispel(caster, true)
+	end
+	caster:AddNewModifier(caster, self, "modifier_ursa_claw", {duration = self:GetTalentSpecialValueFor("duration")})
+end
+
+modifier_ursa_claw = class({})
+LinkLuaModifier("modifier_ursa_claw", "lua_abilities/heroes/ursa", LUA_MODIFIER_MOTION_NONE)
+
+function modifier_ursa_claw:OnCreated()
+	self.pierce = self:GetTalentSpecialValueFor("Pierce_percent") / 100
+	self.reduction = self:GetTalentSpecialValueFor("damage_reduction")
+end
+
+function modifier_ursa_claw:OnRefresh()
+	self.pierce = self:GetTalentSpecialValueFor("Pierce_percent") / 100
+	self.reduction = self:GetTalentSpecialValueFor("damage_reduction")
+end
+
+function modifier_ursa_claw:DeclareFunctions()
+	return {MODIFIER_EVENT_ON_ATTACK_LANDED, MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE}
+end
+
+function modifier_ursa_claw:GetModifierIncomingDamage_Percentage()
+	return self.reduction
+end
+
+function modifier_ursa_claw:OnAttackLanded(params)
+	if params.attacker == self:GetParent() then
+		self:GetAbility():DealDamage(self:GetParent(), params.target, params.damage * self.pierce)
+	end
+end
+
+function modifier_ursa_claw:GetEffectName()
+	return "particles/units/heroes/hero_ursa/ursa_enrage_buff.vpcf"
+end
+
+function modifier_ursa_claw:GetHeroEffectName()
+	return "particles/units/heroes/hero_ursa/ursa_enrage_hero_effect.vpcf"
+end
+
+function modifier_ursa_claw:HeroEffectPriority()
+	return 10
 end
