@@ -23,7 +23,9 @@ function modifier_cleave_strike:OnTakeDamage(params)
 		if (params.unit == self:GetCaster() or ( params.attacker == self:GetCaster() and self:GetCaster():HasTalent("special_bonus_unique_brd_cleave_strike_2") ) ) 
 		and self:GetAbility():IsCooldownReady() 
 		and RollPercentage(self:GetTalentSpecialValueFor("chance")) then
-			self:Spin(params)
+			if params.unit:IsAlive() then
+				self:Spin(params)
+			end
 		end
 	end
 end
@@ -37,8 +39,11 @@ function modifier_cleave_strike:Spin(params)
 
 	self:GetCaster():StartGesture(ACT_DOTA_CAST_ABILITY_3)
 
-	params.attacker:Taunt(self:GetAbility(), self:GetCaster(), self:GetTalentSpecialValueFor("duration"))
-
+	if params.attacker == self:GetCaster() then
+		params.target:Taunt(self:GetAbility(), self:GetCaster(), self:GetTalentSpecialValueFor("duration"))
+	else
+		params.attacker:Taunt(self:GetAbility(), self:GetCaster(), self:GetTalentSpecialValueFor("duration"))
+	end
 
 	local enemies = self:GetCaster():FindEnemyUnitsInRadius(self:GetCaster():GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"), {})
 	for _,enemy in pairs(enemies) do

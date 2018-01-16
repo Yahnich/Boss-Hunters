@@ -2,6 +2,7 @@ modifier_taunt_generic = class({})
 function modifier_taunt_generic:OnCreated(table)
 	if IsServer() then
 		self:GetParent():SetForceAttackTarget(self:GetCaster())
+		self:StartIntervalThink(FrameTime())
 	end
 end
 
@@ -9,6 +10,18 @@ function modifier_taunt_generic:OnDestroy()
 	if IsServer() then
 		self:GetParent():SetForceAttackTarget(nil)
 	end
+end
+
+function modifier_taunt_generic:OnIntervalThink()
+	self:GetParent():SetForceAttackTarget(self:GetCaster())
+
+	local newOrder = {
+ 		UnitIndex = self:GetParent():entindex(), 
+ 		OrderType = DOTA_UNIT_ORDER_ATTACK_MOVE,
+ 		TargetIndex = self:GetCaster():entindex(), --Optional.  Only used when targeting units
+ 	}
+ 
+	ExecuteOrderFromTable(newOrder)
 end
 
 function modifier_taunt_generic:GetTauntTarget()

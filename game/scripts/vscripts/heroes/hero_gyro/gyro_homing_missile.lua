@@ -22,10 +22,13 @@ function modifier_homing_missile:OnCreated(table)
 end
 
 function modifier_homing_missile:OnIntervalThink()
-	local enemies = self:GetCaster():FindEnemyUnitsInRadius(self:GetCaster():GetAbsOrigin(), self:GetSpecialValueFor("search_radius"), {})
-	for _,enemy in pairs(enemies) do
-		self:LaunchMissile(enemy)
-		break
+	if self:GetCaster():IsAlive() and self:GetAbility():IsCooldownReady() then
+		local enemies = self:GetCaster():FindEnemyUnitsInRadius(self:GetCaster():GetAbsOrigin(), self:GetSpecialValueFor("search_radius"), {})
+		for _,enemy in pairs(enemies) do
+			self:LaunchMissile(enemy)
+			self:GetAbility():StartCooldown(self:GetAbility():GetTrueCooldown())
+			break
+		end
 	end
 end
 
@@ -35,11 +38,8 @@ function modifier_homing_missile:LaunchMissile(hTarget)
 	local ability = self:GetAbility()
 	local fire = 0
 
-	local missile_recharge_time = self:GetSpecialValueFor("missile_recharge_time")
-
 	--create the missile and apply the restricted modifier
 	local homingMissile = CreateUnitByName("npc_dota_gyrocopter_homing_missile",caster:GetAbsOrigin(),true,caster,caster:GetOwnerEntity(),caster:GetTeam())
-	ability:StartCooldown(missile_recharge_time)
 	homingMissile:AddNewModifier(caster, ability, "modifier_restricted", {})
 	homingMissile:AddNewModifier(caster, ability, "modifier_movespeed_cap", {})
 	

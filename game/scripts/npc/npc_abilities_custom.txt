@@ -984,7 +984,6 @@
 			}
 		}
 	}
-	
 	//=================================================================================================================
 	// Ancient Apparition: Ice Blast
 	//=================================================================================================================
@@ -1002,7 +1001,7 @@
 		"LevelsBetweenUpgrades"			"7"
 		"MaxLevel"						"7"
 		"AbilityTextureName"			"ancient_apparition_ice_blast"
-
+	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastPoint"				"0.01 0.01 0.01"
@@ -1077,7 +1076,6 @@
 			}
 		}
 	}
-	
 	//----------ANTIMAGE
 	"antimage_mage_rage"
 	{
@@ -5938,232 +5936,6 @@
 	        }
 		}
 	}
-	
-	"guardian_hell_flaming_fist"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_datadriven"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityTextureName"			"custom/hell_guardian_flaming_fist"
-		
-		"precache"
-	    {
-	    	"soundfile"                     "soundevents/game_sounds_heroes/game_sounds_ember_spirit.vsndevts"
-	    	"particle"                      "particles/units/heroes/hero_ember_spirit/ember_spirit_sleight_of_fist_cast.vpcf"
-	        "particle"                      "particles/units/heroes/hero_ember_spirit/ember_spirit_sleight_of_fist_targetted_marker.vpcf"
-	        "particle"                      "particles/units/heroes/hero_ember_spirit/ember_spirit_sleightoffist_tgt.vpcf"
-	        "particle"                      "particles/units/heroes/hero_ember_spirit/ember_spirit_sleightoffist_trail.vpcf"
-	    }
-		
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"100"
-		"AOERadius" 					"%radius"
-		
-		"AbilityCastAnimation"			"ACT_DOTA_DIE"	// Activity
-		"AnimationPlaybackRate"			"1.0"						// Animation speed multiplier
-		"AnimationIgnoresModelScale"	"1"
-
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"6.0"
-		"AbilityCastPoint"				"0.1"
-
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"               "200"
-
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-	        {
-	            "var_type"              "FIELD_INTEGER"
-	            "radius"             	"1000"  //The meteor lands on the ground this many seconds after it was cast.
-	        }
-		}
-		// Modifiers
-		//-------------------------------------------------------------------------------------------------------------	
-		"OnSpellStart"
-		{
-			"FireSound"
-	        {
-	            "Target"                    "CASTER"
-	            "EffectName"                "Hero_EmberSpirit.SleightOfFist.Cast"
-	        }
-	        "ApplyModifier"
-	        {
-	            "Target"                    "CASTER"
-	            "ModifierName"              "modifier_sleight_of_fist_caster_datadriven"
-	        }
-			"RunScript"
-			{
-				"ScriptFile"                                "lua_boss/boss_36_guardian.lua"
-				"Function"                                  "flaming_fist"
-				"Target"                   					 "POINT"
-			}
-
-		}
-		"Modifiers"
-	    {
-	        "modifier_sleight_of_fist_caster_datadriven"
-	        {
-	            "IsPurgable"                "0"
-	        
-	            "States"
-	            {
-	                "MODIFIER_STATE_INVULNERABLE"       "MODIFIER_STATE_VALUE_ENABLED"
-	                "MODIFIER_STATE_NO_HEALTH_BAR"      "MODIFIER_STATE_VALUE_ENABLED"
-	                "MODIFIER_STATE_NO_UNIT_COLLISION"  "MODIFIER_STATE_VALUE_ENABLED"
-	                "MODIFIER_STATE_ROOTED"             "MODIFIER_STATE_VALUE_ENABLED"
-	            }
-	        }
-	    }
-	}
-
-
-	"guardian_hell_hell_on_earth"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_datadriven"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
-		"AbilityTextureName"			"custom/hell_guardian_hell_on_earth"
-		
-		"precache"
-	    {
-	        "particle"  "particles/shadow_doom_ring.vpcf"
-	    }
-		
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"1500"
-		"AbilityManaCost"               "200"
-		
-		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"	// Activity
-		"AnimationPlaybackRate"			"0.2"						// Animation speed multiplier
-		"AnimationIgnoresModelScale"	"1"
-
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"10"
-		"AbilityCastPoint"				"0.5"
-
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-	        {
-	            "var_type"              "FIELD_FLOAT"
-	            "damage"             "100000 200000 300000"  //The meteor lands on the ground this many seconds after it was cast.
-	        }
-		}
-		
-		// Modifiers
-		//-------------------------------------------------------------------------------------------------------------	
-		"OnSpellStart"
-		{
-			"RunScript"
-			{
-				"ScriptFile"                                "lua_boss/boss_36_guardian.lua"
-				"Function"                                  "hell_on_earth"
-			}
-		}
-	}
-
-	"guardian_hell_passive"
-	{
-	    // General
-	    //-------------------------------------------------------------------------------------------------------------
-	    "BaseClass"             "ability_datadriven"
-	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-	    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
-	    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
-	    "FightRecapLevel"               "1"
-	    "AbilityTextureName"			"custom/hell_guardian_passive"
-	    "MaxLevel"                      "1"
-
-	    // Special
-	    //-------------------------------------------------------------------------------------------------------------
-
-	    "precache"
-	    {
-	        "particle"          "particles/demon_shield.vpcf"
-	    }
-		"OnOwnerDied"
-		{
-			"CreateItem"
-			{
-				"Target"
-				{
-					"Center" 	"CASTER"
-					"Flags"		"DOTA_UNIT_TARGET_FLAG_DEAD"
-				}			
-				"ItemName"			"item_bag_of_gold"
-				"ItemCount"			"25"
-				"SpawnRadius"		"25"
-				"ItemChargeCount"	"600"
-				"AutoUse"			"1"
-				"LaunchHeight"		"300"
-				"LaunchDistance"	"?50 750"
-				"LaunchDuration"	"0.75"
-			}
-		}
-	    "Modifiers"
-	    {
-	    	"modifier_spawn"
-	    	{
-	            "Passive"           "1"
-	            "IsHidden"          "1"
-	            "IsBuff"            "1"
-	            "IsDebuff"          "0"
-	            "IsPurgable"        "0"
-	            "Attributes"        "MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
-
-	    		"OnCreated"
-	    		{
-	    			"RunScript"
-					{
-						"ScriptFile"                                "lua_boss/boss_36_guardian.lua"
-						"Function"                                  "creation"
-					}
-	    		}
-	        }
-	        "invincible"
-	        {
-	        	"Passive"           "0"
-	            "IsHidden"          "1"
-	            "IsBuff"            "1"
-	            "IsDebuff"          "0"
-	            "IsPurgable"        "0"
-	            "Attributes"        "MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
-
-	            "Properties"
-	            {
-	                "MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL"      "1"
-	                "MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_MAGICAL"      "1"
-	                "MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PURE"      "1"
-	                "MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"  "0"
-	            }
-				"OnAttacked"
-				{
-					"RunScript"
-					{
-						"ScriptFile"                                "lua_boss/boss_36_guardian.lua"
-						"Function"                                  "Charge_damage"
-					}
-				}
-	    	}
-		}
-	}
-	
 	"boss_fire_aura"
 	{
 		// General
@@ -22626,6 +22398,65 @@
 			}
 		}
 	}
+	//=================================================================================================================
+	// Dazzle: Weave
+	//=================================================================================================================
+	"dazzle_weave_ebf"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/heroes/dazzle"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"FightRecapLevel"				"2"
+		"LevelsBetweenUpgrades"			"7"
+		"MaxLevel"						"7"
+		"AbilityTextureName"			"dazzle_weave"
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"2000"
+		"AbilityCastPoint"				"0.3 0.3 0.3"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"40"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"100 200 300 400 800 1600 3200"
+		
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_dazzle/dazzle_weave.vpcf"
+			"particle"					"particles/status_fx/status_effect_armor_dazzle.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_dazzle.vsndevts"
+		}
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"575 600 625 650 675 700 725"
+			}
+			"02"
+			{	
+				"var_type"					"FIELD_FLOAT"
+				"armor_per_second"			"5.0 10.0 15.0 20.0 25.0 30.0 35.0"
+				"LinkedSpecialBonus"		"special_bonus_unique_dazzle_4"
+			}
+			"03"
+			{	
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"24.0"
+			}
+		}
+	}
 	"death_coil_ebf"
 	{
 		// General
@@ -27461,6 +27292,227 @@
 			}
 		}
 	}
+	"guardian_hell_flaming_fist"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityTextureName"			"custom/hell_guardian_flaming_fist"
+		
+		"precache"
+	    {
+	    	"soundfile"                     "soundevents/game_sounds_heroes/game_sounds_ember_spirit.vsndevts"
+	    	"particle"                      "particles/units/heroes/hero_ember_spirit/ember_spirit_sleight_of_fist_cast.vpcf"
+	        "particle"                      "particles/units/heroes/hero_ember_spirit/ember_spirit_sleight_of_fist_targetted_marker.vpcf"
+	        "particle"                      "particles/units/heroes/hero_ember_spirit/ember_spirit_sleightoffist_tgt.vpcf"
+	        "particle"                      "particles/units/heroes/hero_ember_spirit/ember_spirit_sleightoffist_trail.vpcf"
+	    }
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"100"
+		"AOERadius" 					"%radius"
+		
+		"AbilityCastAnimation"			"ACT_DOTA_DIE"	// Activity
+		"AnimationPlaybackRate"			"1.0"						// Animation speed multiplier
+		"AnimationIgnoresModelScale"	"1"
+	
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"6.0"
+		"AbilityCastPoint"				"0.1"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"               "200"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+	        {
+	            "var_type"              "FIELD_INTEGER"
+	            "radius"             	"1000"  //The meteor lands on the ground this many seconds after it was cast.
+	        }
+		}
+		// Modifiers
+		//-------------------------------------------------------------------------------------------------------------	
+		"OnSpellStart"
+		{
+			"FireSound"
+	        {
+	            "Target"                    "CASTER"
+	            "EffectName"                "Hero_EmberSpirit.SleightOfFist.Cast"
+	        }
+	        "ApplyModifier"
+	        {
+	            "Target"                    "CASTER"
+	            "ModifierName"              "modifier_sleight_of_fist_caster_datadriven"
+	        }
+			"RunScript"
+			{
+				"ScriptFile"                                "lua_boss/boss_36_guardian.lua"
+				"Function"                                  "flaming_fist"
+				"Target"                   					 "POINT"
+			}
+	
+		}
+		"Modifiers"
+	    {
+	        "modifier_sleight_of_fist_caster_datadriven"
+	        {
+	            "IsPurgable"                "0"
+	        
+	            "States"
+	            {
+	                "MODIFIER_STATE_INVULNERABLE"       "MODIFIER_STATE_VALUE_ENABLED"
+	                "MODIFIER_STATE_NO_HEALTH_BAR"      "MODIFIER_STATE_VALUE_ENABLED"
+	                "MODIFIER_STATE_NO_UNIT_COLLISION"  "MODIFIER_STATE_VALUE_ENABLED"
+	                "MODIFIER_STATE_ROOTED"             "MODIFIER_STATE_VALUE_ENABLED"
+	            }
+	        }
+	    }
+	}
+	"guardian_hell_hell_on_earth"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+		"AbilityTextureName"			"custom/hell_guardian_hell_on_earth"
+		
+		"precache"
+	    {
+	        "particle"  "particles/shadow_doom_ring.vpcf"
+	    }
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1500"
+		"AbilityManaCost"               "200"
+		
+		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"	// Activity
+		"AnimationPlaybackRate"			"0.2"						// Animation speed multiplier
+		"AnimationIgnoresModelScale"	"1"
+	
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"10"
+		"AbilityCastPoint"				"0.5"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+	        {
+	            "var_type"              "FIELD_FLOAT"
+	            "damage"             "100000 200000 300000"  //The meteor lands on the ground this many seconds after it was cast.
+	        }
+		}
+		
+		// Modifiers
+		//-------------------------------------------------------------------------------------------------------------	
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"                                "lua_boss/boss_36_guardian.lua"
+				"Function"                                  "hell_on_earth"
+			}
+		}
+	}
+	"guardian_hell_passive"
+	{
+	    // General
+	    //-------------------------------------------------------------------------------------------------------------
+	    "BaseClass"             "ability_datadriven"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
+	    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
+	    "FightRecapLevel"               "1"
+	    "AbilityTextureName"			"custom/hell_guardian_passive"
+	    "MaxLevel"                      "1"
+	
+	    // Special
+	    //-------------------------------------------------------------------------------------------------------------
+	
+	    "precache"
+	    {
+	        "particle"          "particles/demon_shield.vpcf"
+	    }
+		"OnOwnerDied"
+		{
+			"CreateItem"
+			{
+				"Target"
+				{
+					"Center" 	"CASTER"
+					"Flags"		"DOTA_UNIT_TARGET_FLAG_DEAD"
+				}			
+				"ItemName"			"item_bag_of_gold"
+				"ItemCount"			"25"
+				"SpawnRadius"		"25"
+				"ItemChargeCount"	"600"
+				"AutoUse"			"1"
+				"LaunchHeight"		"300"
+				"LaunchDistance"	"?50 750"
+				"LaunchDuration"	"0.75"
+			}
+		}
+	    "Modifiers"
+	    {
+	    	"modifier_spawn"
+	    	{
+	            "Passive"           "1"
+	            "IsHidden"          "1"
+	            "IsBuff"            "1"
+	            "IsDebuff"          "0"
+	            "IsPurgable"        "0"
+	            "Attributes"        "MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+	
+	    		"OnCreated"
+	    		{
+	    			"RunScript"
+					{
+						"ScriptFile"                                "lua_boss/boss_36_guardian.lua"
+						"Function"                                  "creation"
+					}
+	    		}
+	        }
+	        "invincible"
+	        {
+	        	"Passive"           "0"
+	            "IsHidden"          "1"
+	            "IsBuff"            "1"
+	            "IsDebuff"          "0"
+	            "IsPurgable"        "0"
+	            "Attributes"        "MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+	
+	            "Properties"
+	            {
+	                "MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL"      "1"
+	                "MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_MAGICAL"      "1"
+	                "MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PURE"      "1"
+	                "MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"  "0"
+	            }
+				"OnAttacked"
+				{
+					"RunScript"
+					{
+						"ScriptFile"                                "lua_boss/boss_36_guardian.lua"
+						"Function"                                  "Charge_damage"
+					}
+				}
+	    	}
+		}
+	}
 	//=================================================================================================================
 	// Gyrocopter: Call Down
 	//=================================================================================================================
@@ -27988,7 +28040,7 @@
 	    "SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 	
 	    "AbilityCastRange"				"1000"
-	    "AbilityCastPoint"				"0.1"
+	    "AbilityCastPoint"				"0.0"
 	    "AbilityCastAnimation"			"ACT_DOTA_OVERRIDE_ABILITY_4"
 	
 		// Time		
@@ -28066,6 +28118,10 @@
 	
 	    "AbilityCastRange"				"1500"
 	
+	    // Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"5.0"
+	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
@@ -28080,11 +28136,6 @@
 				"var_type"					"FIELD_INTEGER"
 				"missile_explos_radius"		"250"
 			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"missile_recharge_time"		"5.0"
-			}
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
@@ -28096,7 +28147,7 @@
 				"magic_reduction"			"-40"
 				"LinkedSpecialBonus"		"special_bonus_unique_gyro_homing_missile_1"
 			}
-			"01"
+			"05"
 			{
 				"var_type"					"FIELD_FLOAT"
 				"duration"					"3"
@@ -28134,7 +28185,7 @@
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
 	    "AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
 	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-	    "AbilityUnitDamageType" 		"DAMAGE_TYPE_MAGICAL"
+	    "AbilityUnitDamageType" 		"DAMAGE_TYPE_PHYSICAL"
 	    "SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 	
 	    "AbilityCastRange"				"500 550 600 650 700 750 800"
@@ -28145,7 +28196,7 @@
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"1 10 100 150 200 250 300"
+		"AbilityManaCost"				"1 5 10 15 20 25 30"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -28154,18 +28205,18 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"80 120 200 400 800 1600"
+				"damage"				"125 150 175 200 225 250 275"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"fire_rate"				"0.1"
+				"fire_rate"				"0.05"
 				"LinkedSpecialBonus"	"special_bonus_unique_gyro_rocket_salvo_2"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"max_targets"			"1 1 1 1 2 2 2"
+				"max_targets"			"1 1 1 2 2 2 3"
 				"LinkedSpecialBonus"	"special_bonus_unique_gyro_rocket_salvo_1"
 			}
 			"04"
@@ -45038,67 +45089,6 @@
 			}
 		}
 	}
-	
-	//=================================================================================================================
-	// Dazzle: Weave
-	//=================================================================================================================
-	"dazzle_weave_ebf"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"lua_abilities/heroes/dazzle"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
-		"FightRecapLevel"				"2"
-		"LevelsBetweenUpgrades"			"7"
-		"MaxLevel"						"7"
-		"AbilityTextureName"			"dazzle_weave"
-		
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"2000"
-		"AbilityCastPoint"				"0.3 0.3 0.3"
-		
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"40"
-
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"100 200 300 400 800 1600 3200"
-		
-		"precache"
-		{
-			"particle"					"particles/units/heroes/hero_dazzle/dazzle_weave.vpcf"
-			"particle"					"particles/status_fx/status_effect_armor_dazzle.vpcf"
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_dazzle.vsndevts"
-		}
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"575 600 625 650 675 700 725"
-			}
-			"02"
-			{	
-				"var_type"					"FIELD_FLOAT"
-				"armor_per_second"			"5.0 10.0 15.0 20.0 25.0 30.0 35.0"
-				"LinkedSpecialBonus"		"special_bonus_unique_dazzle_4"
-			}
-			"03"
-			{	
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"24.0"
-			}
-		}
-	}
-	
 	//=================================================================================================================
 	// Slardar Guardian Crush
 	//=================================================================================================================
@@ -51637,7 +51627,6 @@
 	        }
 	    }
 	}
-	
 	"ursa_fury_swipes_ebf"
 	{
 		// General
