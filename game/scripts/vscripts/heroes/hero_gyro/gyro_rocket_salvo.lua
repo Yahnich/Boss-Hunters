@@ -11,7 +11,7 @@ function gyro_rocket_salvo:OnToggle()
 	else
 		caster:RemoveModifierByName("modifier_rocket_salvo")
 		self:RefundManaCost()
-		self:StartCooldown(self:GetCooldown(self:GetLevel()))
+		self:SetCooldown()
 	end
 end
 
@@ -44,7 +44,8 @@ function modifier_rocket_salvo:OnIntervalThink()
 		local enemies = caster:FindEnemyUnitsInRadius(self:GetCaster():GetAbsOrigin(), self:GetSpecialValueFor("radius"), {})
 		if #enemies > 0 then
 			EmitSoundOn("Hero_Gyrocopter.Rocket_Barrage.Launch", caster)
-			caster:SpendMana(self:GetAbility():GetManaCost(self:GetAbility():GetLevel()), self:GetAbility())
+			caster:SpendMana( self:GetAbility():GetManaCost(-1), self:GetAbility() )
+			
 			for _,enemy in pairs(enemies) do
 				if currentTargets < self:GetTalentSpecialValueFor("max_targets") then
 					if RollPercentage(50) then

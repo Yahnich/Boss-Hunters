@@ -26,7 +26,7 @@ function modifier_homing_missile:OnIntervalThink()
 		local enemies = self:GetCaster():FindEnemyUnitsInRadius(self:GetCaster():GetAbsOrigin(), self:GetSpecialValueFor("search_radius"), {})
 		for _,enemy in pairs(enemies) do
 			self:LaunchMissile(enemy)
-			self:GetAbility():StartCooldown(self:GetAbility():GetTrueCooldown())
+			self:GetAbility():SetCooldown()
 			break
 		end
 	end
@@ -42,6 +42,7 @@ function modifier_homing_missile:LaunchMissile(hTarget)
 	local homingMissile = CreateUnitByName("npc_dota_gyrocopter_homing_missile",caster:GetAbsOrigin(),true,caster,caster:GetOwnerEntity(),caster:GetTeam())
 	homingMissile:AddNewModifier(caster, ability, "modifier_restricted", {})
 	homingMissile:AddNewModifier(caster, ability, "modifier_movespeed_cap", {})
+	homingMissile:AddNewModifier(caster, ability, "modifier_kill", {duration = 10}) -- kill any existing missiles after 10 seconds to prevent them being stuck
 	
 	--set the missile move speed to the targets move speed plus 100
 	homingMissile:SetBaseMoveSpeed(340)
@@ -82,7 +83,7 @@ function modifier_homing_missile:LaunchMissile(hTarget)
 			end
 
 			--if the target is alive otherwise forcekill
-			if target:IsAlive() then
+			if not target:IsNull() and target:IsAlive() then
 				--Move the missile to the target location
 				homingMissile:MoveToPosition(target:GetAbsOrigin())
 				homingMissile:SetBaseMoveSpeed(homingMissile:GetBaseMoveSpeed()+100)
