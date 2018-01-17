@@ -22,15 +22,16 @@ function modifier_cleave_strike:OnTakeDamage(params)
 	if IsServer() then
 		if (params.unit == self:GetCaster() or ( params.attacker == self:GetCaster() and self:GetCaster():HasTalent("special_bonus_unique_brd_cleave_strike_2") ) ) 
 		and self:GetAbility():IsCooldownReady() 
+		and self:GetParent():IsAlive()
 		and RollPercentage(self:GetTalentSpecialValueFor("chance")) then
-			if params.unit:IsAlive() then
-				self:Spin(params)
-			end
+			-- Ternary Operator x ? y: z; TernaryOperator(passvalue, checkvalue, defaultvalue); if checkvalue is true then passvalue else return defaultvalue
+			local target = TernaryOperator(self:GetParent(), params.attacker == self:GetCaster(), params.attacker)
+			self:Spin(target)
 		end
 	end
 end
 
-function modifier_cleave_strike:Spin(params)
+function modifier_cleave_strike:Spin(target)
 	EmitSoundOn("Hero_Axe.CounterHelix_Blood_Chaser", self:GetCaster())
 	local armorDamage = self:GetCaster():GetPhysicalArmorValue() * self:GetTalentSpecialValueFor("armor_to_damage")/100
 	local nfx = ParticleManager:CreateParticle("particles/econ/items/axe/axe_weapon_bloodchaser/axe_attack_blur_counterhelix_bloodchaser.vpcf", PATTACH_POINT_FOLLOW, self:GetCaster())
@@ -39,18 +40,14 @@ function modifier_cleave_strike:Spin(params)
 
 	self:GetCaster():StartGesture(ACT_DOTA_CAST_ABILITY_3)
 
-	if params.attacker == self:GetCaster() then
-		params.target:Taunt(self:GetAbility(), self:GetCaster(), self:GetTalentSpecialValueFor("duration"))
-	else
-		params.attacker:Taunt(self:GetAbility(), self:GetCaster(), self:GetTalentSpecialValueFor("duration"))
-	end
+	target:Taunt(self:GetAbility(), self:GetCaster(), self:GetTalentSpecialValueFor("duration"))
 
 	local enemies = self:GetCaster():FindEnemyUnitsInRadius(self:GetCaster():GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"), {})
 	for _,enemy in pairs(enemies) do
 		self:GetAbility():DealDamage(self:GetCaster(), enemy, self:GetCaster():GetAttackDamage() + armorDamage, {}, 0)
 	end
 
-	self:GetAbility():StartCooldown(self:GetAbility():GetCooldown(self:GetAbility():GetLevel()))
+	self:GetAbility():SetCooldown()
 end
 
 function modifier_cleave_strike:IsHidden()

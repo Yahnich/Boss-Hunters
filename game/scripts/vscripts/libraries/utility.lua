@@ -1185,6 +1185,14 @@ function CDOTABaseAbility:GetTrueCooldown()
 	return cooldown
 end
 
+function CDOTABaseAbility:SetCooldown(fCD)
+	if fCD then
+		self:StartCooldown(fCD)
+	else
+		self:UseResources(false, false, true)
+	end
+end
+
 function CDOTABaseAbility:StartDelayedCooldown(flDelay)
 	if self.delayedCooldownTimer then
 		self:EndDelayedCooldown()
@@ -1517,9 +1525,12 @@ function CDOTA_Modifier_Lua:StartMotionController()
 	end
 end
 
-function CDOTA_Modifier_Lua:AddIndependentStack()
+function CDOTA_Modifier_Lua:AddIndependentStack(duration)
 	self:IncrementStackCount()
-	Timers:CreateTimer(self:GetDuration(), function() if not self:IsNull() then self:DecrementStackCount() end end)
+	Timers:CreateTimer(duration or self:GetDuration(), function()
+		if not self:IsNull() then self:DecrementStackCount() end
+		if self:GetStackCount() == 0 then self:Destroy() end
+	end)
 end
 
 
