@@ -23,7 +23,6 @@ function modifier_boss_attackspeed:DeclareFunctions()
 		MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,
 		MODIFIER_PROPERTY_MANA_REGEN_CONSTANT,
 		MODIFIER_PROPERTY_MANA_BONUS,
-		MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,
 		MODIFIER_EVENT_ON_ABILITY_FULLY_CAST,
 		MODIFIER_EVENT_ON_ABILITY_START
 	}
@@ -44,19 +43,6 @@ end
 
 function modifier_boss_attackspeed:GetModifierManaBonus( params )
 	return self:GetStackCount()*250
-end
-
-function modifier_boss_attackspeed:GetModifierIncomingDamage_Percentage()
-	local players = HeroList:GetRealHeroCount()
-	local baseReduction = 1/( 1 + ( 0.25 * ( players - 1) ) )
-	local damage_red = baseReduction
-	local modify = math.max(0, math.ceil(self:GetStackCount()/2) - 1 )
-	if modify > 0 then
-		for i = 1, modify do
-			damage_red = damage_red + 0.5^i
-		end
-	end
-	return -math.min(90, (100 - 100/damage_red))
 end
 
 function modifier_boss_attackspeed:OnAbilityStart( params )

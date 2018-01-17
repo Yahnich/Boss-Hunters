@@ -4354,22 +4354,22 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_intellect"		"20 30 40 50 60"
+				"bonus_intellect"		"40 80 200 520 1360"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_all_stats"		"10 15 20 25 30"
+				"bonus_all_stats"		"15 30 75 195 510"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"9 18 27 36 45"
+				"bonus_damage"			"25 50 125 325 850"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"1250 2500 5000 10000 20000"
+				"damage"				"1800 3600 6400 12800 25600"
 			}
 			"05"
 			{
@@ -4422,7 +4422,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_intellect"		"20 30 40 50 60"
+				"bonus_intellect"		"40 80 200 520 1360"
 			}
 			"02"
 			{
@@ -4437,7 +4437,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"1250 2500 5000 10000 20000"
+				"damage"				"1800 3600 6400 12800 25600"
 			}
 			"05"
 			{
@@ -4490,7 +4490,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_intellect"		"20 30 40 50 60"
+				"bonus_intellect"		"40 80 200 520 1360"
 			}
 			"02"
 			{
@@ -4505,7 +4505,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"1250 2500 5000 10000 20000"
+				"damage"				"1800 3600 6400 12800 25600"
 			}
 			"05"
 			{
@@ -4558,7 +4558,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_intellect"		"20 30 40 50 60"
+				"bonus_intellect"		"40 80 200 520 1360"
 			}
 			"02"
 			{
@@ -4573,7 +4573,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"1250 2500 5000 10000 20000"
+				"damage"				"1800 3600 6400 12800 25600"
 			}
 			"05"
 			{
@@ -4623,7 +4623,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_intellect"		"20 30 40 50 60"
+				"bonus_intellect"		"40 80 200 520 1360"
 			}
 			"02"
 			{
@@ -4638,7 +4638,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"1250 2500 5000 10000 20000"
+				"damage"				"1800 3600 6400 12800 25600"
 			}
 			"05"
 			{
