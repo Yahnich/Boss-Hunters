@@ -17,7 +17,7 @@ function winterw_frozen_splinter:OnSpellStart()
 		Target = target,
 		Source = caster,
 		Ability = self,	
-		EffectName = "particles/units/heroes/hero_winterw/winterw_frozen_splinter.vpcf",
+		EffectName = "particles/units/heroes/hero_winter_wyvern/wyvern_splinter.vpcf",
 	    iMoveSpeed = 1000,
 		iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_ATTACK_1,
 		bDrawsOnMinimap = false,                          -- Optional
@@ -41,7 +41,7 @@ function winterw_frozen_splinter:OnSpellStart()
 				Target = enemy,
 				Source = caster,
 				Ability = self,	
-				EffectName = "particles/units/heroes/hero_winterw/winterw_frozen_splinter.vpcf",
+				EffectName = "particles/units/heroes/hero_winter_wyvern/wyvern_splinter.vpcf",
 			    iMoveSpeed = 1000,
 				iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_ATTACK_1,
 				bDrawsOnMinimap = false,                          -- Optional
@@ -63,7 +63,7 @@ end
 
 function winterw_frozen_splinter:OnProjectileHit_ExtraData(hTarget, vLocation, table)
 	if hTarget and hTarget:IsAlive() then
-		hTarget:AddNewModifier(self:GetCaster(), self, "modifier_frozen_splinter", {Duration = self:GetSpecialValueFor("slow_duration")})
+		hTarget:AddNewModifier(self:GetCaster(), self, "modifier_frozen_splinter", {Duration = self:GetTalentSpecialValueFor("slow_duration")})
 		if self:GetCaster():HasTalent("special_bonus_unique_winterw_frozen_splinter_1") then
 			self:Stun(hTarget, self:GetCaster():FindTalentValue("special_bonus_unique_winterw_frozen_splinter_1"), false)
 		end
@@ -71,11 +71,11 @@ function winterw_frozen_splinter:OnProjectileHit_ExtraData(hTarget, vLocation, t
 		if table.name == "firstProj" then
 			EmitSoundOn("Hero_Winter_Wyvern.SplinterBlast.Target", hTarget)
 
-			self:DealDamage(self:GetCaster(), hTarget, self:GetSpecialValueFor("damage"), {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
+			self:DealDamage(self:GetCaster(), hTarget, self:GetTalentSpecialValueFor("damage"), {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
 			
 			local i = 0
 
-			local enemies = self:GetCaster():FindEnemyUnitsInRadius(hTarget:GetAbsOrigin(), self:GetSpecialValueFor("search_radius"), {})
+			local enemies = self:GetCaster():FindEnemyUnitsInRadius(hTarget:GetAbsOrigin(), self:GetTalentSpecialValueFor("search_radius"), {})
 			for _,enemy in pairs(enemies) do
 				if enemy ~= hTarget then
 					if i < 2 then
@@ -84,7 +84,7 @@ function winterw_frozen_splinter:OnProjectileHit_ExtraData(hTarget, vLocation, t
 							Target = enemy,
 							Source = hTarget,
 							Ability = self,	
-							EffectName = "particles/units/heroes/hero_winterw/winterw_frozen_splinter_2.vpcf",
+							EffectName = "particles/units/heroes/hero_winter_wyvern/wyvern_splinter_blast.vpcf",
 						    iMoveSpeed = 750,
 							iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_HITLOCATION,
 							bDrawsOnMinimap = false,                          -- Optional
@@ -108,10 +108,10 @@ function winterw_frozen_splinter:OnProjectileHit_ExtraData(hTarget, vLocation, t
 		elseif table.name == "secondProj" then
 			EmitSoundOn("Hero_Winter_Wyvern.SplinterBlast.Splinter", hTarget)
 
-			self:DealDamage(self:GetCaster(), hTarget, self:GetSpecialValueFor("damage")/2, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
+			self:DealDamage(self:GetCaster(), hTarget, self:GetTalentSpecialValueFor("damage")/2, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
 			local i = 0
 
-			local enemies = self:GetCaster():FindEnemyUnitsInRadius(hTarget:GetAbsOrigin(), self:GetSpecialValueFor("search_radius"), {})
+			local enemies = self:GetCaster():FindEnemyUnitsInRadius(hTarget:GetAbsOrigin(), self:GetTalentSpecialValueFor("search_radius"), {})
 			for _,enemy in pairs(enemies) do
 				if enemy ~= hTarget then
 					if i < 2 then
@@ -120,7 +120,7 @@ function winterw_frozen_splinter:OnProjectileHit_ExtraData(hTarget, vLocation, t
 							Target = enemy,
 							Source = hTarget,
 							Ability = self,	
-							EffectName = "particles/units/heroes/hero_winterw/winterw_frozen_splinter_3.vpcf",
+							EffectName = "particles/units/heroes/hero_winter_wyvern/wyvern_splinter_blast.vpcf",
 						    iMoveSpeed = 750,
 							iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_HITLOCATION,
 							bDrawsOnMinimap = false,                          -- Optional
@@ -144,7 +144,7 @@ function winterw_frozen_splinter:OnProjectileHit_ExtraData(hTarget, vLocation, t
 		elseif table.name == "thirdProj" then
 			EmitSoundOn("Hero_Winter_Wyvern.SplinterBlast.Splinter", hTarget)
 
-			self:DealDamage(self:GetCaster(), hTarget, self:GetSpecialValueFor("damage")/4, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
+			self:DealDamage(self:GetCaster(), hTarget, self:GetTalentSpecialValueFor("damage")/4, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
 		end
 	end
 	return false
@@ -160,7 +160,7 @@ function modifier_frozen_splinter:DeclareFunctions()
 end
 
 function modifier_frozen_splinter:GetModifierMoveSpeedBonus_Percentage()
-    return self:GetSpecialValueFor("move_slow")
+    return self:GetTalentSpecialValueFor("move_slow")
 end
 
 function modifier_frozen_splinter:IsDebuff()
