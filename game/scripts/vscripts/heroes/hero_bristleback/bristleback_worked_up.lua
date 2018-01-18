@@ -26,15 +26,7 @@ end
 function modifier_worked_up:OnSpentMana(params)
 	if IsServer() then
 		if params.unit == self:GetCaster() then
-			if params.unit:HasModifier("modifier_worked_up_stack") then
-				if params.unit:FindModifierByName("modifier_worked_up_stack"):GetStackCount() < self:GetTalentSpecialValueFor("max_stacks") then
-					params.unit:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_worked_up_stack", {Duration = self:GetTalentSpecialValueFor("duration")}):IncrementStackCount()
-				else
-					params.unit:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_worked_up_stack", {Duration = self:GetTalentSpecialValueFor("duration")})
-				end
-			else
-				params.unit:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_worked_up_stack", {Duration = self:GetTalentSpecialValueFor("duration")}):IncrementStackCount()
-			end
+			params.unit:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_worked_up_stack", {Duration = self:GetTalentSpecialValueFor("duration")})
 		end
 	end
 end
@@ -44,11 +36,20 @@ function modifier_worked_up:IsHidden()
 end
 
 modifier_worked_up_stack = class({})
-function modifier_worked_up_stack:OnCreated(table)
+function modifier_worked_up_stack:OnCreated(kv)
 	if IsServer() then
 		self.nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_bristleback/bristleback_warpath.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
 		ParticleManager:SetParticleControlEnt(self.nfx, 3, self:GetCaster(), PATTACH_POINT_FOLLOW, "attach_attack1", self:GetCaster():GetAbsOrigin(), true)
 		ParticleManager:SetParticleControlEnt(self.nfx, 4, self:GetCaster(), PATTACH_POINT_FOLLOW, "attach_attack2", self:GetCaster():GetAbsOrigin(), true)
+		self:AddEffect(self.nfx)
+	end
+	self:SetStackCount(1)
+end
+
+function modifier_worked_up_stack:OnRefresh(kv)
+	self:AddIndependentStack()
+	if IsServer() then
+		self:GetCaster():CalculateStatBonus()
 	end
 end
 
@@ -58,7 +59,7 @@ function modifier_worked_up_stack:DeclareFunctions()
 		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
 		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
 		MODIFIER_PROPERTY_MODEL_SCALE
-	}
+	}	
 	return funcs
 end
 
@@ -75,20 +76,7 @@ function modifier_worked_up_stack:GetModifierAttackSpeedBonus_Constant()
 end
 
 function modifier_worked_up_stack:GetModifierModelScale()
-	return self:GetStackCount()*5
-end
-
-function modifier_worked_up_stack:OnRemoved()
-	if IsServer() then
-		ParticleManager:DestroyParticle(self.nfx, false)
-
-		local count = self:GetStackCount()
-		if self:GetStackCount() > 0 and self:GetParent():IsAlive() then
-			self:GetParent():AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_worked_up_stack", {Duration = self:GetTalentSpecialValueFor("duration")}):SetStackCount(count-1)
-		else
-			self:Destroy()
-		end
-	end
+	return self:GetStackCount()*3
 end
 
 function modifier_worked_up_stack:IsDebuff()
