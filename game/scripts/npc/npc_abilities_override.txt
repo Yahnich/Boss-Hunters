@@ -24076,7 +24076,7 @@
 			"05"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"tether_duration"			"10.0 15.0 20.0 30.0 45.0 60.0 120.0"
+				"tether_duration"			"1"
 			}
 			"06"
 			{
@@ -24123,7 +24123,7 @@
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"				"20.0 18.0 16.0 14.0"
-		"AbilityDuration"				"20.0 18.0 16.0 14.0"
+		"AbilityDuration"				"-1"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -24163,17 +24163,17 @@
 			"07"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"hero_hit_radius"			"70 70 70 70"
+				"hero_hit_radius"			"70"
 			}
 			"08"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"explode_radius"			"300 300 300 300"
+				"explode_radius"			"300"
 			}
 			"09"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"hit_radius"				"150 150 150 150"
+				"hit_radius"				"150"
 			}
 			"10"
 			{
@@ -24188,7 +24188,7 @@
 			"12"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"spirit_duration"			"15.0"
+				"spirit_duration"			"1"
 			}
 		}
 	}	

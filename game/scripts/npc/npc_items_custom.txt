@@ -264,7 +264,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_mana_regen"		"100"
+				"bonus_mana_regen"		"2"
 			}
 			"06"
 			{
@@ -751,7 +751,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_mana_regen"		"100"
+				"bonus_mana_regen"		"2"
 			}			
 			"04"
 			{
@@ -2308,7 +2308,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_mana_regen"		"300"
+				"bonus_mana_regen"		"6"
 			}
 			"04"
 			{
@@ -2407,7 +2407,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_mana_regen"		"150"
+				"bonus_mana_regen"		"3"
 			}
 			"04"
 			{
@@ -2859,7 +2859,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_mana_regen"		"150"
+				"bonus_mana_regen"		"3"
 			}			
 			"05"
 			{
@@ -3099,7 +3099,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_mana_regen"		"150"
+				"bonus_mana_regen"		"3"
 			}			
 			"05"
 			{
@@ -3339,7 +3339,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_mana_regen"		"150"
+				"bonus_mana_regen"		"3"
 			}			
 			"05"
 			{
@@ -3773,7 +3773,7 @@
 	 			"07"		
 	 			{		
 	 				"var_type"				"FIELD_INTEGER"		
-	 				"bonus_mana_regen"			"100"		
+	 				"bonus_mana_regen"			"2"		
 	 			}		
 	 			"08"		
 	 			{		
@@ -3948,7 +3948,7 @@
 	 			"07"		
 	 			{		
 	 				"var_type"				"FIELD_INTEGER"		
-	 				"bonus_mana_regen"			"100"		
+	 				"bonus_mana_regen"			"2"		
 	 			}		
 	 			"08"		
 	 			{		
@@ -5258,15 +5258,15 @@
 	    "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_ALL"
 	    "Model"                         "models/props_gameplay/red_box.vmdl" 
 	    "Effect"                        "particles/generic_gameplay/dropped_item.vpcf"
-	    "AbilityTextureName"	"custom/dagon_mystic"
+	    "AbilityTextureName"			"custom/dagon_mystic"
 	    "FightRecapLevel"               "1"
 	    
 	    // Stats        
 	    //-------------------------------------------------------------------------------------------------------------
 	    "AbilityCastRange"              "1200"
 	    
-	    "AbilityCooldown"               "30"
-	    "AbilityManaCost"               "5000"
+	    "AbilityCooldown"               "25"
+	    "AbilityManaCost"               "2500"
 	
 	    "ItemDeclarations"              "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 	    
@@ -5289,17 +5289,37 @@
 	            "var_type"              "FIELD_INTEGER"
 	            "bonus_intellect"       "8000"
 	        }
-	        "02"
+			"02"
 	        {
 	            "var_type"              "FIELD_INTEGER"
-	            "damage_base"                "60000"
+	            "bonus_all_stats"       "650"
 	        }
-	        "03"
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_mana_regen"		"56"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_mana"			"25000"
+			}
+			"05"
+	        {
+	            "var_type"				"FIELD_INTEGER"
+	            "bonus_damage"			"1000"
+	        }
+	        "06"
 	        {
 	            "var_type"              "FIELD_INTEGER"
-	            "damage_per_int"                "5"
+	            "damage_base"			"60000"
 	        }
-	        "04"
+	        "07"
+	        {
+	            "var_type"              "FIELD_INTEGER"
+	            "damage_per_int"		"5"
+	        }
+	        "08"
 	        {
 	            "var_type"              "FIELD_INTEGER"
 	            "range_tooltip"         "1200"
@@ -5318,7 +5338,7 @@
 	    
 	    "Modifiers"
 	    {
-	        "modifier_item_dagon_datadriven"
+	        "modifier_item_dagon_all_stats"
 	        {
 	            "Passive"           "1"
 	            "IsHidden"          "1"
@@ -5326,7 +5346,23 @@
 	            
 	            "Properties"
 	            {
-	                "MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"       "%bonus_intellect"
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"		"%bonus_all_stats"
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"			"%bonus_all_stats"
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"       "%bonus_all_stats"
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"		"%bonus_damage"
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" 		"%bonus_mana_regen"
+		            "MODIFIER_PROPERTY_MANA_BONUS " 				"%bonus_mana"
+	            }
+	        }
+			"modifier_item_dagon_int"
+	        {
+	            "Passive"           "1"
+	            "IsHidden"          "1"
+	            "Attributes"        "MODIFIER_ATTRIBUTE_MULTIPLE"
+	            
+	            "Properties"
+	            {
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"       "%bonus_intellect"
 	            }
 	        }
 	    }
@@ -6526,10 +6562,9 @@
 		        "Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE" //This makes duplicate items stack their properties
 		        "Properties"
 		        {
-		            "MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "%bonus_mana_regen"
-					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"	"%bonus_mana_pct"
-		            "MODIFIER_PROPERTY_MANA_BONUS " "%bonus_mana"
-		            "MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "%bonus_int"
+		            "MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"		"%bonus_mana_regen"
+		            "MODIFIER_PROPERTY_MANA_BONUS"				"%bonus_mana"
+		            "MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"%bonus_int"
 		        }
 		    }
 		}
@@ -6538,19 +6573,14 @@
 			"01"
 			{
 				"var_type"							"FIELD_INTEGER"
-				"bonus_mana_regen"							"16"
+				"bonus_mana_regen"					"24"
 			}
 			"02"
 			{
 				"var_type"							"FIELD_INTEGER"
-				"bonus_mana_pct"							"400"
+				"bonus_mana"						"25000"
 			}
 			"03"
-			{
-				"var_type"							"FIELD_INTEGER"
-				"bonus_mana"							"25000"
-			}
-			"04"
 			{
 				"var_type"							"FIELD_INTEGER"
 				"bonus_int"							"6000"
@@ -9421,7 +9451,6 @@
 		        "Properties"
 		        {
 		            "MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "%bonus_mana_regen"
-					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"	"%bonus_mana_pct"
 		            "MODIFIER_PROPERTY_MANA_BONUS " "%bonus_mana"
 		            "MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "%bonus_int"
 		        }
@@ -9432,19 +9461,14 @@
 			"01"
 			{
 				"var_type"							"FIELD_INTEGER"
-				"bonus_mana_regen"							"2"
+				"bonus_mana_regen"							"3"
 			}
 			"02"
 			{
 				"var_type"							"FIELD_INTEGER"
-				"bonus_mana_pct"							"100"
-			}
-			"03"
-			{
-				"var_type"							"FIELD_INTEGER"
 				"bonus_mana"							"250"
 			}
-			"04"
+			"03"
 			{
 				"var_type"							"FIELD_INTEGER"
 				"bonus_int"							"60"
@@ -10326,7 +10350,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_mana_regen"		"250"
+				"bonus_mana_regen"		"5"
 			}
 			"06"
 			{
@@ -10509,7 +10533,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_mana_regen"		"250"
+				"bonus_mana_regen"		"5"
 			}
 			"06"
 			{
@@ -10770,7 +10794,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_mana_regen"		"400"
+				"bonus_mana_regen"		"20"
 			}
 			"06"
 			{
@@ -10819,10 +10843,9 @@
 		        "Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE" //This makes duplicate items stack their properties
 		        "Properties"
 		        {
-		            "MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "%bonus_mana_regen"
-					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"	"%bonus_mana_pct"
-		            "MODIFIER_PROPERTY_MANA_BONUS " "%bonus_mana"
-		            "MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "%bonus_int"
+		            "MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"		"%bonus_mana_regen"
+		            "MODIFIER_PROPERTY_MANA_BONUS " 			"%bonus_mana"
+		            "MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"%bonus_int"
 		        }
 		    }
 		}
@@ -10831,17 +10854,12 @@
 			"01"
 			{
 				"var_type"							"FIELD_INTEGER"
-				"bonus_mana_regen"							"4"
-			}
-			"02"
-			{
-				"var_type"							"FIELD_INTEGER"
-				"bonus_mana_pct"							"150"
+				"bonus_mana_regen"					"6"
 			}
 			"03"
 			{
 				"var_type"							"FIELD_INTEGER"
-				"bonus_mana"							"1000"
+				"bonus_mana"						"1000"
 			}
 			"04"
 			{
@@ -10973,7 +10991,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_mana_regen"		"200"
+				"bonus_mana_regen"		"4"
 			}
 			"06"
 			{
@@ -11102,7 +11120,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_mana_regen"		"300"
+				"bonus_mana_regen"		"6"
 			}
 			"06"
 			{
@@ -11239,7 +11257,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_mana_regen"		"500"
+				"bonus_mana_regen"		"10"
 			}
 			"06"
 			{
@@ -11414,7 +11432,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_mana_regen"		"600"
+				"bonus_mana_regen"		"12"
 			}
 			"06"
 			{
@@ -11789,7 +11807,6 @@
 		        {
 		            "MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "%bonus_mana_regen"
 		            "MODIFIER_PROPERTY_MANA_BONUS " "%bonus_mana"
-					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"	"%bonus_mana_pct"
 		            "MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "%bonus_int"
 		        }
 		    }
@@ -11799,19 +11816,14 @@
 			"01"
 			{
 				"var_type"							"FIELD_INTEGER"
-				"bonus_mana_regen"							"8"
+				"bonus_mana_regen"					"12"
 			}
 			"02"
 			{
 				"var_type"							"FIELD_INTEGER"
-				"bonus_mana_pct"							"200"
-			}
-			"03"
-			{
-				"var_type"							"FIELD_INTEGER"
 				"bonus_mana"							"6000"
 			}
-			"04"
+			"03"
 			{
 				"var_type"							"FIELD_INTEGER"
 				"bonus_int"							"1400"
@@ -12431,7 +12443,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_mana_regen"		"150"
+				"bonus_mana_regen"		"3"
 			}			
 			"05"
 			{
@@ -13421,7 +13433,7 @@
 		"ID"							"1174"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"	"custom/demonsoul"
+		"AbilityTextureName"			"custom/demonsoul"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -16194,7 +16206,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_mana_regen"		"400"
+				"bonus_mana_regen"		"8"
 			}
 			"05"
 			{
@@ -18291,7 +18303,7 @@
 			"02"
 			{
 				"var_type"							"FIELD_INTEGER"
-				"bonus_mana_regen"							"200"
+				"bonus_mana_regen"							"4"
 			}
 			"03"
 			{

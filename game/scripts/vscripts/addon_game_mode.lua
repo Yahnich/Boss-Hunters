@@ -2405,7 +2405,7 @@ function CHoldoutGameMode:OnNPCSpawned( event )
 		spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_invulnerable", {})
 	end
 	if spawnedUnit:IsCreature() then
-		local effective_multiplier = 1 + (HeroList:GetActiveHeroCount() - 1)*0.25
+		local effective_multiplier = 1 + (HeroList:GetActiveHeroCount() - 1)*0.33
 
 		spawnedUnit:SetBaseMaxHealth(spawnedUnit:GetBaseMaxHealth()*effective_multiplier)
 		spawnedUnit:SetMaxHealth(spawnedUnit:GetMaxHealth()*effective_multiplier)

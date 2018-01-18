@@ -115,9 +115,10 @@ function modifier_homing_missile:LaunchMissile(hTarget)
 					homingMissile:StopSound("Hero_Gyrocopter.HomingMissile")
 					homingMissile:AddNoDraw()
 					homingMissile:ForceKill(false)
+
 					return nil
 				else
-					return 0.1 --rerun interval
+					return FrameTime() --rerun interval
  	  			end--if end
 			else
 				ParticleManager:DestroyParticle(fire,false)
@@ -154,11 +155,13 @@ end
 
 function modifier_restricted:OnRemoved()
 	if IsServer() then
+		self:GetParent():StopSound("Hero_Gyrocopter.HomingMissile")
 		GridNav:DestroyTreesAroundPoint(self:GetParent():GetAbsOrigin(), self:GetSpecialValueFor("missile_explos_radius"), false)
 		local enemies = self:GetCaster():FindEnemyUnitsInRadius(self:GetParent():GetAbsOrigin(), self:GetSpecialValueFor("missile_explos_radius"), {})
 		for _,enemy in pairs(enemies) do
+			self:GetParent():StopSound("Hero_Gyrocopter.HomingMissile")
 			self:GetAbility():DealDamage(self:GetCaster(), enemy, self:GetCaster():GetAttackDamage() * self:GetSpecialValueFor("missile_damage")/100, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
-			enemy:ApplyKnockBack(self:GetParent():GetAbsOrigin(), 0.5, 0.5, self:GetSpecialValueFor("missile_explos_radius"), 100, self:GetCaster(), self:GetAbility())
+			enemy:ApplyKnockBack(self:GetParent():GetAbsOrigin(), 0.5, 0.5, self:GetSpecialValueFor("missile_explos_radius")/2, 100, self:GetCaster(), self:GetAbility())
 			enemy:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_homing_missile_mr", {Duration = self:GetSpecialValueFor("duration")})
 		end
 	end
