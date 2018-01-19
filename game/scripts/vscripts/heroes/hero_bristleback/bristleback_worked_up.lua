@@ -43,11 +43,13 @@ function modifier_worked_up_stack:OnCreated(kv)
 		ParticleManager:SetParticleControlEnt(self.nfx, 4, self:GetCaster(), PATTACH_POINT_FOLLOW, "attach_attack2", self:GetCaster():GetAbsOrigin(), true)
 		self:AddEffect(self.nfx)
 	end
-	self:SetStackCount(1)
 end
 
 function modifier_worked_up_stack:OnRefresh(kv)
-	self:AddIndependentStack()
+	self:AddIndependentStack(kv.duration, self:GetTalentSpecialValueFor("max_stacks"))
+end
+
+function modifier_worked_up_stack:OnStackCountChanged(iStacks)
 	if IsServer() then
 		self:GetCaster():CalculateStatBonus()
 	end

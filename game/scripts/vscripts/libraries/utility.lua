@@ -1525,17 +1525,31 @@ function CDOTA_Modifier_Lua:StartMotionController()
 	end
 end
 
-function CDOTA_Modifier_Lua:AddIndependentStack(duration)
-	self:IncrementStackCount()
-	Timers:CreateTimer(duration or self:GetDuration(), function()
-		if not self:IsNull() then self:DecrementStackCount() end
-		if self:GetStackCount() == 0 then self:Destroy() end
+function CDOTA_Modifier_Lua:AddIndependentStack(duration, limit)
+	if limit then
+		if  self:GetStackCount() < limit then
+			self:IncrementStackCount()
+		else
+			self:SetStackCount( limit )
+			Timers:RemoveTimers(self.stackTimers[1])
+			table.remove(self.stackTimers, 1)
+		end
+	else
+		self:IncrementStackCount()
+	end
+	local timerID = Timers:CreateTimer(duration or self:GetDuration(), function()
+		if not self:IsNull() then 
+			self:DecrementStackCount()
+			if self:GetStackCount() == 0 then self:Destroy() end
+		end
 	end)
+	self.stackTimers = self.stackTimers or {}
+	table.insert(self.stackTimers, timerID)
 end
 
 
 function CDOTA_Modifier_Lua:StopMotionController()
-	Timers:RemoveTimers(self.controlledMotionTimer)
+	Timers:RemoveTimer(self.controlledMotionTimer)
 end
 
 function CDOTA_Modifier_Lua:AddEffect(id)
@@ -1735,7 +1749,7 @@ function ApplyKnockback( keys )
 			end
    		end)
    		Timers:CreateTimer(0.03 ,function()
-			if self:GetParent() and not self:GetParent():IsNull() and not self:GetParent():HasMovementCapability() then return end
+			if target and not target:IsNull() and not target:HasMovementCapability() then return end
    			if GameRules:GetGameTime() <= begin_time+duration then
 	   			position = position+travel_distance_per_frame
 	   			target:SetAbsOrigin(position)
