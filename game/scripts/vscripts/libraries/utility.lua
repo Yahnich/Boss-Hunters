@@ -145,18 +145,16 @@ end
 
 function CDOTABaseAbility:DealDamage(attacker, victim, damage, data, spellText)
 	--OVERHEAD_ALERT_BONUS_SPELL_DAMAGE, OVERHEAD_ALERT_DAMAGE, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, OVERHEAD_ALERT_MANA_LOSS
-	local damageType = DAMAGE_TYPE_MAGICAL or data.damage_type 
-	local damageFlags = DOTA_DAMAGE_FLAG_NONE or data.damage_flags
+	local damageType =  data.damage_type or self:GetAbilityDamageType() or DAMAGE_TYPE_MAGICAL
+	local damageFlags = data.damage_flags or DOTA_DAMAGE_FLAG_NONE
 	local localdamage = damage
 	local spellText = spellText or 0
 	local ability = self or data.ability 
+	local returnDamage = ApplyDamage({victim = victim, attacker = attacker, ability = ability, damage_type = damageType, damage = localdamage, damage_flags = damageFlags})
 	if spellText > 0 then
-		local damage = ApplyDamage({victim = victim, attacker = attacker, ability = ability, damage_type = damageType, damage = localdamage, damage_flags = damageFlags})
-		SendOverheadEventMessage(attacker:GetPlayerOwner(),spellText,victim,damage,attacker:GetPlayerOwner()) --Substract the starting health by the new health to get exact damage taken values.
-		return damage
-	else
-		return ApplyDamage({victim = victim, attacker = attacker, ability = ability, damage_type = damageType, damage = localdamage, damage_flags = damageFlags})
+		SendOverheadEventMessage(attacker:GetPlayerOwner(),spellText,victim,returnDamage,attacker:GetPlayerOwner()) --Substract the starting health by the new health to get exact damage taken values.
 	end
+	return returnDamage
 end
 
 function CDOTA_BaseNPC:DealAOEDamage(position, radius, damageTable)

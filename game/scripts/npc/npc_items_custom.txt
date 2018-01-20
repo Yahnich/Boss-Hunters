@@ -751,7 +751,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_mana_regen"		"2"
+				"bonus_mana_regen"		"3"
 			}			
 			"04"
 			{
@@ -2308,7 +2308,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_mana_regen"		"6"
+				"bonus_mana_regen"		"9"
 			}
 			"04"
 			{
@@ -2407,7 +2407,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_mana_regen"		"3"
+				"bonus_mana_regen"		"5"
 			}
 			"04"
 			{
@@ -2859,7 +2859,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_mana_regen"		"3"
+				"bonus_mana_regen"		"5"
 			}			
 			"05"
 			{
@@ -3099,7 +3099,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_mana_regen"		"3"
+				"bonus_mana_regen"		"5"
 			}			
 			"05"
 			{
@@ -3339,7 +3339,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_mana_regen"		"3"
+				"bonus_mana_regen"		"5"
 			}			
 			"05"
 			{
@@ -3773,7 +3773,7 @@
 	 			"07"		
 	 			{		
 	 				"var_type"				"FIELD_INTEGER"		
-	 				"bonus_mana_regen"			"2"		
+	 				"bonus_mana_regen"			"3"		
 	 			}		
 	 			"08"		
 	 			{		
@@ -3948,7 +3948,7 @@
 	 			"07"		
 	 			{		
 	 				"var_type"				"FIELD_INTEGER"		
-	 				"bonus_mana_regen"			"2"		
+	 				"bonus_mana_regen"		"5"		
 	 			}		
 	 			"08"		
 	 			{		
@@ -5297,7 +5297,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_mana_regen"		"56"
+				"bonus_mana_regen"		"84"
 			}
 			"04"
 			{
@@ -6573,7 +6573,7 @@
 			"01"
 			{
 				"var_type"							"FIELD_INTEGER"
-				"bonus_mana_regen"					"24"
+				"bonus_mana_regen"					"36"
 			}
 			"02"
 			{
@@ -8911,7 +8911,7 @@
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_mana_regen"		"3"
+				"bonus_mana_regen"		"5"
 			}
 			"07"
 			{
@@ -9074,12 +9074,12 @@
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage_pct"				"25"
+				"bonus_damage_pct"		"25"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_mana_regen"			"10"
+				"bonus_mana_regen"		"15"
 			}
 			"07"
 			{
@@ -9268,12 +9268,12 @@
 			"08"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage_pct"				"30"
+				"bonus_damage_pct"		"30"
 			}
 			"09"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_mana_regen"			"20"
+				"bonus_mana_regen"		"30"
 			}
 			"10"
 			{
@@ -9406,7 +9406,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_mana_regen"			"20"
+				"bonus_mana_regen"		"30"
 			}
 			"06"
 			{
@@ -9461,7 +9461,7 @@
 			"01"
 			{
 				"var_type"							"FIELD_INTEGER"
-				"bonus_mana_regen"							"3"
+				"bonus_mana_regen"					"5"
 			}
 			"02"
 			{
@@ -10350,7 +10350,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_mana_regen"		"5"
+				"bonus_mana_regen"		"8"
 			}
 			"06"
 			{
@@ -10533,7 +10533,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_mana_regen"		"5"
+				"bonus_mana_regen"		"8"
 			}
 			"06"
 			{
@@ -10794,7 +10794,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_mana_regen"		"20"
+				"bonus_mana_regen"		"30"
 			}
 			"06"
 			{
@@ -10854,7 +10854,7 @@
 			"01"
 			{
 				"var_type"							"FIELD_INTEGER"
-				"bonus_mana_regen"					"6"
+				"bonus_mana_regen"					"9"
 			}
 			"03"
 			{
@@ -10991,7 +10991,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_mana_regen"		"4"
+				"bonus_mana_regen"		"6"
 			}
 			"06"
 			{
@@ -11120,7 +11120,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_mana_regen"		"6"
+				"bonus_mana_regen"		"9"
 			}
 			"06"
 			{
@@ -11257,7 +11257,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_mana_regen"		"10"
+				"bonus_mana_regen"		"15"
 			}
 			"06"
 			{
@@ -11432,7 +11432,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_mana_regen"		"12"
+				"bonus_mana_regen"		"18"
 			}
 			"06"
 			{
@@ -11816,7 +11816,7 @@
 			"01"
 			{
 				"var_type"							"FIELD_INTEGER"
-				"bonus_mana_regen"					"12"
+				"bonus_mana_regen"					"18"
 			}
 			"02"
 			{
@@ -12443,7 +12443,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_mana_regen"		"3"
+				"bonus_mana_regen"		"5"
 			}			
 			"05"
 			{
@@ -15781,7 +15781,7 @@
 			"04"
 			{
 				"var_type"							"FIELD_INTEGER"
-				"mana_regen"							"300"
+				"mana_regen"						"50"
 			}
 			"05"
 			{
@@ -16206,7 +16206,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_mana_regen"		"8"
+				"bonus_mana_regen"		"12"
 			}
 			"05"
 			{
@@ -18298,12 +18298,12 @@
 			"01"
 			{
 				"var_type"							"FIELD_INTEGER"
-				"bonus_health"							"5000"
+				"bonus_health"						"5000"
 			}
 			"02"
 			{
 				"var_type"							"FIELD_INTEGER"
-				"bonus_mana_regen"							"4"
+				"bonus_mana_regen"					"6"
 			}
 			"03"
 			{

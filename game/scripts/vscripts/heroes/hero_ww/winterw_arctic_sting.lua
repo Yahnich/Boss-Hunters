@@ -2,23 +2,42 @@ winterw_arctic_sting = class({})
 LinkLuaModifier( "modifier_arctic_sting", "heroes/hero_ww/winterw_arctic_sting.lua" ,LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_arctic_sting_target", "heroes/hero_ww/winterw_arctic_sting.lua" ,LUA_MODIFIER_MOTION_NONE )
 
+function winterw_arctic_sting:GetBehavior()
+	local behavior = DOTA_ABILITY_BEHAVIOR_NO_TARGET + DOTA_ABILITY_BEHAVIOR_IMMEDIATE
+	if self:GetCaster():HasScepter() then
+		return behavior + DOTA_ABILITY_BEHAVIOR_TOGGLE
+	end
+	return behavior
+end
+
+function winterw_arctic_sting:OnToggle()
+	local caster = self:GetCaster()
+	if self:GetToggleState() then
+		caster:AddNewModifier(caster, self, "modifier_arctic_sting", {})
+	else
+		caster:RemoveModifierByName("modifier_arctic_sting")
+	end
+end
+
+function winterw_arctic_sting:OnInventoryContentsChanged()
+	local caster = self:GetCaster()
+	local modifier = caster:FindModifierByName("modifier_arctic_sting")
+	if caster:HasScepter() and modifier and modifier:GetDuration() ~= -1 then
+		caster:RemoveModifierByName("modifier_arctic_sting")
+		caster:AddNewModifier(caster, self, "modifier_arctic_sting", {})
+		self:ToggleAbility()
+	elseif not caster:HasScepter() and modifier and modifier:GetDuration() == -1 then
+		caster:RemoveModifierByName("modifier_arctic_sting")
+		self:ToggleAbility()
+		caster:AddNewModifier(caster, self, "modifier_arctic_sting",  {Duration = self:GetTalentSpecialValueFor("duration")})
+		
+	end
+end
+
 function winterw_arctic_sting:OnSpellStart()
 	local caster = self:GetCaster()
-
-	if caster:HasScepter() then
-		if caster:HasModifier("modifier_arctic_sting") then
-			caster:RemoveModifierByName("modifier_arctic_sting")
-			self:RefundManaCost()
-		else
-            EmitSoundOn("Hero_Winter_Wyvern.ArcticBurn.Cast", caster)
-
-			caster:AddNewModifier(caster, self, "modifier_arctic_sting", {})
-			self:RefundManaCost()
-			self:EndCooldown()
-		end
-	else
-		caster:AddNewModifier(caster, self, "modifier_arctic_sting", {Duration = self:GetSpecialValueFor("duration")})
-	end
+	EmitSoundOn("Hero_Winter_Wyvern.ArcticBurn.Cast", caster)
+	caster:AddNewModifier(caster, self, "modifier_arctic_sting", {Duration = self:GetTalentSpecialValueFor("duration")})
 end
 
 modifier_arctic_sting = ({})
@@ -43,7 +62,7 @@ end
 
 function modifier_arctic_sting:OnIntervalThink()
 	if self:GetCaster():HasScepter() then
-   		self:GetCaster():SpendMana(self:GetSpecialValueFor("mana_cost_scepter"), self:GetAbility())
+   		self:GetCaster():SpendMana(self:GetTalentSpecialValueFor("mana_cost_scepter"), self:GetAbility())
    	end
 end
 
@@ -76,15 +95,15 @@ function modifier_arctic_sting:DeclareFunctions()
 end
 
 function modifier_arctic_sting:GetModifierAttackRangeBonus()
-    return self:GetSpecialValueFor("attack_range_bonus")
+    return self:GetTalentSpecialValueFor("attack_range_bonus")
 end
 
 function modifier_arctic_sting:GetBonusNightVision()
-    return self:GetSpecialValueFor("night_vision_bonus")
+    return self:GetTalentSpecialValueFor("night_vision_bonus")
 end
 
 function modifier_arctic_sting:GetModifierProjectileSpeedBonus()
-    return self:GetSpecialValueFor("projectile_speed_bonus")
+    return self:GetTalentSpecialValueFor("projectile_speed_bonus")
 end
 
 function modifier_arctic_sting:OnAttackLanded(params)
@@ -96,11 +115,11 @@ function modifier_arctic_sting:OnAttackLanded(params)
 
     	if self:GetCaster():HasScepter() then
             EmitSoundOn("Hero_Winter_Wyvern.ArcticBurn.projectileImpact", params.target)
-    		params.target:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_arctic_sting_target", {Duration = self:GetSpecialValueFor("burn_duration")})
+    		params.target:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_arctic_sting_target", {Duration = self:GetTalentSpecialValueFor("burn_duration")})
     	else
     		if not params.target:HasModifier("modifier_arctic_sting_target") then
                 EmitSoundOn("Hero_Winter_Wyvern.ArcticBurn.projectileImpact", params.target)
-    			params.target:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_arctic_sting_target", {Duration = self:GetSpecialValueFor("burn_duration")})
+    			params.target:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_arctic_sting_target", {Duration = self:GetTalentSpecialValueFor("burn_duration")})
     		end
     	end
     end
@@ -131,7 +150,7 @@ end
 
 function modifier_arctic_sting_target:OnIntervalThink()
 	local currentHealth = self:GetParent():GetHealth()
-	local damage = currentHealth * self:GetSpecialValueFor("burn")/100
+	local damage = currentHealth * self:GetTalentSpecialValueFor("burn")/100
     self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), damage, {damage_flags=DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION}, OVERHEAD_ALERT_BONUS_POISON_DAMAGE)
 end
 
