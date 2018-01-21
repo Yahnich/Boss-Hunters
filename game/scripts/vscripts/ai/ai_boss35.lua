@@ -50,7 +50,7 @@ function AIThink()
 				return 1
 			end
 		end
-		if AICore:TotalEnemyHeroesInRange( thisEntity, 1000 ) >= 1 and thisEntity.tempest:IsFullyCastable() then
+		if not thisEntity.tempest:IsNull() and AICore:TotalEnemyHeroesInRange( thisEntity, 1000 ) >= 1 and thisEntity.tempest:IsFullyCastable() then
 			ExecuteOrderFromTable({
 				UnitIndex = thisEntity:entindex(),
 				OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,

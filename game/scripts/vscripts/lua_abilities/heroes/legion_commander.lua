@@ -177,7 +177,7 @@ function modifier_legion_commander_press_the_attack_buff:OnDestroy()
 	if IsServer() then
 		ParticleManager:DestroyParticle(self:GetParent().press, false)
 		ParticleManager:ReleaseParticleIndex(self:GetParent().press)
-		self:GetParent().press.press = nil
+		self:GetParent().press = nil
 	end
 end
 
@@ -218,16 +218,20 @@ end
 
 function modifier_legion_commander_moment_of_courage_ebf_passive:OnIntervalThink()
 	if self:GetParent():IsAttacking() and self:GetParent():HasModifier("modifier_legion_commander_moment_of_courage_ebf_buff") then
-		Timers:CreateTimer(0.06,function()
-			self:GetParent():PerformAttack(self:GetParent():GetAttackTarget(), false, true, true, false, false, false, true)
-			EmitSoundOn("Hero_LegionCommander.Courage", self:GetParent())
-			local hit1 = ParticleManager:CreateParticle("particles/units/heroes/hero_legion_commander/legion_commander_courage_tgt.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
-				ParticleManager:SetParticleControlEnt(hit1, 0, self:GetCaster(), PATTACH_POINT_FOLLOW, "attach_attack1", self:GetCaster():GetAbsOrigin(), true)
-			local hit2 = ParticleManager:CreateParticle("particles/units/heroes/hero_legion_commander/legion_commander_courage_hit.vpcf", PATTACH_POINT_FOLLOW, self:GetParent():GetAttackTarget())
-				ParticleManager:SetParticleControlEnt(hit2, 0, self:GetParent():GetAttackTarget(), PATTACH_POINT_FOLLOW, "attach_hitloc", self:GetParent():GetAttackTarget():GetAbsOrigin(), true)
-			ParticleManager:ReleaseParticleIndex(hit1)
-			ParticleManager:ReleaseParticleIndex(hit2)
-		end)
+		local attackTarget = self:GetParent():GetAttackTarget()
+		if attackTarget then
+			Timers:CreateTimer(0.06,function()
+				if attackTarget:IsNull() then return end
+				self:GetParent():PerformAttack(attackTarget, false, true, true, false, false, false, true)
+				EmitSoundOn("Hero_LegionCommander.Courage", self:GetParent())
+				local hit1 = ParticleManager:CreateParticle("particles/units/heroes/hero_legion_commander/legion_commander_courage_tgt.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
+					ParticleManager:SetParticleControlEnt(hit1, 0, self:GetCaster(), PATTACH_POINT_FOLLOW, "attach_attack1", self:GetCaster():GetAbsOrigin(), true)
+				local hit2 = ParticleManager:CreateParticle("particles/units/heroes/hero_legion_commander/legion_commander_courage_hit.vpcf", PATTACH_POINT_FOLLOW, attackTarget)
+					ParticleManager:SetParticleControlEnt(hit2, 0, attackTarget, PATTACH_POINT_FOLLOW, "attach_hitloc", attackTarget:GetAbsOrigin(), true)
+				ParticleManager:ReleaseParticleIndex(hit1)
+				ParticleManager:ReleaseParticleIndex(hit2)
+			end)
+		end
 	end
 end
 

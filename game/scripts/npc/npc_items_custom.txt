@@ -4830,109 +4830,79 @@
 				}
 		}
 	//=================================================================================================================
-		// Chronos shard
-		//=================================================================================================================
-		"item_chronos_shard"
+	// Chronos shard
+	//=================================================================================================================
+	"item_chronos_shard"
+	{
+		"ID"							"1182"
+
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"BaseClass"						"item_datadriven"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE_STACKING"
+		"AbilityTextureName"			"custom/chronos_shard"
+		"ItemKillable"					"0"
+
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"100"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"200"
+		"ItemShopTags"					"consumable"
+		"ItemQuality"					"consumable"
+		"ItemStackable"					"1"
+		
+		"ItemPermanent"					"0"
+		"ItemInitialCharges"			"1"
+		"precache"
 		{
-			"ID"							"1182"
-	
-			// General
-			//-------------------------------------------------------------------------------------------------------------
-			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-			"BaseClass"						"item_datadriven"
-			"ItemShareability"				"ITEM_FULLY_SHAREABLE_STACKING"
-			"AbilityTextureName"			"custom/chronos_shard"
-			"ItemKillable"					"0"
-	
-			// Stats
-			//-------------------------------------------------------------------------------------------------------------
-			"AbilityCastRange"				"100"
-			
-			// Item Info
-			//-------------------------------------------------------------------------------------------------------------
-			"ItemCost"						"200"
-			"ItemShopTags"					"consumable"
-			"ItemQuality"					"consumable"
-			"ItemStackable"					"1"
-			
-			"ItemPermanent"					"0"
-			"ItemInitialCharges"			"1"
-			"precache"
+			"particle"	"particles/chronos_powder.vpcf"
+			"soundfile" "sounds/items/dust_of_appearance.vsnd"
+			"particle"		"particles/powder_guard.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
 			{
-			    "particle"	"particles/chronos_powder.vpcf"
-			    "soundfile" "sounds/items/dust_of_appearance.vsnd"
-				"particle"		"particles/powder_guard.vpcf"
+				"ScriptFile"			"lua_item/simple_item.lua"
+				"Function"				"Cooldown_powder"
 			}
-			"OnSpellStart"
+			"ApplyModifier"
 			{
-				"RunScript"
+				"Target" 
 				{
-					"ScriptFile"			"lua_item/simple_item.lua"
-					"Function"				"Cooldown_powder"
+					"Center" "CASTER"
+					"Radius" "600"
+					"Teams" "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 				}
-				"ApplyModifier"
-				{
-					"Target" 
-					{
-						"Center" "CASTER"
-						"Radius" "600"
-						"Teams" "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-					}
-					"ModifierName" "modifier_chronos_shard"
-				}
-				"FireSound"
-				{
-					"Target" "CASTER"
-					"EffectName" "DOTA_Item.DustOfAppearance.Activate"
-				}
-				"SpendCharge"
-				{}
+				"ModifierName" "modifier_chronos_shard"
 			}
-	
-			"Modifiers"
+			"FireSound"
 			{
-				"modifier_chronos_shard"
-				{
-					"TextureName" "item_chronos_shard"
-					"Duration" "%buff_duration"
-					"EffectName"	"particles/powder_guard.vpcf"
-					"States"
-					{
-						"MODIFIER_STATE_MAGIC_IMMUNE" "MODIFIER_STATE_VALUE_ENABLED"
-					}
-				}
+				"Target" "CASTER"
+				"EffectName" "DOTA_Item.DustOfAppearance.Activate"
 			}
-	
-			// Special	
-			//-------------------------------------------------------------------------------------------------------------
-			"AbilitySpecial"
+			"SpendCharge"
+			{}
+		}
+
+		"Modifiers"
+		{
+			"modifier_chronos_shard"
 			{
-				"01"
+				"TextureName" "item_chronos_shard"
+				"Duration" "%buff_duration"
+				"EffectName"	"particles/powder_guard.vpcf"
+				"States"
 				{
-					"var_type"				"FIELD_INTEGER"
-					"buff_duration"			"15"
+					"MODIFIER_STATE_MAGIC_IMMUNE" "MODIFIER_STATE_VALUE_ENABLED"
 				}
 			}
 		}
-	//=================================================================================================================
-	// Crimson Guard
-	//=================================================================================================================
-	"item_crimson_guard"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"3017"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-	
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"5725"
-		"ItemShopTags"					"regen_health;block;health_pool"
-		"ItemQuality"					"epic"
-		"ItemAliases"					"crimson"
-		
-		"ItemDeclarations"				"DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-		
+
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
@@ -4940,32 +4910,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_health"			"300"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_health_regen"	"10"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_armor"			"10"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_stats"			"10"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"block_damage_melee"	"30"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"block_chance"			"80"
+				"buff_duration"			"15"
 			}
 		}
 	}
@@ -13277,51 +13222,28 @@
 	//=================================================================================================================
 	// Charged Mjollnir
 	//=================================================================================================================
-		"item_recipe_charged_mjollnir"
-		{
-				"ID"														"23002"
-				"Model"														"models/props_gameplay/recipe.mdl"
-				"BaseClass"													"item_recipe_mjollnir"
-				"AbilityTextureName"										"custom/charged_mjollnir"
-	
-			// Item Info
-			//-------------------------------------------------------------------------------------------------------------
-				"ItemCost"										"0"    
-				"ItemShopTags"									""
-				
-			// Recipe
-			//-------------------------------------------------------------------------------------------------------------
-				"ItemRecipe"									"1"
-				"ItemResult"									"item_charged_mjollnir"
-				"ItemRequirements"
-				{
-						"01"									"item_ultimate_orb;item_mjollnir;item_ultimate_orb"
-				}
-		}
-	//=================================================================================================================
-	// Recipe: Crimson Guard
-	//=================================================================================================================
-	"item_recipe_crimson_guard"
+	"item_recipe_charged_mjollnir"
 	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"3016"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"Model"							"models/props_gameplay/recipe.mdl"
-		
+			"ID"														"23002"
+			"Model"														"models/props_gameplay/recipe.mdl"
+			"BaseClass"													"item_recipe_mjollnir"
+			"AbilityTextureName"										"custom/charged_mjollnir"
+
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"0"	
-		"ItemShopTags"					""
-		
+			"ItemCost"										"0"    
+			"ItemShopTags"									""
+			
 		// Recipe
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemRecipe"					"1"
-		"ItemResult"					"item_crimson_guard"
-		"ItemRequirements"
-		{
-			"01"						"item_vanguard;item_platemail;item_ultimate_orb"
-		}
+			"ItemRecipe"									"1"
+			"ItemResult"									"item_charged_mjollnir"
+			"ItemRequirements"
+			{
+					"01"									"item_ultimate_orb;item_mjollnir;item_ultimate_orb"
+			}
 	}
+	
 	//=================================================================================================================
 	// Recipe: Crit2
 	//=================================================================================================================
@@ -13336,7 +13258,7 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"0"	
+		"ItemCost"						"424"	
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -13345,7 +13267,7 @@
 		"ItemResult"					"item_crit2"
 		"ItemRequirements"
 		{
-			"01"						"item_greater_crit;item_lesser_crit;item_zweihander"
+			"01"						"item_greater_crit;item_zweihander"
 		}
 	}
 	//=================================================================================================================
@@ -18374,219 +18296,316 @@
 		}
 	}
 	//=================================================================================================================
-	// Recipe: Battlefury
+	// Kitteh's Amulet of Spell haste and stuff!
 	//=================================================================================================================
-	"item__recipe_asura_shard_armor"
+	"item_KittehAmulet"
 	{
-		"ID"							"2042"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"Model"							"models/props_gameplay/recipe.mdl"
-		"BaseClass"						"item_recipe_blade_mail"
-		"AbilityTextureName"	"custom/asura_shard_armor"
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"131313"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		
+	    "AbilityCooldown"               "10.0"
+	    "AbilityManaCost"               "3000"
+		
+
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"1"
-		"ItemShopTags"					""
+		"ItemCost"						"131313"
+		"ItemPurchasable"				"0"
+		"ItemShopTags"					"move_speed;boost_mana;mana_pool"
+		"ItemQuality"					"rare"
+		"ItemShareability"				"ITEM_PARTIALLY_SHAREABLE"
+		"ItemAliases"					"mana;mb;octarine core"
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"custom/asura_core"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_ALWAYS"
 		
-		// Recipe
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemRecipe"					"1"
-		"ItemResult"					"item_asura_shard_armor"
-		"ItemRequirements"
+		"precache"
 		{
-			"01"						"item_asura_shard;item_assault"
+			"particle" "particles/items3_fx/octarine_core_lifesteal.vpcf"
 		}
-	}	
-	//=================================================================================================================
-	// Recipe: Battlefury
-	//=================================================================================================================
-	"item__recipe_asura_shard_burn"
-	{
-		"ID"							"2048"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"Model"							"models/props_gameplay/recipe.mdl"
-		"BaseClass"						"item_recipe_blade_mail"
-		"AbilityTextureName"	"custom/asura_shard_burn"
 		
-		// Item Info
+		// Special	
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"1"
-		"ItemShopTags"					""
-		
-		// Recipe
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemRecipe"					"1"
-		"ItemResult"					"item_asura_shard_burn"
-		"ItemRequirements"
+		"OnSpellStart"
+	    {
+	        "RunScript"
+	        {
+	            "ScriptFile"        "lua_item/simple_item.lua"
+	            "Function"          "refresher"
+	        }
+	    }
+		"AbilitySpecial"
 		{
-			"01"						"item_asura_shard;item_radiance"
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_intelligence"		"50000"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_health"			"15000"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_mana"			"50000"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_health_regen"		"5000"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_mana_regen"		"6000"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_cooldown"		"95"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"hero_lifesteal"		"100"
+			} 
+			"08"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"creep_lifesteal"		"100"
+			} 
+			"09"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"active_duration"		"7"
+			}
+			"10"
+			{
+				"var_type" 				"FIELD_INTEGER"
+				"cast_range_bonus" 		"4000"
+			}			
+			"11"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"spell_amp" 			"500"
+			}
+			"12"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"spell_crit_multiplier"		"500"
+			}
+			"13"
+			{
+				"var_type" 				"FIELD_FLOAT"
+				"spell_crit_chance"		"95"
+			}
+			"14"
+			{
+				"var_type" 				"FIELD_INTEGER"
+				"bonus_int_PR"			"5000"
+			}
+			"15"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_mana_PR"			"2500"
+			}
+			"16"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_health_PR"		"5000"
+			}
+			"17"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_all"			"50000"
+			}
+			"18"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_speed"			"100"
+			}
+			"19"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_speed_percent"		"100"
+			}
+			"20"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"Pierce_percent"		"100"
+			}
+			"21"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"crit_chance"			"95"
+			}
+			"22"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"crit_multiplier"		"500"
+			}
 		}
-	}	
-	//=================================================================================================================
-	// Recipe: Battlefury
-	//=================================================================================================================
-	"item__recipe_asura_shard_crit"
-	{
-		"ID"							"2052"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"Model"							"models/props_gameplay/recipe.mdl"
-		"BaseClass"						"item_recipe_blade_mail"
-		"AbilityTextureName"	"custom/asura_shard_crit"
-		
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"1"
-		"ItemShopTags"					""
-		
-		// Recipe
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemRecipe"					"1"
-		"ItemResult"					"item_asura_shard_evasion"
-		"ItemRequirements"
+		"OnEquip"
 		{
-			"01"						"item_asura_shard;item_greater_crit"
+			"RemoveModifier"
+			{
+				"ModifierName"	"spell_lifesteal"
+				"Target"	"CASTER"
+			}
+			"ApplyModifier"
+			{
+				"ModifierName"	"spell_lifesteal"
+				"Target" 
+				{
+					"Center" "CASTER"
+					"Flags" "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+				}
+			}
+			"RemoveModifier"
+			{
+				"ModifierName"	"Piercing"
+				"Target"	"CASTER"
+			}
+			"ApplyModifier"
+			{
+				"ModifierName"	"Piercing"
+				"Target" 
+				{
+					"Center" "CASTER"
+					"Flags" "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+				}
+			}
 		}
-	}	
-	//=================================================================================================================
-	// Recipe: Battlefury
-	//=================================================================================================================
-	"item__recipe_asura_shard_damage"
-	{
-		"ID"							"2040"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"Model"							"models/props_gameplay/recipe.mdl"
-		"BaseClass"						"item_recipe_blade_mail"
-		"AbilityTextureName"	"custom/asura_shard_damage"
-		
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"1"
-		"ItemShopTags"					""
-		
-		// Recipe
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemRecipe"					"1"
-		"ItemResult"					"item_asura_shard_damage"
-		"ItemRequirements"
+		"Modifiers"
 		{
-			"01"						"item_asura_shard;item_claymore"
+			"passive"
+			{
+				"Passive" "1"
+				"IsHidden"		"1"
+				"Attributes"    "MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"  		"%bonus_health_regen"
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"  		"%bonus_mana_regen"
+					"MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE"			"%bonus_cooldown"
+					"MODIFIER_PROPERTY_HEALTH_BONUS"			"%bonus_health"
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"		"%bonus_intelligence"
+					"MODIFIER_PROPERTY_MANA_BONUS"				"%bonus_mana"
+					"MODIFIER_PROPERTY_CAST_RANGE_BONUS"			"%cast_range_bonus"
+					"MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE"		"%spell_amp"
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"		"%bonus_all"
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"			"%bonus_all"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"		"%bonus_speed_percent"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT"		"%bonus_speed"
+				}
+				"OnCreated"
+					{
+						"RunScript"
+						{
+							"ScriptFile"			"lua_item/simple_item.lua"
+							"Function"				"scale_asura"
+						}
+					}
+			}
+	    	"spell_lifesteal"
+	    	{
+				"Passive"					"1"
+	    		"IsHidden"                  "1"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"lua_item/simple_item"
+						"Function"		"SetCastPoints"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"lua_item/simple_item"
+						"Function"		"ResetCastPoints"
+					}
+				}
+	    	}
+				"spellcrit"
+			{
+				"Passive" 	"1"
+				"IsHidden"	"1"
+			}
+			"Piercing"
+			{
+				"IsHidden"                  "1"
+				"Passive"                	"1"
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"lua_item/simple_item.lua"
+						"Function"				"Pierce"
+						"damage_on_hit"			"%attack_damage"
+					}
+				}
+				"Random"
+				{
+   					"Chance" "%crit_chance"
+   					"PseudoRandom" "DOTA_PSEUDO_RANDOM_FACELESS_BASH"
+   					"OnSuccess"
+   					{
+   						"ApplyModifier"
+						{
+							"ModifierName" 	"critical_strike_2"
+							"Target" 
+							{
+								"Center" "CASTER"
+								"Flags" "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+							}
+						}
+  					}
+  					"OnFailure"
+  					{}
+				}
+			}
 		}
-	}	
-	//=================================================================================================================
-	// Recipe: Battlefury
-	//=================================================================================================================
-	"item__recipe_asura_shard_evasion"
-	{
-		"ID"							"2036"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"Model"							"models/props_gameplay/recipe.mdl"
-		"BaseClass"						"item_recipe_blade_mail"
-		"AbilityTextureName"	"custom/asura_shard_evasion"
-		
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"1"
-		"ItemShopTags"					""
-		
-		// Recipe
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemRecipe"					"1"
-		"ItemResult"					"item_asura_shard_evasion"
-		"ItemRequirements"
+		"critical_strike_2"
 		{
-			"01"						"item_asura_shard;item_butterfly"
+			"IsHidden"		"1"
+			"Attributes"	"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+			"Properties"
+			{
+				"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE" 	"%crit_multiplier"
+			}
+			"OnAttackLanded"
+			{
+				"RemoveModifier"
+				{
+					"ModifierName" 	"critical_strike_2"
+					"Target" 		"CASTER"
+				}
+			}
 		}
-	}	
-	//=================================================================================================================
-	// Recipe: Battlefury
-	//=================================================================================================================
-	"item__recipe_asura_shard_freeze"
-	{
-		"ID"							"2050"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"Model"							"models/props_gameplay/recipe.mdl"
-		"BaseClass"						"item_recipe_blade_mail"
-		"AbilityTextureName"	"custom/asura_shard_freeze"
-		
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"1"
-		"ItemShopTags"					""
-		
-		// Recipe
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemRecipe"					"1"
-		"ItemResult"					"item_asura_shard_freeze"
-		"ItemRequirements"
-		{
-			"01"						"item_asura_shard;item_skadi"
+		"scale_per_round_core"
+		{	
+			"Passive"	 "1"
+			"IsBuff" 	"1"
+			"IsHidden"	 "1"
+			"Attributes"    "MODIFIER_ATTRIBUTE_MULTIPLE"
+			"Properties"
+			{
+				"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"		"%bonus_int_PR"
+				"MODIFIER_PROPERTY_MANA_BONUS"				"%bonus_mana_PR"
+				"MODIFIER_PROPERTY_HEALTH_BONUS"			"%bonus_health_PR"
+			}
 		}
-	}	
-	//=================================================================================================================
-	// Recipe: Battlefury
-	//=================================================================================================================
-	"item__recipe_asura_shard_health"
-	{
-		"ID"							"2044"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"Model"							"models/props_gameplay/recipe.mdl"
-		"BaseClass"						"item_recipe_blade_mail"
-		"AbilityTextureName"	"custom/asura_shard_health"
-		
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"1"
-		"ItemShopTags"					""
-		
-		// Recipe
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemRecipe"					"1"
-		"ItemResult"					"item_asura_shard_health"
-		"ItemRequirements"
-		{
-			"01"						"item_asura_shard;item_vitality_booster"
+		"scale_display"
+		{	
+			"Passive"	 "1"
+			"IsBuff" 	"1"
 		}
-	}	
-	//=================================================================================================================
-	// Recipe: Battlefury
-	//=================================================================================================================
-	"item__recipe_asura_shard_mana"
-	{
-		"ID"							"2046"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"Model"							"models/props_gameplay/recipe.mdl"
-		"BaseClass"						"item_recipe_blade_mail"
-		"AbilityTextureName"	"custom/asura_shard_mana"
-		
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"1"
-		"ItemShopTags"					""
-		
-		// Recipe
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemRecipe"					"1"
-		"ItemResult"					"item_asura_shard_mana"
-		"ItemRequirements"
-		{
-			"01"						"item_asura_shard;item_energy_booster"
-		}
-	}	
-	//=================================================================================================================
-	// Recipe: Battlefury
-	//=================================================================================================================
-	"item__recipe_asura_shard_regen"
-	{
-		"ID"							"2038"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"Model"							"models/props_gameplay/recipe.mdl"
-		"BaseClass"						"item_recipe_blade_mail"
-		"AbilityTextureName"	"custom/asura_shard_regen"
-		
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"1"
-		"ItemShopTags"					""
-		
-		// Recipe
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemRecipe"					"1"
-		"ItemResult"					"item_asura_shard_regen"
-		"ItemRequirements"
-		{
-			"01"						"item_asura_shard;item_heart"
-		}
-	}	
+	}
 }
