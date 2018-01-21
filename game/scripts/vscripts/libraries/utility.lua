@@ -539,7 +539,8 @@ function CDOTA_BaseNPC:HealDisabled()
 	   self:HasModifier("modifier_plague_damage") or 
 	   self:HasModifier("modifier_rupture_datadriven") or 
 	   self:HasModifier("fire_aura_debuff") or 
-	   self:HasModifier("item_sange_and_yasha_4_debuff") or 
+	   self:HasModifier("item_sange_and_yasha_4_debuff") or
+	   self:HasModifier("modifier_hawk_spirit_enemy") or 
 	   self:HasModifier("cursed_effect") then
 	return true
 	else return false end
@@ -1946,11 +1947,11 @@ function CDOTA_BaseNPC:RemoveTaunt()
 end
 
 function CDOTA_BaseNPC:Daze(hAbility, hCaster, dazeDuration)
-	self:AddNewModifier(hCaster, hAbility, "modifier_daze_generic", {Duration = dazeDuration})
+	self:AddNewModifier(hCaster, hAbility, "modifier_dazed_generic", {Duration = dazeDuration})
 end
 
-function CDOTA_BaseNPC:IsDazeed()
-	if self:HasModifier("modifier_daze_generic") then
+function CDOTA_BaseNPC:IsDazed()
+	if self:HasModifier("modifier_dazed_generic") then
 		return true
 	else
 		return false
@@ -1958,8 +1959,8 @@ function CDOTA_BaseNPC:IsDazeed()
 end
 
 function CDOTA_BaseNPC:RemoveDaze()
-	if self:HasModifier("modifier_daze_generic") then
-		self:RemoveModifierByName("modifier_daze_generic")
+	if self:HasModifier("modifier_dazed_generic") then
+		self:RemoveModifierByName("modifier_dazed_generic")
 	end
 end
 
@@ -1985,4 +1986,22 @@ function CDOTABaseAbility:CD_pure()
 		self:EndCooldown()
         self:StartCooldown(CD)
     end
+end
+
+function CDOTA_BaseNPC:DisableHeal(hAbility, hCaster, Duration)
+	self:AddNewModifier(hCaster, hAbility, "modifier_healing_disable", {Duration = Duration})
+end
+
+function CDOTA_BaseNPC:IsHealingDisabled()
+	if self:HasModifier("modifier_healing_disable") then
+		return true
+	else
+		return false
+	end
+end
+
+function CDOTA_BaseNPC:EnableHeal()
+	if self:HasModifier("modifier_healing_disable") then
+		self:RemoveModifierByName("modifier_healing_disable")
+	end
 end
