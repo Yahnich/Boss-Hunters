@@ -1733,9 +1733,6 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"				"10"
 
-		// Damage.
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"					"1000 2000 3500 6000 12000 25000 50000"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -1774,6 +1771,12 @@
 			{
 				"var_type"					"FIELD_FLOAT"
 				"delay"						"1.0"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"torrent_damage"			"1000 2000 3500 6000 12000 25000 50000"
+				"LinkedSpecialBonus"		"special_bonus_unique_kunkka_2"
 			}
 		}		
 	}
@@ -9870,17 +9873,33 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"radius"					"140 140 140 140"
+				"radius"					"175"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"spread"					"353 353 353 353"
+				"spread"					"450"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"range"						"1300 1300 1300 1300"
+				"range"						"1500"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"axe_damage"				"700 1400 2800 5600 11200 22400 44800"
+				"LinkedSpecialBonus"		"special_bonus_unique_beastmaster"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"						"10"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage_amp"				"6 8 10 12"
 			}
 		}
 	}
@@ -14778,6 +14797,12 @@
 				"var_type"						"FIELD_INTEGER"
 				"health_cost"					"5 10 20 40 80 160 320"
 			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"burn_damage"					"40 80 160 320 640 1280 2560"
+				"LinkedSpecialBonus"			"special_bonus_unique_huskar_2"
+			}
 		}
 	}
 	
@@ -15657,8 +15682,9 @@
 			}
 			"04"
 			{
-				"var_type"			"FIELD_FLOAT"
-				"armor_reduction"	"2.5"
+				"var_type"				"FIELD_FLOAT"
+				"armor_reduction"		"2.5"
+				"LinkedSpecialBonus"	"special_bonus_unique_weaver_3"
 			}
 			"05"
 			{
@@ -16150,8 +16176,9 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"100 200 400 800 1600 3200 6400"
+				"var_type"							"FIELD_INTEGER"
+				"damage"							"100 200 400 800 1600 3200 6400"
+				"CalculateSpellDamageTooltip"		"1"
 			}
 			"02"
 			{
@@ -27161,8 +27188,9 @@
 			}
 			"04"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"int_multiplier"		"9.0"
+				"var_type"						"FIELD_FLOAT"
+				"int_multiplier"				"9.0"
+				"CalculateSpellDamageTooltip"	"1"
 			}
 			"05"
 			{
@@ -28670,6 +28698,7 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"damage"				"1200 2200 4200 8200 16500 32500 65000"
+				"LinkedSpecialBonus"	"special_bonus_unique_earth_spirit"
 			}
 			"08"
 			{
@@ -45916,7 +45945,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"175"
+				"value"				"2000"
 			}
 		}
 	}
@@ -48818,7 +48847,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"5"
+				"value"				"500"
 			}
 		}
 	}
