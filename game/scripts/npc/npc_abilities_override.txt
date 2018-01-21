@@ -1658,7 +1658,7 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"80"
+		"AbilityCooldown"				"60"
 		"AbilityPierces"				"1"
 	
 		// Cost
@@ -1676,7 +1676,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"omni_slash_damage"			"1500 1800 3300 6500 14000 22000 35000"
+				"omni_slash_damage"			"1800 2200 3800 7500 16500 25000 38000"
 			}
 			"02"
 			{
@@ -1687,7 +1687,7 @@
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"omni_slash_radius"			"600"
+				"omni_slash_radius"			"800"
 			}
 			"04"
 			{
@@ -1703,7 +1703,7 @@
 			"06"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"omni_slash_cooldown_scepter"	"40"
+				"omni_slash_cooldown_scepter"	"30"
 			}
 		}
 	}

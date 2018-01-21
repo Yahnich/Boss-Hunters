@@ -787,6 +787,7 @@
 	"npc_dota_hero_phantom_assassin" // Shinigami
 	{
 		"override_hero"				"npc_dota_hero_phantom_assassin"
+		"Ability3"					"phantom_assassin_blur_ebf"
 	}
 	"npc_dota_hero_phoenix" // Justicar
 	{

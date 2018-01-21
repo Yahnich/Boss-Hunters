@@ -33317,7 +33317,7 @@
 	        "01"
 	        {
 	            "var_type"              "FIELD_FLOAT"
-	            "critical_bonus"        "200"
+	            "critical_bonus"        "250"
 	        }
 	        "02"
 	        {
@@ -33477,7 +33477,7 @@
 			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_juggernaut.vsndevts"
 		}
 		
-		"AbilityCooldown"				"3"
+		"AbilityCooldown"				"2.5"
 		"AbilityDamage"					"1000 2000 3000 6000 12000 18000 24000"
 	
 		"AbilitySpecial"
@@ -33556,12 +33556,12 @@
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"800 850 900 950 1000 1100 1200"
-		"AbilityCastPoint"				"0.3 0.25 0.2 0.15 0.1 0.05 0.0"
+		"AbilityCastRange"				"800 850 900 950 1000 1200 1300"
+		"AbilityCastPoint"				"0.3"
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"24.0 22.0 20.0 18.0 16.0 14.0 12.0"
+		"AbilityCooldown"				"14.0 13.0 12.0 11.0 10.0 9.0 8.0"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -33578,7 +33578,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"500 1000 2000 4500 9000 18000 36000"
+				"damage"				"600 1200 2400 4800 9200 18500 36500"
 				"LinkedSpecialBonus"		"special_bonus_unique_juggernaut"
 			}
 			"02"
@@ -33594,7 +33594,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"tooltip_range"			"800 850 900 950 1000 1100 1200"
+				"tooltip_range"			"800 850 900 950 1000 1200 1300"
 			}
 			"05"
 			{
@@ -40460,12 +40460,12 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"scepter_flesh_stacks"		"5 6 7 8 9 10 11"
+				"scepter_flesh_stacks"	"6 7 8 9 10 11 12"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"3.0"
+				"duration"				"5.0"
 			}
 			"05"
 			{
@@ -40492,18 +40492,18 @@
 		"01"
 		{
 			"var_type"				"FIELD_INTEGER"
-			"health_bonus_perstack"		"100 200 400 800 1600 3200 4800"
+			"health_bonus_perstack"		"120 240 460 880 1700 3320 4940"
 		}
 		"02"
 		{
 			"var_type"				"FIELD_INTEGER"
-			"str_bonus_perstack"		"10 15 20 25 50 100 150"
-			"LinkedSpecialBonus"		"special_bonus_unique_pudge_1"
+			"str_bonus_perstack"	"15 20 25 30 55 105 155"
+			"LinkedSpecialBonus"	"special_bonus_unique_pudge_1"
 		}
 		"03"
 		{
 			"var_type"				"FIELD_FLOAT"
-			"duration"		"8 11 14 17 20 27 35"
+			"duration"				"10 15 20 25 30 35 40"
 		}
 	}
 		
@@ -40677,7 +40677,7 @@
 			"02"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"hook_width"		"100"
+				"hook_width"		"150"
 			}
 			"03"
 			{
@@ -40697,12 +40697,12 @@
 			"06"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"threat_reduction"	"-40 -45 -50 -55 -60 -65 -70"
+				"threat_reduction"	"-45 -50 -55 -60 -65 -70 -75"
 			}
 			"07"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"hook_damage"		"1000 2000 4000 8000 16000 32000 64000"
+				"hook_damage"		"1500 2500 4500 8500 16500 32500 64500"
 			}
 			"08"
 			{
@@ -40712,7 +40712,7 @@
 			"09"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage_scepter"		"1500 3000 6000 12000 24000 48000 92000"
+				"damage_scepter"		"2000 3500 6500 12500 24500 48500 92500"
 			}
 		}
 	}
@@ -40750,7 +40750,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rot_radius"			"500"
+				"rot_radius"			"700"
 			}
 			"02"
 			{
@@ -40771,7 +40771,7 @@
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rot_damage_per_creep"	"50 100 150 200 300 400 500"
+				"rot_damage_per_creep"	"55 150 200 250 350 450 550"
 			}
 		}
 	}
