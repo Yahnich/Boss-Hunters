@@ -40,6 +40,12 @@ function winterw_arctic_sting:OnSpellStart()
     caster:AddNewModifier(caster, self, "modifier_arctic_sting", {Duration = self:GetTalentSpecialValueFor("duration")})
 end
 
+function winterw_arctic_sting:OnSpellStart()
+	local caster = self:GetCaster()
+	EmitSoundOn("Hero_Winter_Wyvern.ArcticBurn.Cast", caster)
+	caster:AddNewModifier(caster, self, "modifier_arctic_sting", {Duration = self:GetTalentSpecialValueFor("duration")})
+end
+
 modifier_arctic_sting = ({})
 function modifier_arctic_sting:OnCreated(table)
     if IsServer() then
