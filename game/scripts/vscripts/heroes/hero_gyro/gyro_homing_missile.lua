@@ -25,8 +25,10 @@ function modifier_homing_missile:OnIntervalThink()
 	if self:GetCaster():IsAlive() and self:GetAbility():IsCooldownReady() then
 		local enemies = self:GetCaster():FindEnemyUnitsInRadius(self:GetCaster():GetAbsOrigin(), self:GetSpecialValueFor("search_radius"), {})
 		for _,enemy in pairs(enemies) do
-			self:LaunchMissile(enemy)
-			self:GetAbility():SetCooldown()
+			if not self:GetCaster():IsIllusion() then
+				self:LaunchMissile(enemy)
+				self:GetAbility():SetCooldown()
+			end
 			break
 		end
 	end
@@ -118,7 +120,7 @@ function modifier_homing_missile:LaunchMissile(hTarget)
 
 					return nil
 				else
-					return FrameTime() --rerun interval
+					return 0.1 --rerun interval
  	  			end--if end
 			else
 				ParticleManager:DestroyParticle(fire,false)

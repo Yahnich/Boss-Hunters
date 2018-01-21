@@ -145,18 +145,16 @@ end
 
 function CDOTABaseAbility:DealDamage(attacker, victim, damage, data, spellText)
 	--OVERHEAD_ALERT_BONUS_SPELL_DAMAGE, OVERHEAD_ALERT_DAMAGE, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, OVERHEAD_ALERT_MANA_LOSS
-	local damageType = DAMAGE_TYPE_MAGICAL or data.damage_type 
-	local damageFlags = DOTA_DAMAGE_FLAG_NONE or data.damage_flags
+	local damageType =  data.damage_type or self:GetAbilityDamageType() or DAMAGE_TYPE_MAGICAL
+	local damageFlags = data.damage_flags or DOTA_DAMAGE_FLAG_NONE
 	local localdamage = damage
 	local spellText = spellText or 0
 	local ability = self or data.ability 
+	local returnDamage = ApplyDamage({victim = victim, attacker = attacker, ability = ability, damage_type = damageType, damage = localdamage, damage_flags = damageFlags})
 	if spellText > 0 then
-		local damage = ApplyDamage({victim = victim, attacker = attacker, ability = ability, damage_type = damageType, damage = localdamage, damage_flags = damageFlags})
-		SendOverheadEventMessage(attacker:GetPlayerOwner(),spellText,victim,damage,attacker:GetPlayerOwner()) --Substract the starting health by the new health to get exact damage taken values.
-		return damage
-	else
-		return ApplyDamage({victim = victim, attacker = attacker, ability = ability, damage_type = damageType, damage = localdamage, damage_flags = damageFlags})
+		SendOverheadEventMessage(attacker:GetPlayerOwner(),spellText,victim,returnDamage,attacker:GetPlayerOwner()) --Substract the starting health by the new health to get exact damage taken values.
 	end
+	return returnDamage
 end
 
 function CDOTA_BaseNPC:DealAOEDamage(position, radius, damageTable)
@@ -541,7 +539,8 @@ function CDOTA_BaseNPC:HealDisabled()
 	   self:HasModifier("modifier_plague_damage") or 
 	   self:HasModifier("modifier_rupture_datadriven") or 
 	   self:HasModifier("fire_aura_debuff") or 
-	   self:HasModifier("item_sange_and_yasha_4_debuff") or 
+	   self:HasModifier("item_sange_and_yasha_4_debuff") or
+	   self:HasModifier("modifier_hawk_spirit_enemy") or 
 	   self:HasModifier("cursed_effect") then
 	return true
 	else return false end
@@ -1934,11 +1933,11 @@ function CDOTA_BaseNPC:RemoveTaunt()
 end
 
 function CDOTA_BaseNPC:Daze(hAbility, hCaster, dazeDuration)
-	self:AddNewModifier(hCaster, hAbility, "modifier_daze_generic", {Duration = dazeDuration})
+	self:AddNewModifier(hCaster, hAbility, "modifier_dazed_generic", {Duration = dazeDuration})
 end
 
-function CDOTA_BaseNPC:IsDazeed()
-	if self:HasModifier("modifier_daze_generic") then
+function CDOTA_BaseNPC:IsDazed()
+	if self:HasModifier("modifier_dazed_generic") then
 		return true
 	else
 		return false
@@ -1946,8 +1945,8 @@ function CDOTA_BaseNPC:IsDazeed()
 end
 
 function CDOTA_BaseNPC:RemoveDaze()
-	if self:HasModifier("modifier_daze_generic") then
-		self:RemoveModifierByName("modifier_daze_generic")
+	if self:HasModifier("modifier_dazed_generic") then
+		self:RemoveModifierByName("modifier_dazed_generic")
 	end
 end
 
@@ -1973,4 +1972,22 @@ function CDOTABaseAbility:CD_pure()
 		self:EndCooldown()
         self:StartCooldown(CD)
     end
+end
+
+function CDOTA_BaseNPC:DisableHeal(hAbility, hCaster, Duration)
+	self:AddNewModifier(hCaster, hAbility, "modifier_healing_disable", {Duration = Duration})
+end
+
+function CDOTA_BaseNPC:IsHealingDisabled()
+	if self:HasModifier("modifier_healing_disable") then
+		return true
+	else
+		return false
+	end
+end
+
+function CDOTA_BaseNPC:EnableHeal()
+	if self:HasModifier("modifier_healing_disable") then
+		self:RemoveModifierByName("modifier_healing_disable")
+	end
 end

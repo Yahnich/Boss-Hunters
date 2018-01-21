@@ -84,38 +84,38 @@ function spawn_unit_arround( caster , unitname , radius , unit_number ,playerID,
     if radius == nil then radius = 400 end
     if core == nil then core = false end
     if unit_number == nil then unit_number = 1 end
-	if caster:IsNull() or not caster:IsAlive() then return end
+    if caster:IsNull() or not caster:IsAlive() then return end
     for i = 0, unit_number-1 do
         PrecacheUnitByNameAsync( unitname, function()
-			local unit = CreateUnitByName( unitname ,caster:GetAbsOrigin() + RandomVector(RandomInt(radius,radius)), true, nil, nil, caster:GetTeam() )
-				if GetMapName() == "epic_boss_fight_boss_master" then
-					Timers:CreateTimer(0.03,function()
-						if playerID ~= nil and PlayerResource:IsValidPlayerID( playerID ) then
-							unit:SetOwner(PlayerResource:GetSelectedHeroEntity(playerID))
-							unit:SetControllableByPlayer(playerID,true)
-						end
-						if core == true then
-							unit.Holdout_IsCore = true
-						end
-					end)
-				end
-				if string.match(unit:GetUnitName(), "npc_dota_boss35") and (GameRules.gameDifficulty <= 2) then
-					unit:RemoveAbility("boss_hell_tempest")
-				end
-				if caster:GetPlayerOwner() and caster:GetPlayerOwner():GetAssignedHero():GetUnitName() == "npc_dota_hero_necrolyte" then
-					summon:AddNewModifier(caster, self, "modifier_kill", {duration = caster:FindSpecificTalentValue("puppeteer_pestilence_talent_1", "duration")})
-					summon:AddNewModifier(caster, self, "modifier_summon_handler", {duration = caster:FindSpecificTalentValue("puppeteer_pestilence_talent_1", "duration")})
-					for i = 0, 16 do
-						local ability = summon:GetAbilityByIndex(i)
-						if ability then ability:SetActivated(false) end
-					end
-					Timers:CreateTimer(FrameTime(), function()
-						summon:SetHealth(summon:GetMaxHealth() * caster:FindTalentValue("puppeteer_pestilence_talent_1") / 100)
-						summon:SetMaxHealth(summon:GetMaxHealth() * caster:FindTalentValue("puppeteer_pestilence_talent_1") / 100)
-						summon:SetBaseMaxHealth(summon:GetMaxHealth() * caster:FindTalentValue("puppeteer_pestilence_talent_1") / 100)
-					end)
-				end
-			end,
+            local unit = CreateUnitByName( unitname ,caster:GetAbsOrigin() + RandomVector(RandomInt(radius,radius)), true, nil, nil, caster:GetTeam() )
+                if GetMapName() == "epic_boss_fight_boss_master" then
+                    Timers:CreateTimer(0.03,function()
+                        if playerID ~= nil and PlayerResource:IsValidPlayerID( playerID ) then
+                            unit:SetOwner(PlayerResource:GetSelectedHeroEntity(playerID))
+                            unit:SetControllableByPlayer(playerID,true)
+                        end
+                        if core == true then
+                            unit.Holdout_IsCore = true
+                        end
+                    end)
+                end
+                if unit and string.match(unit:GetUnitName(), "npc_dota_boss35") and (GameRules.gameDifficulty <= 2) then
+                    unit:RemoveAbility("boss_hell_tempest")
+                end
+                if caster:GetPlayerOwner() and caster:GetPlayerOwner():GetAssignedHero():GetUnitName() == "npc_dota_hero_necrolyte" then
+                    summon:AddNewModifier(caster, self, "modifier_kill", {duration = caster:FindSpecificTalentValue("puppeteer_pestilence_talent_1", "duration")})
+                    summon:AddNewModifier(caster, self, "modifier_summon_handler", {duration = caster:FindSpecificTalentValue("puppeteer_pestilence_talent_1", "duration")})
+                    for i = 0, 16 do
+                        local ability = summon:GetAbilityByIndex(i)
+                        if ability then ability:SetActivated(false) end
+                    end
+                    Timers:CreateTimer(FrameTime(), function()
+                        summon:SetHealth(summon:GetMaxHealth() * caster:FindTalentValue("puppeteer_pestilence_talent_1") / 100)
+                        summon:SetMaxHealth(summon:GetMaxHealth() * caster:FindTalentValue("puppeteer_pestilence_talent_1") / 100)
+                        summon:SetBaseMaxHealth(summon:GetMaxHealth() * caster:FindTalentValue("puppeteer_pestilence_talent_1") / 100)
+                    end)
+                end
+            end,
         nil)
     end
 end
@@ -139,20 +139,20 @@ end
 
 function evil_core_summon(keys)
     local caster = keys.caster
-	for _,unit in pairs ( Entities:FindAllByName( "npc_dota_creature")) do
-		if unit:GetUnitName() == "npc_dota_boss36_guardian" then
-			return nil
-		end
-	end
-	caster.UnitSpawned = caster.UnitSpawned or 0
-	caster.UnitSpawned = caster.UnitSpawned + 1
+    for _,unit in pairs ( Entities:FindAllByName( "npc_dota_creature")) do
+        if unit:GetUnitName() == "npc_dota_boss36_guardian" then
+            return nil
+        end
+    end
+    caster.UnitSpawned = caster.UnitSpawned or 0
+    caster.UnitSpawned = caster.UnitSpawned + 1
     caster.Charge = 0
     for nPlayerID = 0, DOTA_MAX_PLAYERS-1 do
         if PlayerResource:IsValidPlayer( nPlayerID ) and PlayerResource:GetTeam(nPlayerID) == DOTA_TEAM_BADGUYS then
             local boss_master_id = nPlayerID
         end
     end
-	if caster.dead then return end
+    if caster.dead then return end
     local sfx=""
         if GameRules.gameDifficulty > 2 then 
             sfx="_vh" 
@@ -167,7 +167,7 @@ function evil_core_summon(keys)
     end
 
     local health_percent = (caster:GetHealth()/caster:GetMaxHealth())*100
-	
+    
     if health_percent <= 10 then
         spawn_unit_arround( caster , "npc_dota_boss35"..sfx , 500 , number , boss_master_id )
         spawn_unit_arround( caster , "npc_dota_boss34"..sfx , 500 , 1 ,boss_master_id)
@@ -196,7 +196,7 @@ end
 function boss_evil_core_spawn(keys)
     local caster = keys.caster
     caster.Charge = 0
-	caster.UnitSpawned = caster.UnitSpawned or 0
+    caster.UnitSpawned = caster.UnitSpawned or 0
     caster.weakness = false
     Timers:CreateTimer(0.25,function()
             if not caster:IsNull() then
@@ -282,11 +282,11 @@ function boss_evil_core_take_damage(keys)
     if caster:IsNull() then 
         return
     end
-	local base = GameRules.BasePlayers
+    local base = GameRules.BasePlayers
     caster.failed_attack = caster.failed_attack or 0
     if caster.weakness == true then
         local increasedDamage = math.floor((5+caster.UnitSpawned) * ((base + 1 - PlayerResource:GetPlayerCountForTeam(DOTA_TEAM_GOODGUYS))/base))
-		caster:SetHealth( caster:GetHealth() - (5+caster.UnitSpawned) - increasedDamage )
+        caster:SetHealth( caster:GetHealth() - (5+caster.UnitSpawned) - increasedDamage )
         caster.failed_attack = 0
     else
         caster.failed_attack = caster.failed_attack + 1
@@ -302,23 +302,23 @@ function boss_evil_core_take_damage(keys)
 end
 
 function boss_evil_core_death(keys)
-	keys.caster.dead = true
-	if keys.caster:GetTeam() ~= DOTA_TEAM_BADGUYS then return end
-	local ticker = 1 -- fuck this gay earth
-	Timers:CreateTimer(0.1,function()
+    keys.caster.dead = true
+    if keys.caster:GetTeam() ~= DOTA_TEAM_BADGUYS then return end
+    local ticker = 1 -- fuck this gay earth
+    Timers:CreateTimer(0.1,function()
             for _,unit in pairs ( Entities:FindAllByName( "npc_dota_creature")) do
-				if unit:GetTeamNumber() == DOTA_TEAM_BADGUYS and unit:GetUnitName() ~= "npc_dota_boss36" and unit:GetUnitName() ~= "npc_dota_boss36_guardian" then
-					unit:ForceKill(true)
-				end
-			end
-			ticker = ticker - 0.1
-			if ticker > 0 then
-				return 0.1
-			end
+                if unit:GetTeamNumber() == DOTA_TEAM_BADGUYS and unit:GetUnitName() ~= "npc_dota_boss36" and unit:GetUnitName() ~= "npc_dota_boss36_guardian" then
+                    unit:ForceKill(true)
+                end
+            end
+            ticker = ticker - 0.1
+            if ticker > 0 then
+                return 0.1
+            end
         end)
-	local dummy = CreateUnitByName( "npc_dota_boss36_guardian" , keys.caster:GetAbsOrigin(), true, nil, nil, keys.caster:GetTeam() )
-	keys.ability:ApplyDataDrivenModifier(keys.caster, dummy, "modifier_spawn_timer", {duration = 5})
-	for nPlayerID = 0, DOTA_MAX_PLAYERS-1 do
+    local dummy = CreateUnitByName( "npc_dota_boss36_guardian" , keys.caster:GetAbsOrigin(), true, nil, nil, keys.caster:GetTeam() )
+    keys.ability:ApplyDataDrivenModifier(keys.caster, dummy, "modifier_spawn_timer", {duration = 5})
+    for nPlayerID = 0, DOTA_MAX_PLAYERS-1 do
         if PlayerResource:IsValidPlayer( nPlayerID ) then
             local player = PlayerResource:GetPlayer(nPlayerID)
             if player ~= nil then
@@ -480,19 +480,19 @@ function boss_death_time( keys )
     local targetFlag = ability:GetAbilityTargetFlags()
     local check = false
     local blink_ability = caster:FindAbilityByName("boss_blink_on_far")
-	local death_position = caster:GetAbsOrigin()
+    local death_position = caster:GetAbsOrigin()
     local units = FindUnitsInRadius(
         caster:GetTeamNumber(), origin, caster, FIND_UNITS_EVERYWHERE, targetTeam, targetType, targetFlag, FIND_CLOSEST, false)
     for _,unit in pairs( units ) do
         local particle = ParticleManager:CreateParticle("particles/generic_aoe_persistent_circle_1/death_timer_glow_rev.vpcf",PATTACH_POINT_FOLLOW,unit)
         if GameRules.gameDifficulty > 2 then timer = 5.0 else timer = 6.0 end
         ability:ApplyDataDrivenModifier( caster, unit, "target_warning", {duration = timer} )
-		blink_ability:StartCooldown(timer+1)
+        blink_ability:StartCooldown(timer+1)
         Timers:CreateTimer(timer,function()
             local vDiff = unit:GetAbsOrigin() - death_position
-			caster:RemoveModifierByName("caster_chrono_fx")
+            caster:RemoveModifierByName("caster_chrono_fx")
             if vDiff:Length2D() < Death_range and caster:IsAlive() then
-				unit:RemoveModifierByName("modifier_tauntmail")
+                unit:RemoveModifierByName("modifier_tauntmail")
                 unit.NoTombStone = true
                 unit:KillTarget()
                 Timers:CreateTimer(timer,function()
@@ -526,15 +526,15 @@ end
 
 function boss_blink_on_far( keys )
     local caster = keys.caster
-	local target = keys.target
+    local target = keys.target
     local origin = caster:GetAbsOrigin()
     local ability = keys.ability
-	
+    
     ProjectileManager:ProjectileDodge(keys.caster)  --Disjoints disjointable incoming projectiles.
     
     ParticleManager:CreateParticle("particles/items_fx/blink_dagger_start.vpcf", PATTACH_ABSORIGIN, keys.caster)
     keys.caster:EmitSound("DOTA_Item.BlinkDagger.Activate")
-	FindClearSpaceForUnit(caster, target:GetAbsOrigin(), true)
+    FindClearSpaceForUnit(caster, target:GetAbsOrigin(), true)
 end
 
 --[[ 
@@ -637,7 +637,7 @@ function projectile_death_orbs( event )
 end
 function projectile_death_orbs_hit( event )
     local target = event.target
-	if not event.caster:IsAlive() then return end
+    if not event.caster:IsAlive() then return end
     if target:GetHealth() <= target:GetMaxHealth()/4 then 
         target.NoTombStone = true
         target:KillTarget()
@@ -750,25 +750,25 @@ end
 LinkLuaModifier( "modifier_neutral_power_passive", "scripts/vscripts/lua_abilities/heroes/modifiers/modifier_neutral_power_passive.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 function CreepScaling(keys)
-	Timers:CreateTimer(0.03,function() 
-		local caster = keys.caster:GetOwnerEntity()
-		local creep = keys.caster
-		if not caster then caster = creep end
-		local treant = caster:FindAbilityByName("furion_force_of_nature")
-		if treant then
-			creep:AddNewModifier(creep, keys.ability, "modifier_neutral_power_passive", {})
-			local damage = creep:GetBaseDamageMin() + creep:GetBaseDamageMin()*caster:GetLevel()^0.4*treant:GetLevel()*GameRules._roundnumber^0.5
-			if caster:HasTalent("special_bonus_unique_furion") then damage = damage * caster:FindTalentValue("special_bonus_unique_furion") end
-			creep:SetBaseDamageMin(damage)
-		else 
-			local damage = creep:GetBaseDamageMin() + 2*creep:GetBaseDamageMin()*caster:GetLevel()/80
-			
-			if caster:HasTalent("special_bonus_unique_venomancer") then damage = damage * caster:FindTalentValue("special_bonus_unique_venomancer") end
-			creep:SetBaseDamageMin(damage) 
-		end
-		creep:SetBaseDamageMax(creep:GetBaseDamageMin())
-		creep:SetHealth(creep:GetMaxHealth())
-	end)
+    Timers:CreateTimer(0.03,function() 
+        local caster = keys.caster:GetOwnerEntity()
+        local creep = keys.caster
+        if not caster then caster = creep end
+        local treant = caster:FindAbilityByName("furion_force_of_nature")
+        if treant then
+            creep:AddNewModifier(creep, keys.ability, "modifier_neutral_power_passive", {})
+            local damage = creep:GetBaseDamageMin() + creep:GetBaseDamageMin()*caster:GetLevel()^0.4*treant:GetLevel()*GameRules._roundnumber^0.5
+            if caster:HasTalent("special_bonus_unique_furion") then damage = damage * caster:FindTalentValue("special_bonus_unique_furion") end
+            creep:SetBaseDamageMin(damage)
+        else 
+            local damage = creep:GetBaseDamageMin() + 2*creep:GetBaseDamageMin()*caster:GetLevel()/80
+            
+            if caster:HasTalent("special_bonus_unique_venomancer") then damage = damage * caster:FindTalentValue("special_bonus_unique_venomancer") end
+            creep:SetBaseDamageMin(damage) 
+        end
+        creep:SetBaseDamageMax(creep:GetBaseDamageMin())
+        creep:SetHealth(creep:GetMaxHealth())
+    end)
 end
 
 function doom_raze( event )
@@ -804,13 +804,13 @@ function hell_tempest_boss( keys )
     caster.charge = 0
     local casterPoint = caster:GetAbsOrigin()
     local delay = 0
-	if GameRules.gameDifficulty > 2 then
-		delay = 5
-	elseif GameRules.gameDifficulty <= 2 then
-		delay = 6
-	else
-		delay = 7
-	end
+    if GameRules.gameDifficulty > 2 then
+        delay = 5
+    elseif GameRules.gameDifficulty <= 2 then
+        delay = 6
+    else
+        delay = 7
+    end
     local messageinfo = {
     message = "The boss is casting Hell Tempest, get in the water!",
     duration = 2
@@ -866,17 +866,17 @@ function doom_bringer_boss( event )
     local target = event.target
     local caster = event.caster
     local time = GameRules:GetGameTime()
-	event.ability:ApplyDataDrivenModifier(caster, target, "fuckingdoomed", {duration = 10})
-	Timers:CreateTimer(0.1,function() 
-		if target:GetHealth() > target:GetMaxHealth() * 0.025 * GameRules.gameDifficulty and GameRules:GetGameTime() <= time + 10 then
-			target:SetHealth( math.max(1, target:GetHealth()*(1 - 0.0075*GameRules.gameDifficulty)) )
-			return 0.5
-		else
-			if GameRules:GetGameTime() <= time + 10 and caster:IsAlive() then
-				target:KillTarget()
-			end
-		end
-	end)
+    event.ability:ApplyDataDrivenModifier(caster, target, "fuckingdoomed", {duration = 10})
+    Timers:CreateTimer(0.1,function() 
+        if target:GetHealth() > target:GetMaxHealth() * 0.025 * GameRules.gameDifficulty and GameRules:GetGameTime() <= time + 10 then
+            target:SetHealth( math.max(1, target:GetHealth()*(1 - 0.0075*GameRules.gameDifficulty)) )
+            return 0.5
+        else
+            if GameRules:GetGameTime() <= time + 10 and caster:IsAlive() then
+                target:KillTarget()
+            end
+        end
+    end)
 end
 
 
@@ -889,7 +889,7 @@ end
 
 function Give_Control( keys )
     local target = keys.target
-	if target:GetUnitName() == "npc_dota_boss36" then return end
+    if target:GetUnitName() == "npc_dota_boss36" then return end
     local caster = keys.caster
     target:Purge(true,true,false,false,false)
     local PlayerID = caster:GetPlayerOwnerID()
@@ -899,23 +899,23 @@ end
 
 function Give_ControlBM( keys )
     local target = keys.target
-	if target:GetUnitName() == "npc_dota_boss36" then return end
+    if target:GetUnitName() == "npc_dota_boss36" then return end
     local caster = keys.caster
     local PlayerID = caster:GetPlayerID()
     target:SetTeam(caster:GetTeamNumber())
     target:SetControllableByPlayer( PlayerID, false)
-	target:SetOwner(caster)
-	print(PlayerID, caster:GetTeamNumber())
+    target:SetOwner(caster)
+    print(PlayerID, caster:GetTeamNumber())
 end
 
 function End_Control( keys )
     local target = keys.target
     local caster = keys.caster
     local level = keys.ability:GetTalentSpecialValueFor( "agh_level" )
-	if target:IsNull() or not target then return end
+    if target:IsNull() or not target then return end
     target:SetTeam(DOTA_TEAM_BADGUYS)
     target:SetControllableByPlayer(-1, false)
-	target:SetControllableByPlayer(GameRules.boss_master_id, false)
+    target:SetControllableByPlayer(GameRules.boss_master_id, false)
     local hp_percent = keys.ability:GetTalentSpecialValueFor( "hp_regen" ) * 0.01
     local regen_health = target:GetMaxHealth()*hp_percent
     if caster:HasScepter() then
@@ -935,47 +935,47 @@ end
 function spawn_unit( keys )
     local caster = keys.caster
     local unit = keys.unit_to_spawn
-	local ability
-	local abilityname = {}
-	if caster.elite then
-		local ability
-		local i = 1
-		for k,v in pairs(GameRules._Elites)	do -- make splintered units elites
-			if not ability then
-				ability = caster:FindAbilityByName(k)
-				if ability then
-					abilityname[i] = k
-					i = i + 1
-				end
-			end
-		end
-	end
+    local ability
+    local abilityname = {}
+    if caster.elite then
+        local ability
+        local i = 1
+        for k,v in pairs(GameRules._Elites) do -- make splintered units elites
+            if not ability then
+                ability = caster:FindAbilityByName(k)
+                if ability then
+                    abilityname[i] = k
+                    i = i + 1
+                end
+            end
+        end
+    end
     if keys.number_of_unit==nil then keys.number_of_unit=1 end
     for i = 1, keys.number_of_unit do
-		if caster:GetOwnerEntity() and caster:GetOwnerEntity().IsRealHero and caster:GetOwnerEntity():IsRealHero() then
-			caster:GetOwnerEntity():CreateSummon(unit, caster:GetAbsOrigin() + RandomVector(RandomInt(250,500)), 30)
-		else
-			local entUnit = CreateUnitByName( unit, caster:GetAbsOrigin() + RandomVector(RandomInt(250,500)), true, nil, nil, caster:GetTeamNumber() )
-		end
-		if entUnit then
-			if #abilityname > 0 and RollPercentage(100/i) then
-				entUnit.elite = true
-				entUnit.eliteAb = abilityname
-			end
-		end
+        if caster:GetOwnerEntity() and caster:GetOwnerEntity().IsRealHero and caster:GetOwnerEntity():IsRealHero() then
+            caster:GetOwnerEntity():CreateSummon(unit, caster:GetAbsOrigin() + RandomVector(RandomInt(250,500)), 30)
+        else
+            local entUnit = CreateUnitByName( unit, caster:GetAbsOrigin() + RandomVector(RandomInt(250,500)), true, nil, nil, caster:GetTeamNumber() )
+        end
+        if entUnit then
+            if #abilityname > 0 and RollPercentage(100/i) then
+                entUnit.elite = true
+                entUnit.eliteAb = abilityname
+            end
+        end
     end
 end
 
 
 function NecroAura(keys)
-	if keys.caster:IsIllusion() then return end
-	local ability = keys.ability
-	local target = keys.target
-	local reduction = ability:GetTalentSpecialValueFor("magical_ress_red")
-	local entry_modifier = keys.entry_modifier
-	local new_armor_target =  0
-	new_armor_target =  math.floor(target:GetBaseMagicalResistanceValue() + reduction*entry_modifier)
-	target:SetBaseMagicalResistanceValue(new_armor_target)
+    if keys.caster:IsIllusion() then return end
+    local ability = keys.ability
+    local target = keys.target
+    local reduction = ability:GetTalentSpecialValueFor("magical_ress_red")
+    local entry_modifier = keys.entry_modifier
+    local new_armor_target =  0
+    new_armor_target =  math.floor(target:GetBaseMagicalResistanceValue() + reduction*entry_modifier)
+    target:SetBaseMagicalResistanceValue(new_armor_target)
 end
 
 
@@ -988,7 +988,7 @@ end
 
 function KillTarget(keys)
     local target = keys.target
-	if not keys.caster:IsAlive() then return end
+    if not keys.caster:IsAlive() then return end
     if target:GetUnitName() ~= "npc_dota_boss36" then
         target:ForceKill(true)
     else 
@@ -1027,77 +1027,77 @@ function RageFunction(keys)
 end
 
 function pudgeHP_shiftOnAttack(keys)
-	if keys.caster:IsIllusion() then return end
-		local previous_stack_count = 0
-		local threat = keys.ability:GetTalentSpecialValueFor("health_bonus_perstack") / 100
-		if keys.target:HasModifier("modifier_hp_shift_datadriven_debuff_counter") then
-			previous_stack_count = keys.target:GetModifierStackCount("modifier_hp_shift_datadriven_debuff_counter", keys.caster)
-			
-			--We have to remove and replace the modifier so the duration will refresh.
-			keys.target:RemoveModifierByNameAndCaster("modifier_hp_shift_datadriven_debuff_counter", keys.caster)
-		end
-		keys.ability:ApplyDataDrivenModifier(keys.caster, keys.target, "modifier_hp_shift_datadriven_debuff_counter", nil)
-		keys.target:SetModifierStackCount("modifier_hp_shift_datadriven_debuff_counter", keys.caster, previous_stack_count + 1)		
-		
-		--Apply a debuff
-		if keys.target:GetUnitName() ~= "npc_dota_boss36" then
-			local curr_max = keys.target:GetMaxHealth()
-			local curr_curr		= keys.target:GetHealth()
-			local reduction = keys.ability:GetTalentSpecialValueFor( "health_bonus_perstack")
-			keys.target:SetHealth(curr_curr - reduction)
-			keys.target:SetMaxHealth(curr_max - reduction)
-			keys.target:SetBaseMaxHealth(curr_max - reduction)
-		end
-		keys.ability:ApplyDataDrivenModifier(keys.caster, keys.target, "modifier_hp_shift_datadriven_debuff", nil)
-		
-		--update visible counter modifier's stack count and duration
-		previous_stack_count = 0
-		if keys.caster:HasModifier("modifier_hp_shift_datadriven_buff_counter") then
-			previous_stack_count = keys.caster:GetModifierStackCount("modifier_hp_shift_datadriven_buff_counter", keys.caster)
-			
-			--We have to remove and replace the modifier so the duration will refresh (so it will show the duration of the latest).
-			keys.caster:RemoveModifierByNameAndCaster("modifier_hp_shift_datadriven_buff_counter", keys.caster)
-		end
-		keys.ability:ApplyDataDrivenModifier(keys.caster, keys.caster, "modifier_hp_shift_datadriven_buff_counter", nil)
-		keys.caster:SetModifierStackCount("modifier_hp_shift_datadriven_buff_counter", keys.caster, previous_stack_count + 1)
-		
-		--Apply buff
-		keys.ability:ApplyDataDrivenModifier(keys.caster, keys.caster, "modifier_hp_shift_datadriven_buff", nil)
+    if keys.caster:IsIllusion() then return end
+        local previous_stack_count = 0
+        local threat = keys.ability:GetTalentSpecialValueFor("health_bonus_perstack") / 100
+        if keys.target:HasModifier("modifier_hp_shift_datadriven_debuff_counter") then
+            previous_stack_count = keys.target:GetModifierStackCount("modifier_hp_shift_datadriven_debuff_counter", keys.caster)
+            
+            --We have to remove and replace the modifier so the duration will refresh.
+            keys.target:RemoveModifierByNameAndCaster("modifier_hp_shift_datadriven_debuff_counter", keys.caster)
+        end
+        keys.ability:ApplyDataDrivenModifier(keys.caster, keys.target, "modifier_hp_shift_datadriven_debuff_counter", nil)
+        keys.target:SetModifierStackCount("modifier_hp_shift_datadriven_debuff_counter", keys.caster, previous_stack_count + 1)     
+        
+        --Apply a debuff
+        if keys.target:GetUnitName() ~= "npc_dota_boss36" then
+            local curr_max = keys.target:GetMaxHealth()
+            local curr_curr     = keys.target:GetHealth()
+            local reduction = keys.ability:GetTalentSpecialValueFor( "health_bonus_perstack")
+            keys.target:SetHealth(curr_curr - reduction)
+            keys.target:SetMaxHealth(curr_max - reduction)
+            keys.target:SetBaseMaxHealth(curr_max - reduction)
+        end
+        keys.ability:ApplyDataDrivenModifier(keys.caster, keys.target, "modifier_hp_shift_datadriven_debuff", nil)
+        
+        --update visible counter modifier's stack count and duration
+        previous_stack_count = 0
+        if keys.caster:HasModifier("modifier_hp_shift_datadriven_buff_counter") then
+            previous_stack_count = keys.caster:GetModifierStackCount("modifier_hp_shift_datadriven_buff_counter", keys.caster)
+            
+            --We have to remove and replace the modifier so the duration will refresh (so it will show the duration of the latest).
+            keys.caster:RemoveModifierByNameAndCaster("modifier_hp_shift_datadriven_buff_counter", keys.caster)
+        end
+        keys.ability:ApplyDataDrivenModifier(keys.caster, keys.caster, "modifier_hp_shift_datadriven_buff_counter", nil)
+        keys.caster:SetModifierStackCount("modifier_hp_shift_datadriven_buff_counter", keys.caster, previous_stack_count + 1)
+        
+        --Apply buff
+        keys.ability:ApplyDataDrivenModifier(keys.caster, keys.caster, "modifier_hp_shift_datadriven_buff", nil)
 end
 
 
 --[[ ============================================================================================================
-	Called whenever a Flesh Heap debuff on an opponent expires.  Decrements their debuff counter by one.
+    Called whenever a Flesh Heap debuff on an opponent expires.  Decrements their debuff counter by one.
 ================================================================================================================= ]]
 function pudgeHP_shiftDebuffOnDestroy(keys)
-	if keys.target:HasModifier("modifier_hp_shift_datadriven_debuff_counter") then
-		local previous_stack_count = keys.target:GetModifierStackCount("modifier_hp_shift_datadriven_debuff_counter", keys.caster)
-		if previous_stack_count > 1 then
-			keys.target:SetModifierStackCount("modifier_hp_shift_datadriven_debuff_counter", keys.caster, previous_stack_count - 1)
-			
-		else
-			keys.target:RemoveModifierByNameAndCaster("modifier_hp_shift_datadriven_debuff_counter", keys.caster)
-		end
-	end
-	local curr_max = keys.target:GetMaxHealth()
-	local reduction = keys.ability:GetTalentSpecialValueFor( "health_bonus_perstack")
-	keys.target:SetMaxHealth(curr_max + reduction)
-	keys.target:SetBaseMaxHealth(curr_max + reduction)
+    if keys.target:HasModifier("modifier_hp_shift_datadriven_debuff_counter") then
+        local previous_stack_count = keys.target:GetModifierStackCount("modifier_hp_shift_datadriven_debuff_counter", keys.caster)
+        if previous_stack_count > 1 then
+            keys.target:SetModifierStackCount("modifier_hp_shift_datadriven_debuff_counter", keys.caster, previous_stack_count - 1)
+            
+        else
+            keys.target:RemoveModifierByNameAndCaster("modifier_hp_shift_datadriven_debuff_counter", keys.caster)
+        end
+    end
+    local curr_max = keys.target:GetMaxHealth()
+    local reduction = keys.ability:GetTalentSpecialValueFor( "health_bonus_perstack")
+    keys.target:SetMaxHealth(curr_max + reduction)
+    keys.target:SetBaseMaxHealth(curr_max + reduction)
 end
 
 
 --[[ ============================================================================================================
-	Called whenever a Flesh Heap buff on Pudge expires.  Decrements his buff counter by one.
+    Called whenever a Flesh Heap buff on Pudge expires.  Decrements his buff counter by one.
 ================================================================================================================= ]]
 function pudgeHP_shiftBuffOnDestroy(keys)
-	if keys.caster:HasModifier("modifier_hp_shift_datadriven_buff_counter") then
-		local previous_stack_count = keys.caster:GetModifierStackCount("modifier_hp_shift_datadriven_buff_counter", keys.caster)
-		if previous_stack_count > 1 then
-			keys.caster:SetModifierStackCount("modifier_hp_shift_datadriven_buff_counter", keys.caster, previous_stack_count - 1)
-		else
-			keys.caster:RemoveModifierByNameAndCaster("modifier_hp_shift_datadriven_buff_counter", keys.caster)
-		end
-	end
+    if keys.caster:HasModifier("modifier_hp_shift_datadriven_buff_counter") then
+        local previous_stack_count = keys.caster:GetModifierStackCount("modifier_hp_shift_datadriven_buff_counter", keys.caster)
+        if previous_stack_count > 1 then
+            keys.caster:SetModifierStackCount("modifier_hp_shift_datadriven_buff_counter", keys.caster, previous_stack_count - 1)
+        else
+            keys.caster:RemoveModifierByNameAndCaster("modifier_hp_shift_datadriven_buff_counter", keys.caster)
+        end
+    end
 end
 
 function boss_invoke_golem_destroy_skill(keys)
@@ -1185,9 +1185,9 @@ function spiked_carapace_reflect( keys )
     local damageTaken = keys.DamageTaken
     local ability = keys.ability
     local damage_multiplier = ability:GetTalentSpecialValueFor( "damage_multplier") * 0.01
-	local damage = damageTaken*damage_multiplier
-	if damage > attacker:GetMaxHealth() * 0.8 then damage = attacker:GetMaxHealth() * 0.8 end -- no oneshotting, tears-b-gone
-	if (attacker:GetName() == "npc_dota_hero_centaur" and not attacker:IsAttacking()) or attacker:IsMagicImmune() then return end
+    local damage = damageTaken*damage_multiplier
+    if damage > attacker:GetMaxHealth() * 0.8 then damage = attacker:GetMaxHealth() * 0.8 end -- no oneshotting, tears-b-gone
+    if (attacker:GetName() == "npc_dota_hero_centaur" and not attacker:IsAttacking()) or attacker:IsMagicImmune() then return end
     -- Check if it's not already been hit
     local damageTable = {
                             victim = attacker,
@@ -1213,6 +1213,6 @@ function StopSound( keys )
 end
 
 function givegemtruesight(keys)
-	local caster = keys.caster
-	caster:AddNewModifier(caster, nil, "modifier_truesight", {})
+    local caster = keys.caster
+    caster:AddNewModifier(caster, nil, "modifier_truesight", {})
 end

@@ -1,19 +1,17 @@
 modifier_dazed_generic = class({})
 
 function modifier_dazed_generic:OnCreated()
-	--if IsServer() then
+	if IsServer() then
 		self:StartIntervalThink(FrameTime())
-	--end
+	end
 end
 
 function modifier_dazed_generic:OnIntervalThink()
-	if IsServer() then
-		if RollPercentage(12) then
-			self:GetParent():SetInitialGoalEntity(nil)
-			self:GetParent():Stop()
-			self:GetParent():Interrupt()
-			self:GetParent():MoveToPosition(self:GetParent():GetAbsOrigin()+ActualRandomVector(500, -500))
-		end
+	if RollPercentage(12) then
+		self:GetParent():SetInitialGoalEntity(nil)
+		self:GetParent():Stop()
+		self:GetParent():Interrupt()
+		self:GetParent():MoveToPosition(self:GetParent():GetAbsOrigin()+ActualRandomVector(500, -500))
 	end
 end
 
