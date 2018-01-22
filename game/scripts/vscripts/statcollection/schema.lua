@@ -64,6 +64,9 @@ function BuildPlayersArray()
 				if not hero then return end
 				local heroName = string.gsub(hero:GetUnitName(), "npc_dota_hero_", "")
 				local mapName = string.gsub(GetMapName(), "epic_boss_fight_", "")
+				
+				local talents = FindChosenTalentRow(hero)
+				PrintAll(talents)
                 table.insert(players, {
                     -- steamID32 required in here
                     steamID32 = PlayerResource:GetSteamAccountID(playerID),
@@ -85,12 +88,12 @@ function BuildPlayersArray()
                     i4 = GetItemSlot(hero, 4),
                     i5 = GetItemSlot(hero, 5),
                     i6 = GetItemSlot(hero, 6),
+					-- talent choices
 					
-					-- ability picking
-					a1 = FindAbilityNameInSlot(hero, 0),
-					a2 = FindAbilityNameInSlot(hero, 1),
-					a3 = FindAbilityNameInSlot(hero, 2),
-					a4 = FindAbilityNameInSlot(hero, 5),
+					a1 = talents[1],
+					a2 = talents[2],
+					a3 = talents[3],
+					a4 = talents[4],
                 })
             end
         end
@@ -99,9 +102,20 @@ function BuildPlayersArray()
     return players
 end
 
-function FindAbilityNameInSlot(hero, index)
-	if hero:GetAbilityByIndex(index) then return hero:GetAbilityByIndex(index):GetName() end
-	return ""
+function FindChosenTalentRow(hero)
+	local counter = 0
+	local indexCounter = 0
+	local chosenTalents = {}
+	for i = 0, hero:GetAbilityCount() do
+		local ability = hero:GetAbilityByIndex(i)
+		if ability and string.match(ability:GetName(), "special_bonus") and ability:GetLevel() >= 1 then
+			table.insert(chosenTalents, ability:GetName())
+		end
+	end
+	for i = 1, 4 do
+		if chosenTalents[i] == nil then chosenTalents[i] = "none" end
+	end
+	return chosenTalents
 end
 
 function FindHPS(hero)

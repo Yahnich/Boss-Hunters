@@ -2859,7 +2859,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_mana_regen"		"5"
+				"bonus_mana_regen"		"4"
 			}			
 			"05"
 			{
@@ -3099,7 +3099,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_mana_regen"		"5"
+				"bonus_mana_regen"		"6"
 			}			
 			"05"
 			{
@@ -3339,7 +3339,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_mana_regen"		"5"
+				"bonus_mana_regen"		"8"
 			}			
 			"05"
 			{
@@ -12388,7 +12388,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_mana_regen"		"5"
+				"bonus_mana_regen"		"12"
 			}			
 			"05"
 			{

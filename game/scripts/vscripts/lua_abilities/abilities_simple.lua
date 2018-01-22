@@ -99,9 +99,6 @@ function spawn_unit_arround( caster , unitname , radius , unit_number ,playerID,
                         end
                     end)
                 end
-                if unit and string.match(unit:GetUnitName(), "npc_dota_boss35") and (GameRules.gameDifficulty <= 2) then
-                    unit:RemoveAbility("boss_hell_tempest")
-                end
                 if caster:GetPlayerOwner() and caster:GetPlayerOwner():GetAssignedHero():GetUnitName() == "npc_dota_hero_necrolyte" then
                     summon:AddNewModifier(caster, self, "modifier_kill", {duration = caster:FindSpecificTalentValue("puppeteer_pestilence_talent_1", "duration")})
                     summon:AddNewModifier(caster, self, "modifier_summon_handler", {duration = caster:FindSpecificTalentValue("puppeteer_pestilence_talent_1", "duration")})

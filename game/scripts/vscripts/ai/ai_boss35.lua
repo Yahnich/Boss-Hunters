@@ -16,6 +16,7 @@ function Spawn( entityKeyValues )
 	thisEntity.doom = thisEntity:FindAbilityByName("boss_doom_bring")
 	thisEntity.raze = thisEntity:FindAbilityByName("boss_doomraze"..thisEntity.suffix)
 	thisEntity.tempest = thisEntity:FindAbilityByName("boss_hell_tempest")
+	thisEntity.isCoreSpawn = #Entities:FindAllByName( "npc_dota_boss36*") > 0
 end
 
 
@@ -50,7 +51,7 @@ function AIThink()
 				return 1
 			end
 		end
-		if not thisEntity.tempest:IsNull() and AICore:TotalEnemyHeroesInRange( thisEntity, 1000 ) >= 1 and thisEntity.tempest:IsFullyCastable() then
+		if not thisEntity.isCoreSpawn and AICore:TotalEnemyHeroesInRange( thisEntity, 1000 ) >= 1 and thisEntity.tempest:IsFullyCastable() then
 			ExecuteOrderFromTable({
 				UnitIndex = thisEntity:entindex(),
 				OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,

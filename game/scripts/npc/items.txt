@@ -1335,7 +1335,7 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"0"	
+		"ItemCost"						"3250"	
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -1344,7 +1344,7 @@
 		"ItemResult"					"item_dagon_2"
 		"ItemRequirements"
 		{
-			"02"						"item_dagon;item_recipe_dagon"
+			"02"						"item_dagon"
 		}
 	}
 
@@ -1357,7 +1357,7 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"0"	
+		"ItemCost"						"3250"	
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -1366,7 +1366,7 @@
 		"ItemResult"					"item_dagon_3"
 		"ItemRequirements"
 		{
-			"02"						"item_dagon_2;item_recipe_dagon"
+			"02"						"item_dagon_2"
 		}
 	}
 
@@ -1379,7 +1379,7 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"0"	
+		"ItemCost"						"3250"	
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -1388,7 +1388,7 @@
 		"ItemResult"					"item_dagon_4"
 		"ItemRequirements"
 		{
-			"02"						"item_dagon_3;item_recipe_dagon"
+			"02"						"item_dagon_3"
 		}
 	}
 
@@ -1401,7 +1401,7 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"0"	
+		"ItemCost"						"3250"	
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -1410,7 +1410,7 @@
 		"ItemResult"					"item_dagon_5"
 		"ItemRequirements"
 		{
-			"02"						"item_dagon_4;item_recipe_dagon"
+			"02"						"item_dagon_4"
 		}
 	}
 	
