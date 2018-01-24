@@ -73,6 +73,9 @@ function AICore:NearestEnemyHeroInRange( entity, range , magic_immune)
 			target = enemy
 		end
 	end
+	if entity:GetTauntTarget() then 
+		target = entity:GetTauntTarget()
+	end
 	return target
 end
 
@@ -104,6 +107,9 @@ function AICore:GetHighestPriorityTarget(entity)
 	local target = entity.AIprevioustarget
 	if not entity.AIprevioustarget then
 		target = AICore:NearestEnemyHeroInRange( entity, 15000 , true )
+	end
+	if entity:GetTauntTarget() then 
+		target = entity:GetTauntTarget()
 	end
 	return target
 end
@@ -191,6 +197,9 @@ function AICore:AttackHighestPriority( entity )
 					entity.AIprevioustarget = target
 				end
 			end
+		end
+		if entity:GetTauntTarget() then 
+			target = entity:GetTauntTarget()
 		end
 		if target and not target:IsNull() then
 			ExecuteOrderFromTable({
@@ -288,6 +297,9 @@ function AICore:FarthestEnemyHeroInRange( entity, range , magic_immune)
 			target = enemy
 		end
 	end
+	if entity:GetTauntTarget() then 
+		target = entity:GetTauntTarget()
+	end
 	return target
 end
 
@@ -307,6 +319,9 @@ function AICore:NearestDisabledEnemyHeroInRange( entity, range , magic_immune)
 			minRange = distanceToEnemy
 			target = enemy
 		end
+	end
+	if entity:GetTauntTarget() then 
+		target = entity:GetTauntTarget()
 	end
 	return target
 end
@@ -366,6 +381,9 @@ function AICore:FindFarthestEnemyInLine(entity, range, width, magic_immune)
 			target = enemy 
 		end
 	end
+	if entity:GetTauntTarget() then 
+		target = entity:GetTauntTarget()
+	end
 	return target
 end
 
@@ -382,6 +400,9 @@ function AICore:FindNearestEnemyInLine(entity, range, width, magic_immune)
 			distance = CalculateDistance(enemy, entity)
 			target = enemy 
 		end
+	end
+	if entity:GetTauntTarget() then 
+		target = entity:GetTauntTarget()
 	end
 	return target
 end
@@ -466,7 +487,9 @@ function AICore:WeakestAlliedUnitInRange( entity, range , magic_immune)
 			target = ally
 		end
 	end
-
+	if entity:GetTauntTarget() then 
+		target = entity:GetTauntTarget()
+	end
 	return target
 end
 
@@ -538,7 +561,9 @@ function AICore:WeakestEnemyHeroInRange( entity, range , magic_immune)
 			target = enemy
 		end
 	end
-
+	if entity:GetTauntTarget() then 
+		target = entity:GetTauntTarget()
+	end
 	return target
 end
 
@@ -561,7 +586,9 @@ function AICore:StrongestEnemyHeroInRange( entity, range , magic_immune)
 			target = enemy
 		end
 	end
-
+	if entity:GetTauntTarget() then 
+		target = entity:GetTauntTarget()
+	end
 	return target
 end
 
@@ -584,7 +611,9 @@ function AICore:HighestThreatHeroInRange(entity, range, basethreat, magic_immune
 			target = enemy
 		end
 	end
-
+	if entity:GetTauntTarget() then 
+		target = entity:GetTauntTarget()
+	end
 	return target
 end
 
