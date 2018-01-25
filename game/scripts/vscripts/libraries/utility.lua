@@ -1187,6 +1187,7 @@ end
 
 function CDOTABaseAbility:SetCooldown(fCD)
 	if fCD then
+		self:EndCooldown()
 		self:StartCooldown(fCD)
 	else
 		self:UseResources(false, false, true)
@@ -1500,18 +1501,28 @@ function ParticleManager:FireParticle(effect, attach, owner, cps)
 	ParticleManager:ReleaseParticleIndex(FX)
 end
 
-function ParticleManager:FireRopeParticle(effect, attach, owner, target)
+function ParticleManager:FireRopeParticle(effect, attach, owner, target, tCP)
 	local FX = ParticleManager:CreateParticle(effect, attach, owner)
 
 	ParticleManager:SetParticleControlEnt(FX, 0, owner, PATTACH_POINT_FOLLOW, "attach_hitloc", owner:GetAbsOrigin(), true)
-	ParticleManager:SetParticleControlEnt(FX, 1, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
+	if target.GetAbsOrigin then -- npc (has getabsorigin function
+		ParticleManager:SetParticleControlEnt(FX, 1, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
+	else
+		ParticleManager:SetParticleControl(FX, 1, target) -- vector
+	end
+	
+	if tCP then
+		for cp, value in pairs(tCP) do
+			ParticleManager:SetParticleControl(FX, tonumber(cp), value)
+		end
+	end
 	
 	ParticleManager:ReleaseParticleIndex(FX)
 end
 
 function ParticleManager:ClearParticle(cFX)
-	ParticleManager:DestroyParticle(cFX, false)
-	ParticleManager:ReleaseParticleIndex(cFX)
+	self:DestroyParticle(cFX, false)
+	self:ReleaseParticleIndex(cFX)
 end
 
 function CDOTA_Modifier_Lua:StartMotionController()

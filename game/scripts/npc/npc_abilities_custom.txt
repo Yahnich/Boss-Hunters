@@ -326,11 +326,12 @@
 			}
 		}
 	}
-	"alchemist_greed_ebf"
+	"alchemist_alchemists_greed"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_datadriven"
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_alchemist/alchemist_alchemists_greed"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityTextureName"			"alchemist_goblins_greed"
 		"MaxLevel"						"7"
@@ -345,35 +346,91 @@
 	            "gold_per_hit"          "1.5 2 2.5 3 3.5 4 4.5"
 	        }
 	    }
-	
-	    "Modifiers"
-	    {
-			"passive_get_money"
-			{
-				"Passive" "1"
-				"IsHidden" "1"
-				"AllowIllusionDuplicate"    "1"
-				"OnAttackLanded"
-				{
-					"RunScript"
-					{
-						"ScriptFile"			"lua_abilities/heroes/alchemist.lua"
-						"Function"				"AlchGreed"
-						"gold_on_hit"			"%gold_per_hit"
-					}
-				}
-			}
-		}
 	}
 	///////////////////
 	// ALCHEMIST
 	///////////////////
+	//=================================================================================================================
+	// Alchemist: Acid Spray
+	//=================================================================================================================
+	"alchemist_acid_spray_ebf"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_alchemist/alchemist_acid_spray_ebf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityTextureName"			"alchemist_acid_spray"
+		"LevelsBetweenUpgrades"			"5"
+		"MaxLevel"						"7"
+		"RequiredLevel"					"7"
+		"AbilityPierces"				"1"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.2"
+		"AbilityCastRange"				"900"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"22.0"
+		
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"25 50 75 125 250 500 1000"
+		
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_alchemist/alchemist_acid_spray_cast.vpcf"
+			"particle"					"particles/units/heroes/hero_alchemist/alchemist_acid_spray.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_alchemist.vsndevts"
+		}
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"625"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"16.0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"400 800 1600 3200 6400 12800 25600"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"armor_reduction"		"4 8 16 32 64 96 128"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"tick_rate"				"1.0"
+			}
+		}
+	}
+	
 	"alchemist_midas_knuckle"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"					"ability_datadriven"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST"
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_alchemist/alchemist_midas_knuckle"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"				"1"
@@ -424,70 +481,82 @@
 			"particle"	"particles/econ/items/pugna/pugna_ward_golden_nether_lord/pugna_gold_ambient.vpcf"
 			"particle"	"particles/econ/items/necrolyte/necrophos_sullen_gold/necro_sullen_pulse_enemy_explosion_gold.vpcf"
 		}
+	}
 	
-		"OnSpellStart"
+	//=================================================================================================================
+	// Alchemist: Chemical Rage
+	//=================================================================================================================
+	"alchemist_chemical_rage_ebf"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_alchemist/alchemist_chemical_rage_ebf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityTextureName"			"alchemist_chemical_rage"
+		"FightRecapLevel"				"2"
+		"LevelsBetweenUpgrades"			"7"
+		"MaxLevel"						"7"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.0"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"45.0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"50 100 150"
+		
+		"precache"
 		{
-			"ApplyModifier"
-			{
-				"ModifierName"	"modifier_alchemist_midas_knuckle_punch"
-				"Target"		"CASTER"
-			}
+			"particle"					"particles/units/heroes/hero_alchemist/alchemist_chemical_rage.vpcf"
+			"particle"					"particles/units/heroes/hero_alchemist/alchemist_chemical_rage_hero_effect.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_alchemist.vsndevts"
 		}
-		"Modifiers"
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
 		{
-			"modifier_alchemist_midas_knuckle_autocast"
+			"01"
 			{
-				"IsHidden"			"1"
-				"Passive"			"1"
-				"OnAttackStart"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"lua_abilities/autocast.lua"
-						"Function"		"MidasKnuckleAutoCast"
-					}
-				}
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"25.0"
 			}
-			"modifier_alchemist_midas_knuckle_punch"
+			"02"
 			{
-				"IsHidden"			"0"
-				"Duration"			"3"
-				"EffectName"        "particles/econ/items/pugna/pugna_ward_golden_nether_lord/pugna_gold_ambient.vpcf"
-				
-				"OnAttackLanded"
-				{
-					"ApplyModifier"
-					{
-						"ModifierName"	"modifier_unstable_concoction_stun"
-						"Target"		"TARGET"
-					}
-					"RunScript"
-					{
-						"ScriptFile"	"lua_abilities/heroes/alchemist"
-						"Function"		"MidasPunch"
-					}
-					"RemoveModifier"
-					{
-						"ModifierName"	"modifier_alchemist_midas_knuckle_punch"
-						"Target"		"CASTER"
-					}
-				}
+				"var_type"				"FIELD_FLOAT"
+				"base_attack_time"		"1.6 1.5 1.4 1.3 1.2 1.1 1.0"
+				"LinkedSpecialBonus"	"special_bonus_unique_alchemist_3"
 			}
-	
-			"modifier_unstable_concoction_stun"
+			"03"
 			{
-				"IsDebuff"	"1"
-				"Duration"	"%ministun"
-				"States"
-				{
-					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
-				}
-				"OverrideAnimation"	"ACT_DOTA_DISABLED"
-				"EffectName"		"particles/generic_gameplay/generic_stunned.vpcf"
-				"EffectAttachType"	"follow_overhead"
+				"var_type"				"FIELD_INTEGER"
+				"bonus_hp"				"1600 3200 6400 9600 12800 25000 50000"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bonus_health_regen"	"2.5"
+				"LinkedSpecialBonus"	"special_bonus_unique_alchemist_4"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bonus_mana_regen"		"3.0 6.0 12.0 18.0 32.0 64.0"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_movespeed"		"20 30 40 50 60 70 80"
 			}
 		}
 	}
+	
 	"ancient_apparition_entropy"
 	{
 		// General
@@ -13736,181 +13805,6 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"bounce_chance"			"50 55 60 65 70 75 80"
-			}
-		}
-	}
-	"chemical_rage_datadriven"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_datadriven"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
-		"FightRecapLevel"				"2"
-		"AbilityTextureName"			"alchemist_chemical_rage"
-		"AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_4"
-		"LevelsBetweenUpgrades"			"7"
-		"MaxLevel"						"7"
-	
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0.0"
-	
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"45.0"
-	
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"50 100 150"
-	
-		// Special	
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"25.0"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"transformation_time"	"0.35"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"base_attack_time"		"1.6 1.5 1.4 1.3 1.2 1.1 1.0"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_health"			"3200 6400 12800 25000 50000 100000 200000"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_health_regen"	"500 1250 3125 8000 20000 50000 125000"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"bonus_mana_regen"		"3.0 6.0 12.0 24.0 48.0 100.0 500.0"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_movespeed"		"20 30 40 50 60 70 80"
-			}
-		}
-	
-		"precache"
-		{
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_alchemist.vsndevts"
-			"particle"	"particles/status_fx/status_effect_chemical_rage.vpcf"
-			"particle"	"particles/units/heroes/hero_alchemist/alchemist_chemical_rage.vpcf"
-		}
-	
-		"OnSpellStart"
-		{
-			"FireSound"
-			{
-				"EffectName"	"Hero_Alchemist.ChemicalRage.Cast"
-				"Target"		"CASTER"
-			}
-			"ApplyModifier"
-			{
-				"ModifierName"	"modifier_chemical_rage_transform"
-				"Target"		"CASTER"
-			}
-			"FireEffect"
-			{
-				"EffectName"	"particles/units/heroes/hero_alchemist/alchemist_chemical_rage.vpcf"
-				"Target"		"CASTER"
-			}
-		}
-	
-		"Modifiers"
-		{
-			"modifier_chemical_rage_transform"
-			{
-				"OverrideAnimation"		"ACT_DOTA_ALCHEMIST_CHEMICAL_RAGE_START"
-				"IsBuff"	"1"
-				"IsHidden"	"1"
-				"Duration"	"%transformation_time"
-	
-				"OnCreated"
-				{
-					"ApplyModifier"
-					{
-						"ModifierName"	"modifier_invulnerable"
-						"Target"		"CASTER"
-						"Duration"		"%transformation_time"
-					}
-				}
-				
-				"OnDestroy"
-				{
-					"ApplyModifier"
-					{
-						"ModifierName"	"modifier_alchemist_chemical_rage"
-						"Duration"		"%duration"
-						"Target" 		"CASTER"
-					}
-					"ApplyModifier"
-					{
-						"ModifierName"	"modifier_chemical_rage"
-						"Duration"		"%duration"
-						"Target" 		"CASTER"
-					}
-				}
-			}
-			"modifier_chemical_rage_fadeout"
-			{
-				"IsHidden"		"1"
-				"Duration"	"1"
-				"OverrideAnimation"		"ACT_DOTA_ALCHEMIST_CHEMICAL_RAGE_END"
-				"StatusEffectName"	"particles/status_fx/status_effect_chemical_rage.vpcf"
-				"StatusEffectPriority"	"12"
-			}
-			"modifier_chemical_rage"
-			{
-				"IsBuff"	"1"
-				"IsHidden"	"1"
-				"Duration"	"%duration"
-				"ThinkInterval" "0.2"
-				"OnIntervalThink"
-				{
-					"RunScript"
-					{
-						"ScriptFile"		"lua_abilities/heroes/alchemist.lua"
-						"Function"			"AlchUltimate"
-					}
-				}
-				"OnDestroy"
-				{
-					"RemoveModifier"
-					{
-						"ModifierName"	"modifier_chemical_rage_bat"
-						"Target" 		"CASTER"
-					}
-					"ApplyModifier"
-					{
-						"ModifierName"	"modifier_chemical_rage_fadeout"
-						"Target" 		"CASTER"
-					}
-				}
-			}
-			"modifier_chemical_rage_bat"
-			{
-				"IsHidden"			"1"
-				"Priority"			"MODIFIER_PRIORITY_ULTRA"
-				"Duration"			"1"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT"	"%base_attack_time"
-				}
 			}
 		}
 	}

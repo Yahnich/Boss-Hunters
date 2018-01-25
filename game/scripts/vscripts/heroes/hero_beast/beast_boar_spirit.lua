@@ -82,7 +82,7 @@ function beast_boar_spirit:OnProjectileHit_ExtraData(hTarget, vLocation, table)
 			local friends = caster:FindFriendlyUnitsInRadius(vLocation, 250, {})
 			for _,friend in pairs(friends) do
 				if friend == caster then
-					self:EndCooldown()
+					self:SetCooldown(self:GetCooldownTimeRemaining() / 2)
 					break
 				end
 			end
