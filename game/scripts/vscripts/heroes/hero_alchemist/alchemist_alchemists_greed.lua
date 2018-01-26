@@ -1,30 +1,27 @@
 alchemist_alchemists_greed = class({})
 
 function alchemist_alchemists_greed:GetIntrinsicModifierName()
-	return "modifier_alchemist_alchemists_greed_passive"
+	return "modifier_alchemist_alchemists_greed_handler"
 end
 
-modifier_alchemist_alchemists_greed_passive = class({})
-LinkLuaModifier("modifier_alchemist_alchemists_greed_passive", "heroes/hero_alchemist/alchemist_alchemists_greed", 0)
+modifier_alchemist_alchemists_greed_handler = class({})
+LinkLuaModifier("modifier_alchemist_alchemists_greed_handler", "heroes/hero_alchemist/alchemist_alchemists_greed", 0)
 
-function modifier_alchemist_alchemists_greed_passive:OnCreated()
-	self.goldonhit = self:GetTalentSpecialValueFor("gold_per_hit")
-end
-
-function modifier_alchemist_alchemists_greed_passive:DeclareFunctions()
+function modifier_alchemist_alchemists_greed_handler:DeclareFunctions()
 	return {MODIFIER_EVENT_ON_ATTACK_LANDED}
 end
 
-function modifier_alchemist_alchemists_greed_passive:IsHidden()
+function modifier_alchemist_alchemists_greed_handler:IsHidden()
 	return true
 end
 
-function modifier_alchemist_alchemists_greed_passive:OnAttackLanded(params)
+function modifier_alchemist_alchemists_greed_handler:OnAttackLanded(params)
 	if params.attacker == self:GetParent() and self:GetAbility():IsCooldownReady() then
 		self:GetAbility():SetCooldown()
 		local caster = self:GetCaster()
 		local ability = self:GetAbility()
-
+		
+		self.goldonhit = self:GetTalentSpecialValueFor("gold_per_hit")
 		local excess = self.goldonhit - math.floor(self.goldonhit)
 		if caster:IsIllusion() then
 			local player = caster:GetPlayerOwnerID()
@@ -43,7 +40,7 @@ function modifier_alchemist_alchemists_greed_passive:OnAttackLanded(params)
         caster:SetGold(0 , false)
         caster:SetGold(totalgold, true)
 		if caster:HasScepter() and caster:IsRealHero() then
-			for _,hero in pairs ( caster:FindFriendlyUnitsInRange(caster:GetAbsOrigin(), 1200) ) do
+			for _,hero in ipairs ( caster:FindFriendlyUnitsInRadius(caster:GetAbsOrigin(), 1200) ) do
 				if hero:IsRealHero() then
 					local gold = hero:GetGold() + self.goldonhit
 					hero:SetGold(0 , false)

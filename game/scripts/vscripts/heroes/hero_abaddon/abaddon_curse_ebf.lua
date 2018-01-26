@@ -4,7 +4,7 @@ function abaddon_curse_ebf:GetIntrinsicModifierName()
 	return "modifier_abaddon_curse_passive"
 end
 
-LinkLuaModifier( "modifier_abaddon_curse_passive", "lua_abilities/heroes/abaddon.lua" ,LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_abaddon_curse_passive", "heroes/hero_abaddon/abaddon_curse_ebf", LUA_MODIFIER_MOTION_NONE )
 modifier_abaddon_curse_passive = class({})
 
 function modifier_abaddon_curse_passive:IsHidden()
@@ -30,7 +30,7 @@ function modifier_abaddon_curse_passive:OnTakeDamage(params)
 	end
 end
 
-LinkLuaModifier( "modifier_abaddon_curse_buff", "lua_abilities/heroes/abaddon.lua" ,LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_abaddon_curse_buff", "heroes/hero_abaddon/abaddon_curse_ebf", LUA_MODIFIER_MOTION_NONE )
 modifier_abaddon_curse_buff = class({})
 
 function modifier_abaddon_curse_buff:GetEffectName()
@@ -58,7 +58,7 @@ function modifier_abaddon_curse_buff:GetModifierAttackSpeedBonus_Constant()
 	return self.attackspeed
 end
 
-LinkLuaModifier( "modifier_abaddon_curse_debuff", "lua_abilities/heroes/abaddon.lua" ,LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_abaddon_curse_debuff", "heroes/hero_abaddon/abaddon_curse_ebf", LUA_MODIFIER_MOTION_NONE )
 modifier_abaddon_curse_debuff = class({})
 
 function modifier_abaddon_curse_debuff:GetEffectName()

@@ -38,7 +38,7 @@ end
 function modifier_abaddon_borrowed_time_ebf_passive:OnTakeDamage(params)
 	if params.unit == self:GetParent() and self:GetAbility():IsCooldownReady() then
 		if params.damage > self:GetParent():GetHealth() then
-			self:Activate()
+			self:GetAbility():Activate()
 		end
 	end
 end

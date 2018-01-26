@@ -43,7 +43,8 @@ function modifier_abaddon_aphotic_barrier:OnDestroy()
 		local enemies = caster:FindEnemyUnitsInRadius(parent:GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"))
 		local damage =  self:GetTalentSpecialValueFor("damage_absorb")
 		for _, enemy in ipairs( enemies ) do
-			self:GetAbility():DealDamage(caster, enemy, damage)
+			print(damage)
+			print( self:GetAbility():DealDamage(caster, enemy, damage) )
 		end
 	end
 end

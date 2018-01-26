@@ -18,7 +18,7 @@ function abaddon_brume_weaver:OnSpellStart()
 	end
 end
 
-LinkLuaModifier( "modifier_abaddon_brume_weaver_handler", "lua_abilities/heroes/abaddon.lua" ,LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_abaddon_brume_weaver_handler", "heroes/hero_abaddon/abaddon_brume_weaver" ,LUA_MODIFIER_MOTION_NONE )
 modifier_abaddon_brume_weaver_handler = class({})
 
 function modifier_abaddon_brume_weaver_handler:OnCreated()
@@ -39,7 +39,7 @@ function modifier_abaddon_brume_weaver_handler:OnIntervalThink()
 	end
 end
 
-LinkLuaModifier( "modifier_abaddon_brume_weaver_handler_buff", "lua_abilities/heroes/abaddon.lua" ,LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_abaddon_brume_weaver_handler_buff", "heroes/hero_abaddon/abaddon_brume_weaver", LUA_MODIFIER_MOTION_NONE )
 modifier_abaddon_brume_weaver_handler_buff = class({})
 
 function modifier_abaddon_brume_weaver_handler_buff:OnCreated()
@@ -82,7 +82,7 @@ function modifier_abaddon_brume_weaver_handler_buff:GetEffectName()
 	return "particles/units/heroes/hero_abaddon/abaddon_frost_slow.vpcf"
 end
 
-LinkLuaModifier( "modifier_abaddon_brume_weaver_handler_heal", "lua_abilities/heroes/abaddon.lua" ,LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_abaddon_brume_weaver_handler_heal", "heroes/hero_abaddon/abaddon_brume_weaver", LUA_MODIFIER_MOTION_NONE )
 modifier_abaddon_brume_weaver_handler_heal = class({})
 
 function modifier_abaddon_brume_weaver_handler_heal:IsHidden()
@@ -104,7 +104,7 @@ function modifier_abaddon_brume_weaver_handler_heal:GetAttributes()
 	return MODIFIER_ATTRIBUTE_MULTIPLE
 end
 
-LinkLuaModifier( "modifier_abaddon_brume_weaver_handler_buff_active", "lua_abilities/heroes/abaddon.lua" ,LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_abaddon_brume_weaver_handler_buff_active", "heroes/hero_abaddon/abaddon_brume_weaver", LUA_MODIFIER_MOTION_NONE )
 modifier_abaddon_brume_weaver_handler_buff_active = class({})
 
 function modifier_abaddon_brume_weaver_handler_buff_active:IsHidden()

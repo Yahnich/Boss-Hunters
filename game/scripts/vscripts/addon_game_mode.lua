@@ -914,8 +914,6 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 		end
 		local no_aether = {["elder_titan_earth_splitter"] = true,
 						   ["enigma_midnight_pulse"] = true,
-						   ["cloak_and_dagger_ebf"] = true,
-						   ["tricks_of_the_trade_datadriven"] = true,
 						   ["phoenix_sun_ray"] = true,
 						   ["abyssal_underlord_firestorm"] = true,
 						   ["huskar_life_break"] = true} -- stop %hp based and right click damage abilities from being amped by aether lens
@@ -930,7 +928,10 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 						   ["item_gungnir_2"] = true,
 						   ["item_gungnir_3"] = true,
 						   ["mana_fiend_mana_lance"] = true,
-						   ["necrolyte_heartstopper_aura"] = true}
+						   ["necrolyte_heartstopper_aura"] = true,
+						   ["winterw_arctic_sting"] = true,
+						   ["cloak_and_dagger_ebf"] = true,
+						   ["tricks_of_the_trade_datadriven"] = true,}
 			local ability = EntIndexToHScript( inflictor )
 			local spellcrit = true
 			if no_crit[ability:GetName()] or no_aether[ability:GetName()] or not ability:IsAetherAmplified() then

@@ -1055,6 +1055,7 @@ function CDOTABaseAbility:GetTalentSpecialValueFor(value)
 	local base = self:GetSpecialValueFor(value)
 	local talentName
 	local valname = "value"
+	local multiply = false
 	local kv = self:GetAbilityKeyValues()
 	for k,v in pairs(kv) do -- trawl through keyvalues
 		if k == "AbilitySpecial" then
@@ -1062,13 +1063,20 @@ function CDOTABaseAbility:GetTalentSpecialValueFor(value)
 				if m[value] then
 					talentName = m["LinkedSpecialBonus"]
 					if m["LinkedSpecialBonusField"] then valname = m["LinkedSpecialBonusField"] end
+					if m["LinkedSpecialBonusOperation"] and m["LinkedSpecialBonusOperation"] == "SPECIAL_BONUS_MULTIPLY" then multiply = true end
 				end
 			end
 		end
 	end
 	if talentName then 
 		local talent = self:GetCaster():FindAbilityByName(talentName)
-		if talent and talent:GetLevel() > 0 then base = base + talent:GetSpecialValueFor(valname) end
+		if talent and talent:GetLevel() > 0 then 
+			if multiply then
+				base = base * talent:GetSpecialValueFor(valname) 
+			else
+				base = base + talent:GetSpecialValueFor(valname) 
+			end
+		end
 	end
 	return base
 end
@@ -1482,7 +1490,7 @@ end
 
 function ParticleManager:FireLinearWarningParticle(vStartPos, vEndPos, vWidth)
 	local width = Vector(vWidth, vWidth, vWidth)
-	local fx = ParticleManager:FireParticle("particles/range_ability_line.vpcf", PATTACH_WORLDORIGIN, nil, { [0] = vStartPos,
+	local fx = ParticleManager:FireParticle("particles/range_ability_line.vpcf", PATTACH_WORLDORIGIN, nil, {[0] = vStartPos,
 																											[1] = vEndPos,
 																											[2] = width} )																						
 end
@@ -1998,4 +2006,18 @@ function CDOTABaseAbility:CD_pure()
 		self:EndCooldown()
         self:StartCooldown(CD)
     end
+end
+
+function CDOTABaseAbility:CastSpell(target)
+	local caster = self:GetCaster()
+	if target then
+		if target.GetAbsOrigin then -- npc
+			caster:SetCursorCastTarget(target)
+			caster:SetCursorPosition(target:GetAbsOrigin())
+		else
+			caster:SetCursorPosition(target)
+		end
+	end
+	self:OnSpellStart()
+	self:UseResources(true, true, true)
 end

@@ -7,10 +7,10 @@ function bristleback_quills:GetIntrinsicModifierName()
 end
 
 function bristleback_quills:OnSpellStart()
-	self:Spray(false)
+	self:Spray(false, true)
 end
 
-function bristleback_quills:Spray(bProc)
+function bristleback_quills:Spray(bProc, buttonPress)
 	local caster = self:GetCaster()
 	EmitSoundOn("Hero_Bristleback.QuillSpray.Cast", self:GetCaster())
 	ParticleManager:FireParticle("particles/units/heroes/hero_bristleback/bristleback_quill_spray.vpcf", PATTACH_POINT, caster)
@@ -24,10 +24,12 @@ function bristleback_quills:Spray(bProc)
 		enemy:AddNewModifier(caster, self, "modifier_quills_enemy", {duration = self:GetTalentSpecialValueFor("quill_stack_duration")})
 		self:DealDamage(caster, enemy, damage)
 	end
-	if bProc then 
-		caster:SpendMana(1, self)
-	else
-		self:UseResources(true, false, true)
+	if not buttonPress then
+		if bProc then 
+			caster:SpendMana(1, self)
+		else
+			self:UseResources(true, false, true)
+		end
 	end
 end
 
