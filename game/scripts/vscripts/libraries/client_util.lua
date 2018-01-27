@@ -66,29 +66,25 @@ function C_DOTA_BaseNPC:FindTalentValue(talentName, valname)
 	return 0
 end
 
-function C_DOTA_BaseNPC:FindSpecificTalentValue(talentName, valname)
-	if self:HasModifier("modifier_"..talentName) then  
-		local specialVal = AbilityKV[talentName]["AbilitySpecial"]
-		for l,m in pairs(specialVal) do
-			if m[valname] then
-				return m[valname]
-			end
-		end
-	end
-	return 0
-end
-
 function C_DOTABaseAbility:GetTalentSpecialValueFor(value)
 	local base = self:GetSpecialValueFor(value)
 	local talentName
 	local kv = AbilityKV[self:GetName()]["AbilitySpecial"]
+	local valname = "value"
+	local multiply = false
 	for k,v in pairs(kv) do -- trawl through keyvalues
 		if v[value] then
 			talentName = v["LinkedSpecialBonus"]
+			if v["LinkedSpecialBonusField"] then valname = v["LinkedSpecialBonusField"] end
+			if v["LinkedSpecialBonusOperation"] and v["LinkedSpecialBonusOperation"] == "SPECIAL_BONUS_MULTIPLY" then multiply = true end
 		end
 	end
 	if talentName and self:GetCaster():HasTalent(talentName) then 
-		base = base + self:GetCaster():FindTalentValue(talentName) 
+		if multiply then
+			base = base * self:GetCaster():FindTalentValue(talentName, valname) 
+		else
+			base = base + self:GetCaster():FindTalentValue(talentName, valname) 
+		end
 	end
 	return base
 end

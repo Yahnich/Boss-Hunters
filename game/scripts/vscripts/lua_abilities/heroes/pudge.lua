@@ -1,5 +1,5 @@
 pudge_dismember_lua = class({})
-LinkLuaModifier( "pudge_dismember", "lua_abilities/heroes/modifiers/pudge_dismember.lua" ,LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_pudge_dismember_lua", "lua_abilities/heroes/pudge.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 --[[Author: Valve
 	Date: 26.09.2015.]]
@@ -52,7 +52,7 @@ function pudge_dismember_lua:OnSpellStart()
 		self.hVictim = nil
 		self:GetCaster():Interrupt()
 	else
-		self.hVictim:AddNewModifier( self:GetCaster(), self,  "pudge_dismember", { duration = self.duration} )
+		self.hVictim:AddNewModifier( self:GetCaster(), self,  "modifier_pudge_dismember_lua", { duration = self.duration} )
 		self.hVictim:Interrupt()
 	end
 end
@@ -62,11 +62,124 @@ end
 
 function pudge_dismember_lua:OnChannelFinish( bInterrupted )
 	if self.hVictim ~= nil then
-		self.hVictim:RemoveModifierByName("pudge_dismember" )
+		self.hVictim:RemoveModifierByName("modifier_pudge_dismember_lua" )
 	end
 end
 
 --------------------------------------------------------------------------------
+
+modifier_pudge_dismember_lua = class({})
+
+--------------------------------------------------------------------------------
+
+function modifier_pudge_dismember_lua:IsDebuff()
+	return true
+end
+
+--------------------------------------------------------------------------------
+
+function modifier_pudge_dismember_lua:IsStunDebuff()
+	return true
+end
+
+--------------------------------------------------------------------------------
+
+function modifier_pudge_dismember_lua:OnCreated( kv )
+	self.dismember_damage = self:GetAbility():GetSpecialValueFor( "dismember_damage" )
+	self.tick_rate = self:GetAbility():GetSpecialValueFor( "tick_rate" )
+	self.strength_damage = self:GetAbility():GetSpecialValueFor( "strength_damage" )
+	self.stacks = self:GetAbility():GetSpecialValueFor( "scepter_flesh_stacks" )
+
+	if IsServer() then
+		self:GetParent():InterruptChannel()
+		self:OnIntervalThink()
+		self:StartIntervalThink( self.tick_rate )
+	end
+end
+
+--------------------------------------------------------------------------------
+
+function modifier_pudge_dismember_lua:OnDestroy()
+	if IsServer() then
+		self:GetCaster():InterruptChannel()
+	end
+end
+
+--------------------------------------------------------------------------------
+
+function modifier_pudge_dismember_lua:OnIntervalThink()
+	if IsServer() then
+		if self:GetCaster():HasScepter() then
+			local fleshheap = self:GetCaster():FindAbilityByName("pudge_flesh_heap_datadriven")
+			if self:GetAbility():IsStolen() then
+				local pudge = self:GetCaster().target
+				fleshheap = pudge:FindAbilityByName("pudge_flesh_heap_datadriven")
+				if fleshheap then
+					local stacks = self:GetCaster():GetModifierStackCount( "modifier_hp_shift_datadriven_buff_counter" , fleshheap )
+					local duration = fleshheap:GetSpecialValueFor("duration")
+					for i=0, self.stacks do
+						fleshheap:ApplyDataDrivenModifier(pudge, self:GetCaster(), "modifier_hp_shift_datadriven_buff", {duration = duration})
+					end
+					self:GetCaster():RemoveModifierByName("modifier_hp_shift_datadriven_buff_counter")
+					fleshheap:ApplyDataDrivenModifier(pudge, self:GetCaster(), "modifier_hp_shift_datadriven_buff_counter", {duration = duration})
+					self:GetCaster():SetModifierStackCount( "modifier_hp_shift_datadriven_buff_counter" , fleshheap, stacks + self.stacks )
+				end
+			elseif fleshheap then
+				local stacks = self:GetCaster():GetModifierStackCount( "modifier_hp_shift_datadriven_buff_counter" , fleshheap )
+				local duration = fleshheap:GetSpecialValueFor("duration")
+				for i=0, self.stacks do
+					fleshheap:ApplyDataDrivenModifier(self:GetCaster(), self:GetCaster(), "modifier_hp_shift_datadriven_buff", {duration = duration})
+				end
+				self:GetCaster():RemoveModifierByName("modifier_hp_shift_datadriven_buff_counter")
+				fleshheap:ApplyDataDrivenModifier(self:GetCaster(), self:GetCaster(), "modifier_hp_shift_datadriven_buff_counter", {duration = duration})
+				self:GetCaster():SetModifierStackCount( "modifier_hp_shift_datadriven_buff_counter" , fleshheap, stacks + self.stacks )
+			end
+			self:GetCaster():CalculateStatBonus()
+		end
+		local flDamage = self.dismember_damage
+		flDamage = flDamage + ( self:GetCaster():GetStrength() * self.strength_damage )
+		self:GetCaster():Heal( flDamage, self:GetAbility(), self:GetCaster() )
+		local damage = {
+			victim = self:GetParent(),
+			attacker = self:GetCaster(),
+			damage = flDamage,
+			damage_type = DAMAGE_TYPE_MAGICAL,
+			ability = self:GetAbility()
+		}
+		ApplyDamage( damage )
+		EmitSoundOn( "Hero_Pudge.Dismember", self:GetParent() )
+	end
+end
+
+--------------------------------------------------------------------------------
+
+function modifier_pudge_dismember_lua:CheckState()
+	local state = {
+		[MODIFIER_STATE_STUNNED] = true,
+		[MODIFIER_STATE_INVISIBLE] = false,
+	}
+
+	return state
+end
+
+--------------------------------------------------------------------------------
+
+function modifier_pudge_dismember_lua:DeclareFunctions()
+	local funcs = {
+		MODIFIER_PROPERTY_OVERRIDE_ANIMATION,
+	}
+
+	return funcs
+end
+
+--------------------------------------------------------------------------------
+
+function modifier_pudge_dismember_lua:GetOverrideAnimation( params )
+	return ACT_DOTA_DISABLED
+end
+
+------------------------------------------------------------------------------
+
 --------------------------------------------------------------------------------
 
 pudge_rot_lua = class({})

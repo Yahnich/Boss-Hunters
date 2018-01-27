@@ -1055,6 +1055,7 @@ function CDOTABaseAbility:GetTalentSpecialValueFor(value)
 	local base = self:GetSpecialValueFor(value)
 	local talentName
 	local valname = "value"
+	local multiply = false
 	local kv = self:GetAbilityKeyValues()
 	for k,v in pairs(kv) do -- trawl through keyvalues
 		if k == "AbilitySpecial" then
@@ -1062,13 +1063,20 @@ function CDOTABaseAbility:GetTalentSpecialValueFor(value)
 				if m[value] then
 					talentName = m["LinkedSpecialBonus"]
 					if m["LinkedSpecialBonusField"] then valname = m["LinkedSpecialBonusField"] end
+					if m["LinkedSpecialBonusOperation"] and m["LinkedSpecialBonusOperation"] == "SPECIAL_BONUS_MULTIPLY" then multiply = true end
 				end
 			end
 		end
 	end
 	if talentName then 
 		local talent = self:GetCaster():FindAbilityByName(talentName)
-		if talent and talent:GetLevel() > 0 then base = base + talent:GetSpecialValueFor(valname) end
+		if talent and talent:GetLevel() > 0 then 
+			if multiply then
+				base = base * talent:GetSpecialValueFor(valname) 
+			else
+				base = base + talent:GetSpecialValueFor(valname) 
+			end
+		end
 	end
 	return base
 end
@@ -1187,6 +1195,7 @@ end
 
 function CDOTABaseAbility:SetCooldown(fCD)
 	if fCD then
+		self:EndCooldown()
 		self:StartCooldown(fCD)
 	else
 		self:UseResources(false, false, true)
@@ -1481,7 +1490,7 @@ end
 
 function ParticleManager:FireLinearWarningParticle(vStartPos, vEndPos, vWidth)
 	local width = Vector(vWidth, vWidth, vWidth)
-	local fx = ParticleManager:FireParticle("particles/range_ability_line.vpcf", PATTACH_WORLDORIGIN, nil, { [0] = vStartPos,
+	local fx = ParticleManager:FireParticle("particles/range_ability_line.vpcf", PATTACH_WORLDORIGIN, nil, {[0] = vStartPos,
 																											[1] = vEndPos,
 																											[2] = width} )																						
 end
@@ -1500,18 +1509,28 @@ function ParticleManager:FireParticle(effect, attach, owner, cps)
 	ParticleManager:ReleaseParticleIndex(FX)
 end
 
-function ParticleManager:FireRopeParticle(effect, attach, owner, target)
+function ParticleManager:FireRopeParticle(effect, attach, owner, target, tCP)
 	local FX = ParticleManager:CreateParticle(effect, attach, owner)
 
 	ParticleManager:SetParticleControlEnt(FX, 0, owner, PATTACH_POINT_FOLLOW, "attach_hitloc", owner:GetAbsOrigin(), true)
-	ParticleManager:SetParticleControlEnt(FX, 1, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
+	if target.GetAbsOrigin then -- npc (has getabsorigin function
+		ParticleManager:SetParticleControlEnt(FX, 1, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
+	else
+		ParticleManager:SetParticleControl(FX, 1, target) -- vector
+	end
+	
+	if tCP then
+		for cp, value in pairs(tCP) do
+			ParticleManager:SetParticleControl(FX, tonumber(cp), value)
+		end
+	end
 	
 	ParticleManager:ReleaseParticleIndex(FX)
 end
 
 function ParticleManager:ClearParticle(cFX)
-	ParticleManager:DestroyParticle(cFX, false)
-	ParticleManager:ReleaseParticleIndex(cFX)
+	self:DestroyParticle(cFX, false)
+	self:ReleaseParticleIndex(cFX)
 end
 
 function CDOTA_Modifier_Lua:StartMotionController()
@@ -1987,4 +2006,18 @@ function CDOTABaseAbility:CD_pure()
 		self:EndCooldown()
         self:StartCooldown(CD)
     end
+end
+
+function CDOTABaseAbility:CastSpell(target)
+	local caster = self:GetCaster()
+	if target then
+		if target.GetAbsOrigin then -- npc
+			caster:SetCursorCastTarget(target)
+			caster:SetCursorPosition(target:GetAbsOrigin())
+		else
+			caster:SetCursorPosition(target)
+		end
+	end
+	self:OnSpellStart()
+	self:UseResources(true, true, true)
 end
