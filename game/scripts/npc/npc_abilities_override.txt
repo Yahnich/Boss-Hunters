@@ -23789,514 +23789,6 @@
 	}
 
 	//=================================================================================================================
-	// Centaur Warchief: Hoof Stomp
-	//=================================================================================================================
-	"centaur_hoof_stomp"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"5514"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"FightRecapLevel"				"1"
-		"MaxLevel"						"7"
-		"LevelsBetweenUpgrades"			"5"
-		"RequiredLevel"					"5"
-
-		
-		// Stats
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0.3"
-		"AbilityCooldown"				"13.0 13.0 13.0 13.0"
-		"AbilityManaCost"				"130"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"radius"						"350 375 400 425 450 475 500"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"stun_duration"					"2.0 2.25 2.5 2.75 3.0 3.25 3.5"
-				"LinkedSpecialBonus"			"special_bonus_unique_centaur_2"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"stomp_damage"					"800 1600 3200 6400 12800 25000 50000"
-			}
-		}
-	}
-
-	//=================================================================================================================
-	// Centaur Warchief: Double Edge
-	//=================================================================================================================
-	"centaur_double_edge"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"5515"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_ALL"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"FightRecapLevel"				"1"
-		"MaxLevel"						"7"
-		"LevelsBetweenUpgrades"			"5"
-		"RequiredLevel"					"7"
-
-		// Stats		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"8.0"
-		"AbilityCastRange"				"150"
-		"AbilityCastPoint"				"0.3"
-
-		//------------------------------------------------------------------------------
-		"AbilityManaCost"				"0 0 0 0"
-
-		// Special	
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"edge_damage"					"1500 3000 6000 12000 24000 48000 96000"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"radius"						"200 250 300 350 400 450 500"
-			}
-		}
-	}
-
-	//=================================================================================================================
-	// Centaur Warchief: Return
-	//=================================================================================================================
-	"centaur_return"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"5516"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
-		"MaxLevel"						"7"
-		"LevelsBetweenUpgrades"			"5"
-
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"return_damage"				"100 200 400 800 2400 3200 6400"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"strength_pct"				"26 34 42 50"
-			}
-		}
-	}
-
-	//=================================================================================================================
-	// Centaur: Stampede
-	//=================================================================================================================
-	"centaur_stampede"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"5517"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"FightRecapLevel"				"2"
-		"MaxLevel"						"7"
-		"LevelsBetweenUpgrades"					"7"
-
-
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"80.0 75.0 70.0 65.0 60.0 55.0 50.0"
-
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"100"
-
-		// Stats
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityModifierSupportValue"	"0.2"	// hits everything on the map
-
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"			"FIELD_FLOAT"
-				"duration"			"6"
-			}
-			"02"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"base_damage"		"1000 2000 4000 8000 16000 32000 64000"
-			}
-			"03"
-			{
-				"var_type"			"FIELD_FLOAT"
-				"strength_damage"	"2.0 3.0 4.0 5.0 7.5 10.0 20.0"
-			}
-			"04"
-			{
-				"var_type"			"FIELD_FLOAT"
-				"slow_duration"		"1.5"
-			}
-			"05"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"radius"			"105"
-			}
-			"06"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"slow_movement_speed"			"100"
-			}
-			"07"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"cooldown_scepter"			"70.0 65.0 60.0 55.0 50.0 45.0 40.0"
-			}
-			"08"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"damage_reduction"	"65 70 75 80 85 90 95"
-			}
-			"09"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"damage_reduction_tooltip_scepter"	"65 70 75 80 85 90 95"
-			}
-		}
-	}
-
-	//=================================================================================================================
-	// Brewmaster: Primal Split
-	//=================================================================================================================
-	"brewmaster_primal_split"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"5403"							// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
-		"FightRecapLevel"				"2"
-		"MaxLevel"						"0"
-		"LevelsBetweenUpgrades"			"5"
-
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"140.0 120.0 100.0"
-		
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0.65"
-
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"125 150 175"		
-
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"15.0 17.0 19.0"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"split_duration"			"0.6"
-			}
-		}
-	}
-
-	//=================================================================================================================
-	// Brewmaster Earth: Hurl Boulder
-	//=================================================================================================================
-	"brewmaster_earth_hurl_boulder"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"5404"							// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-
-		"AbilityCastRange"				"800 800 800 800"
-
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"7.0 7.0 7.0 7.0"
-		"AbilityCastPoint"				"0.4"
-
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"0"		
-
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"50"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"2.0 2.0 2.0 2.0"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"speed"						"800 800 800 800"
-			}
-		}
-	}
-
-	//=================================================================================================================
-	// Brewmaster Earth: Spell Immunity
-	//=================================================================================================================
-	"brewmaster_earth_spell_immunity"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"5405"							// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-		}
-	}
-
-	//=================================================================================================================
-	// Brewmaster Earth: Pulverize
-	//=================================================================================================================
-	"brewmaster_earth_pulverize"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"5406"							// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage_inner"				"40 40 40 40"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius_inner"				"150 150 150 150"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage_outer"				"20 20 20 20"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius_outer"				"250 250 250 250"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"chance"					"20 20 20 20"
-			}
-		}
-	}
-
-	//=================================================================================================================
-	// Brewmaster Storm: Dispel Magic
-	//=================================================================================================================
-	"brewmaster_storm_dispel_magic"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"5408"							// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-
-		"AbilityCastRange"				"500 500 500 500"
-
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"8.0 8.0 8.0 8.0"
-		"AbilityCastPoint"				"0.4"
-
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"75 75 75 75"		
-
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"200 200 200 200"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"200 200 200 200"
-			}
-		}
-	}
-
-	//=================================================================================================================
-	// Brewmaster Storm: Cyclone
-	//=================================================================================================================
-	"brewmaster_storm_cyclone"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"5409"							// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-
-		"AbilityCastRange"				"600 600 600 600"
-
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"8.0"
-		"AbilityCastPoint"				"0.4"
-
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"150 150 150 150"		
-
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration_hero"				"6.0"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration_unit"				"20.0 20.0 20.0 20.0"
-			}
-		}
-	}
-
-	//=================================================================================================================
-	// Brewmaster Storm: Wind Walk
-	//=================================================================================================================
-	"brewmaster_storm_wind_walk"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"5410"							// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"7.0 7.0 7.0 7.0"
-
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"75 75 75 75"		
-
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"bonus_damage"				"100 100 100 100"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"bonus_movement_speeed"		"50 50 50 50"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"20.0 20.0 20.0 20.0"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"fade_time"					"0.6 0.6 0.6 0.6"
-			}
-		}
-	}
-
-	//=================================================================================================================
-	// Brewmaster Fire: Permanent Immolation
-	//=================================================================================================================
-	"brewmaster_fire_permanent_immolation"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"5411"							// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"15 30 45"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"220 220 220"
-			}
-		}
-	}
-
-	//=================================================================================================================
 	// Magnataur: Shockwave
 	//=================================================================================================================
 	"magnataur_shockwave"
@@ -40954,7 +40446,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"25"
+				"value"				"900"
 			}
 		}
 	}
@@ -40977,7 +40469,30 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"				"1.5"
+				"value"						"-6"
+			}
+		}
+	}
+	
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_centaur_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6616"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"35"
 			}
 		}
 	}
@@ -41000,7 +40515,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"4000"
+				"value"						"-8"
 			}
 		}
 	}
@@ -46691,6 +46206,29 @@
 			{
 				"var_type"					"FIELD_INTEGER"
 				"value"				"2"
+			}
+		}
+	}
+	
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_phantom_assassin_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6847"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"10"
 			}
 		}
 	}

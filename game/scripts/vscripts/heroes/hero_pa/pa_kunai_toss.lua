@@ -8,7 +8,7 @@ function pa_kunai_toss:OnSpellStart()
     local maxTargets = self:GetSpecialValueFor("max_targets")-1
     local currentTargets = 0
 
-    self.TotesBounces = self:GetSpecialValueFor("bonuces")*self:GetSpecialValueFor("max_targets")
+    self.TotesBounces = self:GetSpecialValueFor("bounces")*self:GetSpecialValueFor("max_targets")
     self.CurrentBounces = 0
 
     self:tossKunai(target)

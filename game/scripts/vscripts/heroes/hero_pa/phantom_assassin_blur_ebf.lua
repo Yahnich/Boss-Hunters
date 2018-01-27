@@ -4,7 +4,7 @@ function phantom_assassin_blur_ebf:GetIntrinsicModifierName()
     return "modifier_phantom_assassin_blur_ebf"
 end
 
-LinkLuaModifier( "modifier_phantom_assassin_blur_ebf", "lua_abilities/heroes/phantom_assassin.lua" ,LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_phantom_assassin_blur_ebf", "heroes/hero_pa/phantom_assassin_blur_ebf", LUA_MODIFIER_MOTION_NONE )
 modifier_phantom_assassin_blur_ebf = class({})
 
 function modifier_phantom_assassin_blur_ebf:OnCreated()
@@ -57,7 +57,7 @@ function modifier_phantom_assassin_blur_ebf:GetModifierEvasion_Constant(params)
     return self.evasion + self:GetStackCount() * self.evasion_stack
 end
 
-LinkLuaModifier( "modifier_phantom_assassin_blur_true_evasion", "lua_abilities/heroes/phantom_assassin.lua" ,LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_phantom_assassin_blur_true_evasion", "heroes/hero_pa/phantom_assassin_blur_ebf", LUA_MODIFIER_MOTION_NONE )
 modifier_phantom_assassin_blur_true_evasion = class({})
 
 function modifier_phantom_assassin_blur_true_evasion:IsHidden()

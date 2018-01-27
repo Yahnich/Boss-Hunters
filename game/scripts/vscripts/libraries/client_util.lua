@@ -135,18 +135,6 @@ function C_DOTA_BaseNPC:GetAgility()
 	return 0
 end
 
-function C_DOTA_BaseNPC:GetVitality()
-	local netTable = CustomNetTables:GetTableValue("hero_properties", self:GetUnitName()..self:entindex())
-	if netTable and netTable.vitality then return netTable.vitality end
-	return 0
-end
-
-function C_DOTA_BaseNPC:GetLuck()
-	local netTable = CustomNetTables:GetTableValue("hero_properties", self:GetUnitName()..self:entindex())
-	if netTable and netTable.luck then return netTable.luck end
-	return 0
-end
-
 function C_DOTA_BaseNPC:GetPrimaryAttribute()
 	if UnitKV[self:GetUnitName()] then
 		attribute = UnitKV[self:GetUnitName()]["AttributePrimary"]

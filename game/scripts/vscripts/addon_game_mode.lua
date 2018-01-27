@@ -738,10 +738,6 @@ function CHoldoutGameMode:FilterModifiers( filterTable )
 				if RollPercentage(resistance) then 
 					modifier:Destroy() 
 				end
-			elseif ability:GetName() == "centaur_hoof_stomp" and caster:HasTalent("special_bonus_unique_centaur_1") then
-				local resistance = parent:GetStunResistance()
-				if caster:HasTalentType("respawn_reduction") then resistance = resistance * (1 - caster:FindTalentValue("special_bonus_unique_centaur_1") / 100) end
-				if RollPercentage(resistance) then modifier:Destroy() end
 			end
 		end)
 	end
@@ -1493,7 +1489,7 @@ function CHoldoutGameMode:OnHeroPick (event)
 		for i = 0, 17 do
 			local skill = hero:GetAbilityByIndex(i)
 			if skill and skill:IsInnateAbility() then
-				skill:SetLevel(1)
+				skill:UpgradeAbility(true)
 			end
 		end
 		hero.damageDone = 0
@@ -1939,20 +1935,23 @@ function CHoldoutGameMode:CheckHP()
 		end
 	end
 	if not GameRules:IsGamePaused() then
-		for _,unit in ipairs ( HeroList:GetAllHeroes() ) do
-			if not unit:IsFakeHero() then
-				local data = CustomNetTables:GetTableValue("hero_properties", unit:GetUnitName()..unit:entindex() ) or {}
+		for _, hero in ipairs ( HeroList:GetAllHeroes() ) do
+			if not hero:IsFakeHero() then
+				local data = CustomNetTables:GetTableValue("hero_properties", hero:GetUnitName()..hero:entindex() ) or {}
 				local barrier = 0
-				for _, modifier in ipairs( unit:FindAllModifiers() ) do
-					if modifier.ModifierBarrier_Bonus and unit:IsRealHero() then
+				for _, modifier in ipairs( hero:FindAllModifiers() ) do
+					if modifier.ModifierBarrier_Bonus and hero:IsRealHero() then
 						barrier = barrier + modifier:ModifierBarrier_Bonus()
 					end
 				end
-				if barrier > 0 or unit:GetBarrier() ~= barrier then
-					unit:SetBarrier(barrier)
+				if barrier > 0 or hero:GetBarrier() ~= barrier then
+					hero:SetBarrier(barrier)
 					data.barrier = math.floor(barrier)
-					CustomNetTables:SetTableValue("hero_properties", unit:GetUnitName()..unit:entindex(), data )
 				end
+				data.strength = hero:GetStrength()
+				data.intellect = hero:GetIntellect()
+				data.agility = hero:GetAgility()
+				CustomNetTables:SetTableValue("hero_properties", hero:GetUnitName()..hero:entindex(), data )
 			end
 		end
 	end
@@ -2011,6 +2010,7 @@ function CHoldoutGameMode:SendErrorReport(err)
 	if not self.gameHasBeenBroken then 
 		self.gameHasBeenBroken = true
 		Notifications:BottomToAll({text="An error has occurred! Please screenshot this: "..err, duration=15.0})
+		print(err)
 	end
 end
 

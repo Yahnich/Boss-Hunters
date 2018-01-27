@@ -41,7 +41,7 @@ function riki_dance:OnSpellStart()
             caster:PerformAttack(target, true, true, true, true, false, false, true)
             self:DealDamage(caster, target, caster:GetAttackDamage()*(self:GetTalentSpecialValueFor("damage")-100)/100, {}, 0)
 
-            if caster:HasTalent("special_bonus_unique_riki_dance_2") then
+            if caster:HasTalent("special_bonus_unique_riki_dance_2") and RollPercentage(25) then
                 self:Stun(target, 0.5, false)
             end
             
@@ -53,7 +53,7 @@ function riki_dance:OnSpellStart()
         --break
     end
     
-    -- Return caster to origin position
+    -- Return caster to end position
     Timers:CreateTimer(attack_interval*(counter+1), function()
         FindClearSpaceForUnit( caster, endPos, false )
         caster:RemoveModifierByName( "modifier_dance" )
