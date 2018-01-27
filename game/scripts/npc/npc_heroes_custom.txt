@@ -192,9 +192,20 @@
 	"npc_dota_hero_centaur_ebf"
 	{
 		"override_hero"			"npc_dota_hero_centaur"
-		"Ability2"				"centaur_double_edge_ebf"
-		"Ability3"				"centaur_return_ebf"
+		"Ability1"				"centaur_hoof_stomp_ebf"
+		"Ability2"				"centaur_great_edge"
+		"Ability3"				"centaur_champions_presence"
+		"Ability4"				"centaur_warchiefs_aegis"
+		"Ability6"				"centaur_stampede_ebf"
 		
+		"Ability10"		"special_bonus_evasion_10"
+		"Ability11"		"special_bonus_magic_resistance_10"
+		"Ability12"		"special_bonus_unique_centaur_5"
+		"Ability13"		"special_bonus_unique_centaur_3"
+		"Ability14"		"special_bonus_unique_centaur_4"
+		"Ability15"		"special_bonus_strength_20"
+		"Ability16"		"special_bonus_unique_centaur_1"
+		"Ability17"		"special_bonus_unique_centaur_2"
 		
 		"AttributePrimary"			"DOTA_ATTRIBUTE_STRENGTH"
 		"AttributeBaseStrength"		"23"
