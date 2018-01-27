@@ -810,7 +810,19 @@
 	"npc_dota_hero_phantom_assassin" // Shinigami
 	{
 		"override_hero"				"npc_dota_hero_phantom_assassin"
+	
+		"Ability1"					"pa_kunai_toss"
+		"Ability2"					"pa_flash_step"
 		"Ability3"					"phantom_assassin_blur_ebf"
+	
+		"Ability10"				"special_bonus_unique_pa_kunai_toss_1"
+		"Ability11"				"special_bonus_unique_pa_kunai_toss_2"
+		"Ability12"				"special_bonus_unique_pa_flash_step_1"
+		"Ability13"				"special_bonus_unique_pa_flash_step_2"
+		"Ability14"       		"special_bonus_corruption_4"
+	    "Ability15"       		"special_bonus_lifesteal_15"
+	    "Ability16"       		"special_bonus_unique_phantom_assassin_2"
+	    "Ability17"       		"special_bonus_unique_phantom_assassin_3"
 	}
 	"npc_dota_hero_phoenix" // Justicar
 	{
@@ -920,9 +932,21 @@
 	//=================================================================================================================
 	"npc_dota_hero_riki_ebf"
 	{
-		"override_hero"				"npc_dota_hero_riki"
-		"Ability3"					"cloak_and_dagger_ebf"					// Ability 4
-		"Ability6"					"tricks_of_the_trade_datadriven"					// Ability 4
+		"override_hero"		"npc_dota_hero_riki"
+		"Ability1"			"riki_smoke_bomb"
+		"Ability2"			"riki_dance"
+		"Ability3"			"riki_dagger"
+		"Ability4"			"riki_cloak"
+		"Ability6"			"riki_traded_tricks"
+	
+		"Ability10"       	"special_bonus_unique_riki_smoke_bomb_1"
+	    "Ability11"       	"special_bonus_unique_riki_smoke_bomb_2"
+	    "Ability12"       	"special_bonus_unique_riki_dance_1"
+	    "Ability13"       	"special_bonus_unique_riki_dance_2"
+	    "Ability14"       	"special_bonus_unique_riki_dagger_1"
+	    "Ability15"       	"special_bonus_unique_riki_dagger_2"
+	    "Ability16"       	"special_bonus_unique_riki_traded_tricks_1"
+	    "Ability17"       	"special_bonus_lifesteal_10"
 		
 	}
 	//=================================================================================================================
