@@ -11,8 +11,8 @@ function centaur_great_edge:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 	
-	local edgeDamage = ability:GetTalentSpecialValueFor( "edge_damage" )
-	local bonusDamage = caster:GetStrength() * ability:GetTalentSpecialValueFor( "edge_str_damage" ) / 100
+	local edgeDamage = self:GetTalentSpecialValueFor( "edge_damage" )
+	local bonusDamage = caster:GetStrength() * self:GetTalentSpecialValueFor( "edge_str_damage" ) / 100
 	local radius = self:GetTalentSpecialValueFor("radius")
 	
 	self:DealDamage( caster, caster, edgeDamage, {damage_flags = DOTA_DAMAGE_FLAG_NON_LETHAL})

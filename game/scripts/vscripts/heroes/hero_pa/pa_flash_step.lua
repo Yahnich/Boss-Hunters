@@ -10,23 +10,28 @@ function pa_flash_step:OnSpellStart()
 
     local direction = CalculateDirection(point, caster:GetAbsOrigin())
     local currentDistance = CalculateDistance(point, caster:GetAbsOrigin())
-
-    caster:FindAbilityByName("pa_kunai_toss").TotesBounces = caster:FindAbilityByName("pa_kunai_toss"):GetSpecialValueFor("bonuces")*caster:FindAbilityByName("pa_kunai_toss"):GetSpecialValueFor("max_targets")
+	local hasTalent = caster:HasTalent("special_bonus_unique_pa_flash_step_2")
+    caster:FindAbilityByName("pa_kunai_toss").TotesBounces = caster:FindAbilityByName("pa_kunai_toss"):GetSpecialValueFor("bounces")*caster:FindAbilityByName("pa_kunai_toss"):GetSpecialValueFor("max_targets")
     caster:FindAbilityByName("pa_kunai_toss").CurrentBounces = 0
-
+	
+	local count = 0
     caster:AddNewModifier(caster, self, "modifier_flash_step", {})
     Timers:CreateTimer(0, function()
-        if currentDistance > 100 then
+        if currentDistance > 0 then
             caster:SetAbsOrigin(caster:GetAbsOrigin() + direction * 100)
-            currentDistance = CalculateDistance(point, caster:GetAbsOrigin())
-
-            local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), caster:FindAbilityByName("pa_kunai_toss"):GetSpecialValueFor("range"), {})
-            for _,enemy in pairs(enemies) do
-                if RollPercentage(5) then
-                    caster:FindAbilityByName("pa_kunai_toss"):tossKunai(enemy)
-                    break
-                end
-            end
+            currentDistance = currentDistance - 100
+			
+			if hasTalent then
+				local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), caster:FindAbilityByName("pa_kunai_toss"):GetSpecialValueFor("range"), {})
+				count = count + 1
+				for _,enemy in pairs(enemies) do
+					if count >= 4 then
+						count = 0
+						caster:FindAbilityByName("pa_kunai_toss"):tossKunai(enemy)
+						break
+					end
+				end
+			end
 
             return FrameTime()
         else
@@ -64,7 +69,6 @@ function modifier_flash_step:OnIntervalThink()
             caster:PerformAttack(enemy, true, true, true, true, false, false, false)
             self:GetAbility():DealDamage(caster, enemy, caster:GetAttackDamage()*(self:GetTalentSpecialValueFor("damage")-100)/100, {damage_type = DAMAGE_TYPE_PHYSICAL}, 0)
             enemy:AddNewModifier(caster, self:GetAbility(), "modifier_flash_step_enemy", {Duration = self:GetTalentSpecialValueFor("duration")})
-            --caster:AddNewModifier(caster, self:GetAbility(), "modifier_flash_step_as", {Duration = self:GetTalentSpecialValueFor("duration")}):AddIndependentStack(self:GetTalentSpecialValueFor("duration"))
             caster:AddNewModifier(caster, self:GetAbility(), "modifier_flash_step_as", {Duration = self:GetTalentSpecialValueFor("duration")}):IncrementStackCount()
             break
         end

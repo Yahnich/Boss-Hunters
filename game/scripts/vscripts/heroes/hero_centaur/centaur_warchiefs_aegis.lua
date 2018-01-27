@@ -35,10 +35,12 @@ modifier_centaur_warchiefs_aegis_return = class({})
 LinkLuaModifier("modifier_centaur_warchiefs_aegis_return", "heroes/hero_centaur/centaur_warchiefs_aegis", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_centaur_warchiefs_aegis_return:ProcReturn(target)
-	local strength = self:GetCaster():GetStrength()
-	local damage = strength * self:GetTalentSpecialValueFor("strength_pct") / 100 + self:GetTalentSpecialValueFor("return_damage")
-	self:GetAbility():DealDamage( self:GetCaster(), target, damage)
-	ParticleManager:FireRopeParticle("particles/units/heroes/hero_centaur/centaur_return.vpcf", PATTACH_POINT_FOLLOW, self:GetParent(), target)
+	if not target:IsSameTeam( self:GetCaster() ) then
+		local strength = self:GetCaster():GetStrength()
+		local damage = strength * self:GetTalentSpecialValueFor("strength_pct") / 100 + self:GetTalentSpecialValueFor("return_damage")
+		self:GetAbility():DealDamage( self:GetCaster(), target, damage)
+		ParticleManager:FireRopeParticle("particles/units/heroes/hero_centaur/centaur_return.vpcf", PATTACH_POINT_FOLLOW, self:GetParent(), target)
+	end
 end
 function modifier_centaur_warchiefs_aegis_return:DeclareFunctions()
 	return {MODIFIER_PROPERTY_TOTAL_CONSTANT_BLOCK, MODIFIER_EVENT_ON_ATTACK_FAIL}
