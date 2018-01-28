@@ -1219,8 +1219,8 @@
 		"Ability13"			"special_bonus_unique_tech_stasis_mine_2"
 		"Ability14"			"special_bonus_unique_tech_robo_mine_1"
 		"Ability15"			"special_bonus_unique_tech_robo_mine_2"
-		"Ability16"			"special_bonus_unique_tech_blasting_off_1"
-		"Ability17"			"special_bonus_reincarnation_200"
+		"Ability16"			"special_bonus_cooldown_reduction_40"
+		"Ability17"			"special_bonus_reincarnation_120"
 		
 	}
 	"npc_dota_hero_templar_assassin_ebf"
