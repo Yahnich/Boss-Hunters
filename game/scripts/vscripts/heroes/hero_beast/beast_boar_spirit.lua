@@ -14,7 +14,7 @@ function beast_boar_spirit:OnSpellStart()
 	ParticleManager:SetParticleControl(nfx, 0, caster:GetAbsOrigin())
 	ParticleManager:ReleaseParticleIndex(nfx)
 
-	local distance = CalculateDistance(caster:GetAbsOrigin(), point)
+	local distance = self:GetTrueCastRange()
 
 	local info = 
 	{

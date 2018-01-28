@@ -19730,14 +19730,14 @@
 	{
 		// General
 		//----------------------------------------------------------------
-		"Model"						"models/heroes/techies/fx_techiesfx_mine.mdl"	// Model.
+		"Model"						"models/heroes/techies/fx_techiesfx_mine.vmdl"	// Model.
 		"BaseClass"					"npc_dota_techies_mines"
 		"SoundSet"					"0"			// Name of sound set.
 		"Level"						"1"
 		"ModelScale"				"1.0"
 		"SelectionGroup"			"Techies_LandMines"
 		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"			// Hull type used for navigation/locomotion.
-
+ 		"wearable"					"8644"
 
 		// Abilities
 		//----------------------------------------------------------------
@@ -19757,7 +19757,7 @@
 		"AttackDamageMax"			"0"			// Damage range max.	
 		"AttackRate"				"1.0"		// Speed of attack.
 		"AttackAnimationPoint"		"0.0"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"0"			// Range within a target can be acquired.
+		"AttackAcquisitionRange"	"99999999"			// Range within a target can be acquired.
 		"AttackRange"				"0"			// Range within a target can be attacked.
 		"ProjectileModel"			""			// Particle system model for projectile.
 		"ProjectileSpeed"			"0"			// Speed of projectile.		   
@@ -19768,19 +19768,19 @@
 
 		// Bounty
 		//----------------------------------------------------------------
-		"BountyXP"					"14"	// Experience earn.
-		"BountyGoldMin"				"0"		// Gold earned min.
-		"BountyGoldMax"				"0"		// Gold earned max.
+		"BountyXP"					"0"	// Experience earn.
+		"BountyGoldMin"				"25"		// Gold earned min.
+		"BountyGoldMax"				"25"		// Gold earned max.
 
 		// Movement
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"  // has to be move ground because something about neutral camps
 		"MovementSpeed"				"0"		// Speed.
-		"MovementTurnRate"			"0"		// Turning rate.
+		"MovementTurnRate"			"0.4"		// Turning rate.
 
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"100"		// Base health.
+		"StatusHealth"				"1"		// Base health.
 		"StatusHealthRegen"			"0.0"		// Health regeneration rate.
 		
 		// Vision
@@ -19870,7 +19870,7 @@
 		// General
 		//----------------------------------------------------------------
 		"Model"						"models/heroes/techies/fx_techies_remotebomb.mdl"	// Model.
-		"BaseClass"					"npc_dota_techies_mines"
+		"BaseClass"					"npc_dota_base_additive"
 		"SoundSet"					"0"			// Name of sound set.
 		"Level"						"1"
 		"ModelScale"				"1.0"
@@ -19879,7 +19879,7 @@
 
 		// Abilities
 		//----------------------------------------------------------------
-		"Ability1"					"techies_remote_mines_self_detonate"			// Ability 1
+		"Ability1"					""			// Ability 1
 		"Ability2"					""			// Ability 2
 		"Ability3"					""			// Ability 3
 		"Ability4"					""			// Ability 4
@@ -19912,9 +19912,9 @@
 
 		// Movement
 		//----------------------------------------------------------------
-		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_NONE"
-		"MovementSpeed"				"0"		// Speed.
-		"MovementTurnRate"			"0"		// Turning rate.
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"250"		// Speed.
+		"MovementTurnRate"			"1"		// Turning rate.
 
 		// Status
 		//----------------------------------------------------------------

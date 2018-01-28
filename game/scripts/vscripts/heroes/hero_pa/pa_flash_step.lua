@@ -100,7 +100,7 @@ function modifier_flash_step_as:DeclareFunctions()
 end
 
 function modifier_flash_step_as:GetModifierAttackSpeedBonus_Constant()
-    return self:GetTalentSpecialValueFor("bonus_as") + self:GetStackCount()
+    return self:GetTalentSpecialValueFor("bonus_as") * self:GetStackCount()
 end
 
 function modifier_flash_step_as:IsDebuff()
