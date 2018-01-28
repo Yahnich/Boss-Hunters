@@ -4820,8 +4820,8 @@
 			}
 			"03"
 			{
-				"var_type"			"FIELD_FLOAT"
-				"strike_interval"	"0.9 0.8 0.7 0.6 0.5 0.4 0.3"
+				"var_type"				"FIELD_FLOAT"
+				"strike_interval"		"1 0.95 0.9 0.85 0.8 0.75 0.7"
 				"LinkedSpecialBonus"	"special_bonus_unique_razor_2"
 			}
 			"04"
@@ -4837,8 +4837,8 @@
 			"06"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"strike_interval_scepter"	"0.8 0.7 0.6 0.5 0.4 0.3 0.2"
-				"LinkedSpecialBonus"	"special_bonus_unique_razor_2"
+				"strike_interval_scepter"	"0.9 0.85 0.8 0.75 0.7 0.65 0.6"
+				"LinkedSpecialBonus"		"special_bonus_unique_razor_2"
 			}
 		}
 	}
@@ -6652,7 +6652,7 @@
 			"04"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"negative_armor"		"5 10 20 40 80 120 160"
+				"negative_armor"		"4 6 8 10 12 14 16"
 				"LinkedSpecialBonus"	"special_bonus_unique_tidehunter"
 			}
 			"05"
@@ -6909,7 +6909,7 @@
 			"03"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"armor_reduction"	"-5 -10 -20 -40 -70 -100 -150"
+				"armor_reduction"	"-3 -6 -9 -12 -15 -18 -21"
 				"LinkedSpecialBonus"	"special_bonus_unique_vengeful_spirit_4"
 			}
 			"04"
@@ -11289,7 +11289,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"bonus_armor"				"-10 -25 -50 -75 -100 -150 -200"
+				"bonus_armor"				"-7 -10 -13 -16 -19 -22 -25"
 				"LinkedSpecialBonus"		"special_bonus_unique_templar_assassin_2"
 			}
 			"03"
@@ -15463,7 +15463,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"armor_reduction"		"2.5"
+				"armor_reduction"		"1"
 				"LinkedSpecialBonus"	"special_bonus_unique_weaver_3"
 			}
 			"05"
@@ -19432,7 +19432,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"armor_reduction"			"-10 -25 -50 -75 -100 -125 -150"
+				"armor_reduction"			"-10 -15 -20 -25 -30 -35 -40"
 				"LinkedSpecialBonus"		"special_bonus_unique_chaos_knight_2"
 			}		
 			"03"
@@ -21754,7 +21754,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"armor_reduction"			"-5 -10 -20 -40 -70 -100 -150"
+				"armor_reduction"			"-4 -8 -12 -16 -20 -24 -28"
 				"LinkedSpecialBonus"		"special_bonus_unique_naga_siren_3"
 			}
 			"02"
@@ -34812,7 +34812,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"40"
+				"value"				"12"
 			}
 		}
 	}
@@ -34836,7 +34836,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"50"
+				"value"				"15"
 			}
 		}
 	}
@@ -41684,7 +41684,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"				"8"
+				"value"				"1"
 			}
 		}
 	}
@@ -42030,7 +42030,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"-25"
+				"value"				"-5"
 			}
 		}
 	}
@@ -44874,7 +44874,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"20"
+				"value"						"-0.25"
 			}
 		}
 	}

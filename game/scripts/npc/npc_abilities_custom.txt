@@ -389,7 +389,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"armor_reduction"		"4 8 16 32 64 96 128"
+				"armor_reduction"		"-5 -7 -9 -11 -13 -15 -17"
 			}
 			"05"
 			{
@@ -22442,7 +22442,7 @@
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"100 200 300 400 800 1600 3200"
+		"AbilityManaCost"				"250 325 500 750 1250 2250 4000"
 		
 		"precache"
 		{
@@ -22463,7 +22463,7 @@
 			"02"
 			{	
 				"var_type"					"FIELD_FLOAT"
-				"armor_per_second"			"5.0 10.0 15.0 20.0 25.0 30.0 35.0"
+				"armor_per_second"			"0.5 0.75 1 1.25 1.5 1.75 2.0"
 				"LinkedSpecialBonus"		"special_bonus_unique_dazzle_4"
 			}
 			"03"
@@ -33467,7 +33467,7 @@
 			"01"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"presence_armor_reduction"		"-2 -4 -8 -16 -32 -64 -96"
+				"presence_armor_reduction"		"-2 -4 -6 -8 -10 -12 -14"
 			}
 			"02"
 			{
@@ -33477,7 +33477,7 @@
 			"03"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"presence_radius"				"1500"
+				"presence_radius"				"900"
 			}
 			"04"
 			{
@@ -41991,7 +41991,7 @@
 			"01"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"base_armor_reduction"			"-15 -30 -45 -60 -75 -100 -125"
+				"base_armor_reduction"			"-15 -20 -25 -30 -35 -40 -45"
 			}
 			"02"
 			{
@@ -43814,9 +43814,9 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"armor_reduction_perstack"		"-0.25 -0.5 -0.75 -1 -1.25 -1.5 -1.75"
-				"LinkedSpecialBonus"	"special_bonus_unique_spectre_4"
+				"var_type"						"FIELD_FLOAT"
+				"armor_reduction_perstack"		"-0.2 -0.4 -0.6 -0.8 -1 -1.2 -1.4"
+				"LinkedSpecialBonus"			"special_bonus_unique_spectre_4"
 			}
 		}
 	}
@@ -48883,8 +48883,8 @@
 			}
 			"06"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"debuff_minus_armor"		"-1 -2 -3 -4 -8 -12 -18"
+				"var_type"					"FIELD_FLOAT"
+				"debuff_minus_armor"		"-1 -1.5 -2 -2.5 -3 -3.5 -4"
 			}
 			"07"
 			{

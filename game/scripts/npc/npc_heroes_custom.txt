@@ -1161,6 +1161,8 @@
 		"Ability1"					"spectre_spectral_dagger"					// Ability 1
 		"Ability2"					"spectre_echo_scream"					// Ability 2
 		"Ability3"					"spectre_dispersion_ebf"						// Ability 3
+		"Ability4"					"generic_hidden"
+		"Ability5"					"generic_hidden"
 		"Ability6"					"spectre_ebf_haunt"
 	}
 	"npc_dota_hero_spirit_breaker"
