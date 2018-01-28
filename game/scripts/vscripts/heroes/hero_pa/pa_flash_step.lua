@@ -14,7 +14,7 @@ function pa_flash_step:OnSpellStart()
     caster:FindAbilityByName("pa_kunai_toss").TotesBounces = caster:FindAbilityByName("pa_kunai_toss"):GetSpecialValueFor("bounces")*caster:FindAbilityByName("pa_kunai_toss"):GetSpecialValueFor("max_targets")
     caster:FindAbilityByName("pa_kunai_toss").CurrentBounces = 0
 	
-	local count = 0
+	local count = 4 -- always fire at least 1 kunai
     caster:AddNewModifier(caster, self, "modifier_flash_step", {})
     Timers:CreateTimer(0, function()
         if currentDistance > 0 then

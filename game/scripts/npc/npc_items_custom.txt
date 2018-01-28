@@ -1212,7 +1212,7 @@
 			"12"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_armor_debuff"		"-100"
+				"bonus_armor_debuff"		"-11"
 			}
 			"13"
 			{
@@ -1374,7 +1374,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"armor_reduction"		"-150"
+				"armor_reduction"		"-30"
 			}
 			"03"
 			{
@@ -5468,39 +5468,7 @@
 		"ItemQuality"					"artifact"
 		"ItemAliases"					"desolator"
 		"ItemDeclarations"				"DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-		
-	
-	
-	
-		"Modifiers"
-		{
-			"desolator2_stat"
-			{
-				"OnAttackLanded"
-				{
-					"ApplyModifier"
-					{
-						"Target" 
-						{
-							"Center" "TARGET"
-							"Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-						}
-						"ModifierName"		"Desolation2_effect"
-					}
-				}
-			}
-			"Desolation2_effect"
-			{
-				"IsDebuff" "1"
-	    			"IsPurgable" "0"
-	    			"Duration" "%duration"
-	     			"Properties"
-	     			{
-	       				"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "%armor_reduction"
-	     			}
-			}
-		}
-	
+
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
@@ -5513,7 +5481,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"corruption_armor"		"-10"
+				"corruption_armor"		"-8"
 			}
 			"03"
 			{
@@ -5523,27 +5491,27 @@
 		}
 	}
 	//=================================================================================================================
-		// Desolator
-		//=================================================================================================================
-		"item_desolator3"
-		{
+	// Desolator
+	//=================================================================================================================
+	"item_desolator3"
+	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-			"ID"							"3021"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-	
-			"AbilityTextureName"	"custom/desolator3"
-			"ItemKillable"                  "1"
-			
-			"ItemSellable"                  "1"
-			"ItemDroppable"                 "1"
-			"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-			"BaseClass"								"item_datadriven"
-			"ItemCost"										"3135"
-			"ItemShopTags"									"damage;unique"
-			"ItemQuality"									"artifact"
-			"ItemAliases"									"desolator"
-			"ItemDisassembleRule"							"DOTA_ITEM_DISASSEMBLE_ALWAYS"
-			"ItemDeclarations"								"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		"ID"							"3021"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+
+		"AbilityTextureName"	"custom/desolator3"
+		"ItemKillable"                  "1"
+		
+		"ItemSellable"                  "1"
+		"ItemDroppable"                 "1"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"								"item_datadriven"
+		"ItemCost"										"3135"
+		"ItemShopTags"									"damage;unique"
+		"ItemQuality"									"artifact"
+		"ItemAliases"									"desolator"
+		"ItemDisassembleRule"							"DOTA_ITEM_DISASSEMBLE_ALWAYS"
+		"ItemDeclarations"								"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		//====================================
 		"precache"
 		{
@@ -5567,7 +5535,7 @@
 				"projectileName"	"particles/desolator3_projectile.vpcf"
 			}
 		}
-	
+
 		"Modifiers"
 		{
 			"desolator3_stat"
@@ -5597,12 +5565,12 @@
 			"Desolation3_effect"
 			{
 				"IsDebuff" "1"
-	    			"IsPurgable" "0"
-	    			"Duration" "%duration"
-	     			"Properties"
-	     			{
-	       				"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "%armor_reduction"
-	     			}
+					"IsPurgable" "0"
+					"Duration" "%duration"
+					"Properties"
+					{
+						"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "%armor_reduction"
+					}
 			}
 		}
 		
@@ -5618,7 +5586,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"armor_reduction"		"-20"
+				"armor_reduction"		"-12"
 			}
 			"03"
 			{
@@ -5638,27 +5606,27 @@
 		}
 	}
 	//=================================================================================================================
-		// Desolator
-		//=================================================================================================================
-		"item_desolator4"
-		{
+	// Desolator
+	//=================================================================================================================
+	"item_desolator4"
+	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-			"ID"							"1047"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-	
-			"AbilityTextureName"	"custom/desolator4"
-			"ItemKillable"                  "1"
-			"ItemSellable"                  "1"
-			
-			"ItemDroppable"                 "1"
-			"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-			"BaseClass"								"item_datadriven"
-			"ItemCost"										"12625"
-			"ItemShopTags"									"damage;unique"
-			"ItemQuality"									"artifact"
-			"ItemAliases"									"desolator"
-			"ItemDisassembleRule"							"DOTA_ITEM_DISASSEMBLE_ALWAYS"
-			"ItemDeclarations"								"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		"ID"							"1047"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+
+		"AbilityTextureName"	"custom/desolator4"
+		"ItemKillable"                  "1"
+		"ItemSellable"                  "1"
+		
+		"ItemDroppable"                 "1"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"								"item_datadriven"
+		"ItemCost"										"12625"
+		"ItemShopTags"									"damage;unique"
+		"ItemQuality"									"artifact"
+		"ItemAliases"									"desolator"
+		"ItemDisassembleRule"							"DOTA_ITEM_DISASSEMBLE_ALWAYS"
+		"ItemDeclarations"								"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		//====================================
 		"precache"
 		{
@@ -5736,7 +5704,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"armor_reduction"		"-40"
+				"armor_reduction"		"-17"
 			}
 			"03"
 			{
@@ -5922,7 +5890,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"armor_reduction"		"-80"
+				"armor_reduction"		"-23"
 			}
 			"03"
 			{
@@ -6273,7 +6241,7 @@
 			"11"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_armor_debuff"		"-50"
+				"bonus_armor_debuff"		"-9"
 			}
 			"12"
 			{
@@ -9798,7 +9766,7 @@
 			"12"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"minus_armor"			"-250"
+				"minus_armor"			"-15"
 			}
 			"03"
 			{
@@ -9999,7 +9967,7 @@
 			"13"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"minus_armor"			"-500"
+				"minus_armor"			"-25"
 			}
 			"03"
 			{
@@ -17406,7 +17374,7 @@
 			"10"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_armor_debuff"		"-20"
+				"bonus_armor_debuff"		"-7"
 			}
 			"11"
 			{
