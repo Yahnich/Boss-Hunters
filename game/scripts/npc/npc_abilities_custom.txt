@@ -42683,7 +42683,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"					"6677"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"special_bonus_reincarnation_200"										// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		
@@ -44836,7 +44836,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
 		"AbilityCastRange"				"900"
-	
+	1
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"				"24.0 22.0 20.0 18.0 16.0 14.0 12.0"
@@ -44956,7 +44956,7 @@
 		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityTextureName"			"techies_focused_detonate"
-		"LevelsBetweenUpgrades"			"8"
+		"LevelsBetweenUpgrades"			"7"
 		"MaxLevel"						"7"
 		"RequiredLevel"					"7"
 		
@@ -45022,7 +45022,7 @@
 		"AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
 		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityTextureName"			"techies_land_mines"
-		"LevelsBetweenUpgrades"			"5"
+		"LevelsBetweenUpgrades"			"6"
 		"MaxLevel"						"7"
 		"RequiredLevel"					"6"
 	

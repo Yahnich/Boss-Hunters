@@ -22,7 +22,7 @@ function modifier_suicide:OnDeath(params)
 	if IsServer() then
 		local radius = self:GetSpecialValueFor("radius")
 
-		if params.unit == self:GetParent() then
+		if params.unit == self:GetParent() and params.unit:IsRealHero() then
 			local enemies = params.unit:FindEnemyUnitsInRadius(params.unit:GetAbsOrigin(), radius, {flag = self:GetAbility():GetAbilityTargetFlags()})
 			for _,enemy in pairs(enemies) do
 				EmitSoundOn("Hero_Techies.Suicide", params.unit)
