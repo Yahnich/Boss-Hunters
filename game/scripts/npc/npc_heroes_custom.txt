@@ -427,15 +427,20 @@
 	"npc_dota_hero_furion_ebf"
 	{
 		"override_hero"			"npc_dota_hero_furion"
-		"Ability1"				"furion_sprout_ebf"
-		"Ability10"		"special_bonus_attack_damage_30"
-		"Ability11"		"special_bonus_movement_speed_30"
-		"Ability12"		"special_bonus_armor_8"
-		"Ability13"		"special_bonus_unique_furion_2"
-		"Ability14"		"special_bonus_attack_speed_40"
-		"Ability15"		"special_bonus_unique_furion_4"
-		"Ability16"		"special_bonus_unique_furion_3"
-		"Ability17"		"special_bonus_unique_furion"
+		"Ability1"				"furion_tree_jail"
+		"Ability2"				"furion_sprout_tp"
+		"Ability3"				"furion_tree_ant"
+		"Ability4"				"furion_entangle"
+		"Ability6"				"furion_natures_wrath"
+	
+		"Ability10"		"special_bonus_unique_furion_tree_jail_2"
+		"Ability11"		"special_bonus_unique_furion_tree_jail_1"
+		"Ability12"		"special_bonus_unique_furion_sprout_tp_1"
+		"Ability13"		"special_bonus_unique_furion_sprout_tp_2"
+		"Ability14"		"special_bonus_unique_furion_tree_ant_1"
+		"Ability15"		"special_bonus_unique_furion_tree_ant_2"
+		"Ability16"		"special_bonus_unique_furion_natures_wrath_1"
+		"Ability17"		"special_bonus_unique_furion_natures_wrath_2"
 	}
 	//=================================================================================================================
 	// HERO: Gyrochopter
