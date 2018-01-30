@@ -35,6 +35,9 @@ function modifier_smoke_bomb:OnIntervalThink()
     local enemies = self:GetCaster():FindEnemyUnitsInRadius(self:GetParent():GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"), {})
     for _,enemy in pairs(enemies) do
         enemy:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_smoke_bomb_enemy", {Duration = 1.0})
+		if self:GetCaster():HasTalent("special_bonus_unique_riki_smoke_bomb_1") then
+			enemy:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_silence", {Duration = 1.0})
+		end
         self:GetAbility():DealDamage(self:GetCaster(), enemy, self:GetTalentSpecialValueFor("damage"), {}, OVERHEAD_ALERT_BONUS_POISON_DAMAGE)
     end
 end
@@ -47,6 +50,7 @@ function modifier_smoke_bomb:OnRemoved()
 end
 
 modifier_smoke_bomb_enemy = class({})
+
 function modifier_smoke_bomb_enemy:DeclareFunctions()
     local funcs = {
         MODIFIER_PROPERTY_MISS_PERCENTAGE
@@ -60,4 +64,14 @@ end
 
 function modifier_smoke_bomb_enemy:IsDebuff()
     return true
+end
+
+function modifier_smoke_bomb_enemy:GetEffectName()
+	if self:GetCaster():HasTalent("special_bonus_unique_riki_smoke_bomb_1") then
+		return "particles/generic_gameplay/generic_silence.vpcf"
+	end
+end
+
+function modifier_smoke_bomb_enemy:GetEffectAttachType()
+	return PATTACH_OVERHEAD_FOLLOW
 end

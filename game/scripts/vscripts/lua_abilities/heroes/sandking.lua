@@ -49,7 +49,10 @@ function SableDjinnDamage(keys)
 	local caster = keys.caster
 	local ability = keys.ability
 	
-	local enemies = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(), nil, caster.sandStormRadius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER , false)
+	local thinkinterval = ability:GetTalentSpecialValueFor("sand_storm_think")
+	
+	caster.sandStormRadius = caster.sandStormRadius or ability:GetTalentSpecialValueFor("sand_storm_base_radius") 
+	local enemies = caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), caster.sandStormRadius)
 	
 	for _,enemy in pairs( enemies ) do
         ApplyDamage({victim = enemy, attacker = keys.caster, damage = caster.sandStormDamage*thinkinterval, damage_type = ability:GetAbilityDamageType(), ability = ability})

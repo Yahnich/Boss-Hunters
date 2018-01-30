@@ -85,10 +85,10 @@ end
 --------------------------------------------------------------------------------
 
 function modifier_pudge_dismember_lua:OnCreated( kv )
-	self.dismember_damage = self:GetAbility():GetSpecialValueFor( "dismember_damage" )
-	self.tick_rate = self:GetAbility():GetSpecialValueFor( "tick_rate" )
-	self.strength_damage = self:GetAbility():GetSpecialValueFor( "strength_damage" )
-	self.stacks = self:GetAbility():GetSpecialValueFor( "scepter_flesh_stacks" )
+	self.dismember_damage = self:GetAbility():GetTalentSpecialValueFor( "dismember_damage" )
+	self.tick_rate = self:GetAbility():GetTalentSpecialValueFor( "tick_rate" )
+	self.strength_damage = self:GetAbility():GetTalentSpecialValueFor( "strength_damage" )
+	self.stacks = self:GetAbility():GetTalentSpecialValueFor( "scepter_flesh_stacks" )
 
 	if IsServer() then
 		self:GetParent():InterruptChannel()
@@ -138,7 +138,7 @@ function modifier_pudge_dismember_lua:OnIntervalThink()
 		end
 		local flDamage = self.dismember_damage
 		flDamage = flDamage + ( self:GetCaster():GetStrength() * self.strength_damage )
-		self:GetCaster():Heal( flDamage, self:GetAbility(), self:GetCaster() )
+		self:GetCaster():HealEvent( flDamage, self:GetAbility(), self:GetCaster() )
 		local damage = {
 			victim = self:GetParent(),
 			attacker = self:GetCaster(),

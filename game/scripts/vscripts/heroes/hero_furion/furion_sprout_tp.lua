@@ -1,9 +1,9 @@
 furion_sprout_tp = class({})
-LinkLuaModifier( "modifier_sprout_tp", "heroes/hero_furion/furion_sprout_tp.lua", LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "modifier_entangle_enemy", "heroes/hero_furion/furion_entangle.lua",LUA_MODIFIER_MOTION_NONE )
 
 function furion_sprout_tp:GetCooldown(iLevel)
-	return self:GetTalentSpecialValueFor("cooldown")
+	local cooldown = self.BaseClass.GetCooldown(self, iLevel)
+	if self:GetCaster():HasTalent("special_bonus_unique_furion_sprout_tp_1") then return 0 end
+	return cooldown
 end
 
 function furion_sprout_tp:OnAbilityPhaseStart()
@@ -17,20 +17,11 @@ function furion_sprout_tp:OnAbilityPhaseStart()
 
 	self.nfx2 = ParticleManager:CreateParticle("particles/units/heroes/hero_furion/furion_teleport_end.vpcf", PATTACH_WORLDORIGIN, caster)
 	ParticleManager:SetParticleControl(self.nfx2, 1, point)
-
-	caster:AddNewModifier(caster, self, "modifier_sprout_tp", {Duration = self:GetCastPoint()})
 	
 	return true
 end
 
 function furion_sprout_tp:OnAbilityPhaseInterrupted()
-	if self:GetCaster():HasModifier("modifier_sprout_tp") then
-		self:GetCaster():RemoveModifierByName("modifier_sprout_tp")
-	end
-
-	self:RefundManaCost()
-	self:EndCooldown()
-
 	StopSoundOn("Hero_Furion.Teleport_Grow", caster)
 
 	ParticleManager:DestroyParticle(self.nfx, false)
@@ -40,10 +31,6 @@ end
 function furion_sprout_tp:OnSpellStart()
 	local caster = self:GetCaster()
 	local point = self:GetCursorPosition()
-
-	if caster:HasModifier("modifier_sprout_tp") then
-		caster:RemoveModifierByName("modifier_sprout_tp")
-	end
 
 	FindClearSpaceForUnit(caster, point, true)
 
@@ -65,34 +52,4 @@ function furion_sprout_tp:OnSpellStart()
 	for _,enemy in pairs(enemies) do
 		enemy:AddNewModifier(caster, caster:FindAbilityByName("furion_entangle"), "modifier_entangle_enemy", {Duration = caster:FindAbilityByName("furion_entangle"):GetTalentSpecialValueFor("duration")})
 	end
-end
-
-modifier_sprout_tp = class({})
-function modifier_sprout_tp:DeclareFunctions()
-	local funcs = {
-		MODIFIER_EVENT_ON_ORDER
-	}
-	return funcs
-end
-
-function modifier_sprout_tp:OnOrder(params)
-	if IsServer() then
-		if params.unit == self:GetCaster() then
-			if self:GetCaster():HasModifier("modifier_sprout_tp") then
-				self:GetCaster():RemoveModifierByName("modifier_sprout_tp")
-			end
-
-			self:GetAbility():RefundManaCost()
-			self:GetAbility():EndCooldown()
-
-			StopSoundOn("Hero_Furion.Teleport_Grow", self:GetCaster())
-
-			ParticleManager:DestroyParticle(self:GetAbility().nfx, false)
-			ParticleManager:DestroyParticle(self:GetAbility().nfx2, false)
-		end
-	end
-end
-
-function modifier_sprout_tp:IsHidden()
-	return true
 end

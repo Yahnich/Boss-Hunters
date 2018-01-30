@@ -471,9 +471,9 @@ function CDOTA_BaseNPC:HighestTalentTypeValue(talentType)
 	return value
 end
 
-function CDOTA_BaseNPC:FindTalentValue(talentName)
+function CDOTA_BaseNPC:FindTalentValue(talentName, value)
 	if self:HasAbility(talentName) then
-		return self:FindAbilityByName(talentName):GetSpecialValueFor("value")
+		return self:FindAbilityByName(talentName):GetSpecialValueFor(value or "value")
 	end
 	return 0
 end
@@ -828,17 +828,54 @@ end
 
 function CDOTA_BaseNPC:GetThreat()
 	self.threat = self.threat or 0
+	
+	local player = PlayerResource:GetPlayer(self:GetPlayerID())
+	PlayerResource:SortThreat()
+	local event_data =
+	{
+		threat = self.threat,
+		lastHit = self.lastHit,
+		aggro = self.aggro
+	}
+	if player then
+		CustomGameEventManager:Send_ServerToPlayer( player, "Update_threat", event_data )
+	end
+	
 	return self.threat
 end
 
 function CDOTA_BaseNPC:SetThreat(val)
 	self.lastHit = GameRules:GetGameTime()
 	self.threat = val
+	
+	local player = PlayerResource:GetPlayer(self:GetPlayerID())
+	PlayerResource:SortThreat()
+	local event_data =
+	{
+		threat = self.threat,
+		lastHit = self.lastHit,
+		aggro = self.aggro
+	}
+	if player then
+		CustomGameEventManager:Send_ServerToPlayer( player, "Update_threat", event_data )
+	end
 end
 
 function CDOTA_BaseNPC:ModifyThreat(val)
 	self.lastHit = GameRules:GetGameTime()
 	self.threat = (self.threat or 0) + val
+	
+	local player = PlayerResource:GetPlayer(self:GetPlayerID())
+	PlayerResource:SortThreat()
+	local event_data =
+	{
+		threat = self.threat,
+		lastHit = self.lastHit,
+		aggro = self.aggro
+	}
+	if player then
+		CustomGameEventManager:Send_ServerToPlayer( player, "Update_threat", event_data )
+	end
 end
 
 function CDOTA_BaseNPC:GetLastHitTime()
@@ -1259,7 +1296,7 @@ function CScriptHeroList:GetActiveHeroes()
 	local heroes = self:GetAllHeroes()
 	local activeHeroes = {}
 	for _, hero in pairs(heroes) do
-		if hero:GetPlayerOwner() then
+		if hero:GetPlayerOwner() and hero:IsRealHero() then
 			table.insert(activeHeroes, hero)
 		end
 	end

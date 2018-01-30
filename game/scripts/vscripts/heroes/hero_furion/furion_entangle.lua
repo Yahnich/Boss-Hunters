@@ -20,12 +20,12 @@ end
 
 function modifier_entangle:OnAttackLanded(params)
 	if IsServer() then
-		if params.attacker == self:GetParent() and RollPercentage(self:GetTalentSpecialValueFor("chance")) and params.target:IsAlive() and not params.target:IsMagicImmune() then
+		if params.attacker == self:GetParent() and RollPercentage(self:GetTalentSpecialValueFor("chance")) and params.target:IsAlive() and not params.target:IsMagicImmune() and self:GetAbility():IsCooldownReady() then
 			local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_treant/treant_leech_seed.vpcf", PATTACH_POINT, params.attacker) 
         	ParticleManager:SetParticleControl(nfx, 0, params.attacker:GetAbsOrigin())
         	ParticleManager:SetParticleControlEnt(nfx, 1, params.target, PATTACH_POINT, "attach_hitloc", params.target:GetAbsOrigin(), true)
         	ParticleManager:ReleaseParticleIndex(nfx)
-			
+			self:GetAbility():SetCooldown()
 			params.target:AddNewModifier(self:GetParent(), self:GetAbility(), "modifier_entangle_enemy", {Duration = self:GetTalentSpecialValueFor("duration")})
 		end
 	end
