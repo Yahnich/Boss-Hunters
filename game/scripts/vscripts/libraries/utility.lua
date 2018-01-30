@@ -1566,8 +1566,10 @@ function ParticleManager:FireRopeParticle(effect, attach, owner, target, tCP)
 end
 
 function ParticleManager:ClearParticle(cFX)
-	self:DestroyParticle(cFX, false)
-	self:ReleaseParticleIndex(cFX)
+	if cFX then
+		self:DestroyParticle(cFX, false)
+		self:ReleaseParticleIndex(cFX)
+	end
 end
 
 function CDOTA_Modifier_Lua:StartMotionController()

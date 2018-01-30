@@ -5713,7 +5713,8 @@
 	{
 	    // General
 	    //-------------------------------------------------------------------------------------------------------------
-	    "BaseClass"             "ability_datadriven"
+	    "BaseClass"             		"ability_lua"
+		"ScriptFile"					"bosses/boss_evil_core/boss_evil_core_passive"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
 	    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
 	    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
@@ -5721,6 +5722,8 @@
 	    "AbilityTextureName"			"custom/evil_core_passive"
 	    "MaxLevel"                      "1"
 		"PiercesDisableReduction"		"1"
+		
+		"AbilityCooldown"				"45"
 	
 	    // Special
 	    //-------------------------------------------------------------------------------------------------------------
@@ -5729,85 +5732,20 @@
 	    {
 	        "particle"          "particles/units/heroes/hero_faceless_void/faceless_void_chronosphere.vpcf"
 	    }
-	
-	    "Modifiers"
+		
+		"AbilitySpecial"
 	    {
-			"modifier_spawn_timer"
-			{
-				"OnDestroy"
-				{
-					"RunScript"
-					{
-						"ScriptFile" "lua_abilities/abilities_simple.lua"
-						"Function" "dummy_spawn"
-					}
-				}
-				"Properties"
-	            {
-	                "MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL"      "1"
-	                "MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_MAGICAL"      "1"
-	                "MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PURE"      "1"
-	                "MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"  "0"
-	            }
-	
-	            "States"
-	            {
-	                "MODIFIER_STATE_ROOTED"             "MODIFIER_STATE_VALUE_ENABLED"
-	                "MODIFIER_STATE_DISARMED"           "MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_SILENCED"			"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_UNSELECTABLE"	"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_MAGIC_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_ATTACK_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED"
-	            }
-			}
-	    	"modifier_knockback_wind"
-	    	{
-	            "Passive"           "1"
-	            "IsHidden"          "1"
-	            "IsBuff"            "1"
-	            "IsDebuff"          "0"
-	            "IsPurgable"        "0"
-	            "Attributes"        "MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
-	
-	            "Properties"
-	            {
-	                "MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL"      "1"
-	                "MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_MAGICAL"      "1"
-	                "MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PURE"      "1"
-	                "MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"  "0"
-	            }
-	
-	            "States"
-	            {
-	                "MODIFIER_STATE_ROOTED"             "MODIFIER_STATE_VALUE_ENABLED"
-	                "MODIFIER_STATE_DISARMED"           "MODIFIER_STATE_VALUE_ENABLED"
-	            }
-	            "OnTakeDamage"
-	    		{
-	    			"RunScript"
-					{
-						"ScriptFile" "lua_abilities/abilities_simple.lua"
-						"Function" "boss_evil_core_take_damage"
-					}
-	    		}
-	    		"OnCreated"
-	    		{
-	    			"RunScript"
-					{
-						"ScriptFile" "lua_abilities/abilities_simple.lua"
-						"Function" "boss_evil_core_spawn"
-					}
-	    		}
-				"OnDestroy"
-				{
-					"RunScript"
-					{
-						"ScriptFile" "lua_abilities/abilities_simple.lua"
-						"Function" "boss_evil_core_death"
-					}
-				}
+	        "01"
+	        {
+	            "var_type"              "FIELD_INTEGER"
+	            "recharge_time"         "15"
 	        }
-		}
+	        "02"
+	        {
+	            "var_type"              "FIELD_INTEGER"
+	            "damage_per_hit"        "5"
+	        }
+	    }
 	}
 	"boss_fire_aura"
 	{
@@ -13745,14 +13683,14 @@
 		}
 	}
 	////////////////////////////////
-	    // CHAOS KNIGHT
+	// CHAOS KNIGHT
 	////////////////////////////////
-	 	"chaos_knight_chaos_bolt_ebf"
+	 "chaos_knight_chaos_bolt_ebf"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"lua_abilities/heroes/chaos_knight"
+		"ScriptFile"					"heroes/hero_chaos_knight/chaos_knight_chaos_bolt_ebf"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
@@ -13823,6 +13761,186 @@
 			}
 		}
 	}
+	//=================================================================================================================
+	// Chaos Knight: Reality Rift
+	//=================================================================================================================
+	"chaos_knight_reality_rift"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_chaos_knight/chaos_knight_reality_rift_ebf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_ALL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"				"1"
+		"LevelsBetweenUpgrades"			"6"
+		"MaxLevel"						"7"
+		"RequiredLevel"					"5"
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"550 600 650 700"
+		"AbilityCastPoint"				"0.4 0.4 0.4 0.4"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"24 21 18 15 12 9 6"
+
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"50"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"cast_range"				"550 600 650 700 750 800 900"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"armor_reduction"			"-10 -15 -20 -25 -30 -35 -40"
+				"LinkedSpecialBonus"		"special_bonus_unique_chaos_knight_2"
+			}		
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"armor_duration"			"8"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Chaos Knight: Chaos Strike
+	//=================================================================================================================
+	"chaos_knight_chaos_strike"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_chaos_knight/chaos_knight_chaos_strike_ebf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"LevelsBetweenUpgrades"			"6"
+		"MaxLevel"						"7"
+		"RequiredLevel"					"6"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"crit_chance"				"10"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"crit_damage"				"300 375 450 525 600 675 750"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"lifesteal"					"100"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Chaos Knight: Phantasm
+	//=================================================================================================================
+	"chaos_knight_phantasm"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_chaos_knight/chaos_knight_phantasm_ebf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"FightRecapLevel"				"2"
+		"LevelsBetweenUpgrades"			"7"
+		"MaxLevel"						"7"
+		"HasScepterUpgrade"				"1"
+		
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO"
+		"AbilityCastRange"				"1200"
+		"HasScepterUpgrade"				"1"
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.4 0.4 0.4"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"160 150 140 130 120 110 100"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"125 200 275"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"images_count"				"1 1 1 2 2 2 3"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"extra_phantasm_chance_pct_tooltip"			"50"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"illusion_duration"			"20"
+			}	
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"outgoing_damage"			"0 50 100"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"outgoing_damage_tooltip"			"100"
+			}	
+			"06"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"incoming_damage"			"0"
+			}
+			"07"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"incoming_damage_tooltip"			"100"
+			}			
+			"08"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"invuln_duration"		"0.5"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"vision_radius"			"400"
+			}			
+			"10"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"cooldown_scepter"		"60"
+			}
+		}
+	}
+	
 	"chen_corrupted_test"
 	{
 		// General
@@ -22765,169 +22883,6 @@
 				}
 			}
 		}
-	}
-	// Rewrite of the Doom Doom ability
-	// Author: Pizzalol
-	// Date: 25.02.2015.
-	"doom_bringer_doom_ebf"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"5342"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_ALL"
-		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
-		"FightRecapLevel"				"2"
-		"LevelsBetweenUpgrades"			"7"
-		"MaxLevel"						"7"
-		
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0.5"
-	
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"550 550 550"
-		"AbilityCooldown"				"200.0"
-	
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"150 200 250"
-	
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"15.0"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"200 400 800 1600 3200 6400 12800"
-				"LinkedSpecialBonus"	"special_bonus_unique_doom_5"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration_scepter"		"16.0 16.0 16.0"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage_scepter"		"400 800 1600 3200 6400 12800 25000"
-				"LinkedSpecialBonus"	"special_bonus_unique_doom_5"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"deniable_pct"			"25 25 25"
-			}
-		}
-	
-	    "OnSpellStart"
-	    {
-	        "FireSound"
-	        {
-	            "EffectName"    "Hero_DoomBringer.Doom"
-	            "Target"
-	            {
-	                "Center"    "TARGET"
-	                "Flags"     "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-	            }
-	        }
-	
-	        "RunScript"
-	        {
-	            "ScriptFile"    "lua_abilities/abilities_simple.lua"
-	            "Function"      "DoomPurge"
-	        }
-	
-	        "ApplyModifier"
-	        {
-	            "ModifierName"  "modifier_doom_datadriven"
-	            "Target" 
-	            {
-	                "Center"    "TARGET"
-	                "Flags"     "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-	            }
-	            "Duration"      "%duration"
-	        }
-	
-	        "ApplyModifier"
-	        {
-	            "ModifierName"  "modifier_doom_deny_check_datadriven"
-	            "Target" 
-	            {
-	                "Center"    "TARGET"
-	                "Flags"     "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-	            }
-	            "Duration"      "%duration"
-	        }
-	    }
-	
-	    "Modifiers"
-	    {
-	        "modifier_doom_datadriven"
-	        {
-	            "IsDebuff"          "1"
-	            "IsPurgable"        "0"
-	    
-	            "StatusEffectName"      "particles/status_fx/status_effect_doom.vpcf"      
-	            "StatusEffectPriority"  "10"
-	    
-	            "OnCreated"
-	            {
-	                "AttachEffect"
-	                {
-	                    "EffectName"        "particles/units/heroes/hero_doom_bringer/doom_bringer_doom.vpcf"
-	                    "EffectAttachType"  "follow_origin"
-	                    "Target"
-	                    {
-	                        "Center"    "TARGET"
-	                        "Flags"     "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-	                    }
-	
-	                    "ControlPoints"
-	                    {
-	                        "04"    "TARGET"
-	                    }
-	                }
-	            }
-	
-	            "OnDestroy"
-	            {
-	                "RunScript"
-	                {
-	                    "ScriptFile"    "lua_abilities/abilities_simple.lua"
-	                    "Function"      "StopSound"
-	                    "sound"         "Hero_DoomBringer.Doom"
-	                }
-	            }
-	
-	            "ThinkInterval"  "1.0"
-	            "OnIntervalThink"
-	            {
-	                "Damage"
-	                {
-	                    "Target"        "TARGET"
-	                    "Type"          "DAMAGE_TYPE_PURE"
-	                    "Damage"        "%damage"
-	                }
-	            }
-	
-	            "States"
-	            {
-	                "MODIFIER_STATE_SILENCED"       "MODIFIER_STATE_VALUE_ENABLED"
-	            }
-	        }
-	    }
 	}
 	"doom_devour"
 	{

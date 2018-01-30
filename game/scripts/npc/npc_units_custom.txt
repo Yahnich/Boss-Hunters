@@ -7233,15 +7233,15 @@
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"665"
 		"ModelScale" 				"0.5"
-		"IsAncient"			"0"
+		"IsAncient"					"0"
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"50"
+		"vscripts"					"ai/ai_boss36"
 	
 		// Abilities
 		//----------------------------------------------------------------
 		"AbilityLayout"				"6"
-		"Ability1"					"boss_evil_core_passive"			// Ability 1.
-		"Ability2"					"boss_evil_core_cast"			// Ability 2.
+		"Ability1"					"boss_evil_core_passive"		// Ability 1.
 	
 		// Armor
 		//----------------------------------------------------------------
@@ -7354,7 +7354,7 @@
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"50"
 		"IsCore"					"1"
-		"vscripts"					"ai/ai_boss36"
+		"vscripts"					"ai/ai_boss36_guardian"
 	
 		// Abilities
 		//----------------------------------------------------------------

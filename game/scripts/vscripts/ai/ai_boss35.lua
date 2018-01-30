@@ -16,7 +16,7 @@ function Spawn( entityKeyValues )
 	thisEntity.doom = thisEntity:FindAbilityByName("boss_doom_bring")
 	thisEntity.raze = thisEntity:FindAbilityByName("boss_doomraze"..thisEntity.suffix)
 	thisEntity.tempest = thisEntity:FindAbilityByName("boss_hell_tempest")
-	thisEntity.isCoreSpawn = #Entities:FindAllByName( "npc_dota_boss36*") > 0
+	thisEntity.isCoreSpawn = #Entities:FindAllByName( "npc_dota_boss36") > 0
 end
 
 

@@ -25,7 +25,7 @@ function riki_dance:OnSpellStart()
     self.sleight_of_fist_active = true
     
     -- Start function
-    caster:AddNewModifier(caster, self, "modifier_dance", {})
+    caster:AddNewModifier(caster, self, "modifier_dance", {duration = attack_interval*(counter+1)})
     local startPos = caster:GetAbsOrigin()
     local endPos = self:GetCursorPosition()
     local enemies = caster:FindEnemyUnitsInLine(startPos, endPos, radius, {})
@@ -65,8 +65,11 @@ function riki_dance:OnSpellStart()
             ParticleManager:SetParticleControl(blinkIn, 0, caster:GetAbsOrigin())
             ParticleManager:SetParticleControl(blinkIn, 1, endPos)
             ParticleManager:ReleaseParticleIndex(blinkIn)
-
-        return nil
+		if caster:HasModifier( "modifier_dance" ) then
+			return 0.1
+		else
+			return nil
+		end
     end) 
 end
 
