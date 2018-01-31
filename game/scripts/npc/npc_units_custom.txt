@@ -6835,7 +6835,7 @@
 		"AttackRate"				"1.8"		// Speed of attack.
 		"AttackAnimationPoint"		"0.4"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"3500"		// Range within a target can be acquired.
-		"AttackRange"				"666"		// Range within a target can be attacked.
+		"AttackRange"				"450"		// Range within a target can be attacked.
 		"ProjectileModel"			""							// Particle system model for projectile.
 		"ProjectileSpeed"			"30"									// Speed of projectile.
 	
@@ -6976,7 +6976,7 @@
 		"AttackRate"				"1.8"		// Speed of attack.
 		"AttackAnimationPoint"		"0.4"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"3500"		// Range within a target can be acquired.
-		"AttackRange"				"666"		// Range within a target can be attacked.
+		"AttackRange"				"450"		// Range within a target can be attacked.
 		"ProjectileModel"			""							// Particle system model for projectile.
 		"ProjectileSpeed"			"0"									// Speed of projectile.
 	
@@ -7117,7 +7117,7 @@
 		"AttackRate"				"1.8"		// Speed of attack.
 		"AttackAnimationPoint"		"0.4"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"3500"		// Range within a target can be acquired.
-		"AttackRange"				"666"		// Range within a target can be attacked.
+		"AttackRange"				"450"		// Range within a target can be attacked.
 		"ProjectileModel"			""							// Particle system model for projectile.
 		"ProjectileSpeed"			"30"									// Speed of projectile.
 	

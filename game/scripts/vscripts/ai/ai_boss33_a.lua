@@ -6,8 +6,8 @@ if IsServer() then
 		thisEntity.orb = thisEntity:FindAbilityByName("boss33a_dark_orb")
 		thisEntity.ward = thisEntity:FindAbilityByName("boss33a_protective_ward")
 		
-		thisEntity.IsTwinAlive = function(self)
-			local sdCheck = self:FindFriendlyUnitsInRadius(self:GetAbsOrigin(),-1)
+		thisEntity.IsTwinAlive = function(thisEntity)
+			local sdCheck = thisEntity:FindFriendlyUnitsInRadius(thisEntity:GetAbsOrigin(),-1)
 			for _, isSD in ipairs(sdCheck) do
 				if isSD:GetUnitName() == "npc_dota_boss33_b" then 
 					return true

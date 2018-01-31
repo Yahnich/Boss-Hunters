@@ -5723,7 +5723,7 @@
 	    "MaxLevel"                      "1"
 		"PiercesDisableReduction"		"1"
 		
-		"AbilityCooldown"				"45"
+		"AbilityCooldown"				"48"
 	
 	    // Special
 	    //-------------------------------------------------------------------------------------------------------------

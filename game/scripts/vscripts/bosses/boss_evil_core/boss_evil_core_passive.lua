@@ -22,12 +22,10 @@ if IsServer() then
 		
 		
 		self:StartIntervalThink(0.3)
-		self:ActivateShield()
 	end
 	
 	function modifier_boss_evil_core_passive:OnDestroy()
 		self:DestroyShield()
-		self:SpawnAsura(self:GetParent():GetAbsOrigin())
 	end
 	
 	function modifier_boss_evil_core_passive:OnIntervalThink()
@@ -51,12 +49,14 @@ if IsServer() then
 		local parent = self:GetParent()
 		self.shield = ParticleManager:CreateParticle("particles/units/heroes/hero_faceless_void/faceless_void_chronosphere.vpcf", PATTACH_POINT_FOLLOW, parent)
 		ParticleManager:SetParticleControl(self.shield, 1, Vector(200,200,0))
-		local count = 2
+		local count = (2 + math.floor((100 - parent:GetHealthPercent()) / 25))
 		
 		self:GetAbility():SetCooldown()
 		self.manaCharge = 0
 		parent:SetMana(self.manaCharge)
-		self:SpawnRandomUnits(parent:GetAbsOrigin() + ActualRandomVector(500), count + math.floor((100 - parent:GetHealthPercent()) / 25) )
+		for i = 1, count do
+			self:SpawnRandomUnit( parent:GetAbsOrigin() + ActualRandomVector(800, 450) )
+		end
 	end
 	
 	function modifier_boss_evil_core_passive:DestroyShield()
@@ -72,20 +72,21 @@ if IsServer() then
 			end
 		end
 		local asura = CreateUnitByName( "npc_dota_boss36_guardian" , position, true, nil, nil, caster:GetTeam() )
-		asura:AddNewModifier(caster, self:GetAbility(), "modifier_spawn_timer", {duration = 3})
+		asura:AddNewModifier(caster, self:GetAbility(), "modifier_spawn_immunity", {duration = 3})
+		caster:AddNewModifier(caster, self:GetAbility(), "modifier_spawn_immunity", {duration = 1})
+		Timers:CreateTimer(1, function() caster:ForceKill(false) end)
 		GameRules.holdOut:_RefreshPlayers()
+		return true
 	end
 	
-	function modifier_boss_evil_core_passive:SpawnRandomUnits(position, count)
-		for i = 1, count do
-			local spawnedUnit = CreateUnitByName( POSSIBLE_BOSSES[RandomInt(1, #POSSIBLE_BOSSES)] , position, true, nil, nil, self:GetCaster():GetTeam() )
-			spawnedUnit:SetBaseMaxHealth(spawnedUnit:GetBaseMaxHealth() / 4)
-			spawnedUnit:SetMaxHealth(spawnedUnit:GetMaxHealth() / 4)
-			spawnedUnit:SetHealth(spawnedUnit:GetMaxHealth())
-			spawnedUnit:SetAverageBaseDamage(spawnedUnit:GetAverageBaseDamage() / 2, 20)
-			
-			spawnedUnit:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_spawn_timer", {duration = 3})
-		end
+	function modifier_boss_evil_core_passive:SpawnRandomUnit(position)
+		local spawnedUnit = CreateUnitByName( POSSIBLE_BOSSES[RandomInt(1, #POSSIBLE_BOSSES)] , position, true, nil, nil, self:GetCaster():GetTeam() )
+		spawnedUnit:SetBaseMaxHealth(1666666)
+		spawnedUnit:SetMaxHealth(1666666)
+		spawnedUnit:SetHealth(spawnedUnit:GetMaxHealth())
+		spawnedUnit:SetAverageBaseDamage(spawnedUnit:GetAverageBaseDamage() / 3, 20)
+		
+		spawnedUnit:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_spawn_immunity", {duration = 3})
 	end
 end
 
@@ -100,8 +101,8 @@ function modifier_boss_evil_core_passive:GetModifierIncomingDamage_Percentage( p
 	if self.shield then damage = 1 end
 	if parent:GetHealth() > damage then
 		parent:SetHealth( math.max(1, parent:GetHealth() - damage) )
-	else
-		parent:Kill(params.inflictor, params.attacker)
+	elseif not self.asuraSpawn then
+		self.asuraSpawn = self:SpawnAsura(self:GetParent():GetAbsOrigin())
 	end
 	return -999
 end

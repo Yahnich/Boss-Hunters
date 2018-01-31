@@ -16,9 +16,20 @@ function Spawn( entityKeyValues )
 	thisEntity.doom = thisEntity:FindAbilityByName("boss_doom_bring")
 	thisEntity.raze = thisEntity:FindAbilityByName("boss_doomraze"..thisEntity.suffix)
 	thisEntity.tempest = thisEntity:FindAbilityByName("boss_hell_tempest")
-	thisEntity.isCoreSpawn = #Entities:FindAllByName( "npc_dota_boss36") > 0
+	thisEntity.isCoreSpawn = IsEvilCorePresent(thisEntity)
 end
 
+function IsEvilCorePresent(thisEntity)
+	local enemies = thisEntity:FindFriendlyUnitsInRadius( thisEntity:GetAbsOrigin(), -1 )
+	print(#enemies)
+	for _, enemy in ipairs ( enemies ) do
+		print( enemy:GetUnitName() )
+		if enemy:GetUnitName() == "npc_dota_boss36" then
+			return true
+		end
+	end
+	return false
+end
 
 function AIThink()
 	if not thisEntity:IsDominated() then

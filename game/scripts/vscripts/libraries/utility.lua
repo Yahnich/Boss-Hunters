@@ -1462,8 +1462,8 @@ function CDOTA_BaseNPC:FindEnemyUnitsInRing(position, maxRadius, minRadius, hDat
 		local iType = data.type or DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
 		local iFlag = data.flag or DOTA_UNIT_TARGET_FLAG_NONE
 	
-		local innerRing = FindUnitsInRadius(team, position, nil, radius, iTeam, iType, iFlag, iOrder, false)
-		local outerRing = FindUnitsInRadius(team, position, nil, radius, iTeam, iType, iFlag, iOrder, false)
+		local innerRing = FindUnitsInRadius(team, position, nil, minRadius, iTeam, iType, iFlag, iOrder, false)
+		local outerRing = FindUnitsInRadius(team, position, nil, maxRadius, iTeam, iType, iFlag, iOrder, false)
 		
 		local resultTable = {}
 		for _, unit in ipairs(outerRing) do

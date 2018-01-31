@@ -7,8 +7,8 @@ if IsServer() then
 		thisEntity.raze3 = thisEntity:FindAbilityByName("boss33b_shadowrazeF")
 		thisEntity.shield = thisEntity:FindAbilityByName("boss33b_protective_shield")
 		
-		thisEntity.IsTwinAlive = function(self)
-			local sdCheck = self:FindFriendlyUnitsInRadius(self:GetAbsOrigin(),-1)
+		thisEntity.IsTwinAlive = function(thisEntity)
+			local sdCheck = thisEntity:FindFriendlyUnitsInRadius(thisEntity:GetAbsOrigin(),-1)
 			for _, isSD in ipairs(sdCheck) do
 				if isSD:GetUnitName() == "npc_dota_boss33_a" then 
 					return true
