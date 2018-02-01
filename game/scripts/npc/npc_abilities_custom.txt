@@ -13762,60 +13762,6 @@
 		}
 	}
 	//=================================================================================================================
-	// Chaos Knight: Reality Rift
-	//=================================================================================================================
-	"chaos_knight_reality_rift"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_chaos_knight/chaos_knight_reality_rift_ebf"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_ALL"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"FightRecapLevel"				"1"
-		"LevelsBetweenUpgrades"			"6"
-		"MaxLevel"						"7"
-		"RequiredLevel"					"5"
-		
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"550 600 650 700"
-		"AbilityCastPoint"				"0.4 0.4 0.4 0.4"
-
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"24 21 18 15 12 9 6"
-
-
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"50"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"cast_range"				"550 600 650 700 750 800 900"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"armor_reduction"			"-10 -15 -20 -25 -30 -35 -40"
-				"LinkedSpecialBonus"		"special_bonus_unique_chaos_knight_2"
-			}		
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"armor_duration"			"8"
-			}
-		}
-	}
-	//=================================================================================================================
 	// Chaos Knight: Chaos Strike
 	//=================================================================================================================
 	"chaos_knight_chaos_strike"
@@ -13875,15 +13821,15 @@
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastPoint"				"0.4 0.4 0.4"
-
+	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"				"160 150 140 130 120 110 100"
-
+	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"				"125 200 275"
-
+	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
@@ -13940,7 +13886,60 @@
 			}
 		}
 	}
+	//=================================================================================================================
+	// Chaos Knight: Reality Rift
+	//=================================================================================================================
+	"chaos_knight_reality_rift"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_chaos_knight/chaos_knight_reality_rift_ebf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_ALL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"				"1"
+		"LevelsBetweenUpgrades"			"6"
+		"MaxLevel"						"7"
+		"RequiredLevel"					"5"
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"550 600 650 700"
+		"AbilityCastPoint"				"0.4 0.4 0.4 0.4"
 	
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"24 21 18 15 12 9 6"
+	
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"50"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"cast_range"				"550 600 650 700 750 800 900"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"armor_reduction"			"-10 -15 -20 -25 -30 -35 -40"
+				"LinkedSpecialBonus"		"special_bonus_unique_chaos_knight_2"
+			}		
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"armor_duration"			"8"
+			}
+		}
+	}
 	"chen_corrupted_test"
 	{
 		// General
@@ -23090,13 +23089,13 @@
 		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
 		"RequiredLevel"					"6"
-
-
+	
+	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"500"
 		"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
-
+	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"				"12.0 12.0 12.0 12.0"
@@ -23158,80 +23157,6 @@
 			}
 		}
 	}
-	"dragon_knight_intervene"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_dragon_knight/dragon_knight_intervene"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"FightRecapLevel"				"1"
-		"AbilityTextureName"			"custom/dragon_knight_intervene"
-		"MaxLevel"						"7"
-		"LevelsBetweenUpgrades"			"5"
-		"RequiredLevel"					"7"
-		"HasScepterUpgrade"				"1"
-	
-	
-		// Precache
-		//-------------------------------------------------------------------------------------------------------------
-		"precache"
-		{
-			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_dragon_knight.vsndevts"
-			"particle"		"particles/units/heroes/hero_dragon_knight/dragon_knight_dragon_tail.vpcf"
-			"particle"		"particles/units/heroes/hero_phantom_lancer/phantom_lancer_dying.vpcf"
-			"particle"		"particles/units/heroes/hero_phantom_lancer/phantomlancer_doppelwalk.vpcf"
-		}
-	
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"1200 1250 1300 1350 1400 1450 1500"
-		"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
-		
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"16"
-	
-		// Damage.
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"					"800 1600 3200 6400 12800 24600 37400"
-	
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"100"
-		
-		// Special	
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"stun_duration"			"2.0 2.25 2.5 2.75 3.0 3.25 3.5"
-				"LinkedSpecialBonus"	"special_bonus_unique_dragon_knight_2"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rush_speed"			"1200 1250 1300 1350 1400 1450 1500"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"heal_duration"			"10"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"heal_bonus"			"100"
-			}
-		}
-	}
-	
 	//=================================================================================================================
 	// Dragon Knight: Dragon Blood
 	//=================================================================================================================
@@ -23274,7 +23199,6 @@
 			}
 		}
 	}
-	
 	"dragon_knight_elder_dragon_berserker"
 	{
 		// General
@@ -23355,6 +23279,79 @@
 			{
 				"var_type"					"FIELD_FLOAT"
 				"internal_cooldown"			"3"
+			}
+		}
+	}
+	"dragon_knight_intervene"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_dragon_knight/dragon_knight_intervene"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"				"1"
+		"AbilityTextureName"			"custom/dragon_knight_intervene"
+		"MaxLevel"						"7"
+		"LevelsBetweenUpgrades"			"5"
+		"RequiredLevel"					"7"
+		"HasScepterUpgrade"				"1"
+	
+	
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_dragon_knight.vsndevts"
+			"particle"		"particles/units/heroes/hero_dragon_knight/dragon_knight_dragon_tail.vpcf"
+			"particle"		"particles/units/heroes/hero_phantom_lancer/phantom_lancer_dying.vpcf"
+			"particle"		"particles/units/heroes/hero_phantom_lancer/phantomlancer_doppelwalk.vpcf"
+		}
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1200 1250 1300 1350 1400 1450 1500"
+		"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"16"
+	
+		// Damage.
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityDamage"					"800 1600 3200 6400 12800 24600 37400"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"100"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"stun_duration"			"2.0 2.25 2.5 2.75 3.0 3.25 3.5"
+				"LinkedSpecialBonus"	"special_bonus_unique_dragon_knight_2"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rush_speed"			"1200 1250 1300 1350 1400 1450 1500"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"heal_duration"			"10"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"heal_bonus"			"100"
 			}
 		}
 	}
@@ -27004,7 +27001,6 @@
 			"soundfile" "soundevents/game_sounds_heroes/game_sounds_lone_druid.vsndevts"
 		}
 	}
-	
 	"furion_tree_jail"
 	{
 		// General
@@ -43796,6 +43792,139 @@
 			}
 		}
 	}
+	"special_bonus_unique_tide_anchor_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"-25"
+			}
+		}
+	}
+	"special_bonus_unique_tide_anchor_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"500"
+			}
+		}
+	}
+	"special_bonus_unique_tide_hydro_cannon_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"5000"
+			}
+		}
+	}
+	"special_bonus_unique_tide_hydro_cannon_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"-40"
+			}
+		}
+	}
+	"special_bonus_unique_tide_the_kraken_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"2.5"
+			}
+		}
+	}
+	"special_bonus_unique_tide_tongue_whip_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"2500"
+			}
+		}
+	}
+	"special_bonus_unique_tide_tongue_whip_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"-40"
+			}
+		}
+	}
 	"special_bonus_unique_treant"
 	{
 		// General
@@ -45098,7 +45227,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
 		"AbilityCastRange"				"900"
-
+	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"				"24.0 22.0 20.0 18.0 16.0 14.0 12.0"
@@ -45897,6 +46026,322 @@
 				"critical_chance"		"10 12.5 15 17.5 20 22.5 25"
 			}
 			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"critical_heal"			"4"
+			}
+		}
+	}
+	"tide_anchor"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_tide/tide_anchor.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	    "AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
+	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
+		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"tidehunter_anchor_smash"
+		"LevelsBetweenUpgrades"			"5"
+		"MaxLevel"						"7"
+		"RequiredLevel"					"6"
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.2"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_3"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"6"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"25 50 75 125 150 300 600"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"1000 2000 4000 8000 16000 32000 64000"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_reduction"		"-35"
+				"LinkedSpecialBonus"	"special_bonus_unique_tide_anchor_1"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"6.0"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"500"
+				"LinkedSpecialBonus"	"special_bonus_unique_tide_anchor_2"
+			}
+		}
+	
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_tidehunter/tidehunter_anchor_hero.vpcf"
+			
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_tidehunter.vsndevts"
+		}
+	}
+	"tide_hydro_cannon"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_tide/tide_hydro_cannon.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	    "AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
+	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
+		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"tidehunter_gush"
+		"LevelsBetweenUpgrades"			"5"
+		"MaxLevel"						"7"
+		"RequiredLevel"					"6"
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1800"
+		"AbilityCastPoint"				"0.3"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"12"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"25 50 75 125 250 500 1000"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"1000 2000 4500 9000 18000 36000 72000"
+				"LinkedSpecialBonus"	"special_bonus_unique_tide_hydro_cannon_1"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"4"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"move_speed"			"-40"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"reduc_armor"			"-4 -6 -8 -10 -12 -14 -16"
+				"LinkedSpecialBonus"	"special_bonus_unique_tide_hydro_cannon_2"
+			}
+		}
+	
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_tidehunter/tidehunter_gush_upgrade.vpcf"
+			"particle"  "particles/units/heroes/hero_tidehunter/tidehunter_gush_slow.vpcf"
+			"particle"  "particles/units/heroes/hero_tidehunter/tidehunter_gush_splash.vpcf"
+			
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_tidehunter.vsndevts"
+		}
+	}
+	"tide_the_kraken"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_tide/tide_the_kraken.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	    "AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
+	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
+		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityTextureName"			"tidehunter_ravage"
+		"LevelsBetweenUpgrades"			"5"
+		"MaxLevel"						"7"
+		"LevelsBetweenUpgrades"			"7"
+		"MaxLevel"						"7"
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.3"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"120"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"150 225 325 450 525 625 750"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"damage"			"6000 12000 24000 48000 96000 200000 400000"
+			}
+			"02"
+			{	
+				"var_type"			"FIELD_FLOAT"
+				"duration"			"2.5"
+				"LinkedSpecialBonus"	"special_bonus_unique_tide_the_kraken_1"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"radius"			"1000 1250 1500 1750 2000 2250 2500"
+			}
+		}
+	
+		"precache"
+		{
+			"particle"  "particles/econ/events/ti7/shivas_guard_active_ti7.vpcf"
+			"particle"  "particles/units/heroes/hero_tidehunter/tidehunter_spell_ravage.vpcf"
+			"particle"  "particles/units/heroes/hero_tidehunter/tidehunter_ravage_tentacle_model.vpcf"
+			"particle"  "particles/units/heroes/hero_beast/beast_hawk_spirit_aura/beast_hawk_spirit_aura.vpcf"
+			
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_tidehunter.vsndevts"
+		}
+	}
+	"tide_tongue_whip"
+	{
+		// General
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_tide/tide_tongue_whip.lua"	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	    "AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
+	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
+		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"custom/tide_tongue_whip"
+		"LevelsBetweenUpgrades"			"5"
+		"MaxLevel"						"7"
+		"RequiredLevel"					"6"								
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.3"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastRange"				"1000 1100 1200 1300 1400 1500 1600"
+	
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"12"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"110 120 130 140 150 160 170"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"1500 2500 4500 8500 16500 32500 64500"
+				"LinkedSpecialBonus"	"special_bonus_unique_tide_tongue_whip_1"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"distance"				"1000 1100 1200 1300 1400 1500 1600"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"speed"					"1600"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"width"					"75"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"eat_threshold"			"5"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"eat_health"			"1000"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"threat_gain"			"25"
+			}
+		}
+	
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_pudge/pudge_meathook_impact.vpcf"
+			"particle"  "particles/units/heroes/hero_tide/tide_tongue_whip/tide_tongue_whip_b.vpcf"
+	
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_HERO.vsndevts"
+		}
+	}
+	"tide_turtle_shell"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_tide/tide_turtle_shell.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"tidehunter_kraken_shell"
+		"InnateAbility" 				"1"
+		"MaxLevel"						"1"
+		"HasScepterUpgrade"				"1"
+		
+		"precache"
+		{
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_tidehunter.vsndevts"
+			"particle"			"particles/units/heroes/hero_tidehunter/tidehunter_krakenshell_purge.vpcf"
+		}
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_reduction_pct"	"35"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"critical_chance"		"17.5"
+			}
+			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"critical_heal"			"4"
