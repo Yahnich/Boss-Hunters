@@ -900,6 +900,22 @@ function get_aether_range(caster)
     return aether_range
 end
 
+function CDOTA_BaseNPC_Hero:get_aether_range()
+    local aether_range = 0
+    for itemSlot = 0, 5, 1 do
+        local Item = self:GetItemInSlot( itemSlot )
+		if Item ~= nil then
+			local itemRange = Item:GetSpecialValueFor("cast_range_bonus")
+			if aether_range < itemRange then
+				aether_range = itemRange
+			end
+		end
+	end
+	local talentMult = self:HighestTalentTypeValue("cast_range")
+	aether_range = aether_range+talentMult
+    return aether_range
+end
+
 function CDOTA_BaseNPC:IsSlowed()
 	if self:GetIdealSpeed() < self:GetBaseMoveSpeed() then return true
 	else return false end
@@ -1461,25 +1477,27 @@ function CDOTA_BaseNPC:FindEnemyUnitsInRing(position, maxRadius, minRadius, hDat
 		local iTeam = data.team or DOTA_UNIT_TARGET_TEAM_ENEMY
 		local iType = data.type or DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
 		local iFlag = data.flag or DOTA_UNIT_TARGET_FLAG_NONE
+		local iOrder = data.order or FIND_ANY_ORDER
 	
 		local innerRing = FindUnitsInRadius(team, position, nil, minRadius, iTeam, iType, iFlag, iOrder, false)
 		local outerRing = FindUnitsInRadius(team, position, nil, maxRadius, iTeam, iType, iFlag, iOrder, false)
 		
 		local resultTable = {}
 		for _, unit in ipairs(outerRing) do
-			local addToTable = true
-			for _, exclude in ipairs(innerRing) do
-				if unit == exclude then
-					addToTable = false
-					break
+			if not unit:IsNull() then
+				local addToTable = true
+				for _, exclude in ipairs(innerRing) do
+					if unit == exclude then
+						addToTable = false
+						break
+					end
 				end
-			end
-			if addToTable then
-				table.insert(resultTable, unit)
+				if addToTable then
+					table.insert(resultTable, unit)
+				end
 			end
 		end
 		return resultTable
-		
 	else return {} end
 end
 
@@ -2059,4 +2077,34 @@ function CDOTABaseAbility:CastSpell(target)
 	end
 	self:OnSpellStart()
 	self:UseResources(true, true, true)
+end
+
+function CDOTA_BaseNPC:DisableHealing(Duration)
+	if Duration == -1 then
+		self:AddNewModifier(nil, nil, "modifier_healing_disable", {})
+	else
+		self:AddNewModifier(nil, nil, "modifier_healing_disable", {Duration = Duration})
+	end
+end
+
+function CDOTA_BaseNPC:IsHealingDisabled()
+	if self:HasModifier("modifier_healing_disable") then
+		return true
+	else
+		return false
+	end
+end
+
+function CDOTA_BaseNPC:EnableHealing()
+	if self:HasModifier("modifier_healing_disable") then
+		self:RemoveModifierByName("modifier_healing_disable")
+	end
+end
+
+function CDOTA_BaseNPC:InWater()
+	if self:HasModifier("modifier_in_water") then
+		return true
+	else
+		return false
+	end
 end
