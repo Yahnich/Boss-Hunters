@@ -48,7 +48,7 @@ function brd_ground_pound:OnSpellStart()
 			else
 				ParticleManager:CreateParticle("particles/units/heroes/hero_axe/axe_culling_blade.vpcf", PATTACH_POINT_FOLLOW, caster)
 				EmitSoundOn("Hero_Axe.Culling_Blade_Fail", self:GetCaster())
-				self:DealDamage(caster, enemy, self:GetSpecialValueFor("damage"), {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
+				self:DealDamage(caster, enemy, caster:GetStrength() * self:GetSpecialValueFor("damage") / 100, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
 			end
 		end
 	else

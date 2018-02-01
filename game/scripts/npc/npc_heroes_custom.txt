@@ -87,7 +87,7 @@
 	    "Ability2"        "brd_blood_hunger" 
 	    "Ability3"        "brd_cleave_strike"
 	    "Ability4"        "axe_steeled_temper"
-	    "Ability5"        "barebones_empty1" 
+	    "Ability5"        "generic_hidden" 
 	    "Ability6"        "brd_ground_pound"
 	
 	    "Ability10"       "special_bonus_unique_brd_forced_shout_2"
@@ -465,7 +465,7 @@
 		"Ability2"				"gyro_bombing_run"
 		"Ability3"				"gyrocopter_flak_cannon_ebf"
 		"Ability4"				"gyro_homing_missile"
-		"Ability5"				"barebones_empty1"
+		"Ability5"				"generic_hidden"
 		"Ability6"        		"gyrocopter_call_down"
 	
 		"Ability10"       "special_bonus_unique_gyro_rocket_salvo_1"
@@ -931,18 +931,21 @@
 	"npc_dota_hero_rattletrap_ebf"
 	{
 		"override_hero"				"npc_dota_hero_rattletrap"
-		"AbilityLayout"				"4"
+
+		"Ability1"					"rattletrap_battery_assault_ebf"
 		"Ability2"					"rattletrap_aegis_deflector"
 		"Ability3"					"rattletrap_rocket_flare_ebf"
+		"Ability5"					"rattletrap_reactive_shielding"
+		"Ability6"					"rattletrap_automated_artillery"
 		
-		"Ability10"		"special_bonus_armor_5"
-		"Ability11"		"special_bonus_movement_speed_25"
-		"Ability12"		"special_bonus_strength_15"
-		"Ability13"		"special_bonus_unique_clockwerk_3"
-		"Ability14"		"special_bonus_magic_resistance_20"
-		"Ability15"		"special_bonus_mp_regen_2"
-		"Ability16"		"special_bonus_unique_clockwerk_4"
-		"Ability17"		"special_bonus_unique_clockwerk"
+		"Ability10"					"special_bonus_armor_5"
+		"Ability11"					"special_bonus_unique_rattletrap_aegis_deflector_1"
+		"Ability12"					"special_bonus_strength_15"
+		"Ability13"					"special_bonus_unique_clockwerk_3"
+		"Ability14"					"special_bonus_magic_resistance_20"
+		"Ability15"					"special_bonus_mp_regen_2"
+		"Ability16"					"special_bonus_unique_clockwerk_4"
+		"Ability17"					"special_bonus_unique_clockwerk"
 		
 	}
 	//=================================================================================================================
@@ -1261,9 +1264,20 @@
 	"npc_dota_hero_tidehunter_ebf"
 	{
 		"override_hero"			"npc_dota_hero_tidehunter"
-		"Ability2"				"tidehunter_kraken_shell_ebf"
+		"Ability1"				"tide_hydro_cannon"
+		"Ability2"				"tide_tongue_whip"
+		"Ability3"				"tide_anchor"
+		"Ability4"				"tide_turtle_shell"
+		"Ability6"				"tide_the_kraken"
 	
-		"Ability12"		"special_bonus_strength_10"
+		"Ability10"       		"special_bonus_unique_tide_hydro_cannon_1"
+	    "Ability11"       		"special_bonus_unique_tide_hydro_cannon_2"
+	    "Ability12"				"special_bonus_unique_tide_tongue_whip_1"
+	    "Ability13"				"special_bonus_unique_tide_tongue_whip_2"
+	    "Ability14"				"special_bonus_unique_tide_anchor_1"
+	    "Ability15"				"special_bonus_unique_tide_anchor_2"
+	    "Ability16"				"special_bonus_unique_tide_the_kraken_1"
+	    "Ability17"				"special_bonus_cooldown_reduction_25"
 	}
 	"npc_dota_hero_tinker_ebf"
 	{

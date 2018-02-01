@@ -30,17 +30,19 @@ if IsServer() then
 	
 	function modifier_boss_evil_core_passive:OnIntervalThink()
 		local parent = self:GetParent()
-		parent:SetMana(self.manaCharge)
-		if not self.shield then
-			if self.manaCharge < parent:GetMaxMana() then
+		if not self.asuraSpawn then
+			parent:SetMana(self.manaCharge)
+			if not self.shield then
+				if self.manaCharge < parent:GetMaxMana() then
+					self.manaCharge = math.min(parent:GetMaxMana(), self.manaCharge + self.manaChargeRegen)
+				elseif self:GetAbility():IsCooldownReady() then -- guarantee a minimum of time between casts
+					self:ActivateShield()
+				end
+			else
 				self.manaCharge = math.min(parent:GetMaxMana(), self.manaCharge + self.manaChargeRegen)
-			elseif self:GetAbility():IsCooldownReady() then -- guarantee a minimum of time between casts
-				self:ActivateShield()
-			end
-		else
-			self.manaCharge = math.min(parent:GetMaxMana(), self.manaCharge + self.manaChargeRegen)
-			if self.manaCharge >= parent:GetMaxMana() then
-				self:DestroyShield()
+				if self.manaCharge >= parent:GetMaxMana() then
+					self:DestroyShield()
+				end
 			end
 		end
 	end
@@ -73,8 +75,7 @@ if IsServer() then
 		end
 		local asura = CreateUnitByName( "npc_dota_boss36_guardian" , position, true, nil, nil, caster:GetTeam() )
 		asura:AddNewModifier(caster, self:GetAbility(), "modifier_spawn_immunity", {duration = 3})
-		caster:AddNewModifier(caster, self:GetAbility(), "modifier_spawn_immunity", {duration = 1})
-		Timers:CreateTimer(1, function() caster:ForceKill(false) end)
+		caster:ForceKill(false)
 		GameRules.holdOut:_RefreshPlayers()
 		return true
 	end
