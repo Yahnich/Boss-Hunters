@@ -6,6 +6,10 @@ function tide_tongue_whip:GetCastRange(vLocation, hTarget)
     return self:GetTalentSpecialValueFor("distance")
 end
 
+function tide_tongue_whip:PiercesDisableResistance()
+    return true
+end
+
 function tide_tongue_whip:OnSpellStart()
     local caster = self:GetCaster()
 
