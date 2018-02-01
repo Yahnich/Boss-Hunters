@@ -32,12 +32,17 @@ end
 function OnWaterEnter(trigger)
     local ent = trigger.activator
     ent.InWater = true
+
+    if ent:IsHero() then
+    	ent:AddNewModifier(ent, nil, "modifier_in_water", {})
+    end
 end
 
 function OnWaterExit(trigger)
     local ent = trigger.activator
     if not ent then return end
     ent.InWater = false
+    ent:RemoveModifierByName("modifier_in_water")
     return
 end
 

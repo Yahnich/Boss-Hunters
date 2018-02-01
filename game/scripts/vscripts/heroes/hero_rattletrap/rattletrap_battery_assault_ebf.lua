@@ -1,0 +1,1 @@
+rattletrap_battery_assault_ebf = class({})

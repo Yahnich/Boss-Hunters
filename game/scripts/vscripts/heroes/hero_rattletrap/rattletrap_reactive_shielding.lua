@@ -1,0 +1,1 @@
+rattletrap_reactive_shielding = class({})
