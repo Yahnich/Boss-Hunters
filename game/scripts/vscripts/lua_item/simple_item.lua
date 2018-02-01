@@ -1,7 +1,3 @@
-require( "libraries/Timers" )
-require( "lua_abilities/Check_Aghanim" )
-require("libraries/utility")
-
 function refresher( keys )
     local caster = keys.caster
     local item = keys.ability
@@ -982,7 +978,7 @@ function Splash_melee(keys)
                             -- }
         -- ApplyDamage(damageTable)
 		if not caster:IsIllusion() then
-			DoCleaveAttack( caster, target, item, damage*caster:GetOriginalSpellDamageAmp() / caster:GetSpellDamageAmp(), radius+200, radius, radius, "particles/econ/items/faceless_void/faceless_void_weapon_bfury/faceless_void_weapon_bfury_cleave.vpcf" )
+			DoCleaveAttack( caster, target, item, damage, radius+200, radius, radius, "particles/econ/items/faceless_void/faceless_void_weapon_bfury/faceless_void_weapon_bfury_cleave.vpcf" )
 		end
     end
 end

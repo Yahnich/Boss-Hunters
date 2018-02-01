@@ -24,7 +24,7 @@ function dragon_knight_dragonbreath:OnProjectileHit(target, position)
 		self:DealDamage( caster, target, damage )
 		target:AddNewModifier( caster, self, "modifier_dragon_knight_dragonbreath_debuff", {duration = duration} )
 	end
-	return true
+	return false
 end
 
 modifier_dragon_knight_dragonbreath_debuff = class({})

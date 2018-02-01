@@ -13,6 +13,9 @@ if IsServer() then
 			iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_ATTACK_1,
 		}
 		ProjectileManager:CreateTrackingProjectile(projectile)
+		if self:GetCaster():HasTalent("special_bonus_unique_chaos_knight_chaos_bolt_2") and RollPercentage("special_bonus_unique_chaos_knight_chaos_bolt_2") then 
+			Timers:CreateTimer(self:GetCastPoint(), function() ProjectileManager:CreateTrackingProjectile(projectile) end)
+		end
 		EmitSoundOn("Hero_ChaosKnight.ChaosBolt.Cast", self:GetCaster())
 	end
 
@@ -53,7 +56,11 @@ if IsServer() then
 		target:AddNewModifier(caster, self, "modifier_stunned", {duration = stun})
 
 		-- Initialize the damage table and deal the damage
-		ApplyDamage({victim = target, attacker = caster, damage = damage, damage_type = self:GetAbilityDamageType(), ability = self})
+		local damage = ApplyDamage({victim = target, attacker = caster, damage = damage, damage_type = self:GetAbilityDamageType(), ability = self})
+		if caster:HasTalent("special_bonus_unique_chaos_knight_chaos_bolt_1") then
+			local healPct = caster:FindTalentValue("special_bonus_unique_chaos_knight_chaos_bolt_1") / 100
+			caster:HealEvent(damage * healPct, self, caster)
+		end
 		if RollPercentage(self:GetTalentSpecialValueFor("bounce_chance")) then
 			local units = FindUnitsInRadius(caster:GetTeamNumber(), target:GetAbsOrigin(), nil, self:GetCastRange(target:GetAbsOrigin(), target), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false)
 			if #units > 0 then

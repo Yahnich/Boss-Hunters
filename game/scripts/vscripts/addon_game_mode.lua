@@ -2409,7 +2409,7 @@ function CHoldoutGameMode:OnNPCSpawned( event )
 	end
 	if spawnedUnit:IsCreature() then
 		local effective_multiplier = 1 + (HeroList:GetActiveHeroCount() - 1)*0.33
-
+		-- if self._currentRound and not self._currentRound:IsFinished() then self._vEnemiesRemaining
 		spawnedUnit:SetBaseMaxHealth(spawnedUnit:GetBaseMaxHealth()*effective_multiplier)
 		spawnedUnit:SetMaxHealth(spawnedUnit:GetMaxHealth()*effective_multiplier)
 		spawnedUnit:SetHealth(spawnedUnit:GetMaxHealth())

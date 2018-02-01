@@ -398,7 +398,7 @@ function CHoldoutGameRound:HandleElites(spawnedUnit)
 	if spawnedUnit:IsCore() then
 		self._nCoreUnitsSpawned = self._nCoreUnitsSpawned - 1
 		if self._nElitesRemaining > 0 or spawnedUnit:IsElite() then
-			local elitemod = 1 + (GameRules.gameDifficulty - 1)* 0.15 -- Power scaling
+			local elitemod = 1 + (GameRules.gameDifficulty - 1)* 0.12 -- Power scaling
 			spawnedUnit.elite = true
 			local elitelist = {} -- change table with names to array type
 			-- Block non-attacking units from having these
@@ -442,7 +442,7 @@ function CHoldoutGameRound:HandleElites(spawnedUnit)
 					spawnedUnit:SetBaseMaxHealth(spawnedUnit:GetMaxHealth()+self._nRoundNumber * 200)
 					spawnedUnit:SetMaxHealth(spawnedUnit:GetMaxHealth()+self._nRoundNumber * 200)
 				end
-				spawnedUnit:SetMaxHealth(spawnedUnit:GetMaxHealth()*(2 - 0.90 * self._nRoundNumber/GameRules:GetMaxRound())*elitemod )
+				spawnedUnit:SetMaxHealth(spawnedUnit:GetMaxHealth()*elitemod )
 			elseif self._nCoreUnitsSpawned > self._nElitesRemaining then -- If leftover enemies, randomize
 				if RollPercentage(33) then
 					if spawnedUnit:GetMaxHealth() < self._nRoundNumber * 250 and spawnedUnit:GetName() ~= "npc_dota_money" and spawnedUnit:GetUnitName() ~= "npc_dota_boss36" then
@@ -450,7 +450,7 @@ function CHoldoutGameRound:HandleElites(spawnedUnit)
 						spawnedUnit:SetMaxHealth(spawnedUnit:GetMaxHealth()+self._nRoundNumber * 250)
 					end
 					spawnedUnit:SetBaseMaxHealth(spawnedUnit:GetMaxHealth()*(2 - 0.90 * self._nRoundNumber/GameRules:GetMaxRound())*elitemod )
-					spawnedUnit:SetMaxHealth(spawnedUnit:GetMaxHealth()*(2 - 0.90 * self._nRoundNumber/GameRules:GetMaxRound())*elitemod )
+					spawnedUnit:SetMaxHealth(spawnedUnit:GetMaxHealth()*elitemod  )
 					spawnedUnit.elite = true
 				end
 			else
@@ -458,8 +458,8 @@ function CHoldoutGameRound:HandleElites(spawnedUnit)
 					spawnedUnit:SetBaseMaxHealth(spawnedUnit:GetMaxHealth()+self._nRoundNumber * 250)
 					spawnedUnit:SetMaxHealth(spawnedUnit:GetMaxHealth()+self._nRoundNumber * 250)
 				end
-				spawnedUnit:SetBaseMaxHealth(spawnedUnit:GetMaxHealth()*(2 - 0.90 * self._nRoundNumber/GameRules:GetMaxRound())*elitemod )
-				spawnedUnit:SetMaxHealth(spawnedUnit:GetMaxHealth()*(2 - 0.90 * self._nRoundNumber/GameRules:GetMaxRound())*elitemod )
+				spawnedUnit:SetBaseMaxHealth(spawnedUnit:GetMaxHealth()*elitemod )
+				spawnedUnit:SetMaxHealth(spawnedUnit:GetMaxHealth()*elitemod )
 				spawnedUnit.elite = true
 			end
 			if spawnedUnit:IsElite() then -- is elite, has passed initial checks

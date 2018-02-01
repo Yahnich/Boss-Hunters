@@ -1,77 +1,127 @@
-chaos_knight_chaos_bolt_ebf = class({})
+chaos_knight_reality_rift_ebf = class({})
 
-if IsServer() then
-	function chaos_knight_chaos_bolt_ebf:OnSpellStart()
-		local projectile = {
-			Target = self:GetCursorTarget(),
-			Source = self:GetCaster(),
-			Ability = self,
-			EffectName = "particles/units/heroes/hero_chaos_knight/chaos_knight_chaos_bolt.vpcf",
-			bDodgable = true,
-			bProvidesVision = false,
-			iMoveSpeed = self:GetTalentSpecialValueFor("chaos_bolt_speed"),
-			iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_ATTACK_1,
-		}
-		ProjectileManager:CreateTrackingProjectile(projectile)
-		EmitSoundOn("Hero_ChaosKnight.ChaosBolt.Cast", self:GetCaster())
+function chaos_knight_reality_rift_ebf:GetAOERadius()
+	return self:GetCaster():FindTalentValue("special_bonus_unique_chaos_knight_reality_rift_2")
+end
+
+function chaos_knight_reality_rift_ebf:OnAbilityPhaseStart()
+	self.caster = self:GetCaster()
+	self.target = self:GetCursorTarget()
+	
+	local casterPos = self.caster:GetAbsOrigin()
+	local targetPos = self.target:GetAbsOrigin()
+	local vDir = CalculateDirection( targetPos, casterPos )
+	self.endPos = casterPos + vDir * CalculateDistance(targetPos, casterPos) * RandomFloat(0.3, 0.7)
+	EmitSoundOn("Hero_ChaosKnight.RealityRift", self.caster)
+	
+	
+	self.FX = {}
+	local oRiftFX = ParticleManager:CreateParticle("particles/units/heroes/hero_chaos_knight/chaos_knight_reality_rift.vpcf", PATTACH_CUSTOMORIGIN, self.target)
+	ParticleManager:SetParticleControlEnt(oRiftFX, 0, self.caster, PATTACH_POINT_FOLLOW, "attach_hitloc", casterPos, true)
+	ParticleManager:SetParticleControlEnt(oRiftFX, 1, self.target, PATTACH_POINT_FOLLOW, "attach_hitloc", targetPos, true)
+	ParticleManager:SetParticleControl(oRiftFX, 2, self.endPos)
+	ParticleManager:SetParticleControlOrientation(oRiftFX, 2, vDir, Vector(0,1,0), Vector(1,0,0))
+	table.insert(self.FX, oRiftFX)
+	
+	local searchRadius = 450
+	self.illusions = self.caster:FindFriendlyUnitsInRadius(self.caster:GetAbsOrigin(), searchRadius, {flag = DOTA_UNIT_TARGET_FLAG_PLAYER_CONTROLLED, type = DOTA_UNIT_TARGET_HERO})
+	for _, illusion in ipairs( self.illusions ) do
+		if self.caster ~= illusion and illusion:IsIllusion() and illusion:GetPlayerOwnerID() == self.caster:GetPlayerOwnerID() then
+			illusion:StartGesture(ACT_DOTA_OVERRIDE_ABILITY_2)
+			local iRiftFX = ParticleManager:CreateParticle("particles/units/heroes/hero_chaos_knight/chaos_knight_reality_rift.vpcf", PATTACH_CUSTOMORIGIN, self.target)
+			ParticleManager:SetParticleControlEnt(iRiftFX, 0, illusion, PATTACH_POINT_FOLLOW, "attach_hitloc", illusion:GetAbsOrigin(), true)
+			ParticleManager:SetParticleControlEnt(iRiftFX, 1, self.target, PATTACH_POINT_FOLLOW, "attach_hitloc", targetPos, true)
+			ParticleManager:SetParticleControl(iRiftFX, 2, self.endPos)
+			ParticleManager:SetParticleControlOrientation(iRiftFX, 2, vDir, Vector(0,1,0), Vector(1,0,0))
+			table.insert(self.FX, iRiftFX)
+		end
 	end
-
-	function chaos_knight_chaos_bolt_ebf:OnProjectileHit(target, position)
-		local caster = self:GetCaster()
-		local target_location = target:GetAbsOrigin()
-		EmitSoundOn("Hero_ChaosKnight.ChaosBolt.Impact", target)
-		-- Ability variables
-		local stun_min = self:GetTalentSpecialValueFor("stun_min")
-		local stun_max = self:GetTalentSpecialValueFor("stun_max") 
-		local damage_min = self:GetTalentSpecialValueFor("damage_min") 
-		local damage_max = self:GetTalentSpecialValueFor("damage_max")
-		local chaos_bolt_particle = "particles/units/heroes/hero_chaos_knight/chaos_knight_bolt_msg.vpcf"
-
-		-- Calculate the stun and damage values
-		local random = RandomFloat(0, 1)
-		local stun = stun_min + (stun_max - stun_min) * random
-		local damage = damage_min + (damage_max - damage_min) * (1 - random)
-
-		-- Calculate the number of digits needed for the particle
-		local stun_digits = string.len(tostring(math.floor(stun))) + 1
-		local damage_digits = string.len(tostring(math.floor(damage))) + 1
-
-		-- Create the stun and damage particle for the spell
-		local particle = ParticleManager:CreateParticle(chaos_bolt_particle, PATTACH_OVERHEAD_FOLLOW, target)
-		ParticleManager:SetParticleControl(particle, 0, target_location) 
-
-		-- Damage particle
-		ParticleManager:SetParticleControl(particle, 1, Vector(9,damage,4)) -- prefix symbol, number, postfix symbol
-		ParticleManager:SetParticleControl(particle, 2, Vector(2,damage_digits,0)) -- duration, digits, 0
-
-		-- Stun particle
-		ParticleManager:SetParticleControl(particle, 3, Vector(8,stun,0)) -- prefix symbol, number, postfix symbol
-		ParticleManager:SetParticleControl(particle, 4, Vector(2,stun_digits,0)) -- duration, digits, 0
-		ParticleManager:ReleaseParticleIndex(particle)
-
-		-- Apply the stun duration
-		target:AddNewModifier(caster, self, "modifier_stunned", {duration = stun})
-
-		-- Initialize the damage table and deal the damage
-		ApplyDamage({victim = target, attacker = caster, damage = damage, damage_type = self:GetAbilityDamageType(), ability = self})
-		if RollPercentage(self:GetTalentSpecialValueFor("bounce_chance")) then
-			local units = FindUnitsInRadius(caster:GetTeamNumber(), target:GetAbsOrigin(), nil, self:GetCastRange(target:GetAbsOrigin(), target), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false)
-			if #units > 0 then
-				for _,unit in pairs(units) do
-					local projectile = {
-						Target = unit,
-						Source = target,
-						Ability = self,
-						EffectName = "particles/units/heroes/hero_chaos_knight/chaos_knight_chaos_bolt.vpcf",
-						bDodgable = true,
-						bProvidesVision = false,
-						iMoveSpeed = self:GetTalentSpecialValueFor("chaos_bolt_speed"),
-						iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_ATTACK_1,
-					}
-					ProjectileManager:CreateTrackingProjectile(projectile)
-					break
-				end
+	
+	if self.caster:HasTalent("special_bonus_unique_chaos_knight_reality_rift_2") then
+		local enemies = self.caster:FindEnemyUnitsInRadius(self.target:GetAbsOrigin(), self.caster:FindTalentValue("special_bonus_unique_chaos_knight_reality_rift_2"))
+		for _, enemy in ipairs( enemies ) do
+			if enemy ~= self.target then
+				local tRiftFX = ParticleManager:CreateParticle("particles/units/heroes/hero_chaos_knight/chaos_knight_reality_rift.vpcf", PATTACH_CUSTOMORIGIN, enemy)
+				ParticleManager:SetParticleControlEnt(tRiftFX, 0, self.target, PATTACH_POINT_FOLLOW, "attach_hitloc", targetPos, true)
+				ParticleManager:SetParticleControlEnt(tRiftFX, 1, enemy, PATTACH_POINT_FOLLOW, "attach_hitloc", enemy:GetAbsOrigin(), true)
+				ParticleManager:SetParticleControl(tRiftFX, 2, self.endPos)
+				ParticleManager:SetParticleControlOrientation(tRiftFX, 2, CalculateDirection(self.target, enemy), Vector(0,1,0), Vector(1,0,0))
+				table.insert(self.FX, tRiftFX)
 			end
 		end
 	end
+	return true
+end
+
+function chaos_knight_reality_rift_ebf:OnAbilityPhaseInterrupted()
+	for _, fx in ipairs(self.FX) do
+		ParticleManager:ClearParticle(fx)
+	end
+	for _, illusion in ipairs( self.illusions ) do
+		if self.caster ~= illusion and illusion:IsIllusion() and illusion:GetPlayerOwnerID() == self.caster:GetPlayerOwnerID() then
+			illusion:StopGesture(ACT_DOTA_OVERRIDE_ABILITY_2)
+		end
+	end
+	StopSoundOn("Hero_ChaosKnight.RealityRift", self.caster)
+end
+
+function chaos_knight_reality_rift_ebf:OnSpellStart()
+	for _, fx in ipairs(self.FX) do
+		ParticleManager:ReleaseParticleIndex(fx)
+	end
+	
+	local duration = self:GetTalentSpecialValueFor("armor_duration") 
+	
+	FindClearSpaceForUnit(self.caster, self.endPos, true)
+	FindClearSpaceForUnit(self.target, self.endPos, true)
+	
+	local vDir = CalculateDirection(self.caster, self.target)
+	
+	self.caster:SetForwardVector(-vDir)
+	self.target:SetForwardVector(vDir)
+	
+	self.caster:MoveToTargetToAttack(self.target)
+	self.target:AddNewModifier(self.caster, self, "modifier_chaos_knight_reality_rift_ebf", {duration = duration})
+	
+	for _, illusion in ipairs( self.illusions ) do
+		if self.caster ~= illusion and illusion:IsIllusion() and illusion:GetPlayerOwnerID() == self.caster:GetPlayerOwnerID() then
+			FindClearSpaceForUnit(illusion, self.endPos, true)
+			illusion:SetForwardVector( CalculateDirection(self.target, illusion) )
+			self.caster:MoveToTargetToAttack(self.target)
+		end
+	end
+	
+	if self.caster:HasTalent("special_bonus_unique_chaos_knight_reality_rift_2") then
+		local enemies = self.caster:FindEnemyUnitsInRadius(self.target:GetAbsOrigin(), self.caster:FindTalentValue("special_bonus_unique_chaos_knight_reality_rift_2"))
+		for _, enemy in ipairs( enemies ) do
+			if enemy ~= self.target then
+				FindClearSpaceForUnit(enemy, self.endPos, true)
+				enemy:SetForwardVector( CalculateDirection(self.caster, enemy) )
+				enemy:AddNewModifier(self.caster, self, "modifier_chaos_knight_reality_rift_ebf", {duration = duration})
+			end
+		end
+	end
+end
+
+modifier_chaos_knight_reality_rift_ebf = class({})
+LinkLuaModifier("modifier_chaos_knight_reality_rift_ebf", "heroes/hero_chaos_knight/chaos_knight_reality_rift_ebf", LUA_MODIFIER_MOTION_NONE)
+
+function modifier_chaos_knight_reality_rift_ebf:OnCreated()
+	self.armor = self:GetTalentSpecialValueFor("armor_reduction")
+end
+
+function modifier_chaos_knight_reality_rift_ebf:OnRefresh()
+	self.armor = self:GetTalentSpecialValueFor("armor_reduction")
+end
+
+function modifier_chaos_knight_reality_rift_ebf:DeclareFunctions()
+	return {MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS}
+end
+
+function modifier_chaos_knight_reality_rift_ebf:GetModifierPhysicalArmorBonus()
+	return self.armor
+end
+
+function modifier_chaos_knight_reality_rift_ebf:GetEffectName()
+	return "particles/units/heroes/hero_chaos_knight/chaos_knight_reality_rift_buff.vpcf"
 end

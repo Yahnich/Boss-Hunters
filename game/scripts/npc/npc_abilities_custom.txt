@@ -605,7 +605,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"1000 2000 4000 8000 16000 32000 64000"
+				"damage"				"400 800 1600 3200 6400 12800 25600"
 			}
 			"02"
 			{
@@ -626,7 +626,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"damage_interval"		"0.8"
+				"damage_interval"		"1.01"
 			}
 			"06"
 			{
@@ -836,7 +836,7 @@
 			"07"
 			{	
 				"var_type"				"FIELD_FLOAT"
-				"damage"				"800 1600 3200 6400 12800 25000 50000"
+				"damage"				"1600 3200 6400 12800 25000 50000 100000"
 			}
 			
 			"08"
@@ -13742,7 +13742,6 @@
 			{
 				"var_type"				"FIELD_FLOAT"
 				"stun_max"				"1.0 1.5 2.0 2.5 3.0 3.5 4.0"
-				"LinkedSpecialBonus"	"special_bonus_unique_chaos_knight_3"
 			}
 			"04"
 			{
@@ -13764,16 +13763,17 @@
 	//=================================================================================================================
 	// Chaos Knight: Reality Rift
 	//=================================================================================================================
-	"chaos_knight_reality_rift"
+	"chaos_knight_reality_rift_ebf"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_chaos_knight/chaos_knight_reality_rift_ebf"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_ALL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"chaos_knight_reality_rift"
 		"FightRecapLevel"				"1"
 		"LevelsBetweenUpgrades"			"6"
 		"MaxLevel"						"7"
@@ -13781,8 +13781,9 @@
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"550 600 650 700"
+		"AbilityCastRange"				"550 600 650 700 750 800 850"
 		"AbilityCastPoint"				"0.4 0.4 0.4 0.4"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST2_STATUE"
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -13792,6 +13793,13 @@
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"				"50"
+
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_chaos_knight/chaos_knight_reality_rift.vpcf"
+			"particle"					"particles/units/heroes/hero_chaos_knight/chaos_knight_reality_rift_buff.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_chaos_knight.vsndevts"
+		}
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -13804,9 +13812,9 @@
 			}
 			"02"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"armor_reduction"			"-10 -15 -20 -25 -30 -35 -40"
-				"LinkedSpecialBonus"		"special_bonus_unique_chaos_knight_2"
+				"var_type"					"FIELD_FLOAT"
+				"armor_reduction"			"-5 -9 -13 -17 -21 -25 -29"
+				"LinkedSpecialBonus"		"special_bonus_unique_chaos_knight_reality_rift_1"
 			}		
 			"03"
 			{
@@ -13818,16 +13826,23 @@
 	//=================================================================================================================
 	// Chaos Knight: Chaos Strike
 	//=================================================================================================================
-	"chaos_knight_chaos_strike"
+	"chaos_knight_chaos_strike_ebf"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_chaos_knight/chaos_knight_chaos_strike_ebf"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"chaos_knight_chaos_strike"
 		"LevelsBetweenUpgrades"			"6"
 		"MaxLevel"						"7"
 		"RequiredLevel"					"6"
+		
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_chaos_knight/chaos_knight_weapon_blur_critical.vpcf"
+			"particle"					"particles/items_fx/battlefury_cleave.vpcf"
+		}
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -13836,7 +13851,8 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"crit_chance"				"10"
+				"crit_chance"				"15"
+				"LinkedSpecialBonus"		"special_bonus_unique_chaos_knight_chaos_strike_2"
 			}
 			"02"
 			{
@@ -13853,7 +13869,7 @@
 	//=================================================================================================================
 	// Chaos Knight: Phantasm
 	//=================================================================================================================
-	"chaos_knight_phantasm"
+	"chaos_knight_phantasm_ebf"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -34792,7 +34808,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"bonus_mana_regen"		"1 2 4 8 16 32 64"
+				"bonus_mana_regen"		"2 4 8 16 32 64 96"
 			}
 			"03"
 			{
@@ -35442,6 +35458,7 @@
 		"AbilityTextureName"			"custom/oracle_purifying_flames_damage"
 		"MaxLevel"                      "7"
 	    "LevelsBetweenUpgrades" 		"5"
+		"RequiredLevel"					"5"
 		"HasScepterUpgrade"				"1"
 		
 		"precache"
@@ -35456,7 +35473,7 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"4"
+		"AbilityCooldown"				"1"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -35468,8 +35485,8 @@
 		{		
 			"01"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"damage"				"500 1000 2000 4000 8000 16000 32000"
+				"var_type"					"FIELD_FLOAT"
+				"damage"					"1000 2000 4000 8000 16000 32000 64000"
 			}
 			"02"
 			{
@@ -35569,6 +35586,7 @@
 		"AbilityTextureName"			"custom/oracle_purifying_flames_heal"
 		"MaxLevel"                      "7"
 	    "LevelsBetweenUpgrades" 		"5"
+		"RequiredLevel"					"5"
 		"HasScepterUpgrade"				"1"
 		
 		"precache"
@@ -35585,7 +35603,7 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"4"
+		"AbilityCooldown"				"1"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -35598,7 +35616,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"heal_per_second"		"100.0 200.0 500 1000 2000 4000 8000"
+				"heal_per_second"		"125 250 500 1000 2000 4000 8000"
 			}			
 			"02"
 			{
@@ -43337,6 +43355,120 @@
 			{
 				"var_type"				"FIELD_FLOAT"
 				"value"					"4"
+			}
+		}
+	}
+	"special_bonus_unique_chaos_knight_chaos_strike_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"100"
+			}
+		}
+	}
+	"special_bonus_unique_chaos_knight_chaos_strike_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"15"
+			}
+		}
+	}
+	"special_bonus_unique_chaos_knight_chaos_bolt_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"25"
+			}
+		}
+	}
+	"special_bonus_unique_chaos_knight_chaos_bolt_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"25"
+			}
+		}
+	}
+	"special_bonus_unique_chaos_knight_reality_rift_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"-6"
+			}
+		}
+	}
+	"special_bonus_unique_chaos_knight_reality_rift_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"600"
 			}
 		}
 	}

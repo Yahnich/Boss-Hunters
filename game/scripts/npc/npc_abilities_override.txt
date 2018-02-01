@@ -9619,7 +9619,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"					"5168"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"5168"				// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_ALL"
@@ -9628,6 +9628,7 @@
 		"FightRecapLevel"				"1"
 		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
+		"RequiredLevel"					"6"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -9638,13 +9639,10 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"				"13.0 13.0 13.0 13.0"
 
-		// Damage.
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"					"700 1400 2800 5600 11200 22400 44800"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"120 120 120 120"		
+		"AbilityManaCost"				"25 50 75 125 250 500 1000"	
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -9668,18 +9666,18 @@
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"axe_damage"				"700 1400 2800 5600 11200 22400 44800"
+				"axe_damage"				"2000 4000 8000 16000 32000 64000 96000"
 				"LinkedSpecialBonus"		"special_bonus_unique_beastmaster"
 			}
 			"05"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"duration"						"10"
+				"duration"					"10"
 			}
 			"06"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage_amp"				"6 8 10 12"
+				"damage_amp"				"33"
 			}
 		}
 	}
@@ -23533,7 +23531,7 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"12.0 11.0 10.0 9.0 8.0 7.0 6.0"
+		"AbilityCooldown"				"6.0"
 		"AbilityDuration"				"0.6875 0.6875 0.6875 0.6875"
 
 
@@ -23559,7 +23557,7 @@
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"shock_damage"				"900 1800 3500 6000 14000 28000 56000"
+				"shock_damage"				"1800 3500 6000 14000 28000 56000 84000"
 				"LinkedSpecialBonus"		"special_bonus_unique_magnus_4"
 			}
 			"04"
@@ -23607,11 +23605,11 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"25"
+		"AbilityCooldown"				"15"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"30 40 50 60"
+		"AbilityManaCost"				"25 50 75 125 250 500 1000"
 
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
@@ -23624,18 +23622,18 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"empower_duration"		"40"
+				"empower_duration"		"60"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage_pct"		"10 20 30 40 50 60 70"
+				"bonus_damage_pct"		"40 45 50 55 60 65 70"
 				"LinkedSpecialBonus"	"special_bonus_unique_magnus_2"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"cleave_damage_pct"		"5 10 15 20 25 30 35"
+				"var_type"				"FIELD_FLOAT"
+				"cleave_damage_pct"		"20 22.5 25 27.5 30 32.5 35"
 				"LinkedSpecialBonus"	"special_bonus_unique_magnus_2"
 			}
 			"04"
@@ -23656,7 +23654,7 @@
 			"07"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"splash_damage_pct"		"5 10 15 20 25 30 35"
+				"splash_damage_pct"		"20 22.5 25 27.5 30 32.5 35"
 				"LinkedSpecialBonus"	"special_bonus_unique_magnus_2"
 			}
 			"08"
@@ -23693,7 +23691,7 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"20 17.5 15 12.5 10 7.5 5"
+		"AbilityCooldown"				"6 5.5 5 4.5 4 3.5 3"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -23706,7 +23704,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"skewer_speed"			"750 900 1050 1200 1350 1500 1650"
+				"skewer_speed"			"1650"
 			}
 			"02"
 			{
@@ -23761,9 +23759,9 @@
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastPoint"				"0.3 0.3 0.3"
-		"AbilityCooldown"				"120 115 110 105 100 95 90"
-		"AbilityManaCost"				"200 250 300"
-		"AbilityCastRange"				"450 500 550 600 650 700 750"
+		"AbilityCooldown"				"90"
+		"AbilityManaCost"				"250 325 500 750 1250 2250 4000"
+		"AbilityCastRange"				"750 900 1050 1200 1350 1500 1650"
 
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
@@ -23776,23 +23774,23 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"pull_radius"			"450 500 550 600 650 700 750"
+				"pull_radius"			"750 900 1050 1200 1350 1500 1650"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"polarity_damage"		"1500 7500 24000 90000 210000 420000 630000"
+				"polarity_damage"		"3500 9000 24000 90000 210000 420000 630000"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"hero_stun_duration"	"2 2.5 3.0 3.5 4.0 4.50 5.0"
+				"hero_stun_duration"	"3.5"
 				"LinkedSpecialBonus"	"special_bonus_unique_magnus_5"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"creep_stun_duration"	"2 2.5 3.0 3.5 4.0 4.50 5.0"
+				"creep_stun_duration"	"3.5"
 			}
 			"05"
 			{
@@ -27132,7 +27130,7 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"24.0"
+		"AbilityCooldown"				"12.0"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -27145,7 +27143,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"1000 2500 5000 7500 10000 15000 45000"
+				"damage"					"1250 2500 5000 10000 20000 40000 80000"
 			}
 			"02"
 			{

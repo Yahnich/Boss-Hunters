@@ -1331,7 +1331,7 @@ end
 
 function CDOTA_BaseNPC:Lifesteal(source, lifestealPct, damage, target, damage_type, iSource)
 	local damageDealt = damage or 0
-	local sourceType = iSource or 0
+	local sourceType = iSource or DOTA_LIFESTEAL_SOURCE_NONE
 	if sourceType == DOTA_LIFESTEAL_SOURCE_ABILITY then
 		local oldHP = target:GetHealth()
 		ApplyDamage({victim = target, attacker = self, damage = damage, damage_type = damage_type, ability = source})
@@ -1540,7 +1540,11 @@ function ParticleManager:FireParticle(effect, attach, owner, cps)
 	local FX = ParticleManager:CreateParticle(effect, attach, owner)
 	if cps then
 		for cp, value in pairs(cps) do
-			ParticleManager:SetParticleControl(FX, tonumber(cp), value)
+			if type(value) == "userdata" then
+				ParticleManager:SetParticleControl(FX, tonumber(cp), value)
+			else
+				ParticleManager:SetParticleControlEnt(FX, cp, owner, attach, value, owner:GetAbsOrigin(), true)
+			end
 		end
 	end
 	ParticleManager:ReleaseParticleIndex(FX)
@@ -1549,9 +1553,9 @@ end
 function ParticleManager:FireRopeParticle(effect, attach, owner, target, tCP)
 	local FX = ParticleManager:CreateParticle(effect, attach, owner)
 
-	ParticleManager:SetParticleControlEnt(FX, 0, owner, PATTACH_POINT_FOLLOW, "attach_hitloc", owner:GetAbsOrigin(), true)
+	ParticleManager:SetParticleControlEnt(FX, 0, owner, attach, "attach_hitloc", owner:GetAbsOrigin(), true)
 	if target.GetAbsOrigin then -- npc (has getabsorigin function
-		ParticleManager:SetParticleControlEnt(FX, 1, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
+		ParticleManager:SetParticleControlEnt(FX, 1, target, attach, "attach_hitloc", target:GetAbsOrigin(), true)
 	else
 		ParticleManager:SetParticleControl(FX, 1, target) -- vector
 	end

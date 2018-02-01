@@ -38,7 +38,7 @@ function modifier_sven_great_cleave_cleave:OnAttackLanded(params)
 		if params.attacker == self:GetParent() and not self:GetAbility():GetToggleState() then
 			local damage = params.original_damage*self.cleave/100
 			local caster = self:GetParent()
-			DoCleaveAttack(caster, params.target, self:GetAbility(), damage*caster:GetOriginalSpellDamageAmp() / caster:GetSpellDamageAmp(), self.startRadius, self.endRadius, self.distance, "particles/units/heroes/hero_sven/sven_spell_great_cleave.vpcf" )
+			DoCleaveAttack(caster, params.target, self:GetAbility(), damage, self.startRadius, self.endRadius, self.distance, "particles/units/heroes/hero_sven/sven_spell_great_cleave.vpcf" )
 		end
 	end
 end
