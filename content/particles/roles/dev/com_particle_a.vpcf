@@ -12,7 +12,7 @@
 			m_flEndFadeSize = 0.65
 			m_flMaxSize = 0.75
 			m_flOverbrightFactor = 6.0
-			m_hTexture = resource:"materials/particle/fire_particle_10/fire_particle_10_low_white.vtex"
+			m_hTexture = resource:"materials/particle/electrical_arc/electrical_arc02.vtex"
 			m_flAnimationRate = 0.7
 		},
 		{
@@ -118,7 +118,7 @@
 	[
 		{
 			_class = "C_OP_AttractToControlPoint"
-			m_fForceAmount = 500.0
+			m_fForceAmount = -500.0
 			m_fFalloffPower = 1.2
 			m_nControlPointNumber = 1
 		},

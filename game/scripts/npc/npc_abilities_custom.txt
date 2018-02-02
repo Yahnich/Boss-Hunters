@@ -1322,7 +1322,7 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"	"lua_abilities/heroes/axe"
+						"ScriptFile"	"heroes/hero_brd/axe_steeled_temper"
 						"Function"		"AxeSteeledTemper"						
 					}
 				}
@@ -37742,6 +37742,7 @@
 			{
 				"var_type"							"FIELD_FLOAT"
 				"heal_pct"							"4"
+				"LinkedSpecialBonus"				"special_bonus_unique_rattletrap_aegis_deflector_2"
 			}
 			"05"
 			{
@@ -37810,23 +37811,24 @@
 		{
 			"01"
 			{
-				"var_type"			"FIELD_INTEGER"
-				"radius"			"575 650 725 800 875 950 1025"
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"575 650 725 800 875 950 1025"
 			}
 			"02"
 			{	
-				"var_type"			"FIELD_FLOAT"
-				"duration"			"10.0"
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"10.0"
 			}
 			"03"
 			{	
-				"var_type"			"FIELD_INTEGER"
-				"speed"				"1750"
+				"var_type"				"FIELD_INTEGER"
+				"speed"					"1750"
 			}
 			"04"
 			{	
 				"var_type"				"FIELD_INTEGER"
 				"blind"					"50"
+				"LinkedSpecialBonus"	"special_bonus_unique_rattletrap_rocket_flare_ebf_2"
 				
 			}
 			"04"
@@ -44211,6 +44213,63 @@
 			{
 				"var_type"				"FIELD_FLOAT"
 				"value"					"10"
+			}
+		}
+	}
+	"special_bonus_unique_rattletrap_aegis_deflector_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"8"
+			}
+		}
+	}
+	"special_bonus_unique_rattletrap_rocket_flare_ebf_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"12"
+			}
+		}
+	}
+	"special_bonus_unique_rattletrap_rocket_flare_ebf_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"25"
 			}
 		}
 	}

@@ -45,16 +45,16 @@ end
 
 
 function modifier_rattletrap_aegis_deflector_passive:OnTakeDamage( params )
-	print(params.target, params.unit, self.chance)
-	if params.target == self:GetParent() and RollPercentage( self.chance ) then
+	print(params.unit, self:GetParent(), self.chance)
+	if params.unit == self:GetParent() and RollPercentage( self.chance ) then
 		self:GetAbility():AegisProc(params.attacker, true)
-	elseif self:GetParent():HasTalent("special_bonus_unique_rattletrap_aegis_deflector_1") and params.attacker == self:GetParent() and RollPercentage( self:GetParent():FindTalentValue("special_bonus_unique_rattletrap_aegis_deflector_1") ) then
-		self:GetAbility():AegisProc(params.target, false)
+	end
+	if self:GetParent():HasTalent("special_bonus_unique_rattletrap_aegis_deflector_1") and params.attacker == self:GetParent() and RollPercentage( self:GetParent():FindTalentValue("special_bonus_unique_rattletrap_aegis_deflector_1") ) then
+		self:GetAbility():AegisProc(params.unit, false)
 	end
 end
 
 function modifier_rattletrap_aegis_deflector_passive:GetModifierPhysicalArmorBonus( params )
-	print(self.armor)
 	return self.armor
 end
 
@@ -65,19 +65,19 @@ end
 modifier_rattletrap_aegis_deflector_buff = class({})
 LinkLuaModifier("modifier_rattletrap_aegis_deflector_buff", "heroes/hero_rattletrap/rattletrap_aegis_deflector", LUA_MODIFIER_MOTION_NONE)
 
-function modifier_rattletrap_aegis_deflector_passive:OnCreated()
+function modifier_rattletrap_aegis_deflector_buff:OnCreated()
 	self.armor = self:GetTalentSpecialValueFor("armor_buff")
 	self.regen = self:GetTalentSpecialValueFor("heal_pct")
 end
 
-function modifier_rattletrap_aegis_deflector_passive:DeclareFunctions()
+function modifier_rattletrap_aegis_deflector_buff:DeclareFunctions()
 	return {MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS, MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE}
 end
 
-function modifier_rattletrap_aegis_deflector_passive:GetModifierPhysicalArmorBonus( params )
+function modifier_rattletrap_aegis_deflector_buff:GetModifierPhysicalArmorBonus( params )
 	return self.armor
 end
 
-function modifier_rattletrap_aegis_deflector_passive:GetModifierPhysicalArmorBonus( params )
+function modifier_rattletrap_aegis_deflector_buff:GetModifierHealthRegenPercentage( params )
 	return self.regen
 end

@@ -122,9 +122,10 @@ function tide_tongue_whip:OnSpellStart()
                     -- Remove the target's modifiers
                     target:RemoveModifierByName("modifier_tongue_whip")
                     target:ForceKill(false)
-
-                    caster:AddNewModifier(caster, self, "modifier_tongue_whip_health", {}):IncrementStackCount()
-                    caster:CalculateStatBonus()
+					if target:AttemptKill(self, caster) then
+						caster:AddNewModifier(caster, self, "modifier_tongue_whip_health", {}):IncrementStackCount()
+						caster:CalculateStatBonus()
+					end
                 elseif target_hit and caster:HasTalent("special_bonus_unique_tide_tongue_whip_1") then
                     local final_loc = caster_loc + caster:GetForwardVector() * 100
                     FindClearSpaceForUnit(target, final_loc, false)
@@ -190,6 +191,26 @@ function modifier_tongue_whip_health:DeclareFunctions()
     return funcs
 end
 
+function modifier_tongue_whip_health:OnCreated()
+	self.bonus_hp = self:GetTalentSpecialValueFor("eat_health")
+end
+
+function modifier_tongue_whip_health:OnRefresh()
+	self.bonus_hp = self:GetTalentSpecialValueFor("eat_health")
+end
+
 function modifier_tongue_whip_health:GetModifierHealthBonus()
-    return self:GetTalentSpecialValueFor("eat_health") * self:GetStackCount()
+    return self.bonus_hp * self:GetStackCount()
+end
+
+function modifier_tongue_whip_health:RemoveOnDeath()
+	return false
+end
+
+function modifier_tongue_whip_health:IsPermanent()
+	return true
+end
+
+function modifier_tongue_whip_health:IsPurgable()
+	return false
 end

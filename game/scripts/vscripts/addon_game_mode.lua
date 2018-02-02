@@ -96,6 +96,11 @@ function Precache( context )
 	PrecacheResource("particle", "particles/generic_linear_indicator.vpcf", context)
 	PrecacheResource("particle", "particles/generic/generic_marker.vpcf", context)
 	
+	-- Role Particles
+	PrecacheResource("particle", "particles/roles/dev/com_particle.vpcf", context)
+	PrecacheResource("particle", "particles/roles/dev/dev_particle.vpcf", context)
+	PrecacheResource("particle", "particles/roles/dev/vip_particle.vpcf", context)
+	
 	-- fix these fucking particles
 	PrecacheResource("particle", "particles/units/heroes/hero_tinker/tinker_rockets.vpcf", context)
 	PrecacheResource("particle", "particles/econ/items/tinker/tinker_motm_rollermaw/tinker_rollermaw_spawn.vpcf", context)
@@ -1500,43 +1505,22 @@ function CHoldoutGameMode:OnHeroPick (event)
 		-- StatsManager:CreateCustomStatsForHero(hero)
 		
 		CustomGameEventManager:Send_ServerToPlayer(hero:GetPlayerOwner(), "heroLoadIn", {}) -- wtf is this retarded shit stop force-setting my garbage
-		if GameRules.UnitKV[hero:GetUnitName()]["Abilities"] then
-			local skillTable = {}
-			local i = 0
-			hero.selectedSkills = {}
-			for skill,_ in pairs( GameRules.UnitKV[hero:GetUnitName()]["Abilities"] ) do
-				skillTable[i] = skill
-				hero.selectedSkills[skill] = false
-				i = i + 1
-			end
-			CustomNetTables:SetTableValue("skillList", hero:GetUnitName()..hero:GetPlayerID(), skillTable)
-			CustomGameEventManager:Send_ServerToPlayer(hero:GetPlayerOwner(), "checkNewHero", {})
-		else
-			hero.hasSkillsSelected = true
-		end
-		
-		
 		local ID = hero:GetPlayerID()
 		if not ID then return end
 		PlayerResource:SetCustomBuybackCooldown(ID, 120)
+		if PlayerResource:IsDeveloper(ID) then
+			ParticleManager:FireParticle("particles/roles/dev/dev_particle.vpcf", PATTACH_POINT_FOLLOW, hero)
+		elseif PlayerResource:IsManager(ID) then
+			ParticleManager:FireParticle("particles/roles/dev/com_particle.vpcf", PATTACH_POINT_FOLLOW, hero)
+		elseif PlayerResource:IsVIP(ID) then
+			ParticleManager:FireParticle("particles/roles/dev/vip_particle.vpcf", PATTACH_POINT_FOLLOW, hero)
+		end
 		-- hero:SetGold(0 , true)
 
 		local player = PlayerResource:GetPlayer(ID)
 		if not player then return end
 		player.HB = true
 		player.Health_Bar_Open = false
-		hero.Asura_Core = 0
-		Timers:CreateTimer(2.5,function()
-			if self._NewGamePlus == true and PlayerResource:GetGold(ID)>= 80000 then
-				self._Buy_Asura_Core(ID)
-			end
-			return 2.5
-		end)
-
-		local item = hero:AddItemByName("item_courier")
-		hero:AddItemByName("item_flying_courier")
-		local playerID = hero:GetPlayerOwnerID()
-		hero:CastAbilityImmediately(item, playerID)
 	end)
 end
 

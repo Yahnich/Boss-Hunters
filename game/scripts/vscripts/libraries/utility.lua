@@ -73,7 +73,13 @@ end
 
 function CDOTA_BaseNPC:CreateDummy(position)
 	local dummy = CreateUnitByName("npc_dummy_unit", position, false, nil, nil, self:GetTeam())
-	dummy:AddAbility("hide_hero"):SetLevel(1)
+	dummy:AddNewModifier(self, nil, "modifier_hidden_generic", {})
+	return dummy
+end
+
+function CDOTABaseAbility:CreateDummy(position)
+	local dummy = CreateUnitByName("npc_dummy_unit", position, false, nil, nil, self:GetCaster():GetTeam())
+	dummy:AddNewModifier(self:GetCaster(), nil, "modifier_hidden_generic", {})
 	return dummy
 end
 
@@ -279,6 +285,24 @@ function CDOTA_PlayerResource:FindActivePlayerCount()
 		end
 	end
 	return playerCounter
+end
+
+function CDOTA_PlayerResource:IsDeveloper(id)
+	self.VIP = self.VIP or LoadKeyValues( "scripts/kv/vip.kv" )
+	local steamID = self:GetSteamID(id)
+	local tag = self.VIP[tostring(steamID)]
+
+	return (tag and tag == "dev") or false
+end
+
+function CDOTA_PlayerResource:IsManager(id)
+	self.VIP = self.VIP or LoadKeyValues( "scripts/kv/vip.kv" )
+	return (self.VIP[self:GetSteamID(id)] and self.VIP[self:GetSteamID(id)] == "com") or false
+end
+
+function CDOTA_PlayerResource:IsVIP(id)
+	self.VIP = self.VIP or LoadKeyValues( "scripts/kv/vip.kv" )
+	return (self.VIP[self:GetSteamID(id)] and self.VIP[self:GetSteamID(id)] == "vip") or false
 end
 
 function MergeTables( t1, t2 )
@@ -2044,6 +2068,12 @@ function CDOTA_BaseNPC:RemoveDaze()
 		self:RemoveModifierByName("modifier_daze_generic")
 	end
 end
+
+function CDOTA_BaseNPC:AttemptKill(sourceAb, attacker)
+	ApplyDamage({victim = self, attacker = attacker, ability = sourceAb, damage_type = DAMAGE_TYPE_PURE, damage = self:GetMaxHealth() * 2, damage_flags = DOTA_DAMAGE_FLAG_NO_DAMAGE_MULTIPLIERS})
+	return not self:IsAlive()
+end
+
 
 function CDOTA_BaseNPC:ApplyKnockBack(position, stunDuration, knockbackDuration, distance, height, caster, ability)
 	local caster = caster or nil

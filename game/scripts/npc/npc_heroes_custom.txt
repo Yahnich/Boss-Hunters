@@ -932,11 +932,11 @@
 	{
 		"override_hero"				"npc_dota_hero_rattletrap"
 
-		"Ability1"					"rattletrap_battery_assault_ebf"
+		// "Ability1"					"rattletrap_battery_assault_ebf"
 		"Ability2"					"rattletrap_aegis_deflector"
 		"Ability3"					"rattletrap_rocket_flare_ebf"
-		"Ability5"					"rattletrap_reactive_shielding"
-		"Ability6"					"rattletrap_automated_artillery"
+		// "Ability5"					"rattletrap_reactive_shielding"
+		// "Ability6"					"rattletrap_automated_artillery"
 		
 		"Ability10"					"special_bonus_armor_5"
 		"Ability11"					"special_bonus_unique_rattletrap_aegis_deflector_1"

@@ -12,7 +12,7 @@
 			m_flEndFadeSize = 0.65
 			m_flMaxSize = 0.75
 			m_flOverbrightFactor = 6.0
-			m_hTexture = resource:"materials/particle/fire_particle_10/fire_particle_10_low_white.vtex"
+			m_hTexture = resource:"materials/particle/fire_burning_character/fire_burning_character.vtex"
 			m_flAnimationRate = 0.7
 		},
 		{
@@ -28,7 +28,7 @@
 	[
 		{
 			_class = "C_OP_BasicMovement"
-			m_Gravity = [ 0.0, 0.0, 100.0 ]
+			m_Gravity = [ 0.0, 0.0, 500.0 ]
 		},
 		{
 			_class = "C_OP_Decay"

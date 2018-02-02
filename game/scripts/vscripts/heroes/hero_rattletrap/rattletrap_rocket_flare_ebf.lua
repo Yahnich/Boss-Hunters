@@ -4,14 +4,19 @@ function rattletrap_rocket_flare_ebf:GetAOERadius()
 	return self:GetSpecialValueFor("radius")
 end
 
+function rattletrap_rocket_flare_ebf:GetIntrinsicModifierName()
+	return "modifier_rattletrap_rocket_flare_ebf_talent"
+end
+
 if IsServer() then
 	function rattletrap_rocket_flare_ebf:OnSpellStart()
 		local caster = self:GetCaster()
-		local casterPos = caster:GetAbsOrigin()
 		local targetPos = self:GetCursorPosition()
-		local duration = self:GetSpecialValueFor("duration")
-		local dummy = CreateUnitByName("npc_dummy_unit", targetPos, false, nil, nil, caster:GetTeam())
-		dummy:AddAbility("hide_hero"):SetLevel(1)
+		self:FireFlashbang(targetPos)
+	end
+	
+	function rattletrap_rocket_flare_ebf:FireFlashbang(position)
+		local dummy = self:CreateDummy(position)
 		local projectile = {
 			Target = dummy,
 			Source = self:GetCaster(),
@@ -32,39 +37,48 @@ if IsServer() then
 		local duration = self:GetTalentSpecialValueFor("duration")
 		local enemies = FindUnitsInRadius(caster:GetTeamNumber(), target:GetAbsOrigin(), nil, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false)
 		EmitSoundOn("Hero_Rattletrap.Rocket_Flare.Explode", self:GetCaster())
-		target:RemoveSelf()
+		UTIL_Remove(target)
 		for _, enemy in pairs(enemies) do
-			enemy:AddNewModifier(caster, self, "modifier_rocket_flare_blind", {duration = duration})
+			enemy:AddNewModifier(caster, self, "modifier_rattletrap_rocket_flare_blind", {duration = duration})
 			ApplyDamage({victim = enemy, attacker = caster, damage = self:GetTalentSpecialValueFor("damage"), damage_type = self:GetAbilityDamageType(), ability = self})
 		end
 	end
 end
 
-LinkLuaModifier( "modifier_rocket_flare_blind", "lua_abilities/heroes/rattletrap.lua" ,LUA_MODIFIER_MOTION_NONE )
-modifier_rocket_flare_blind = class({})
+modifier_rattletrap_rocket_flare_blind = class({})
+LinkLuaModifier( "modifier_rattletrap_rocket_flare_blind", "heroes/heroes_rattletrap/rattletrap_rocket_flare_ebf" ,LUA_MODIFIER_MOTION_NONE )
 
-function modifier_rocket_flare_blind:OnCreated()
+function modifier_rattletrap_rocket_flare_blind:OnCreated()
 	self.miss = self:GetAbility():GetTalentSpecialValueFor("blind")
 end
 
-function modifier_rocket_flare_blind:DeclareFunctions()
+function modifier_rattletrap_rocket_flare_blind:DeclareFunctions()
 	funcs = {
 				MODIFIER_PROPERTY_MISS_PERCENTAGE,
 			}
 	return funcs
 end
-function modifier_rocket_flare_blind:GetModifierMiss_Percentage()
+function modifier_rattletrap_rocket_flare_blind:GetModifierMiss_Percentage()
 	return self.miss
 end
 
-function modifier_rocket_flare_blind:GetEffectName()
+function modifier_rattletrap_rocket_flare_blind:GetEffectName()
 	return "particles/units/heroes/hero_keeper_of_the_light/keeper_of_the_light_blinding_light_debuff.vpcf"
 end
 
-function modifier_rocket_flare_blind:GetStatusEffectName()
+function modifier_rattletrap_rocket_flare_blind:GetStatusEffectName()
 	return "particles/status_fx/status_effect_slardar_amp_damage.vpcf"
 end
 
-function modifier_rocket_flare_blind:StatusEffectPriority()
+function modifier_rattletrap_rocket_flare_blind:StatusEffectPriority()
 	return 8
+end
+
+modifier_rattletrap_rocket_flare_ebf_talent = class({})
+LinkLuaModifier( "modifier_rattletrap_rocket_flare_ebf_talent", "heroes/heroes_rattletrap/rattletrap_rocket_flare_ebf" ,LUA_MODIFIER_MOTION_NONE )
+
+if IsServer() then
+	function modifier_rattletrap_rocket_flare_ebf_talent:OnCreated()
+		self:StartIntervalThink(1)
+	end
 end
