@@ -37659,20 +37659,21 @@
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"				"10"
-		"AbilityDuration"				"8"
-		"HasPureCooldown"				"1"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"75"
-		
-		// Damage.
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"					"400 800 1600 3200 6400 9600 19200"
+		"AbilityManaCost"				"25 50 75 125 250 500 1000"
 
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityModifierSupportValue"	"0.2"	// applies many mini-stuns
+		
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_rattletrap/rattletrap_battery_assault.vpcf"
+			"particle"					"particles/units/heroes/hero_rattletrap/rattletrap_battery_shrapnel.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_rattletrap.vsndevts"
+		}
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -37680,19 +37681,24 @@
 		{
 			"01"
 			{
-				"var_type"			"FIELD_INTEGER"
-				"radius"			"450"
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"450"
 			}
 			"02"
 			{	
-				"var_type"			"FIELD_FLOAT"
-				"duration"				"8"
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"8"
 			}
 			"03"
 			{	
 				"var_type"					"FIELD_FLOAT"
 				"interval"					"0.6 0.55 0.5 0.45 0.4 0.35 0.3"
-				"LinkedSpecialBonus"		"special_bonus_unique_clockwerk"
+				"LinkedSpecialBonus"		"special_bonus_unique_rattletrap_battery_assault_2"
+			}
+			"04"
+			{	
+				"var_type"					"FIELD_FLOAT"
+				"damage"					"400 800 1600 3200 6400 9600 19200"
 			}
 		}
 	}
@@ -37802,7 +37808,7 @@
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"50 50 50 50"
+		"AbilityManaCost"				"25 50 75 125 250 500 1000"
 	
 		
 		// Special
@@ -37849,7 +37855,8 @@
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_rattletrap/rattletrap_reactive_shielding"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"custom/rattletrap_reactive_shielding"
 		"FightRecapLevel"				"1"
@@ -37863,21 +37870,18 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"10"
-		"AbilityDuration"				"8"
-		"HasPureCooldown"				"1"
+		"AbilityCooldown"				"11"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"75"
+		"AbilityManaCost"				"250 325 500 750 1250 2250 4000"
 		
-		// Damage.
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"					"400 800 1600 3200 6400 9600 19200"
-
-		// Stats
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityModifierSupportValue"	"0.2"	// applies many mini-stuns
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_rattletrap/rattletrap_cog_ambient.vpcf"
+			"particle"					"particles/units/heroes/hero_rattletrap/rattletrap_cog_deploy.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_rattletrap.vsndevts"
+		}
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -37885,19 +37889,18 @@
 		{
 			"01"
 			{
-				"var_type"			"FIELD_INTEGER"
-				"radius"			"450"
-			}
-			"02"
-			{	
-				"var_type"			"FIELD_FLOAT"
-				"duration"				"8"
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"4 4.5 5 5.5 6 6.5 7"
 			}
 			"03"
 			{	
 				"var_type"					"FIELD_FLOAT"
-				"interval"					"0.6 0.55 0.5 0.45 0.4 0.35 0.3"
-				"LinkedSpecialBonus"		"special_bonus_unique_clockwerk"
+				"damage_reduction"			"-80"
+			}
+			"04"
+			{	
+				"var_type"					"FIELD_FLOAT"
+				"slow"						"-100"
 			}
 		}
 	}
@@ -37911,7 +37914,8 @@
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_rattletrap/rattletrap_automated_artillery"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"custom/rattletrap_automated_artillery"
 		"FightRecapLevel"				"1"
@@ -37926,20 +37930,16 @@
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"				"10"
-		"AbilityDuration"				"8"
-		"HasPureCooldown"				"1"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"75"
+		"AbilityManaCost"				"250 325 500 750 1250 2250 4000"
 		
-		// Damage.
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"					"400 800 1600 3200 6400 9600 19200"
-
-		// Stats
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityModifierSupportValue"	"0.2"	// applies many mini-stuns
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_rattletrap/rattletrap_automated_artillery_projectile.vpcf"
+			"soundfile"					"soundevents/game_sounds_custom_hero.vsndevts"
+		}
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -37947,19 +37947,23 @@
 		{
 			"01"
 			{
-				"var_type"			"FIELD_INTEGER"
-				"radius"			"450"
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"2000"
 			}
 			"02"
 			{	
-				"var_type"			"FIELD_FLOAT"
-				"duration"				"8"
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"8"
 			}
 			"03"
 			{	
 				"var_type"					"FIELD_FLOAT"
-				"interval"					"0.6 0.55 0.5 0.45 0.4 0.35 0.3"
-				"LinkedSpecialBonus"		"special_bonus_unique_clockwerk"
+				"rockets_per_second"		"20"
+			}
+			"03"
+			{	
+				"var_type"					"FIELD_FLOAT"
+				"damage_per_rocket"			"20 40 80 160 320 640 1280"
 			}
 		}
 	}
@@ -44197,6 +44201,44 @@
 			}
 		}
 	}
+	"special_bonus_unique_rattletrap_battery_assault_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"250"
+			}
+		}
+	}
+	"special_bonus_unique_rattletrap_battery_assault_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"-0.1"
+			}
+		}
+	}
 	"special_bonus_unique_rattletrap_aegis_deflector_1" 
 	{
 		// General
@@ -44270,6 +44312,44 @@
 			{
 				"var_type"				"FIELD_FLOAT"
 				"value"					"25"
+			}
+		}
+	}
+	"special_bonus_unique_rattletrap_reactive_shielding_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"1"
+			}
+		}
+	}
+	"special_bonus_unique_rattletrap_automated_artillery_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"1"
 			}
 		}
 	}

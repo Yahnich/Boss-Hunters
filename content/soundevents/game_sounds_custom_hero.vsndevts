@@ -1,3 +1,63 @@
+"Hero_Rattletrap.Automated_Artillery.Fire"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"		"sos_reference_stack"
+				"reference_stack"		"dota_update_default"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"		"sounds/weapons/hero/rattletrap/flare_fire.vsnd"
+						}
+					}
+					"volume"			{"value"		"0.350000"}
+					"pitch_rand_min" 	{"value"		"0.1"}
+					"pitch_rand_max" 	{"value"		"0.1"}
+					"pitch" 			{"value"		"1.50000"}
+					"soundlevel"		{ "value"		"45.000000"}
+					"spread_radius"		{ "value"		"1500.000000"}
+				}
+			}
+		}
+	}
+}
+"Hero_Rattletrap.Automated_Artillery.Explode"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"		"sos_reference_stack"
+				"reference_stack"		"dota_update_default"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"		"sounds/weapons/hero/rattletrap/flare_explode.vsnd"
+						}
+					}
+					"volume"			{"value"		"0.200000"}
+					"pitch_rand_min" 	{"value"		"0.1"}
+					"pitch_rand_max" 	{"value"		"0.1"}
+					"pitch" 			{"value"		"1.50000"}
+					"soundlevel"		{ "value"		"25.000000"}
+					"spread_radius"		{ "value"		"1500.000000"}
+				}
+			}
+		}
+	}
+}
 "Shinigami.WhirlingSlash_Cast"
 {
 	"operator_stacks"
