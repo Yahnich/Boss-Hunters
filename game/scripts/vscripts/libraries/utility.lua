@@ -297,12 +297,18 @@ end
 
 function CDOTA_PlayerResource:IsManager(id)
 	self.VIP = self.VIP or LoadKeyValues( "scripts/kv/vip.kv" )
-	return (self.VIP[self:GetSteamID(id)] and self.VIP[self:GetSteamID(id)] == "com") or false
+	local steamID = self:GetSteamID(id)
+	local tag = self.VIP[tostring(steamID)]
+
+	return (tag and tag == "com") or false
 end
 
 function CDOTA_PlayerResource:IsVIP(id)
 	self.VIP = self.VIP or LoadKeyValues( "scripts/kv/vip.kv" )
-	return (self.VIP[self:GetSteamID(id)] and self.VIP[self:GetSteamID(id)] == "vip") or false
+	local steamID = self:GetSteamID(id)
+	local tag = self.VIP[tostring(steamID)]
+
+	return (tag and tag == "vip") or false
 end
 
 function MergeTables( t1, t2 )
@@ -1279,13 +1285,13 @@ function CDOTABaseAbility:SetCooldown(fCD)
 	end
 end
 
-function CDOTABaseAbility:StartDelayedCooldown(flDelay)
+function CDOTABaseAbility:StartDelayedCooldown(flDelay, newCD)
 	if self.delayedCooldownTimer then
 		self:EndDelayedCooldown()
 	end
 	self:EndCooldown()
 	self:UseResources(false, false, true)
-	local cd = self:GetCooldownTimeRemaining()
+	local cd = newCD or self:GetCooldownTimeRemaining()
 	local ability = self
 	self.delayedCooldownTimer = Timers:CreateTimer(0, function()
 		ability:EndCooldown()

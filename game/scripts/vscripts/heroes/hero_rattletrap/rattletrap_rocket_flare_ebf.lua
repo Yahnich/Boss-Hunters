@@ -46,7 +46,7 @@ if IsServer() then
 end
 
 modifier_rattletrap_rocket_flare_blind = class({})
-LinkLuaModifier( "modifier_rattletrap_rocket_flare_blind", "heroes/heroes_rattletrap/rattletrap_rocket_flare_ebf" ,LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_rattletrap_rocket_flare_blind", "heroes/hero_rattletrap/rattletrap_rocket_flare_ebf" ,LUA_MODIFIER_MOTION_NONE )
 
 function modifier_rattletrap_rocket_flare_blind:OnCreated()
 	self.miss = self:GetAbility():GetTalentSpecialValueFor("blind")
@@ -75,10 +75,32 @@ function modifier_rattletrap_rocket_flare_blind:StatusEffectPriority()
 end
 
 modifier_rattletrap_rocket_flare_ebf_talent = class({})
-LinkLuaModifier( "modifier_rattletrap_rocket_flare_ebf_talent", "heroes/heroes_rattletrap/rattletrap_rocket_flare_ebf" ,LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_rattletrap_rocket_flare_ebf_talent", "heroes/hero_rattletrap/rattletrap_rocket_flare_ebf", LUA_MODIFIER_MOTION_NONE )
 
 if IsServer() then
 	function modifier_rattletrap_rocket_flare_ebf_talent:OnCreated()
+		self.talent = false
 		self:StartIntervalThink(1)
 	end
+	
+	function modifier_rattletrap_rocket_flare_ebf_talent:OnIntervalThink()
+		local caster = self:GetParent()
+		local ability = self:GetAbility()
+		if caster:IsAlive() and caster:HasTalent("special_bonus_unique_rattletrap_rocket_flare_ebf_1") then
+			if not self.talent then
+				self.talent = true
+				self:StartIntervalThink( caster:FindTalentValue("special_bonus_unique_rattletrap_rocket_flare_ebf_1") )
+			else
+				for _, enemy in ipairs( caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), -1) ) do
+					ability:FireFlashbang(enemy:GetAbsOrigin())
+					return nil
+				end
+				ability:FireFlashbang( caster:GetAbsOrigin() + ActualRandomVector(3000, 500) )
+			end
+		end
+	end
+end
+
+function modifier_rattletrap_rocket_flare_ebf_talent:IsHidden()
+	return true
 end

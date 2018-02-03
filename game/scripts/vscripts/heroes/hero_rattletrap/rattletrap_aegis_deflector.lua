@@ -45,11 +45,10 @@ end
 
 
 function modifier_rattletrap_aegis_deflector_passive:OnTakeDamage( params )
-	print(params.unit, self:GetParent(), self.chance)
-	if params.unit == self:GetParent() and RollPercentage( self.chance ) then
+	if params.attacker and params.unit == self:GetParent() and RollPercentage( self.chance ) then
 		self:GetAbility():AegisProc(params.attacker, true)
 	end
-	if self:GetParent():HasTalent("special_bonus_unique_rattletrap_aegis_deflector_1") and params.attacker == self:GetParent() and RollPercentage( self:GetParent():FindTalentValue("special_bonus_unique_rattletrap_aegis_deflector_1") ) then
+	if not params.inflictor and self:GetParent():HasTalent("special_bonus_unique_rattletrap_aegis_deflector_1") and params.attacker == self:GetParent() and RollPercentage( self:GetParent():FindTalentValue("special_bonus_unique_rattletrap_aegis_deflector_1") ) then
 		self:GetAbility():AegisProc(params.unit, false)
 	end
 end
@@ -59,7 +58,7 @@ function modifier_rattletrap_aegis_deflector_passive:GetModifierPhysicalArmorBon
 end
 
 function modifier_rattletrap_aegis_deflector_passive:IsHidden()
-	return false
+	return true
 end
 
 modifier_rattletrap_aegis_deflector_buff = class({})

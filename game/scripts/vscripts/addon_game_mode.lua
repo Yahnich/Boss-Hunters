@@ -1148,9 +1148,8 @@ function CHoldoutGameMode:OnAbilityUsed(event)
 		abilityused:EndCooldown()
 		if abilityused:GetDuration() > 0 then
 			local duration = abilityused:GetDuration()
-			if abilityname == "rattletrap_battery_assault" then duration = abilityused:GetTalentSpecialValueFor("duration") end
 			if abilityname == "night_stalker_crippling_fear" and not GameRules:IsDaytime() then duration = abilityused:GetTalentSpecialValueFor("duration_night") end
-			abilityused:StartDelayedCooldown(duration, true)
+			abilityused:StartDelayedCooldown(duration)
 		else
 			abilityused:StartCooldown(abilityused:GetCooldown(-1))
 		end
@@ -1507,6 +1506,11 @@ function CHoldoutGameMode:OnHeroPick (event)
 		CustomGameEventManager:Send_ServerToPlayer(hero:GetPlayerOwner(), "heroLoadIn", {}) -- wtf is this retarded shit stop force-setting my garbage
 		local ID = hero:GetPlayerID()
 		if not ID then return end
+		local messageinfo = {
+		text = "If you have missing abilities, reconnect to fix this; issue will persist until Valve fixes it on their end.",
+		duration = 20
+		}
+		Notifications:Top(ID, messageinfo)
 		PlayerResource:SetCustomBuybackCooldown(ID, 120)
 		if PlayerResource:IsDeveloper(ID) then
 			ParticleManager:FireParticle("particles/roles/dev/dev_particle.vpcf", PATTACH_POINT_FOLLOW, hero)

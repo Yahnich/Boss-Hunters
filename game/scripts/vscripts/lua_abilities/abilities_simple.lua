@@ -351,12 +351,10 @@ function hell_tempest_boss( keys )
         delay = 7
     end
     local messageinfo = {
-    message = "The boss is casting Hell Tempest, get in the water!",
-    duration = 2
+    text = "The boss is casting Hell Tempest, get in the water!",
+    duration = 5
     }
-    if caster.warning == nil then messageinfo.duration = 5 caster.warning = true end
-    FireGameEvent("show_center_message",messageinfo)  
-
+	Notifications:TopToAll(messageinfo)
     -- Spawn projectile
     Timers:CreateTimer(delay, function()
         local projectileTable = {
