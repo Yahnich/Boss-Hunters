@@ -355,12 +355,21 @@
 	{
 		"override_hero"			"npc_dota_hero_doom_bringer"
 		"AbilityLayout"			"4"
-		"Ability1"				"doom_devour"					// Ability 2
+		"Ability1"				"doom_demons_bargain"					// Ability 2
 		"Ability2"				"doom_scorched_earth_ebf"
+		"Ability3"				"doom_infernal_blade_ebf"
 		"Ability5"				"generic_hidden"
 		"Ability4"				"generic_hidden"
-		"Ability6"				"doom_doom_ebf"
+		"Ability6"				"doom_apocalypse"
 		
+		"Ability10"				"special_bonus_unique_doom_scorched_earth_ebf_1"
+		"Ability11"				"special_bonus_unique_doom_scorched_earth_ebf_2"
+		"Ability12"				"special_bonus_unique_doom_demons_bargain_1"
+		"Ability13"				"special_bonus_unique_doom_demons_bargain_2"
+		"Ability14"				"special_bonus_unique_doom_infernal_blade_ebf_1"
+		"Ability15"				"special_bonus_unique_doom_infernal_blade_ebf_2"
+		"Ability16"				"special_bonus_unique_doom_apocalypse_1"
+		"Ability17"				"special_bonus_unique_doom_apocalypse_2"
 	}
 	//=================================================================================================================
 	// HERO: DK
@@ -1013,18 +1022,21 @@
 	"npc_dota_hero_sand_king_ebf"
 	{
 		"override_hero"				"npc_dota_hero_sand_king"
-		"AbilityLayout"				"4"
-		"Ability1"					"sandking_burrowstrike_ebf"
-		"Ability2"					"sandking_sable_djinn"
+		"AbilityLayout"				"5"
+		"Ability1"					"sand_burrow"
+		"Ability2"					"sand_sandstorm"
+		"Ability3"					"sand_claw_impact"
+		"Ability4"					"sand_caustics"
+		"Ability6"					"sand_tremors"
 		
-		"Ability10"		"special_bonus_movement_speed_30"
-		"Ability11"		"special_bonus_hp_200"
-		"Ability12"		"special_bonus_unique_sand_king_2"
-		"Ability13"		"special_bonus_unique_sand_king_3"
-		"Ability14"		"special_bonus_armor_10"
-		"Ability15"		"special_bonus_unique_sand_king"
-		"Ability16"		"special_bonus_hp_regen_35"
-		"Ability17"		"special_bonus_unique_sand_king_4"
+		"Ability10"		"special_bonus_unique_sand_burrow_1"
+		"Ability11"		"special_bonus_unique_sand_burrow_2"
+		"Ability12"		"special_bonus_unique_sand_sandstorm_1"
+		"Ability13"		"special_bonus_unique_sand_sandstorm_2"
+		"Ability14"		"special_bonus_unique_sand_claw_impact_1"
+		"Ability15"		"special_bonus_unique_sand_claw_impact_2"
+		"Ability16"		"special_bonus_unique_sand_tremors_1"
+		"Ability17"		"special_bonus_unique_sand_tremors_2"
 	}
 	//=================================================================================================================
 	// HERO: Rhastafarian

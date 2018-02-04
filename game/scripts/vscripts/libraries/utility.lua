@@ -68,6 +68,7 @@ function CalculateDirection(ent1, ent2)
 	if ent1.GetAbsOrigin then pos1 = ent1:GetAbsOrigin() end
 	if ent2.GetAbsOrigin then pos2 = ent2:GetAbsOrigin() end
 	local direction = (pos1 - pos2):Normalized()
+	direction.z = 0
 	return direction
 end
 
@@ -2076,7 +2077,7 @@ function CDOTA_BaseNPC:RemoveDaze()
 end
 
 function CDOTA_BaseNPC:AttemptKill(sourceAb, attacker)
-	ApplyDamage({victim = self, attacker = attacker, ability = sourceAb, damage_type = DAMAGE_TYPE_PURE, damage = self:GetMaxHealth() * 2, damage_flags = DOTA_DAMAGE_FLAG_NO_DAMAGE_MULTIPLIERS})
+	ApplyDamage({victim = self, attacker = attacker, ability = sourceAb, damage_type = DAMAGE_TYPE_PURE, damage = self:GetMaxHealth() + 1, damage_flags = DOTA_DAMAGE_FLAG_NO_DAMAGE_MULTIPLIERS})
 	return not self:IsAlive()
 end
 

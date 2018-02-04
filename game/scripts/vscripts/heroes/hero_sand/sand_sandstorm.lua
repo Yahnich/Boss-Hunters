@@ -18,7 +18,7 @@ function sand_sandstorm:OnSpellStart()
     if caster:HasTalent("special_bonus_unique_sand_sandstorm_2") then
         caster:AddNewModifier(caster, self, "modifier_invisible", {})
     end
-    
+    EmitSoundOn("Ability.SandKing_SandStorm.start", caster)
     caster:AddNewModifier(caster, self, "modifier_sandstorm", {Duration = self:GetTalentSpecialValueFor("sandstorm_duration")})
     caster:AddNewModifier(caster, self, "modifier_sandstorm_tornado", {Duration = self:GetTalentSpecialValueFor("sandstorm_duration")})
 end
@@ -32,33 +32,34 @@ function sand_sandstorm:OnChannelFinish(bInterrupted)
 end
 
 modifier_sandstorm = class({})
-function modifier_sandstorm:OnCreated()
-    if IsServer() then
-        self.storm = ParticleManager:CreateParticle("particles/units/heroes/hero_sandking/sand_sandstorm.vpcf", PATTACH_POINT, self:GetCaster())
-        ParticleManager:SetParticleControl(self.storm, 0, self:GetCaster():GetAbsOrigin())
+if IsServer() then
+	function modifier_sandstorm:OnCreated()
+		self.storm = ParticleManager:CreateParticle("particles/units/heroes/hero_sandking/sand_sandstorm.vpcf", PATTACH_POINT, self:GetCaster())
+		ParticleManager:SetParticleControl(self.storm, 0, self:GetCaster():GetAbsOrigin())
 
-        self.radius = self:GetTalentSpecialValueFor("sandstorm_base_radius")
-        self:StartIntervalThink(self:GetTalentSpecialValueFor("sandstorm_think"))
-    end
-end
+		self.radius = self:GetTalentSpecialValueFor("sandstorm_base_radius")
+		self:StartIntervalThink(self:GetTalentSpecialValueFor("sandstorm_think"))
+		
+		EmitSoundOn("Ability.SandKing_SandStorm.loop", self:GetParent())
+	end
 
-function modifier_sandstorm:OnIntervalThink()
-    local caster = self:GetCaster()
+	function modifier_sandstorm:OnIntervalThink()
+		local caster = self:GetCaster()
 
-    ParticleManager:SetParticleControl(self.storm, 1, Vector(self.radius,self.radius,self.radius))
+		ParticleManager:SetParticleControl(self.storm, 1, Vector(self.radius,self.radius,self.radius))
 
-    local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), self.radius, {})
-    for _,enemy in pairs(enemies) do
-        self:GetAbility():DealDamage(caster, enemy, self:GetTalentSpecialValueFor("sandstorm_damage"), {}, 0)
-    end
+		local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), self.radius, {})
+		for _,enemy in pairs(enemies) do
+			self:GetAbility():DealDamage(caster, enemy, self:GetTalentSpecialValueFor("sandstorm_damage"), {}, 0)
+		end
 
-    self.radius = self.radius + self:GetTalentSpecialValueFor("sandstorm_radius_grow")
-end
+		self.radius = self.radius + self:GetTalentSpecialValueFor("sandstorm_radius_grow")
+	end
 
-function modifier_sandstorm:OnRemoved()
-    if IsServer() then
-        ParticleManager:DestroyParticle(self.storm, false)
-    end
+	function modifier_sandstorm:OnRemoved()
+		ParticleManager:DestroyParticle(self.storm, false)
+		StopSoundOn("Ability.SandKing_SandStorm.loop", self:GetParent())
+	end
 end
 
 function modifier_sandstorm:IsHidden()

@@ -11,7 +11,11 @@ end
 function rattletrap_automated_artillery:OnSpellStart()
 	local caster = self:GetCaster()
 	caster:AddNewModifier(caster, self, "modifier_rattletrap_automated_artillery", {duration = self:GetTalentSpecialValueFor("duration")})
-	print("added modifier")
+end
+
+function rattletrap_automated_artillery:OnUpgrade()
+	local sisterAb = self:GetCaster():FindAbilityByName("rattletrap_reactive_shielding")
+	if sisterAb:GetLevel() < self:GetLevel() then sisterAb:SetLevel( self:GetLevel() ) end
 end
 
 function rattletrap_automated_artillery:OnToggle()

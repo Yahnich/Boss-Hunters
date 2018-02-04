@@ -8,6 +8,11 @@ function rattletrap_reactive_shielding:OnSpellStart()
 	EmitSoundOn("Hero_Rattletrap.Hookshot.Damage", caster)
 end
 
+function rattletrap_reactive_shielding:OnUpgrade()
+	local sisterAb = self:GetCaster():FindAbilityByName("rattletrap_automated_artillery")
+	if sisterAb:GetLevel() < self:GetLevel() then sisterAb:SetLevel( self:GetLevel() ) end
+end
+
 modifier_rattletrap_reactive_shielding = class({})
 LinkLuaModifier("modifier_rattletrap_reactive_shielding", "heroes/hero_rattletrap/rattletrap_reactive_shielding", LUA_MODIFIER_MOTION_NONE)
 

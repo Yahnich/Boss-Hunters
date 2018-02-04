@@ -83,7 +83,8 @@
 		},
 		{
 			_class = "C_INIT_RandomRadius"
-			m_flRadiusMax = 50.0
+			m_flRadiusMax = 80.0
+			m_flRadiusMin = 30.0
 		},
 		{
 			_class = "C_INIT_RandomColor"

@@ -35,6 +35,7 @@ end
 modifier_caustics_enemy = class({})
 function modifier_caustics_enemy:OnCreated(table)
     if IsServer() then
+		EmitSoundOn("Ability.SandKing_CausticFinale", self:GetParent())
         self:StartIntervalThink(1.0)
     end
 end
