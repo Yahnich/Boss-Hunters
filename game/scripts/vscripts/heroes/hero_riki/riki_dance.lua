@@ -36,7 +36,7 @@ function riki_dance:OnSpellStart()
             ParticleManager:SetParticleControl(blinkIn, 1, target:GetAbsOrigin())
             ParticleManager:ReleaseParticleIndex(blinkIn)
 
-            FindClearSpaceForUnit( caster, target:GetAbsOrigin()-target:GetForwardVector(), false )
+            FindClearSpaceForUnit( caster, target:GetAbsOrigin() - target:GetForwardVector() * 50, false )
 
             caster:PerformAttack(target, true, true, true, true, false, false, true)
             self:DealDamage(caster, target, caster:GetAttackDamage()*(self:GetTalentSpecialValueFor("damage")-100)/100, {}, 0)

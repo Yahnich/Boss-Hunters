@@ -68,7 +68,7 @@ function modifier_doom_scorched_earth_aura:IsPurgable()
     return false
 end
 
-LinkLuaModifier( "modifier_doom_scorched_earth_talent", "lua_abilities/heroes/doom.lua" ,LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_doom_scorched_earth_talent", "heroes/hero_doom/doom_scorched_earth_ebf" ,LUA_MODIFIER_MOTION_NONE )
 modifier_doom_scorched_earth_talent = class({})
 
 function modifier_doom_scorched_earth_talent:IsHidden()
@@ -80,13 +80,13 @@ function modifier_doom_scorched_earth_talent:RemoveOnDeath()
 end
 
 
-LinkLuaModifier( "modifier_doom_scorched_earth_buff", "lua_abilities/heroes/doom.lua" ,LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_doom_scorched_earth_buff", "heroes/hero_doom/doom_scorched_earth_ebf" ,LUA_MODIFIER_MOTION_NONE )
 modifier_doom_scorched_earth_buff = class({})
 
 function modifier_doom_scorched_earth_buff:OnCreated()
 	self.healthregen = self:GetAbility():GetTalentSpecialValueFor("damage_per_second")
 	self.movespeed = self:GetAbility():GetTalentSpecialValueFor("bonus_movement_speed_pct")
-	self.healamp = self:GetCaster():FindTalentValueFor("special_bonus_unique_doom_scorched_earth_ebf_1")
+	self.healamp = self:GetCaster():FindTalentValue("special_bonus_unique_doom_scorched_earth_ebf_1")
 	if not self:GetParent():IsSameTeam(self:GetCaster()) then
 		self.healthregen = 0
 		self.healamp = 0

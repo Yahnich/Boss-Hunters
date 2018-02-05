@@ -37,7 +37,7 @@ if IsServer() then
 		EmitSoundOn("Ability.SandKing_Epicenter", self:GetParent())
 		local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), radius, {})
 		for _,enemy in pairs(enemies) do
-			self:GetAbility():DealDamage(caster, enemy, self:GetTalentSpecialValueFor("sandstorm_damage"), {}, 0)
+			self:GetAbility():DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage"))
 			enemy:AddNewModifier(caster, self:GetAbility(), "modifier_tremors_enemy", {Duration = self:GetSpecialValueFor("duration")})
 
 			if caster:HasTalent("special_bonus_unique_sand_tremors_2") then

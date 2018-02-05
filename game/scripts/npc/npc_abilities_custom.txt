@@ -23130,7 +23130,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"radius"					"400 500 600 700 800 900 1000"
+				"radius"					"800"
 				"LinkedSpecialBonus"		"special_bonus_unique_doom_scorched_earth_ebf_2"
 			}
 			"03"
@@ -39172,7 +39172,6 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"damage"				"1400 2800 5600 11200 16800 22400 44800"
-				"LinkedSpecialBonus"	"special_bonus_unique_sand_claw_impact_1"
 			}
 			"02"
 			{
@@ -43933,7 +43932,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"3000"
+				"value"					"-4"
 			}
 		}
 	}
@@ -44085,7 +44084,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"100"
+				"value"					"50"
 			}
 		}
 	}
@@ -44104,7 +44103,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"500"
+				"value"					"1200"
 			}
 		}
 	}
