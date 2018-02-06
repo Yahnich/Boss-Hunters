@@ -371,6 +371,26 @@
 		"Ability16"				"special_bonus_unique_doom_apocalypse_1"
 		"Ability17"				"special_bonus_unique_doom_apocalypse_2"
 	}
+	"npc_dota_hero_earthshaker_ebf"
+	{
+		"override_hero"			"npc_dota_hero_earthshaker"
+		"AbilityLayout"			"4"
+		"Ability1"				"earthshaker_fissure_ebf"
+		"Ability2"				"earthshaker_enchant_totem_ebf"
+		"Ability3"				"earthshaker_crater_impact"
+		"Ability4"				"earthshaker_aftershock_ebf"
+		"Ability5"				"generic_hidden"
+		"Ability6"				"earthshaker_echo_slam_ebf"
+		
+		"Ability10"				"special_bonus_unique_earthshaker_crater_impact_1"
+		"Ability11"				"special_bonus_unique_earthshaker_crater_impact_2"
+		"Ability12"				"special_bonus_unique_earthshaker_enchant_totem_ebf_1"
+		"Ability13"				"special_bonus_unique_earthshaker_enchant_totem_ebf_2"
+		"Ability14"				"special_bonus_unique_earthshaker_echo_slam_ebf_1"
+		"Ability15"				"special_bonus_unique_earthshaker_echo_slam_ebf_2"
+		"Ability16"				"special_bonus_unique_earthshaker_fissure_ebf_1"
+		"Ability17"				"special_bonus_unique_earthshaker_fissure_ebf_2"
+	}
 	//=================================================================================================================
 	// HERO: DK
 	//=================================================================================================================

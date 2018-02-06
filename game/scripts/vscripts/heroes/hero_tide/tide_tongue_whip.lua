@@ -48,6 +48,7 @@ function tide_tongue_whip:OnSpellStart()
 
     local eat = false
 
+	EmitSoundOn("Tidehunter.Tongue_Whip", caster)
     -- Main Hook loop
     Timers:CreateTimer(tick_rate, function()
         -- Check for valid units in the area
@@ -121,7 +122,6 @@ function tide_tongue_whip:OnSpellStart()
 
                     -- Remove the target's modifiers
                     target:RemoveModifierByName("modifier_tongue_whip")
-                    target:ForceKill(false)
 					if target:AttemptKill(self, caster) then
 						caster:AddNewModifier(caster, self, "modifier_tongue_whip_health", {}):IncrementStackCount()
 						caster:CalculateStatBonus()

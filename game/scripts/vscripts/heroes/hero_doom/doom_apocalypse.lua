@@ -15,7 +15,7 @@ function doom_apocalypse:OnSpellStart()
 	self.doomDamage = self:GetTalentSpecialValueFor( "damage" )
 	self.doomDuration = self:GetTalentSpecialValueFor("duration")
 	local doomModifier = "modifier_doom_apocalypse"
-	if self:GetCaster():HasTalent("bonus_unique_doom_apocalypse_2") then doomModifier = "modifier_doom_apocalypse_talent" end
+	if self:GetCaster():HasTalent("special_bonus_unique_doom_apocalypse_2") then doomModifier = "modifier_doom_apocalypse_talent" end
 	local hTarget = self:GetCursorTarget()
 	EmitSoundOn( "Hero_DoomBringer.LvlDeath", self:GetCaster())
 	if self:GetCaster():HasScepter() then

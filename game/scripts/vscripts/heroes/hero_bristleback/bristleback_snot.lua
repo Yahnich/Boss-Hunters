@@ -70,7 +70,7 @@ if IsServer() then
 	end
 	
 	function modifier_bristleback_snot_autocast:OnIntervalThink()
-		if self:GetAbility():IsCooldownReady() and self:GetAbility():GetAutoCastState() then
+		if self:GetAbility():IsCooldownReady() and self:GetAbility():GetAutoCastState() and self:GetCaster():IsAlive() then
 			self:GetAbility():CastSpell()
 		end
 	end
