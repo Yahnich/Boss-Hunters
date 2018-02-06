@@ -12,7 +12,7 @@
 			m_flEndFadeSize = 0.65
 			m_flMaxSize = 0.75
 			m_flOverbrightFactor = 6.0
-			m_hTexture = resource:"materials/particle/electrical_arc/electrical_arc02.vtex"
+			m_hTexture = resource:"materials/particle/juggernaut/arcana/jugg_arcana_ground_symbol_detail.vtex"
 			m_flAnimationRate = 0.7
 		},
 		{
@@ -28,7 +28,7 @@
 	[
 		{
 			_class = "C_OP_BasicMovement"
-			m_Gravity = [ 0.0, 0.0, 100.0 ]
+			m_Gravity = [ 0.0, 0.0, 500.0 ]
 		},
 		{
 			_class = "C_OP_Decay"
@@ -59,6 +59,7 @@
 			m_flEndScale = 0.0
 			m_flBias = 0.8
 			m_bEaseInAndOut = true
+			m_flStartScale = 2.0
 		},
 		{
 			_class = "C_OP_FadeOut"

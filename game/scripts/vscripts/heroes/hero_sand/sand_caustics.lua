@@ -35,6 +35,7 @@ end
 modifier_caustics_enemy = class({})
 function modifier_caustics_enemy:OnCreated(table)
     if IsServer() then
+		EmitSoundOn("Ability.SandKing_CausticFinale", self:GetParent())
         self:StartIntervalThink(1.0)
     end
 end
@@ -48,7 +49,7 @@ function modifier_caustics_enemy:OnIntervalThink()
     for _,enemy in pairs(enemies) do
         if self:GetCaster():HasScepter() then
             local damage = self:GetCaster():GetMaxHealth() * self:GetTalentSpecialValueFor("scepter_damage")/100
-            self:GetAbility():DealDamage(self:GetCaster(), enemy, damage, {damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION}, OVERHEAD_ALERT_BONUS_POISON_DAMAGE)
+            self:GetAbility():DealDamage(self:GetCaster(), enemy, damage, {damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION, damage_type = DAMAGE_TYPE_PURE}, OVERHEAD_ALERT_BONUS_POISON_DAMAGE)
         else
             local damage = self:GetCaster():GetMaxHealth() * self:GetTalentSpecialValueFor("damage")/100
             self:GetAbility():DealDamage(self:GetCaster(), enemy, damage, {damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION}, OVERHEAD_ALERT_BONUS_POISON_DAMAGE)

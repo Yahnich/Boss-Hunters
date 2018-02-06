@@ -2,6 +2,16 @@ sand_tremors = class({})
 LinkLuaModifier("modifier_tremors", "heroes/hero_sand/sand_tremors.lua", 0)
 LinkLuaModifier("modifier_tremors_enemy", "heroes/hero_sand/sand_tremors.lua", 0)
 
+function sand_tremors:OnAbilityPhaseStart()
+	EmitSoundOn("Ability.SandKing_Epicenter.spell", self:GetCaster())
+	return true
+end
+
+
+function sand_tremors:OnAbilityPhaseInterrupted()
+	StopSoundOn("Ability.SandKing_Epicenter.spell", self:GetCaster())
+end
+
 function sand_tremors:OnSpellStart()
     local caster = self:GetCaster()
 
@@ -9,32 +19,42 @@ function sand_tremors:OnSpellStart()
 end
 
 modifier_tremors = class({})
-function modifier_tremors:OnCreated()
-    if IsServer() then
-        self:StartIntervalThink(self:GetTalentSpecialValueFor("tremor_rate"))
-    end
-end
+if IsServer() then
+	function modifier_tremors:OnCreated()
+		self:StartIntervalThink(self:GetTalentSpecialValueFor("tremor_rate"))
+		EmitSoundOn("Ability.SandKing_Epicenter", self:GetParent())
+	end
 
-function modifier_tremors:OnIntervalThink()
-    local caster = self:GetCaster()
-    local radius = self:GetSpecialValueFor("radius")
+	function modifier_tremors:OnIntervalThink()
+		local caster = self:GetCaster()
+		local radius = self:GetSpecialValueFor("radius")
 
-    local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_sandking/sandking_epicenter.vpcf", PATTACH_POINT, caster)
-    ParticleManager:SetParticleControl(nfx, 0, caster:GetAbsOrigin())
-    ParticleManager:SetParticleControl(nfx, 1, Vector(radius,radius,radius))
-    ParticleManager:ReleaseParticleIndex(nfx)
+		local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_sandking/sandking_epicenter.vpcf", PATTACH_POINT, caster)
+		ParticleManager:SetParticleControl(nfx, 0, caster:GetAbsOrigin())
+		ParticleManager:SetParticleControl(nfx, 1, Vector(radius,radius,radius))
+		ParticleManager:ReleaseParticleIndex(nfx)
+		StopSoundOn("Ability.SandKing_Epicenter", self:GetParent())
+		EmitSoundOn("Ability.SandKing_Epicenter", self:GetParent())
+		local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), radius, {})
+		for _,enemy in pairs(enemies) do
+			self:GetAbility():DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage"))
+			enemy:AddNewModifier(caster, self:GetAbility(), "modifier_tremors_enemy", {Duration = self:GetSpecialValueFor("duration")})
 
-    local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), radius, {})
-    for _,enemy in pairs(enemies) do
-        self:GetAbility():DealDamage(caster, enemy, self:GetTalentSpecialValueFor("sandstorm_damage"), {}, 0)
-        enemy:AddNewModifier(caster, self:GetAbility(), "modifier_tremors_enemy", {Duration = self:GetSpecialValueFor("duration")})
-
-        if caster:HasTalent("special_bonus_unique_sand_tremors_2") then
-            if not enemy:HasModifier("modifier_knockback") then
-                enemy:ApplyKnockBack(caster:GetAbsOrigin(), 0.5, 0.5, -250, 250, caster, self:GetAbility())
-            end
-        end
-    end
+			if caster:HasTalent("special_bonus_unique_sand_tremors_2") then
+				if not enemy:HasModifier("modifier_knockback") then
+					enemy:ApplyKnockBack(caster:GetAbsOrigin(), 0.5, 0.5, -250, 250, caster, self:GetAbility())
+				end
+			end
+		end
+	end
+	
+	function modifier_tremors:OnRemoved()
+		StopSoundOn("Ability.SandKing_Epicenter", self:GetParent())
+	end
+	
+	function modifier_tremors:OnDestroy()
+		StopSoundOn("Ability.SandKing_Epicenter", self:GetParent())
+	end
 end
 
 modifier_tremors_enemy = class({})

@@ -1,3 +1,65 @@
+"Hero_Rattletrap.Chasm_Strike"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"		"sos_reference_stack"
+				"reference_stack"		"dota_update_default"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"		"sounds/weapons/hero/nyx/impale.vsnd"
+						}
+					}
+					"volume"			{"value"		"1.0000"}
+					"pitch_rand_min" 	{"value"		"0.1"}
+					"pitch_rand_max" 	{"value"		"-0.1"}
+					"pitch" 			{"value"		"0.80000"}
+					"soundlevel"		{ "value"		"81.000000"}
+					"spread_radius"		{ "value"		"1500.000000"}
+				}
+			}
+		}
+	}
+}
+"Hero_Rattletrap.Chasm_Strike.Target"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"		"sos_reference_stack"
+				"reference_stack"		"dota_update_default"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"		"sounds/weapons/hero/lion/lion_impale_target_hit1.vsnd"
+							"value1"		"sounds/weapons/hero/lion/lion_impale_target_hit2.vsnd"
+							"value2"		"sounds/weapons/hero/lion/lion_impale_target_hit3.vsnd"
+						}
+					}
+					"volume"			{"value"		"1.0000"}
+					"pitch_rand_min" 	{"value"		"0.05"}
+					"pitch_rand_max" 	{"value"		"-0.05"}
+					"pitch" 			{"value"		"0.80000"}
+					"soundlevel"		{ "value"		"81.000000"}
+					"spread_radius"		{ "value"		"1500.000000"}
+				}
+			}
+		}
+	}
+}
 "Hero_Rattletrap.Automated_Artillery.Fire"
 {
 	"operator_stacks"
@@ -19,7 +81,7 @@
 					}
 					"volume"			{"value"		"0.350000"}
 					"pitch_rand_min" 	{"value"		"0.1"}
-					"pitch_rand_max" 	{"value"		"0.1"}
+					"pitch_rand_max" 	{"value"		"-0.1"}
 					"pitch" 			{"value"		"1.50000"}
 					"soundlevel"		{ "value"		"45.000000"}
 					"spread_radius"		{ "value"		"1500.000000"}
@@ -49,7 +111,7 @@
 					}
 					"volume"			{"value"		"0.200000"}
 					"pitch_rand_min" 	{"value"		"0.1"}
-					"pitch_rand_max" 	{"value"		"0.1"}
+					"pitch_rand_max" 	{"value"		"-0.1"}
 					"pitch" 			{"value"		"1.50000"}
 					"soundlevel"		{ "value"		"25.000000"}
 					"spread_radius"		{ "value"		"1500.000000"}
