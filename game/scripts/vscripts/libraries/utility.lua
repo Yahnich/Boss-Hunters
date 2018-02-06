@@ -1486,7 +1486,7 @@ function CDOTA_BaseNPC:FindFriendlyUnitsInLine(startPos, endPos, width, hData)
 	local team = self:GetTeamNumber()
 	local data = hData or {}
 	local iTeam = data.team or DOTA_UNIT_TARGET_TEAM_ENEMY
-	local iType = data.type or DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
+	local iType = data.type or DOTA_UNIT_TARGET_ALL
 	local iFlag = data.flag or DOTA_UNIT_TARGET_FLAG_NONE
 	return FindUnitsInLine(team, startPos, endPos, nil, width, iTeam, iType, iFlag)
 end
@@ -1495,7 +1495,7 @@ function CDOTA_BaseNPC:FindAllUnitsInLine(startPos, endPos, width, hData)
 	local team = self:GetTeamNumber()
 	local data = hData or {}
 	local iTeam = data.team or DOTA_UNIT_TARGET_TEAM_ENEMY
-	local iType = data.type or DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
+	local iType = data.type or DOTA_UNIT_TARGET_ALL
 	local iFlag = data.flag or DOTA_UNIT_TARGET_FLAG_NONE
 	return FindUnitsInLine(team, startPos, endPos, nil, width, iTeam, iType, iFlag)
 end
@@ -1548,7 +1548,7 @@ function CDOTA_BaseNPC:FindFriendlyUnitsInRadius(position, radius, hData)
 	local team = self:GetTeamNumber()
 	local data = hData or {}
 	local iTeam = DOTA_UNIT_TARGET_TEAM_FRIENDLY
-	local iType = data.type or DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
+	local iType = data.type or DOTA_UNIT_TARGET_ALL
 	local iFlag = data.flag or DOTA_UNIT_TARGET_FLAG_NONE
 	local iOrder = data.order or FIND_ANY_ORDER
 	return FindUnitsInRadius(team, position, nil, radius, iTeam, iType, iFlag, iOrder, false)
@@ -1558,7 +1558,7 @@ function CDOTA_BaseNPC:FindAllUnitsInRadius(position, radius, hData)
 	local team = self:GetTeamNumber()
 	local data = hData or {}
 	local iTeam = data.team or DOTA_UNIT_TARGET_TEAM_BOTH
-	local iType = data.type or DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
+	local iType = data.type or DOTA_UNIT_TARGET_ALL
 	local iFlag = data.flag or DOTA_UNIT_TARGET_FLAG_NONE
 	local iOrder = data.order or FIND_ANY_ORDER
 	return FindUnitsInRadius(team, position, nil, radius, iTeam, iType, iFlag, iOrder, false)
