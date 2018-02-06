@@ -1,0 +1,157 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf1:version{d47d07e6-072c-49cb-9718-5bfd8d6c3d21} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 1
+	m_flConstantRadius = 1.0
+	m_ConstantColor = [ 164, 150, 126, 255 ]
+	m_nConstantSequenceNumber1 = 3
+	m_flNoDrawTimeToGoToSleep = 32.0
+	m_bShouldSort = false
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderModels"
+			m_bOrientZ = true
+			m_nSkin = 2
+			m_bManualAnimFrame = true
+			m_nManualFrameField = 18
+			m_bSuppressTint = true
+			m_ModelList = 
+			[
+				{
+					m_model = resource:"models/particle/cracked_boulder_v2.vmdl"
+				},
+			]
+			m_bAnimated = true
+			m_nLOD = 1
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_StopAfterCPDuration"
+			m_flDuration = 1.5
+		},
+		{
+			_class = "C_OP_BasicMovement"
+			m_nOpEndCapState = 1
+			m_Gravity = [ 0.0, 0.0, -300.0 ]
+			m_flOpStartFadeInTime = 1.0
+			m_flOpEndFadeInTime = 1.0
+		},
+		{
+			_class = "C_OP_RemapCPOrientationToYaw"
+			m_bDisableOperator = true
+			m_nCP = 0
+			m_flRotOffset = 180.0
+		},
+		{
+			_class = "C_OP_RemapNamedModelSequenceOnceTimed"
+			m_flRemapTime = 0.9
+			m_bModelFromRenderer = true
+			m_inNames = 
+			[
+				"cracked_boulder_break",
+			]
+			m_outNames = 
+			[
+				"cracked_boulder_break_endstate",
+			]
+			m_nFieldInput = 13
+			m_nFieldOutput = 13
+		},
+		{
+			_class = "C_OP_EndCapTimedDecay"
+			m_flDecayTime = 2.0
+		},
+		{
+			_class = "C_OP_RampScalarLinearSimple"
+			m_Rate = 24.0
+			m_nField = 18
+		},
+		{
+			_class = "C_OP_ClampScalar"
+			m_flOutputMax = 28.0
+			m_nFieldOutput = 18
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_RandomLifeTime"
+			m_fLifetimeMin = 1.0
+			m_fLifetimeMax = 1.0
+		},
+		{
+			_class = "C_INIT_RemapInitialCPDirectionToRotation"
+			m_bDisableOperator = true
+			m_nFieldOutput = 12
+			m_nCP = 4
+		},
+		{
+			_class = "C_INIT_InitFromParentKilled"
+			m_nAttributeToCopy = 3
+		},
+		{
+			_class = "C_INIT_InitFromParentKilled"
+			m_nAttributeToCopy = 12
+		},
+		{
+			_class = "C_INIT_RemapScalar"
+			m_flOutputMax = 270.0
+			m_flOutputMin = -450.0
+			m_nFieldOutput = 12
+			m_flInputMax = 360.0
+			m_nFieldInput = 12
+			m_flInputMin = -360.0
+		},
+		{
+			_class = "C_INIT_CreateWithinSphere"
+		},
+		{
+			_class = "C_INIT_PositionOffset"
+			m_OffsetMax = [ 0.0, 0.0, 120.0 ]
+			m_OffsetMin = [ 0.0, 0.0, 120.0 ]
+		},
+		{
+			_class = "C_INIT_InitFromParentKilled"
+			m_nAttributeToCopy = 21
+		},
+		{
+			_class = "C_INIT_RandomScalar"
+			m_nFieldOutput = 18
+			m_flMax = 5.0
+			m_flMin = 5.0
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_ContinuousEmitter"
+			m_bInitFromKilledParentParticles = true
+		},
+	]
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 0.0, 0.0, 0.0 ]
+					m_angOffset = [ null, null, null ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 4
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 0.0, 0.0, 0.0 ]
+					m_angOffset = [ null, null, null ]
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+}
