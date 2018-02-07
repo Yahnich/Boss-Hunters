@@ -27,10 +27,18 @@ function modifier_earthshaker_enchant_totem_ebf:DeclareFunctions()
 	return {MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE, MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE, MODIFIER_EVENT_ON_ATTACK}
 end
 
+function modifier_earthshaker_enchant_totem_ebf:CheckState()
+	return {[MODIFIER_STATE_CANNOT_MISS] = true}
+end
+
 function modifier_earthshaker_enchant_totem_ebf:OnAttack( params )
 	if params.attacker == self:GetParent() then
 		EmitSoundOn("Hero_EarthShaker.Totem.Attack", params.target)
 		ParticleManager:FireParticle("particles/units/heroes/hero_earthshaker/earthshaker_totem_blur.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetParent())
+		if self:GetParent():HasTalent("special_bonus_unique_earthshaker_enchant_totem_ebf_1") and params.target and params.target.IsRealHero then
+			local sDur = self:GetParent():FindTalentValue("special_bonus_unique_earthshaker_enchant_totem_ebf_1")
+			self:GetAbility():Stun(params.target, sDur, false)
+		end
 	end
 end
 

@@ -11,9 +11,20 @@ function earthshaker_aftershock_ebf:Aftershock(position, radius)
 	local damage = self:GetTalentSpecialValueFor("str_damage") / 100 * caster:GetStrength()
 	local duration = self:GetTalentSpecialValueFor("max_duration")
 	
-	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius(vPos, radius) ) do
+	local enemies = caster:FindEnemyUnitsInRadius(vPos, radius)
+	for _, enemy in ipairs( enemies ) do
 		self:DealDamage(caster, enemy, damage)
-		self:Stun(enemy, duration, false)
+		local sDur = duration * (CalculateDistance(enemy, caster) / radius)
+		self:Stun(enemy, sDur, false)
+		if caster:HasTalent("special_bonus_unique_earthshaker_aftershock_ebf_1") then
+			local echo = caster:FindAbilityByName("earthshaker_echo_slam_ebf")
+			if echo then 
+				local echoDamage = echo:GetTalentSpecialValueFor("echo_damage") * caster:FindTalentValue("special_bonus_unique_earthshaker_aftershock_ebf_1") / 100
+				for _, echoTarget in ipairs( caster:FindEnemyUnitsInRadius( enemy:GetAbsOrigin(), radius) ) do
+					echo:CreateEcho( enemy, echoTarget, echoDamage )
+				end
+			end
+		end
 	end
 	ParticleManager:FireParticle("particles/units/heroes/hero_earthshaker/earthshaker_aftershock.vpcf", PATTACH_WORLDORIGIN, nil, {[0] = vPos, [1] = Vector(radius, radius, radius)})
 	EmitSoundOn( "Hero_EarthShaker.EchoSlamSmall", caster)
