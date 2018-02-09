@@ -1,5 +1,4 @@
 espirit_rock_punch = class({})
-LinkLuaModifier( "modifier_rock_punch", "heroes/hero_espirit/espirit_rock_punch.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 function espirit_rock_punch:GetAOERadius()
 	return self:GetTalentSpecialValueFor("radius")
@@ -84,63 +83,15 @@ function espirit_rock_punch:OnProjectileHit(hTarget, vLocation)
 		end
 
 		if caster:HasTalent("special_bonus_unique_espirit_rock_punch_2") then
-			local randoVect = Vector(RandomInt(-100,100), RandomInt(-100,100), 0)
-    		pointRando = vLocation + randoVect
+    		pointRando = vLocation + ActualRandomVector(100, 25)
 			local rock2 = caster:CreateSummon("npc_dota_earth_spirit_stone", pointRando, self:GetTalentSpecialValueFor("rock_duration"))
 			FindClearSpaceForUnit(rock2, pointRando, false)
 			rock2:SetForwardVector(caster:GetForwardVector())
 			rock2:AddNewModifier(caster, self, "modifier_rock_punch", {})
 		end
 
-		local rock = caster:CreateSummon("npc_dota_earth_spirit_stone", vLocation, self:GetTalentSpecialValueFor("rock_duration"))
-		FindClearSpaceForUnit(rock, vLocation, false)
-		rock:SetForwardVector(caster:GetForwardVector())
-		rock:AddNewModifier(caster, self, "modifier_rock_punch", {})
+		caster:FindAbilityByName("espirit_rock"):CreateStoneRemnant(vLocation)
 
 		hTarget:ForceKill(false)
-	end
-end
-
-modifier_rock_punch = class({})
-
-function modifier_rock_punch:OnCreated(table)
-	if IsServer() then
-		self.nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_earth_spirit/espirit_stoneremnant.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
-		ParticleManager:SetParticleControl(self.nfx, 0, self:GetParent():GetAbsOrigin())
-		ParticleManager:SetParticleControl(self.nfx, 1, self:GetParent():GetAbsOrigin())
-		EmitSoundOn("Hero_EarthSpirit.StoneRemnant.Impact", self:GetParent())
-		self:StartIntervalThink(1.0)
-	end
-end
-
-function modifier_rock_punch:OnIntervalThink()
-	if self:GetCaster():HasTalent("special_bonus_unique_espirit_rock_1") then
-		local allies = self:GetCaster():FindFriendlyUnitsInRadius(self:GetCaster():GetAbsOrigin(), 500, {})
-		for _,ally in pairs(allies) do
-			if ally:GetUnitName() ~= "npc_dota_earth_spirit_stone" then
-				ally:HealEvent(500, self:GetAbility(), self:GetCaster())
-			end
-		end
-	end
-end
-
-function modifier_rock_punch:CheckState()
-	local state = { [MODIFIER_STATE_ATTACK_IMMUNE] = true,
-					[MODIFIER_STATE_MAGIC_IMMUNE] = true,
-					[MODIFIER_STATE_UNSELECTABLE] = true,
-					[MODIFIER_STATE_UNTARGETABLE] = true,
-					[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
-					[MODIFIER_STATE_FLYING_FOR_PATHING_PURPOSES_ONLY] = true,
-					[MODIFIER_STATE_NO_HEALTH_BAR] = true,
-					[MODIFIER_STATE_NOT_ON_MINIMAP] = true
-					}
-	return state
-end
-
-function modifier_rock_punch:OnRemoved()
-	if IsServer() then
-		ParticleManager:DestroyParticle(self.nfx, false)
-		StopSoundOn("Hero_EarthSpirit.StoneRemnant.Impact", self:GetParent())
-		EmitSoundOn("Hero_EarthSpirit.StoneRemnant.Destroy", self:GetParent())
 	end
 end

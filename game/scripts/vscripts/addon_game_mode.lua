@@ -1091,11 +1091,22 @@ end
 
 function CHoldoutGameMode:OnAbilityLearned(event)
 	local abilityname = event.abilityname
-	local player = EntIndexToHScript(event.player)
-	if player then
+	local pID = event.PlayerID
+	if pID then
+		local hero = PlayerResource:GetSelectedHeroEntity( pID )
 		if string.match(abilityname, "special_bonus_unique") then
-			local pID = player:GetPlayerID()
 			local talentData = CustomNetTables:GetTableValue("talents", tostring(pID)) or {}
+			if GameRules.AbilityKV[abilityname]["LinkedModifierName"] then
+				local modifierName = GameRules.AbilityKV[abilityname]["LinkedModifierName"] 
+				for _, unit in ipairs( FindAllUnits() ) do
+					if unit:HasModifier(modifierName) then
+						local mList = unit:FindAllModifiersByName(modifierName)
+						for _, modifier in ipairs( mList ) do
+							modifier:ForceRefresh()
+						end
+					end
+				end
+			end
 			talentData[abilityname] = true
 			CustomNetTables:SetTableValue( "talents", tostring(pID), talentData )
 		end

@@ -77,8 +77,8 @@ function chaos_knight_reality_rift_ebf:OnSpellStart()
 	
 	local vDir = CalculateDirection(self.caster, self.target)
 	
-	self.caster:SetForwardVector(-vDir)
-	self.target:SetForwardVector(vDir)
+	self.caster:FaceTowards(self.target)
+	self.target:FaceTowards(self.caster)
 	
 	self.caster:MoveToTargetToAttack(self.target)
 	self.target:AddNewModifier(self.caster, self, "modifier_chaos_knight_reality_rift_ebf", {duration = duration})
@@ -86,7 +86,7 @@ function chaos_knight_reality_rift_ebf:OnSpellStart()
 	for _, illusion in ipairs( self.illusions ) do
 		if self.caster ~= illusion and illusion:IsIllusion() and illusion:GetPlayerOwnerID() == self.caster:GetPlayerOwnerID() then
 			FindClearSpaceForUnit(illusion, self.endPos, true)
-			illusion:SetForwardVector( CalculateDirection(self.target, illusion) )
+			illusion:FaceTowards(self.target)
 			self.caster:MoveToTargetToAttack(self.target)
 		end
 	end
@@ -96,7 +96,7 @@ function chaos_knight_reality_rift_ebf:OnSpellStart()
 		for _, enemy in ipairs( enemies ) do
 			if enemy ~= self.target then
 				FindClearSpaceForUnit(enemy, self.endPos, true)
-				enemy:SetForwardVector( CalculateDirection(self.caster, enemy) )
+				enemy:FaceTowards(self.caster)
 				enemy:AddNewModifier(self.caster, self, "modifier_chaos_knight_reality_rift_ebf", {duration = duration})
 			end
 		end

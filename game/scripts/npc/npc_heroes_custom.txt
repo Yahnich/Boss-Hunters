@@ -371,6 +371,48 @@
 		"Ability16"				"special_bonus_unique_doom_apocalypse_1"
 		"Ability17"				"special_bonus_unique_doom_apocalypse_2"
 	}
+	"npc_dota_hero_earthshaker_ebf"
+	{
+		"override_hero"			"npc_dota_hero_earthshaker"
+		"AbilityLayout"			"4"
+		"Ability1"				"earthshaker_fissure_ebf"
+		"Ability2"				"earthshaker_enchant_totem_ebf"
+		"Ability3"				"earthshaker_crater_impact"
+		"Ability4"				"earthshaker_aftershock_ebf"
+		"Ability5"				"generic_hidden"
+		"Ability6"				"earthshaker_echo_slam_ebf"
+		
+		"Ability10"				"special_bonus_unique_earthshaker_crater_impact_1"
+		"Ability11"				"special_bonus_unique_earthshaker_crater_impact_2"
+		"Ability12"				"special_bonus_unique_earthshaker_enchant_totem_ebf_1"
+		"Ability13"				"special_bonus_unique_earthshaker_enchant_totem_ebf_2"
+		"Ability14"				"special_bonus_unique_earthshaker_echo_slam_ebf_1"
+		"Ability15"				"special_bonus_unique_earthshaker_echo_slam_ebf_2"
+		"Ability16"				"special_bonus_unique_earthshaker_fissure_ebf_1"
+		"Ability17"				"special_bonus_unique_earthshaker_aftershock_ebf_1"
+	}
+	//=================================================================================================================
+	// HERO: es
+	//==t===============================================================================================================
+	"npc_dota_hero_earth_spirit_ebf"
+	{
+		"override_hero"				"npc_dota_hero_earth_spirit"
+		"Ability1"					"espirit_rock_punch"
+		"Ability2"					"espirit_boulder"
+		"Ability3"					"espirit_rock_pull"
+		"Ability4"					"espirit_rock"
+		"Ability5"					"espirit_stone_rip"
+		"Ability6"					"espirit_magnetize"
+
+		"Ability10"					"special_bonus_unique_espirit_rock_punch_1"
+		"Ability11"  			    "special_bonus_unique_espirit_rock_3"
+		"Ability12"   				"special_bonus_unique_espirit_boulder_1"
+		"Ability13"					"special_bonus_unique_espirit_boulder_2"
+		"Ability14"					"special_bonus_unique_espirit_rock_pull_1"
+		"Ability15"					"special_bonus_unique_espirit_rock_2"
+		"Ability16"					"special_bonus_unique_espirit_rock_1"
+		"Ability17"					"special_bonus_unique_espirit_magnetize_1"
+	}
 	//=================================================================================================================
 	// HERO: DK
 	//=================================================================================================================
@@ -396,16 +438,6 @@
 		"Ability3"					"drow_ranger_trueshot_ebf"
 		"Ability4"					"drow_ranger_frost_arrows"
 		"Ability6"					"drow_ranger_marksmanship"
-		
-	}
-	//=================================================================================================================
-	// HERO: es
-	//=================================================================================================================
-	"npc_dota_hero_earth_spirit_ebf"
-	{
-		"override_hero"				"npc_dota_hero_earth_spirit"
-		"Ability13"					"special_bonus_all_stats_12"
-		"Ability15"					"special_bonus_movement_speed_50"
 		
 	}
 	//=================================================================================================================

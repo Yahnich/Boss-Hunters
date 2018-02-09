@@ -1,6 +1,5 @@
 espirit_boulder = class({})
 LinkLuaModifier( "modifier_boulder_slow", "heroes/hero_espirit/espirit_boulder.lua" ,LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "modifier_rock_punch", "heroes/hero_espirit/espirit_rock_punch.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 function espirit_boulder:OnSpellStart()
     local caster = self:GetCaster()
@@ -13,29 +12,10 @@ function espirit_boulder:OnSpellStart()
     EmitSoundOn("Hero_EarthSpirit.RollingBoulder.Cast", caster)
 
     local direction = CalculateDirection(point, caster:GetAbsOrigin())
-    local spawn_point = caster:GetAbsOrigin() + direction * self:GetTrueCastRange() 
-
-    -- Set QAngles
-    local left_QAngle = QAngle(0, 10, 0)
-    local right_QAngle = QAngle(0, -10, 0)
-
-    -- Left arrow variables
-    local left_spawn_point = RotatePosition(caster:GetAbsOrigin(), left_QAngle, spawn_point)
-    local left_direction = (left_spawn_point - caster:GetAbsOrigin()):Normalized()                
-
-    -- Right arrow variables
-    local right_spawn_point = RotatePosition(caster:GetAbsOrigin(), right_QAngle, spawn_point)
-    local right_direction = (right_spawn_point - caster:GetAbsOrigin()):Normalized()
-
-    if caster:HasTalent("special_bonus_unique_espirit_boulder_2") then
-    	self:launchBoulder(left_direction)
-    	self:launchBoulder(right_direction)
-    else
-    	self:launchBoulder(direction)
-    end
+	self:LaunchBoulder( direction )
 end
 
-function espirit_boulder:launchBoulder(direction)
+function espirit_boulder:LaunchBoulder(direction)
 	local caster = self:GetCaster()
 
 	local info = 
@@ -90,13 +70,12 @@ function espirit_boulder:OnProjectileHit(hTarget, vLocation)
 			self:DealDamage(caster, hTarget, self:GetTalentSpecialValueFor("damage"), {}, 0)
 		end
 	else
-		local rock = caster:CreateSummon("npc_dota_earth_spirit_stone", vLocation, self:GetTalentSpecialValueFor("rock_duration"))
-		FindClearSpaceForUnit(rock, vLocation, false)
-        rock:SetForwardVector(caster:GetForwardVector())
-
+		if caster:HasTalent("special_bonus_unique_espirit_boulder_2") then
+			FindClearSpaceForUnit(caster, vLocation, true)
+			ProjectileManager:ProjectileDodge(caster)
+		end
+		caster:FindAbilityByName("espirit_rock"):CreateStoneRemnant(vLocation)
         EmitSoundOn("Hero_EarthSpirit.RollingBoulder.Destroy", rock)
-
-		rock:AddNewModifier(caster, self, "modifier_rock_punch", {})
 	end
 end
 

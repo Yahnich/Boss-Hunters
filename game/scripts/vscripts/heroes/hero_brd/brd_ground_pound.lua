@@ -28,7 +28,7 @@ function brd_ground_pound:OnSpellStart()
 				ParticleManager:ReleaseParticleIndex(nfx)
 
 				EmitSoundOn("Hero_Axe.Culling_Blade_Success", self:GetCaster())
-				enemy:ForceKill(false)
+				enemy:AttemptKill(self, caster)
 
 				if caster:HasTalent("special_bonus_unique_brd_ground_pound") then
 					caster:AddNewModifier(caster, self, "modifier_ground_pound_damage_reduction", {Duration = self:GetSpecialValueFor("duration")})

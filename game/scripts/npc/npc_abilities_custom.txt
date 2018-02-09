@@ -17960,7 +17960,7 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"20"
+		"AbilityCooldown"				"10"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -18083,12 +18083,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"impact_radius"			"750"
+				"impact_radius"			"350"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"stun_duration"			"2.0"
+				"stun_duration"			"1.0"
 			}
 			"03"
 			{
@@ -18135,7 +18135,7 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"60"
+		"AbilityCooldown"				"14"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -18259,12 +18259,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"impact_radius"			"750"
+				"impact_radius"			"350"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"stun_duration"			"2.0"
+				"stun_duration"			"1.25"
 			}
 			"03"
 			{
@@ -39360,6 +39360,669 @@
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_sandking.vsndevts"
 		}
 	}
+	"espirit_boulder"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_espirit/espirit_boulder.lua"
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL"
+		"AbilityTextureName"			"earth_spirit_rolling_boulder"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"LevelsBetweenUpgrades"			"6"
+		"MaxLevel"						"7"
+		"RequiredLevel"					"6"
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1000"
+		"AbilityCastPoint"				"0.3"
+		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
+	
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"16.0 14.0 12.0 10.0 8.0 6.0 4.0"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"50"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"1200 2200 4200 8200 16500 32500 65000"
+				//"LinkedSpecialBonus"	"special_bonus_unique_earth_spirit"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rock_damage"			"600 1100 2100 4100 8250 16250 32500"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rock_radius"			"300"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"rock_duration"			"60"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"width"					"150"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"speed"					"1000"
+			}		
+		}
+	
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_espirit/espirit_boulder.vpcf"
+			"particle"  "particles/units/heroes/hero_earth_spirit/espirit_stoneremnant.vpcf"
+			"particle"  "particles/units/heroes/hero_earth_spirit/espirit_spawn.vpcf"
+			
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_earth_spirit.vsndevts"
+		}
+	}
+	"espirit_magnetize"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_espirit/espirit_magnetize.lua"
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName"			"earth_spirit_magnetize"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"LevelsBetweenUpgrades"			"5"
+		"MaxLevel"						"7"
+		"RequiredLevel"					"6"
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.01"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_6"
+	
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"80.0"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"100"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"150 300 600 1200 2400 4800 9600"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"5.0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"500 550 600 650 700 850 900"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"rock_explosion_delay"	"5.0"
+			}			
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"tick_rate"				"0.5"
+			}							
+		}
+	
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_earth_spirit/espirit_stone_explosion_bolt.vpcf"
+			"particle"  "particles/units/heroes/hero_earth_spirit/espirit_stone_explosion.vpcf"
+			
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_earth_spirit.vsndevts"
+		}
+	}
+	"espirit_rock"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_espirit/espirit_rock.lua"
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityTextureName"			"earth_spirit_stone_caller"
+		"MaxLevel"						"1"
+		"InnateAbility"					"1"
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1000"
+		"AbilityCastPoint"				"0.0"
+		"AbilityCastAnimation"			"ACT_DOTA_ES_STONE_CALLER"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"rock_duration"			"60"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"charge_time"			"30"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"charges"				"3"
+				"LinkedSpecialBonus"	"special_bonus_unique_espirit_rock_3"
+			}
+		}
+	
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_earth_spirit/espirit_spawn.vpcf"
+			
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_earth_spirit.vsndevts"
+		}
+	}
+	"espirit_rock_pull"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_espirit/espirit_rock_pull.lua"
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityTextureName"			"earth_spirit_geomagnetic_grip"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"LevelsBetweenUpgrades"			"6"
+		"MaxLevel"						"7"
+		"RequiredLevel"					"6"
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1000"
+		"AbilityCastPoint"				"0.01"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_3"
+	
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"10.0"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"100"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"1200 2200 4200 8400 16600 32800 65000"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"250"
+			}								
+		}
+	
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_earth_spirit/espirit_geomagentic_target_sphere.vpcf"
+			
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_earth_spirit.vsndevts"
+		}
+	}
+	"espirit_rock_punch"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_espirit/espirit_rock_punch.lua"
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityTextureName"			"brewmaster_earth_hurl_boulder"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"LevelsBetweenUpgrades"			"6"
+		"MaxLevel"						"7"
+		"RequiredLevel"					"6"
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1000"
+		"AbilityCastPoint"				"0.01"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+	
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"10.0"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"100"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rock_damage"			"2000 4000 8000 12000 18000 35000 68000"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"300"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"rock_duration"			"60"
+			}
+		}
+	
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_brewmaster/brewmaster_hurl_boulder.vpcf"
+			"particle"  "particles/units/heroes/hero_earth_spirit/espirit_stoneremnant.vpcf"
+			"particle"  "particles/units/heroes/hero_earth_spirit/espirit_bouldersmash_caster.vpcf"
+			"particle"  "particles/units/heroes/hero_techies/techies_bomb_ground_disturb.vpcf"
+			"particle"  "particles/units/heroes/hero_earth_spirit/espirit_spawn.vpcf"
+			
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_earth_spirit.vsndevts"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_brewmaster.vsndevts"
+		}
+	}
+	"espirit_stone_rip"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_espirit/espirit_stone_rip.lua"
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityTextureName"			"brewmaster_earth_pulverize"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"MaxLevel"						"1"
+		"IsGrantedByScepter"			"1"
+		"HasScepterUpgrade"				"1"
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1000"
+		"AbilityCastPoint"				"0.2"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_5"
+	
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"50.0"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"1000"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"8000"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"1000"
+			}
+		}
+	
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_brewmaster/brewmaster_hurl_boulder.vpcf"
+			
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_earth_spirit.vsndevts"
+		}
+	}
+	//=================================================================================================================
+	// Ability: Earthshaker Fissure
+	//=================================================================================================================
+	"earthshaker_fissure_ebf"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_earthshaker/earthshaker_fissure_ebf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"earthshaker_fissure"
+		"FightRecapLevel"				"1"
+		"LevelsBetweenUpgrades"			"5"
+		"MaxLevel"						"7"
+		"RequiredLevel"					"5"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1400"
+		"AbilityCastPoint"				"0.69 0.69 0.69 0.69"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"12"
+		"AbilityDuration"				"1.0 1.25 1.5 1.75 2.0 2.25 2.5"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"25 50 75 125 250 500 1000"
+		
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_earthshaker/earthshaker_fissure.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_earthshaker.vsndevts"
+		}
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"fissure_range"				"1400"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"fissure_duration"			"3.0"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"fissure_radius"			"225"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"stun_duration"				"1.0 1.25 1.5 1.75 2.0 2.25 2.5"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"damage"					"1500 3000 6000 10000 15000 35000 50000"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Earthshaker Totem
+	//=================================================================================================================
+	"earthshaker_enchant_totem_ebf"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_earthshaker/earthshaker_enchant_totem_ebf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName"			"earthshaker_enchant_totem"
+		"LevelsBetweenUpgrades"			"6"
+		"MaxLevel"						"7"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"0"
+		"AbilityCastPoint"				"0.69"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"6.0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"25 50 75 125 250 500 1000"
+		
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_earthshaker/earthshaker_totem_buff.vpcf"
+			"particle"					"particles/units/heroes/hero_earthshaker/earthshaker_totem_blur.vpcf"
+			"particle"					"particles/units/heroes/hero_earthshaker/earthshaker_totem_hero_effect.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_earthshaker.vsndevts"
+		}
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"totem_damage_percentage"	"120 133 146 160 173 186 200"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"3"
+				"LinkedSpecialBonus"		"special_bonus_unique_earthshaker_enchant_totem_ebf_2"
+			}
+		}
+	}
+	
+	//=================================================================================================================
+	// Ability: Crater Impact
+	//=================================================================================================================
+	"earthshaker_crater_impact"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_earthshaker/earthshaker_crater_impact"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityTextureName"			"custom/earthshaker_crater_impact"
+		"AbilityCastAnimation"			"ACT_DOTA_OVERRIDE_ABILITY_2"
+		"LevelsBetweenUpgrades"			"6"
+		"MaxLevel"						"7"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"0"
+		"AbilityCastPoint"				"0"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"12.0 11.0 10.0 9.0 8.0 7.0 6.0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"25 50 75 125 250 500 1000"
+		
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_earthshaker/earthshaker_crater_impact_blur.vpcf"
+			"particle"					"particles/units/heroes/hero_earthshaker/earthshaker_crater_impact.vpcf"
+			"particle"					"particles/units/heroes/hero_earthshaker/earthshaker_crater_impact_armor.vpcf"
+			"particle"					"particles/econ/items/effigies/status_fx_effigies/status_effect_vr_desat_stone.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_leshrac.vsndevts"
+		}
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"350"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"1"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"damage"					"1200 2400 4800 9600 19200 38400 76800"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"jump_duration"				"0.75"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"jump_distance"				"600 700 800 900 1000 1100 1200"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Earthshaker Aftershock
+	//=================================================================================================================
+	"earthshaker_aftershock_ebf"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_earthshaker/earthshaker_aftershock_ebf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"earthshaker_aftershock"
+		"LevelsBetweenUpgrades"			"1"
+		"MaxLevel"						"1"
+		"InnateAbility"					"1"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"aftershock_range"			"625"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"max_duration"				"1.5"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"str_damage"				"175"
+			}
+		}
+	}
+	
+	//=================================================================================================================
+	// Ability: Earthshaker Echo Slam
+	//=================================================================================================================
+	"earthshaker_echo_slam_ebf"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_earthshaker/earthshaker_echo_slam_ebf"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"earthshaker_echo_slam"
+		"FightRecapLevel"				"2"
+		"LevelsBetweenUpgrades"			"7"
+		"MaxLevel"						"7"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0 0 0 0"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"120.0"
+
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"250 325 500 750 1250 2250 4000"
+		
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_earthshaker/earthshaker_echoslam.vpcf"
+			"particle"					"particles/units/heroes/hero_earthshaker/earthshaker_echoslam_start.vpcf"
+			"particle"					"particles/units/heroes/hero_earthshaker/earthshaker_echoslam_end.vpcf"
+			
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_earthshaker.vsndevts"
+		}
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"main_damage"				"3200 6400 12800 25000 50000 100000 200000"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"echo_damage"				"250 500 1000 2000 4000 8000 16000"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"echoes"					"1"
+				"LinkedSpecialBonus"		"special_bonus_unique_earthshaker_echo_slam_ebf_1"
+			}
+		}
+	}
+	
 	"shadow_shaman_binding_shackle"
 	{
 		// General
@@ -44183,6 +44846,374 @@
 			}
 		}
 	}
+	"special_bonus_unique_earthshaker_fissure_ebf_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"1"
+			}
+		}
+	}
+	"special_bonus_unique_earthshaker_aftershock_ebf_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"25"
+			}
+		}
+	}
+	"special_bonus_unique_earthshaker_enchant_totem_ebf_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"1"
+			}
+		}
+	}
+	"special_bonus_unique_earthshaker_enchant_totem_ebf_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"2"
+			}
+		}
+	}
+	"special_bonus_unique_earthshaker_crater_impact_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"2"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"0.5"
+			}
+		}
+	}
+	"special_bonus_unique_earthshaker_crater_impact_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"1"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"8"
+			}
+		}
+	}
+	"special_bonus_unique_earthshaker_echo_slam_ebf_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"1"
+			}
+		}
+	}
+	"special_bonus_unique_earthshaker_echo_slam_ebf_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"-40"
+			}
+		}
+	}
+	"special_bonus_unique_espirit_boulder_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"-25"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"3.0"
+			}
+		}
+	}
+	"special_bonus_unique_espirit_boulder_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"1"
+			}
+		}
+	}
+	"special_bonus_unique_espirit_magnetize_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"1"
+			}
+		}
+	}
+	"special_bonus_unique_espirit_rock_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"500"
+			}
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"500"
+			}
+		}
+	}
+	"special_bonus_unique_espirit_rock_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"0.5"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"radius"				"350"
+			}
+		}
+	}
+	"special_bonus_unique_espirit_rock_3" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"LinkedModifierName"			"modifier_espirit_rock_charges"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"2"
+			}
+		}
+	}
+	"special_bonus_unique_espirit_rock_pull_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"2"
+			}
+		}
+	}
+	"special_bonus_unique_espirit_rock_pull_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"1"
+			}
+		}
+	}
+	"special_bonus_unique_espirit_rock_punch_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"1"
+			}
+		}
+	}
+	"special_bonus_unique_espirit_rock_punch_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"1"
+			}
+		}
+	}
 	"special_bonus_unique_gyro_bombing_run_1" 
 	{
 		// General
@@ -47241,7 +48272,7 @@
 		"particle"  "particles/units/heroes/hero_pudge/pudge_meathook_impact.vpcf"
 		"particle"  "particles/units/heroes/hero_tide/tide_tongue_whip/tide_tongue_whip_b.vpcf"
 
-		"soundfile" "soundevents/game_sounds_heroes/game_sounds_tidehunter.vsndevts"
+		"soundfile" "soundevents/tide_tongue_whip.vsndevts"
 	}
 }
 	"tide_turtle_shell"
