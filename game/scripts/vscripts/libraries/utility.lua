@@ -1711,7 +1711,7 @@ function CDOTABaseAbility:FireLinearProjectile(FX, velocity, distance, width, da
 		fDistance = distance,
 		Source = internalData.source or self:GetCaster(),
 		iUnitTargetTeam = internalData.team or DOTA_UNIT_TARGET_TEAM_ENEMY,
-		iUnitTargetType = internalData.type or DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+		iUnitTargetType = internalData.type or DOTA_UNIT_TARGET_ALL,
 		ExtraData = internalData.extraData
 	}
 	ProjectileManager:CreateLinearProjectile( info )
