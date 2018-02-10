@@ -44,6 +44,7 @@ function modifier_rattletrap_automated_artillery:OnCreated()
 	if IsServer() then 
 		self.sisterAb = self:GetCaster():FindAbilityByName("rattletrap_reactive_shielding")
 		self.sisterAb:SetActivated(false)
+		if not self:IsToggle() then self:StartDelayedCooldown() end
 		self:StartIntervalThink(1 / self.rockets)
 	end
 end
@@ -54,6 +55,7 @@ function modifier_rattletrap_automated_artillery:OnRefresh()
 	self.rockets = self:GetTalentSpecialValueFor("rockets_per_second")
 	if IsServer() then 
 		self.sisterAb:SetActivated(false)
+		if not self:IsToggle() then self:StartDelayedCooldown() end
 		self:StartIntervalThink(1 / self.rockets)
 	end
 end
@@ -65,7 +67,8 @@ function modifier_rattletrap_automated_artillery:OnIntervalThink()
 		for _, enemy in ipairs( self:GetParent():FindEnemyUnitsInRadius(self:GetParent():GetAbsOrigin(), self.radius ) ) do
 			if caster:HasTalent("special_bonus_unique_rattletrap_automated_artillery_1") and ability:GetToggleState() then
 				if caster:GetMana() >= ability:GetManaCost(-1) then
-					caster:SpendMana( ability:GetManaCost(-1) / self.rockets, ability )
+					local manaCost = ability:GetManaCost(-1) / ( self.rockets * (self:GetTalentSpecialValueFor("duration") / 2) )
+					caster:SpendMana( manaCost, ability )
 				else
 					ability:ToggleAbility()
 				end
@@ -90,5 +93,6 @@ end
 function modifier_rattletrap_automated_artillery:OnDestroy()
 	if IsServer() then
 		self.sisterAb:SetActivated(true) 
+		if not self:IsToggle() then self:EndDelayedCooldown() end
 	end
 end

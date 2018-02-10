@@ -1714,7 +1714,7 @@ function CDOTABaseAbility:FireLinearProjectile(FX, velocity, distance, width, da
 		iUnitTargetType = internalData.type or DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
 		ExtraData = internalData.extraData
 	}
-	ProjectileManager:CreateLinearProjectile( info )
+	return ProjectileManager:CreateLinearProjectile( info )
 end
 
 function CDOTABaseAbility:ApplyAOE(eventTable)

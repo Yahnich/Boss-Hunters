@@ -64,7 +64,7 @@ function flaming_fist(keys)
     local targetPoint = keys.target_points[1]
     local ability = keys.ability
     local radius = ability:GetSpecialValueFor("radius")
-    local attack_interval = 0.20
+    local attack_interval = 0.1
     local casterModifierName = "modifier_sleight_of_fist_caster_datadriven"
     local particleSlashName = "particles/units/heroes/hero_ember_spirit/ember_spirit_sleightoffist_tgt.vpcf"
     local particleTrailName = "particles/units/heroes/hero_ember_spirit/ember_spirit_sleightoffist_trail.vpcf"
@@ -85,7 +85,7 @@ function flaming_fist(keys)
         caster:GetTeamNumber(), targetPoint, caster, radius, targetTeam,
         targetType, targetFlag, unitOrder, false
     )
-    
+    ability:ApplyDataDrivenModifier( caster, caster, casterModifierName, {duration = attack_interval * #units} ) -- cap duration
     for _, target in pairs( units ) do
         counter = counter + 1
         Timers:CreateTimer( counter * attack_interval, function()

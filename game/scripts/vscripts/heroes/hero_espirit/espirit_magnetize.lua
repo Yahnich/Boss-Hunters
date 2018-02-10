@@ -109,11 +109,7 @@ function modifier_magnetize_stone:OnIntervalThink()
 
 	local stones = caster:FindFriendlyUnitsInRadius(stone:GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"), {})
     for _,stone2 in pairs(stones) do
-    	if stone2 == caster and caster:HasTalent("special_bonus_unique_espirit_magnetize_1") then
-    		talent = true
-    	end
-
-    	if stone2:GetName() == "npc_dota_earth_spirit_stone" or talent then
+    	if stone2:GetName() == "npc_dota_earth_spirit_stone" then
     		if not stone2:HasModifier("modifier_magnetize_stone") then
     			local nfx2 = ParticleManager:CreateParticle("particles/units/heroes/hero_earth_spirit/espirit_stone_explosion_bolt.vpcf", PATTACH_POINT_FOLLOW, stone)
 				ParticleManager:SetParticleControlEnt(nfx2, 0, stone2, PATTACH_POINT_FOLLOW, "attach_hitloc", stone2:GetAbsOrigin(), true)
@@ -125,7 +121,7 @@ function modifier_magnetize_stone:OnIntervalThink()
     	end
     end
 
-	local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"), {flag = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES})
+	local enemies = caster:FindEnemyUnitsInRadius(stone:GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"), {flag = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES})
 	for _,enemy in pairs(enemies) do
 		if not enemy:HasModifier("modifier_magnetize") then
 			local nfx2 = ParticleManager:CreateParticle("particles/units/heroes/hero_earth_spirit/espirit_stone_explosion_bolt.vpcf", PATTACH_POINT_FOLLOW, stone)
@@ -141,7 +137,7 @@ end
 
 function modifier_magnetize_stone:OnRemoved()
 	if IsServer() then
-		if self:GetParent() ~= self:GetCaster() then
+		if self:GetParent():GetName() == "npc_dota_earth_spirit_stone" then
 			self:GetParent():ForceKill(false)
 		end
 	end

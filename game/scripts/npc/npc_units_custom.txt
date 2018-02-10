@@ -8007,15 +8007,15 @@
 		// Abilities
 		//----------------------------------------------------------------
 		
-		"AbilityLayout"				"6"
-		"Ability1"					"boss_gravity_well"					// Ability 1.
-		"Ability2"					"boss_graviton_slam"	// Ability 2
-		"Ability3"					"boss_attractive_sweep"				// Ability 3.
-		"Ability4"					"boss_spatial_rift"	// Ability 4.
-		"Ability5"					"boss_pressure"		// Ability 5.
-		"Ability6"					"true_sight_boss"			// Ability 6 - Extra.
-		"Ability7"					""			// Ability 7 - Extra.
-		"Ability8"					""			// Ability 8 - Extra.
+		"Ability1"					"boss_aether_space_rift"					// Ability 1.
+		"Ability2"					"boss_aether_meteor_shower"	// Ability 2
+		"Ability3"					"boss_aether_mass_effect"				// Ability 3.
+		"Ability4"					"boss_aether_event_horizon"	// Ability 4.
+		"Ability5"					"boss_aether_entropy_pool"		// Ability 5.
+		"Ability6"					"boss_aether_wormhole"			// Ability 6 - Extra.
+		"Ability7"					"boss_aether_gravity_well"			// Ability 7 - Extra.
+		"Ability8"					"boss_aether_phase_shift"			// Ability 8 - Extra.
+		"Ability9"					"boss_aether_neutron_density"			// Ability 8 - Extra.
 	
 		// Armor
 		//----------------------------------------------------------------

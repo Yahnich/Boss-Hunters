@@ -492,7 +492,7 @@
 		"Ability13"				"special_bonus_unique_furion_sprout_tp_2"
 		"Ability14"				"special_bonus_unique_furion_tree_ant_1"
 		"Ability15"				"special_bonus_unique_furion_tree_ant_2"
-		"Ability16"				"special_bonus_unique_furion_natures_wrath_1"
+		"Ability16"				"special_bonus_unique_furion_entangle_1"
 		"Ability17"				"special_bonus_unique_furion_natures_wrath_2"
 	}
 	//=================================================================================================================

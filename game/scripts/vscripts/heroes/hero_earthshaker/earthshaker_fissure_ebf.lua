@@ -15,9 +15,18 @@ function earthshaker_fissure_ebf:OnSpellStart()
 	
 	local psoList = self:LaunchFissure(caster:GetAbsOrigin(), direction, fissureDuration, damage, stunDuration)
 	Timers:CreateTimer(fissureDuration, function()
-		for _, entity in ipairs(psoList) do
-			UTIL_Remove(entity)
+		for _, entity in pairs(psoList) do
+			if not entity:IsNull() then	UTIL_Remove(entity) end
 		end
+		local retry
+		for _, entity in pairs(psoList) do
+			if entity:IsNull() then 
+				psoList[_] = nil
+			else
+				retry = 0.1
+			end
+		end
+		return retry
 	end)
 end
 
