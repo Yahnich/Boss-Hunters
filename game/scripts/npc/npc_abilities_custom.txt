@@ -472,12 +472,12 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_hp"				"1600 3200 6400 9600 12800 25000 50000"
+				"bonus_hp"				"3200 6400 9600 12800 25000 50000 75000"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"bonus_health_regen"	"2.5"
+				"bonus_health_regen"	"4"
 				"LinkedSpecialBonus"	"special_bonus_unique_alchemist_4"
 			}
 			"05"
@@ -488,7 +488,7 @@
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_movespeed"		"20 30 40 50 60 70 80"
+				"bonus_movespeed"		"100"
 			}
 		}
 	}
@@ -4926,161 +4926,6 @@
 			}
 		}
 	}
-	"boss_attractive_sweep"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_datadriven"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL"
-		"MaxLevel"						"3"
-		"AbilityCastRange"				"1000 1500 2000"
-		"AbilityCastPoint"				"0.3 0.3 0.3"
-	
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"20"
-		"AbilityTextureName"			"lina_dragon_slave"
-		
-		"precache"
-		{
-			"particle"	"particles/boss_particle/boss_attractive_sweep.vpcf"
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_enigma.vsndevts"
-		}
-	
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"pull_speed"					"500 750 1000"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"pull_duration"					"1"
-			}
-			"03"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"starting_aoe"		"100"
-			}
-			"04"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"distance"			"1000 1250 1500"
-			}
-			"05"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"final_aoe"			"600 750 900"
-			}
-			"06"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"speed"				"2000"
-			}
-			
-		}
-		"OnSpellStart"
-		{
-			"LinearProjectile"
-			{
-				"Target"      "POINT"
-				"EffectName"  "particles/boss_particle/boss_attractive_sweep.vpcf"
-				"MoveSpeed"   "%speed"
-				"StartRadius"   "%starting_aoe"
-				"StartPosition" "attach_origin"
-				"EndRadius"     "%final_aoe"
-				"FixedDistance" "%distance"
-				"TargetTeams"   "DOTA_UNIT_TARGET_TEAM_ENEMY"
-				"TargetTypes"   "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
-				"TargetFlags"   "DOTA_UNIT_TARGET_FLAG_NONE"
-				"HasFrontalCone"    "1"
-				"ProvidesVision" "0"
-			}
-			"FireSound"
-			{
-				"EffectName"	"Hero_Enigma.Death"
-				"Target"		"CASTER"
-			}
-		}
-		"OnProjectileHitUnit"
-		{
-			"DeleteOnHit"	"0"
-			"ApplyModifier"
-			{
-				"ModifierName"	"modifier_vacuum_thinker_datadriven"
-				"Target"		"TARGET"
-			}
-		}
-		"Modifiers"
-		{
-			"modifier_vacuum_thinker_datadriven"
-			{
-				"Duration"		"%pull_duration"
-	
-				"OnCreated"
-				{
-					"ApplyMotionController"
-					{
-						"Target"		"TARGET"
-						"ScriptFile"    "lua_boss/boss_39"
-						"HorizontalControlFunction" "Sweep"
-					}
-				}
-	
-				"OnDestroy"
-				{
-					"ActOnTargets"
-					{
-						"Target"
-						{
-							"Center"  	"TARGET"
-							"Radius" 	"%radius"
-							"Teams" 	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-							"Types" 	"DOTA_UNIT_TARGET_ALL"
-						}
-					
-						"Action"    
-						{
-							"Damage"
-							{
-								"Target"		"TARGET"
-								"Type"			"DAMAGE_TYPE_MAGICAL"
-								"Damage"		"%damage"
-							}
-						}
-					}
-				}
-	
-				"ThinkInterval"  "0.03"
-				"OnIntervalThink"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"lua_boss/boss_39"
-						"Function"		"Sweep"
-						"vacuum_modifier"	"modifier_vacuum_datadriven"
-					}
-				}
-			}
-	
-			"modifier_vacuum_datadriven"
-			{
-				"IsPurgable"	"0"
-	
-				"OverrideAnimation"     "ACT_DOTA_FLAIL"
-	
-				"States"
-				{
-					"MODIFIER_STATE_STUNNED"			"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_NO_UNIT_COLLISION"	"MODIFIER_STATE_VALUE_ENABLED"
-				}
-			}
-		}
-	}
 	//=================================================================================================================
 	// Queen of Pain: Blink
 	//=================================================================================================================
@@ -5723,7 +5568,7 @@
 	    "MaxLevel"                      "1"
 		"PiercesDisableReduction"		"1"
 		
-		"AbilityCooldown"				"48"
+		"AbilityCooldown"				"30"
 	
 	    // Special
 	    //-------------------------------------------------------------------------------------------------------------
@@ -5850,332 +5695,8 @@
 			}			
 		}
 	}
-	"boss_graviton_slam"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_datadriven"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
-		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
-		"MaxLevel"						"3"
-		"AbilityCastRange"				"600 800 1000"
-		"AbilityCastPoint"				"1.0"
-		"AbilityDamage"					"100000 175000 250000"
 	
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityChannelTime"			"4.0"
-		"AbilityCooldown"				"25.0"
-		"AbilityTextureName"			"boss_graviton_slam"
-		
-		"precache"
-		{
-			"particle"			"particles/boss_particle/boss_graviton_slam.vpcf"
-			"particle"			"particles/units/heroes/hero_rubick/rubick_telekinesis_land.vpcf"
-			"particle"			"particles/units/heroes/hero_rubick/rubick_telekinesis_debuff.vpcf"
-			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_rubick.vsndevts"
-		}
 	
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"heroes_per_second"		"1.0 2.0 3.0"
-			}
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"stun_time"				"2.5 3.0 3.5"
-			}
-		}
-		"OnAbilityExecuted"
-		{
-			"RunScript"
-			{
-				"ScriptFile"	"lua_boss/boss_39"
-				"Function"		"SlamWarning"
-			}
-		}
-		"OnSpellStart"
-		{
-			"ApplyModifier"
-			{
-				"ModifierName"	"modifier_graviton_slam_channel"
-				"Target"		"CASTER"
-			}
-		}
-		"OnChannelFinish"
-		{
-			"RemoveModifier"
-			{
-				"ModifierName"	"modifier_graviton_slam_channel"
-				"Target"		"CASTER"
-			}
-		}
-		"Modifiers"
-		{
-			"modifier_graviton_slam_channel"
-			{
-				"IsHidden"	"0"
-				"OnCreated"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"lua_boss/boss_39"
-						"Function"		"LiftHeroes"
-					}
-					"FireSound"
-					{
-						"EffectName"	"Hero_Enigma.Midnight_Pulse"
-						"Target"		"CASTER"
-					}
-				}
-				"ThinkInterval"	"1"
-				"OnIntervalThink"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"lua_boss/boss_39"
-						"Function"		"LiftHeroes"
-					}
-					"FireSound"
-					{
-						"EffectName"	"Hero_Enigma.Midnight_Pulse"
-						"Target"		"CASTER"
-					}
-				}
-				"States"
-				{
-					"MODIFIER_STATE_ATTACK_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_MAGIC_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED"
-				}
-			}
-			"modifier_graviton_slam_lift"
-			{
-				"Duration"			"%stun_time"
-				"OverrideAnimation"	"ACT_DOTA_FLAIL"
-				
-				"EffectName"		"particles/units/heroes/hero_rubick/rubick_telekinesis_debuff.vpcf"
-				"EffecAttachType"	"follow_origin"
-				"OnCreated"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"lua_boss/boss_39"
-						"Function"		"Lift"
-						"particle"		"particles/boss_particle/boss_graviton_slam.vpcf"
-					}
-					"FireSound"
-					{
-						"EffectName"	"Hero_Rubick.Telekinesis.Cast"
-						"Target"		"CASTER"
-					}
-					
-					"FireSound"
-					{
-						"EffectName"	"Hero_Rubick.Telekinesis.Target"
-						"Target"		"TARGET"
-					}
-				}
-				
-				"OnDestroy"
-				{
-					"ApplyModifier"
-					{
-						"ModifierName"	"modifier_graviton_slam_fall"
-						"Target"		"TARGET"
-					}
-				}
-				
-				"States"
-				{
-					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_FLYING"		"MODIFIER_STATE_VALUE_ENABLED"
-				}
-			}
-			
-			"modifier_graviton_slam_fall"
-			{
-				"Duration" "0.3"
-				
-				"ThinkInterval"		"0.01"
-				"OnIntervalThink"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"lua_boss/boss_39"
-						"Function"		"Fall"
-					}
-				}
-				
-				"OnDestroy"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"lua_boss/boss_39"
-						"Function"		"Impact"
-						"particle"		"particles/units/heroes/hero_rubick/rubick_telekinesis_land.vpcf"
-						"sound"			"Hero_Rubick.Telekinesis.Stun"
-					}
-				}
-				
-				"States"
-				{
-					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
-				}
-			}
-		}
-	}
-	"boss_gravity_well"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_datadriven"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"MaxLevel"						"3"
-		"AbilityCastRange"				"750 1000 1250"
-		"AbilityCastPoint"				"1.0"
-	
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityChannelTime"			"10.0"
-		"AbilityCooldown"				"45.0 40.0 35.0"
-		"AbilityTextureName"			"enigma_midnight_pulse"
-		
-		"precache"
-		{
-			"particle"			"particles/units/heroes/hero_enigma/enigma_midnight_pulse.vpcf"
-			"soundfile"		"sounds/weapons/hero/enigma/midnight_pulse.vsnd"
-		}
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius_growth_speed"	"75 100 125"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"pools_per_second"		"2"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"damage_per_sec"		"5 10 15"
-			}
-		}
-		"OnAbilityPhaseStart"
-		{
-			"RunScript"
-			{
-				"ScriptFile"	"lua_boss/boss_39"
-				"Function"		"SlamWarning"
-			}
-		}
-		"OnSpellStart"
-		{
-			"ApplyModifier"
-			{
-				"ModifierName"	"modifier_gravity_well_channel"
-				"Target"		"CASTER"
-			}
-		}
-		"OnChannelFinish"
-		{
-			"RemoveModifier"
-			{
-				"ModifierName"	"modifier_gravity_well_channel"
-				"Target"		"CASTER"
-			}
-		}
-		"Modifiers"
-		{
-			"modifier_gravity_well_channel"
-			{
-				"IsHidden"	"1"
-				"OnCreated"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"lua_boss/boss_39"
-						"Function"		"CreatePool"
-					}
-					"FireSound"
-					{
-						"EffectName"	"Hero_Enigma.Midnight_Pulse"
-						"Target"		"CASTER"
-					}
-				}
-				"ThinkInterval"	"%pools_per_second"
-				"OnIntervalThink"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"lua_boss/boss_39"
-						"Function"		"CreatePool"
-					}
-					"FireSound"
-					{
-						"EffectName"	"Hero_Enigma.Midnight_Pulse"
-						"Target"		"CASTER"
-					}
-				}
-				"States"
-				{
-					"MODIFIER_STATE_ATTACK_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_MAGIC_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED"
-				}
-			}
-			"modifier_gravity_well_thinker"
-			{
-				"Duration"	"10"
-				"OnCreated"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"lua_boss/boss_39"
-						"Function"		"GrowPool"
-					}
-				}
-				"ThinkInterval"	"0.1"
-				"OnIntervalThink"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"lua_boss/boss_39"
-						"Function"		"GrowPool"
-					}
-				}
-				"OnDestroy"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"lua_boss/boss_39"
-						"Function"		"KillYourself"
-					}
-				}
-				"States"
-				{
-					"MODIFIER_STATE_NO_HEALTH_BAR"	"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_UNSELECTABLE"	"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_NOT_ON_MINIMAP"	"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_MAGIC_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_ATTACK_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_NO_UNIT_COLLISION"	"MODIFIER_STATE_VALUE_ENABLED"
-				}
-			}
-		}
-	}
 	"boss_hell_tempest"
 	{
 	    // General
@@ -8484,86 +8005,6 @@
 			}
 		}
 	}
-	"boss_pressure"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_datadriven"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"MaxLevel"						"3"
-		"AbilityCastRange"				"900"
-		
-	
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityTextureName"			"enigma_black_hole"
-	
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"magic_armor_break"		"-25 -50 -75"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"max_damage_pct"		"1 2 3"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"min_damage_pct"		"0.5 1 1.5"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"max_slow"				"-60 -80 -100"
-			}
-		}
-		"Modifiers"
-		{
-			"modifier_massive_pressure"
-			{
-				"Passive"	"1"
-				"IsHidden"	"1"
-				"Aura" "modifier_massive_pressure_aura"
-				"Aura_Radius" "900"
-				"Aura_Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
-				"Aura_Types" "DOTA_UNIT_TARGET_ALL"		
-				"Aura_Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-			}
-			"modifier_massive_pressure_aura"
-			{
-				"IsDebuff"	"1"
-				"ThinkInterval" "0.1"
-				"OnIntervalThink"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"lua_boss/boss_39"
-						"Function"		"ApplyDistanceSlow"
-						"modifier"	"modifier_massive_pressure_slow"
-					}
-				}
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS"	"%magic_armor_break"
-				}
-			}
-			"modifier_massive_pressure_slow"
-			{
-				"IsHidden"	"1"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"-1"
-				}
-			}
-		}
-	}
 	"boss_press_the_attack"
 	{
 		// General
@@ -9010,168 +8451,6 @@
 				"var_type"				"FIELD_INTEGER"
 				"duration_tooltip"		"15"
 			}			
-		}
-	}
-	"boss_spatial_rift"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_datadriven"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"MaxLevel"						"3"
-		"AbilityCastRange"				"1200"
-		"AbilityCastPoint"				"0.3 0.2 0.1"
-		"AOERadius"						"450 600 750"
-	
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"10 8 6"
-		"AbilityTextureName"			"abyssal_underlord_dark_rift"
-		
-		"precache"
-		{
-			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_dark_seer.vsndevts"
-			"particle"			"particles/units/heroes/hero_dark_seer/dark_seer_vacuum.vpcf"
-			"particle"			"particles/units/heroes/heroes_underlord/abbysal_underlord_darkrift_ambient.vpcf"
-			"particle"			"particles/units/heroes/heroes_underlord/abyssal_underlord_darkrift_target.vpcf"
-		}
-	
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"450 600 750"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"0.5 0.5 0.5 0.5"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"20000 35000 50000"
-			}
-		}
-		
-		"OnSpellStart"
-		{
-			"RunScript"
-			{
-				"ScriptFile"	"lua_boss/boss_39.lua"
-				"Function"		"Rift"
-				"Target"		"POINT"
-			}
-	
-			"FireSound"
-			{
-				"EffectName"	"Hero_Antimage.Blink_out"
-				"Target"		"CASTER"
-			}
-	
-			"FireSound"
-			{
-				"EffectName"	"Hero_Antimage.Blink_in"
-				"Target"		"CASTER"
-			}
-			"FireEffect"
-			{
-				"EffectName"        "particles/units/heroes/hero_dark_seer/dark_seer_vacuum.vpcf"
-				"EffectAttachType"  "start_at_customorigin"
-				"TargetPoint"       "POINT"
-	
-				"ControlPoints"
-				{
-					"01"	"%radius 0 0"
-				}
-			}
-			"CreateThinker"
-			{
-				"ModifierName"	"modifier_vacuum_thinker_datadriven"
-				"Target" 		"POINT"
-			}
-		}
-		"Modifiers"
-		{
-			"modifier_vacuum_thinker_datadriven"
-			{
-				"Duration"		"%duration"
-	
-				"OnCreated"
-				{
-					"FireSound"
-					{
-						"EffectName"	"Hero_Dark_Seer.Vacuum"
-						"Target" 		"TARGET"
-					}
-	
-					"DestroyTrees"
-					{
-						"Target" 		"TARGET"
-						"Radius"		"%radius_tree"
-					}
-	
-					"RunScript"
-					{
-						"ScriptFile"	"lua_boss/boss_39"
-						"Function"		"VacuumStart"
-					}
-				}
-	
-				"OnDestroy"
-				{
-					"ActOnTargets"
-					{
-						"Target"
-						{
-							"Center"  	"TARGET"
-							"Radius" 	"%radius"
-							"Teams" 	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-							"Types" 	"DOTA_UNIT_TARGET_ALL"
-						}
-					
-						"Action"    
-						{
-							"Damage"
-							{
-								"Target"		"TARGET"
-								"Type"			"DAMAGE_TYPE_MAGICAL"
-								"Damage"		"%damage"
-							}
-						}
-					}
-				}
-	
-				"ThinkInterval"  "0.03"
-				"OnIntervalThink"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"lua_boss/boss_39"
-						"Function"		"Vacuum"
-						"vacuum_modifier"	"modifier_vacuum_datadriven"
-					}
-				}
-			}
-	
-			"modifier_vacuum_datadriven"
-			{
-				"IsPurgable"	"0"
-	
-				"OverrideAnimation"     "ACT_DOTA_FLAIL"
-	
-				"States"
-				{
-					"MODIFIER_STATE_STUNNED"			"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_NO_UNIT_COLLISION"	"MODIFIER_STATE_VALUE_ENABLED"
-				}
-			}
 		}
 	}
 	"boss_spawn_techies"
@@ -13666,13 +12945,13 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"strength_pct"				"150"
+				"strength_pct"				"130"
 				"LinkedSpecialBonus"		"special_bonus_unique_centaur_3"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"str_to_block"				"80"
+				"str_to_block"				"75"
 				"LinkedSpecialBonus"		"special_bonus_unique_centaur_3"
 			}
 		}
@@ -26885,6 +26164,11 @@
 				"var_type"                  "FIELD_INTEGER"
 				"damage"           			"200"
 			}
+			"02"
+			{
+				"var_type"                  "FIELD_INTEGER"
+				"heal_pct"           		"50"
+			}
 			"03"
 			{
 				"var_type"                  "FIELD_FLOAT"
@@ -26992,6 +26276,7 @@
 		"AbilityCooldown"				"15.0"
 		"AbilityManaCost"				"25 50 75 125 250 500 1000"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityThreat"					"-8"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -27032,7 +26317,7 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"30"
+		"AbilityCooldown"				"20"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -27045,7 +26330,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"max_treants"			"1 2 3 4 5 6 7"
+				"max_treants"			"2"
 				"LinkedSpecialBonus"	"special_bonus_unique_furion_tree_ant_2"
 			}
 			"02"
@@ -27064,6 +26349,12 @@
 				"treant_health"			"500 1000 2000 3500 5500 8000 11000"
 			}
 			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"treant_health_pct"		"25"
+				"LinkedSpecialBonus"	"special_bonus_unique_furion_tree_ant_1"
+			}
+			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"treant_damage"			"25"
@@ -27442,12 +26733,12 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"6.0"
+		"AbilityCooldown"				"2"
 		"AbilityCastPoint"				"0.1"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"               "200"
+		"AbilityManaCost"               "75"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -27467,11 +26758,6 @@
 	        {
 	            "Target"                    "CASTER"
 	            "EffectName"                "Hero_EmberSpirit.SleightOfFist.Cast"
-	        }
-	        "ApplyModifier"
-	        {
-	            "Target"                    "CASTER"
-	            "ModifierName"              "modifier_sleight_of_fist_caster_datadriven"
 	        }
 			"RunScript"
 			{
@@ -38023,7 +37309,7 @@
 			"03"
 			{	
 				"var_type"					"FIELD_FLOAT"
-				"damage_per_rocket"			"20 40 80 160 320 640 1280"
+				"damage_per_rocket"			"60 120 240 480 960 1920 2840"
 			}
 		}
 	}
@@ -39862,6 +39148,7 @@
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_earthshaker/earthshaker_crater_impact"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"AbilityTextureName"			"custom/earthshaker_crater_impact"
 		"AbilityCastAnimation"			"ACT_DOTA_OVERRIDE_ABILITY_2"
 		"LevelsBetweenUpgrades"			"6"
@@ -39911,9 +39198,14 @@
 			"04"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"jump_duration"				"0.75"
+				"reduction"					"-80"
 			}
 			"05"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"jump_duration"				"0.75"
+			}
+			"06"
 			{
 				"var_type"					"FIELD_FLOAT"
 				"jump_distance"				"600 700 800 900 1000 1100 1200"
@@ -44252,6 +43544,25 @@
 			}
 		}
 	}
+	"special_bonus_unique_furion_entangle_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"650"
+			}
+		}
+	}
 	"special_bonus_unique_furion_natures_wrath_1" 
 	{
 		// General
@@ -44286,7 +43597,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"10"
+				"value"					"100"
 			}
 			"01"
 			{
@@ -51350,18 +50661,18 @@
 			}
 			"03"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"ms_stack"					"-1"
+				"var_type"					"FIELD_FLOAT"
+				"ms_stack"					"-0.25"
 			}
 			"04"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"mr_stack"					"-1"
+				"var_type"					"FIELD_FLOAT"
+				"mr_stack"					"-0.25"
 			}
 			"05"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"initial_stacks"			"10 15 20 25 30 35 40"
+				"initial_stacks"			"10 12 14 16 18 20 22"
 			}
 		}
 	}
@@ -54805,8 +54116,8 @@
 		{
 			"01"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"1200"
+				"var_type"						"FIELD_INTEGER"
+				"radius"						"1200"
 			}
 			"02"
 			{
@@ -54817,14 +54128,14 @@
 			}
 			"03"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"pct_per_stack"				"0.2 0.4 0.6 0.8 1 1.2 1.4"
+				"var_type"						"FIELD_FLOAT"
+				"pct_per_stack"					"0.2 0.4 0.6 0.8 1 1.2 1.4"
 				"CalculateSpellDamageTooltip"	"0"
 			}
 			"04"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"stack_duration"			"20"
+				"var_type"						"FIELD_INTEGER"
+				"stack_duration"				"10"
 			}
 		}
 	}
@@ -54895,6 +54206,388 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"range"					"1500"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Aether: Phase Shift
+	//=================================================================================================================
+	"boss_aether_phase_shift"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_aether/boss_aether_phase_shift"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"puck_phase_shift"
+		"MaxLevel"						"3"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"3.0 2.0"
+	
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_puck/puck_phase_shift.vpcf"
+		}
+	}
+	//=================================================================================================================
+	// Aether: Phase Shift
+	//=================================================================================================================
+	"boss_aether_neutron_density"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_aether/boss_aether_neutron_density"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"dark_seer_vacuum"
+		"MaxLevel"						"3"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"5.0 3.5"
+	
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_dark_seer/dark_seer_vacuum.vpcf"
+			"particle"					"particles/units/heroes/hero_puck/puck_illusory_orb.vpcf"
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"stun_duration"			"0.5 0.8"
+			}
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"magic_damage"			"25500 32000"
+			}
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"orb_radius"			"350 400"
+			}
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"orb_speed"				"500"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Aether: Phase Shift
+	//=================================================================================================================
+	"boss_aether_gravity_well"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_aether/boss_aether_gravity_well"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
+		"AbilityTextureName"			"enigma_midnight_pulse"
+		"MaxLevel"						"3"
+	
+		"precache"
+		{
+			"particle"					"particles/bosses/boss_aether/boss_aether_gravity_well.vpcf"
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"aura_radius"			"1200"
+			}
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"max_pull"				"2 4"
+			}
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"max_damage"			"3.25 4"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Aether: Phase Shift
+	//=================================================================================================================
+	"boss_aether_space_rift"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_aether/boss_aether_space_rift"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"abyssal_underlord_dark_rift"
+		"MaxLevel"						"3"
+		
+		"AbilityCastRange"				"350"
+		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
+		"AbilityCastPoint"				"0.8 0.5"
+		"AbilityCooldown"				"4 3"
+	
+		"precache"
+		{
+			"particle"					"particles/units/heroes/heroes_underlord/abyssal_underlord_darkrift_target.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_weaver.vsndevts"
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"pull_radius"				"450 500"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"impact_radius"				"300 350"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"impact_curr_hp_damage"		"20 25"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"suck_duration"				"0.5"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Aether: Phase Shift
+	//=================================================================================================================
+	"boss_aether_meteor_shower"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_aether/boss_aether_meteor_shower"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"abyssal_underlord_firestorm"
+		"MaxLevel"						"3"
+		
+		"AbilityCastAnimation"			"ACT_DOTA_SPAWN"
+		"AbilityCastPoint"				"0.8 0.5"
+		"AbilityCooldown"				"15 14"
+	
+		"precache"
+		{
+			"particle"					"particles/units/heroes/heroes_underlord/abyssal_underlord_firestorm_wave.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_abyssal_underlord.vsndevts"
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"meteor_count"				"18 24"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"impact_radius"				"225 250"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"impact_delay"				"1.5 1"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"impact_damage"				"12500"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"impact_slow"				"-20"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"slow_duration"				"5"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Aether: Phase Shift
+	//=================================================================================================================
+	"boss_aether_wormhole"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_aether/boss_aether_wormhole"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityTextureName"			"abyssal_underlord_cancel_dark_rift"
+		"MaxLevel"						"3"
+		
+		"AbilityCastAnimation"			"ACT_DOTA_DIE"
+		"AbilityCastPoint"				"0.8 0.5"
+		"AbilityChannelTime"			"1"
+		"AbilityCooldown"				"8"
+	
+		"precache"
+		{
+			"particle"					"particles/units/heroes/heroes_underlord/abbysal_underlord_darkrift_ambient.vpcf"
+			"particle"					"particles/units/heroes/heroes_underlord/abbysal_underlord_darkrift_ambient_end.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_abyssal_underlord.vsndevts"
+		}
+	}
+	//=================================================================================================================
+	// Aether: Phase Shift
+	//=================================================================================================================
+	"boss_aether_entropy_pool"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_aether/boss_aether_entropy_pool"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"enigma_malefice"
+		"MaxLevel"						"3"
+		
+		"AbilityCastRange"				"350"
+		"AbilityCastAnimation"			"ACT_DOTA_DIE"
+		"AbilityCastPoint"				"0"
+		"AbilityChannelTime"			"5"
+		"AbilityCooldown"				"40"
+	
+		"precache"
+		{
+			"particle"					"particles/bosses/boss_aether/boss_aether_entropy_pool.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_enigma.vsndevts"
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"pool_creation_time"		"1"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius_growth"				"2 3"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"damage_per_second"			"15000 17500"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"initial_radius"			"125 150"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"pool_spawn_range"			"2000"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Aether: Phase Shift
+	//=================================================================================================================
+	"boss_aether_mass_effect"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_aether/boss_aether_mass_effect"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName"			"rubick_telekinesis"
+		"MaxLevel"						"3"
+		
+		"AbilityCastRange"				"800"
+		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
+		"AbilityCastPoint"				"0.8 0.5"
+		"AbilityCooldown"				"20"
+	
+		"precache"
+		{
+			"particle"					"particles/status_fx/status_effect_enigma_malefice.vpcf"
+			"particle"					"particles/units/heroes/hero_enigma/enigma_malefice.vpcf"
+			"particle"					"particles/bosses/boss_aether/boss_aether_mass_effect.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_elder_titan.vsndevts"
+		}
+		"AbilitySpecial"
+		{
+			"01"
+            {
+                "var_type"                      "FIELD_FLOAT"
+                "damage_amp"     				"25 33"
+            }
+    		"03"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "orb_speed"     				"250 300"
+            }
+    		"04"
+            {
+                "var_type"                      "FIELD_FLOAT"
+                "orb_lifetime"     				"5 6"
+            }
+    		"05"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "orb_radius"     				"325"
+            }
+		}
+	}
+	//=================================================================================================================
+	// Aether: Phase Shift
+	//=================================================================================================================
+	"boss_aether_event_horizon"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_aether/boss_aether_event_horizon"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"enigma_black_hole"
+		"MaxLevel"						"3"
+		
+		"AbilityCastRange"				"450 500"
+		"AbilityChannelTime"			"5"
+		"AbilityCastAnimation"			"ACT_DOTA_SPAWN"
+		"AbilityCastPoint"				"2"
+		"AbilityCooldown"				"30"
+	
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_enigma/enigma_blackhole.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_enigma.vsndevts"
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"450 500"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage_per_second"			"20"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"pull"						"3 5"
 			}
 		}
 	}

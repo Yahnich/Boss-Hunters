@@ -9110,7 +9110,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"chance"				"60"
+				"chance"				"33"
 			}
 			"03"
 			{
@@ -36848,7 +36848,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"0.8"
+				"value"					"2"
 			}
 		}
 	}
@@ -37487,7 +37487,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"2"
+				"value"				"3"
 			}
 		}
 	}

@@ -55,9 +55,9 @@ function furion_natures_wrath:OnSpellStart()
 
 				return self:GetTalentSpecialValueFor("jump_delay")
 			end -- no valid targets found
-			StopSoundOn("Hero_Furion.WrathOfNature_Cast.Self", caster)
-			return nil
 		end
+		StopSoundOn("Hero_Furion.WrathOfNature_Cast.Self", caster)
+		return nil
 	end)
 end
 

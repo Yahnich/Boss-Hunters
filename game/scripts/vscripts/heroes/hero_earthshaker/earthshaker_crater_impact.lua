@@ -19,7 +19,7 @@ function earthshaker_crater_impact:CreateQuake(position, radius, damage)
 	
 	local stunDuration = self:GetTalentSpecialValueFor("duration")
 	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( position, radius ) ) do
-		self:DealDamage(enemy, self:GetParent(), damage)
+		self:DealDamage(caster, enemy, damage)
 		self:Stun(enemy, stunDuration, false)
 	end
 end
@@ -53,7 +53,6 @@ if IsServer() then
 		if parent:HasTalent("special_bonus_unique_earthshaker_crater_impact_1") then
 			local delay = parent:FindTalentValue("special_bonus_unique_earthshaker_crater_impact_1", "duration")
 			local multiplier = parent:FindTalentValue("special_bonus_unique_earthshaker_crater_impact_1")
-			print(delay, multiplier)
 			Timers:CreateTimer( delay, function() ability:CreateQuake(parentPos, radius * multiplier, damage / multiplier) end)
 		end
 		self:StopMotionController()
@@ -88,7 +87,11 @@ function modifier_earthshaker_crater_impact_movement:CheckState()
 end
 
 function modifier_earthshaker_crater_impact_movement:DeclareFunctions()
-	return {MODIFIER_PROPERTY_OVERRIDE_ANIMATION}
+	return {MODIFIER_PROPERTY_OVERRIDE_ANIMATION, MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE}
+end
+
+function modifier_earthshaker_crater_impact_movement:GetModifierIncomingDamage_Percentage()
+	return self:GetTalentSpecialValueFor("reduction")
 end
 
 function modifier_earthshaker_crater_impact_movement:GetOverrideAnimation()

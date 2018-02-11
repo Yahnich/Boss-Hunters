@@ -22,7 +22,15 @@ function espirit_rock:OnSpellStart()
 	ParticleManager:ReleaseParticleIndex(nfx)
 	
 	self:CreateStoneRemnant(point)
-	
+end
+
+function espirit_rock:CreateStoneRemnant(position)
+	local caster = self:GetCaster()	
+	local rock = caster:CreateSummon("npc_dota_earth_spirit_stone", position, self:GetTalentSpecialValueFor("rock_duration"))
+	rock:SetForwardVector(caster:GetForwardVector())
+
+	rock:AddNewModifier(caster, self, "modifier_espirit_rock_remnant", {})   
+
 	if caster:HasTalent("special_bonus_unique_espirit_rock_2") then
 		local enemies = caster:FindEnemyUnitsInRadius(point,  caster:FindTalentValue("special_bonus_unique_espirit_rock_2", "radius"))
 		local tDur = caster:FindTalentValue("special_bonus_unique_espirit_rock_2")
@@ -31,15 +39,7 @@ function espirit_rock:OnSpellStart()
 				enemy:ApplyKnockBack(enemy, tDur, tDur, 0, 300, caster, self)
 			end
 		end
-	end
-end
-
-function espirit_rock:CreateStoneRemnant(position)
-	local caster = self:GetCaster()	
-	local rock = caster:CreateSummon("npc_dota_earth_spirit_stone", position, self:GetTalentSpecialValueFor("rock_duration"))
-	rock:SetForwardVector(caster:GetForwardVector())
-
-	rock:AddNewModifier(caster, self, "modifier_espirit_rock_remnant", {})    
+	end	
 end
 
 

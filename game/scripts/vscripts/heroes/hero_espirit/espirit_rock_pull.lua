@@ -25,15 +25,14 @@ function espirit_rock_pull:OnSpellStart()
 			if stone:GetName() == "npc_dota_earth_spirit_stone" then
 				EmitSoundOn("Hero_EarthSpirit.GeomagneticGrip.Target", stone)
 				stone:AddNewModifier(caster, self, "modifier_rock_pull", {})
+				curTargets = curTargets + 1
 			end
-
-			curTargets = curTargets + 1
 		else
 			break
 		end
     end
 
-    if #stones < 1 then
+    if #curTargets < 1 then
     	self:RefundManaCost()
     	self:EndCooldown()
     end

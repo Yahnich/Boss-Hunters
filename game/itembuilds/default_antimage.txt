@@ -1,41 +1,39 @@
 "itembuilds"
 {
-    "author"        "An annoyed Kitten"
-    "hero"            "npc_dota_hero_antimage"
-    "Title"            "Magic DPS AM FFS. EAT THE AGHS AS WELL."
+    "author"        "FsB"
+    "hero"          "npc_dota_hero_antimage"
+    "Title"         "Recommended items for Antimage"
 
     "Items"
     {
         "#DOTA_Item_Build_Starting_Items"
         {
-            "item"    "item_midas_2"
-            "item"    "item_blink"
+            "item"    "item_hand_of_midas"
         }
         "#DOTA_Item_Build_Early_Game"
         {
-            "item"    "item_midas_3"
+            "item"    "item_midas_2"
+            "item"    "item_unstable_stone"
+            "item"    "item_force_boots"
+            "item"    "item_lifesteal2"
+
             "item"    "item_butterfly2"
             "item"    "item_octarine_core2"
-            "item"    "item_ultimate_scepter"
-            "item"    "item_bloodthorn2"
+            
         }
         "#DOTA_Item_Build_Core_Items"
         {
             "item"    "item_blink_boots"
-            "item"    "item_octarine_core5"
+            "item"    "item_divine_armor"
+            "item"    "item_bloodthorn4"
             "item"    "item_purethorn"
-            "item"    "item_melee_rage"
-            "item"    "item_scythe_of_decay"
-            "item"    "item_butterfly5"
-            "item"    "item_ultimate_amulet"
         }
         "#DOTA_Item_Build_Luxury"
         {
-            "item"    "item_pixels_guard"
-            "item"    "item_Dagon_Mystic"
-            "item"    "item_chronos_shard"
-            "item"    "item_manta"
-
+            "item"    "item_octarine_core3"
+            "item"    "item_butterfly5"
+            "item"    "item_scythe_of_decay"
+            "item"    "item_ultimate_amulet"
         }
     }
 }

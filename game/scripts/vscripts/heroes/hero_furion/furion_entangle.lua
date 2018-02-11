@@ -50,20 +50,30 @@ end
 function modifier_entangle_enemy:OnRemoved()
 	if IsServer() then
 		StopSoundOn("LoneDruid_SpiritBear.Entangle", self:GetParent())
-		ParticleManager:DestroyParticle(self.particle, false)
+		ParticleManager:ClearParticle(self.particle)
 	end
 end
 
 function modifier_entangle_enemy:OnIntervalThink()
-	local damage = 0
+	local damage = self:GetCaster():GetAttackDamage()/2
 	if self:GetCaster():IsHero() then
 		damage = self:GetCaster():GetIntellect() * (self:GetTalentSpecialValueFor("damage")/100)
-	else
-		damage = self:GetCaster():GetAttackDamage()/2
+	elseif self:GetCaster():GetOwnerEntity() then
+		damage = self:GetCaster():GetOwnerEntity():GetIntellect() * (self:GetTalentSpecialValueFor("damage")/100)
+	end
+	local caster = self:GetCaster()
+	if self:GetCaster():GetOwnerEntity() then caster = self:GetCaster():GetOwnerEntity() end
+	local damage = self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), damage, {}, OVERHEAD_ALERT_BONUS_POISON_DAMAGE)
+	
+	local heal = damage * self:GetTalentSpecialValueFor("heal_pct") / 100
+	caster:HealEvent(heal, self:GetAbility(), caster)
+	if caster:HasTalent("special_bonus_unique_furion_entangle_1") then
+		for _, ally in ipairs( caster:FindFriendlyUnitsInRadius(self:GetParent(), caster:FindTalentValue("special_bonus_unique_furion_entangle_1")) ) do
+			ally:HealEvent(heal, self:GetAbility(), caster)
+		end
 	end
 
-	self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), damage, {}, OVERHEAD_ALERT_BONUS_POISON_DAMAGE)
-
+	
 	if self:GetCaster():HasScepter() and RollPercentage(self:GetTalentSpecialValueFor("chance")) then
 		local enemies = self:GetCaster():FindEnemyUnitsInRadius(self:GetParent():GetAbsOrigin(), self:GetTalentSpecialValueFor("scepter_radius"), {})
 		for _,enemy in pairs(enemies) do
