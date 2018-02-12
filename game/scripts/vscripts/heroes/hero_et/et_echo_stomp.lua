@@ -58,7 +58,7 @@ function et_echo_stomp:OnSpellStart()
 			end
 		end
 
-		if caster:HasTalent("special_bonus_unique_et_echo_stomp_2") then
+		if caster:HasTalent("special_bonus_unique_et_echo_stomp_1") then
 			damage = damage + damage*caster:FindTalentValue("special_bonus_unique_et_echo_stomp_1")/100
 		end
 
@@ -86,7 +86,7 @@ function et_echo_stomp:OnSpellStart()
 
 					self:DealDamage(caster, enemy, damage, {damage_type = DAMAGE_TYPE_PHYSICAL}, 0)
 
-					if caster:HasTalent("special_bonus_unique_et_echo_stomp_1") then
+					if caster:HasTalent("special_bonus_unique_et_echo_stomp_2") then
 						enemy:Taunt(self, caster, caster:FindTalentValue("special_bonus_unique_et_echo_stomp_2"))
 					end
 				end
@@ -119,8 +119,8 @@ function et_echo_stomp:OnSpellStart()
 
 			self:DealDamage(caster, enemy, damage, {damage_type = DAMAGE_TYPE_MAGICAL}, 0)
 
-			if caster:GetOwner():HasTalent("special_bonus_unique_et_echo_stomp_1") then
-				enemy:Taunt(self, caster:GetOwner(), caster:GetOwner():FindTalentValue("special_bonus_unique_et_echo_stomp_1"))
+			if caster:GetOwner():HasTalent("special_bonus_unique_et_echo_stomp_2") then
+				enemy:Taunt(self, caster:GetOwner(), caster:GetOwner():FindTalentValue("special_bonus_unique_et_echo_stomp_2"))
 			end
 		end
    end

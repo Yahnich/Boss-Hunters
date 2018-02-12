@@ -23,6 +23,13 @@ function modifier_earthshaker_enchant_totem_ebf:OnRefresh()
 	self.amp = self:GetTalentSpecialValueFor("totem_damage_percentage")
 end
 
+function modifier_earthshaker_enchant_totem_ebf:OnDestroy()
+	if self:GetParent():HasTalent("special_bonus_unique_earthshaker_enchant_totem_ebf_1") then
+		local aftershock = self:GetParent():FindAbilityByName("earthshaker_aftershock_ebf")
+		aftershock:Aftershock()
+	end
+end
+
 function modifier_earthshaker_enchant_totem_ebf:DeclareFunctions()
 	return {MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE, MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE, MODIFIER_EVENT_ON_ATTACK}
 end

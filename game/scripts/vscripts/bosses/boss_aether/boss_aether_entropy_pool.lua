@@ -1,11 +1,17 @@
 boss_aether_entropy_pool = class({})
 
+function boss_aether_entropy_pool:OnAbilityPhaseStart()
+	self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_status_immunity", {duration = self:GetCastPoint() - 0.01})
+	return true
+end
+
 function boss_aether_entropy_pool:OnSpellStart()
 	self.channelThink = 0
 	self.channelDuration = 0
 	self.channelDelay = self:GetTalentSpecialValueFor("pool_creation_time")
 	self.poolTable = {}
 	EmitSoundOn("Hero_Enigma.Midnight_Pulse", self:GetCaster() )
+	self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_status_immunity", {duration = self:GetChannelTime() - 0.01})
 end
 
 function boss_aether_entropy_pool:OnChannelThink(dt)
@@ -71,7 +77,7 @@ function modifier_boss_aether_entropy_pool_aura:GetAuraRadius()
 end
 
 function modifier_boss_aether_entropy_pool_aura:GetAuraDuration()
-	return 0
+	return 0.2
 end
 
 function modifier_boss_aether_entropy_pool_aura:GetAuraSearchTeam()    

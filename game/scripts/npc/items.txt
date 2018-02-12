@@ -70,88 +70,6 @@
 			}
 		}
 	}
-	//=================================================================================================================
-	// Bloodthorn
-	//=================================================================================================================
-	"item_bloodthorn"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"250"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"FightRecapLevel"				"1"
-
-		// Stats
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"900"
-		"AbilityCastPoint"				"0.0"
-		"AbilityCooldown"				"13.0"
-		"AbilitySharedCooldown"			"orchid"
-		"PiercesDisableReduction"		"1"
-		"HasPureCooldown"				"1"
-
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"100"
-		"ItemCost"						"1389"
-		"ItemShopTags"					"int;attack_speed;damage;regen_mana;damage;hard_to_tag"
-		"ItemQuality"					"rare"
-		"ItemAliases"					"orchid malevolence"
-		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-		
-		// Special	
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_intellect"		"25"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_attack_speed"	"30"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"60"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"bonus_mana_regen"		"2.25"
-			}			
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"crit_chance"			"20"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"crit_multiplier"		"150"
-			}	
-			"07"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"silence_damage_percent"	"30"
-			}	
-			"08"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"silence_duration"		"5"
-			}
-			"09"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"target_crit_multiplier"		"125"
-			}
-		}
-	}
 	
 	//=================================================================================================================
 	// Blade Mail
@@ -2014,62 +1932,6 @@
 			}
 		}
 	}
-
-	//=================================================================================================================
-	// Black King Bar
-	//=================================================================================================================
-	"item_black_king_bar"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"116"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"FightRecapLevel"				"2"
-
-		// Stats		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"80 75 70 65 60 55"
-
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"795"
-		"ItemShopTags"					"str;damage;hard_to_tag"
-		"ItemQuality"					"epic"
-		"ItemAliases"					"bkb;black king bar"
-		"ItemSellable"					"1"
-		
-		
-		// Special	
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_strength"		"10"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"24"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"10.0 9.0 8.0 7.0 6.0 5.0"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"max_level"				"6"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"model_scale"			"30"     // Percentage over model scale
-			}
-		}
-	}
 	//=================================================================================================================
 	// Shiva's
 	//=================================================================================================================
@@ -3038,6 +2900,8 @@
 		// Stats		
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"				"24.0"
+		"AbilityDuration"				"14"
+		"HasPureCooldown"				"1"
 		"AbilitySharedCooldown"			"shadow_blade"
 
 
@@ -4137,7 +4001,10 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"232"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"                     "item_lua"
+		"ScriptFile"                  	"lua_item/aether_lens.lua"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"item_aether_lens"
 
 	
 		// Item Info
@@ -4166,7 +4033,52 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"cast_range_bonus"			"250"
+				"cast_range_bonus"		"250"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"spell_amp"				"15"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Kaya
+	//=================================================================================================================
+	"item_kaya"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"						"259"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		// Item Info^
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"820"
+		"ItemShopTags"					"int;mana"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"ky;kaya"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS | DECLARE_PURCHASES_IN_SPEECH"
+		"ShouldBeSuggested"				"1"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_intellect"		"16"
+			}			
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"spell_amp"				"10"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"manacost_reduction"	"10"
 			}
 		}
 	}

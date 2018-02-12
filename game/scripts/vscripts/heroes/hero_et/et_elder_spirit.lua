@@ -12,6 +12,13 @@ function et_elder_spirit:GetAbilityTextureName()
 	return "elder_titan_ancestral_spirit"
 end
 
+function et_elder_spirit:GetBehavior()
+	if not self:GetCaster():HasModifier("modifier_elder_spirit_check") and self:GetLevel() > 0 then
+		return DOTA_ABILITY_BEHAVIOR_NO_TARGET + DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING
+	end
+	return DOTA_ABILITY_BEHAVIOR_POINT + DOTA_ABILITY_BEHAVIOR_AOE + DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING
+end
+
 function et_elder_spirit:GetAOERadius()
 	return self:GetTalentSpecialValueFor("radius")
 end
@@ -169,6 +176,14 @@ function modifier_elder_spirit:CheckState()
 	return state
 end
 
+function modifier_elder_spirit:DeclareFunctions()
+	return {MODIFIER_PROPERTY_INVISIBILITY_LEVEL}
+end
+
+function modifier_elder_spirit:GetModifierInvisibilityLevel()
+	return 240
+end
+
 function modifier_elder_spirit:GetEffectName()
     return "particles/units/heroes/hero_elder_titan/elder_titan_ancestral_spirit_ambient.vpcf"
 end
@@ -225,7 +240,7 @@ function modifier_elder_spirit_enemy:OnCreated(table)
 end
 
 function modifier_elder_spirit_enemy:OnIntervalThink()
-	self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self:GetTalentSpecialValueFor("damage"), {}, 0)
+	self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self:GetTalentSpecialValueFor("dot"), {}, 0)
 	self:StartIntervalThink(1.0)
 end
 

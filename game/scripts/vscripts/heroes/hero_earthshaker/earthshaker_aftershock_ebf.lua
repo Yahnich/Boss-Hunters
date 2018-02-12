@@ -4,11 +4,13 @@ function earthshaker_aftershock_ebf:GetIntrinsicModifierName()
 	return "modifier_earthshaker_aftershock_ebf_passive"
 end
 
-function earthshaker_aftershock_ebf:Aftershock(position, radius)
+function earthshaker_aftershock_ebf:Aftershock(position, fRadius, bScepter)
 	local caster = self:GetCaster()
 	local vPos = position or caster:GetAbsOrigin()
 	
+	local radius = fRadius or self:GetTalentSpecialValueFor("aftershock_range")
 	local damage = self:GetTalentSpecialValueFor("str_damage") / 100 * caster:GetStrength()
+	if bScepter then damage = self:GetTalentSpecialValueFor("scepter_damage") / 100 * caster:GetStrength() end
 	local duration = self:GetTalentSpecialValueFor("max_duration")
 	
 	local enemies = caster:FindEnemyUnitsInRadius(vPos, radius)
@@ -25,6 +27,9 @@ function earthshaker_aftershock_ebf:Aftershock(position, radius)
 				end
 			end
 		end
+		if caster:HasScepter() and not bScepter then
+			self:Aftershock(enemy:GetAbsOrigin(), self:GetTalentSpecialValueFor("scepter_radius"), true)
+		end
 	end
 	ParticleManager:FireParticle("particles/units/heroes/hero_earthshaker/earthshaker_aftershock.vpcf", PATTACH_WORLDORIGIN, nil, {[0] = vPos, [1] = Vector(radius, radius, radius)})
 	EmitSoundOn( "Hero_EarthShaker.EchoSlamSmall", caster)
@@ -39,8 +44,7 @@ end
 
 function modifier_earthshaker_aftershock_ebf_passive:OnAbilityExecuted( params )
 	if params.unit == self:GetParent() and self:GetParent():HasAbility( params.ability:GetName() ) then
-		local radius = self:GetTalentSpecialValueFor("aftershock_range")
-		self:GetAbility():Aftershock(self:GetParent():GetAbsOrigin(), self:GetTalentSpecialValueFor("aftershock_range"))
+		self:GetAbility():Aftershock()
 	end
 end
 

@@ -2,7 +2,7 @@ boss19_cracked_ground = class({})
 
 function boss19_cracked_ground:OnSpellStart()
 	local caster = self:GetCaster()
-	caster:AddNewModifier(caster, self, "modifier_invulnerable", {duration = self:GetCastPoint() - 0.01})
+	caster:AddNewModifier(caster, self, "modifier_status_immunity", {duration = self:GetChannelTime() - 0.01})
 	ParticleManager:FireWarningParticle(caster:GetAbsOrigin(), 600)
 	self.chargeFX = ParticleManager:CreateParticle("particles/bosses/boss19/boss19_cracked_ground_charge.vpcf", PATTACH_POINT_FOLLOW, caster)
 	ParticleManager:SetParticleControl(self.chargeFX, 0, caster:GetAbsOrigin())

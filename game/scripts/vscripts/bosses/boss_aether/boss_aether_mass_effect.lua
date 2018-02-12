@@ -1,5 +1,10 @@
 boss_aether_mass_effect = class({})
 
+function boss_aether_mass_effect:OnAbilityPhaseStart()
+	self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_status_immunity", {duration = self:GetCastPoint() - 0.01})
+	return true
+end
+
 function boss_aether_mass_effect:OnSpellStart()
 	local caster = self:GetCaster()
 	local mousePos = self:GetCursorPosition()

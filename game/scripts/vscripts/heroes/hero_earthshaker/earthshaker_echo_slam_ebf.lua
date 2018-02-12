@@ -17,11 +17,10 @@ function earthshaker_echo_slam_ebf:OnSpellStart()
 	for _, enemy in ipairs( enemies ) do
 		local sqRad = ( math.ceil(CalculateDistance(caster, enemy) / 675)^2 )
 		local radiusDamage = baseDamage / sqRad
-		print( radiusDamage, sqRad )
 		self:DealDamage( caster, enemy, radiusDamage )
 		ParticleManager:FireParticle("particles/units/heroes/hero_earthshaker/earthshaker_echoslam_end.vpcf", PATTACH_POINT_FOLLOW, enemy)
 		for _, echoTarget in ipairs( enemies ) do
-			if enemy ~= echoTarget then
+			if enemy:entindex() ~= echoTarget:entindex() then
 				self:CreateEcho( enemy, echoTarget, echoDamage )
 			end
 		end
@@ -44,11 +43,11 @@ function earthshaker_echo_slam_ebf:CreateEcho(origin, target, damage)
 	EmitSoundOn("Hero_EarthShaker.EchoSlamEcho", caster)
 	ProjectileManager:CreateTrackingProjectile(info)
 	if caster:HasTalent("special_bonus_unique_earthshaker_echo_slam_ebf_1") then
-		Timers:CreateTimer(0.2, function() ProjectileManager:CreateTrackingProjectile(info) end)
+		Timers:CreateTimer(0.25, function() ProjectileManager:CreateTrackingProjectile(info) end)
 	end
 end
 
-function earthshaker_echo_slam_ebf:OnProjectileHitUnit_ExtraData(target, position, extraData)
+function earthshaker_echo_slam_ebf:OnProjectileHit_ExtraData(target, position, extraData)
 	if target then
 		local damage = tonumber( extraData.damage )
 		self:DealDamage( self:GetCaster(), target, damage )

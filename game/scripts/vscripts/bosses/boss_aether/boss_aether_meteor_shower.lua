@@ -1,6 +1,7 @@
 boss_aether_meteor_shower = class({})
 function boss_aether_meteor_shower:OnAbilityPhaseStart()
 	EmitSoundOn( "Hero_AbyssalUnderlord.Firestorm.Start", self:GetCaster() )
+	self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_status_immunity", {duration = self:GetCastPoint() - 0.01})
 	return true
 end
 

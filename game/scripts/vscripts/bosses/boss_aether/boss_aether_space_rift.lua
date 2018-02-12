@@ -5,6 +5,7 @@ function boss_aether_space_rift:OnAbilityPhaseStart()
 	self.riftFX = ParticleManager:CreateParticle("particles/units/heroes/heroes_underlord/abyssal_underlord_darkrift_target.vpcf", PATTACH_WORLDORIGIN, nil)
 	ParticleManager:SetParticleControl(self.riftFX, 0, self:GetCursorPosition() + Vector(0,0,128) )
 	ParticleManager:SetParticleControl(self.riftFX, 6, self:GetCursorPosition() + Vector(0,0,128) )
+	self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_status_immunity", {duration = self:GetCastPoint() - 0.01})
 	return true
 end
 
