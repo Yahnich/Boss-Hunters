@@ -1713,7 +1713,7 @@ function CDOTABaseAbility:Stun(target, duration, bDelay)
 	target:AddNewModifier(self:GetCaster(), self, "modifier_stunned_generic", {duration = duration, delay = bDelay})
 end
 
-function CDOTABaseAbility:FireLinearProjectile(FX, velocity, distance, width, data)
+function CDOTABaseAbility:FireLinearProjectile(FX, velocity, distance, width, data, bDelete, bVision, vision)
 	local internalData = data or {}
 	local info = {
 		EffectName = FX,
@@ -1726,9 +1726,40 @@ function CDOTABaseAbility:FireLinearProjectile(FX, velocity, distance, width, da
 		Source = internalData.source or self:GetCaster(),
 		iUnitTargetTeam = internalData.team or DOTA_UNIT_TARGET_TEAM_ENEMY,
 		iUnitTargetType = internalData.type or DOTA_UNIT_TARGET_ALL,
+		iUnitTargetFlags = internalData.type or DOTA_UNIT_TARGET_FLAG_NONE,
+		bDeleteOnHit = bDelete or false,
+		fExpireTime = GameRules:GetGameTime() + 10.0,
+		bProvidesVision = bVision or false,
+		iVisionRadius = vision or 0,
+		iVisionTeamNumber = self:GetCaster():GetTeamNumber(),
 		ExtraData = internalData.extraData
 	}
-	return ProjectileManager:CreateLinearProjectile( info )
+	local projectile = ProjectileManager:CreateLinearProjectile( info )
+	return projectile
+end
+
+function CDOTABaseAbility:FireTrackingProjectile(FX, target, speed, data, iAttach, bDodge, bVision, vision)
+	local internalData = data or {}
+	local projectile = {
+		Target = target,
+		Source = internalData.source or self:GetCaster(),
+		Ability = self,	
+		EffectName = FX,
+	    iMoveSpeed = speed,
+		vSourceLoc= internalData.origin or self:GetCaster():GetAbsOrigin(),
+		bDrawsOnMinimap = false,
+        bDodgeable = bDodge or false,
+        bIsAttack = false,
+        bVisibleToEnemies = true,
+        bReplaceExisting = false,
+        flExpireTime = GameRules:GetGameTime() + 10,
+		bProvidesVision = bVision or false,
+		iVisionRadius = vision or 0,
+		iVisionTeamNumber = self:GetCaster():GetTeamNumber(),
+		iSourceAttachment = iAttach or 0,
+		ExtraData = internalData.extraData
+	}
+	ProjectileManager:CreateTrackingProjectile(projectile)
 end
 
 function CDOTABaseAbility:ApplyAOE(eventTable)
@@ -2161,5 +2192,23 @@ function CDOTA_BaseNPC:InWater()
 		return true
 	else
 		return false
+	end
+end
+
+function CDOTA_BaseNPC:Paralyze(hAbility, hCaster)
+	self:AddNewModifier(hCaster, hAbility, "modifier_paralyze", {Duration = 1})
+end
+
+function CDOTA_BaseNPC:IsParalyzed()
+	if self:HasModifier("modifier_paralyze") then
+		return true
+	else
+		return false
+	end
+end
+
+function CDOTA_BaseNPC:RemoveParalyze()
+	if self:HasModifier("modifier_paralyze") then
+		self:RemoveModifierByName("modifier_paralyze")
 	end
 end
