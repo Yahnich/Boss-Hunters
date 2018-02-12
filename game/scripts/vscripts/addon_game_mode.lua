@@ -29,6 +29,7 @@ require("libraries/utility")
 
 require("libraries/animations")
 
+LinkLuaModifier( "modifier_paralyze", "libraries/modifiers/modifier_paralyze.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_in_water", "libraries/modifiers/modifier_in_water.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_healing_disable", "libraries/modifiers/modifier_healing_disable.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_summon_handler", "libraries/modifiers/modifier_summon_handler.lua", LUA_MODIFIER_MOTION_NONE)
