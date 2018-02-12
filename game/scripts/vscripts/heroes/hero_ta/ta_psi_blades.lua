@@ -24,7 +24,7 @@ function modifier_ta_psi_blades:OnCreated(table)
 end
 
 function modifier_ta_psi_blades:OnIntervalThink()
-	self.bonusRange = self:GetCaster():GetAttackRange() * self:GetTalentSpecialValueFor("bonus_range")/100
+	self.bonusRange = self:GetTalentSpecialValueFor("bonus_range") + self:GetCaster():GetAttackRange() * self:GetTalentSpecialValueFor("bonus_range_pct")/100
 end
 
 function modifier_ta_psi_blades:DeclareFunctions()

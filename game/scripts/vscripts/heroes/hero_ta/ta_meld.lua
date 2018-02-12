@@ -1,33 +1,13 @@
 ta_meld = class({})
 LinkLuaModifier( "modifier_ta_meld", "heroes/hero_ta/ta_meld.lua", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_ta_meld_armor", "heroes/hero_ta/ta_meld.lua", LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "modifier_ta_meld_range", "heroes/hero_ta/ta_meld.lua", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_ta_meld_enemy", "heroes/hero_ta/ta_meld.lua", LUA_MODIFIER_MOTION_NONE )
 
-function ta_meld:GetIntrinsicModifierName()
-	return "modifier_ta_meld_range"
-end
 
 function ta_meld:OnSpellStart()
 	local caster = self:GetCaster()
 	caster:AddNewModifier(caster, self, "modifier_ta_meld", {Duration = self:GetSpecialValueFor("invis_duration")})
 	caster:AddNewModifier(caster, self, "modifier_ta_meld_armor", {})
-end
-
-modifier_ta_meld_range = ({})
-function modifier_ta_meld_range:DeclareFunctions()
-    local funcs = {
-        MODIFIER_PROPERTY_ATTACK_RANGE_BONUS
-    }
-    return funcs
-end
-
-function modifier_ta_meld_range:GetModifierAttackRangeBonus()
-	return self:GetTalentSpecialValueFor("bonus_range")
-end
-
-function modifier_ta_meld_range:IsHidden()
-	return true
 end
 
 modifier_ta_meld_armor = ({})

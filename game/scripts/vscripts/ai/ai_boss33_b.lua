@@ -82,7 +82,7 @@ if IsServer() then
 				
 				local raze1Units = thisEntity:FindEnemyUnitsInRadius(raze1Pos, razeRadius)
 				local raze2Units = thisEntity:FindEnemyUnitsInRing(thisEntity:GetAbsOrigin(), thisEntity.raze2:GetSpecialValueFor("distance") + razeRadius,  thisEntity.raze2:GetSpecialValueFor("distance") - razeRadius)
-				local raze3Units = thisEntity:FindEnemyUnitsInLine(thisEntity:GetAbsOrigin(), thisEntity:GetAbsOrigin() + thisEntity:GetForwardVector() * (thisEntity.raze3:GetSpecialValueFor("distance")/3) * self:GetSpecialValueFor("phase2_raze_count"), razeRadius)
+				local raze3Units = thisEntity:FindEnemyUnitsInLine(thisEntity:GetAbsOrigin(), thisEntity:GetAbsOrigin() + thisEntity:GetForwardVector() * (thisEntity.raze3:GetSpecialValueFor("distance")/3) * thisEntity.raze3:GetSpecialValueFor("phase2_raze_count"), razeRadius)
 				
 				if thisEntity.raze1:IsFullyCastable() and ( #raze1Units > 2 or HasValInTable(raze2Units, target) ) then
 					ExecuteOrderFromTable({

@@ -1,7 +1,7 @@
 boss_aether_gravity_well = class({})
 
 function boss_aether_gravity_well:GetIntrinsicModifierName()
-	-- return "modifier_boss_aether_gravity_well"
+	return "modifier_boss_aether_gravity_well"
 end
 
 modifier_boss_aether_gravity_well = class({})

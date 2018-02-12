@@ -2375,12 +2375,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"movespeed"				"0.75 1.25"
+				"movespeed"				"0.75 1"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"damage_amp"			"0.75 1.25"
+				"damage_amp"			"0.5 0.75"
 			}	
 		}
 	}
@@ -2445,7 +2445,7 @@
 		// Stats		
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"				"15 12"
-		"AbilityCastPoint"				"0.75 0.5"
+		"AbilityCastPoint"				"1 0.8"
 		"AbilityCastRange"				"400"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
 	
@@ -2461,7 +2461,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"radius"				"375 400"
+				"radius"				"320 350"
 			}
 			"02"
 			{
@@ -2492,8 +2492,8 @@
 	
 		// Stats		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"9"
-		"AbilityCastPoint"				"0.75 0.5"
+		"AbilityCooldown"				"7"
+		"AbilityCastPoint"				"1 0.8"
 		"AbilityCastRange"				"650"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_3"
 	
@@ -2509,12 +2509,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"5"
+				"duration"				"2"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"suck_power"			"200 250"
+				"suck_power"			"75 100"
 			}
 			"03"
 			{
@@ -2524,7 +2524,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius"				"500"
+				"radius"				"375 425"
 			}
 		}
 		"precache"
@@ -8537,13 +8537,13 @@
 		"AbilityCastRange"				"1000"
 		
 		"AbilityCastAnimation"			"ACT_DOTA_SPAWN"	// Activity
-		"AnimationPlaybackRate"			"0.8"						// Animation speed multiplier
+		"AnimationPlaybackRate"			"0.4"						// Animation speed multiplier
 		"AnimationIgnoresModelScale"	"1"
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"				"6"
-		"AbilityCastPoint"				"0.1"
+		"AbilityCastPoint"				"0.8 0.5"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -26733,12 +26733,12 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"2"
+		"AbilityCooldown"				"8"
 		"AbilityCastPoint"				"0.1"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"               "75"
+		"AbilityManaCost"               "150"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -39622,7 +39622,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"echo_damage"				"500 1000 2000 4000 8000 16000 32000"
+				"echo_damage"				"250 500 1000 2000 4000 8000 16000"
 			}
 			"03"
 			{
@@ -45304,6 +45304,182 @@
 			}
 		}
 	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_ta_meld_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"										// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"-40"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_ta_meld_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"										// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"2"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_ta_psi_blades_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"										// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"2"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_ta_psi_blades_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"										// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"1"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_ta_refract_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"										// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"1"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_ta_refract_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"										// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"value"						"2"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_ta_trap_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"										// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"30"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_ta_trap_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"										// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"1"
+			}
+		}
+	}
 	"special_bonus_unique_tech_blasting_off_1" 
 	{
 		// General
@@ -47070,6 +47246,375 @@
 			}
 		}
 	}
+	"ta_meld"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_ta/ta_meld.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET |  DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_MOVEMENT"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	    "AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
+	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityUnitDamageType"         "DAMAGE_TYPE_PHYSICAL"   
+		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"templar_assassin_meld"
+		"LevelsBetweenUpgrades"			"6"
+		"MaxLevel"						"7"
+		"RequiredLevel"					"6"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_3"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"10"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"50"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"armor_reduc"				"-7 -10 -13 -16 -19 -22 -25"
+				"LinkedSpecialBonus"		"special_bonus_unique_ta_meld_1"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_damage"				"1000 2000 4000 8000 16000 32000 64000"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_range"				"100 150 200 250 300 400 500"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"invis_duration"			"10"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"reduc_duration"			"10"
+			}	
+		}
+	
+		"precache"
+		{
+			"particle"  "particles/econ/items/templar_assassin/templar_assassin_focal/templar_assassin_meld_focal_attack.vpcf"
+			
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_techies.vsndevts"
+		}
+	}
+	"ta_psi_blades"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_ta/ta_psi_blades.lua"
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"templar_assassin_psi_blades"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityUnitDamageType"         "DAMAGE_TYPE_PHYSICAL" 
+		"MaxLevel"						"7"
+		"RequiredLevel"					"5"
+		"LevelsBetweenUpgrades"			"7"
+		//"HasScepterUpgrade"				"1"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"bonus_range"					"100 150 200 250 300 400 500"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"bonus_range_pct"				"30"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"radius"						"240 260 280 300 320 340 360"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"max_units"						"2"
+				"LinkedSpecialBonus"			"special_bonus_unique_ta_psi_blades_1"
+			}
+		}
+	
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_templar_assassin/templar_assassin_psi_blade.vpcf"
+			
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_earth_spirit.vsndevts"
+		}
+	}
+	"ta_refract"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_ta/ta_refract.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName"			"templar_assassin_refraction"
+		"LevelsBetweenUpgrades"			"6"
+		"MaxLevel"						"7"
+		"RequiredLevel"					"6"
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_REFRACTION"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"8"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"100"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_damage"				"400 800 1600 3200 6400 12800 25600"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage_reduction"			"40"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"4"
+				"LinkedSpecialBonus"		"special_bonus_unique_ta_refract_2"
+			}	
+		}
+	
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_templar_assassin/templar_assassin_refraction.vpcf"
+			//"particle"  "particle_name"
+			
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_techies.vsndevts"
+		}
+	}
+	"ta_trap"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_ta/ta_trap.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	    "AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
+	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
+		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityTextureName"			"templar_assassin_psionic_trap"
+		"LevelsBetweenUpgrades"			"6"
+		"MaxLevel"						"7"
+	
+		"precache"
+		{
+			"particle"			"particles/units/heroes/hero_templar_assassin/templar_assassin_trap.vpcf"
+			"particle"			"particles/units/heroes/hero_templar_assassin/templar_assassin_trap_explode.vpcf"
+			"soundfile"			"sounds/weapons/hero/templar_assassin/trap_cast.vsnd"
+			"soundfile"			"sounds/weapons/hero/templar_assassin/trap_spawn.vsnd"
+		}
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"2000"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_5"
+		"AbilityCastPoint"				"0.3"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"12.0 11.0 10.0 9.0 8.0 7.0 6.0"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"15"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"max_traps"					"5 6 7 8 9 10 11"
+				"LinkedSpecialBonus"		"special_bonus_unique_templar_assassin_6"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"trap_fade_time"			"2.0"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"movement_speed_min_tooltip"	"30"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"movement_speed_max_tooltip"	"50"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage_min_tooltip"		"1250 2500 5000 10000 20000 35000 70000"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage_max_tooltip"		"1750 3500 7500 15000 35000 50000 100000"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"tick_rate"					"0.1"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"total_tick_time"			"4.0"
+			}
+			"07"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"trap_duration_tooltip"			"5"
+			}
+		}
+	}
+	"ta_trap_spring"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_ta/ta_trap_spring.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	    "AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
+	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
+		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+		"MaxLevel"						"1"
+		"AbilityTextureName"			"templar_assassin_self_trap"
+		//"InnateAbility"					"1"
+		
+		"precache"
+		{
+			"particle"			"particles/units/heroes/hero_templar_assassin/templar_assassin_trap_slow.vpcf"
+			"particle"			"particles/units/heroes/hero_templar_assassin/templar_assassin_trap_explode.vpcf"
+			"soundfile"			"sounds/weapons/hero/templar_assassin/trap_explode.vsnd"
+			"soundfile"			"sounds/weapons/hero/templar_assassin/trigger_trap.vsnd"
+		}
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.0"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"0.5"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"trap_radius"				"400"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"trap_duration"				"5.0"
+			}
+		}
+	}
+	"ta_trap_tp"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_ta/ta_trap_tp.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	    "AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
+	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
+		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+		"MaxLevel"						"1"
+		"AbilityTextureName"			"templar_assassin_trap"
+		//"InnateAbility"					"1"
+		
+		
+		"precache"
+		{
+			"particle"			"particles/units/heroes/hero_templar_assassin/templar_assassin_trap_slow.vpcf"
+			"particle"			"particles/units/heroes/hero_templar_assassin/templar_assassin_trap_explode.vpcf"
+			"soundfile"			"sounds/weapons/hero/templar_assassin/trap_explode.vsnd"
+			"soundfile"			"sounds/weapons/hero/templar_assassin/trigger_trap.vsnd"
+		}
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.0"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"0.5"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"trap_radius"				"400"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"trap_duration"				"5.0"
+			}
+		}
+	}
 	"tech_blasting_off"
 	{
 		// General
@@ -47425,243 +47970,6 @@
 			"particle"  "particles/units/heroes/hero_techies/techies_suicide.vpcf"
 			
 			"soundfile" "soundevents/game_sounds_heroes/game_sounds_techies.vsndevts"
-		}
-	}
-	"templar_assassin_psionic_trap_ebf"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"lua_abilities/heroes/templar_assassin"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityTextureName"			"templar_assassin_psionic_trap"
-		"LevelsBetweenUpgrades"			"7"
-		"MaxLevel"						"7"
-	
-		"precache"
-		{
-			"particle"			"particles/units/heroes/hero_templar_assassin/templar_assassin_trap.vpcf"
-			"particle"			"particles/units/heroes/hero_templar_assassin/templar_assassin_trap_explode.vpcf"
-			"soundfile"			"sounds/weapons/hero/templar_assassin/trap_cast.vsnd"
-			"soundfile"			"sounds/weapons/hero/templar_assassin/trap_spawn.vsnd"
-		}
-		
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"2000"
-		"AbilityCastPoint"				"0.3 0.3 0.3 0.3"
-		
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"12.0 11.0 10.0 9.0 8.0 7.0 6.0"
-	
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"15 15 15"
-	
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"max_traps"					"5 6 7 8 9 10 11"
-				"LinkedSpecialBonus"		"special_bonus_unique_templar_assassin_6"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"trap_fade_time"			"2.0 2.0 2.0"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"movement_speed_min_tooltip"	"30"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"movement_speed_max_tooltip"	"50"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage_min_tooltip"		"1250 2500 5000 10000 20000 35000 70000"
-				"LinkedSpecialBonus"		"special_bonus_unique_templar_assassin_3"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage_max_tooltip"		"1750 3500 7500 15000 35000 50000 100000"
-				"LinkedSpecialBonus"		"special_bonus_unique_templar_assassin_3"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"tick_rate"					"0.1"
-			}
-			"06"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"total_tick_time"			"4.0"
-			}
-			"07"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"trap_duration_tooltip"			"5"
-			}
-		}
-	}
-	//=================================================================================================================
-	// Templar Assassin: Refraction Holdout
-	//=================================================================================================================
-	"templar_assassin_refraction_holdout"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"	
-	
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
-	
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"17.0 17.0 17.0 17.0"
-	
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"100"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage_absorb"				"200 300 400 500"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"bonus_damage"				"20 40 60 80"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"17.0 17.0 17.0 17.0"
-			}
-		}
-	}
-	"templar_assassin_traptp_ebf"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"lua_abilities/heroes/templar_assassin"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"MaxLevel"						"1"
-		"AbilityTextureName"			"templar_assassin_trap"
-		"InnateAbility"					"1"
-		
-		
-		"precache"
-		{
-			"particle"			"particles/units/heroes/hero_templar_assassin/templar_assassin_trap_slow.vpcf"
-			"particle"			"particles/units/heroes/hero_templar_assassin/templar_assassin_trap_explode.vpcf"
-			"soundfile"			"sounds/weapons/hero/templar_assassin/trap_explode.vsnd"
-			"soundfile"			"sounds/weapons/hero/templar_assassin/trigger_trap.vsnd"
-		}
-		
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0.0"
-		
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"0.5"
-	
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"0"
-	
-		// Stats
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityModifierSupportBonus"		"100"
-	
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"trap_radius"				"400"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"trap_duration"				"5.0"
-			}
-		}
-	}
-	"templar_assassin_trap_ebf"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"lua_abilities/heroes/templar_assassin"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"MaxLevel"						"1"
-		"AbilityTextureName"			"templar_assassin_self_trap"
-		"InnateAbility"					"1"
-		
-		
-		"precache"
-		{
-			"particle"			"particles/units/heroes/hero_templar_assassin/templar_assassin_trap_slow.vpcf"
-			"particle"			"particles/units/heroes/hero_templar_assassin/templar_assassin_trap_explode.vpcf"
-			"soundfile"			"sounds/weapons/hero/templar_assassin/trap_explode.vsnd"
-			"soundfile"			"sounds/weapons/hero/templar_assassin/trigger_trap.vsnd"
-		}
-		
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0.0"
-		
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"0.5"
-	
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"0"
-	
-		// Stats
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityModifierSupportBonus"		"100"
-	
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"trap_radius"				"400"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"trap_duration"				"5.0"
-			}
 		}
 	}
 	"terrorblade_disruption"
@@ -54775,17 +55083,17 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"aura_radius"			"1200"
+				"aura_radius"			"900"
 			}
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"max_pull"				"2 4"
+				"max_pull"				"2 3"
 			}
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"max_damage"			"3.25 4"
+				"max_damage"			"3.25 3.5"
 			}
 		}
 	}
@@ -54959,7 +55267,7 @@
 			"03"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"damage_per_second"			"15000 17500"
+				"damage_per_second"			"35000 37500"
 			}
 			"04"
 			{
@@ -55057,7 +55365,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage_per_second"			"20"
+				"damage_per_second"			"25"
 			}
 			"03"
 			{
