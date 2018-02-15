@@ -52,7 +52,11 @@ function modifier_dragon_knight_intervene_movement:OnIntervalThink()
 		self:Destroy()
 		caster:AddNewModifier(caster, ability, "modifier_dragon_knight_intervene_buff", {duration = self.healDuration})
 		if caster:GetTeam() ~= target:GetTeam() then
-			ability:Stun(target, self.stunDuration, false)
+			if caster:HasTalent("special_bonus_unique_dragon_knight_intervene_2") then
+				target:Taunt(ability, caster, caster:FindTalentValue("special_bonus_unique_dragon_knight_intervene_2"))
+			else
+				ability:Stun(target, self.stunDuration, false)
+			end
 			EmitSoundOn("Hero_DragonKnight.DragonTail.Target", target)
 			ability:DealDamage( caster, target, self.damage )
 		else

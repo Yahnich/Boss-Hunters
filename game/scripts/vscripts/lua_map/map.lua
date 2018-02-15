@@ -12,20 +12,6 @@ function MapHandler:CheckAndResolvePositions(hero)
 	if MapHandler:IsOutsideMapBounds(hero) then
 		FindClearSpaceForUnit(hero, SPAWN_POS, true)
 		hero.lastAllowedPosition = Vector(0,0, hero:GetAbsOrigin().z) + SPAWN_POS
-	elseif hero.lastAllowedPosition and not GridNav:CanFindPath(hero.lastAllowedPosition, hero:GetAbsOrigin()) and not hero:IsStunned() then
-		if not hero:HasFlyMovementCapability() then
-			hero.positionResetBuffer = hero.positionResetBuffer or 0
-			if hero.positionResetBuffer > 1 then
-				FindClearSpaceForUnit(hero, hero:GetAbsOrigin(), true)
-				hero.positionResetBuffer = 0
-			else
-				hero.positionResetBuffer = hero.positionResetBuffer + FrameTime()
-			end
-		end
-	elseif not GridNav:CanFindPath(hero:GetAbsOrigin(), hero:GetAbsOrigin()) and not hero:IsStunned() then
-		FindClearSpaceForUnit(hero, hero:GetAbsOrigin(), true)
-	else
-		hero.lastAllowedPosition = hero:GetAbsOrigin()
 	end
 end
 

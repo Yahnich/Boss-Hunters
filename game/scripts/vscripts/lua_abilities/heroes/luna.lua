@@ -66,7 +66,9 @@ end
 function modifier_luna_lunar_blessing_passive:OnAbilityFullyCast(params)
     if IsServer() then
 		if params.unit == self:GetParent() and params.ability:GetName() == "luna_lucent_beam" then
-			local units = FindUnitsInRadius(params.unit:GetTeam(), params.target:GetAbsOrigin(), nil, self:GetAbility():GetSpecialValueFor("bonus_beam_radius"), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO, 0, 0, false)
+			local radius = self:GetAbility():GetSpecialValueFor("bonus_beam_radius")
+			if self:GetParent():HasTalent("special_bonus_unique_luna_3") then radius = -1 end
+			local units = FindUnitsInRadius(params.unit:GetTeam(), params.target:GetAbsOrigin(), nil, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO, 0, 0, false)
 			local beams = self.lucent
 			print(beams)
 			for _,unit in pairs(units) do

@@ -81,7 +81,7 @@ function et_elder_spirit:OnSpellStart()
 			spirit:FindAbilityByName("et_earth_splitter"):SetActivated(false)
 		end
 		spirit:AddNewModifier(caster, self, "modifier_elder_spirit", {})
-		spirit:SetBaseMoveSpeed(caster:GetBaseMoveSpeed())
+		spirit:SetBaseMoveSpeed(caster:GetIdealSpeed())
 
 		self:EndCooldown()
 	end

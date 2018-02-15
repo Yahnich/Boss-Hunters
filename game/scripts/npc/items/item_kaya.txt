@@ -1,0 +1,263 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Kaya
+	//=================================================================================================================
+	"item_kaya_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"4658"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_kaya"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"custom/kaya_2"
+
+		// Item Info^
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"820"
+		"ItemShopTags"					"int;mana"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"ky;kaya"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS | DECLARE_PURCHASES_IN_SPEECH"
+		"ShouldBeSuggested"				"1"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_intellect"		"250"
+			}			
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"spell_amp"				"20"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"manacost_reduction"	"15"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Kaya
+	//=================================================================================================================
+	"item_kaya_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"4659"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_kaya"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"custom/kaya_3"
+
+		// Item Info^
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"820"
+		"ItemShopTags"					"int;mana"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"ky;kaya"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS | DECLARE_PURCHASES_IN_SPEECH"
+		"ShouldBeSuggested"				"1"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_intellect"		"800"
+			}			
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"spell_amp"				"40"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"manacost_reduction"	"20"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Kaya
+	//=================================================================================================================
+	"item_kaya_4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"4660"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_kaya"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"custom/kaya_4"
+
+		// Item Info^
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"820"
+		"ItemShopTags"					"int;mana"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"ky;kaya"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS | DECLARE_PURCHASES_IN_SPEECH"
+		"ShouldBeSuggested"				"1"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_intellect"		"2000"
+			}			
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"spell_amp"				"80"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"manacost_reduction"	"25"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Kaya
+	//=================================================================================================================
+	"item_kaya_5"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"4661"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_kaya"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"custom/kaya_5"
+
+		// Item Info^
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"820"
+		"ItemShopTags"					"int;mana"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"ky;kaya"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS | DECLARE_PURCHASES_IN_SPEECH"
+		"ShouldBeSuggested"				"1"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_intellect"		"7500"
+			}			
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"spell_amp"				"160"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"manacost_reduction"	"30"
+			}
+		}
+	}
+	"item_recipe_kaya_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"4662"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe_kaya"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"320"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_kaya_2"
+		"ItemRequirements"
+		{
+			"01"						"item_kaya;item_orb_of_shadows"
+		}
+	}
+	"item_recipe_kaya_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"4663"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe_kaya"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"640"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_kaya_3"
+		"ItemRequirements"
+		{
+			"01"						"item_kaya_2;item_orb_of_doom"
+		}
+	}
+	"item_recipe_kaya_4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"4664"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe_kaya"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"480"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_kaya_4"
+		"ItemRequirements"
+		{
+			"01"						"item_kaya_3;item_orb_divine"
+		}
+	}
+	"item_recipe_kaya_5"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"4665"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe_kaya"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"240"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_kaya_5"
+		"ItemRequirements"
+		{
+			"01"						"item_kaya_4;item_orb_bahamut"
+		}
+	}
+}

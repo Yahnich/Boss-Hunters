@@ -3,7 +3,7 @@ LinkLuaModifier( "modifier_ta_refract", "heroes/hero_ta/ta_refract.lua", LUA_MOD
 
 function ta_refract:OnSpellStart()
 	local caster = self:GetCaster()
-	caster:AddNewModifier(caster, self, "modifier_ta_refract", {Duration = self:GetSpecialValueFor("duration")})
+	caster:AddNewModifier(caster, self, "modifier_ta_refract", {Duration = self:GetTalentSpecialValueFor("duration")})
 end
 
 modifier_ta_refract = ({})

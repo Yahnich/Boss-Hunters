@@ -35,7 +35,7 @@ function furion_tree_ant:SpawnTreant(position)
 	tree:SetBaseMaxHealth(maxHP)
 	tree:SetMaxHealth(self:GetTalentSpecialValueFor("treant_health"))
 	tree:SetHealth(self:GetTalentSpecialValueFor("treant_health"))
-	local ad = caster:GetAttackDamage() * self:GetTalentSpecialValueFor("treant_damage")/100
+	local ad = caster:GetAverageTrueAttackDamage(caster) * self:GetTalentSpecialValueFor("treant_damage")/100
 	tree:SetBaseDamageMax(ad)
 	tree:SetBaseDamageMin(ad)
 	tree:SetPhysicalArmorBaseValue(caster:GetPhysicalArmorValue())

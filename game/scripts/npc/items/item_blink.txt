@@ -1,0 +1,364 @@
+"DOTAAbilities"
+{
+	"item_recipe_blink_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1270"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"2100"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_blink_2"
+		"ItemRequirements"
+		{
+			"01"						"item_orb_of_shadows;item_blink"
+		}
+	}
+	//=================================================================================================================
+	// Blink dagger
+	//=================================================================================================================
+	"item_blink_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"4205"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_blink.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+		"AbilityTextureName"			"custom/blink_2"
+
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"0"
+		"AbilityCastPoint"				"0.0"
+		"AbilityManaCost"				"0"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"450"
+		"ItemShopTags"					"teleport"
+		"ItemQuality"					"component"
+		"ItemAliases"					"blink dagger"
+		"ItemStackable"					"1"
+		"ItemPermanent"					"0"
+		"ItemInitialCharges"			"2"
+		
+		"precache"
+		{
+			"particle"					"particles/items_fx/blink_dagger_start.vpcf"
+			"particle"					"particles/items_fx/blink_dagger_end.vpcf"
+			"soundfile"					"soundevents/game_sounds_items.vsndevts"
+		}
+		
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"blink_range"			"1400"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"blink_damage_cooldown"	"1.5"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"blink_charges"			"2"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"charge_restore_time"	"12"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"all_stats"				"50"
+			}
+		}
+	}
+	"item_recipe_blink_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"4206"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"3200"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_blink_3"
+		"ItemRequirements"
+		{
+			"01"						"item_orb_of_doom;item_blink_2"
+		}
+	}
+	//=================================================================================================================
+	// Blink dagger
+	//=================================================================================================================
+	"item_blink_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"4207"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_blink.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+		"AbilityTextureName"			"custom/blink_3"
+
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"0"
+		"AbilityCastPoint"				"0.0"
+		"AbilityManaCost"				"0"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"450"
+		"ItemShopTags"					"teleport"
+		"ItemQuality"					"component"
+		"ItemAliases"					"blink dagger"
+		"ItemStackable"					"1"
+		"ItemPermanent"					"0"
+		"ItemInitialCharges"			"3"
+		
+		"precache"
+		{
+			"particle"					"particles/items_fx/blink_dagger_start.vpcf"
+			"particle"					"particles/items_fx/blink_dagger_end.vpcf"
+			"soundfile"					"soundevents/game_sounds_items.vsndevts"
+		}
+		
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"blink_range"			"1400"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"blink_damage_cooldown"	"1.0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"blink_charges"			"3"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"charge_restore_time"	"10"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"all_stats"				"200"
+			}
+		}
+	}
+	"item_recipe_blink_4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"4208"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"6400"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_blink_4"
+		"ItemRequirements"
+		{
+			"01"						"item_divine;item_blink_3"
+		}
+	}
+	//=================================================================================================================
+	// Blink dagger
+	//=================================================================================================================
+	"item_blink_4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"4209"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_blink.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+		"AbilityTextureName"			"custom/blink_4"
+
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"0"
+		"AbilityCastPoint"				"0.0"
+		"AbilityManaCost"				"0"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"450"
+		"ItemShopTags"					"teleport"
+		"ItemQuality"					"component"
+		"ItemAliases"					"blink dagger"
+		"ItemStackable"					"1"
+		"ItemPermanent"					"0"
+		"ItemInitialCharges"			"4"
+		
+		"precache"
+		{
+			"particle"					"particles/items_fx/blink_dagger_start.vpcf"
+			"particle"					"particles/items_fx/blink_dagger_end.vpcf"
+			"soundfile"					"soundevents/game_sounds_items.vsndevts"
+		}
+		
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"blink_range"			"1600"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"blink_damage_cooldown"	"0.5"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"blink_charges"			"4"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"charge_restore_time"	"8"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"all_stats"				"750"
+			}
+		}
+	}
+	"item_recipe_blink_5"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"4210"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"6400"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_blink_5"
+		"ItemRequirements"
+		{
+			"01"						"item_divine;item_blink_4"
+		}
+	}
+	//=================================================================================================================
+	// Blink dagger
+	//=================================================================================================================
+	"item_blink_5"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"4211"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_blink.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+		"AbilityTextureName"			"custom/blink_5"
+
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"0"
+		"AbilityCastPoint"				"0.0"
+		"AbilityManaCost"				"0"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"450"
+		"ItemShopTags"					"teleport"
+		"ItemQuality"					"component"
+		"ItemAliases"					"blink dagger"
+		
+		"ItemStackable"					"1"
+		"ItemPermanent"					"0"
+		"ItemInitialCharges"			"5"
+		
+		"precache"
+		{
+			"particle"					"particles/items_fx/blink_dagger_start.vpcf"
+			"particle"					"particles/items_fx/blink_dagger_end.vpcf"
+			"soundfile"					"soundevents/game_sounds_items.vsndevts"
+		}
+		
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"blink_range"			"1800"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"blink_damage_cooldown"	"0.0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"blink_charges"			"5"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"charge_restore_time"	"6"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"all_stats"				"2500"
+			}
+		}
+	}
+}

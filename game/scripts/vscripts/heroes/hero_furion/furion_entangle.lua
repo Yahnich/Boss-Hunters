@@ -62,14 +62,16 @@ function modifier_entangle_enemy:OnIntervalThink()
 		damage = self:GetCaster():GetOwnerEntity():GetIntellect() * (self:GetTalentSpecialValueFor("damage")/100)
 	end
 	local caster = self:GetCaster()
-	if self:GetCaster():GetOwnerEntity() then caster = self:GetCaster():GetOwnerEntity() end
+	if not caster:IsHero() and self:GetCaster():GetOwnerEntity() then caster = self:GetCaster():GetOwnerEntity() end
 	local damage = self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), damage, {}, OVERHEAD_ALERT_BONUS_POISON_DAMAGE)
 	
 	local heal = damage * self:GetTalentSpecialValueFor("heal_pct") / 100
 	caster:HealEvent(heal, self:GetAbility(), caster)
 	if caster:HasTalent("special_bonus_unique_furion_entangle_1") then
 		for _, ally in ipairs( caster:FindFriendlyUnitsInRadius(self:GetParent(), caster:FindTalentValue("special_bonus_unique_furion_entangle_1")) ) do
-			ally:HealEvent(heal, self:GetAbility(), caster)
+			if ally ~= caster then
+				ally:HealEvent(heal, self:GetAbility(), caster)
+			end
 		end
 	end
 

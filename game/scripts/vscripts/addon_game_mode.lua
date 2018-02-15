@@ -895,30 +895,6 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 			local reflect = ability:GetSpecialValueFor("reflect_pct") / 100
 			filterTable["damage"] = filterTable["damage"] * reflect
 		end
-		local no_aether = {["elder_titan_earth_splitter"] = true,
-						   ["enigma_midnight_pulse"] = true,
-						   ["phoenix_sun_ray"] = true,
-						   ["abyssal_underlord_firestorm"] = true,
-						   ["huskar_life_break"] = true} -- stop %hp based and right click damage abilities from being amped by aether lens
-		if no_aether[ability:GetName()] or not ability:IsAetherAmplified() then
-			filterTable["damage"] = filterTable["damage"] / attacker:GetOriginalSpellDamageAmp()
-		end
-		if attacker:HasModifier("spellcrit") and attacker ~= victim then
-			if ability:GetName() == "mana_fiend_mana_lance" and attacker:HasScepter() and not attacker.essencecritactive then
-				local crititem = attacker:FindModifierByName("spellcrit"):GetAbility()
-				local chance = crititem:GetSpecialValueFor("spell_crit_chance")
-				if RollPercentage(chance) then
-					local mult = crititem:GetSpecialValueFor("spell_crit_multiplier") / 100
-					filterTable["damage"] = filterTable["damage"]*mult
-					victim:ShowPopup( {
-                    PostSymbol = 4,
-                    Color = Vector( 125, 125, 255 ),
-                    Duration = 0.7,
-                    Number = filterTable["damage"],
-                    pfx = "spell_custom"} )
-				end
-			end
-		end
 		if attacker:GetName() == "npc_dota_hero_leshrac" and attacker:HasAbility(ability:GetName()) then -- reapply damage in pure after all amp/crit
 			require('lua_abilities/heroes/leshrac')
 			filterTable = InnerTorment(filterTable)
@@ -2392,15 +2368,7 @@ function CHoldoutGameMode:OnNPCSpawned( event )
 		spawnedUnit:SetHealth(spawnedUnit:GetMaxHealth())
 		
 		spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_boss_attackspeed", {})
-
-		local ticks = 5
-		Timers:CreateTimer(0.03,function() 
-			if ticks > 0 then 
-				spawnedUnit:SetHealth(spawnedUnit:GetMaxHealth()) 
-				ticks = ticks - 1
-				return 0.03 
-			end
-		end)
+		spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_spawn_immunity", {duration = 2})
 	end
 end
 
