@@ -34,9 +34,6 @@ if IsServer() then
 		local distance = self:GetSpecialValueFor("knockup_height")
 		local speed = (distance * 2/ knockUpDuration) * FrameTime()
 			
-		local cd = self:GetCooldownTimeRemaining()
-		self:EndCooldown()
-		self:StartCooldown( math.min(cd, math.max( 5, cd - 3) ) )
 		EmitSoundOn("Hero_NyxAssassin.Impale.Target", target)
 		Timers:CreateTimer(function ()
 			if not target:HasMovementCapability() or not target:IsAlive() or target:IsNull() then return end

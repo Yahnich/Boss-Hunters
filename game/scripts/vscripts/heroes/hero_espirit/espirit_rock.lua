@@ -32,7 +32,7 @@ function espirit_rock:CreateStoneRemnant(position)
 	rock:AddNewModifier(caster, self, "modifier_espirit_rock_remnant", {})   
 
 	if caster:HasTalent("special_bonus_unique_espirit_rock_2") then
-		local enemies = caster:FindEnemyUnitsInRadius(point,  caster:FindTalentValue("special_bonus_unique_espirit_rock_2", "radius"))
+		local enemies = caster:FindEnemyUnitsInRadius(position, caster:FindTalentValue("special_bonus_unique_espirit_rock_2", "radius"))
 		local tDur = caster:FindTalentValue("special_bonus_unique_espirit_rock_2")
 		for _,enemy in pairs(enemies) do
 			if not enemy:HasModifier("modifier_knockback") then

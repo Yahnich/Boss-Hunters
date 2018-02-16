@@ -24,7 +24,8 @@ if IsServer() then
 		local vDirection = vPos - self:GetCaster():GetOrigin()
 		vDirection.z = 0.0
 		vDirection = vDirection:Normalized()
-
+		
+		self.talentCast = nil
 		local info = {
 			EffectName = "particles/units/heroes/hero_venomancer/venomancer_venomous_gale.vpcf",
 			Ability = self,
@@ -67,7 +68,8 @@ if IsServer() then
 				ability = self
 			}
 			ApplyDamage( damage )
-			if caster:HasTalent("special_bonus_unique_venomancer_5") then
+			if caster:HasTalent("special_bonus_unique_venomancer_5") and not self.talentCast then
+				self.talentCast = true
 				local ward = caster:FindAbilityByName("venomancer_plague_ward")
 				for i = 1, 2 do
 					caster:SetCursorPosition( hTarget:GetAbsOrigin() + RandomVector(250) )

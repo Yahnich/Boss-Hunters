@@ -33,34 +33,38 @@ function modifier_gyrocopter_flak_cannon_active:OnAttack(params)
 			if self:GetAbility().disableLoop then
 				self:GetAbility().disableLoop = false
 			elseif self:GetAbility():GetToggleState() then
-				self:GetParent():SpendMana( self:GetAbility():GetManaCost(-1), self:GetAbility() )
-				local units = self:GetCaster():FindEnemyUnitsInRadius(params.target:GetAbsOrigin(), self:GetAbility():GetTalentSpecialValueFor("radius"), {})
-				for _,unit in pairs(units) do
-					if RollPercentage(50) then
-						local projectile = {
-							Target = unit,
-							Source = self:GetParent(),
-							Ability = self:GetAbility(),
-							EffectName = self:GetParent():GetProjectileModel(),
-							bDodgable = true,
-							bProvidesVision = false,
-							iMoveSpeed = self:GetParent():GetProjectileSpeed(),
-							iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_ATTACK_1,
-						}
-						ProjectileManager:CreateTrackingProjectile(projectile)
-					else
-						local projectile = {
-							Target = unit,
-							Source = self:GetParent(),
-							Ability = self:GetAbility(),
-							EffectName = self:GetParent():GetProjectileModel(),
-							bDodgable = true,
-							bProvidesVision = false,
-							iMoveSpeed = self:GetParent():GetProjectileSpeed(),
-							iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_ATTACK_2,
-						}
-						ProjectileManager:CreateTrackingProjectile(projectile)
+				if self:GetParent():GetMana() > self:GetAbility():GetManaCost(-1) then
+					self:GetParent():SpendMana( self:GetAbility():GetManaCost(-1), self:GetAbility() )
+					local units = self:GetCaster():FindEnemyUnitsInRadius(params.target:GetAbsOrigin(), self:GetAbility():GetTalentSpecialValueFor("radius"), {})
+					for _,unit in pairs(units) do
+						if RollPercentage(50) then
+							local projectile = {
+								Target = unit,
+								Source = self:GetParent(),
+								Ability = self:GetAbility(),
+								EffectName = self:GetParent():GetProjectileModel(),
+								bDodgable = true,
+								bProvidesVision = false,
+								iMoveSpeed = self:GetParent():GetProjectileSpeed(),
+								iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_ATTACK_1,
+							}
+							ProjectileManager:CreateTrackingProjectile(projectile)
+						else
+							local projectile = {
+								Target = unit,
+								Source = self:GetParent(),
+								Ability = self:GetAbility(),
+								EffectName = self:GetParent():GetProjectileModel(),
+								bDodgable = true,
+								bProvidesVision = false,
+								iMoveSpeed = self:GetParent():GetProjectileSpeed(),
+								iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_ATTACK_2,
+							}
+							ProjectileManager:CreateTrackingProjectile(projectile)
+						end
 					end
+				else
+					self:GetAbility():ToggleAbility()
 				end
 			end
 		end
