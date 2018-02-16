@@ -18,16 +18,18 @@ function modifier_dragon_knight_dragons_blood_ebf_passive:OnRefresh()
 	self.armor = self:GetTalentSpecialValueFor("bonus_armor")
 	self.regen = self:GetTalentSpecialValueFor("bonus_health_regen")
 	self.ms = self:GetTalentSpecialValueFor("bonus_movespeed")
+	self.spellamp = self:GetCaster():FindTalentValue("special_bonus_unique_dragon_knight_dragons_blood_ebf_2")
 end
 
 function modifier_dragon_knight_dragons_blood_ebf_passive:OnIntervalThink()
 	self.armor = self:GetTalentSpecialValueFor("bonus_armor")
 	self.regen = self:GetTalentSpecialValueFor("bonus_health_regen")
 	self.ms = self:GetTalentSpecialValueFor("bonus_movespeed")
+	self.spellamp = self:GetCaster():FindTalentValue("special_bonus_unique_dragon_knight_dragons_blood_ebf_2")
 end
 
 function modifier_dragon_knight_dragons_blood_ebf_passive:DeclareFunctions()
-	return {MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS, MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT, MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT}
+	return {MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS, MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT, MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT, MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE}
 end
 
 function modifier_dragon_knight_dragons_blood_ebf_passive:GetModifierMoveSpeedBonus_Constant()
@@ -46,6 +48,12 @@ function modifier_dragon_knight_dragons_blood_ebf_passive:GetModifierConstantHea
 	local regen = self.regen
 	if self:GetCaster():HasScepter() and self:GetCaster():HasModifier("modifier_dragon_knight_elder_dragon_berserker_active") then regen = regen * 2 end
 	return regen
+end
+
+function modifier_dragon_knight_dragons_blood_ebf_passive:GetModifierSpellAmplify_Percentage()
+	local spellamp = self.spellamp
+	if self:GetCaster():HasScepter() and self:GetCaster():HasModifier("modifier_dragon_knight_elder_dragon_berserker_active") then spellamp = spellamp * 2 end
+	return spellamp
 end
 
 function modifier_dragon_knight_dragons_blood_ebf_passive:IsHidden()

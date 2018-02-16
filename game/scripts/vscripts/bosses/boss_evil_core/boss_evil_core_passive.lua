@@ -8,17 +8,18 @@ modifier_boss_evil_core_passive = class({})
 LinkLuaModifier("modifier_boss_evil_core_passive", "bosses/boss_evil_core/boss_evil_core_passive", LUA_MODIFIER_MOTION_NONE)
 
 if IsServer() then
-	POSSIBLE_BOSSES = {	"npc_dota_boss31", 
-						"npc_dota_boss32_trueform", 
-						"npc_dota_boss33_a", 
-						"npc_dota_boss33_b", 
-						"npc_dota_boss34", 
-						"npc_dota_boss35" }
+	POSSIBLE_BOSSES = {	["npc_dota_boss31"] = 100, 
+						["npc_dota_boss32_trueform"] = 100,
+						["npc_dota_boss33_a"] = 80, 
+						["npc_dota_boss33_b"] = 80, 
+						["npc_dota_boss34"] = 25, 
+						["npc_dota_boss35"] = 60,}
 
 	function modifier_boss_evil_core_passive:OnCreated()
 		self.manaCharge = self:GetParent():GetMaxMana()
 		self.manaChargeRegen = ( self.manaCharge / self:GetTalentSpecialValueFor("recharge_time") ) * 0.3
 		self.damageTaken = self:GetTalentSpecialValueFor("damage_per_hit")
+		self.limit = 6
 		
 		
 		self:StartIntervalThink(0.3)
@@ -33,9 +34,10 @@ if IsServer() then
 		if not self.asuraSpawn then
 			parent:SetMana(self.manaCharge)
 			if not self.shield then
+				local demons = parent:FindFriendlyUnitsInRadius( parent:GetAbsOrigin(), -1 )
 				if self.manaCharge < parent:GetMaxMana() then
 					self.manaCharge = math.min(parent:GetMaxMana(), self.manaCharge + self.manaChargeRegen)
-				elseif self:GetAbility():IsCooldownReady() then -- guarantee a minimum of time between casts
+				elseif self:GetAbility():IsCooldownReady() and self.limit - 2 >= (#demons-1) then -- guarantee a minimum of time between casts
 					self:ActivateShield()
 				end
 			else
@@ -53,10 +55,13 @@ if IsServer() then
 		ParticleManager:SetParticleControl(self.shield, 1, Vector(200,200,0))
 		local count = (2 + math.floor((100 - parent:GetHealthPercent()) / 25))
 		
+		local demons = parent:FindFriendlyUnitsInRadius( parent:GetAbsOrigin(), -1 )	
+		local spawnCount = math.min((self.limit - #demons + 1), count)
+		
 		self:GetAbility():SetCooldown()
 		self.manaCharge = 0
 		parent:SetMana(self.manaCharge)
-		for i = 1, count do
+		for i = 1, spawnCount do
 			self:SpawnRandomUnit( parent:GetAbsOrigin() + ActualRandomVector(800, 450) )
 		end
 	end
@@ -81,7 +86,22 @@ if IsServer() then
 	end
 	
 	function modifier_boss_evil_core_passive:SpawnRandomUnit(position)
-		local spawnedUnit = CreateUnitByName( POSSIBLE_BOSSES[RandomInt(1, #POSSIBLE_BOSSES)] , position, true, nil, nil, self:GetCaster():GetTeam() )
+		local spawnName = "npc_dota_boss31"
+		local range = 0
+		for name, weight in pairs( POSSIBLE_BOSSES ) do -- very rough weighted randoming, no idea how close to accurate it is
+			range = range + weight
+		end
+		local picker = RandomInt(1, range)
+		for name, weight in pairs ( POSSIBLE_BOSSES ) do
+			if picker <= weight then -- falls into the weighted slot
+				spawnName = name
+				break
+			else
+				picker = picker - weight
+			end
+		end
+
+		local spawnedUnit = CreateUnitByName( spawnName, position, true, nil, nil, self:GetCaster():GetTeam() )
 		spawnedUnit:SetBaseMaxHealth(1666666)
 		spawnedUnit:SetMaxHealth(1666666)
 		spawnedUnit:SetHealth(spawnedUnit:GetMaxHealth())

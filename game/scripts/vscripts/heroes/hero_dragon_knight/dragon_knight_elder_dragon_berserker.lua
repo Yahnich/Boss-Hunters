@@ -14,6 +14,7 @@ LinkLuaModifier("modifier_dragon_knight_elder_dragon_berserker_active", "heroes/
 function modifier_dragon_knight_elder_dragon_berserker_active:OnCreated()
 	self.ms = self:GetTalentSpecialValueFor("bonus_movement_speed")
 	self.as = self:GetTalentSpecialValueFor("bonus_attack_speed")
+	self.dmg = self:GetCaster():FindTalentValue("special_bonus_unique_dragon_knight_elder_dragon_berserker_2")
 	self.threat = self:GetTalentSpecialValueFor("threat")
 	self.tick = self:GetTalentSpecialValueFor("threat_tick")
 	self.heal = self:GetTalentSpecialValueFor("heal_amount") / 100
@@ -28,6 +29,7 @@ end
 function modifier_dragon_knight_elder_dragon_berserker_active:OnRefresh()
 	self.ms = self:GetTalentSpecialValueFor("bonus_movement_speed")
 	self.as = self:GetTalentSpecialValueFor("bonus_attack_speed")
+	self.dmg = self:GetCaster():FindTalentValue("special_bonus_unique_dragon_knight_elder_dragon_berserker_2")
 	self.threat = self:GetTalentSpecialValueFor("threat")
 	self.tick = self:GetTalentSpecialValueFor("threat_tick")
 	self.heal = self:GetTalentSpecialValueFor("heal_amount") / 100
@@ -52,7 +54,7 @@ function modifier_dragon_knight_elder_dragon_berserker_active:OnDestroy()
 end
 
 function modifier_dragon_knight_elder_dragon_berserker_active:DeclareFunctions()
-	return {MODIFIER_EVENT_ON_ATTACK_LANDED, MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE, MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT}
+	return {MODIFIER_EVENT_ON_ATTACK_LANDED, MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE, MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT, MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE }
 end
 
 function modifier_dragon_knight_elder_dragon_berserker_active:GetModifierMoveSpeedBonus_Percentage()
@@ -61,6 +63,12 @@ end
 
 function modifier_dragon_knight_elder_dragon_berserker_active:GetModifierAttackSpeedBonus_Constant()
 	return self.as
+end
+
+function modifier_dragon_knight_elder_dragon_berserker_active:GetModifierBaseDamageOutgoing_Percentage()
+	if not self:GetParent():HasModifier("modifier_dragon_knight_elder_dragon_berserker_cooldown") then
+		return self.dmg
+	end
 end
 
 function modifier_dragon_knight_elder_dragon_berserker_active:OnAttackLanded(params)
@@ -74,7 +82,7 @@ function modifier_dragon_knight_elder_dragon_berserker_active:OnAttackLanded(par
 		and caster:GetHealthPercent() <= self.heal*100 then
 			local heal = caster:GetMaxHealth() * self.heal
 			caster:HealEvent(heal, ability, caster)
-			parent:AddNewModifier(parent, self, "modifier_dragon_knight_elder_dragon_berserker_cooldown", {duration = self.cd})
+			if not parent:HasTalent("special_bonus_unique_dragon_knight_elder_dragon_berserker_1") then parent:AddNewModifier(parent, self, "modifier_dragon_knight_elder_dragon_berserker_cooldown", {duration = self.cd}) end
 		end
 	end
 end

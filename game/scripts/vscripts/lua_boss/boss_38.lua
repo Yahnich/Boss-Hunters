@@ -223,8 +223,6 @@ function ChronosphereAura( keys )
 	for _,unit in pairs(units) do
 		unit:InterruptMotionControllers(false)
 		ability:ApplyDataDrivenModifier(caster, unit, aura_modifier, {duration = duration})
-		local newhp = unit:GetHealth()*0.98
-		unit:SetHealth(newhp)
 		ApplyDamage({victim = unit, attacker = caster, damage = voiddamage, damage_type = DAMAGE_TYPE_MAGICAL, ability = ability})
 		
 	end

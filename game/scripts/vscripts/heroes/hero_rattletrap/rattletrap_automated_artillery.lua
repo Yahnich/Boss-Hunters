@@ -44,7 +44,7 @@ function modifier_rattletrap_automated_artillery:OnCreated()
 	if IsServer() then 
 		self.sisterAb = self:GetCaster():FindAbilityByName("rattletrap_reactive_shielding")
 		self.sisterAb:SetActivated(false)
-		if not self:IsToggle() then self:StartDelayedCooldown() end
+		if not self:GetAbility():IsToggle() then self:GetAbility():StartDelayedCooldown() end
 		self:StartIntervalThink(1 / self.rockets)
 	end
 end
@@ -93,6 +93,6 @@ end
 function modifier_rattletrap_automated_artillery:OnDestroy()
 	if IsServer() then
 		self.sisterAb:SetActivated(true) 
-		if not self:IsToggle() then self:EndDelayedCooldown() end
+		self:GetAbility():EndDelayedCooldown()
 	end
 end

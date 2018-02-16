@@ -423,7 +423,15 @@
 		"Ability2"					"dragon_knight_intervene"
 		"Ability3"					"dragon_knight_dragons_blood_ebf"
 		"Ability6"					"dragon_knight_elder_dragon_berserker"					// Ability 4
-		"Ability14"					"special_bonus_all_stats_15"
+		
+		"Ability10"       "special_bonus_unique_dragon_knight_dragonbreath_1"
+	    "Ability11"       "special_bonus_unique_dragon_knight_dragonbreath_2"
+	    "Ability12"       "special_bonus_unique_dragon_knight_intervene_1"
+	    "Ability13"       "special_bonus_unique_dragon_knight_intervene_2"
+	    "Ability14"       "special_bonus_unique_dragon_knight_dragons_blood_ebf_1"
+	    "Ability15"       "special_bonus_unique_dragon_knight_dragons_blood_ebf_2"
+	    "Ability16"       "special_bonus_unique_dragon_knight_elder_dragon_berserker_1"
+	    "Ability17"       "special_bonus_unique_dragon_knight_elder_dragon_berserker_2"
 		
 	}
 	//=================================================================================================================
@@ -446,7 +454,20 @@
 	"npc_dota_hero_elder_titan_ebf"
 	{
 		"override_hero"				"npc_dota_hero_elder_titan"
-		"Ability13"					"special_bonus_all_stats_12"	
+		"Ability1"					"et_echo_stomp"
+		"Ability2"					"et_elder_spirit"
+		"Ability3"					"et_earthbreaker"
+		"Ability4"					"et_natural_order"
+		"Ability6"					"et_earth_splitter"
+
+		"Ability10"					"special_bonus_unique_et_echo_stomp_1"
+		"Ability11"					"special_bonus_unique_et_echo_stomp_2"
+		"Ability12"					"special_bonus_unique_et_elder_spirit_1"
+		"Ability13"					"special_bonus_unique_et_elder_spirit_2"
+		"Ability14"					"special_bonus_unique_et_earthbreaker_1"
+		"Ability15"					"special_bonus_unique_et_earthbreaker_2"
+		"Ability16"					"special_bonus_unique_et_earth_splitter_1"
+		"Ability17"					"special_bonus_unique_et_earth_splitter_2"
 	}
 	"npc_dota_hero_enchantress_ebf"
 	{
@@ -521,11 +542,23 @@
 	//=================================================================================================================
 	// HERO: Huskar
 	//=================================================================================================================
-	"npc_dota_hero_huskar_ebf"
+	"npc_dota_hero_huskar"
 	{
 		"override_hero"			"npc_dota_hero_huskar"
-		"Ability3"					"huskar_flashfire"
+		"Ability1"					"huskar_unleash_vitality"
+		"Ability2"					"huskar_ignited_spears"
+		"Ability3"					"huskar_raging_berserker"
+		"Ability4"					"huskar_sacred_inferno"
+		"Ability6"					"huskar_sunder_life"
 		
+		"Ability10"       "special_bonus_unique_huskar_unleash_vitality_1"
+	    "Ability11"       "special_bonus_unique_huskar_unleash_vitality_2"
+	    "Ability12"       "special_bonus_unique_huskar_ignited_spears_1"
+	    "Ability13"       "special_bonus_unique_huskar_ignited_spears_2"
+	    "Ability14"       "special_bonus_unique_huskar_raging_berserker_1"
+	    "Ability15"       "special_bonus_unique_huskar_raging_berserker_2"
+	    "Ability16"       "special_bonus_unique_huskar_sunder_life_1"
+	    "Ability17"       "special_bonus_unique_huskar_sunder_life_2"
 	}
 	//=================================================================================================================
 	// HERO: Invoker
@@ -1289,10 +1322,21 @@
 	"npc_dota_hero_templar_assassin_ebf"
 	{
 		"override_hero"			"npc_dota_hero_templar_assassin"
-		"Ability4"		"templar_assassin_trap_ebf"
-		"Ability5"		"templar_assassin_traptp_ebf"
-		"Ability6"		"templar_assassin_psionic_trap_ebf"
-		
+		"Ability1"			"ta_refract"
+		"Ability2"			"ta_meld"
+		"Ability3"			"ta_psi_blades"
+		"Ability4"			"ta_trap_tp"
+		"Ability5"			"ta_trap_spring"
+		"Ability6"			"ta_trap"
+
+		"Ability10"			"special_bonus_unique_ta_refract_1"
+		"Ability11"			"special_bonus_unique_ta_refract_2"
+		"Ability12"			"special_bonus_unique_ta_meld_1"
+		"Ability13"			"special_bonus_unique_ta_meld_2"
+		"Ability14"			"special_bonus_unique_ta_psi_blades_1"
+		"Ability15"			"special_bonus_unique_ta_psi_blades_2"
+		"Ability16"			"special_bonus_unique_ta_trap_1"
+		"Ability17"			"special_bonus_unique_ta_trap_2"	
 	}
 	//=================================================================================================================
 	// HERO: Terrorblyat
@@ -1303,6 +1347,14 @@
 		"Ability1"				"terrorblade_disruption"				// Ability 2
 		"Ability6"				"terrorblade_zeal"	
 		
+		"Ability10"				"special_bonus_movement_speed_20"
+		"Ability11"				"special_bonus_evasion_10"
+		"Ability12"				"special_bonus_hp_300"
+		"Ability13"				"special_bonus_attack_speed_25"
+		"Ability14"				"special_bonus_all_stats_10"
+		"Ability15"				"special_bonus_cooldown_reduction_20"
+		"Ability16"				"special_bonus_unique_terrorblade"
+		"Ability17"				"special_bonus_unique_terrorblade_3"
 	}
 	"npc_dota_hero_tidehunter_ebf"
 	{

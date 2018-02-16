@@ -53,7 +53,7 @@ function AIThink()
 	if not thisEntity:IsDominated() and not thisEntity:IsChanneling() then
 		local target = AICore:GetHighestPriorityTarget(thisEntity)
 		if thisEntity.wormhole:IsFullyCastable() and AICore:TotalEnemyHeroesInRange( thisEntity, thisEntity:GetAttackRange() ) == 0 then
-			if target then
+			if target and not target:IsNull() then
 				ExecuteOrderFromTable({
 					UnitIndex = thisEntity:entindex(),
 					OrderType = DOTA_UNIT_ORDER_CAST_POSITION,

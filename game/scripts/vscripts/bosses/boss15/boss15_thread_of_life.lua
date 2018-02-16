@@ -1,7 +1,17 @@
 boss15_thread_of_life = class({})
 
 function boss15_thread_of_life:OnAbilityPhaseStart()
-	ParticleManager:FireTargetWarningParticle(self:GetCursorTarget())
+	local target = self:GetCursorTarget()
+	local caster = self:GetCaster()
+	if caster:GetHealthPercent() <= 33 then
+		local radius = math.max( self:GetTrueCastRange(), CalculateDistance( caster, target ) + caster:GetHullRadius() + target:GetHullRadius() )
+		local enemies = caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), radius )
+		for _, enemy in ipairs(enemies) do
+			ParticleManager:FireTargetWarningParticle(enemy)
+		end
+	else
+		ParticleManager:FireTargetWarningParticle(target)
+	end
 	return true
 end
 
@@ -91,9 +101,8 @@ if IsServer() then
 		if caster:GetHealthPercent() <= 66 and self.hpDmg < self.maxHPDmg then
 			self.hpDmg = math.min(self.hpDmg + (self.maxHPDmg/self.rampup * 0.3), self.maxHPDmg)
 		end
-		
-		self:GetAbility():DealDamage(caster,  parent, damage)
-		caster:HealEvent(damage, self:GetAbility(), caster)
+		local dmg = self:GetAbility():DealDamage(caster,  parent, damage, {damage_flags = DOTA_DAMAGE_FLAG_HPLOSS + DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
+		caster:HealEvent(dmg, self:GetAbility(), caster)
 	end
 	
 	function modifier_boss15_thread_of_life_tether:OnDestroy()

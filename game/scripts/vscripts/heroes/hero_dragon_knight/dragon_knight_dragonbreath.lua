@@ -11,7 +11,35 @@ function dragon_knight_dragonbreath:OnSpellStart()
 
 	self:FireLinearProjectile("particles/units/heroes/hero_dragon_knight/dragon_knight_breathe_fire.vpcf", velocity * direction, distance, width, {width_end = endWidth})
 	
+	if caster:HasTalent("special_bonus_unique_dragon_knight_dragonbreath_1") then
+		self:DropFirePool( caster:GetAbsOrigin() + direction * distance, endWidth, self:GetTalentSpecialValueFor("duration") * caster:FindTalentValue("special_bonus_unique_dragon_knight_dragonbreath_1"))
+	end
+	
 	EmitSoundOn("Hero_DragonKnight.BreathFire", caster)
+end
+
+function dragon_knight_dragonbreath:DropFirePool( position, radius, duration )
+	local vPos = GetGroundPosition( position, caster)
+	local rad = radius
+	local dur = duration
+	local caster = self:GetCaster()
+	local ability = self
+	local poolFX = ParticleManager:CreateParticle("particles/neutral_fx/black_dragon_fireball.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
+	ParticleManager:SetParticleControl(poolFX, 0, vPos )
+	ParticleManager:SetParticleControl(poolFX, 1, vPos )
+	local damage = ability:GetTalentSpecialValueFor("dot_damage")
+	Timers:CreateTimer(1, function()
+		local enemies = caster:FindEnemyUnitsInRadius(vPos, rad)
+		for _, enemy in ipairs( enemies ) do
+			ability:DealDamage( caster, enemy, damage )
+		end
+		if dur >= 0 then
+			dur = dur - 1
+			return 1
+		else
+			ParticleManager:ClearParticle(poolFX)
+		end
+	end)
 end
 
 function dragon_knight_dragonbreath:OnProjectileHit(target, position)

@@ -32,11 +32,11 @@ function modifier_abaddon_borrowed_time_ebf_passive:DeclareFunctions()
 end
 
 function modifier_abaddon_borrowed_time_ebf_passive:GetMinHealth(params)
-	if self:GetAbility():IsCooldownReady() then return 1 end
+	if self:GetAbility():IsCooldownReady() and self:GetParent():IsRealHero() then return 1 end
 end
 
 function modifier_abaddon_borrowed_time_ebf_passive:OnTakeDamage(params)
-	if params.unit == self:GetParent() and self:GetAbility():IsCooldownReady() then
+	if params.unit == self:GetParent() and self:GetAbility():IsCooldownReady() and self:GetParent():IsRealHero() then
 		if params.damage > self:GetParent():GetHealth() then
 			self:GetAbility():Activate()
 		end

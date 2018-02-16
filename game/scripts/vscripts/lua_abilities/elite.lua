@@ -395,7 +395,7 @@ function UnstableFunction(keys)
 									caster, 
 									900,
 									DOTA_UNIT_TARGET_TEAM_ENEMY,
-                                    DOTA_UNIT_TARGET_ALL,
+                                    DOTA_UNIT_TARGET_HERO,
                                     DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
                                     FIND_ANY_ORDER,
                                     false)
@@ -405,38 +405,38 @@ function UnstableFunction(keys)
 		totalhp = totalhp + unit:GetHealth()
 	end
 	local averagehp = totalhp / #enemies
-	local damage = averagehp / caster:GetSpellDamageAmp()
+	local damage = averagehp
 	for _,unit in pairs(enemies) do
-		if RollPercentage(15) then
+		if RollPercentage(10) then
 			local location = unit:GetAbsOrigin() + Vector(math.random(700),math.random(700),0)
 			local rnd = RandomInt(1,100)
 			if rnd > 33 and rnd < 66 then
 				ability:ApplyAOE({particles = "particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_shadowraze.vpcf",
 								  location = location,
 								  radius = 250,
-								  damage = damage*0.35,
+								  damage = damage*0.2,
 								  damage_type = DAMAGE_TYPE_MAGICAL,
-								  delay = 1.5,
+								  delay = 2.5,
 								  sound = "Hero_Enigma.Demonic_Conversion"})				
 			elseif rnd < 33 then
 				ability:ApplyAOE({particles = "particles/units/heroes/hero_lina/lina_spell_light_strike_array.vpcf",
 								  location = location,
 								  radius = 200,
-								  damage = damage*0.2,
+								  damage = damage*0.1,
 								  damage_type = DAMAGE_TYPE_MAGICAL,
 								  modifier = "modifier_elite_unstable_stun",
-								  duration = 2,
-								  delay = 1.5,
+								  duration = 1,
+								  delay = 2.5,
 								  sound = "Hero_Enigma.Demonic_Conversion"})
 			else
 				ability:ApplyAOE({particles = "particles/econ/items/kunkka/kunkka_weapon_whaleblade/kunkka_spell_torrent_splash_whaleblade.vpcf",
 								  location = location,
 								  radius = 250,
-								  damage = damage*0.25,
+								  damage = damage*0.15,
 								  damage_type = DAMAGE_TYPE_MAGICAL,
 								  modifier = "modifier_elite_unstable_slow",
-								  duration = 4,
-								  delay = 1.5,
+								  duration = 3,
+								  delay = 2.5,
 								  sound = "Hero_Enigma.Demonic_Conversion"})
 			end
 		end

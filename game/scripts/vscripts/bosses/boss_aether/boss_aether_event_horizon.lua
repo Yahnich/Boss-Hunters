@@ -2,12 +2,13 @@ boss_aether_event_horizon = class({})
 
 function boss_aether_event_horizon:OnAbilityPhaseStart()
 	ParticleManager:FireWarningParticle(self:GetCaster():GetAbsOrigin(), self:GetTalentSpecialValueFor("radius") )
+	self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_status_immunity", {duration = self:GetCastPoint() - 0.01})
 	return true
 end
 
 function boss_aether_event_horizon:OnSpellStart()
 	local caster = self:GetCaster()
-	
+	self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_status_immunity", {duration = self:GetCastPoint() - 0.01})
 	if self.dummy then boss_aether_event_horizon:OnChannelFinish(true) end
 	self.dummy = CreateModifierThinker(self:GetCaster(), self, "modifier_boss_aether_event_horizon_aura", {duration = self:GetChannelTime()}, caster:GetAbsOrigin(), self:GetCaster():GetTeam(), false)
 end
@@ -60,7 +61,7 @@ function modifier_boss_aether_event_horizon_aura:GetAuraRadius()
 end
 
 function modifier_boss_aether_event_horizon_aura:GetAuraDuration()
-	return 0
+	return 0.5
 end
 
 function modifier_boss_aether_event_horizon_aura:GetAuraSearchTeam()    
@@ -79,7 +80,7 @@ modifier_boss_aether_event_horizon_debuff = class({})
 LinkLuaModifier("modifier_boss_aether_event_horizon_debuff", "bosses/boss_aether/boss_aether_event_horizon", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_boss_aether_event_horizon_debuff:OnCreated()
-	self.damage = self:GetTalentSpecialValueFor("damage_per_second") * 0.25 / 100
+	self.damage = (self:GetTalentSpecialValueFor("damage_per_second") * 0.25) / 100
 	if IsServer() then
 		self:StartIntervalThink(0.25)
 	end

@@ -56,9 +56,15 @@ function modifier_boss16_the_flock_manager:OnDeath(params)
 		local dragon
 		for id, drake in ipairs(self:GetAbility().drakeCount) do
 			if not drake:IsNull() and drake:IsAlive() then
+				local health = drake:GetHealth()
 				drake:ForceKill(false)
 				dragon = CreateUnitByName("npc_dota_boss23", drake:GetAbsOrigin(), true, nil, nil, drake:GetTeam())
 				self:GetAbility().drakeCount[id] = nil
+				Timers:CreateTimer(0.1, function() 
+					dragon:SetHealth( health )
+				end)
+				local flock = dragon:FindAbilityByName("boss16_the_flock")
+				flock:SetCooldown( flock:GetCooldown(-1) / 2 )
 				break
 			end
 		end

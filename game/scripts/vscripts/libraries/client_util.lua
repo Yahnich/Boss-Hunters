@@ -4,8 +4,12 @@ function GetClientSync(key)
 end
 
 function MergeTables( t1, t2 )
-	for name,info in pairs(t2) do
-		t1[name] = info
+    for name,info in pairs(t2) do
+		if type(info) == "table"  and type(t1[name]) == "table" then
+			MergeTables(t1[name], info)
+		else
+			t1[name] = info
+		end
 	end
 end
 
@@ -33,7 +37,8 @@ AbilityKV = LoadKeyValues("scripts/npc/npc_abilities_custom.txt")
 MergeTables(AbilityKV, LoadKeyValues("scripts/npc/npc_abilities_override.txt"))
 MergeTables(AbilityKV, LoadKeyValues("scripts/npc/npc_items_custom.txt"))
 MergeTables(AbilityKV, LoadKeyValues("scripts/npc/items.txt"))
-UnitKV = LoadKeyValues("scripts/npc/npc_heroes_custom.txt")
+UnitKV = LoadKeyValues("scripts/npc/npc_heroes.txt")
+MergeTables(UnitKV, LoadKeyValues("scripts/npc/npc_heroes_custom.txt"))
 
 function C_DOTA_BaseNPC:IsSameTeam(unit)
 	return (self:GetTeamNumber() == unit:GetTeamNumber())
@@ -119,19 +124,19 @@ end
 
 function C_DOTA_BaseNPC:GetStrength()
 	local netTable = CustomNetTables:GetTableValue("hero_properties", self:GetUnitName()..self:entindex())
-	if netTable and netTable.strength then return netTable.strength end
+	if netTable and netTable.strength then return  math.floor(tonumber(netTable.strength)) end
 	return 0
 end
 
 function C_DOTA_BaseNPC:GetIntellect()
 	local netTable = CustomNetTables:GetTableValue("hero_properties", self:GetUnitName()..self:entindex())
-	if netTable and netTable.intellect then return netTable.intellect end
+	if netTable and netTable.intellect then return  math.floor(tonumber(netTable.intellect)) end
 	return 0
 end
 
 function C_DOTA_BaseNPC:GetAgility()
 	local netTable = CustomNetTables:GetTableValue("hero_properties", self:GetUnitName()..self:entindex())
-	if netTable and netTable.agility then return netTable.agility end
+	if netTable and netTable.agility then return math.floor(tonumber(netTable.agility)) end
 	return 0
 end
 
@@ -149,4 +154,16 @@ function C_DOTA_BaseNPC:GetPrimaryAttribute()
 		end
 	end
 	return -1
+end
+
+function C_DOTA_BaseNPC:GetPrimaryStatValue()
+	local nPrim = self:GetPrimaryAttribute()
+	if nPrim == DOTA_ATTRIBUTE_STRENGTH then
+		return self:GetStrength()
+	elseif nPrim == DOTA_ATTRIBUTE_AGILITY then
+		return self:GetAgility()
+	elseif nPrim == DOTA_ATTRIBUTE_INTELLECT then
+		return self:GetIntellect()
+	end
+	return 0
 end

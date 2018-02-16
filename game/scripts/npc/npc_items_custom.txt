@@ -1,991 +1,10 @@
+#base "items\item_blink.txt"
+#base "items\item_soul.txt"
+#base "items\item_kaya.txt"
+#base "items\item_cuirass.txt"
+
 "DOTAAbilities"
 {
-	//=================================================================================================================
-	// Abyssal Soul
-	//=================================================================================================================
-	"item_abyssal_soul"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"1303"									// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"custom/abyssal_soul"
-		"ItemKillable"					"1"
-		"ItemSellable"					"1"
-		"ItemShareability"				"ITEM_PARTIALLY_SHAREABLE"
-		"ItemDroppable"					"1"
-		"ItemCost"						"40164"
-		"ItemShopTags"					"damage;unique;abyssal;soul;health;bahamut;T5"
-		"ItemQuality"					"artifact"
-		"ItemAliases"					"soul"
-		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_ALWAYS"
-		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-	
-		"AbilityCooldown"	"0"
-		"AbilityManaCost"	"0"
-	
-		"Modifiers"
-		{
-			"soulpassive"
-			{	
-				"IsHidden"	 "1"
-				"Passive"	 "1"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_ATTACK_RANGE_BONUS"		"%bonus_range"
-				}
-			}
-	
-			"stats_soul"
-			{	
-				"IsHidden"	 "1"
-				"Passive"	 "1"
-				"Attributes"    "MODIFIER_ATTRIBUTE_MULTIPLE"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"		"%bonus_damage"
-					"MODIFIER_PROPERTY_HEALTH_BONUS"			"%bonus_health_max"
-					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"		"%bonus_all"
-					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"		"%bonus_all"
-					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"		"%bonus_all"
-				}
-			}
-	
-			"hearth_regen"
-			{
-				"IsHidden"	 "1"
-				"Passive"	 "1"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE"		"%health_regen_percent"
-				}
-			}
-	 
-		}
-	
-	
-		// Special	
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"health_regen_percent"	"7.5"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_all"				"4000"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_health_max"			"450000"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_range"				"1350"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"		"8000"
-			}
-		}
-	}
-	"item_ancient_butterfly"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2029"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"custom/ancient_butterfly"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityCooldown"				"30"
-		"FightRecapLevel"				"1"
-	
-	
-	
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"4000"
-		"ItemShopTags"					"asura;hard_to_tag"
-		"ItemQuality"					"artifact"
-		"ItemAliases"					"ancient"
-		"ItemPurchasable"				"0"
-		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-		
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_agility"			"150"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"150"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_evasion"			"25"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_attack_speed"	"25"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"flutter_speed"			"25"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"flutter_duration"		"4"
-			}
-		}
-		"OnSpellStart"
-		{
-			"ApplyModifier"
-			{
-				"ModifierName"		"modifier_item_butterfly_flutter"
-				"Target"			"CASTER"
-			}
-			"FireEffect"
-			{
-				"EffectName"		"particles/butterfly5_active.vpcf"	
-				"EffectAttachType"  "start_at_customorigin"
-				"Target"        "CASTER"
-		        "ControlPointEntities"
-		        {
-		            "CASTER"    "follow_overhead"
-					"CASTER"    "follow_overhead"
-		        }
-			}
-			"FireSound"
-			{
-				"EffectName"	"DOTA_Item.Butterfly"
-				"Target"        "CASTER"
-			}
-		}
-		"precache"
-		{
-			"particle"				"particles/butterfly5_active.vpcf"	
-			"particle"				"particles/butterfly5_buff.vpcf"
-			"soundfile"				"sounds/items/butterfly.vsnd"
-		}
-	    "Modifiers"
-	    {
-			"modifier_item_butterfly_flutter"
-			{
-				"IsBuff"           "1"	      
-				"Duration"			"%flutter_duration"		
-				"EffectName"		"particles/butterfly5_buff.vpcf"
-				"EffectAttachType"	"follow_origin"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"                "%flutter_speed"
-				}
-			}
-	        "item_butterfly_passive"
-	        {
-	            "Passive"           "1"
-	            "IsHidden"          "1"
-	            "Attributes"        "MODIFIER_ATTRIBUTE_MULTIPLE"
-	            
-	            "Properties"
-	            {
-	                "MODIFIER_PROPERTY_STATS_AGILITY_BONUS"             "%bonus_agility"
-	                "MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"          "%bonus_damage"
-	                "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"      "%bonus_attack_speed"
-	                "MODIFIER_PROPERTY_EVASION_CONSTANT"                "%bonus_evasion"
-	            }
-	            
-	        }
-	    }
-	}
-	"item_ancient_core"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2032"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"custom/ancient_core"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"FightRecapLevel"				"1"
-	
-	
-	
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"4000"
-		"ItemShopTags"					"asura;hard_to_tag"
-		"ItemQuality"					"artifact"
-		"ItemAliases"					"ancient"
-		"ItemPurchasable"				"0"
-		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-		
-		"precache"
-		{
-			"particle" "particles/items3_fx/octarine_core_lifesteal.vpcf"
-		}
-		
-		// Special	
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_intelligence"	"150"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_health"			"2500"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_mana"			"2500"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_health_regen"	"500"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_mana_regen"		"2"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_cooldown"		"30"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"hero_lifesteal"		"10"
-			}				
-		}
-		"Modifiers"
-		{
-			"passive"
-			{
-				"Passive" "1"
-				"IsHidden"		"1"
-				"Attributes"    "MODIFIER_ATTRIBUTE_MULTIPLE"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"  		"%bonus_health_regen"
-					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"  		"%bonus_mana_regen"
-					"MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE"			"%bonus_cooldown"
-					"MODIFIER_PROPERTY_HEALTH_BONUS"				"%bonus_health"
-					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"		"%bonus_intelligence"
-					"MODIFIER_PROPERTY_MANA_BONUS"					"%bonus_mana"
-				}
-			}
-	    	"spell_lifesteal"
-	    	{
-	    		"IsHidden"                  "1"
-				"Passive"					"1"
-	    	}
-		}
-	}
-	"item_ancient_fury"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2033"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"custom/ancient_fury"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"FightRecapLevel"				"1"
-	
-	
-	
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"4000"
-		"ItemShopTags"					"asura;hard_to_tag"
-		"ItemQuality"					"artifact"
-		"ItemAliases"					"ancient"
-		"ItemPurchasable"				"0"
-		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-		"AbilitySpecial"
-	    {
-	        "01"
-	        {
-	            "var_type"              "FIELD_INTEGER"
-	            "Pierce_percent"                "10"
-	        }
-	        "02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"750"
-			}
-	    }
-		"OnEquip"
-		{
-			"RemoveModifier"
-			{
-				"ModifierName"	"Piercing"
-				"Target"	"CASTER"
-			}
-			"ApplyModifier"
-			{
-				"ModifierName"	"Piercing"
-				"Target" 
-				{
-					"Center" "CASTER"
-					"Flags" "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
-				}
-			}
-		}
-	    "Modifiers"
-	    {
-	        "Piercing"
-	        {
-	        	"IsHidden"                  "1"
-	            	"Passive"                	"1"
-	        	"OnAttackLanded"
-	        	{
-	        		"RunScript"
-	        		{
-	        			"ScriptFile"			"lua_item/simple_item.lua"
-						"Function"				"Pierce"
-						"damage_on_hit"			"%attack_damage"
-	        		}
-	        	}
-	        }
-	        "passive"
-	        {
-	        	"IsHidden"                  "1"
-	            	"Passive"                	"1"
-	            	"Attributes"    "MODIFIER_ATTRIBUTE_MULTIPLE"
-	        	"Properties"
-	     			{
-	       				"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "%bonus_damage"
-	     			}
-	    	}
-	    }
-		
-	}
-	"item_ancient_heart"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2028"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"custom/ancient_heart"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"FightRecapLevel"				"1"
-	
-	
-	
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"4000"
-		"ItemShopTags"					"asura;hard_to_tag"
-		"ItemQuality"					"artifact"
-		"ItemAliases"					"ancient"
-		"ItemPurchasable"				"0"
-		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-		
-	
-		// Special	
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"health_regen_percent"			"2.5"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_strength"			"500"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_health_max"			"5000"
-			}
-		}
-		
-		"Modifiers"
-		{
-			"ancient_heart_passive"
-			{	
-				"IsHidden"	 "1"
-				"Passive"	 "1"
-				"Attributes"    "MODIFIER_ATTRIBUTE_MULTIPLE"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_HEALTH_BONUS"			"%bonus_health_max"
-					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"		"%bonus_strength"
-				}
-			}
-			"hearth_regen"
-			{
-				"IsHidden"	 "1"
-				"Passive"	 "1"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE"		"%health_regen_percent"
-				}
-			}
-		}
-	}
-	"item_ancient_lens"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2031"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"BaseClass"						"item_aether_lens"
-		"AbilityTextureName"			"custom/ancient_lens"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"FightRecapLevel"				"1"
-	
-	
-	
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"4000"
-		"ItemShopTags"					"asura;hard_to_tag"
-		"ItemQuality"					"artifact"
-		"ItemAliases"					"ancient"
-		"ItemPurchasable"				"0"
-		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-		
-		
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_mana"			"1000"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_health_regen"	"50"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"cast_range_bonus"			"450"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"spell_amp"				"20"
-			}
-		}
-	}
-	"item_ancient_plate"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2027"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"custom/ancient_plate"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"FightRecapLevel"				"1"
-	
-	
-	
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"4000"
-		"ItemShopTags"					"asura;hard_to_tag"
-		"ItemQuality"					"artifact"
-		"ItemAliases"					"ancient"
-		"ItemPurchasable"				"0"
-		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_armor"			"75"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_damage_aura"		"15"
-			}
-		}
-		"Modifiers"
-		{
-			"ancient_plate_passive"
-			{
-				"Passive"	"1"
-				"IsHidden"	"1"
-				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
-				"Aura"		"ancient_plate_aura"
-				"Aura_Radius"	"1500"
-				"Aura_Teams"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"%bonus_armor"
-				}
-			}
-			"ancient_plate_aura"
-			{
-				"Passive"	"1"
-				"IsBuff"	"1"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE"	"%bonus_damage_aura"
-				}
-			}
-		}
-	}
-	"item_ancient_soul"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2035"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"custom/ancient_soul"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"FightRecapLevel"				"1"
-	
-	
-	
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"4000"
-		"ItemShopTags"					"asura;hard_to_tag"
-		"ItemQuality"					"artifact"
-		"ItemAliases"					"ancient"
-		"ItemPurchasable"				"0"
-		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-		
-		// Special	
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"health_regen_percent"			"2"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_all"				"350"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_range"				"300"
-			}
-		}
-		
-		
-		"Modifiers"
-		{
-	
-			"soulpassive"
-			{	
-				"IsHidden"	 "1"
-				"Passive"	 "1"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_ATTACK_RANGE_BONUS"		"%bonus_range"
-				}
-			}
-	
-			"stats_soul"
-			{	
-				"IsHidden"	 "1"
-				"Passive"	 "1"
-				"Attributes"    "MODIFIER_ATTRIBUTE_MULTIPLE"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"		"%bonus_all"
-					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"		"%bonus_all"
-					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"		"%bonus_all"
-				}
-			}
-	
-			"hearth_regen"
-			{
-				"IsHidden"	 "1"
-				"Passive"	 "1"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE"		"%health_regen_percent"
-				}
-			}
-	 
-		}
-	}
-	"item_ancient_staff"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"4000"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"custom/ancient_staff"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
-		"AbilityCooldown"				"20"
-		"FightRecapLevel"				"1"
-	
-	
-	
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"8000"
-		"ItemShopTags"					"asura;hard_to_tag"
-		"ItemQuality"					"artifact"
-		"ItemAliases"					"ancient"
-		"ItemPurchasable"				"0"
-		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-		
-		"precache"
-		{
-			"particle"				"particles/dagon_mystic.vpcf"
-		}
-	    
-	    
-	    "AbilitySpecial"
-	    {
-	        "01"
-	        {
-	            "var_type"              "FIELD_INTEGER"
-	            "bonus_intellect"       "250"
-	        }
-	        "02"
-	        {
-	            "var_type"              "FIELD_INTEGER"
-	            "damage_base"                "36000"
-	        }
-	        "03"
-	        {
-	            "var_type"              "FIELD_INTEGER"
-	            "damage_per_int"                "3"
-	        }
-	        "04"
-	        {
-	            "var_type"              "FIELD_INTEGER"
-	            "range_tooltip"         "1200"
-	        }
-	       
-	    }
-	    
-	    "OnSpellStart"
-	    {
-	        "RunScript"
-	        {
-	        	"ScriptFile"		"lua_item/simple_item.lua"
-	            "Function"          "item_dagon_datadriven_on_spell_start"
-	        }
-	    }
-	    
-	    "Modifiers"
-	    {
-	        "modifier_item_dagon_datadriven"
-	        {
-	            "Passive"           "1"
-	            "IsHidden"          "1"
-	            "Attributes"        "MODIFIER_ATTRIBUTE_MULTIPLE"
-	            
-	            "Properties"
-	            {
-	                "MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"       "%bonus_intellect"
-	            }
-	        }
-	    }
-	}
-	"item_ancient_thorn"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2034"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"custom/ancient_thorn"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"FightRecapLevel"				"1"
-	
-	
-	
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"4000"
-		"ItemShopTags"					"asura;hard_to_tag"
-		"ItemQuality"					"artifact"
-		"ItemAliases"					"ancient"
-		"ItemPurchasable"				"0"
-		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_intellect"		"500"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"500"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_mana_regen"		"3"
-			}			
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"silence_damage_percent"	"10"
-			}	
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"silence_duration"		"5"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"target_crit_multiplier"		"150"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"spell_crit_multiplier"		"125"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"spell_crit_chance"		"25"
-			}
-		}
-		"OnSpellStart"
-		{
-			"ApplyModifier"
-			{
-				"ModifierName"	"modifier_bloodthorn_silence_amp"
-				"Target"		"TARGET"
-				"Duration"		"%silence_duration"
-			}
-			"FireSound"
-			{
-				"EffectName"	"DOTA_Item.Orchid.Activate"
-				"Target"		"TARGET"
-			}
-			"RunScript"
-			{
-				"ScriptFile"	"lua_item/simple_item"
-				"Function"		"OrchidInit"
-			}
-		}
-		"Modifiers"
-		{
-			"spellcrit"
-			{
-				"Passive" 	"1"
-				"IsHidden"	"1"
-			}
-			"modifier_bloodthorn_stats"
-			{
-				"Passive" 	"1"
-				"IsHidden"	"1"
-				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"%bonus_intellect"
-					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"	"%bonus_damage"
-					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"	"%bonus_mana_regen"
-				}
-			}
-			"modifier_bloodthorn_silence_amp"
-			{
-				"IsDebuff"	"1"
-				"EffectName"	"particles/items2_fx/orchid.vpcf"
-				"EffectAttachType"	"follow_overhead"
-				"OnAttacked"
-				{
-					"ApplyModifier"
-					{
-						"ModifierName"	"modifier_bloodthorn_silence_crit"
-						"Target" 
-						{
-							"Center" "ATTACKER"
-							"Flags" "DOTA_UNIT_TARGET_FLAG_INVULNERABLE | DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-						}
-					}
-				}
-				"OnTakeDamage"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"lua_item/simple_item"
-						"Function"		"OrchidAmp"
-						"damage"		"%attack_damage"
-					}
-				}
-				"OnDestroy"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"lua_item/simple_item"
-						"Function"		"OrchidPop"
-					}
-					"FireEffect"
-					{
-						"EffectName"	"particles/items2_fx/orchid_pop.vpcf"
-						"EffectAttachType"	"attach_origin"
-						"Target"			"TARGET"
-					}
-				}
-				"States"
-				{
-					"MODIFIER_STATE_SILENCED"	"MODIFIER_STATE_VALUE_ENABLED"
-				}
-			}
-			"modifier_bloodthorn_silence_crit"
-			{
-				"IsHidden"	"1"
-				"OnAttackLanded"
-				{
-					"RemoveModifier"
-					{
-						"ModifierName"	"modifier_bloodthorn_silence_crit"
-						"Target"		"ATTACKER"
-					}
-				}
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE" 	"%target_crit_multiplier"
-				}
-			}
-		}
-	}
-	//=================================================================================================================
-		// Chronos shard
-		//=================================================================================================================
-		"item_ares_shard"
-		{
-			"ID"							"1255"
-	
-			// General
-			//-------------------------------------------------------------------------------------------------------------
-			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-			"BaseClass"						"item_datadriven"
-			"ItemShareability"				"ITEM_FULLY_SHAREABLE_STACKING"
-			"AbilityTextureName"			"custom/ares_shard"
-			"ItemKillable"					"0"
-	
-			// Stats
-			//-------------------------------------------------------------------------------------------------------------
-			"AbilityCastRange"				"100"
-			
-			
-			// Item Info
-			//-------------------------------------------------------------------------------------------------------------
-			"ItemCost"						"200"
-			"ItemShopTags"					"consumable"
-			"ItemQuality"					"consumable"
-			"ItemStackable"					"1"
-			"ItemShareability"  "ITEM_PARTIALLY_SHAREABLE"
-			"ItemPermanent"					"0"
-			"ItemInitialCharges"			"1"
-			"precache"
-		    {
-		        "soundfile"         "soundevents/game_sounds_heroes/game_sounds_axe.vsndevts"
-		        "particle"          "particles/units/heroes/hero_axe/axe_beserkers_call_owner.vpcf"
-		        "particle"          "particles/status_fx/status_effect_beserkers_call.vpcf"
-		    }
-			"OnSpellStart"
-			{
-				"RunScript"
-				{
-					"ScriptFile"			"lua_item/simple_item.lua"
-					"Function"				"ares_powder"
-				}
-				"ApplyModifier"
-				{
-					"Target" 
-					{
-						"Center" "CASTER"
-						"Radius" "600"
-						"Teams" "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-					}
-					"ModifierName" "ares_shard"
-				}
-				"FireSound"
-		        {
-		            "EffectName"    "Hero_Axe.Berserkers_Call"
-		            "Target"        "CASTER"
-		        }
-				"FireEffect"
-		        {
-		            "EffectName"        "particles/units/heroes/hero_axe/axe_beserkers_call_owner.vpcf"
-		            "EffectAttachType"  "start_at_customorigin"
-	
-		            "ControlPointEntities"
-		            {
-		                "CASTER"    "follow_origin"
-		                "CASTER"    "follow_origin"
-		                "CASTER"    "follow_origin"
-		            }
-		        }
-				"SpendCharge"
-				{}
-			}
-	
-			"Modifiers"
-			{
-				"ares_shard"
-				{
-					"TextureName" "item_ares_shard"
-					"Duration" "%debuff_duration"
-					"OnDestroy" 
-					{
-						"RunScript"
-						{
-							"ScriptFile"			"lua_item/simple_item.lua"
-							"Function"				"ares_powder_end"
-						}
-					}
-				}
-			}
-	
-			// Special	
-			//-------------------------------------------------------------------------------------------------------------
-			"AbilitySpecial"
-			{
-				"01"
-				{
-					"var_type"				"FIELD_FLOAT"
-					"debuff_duration"			"7.5"
-				}
-				"02"
-				{
-					"var_type"				"FIELD_INTEGER"
-					"radius"			"1000"
-				}
-			}
-		}
 	//=================================================================================================================
 	// Bag of Gold
 	//=================================================================================================================
@@ -1018,218 +37,6 @@
 		"ItemPermanent"					"0"
 		"ItemInitialCharges"			"1"
 		"ItemKillable"					"0"
-	}
-	"item_bahamut_chest"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"1204"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"custom/bahamut_chest"
-		"ItemKillable"					"1"
-		"ItemShareability"				"ITEM_PARTIALLY_SHAREABLE"
-		"ItemSellable"					"1"
-		"ItemDroppable"					"1"
-		"ItemCost"						"100000"
-		"ItemShopTags"					"damage;unique;armor"
-		"ItemQuality"					"artifact"
-		"ItemAliases"					"armor"
-		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_ALWAYS"
-		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-	
-		
-		"AbilityManaCost"	"1"
-		"AbilityCooldown"				"40"
-		
-		"OnSpellStart"
-		{	
-			"ApplyModifier"
-			{
-				"ModifierName"			"immunityaoe"
-				"Target"				"CASTER"
-			}
-			"RunScript"
-			{
-				"ScriptFile"			"lua_item/simple_item.lua"
-				"Function"				"CD_Bahamut"
-				"cooldown"              "%AbilityCooldown"
-			}
-			"RunScript"
-			{
-				"ScriptFile"			"lua_item/simple_item.lua"
-				"Function"				"Purge"
-				"HardPurge"				"1"
-			}
-		}
-	
-	
-		"Modifiers"
-		{
-			"activeaoebahamut"
-			{
-				"Passive" "1"
-				"IsHidden" "1"
-				"AllowIllusionDuplicate"    "0"
-				"Aura" "bahamutarmor"
-				"Aura_Radius" "%radius"
-				"Aura_Teams" "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-				"Aura_Types" "DOTA_UNIT_TARGET_ALL"
-			}
-			"immunityaoe"
-			{
-				"IsHidden" "1"
-				"duration" "%duration"
-				"AllowIllusionDuplicate"    "0"
-				"Aura" "bahamutImmunity"
-				"Aura_Radius" "99999"
-				"Aura_Teams" "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-				"Aura_Types" "DOTA_UNIT_TARGET_ALL"
-			}
-	
-	
-	
-			"activeaoebahamut2"
-			{
-				"Passive" "1"
-				"IsHidden" "1"
-				"AllowIllusionDuplicate"    "0"
-				"Aura" "bahamutarmordebuff"
-				"Aura_Radius" "%radius"
-				"Aura_Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
-				"Aura_Types" "DOTA_UNIT_TARGET_ALL"
-			}
-	
-			"bahamutpassive"
-			{	
-				"IsHidden"	 "1"
-				"Passive"	 "1"
-				"Attributes"    "MODIFIER_ATTRIBUTE_MULTIPLE"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"		"%bonus_damage"
-					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE"		"%health_regen_percent"
-					"MODIFIER_PROPERTY_HEALTH_BONUS"			"%bonus_health_max"
-					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"		"%bonus_all"
-					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"		"%bonus_all"
-					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"		"%bonus_all"
-					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"		"%bonus_armor"
-					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"		"%bonus_attackspeed"
-				}
-			}
-			"bahamutarmor"
-			{	
-				"Isbuff" 	"1"
-	           		"IsPurgable" "0"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"		"%bonus_sharedamage"
-					"MODIFIER_PROPERTY_HEALTH_BONUS"			"%bonus_health_max_aoe"
-					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"		"%bonus_all_aoe"
-					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"		"%bonus_all_aoe"
-					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"		"%bonus_all_aoe"
-					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"		"%bonus_armor_aoe"
-					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"		"%bonus_attackspeed_aoe"
-				}
-			}
-	
-			"bahamutImmunity"
-			{	
-	
-				"Target" "CASTER"
-				"EffectName" "particles/econ/events/ti5/teleport_end_lvl2_black_ti5.vpcf"
-				"EffectAttachType" "follow_origin"
-				"EffectRadius" "1200"
-				"States"
-				{
-					"MODIFIER_STATE_MAGIC_IMMUNE" "MODIFIER_STATE_VALUE_ENABLED"
-				}
-			}
-	
-			"bahamutarmordebuff"
-			{	
-				"IsDebuff" "1"
-	            	"IsPurgable" "0"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"		"%bonus_armor_debuff"
-				}
-			}
-		}
-	
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"1200"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"health_regen_percent"			"3"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_all"			"1500"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_health_max"			"50000"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_armor"			"600"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_attackspeed"			"200"
-			}	
-			"08"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_health_max_aoe"			"20000"
-			}
-			"09"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_all_aoe"			"250"
-			}
-			"10"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_attackspeed_aoe"			"300"
-			}
-			"11"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_armor_aoe"			"250"
-			}
-			"12"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_armor_debuff"		"-11"
-			}
-			"13"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"		"3000"
-			}
-			"14"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_sharedamage"		"4000"
-			}
-			"15"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"duration"		"20"
-			}
-		}
 	}
 	//=================================================================================================================
 	// divine soul
@@ -2482,7 +1289,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"health_regen"			"100"
+				"health_regen"			"50"
 			}
 			"05"
 			{
@@ -2572,7 +1379,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"health_regen"			"2500"
+				"health_regen"			"250"
 			}
 			"05"
 			{
@@ -2662,7 +1469,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"health_regen"			"10000"
+				"health_regen"			"500"
 			}
 			"05"
 			{
@@ -2682,840 +1489,13 @@
 			"08"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"threat_per_enemy"			"20"
+				"threat_per_enemy"		"20"
 			}
 			"09"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"reflect_pct"			"100"
 			}			
-		}
-	}
-	//=================================================================================================================
-	// Helm
-	//=================================================================================================================
-	"item_blink_boots"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"1271"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
-		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"custom/blink_boots"
-		"ItemKillable"					"1"
-		"ItemSellable"					"1"
-		"ItemDroppable"					"1"
-		"ItemCost"						"5000"
-		"ItemShopTags"					"damage;unique"
-		"ItemQuality"					"artifact"
-		"ItemAliases"					"cursed"
-		
-		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_ALWAYS"
-		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-	
-		"OnSpellStart"
-		{
-			"RunScript"
-			{
-				"ScriptFile"			"lua_item/simple_item.lua"
-			    "Function"          "item_blink_boots_blink"
-			}
-		}
-	
-		"Modifiers"
-		{
-			"blink_boots"
-			{	
-				"IsHidden"	 "1"
-				"Passive"	 "1"
-				"Attributes"    "MODIFIER_ATTRIBUTE_MULTIPLE"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE"  "%bonus_movement"
-					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"		"%bonus_attack_speed"
-					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "%bonus_all"
-		            "MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "%bonus_all"
-		            "MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "%bonus_all"
-				}
-				"OnCreated"
-				{
-					"RunScript"
-					{
-						"ScriptFile"			"lua_item/simple_item.lua"
-					    "Function"          "item_blink_boots_start_charge"
-					}
-				}
-				"OnDestroy"
-				{
-					"RunScript"
-				    {
-				    	"ScriptFile"			"lua_item/simple_item.lua"
-				    	"Function"          "item_blink_boots_stop_charge"
-				    }
-				}
-				"ThinkInterval"	"0.2"
-				"OnIntervalThink"
-				{
-					"RunScript"
-					{
-						"ScriptFile"			"lua_item/simple_item.lua"
-					    "Function"          "item_blink_boots_check_charge"
-					}
-				}
-			}
-		}
-	
-	
-	
-		// Special	
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"charge_cooldown"			"6"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"blink_range"			"1500"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_movement"				"120"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_all"				"150"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_attack_speed"				"100"
-			}
-		}
-	}
-	"item_bloodthorn2"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2019"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"custom/bloodthorn2"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"FightRecapLevel"				"1"
-	
-		// Stats
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"900"
-		"AbilityCastPoint"				"0.0"
-		"AbilityCooldown"				"13.0"
-		"AbilityDuration"				"5"
-		"AbilitySharedCooldown"			"orchid"
-		"PiercesDisableReduction"		"1"
-		"HasPureCooldown"				"1"
-	
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"100"
-		"ItemCost"						"7195"
-		"ItemShopTags"					"int;attack_speed;damage;regen_mana;damage;hard_to_tag"
-		"ItemQuality"					"rare"
-		"ItemAliases"					"orchid malevolence"
-		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-		
-		"precache"
-		{
-			"particle"	"particles/items2_fx/orchid.vpcf"
-			"particle"	"particles/items2_fx/orchid_pop.vpcf"
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_items.vsndevts"
-		}
-		
-		// Special	
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_intellect"		"350"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_attack_speed"	"50"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"250"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_mana_regen"		"4"
-			}			
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"crit_chance"			"30"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"crit_multiplier"		"200"
-			}	
-			"07"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"silence_damage_percent"	"30"
-			}	
-			"08"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"silence_duration"		"5"
-			}
-			"09"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"target_crit_multiplier"		"150"
-			}
-			"10"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"spell_crit_multiplier"		"150"
-			}
-			"11"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"spell_crit_chance"		"25"
-			}
-		}
-		"OnSpellStart"
-		{
-			"ApplyModifier"
-			{
-				"ModifierName"	"modifier_bloodthorn_silence_amp"
-				"Target"		"TARGET"
-				"Duration"		"%silence_duration"
-			}
-			"FireSound"
-			{
-				"EffectName"	"DOTA_Item.Orchid.Activate"
-				"Target"		"TARGET"
-			}
-			"RunScript"
-			{
-				"ScriptFile"	"lua_item/simple_item"
-				"Function"		"OrchidInit"
-			}
-		}
-		"Modifiers"
-		{
-			"spellcrit"
-			{
-				"Passive" 	"1"
-				"IsHidden"	"1"
-			}
-			"modifier_bloodthorn_stats"
-			{
-				"Passive" 	"1"
-				"IsHidden"	"1"
-				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"%bonus_intellect"
-					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%bonus_attack_speed"
-					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"	"%bonus_damage"
-					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"	"%bonus_mana_regen"
-				}
-				"OnAttackLanded"
-				{
-					"Random"
-					{
-	   						"Chance" "%crit_chance"
-	   						"PseudoRandom" "DOTA_PSEUDO_RANDOM_FACELESS_BASH"
-	   						"OnSuccess"
-	   						{
-	   							"ApplyModifier"
-							{
-								"ModifierName" 	"critical_strike_2"
-								"Target" 
-								{
-									"Center" "CASTER"
-									"Flags" "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
-								}
-							}
-	   						}
-	   						"OnFailure"
-	   						{}
-					}
-				}
-			}
-			"critical_strike_2"
-			{
-				"IsHidden"		"1"
-				"Attributes"	"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE" 	"%crit_multiplier"
-				}
-				"OnAttackLanded"
-				{
-					"RemoveModifier"
-					{
-						"ModifierName" 	"critical_strike_2"
-						"Target" 		"CASTER"
-					}
-				}
-			}
-			"modifier_bloodthorn_silence_amp"
-			{
-				"IsDebuff"	"1"
-				"EffectName"	"particles/items2_fx/orchid.vpcf"
-				"EffectAttachType"	"follow_overhead"
-				"OnAttacked"
-				{
-					"ApplyModifier"
-					{
-						"ModifierName"	"modifier_bloodthorn_silence_crit"
-						"Target" 
-						{
-							"Center" "ATTACKER"
-							"Flags" "DOTA_UNIT_TARGET_FLAG_INVULNERABLE | DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-						}
-					}
-				}
-				"OnTakeDamage"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"lua_item/simple_item"
-						"Function"		"OrchidAmp"
-						"damage"		"%attack_damage"
-					}
-				}
-				"OnDestroy"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"lua_item/simple_item"
-						"Function"		"OrchidPop"
-					}
-					"FireEffect"
-					{
-						"EffectName"	"particles/items2_fx/orchid_pop.vpcf"
-						"EffectAttachType"	"attach_origin"
-						"Target"			"TARGET"
-					}
-				}
-				"States"
-				{
-					"MODIFIER_STATE_SILENCED"	"MODIFIER_STATE_VALUE_ENABLED"
-				}
-			}
-			"modifier_bloodthorn_silence_crit"
-			{
-				"IsHidden"	"1"
-				"OnAttackLanded"
-				{
-					"RemoveModifier"
-					{
-						"ModifierName"	"modifier_bloodthorn_silence_crit"
-						"Target"		"ATTACKER"
-					}
-				}
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE" 	"%target_crit_multiplier"
-				}
-			}
-		}
-	}
-	"item_bloodthorn3"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2021"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"custom/bloodthorn3"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"FightRecapLevel"				"1"
-	
-		// Stats
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"900"
-		"AbilityCastPoint"				"0.0"
-		"AbilityCooldown"				"13.0"
-		"AbilityDuration"				"5"
-		"AbilitySharedCooldown"			"orchid"
-		"PiercesDisableReduction"		"1"
-		"HasPureCooldown"				"1"
-	
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"100"
-		"ItemCost"						"7195"
-		"ItemShopTags"					"int;attack_speed;damage;regen_mana;damage;hard_to_tag"
-		"ItemQuality"					"rare"
-		"ItemAliases"					"orchid malevolence"
-		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-		
-		"precache"
-		{
-			"particle"	"particles/items2_fx/orchid.vpcf"
-			"particle"	"particles/items2_fx/orchid_pop.vpcf"
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_items.vsndevts"
-		}
-		
-		// Special	
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_intellect"		"1250"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_attack_speed"	"70"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"500"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_mana_regen"		"6"
-			}			
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"crit_chance"			"35"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"crit_multiplier"		"225"
-			}	
-			"07"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"silence_damage_percent"	"30"
-			}	
-			"08"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"silence_duration"		"5"
-			}
-			"09"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"target_crit_multiplier"		"175"
-			}
-			"10"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"spell_crit_multiplier"		"200"
-			}
-			"11"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"spell_crit_chance"		"25"
-			}
-		}
-		"OnSpellStart"
-		{
-			"ApplyModifier"
-			{
-				"ModifierName"	"modifier_bloodthorn_silence_amp"
-				"Target"		"TARGET"
-				"Duration"		"%silence_duration"
-			}
-			"FireSound"
-			{
-				"EffectName"	"DOTA_Item.Orchid.Activate"
-				"Target"		"TARGET"
-			}
-			"RunScript"
-			{
-				"ScriptFile"	"lua_item/simple_item"
-				"Function"		"OrchidInit"
-			}
-		}
-		"Modifiers"
-		{
-			"spellcrit"
-			{
-				"Passive" 	"1"
-				"IsHidden"	"1"
-			}
-			"modifier_bloodthorn_stats"
-			{
-				"Passive" 	"1"
-				"IsHidden"	"1"
-				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"%bonus_intellect"
-					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%bonus_attack_speed"
-					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"	"%bonus_damage"
-					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"	"%bonus_mana_regen"
-				}
-				"OnAttackLanded"
-				{
-					"Random"
-					{
-	   						"Chance" "%crit_chance"
-	   						"PseudoRandom" "DOTA_PSEUDO_RANDOM_FACELESS_BASH"
-	   						"OnSuccess"
-	   						{
-	   							"ApplyModifier"
-							{
-								"ModifierName" 	"critical_strike_2"
-								"Target" 
-								{
-									"Center" "CASTER"
-									"Flags" "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
-								}
-							}
-	   						}
-	   						"OnFailure"
-	   						{}
-					}
-				}
-			}
-			"critical_strike_2"
-			{
-				"IsHidden"		"1"
-				"Attributes"	"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE" 	"%crit_multiplier"
-				}
-				"OnAttackLanded"
-				{
-					"RemoveModifier"
-					{
-						"ModifierName" 	"critical_strike_2"
-						"Target" 		"CASTER"
-					}
-				}
-			}
-			"modifier_bloodthorn_silence_amp"
-			{
-				"IsDebuff"	"1"
-				"EffectName"	"particles/items2_fx/orchid.vpcf"
-				"EffectAttachType"	"follow_overhead"
-				"OnAttacked"
-				{
-					"ApplyModifier"
-					{
-						"ModifierName"	"modifier_bloodthorn_silence_crit"
-						"Target" 
-						{
-							"Center" "ATTACKER"
-							"Flags" "DOTA_UNIT_TARGET_FLAG_INVULNERABLE | DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-						}
-					}
-				}
-				"OnTakeDamage"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"lua_item/simple_item"
-						"Function"		"OrchidAmp"
-						"damage"		"%attack_damage"
-					}
-				}
-				"OnDestroy"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"lua_item/simple_item"
-						"Function"		"OrchidPop"
-					}
-					"FireEffect"
-					{
-						"EffectName"	"particles/items2_fx/orchid_pop.vpcf"
-						"EffectAttachType"	"attach_origin"
-						"Target"			"TARGET"
-					}
-				}
-				"States"
-				{
-					"MODIFIER_STATE_SILENCED"	"MODIFIER_STATE_VALUE_ENABLED"
-				}
-			}
-			"modifier_bloodthorn_silence_crit"
-			{
-				"IsHidden"	"1"
-				"OnAttackLanded"
-				{
-					"RemoveModifier"
-					{
-						"ModifierName"	"modifier_bloodthorn_silence_crit"
-						"Target"		"ATTACKER"
-					}
-				}
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE" 	"%target_crit_multiplier"
-				}
-			}
-		}
-	}
-	"item_bloodthorn4"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2023"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"custom/bloodthorn4"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"FightRecapLevel"				"1"
-	
-		// Stats
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"900"
-		"AbilityCastPoint"				"0.0"
-		"AbilityCooldown"				"13.0"
-		"AbilityDuration"				"5"
-		"AbilitySharedCooldown"			"orchid"
-		"PiercesDisableReduction"		"1"
-		"HasPureCooldown"				"1"
-	
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"100"
-		"ItemCost"						"7195"
-		"ItemShopTags"					"int;attack_speed;damage;regen_mana;damage;hard_to_tag"
-		"ItemQuality"					"rare"
-		"ItemAliases"					"orchid malevolence"
-		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-		
-		"precache"
-		{
-			"particle"	"particles/items2_fx/orchid.vpcf"
-			"particle"	"particles/items2_fx/orchid_pop.vpcf"
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_items.vsndevts"
-		}
-		
-		// Special	
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_intellect"		"3500"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_attack_speed"	"400"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"1250"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_mana_regen"		"8"
-			}			
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"crit_chance"			"35"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"crit_multiplier"		"250"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"silence_damage_percent"	"30"
-			}	
-			"08"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"silence_duration"		"5"
-			}
-			"09"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"target_crit_multiplier"		"200"
-			}
-			"10"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"spell_crit_multiplier"		"250"
-			}
-			"11"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"spell_crit_chance"		"25"
-			}
-		}
-		"OnSpellStart"
-		{
-			"ApplyModifier"
-			{
-				"ModifierName"	"modifier_bloodthorn_silence_amp"
-				"Target"		"TARGET"
-				"Duration"		"%silence_duration"
-			}
-			"FireSound"
-			{
-				"EffectName"	"DOTA_Item.Orchid.Activate"
-				"Target"		"TARGET"
-			}
-			"RunScript"
-			{
-				"ScriptFile"	"lua_item/simple_item"
-				"Function"		"OrchidInit"
-			}
-		}		
-		"Modifiers"
-		{
-			"spellcrit"
-			{
-				"Passive" 	"1"
-				"IsHidden"	"1"
-			}
-			"modifier_bloodthorn_stats"
-			{
-				"Passive" 	"1"
-				"IsHidden"	"1"
-				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"%bonus_intellect"
-					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%bonus_attack_speed"
-					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"	"%bonus_damage"
-					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"	"%bonus_mana_regen"
-				}
-				"OnAttackLanded"
-				{
-					"Random"
-					{
-	   						"Chance" "%crit_chance"
-	   						"PseudoRandom" "DOTA_PSEUDO_RANDOM_FACELESS_BASH"
-	   						"OnSuccess"
-	   						{
-	   							"ApplyModifier"
-							{
-								"ModifierName" 	"critical_strike_2"
-								"Target" 
-								{
-									"Center" "CASTER"
-									"Flags" "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
-								}
-							}
-	   						}
-	   						"OnFailure"
-	   						{}
-					}
-				}
-			}
-			"critical_strike_2"
-			{
-				"IsHidden"		"1"
-				"Attributes"	"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE" 	"%crit_multiplier"
-				}
-				"OnAttackLanded"
-				{
-					"RemoveModifier"
-					{
-						"ModifierName" 	"critical_strike_2"
-						"Target" 		"CASTER"
-					}
-				}
-			}
-			"modifier_bloodthorn_silence_amp"
-			{
-				"IsDebuff"	"1"
-				"EffectName"	"particles/items2_fx/orchid.vpcf"
-				"EffectAttachType"	"follow_overhead"
-				"OnAttacked"
-				{
-					"ApplyModifier"
-					{
-						"ModifierName"	"modifier_bloodthorn_silence_crit"
-						"Target" 
-						{
-							"Center" "ATTACKER"
-							"Flags" "DOTA_UNIT_TARGET_FLAG_INVULNERABLE | DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-						}
-					}
-				}
-				"OnTakeDamage"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"lua_item/simple_item"
-						"Function"		"OrchidAmp"
-						"damage"		"%attack_damage"
-					}
-				}
-				"OnDestroy"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"lua_item/simple_item"
-						"Function"		"OrchidPop"
-					}
-					"FireEffect"
-					{
-						"EffectName"	"particles/items2_fx/orchid_pop.vpcf"
-						"EffectAttachType"	"attach_origin"
-						"Target"			"TARGET"
-					}
-				}
-				"States"
-				{
-					"MODIFIER_STATE_SILENCED"	"MODIFIER_STATE_VALUE_ENABLED"
-				}
-			}
-			"modifier_bloodthorn_silence_crit"
-			{
-				"IsHidden"	"1"
-				"OnAttackLanded"
-				{
-					"RemoveModifier"
-					{
-						"ModifierName"	"modifier_bloodthorn_silence_crit"
-						"Target"		"ATTACKER"
-					}
-				}
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE" 	"%target_crit_multiplier"
-				}
-			}
 		}
 	}
 	"item_bloody_halberd"
@@ -3989,16 +1969,6 @@
 				"ScriptFile"			"lua_item/simple_item.lua"
 				"Function"				"Purge"
 				"HardPurge"				"1"
-			}
-			"ApplyModifier"
-			{
-				"Target" 
-				{
-					"Center" "CASTER"
-					"Radius" "1200"
-					"Teams" "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-				}
-				"ModifierName" "modifier_chronos_shard"
 			}
 			"ApplyModifier"
 			{
@@ -4695,224 +2665,139 @@
 		}
 	}
 	"item_charged_mjollnir"
-		{
-				// General
-				//-------------------------------------------------------------------------------------------------------------
-				"ID"													"23003"												// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-				//
-				"AbilityTextureName"	"custom/charged_mjollnir"
-				"AbilityManaCost"               "0"
-				"AbilityCastRange"				"600"
-				
-				
-				"AbilityCooldown"				"35.0"
-				"ItemKillable"                  "1"
-				"ItemSellable"                  "1"
-				"ItemDroppable"                 "1"
-				"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-				"AbilityUnitTargetTeam"					"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-				"AbilityUnitTargetType"					"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-				"BaseClass"								"item_datadriven"
-				"AbilityManaCost"								"0"
-				"ItemCost"										"1980"
-				"ItemShopTags"									"agi;int;str;damage;attack_speed;unique"
-				"ItemQuality"									"artifact"
-				"ItemAliases"									"charged;mjollnir"
-				"ItemDisassembleRule"							"DOTA_ITEM_DISASSEMBLE_ALWAYS"
-				"ItemDeclarations"								"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-	
-				"precache"
+	{
+			// General
+			//-------------------------------------------------------------------------------------------------------------
+			"ID"													"23003"												// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+			//
+			"AbilityTextureName"	"custom/charged_mjollnir"
+			"AbilityManaCost"               "0"
+			"AbilityCastRange"				"600"
+			
+			
+			"AbilityCooldown"				"35.0"
+			"ItemKillable"                  "1"
+			"ItemSellable"                  "1"
+			"ItemDroppable"                 "1"
+			"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+			"AbilityUnitTargetTeam"					"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+			"AbilityUnitTargetType"					"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+			"BaseClass"								"item_datadriven"
+			"AbilityManaCost"								"0"
+			"ItemCost"										"1980"
+			"ItemShopTags"									"agi;int;str;damage;attack_speed;unique"
+			"ItemQuality"									"artifact"
+			"ItemAliases"									"charged;mjollnir"
+			"ItemDisassembleRule"							"DOTA_ITEM_DISASSEMBLE_ALWAYS"
+			"ItemDeclarations"								"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+
+			"precache"
+			{
+				"particle"		"particles/units/heroes/hero_zuus/zuus_arc_lightning_.vpcf"
+				"particle"		"particles/units/heroes/hero_zuus/zuus_arc_lightning_head.vpcf"
+				"soundfile"		"soundevents/game_sounds_heroes/game_sounds_zuus.vsndevts"
+			}
+			// Special
+			//-------------------------------------------------------------------------------------------------------------
+			"Modifiers"
+			{
+				"mjollnir_stat"
 				{
-					"particle"		"particles/units/heroes/hero_zuus/zuus_arc_lightning_.vpcf"
-					"particle"		"particles/units/heroes/hero_zuus/zuus_arc_lightning_head.vpcf"
-					"soundfile"		"soundevents/game_sounds_heroes/game_sounds_zuus.vsndevts"
-				}
-				// Special
-				//-------------------------------------------------------------------------------------------------------------
-				"Modifiers"
-				{
-					"mjollnir_stat"
+					"IsHidden"		"1"
+					"Passive"	 "1"
+					"Attributes"    "MODIFIER_ATTRIBUTE_MULTIPLE"
+					"Properties"
 					{
-						"IsHidden"		"1"
-						"Passive"	 "1"
-						"Attributes"    "MODIFIER_ATTRIBUTE_MULTIPLE"
-						"Properties"
+						"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"  "%bonus_attack_speed"
+						"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"			"%bonus_all"
+						"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"		"%bonus_all"
+						"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"		"%bonus_all"
+						"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"		"%bonus_damage"
+					}
+					"OnAttackLanded"
+					{
+						"Random"
 						{
-							"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"  "%bonus_attack_speed"
-							"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"			"%bonus_all"
-							"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"		"%bonus_all"
-							"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"		"%bonus_all"
-							"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"		"%bonus_damage"
-						}
-						"OnAttackLanded"
-						{
-							"Random"
+							"Chance" 	"25"
+							"OnSuccess"
 							{
-								"Chance" 	"25"
-								"OnSuccess"
+								"ApplyModifier"
 								{
-									"ApplyModifier"
-									{
-										"ModifierName"	"modifier_arc_lightning_hammer"
-										"Target"		"TARGET"
-									}
-									"RunScript"
-									{
-										"ScriptFile"	"lua_item/simple_item.lua"
-										"Function"		"NewInstance"
-										"particle"		"particles/units/heroes/hero_zuus/zuus_arc_lightning_.vpcf"
-									}
+									"ModifierName"	"modifier_arc_lightning_hammer"
+									"Target"		"TARGET"
+								}
+								"RunScript"
+								{
+									"ScriptFile"	"lua_item/simple_item.lua"
+									"Function"		"NewInstance"
+									"particle"		"particles/units/heroes/hero_zuus/zuus_arc_lightning_.vpcf"
 								}
 							}
 						}
 					}
-					
-					"modifier_arc_lightning_hammer"
+				}
+				
+				"modifier_arc_lightning_hammer"
+				{
+					"IsHidden"	"1"
+				
+					"OnCreated"
 					{
-						"IsHidden"	"1"
-					
-						"OnCreated"
+						"Damage"
 						{
-							"Damage"
-							{
-								"Type"			"DAMAGE_TYPE_MAGICAL"
-								"Damage"		"%jump_damage"
-								"Target"		"TARGET"
-							}
-							"RunScript"
-							{
-								"ScriptFile"	"lua_item/simple_item.lua"
-								"Function"		"LightningJump"
-								"particle"		"particles/units/heroes/hero_zuus/zuus_arc_lightning_.vpcf"
-							}
-							"FireSound"
-							{
-								"EffectName"	"Hero_Zuus.ArcLightning.Target"
-								"Target"		"TARGET"
-							}
+							"Type"			"DAMAGE_TYPE_MAGICAL"
+							"Damage"		"%jump_damage"
+							"Target"		"TARGET"
+						}
+						"RunScript"
+						{
+							"ScriptFile"	"lua_item/simple_item.lua"
+							"Function"		"LightningJump"
+							"particle"		"particles/units/heroes/hero_zuus/zuus_arc_lightning_.vpcf"
+						}
+						"FireSound"
+						{
+							"EffectName"	"Hero_Zuus.ArcLightning.Target"
+							"Target"		"TARGET"
 						}
 					}
 				}
-				// Special
-				//-------------------------------------------------------------------------------------------------------------
-				"AbilitySpecial"
-				{
-						"01"
-						{
-								"var_type"								"FIELD_INTEGER"
-								"bonus_all_stats_tooltip"				"25"
-						}
-						"02"
-						{
-								"var_type"								"FIELD_INTEGER"
-								"bonus_damage"							"70"
-						}
-						"03"
-						{
-								"var_type"								"FIELD_INTEGER"
-								"bonus_attack_speed"					"100"
-						}
-						"04"
-						{
-								"var_type"								"FIELD_INTEGER"
-								"bonus_all"							"25"
-						}
-						"05"
-						{
-								"var_type"								"FIELD_INTEGER"
-								"jump_count"						"10"
-						}
-						"06"
-						{
-								"var_type"								"FIELD_INTEGER"
-								"jump_damage"						"400"
-						}
-				}
-		}
-	//=================================================================================================================
-	// Chronos shard
-	//=================================================================================================================
-	"item_chronos_shard"
-	{
-		"ID"							"1182"
-
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"BaseClass"						"item_datadriven"
-		"ItemShareability"				"ITEM_FULLY_SHAREABLE_STACKING"
-		"AbilityTextureName"			"custom/chronos_shard"
-		"ItemKillable"					"0"
-
-		// Stats
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"100"
-		
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"200"
-		"ItemShopTags"					"consumable"
-		"ItemQuality"					"consumable"
-		"ItemStackable"					"1"
-		
-		"ItemPermanent"					"0"
-		"ItemInitialCharges"			"1"
-		"precache"
-		{
-			"particle"	"particles/chronos_powder.vpcf"
-			"soundfile" "sounds/items/dust_of_appearance.vsnd"
-			"particle"		"particles/powder_guard.vpcf"
-		}
-		"OnSpellStart"
-		{
-			"RunScript"
-			{
-				"ScriptFile"			"lua_item/simple_item.lua"
-				"Function"				"Cooldown_powder"
 			}
-			"ApplyModifier"
+			// Special
+			//-------------------------------------------------------------------------------------------------------------
+			"AbilitySpecial"
 			{
-				"Target" 
-				{
-					"Center" "CASTER"
-					"Radius" "600"
-					"Teams" "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-				}
-				"ModifierName" "modifier_chronos_shard"
+					"01"
+					{
+							"var_type"								"FIELD_INTEGER"
+							"bonus_all_stats_tooltip"				"25"
+					}
+					"02"
+					{
+							"var_type"								"FIELD_INTEGER"
+							"bonus_damage"							"70"
+					}
+					"03"
+					{
+							"var_type"								"FIELD_INTEGER"
+							"bonus_attack_speed"					"100"
+					}
+					"04"
+					{
+							"var_type"								"FIELD_INTEGER"
+							"bonus_all"							"25"
+					}
+					"05"
+					{
+							"var_type"								"FIELD_INTEGER"
+							"jump_count"						"10"
+					}
+					"06"
+					{
+							"var_type"								"FIELD_INTEGER"
+							"jump_damage"						"400"
+					}
 			}
-			"FireSound"
-			{
-				"Target" "CASTER"
-				"EffectName" "DOTA_Item.DustOfAppearance.Activate"
-			}
-			"SpendCharge"
-			{}
-		}
-
-		"Modifiers"
-		{
-			"modifier_chronos_shard"
-			{
-				"TextureName" "item_chronos_shard"
-				"Duration" "%buff_duration"
-				"EffectName"	"particles/powder_guard.vpcf"
-				"States"
-				{
-					"MODIFIER_STATE_MAGIC_IMMUNE" "MODIFIER_STATE_VALUE_ENABLED"
-				}
-			}
-		}
-
-		// Special	
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"buff_duration"			"15"
-			}
-		}
 	}
 	//=================================================================================================================
 	// Helm
@@ -5354,97 +3239,6 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"bonus_damage"			"1100"
-			}
-		}
-	}
-	//=================================================================================================================
-	// demon soul
-	//=================================================================================================================
-	"item_demonsoul"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"1175"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"custom/demonsoul"
-		"ItemKillable"					"1"
-		"ItemSellable"					"1"
-		"ItemDroppable"					"1"
-		"ItemCost"						"10000"
-		"ItemShareability"				"ITEM_PARTIALLY_SHAREABLE"
-		"ItemShopTags"					"damage;unique;armor"
-		"ItemQuality"					"artifact"
-		"ItemAliases"					"armor"
-		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_ALWAYS"
-		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-	
-		
-		"AbilityCooldown"	"0"
-		"AbilityManaCost"	"0"
-	
-		"Modifiers"
-		{
-	
-			"soulpassive"
-			{	
-				"IsHidden"	 "1"
-				"Passive"	 "1"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_ATTACK_RANGE_BONUS"		"%bonus_range"
-	
-				}
-			}
-			"stats_soul"
-			{	
-				"IsHidden"	 "1"
-				"Passive"	 "1"
-				"Attributes"    "MODIFIER_ATTRIBUTE_MULTIPLE"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"		"%bonus_damage"
-					"MODIFIER_PROPERTY_HEALTH_BONUS"			"%bonus_health_max"
-					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"		"%bonus_str"
-				}
-			}
-			"hearth_regen"
-			{
-				"IsHidden"	 "1"
-				"Passive"	 "1"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE"		"%health_regen_percent"
-				}
-			}
-		}
-	
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_range"			"400"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"1100"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_health_max"		"5000"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_str"				"200"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"health_regen_percent"	"3"
 			}
 		}
 	}
@@ -5943,321 +3737,6 @@
 				"critical_chance"						"35"
 			}
 	
-		}
-	}
-	//=================================================================================================================
-	// divine soul
-	//=================================================================================================================
-	"item_divinesoul"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"1178"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"custom/divinesoul"
-		"ItemKillable"					"1"
-		"ItemSellable"					"1"
-		"ItemShareability"				"ITEM_PARTIALLY_SHAREABLE"
-		"ItemDroppable"					"1"
-		"ItemCost"						"40164"
-		"ItemShopTags"					"damage;unique;health;divine;T4,5"
-		"ItemQuality"					"artifact"
-		"ItemAliases"					"soul"
-		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_ALWAYS"
-		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-	
-		
-		"AbilityCooldown"	"0"
-		"AbilityManaCost"	"0"
-	
-		"Modifiers"
-		{
-	
-			"soulpassive"
-			{	
-				"IsHidden"	 "1"
-				"Passive"	 "1"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_ATTACK_RANGE_BONUS"		"%bonus_range"
-				}
-			}
-	
-			"stats_soul"
-			{	
-				"IsHidden"	 "1"
-				"Passive"	 "1"
-				"Attributes"    "MODIFIER_ATTRIBUTE_MULTIPLE"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"		"%bonus_damage"
-					"MODIFIER_PROPERTY_HEALTH_BONUS"			"%bonus_health_max"
-					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"		"%bonus_all"
-					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"		"%bonus_all"
-					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"		"%bonus_all"
-				}
-			}
-	
-			"hearth_regen"
-			{
-				"IsHidden"	 "1"
-				"Passive"	 "1"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE"		"%health_regen_percent"
-				}
-			}
-	 
-		}
-	
-	
-		// Special	
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"health_regen_percent"			"5"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_all"			"700"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_health_max"			"50000"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_range"				"800"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"		"2000"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_all"			"1400"
-			}
-		}
-	}
-	//=================================================================================================================
-	// DIVINE Armor
-	//=================================================================================================================
-	"item_divine_armor"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"1172"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"custom/divine_armor"
-		"ItemKillable"					"1"
-		"ItemShareability"				"ITEM_PARTIALLY_SHAREABLE"
-		"ItemSellable"					"1"
-		"ItemDroppable"					"1"
-		"ItemCost"						"28426"
-		"ItemShopTags"					"damage;unique;armor"
-		"ItemQuality"					"artifact"
-		"ItemAliases"					"armor"
-		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_ALWAYS"
-		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-		
-		"precache"
-		{
-			"soundfile"		"soundevents/game_sounds_items.vsndevts"
-			"particle"		"particles/items_fx/black_king_bar_avatar.vpcf"
-		}
-		
-		"AbilityCooldown"	"33"
-		"AbilityManaCost"	"0"
-		"OnSpellStart"
-		{
-			"ApplyModifier"
-			{
-				"ModifierName"			"DivineImmunity"
-				"Target"				"CASTER"
-			}
-			"RunScript"
-			{
-				"ScriptFile"			"lua_item/simple_item.lua"
-				"Function"				"Purge"
-				"HardPurge"				"1"
-			}
-			"RunScript"
-			{
-				"ScriptFile"			"lua_item/simple_item.lua"
-				"Function"				"CD_pure"
-				"cooldown"				"%AbilityCooldown"
-			}
-			"FireSound"
-			{
-				"EffectName"	"DOTA_Item.BlackKingBar.Activate"
-				"Target"		"CASTER"
-			}
-		}
-	
-	
-		"Modifiers"
-		{
-			"activeaoedivine"
-			{
-				"Passive" "1"
-				"IsHidden" "1"
-				"AllowIllusionDuplicate"    "0"
-				"Aura" "divinearmor"
-				"Aura_Radius" "%radius"
-				"Aura_Teams" "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-				"Aura_Types" "DOTA_UNIT_TARGET_ALL"
-			}
-			"activeaoedivine2"
-			{
-				"Passive" "1"
-				"IsHidden" "1"
-				"AllowIllusionDuplicate"    "0"
-				"Aura" "divinearmordebuff"
-				"Aura_Radius" "%radius"
-				"Aura_Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
-				"Aura_Types" "DOTA_UNIT_TARGET_ALL"
-			}
-	
-			"hearthpassive"
-			{	
-				"IsHidden"	 "1"
-				"Passive"	 "1"
-				"Attributes"    "MODIFIER_ATTRIBUTE_MULTIPLE"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"		"%bonus_damage"
-					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE"		"%health_regen_percent"
-					"MODIFIER_PROPERTY_HEALTH_BONUS"			"%bonus_health_max"
-					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"		"%bonus_all"
-					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"		"%bonus_all"
-					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"		"%bonus_all"
-					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"		"%bonus_armor"
-					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"		"%bonus_attackspeed"
-				}
-			}
-			"divinearmor"
-			{	
-				"Isbuff" 	"1"
-	           		"IsPurgable" "0"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"		"%bonus_sharedamage"
-					"MODIFIER_PROPERTY_HEALTH_BONUS"			"%bonus_health_max_aoe"
-					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"		"%bonus_all_aoe"
-					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"		"%bonus_all_aoe"
-					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"		"%bonus_all_aoe"
-					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"		"%bonus_armor_aoe"
-					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"		"%bonus_attackspeed_aoe"
-				}
-			}
-	
-			"DivineImmunity"
-			{	
-	
-				"Target" "CASTER"
-				"EffectName" "particles/items_fx/black_king_bar_avatar.vpcf"
-				"EffectAttachType" "follow_origin"
-				
-				"Duration" "%duration"
-				"States"
-				{
-					"MODIFIER_STATE_MAGIC_IMMUNE" "MODIFIER_STATE_VALUE_ENABLED"
-				}
-			}
-	
-			"divinearmordebuff"
-			{	
-				"IsDebuff" "1"
-	            	"IsPurgable" "0"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"		"%bonus_armor_debuff"
-				}
-			}
-		}
-	
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"800"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"health_regen_percent"			"2.5"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_all"			"250"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_health_max"			"12000"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_armor"			"275"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_attackspeed"			"50"
-			}	
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_health_max_aoe"			"8000"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_all_aoe"			"75"
-			}
-			"09"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_attackspeed_aoe"			"150"
-			}
-			"10"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_armor_aoe"			"75"
-			}
-			"11"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_armor_debuff"		"-9"
-			}
-			"12"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"		"600"
-			}
-			"13"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_sharedamage"		"400"
-			}
-			"14"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"duration"		"20"
-			}
 		}
 	}
 	"item_divine_hammer"
@@ -8180,7 +5659,7 @@
 					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"		"%bonus_strength"
 				}
 			}
-			"hearth_regen_bahamut"
+			"hearth_regen"
 			{
 				"IsHidden"	 "1"
 				"Passive"	 "1"
@@ -9921,7 +7400,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"item_datadriven"
 		"ID"							"2069"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_AURA | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE"
 		"Model"							"models/props_gameplay/red_box.vmdl" 
 		"Effect"						"particles/generic_gameplay/dropped_item.vpcf"
 		"AbilityTextureName"			"custom/mekansm5"
@@ -10036,12 +7515,6 @@
 				"ScriptFile"			"lua_item/simple_item.lua"
 				"Function"				"Purge"
 				"HardPurge"				"1"
-			}
-			"ApplyModifier"
-			{
-				"ModifierName"			"DivineImmunity"
-				"Target"				"CASTER"
-				"Duration" 				"%bkb_duration"
 			}
 		}
 		
@@ -11461,8 +8934,8 @@
 			}
 			"02"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_health_regen"	"50"
+				"var_type"				"FIELD_FLOAT"
+				"bonus_mana_regen"		"10"
 			}
 			"03"
 			{
@@ -11784,7 +9257,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_movement_speed"	"50"
+				"bonus_movement_speed"	"60"
 			}
 			"02"
 			{
@@ -11883,7 +9356,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_movement_speed"	"50"
+				"bonus_movement_speed"	"70"
 			}
 			"02"
 			{
@@ -11977,7 +9450,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_movement_speed"	"50"
+				"bonus_movement_speed"	"80"
 			}
 			"02"
 			{
@@ -11992,7 +9465,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"move_cap"				"600"
+				"move_cap"				"650"
 			}
 		}
 		"OnSpellStart"
@@ -12071,7 +9544,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_movement_speed"	"50"
+				"bonus_movement_speed"	"90"
 			}
 			"02"
 			{
@@ -12086,7 +9559,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"move_cap"				"700"
+				"move_cap"				"800"
 			}
 		}
 		"OnSpellStart"
@@ -12142,6 +9615,7 @@
 		"AbilityTextureName"			"custom/pixels_guard"
 		"ItemKillable"					"0"
 	
+		"AbilityCooldown"				"14"
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
 			
@@ -12161,11 +9635,6 @@
 			"RunScript"
 			{
 				"ScriptFile"			"lua_item/simple_item.lua"
-				"Function"				"Cooldown_pixels"
-			}
-			"RunScript"
-			{
-				"ScriptFile"			"lua_item/simple_item.lua"
 				"Function"				"Purge"
 				"HardPurge"				"1"
 			}
@@ -12173,16 +9642,6 @@
 			{
 				"Target" 
 				{
-					"Center" "CASTER"
-					"Radius" "1200"
-					"Teams" "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-				}
-				"ModifierName" "modifier_chronos_shard"
-			}
-			"ApplyModifier"
-			{
-				"Target" 
-					{
 					"Center" "CASTER"
 					"Radius" "1200"
 					"Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -12245,12 +9704,12 @@
 			"03"
 	        {
 	            "var_type"                      "FIELD_INTEGER"
-	            "blast_movement_speed_debuff"   "-60"
+	            "blast_movement_speed_debuff"   "-40"
 	        }
 			"04"
 	        {
 	            "var_type"                      "FIELD_INTEGER"
-	            "blast_attack_speed_debuff"   	"-60"
+	            "blast_attack_speed_debuff"   	"-80"
 		        }
 	        "05"
 	        {
@@ -12293,322 +9752,6 @@
 		        "ScriptFile"			"lua_item/gift.lua"
 				"Function"				"gift_open"
 		    }
-		}
-	}
-	"item_purethorn"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"2025"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"custom/purethorn"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"FightRecapLevel"				"1"
-	
-		// Stats
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"900"
-		"AbilityCastPoint"				"0.0"
-		"AbilityCooldown"				"13.0"
-		"AbilityDuration"				"5"
-		"AbilitySharedCooldown"			"orchid"
-		"PiercesDisableReduction"		"1"
-		"HasPureCooldown"				"1"
-	
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"100"
-		"ItemCost"						"7195"
-		"ItemShopTags"					"int;attack_speed;damage;regen_mana;damage;hard_to_tag"
-		"ItemQuality"					"rare"
-		"ItemAliases"					"orchid malevolence"
-		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-		
-		"precache"
-		{
-			"particle"	"particles/items2_fx/orchid.vpcf"
-			"particle"	"particles/items2_fx/orchid_pop.vpcf"
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_items.vsndevts"
-		}
-		
-		// Special	
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_intellect"		"8000"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_attack_speed"	"400"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"2500"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_mana_regen"		"12"
-			}			
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"crit_chance"			"40"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"crit_multiplier"		"300"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"Pierce_percent"		"20"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"silence_damage_percent"	"30"
-			}	
-			"09"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"silence_duration"		"5"
-			}
-			"10"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"target_crit_multiplier"		"225"
-			}
-			"11"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"target_pierce"			"5"
-			}
-			"12"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"spell_crit_multiplier"		"300"
-			}
-			"13"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"spell_crit_chance"		"25"
-			}
-		}
-		"OnSpellStart"
-		{
-			"ApplyModifier"
-			{
-				"ModifierName"	"modifier_bloodthorn_silence_amp"
-				"Target"		"TARGET"
-				"Duration"		"%silence_duration"
-			}
-			"FireSound"
-			{
-				"EffectName"	"DOTA_Item.Orchid.Activate"
-				"Target"		"TARGET"
-			}
-			"RunScript"
-			{
-				"ScriptFile"	"lua_item/simple_item"
-				"Function"		"OrchidInit"
-			}
-		}
-		
-						
-		"OnEquip"
-		{
-			"RemoveModifier"
-			{
-				"ModifierName"	"Piercing"
-				"Target"	"CASTER"
-			}
-			"ApplyModifier"
-			{
-				"ModifierName"	"Piercing"
-				"Target" 
-				{
-					"Center" "CASTER"
-					"Flags" "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
-				}
-			}
-		}
-		
-		"Modifiers"
-		{
-			"spellcrit"
-			{
-				"Passive" 	"1"
-				"IsHidden"	"1"
-			}
-			"Piercing"
-	        {
-	        	"IsHidden"                  "1"
-	            	"Passive"                	"1"
-	        	"OnAttackLanded"
-	        	{
-	        		"RunScript"
-	        		{
-	        			"ScriptFile"			"lua_item/simple_item.lua"
-						"Function"				"Pierce"
-						"damage_on_hit"			"%attack_damage"
-	        		}
-	        	}
-	        }
-			"modifier_bloodthorn_stats"
-			{
-				"Passive" 	"1"
-				"IsHidden"	"1"
-				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"%bonus_intellect"
-					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%bonus_attack_speed"
-					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"	"%bonus_damage"
-					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"	"%bonus_mana_regen"
-				}
-				"OnAttackLanded"
-				{
-					"Random"
-					{
-	   						"Chance" "%crit_chance"
-	   						"PseudoRandom" "DOTA_PSEUDO_RANDOM_FACELESS_BASH"
-	   						"OnSuccess"
-	   						{
-	   							"ApplyModifier"
-							{
-								"ModifierName" 	"critical_strike_2"
-								"Target" 
-								{
-									"Center" "CASTER"
-									"Flags" "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
-								}
-							}
-	   						}
-	   						"OnFailure"
-	   						{}
-					}
-				}
-			}
-			"critical_strike_2"
-			{
-				"IsHidden"		"1"
-				"Attributes"	"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE" 	"%crit_multiplier"
-				}
-				"OnAttackLanded"
-				{
-					"RemoveModifier"
-					{
-						"ModifierName" 	"critical_strike_2"
-						"Target" 		"CASTER"
-					}
-				}
-			}
-			"modifier_bloodthorn_silence_amp"
-			{
-				"IsDebuff"	"1"
-				"EffectName"	"particles/items2_fx/orchid.vpcf"
-				"EffectAttachType"	"follow_overhead"
-				"OnAttacked"
-				{
-					"ApplyModifier"
-					{
-						"ModifierName"	"modifier_bloodthorn_silence_crit"
-						"Target" 
-						{
-							"Center" "ATTACKER"
-							"Flags" "DOTA_UNIT_TARGET_FLAG_INVULNERABLE | DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-						}
-					}
-				}
-				"OnTakeDamage"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"lua_item/simple_item"
-						"Function"		"OrchidAmp"
-						"damage"		"%attack_damage"
-					}
-				}
-				"OnDestroy"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"lua_item/simple_item"
-						"Function"		"OrchidPop"
-					}
-					"FireEffect"
-					{
-						"EffectName"	"particles/items2_fx/orchid_pop.vpcf"
-						"EffectAttachType"	"attach_origin"
-						"Target"			"TARGET"
-					}
-				}
-				"States"
-				{
-					"MODIFIER_STATE_SILENCED"	"MODIFIER_STATE_VALUE_ENABLED"
-				}
-			}
-			"modifier_bloodthorn_silence_crit"
-			{
-				"IsHidden"	"1"
-				"OnAttackLanded"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"lua_item/simple_item"
-						"Function"	"SharedPierce"
-						"damage_on_hit"	"%attack_damage"
-					}
-					"RemoveModifier"
-					{
-						"ModifierName"	"modifier_bloodthorn_silence_crit"
-						"Target"		"ATTACKER"
-					}
-				}
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE" 	"%target_crit_multiplier"
-				}
-			}
-		}
-	}
-	//=================================================================================================================
-	// Recipe: Abyssal Soul
-	//=================================================================================================================
-	"item_recipe_abyssal_soul"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"1302"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"BaseClass"						"item_recipe_arcane_boots"
-		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"	"custom/abyssal_soul"
-		
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"15666"	
-		"ItemShopTags"					""
-		
-		// Recipe
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemRecipe"					"1"
-		"ItemResult"					"item_abyssal_soul"
-		"ItemRequirements"
-		{
-			"01"						"item_divinesoul;item_heart_bahamut"
 		}
 	}
 	//=================================================================================================================
@@ -12661,32 +9804,6 @@
 			"01"						"item_asura_staff;item_asura_core"
 		}
 	}	
-	//=================================================================================================================
-	// bahamut Armor
-	//=================================================================================================================
-	"item_recipe_bahamut_chest"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"1203"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"BaseClass"						"item_recipe_arcane_boots"
-		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"	"custom/bahamut_chest"
-		
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"31514"	
-		"ItemShopTags"					""
-		
-		// Recipe
-		////-------------------------------------------------------------------------------------------------------------
-		"ItemRecipe"					"1"
-		"ItemResult"					"item_bahamut_chest"
-		"ItemRequirements"
-		{
-			"01"						"item_divine_armor;item_orb_bahamut"
-		}
-	}
 	//=================================================================================================================
 	// Recipe: Divine desolator
 	//=================================================================================================================
@@ -12897,100 +10014,6 @@
 			"01"						"item_blade_mail3;item_death_scythe;item_death_scythe;item_orb_bahamut"
 		}
 	}	
-	"item_recipe_blink_boots"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"1270"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"BaseClass"						"item_recipe_arcane_boots"
-		"Model"							"models/props_gameplay/recipe.mdl"
-		
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"1420"	
-		"ItemShopTags"					""
-		
-		// Recipe
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemRecipe"					"1"
-		"ItemResult"					"item_blink_boots"
-		"ItemRequirements"
-		{
-			"01"						"item_force_boots;item_orb_of_doom;item_blink"
-		}
-	}
-	//=================================================================================================================
-	// Recipe: Battlefury
-	//=================================================================================================================
-	"item_recipe_bloodthorn2"
-	{
-		"ID"							"2018"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"Model"							"models/props_gameplay/recipe.mdl"
-		"BaseClass"						"item_recipe_blade_mail"
-		"AbilityTextureName"	"custom/bloodthorn2"
-		
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"0"
-		"ItemShopTags"					""
-		
-		// Recipe
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemRecipe"					"1"
-		"ItemResult"					"item_bloodthorn2"
-		"ItemRequirements"
-		{
-			"01"						"item_bloodthorn;item_crit2;item_orb_of_shadows"
-		}
-	}	
-	//=================================================================================================================
-	// Recipe: Battlefury
-	//=================================================================================================================
-	"item_recipe_bloodthorn3"
-	{
-		"ID"							"2020"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"Model"							"models/props_gameplay/recipe.mdl"
-		"BaseClass"						"item_recipe_blade_mail"
-		"AbilityTextureName"	"custom/bloodthorn3"
-		
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"0"
-		"ItemShopTags"					""
-		
-		// Recipe
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemRecipe"					"1"
-		"ItemResult"					"item_bloodthorn3"
-		"ItemRequirements"
-		{
-			"01"						"item_bloodthorn2;item_crit3;item_orb_of_doom"
-		}
-	}	
-	//=================================================================================================================
-	// Recipe: Battlefury
-	//=================================================================================================================
-	"item_recipe_bloodthorn4"
-	{
-		"ID"							"2022"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"Model"							"models/props_gameplay/recipe.mdl"
-		"BaseClass"						"item_recipe_blade_mail"
-		"AbilityTextureName"	"custom/bloodthorn4"
-		
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"0"
-		"ItemShopTags"					""
-		
-		// Recipe
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemRecipe"					"1"
-		"ItemResult"					"item_bloodthorn4"
-		"ItemRequirements"
-		{
-			"01"						"item_bloodthorn3;item_unstable_stone;item_orb_divine"
-		}
-	}	
 	//======================================================================================================
 	//==============Bloodye Haleberd================================================================================
 	//======================================================================================================
@@ -13030,7 +10053,7 @@
 	 				
 	 		// Item Info		
 	 		// -------------------------------------------------------------------------------------------------------------		
-	 		"ItemCost"						"3155"			
+	 		"ItemCost"						"650"			
 	 		"ItemShopTags"					""		
 	 				
 	 		// Recipe		
@@ -13056,7 +10079,7 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"9875"	
+		"ItemCost"						"1240"	
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -13065,7 +10088,7 @@
 		"ItemResult"					"item_booster_void"
 		"ItemRequirements"
 		{
-			"01"						"item_blood_booster;item_pixels_guard;item_orb_bahamut"
+			"01"						"item_blood_booster;item_blood_booster"
 		}
 	}
 	//=================================================================================================================
@@ -13314,32 +10337,6 @@
 		}
 	}
 	//=================================================================================================================
-	// Recipe: Demon
-	//=================================================================================================================
-	"item_recipe_demonsoul"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"1174"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"BaseClass"						"item_recipe_arcane_boots"
-		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"			"custom/demonsoul"
-		
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"3245"	
-		"ItemShopTags"					""
-		
-		// Recipe
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemRecipe"					"1"
-		"ItemResult"					"item_demonsoul"
-		"ItemRequirements"
-		{
-			"01"						"item_soul;item_dragon_lance;item_heart_titan"
-		}
-	}
-	//=================================================================================================================
 	// Recipe: Desolator2
 	//=================================================================================================================
 	"item_recipe_desolator2"
@@ -13445,58 +10442,6 @@
 		"ItemRequirements"
 		{
 			"01"						"item_desolator4;item_divine_hammer;item_orb_divine;item_death_scythe"
-		}
-	}
-	//=================================================================================================================
-	// Recipe: Divine soul
-	//=================================================================================================================
-	"item_recipe_divinesoul"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"1177"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"BaseClass"						"item_recipe_arcane_boots"
-		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"	"custom/divinesoul"
-		
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"0"	
-		"ItemShopTags"					""
-		
-		// Recipe
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemRecipe"					"1"
-		"ItemResult"					"item_divinesoul"
-		"ItemRequirements"
-		{
-			"01"						"item_demonsoul;item_heart_divine;item_orb_divine"
-		}
-	}
-	//=================================================================================================================
-	// Recipe: Divine Armor
-	//=================================================================================================================
-	"item_recipe_divine_armor"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"1171"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"BaseClass"						"item_recipe_arcane_boots"
-		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"	"custom/divine_armor"
-		
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"9000"	
-		"ItemShopTags"					""
-		
-		// Recipe
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemRecipe"					"1"
-		"ItemResult"					"item_divine_armor"
-		"ItemRequirements"
-		{
-			"01"						"item_titan_armor;item_orb_of_doom;item_black_king_bar"
 		}
 	}
 	//=================================================================================================================
@@ -13841,6 +10786,7 @@
 	}
 	"item_recipe_heart_boots"
 	{
+	
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"1257"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
@@ -14036,7 +10982,7 @@
 		"ItemResult"					"item_lifestealtank"
 		"ItemRequirements"
 		{
-			"01"						"item_assault;item_orb_of_doom;item_orb_of_shadows;item_helm_of_mithril_will"
+			"01"						"item_assault;item_orb_of_shadows;item_helm_of_mithril_will"
 		}
 	}
 	"item_recipe_mekansm2"
@@ -14099,7 +11045,7 @@
 		"ItemResult"					"item_mekansm4"
 		"ItemRequirements"
 		{
-			"01"						"item_mekansm3;item_orb_divine;item_titan_armor"
+			"01"						"item_mekansm3;item_orb_divine;item_assault_2"
 		}
 	}
 	"item_recipe_mekansm5"
@@ -14120,7 +11066,7 @@
 		"ItemResult"					"item_mekansm5"
 		"ItemRequirements"
 		{
-			"01"						"item_mekansm4;item_orb_bahamut;item_divine_armor"
+			"01"						"item_mekansm4;item_orb_bahamut;item_assault_3"
 		}
 	}
 	//=================================================================================================================
@@ -14645,30 +11591,6 @@
 		}
 	}	
 	//=================================================================================================================
-	// Recipe: Battlefury
-	//=================================================================================================================
-	"item_recipe_purethorn"
-	{
-		"ID"							"2024"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"Model"							"models/props_gameplay/recipe.mdl"
-		"BaseClass"						"item_recipe_blade_mail"
-		"AbilityTextureName"	"custom/purethorn"
-		
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"0"
-		"ItemShopTags"					""
-		
-		// Recipe
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemRecipe"					"1"
-		"ItemResult"					"item_purethorn"
-		"ItemRequirements"
-		{
-			"01"						"item_bloodthorn4;item_gungnir;item_orb_bahamut"
-		}
-	}	
-	//=================================================================================================================
 	// Recipe: Redium Lens
 	//=================================================================================================================
 	"item_recipe_redium_lens"
@@ -14945,56 +11867,31 @@
 		}
 	}
 	// ======================================================================================================		
-	 	// ==============tank booster================================================================================		
-	 	// ======================================================================================================		
-	 	"item_recipe_tank_booster"		
-	 	{		
-	 		// General		
-	 		// -------------------------------------------------------------------------------------------------------------		
-	 		"ID"							"1251"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.		
-	 		"BaseClass"						"item_recipe_arcane_boots"		
-	 		"Model"							"models/props_gameplay/recipe.mdl"		
-	 				
-	 		// Item Info		
-	 		// -------------------------------------------------------------------------------------------------------------		
-	 		"ItemCost"						"2780"			
-	 		"ItemShopTags"					""		
-	 				
-	 		// Recipe		
-	 		// -------------------------------------------------------------------------------------------------------------		
-	 		"ItemRecipe"					"1"		
-	 		"ItemResult"					"item_tank_booster"		
-	 		"ItemRequirements"		
-	 		{		
-	 			"01"						"item_soul_booster;item_orb_of_doom"		
-	 		}		
-	 	}		
-	//=================================================================================================================
-	// Recipe: TITAN Armor
-	//=================================================================================================================
-	"item_recipe_titan_armor"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"1057"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"BaseClass"						"item_recipe_arcane_boots"
-		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"	"custom/titan_armor"
-		
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"1"	
-		"ItemShopTags"					""
-		
-		// Recipe
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemRecipe"					"1"
-		"ItemResult"					"item_titan_armor"
-		"ItemRequirements"
-		{
-			"01"						"item_heart_titan;item_assault;item_orb_of_doom;item_hyperstone"
-		}
-	}
+	// ==============tank booster================================================================================		
+	// ======================================================================================================		
+	"item_recipe_tank_booster"		
+	{		
+		// General		
+		// -------------------------------------------------------------------------------------------------------------		
+		"ID"							"1251"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.		
+		"BaseClass"						"item_recipe_arcane_boots"		
+		"Model"							"models/props_gameplay/recipe.mdl"		
+				
+		// Item Info		
+		// -------------------------------------------------------------------------------------------------------------		
+		"ItemCost"						"2780"			
+		"ItemShopTags"					""		
+				
+		// Recipe		
+		// -------------------------------------------------------------------------------------------------------------		
+		"ItemRecipe"					"1"		
+		"ItemResult"					"item_tank_booster"		
+		"ItemRequirements"		
+		{		
+			"01"						"item_soul_booster;item_orb_of_doom"		
+		}		
+	}		
+	
 	//=================================================================================================================
 	// Aghs amulet
 	//=================================================================================================================	
@@ -15175,12 +12072,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_mana"			"1250"
+				"bonus_mana"			"1500"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_health_regen"	"15"
+				"var_type"				"FIELD_FLOAT"
+				"bonus_mana_regen"		"2.5"
 			}
 			"03"
 			{
@@ -15194,45 +12091,6 @@
 			}
 		}
 	}
-	//=================================================================================================================
-		// Ressurection Stone
-		//=================================================================================================================
-		"item_ressurection_stone"
-		{
-			"ID"							"1202"
-	
-			// General
-			//-------------------------------------------------------------------------------------------------------------
-			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-			"BaseClass"						"item_datadriven"
-			"ItemShareability"				"ITEM_FULLY_SHAREABLE_STACKING"
-			"AbilityTextureName"			"custom/ress_stone"
-			"Model"							"models/props_gameplay/gem01.mdl"
-			"ItemKillable"					"0"
-	
-			// Stats
-			//-------------------------------------------------------------------------------------------------------------
-			"AbilityCastRange"				"100"
-			
-			
-			// Item Info
-			//-------------------------------------------------------------------------------------------------------------
-			"ItemCost"						"500"
-			"ItemStackable"					"1"
-			"ItemShareability"				"ITEM_FULLY_SHAREABLE_STACKING"
-			"ItemPermanent"					"0"
-			"ItemInitialCharges"			"1"
-			"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS | DECLARE_PURCHASES_IN_SPEECH"
-	
-			"OnOwnerDied"
-			{
-				"RunScript"
-				{
-					"ScriptFile"			"lua_item/RessurectionStone.lua"
-					"Function"				"Ressurection"
-				}
-			}
-		}
 	//=================================================================================================================
 	// scythe
 	//=================================================================================================================
@@ -15825,57 +12683,6 @@
 		}
 	}
 	//=================================================================================================================
-	// scope
-	//=================================================================================================================
-	"item_soul"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"1173"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"custom/soul"
-		"ItemKillable"					"1"
-		"ItemSellable"					"1"
-		"ItemDroppable"					"1"
-		"ItemShareability"				"ITEM_PARTIALLY_SHAREABLE"
-		"ItemCost"						"3000"
-		"ItemShopTags"					"damage;unique;armor"
-		"ItemQuality"					"artifact"
-		"ItemAliases"					"armor"
-		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_ALWAYS"
-		
-	
-		
-		"AbilityCooldown"	"0"
-		"AbilityManaCost"	"0"
-	
-		"Modifiers"
-		{
-	
-			"soulpassive"
-			{	
-				"IsHidden"	 "1"
-				"Passive"	 "1"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_ATTACK_RANGE_BONUS"		"%bonus_range"
-				}
-	 
-	 
-			}
-		}
-	
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_range"				"250"
-			}
-		}
-	}
-	//=================================================================================================================
 	// Helm
 	//=================================================================================================================
 	"item_soul_gatherer"
@@ -16151,8 +12958,8 @@
 			}
 			"02"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_health_regen"	"25"
+				"var_type"				"FIELD_FLOAT"
+				"bonus_mana_regen"		"5"
 			}
 			"03"
 			{
@@ -16839,7 +13646,7 @@
 		   					{
 								"ApplyModifier"
 								{
-									"ModifierName" 	"item_sange_and_yasha_2_debuff"
+									"ModifierName" 	"item_sange_and_yasha_4_debuff"
 									"Target" 		"TARGET"
 								}
 							}
@@ -17100,289 +13907,129 @@
 		}
 	}
 	"item_tank_booster"		
-	 	{		
-		// General		
-		// -------------------------------------------------------------------------------------------------------------		
-	 		"ID"							"1252"				// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.		
-	 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityCooldown"				"18"
-		"HasPureCooldown"				"1"
-	 		"BaseClass"						"item_datadriven"		
-	 		"AbilityTextureName"			"custom/tank_booster"		
-	 		"ItemShareability"				"ITEM_PARTIALLY_SHAREABLE"		
-	 		"ItemKillable"					"1"		
-	 		"ItemSellable"					"1"		
-	 		"ItemDroppable"					"1"		
-	 		"ItemCost"						"9000"		
-	 		"ItemShopTags"					"int"		
-	 		"ItemQuality"					"artifact"		
-	 		"ItemAliases"					"ring"		
-		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_ALWAYS"		
-		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"		
-	 		
-	 		"AbilitySpecial"		
-	 	    {		
-	 	        "01"		
-	 	        {		
-	 	            "var_type"              "FIELD_INTEGER"		
-	 	            "health_per_str"                "20"		
-	 	        }		
-	 	        "02"		
+	{		
+	// General		
+	// -------------------------------------------------------------------------------------------------------------		
+		"ID"							"1252"				// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.		
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	"AbilityCooldown"				"18"
+	"HasPureCooldown"				"1"
+		"BaseClass"						"item_datadriven"		
+		"AbilityTextureName"			"custom/tank_booster"		
+		"ItemShareability"				"ITEM_PARTIALLY_SHAREABLE"		
+		"ItemKillable"					"1"		
+		"ItemSellable"					"1"		
+		"ItemDroppable"					"1"		
+		"ItemCost"						"9000"		
+		"ItemShopTags"					"int"		
+		"ItemQuality"					"artifact"		
+		"ItemAliases"					"ring"		
+	"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_ALWAYS"		
+	"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"		
+		
+		"AbilitySpecial"		
+		{		
+			"01"		
 			{		
-	 				"var_type"				"FIELD_INTEGER"		
-	 				"bonus_health"			"10000"		
-	 			}		
-	 			"03"		
-	 			{		
-	 				"var_type"					"FIELD_INTEGER"		
-	 				"bonus_all"				"150"		
-	 			}
-	 	    }		
-	 	    "Modifiers"		
-	 	    {		
-	 	        "passive"		
-	 	        {		
-	 	        	"IsHidden"                  "1"		
-	             	"Passive"                	"1"		
-	             	"Attributes"    "MODIFIER_ATTRIBUTE_MULTIPLE"		
-	 	        	"Properties"		
-	      			{		
-	        				"MODIFIER_PROPERTY_HEALTH_BONUS" 			"%bonus_health"		
-	        				"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"		"%bonus_all"		
-	 					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"			"%bonus_all"		
-	 					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"		"%bonus_all"		
-	      			}		
-	      		}		
-	      		"health_booster_effect"		
-	      		{		
-	      			"Passive"                	"1"		
-	      			"IsHidden"                  "1"		
-				"OnCreated"				
-	      			{		
-	 	     			"ApplyModifier"
-					{
-						"ModifierName"	"health_booster_check"
-						"Target"		"CASTER"
-					}
-	      			}		
-	      			"OnDestroy"		
-	      			{		
-	 		        	"RemoveModifier"		
-	 			        {		
-	 			            "ModifierName" "health_booster_check"		
-	 			            "Target" "CASTER"		
-	 			        }		
-	      			}		
-				"OnDeath"
+				"var_type"              "FIELD_INTEGER"		
+				"health_per_str"                "20"		
+			}		
+			"02"		
+		{		
+				"var_type"				"FIELD_INTEGER"		
+				"bonus_health"			"10000"		
+			}		
+			"03"		
+			{		
+				"var_type"					"FIELD_INTEGER"		
+				"bonus_all"				"150"		
+			}
+		}		
+		"Modifiers"		
+		{		
+			"passive"		
+			{		
+				"IsHidden"                  "1"		
+				"Passive"                	"1"		
+				"Attributes"    "MODIFIER_ATTRIBUTE_MULTIPLE"		
+				"Properties"		
+				{		
+						"MODIFIER_PROPERTY_HEALTH_BONUS" 			"%bonus_health"		
+						"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"		"%bonus_all"		
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"			"%bonus_all"		
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"		"%bonus_all"		
+				}		
+			}		
+			"health_booster_effect"		
+			{		
+				"Passive"                	"1"		
+				"IsHidden"                  "1"		
+			"OnCreated"				
+				{		
+					"ApplyModifier"
 				{
+					"ModifierName"	"health_booster_check"
+					"Target"		"CASTER"
+				}
+				}		
+				"OnDestroy"		
+				{		
 					"RemoveModifier"		
-	 			        {		
-	 			            "ModifierName" "health_booster"		
-	 			            "Target" "CASTER"		
-	 			        }
-				}
-	 	    	}		
-			"health_booster_check"
+					{		
+						"ModifierName" "health_booster_check"		
+						"Target" "CASTER"		
+					}		
+				}		
+			"OnDeath"
 			{
-				"IsHidden"                  "1"
-				"OnCreated"
-				{
+				"RemoveModifier"		
+					{		
+						"ModifierName" "health_booster"		
+						"Target" "CASTER"		
+					}
+			}
+			}		
+		"health_booster_check"
+		{
+			"IsHidden"                  "1"
+			"OnCreated"
+			{
+				"RunScript"		
+					{		
+						"ScriptFile"			"lua_item/simple_item.lua"		
+						"Function"				"tank_boosterApply"		
+					}	
+			}
+			"ThinkInterval"				"0.3"
+				"OnIntervalThink"			
+				{		
 					"RunScript"		
-	 		        	{		
-	 		        		"ScriptFile"			"lua_item/simple_item.lua"		
-	 						"Function"				"tank_boosterApply"		
-	 		        	}	
+					{		
+						"ScriptFile"			"lua_item/simple_item.lua"		
+						"Function"				"tank_booster"		
+					}		
+				}		
+				"OnDestroy"		
+				{			
+					"RemoveModifier"		
+					{		
+						"ModifierName" "health_booster"		
+						"Target" "CASTER"		
+					}		
 				}
-				"ThinkInterval"				"0.3"
-	      			"OnIntervalThink"			
-	      			{		
-	 	     			"RunScript"		
-	 		        	{		
-	 		        		"ScriptFile"			"lua_item/simple_item.lua"		
-	 						"Function"				"tank_booster"		
-	 		        	}		
-	      			}		
-	      			"OnDestroy"		
-	      			{			
-	 		        	"RemoveModifier"		
-	 			        {		
-	 			            "ModifierName" "health_booster"		
-	 			            "Target" "CASTER"		
-	 			        }		
-	      			}
-				
-			}
-	 	    	"health_booster"		
-	 	    	{		
-	 	    		"IsHidden"                  "1"		
-	             	"Attributes"    "MODIFIER_ATTRIBUTE_MULTIPLE"		
-	 	        	"Properties"		
-	      			{		
-	        				"MODIFIER_PROPERTY_HEALTH_BONUS" 			"%health_per_str"		
-	      			}		
-	 	    	}			
-	 	    }		
-	 	}		
-	//=================================================================================================================
-	// TITAN Armor
-	//=================================================================================================================
-	"item_titan_armor"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"1058"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_AURA | DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"custom/titan_armor"
-		"ItemKillable"					"1"
-		"ItemSellable"					"1"
-		"ItemDroppable"					"1"
-		
-		"ItemCost"						"10232"
-		"ItemShopTags"					"damage;unique;armor"
-		"ItemQuality"					"artifact"
-		"ItemAliases"					"armor"
-		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_ALWAYS"
-		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-	
-		
-		
-		"AbilityCooldown"	"0"
-		"AbilityManaCost"	"0"
-	
-		"Modifiers"
-		{
-	
-			"activeaoetitan"
-			{
-				"Passive" "1"
-				"IsHidden" "1"
-				"isaura" "1"
-				"AllowIllusionDuplicate"    "0"
-				"Aura" "titanarmor"
-				"Aura_Radius" "%radius"
-				"Aura_Teams" "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-				"Aura_Types" "DOTA_UNIT_TARGET_ALL"
-			}
-	
-			"activeaoe2"
-			{
-				"Passive" "1"
-				"IsHidden" "1"
-				"AllowIllusionDuplicate"    "0"
-				"Aura" "titanarmordebuff"
-				"Aura_Radius" "%radius"
-				"Aura_Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
-				"Aura_Types" "DOTA_UNIT_TARGET_ALL"
-			}
-	
-			"hearthpassive"
-			{	
-				"IsHidden"	 "1"
-				"Passive"	 "1"
-				"Attributes"    "MODIFIER_ATTRIBUTE_MULTIPLE"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE"		"%health_regen_percent"
-					"MODIFIER_PROPERTY_HEALTH_BONUS"			"%bonus_health_max"
-					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"		"%bonus_all"
-					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"		"%bonus_all"
-					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"		"%bonus_all"
-					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"		"%bonus_armor"
-					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"		"%bonus_attackspeed"
-				}
-	 
-			}
-	
-			"titanarmor"
-			{	
-				"Isbuff" 	"1"
-	           		"IsPurgable" "0"
-	           		"IsAura" "1"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_HEALTH_BONUS"			"%bonus_health_max_aoe"
-					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"		"%bonus_all_aoe"
-					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"		"%bonus_all_aoe"
-					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"		"%bonus_all_aoe"
-					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"		"%bonus_armor_aoe"
-					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"		"%bonus_attackspeed_aoe"
-				}
-			}
-			"titanarmordebuff"
-			{	
-				"IsDebuff" "1"
-	            	"IsPurgable" "0"
-	            	"IsAura" "1"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"		"%bonus_armor_debuff"
-				}
-			}
+			
 		}
-	
-	
-		// Special	
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"health_regen_percent"			"2.5"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_all"			"150"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_health_max"			"7000"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_armor"			"65"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_attackspeed"			"25"
-			}	
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_health_max_aoe"			"2000"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_all_aoe"			"50"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_attackspeed_aoe"			"75"
-			}
-			"09"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_armor_aoe"			"30"
-			}
-			"10"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_armor_debuff"		"-7"
-			}
-			"11"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"		"800"
-			}
-		}
-	}
+			"health_booster"		
+			{		
+				"IsHidden"                  "1"		
+				"Attributes"    "MODIFIER_ATTRIBUTE_MULTIPLE"		
+				"Properties"		
+				{		
+						"MODIFIER_PROPERTY_HEALTH_BONUS" 			"%health_per_str"		
+				}		
+			}			
+		}		
+	}		
 	//=================================================================================================================
 	// Holdout Tombstone
 	//=================================================================================================================
@@ -18355,12 +15002,12 @@
 			"10"
 			{
 				"var_type" 				"FIELD_INTEGER"
-				"cast_range_bonus" 		"4000"
+				"cast_range_bonus" 		"5000"
 			}			
 			"11"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"spell_amp" 			"500"
+				"spell_amp" 			"1000"
 			}
 			"12"
 			{
@@ -18417,6 +15064,12 @@
 				"var_type"				"FIELD_INTEGER"
 				"crit_multiplier"		"500"
 			}
+			"23"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"LifestealPercent"		"100"
+			}			
+			
 		}
 		"OnEquip"
 		{
@@ -18498,6 +15151,22 @@
 					{
 						"ScriptFile"	"lua_item/simple_item"
 						"Function"		"ResetCastPoints"
+					}
+				}
+				"OnDealDamage"
+				{
+					"Lifesteal"
+					{
+						"Target"                "CASTER"
+						"LifestealPercent"        "%lifesteal_pct%"
+					}
+				}
+				"OnAttackLanded"
+				{
+					"Lifesteal"
+					{
+						"Target"                "CASTER"
+						"LifestealPercent"        "%lifesteal_pct%"
 					}
 				}
 	    	}

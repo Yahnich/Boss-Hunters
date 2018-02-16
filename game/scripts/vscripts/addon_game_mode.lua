@@ -26,9 +26,10 @@ require( "libraries/Timers" )
 require( "libraries/notifications" )
 require( "statcollection/init" )
 require("libraries/utility")
-
 require("libraries/animations")
 
+LinkLuaModifier( "modifier_wearable", "libraries/modifiers/modifier_wearable.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier( "modifier_status_immunity", "libraries/modifiers/modifier_status_immunity.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_paralyze", "libraries/modifiers/modifier_paralyze.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_in_water", "libraries/modifiers/modifier_in_water.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_healing_disable", "libraries/modifiers/modifier_healing_disable.lua", LUA_MODIFIER_MOTION_NONE)
@@ -41,11 +42,11 @@ LinkLuaModifier( "modifier_chill_generic", "libraries/modifiers/modifier_chill_g
 LinkLuaModifier( "modifier_frozen_generic", "libraries/modifiers/modifier_frozen_generic.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_hidden_generic", "libraries/modifiers/modifier_hidden_generic.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_necrolyte_sadist_aura_reduction", "lua_abilities/heroes/modifiers/modifier_necrolyte_sadist_aura_reduction", LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "lua_attribute_bonus_modifier", "lua_abilities/attribute/lua_attribute_bonus_modifier.lua", LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "modifier_skeleton_king_reincarnation_cooldown", "lua_abilities/heroes/modifiers/modifier_skeleton_king_reincarnation_cooldown.lua" ,LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "modifier_boss_attackspeed", "lua_abilities/heroes/modifiers/modifier_boss_attackspeed.lua" ,LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "modifier_boss_damagedecrease", "lua_abilities/heroes/modifiers/modifier_boss_damagedecrease.lua" ,LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_skeleton_king_reincarnation_cooldown", "lua_abilities/heroes/modifiers/modifier_skeleton_king_reincarnation_cooldown.lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_boss_attackspeed", "lua_abilities/heroes/modifiers/modifier_boss_attackspeed.lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_boss_damagedecrease", "lua_abilities/heroes/modifiers/modifier_boss_damagedecrease.lua", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_spawn_immunity", "libraries/modifiers/modifier_spawn_immunity.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier( "modifier_tombstone_respawn_immunity", "libraries/modifiers/modifier_tombstone_respawn_immunity.lua", LUA_MODIFIER_MOTION_NONE)
 
 -- Precache resources
 function Precache( context )
@@ -727,28 +728,6 @@ function CHoldoutGameMode:FilterModifiers( filterTable )
 			end
 		end
 	end)
-	-- DISABLE RESISTANCE HANDLING
-	if caster:IsChanneling()
-	or ability:GetAbilityType() == 1
-	or parent == caster
-	or ability:PiercesDisableResistance() 
-	or (caster:HasAbility("perk_disable_piercing") and RollPercentage(caster:FindAbilityByName("perk_disable_piercing"):GetSpecialValueFor("chance"))) then return true end
-	if parent:IsCreature() then
-		local stunned = parent:IsStunned() or parent:IsHexed()
-		Timers:CreateTimer(0.04,function()
-			if not parent:IsAlive() or parent:IsNull() then return nil end
-			local modifier = parent:FindModifierByNameAndCaster(name, caster)
-			if not stunned and (parent:IsStunned() or parent:IsHexed()) and GLOBAL_STUN_LIST[name] == nil then GLOBAL_STUN_LIST[name] = true end -- machine learning lul
-			if not (parent:IsStunned() or parent:IsHexed()) and GLOBAL_STUN_LIST[name] then GLOBAL_STUN_LIST[name] = false end
-			if modifier and not modifier:IsNull() and ( (modifier.CheckState and (modifier:CheckState().MODIFIER_STATE_STUNNED or modifier:CheckState().MODIFIER_STATE_HEXED)) or GLOBAL_STUN_LIST[name]) or modifier:IsStunDebuff() then
-				local resistance = parent:GetStunResistance()
-				if caster:HasTalentType("respawn_reduction") then resistance = resistance * (1 - caster:HighestTalentTypeValue("respawn_reduction") / 100) end
-				if RollPercentage(resistance) then 
-					modifier:Destroy() 
-				end
-			end
-		end)
-	end
 	return true
 end
 
@@ -916,50 +895,13 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 			local reflect = ability:GetSpecialValueFor("reflect_pct") / 100
 			filterTable["damage"] = filterTable["damage"] * reflect
 		end
-		local no_aether = {["elder_titan_earth_splitter"] = true,
-						   ["enigma_midnight_pulse"] = true,
-						   ["phoenix_sun_ray"] = true,
-						   ["abyssal_underlord_firestorm"] = true,
-						   ["huskar_life_break"] = true} -- stop %hp based and right click damage abilities from being amped by aether lens
-		if no_aether[ability:GetName()] or not ability:IsAetherAmplified() then
-			filterTable["damage"] = filterTable["damage"] / attacker:GetOriginalSpellDamageAmp()
-		end
-		if attacker:HasModifier("spellcrit") and attacker ~= victim then
-			local no_crit = {
-						   ["item_melee_rage"] = true,
-						   ["item_melee_fury"] = true,
-						   ["item_gungnir"] = true,
-						   ["item_gungnir_2"] = true,
-						   ["item_gungnir_3"] = true,
-						   ["mana_fiend_mana_lance"] = true,
-						   ["necrolyte_heartstopper_aura"] = true,
-						   ["winterw_arctic_sting"] = true,
-						   ["cloak_and_dagger_ebf"] = true,
-						   ["tricks_of_the_trade_datadriven"] = true,}
-			local ability = EntIndexToHScript( inflictor )
-			local spellcrit = true
-			if no_crit[ability:GetName()] or no_aether[ability:GetName()] or not ability:IsAetherAmplified() then
-				spellcrit = false
-			end
-			if (spellcrit or (ability:GetName() == "mana_fiend_mana_lance" and attacker:HasScepter())) and not attacker.essencecritactive then
-				local crititem = attacker:FindModifierByName("spellcrit"):GetAbility()
-				local chance = crititem:GetSpecialValueFor("spell_crit_chance")
-				if RollPercentage(chance) then
-					local mult = crititem:GetSpecialValueFor("spell_crit_multiplier") / 100
-					filterTable["damage"] = filterTable["damage"]*mult
-					victim:ShowPopup( {
-                    PostSymbol = 4,
-                    Color = Vector( 125, 125, 255 ),
-                    Duration = 0.7,
-                    Number = filterTable["damage"],
-                    pfx = "spell_custom"} )
-				end
-			end
-		end
 		if attacker:GetName() == "npc_dota_hero_leshrac" and attacker:HasAbility(ability:GetName()) then -- reapply damage in pure after all amp/crit
 			require('lua_abilities/heroes/leshrac')
 			filterTable = InnerTorment(filterTable)
 		end
+	end
+	if victim:IsHero() and not victim:IsRangedAttacker() then
+		filterTable["damage"] = filterTable["damage"] * 0.66
 	end
 	-- TRUE OCTARINE HEALING --
 	if inflictor and attacker:HasModifier("spell_lifesteal")
@@ -975,8 +917,8 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 		end)
 	end
 	if attacker:IsCreature() and not inflictor then -- no more oneshots tears-b-gone
-		local damageCap = 0.25
-		if GetMapName() == "epic_boss_fight_hardcore" then damageCap = 0.33 end
+		local damageCap = 0.35
+		if GetMapName() == "epic_boss_fight_hardcore" then damageCap = 0.5 end
 		local critmult = damage / (1 - victim:GetPhysicalArmorReduction() / 100 ) / attacker:GetAverageBaseDamage()
 		damageCap = damageCap * critmult
 		if victim:HasModifier("modifier_ethereal_resistance") then 
@@ -1080,10 +1022,20 @@ function CHoldoutGameMode:OnHeroLevelUp(event)
 	local playerID = EntIndexToHScript(event.player):GetPlayerID()
 	local hero = PlayerResource:GetSelectedHeroEntity(playerID)
 	
-	local modifier = hero:FindModifierByName("lua_attribute_bonus_modifier") or hero:AddNewModifier(hero, nil, "lua_attribute_bonus_modifier", {})
-	local strength = modifier:GetModifierBonusStats_All(0, hero:GetStrengthGain())
-	local agility = modifier:GetModifierBonusStats_All(1, hero:GetAgilityGain())
-	local intellect = modifier:GetModifierBonusStats_All(2, hero:GetIntellectGain())
+	local GetModifierBonusStats_All = function(hero, nType, nBonus)
+		local nLevel = hero:GetLevel()
+		local nStats = (1.07^nLevel * nBonus + nLevel^0.3 * 10) / 2
+		if hero:GetPrimaryAttribute() == nType then 
+			return math.floor(nStats * 1.2)
+		else
+			return math.floor(nStats)
+		end
+	end
+	
+	local strength = GetModifierBonusStats_All(hero, 0, hero:GetStrengthGain())
+	local agility = GetModifierBonusStats_All(hero, 1, hero:GetAgilityGain())
+	local intellect = GetModifierBonusStats_All(hero, 2, hero:GetIntellectGain())
+	
 	hero:SetBaseStrength(hero:GetBaseStrength() + strength )
 	hero:SetBaseAgility(hero:GetBaseAgility() + agility ) 
 	hero:SetBaseIntellect(hero:GetBaseIntellect() + intellect )
@@ -2416,15 +2368,7 @@ function CHoldoutGameMode:OnNPCSpawned( event )
 		spawnedUnit:SetHealth(spawnedUnit:GetMaxHealth())
 		
 		spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_boss_attackspeed", {})
-
-		local ticks = 5
-		Timers:CreateTimer(0.03,function() 
-			if ticks > 0 then 
-				spawnedUnit:SetHealth(spawnedUnit:GetMaxHealth()) 
-				ticks = ticks - 1
-				return 0.03 
-			end
-		end)
+		spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_spawn_immunity", {duration = 2})
 	end
 end
 

@@ -24,7 +24,6 @@ function boss16_conflagration:OnSpellStart()
 		local spread = self:GetSpecialValueFor("cone_spread")
 		local pathCount = (spread/30) * 2
 		for i = 0, pathCount do
-			print(30*math.ceil(i/2)*((-1)^i), pathCount, i)
 			local newDir = RotateVector2D(direction, ToRadians(15*(i/2)*(-1^i)) )
 			self:CreateFirePath(newDir)
 		end

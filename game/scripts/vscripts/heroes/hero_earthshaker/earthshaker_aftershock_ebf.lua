@@ -4,10 +4,11 @@ function earthshaker_aftershock_ebf:GetIntrinsicModifierName()
 	return "modifier_earthshaker_aftershock_ebf_passive"
 end
 
-function earthshaker_aftershock_ebf:Aftershock(position, radius)
+function earthshaker_aftershock_ebf:Aftershock(position, fRadius)
 	local caster = self:GetCaster()
 	local vPos = position or caster:GetAbsOrigin()
 	
+	local radius = fRadius or self:GetTalentSpecialValueFor("aftershock_range")
 	local damage = self:GetTalentSpecialValueFor("str_damage") / 100 * caster:GetStrength()
 	local duration = self:GetTalentSpecialValueFor("max_duration")
 	
@@ -39,8 +40,7 @@ end
 
 function modifier_earthshaker_aftershock_ebf_passive:OnAbilityExecuted( params )
 	if params.unit == self:GetParent() and self:GetParent():HasAbility( params.ability:GetName() ) then
-		local radius = self:GetTalentSpecialValueFor("aftershock_range")
-		self:GetAbility():Aftershock(self:GetParent():GetAbsOrigin(), self:GetTalentSpecialValueFor("aftershock_range"))
+		self:GetAbility():Aftershock()
 	end
 end
 

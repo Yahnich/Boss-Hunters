@@ -54,7 +54,7 @@ end
 function modifier_et_natural_order:DeclareFunctions()
     local funcs = {
         MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
-        MODIFIER_PROPERTY_MAGICAL_RESISTANCE_DIRECT_MODIFICATION
+        MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS
     }
     return funcs
 end
@@ -62,12 +62,12 @@ end
 function modifier_et_natural_order:GetModifierPhysicalArmorBonus()
 	local bonus = 0
 	if self:GetCaster():HasScepter() then
-		bonus = -self:GetTalentSpecialValueFor("reduc")
+		bonus = self:GetCaster():GetPhysicalArmorBaseValue() * (-self:GetTalentSpecialValueFor("reduc")) / 100
 	end
 	return bonus
 end
 
-function modifier_et_natural_order:GetModifierMagicalResistanceDirectModification()
+function modifier_et_natural_order:GetModifierMagicalResistanceBonus()
 	local bonus = 0
 	if self:GetCaster():HasScepter() then
 		bonus = -self:GetTalentSpecialValueFor("reduc")
