@@ -1,0 +1,194 @@
+"DOTAAbilities"
+{	
+	"boss4_death_ball"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"BaseClass" 					"ability_lua"
+		"ScriptFile"					"bosses/boss4/boss4_death_ball"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"puck_illusory_orb"
+		
+		"AbilityCastPoint"				"0.75 0.5"
+		"AbilityCooldown"				"8 6"
+		"AbilityCastRange"				"1200"
+		"AbilityCastAnimation"			"ACT_DOTA_UNDYING_SOUL_RIP"
+		
+		"precache"
+		{
+			"particle"					"particles/bosses/boss4/boss4_death_ball.vpcf"
+			"particle"					"particles/units/heroes/hero_undying/undying_soul_rip_damage.vpcf"
+			"particle"					"particles/econ/items/bloodseeker/bloodseeker_eztzhok_weapon/bloodseeker_bloodbath_eztzhok_burst.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_undying.vsndevts"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_bloodseeker.vsndevts"
+		}
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_per_unit"		"100 150"
+			}
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"search_radius"			"600"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"115"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"speed"					"600 750"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"distance"				"1200"
+			}
+		}
+	}
+	"boss4_horde_power"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"BaseClass" 					"ability_lua"
+		"ScriptFile"					"bosses/boss4/boss4_horde_power"
+		"AbilityTextureName"			"undying_soul_rip"
+		
+		"AbilityCastPoint"				"0.3"
+		"AbilityCastAnimation"			"ACT_DOTA_TELEPORT"
+		"AbilityChannelTime"			"2"
+		
+		"precache"
+		{
+			"particle"					"particles/bosses/boss4/boss4_summon_zombies_spawn.vpcf"
+		}
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"zombie_count"			"4 5"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"spawn_radius"			"600"
+			}
+		}
+	}
+	"boss4_sacrifice"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"BaseClass" 					"ability_lua"
+		"ScriptFile"					"bosses/boss4/boss4_sacrifice"
+		"AbilityTextureName"			"undying_flesh_golem"
+		
+		"AbilityCastPoint"				"0.75 0.5"
+		"AbilityCooldown"				"35 30"
+		"AbilityCastAnimation"			"ACT_DOTA_UNDYING_DECAY"
+		"AbilityChannelTime"			"7 5"
+		
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_undying/undying_soul_rip_heal.vpcf"
+		}
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"stack_armor_reduction"	"-1"
+			}
+		}
+	}
+	"boss4_summon_zombies"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"BaseClass" 					"ability_lua"
+		"ScriptFile"					"bosses/boss4/boss4_summon_zombies"
+		"AbilityTextureName"			"undying_soul_rip"
+		
+		"AbilityCastPoint"				"0.3"
+		"AbilityCooldown"				"25 20"
+		"AbilityCastAnimation"			"ACT_DOTA_TELEPORT"
+		"AbilityChannelTime"			"2"
+		
+		"precache"
+		{
+			"particle"					"particles/bosses/boss4/boss4_summon_zombies_spawn.vpcf"
+			"particle"					"particles/bosses/boss4/boss4_summon_zombies_summon.vpcf"
+			"soundfile"					"soundevents/game_sounds_custom.vsndevts"
+		}
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"zombie_count"			"4 5"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"spawn_radius"			"600"
+			}
+		}
+	}
+	"boss4_tombstone"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"BaseClass" 					"ability_lua"
+		"ScriptFile"					"bosses/boss4/boss4_tombstone"
+		"AbilityTextureName"			"undying_tombstone"
+		
+		"AbilityCastPoint"				"0.75 0.5"
+		"AbilityCooldown"				"20"
+		"AbilityCastAnimation"			"ACT_DOTA_UNDYING_TOMBSTONE"
+		
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_undying/undying_tombstone.vpcf"
+			"particle"					"particles/units/heroes/hero_pugna/pugna_life_drain_beam.vpcf"
+		}
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage_reduction"			"-35 -50"
+			}
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"break_distance"			"750 900"
+			}
+		}
+	}
+}

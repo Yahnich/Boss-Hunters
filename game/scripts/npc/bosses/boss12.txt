@@ -1,0 +1,165 @@
+"DOTAAbilities"
+{	
+	"boss12a_roll"
+	{
+	    // General
+	    //-------------------------------------------------------------------------------------------------------------
+	    "BaseClass"             		"ability_lua"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
+	    "AbilityTextureName"			"earth_spirit_rolling_boulder"
+	    "MaxLevel"						"2"
+		"AbilitySpecial"
+		{
+			
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"roll_distance"			"400 500"
+			}
+		}
+	}
+	"boss12a_split"
+	{
+	    // General
+	    //-------------------------------------------------------------------------------------------------------------
+	    "BaseClass"             		"ability_lua"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	    "AbilityTextureName"			"dark_seer_wall_of_replica"
+	    "MaxLevel"						"2"
+		
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_monkey_king/monkey_king_strike_ground_rocks.vpcf"
+		}
+		
+		"AbilitySpecial"
+		{
+			
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"spawn_count"			"2 3"
+			}
+		}
+	}
+	"boss12a_toss"
+	{
+	    // General
+	    //-------------------------------------------------------------------------------------------------------------
+	    "BaseClass"             		"ability_lua"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
+	    "AbilityTextureName"			"mud_golem_hurl_boulder"
+	    "MaxLevel"						"2"
+		"AbilitySpecial"
+		{
+			
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"roll_distance"			"400 500"
+			}
+		}
+	}
+	"boss12b_roll"
+	{
+	    // General
+	    //-------------------------------------------------------------------------------------------------------------
+	    "BaseClass"             		"ability_lua"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
+	    "AbilityTextureName"			"earth_spirit_rolling_boulder"
+	    "MaxLevel"						"2"
+		"AbilitySpecial"
+		{
+			
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"roll_distance"			"400 500"
+			}
+		}
+	}
+	"boss12b_split"
+	{
+	    // General
+	    //-------------------------------------------------------------------------------------------------------------
+	    "BaseClass"             		"ability_lua"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	    "AbilityTextureName"			"dark_seer_wall_of_replica"
+	    "MaxLevel"						"2"
+		
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_monkey_king/monkey_king_strike_ground_rocks.vpcf"
+		}
+		
+		"AbilitySpecial"
+		{
+			
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"spawn_count"			"2 3"
+			}
+		}
+	}
+	"boss12b_toss"
+	{
+	    // General
+	    //-------------------------------------------------------------------------------------------------------------
+	    "BaseClass"             		"ability_lua"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
+	    "AbilityTextureName"			"mud_golem_hurl_boulder"
+	    "MaxLevel"						"2"
+		"AbilitySpecial"
+		{
+			
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"roll_distance"			"400 500"
+			}
+		}
+	}
+	"boss12c_split"
+	{
+	    // General
+	    //-------------------------------------------------------------------------------------------------------------
+	    "BaseClass"             		"ability_lua"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	    "AbilityTextureName"			"dark_seer_wall_of_replica"
+	    "MaxLevel"						"2"
+		
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_monkey_king/monkey_king_strike_ground_rocks.vpcf"
+		}
+		
+		"AbilitySpecial"
+		{
+			
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"spawn_count"			"2 3"
+			}
+		}
+	}
+	"boss12c_toss"
+	{
+	    // General
+	    //-------------------------------------------------------------------------------------------------------------
+	    "BaseClass"             		"ability_lua"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
+	    "AbilityTextureName"			"mud_golem_hurl_boulder"
+	    "MaxLevel"						"2"
+		"AbilitySpecial"
+		{
+			
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"roll_distance"			"400 500"
+			}
+		}
+	}
+}

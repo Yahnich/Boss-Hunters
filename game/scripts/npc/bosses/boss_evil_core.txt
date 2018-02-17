@@ -1,0 +1,41 @@
+"DOTAAbilities"
+{	
+	"boss_evil_core_passive"
+	{
+	    // General
+	    //-------------------------------------------------------------------------------------------------------------
+	    "BaseClass"             		"ability_lua"
+		"ScriptFile"					"bosses/boss_evil_core/boss_evil_core_passive"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
+	    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
+	    "FightRecapLevel"               "1"
+	    "AbilityTextureName"			"custom/evil_core_passive"
+	    "MaxLevel"                      "1"
+		"PiercesDisableReduction"		"1"
+		
+		"AbilityCooldown"				"30"
+	
+	    // Special
+	    //-------------------------------------------------------------------------------------------------------------
+	
+	    "precache"
+	    {
+	        "particle"          "particles/units/heroes/hero_faceless_void/faceless_void_chronosphere.vpcf"
+	    }
+		
+		"AbilitySpecial"
+	    {
+	        "01"
+	        {
+	            "var_type"              "FIELD_INTEGER"
+	            "recharge_time"         "15"
+	        }
+	        "02"
+	        {
+	            "var_type"              "FIELD_INTEGER"
+	            "damage_per_hit"        "5"
+	        }
+	    }
+	}
+}

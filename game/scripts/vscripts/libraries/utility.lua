@@ -1477,7 +1477,7 @@ function CDOTA_BaseNPC:IsKnockedBack()
 end
 
 
-function FindAllUnits()
+function FindAllUnits(data)
 	local team = DOTA_TEAM_GOODGUYS
 	local data = hData or {}
 	local iTeam = data.team or DOTA_UNIT_TARGET_TEAM_BOTH

@@ -1,0 +1,205 @@
+"DOTAAbilities"
+{	
+	"boss15_exorcise"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss15/boss15_exorcise"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"FightRecapLevel"				"2"
+		"AbilityTextureName"			"death_prophet_carrion_swarm"
+		"MaxLevel"						"2"
+	
+		// Stats		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"9"
+		"AbilityCastPoint"				"0.75 0.5"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"speed"					"900"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"width_initial"			"150"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"width_end"				"200"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"distance"				"700 1200"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"5000 7000"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"debuff_duration"		"5"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"stun_duration"			"3"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_reduction"		"-50"
+			}
+			
+		}
+		"precache"
+		{
+			"particle" 	"particles/units/heroes/hero_death_prophet/death_prophet_carrion_swarm_impact.vpcf"
+			"particle" 	"particles/units/heroes/hero_death_prophet/death_prophet_carrion_swarm.vpcf"
+			"particle"	"particles/units/heroes/hero_queenofpain/queen_shadow_strike_debuff_poison.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_death_prophet.vsndevts"
+		}
+	}
+	"boss15_peel_the_veil"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss15/boss15_peel_the_veil"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"FightRecapLevel"				"2"
+		"AbilityTextureName"			"death_prophet_exorcism"
+		"MaxLevel"						"2"
+	
+		// Stats		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"40 35"
+		"AbilityChannelTime"			"5"
+		"AbilityCastPoint"				"0.75 0.5"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"ghost_damage"			"2"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"ghost_health"			"1"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"ghost_count"			"50"
+			}
+		}
+		"precache"
+		{
+			"particle" 			"particles/units/heroes/hero_death_prophet/death_prophet_spiritsiphon.vpcf"
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_death_prophet.vsndevts"
+		}
+	}
+	"boss15_thread_of_life"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss15/boss15_thread_of_life"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"FightRecapLevel"				"2"
+		"AbilityTextureName"			"death_prophet_spirit_siphon"
+		"MaxLevel"						"3"
+	
+		// Stats		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"10"
+		"AbilityCastPoint"				"0.5 0.4 0.3"
+		"AbilityCastRange"				"900 1050 1200"
+		"AbilityCastAnimation"			"ACT_DOTA_DP_SPIRIT_SIPHON"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"hp_damage"					"2.5 2.75 3.0"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"200 225 250"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"max_hp_damage"				"20"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"max_damage_rampup"			"15 12 10"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"tether_damage_reduction"	"-20"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"aoe_cooldown_increase"		"5"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius_buffer"				"400"
+			}
+		}
+		"precache"
+		{
+			"particle" 			"particles/units/heroes/hero_death_prophet/death_prophet_spiritsiphon.vpcf"
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_death_prophet.vsndevts"
+		}
+	}
+}

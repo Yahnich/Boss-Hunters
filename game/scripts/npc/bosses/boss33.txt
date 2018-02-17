@@ -1,0 +1,371 @@
+"DOTAAbilities"
+{	
+	"boss33a_dark_orb"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss33/boss33a_dark_orb.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"FightRecapLevel"				"2"
+		"AbilityTextureName"			"puck_illusory_orb"
+		"MaxLevel"						"2"
+		
+		"AbilityCooldown"				"14 12"
+		"AbilityCastRange"				"1200"
+		"AbilityCastPoint"				"0.75 0.5"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+		
+		"precache"
+		{
+			"particle"					"particles/bosses/boss33/boss33_dark_orb.vpcf"
+			"particle"					"particles/units/heroes/hero_puck/puck_illusory_orb_blink_out.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_puck.vsndevts"
+		}
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{			
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"45000 60000"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"3.5"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"orb_speed"				"500 600"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"orb_radius"			"100"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"phase2_angle_velocity"	"15"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"phase2_duration"		"1.5"
+			}
+		}
+	}
+	"boss33a_devitalize"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss33/boss33a_devitalize.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"FightRecapLevel"				"2"
+		"AbilityTextureName"			"shadow_demon_shadow_poison"
+		"MaxLevel"						"2"
+		
+		"AbilityCooldown"				"7 5"
+		"AbilityCastRange"				"1200"
+		"AbilityCastPoint"				"0.75 0.5"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_3"
+		
+		"precache"
+		{
+			"particle"					"particles/bosses/boss33/boss3a_devitalize.vpcf"
+			"particle"					"particles/units/heroes/hero_shadow_demon/shadow_demon_shadow_poison_release.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_shadow_demon.vsndevts"
+		}
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{			
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"2"
+			}
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"speed"					"600 700"
+			}
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"190"
+			}
+		}
+	}
+	"boss33a_protective_ward"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss33/boss33a_protective_ward.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"FightRecapLevel"				"2"
+		"AbilityTextureName"			"shadow_demon_demonic_purge"
+		"MaxLevel"						"2"
+		
+		"precache"
+		{
+			"particle"					"particles/bosses/boss33/boss33a_protection_poof.vpcf"
+		}
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{			
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"sf_death_reduction"	"-50"
+			}
+		}
+	}
+	"boss33b_protective_shield"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss33/boss33b_protective_shield.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"FightRecapLevel"				"2"
+		"AbilityTextureName"			"nevermore_necromastery"
+		"MaxLevel"						"2"
+		
+		"precache"
+		{
+			"particle"					"particles/bosses/boss33/boss33b_protection_poof.vpcf"
+		}
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{			
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"sd_death_reduction"	"-50"
+			}
+		}
+	}
+	"boss33b_shadowrazeF"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss33/boss33b_shadowrazeF.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"FightRecapLevel"				"2"
+		"AbilityTextureName"			"nevermore_shadowraze3"
+		"MaxLevel"						"2"
+		
+		"AbilityCooldown"				"6 5"
+		"AbilityCastPoint"				"0.75 0.5"
+		"AbilityCastAnimation"			"ACT_DOTA_RAZE_3"
+		
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_nevermore/nevermore_shadowraze.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_nevermore.vsndevts"
+		}
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{			
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"235 250"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"distance"				"700"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"20000 30000"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"sd_death_bonus_radius"	"50 75"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"phase2_raze_count"		"6"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"sd_death_duration"		"3"
+			}
+		}
+	}
+	"boss33b_shadowrazeM"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss33/boss33b_shadowrazeM.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"FightRecapLevel"				"2"
+		"AbilityTextureName"			"nevermore_shadowraze2"
+		"MaxLevel"						"2"
+		
+		"AbilityCooldown"				"6 5"
+		"AbilityCastRange"				"3500 5000"
+		"AbilityCastPoint"				"0.75 0.5"
+		"AbilityCastAnimation"			"ACT_DOTA_RAZE_2"
+		
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_nevermore/nevermore_shadowraze.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_nevermore.vsndevts"
+		}
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{			
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"235 250"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"distance"				"450"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"20000 30000"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"sd_death_bonus_radius"	"50 75"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"phase2_raze_count"		"12"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"sd_death_duration"		"3"
+			}
+			
+		}
+	}
+	"boss33b_shadowrazeN"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss33/boss33b_shadowrazeN.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"FightRecapLevel"				"2"
+		"AbilityTextureName"			"nevermore_shadowraze1"
+		"MaxLevel"						"2"
+		
+		"AbilityCooldown"				"6 5"
+		"AbilityCastRange"				"3500 5000"
+		"AbilityCastPoint"				"0.75 0.5"
+		"AbilityCastAnimation"			"ACT_DOTA_RAZE_1"
+		
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_nevermore/nevermore_shadowraze.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_nevermore.vsndevts"
+		}
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{			
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"235 250"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"distance"				"200"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"20000 30000"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"sd_death_bonus_radius"	"50 75"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"sd_death_duration"		"5"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"phase2_cross_count"	"4"
+			}
+		}
+	}
+	"boss33_eidolon_amp"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss33/boss33a_devitalize.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName" 			"enigma_demonic_conversion"
+		
+		"AbilitySpecial"
+		{			
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"spawn_count"			"4 6"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"spawn_radius"			"600"
+			}
+		}
+	}
+}

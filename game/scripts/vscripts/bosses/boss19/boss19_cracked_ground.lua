@@ -32,7 +32,7 @@ if IsServer() then
 		self.spikeCount = self:GetSpecialValueFor("spike_count")
 		self.spikeAngle = ToRadians(360/self.spikeCount)
 		self.spikeDirSpeed = ToRadians(360 / (self:GetDuration()/self.ticker))
-		self.chasm = caster:FindAbilityByName("boss19_chasm")
+		self.chasm = self:GetCaster():FindAbilityByName("boss19_chasm")
 	end
 	
 	function modifier_boss19_cracked_ground_thinker:OnIntervalThink()

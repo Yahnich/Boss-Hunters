@@ -28,7 +28,7 @@ function AIThink()
 				Position = thisEntity:GetOrigin(),
 				AbilityIndex = thisEntity.fist:entindex()
 			})
-			return 2
+			return 1.5
 		end
 		AICore:AttackHighestPriority( thisEntity )
 		return 0.25

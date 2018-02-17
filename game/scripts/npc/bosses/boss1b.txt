@@ -1,0 +1,181 @@
+"DOTAAbilities"
+{	
+	"boss1b_leap"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss1b/boss1b_leap"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"FightRecapLevel"				"2"
+		"AbilityTextureName"			"slark_pounce"
+		"MaxLevel"						"2"
+	
+		// Stats		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"14"
+		"AbilityCastRange"				"600 800"
+		"AbilityCastPoint"				"0.75 0.5"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"leap_speed"			"600 800"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"leap_height"			"900"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"leap_radius"			"175 200"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"leap_damage"			"400 600"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"leap_slow"				"-20 -35"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"slow_duration"			"5"
+			}
+		}
+		"precache"
+		{
+			"particle" 	"particles/items3_fx/silver_edge_slow.vpcf"
+			"particle" 	"particles/units/heroes/hero_tiny/tiny_toss_blur.vpcf"
+		}
+	}
+	"boss1b_spear_pierce"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss1b/boss1b_spear_pierce"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"FightRecapLevel"				"2"
+		"AbilityTextureName"			"enchantress_impetus"
+		"MaxLevel"						"2"
+	
+		// Stats		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"9"
+		"AbilityCastPoint"				"0.75 0.5"
+		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"spear_speed"			"900"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"spear_distance"		"2000"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"spear_width"			"150"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"spear_damage"			"700 1200"
+			}
+		}
+		"precache"
+		{
+			"particle" 	"particles/bosses/boss1b/boss1b_spear_pierce.vpcf"
+		}
+	}
+	"boss1b_spear_pin"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss1b/boss1b_spear_pin"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"FightRecapLevel"				"2"
+		"AbilityTextureName"			"mirana_arrow"
+		"MaxLevel"						"2"
+	
+		// Stats		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"15"
+		"AbilityCastPoint"				"0.75 0.5"
+		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"spear_speed"			"600"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"spear_distance"		"2000"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"spear_width"			"150"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"spear_damage"			"450 600"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"stun_duration"			"2 3"
+			}
+		}
+		"precache"
+		{
+			"particle" 	"particles/bosses/boss1b/boss1b_spear_pin.vpcf"
+		}
+	}
+}

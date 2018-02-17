@@ -1,4 +1,4 @@
-modifier_stun_immunity = class({})
+modifier_root_immunity = class({})
 
 function modifier_stun_immunity:CheckState()
 	return {[MODIFIER_STATE_STUNNED] = false}
