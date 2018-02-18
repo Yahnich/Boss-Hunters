@@ -38,7 +38,7 @@ function rearm_refresh_cooldown( keys )
 							   ["item_blade_mail3"] = true,
 							   ["item_blade_mail4"] = true,
 							   ["item_pixels_guard"] = true,
-							   ["item_sheepstick_2"] = true,}
+							   ["item_sheepstick"] = true,}
 	
     for i = 0, 5 do
         local item = caster:GetItemInSlot( i )

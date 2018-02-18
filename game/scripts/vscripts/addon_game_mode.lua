@@ -760,6 +760,7 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 	local inflictor = filterTable["entindex_inflictor_const"]
     local victim = EntIndexToHScript( victim_index )
     local attacker = EntIndexToHScript( attacker_index )
+	local ability = (inflictor ~= nil) and EntIndexToHScript( inflictor )
 	local original_attacker = attacker -- make a copy for threat
     local damagetype = filterTable["damagetype_const"]
 
@@ -773,69 +774,7 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 			attacker = attacker:GetOwner()
 		end
 	end
-	if inflictor and not attacker:IsCreature() and damagetype ~= 0 then -- modifying default dota damage types
-		local ability = EntIndexToHScript( inflictor )
-		if ability:IgnoresDamageFilterOverride() then
-			local truedamageType = ability:GetAbilityDamageType()
-			if attacker:HasScepter() then truedamageType = ability:AbilityScepterDamageType() end
-			if truedamageType ~= damagetype and truedamageType ~= 0 then
-				local damagefilter = damage
-				if damagetype == 1 then -- physical
-					trueDamage = damagefilter / (1 - victim:GetPhysicalArmorReduction() / 100 )
-				elseif damagetype == 2 then -- magical damage
-					trueDamage = damagefilter /  (1 - victim:GetMagicalArmorValue())
-				elseif damagetype == 4 then -- pure damage
-					trueDamage = damagefilter
-				end
-				
-				if truedamageType == 1 then -- physical
-					trueDamage = trueDamage * (1 - victim:GetPhysicalArmorReduction() / 100 )
-				elseif truedamageType == 2 then -- magical damage
-					trueDamage = trueDamage *  (1 - victim:GetMagicalArmorValue())
-				elseif truedamageType == 4 then -- pure damage
-					trueDamage = trueDamage
-				end
-				
-				filterTable["damage"] = 0
-				ApplyDamage({victim = victim, attacker = attacker, damage = math.ceil(trueDamage), damage_type = truedamageType, ability = ability})
-			end
-		end
-	end
 	
-	if victim:HasModifier("modifier_boss_damagedecrease") and GameRules._NewGamePlus then
-		if not self.exceptionList then 
-		self.exceptionList = {["huskar_life_break"] = true,
-					  ["phoenix_sun_ray"] = true,
-					  ["elder_titan_earth_splitter"] = true,
-					  ["necrolyte_heartstopper_aura"] = true,
-					  ["death_prophet_spirit_siphon"] = true,
-					  ["doom_bringer_infernal_blade"] = true,
-					  ["abyssal_underlord_firestorm"] = true,
-					  ["techies_nuke_ebf"] = true,
-					  ["zuus_static_field_ebf"] = true}
-		end
-		if not self.gungnirList then 
-		self.gungnirList = {["item_gungnir"] = true,
-					  ["item_gungnir_2"] = true,
-					  ["item_gungnir_3"] = true,
-					  ["item_melee_fury"] = true,
-					  ["item_melee_rage"] = true,
-					  ["item_purethorn"] = true,}
-		end
-		local mod = 0
-		if filterTable["damagetype_const"] == 4 then -- pure
-			mod = 5
-		elseif filterTable["damagetype_const"] == 2 then -- magic
-			mod = 10
-		end
-		local reduction = (1 - (0.990^((GameRules._roundnumber/2)) + 0.008) + mod/100)
-		if reduction < 0 then reduction = (1 - 0.992) end
-		if inflictor and self.exceptionList[EntIndexToHScript( inflictor ):GetName()] then reduction = 1 end
-		filterTable["damage"] =  filterTable["damage"] * reduction
-		if not inflictor and filterTable["damage"] > victim:GetMaxHealth()*0.035 then filterTable["damage"] = victim:GetMaxHealth()*0.035 end
-		if inflictor and self.gungnirList[EntIndexToHScript( inflictor ):GetName()] and filterTable["damage"] > victim:GetMaxHealth()*0.02 then filterTable["damage"] = victim:GetMaxHealth()*0.02 end
-		if filterTable["damage"] > victim:GetMaxHealth()*0.5 and ( ( inflictor and not self.exceptionList[EntIndexToHScript( inflictor ):GetName()]) or not inflictor ) then filterTable["damage"] = victim:GetMaxHealth()*0.5 end
-	end
 	if not inflictor and not attacker:IsCreature() and attacker:HasModifier("Piercing") and filterTable["damagetype_const"] == 1 then -- APPLY piercing damage to certain damage
 		local originaldamage =  damage / (1 - victim:GetPhysicalArmorReduction() / 100 )
 		local item = attacker:FindModifierByName("Piercing"):GetAbility()
@@ -901,7 +840,9 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 		end
 	end
 	if victim:IsHero() and not victim:IsRangedAttacker() then
-		filterTable["damage"] = filterTable["damage"] * 0.66
+		if not (ability and ability:GetName() == "skeleton_king_reincarnation") then
+			filterTable["damage"] = filterTable["damage"] * 0.66
+		end
 	end
 	-- TRUE OCTARINE HEALING --
 	if inflictor and attacker:HasModifier("spell_lifesteal")
@@ -1875,17 +1816,16 @@ end
 
 function CHoldoutGameMode:CheckHP()
 	local dontdelete = {["npc_dota_lone_druid_bear"] = true}
-	for _,unit in pairs ( FindAllEntitiesByClassname("npc_dota_creature")) do
+	for _,unit in ipairs ( FindAllEntitiesByClassname("npc_dota_creature")) do
 		if unit:GetAbsOrigin().z < 0 or  unit:GetAbsOrigin().z > 500 then
 			local currOrigin = unit:GetAbsOrigin()
 			FindClearSpaceForUnit(unit, GetGroundPosition(currOrigin, unit), true)
 		end
-		if unit:GetHealth() <= 0 and not unit:IsRealHero() and not dontdelete[unit:GetClassname()] then
-			Timers:CreateTimer(10, function()
-				if not unit:IsNull() then
-					UTIL_Remove(unit)
-				end
-			end)
+		if unit:GetHealth() <= 0 and unit:IsCreature() then
+			if unit:IsAlive() then
+				unit:SetHealth( 1 )
+				unit:ForceKill( false )
+			end
 		end
 	end
 	if not GameRules:IsGamePaused() then
@@ -1972,10 +1912,6 @@ function CHoldoutGameMode:OnThink()
 	if GameRules:State_Get() >= 7 and GameRules:State_Get() <= 8 then
 		local OnPThink = function(self)
 			local status, err, ret = xpcall(self._CheckForDefeat, debug.traceback, self)
-			if not status  and not self.gameHasBeenBroken then
-				self:SendErrorReport(err)
-			end
-			status, err, ret = xpcall(self._ThinkLootExpiry, debug.traceback, self)
 			if not status  and not self.gameHasBeenBroken then
 				self:SendErrorReport(err)
 			end
@@ -2220,7 +2156,7 @@ function CHoldoutGameMode:_CheckForDefeat()
 				CustomGameEventManager:Send_ServerToAllClients( "updateQuestLife", { lives = GameRules._life, maxLives = GameRules._maxLives } )
 				for _,unit in pairs ( FindAllEntitiesByClassname("npc_dota_creature")) do
 					if unit and unit:GetTeamNumber() == DOTA_TEAM_BADGUYS then
-						UTIL_Remove(unit)
+						unit:ForceKill(false)
 					end
 				end
 				for _,unit in pairs ( HeroList:GetAllHeroes()) do
@@ -2243,24 +2179,6 @@ end
 
 
 function CHoldoutGameMode:_OnLose()
-	--[[Say(nil,"You just lose all your life , a vote start to chose if you want to continue or not", false)
-	if self._checkpoint == 14 then
-		Say(nil,"if you continue you will come back to round 13 , you keep all the current item and gold gained", false)
-	elif self._checkpoint == 26 then
-		Say(nil,"if you continue you will come back to round 25 , you keep all the current item and gold gained", false)
-	elseif self._checkpoint == 46 then
-		Say(nil,"if you continue you will come back to round 45 , you keep with all the current item and gold gained", false)
-	elseif self._checkpoint == 61 then
-		Say(nil,"if you continue you will come back to round 60 , you keep with all the current item and gold gained", false)
-	elseif self._checkpoint == 76 then
-		Say(nil,"if you continue you will come back to round 75 , you keep with all the current item and gold gained", false)
-	elseif self._checkpoint == 91 then
-		Say(nil,"if you continue you will come back to round 90 , you keep with all the current item and gold gained", false)
-	else
-		Say(nil,"if you continue you will come back to round begin and have all your money and item erased", false)
-	end
-	Say(nil,"If you want to retry , type YES in thes chat if you don't want type no , no vote will be taken as a yes", false)
-	Say(nil,"At least Half of the player have to vote yes for game to restart on last check points", false)]]
 	SendToConsole("dota_health_per_vertical_marker 250")
 	GameRules:SetGameWinner( DOTA_TEAM_BADGUYS )
 	GameRules.Winner = DOTA_TEAM_BADGUYS
@@ -2288,60 +2206,6 @@ function CHoldoutGameMode:_ThinkPrepTime()
 	end
 end
 
-function CHoldoutGameMode:_ThinkLootExpiry()
-	if self._flItemExpireTime <= 0.0 then
-		return
-	end
-
-	local flCutoffTime = GameRules:GetGameTime() - self._flItemExpireTime
-
-	for _,item in pairs( Entities:FindAllByClassname( "dota_item_drop")) do
-		local containedItem = item:GetContainedItem()
-		if containedItem:GetAbilityName() == "item_bag_of_gold" or item.Holdout_IsLootDrop then
-			self:_ProcessItemForLootExpiry( item, flCutoffTime )
-		end
-	end
-end
-
-
-function CHoldoutGameMode:_ProcessItemForLootExpiry( item, flCutoffTime )
-	if item:IsNull() then
-		return false
-	end
-	if item:GetCreationTime() >= flCutoffTime then
-		return true
-	end
-
-	local containedItem = item:GetContainedItem()
-	if containedItem and containedItem:GetAbilityName() == "item_bag_of_gold" then
-		if self._currentRound and self._currentRound.OnGoldBagExpired then
-			self._currentRound:OnGoldBagExpired()
-		end
-	end
-
-	local nFXIndex = ParticleManager:CreateParticle( "particles/items2_fx/veil_of_discord.vpcf", PATTACH_CUSTOMORIGIN, item )
-	ParticleManager:SetParticleControl( nFXIndex, 0, item:GetOrigin() )
-	ParticleManager:SetParticleControl( nFXIndex, 1, Vector( 35, 35, 25 ) )
-	ParticleManager:ReleaseParticleIndex( nFXIndex )
-	local inventoryItem = item:GetContainedItem()
-	if inventoryItem then
-		UTIL_RemoveImmediate( inventoryItem )
-	end
-	UTIL_RemoveImmediate( item )
-	return false
-end
-
-
-function CHoldoutGameMode:GetDifficultyString()
-	local nDifficulty = PlayerResource:GetTeamPlayerCount()
-	if nDifficulty > 10 then
-		return string.format( "(+%d)", nDifficulty )
-	elseif nDifficulty > 0 then
-		return string.rep( "+", nDifficulty )
-	else
-		return ""
-	end
-end
 
 function CHoldoutGameMode:OnNPCSpawned( event )
 	local spawnedUnit = EntIndexToHScript( event.entindex )

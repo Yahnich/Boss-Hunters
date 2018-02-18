@@ -1,0 +1,385 @@
+"DOTAAbilities"
+{	
+	//=================================================================================================================
+	// Aether: Phase Shift
+	//=================================================================================================================
+	"boss_aether_phase_shift"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_aether/boss_aether_phase_shift"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"puck_phase_shift"
+		"MaxLevel"						"3"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"3.0 2.0"
+	
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_puck/puck_phase_shift.vpcf"
+		}
+	}
+	//=================================================================================================================
+	// Aether: Phase Shift
+	//=================================================================================================================
+	"boss_aether_neutron_density"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_aether/boss_aether_neutron_density"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"dark_seer_vacuum"
+		"MaxLevel"						"3"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"5.0 3.5"
+	
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_dark_seer/dark_seer_vacuum.vpcf"
+			"particle"					"particles/units/heroes/hero_puck/puck_illusory_orb.vpcf"
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"stun_duration"			"0.5 0.8"
+			}
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"magic_damage"			"25500 32000"
+			}
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"orb_radius"			"350 400"
+			}
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"orb_speed"				"500"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Aether: Phase Shift
+	//=================================================================================================================
+	"boss_aether_gravity_well"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_aether/boss_aether_gravity_well"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
+		"AbilityTextureName"			"enigma_midnight_pulse"
+		"MaxLevel"						"3"
+	
+		"precache"
+		{
+			"particle"					"particles/bosses/boss_aether/boss_aether_gravity_well.vpcf"
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"aura_radius"			"900"
+			}
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"max_pull"				"2 3"
+			}
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"max_damage"			"3.25 3.5"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Aether: Phase Shift
+	//=================================================================================================================
+	"boss_aether_space_rift"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_aether/boss_aether_space_rift"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"abyssal_underlord_dark_rift"
+		"MaxLevel"						"3"
+		
+		"AbilityCastRange"				"350"
+		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
+		"AbilityCastPoint"				"0.8 0.5"
+		"AbilityCooldown"				"4 3"
+	
+		"precache"
+		{
+			"particle"					"particles/units/heroes/heroes_underlord/abyssal_underlord_darkrift_target.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_weaver.vsndevts"
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"pull_radius"				"450 500"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"impact_radius"				"300 350"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"impact_curr_hp_damage"		"20 25"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"suck_duration"				"0.5"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Aether: Phase Shift
+	//=================================================================================================================
+	"boss_aether_meteor_shower"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_aether/boss_aether_meteor_shower"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"abyssal_underlord_firestorm"
+		"MaxLevel"						"3"
+		
+		"AbilityCastAnimation"			"ACT_DOTA_SPAWN"
+		"AbilityCastPoint"				"0.8 0.5"
+		"AbilityCooldown"				"15 14"
+	
+		"precache"
+		{
+			"particle"					"particles/units/heroes/heroes_underlord/abyssal_underlord_firestorm_wave.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_abyssal_underlord.vsndevts"
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"meteor_count"				"18 24"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"impact_radius"				"225 250"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"impact_delay"				"1.5 1"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"impact_damage"				"12500"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"impact_slow"				"-20"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"slow_duration"				"5"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Aether: Phase Shift
+	//=================================================================================================================
+	"boss_aether_wormhole"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_aether/boss_aether_wormhole"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityTextureName"			"abyssal_underlord_cancel_dark_rift"
+		"MaxLevel"						"3"
+		
+		"AbilityCastAnimation"			"ACT_DOTA_DIE"
+		"AbilityCastPoint"				"0.8 0.5"
+		"AbilityChannelTime"			"1"
+		"AbilityCooldown"				"8"
+	
+		"precache"
+		{
+			"particle"					"particles/units/heroes/heroes_underlord/abbysal_underlord_darkrift_ambient.vpcf"
+			"particle"					"particles/units/heroes/heroes_underlord/abbysal_underlord_darkrift_ambient_end.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_abyssal_underlord.vsndevts"
+		}
+	}
+	//=================================================================================================================
+	// Aether: Phase Shift
+	//=================================================================================================================
+	"boss_aether_entropy_pool"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_aether/boss_aether_entropy_pool"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"enigma_malefice"
+		"MaxLevel"						"3"
+		
+		"AbilityCastRange"				"350"
+		"AbilityCastAnimation"			"ACT_DOTA_DIE"
+		"AbilityCastPoint"				"0"
+		"AbilityChannelTime"			"5"
+		"AbilityCooldown"				"40"
+	
+		"precache"
+		{
+			"particle"					"particles/bosses/boss_aether/boss_aether_entropy_pool.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_enigma.vsndevts"
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"pool_creation_time"		"1"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius_growth"				"2 3"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"damage_per_second"			"35000 37500"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"initial_radius"			"125 150"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"pool_spawn_range"			"2000"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Aether: Phase Shift
+	//=================================================================================================================
+	"boss_aether_mass_effect"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_aether/boss_aether_mass_effect"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName"			"rubick_telekinesis"
+		"MaxLevel"						"3"
+		
+		"AbilityCastRange"				"800"
+		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
+		"AbilityCastPoint"				"0.8 0.5"
+		"AbilityCooldown"				"20"
+	
+		"precache"
+		{
+			"particle"					"particles/status_fx/status_effect_enigma_malefice.vpcf"
+			"particle"					"particles/units/heroes/hero_enigma/enigma_malefice.vpcf"
+			"particle"					"particles/bosses/boss_aether/boss_aether_mass_effect.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_elder_titan.vsndevts"
+		}
+		"AbilitySpecial"
+		{
+			"01"
+            {
+                "var_type"                      "FIELD_FLOAT"
+                "damage_amp"     				"25 33"
+            }
+    		"03"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "orb_speed"     				"250 300"
+            }
+    		"04"
+            {
+                "var_type"                      "FIELD_FLOAT"
+                "orb_lifetime"     				"5 6"
+            }
+    		"05"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "orb_radius"     				"325"
+            }
+		}
+	}
+	//=================================================================================================================
+	// Aether: Phase Shift
+	//=================================================================================================================
+	"boss_aether_event_horizon"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_aether/boss_aether_event_horizon"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"enigma_black_hole"
+		"MaxLevel"						"3"
+		
+		"AbilityCastRange"				"450 500"
+		"AbilityChannelTime"			"5"
+		"AbilityCastAnimation"			"ACT_DOTA_SPAWN"
+		"AbilityCastPoint"				"2"
+		"AbilityCooldown"				"30"
+	
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_enigma/enigma_blackhole.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_enigma.vsndevts"
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"450 500"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage_per_second"			"25"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"pull"						"3 5"
+			}
+		}
+	}
+}

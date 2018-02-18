@@ -177,6 +177,11 @@
 				"var_type"				"FIELD_FLOAT"
 				"blink_damage_cooldown"	"2.0"
 			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"charge_restore_time"	"14.0"
+			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
@@ -1157,7 +1162,9 @@
 
 		// Stats		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"35.0"
+		"AbilityCooldown"				"20.0"
+		"HasPureCooldown"				"1"
+		"AbilityDuration"				"3.5"
 
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------

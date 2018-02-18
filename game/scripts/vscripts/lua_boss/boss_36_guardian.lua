@@ -1,55 +1,47 @@
-function create_shield_particle(keys)
-
-	local origin = keys.caster:GetAbsOrigin()
+function create_shield_particle(caster)
+	local origin = caster:GetAbsOrigin()
 	local size = Vector(300,300,0)
-	keys.caster.shield_particle = ParticleManager:CreateParticle("particles/demon_shield.vpcf", PATTACH_ABSORIGIN_FOLLOW  , keys.caster)
-    ParticleManager:SetParticleControl(keys.caster.shield_particle, 0, origin)
-    ParticleManager:SetParticleControl(keys.caster.shield_particle, 1, size)
-    ParticleManager:SetParticleControl(keys.caster.shield_particle, 6, origin)
-    ParticleManager:SetParticleControl(keys.caster.shield_particle, 10, origin)
+	caster.shield_particle = ParticleManager:CreateParticle("particles/demon_shield.vpcf", PATTACH_ABSORIGIN_FOLLOW  , caster)
+    ParticleManager:SetParticleControl(caster.shield_particle, 0, origin)
+    ParticleManager:SetParticleControl(caster.shield_particle, 1, size)
+    ParticleManager:SetParticleControl(caster.shield_particle, 6, origin)
+    ParticleManager:SetParticleControl(caster.shield_particle, 10, origin)
 end
 
 function creation(keys)
 	local caster = keys.caster
 	caster.Charge = caster:GetMaxMana()
 	caster.weak = false
-	create_shield_particle(keys)
-	keys.ability:ApplyDataDrivenModifier( caster, caster, "invincible", {} )
-    caster.have_shield = true
+	create_shield_particle(caster)
+	
+	local chargePerTick = 12 - GameRules.gameDifficulty
+	local duration = (caster:GetMaxMana() / chargePerTick) / 0.3
+	keys.ability:ApplyDataDrivenModifier( caster, caster, "invincible", {duration = duration} )
 
-	Timers:CreateTimer( 0.03, function()
-		if caster:IsAlive() == true then
-			caster:SetMana(caster.Charge)
-			return 0.03
-		end
-	end)
-
-    caster:SetMaxHealth(5000000 * GameRules.gameDifficulty) 
-
-	Timers:CreateTimer( 0.1, function()
-		if caster:IsAlive() == true then
-			if caster.weak == false then
+	Timers:CreateTimer( 0.3, function()
+		if not caster:IsNull() and caster:IsAlive() then
+			if caster:HasModifier("modifier_spawn_immunity") then return 0.3 end
+			if caster.shield_particle then
 				if caster.Charge <= 0 then
-					caster.weak = true
 					caster.Charge = 0
-					ParticleManager:DestroyParticle( caster.shield_particle, true)
+					ParticleManager:ClearParticle( caster.shield_particle )
+					caster.shield_particle = nil
 					caster:RemoveModifierByName( "invincible" )
-                    caster.have_shield = false
 				else
-					caster.Charge = caster.Charge - 1 - (4 - GameRules.gameDifficulty)
+					caster.Charge = caster.Charge - chargePerTick
+					caster:SetMana(caster.Charge)
 				end
 			else
 				if caster.Charge < caster:GetMaxMana() then
 					local chargeSpeed = GameRules.gameDifficulty * 5
-					caster.Charge = caster.Charge + (1000/(7.5*chargeSpeed))
+					caster.Charge = caster.Charge + (1000/(7.5*chargeSpeed)) * 3
+					caster:SetMana(caster.Charge)
 				else
-					caster.weak = false
-                    caster.have_shield = true
-					create_shield_particle(keys)
-					keys.ability:ApplyDataDrivenModifier( caster, caster, "invincible", {} )
+                    create_shield_particle(keys)
+					keys.ability:ApplyDataDrivenModifier( caster, caster, "invincible", {duration = duration} )
 				end
 			end
-			return 0.1
+			return 0.3
 		end
 	end)
 end
@@ -163,7 +155,7 @@ function hell_on_earth(keys)
 	end
 
     Timers:CreateTimer(0.09, function()
-		if not caster:IsAlive() then return end
+		if caster:IsNull() or not caster:IsAlive() then return end
         created_projectile = created_projectile + 1
         createAOEDamage(keys,"particles/doom_ring.vpcf",position,200,damage,DAMAGE_TYPE_PURE,2.1,"soundevents/game_sounds_heroes/game_sounds_nevermore.vsndevts",1.5)
         angle = (created_projectile*1200)/total_projectile
@@ -201,8 +193,10 @@ function createAOEDamage(keys,particlesname,location,size,damage,damage_type,dur
     Timers:CreateTimer(duration,function()
         ParticleManager:DestroyParticle(AOE_effect, true)
     end)
+	local caster = keys.caster
     Timers:CreateTimer(delay, function()
-	    local nearbyUnits = FindUnitsInRadius(keys.caster:GetTeam(),
+		if not caster or caster:IsNull() then return end
+	    local nearbyUnits = FindUnitsInRadius(caster:GetTeam(),
 	                                  location,
 	                                  nil,
 	                                  size,

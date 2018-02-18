@@ -6303,7 +6303,7 @@
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_mana_regen"		"5"
+				"bonus_mana_regen"		"6"
 			}
 			"07"
 			{
@@ -6471,7 +6471,7 @@
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_mana_regen"		"15"
+				"bonus_mana_regen"		"12"
 			}
 			"07"
 			{
@@ -6665,7 +6665,7 @@
 			"09"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_mana_regen"		"30"
+				"bonus_mana_regen"		"16"
 			}
 			"10"
 			{
@@ -6783,7 +6783,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_health_regen"		"300"
+				"bonus_health_regen"		"30"
 			}
 			"03"
 			{
@@ -6798,7 +6798,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_mana_regen"		"30"
+				"bonus_mana_regen"		"3"
 			}
 			"06"
 			{
@@ -12363,178 +12363,6 @@
 			{
 				"var_type"								"FIELD_INTEGER"
 				"resist_base"						"-100"
-			}
-		}
-	}
-	"item_sheepstick_2"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"1262"				// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"custom/sheepstick_2"
-		"ItemShareability"				"ITEM_PARTIALLY_SHAREABLE"
-		"ItemKillable"					"1"
-		"ItemSellable"					"1"
-		"ItemDroppable"					"1"
-		"ItemCost"						"8000"
-		"ItemShopTags"					"int"
-		"ItemQuality"					"artifact"
-		"ItemAliases"					"ring"
-		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_ALWAYS"
-		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-		"AbilityCooldown" 				"60"
-		
-	
-		"AbilityCastRange"              "700"
-		"precache"
-	    {
-	        "soundfile"         "soundevents/game_sounds_heroes/game_sounds_lion.vsndevts"
-	        "particle"          "particles/units/heroes/hero_lion/lion_spell_voodoo.vpcf"
-	        "model"             "models/props_gameplay/sheep01.vmdl"
-	    }
-	
-		// Special	
-		//-------------------------------------------------------------------------------------------------------------
-		"OnSpellStart"
-		{
-			"FireSound"
-	        {
-	            "EffectName"    "Hero_Lion.Voodoo"
-	            "Target"        "TARGET"
-	        }
-	
-	        "FireSound"
-	        {
-	            "EffectName"    "Hero_Lion.Hex.Target"
-	            "Target"        "TARGET"
-	        }
-	
-	        "FireEffect"
-	        {
-	            "EffectName"    "particles/units/heroes/hero_lion/lion_spell_voodoo.vpcf"
-	            "EffectAttachType"  "follow_origin"
-	            "Target"        "TARGET"
-	        }
-	
-			"ApplyModifier"
-			{
-				"Target"				"TARGET"
-				"ModifierName"		"item_sheepstick_2_effect"
-			}
-			"RunScript"
-			{
-				"ScriptFile"			"lua_item/simple_item.lua"
-				"Function"				"CD_pure"
-				"cooldown"				"40"
-			}
-		}
-		"Modifiers"
-		{
-			"passive_sheepstick_2"
-			{
-				"Passive" "1"
-				"IsHidden" "1"
-				"Properties"
-		        {
-					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"		"%bonus_agi"
-					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"		"%bonus_int"
-					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"			"%mana_regen"
-					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"		"%bonus_str"
-		        }
-	
-				
-			}
-		    "item_sheepstick_2_effect"
-	    		{
-		        "duration"	"99999"
-		        "OnCreated"
-	            {
-	                "RunScript"
-	                {
-	                    "ScriptFile"    "lua_item/sheepstick.lua"
-	                    "Function"      "sheepstick_start"
-	                    "model"         "models/props_gameplay/sheep01.vmdl"
-	                }
-	
-	                "RunScript"
-	                {
-	                    "ScriptFile"        "lua_item/sheepstick.lua"
-	                    "Function"          "HideWearables"
-	                }
-	                "DelayedAction"
-		            {
-		            	"Delay" "%duration"
-		            	"Action"
-		            	{
-					        "RemoveModifier"
-					        {
-					        	"ModifierName"	"item_sheepstick_2_effect"
-					        	"Target"		"TARGET"
-					        }
-						}
-					}
-	            }
-	
-	            "OnDestroy"
-	            {
-	                "RunScript"
-	                {
-	                    "ScriptFile"    "lua_item/sheepstick.lua"
-	                    "Function"      "sheepstick_end"
-	                }
-	
-	                "RunScript"
-	                {
-	                    "ScriptFile"    "lua_item/sheepstick.lua"
-	                    "Function"      "ShowWearables"
-	                }
-	            }
-	
-	            "Properties"
-	            {
-	                "MODIFIER_PROPERTY_MOVESPEED_BASE_OVERRIDE"     "50"
-	            }
-	
-	            "States"
-	            {
-	                "MODIFIER_STATE_DISARMED"   "MODIFIER_STATE_VALUE_ENABLED"
-	                "MODIFIER_STATE_MUTED"      "MODIFIER_STATE_VALUE_ENABLED"
-	                "MODIFIER_STATE_HEXED"      "MODIFIER_STATE_VALUE_ENABLED"
-	                "MODIFIER_STATE_EVADE_DISABLED" "MODIFIER_STATE_VALUE_ENABLED"
-	                "MODIFIER_STATE_BLOCK_DISABLED" "MODIFIER_STATE_VALUE_ENABLED"
-	            }
-		    }
-		}
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"							"FIELD_INTEGER"
-				"bonus_str"							"120"
-			}
-			"02"
-			{
-				"var_type"							"FIELD_INTEGER"
-				"bonus_agi"							"120"
-			}
-			"03"
-			{
-				"var_type"							"FIELD_INTEGER"
-				"bonus_int"							"150"
-			}
-			"04"
-			{
-				"var_type"							"FIELD_INTEGER"
-				"mana_regen"						"50"
-			}
-			"05"
-			{
-				"var_type"							"FIELD_FLOAT"
-				"duration"							"3.0"
 			}
 		}
 	}

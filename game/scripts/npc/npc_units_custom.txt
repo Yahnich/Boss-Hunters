@@ -7361,7 +7361,6 @@
 		"AbilityLayout"				"6"
 		"Ability1"					"guardian_hell_passive"			// Ability 1.
 		"Ability2"					"guardian_hell_hell_on_earth"			// Ability 2.
-		//"Ability3"				"guardian_hell_pantagram"			// Ability 2.
 		"Ability4"					"guardian_hell_flaming_fist"			// Ability 2.
 	
 		// Armor
@@ -7408,8 +7407,8 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"0"		// Range of vision during day HERO.
-		"VisionNighttimeRange"		"0"		// Range of vision at night time.
+		"VisionDaytimeRange"		"1500"		// Range of vision during day HERO.
+		"VisionNighttimeRange"		"1200"		// Range of vision at night time.
 	
 		// Team
 		//----------------------------------------------------------------

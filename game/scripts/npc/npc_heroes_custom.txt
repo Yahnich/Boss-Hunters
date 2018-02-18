@@ -424,14 +424,14 @@
 		"Ability3"					"dragon_knight_dragons_blood_ebf"
 		"Ability6"					"dragon_knight_elder_dragon_berserker"					// Ability 4
 		
-		"Ability10"       "special_bonus_unique_dragon_knight_dragonbreath_1"
-	    "Ability11"       "special_bonus_unique_dragon_knight_dragonbreath_2"
-	    "Ability12"       "special_bonus_unique_dragon_knight_intervene_1"
-	    "Ability13"       "special_bonus_unique_dragon_knight_intervene_2"
-	    "Ability14"       "special_bonus_unique_dragon_knight_dragons_blood_ebf_1"
-	    "Ability15"       "special_bonus_unique_dragon_knight_dragons_blood_ebf_2"
-	    "Ability16"       "special_bonus_unique_dragon_knight_elder_dragon_berserker_1"
-	    "Ability17"       "special_bonus_unique_dragon_knight_elder_dragon_berserker_2"
+		"Ability10"					"special_bonus_unique_dragon_knight_dragonbreath_1"
+	    "Ability11"					"special_bonus_unique_dragon_knight_dragonbreath_2"
+	    "Ability12"					"special_bonus_unique_dragon_knight_intervene_1"
+	    "Ability13"					"special_bonus_unique_dragon_knight_intervene_2"
+	    "Ability14"					"special_bonus_unique_dragon_knight_dragons_blood_ebf_1"
+	    "Ability15"					"special_bonus_unique_dragon_knight_dragons_blood_ebf_2"
+	    "Ability16"					"special_bonus_unique_dragon_knight_elder_dragon_berserker_1"
+	    "Ability17"					"special_bonus_unique_dragon_knight_elder_dragon_berserker_2"
 		
 	}
 	//=================================================================================================================
@@ -530,14 +530,16 @@
 		"Ability5"				"generic_hidden"
 		"Ability6"        		"gyrocopter_call_down"
 	
-		"Ability10"       "special_bonus_unique_gyro_rocket_salvo_1"
-	    "Ability11"       "special_bonus_unique_gyro_rocket_salvo_2"
-	    "Ability12"       "special_bonus_unique_gyro_bombing_run_2"
-	    "Ability13"       "special_bonus_unique_gyro_bombing_run_1"
-	    "Ability14"       "special_bonus_unique_gyrocopter_flak_cannon_ebf_1"
-	    "Ability15"       "special_bonus_unique_gyro_homing_missile_1"
-	    "Ability16"       "special_bonus_unique_gyrocopter_4"
-	    "Ability17"       "special_bonus_unique_gyrocopter_5"
+		"Ability10"				"special_bonus_unique_gyro_rocket_salvo_1"
+	    "Ability11"				"special_bonus_unique_gyro_rocket_salvo_2"
+	    "Ability12"				"special_bonus_unique_gyro_bombing_run_2"
+	    "Ability13"				"special_bonus_unique_gyro_bombing_run_1"
+	    "Ability14"				"special_bonus_unique_gyrocopter_flak_cannon_ebf_1"
+	    "Ability15"				"special_bonus_unique_gyro_homing_missile_1"
+	    "Ability16"				"special_bonus_unique_gyrocopter_4"
+	    "Ability17"				"special_bonus_unique_gyrocopter_5"
+		
+		"AttributePrimary"		"DOTA_ATTRIBUTE_INTELLECT"
 	}
 	//=================================================================================================================
 	// HERO: Huskar
@@ -744,23 +746,34 @@
 	"npc_dota_hero_mirana_ebf"
 	{
 		"override_hero"			"npc_dota_hero_mirana"
-		"Ability2"				"mirana_mooneye"					// Ability 2
+		"Ability1"				"mirana_starcall"
+		"Ability2"				"mirana_astral_arrow"					
+		"Ability3"				"mirana_celestial_jump"
+		"Ability4"				"mirana_mooneye"					
 		"Ability6"				"mirana_stardust_reflection"
 		
+		"Ability10"				"special_bonus_unique_mirana_starcall_1"
+		"Ability11"				"special_bonus_unique_mirana_starcall_2"
+		"Ability12"				"special_bonus_unique_mirana_astral_arrow_1"
+		"Ability13"				"special_bonus_unique_mirana_astral_arrow_2"
+		"Ability14"				"special_bonus_unique_mirana_celestial_jump_1"
+		"Ability15"				"special_bonus_unique_mirana_celestial_jump_2"
+		"Ability16"				"special_bonus_unique_mirana_stardust_reflection_1"
+		"Ability17"				"special_bonus_unique_mirana_stardust_reflection_2"
 	}
 	"npc_dota_hero_monkey_king"
 	{
 		"override_hero"			"npc_dota_hero_monkey_king"
-		"Ability6"		"monkey_king_wukongs_stature"
+		"Ability6"				"monkey_king_wukongs_stature"
 		
-		"Ability10"		"special_bonus_hp_100"
-		"Ability11"		"special_bonus_attack_speed_20"
-		"Ability12"		"special_bonus_unique_monkey_king_7"
-		"Ability13"		"special_bonus_unique_monkey_king_2"
-		"Ability14"		"special_bonus_unique_monkey_king"
-		"Ability15"		"special_bonus_unique_monkey_king_3"
-		"Ability16"		"special_bonus_unique_monkey_king_4"
-		"Ability17"		"special_bonus_unique_monkey_king_6"
+		"Ability10"				"special_bonus_hp_100"
+		"Ability11"				"special_bonus_attack_speed_20"
+		"Ability12"				"special_bonus_unique_monkey_king_7"
+		"Ability13"				"special_bonus_unique_monkey_king_2"
+		"Ability14"				"special_bonus_unique_monkey_king"
+		"Ability15"				"special_bonus_unique_monkey_king_3"
+		"Ability16"				"special_bonus_unique_monkey_king_4"
+		"Ability17"				"special_bonus_unique_monkey_king_6"
 	}
 	"npc_dota_hero_monkey_king_ebf"
 	{

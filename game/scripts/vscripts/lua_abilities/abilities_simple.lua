@@ -322,10 +322,10 @@ function doom_raze( event )
     location = location - caster:GetRightVector() * 1000
     if GameRules._NewGamePlus == true then damage = damage*10 end
     local created_line = 0
-    Timers:CreateTimer(0.25,function() 
+    Timers:CreateTimer(0.4,function() 
             created_line = created_line + 1
             for i=1,8,1 do
-                createAOEDamage(event,"particles/units/heroes/hero_nevermore/nevermore_shadowraze.vpcf",location,250,damage,DAMAGE_TYPE_PURE,2,"soundevents/game_sounds_heroes/game_sounds_nevermore.vsndevts")
+                createAOEDamage(event,"particles/units/heroes/hero_nevermore/nevermore_shadowraze.vpcf",location,200,damage,DAMAGE_TYPE_PURE,2,"soundevents/game_sounds_heroes/game_sounds_nevermore.vsndevts")
                 location = location + rv* 250
             end
             location = location - rv * 2000 + fv * 400

@@ -46,7 +46,7 @@ function boss33a_devitalize:OnSpellStart()
 			end
 			self:SetVelocity(velocity)
 			self:SetPosition( position + (velocity*FrameTime()) )
-			if RollPercentage(5) then
+			if RollPercentage(1) then
 				local newdir1 = RotateVector2D(self:GetVelocity(), ToRadians(10))
 				local newdir2 = RotateVector2D(self:GetVelocity(), ToRadians(-10))
 				self:SetVelocity(newdir1 * speed)

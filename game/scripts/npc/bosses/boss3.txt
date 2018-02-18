@@ -1,0 +1,197 @@
+"DOTAAbilities"
+{	
+	"boss3a_berserk"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"BaseClass" 					"ability_lua"
+		"ScriptFile"					"bosses/boss3a/boss3a_berserk"
+		"AbilityTextureName"			"life_stealer_rage"
+	
+		// Stats		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"8.0"
+		"AbilityCastPoint"				"0.75 0.5"
+	
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0 0 0 0"
+		
+		"precache"
+		{
+			"particle"					"particles/items2_fx/mask_of_madness.vpcf"
+			"soundfile"					"soundevents/game_sounds_items.vsndevts"
+		}
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_attack_speed"	"75"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_movement_speed"	"215 250"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"3.0"
+			}
+		}
+	}
+	"boss3a_tombstone"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"BaseClass" 					"ability_lua"
+		"ScriptFile"					"bosses/boss3a/boss3a_tombstone"
+		"AbilityTextureName"			"undying_tombstone"
+	
+		// Stats		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"40.0"
+		"AbilityChannelTime"			"10"
+	
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0 0 0 0"
+		
+		"precache"
+		{
+			"model"					"models/props_gameplay/tombstoneb01.vmdl"
+			"particle"				"particles/units/heroes/hero_undying/undying_tombstone.vpcf"
+			"particle"				"particles/frostivus_gameplay/frostivus_wraithking_tombstone_warmup_b.vpcf"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_undying.vsndevts"
+		}
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"regen_amount"			"100"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"overkill_threshold"	"10"
+			}
+		}
+	}
+	"boss3b_acid_interior"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass" 					"ability_lua"
+		"ScriptFile"					"bosses/boss3b/boss3b_acid_interior"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"AbilityTextureName"			"viper_corrosive_skin"
+		
+		"AbilityCastPoint"				"0.75 0.5"
+		
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_alchemist/alchemist_acid_spray_debuff.vpcf"
+		}
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"stack_armor_reduction"	"-1"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"stack_dot"				"35 40"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"stack_duration"		"2.0 2.5"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"aoe_armor_reduction"	"-20 -25"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"aoe_damage"			"750 1000"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"aoe_radius"			"450 475"
+			}
+		}
+	}
+	"boss3b_acid_spit"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"BaseClass" 					"ability_lua"
+		"ScriptFile"					"bosses/boss3b/boss3b_acid_spit"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"AbilityTextureName"			"alchemist_acid_spray"
+	
+		// Stats		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"8.0"
+		"AbilityCastRange"				"800"
+		"AbilityCastPoint"				"0.75 0.5"
+	
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0 0 0 0"
+		
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_alchemist/alchemist_acid_spray.vpcf"
+			"particle"					"particles/units/heroes/hero_alchemist/alchemist_acid_spray_cast.vpcf"
+			"particle"					"particles/units/heroes/hero_alchemist/alchemist_acid_spray_debuff.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_alchemist.vsndevts"
+		}
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"armor_reduction"		"-15 -17.5"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"dot"					"125 150"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"225 275"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"duration"				"16"
+			}
+		}
+	}
+}

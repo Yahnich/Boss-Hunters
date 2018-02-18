@@ -39,7 +39,7 @@ function modifier_stasis_mine:OnIntervalThink()
 			ParticleManager:DestroyParticle(nfx, false)
 		end)
 
-		self:GetAbility():Stun(enemy, self:GetTalentSpecialValueFor("stun_duration"), bDelay)
+		self:GetAbility():Stun(enemy, self:GetTalentSpecialValueFor("stun_duration"), false)
 
 		if self:GetCaster():HasTalent("special_bonus_unique_tech_stasis_mine_1") then
 			enemy:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_stasis_mine_mr", {Duration = self:GetTalentSpecialValueFor("stun_duration")})
