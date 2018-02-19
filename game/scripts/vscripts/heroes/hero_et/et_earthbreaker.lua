@@ -14,7 +14,7 @@ function et_earthbreaker:OnAbilityPhaseStart()
 	local point = self:GetCursorPosition()
 
 	if not caster:HasModifier("modifier_elder_spirit") then
-   		local spirits = caster:FindFriendlyUnitsInRadius(caster:GetAbsOrigin(), FIND_UNITS_EVERYWHERE, {})
+   		local spirits = caster:FindFriendlyUnitsInRadius(caster:GetAbsOrigin(), FIND_UNITS_EVERYWHERE, {flag = DOTA_UNIT_TARGET_FLAG_INVULNERABLE})
 		for _,spirit in pairs(spirits) do
 			if spirit:HasModifier("modifier_elder_spirit") then
 				local direction = CalculateDirection(point, spirit:GetAbsOrigin())
@@ -46,7 +46,7 @@ function et_earthbreaker:OnSpellStart()
 	end
 
 	if not caster:HasModifier("modifier_elder_spirit") then
-		local spirits = caster:FindFriendlyUnitsInRadius(caster:GetAbsOrigin(), FIND_UNITS_EVERYWHERE, {})
+		local spirits = caster:FindFriendlyUnitsInRadius(caster:GetAbsOrigin(), FIND_UNITS_EVERYWHERE, {flag = DOTA_UNIT_TARGET_FLAG_INVULNERABLE})
 		for _,spirit in pairs(spirits) do
 			if spirit:HasModifier("modifier_elder_spirit") then
 				spirit:RemoveModifierByName("modifier_et_earthbreaker_spirit")

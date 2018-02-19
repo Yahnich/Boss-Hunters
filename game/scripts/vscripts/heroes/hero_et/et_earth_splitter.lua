@@ -15,7 +15,7 @@ function et_earth_splitter:OnAbilityPhaseStart()
 	local point = self:GetCursorPosition()
 
 	if not caster:HasModifier("modifier_elder_spirit") then
-   		local spirits = caster:FindFriendlyUnitsInRadius(caster:GetAbsOrigin(), FIND_UNITS_EVERYWHERE, {})
+   		local spirits = caster:FindFriendlyUnitsInRadius(caster:GetAbsOrigin(), FIND_UNITS_EVERYWHERE, {flag = DOTA_UNIT_TARGET_FLAG_INVULNERABLE})
 		for _,spirit in pairs(spirits) do
 			if spirit:HasModifier("modifier_elder_spirit") then
 				local direction = CalculateDirection(point, spirit:GetAbsOrigin())
@@ -42,7 +42,8 @@ function et_earth_splitter:OnSpellStart()
 	local endPos = caster:GetAbsOrigin() + direction * self:GetTrueCastRange()
 
 	if not caster:HasModifier("modifier_elder_spirit") then
-		local spirits = caster:FindFriendlyUnitsInRadius(caster:GetAbsOrigin(), FIND_UNITS_EVERYWHERE, {})
+		ParticleManager:FireParticle("particles/units/heroes/hero_elder_titan/elder_titan_earth_splitter.vpcf", PATTACH_POINT, caster, {[0]=startPos, [1]=endPos, [3]=Vector(0,self:GetTalentSpecialValueFor("crack_time"),0)})
+		local spirits = caster:FindFriendlyUnitsInRadius(caster:GetAbsOrigin(), FIND_UNITS_EVERYWHERE, {flag = DOTA_UNIT_TARGET_FLAG_INVULNERABLE})
 		for _,spirit in pairs(spirits) do
 			if spirit:HasModifier("modifier_elder_spirit") then
 				spirit:RemoveModifierByName("modifier_et_earth_splitter_spirit")
@@ -57,13 +58,16 @@ function et_earth_splitter:OnSpellStart()
 		direction = CalculateDirection(point, caster:GetAbsOrigin())
 
 		endPos = caster:GetAbsOrigin() + direction * (self:GetTrueCastRange()+get_aether_range(caster:GetOwner()))
+		ParticleManager:FireParticle("particles/units/heroes/hero_elder_titan/elder_titan_earth_splitter.vpcf", PATTACH_POINT, caster:GetOwner(), {[0]=startPos, [1]=endPos, [3]=Vector(0,self:GetTalentSpecialValueFor("crack_time"),0)})
 	end
 
 	self:FireLinearProjectile("", direction*910, CalculateDistance(startPos, endPos), self:GetTalentSpecialValueFor("width"))
 
-	ParticleManager:FireParticle("particles/units/heroes/hero_elder_titan/elder_titan_earth_splitter.vpcf", PATTACH_POINT, caster, {[0]=startPos, [1]=endPos, [3]=Vector(0,self:GetTalentSpecialValueFor("crack_time"),0)})
 	Timers:CreateTimer(self:GetTalentSpecialValueFor("crack_time"), function()
 		StopSoundOn("Hero_ElderTitan.EarthSplitter.Cast", caster)
+		EmitSoundOn("Hero_ElderTitan.EarthSplitter.Destroy", caster)
+		EmitSoundOn("Hero_ElderTitan.EarthSplitter.Destroy", caster)
+		EmitSoundOn("Hero_ElderTitan.EarthSplitter.Destroy", caster)
 		EmitSoundOn("Hero_ElderTitan.EarthSplitter.Destroy", caster)
 
 		local enemies = caster:FindEnemyUnitsInLine(startPos, endPos, self:GetTalentSpecialValueFor("width"), {})
