@@ -12,8 +12,10 @@ end
 function et_echo_stomp:OnAbilityPhaseStart()
    local caster = self:GetCaster()
 
+   EmitSoundOn("Hero_ElderTitan.EchoStomp.Channel", caster)
+
    if not caster:HasModifier("modifier_elder_spirit") then
-   		local spirits = caster:FindFriendlyUnitsInRadius(caster:GetAbsOrigin(), FIND_UNITS_EVERYWHERE, {})
+   		local spirits = caster:FindFriendlyUnitsInRadius(caster:GetAbsOrigin(), FIND_UNITS_EVERYWHERE, {flag = DOTA_UNIT_TARGET_FLAG_INVULNERABLE})
 		for _,spirit in pairs(spirits) do
 			if spirit:HasModifier("modifier_elder_spirit") then
 				spirit:AddNewModifier(caster, self, "modifier_echo_stomp_spirit", {})
@@ -42,18 +44,21 @@ end
 
 function et_echo_stomp:OnSpellStart()
 	local caster = self:GetCaster()
+	local point = caster:GetAbsOrigin()
 
 	EmitSoundOn("Hero_ElderTitan.EchoStomp", caster)
 
 	local damage = self:GetSpecialValueFor("damage")
 
 	if not caster:HasModifier("modifier_elder_spirit") then
-		local spirits = caster:FindFriendlyUnitsInRadius(caster:GetAbsOrigin(), FIND_UNITS_EVERYWHERE, {})
+		local spirits = caster:FindFriendlyUnitsInRadius(point, FIND_UNITS_EVERYWHERE, {flag = DOTA_UNIT_TARGET_FLAG_INVULNERABLE})
 		for _,spirit in pairs(spirits) do
 			if spirit:HasModifier("modifier_elder_spirit") then
 				spirit:RemoveModifierByName("modifier_echo_stomp_spirit")
 				spirit:RemoveGesture(ACT_DOTA_CAST_ABILITY_1)
+
 				spirit:FindAbilityByName(self:GetAbilityName()):CastSpell()
+
 				spirit:FindAbilityByName(self:GetAbilityName()):StartCooldown(spirit:FindAbilityByName(self:GetAbilityName()):GetTrueCooldown())
 			end
 		end
@@ -64,9 +69,9 @@ function et_echo_stomp:OnSpellStart()
 
    		if caster:FindAbilityByName("et_elder_spirit"):IsTrained() then
    			if caster:HasModifier("modifier_elder_spirit_check") then
-   				ParticleManager:FireParticle("particles/units/heroes/hero_elder_titan/elder_titan_echo_stomp_physical.vpcf", PATTACH_POINT, caster, {[0] = caster:GetAbsOrigin()})
+   				ParticleManager:FireParticle("particles/units/heroes/hero_elder_titan/elder_titan_echo_stomp_physical.vpcf", PATTACH_POINT, caster, {[0] = point})
 
-				local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), self:GetSpecialValueFor("radius"), {})
+				local enemies = caster:FindEnemyUnitsInRadius(point, self:GetSpecialValueFor("radius"), {})
 				for _,enemy in pairs(enemies) do
 					self:Stun(enemy, self:GetSpecialValueFor("duration"), false)
 
@@ -78,9 +83,9 @@ function et_echo_stomp:OnSpellStart()
 					end
 				end
    			else
-   				ParticleManager:FireParticle("particles/units/heroes/hero_elder_titan/elder_titan_echo_stomp_physical.vpcf", PATTACH_POINT, caster, {[0] = caster:GetAbsOrigin()})
+   				ParticleManager:FireParticle("particles/units/heroes/hero_elder_titan/elder_titan_echo_stomp_physical.vpcf", PATTACH_POINT, caster:GetOwner(), {[0] = point})
 
-				local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), self:GetSpecialValueFor("radius"), {})
+				local enemies = caster:FindEnemyUnitsInRadius(point, self:GetSpecialValueFor("radius"), {})
 				for _,enemy in pairs(enemies) do
 					self:Stun(enemy, self:GetSpecialValueFor("duration"), false)
 
@@ -92,9 +97,9 @@ function et_echo_stomp:OnSpellStart()
 				end
    			end
    		else
-   			ParticleManager:FireParticle("particles/units/heroes/hero_elder_titan/elder_titan_echo_stomp_physical.vpcf", PATTACH_POINT, caster, {[0] = caster:GetAbsOrigin()})
+   			ParticleManager:FireParticle("particles/units/heroes/hero_elder_titan/elder_titan_echo_stomp_physical.vpcf", PATTACH_POINT, caster, {[0] = point})
 
-			local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), self:GetSpecialValueFor("radius"), {})
+			local enemies = caster:FindEnemyUnitsInRadius(point, self:GetSpecialValueFor("radius"), {})
 			for _,enemy in pairs(enemies) do
 				self:Stun(enemy, self:GetSpecialValueFor("duration"), false)
 
@@ -111,9 +116,9 @@ function et_echo_stomp:OnSpellStart()
 			damage = damage + damage*caster:GetOwner():FindTalentValue("special_bonus_unique_et_echo_stomp_1")/100
 		end
 
-   		ParticleManager:FireParticle("particles/units/heroes/hero_elder_titan/elder_titan_echo_stomp_magical.vpcf", PATTACH_POINT, caster, {[0] = caster:GetAbsOrigin()})
+   		ParticleManager:FireParticle("particles/units/heroes/hero_elder_titan/elder_titan_echo_stomp_magical.vpcf", PATTACH_POINT, caster, {[0] = point})
 
-		local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), self:GetSpecialValueFor("radius"), {})
+		local enemies = caster:FindEnemyUnitsInRadius(point, self:GetSpecialValueFor("radius"), {})
 		for _,enemy in pairs(enemies) do
 			self:Stun(enemy, self:GetSpecialValueFor("duration"), false)
 

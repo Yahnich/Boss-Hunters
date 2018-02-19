@@ -43,7 +43,7 @@ function modifier_mirana_starcall:OnCreated(table)
 end
 
 function modifier_mirana_starcall:OnIntervalThink()
-    if self:GetParent():HasTalent("special_bonus_unique_mirana_starcall_1") then
+    if self:GetParent():HasTalent("special_bonus_unique_mirana_starcall_1") and self:GetParent():IsAlive() then
         local damage = self:GetSpecialValueFor("damage")
         local agi_damage = self:GetSpecialValueFor("agi_damage")/100
         damage = damage + self:GetParent():GetAgility() * agi_damage

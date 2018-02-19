@@ -39,6 +39,7 @@ function et_elder_spirit:OnSpellStart()
 
 		self.spirit = false
 		self.spiritPull = true
+		self.truePull = true
 		self:RefundManaCost()
 		if self:IsCooldownReady() then
 			self:StartCooldown(self:GetTrueCooldown())
@@ -46,6 +47,7 @@ function et_elder_spirit:OnSpellStart()
 	else
 		self.spirit = true
 		self.spiritPull = false
+		self.truePull = false
 
 		if caster:HasTalent("special_bonus_unique_et_elder_spirit_2") then
 			caster:AddNewModifier(caster, self, "modifier_elder_spirit_check_out", {})
@@ -107,6 +109,7 @@ modifier_elder_spirit_check_out = class({})
 function modifier_elder_spirit_check_out:OnRemoved()
 	if IsServer() then
 		self:GetAbility().spiritPull = true
+		self:GetAbility().truePull = true
 	end
 end
 
@@ -166,18 +169,40 @@ function modifier_elder_spirit:OnIntervalThink()
 	end
 end
 
-
 function modifier_elder_spirit:CheckState()
 	local state = { [MODIFIER_STATE_FLYING_FOR_PATHING_PURPOSES_ONLY] = true,
 					[MODIFIER_STATE_ATTACK_IMMUNE] = true,
 					[MODIFIER_STATE_MAGIC_IMMUNE] = true,
+					[MODIFIER_STATE_INVULNERABLE] = true,
+					[MODIFIER_STATE_UNTARGETABLE] = true,
 					[MODIFIER_STATE_NO_HEALTH_BAR] = true
 					}
 	return state
 end
 
 function modifier_elder_spirit:DeclareFunctions()
-	return {MODIFIER_PROPERTY_INVISIBILITY_LEVEL}
+	return {MODIFIER_PROPERTY_INVISIBILITY_LEVEL,
+			MODIFIER_EVENT_ON_ABILITY_START,
+			MODIFIER_EVENT_ON_ABILITY_EXECUTED}
+end
+
+function modifier_elder_spirit:OnAbilityStart(params)
+	if params.unit == self:GetCaster() and self:GetAbility().truePull then
+		self:GetAbility().spiritPull = false
+		self:GetParent():RemoveGesture(ACT_DOTA_FLAIL)
+	end
+end
+
+function modifier_elder_spirit:OnAbilityExecuted(params)
+	if params.unit == self:GetCaster() and self:GetAbility().truePull then
+		if params.ability:GetAbilityName() == "et_earth_splitter" then
+			Timers:CreateTimer(3.14, function()
+				self:GetAbility().spiritPull = true
+			end)
+		else
+			self:GetAbility().spiritPull = true
+		end
+	end
 end
 
 function modifier_elder_spirit:GetModifierInvisibilityLevel()
@@ -240,7 +265,7 @@ function modifier_elder_spirit_enemy:OnCreated(table)
 end
 
 function modifier_elder_spirit_enemy:OnIntervalThink()
-	self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self:GetTalentSpecialValueFor("dot"), {}, 0)
+	self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self:GetTalentSpecialValueFor("dot_damage"), {}, 0)
 	self:StartIntervalThink(1.0)
 end
 
