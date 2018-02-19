@@ -16,6 +16,9 @@ function modifier_boss_aether_gravity_well:OnCreated()
 	end
 end
 
+function modifier_boss_aether_gravity_well:CheckState()
+	return {[MODIFIER_STATE_NO_UNIT_COLLISION] = true}
+end
 
 function modifier_boss_aether_gravity_well:IsAura()
 	return true

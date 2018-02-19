@@ -3277,104 +3277,76 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"158"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_mjollnir.lua"
+
+		"AbilityTextureName"			"mjollnir"
+		"AbilityManaCost"               "50"
+		"AbilityCastRange"				"600"
+		"AbilityCooldown"				"35.0"
+		
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-
-		// Stats
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"800"
-		"AbilityCastPoint"				"0.0"
-		"AbilityCooldown"				"35.0"
-
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"50"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		
 		"ItemCost"						"1140"
+		"ItemKillable"                  "1"
+		"ItemSellable"                  "1"
+		"ItemDroppable"                 "1"
 		"ItemShopTags"					"damage;attack_speed;unique"
 		"ItemQuality"					"artifact"
 		"ItemAliases"					"mjollnir"
 		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_ALWAYS"
-		
-		
-		// Special	
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+
+		"precache"
+		{
+			"particle"		"particles/items2_fx/mjollnir_shield.vpcf"
+			"particle"  	"particles/items_fx/chain_lightning.vpcf"
+			"soundfile"		"soundevents/game_sounds_items.vsndevts"
+		}
+
+		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"24"
+					"var_type"								"FIELD_INTEGER"
+					"bonus_damage"							"25"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_attack_speed"	"80"
+					"var_type"								"FIELD_INTEGER"
+					"bonus_attack_speed"					"100"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"static_duration"		"15.0"
+					"var_type"								"FIELD_INTEGER"
+					"chance"								"25"
 			}
 			"04"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"static_chance"			"20"
+					"var_type"								"FIELD_FLOAT"
+					"duration"								"15"
 			}
 			"05"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"static_strikes"		"4"
+					"var_type"								"FIELD_INTEGER"
+					"jump_count"							"8"
 			}
 			"06"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"static_damage"			"200"
+					"var_type"								"FIELD_INTEGER"
+					"jump_damage"							"150"
 			}
 			"07"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"static_primary_radius"	"600"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"static_seconary_radius"	"900"
-			}
-			"09"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"static_radius"			"900"
-			}
-			"10"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"static_cooldown"		"1.0"
-			}
-			"11"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"chain_chance"			"25"
-			}
-			"12"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"chain_damage"			"150"
-			}
-			"13"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"chain_strikes"			"8"
-			}
-			"14"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"chain_radius"			"900"
-			}
-			"15"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"chain_delay"			"0.25"
+					"var_type"								"FIELD_INTEGER"
+					"jump_radius"							"900"
 			}
 		}
 	}

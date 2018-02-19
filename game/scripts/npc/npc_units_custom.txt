@@ -5628,7 +5628,7 @@
 	
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"2000000"		// Base health.
+		"StatusHealth"				"200000"		// Base health.
 		"StatusHealthRegen"			"1000"			// Health regeneration rate.
 		"StatusMana"				"400"			// Base mana.
 		"StatusManaRegen"			"400"			// Mana regeneration rate.		 
@@ -5720,7 +5720,7 @@
 	
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"3500000"		// Base health.
+		"StatusHealth"				"350000"		// Base health.
 		"StatusHealthRegen"			"1000"			// Health regeneration rate.
 		"StatusMana"				"400"			// Base mana.
 		"StatusManaRegen"			"400"			// Mana regeneration rate.		 
@@ -6106,7 +6106,7 @@
 	
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"3250000"		// Base health.
+		"StatusHealth"				"325000"		// Base health.
 		"StatusHealthRegen"			"1000"			// Health regeneration rate.
 		"StatusMana"				"400"			// Base mana.
 		"StatusManaRegen"			"400"			// Mana regeneration rate.		 
@@ -12455,9 +12455,9 @@
 	{										
 		// General
 		//----------------------------------------------------------------
-		//"Model"						"models/heroes/elder_titan/ancestral_spirit.vmdl"	// Model.
+		//"Model"					"models/heroes/elder_titan/ancestral_spirit.vmdl"	// Model.
 		"Model"						"models/heroes/elder_titan/elder_titan.vmdl"	// Model.
-		"BaseClass"					"npc_dota_elder_titan_ancestral_spirit"
+		"BaseClass"					"npc_dota_creature"
 		"SoundSet"					"0"			// Name of sound set.
 		"Level"						"1"
 		"ModelScale"				"1.0"
@@ -12511,8 +12511,8 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"0"		// Range of vision during day light.
-		"VisionNighttimeRange"		"0"		// Range of vision at night time.
+		"VisionDaytimeRange"		"1000"		// Range of vision during day light.
+		"VisionNighttimeRange"		"1000"		// Range of vision at night time.
 
 		// Team
 		//----------------------------------------------------------------
@@ -12520,6 +12520,19 @@
 		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_SOFT"
 		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+
+		"Creature"
+	    {
+	    	"AttachWearables"
+			{
+			    "Wearable1" { "ItemDef" "427" }
+			    "Wearable2" { "ItemDef" "428" }
+			    "Wearable3" { "ItemDef" "430" }
+			    "Wearable4" { "ItemDef" "429" }
+			    "Wearable4" { "ItemDef" "426" }
+			}
+	    }
+		
 	}
 	"wearable_dummy"
 	{

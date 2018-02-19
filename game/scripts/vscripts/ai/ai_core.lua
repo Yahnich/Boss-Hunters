@@ -118,7 +118,6 @@ function AICore:AttackHighestPriority( entity )
 	if not entity and not entity:IsAlive() then return end
 	local flag = DOTA_UNIT_TARGET_FLAG_NOT_ATTACK_IMMUNE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE
 	local range = entity:GetAttackRange() + entity:GetIdealSpeed() * 1.5
-	if range < 900 then range = 900 end
 	if not entity:IsDominated() then
 		local enemies = FindUnitsInRadius( entity:GetTeamNumber(), entity:GetAbsOrigin(), nil, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, flag, 0, false )
 		local target = nil
@@ -161,14 +160,16 @@ function AICore:AttackHighestPriority( entity )
 			local distanceToEnemy = (entity:GetAbsOrigin() - enemy:GetAbsOrigin()):Length2D()
 			if not enemy.threat then enemy.threat = 0 end
 			if not minThreat then minThreat = 0 end
-			if enemy:IsAlive() and (enemy.threat or 0) > minThreat and distanceToEnemy < range and not entity.AIprevioustarget then
-				minThreat = enemy.threat
-				target = enemy
-				entity.AIprevioustarget = target
-			elseif entity.AIprevioustarget and enemy:IsAlive() and enemy.threat > minThreat + 5*(entity.AIbehavior or 1) and distanceToEnemy < range then
-				minThreat = enemy.threat
-				target = enemy
-				entity.AIprevioustarget = target
+			if GridNav:CanFindPath( entity:GetAbsOrigin(), enemy:GetAbsOrigin() ) then
+				if enemy:IsAlive() and (enemy.threat or 0) > minThreat and distanceToEnemy < range and not entity.AIprevioustarget then
+					minThreat = enemy.threat
+					target = enemy
+					entity.AIprevioustarget = target
+				elseif entity.AIprevioustarget and enemy:IsAlive() and enemy.threat > minThreat + 5*(entity.AIbehavior or 1) and distanceToEnemy < range then
+					minThreat = enemy.threat
+					target = enemy
+					entity.AIprevioustarget = target
+				end
 			end
 		end
 		if not target then 
@@ -178,7 +179,7 @@ function AICore:AttackHighestPriority( entity )
 			for _,enemy in pairs(enemies) do
 				local distanceToEnemy = (entity:GetAbsOrigin() - enemy:GetAbsOrigin()):Length2D()
 				local HP = enemy:GetHealth()
-				if enemy:IsAlive() and (minHP == nil or HP < minHP) and distanceToEnemy < range then
+				if GridNav:CanFindPath( entity:GetAbsOrigin(), enemy:GetAbsOrigin() ) and enemy:IsAlive() and (minHP == nil or HP < minHP) and distanceToEnemy < range then
 					minHP = HP
 					target = enemy
 					entity.AIprevioustarget = target
@@ -191,7 +192,7 @@ function AICore:AttackHighestPriority( entity )
 			enemies = FindUnitsInRadius( entity:GetTeamNumber(), entity:GetAbsOrigin(), nil, minRange, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, flag, 0, false )
 			for _,enemy in pairs(enemies) do
 				local distanceToEnemy = (entity:GetAbsOrigin() - enemy:GetAbsOrigin()):Length2D()
-				if enemy:IsAlive() and distanceToEnemy < minRange then
+				if GridNav:CanFindPath( entity:GetAbsOrigin(), enemy:GetAbsOrigin() ) and enemy:IsAlive() and distanceToEnemy < minRange then
 					minRange = distanceToEnemy
 					target = enemy
 					entity.AIprevioustarget = target
