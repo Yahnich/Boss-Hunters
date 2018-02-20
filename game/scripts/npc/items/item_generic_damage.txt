@@ -114,7 +114,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"1174"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"1196"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_datadriven"
 		"ItemShareability"				"ITEM_PARTIALLY_SHAREABLE"

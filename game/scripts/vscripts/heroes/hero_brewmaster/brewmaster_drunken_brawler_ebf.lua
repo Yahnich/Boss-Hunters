@@ -74,7 +74,7 @@ function modifier_brewmaster_drunken_brawler_ebf_handler:DeclareFunctions()
 end
 
 function modifier_brewmaster_drunken_brawler_ebf_handler:GetModifierPreAttack_CriticalStrike(params)
-	if self:GetParent():HasModifier("modifier_brewmaster_drunken_brawler_ebf_crit") or RollPercentage( self.crit_chance ) or (self:GetParent():HasTalent("special_bonus_unique_brewmaster_drunken_haze_1") and params.unit:HasModifier("modifier_brewmaster_drunken_haze_debuff")) then
+	if (self:GetParent():HasTalent("special_bonus_unique_brewmaster_drunken_haze_1") and params.target:HasModifier("modifier_brewmaster_drunken_haze_debuff")) or self:GetParent():HasModifier("modifier_brewmaster_drunken_brawler_ebf_crit") or RollPercentage( self.crit_chance ) then
 		self.lastCrit = self.delay
 		self:GetParent():RemoveModifierByName("modifier_brewmaster_drunken_brawler_ebf_crit")
 		return self.crit_damage
