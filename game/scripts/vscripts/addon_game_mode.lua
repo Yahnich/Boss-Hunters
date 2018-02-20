@@ -2224,8 +2224,10 @@ function CHoldoutGameMode:OnNPCSpawned( event )
 	if spawnedUnit:IsCourier() then
 		spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_invulnerable", {})
 	end
-	if spawnedUnit:IsCreature() then
-		local effective_multiplier = 1 + (HeroList:GetActiveHeroCount() - 1)*0.33
+	if spawnedUnit:IsCreature() and spawnedUnit:GetTeamNumber() == DOTA_TEAM_BADGUYS then
+		local playerMultiplier = 0.33
+		if GetMapName() == "epic_boss_fight_hardcore" then playerMultiplier = 0.4 end
+		local effective_multiplier = 1 + (HeroList:GetActiveHeroCount() - 1)*playerMultiplier
 		-- if self._currentRound and not self._currentRound:IsFinished() then self._vEnemiesRemaining
 		spawnedUnit:SetBaseMaxHealth(spawnedUnit:GetBaseMaxHealth()*effective_multiplier)
 		spawnedUnit:SetMaxHealth(spawnedUnit:GetMaxHealth()*effective_multiplier)

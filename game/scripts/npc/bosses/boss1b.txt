@@ -80,7 +80,7 @@
 	
 		// Stats		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"9"
+		"AbilityCooldown"				"4"
 		"AbilityCastPoint"				"0.75 0.5"
 		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
 	
@@ -96,7 +96,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"spear_speed"			"900"
+				"spear_speed"			"1200"
 			}
 			"02"
 			{
@@ -111,7 +111,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"spear_damage"			"700 1200"
+				"spear_damage"			"800 1200"
 			}
 		}
 		"precache"
@@ -150,7 +150,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"spear_speed"			"600"
+				"spear_speed"			"750"
 			}
 			"02"
 			{

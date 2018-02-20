@@ -150,6 +150,13 @@ function CDOTA_Modifier_Lua:GetSpecialValueFor(specVal)
 	return self:GetAbility():GetSpecialValueFor(specVal)
 end
 
+function CDOTABaseAbility:GetAbilityTextureName()
+	if GameRules.AbilityKV[self:GetName()] and GameRules.AbilityKV[self:GetName()]["AbilityTextureName"] then
+		return GameRules.AbilityKV[self:GetName()]["AbilityTextureName"]
+	end
+	return nil
+end
+
 function CDOTABaseAbility:DealDamage(attacker, victim, damage, data, spellText)
 	--OVERHEAD_ALERT_BONUS_SPELL_DAMAGE, OVERHEAD_ALERT_DAMAGE, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, OVERHEAD_ALERT_MANA_LOSS
 	local internalData = data or {}

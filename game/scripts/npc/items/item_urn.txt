@@ -1,0 +1,468 @@
+"DOTAAbilities"
+{
+	"item_urn_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"24000"												// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_urn.lua"
+	
+		"AbilityTextureName"			"spirit_vessel"
+		"AbilityManaCost"               "100"
+		"AbilityCastRange"				"950"
+		"AbilityCooldown"				"8.0"
+		"HasPureCooldown"				"1"
+		
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+	    "AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+	    "SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		
+		"ItemCost"						"1140"
+		"ItemKillable"                  "1"
+		"ItemSellable"                  "1"
+		"ItemDroppable"                 "1"
+		"ItemShopTags"					"unique"
+		"ItemQuality"					"artifact"
+		"ItemAliases"					"urn"
+		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_ALWAYS"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+	
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+	
+		"precache"
+		{
+			"particle"		"particles/items4_fx/spirit_vessel_cast.vpcf"
+			"particle"  	"particles/items4_fx/spirit_vessel_damage.vpcf"
+			"particle"  	"particles/items4_fx/spirit_vessel_heal.vpcf"
+			"soundfile"		"soundevents/game_sounds_items.vsndevts"
+		}
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+					"var_type"								"FIELD_INTEGER"
+					"bonus_armor"							"10"
+			}
+			"02"
+			{
+					"var_type"								"FIELD_INTEGER"
+					"bonus_mregen"							"5"
+			}
+			"03"
+			{
+					"var_type"								"FIELD_INTEGER"
+					"bonus_stats"							"30"
+			}
+			"04"
+			{
+					"var_type"								"FIELD_INTEGER"
+					"damage_heal"							"100"
+			}
+			"05"
+			{
+					"var_type"								"FIELD_FLOAT"
+					"duration"								"8"
+			}
+			"06"
+			{
+					"var_type"								"FIELD_INTEGER"
+					"reduc_armor"							"-5"
+			}
+		}
+	}
+	"item_urn_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"24001"												// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_urn.lua"
+	
+		"AbilityTextureName"			"custom/spirit_vessel_2"
+		"AbilityManaCost"               "200"
+		"AbilityCastRange"				"950"
+		"AbilityCooldown"				"8.0"
+		"HasPureCooldown"				"1"
+		
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+	    "AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+	    "SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		
+		"ItemCost"						"1140"
+		"ItemKillable"                  "1"
+		"ItemSellable"                  "1"
+		"ItemDroppable"                 "1"
+		"ItemShopTags"					"unique"
+		"ItemQuality"					"artifact"
+		"ItemAliases"					"urn"
+		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_ALWAYS"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+	
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+	
+		"precache"
+		{
+			"particle"		"particles/items4_fx/spirit_vessel_cast.vpcf"
+			"particle"  	"particles/items4_fx/spirit_vessel_damage.vpcf"
+			"particle"  	"particles/items4_fx/spirit_vessel_heal.vpcf"
+			"soundfile"		"soundevents/game_sounds_items.vsndevts"
+		}
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+					"var_type"								"FIELD_INTEGER"
+					"bonus_armor"							"20"
+			}
+			"02"
+			{
+					"var_type"								"FIELD_INTEGER"
+					"bonus_mregen"							"10"
+			}
+			"03"
+			{
+					"var_type"								"FIELD_INTEGER"
+					"bonus_stats"							"60"
+			}
+			"04"
+			{
+					"var_type"								"FIELD_INTEGER"
+					"damage_heal"							"500"
+			}
+			"05"
+			{
+					"var_type"								"FIELD_FLOAT"
+					"duration"								"8"
+			}
+			"06"
+			{
+					"var_type"								"FIELD_INTEGER"
+					"reduc_armor"							"-10"
+			}
+		}
+	}
+	"item_urn_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"24002"												// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_urn.lua"
+	
+		"AbilityTextureName"			"custom/spirit_vessel_3"
+		"AbilityManaCost"               "400"
+		"AbilityCastRange"				"950"
+		"AbilityCooldown"				"8.0"
+		"HasPureCooldown"				"1"
+		
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+	    "AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+	    "SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		
+		"ItemCost"						"1140"
+		"ItemKillable"                  "1"
+		"ItemSellable"                  "1"
+		"ItemDroppable"                 "1"
+		"ItemShopTags"					"unique"
+		"ItemQuality"					"artifact"
+		"ItemAliases"					"urn"
+		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_ALWAYS"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+	
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+	
+		"precache"
+		{
+			"particle"		"particles/items4_fx/spirit_vessel_cast.vpcf"
+			"particle"  	"particles/items4_fx/spirit_vessel_damage.vpcf"
+			"particle"  	"particles/items4_fx/spirit_vessel_heal.vpcf"
+			"soundfile"		"soundevents/game_sounds_items.vsndevts"
+		}
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+					"var_type"								"FIELD_INTEGER"
+					"bonus_armor"							"30"
+			}
+			"02"
+			{
+					"var_type"								"FIELD_INTEGER"
+					"bonus_mregen"							"20"
+			}
+			"03"
+			{
+					"var_type"								"FIELD_INTEGER"
+					"bonus_stats"							"90"
+			}
+			"04"
+			{
+					"var_type"								"FIELD_INTEGER"
+					"damage_heal"							"2000"
+			}
+			"05"
+			{
+					"var_type"								"FIELD_FLOAT"
+					"duration"								"8"
+			}
+			"06"
+			{
+					"var_type"								"FIELD_INTEGER"
+					"reduc_armor"							"-20"
+			}
+		}
+	}
+	"item_urn_4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"24003"												// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_urn.lua"
+	
+		"AbilityTextureName"			"custom/spirit_vessel_4"
+		"AbilityManaCost"               "800"
+		"AbilityCastRange"				"950"
+		"AbilityCooldown"				"8.0"
+		"HasPureCooldown"				"1"
+		
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+	    "AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+	    "SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		
+		"ItemCost"						"1140"
+		"ItemKillable"                  "1"
+		"ItemSellable"                  "1"
+		"ItemDroppable"                 "1"
+		"ItemShopTags"					"unique"
+		"ItemQuality"					"artifact"
+		//"ItemAliases"					"mjollnir"
+		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_ALWAYS"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+	
+		"precache"
+		{
+			"particle"		"particles/items4_fx/spirit_vessel_cast.vpcf"
+			"particle"  	"particles/items4_fx/spirit_vessel_damage.vpcf"
+			"particle"  	"particles/items4_fx/spirit_vessel_heal.vpcf"
+			"soundfile"		"soundevents/game_sounds_items.vsndevts"
+		}
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+					"var_type"								"FIELD_INTEGER"
+					"bonus_armor"							"40"
+			}
+			"02"
+			{
+					"var_type"								"FIELD_INTEGER"
+					"bonus_mregen"							"40"
+			}
+			"03"
+			{
+					"var_type"								"FIELD_INTEGER"
+					"bonus_stats"							"120"
+			}
+			"04"
+			{
+					"var_type"								"FIELD_INTEGER"
+					"damage_heal"							"8000"
+			}
+			"05"
+			{
+					"var_type"								"FIELD_FLOAT"
+					"duration"								"8"
+			}
+			"06"
+			{
+					"var_type"								"FIELD_INTEGER"
+					"reduc_armor"							"-40"
+			}
+		}
+	}
+	"item_urn_5"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"24003"												// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_urn.lua"
+	
+		"AbilityTextureName"			"custom/spirit_vessel_5"
+		"AbilityManaCost"               "800"
+		"AbilityCastRange"				"950"
+		"AbilityCooldown"				"8.0"
+		"HasPureCooldown"				"1"
+		
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+	    "AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+	    "SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		
+		"ItemCost"						"1140"
+		"ItemKillable"                  "1"
+		"ItemSellable"                  "1"
+		"ItemDroppable"                 "1"
+		"ItemShopTags"					"unique"
+		"ItemQuality"					"artifact"
+		//"ItemAliases"					"mjollnir"
+		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_ALWAYS"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+	
+		"precache"
+		{
+			"particle"		"particles/items4_fx/spirit_vessel_cast.vpcf"
+			"particle"  	"particles/items4_fx/spirit_vessel_damage.vpcf"
+			"particle"  	"particles/items4_fx/spirit_vessel_heal.vpcf"
+			"soundfile"		"soundevents/game_sounds_items.vsndevts"
+		}
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+					"var_type"								"FIELD_INTEGER"
+					"bonus_armor"							"40"
+			}
+			"02"
+			{
+					"var_type"								"FIELD_INTEGER"
+					"bonus_mregen"							"40"
+			}
+			"03"
+			{
+					"var_type"								"FIELD_INTEGER"
+					"bonus_stats"							"120"
+			}
+			"04"
+			{
+					"var_type"								"FIELD_INTEGER"
+					"damage_heal"							"8000"
+			}
+			"05"
+			{
+					"var_type"								"FIELD_FLOAT"
+					"duration"								"8"
+			}
+			"06"
+			{
+					"var_type"								"FIELD_INTEGER"
+					"reduc_armor"							"-40"
+			}
+		}
+	}
+	"item_recipe_urn_2"
+	{
+		"ID"											"33006"
+		"Model"											"models/props_gameplay/recipe.mdl"
+		"BaseClass"										"item_recipe_urn_of_shadows"
+		"AbilityTextureName"							"item_recipe_urn_of_shadows"
+	
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"										"0"    
+		"ItemShopTags"									""
+			
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"									"1"
+		"ItemResult"									"item_urn_2"
+		"ItemRequirements"
+		{
+				"01"									"item_medallion_of_courage;item_orb_of_shadows;item_urn_1;"
+		}
+	}
+	"item_recipe_urn_3"
+	{
+		"ID"											"33006"
+		"Model"											"models/props_gameplay/recipe.mdl"
+		"BaseClass"										"item_recipe_urn_of_shadows"
+		"AbilityTextureName"							"item_recipe_urn_of_shadows"
+	
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"										"0"    
+		"ItemShopTags"									""
+			
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"									"1"
+		"ItemResult"									"item_urn_3"
+		"ItemRequirements"
+		{
+				"01"									"item_solar_crest;item_orb_of_doom;item_urn_2;"
+		}
+	}
+	"item_recipe_urn_4"
+	{
+			"ID"											"33006"
+			"Model"											"models/props_gameplay/recipe.mdl"
+			"BaseClass"										"item_recipe_urn_of_shadows"
+			"AbilityTextureName"							"item_recipe_urn_of_shadows"
+	
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+			"ItemCost"										"3650"    
+			"ItemShopTags"									""
+			
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+			"ItemRecipe"									"1"
+			"ItemResult"									"item_urn_4"
+			"ItemRequirements"
+			{
+					"01"									"item_orb_divine;item_urn_3;"
+			}
+	}
+	"item_recipe_urn_5"
+	{
+		"ID"											"33007"
+		"Model"											"models/props_gameplay/recipe.mdl"
+		"BaseClass"										"item_recipe_urn_of_shadows"
+		"AbilityTextureName"							"item_recipe_urn_of_shadows"
+	
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"										"9520"    
+		"ItemShopTags"									""
+			
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"									"1"
+		"ItemResult"									"item_urn_5"
+		"ItemRequirements"
+		{
+				"01"									"item_orb_bahamut;item_urn_4;"
+		}
+	}
+}

@@ -1,0 +1,305 @@
+"DOTAAbilities"
+{
+	"item_mjollnir_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"23004"												// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_mjollnir.lua"
+
+		"AbilityTextureName"			"custom/charged_mjollnir"
+		"AbilityManaCost"               "75"
+		"AbilityCastRange"				"600"
+		"AbilityCooldown"				"35.0"
+		
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		
+		"ItemCost"						"1980"
+		"ItemKillable"                  "1"
+		"ItemSellable"                  "1"
+		"ItemDroppable"                 "1"
+		"ItemShopTags"					"damage;attack_speed;unique"
+		"ItemQuality"					"artifact"
+		"ItemAliases"					"mjollnir"
+		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_ALWAYS"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+
+		"precache"
+		{
+			"particle"		"particles/items2_fx/mjollnir_shield.vpcf"
+			"particle"  	"particles/items_fx/chain_lightning.vpcf"
+			"soundfile"		"soundevents/game_sounds_items.vsndevts"
+		}
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+					"var_type"								"FIELD_INTEGER"
+					"bonus_damage"							"75"
+			}
+			"02"
+			{
+					"var_type"								"FIELD_INTEGER"
+					"bonus_attack_speed"					"150"
+			}
+			"03"
+			{
+					"var_type"								"FIELD_INTEGER"
+					"chance"								"25"
+			}
+			"04"
+			{
+					"var_type"								"FIELD_FLOAT"
+					"duration"								"15"
+			}
+			"05"
+			{
+					"var_type"								"FIELD_INTEGER"
+					"jump_count"							"10"
+			}
+			"06"
+			{
+					"var_type"								"FIELD_INTEGER"
+					"jump_damage"							"400"
+			}
+			"07"
+			{
+					"var_type"								"FIELD_INTEGER"
+					"jump_radius"							"900"
+			}
+		}
+	}
+	"item_mjollnir_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"23005"												// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_mjollnir.lua"
+
+		"AbilityTextureName"			"custom/doom_hammer"
+		"AbilityManaCost"               "100"
+		"AbilityCastRange"				"600"
+		"AbilityCooldown"				"35.0"
+		
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		
+		"ItemCost"						"6780"
+		"ItemKillable"                  "1"
+		"ItemSellable"                  "1"
+		"ItemDroppable"                 "1"
+		"ItemShopTags"					"damage;attack_speed;unique"
+		"ItemQuality"					"artifact"
+		"ItemAliases"					"mjollnir"
+		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_ALWAYS"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+
+		"precache"
+		{
+			"particle"		"particles/items2_fx/mjollnir_shield.vpcf"
+			"particle"  	"particles/items_fx/chain_lightning.vpcf"
+			"soundfile"		"soundevents/game_sounds_items.vsndevts"
+		}
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+					"var_type"								"FIELD_INTEGER"
+					"bonus_damage"							"100"
+			}
+			"02"
+			{
+					"var_type"								"FIELD_INTEGER"
+					"bonus_attack_speed"					"200"
+			}
+			"03"
+			{
+					"var_type"								"FIELD_INTEGER"
+					"chance"								"25"
+			}
+			"04"
+			{
+					"var_type"								"FIELD_FLOAT"
+					"duration"								"15"
+			}
+			"05"
+			{
+					"var_type"								"FIELD_INTEGER"
+					"jump_count"							"12"
+			}
+			"06"
+			{
+					"var_type"								"FIELD_INTEGER"
+					"jump_damage"							"1200"
+			}
+			"07"
+			{
+					"var_type"								"FIELD_INTEGER"
+					"jump_radius"							"900"
+			}
+		}
+	}
+	"item_mjollnir_4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"23006"												// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_mjollnir.lua"
+
+		"AbilityTextureName"			"custom/divine_hammer"
+		"AbilityManaCost"               "125"
+		"AbilityCastRange"				"600"
+		"AbilityCooldown"				"35.0"
+		
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		
+		"ItemCost"						"16720"
+		"ItemKillable"                  "1"
+		"ItemSellable"                  "1"
+		"ItemDroppable"                 "1"
+		"ItemShopTags"					"damage;attack_speed;unique"
+		"ItemQuality"					"artifact"
+		"ItemAliases"					"mjollnir"
+		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_ALWAYS"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+
+		"precache"
+		{
+			"particle"		"particles/items2_fx/mjollnir_shield.vpcf"
+			"particle"  	"particles/items_fx/chain_lightning.vpcf"
+			"soundfile"		"soundevents/game_sounds_items.vsndevts"
+		}
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+					"var_type"								"FIELD_INTEGER"
+					"all_stats"								"425"
+			}
+			"02"
+			{
+					"var_type"								"FIELD_INTEGER"
+					"bonus_damage"							"125"
+			}
+			"03"
+			{
+					"var_type"								"FIELD_INTEGER"
+					"bonus_attack_speed"					"250"
+			}
+			"04"
+			{
+					"var_type"								"FIELD_INTEGER"
+					"chance"								"25"
+			}
+			"05"
+			{
+					"var_type"								"FIELD_FLOAT"
+					"duration"								"15"
+			}
+			"06"
+			{
+					"var_type"								"FIELD_INTEGER"
+					"jump_count"							"14"
+			}
+			"07"
+			{
+					"var_type"								"FIELD_INTEGER"
+					"jump_damage"							"3600"
+			}
+			"08"
+			{
+					"var_type"								"FIELD_INTEGER"
+					"jump_radius"							"900"
+			}
+		}
+	}
+	"item_recipe_mjollnir_2"
+	{
+			"ID"											"33004"
+			"Model"											"models/props_gameplay/recipe.mdl"
+			"BaseClass"										"item_recipe_mjollnir"
+			"AbilityTextureName"							"custom/charged_mjollnir"
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+			"ItemCost"										"120"    
+			"ItemShopTags"									""
+			
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+			"ItemRecipe"									"1"
+			"ItemResult"									"item_mjollnir_2"
+			"ItemRequirements"
+			{
+					"01"									"item_orb_of_shadows;item_mjollnir"
+			}
+	}
+	"item_recipe_mjollnir_3"
+	{
+			"ID"											"33005"
+			"Model"											"models/props_gameplay/recipe.mdl"
+			"BaseClass"										"item_recipe_mjollnir"
+			"AbilityTextureName"							"custom/doom_hammer"
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+			"ItemCost"										"980"    
+			"ItemShopTags"									""
+			
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+			"ItemRecipe"									"1"
+			"ItemResult"									"item_mjollnir_3"
+			"ItemRequirements"
+			{
+					"01"									"item_orb_of_doom;item_mjollnir_2;"
+			}
+	}
+	"item_recipe_mjollnir_4"
+	{
+			"ID"											"33006"
+			"Model"											"models/props_gameplay/recipe.mdl"
+			"BaseClass"										"item_recipe_mjollnir"
+			"AbilityTextureName"							"custom/divine_hammer"
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+			"ItemCost"										"2560"    
+			"ItemShopTags"									""
+			
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+			"ItemRecipe"									"1"
+			"ItemResult"									"item_mjollnir_4"
+			"ItemRequirements"
+			{
+					"01"									"item_orb_divine;item_mjollnir_3;"
+			}
+	}
+}

@@ -71,6 +71,13 @@ function C_DOTA_BaseNPC:FindTalentValue(talentName, valname)
 	return 0
 end
 
+function C_DOTABaseAbility:GetAbilityTextureName()
+	if AbilityKV[self:GetName()] and AbilityKV[self:GetName()]["AbilityTextureName"] then
+		return AbilityKV[self:GetName()]["AbilityTextureName"]
+	end
+	return nil
+end
+
 function C_DOTABaseAbility:GetTalentSpecialValueFor(value)
 	local base = self:GetSpecialValueFor(value)
 	local talentName

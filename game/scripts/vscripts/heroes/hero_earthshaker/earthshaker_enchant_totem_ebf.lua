@@ -24,9 +24,9 @@ function modifier_earthshaker_enchant_totem_ebf:OnRefresh()
 end
 
 function modifier_earthshaker_enchant_totem_ebf:OnDestroy()
-	if self:GetParent():HasTalent("special_bonus_unique_earthshaker_enchant_totem_ebf_1") then
-		local aftershock = self:GetParent():FindAbilityByName("earthshaker_aftershock_ebf")
-		aftershock:Aftershock()
+	if self:GetParent():HasTalent("special_bonus_unique_earthshaker_enchant_totem_ebf_1") and IsServer() then
+		local aftershock = self:GetCaster():FindAbilityByName("earthshaker_aftershock_ebf")
+		if aftershock then aftershock:Aftershock() end
 	end
 end
 
