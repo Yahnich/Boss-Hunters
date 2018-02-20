@@ -4,6 +4,8 @@
     {
         "item" "item_ward_sentry"
         "item" "item_ward_observer"
+		"item" "item_orb_1"
+		"item" "item_damage_1"
         "item" "item_tranquil_boots"
         "item" "item_berserker_face"
 		"item" "item_blink_2"
@@ -20,8 +22,9 @@
     {
         "item" "item_smoke_of_deceit"
         "item" "item_hand_of_midas"
+		"item" "item_orb_2"
+		"item" "item_damage_2"
         "item" "item_force_boots"
-        "item" "item_crit2"
         "item" "item_berserker_face_2"
 		"item" "item_blink_3"
         "item" "item_veil_of_discord2"
@@ -31,14 +34,15 @@
         "item" "item_storm_fury"
         "item" "item_lifesteal2"
         "item" "item_tank_booster"
-        "item" "item_sheepstick_2"
+        "item" "item_pixels_guard"
     }
     "weapons_armor"
     {
         "item" "item_greater_salve"
         "item" "item_midas_2"
+		"item" "item_orb_3"
+		"item" "item_damage_3"
         "item" "item_phase_boots"
-        "item" "item_crit3"
         "item" "item_berserker_face_3"
 		"item" "item_blink_4"
         "item" "item_veil_of_discord3"
@@ -48,14 +52,15 @@
         "item" "item_midas_fury"
         "item" "item_lifesteal3"
         "item" "item_blood_booster"
-        "item" "item_pixels_guard"
+        "item" "item_echo_sabre"
     }
     "misc"
     {
         "item" "item_hyper_clarity_salve"
         "item" "item_midas_3"
+		"item" "item_orb_4"
+		"item" "item_damage_4"
         "item" "item_heart_boots"
-        "item" "item_divine_hammer"
         "item" "item_berserker_face_4"
 		"item" "item_blink_5"
         "item" "item_veil_of_discord4"
@@ -74,7 +79,7 @@
         "item" "item_gungnir"
         "item" "item_gungnir_2"
         "item" "item_gungnir_3"	
-		"item" "item_echo_sabre"
+		"item" "item_desolator"
 		"item" "item_cursed_amulet"
         "item" "item_gauntlet_cursed"
         "item" "item_soul_gatherer"
@@ -86,7 +91,6 @@
     // Level 2 - Blue Recipes
     "support"
     {
-        "item" "item_ultimate_orb"
         "item" "item_assault"
         "item" "item_hurricane_pike"
         "item" "item_magic_ring"
@@ -100,10 +104,11 @@
 		"item" "item_guardian_greaves"
 		"item" "item_phase_boots"
 		"item" "item_mjollnir"
+		"item" "item_urn_1"
+		"item" "item_greater_crit"
     }
     "magics"
-    {
-        "item" "item_orb_of_shadows"       
+    {  
         "item" "item_assault_2"
         "item" "item_soul"
         "item" "item_mystic_ring"
@@ -117,11 +122,12 @@
 		"item" "item_mekansm2"
 		"item" "item_phase_boots2"
 		"item" "item_mjollnir_2"
+		"item" "item_urn_2"
+		"item" "item_crit2"
     }
     // Level 3 - Purple Recipes
     "defense"
     {
-        "item" "item_orb_of_doom"
         "item" "item_assault_3"
         "item" "item_demonsoul"
         "item" "item_overlord_ring"
@@ -135,10 +141,11 @@
 		"item" "item_mekansm3"
 		"item" "item_phase_boots3"
 		"item" "item_mjollnir_3"
+		"item" "item_urn_3"
+		"item" "item_crit3"
     }
 	"weapons"
     {
-        "item" "item_orb_divine"
         "item" "item_assault_4"
         "item" "item_divinesoul"
         "item" "item_divine_ring"
@@ -152,17 +159,18 @@
 		"item" "item_mekansm4"
 		"item" "item_phase_boots4"
 		"item" "item_mjollnir_4"
+		"item" "item_urn_4"
+		"item" "item_crit4"
     }
     // Level 4 - Orange / Orb / Artifacts
     "artifacts"
     {
-        "item" "item_orb_bahamut"
         "item" "item_assault_5"
         "item" "item_abyssal_soul"
         "item" "item_Dagon_Mystic"
         "item" "item_octarine_core5"
         "item" "item_butterfly5"
-        "item" "item_bahamut_claw"
+        "item" "item_desolator6"
         "item" "item_kaya_5"
         "item" "item_ghost_5"
         "item" "item_omni_lens"
@@ -170,5 +178,7 @@
 		"item" "item_mekansm5"
 		"item" "item_phase_boots5"
 		"item" "item_scythe_of_decay"
+		"item" "item_urn_5"
+		"item" "item_crit5"
     }
 }

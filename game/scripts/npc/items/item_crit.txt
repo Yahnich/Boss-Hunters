@@ -1,25 +1,24 @@
 "DOTAAbilities"
 {
-	//=================================================================================================================
-	// Kaya
-	//=================================================================================================================
-	"item_kaya_2"
+	"item_crit2"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"4658"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"BaseClass"						"item_kaya"
+		"ID"							"1042"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityTextureName"			"custom/kaya_2"
-
-		// Item Info^
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"820"
-		"ItemShopTags"					"int;mana"
-		"ItemQuality"					"epic"
-		"ItemAliases"					"ky;kaya"
-		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS | DECLARE_PURCHASES_IN_SPEECH"
-		"ShouldBeSuggested"				"1"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_crit.lua"
+		"AbilityTextureName"			"custom/crit2"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		"ItemCost"						"2728"
+		"ItemShopTags"					"damage;unique"
+		"ItemQuality"					"artifact"
+		"ItemAliases"					"crit2"
+		
+		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_ALWAYS"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
@@ -28,40 +27,43 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_intellect"		"250"
-			}			
+				"critical_bonus"		"200"
+			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"spell_amp"				"20"
+				"critical_chance"		"25"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"manacost_reduction"	"15"
+				"bonus_damage"			"110"
 			}
 		}
 	}
 	//=================================================================================================================
-	// Kaya
+	// crit
 	//=================================================================================================================
-	"item_kaya_3"
+	"item_crit3"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"4659"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"BaseClass"						"item_kaya"
+		"ID"							"1043"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityTextureName"			"custom/kaya_3"
-
-		// Item Info^
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"820"
-		"ItemShopTags"					"int;mana"
-		"ItemQuality"					"epic"
-		"ItemAliases"					"ky;kaya"
-		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS | DECLARE_PURCHASES_IN_SPEECH"
-		"ShouldBeSuggested"				"1"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_crit.lua"
+		"AbilityTextureName"			"custom/crit3"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"6000"
+		"ItemShopTags"					"damage;unique"
+		"ItemQuality"					"artifact"
+		"ItemAliases"					"crit3"
+	
+		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_ALWAYS"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
@@ -70,40 +72,42 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_intellect"		"800"
-			}			
+				"critical_bonus"		"225"
+			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"spell_amp"				"40"
+				"critical_chance"		"25"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"manacost_reduction"	"20"
+				"bonus_damage"			"430"
 			}
 		}
 	}
 	//=================================================================================================================
-	// Kaya
+	// crit
 	//=================================================================================================================
-	"item_kaya_4"
+	"item_crit4"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"4660"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"BaseClass"						"item_kaya"
+		"ID"							"1051"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityTextureName"			"custom/kaya_4"
-
-		// Item Info^
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"820"
-		"ItemShopTags"					"int;mana"
-		"ItemQuality"					"epic"
-		"ItemAliases"					"ky;kaya"
-		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS | DECLARE_PURCHASES_IN_SPEECH"
-		"ShouldBeSuggested"				"1"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_crit.lua"
+		"AbilityTextureName"			"custom/crit4"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"6000"
+		"ItemShopTags"					"damage;unique"
+		"ItemQuality"					"artifact"
+		"ItemAliases"					"critic3"
+		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_ALWAYS"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
@@ -112,40 +116,42 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_intellect"		"2000"
-			}			
+				"critical_bonus"		"250"
+			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"spell_amp"				"80"
+				"critical_chance"		"25"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"manacost_reduction"	"25"
+				"bonus_damage"			"1500"
 			}
 		}
 	}
 	//=================================================================================================================
-	// Kaya
+	// crit
 	//=================================================================================================================
-	"item_kaya_5"
+	"item_crit5"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"4661"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"BaseClass"						"item_kaya"
+		"ID"							"1062"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityTextureName"			"custom/kaya_5"
-
-		// Item Info^
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"820"
-		"ItemShopTags"					"int;mana"
-		"ItemQuality"					"epic"
-		"ItemAliases"					"ky;kaya"
-		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS | DECLARE_PURCHASES_IN_SPEECH"
-		"ShouldBeSuggested"				"1"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_crit.lua"
+		"AbilityTextureName"			"custom/crit5"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"6000"
+		"ItemShopTags"					"damage;unique"
+		"ItemQuality"					"artifact"
+		"ItemAliases"					"critic3"
+		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_ALWAYS"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
@@ -154,110 +160,116 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_intellect"		"7500"
-			}			
+				"critical_bonus"		"275"
+			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"spell_amp"				"160"
+				"critical_chance"		"25"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"manacost_reduction"	"30"
+				"bonus_damage"			"6000"
 			}
 		}
 	}
-	"item_recipe_kaya_2"
+	//=================================================================================================================
+	// Recipe: Crit2
+	//=================================================================================================================
+	"item_recipe_crit2"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"4662"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"1040"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"			"item_recipe_kaya"
+		"AbilityTextureName"			"custom/crit2"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"320"	
+		"ItemCost"						"1590"	
 		"ItemShopTags"					""
 		
 		// Recipe
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemRecipe"					"1"
-		"ItemResult"					"item_kaya_2"
+		"ItemResult"					"item_crit2"
 		"ItemRequirements"
 		{
-			"01"						"item_kaya;item_orb_1"
+			"01"						"item_greater_crit;item_damage_1"
 		}
 	}
-	"item_recipe_kaya_3"
+	//=================================================================================================================
+	// Recipe: Crit3
+	//=================================================================================================================
+	"item_recipe_crit3"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"4663"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"1050"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"			"item_recipe_kaya"
+		"AbilityTextureName"			"custom/crit3"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"640"	
+		"ItemCost"						"2800"	
 		"ItemShopTags"					""
 		
 		// Recipe
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemRecipe"					"1"
-		"ItemResult"					"item_kaya_3"
+		"ItemResult"					"item_crit3"
 		"ItemRequirements"
 		{
-			"01"						"item_kaya_2;item_orb_2"
+			"01"						"item_crit2;item_damage_2"
 		}
 	}
-	"item_recipe_kaya_4"
+	"item_recipe_crit4"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"4664"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"1057"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"			"item_recipe_kaya"
+		"AbilityTextureName"			"custom/crit4"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"480"	
+		"ItemCost"						"6000"	
 		"ItemShopTags"					""
 		
 		// Recipe
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemRecipe"					"1"
-		"ItemResult"					"item_kaya_4"
+		"ItemResult"					"item_crit4"
 		"ItemRequirements"
 		{
-			"01"						"item_kaya_3;item_orb_3"
+			"01"						"item_crit3;item_damage_3"
 		}
 	}
-	"item_recipe_kaya_5"
+	"item_recipe_crit5"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"4665"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"1058"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"			"item_recipe_kaya"
+		"AbilityTextureName"			"custom/crit5"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"240"	
+		"ItemCost"						"14300"	
 		"ItemShopTags"					""
 		
 		// Recipe
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemRecipe"					"1"
-		"ItemResult"					"item_kaya_5"
+		"ItemResult"					"item_crit5"
 		"ItemRequirements"
 		{
-			"01"						"item_kaya_4;item_orb_4"
+			"01"						"item_crit4;item_damage_4"
 		}
 	}
 }

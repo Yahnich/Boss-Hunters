@@ -13,8 +13,9 @@ end
 
 modifier_item_mjollnir_handle = class({})
 function modifier_item_mjollnir_handle:OnCreated()
-	self.damage = self:GetTalentSpecialValueFor("bonus_damage")
-	self.attackspeed = self:GetTalentSpecialValueFor("bonus_attack_speed")
+	self.damage = self:GetSpecialValueFor("bonus_damage")
+	self.attackspeed = self:GetSpecialValueFor("bonus_attack_speed")
+	self.all = self:GetSpecialValueFor("all_stats")
 end
 
 function modifier_item_mjollnir_handle:GetAttributes()
@@ -24,8 +25,21 @@ end
 function modifier_item_mjollnir_handle:DeclareFunctions()
 	return {MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
 			MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
-			MODIFIER_EVENT_ON_ATTACK_LANDED
+			MODIFIER_EVENT_ON_ATTACK_LANDED,
+			MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
+			MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
+			MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
 			}
+end
+
+function modifier_item_mjollnir_handle:GetModifierBonusStats_Strength()
+	return self.all
+end
+function modifier_item_mjollnir_handle:GetModifierBonusStats_Agility()
+	return self.all
+end
+function modifier_item_mjollnir_handle:GetModifierBonusStats_Intellect()
+	return self.all
 end
 
 function modifier_item_mjollnir_handle:GetModifierPreAttack_BonusDamage()

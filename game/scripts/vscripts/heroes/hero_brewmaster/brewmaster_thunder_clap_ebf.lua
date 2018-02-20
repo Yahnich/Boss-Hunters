@@ -22,7 +22,7 @@ function brewmaster_thunder_clap_ebf:OnSpellStart()
 	end
 	
 	
-	if caster:HasTalent("special_bonus_unique_brewmaster_2") then
+	if caster:HasTalent("special_bonus_unique_brewmaster_thunder_clap_1") then
 		caster:AddNewModifier(caster, caster:FindAbilityByName("brewmaster_drunken_brawler_ebf"), "modifier_brewmaster_drunken_brawler_ebf_crit", {})
 		caster:AddNewModifier(caster, caster:FindAbilityByName("brewmaster_drunken_brawler_ebf"), "modifier_brewmaster_drunken_brawler_ebf_evade", {})
 	end

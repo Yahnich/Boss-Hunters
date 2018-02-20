@@ -6,20 +6,10 @@ function item_desolator2:GetIntrinsicModifierName()
 	return "modifier_item_deso_handle"
 end
 
-item_desolator3 = class({item_desolator2})
-function item_desolator3:GetIntrinsicModifierName()
-	return "modifier_item_deso_handle"
-end
-
-item_desolator4 = class({item_desolator2})
-function item_desolator4:GetIntrinsicModifierName()
-	return "modifier_item_deso_handle"
-end
-
-item_desolator5 = class({item_desolator2})
-function item_desolator5:GetIntrinsicModifierName()
-	return "modifier_item_deso_handle"
-end
+item_desolator3 = class(item_desolator2)
+item_desolator4 = class(item_desolator2)
+item_desolator5 = class(item_desolator2)
+item_desolator6 = class(item_desolator2)
 
 modifier_item_deso_handle = class({})
 function modifier_item_deso_handle:OnCreated(table)
@@ -52,10 +42,19 @@ function modifier_item_deso_handle:IsHidden()
 end
 
 modifier_item_deso = class({})
+
+function modifier_item_deso:OnCreated()
+	self.armor = self:GetAbility():GetSpecialValueFor("armor_reduction")
+end
+
+function modifier_item_deso:OnRefresh()
+	self.armor = math.max(self.armor, self:GetAbility():GetSpecialValueFor("armor_reduction"))
+end
+
 function modifier_item_deso:DeclareFunctions()
 	return {MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS}
 end
 
 function modifier_item_deso:GetModifierPhysicalArmorBonus()
-	return self:GetAbility():GetSpecialValueFor("armor_reduction")
+	return self.armor
 end

@@ -1,0 +1,396 @@
+"DOTAAbilities"
+{
+	"item_desolator2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"22015"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_deso.lua"
+		"AbilityTextureName"			"custom/desolator2"
+	
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"1220"
+		"ItemShopTags"					"damage;unique"
+		"ItemQuality"					"artifact"
+		"ItemAliases"					"desolator"
+		"ItemDeclarations"				"DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+	
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_damage"			"100"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"armor_reduction"		"-10"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"15.0"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Desolator
+	//=================================================================================================================
+	"item_desolator3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"3021"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+	
+		"AbilityTextureName"							"custom/desolator3"
+		"ItemKillable"									"1"
+		
+		"ItemSellable"									"1"
+		"ItemDroppable"									"1"
+		"AbilityBehavior"								"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"										"item_lua"
+		"ScriptFile"									"items/item_deso.lua"
+		"ItemCost"										"3135"
+		"ItemShopTags"									"damage;unique"
+		"ItemQuality"									"artifact"
+		"ItemAliases"									"desolator"
+		"ItemDisassembleRule"							"DOTA_ITEM_DISASSEMBLE_ALWAYS"
+		"ItemDeclarations"								"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		"precache"
+		{
+			"particle"	"particles/desolator3_projectile.vpcf"
+		}
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_damage"			"375"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"armor_reduction"		"-15"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"	"15.0"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Desolator
+	//=================================================================================================================
+	"item_desolator4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1047"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+	
+		"AbilityTextureName"			"custom/desolator4"
+		"ItemKillable"                  "1"
+		"ItemSellable"                  "1"
+		
+		"ItemDroppable"                 "1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_deso.lua"
+		"ItemCost"										"12625"
+		"ItemShopTags"									"damage;unique"
+		"ItemQuality"									"artifact"
+		"ItemAliases"									"desolator"
+		"ItemDisassembleRule"							"DOTA_ITEM_DISASSEMBLE_ALWAYS"
+		"ItemDeclarations"								"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		//====================================
+		"precache"
+		{
+			"particle"	"particles/desolator4_projectile.vpcf"
+		}
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_damage"			"1250"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"armor_reduction"		"-20"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"15.0"
+			}
+		}
+	}
+	//=================================================================================================================
+	// divine soul
+	//=================================================================================================================
+	"item_desolator5"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1180"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_deso.lua"
+		"AbilityTextureName"			"custom/desolator5"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemShareability"				"ITEM_PARTIALLY_SHAREABLE"
+		"ItemDroppable"					"1"
+		"ItemCost"						"60000"
+		"ItemShopTags"					"damage;unique;health;divine;T5;damage"
+		"ItemQuality"					"artifact"
+		"ItemAliases"					"soul"
+		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_ALWAYS"
+		
+		// "ItemStockTime"					"1"			  
+		// "ItemStockInitial"				"0"
+		// "ItemStockMax"					"1"
+		// "ItemInitialStockTime"			"1500.0"
+		
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+	
+		
+		"AbilityCooldown"	"0"
+		"AbilityManaCost"	"0"
+		
+		"precache"
+		{
+			"particle"	"particles/desolator5_projectile.vpcf"
+		}
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_damage"			"3500"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"armor_reduction"		"-25"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"15.0"
+			}
+		}
+	}
+	//=================================================================================================================
+	// divine soul
+	//=================================================================================================================
+	"item_desolator6"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1181"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_deso.lua"
+		"AbilityTextureName"			"custom/bahamut_claw"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemShareability"				"ITEM_PARTIALLY_SHAREABLE"
+		"ItemDroppable"					"1"
+		"ItemCost"						"60000"
+		"ItemShopTags"					"damage;unique;health;divine;T5;damage"
+		"ItemQuality"					"artifact"
+		"ItemAliases"					"soul"
+		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_ALWAYS"
+		
+		// "ItemStockTime"					"1"			  
+		// "ItemStockInitial"				"0"
+		// "ItemStockMax"					"1"
+		// "ItemInitialStockTime"			"1500.0"
+		
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+	
+		
+		"AbilityCooldown"	"0"
+		"AbilityManaCost"	"0"
+		
+		"precache"
+		{
+			"particle"	"particles/desolator6_projectile.vpcf"
+		}
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_damage"			"8000"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"armor_reduction"		"-30"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"	"15.0"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Desolator2
+	//=================================================================================================================
+	"item_recipe_desolator2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"3014"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_desolator"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"1450"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_desolator2"
+		"ItemRequirements"
+		{
+			"01"						"item_desolator;item_claymore"
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Desolator3
+	//=================================================================================================================
+	"item_recipe_desolator3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"3020"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_desolator"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"2100"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_desolator3"
+		"ItemRequirements"
+		{
+			"01"						"item_desolator2;item_damage_1"
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Desolator4
+	//=================================================================================================================
+	"item_recipe_desolator4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1046"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_desolator"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"3200"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_desolator4"
+		"ItemRequirements"
+		{
+			"01"						"item_desolator3;item_damage_2"
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Divine desolator
+	//=================================================================================================================
+	"item_recipe_desolator5"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1179"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_desolator"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"6375"	
+		"ItemShopTags"					""
+		
+		// "ItemStockTime"					"1"			  
+		// "ItemStockInitial"				"0"
+		// "ItemStockMax"					"1"
+		// "ItemInitialStockTime"			"1620.0"
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_desolator5"
+		"ItemRequirements"
+		{
+			"01"						"item_desolator4;item_damage_3"
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Divine desolator
+	//=================================================================================================================
+	"item_recipe_desolator6"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1182"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe_desolator"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"9860"	
+		"ItemShopTags"					""
+		
+		// "ItemStockTime"					"1"			  
+		// "ItemStockInitial"				"0"
+		// "ItemStockMax"					"1"
+		// "ItemInitialStockTime"			"1620.0"
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_desolator6"
+		"ItemRequirements"
+		{
+			"01"						"item_desolator5;item_damage_4"
+		}
+	}
+}

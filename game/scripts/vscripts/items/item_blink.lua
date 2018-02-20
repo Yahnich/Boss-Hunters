@@ -24,6 +24,7 @@ function item_blink_2:OnSpellStart()
 	EmitSoundOn("DOTA_Item.BlinkDagger.Activate", caster)
 	ParticleManager:FireParticle("particles/items_fx/blink_dagger_start.vpcf", PATTACH_ABSORIGIN, caster, {[0] = caster:GetAbsOrigin()})
 	FindClearSpaceForUnit(caster, targetPos, true)
+	ProjectileManager:ProjectileDodge( caster )
 	ParticleManager:FireParticle("particles/items_fx/blink_dagger_end.vpcf", PATTACH_ABSORIGIN, caster, {[0] = caster:GetAbsOrigin()})
 	EmitSoundOn("DOTA_Item.BlinkDagger.NailedIt", caster)
 end

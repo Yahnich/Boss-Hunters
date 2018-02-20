@@ -9,14 +9,14 @@
 		"Ability4"				"abaddon_curse_ebf"
 		"Ability6"				"abaddon_borrowed_time_ebf"
 		
-		"Ability10"				"special_bonus_mp_200"
-		"Ability11"				"special_bonus_armor_4"
-		"Ability12"				"special_bonus_cast_range_125"
-		"Ability13"				"special_bonus_hp_400"
-		"Ability14"				"special_bonus_unique_abaddon_2"
-		"Ability15"				"special_bonus_cooldown_reduction_15"
-		"Ability16"				"special_bonus_strength_25"
-		"Ability17"				"special_bonus_unique_abaddon"
+		"Ability10"				"special_bonus_unique_abaddon_death_coil_1"
+		"Ability11"				"special_bonus_unique_abaddon_death_coil_2"
+		"Ability12"				"special_bonus_unique_abaddon_aphotic_barrier_1"
+		"Ability13"				"special_bonus_unique_abaddon_aphotic_barrier_2"
+		"Ability14"				"special_bonus_unique_abaddon_brume_weaver_1"
+		"Ability15"				"special_bonus_unique_abaddon_brume_weaver_2"
+		"Ability16"				"special_bonus_unique_abaddon_borrowed_time_1"
+		"Ability17"				"special_bonus_unique_abaddon_borrowed_time_2"
 			
 	}
 	//=================================================================================================================
@@ -159,14 +159,14 @@
 		"ability3"					"brewmaster_drunken_brawler_ebf"
 		"Ability6"					"brewmaster_primal_avatar"					// Ability 4
 		
-		"Ability10"					"special_bonus_attack_damage_30"
-		"Ability11"					"special_bonus_hp_200"
-		"Ability12"					"special_bonus_unique_brewmaster_2"
-		"Ability13"					"special_bonus_magic_resistance_20"
-		"Ability14"					"special_bonus_unique_brewmaster_4"
-		"Ability15"					"special_bonus_attack_speed_100"
-		"Ability16"					"special_bonus_unique_brewmaster_3"
-		"Ability17"					"special_bonus_unique_brewmaster"
+		"Ability10"					"special_bonus_unique_brewmaster_thunder_clap_1"
+		"Ability11"					"special_bonus_unique_brewmaster_thunder_clap_2"
+		"Ability12"					"special_bonus_unique_brewmaster_drunken_haze_1"
+		"Ability13"					"special_bonus_unique_brewmaster_drunken_haze_2"
+		"Ability14"					"special_bonus_unique_brewmaster_drunken_brawler_1"
+		"Ability15"					"special_bonus_unique_brewmaster_drunken_brawler_2"
+		"Ability16"					"special_bonus_unique_brewmaster_primal_avatar_1"
+		"Ability17"					"special_bonus_unique_brewmaster_primal_avatar_2"
 	}
 	//=================================================================================================================
 	// HERO: Bristleback

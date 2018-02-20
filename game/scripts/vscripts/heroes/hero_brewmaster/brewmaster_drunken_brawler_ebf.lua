@@ -70,11 +70,11 @@ function modifier_brewmaster_drunken_brawler_ebf_handler:OnIntervalThink()
 end
 
 function modifier_brewmaster_drunken_brawler_ebf_handler:DeclareFunctions()
-	return {MODIFIER_PROPERTY_EVASION_CONSTANT, MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE}
+	return {MODIFIER_PROPERTY_EVASION_CONSTANT, MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE, MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE}
 end
 
-function modifier_brewmaster_drunken_brawler_ebf_handler:GetModifierPreAttack_CriticalStrike()
-	if self:GetParent():HasModifier("modifier_brewmaster_drunken_brawler_ebf_crit") or RollPercentage( self.crit_chance ) then
+function modifier_brewmaster_drunken_brawler_ebf_handler:GetModifierPreAttack_CriticalStrike(params)
+	if self:GetParent():HasModifier("modifier_brewmaster_drunken_brawler_ebf_crit") or RollPercentage( self.crit_chance ) or (self:GetParent():HasTalent("special_bonus_unique_brewmaster_drunken_haze_1") and params.unit:HasModifier("modifier_brewmaster_drunken_haze_debuff")) then
 		self.lastCrit = self.delay
 		self:GetParent():RemoveModifierByName("modifier_brewmaster_drunken_brawler_ebf_crit")
 		return self.crit_damage
@@ -82,12 +82,25 @@ function modifier_brewmaster_drunken_brawler_ebf_handler:GetModifierPreAttack_Cr
 end
 
 function modifier_brewmaster_drunken_brawler_ebf_handler:GetModifierEvasion_Constant()
-	if self:GetParent():HasModifier("modifier_brewmaster_drunken_brawler_ebf_evade") or RollPercentage( self.evasion ) then
-		self.lastDodge = self.delay
-		if IsServer() then self:GetParent():RemoveModifierByName("modifier_brewmaster_drunken_brawler_ebf_evade") end
-		return 100
+	if not self:GetParent():HasTalent("special_bonus_unique_brewmaster_drunken_brawler_2") then
+		if self:GetParent():HasModifier("modifier_brewmaster_drunken_brawler_ebf_evade") or RollPercentage( self.evasion ) then
+			self.lastDodge = self.delay
+			if IsServer() then self:GetParent():RemoveModifierByName("modifier_brewmaster_drunken_brawler_ebf_evade") end
+			return 100
+		end
 	end
 end
+
+function modifier_brewmaster_drunken_brawler_ebf_handler:GetModifierIncomingDamage_Percentage()
+	if self:GetParent():HasTalent("special_bonus_unique_brewmaster_drunken_brawler_2") then
+		if self:GetParent():HasModifier("modifier_brewmaster_drunken_brawler_ebf_evade") or RollPercentage( self.evasion ) then
+			self.lastDodge = self.delay
+			if IsServer() then self:GetParent():RemoveModifierByName("modifier_brewmaster_drunken_brawler_ebf_evade") end
+			return -999
+		end
+	end
+end
+
 
 
 modifier_brewmaster_drunken_brawler_ebf_crit = class({})

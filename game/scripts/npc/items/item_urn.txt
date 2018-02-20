@@ -4,7 +4,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"24000"												// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"4484"												// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_urn.lua"
 	
@@ -12,7 +12,6 @@
 		"AbilityManaCost"               "100"
 		"AbilityCastRange"				"950"
 		"AbilityCooldown"				"8.0"
-		"HasPureCooldown"				"1"
 		
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
@@ -47,33 +46,23 @@
 		{
 			"01"
 			{
-					"var_type"								"FIELD_INTEGER"
-					"bonus_armor"							"10"
+					"var_type"								"FIELD_FLOAT"
+					"bonus_mregen"							"2.5"
 			}
 			"02"
 			{
 					"var_type"								"FIELD_INTEGER"
-					"bonus_mregen"							"5"
+					"bonus_stats"							"15"
 			}
 			"03"
 			{
 					"var_type"								"FIELD_INTEGER"
-					"bonus_stats"							"30"
+					"damage_heal"							"100"
 			}
 			"04"
 			{
-					"var_type"								"FIELD_INTEGER"
-					"damage_heal"							"100"
-			}
-			"05"
-			{
 					"var_type"								"FIELD_FLOAT"
 					"duration"								"8"
-			}
-			"06"
-			{
-					"var_type"								"FIELD_INTEGER"
-					"reduc_armor"							"-5"
 			}
 		}
 	}
@@ -81,7 +70,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"24001"												// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"4485"												// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_urn.lua"
 	
@@ -89,7 +78,6 @@
 		"AbilityManaCost"               "200"
 		"AbilityCastRange"				"950"
 		"AbilityCooldown"				"8.0"
-		"HasPureCooldown"				"1"
 		
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
@@ -129,8 +117,8 @@
 			}
 			"02"
 			{
-					"var_type"								"FIELD_INTEGER"
-					"bonus_mregen"							"10"
+					"var_type"								"FIELD_FLOAT"
+					"bonus_mregen"							"5"
 			}
 			"03"
 			{
@@ -150,7 +138,7 @@
 			"06"
 			{
 					"var_type"								"FIELD_INTEGER"
-					"reduc_armor"							"-10"
+					"reduc_armor"							"-5"
 			}
 		}
 	}
@@ -158,7 +146,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"24002"												// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"4486"												// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_urn.lua"
 	
@@ -166,7 +154,6 @@
 		"AbilityManaCost"               "400"
 		"AbilityCastRange"				"950"
 		"AbilityCooldown"				"8.0"
-		"HasPureCooldown"				"1"
 		
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
@@ -202,32 +189,37 @@
 			"01"
 			{
 					"var_type"								"FIELD_INTEGER"
-					"bonus_armor"							"30"
+					"bonus_armor"							"60"
 			}
 			"02"
 			{
 					"var_type"								"FIELD_INTEGER"
-					"bonus_mregen"							"20"
+					"bonus_evasion"							"20"
 			}
 			"03"
 			{
-					"var_type"								"FIELD_INTEGER"
-					"bonus_stats"							"90"
+					"var_type"								"FIELD_FLOAT"
+					"bonus_mregen"							"7.5"
 			}
 			"04"
 			{
 					"var_type"								"FIELD_INTEGER"
-					"damage_heal"							"2000"
+					"bonus_stats"							"200"
 			}
 			"05"
+			{
+					"var_type"								"FIELD_INTEGER"
+					"damage_heal"							"500"
+			}
+			"06"
 			{
 					"var_type"								"FIELD_FLOAT"
 					"duration"								"8"
 			}
-			"06"
+			"07"
 			{
 					"var_type"								"FIELD_INTEGER"
-					"reduc_armor"							"-20"
+					"reduc_armor"							"-9"
 			}
 		}
 	}
@@ -235,7 +227,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"24003"												// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"4487"												// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_urn.lua"
 	
@@ -243,7 +235,6 @@
 		"AbilityManaCost"               "800"
 		"AbilityCastRange"				"950"
 		"AbilityCooldown"				"8.0"
-		"HasPureCooldown"				"1"
 		
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
@@ -277,32 +268,42 @@
 			"01"
 			{
 					"var_type"								"FIELD_INTEGER"
-					"bonus_armor"							"40"
+					"bonus_armor"							"140"
 			}
 			"02"
 			{
 					"var_type"								"FIELD_INTEGER"
-					"bonus_mregen"							"40"
+					"bonus_evasion"							"25"
 			}
 			"03"
 			{
-					"var_type"								"FIELD_INTEGER"
-					"bonus_stats"							"120"
+					"var_type"								"FIELD_FLOAT"
+					"bonus_mregen"							"10"
 			}
 			"04"
 			{
 					"var_type"								"FIELD_INTEGER"
-					"damage_heal"							"8000"
+					"bonus_stats"							"800"
 			}
 			"05"
+			{
+					"var_type"								"FIELD_INTEGER"
+					"damage_heal"							"2000"
+			}
+			"06"
 			{
 					"var_type"								"FIELD_FLOAT"
 					"duration"								"8"
 			}
-			"06"
+			"07"
 			{
 					"var_type"								"FIELD_INTEGER"
-					"reduc_armor"							"-40"
+					"reduc_armor"							"-11"
+			}
+			"08"
+			{
+					"var_type"								"FIELD_INTEGER"
+					"disables_healing"						"1"
 			}
 		}
 	}
@@ -310,15 +311,14 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"24003"												// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"4488"												// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_urn.lua"
 	
 		"AbilityTextureName"			"custom/spirit_vessel_5"
-		"AbilityManaCost"               "800"
+		"AbilityManaCost"               "1600"
 		"AbilityCastRange"				"950"
 		"AbilityCooldown"				"8.0"
-		"HasPureCooldown"				"1"
 		
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
@@ -352,117 +352,135 @@
 			"01"
 			{
 					"var_type"								"FIELD_INTEGER"
-					"bonus_armor"							"40"
+					"bonus_armor"							"350"
 			}
 			"02"
 			{
 					"var_type"								"FIELD_INTEGER"
-					"bonus_mregen"							"40"
+					"bonus_evasion"							"30"
 			}
 			"03"
 			{
-					"var_type"								"FIELD_INTEGER"
-					"bonus_stats"							"120"
+					"var_type"								"FIELD_FLOAT"
+					"bonus_mregen"							"12.5"
 			}
 			"04"
 			{
 					"var_type"								"FIELD_INTEGER"
-					"damage_heal"							"8000"
+					"bonus_stats"							"2500"
 			}
 			"05"
+			{
+					"var_type"								"FIELD_INTEGER"
+					"damage_heal"							"8000"
+			}
+			"06"
 			{
 					"var_type"								"FIELD_FLOAT"
 					"duration"								"8"
 			}
-			"06"
+			"07"
 			{
 					"var_type"								"FIELD_INTEGER"
-					"reduc_armor"							"-40"
+					"reduc_armor"							"-13"
+			}
+			"08"
+			{
+					"var_type"								"FIELD_INTEGER"
+					"disables_healing"						"1"
 			}
 		}
 	}
 	"item_recipe_urn_2"
 	{
-		"ID"											"33006"
-		"Model"											"models/props_gameplay/recipe.mdl"
-		"BaseClass"										"item_recipe_urn_of_shadows"
-		"AbilityTextureName"							"item_recipe_urn_of_shadows"
-	
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"4489"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe_urn_of_shadows"
+		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"										"0"    
-		"ItemShopTags"									""
-			
+		"ItemCost"						"240"	
+		"ItemShopTags"					""
+		
 		// Recipe
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemRecipe"									"1"
-		"ItemResult"									"item_urn_2"
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_urn_2"
 		"ItemRequirements"
 		{
-				"01"									"item_medallion_of_courage;item_orb_of_shadows;item_urn_1;"
+			"01"						"item_urn_1;item_orb_1;item_medallion_of_courage"
 		}
 	}
 	"item_recipe_urn_3"
 	{
-		"ID"											"33006"
-		"Model"											"models/props_gameplay/recipe.mdl"
-		"BaseClass"										"item_recipe_urn_of_shadows"
-		"AbilityTextureName"							"item_recipe_urn_of_shadows"
-	
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"4490"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe_urn_of_shadows"
+		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"										"0"    
-		"ItemShopTags"									""
-			
+		"ItemCost"						"840"	
+		"ItemShopTags"					""
+		
 		// Recipe
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemRecipe"									"1"
-		"ItemResult"									"item_urn_3"
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_urn_3"
 		"ItemRequirements"
 		{
-				"01"									"item_solar_crest;item_orb_of_doom;item_urn_2;"
+			"01"						"item_urn_2;item_orb_2;item_solar_crest"
 		}
 	}
 	"item_recipe_urn_4"
 	{
-			"ID"											"33006"
-			"Model"											"models/props_gameplay/recipe.mdl"
-			"BaseClass"										"item_recipe_urn_of_shadows"
-			"AbilityTextureName"							"item_recipe_urn_of_shadows"
-	
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"4491"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe_urn_of_shadows"
+		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-			"ItemCost"										"3650"    
-			"ItemShopTags"									""
-			
+		"ItemCost"						"1240"	
+		"ItemShopTags"					""
+		
 		// Recipe
 		//-------------------------------------------------------------------------------------------------------------
-			"ItemRecipe"									"1"
-			"ItemResult"									"item_urn_4"
-			"ItemRequirements"
-			{
-					"01"									"item_orb_divine;item_urn_3;"
-			}
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_urn_4"
+		"ItemRequirements"
+		{
+			"01"						"item_urn_3;item_orb_3;item_cursed_amulet"
+		}
 	}
 	"item_recipe_urn_5"
 	{
-		"ID"											"33007"
-		"Model"											"models/props_gameplay/recipe.mdl"
-		"BaseClass"										"item_recipe_urn_of_shadows"
-		"AbilityTextureName"							"item_recipe_urn_of_shadows"
-	
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"4492"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe_urn_of_shadows"
+		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"										"9520"    
-		"ItemShopTags"									""
-			
+		"ItemCost"						"3450"	
+		"ItemShopTags"					""
+		
 		// Recipe
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemRecipe"									"1"
-		"ItemResult"									"item_urn_5"
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_urn_5"
 		"ItemRequirements"
 		{
-				"01"									"item_orb_bahamut;item_urn_4;"
+			"01"						"item_urn_4;item_orb_4"
 		}
 	}
 }

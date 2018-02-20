@@ -1,12 +1,26 @@
 abaddon_aphotic_barrier = class({})
 
+function abaddon_aphotic_barrier:GetCooldown(iLvl)
+	local cd = self.BaseClass.GetCooldown(self, iLvl)
+	if self:GetCaster():HasTalent("special_bonus_unique_abaddon_aphotic_barrier_2") then cd = cd + self:GetCaster():FindTalentValue("special_bonus_unique_abaddon_aphotic_barrier_2") end
+	return cd
+end
+
+function abaddon_aphotic_barrier:GetBehavior(iLvl)
+	if self:GetCaster():HasTalent("special_bonus_unique_abaddon_aphotic_barrier_2") then
+		return DOTA_ABILITY_BEHAVIOR_NO_TARGET
+	end
+	return DOTA_ABILITY_BEHAVIOR_UNIT_TARGET
+end
+
+
 function abaddon_aphotic_barrier:OnSpellStart()
 	local caster = self:GetCaster()
-	local target = self:GetCursorTarget()
+	local target = self:GetCursorTarget() or caster
 	target:Dispel(caster, true)
 	target:RemoveModifierByName("modifier_abaddon_aphotic_barrier")
-	if caster:HasTalent("special_bonus_unique_abaddon") then
-		local targets = caster:FindFriendlyUnitsInRadius( target:GetAbsOrigin(), caster:FindTalentValue("special_bonus_unique_abaddon") )
+	if caster:HasTalent("special_bonus_unique_abaddon_aphotic_barrier_1") then
+		local targets = caster:FindFriendlyUnitsInRadius( target:GetAbsOrigin(), caster:FindTalentValue("special_bonus_unique_abaddon_aphotic_barrier_1") )
 		for _, hitTarget in ipairs( targets ) do
 			hitTarget:AddNewModifier(caster, self, "modifier_abaddon_aphotic_barrier", {duration = self:GetTalentSpecialValueFor("duration")})
 		end
