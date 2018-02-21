@@ -59,7 +59,7 @@ if IsServer() then
 		EmitSoundOn("Hero_Centaur.Stampede.Stun", target)
 		self:GetAbility():DealDamage( caster, target, self.damage )
 		if caster:HasTalent("special_bonus_unique_centaur_stampede_1") then
-			self:Stun( target, self.slowDuration, false )
+			self:GetAbility():Stun( target, self.slowDuration, false )
 		end
 		target:AddNewModifier( caster, self:GetAbility(), "modifier_centaur_stampede_ebf_slow", {duration = self.slowDuration} )
 	end

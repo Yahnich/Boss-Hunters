@@ -92,3 +92,7 @@ end
 function modifier_brewmaster_drunken_haze_debuff:GetStatusEffectName()
 	return "particles/status_fx/status_effect_brewmaster_drunken_haze.vpcf"
 end
+
+function modifier_brewmaster_drunken_haze_debuff:GetTauntTarget()
+	if self:GetCaster():HasTalent("special_bonus_unique_brewmaster_drunken_haze_2") then return self:GetCaster() end
+end

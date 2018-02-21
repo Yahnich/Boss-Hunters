@@ -17,23 +17,34 @@ function abaddon_death_coil_ebf:OnSpellStart()
 	local target = self:GetCursorTarget()
 	local caster = self:GetCaster()
 	local projectile_speed = self:GetTalentSpecialValueFor( "projectile_speed" )
-	local particle_name = "particles/units/heroes/hero_abaddon/abaddon_death_coil.vpcf"
 
 	-- Play the ability sound
 	caster:EmitSound("Hero_Abaddon.DeathCoil.Cast")
 
 	local heal_pct = self:GetTalentSpecialValueFor( "heal_pct" ) / 100
 	local self_heal = self:GetTalentSpecialValueFor( "self_heal" )
-	caster:HealEvent(self_heal + caster:GetMaxHealth()*heal_pct, self, caster)
+	caster:HealEvent(self_heal, self, caster)
 
+	self:CreateMistCoil(target, source)
+	if caster:HasTalent("special_bonus_unique_abaddon_death_coil_1") then
+		for _, enemy in ipairs( caster:FindAllUnitsInRadius( target:GetAbsOrigin(), caster:FindTalentValue("special_bonus_unique_abaddon_death_coil_1") ) ) do
+			if enemy ~= target and enemy ~= caster then
+				self:CreateMistCoil(enemy, target)
+				break
+			end
+		end
+	end
+end
+
+function abaddon_death_coil_ebf:CreateMistCoil(target, source)
 	local projectile = {
 		Target = target,
-		Source = caster,
+		Source = source or self:GetCaster(),
 		Ability = self,
-		EffectName = particle_name,
+		EffectName = "particles/units/heroes/hero_abaddon/abaddon_death_coil.vpcf",
 		bDodgable = false,
 		bProvidesVision = false,
-		iMoveSpeed = 6000,
+		iMoveSpeed = self:GetTalentSpecialValueFor( "projectile_speed" ),
 		iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_HITLOCATION,
 	}
 	ProjectileManager:CreateTrackingProjectile(projectile)

@@ -23,7 +23,7 @@
 		"ItemResult"					"item_soul"
 		"ItemRequirements"
 		{
-			"01"						"item_hurricane_pike;item_orb_of_shadows"
+			"01"						"item_hurricane_pike;item_orb_1"
 		}
 	}
 	//=================================================================================================================
@@ -147,7 +147,7 @@
 		"ItemResult"					"item_demonsoul"
 		"ItemRequirements"
 		{
-			"01"						"item_soul;item_orb_of_doom"
+			"01"						"item_soul;item_orb_2"
 		}
 	}
 	//=================================================================================================================
@@ -271,7 +271,7 @@
 		"ItemResult"					"item_divinesoul"
 		"ItemRequirements"
 		{
-			"01"						"item_demonsoul;item_orb_divine"
+			"01"						"item_demonsoul;item_orb_3"
 		}
 	}
 	//=================================================================================================================
@@ -395,7 +395,7 @@
 		"ItemResult"					"item_abyssal_soul"
 		"ItemRequirements"
 		{
-			"01"						"item_divinesoul;item_orb_bahamut"
+			"01"						"item_divinesoul;item_orb_4"
 		}
 	}
 	//=================================================================================================================

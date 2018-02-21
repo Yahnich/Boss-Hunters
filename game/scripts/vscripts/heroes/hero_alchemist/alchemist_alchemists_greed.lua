@@ -1,5 +1,10 @@
 alchemist_alchemists_greed = class({})
 
+function alchemist_alchemists_greed:GetCooldown(iLvl)
+	local cd = self.BaseClass.GetCooldown(self, iLvl) - self:GetCaster():FindTalentValue("special_bonus_unique_alchemist_alchemists_greed_2")
+	return cd
+end
+
 function alchemist_alchemists_greed:GetIntrinsicModifierName()
 	return "modifier_alchemist_alchemists_greed_handler"
 end

@@ -16,7 +16,7 @@ function modifier_lion_mana_aura:GetAuraDuration()
 end
 
 function modifier_lion_mana_aura:GetAuraRadius()
-    return 9999999999
+    return -1
 end
 
 function modifier_lion_mana_aura:GetAuraSearchFlags()
@@ -45,7 +45,7 @@ end
 
 modifier_lion_mana_aura_effect = class({})
 function modifier_lion_mana_aura_effect:OnCreated(table)
-    --self.manaRegen = self:GetParent():GetMaxMana()*self:GetSpecialValueFor("mana_regen")/100
+    self.manaRegen = self:GetSpecialValueFor("mana_regen")
 end
 
 function modifier_lion_mana_aura_effect:DeclareFunctions()
@@ -56,5 +56,5 @@ function modifier_lion_mana_aura_effect:DeclareFunctions()
 end
 
 function modifier_lion_mana_aura_effect:GetModifierTotalPercentageManaRegen()
-    return self:GetSpecialValueFor("mana_regen")
+    return self.manaRegen
 end

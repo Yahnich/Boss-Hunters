@@ -1,8 +1,14 @@
-#base "items\item_blink.txt"
-#base "items\item_soul.txt"
-#base "items\item_kaya.txt"
-#base "items\item_cuirass.txt"
-#base "items\item_mjollnir.txt"
+#base "items/item_blink.txt"
+#base "items/item_kaya.txt"
+#base "items/item_cuirass.txt"
+#base "items/item_mjollnir.txt"
+#base "items/item_soul.txt"
+#base "items/item_crit.txt"
+#base "items/item_desolator.txt"
+#base "items/item_urn.txt"
+#base "items/item_generic_damage.txt"
+#base "items/item_generic_stats.txt"
+
 
 "DOTAAbilities"
 {
@@ -38,188 +44,6 @@
 		"ItemPermanent"					"0"
 		"ItemInitialCharges"			"1"
 		"ItemKillable"					"0"
-	}
-	//=================================================================================================================
-	// divine soul
-	//=================================================================================================================
-	"item_bahamut_claw"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"1275"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"custom/bahamut_claw"
-		"ItemKillable"					"1"
-		"ItemSellable"					"1"
-		"ItemShareability"				"ITEM_PARTIALLY_SHAREABLE"
-		"ItemDroppable"					"1"
-		"ItemCost"						"140000"
-		"ItemShopTags"					"damage;unique;health;bahamut;T6;damage"
-		"ItemQuality"					"artifact"
-		"ItemAliases"					"soul"
-		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_ALWAYS"
-		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-	
-		
-		
-		"AbilityCooldown"	"0"
-		"AbilityManaCost"	"0"
-		
-		"precache"
-		{
-			"particle"	"particles/desolator6_projectile.vpcf"
-		}
-			
-		"OnEquip"
-		{
-			"RunScript"
-			{
-				"ScriptFile"		"lua_item/simple_item"
-				"Function"			"ApplyOrbEffect"
-				"projectileName"	"particles/desolator6_projectile.vpcf"
-			}
-		}
-		"OnUnequip"
-		{
-			"RunScript"
-			{
-				"ScriptFile"		"lua_item/simple_item"
-				"Function"			"RemoveOrbEffect"
-				"projectileName"	"particles/desolator6_projectile.vpcf"
-			}
-		}
-	
-		"Modifiers"
-		{
-			"desolator5_stat"
-			{
-				"OnAttackLanded"
-					{
-					"ApplyModifier"
-					{
-						"Target" 
-						{
-							"Center" "TARGET"
-							"Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-						}
-						"ModifierName"		"bahamut_claw_effect"
-					}
-					"Random"
-					{
-		   				"Chance" "%critical_chance"
-		   				"OnSuccess"
-		   				{
-							"ApplyModifier"
-							{
-								"ModifierName" 	"critical_strike_h"
-								"Target" 
-								{
-									"Center" "CASTER"
-									"Flags" "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
-								}
-							}
-						}
-						"OnFailure"
-						{}
-					}
-					
-				}
-				"Passive"	 	"1"
-				"Attributes"    "MODIFIER_ATTRIBUTE_MULTIPLE"
-				"IsHidden"		"1"
-				
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"  		"%bonus_health_regen"
-					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"		"%bonus_armor"
-					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"		"%bonus_damage"
-					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"		"%bonus_all"
-					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"			"%bonus_all"
-					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"		"%bonus_all"
-					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"  "%bonus_attack_speed"
-				}
-			}
-			"critical_strike_h"
-			{
-				"IsHidden"		"1"
-				"Attributes"	"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE" 	"%critical_bonus"
-				}
-				"OnAttackLanded"
-				{
-					"RemoveModifier"
-					{
-						"ModifierName" 	"critical_strike_h"
-						"Target" 		"CASTER"
-					}
-				}
-			}
-	
-			"bahamut_claw_effect"
-			{
-				"IsDebuff" "1"
-	    			"IsPurgable" "0"
-	    			"Duration" "%duration"
-	     			"Properties"
-	     			{
-	       				"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "%armor_reduction"
-	     			}
-			}
-		}
-		
-		// Special	
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"5000"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"armor_reduction"		"-30"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"	"15.0"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_armor"			"50"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_health_regen"	"100"
-			}
-			"06"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"bonus_all"				"3000"
-			}
-			"07"
-			{
-				"var_type"								"FIELD_INTEGER"
-				"bonus_attack_speed"					"500"
-			}
-			"08"
-			{
-				"var_type"								"FIELD_INTEGER"
-				"critical_bonus"						"350"
-			}
-			"10"
-			{
-				"var_type"								"FIELD_INTEGER"
-				"critical_chance"						"35"
-			}
-		}
 	}
 	//=================================================================================================================
 	// Berserker Helm
@@ -2862,51 +2686,6 @@
 	            }
 	        }
 	    }
-	}
-	//=================================================================================================================
-	// scythe
-	//=================================================================================================================
-	"item_death_scythe"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"1170"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"BaseClass"						"item_datadriven"
-		"ItemShareability"				"ITEM_PARTIALLY_SHAREABLE"
-		"AbilityTextureName"			"custom/death_scythe"
-	
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"7000"
-		"ItemQuality"					"artifact"
-		"ItemAliases"					"death scythe"
-		"ItemDeclarations"				"DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-	
-		"Modifiers"
-		{
-	
-			"passive"
-			{
-				"Passive" "1"
-				"IsHidden" "1"
-				"Attributes"    "MODIFIER_ATTRIBUTE_MULTIPLE"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"		"%bonus_damage"
-				}
-			}
-		}
-		// Special	
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"1100"
-			}
-		}
 	}
 	"item_divine_ring"
 	{
@@ -7804,217 +7583,6 @@
 			
 		}
 	}
-	"item_orb_bahamut"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"1206"				// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"custom/orb_bahamut"
-		"ItemShareability"				"ITEM_NOT_SHAREABLE"
-		"ItemKillable"					"1"
-		"ItemSellable"					"1"
-		"ItemDroppable"					"1"
-		"ItemCost"						"40000"
-		"ItemShopTags"					"str"
-		"ItemQuality"					"component"
-		"ItemAliases"					"Orb"
-		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_ALWAYS"
-		
-	
-		// Special	
-		//-------------------------------------------------------------------------------------------------------------
-		"Modifiers"
-		{
-	    		"item_custom_modifier"
-	    		{
-		        "Passive" "1"  
-		        "IsHidden" "1"  
-		        "Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE" //This makes duplicate items stack their properties
-		        "Properties"
-		        {
-		            "MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "%bonus_str"
-		            "MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "%bonus_agi"
-		            "MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "%bonus_int"
-		        }
-		    }
-		}
-		"AbilitySpecial"
-		{
-				"01"
-					{
-							"var_type"							"FIELD_INTEGER"
-							"bonus_agi"							"1000"
-					}
-							"02"
-					{
-							"var_type"							"FIELD_INTEGER"
-							"bonus_int"							"1000"
-					}
-					"03"
-					{
-							"var_type"							"FIELD_INTEGER"
-							"bonus_str"							"1000"
-					}
-					"04"
-					{
-						"var_type"								"FIELD_INTEGER"
-						"bonus_all_stats_tooltip"				"1000"
-					}
-		}
-		
-	}
-	"item_orb_divine"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"1076"				// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"custom/orb_divine"
-		"ItemShareability"				"ITEM_NOT_SHAREABLE"
-		"ItemKillable"					"1"
-		"ItemSellable"					"1"
-		"ItemDroppable"					"1"
-		"ItemCost"						"12000"
-		"ItemShopTags"					"str"
-		"ItemQuality"					"component"
-		"ItemAliases"					"Orb"
-		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_ALWAYS"
-		
-	
-		// Special	
-		//-------------------------------------------------------------------------------------------------------------
-		"Modifiers"
-		{
-	    		"item_custom_modifier"
-	    		{
-		        "Passive" "1"  
-		        "IsHidden" "1"  
-		        "Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE" //This makes duplicate items stack their properties
-		        "Properties"
-		        {
-		            "MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "%bonus_str"
-		            "MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "%bonus_agi"
-		            "MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "%bonus_int"
-		        }
-		    }
-		}
-		"AbilitySpecial"
-		{
-				"01"
-					{
-							"var_type"							"FIELD_INTEGER"
-							"bonus_agi"							"300"
-					}
-							"02"
-					{
-							"var_type"							"FIELD_INTEGER"
-							"bonus_int"							"300"
-					}
-					"03"
-					{
-							"var_type"							"FIELD_INTEGER"
-							"bonus_str"							"300"
-					}
-					"04"
-					{
-						"var_type"								"FIELD_INTEGER"
-						"bonus_all_stats_tooltip"				"300"
-					}
-		}
-		
-	}
-	"item_orb_of_doom"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"1053"				// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"custom/orb_of_doom"
-		"ItemKillable"					"1"
-		"ItemSellable"					"1"
-		"ItemDroppable"					"1"
-		"ItemShareability"				"ITEM_NOT_SHAREABLE"
-		"ItemCost"						"5400"
-		"ItemShopTags"					"str"
-		"ItemQuality"					"component"
-		"ItemAliases"					"Orb"
-		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_ALWAYS"
-		
-	
-		// Special	
-		//-------------------------------------------------------------------------------------------------------------
-		"Modifiers"
-		{
-	    		"item_custom_modifier"
-	    		{
-		        "Passive" "1"  
-		        "IsHidden" "1"  
-		        "Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE" //This makes duplicate items stack their properties
-		        "Properties"
-		        {
-		            "MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "%bonus_all_stats_tooltip"
-		            "MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "%bonus_all_stats_tooltip"
-		            "MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "%bonus_all_stats_tooltip"
-		        }
-		    }
-		}
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"								"FIELD_INTEGER"
-				"bonus_all_stats_tooltip"				"100"
-			}
-		}
-		
-	}
-	"item_orb_of_shadows"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"3011"				// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-	
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"BaseClass"						"item_datadriven"
-		"ItemShareability"				"ITEM_NOT_SHAREABLE"
-		"AbilityTextureName"			"custom/orb_of_shadows"
-		"ItemKillable"					"1"
-		"ItemCost"						"1400"
-		"ItemShopTags"					"str"
-		"ItemQuality"					"actifact"
-		"ItemAliases"					"Orb"
-		
-	
-		// Special	
-		//-------------------------------------------------------------------------------------------------------------
-		"Modifiers"
-		{
-	    		"item_custom_modifier"
-			{
-		        "Passive" "1"  
-		        "IsHidden" "1"  
-		        "Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE" //This makes duplicate items stack their properties
-		        "Properties"
-		        {
-		            "MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "%bonus_all"
-		            "MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "%bonus_all"
-		            "MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "%bonus_all"
-		        }
-		    }
-		}
-		"AbilitySpecial"
-		{
-			"01"
-			{
-								"var_type"								"FIELD_INTEGER"
-								"bonus_all"							"30"
-			}
-		}
-	}
 	"item_overlord_ring"
 	{
 		// General
@@ -8658,32 +8226,6 @@
 			"01"						"item_asura_staff;item_asura_core"
 		}
 	}	
-	//=================================================================================================================
-	// Recipe: Divine desolator
-	//=================================================================================================================
-	"item_recipe_bahamut_claw"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"1274"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"BaseClass"						"item_recipe_arcane_boots"
-		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"	"custom/bahamut_claw"
-		
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"8960"	
-		"ItemShopTags"					""
-		
-		// Recipe
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemRecipe"					"1"
-		"ItemResult"					"item_bahamut_claw"
-		"ItemRequirements"
-		{
-			"01"						"item_desolator5;item_orb_bahamut;item_unstable_stone"
-		}
-	}
 	"item_recipe_berserker_face"
 	{
 		// General
@@ -8700,7 +8242,7 @@
 		"ItemResult"					"item_berserker_face"
 		"ItemRequirements"
 		{
-			"01"						"item_armlet;item_monkey_king_bar;item_lifesteal;item_orb_of_doom"
+			"01"						"item_armlet;item_monkey_king_bar;item_lifesteal;item_orb_2"
 		}
 	}
 	"item_recipe_berserker_face_2"
@@ -8723,7 +8265,7 @@
 		"ItemResult"					"item_berserker_face_2"
 		"ItemRequirements"
 		{
-			"01"						"item_berserker_face;item_orb_of_doom"
+			"01"						"item_berserker_face;item_orb_2"
 		}
 	}
 	"item_recipe_berserker_face_3"
@@ -8746,7 +8288,7 @@
 		"ItemResult"					"item_berserker_face_3"
 		"ItemRequirements"
 		{
-			"01"						"item_berserker_face_2;item_orb_of_doom"
+			"01"						"item_berserker_face_2;item_orb_2"
 		}
 	}
 	"item_recipe_berserker_face_4"
@@ -8769,7 +8311,7 @@
 		"ItemResult"					"item_berserker_face_4"
 		"ItemRequirements"
 		{
-			"01"						"item_berserker_face_3;item_orb_of_doom"
+			"01"						"item_berserker_face_3;item_orb_2"
 		}
 	}
 	//=================================================================================================================
@@ -8793,7 +8335,7 @@
 		"ItemResult"					"item_bfury2"
 		"ItemRequirements"
 		{
-			"01"						"item_bfury_custom;item_bfury_custom;item_zweihander"
+			"01"						"item_bfury_custom;item_bfury_custom;item_damage_1"
 		}
 	}	
 	//=================================================================================================================
@@ -8817,7 +8359,7 @@
 		"ItemResult"					"item_blade_mail2"
 		"ItemRequirements"
 		{
-			"01"						"item_blade_mail;item_helm_of_mithril_will;item_helm_of_mithril_will;item_orb_of_doom"
+			"01"						"item_blade_mail;item_helm_of_mithril_will;item_helm_of_mithril_will;item_orb_2"
 		}
 	}	
 	//=================================================================================================================
@@ -8841,7 +8383,7 @@
 		"ItemResult"					"item_blade_mail3"
 		"ItemRequirements"
 		{
-			"01"						"item_blade_mail2;item_scythe;item_scythe;item_orb_divine"
+			"01"						"item_blade_mail2;item_damage_2;item_damage_2;item_orb_3"
 		}
 	}	
 	//=================================================================================================================
@@ -8865,7 +8407,7 @@
 		"ItemResult"					"item_blade_mail4"
 		"ItemRequirements"
 		{
-			"01"						"item_blade_mail3;item_death_scythe;item_death_scythe;item_orb_bahamut"
+			"01"						"item_blade_mail3;item_damage_3;item_damage_3;item_orb_4"
 		}
 	}	
 	//======================================================================================================
@@ -8891,7 +8433,7 @@
 		"ItemResult"					"item_bloody_halberd"
 		"ItemRequirements"
 		{
-			"01"						"item_heavens_halberd;item_orb_of_shadows"
+			"01"						"item_heavens_halberd;item_orb_1"
 		}
 	}
 	// ======================================================================================================		
@@ -8916,7 +8458,7 @@
 	 		"ItemResult"					"item_blood_booster"		
 	 		"ItemRequirements"		
 	 		{		
-	 			"01"						"item_tank_booster;item_lifestealtank;item_orb_divine"		
+	 			"01"						"item_tank_booster;item_lifestealtank;item_orb_3"		
 	 		}		
 	 	}		
 	//======================================================================================================
@@ -8966,7 +8508,7 @@
 		"ItemResult"					"item_butterfly2"
 		"ItemRequirements"
 		{
-			"01"						"item_butterfly;item_zweihander;item_orb_of_shadows"
+			"01"						"item_butterfly;item_damage_1;item_orb_1"
 		}
 	}	
 	//=================================================================================================================
@@ -8990,7 +8532,7 @@
 		"ItemResult"					"item_butterfly3"
 		"ItemRequirements"
 		{
-			"01"						"item_butterfly2;item_scythe;item_orb_of_doom"
+			"01"						"item_butterfly2;item_damage_2;item_orb_2"
 		}
 	}	
 	//=================================================================================================================
@@ -9014,7 +8556,7 @@
 		"ItemResult"					"item_butterfly4"
 		"ItemRequirements"
 		{
-			"01"						"item_butterfly3;item_death_scythe;item_orb_divine"
+			"01"						"item_butterfly3;item_damage_3;item_orb_3"
 		}
 	}	
 	//=================================================================================================================
@@ -9038,7 +8580,7 @@
 		"ItemResult"					"item_butterfly5"
 		"ItemRequirements"
 		{
-			"01"						"item_butterfly4;item_orb_bahamut"
+			"01"						"item_butterfly4;item_orb_4"
 		}
 	}	
 	"item_recipe_celerity_stone"
@@ -9088,31 +8630,6 @@
 			"01"						"item_dagon_5;item_divine_ring"
 		}
 	}	
-	//=================================================================================================================
-	// Recipe: death scythe
-	//=================================================================================================================
-	"item_recipe_death_scythe"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"1169"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"BaseClass"						"item_recipe_arcane_boots"
-		"Model"							"models/props_gameplay/recipe.mdl"
-		
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"3600"
-		"ItemShopTags"					""
-		
-		// Recipe
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemRecipe"					"1"
-		"ItemResult"					"item_death_scythe"
-		"ItemRequirements"
-		{
-			"01"						"item_scythe"
-		}
-	}
 	"item_recipe_divine_ring"
 	{
 		// General
@@ -9133,7 +8650,7 @@
 		"ItemResult"					"item_divine_ring"
 		"ItemRequirements"
 		{
-			"01"						"item_overlord_ring;item_orb_divine"
+			"01"						"item_overlord_ring;item_orb_3"
 		}
 	}
 	"item_recipe_element_refresher"
@@ -9205,7 +8722,7 @@
 		"ItemResult"					"item_gauntlet_cursed"
 		"ItemRequirements"
 		{
-			"01"						"item_orb_of_doom;item_zweihander;item_cursed_amulet"
+			"01"						"item_orb_2;item_damage_1;item_cursed_amulet"
 		}
 	}
 	//=================================================================================================================
@@ -9229,7 +8746,7 @@
 		"ItemResult"					"item_ghost_2"
 		"ItemRequirements"
 		{
-			"01"						"item_orb_of_shadows;item_ghost"
+			"01"						"item_orb_1;item_ghost"
 		}
 	}	
 	//=================================================================================================================
@@ -9253,7 +8770,7 @@
 		"ItemResult"					"item_ghost_3"
 		"ItemRequirements"
 		{
-			"01"						"item_orb_of_doom;item_ghost_2"
+			"01"						"item_orb_2;item_ghost_2"
 		}
 	}	
 	//=================================================================================================================
@@ -9277,7 +8794,7 @@
 		"ItemResult"					"item_ghost_4"
 		"ItemRequirements"
 		{
-			"01"						"item_orb_divine;item_ghost_3"
+			"01"						"item_orb_3;item_ghost_3"
 		}
 	}	
 	//=================================================================================================================
@@ -9301,7 +8818,7 @@
 		"ItemResult"					"item_ghost_5"
 		"ItemRequirements"
 		{
-			"01"						"item_orb_bahamut;item_ghost_4"
+			"01"						"item_orb_4;item_ghost_4"
 		}
 	}	
 	//======================================================================================================
@@ -9326,7 +8843,7 @@
 		"ItemResult"					"item_gungnir"
 		"ItemRequirements"
 		{
-			"01"						"item_javelin;item_javelin;item_orb_of_doom"
+			"01"						"item_javelin;item_javelin;item_orb_2"
 		}
 	}
 	//======================================================================================================
@@ -9351,7 +8868,7 @@
 		"ItemResult"					"item_gungnir_2"
 		"ItemRequirements"
 		{
-			"01"						"item_gungnir;item_death_scythe;item_orb_divine"
+			"01"						"item_gungnir;item_damage_3;item_orb_3"
 		}
 	}
 	//======================================================================================================
@@ -9402,7 +8919,7 @@
 		"ItemResult"					"item_heart_bahamut"
 		"ItemRequirements"
 		{
-			"01"						"item_heart_divine;item_orb_bahamut"
+			"01"						"item_heart_divine;item_orb_4"
 		}
 	}
 	"item_recipe_heart_boots"
@@ -9426,7 +8943,7 @@
 		"ItemResult"					"item_heart_boots"
 		"ItemRequirements"
 		{
-			"01"						"item_heart_titan;item_tranquil_boots;item_orb_of_doom"
+			"01"						"item_heart_titan;item_tranquil_boots;item_orb_2"
 		}
 	}
 	//=================================================================================================================
@@ -9452,7 +8969,7 @@
 		"ItemResult"					"item_heart_divine"
 		"ItemRequirements"
 		{
-			"01"						"item_heart_titan;item_orb_divine"
+			"01"						"item_heart_titan;item_orb_3"
 		}
 	}
 	//=================================================================================================================
@@ -9478,7 +8995,7 @@
 		"ItemResult"					"item_heart_titan"
 		"ItemRequirements"
 		{
-			"01"						"item_heart;item_orb_of_shadows"
+			"01"						"item_heart;item_orb_1"
 		}
 	}
 	//=================================================================================================================
@@ -9530,7 +9047,7 @@
 		
 		"ItemRequirements"
 		{
-			"01"						"item_vladmir;item_satanic;item_zweihander"
+			"01"						"item_vladmir;item_satanic;item_damage_1"
 		}
 	}
 	//=================================================================================================================
@@ -9557,7 +9074,7 @@
 		"ItemResult"					"item_lifesteal3"
 		"ItemRequirements"
 		{
-			"01"						"item_lifesteal2;item_helm_of_mithril_will;item_scythe;item_orb_of_shadows"
+			"01"						"item_lifesteal2;item_helm_of_mithril_will;item_damage_2;item_orb_1"
 		}
 	}
 	"item_recipe_lifesteal4"
@@ -9580,7 +9097,7 @@
 		"ItemResult"					"item_lifesteal4"
 		"ItemRequirements"
 		{
-			"01"						"item_lifesteal3;item_death_scythe;item_orb_divine"
+			"01"						"item_lifesteal3;item_damage_3;item_orb_3"
 		}
 	}
 	"item_recipe_lifestealtank"
@@ -9603,7 +9120,7 @@
 		"ItemResult"					"item_lifestealtank"
 		"ItemRequirements"
 		{
-			"01"						"item_assault;item_orb_of_shadows;item_helm_of_mithril_will"
+			"01"						"item_assault;item_orb_1;item_helm_of_mithril_will"
 		}
 	}
 	"item_recipe_mekansm2"
@@ -9624,7 +9141,7 @@
 		"ItemResult"					"item_mekansm2"
 		"ItemRequirements"
 		{
-			"01"						"item_guardian_greaves;item_orb_of_shadows"
+			"01"						"item_guardian_greaves;item_orb_1"
 		}
 	}
 	"item_recipe_mekansm3"
@@ -9645,7 +9162,7 @@
 		"ItemResult"					"item_mekansm3"
 		"ItemRequirements"
 		{
-			"01"						"item_mekansm2;item_orb_of_doom;item_helm_of_mithril_will"
+			"01"						"item_mekansm2;item_orb_2;item_helm_of_mithril_will"
 		}
 	}
 	"item_recipe_mekansm4"
@@ -9666,7 +9183,7 @@
 		"ItemResult"					"item_mekansm4"
 		"ItemRequirements"
 		{
-			"01"						"item_mekansm3;item_orb_divine;item_assault_2"
+			"01"						"item_mekansm3;item_orb_3;item_assault_2"
 		}
 	}
 	"item_recipe_mekansm5"
@@ -9687,7 +9204,7 @@
 		"ItemResult"					"item_mekansm5"
 		"ItemRequirements"
 		{
-			"01"						"item_mekansm4;item_orb_bahamut;item_assault_3"
+			"01"						"item_mekansm4;item_orb_4;item_assault_3"
 		}
 	}
 	//=================================================================================================================
@@ -9805,7 +9322,7 @@
 		"ItemResult"					"item_midas_fury"
 		"ItemRequirements"
 		{
-			"01"						"item_midas_3;item_storm_fury;item_orb_divine;item_unstable_stone"
+			"01"						"item_midas_3;item_storm_fury;item_orb_3;item_unstable_stone"
 		}
 	}
 	"item_recipe_mystic_ring"
@@ -9853,7 +9370,7 @@
 		"ItemResult"					"item_octarine_core2"
 		"ItemRequirements"
 		{
-			"01"						"item_octarine_core;item_orb_of_shadows"
+			"01"						"item_octarine_core;item_orb_1"
 		}
 	}	
 	//=================================================================================================================
@@ -9878,7 +9395,7 @@
 		"ItemResult"					"item_octarine_core3"
 		"ItemRequirements"
 		{
-			"01"						"item_octarine_core2;item_orb_of_doom;item_pers"
+			"01"						"item_octarine_core2;item_orb_2;item_pers"
 		}
 	}
 	//=================================================================================================================
@@ -9903,7 +9420,7 @@
 		"ItemResult"					"item_octarine_core4"
 		"ItemRequirements"
 		{
-			"01"						"item_octarine_core3;item_orb_divine;item_refresher"
+			"01"						"item_octarine_core3;item_orb_3;item_refresher"
 		}
 	}
 	//=================================================================================================================
@@ -9984,7 +9501,7 @@
 		"ItemResult"					"item_octarine_core5"
 		"ItemRequirements"
 		{
-			"01"						"item_octarine_core4;item_orb_bahamut"
+			"01"						"item_octarine_core4;item_orb_4"
 		}
 	}
 	//=================================================================================================================
@@ -10011,75 +9528,6 @@
 			"01"						"item_sunium_lens"
 		}
 	}	
-	//=================================================================================================================
-	// bahamut Orb
-	//=================================================================================================================
-	"item_recipe_orb_bahamut"
-	{
-		"ID"							"1205"
-		"BaseClass"						"item_recipe_mjollnir"
-		"Model"							"models/props_gameplay/recipe.mdl"
-	
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"27000"	
-		"ItemShopTags"					""
-		
-		// Recipe
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemRecipe"					"1"
-		"ItemResult"					"item_orb_bahamut"
-		"ItemRequirements"
-		{
-			"01"						"item_orb_divine"
-		}
-	}
-	//=================================================================================================================
-	// Divine Orb
-	//=================================================================================================================
-	"item_recipe_orb_divine"
-	{
-		"ID"							"1075"
-		"BaseClass"						"item_recipe_mjollnir"
-		"Model"							"models/props_gameplay/recipe.mdl"
-	
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"6300"	
-		"ItemShopTags"					""
-		
-		// Recipe
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemRecipe"					"1"
-		"ItemResult"					"item_orb_divine"
-		"ItemRequirements"
-		{
-			"01"						"item_orb_of_doom"
-		}
-	}
-	//=================================================================================================================
-	// Orb of doom
-	//=================================================================================================================
-	"item_recipe_orb_of_doom"
-	{
-		"ID"							"1052"
-		"BaseClass"						"item_recipe_mjollnir"
-		"Model"							"models/props_gameplay/recipe.mdl"
-	
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"2900"
-		"ItemShopTags"					""
-		
-		// Recipe
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemRecipe"					"1"
-		"ItemResult"					"item_orb_of_doom"
-		"ItemRequirements"
-		{
-			"01"						"item_orb_of_shadows"
-		}
-	}
 	"item_recipe_overlord_ring"
 	{
 		// General
@@ -10100,7 +9548,7 @@
 		"ItemResult"					"item_overlord_ring"
 		"ItemRequirements"
 		{
-			"01"						"item_mystic_ring;item_orb_of_doom"
+			"01"						"item_mystic_ring;item_orb_2"
 		}
 	}
 	"item_recipe_phase_boots2"
@@ -10121,7 +9569,7 @@
 		"ItemResult"					"item_phase_boots2"
 		"ItemRequirements"
 		{
-			"01"						"item_phase_boots;item_zweihander"
+			"01"						"item_phase_boots;item_damage_1"
 		}
 	}
 	"item_recipe_phase_boots3"
@@ -10142,7 +9590,7 @@
 		"ItemResult"					"item_phase_boots3"
 		"ItemRequirements"
 		{
-			"01"						"item_phase_boots2;item_scythe"
+			"01"						"item_phase_boots2;item_damage_2"
 		}
 	}
 	"item_recipe_phase_boots4"
@@ -10163,7 +9611,7 @@
 		"ItemResult"					"item_phase_boots4"
 		"ItemRequirements"
 		{
-			"01"						"item_phase_boots3;item_death_scythe"
+			"01"						"item_phase_boots3;item_damage_3"
 		}
 	}
 	"item_recipe_phase_boots5"
@@ -10234,32 +9682,6 @@
 		{
 			"01"						"item_aether_lens"
 		}
-	}	
-	//=================================================================================================================
-	// Recipe: scythe
-	//=================================================================================================================
-	"item_recipe_scythe"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"1044"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"BaseClass"						"item_recipe_arcane_boots"
-		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"			"custom/scythe"
-		
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"1380"	
-		"ItemShopTags"					""
-		
-		// Recipe
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemRecipe"					"1"
-		"ItemResult"					"item_scythe"
-		"ItemRequirements"
-		{
-			"01"						"item_zweihander"
-		}
 	}
 	//=================================================================================================================
 	// Recipe: Scythe of Decay
@@ -10280,10 +9702,10 @@
 		// Recipe
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemRecipe"					"1"
-		"ItemResult"					"item_scythe_of_decay"
+		"ItemResult"					"item_damage_2_of_decay"
 		"ItemRequirements"
 		{
-			"01"						"item_veil_of_discord3;item_orb_bahamut;item_mjollnir_4"
+			"01"						"item_veil_of_discord3;item_orb_4;item_mjollnir_4"
 		}
 	}
 	//======================================================================================================
@@ -10308,7 +9730,7 @@
 		"ItemResult"					"item_sheepstick_2"
 		"ItemRequirements"
 		{
-			"01"						"item_sheepstick;item_orb_of_doom"
+			"01"						"item_sheepstick;item_orb_2"
 		}
 	}
 	//======================================================================================================
@@ -10334,7 +9756,7 @@
 		"ItemResult"					"item_skadi2"
 		"ItemRequirements"
 		{
-			"01"						"item_skadi;item_orb_divine"
+			"01"						"item_skadi;item_orb_3"
 		}
 	}
 	//=================================================================================================================
@@ -10359,7 +9781,7 @@
 		"ItemResult"					"item_soul_gatherer"
 		"ItemRequirements"
 		{
-			"01"						"item_gauntlet_cursed;item_orb_of_doom;item_demonsoul"
+			"01"						"item_gauntlet_cursed;item_orb_2;item_demonsoul"
 		}
 	}
 	"item_recipe_storm_fury"
@@ -10509,7 +9931,7 @@
 		"ItemResult"					"item_tank_booster"		
 		"ItemRequirements"		
 		{		
-			"01"						"item_soul_booster;item_orb_of_doom"		
+			"01"						"item_soul_booster;item_orb_2"		
 		}		
 	}		
 	
@@ -10582,7 +10004,7 @@
 		"ItemResult"					"item_veil_of_discord2"
 		"ItemRequirements"
 		{
-			"01"						"item_veil_of_discord;item_orb_of_doom;item_zweihander"
+			"01"						"item_veil_of_discord;item_orb_2;item_damage_1"
 		}
 	}
 	//=================================================================================================================
@@ -10607,7 +10029,7 @@
 		"ItemResult"					"item_veil_of_discord3"
 		"ItemRequirements"
 		{
-			"01"						"item_veil_of_discord2;item_orb_divine;item_death_scythe"
+			"01"						"item_veil_of_discord2;item_orb_3;item_damage_3"
 		}
 	}
 	//=================================================================================================================
@@ -10632,7 +10054,7 @@
 		"ItemResult"					"item_veil_of_discord4"
 		"ItemRequirements"
 		{
-			"01"						"item_veil_of_discord3;item_orb_bahamut;item_orb_divine"
+			"01"						"item_veil_of_discord3;item_orb_4;item_orb_3"
 		}
 	}
 	//======================================================================================================
@@ -10658,7 +10080,7 @@
 		"ItemResult"					"item_zero"
 		"ItemRequirements"
 		{
-			"01"						"item_radiance;item_skadi;item_orb_divine"
+			"01"						"item_radiance;item_skadi;item_orb_3"
 		}
 	}
 	//=================================================================================================================
@@ -10713,40 +10135,9 @@
 		}
 	}
 	//=================================================================================================================
-	// scythe
-	//=================================================================================================================
-	"item_scythe"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"1045"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"BaseClass"						"item_claymore"
-		"AbilityTextureName"			"custom/scythe"
-	
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"2880"
-		"ItemQuality"					"artifact"
-		"ItemAliases"					"scythe"
-		
-		"ItemDeclarations"				"DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-		
-		// Special	
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"150"
-			}
-		}
-	}
-	//=================================================================================================================
 	// Scythe of Decay
 	//=================================================================================================================
-	"item_scythe_of_decay"
+	"item_damage_2_of_decay"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -10807,27 +10198,6 @@
 			}
 			"desolator5_stat"
 			{
-				"OnAttackLanded"
-				{
-					"Random"
-					{
-		   				"Chance" "%critical_chance"
-		   				"OnSuccess"
-		   					{
-							"ApplyModifier"
-							{
-								"ModifierName" 	"critical_strike_h"
-								"Target" 
-								{
-									"Center" "CASTER"
-									"Flags" "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
-								}
-							}
-						}
-						"OnFailure"
-						{}
-					}						
-				}
 				"Passive"	 	"1"
 				"Attributes"    "MODIFIER_ATTRIBUTE_MULTIPLE"
 				"IsHidden"		"1"
@@ -10841,26 +10211,7 @@
 					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"		"%bonus_all"
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"  "%bonus_attack_speed"
 				}
-			}
-	
-			"critical_strike_h"
-			{
-				"IsHidden"		"1"
-				"Attributes"	"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE" 	"%critical_bonus"
-				}
-				"OnAttackLanded"
-				{
-					"RemoveModifier"
-					{
-						"ModifierName" 	"critical_strike_h"
-						"Target" 		"CASTER"
-					}
-				}
-			}
-	
+			}	
 			"veil_debuff"
 			{
 				"IsDebuff" "1"
@@ -10958,17 +10309,7 @@
 			"08"
 			{
 				"var_type"								"FIELD_INTEGER"
-				"bonus_attack_speed"					"175"
-			}
-			"09"
-			{
-				"var_type"								"FIELD_INTEGER"
-				"critical_bonus"						"275"
-			}
-			"10"
-			{
-				"var_type"								"FIELD_INTEGER"
-				"critical_chance"						"35"
+				"bonus_attack_speed"					"350"
 			}
 			"11"
 			{
@@ -13325,37 +12666,6 @@
 			{
 				"var_type"							"FIELD_INTEGER"
 				"damage_per_second"							"1750"
-			}
-		}
-	}
-	//=================================================================================================================
-	// Zweihander
-	//=================================================================================================================
-	"item_zweihander"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"3023"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"BaseClass"						"item_claymore"
-		"AbilityTextureName"			"custom/zweihander"
-		
-	
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"1000"
-		"ItemQuality"					"artifact"
-		"ItemAliases"					"zweihander"
-		"ItemDeclarations"				"DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-		
-		// Special	
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"60"
 			}
 		}
 	}

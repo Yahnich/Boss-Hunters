@@ -23,7 +23,7 @@
 		"ItemResult"					"item_assault_2"
 		"ItemRequirements"
 		{
-			"01"						"item_assault;item_orb_of_shadows;item_hood_of_defiance;item_veil_of_discord"
+			"01"						"item_assault;item_orb_1;item_hood_of_defiance;item_veil_of_discord"
 		}
 	}
 	//=================================================================================================================
@@ -133,7 +133,7 @@
 		"ItemResult"					"item_assault_3"
 		"ItemRequirements"
 		{
-			"01"						"item_assault_2;item_orb_of_doom"
+			"01"						"item_assault_2;item_orb_2"
 		}
 	}
 	//=================================================================================================================
@@ -242,7 +242,7 @@
 		"ItemResult"					"item_assault_4"
 		"ItemRequirements"
 		{
-			"01"						"item_assault_3;item_orb_divine"
+			"01"						"item_assault_3;item_orb_3"
 		}
 	}
 	//=================================================================================================================
@@ -351,7 +351,7 @@
 		"ItemResult"					"item_assault_5"
 		"ItemRequirements"
 		{
-			"01"						"item_assault_4;item_orb_bahamut"
+			"01"						"item_assault_4;item_orb_4"
 		}
 	}
 	//=================================================================================================================

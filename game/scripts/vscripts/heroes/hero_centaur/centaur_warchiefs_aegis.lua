@@ -20,7 +20,7 @@ function modifier_centaur_warchiefs_aegis_passive:GetModifierAura()
 end
 
 function modifier_centaur_warchiefs_aegis_passive:GetAuraRadius()
-	return self:GetParent():FindTalentValue("special_bonus_unique_centaur_1")
+	return self:GetParent():FindTalentValue("special_bonus_unique_centaur_warchiefs_aegis_1")
 end
 
 function modifier_centaur_warchiefs_aegis_passive:GetAuraSearchTeam()

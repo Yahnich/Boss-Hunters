@@ -8,7 +8,7 @@ function lion_death_finger:OnSpellStart()
 
     local radius = self:GetSpecialValueFor("radius")
     local startPos = caster:GetAbsOrigin()
-    local endPos = startPos + caster:GetForwardVector()*self:GetTrueCastRange()
+    local endPos = startPos + CalculateDirection(point, caster)*self:GetTrueCastRange()
 
     EmitSoundOn("Hero_Lion.FingerOfDeath", caster)
     EmitSoundOnLocationWithCaster(point, "Hero_Lion.FingerOfDeathImpact", caster)

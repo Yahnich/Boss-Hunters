@@ -44,34 +44,39 @@
 			"01"
 			{
 					"var_type"								"FIELD_INTEGER"
-					"bonus_damage"							"75"
+					"all_stats"								"30"
 			}
 			"02"
 			{
 					"var_type"								"FIELD_INTEGER"
-					"bonus_attack_speed"					"150"
+					"bonus_damage"							"135"
 			}
 			"03"
 			{
 					"var_type"								"FIELD_INTEGER"
-					"chance"								"25"
+					"bonus_attack_speed"					"150"
 			}
 			"04"
+			{
+					"var_type"								"FIELD_INTEGER"
+					"chance"								"25"
+			}
+			"05"
 			{
 					"var_type"								"FIELD_FLOAT"
 					"duration"								"15"
 			}
-			"05"
+			"06"
 			{
 					"var_type"								"FIELD_INTEGER"
 					"jump_count"							"10"
 			}
-			"06"
+			"07"
 			{
 					"var_type"								"FIELD_INTEGER"
 					"jump_damage"							"400"
 			}
-			"07"
+			"08"
 			{
 					"var_type"								"FIELD_INTEGER"
 					"jump_radius"							"900"
@@ -122,34 +127,39 @@
 			"01"
 			{
 					"var_type"								"FIELD_INTEGER"
-					"bonus_damage"							"100"
+					"all_stats"								"140"
 			}
 			"02"
 			{
 					"var_type"								"FIELD_INTEGER"
-					"bonus_attack_speed"					"200"
+					"bonus_damage"							"285"
 			}
 			"03"
 			{
 					"var_type"								"FIELD_INTEGER"
-					"chance"								"25"
+					"bonus_attack_speed"					"200"
 			}
 			"04"
+			{
+					"var_type"								"FIELD_INTEGER"
+					"chance"								"25"
+			}
+			"05"
 			{
 					"var_type"								"FIELD_FLOAT"
 					"duration"								"15"
 			}
-			"05"
+			"06"
 			{
 					"var_type"								"FIELD_INTEGER"
 					"jump_count"							"12"
 			}
-			"06"
+			"08"
 			{
 					"var_type"								"FIELD_INTEGER"
 					"jump_damage"							"1200"
 			}
-			"07"
+			"09"
 			{
 					"var_type"								"FIELD_INTEGER"
 					"jump_radius"							"900"
@@ -205,7 +215,7 @@
 			"02"
 			{
 					"var_type"								"FIELD_INTEGER"
-					"bonus_damage"							"125"
+					"bonus_damage"							"1385"
 			}
 			"03"
 			{
@@ -239,6 +249,250 @@
 			}
 		}
 	}
+	//=================================================================================================================
+	// Scythe of Decay
+	//=================================================================================================================
+	"item_scythe_of_decay"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1309"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"custom/scythe_of_decay"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemShareability"				"ITEM_PARTIALLY_SHAREABLE"
+		"ItemDroppable"					"1"
+		"ItemCost"						"106999"
+		"ItemShopTags"					"damage;unique;health;divine;T5;damage"
+		"ItemQuality"					"artifact"
+		"ItemAliases"					"reaper"
+		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_ALWAYS"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		"precache"
+		{
+			"particle"	"particles/units/heroes/hero_zuus/zuus_arc_lightning_.vpcf"
+		}
+	
+		"Modifiers"
+		{
+			"chain_lightning"
+			{	
+				"Passive"	 	"1"
+				"Attributes"    "MODIFIER_ATTRIBUTE_MULTIPLE"
+				"IsHidden"		"1"
+				"OnAttackLanded"
+				{
+					"ApplyModifier"
+					{
+						"Target"			"TARGET"
+						"ModifierName"		"veil_debuff"
+						"Duration" 			"%duration"
+					}
+					"Random"
+					{
+						"Chance" 	"50"
+						"OnSuccess"
+						{
+							"ApplyModifier"
+							{
+								"ModifierName"	"modifier_arc_lightning_hammer"
+								"Target"		"TARGET"
+							}
+							"RunScript"
+							{
+								"ScriptFile"	"lua_item/simple_item.lua"
+								"Function"		"NewInstance"
+								"particle"		"particles/units/heroes/hero_zuus/zuus_arc_lightning_.vpcf"
+							}
+						}
+					}
+				}
+			}
+			"desolator5_stat"
+			{
+				"OnAttackLanded"
+				{
+					"Random"
+					{
+		   				"Chance" "%critical_chance"
+		   				"OnSuccess"
+		   					{
+							"ApplyModifier"
+							{
+								"ModifierName" 	"critical_strike_h"
+								"Target" 
+								{
+									"Center" "CASTER"
+									"Flags" "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+								}
+							}
+						}
+						"OnFailure"
+						{}
+					}						
+				}
+				"Passive"	 	"1"
+				"Attributes"    "MODIFIER_ATTRIBUTE_MULTIPLE"
+				"IsHidden"		"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"  		"%bonus_health_regen"
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"		"%bonus_armor"
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"		"%bonus_damage"
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"		"%bonus_all"
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"			"%bonus_all"
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"		"%bonus_all"
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"  "%bonus_attack_speed"
+				}
+			}
+	
+			"critical_strike_h"
+			{
+				"IsHidden"		"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE" 	"%critical_bonus"
+				}
+				"OnAttackLanded"
+				{
+					"RemoveModifier"
+					{
+						"ModifierName" 	"critical_strike_h"
+						"Target" 		"CASTER"
+					}
+				}
+			}
+	
+			"veil_debuff"
+			{
+				"IsDebuff" "1"
+	    			"IsPurgable" "0"
+	    			"Duration" "%duration"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS"		"%resist_base"
+				}
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"lua_abilities/abilities_simple.lua"
+						"Function"			"scythe_decay"
+						"magic_reduction"	"%resist_remove"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"lua_abilities/abilities_simple.lua"
+						"Function"			"restoremagicress"
+						"magic_reduction"	"%resist_remove"
+					}
+				}
+			}
+			"modifier_arc_lightning_hammer"
+			{
+				"IsHidden"	"1"
+			
+				"OnCreated"
+				{
+					"Damage"
+					{
+						"Type"			"DAMAGE_TYPE_MAGICAL"
+						"Damage"		"%jump_damage"
+						"Target"		"TARGET"
+					}
+					"RunScript"
+					{
+						"ScriptFile"	"lua_item/simple_item.lua"
+						"Function"		"LightningJump"
+						"particle"		"particles/units/heroes/hero_zuus/zuus_arc_lightning_.vpcf"
+					}
+					"FireSound"
+					{
+						"EffectName"	"Hero_Zuus.ArcLightning.Target"
+						"Target"		"TARGET"
+					}
+				}
+			}
+		}
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_damage"			"4500"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"15.0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_armor"			"300"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_health_regen"	"950"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_all"				"1500"
+			}
+			"06"
+			{
+				"var_type"								"FIELD_INTEGER"
+				"jump_damage"						"12000"
+			}
+			"07"
+			{
+				"var_type"								"FIELD_INTEGER"
+				"jump_count"						"20"
+			}
+			"08"
+			{
+				"var_type"								"FIELD_INTEGER"
+				"bonus_attack_speed"					"175"
+			}
+			"09"
+			{
+				"var_type"								"FIELD_INTEGER"
+				"critical_bonus"						"275"
+			}
+			"10"
+			{
+				"var_type"								"FIELD_INTEGER"
+				"critical_chance"						"35"
+			}
+			"11"
+			{
+				"var_type"								"FIELD_INTEGER"
+				"resist_debuff"							"-120"
+			}
+			"12"
+			{
+				"var_type"								"FIELD_INTEGER"
+				"resist_remove"						"-20"
+			}
+			"13"
+			{
+				"var_type"								"FIELD_INTEGER"
+				"resist_base"						"-100"
+			}
+		}
+	}
 	"item_recipe_mjollnir_2"
 	{
 			"ID"											"33004"
@@ -257,7 +511,7 @@
 			"ItemResult"									"item_mjollnir_2"
 			"ItemRequirements"
 			{
-					"01"									"item_orb_of_shadows;item_mjollnir"
+					"01"									"item_orb_1;item_mjollnir;item_zweihander"
 			}
 	}
 	"item_recipe_mjollnir_3"
@@ -278,7 +532,7 @@
 			"ItemResult"									"item_mjollnir_3"
 			"ItemRequirements"
 			{
-					"01"									"item_orb_of_doom;item_mjollnir_2;"
+					"01"									"item_orb_2;item_mjollnir_2;item_scythe"
 			}
 	}
 	"item_recipe_mjollnir_4"
@@ -299,7 +553,32 @@
 			"ItemResult"									"item_mjollnir_4"
 			"ItemRequirements"
 			{
-					"01"									"item_orb_divine;item_mjollnir_3;"
+					"01"									"item_orb_3;item_mjollnir_3;item_death_scythe"
 			}
+	}
+	//=================================================================================================================
+	// Recipe: Scythe of Decay
+	//=================================================================================================================
+	"item_recipe_scythe_of_decay"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1308"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_tranquil_boots"
+		"AbilityTextureName"			"custom/scythe_of_decay"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"616"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_scythe_of_decay"
+		"ItemRequirements"
+		{
+			"01"						"item_veil_of_discord3;item_orb_4;item_mjollnir_4"
+		}
 	}
 }

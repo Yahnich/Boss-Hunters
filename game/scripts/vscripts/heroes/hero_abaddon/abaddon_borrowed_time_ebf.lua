@@ -12,11 +12,13 @@ function abaddon_borrowed_time_ebf:Activate()
 	EmitSoundOn("Hero_Abaddon.BorrowedTime", caster)
 	caster:AddNewModifier(caster, self, "modifier_abaddon_borrowed_time_active", {duration = duration})
 	self:SetCooldown()
-	if caster:HasTalent("special_bonus_unique_abaddon_2") then
+	if caster:HasTalent("special_bonus_unique_abaddon_borrowed_time_1") then
 		local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), -1)
 		for _, enemy in ipairs( enemies ) do
 			enemy:Taunt(self, caster, duration)
 		end
+	elseif caster:HasTalent("special_bonus_unique_abaddon_borrowed_time_2") then
+		caster:SetThreat(0)
 	end
 end
 

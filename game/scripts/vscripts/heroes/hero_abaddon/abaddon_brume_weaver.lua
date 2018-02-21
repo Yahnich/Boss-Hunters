@@ -12,7 +12,7 @@ function abaddon_brume_weaver:OnSpellStart()
 	if IsServer() then
 		local hTarget = self:GetCursorTarget()
 		EmitSoundOn("Hero_Abaddon.CastBrume", hTarget)
-		self:GetCaster():RemoveModifierByName("modifier_abaddon_brume_weaver_handler_buff")
+		if not self:GetCaster():HasTalent("special_bonus_unique_abaddon_brume_weaver_1") then self:GetCaster():RemoveModifierByName("modifier_abaddon_brume_weaver_handler_buff") end
 		hTarget:AddNewModifier(self:GetCaster(), self, "modifier_abaddon_brume_weaver_handler_buff_active", {duration = self:GetTalentSpecialValueFor("buff_duration")})
 		hTarget:AddNewModifier(self:GetCaster(), self, "modifier_abaddon_brume_weaver_handler_buff", {duration = self:GetTalentSpecialValueFor("buff_duration")})
 	end
@@ -32,10 +32,14 @@ function modifier_abaddon_brume_weaver_handler:IsHidden()
 end
 
 function modifier_abaddon_brume_weaver_handler:OnIntervalThink()
-	if  self:GetAbility():IsCooldownReady() then
+	if not self:GetParent():HasTalent("special_bonus_unique_abaddon_brume_weaver_1") then
+		if  self:GetAbility():IsCooldownReady() then
+			self:GetParent():AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_abaddon_brume_weaver_handler_buff", {})
+		elseif not self:GetAbility():IsCooldownReady() and self:GetParent():HasModifier("modifier_abaddon_brume_weaver_handler_buff") and not self:GetParent():HasModifier("modifier_abaddon_brume_weaver_handler_buff_active") then
+			self:GetParent():RemoveModifierByName("modifier_abaddon_brume_weaver_handler_buff")
+		end
+	elseif not self:GetParent():HasModifier("modifier_abaddon_brume_weaver_handler_buff") then
 		self:GetParent():AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_abaddon_brume_weaver_handler_buff", {})
-	elseif not self:GetAbility():IsCooldownReady() and self:GetParent():HasModifier("modifier_abaddon_brume_weaver_handler_buff") and not self:GetParent():HasModifier("modifier_abaddon_brume_weaver_handler_buff_active") then
-		self:GetParent():RemoveModifierByName("modifier_abaddon_brume_weaver_handler_buff")
 	end
 end
 
@@ -69,7 +73,7 @@ end
 function modifier_abaddon_brume_weaver_handler_buff:OnTakeDamage(params)
 	if params.unit == self:GetParent() then
 		local damage = params.damage
-		local flHeal = math.ceil(params.original_damage * (1 - params.unit:GetPhysicalArmorReduction() / 100 ) * self.healFactor / self.healDuration)
+		local flHeal = math.ceil(params.damage * self.healFactor / self.healDuration)
 		local healModifier = self:GetParent():AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_abaddon_brume_weaver_handler_heal", {duration = self.healDuration})
 		healModifier:SetStackCount(flHeal)
 		local procBrume = ParticleManager:CreateParticle("particles/abaddon_brume_proc.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetParent())
