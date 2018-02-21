@@ -1,5 +1,13 @@
 doom_demons_bargain = class({})
 
+function doom_demons_bargain:IsStealable()
+	return true
+end
+
+function doom_demons_bargain:IsHiddenWhenStolen()
+	return false
+end
+
 function doom_demons_bargain:OnAbilityPhaseStart()
 	self.caster = self:GetCaster()
 	self.target = self:GetCursorTarget()

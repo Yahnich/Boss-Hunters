@@ -1,5 +1,13 @@
 lion_earth_spike = class({})
 
+function lion_earth_spike:IsStealable()
+    return true
+end
+
+function lion_earth_spike:IsHiddenWhenStolen()
+    return false
+end
+
 function lion_earth_spike:GetAOERadius()
     return self:GetTalentSpecialValueFor("radius")
 end

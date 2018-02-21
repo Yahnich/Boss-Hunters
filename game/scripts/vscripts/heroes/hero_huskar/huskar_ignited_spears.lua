@@ -1,5 +1,13 @@
 huskar_ignited_spears = class({})
 
+function huskar_ignited_spears:IsStealable()
+	return false
+end
+
+function huskar_ignited_spears:IsHiddenWhenStolen()
+	return false
+end
+
 function huskar_ignited_spears:OnAbilityPhaseStart()
 	self:SetOverrideCastPoint( self:GetCaster():GetSecondsPerAttack() )
 	return true
@@ -12,10 +20,6 @@ end
 function huskar_ignited_spears:OnSpellStart()
 	local target = self:GetCursorTarget()
 	self:LaunchSpear(target, true)
-end
-
-function huskar_ignited_spears:IsStealable()
-	return false
 end
 
 function huskar_ignited_spears:GetCastRange(location, target)

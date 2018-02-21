@@ -6,6 +6,13 @@ function bristleback_yer_mum:OnSpellStart()
 	target:AddNewModifier(caster, self, "modifier_bristleback_yer_mum", {duration = self:GetTalentSpecialValueFor("duration")})
 end
 
+function bristleback_yer_mum:IsStealable()
+	return true
+end
+
+function bristleback_yer_mum:IsHiddenWhenStolen()
+	return false
+end
 
 modifier_bristleback_yer_mum = class({})
 LinkLuaModifier("modifier_bristleback_yer_mum", "heroes/hero_bristleback/bristleback_yer_mum", 0)

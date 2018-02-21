@@ -1,6 +1,14 @@
 tide_hydro_cannon = class({})
 LinkLuaModifier( "modifier_hydro_cannon", "heroes/hero_tide/tide_hydro_cannon.lua" ,LUA_MODIFIER_MOTION_NONE )
 
+function tide_hydro_cannon:IsStealable()
+    return true
+end
+
+function tide_hydro_cannon:IsHiddenWhenStolen()
+    return false
+end
+
 function tide_hydro_cannon:GetCooldown(iLvl)
 	return self.BaseClass.GetCooldown(self, iLvl) + self:GetCaster():FindTalentValue("special_bonus_unique_tide_hydro_cannon_1")
 end

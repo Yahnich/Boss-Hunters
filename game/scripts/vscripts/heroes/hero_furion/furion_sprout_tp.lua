@@ -1,5 +1,13 @@
 furion_sprout_tp = class({})
 
+function furion_sprout_tp:IsStealable()
+	return true
+end
+
+function furion_sprout_tp:IsHiddenWhenStolen()
+	return false
+end
+
 function furion_sprout_tp:GetCooldown(iLevel)
 	local cooldown = self.BaseClass.GetCooldown(self, iLevel)
 	if self:GetCaster():HasTalent("special_bonus_unique_furion_sprout_tp_1") then return 0 end

@@ -3,6 +3,14 @@ LinkLuaModifier("modifier_mirana_celestial_jump_movement", "heroes/hero_mirana/m
 LinkLuaModifier("modifier_mirana_celestial_jump_agi", "heroes/hero_mirana/mirana_celestial_jump", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_mirana_celestial_jump_charges", "heroes/hero_mirana/mirana_celestial_jump", LUA_MODIFIER_MOTION_NONE)
 
+function mirana_celestial_jump:IsStealable()
+	return true
+end
+
+function mirana_celestial_jump:IsHiddenWhenStolen()
+	return false
+end
+
 function mirana_celestial_jump:GetIntrinsicModifierName()
 	return "modifier_mirana_celestial_jump_charges"
 end

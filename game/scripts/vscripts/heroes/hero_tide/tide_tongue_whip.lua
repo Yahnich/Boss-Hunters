@@ -2,6 +2,14 @@ tide_tongue_whip = class({})
 LinkLuaModifier( "modifier_tongue_whip", "heroes/hero_tide/tide_tongue_whip.lua" ,LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_tongue_whip_health", "heroes/hero_tide/tide_tongue_whip.lua" ,LUA_MODIFIER_MOTION_NONE )
 
+function tide_tongue_whip:IsStealable()
+    return true
+end
+
+function tide_tongue_whip:IsHiddenWhenStolen()
+    return false
+end
+
 function tide_tongue_whip:GetCastRange(vLocation, hTarget)
     return self:GetTalentSpecialValueFor("distance")
 end

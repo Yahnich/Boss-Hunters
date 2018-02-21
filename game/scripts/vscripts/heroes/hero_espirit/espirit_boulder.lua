@@ -1,6 +1,14 @@
 espirit_boulder = class({})
 LinkLuaModifier( "modifier_boulder_slow", "heroes/hero_espirit/espirit_boulder.lua" ,LUA_MODIFIER_MOTION_NONE )
 
+function espirit_boulder:IsStealable()
+	return true
+end
+
+function espirit_boulder:IsHiddenWhenStolen()
+	return false
+end
+
 function espirit_boulder:OnSpellStart()
     local caster = self:GetCaster()
     local point = self:GetCursorPosition()
@@ -74,7 +82,9 @@ function espirit_boulder:OnProjectileHit(hTarget, vLocation)
 			FindClearSpaceForUnit(caster, vLocation, true)
 			ProjectileManager:ProjectileDodge(caster)
 		end
-		caster:FindAbilityByName("espirit_rock"):CreateStoneRemnant(vLocation)
+		if caster:FindAbilityByName("espirit_rock") then
+			caster:FindAbilityByName("espirit_rock"):CreateStoneRemnant(vLocation)
+		end
         EmitSoundOn("Hero_EarthSpirit.RollingBoulder.Destroy", rock)
 	end
 end

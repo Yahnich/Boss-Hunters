@@ -1,5 +1,13 @@
 earthshaker_fissure_ebf = class({})
 
+function earthshaker_fissure_ebf:IsStealable()
+	return true
+end
+
+function earthshaker_fissure_ebf:IsHiddenWhenStolen()
+	return false
+end
+
 function earthshaker_fissure_ebf:GetCastRange( target, position)
 	return self:GetTalentSpecialValueFor("fissure_range")
 end

@@ -1,6 +1,14 @@
 sand_burrow = class({})
 LinkLuaModifier( "modifier_caustics_enemy", "heroes/hero_sand/sand_caustics.lua" ,LUA_MODIFIER_MOTION_NONE )
 
+function sand_burrow:IsStealable()
+    return true
+end
+
+function sand_burrow:IsHiddenWhenStolen()
+    return false
+end
+
 function sand_burrow:GetCastRange(vLocation, hTarget)
     return self:GetTalentSpecialValueFor("range")
 end

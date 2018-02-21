@@ -2,6 +2,14 @@ brd_blood_hunger = class({})
 LinkLuaModifier( "modifier_blood_hunger", "heroes/hero_brd/brd_blood_hunger.lua" ,LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_blood_hunger_strength", "heroes/hero_brd/brd_blood_hunger.lua" ,LUA_MODIFIER_MOTION_NONE )
 
+function brd_blood_hunger:IsStealable()
+	return true
+end
+
+function brd_blood_hunger:IsHiddenWhenStolen()
+	return false
+end
+
 function brd_blood_hunger:OnSpellStart()
 	local caster = self:GetCaster()
 

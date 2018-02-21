@@ -1,5 +1,13 @@
 alchemist_acid_spray_ebf = class({})
 
+function alchemist_acid_spray_ebf:IsStealable()
+	return true
+end
+
+function alchemist_acid_spray_ebf:IsHiddenWhenStolen()
+	return false
+end
+
 function alchemist_acid_spray_ebf:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()

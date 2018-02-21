@@ -1,6 +1,14 @@
 sand_claw_impact = class({})
 LinkLuaModifier( "modifier_caustics_enemy", "heroes/hero_sand/sand_caustics.lua" ,LUA_MODIFIER_MOTION_NONE )
 
+function sand_claw_impact:IsStealable()
+    return true
+end
+
+function sand_claw_impact:IsHiddenWhenStolen()
+    return false
+end
+
 function sand_claw_impact:GetCooldown(iLvl)
 	local cooldown = self.BaseClass.GetCooldown(self, iLvl)
 	if self:GetCaster():HasTalent("special_bonus_unique_sand_claw_impact_1") then cooldown = cooldown + self:GetCaster():FindTalentValue("special_bonus_unique_sand_claw_impact_1") end

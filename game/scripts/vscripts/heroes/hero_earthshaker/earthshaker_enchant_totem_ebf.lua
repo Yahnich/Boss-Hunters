@@ -1,5 +1,13 @@
 earthshaker_enchant_totem_ebf = class({})
 
+function earthshaker_enchant_totem_ebf:IsStealable()
+	return true
+end
+
+function earthshaker_enchant_totem_ebf:IsHiddenWhenStolen()
+	return false
+end
+
 function earthshaker_enchant_totem_ebf:OnSpellStart()
 	local caster = self:GetCaster()
 	caster:AddNewModifier(caster, self, "modifier_earthshaker_enchant_totem_ebf", {duration = self:GetTalentSpecialValueFor("duration")})

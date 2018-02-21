@@ -1,5 +1,13 @@
 rattletrap_rocket_flare_ebf = class({})
 
+function rattletrap_rocket_flare_ebf:IsStealable()
+	return true
+end
+
+function rattletrap_rocket_flare_ebf:IsHiddenWhenStolen()
+	return false
+end
+
 function rattletrap_rocket_flare_ebf:GetAOERadius()
 	return self:GetSpecialValueFor("radius")
 end

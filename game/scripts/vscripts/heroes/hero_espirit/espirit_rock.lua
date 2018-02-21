@@ -1,5 +1,13 @@
 espirit_rock = class({})
 
+function espirit_rock:IsStealable()
+	return true
+end
+
+function espirit_rock:IsHiddenWhenStolen()
+	return false
+end
+
 function espirit_rock:GetIntrinsicModifierName()
 	return "modifier_espirit_rock_charges"
 end

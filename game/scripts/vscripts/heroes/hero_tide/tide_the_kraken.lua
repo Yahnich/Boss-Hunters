@@ -1,6 +1,14 @@
 tide_the_kraken = class({})
 LinkLuaModifier( "modifier_the_kraken", "heroes/hero_tide/tide_the_kraken.lua" ,LUA_MODIFIER_MOTION_NONE )
 
+function tide_the_kraken:IsStealable()
+    return true
+end
+
+function tide_the_kraken:IsHiddenWhenStolen()
+    return false
+end
+
 function tide_the_kraken:OnSpellStart()
     local caster = self:GetCaster()
     local point = caster:GetAbsOrigin()

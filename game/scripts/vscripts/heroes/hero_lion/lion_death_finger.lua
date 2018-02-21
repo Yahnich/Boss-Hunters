@@ -1,6 +1,14 @@
 lion_death_finger = class({})
 LinkLuaModifier( "modifier_lion_death_finger_root", "heroes/hero_lion/lion_death_finger.lua",LUA_MODIFIER_MOTION_NONE )
 
+function lion_death_finger:IsStealable()
+    return true
+end
+
+function lion_death_finger:IsHiddenWhenStolen()
+    return false
+end
+
 function lion_death_finger:OnSpellStart()
     local caster = self:GetCaster()
 

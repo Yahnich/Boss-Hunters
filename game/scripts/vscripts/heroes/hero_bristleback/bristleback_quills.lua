@@ -6,6 +6,14 @@ function bristleback_quills:GetIntrinsicModifierName()
 	return "modifier_quills"
 end
 
+function bristleback_quills:IsStealable()
+	return true
+end
+
+function bristleback_quills:IsHiddenWhenStolen()
+	return false
+end
+
 function bristleback_quills:OnSpellStart()
 	self:Spray(false, true)
 end

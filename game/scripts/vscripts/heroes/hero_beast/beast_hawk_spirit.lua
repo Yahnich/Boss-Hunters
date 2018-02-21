@@ -3,6 +3,14 @@ LinkLuaModifier( "modifier_hawk_spirit", "heroes/hero_beast/beast_hawk_spirit.lu
 LinkLuaModifier( "modifier_hawk_spirit_ally", "heroes/hero_beast/beast_hawk_spirit.lua" ,LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_hawk_spirit_enemy", "heroes/hero_beast/beast_hawk_spirit.lua" ,LUA_MODIFIER_MOTION_NONE )
 
+function beast_hawk_spirit:IsStealable()
+	return true
+end
+
+function beast_hawk_spirit:IsHiddenWhenStolen()
+	return false
+end
+
 function beast_hawk_spirit:OnSpellStart()
 	local caster = self:GetCaster()
 	

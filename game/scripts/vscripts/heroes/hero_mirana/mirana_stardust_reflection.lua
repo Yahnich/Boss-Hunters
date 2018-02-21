@@ -2,6 +2,14 @@ mirana_stardust_reflection = class({})
 LinkLuaModifier("modifier_moonlight_duration", "heroes/hero_mirana/mirana_stardust_reflection", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_moonlight_fade", "heroes/hero_mirana/mirana_stardust_reflection", LUA_MODIFIER_MOTION_NONE)
 
+function mirana_stardust_reflection:IsStealable()
+    return true
+end
+
+function mirana_stardust_reflection:IsHiddenWhenStolen()
+    return false
+end
+
 function mirana_stardust_reflection:GetCooldown(iLvl)
     local cooldown = self.BaseClass.GetCooldown(self, iLvl)
     if self:GetCaster():HasTalent("special_bonus_unique_mirana_stardust_reflection_1") then cooldown = cooldown + self:GetCaster():FindTalentValue("special_bonus_unique_mirana_stardust_reflection_1") end

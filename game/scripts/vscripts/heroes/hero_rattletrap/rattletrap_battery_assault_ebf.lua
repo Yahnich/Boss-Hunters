@@ -1,5 +1,13 @@
 rattletrap_battery_assault_ebf = class({})
 
+function rattletrap_battery_assault_ebf:IsStealable()
+	return true
+end
+
+function rattletrap_battery_assault_ebf:IsHiddenWhenStolen()
+	return false
+end
+
 function rattletrap_battery_assault_ebf:OnSpellStart()
 	local caster = self:GetCaster()
 	caster:AddNewModifier(caster, self, "modifier_rattletrap_battery_assault_ebf", {duration = self:GetTalentSpecialValueFor("duration")})

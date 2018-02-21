@@ -1,5 +1,13 @@
 brewmaster_drunken_haze_ebf = class({})
 
+function brewmaster_drunken_haze_ebf:IsStealable()
+	return true
+end
+
+function brewmaster_drunken_haze_ebf:IsHiddenWhenStolen()
+	return false
+end
+
 if IsServer() then
 	function brewmaster_drunken_haze_ebf:OnSpellStart()
 		local projectile = {

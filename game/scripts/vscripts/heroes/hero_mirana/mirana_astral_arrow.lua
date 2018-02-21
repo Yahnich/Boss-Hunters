@@ -1,5 +1,13 @@
 mirana_astral_arrow = class({})
 
+function mirana_astral_arrow:IsStealable()
+    return true
+end
+
+function mirana_astral_arrow:IsHiddenWhenStolen()
+    return false
+end
+
 function mirana_astral_arrow:GetCooldown(iLvl)
     local cooldown = self.BaseClass.GetCooldown(self, iLvl)
     if self:GetCaster():HasTalent("special_bonus_unique_mirana_astral_arrow_2") then cooldown = cooldown + self:GetCaster():FindTalentValue("special_bonus_unique_mirana_astral_arrow_2") end

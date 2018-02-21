@@ -1,5 +1,13 @@
 dragon_knight_dragonbreath = class({})
 
+function dragon_knight_dragonbreath:IsStealable()
+	return true
+end
+
+function dragon_knight_dragonbreath:IsHiddenWhenStolen()
+	return false
+end
+
 function dragon_knight_dragonbreath:OnSpellStart()
 	local caster = self:GetCaster()
 	local direction = CalculateDirection( self:GetCursorPosition(), caster)

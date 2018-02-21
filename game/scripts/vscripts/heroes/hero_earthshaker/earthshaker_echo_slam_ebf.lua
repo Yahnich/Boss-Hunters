@@ -1,5 +1,13 @@
 earthshaker_echo_slam_ebf = class({})
 
+function earthshaker_echo_slam_ebf:IsStealable()
+	return true
+end
+
+function earthshaker_echo_slam_ebf:IsHiddenWhenStolen()
+	return false
+end
+
 function earthshaker_echo_slam_ebf:GetCooldown(iLvl)
 	local cooldown = self.BaseClass.GetCooldown(self, iLvl) + self:GetCaster():FindTalentValue("special_bonus_unique_earthshaker_echo_slam_ebf_2")
 	return cooldown

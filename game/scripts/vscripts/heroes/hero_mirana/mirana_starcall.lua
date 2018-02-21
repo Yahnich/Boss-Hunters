@@ -1,6 +1,14 @@
 mirana_starcall = class({})
 LinkLuaModifier("modifier_mirana_starcall", "heroes/hero_mirana/mirana_starcall", LUA_MODIFIER_MOTION_NONE)
 
+function mirana_starcall:IsStealable()
+    return true
+end
+
+function mirana_starcall:IsHiddenWhenStolen()
+    return false
+end
+
 function mirana_starcall:GetIntrinsicModifierName()
     return "modifier_mirana_starcall"
 end

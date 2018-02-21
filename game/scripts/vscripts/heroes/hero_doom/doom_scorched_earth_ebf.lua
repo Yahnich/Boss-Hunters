@@ -1,5 +1,13 @@
 doom_scorched_earth_ebf = class({})
 
+function doom_scorched_earth_ebf:IsStealable()
+	return true
+end
+
+function doom_scorched_earth_ebf:IsHiddenWhenStolen()
+	return false
+end
+
 function doom_scorched_earth_ebf:OnSpellStart()
 	if IsServer() then
 		self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_doom_scorched_earth_aura", {duration = self:GetTalentSpecialValueFor("duration")})

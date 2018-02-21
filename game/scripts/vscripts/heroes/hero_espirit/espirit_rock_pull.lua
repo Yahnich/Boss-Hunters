@@ -2,6 +2,14 @@ espirit_rock_pull = class({})
 LinkLuaModifier( "modifier_rock_pull", "heroes/hero_espirit/espirit_rock_pull.lua" ,LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_rock_pull_enemy", "heroes/hero_espirit/espirit_rock_pull.lua" ,LUA_MODIFIER_MOTION_NONE )
 
+function espirit_rock_pull:IsStealable()
+	return true
+end
+
+function espirit_rock_pull:IsHiddenWhenStolen()
+	return false
+end
+
 function espirit_rock_pull:GetAOERadius()
 	return self:GetTalentSpecialValueFor("radius")
 end
@@ -32,7 +40,7 @@ function espirit_rock_pull:OnSpellStart()
 		end
     end
 
-    if #curTargets < 1 then
+    if curTargets < 1 then
     	self:RefundManaCost()
     	self:EndCooldown()
     end

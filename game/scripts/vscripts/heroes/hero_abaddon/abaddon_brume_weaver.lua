@@ -1,5 +1,13 @@
 abaddon_brume_weaver = class({})
 
+function abaddon_brume_weaver:IsStealable()
+	return true
+end
+
+function abaddon_brume_weaver:IsHiddenWhenStolen()
+	return false
+end
+
 function abaddon_brume_weaver:GetIntrinsicModifierName()
 	return "modifier_abaddon_brume_weaver_handler"
 end

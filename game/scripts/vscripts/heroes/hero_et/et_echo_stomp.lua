@@ -9,6 +9,14 @@ function et_echo_stomp:GetAbilityTextureName()
 	return "elder_titan_echo_stomp"
 end
 
+function et_echo_stomp:IsStealable()
+	return true
+end
+
+function et_echo_stomp:IsHiddenWhenStolen()
+	return false
+end
+
 function et_echo_stomp:OnAbilityPhaseStart()
    local caster = self:GetCaster()
 
@@ -24,7 +32,7 @@ function et_echo_stomp:OnAbilityPhaseStart()
 			end
 		end
 
-   		if caster:FindAbilityByName("et_elder_spirit"):IsTrained() then
+   		if caster:FindAbilityByName("et_elder_spirit") and caster:FindAbilityByName("et_elder_spirit"):IsTrained() then
    			if caster:HasModifier("modifier_elder_spirit_check") then
    				ParticleManager:FireParticle("particles/econ/items/elder_titan/elder_titan_ti7/elder_titan_echo_stomp_cast_combined_detail_ti7.vpcf", PATTACH_POINT, caster, {[0] = caster:GetAbsOrigin()})
    				ParticleManager:FireParticle("particles/units/heroes/hero_elder_titan/elder_titan_echo_stomp_cast_combined.vpcf", PATTACH_POINT, caster, {[0] = caster:GetAbsOrigin()})
@@ -67,7 +75,7 @@ function et_echo_stomp:OnSpellStart()
 			damage = damage + damage*caster:FindTalentValue("special_bonus_unique_et_echo_stomp_1")/100
 		end
 
-   		if caster:FindAbilityByName("et_elder_spirit"):IsTrained() then
+   		if caster:FindAbilityByName("et_elder_spirit") and caster:FindAbilityByName("et_elder_spirit"):IsTrained() then
    			if caster:HasModifier("modifier_elder_spirit_check") then
    				ParticleManager:FireParticle("particles/units/heroes/hero_elder_titan/elder_titan_echo_stomp_physical.vpcf", PATTACH_POINT, caster, {[0] = point})
 

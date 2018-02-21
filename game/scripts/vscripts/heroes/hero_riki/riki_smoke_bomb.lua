@@ -2,6 +2,14 @@ riki_smoke_bomb = class({})
 LinkLuaModifier( "modifier_smoke_bomb", "heroes/hero_riki/riki_smoke_bomb.lua" ,LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_smoke_bomb_enemy", "heroes/hero_riki/riki_smoke_bomb.lua" ,LUA_MODIFIER_MOTION_NONE )
 
+function riki_smoke_bomb:IsStealable()
+    return true
+end
+
+function riki_smoke_bomb:IsHiddenWhenStolen()
+    return false
+end
+
 function riki_smoke_bomb:OnSpellStart()
     local caster = self:GetCaster()
     local point = self:GetCursorPosition()

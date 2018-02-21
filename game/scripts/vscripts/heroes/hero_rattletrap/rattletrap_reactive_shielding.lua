@@ -1,5 +1,13 @@
 rattletrap_reactive_shielding = class({})
 
+function rattletrap_reactive_shielding:IsStealable()
+	return true
+end
+
+function rattletrap_reactive_shielding:IsHiddenWhenStolen()
+	return false
+end
+
 function rattletrap_reactive_shielding:OnSpellStart()
 	local caster = self:GetCaster()
 	caster:AddNewModifier(caster, self, "modifier_rattletrap_reactive_shielding", {duration = self:GetTalentSpecialValueFor("duration")})
@@ -10,7 +18,7 @@ end
 
 function rattletrap_reactive_shielding:OnUpgrade()
 	local sisterAb = self:GetCaster():FindAbilityByName("rattletrap_automated_artillery")
-	if sisterAb:GetLevel() < self:GetLevel() then sisterAb:SetLevel( self:GetLevel() ) end
+	if sisterAb and sisterAb:GetLevel() < self:GetLevel() then sisterAb:SetLevel( self:GetLevel() ) end
 end
 
 modifier_rattletrap_reactive_shielding = class({})
@@ -22,8 +30,10 @@ function modifier_rattletrap_reactive_shielding:OnCreated()
 	if self:GetParent():HasTalent("special_bonus_unique_rattletrap_reactive_shielding_1") then self.slow = 0 end
 	if IsServer() then 
 		self.sisterAb = self:GetCaster():FindAbilityByName("rattletrap_automated_artillery")
-		self:GetAbility():StartDelayedCooldown() 
-		self.sisterAb:SetActivated(false)
+		self:GetAbility():StartDelayedCooldown()
+		if self.sisterAb then
+			self.sisterAb:SetActivated(false)
+		end
 		local sFX = ParticleManager:CreateParticle("particles/units/heroes/hero_rattletrap/rattletrap_cog_ambient.vpcf", PATTACH_POINT_FOLLOW, self:GetParent() )
 		ParticleManager:SetParticleControlEnt(sFX, 0, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_hitloc", self:GetParent():GetAbsOrigin(), true)
 		self:AddEffect(sFX)
@@ -36,13 +46,17 @@ function modifier_rattletrap_reactive_shielding:OnRefresh()
 	if self:GetParent():HasTalent("special_bonus_unique_rattletrap_reactive_shielding_1") then self.slow = 0 end
 	if IsServer() then 
 		self:GetAbility():StartDelayedCooldown() 
-		self.sisterAb:SetActivated(false)
+		if self.sisterAb then
+			self.sisterAb:SetActivated(false)
+		end
 	end
 end
 
 function modifier_rattletrap_reactive_shielding:OnDestroy()
 	if IsServer() then
-		self.sisterAb:SetActivated(true)
+		if self.sisterAb then
+			self.sisterAb:SetActivated(true)
+		end
 		self:GetAbility():EndDelayedCooldown() 
 	end
 end

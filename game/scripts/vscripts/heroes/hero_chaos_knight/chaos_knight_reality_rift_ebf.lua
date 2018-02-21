@@ -1,5 +1,13 @@
 chaos_knight_reality_rift_ebf = class({})
 
+function chaos_knight_reality_rift_ebf:IsStealable()
+	return true
+end
+
+function chaos_knight_reality_rift_ebf:IsHiddenWhenStolen()
+	return false
+end
+
 function chaos_knight_reality_rift_ebf:GetAOERadius()
 	return self:GetCaster():FindTalentValue("special_bonus_unique_chaos_knight_reality_rift_2")
 end

@@ -1,6 +1,14 @@
 winterw_ice_shell = class({})
 LinkLuaModifier( "modifier_ice_shell", "heroes/hero_ww/winterw_ice_shell.lua" ,LUA_MODIFIER_MOTION_NONE )
 
+function winterw_ice_shell:IsStealable()
+	return true
+end
+
+function winterw_ice_shell:IsHiddenWhenStolen()
+	return false
+end
+
 function winterw_ice_shell:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()

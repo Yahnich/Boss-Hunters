@@ -1,6 +1,14 @@
 tide_anchor = class({})
 LinkLuaModifier( "modifier_anchor", "heroes/hero_tide/tide_anchor.lua" ,LUA_MODIFIER_MOTION_NONE )
 
+function tide_anchor:IsStealable()
+    return true
+end
+
+function tide_anchor:IsHiddenWhenStolen()
+    return false
+end
+
 function tide_anchor:GetCastRange(target, position)
 	return self:GetTalentSpecialValueFor("radius")
 end

@@ -2,6 +2,14 @@ riki_dance = class({})
 LinkLuaModifier( "modifier_dance", "heroes/hero_riki/riki_dance.lua" ,LUA_MODIFIER_MOTION_NONE )
 --LinkLuaModifier( "modifier_dance_enemy", "heroes/hero_riki/riki_dance.lua" ,LUA_MODIFIER_MOTION_NONE )
 
+function riki_dance:IsStealable()
+    return true
+end
+
+function riki_dance:IsHiddenWhenStolen()
+    return false
+end
+
 function riki_dance:GetCastRange(Location, Target)
     return self:GetTalentSpecialValueFor("range")
 end

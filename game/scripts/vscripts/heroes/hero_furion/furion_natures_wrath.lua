@@ -1,5 +1,13 @@
 furion_natures_wrath = class({})
 
+function furion_natures_wrath:IsStealable()
+	return true
+end
+
+function furion_natures_wrath:IsHiddenWhenStolen()
+	return false
+end
+
 function furion_natures_wrath:OnSpellStart()
 	local caster = self:GetCaster()
 	local point = caster:GetAbsOrigin()

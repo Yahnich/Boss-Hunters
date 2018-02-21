@@ -1,5 +1,13 @@
 ta_trap_tp = class({})
 
+function ta_trap_tp:IsStealable()
+	return false
+end
+
+function ta_trap_tp:IsHiddenWhenStolen()
+	return false
+end
+
 function ta_trap_tp:OnSpellStart()
 	local caster = self:GetCaster()
 	local point = self:GetCursorPosition()

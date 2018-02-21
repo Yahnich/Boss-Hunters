@@ -1,6 +1,14 @@
 ta_refract = class({})
 LinkLuaModifier( "modifier_ta_refract", "heroes/hero_ta/ta_refract.lua", LUA_MODIFIER_MOTION_NONE )
 
+function ta_refract:IsStealable()
+	return true
+end
+
+function ta_refract:IsHiddenWhenStolen()
+	return false
+end
+
 function ta_refract:OnSpellStart()
 	local caster = self:GetCaster()
 	caster:AddNewModifier(caster, self, "modifier_ta_refract", {Duration = self:GetTalentSpecialValueFor("duration")})

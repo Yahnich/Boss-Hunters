@@ -4,6 +4,14 @@ function beast_boar_spirit:PiercesDisableResistance()
     return true
 end
 
+function beast_boar_spirit:IsStealable()
+	return true
+end
+
+function beast_boar_spirit:IsHiddenWhenStolen()
+	return false
+end
+
 function beast_boar_spirit:OnSpellStart()
 	local caster = self:GetCaster()
 	local point = self:GetCursorPosition()

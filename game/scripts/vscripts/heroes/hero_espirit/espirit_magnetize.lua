@@ -2,6 +2,14 @@ espirit_magnetize = class({})
 LinkLuaModifier( "modifier_magnetize", "heroes/hero_espirit/espirit_magnetize.lua" ,LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_magnetize_stone", "heroes/hero_espirit/espirit_magnetize.lua" ,LUA_MODIFIER_MOTION_NONE )
 
+function espirit_magnetize:IsStealable()
+	return true
+end
+
+function espirit_magnetize:IsHiddenWhenStolen()
+	return false
+end
+
 function espirit_magnetize:OnSpellStart()
     local caster = self:GetCaster()
 

@@ -4,6 +4,14 @@ LinkLuaModifier( "modifier_valkyrie_aoe", "heroes/hero_gyro/gyro_bombing_run.lua
 LinkLuaModifier( "modifier_valkyrie_slow", "heroes/hero_gyro/gyro_bombing_run.lua",LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_movespeed_cap", "libraries/modifiers/modifier_movespeed_cap.lua" ,LUA_MODIFIER_MOTION_NONE )
 
+function gyro_bombing_run:IsStealable()
+	return true
+end
+
+function gyro_bombing_run:IsHiddenWhenStolen()
+	return false
+end
+
 function gyro_bombing_run:OnSpellStart()
 	local caster = self:GetCaster()
 
