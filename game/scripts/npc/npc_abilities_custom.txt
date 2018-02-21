@@ -33488,11 +33488,191 @@
 	///////////////////
 	// 	PUCK
 	///////////////////
+	//=================================================================================================================
+	// Puck: Illusory Orb
+	//=================================================================================================================
+	"puck_illusory_orb_ebf"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_puck/puck_illusory_orb_ebf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"				"1"
+		"LevelsBetweenUpgrades"			"5"
+		"MaxLevel"						"7"
+		"RequiredLevel"					"6"
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.01"
+		"AbilityCastRange"				"3000"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"6"
+	
+		// Damage.
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityDamage"					"1200 2500 5000 10000 25000 50000 80000"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"25 50 75 125 250 500 1000"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"225"		
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"max_distance"				"1800 1800 1800 1800"
+				"LinkedSpecialBonus"		"special_bonus_unique_puck"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"orb_speed"					"600 600 600 600"
+				"LinkedSpecialBonus"		"special_bonus_unique_puck"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"orb_vision"				"800 800 800 800"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"vision_duration"			"3.34 3.34 3.34 3.34"
+			}
+		}
+	}
+	
+	//=================================================================================================================
+	// Puck: Ethereal Jaunt
+	//=================================================================================================================
+	"puck_ethereal_jaunt_ebf"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_puck/puck_ethereal_jaunt_ebf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+		"MaxLevel"						"7"
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
+	}
+
+	//=================================================================================================================
+	// Puck: Waning Rift
+	//=================================================================================================================
+	"puck_waning_rift_ebf"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_puck/puck_waning_rift_ebf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"				"1"
+		"LevelsBetweenUpgrades"			"5"
+		"MaxLevel"						"7"
+		"RequiredLevel"					"6"
+		"PiercesDisableReduction"		"1"
+		"HasPureCooldown"				"1"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.01"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"5"
+		"AbilityDuration"				"4.5"
+
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"25 50 75 125 250 500 1000"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"600 650 700 750 800 850 900"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"silence_duration"			"4.5"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"1000 2000 4000 8000 16000 32000 64000"
+				"LinkedSpecialBonus"		"special_bonus_unique_puck_4"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Puck: Phase Shift
+	//=================================================================================================================
+	"puck_phase_shift_ebf"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_puck/puck_phase_shift_ebf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_MOVEMENT | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+		"LevelsBetweenUpgrades"			"5"
+		"MaxLevel"						"7"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0"
+		"AbilityChannelTime"			"0.75 1.00 1.25 1.5 1.75 2.0 2.25"
+
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"8.0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0 0 0 0"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"0.75 1.00 1.25 1.5 1.75 2.0 2.25"
+			}
+		}
+	}
 	"puck_reverie_snap"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_datadriven"
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_puck/puck_reverie_snap"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
