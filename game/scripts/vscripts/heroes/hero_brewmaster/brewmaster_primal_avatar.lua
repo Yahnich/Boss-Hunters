@@ -1,5 +1,13 @@
 brewmaster_primal_avatar = class({})
 
+function brewmaster_primal_avatar:IsStealable()
+	return true
+end
+
+function brewmaster_primal_avatar:IsHiddenWhenStolen()
+	return false
+end
+
 function brewmaster_primal_avatar:OnSpellStart()
 	local caster = self:GetCaster()
 	

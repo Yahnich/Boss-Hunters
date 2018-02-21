@@ -2,6 +2,14 @@ winterw_winters_kiss = class({})
 LinkLuaModifier( "modifier_winters_kiss", "heroes/hero_ww/winterw_winters_kiss.lua" ,LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_winters_kiss_enemy", "heroes/hero_ww/winterw_winters_kiss.lua" ,LUA_MODIFIER_MOTION_NONE )
 
+function winterw_winters_kiss:IsStealable()
+    return true
+end
+
+function winterw_winters_kiss:IsHiddenWhenStolen()
+    return false
+end
+
 function winterw_winters_kiss:PiercesDisableResistance()
     return true
 end
@@ -71,7 +79,8 @@ end
 
 function modifier_winters_kiss:CheckState()
 	local state = { [MODIFIER_STATE_STUNNED] = true,
-					[MODIFIER_STATE_FROZEN] = true}
+					[MODIFIER_STATE_FROZEN] = true,
+                    [MODIFIER_STATE_SPECIALLY_DENIABLE] = true}
 	return state
 end
 

@@ -1,5 +1,13 @@
 alchemist_midas_knuckle = class({})
 
+function alchemist_midas_knuckle:IsStealable()
+	return true
+end
+
+function alchemist_midas_knuckle:IsHiddenWhenStolen()
+	return false
+end
+
 function alchemist_midas_knuckle:OnAbilityPhaseStart()
 	self.warmupFX = ParticleManager:CreateParticle("particles/econ/items/pugna/pugna_ward_golden_nether_lord/pugna_gold_ambient.vpcf", PATTACH_POINT_FOLLOW, self:GetCaster())
 	return true

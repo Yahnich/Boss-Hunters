@@ -1,5 +1,13 @@
 centaur_hoof_stomp_ebf = class({})
 
+function centaur_hoof_stomp_ebf:IsStealable()
+	return true
+end
+
+function centaur_hoof_stomp_ebf:IsHiddenWhenStolen()
+	return false
+end
+
 function centaur_hoof_stomp_ebf:GetCooldown(iLvl)
 	local cooldown = self.BaseClass.GetCooldown(self, iLvl)
 	if self:GetCaster():HasTalent("special_bonus_unique_centaur_hoof_stomp_1") then cooldown = cooldown + self:GetCaster():FindTalentValue("special_bonus_unique_centaur_hoof_stomp_1") end

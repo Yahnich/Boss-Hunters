@@ -1,5 +1,13 @@
 dragon_knight_elder_dragon_berserker = class({})
 
+function dragon_knight_elder_dragon_berserker:IsStealable()
+	return true
+end
+
+function dragon_knight_elder_dragon_berserker:IsHiddenWhenStolen()
+	return false
+end
+
 function dragon_knight_elder_dragon_berserker:OnSpellStart()
 	local caster = self:GetCaster()
 	

@@ -1,5 +1,13 @@
 rattletrap_automated_artillery = class({})
 
+function rattletrap_automated_artillery:IsStealable()
+	return true
+end
+
+function rattletrap_automated_artillery:IsHiddenWhenStolen()
+	return false
+end
+
 function rattletrap_automated_artillery:GetBehavior()
 	if self:GetCaster():HasTalent("special_bonus_unique_rattletrap_automated_artillery_1") then
 		return DOTA_ABILITY_BEHAVIOR_TOGGLE + DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING
@@ -15,7 +23,7 @@ end
 
 function rattletrap_automated_artillery:OnUpgrade()
 	local sisterAb = self:GetCaster():FindAbilityByName("rattletrap_reactive_shielding")
-	if sisterAb:GetLevel() < self:GetLevel() then sisterAb:SetLevel( self:GetLevel() ) end
+	if sisterAb and sisterAb:GetLevel() < self:GetLevel() then sisterAb:SetLevel( self:GetLevel() ) end
 end
 
 function rattletrap_automated_artillery:OnToggle()
@@ -43,7 +51,9 @@ function modifier_rattletrap_automated_artillery:OnCreated()
 	self.rockets = self:GetTalentSpecialValueFor("rockets_per_second")
 	if IsServer() then 
 		self.sisterAb = self:GetCaster():FindAbilityByName("rattletrap_reactive_shielding")
-		self.sisterAb:SetActivated(false)
+		if self.sisterAb then
+			self.sisterAb:SetActivated(false)
+		end
 		if not self:GetAbility():IsToggle() then self:GetAbility():StartDelayedCooldown() end
 		self:StartIntervalThink(1 / self.rockets)
 	end
@@ -54,8 +64,10 @@ function modifier_rattletrap_automated_artillery:OnRefresh()
 	self.radius = self:GetTalentSpecialValueFor("radius")
 	self.rockets = self:GetTalentSpecialValueFor("rockets_per_second")
 	if IsServer() then 
-		self.sisterAb:SetActivated(false)
-		if not self:IsToggle() then self:StartDelayedCooldown() end
+		if self.sisterAb then
+			self.sisterAb:SetActivated(false)
+		end
+		if not self:GetAbility():IsToggle() then self:GetAbility():StartDelayedCooldown() end
 		self:StartIntervalThink(1 / self.rockets)
 	end
 end
@@ -92,7 +104,9 @@ end
 
 function modifier_rattletrap_automated_artillery:OnDestroy()
 	if IsServer() then
-		self.sisterAb:SetActivated(true) 
+		if self.sisterAb then
+			self.sisterAb:SetActivated(true)
+		end
 		self:GetAbility():EndDelayedCooldown()
 	end
 end

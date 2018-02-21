@@ -10,6 +10,14 @@ function et_earth_splitter:GetAbilityTextureName()
 	return "elder_titan_earth_splitter"
 end
 
+function et_earth_splitter:IsStealable()
+	return true
+end
+
+function et_earth_splitter:IsHiddenWhenStolen()
+	return false
+end
+
 function et_earth_splitter:OnAbilityPhaseStart()
 	local caster = self:GetCaster()
 	local point = self:GetCursorPosition()
@@ -74,7 +82,7 @@ function et_earth_splitter:OnSpellStart()
 		for _,enemy in pairs(enemies) do
 			damage = enemy:GetMaxHealth() * self:GetTalentSpecialValueFor("damage")/100
 			if not caster:HasModifier("modifier_elder_spirit") then
-				if caster:FindAbilityByName("et_elder_spirit"):IsTrained() then
+				if caster:FindAbilityByName("et_elder_spirit") and caster:FindAbilityByName("et_elder_spirit"):IsTrained() then
 					if caster:HasModifier("modifier_elder_spirit_check") then
 						self:DealDamage(caster, enemy, damage/2, {damage_type = DAMAGE_TYPE_MAGICAL, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION }, 0)
 						self:DealDamage(caster, enemy, damage/2, {damage_type = DAMAGE_TYPE_PHYSICAL, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION }, 0)
@@ -106,7 +114,7 @@ function et_earth_splitter:OnProjectileHit(hTarget, vLocation)
 
 	if hTarget ~= nil then
 		if not caster:HasModifier("modifier_elder_spirit") then
-			if caster:FindAbilityByName("et_elder_spirit"):IsTrained() then
+			if caster:FindAbilityByName("et_elder_spirit") and caster:FindAbilityByName("et_elder_spirit"):IsTrained() then
 				if caster:HasModifier("modifier_elder_spirit_check") then
 					self:DealDamage(caster, hTarget, damage/2, {damage_type = DAMAGE_TYPE_MAGICAL}, 0)
 					self:DealDamage(caster, hTarget, damage/2, {damage_type = DAMAGE_TYPE_PHYSICAL}, 0)

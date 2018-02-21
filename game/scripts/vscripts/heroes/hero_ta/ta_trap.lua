@@ -2,6 +2,14 @@ ta_trap = class({})
 LinkLuaModifier( "modifier_ta_trap", "heroes/hero_ta/ta_trap.lua" ,LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_ta_trap_spring", "heroes/hero_ta/ta_trap.lua" ,LUA_MODIFIER_MOTION_NONE )
 
+function ta_trap:IsStealable()
+	return false
+end
+
+function ta_trap:IsHiddenWhenStolen()
+	return false
+end
+
 function ta_trap:OnUpgrade()
 	local abil1 = self:GetCaster():FindAbilityByName("ta_trap_tp")
 	local abil2 = self:GetCaster():FindAbilityByName("ta_trap_spring")

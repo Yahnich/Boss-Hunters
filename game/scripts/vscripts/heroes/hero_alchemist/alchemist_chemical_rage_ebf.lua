@@ -1,5 +1,13 @@
 alchemist_chemical_rage_ebf = class({})
 
+function alchemist_chemical_rage_ebf:IsStealable()
+	return true
+end
+
+function alchemist_chemical_rage_ebf:IsHiddenWhenStolen()
+	return false
+end
+
 function alchemist_chemical_rage_ebf:OnSpellStart()
 	local caster = self:GetCaster()
 	EmitSoundOn("Hero_Alchemist.ChemicalRage.Cast", caster)

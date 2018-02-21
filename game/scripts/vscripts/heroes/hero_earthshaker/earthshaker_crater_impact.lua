@@ -1,5 +1,13 @@
 earthshaker_crater_impact = class({})
 
+function earthshaker_crater_impact:IsStealable()
+	return true
+end
+
+function earthshaker_crater_impact:IsHiddenWhenStolen()
+	return false
+end
+
 function earthshaker_crater_impact:GetCastRange(target, position)
 	return self:GetTalentSpecialValueFor("jump_distance")
 end

@@ -1,5 +1,13 @@
 espirit_rock_punch = class({})
 
+function espirit_rock_punch:IsStealable()
+	return true
+end
+
+function espirit_rock_punch:IsHiddenWhenStolen()
+	return false
+end
+
 function espirit_rock_punch:GetAOERadius()
 	return self:GetTalentSpecialValueFor("radius")
 end
@@ -90,7 +98,9 @@ function espirit_rock_punch:OnProjectileHit(hTarget, vLocation)
 			rock2:AddNewModifier(caster, self, "modifier_rock_punch", {})
 		end
 
-		caster:FindAbilityByName("espirit_rock"):CreateStoneRemnant(vLocation)
+		if caster:FindAbilityByName("espirit_rock") then
+			caster:FindAbilityByName("espirit_rock"):CreateStoneRemnant(vLocation)
+		end
 
 		hTarget:ForceKill(false)
 	end

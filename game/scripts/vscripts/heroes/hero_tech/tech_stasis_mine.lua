@@ -2,6 +2,14 @@ tech_stasis_mine = class({})
 LinkLuaModifier( "modifier_stasis_mine", "heroes/hero_tech/tech_stasis_mine.lua", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_stasis_mine_mr", "heroes/hero_tech/tech_stasis_mine.lua", LUA_MODIFIER_MOTION_NONE )
 
+function tech_stasis_mine:IsStealable()
+	return true
+end
+
+function tech_stasis_mine:IsHiddenWhenStolen()
+	return false
+end
+
 function tech_stasis_mine:PiercesDisableResistance()
     return true
 end

@@ -6,6 +6,14 @@ function bristleback_snot:GetIntrinsicModifierName()
 	return "modifier_bristleback_snot_autocast"
 end
 
+function bristleback_snot:IsStealable()
+	return true
+end
+
+function bristleback_snot:IsHiddenWhenStolen()
+	return false
+end
+
 function bristleback_snot:OnSpellStart()
 	local caster = self:GetCaster()
 

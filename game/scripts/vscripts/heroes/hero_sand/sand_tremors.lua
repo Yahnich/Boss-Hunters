@@ -2,11 +2,18 @@ sand_tremors = class({})
 LinkLuaModifier("modifier_tremors", "heroes/hero_sand/sand_tremors.lua", 0)
 LinkLuaModifier("modifier_tremors_enemy", "heroes/hero_sand/sand_tremors.lua", 0)
 
+function sand_tremors:IsStealable()
+	return true
+end
+
+function sand_tremors:IsHiddenWhenStolen()
+	return false
+end
+
 function sand_tremors:OnAbilityPhaseStart()
 	EmitSoundOn("Ability.SandKing_Epicenter.spell", self:GetCaster())
 	return true
 end
-
 
 function sand_tremors:OnAbilityPhaseInterrupted()
 	StopSoundOn("Ability.SandKing_Epicenter.spell", self:GetCaster())

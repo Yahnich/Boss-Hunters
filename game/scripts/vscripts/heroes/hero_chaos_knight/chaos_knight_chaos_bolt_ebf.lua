@@ -1,5 +1,13 @@
 chaos_knight_chaos_bolt_ebf = class({})
 
+function chaos_knight_chaos_bolt_ebf:IsStealable()
+	return true
+end
+
+function chaos_knight_chaos_bolt_ebf:IsHiddenWhenStolen()
+	return false
+end
+
 if IsServer() then
 	function chaos_knight_chaos_bolt_ebf:OnSpellStart()
 		local projectile = {

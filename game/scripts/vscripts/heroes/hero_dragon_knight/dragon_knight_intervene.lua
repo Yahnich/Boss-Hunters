@@ -1,5 +1,13 @@
 dragon_knight_intervene = class({})
 
+function dragon_knight_intervene:IsStealable()
+	return true
+end
+
+function dragon_knight_intervene:IsHiddenWhenStolen()
+	return false
+end
+
 function dragon_knight_intervene:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()

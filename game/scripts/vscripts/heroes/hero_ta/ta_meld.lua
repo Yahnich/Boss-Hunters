@@ -3,6 +3,13 @@ LinkLuaModifier( "modifier_ta_meld", "heroes/hero_ta/ta_meld.lua", LUA_MODIFIER_
 LinkLuaModifier( "modifier_ta_meld_armor", "heroes/hero_ta/ta_meld.lua", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_ta_meld_enemy", "heroes/hero_ta/ta_meld.lua", LUA_MODIFIER_MOTION_NONE )
 
+function ta_meld:IsStealable()
+	return true
+end
+
+function ta_meld:IsHiddenWhenStolen()
+	return false
+end
 
 function ta_meld:OnSpellStart()
 	local caster = self:GetCaster()

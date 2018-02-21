@@ -15,7 +15,7 @@ function doom_infernal_blade_ebf:OnSpellStart()
 end
 
 function doom_infernal_blade_ebf:IsStealable()
-	return false
+	return true
 end
 
 function doom_infernal_blade_ebf:GetCastRange(location, target)

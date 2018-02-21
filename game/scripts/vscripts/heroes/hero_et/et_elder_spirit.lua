@@ -12,6 +12,10 @@ function et_elder_spirit:GetAbilityTextureName()
 	return "elder_titan_ancestral_spirit"
 end
 
+function et_elder_spirit:IsStealable()
+	return false
+end
+
 function et_elder_spirit:GetBehavior()
 	if not self:GetCaster():HasModifier("modifier_elder_spirit_check") and self:GetLevel() > 0 then
 		return DOTA_ABILITY_BEHAVIOR_NO_TARGET + DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING

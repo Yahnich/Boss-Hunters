@@ -1,6 +1,14 @@
 ta_trap_spring = class({})
 LinkLuaModifier( "modifier_ta_trap_spring", "heroes/hero_ta/ta_trap.lua" ,LUA_MODIFIER_MOTION_NONE )
 
+function ta_trap_spring:IsStealable()
+	return false
+end
+
+function ta_trap_spring:IsHiddenWhenStolen()
+	return false
+end
+
 function ta_trap_spring:OnSpellStart()
 	local caster = self:GetCaster()
 	local point = self:GetCursorPosition()

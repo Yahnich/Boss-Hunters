@@ -1,5 +1,13 @@
 centaur_great_edge = class({})
 
+function centaur_great_edge:IsStealable()
+	return true
+end
+
+function centaur_great_edge:IsHiddenWhenStolen()
+	return false
+end
+
 function centaur_great_edge:GetCooldown(iLevel)
 	if self:GetCaster():HasTalent("special_bonus_unique_centaur_great_edge_1") then
 		return 0

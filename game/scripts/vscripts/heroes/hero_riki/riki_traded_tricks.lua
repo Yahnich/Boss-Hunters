@@ -1,6 +1,14 @@
 riki_traded_tricks = class({})
 LinkLuaModifier( "modifier_traded_tricks", "heroes/hero_riki/riki_traded_tricks.lua" ,LUA_MODIFIER_MOTION_NONE )
 
+function riki_traded_tricks:IsStealable()
+    return true
+end
+
+function riki_traded_tricks:IsHiddenWhenStolen()
+    return false
+end
+
 function riki_traded_tricks:GetCastRange(Location, Target)
     return self:GetTalentSpecialValueFor("range")
 end

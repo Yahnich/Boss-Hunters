@@ -1,5 +1,13 @@
 huskar_unleash_vitality = class({})
 
+function huskar_unleash_vitality:IsStealable()
+	return true
+end
+
+function huskar_unleash_vitality:IsHiddenWhenStolen()
+	return false
+end
+
 function huskar_unleash_vitality:GetIntrinsicModifierName()
 	return "modifier_huskar_unleash_vitality_talent"
 end

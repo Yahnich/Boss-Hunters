@@ -1,6 +1,14 @@
 tech_mine = class({})
 LinkLuaModifier( "modifier_mine", "heroes/hero_tech/tech_mine.lua", LUA_MODIFIER_MOTION_NONE )
 
+function tech_mine:IsStealable()
+	return true
+end
+
+function tech_mine:IsHiddenWhenStolen()
+	return false
+end
+
 function tech_mine:OnSpellStart()
 	local caster = self:GetCaster()
 

@@ -1,6 +1,14 @@
 lion_meteor = class({})
 LinkLuaModifier( "modifier_lion_meteor", "heroes/hero_lion/lion_meteor.lua",LUA_MODIFIER_MOTION_NONE )
 
+function lion_meteor:IsStealable()
+    return true
+end
+
+function lion_meteor:IsHiddenWhenStolen()
+    return false
+end
+
 function lion_meteor:GetAOERadius()
     return self:GetTalentSpecialValueFor("radius")
 end

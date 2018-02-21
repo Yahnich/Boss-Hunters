@@ -1,5 +1,13 @@
 huskar_sunder_life = class({})
 
+function huskar_sunder_life:IsStealable()
+	return true
+end
+
+function huskar_sunder_life:IsHiddenWhenStolen()
+	return false
+end
+
 function huskar_sunder_life:GetCooldown(iLvl)
 	return self.BaseClass.GetCooldown(self, iLvl) + self:GetCaster():FindTalentValue("special_bonus_unique_huskar_sunder_life_1")
 end

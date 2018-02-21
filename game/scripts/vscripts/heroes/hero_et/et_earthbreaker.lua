@@ -9,6 +9,14 @@ function et_earthbreaker:GetAbilityTextureName()
 	return "custom/elder_titan_earthbreaker"
 end
 
+function et_earthbreaker:IsStealable()
+	return true
+end
+
+function et_earthbreaker:IsHiddenWhenStolen()
+	return false
+end
+
 function et_earthbreaker:OnAbilityPhaseStart()
 	local caster = self:GetCaster()
 	local point = self:GetCursorPosition()
@@ -70,7 +78,7 @@ function et_earthbreaker:OnSpellStart()
 	local distance = CalculateDistance(startPos, endPos)
 
 	if not caster:HasModifier("modifier_elder_spirit") then
-		if caster:FindAbilityByName("et_elder_spirit"):IsTrained() then
+		if caster:FindAbilityByName("et_elder_spirit") and caster:FindAbilityByName("et_elder_spirit"):IsTrained() then
 			if caster:HasModifier("modifier_elder_spirit_check") then
 				self:FireLinearProjectile("particles/units/heroes/hero_et/et_earthbreaker.vpcf", direction * 1500, distance, 300, {extraData = {name = "bothDamage"}})
 			else

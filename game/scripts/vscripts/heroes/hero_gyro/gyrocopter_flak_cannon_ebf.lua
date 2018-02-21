@@ -1,5 +1,13 @@
 gyrocopter_flak_cannon_ebf = class({})
 
+function gyrocopter_flak_cannon_ebf:IsStealable()
+	return true
+end
+
+function gyrocopter_flak_cannon_ebf:IsHiddenWhenStolen()
+	return false
+end
+
 function gyrocopter_flak_cannon_ebf:OnProjectileHit(target, position)
 	local caster = self:GetCaster()
 	

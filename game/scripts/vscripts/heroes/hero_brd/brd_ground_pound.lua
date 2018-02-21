@@ -8,6 +8,14 @@ function brd_ground_pound:PiercesDisableResistance()
     return true
 end
 
+function brd_ground_pound:IsStealable()
+	return true
+end
+
+function brd_ground_pound:IsHiddenWhenStolen()
+	return false
+end
+
 function brd_ground_pound:OnSpellStart()
 	local caster = self:GetCaster()
 

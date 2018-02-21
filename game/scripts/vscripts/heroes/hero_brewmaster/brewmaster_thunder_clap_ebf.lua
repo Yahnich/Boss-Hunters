@@ -1,5 +1,13 @@
 brewmaster_thunder_clap_ebf = class({})
 
+function brewmaster_thunder_clap_ebf:IsStealable()
+	return true
+end
+
+function brewmaster_thunder_clap_ebf:IsHiddenWhenStolen()
+	return false
+end
+
 function brewmaster_thunder_clap_ebf:GetCastRange(target, position)
 	return self:GetTalentSpecialValueFor("radius")
 end

@@ -1,6 +1,14 @@
 tech_drastic = class({})
 LinkLuaModifier( "modifier_drastic_fallout", "heroes/hero_tech/tech_drastic.lua", LUA_MODIFIER_MOTION_NONE )
 
+function tech_drastic:IsStealable()
+	return true
+end
+
+function tech_drastic:IsHiddenWhenStolen()
+	return false
+end
+
 function tech_drastic:GetChannelTime()
 	return self:GetSpecialValueFor("delay_time")
 end

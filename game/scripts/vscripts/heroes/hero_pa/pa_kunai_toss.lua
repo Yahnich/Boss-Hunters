@@ -1,6 +1,14 @@
 pa_kunai_toss = class({})
 LinkLuaModifier( "modifier_kunai_toss_slow", "heroes/hero_pa/pa_kunai_toss.lua" ,LUA_MODIFIER_MOTION_NONE )
 
+function pa_kunai_toss:IsStealable()
+    return true
+end
+
+function pa_kunai_toss:IsHiddenWhenStolen()
+    return false
+end
+
 function pa_kunai_toss:OnSpellStart()
     local caster = self:GetCaster()
     local target = self:GetCursorTarget()

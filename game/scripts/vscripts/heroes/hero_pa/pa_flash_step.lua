@@ -4,6 +4,14 @@ LinkLuaModifier( "modifier_flash_step_as", "heroes/hero_pa/pa_flash_step.lua" ,L
 LinkLuaModifier( "modifier_flash_step_enemy", "heroes/hero_pa/pa_flash_step.lua" ,LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_kunai_toss_slow", "heroes/hero_pa/pa_kunai_toss.lua" ,LUA_MODIFIER_MOTION_NONE )
 
+function pa_flash_step:IsStealable()
+    return true
+end
+
+function pa_flash_step:IsHiddenWhenStolen()
+    return false
+end
+
 function pa_flash_step:OnSpellStart()
     local caster = self:GetCaster()
     local point = self:GetCursorPosition()
@@ -11,8 +19,10 @@ function pa_flash_step:OnSpellStart()
     local direction = CalculateDirection(point, caster:GetAbsOrigin())
     local currentDistance = CalculateDistance(point, caster:GetAbsOrigin())
 	local hasTalent = caster:HasTalent("special_bonus_unique_pa_flash_step_2")
-    caster:FindAbilityByName("pa_kunai_toss").TotesBounces = caster:FindAbilityByName("pa_kunai_toss"):GetSpecialValueFor("bounces")*caster:FindAbilityByName("pa_kunai_toss"):GetSpecialValueFor("max_targets")
-    caster:FindAbilityByName("pa_kunai_toss").CurrentBounces = 0
+    if caster:FindAbilityByName("pa_kunai_toss") then
+        caster:FindAbilityByName("pa_kunai_toss").TotesBounces = caster:FindAbilityByName("pa_kunai_toss"):GetSpecialValueFor("bounces")*caster:FindAbilityByName("pa_kunai_toss"):GetSpecialValueFor("max_targets")
+        caster:FindAbilityByName("pa_kunai_toss").CurrentBounces = 0
+    end
 	
 	local count = 4 -- always fire at least 1 kunai
     caster:AddNewModifier(caster, self, "modifier_flash_step", {})

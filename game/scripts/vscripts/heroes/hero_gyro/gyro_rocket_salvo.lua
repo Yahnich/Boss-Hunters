@@ -1,6 +1,14 @@
 gyro_rocket_salvo = class({})
 LinkLuaModifier( "modifier_rocket_salvo", "heroes/hero_gyro/gyro_rocket_salvo.lua",LUA_MODIFIER_MOTION_NONE )
 
+function gyro_rocket_salvo:IsStealable()
+	return true
+end
+
+function gyro_rocket_salvo:IsHiddenWhenStolen()
+	return false
+end
+
 function gyro_rocket_salvo:OnToggle()
 	local caster = self:GetCaster()
 

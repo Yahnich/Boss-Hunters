@@ -2,6 +2,14 @@ winterw_arctic_sting = class({})
 LinkLuaModifier( "modifier_arctic_sting", "heroes/hero_ww/winterw_arctic_sting.lua" ,LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_arctic_sting_target", "heroes/hero_ww/winterw_arctic_sting.lua" ,LUA_MODIFIER_MOTION_NONE )
 
+function winterw_arctic_sting:IsStealable()
+    return true
+end
+
+function winterw_arctic_sting:IsHiddenWhenStolen()
+    return false
+end
+
 function winterw_arctic_sting:GetBehavior()
     local behavior = DOTA_ABILITY_BEHAVIOR_NO_TARGET + DOTA_ABILITY_BEHAVIOR_IMMEDIATE
     if self:GetCaster():HasScepter() then

@@ -5,6 +5,14 @@ function brd_forced_shout:PiercesDisableResistance()
     return true
 end
 
+function brd_forced_shout:IsStealable()
+	return true
+end
+
+function brd_forced_shout:IsHiddenWhenStolen()
+	return false
+end
+
 --------------------------------------------------------------------------------
 function brd_forced_shout:OnSpellStart()
 	local caster = self:GetCaster()

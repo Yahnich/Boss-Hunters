@@ -1,5 +1,13 @@
 centaur_champions_presence = class({})
 
+function centaur_champions_presence:IsStealable()
+	return true
+end
+
+function centaur_champions_presence:IsHiddenWhenStolen()
+	return false
+end
+
 function centaur_champions_presence:OnSpellStart()
 	local caster = self:GetCaster()
 	

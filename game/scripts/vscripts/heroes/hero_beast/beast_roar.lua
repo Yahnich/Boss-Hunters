@@ -17,6 +17,14 @@ function beast_roar:GetCooldown(iLevel)
 end
 ]]
 
+function beast_roar:IsStealable()
+	return true
+end
+
+function beast_roar:IsHiddenWhenStolen()
+	return false
+end
+
 function beast_roar:OnSpellStart()
 	local caster = self:GetCaster()
 	local point = self:GetCursorPosition()

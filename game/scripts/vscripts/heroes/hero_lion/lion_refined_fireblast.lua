@@ -1,5 +1,13 @@
 lion_refined_fireblast = class({})
 
+function lion_refined_fireblast:IsStealable()
+    return true
+end
+
+function lion_refined_fireblast:IsHiddenWhenStolen()
+    return false
+end
+
 function lion_refined_fireblast:OnInventoryContentsChanged()
     if self:GetCaster():HasScepter() then
         self:SetLevel(1)

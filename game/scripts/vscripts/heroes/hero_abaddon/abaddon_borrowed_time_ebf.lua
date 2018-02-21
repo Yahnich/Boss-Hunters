@@ -1,5 +1,13 @@
 abaddon_borrowed_time_ebf = class({})
 
+function abaddon_borrowed_time_ebf:IsStealable()
+	return true
+end
+
+function abaddon_borrowed_time_ebf:IsHiddenWhenStolen()
+	return false
+end
+
 function abaddon_borrowed_time_ebf:GetIntrinsicModifierName()
 	return "modifier_abaddon_borrowed_time_ebf_passive"
 end

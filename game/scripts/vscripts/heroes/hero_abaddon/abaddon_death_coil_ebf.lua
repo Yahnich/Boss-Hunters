@@ -1,5 +1,13 @@
 abaddon_death_coil_ebf = class({})
 
+function abaddon_death_coil_ebf:IsStealable()
+	return true
+end
+
+function abaddon_death_coil_ebf:IsHiddenWhenStolen()
+	return false
+end
+
 function abaddon_death_coil_ebf:CastFilterResultTarget(target)
 	if target == self:GetCaster() then
 		return UF_FAIL_CUSTOM

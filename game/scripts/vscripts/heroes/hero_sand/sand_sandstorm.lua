@@ -4,6 +4,14 @@ LinkLuaModifier("modifier_sandstorm_tornado", "heroes/hero_sand/sand_sandstorm.l
 LinkLuaModifier("modifier_sandstorm_enemy_tornado", "heroes/hero_sand/sand_sandstorm.lua", 0)
 --LinkLuaModifier("modifier_sandstorm_enemy", "heroes/hero_sand/sand_sandstorm.lua", 0)
 
+function sand_sandstorm:IsStealable()
+    return false
+end
+
+function sand_sandstorm:IsHiddenWhenStolen()
+    return false
+end
+
 function sand_sandstorm:GetChannelAnimation()
     return ACT_DOTA_OVERRIDE_ABILITY_2
 end

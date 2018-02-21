@@ -1,6 +1,14 @@
 lion_frogger = class({})
 LinkLuaModifier( "modifier_lion_frogger", "heroes/hero_lion/lion_frogger.lua",LUA_MODIFIER_MOTION_NONE )
 
+function lion_frogger:IsStealable()
+    return true
+end
+
+function lion_frogger:IsHiddenWhenStolen()
+    return false
+end
+
 function lion_frogger:GetAOERadius()
     return self:GetTalentSpecialValueFor("radius")
 end

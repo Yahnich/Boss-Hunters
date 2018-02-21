@@ -1,5 +1,21 @@
 centaur_stampede_ebf = class({})
 
+function centaur_stampede_ebf:IsStealable()
+	return true
+end
+
+function centaur_stampede_ebf:IsHiddenWhenStolen()
+	return false
+end
+
+function centaur_stampede_ebf:PiercesDisableResistance()
+    return true
+end
+
+function centaur_stampede_ebf:IsStealable()
+	return true
+end
+
 function centaur_stampede_ebf:OnSpellStart()
 	local caster = self:GetCaster()
 	local allies = caster:FindFriendlyUnitsInRadius(caster:GetAbsOrigin(), -1)

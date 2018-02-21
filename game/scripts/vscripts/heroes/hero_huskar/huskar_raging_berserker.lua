@@ -1,5 +1,13 @@
 huskar_raging_berserker = class({})
 
+function huskar_raging_berserker:IsStealable()
+	return true
+end
+
+function huskar_raging_berserker:IsHiddenWhenStolen()
+	return false
+end
+
 function huskar_raging_berserker:GetBehavior()
 	if self:GetCaster():HasTalent("special_bonus_unique_huskar_raging_berserker_1") then
 		return DOTA_ABILITY_BEHAVIOR_NO_TARGET + DOTA_ABILITY_BEHAVIOR_IMMEDIATE

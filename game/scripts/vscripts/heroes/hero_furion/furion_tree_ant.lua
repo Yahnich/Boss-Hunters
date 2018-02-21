@@ -1,4 +1,13 @@
 furion_tree_ant = class({})
+
+function furion_tree_ant:IsStealable()
+	return false
+end
+
+function furion_tree_ant:IsHiddenWhenStolen()
+	return false
+end
+
 function furion_tree_ant:GetAOERadius()
 	return self:GetTalentSpecialValueFor("radius")
 end

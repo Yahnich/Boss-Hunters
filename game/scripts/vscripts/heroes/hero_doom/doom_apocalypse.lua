@@ -3,6 +3,14 @@ doom_apocalypse = class({})
 LinkLuaModifier( "modifier_doom_apocalypse", "heroes/hero_doom/doom_apocalypse.lua" ,LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_doom_apocalypse_talent", "heroes/hero_doom/doom_apocalypse.lua" ,LUA_MODIFIER_MOTION_NONE )
 
+function doom_apocalypse:IsStealable()
+	return true
+end
+
+function doom_apocalypse:IsHiddenWhenStolen()
+	return false
+end
+
 function doom_apocalypse:GetBehavior()
 	if self:GetCaster():HasScepter() then
 		return DOTA_ABILITY_BEHAVIOR_POINT + DOTA_ABILITY_BEHAVIOR_DIRECTIONAL

@@ -4,6 +4,14 @@ LinkLuaModifier( "modifier_furion_sprout_sleep_aura", "heroes/hero_furion/furion
 LinkLuaModifier( "modifier_furion_sprout_sleep", "heroes/hero_furion/furion_tree_jail.lua" ,LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_entangle_enemy", "heroes/hero_furion/furion_entangle.lua",LUA_MODIFIER_MOTION_NONE )
 
+function furion_tree_jail:IsStealable()
+	return true
+end
+
+function furion_tree_jail:IsHiddenWhenStolen()
+	return false
+end
+
 function furion_tree_jail:GetAOERadius()
 	return self:GetTalentSpecialValueFor("tree_radius")
 end
@@ -51,7 +59,7 @@ function modifier_furion_sprout_sleep_thinker:OnCreated( kv )
 end
 
 function modifier_furion_sprout_sleep_thinker:OnIntervalThink()
-	if RollPercentage(self:GetCaster():FindAbilityByName("furion_entangle"):GetTalentSpecialValueFor("chance")) and self:GetCaster():HasTalent("special_bonus_unique_furion_tree_jail_1") then
+	if self:GetCaster():FindAbilityByName("furion_entangle") and RollPercentage(self:GetCaster():FindAbilityByName("furion_entangle"):GetTalentSpecialValueFor("chance")) and self:GetCaster():HasTalent("special_bonus_unique_furion_tree_jail_1") then
 		local enemies = self:GetCaster():FindEnemyUnitsInRadius(self:GetParent():GetAbsOrigin(), self.aura_radius, {})
 		for _,enemy in pairs(enemies) do
 			enemy:AddNewModifier(self:GetCaster(), self:GetCaster():FindAbilityByName("furion_entangle"), "modifier_entangle_enemy", {Duration = self:GetCaster():FindAbilityByName("furion_entangle"):GetTalentSpecialValueFor("duration")})

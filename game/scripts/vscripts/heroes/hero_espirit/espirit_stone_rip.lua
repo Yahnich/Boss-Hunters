@@ -1,5 +1,13 @@
 espirit_stone_rip = class({})
 
+function espirit_stone_rip:IsStealable()
+	return true
+end
+
+function espirit_stone_rip:IsHiddenWhenStolen()
+	return false
+end
+
 function espirit_stone_rip:OnInventoryContentsChanged()
 	if self:GetCaster():HasScepter() then
 		self:SetLevel(1)

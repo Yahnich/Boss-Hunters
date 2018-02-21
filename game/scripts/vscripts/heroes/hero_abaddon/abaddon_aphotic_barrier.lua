@@ -1,5 +1,13 @@
 abaddon_aphotic_barrier = class({})
 
+function abaddon_aphotic_barrier:IsStealable()
+	return true
+end
+
+function abaddon_aphotic_barrier:IsHiddenWhenStolen()
+	return false
+end
+
 function abaddon_aphotic_barrier:GetCooldown(iLvl)
 	local cd = self.BaseClass.GetCooldown(self, iLvl)
 	if self:GetCaster():HasTalent("special_bonus_unique_abaddon_aphotic_barrier_2") then cd = cd + self:GetCaster():FindTalentValue("special_bonus_unique_abaddon_aphotic_barrier_2") end

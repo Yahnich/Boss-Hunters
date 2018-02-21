@@ -1,6 +1,14 @@
 winterw_frozen_splinter = class({})
 LinkLuaModifier( "modifier_frozen_splinter", "heroes/hero_ww/winterw_frozen_splinter.lua" ,LUA_MODIFIER_MOTION_NONE )
 
+function winterw_frozen_splinter:IsStealable()
+	return true
+end
+
+function winterw_frozen_splinter:IsHiddenWhenStolen()
+	return false
+end
+
 function winterw_frozen_splinter:PiercesDisableResistance()
     return true
 end
