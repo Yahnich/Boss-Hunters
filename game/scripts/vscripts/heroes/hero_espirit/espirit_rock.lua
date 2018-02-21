@@ -67,7 +67,7 @@ end
 function modifier_espirit_rock_remnant:OnIntervalThink()
 	local parent = self:GetParent()
 	if parent:HasTalent("special_bonus_unique_espirit_rock_1") then
-		local allies = parent:FindFriendlyUnitsInRadius( parent:GetAbsOrigin(), parent:FindTalentValue("special_bonus_unique_espirit_rock_1", "radius"))
+		local allies = parent:FindFriendlyUnitsInRadius( parent:GetAbsOrigin(), parent:FindTalentValue("special_bonus_unique_espirit_rock_1", "radius"), {type = DOTA_UNIT_TARGET_ALL})
 		for _,ally in pairs(allies) do
 			if ally:GetUnitName() ~= "npc_dota_earth_spirit_stone" then
 				ally:HealEvent(  parent:FindTalentValue("special_bonus_unique_espirit_rock_1") , self:GetAbility(), parent)

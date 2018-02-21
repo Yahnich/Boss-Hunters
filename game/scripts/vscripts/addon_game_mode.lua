@@ -188,7 +188,7 @@ function CHoldoutGameMode:InitGameMode()
 	
 	print(GetMapName())
 	
-	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue( DOTA_ATTRIBUTE_STRENGTH_HP_REGEN_PERCENT, 0.0001 )
+	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue( DOTA_ATTRIBUTE_STRENGTH_HP_REGEN_PERCENT, 0.00008 )
 	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue( DOTA_ATTRIBUTE_STRENGTH_STATUS_RESISTANCE_PERCENT, 0.00005 )
 	
 	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue( DOTA_ATTRIBUTE_AGILITY_DAMAGE, 1.25 )
@@ -838,6 +838,7 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 			require('lua_abilities/heroes/leshrac')
 			filterTable = InnerTorment(filterTable)
 		end
+		if not ability:IsAetherAmplified() then filterTable["damage"] = filterTable["damage"] / (1 + (attacker:GetSpellDamageAmp()))/100 end
 	end
 	if victim:IsHero() and not victim:IsRangedAttacker() then
 		if not (ability and ability:GetName() == "skeleton_king_reincarnation") then
@@ -986,24 +987,24 @@ end
 function CHoldoutGameMode:OnAbilityLearned(event)
 	local abilityname = event.abilityname
 	local pID = event.PlayerID
-	if pID then
+	if pID and string.match(abilityname, "special_bonus_unique") and GameRules.AbilityKV[abilityname] then
 		local hero = PlayerResource:GetSelectedHeroEntity( pID )
-		if string.match(abilityname, "special_bonus_unique") then
-			local talentData = CustomNetTables:GetTableValue("talents", tostring(pID)) or {}
-			if GameRules.AbilityKV[abilityname]["LinkedModifierName"] then
-				local modifierName = GameRules.AbilityKV[abilityname]["LinkedModifierName"] 
-				for _, unit in ipairs( FindAllUnits() ) do
-					if unit:HasModifier(modifierName) then
-						local mList = unit:FindAllModifiersByName(modifierName)
-						for _, modifier in ipairs( mList ) do
-							modifier:ForceRefresh()
-						end
+		local talentData = CustomNetTables:GetTableValue("talents", tostring(pID)) or {}
+		if GameRules.AbilityKV[abilityname]["LinkedModifierName"] then
+			local modifierName = GameRules.AbilityKV[abilityname]["LinkedModifierName"] 
+			for _, unit in ipairs( FindAllUnits() ) do
+				if unit:HasModifier(modifierName) then
+					local mList = unit:FindAllModifiersByName(modifierName)
+					for _, modifier in ipairs( mList ) do
+						local remainingDur = modifier:GetRemainingTime()
+						modifier:ForceRefresh()
+						modifier:SetDuration(remainingDur)
 					end
 				end
 			end
-			talentData[abilityname] = true
-			CustomNetTables:SetTableValue( "talents", tostring(pID), talentData )
 		end
+		talentData[abilityname] = true
+		CustomNetTables:SetTableValue( "talents", tostring(pID), talentData )
 	end
 end
 

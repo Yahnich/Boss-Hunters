@@ -9286,6 +9286,7 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"damage_reduction"		"-50"
+				"CalculateSpellDamageTooltip"	"0"
 			}
 			"02"
 			{
@@ -30000,7 +30001,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"mr_reduction"				"-15 -30 -45 -60 -75 -90 -105"
+				"mr_reduction"				"-10 -20 -30 -40 -50 -60 -70"
 			}
 			"02"
 			{

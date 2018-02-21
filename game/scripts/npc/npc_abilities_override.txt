@@ -17651,7 +17651,7 @@
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"75 85 95 105"
+		"AbilityManaCost"				"25 50 75 125 250 500 1000"
 		
 		
 		// Special
@@ -17661,13 +17661,13 @@
 			"01"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"stun_duration"		"1"
+				"stun_duration"		"0.8"
 			}
 
 			"02"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"multicast_delay"	"0.3"
+				"multicast_delay"	"0.2"
 			}
 			"03"
 			{
@@ -17716,19 +17716,19 @@
 			"01"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"stun_duration"		"1.5"
+				"stun_duration"		"0.8"
 			}
 
 			"02"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"multicast_delay"	"0.4"
+				"multicast_delay"	"0.2"
 			}
 
 			"03"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"scepter_mana"		"0.6"
+				"scepter_mana"		"0.1"
 			}
 			"04"
 			{
@@ -17767,7 +17767,7 @@
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"95 105 115 125"
+		"AbilityManaCost"				"25 50 75 125 250 500 1000"
 				
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -17776,13 +17776,13 @@
 			"01"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"duration"			"5 6 7 8 9 10 11"
+				"duration"			"8"
 			}
 
 			"02"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"burn_damage"		"350 1050 2500 5000 10000 20000 40000"
+				"burn_damage"		"350 1050 2500 5000 7500 10000 15000"
 			}		
 
 			"03"
@@ -17830,7 +17830,7 @@
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"75"
+		"AbilityManaCost"				"25 50 75 125 250 500 1000"
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -17900,14 +17900,14 @@
 
 			"04"
 			{
-				"var_type"			"FIELD_INTEGER"
-				"fireblast_mana_cost"	"20 40 60 80 100 120 150"
+				"var_type"				"FIELD_INTEGER"
+				"fireblast_mana_cost"	"25 50 75 125 250 500 1000"
 			}
 
 			"05"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"fireblast_cooldown"	"1 2 3 4 5 6 8"
+				"fireblast_cooldown"	"1 2 3 4 5 6 7"
 			}
 
 			"06"
@@ -17950,9 +17950,6 @@
 				"var_type"				"FIELD_FLOAT"
 				"multicast_4_times_tooltip"		"0 0 12.5 15 20 40 70"
 			}
-			
-
-
 		}
 	}
 
@@ -24727,7 +24724,7 @@
 			"03"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"hp_perc_damage"		"1.2"
+				"hp_perc_damage"		"1.5"
 				"LinkedSpecialBonus"	"special_bonus_unique_phoenix_5"
 			}
 			"04"
@@ -35586,7 +35583,28 @@
 			}
 		}
 	}
-
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_phoenix_5"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6915"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"value"				"0.5"
+			}
+		}
+	}
 	//=================================================================================================================
 	// Ability: Special Bonus
 	//=================================================================================================================

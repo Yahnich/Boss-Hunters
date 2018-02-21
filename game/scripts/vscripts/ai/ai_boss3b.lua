@@ -27,39 +27,42 @@ if IsServer() then
 	function AIThink()
 		if not thisEntity:IsDominated() and not thisEntity:IsChanneling() then
 			local target = AICore:GetHighestPriorityTarget(thisEntity)
-			if target and thisEntity.spit:IsFullyCastable() then
-				if not target:HasModifier("modifier_boss3b_acid_spit") then
-					ExecuteOrderFromTable({
-						UnitIndex = thisEntity:entindex(),
-						OrderType = DOTA_UNIT_ORDER_CAST_POSITION,
-						Position = target:GetAbsOrigin(),
-						AbilityIndex = thisEntity.spit:entindex()
-					})
-					return thisEntity.spit:GetCastPoint() + 0.1
-				else
-					local castRadius = thisEntity.spit:GetTrueCastRange() + thisEntity:GetIdealSpeed()
-					local searchRadius = thisEntity.spit:GetSpecialValueFor("radius") + castRadius
-					local potentialEnemies = thisEntity:FindEnemyUnitsInRadius(thisEntity:GetAbsOrigin(), searchRadius)
-					local newTarget 
-					for _, potTarget in ipairs(potentialEnemies) do
-						if not potTarget:HasModifier("modifier_boss3b_acid_spit") then 
-							newTarget = potTarget
-							break
-						end
-					end
-					if newTarget then
+			if target and thisEntity:GetHealthPercent() > 25 then 
+				if thisEntity.spit:IsFullyCastable() then
+					if not target:HasModifier("modifier_boss3b_acid_spit") then
 						ExecuteOrderFromTable({
 							UnitIndex = thisEntity:entindex(),
 							OrderType = DOTA_UNIT_ORDER_CAST_POSITION,
-							Position = newTarget:GetAbsOrigin(),
+							Position = target:GetAbsOrigin(),
 							AbilityIndex = thisEntity.spit:entindex()
 						})
 						return thisEntity.spit:GetCastPoint() + 0.1
+					else
+						local castRadius = thisEntity.spit:GetTrueCastRange() + thisEntity:GetIdealSpeed()
+						local searchRadius = thisEntity.spit:GetSpecialValueFor("radius") + castRadius
+						local potentialEnemies = thisEntity:FindEnemyUnitsInRadius(thisEntity:GetAbsOrigin(), searchRadius)
+						local newTarget 
+						for _, potTarget in ipairs(potentialEnemies) do
+							if not potTarget:HasModifier("modifier_boss3b_acid_spit") then 
+								newTarget = potTarget
+								break
+							end
+						end
+						if newTarget then
+							ExecuteOrderFromTable({
+								UnitIndex = thisEntity:entindex(),
+								OrderType = DOTA_UNIT_ORDER_CAST_POSITION,
+								Position = newTarget:GetAbsOrigin(),
+								AbilityIndex = thisEntity.spit:entindex()
+							})
+							return thisEntity.spit:GetCastPoint() + 0.1
+						end
 					end
 				end
 			else
 				target = AICore:NearestEnemyHeroInRange( thisEntity, 15000 , true )
 				AICore:RunToTarget( thisEntity, target )
+				return 0.25
 			end
 			AICore:AttackHighestPriority( thisEntity )
 			return 0.25

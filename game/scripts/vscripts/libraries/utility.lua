@@ -1240,18 +1240,11 @@ function CDOTA_BaseNPC:GetSpellDamageAmp()
 			if Item:GetName() == "item_omni_lens" then
 				aether_multiplier = aether_multiplier + itemAmp
 			end
-			if Item:GetName() == "item_asura_lens" then
-				aether_multiplier = aether_multiplier + itemAmp
-			end
 		end
     end
-	if aether_multiplier > 5.5 then aether_multiplier = 5.5 end
-	if self:FindAbilityByName("new_game_damage_increase") then
-		aether_multiplier = aether_multiplier + self:FindAbilityByName("new_game_damage_increase"):GetSpecialValueFor("spell_amp")/100
-	end
 	local ampint = 0
 	if self:IsHero() then
-		ampint = (self:GetIntellect() * 0.0075)/100
+		ampint = (self:GetIntellect() * 0.01)/100
 	end
 	local totalamp = aether_multiplier + ampint
 	return totalamp
@@ -1507,7 +1500,7 @@ function CDOTA_BaseNPC:FindFriendlyUnitsInLine(startPos, endPos, width, hData)
 	local team = self:GetTeamNumber()
 	local data = hData or {}
 	local iTeam = data.team or DOTA_UNIT_TARGET_TEAM_ENEMY
-	local iType = data.type or DOTA_UNIT_TARGET_ALL
+	local iType = data.type or DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC
 	local iFlag = data.flag or DOTA_UNIT_TARGET_FLAG_NONE
 	return FindUnitsInLine(team, startPos, endPos, nil, width, iTeam, iType, iFlag)
 end

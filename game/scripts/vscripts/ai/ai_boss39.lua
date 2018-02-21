@@ -52,44 +52,56 @@ end
 function AIThink()
 	if not thisEntity:IsDominated() and not thisEntity:IsChanneling() then
 		local target = AICore:GetHighestPriorityTarget(thisEntity)
-		if thisEntity.wormhole:IsFullyCastable() and AICore:TotalEnemyHeroesInRange( thisEntity, thisEntity:GetAttackRange() ) == 0 then
-			if target and not target:IsNull() then
-				ExecuteOrderFromTable({
-					UnitIndex = thisEntity:entindex(),
-					OrderType = DOTA_UNIT_ORDER_CAST_POSITION,
-					Position = target:GetAbsOrigin() + ActualRandomVector(900, 200),
-					AbilityIndex = thisEntity.wormhole:entindex()
-				})
-				return 0.25
-			end
-		elseif thisEntity.wormhole:IsFullyCastable() and AICore:TotalEnemyHeroesInRange( thisEntity, thisEntity:GetAttackRange() ) < 2  and RollPercentage(20) then
-			local target = AICore:GetHighestPriorityTarget(thisEntity)
-			if target then
-				ExecuteOrderFromTable({
-					UnitIndex = thisEntity:entindex(),
-					OrderType = DOTA_UNIT_ORDER_CAST_POSITION,
-					Position = target:GetAbsOrigin() + ActualRandomVector(900, 200),
-					AbilityIndex = thisEntity.wormhole:entindex()
-				})
-				return 0.25
+		if thisEntity.wormhole:IsFullyCastable() then
+			if AICore:TotalEnemyHeroesInRange( thisEntity, thisEntity:GetAttackRange() ) == 0 then
+				if target and not target:IsNull() then
+					ExecuteOrderFromTable({
+						UnitIndex = thisEntity:entindex(),
+						OrderType = DOTA_UNIT_ORDER_CAST_POSITION,
+						Position = target:GetAbsOrigin() + ActualRandomVector(900, 200),
+						AbilityIndex = thisEntity.wormhole:entindex()
+					})
+					return thisEntity.wormhole:GetCastPoint() + 0.1
+				end
+			elseif AICore:TotalEnemyHeroesInRange( thisEntity, thisEntity:GetAttackRange() ) < 2  and RollPercentage(20) then
+				local target = AICore:GetHighestPriorityTarget(thisEntity)
+				if target then
+					ExecuteOrderFromTable({
+						UnitIndex = thisEntity:entindex(),
+						OrderType = DOTA_UNIT_ORDER_CAST_POSITION,
+						Position = target:GetAbsOrigin() + ActualRandomVector(900, 200),
+						AbilityIndex = thisEntity.wormhole:entindex()
+					})
+					return thisEntity.wormhole:GetCastPoint() + 0.1
+				end
 			end
 		end
-		if thisEntity.horizon:IsFullyCastable() and AICore:TotalEnemyHeroesInRange( thisEntity, thisEntity.horizon:GetTalentSpecialValueFor("radius") * 2 ) > 0 and RollPercentage(80) then
-			if thisEntity.wormhole:IsFullyCastable() and RollPercentage(50) then -- teleport away
-				ExecuteOrderFromTable({
-					UnitIndex = thisEntity:entindex(),
-					OrderType = DOTA_UNIT_ORDER_CAST_POSITION,
-					Position = thisEntity:GetAbsOrigin() + ActualRandomVector(1200, 500),
-					AbilityIndex = thisEntity.wormhole:entindex()
-				})
-				return 0.25
-			else -- stand still
+		local horizonWeight = 50 + 50/AICore:TotalEnemyHeroesInRange( thisEntity, thisEntity.horizon:GetTalentSpecialValueFor("radius") * 2 )
+		if thisEntity.horizon:IsFullyCastable() then
+			if AICore:TotalEnemyHeroesInRange( thisEntity, thisEntity.horizon:GetTalentSpecialValueFor("radius") * 2 ) > 0 and RollPercentage(horizonWeight) then
+				if thisEntity.wormhole:IsFullyCastable() and RollPercentage(50) then -- teleport away
+					ExecuteOrderFromTable({
+						UnitIndex = thisEntity:entindex(),
+						OrderType = DOTA_UNIT_ORDER_CAST_POSITION,
+						Position = thisEntity:GetAbsOrigin() + ActualRandomVector(800, 500),
+						AbilityIndex = thisEntity.wormhole:entindex()
+					})
+					return thisEntity.wormhole:GetCastPoint() + 0.1
+				else -- stand still
+					ExecuteOrderFromTable({
+						UnitIndex = thisEntity:entindex(),
+						OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
+						AbilityIndex = thisEntity.horizon:entindex()
+					})
+					return thisEntity.horizon:GetCastPoint() + 0.1
+				end
+			elseif AICore:TotalEnemyHeroesInRange( thisEntity, thisEntity.horizon:GetTalentSpecialValueFor("radius") ) > 0 then
 				ExecuteOrderFromTable({
 					UnitIndex = thisEntity:entindex(),
 					OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
 					AbilityIndex = thisEntity.horizon:entindex()
 				})
-				return 2
+				return thisEntity.horizon:GetCastPoint() + 0.1
 			end
 		end
 		if thisEntity.pool:IsFullyCastable() and AICore:TotalEnemyHeroesInRange( thisEntity, thisEntity.pool:GetTalentSpecialValueFor("pool_spawn_range") ) > 0 and RollPercentage(50) then
@@ -98,15 +110,15 @@ function AIThink()
 				OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
 				AbilityIndex = thisEntity.pool:entindex()
 			})
-			return 0.25
+			return thisEntity.pool:GetCastPoint() + 0.1
 		end
-		if thisEntity.meteor:IsFullyCastable() and RollPercentage(35) then
+		if thisEntity.meteor:IsFullyCastable() then
 			ExecuteOrderFromTable({
 				UnitIndex = thisEntity:entindex(),
 				OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
 				AbilityIndex = thisEntity.meteor:entindex()
 			})
-			return 0.25
+			return thisEntity.meteor:GetCastPoint() + 0.1
 		end
 		if thisEntity.mass:IsFullyCastable() and AICore:TotalEnemyHeroesInRange( thisEntity, thisEntity.mass:GetTrueCastRange() ) > 0 then
 			local distCheck = CalculateDistance( thisEntity, target )
@@ -120,7 +132,7 @@ function AIThink()
 				Position = position,
 				AbilityIndex = thisEntity.mass:entindex()
 			})
-			return 0.25
+			return thisEntity.mass:GetCastPoint() + 0.1
 		end
 		if thisEntity.rift:IsFullyCastable() and AICore:TotalEnemyHeroesInRange( thisEntity, thisEntity.rift:GetTrueCastRange() + thisEntity.rift:GetTalentSpecialValueFor("pull_radius") ) > 0 then
 			local distCheck = CalculateDistance( thisEntity, target )
@@ -134,7 +146,7 @@ function AIThink()
 				Position = position,
 				AbilityIndex = thisEntity.rift:entindex()
 			})
-			return 0.25
+			return thisEntity.rift:GetCastPoint() + 0.1
 		end
 		AICore:AttackHighestPriority( thisEntity )
 		return 0.25

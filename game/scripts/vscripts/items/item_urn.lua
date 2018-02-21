@@ -32,7 +32,7 @@ function modifier_item_urn_handle:OnCreated()
 	self.armor = self:GetSpecialValueFor("bonus_armor")
 	self.mregen = self:GetSpecialValueFor("bonus_mregen")
 	self.stats = self:GetSpecialValueFor("bonus_stats")
-	self.bonus_evasion = self:GetSpecialValueFor("bonus_evasion")
+	self.evasion = self:GetSpecialValueFor("bonus_evasion")
 end
 
 function modifier_item_urn_handle:GetAttributes()
@@ -79,12 +79,9 @@ end
 
 modifier_item_urn_handle_heal = class({})
 function modifier_item_urn_handle_heal:OnCreated()
-	if IsServer() then
-		self:GetParent():HealEvent(self:GetAbility():GetSpecialValueFor("damage_heal"), self:GetAbility(), self:GetCaster())
-		self:StartIntervalThink(1.0)
-	end
 	self.armor = self:GetSpecialValueFor("bonus_armor")
 	self.evasion = self:GetSpecialValueFor("bonus_evasion")
+	self.regen = self:GetAbility():GetSpecialValueFor("damage_heal")
 	self:GetAbility().casted = true
 end
 
@@ -98,7 +95,8 @@ end
 
 function modifier_item_urn_handle_heal:DeclareFunctions()
 	return {MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
-			MODIFIER_PROPERTY_EVASION_CONSTANT
+			MODIFIER_PROPERTY_EVASION_CONSTANT,
+			MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
 			}
 end
 
@@ -106,8 +104,12 @@ function modifier_item_urn_handle_heal:GetModifierPhysicalArmorBonus()
 	return self.armor
 end
 
-function modifier_item_urn_handle:GetModifierEvasion_Constant()
+function modifier_item_urn_handle_heal:GetModifierEvasion_Constant()
 	return self.evasion
+end
+
+function modifier_item_urn_handle_heal:GetModifierConstantHealthRegen()
+	return self.regen
 end
 
 function modifier_item_urn_handle_heal:GetEffectName()
@@ -159,18 +161,18 @@ end
 function modifier_item_urn_handle_damage:DeclareFunctions()
 	return {MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
 			MODIFIER_PROPERTY_MISS_PERCENTAGE,
-			MODIFIER_PROPERTY_DISABLE_HEALING,}
+			MODIFIER_PROPERTY_DISABLE_HEALING}
 end
 
 function modifier_item_urn_handle_damage:GetModifierPhysicalArmorBonus()
 	return self.armor
 end
 
-function modifier_item_urn_handle:GetModifierMiss_Percentage()
-	return self.evasion
+function modifier_item_urn_handle_damage:GetModifierMiss_Percentage()
+	return self.blind
 end
 
-function modifier_item_urn_handle:GetDisableHealing()
+function modifier_item_urn_handle_damage:GetDisableHealing()
 	print(self.disable)
 	return tonumber(self.disable)
 end

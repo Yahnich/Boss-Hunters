@@ -64,7 +64,7 @@ function espirit_rock_punch:OnProjectileHit(hTarget, vLocation)
 
 		local i = 0
 
-		local stones = caster:FindFriendlyUnitsInRadius(vLocation, self:GetTalentSpecialValueFor("radius"), {})
+		local stones = caster:FindFriendlyUnitsInRadius(vLocation, self:GetTalentSpecialValueFor("radius"), {type = DOTA_UNIT_TARGET_ALL})
 		for _,stone in pairs(stones) do
 			if stone:GetUnitName() == "npc_dota_earth_spirit_stone" then
 				self.rockCount[i] = stone

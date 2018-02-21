@@ -90,6 +90,5 @@ function modifier_boss_aether_event_horizon_debuff:OnIntervalThink()
 	if IsServer() then
 		local parent = self:GetParent()
 		local caster = self:GetCaster()
-		self:GetAbility():DealDamage( caster, parent, parent:GetMaxHealth() * self.damage )
 	end
 end

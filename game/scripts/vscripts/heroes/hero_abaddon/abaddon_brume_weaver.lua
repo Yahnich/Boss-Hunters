@@ -55,15 +55,15 @@ LinkLuaModifier( "modifier_abaddon_brume_weaver_handler_buff", "heroes/hero_abad
 modifier_abaddon_brume_weaver_handler_buff = class({})
 
 function modifier_abaddon_brume_weaver_handler_buff:OnCreated()
-	self.healFactor = self:GetAbility():GetSpecialValueFor("heal_pct") / 100
-	self.healDuration = self:GetAbility():GetSpecialValueFor("heal_duration")
-	self.evasion = self:GetAbility():GetSpecialValueFor("evasion")
+	self.healFactor = self:GetAbility():GetTalentSpecialValueFor("heal_pct") / 100
+	self.healDuration = self:GetAbility():GetTalentSpecialValueFor("heal_duration")
+	self.evasion = self:GetAbility():GetTalentSpecialValueFor("evasion")
 end
 
 function modifier_abaddon_brume_weaver_handler_buff:OnRefresh()
-	self.healFactor = self:GetAbility():GetSpecialValueFor("heal_pct") / 100
-	self.healDuration = self:GetAbility():GetSpecialValueFor("heal_duration")
-	self.evasion = self:GetAbility():GetSpecialValueFor("evasion")
+	self.healFactor = self:GetAbility():GetTalentSpecialValueFor("heal_pct") / 100
+	self.healDuration = self:GetAbility():GetTalentSpecialValueFor("heal_duration")
+	self.evasion = self:GetAbility():GetTalentSpecialValueFor("evasion")
 end
 
 function modifier_abaddon_brume_weaver_handler_buff:DeclareFunctions()
@@ -124,7 +124,7 @@ function modifier_abaddon_brume_weaver_handler_buff_active:IsHidden()
 end
 
 function modifier_abaddon_brume_weaver_handler_buff_active:OnCreated()
-	self.hpRegen = self:GetAbility():GetSpecialValueFor("base_heal")
+	self.hpRegen = self:GetAbility():GetTalentSpecialValueFor("base_heal")
 end
 
 function modifier_abaddon_brume_weaver_handler_buff_active:DeclareFunctions()

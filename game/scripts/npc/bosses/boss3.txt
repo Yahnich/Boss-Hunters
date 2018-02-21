@@ -102,6 +102,7 @@
 		"precache"
 		{
 			"particle"					"particles/units/heroes/hero_alchemist/alchemist_acid_spray_debuff.vpcf"
+			"particle"					"particles/econ/items/viper/viper_ti7_immortal/viper_poison_attack_ti7_explosion.vpcf"
 		}
 		
 		// Special	
@@ -116,12 +117,12 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"stack_dot"				"35 40"
+				"stack_dot"				"50 75"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"stack_duration"		"2.0 2.5"
+				"stack_duration"		"2.0 3.0"
 			}
 			"04"
 			{
@@ -131,12 +132,12 @@
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"aoe_damage"			"750 1000"
+				"aoe_damage"			"3250 4000"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"aoe_radius"			"450 475"
+				"aoe_radius"			"300 350"
 			}
 		}
 	}
