@@ -31974,12 +31974,12 @@
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"700"
+		"AbilityCastRange"				"800"
 		"AbilityCastPoint"				"0.5 0.5 0.5 0.5"
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"12"
+		"AbilityCooldown"				"8"
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -31992,19 +31992,19 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"1000 2000 4000 8000 16000 32000 64000"
+				"damage"				"1250 2500 5000 10000 12500 38000 72000"
 				"LinkedSpecialBonus"	"special_bonus_unique_omniknight_1"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"heal"					"2000 4000 8000 16000 32000 64000 128000"
+				"heal"					"2500 5000 10000 20000 25000 76000 144000"
 				"LinkedSpecialBonus"	"special_bonus_unique_omniknight_1"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"area_of_effect"		"350"
+				"area_of_effect"		"350 375 400 425 450 475 500"
 				"LinkedSpecialBonus"	"special_bonus_unique_omniknight_4"
 			}
 		}
