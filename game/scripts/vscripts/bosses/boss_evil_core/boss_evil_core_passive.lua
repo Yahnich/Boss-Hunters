@@ -34,16 +34,17 @@ if IsServer() then
 		if not self.asuraSpawn then
 			parent:SetMana(self.manaCharge)
 			if not self.shield then
-				local demons = parent:FindFriendlyUnitsInRadius( parent:GetAbsOrigin(), -1 )
+				local demons = parent:FindFriendlyUnitsInRadius( parent:GetAbsOrigin(), -1 ) or {}
 				if self.manaCharge < parent:GetMaxMana() then
 					self.manaCharge = math.min(parent:GetMaxMana(), self.manaCharge + self.manaChargeRegen)
 				elseif self:GetAbility():IsCooldownReady() and self.limit - 2 >= (#demons-1) then -- guarantee a minimum of time between casts
 					self:ActivateShield()
 				end
 			else
-				self.manaCharge = math.min(parent:GetMaxMana(), self.manaCharge + self.manaChargeRegen)
 				if self.manaCharge >= parent:GetMaxMana() then
 					self:DestroyShield()
+				else
+					self.manaCharge = math.min(parent:GetMaxMana(), self.manaCharge + self.manaChargeRegen)
 				end
 			end
 		end

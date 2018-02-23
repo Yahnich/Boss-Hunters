@@ -1357,7 +1357,7 @@ function CScriptHeroList:GetActiveHeroes()
 	local heroes = self:GetAllHeroes()
 	local activeHeroes = {}
 	for _, hero in pairs(heroes) do
-		if hero:GetPlayerOwner() and hero:IsRealHero() then
+		if hero:GetPlayerOwner() and not hero:IsFakeHero() then
 			table.insert(activeHeroes, hero)
 		end
 	end

@@ -184,7 +184,7 @@ function CHoldoutGameMode:InitGameMode()
 	MergeTables(GameRules.AbilityKV, LoadKeyValues("scripts/npc/npc_items_custom.txt"))
 	MergeTables(GameRules.AbilityKV, LoadKeyValues("scripts/npc/items.txt"))
 	
-	GameRules.HeroList = LoadKeyValues("scripts/npc/herolist.txt")
+	GameRules.HeroList = LoadKeyValues("scripts/npc/activelist.txt")
 	
 	print(GetMapName())
 	
@@ -226,13 +226,14 @@ function CHoldoutGameMode:InitGameMode()
 	GameRules:SetPreGameTime( 30.0 )
 	GameRules:SetShowcaseTime( 0 )
 	GameRules:SetStrategyTime( 0 )
-	GameRules:SetCustomGameSetupAutoLaunchDelay(0) -- fix valve bullshit
+	GameRules:SetCustomGameSetupAutoLaunchDelay( 0 ) -- fix valve bullshit
 	
 	local mapInfo = LoadKeyValues( "addoninfo.txt" )[GetMapName()]
 	
 	GameRules.BasePlayers = mapInfo.MaxPlayers
 	GameRules._maxLives =  mapInfo.Lives
 	GameRules.gameDifficulty =  mapInfo.Difficulty
+	CustomNetTables:SetTableValue( "game_info", "difficulty", {difficulty = GameRules.gameDifficulty} )
 	
 	GameRules._used_life = 0
 	GameRules._life = GameRules._maxLives
@@ -1260,132 +1261,9 @@ function CHoldoutGameMode:_Buy_Perk(pID,perk_name,Hprice, pricegain)
 end
 
 function CHoldoutGameMode:_EnterNG()
-	print ("Enter NG+ :D")
-	self._NewGamePlus = true
-	GameRules._NewGamePlus = true
-	CustomNetTables:SetTableValue( "New_Game_plus","NG", {NG = 1} )
 	GameRules.Winner = DOTA_TEAM_GOODGUYS
 	GameRules.EndTime = GameRules:GetGameTime()
 	statCollection:submitRound(false)
-	-- for _,courier in pairs ( Entities:FindAllByName( "npc_dota_courier*")) do
-		-- for i=0, 16 do
-			-- local curritem = courier:GetItemInSlot(i)
-			-- if curritem then
-				-- local itemname = curritem:GetName()
-				-- courier:RemoveItem(curritem)
-			-- end
-		-- end
-	-- end
-	-- for _,bear in pairs ( Entities:FindAllByName( "npc_dota_lone_druid_bear*")) do
-		-- local druid = bear:GetOwnerEntity()
-		-- local gold = druid:GetGold()
-		-- druid:SetGold(0, false)
-		-- local totalgold = 0
-		-- for i=0, 16 do
-			-- local curritem = bear:GetItemInSlot(i)
-			-- if curritem then
-				-- local itemname = curritem:GetName()
-				-- if string.match(itemname, "chest") or string.match(itemname, "armor") or string.match(itemname, "blade_mail") then
-					-- bear:AddItemByName("item_ancient_plate")
-					-- bear:RemoveItem(curritem)
-				-- elseif string.match(itemname, "butterfly") or string.match(itemname, "s_a_y") then
-					-- bear:AddItemByName("item_ancient_butterfly")
-					-- bear:RemoveItem(curritem)
-				-- elseif string.match(itemname, "Dagon") then
-					-- bear:AddItemByName("item_ancient_staff")
-					-- bear:RemoveItem(curritem)
-				-- elseif string.match(itemname, "heart") then
-					-- bear:AddItemByName("item_ancient_heart")
-					-- bear:RemoveItem(curritem)
-				-- elseif string.match(itemname, "octarine") then
-					-- bear:AddItemByName("item_ancient_core")
-					-- bear:RemoveItem(curritem)
-				-- elseif string.match(itemname, "fury") or string.match(itemname, "rage") or string.match(itemname, "gungnir") then
-					-- bear:AddItemByName("item_ancient_fury")
-					-- bear:RemoveItem(curritem)
-				-- elseif string.match(itemname, "lens") then
-					-- bear:AddItemByName("item_ancient_lens")
-					-- bear:RemoveItem(curritem)
-				-- elseif string.match(itemname, "soul") then
-					-- bear:AddItemByName("item_ancient_soul")
-					-- bear:RemoveItem(curritem)
-				-- elseif string.match(itemname, "thorn") then
-					-- bear:AddItemByName("item_ancient_thorn")
-					-- bear:RemoveItem(curritem)
-				-- elseif i < 6 then
-					-- bear:RemoveItem(curritem)
-					-- totalgold = totalgold + 2000
-				-- else
-					-- bear:RemoveItem(curritem)
-				-- end
-			-- end
-		-- end
-		-- for i=0, GameRules:NumDroppedItems() do
-			-- local curritem = GameRules:GetDroppedItem(i)
-			-- if curritem then
-				-- curritem:RemoveSelf()
-			-- end
-		-- end
-		-- druid.Asura_Core = 5 + math.ceil(gold/25000)
-		-- update_asura_core(druid)
-		-- druid:SetGold(totalgold, true)
-	-- end
-	-- for _,hero in pairs ( HeroList:GetAllHeroes()) do
-		-- local gold = hero:GetGold()
-		-- hero:SetGold(0, false)
-		-- local totalgold = 0
-		-- for i=0, 16 do
-			-- local curritem = hero:GetItemInSlot(i)
-			-- if curritem then
-				-- local itemname = curritem:GetName()
-				-- if itemname == "item_ultimate_scepter" then
-					-- hero:AddNewModifier(hero, nil, "modifier_item_ultimate_scepter_consumed", {})
-				-- end
-				-- if string.match(itemname, "chest") or string.match(itemname, "armor") or string.match(itemname, "blade_mail") then
-					-- hero:AddItemByName("item_ancient_plate")
-					-- hero:RemoveItem(curritem)
-				-- elseif string.match(itemname, "butterfly") or string.match(itemname, "s_a_y") then
-					-- hero:AddItemByName("item_ancient_butterfly")
-					-- hero:RemoveItem(curritem)
-				-- elseif string.match(itemname, "Dagon") then
-					-- hero:AddItemByName("item_ancient_staff")
-					-- hero:RemoveItem(curritem)
-				-- elseif string.match(itemname, "heart") then
-					-- hero:AddItemByName("item_ancient_heart")
-					-- hero:RemoveItem(curritem)
-				-- elseif string.match(itemname, "octarine") then
-					-- hero:AddItemByName("item_ancient_core")
-					-- hero:RemoveItem(curritem)
-				-- elseif string.match(itemname, "fury") or string.match(itemname, "rage") or string.match(itemname, "gungnir") then
-					-- hero:AddItemByName("item_ancient_fury")
-					-- hero:RemoveItem(curritem)
-				-- elseif string.match(itemname, "lens") then
-					-- hero:AddItemByName("item_ancient_lens")
-					-- hero:RemoveItem(curritem)
-				-- elseif string.match(itemname, "soul") then
-					-- hero:AddItemByName("item_ancient_soul")
-					-- hero:RemoveItem(curritem)
-				-- elseif string.match(itemname, "thorn") then
-					-- hero:AddItemByName("item_ancient_thorn")
-					-- hero:RemoveItem(curritem)
-				-- elseif i < 6 then
-					-- hero:RemoveItem(curritem)
-					-- totalgold = totalgold + 2000
-				-- else
-					-- hero:RemoveItem(curritem)
-				-- end
-			-- end
-		-- end
-		-- for i=0, GameRules:NumDroppedItems() do
-			-- local curritem = GameRules:GetDroppedItem(i)
-			-- if curritem then
-				-- curritem:RemoveSelf()
-			-- end
-		-- end
-		-- hero.Asura_Core = 5 + math.ceil(gold/25000)
-		-- update_asura_core(hero)
-		-- hero:SetGold(totalgold, true)
-	-- end
 end
 
 
@@ -1598,9 +1476,12 @@ function CHoldoutGameMode:OnGameRulesStateChange()
             customSchema:init()
 			statCollection.doneInit = true
         end
+		print("start")
     end
 	if nNewState == DOTA_GAMERULES_STATE_CUSTOM_GAME_SETUP then
+		print("setup")
 	elseif nNewState == 3 then
+		print("pregame")
 		Timers:CreateTimer(79,function()
 			if GameRules:State_Get() == 3 then
 				for nPlayerID = 0, DOTA_MAX_TEAM_PLAYERS-1 do
@@ -2235,7 +2116,7 @@ function CHoldoutGameMode:OnNPCSpawned( event )
 		spawnedUnit:SetHealth(spawnedUnit:GetMaxHealth())
 		
 		spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_boss_attackspeed", {})
-		spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_spawn_immunity", {duration = 2})
+		spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_spawn_immunity", {duration = 2/GameRules.gameDifficulty})
 	end
 end
 

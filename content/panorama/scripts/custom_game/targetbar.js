@@ -17,7 +17,15 @@ function UpdateHealthBar(arg)
 		$("#targetPanelMain").visible = false;
 	} else {
 		$("#targetPanelMain").visible = true;
-		$("#bossNameLabel").text = $.Localize("#" + arg.Name);
+		var nameMod = "_h"
+		var difficulty = CustomNetTables.GetTableValue( "game_info", "difficulty" ).difficulty
+		if(difficulty > 2){
+			nameMod = "_vh"
+		}
+		if(arg.Name.match(/_h/g) != null && arg.Name.match(/_vh/g) != null){
+			nameMod = ""
+		}
+		$("#bossNameLabel").text = $.Localize("#" + arg.Name + nameMod);
 		$("#hpBarCurrentText").text = Entities.GetHealth( arg.entIndex ) + " / " + Entities.GetMaxHealth( arg.entIndex );
 		var hpPct = Entities.GetHealth( arg.entIndex )/Entities.GetMaxHealth( arg.entIndex ) * 100
 		$("#hpBarCurrent").style.clip = "rect( 0% ," + hpPct + "%" + ", 100% ,0% )";

@@ -2,6 +2,7 @@
 {
 	maps			"epic_boss_fight_casual epic_boss_fight_hardcore"
 	"IsPlayable"	"1"
+
 	"epic_boss_fight_casual"
 	{
 		"MaxPlayers"                    "5"

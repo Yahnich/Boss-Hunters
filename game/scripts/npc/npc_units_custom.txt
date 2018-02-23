@@ -51,6 +51,7 @@
 		//----------------------------------------------------------------
 		"RingRadius"				"40"
 		"HealthBarOffset"			"200"
+		"BoundsHullName"			"DOTA_HULL_SIZE_REGULAR"
 	
 		// Bounty
 		//----------------------------------------------------------------
@@ -159,7 +160,7 @@
 		// Bounds
 		//----------------------------------------------------------------
 		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"			// Hull type used for navigation/locomotion.
-		"RingRadius"				"600"
+		"RingRadius"				"60"
 		"HealthBarOffset"			"600"
 	
 		// Movement
@@ -269,7 +270,7 @@
 		// Bounds
 		//----------------------------------------------------------------
 		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"			// Hull type used for navigation/locomotion.
-		"RingRadius"				"600"
+		"RingRadius"				"60"
 		"HealthBarOffset"			"600"
 	
 		// Movement
@@ -372,9 +373,9 @@
 	
 		// Bounds
 		//----------------------------------------------------------------
-		"RingRadius"				"240"
+		"RingRadius"				"60"
 		"HealthBarOffset"			"570"
-		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"	
+		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"	
 	
 		// Movement
 		//----------------------------------------------------------------
@@ -485,9 +486,9 @@
 	
 		// Bounds
 		//----------------------------------------------------------------
-		"RingRadius"				"180"
+		"RingRadius"				"120"
 		"HealthBarOffset"			"600"
-		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"	
+		"BoundsHullName"			"DOTA_HULL_SIZE_HUGE"	
 	
 		// Movement
 		//----------------------------------------------------------------
@@ -582,9 +583,9 @@
 	
 		// Bounds
 		//----------------------------------------------------------------
-		"RingRadius"				"180"
+		"RingRadius"				"120"
 		"HealthBarOffset"			"600"
-		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"	
+		"BoundsHullName"			"DOTA_HULL_SIZE_HUGE"
 	
 		// Movement
 		//----------------------------------------------------------------
@@ -679,9 +680,9 @@
 	
 		// Bounds
 		//----------------------------------------------------------------
-		"RingRadius"				"180"
+		"RingRadius"				"120"
 		"HealthBarOffset"			"600"
-		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"	
+		"BoundsHullName"			"DOTA_HULL_SIZE_HUGE"
 	
 		// Movement
 		//----------------------------------------------------------------
@@ -784,9 +785,9 @@
 	
 		// Bounds
 		//----------------------------------------------------------------
-		"RingRadius"				"50"
-		"HealthBarOffset"			"500"
-		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"	
+		"RingRadius"				"80"
+		"HealthBarOffset"			"600"
+		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"	
 	
 		// Movement
 		//----------------------------------------------------------------
@@ -889,9 +890,9 @@
 	
 		// Bounds
 		//----------------------------------------------------------------
-		"RingRadius"				"50"
-		"HealthBarOffset"			"500"
-		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"	
+		"RingRadius"				"80"
+		"HealthBarOffset"			"600"
+		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"	
 	
 		// Movement
 		//----------------------------------------------------------------
@@ -994,9 +995,9 @@
 	
 		// Bounds
 		//----------------------------------------------------------------
-		"RingRadius"				"50"
-		"HealthBarOffset"			"500"
-		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"	
+		"RingRadius"				"80"
+		"HealthBarOffset"			"600"
+		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"
 	
 		// Movement
 		//----------------------------------------------------------------
@@ -1092,9 +1093,9 @@
 	
 		// Bounds
 		//----------------------------------------------------------------
-		"RingRadius"				"20"
-		"HealthBarOffset"			"270"
-		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"	
+		"RingRadius"				"50"
+		"HealthBarOffset"			"600"
+		"BoundsHullName"			"DOTA_HULL_SIZE_SIEGE"
 	
 		// Movement
 		//----------------------------------------------------------------
@@ -1190,9 +1191,9 @@
 	
 		// Bounds
 		//----------------------------------------------------------------
-		"RingRadius"				"20"
-		"HealthBarOffset"			"270"
-		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"	
+		"RingRadius"				"50"
+		"HealthBarOffset"			"600"
+		"BoundsHullName"			"DOTA_HULL_SIZE_SIEGE"
 	
 		// Movement
 		//----------------------------------------------------------------
@@ -1288,9 +1289,9 @@
 	
 		// Bounds
 		//----------------------------------------------------------------
-		"RingRadius"				"20"
-		"HealthBarOffset"			"270"
-		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"	
+		"RingRadius"				"50"
+		"HealthBarOffset"			"600"
+		"BoundsHullName"			"DOTA_HULL_SIZE_SIEGE"	
 	
 		// Movement
 		//----------------------------------------------------------------
@@ -1386,7 +1387,7 @@
 	
 		// Bounds
 		//----------------------------------------------------------------
-		"RingRadius"				"10"
+		"RingRadius"				"30"
 		"HealthBarOffset"			"50"
 		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"	
 	
@@ -1479,8 +1480,9 @@
 	
 		// Bounds
 		//----------------------------------------------------------------
-		"RingRadius"				"160"
+		"RingRadius"				"80"
 		"HealthBarOffset"			"600"
+		"BoundsHullName"			"DOTA_HULL_SIZE_HUGE"
 	
 		// Bounty
 		//----------------------------------------------------------------
@@ -1584,8 +1586,9 @@
 	
 		// Bounds
 		//----------------------------------------------------------------
-		"RingRadius"				"200"
-		"HealthBarOffset"			"700"
+		"RingRadius"				"80"
+		"HealthBarOffset"			"600"
+		"BoundsHullName"			"DOTA_HULL_SIZE_HUGE"
 	
 		// Bounty
 		//----------------------------------------------------------------
@@ -1698,9 +1701,9 @@
 	
 		// Bounds
 		//----------------------------------------------------------------
-		"BoundsHullName"			"DOTA_HULL_SIZE_REGULAR"			// Hull type used for navigation/locomotion.
-		"RingRadius"				"100"
+		"RingRadius"				"80"
 		"HealthBarOffset"			"320"
+		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"
 	
 		// Bounty
 		//----------------------------------------------------------------
@@ -1809,9 +1812,9 @@
 	
 		// Bounds
 		//----------------------------------------------------------------
-		"BoundsHullName"			"DOTA_HULL_SIZE_REGULAR"			// Hull type used for navigation/locomotion.
-		"RingRadius"				"100"
+		"RingRadius"				"80"
 		"HealthBarOffset"			"320"
+		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"
 	
 		// Bounty
 		//----------------------------------------------------------------
@@ -1920,9 +1923,9 @@
 	
 		// Bounds
 		//----------------------------------------------------------------
-		"BoundsHullName"			"DOTA_HULL_SIZE_REGULAR"			// Hull type used for navigation/locomotion.
-		"RingRadius"				"100"
+		"RingRadius"				"80"
 		"HealthBarOffset"			"320"
+		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"
 	
 		// Bounty
 		//----------------------------------------------------------------
@@ -2032,9 +2035,9 @@
 	
 		// Bounds
 		//----------------------------------------------------------------
-		"BoundsHullName"			"DOTA_HULL_SIZE_REGULAR"			// Hull type used for navigation/locomotion.
-		"RingRadius"				"100"
+		"RingRadius"				"80"
 		"HealthBarOffset"			"320"
+		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"
 	
 		// Bounty
 		//----------------------------------------------------------------
@@ -2144,9 +2147,9 @@
 	
 		// Bounds
 		//----------------------------------------------------------------
-		"BoundsHullName"			"DOTA_HULL_SIZE_REGULAR"			// Hull type used for navigation/locomotion.
-		"RingRadius"				"100"
+		"RingRadius"				"80"
 		"HealthBarOffset"			"320"
+		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"
 	
 		// Bounty
 		//----------------------------------------------------------------
@@ -2262,9 +2265,9 @@
 	
 		// Bounds
 		//----------------------------------------------------------------
-		"BoundsHullName"			"DOTA_HULL_SIZE_REGULAR"			// Hull type used for navigation/locomotion.
-		"RingRadius"				"100"
+		"RingRadius"				"80"
 		"HealthBarOffset"			"320"
+		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"
 	
 		// Bounty
 		//----------------------------------------------------------------
@@ -2391,9 +2394,9 @@
 	
 		// Bounds
 		//----------------------------------------------------------------
-		"BoundsHullName"			"DOTA_HULL_SIZE_REGULAR"			// Hull type used for navigation/locomotion.
-		"RingRadius"				"100"
+		"RingRadius"				"80"
 		"HealthBarOffset"			"320"
+		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"
 	
 		// Bounty
 		//----------------------------------------------------------------
@@ -2518,9 +2521,9 @@
 	
 		// Bounds
 		//----------------------------------------------------------------
-		"BoundsHullName"			"DOTA_HULL_SIZE_REGULAR"			// Hull type used for navigation/locomotion.
-		"RingRadius"				"100"
+		"RingRadius"				"80"
 		"HealthBarOffset"			"320"
+		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"
 	
 		// Bounty
 		//----------------------------------------------------------------
@@ -2647,9 +2650,9 @@
 	
 		// Bounds
 		//----------------------------------------------------------------
-		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"			// Hull type used for navigation/locomotion.
-		"RingRadius"				"190"
-		"HealthBarOffset"			"400"
+		"RingRadius"				"120"
+		"HealthBarOffset"			"320"
+		"BoundsHullName"			"DOTA_HULL_SIZE_HUGE"
 	
 		// Movement
 		//----------------------------------------------------------------
@@ -2764,7 +2767,7 @@
 		//----------------------------------------------------------------
 		"RingRadius"				"70"
 		"HealthBarOffset"			"160"
-		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"	
+		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"	
 	
 		// Movement
 		//----------------------------------------------------------------
@@ -2895,7 +2898,7 @@
 		//----------------------------------------------------------------
 		"RingRadius"				"70"
 		"HealthBarOffset"			"160"
-		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"	
+		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"	
 	
 		// Movement
 		//----------------------------------------------------------------
@@ -3013,6 +3016,7 @@
 		//----------------------------------------------------------------
 		"RingRadius"				"40"
 		"HealthBarOffset"			"200"
+		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"
 	
 		// Bounty
 		//----------------------------------------------------------------
@@ -3102,7 +3106,7 @@
 	
 		// Bounds
 		//----------------------------------------------------------------
-		"BoundsHullName"			"DOTA_HULL_SIZE_REGULAR"			// Hull type used for navigation/locomotion.
+		"BoundsHullName"			"DOTA_HULL_SIZE_HUGE"			// Hull type used for navigation/locomotion.
 		"RingRadius"				"100"
 		"HealthBarOffset"			"320"
 	
@@ -3197,7 +3201,7 @@
 	
 		// Bounds
 		//----------------------------------------------------------------
-		"BoundsHullName"			"DOTA_HULL_SIZE_REGULAR"			// Hull type used for navigation/locomotion.
+		"BoundsHullName"			"DOTA_HULL_SIZE_HUGE"			// Hull type used for navigation/locomotion.
 		"RingRadius"				"100"
 		"HealthBarOffset"			"320"
 	
@@ -3315,8 +3319,8 @@
 	
 		// Bounds
 		//----------------------------------------------------------------
-		"BoundsHullName"			"DOTA_HULL_SIZE_REGULAR"			// Hull type used for navigation/locomotion.
-		"RingRadius"				"100"
+		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"			// Hull type used for navigation/locomotion.
+		"RingRadius"				"40"
 		"HealthBarOffset"			"320"
 	
 		// Bounty
@@ -3426,7 +3430,7 @@
 	
 		// Bounds
 		//----------------------------------------------------------------
-		"BoundsHullName"			"DOTA_HULL_SIZE_REGULAR"			// Hull type used for navigation/locomotion.
+		"BoundsHullName"			"DOTA_HULL_SIZE_HUGE"			// Hull type used for navigation/locomotion.
 		"RingRadius"				"100"
 		"HealthBarOffset"			"320"
 	
@@ -3533,8 +3537,8 @@
 	
 		// Bounds
 		//----------------------------------------------------------------
-		"BoundsHullName"			"DOTA_HULL_SIZE_REGULAR"			// Hull type used for navigation/locomotion.
-		"RingRadius"				"100"
+		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"			// Hull type used for navigation/locomotion.
+		"RingRadius"				"65"
 		"HealthBarOffset"			"320"
 	
 		// Bounty
@@ -3641,8 +3645,8 @@
 	
 		// Bounds
 		//----------------------------------------------------------------
-		"BoundsHullName"			"DOTA_HULL_SIZE_REGULAR"			// Hull type used for navigation/locomotion.
-		"RingRadius"				"100"
+		"BoundsHullName"			"DOTA_HULL_SIZE_HUGE"			// Hull type used for navigation/locomotion.
+		"RingRadius"				"80"
 		"HealthBarOffset"			"320"
 	
 		// Bounty
@@ -3747,8 +3751,8 @@
 	
 		// Bounds
 		//----------------------------------------------------------------
-		"BoundsHullName"			"DOTA_HULL_SIZE_REGULAR"			// Hull type used for navigation/locomotion.
-		"RingRadius"				"100"
+		"BoundsHullName"			"DOTA_HULL_SIZE_HUGE"			// Hull type used for navigation/locomotion.
+		"RingRadius"				"80"
 		"HealthBarOffset"			"320"
 	
 		// Bounty
@@ -3853,8 +3857,8 @@
 	
 		// Bounds
 		//----------------------------------------------------------------
-		"BoundsHullName"			"DOTA_HULL_SIZE_REGULAR"			// Hull type used for navigation/locomotion.
-		"RingRadius"				"100"
+		"BoundsHullName"			"DOTA_HULL_SIZE_HUGE"			// Hull type used for navigation/locomotion.
+		"RingRadius"				"80"
 		"HealthBarOffset"			"320"
 	
 		// Bounty
@@ -3957,7 +3961,7 @@
 		// Bounds
 		//----------------------------------------------------------------
 		"BoundsHullName"			"DOTA_HULL_SIZE_REGULAR"			// Hull type used for navigation/locomotion.
-		"RingRadius"				"100"
+		"RingRadius"				"40"
 		"HealthBarOffset"			"320"
 	
 		// Bounty
@@ -4062,7 +4066,7 @@
 		// Bounds
 		//----------------------------------------------------------------
 		"BoundsHullName"			"DOTA_HULL_SIZE_REGULAR"			// Hull type used for navigation/locomotion.
-		"RingRadius"				"100"
+		"RingRadius"				"40"
 		"HealthBarOffset"			"320"
 	
 		// Bounty
@@ -4167,8 +4171,8 @@
 	
 		// Bounds
 		//----------------------------------------------------------------
-		"BoundsHullName"			"DOTA_HULL_SIZE_REGULAR"			// Hull type used for navigation/locomotion.
-		"RingRadius"				"100"
+		"BoundsHullName"			"DOTA_HULL_SIZE_HUGE"			// Hull type used for navigation/locomotion.
+		"RingRadius"				"80"
 		"HealthBarOffset"			"320"
 	
 		// Bounty
@@ -4262,8 +4266,8 @@
 	
 		// Bounds
 		//----------------------------------------------------------------
-		"BoundsHullName"			"DOTA_HULL_SIZE_REGULAR"			// Hull type used for navigation/locomotion.
-		"RingRadius"				"100"
+		"BoundsHullName"			"DOTA_HULL_SIZE_HUGE"			// Hull type used for navigation/locomotion.
+		"RingRadius"				"80"
 		"HealthBarOffset"			"320"
 	
 		// Bounty
@@ -4356,8 +4360,8 @@
 	
 		// Bounds
 		//----------------------------------------------------------------
-		"BoundsHullName"			"DOTA_HULL_SIZE_REGULAR"			// Hull type used for navigation/locomotion.
-		"RingRadius"				"100"
+		"BoundsHullName"			"DOTA_HULL_SIZE_HUGE"			// Hull type used for navigation/locomotion.
+		"RingRadius"				"80"
 		"HealthBarOffset"			"320"
 	
 		// Bounty
@@ -4454,9 +4458,9 @@
 		"ProjectileSpeed"			"1600"			// Speed of projectile.		
 		// Bounds
 		//----------------------------------------------------------------
-		"BoundsHullName"			"DOTA_HULL_SIZE_REGULAR"			// Hull type used for navigation/locomotion.
-		"RingRadius"				"100"
-		"HealthBarOffset"			"320"
+		"BoundsHullName"			"DOTA_HULL_SIZE_BARRACKS"			// Hull type used for navigation/locomotion.
+		"RingRadius"				"120"
+		"HealthBarOffset"			"500"
 	
 		// Bounty
 		//----------------------------------------------------------------
@@ -4567,9 +4571,9 @@
 		"ProjectileSpeed"			"1600"			// Speed of projectile.		
 		// Bounds
 		//----------------------------------------------------------------
-		"BoundsHullName"			"DOTA_HULL_SIZE_REGULAR"			// Hull type used for navigation/locomotion.
-		"RingRadius"				"100"
-		"HealthBarOffset"			"320"
+		"BoundsHullName"			"DOTA_HULL_SIZE_BARRACKS"			// Hull type used for navigation/locomotion.
+		"RingRadius"				"120"
+		"HealthBarOffset"			"500"
 	
 		// Bounty
 		//----------------------------------------------------------------
@@ -4670,9 +4674,9 @@
 		"ProjectileSpeed"			"1600"			// Speed of projectile.		
 		// Bounds
 		//----------------------------------------------------------------
-		"BoundsHullName"			"DOTA_HULL_SIZE_REGULAR"			// Hull type used for navigation/locomotion.
-		"RingRadius"				"100"
-		"HealthBarOffset"			"320"
+		"BoundsHullName"			"DOTA_HULL_SIZE_BARRACKS"			// Hull type used for navigation/locomotion.
+		"RingRadius"				"120"
+		"HealthBarOffset"			"500"
 	
 		// Bounty
 		//----------------------------------------------------------------
@@ -4767,7 +4771,7 @@
 		"ProjectileSpeed"			"0"			// Speed of projectile.		
 		// Bounds
 		//----------------------------------------------------------------
-		"BoundsHullName"			"DOTA_HULL_SIZE_REGULAR"			// Hull type used for navigation/locomotion.
+		"BoundsHullName"			"DOTA_HULL_SIZE_HUGE"			// Hull type used for navigation/locomotion.
 		"RingRadius"				"100"
 		"HealthBarOffset"			"320"
 	
@@ -4871,8 +4875,8 @@
 		"ProjectileSpeed"			"0"			// Speed of projectile.		
 		// Bounds
 		//----------------------------------------------------------------
-		"BoundsHullName"			"DOTA_HULL_SIZE_REGULAR"			// Hull type used for navigation/locomotion.
-		"RingRadius"				"100"
+		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"			// Hull type used for navigation/locomotion.
+		"RingRadius"				"80"
 		"HealthBarOffset"			"320"
 	
 		// Bounty
@@ -4976,8 +4980,8 @@
 		"ProjectileSpeed"			"0"			// Speed of projectile.		
 		// Bounds
 		//----------------------------------------------------------------
-		"BoundsHullName"			"DOTA_HULL_SIZE_REGULAR"			// Hull type used for navigation/locomotion.
-		"RingRadius"				"100"
+		"BoundsHullName"			"DOTA_HULL_SIZE_BARRACKS"			// Hull type used for navigation/locomotion.
+		"RingRadius"				"120"
 		"HealthBarOffset"			"320"
 	
 		// Bounty
@@ -5083,8 +5087,8 @@
 		"ProjectileSpeed"			"0"			// Speed of projectile.		
 		// Bounds
 		//----------------------------------------------------------------
-		"BoundsHullName"			"DOTA_HULL_SIZE_REGULAR"			// Hull type used for navigation/locomotion.
-		"RingRadius"				"100"
+		"BoundsHullName"			"DOTA_HULL_SIZE_BARRACKS"			// Hull type used for navigation/locomotion.
+		"RingRadius"				"120"
 		"HealthBarOffset"			"320"
 	
 		// Bounty
@@ -5194,8 +5198,8 @@
 		"ProjectileSpeed"			"0"			// Speed of projectile.		
 		// Bounds
 		//----------------------------------------------------------------
-		"BoundsHullName"			"DOTA_HULL_SIZE_REGULAR"			// Hull type used for navigation/locomotion.
-		"RingRadius"				"100"
+		"BoundsHullName"			"DOTA_HULL_SIZE_BARRACKS"			// Hull type used for navigation/locomotion.
+		"RingRadius"				"120"
 		"HealthBarOffset"			"320"
 	
 		// Bounty
@@ -5289,8 +5293,8 @@
 		"ProjectileSpeed"			"0"			// Speed of projectile.		
 		// Bounds
 		//----------------------------------------------------------------
-		"BoundsHullName"			"DOTA_HULL_SIZE_REGULAR"			// Hull type used for navigation/locomotion.
-		"RingRadius"				"100"
+		"BoundsHullName"			"DOTA_HULL_SIZE_BARRACKS"			// Hull type used for navigation/locomotion.
+		"RingRadius"				"120"
 		"HealthBarOffset"			"320"
 	
 		// Bounty
@@ -5401,8 +5405,8 @@
 		"ProjectileSpeed"			"0"			// Speed of projectile.		
 		// Bounds
 		//----------------------------------------------------------------
-		"BoundsHullName"			"DOTA_HULL_SIZE_REGULAR"			// Hull type used for navigation/locomotion.
-		"RingRadius"				"100"
+		"BoundsHullName"			"DOTA_HULL_SIZE_BARRACKS"			// Hull type used for navigation/locomotion.
+		"RingRadius"				"120"
 		"HealthBarOffset"			"320"
 	
 		// Bounty
@@ -5513,8 +5517,8 @@
 		"ProjectileSpeed"			"0"			// Speed of projectile.		
 		// Bounds
 		//----------------------------------------------------------------
-		"BoundsHullName"			"DOTA_HULL_SIZE_REGULAR"			// Hull type used for navigation/locomotion.
-		"RingRadius"				"300"
+		"BoundsHullName"			"DOTA_HULL_SIZE_BARRACKS"			// Hull type used for navigation/locomotion.
+		"RingRadius"				"120"
 		"HealthBarOffset"			"320"
 	
 		// Bounty
@@ -5610,8 +5614,8 @@
 	
 		// Bounds
 		//----------------------------------------------------------------
-		"BoundsHullName"			"DOTA_HULL_SIZE_REGULAR"			// Hull type used for navigation/locomotion.
-		"RingRadius"				"300"
+		"BoundsHullName"			"DOTA_HULL_SIZE_BARRACKS"			// Hull type used for navigation/locomotion.
+		"RingRadius"				"120"
 		"HealthBarOffset"			"320"
 	
 		// Bounty
@@ -5702,8 +5706,8 @@
 	
 		// Bounds
 		//----------------------------------------------------------------
-		"BoundsHullName"			"DOTA_HULL_SIZE_REGULAR"			// Hull type used for navigation/locomotion.
-		"RingRadius"				"300"
+		"BoundsHullName"			"DOTA_HULL_SIZE_BARRACKS"			// Hull type used for navigation/locomotion.
+		"RingRadius"				"120"
 		"HealthBarOffset"			"320"
 	
 		// Bounty
@@ -5797,8 +5801,8 @@
 	
 		// Bounds
 		//----------------------------------------------------------------
-		"BoundsHullName"			"DOTA_HULL_SIZE_REGULAR"			// Hull type used for navigation/locomotion.
-		"RingRadius"				"300"
+		"BoundsHullName"			"DOTA_HULL_SIZE_BARRACKS"			// Hull type used for navigation/locomotion.
+		"RingRadius"				"120"
 		"HealthBarOffset"			"320"
 	
 		// Bounty
@@ -5895,8 +5899,8 @@
 	
 		// Bounds
 		//----------------------------------------------------------------
-		"BoundsHullName"			"DOTA_HULL_SIZE_REGULAR"			// Hull type used for navigation/locomotion.
-		"RingRadius"				"300"
+		"BoundsHullName"			"DOTA_HULL_SIZE_BARRACKS"			// Hull type used for navigation/locomotion.
+		"RingRadius"				"120"
 		"HealthBarOffset"			"320"
 	
 		// Bounty
@@ -5993,8 +5997,8 @@
 	
 		// Bounds
 		//----------------------------------------------------------------
-		"BoundsHullName"			"DOTA_HULL_SIZE_REGULAR"			// Hull type used for navigation/locomotion.
-		"RingRadius"				"300"
+		"BoundsHullName"			"DOTA_HULL_SIZE_BARRACKS"			// Hull type used for navigation/locomotion.
+		"RingRadius"				"120"
 		"HealthBarOffset"			"320"
 	
 		// Bounty
@@ -6088,8 +6092,8 @@
 	
 		// Bounds
 		//----------------------------------------------------------------
-		"BoundsHullName"			"DOTA_HULL_SIZE_REGULAR"			// Hull type used for navigation/locomotion.
-		"RingRadius"				"300"
+		"BoundsHullName"			"DOTA_HULL_SIZE_BARRACKS"			// Hull type used for navigation/locomotion.
+		"RingRadius"				"120"
 		"HealthBarOffset"			"320"
 	
 		// Bounty
@@ -6186,8 +6190,8 @@
 	
 		// Bounds
 		//----------------------------------------------------------------
-		"BoundsHullName"			"DOTA_HULL_SIZE_REGULAR"			// Hull type used for navigation/locomotion.
-		"RingRadius"				"300"
+		"BoundsHullName"			"DOTA_HULL_SIZE_BARRACKS"			// Hull type used for navigation/locomotion.
+		"RingRadius"				"120"
 		"HealthBarOffset"			"320"
 	
 		// Bounty
@@ -6292,8 +6296,8 @@
 	
 		// Bounds
 		//----------------------------------------------------------------
-		"BoundsHullName"			"DOTA_HULL_SIZE_REGULAR"			// Hull type used for navigation/locomotion.
-		"RingRadius"				"300"
+		"BoundsHullName"			"DOTA_HULL_SIZE_BARRACKS"			// Hull type used for navigation/locomotion.
+		"RingRadius"				"120"
 		"HealthBarOffset"			"320"
 	
 		// Bounty
@@ -6404,8 +6408,8 @@
 	
 		// Bounds
 		//----------------------------------------------------------------
-		"BoundsHullName"			"DOTA_HULL_SIZE_REGULAR"			// Hull type used for navigation/locomotion.
-		"RingRadius"				"300"
+		"BoundsHullName"			"DOTA_HULL_SIZE_BARRACKS"			// Hull type used for navigation/locomotion.
+		"RingRadius"				"120"
 		"HealthBarOffset"			"320"
 	
 		// Bounty
@@ -6513,8 +6517,8 @@
 	
 		// Bounds
 		//----------------------------------------------------------------
-		"BoundsHullName"			"DOTA_HULL_SIZE_REGULAR"			// Hull type used for navigation/locomotion.
-		"RingRadius"				"300"
+		"BoundsHullName"			"DOTA_HULL_SIZE_BARRACKS"			// Hull type used for navigation/locomotion.
+		"RingRadius"				"120"
 		"HealthBarOffset"			"320"
 	
 		// Bounty
@@ -6622,8 +6626,8 @@
 	
 		// Bounds
 		//----------------------------------------------------------------
-		"BoundsHullName"			"DOTA_HULL_SIZE_REGULAR"			// Hull type used for navigation/locomotion.
-		"RingRadius"				"300"
+		"BoundsHullName"			"DOTA_HULL_SIZE_BARRACKS"			// Hull type used for navigation/locomotion.
+		"RingRadius"				"120"
 		"HealthBarOffset"			"320"
 	
 		// Bounty
@@ -6732,8 +6736,8 @@
 	
 		// Bounds
 		//----------------------------------------------------------------
-		"BoundsHullName"			"DOTA_HULL_SIZE_REGULAR"			// Hull type used for navigation/locomotion.
-		"RingRadius"				"300"
+		"BoundsHullName"			"DOTA_HULL_SIZE_BARRACKS"			// Hull type used for navigation/locomotion.
+		"RingRadius"				"120"
 		"HealthBarOffset"			"320"
 	
 		// Bounty
@@ -6841,9 +6845,9 @@
 	
 		// Bounds
 		//----------------------------------------------------------------
-		"BoundsHullName"			"DOTA_HULL_SIZE_REGULAR"			// Hull type used for navigation/locomotion.
-		"RingRadius"				"666"
-		"HealthBarOffset"			"666"
+		"BoundsHullName"			"DOTA_HULL_SIZE_BARRACKS"			// Hull type used for navigation/locomotion.
+		"RingRadius"				"120"
+		"HealthBarOffset"			"320"
 	
 		// Bounty
 		//----------------------------------------------------------------
@@ -6982,9 +6986,9 @@
 	
 		// Bounds
 		//----------------------------------------------------------------
-		"BoundsHullName"			"DOTA_HULL_SIZE_REGULAR"			// Hull type used for navigation/locomotion.
-		"RingRadius"				"666"
-		"HealthBarOffset"			"666"
+		"BoundsHullName"			"DOTA_HULL_SIZE_BARRACKS"			// Hull type used for navigation/locomotion.
+		"RingRadius"				"120"
+		"HealthBarOffset"			"320"
 	
 		// Bounty
 		//----------------------------------------------------------------
@@ -7123,9 +7127,9 @@
 	
 		// Bounds
 		//----------------------------------------------------------------
-		"BoundsHullName"			"DOTA_HULL_SIZE_REGULAR"			// Hull type used for navigation/locomotion.
-		"RingRadius"				"666"
-		"HealthBarOffset"			"666"
+		"BoundsHullName"			"DOTA_HULL_SIZE_BARRACKS"			// Hull type used for navigation/locomotion.
+		"RingRadius"				"120"
+		"HealthBarOffset"			"320"
 	
 		// Bounty
 		//----------------------------------------------------------------
@@ -7262,9 +7266,9 @@
 	
 		// Bounds
 		//----------------------------------------------------------------
-		"BoundsHullName"			"DOTA_HULL_SIZE_REGULAR"			// Hull type used for navigation/locomotion.
-		"RingRadius"				"200"
-		"HealthBarOffset"			"200"
+		"BoundsHullName"			"DOTA_HULL_SIZE_BARRACKS"			// Hull type used for navigation/locomotion.
+		"RingRadius"				"120"
+		"HealthBarOffset"			"320"
 	
 		// Bounty
 		//----------------------------------------------------------------
@@ -7359,9 +7363,15 @@
 		// Abilities
 		//----------------------------------------------------------------
 		"AbilityLayout"				"6"
-		"Ability1"					"guardian_hell_passive"			// Ability 1.
-		"Ability2"					"guardian_hell_hell_on_earth"			// Ability 2.
-		"Ability4"					"guardian_hell_flaming_fist"			// Ability 2.
+		"Ability1"					"boss_evil_guardian_fire_shield"			// Ability 1.
+		"Ability2"					"boss_evil_guardian_hell_on_earth"			// Ability 2.
+		"Ability3"					"boss_evil_guardian_purge_their_sin"			// Ability 2.
+		
+		"Ability4"					"boss_evil_guardian_annihilation"
+		"Ability5"					"boss_evil_guardian_destruction"
+		"Ability6"					"boss_evil_guardian_apocalypse"
+		"Ability7"					"boss_evil_guardian_end_of_days"
+		"Ability8"					"boss_evil_guardian_rise_of_hell"
 	
 		// Armor
 		//----------------------------------------------------------------
@@ -7382,8 +7392,8 @@
 	
 		// Bounds
 		//----------------------------------------------------------------
-		"BoundsHullName"			"DOTA_HULL_SIZE_REGULAR"			// Hull type used for navigation/locomotion.
-		"RingRadius"				"200"
+		"BoundsHullName"			"DOTA_HULL_SIZE_BARRACKS"			// Hull type used for navigation/locomotion.
+		"RingRadius"				"120"
 		"HealthBarOffset"			"500"
 	
 		// Bounty
@@ -7402,7 +7412,7 @@
 		//----------------------------------------------------------------
 		"StatusHealth"				"26666666"		// Base health.
 		"StatusHealthRegen"			"6666"			// Health regeneration rate.
-		"StatusMana"				"1000"			// Base mana.
+		"StatusMana"				"2000"			// Base mana.
 		"StatusManaRegen"			"0"			// Mana regeneration rate.		 
 		
 		// Vision
@@ -7511,8 +7521,9 @@
 	
 		// Bounds
 		//----------------------------------------------------------------
-		"BoundsHullName"			"DOTA_HULL_SIZE_HUGE"			// Hull type used for navigation/locomotion.
-		"HealthBarOffset"			"140"
+		"BoundsHullName"			"DOTA_HULL_SIZE_BARRACKS"			// Hull type used for navigation/locomotion.
+		"RingRadius"				"120"
+		"HealthBarOffset"			"320"
 	
 		// Movement
 		//----------------------------------------------------------------
@@ -7645,8 +7656,9 @@
 	
 		// Bounds
 		//----------------------------------------------------------------
-		"BoundsHullName"			"DOTA_HULL_SIZE_HUGE"			// Hull type used for navigation/locomotion.
-		"HealthBarOffset"			"140"
+		"BoundsHullName"			"DOTA_HULL_SIZE_BARRACKS"			// Hull type used for navigation/locomotion.
+		"RingRadius"				"120"
+		"HealthBarOffset"			"320"
 	
 		// Movement
 		//----------------------------------------------------------------
@@ -7780,8 +7792,9 @@
 	
 		// Bounds
 		//----------------------------------------------------------------
-		"BoundsHullName"			"DOTA_HULL_SIZE_HUGE"			// Hull type used for navigation/locomotion.
-		"HealthBarOffset"			"140"
+		"BoundsHullName"			"DOTA_HULL_SIZE_BARRACKS"			// Hull type used for navigation/locomotion.
+		"RingRadius"				"120"
+		"HealthBarOffset"			"320"
 	
 		// Movement
 		//----------------------------------------------------------------
@@ -7915,8 +7928,9 @@
 	
 		// Bounds
 		//----------------------------------------------------------------
-		"BoundsHullName"			"DOTA_HULL_SIZE_HUGE"			// Hull type used for navigation/locomotion.
-		"HealthBarOffset"			"140"
+		"BoundsHullName"			"DOTA_HULL_SIZE_BARRACKS"			// Hull type used for navigation/locomotion.
+		"RingRadius"				"120"
+		"HealthBarOffset"			"320"
 	
 		// Movement
 		//----------------------------------------------------------------
@@ -8042,8 +8056,9 @@
 	
 		// Bounds
 		//----------------------------------------------------------------
-		"BoundsHullName"			"DOTA_HULL_SIZE_HUGE"			// Hull type used for navigation/locomotion.
-		"HealthBarOffset"			"140"
+		"BoundsHullName"			"DOTA_HULL_SIZE_BARRACKS"			// Hull type used for navigation/locomotion.
+		"RingRadius"				"120"
+		"HealthBarOffset"			"320"
 	
 		// Movement
 		//----------------------------------------------------------------
@@ -8161,9 +8176,9 @@
 	
 		// Bounds
 		//----------------------------------------------------------------
+		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"			// Hull type used for navigation/locomotion.
 		"RingRadius"				"70"
 		"HealthBarOffset"			"250"
-		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"	
 	
 		// Movement
 		//----------------------------------------------------------------
@@ -8276,9 +8291,9 @@
 	
 		// Bounds
 		//----------------------------------------------------------------
+		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"			// Hull type used for navigation/locomotion.
 		"RingRadius"				"70"
 		"HealthBarOffset"			"250"
-		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"	
 	
 		// Movement
 		//----------------------------------------------------------------
@@ -8368,9 +8383,9 @@
 	
 		// Bounds
 		//----------------------------------------------------------------
+		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"			// Hull type used for navigation/locomotion.
 		"RingRadius"				"70"
-		"HealthBarOffset"			"320"
-		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"	
+		"HealthBarOffset"			"250"
 	
 		// Movement
 		//----------------------------------------------------------------
@@ -8477,7 +8492,8 @@
 	
 		// Bounds
 		//----------------------------------------------------------------
-		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"	
+		"BoundsHullName"			"DOTA_HULL_SIZE_HUGE"			// Hull type used for navigation/locomotion.
+		"RingRadius"				"100"
 		"HealthBarOffset"			"350"
 		
 		
@@ -8686,7 +8702,9 @@
 	
 		// Bounds
 		//----------------------------------------------------------------
-		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"	
+		"BoundsHullName"			"DOTA_HULL_SIZE_HUGE"			// Hull type used for navigation/locomotion.
+		"RingRadius"				"100"
+		"HealthBarOffset"			"320"
 	
 		// Movement
 		//----------------------------------------------------------------
@@ -8791,7 +8809,9 @@
 	
 		// Bounds
 		//----------------------------------------------------------------
-		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"	
+		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"			// Hull type used for navigation/locomotion.
+		"RingRadius"				"70"
+		"HealthBarOffset"			"320"
 	
 		// Movement
 		//----------------------------------------------------------------
@@ -8894,7 +8914,9 @@
 	
 		// Bounds
 		//----------------------------------------------------------------
-		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"	
+		"BoundsHullName"			"DOTA_HULL_SIZE_HUGE"			// Hull type used for navigation/locomotion.
+		"RingRadius"				"100"
+		"HealthBarOffset"			"320"
 	
 		// Movement
 		//----------------------------------------------------------------
@@ -8998,7 +9020,9 @@
 	
 		// Bounds
 		//----------------------------------------------------------------
-		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"	
+		"BoundsHullName"			"DOTA_HULL_SIZE_HUGE"			// Hull type used for navigation/locomotion.
+		"RingRadius"				"100"
+		"HealthBarOffset"			"320"
 	
 		// Movement
 		//----------------------------------------------------------------
@@ -9126,7 +9150,8 @@
 		"MovementSpeed"				"375"									// Speed.
 		"MovementTurnRate"			"0.5"									// Turning rate.
 		
-		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"
+		"BoundsHullName"			"DOTA_HULL_SIZE_HUGE"			// Hull type used for navigation/locomotion.
+		"RingRadius"				"100"
 		"HealthBarOffset"			"450"
 	
 		"GameSoundsFile"			"soundevents/game_sounds_heroes/game_sounds_slark.vsndevts"
@@ -9258,7 +9283,8 @@
 		"MovementSpeed"				"300"									// Speed.
 		"MovementTurnRate"			"0.5"									// Turning rate.
 		
-		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"
+		"BoundsHullName"			"DOTA_HULL_SIZE_HUGE"			// Hull type used for navigation/locomotion.
+		"RingRadius"				"100"
 		"HealthBarOffset"			"450"
 	
 		"GameSoundsFile"			"soundevents/game_sounds_heroes/game_sounds_blood_seeker.vsndevts"
@@ -9357,9 +9383,9 @@
 	
 		// Bounds
 		//----------------------------------------------------------------
-		"RingRadius"				"150"
+		"BoundsHullName"			"DOTA_HULL_SIZE_BARRACKS"			// Hull type used for navigation/locomotion.
+		"RingRadius"				"130"
 		"HealthBarOffset"			"450"
-		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"	
 	
 		// Movement
 		//----------------------------------------------------------------
@@ -9464,8 +9490,9 @@
 	
 		// Bounds
 		//----------------------------------------------------------------
-		"RingRadius"				"120"
-		"HealthBarOffset"			"500"
+		"BoundsHullName"			"DOTA_HULL_SIZE_HUGE"			// Hull type used for navigation/locomotion.
+		"RingRadius"				"100"
+		"HealthBarOffset"			"450"
 	
 		// Bounty
 		//----------------------------------------------------------------
@@ -9570,8 +9597,9 @@
 	
 		// Bounds
 		//----------------------------------------------------------------
-		"RingRadius"				"120"
-		"HealthBarOffset"			"500"
+		"BoundsHullName"			"DOTA_HULL_SIZE_HUGE"			// Hull type used for navigation/locomotion.
+		"RingRadius"				"100"
+		"HealthBarOffset"			"450"
 	
 		// Bounty
 		//----------------------------------------------------------------
@@ -9666,8 +9694,9 @@
 	
 		// Bounds
 		//----------------------------------------------------------------
-		"RingRadius"				"120"
-		"HealthBarOffset"			"500"
+		"BoundsHullName"			"DOTA_HULL_SIZE_HUGE"			// Hull type used for navigation/locomotion.
+		"RingRadius"				"100"
+		"HealthBarOffset"			"450"
 	
 		// Bounty
 		//----------------------------------------------------------------
@@ -9766,8 +9795,9 @@
 	
 		// Bounds
 		//----------------------------------------------------------------
-		"RingRadius"				"120"
-		"HealthBarOffset"			"500"
+		"BoundsHullName"			"DOTA_HULL_SIZE_BARRACKS"			// Hull type used for navigation/locomotion.
+		"RingRadius"				"130"
+		"HealthBarOffset"			"450"
 	
 		// Bounty
 		//----------------------------------------------------------------
@@ -9884,9 +9914,9 @@
 	
 		// Bounds
 		//----------------------------------------------------------------
-		"RingRadius"				"200"
-		"HealthBarOffset"			"520"
-		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"	
+		"BoundsHullName"			"DOTA_HULL_SIZE_HUGE"			// Hull type used for navigation/locomotion.
+		"RingRadius"				"100"
+		"HealthBarOffset"			"450"
 	
 		// Movement
 		//----------------------------------------------------------------
@@ -10125,7 +10155,7 @@
 	
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"1000000"		// Base health.
+		"StatusHealth"				"10000000"		// Base health.
 		"StatusHealthRegen"			"1"			// Health regeneration rate.
 		"StatusMana"				"0"			// Base mana.
 		"StatusManaRegen"			"0"			// Mana regeneration rate.
@@ -10392,8 +10422,9 @@
 	
 		// Bounds
 		//----------------------------------------------------------------
-		"RingRadius"				"160"
-		"HealthBarOffset"			"600"
+		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"			// Hull type used for navigation/locomotion.
+		"RingRadius"				"100"
+		"HealthBarOffset"			"450"
 	
 		// Bounty
 		//----------------------------------------------------------------
@@ -10499,8 +10530,9 @@
 	
 		// Bounds
 		//----------------------------------------------------------------
-		"RingRadius"				"160"
-		"HealthBarOffset"			"600"
+		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"			// Hull type used for navigation/locomotion.
+		"RingRadius"				"70"
+		"HealthBarOffset"			"450"
 	
 		// Bounty
 		//----------------------------------------------------------------
