@@ -1304,7 +1304,11 @@ function CHoldoutGameMode:OnHeroPick (event)
 			ParticleManager:FireParticle("particles/roles/dev/vip_particle.vpcf", PATTACH_POINT_FOLLOW, hero)
 		end
 		-- hero:SetGold(0 , true)
+		
+		hero:SetDayTimeVisionRange(hero:GetDayTimeVisionRange() * 2)
+		hero:SetNightTimeVisionRange(hero:GetNightTimeVisionRange() * 1.5)
 
+			
 		local player = PlayerResource:GetPlayer(ID)
 		if not player then return end
 		player.HB = true
@@ -2116,7 +2120,7 @@ function CHoldoutGameMode:OnNPCSpawned( event )
 		spawnedUnit:SetHealth(spawnedUnit:GetMaxHealth())
 		
 		spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_boss_attackspeed", {})
-		spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_spawn_immunity", {duration = 2/GameRules.gameDifficulty})
+		spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_spawn_immunity", {duration = 4/GameRules.gameDifficulty})
 	end
 end
 

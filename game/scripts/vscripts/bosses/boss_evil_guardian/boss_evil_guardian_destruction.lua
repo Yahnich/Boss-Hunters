@@ -32,9 +32,11 @@ function boss_evil_guardian_destruction:OnSpellStart()
 				duration = duration - 0.2
 				return 0.2
 			end
-			caster.getRazingFactor = caster.getRazingFactor - razeFactor
 		end)
 	end
+	Timers:CreateTimer(duration, function() 
+		caster.getRazingFactor = caster.getRazingFactor - razeFactor
+	end)
 end
 
 function boss_evil_guardian_destruction:CreateRaze(position, damage, radius, delay)

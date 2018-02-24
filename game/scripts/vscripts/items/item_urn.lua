@@ -27,6 +27,32 @@ item_urn_3 = class(item_urn_1)
 item_urn_4 = class(item_urn_1)
 item_urn_5 = class(item_urn_1)
 
+function item_urn_5:GetAOERadius()
+	return self:GetSpecialValueFor("radius")
+end
+
+function item_urn_5:OnSpellStart()
+	local caster = self:GetCaster()
+	local target = self:GetCursorTarget()
+	
+	local radius = self:GetSpecialValueFor("radius")
+	
+	for _, newT in ipairs(caster:FindAllUnitsInRadius(target:GetAbsOrigin(), radius) ) do
+		if newT:GetTeam() == self:GetCaster():GetTeam() then
+			EmitSoundOn("DOTA_Item.SpiritVessel.Target.Ally", newT)
+
+			ParticleManager:FireRopeParticle("particles/items4_fx/spirit_vessel_cast.vpcf", PATTACH_POINT_FOLLOW, caster, newT, {})
+			newT:AddNewModifier(caster, self, "modifier_item_urn_handle_heal", {Duration = self:GetSpecialValueFor("duration")})
+		else
+			EmitSoundOn("DOTA_Item.SpiritVessel.Target.Enemy", newT)
+
+			ParticleManager:FireRopeParticle("particles/items4_fx/spirit_vessel_cast.vpcf", PATTACH_POINT_FOLLOW, caster, newT, {})
+			newT:AddNewModifier(caster, self, "modifier_item_urn_handle_damage", {Duration = self:GetSpecialValueFor("duration")})
+		end
+	end
+	EmitSoundOn("DOTA_Item.SpiritVessel.Cast", caster)
+end
+
 modifier_item_urn_handle = class({})
 function modifier_item_urn_handle:OnCreated()
 	self.armor = self:GetSpecialValueFor("bonus_armor")
@@ -87,10 +113,6 @@ end
 
 function modifier_item_urn_handle_heal:OnDestroy()
 	self:GetAbility().casted = false
-end
-
-function modifier_item_urn_handle_heal:OnIntervalThink()
-	self:GetParent():HealEvent(self:GetAbility():GetSpecialValueFor("damage_heal"), self:GetAbility(), self:GetCaster())
 end
 
 function modifier_item_urn_handle_heal:DeclareFunctions()

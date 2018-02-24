@@ -100,11 +100,11 @@ modifier_centaur_champions_presence_taunt = class({})
 LinkLuaModifier("modifier_centaur_champions_presence_taunt", "heroes/hero_centaur/centaur_champions_presence", LUA_MODIFIER_MOTION_NONE	)
 
 function modifier_centaur_champions_presence_taunt:GetTauntTarget()
-	if self:GetCaster():HasTalent("special_bonus_unique_champions_presence_1") then return self:GetCaster() end
+	if not self:GetCaster():HasTalent("special_bonus_unique_champions_presence_1") then return self:GetCaster() end
 end
 
 function modifier_centaur_champions_presence_taunt:GetEffectName()
-	return "particles/brd_taunt/brd_taunt_mark_base.vpcf"
+	if not self:GetCaster():HasTalent("special_bonus_unique_champions_presence_1") then  return "particles/brd_taunt/brd_taunt_mark_base.vpcf" end
 end
 
 function modifier_centaur_champions_presence_taunt:GetEffectAttachType()

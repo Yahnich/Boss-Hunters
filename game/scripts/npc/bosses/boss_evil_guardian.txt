@@ -117,12 +117,12 @@
 	        "01"
 	        {
 	            "var_type"              "FIELD_INTEGER"
-	            "duration"         		"6 8"
+	            "duration"         		"3"
 	        }
 			"02"
 	        {
 	            "var_type"              "FIELD_INTEGER"
-	            "damage_amp"			"2"
+	            "damage_amp"			"1.5 2"
 	        }
 	    }
 	}
@@ -139,7 +139,7 @@
 	    "AbilityTextureName"			"custom/hell_guardian_hell_on_earth"
 	    "MaxLevel"                      "1"
 		
-		"AbilityCooldown"				"14"
+		"AbilityCooldown"				"22 18"
 		"AbilityCastPoint"				"0.8 0.5"
 		"AbilityCastAnimation"			"ACT_DOTA_DIE"
 	
@@ -155,7 +155,7 @@
 	        "01"
 	        {
 	            "var_type"              "FIELD_INTEGER"
-	            "raze_damage"         	"125000 150000"
+	            "raze_damage"         	"100000 150000"
 	        }
 			"02"
 	        {
@@ -182,7 +182,7 @@
 	    "AbilityTextureName"			"custom/hell_guardian_hell_on_earth2"
 	    "MaxLevel"                      "1"
 		
-		"AbilityCooldown"				"18"
+		"AbilityCooldown"				"30 22"
 		"AbilityCastPoint"				"0.8 0.5"
 		"AbilityCastAnimation"			"ACT_DOTA_DIE"
 	    // Special
@@ -197,7 +197,7 @@
 	        "01"
 	        {
 	            "var_type"              "FIELD_INTEGER"
-	            "raze_damage"         	"125000 150000"
+	            "raze_damage"         	"100000 150000"
 	        }
 			"02"
 	        {
@@ -234,7 +234,7 @@
 	    "AbilityTextureName"			"custom/hell_guardian_hell_on_earth3"
 	    "MaxLevel"                      "1"
 		
-		"AbilityCooldown"				"9"
+		"AbilityCooldown"				"12 9"
 		"AbilityCastPoint"				"0.8 0.5"
 		"AbilityCastAnimation"			"ACT_DOTA_DIE"
 	
@@ -250,7 +250,7 @@
 	        "01"
 	        {
 	            "var_type"              "FIELD_INTEGER"
-	            "raze_damage"         	"125000 150000"
+	            "raze_damage"         	"100000 150000"
 	        }
 			"02"
 	        {
@@ -277,8 +277,8 @@
 	    "AbilityTextureName"			"doom_bringer_doom"
 	    "MaxLevel"                      "1"
 		
-		"AbilityCooldown"				"20"
-		"AbilityCastPoint"				"0.8 0.5"
+		"AbilityCooldown"				"30 20"
+		"AbilityCastPoint"				"0.5"
 		"AbilityCastAnimation"			"ACT_DOTA_SPAWN"
 	
 	    // Special
@@ -294,12 +294,12 @@
 			"01"
 	        {
 	            "var_type"              "FIELD_FLOAT"
-	            "raze_delay"			"1.5 1"
+	            "raze_delay"			"3 2.5"
 	        }
 			"02"
 	        {
 	            "var_type"              "FIELD_INTEGER"
-	            "raze_radius"			"300"
+	            "raze_radius"			"500"
 	        }
 			"03"
 	        {
@@ -321,8 +321,8 @@
 	    "AbilityTextureName"			"hell_guardian_flaming_fist"
 	    "MaxLevel"                      "1"
 		
-		"AbilityCooldown"				"10"
-		"AbilityCastPoint"				"0.8 0.5"
+		"AbilityCooldown"				"6"
+		"AbilityCastPoint"				"2 1.5"
 		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
 	
 	    // Special
@@ -338,12 +338,7 @@
 			"02"
 	        {
 	            "var_type"              "FIELD_INTEGER"
-	            "radius"				"500"
-	        }
-			"03"
-	        {
-	            "var_type"              "FIELD_FLOAT"
-	            "stun_duration"			"3.5"
+	            "radius"				"450"
 	        }
 	    }
 	}

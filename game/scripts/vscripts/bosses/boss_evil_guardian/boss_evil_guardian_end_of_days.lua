@@ -1,8 +1,8 @@
 boss_evil_guardian_end_of_days = class({})
 
 function boss_evil_guardian_end_of_days:OnAbilityPhaseStart()
+	local caster = self:GetCaster()
 	self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_status_immunity", {duration = self:GetCastPoint() - 0.01})
-	ParticleManager:FireWarningParticle(self:GetCaster():GetAbsOrigin(), 1200)
 	return true
 end
 
@@ -15,16 +15,19 @@ function boss_evil_guardian_end_of_days:OnSpellStart()
 end
 
 function boss_evil_guardian_end_of_days:CreateTrap(position)
-	local razeFX = ParticleManager:CreateParticle("particles/doom_ring_D.vpcf", PATTACH_WORLDORIGIN, nil)
-	ParticleManager:SetParticleControl( razeFX, 0, position )
+	
 	local caster = self:GetCaster()
+	local vPos = GetGroundPosition( position, caster ) + Vector(0,0,22)
+	
+	local razeFX = ParticleManager:CreateParticle("particles/doom_ring_D.vpcf", PATTACH_WORLDORIGIN, nil)
+	ParticleManager:SetParticleControl( razeFX, 0, vPos )
 	
 	local duration = self:GetSpecialValueFor("stun_duration")
 	local radius = self:GetSpecialValueFor("raze_radius")
 	local delay = self:GetSpecialValueFor("raze_delay")
 	Timers:CreateTimer(delay, function()
 		ParticleManager:ClearParticle( razeFX )
-		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( position, radius ) ) do
+		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( vPos, radius ) ) do
 			enemy:AddNewModifier(caster, self, "modifier_boss_evil_guardian_end_of_days_stun", {duration = duration})
 		end
 	end)

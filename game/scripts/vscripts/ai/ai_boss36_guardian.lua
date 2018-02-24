@@ -49,6 +49,20 @@ end
 function AIThink()
 	if not thisEntity:IsDominated() then
 		local target = AICore:GetHighestPriorityTarget(thisEntity)
+		if thisEntity.fist:IsFullyCastable() then
+			if not target then
+				target = AICore:NearestEnemyHeroInRange( thisEntity, -1, true)
+			end
+			if target then
+				ExecuteOrderFromTable({
+					UnitIndex = thisEntity:entindex(),
+					OrderType = DOTA_UNIT_ORDER_CAST_POSITION,
+					Position = target:GetAbsOrigin(),
+					AbilityIndex = thisEntity.fist:entindex()
+				})
+				return thisEntity.fist:GetCastPoint() + 0.1
+			end
+		end
 		if target and not target:IsNull() then
 			local cds = 0
 			local raze1CD = thisEntity.raze1:IsCooldownReady()
@@ -63,22 +77,22 @@ function AIThink()
 			if raze3CD then
 				cds = cds + 1
 			end
-			if thisEntity.getRazingFactor < 100 then
-				if thisEntity.raze1:IsFullyCastable() and AICore:TotalEnemyHeroesInRange( thisEntity, 1200 ) > 0 and RollPercentage(50/cds) then
+			if thisEntity.getRazingFactor < 50 then
+				if thisEntity.raze1:IsFullyCastable() and AICore:TotalEnemyHeroesInRange( thisEntity, 1200 ) > 0 and RollPercentage(33/cds) then
 					ExecuteOrderFromTable({
 						UnitIndex = thisEntity:entindex(),
 						OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
 						AbilityIndex = thisEntity.raze1:entindex()
 					})
 					return thisEntity.raze1:GetCastPoint() + 0.1
-				elseif thisEntity.raze2:IsFullyCastable() and AICore:TotalEnemyHeroesInRange( thisEntity, 1200 ) > 0 and RollPercentage(50/cds) then
+				elseif thisEntity.raze2:IsFullyCastable() and AICore:TotalEnemyHeroesInRange( thisEntity, 1200 ) > 0 and RollPercentage(33/cds) then
 					ExecuteOrderFromTable({
 						UnitIndex = thisEntity:entindex(),
 						OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
 						AbilityIndex = thisEntity.raze2:entindex()
 					})
 					return thisEntity.raze2:GetCastPoint() + 0.1
-				elseif thisEntity.raze3:IsFullyCastable() and AICore:TotalEnemyHeroesInRange( thisEntity, 1200 ) > 0 and RollPercentage(50/cds) then
+				elseif thisEntity.raze3:IsFullyCastable() and AICore:TotalEnemyHeroesInRange( thisEntity, 1200 ) > 0 and RollPercentage(33/cds) then
 					ExecuteOrderFromTable({
 						UnitIndex = thisEntity:entindex(),
 						OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
@@ -94,20 +108,6 @@ function AIThink()
 					AbilityIndex = thisEntity.stun:entindex()
 				})
 				return thisEntity.stun:GetCastPoint() + 0.1
-			end
-		end
-		if thisEntity.fist:IsFullyCastable() then
-			if not target then
-				target = AICore:NearestEnemyHeroInRange( thisEntity, -1, true)
-				if target then
-					ExecuteOrderFromTable({
-						UnitIndex = thisEntity:entindex(),
-						OrderType = DOTA_UNIT_ORDER_CAST_POSITION,
-						Position = target:GetAbsOrigin(),
-						AbilityIndex = thisEntity.fist:entindex()
-					})
-					return thisEntity.fist:GetCastPoint() + 0.1
-				end
 			end
 		end
 		AICore:AttackHighestPriority( thisEntity )

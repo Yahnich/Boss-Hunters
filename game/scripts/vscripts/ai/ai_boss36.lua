@@ -2,7 +2,7 @@ require( "ai/ai_core" )
 if IsServer() then
 	function Spawn( entityKeyValues )
 		Timers:CreateTimer(function()
-			local origin = Vector(-545,-2367 )
+			local origin = Vector(969, 132)
 			thisEntity:SetAbsOrigin( origin )
 			FindClearSpaceForUnit(thisEntity, origin, true)
 			

@@ -320,7 +320,7 @@
 		"AbilityCastRange"				"950"
 		"AbilityCooldown"				"8.0"
 		
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
 		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
@@ -388,6 +388,11 @@
 			{
 					"var_type"								"FIELD_INTEGER"
 					"disables_healing"						"1"
+			}
+			"09"
+			{
+					"var_type"								"FIELD_INTEGER"
+					"radius"								"600"
 			}
 		}
 	}

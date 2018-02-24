@@ -17,6 +17,7 @@ end
 
 function OnWaterEnter(trigger)
     local ent = trigger.activator
+	if not ent then return end
     ent.InWater = true
 
     if ent:IsHero() then

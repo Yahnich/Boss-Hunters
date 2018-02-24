@@ -60,7 +60,6 @@ if IsServer() then
 			self:GetAbility().lastChargeTime[id] = gameTime - FrameTime()
 		end
 		for id, gameTime in ipairs ( self:GetAbility().lastChargeTime ) do
-			print(gameTime)
 			if gameTime <= 0 then 
 				self:GetAbility():SetCurrentCharges( math.min(self:GetAbility():GetCurrentCharges() + 1, self.max_count ) )
 				table.remove(self:GetAbility().lastChargeTime, id)
