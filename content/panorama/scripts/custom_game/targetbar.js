@@ -5,7 +5,7 @@ function tell_threat()
 }
 
 GameEvents.Subscribe( "UpdateHealthBar", UpdateHealthBar);
-
+dota_player_update_selected_unit
 function UpdateHealthBar(arg)
 {
 	if(GameUI.IsAltDown()){
@@ -22,7 +22,8 @@ function UpdateHealthBar(arg)
 		if(difficulty > 2){
 			nameMod = "_vh"
 		}
-		if(arg.Name.match(/_h/g) != null && arg.Name.match(/_vh/g) != null){
+		$.Msg( arg.arg.Name.match(/_h/g), arg.Name.match(/_vh/g) )
+		if(arg.Name.match(/_h/g) != "" && arg.Name.match(/_vh/g) != ""){
 			nameMod = ""
 		}
 		$("#bossNameLabel").text = $.Localize("#" + arg.Name + nameMod);

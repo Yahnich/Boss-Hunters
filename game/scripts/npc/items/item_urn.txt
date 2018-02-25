@@ -47,7 +47,7 @@
 			"01"
 			{
 					"var_type"								"FIELD_FLOAT"
-					"bonus_mregen"							"2.5"
+					"bonus_mregen"							"3.5"
 			}
 			"02"
 			{
@@ -118,7 +118,7 @@
 			"02"
 			{
 					"var_type"								"FIELD_FLOAT"
-					"bonus_mregen"							"5"
+					"bonus_mregen"							"7"
 			}
 			"03"
 			{
@@ -199,7 +199,7 @@
 			"03"
 			{
 					"var_type"								"FIELD_FLOAT"
-					"bonus_mregen"							"7.5"
+					"bonus_mregen"							"14"
 			}
 			"04"
 			{
@@ -278,7 +278,7 @@
 			"03"
 			{
 					"var_type"								"FIELD_FLOAT"
-					"bonus_mregen"							"10"
+					"bonus_mregen"							"28"
 			}
 			"04"
 			{
@@ -362,7 +362,7 @@
 			"03"
 			{
 					"var_type"								"FIELD_FLOAT"
-					"bonus_mregen"							"12.5"
+					"bonus_mregen"							"56"
 			}
 			"04"
 			{
