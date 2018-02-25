@@ -96,7 +96,7 @@
 			"07"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_spell_resist"	"30"
+				"bonus_spell_resist"	"20"
 			}
 			"08"
 			{
@@ -205,7 +205,7 @@
 			"07"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_spell_resist"	"40"
+				"bonus_spell_resist"	"25"
 			}
 			"08"
 			{
@@ -314,7 +314,7 @@
 			"07"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_spell_resist"	"50"
+				"bonus_spell_resist"	"30"
 			}
 			"08"
 			{
@@ -423,7 +423,7 @@
 			"07"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_spell_resist"	"60"
+				"bonus_spell_resist"	"35"
 			}
 			"08"
 			{

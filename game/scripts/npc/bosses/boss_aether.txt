@@ -169,7 +169,7 @@
 		
 		"AbilityCastAnimation"			"ACT_DOTA_SPAWN"
 		"AbilityCastPoint"				"0.8 0.5"
-		"AbilityCooldown"				"15 14"
+		"AbilityCooldown"				"10"
 	
 		"precache"
 		{
@@ -181,7 +181,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"meteor_count"				"18 24"
+				"meteor_count"				"24 36"
 			}
 			"02"
 			{
@@ -191,17 +191,17 @@
 			"03"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"impact_delay"				"1.5 1"
+				"impact_delay"				"1.5 1.25"
 			}
 			"04"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"impact_damage"				"15000 20000"
+				"impact_damage"				"30000 50000"
 			}
 			"05"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"impact_slow"				"-20"
+				"impact_slow"				"-30 -40"
 			}
 			"06"
 			{
@@ -275,7 +275,7 @@
 			"03"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"damage_per_second"			"60000 100000"
+				"damage_per_second"			"80000 120000"
 			}
 			"04"
 			{
@@ -348,7 +348,7 @@
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"bosses/boss_aether/boss_aether_event_horizon"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
 		"AbilityTextureName"			"enigma_black_hole"
 		"MaxLevel"						"3"
 		
@@ -378,7 +378,7 @@
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"pull"						"3 4"
+				"pull"						"2"
 			}
 		}
 	}

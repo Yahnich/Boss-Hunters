@@ -1,4 +1,4 @@
-modifier_stunned_generic = modifier_stunned_generic or class({})
+modifier_stunned_generic = class({})
 
 if IsServer() then
 	function modifier_stunned_generic:OnCreated(kv)

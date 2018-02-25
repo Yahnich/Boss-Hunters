@@ -40,6 +40,7 @@
 		"AbilityCastRange"				"0"
 		"AbilityCastPoint"				"0.0"
 		"AbilityManaCost"				"0"
+		"AbilityThreat"					"-5"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -130,6 +131,7 @@
 		"AbilityCastRange"				"0"
 		"AbilityCastPoint"				"0.0"
 		"AbilityManaCost"				"0"
+		"AbilityThreat"					"-5"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -220,6 +222,7 @@
 		"AbilityCastRange"				"0"
 		"AbilityCastPoint"				"0.0"
 		"AbilityManaCost"				"0"
+		"AbilityThreat"					"-5"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -310,6 +313,7 @@
 		"AbilityCastRange"				"0"
 		"AbilityCastPoint"				"0.0"
 		"AbilityManaCost"				"0"
+		"AbilityThreat"					"-5"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------

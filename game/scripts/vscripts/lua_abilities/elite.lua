@@ -52,15 +52,13 @@ function CreateFrostShards(keys)
 	if #units == 0 then return end
 	ability:StartCooldown(8)
 	for _, unit in pairs(units) do
-		
 		local shardLoc = unit:GetAbsOrigin() + RandomVector(350)
-		local  frostShard = ParticleManager:CreateParticle("particles/elite_freezing_parent.vpcf", PATTACH_WORLDORIGIN, nil)
+		local frostShard = ParticleManager:CreateParticle("particles/elite_freezing_parent.vpcf", PATTACH_WORLDORIGIN, nil)
 			ParticleManager:SetParticleControl(frostShard, 0, shardLoc)
 		EmitSoundOnLocationWithCaster(shardLoc, "hero_Crystal.frostbite", caster)
 		ParticleManager:FireWarningParticle(shardLoc, 400)
 		Timers:CreateTimer(5, function()
-			ParticleManager:DestroyParticle(frostShard, false)
-			ParticleManager:ReleaseParticleIndex(frostShard)
+			ParticleManager:ClearParticle(frostShard)
 			EmitSoundOn("Hero_Ancient_Apparition.IceBlast.Target", caster)
 			local targets = FindUnitsInRadius( caster:GetTeam(), shardLoc, nil, 400, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, 0, false )
 			for _, frozenTarget in pairs(targets) do

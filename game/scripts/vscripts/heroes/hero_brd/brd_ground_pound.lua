@@ -19,18 +19,18 @@ end
 function brd_ground_pound:OnSpellStart()
 	local caster = self:GetCaster()
 
-	local think = CreateModifierThinker(caster, self, "modifier_ground_pound_aura", {Duration = self:GetSpecialValueFor("duration")}, caster:GetAbsOrigin(), caster:GetTeamNumber(), false)
+	local think = CreateModifierThinker(caster, self, "modifier_ground_pound_aura", {Duration = self:GetTalentSpecialValueFor("duration")}, caster:GetAbsOrigin(), caster:GetTeamNumber(), false)
 
-	local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), self:GetSpecialValueFor("radius"), {})
+	local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"), {})
 	if #enemies > 0 then
 		for _,enemy in pairs(enemies) do
 			if not enemy:IsTaunted() then
-				enemy:ApplyKnockBack(caster:GetAbsOrigin(), 0.75, 0.5, self:GetSpecialValueFor("radius"), 100, caster, self)
+				enemy:ApplyKnockBack(caster:GetAbsOrigin(), 0.75, 0.5, self:GetTalentSpecialValueFor("radius"), 100, caster, self)
 			else
-				enemy:Daze(self, caster, self:GetSpecialValueFor("daze_duration"))
+				enemy:Daze(self, caster, self:GetTalentSpecialValueFor("daze_duration"))
 			end
-
-			if enemy:GetHealthPercent() <= self:GetSpecialValueFor("kill_threshold") then
+			print(enemy:GetHealthPercent(), self:GetTalentSpecialValueFor("kill_threshold"))
+			if enemy:GetHealthPercent() <= self:GetTalentSpecialValueFor("kill_threshold") then
 				local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_axe/axe_culling_blade_kill.vpcf", PATTACH_POINT, caster)
 				ParticleManager:SetParticleControl(nfx,4, enemy:GetAbsOrigin())
 				ParticleManager:ReleaseParticleIndex(nfx)
@@ -39,11 +39,11 @@ function brd_ground_pound:OnSpellStart()
 				enemy:AttemptKill(self, caster)
 
 				if caster:HasTalent("special_bonus_unique_brd_ground_pound") then
-					caster:AddNewModifier(caster, self, "modifier_ground_pound_damage_reduction", {Duration = self:GetSpecialValueFor("duration")})
+					caster:AddNewModifier(caster, self, "modifier_ground_pound_damage_reduction", {Duration = self:GetTalentSpecialValueFor("duration")})
 				elseif caster:HasTalent("special_bonus_unique_brd_ground_pound_2") then
-					local enemies2 = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), self:GetSpecialValueFor("radius"), {})
+					local enemies2 = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"), {})
 					for _,enemy2 in pairs(enemies2) do
-						enemy2:AddNewModifier(caster, self, "modifier_blood_hunger", {Duration = caster:FindAbilityByName("brd_blood_hunger"):GetSpecialValueFor("duration")})
+						enemy2:AddNewModifier(caster, self, "modifier_blood_hunger", {Duration = caster:FindAbilityByName("brd_blood_hunger"):GetTalentSpecialValueFor("duration")})
 					end
 				end
 
@@ -56,7 +56,7 @@ function brd_ground_pound:OnSpellStart()
 			else
 				ParticleManager:CreateParticle("particles/units/heroes/hero_axe/axe_culling_blade.vpcf", PATTACH_POINT_FOLLOW, caster)
 				EmitSoundOn("Hero_Axe.Culling_Blade_Fail", self:GetCaster())
-				self:DealDamage(caster, enemy, caster:GetStrength() * self:GetSpecialValueFor("damage") / 100, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
+				self:DealDamage(caster, enemy, caster:GetStrength() * self:GetTalentSpecialValueFor("damage") / 100, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
 			end
 		end
 	else
@@ -74,7 +74,7 @@ function modifier_ground_pound_aura:GetAuraDuration()
 end
 
 function modifier_ground_pound_aura:GetAuraRadius()
-	return self:GetSpecialValueFor("radius")
+	return self:GetTalentSpecialValueFor("radius")
 end
 
 function modifier_ground_pound_aura:GetAuraSearchFlags()
@@ -106,7 +106,7 @@ function modifier_ground_pound:DeclareFunctions()
 end
 
 function modifier_ground_pound:GetModifierMoveSpeedBonus_Constant()
-	return self:GetSpecialValueFor("move_slow")
+	return self:GetTalentSpecialValueFor("move_slow")
 end
 
 function modifier_ground_pound:IsDebuff()

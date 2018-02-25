@@ -26,7 +26,7 @@ end
 function modifier_phantom_assassin_blur_ebf:OnAttackStart(params)
     if IsServer() then
         if params.target == self:GetParent() then
-            if RollPercentage(self.trueEvasion) then
+            if RollPercentage(self:GetModifierEvasion_Constant()/2) then
                 params.attacker:AddNewModifier(params.target, self:GetAbility(), "modifier_phantom_assassin_blur_true_evasion", {})
             end
         else
@@ -54,7 +54,7 @@ function modifier_phantom_assassin_blur_ebf:OnAttackFail(params)
 end
 
 function modifier_phantom_assassin_blur_ebf:GetModifierEvasion_Constant(params)
-    return self.evasion + self:GetStackCount() * self.evasion_stack
+    return math.min(100, self.evasion + self:GetStackCount() * self.evasion_stack)
 end
 
 LinkLuaModifier( "modifier_phantom_assassin_blur_true_evasion", "heroes/hero_pa/phantom_assassin_blur_ebf", LUA_MODIFIER_MOTION_NONE )
@@ -69,4 +69,8 @@ function modifier_phantom_assassin_blur_true_evasion:CheckState()
         [MODIFIER_STATE_CANNOT_MISS] = false,
     }
     return state
+end
+
+function modifier_phantom_assassin_blur_true_evasion:GetPriority()
+	return MODIFIER_PRIORITY_SUPER_ULTRA
 end

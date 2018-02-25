@@ -569,32 +569,31 @@
 	{
 		"override_hero"			"npc_dota_hero_invoker"
 		"AbilityLayout"				"6"
-		"Ability1"					"invoker_ice_ellement"					// Ability 2
-		"Ability2"					"invoker_wind_ellement"					// Ability 3
-		"Ability3"					"invoker_fire_ellement"					// Ability 1
-		"Ability4"					"invoker_combine1"					// Ability 4
-		"Ability5"					"invoker_combine2"					// Ability 5
-		"Ability6"					"invoker_reset"					// Ability 6
-		"Ability7"					""					// Ability 6
-		"Ability8"					""					// Ability 6
-		"Ability9"					""					// Ability 6
-		"Ability10"					""					// Ability 6
-		"Ability11"					""					// Ability 6
-		"Ability12"					""					// Ability 6
-		"Ability13"					""					// Ability 6
-		"Ability14"					""					// Ability 6
-		"Ability15"					""					// Ability 6
-		"Ability16"					""					// Ability 6
+		"Ability1"		"invoker_quas"
+		"Ability2"		"invoker_wex"
+		"Ability3"		"invoker_exort"
+		"Ability4"		"invoker_empty1"
+		"Ability5"		"invoker_empty2"
+		"Ability6"		"invoker_invoke"
+		"Ability7"		"invoker_cold_snap"
+		"Ability8"		"invoker_ghost_walk"
+		"Ability9"		"invoker_tornado"
+		"Ability10"		"invoker_emp"
+		"Ability11"		"invoker_alacrity"
+		"Ability12"		"invoker_chaos_meteor"
+		"Ability13"		"invoker_sun_strike"
+		"Ability14"		"invoker_forge_spirit"
+		"Ability15"		"invoker_ice_wall"
+		"Ability16"		"invoker_deafening_blast"		
 		
-		"Ability17"		"special_bonus_attack_damage_10"
-		"Ability18"		"special_bonus_armor_5"
-		"Ability19"		"special_bonus_cooldown_reduction_20"
-		"Ability20"		"special_bonus_attack_speed_30"
-		"Ability21"		"special_bonus_intelligence_15"
-		"Ability22"		"special_bonus_all_stats_15"
-		"Ability23"		"special_bonus_hp_100"
-		"Ability24"		"special_bonus_spell_amplify_10"
-		
+		"Ability17"		"special_bonus_all_stats_8"
+		"Ability18"		"special_bonus_unique_invoker_6"
+		"Ability19"		"special_bonus_unique_invoker_1"
+		"Ability20"		"special_bonus_unique_invoker_7"
+		"Ability21"		"special_bonus_cooldown_reduction_20"
+		"Ability22"		"special_bonus_intelligence_15"
+		"Ability23"		"special_bonus_unique_invoker_2"
+		"Ability24"		"special_bonus_unique_invoker_3"
 	}
 	"npc_dota_hero_jakiro"
 	{

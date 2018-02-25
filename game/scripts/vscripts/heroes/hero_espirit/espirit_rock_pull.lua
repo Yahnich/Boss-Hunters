@@ -27,7 +27,7 @@ function espirit_rock_pull:OnSpellStart()
     	maxTargets = maxTargets + caster:FindTalentValue("special_bonus_unique_espirit_rock_pull_2")
     end
 
-    local stones = caster:FindFriendlyUnitsInRadius(point, self:GetSpecialValueFor("radius"), {})
+    local stones = caster:FindFriendlyUnitsInRadius(point, self:GetSpecialValueFor("radius"), {type = DOTA_UNIT_TARGET_ALL})
     for _,stone in pairs(stones) do
     	if curTargets < maxTargets then
 			if stone:GetName() == "npc_dota_earth_spirit_stone" then

@@ -125,6 +125,12 @@ if IsServer() then
 	end
 	
 	function modifier_boss15_thread_of_life_reduction:OnIntervalThink()
+		for id, entindex in ipairs( self:GetAbility():GetTethers() ) do
+			local parent = EntIndexToHScript( entindex )
+			if not parent or not parent:HasModifier("modifier_boss15_thread_of_life_tether") then
+				table.remove(self.tetherList, id)
+			end
+		end
 		if self:GetStackCount() ~= #self:GetAbility():GetTethers() then self:SetStackCount(#self:GetAbility():GetTethers()) end
 		if self:GetStackCount() == 0 then self:Destroy() end
 	end

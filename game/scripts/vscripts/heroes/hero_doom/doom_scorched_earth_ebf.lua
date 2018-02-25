@@ -142,7 +142,7 @@ end
 function modifier_doom_scorched_earth_buff:OnRefresh()
 	self.healthregen = self:GetAbility():GetTalentSpecialValueFor("damage_per_second")
 	self.movespeed = self:GetAbility():GetTalentSpecialValueFor("bonus_movement_speed_pct")
-	self.healamp = self:GetCaster():FindTalentValueFor("special_bonus_unique_doom_scorched_earth_ebf_1")
+	self.healamp = self:GetCaster():FindTalentValue("special_bonus_unique_doom_scorched_earth_ebf_1")
 	if not self:GetParent():IsSameTeam(self:GetCaster()) then
 		self.healthregen = 0
 		self.healamp = self.healamp * (-0.5)

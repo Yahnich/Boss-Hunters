@@ -12692,7 +12692,7 @@
 		"ItemShareability"				"ITEM_PARTIALLY_SHAREABLE"
 		"ItemAliases"					"mana;mb;octarine core"
 		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"custom/asura_core"
+		"AbilityTextureName"			"custom/lunar_crest"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
 		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_ALWAYS"
 		
@@ -12716,27 +12716,27 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_intelligence"		"50000"
+				"bonus_intelligence"		"88888"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_health"			"15000"
+				"bonus_health"			"88888"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_mana"			"50000"
+				"bonus_mana"			"88888"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_health_regen"		"5000"
+				"bonus_health_regen"		"88888"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_mana_regen"		"6000"
+				"bonus_mana_regen"		"88888"
 			}
 			"06"
 			{
@@ -12796,7 +12796,7 @@
 			"17"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_all"			"50000"
+				"bonus_all"			"88888"
 			}
 			"18"
 			{
@@ -12821,7 +12821,7 @@
 			"22"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"crit_multiplier"		"500"
+				"crit_multiplier"		"888"
 			}
 			"23"
 			{

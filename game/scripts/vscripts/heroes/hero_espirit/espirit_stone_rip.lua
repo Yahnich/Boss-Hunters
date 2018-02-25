@@ -36,7 +36,7 @@ function espirit_stone_rip:OnSpellStart()
     local caster = self:GetCaster()
     local target = self:GetCursorTarget()
 
-    local stones = caster:FindFriendlyUnitsInRadius(target:GetAbsOrigin(), self:GetSpecialValueFor("radius"), {})
+    local stones = caster:FindFriendlyUnitsInRadius(target:GetAbsOrigin(), self:GetSpecialValueFor("radius"), {type = DOTA_UNIT_TARGET_ALL})
     for _,stone in pairs(stones) do
     	if stone:GetName() == "npc_dota_earth_spirit_stone" then
 			local info = 

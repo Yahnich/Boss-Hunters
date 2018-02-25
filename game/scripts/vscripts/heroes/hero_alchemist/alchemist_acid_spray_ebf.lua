@@ -80,7 +80,7 @@ function modifier_alchemist_acid_spray_ebf_debuff:IsDebuff()
 end
 
 function modifier_alchemist_acid_spray_ebf_debuff:OnCreated()
-	self.armor = self:GetTalentSpecialValueFor("armor_reduction") * (-1)
+	self.armor = self:GetTalentSpecialValueFor("armor_reduction")
 	self.damage = self:GetTalentSpecialValueFor("damage")
 	if IsServer() then self:StartIntervalThink(1) end
 end

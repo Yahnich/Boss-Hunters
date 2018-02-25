@@ -26,9 +26,11 @@ end
 
 function modifier_boss3b_acid_interior_passive:OnDeath(params)
 	if params.unit == self:GetParent() then
+		ParticleManager:FireParticle("particles/econ/items/viper/viper_ti7_immortal/viper_poison_attack_ti7_explosion.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
 		local enemies = self:GetParent():FindEnemyUnitsInRadius(self:GetParent():GetAbsOrigin(), self.aoe_radius)
 		for _, enemy in ipairs(enemies) do
 			self:GetAbility():DealDamage(self:GetParent(), enemy, self.aoe_damage)
+			enemy:ApplyKnockBack(self:GetParent():GetAbsOrigin(), 0.5, 0.5, 250, 250, self:GetParent(), self:GetAbility())
 			enemy:AddNewModifier(self:GetParent(), self:GetAbility(), "modifier_boss3b_acid_interior_boom", {duration = self.stack_duration * 1.5})
 		end
 	end
@@ -57,6 +59,10 @@ end
 
 function modifier_boss3b_acid_interior_boom:GetEffectName()
 	return "particles/units/heroes/hero_alchemist/alchemist_acid_spray_debuff.vpcf"
+end
+
+function modifier_boss3b_acid_interior_boom:GetAttributes()
+	return MODIFIER_ATTRIBUTE_MULTIPLE
 end
 
 

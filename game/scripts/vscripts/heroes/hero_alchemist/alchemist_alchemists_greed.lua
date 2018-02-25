@@ -32,14 +32,14 @@ function modifier_alchemist_alchemists_greed_handler:OnAttackLanded(params)
 			local player = caster:GetPlayerOwnerID()
 			caster = PlayerResource:GetSelectedHeroEntity(player)
 		end
+		self.greedRemainder = self.greedRemainder or 0
 		if excess > 0 then
-			caster.greedRemainder = caster.greedRemainder or 0
-			caster.greedRemainder = caster.greedRemainder + excess
+			self.greedRemainder = self.greedRemainder + excess
 		end
 		self.goldonhit = math.floor(self.goldonhit)
-		if caster.greedRemainder >= 1 then
-			self.goldonhit = self.goldonhit + caster.greedRemainder
-			caster.greedRemainder = 0
+		if self.greedRemainder >= 1 then
+			self.goldonhit = self.goldonhit + self.greedRemainder
+			self.greedRemainder = 0
 		end
         local totalgold = caster:GetGold() + self.goldonhit
         caster:SetGold(0 , false)

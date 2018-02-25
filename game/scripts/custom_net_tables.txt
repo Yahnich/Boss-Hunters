@@ -2,8 +2,7 @@
 {
   custom_net_tables =
   [
-    "New_Game_plus",
-    "Asura_core",
+    "game_info",
 	"talents",
 	"syncing_purposes",
 	"hero_properties",

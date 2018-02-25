@@ -1,0 +1,345 @@
+"DOTAAbilities"
+{	
+	"boss_evil_guardian_fire_shield"
+	{
+	    // General
+	    //-------------------------------------------------------------------------------------------------------------
+	    "BaseClass"             		"ability_lua"
+		"ScriptFile"					"bosses/boss_evil_guardian/boss_evil_guardian_fire_shield"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
+	    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
+	    "FightRecapLevel"               "1"
+	    "AbilityTextureName"			"custom/hell_guardian_pantagram"
+	    "MaxLevel"                      "1"
+	
+	    // Special
+	    //-------------------------------------------------------------------------------------------------------------
+	
+	    "precache"
+	    {
+	        "particle"          "particles/demon_shield.vpcf"
+	    }
+		
+		"AbilitySpecial"
+	    {
+	        "01"
+	        {
+	            "var_type"              "FIELD_INTEGER"
+	            "recharge_time"         "15"
+	        }
+			"02"
+	        {
+	            "var_type"              "FIELD_INTEGER"
+	            "max_mana"				"2000"
+	        }
+	        "02"
+	        {
+	            "var_type"              "FIELD_INTEGER"
+	            "time_to_lose_shield"   "30 40"
+	        }
+			"03"
+	        {
+	            "var_type"              "FIELD_FLOAT"
+	            "damage_to_mana_loss"   "0.15 0.1"
+	        }
+	    }
+	}
+	"boss_evil_guardian_hell_on_earth"
+	{
+	    // General
+	    //-------------------------------------------------------------------------------------------------------------
+	    "BaseClass"             		"ability_lua"
+		"ScriptFile"					"bosses/boss_evil_guardian/boss_evil_guardian_hell_on_earth"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
+	    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
+	    "FightRecapLevel"               "1"
+	    "AbilityTextureName"			"enigma_midnight_pulse"
+	    "MaxLevel"                      "1"
+	
+	    // Special
+	    //-------------------------------------------------------------------------------------------------------------
+	
+	    "precache"
+	    {
+	        "particle"          "particles/units/bosses/boss_evil_guardian/boss_evil_guardian_hell_on_earth.vpcf"
+	    }
+		
+		"AbilitySpecial"
+	    {
+	        "01"
+	        {
+	            "var_type"              	"FIELD_INTEGER"
+	            "pool_creation_delay"       "12"
+	        }
+			"02"
+	        {
+	            "var_type"              	"FIELD_INTEGER"
+	            "hp_pct_damage"				"15"
+	        }
+	        "03"
+	        {
+	            "var_type"              	"FIELD_INTEGER"
+	            "duration"   				"8"
+	        }
+			"04"
+	        {
+	            "var_type"              	"FIELD_INTEGER"
+	            "radius"   					"325 350"
+	        }
+	    }
+	}
+	"boss_evil_guardian_purge_their_sin"
+	{
+	    // General
+	    //-------------------------------------------------------------------------------------------------------------
+	    "BaseClass"             		"ability_lua"
+		"ScriptFile"					"bosses/boss_evil_guardian/boss_evil_guardian_purge_their_sin"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
+	    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
+	    "FightRecapLevel"               "1"
+	    "AbilityTextureName"			"necrolyte_sadist"
+	    "MaxLevel"                      "1"
+	
+	    // Special
+	    //-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_jakiro/jakiro_macropyre_firehit.vpcf"
+			"particle"					"particles/units/bosses/boss_evil_guardian/boss_evil_guardian_purge_their_sin_debuff.vpcf"
+			"particle"					"particles/econ/items/warlock/warlock_hellsworn_construct/golem_hellsworn_ambient.vpcf"
+		}
+		
+		"AbilitySpecial"
+	    {
+	        "01"
+	        {
+	            "var_type"              "FIELD_INTEGER"
+	            "duration"         		"3"
+	        }
+			"02"
+	        {
+	            "var_type"              "FIELD_INTEGER"
+	            "damage_amp"			"1.5 2"
+	        }
+	    }
+	}
+	"boss_evil_guardian_annihilation"
+	{
+	    // General
+	    //-------------------------------------------------------------------------------------------------------------
+	    "BaseClass"             		"ability_lua"
+		"ScriptFile"					"bosses/boss_evil_guardian/boss_evil_guardian_annihilation"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
+	    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
+	    "FightRecapLevel"               "1"
+	    "AbilityTextureName"			"custom/hell_guardian_hell_on_earth"
+	    "MaxLevel"                      "1"
+		
+		"AbilityCooldown"				"22 18"
+		"AbilityCastPoint"				"0.8 0.5"
+		"AbilityCastAnimation"			"ACT_DOTA_DIE"
+	
+	    // Special
+	    //-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"particle"					"particles/doom_ring.vpcf"
+		}
+		
+		"AbilitySpecial"
+	    {
+	        "01"
+	        {
+	            "var_type"              "FIELD_INTEGER"
+	            "raze_damage"         	"100000 150000"
+	        }
+			"02"
+	        {
+	            "var_type"              "FIELD_FLOAT"
+	            "raze_delay"			"2.5 2"
+	        }
+			"02"
+	        {
+	            "var_type"              "FIELD_INTEGER"
+	            "raze_radius"			"125"
+	        }
+	    }
+	}
+	"boss_evil_guardian_destruction"
+	{
+	    // General
+	    //-------------------------------------------------------------------------------------------------------------
+	    "BaseClass"             		"ability_lua"
+		"ScriptFile"					"bosses/boss_evil_guardian/boss_evil_guardian_destruction"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
+	    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
+	    "FightRecapLevel"               "1"
+	    "AbilityTextureName"			"custom/hell_guardian_hell_on_earth2"
+	    "MaxLevel"                      "1"
+		
+		"AbilityCooldown"				"30 22"
+		"AbilityCastPoint"				"0.8 0.5"
+		"AbilityCastAnimation"			"ACT_DOTA_DIE"
+	    // Special
+	    //-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"particle"					"particles/doom_ring.vpcf"
+		}
+		
+		"AbilitySpecial"
+	    {
+	        "01"
+	        {
+	            "var_type"              "FIELD_INTEGER"
+	            "raze_damage"         	"100000 150000"
+	        }
+			"02"
+	        {
+	            "var_type"              "FIELD_FLOAT"
+	            "raze_delay"			"1.2 0.8"
+	        }
+			"03"
+	        {
+	            "var_type"              "FIELD_INTEGER"
+	            "raze_radius"			"125"
+	        }
+			"04"
+	        {
+	            "var_type"              "FIELD_INTEGER"
+	            "duration"				"10"
+	        }
+			"04"
+	        {
+	            "var_type"              "FIELD_INTEGER"
+	            "lines"					"4 6"
+	        }
+	    }
+	}
+	"boss_evil_guardian_apocalypse"
+	{
+	    // General
+	    //-------------------------------------------------------------------------------------------------------------
+	    "BaseClass"             		"ability_lua"
+		"ScriptFile"					"bosses/boss_evil_guardian/boss_evil_guardian_apocalypse"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
+	    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
+	    "FightRecapLevel"               "1"
+	    "AbilityTextureName"			"custom/hell_guardian_hell_on_earth3"
+	    "MaxLevel"                      "1"
+		
+		"AbilityCooldown"				"12 9"
+		"AbilityCastPoint"				"0.8 0.5"
+		"AbilityCastAnimation"			"ACT_DOTA_DIE"
+	
+	    // Special
+	    //-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"particle"					"particles/doom_ring.vpcf"
+		}
+		
+		"AbilitySpecial"
+	    {
+	        "01"
+	        {
+	            "var_type"              "FIELD_INTEGER"
+	            "raze_damage"         	"100000 150000"
+	        }
+			"02"
+	        {
+	            "var_type"              "FIELD_FLOAT"
+	            "raze_delay"			"1.5 1"
+	        }
+			"02"
+	        {
+	            "var_type"              "FIELD_INTEGER"
+	            "raze_radius"			"125"
+	        }
+	    }
+	}
+	"boss_evil_guardian_end_of_days"
+	{
+	    // General
+	    //-------------------------------------------------------------------------------------------------------------
+	    "BaseClass"             		"ability_lua"
+		"ScriptFile"					"bosses/boss_evil_guardian/boss_evil_guardian_end_of_days"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
+	    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
+	    "FightRecapLevel"               "1"
+	    "AbilityTextureName"			"doom_bringer_doom"
+	    "MaxLevel"                      "1"
+		
+		"AbilityCooldown"				"30 20"
+		"AbilityCastPoint"				"0.5"
+		"AbilityCastAnimation"			"ACT_DOTA_SPAWN"
+	
+	    // Special
+	    //-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"particle"					"particles/doom_ring_d.vpcf"
+			"particle"					"particles/units/heroes/hero_doom_bringer/doom_bringer_doom_ring.vpcf"
+		}
+		
+		"AbilitySpecial"
+	    {
+			"01"
+	        {
+	            "var_type"              "FIELD_FLOAT"
+	            "raze_delay"			"3 2.5"
+	        }
+			"02"
+	        {
+	            "var_type"              "FIELD_INTEGER"
+	            "raze_radius"			"500"
+	        }
+			"03"
+	        {
+	            "var_type"              "FIELD_FLOAT"
+	            "stun_duration"			"3.5"
+	        }
+	    }
+	}
+	"boss_evil_guardian_rise_of_hell"
+	{
+	    // General
+	    //-------------------------------------------------------------------------------------------------------------
+	    "BaseClass"             		"ability_lua"
+		"ScriptFile"					"bosses/boss_evil_guardian/boss_evil_guardian_rise_of_hell"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
+	    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
+	    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
+	    "FightRecapLevel"               "1"
+	    "AbilityTextureName"			"hell_guardian_flaming_fist"
+	    "MaxLevel"                      "1"
+		
+		"AbilityCooldown"				"6"
+		"AbilityCastPoint"				"2 1.5"
+		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
+	
+	    // Special
+	    //-------------------------------------------------------------------------------------------------------------
+		
+		"AbilitySpecial"
+	    {
+			"01"
+	        {
+	            "var_type"              "FIELD_INTEGER"
+	            "crit"					"150 175"
+	        }
+			"02"
+	        {
+	            "var_type"              "FIELD_INTEGER"
+	            "radius"				"450"
+	        }
+	    }
+	}
+}

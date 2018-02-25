@@ -13,6 +13,7 @@
 #base "bosses/boss14.txt"
 #base "bosses/boss_aether.txt"
 #base "bosses/boss_evil_core.txt"
+#base "bosses/boss_evil_guardian.txt"
 
 "DOTAAbilities"
 {
@@ -9286,6 +9287,7 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"damage_reduction"		"-50"
+				"CalculateSpellDamageTooltip"	"0"
 			}
 			"02"
 			{
@@ -23997,203 +23999,6 @@
 			}
 		}
 	}
-	"guardian_hell_flaming_fist"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_datadriven"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityTextureName"			"custom/hell_guardian_flaming_fist"
-		
-		"precache"
-	    {
-	    	"soundfile"                     "soundevents/game_sounds_heroes/game_sounds_ember_spirit.vsndevts"
-	    	"particle"                      "particles/units/heroes/hero_ember_spirit/ember_spirit_sleight_of_fist_cast.vpcf"
-	        "particle"                      "particles/units/heroes/hero_ember_spirit/ember_spirit_sleight_of_fist_targetted_marker.vpcf"
-	        "particle"                      "particles/units/heroes/hero_ember_spirit/ember_spirit_sleightoffist_tgt.vpcf"
-	        "particle"                      "particles/units/heroes/hero_ember_spirit/ember_spirit_sleightoffist_trail.vpcf"
-	    }
-		
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"100"
-		"AOERadius" 					"%radius"
-		
-		"AbilityCastAnimation"			"ACT_DOTA_DIE"	// Activity
-		"AnimationPlaybackRate"			"1.0"						// Animation speed multiplier
-		"AnimationIgnoresModelScale"	"1"
-	
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"8"
-		"AbilityCastPoint"				"0.1"
-	
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"               "150"
-	
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-	        {
-	            "var_type"              "FIELD_INTEGER"
-	            "radius"             	"1000"  //The meteor lands on the ground this many seconds after it was cast.
-	        }
-		}
-		// Modifiers
-		//-------------------------------------------------------------------------------------------------------------	
-		"OnSpellStart"
-		{
-			"FireSound"
-	        {
-	            "Target"                    "CASTER"
-	            "EffectName"                "Hero_EmberSpirit.SleightOfFist.Cast"
-	        }
-			"RunScript"
-			{
-				"ScriptFile"                                "lua_boss/boss_36_guardian.lua"
-				"Function"                                  "flaming_fist"
-				"Target"                   					 "POINT"
-			}
-	
-		}
-		"Modifiers"
-	    {
-	        "modifier_sleight_of_fist_caster_datadriven"
-	        {
-	            "IsPurgable"                "0"
-	        
-	            "States"
-	            {
-	                "MODIFIER_STATE_INVULNERABLE"       "MODIFIER_STATE_VALUE_ENABLED"
-	                "MODIFIER_STATE_NO_HEALTH_BAR"      "MODIFIER_STATE_VALUE_ENABLED"
-	                "MODIFIER_STATE_NO_UNIT_COLLISION"  "MODIFIER_STATE_VALUE_ENABLED"
-	                "MODIFIER_STATE_ROOTED"             "MODIFIER_STATE_VALUE_ENABLED"
-	            }
-	        }
-	    }
-	}
-	"guardian_hell_hell_on_earth"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_datadriven"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
-		"AbilityTextureName"			"custom/hell_guardian_hell_on_earth"
-		
-		"precache"
-	    {
-	        "particle"  "particles/shadow_doom_ring.vpcf"
-	    }
-		
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"1500"
-		"AbilityManaCost"               "200"
-		
-		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"	// Activity
-		"AnimationPlaybackRate"			"0.2"						// Animation speed multiplier
-		"AnimationIgnoresModelScale"	"1"
-	
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"10"
-		"AbilityCastPoint"				"0.5"
-	
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-	        {
-	            "var_type"              "FIELD_FLOAT"
-	            "damage"             "100000 200000 300000"  //The meteor lands on the ground this many seconds after it was cast.
-	        }
-		}
-		
-		// Modifiers
-		//-------------------------------------------------------------------------------------------------------------	
-		"OnSpellStart"
-		{
-			"RunScript"
-			{
-				"ScriptFile"                                "lua_boss/boss_36_guardian.lua"
-				"Function"                                  "hell_on_earth"
-			}
-		}
-	}
-	"guardian_hell_passive"
-	{
-	    // General
-	    //-------------------------------------------------------------------------------------------------------------
-	    "BaseClass"             "ability_datadriven"
-	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-	    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
-	    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
-	    "FightRecapLevel"               "1"
-	    "AbilityTextureName"			"custom/hell_guardian_passive"
-	    "MaxLevel"                      "1"
-	
-	    // Special
-	    //-------------------------------------------------------------------------------------------------------------
-	
-	    "precache"
-	    {
-	        "particle"          "particles/demon_shield.vpcf"
-	    }
-	    "Modifiers"
-	    {
-	    	"modifier_spawn"
-	    	{
-	            "Passive"           "1"
-	            "IsHidden"          "1"
-	            "IsBuff"            "1"
-	            "IsDebuff"          "0"
-	            "IsPurgable"        "0"
-	            "Attributes"        "MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
-	
-	    		"OnCreated"
-	    		{
-	    			"RunScript"
-					{
-						"ScriptFile"                                "lua_boss/boss_36_guardian.lua"
-						"Function"                                  "creation"
-					}
-	    		}
-	        }
-	        "invincible"
-	        {
-	        	"Passive"           "0"
-	            "IsHidden"          "1"
-	            "IsBuff"            "1"
-	            "IsDebuff"          "0"
-	            "IsPurgable"        "0"
-	            "Attributes"        "MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
-	
-	            "Properties"
-	            {
-	                "MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL"      "1"
-	                "MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_MAGICAL"      "1"
-	                "MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PURE"      "1"
-	                "MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"  "0"
-	            }
-				"OnAttacked"
-				{
-					"RunScript"
-					{
-						"ScriptFile"                                "lua_boss/boss_36_guardian.lua"
-						"Function"                                  "Charge_damage"
-					}
-				}
-	    	}
-		}
-	}
 	//=================================================================================================================
 	// Gyrocopter: Call Down
 	//=================================================================================================================
@@ -24912,939 +24717,7 @@
 			}
 		}		
 	}
-	"invoker_combine1"
-	{
-		// General
-	    //-------------------------------------------------------------------------------------------------------------
-	    "BaseClass"                     "ability_datadriven"
-	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-	    "AbilityTextureName"			"invoker_invoke"
-	    "AbilityCastAnimation"          "ACT_DOTA_CAST_TORNADO"
-	    "MaxLevel"                      "7"
-	    "LevelsBetweenUpgrades" "8"
-		"RequiredLevel"        "2"
 	
-	    // Stats
-	    //-------------------------------------------------------------------------------------------------------------
-	    "AbilityCooldown"               "20 17.5 15 12.5 10 7.5 5"
-	    "AbilityCastPoint"              "0.3"
-	    "AbilityManaCost"				"25 50 75 125 250 500 1000"
-		
-	    "precache"
-	    {
-	        "particle"          "particles/units/heroes/hero_invoker/invoker_invoke.vpcf"
-	        "particle"          "particles/units/heroes/hero_invoker/invoker_tornado.vpcf"
-	        "particle"			"particles/crystal_maiden_projectil_spawner_work.vpcf"
-			"particle"			"particles/ice_spear.vpcf"
-			"particle"			"particles/units/heroes/hero_gyrocopter/gyro_calldown_explosion_second.vpcf"
-			"particle"			"particles/fire_spear.vpcf"
-			"particle"          "particles/crystal_spike_aoe_front.vpcf"
-			"particle"          "particles/crystal_spike_aoe_2.vpcf"
-			"particle"          "particles/crystal_spike_aoe.vpcf"
-			"particle"          "particles/fire_tornado.vpcf"
-			"particle"          "particles/ice_tornado.vpcf"
-			"particle"          "particles/stream_wave.vpcf"
-			"particle"          "particles/water_wave.vpcf"
-			"particle"			"particles/fire_ball_final.vpcf"
-			"particle"			"particles/fire_ball_explosion.vpcf"
-			"particle"			"particles/ice_ball_final.vpcf"
-			"particle"			"particles/ice_ball_explosion.vpcf"
-	        	"particle"          "particles/arcana_laser.vpcf"
-			"particle"          "particles/units/heroes/hero_morphling/morphling_waveform.vpcf"
-			"particle"          "particles/units/heroes/hero_drow/drow_silence_wave.vpcf"
-			"particle"			"particles/units/heroes/hero_crystalmaiden/maiden_frostbite_buff.vpcf"
-			"particle"          "particles/fire_debuff.vpcf"
-			"particle"          "particles/ice_flame_debuff.vpcf"
-			"particle"      	"particles/units/heroes/hero_invoker/invoker_alacrity.vpcf"
-			"particle"			"particles/ice_spear_heavy.vpcf"
-			"particle"			"particles/alacrity_fire.vpcf"
-			"particle"			"particles/alacrity_ice.vpcf"
-	
-	
-	
-			"soundfile"         "soundevents/game_sounds_heroes/game_sounds_phoenix.vsndevts"
-			"soundfile"         "soundevents/game_sounds_heroes/game_sounds_crystalmaiden.vsndevts"
-	        "soundfile"         "soundevents/game_sounds_heroes/game_sounds_invoker.vsndevts"
-	        "soundfile"         "soundevents/game_sounds_heroes/game_sounds_techies.vsndevts"  
-	    }
-		"OnUpgrade"
-		{
-			"RunScript"
-	        {
-	            "ScriptFile"                        "ellement/combination.lua"
-	            "Function"                          "OnUpgrade"
-				"sibling"							"invoker_combine2"
-	        }
-		}
-	    "OnSpellStart"
-	    {
-		    "FireSound"
-	        {
-	            "EffectName"    "Hero_Invoker.Invoke"
-	            "Target"        "CASTER"
-	        }
-	        "RunScript"
-	        {
-	            "ScriptFile"                        "ellement/combination.lua"
-	            "Function"                          "On_Spell_Start"
-	        }
-	    }
-	    "OnProjectileHitUnit"
-	    {
-	    	"DeleteOnHit"	"0"
-	    	"RunScript"
-		    {
-		        "ScriptFile"	"ellement/projectile_hit.lua"
-		       	"Target"	"TARGET"
-		        "Function"	"projectile_hit"
-		    }
-		}
-	    "Modifiers"
-	    {
-	
-	    	"iceflame_display"
-	        {
-	            "Passive"           "0"
-	            "IsHidden"          "0"
-	            "IsBuff"            "1"
-	            "IsDebuff"          "0"
-	            "IsPurgable"        "0"
-	            "Attributes"        "MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
-	        }
-	
-	    	"cast_animation"
-	    	{
-	            "Passive"           "0"
-	            "IsHidden"          "1"
-	            "IsBuff"            "1"
-	            "IsDebuff"          "0"
-	            "IsPurgable"        "0"
-	            "Attributes"        "MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
-	
-	            "OverrideAnimation"     "ACT_DOTA_CAST_TORNADO"
-	        }
-	
-	            "modifier_arcana_laser_charge"
-	    	{
-	            "Passive"           "0"
-	            "IsHidden"          "0"
-	            "IsBuff"            "1"
-	            "IsDebuff"          "0"
-	            "IsPurgable"        "0"
-	            "Attributes"        "MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
-	
-	            "Properties"
-	            {
-	                "MODIFIER_PROPERTY_TURN_RATE_PERCENTAGE"      "10"
-	            }
-	
-	            "States"
-	            {
-	                "MODIFIER_STATE_NO_UNIT_COLLISION"  "MODIFIER_STATE_VALUE_ENABLED"
-	                "MODIFIER_STATE_DISARMED"           "MODIFIER_STATE_VALUE_ENABLED"
-	                "MODIFIER_STATE_ROOTED"             "MODIFIER_STATE_VALUE_ENABLED"
-	                "MODIFIER_STATE_FLYING"             "MODIFIER_STATE_VALUE_ENABLED"
-	            }
-	
-	            "OverrideAnimation"     "ACT_DOTA_CAST_TORNADO"
-	        }
-	
-	    	"modifier_knockback_wind"
-	    	{
-	            "Passive"           "0"
-	            "IsHidden"          "1"
-	            "IsBuff"            "1"
-	            "IsDebuff"          "0"
-	            "IsPurgable"        "0"
-	            "Attributes"        "MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
-	
-	            "States"
-	            {
-	                "MODIFIER_STATE_FLYING"             "MODIFIER_STATE_VALUE_ENABLED"
-	                "MODIFIER_STATE_NO_UNIT_COLLISION"  "MODIFIER_STATE_VALUE_ENABLED"
-	                "MODIFIER_STATE_STUNNED"            "MODIFIER_STATE_VALUE_ENABLED"
-	                "MODIFIER_STATE_ROOTED"             "MODIFIER_STATE_VALUE_ENABLED"
-	                "MODIFIER_STATE_DISARMED"           "MODIFIER_STATE_VALUE_ENABLED"
-	            }
-	
-	
-	            "OverrideAnimation"     "ACT_DOTA_FLAIL"
-	
-	        }
-	        "armor_debuff"
-	        {
-	            "Passive"           "0"
-	            "IsHidden"          "1"
-	            "IsBuff"            "1"
-	            "IsDebuff"          "0"
-	            "IsPurgable"        "0"
-	            "Attributes"        "MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
-	            
-	            "Properties"
-	            {
-	                "MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"      "-1"
-	            }
-	        }
-	        "armor_debuff_display"
-	        {
-	            "Passive"           "0"
-	            "IsHidden"          "0"
-	            "IsBuff"            "1"
-	            "IsDebuff"          "0"
-	            "IsPurgable"        "0"
-	            "Attributes"        "MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
-	        }
-	    	"health_regen"
-	        {
-	            "Passive"           "0"
-	            "IsHidden"          "1"
-	            "IsBuff"            "1"
-	            "IsDebuff"          "0"
-	            "IsPurgable"        "0"
-	            "Attributes"        "MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
-	            
-	            "Properties"
-	            {
-	                "MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"      "1"
-	            }
-	        }
-	        "health_regen_display"
-	        {
-	            "Passive"           "0"
-	            "IsHidden"          "0"
-	            "IsBuff"            "1"
-	            "IsDebuff"          "0"
-	            "IsPurgable"        "0"
-	            "Attributes"        "MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
-	        }
-	        "power_aura"
-	        {
-	            "Passive"           "0"
-	            "IsHidden"          "1"
-	            "IsBuff"            "1"
-	            "IsDebuff"          "0"
-	            "IsPurgable"        "0"
-	            "Attributes"        "MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
-	            
-	            "Properties"
-	            {
-	                "MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"      "1"
-	            }
-	        }
-	        "power_aura_display"
-	        {
-	            "Passive"           "0"
-	            "IsHidden"          "0"
-	            "IsBuff"            "1"
-	            "IsDebuff"          "0"
-	            "IsPurgable"        "0"
-	            "Attributes"        "MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
-	        }
-	        "fire_dot_display"
-	        {
-	            "Passive"           "0"
-	            "IsHidden"          "0"
-	            "IsBuff"            "1"
-	            "IsDebuff"          "0"
-				"EffectName"		"particles/fire_debuff.vpcf"
-				"EffectAttachType"	"follow_origin"
-	            "IsPurgable"        "0"
-	            "Attributes"        "MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
-	        }
-	        "speed_aura"
-	        {
-	            "Passive"           "0"
-	            "IsHidden"          "1"
-	            "IsBuff"            "1"
-	            "IsDebuff"          "0"
-	            "IsPurgable"        "0"
-	            "Attributes"        "MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
-	            
-	            "Properties"
-	            {
-	                "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"      "0.5"
-	                	"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"      "1"
-	            }
-	        }
-	        "speed_aura_display"
-	        {
-	            "Passive"           "0"
-	            "IsHidden"          "0"
-	            "IsBuff"            "1"
-	            "IsDebuff"          "0"
-	            "IsPurgable"        "0"
-	            "Attributes"        "MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
-	        }
-	        "ice_freeze"
-	        {
-	            "Passive"           "0"
-	            "IsHidden"          "1"
-	            "IsBuff"            "1"
-	            "IsDebuff"          "0"
-	            "IsPurgable"        "0"
-	            "Attributes"        "MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
-			    "States"
-			    {
-			        "MODIFIER_STATE_STUNNED" "MODIFIER_STATE_VALUE_ENABLED"
-			    }  
-	        }
-	        "ice_freeze_display"
-	        {
-	            "Passive"           "0"
-	            "IsHidden"          "0"
-	            "IsBuff"            "1"
-	            "IsDebuff"          "0"
-	            "IsPurgable"        "0"
-	            "Attributes"        "MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
-	        }
-	
-	        "slow_modifier"
-	        {
-	            "Passive"           "0"
-	            "IsHidden"          "1"
-	            "IsBuff"            "1"
-	            "IsDebuff"          "0"
-	            "IsPurgable"        "0"
-	            "Attributes"        "MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
-	            
-	            "Properties"
-	            {
-	                "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"      "-1"
-	                "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"      "-0.5"
-	            }
-	        }
-	        "slow_modifier_display"
-	        {
-	            "Passive"           "0"
-	            "IsHidden"          "0"
-	            "IsBuff"            "1"
-	            "IsDebuff"          "0"
-	            "IsPurgable"        "0"
-	            "Attributes"        "MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
-	        }
-	        "slow_modifier_caster"
-	        {
-	            "Passive"           "0"
-	            "IsHidden"          "0"
-	            "IsBuff"            "1"
-	            "IsDebuff"          "0"
-	            "IsPurgable"        "0"
-	            "Attributes"        "MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
-	            
-	            "OnAttackLanded"
-				{
-	            	"RunScript"
-			        {
-			            "ScriptFile"                        "ellement/combination.lua"
-			            "Function"                          "slow_modifier_caster_hit"
-			        }
-	        	}
-	        }
-	    }
-	}
-	"invoker_combine2"
-	{
-		// General
-	    //-------------------------------------------------------------------------------------------------------------
-	    "BaseClass"                     "ability_datadriven"
-	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-	    "AbilityTextureName"			"invoker_invoke"
-	    "AbilityCastAnimation"          "ACT_DOTA_CAST_TORNADO"
-	    "MaxLevel"                      "7"
-	    "LevelsBetweenUpgrades" "8"
-		"RequiredLevel"        "2"
-	
-	    // Stats
-	    //-------------------------------------------------------------------------------------------------------------
-	    "AbilityCooldown"               "20 17.5 15 12.5 10 7.5 5"
-	    "AbilityCastPoint"              "0.3"
-	    "AbilityManaCost"				"25 50 75 125 250 500 1000"
-	    "precache"
-	    {
-	        "particle"          "particles/units/heroes/hero_invoker/invoker_invoke.vpcf"
-	        "particle"          "particles/units/heroes/hero_invoker/invoker_tornado.vpcf"
-	        "particle"			"particles/crystal_maiden_projectil_spawner_work.vpcf"
-			"particle"			"particles/ice_spear.vpcf"
-			"particle"			"particles/units/heroes/hero_gyrocopter/gyro_calldown_explosion_second.vpcf"
-			"particle"			"particles/fire_spear.vpcf"
-			"particle"          "particles/crystal_spike_aoe_front.vpcf"
-			"particle"          "particles/crystal_spike_aoe_2.vpcf"
-			"particle"          "particles/crystal_spike_aoe.vpcf"
-			"particle"          "particles/fire_tornado.vpcf"
-			"particle"          "particles/ice_tornado.vpcf"
-			"particle"          "particles/stream_wave.vpcf"
-			"particle"          "particles/water_wave.vpcf"
-			"particle"			"particles/fire_ball_final.vpcf"
-			"particle"			"particles/fire_ball_explosion.vpcf"
-			"particle"			"particles/ice_ball_final.vpcf"
-			"particle"			"particles/ice_ball_explosion.vpcf"
-	        	"particle"          "particles/arcana_laser.vpcf"
-			"particle"          "particles/units/heroes/hero_morphling/morphling_waveform.vpcf"
-			"particle"          "particles/units/heroes/hero_drow/drow_silence_wave.vpcf"
-			"particle"			"particles/units/heroes/hero_crystalmaiden/maiden_frostbite_buff.vpcf"
-			"particle"          "particles/fire_debuff.vpcf"
-			"particle"          "particles/ice_flame_debuff.vpcf"
-			"particle"      	"particles/units/heroes/hero_invoker/invoker_alacrity.vpcf"
-			"particle"			"particles/ice_spear_heavy.vpcf"
-			"particle"			"particles/alacrity_fire.vpcf"
-			"particle"			"particles/alacrity_ice.vpcf"
-	
-	
-	
-			"soundfile"         "soundevents/game_sounds_heroes/game_sounds_phoenix.vsndevts"
-			"soundfile"         "soundevents/game_sounds_heroes/game_sounds_crystalmaiden.vsndevts"
-	        "soundfile"         "soundevents/game_sounds_heroes/game_sounds_invoker.vsndevts"
-	        "soundfile"         "soundevents/game_sounds_heroes/game_sounds_techies.vsndevts"  
-	    }
-		"OnUpgrade"
-		{
-			"RunScript"
-	        {
-	            "ScriptFile"                        "ellement/combination.lua"
-	            "Function"                          "OnUpgrade"
-				"sibling"							"invoker_combine1"
-	        }
-		}
-	    "OnSpellStart"
-	    {
-		    "FireSound"
-	        {
-	            "EffectName"    "Hero_Invoker.Invoke"
-	            "Target"        "CASTER"
-	        }
-	        "RunScript"
-	        {
-	            "ScriptFile"                        "ellement/combination.lua"
-	            "Function"                          "On_Spell_Start"
-	        }
-	    }
-	    "OnProjectileHitUnit"
-	    {
-	    	"DeleteOnHit"	"0"
-	    	"RunScript"
-		    {
-		        "ScriptFile"	"ellement/projectile_hit.lua"
-		       	"Target"	"TARGET"
-		        "Function"	"projectile_hit"
-		    }
-		}
-	    "Modifiers"
-	    {
-	
-	    	"iceflame_display"
-	        {
-	            "Passive"           "0"
-	            "IsHidden"          "0"
-	            "IsBuff"            "1"
-	            "IsDebuff"          "0"
-	            "IsPurgable"        "0"
-	            "Attributes"        "MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
-	        }
-	
-	    	"cast_animation"
-	    	{
-	            "Passive"           "0"
-	            "IsHidden"          "1"
-	            "IsBuff"            "1"
-	            "IsDebuff"          "0"
-	            "IsPurgable"        "0"
-	            "Attributes"        "MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
-	
-	            "OverrideAnimation"     "ACT_DOTA_CAST_TORNADO"
-	        }
-	
-	            "modifier_arcana_laser_charge"
-	    	{
-	            "Passive"           "0"
-	            "IsHidden"          "0"
-	            "IsBuff"            "1"
-	            "IsDebuff"          "0"
-	            "IsPurgable"        "0"
-	            "Attributes"        "MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
-	
-	            "Properties"
-	            {
-	                "MODIFIER_PROPERTY_TURN_RATE_PERCENTAGE"      "10"
-	            }
-	
-	            "States"
-	            {
-	                "MODIFIER_STATE_NO_UNIT_COLLISION"  "MODIFIER_STATE_VALUE_ENABLED"
-	                "MODIFIER_STATE_DISARMED"           "MODIFIER_STATE_VALUE_ENABLED"
-	                "MODIFIER_STATE_ROOTED"             "MODIFIER_STATE_VALUE_ENABLED"
-	                "MODIFIER_STATE_FLYING"             "MODIFIER_STATE_VALUE_ENABLED"
-	            }
-	
-	            "OverrideAnimation"     "ACT_DOTA_CAST_TORNADO"
-	        }
-	
-	    	"modifier_knockback_wind"
-	    	{
-	            "Passive"           "0"
-	            "IsHidden"          "1"
-	            "IsBuff"            "1"
-	            "IsDebuff"          "0"
-	            "IsPurgable"        "0"
-	            "Attributes"        "MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
-	
-	            "States"
-	            {
-	                "MODIFIER_STATE_FLYING"             "MODIFIER_STATE_VALUE_ENABLED"
-	                "MODIFIER_STATE_NO_UNIT_COLLISION"  "MODIFIER_STATE_VALUE_ENABLED"
-	                "MODIFIER_STATE_STUNNED"            "MODIFIER_STATE_VALUE_ENABLED"
-	                "MODIFIER_STATE_ROOTED"             "MODIFIER_STATE_VALUE_ENABLED"
-	                "MODIFIER_STATE_DISARMED"           "MODIFIER_STATE_VALUE_ENABLED"
-	            }
-	
-	
-	            "OverrideAnimation"     "ACT_DOTA_FLAIL"
-	
-	        }
-	        "armor_debuff"
-	        {
-	            "Passive"           "0"
-	            "IsHidden"          "1"
-	            "IsBuff"            "1"
-	            "IsDebuff"          "0"
-	            "IsPurgable"        "0"
-	            "Attributes"        "MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
-	            
-	            "Properties"
-	            {
-	                "MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"      "-1"
-	            }
-	        }
-	        "armor_debuff_display"
-	        {
-	            "Passive"           "0"
-	            "IsHidden"          "0"
-	            "IsBuff"            "1"
-	            "IsDebuff"          "0"
-	            "IsPurgable"        "0"
-	            "Attributes"        "MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
-	        }
-	    	"health_regen"
-	        {
-	            "Passive"           "0"
-	            "IsHidden"          "1"
-	            "IsBuff"            "1"
-	            "IsDebuff"          "0"
-	            "IsPurgable"        "0"
-	            "Attributes"        "MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
-	            
-	            "Properties"
-	            {
-	                "MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"      "1"
-	            }
-	        }
-	        "health_regen_display"
-	        {
-	            "Passive"           "0"
-	            "IsHidden"          "0"
-	            "IsBuff"            "1"
-	            "IsDebuff"          "0"
-	            "IsPurgable"        "0"
-	            "Attributes"        "MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
-	        }
-	        "power_aura"
-	        {
-	            "Passive"           "0"
-	            "IsHidden"          "1"
-	            "IsBuff"            "1"
-	            "IsDebuff"          "0"
-	            "IsPurgable"        "0"
-	            "Attributes"        "MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
-	            
-	            "Properties"
-	            {
-	                "MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"      "1"
-	            }
-	        }
-	        "power_aura_display"
-	        {
-	            "Passive"           "0"
-	            "IsHidden"          "0"
-	            "IsBuff"            "1"
-	            "IsDebuff"          "0"
-	            "IsPurgable"        "0"
-	            "Attributes"        "MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
-	        }
-	        "fire_dot_display"
-	        {
-	            "Passive"           "0"
-	            "IsHidden"          "0"
-	            "IsBuff"            "1"
-	            "IsDebuff"          "0"
-				"EffectName"		"particles/fire_debuff.vpcf"
-				"EffectAttachType"	"follow_origin"
-	            "IsPurgable"        "0"
-	            "Attributes"        "MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
-	        }
-	        "speed_aura"
-	        {
-	            "Passive"           "0"
-	            "IsHidden"          "1"
-	            "IsBuff"            "1"
-	            "IsDebuff"          "0"
-	            "IsPurgable"        "0"
-	            "Attributes"        "MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
-	            
-	            "Properties"
-	            {
-	                "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"      "0.5"
-	                	"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"      "1"
-	            }
-	        }
-	        "speed_aura_display"
-	        {
-	            "Passive"           "0"
-	            "IsHidden"          "0"
-	            "IsBuff"            "1"
-	            "IsDebuff"          "0"
-	            "IsPurgable"        "0"
-	            "Attributes"        "MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
-	        }
-	        "ice_freeze"
-	        {
-	            "Passive"           "0"
-	            "IsHidden"          "1"
-	            "IsBuff"            "1"
-	            "IsDebuff"          "0"
-	            "IsPurgable"        "0"
-	            "Attributes"        "MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
-			    "States"
-			    {
-			        "MODIFIER_STATE_STUNNED" "MODIFIER_STATE_VALUE_ENABLED"
-			    }  
-	        }
-	        "ice_freeze_display"
-	        {
-	            "Passive"           "0"
-	            "IsHidden"          "0"
-	            "IsBuff"            "1"
-	            "IsDebuff"          "0"
-	            "IsPurgable"        "0"
-	            "Attributes"        "MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
-	        }
-	
-	        "slow_modifier"
-	        {
-	            "Passive"           "0"
-	            "IsHidden"          "1"
-	            "IsBuff"            "1"
-	            "IsDebuff"          "0"
-	            "IsPurgable"        "0"
-	            "Attributes"        "MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
-	            
-	            "Properties"
-	            {
-	                "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"      "-1"
-	                "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"      "-0.5"
-	            }
-	        }
-	        "slow_modifier_display"
-	        {
-	            "Passive"           "0"
-	            "IsHidden"          "0"
-	            "IsBuff"            "1"
-	            "IsDebuff"          "0"
-	            "IsPurgable"        "0"
-	            "Attributes"        "MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
-	        }
-	        "slow_modifier_caster"
-	        {
-	            "Passive"           "0"
-	            "IsHidden"          "0"
-	            "IsBuff"            "1"
-	            "IsDebuff"          "0"
-	            "IsPurgable"        "0"
-	            "Attributes"        "MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
-	            
-	            "OnAttackLanded"
-				{
-	            	"RunScript"
-			        {
-			            "ScriptFile"                        "ellement/combination.lua"
-			            "Function"                          "slow_modifier_caster_hit"
-			        }
-	        	}
-	        }
-	    }
-	}
-	"invoker_fire_ellement"
-	{
-	
-		// General
-	    //-------------------------------------------------------------------------------------------------------------
-	    "BaseClass"                     "ability_datadriven"
-	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-	    "AbilityTextureName"			"invoker_exort"
-	    "MaxLevel"                      "7"
-	    "LevelsBetweenUpgrades" "11"
-		"RequiredLevel"        "-2"
-	
-	    // Stats
-	    //-------------------------------------------------------------------------------------------------------------
-	    "AbilityCooldown"               "0"
-	    "AbilityManaCost"               "0"
-		     
-	    
-		"precache"
-	    {
-	        "particle"          "particles/units/heroes/hero_invoker/invoker_exort_orb.vpcf"
-	    }
-	    "AbilitySpecial"
-	    {
-	        "01"
-	        {
-	            "var_type"                      "FIELD_FLOAT"
-	            "bonus_damage_per_instance"     "50 100 200 400 800 1600 3200"
-	        }
-	        "02"
-	        {
-	            "var_type"                      "FIELD_FLOAT"
-	            "ellement_power"     "1.00 1.15 1.30 1.45 1.60 1.75 2.00"
-	        }
-	    }
-	    "OnSpellStart"
-	    {
-	        "RunScript"
-	        {
-	            "ScriptFile"                        "ellement/ellements.lua"
-	            "Function"                          "fire_on_spell_start"
-	        }
-	    }
-	    
-	    "OnUpgrade"
-	    {
-	        "RunScript"
-	        {
-	            "ScriptFile"                        "ellement/ellements.lua"
-	            "Function"                          "replace_ellement_modifiers"
-	        }
-	    }
-	    
-	    "OnOwnerSpawned"
-	    {
-	        "RunScript"
-	        {
-	            "ScriptFile"                        "ellement/ellements.lua"
-	            "Function"                          "replace_ellement_modifiers"
-	        }
-	    }
-	    
-	    "Modifiers"
-	    {
-	        "ellement_fire_modifiers"
-	        {
-	            "Passive"           "0"
-	            "IsHidden"          "0"
-	            "IsBuff"            "1"
-	            "IsDebuff"          "0"
-	            "IsPurgable"        "0"
-	            "Attributes"        "MODIFIER_ATTRIBUTE_MULTIPLE | MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
-	            
-	            "Properties"
-	            {
-	                "MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"      "%bonus_damage_per_instance"
-	            }
-	        }
-	    }
-	}
-	"invoker_ice_ellement"
-	{
-	
-		// General
-	    //-------------------------------------------------------------------------------------------------------------
-	    "BaseClass"                     "ability_datadriven"
-	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-	    "AbilityTextureName"			"invoker_quas"
-	    "MaxLevel"                      "7"
-	    "LevelsBetweenUpgrades" "11"
-		"RequiredLevel"        "-2"
-	
-	    // Stats
-	    //-------------------------------------------------------------------------------------------------------------
-	    "AbilityCooldown"               "0"
-	    "AbilityManaCost"               "0"
-	
-		"precache"
-	    {
-	        "particle"          "particles/units/heroes/hero_invoker/invoker_quas_orb.vpcf"
-	    }
-	    "AbilitySpecial"
-	    {
-	        "01"
-	        {
-	            "var_type"                      "FIELD_FLOAT"
-	            "bonus_mana_regen_per_instance"     "5 10 20 40 80 160 320"
-	        }
-	        "02"
-	        {
-	            "var_type"                      "FIELD_FLOAT"
-	            "ellement_power"     "1.00 1.15 1.30 1.45 1.60 1.75 2.00"
-	        }
-	    }
-	    "OnSpellStart"
-	    {
-	        "RunScript"
-	        {
-	            "ScriptFile"                        "ellement/ellements.lua"
-	            "Function"                          "ice_on_spell_start"
-	        }
-	    }
-	    
-	    "OnUpgrade"
-	    {
-	        "RunScript"
-	        {
-	            "ScriptFile"                        "ellement/ellements.lua"
-	            "Function"                          "replace_ellement_modifiers"
-	        }
-	    }
-	    
-	    "OnOwnerSpawned"
-	    {
-	        "RunScript"
-	        {
-	            "ScriptFile"                        "ellement/ellements.lua"
-	            "Function"                          "replace_ellement_modifiers"
-	        }
-	    }
-	    
-	    "Modifiers"
-	    {
-	        "ellement_ice_modifiers"
-	        {
-	            "Passive"           "0"
-	            "IsHidden"          "0"
-	            "IsBuff"            "1"
-	            "IsDebuff"          "0"
-	            "IsPurgable"        "0"
-	            "Attributes"        "MODIFIER_ATTRIBUTE_MULTIPLE | MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
-	            
-	            "Properties"
-	            {
-	                "MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"      "%bonus_mana_regen_per_instance"
-	            }
-	        }
-	    }
-	}
-	"invoker_reset"
-	{
-		// General
-	    //-------------------------------------------------------------------------------------------------------------
-	    "BaseClass"                     "ability_datadriven"
-	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-	    "AbilityTextureName"			"custom/reset_ellements"
-	    "MaxLevel"                      "1"
-		"InnateAbility"					"1"
-	
-	    // Stats
-	    //-------------------------------------------------------------------------------------------------------------
-	    "AbilityCooldown"               "0"
-	    "AbilityManaCost"               "0"
-	
-	    "OnSpellStart"
-	    {
-		    "FireSound"
-	        {
-	            "EffectName"    "Hero_Invoker.Invoke"
-	            "Target"        "CASTER"
-	        }
-	        "RunScript"
-	        {
-	            "ScriptFile"                        "ellement/ellements.lua"
-	            "Function"                          "reset"
-	        }
-	    }
-	}
-	"invoker_wind_ellement"
-	{
-	
-	
-		// General
-	    //-------------------------------------------------------------------------------------------------------------
-	    "BaseClass"                     "ability_datadriven"
-	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-	    "AbilityTextureName"			"invoker_wex"
-	    "MaxLevel"                      "7"
-	    "LevelsBetweenUpgrades" "11"
-		"RequiredLevel"        "-2"
-	
-	    // Stats
-	    //-------------------------------------------------------------------------------------------------------------
-	    "AbilityCooldown"               "0"
-	    "AbilityManaCost"               "0"
-	    "precache"
-	    {
-	        "particle"          "particles/units/heroes/hero_invoker/invoker_wex_orb.vpcf"
-	    }
-		"RequiredLevel"        "-2"
-	    "AbilitySpecial"
-	    {
-	        "01"
-	        {
-	            "var_type"                      "FIELD_FLOAT"
-	            "bonus_speed_per_instance"     "2 4 6 8 16 24 32"
-	        }
-	        "02"
-	        {
-	            "var_type"                      "FIELD_FLOAT"
-	            "bonus_attack_speed_per_instance"     "2 4 8 16 24 32 50"
-	        }
-	        "03"
-	        {
-	            "var_type"                      "FIELD_FLOAT"
-	            "ellement_power"     "1.00 1.15 1.30 1.45 1.60 1.75 2.00"
-	        }
-	    }
-	    "OnSpellStart"
-	    {
-	        "RunScript"
-	        {
-	            "ScriptFile"                        "ellement/ellements.lua"
-	            "Function"                          "wind_on_spell_start"
-	        }
-	    }
-	    
-	    "OnUpgrade"
-	    {
-	        "RunScript"
-	        {
-	            "ScriptFile"                        "ellement/ellements.lua"
-	            "Function"                          "replace_ellement_modifiers"
-	        }
-	    }
-	    
-	    "OnOwnerSpawned"
-	    {
-	        "RunScript"
-	        {
-	            "ScriptFile"                        "ellement/ellements.lua"
-	            "Function"                          "replace_ellement_modifiers"
-	        }
-	    }
-	    
-	    "Modifiers"
-	    {
-	        "ellement_wind_modifiers"
-	        {
-	            "Passive"           "0"
-	            "IsHidden"          "0"
-	            "IsBuff"            "1"
-	            "IsDebuff"          "0"
-	            "IsPurgable"        "0"
-	            "Attributes"        "MODIFIER_ATTRIBUTE_MULTIPLE | MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
-	            
-	            "Properties"
-	            {
-	                "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"      "%bonus_speed_per_instance"
-	                	"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"      "%bonus_attack_speed_per_instance"
-	            }
-	        }
-	    }
-	}
 	//=================================================================================================================
 	// Ice Queen Frost Nova
 	//=================================================================================================================
@@ -30000,7 +28873,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"mr_reduction"				"-15 -30 -45 -60 -75 -90 -105"
+				"mr_reduction"				"-10 -20 -30 -40 -50 -60 -70"
 			}
 			"02"
 			{
@@ -32169,12 +31042,12 @@
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"700"
+		"AbilityCastRange"				"800"
 		"AbilityCastPoint"				"0.5 0.5 0.5 0.5"
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"12"
+		"AbilityCooldown"				"8"
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -32187,19 +31060,19 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"1000 2000 4000 8000 16000 32000 64000"
+				"damage"				"1250 2500 5000 10000 12500 38000 72000"
 				"LinkedSpecialBonus"	"special_bonus_unique_omniknight_1"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"heal"					"2000 4000 8000 16000 32000 64000 128000"
+				"heal"					"2500 5000 10000 20000 25000 76000 144000"
 				"LinkedSpecialBonus"	"special_bonus_unique_omniknight_1"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"area_of_effect"		"350"
+				"area_of_effect"		"350 375 400 425 450 475 500"
 				"LinkedSpecialBonus"	"special_bonus_unique_omniknight_4"
 			}
 		}
@@ -33488,11 +32361,191 @@
 	///////////////////
 	// 	PUCK
 	///////////////////
+	//=================================================================================================================
+	// Puck: Illusory Orb
+	//=================================================================================================================
+	"puck_illusory_orb_ebf"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_puck/puck_illusory_orb_ebf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"				"1"
+		"LevelsBetweenUpgrades"			"5"
+		"MaxLevel"						"7"
+		"RequiredLevel"					"6"
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.01"
+		"AbilityCastRange"				"3000"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"6"
+	
+		// Damage.
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityDamage"					"1200 2500 5000 10000 25000 50000 80000"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"25 50 75 125 250 500 1000"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"225"		
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"max_distance"				"1800 1800 1800 1800"
+				"LinkedSpecialBonus"		"special_bonus_unique_puck"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"orb_speed"					"600 600 600 600"
+				"LinkedSpecialBonus"		"special_bonus_unique_puck"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"orb_vision"				"800 800 800 800"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"vision_duration"			"3.34 3.34 3.34 3.34"
+			}
+		}
+	}
+	
+	//=================================================================================================================
+	// Puck: Ethereal Jaunt
+	//=================================================================================================================
+	"puck_ethereal_jaunt_ebf"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_puck/puck_ethereal_jaunt_ebf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+		"MaxLevel"						"7"
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
+	}
+
+	//=================================================================================================================
+	// Puck: Waning Rift
+	//=================================================================================================================
+	"puck_waning_rift_ebf"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_puck/puck_waning_rift_ebf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"				"1"
+		"LevelsBetweenUpgrades"			"5"
+		"MaxLevel"						"7"
+		"RequiredLevel"					"6"
+		"PiercesDisableReduction"		"1"
+		"HasPureCooldown"				"1"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.01"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"5"
+		"AbilityDuration"				"4.5"
+
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"25 50 75 125 250 500 1000"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"600 650 700 750 800 850 900"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"silence_duration"			"4.5"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"1000 2000 4000 8000 16000 32000 64000"
+				"LinkedSpecialBonus"		"special_bonus_unique_puck_4"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Puck: Phase Shift
+	//=================================================================================================================
+	"puck_phase_shift_ebf"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_puck/puck_phase_shift_ebf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_MOVEMENT | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+		"LevelsBetweenUpgrades"			"5"
+		"MaxLevel"						"7"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0"
+		"AbilityChannelTime"			"0.75 1.00 1.25 1.5 1.75 2.0 2.25"
+
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"8.0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0 0 0 0"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"0.75 1.00 1.25 1.5 1.75 2.0 2.25"
+			}
+		}
+	}
 	"puck_reverie_snap"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_datadriven"
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_puck/puck_reverie_snap"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	

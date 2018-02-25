@@ -8,7 +8,7 @@ function item_mjollnir:GetIntrinsicModifierName()
 end
 
 function item_mjollnir:OnSpellStart()
-	self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_item_mjollnir_handle_active", {Duration = self:GetSpecialValueFor("duration")})
+	self:GetCursorTarget():AddNewModifier(self:GetCaster(), self, "modifier_item_mjollnir_handle_active", {Duration = self:GetSpecialValueFor("duration")})
 end
 
 modifier_item_mjollnir_handle = class({})

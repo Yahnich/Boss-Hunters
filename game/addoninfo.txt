@@ -1,14 +1,15 @@
 "AddonInfo"
 {
-	maps			"epic_boss_fight_casual epic_boss_fight_hardcore"
+	maps			"ebf_casual ebf_hardcore"
 	"IsPlayable"	"1"
-	"epic_boss_fight_casual"
+
+	"ebf_casual"
 	{
 		"MaxPlayers"                    "5"
 		"Lives"							"7"
 		"Difficulty"					"2"
 	}
-	"epic_boss_fight_hardcore"
+	"ebf_hardcore"
 	{
 		"MaxPlayers"                    "5"
 		"Lives"							"3"
