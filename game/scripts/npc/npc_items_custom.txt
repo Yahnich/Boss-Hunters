@@ -5571,7 +5571,7 @@
 			"07"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"mana_amount"			"1000"
+				"mana_amount"			"2250"
 			}
 			"08"
 			{
@@ -5734,7 +5734,7 @@
 			"07"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"mana_amount"			"2500"
+				"mana_amount"			"4500"
 			}
 			"08"
 			{
@@ -5903,7 +5903,7 @@
 			"07"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"mana_amount"			"8000"
+				"mana_amount"			"9000"
 			}
 			"08"
 			{
@@ -6104,7 +6104,7 @@
 			"07"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"mana_amount"			"25000"
+				"mana_amount"			"30000"
 			}
 			"08"
 			{
