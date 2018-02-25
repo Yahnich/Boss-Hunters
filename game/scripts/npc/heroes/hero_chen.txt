@@ -1,0 +1,748 @@
+"DOTAAbilities"
+{	
+	"chen_angel_persuasion"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_chen/chen_angel_persuasion.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_NONE"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityTextureName"			"chen_holy_persuasion"
+		"MaxLevel"						"1"
+		"InnateAbility"					"1"
+		"HasScepterUpgrade"				"1"
+	
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_chen.vsndevts"
+			"particle"			"particles/units/heroes/hero_chen/chen_holy_persuasion_a.vpcf"
+		}
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.3"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+	
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"800"
+		"AbilityCooldown"				"30"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"250"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"40"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"tank_health"			"300"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"tank_damage"			"50"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"dps_health"			"100"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"dps_damage"			"300"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"support_health"		"50"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"support_damage"		"100"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"scepter_duration"		"100"
+			}
+		}
+	}
+	"chen_dps_crit"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_chen/chen_dps_crit.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+		"AbilityTextureName"			"brewmaster_fire_permanent_immolation"
+		"MaxLevel"						"1"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"crit_chance"			"50"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"crit_strike"			"300"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"300"
+			}
+		}
+	
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_brewmaster/brewmaster_fire_ambient.vpcf"
+			"particle"  "particles/units/heroes/hero_jakiro/jakiro_liquid_fire_explosion.vpcf"
+			"particle"  "particles/units/heroes/hero_brewmaster/brewmaster_fire_death.vpcf"
+		}
+	}
+	"chen_dps_strike"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_chen/chen_dps_strike.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+		"AbilityTextureName"			"invoker_sun_strike"
+		"MaxLevel"						"1"
+	
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_invoker.vsndevts"
+			"particle"			"particles/econ/items/invoker/invoker_apex/invoker_sun_strike_immortal1.vpcf"
+			"particle"  		"particles/econ/items/invoker/invoker_apex/invoker_sun_strike_team_immortal1.vpcf"
+		}
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.05"
+		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
+	
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1000"
+		"AbilityCooldown"				"10.0"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"1.0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"150"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"500"
+			}
+		}
+	
+		"precache"
+		{
+			"particle"  "particles/econ/items/invoker/invoker_apex/invoker_sun_strike_team_immortal1.vpcf"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_inovker.vsndevts"
+		}
+	}
+	"chen_penitence_ebf"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_chen/chen_penitence_ebf.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"chen_penitence"
+		"LevelsBetweenUpgrades"			"6"
+		"MaxLevel"						"7"
+		"RequiredLevel"					"6"
+	
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_chen.vsndevts"
+			"particle"			"particles/units/heroes/hero_chen/chen_penitence_proj.vpcf"
+			"particle"			"particles/units/heroes/hero_chen/chen_penitence.vpcf"
+			"particle"  		"particles/units/heroes/hero_chen/chen_penitence_debuff.vpcf"
+		}
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.3"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+	
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"800"
+		"AbilityCooldown"				"14.0 13.0 12.0 11.0 10.0 9.0 8.0"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"25 50 75 125 250 500 1000"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"8"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_movement_speed"	"-14 -18 -22 -26 -30 -34 -38"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_damage_taken"	"7 8 9 10 11 12 13"
+				"LinkedSpecialBonus"	"special_bonus_unique_chen_penitence_ebf_1"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"500"
+			}
+		}
+	}
+	"chen_sup_mr"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_chen/chen_sup_mr.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_FLAG_NONE"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"brewmaster_storm_dispel_magic"
+		"MaxLevel"						"1"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"chance"				"50"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"5.0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"reduc"					"-25"
+			}
+		}
+	
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_brewmaster/brewmaster_storm_ambient.vpcf"
+		}
+	}
+	"chen_sup_silence"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_chen/chen_sup_silence.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"brewmaster_storm_wind_walk"
+		"MaxLevel"						"1"
+	
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_brewmaster.vsndevts"
+			"particle"			"particles/units/heroes/hero_silencer/silencer_curse_aoe.vpcf"
+			"particle"  		"particles/units/heroes/hero_brewmaster/brewmaster_storm_death.vpcf"
+		}
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.4"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
+	
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1000"
+		"AbilityCooldown"				"15.0"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"3.0"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"500"
+			}
+		}
+	
+		"precache"
+		{
+			"particle"  "particles/econ/items/invoker/invoker_apex/invoker_sun_strike_team_immortal1.vpcf"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_inovker.vsndevts"
+		}
+	}
+	"chen_tank_shockwave"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_chen/chen_tank_shockwave.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_FLAG_NONE"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"brewmaster_earth_pulverize"
+		"MaxLevel"						"1"
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.4"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+	
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"800"
+		"AbilityCooldown"				"13"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"2.0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"500"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"threat_gain"			"75"
+			}
+		}
+	
+		"precache"
+		{
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_leshrac.vsndevts"
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_omniknight.vsndevts"
+			"particle"  		"particles/units/heroes/hero_leshrac/leshrac_split_earth.vpcf"
+			"particle"  		"particles/units/heroes/hero_omniknight/omniknight_purification.vpcf"
+		}
+	}
+	"chen_tank_slam"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_chen/chen_tank_slam.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_FLAG_NONE"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"brewmaster_earth_spell_immunity"
+		"MaxLevel"						"1"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"chance"				"50"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"1"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"400"
+			}
+		}
+	
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_brewmaster/brewmaster_earth_ambient.vpcf"
+			"particle"  "particles/econ/items/brewmaster/brewmaster_offhand_elixir/brewmaster_thunder_clap_elixir.vpcf"
+			"particle"  "particles/units/heroes/hero_brewmaster/brewmaster_earth_death.vpcf"
+		}
+	}
+	"chen_test_of_faith_ebf"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_chen/chen_test_of_faith_ebf.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+		"AbilityTextureName"			"chen_test_of_faith"
+		"LevelsBetweenUpgrades"			"6"
+		"MaxLevel"						"7"
+		"RequiredLevel"					"6"
+	
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_chen.vsndevts"
+			"particle"			"particles/chen_corrupted_test.vpcf"
+		}
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.3"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
+	
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"800"
+		"AbilityCooldown"				"14"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"25 50 75 125 250 500 1000"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_min"			"400 800 1600 3200 6400 12800 25000"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_max"			"1600 3200 6400 12800 25000 50000 100000"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"1 1.25 1.5 1.75 2 2.25 2.5"
+			}
+		}
+	}
+	"chen_test_of_faith_heal_ebf"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_chen/chen_test_of_faith_heal_ebf.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_OPTIONAL_POINT"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityTextureName"			"chen_test_of_faith_teleport"
+		"LevelsBetweenUpgrades"			"6"
+		"MaxLevel"						"7"
+		"RequiredLevel"					"6"
+	
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_chen.vsndevts"
+			"particle"			"particles/units/heroes/hero_chen/chen_test_of_faith.vpcf"
+		}
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.3"
+	
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"800"
+		"AbilityCooldown"				"5 6 7 8 9 10 11"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"25 50 75 125 250 500 1000"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"min_heal"				"8 15 22 29 36 43 50"
+				"LinkedSpecialBonus"	"special_bonus_unique_chen_test_of_faith_heal_ebf_1"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"max_heal"				"58 65 72 79 86 93 100"
+			}
+		}
+	}
+//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_chen_god_hand_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"1"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_chen_god_hand_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"300"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"250"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_chen_penitence_ebf_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"20"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_chen_penitence_ebf_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"200"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_chen_test_of_faith_ebf_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"250"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_chen_test_of_faith_ebf_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"value"						"-5"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_chen_test_of_faith_heal_ebf_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"25"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_chen_test_of_faith_heal_ebf_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"50"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"3"
+			}
+		}
+	}
+}

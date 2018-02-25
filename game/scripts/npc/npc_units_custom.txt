@@ -12570,4 +12570,219 @@
 	{
 		"BaseClass"     "npc_dota_creature"
 	}
+	"npc_chen_creature_1"
+	{										
+		// General
+		//----------------------------------------------------------------
+		"Model"						"models/heroes/brewmaster/brewmaster_earthspirit.vmdl"	// Model.
+		"BaseClass"					"npc_dota_creature"
+		"SoundSet"					"Brewmaster_Earth"			// Name of sound set.
+		"IsSummoned"				"1"
+		"IsAncient"					"1"
+		"ModelScale"				"1.15"
+		"UnitLabel"					"chen_creture_1"
+
+		// Abilities
+		//----------------------------------------------------------------
+		"Ability1"					"chen_tank_shockwave"			// Ability 1
+		"Ability2"					"chen_tank_slam"			// Ability 1
+
+		// Armor
+		//----------------------------------------------------------------
+		"ArmorPhysical"				"20"			// Physical protection.
+		"MagicalResistance"			"80"		// Magical protection.  // this should be 33, switch it back once we implement Resistant Skin
+
+		// Attack
+		//----------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"			"150"		// Damage range min.
+		"AttackDamageMax"			"150"		// Damage range max.	
+		"AttackRate"				"1.25"		// Speed of attack.
+		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
+		"AttackAcquisitionRange"	"600"		// Range within a target can be acquired.
+		"AttackRange"				"150"		// Range within a target can be attacked.
+		"ProjectileModel"			""			// Particle system model for projectile.
+		"ProjectileSpeed"			"0"			// Speed of projectile.		   
+
+		// Bounds
+		//----------------------------------------------------------------
+		"HealthBarOffset"			"175"
+
+		// Bounty
+		//----------------------------------------------------------------
+		"BountyXP"					"98"		// Experience earn.
+		"BountyGoldMin"				"150"		// Gold earned min.
+		"BountyGoldMax"				"150"		// Gold earned max.
+
+		// Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"325"		// Speed.
+
+		// Status
+		//----------------------------------------------------------------
+		"StatusHealth"				"1500"		// Base health.
+		"StatusHealthRegen"			"1"		// Health regeneration rate.
+		"StatusMana"				"400"			// Base mana.
+		"StatusManaRegen"			"2"			// Mana regeneration rate.
+		
+		// Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange"		"1800"		// Range of vision during day light.
+		"VisionNighttimeRange"		"1800"		// Range of vision at night time.
+
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"					"DOTA_TEAM_NEUTRALS"							// Team name.
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_LIGHT"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+
+		//Inventory
+		"HasInventory"				"0"
+	}
+	"npc_chen_creature_2"
+	{										
+		// General
+		//----------------------------------------------------------------
+		"Model"						"models/heroes/brewmaster/brewmaster_firespirit.vmdl"	// Model.
+		"BaseClass"					"npc_dota_creature"
+		"SoundSet"					"Brewmaster_Fire"			// Name of sound set.
+		"IdleSoundLoop"				"Brewmaster_Fire.Move_Loop"
+		"IsSummoned"				"1"
+		"IsAncient"					"1"
+		"ModelScale"				"1"
+		"UnitLabel"					"chen_creture_2"
+
+		// Abilities
+		//----------------------------------------------------------------
+		"Ability1"					"chen_dps_strike"			// Ability 1
+		"Ability2"					"chen_dps_crit"			// Ability 1
+
+		// Armor
+		//----------------------------------------------------------------
+		"ArmorPhysical"				"0"			// Physical protection.
+		"MagicalResistance"			"0"		// Magical protection.  // this should be 33, switch it back once we implement Resistant Skin
+
+		// Attack
+		//----------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"			"150"		// Damage range min.
+		"AttackDamageMax"			"150"		// Damage range max.	
+		"AttackRate"				"0.1"		// Speed of attack.
+		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
+		"AttackAcquisitionRange"	"600"		// Range within a target can be acquired.
+		"AttackRange"				"600"		// Range within a target can be attacked.
+		"ProjectileModel"			"particles/units/heroes/hero_lina/lina_base_attack.vpcf"			// Particle system model for projectile.
+		"ProjectileSpeed"			"1200"			// Speed of projectile.		   
+
+		// Bounds
+		//----------------------------------------------------------------
+		"HealthBarOffset"			"260"
+
+		// Bounty
+		//----------------------------------------------------------------
+		"BountyXP"					"98"		// Experience earn.
+		"BountyGoldMin"				"150"		// Gold earned min.
+		"BountyGoldMax"				"150"		// Gold earned max.
+
+		// Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"550"		// Speed.
+
+		// Status
+		//----------------------------------------------------------------
+		"StatusHealth"				"1000"		// Base health.
+		"StatusHealthRegen"			"10"		// Health regeneration rate.
+		"StatusMana"				"64000"			// Base mana.
+		"StatusManaRegen"			"6400"			// Mana regeneration rate.
+		
+		// Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange"		"1800"		// Range of vision during day light.
+		"VisionNighttimeRange"		"1800"		// Range of vision at night time.
+
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"					"DOTA_TEAM_NEUTRALS"							// Team name.
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_LIGHT"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+
+		"VoiceFile" 				"scripts/voscripts/game_sounds_vo_warlock_golem.txt"
+		//Inventory
+		"HasInventory"				"0"
+	}
+	"npc_chen_creature_3"
+	{										
+		// General
+		//----------------------------------------------------------------
+		"Model"						"models/heroes/brewmaster/brewmaster_windspirit.vmdl"	// Model.
+		"BaseClass"					"npc_dota_creature"
+		"SoundSet"					"Brewmaster_Storm"			// Name of sound set.
+		"IdleSoundLoop"				"Brewmaster_Storm.Move_Loop"
+		"IsSummoned"				"1"
+		"IsAncient"					"1"
+		"ModelScale"				"1"
+		"UnitLabel"					"chen_creture_3"
+
+		// Abilities
+		//----------------------------------------------------------------
+		"Ability1"					"chen_sup_silence"			// Ability 1
+		"Ability2"					"chen_sup_mr"			// Ability 1
+
+		// Armor
+		//----------------------------------------------------------------
+		"ArmorPhysical"				"0"			// Physical protection.
+		"MagicalResistance"			"0"		// Magical protection.  // this should be 33, switch it back once we implement Resistant Skin
+
+		// Attack
+		//----------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"			"150"		// Damage range min.
+		"AttackDamageMax"			"150"		// Damage range max.	
+		"AttackRate"				"0.75"		// Speed of attack.
+		"AttackAnimationPoint"		"0.4"		// Normalized time in animation cycle to attack.
+		"AttackAcquisitionRange"	"600"		// Range within a target can be acquired.
+		"AttackRange"				"600"		// Range within a target can be attacked.
+		"ProjectileModel"			"particles/units/heroes/hero_brewmaster/brewmaster_storm_attack.vpcf"			// Particle system model for projectile.
+		"ProjectileSpeed"			"1200"			// Speed of projectile.		   
+
+		// Bounds
+		//----------------------------------------------------------------
+		"HealthBarOffset"			"160"
+
+		// Bounty
+		//----------------------------------------------------------------
+		"BountyXP"					"98"		// Experience earn.
+		"BountyGoldMin"				"150"		// Gold earned min.
+		"BountyGoldMax"				"150"		// Gold earned max.
+
+		// Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"325"		// Speed.
+
+		// Status
+		//----------------------------------------------------------------
+		"StatusHealth"				"1000"		// Base health.
+		"StatusHealthRegen"			"10"		// Health regeneration rate.
+		"StatusMana"				"64000"			// Base mana.
+		"StatusManaRegen"			"6400"			// Mana regeneration rate.
+		
+		// Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange"		"1800"		// Range of vision during day light.
+		"VisionNighttimeRange"		"1800"		// Range of vision at night time.
+
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"					"DOTA_TEAM_NEUTRALS"							// Team name.
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_LIGHT"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		//Inventory
+		"HasInventory"				"0"
+	}
 }
