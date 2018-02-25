@@ -1279,7 +1279,7 @@ function CHoldoutGameMode:OnHeroPick (event)
 		hero.hasBeenInitialized = true
 		
 		-- StatsManager:CreateCustomStatsForHero(hero)
-		
+		hero:SetRespawnPosition( GetGroundPosition(Vector(973, 99, 0), nil) )
 		CustomGameEventManager:Send_ServerToPlayer(hero:GetPlayerOwner(), "heroLoadIn", {}) -- wtf is this retarded shit stop force-setting my garbage
 		local ID = hero:GetPlayerID()
 		if not ID then return end
