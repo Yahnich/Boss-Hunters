@@ -1,12 +1,12 @@
 MapHandler = class({})
 
-MIN_POS_Y = -8000
-MAX_POS_Y = 4000
+MIN_POS_Y = -4500
+MAX_POS_Y = 4500
 
-MIN_POS_X = -5300
-MAX_POS_X = 5700
+MIN_POS_X = -5200
+MAX_POS_X = 6200
 
-SPAWN_POS = Vector(73, -6219, 0)
+SPAWN_POS = GetGroundPosition(Vector(973, 99, 0), nil)
 
 function MapHandler:CheckAndResolvePositions(hero)
 	if MapHandler:IsOutsideMapBounds(hero) then

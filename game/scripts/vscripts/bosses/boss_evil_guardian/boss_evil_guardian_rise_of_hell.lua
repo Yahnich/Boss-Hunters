@@ -10,9 +10,8 @@ function boss_evil_guardian_rise_of_hell:OnSpellStart()
 	local caster = self:GetCaster()
 	local position = self:GetCursorPosition()
 	
-	caster:AddNewModifier(caster, self, "modifier_boss_evil_guardian_rise_of_hell_punch", {})
-	
 	local enemies = caster:FindEnemyUnitsInRadius( position, self:GetSpecialValueFor("radius") )
+	caster:AddNewModifier(caster, self, "modifier_boss_evil_guardian_rise_of_hell_punch", {duration = (#enemies + 1) * 0.1})
 	caster:StartGesture(ACT_DOTA_ATTACK)
 	local threatTarget
 	Timers:CreateTimer(0.1, function()

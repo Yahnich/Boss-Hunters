@@ -7,13 +7,20 @@ end
 function modifier_boss_attackspeed:OnCreated()
 	if IsServer() then
 		self:SetStackCount(math.floor(GameRules.gameDifficulty + 0.5))
-		self:StartIntervalThink(5)
+		self.thinkTime = 0
+		self:StartIntervalThink(0.1)
 	end
 end
 
 function modifier_boss_attackspeed:OnIntervalThink()
-	if not self:GetParent():IsInvisible() then
-		AddFOWViewer(DOTA_TEAM_GOODGUYS, self:GetParent():GetAbsOrigin(), 516, 1, false)
+	local parent = self:GetParent()
+	if not parent:IsInvisible() then
+		self.thinkTime = self.thinkTime + 0.1
+		if self.thinkTime >= 5 then
+			self.thinkTime = 0
+			AddFOWViewer(DOTA_TEAM_GOODGUYS, self:GetParent():GetAbsOrigin(), 516, 1, false)
+		end
+		GridNav:DestroyTreesAroundPoint(parent:GetAbsOrigin(), parent:GetHullRadius() + 5, true)
 	end
 end
 

@@ -324,7 +324,7 @@
 			"BountyGain"				"5000"
 			"XPGain"					"5000"
 		}
-		"StunResistance"			"90.0"
+		"NOSTUNRESIST"			"90.0"
 	}	
 	//=================================================================================
 	// Creature: Boss 11
@@ -432,7 +432,7 @@
 			"BountyGain"				"6000"
 			"XPGain"					"6000"
 	
-			"StunResistance"			"60.0"
+			"NOSTUNRESIST"			"60.0"
 			"AttachWearables"
 			{
 				"Wearable1" { "ItemDef" "8111" }
@@ -536,7 +536,7 @@
 			"DefaultState"				"Invade"
 	
 			"DisableClumpingBehavior"	"1"
-			"StunResistance"			"60.0"
+			"NOSTUNRESIST"			"60.0"
 		}
 	}
 	//=================================================================================
@@ -633,7 +633,7 @@
 			"DefaultState"				"Invade"
 	
 			"DisableClumpingBehavior"	"1"
-			"StunResistance"			"60.0"
+			"NOSTUNRESIST"			"60.0"
 		}
 	}
 	//=================================================================================
@@ -730,7 +730,7 @@
 			"DefaultState"				"Invade"
 	
 			"DisableClumpingBehavior"	"1"
-			"StunResistance"			"60.0"
+			"NOSTUNRESIST"			"60.0"
 		}
 	}
 	//=================================================================================
@@ -1542,7 +1542,7 @@
 			"MoveSpeedGain"				"10"
 			"BountyGain"				"6500"
 			"XPGain"					"6500"
-			"StunResistance"			"50.0"
+			"NOSTUNRESIST"			"50.0"
 		}
 	}	
 	//=================================================================================
@@ -1655,7 +1655,7 @@
 			{
 				"Wearable1" { "ItemDef" "105" }
 			}
-			"StunResistance"			"60.0"
+			"NOSTUNRESIST"			"60.0"
 		}
 	}
 	//=================================================================================
@@ -1766,7 +1766,7 @@
 			
 			"DefaultState"				"Invade"
 			
-			"StunResistance"			"90.0"
+			"NOSTUNRESIST"			"90.0"
 		}
 	}
 	//=================================================================================
@@ -1877,7 +1877,7 @@
 			
 			"DefaultState"				"Invade"
 			
-			"StunResistance"			"60.0"
+			"NOSTUNRESIST"			"60.0"
 		}
 	}
 	//=================================================================================
@@ -1988,7 +1988,7 @@
 			
 			"DefaultState"				"Invade"
 			
-			"StunResistance"			"80.0"
+			"NOSTUNRESIST"			"80.0"
 		}
 	}
 	//=================================================================================
@@ -2100,7 +2100,7 @@
 			
 			"DefaultState"				"Invade"
 			
-			"StunResistance"			"60.0"
+			"NOSTUNRESIST"			"60.0"
 		}
 	}
 	//=================================================================================
@@ -2212,7 +2212,7 @@
 			
 			"DefaultState"				"Invade"
 			
-			"StunResistance"			"60.0"
+			"NOSTUNRESIST"			"60.0"
 		}
 	}
 	//=================================================================================
@@ -2331,7 +2331,7 @@
 			"DefaultState"				"Invade"
 			
 			
-			"StunResistance"			"60.0"
+			"NOSTUNRESIST"			"60.0"
 			
 			"AttachWearables" // Default npc_dota_hero_omniknight
 			{
@@ -2459,7 +2459,7 @@
 			
 			"DefaultState"				"Invade"
 			
-			"StunResistance"			"60.0"
+			"NOSTUNRESIST"			"60.0"
 			"AttachWearables" // Default npc_dota_hero_omniknight
 			{
 				"1" { "ItemDef" "379" } 
@@ -2586,7 +2586,7 @@
 			
 			"DefaultState"				"Invade"
 			
-			"StunResistance"			"60.0"
+			"NOSTUNRESIST"			"60.0"
 			"AttachWearables" // Default npc_dota_hero_omniknight
 			{
 				"1" { "ItemDef" "379" } 
@@ -2707,7 +2707,7 @@
 				"3" { "ItemDef" "8181" } 
 				"4" { "ItemDef" "7300" } 
 			}
-			"StunResistance"			"80.0"
+			"NOSTUNRESIST"			"80.0"
 		}
 	}	
 	//=================================================================================
@@ -2833,7 +2833,7 @@
 				"Wearable4" { "ItemDef" "32" }
 				"Wearable5" { "ItemDef" "33" }
 			}
-			"StunResistance"			"80.0"
+			"NOSTUNRESIST"			"80.0"
 		}
 	}
 	//=================================================================================
@@ -3061,7 +3061,7 @@
 			"MoveSpeedGain"				"1"
 			"BountyGain"				"1000"
 			"XPGain"					"1000"
-			"StunResistance"			"10.0"
+			"NOSTUNRESIST"			"10.0"
 		}
 	}
 	"npc_dota_boss21"
@@ -3156,7 +3156,7 @@
 				"Wearable5" { "ItemDef" "6395" }
 			}
 			
-			"StunResistance"			"60.0"
+			"NOSTUNRESIST"			"60.0"
 		}
 	}
 	"npc_dota_boss22"
@@ -3214,7 +3214,7 @@
 		// Movement
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
-		"MovementSpeed"				"280"		// Speed.
+		"MovementSpeed"				"100"		// Speed.
 		"MovementTurnRate"			"0.1"		// Turning rate.
 	
 		// Status
@@ -3267,7 +3267,7 @@
 			
 			"DefaultState"				"Invade"
 	
-			"StunResistance"			"60.0"
+			"NOSTUNRESIST"			"60.0"
 			"AttachWearables"
 			{
 			"Wearable1" { "ItemDef" "7086" }
@@ -3385,7 +3385,7 @@
 			
 			"DefaultState"				"Invade"
 	
-			"StunResistance"			"0.0"
+			"NOSTUNRESIST"			"0.0"
 		}
 	}
 	"npc_dota_boss23"
@@ -3494,7 +3494,7 @@
 			"BountyGain"				"0"
 			"XPGain"					"200"
 			
-			"StunResistance"			"60.0"
+			"NOSTUNRESIST"			"60.0"
 		}
 	}
 	"npc_dota_boss23_m"
@@ -3601,7 +3601,7 @@
 			"BountyGain"				"0"
 			"XPGain"					"200"
 			
-			"StunResistance"			"60.0"
+			"NOSTUNRESIST"			"60.0"
 		}
 	}
 	"npc_dota_boss24_archer"
@@ -4024,7 +4024,7 @@
 			"BountyGain"				"0"
 			"XPGain"					"200"
 			
-			"StunResistance"			"90.0"
+			"NOSTUNRESIST"			"90.0"
 		}
 	}
 	"npc_dota_boss24_m_vh"
@@ -4129,7 +4129,7 @@
 			"BountyGain"				"0"
 			"XPGain"					"200"
 			
-			"StunResistance"			"80.0"
+			"NOSTUNRESIST"			"80.0"
 		}
 	}
 	"npc_dota_boss24_stomper"
@@ -4523,7 +4523,7 @@
 			
 			"DefaultState"				"Invade"
 			
-			"StunResistance"			"60.0"
+			"NOSTUNRESIST"			"60.0"
 		}
 	}
 	"npc_dota_boss25_h"
@@ -4626,7 +4626,7 @@
 			
 			"DefaultState"				"Invade"
 	
-			"StunResistance"			"60.0"
+			"NOSTUNRESIST"			"60.0"
 		}
 	}
 	"npc_dota_boss25_vh"
@@ -4727,7 +4727,7 @@
 				}
 			}
 	
-			"StunResistance"			"60.0"
+			"NOSTUNRESIST"			"60.0"
 		}
 	}
 	"npc_dota_boss26"
@@ -4832,7 +4832,7 @@
 				"Wearable4" { "ItemDef" "5668" }
 			}
 		
-			"StunResistance"			"60.0"
+			"NOSTUNRESIST"			"60.0"
 		}
 	}
 	"npc_dota_boss26_mini"
@@ -4934,7 +4934,7 @@
 				"Wearable2" { "ItemDef" "5666" }
 			}
 	
-			"StunResistance"			"60.0"
+			"NOSTUNRESIST"			"60.0"
 		}
 	}
 	"npc_dota_boss27"
@@ -5042,7 +5042,7 @@
 				"Wearable4" { "ItemDef" "4295" }
 				"Wearable5" { "ItemDef" "5794" }
 			}
-			"StunResistance"			"60.0"
+			"NOSTUNRESIST"			"60.0"
 		}
 	}
 	"npc_dota_boss28"
@@ -5153,7 +5153,7 @@
 				"Wearable6" { "ItemDef" "6555" }
 			}
 		
-			"StunResistance"			"60.0"
+			"NOSTUNRESIST"			"60.0"
 		}
 	}
 	"npc_dota_boss30"
@@ -5247,7 +5247,7 @@
 				"Wearable4" { "ItemDef" "8117" }
 			}
 		
-			"StunResistance"			"60.0"
+			"NOSTUNRESIST"			"60.0"
 		}
 	}
 	"npc_dota_boss31"
@@ -5359,7 +5359,7 @@
 			
 			"DefaultState"				"Invade"
 			
-			"StunResistance"			"80.0"
+			"NOSTUNRESIST"			"80.0"
 		}
 	}
 	"npc_dota_boss31_h"
@@ -5471,7 +5471,7 @@
 			
 			"DefaultState"				"Invade"
 			
-			"StunResistance"			"80.0"
+			"NOSTUNRESIST"			"80.0"
 		}
 	}
 	"npc_dota_boss31_vh"
@@ -5573,7 +5573,7 @@
 			
 			"DefaultState"				"Invade"
 			
-			"StunResistance"			"80.0"
+			"NOSTUNRESIST"			"80.0"
 		}
 	}
 	"npc_dota_boss32"
@@ -5855,7 +5855,7 @@
 			}
 			
 			"DefaultState"				"Invade"
-			"StunResistance"			"80.0"
+			"NOSTUNRESIST"			"80.0"
 		}
 	}
 	"npc_dota_boss32_trueform_h"
@@ -5953,7 +5953,7 @@
 			}
 			
 			"DefaultState"				"Invade"
-			"StunResistance"			"80.0"
+			"NOSTUNRESIST"			"80.0"
 		}
 	}
 	"npc_dota_boss32_trueform_vh"
@@ -6051,7 +6051,7 @@
 			}
 			
 			"DefaultState"				"Invade"
-			"StunResistance"			"80.0"
+			"NOSTUNRESIST"			"80.0"
 		}
 	}
 	"npc_dota_boss32_vh"
@@ -6146,7 +6146,7 @@
 			}
 			
 			"DefaultState"				"Invade"
-			"StunResistance"			"80.0"
+			"NOSTUNRESIST"			"80.0"
 		}
 	}
 	"npc_dota_boss33_a"
@@ -6244,7 +6244,7 @@
 			}
 			
 			"DefaultState"				"Invade"
-			"StunResistance"			"80.0"
+			"NOSTUNRESIST"			"80.0"
 			"AttachWearables" // Default npc_dota_hero_omniknight
 			{
 				"1" { "ItemDef" "7182" } 
@@ -6350,7 +6350,7 @@
 			}
 	
 			"DefaultState"				"Invade"
-			"StunResistance"			"80.0"
+			"NOSTUNRESIST"			"80.0"
 	
 			"AttachWearables"
 			{
@@ -6473,7 +6473,7 @@
 			
 			"DefaultState"				"Invade"
 	
-			"StunResistance"			"5.0"
+			"NOSTUNRESIST"			"5.0"
 		}
 	}
 	"npc_dota_boss34"
@@ -6582,7 +6582,7 @@
 			
 			"DefaultState"				"Invade"
 	
-			"StunResistance"			"80.0"
+			"NOSTUNRESIST"			"80.0"
 		}
 	}
 	"npc_dota_boss34_h"
@@ -6691,7 +6691,7 @@
 			
 			"DefaultState"				"Invade"
 	
-			"StunResistance"			"80.0"
+			"NOSTUNRESIST"			"80.0"
 		}
 	}
 	"npc_dota_boss34_vh"
@@ -6801,7 +6801,7 @@
 			
 			"DefaultState"				"Invade"
 	
-			"StunResistance"			"80.0"
+			"NOSTUNRESIST"			"80.0"
 		}
 	}
 	"npc_dota_boss35"
@@ -6942,7 +6942,7 @@
 				}
 			}
 	
-			"StunResistance"			"80.0"
+			"NOSTUNRESIST"			"80.0"
 		}
 	}
 	"npc_dota_boss35_h"
@@ -7083,7 +7083,7 @@
 				}
 			}
 	
-			"StunResistance"			"80.0"
+			"NOSTUNRESIST"			"80.0"
 		}
 	}
 	"npc_dota_boss35_vh"
@@ -7224,7 +7224,7 @@
 				}
 			}
 	
-			"StunResistance"			"80.0"
+			"NOSTUNRESIST"			"80.0"
 		}
 	}
 	"npc_dota_boss36"
@@ -7342,7 +7342,7 @@
 				}
 			}
 	
-			"StunResistance"			"100.0"
+			"NOSTUNRESIST"			"100.0"
 		}
 	}
 	"npc_dota_boss36_guardian"
@@ -7457,7 +7457,7 @@
 			
 			"DefaultState"				"Invade"
 	
-			"StunResistance"			"80.0"
+			"NOSTUNRESIST"			"80.0"
 		}
 	}
 	"npc_dota_boss37"
@@ -7592,7 +7592,7 @@
 				}
 			}
 	
-			"StunResistance"			"50.0"
+			"NOSTUNRESIST"			"50.0"
 		}
 	}
 	"npc_dota_boss37_h"
@@ -7728,7 +7728,7 @@
 				}
 			}
 	
-			"StunResistance"			"75.0"
+			"NOSTUNRESIST"			"75.0"
 		}
 	}
 	"npc_dota_boss37_vh"
@@ -7864,7 +7864,7 @@
 				}
 			}
 	
-			"StunResistance"			"80.0"
+			"NOSTUNRESIST"			"80.0"
 		}
 	}
 	"npc_dota_boss38"
@@ -7992,7 +7992,7 @@
 				"Wearable4"{"ItemDef"			"6134"}
 			}
 	
-			"StunResistance"			"80.0"
+			"NOSTUNRESIST"			"80.0"
 		}
 	}
 	"npc_dota_boss39"
@@ -8119,7 +8119,7 @@
 				
 			}
 	
-			"StunResistance"			"80.0"
+			"NOSTUNRESIST"			"80.0"
 		}
 	}
 	//=================================================================================
@@ -9444,7 +9444,7 @@
 	
 			//Ability Usage Parameters
 			//-----------------------------------------------------------------
-			"StunResistance"			"80.0"
+			"NOSTUNRESIST"			"80.0"
 			"AttachWearables"
 			{
 				"Wearable1" { "ItemDef" "6260" }
@@ -9981,7 +9981,7 @@
 				}
 			}
 			
-			"StunResistance"			"60.0"
+			"NOSTUNRESIST"			"60.0"
 		}
 	}
 	//=================================================================

@@ -822,13 +822,6 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 		end
 	end
 	
-    -- remove int scaling thanks for fucking with my shit valve
-	if attacker == victim and attacker:FindAbilityByName("new_game_damage_increase") then -- stop self damaging abilities from ravaging bosses
-		local amp = attacker:FindAbilityByName("new_game_damage_increase")
-		local reduction = 1+(amp:GetSpecialValueFor("spell_amp")/100)
-		filterTable["damage"] = filterTable["damage"]/reduction
-	end
-	
 	if inflictor and attacker:IsHero() and not attacker:IsCreature() then
 		local ability = EntIndexToHScript( inflictor )
 		if ability:GetName() == "item_blade_mail" then
