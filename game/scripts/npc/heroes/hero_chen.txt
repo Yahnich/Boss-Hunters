@@ -188,6 +188,53 @@
 			"soundfile" "soundevents/game_sounds_heroes/game_sounds_inovker.vsndevts"
 		}
 	}
+	"chen_god_hand"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_chen/chen_god_hand.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityTextureName"			"chen_hand_of_god"
+		"LevelsBetweenUpgrades"			"7"
+		"MaxLevel"						"7"
+		"RequiredLevel"					"6"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.4"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_5"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"0"
+		"AbilityCooldown"				"100"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"1000 2000 3000 4000 5000 6000 7000"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"2.0"
+			}
+		}
+
+		"precache"
+		{
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_chen.vsndevts"
+			"particle"  		"particles/units/heroes/hero_omniknight/omniknight_purification.vpcf"
+			"particle"  		"particles/units/heroes/hero_chen/chen_loadout.vpcf"
+		}
+	}
 	"chen_penitence_ebf"
 	{
 		// General
