@@ -881,7 +881,7 @@ end
 function CDOTA_BaseNPC:GetThreat()
 	self.threat = self.threat or 0
 	
-	local player = PlayerResource:GetPlayer(self:GetPlayerID())
+	local player = PlayerResource:GetPlayer(self:GetOwner():GetPlayerID())
 	PlayerResource:SortThreat()
 	local event_data =
 	{
@@ -900,7 +900,7 @@ function CDOTA_BaseNPC:SetThreat(val)
 	self.lastHit = GameRules:GetGameTime()
 	self.threat = val
 	
-	local player = PlayerResource:GetPlayer(self:GetPlayerID())
+	local player = PlayerResource:GetPlayer(self:GetOwner():GetPlayerID())
 	PlayerResource:SortThreat()
 	local event_data =
 	{
@@ -916,8 +916,9 @@ end
 function CDOTA_BaseNPC:ModifyThreat(val)
 	self.lastHit = GameRules:GetGameTime()
 	self.threat = (self.threat or 0) + val
-	
-	local player = PlayerResource:GetPlayer(self:GetPlayerID())
+		
+	local player = PlayerResource:GetPlayer(self:GetOwner():GetPlayerID())
+
 	PlayerResource:SortThreat()
 	local event_data =
 	{
@@ -933,8 +934,6 @@ end
 function CDOTA_BaseNPC:GetLastHitTime()
 	return self.lastHit
 end
-
-
 
 function get_aether_range(caster)
     local aether_range = 0
@@ -2211,5 +2210,23 @@ end
 function CDOTA_BaseNPC:RemoveParalyze()
 	if self:HasModifier("modifier_paralyze") then
 		self:RemoveModifierByName("modifier_paralyze")
+	end
+end
+
+function CDOTA_BaseNPC:Silence(hAbility, hCaster, duration)
+	self:AddNewModifier(hCaster, hAbility, "modifier_silence", {Duration = duration})
+end
+
+function CDOTA_BaseNPC:IsSilenced()
+	if self:HasModifier("modifier_silence") then
+		return true
+	else
+		return false
+	end
+end
+
+function CDOTA_BaseNPC:RemoveSilence()
+	if self:HasModifier("modifier_silence") then
+		self:RemoveModifierByName("modifier_silence")
 	end
 end
