@@ -583,7 +583,7 @@
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"800"
-		"AbilityCooldown"				"5 6 7 8 9 10 11"
+		"AbilityCooldown"				"8"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -596,13 +596,13 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"min_heal"				"8 15 22 29 36 43 50"
+				"min_heal"				"10"
 				"LinkedSpecialBonus"	"special_bonus_unique_chen_test_of_faith_heal_ebf_1"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"max_heal"				"58 65 72 79 86 93 100"
+				"max_heal"				"50 55 60 65 70 75 80"
 			}
 		}
 	}

@@ -828,7 +828,7 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 	local damage = filterTable["damage"]
 	local attacker = original_attacker
 	if attacker:IsCreature() then 
-		victim.statsDamageTaken = (attacker.statsDamageTaken or 0) + damage
+		victim.statsDamageTaken = (victim.statsDamageTaken or 0) + math.min(victim:GetHealth(), damage)
 		return true 
 	end
 	if not victim:IsHero() and victim ~= attacker then
@@ -852,7 +852,7 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 			if addedthreat > threatcheck then addedthreat = threatcheck end -- remove threat from overkill damage
 			attacker.threat = attacker.threat + addedthreat
 			attacker.lastHit = GameRules:GetGameTime()
-			attacker.statsDamageDealt = (attacker.statsDamageDealt or 0) + damage
+			attacker.statsDamageDealt = (attacker.statsDamageDealt or 0) + math.min(victim:GetHealth(), damage)
 			PlayerResource:SortThreat()
 			local event_data =
 			{

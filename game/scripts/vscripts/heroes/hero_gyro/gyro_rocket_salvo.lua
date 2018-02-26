@@ -38,6 +38,13 @@ function modifier_rocket_salvo:OnCreated(table)
 	end
 end
 
+function modifier_rocket_salvo:OnRefresh(kv)
+	if IsServer() then
+		self.tick = self:GetTalentSpecialValueFor("fire_rate")
+		self:StartIntervalThink(self.tick)
+	end
+end
+
 function modifier_rocket_salvo:OnRemoved()
 	if IsServer() then
 		self:GetCaster():RemoveGesture(ACT_DOTA_OVERRIDE_ABILITY_1)
