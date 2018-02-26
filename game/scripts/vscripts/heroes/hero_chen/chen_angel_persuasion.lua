@@ -13,15 +13,9 @@ function chen_angel_persuasion:OnSpellStart()
 
 	EmitSoundOn("Hero_Chen.HolyPersuasionCast", caster)
 
-	if RollPercentage(50) then
-		self:SummonAngel("npc_chen_creature_1", self:GetTalentSpecialValueFor("tank_health"), self:GetTalentSpecialValueFor("tank_damage"))
-	else
-		if RollPercentage(50) then
-			self:SummonAngel("npc_chen_creature_2", self:GetTalentSpecialValueFor("dps_health"), self:GetTalentSpecialValueFor("dps_damage"))
-		else
-			self:SummonAngel("npc_chen_creature_3", self:GetTalentSpecialValueFor("support_health"), self:GetTalentSpecialValueFor("support_damage"))
-		end
-	end
+	self:SummonAngel("npc_chen_creature_1", self:GetTalentSpecialValueFor("tank_health"), self:GetTalentSpecialValueFor("tank_damage"))
+	self:SummonAngel("npc_chen_creature_2", self:GetTalentSpecialValueFor("dps_health"), self:GetTalentSpecialValueFor("dps_damage"))
+	self:SummonAngel("npc_chen_creature_3", self:GetTalentSpecialValueFor("support_health"), self:GetTalentSpecialValueFor("support_damage"))
 end
 
 function chen_angel_persuasion:SummonAngel(name, health, damage)
