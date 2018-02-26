@@ -58,7 +58,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"dps_health"			"150"
+				"dps_health"			"175"
 			}
 			"05"
 			{
@@ -68,7 +68,7 @@
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"support_health"		"75"
+				"support_health"		"100"
 			}
 			"07"
 			{
@@ -173,7 +173,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"150"
+				"damage"				"250"
 			}
 			"04"
 			{
@@ -333,6 +333,11 @@
 				"var_type"				"FIELD_INTEGER"
 				"reduc"					"-25"
 			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"25"
+			}
 		}
 	
 		"precache"
@@ -383,12 +388,17 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"3.0"
+				"duration"				"5"
 			}
-			"04"
+			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"radius"				"500"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"140"
 			}
 		}
 	
@@ -444,6 +454,11 @@
 				"var_type"				"FIELD_FLOAT"
 				"threat_gain"			"75"
 			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"60"
+			}
 		}
 	
 		"precache"
@@ -485,6 +500,11 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"radius"				"400"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"10"
 			}
 		}
 	

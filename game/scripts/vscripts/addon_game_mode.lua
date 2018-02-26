@@ -1245,21 +1245,27 @@ function CHoldoutGameMode:OnHeroPick (event)
 		CustomGameEventManager:Send_ServerToPlayer(hero:GetPlayerOwner(), "heroLoadIn", {}) -- wtf is this retarded shit stop force-setting my garbage
 		local ID = hero:GetPlayerID()
 		if not ID then return end
-		local messageinfo = {
-		text = "If you have missing abilities, reconnect to fix this; issue will persist until Valve fixes it on their end.",
-		duration = 20
-		}
-		Notifications:Top(ID, messageinfo)
 		PlayerResource:SetCustomBuybackCooldown(ID, 120)
+		local playerName = PlayerResource:GetPlayerName( ID )
 		if PlayerResource:IsDeveloper(ID) then
+			
+			local messageinfo = {
+			text = "You are playing with a developer! Say hi to "..playerName.."!",
+			duration = 10
+			}
+			Notifications:TopToAll(messageinfo)
 			ParticleManager:FireParticle("particles/roles/dev/dev_particle.vpcf", PATTACH_POINT_FOLLOW, hero)
 		elseif PlayerResource:IsManager(ID) then
 			ParticleManager:FireParticle("particles/roles/dev/com_particle.vpcf", PATTACH_POINT_FOLLOW, hero)
 		elseif PlayerResource:IsVIP(ID) then
+			local messageinfo = {
+			text = "You are playing with a VIP! "..playerName.." is supporting the development of Epic Boss Fight!",
+			duration = 10
+			}
+			Notifications:TopToAll(messageinfo)
 			ParticleManager:FireParticle("particles/roles/dev/vip_particle.vpcf", PATTACH_POINT_FOLLOW, hero)
 		end
 		-- hero:SetGold(0 , true)
-		
 		hero:SetDayTimeVisionRange(hero:GetDayTimeVisionRange() * 2)
 		hero:SetNightTimeVisionRange(hero:GetNightTimeVisionRange() * 1.5)
 
@@ -1480,6 +1486,8 @@ function CHoldoutGameMode:OnGameRulesStateChange()
 	elseif nNewState == 8 then
 		CustomGameEventManager:Send_ServerToAllClients( "updateQuestLife", { lives = GameRules._life, maxLives = GameRules._maxLives } )
 		self._flPrepTimeEnd = GameRules:GetGameTime() + self._flPrepTimeBetweenRounds
+		Say(nil, "You can support the development of Epic Boss Fight by becoming a patron at\nhttps://www.patreon.com/houthakker", true)
+		Timers:CreateTimer(3.5, function() Say(nil, "You can also support through donations at https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DVVMPE8L27YAG", true) end)
 	end
 end
 

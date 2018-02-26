@@ -17,6 +17,14 @@ end
 
 function modifier_chen_sup_mr_handle:OnAttackLanded(params)
 	if IsServer() and params.attacker == self:GetParent() and RollPercentage(self:GetTalentSpecialValueFor("chance")) then
+		local intellect = 0
+		if params.attacker:GetOwner() then
+			intellect = params.attacker:GetOwner():GetIntellect()
+		else
+			intellect = params.attacker:GetIntellect()
+		end
+		local damage = intellect * self:GetTalentSpecialValueFor("damage") / 100
+		self:GetAbility():DealDamage(params.attacker, params.target, damage)
 		params.target:AddNewModifier(self:GetParent(), self:GetAbility(), "modifier_chen_sup_mr", {Duration = self:GetSpecialValueFor("duration")})
 	end
 end
@@ -44,6 +52,14 @@ function modifier_chen_sup_mr_handle:GetEffectName()
 end
 
 modifier_chen_sup_mr = class({})
+function modifier_chen_sup_mr:OnCreated()
+	self:SetStackCount(1)
+end
+
+function modifier_chen_sup_mr:OnRefresh()
+	self:AddIndependentStack(self:GetSpecialValueFor("duration"))
+end
+
 function modifier_chen_sup_mr:DeclareFunctions()
     local funcs = {
         MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS
@@ -52,5 +68,5 @@ function modifier_chen_sup_mr:DeclareFunctions()
 end
 
 function modifier_chen_sup_mr:GetModifierMagicalResistanceBonus()
-	return self:GetSpecialValueFor("reduc")
+	return self:GetSpecialValueFor("reduc") * self:GetStackCount()
 end
