@@ -20,7 +20,7 @@ end
 
 function chen_angel_persuasion:SummonAngel(name, health, damage)
 	local caster = self:GetCaster()
-	local point = self:GetCursorPosition()
+	local point = self:GetCursorPosition() + ActualRandomVector(300, 50)
 
 	local duration = self:GetTalentSpecialValueFor("duration")
 

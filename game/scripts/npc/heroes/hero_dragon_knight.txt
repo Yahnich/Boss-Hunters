@@ -1,0 +1,451 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Dragon Knight: Breathe Fire
+	//=================================================================================================================
+	"dragon_knight_dragonbreath"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_dragon_knight/dragon_knight_dragonbreath"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"				   
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_ALL"	   
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"AbilityTextureName"			"dragon_knight_breathe_fire"
+		"HasScepterUpgrade"				"1"
+		"FightRecapLevel"				"1"
+		"LevelsBetweenUpgrades"			"5"
+		"MaxLevel"						"7"
+		"RequiredLevel"					"6"
+
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"500"
+		"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"12.0 12.0 12.0 12.0"
+		
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"25 50 75 125 250 500 1000"
+		
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_dragon_knight/dragon_knight_breathe_fire.vpcf"
+			"particle"					"particles/units/heroes/hero_jakiro/jakiro_liquid_fire_debuff.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_dragon_knight.vsndevts"
+		}
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"start_radius"			"150 150 150 150"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"end_radius"			"250 250 250 250"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"range"					"650 650 650 650"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"speed"					"1050"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"reduction"				"-35"
+				"LinkedSpecialBonus"	"special_bonus_unique_dragon_knight_dragonbreath_2"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"8"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"hit_damage"			"1200 2400 4800 9600 18200 36400 54600"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"dot_damage"			"125 250 500 1000 1500 3000 4500"
+			}
+		}
+	}
+	"dragon_knight_intervene"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_dragon_knight/dragon_knight_intervene"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"				"1"
+		"AbilityTextureName"			"custom/dragon_knight_intervene"
+		"MaxLevel"						"7"
+		"LevelsBetweenUpgrades"			"5"
+		"RequiredLevel"					"7"
+		"HasScepterUpgrade"				"1"
+	
+	
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_dragon_knight.vsndevts"
+			"particle"		"particles/units/heroes/hero_dragon_knight/dragon_knight_dragon_tail.vpcf"
+			"particle"		"particles/units/heroes/hero_phantom_lancer/phantom_lancer_dying.vpcf"
+			"particle"		"particles/units/heroes/hero_phantom_lancer/phantomlancer_doppelwalk.vpcf"
+		}
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1200 1250 1300 1350 1400 1450 1500"
+		"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"16"
+	
+		// Damage.
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityDamage"					"800 1600 3200 6400 12800 24600 37400"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"100"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"stun_duration"			"2.0 2.25 2.5 2.75 3.0 3.25 3.5"
+				"LinkedSpecialBonus"	"special_bonus_unique_dragon_knight_intervene_1"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rush_speed"			"1200 1250 1300 1350 1400 1450 1500"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"heal_duration"			"10"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"heal_bonus"			"100"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"heal_bonus"			"800 1600 3200 6400 12800 24600 37400"
+			}
+		}
+	}
+	
+	//=================================================================================================================
+	// Dragon Knight: Dragon Blood
+	//=================================================================================================================
+	"dragon_knight_dragons_blood_ebf"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_dragon_knight/dragon_knight_dragons_blood_ebf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"dragon_knight_dragon_blood"
+		"LevelsBetweenUpgrades"			"5"
+		"MaxLevel"						"7"
+		"RequiredLevel"					"6"
+		"HasScepterUpgrade"				"1"
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"bonus_health_regen"			"60 100 200 400 800 1200 2400"
+				"LinkedSpecialBonus"			"special_bonus_unique_dragon_knight_dragons_blood_ebf_1"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"bonus_armor"					"45 60 85 100 150 200 300"
+				"LinkedSpecialBonus"			"special_bonus_unique_dragon_knight_dragons_blood_ebf_1"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"bonus_movespeed"				"12 24 36 48 60 72 84"
+				"LinkedSpecialBonus"			"special_bonus_unique_dragon_knight"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
+			}
+		}
+	}
+	
+	"dragon_knight_elder_dragon_berserker"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_dragon_knight/dragon_knight_elder_dragon_berserker"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"FightRecapLevel"				"2"
+		"AbilityTextureName"			"custom/dragon_knight_elder_dragon_berserker"
+		"MaxLevel"						"7"
+		"LevelsBetweenUpgrades"			"7"
+	
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_dragon_knight.vsndevts"
+			"model"			"models/heroes/dragon_knight/dragon_knight_dragon.vmdl"
+			"particle"		"particles/units/heroes/hero_dragon_knight/dragon_knight_transform_red.vpcf"
+			"particle"		"particles/berserker_claws.vpcf"
+			"particle"		"particles/berserker_wings.vpcf"
+		}
+	
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"25.0"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"50 50 50"		
+	
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityModifierSupportValue"	"0.35"	// Attacks are primarily about the damage
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"15.0"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_movement_speed"		"20"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_attack_speed"		"50 100 150 200 250 300 350"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"threat"					"10 15 20 25 30 35 40"
+			}		
+			"05"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"threat_tick"				"0.1"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"heal_amount"				"30 32.5 35 37.5 40 42.5 45"
+			}
+			"07"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"heal_chance"				"25"
+				"LinkedSpecialBonus"		"special_bonus_unique_dragon_knight_elder_dragon_berserker_1"
+			}
+			"08"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"internal_cooldown"			"3"
+			}
+		}
+	}
+	"special_bonus_unique_dragon_knight_dragonbreath_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"2"
+			}
+		}
+	}
+	"special_bonus_unique_dragon_knight_dragonbreath_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"-8"
+			}
+		}
+	}
+	"special_bonus_unique_dragon_knight_intervene_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"1.75"
+			}
+		}
+	}
+	"special_bonus_unique_dragon_knight_intervene_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"5"
+			}
+		}
+	}
+	"special_bonus_unique_dragon_knight_dragons_blood_ebf_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"1.5"
+			}
+		}
+	}
+	"special_bonus_unique_dragon_knight_dragons_blood_ebf_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"50"
+			}
+		}
+	}
+	"special_bonus_unique_dragon_knight_elder_dragon_berserker_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"-5"
+			}
+		}
+	}
+	"special_bonus_unique_dragon_knight_elder_dragon_berserker_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"100"
+			}
+		}
+	}
+}

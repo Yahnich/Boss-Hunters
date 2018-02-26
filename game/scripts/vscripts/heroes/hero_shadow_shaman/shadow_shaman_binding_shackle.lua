@@ -4,7 +4,7 @@ function shadow_shaman_binding_shackle:GetChannelTime()
 	self.duration = self:GetTalentSpecialValueFor( "channel_time" )
 
 	if IsServer() then
-		if self.hVictim ~= nil then
+		if self.shackleTarget ~= nil then
 			return self.duration
 		end
 
@@ -31,7 +31,7 @@ function shadow_shaman_binding_shackle:OnSpellStart()
 end
 
 
-LinkLuaModifier("modifier_shadow_shaman_bound_shackles", "lua_abilities/heroes/shadow_shaman.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_shadow_shaman_bound_shackles", "heroes/hero_shadow_shaman/shadow_shaman_binding_shackle", LUA_MODIFIER_MOTION_NONE)
 modifier_shadow_shaman_bound_shackles = class({})
 
 function modifier_shadow_shaman_bound_shackles:OnCreated()
@@ -41,7 +41,7 @@ function modifier_shadow_shaman_bound_shackles:OnCreated()
 	EmitSoundOn("Hero_ShadowShaman.Shackles", self:GetParent())
 	if IsServer() then
 		self:StartIntervalThink(self.tick)
-		self:StartDelayedCooldown()
+		self:GetAbility():StartDelayedCooldown()
 	end
 	local shackles = ParticleManager:CreateParticle("particles/units/heroes/hero_shadowshaman/shadowshaman_shackle.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
 	ParticleManager:SetParticleControlEnt(shackles, 0, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_hitloc", self:GetParent():GetAbsOrigin(), true)
@@ -61,7 +61,7 @@ function modifier_shadow_shaman_bound_shackles:OnRefresh()
 	self.tick = self:GetAbility():GetTalentSpecialValueFor("tick_interval")
 	EmitSoundOn("Hero_ShadowShaman.Shackles", self:GetParent())
 	if IsServer() then
-		self:StartDelayedCooldown()
+		self:GetAbility():StartDelayedCooldown()
 	end
 end
 
@@ -74,7 +74,7 @@ function modifier_shadow_shaman_bound_shackles:OnDestroy()
 	StopSoundOn("Hero_ShadowShaman.Shackles", self:GetParent())
 	if IsServer() then
 		self:GetCaster():InterruptChannel()
-		self:EndDelayedCooldown()
+		self:GetAbility():EndDelayedCooldown()
 		self:GetParent():AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_shadow_shaman_bound_shackles_post", {duration = self:GetAbility():GetTalentSpecialValueFor("aftershackle_duration")})
 	end
 end
@@ -108,7 +108,7 @@ function modifier_shadow_shaman_bound_shackles:CheckState()
 	return state
 end
 
-LinkLuaModifier("modifier_shadow_shaman_bound_shackles_post", "lua_abilities/heroes/shadow_shaman.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_shadow_shaman_bound_shackles_post", "heroes/hero_shadow_shaman/shadow_shaman_binding_shackle", LUA_MODIFIER_MOTION_NONE)
 modifier_shadow_shaman_bound_shackles_post = class({})
 
 function modifier_shadow_shaman_bound_shackles_post:OnCreated()

@@ -1,0 +1,401 @@
+"DOTAAbilities"
+{	
+	"gyrocopter_flak_cannon_ebf"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_gyro/gyrocopter_flak_cannon_ebf.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_TOGGLE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"FightRecapLevel"				"1"
+		"AbilityTextureName"			"gyrocopter_flak_cannon"
+		"LevelsBetweenUpgrades"			"5"
+		"MaxLevel"						"7"
+		"RequiredLevel"					"3"
+	
+		"precache"
+		{
+			"particle"		"particles/units/heroes/hero_gyrocopter/gyro_base_attack.vpcf"
+			"soundfile"		"sounds/weapons/hero/gyrocopter/flack_cannon.vsnd"
+		}
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"10"
+		
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"5 10 15 20 30 45 60"
+						
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"radius"						"1000"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"armor_shred"					"1 1.5 2 2.5 3 3.5 4"
+				"LinkedSpecialBonus"			"special_bonus_unique_gyrocopter_flak_cannon_ebf_1"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"armor_shred_duration"			"10"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"projectile_speed"				"800"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"fire_rate"						"0.9"
+			}
+			"05"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"scepter_radius"				"1000"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Bombing Run
+	//=================================================================================================================
+	"gyro_bombing_run"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_gyro/gyro_bombing_run.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName"			"custom/gyrocopter_skyhigh_call_down"
+		"LevelsBetweenUpgrades"			"5"
+		"MaxLevel"						"7"
+		"RequiredLevel"					"3"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	    "AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
+	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+	    "AbilityUnitDamageType" 		"DAMAGE_TYPE_MAGICAL"
+	    "SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+	
+	    "AbilityCastRange"				"1000"
+	    "AbilityCastPoint"				"0.0"
+	    "AbilityCastAnimation"			"ACT_DOTA_OVERRIDE_ABILITY_4"
+	
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"20 19 18 17 16 15 14"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"100"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"1000 2500 5000 7500 15000 25000 50000"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"6.0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"speed"					"200" //percent
+				"LinkedSpecialBonus"	"special_bonus_unique_gyro_bombing_run_1"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"150"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"reduc_move_speed"		"-50"
+			}
+			
+		}
+	
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_batrider/batrider_firefly_ember.vpcf"
+			"particle"  "particles/units/heroes/hero_ac/ac_valkyrie_explosion.vpcf"
+	
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_techies.vsndevts"
+			"soundfile"		"sounds/weapons/hero/gyrocopter/rocket_barrage_fire.vsnd"
+			"soundfile" 	"sounds/weapons/hero/gyrocopter/rocket_barrage_target01.vsnd"
+		}
+	}
+	//=================================================================================================================
+	// Apache Chief Homing Missile
+	//=================================================================================================================
+	"gyro_homing_missile"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_gyro/gyro_homing_missile.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"custom/gyro_support_rocket"
+		"MaxLevel"						"1"
+		"LevelsBetweenUpgrades"  		"0"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	    "AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
+	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+	    "AbilityUnitDamageType" 		"DAMAGE_TYPE_MAGICAL"
+	    "SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+	
+	    "PiercesDisableReduction"		"1"
+	    "InnateAbility"					"1"
+	
+	    "AbilityCastRange"				"1500"
+	
+	    // Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"5.0"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"missile_damage"			"300"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"missile_explos_radius"		"250"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"search_radius"				"1500"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"magic_reduction"			"-40"
+				"LinkedSpecialBonus"		"special_bonus_unique_gyro_homing_missile_1"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"3"
+			}
+		}
+	
+		"precache"
+		{
+			"particle"		"particles/units/heroes/hero_gyrocopter/gyro_guided_missile_target.vpcf"
+			"particle"		"particles/units/heroes/hero_gyrocopter/gyro_guided_missile_death.vpcf"
+			"particle"		"particles/units/heroes/hero_gyrocopter/gyro_guided_missile_explosion.vpcf"
+			"particle"		"particles/units/heroes/hero_gyrocopter/gyro_homing_missile_fuse.vpcf"
+			"particle"  	"particles/econ/items/gyrocopter/hero_gyrocopter_gyrotechnics/gyro_guided_missile.vpcf"
+	
+			"soundfile"		"sounds/weapons/hero/gyrocopter/homing_missile.vsnd"
+			"soundfile"		"sounds/weapons/hero/gyrocopter/homing_missile_enemy.vsnd"
+			"soundfile"		"sounds/weapons/hero/gyrocopter/homing_missile_destroy.vsnd"
+			"soundfile"		"sounds/weapons/hero/gyrocopter/homing_missile_target.vsnd"
+		}
+	}
+	//=================================================================================================================
+	// Apache Chief Rocket Salvo
+	//=================================================================================================================
+	"gyro_rocket_salvo"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_gyro/gyro_rocket_salvo.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_TOGGLE"
+		"AbilityTextureName"			"gyrocopter_rocket_barrage"
+		"LevelsBetweenUpgrades"			"5"
+		"MaxLevel"						"7"
+		"RequiredLevel"					"3"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	    "AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
+	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+	    "AbilityUnitDamageType" 		"DAMAGE_TYPE_PHYSICAL"
+	    "SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+	
+	    "AbilityCastRange"				"500 550 600 650 700 750 800"
+	
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"8.0 7.5 7.0 6.5 6 5.5 5"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"25 50 75 125 250 500 1000"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"125 140 155 160 175 190 205"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"fire_rate"				"0.1"
+				"LinkedSpecialBonus"	"special_bonus_unique_gyro_rocket_salvo_2"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"max_targets"			"1 1 1 2 2 2 3"
+				"LinkedSpecialBonus"	"special_bonus_unique_gyro_rocket_salvo_1"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"500 550 600 650 700 750 800"
+			}
+			
+		}
+	
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_ac/ac_rocket_salvo_base.vpcf"
+			"particle"  "particles/units/heroes/hero_gyrocopter/gyro_rocket_barrage.vpcf"
+	
+			"soundfile"		"sounds/weapons/hero/gyrocopter/rocket_barrage_active.vsnd"
+			"soundfile"		"sounds/weapons/hero/gyrocopter/rocket_barrage_fire.vsnd"
+			"soundfile" 	"sounds/weapons/hero/gyrocopter/rocket_barrage_target01.vsnd"
+		}
+	}
+	"special_bonus_unique_gyro_bombing_run_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"200"
+			}
+		}
+	}
+	"special_bonus_unique_gyro_bombing_run_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"200"
+			}
+		}
+	}
+	"special_bonus_unique_gyro_homing_missile_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"-25.0"
+			}
+		}
+	}
+	"special_bonus_unique_gyro_rocket_salvo_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"1"
+			}
+		}
+	}
+	"special_bonus_unique_gyro_rocket_salvo_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"-0.05"
+			}
+		}
+	}
+	"special_bonus_unique_gyrocopter_flak_cannon_ebf_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"2"
+			}
+		}
+	}
+}

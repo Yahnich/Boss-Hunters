@@ -1,0 +1,276 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Flash Step
+	//=================================================================================================================
+	"pa_flash_step"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_pa/pa_flash_step.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	    "AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
+	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"LevelsBetweenUpgrades"			"5"
+		"MaxLevel"						"7"
+		"RequiredLevel"					"7"
+		"AbilityTextureName"			"phantom_assassin_phantom_strike"
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.2"
+		"AbilityCastRange"				"1000"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
+	
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"8"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"50 60 70 80 90 100 110"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"200 300 400 500 600 700 800"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"4.0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_as"				"50"
+				"LinkedSpecialBonus"	"special_bonus_unique_pa_flash_step_1"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"range"					"1000"
+			}
+		}
+	
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_pa/pa_flash_step/pa_flash_step.vpcf"
+			"particle"  "particles/units/heroes/hero_phantom_assassin/phantom_assassin_stifling_dagger.vpcf"
+			"particle"  "particles/units/heroes/hero_phantom_assassin/phantom_assassin_stifling_dagger_debuff.vpcf"
+	
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_beastmaster.vsndevts"
+		}
+	}
+	//=================================================================================================================
+	// Kunai Toss
+	//=================================================================================================================
+	"pa_kunai_toss"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_pa/pa_kunai_toss.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	    "AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
+	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"LevelsBetweenUpgrades"			"5"
+		"MaxLevel"						"7"
+		"RequiredLevel"					"7"
+		"AbilityTextureName"			"phantom_assassin_stifling_dagger"
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.3"
+		"AbilityCastRange"				"500 600 700 800 900 1000 1100"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+	
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"7 6 5 4 3 2 1"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"30 40 50 60 70 80 90"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"1200 1800 2200 3400 4200 8400 18000"
+				"LinkedSpecialBonus"	"special_bonus_unique_pa_kunai_toss_2"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"slow"					"-50"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"slow_duration"			"5"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"max_targets"			"3"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"500"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"range"					"500 600 700 800 900 1000 1100"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bounces"				"2"
+			}
+		}
+	
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_phantom_assassin/phantom_assassin_stifling_dagger.vpcf"
+			"particle"  "particles/units/heroes/hero_phantom_assassin/phantom_assassin_stifling_dagger_debuff.vpcf"
+	
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_beastmaster.vsndevts"
+		}
+	}
+	"phantom_assassin_blur_ebf"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_pa/phantom_assassin_blur_ebf.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"phantom_assassin_blur"
+		"LevelsBetweenUpgrades"			"5"
+		"MaxLevel"						"7"
+	
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"particle"			"particles/units/heroes/hero_phantom_assassin/phantom_assassin_blur.vpcf"
+		}
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_evasion_tooltip"		"20 25 30 35 40 45 50"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"true_evasion"				"10 12.5 15 17.5 20 22.5 25"
+				"LinkedSpecialBonus"		"special_bonus_unique_phantom_assassin_3"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"evasion_chance"			"10 12.5 15 17.5 20 22.5 25"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"evasion_stacks"			"2 4 6 8 10 12 14"
+			}
+		}
+	}
+	"special_bonus_unique_pa_flash_step_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"25"
+			}
+		}
+	}
+	"special_bonus_unique_pa_flash_step_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"2000"
+			}
+		}
+	}
+	"special_bonus_unique_pa_kunai_toss_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"1"
+			}
+		}
+	}
+	"special_bonus_unique_pa_kunai_toss_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"2000"
+			}
+		}
+	}
+}

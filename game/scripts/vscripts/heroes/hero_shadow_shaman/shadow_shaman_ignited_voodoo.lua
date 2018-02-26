@@ -16,7 +16,7 @@ function shadow_shaman_ignited_voodoo:OnSpellStart()
 	end
 end
 
-LinkLuaModifier("modifier_shadow_shaman_ignited_voodoo", "lua_abilities/heroes/shadow_shaman.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_shadow_shaman_ignited_voodoo", "heroes/hero_shadow_shaman/shadow_shaman_ignited_voodoo", LUA_MODIFIER_MOTION_NONE)
 modifier_shadow_shaman_ignited_voodoo = class({})
 
 function modifier_shadow_shaman_ignited_voodoo:OnCreated()
@@ -49,7 +49,7 @@ function modifier_shadow_shaman_ignited_voodoo:OnDestroy()
 		ParticleManager:SetParticleControl(voodooBoom,2,Vector(radius,radius,radius ))
 		ParticleManager:ReleaseParticleIndex(voodooBoom)
 		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius(parentPos, radius) ) do
-			ability:DealDamage(caster, enemy, damage)
+			self:GetAbility():DealDamage(caster, enemy, damage)
 			if caster:HasTalent("special_bonus_unique_shadow_shaman_ignited_voodoo_1") then
 				enemy:AddNewModifier(caster, self:GetAbility(), "modifier_shadow_shaman_ignited_voodoo_dot", {duration = tDuration})
 			end
@@ -91,19 +91,22 @@ function modifier_shadow_shaman_ignited_voodoo:CheckState()
 end
 
 
-LinkLuaModifier("modifier_shadow_shaman_ignited_voodoo_dot", "lua_abilities/heroes/shadow_shaman.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_shadow_shaman_ignited_voodoo_dot", "heroes/hero_shadow_shaman/shadow_shaman_ignited_voodoo", LUA_MODIFIER_MOTION_NONE)
 modifier_shadow_shaman_ignited_voodoo_dot = class({})
 
-function modifier_shadow_shaman_ignited_voodoo_dot:OnCreated()
-	self.damage = self:GetTalentSpecialValueFor("damage") * self:GetCaster():FindTalentValue("special_bonus_unique_shadow_shaman_ignited_voodoo_1") / 100
-end
+if IsServer() then
+	function modifier_shadow_shaman_ignited_voodoo_dot:OnCreated()
+		self.damage = self:GetTalentSpecialValueFor("damage") * self:GetCaster():FindTalentValue("special_bonus_unique_shadow_shaman_ignited_voodoo_1") / 100
+		self:StartIntervalThink(1)
+	end
 
-function modifier_shadow_shaman_ignited_voodoo_dot:OnRefresh()
-	self.damage = self:GetTalentSpecialValueFor("damage") * self:GetCaster():FindTalentValue("special_bonus_unique_shadow_shaman_ignited_voodoo_1") / 100
-end
+	function modifier_shadow_shaman_ignited_voodoo_dot:OnRefresh()
+		self.damage = self:GetTalentSpecialValueFor("damage") * self:GetCaster():FindTalentValue("special_bonus_unique_shadow_shaman_ignited_voodoo_1") / 100
+	end
 
-function modifier_shadow_shaman_ignited_voodoo_dot:OnIntervalThink()
-	self:GetAbility():DealDamage( self:GetCaster(), self:GetParent(), self.damage)
+	function modifier_shadow_shaman_ignited_voodoo_dot:OnIntervalThink()
+		self:GetAbility():DealDamage( self:GetCaster(), self:GetParent(), self.damage)
+	end
 end
 
 function modifier_shadow_shaman_ignited_voodoo_dot:GetEffectName()

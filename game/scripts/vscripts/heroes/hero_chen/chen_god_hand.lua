@@ -44,7 +44,10 @@ function chen_god_hand:OnSpellStart()
 end
 
 modifier_chen_god_hand = class({})
-function modifier_chen_god_hand:CheckState()
-	local state = { [MODIFIER_STATE_INVULNERABLE] = true}
-	return state
+function modifier_chen_god_hand:DeclareFunctions()
+	return {MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE}
+end
+
+function modifier_chen_god_hand:GetModifierIncomingDamage_Percentage()
+	return -100
 end

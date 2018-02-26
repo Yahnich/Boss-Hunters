@@ -1,0 +1,481 @@
+"DOTAAbilities"
+{	
+	//=================================================================================================================
+	// Abaddon: Aphotic Shield
+	//=================================================================================================================
+	"abaddon_aphotic_barrier"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_abaddon/abaddon_aphotic_barrier"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_ALL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ALLIES_YES"
+		"AbilityTextureName"			"abaddon_aphotic_shield"
+		"FightRecapLevel"				"1"
+		"LevelsBetweenUpgrades"			"5"
+		"MaxLevel"						"7"
+		"RequiredLevel"					"6"
+		
+	
+	
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"500"
+		"AbilityCastPoint"				"0.452 0.452 0.452 0.452"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"12.0"
+		
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"25 50 75 125 250 500 1000"
+	
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_abaddon/abaddon_aphotic_shield.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_abaddon.vsndevts"
+		}
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"10.0"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"damage_absorb"			"1500 3000 6000 12500 25000 50000 100000"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"675"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Abaddon: Borrowed Time
+	//=================================================================================================================
+	"abaddon_borrowed_time_ebf"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_abaddon/abaddon_borrowed_time_ebf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityTextureName"			"abaddon_borrowed_time"
+		"FightRecapLevel"				"2"
+		"LevelsBetweenUpgrades"			"7"
+		"MaxLevel"						"7"
+		"HasScepterUpgrade"				"1"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"100.0"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"
+		
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_abaddon/abaddon_borrowed_time.vpcf"
+			"particle"					"particles/status_fx/status_effect_abaddon_borrowed_time.vpcf"
+			"particle"					"particles/units/heroes/hero_abaddon/abaddon_borrowed_time_heal.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_abaddon.vsndevts"
+		}
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"6.0 7.0 8.0 9.0 10.0 11.0 12.0"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration_scepter"			"6.0 8.0 10.0 12.0 14.0 16.0 18.0"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"redirect_amount_scepter"	"-60"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"redirect_range_scepter"	"1200"
+			}
+		}
+	}
+	"abaddon_brume_weaver"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"					"ability_lua"
+		"ScriptFile"				"heroes/hero_abaddon/abaddon_brume_weaver"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"		"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"		"DOTA_UNIT_TARGET_HERO"
+		"SpellImmunityType"			"SPELL_IMMUNITY_ALLIES_YES"
+		"AbilityTextureName"		"custom/abaddon_brume_weaver"
+		"MaxLevel"					"7"
+		"RequiredLevel"				"6"
+		"LevelsBetweenUpgrades"		"5"
+		
+		"AbilityCooldown"		"15"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"heal_duration"				"4"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"heal_pct"					"20 25 30 35 40 45 50"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"base_heal"					"150 350 1000 2500 5000 10000 20000"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"evasion"					"25"
+				"LinkedSpecialBonus"		"special_bonus_unique_abaddon_brume_weaver_2"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"buff_duration"				"10"
+			}
+		}
+	
+		"precache"
+		{
+			"particle"  "particles/abaddon_brume_proc.vpcf"
+			"particle"  "particles/units/heroes/hero_abaddon/abaddon_frost_slow.vpcf"
+			"soundfile"	"sounds/weapons/hero/abaddon/death.vsnd"
+		}
+	}
+	"abaddon_curse_ebf"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"					"ability_lua"
+		"ScriptFile"				"heroes/hero_abaddon/abaddon_curse_ebf"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"SpellImmunityType"			"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityTextureName"		"abaddon_frostmourne"
+		"MaxLevel"					"1"
+		"InnateAbility"				"1"
+		
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"debuff_duration"				"4.5"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"buff_duration"					"4.5"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"slow_pct"						"-25"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"attack_slow_tooltip"			"-50"
+			}
+			"05"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"move_speed_pct"				"25"
+			}
+			"06"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"attack_speed"					"50"
+			}
+		}
+	
+		"precache"
+		{
+			"particle" 	"particles/units/heroes/hero_abaddon/abaddon_frost_slow.vpcf"
+			"particle"  "particles/units/heroes/hero_abaddon/abaddon_frost_buff.vpcf"
+		}
+	}
+	"abaddon_death_coil_ebf"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_abaddon/abaddon_death_coil_ebf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ALLIES_YES"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
+		"AbilityTextureName"			"abaddon_death_coil"
+		"CastFilterRejectCaster" 		"1"
+		"MaxLevel"						"7"
+		"RequiredLevel"					"7"
+		"LevelsBetweenUpgrades"			"5"
+	
+		"AbilityCastRange"				"800"
+		"AbilityCastPoint"				"0.452 0.452 0.452 0.452"
+		"AbilityThreat"					"10"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"8.0"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"50 60 80 160 320 480 640"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"projectile_speed"		"1250"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"self_heal"						"750 1500 3000 6000 12500 25000 50000"
+				"LinkedSpecialBonus"			"special_bonus_unique_abaddon_death_coil_2"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"target_damage"			"750 1500 3000 6000 12500 25000 50000"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"heal_amount"			"750 1500 3000 6000 12500 25000 50000"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"heal_pct"				"20"
+			}
+		}
+	
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_abaddon.vsndevts"
+			"particle" 	"particles/units/heroes/hero_abaddon/abaddon_death_coil.vpcf"
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_abaddon_death_coil_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"900"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_abaddon_death_coil_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"value"						"1.5"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_abaddon_aphotic_barrier_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"350"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_abaddon_aphotic_barrier_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"-8"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_abaddon_brume_weaver_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"1"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_abaddon_brume_weaver_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"25"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_abaddon_borrowed_time_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"1"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_abaddon_borrowed_time_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"1"
+			}
+		}
+	}
+}

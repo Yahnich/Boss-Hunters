@@ -1,105 +1,46 @@
 "DOTAAbilities"
-{	
-	"shadow_shaman_binding_shackle"
+{
+	//=================================================================================================================
+	// Rattletrap: Battery Assault
+	//=================================================================================================================
+	"rattletrap_battery_assault_ebf"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_shadow_shaman/shadow_shaman_binding_shackle"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"ScriptFile"					"heroes/hero_rattletrap/rattletrap_battery_assault_ebf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"rattletrap_battery_assault"
 		"FightRecapLevel"				"1"
-		"MaxLevel"						"7"
-		"RequiredLevel"					"5"
 		"LevelsBetweenUpgrades"			"5"
-		"AbilityTextureName"			"shadow_shaman_shackles"
-	
+		"MaxLevel"						"7"
+		"RequiredLevel"					"6"
+
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"400"
 		"AbilityCastPoint"				"0.3 0.3 0.3 0.3"
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityChannelTime"			"1.75 2.5 3.25 4.0"
-		"AbilityCooldown"				"16.0 16.0 16.0 16.0"
-	
+		"AbilityCooldown"				"10"
+
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"				"25 50 75 125 250 500 1000"
-		
-		// Special
+
+		// Stats
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"tick_interval"			"0.1 0.1 0.1 0.1"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"channel_time"			"1.5 2.0 2.5 3.0 3.5 4.0 4.5"
-				"LinkedSpecialBonus"	"special_bonus_unique_shadow_shaman_binding_shackle_1"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"total_damage"			"2000 4000 8000 16000 32000 64000 96000"
-			}
-			// Extra, calculated as total_damage / channel_time * tick_interval
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"aftershackle_duration"	"0.5"
-				"LinkedSpecialBonus"	"special_bonus_unique_shadow_shaman_binding_shackle_2"
-			}
-		}
-	
+		"AbilityModifierSupportValue"	"0.2"	// applies many mini-stuns
+		
 		"precache"
 		{
-			"particle"  "particles/status_fx/status_effect_shaman_shackle.vpcf" 	
-			"particle"	"particles/units/heroes/hero_shadowshaman/shadowshaman_shackle.vpcf"
-			"soundfile" "soundevents/game_sounds_heroes/game_sounds_shadowshaman.vsndevts"
+			"particle"					"particles/units/heroes/hero_rattletrap/rattletrap_battery_assault.vpcf"
+			"particle"					"particles/units/heroes/hero_rattletrap/rattletrap_battery_shrapnel.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_rattletrap.vsndevts"
 		}
-	}
-	//--------------------
-	// Shadow Shaman	
-	//--------------------
-	"shadow_shaman_ether_lightning"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_shadow_shaman/shadow_shaman_ether_lightning"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"FightRecapLevel"				"1"
-		"MaxLevel"						"7"
-		"RequiredLevel"					"5"
-		"LevelsBetweenUpgrades"			"5"
-		"AbilityTextureName"			"shadow_shaman_ether_shock"
 		
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"600"
-		"AbilityCastPoint"				"0.3 0.3 0.3 0.3"
-		
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"8.0 8.0 8.0 8.0"
-	
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"25 50 75 125 250 500 1000"
-	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
@@ -107,65 +48,134 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"start_radius"				"200 200 200 200"
+				"radius"					"450"
+			}
+			"02"
+			{	
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"8"
+			}
+			"03"
+			{	
+				"var_type"					"FIELD_FLOAT"
+				"interval"					"0.6 0.55 0.5 0.45 0.4 0.35 0.3"
+				"LinkedSpecialBonus"		"special_bonus_unique_rattletrap_battery_assault_2"
+			}
+			"04"
+			{	
+				"var_type"					"FIELD_FLOAT"
+				"damage"					"400 800 1600 3200 6400 9600 19200"
+			}
+		}
+	}
+	
+	"rattletrap_aegis_deflector"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"				"ability_lua"
+		"ScriptFile"			"heroes/hero_rattletrap/rattletrap_aegis_deflector"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_PURE"
+		"AbilityTextureName"	"custom/rattletrap_aegis_deflector"
+		
+		"RequiredLevel"					"6"
+		"LevelsBetweenUpgrades"			"5"
+		"MaxLevel"						"7"
+		"PiercesDisableReduction"		"1"
+		
+		"precache"
+		{
+			"particle"	"particles/units/heroes/hero_rattletrap/rattletrap_cog_attack.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_rattletrap.vsndevts"
+		}
+		
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"							"FIELD_INTEGER"
+				"bonus_armor"						"45 60 120 180 240 300 400"
 			}
 			"02"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"end_radius"				"300 300 300 300"
+				"var_type"							"FIELD_INTEGER"
+				"armor_buff"						"20 30 60 90 120 150 200"
 			}
 			"03"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"end_distance"				"500 500 500 500"
+				"var_type"							"FIELD_FLOAT"
+				"buff_duration"						"2"
 			}
 			"04"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"targets"					"7"
+				"var_type"							"FIELD_FLOAT"
+				"heal_pct"							"4"
+				"LinkedSpecialBonus"				"special_bonus_unique_rattletrap_aegis_deflector_2"
 			}
 			"05"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"1800 3600 7200 14400 28800 57600 86400"
+				"var_type"							"FIELD_INTEGER"
+				"proc_chance"						"20"
+			}
+			"06"
+			{	
+				"var_type"							"FIELD_FLOAT"
+				"mana_damage"						"500 1000 1500 3000 6000 12000 24000"
+			}
+			"07"
+			{	
+				"var_type"							"FIELD_INTEGER"
+				"push_length"						"250"
+			}
+			"08"
+			{	
+				"var_type"							"FIELD_FLOAT"
+				"push_duration"						"0.85"
 			}
 		}
-	
-		"precache"
-		{
-			"particle"  "particles/units/heroes/hero_shadowshaman/shadowshaman_ether_shock.vpcf"
-			"soundfile" "soundevents/game_sounds_heroes/game_sounds_shadowshaman.vsndevts"
-		}
 	}
-	"shadow_shaman_ignited_voodoo"
+	
+	"rattletrap_rocket_flare_ebf"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_shadow_shaman/shadow_shaman_ignited_voodoo"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"ScriptFile"					"heroes/hero_rattletrap/rattletrap_rocket_flare_ebf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"MaxLevel"						"7"
-		"RequiredLevel"					"5"
-		"LevelsBetweenUpgrades"			"6"
+		"AbilityTextureName"			"rattletrap_rocket_flare"
 		"FightRecapLevel"				"1"
-		"AbilityTextureName"			"shadow_shaman_voodoo"
+		"LevelsBetweenUpgrades"			"5"
+		"MaxLevel"						"7"
+		"RequiredLevel"					"6"
+		
+		"precache"
+		{
+			"particle"	"particles/status_fx/status_effect_slardar_amp_damage.vpcf"
+			"particle"	"particles/units/heroes/hero_keeper_of_the_light/keeper_of_the_light_blinding_light_debuff.vpcf"
+			"particle"	"particles/units/heroes/hero_rattletrap/rattletrap_rocket_flare.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_rattletrap.vsndevts"
+		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"500"
-		"AbilityCastPoint"				"0 0 0 0"
+		"AbilityCastPoint"				"0.3 0.3 0.3 0.3"
+		"AbilityCastRange"				"0"
+		"AbilityThreat"					"35"
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"13.0 13.0 13.0 13.0"
-	
+		"AbilityCooldown"				"14.0 13.0 12.0 11.0 10.0 9.0 8.0"
+		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"				"25 50 75 125 250 500 1000"
+	
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -173,125 +183,129 @@
 		{
 			"01"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"movespeed"					"100"
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"575 650 725 800 875 950 1025"
 			}
 			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"2.5 2.75 3 3.25 3.5 3.75 4"
-				"LinkedSpecialBonus"		"special_bonus_unique_shadow_shaman_ignited_voodoo_2"
+			{	
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"10.0"
 			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"damage"					"1200 2400 4800 9600 19200 38400 76800"
+			"03"
+			{	
+				"var_type"				"FIELD_INTEGER"
+				"speed"					"1750"
 			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"radius"					"800"
+			"04"
+			{	
+				"var_type"				"FIELD_INTEGER"
+				"blind"					"50"
+				"LinkedSpecialBonus"	"special_bonus_unique_rattletrap_rocket_flare_ebf_2"
+				
 			}
-		}
-	
-		// Precache
-		//-------------------------------------------------------------------------------------------------------------
-		"precache"
-		{
-			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_shadowshaman.vsndevts"
-			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_techies.vsndevts"
-			"particle"			"particles/units/heroes/hero_shadowshaman/shadowshaman_voodoo.vpcf"
-			"particle"			"particles/units/heroes/hero_techies/techies_suicide.vpcf"
-			"model"				"models/props_gameplay/chicken.vmdl"
+			"04"
+			{	
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"800 1600 3200 6400 12800 25600 51200"
+				
+			}
 		}
 	}
 	//=================================================================================================================
-	// Shadow Shaman: Mass Serpent Ward
+	// Rattletrap: Battery Assault
 	//=================================================================================================================
-	"shadow_shaman_snake_totem"
+	"rattletrap_reactive_shielding"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_shadow_shaman/shadow_shaman_snake_totem"
+		"ScriptFile"					"heroes/hero_rattletrap/rattletrap_reactive_shielding"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"	
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
-		"AbilityTextureName"			"shadow_shaman_mass_serpent_ward"
-		"FightRecapLevel"				"2"
-		"LevelsBetweenUpgrades"			"7"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"custom/rattletrap_reactive_shielding"
+		"FightRecapLevel"				"1"
+		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
-		
+		"RequiredLevel"					"6"
+
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"550"
-		"AbilityCastPoint"				"0.3"
-		"AbilityPierces"				"1"
+		"AbilityCastPoint"				"0.3 0.3 0.3 0.3"
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"90"
+		"AbilityCooldown"				"11"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"				"250 325 500 750 1250 2250 4000"
-
+		
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_rattletrap/rattletrap_cog_ambient.vpcf"
+			"particle"					"particles/units/heroes/hero_rattletrap/rattletrap_cog_deploy.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_rattletrap.vsndevts"
+		}
+		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"ward_count"			"1"
-				"LinkedSpecialBonus"	"special_bonus_unique_shadow_shaman_snake_totem_2"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"300 600 1200 2400 4800 9600 19200"
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"4 4.5 5 5.5 6 6.5 7"
 			}
 			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"45.0 45.0 45.0"
+			{	
+				"var_type"					"FIELD_FLOAT"
+				"damage_reduction"			"-80"
 			}
 			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"scepter_range"			"500"
-			}
-		}
-	}
-	
-	// TALENTS
-	"special_bonus_unique_shadow_shaman_ether_lightning_1"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
+			{	
 				"var_type"					"FIELD_FLOAT"
-				"value"						"0.3"
+				"slow"						"-100"
 			}
 		}
 	}
-	"special_bonus_unique_shadow_shaman_ether_lightning_2"
+	//=================================================================================================================
+	// Rattletrap: Battery Assault
+	//=================================================================================================================
+	"rattletrap_automated_artillery"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_rattletrap/rattletrap_automated_artillery"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"custom/rattletrap_automated_artillery"
+		"FightRecapLevel"				"1"
+		"LevelsBetweenUpgrades"			"5"
+		"MaxLevel"						"7"
+		"RequiredLevel"					"6"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.3 0.3 0.3 0.3"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"10"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"250 325 500 750 1250 2250 4000"
+		
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_rattletrap/rattletrap_automated_artillery_projectile.vpcf"
+			"soundfile"					"soundevents/game_sounds_custom_hero.vsndevts"
+		}
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -300,92 +314,26 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"25"
-			}
-		}
-	}
-	"special_bonus_unique_shadow_shaman_ignited_voodoo_1"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"25"
+				"radius"					"2000"
 			}
 			"02"
-			{
+			{	
 				"var_type"					"FIELD_FLOAT"
-				"duration"					"4"
+				"duration"					"8"
 			}
-		}
-	}
-	"special_bonus_unique_shadow_shaman_ignited_voodoo_2"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"2"
-			}
-		}
-	}
-	"special_bonus_unique_shadow_shaman_binding_shackle_1"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"2"
-			}
-		}
-	}
-	"special_bonus_unique_shadow_shaman_binding_shackle_2"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
+			"03"
+			{	
 				"var_type"					"FIELD_FLOAT"
-				"value"						"0.5"
+				"rockets_per_second"		"20"
+			}
+			"03"
+			{	
+				"var_type"					"FIELD_FLOAT"
+				"damage_per_rocket"			"60 120 240 480 960 1920 2840"
 			}
 		}
 	}
-	"special_bonus_unique_shadow_shaman_snake_totem_1"
+	"special_bonus_unique_rattletrap_battery_assault_1" 
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -399,12 +347,12 @@
 		{
 			"01"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"300"
+				"var_type"				"FIELD_INTEGER"
+				"value"					"250"
 			}
 		}
 	}
-	"special_bonus_unique_shadow_shaman_snake_totem_2"
+	"special_bonus_unique_rattletrap_battery_assault_2" 
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -418,8 +366,122 @@
 		{
 			"01"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
+				"var_type"				"FIELD_FLOAT"
+				"value"					"-0.1"
+			}
+		}
+	}
+	"special_bonus_unique_rattletrap_aegis_deflector_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"10"
+			}
+		}
+	}
+	"special_bonus_unique_rattletrap_aegis_deflector_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"8"
+			}
+		}
+	}
+	"special_bonus_unique_rattletrap_rocket_flare_ebf_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"12"
+			}
+		}
+	}
+	"special_bonus_unique_rattletrap_rocket_flare_ebf_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"25"
+			}
+		}
+	}
+	"special_bonus_unique_rattletrap_reactive_shielding_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"1"
+			}
+		}
+	}
+	"special_bonus_unique_rattletrap_automated_artillery_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"1"
 			}
 		}
 	}

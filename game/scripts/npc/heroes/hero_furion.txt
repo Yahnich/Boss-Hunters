@@ -1,0 +1,504 @@
+"DOTAAbilities"
+{
+	"furion_entangle"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_furion/furion_entangle.lua"
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	    "AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
+	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+	    "AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"  
+		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"treant_overgrowth"
+		"InnateAbility" 				"1"
+		"MaxLevel"						"1"
+		"HasScepterUpgrade"				"1"
+		"PiercesDisableReduction"		"1"
+		
+		"AbilityCooldown"				"3"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"                  "FIELD_INTEGER"
+				"chance"            		"20"
+			}
+			"02"
+			{
+				"var_type"                  "FIELD_INTEGER"
+				"damage"           			"300"
+			}
+			"02"
+			{
+				"var_type"                  "FIELD_INTEGER"
+				"heal_pct"           		"50"
+			}
+			"03"
+			{
+				"var_type"                  "FIELD_FLOAT"
+				"duration"           		"3.0"
+			}
+			"05"
+			{
+				"var_type"                  "FIELD_INTEGER"
+				"scepter_radius"           	"500"
+			}
+		}
+	
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_lone_druid/lone_druid_bear_entangle.vpcf"
+			"particle"  "particles/units/heroes/hero_lone_druid/lone_druid_bear_entangle_body.vpcf"
+			"particle"  "particles/units/heroes/hero_treant/treant_leech_seed.vpcf"
+			
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_lone_druid.vsndevts"
+		}
+	}
+	"furion_natures_wrath"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_furion/furion_natures_wrath.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"furion_wrath_of_nature"
+		"LevelsBetweenUpgrades"			"7"
+		"MaxLevel"						"7"
+		"RequiredLevel"					"6"
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"0"
+		"AbilityCastPoint"				"0.5"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+	
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"20"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"250 325 500 750 1250 2250 4000"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"damage"						"1600 3200 6400 12800 25600 51200 124000"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"damage_add"					"10"
+				"CalculateSpellDamageTooltip"	"0"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"jump_delay"					"0.25"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"revive_duration"				"4.0"
+			}
+			
+		}
+	
+		"precache"
+		{
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_furion.vsndevts"
+	
+			"particle" 			"particles/units/heroes/hero_furion/furion_wrath_of_nature_cast.vpcf"
+			"particle"			"particles/units/heroes/hero_furion/furion_wrath_of_nature.vpcf"
+		}
+	}
+	"furion_sprout_tp"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_furion/furion_sprout_tp.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName"			"furion_teleportation"
+		"LevelsBetweenUpgrades"			"5"
+		"MaxLevel"						"7"
+		"RequiredLevel"					"6"
+	
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"3.0 2.5 2.0 1.5 1.0 0.5 0.2"
+		"AbilityCooldown"				"15.0"
+		"AbilityManaCost"				"25 50 75 125 250 500 1000"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityThreat"					"-8"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cast_point_tooltip"	"3.0 2.5 2.0 1.5 1.0 0.5 0"
+			}
+		}
+	
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_furion/furion_teleport_end.vpcf"
+			"particle"  "particles/units/heroes/hero_furion/furion_teleport.vpcf"
+	
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_furion.vsndevts"
+		}
+	}
+	"furion_tree_ant"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_furion/furion_tree_ant.lua"
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityTextureName"			"furion_force_of_nature"
+		"LevelsBetweenUpgrades"			"6"
+		"MaxLevel"						"7"
+		"RequiredLevel"					"6"
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"750"
+		"AbilityCastPoint"				"0.5"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_3"
+	
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"20"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"25 50 75 125 250 500 1000"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"max_treants"			"2"
+				"LinkedSpecialBonus"	"special_bonus_unique_furion_tree_ant_2"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"500"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"treant_duration"		"30"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"treant_health"			"500 1000 2000 3500 5500 8000 11000"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"treant_health_pct"		"35"
+				"LinkedSpecialBonus"	"special_bonus_unique_furion_tree_ant_1"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"treant_damage"			"25"
+				"LinkedSpecialBonus"	"special_bonus_unique_furion_tree_ant_1"
+			}
+		}
+	
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_lone_druid/lone_druid_bear_entangle.vpcf"
+			"particle"  "particles/units/heroes/hero_lone_druid/lone_druid_bear_entangle_body.vpcf"
+			"particle"  "particles/units/heroes/hero_treant/treant_leech_seed.vpcf"
+			
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_lone_druid.vsndevts"
+		}
+	}
+	
+	"furion_tree_jail"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_furion/furion_tree_jail.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityTextureName"			"custom/furion_sprout_ebf"
+		"LevelsBetweenUpgrades"			"5"
+		"MaxLevel"						"7"
+		"RequiredLevel"					"6"
+		"PiercesDisableReduction"		"1"
+		
+		// Unit Targeting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+	
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"850"
+		"AbilityCastPoint"				"0.35"
+		"AbilityCooldown"				"18"
+		"AbilityManaCost"				"25 50 75 125 250 500 1000"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"500 1000 1500 3000 6000 12000 24000"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"3.0 3.5 4.0 4.5 5.0 5.5 6.0"
+				"LinkedSpecialBonus"	"special_bonus_unique_furion_tree_jail_2"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"tree_count"			"16"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"tree_radius"			"300"
+			}	
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"sleep_delay"			"1.5"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"sleep_duration"		"3.0 3.5 4.0 4.5 5.0 5.5 6.0"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"sleep_radius"			"450"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"vision_range"			"1000"
+			}
+		}
+	
+		"precache"
+		{
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_furion.vsndevts"
+			"particle"			"particles/units/heroes/hero_furion/furion_sprout.vpcf"
+			"particle"			"particles/generic_gameplay/generic_sleep.vpcf"
+			"particle"			"particles/furion_sprout_sleep.vpcf"
+		}
+	}
+	"special_bonus_unique_furion_entangle_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"650"
+			}
+		}
+	}
+	"special_bonus_unique_furion_natures_wrath_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"4"
+			}
+		}
+	}
+	"special_bonus_unique_furion_natures_wrath_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"100"
+			}
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"1.5"
+			}
+		}
+	}
+	"special_bonus_unique_furion_sprout_tp_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"-15.0"
+			}
+		}
+	}
+	"special_bonus_unique_furion_sprout_tp_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"4"
+			}
+		}
+	}
+	"special_bonus_unique_furion_tree_ant_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"25"
+			}
+		}
+	}
+	"special_bonus_unique_furion_tree_ant_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"2"
+			}
+		}
+	}
+	"special_bonus_unique_furion_tree_jail_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"25"
+			}
+		}
+	}
+	"special_bonus_unique_furion_tree_jail_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"4"
+			}
+		}
+	}
+}
