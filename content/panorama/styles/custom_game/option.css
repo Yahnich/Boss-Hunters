@@ -280,27 +280,41 @@ margin-right: 300px;
 	color: #FFFFFF;
  }
 
-
-#QuestCenter
+.SetHidden
 {
-	vertical-align: top;
-	horizontal-align: left;
-	height: 120px;
-	width: 50%;
-	margin-top: 6%;
-	margin-left: 50px;
+	visibility: collapse;
 }
-
+ 
 .QuestsRoot
 {
-	height: 100%;
-	width: 100%;
+	margin-left: -5px;
+	margin-top: 125px;
+	horizontal-align: left;
+	padding: 10px;
+	height: 120px;
+	flow-children: right;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #25282a88 ), color-stop( .6, #25282acc), color-stop( .8, #25282a88), to( #00000022 ) );
 }
+
 .QuestsContainer
 {
-	height: 100%;
-	width: 100%;
 	flow-children: down;
+	margin-top: 6%;
+	margin-left: 35px;
+	
+	transition-timing-function: ease-in-out;
+	transition-property: transform;
+	transition-duration: 0.3s;
+}
+
+.CloseImage
+{
+	vertical-align: center;
+	margin-top: 30px;
+	horizontal-align: right;
+	width: 35px;
+	height: 35px;
+	wash-color: #464646;
 }
 
 @keyframes 'FadeInText'
@@ -358,6 +372,7 @@ margin-right: 300px;
 	font-weight: bold;
 	color: #FFFFFF;
 	font-size: 20px;
+	vertical-align: top;
 }
 
 .ShieldOverlay

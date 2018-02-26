@@ -46,7 +46,7 @@ function UpdateHealthBar(unit)
 	} else {
 		$("#targetPanelMain").style.marginTop = "0px";
 	}
-	if(sUnit == null){
+	if(sUnit == null && !Entities.IsAlive( sUnit )){
 		$("#targetPanelMain").visible = false;
 	} else {
 		$("#targetPanelMain").visible = true;

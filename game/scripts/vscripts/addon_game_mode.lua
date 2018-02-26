@@ -428,10 +428,10 @@ function CHoldoutGameMode:InitGameMode()
 
 	-- Register OnThink with the game engine so it is called every 0.25 seconds
 	GameRules:GetGameModeEntity():SetDamageFilter( Dynamic_Wrap( CHoldoutGameMode, "FilterDamage" ), self )
+	GameRules:GetGameModeEntity():SetHealingFilter( Dynamic_Wrap( CHoldoutGameMode, "FilterHeal" ), self )
 	GameRules:GetGameModeEntity():SetModifierGainedFilter( Dynamic_Wrap( CHoldoutGameMode, "FilterModifiers" ), self )
 	GameRules:GetGameModeEntity():SetAbilityTuningValueFilter( Dynamic_Wrap( CHoldoutGameMode, "FilterAbilityValues" ), self )
 	GameRules:GetGameModeEntity():SetThink( "OnThink", self, 0.25 ) 
-	GameRules:GetGameModeEntity():SetThink( "Update_Health_Bar", self, 0.09 ) 
 end
 
 function CHoldoutGameMode:vote_Round (event)
@@ -629,57 +629,6 @@ function set_comma_thousand(amount, decimal)
   return formatted
 end
 
-function CHoldoutGameMode:Update_Health_Bar()
-		local higgest_ennemy_hp = 0
-		local biggest_ennemy = nil
-		for _,unit in pairs ( FindAllEntitiesByClassname("npc_dota_creature")) do
-			if unit:GetTeamNumber() == DOTA_TEAM_BADGUYS then
-				if unit:GetMaxHealth() > higgest_ennemy_hp and unit:IsAlive() then
-					biggest_ennemy = unit
-					higgest_ennemy_hp = unit:GetMaxHealth()
-				end
-			end
-		end
-		if self.Last_Target_HB ~= biggest_ennemy and biggest_ennemy ~= nil then
-			if self.Last_Target_HB ~= nil then
-				ParticleManager:DestroyParticle(self.Last_Target_HB.HB_particle, false)
-			end
-			self.Last_Target_HB = biggest_ennemy
-			GameRules.focusedUnit = self.Last_Target_HB
-			self.Last_Target_HB.HB_particle = ParticleManager:CreateParticle("particles/health_bar_trail.vpcf", PATTACH_ABSORIGIN_FOLLOW   , self.Last_Target_HB)
-            ParticleManager:SetParticleControl(self.Last_Target_HB.HB_particle, 0, self.Last_Target_HB:GetAbsOrigin())
-            ParticleManager:SetParticleControl(self.Last_Target_HB.HB_particle, 1, self.Last_Target_HB:GetAbsOrigin())
-		end
-		local ability
-		local abilityname = ""
-		if biggest_ennemy ~= nil and not biggest_ennemy:IsNull() and biggest_ennemy:IsAlive() then
-			if biggest_ennemy.elite then
-				for k,v in pairs(GameRules._Elites)	do
-					ability = biggest_ennemy:FindAbilityByName(k)
-					if ability then
-						abilityname = abilityname..v.." " -- add space for boss bar
-					end
-				end
-			end
-		end
-		Timers:CreateTimer(0.1,function()
-			if biggest_ennemy ~= nil and not biggest_ennemy:IsNull() and biggest_ennemy:IsAlive() then
-				if biggest_ennemy.have_shield == nil then biggest_ennemy.have_shield = false end
-				CustomGameEventManager:Send_ServerToAllClients("UpdateHealthBar", {Name = biggest_ennemy:GetUnitName(), elite =  abilityname, entIndex = biggest_ennemy:entindex()})
-			elseif biggest_ennemy ~= nil and not biggest_ennemy:IsNull() and biggest_ennemy:IsAlive() == false then 
-				CustomGameEventManager:Send_ServerToAllClients("UpdateHealthBar", {Name = biggest_ennemy:GetUnitName(), elite =  abilityname, entIndex = biggest_ennemy:entindex()})
-			elseif biggest_ennemy == nil then
-				CustomGameEventManager:Send_ServerToAllClients("UpdateHealthBar", {closebar = true})
-			end
-		end)
-
-	if GameRules:State_Get() >= DOTA_GAMERULES_STATE_POST_GAME then		-- Safe guard catching any state that may exist beyond DOTA_GAMERULES_STATE_POST_GAME
-		return nil
-	end
-	return 0.09
-
-end
-
 function CHoldoutGameMode:FilterModifiers( filterTable )
 	local parent_index = filterTable["entindex_parent_const"]
     local caster_index = filterTable["entindex_caster_const"]
@@ -733,7 +682,7 @@ function CHoldoutGameMode:FilterModifiers( filterTable )
 end
 
 function CHoldoutGameMode:FilterAbilityValues( filterTable )
-    local caster_index = filterTable["entindex_caster_const"]
+    local caster_index = filterTable["entindex_caster_const"]	
 	local ability_index = filterTable["entindex_ability_const"]
     if not caster_index or not ability_index then
         return true
@@ -745,6 +694,15 @@ function CHoldoutGameMode:FilterAbilityValues( filterTable )
 		require('lua_abilities/heroes/queenofpain')
 		filterTable = SadoMasochism(filterTable)
 	end
+	return true
+end
+
+function CHoldoutGameMode:FilterHeal( filterTable )
+	local healer_index = filterTable["entindex_healer_const"]
+	local heal = filterTable["heal"]	
+	if not healer_index or not heal then return true end
+	local healer = EntIndexToHScript( healer_index )
+	healer.statsDamageHealed = (healer.statsDamageHealed or 0) + heal
 	return true
 end
 
@@ -869,7 +827,10 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 	--- THREAT AND UI NO MORE DAMAGE MANIPULATION ---
 	local damage = filterTable["damage"]
 	local attacker = original_attacker
-	if attacker:IsCreature() then return true end
+	if attacker:IsCreature() then 
+		victim.statsDamageTaken = (attacker.statsDamageTaken or 0) + damage
+		return true 
+	end
 	if not victim:IsHero() and victim ~= attacker then
 		local ability
 		if inflictor then
@@ -891,6 +852,7 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 			if addedthreat > threatcheck then addedthreat = threatcheck end -- remove threat from overkill damage
 			attacker.threat = attacker.threat + addedthreat
 			attacker.lastHit = GameRules:GetGameTime()
+			attacker.statsDamageDealt = (attacker.statsDamageDealt or 0) + damage
 			PlayerResource:SortThreat()
 			local event_data =
 			{
@@ -1426,7 +1388,6 @@ end
 function CHoldoutGameMode:OnPlayerUIInitialized(keys)
 	local playerID = keys.PlayerID
 	local player = PlayerResource:GetPlayer(playerID)
-	print(keys.PlayerID, "UI Initialized")
 	Timers:CreateTimer(0.03, function()
 		if PlayerResource:GetSelectedHeroEntity(playerID) then
 			local hero = PlayerResource:GetSelectedHeroEntity(playerID)
@@ -1743,6 +1704,8 @@ function CHoldoutGameMode:SetHealthMarkers()
 end
 
 function CHoldoutGameMode:CheckMidas()
+	local playerData = {}
+	local players = {}
 	for _,unit in pairs ( HeroList:GetAllHeroes() ) do
 		if not unit:IsFakeHero() then
 			local midas_modifier = 0
@@ -1760,10 +1723,16 @@ function CHoldoutGameMode:CheckMidas()
 			if interest > midas_modifier*10*round then interest = midas_modifier*10*round end
 			local player = unit:GetPlayerOwner()
 			unit.midasGold = unit.midasGold or 0
+			
+			playerData[unit:GetPlayerID()] = {DT = unit.statsDamageTaken or 0, DD = unit.statsDamageDealt or 0, DH = unit.statsDamageHealed or 0}
 			if player then
-				CustomGameEventManager:Send_ServerToPlayer( player, "Update_Midas_gold", { gold = unit.midasGold, interest = interest} )
+				CustomGameEventManager:Send_ServerToPlayer( player, "player_update_gold", { gold = unit.midasGold, interest = interest} )
+				table.insert(players, player)
 			end
 		end
+	end
+	for _, player in ipairs(players) do
+		CustomGameEventManager:Send_ServerToPlayer( player, "player_update_stats", playerData )
 	end
 end
 
@@ -1819,6 +1788,7 @@ function CHoldoutGameMode:OnThink()
 				self._currentRound:Think()
 				if self._currentRound:IsFinished() then
 					self._currentRound:End()
+					CustomGameEventManager:Send_ServerToAllClients( "round_has_ended", {} )
 					self._currentRound = nil
 					-- Heal all players
 					self:_RefreshPlayers()
@@ -1858,7 +1828,7 @@ function CHoldoutGameMode:OnThink()
 							unit:SetGold(totalgold, true)
 							local player = unit:GetPlayerOwner()
 							if player then
-								CustomGameEventManager:Send_ServerToPlayer( player, "Update_Midas_gold", { gold = unit.midasGold, interest = interest} )
+								CustomGameEventManager:Send_ServerToPlayer( player, "player_update_gold", { gold = unit.midasGold, interest = interest} )
 							end
 						end
 					end
@@ -2080,6 +2050,13 @@ function CHoldoutGameMode:_ThinkPrepTime()
 		end
 		self._currentRound = self._vRounds[ self._nRoundNumber ]
 		self._currentRound:Begin()
+		for _,unit in pairs ( HeroList:GetAllHeroes() ) do
+			if not unit:IsFakeHero() then
+				unit.statsDamageDealt = 0
+				unit.statsDamageTaken = 0
+				unit.statsDamageHealed = 0
+			end
+		end
 		CustomGameEventManager:Send_ServerToAllClients( "updateQuestRound", { roundNumber = self._nRoundNumber, roundText = self._currentRound._szRoundQuestTitle } )
 		return
 	end

@@ -1,0 +1,94 @@
+
+.rootPanel
+{
+	flow-children: right;
+	vertical-align: top;
+	horizontal-align: left;
+	margin-top: 250px;
+	margin-left: -2px;
+}
+
+#rootStatsContainer
+{
+	flow-children: down;
+	
+	transition-timing-function: ease-in-out;
+	transition-property: transform;
+	transition-duration: 0.3s;
+}
+
+.mainStatsPanel
+{
+	vertical-align: top;
+	horizontal-align: right;
+	margin-top: 5px;
+	padding: 2px;
+	flow-children: right;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #25282a88 ), color-stop( .6, #25282acc), color-stop( .8, #25282a88), to( #00000022 ) );
+}
+
+.rootStatsPanel
+{
+    vertical-align: top;
+	horizontal-align: left;
+	margin-top: 5px;
+	padding: 2px;
+	flow-children: down;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #25282a88 ), color-stop( .6, #25282acc), color-stop( .8, #25282a88), to( #00000022 ) );
+}
+
+.statsHolder
+{
+	flow-children: down;
+}
+
+.genericHolder
+{
+	flow-children: down;
+}
+
+.statsHeader
+{
+	color: #FFFFFF;
+	min-width: 250px;
+	font-weight: thin;
+	font-size: 22px;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	text-align: center;
+	horizontal-align: center;
+	vertical-align: center;
+	text-shadow: 1px 1px 2px 2 #000000;
+	padding: 3px;
+	padding-left: 10px;
+	padding-right: 10px;
+	font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
+	text-decoration: underline;
+}
+
+.statsText
+{
+	color: #FFFFFF;
+	font-weight: thin;
+	font-size: 18px;
+	letter-spacing: 2px;
+	text-align: center;
+	horizontal-align: center;
+	vertical-align: center;
+	text-shadow: 1px 1px 2px 2 #000000;
+	font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
+}
+
+.CloseImage
+{
+	vertical-align: center;
+	horizontal-align: right;
+	width: 35px;
+	height: 35px;
+	wash-color: #464646;
+}
+
+.SetHidden
+{
+	visibility: collapse;
+}

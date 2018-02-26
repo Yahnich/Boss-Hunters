@@ -880,19 +880,6 @@ end
 
 function CDOTA_BaseNPC:GetThreat()
 	self.threat = self.threat or 0
-	
-	local player = PlayerResource:GetPlayer(self:GetOwner():GetPlayerID())
-	PlayerResource:SortThreat()
-	local event_data =
-	{
-		threat = self.threat,
-		lastHit = self.lastHit,
-		aggro = self.aggro
-	}
-	if player then
-		CustomGameEventManager:Send_ServerToPlayer( player, "Update_threat", event_data )
-	end
-	
 	return self.threat
 end
 
@@ -900,34 +887,37 @@ function CDOTA_BaseNPC:SetThreat(val)
 	self.lastHit = GameRules:GetGameTime()
 	self.threat = val
 	
-	local player = PlayerResource:GetPlayer(self:GetOwner():GetPlayerID())
-	PlayerResource:SortThreat()
-	local event_data =
-	{
-		threat = self.threat,
-		lastHit = self.lastHit,
-		aggro = self.aggro
-	}
-	if player then
-		CustomGameEventManager:Send_ServerToPlayer( player, "Update_threat", event_data )
+	if not self:IsFakeHero() then 
+		local player = PlayerResource:GetPlayer(self:GetOwner():GetPlayerID())
+		PlayerResource:SortThreat()
+		local event_data =
+		{
+			threat = self.threat,
+			lastHit = self.lastHit,
+			aggro = self.aggro
+		}
+		if player then
+			CustomGameEventManager:Send_ServerToPlayer( player, "Update_threat", event_data )
+		end
 	end
 end
 
 function CDOTA_BaseNPC:ModifyThreat(val)
 	self.lastHit = GameRules:GetGameTime()
 	self.threat = (self.threat or 0) + val
-		
-	local player = PlayerResource:GetPlayer(self:GetOwner():GetPlayerID())
+	if not self:IsFakeHero() then 
+		local player = PlayerResource:GetPlayer(self:GetOwner():GetPlayerID())
 
-	PlayerResource:SortThreat()
-	local event_data =
-	{
-		threat = self.threat,
-		lastHit = self.lastHit,
-		aggro = self.aggro
-	}
-	if player then
-		CustomGameEventManager:Send_ServerToPlayer( player, "Update_threat", event_data )
+		PlayerResource:SortThreat()
+		local event_data =
+		{
+			threat = self.threat,
+			lastHit = self.lastHit,
+			aggro = self.aggro
+		}
+		if player then
+			CustomGameEventManager:Send_ServerToPlayer( player, "Update_threat", event_data )
+		end
 	end
 end
 
@@ -1442,6 +1432,7 @@ function CDOTA_BaseNPC:HealEvent(amount, sourceAb, healer) -- for future shit
 	end
 	SendOverheadEventMessage(self, OVERHEAD_ALERT_HEAL, self, flAmount, healer)
 	self:Heal(flAmount, sourceAb)
+	return flAmount
 end
 
 function CDOTA_BaseNPC:SwapAbilityIndexes(index, swapname)
