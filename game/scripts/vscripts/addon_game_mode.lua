@@ -827,7 +827,7 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 	--- THREAT AND UI NO MORE DAMAGE MANIPULATION ---
 	local damage = filterTable["damage"]
 	local attacker = original_attacker
-	if attacker:IsCreature() then 
+	if attacker:IsCreature() then
 		victim.statsDamageTaken = (victim.statsDamageTaken or 0) + math.min(victim:GetHealth(), damage)
 		return true 
 	end
