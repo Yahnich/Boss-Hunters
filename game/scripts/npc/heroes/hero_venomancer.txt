@@ -113,7 +113,6 @@
 			{
 				"var_type"					"FIELD_FLOAT"
 				"duration"					"10.0"
-				"LinkedSpecialBonus"		"special_bonus_unique_venomancer_2"
 			}
 			"02"
 			{
@@ -265,8 +264,9 @@
 				"ward_damage"					"100 200 300 400 800 1200 2400"
 				"LinkedSpecialBonus"			"special_bonus_unique_venomancer_plague_ward_2"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
+				"CalculateSpellDamageTooltip"	"0"
 			}
-			"03"
+			"04"
 			{
 				"var_type"						"FIELD_INTEGER"
 				"spawn_count"					"1"

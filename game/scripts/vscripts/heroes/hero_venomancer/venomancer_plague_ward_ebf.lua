@@ -25,6 +25,7 @@ function venomancer_plague_ward_ebf:CreateWard(position)
 	ward:SetModelScale(0.6 + self:GetLevel()/10)
 	ward:AddNewModifier(self:GetCaster(), self, "modifier_venomancer_plague_ward_handler", {})
 	ward:SetAverageBaseDamage(damage, 15)
+	ward:FindAbilityByName("venomancer_poison_sting_ebf"):SetLevel( caster:FindAbilityByName("venomancer_poison_sting_ebf"):GetLevel() )
 	ward:MoveToPositionAggressive(ward:GetAbsOrigin())
 end
 
