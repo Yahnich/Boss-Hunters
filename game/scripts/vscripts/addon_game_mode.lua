@@ -1486,8 +1486,8 @@ function CHoldoutGameMode:OnGameRulesStateChange()
 	elseif nNewState == 8 then
 		CustomGameEventManager:Send_ServerToAllClients( "updateQuestLife", { lives = GameRules._life, maxLives = GameRules._maxLives } )
 		self._flPrepTimeEnd = GameRules:GetGameTime() + self._flPrepTimeBetweenRounds
-		Say(nil, "You can support the development of Epic Boss Fight by becoming a patron at\nhttps://www.patreon.com/houthakker", true)
-		Timers:CreateTimer(3.5, function() Say(nil, "You can also support through donations at https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DVVMPE8L27YAG", true) end)
+		Say(nil, "You can support the development of Epic Boss Fight by becoming a patron at\nhttps://www.patreon.com/houthakker", false)
+		Timers:CreateTimer(6, function() Say(nil, "You can also support through donations at https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DVVMPE8L27YAG", false) end)
 	end
 end
 
@@ -2081,9 +2081,6 @@ function CHoldoutGameMode:OnNPCSpawned( event )
 		spawnedUnit:ModifyAgility( owner:GetAgility() - spawnedUnit:GetAgility() )
 		spawnedUnit:ModifyStrength( owner:GetStrength() - spawnedUnit:GetStrength() )
 		spawnedUnit:ModifyIntellect( owner:GetIntellect() - spawnedUnit:GetIntellect() )
-	end
-	if spawnedUnit:GetName() == "npc_dota_venomancer_plagueward" then
-		spawnedUnit:FindAbilityByName("venomancer_poison_sting_ebf"):SetLevel( spawnedUnit:GetOwnerEntity():FindAbilityByName("venomancer_poison_sting_ebf"):GetLevel() )
 	end
 	if spawnedUnit:IsCourier() then
 		spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_invulnerable", {})
