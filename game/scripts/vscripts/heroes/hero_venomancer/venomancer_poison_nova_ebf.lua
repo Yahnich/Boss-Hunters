@@ -23,6 +23,15 @@ function venomancer_poison_nova_ebf:OnOwnerDied()
 	if self:GetCaster():HasTalent("special_bonus_unique_venomancer_poison_nova_1") then self:OnSpellStart() end
 end
 
+function venomancer_poison_nova_ebf:OnAbilityPhaseStart()
+	self.warmUp = ParticleManager:CreateParticle( "particles/units/heroes/hero_venomancer/venomancer_poison_nova_cast.vpcf", PATTACH_POINT_FOLLOW, self:GetCaster() )
+	return true
+end
+
+function venomancer_poison_nova_ebf:OnAbilityPhaseInterrupted()
+	ParticleManager:ClearParticle(self.warmUp)
+end
+
 function venomancer_poison_nova_ebf:OnSpellStart()
 	local caster = self:GetCaster()
 	local origin = self:GetCursorTarget() or self:GetCaster()
@@ -39,9 +48,7 @@ function venomancer_poison_nova_ebf:OnSpellStart()
 	end
 	EmitSoundOn( "Hero_Venomancer.PoisonNova", self:GetCaster() )
 	
-	
-	local novaCast = ParticleManager:CreateParticle( "particles/units/heroes/hero_venomancer/venomancer_poison_nova_cast.vpcf", PATTACH_POINT_FOLLOW, origin )
-	ParticleManager:ReleaseParticleIndex( novaCast )
+	ParticleManager:ClearParticle(self.warmUp)
 	
 	local novaCloud = ParticleManager:CreateParticle( "particles/units/heroes/hero_venomancer/venomancer_poison_nova.vpcf", PATTACH_ABSORIGIN_FOLLOW, origin )
 		ParticleManager:SetParticleControlEnt(novaCloud, 0, origin, PATTACH_POINT_FOLLOW, "attach_origin", origin:GetAbsOrigin(), true)

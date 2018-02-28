@@ -1151,24 +1151,19 @@ function CDOTABaseAbility:GetTalentSpecialValueFor(value)
 	local valname = "value"
 	local multiply = false
 	local kv = self:GetAbilityKeyValues()
-	print(value)
 	for k,v in pairs(kv) do -- trawl through keyvalues
 		if k == "AbilitySpecial" then
 			for l,m in pairs(v) do
-				print(l, m, m[value])
 				if m[value] then
 					talentName = m["LinkedSpecialBonus"]
-					print(talentName)
 					if m["LinkedSpecialBonusField"] then valname = m["LinkedSpecialBonusField"] end
 					if m["LinkedSpecialBonusOperation"] and m["LinkedSpecialBonusOperation"] == "SPECIAL_BONUS_MULTIPLY" then multiply = true end
-					print(valname, multiply)
 				end
 			end
 		end
 	end
 	if talentName then 
 		local talent = self:GetCaster():FindAbilityByName(talentName)
-		print(talent, talent:GetLevel(), "found")
 		if talent and talent:GetLevel() > 0 then 
 			if multiply then
 				base = base * talent:GetSpecialValueFor(valname) 

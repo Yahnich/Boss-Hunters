@@ -1,0 +1,1 @@
+puck_waning_rift_ebf = class({})

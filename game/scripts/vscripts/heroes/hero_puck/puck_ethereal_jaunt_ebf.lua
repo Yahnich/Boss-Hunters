@@ -1,0 +1,1 @@
+puck_ethereal_jaunt_ebf = class({})
