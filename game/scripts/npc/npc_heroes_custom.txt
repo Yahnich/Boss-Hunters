@@ -861,19 +861,19 @@
 	"npc_dota_hero_obsidian_destroyer_ebf"
 	{
 		"override_hero"			"npc_dota_hero_obsidian_destroyer"
-		"Ability1"				"obsidian_destroyer_arcane_orb_ebf"
-		"Ability2"				"obsidian_destroyer_astral_imprisonment_ebf"
-		"Ability3"				"obsidian_destroyer_essence_aura_ebf"
-		"Ability6"				"obsidian_destroyer_sanitys_eclipse_ebf"					// Ability 2
+		"Ability1"				"obsidian_destroyer_arcane_missile"
+		"Ability2"				"obsidian_destroyer_astral_isolation"
+		"Ability3"				"obsidian_destroyer_avatar_of_power"
+		"Ability6"				"obsidian_destroyer_celestial_obliteration"					// Ability 2
 		
-		"Ability10"		"special_bonus_hp_200"
-		"Ability11"		"special_bonus_attack_speed_20"
-		"Ability12"		"special_bonus_movement_speed_40"
-		"Ability13"		"special_bonus_unique_outworld_devourer_2"
-		"Ability14"		"special_bonus_strength_20"
-		"Ability15"		"special_bonus_unique_outworld_devourer_3"
-		"Ability16"		"special_bonus_unique_outworld_devourer"
-		"Ability17"		"special_bonus_spell_lifesteal_30"
+		"Ability10"				"special_bonus_unique_obsidian_destroyer_arcane_missile_1"
+		"Ability11"				"special_bonus_unique_obsidian_destroyer_arcane_missile_2"
+		"Ability12"				"special_bonus_unique_obsidian_destroyer_astral_isolation_1"
+		"Ability13"				"special_bonus_unique_obsidian_destroyer_astral_isolation_2"
+		"Ability14"				"special_bonus_unique_obsidian_destroyer_avatar_of_power_1"
+		"Ability15"				"special_bonus_unique_obsidian_destroyer_avatar_of_power_2"
+		"Ability16"				"special_bonus_unique_obsidian_destroyer_celestial_obliteration_1"
+		"Ability17"				"special_bonus_unique_obsidian_destroyer_celestial_obliteration_2"
 		
 	}
 	"npc_dota_hero_ogre_magi"
