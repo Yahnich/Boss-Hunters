@@ -30,7 +30,7 @@ if IsServer() then
 		self:GetAbility():StartDelayedCooldown()
 	end
 	
-	function modifier_bristleback_yer_mum:OnRemoved()
+	function modifier_bristleback_yer_mum:OnDestroy()
 		self:GetAbility():EndDelayedCooldown()
 	end
 end

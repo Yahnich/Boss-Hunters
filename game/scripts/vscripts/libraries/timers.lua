@@ -88,9 +88,9 @@ function Timers:Think()
 
   -- Track game time, since the dt passed in to think is actually wall-clock time not simulation time.
   local now = GameRules:GetGameTime()
-
+  
   -- Process timers
-  for k,v in pairs(Timers.timers) do
+  for k,v in pairs(self.timers) do
     local bUseGameTime = true
     if v.useGameTime ~= nil and v.useGameTime == false then
       bUseGameTime = false
@@ -99,7 +99,6 @@ function Timers:Think()
     if v.useOldStyle ~= nil and v.useOldStyle == true then
       bOldStyle = true
     end
-
     local now = GameRules:GetGameTime()
     if not bUseGameTime then
       now = Time()
@@ -110,9 +109,6 @@ function Timers:Think()
     end
     -- Check if the timer has finished
     if now >= v.endTime then
-      -- Remove from timers list
-      Timers.timers[k] = nil
-      
       -- Run the callback
       local status, nextCall = pcall(v.callback, GameRules:GetGameModeEntity(), v)
 
@@ -121,25 +117,25 @@ function Timers:Think()
         -- Check if it needs to loop
         if nextCall then
           -- Change its end time
-
           if bOldStyle then
             v.endTime = v.endTime + nextCall - now
           else
-            v.endTime = v.endTime + nextCall
+            v.endTime = now + nextCall
           end
 
-          Timers.timers[k] = v
+          self.timers[k] = v
+		else
+		  self.timers[k] = nil
         end
 
         -- Update timer data
         --self:UpdateTimerData()
       else
         -- Nope, handle the error
-        Timers:HandleEventError('Timer', k, nextCall)
+        self:HandleEventError('Timer', k, nextCall)
       end
     end
   end
-
   return TIMERS_THINK
 end
 
@@ -163,15 +159,16 @@ function Timers:HandleEventError(name, event, err)
 end
 
 function Timers:CreateTimer(name, args)
+  local id = name
   if type(name) == "function" then
     args = {callback = name}
-    name = DoUniqueString("timer")
+    id = DoUniqueString("timer")
   elseif type(name) == "table" then
     args = name
-    name = DoUniqueString("timer")
+    id = DoUniqueString("timer")
   elseif type(name) == "number" then
     args = {endTime = name, callback = args}
-    name = DoUniqueString("timer")
+    id = DoUniqueString("timer")
   end
   if not args.callback then
     print("Invalid timer created: "..name)
@@ -190,27 +187,27 @@ function Timers:CreateTimer(name, args)
     args.endTime = now + args.endTime
   end
 
-  Timers.timers[name] = args 
+  self.timers[id] = args 
 
-  return name
+  return id
 end
 
 function Timers:RemoveTimer(name)
-  Timers.timers[name] = nil
+  self.timers[name] = nil
 end
 
 function Timers:RemoveTimers(killAll)
   local timers = {}
 
   if not killAll then
-    for k,v in pairs(Timers.timers) do
+    for k,v in pairs(self.timers) do
       if v.persist then
         timers[k] = v
       end
     end
   end
 
-  Timers.timers = timers
+  self.timers = timers
 end
 
 

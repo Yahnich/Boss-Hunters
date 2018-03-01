@@ -44,6 +44,7 @@
 #base "heroes/hero_templar_assassin.txt"
 #base "heroes/hero_tidehunter.txt"
 #base "heroes/hero_venomancer.txt"
+#base "heroes/hero_puck.txt"
 
 "DOTAAbilities"
 {

@@ -35,6 +35,8 @@ LinkLuaModifier( "modifier_in_water", "libraries/modifiers/modifier_in_water.lua
 LinkLuaModifier( "modifier_healing_disable", "libraries/modifiers/modifier_healing_disable.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_summon_handler", "libraries/modifiers/modifier_summon_handler.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_stunned_generic", "libraries/modifiers/modifier_stunned_generic.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier( "modifier_silence_generic", "libraries/modifiers/modifier_silence_generic.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier( "modifier_disarm_generic", "libraries/modifiers/modifier_disarm_generic.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_daze_generic", "libraries/modifiers/modifier_daze_generic.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_generic_barrier", "libraries/modifiers/modifier_generic_barrier.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_taunt_generic", "libraries/modifiers/modifier_taunt_generic.lua", LUA_MODIFIER_MOTION_NONE)
@@ -52,6 +54,8 @@ LinkLuaModifier( "modifier_tombstone_respawn_immunity", "libraries/modifiers/mod
 function Precache( context )
 	PrecacheResource( "particle", "particles/range_ability_line.vpcf", context )
 	PrecacheResource( "particle", "particles/generic_gameplay/generic_stunned.vpcf", context )
+	PrecacheResource( "particle", "particles/generic_gameplay/generic_silence.vpcf", context )
+	PrecacheResource( "particle", "particles/generic_gameplay/generic_disarm.vpcf", context )
 	PrecacheResource( "particle", "particles/generic_dazed_side.vpcf", context )
 	PrecacheResource( "particle", "particles/generic_gameplay/generic_slowed_cold.vpcf", context )
 	PrecacheResource( "particle", "particles/brd_taunt/brd_taunt_mark_base.vpcf", context )
@@ -667,6 +671,8 @@ function CHoldoutGameMode:FilterModifiers( filterTable )
 	end
 	
 	Timers:CreateTimer(0,function()
+		if not parent or parent:IsNull() then return end
+		if not caster or caster:IsNull() then return end
 		local modifier = parent:FindModifierByNameAndCaster(name, caster)
 		if modifier and not modifier:IsNull() then
 			if modifier.IsDebuff or parent:GetTeam() ~= caster:GetTeam() and (parentDebuffIncrease > 1 or casterDebuffIncrease > 1) then
@@ -1011,6 +1017,7 @@ function CHoldoutGameMode:OnAbilityUsed(event)
 		if abilityused:GetDuration() > 0 then
 			local duration = abilityused:GetDuration()
 			if abilityname == "night_stalker_crippling_fear" and not GameRules:IsDaytime() then duration = abilityused:GetTalentSpecialValueFor("duration_night") end
+			print(abilityUsed, "this?")
 			abilityused:StartDelayedCooldown(duration)
 		else
 			abilityused:StartCooldown(abilityused:GetCooldown(-1))
@@ -1266,6 +1273,11 @@ function CHoldoutGameMode:OnHeroPick (event)
 			ParticleManager:FireParticle("particles/roles/dev/vip_particle.vpcf", PATTACH_POINT_FOLLOW, hero)
 		end
 		-- hero:SetGold(0 , true)
+		if PlayerResource:HasRandomed( ID ) then
+			local gold = hero:GetGold()
+			hero:SetGold( 900, true )
+		end
+		
 		hero:SetDayTimeVisionRange(hero:GetDayTimeVisionRange() * 2)
 		hero:SetNightTimeVisionRange(hero:GetNightTimeVisionRange() * 1.5)
 
@@ -1486,8 +1498,8 @@ function CHoldoutGameMode:OnGameRulesStateChange()
 	elseif nNewState == 8 then
 		CustomGameEventManager:Send_ServerToAllClients( "updateQuestLife", { lives = GameRules._life, maxLives = GameRules._maxLives } )
 		self._flPrepTimeEnd = GameRules:GetGameTime() + self._flPrepTimeBetweenRounds
-		Say(nil, "You can support the development of Epic Boss Fight by becoming a patron at\nhttps://www.patreon.com/houthakker", false)
-		Timers:CreateTimer(6, function() Say(nil, "You can also support through donations at https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DVVMPE8L27YAG", false) end)
+		-- Say(nil, "You can support the development of Epic Boss Fight by becoming a patron at\nhttps://www.patreon.com/houthakker", false)
+		-- Timers:CreateTimer(6, function() Say(nil, "You can also support through donations at https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DVVMPE8L27YAG", false) end)
 	end
 end
 
@@ -1676,6 +1688,13 @@ function CHoldoutGameMode:CheckHP()
 			end
 		end
 	end
+	if not GameRules:IsGamePaused() and GameRules:State_Get() >= 7 and GameRules:State_Get() <= 8 then
+		for _,unit in ipairs ( FindUnitsInRadius(DOTA_TEAM_GOODGUYS, Vector(0,0), nil, -1, DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, FIND_ANY_ORDER, false) ) do
+			if (not unit:IsFakeHero()) or unit:IsCreature() then
+				MapHandler:CheckAndResolvePositions(unit)
+			end
+		end
+	end
 	if not GameRules:IsGamePaused() then
 		for _, hero in ipairs ( HeroList:GetAllHeroes() ) do
 			if not hero:IsFakeHero() then
@@ -1743,17 +1762,6 @@ function CHoldoutGameMode:CheckMidas()
 		CustomGameEventManager:Send_ServerToPlayer( player, "player_update_stats", playerData )
 	end
 end
-
-Timers:CreateTimer(0, function()
-	if not GameRules:IsGamePaused() and GameRules:State_Get() >= 7 and GameRules:State_Get() <= 8 then
-		for _,unit in ipairs ( FindUnitsInRadius(DOTA_TEAM_GOODGUYS, Vector(0,0), nil, -1, DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, FIND_ANY_ORDER, false) ) do
-			if (not unit:IsFakeHero()) or unit:IsCreature() then
-				MapHandler:CheckAndResolvePositions(unit)
-			end
-		end
-	end
-	return 0
-end)
 
 BARRIER_DEGRADE_RATE = 0.995
 function CHoldoutGameMode:SendErrorReport(err)

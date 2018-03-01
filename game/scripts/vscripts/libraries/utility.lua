@@ -1290,17 +1290,15 @@ function CDOTABaseAbility:SetCooldown(fCD)
 end
 
 function CDOTABaseAbility:StartDelayedCooldown(flDelay, newCD)
-	if self.delayedCooldownTimer then
-		self:EndDelayedCooldown()
-	end
+	self:EndDelayedCooldown()
 	self:EndCooldown()
 	self:UseResources(false, false, true)
 	local cd = newCD or self:GetCooldownTimeRemaining()
 	local ability = self
-	self.delayedCooldownTimer = Timers:CreateTimer(0, function()
+	self.delayedCooldownTimer = Timers:CreateTimer(FrameTime(), function()
 		ability:EndCooldown()
 		ability:StartCooldown(cd)
-		return 0
+		return FrameTime()
 	end)
 	if flDelay then
 		Timers:CreateTimer(flDelay, function() ability:EndDelayedCooldown() end)
@@ -1646,7 +1644,7 @@ function CDOTA_Modifier_Lua:AddIndependentStack(duration, limit)
 			self:IncrementStackCount()
 		else
 			self:SetStackCount( limit )
-			Timers:RemoveTimers(self.stackTimers[1])
+			Timers:RemoveTimer(self.stackTimers[1])
 			table.remove(self.stackTimers, 1)
 		end
 	else
@@ -2204,8 +2202,12 @@ function CDOTA_BaseNPC:RemoveParalyze()
 	end
 end
 
-function CDOTA_BaseNPC:Silence(hAbility, hCaster, duration)
-	self:AddNewModifier(hCaster, hAbility, "modifier_silence", {Duration = duration})
+function CDOTA_BaseNPC:Disarm(hAbility, hCaster, duration, bDelay)
+	self:AddNewModifier(hCaster, hAbility, "modifier_disarm_generic", {Duration = duration, delay = bDelay})
+end
+
+function CDOTA_BaseNPC:Silence(hAbility, hCaster, duration, bDelay)
+	self:AddNewModifier(hCaster, hAbility, "modifier_silence_generic", {Duration = duration, delay = bDelay})
 end
 
 function CDOTA_BaseNPC:IsSilenced()

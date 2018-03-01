@@ -8,12 +8,16 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_puck_puck_illusory_orb_ebf"
+		"ScriptFile"					"heroes/hero_puck/puck_illusory_orb_ebf"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"				"1"
 		"AbilitySound"					"Hero_Puck.Illusory_Orb"
+		"AbilityTextureName"			"puck_illusory_orb"
+		"MaxLevel"						"7"
+		"RequiredLevel"					"5"
+		"LevelsBetweenUpgrades"			"5"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -28,6 +32,14 @@
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"				"25 50 75 125 250 500 1000"
+		
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_puck/puck_illusory_orb.vpcf"
+			"particle"					"particles/econ/items/puck/puck_alliance_set/puck_illusory_orb_explode_aproset.vpcf"
+			"particle"					"particles/heroes/hero_puck/puck_illusory_orb_talentalliance_explosion.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_puck.vsndevts"
+		}
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -53,7 +65,7 @@
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"orb_vision"				"450"
+				"orb_vision"				"900"
 			}
 			"05"
 			{
@@ -72,14 +84,17 @@
 	//=================================================================================================================
 	// Puck: Ethereal Jaunt
 	//=================================================================================================================
-	"puck_ethereal_jaunt"
+	"puck_ethereal_jaunt_ebf"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_puck_puck_illusory_orb_ebf"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+		"ScriptFile"					"heroes/hero_puck/puck_ethereal_jaunt_ebf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
 		"AbilitySound"					"Hero_Puck.EtherealJaunt"
+		"AbilityTextureName"			"puck_ethereal_jaunt"
+		"MaxLevel"						"1"
+		"InnateAbility"					"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -90,18 +105,22 @@
 	//=================================================================================================================
 	// Puck: Waning Rift
 	//=================================================================================================================
-	"puck_waning_rift"
+	"puck_waning_rift_ebf"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_puck_puck_illusory_orb_ebf"
+		"ScriptFile"					"heroes/hero_puck/puck_waning_rift_ebf"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"FightRecapLevel"				"1"
 		"AbilitySound"					"Hero_Puck.Waning_Rift"
+		"AbilityTextureName"			"puck_waning_rift"
+		"MaxLevel"						"7"
+		"RequiredLevel"					"5"
+		"LevelsBetweenUpgrades"			"5"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -109,12 +128,19 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"16 15 14 13"
+		"AbilityCooldown"				"7"
 
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"100 110 120 130"		
+		"AbilityManaCost"				"25 50 75 125 250 500 1000"	
+		
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_puck/puck_waning_rift.vpcf"
+			"particle"					"particles/heroes/hero_puck/puck_waning_rift_debuff_slow.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_puck.vsndevts"
+		}
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -123,18 +149,17 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"radius"					"400 400 400 400"
+				"radius"					"550"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"silence_duration"			"0.75 1.5 2.25 3.0"
+				"silence_duration"			"1.0 1.5 2.0 2.5 3.0 3.5 4.0"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"			"100 160 220 280"
-				"LinkedSpecialBonus"		"special_bonus_unique_puck_4"
+				"damage"					"800 1600 3200 6400 12800 25600 51200"
 			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_2"
@@ -143,27 +168,38 @@
 	//=================================================================================================================
 	// Puck: Phase Shift
 	//=================================================================================================================
-	"puck_phase_shift"
+	"puck_phase_shift_ebf"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_puck_puck_illusory_orb_ebf"
+		"ScriptFile"					"heroes/hero_puck/puck_phase_shift_ebf"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_MOVEMENT | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
 		"AbilitySound"					"Hero_Puck.Phase_Shift"
+		"AbilityTextureName"			"puck_phase_shift"
+		"MaxLevel"						"7"
+		"RequiredLevel"					"5"
+		"LevelsBetweenUpgrades"			"5"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastPoint"				"0 0 0 0"
-		"AbilityChannelTime"			"0.75 1.50 2.25 3.25"
+		"AbilityChannelTime"			"0.5 1.0 1.50 2.0 2.5 3.0 3.5"
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"6"
+		"AbilityCooldown"				"2"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"				"0 0 0 0"
+		
+		"precache"
+		{
+			"particle"					"particles/status_fx/status_effect_phase_shift.vpcf"
+			"particle"					"particles/units/heroes/hero_puck/puck_phase_shift.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_puck.vsndevts"
+		}
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -172,7 +208,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"duration"					"0.75 1.50 2.25 3.25"
+				"duration"					"0.5 1.0 1.50 2.0 2.5 3.0 3.5"
 			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
@@ -186,7 +222,7 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_puck_puck_illusory_orb_ebf"
+		"ScriptFile"					"heroes/hero_puck/puck_reverie_snap"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
@@ -195,12 +231,13 @@
 		"FightRecapLevel"				"2"
 		"HasScepterUpgrade"				"1"
 		"AbilitySound"					"Hero_Puck.Dream_Coil"
+		"AbilityTextureName"			"puck_dream_coil"
+		"MaxLevel"						"7"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"750"
 		"AbilityCastPoint"				"0.1 0.1 0.1"
-		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_5"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_5"
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -213,6 +250,15 @@
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityModifierSupportValue"	"0.5"	// Does two modifiers 
+		
+		"precache"
+		{
+			"particle"						"particles/reverie_snap_pull.vpcf"
+			"particle"						"particles/reverie_snap_pull_rope.vpcf"
+			"particle"						"particles/units/heroes/hero_puck/puck_dreamcoil_tether.vpcf"
+			"soundfile"						"soundevents/game_sounds_heroes/game_sounds_puck.vsndevts"
+			"soundfile"						"soundevents/game_sounds_heroes/game_sounds_dark_seer.vsndevts"
+		}
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -226,42 +272,42 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"coil_break_radius"			"600 600 600"
+				"coil_init_damage_tooltip"	"1500 3000 6000 12000 24000 48000 96000"
 			}
 			"03"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"stun_duration"				"0.5"
+				"var_type"					"FIELD_INTEGER"
+				"coil_break_radius"			"750"
 			}
 			"04"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"coil_stun_duration"		"1.5 2.25 3.0"
+				"stun_duration"				"1.5"
 			}
 			"05"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"coil_break_damage"			"300 400 500"
+				"coil_break_damage"			"2500 5000 10000 20000 40000 80000 160000"
 			}
 			"06"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"coil_radius"				"375 375 375"
-			}			
+				"var_type"					"FIELD_FLOAT"
+				"coil_stun_duration"		"1.75 2.0 2.25 2.50 2.75 3.0 3.25"
+			}
 			"07"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"coil_duration_scepter"		"8"
-			}
+				"var_type"					"FIELD_INTEGER"
+				"coil_radius"				"600"
+			}						
 			"08"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"coil_break_damage_scepter"	"400 550 700"
+				"var_type"					"FIELD_FLOAT"
+				"suck_duration"				"1.0"
 			}
 			"09"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"coil_stun_duration_scepter"		"1.5 3 4.5"
+				"suck_radius"				"4000"
 			}
 		}
 	}
@@ -342,17 +388,17 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"15"
+				"value"					"20"
 			}
-			"01"
+			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"slow"					"25"
+				"slow"					"-20"
 			}
-			"01"
+			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"duration"				"5"
+				"duration"				"6"
 			}
 		}
 	}
@@ -371,7 +417,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"5"
+				"value"					"15"
 			}
 		}
 	}
