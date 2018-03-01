@@ -1,0 +1,514 @@
+"DOTAAbilities"
+{
+	"sand_burrow"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_OPTIONAL_POINT"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"sandking_burrowstrike"
+		"ScriptFile"					"heroes/hero_sand/sand_burrow.lua"
+		"LevelsBetweenUpgrades"			"5"
+		"MaxLevel"						"7"
+		"RequiredLevel"					"5"
+
+		"PiercesDisableReduction"		"1"
+		
+		"precache"
+		{
+			"particle"	"particles/units/heroes/hero_sandking/sandking_burrowstrike.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_sandking.vsndevts"
+		}
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.2"
+		"AbilityCastAnimation"			"ACT_DOTA_SAND_KING_BURROW_IN"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"11 10 9 8 7 6 5"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"140"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"damage"			"1400 2800 5600 11200 16800 22400 44800"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"duration"			"2.0"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"range"							"350 450 550 650 750 850 950"
+				"LinkedSpecialBonus"			"special_bonus_unique_sand_burrow_2"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"width"				"250"
+			}
+		}
+	}
+	"sand_caustics"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_sand/sand_caustics.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
+		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"sandking_caustic_finale"
+		"InnateAbility" 				"1"
+		"MaxLevel"						"1"
+		"HasScepterUpgrade"				"1"
+		
+		"precache"
+		{
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_sandking.vsndevts" //Ability.SandKing_CausticFinale
+			"particle"			"particles/units/heroes/hero_sandking/sandking_caustic_finale_debuff.vpcf"
+			"particle"  		"particles/units/heroes/hero_sandking/sandking_caustic_finale_explode.vpcf"
+		}
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"350"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"10"
+				"CalculateSpellDamageTooltip"	"0"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"2"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"2"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"scepter_damage"			"20"
+				"CalculateSpellDamageTooltip"	"0"
+			}
+		}
+	}
+	"sand_claw_impact"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_OPTIONAL_POINT"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"custom/sand_claw_impact"
+		"ScriptFile"					"heroes/hero_sand/sand_claw_impact.lua"
+		"LevelsBetweenUpgrades"			"5"
+		"MaxLevel"						"7"
+		"RequiredLevel"					"5"
+
+		"PiercesDisableReduction"		"1"
+		
+		"precache"
+		{
+			"particle"	"particles/units/heroes/hero_lion/lion_spell_impale_hit_spikes.vpcf"
+			"particle"  "particles/units/heroes/hero_lion/lion_spell_impale.vpcf"
+
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_sandking.vsndevts"
+			"soundfile"	"soundevents/game_sounds_custom_hero.vsndevts"
+		}
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"500"
+		"AbilityCastPoint"				"0.4"
+		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"12.0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"25 50 75 125 250 500 1000"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"1400 2800 5600 11200 16800 22400 44800"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"2.0"
+			}
+		}
+	}
+	"sand_sandstorm"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"                     "ability_lua"
+		"ScriptFile"                    "heroes/hero_sand/sand_sandstorm.lua"
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastAnimation"          "ACT_DOTA_SPAWN" 
+		"LevelsBetweenUpgrades"			"6"
+		"MaxLevel"						"7"
+		"RequiredLevel"					"6"
+		"AbilityTextureName"			"sandking_sand_storm"
+
+		// Time     
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"               "5"
+		"AbilityChannelTime"            "15"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"               "60 50 40 30 20 10 0"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"                      "FIELD_INTEGER"
+				"sandstorm_damage"     			"500 1000 2000 4000 8000 16000 32000"
+			}
+			"02"
+			{
+				"var_type"                      "FIELD_FLOAT"
+				"sandstorm_duration"     		"15"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"sandstorm_base_radius"			"400"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"sandstorm_radius_grow"			"10 20 30 40 50 60 70"
+			}
+			"05"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"sandstorm_think"				"0.5"
+			}
+			"06"
+			{
+				"var_type"                      "FIELD_INTEGER"
+				"tornado_damage"     			"125 250 500 1000 2000 4000 8000"
+			}
+			"07"
+			{
+				"var_type"                      "FIELD_FLOAT"
+				"tornado_lifetime"     			"10.0"
+			}
+			"08"
+			{
+				"var_type"                      "FIELD_INTEGER"
+				"tornado_radius"     			"500"
+			}
+			"09"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"tornado_rate"					"1.0"
+			}
+			"10"
+			{
+				"var_type"                      "FIELD_INTEGER"
+				"tornado_search_radius"     	"2000"
+			}
+			"11"
+			{
+				"var_type"                      "FIELD_INTEGER"
+				"tornado_speed"     			"300"
+			}
+			"12"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"tornado_think"					"0.5"
+			}
+			"13"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"slow_blind"					"0"
+				"LinkedSpecialBonus"			"special_bonus_unique_sand_sandstorm_1"
+			}
+		}
+
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_brewmaster/brewmaster_cyclone.vpcf"
+			"particle"	"particles/units/heroes/hero_sandking/sand_sandstorm.vpcf"
+			"particle"  "particles/econ/courier/courier_roshan_desert_sands/baby_roshan_desert_sands_ambient.vpcf"
+
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_sandking.vsndevts"
+		}
+	}
+	"sand_tremors"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"                     "ability_lua"
+		"ScriptFile"                    "heroes/hero_sand/sand_tremors.lua"
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastAnimation"          "ACT_DOTA_SPAWN" 
+		"LevelsBetweenUpgrades"			"5"
+		"MaxLevel"						"7"
+		"RequiredLevel"					"6"
+		"AbilityTextureName"			"sandking_epicenter"
+		"AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
+
+		"AbilityCastPoint"              "2.0"
+		"AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_4"
+
+		// Time     
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"               "80.0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"               "250 325 500 750 1250 2250 4000"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"              "FIELD_INTEGER"
+				"damage"                "2000 4000 8000 16000 32000 64000 128000"
+			}
+			"02"
+			{
+				"var_type"              "FIELD_INTEGER"
+				"duration"              "2 4 6 8 10 12 14"
+			}
+			"03"
+			{
+				"var_type"              "FIELD_INTEGER"
+				"radius"                "575"
+			}        
+			"04"
+			{
+				"var_type"              "FIELD_INTEGER"
+				"slow_move"             "-30 -35 -40 -45 -50 -55 -60"
+			}
+			"05"
+			{
+				"var_type"              "FIELD_INTEGER"
+				"slow_as"               "-60 -70 -80 -90 -100 -110 -120"
+			}
+			"06"
+			{
+				"var_type"              "FIELD_FLOAT"
+				"tremor_rate"           "0.5"
+				"LinkedSpecialBonus"    "special_bonus_unique_sand_tremors_1"
+			}
+		}
+
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_sandking/sandking_epicenter.vpcf"
+
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_sandking.vsndevts"
+		}
+	}
+	"special_bonus_unique_sand_burrow_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"1"
+			}
+		}
+	}
+	"special_bonus_unique_sand_burrow_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"2"
+			}
+		}
+	}
+	"special_bonus_unique_sand_claw_impact_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"-4"
+			}
+		}
+	}
+	"special_bonus_unique_sand_claw_impact_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"75"
+			}
+		}
+	}
+	"special_bonus_unique_sand_sandstorm_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"15"
+			}
+		}
+	}
+	"special_bonus_unique_sand_sandstorm_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"3000"
+			}
+		}
+	}
+	"special_bonus_unique_sand_tremors_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"-0.25"
+			}
+		}
+	}
+	"special_bonus_unique_sand_tremors_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"1"
+			}
+		}
+	}
+}

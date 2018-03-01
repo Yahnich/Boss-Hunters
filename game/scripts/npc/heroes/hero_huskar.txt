@@ -1,0 +1,463 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Huskar: Inner Vitality
+	//=================================================================================================================
+	"huskar_unleash_vitality"
+	{
+		// General
+		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_huskar/huskar_unleash_vitality"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"AbilityTextureName"			"huskar_inner_vitality"
+		"LevelsBetweenUpgrades"			"5"
+		"MaxLevel"						"7"
+		"RequiredLevel"					"5"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"800"
+		"AbilityCastPoint"				"0.3 0.3 0.3 0.3"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"22 20 18 16 14 12 10"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"25 50 75 125 250 500 1000"
+		
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_huskar/huskar_inner_vitality_cast.vpcf"
+			"particle"					"particles/units/heroes/hero_huskar/huskar_inner_vitality.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_huskar.vsndevts"
+		}
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"heal"					"50 100 150 300 600 900 1800"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"movespeed"				"20"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"attackspeed"			"50"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"attrib_bonus_heal"		"75"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"attrib_bonus_ms"		"0.3"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"attrib_bonus_as"		"0.8"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"hurt_multiplier"		"50"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"hurt_percent"			"40"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"10"
+			}
+		}
+	}	
+	
+	//=================================================================================================================
+	// Huskar: Burning Spear
+	//=================================================================================================================
+	"huskar_ignited_spears"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_huskar/huskar_ignited_spears"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"huskar_burning_spear"
+		"LevelsBetweenUpgrades"			"5"
+		"MaxLevel"						"7"
+		"RequiredLevel"					"5"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"450"
+		"AbilityCastPoint"				"0.5"
+		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
+		
+		
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_huskar/huskar_burning_spear_debuff.vpcf"
+			"particle"					"particles/units/heroes/hero_huskar/huskar_burning_spear.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_huskar.vsndevts"
+		}
+
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"health_cost"					"15 30 60 120 240 480 960"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"burn_damage"					"40 80 160 320 640 1280 2560"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"duration"						"10"
+			}
+		}
+	}
+	
+	//=================================================================================================================
+	// Huskar: Berserkers Blood
+	//=================================================================================================================
+	"huskar_raging_berserker"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_huskar/huskar_raging_berserker"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"huskar_berserkers_blood"
+		"LevelsBetweenUpgrades"			"5"
+		"MaxLevel"						"7"
+		"RequiredLevel"					"5"
+		
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_huskar/huskar_berserkers_blood_glow.vpcf"
+		}
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"maximum_damage"				"750 1500 3000 6000 8000 12000 16000"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"maximum_resistance"			"65 70 75 80 85 90 95 100"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"maximum_armor"					"100 200 350 500 750 1000 1500"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"hp_threshold_max"				"10"
+			}
+		}
+	}
+	
+	//=================================================================================================================
+	// Huskar: Life Break
+	//=================================================================================================================
+	"huskar_sunder_life"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_huskar/huskar_sunder_life"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityTextureName"			"huskar_life_break"
+		"FightRecapLevel"				"2"
+		"LevelsBetweenUpgrades"			"7"
+		"MaxLevel"						"7"
+		"HasScepterUpgrade"				"1"
+		
+		"precache"
+		{
+			"particle"					"particles/status_fx/status_effect_huskar_lifebreak.vpcf"
+			"particle"					"particles/units/heroes/hero_huskar/huskar_life_break.vpcf"
+			"particle"					"particles/units/heroes/hero_huskar/huskar_life_break_cast.vpcf"
+		}
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.3 0.3 0.3"
+		"AbilityCastRange"				"650" 
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"14 13 12 11 10 9 8"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"							"FIELD_FLOAT"
+				"health_cost_percent"				"21"
+			}
+			"02"
+			{
+				"var_type"							"FIELD_INTEGER"
+				"charge_speed"						"1200"
+			}
+			"03"
+			{
+				"var_type"							"FIELD_INTEGER"
+				"movespeed"							"-40 -45 -50 -55 -60 -65 -70"
+			}
+			"04"
+			{
+				"var_type"							"FIELD_FLOAT"
+				"slow_duration"						"4.5 5 5.5 6 6.5 7.0 7.5"
+			}
+			"05"
+			{
+				"var_type"							"FIELD_FLOAT"
+				"cast_range"						"575 650 725 800 875 950 1025"
+			}
+			"06"
+			{
+				"var_type"							"FIELD_FLOAT"
+				"damage_radius"						"425"
+			}
+			"07"
+			{
+				"var_type"							"FIELD_FLOAT"
+				"health_damage_scepter"				"35"
+			}
+		}
+	}
+	"huskar_sacred_inferno"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_huskar/huskar_sacred_inferno"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+		"MaxLevel"						"1"
+		"InnateAbility"					"1"
+		"AbilityCooldown"				"1"
+	
+		"AbilityTextureName"			"custom/huskar_sacred_inferno"
+		
+		"precache"
+		{
+			"particle"	"particles/econ/items/templar_assassin/templar_assassin_focal/templar_assassin_meld_focal_attack.vpcf"
+			"particle"	"particles/huskar_sacred_inferno_hit.vpcf"
+			"particle"	"particles/huskar_sacred_inferno_spark.vpcf"
+		}
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"chance"				"25"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"350"
+			}
+		}
+	}
+	"special_bonus_unique_huskar_unleash_vitality_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"0"
+			}
+		}
+	}
+	"special_bonus_unique_huskar_unleash_vitality_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"LinkedModifierName"			"modifier_huskar_unleash_vitality_talent"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"50"
+			}
+		}
+	}
+	"special_bonus_unique_huskar_ignited_spears_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"2"
+			}
+		}
+	}
+	"special_bonus_unique_huskar_ignited_spears_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"0"
+			}
+		}
+	}
+	"special_bonus_unique_huskar_raging_berserker_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"10"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"duration"				"7"
+			}
+		}
+	}
+	"special_bonus_unique_huskar_raging_berserker_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"750"
+			}
+		}
+	}
+	"special_bonus_unique_huskar_sunder_life_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"-4"
+			}
+		}
+	}
+	"special_bonus_unique_huskar_sunder_life_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"15"
+			}
+		}
+	}
+}

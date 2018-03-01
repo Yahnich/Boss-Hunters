@@ -1,0 +1,519 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Blood Hunger
+	//=================================================================================================================
+	"axe_blood_hunger"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_axe/axe_blood_hunger.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	    "AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
+	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+	    "AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+	    "SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"LevelsBetweenUpgrades"			"5"
+		"MaxLevel"						"7"
+		"RequiredLevel"					"3"
+		"AbilityTextureName"			"axe_battle_hunger"
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"750"
+		"AbilityCastPoint"				"0.3"
+		"AbilityCastAnimation"			"ACT_DOTA_OVERRIDE_ABILITY_2"
+	
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"10"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"150"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_as"				"100"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"blind"					"50"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"chance"				"25"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"300 750 1250 3500 7500 15000 45000"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"10.0"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"max_units"				"1"
+				"LinkedSpecialBonus"	"special_bonus_unique_axe_blood_hunger"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"move_slow"				"-20"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"750"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"strength_bonus"		"50 100 200 400 600 800 1000"
+			}
+		}
+	
+		"precache"
+		{
+			"particle"			"particles/units/heroes/hero_axe/axe_battle_hunger.vpcf"
+			"particle"			"particles/status_fx/status_effect_battle_hunger.vpcf"
+	
+			"soundfile" 		"soundevents/game_sounds_heroes/game_sounds_axe.vsndevts"
+		}
+	}
+	//=================================================================================================================
+	// Cleave Strike
+	//=================================================================================================================
+	"axe_cleave_strike"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_axe/axe_cleave_strike.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"				"1"
+		"AbilityTextureName"			"axe_counter_helix"
+		"LevelsBetweenUpgrades"			"6"
+		"MaxLevel"						"7"
+		"RequiredLevel"					"7"
+	
+		"AbilityThreat"					"10.0"
+		"PiercesDisableReduction"		"1"
+	
+		"AbilityCastRange"				"500"
+	
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"0.4"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"armor_to_damage"		"200 350 500 650 800 950 1100"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"chance"				"40"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"2"
+				"LinkedSpecialBonus"	"special_bonus_unique_axe_cleave_strike"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"275"
+			}
+		}
+	
+		"precache"
+		{
+			"particle" 		"particles/econ/items/axe/axe_weapon_bloodchaser/axe_attack_blur_counterhelix_bloodchaser.vpcf"		
+	
+			"soundfile" 	"soundevents/game_sounds_heroes/game_sounds_axe.vsndevts"
+		}
+	}
+	//=================================================================================================================
+	// Forced Shout
+	//=================================================================================================================
+	"axe_forced_shout"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_axe/axe_forced_shout.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	    "AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
+	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+	    "SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"axe_berserkers_call"
+		"LevelsBetweenUpgrades"			"8"
+		"MaxLevel"						"7"
+		"RequiredLevel"					"3"
+	
+		"PiercesDisableReduction"		"1"
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"600"
+		"AbilityCastPoint"				"0.4"
+		"AbilityCastAnimation"			"ACT_DOTA_OVERRIDE_ABILITY_1"
+	
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"14"
+		"HasPureCooldown"				"1"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"25 50 75 125 250 500 1000"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"armor_bonus"			"6 12 24 48 90 180 360"
+				"LinkedSpecialBonus"	"special_bonus_unique_axe_forced_shout"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"armor_bonus_base"		"40 80 160 320 640 1280 2560"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"5.0"
+				"LinkedSpecialBonus"	"special_bonus_unique_axe_forced_shout_2"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"600"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"base_threat"			"30"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"threat_per_enemy"		"7.5"
+			}
+		}
+	
+		"precache"
+		{
+			"particle" 		"particles/units/heroes/hero_axe/axe_beserkers_call_owner.vpcf"
+	
+			"soundfile" 	"soundevents/game_sounds_heroes/game_sounds_axe.vsndevts"
+		}
+	}
+	//=================================================================================================================
+	// Ground Pound
+	//=================================================================================================================
+	"axe_ground_pound"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_axe/axe_ground_pound.lua"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	    "AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
+	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityTextureName"			"axe_culling_blade"
+		"LevelsBetweenUpgrades"			"7"
+		"MaxLevel"						"7"
+		"RequiredLevel"					"7"
+		"IsAetherAmplified"				"0"
+	
+		"PiercesDisableReduction"		"1"
+		"AbilityThreat"					"30.0"
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.3"
+		"AbilityCastRange"				"350"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+	
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"40 38 36 34 32 30 28"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"250 325 500 750 1250 2250 4000"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"500 525 550 575 600 625 650"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"daze_duration"			"3.0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"6.0"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"kill_threshold"		"25"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"move_slow"				"-25"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"350"
+			}
+		}
+	
+		"precache"
+		{
+			"particle" 		"particles/units/heroes/hero_axe/axe_culling_blade.vpcf"
+			"particle" 		"particles/units/heroes/hero_axe/axe_culling_blade_kill.vpcf"
+			"particle" 		"particles/units/heroes/hero_axe/axe_culling_blade_boost.vpcf"
+			"particle"  	"particles/axe_groundpound/axe_ground_pound_base2.vpcf"
+	
+			"soundfile" 	"soundevents/game_sounds_heroes/game_sounds_axe.vsndevts"
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_earthshaker.vsndevts"
+		}
+	}
+	"axe_steeled_temper"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"custom/axe_steeled_temper"
+		"InnateAbility"					"1"
+		"MaxLevel"						"1"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"str_to_armor"				"0.06"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_axe_steeled_temper"
+			{
+				"Passive" "1"
+				"IsHidden"	"1"
+				"ThinkInterval"	"0.03"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"heroes/hero_axe/axe_steeled_temper"
+						"Function"		"AxeSteeledTemper"						
+					}
+				}
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"%str_to_armor"
+				}
+			}
+		}
+	}
+	"special_bonus_unique_axe_blood_hunger" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"1"
+			}
+		}
+	}
+	"special_bonus_unique_axe_blood_hunger_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"1"
+			}
+		}
+	}
+	"special_bonus_unique_axe_cleave_strike" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"2"
+			}
+		}
+	}
+	"special_bonus_unique_axe_cleave_strike_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"1"
+			}
+		}
+	}
+	"special_bonus_unique_axe_forced_shout" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"200"
+			}
+		}
+	}
+	"special_bonus_unique_axe_forced_shout_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"5"
+			}
+		}
+	}
+	"special_bonus_unique_axe_ground_pound" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"-50"
+			}
+		}
+	}
+	"special_bonus_unique_axe_ground_pound_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"1"
+			}
+		}
+	}
+}

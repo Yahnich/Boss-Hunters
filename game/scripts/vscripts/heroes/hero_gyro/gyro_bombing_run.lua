@@ -17,7 +17,7 @@ function gyro_bombing_run:OnSpellStart()
 
 	EmitSoundOn("Hero_Techies.Attack", caster)
 
-	local speed = self:GetSpecialValueFor("speed")/100
+	local speed = self:GetTalentSpecialValueFor("speed")/100
 	local casterSpeed = caster:GetBaseMoveSpeed() + caster:GetBaseMoveSpeed()*speed
 	local distance = (caster:GetAbsOrigin() - self:GetCursorPosition()):Length2D()
 

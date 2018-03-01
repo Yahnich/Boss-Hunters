@@ -19,12 +19,12 @@ function chen_dps_strike:OnSpellStart()
 
 	EmitSoundOn("Hero_Invoker.SunStrike.Charge.Apex", caster)
 
-	ParticleManager:FireParticle("particles/econ/items/invoker/invoker_apex/invoker_sun_strike_team_immortal1.vpcf", PATTACH_POINT, caster, {[0]=point,[1]=Vector(radius,1,1)})
+	ParticleManager:FireParticle("particles/econ/items/invoker/invoker_apex/invoker_sun_strike_team_immortal1.vpcf", PATTACH_WORLDORIGIN, nil, {[0]=point,[1]=Vector(radius,1,1)})
 
-	Timers:CreateTimer(1.7, function()
+	Timers:CreateTimer(1.5, function()
 		EmitSoundOnLocationWithCaster(point, "Hero_Invoker.SunStrike.Ignite.Apex", caster)
 
-		ParticleManager:FireParticle("particles/econ/items/invoker/invoker_apex/invoker_sun_strike_immortal1.vpcf", PATTACH_POINT, caster, {[0]=point,[1]=Vector(radius,1,1)})
+		ParticleManager:FireParticle("particles/econ/items/invoker/invoker_apex/invoker_sun_strike_immortal1.vpcf", PATTACH_WORLDORIGIN, nil, {[0]=point,[1]=Vector(radius,1,1)})
 
 		local enemies = caster:FindEnemyUnitsInRadius(point, radius)
 		for _,enemy in pairs(enemies) do

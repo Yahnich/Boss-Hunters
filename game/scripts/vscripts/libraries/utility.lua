@@ -539,8 +539,8 @@ end
 
 function CDOTA_BaseNPC:SetAverageBaseDamage(average, variance) -- variance is in percent (50 not 0.5)
 	local var = variance or 0
-	self:SetBaseDamageMax(average*(1+(var/100)))
-	self:SetBaseDamageMin(average*(1+(var/100)))
+	self:SetBaseDamageMax(math.ceil(average*(1+(var/100))))
+	self:SetBaseDamageMin(math.floor(average*(1-(var/100))))
 end
 
 function CDOTABaseAbility:Refresh()
@@ -880,19 +880,6 @@ end
 
 function CDOTA_BaseNPC:GetThreat()
 	self.threat = self.threat or 0
-	
-	local player = PlayerResource:GetPlayer(self:GetOwner():GetPlayerID())
-	PlayerResource:SortThreat()
-	local event_data =
-	{
-		threat = self.threat,
-		lastHit = self.lastHit,
-		aggro = self.aggro
-	}
-	if player then
-		CustomGameEventManager:Send_ServerToPlayer( player, "Update_threat", event_data )
-	end
-	
 	return self.threat
 end
 
@@ -900,34 +887,37 @@ function CDOTA_BaseNPC:SetThreat(val)
 	self.lastHit = GameRules:GetGameTime()
 	self.threat = val
 	
-	local player = PlayerResource:GetPlayer(self:GetOwner():GetPlayerID())
-	PlayerResource:SortThreat()
-	local event_data =
-	{
-		threat = self.threat,
-		lastHit = self.lastHit,
-		aggro = self.aggro
-	}
-	if player then
-		CustomGameEventManager:Send_ServerToPlayer( player, "Update_threat", event_data )
+	if not self:IsFakeHero() then 
+		local player = PlayerResource:GetPlayer(self:GetOwner():GetPlayerID())
+		PlayerResource:SortThreat()
+		local event_data =
+		{
+			threat = self.threat,
+			lastHit = self.lastHit,
+			aggro = self.aggro
+		}
+		if player then
+			CustomGameEventManager:Send_ServerToPlayer( player, "Update_threat", event_data )
+		end
 	end
 end
 
 function CDOTA_BaseNPC:ModifyThreat(val)
 	self.lastHit = GameRules:GetGameTime()
 	self.threat = (self.threat or 0) + val
-		
-	local player = PlayerResource:GetPlayer(self:GetOwner():GetPlayerID())
+	if not self:IsFakeHero() then 
+		local player = PlayerResource:GetPlayer(self:GetOwner():GetPlayerID())
 
-	PlayerResource:SortThreat()
-	local event_data =
-	{
-		threat = self.threat,
-		lastHit = self.lastHit,
-		aggro = self.aggro
-	}
-	if player then
-		CustomGameEventManager:Send_ServerToPlayer( player, "Update_threat", event_data )
+		PlayerResource:SortThreat()
+		local event_data =
+		{
+			threat = self.threat,
+			lastHit = self.lastHit,
+			aggro = self.aggro
+		}
+		if player then
+			CustomGameEventManager:Send_ServerToPlayer( player, "Update_threat", event_data )
+		end
 	end
 end
 
@@ -1300,17 +1290,15 @@ function CDOTABaseAbility:SetCooldown(fCD)
 end
 
 function CDOTABaseAbility:StartDelayedCooldown(flDelay, newCD)
-	if self.delayedCooldownTimer then
-		self:EndDelayedCooldown()
-	end
+	self:EndDelayedCooldown()
 	self:EndCooldown()
 	self:UseResources(false, false, true)
 	local cd = newCD or self:GetCooldownTimeRemaining()
 	local ability = self
-	self.delayedCooldownTimer = Timers:CreateTimer(0, function()
+	self.delayedCooldownTimer = Timers:CreateTimer(FrameTime(), function()
 		ability:EndCooldown()
 		ability:StartCooldown(cd)
-		return 0
+		return FrameTime()
 	end)
 	if flDelay then
 		Timers:CreateTimer(flDelay, function() ability:EndDelayedCooldown() end)
@@ -1442,6 +1430,7 @@ function CDOTA_BaseNPC:HealEvent(amount, sourceAb, healer) -- for future shit
 	end
 	SendOverheadEventMessage(self, OVERHEAD_ALERT_HEAL, self, flAmount, healer)
 	self:Heal(flAmount, sourceAb)
+	return flAmount
 end
 
 function CDOTA_BaseNPC:SwapAbilityIndexes(index, swapname)
@@ -1655,7 +1644,7 @@ function CDOTA_Modifier_Lua:AddIndependentStack(duration, limit)
 			self:IncrementStackCount()
 		else
 			self:SetStackCount( limit )
-			Timers:RemoveTimers(self.stackTimers[1])
+			Timers:RemoveTimer(self.stackTimers[1])
 			table.remove(self.stackTimers, 1)
 		end
 	else
@@ -2213,8 +2202,12 @@ function CDOTA_BaseNPC:RemoveParalyze()
 	end
 end
 
-function CDOTA_BaseNPC:Silence(hAbility, hCaster, duration)
-	self:AddNewModifier(hCaster, hAbility, "modifier_silence", {Duration = duration})
+function CDOTA_BaseNPC:Disarm(hAbility, hCaster, duration, bDelay)
+	self:AddNewModifier(hCaster, hAbility, "modifier_disarm_generic", {Duration = duration, delay = bDelay})
+end
+
+function CDOTA_BaseNPC:Silence(hAbility, hCaster, duration, bDelay)
+	self:AddNewModifier(hCaster, hAbility, "modifier_silence_generic", {Duration = duration, delay = bDelay})
 end
 
 function CDOTA_BaseNPC:IsSilenced()

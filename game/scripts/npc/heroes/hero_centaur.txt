@@ -1,0 +1,471 @@
+"DOTAAbilities"
+{
+	"centaur_champions_presence"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_centaur/centaur_champions_presence"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"FightRecapLevel"				"1"
+		"AbilityTextureName"			"custom/centaur_champions_presence"
+		"MaxLevel"						"7"
+		"LevelsBetweenUpgrades"			"5"
+		"RequiredLevel"					"6"
+	
+		// Stats		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"12"
+		"AbilityCastRange"				"150 150 150 150"
+		"AbilityCastPoint"				"0.5 0.5 0.5 0.5"
+	
+		//------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"
+	
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"duration"						"6"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"cdr_per_unit"					"5 5.5 6 6.5 7 7.5 8"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"amp_per_unit"					"10 11 12 13 14 15 16"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"max_cdr"						"80"
+			}
+			"05"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"max_amp"						"160"
+			}
+			"06"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"radius"						"900"
+			}
+			
+		}
+	
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_centaur.vsndevts"
+			"particle"	"particles/units/heroes/hero_centaur/centaur_champions_presence_start.vpcf"
+			"particle"	"particles/units/heroes/hero_axe/axe_beserkers_call_hero_effect.vpcf"
+			"particle"	"particles/status_fx/status_effect_beserkers_call.vpcf"
+			"particle"	"particles/axe_taunt/axe_taunt_mark_base.vpcf"
+		}
+	}
+	"centaur_great_edge"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_centaur/centaur_great_edge"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"				"1"
+		"AbilityTextureName"			"centaur_double_edge"
+		"MaxLevel"						"7"
+		"LevelsBetweenUpgrades"			"5"
+		"RequiredLevel"					"6"
+	
+		// Stats		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"8.0 8.0 8.0 8.0"
+		"AbilityCastRange"				"150 150 150 150"
+		"AbilityCastPoint"				"0.5 0.5 0.5 0.5"
+	
+		//------------------------------------------------------------------------------
+		"AbilityManaCost"				"0 0 0 0"
+	
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"edge_damage"					"500 1000 2000 4000 8000 16000 32000"
+				"LinkedSpecialBonus"			"special_bonus_unique_centaur_4"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"edge_str_damage"				"450"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"radius"						"200 250 300 350 400 450 500"
+			}
+			
+		}
+	
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_centaur.vsndevts"
+			"particle"	"particles/units/heroes/hero_centaur/centaur_double_edge.vpcf"
+		}
+	}
+	//=================================================================================================================
+	// Centaur Warchief: Hoof Stomp
+	//=================================================================================================================
+	"centaur_hoof_stomp_ebf"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_centaur/centaur_hoof_stomp_ebf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"centaur_hoof_stomp"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"7"
+		"LevelsBetweenUpgrades"			"5"
+		"RequiredLevel"					"5"
+	
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.3"
+		"AbilityCooldown"				"13.0 13.0 13.0 13.0"
+		"AbilityManaCost"				"25 50 75 125 250 500 1000"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"radius"						"350"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"stun_duration"					"2.0 2.25 2.5 2.75 3.0 3.25 3.5"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"stomp_damage"					"1200 2400 4800 9600 19200 38400 76800"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"str_to_radius"					"5"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Centaur: Stampede
+	//=================================================================================================================
+	"centaur_stampede_ebf"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_centaur/centaur_stampede_ebf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"centaur_stampede"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+		"FightRecapLevel"				"2"
+		"MaxLevel"						"7"
+		"LevelsBetweenUpgrades"			"7"
+	
+	
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"60"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"250 325 500 750 1250 2250 4000"
+	
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityModifierSupportValue"	"0.2"	// hits everything on the map
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"duration"						"6"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"base_damage"					"1500 3000 6000 12000 24000 48000 96000"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"strength_damage"				"10.0"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"slow_duration"					"1.5"
+			}
+			"05"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"radius"						"105"
+			}
+			"06"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"slow_movement_speed"			"100"
+			}
+			"07"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"cooldown_scepter"				"45.0"
+			}
+			"08"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"damage_reduction_scepter"		"80"
+			}
+		}
+		
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_centaur.vsndevts"
+			"particle"					"particles/units/heroes/hero_centaur/centaur_stampede.vpcf"
+			"particle"					"particles/units/heroes/hero_centaur/centaur_stampede_cast.vpcf"
+			"particle"					"particles/units/heroes/hero_centaur/centaur_stampede_haste.vpcf"
+			"particle"					"particles/units/heroes/hero_centaur/centaur_stampede_overhead.vpcf"
+			"particle"					"particles/units/heroes/hero_life_stealer/life_stealer_open_wounds_impact_slash_splatter.vpcf"
+			"particle"					"particles/status_fx/status_effect_monkey_king_spring_slow.vpcf"
+		}
+	}
+	//=================================================================================================================
+	// Centaur Warrunner: Return
+	//=================================================================================================================
+	"centaur_warchiefs_aegis"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_centaur/centaur_warchiefs_aegis"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+		"AbilityTextureName"			"centaur_return"
+		"LevelsBetweenUpgrades"			"1"
+		"MaxLevel"						"1"
+		"RequiredLevel"					"1"
+		"InnateAbility"					"1"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"strength_pct"				"130"
+				"LinkedSpecialBonus"		"special_bonus_unique_centaur_warchiefs_aegis_2"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"str_to_block"				"75"
+				"LinkedSpecialBonus"		"special_bonus_unique_centaur_warchiefs_aegis_2"
+			}
+		}
+	
+		"precache"
+		{
+			"particle"	"particles/units/heroes/hero_centaur/centaur_return.vpcf"
+		}
+	}
+	"special_bonus_unique_centaur_stampede_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"1.5"
+			}
+		}
+	}
+	"special_bonus_unique_centaur_champions_presence_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"1"
+			}
+		}
+	}
+	"special_bonus_unique_centaur_hoof_stomp_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"-6"
+			}
+		}
+	}
+	"special_bonus_unique_centaur_hoof_stomp_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"3"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"ms"					"-25"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"as"					"-75"
+			}
+		}
+	}
+	"special_bonus_unique_centaur_great_edge_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"1"
+			}
+		}
+	}
+	"special_bonus_unique_centaur_great_edge_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"1"
+			}
+		}
+	}
+	"special_bonus_unique_centaur_warchiefs_aegis_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"1"
+			}
+		}
+	}
+	"special_bonus_unique_centaur_warchiefs_aegis_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"1"
+			}
+		}
+	}
+}

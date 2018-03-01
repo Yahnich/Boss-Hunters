@@ -20,6 +20,14 @@ function modifier_chen_tank_slam_handle:OnAttackLanded(params)
 
 		local enemies = params.attacker:FindEnemyUnitsInRadius(params.target:GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"), {})
 		for _,enemy in pairs(enemies) do
+			local intellect = 0
+			if params.attacker:GetOwner() then
+				intellect = params.attacker:GetOwner():GetIntellect()
+			else
+				intellect = params.attacker:GetIntellect()
+			end
+			local damage = intellect * self:GetTalentSpecialValueFor("damage") / 100
+			self:GetAbility():DealDamage(params.attacker, params.target, damage)
 			self:GetAbility():Stun(enemy, self:GetTalentSpecialValueFor("duration"), false)
 		end
 	end

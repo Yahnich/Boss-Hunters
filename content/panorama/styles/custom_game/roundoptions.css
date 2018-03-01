@@ -51,10 +51,9 @@ horizontal-align:right;
 
 #RoundOptions
 {
-  horizontal-align: left;
-  margin-left:10px;
-  margin-top:200px;
-  vertical-align: top;
+  horizontal-align: center;
+  vertical-align: center;
+  margin-top: 50px;
   width: 500px;
   height: 150px;
  }

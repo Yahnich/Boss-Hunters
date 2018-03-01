@@ -1,0 +1,462 @@
+"DOTAAbilities"
+{	
+	//=================================================================================================================
+	// Arctic Sting
+	//=================================================================================================================
+	"winterw_arctic_sting"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_ww/winterw_arctic_sting.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	    "AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
+	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"winter_wyvern_arctic_burn"
+		"LevelsBetweenUpgrades"			"6"
+		"MaxLevel"						"7"
+		"RequiredLevel"					"7"
+		"HasScepterUpgrade"				"1"
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.0"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+	
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"50 45 40 35 30 25 20"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"25 50 75 125 250 500 1000"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"attack_range_bonus"	"175 275 375 475 575 675 775"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"burn"							"3.5 4 4.5 5 5.5 6 6.5"
+				"CalculateSpellDamageTooltip"	"0"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"burn_duration"			"5.0"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"8.0"
+			}			
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"mana_cost_scepter"		"6 12 24 48 96 192 288"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"move_slow"				"-20 -25 -30 -35 -40 -45 -50"
+				"LinkedSpecialBonus"	"special_bonus_unique_winterw_arctic_sting_1"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"night_vision_bonus"	"400"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"projectile_speed_bonus""500"
+			}
+			"10"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"tree_destruction_radius"	"250"
+			}
+		}
+	
+		"precache"
+		{
+			"particle" 		"particles/status_fx/status_effect_wyvern_arctic_burn.vpcf"
+			"particle"  	"particles/units/heroes/hero_winter_wyvern/wyvern_arctic_burn_buff.vpcf"
+			"particle"  	"particles/units/heroes/hero_winter_wyvern/wyvern_arctic_burn_flying.vpcf"
+			"particle"  	"particles/units/heroes/hero_winter_wyvern/wyvern_arctic_burn_hero_effect.vpcf"
+			"particle"  	"particles/units/heroes/hero_winter_wyvern/wyvern_arctic_burn_slow.vpcf"
+			"particle"  	"particles/units/heroes/hero_winter_wyvern/wyvern_arctic_burn_start.vpcf"
+			"particle"  	"particles/units/heroes/hero_winter_wyvern/winter_wyvern_arctic_attack.vpcf"
+	
+			"soundfile" 	"soundevents/game_sounds_heroes/game_sounds_winter_wyvern.vsndevts"
+		}
+	}
+	//=================================================================================================================
+	// Frozen Splinter
+	//=================================================================================================================
+	"winterw_frozen_splinter"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_ww/winterw_frozen_splinter.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	    "AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
+	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"winter_wyvern_splinter_blast"
+		"LevelsBetweenUpgrades"			"6"
+		"MaxLevel"						"7"
+		"RequiredLevel"					"7"
+	
+		"PiercesDisableReduction"		"1"
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.3"
+		"AbilityCastRange"				"1200"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
+	
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"7"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"120 130 140 150 160 170 180"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"1000 2500 5000 7500 15000 25000 50000"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"move_slow"				"-25"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"slow_duration"			"4.0"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"search_radius"			"500"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"range"					"1200"
+			}
+		}
+	
+		"precache"
+		{
+			"particle" 		"particles/units/heroes/hero_winter_wyvern/wyvern_splinter.vpcf"
+			"particle"  	"particles/units/heroes/hero_winter_wyvern/wyvern_splinter_blast.vpcf"
+			"particle"  	"particles/units/heroes/hero_winter_wyvern/wyvern_splinter_blast_slow.vpcf"	
+	
+			"soundfile" 	"soundevents/game_sounds_heroes/game_sounds_winter_wyvern.vsndevts"
+		}
+	}
+	//=================================================================================================================
+	// Ice Shell
+	//=================================================================================================================
+	"winterw_ice_shell"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_ww/winterw_ice_shell.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+	    "AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
+	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityTextureName"			"winter_wyvern_cold_embrace"
+		"LevelsBetweenUpgrades"			"6"
+		"MaxLevel"						"7"
+		"RequiredLevel"					"7"
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.3"
+		"AbilityCastRange"				"1000"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_3"
+	
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"50 45 40 35 30 25 20"
+		"HasPureCooldown"				"1"
+		"AbilityDuration"				"4.0"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"50 100 150 250 450 750 1150"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"heal"					"3 4 5 6 7 8 9"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"4.0"
+				"LinkedSpecialBonus"	"special_bonus_unique_winterw_frozen_ice_shell_1"
+			}
+		}
+	
+		"precache"
+		{
+			"particle" 		"particles/units/heroes/hero_winter_wyvern/wyvern_cold_embrace_buff.vpcf"
+			"particle"  	"particles/units/heroes/hero_winter_wyvern/wyvern_cold_embrace_start.vpcf"
+	
+			"soundfile" 	"soundevents/game_sounds_heroes/game_sounds_winter_wyvern.vsndevts"
+		}
+	}
+	//=================================================================================================================
+	// Winter's Kiss
+	//=================================================================================================================
+	"winterw_winters_kiss"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_ww/winterw_winters_kiss.lua"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	    "AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
+	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityTextureName"			"winter_wyvern_winters_curse"
+		"LevelsBetweenUpgrades"			"6"
+		"MaxLevel"						"7"
+		"RequiredLevel"					"7"
+	
+		"PiercesDisableReduction"		"1"
+		"AbilityThreat"					"20.0"
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.3"
+		"AbilityCastRange"				"800"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+	
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"80"
+		"HasPureCooldown"				"1"
+		"AbilityDuration"				"4.0"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"250"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_as"				"85"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"3 3.25 3.5 3.75 4 4.25 4.5"
+				"LinkedSpecialBonus"	"special_bonus_unique_winterw_winters_kiss_1"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"500"
+			}
+		}
+	
+		"precache"
+		{
+			"particle" 		"particles/units/heroes/hero_winterw/winterw_winters_kiss_debuff.vpcf"
+			"particle"  	"particles/units/heroes/hero_winter_wyvern/wyvern_winters_curse_ground.vpcf"
+			"particle"  	"particles/units/heroes/hero_winter_wyvern/wyvern_winters_curse_ring_rope.vpcf"
+			"particle"  	"particles/units/heroes/hero_winter_wyvern/wyvern_winters_curse_buff.vpcf"
+			"particle"  	"particles/econ/items/effigies/status_fx_effigies/status_effect_effigy_frosty_dire.vpcf"
+	
+	
+			"soundfile" 	"soundevents/game_sounds_heroes/game_sounds_winter_wyvern.vsndevts"
+		}
+	}
+	"special_bonus_unique_winterw_arctic_sting_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"-50"
+			}
+		}
+	}
+	"special_bonus_unique_winterw_arctic_sting_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"5"
+			}
+		}
+	}
+	"special_bonus_unique_winterw_frozen_ice_shell_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"-2.0"
+			}
+		}
+	}
+	"special_bonus_unique_winterw_frozen_ice_shell_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"5.0"
+			}
+		}
+	}
+	"special_bonus_unique_winterw_frozen_splinter_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"2.0"
+			}
+		}
+	}
+	"special_bonus_unique_winterw_frozen_splinter_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"1"
+			}
+		}
+	}
+	"special_bonus_unique_winterw_winters_kiss_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"1.5"
+			}
+		}
+	}
+	"special_bonus_unique_winterw_winters_kiss_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"200"
+			}
+		}
+	}
+}

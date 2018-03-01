@@ -31,7 +31,7 @@ function abaddon_death_coil_ebf:OnSpellStart()
 
 	local heal_pct = self:GetTalentSpecialValueFor( "heal_pct" ) / 100
 	local self_heal = self:GetTalentSpecialValueFor( "self_heal" )
-	caster:HealEvent(self_heal, self, caster)
+	print( caster:HealEvent(self_heal, self, caster) )
 
 	self:CreateMistCoil(target, source)
 	if caster:HasTalent("special_bonus_unique_abaddon_death_coil_1") then

@@ -22,6 +22,14 @@ function chen_sup_silence:OnSpellStart()
 
 	local enemies = caster:FindEnemyUnitsInRadius(point, radius)
 	for _,enemy in pairs(enemies) do
+		local intellect = 0
+		if caster:GetOwner() then
+			intellect = caster:GetOwner():GetIntellect()
+		else
+			intellect = caster:GetIntellect()
+		end
+		local damage = intellect * self:GetTalentSpecialValueFor("damage") / 100
+		self:DealDamage(caster, enemy, damage)
 		enemy:Silence(self, caster, self:GetSpecialValueFor("duration"))
 	end
 end

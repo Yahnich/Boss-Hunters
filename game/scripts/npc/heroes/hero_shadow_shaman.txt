@@ -1,0 +1,426 @@
+"DOTAAbilities"
+{	
+	"shadow_shaman_binding_shackle"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_shadow_shaman/shadow_shaman_binding_shackle"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"7"
+		"RequiredLevel"					"5"
+		"LevelsBetweenUpgrades"			"5"
+		"AbilityTextureName"			"shadow_shaman_shackles"
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"400"
+		"AbilityCastPoint"				"0.3 0.3 0.3 0.3"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityChannelTime"			"1.75 2.5 3.25 4.0"
+		"AbilityCooldown"				"16.0 16.0 16.0 16.0"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"25 50 75 125 250 500 1000"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"tick_interval"			"0.1 0.1 0.1 0.1"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"channel_time"			"1.5 2.0 2.5 3.0 3.5 4.0 4.5"
+				"LinkedSpecialBonus"	"special_bonus_unique_shadow_shaman_binding_shackle_1"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"total_damage"			"2000 4000 8000 16000 32000 64000 96000"
+			}
+			// Extra, calculated as total_damage / channel_time * tick_interval
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"aftershackle_duration"	"0.5"
+				"LinkedSpecialBonus"	"special_bonus_unique_shadow_shaman_binding_shackle_2"
+			}
+		}
+	
+		"precache"
+		{
+			"particle"  "particles/status_fx/status_effect_shaman_shackle.vpcf" 	
+			"particle"	"particles/units/heroes/hero_shadowshaman/shadowshaman_shackle.vpcf"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_shadowshaman.vsndevts"
+		}
+	}
+	//--------------------
+	// Shadow Shaman	
+	//--------------------
+	"shadow_shaman_ether_lightning"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_shadow_shaman/shadow_shaman_ether_lightning"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"7"
+		"RequiredLevel"					"5"
+		"LevelsBetweenUpgrades"			"5"
+		"AbilityTextureName"			"shadow_shaman_ether_shock"
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"600"
+		"AbilityCastPoint"				"0.3 0.3 0.3 0.3"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"8.0 8.0 8.0 8.0"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"25 50 75 125 250 500 1000"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"start_radius"				"200 200 200 200"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"end_radius"				"300 300 300 300"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"end_distance"				"500 500 500 500"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"targets"					"7"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"1800 3600 7200 14400 28800 57600 86400"
+			}
+		}
+	
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_shadowshaman/shadowshaman_ether_shock.vpcf"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_shadowshaman.vsndevts"
+		}
+	}
+	"shadow_shaman_ignited_voodoo"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_shadow_shaman/shadow_shaman_ignited_voodoo"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"MaxLevel"						"7"
+		"RequiredLevel"					"5"
+		"LevelsBetweenUpgrades"			"6"
+		"FightRecapLevel"				"1"
+		"AbilityTextureName"			"shadow_shaman_voodoo"
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"500"
+		"AbilityCastPoint"				"0 0 0 0"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"13.0 13.0 13.0 13.0"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"25 50 75 125 250 500 1000"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"movespeed"					"100"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"2.5 2.75 3 3.25 3.5 3.75 4"
+				"LinkedSpecialBonus"		"special_bonus_unique_shadow_shaman_ignited_voodoo_2"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"damage"					"1200 2400 4800 9600 19200 38400 76800"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"radius"					"800"
+			}
+		}
+	
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_shadowshaman.vsndevts"
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_techies.vsndevts"
+			"particle"			"particles/units/heroes/hero_shadowshaman/shadowshaman_voodoo.vpcf"
+			"particle"			"particles/units/heroes/hero_techies/techies_suicide.vpcf"
+			"model"				"models/props_gameplay/chicken.vmdl"
+		}
+	}
+	//=================================================================================================================
+	// Shadow Shaman: Mass Serpent Ward
+	//=================================================================================================================
+	"shadow_shaman_snake_totem"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_shadow_shaman/shadow_shaman_snake_totem"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityTextureName"			"shadow_shaman_mass_serpent_ward"
+		"FightRecapLevel"				"2"
+		"LevelsBetweenUpgrades"			"7"
+		"MaxLevel"						"7"
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"550"
+		"AbilityCastPoint"				"0.3"
+		"AbilityPierces"				"1"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"90"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"250 325 500 750 1250 2250 4000"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"ward_count"			"1"
+				"LinkedSpecialBonus"	"special_bonus_unique_shadow_shaman_snake_totem_2"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"300 600 1200 2400 4800 9600 19200"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"45.0 45.0 45.0"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"scepter_range"			"500"
+			}
+		}
+	}
+	
+	// TALENTS
+	"special_bonus_unique_shadow_shaman_ether_lightning_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"value"						"0.3"
+			}
+		}
+	}
+	"special_bonus_unique_shadow_shaman_ether_lightning_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"25"
+			}
+		}
+	}
+	"special_bonus_unique_shadow_shaman_ignited_voodoo_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"25"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"4"
+			}
+		}
+	}
+	"special_bonus_unique_shadow_shaman_ignited_voodoo_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"2"
+			}
+		}
+	}
+	"special_bonus_unique_shadow_shaman_binding_shackle_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"2"
+			}
+		}
+	}
+	"special_bonus_unique_shadow_shaman_binding_shackle_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"value"						"0.5"
+			}
+		}
+	}
+	"special_bonus_unique_shadow_shaman_snake_totem_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"300"
+			}
+		}
+	}
+	"special_bonus_unique_shadow_shaman_snake_totem_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"1"
+			}
+		}
+	}
+}

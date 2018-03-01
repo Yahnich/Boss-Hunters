@@ -1,0 +1,460 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Brewmaster: Drunken Brawler
+	//=================================================================================================================
+	"brewmaster_drunken_brawler_ebf"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_brewmaster/brewmaster_drunken_brawler_ebf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"brewmaster_drunken_brawler"
+		"MaxLevel"						"7"
+		"LevelsBetweenUpgrades"			"5"
+		"RequiredLevel"					"6"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"dodge_chance"				"35"
+				"LinkedSpecialBonus"		"special_bonus_unique_brewmaster_drunken_brawler_1"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"crit_chance"				"35"
+				"LinkedSpecialBonus"		"special_bonus_unique_brewmaster_drunken_brawler_1"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"crit_multiplier"			"150 175 200 225 250 275 300"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"last_proc"					"1"
+			}
+		}
+	}
+	"brewmaster_drunken_haze_ebf"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_brewmaster/brewmaster_drunken_haze_ebf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"AbilityCastRange"				"850 850 850 850"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"				"1"
+		"AbilityTextureName"			"brewmaster_drunken_haze"
+		"RequiredLevel"					"5"
+		"MaxLevel"						"7"
+		"LevelsBetweenUpgrades"			"5"
+		"AbilityThreat"					"35"
+		
+		"AoERadius"						"500"
+		
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_brewmaster/brewmaster_drunken_haze_debuff.vpcf"
+			"particle" 	"particles/status_fx/status_effect_brewmaster_drunken_haze.vpcf"
+			"particle"	"particles/units/heroes/hero_brewmaster/brewmaster_drunken_haze.vpcf"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_brewmaster.vsndevts"
+		}
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.4 0.4 0.4"
+	
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"8"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"25 50 75 125 250 500 1000"		
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"500"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"8.0"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"miss_chance"				"36 40 44 48 52 56 60"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"movement_slow"				"-14 -16 -18 -20 -22 -24 -26"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"evasion"					"25 27.5 30 32.5 35 37.5 40"
+			}
+			"07"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"movement_bonus"			"14 16 18 20 22 24 26"
+			}			
+		}
+	}
+	//=================================================================================================================
+	// Brewmaster Primal Avatar
+	//=================================================================================================================
+	"brewmaster_primal_avatar"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_brewmaster/brewmaster_primal_avatar.lua"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+		"AbilityTextureName"			"custom/brewmaster_primal_avatar"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+		"LevelsBetweenUpgrades"			"7"
+		"MaxLevel"						"7"
+		"FightRecapLevel"				"1"
+	
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_brewmaster.vsndevts"
+			"particle" 			"particles/econ/items/sven/sven_warcry_ti5/sven_warcry_ti5_ambient_arcs.vpcf"
+			"particle"			"particles/units/heroes/hero_earth_spirit/espirit_stoneremnant_sprts.vpcf"
+			"particle"			"particles/units/heroes/hero_ember_spirit/ember_spirit_sleight_of_fist_caster_flames.vpcf"
+			"particle"  		"particles/units/heroes/hero_brewmaster/brewmaster_fire_immolation_child.vpcf"
+			"particle"			"particles/status_fx/status_effect_electrical.vpcf"
+		}
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"500"
+		"AbilityCastPoint"				"0.65"
+	
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"25.0"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"250 325 500 750 1250 2250 4000"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_reduction"		"-50"
+				"CalculateSpellDamageTooltip"	"0"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"15.0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"aoe_damage_tooltip"	"400 800 1600 3200 6400 12800 25600"
+				"LinkedSpecialBonus"	"special_bonus_unique_brewmaster_primal_avatar_2"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"tick_interval"				"0.1"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"aoe_blind"				"20 25 30 35 40 45 50"
+				"LinkedSpecialBonus"	"special_bonus_unique_brewmaster_primal_avatar_1"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"aoe_radius"			"700"
+			}
+			
+		}
+	}
+	//=================================================================================================================
+	// Brewmaster: Thunder Clap
+	//=================================================================================================================
+	"brewmaster_thunder_clap_ebf"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_brewmaster/brewmaster_thunder_clap_ebf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"brewmaster_thunder_clap"
+		"MaxLevel"						"7"
+		"LevelsBetweenUpgrades"			"5"
+		"RequiredLevel"					"6"
+		"AbilityThreat"					"50"
+	
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"11"
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.4 0.4 0.4"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"25 50 75 125 250 500 1000"	
+		
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_brewmaster/brewmaster_thunder_clap_debuff.vpcf"
+			"particle"					"particles/status_fx/status_effect_brewmaster_thunder_clap.vpcf"
+			"particle"					"particles/units/heroes/hero_brewmaster/brewmaster_thunder_clap.vpcf"
+		}
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"radius"						"400"
+				"LinkedSpecialBonus"			"special_bonus_unique_brewmaster_thunder_clap_2"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"damage"						"1000 2000 4500 9000 18000 36000 72000"
+				"LinkedSpecialBonus"			"special_bonus_unique_brewmaster_thunder_clap_2"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"movement_slow"					"30 35 40 45 50 55 60"
+				"LinkedSpecialBonus"			"special_bonus_unique_brewmaster_thunder_clap_2"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"attack_speed_slow"				"40 60 80 100 120 140 160"
+				"LinkedSpecialBonus"			"special_bonus_unique_brewmaster_thunder_clap_2"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
+			}			
+			"05"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"duration"						"4.0"
+				"LinkedSpecialBonus"			"special_bonus_unique_brewmaster_thunder_clap_2"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
+			}			
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_brewmaster_thunder_clap_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"value"						"1"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_brewmaster_thunder_clap_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"value"						"1.5"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_brewmaster_drunken_haze_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"value"						"1"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_brewmaster_drunken_haze_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"value"						"1"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_brewmaster_drunken_brawler_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"value"						"15"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_brewmaster_drunken_brawler_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"value"						"1"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_brewmaster_primal_avatar_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"value"						"25"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_brewmaster_primal_avatar_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"value"						"1.75"
+			}
+		}
+	}
+}
