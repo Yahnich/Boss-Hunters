@@ -380,12 +380,12 @@
 				"var_type"				"FIELD_FLOAT"
 				"value"					"3"
 			}
-			"01"
+			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"ms"					"-25"
 			}
-			"01"
+			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"as"					"-75"

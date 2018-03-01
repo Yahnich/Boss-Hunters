@@ -64,3 +64,7 @@ end
 function modifier_centaur_hoof_stomp_slow:GetModifierAttackSpeedBonus_Constant()
 	return self.as
 end
+
+function modifier_centaur_hoof_stomp_slow:GetStatusEffectName()
+	return "particles/status_fx/status_effect_nullifier_slow.vpcf"
+end
