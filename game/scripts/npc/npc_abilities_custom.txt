@@ -45,6 +45,7 @@
 #base "heroes/hero_tidehunter.txt"
 #base "heroes/hero_venomancer.txt"
 #base "heroes/hero_puck.txt"
+#base "heroes/hero_magnus.txt"
 
 "DOTAAbilities"
 {
