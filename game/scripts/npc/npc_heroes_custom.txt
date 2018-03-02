@@ -634,21 +634,21 @@
 	"npc_dota_hero_legion_commander"
 	{
 		"override_hero"			"npc_dota_hero_legion_commander"
-		"Ability1"				"legion_commander_overwhelming_odds_ebf"
-		"Ability2"				"legion_commander_press_the_attack_ebf"
-		"Ability3"				"legion_commander_moment_of_courage_ebf"
+		"Ability1"				"legion_commander_victorious_advance"
+		"Ability2"				"legion_commander_unbreakable_morale"
+		"Ability3"				"legion_commander_fearless_assault"
 		"Ability4"				"generic_hidden"
 		"Ability5"				"generic_hidden"
-		"Ability6"				"lc_ebf_war_fury"
+		"Ability6"				"legion_commander_war_fury"
 	
-		"Ability10"		"special_bonus_strength_8"
-		"Ability11"		"special_bonus_attack_damage_35"
-		"Ability12"		"special_bonus_attack_speed_30"
-		"Ability13"		"special_bonus_unique_legion_commander_4"
-		"Ability14"		"special_bonus_movement_speed_60"
-		"Ability15"		"special_bonus_unique_legion_commander_3"
-		"Ability16"		"special_bonus_unique_legion_commander"
-		"Ability17"		"special_bonus_unique_legion_commander_2"
+		"Ability10"				"special_bonus_unique_legion_commander_victorious_advance_1"
+		"Ability11"				"special_bonus_unique_legion_commander_victorious_advance_2"
+		"Ability12"				"special_bonus_unique_legion_commander_unbreakable_morale_1"
+		"Ability13"				"special_bonus_unique_legion_commander_unbreakable_morale_2"
+		"Ability14"				"special_bonus_unique_legion_commander_fearless_assault_1"
+		"Ability15"				"special_bonus_unique_legion_commander_fearless_assault_2"
+		"Ability16"				"special_bonus_unique_legion_commander_war_fury_1"
+		"Ability17"				"special_bonus_unique_legion_commander_war_fury_2"
 	}
 	//=================================================================================================================
 	// HERO: Storm
@@ -1121,7 +1121,7 @@
 	//=================================================================================================================
 	// HERO: Darude
 	//=================================================================================================================
-	"npc_dota_hero_sand_king_ebf"
+	"npc_dota_hero_sand_king"
 	{
 		"override_hero"				"npc_dota_hero_sand_king"
 		"AbilityLayout"				"5"

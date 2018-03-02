@@ -965,6 +965,13 @@ function CHoldoutGameMode:OnAbilityLearned(event)
 				end
 			end
 		end
+		if GameRules.AbilityKV[abilityname]["LinkedAbilityName"] then
+			local abilityName = GameRules.AbilityKV[abilityname]["LinkedAbilityName"] 
+			local ability = hero:FindAbilityByName(abilityName)
+			if ability and ability.OnTalentLearned then
+				ability:OnTalentLearned()
+			end
+		end
 		talentData[abilityname] = true
 		CustomNetTables:SetTableValue( "talents", tostring(pID), talentData )
 	end
