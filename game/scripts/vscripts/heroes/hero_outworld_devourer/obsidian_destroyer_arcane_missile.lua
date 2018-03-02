@@ -7,6 +7,7 @@ end
 function obsidian_destroyer_arcane_missile:OnSpellStart()
 	local target = self:GetCursorTarget()
 	self:LaunchArcaneOrb(target, true)
+	self:SetOverrideCastPoint(self:GetCaster():GetSecondsPerAttack())
 end
 
 function obsidian_destroyer_arcane_missile:IsStealable()
@@ -46,7 +47,7 @@ function obsidian_destroyer_arcane_missile:OnProjectileHit(target, position)
 		local caster = self:GetCaster()
 		ParticleManager:FireParticle("particles/units/hero_obsidian_destroyer/obsidian_destroyer_arcane_orb_aoe.vpcf", PATTACH_POINT_FOLLOW, target)
 		local heal = 0
-		local spellsteal = caster:FindTalentValue("special_bonus_unique_outworld_devourer_arcane_orb_1") / 100
+		local spellsteal = caster:FindTalentValue("special_bonus_unique_obsidian_destroyer_arcane_missile_1") / 100
 		local mainDamage = self:DealDamage(caster, target, caster:GetMana() * self:GetTalentSpecialValueFor("mana_pool_damage_pct") / 100)
 		heal = heal + mainDamage * spellsteal
 		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius(target:GetAbsOrigin(), self:GetTalentSpecialValueFor("int_splash_radius")) ) do
@@ -57,6 +58,7 @@ function obsidian_destroyer_arcane_missile:OnProjectileHit(target, position)
 		end
 		if heal > 0 then
 			caster:HealEvent(heal, self, caster)
+			ParticleManager:FireParticle("particles/items3_fx/octarine_core_lifesteal.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
 		end
 	end
 end
@@ -89,6 +91,7 @@ if IsServer() then
 	function modifier_obsidian_destroyer_arcane_missile_autocast:OnAttack(params)
 		if params.attacker == self:GetParent() and params.target and self:GetAbility():GetAutoCastState() then
 			self:GetAbility():LaunchArcaneOrb(params.target)
+			params.attacker:SpendMana(self:GetAbility():GetManaCost(-1), self:GetAbility())
 		end
 	end
 end

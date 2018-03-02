@@ -45,7 +45,7 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"int_splash"			"40"
-				"LinkedSpecialBonus"	"special_bonus_unique_outworld_devourer_arcane_orb_2"
+				"LinkedSpecialBonus"	"special_bonus_unique_obsidian_destroyer_arcane_missile_2"
 			}
 			"03"
 			{
@@ -59,7 +59,7 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"lua_abilities/heroes/obsidian_destroyer"
+		"ScriptFile"					"heroes/hero_outworld_devourer/obsidian_destroyer_astral_isolation"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
@@ -86,6 +86,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"700"
 		"AbilityCastPoint"				"0.25 0.25 0.25 0.25"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -104,7 +105,7 @@
 			{
 				"var_type"				"FIELD_FLOAT"
 				"steal_duration"		"60.0 60.0 60.0 60.0"
-				"LinkedSpecialBonus"	"special_bonus_unique_outworld_devourer_astral_isolation_1"
+				"LinkedSpecialBonus"	"special_bonus_unique_obsidian_destroyer_astral_isolation_1"
 			}		
 			"02"
 			{
@@ -125,7 +126,7 @@
 			{
 				"var_type"				"FIELD_FLOAT"
 				"prison_duration"		"4.0"
-				"LinkedSpecialBonus"	"special_bonus_unique_outworld_devourer_astral_isolation_2"
+				"LinkedSpecialBonus"	"special_bonus_unique_obsidian_destroyer_astral_isolation_2"
 			}
 		}
 	}
@@ -137,7 +138,7 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"lua_abilities/heroes/obsidian_destroyer"
+		"ScriptFile"					"heroes/hero_outworld_devourer/obsidian_destroyer_avatar_of_power"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
@@ -145,7 +146,10 @@
 		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
 		"RequiredLevel"					"6"
+		
 		"AbilityCooldown"				"20"
+		"AbilityCastPoint"				"0.3"
+		"AbilityCastAnimation"			"ACT_DOTA_VICTORY"
 		
 		"precache"
 		{
@@ -172,7 +176,6 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"bonus_spell_amp"		"20 25 30 35 40 45 50"
-				"LinkedSpecialBonus"	"special_bonus_unique_outworld_devourer_2"
 			}
 			"04"
 			{
@@ -186,7 +189,7 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"lua_abilities/heroes/obsidian_destroyer"
+		"ScriptFile"					"heroes/hero_outworld_devourer/obsidian_destroyer_celestial_obliteration"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityCastRange"				"700"
@@ -213,12 +216,15 @@
 			"particle"		"particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_sanity_eclipse_mana_loss.vpcf"
 			"particle"		"particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_sanity_eclipse_smoke_main.vpcf"
 			"particle"		"particles/obsidian_mindbreak.vpcf"
+			"particle"		"particles/heroes/hero_obsidian_destroyer/obsidian_destroyer_talent_celestial.vpcf"
 			
 		}
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"				"120.0"
+		"AbilityCastPoint"				"0.3"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -242,7 +248,7 @@
 			{
 				"var_type"						"FIELD_INTEGER"
 				"radius"						"600"
-				"LinkedSpecialBonus"			"special_bonus_unique_outworld_devourer_celestial_obliteration_1"
+				"LinkedSpecialBonus"			"special_bonus_unique_obsidian_destroyer_celestial_obliteration_1"
 			}
 			"04"
 			{
@@ -342,7 +348,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"100"
+				"value"					"2"
 			}
 		}
 	}
@@ -353,6 +359,7 @@
 		"BaseClass"						"special_bonus_undefined"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"LinkedModifierName"			"modifier_obsidian_destroyer_avatar_of_power_passive"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -361,7 +368,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"2"
+				"value"					"10"
 			}
 			"02"
 			{
@@ -409,7 +416,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"5"
+				"duration"				"10"
 			}
 		}
 	}

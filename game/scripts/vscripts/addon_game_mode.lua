@@ -960,7 +960,7 @@ function CHoldoutGameMode:OnAbilityLearned(event)
 					for _, modifier in ipairs( mList ) do
 						local remainingDur = modifier:GetRemainingTime()
 						modifier:ForceRefresh()
-						modifier:SetDuration(remainingDur)
+						if remainingDur > 0 then modifier:SetDuration(remainingDur, true) end
 					end
 				end
 			end

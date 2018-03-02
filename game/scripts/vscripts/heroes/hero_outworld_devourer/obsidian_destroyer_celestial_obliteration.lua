@@ -18,7 +18,7 @@ function obsidian_destroyer_celestial_obliteration:OnSpellStart()
 		end
 		caster:CalculateStatBonus()
 	end
-	if caster:HasTalent("special_bonus_unique_obsidian_destroyer_celestial_obliteration_2") do
+	if caster:HasTalent("special_bonus_unique_obsidian_destroyer_celestial_obliteration_2") then
 		local tDur = caster:FindTalentValue("special_bonus_unique_obsidian_destroyer_celestial_obliteration_2", "duration")
 		for i = 0, 18 do
 			local ability = caster:GetAbilityByIndex(i)
@@ -42,7 +42,7 @@ function obsidian_destroyer_celestial_obliteration:OnSpellStart()
 	EmitSoundOn("Hero_ObsidianDestroyer.SanityEclipse", caster)
 end
 
-LinkLuaModifier( "modifier_obsidian_destroyer_celestial_obliteration_mindbreak", "lua_abilities/heroes/obsidian_destroyer.lua" ,LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_obsidian_destroyer_celestial_obliteration_mindbreak", "heroes/hero_outworld_devourer/obsidian_destroyer_celestial_obliteration" ,LUA_MODIFIER_MOTION_NONE )
 modifier_obsidian_destroyer_celestial_obliteration_mindbreak = class({})
 
 function modifier_obsidian_destroyer_celestial_obliteration_mindbreak:OnCreated()
@@ -64,5 +64,22 @@ function modifier_obsidian_destroyer_celestial_obliteration_mindbreak:CheckState
 	return state
 end
 
-LinkLuaModifier( "modifier_obsidian_destroyer_celestial_obliteration_mindbreak", "lua_abilities/heroes/obsidian_destroyer.lua" ,LUA_MODIFIER_MOTION_NONE )
-modifier_obsidian_destroyer_celestial_obliteration_mindbreak = class({})
+LinkLuaModifier( "modifier_obsidian_destroyer_celestial_obliteration_talent", "heroes/hero_outworld_devourer/obsidian_destroyer_celestial_obliteration" ,LUA_MODIFIER_MOTION_NONE )
+modifier_obsidian_destroyer_celestial_obliteration_talent = class({})
+
+function modifier_obsidian_destroyer_celestial_obliteration_talent:OnCreated()
+	self.cdr = self:GetCaster():FindTalentValue("special_bonus_unique_obsidian_destroyer_celestial_obliteration_2")
+	if IsServer() then
+		local FX = ParticleManager:CreateParticle("particles/heroes/hero_obsidian_destroyer/obsidian_destroyer_talent_celestial.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
+		ParticleManager:SetParticleControlEnt(FX, 0, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_hitloc", self:GetParent():GetAbsOrigin(), true)
+		self:AddEffect(FX)
+	end
+end
+
+function modifier_obsidian_destroyer_celestial_obliteration_talent:DeclareFunctions()
+	return {MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE_STACKING}
+end
+
+function modifier_obsidian_destroyer_celestial_obliteration_talent:GetModifierPercentageCooldownStacking()
+	return self.cdr
+end
