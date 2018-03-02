@@ -58,7 +58,7 @@ function mag_shockwave:OnProjectileHitHandle(hTarget, vLocation, iProjectileHand
         		
         		local enemies = self:GetCaster():FindEnemyUnitsInRadius(hTarget:GetAbsOrigin(), self:GetSpecialValueFor("magnet_radius"))
         		for _,enemy in pairs(enemies) do
-        			enemy:ApplyKnockBack(hTarget:GetAbsOrigin(), 1.0, 1.0, self:GetSpecialValueFor("magnet_radius"), 200, self:GetCaster(), self)
+        			enemy:ApplyKnockBack(hTarget:GetAbsOrigin(), 1.0, 1.0, self:GetSpecialValueFor("magnet_radius")/2, 200, self:GetCaster(), self)
         			self:DealDamage(self:GetCaster(), enemy, self:GetTalentSpecialValueFor("damage_magnet"), {}, 0)
         		end
         		ProjectileManager:DestroyLinearProjectile(iProjectileHandle)

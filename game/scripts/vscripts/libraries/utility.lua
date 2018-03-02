@@ -2238,3 +2238,21 @@ function CDOTA_BaseNPC:RemoveSilence()
 		self:RemoveModifierByName("modifier_silence")
 	end
 end
+
+function CDOTA_BaseNPC:Blind(missChance, hAbility, hCaster, duration)
+	self:AddNewModifier(hCaster, hAbility, "modifier_blind_generic", {Duration = duration, miss = missChance})
+end
+
+function CDOTA_BaseNPC:IsBlinded()
+	if self:HasModifier("modifier_blind_generic") then
+		return true
+	else
+		return false
+	end
+end
+
+function CDOTA_BaseNPC:RemoveBlind()
+	if self:HasModifier("modifier_blind_generic") then
+		self:RemoveModifierByName("modifier_blind_generic")
+	end
+end

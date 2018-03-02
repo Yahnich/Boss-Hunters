@@ -28,6 +28,7 @@ require( "statcollection/init" )
 require("libraries/utility")
 require("libraries/animations")
 
+LinkLuaModifier( "modifier_blind_generic", "libraries/modifiers/modifier_blind_generic.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_wearable", "libraries/modifiers/modifier_wearable.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_status_immunity", "libraries/modifiers/modifier_status_immunity.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_paralyze", "libraries/modifiers/modifier_paralyze.lua", LUA_MODIFIER_MOTION_NONE)
@@ -61,6 +62,7 @@ function Precache( context )
 	PrecacheResource( "particle", "particles/brd_taunt/brd_taunt_mark_base.vpcf", context )
 	PrecacheResource( "particle", "particles/status_fx/status_effect_beserkers_call.vpcf", context )
 	PrecacheResource( "particle", "particles/econ/items/effigies/status_fx_effigies/status_effect_effigy_frosty_dire.vpcf", context )
+	PrecacheResource( "particle", "particles/units/heroes/hero_keeper_of_the_light/keeper_of_the_light_blinding_light_debuff.vpcf", context )
 
 	-- Hero Precaches
 	PrecacheUnitByNameSync("npc_dota_warlock_moloch", context)

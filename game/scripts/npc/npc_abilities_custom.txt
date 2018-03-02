@@ -47,6 +47,7 @@
 #base "heroes/hero_puck.txt"
 #base "heroes/hero_magnus.txt"
 #base "heroes/hero_outworld_devourer.txt"
+#base "heroes/hero_kotl.txt"
 #base "heroes/hero_legion_commander.txt"
 
 "DOTAAbilities"
