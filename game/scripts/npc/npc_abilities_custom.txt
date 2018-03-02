@@ -48,6 +48,7 @@
 #base "heroes/hero_magnus.txt"
 #base "heroes/hero_outworld_devourer.txt"
 #base "heroes/hero_kotl.txt"
+#base "heroes/hero_legion_commander.txt"
 
 "DOTAAbilities"
 {
@@ -15645,249 +15646,6 @@
 			}
 		}
 	}
-	"lc_ebf_war_fury"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"lua_abilities/heroes/legion_commander"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
-		"MaxLevel"						"7"
-		"LevelsBetweenUpgrades"			"7"
-		
-		"AbilityCastRange"				"450"
-		"AbilityCooldown"				"60"
-		"AbilityManaCost"				"200 300 400 800 1200 1600 2000"
-	
-		"AbilityTextureName"			"legion_commander_duel"
-		
-		"precache"
-		{
-			"soundfile"	"game_sounds_heroes/game_sounds_legion_commander.vsndevts"
-			"soundfile"	"soundevents/game_sounds_custom.vsndevts"
-			"particle" "particles/status_fx/status_effect_legion_commander_duel.vpcf"
-			"particle" "particles/units/heroes/hero_legion_commander/legion_commander_duel_buff.vpcf"
-			"particle" "particles/legion_war_fury_ring.vpcf"
-		}
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_damage_aura"		"250 500 1000 2000 3000 4000 5000"
-				"LinkedSpecialBonus"	"special_bonus_unique_legion_commander"
-			}
-			"02"
-			{
-				"var_type"		"FIELD_INTEGER"
-				"lifesteal"		"50 75 100 125 150 175 200"
-			}
-			"03"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"armor"		"50 100 150 200 300 450 600"
-			}
-			"04"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"radius"	"1200"
-			}
-			"05"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"duration"	"15"
-			}
-		}
-	}
-	"legion_commander_moment_of_courage_ebf"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"lua_abilities/heroes/legion_commander"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityTextureName"			"legion_commander_moment_of_courage"
-		"LevelsBetweenUpgrades"			"5"
-		"MaxLevel"						"7"
-		"RequiredLevel"					"4"
-		
-		"precache"
-		{
-			"soundfile"	"game_sounds_heroes/game_sounds_legion_commander.vsndevts"
-			"particle" "particles/units/heroes/hero_legion_commander/legion_commander_courage_hit.vpcf"
-			"particle" "particles/units/heroes/hero_legion_commander/legion_commander_courage_tgt.vpcf"
-		}
-		
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"1.8 1.6 1.4 1.2 1.0 0.8 0.4"
-	
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"trigger_chance"			"35"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"buff_duration"				"1.0"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"hp_leech_percent"			"55 65 75 85 95 100 125"
-			}
-		}
-	}
-	"legion_commander_overwhelming_odds_ebf"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"lua_abilities/heroes/legion_commander"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"FightRecapLevel"				"1"
-		"LevelsBetweenUpgrades"			"5"
-		"MaxLevel"						"7"
-		"RequiredLevel"					"6"
-		"AbilityTextureName"			"legion_commander_overwhelming_odds"
-		
-		"precache"
-		{
-			"particle" "particles/units/heroes/hero_legion_commander/legion_commander_odds.vpcf"
-			"particle" "particles/units/heroes/hero_legion_commander/legion_commander_odds_buff.vpcf"
-			"particle" "particles/units/heroes/hero_legion_commander/legion_commander_odds_cast.vpcf"
-			"soundfile"	"game_sounds_heroes/game_sounds_legion_commander.vsndevts"
-		}
-	
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"18.0 18.0 18.0 18.0"
-	
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"1000"
-		"AbilityCastPoint"				"0.3 0.3 0.3 0.3"
-	
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"100 100 100 100"
-	
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"450 500 550 600 650 700 750"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"600 1200 2400 4800 9600 20000 40000"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage_per_unit"		"200 400 800 1600 3200 6400 12800"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_speed"			"5"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_armor"			"5 10 15 30 45 60 80"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"7.0"
-			}
-		}
-	}
-	//=================================================================================================================
-	// Legion Commander: Press the Attack
-	//=================================================================================================================
-	"legion_commander_press_the_attack_ebf"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"lua_abilities/heroes/legion_commander"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_ALL"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ALLIES_YES"
-		"AbilityTextureName"			"legion_commander_press_the_attack"
-		"LevelsBetweenUpgrades"			"5"
-		"MaxLevel"						"7"
-		"RequiredLevel"					"6"
-	
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"800"
-		"AbilityCastPoint"				"0.3 0.3 0.3 0.3"
-		
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"16.0 15.0 14.0 13.0 12.0 11.0 10.0"
-		
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"110"
-	
-		// Stats
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityModifierSupportValue"	"3.0"	// Value much higher than cost.
-		
-		"precache"
-		{
-			"soundfile"	"game_sounds_heroes/game_sounds_legion_commander.vsndevts"
-			"particle" "particles/units/heroes/hero_legion_commander/legion_commander_press.vpcf"
-			"particle" "particles/units/heroes/hero_legion_commander/legion_commander_press_buff.vpcf"
-		}
-	
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"10.0"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"attack_speed"			"80 90 100 110 120 150 200"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"hp_regen"				"240 480 1000 2500 5000 10000 20000"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"passive_chance"		"20"
-			}
-		}
-	}
 	"leshrac_inner_torment"
 	{
 		// General
@@ -30991,7 +30749,7 @@
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"					"10 20 40 80 160 320 640"		
+		"AbilityManaCost"					"15 30 60 125 250 500 1000"		
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -31000,7 +30758,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"mana_per_second"			"10 20 40 80 160 320 640"	
+				"mana_per_second"			"15 30 60 125 250 500 1000"
 			}
 			"02"
 			{
@@ -31010,7 +30768,7 @@
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"heal"						"200 400 800 1600 3200 6400 12800"
+				"heal"						"200 400 800 1600 3200 4800 6400"
 				"LinkedSpecialBonus"		"special_bonus_unique_witch_doctor_2"
 			}
 			"04"
