@@ -1301,7 +1301,10 @@ function CDOTABaseAbility:StartDelayedCooldown(flDelay, newCD)
 		return FrameTime()
 	end)
 	if flDelay then
-		Timers:CreateTimer(flDelay, function() ability:EndDelayedCooldown() end)
+		if self.automaticDelayedCD then
+			Timers:RemoveTimer(self.automaticDelayedCD)
+		end
+		self.automaticDelayedCD = Timers:CreateTimer(flDelay, function() ability:EndDelayedCooldown() end)
 	end
 end
 
