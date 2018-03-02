@@ -960,7 +960,7 @@ function CHoldoutGameMode:OnAbilityLearned(event)
 					for _, modifier in ipairs( mList ) do
 						local remainingDur = modifier:GetRemainingTime()
 						modifier:ForceRefresh()
-						modifier:SetDuration(remainingDur)
+						if remainingDur > 0 then modifier:SetDuration(remainingDur, true) end
 					end
 				end
 			end
@@ -1017,7 +1017,6 @@ function CHoldoutGameMode:OnAbilityUsed(event)
 		if abilityused:GetDuration() > 0 then
 			local duration = abilityused:GetDuration()
 			if abilityname == "night_stalker_crippling_fear" and not GameRules:IsDaytime() then duration = abilityused:GetTalentSpecialValueFor("duration_night") end
-			print(abilityUsed, "this?")
 			abilityused:StartDelayedCooldown(duration)
 		else
 			abilityused:StartCooldown(abilityused:GetCooldown(-1))

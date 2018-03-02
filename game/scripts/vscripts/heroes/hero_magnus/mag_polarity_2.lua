@@ -44,7 +44,22 @@ function mag_polarity_2:OnSpellStart()
     EmitSoundOn("Hero_Magnataur.ReversePolarity.Cast", self:GetCaster())
 
     ParticleManager:FireParticle("particles/units/heroes/hero_magnus/magnus_polarity_2.vpcf", PATTACH_POINT, caster, {[0]=Vector(1,0,0), [1]=Vector(radius,radius,radius), [2]=Vector(0.3,0,0), [3]=point})
-    local enemies = caster:FindEnemyUnitsInRadius(point, radius, {})
+    local magnets = caster:FindFriendlyUnitsInRadius(caster:GetAbsOrigin(), radius)
+    for _,magnet in pairs(magnets) do
+        if magnet:HasModifier("modifier_mag_magnet") then
+            ParticleManager:FireParticle("particles/units/heroes/hero_magnus/magnus_polarity_2.vpcf", PATTACH_POINT, magnet, {[0]=Vector(1,0,0), [1]=Vector(radius,radius,radius), [2]=Vector(0.3,0,0), [3]=magnet:GetAbsOrigin()})
+            local enemies = caster:FindEnemyUnitsInRadius(magnet:GetAbsOrigin(), radius, {})
+            for _,enemy in pairs(enemies) do
+                ParticleManager:FireRopeParticle("particles/units/heroes/hero_magnataur/magnataur_reverse_polarity_pull.vpcf", PATTACH_POINT, caster, enemy, {[0]=magnet:GetAbsOrigin(), [1]=enemy:GetAbsOrigin()})
+
+                EmitSoundOn("Hero_Magnataur.ReversePolarity.Cast", enemy)
+				enemy:ApplyKnockBack(point, 0.1, 0.1, radius, 0, caster, self)
+				self:DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage"), {}, 0)
+            end
+        end
+    end
+	
+	local enemies = caster:FindEnemyUnitsInRadius(point, radius, {})
     for _,enemy in pairs(enemies) do
         ParticleManager:FireRopeParticle("particles/units/heroes/hero_magnataur/magnataur_reverse_polarity_pull.vpcf", PATTACH_POINT, caster, enemy, {[0]=point, [1]=enemy:GetAbsOrigin()})
         EmitSoundOn("Hero_Magnataur.ReversePolarity.Cast", enemy)
