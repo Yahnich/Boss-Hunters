@@ -739,6 +739,28 @@
 		"Ability1"					"lycan_summon_wolves_datadriven"					// Ability 4
 	}
 	//=================================================================================================================
+	// HERO: Magnus
+	//=================================================================================================================
+	"npc_dota_hero_magnataur_ebf"
+	{
+		"override_hero"			"npc_dota_hero_magnataur"
+		"Ability1"				"mag_shockwave"
+		"Ability2"				"mag_magnet"					
+		"Ability3"				"mag_charge"
+		"Ability4"				"mag_empower"	
+		"Ability5"				"mag_polarity_2"					
+		"Ability6"				"mag_polarity"
+		
+		"Ability10"				"special_bonus_unique_mag_shockwave_1"
+		"Ability11"				"special_bonus_unique_mag_shockwave_2"
+		"Ability12"				"special_bonus_unique_mag_magnet_1"
+		"Ability13"				"special_bonus_unique_mag_magnet_2"
+		"Ability14"				"special_bonus_unique_mag_charge_1"
+		"Ability15"				"special_bonus_unique_mag_charge_2"
+		"Ability16"				"special_bonus_unique_mag_polarity_1"
+		"Ability17"				"special_bonus_unique_mag_polarity_2"
+	}
+	//=================================================================================================================
 	// HERO: Mirana
 	//=================================================================================================================
 	"npc_dota_hero_mirana_ebf"

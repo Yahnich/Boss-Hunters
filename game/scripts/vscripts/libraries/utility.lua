@@ -1463,11 +1463,6 @@ function CDOTA_BaseNPC:ApplyLinearKnockback(distance, strength, source)
 	end)
 end
 
-function CDOTA_BaseNPC:IsKnockedBack()
-	return self.isInKnockbackState
-end
-
-
 function FindAllUnits(data)
 	local team = DOTA_TEAM_GOODGUYS
 	local data = hData or {}
@@ -2133,6 +2128,20 @@ function CDOTA_BaseNPC:ApplyKnockBack(position, stunDuration, knockbackDuration,
 		knockback_height = height,
 	}
 	self:AddNewModifier(caster, ability, "modifier_knockback", modifierKnockback )
+end
+
+function CDOTA_BaseNPC:IsKnockedBack()
+	if self:HasModifier("modifier_knockback") then
+		return true
+	else
+		return false
+	end
+end
+
+function CDOTA_BaseNPC:RemoveKnockBack()
+	if self:HasModifier("modifier_knockback") then
+		self:RemoveModifierByName("modifier_knockback")
+	end
 end
 
 function CDOTABaseAbility:CD_pure()
