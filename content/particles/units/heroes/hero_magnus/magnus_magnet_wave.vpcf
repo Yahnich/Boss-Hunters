@@ -3,7 +3,7 @@
 	_class = "CParticleSystemDefinition"
 	m_bShouldHitboxesFallbackToRenderBounds = false
 	m_nMaxParticles = 100
-	m_flConstantRadius = 108.0
+	m_flConstantRadius = 500.0
 	m_Renderers = 
 	[
 		{
@@ -71,11 +71,23 @@
 		{
 			_class = "C_INIT_RandomRotation"
 		},
+		{
+			_class = "C_INIT_RandomRadius"
+			m_flRadiusMin = 500.0
+			m_flRadiusMax = 500.0
+		},
+		{
+			_class = "C_INIT_RemapCPtoScalar"
+			m_nCPInput = 1
+			m_flInputMax = 5000.0
+			m_flOutputMax = 1000.0
+		},
 	]
 	m_Emitters = 
 	[
 		{
 			_class = "C_OP_ContinuousEmitter"
+			m_flEmitRate = 10.0
 		},
 	]
 	m_controlPointConfigurations = 

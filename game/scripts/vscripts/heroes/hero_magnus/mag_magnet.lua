@@ -26,14 +26,17 @@ end
 
 modifier_mag_magnet = class({})
 function modifier_mag_magnet:OnCreated(table)
+	self.radius = self:GetTalentSpecialValueFor("radius")
 	if IsServer() then
 		self:StartIntervalThink(FrameTime())
+		local FX = ParticleManager:CreateParticle("particles/units/heroes/hero_magnus/magnus_magnet_wave.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
+		ParticleManager:SetParticleControl(FX, 1, Vector(self.radius, 0, 0))
 	end
 end
 
 function modifier_mag_magnet:OnIntervalThink()
 	local parent = self:GetParent()
-	local enemies = parent:FindEnemyUnitsInRadius(parent:GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"))
+	local enemies = parent:FindEnemyUnitsInRadius(parent:GetAbsOrigin(), self.radius)
 	for _,enemy in pairs(enemies) do
 		if self:GetCaster():HasTalent("special_bonus_unique_mag_magnet_2") and RollPercentage(2) then
 			self:GetAbility():Stun(enemy, 0.25, false)
@@ -50,16 +53,13 @@ function modifier_mag_magnet:OnIntervalThink()
 end
 
 function modifier_mag_magnet:CheckState()
-	local state = { --[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
-					--[MODIFIER_STATE_INVULNERABLE] = true,
-					[MODIFIER_STATE_INVISIBLE] = true,
+	local state = { [MODIFIER_STATE_INVISIBLE] = true,
 					[MODIFIER_STATE_UNSELECTABLE] = true,
 					[MODIFIER_STATE_UNTARGETABLE] = true,
 					[MODIFIER_STATE_ATTACK_IMMUNE] = true,
 					[MODIFIER_STATE_MAGIC_IMMUNE] = true,
 					[MODIFIER_STATE_COMMAND_RESTRICTED] = true,
 					[MODIFIER_STATE_NO_HEALTH_BAR] = true,
-					--[MODIFIER_STATE_OUT_OF_GAME] = true,
 					}
 	return state
 end
@@ -79,10 +79,6 @@ function modifier_mag_magnet:OnDeath(params)
     end
 end
 
-function modifier_mag_magnet:GetEffectName()
-    return "particles/units/heroes/hero_magnus/magnus_magnet_wave.vpcf"
-end
-
 function modifier_mag_magnet:IsAura()
 	if self:GetCaster():HasTalent("special_bonus_unique_mag_magnet_1") then
    		return true
@@ -96,7 +92,7 @@ function modifier_mag_magnet:GetAuraDuration()
 end
 
 function modifier_mag_magnet:GetAuraRadius()
-    return self:GetTalentSpecialValueFor("radius")
+    return self.radius
 end
 
 function modifier_mag_magnet:GetAuraSearchFlags()
