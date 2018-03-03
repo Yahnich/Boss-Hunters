@@ -196,13 +196,19 @@ function CHoldoutGameRound:End()
 	end
 	self._vEventHandles = {}
 
-	for _,unit in pairs( FindUnitsInRadius( DOTA_TEAM_BADGUYS, Vector( 0, 0, 0 ), nil, FIND_UNITS_EVERYWHERE, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false )) do
-		if not (unit:IsTower() or unit:IsHero()) and not unit:HasModifier("modifier_hidden_generic") and not unit:HasAbility("hide_hero") then
-			unit:ForceKill( false )
-			Timers:CreateTimer(0.1, function() UTIL_Remove(unit) end)
+	local delay = 30
+	Timers:CreateTimer(0.03, function()
+		for _,unit in pairs( FindUnitsInRadius( DOTA_TEAM_BADGUYS, Vector( 0, 0, 0 ), nil, FIND_UNITS_EVERYWHERE, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false )) do
+			if not (unit:IsTower() or unit:IsHero()) and not unit:HasModifier("modifier_hidden_generic") and not unit:HasAbility("hide_hero") then
+				unit:ForceKill( false )
+				Timers:CreateTimer(0.1, function() UTIL_Remove(unit) end)
+			end
 		end
-	end
-
+		if delay > 0 then 
+			delay = delay - 1
+			return 0.03
+		end
+	end)
 	if self._nRoundNumber == 1 then
 		for _,unit in pairs ( Entities:FindAllByName( "npc_dota_hero*")) do
 			if not unit:IsFakeHero() then

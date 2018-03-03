@@ -167,7 +167,7 @@
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"			// Type of locomotion - ground, air
 		"MovementSpeed"				"270"		// Speed
-		"MovementTurnRate"			"1.0"		// Turning rate.
+		"MovementTurnRate"			"0.3"		// Turning rate.
 	
 		// Status
 		//----------------------------------------------------------------
@@ -277,7 +277,7 @@
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"			// Type of locomotion - ground, air
 		"MovementSpeed"				"270"		// Speed
-		"MovementTurnRate"			"1.0"		// Turning rate.
+		"MovementTurnRate"			"0.25"		// Turning rate.
 	
 		// Status
 		//----------------------------------------------------------------
@@ -381,7 +381,7 @@
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"			// Type of locomotion - ground, air
 		"MovementSpeed"				"320"		// Speed
-		"MovementTurnRate"			"0.5"		// Turning rate.
+		"MovementTurnRate"			"0.3"		// Turning rate.
 	
 		
 		"GameSoundsFile"			"soundevents/game_sounds_heroes/game_sounds_leshrac.vsndevts"
@@ -793,7 +793,7 @@
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"			// Type of locomotion - ground, air
 		"MovementSpeed"				"230"		// Speed
-		"MovementTurnRate"			"0.5"		// Turning rate.
+		"MovementTurnRate"			"0.35"		// Turning rate.
 	
 		"VoiceFile"				"soundevents/voscripts/game_sounds_vo_life_stealer.vsndevts"
 		"GameSoundsFile"		"soundevents/game_sounds_heroes/game_sounds_life_stealer.vsndevts"
@@ -898,7 +898,7 @@
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"			// Type of locomotion - ground, air
 		"MovementSpeed"				"230"		// Speed
-		"MovementTurnRate"			"0.5"		// Turning rate.
+		"MovementTurnRate"			"0.15"		// Turning rate.
 	
 		"VoiceFile"				"soundevents/voscripts/game_sounds_vo_life_stealer.vsndevts"
 		"GameSoundsFile"		"soundevents/game_sounds_heroes/game_sounds_life_stealer.vsndevts"
@@ -1003,7 +1003,7 @@
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"			// Type of locomotion - ground, air
 		"MovementSpeed"				"230"		// Speed
-		"MovementTurnRate"			"0.5"		// Turning rate.
+		"MovementTurnRate"			"0.3"		// Turning rate.
 	
 		"VoiceFile"				"soundevents/voscripts/game_sounds_vo_life_stealer.vsndevts"
 		"GameSoundsFile"		"soundevents/game_sounds_heroes/game_sounds_life_stealer.vsndevts"
@@ -1101,7 +1101,7 @@
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"			// Type of locomotion - ground, air
 		"MovementSpeed"				"345"		// Speed
-		"MovementTurnRate"			"1.0"		// Turning rate.
+		"MovementTurnRate"			"0.3"		// Turning rate.
 	
 		"VoiceFile"				"soundevents/voscripts/game_sounds_vo_life_stealer.vsndevts"
 		"GameSoundsFile"		"soundevents/game_sounds_heroes/game_sounds_life_stealer.vsndevts"
@@ -1199,7 +1199,7 @@
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"			// Type of locomotion - ground, air
 		"MovementSpeed"				"345"		// Speed
-		"MovementTurnRate"			"1.0"		// Turning rate.
+		"MovementTurnRate"			"0.3"		// Turning rate.
 	
 		"VoiceFile"				"soundevents/voscripts/game_sounds_vo_life_stealer.vsndevts"
 		"GameSoundsFile"		"soundevents/game_sounds_heroes/game_sounds_life_stealer.vsndevts"
@@ -1297,7 +1297,7 @@
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"			// Type of locomotion - ground, air
 		"MovementSpeed"				"345"		// Speed
-		"MovementTurnRate"			"1.0"		// Turning rate.
+		"MovementTurnRate"			"0.5"		// Turning rate.
 	
 		"VoiceFile"				"soundevents/voscripts/game_sounds_vo_life_stealer.vsndevts"
 		"GameSoundsFile"		"soundevents/game_sounds_heroes/game_sounds_life_stealer.vsndevts"
@@ -1395,7 +1395,7 @@
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"			// Type of locomotion - ground, air
 		"MovementSpeed"				"420"		// Speed
-		"MovementTurnRate"			"1.0"		// Turning rate.
+		"MovementTurnRate"			"0.4"		// Turning rate.
 	
 		"VoiceFile"				"soundevents/voscripts/game_sounds_vo_life_stealer.vsndevts"
 		"GameSoundsFile"		"soundevents/game_sounds_heroes/game_sounds_life_stealer.vsndevts"
@@ -2658,7 +2658,7 @@
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"			// Type of locomotion - ground, air
 		"MovementSpeed"				"120"		// Speed
-		"MovementTurnRate"			"1.0"		// Turning rate.
+		"MovementTurnRate"			"0.25"		// Turning rate.
 	
 		// Status
 		//----------------------------------------------------------------
@@ -2773,7 +2773,7 @@
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"			// Type of locomotion - ground, air
 		"MovementSpeed"				"450"		// Speed
-		"MovementTurnRate"			"0.5"		// Turning rate.
+		"MovementTurnRate"			"0.18"		// Turning rate.
 		
 		"VoiceFile"				"soundevents/voscripts/game_sounds_vo_furion.vsndevts"
 		"GameSoundsFile"		"soundevents/game_sounds_heroes/game_sounds_furion.vsndevts"
@@ -2904,7 +2904,7 @@
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"			// Type of locomotion - ground, air
 		"MovementSpeed"				"450"		// Speed
-		"MovementTurnRate"			"0.5"		// Turning rate.
+		"MovementTurnRate"			"0.25"		// Turning rate.
 		
 		"VoiceFile"				"soundevents/voscripts/game_sounds_vo_furion.vsndevts"
 		"GameSoundsFile"		"soundevents/game_sounds_heroes/game_sounds_furion.vsndevts"
@@ -3120,7 +3120,7 @@
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
 		"MovementSpeed"				"275"		// Speed.
-		"MovementTurnRate"			"0.1"		// Turning rate.
+		"MovementTurnRate"			"0.15"		// Turning rate.
 	
 		// Status
 		//----------------------------------------------------------------
@@ -5815,7 +5815,7 @@
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
 		"MovementSpeed"				"380"		// Speed.
-		"MovementTurnRate"			"0.5"		// Turning rate.
+		"MovementTurnRate"			"0.25"		// Turning rate.
 	
 		// Status
 		//----------------------------------------------------------------
@@ -5913,7 +5913,7 @@
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
 		"MovementSpeed"				"380"		// Speed.
-		"MovementTurnRate"			"0.5"		// Turning rate.
+		"MovementTurnRate"			"0.25"		// Turning rate.
 	
 		// Status
 		//----------------------------------------------------------------
@@ -6011,7 +6011,7 @@
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
 		"MovementSpeed"				"380"		// Speed.
-		"MovementTurnRate"			"0.5"		// Turning rate.
+		"MovementTurnRate"			"0.25"		// Turning rate.
 	
 		// Status
 		//----------------------------------------------------------------
@@ -6204,7 +6204,7 @@
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
 		"MovementSpeed"				"380"		// Speed.
-		"MovementTurnRate"			"0.5"		// Turning rate.
+		"MovementTurnRate"			"0.25"		// Turning rate.
 	
 		// Status
 		//----------------------------------------------------------------
@@ -6310,7 +6310,7 @@
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
 		"MovementSpeed"				"400"		// Speed.
-		"MovementTurnRate"			"0.5"		// Turning rate.
+		"MovementTurnRate"			"0.25"		// Turning rate.
 	
 		// Status
 		//----------------------------------------------------------------
@@ -6422,7 +6422,7 @@
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
 		"MovementSpeed"				"400"		// Speed.
-		"MovementTurnRate"			"0.5"		// Turning rate.
+		"MovementTurnRate"			"0.25"		// Turning rate.
 	
 		// Status
 		//----------------------------------------------------------------
@@ -7406,7 +7406,7 @@
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_FLY"
 		"MovementSpeed"				"300"		// Speed.
-		"MovementTurnRate"			"50"		// Turning rate.
+		"MovementTurnRate"			"0.35"		// Turning rate.
 	
 		// Status
 		//----------------------------------------------------------------
@@ -7470,10 +7470,10 @@
 		"GameSoundsFile"			"soundevents/game_sounds_heroes/game_sounds_broodmother.vsndevts"
 		"ModelScale"				"2.5"								// old 1.0
 		"Level"						"300"
-		"IsAncient"			"0"
+		"IsAncient"					"0"
 		"MinimapIcon"				"minimap_roshancamp"
 		"MinimapIconSize"			"200"
-		"UseNeutralCreepBehavior" "0"
+		"UseNeutralCreepBehavior" 	"0"
 		"IsCore"					"1"
 		"vscripts"					"ai/ai_boss37"
 		
@@ -7486,285 +7486,14 @@
 		//----------------------------------------------------------------
 		
 		"AbilityLayout"				"6"
-		"Ability1"					"creature_spin_web"					// Ability 1.
-		"Ability2"					"creature_spawn_broodmother_eggs"	// Ability 2
-		"Ability3"					"creature_self_haste"				// Ability 3.
-		"Ability4"					"broodmother_incapacitating_bite"	// Ability 4.
-		"Ability5"					"brood_king_gold_bag_fountain"		// Ability 5.
-		"Ability6"					"true_sight_boss"			// Ability 6 - Extra.
-		"Ability7"					""			// Ability 7 - Extra.
-		"Ability8"					""			// Ability 8 - Extra.
-	
-		// Armor
-		//----------------------------------------------------------------
-		"ArmorPhysical"				"50"		// Physical protection.
-		"MagicalResistance"			"25"		// Magical protection.
-	
-		// Attack
-		//----------------------------------------------------------------
-		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"			"1740000"		// Damage range min.
-		"AttackDamageMax"			"1740000"		// Damage range max.
-		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
-		"AttackRate"				"1"		// Speed of attack.
-		"AttackAnimationPoint"		"0.5"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"1200"		// Range within a target can be acquired.
-		"AttackRange"				"200"		// Range within a target can be attacked.
-		"ProjectileModel"			""			// Particle system model for projectile.
-		"ProjectileSpeed"			""			// Speed of projectile.
-	
-		// Bounty
-		//----------------------------------------------------------------
-		"BountyXP"					"300000"		// Experience earn.
-		"BountyGoldMin"				"11"		// Gold earned min.
-		"BountyGoldMax"				"13"		// Gold earned max.
-	
-		// Bounds
-		//----------------------------------------------------------------
-		"BoundsHullName"			"DOTA_HULL_SIZE_BARRACKS"			// Hull type used for navigation/locomotion.
-		"RingRadius"				"120"
-		"HealthBarOffset"			"320"
-	
-		// Movement
-		//----------------------------------------------------------------
-		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_FLY"			// Type of locomotion - ground, air
-		"MovementSpeed"				"350"		// Speed
-		"MovementTurnRate"			"0.5"		// Turning rate.
-	
-		// Status
-		//----------------------------------------------------------------
-		"StatusHealth"				"30000000"		// Base health.
-		"StatusHealthRegen"			"10000"		// Health regeneration rate.
-		"StatusMana"				"0"			// Base mana.
-		"StatusManaRegen"			"0"			// Mana regeneration rate.
-	
-		// Team
-		//----------------------------------------------------------------
-		"TeamName"					"DOTA_TEAM_BADGUYS"			// Team name.
-		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_HERO"
-		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_HERO"
-		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
-		
-		// Vision
-		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
-		"VisionNighttimeRange"		"1800"		// Range of vision at night time.
-	
-		//Precache
-		//------------------------------------------------------------------
-		"VoiceFile"				"soundevents/voscripts/game_sounds_vo_broodmother.vsndevts"
-		"GameSoundsFile"		"soundevents/game_sounds_heroes/game_sounds_broodmother.vsndevts"
-	
-		"ShouldDoFlyHeightVisual" "0"
-	
-		// Creature Data
-		//----------------------------------------------------------------------------------------------------------------------
-		"Creature"
-		{
-			//HERO AI State
-			//------------------------------------------------------------
-			"DefaultState"				"Invade"
-			"States"
-			{
-				"Invade"
-				{
-					"Name"				"Invade"
-					"Aggression"		"0.0"
-					"Avoidance"			"0.0"
-					"Support"			"0.0"
-				}
-			}
-			"DefaultState"				"Invade"
-			
-			"AttachWearables"
-			{
-				"Wearable1"
-				{
-					"ItemDef"			"101"		
-				}
-				"Wearable2"
-				{
-					"ItemDef"			"102"		
-				}
-				"Wearable3"
-				{
-					"ItemDef"			"103"		
-				}
-			}
-	
-			"NOSTUNRESIST"			"50.0"
-		}
-	}
-	"npc_dota_boss37_h"
-	{
-		// General
-		//
-		"BaseClass"					"npc_dota_creature"	// Class of entity of link to.
-		"Model"						"models/heroes/broodmother/broodmother.vmdl"	// Model.
-		"SoundSet"					"Hero_Broodmother"					// Name of sound set.
-		"GameSoundsFile"			"soundevents/game_sounds_heroes/game_sounds_broodmother.vsndevts"
-		"ModelScale"				"2.5"								// old 1.0
-		"Level"						"300"
-		"IsAncient"			"0"
-		"MinimapIcon"				"minimap_roshancamp"
-		"MinimapIconSize"			"200"
-		"UseNeutralCreepBehavior" "0"
-		"IsCore"					"1"
-		"vscripts"					"ai/ai_boss37"
-		
-		"precache"
-		{
-			"particle_folder"	"particles/units/heroes/hero_broodmother"
-		}
-	
-		// Abilities
-		//----------------------------------------------------------------
-		
-		"AbilityLayout"				"6"
-		"Ability1"					"creature_spin_web_h"					// Ability 1.
-		"Ability2"					"creature_spawn_broodmother_eggs"	// Ability 2
-		"Ability3"					"creature_self_haste"				// Ability 3.
-		"Ability4"					"broodmother_incapacitating_bite"	// Ability 4.
-		"Ability5"					"brood_king_gold_bag_fountain"		// Ability 5.
-		"Ability6"					"true_sight_boss"			// Ability 6 - Extra.
-		"Ability7"					""			// Ability 7 - Extra.
-		"Ability8"					""			// Ability 8 - Extra.
-	
-		// Armor
-		//----------------------------------------------------------------
-		"ArmorPhysical"				"50"		// Physical protection.
-		"MagicalResistance"			"25"		// Magical protection.
-	
-		// Attack
-		//----------------------------------------------------------------
-		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"			"2900000"		// Damage range min.
-		"AttackDamageMax"			"2900000"		// Damage range max.
-		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
-		"AttackRate"				"0.7"		// Speed of attack.
-		"AttackAnimationPoint"		"0.5"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"1200"		// Range within a target can be acquired.
-		"AttackRange"				"200"		// Range within a target can be attacked.
-		"ProjectileModel"			""			// Particle system model for projectile.
-		"ProjectileSpeed"			""			// Speed of projectile.
-	
-		// Bounty
-		//----------------------------------------------------------------
-		"BountyXP"					"350"		// Experience earn.
-		"BountyGoldMin"				"0"		// Gold earned min.
-		"BountyGoldMax"				"0"		// Gold earned max.
-	
-		// Bounds
-		//----------------------------------------------------------------
-		"BoundsHullName"			"DOTA_HULL_SIZE_BARRACKS"			// Hull type used for navigation/locomotion.
-		"RingRadius"				"120"
-		"HealthBarOffset"			"320"
-	
-		// Movement
-		//----------------------------------------------------------------
-		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_FLY"			// Type of locomotion - ground, air
-		"MovementSpeed"				"350"		// Speed
-		"MovementTurnRate"			"0.5"		// Turning rate.
-	
-		// Status
-		//----------------------------------------------------------------
-		"StatusHealth"				"25000000"		// Base health.
-		"StatusHealthRegen"			"10000"		// Health regeneration rate.
-		"StatusMana"				"0"			// Base mana.
-		"StatusManaRegen"			"0"			// Mana regeneration rate.
-	
-		// Team
-		//----------------------------------------------------------------
-		"TeamName"					"DOTA_TEAM_BADGUYS"			// Team name.
-		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_HERO"
-		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_HERO"
-		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
-		
-		// Vision
-		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
-		"VisionNighttimeRange"		"1800"		// Range of vision at night time.
-	
-		//Precache
-		//------------------------------------------------------------------
-		"VoiceFile"				"soundevents/voscripts/game_sounds_vo_broodmother.vsndevts"
-		"GameSoundsFile"		"soundevents/game_sounds_heroes/game_sounds_broodmother.vsndevts"
-	
-		"ShouldDoFlyHeightVisual" "0"
-	
-		// Creature Data
-		//----------------------------------------------------------------------------------------------------------------------
-		"Creature"
-		{
-			//HERO AI State
-			//------------------------------------------------------------
-			"DefaultState"				"Invade"
-			"States"
-			{
-				"Invade"
-				{
-					"Name"				"Invade"
-					"Aggression"		"0.0"
-					"Avoidance"			"0.0"
-					"Support"			"0.0"
-				}
-			}
-			
-			"DefaultState"				"Invade"
-			
-			"AttachWearables"
-			{
-				"Wearable1"
-				{
-					"ItemDef"			"4751"		
-				}
-				"Wearable2"
-				{
-					"ItemDef"			"4750"		
-				}
-				"Wearable3"
-				{
-					"ItemDef"			"4752"		
-				}
-			}
-	
-			"NOSTUNRESIST"			"75.0"
-		}
-	}
-	"npc_dota_boss37_vh"
-	{
-		// General
-		//
-		"BaseClass"					"npc_dota_creature"	// Class of entity of link to.
-		"Model"						"models/heroes/broodmother/broodmother.vmdl"	// Model.
-		"SoundSet"					"Hero_Broodmother"					// Name of sound set.
-		"GameSoundsFile"			"soundevents/game_sounds_heroes/game_sounds_broodmother.vsndevts"
-		"ModelScale"				"2.5"								// old 1.0
-		"Level"						"300"
-		"IsAncient"			"0"
-		"MinimapIcon"				"minimap_roshancamp"
-		"MinimapIconSize"			"200"
-		"UseNeutralCreepBehavior" "0"
-		"IsCore"					"1"
-		"vscripts"					"ai/ai_boss37"
-		
-		"precache"
-		{
-			"particle_folder"	"particles/units/heroes/hero_broodmother"
-		}
-	
-		// Abilities
-		//----------------------------------------------------------------
-		
-		"AbilityLayout"				"6"
-		"Ability1"					"creature_spin_web_vh"					// Ability 1.
-		"Ability2"					"creature_spawn_broodmother_eggs"	// Ability 2
-		"Ability3"					"creature_self_haste"				// Ability 3.
-		"Ability4"					"broodmother_incapacitating_bite"	// Ability 4.
-		"Ability5"					"brood_king_gold_bag_fountain"		// Ability 5.
-		"Ability6"					"true_sight_boss"			// Ability 6 - Extra.
-		"Ability7"					""			// Ability 7 - Extra.
-		"Ability8"					""			// Ability 8 - Extra.
+		"Ability1"					"boss_broodmother_clipped_fate"					// Ability 1.
+		"Ability2"					"boss_broodmother_parasitic_injection"	// Ability 2
+		"Ability3"					"boss_broodmother_strength_of_the_brood"				// Ability 3.
+		"Ability4"					"boss_broodmother_egg_sack"	// Ability 4.
+		"Ability5"					"boss_broodmother_infest"		// Ability 5.
+		"Ability6"					"boss_broodmother_arachnids_hunger"			// Ability 6 - Extra.
+		"Ability7"					"boss_broodmother_fates_web"			// Ability 7 - Extra.
+		"Ability8"					"boss_broodmother_web_shot"			// Ability 8 - Extra.
 	
 		// Armor
 		//----------------------------------------------------------------
@@ -7798,9 +7527,9 @@
 	
 		// Movement
 		//----------------------------------------------------------------
-		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_FLY"			// Type of locomotion - ground, air
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"			// Type of locomotion - ground, air
 		"MovementSpeed"				"350"		// Speed
-		"MovementTurnRate"			"0.5"		// Turning rate.
+		"MovementTurnRate"			"0.2"		// Turning rate.
 	
 		// Status
 		//----------------------------------------------------------------
@@ -7936,7 +7665,7 @@
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_FLY"			// Type of locomotion - ground, air
 		"MovementSpeed"				"300"		// Speed
-		"MovementTurnRate"			"0.9"		// Turning rate.
+		"MovementTurnRate"			"0.3"		// Turning rate.
 	
 		// Status
 		//----------------------------------------------------------------
@@ -8064,7 +7793,7 @@
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_FLY"			// Type of locomotion - ground, air
 		"MovementSpeed"				"200"		// Speed
-		"MovementTurnRate"			"0.9"		// Turning rate.
+		"MovementTurnRate"			"0.3"		// Turning rate.
 	
 		// Status
 		//----------------------------------------------------------------
@@ -8184,7 +7913,7 @@
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"			// Type of locomotion - ground, air
 		"MovementSpeed"				"120"		// Speed
-		"MovementTurnRate"			"0.5"		// Turning rate.
+		"MovementTurnRate"			"0.15"		// Turning rate.
 	
 		// Status
 		//----------------------------------------------------------------
@@ -8299,7 +8028,7 @@
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"			// Type of locomotion - ground, air
 		"MovementSpeed"				"220"		// Speed
-		"MovementTurnRate"			"0.5"		// Turning rate.
+		"MovementTurnRate"			"0.2"		// Turning rate.
 	
 		// Status
 		//----------------------------------------------------------------
@@ -8391,7 +8120,7 @@
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"			// Type of locomotion - ground, air
 		"MovementSpeed"				"85"		// Speed
-		"MovementTurnRate"			"0.5"		// Turning rate.
+		"MovementTurnRate"			"0.2"		// Turning rate.
 	
 		// Status
 		//----------------------------------------------------------------
@@ -8501,7 +8230,7 @@
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"			// Type of locomotion - ground, air
 		"MovementSpeed"				"125"		// Speed
-		"MovementTurnRate"			"0.5"		// Turning rate.
+		"MovementTurnRate"			"0.3"		// Turning rate.
 	
 		// Status
 		//----------------------------------------------------------------
@@ -8606,7 +8335,7 @@
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_NONE"			// Type of locomotion - ground, air
 		"MovementSpeed"				"125"		// Speed
-		"MovementTurnRate"			"0.5"		// Turning rate.
+		"MovementTurnRate"			"0.3"		// Turning rate.
 	
 		// Status
 		//----------------------------------------------------------------
@@ -8710,7 +8439,7 @@
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"			// Type of locomotion - ground, air
 		"MovementSpeed"				"350"		// Speed
-		"MovementTurnRate"			"0.5"		// Turning rate.
+		"MovementTurnRate"			"0.25"		// Turning rate.
 	
 		// Status
 		//----------------------------------------------------------------
@@ -8817,7 +8546,7 @@
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"			// Type of locomotion - ground, air
 		"MovementSpeed"				"125"		// Speed
-		"MovementTurnRate"			"0.5"		// Turning rate.
+		"MovementTurnRate"			"0.15"		// Turning rate.
 	
 		// Status
 		//----------------------------------------------------------------
@@ -8922,7 +8651,7 @@
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"			// Type of locomotion - ground, air
 		"MovementSpeed"				"350"		// Speed
-		"MovementTurnRate"			"0.5"		// Turning rate.
+		"MovementTurnRate"			"0.25"		// Turning rate.
 	
 		// Status
 		//----------------------------------------------------------------
@@ -9028,7 +8757,7 @@
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"			// Type of locomotion - ground, air
 		"MovementSpeed"				"350"		// Speed
-		"MovementTurnRate"			"0.5"		// Turning rate.
+		"MovementTurnRate"			"0.3"		// Turning rate.
 	
 		// Status
 		//----------------------------------------------------------------
@@ -9148,7 +8877,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"			// Type of locomotion - ground, air
 		"MovementSpeed"				"375"									// Speed.
-		"MovementTurnRate"			"0.5"									// Turning rate.
+		"MovementTurnRate"			"0.25"									// Turning rate.
 		
 		"BoundsHullName"			"DOTA_HULL_SIZE_HUGE"			// Hull type used for navigation/locomotion.
 		"RingRadius"				"100"
@@ -9281,7 +9010,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"			// Type of locomotion - ground, air
 		"MovementSpeed"				"300"									// Speed.
-		"MovementTurnRate"			"0.5"									// Turning rate.
+		"MovementTurnRate"			"0.25"									// Turning rate.
 		
 		"BoundsHullName"			"DOTA_HULL_SIZE_HUGE"			// Hull type used for navigation/locomotion.
 		"RingRadius"				"100"
@@ -9391,7 +9120,7 @@
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"			// Type of locomotion - ground, air
 		"MovementSpeed"				"290"		// Speed
-		"MovementTurnRate"			"0.5"		// Turning rate.
+		"MovementTurnRate"			"0.1"		// Turning rate.
 	
 		// Status
 		//----------------------------------------------------------------
@@ -9504,7 +9233,7 @@
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
 		"MovementSpeed"				"250"		// Speed.
-		"MovementTurnRate"			"0.6"		// Turning rate.
+		"MovementTurnRate"			"0.3"		// Turning rate.
 	
 		// Status
 		//----------------------------------------------------------------
@@ -9611,7 +9340,7 @@
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
 		"MovementSpeed"				"250"		// Speed.
-		"MovementTurnRate"			"0.6"		// Turning rate.
+		"MovementTurnRate"			"0.3"		// Turning rate.
 	
 		// Status
 		//----------------------------------------------------------------
@@ -9708,7 +9437,7 @@
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
 		"MovementSpeed"				"380"		// Speed.
-		"MovementTurnRate"			"0.6"		// Turning rate.
+		"MovementTurnRate"			"0.3"		// Turning rate.
 	
 		// Status
 		//----------------------------------------------------------------
@@ -9922,7 +9651,7 @@
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"			// Type of locomotion - ground, air
 		"MovementSpeed"				"335"		// Speed
-		"MovementTurnRate"			"0.5"		// Turning rate.
+		"MovementTurnRate"			"0.3"		// Turning rate.
 		
 		// Status
 		//----------------------------------------------------------------
@@ -10003,7 +9732,7 @@
 		//----------------------------------------------------------------
 		
 		"AbilityLayout"				"6"
-		"Ability1"					"creature_spawn_spider"			// Ability 1.
+		"Ability1"					"boss_broodling_spawn_spiderling"			// Ability 1.
 		"Ability2"					""		// Ability 2.
 		"Ability3"					""			// Ability 3.
 		"Ability4"					""			// Ability 4.
@@ -10045,7 +9774,7 @@
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"			// Type of locomotion - ground, air
 		"MovementSpeed"				"300"		// Speed
-		"MovementTurnRate"			"0.5"		// Turning rate.
+		"MovementTurnRate"			"0.3"		// Turning rate.
 	
 		// Status
 		//----------------------------------------------------------------
@@ -10197,7 +9926,7 @@
 		//----------------------------------------------------------------
 		
 		"AbilityLayout"				"6"
-		"Ability1"					"broodmother_poison_sting"			// Ability 1.
+		"Ability1"					"boss_spiderling_spider_bite"			// Ability 1.
 		"Ability2"					""		// Ability 2.
 		"Ability3"					""			// Ability 3.
 		"Ability4"					""			// Ability 4.
@@ -10239,7 +9968,7 @@
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"			// Type of locomotion - ground, air
 		"MovementSpeed"				"200"		// Speed
-		"MovementTurnRate"			"0.5"		// Turning rate.
+		"MovementTurnRate"			"0.25"		// Turning rate.
 	
 		// Status
 		//----------------------------------------------------------------
@@ -10335,7 +10064,7 @@
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"			// Type of locomotion - ground, air
 		"MovementSpeed"				"120"		// Speed
-		"MovementTurnRate"			"0.5"		// Turning rate.
+		"MovementTurnRate"			"0.25"		// Turning rate.
 	
 		// Status
 		//----------------------------------------------------------------
@@ -10655,7 +10384,7 @@
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"			// Type of locomotion - ground, air
 		"MovementSpeed"				"335"		// Speed
-		"MovementTurnRate"			"0.5"		// Turning rate.
+		"MovementTurnRate"			"0.25"		// Turning rate.
 		
 		// Status
 		//----------------------------------------------------------------
@@ -10782,7 +10511,7 @@
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"			// Type of locomotion - ground, air
 		"MovementSpeed"				"300"		// Speed
-		"MovementTurnRate"			"1.0"		// Turning rate.
+		"MovementTurnRate"			"0.4"		// Turning rate.
 	
 		// Status
 		//----------------------------------------------------------------
@@ -10892,7 +10621,7 @@
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"			// Type of locomotion - ground, air
 		"MovementSpeed"				"300"		// Speed
-		"MovementTurnRate"			"1.0"		// Turning rate.
+		"MovementTurnRate"			"0.35"		// Turning rate.
 	
 		// Status
 		//----------------------------------------------------------------
@@ -11003,7 +10732,7 @@
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"			// Type of locomotion - ground, air
 		"MovementSpeed"				"300"		// Speed
-		"MovementTurnRate"			"1.0"		// Turning rate.
+		"MovementTurnRate"			"0.3"		// Turning rate.
 	
 		// Status
 		//----------------------------------------------------------------
@@ -11123,7 +10852,7 @@
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"			// Type of locomotion - ground, air
 		"MovementSpeed"				"300"		// Speed
-		"MovementTurnRate"			"1.0"		// Turning rate.
+		"MovementTurnRate"			"0.25"		// Turning rate.
 	
 		// Status
 		//----------------------------------------------------------------

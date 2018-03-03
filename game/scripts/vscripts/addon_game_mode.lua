@@ -1280,10 +1280,9 @@ function CHoldoutGameMode:OnHeroPick (event)
 			Notifications:TopToAll(messageinfo)
 			ParticleManager:FireParticle("particles/roles/dev/vip_particle.vpcf", PATTACH_POINT_FOLLOW, hero)
 		end
-		-- hero:SetGold(0 , true)
 		if PlayerResource:HasRandomed( ID ) then
 			local gold = hero:GetGold()
-			hero:SetGold( 900, true )
+			hero:SetGold( 600, true )
 		end
 		
 		hero:SetDayTimeVisionRange(hero:GetDayTimeVisionRange() * 2)
@@ -2027,11 +2026,7 @@ function CHoldoutGameMode:_CheckForDefeat()
 				GameRules._life = GameRules._life - 1
 				GameRules._used_life = GameRules._used_life + 1
 				CustomGameEventManager:Send_ServerToAllClients( "updateQuestLife", { lives = GameRules._life, maxLives = GameRules._maxLives } )
-				for _,unit in pairs ( FindAllEntitiesByClassname("npc_dota_creature")) do
-					if unit and unit:GetTeamNumber() == DOTA_TEAM_BADGUYS then
-						unit:ForceKill(false)
-					end
-				end
+				local delay = 30
 				for _,unit in pairs ( HeroList:GetAllHeroes()) do
 					if unit:GetTeamNumber() == DOTA_TEAM_GOODGUYS and not unit:IsFakeHero() then
 						local totalgold = unit:GetGold() + ((((self._nRoundNumber/1.5)+5)/((GameRules._life/2) +0.5))*500)

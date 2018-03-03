@@ -123,5 +123,5 @@ function modifier_mag_magnet_damage:OnCreated(table)
 end
 
 function modifier_mag_magnet_damage:OnIntervalThink()
-	local damage = self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), 50, {damage_type=DAMAGE_TYPE_PHYSICAL}, 0)
+	local damage = self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self:GetCaster():GetAverageTrueAttackDamage(self:GetParent()), {damage_type=DAMAGE_TYPE_PHYSICAL}, 0)
 end
