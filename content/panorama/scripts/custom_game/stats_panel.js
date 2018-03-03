@@ -29,7 +29,15 @@ function UpdateList(pID, tag, value)
 		PIDtag.AddClass("statsText")
 	}
 	var heroName = $.Localize( Entities.GetUnitName( Players.GetPlayerHeroEntityIndex( parseInt(pID) ) ) )
-	PIDtag.text = heroName + " - " + value 
+	var signifier = ""
+	if(value / 1000000 > 0){ 
+		value = (value / 1000000).toPrecision(3)
+		signifier = "M"
+	}else if(value / 1000 > 0){ 
+		value = (value / 1000).toPrecision(3)
+		signifier = "K"
+	}
+	PIDtag.text = heroName + " - " + value + signifier
 }
 
 function ToggleStats(arg)

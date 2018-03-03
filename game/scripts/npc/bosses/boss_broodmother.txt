@@ -1,0 +1,87 @@
+"DOTAAbilities"
+{	
+	//=================================================================================================================
+	// Aether: Phase Shift
+	//=================================================================================================================
+	"boss_aether_gravity_well"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_aether/boss_aether_gravity_well"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
+		"AbilityTextureName"			"enigma_midnight_pulse"
+		"MaxLevel"						"3"
+	
+		"precache"
+		{
+			"particle"					"particles/bosses/boss_aether/boss_aether_gravity_well.vpcf"
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"aura_radius"			"900"
+			}
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"max_pull"				"2 3"
+			}
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"max_damage"			"3.5 4"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Aether: Phase Shift
+	//=================================================================================================================
+	"boss_aether_space_rift"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_aether/boss_aether_space_rift"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"abyssal_underlord_dark_rift"
+		"MaxLevel"						"3"
+		
+		"AbilityCastRange"				"350"
+		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
+		"AbilityCastPoint"				"0.8 0.5"
+		"AbilityCooldown"				"4 3"
+	
+		"precache"
+		{
+			"particle"					"particles/units/heroes/heroes_underlord/abyssal_underlord_darkrift_target.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_weaver.vsndevts"
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"pull_radius"				"500 600"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"impact_radius"				"300 375"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"impact_curr_hp_damage"		"35 50"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"suck_duration"				"0.5"
+			}
+		}
+	}
+}
