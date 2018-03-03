@@ -12578,4 +12578,89 @@
 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_HERO"
 		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
 	}
+	//=================================================================================
+	// KOTL Spirit
+	//=================================================================================
+	"npc_kotl_spirit"
+	{										
+		// General
+		//----------------------------------------------------------------
+		"Model"						"models/heroes/keeper_of_the_light/keeper_of_the_light.vmdl"	// Model.
+		"BaseClass"					"npc_dota_creature"
+		"SoundSet"					"0"			// Name of sound set.
+		"Level"						"1"
+		"ModelScale"				"1.0"
+		"ConsideredHero"			"1"
+		"IsAncient"					"1"
+
+		// Abilities
+		//----------------------------------------------------------------
+		"Ability1"					""			// Ability 1
+		"Ability2"					""			// Ability 2
+		"Ability3"					""			// Ability 3
+
+		// Armor
+		//----------------------------------------------------------------
+		"ArmorPhysical"				"0"			// Physical protection.
+
+		// Attack
+		//----------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+		"AttackDamageMin"			"0"			// Damage range min.
+		"AttackDamageMax"			"0"			// Damage range max.	
+		"AttackRate"				"1.0"		// Speed of attack.
+		"AttackAnimationPoint"		"0.0"		// Normalized time in animation cycle to attack.
+		"AttackAcquisitionRange"	"0"			// Range within a target can be acquired.
+		"AttackRange"				"0"			// Range within a target can be attacked.
+		"ProjectileModel"			""			// Particle system model for projectile.
+		"ProjectileSpeed"			"0"			// Speed of projectile.		   
+
+		// Bounds
+		//----------------------------------------------------------------
+		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"			// Hull type used for navigation/locomotion.
+
+		// Bounty
+		//----------------------------------------------------------------
+		"BountyXP"					"0"		// Experience earn.
+		"BountyGoldMin"				"1"			// Gold earned min.
+		"BountyGoldMax"				"1"			// Gold earned max.
+
+		// Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"			// Type of locomotion - ground, air
+		"MovementSpeed"				"315"			// Speed
+		"MovementTurnRate"			"0.5"		// Turning rate.
+
+		// Status
+		//----------------------------------------------------------------
+		"StatusHealth"				"100"		// Base health.
+		"StatusHealthRegen"			"0.0"		// Health regeneration rate.
+		"StatusMana"				"1000000"			// Base mana.
+		"StatusManaRegen"			"1000000"		// Mana regeneration rate.	
+		
+		// Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange"		"1000"		// Range of vision during day light.
+		"VisionNighttimeRange"		"1000"		// Range of vision at night time.
+
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"					"DOTA_TEAM_GOODGUYS"							// Team name.
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_SOFT"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+
+		"Creature"
+	    {
+	    	"AttachWearables"
+			{
+			    "Wearable1" { "ItemDef" "252" }
+			    "Wearable2" { "ItemDef" "253" }
+			    "Wearable3" { "ItemDef" "254" }
+			    "Wearable4" { "ItemDef" "255" }
+			    "Wearable4" { "ItemDef" "256" }
+			}
+	    }
+		
+	}
 }

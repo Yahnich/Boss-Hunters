@@ -15,3 +15,7 @@ end
 function modifier_healing_disable:GetTexture()
     return "custom/healing_disabled"
 end
+
+function modifier_healing_disable:IsDebuff()
+	return true
+end

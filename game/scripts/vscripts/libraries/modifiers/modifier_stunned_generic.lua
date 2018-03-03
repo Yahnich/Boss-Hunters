@@ -46,3 +46,7 @@ end
 function modifier_stunned_generic:IsPurgeException()
 	return true
 end
+
+function modifier_stunned_generic:IsDebuff()
+	return true
+end

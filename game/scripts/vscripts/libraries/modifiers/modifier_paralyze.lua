@@ -13,3 +13,7 @@ end
 function modifier_paralyze:GetModifierMoveSpeedBonus_Percentage()
 	return -100
 end
+
+function modifier_paralyze:IsDebuff()
+	return true
+end

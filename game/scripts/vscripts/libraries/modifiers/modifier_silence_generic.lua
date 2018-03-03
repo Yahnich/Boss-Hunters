@@ -18,7 +18,7 @@ function modifier_silence_generic:GetEffectName()
 end
 
 function modifier_silence_generic:GetTexture()
-	return "filler_ability"
+	return "silencer_last_word"
 end
 
 function modifier_silence_generic:GetEffectAttachType()
@@ -36,5 +36,9 @@ function modifier_silence_generic:CheckState()
 end
 
 function modifier_silence_generic:IsPurgable()
+	return true
+end
+
+function modifier_silence_generic:IsDebuff()
 	return true
 end
