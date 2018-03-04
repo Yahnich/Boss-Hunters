@@ -50,11 +50,6 @@
 				"var_type"					"FIELD_INTEGER"
 				"damage"					"4000 8000 16000 32000 50000 100000 200000"
 			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"hp"						"2"
-			}
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
