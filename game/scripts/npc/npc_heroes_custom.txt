@@ -613,8 +613,22 @@
 	"npc_dota_hero_keeper_of_the_light_ebf"
 	{
 		"override_hero"			"npc_dota_hero_keeper_of_the_light"
-		"Ability2"				"keeper_of_the_light_power_leak"
-		"Ability3"				"keeper_of_the_light_chakra_magic_ebf"
+		"AbilityLayout"			"6"
+		"Ability1"				"kotl_illuminate"
+		"Ability2"				"kotl_power_leak"
+		"Ability3"				"kotl_chakra_magic"
+		"Ability4"				"kotl_recall"
+		"Ability5"				"kotl_blind"
+		"Ability6"				"kotl_spirit"
+
+		"Ability10"		"special_bonus_unique_kotl_illuminate_1"
+		"Ability11"		"special_bonus_unique_kotl_illuminate_2"
+		"Ability12"		"special_bonus_unique_kotl_power_leak_1"
+		"Ability13"		"special_bonus_unique_kotl_power_leak_2"
+		"Ability14"		"special_bonus_unique_kotl_chakra_magic_1"
+		"Ability15"		"special_bonus_unique_kotl_chakra_magic_2"
+		"Ability16"		"special_bonus_unique_kotl_spirit_1"
+		"Ability17"		"special_bonus_unique_kotl_spirit_2"
 		
 	}
 	//=================================================================================================================
