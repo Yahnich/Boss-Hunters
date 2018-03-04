@@ -707,10 +707,24 @@ end
 
 function CHoldoutGameMode:FilterHeal( filterTable )
 	local healer_index = filterTable["entindex_healer_const"]
-	local heal = filterTable["heal"]	
+	local target_index = filterTable["entindex_target_const"]
+	local heal = filterTable["heal"]
+	local healer, target
+	
+	if healer_index then healer = EntIndexToHScript( healer_index ) end
+	if target_index then target = EntIndexToHScript( target_index ) end
+	
+	if target then
+		local params = {healer = healer, target = target, heal = heal}
+		for _, modifier in ipairs( target:FindAllModifiers() ) do
+			if modifier.GetModifierHealAmplify_Percentage then
+				filterTable["heal"] = filterTable["heal"] * (1 + modifier:GetModifierHealAmplify_Percentage( params )/100)
+			end
+		end
+	end
+
 	if not healer_index or not heal then return true end
-	local healer = EntIndexToHScript( healer_index )
-	healer.statsDamageHealed = (healer.statsDamageHealed or 0) + heal
+	healer.statsDamageHealed = (healer.statsDamageHealed or 0) + filterTable["heal"]
 	return true
 end
 
@@ -2026,7 +2040,6 @@ function CHoldoutGameMode:_CheckForDefeat()
 				GameRules._life = GameRules._life - 1
 				GameRules._used_life = GameRules._used_life + 1
 				CustomGameEventManager:Send_ServerToAllClients( "updateQuestLife", { lives = GameRules._life, maxLives = GameRules._maxLives } )
-				local delay = 30
 				for _,unit in pairs ( HeroList:GetAllHeroes()) do
 					if unit:GetTeamNumber() == DOTA_TEAM_GOODGUYS and not unit:IsFakeHero() then
 						local totalgold = unit:GetGold() + ((((self._nRoundNumber/1.5)+5)/((GameRules._life/2) +0.5))*500)
@@ -2096,7 +2109,7 @@ function CHoldoutGameMode:OnNPCSpawned( event )
 	if spawnedUnit:IsCourier() then
 		spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_invulnerable", {})
 	end
-	if spawnedUnit:IsCreature() and spawnedUnit:GetTeamNumber() == DOTA_TEAM_BADGUYS then
+	if spawnedUnit:IsCreature() and spawnedUnit:GetTeam() == DOTA_TEAM_BADGUYS then
 		local playerMultiplier = 0.33
 		if GetMapName() == "epic_boss_fight_hardcore" then playerMultiplier = 0.4 end
 		local effective_multiplier = 1 + (HeroList:GetActiveHeroCount() - 1)*playerMultiplier
@@ -2107,6 +2120,10 @@ function CHoldoutGameMode:OnNPCSpawned( event )
 		
 		spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_boss_attackspeed", {})
 		spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_spawn_immunity", {duration = 4/GameRules.gameDifficulty})
+		
+		if spawnedUnit:GetHullRadius() >= 24 then
+			spawnedUnit:SetHullRadius( math.ceil(24 * spawnedUnit:GetModelScale()) )
+		end
 	end
 end
 

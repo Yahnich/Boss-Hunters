@@ -30,10 +30,10 @@ function UpdateList(pID, tag, value)
 	}
 	var heroName = $.Localize( Entities.GetUnitName( Players.GetPlayerHeroEntityIndex( parseInt(pID) ) ) )
 	var signifier = ""
-	if(value / 1000000 > 0){ 
+	if(value / 1000000 > 1){ 
 		value = (value / 1000000).toPrecision(3)
 		signifier = "M"
-	}else if(value / 1000 > 0){ 
+	}else if(value / 1000 > 1){ 
 		value = (value / 1000).toPrecision(3)
 		signifier = "K"
 	}

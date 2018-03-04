@@ -1696,6 +1696,7 @@ end
 function CDOTA_BaseNPC:SmoothFindClearSpace(position)
 	self:SetAbsOrigin(position)
 	ResolveNPCPositions(position, self:GetHullRadius() + self:GetCollisionPadding())
+	FindClearSpaceForUnit(self, position, true)
 end
 
 function CDOTABaseAbility:Stun(target, duration, bDelay)
@@ -2111,7 +2112,6 @@ function CDOTA_BaseNPC:RemoveDaze()
 end
 
 function CDOTA_BaseNPC:AttemptKill(sourceAb, attacker)
-	self:SetHealth(5)
 	ApplyDamage({victim = self, attacker = attacker, ability = sourceAb, damage_type = DAMAGE_TYPE_PURE, damage = self:GetMaxHealth() * 5, damage_flags = DOTA_DAMAGE_FLAG_BYPASSES_INVULNERABILITY + DOTA_DAMAGE_FLAG_BYPASSES_BLOCK + DOTA_DAMAGE_FLAG_NO_DAMAGE_MULTIPLIERS})
 	return not self:IsAlive()
 end

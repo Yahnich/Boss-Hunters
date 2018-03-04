@@ -1567,15 +1567,15 @@
 	    
 	    // Casting
 	    //-------------------------------------------------------------------------------------------------------------
-	    "AbilityCastPoint"              "0.67"
+	    "AbilityCastPoint"              "1"
 	
 	    // Time     
 	    //-------------------------------------------------------------------------------------------------------------
-	    "AbilityCooldown"               "14.0"
+	    "AbilityCooldown"               "10.0"
 	
 	    // Damage.
 	    //-------------------------------------------------------------------------------------------------------------
-	    "AbilityDamage"                 "200000"
+	    "AbilityDamage"                 "250000"
 	
 	    // Cost
 	    //-------------------------------------------------------------------------------------------------------------
@@ -1588,7 +1588,7 @@
 	        "01"
 	        {
 	            "var_type"          "FIELD_INTEGER"
-	            "damage" "200000"       
+	            "damage" "250000"       
 	        }
 	    }
 	
@@ -1620,15 +1620,15 @@
 	    
 	    // Casting
 	    //-------------------------------------------------------------------------------------------------------------
-	    "AbilityCastPoint"              "0.67"
+	    "AbilityCastPoint"              "1"
 	
 	    // Time     
 	    //-------------------------------------------------------------------------------------------------------------
-	    "AbilityCooldown"               "14.0"
+	    "AbilityCooldown"               "8.0"
 	
 	    // Damage.
 	    //-------------------------------------------------------------------------------------------------------------
-	    "AbilityDamage"                 "200000"
+	    "AbilityDamage"                 "250000"
 	
 	    // Cost
 	    //-------------------------------------------------------------------------------------------------------------
@@ -1641,7 +1641,7 @@
 	        "01"
 	        {
 	            "var_type"          "FIELD_INTEGER"
-	            "damage" "200000"       
+	            "damage" 			"250000"       
 	        }
 	    }
 	
@@ -10706,12 +10706,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"critical_chance"				"35"
+				"critical_chance"		"20"
 			}
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"critical_mult"			"350"
+				"critical_mult"			"400"
 			}
 		}
 		"Modifiers"
@@ -10810,7 +10810,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"chance"				"15"
+				"chance"				"10"
 			}
 		}
 		"Modifiers"
@@ -10840,7 +10840,8 @@
 			"modifier_elite_berserker_stun"
 			{
 				"IsDebuff"	"1"
-	
+				"IsPurgable"	"1"
+				"IsStunDebuff"	"1"
 				"EffectName"	"particles/generic_gameplay/generic_stunned.vpcf"
 				"EffectAttachType"	"follow_overhead"
 	
@@ -11184,11 +11185,14 @@
 			"modifier_elite_breaking_armor_debuff_counter"
 			{
 				"IsDebuff"	"1"
+				"IsPurgable"	"1"
 			}
 			"modifier_elite_breaking_armor_debuff"
 			{
 				"IsDebuff"	"1"
 				"IsHidden"	"1"
+				"IsPurgable"	"1"
+
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"-1"
@@ -11359,6 +11363,8 @@
 			"modifier_elite_disarming_aura"
 			{
 				"IsDebuff"	"1"
+				"IsPurgable"	"1"
+
 				"States"
 				{
 					"MODIFIER_STATE_DISARMED"	"MODIFIER_STATE_VALUE_ENABLED"
@@ -11520,6 +11526,7 @@
 			"modifier_elite_entangling_root"
 			{
 				"IsDebuff"	"1"
+				"IsPurgable"	"1"
 	
 				"EffectName"	"particles/units/heroes/hero_lone_druid/lone_druid_bear_entangle_body.vpcf"
 				"EffectAttachType"	"follow_origin"
@@ -11683,6 +11690,8 @@
 			"modifier_elite_coldsnapped"
 			{
 				"Duration"	"2"
+				"IsPurgable"	"1"
+				"IsStunDebuff"	"1"
 				
 				"StatusEffectName"	"particles/status_fx/status_effect_frost.vpcf"
 				
@@ -11706,6 +11715,8 @@
 			"modifier_elite_afterfrost"
 			{
 				"IsDebuff"	"1"
+				"IsPurgable"	"1"
+
 				"Duration"	"5"
 				"OnCreated"
 				{
@@ -11729,6 +11740,7 @@
 			{
 				"IsHidden"	"1"
 				"Duration"	"5"
+				"IsPurgable"	"1"
 				
 				"StatusEffectName"	"particles/status_fx/status_effect_frost.vpcf"
 				
@@ -11743,6 +11755,7 @@
 				"IsHidden"	"1"
 				"IsDebuff"	"1"
 				"Duration"	"5"
+				"IsPurgable"	"1"
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"-1"
@@ -12194,6 +12207,8 @@
 			{
 				"IsDebuff"	"1"
 				"IsHidden"	"1"
+				"IsPurgable"	"1"
+				
 				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
 				"OnCreated"
 				{
@@ -12225,6 +12240,7 @@
 			"modifier_elite_plagued_debuff_counter"
 			{
 				"IsDebuff"	"1"
+				"IsPurgable"	"1"
 			}
 			"acid_spray_fx"
 			{
@@ -12285,6 +12301,8 @@
 			"modifier_elite_silencing_aura"
 			{
 				"IsDebuff"	"1"
+				"IsPurgable"	"1"
+				
 				"States"
 				{
 					"MODIFIER_STATE_SILENCED"	"MODIFIER_STATE_VALUE_ENABLED"
@@ -12496,6 +12514,8 @@
 			}
 			"modifier_elite_unstable_slow"
 			{
+				"IsPurgable"	"1"
+
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"-400"
@@ -12504,6 +12524,8 @@
 			}
 			"modifier_elite_unstable_stun"
 			{
+				"IsPurgable"	"1"
+				"IsStunDebuff"	"1"
 				"States"
 				{
 					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
@@ -16581,7 +16603,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"damage_reduction"			"-10 -12.5 -15 17.5 -20 22.5 -25"
+				"damage_reduction"			"-10 -12.5 -15 -17.5 -20 -22.5 -25"
 			}
 			"02"
 			{

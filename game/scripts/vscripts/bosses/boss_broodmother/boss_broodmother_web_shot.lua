@@ -1,0 +1,1 @@
+boss_broodmother_web_shot = class({})

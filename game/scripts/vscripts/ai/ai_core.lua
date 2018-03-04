@@ -104,8 +104,10 @@ function AICore:BeingAttackedBy( entity )
 end
 
 function AICore:GetHighestPriorityTarget(entity)
-	local target = entity.AIprevioustarget
-	if not entity.AIprevioustarget then
+	local target
+	if entity.AIprevioustarget and entity:CanEntityBeSeenByMyTeam(entity.AIprevioustarget) then
+		target = entity.AIprevioustarget
+	else
 		target = AICore:NearestEnemyHeroInRange( entity, 15000 , true )
 	end
 	if entity:GetTauntTarget() then 
