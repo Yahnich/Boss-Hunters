@@ -190,7 +190,7 @@
 			"05"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"spiders_on_hit"			"4 6"
+				"spiders_on_hit"			"5 8"
 			}
 			"06"
 			{

@@ -40,18 +40,36 @@ end
 modifier_kotl_spirit = class({})
 function modifier_kotl_spirit:OnCreated(table)
     self.int = self:GetCaster():GetIntellect()*self:GetSpecialValueFor("bonus_int")/100
-
-    if self:GetCaster():HasTalent("special_bonus_unique_kotl_spirit_2") then
-        self.cdr = self:GetCaster():FindTalentValue("special_bonus_unique_kotl_spirit_2")
-    else
-        self.cdr = 0
-    end
+	self.cdr = self:GetCaster():FindTalentValue("special_bonus_unique_kotl_spirit_2")
 
     if IsServer() then
         local caster = self:GetCaster()
         caster:FindAbilityByName("kotl_recall"):SetActivated(true)
         caster:FindAbilityByName("kotl_blind"):SetActivated(true)
+		if caster:HasScepter() then self:StartIntervalThink(0.03) end
     end
+end
+
+function modifier_kotl_spirit:OnRefresh(table)
+    self.int = self:GetCaster():GetIntellect()*self:GetSpecialValueFor("bonus_int")/100
+	self.cdr = self:GetCaster():FindTalentValue("special_bonus_unique_kotl_spirit_2")
+
+    if IsServer() then
+        local caster = self:GetCaster()
+        caster:FindAbilityByName("kotl_recall"):SetActivated(true)
+        caster:FindAbilityByName("kotl_blind"):SetActivated(true)
+		if caster:HasScepter() then self:StartIntervalThink(0.03) end
+    end
+end
+
+
+function modifier_kotl_spirit:OnIntervalThink()
+	local caster = self:GetCaster()
+	if caster:HasScepter() and GameRules:IsDaytime() then
+		self:GetAbility():CreateVisibilityNode(caster:GetAbsOrigin(), caster:GetDayTimeVisionRange(), 0.04)
+	elseif not caster:HasScepter() then
+		self:StartIntervalThink(-1)
+	end
 end
 
 function modifier_kotl_spirit:OnRemoved()
@@ -91,11 +109,7 @@ function modifier_kotl_spirit:StatusEffectPriority()
 end
 
 function modifier_kotl_spirit:IsAura()
-    if self:GetCaster():HasTalent("special_bonus_unique_kotl_spirit_1") then
-        return true
-    end
-
-    return false
+    return self:GetCaster():HasTalent("special_bonus_unique_kotl_spirit_1")
 end
 
 function modifier_kotl_spirit:GetAuraDuration()
