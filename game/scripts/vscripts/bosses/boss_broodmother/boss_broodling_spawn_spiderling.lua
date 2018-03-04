@@ -1,0 +1,1 @@
+boss_broodling_spawn_spiderling = class({})

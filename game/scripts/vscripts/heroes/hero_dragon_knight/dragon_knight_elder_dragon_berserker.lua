@@ -87,9 +87,9 @@ function modifier_dragon_knight_elder_dragon_berserker_active:OnAttackLanded(par
 		EmitSoundOn("Hero_DragonKnight.ProjectileImpact", target)
 		if RollPercentage( self.healChance ) 
 		and not parent:HasModifier("modifier_dragon_knight_elder_dragon_berserker_cooldown") 
-		and caster:GetHealthPercent() <= self.heal*100 then
-			local heal = caster:GetMaxHealth() * self.heal
-			caster:HealEvent(heal, ability, caster)
+		and parent:GetHealthPercent() <= self.heal*100 then
+			local heal = parent:GetMaxHealth() * self.heal
+			parent:HealEvent(heal, self:GetAbility(), parent)
 			if not parent:HasTalent("special_bonus_unique_dragon_knight_elder_dragon_berserker_1") then parent:AddNewModifier(parent, self, "modifier_dragon_knight_elder_dragon_berserker_cooldown", {duration = self.cd}) end
 		end
 	end

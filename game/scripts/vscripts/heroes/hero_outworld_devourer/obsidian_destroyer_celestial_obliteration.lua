@@ -11,7 +11,7 @@ function obsidian_destroyer_celestial_obliteration:OnSpellStart()
 	local radius = self:GetTalentSpecialValueFor("radius")
 	local enemies = FindUnitsInRadius(caster:GetTeamNumber(), vTarget, nil, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false)
 	if caster:HasScepter() then
-		local imprison = caster:FindAbilityByName("obsidian_destroyer_astral_imprisonment_ebf")
+		local imprison = caster:FindAbilityByName("obsidian_destroyer_astral_isolation")
 		for _,enemy in pairs(enemies) do
 			caster:SetCursorCastTarget(enemy)
 			imprison:OnSpellStart()

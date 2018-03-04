@@ -1,0 +1,1 @@
+boss_spiderling_spider_bite = class({})

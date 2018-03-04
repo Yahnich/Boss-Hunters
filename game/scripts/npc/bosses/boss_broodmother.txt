@@ -1,21 +1,96 @@
 "DOTAAbilities"
 {	
+	// Broodmother
+	
 	//=================================================================================================================
 	// Aether: Phase Shift
 	//=================================================================================================================
-	"boss_aether_gravity_well"
+	"boss_broodmother_clipped_fate"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"bosses/boss_aether/boss_aether_gravity_well"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
-		"AbilityTextureName"			"enigma_midnight_pulse"
+		"ScriptFile"					"bosses/boss_broodmother/boss_broodmother_clipped_fate"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"broodmother_incapacitating_bite"
 		"MaxLevel"						"3"
 	
 		"precache"
 		{
-			"particle"					"particles/bosses/boss_aether/boss_aether_gravity_well.vpcf"
+			"particle"					"particles/units/heroes/hero_broodmother/broodmother_incapacitatingbite_debuff.vpcf"
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"heal_reduction"		"-25 -33"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"evasion_reduction"		"-25 -33"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"2.5 4"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Aether: Phase Shift
+	//=================================================================================================================
+	"boss_broodmother_parasitic_injection"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_broodmother/boss_broodmother_parasitic_injection"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"broodmother_poison_sting"
+		"MaxLevel"						"3"
+		
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_broodmother/broodmother_spiderlings_debuff.vpcf"
+		}
+	
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"slow"					"-25 -33"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"spiders_on_death"		"4 8"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"duration"				"4 6"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Aether: Phase Shift
+	//=================================================================================================================
+	"boss_broodmother_strength_of_the_brood"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_broodmother/boss_broodmother_strength_of_the_brood"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
+		"AbilityTextureName"			"broodmother_spawn_spiderlings"
+		"MaxLevel"						"3"
+	
+		"precache"
+		{
+			"particle"					"particles/bosses/boss_broodmother/boss_broodmother_gravity_well.vpcf"
 		}
 		"AbilitySpecial"
 		{
@@ -24,63 +99,328 @@
 				"var_type"				"FIELD_INTEGER"
 				"aura_radius"			"900"
 			}
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"max_pull"				"2 3"
-			}
-			"01"
+			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"max_damage"			"3.5 4"
+				"str_per_unit"			"1 1.5"
 			}
 		}
 	}
 	//=================================================================================================================
 	// Aether: Phase Shift
 	//=================================================================================================================
-	"boss_aether_space_rift"
+	"boss_broodmother_egg_sack"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"bosses/boss_aether/boss_aether_space_rift"
+		"ScriptFile"					"bosses/boss_broodmother/boss_broodmother_egg_sack"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"AbilityTextureName"			"abyssal_underlord_dark_rift"
+		"AbilityTextureName"			"broodmother_spawn_spiderite"
 		"MaxLevel"						"3"
 		
 		"AbilityCastRange"				"350"
 		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
-		"AbilityCastPoint"				"0.8 0.5"
-		"AbilityCooldown"				"4 3"
+		"AbilityCastPoint"				"2"
+		"AbilityCooldown"				"30"
 	
 		"precache"
 		{
 			"particle"					"particles/units/heroes/heroes_underlord/abyssal_underlord_darkrift_target.vpcf"
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_weaver.vsndevts"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_broodmother.vsndevts"
 		}
 		"AbilitySpecial"
 		{
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"pull_radius"				"500 600"
+				"eggs"						"20 30"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"destroy_threat"			"3 5"
+			}
+		}
+	}
+	"boss_broodmother_infest"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_broodmother/boss_broodmother_infest"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"life_stealer_assimilate"
+		"MaxLevel"						"3"
+		
+		"AbilityCastRange"				"900"
+		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
+		"AbilityCastPoint"				"0.8 0.5"
+		"AbilityCooldown"				"10"
+	
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_broodmother/broodmother_web_cast.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_broodmother.vsndevts"
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"width"						"125"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"impact_radius"				"300 375"
+				"distance"					"900"
 			}
 			"03"
 			{
+				"var_type"					"FIELD_INTEGER"
+				"speed"						"700 900"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage_on_hit"				"65000 80000"
+			}
+			"05"
+			{
 				"var_type"					"FIELD_FLOAT"
-				"impact_curr_hp_damage"		"35 50"
+				"spiders_on_hit"			"4 6"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"spiders_on_miss"			"0 1"
+			}
+		}
+	}
+	"boss_broodmother_arachnids_hunger"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_broodmother/boss_broodmother_arachnids_hunger"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"broodmother_insatiable_hunger"
+		"MaxLevel"						"3"
+		
+		"AbilityCastRange"				"350"
+		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
+		"AbilityCastPoint"				"1.5 1"
+		"AbilityCooldown"				"20"
+	
+		"precache"
+		{
+			"particle"					"particles/bosses/boss_broodmother/boss_broodmother_hunger_buff.vpcf"
+			"particle"					"particles/units/heroes/hero_broodmother/broodmother_hunger_hero_effect.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_broodmother.vsndevts"
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"100"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"attack_speed"				"200 250"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"lifesteal"					"50"
 			}
 			"04"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"suck_duration"				"0.5"
+				"duration"					"5"
+			}
+		}
+	}
+	"boss_broodmother_fates_web"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_broodmother/boss_broodmother_fates_web"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"broodmother_spin_web"
+		"MaxLevel"						"3"
+		
+		"AbilityCastRange"				"350"
+		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
+		"AbilityCastPoint"				"0.8 0.5"
+		"AbilityCooldown"				"15 12"
+	
+		"precache"
+		{
+			"particle"					"particles/units/heroes/heroes_underlord/abyssal_underlord_darkrift_target.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_broodmother.vsndevts"
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_ms"					"24 32"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"slow"						"-12 -14"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"radius"					"600"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"hits_to_kill"				"8"
+			}
+		}
+	}
+	"boss_broodmother_web_shot"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_broodmother/boss_broodmother_web_shot"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"broodmother_spin_web_destroy"
+		"MaxLevel"						"3"
+		
+		"AbilityCastRange"				"1200"
+		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
+		"AbilityCastPoint"				"0.8 0.5"
+		"AbilityCooldown"				"20"
+	
+		"precache"
+		{
+			"particle"					"particles/units/heroes/heroes_underlord/abyssal_underlord_darkrift_target.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_broodmother.vsndevts"
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"speed"						"800"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"width"						"125"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"taunt_duration"			"5"
+			}
+		}
+	}
+	
+	// Broodling
+	"boss_broodling_spawn_spiderling"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_broodmother/boss_broodling_spawn_spiderling"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"broodmother_spawn_spiderite"
+		"MaxLevel"						"3"
+		
+		"AbilityCastRange"				"1200"
+		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
+		"AbilityCastPoint"				"2 1.5"
+		"AbilityCooldown"				"20"
+	
+		"precache"
+		{
+			"particle"					"particles/units/heroes/heroes_underlord/abyssal_underlord_darkrift_target.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_broodmother.vsndevts"
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"spiders_spawned"			"4 5"
+			}
+		}
+	}
+	// Spiderling
+	"boss_spiderling_spider_bite"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_broodmother/boss_spiderling_spider_bite"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"broodmother_poison_sting"
+		"MaxLevel"						"3"
+	
+		"precache"
+		{
+			"particle"					"particles/units/heroes/heroes_underlord/abyssal_underlord_darkrift_target.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_broodmother.vsndevts"
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"slow"						"-3 -4"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"1500 2000"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"stack_duration"			"10"
+			}
+		}
+	}
+	// Egg
+	"boss_broodmother_hatch_broodling"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_broodmother/boss_broodmother_hatch_broodling"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"broodmother_poison_sting"
+		"MaxLevel"						"3"
+	
+		"precache"
+		{
+			"particle"					"particles/units/heroes/heroes_underlord/abyssal_underlord_darkrift_target.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_broodmother.vsndevts"
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"hatch_delay"				"12 10"
 			}
 		}
 	}

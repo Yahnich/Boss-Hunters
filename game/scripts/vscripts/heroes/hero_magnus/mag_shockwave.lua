@@ -22,12 +22,12 @@ function mag_shockwave:OnSpellStart()
     local dir = CalculateDirection(self:GetCursorPosition(), self.startPos)
     self.vel = dir * self:GetTalentSpecialValueFor("speed")
 
-	self:FireLinearProjectile("particles/units/heroes/hero_magnataur/magnataur_shockwave.vpcf", self.vel, self:GetTrueCastRange(), self:GetTalentSpecialValueFor("width"), {team=DOTA_UNIT_TARGET_TEAM_BOTH})
+	self.proj = self:FireLinearProjectile("particles/units/heroes/hero_magnataur/magnataur_shockwave.vpcf", self.vel, self:GetTrueCastRange(), self:GetTalentSpecialValueFor("width"), {team=DOTA_UNIT_TARGET_TEAM_BOTH})
 
 	if caster:HasTalent("special_bonus_unique_mag_shockwave_2") then
         local delay = caster:FindTalentValue("special_bonus_unique_mag_shockwave_2")
         Timers:CreateTimer(delay, function()
-            self.proj = self:FireLinearProjectile("particles/units/heroes/hero_magnataur/magnataur_shockwave.vpcf", self.vel, self:GetTrueCastRange(), self:GetTalentSpecialValueFor("width"), {origin=self.startPos, team=DOTA_UNIT_TARGET_TEAM_BOTH})
+            self:FireLinearProjectile("particles/units/heroes/hero_magnataur/magnataur_shockwave.vpcf", self.vel, self:GetTrueCastRange(), self:GetTalentSpecialValueFor("width"), {origin=self.startPos, team=DOTA_UNIT_TARGET_TEAM_BOTH})
         end)
     end
 end
@@ -38,7 +38,7 @@ function mag_shockwave:OnProjectileHitHandle(hTarget, vLocation, iProjectileHand
     	if hTarget:GetTeam() ~= caster:GetTeam() then
     		EmitSoundOn("Hero_Magnataur.ShockWave.Target", hTarget)
         	ParticleManager:FireParticle("particles/units/heroes/hero_magnataur/magnataur_shockwave_hit.vpcf", PATTACH_POINT, hTarget, {})
-            if iProjectileHandle == self.proj then
+            if iProjectileHandle ~= self.proj then
                 self:DealDamage(caster, hTarget, self:GetTalentSpecialValueFor("damage")/2, {}, 0)
             else
                 self:DealDamage(caster, hTarget, self:GetTalentSpecialValueFor("damage"), {}, 0)
@@ -54,7 +54,7 @@ function mag_shockwave:OnProjectileHitHandle(hTarget, vLocation, iProjectileHand
         		ParticleManager:FireParticle("particles/units/heroes/hero_earthshaker/earthshaker_echoslam_start.vpcf", PATTACH_POINT, hTarget, {})
 
         		local distance = CalculateDistance(hTarget:GetAbsOrigin(), self.startPos)
-        		self:FireLinearProjectile("particles/units/heroes/hero_magnataur/magnataur_shockwave.vpcf", -2*self.vel, self:GetTrueCastRange(), self:GetTalentSpecialValueFor("width"), {source=self:GetCaster(), origin=hTarget:GetAbsOrigin()})
+        		self:FireLinearProjectile("particles/units/heroes/hero_magnataur/magnataur_shockwave.vpcf", -2*self.vel, self:GetTrueCastRange(), self:GetTalentSpecialValueFor("width"), {source=hTarget, origin=hTarget:GetAbsOrigin()})
         		
         		local enemies = self:GetCaster():FindEnemyUnitsInRadius(hTarget:GetAbsOrigin(), self:GetSpecialValueFor("magnet_radius"))
         		for _,enemy in pairs(enemies) do

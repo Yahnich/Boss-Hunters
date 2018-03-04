@@ -82,6 +82,7 @@ if IsServer() then
 		end
 		local asura = CreateUnitByName( "npc_dota_boss36_guardian" , position, true, nil, nil, caster:GetTeam() )
 		asura:AddNewModifier(caster, self:GetAbility(), "modifier_spawn_immunity", {duration = 3})
+		self:Destroy()
 		caster:ForceKill(false)
 		GameRules.holdOut:_RefreshPlayers()
 		return true
