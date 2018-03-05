@@ -926,35 +926,27 @@ function CDOTA_BaseNPC:GetLastHitTime()
 end
 
 function get_aether_range(caster)
-    local aether_range = 0
-    for itemSlot = 0, 5, 1 do
-        local Item = caster:GetItemInSlot( itemSlot )
-		if Item ~= nil then
-			local itemRange = Item:GetSpecialValueFor("cast_range_bonus")
-			if aether_range < itemRange then
-				aether_range = itemRange
-			end
+    local staticRange = 0
+	local stackingRange = 0
+	for _, modifier in ipairs( caster:FindAllModifiers() ) do
+		if modifier.GetModifierCastRangeBonus and modifier:GetModifierCastRangeBonus() and modifier:GetModifierCastRangeBonus() > staticRange then
+			staticRange = modifier:GetModifierCastRangeBonus()
+		end
+		if modifier.GetModifierCastRangeBonusStacking and modifier:GetModifierCastRangeBonusStacking() then
+			stackingRange = stackingRange + modifier:GetModifierCastRangeBonusStacking()
 		end
 	end
 	local talentMult = caster:HighestTalentTypeValue("cast_range")
-	aether_range = aether_range+talentMult
+	local aether_range = staticRange + stackingRange + talentMult
     return aether_range
 end
 
-function CDOTA_BaseNPC_Hero:get_aether_range()
-    local aether_range = 0
-    for itemSlot = 0, 5, 1 do
-        local Item = self:GetItemInSlot( itemSlot )
-		if Item ~= nil then
-			local itemRange = Item:GetSpecialValueFor("cast_range_bonus")
-			if aether_range < itemRange then
-				aether_range = itemRange
-			end
-		end
-	end
-	local talentMult = self:HighestTalentTypeValue("cast_range")
-	aether_range = aether_range+talentMult
-    return aether_range
+function CDOTA_BaseNPC:GetCastRangeBonus()
+	return get_aether_range(self)
+end
+
+function CDOTA_BaseNPC:get_aether_range()
+    return get_aether_range(self)
 end
 
 function CDOTA_BaseNPC:IsSlowed()
