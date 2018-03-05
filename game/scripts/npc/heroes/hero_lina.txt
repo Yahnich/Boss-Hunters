@@ -422,7 +422,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"hp"						"3"
+				"hp"						"5"
 			}
 		}
 	

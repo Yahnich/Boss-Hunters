@@ -356,7 +356,7 @@ if IsServer() then
 		-- Parameters
 		local hook_speed = self:GetTalentSpecialValueFor("hook_speed")
 		local hook_width = self:GetTalentSpecialValueFor("hook_width")
-		local hook_range = self:GetTalentSpecialValueFor("hook_distance")
+		local hook_range = self:GetTalentSpecialValueFor("hook_distance") + get_aether_multiplier( caster )
 		local hook_damage = self:GetTalentSpecialValueFor("hook_damage")
 		local hook_damage_scepter = self:GetTalentSpecialValueFor("damage_scepter")
 		local enemy_disable_linger = self:GetTalentSpecialValueFor("enemy_disable_linger")
