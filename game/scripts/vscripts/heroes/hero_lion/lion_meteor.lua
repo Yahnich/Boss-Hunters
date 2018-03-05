@@ -17,12 +17,13 @@ function lion_meteor:OnSpellStart()
     local caster = self:GetCaster()
 
     local radius = self:GetSpecialValueFor("radius")
-
     local point = self:GetCursorPosition()
 	
     if self:GetCursorTarget() then
         point = self:GetCursorTarget():GetAbsOrigin()
     end
+	
+	self.meteorTable = self.meteorTable or {}
 
     EmitSoundOn("Hero_Invoker.ChaosMeteor.Cast", caster)
 
@@ -48,7 +49,11 @@ function lion_meteor:OnSpellStart()
                 enemy:AddNewModifier(caster, self, "modifier_lion_meteor", {Duration = self:GetSpecialValueFor("burn_duration")})
                 self:DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage"), {}, 0)
             end
-        end
+			local distance = self:GetTalentSpecialValueFor("distance")
+			local direction = CalculateDirection(caster:GetAbsOrigin(), pointRando)
+			local projID = self:FireLinearProjectile("particles/units/heroes/hero_invoker/invoker_chaos_meteor.vpcf", direction*self:GetSpecialValueFor("speed"), distance, self:GetSpecialValueFor("radius"), {origin = pointRando}, false, true, self:GetSpecialValueFor("vision_distance"))
+			self.meteorTable[projID] = GameRules:GetGameTime() + 0.51
+		end
 
         ParticleManager:FireParticle("particles/units/heroes/hero_invoker/invoker_sun_strike.vpcf", PATTACH_POINT, caster, {[0]=point, [1]=Vector(radius,radius,radius)}) --1.3 is the particle land time
         local enemies = caster:FindEnemyUnitsInRadius(point, radius, {flag = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES})
@@ -61,33 +66,49 @@ function lion_meteor:OnSpellStart()
             end
         end
 
-        local distance = self:GetTalentSpecialValueFor("damage")
+        local distance = self:GetTalentSpecialValueFor("distance")
         local direction = CalculateDirection(caster:GetAbsOrigin(), point)
-
-        self:FireLinearProjectile("particles/units/heroes/hero_invoker/invoker_chaos_meteor.vpcf", direction*self:GetSpecialValueFor("speed"), distance, self:GetSpecialValueFor("radius"), {origin = point}, false, true, self:GetSpecialValueFor("vision_distance"))
-    end)
+		
+        local projID = self:FireLinearProjectile("particles/units/heroes/hero_invoker/invoker_chaos_meteor.vpcf", direction*self:GetSpecialValueFor("speed"), distance, self:GetSpecialValueFor("radius"), {origin = point}, false, true, self:GetSpecialValueFor("vision_distance"))
+		self.meteorTable[projID] = GameRules:GetGameTime() + 0.51
+		end)
 end
 
-function lion_meteor:OnProjectileHit(hTarget, vLocation)
+function lion_meteor:OnProjectileThinkHandle(projID)
     local caster = self:GetCaster()
+	
+	local position = ProjectileManager:GetLinearProjectileLocation( projID )
+	local radius = ProjectileManager:GetLinearProjectileRadius( projID )
+	if self.meteorTable[projID] and GameRules:GetGameTime() > self.meteorTable[projID] + 0.5 then
+		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( position, radius ) ) do
+			if enemy ~= nil then
+				enemy:AddNewModifier(caster, self, "modifier_lion_meteor", {Duration = self:GetSpecialValueFor("burn_duration")})
+			end
+		end
+		self.meteorTable[projID] = GameRules:GetGameTime()
+	end
+end
 
-    if hTarget ~= nil then
-        hTarget:AddNewModifier(caster, self, "modifier_lion_meteor", {Duration = self:GetSpecialValueFor("burn_duration")})
-        self:DealDamage(caster, hTarget, self:GetTalentSpecialValueFor("damage"), {}, 0)
-    else
-        EmitSoundOnLocationWithCaster(vLocation, "Hero_Invoker.ChaosMeteor.Impact", caster)
-    end
+function lion_meteor:OnProjectileHitHandle(target, position, projID)
+    if not target then
+		self.meteorTable[projID] = false
+	end
 end
 
 modifier_lion_meteor = class({})
-function modifier_lion_meteor:OnCreated(table)
-    if IsServer() then
-        self:StartIntervalThink(self:GetSpecialValueFor("tick_rate"))
-    end
+if IsServer() then
+	function modifier_lion_meteor:OnCreated(kv)
+		self:SetStackCount(1)
+		self:StartIntervalThink(self:GetSpecialValueFor("tick_rate"))
+	end
+	
+	function modifier_lion_meteor:OnRefresh(kv)
+		self:IncrementStackCount()
+	end
 end
 
 function modifier_lion_meteor:OnIntervalThink()
-    self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self:GetTalentSpecialValueFor("burn_damage"), {}, 0)
+    self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self:GetTalentSpecialValueFor("burn_damage") * self:GetStackCount(), {}, 0)
 end
 
 function modifier_lion_meteor:GetEffectName()
