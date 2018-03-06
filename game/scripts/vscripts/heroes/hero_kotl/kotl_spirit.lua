@@ -10,6 +10,10 @@ function kotl_spirit:IsHiddenWhenStolen()
     return false
 end
 
+function kotl_spirit:GetIntrinsicModifierName()
+	if self:GetCaster():HasScepter() then return "modifier_kotl_spirit" end
+end
+
 function kotl_spirit:OnInventoryContentsChanged()
     if self:GetCaster():HasScepter() then
         self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_kotl_spirit", {})
@@ -46,30 +50,27 @@ function modifier_kotl_spirit:OnCreated(table)
         local caster = self:GetCaster()
         caster:FindAbilityByName("kotl_recall"):SetActivated(true)
         caster:FindAbilityByName("kotl_blind"):SetActivated(true)
-		if caster:HasScepter() then self:StartIntervalThink(0.03) end
     end
+	self:StartIntervalThink(0.03)
 end
 
 function modifier_kotl_spirit:OnRefresh(table)
-    self.int = self:GetCaster():GetIntellect()*self:GetSpecialValueFor("bonus_int")/100
 	self.cdr = self:GetCaster():FindTalentValue("special_bonus_unique_kotl_spirit_2")
 
     if IsServer() then
         local caster = self:GetCaster()
         caster:FindAbilityByName("kotl_recall"):SetActivated(true)
         caster:FindAbilityByName("kotl_blind"):SetActivated(true)
-		if caster:HasScepter() then self:StartIntervalThink(0.03) end
     end
 end
 
 
 function modifier_kotl_spirit:OnIntervalThink()
 	local caster = self:GetCaster()
-	if caster:HasScepter() and GameRules:IsDaytime() then
+	if IsServer() and caster:HasScepter() and GameRules:IsDaytime() then
 		self:GetAbility():CreateVisibilityNode(caster:GetAbsOrigin(), caster:GetDayTimeVisionRange(), 0.04)
-	elseif not caster:HasScepter() then
-		self:StartIntervalThink(-1)
 	end
+	self.int = (self:GetCaster():GetIntellect() - self.int)*self:GetSpecialValueFor("bonus_int")/100
 end
 
 function modifier_kotl_spirit:OnRemoved()
