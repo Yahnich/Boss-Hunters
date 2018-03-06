@@ -227,23 +227,27 @@ end
 
 function AICore:BeAHugeCoward( entity, runbuffer )
 	local nearest = AICore:NearestEnemyHeroInRange( entity, 99999, true )
-	if nearest and not entity:GetTauntTarget() then 
+	local position
+	if nearest and not entity:GetTauntTarget() then
 		local direction = (nearest:GetAbsOrigin()-entity:GetAbsOrigin()):Normalized()
 		local distance = (nearest:GetAbsOrigin()-entity:GetAbsOrigin()):Length2D()
+		position = entity:GetAbsOrigin() + (-direction)*RandomInt(100,300)
 		if distance < runbuffer then
 			ExecuteOrderFromTable({
 				UnitIndex = entity:entindex(),
 				OrderType = DOTA_UNIT_ORDER_MOVE_TO_POSITION,
-				Position = (-direction)*RandomInt(100,300)
+				Position = position
 			})
 		end
 	elseif entity:GetTauntTarget() then
+		position = entity:GetTauntTarget():GetAbsOrigin()
 		ExecuteOrderFromTable({
 			UnitIndex = entity:entindex(),
 			OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
 			TargetIndex = entity:GetTauntTarget():entindex()
 		})
 	end
+	return position
 end
 
 function AICore:RunToRandomPosition( entity, spasticness )
@@ -264,7 +268,7 @@ function AICore:RunToRandomPosition( entity, spasticness )
 end
 
 function AICore:RunToTarget( entity, target )
-	if not entity or not target and not entity:GetTauntTarget() then 
+	if not entity or (not target and not entity:GetTauntTarget()) then 
 		return 0.5 
 	elseif entity:GetTauntTarget() then
 		ExecuteOrderFromTable({
@@ -272,7 +276,7 @@ function AICore:RunToTarget( entity, target )
 			OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
 			TargetIndex = entity:GetTauntTarget():entindex()
 		})
-		return 0.5
+		return 0.25
 	end
 	local position = target:GetAbsOrigin()
 	ExecuteOrderFromTable({

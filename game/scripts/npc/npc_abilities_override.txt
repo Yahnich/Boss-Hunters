@@ -7013,7 +7013,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"shrapnel_damage"		"333 750 1000 1500 3000 4500 9000"
+				"shrapnel_damage"		"333 750 1250 2500 5000 10000 15000"
 				"LinkedSpecialBonus"	"special_bonus_unique_sniper_1"
 			}
 			"04"

@@ -836,37 +836,30 @@
 			}
 		}
 	}
-	// "Round25" // Boss 37
-	// {
-		// "round_quest_title"			"#DOTA_Holdout_Round_Boss24_Quest_Title"
-		// "round_title"				"#DOTA_Holdout_Round_Boss24_Title"
-		// "MaxGold"					"150000"
-		// "BagCount"					"1"
-		// "BagVariance"				"0"
-		// "FixedXP"					"2000000"
+	"Round25" // Boss 37
+	{
+		"round_quest_title"			"#DOTA_Holdout_Round_Boss24_Quest_Title"
+		"round_title"				"#DOTA_Holdout_Round_Boss24_Title"
+		"MaxGold"					"150000"
+		"BagCount"					"1"
+		"BagVariance"				"0"
+		"FixedXP"					"2000000"
 		
-		// "RoundBranches"
-		// {
-			// "1"
-			// {
-				// "UnitBoss_7"
-				// {
-					// "NPCName"				"npc_dota_boss37_h"
-					// "TotalUnitsToSpawn"		"1"
-					// "UnitsPerSpawn"			"1"
-					// "SpawnInterval"			"30"
-				// }
-				// "UnitBoss_8"
-				// {
-					// "NPCName"				"npc_dota_creature_broodmother"
-					// "TotalUnitsToSpawn"		"2"
-					// "UnitsPerSpawn"			"1"
-					// "SpawnInterval"			"10"
-				// }
-			// }
-		// }
-	// }
-	"Round25" // Aeon
+		"RoundBranches"
+		{
+			"1"
+			{
+				"UnitBoss_7"
+				{
+					"NPCName"				"npc_dota_boss37"
+					"TotalUnitsToSpawn"		"1"
+					"UnitsPerSpawn"			"1"
+					"SpawnInterval"			"30"
+				}
+			}
+		}
+	}
+	"Round26" // Aeon
 	{
 		"MaxGold"					"200000"
 		"BagCount"					"1"

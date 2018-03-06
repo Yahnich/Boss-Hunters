@@ -116,14 +116,13 @@
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"bosses/boss_broodmother/boss_broodmother_egg_sack"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"AbilityTextureName"			"broodmother_spawn_spiderite"
 		"MaxLevel"						"3"
 		
 		"AbilityCastRange"				"350"
 		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
 		"AbilityCastPoint"				"2"
-		"AbilityCooldown"				"30"
+		"AbilityCooldown"				"60 50"
 	
 		"precache"
 		{
@@ -135,7 +134,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"eggs"						"20 30"
+				"eggs"						"15 20"
 			}
 			"02"
 			{
@@ -206,7 +205,6 @@
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"bosses/boss_broodmother/boss_broodmother_arachnids_hunger"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"AbilityTextureName"			"broodmother_insatiable_hunger"
 		"MaxLevel"						"3"
 		
@@ -252,7 +250,6 @@
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"bosses/boss_broodmother/boss_broodmother_fates_web"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"AbilityTextureName"			"broodmother_spin_web"
 		"MaxLevel"						"3"
 		
@@ -263,7 +260,8 @@
 	
 		"precache"
 		{
-			"particle"					"particles/units/heroes/heroes_underlord/abyssal_underlord_darkrift_target.vpcf"
+			"particle"					"particles/units/heroes/hero_broodmother/broodmother_spin_web_cast.vpcf"
+			"particle"					"particles/units/heroes/hero_broodmother/broodmother_web.vpcf"
 			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_broodmother.vsndevts"
 		}
 		"AbilitySpecial"
@@ -297,7 +295,6 @@
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"bosses/boss_broodmother/boss_broodmother_web_shot"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"AbilityTextureName"			"broodmother_spin_web_destroy"
 		"MaxLevel"						"3"
 		
@@ -308,7 +305,7 @@
 	
 		"precache"
 		{
-			"particle"					"particles/units/heroes/heroes_underlord/abyssal_underlord_darkrift_target.vpcf"
+			"particle"					"particles/bosses/boss_broodmother/boss_broodmother_web_shot.vpcf"
 			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_broodmother.vsndevts"
 		}
 		"AbilitySpecial"
@@ -316,7 +313,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"speed"						"800"
+				"speed"						"1500"
 			}
 			"02"
 			{
@@ -330,7 +327,6 @@
 			}
 		}
 	}
-	
 	// Broodling
 	"boss_broodling_spawn_spiderling"
 	{
@@ -346,7 +342,7 @@
 		"AbilityCastRange"				"1200"
 		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
 		"AbilityCastPoint"				"2 1.5"
-		"AbilityCooldown"				"20"
+		"AbilityCooldown"				"35"
 	
 		"precache"
 		{
@@ -358,7 +354,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"spiders_spawned"			"4 5"
+				"spiders_spawned"			"2 3"
 			}
 		}
 	}
@@ -383,18 +379,18 @@
 		{
 			"01"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"slow"						"-3 -4"
+				"var_type"					"FIELD_FLOAT"
+				"slow"						"-1 -1.5"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"1500 2000"
+				"damage"					"1250 1750"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"stack_duration"			"10"
+				"duration"					"2"
 			}
 		}
 	}
@@ -406,8 +402,7 @@
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"bosses/boss_broodmother/boss_broodmother_hatch_broodling"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"AbilityTextureName"			"broodmother_poison_sting"
+		"AbilityTextureName"			"broodmother_spawn_spiderlings"
 		"MaxLevel"						"3"
 	
 		"precache"

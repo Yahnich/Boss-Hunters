@@ -31,7 +31,7 @@ if IsServer() then
 	
 	function modifier_boss_broodmother_egg_sack_handler:OnIntervalThink()
 		local parent = self:GetParent()
-		local steppedOn = self:GetCaster():FindEnemyUnitsInRadius( parent:GetAbsOrigin(), 80, {flag = DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES})
+		local steppedOn = parent:FindEnemyUnitsInRadius( parent:GetAbsOrigin(), 80, {flag = DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES})
 		for _, enemy in ipairs(steppedOn) do
 			EmitSoundOn("Hero_Broodmother.SpawnSpiderlings", enemy)
 			enemy:ModifyThreat(self.threat)

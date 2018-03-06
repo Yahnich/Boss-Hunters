@@ -1,5 +1,10 @@
 boss_broodmother_infest = class({})
 
+function boss_broodmother_infest:OnAbilityPhaseStart()
+	ParticleManager:FireLinearWarningParticle(self:GetCaster():GetAbsOrigin(), self:GetCaster():GetAbsOrigin() + CalculateDirection( self:GetCursorPosition(), self:GetCaster():GetAbsOrigin() ) * self:GetTrueCastRange(), self:GetSpecialValueFor("width"))
+	return true
+end
+
 function boss_broodmother_infest:OnSpellStart()
 	local caster = self:GetCaster()
 	
