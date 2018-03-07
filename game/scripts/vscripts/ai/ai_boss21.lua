@@ -5,7 +5,11 @@ Broodking AI
 if IsServer() then
 	require( "ai/ai_core" )
 	function Spawn( entityKeyValues )
-		thisEntity:SetContextThink( "AIThinker", AIThink, 0.25 )
+		Timers:CreateTimer(function()
+			if thisEntity and not thisEntity:IsNull() then
+				return AIThink(thisEntity)
+			end
+		end)
 		thisEntity.bloodlust = thisEntity:FindAbilityByName("boss14_bloodlust")
 		thisEntity.execute = thisEntity:FindAbilityByName("boss14_execute")
 		thisEntity.quake = thisEntity:FindAbilityByName("boss14_quake")
@@ -30,7 +34,7 @@ if IsServer() then
 	end
 
 
-	function AIThink()
+	function AIThink(thisEntity)
 		if not thisEntity:IsDominated() and not thisEntity:IsChanneling() then
 			local target = AICore:GetHighestPriorityTarget(thisEntity)
 			if target and not target:IsNull() then

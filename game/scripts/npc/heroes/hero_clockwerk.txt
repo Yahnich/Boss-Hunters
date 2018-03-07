@@ -98,12 +98,12 @@
 			"01"
 			{
 				"var_type"							"FIELD_INTEGER"
-				"bonus_armor"						"45 60 120 180 240 300 400"
+				"bonus_armor"						"5 10 15 20 25 30"
 			}
 			"02"
 			{
 				"var_type"							"FIELD_INTEGER"
-				"armor_buff"						"20 30 60 90 120 150 200"
+				"armor_buff"						"5 10 15 20 25 30"
 			}
 			"03"
 			{

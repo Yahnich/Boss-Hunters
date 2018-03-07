@@ -5,13 +5,17 @@ Broodking AI
 require( "ai/ai_core" )
 
 function Spawn( entityKeyValues )
-	thisEntity:SetContextThink( "AIThinker", AIThink, 0.25 )
+	Timers:CreateTimer(function()
+		if thisEntity and not thisEntity:IsNull() then
+			return AIThink(thisEntity)
+		end
+	end)
 	thisEntity.rage = thisEntity:FindAbilityByName("boss_ragebuff")
 	thisEntity.wounds = thisEntity:FindAbilityByName("boss_wounds")
 end
 
 
-function AIThink()
+function AIThink(thisEntity)
 	if not thisEntity:IsDominated() then
 		local target = AICore:HighestThreatHeroInRange(thisEntity, thisEntity.wounds:GetCastRange(), 15, false)
 		if not target then target = AICore:NearestEnemyHeroInRange( thisEntity, thisEntity.wounds:GetCastRange(), false) end

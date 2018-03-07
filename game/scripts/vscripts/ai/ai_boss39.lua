@@ -5,7 +5,11 @@ Broodking AI
 require( "ai/ai_core" )
 
 function Spawn( entityKeyValues )
-	thisEntity:SetContextThink( "AIThinker", AIThink, 1 )
+	Timers:CreateTimer(function()
+		if thisEntity and not thisEntity:IsNull() then
+			return AIThink(thisEntity)
+		end
+	end)
 	thisEntity.density = thisEntity:FindAbilityByName("boss_aether_neutron_density")
 	thisEntity.well = thisEntity:FindAbilityByName("boss_aether_gravity_well")
 	thisEntity.shift = thisEntity:FindAbilityByName("boss_aether_phase_shift")
@@ -49,7 +53,7 @@ function Spawn( entityKeyValues )
 end
 
 
-function AIThink()
+function AIThink(thisEntity)
 	if not thisEntity:IsDominated() and not thisEntity:IsChanneling() then
 		local target = AICore:GetHighestPriorityTarget(thisEntity)
 		if thisEntity.wormhole:IsFullyCastable() then

@@ -5,13 +5,17 @@ Broodking AI
 require( "ai/ai_core" )
 
 function Spawn( entityKeyValues )
-	thisEntity:SetContextThink( "AIThinker", AIThink, 1 )
+	Timers:CreateTimer(function()
+		if thisEntity and not thisEntity:IsNull() then
+			return AIThink(thisEntity)
+		end
+	end)
 	thisEntity.armor = thisEntity:FindAbilityByName("boss_living_armor")
 	thisEntity.summon = thisEntity:FindAbilityByName("creature_summon_tree")
 end
 
 
-function AIThink()
+function AIThink(thisEntity)
 	if not thisEntity:IsDominated() then
 		if thisEntity.armor:IsFullyCastable() and not thisEntity:HasModifier("modifier_treant_living_armor") then
 			ExecuteOrderFromTable({

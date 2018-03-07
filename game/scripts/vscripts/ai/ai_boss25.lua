@@ -5,7 +5,11 @@ Broodking AI
 require( "ai/ai_core" )
 
 function Spawn( entityKeyValues )
-	thisEntity:SetContextThink( "AIThinker", AIThink, 1 )
+	Timers:CreateTimer(function()
+		if thisEntity and not thisEntity:IsNull() then
+			return AIThink(thisEntity)
+		end
+	end)
 	if thisEntity:GetUnitName() == "npc_dota_boss25_h" then 
 		thisEntity.suffix = "_h"
 		thisEntity.extra = 1
@@ -23,7 +27,7 @@ function Spawn( entityKeyValues )
 end
 
 
-function AIThink()
+function AIThink(thisEntity)
 	if not thisEntity:IsDominated() then
 		if not thisEntity:IsChanneling() then
 			local radius = thisEntity.smash:GetCastRange()

@@ -5,7 +5,11 @@ Broodking AI
 require( "ai/ai_core" )
 if IsServer() then
 	function Spawn( entityKeyValues )
-		thisEntity:SetContextThink( "AIThinker", AIThink, 1 )
+		Timers:CreateTimer(function()
+			if thisEntity and not thisEntity:IsNull() then
+				return AIThink(thisEntity)
+			end
+		end)
 		thisEntity.spit = thisEntity:FindAbilityByName("boss3b_acid_spit")
 		thisEntity.passive = thisEntity:FindAbilityByName("boss3b_acid_interior")
 		Timers:CreateTimer(function()
@@ -24,7 +28,7 @@ if IsServer() then
 	end
 
 
-	function AIThink()
+	function AIThink(thisEntity)
 		if not thisEntity:IsDominated() and not thisEntity:IsChanneling() then
 			local target = AICore:GetHighestPriorityTarget(thisEntity)
 			if target and thisEntity:GetHealthPercent() > 25 then 

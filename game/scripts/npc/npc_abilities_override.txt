@@ -4855,7 +4855,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"bonus_armor"				"40 160 640"
+				"bonus_armor"				"15 45 80"
 			}
 			"03"
 			{
@@ -6023,7 +6023,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"armor_bonus"			"10 20 40 80 150 250 400"
+				"armor_bonus"			"5 9 13 17 21 25 29"
 			}			
 			"02"
 			{
@@ -7227,6 +7227,7 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"heal"					"1200 1800 3200 6400 12800 25000 50000"
+				"LinkedSpecialBonus"	"special_bonus_unique_necrophos_4"
 			}
 			"03"
 			{
@@ -7691,7 +7692,7 @@
 			"06"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"golem_armor_tooltip"		"16 32 64 80 120 300 600"
+				"golem_armor_tooltip"		"30"
 				"LinkedSpecialBonus"		"special_bonus_unique_warlock_2"
 			}
 			"07"
@@ -10534,7 +10535,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"spirit_armor"			"25 100 200 300 400 500 600 700"
+				"spirit_armor"			"5 10 15 20 25 30 35"
 				"levelkey"				"exortlevel"
 			}
 			"04"
@@ -20321,7 +20322,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_armor"			"10 20 30 40 60 80 100"
+				"bonus_armor"			"20"
 			}
 			"05"
 			{	
@@ -21011,13 +21012,13 @@
 		{
 			"01"
 			{
-				"var_type"							"FIELD_INTEGER"
-				"bonus_armor"						"3 5 7 10 13 16 20"
+				"var_type"							"FIELD_FLOAT"
+				"bonus_armor"						"1 1.2 1.4 1.6 1.8 2 2.5"
 			}
 			"02"
 			{
 				"var_type"							"FIELD_INTEGER"
-				"bonus_hp_regen"					"10 20 30 40 60 80 100"
+				"bonus_hp_regen"					"10 15 20 25 30 35 40"
 			}
 			"03"
 			{
@@ -28949,7 +28950,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"20"
+				"value"				"6"
 			}
 		}
 	}
@@ -28972,7 +28973,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"30"
+				"value"				"9"
 			}
 		}
 	}
@@ -28995,7 +28996,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"40"
+				"value"				"12"
 			}
 		}
 	}
@@ -29018,7 +29019,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"50"
+				"value"				"15"
 			}
 		}
 	}
@@ -29041,7 +29042,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"60"
+				"value"				"18"
 			}
 		}
 	}
@@ -29064,7 +29065,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"70"
+				"value"				"21"
 			}
 		}
 	}
@@ -29087,7 +29088,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"80"
+				"value"				"24"
 			}
 		}
 	}
@@ -29110,7 +29111,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"90"
+				"value"				"27"
 			}
 		}
 	}
@@ -29133,7 +29134,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"100"
+				"value"				"30"
 			}
 		}
 	}
@@ -29156,7 +29157,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"120"
+				"value"				"36"
 			}
 		}
 	}
@@ -29179,7 +29180,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"150"
+				"value"				"45"
 			}
 		}
 	}
@@ -32668,7 +32669,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"400"
+				"value"				"70"
 			}
 		}
 	}
@@ -38283,7 +38284,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"1000"
+				"value"				"250"
 			}
 		}
 	}

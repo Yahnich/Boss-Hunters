@@ -5,12 +5,16 @@ Broodking AI
 require( "ai/ai_core" )
 
 function Spawn( entityKeyValues )
-	thisEntity:SetContextThink( "AIThinker", AIThink, 1 )
+	Timers:CreateTimer(function()
+		if thisEntity and not thisEntity:IsNull() then
+			return AIThink(thisEntity)
+		end
+	end)
 	thisEntity.spear = thisEntity:FindAbilityByName("boss_spear")
 end
 
 
-function AIThink()
+function AIThink(thisEntity)
 	if not thisEntity:IsDominated() then
 		local radius = thisEntity.spear:GetCastRange()
 		local target = AICore:HighestThreatHeroInRange(thisEntity, radius, 0, false)

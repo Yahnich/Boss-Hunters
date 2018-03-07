@@ -71,7 +71,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_armor"			"50"
+				"bonus_armor"			"20"
 			}
 			"03"
 			{
@@ -86,7 +86,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"aura_positive_armor"	"20"
+				"aura_positive_armor"	"10"
 			}
 			"06"
 			{
@@ -180,7 +180,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_armor"			"150"
+				"bonus_armor"			"25"
 			}
 			"03"
 			{
@@ -195,7 +195,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"aura_positive_armor"	"50"
+				"aura_positive_armor"	"15"
 			}
 			"06"
 			{
@@ -289,7 +289,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_armor"			"450"
+				"bonus_armor"			"30"
 			}
 			"03"
 			{
@@ -304,7 +304,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"aura_positive_armor"	"100"
+				"aura_positive_armor"	"20"
 			}
 			"06"
 			{
@@ -398,7 +398,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_armor"			"725"
+				"bonus_armor"			"35"
 			}
 			"03"
 			{
@@ -413,7 +413,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"aura_positive_armor"	"250"
+				"aura_positive_armor"	"25"
 			}
 			"06"
 			{

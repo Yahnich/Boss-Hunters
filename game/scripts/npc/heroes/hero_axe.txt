@@ -128,7 +128,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"armor_to_damage"		"200 350 500 650 800 950 1100"
+				"str_to_damage"			"350"
 			}
 			"02"
 			{
@@ -144,7 +144,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius"				"275"
+				"radius"				"275 300 325 350 375 400 425"
 			}
 		}
 	
@@ -198,13 +198,13 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"armor_bonus"			"6 12 24 48 90 180 360"
+				"armor_bonus"			"50"
 				"LinkedSpecialBonus"	"special_bonus_unique_axe_forced_shout"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"armor_bonus_base"		"40 80 160 320 640 1280 2560"
+				"armor_bonus_base"		"100"
 			}
 			"03"
 			{
@@ -339,7 +339,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"str_to_armor"				"0.06"
+				"str_to_armor"			"0.008"
 			}
 		}
 		"Modifiers"
@@ -455,7 +455,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"200"
+				"value"					"50"
 			}
 		}
 	}

@@ -22,7 +22,7 @@ function lina_dragon:OnSpellStart()
     EmitSoundOn("Hero_Lina.DragonSlave", caster)
 
     self.castPoint = caster:GetAbsOrigin()
-    self:FireLinearProjectile("particles/units/heroes/hero_lina/lina_spell_dragon_slave.vpcf", caster:GetForwardVector()*self:GetTalentSpecialValueFor("speed"), self:GetTrueCastRange(), self:GetTalentSpecialValueFor("width"), {}, false, true, self:GetTalentSpecialValueFor("width"))
+    self:FireLinearProjectile("particles/units/heroes/hero_lina/lina_spell_dragon_slave.vpcf", CalculateDirection(point, caster)*self:GetTalentSpecialValueFor("speed"), self:GetTrueCastRange(), self:GetTalentSpecialValueFor("width"), {}, false, true, self:GetTalentSpecialValueFor("width"))
 end
 
 function lina_dragon:OnProjectileHit(hTarget, vLocation)

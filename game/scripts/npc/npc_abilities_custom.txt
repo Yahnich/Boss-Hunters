@@ -3651,12 +3651,12 @@
 			"02"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"radius"			"2500"
+				"radius"			"8000"
 			}
 			"03"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"targets"			"2 2 3"
+				"targets"			"2 3 4"
 			}
 			"04"
 			{
@@ -6690,7 +6690,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"slow_duration"			"1.25"
+				"slow_duration"			"0.35"
 			}
 		}
 	}
@@ -8074,12 +8074,12 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"8.0 8.0 8.0 8.0"
-		"AbilityDuration"				"1.0 1.5 2.0 2.5"
+		"AbilityCooldown"				"15"
+		"AbilityDuration"				"1.0"
 	
 		// Damage.
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"					"1000 1500 2000 6000"
+		"AbilityDamage"					"8000"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -8202,7 +8202,7 @@
 			"04"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"stun_duration"					"1.5 2.0 2.5 3.0"
+				"stun_duration"					"1.0"
 			}
 		}
 	}
@@ -9579,7 +9579,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_armor"		"35 50 100 175 250 325 400"
+				"bonus_armor"			"5 10 15 20 25 30 35"
 			}
 			"03"
 			{
@@ -9594,123 +9594,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"bonus_armor_aura"		"20 30 40 60 80 160 320"
-			}
-		}
-	}
-	//=================================================================================================================
-	// Dark Seer: Wall of Discord
-	//=================================================================================================================
-	"dark_seer_wall_of_discord"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_datadriven"
-		"AbilityTextureName"			"dark_seer_wall_of_replica"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"500 900 1300"
-		"AbilityCastPoint"				"0.4 0.4 0.4"
-	
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"70.0 70.0 70.0"
-	
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"150 250 350"
-	
-		"OnSpellStart"
-		{
-			"CreateThinker"
-			{
-				"ModifierName"	"dark_seer_wall_of_discord_thinker"
-				"Target"		"POINT"
-			}
-		}
-	
-		"Modifiers"
-		{
-			"dark_seer_wall_of_discord_thinker"
-			{
-				"Duration" "%duration"
-				"ThinkInterval" "0.25"
-				"OnIntervalThink"
-				{
-					"ApplyModifier"
-					{
-						"ModifierName"	"modifier_dark_seer_wall_of_discord_target"
-						"Target"
-						{
-							"Center"	"TARGET"
-							"Line"
-							{
-								"Length"	"1000"
-								"Thickness"	"50"
-							}
-							"Teams"		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-							"Types"		"DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_HERO"
-						}
-					}
-				}
-	
-				"OnCreated"
-				{
-					"AttachEffect"
-					{
-						"Target"			"TARGET"
-						"EffectName"		"particles/units/heroes/hero_dark_seer/dark_seer_wall_of_replica.vpcf"
-						"EffectAttachType"	"start_at_customorigin"
-						"EffectLineTarget"	"TARGET"
-						"EffectLineLength"	"%width"
-					}
-				}
-			}
-			
-			"modifier_dark_seer_wall_of_discord_target"
-			{
-				"Duration" "1" // Encourage you to drag them back and forth through the wall
-				"OnCreated"
-				{
-					"Damage"
-					{
-						"Type"		"DAMAGE_TYPE_MAGICAL"
-						"Damage"	"%damage"
-						"Target"	"TARGET"
-					}
-	
-					"AttachEffect"
-					{
-						"Target"			"TARGET"
-						"EffectName"		"particles/units/heroes/hero_dark_seer/dark_seer_wall_of_replica_replicate.vpcf"
-						"EffectAttachType"	"follow_origin"
-					}
-				}
-			}
-		}
-	
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"10.0 20.0 30.0"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"300 400 500"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"width"					"1000 1000 1000"
+				"bonus_armor_aura"		"3 6 9 12 15 18 21"
 			}
 		}
 	}
@@ -16356,7 +16240,7 @@
 			"02"
 			{
 				"var_type"							"FIELD_INTEGER"
-				"bonus_armor"						"50 100 200 400 700 1000 1400"
+				"bonus_armor"						"10 25 40 55 70 85 100"
 				"LinkedSpecialBonus"				"special_bonus_unique_monkey_king_4"
 			}
 			"03"
@@ -18042,13 +17926,13 @@
 	        "01"
 	        {
 	            "var_type"                  "FIELD_INTEGER"
-	            "bonus_armor"             "60 120 180 240 300 400 500"
+	            "bonus_armor"             	"6 12 18 24 30 40 50"
 	        }
 			"02"
 			{
 				"var_type"                  "FIELD_INTEGER"
-	            "reflect_pct"             "50"
-				"LinkedSpecialBonus"	 "special_bonus_unique_nyx"
+	            "reflect_pct"             	"50"
+				"LinkedSpecialBonus"		"special_bonus_unique_nyx"
 			}
 	    }
 		
@@ -20956,8 +20840,8 @@
 			}
 			"04"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_armor"			"45 90 135 180 240 320 480"
+				"var_type"				"FIELD_FLOAT"
+				"bonus_armor"			"4.5 9 13.5 18 24 32 48"
 			}
 		}
 		"OnUpgrade"
@@ -23263,7 +23147,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"armor"				"40 60 85 150 250 350 500"
+				"armor"					"4 6 8.5 15 25 35 50"
 			}
 		}
 		"OnSpellStart"
@@ -24702,13 +24586,13 @@
 	    {
 	        "01"
 	        {
-	            "var_type"                      "FIELD_FLOAT"
-	            "speed_to_armor_percent_tooltip"     "5 15 30 45 60 75 100"
+	            "var_type"                      	"FIELD_FLOAT"
+	            "speed_to_armor_percent_tooltip"    "4 5 6 7 8 9 10"
 	        }
 	        "01"
 	        {
 	            "var_type"                      "FIELD_FLOAT"
-	            "speed_to_armor"     "0.15 0.30 0.45 0.60 0.75 1.0 1.25"
+	            "speed_to_armor"     			"0.04 0.05 0.06 0.07 0.08 0.09 0.1"
 	        }
 	    }
 	    "OnUpgrade"
@@ -25404,12 +25288,12 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"warcry_armor"				"25 50 75 100 150 200 300"		
+				"warcry_armor"				"20 25 30 35 40 45 50"		
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"warcry_passive_armor"		"40 80 120 160 200 250 350"	
+				"warcry_passive_armor"		"5 8 11 14 17 20 23"	
 			}
 			"03"
 			{
@@ -26066,185 +25950,6 @@
 	    }
 	}
 	//=================================================================================================================
-	// Tower: Fortification
-	//=================================================================================================================
-	"tower_fortification"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"BaseClass"						"ability_datadriven"
-		"AbilityTextureName"			"tiny_craggy_exterior"
-		"MaxLevel"						"7"
-	
-		// Modifiers
-		//-------------------------------------------------------------------------------------------------------------
-		"Modifiers"
-		{
-			"tower_fortification_modifier"
-			{
-				"IsHidden"				"0"
-				"Passive"				"1"
-	
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"%armor_bonus"
-				}
-			}
-		}
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"armor_bonus"				"9 18 27 36 45 54 63"
-			}
-		}
-	}
-	//=================================================================================================================
-	// Tower: Freezing Splash
-	//=================================================================================================================
-	"tower_freezing_splash"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"BaseClass"						"ability_datadriven"
-		"AbilityTextureName"			"lich_chain_frost"
-	
-		// Modifiers
-		//-------------------------------------------------------------------------------------------------------------
-		"Modifiers"
-		{
-			"tower_orb_freezing_splash"
-			{
-				"IsHidden"				"0"
-				"Passive"				"1"
-				"Orb"
-				{
-					"Priority"			"DOTA_ORB_PRIORITY_ABILITY"
-				}
-				
-				"OnOrbImpact"
-				{
-					"ApplyModifier"
-					{
-						"ModifierName" "tower_freezing_splash_slow"
-						"Target"
-						{
-							"Center" "TARGET"
-							"Radius" "%slow_radius"
-							"Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
-							"Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_MECHANICAL | DOTA_UNIT_TARGET_OTHER"
-						}
-					}
-	
-					"FireEffect"
-					{
-						"Target" "TARGET"
-						"EffectName" "particles/units/heroes/hero_lich/lich_frost_nova.vpcf"
-						"EffectAttachType" "follow_origin"
-						"EffectRadius" "slow_radius"
-					}
-				}
-			}
-	
-			"tower_freezing_splash_slow"
-			{
-				"Duration" "%slow_duration"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%move_slow"
-					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%attack_slow"
-				}
-	
-				"StatusEffectName" "status_effect_frost_lich"
-				"StatusEffectPriority" "9"
-				"EffectName" "particles/units/heroes/hero_lich/lich_slowed_cold.vpcf"
-			}
-		}
-	
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"slow_radius"				"150"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"slow_duration"					"0.5"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"move_slow"						"-20"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"attack_slow"						"-10"
-			}
-		}
-	}
-	//=================================================================================================================
-	// Tower: Healing Aura
-	//=================================================================================================================
-	"tower_healing_aura"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"BaseClass"						"ability_datadriven"
-		"AbilityTextureName"			"enchantress_natures_attendants"
-	
-		// Modifiers
-		//-------------------------------------------------------------------------------------------------------------
-		"Modifiers"
-		{
-			"tower_aura_health_regen"
-			{
-				"IsHidden"				"0"
-				"Passive"				"1"
-				
-				"Aura"					"health_regen"
-				"Aura_Radius"			"%health_radius"
-				"Aura_Teams"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-				"Aura_Types"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_MECHANICAL"
-			}
-			
-			"health_regen"
-			{
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"	"%health_regen_amount"
-				}
-			}
-		}
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"health_radius"				"550"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"health_regen_amount"		"2.5"
-			}
-		}
-	}
-	//=================================================================================================================
 	// Treant Protector: Great Protector
 	//=================================================================================================================
 	"treant_great_protector"
@@ -26502,7 +26207,7 @@
 			"03"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"bonus_armor"		"20 40 60 90 125 200 300"
+				"bonus_armor"		"20"
 			}
 			"04"
 			{
@@ -28663,623 +28368,6 @@
 			}
 		}
 	}
-	
-	"wisp_evil_tether"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_datadriven"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityTextureName"			"custom/wisp_evil_tether"
-		"CastFilterRejectCaster" 		"1"
-		"LevelsBetweenUpgrades"			"5"
-		"MaxLevel"						"7"
-	
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0.001 0.001 0.001 0.001"
-	
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"9.0"
-		"AbilityDuration"				"10.0 15.0 20.0 30.0 45.0 60.0 120.0"
-	
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"40 40 40 40"
-		
-		// Cast Range
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"1800 1800 1800 1800"
-	
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"movespeed"					"-10 -15 -20 -25 -30 -35 -40"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"slow"						"-15"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"tether_heal_steal"			"40 50 60 70 80 90 100"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"base_attack_time"			"1"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"900 1100 1300 1500 1700 1900 2100"
-			}
-			"06"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"tether_duration"			"10.0 15.0 20.0 30.0 45.0 60.0 120.0"
-			}
-			"07"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"latch_distance"			"700 800 900 1000 1100 1200 1300"
-			}
-			"08"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"latch_speed"				"1000 1100 1200 1300 1400 1500 1600"
-			}
-			// Extra variables
-			"10"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"latch_distance_to_target"	"300"
-			}
-			"11"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"latch_destroy_tree_radius"	"350"
-			}
-			"12"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"latch_tick_interval"		"0.03"
-			}
-			"13"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"tether_line_radius"		"32"
-			}
-			"14"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"tether_line_tick_interval"	"0.03"
-			}
-		}
-		
-		// Data driven
-		//-------------------------------------------------------------------------------------------------------------
-		"precache"
-		{
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_wisp.vsndevts"
-			"particle"					"particles/wisp_eviltether.vpcf"
-		}
-		
-		"OnSpellStart"
-		{
-			"ApplyModifier"
-			{
-				"Target"		"CASTER"
-				"ModifierName"	"modifier_evil_tether_caster_datadriven"
-			}
-			
-			"ApplyModifier"
-			{
-				"Target"		"TARGET"
-				"ModifierName"	"modifier_evil_tether_ally_datadriven"
-			}
-			
-			"RunScript"
-			{
-				"ScriptFile"		"lua_abilities/heroes/wisp.lua"
-				"Function"			"CastTether"
-				"Target"			"TARGET"
-				
-				"latch_distance"	"%latch_distance"
-				"latch_modifier"	"modifier_evil_tether_caster_latching_datadriven"
-				
-				"sub_ability_name"	"wisp_evil_tether_break"
-			}
-		}
-		
-		"OnUpgrade"
-		{
-			"RunScript"
-			{
-				"ScriptFile"	"lua_abilities/heroes/wisp.lua"
-				"Function"		"LevelUpAbility"
-				"ability_name"	"wisp_evil_tether_break"
-			}
-		}
-		
-		"Modifiers"
-		{
-			"modifier_evil_tether_caster_datadriven"
-			{
-				"IsBuff"	"1"
-				"Duration"	"%tether_duration"
-				"OnCreated"
-				{
-					"FireSound"
-					{
-						"EffectName"		"Hero_Wisp.Tether"	// a loop sound
-						"Target"			"CASTER"
-					}
-				}
-				"ThinkInterval"		"%tether_line_tick_interval"
-				"OnIntervalThink"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"lua_abilities/heroes/wisp.lua"
-						"Function"		"TrackCurrentHealth"
-					}
-					"RunScript"
-					{
-						"ScriptFile"	"lua_abilities/heroes/wisp.lua"
-						"Function"		"CheckDistance"
-						
-						"radius"			"%radius"
-						"caster_modifier"	"modifier_evil_tether_caster_datadriven"
-						"latch_modifier"	"modifier_evil_tether_caster_latching_datadriven"
-					}
-				}
-				
-				"OnDestroy"
-				{
-					"RemoveModifier"
-					{
-						"Target"			"CASTER"
-						"ModifierName"		"modifier_evil_tether_caster_latching_datadriven"
-					}
-					
-					"RunScript"
-					{
-						"ScriptFile"		"lua_abilities/heroes/wisp.lua"
-						"Function"			"EndTether"
-						
-						"ally_modifier"		"modifier_evil_tether_ally_datadriven"
-						"sub_ability_name"	"wisp_evil_tether_break"
-					}
-				
-					"RunScript"
-					{
-						"ScriptFile"		"lua_abilities/heroes/wisp.lua"
-						"Function"			"StopSound"
-						"sound_name"		"Hero_Wisp.Tether"
-					}
-					
-					"FireSound"
-					{
-						"EffectName"		"Hero_Wisp.Tether.Stop"
-						"Target"			"CASTER"
-					}
-				}
-			}
-			
-			"modifier_evil_tether_caster_latching_datadriven"
-			{
-				"IsHidden"	"1"
-				
-				"Duration"	"%tether_duration"
-				
-				"ThinkInterval"		"%latch_tick_interval"
-				"OnIntervalThink"
-				{
-					"RunScript"
-					{
-						"ScriptFile"		"lua_abilities/heroes/wisp.lua"
-						"Function"			"Latch"
-						
-						"tick_interval"				"%latch_tick_interval"
-						"latch_speed"				"%latch_speed"
-						"latch_distance_to_target"	"%latch_distance_to_target"
-						"latch_modifier"			"modifier_evil_tether_caster_latching_datadriven"
-					}
-				}
-				
-				"States"
-				{
-					"MODIFIER_STATE_NO_UNIT_COLLISION"	"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_ROOTED"				"MODIFIER_STATE_VALUE_ENABLED"
-				}
-				
-				"OnDestroy"
-				{
-					"DestroyTrees"
-					{
-						"Target"		"TARGET"
-						"Radius"		"%latch_destroy_tree_radius"
-					}
-				}
-			}
-			
-			"modifier_evil_tether_ally_datadriven"
-			{
-				"IsBuff"	"1"
-				"Duration"	"%tether_duration"
-				
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE"	"%movespeed"
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%slow"
-					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_PERCENTAGE"	"%slow"
-				}
-				
-				"OnCreated"
-				{
-					"FireSound"
-					{
-						"EffectName"		"Hero_Wisp.Tether.Target"
-						"Target"			"TARGET"
-					}
-					
-					"AttachEffect"
-					{
-						"EffectName"		"particles/wisp_eviltether.vpcf"
-						"EffectAttachType"	"attach_hitloc"
-						"Target"			"TARGET"
-						
-						"ControlPointEntities"
-						{
-							"CASTER"	"attach_hitloc"
-							"TARGET"	"attach_hitloc"
-						}
-					}
-				}
-				"OnDestroy"
-				{
-					"RemoveModifier"
-					{
-						"ModifierName" "modifier_evil_tether_caster_datadriven"
-						"Target"		"CASTER"
-					}
-				}
-				"OnDeath"
-				{
-					"RemoveModifier"
-					{
-						"ModifierName" "modifier_evil_tether_caster_datadriven"
-						"Target"		"CASTER"
-					}
-				}
-				"ThinkInterval"			"%tether_line_tick_interval"
-				"OnIntervalThink"
-				{
-					"RunScript"
-					{
-						"ScriptFile"		"lua_abilities/heroes/wisp.lua"
-						"Function"			"HealthSteal"
-						
-						"steal_pct"		"%tether_heal_steal"
-						"tick"			"%tether_line_tick_interval"
-					}
-				}
-			}
-			
-			"modifier_evil_enemy_bat"
-			{
-				"IsHidden"	"1"
-				"Priority"	"MODIFIER_PRIORITY_ULTRA"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT"	"%base_attack_time"
-				}
-			}
-		}
-	}
-	"wisp_evil_tether_break"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"				"ability_datadriven"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"MaxLevel"						"1"
-		"AbilityTextureName"			"custom/wisp_evil_tether_break"
-	
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0 0 0 0"
-	
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"1.0"
-		
-		// Data driven
-		//-------------------------------------------------------------------------------------------------------------
-		"OnSpellStart"
-		{
-			"RemoveModifier"
-			{
-				"Target"		"CASTER"
-				"ModifierName"	"modifier_evil_tether_caster_datadriven"
-			}
-		}
-		
-		"OnUpgrade"
-		{
-			"RunScript"
-			{
-				"ScriptFile"	"lua_abilities/heroes/wisp.lua"
-				"Function"		"LevelUpAbility"
-				"ability_name"	"wisp_evil_tether"
-			}
-		}
-	}
-	"wisp_overcharge_datadriven"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"				"ability_datadriven"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE"
-		"AbilityTextureName"			"wisp_overcharge"
-		"LevelsBetweenUpgrades"			"7"
-		"MaxLevel"						"7"
-	
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0 0 0 0"
-	
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"2.0"
-	
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"base_attack_time"			"1.4"
-			}
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"bonus_attack_speed"		"50 100 150 200 250 300 350"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"bonus_damage_pct"			"-35"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"bonus_armor"				"25 50 75 100 150 200 300"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"bonus_resistance"			"10 20 30 40 50 60 70"
-			}
-			"06"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"drain_interval"			"0.2 0.2 0.2 0.2"
-			}
-			"07"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"drain_pct"					"8"
-			}
-			"08"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"self_bonus_damage_pct"			"35"
-			}
-			
-		}
-		
-		// Data driven
-		//-------------------------------------------------------------------------------------------------------------
-		"precache"
-		{
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_wisp.vsndevts"
-			"particle"					"particles/units/heroes/hero_wisp/wisp_overcharge.vpcf"
-		}
-		
-		"OnToggleOn"
-		{
-			"ApplyModifier"
-			{
-				"ModifierName"	"modifier_overcharge_drain_datadriven"
-				"Target"		"CASTER"
-			}
-			
-			"ApplyModifier"
-			{
-				"ModifierName"	"modifier_overcharge_check_tether_datadriven"
-				"Target"		"CASTER"
-			}
-		}
-		
-		"OnToggleOff"
-		{
-			"RemoveModifier"
-			{
-				"ModifierName"	"modifier_overcharge_drain_datadriven"
-				"Target"		"CASTER"
-			}
-			
-			"RemoveModifier"
-			{
-				"ModifierName"	"modifier_overcharge_check_tether_datadriven"
-				"Target"		"CASTER"
-			}
-			
-			"RemoveModifier"
-			{
-				"ModifierName"	"modifier_overcharge_buff_datadriven"
-				"Target"		"CASTER"
-			}
-		}
-		
-		"Modifiers"
-		{
-			"modifier_overcharge_drain_datadriven"
-			{
-				"IsHidden"	"1"
-			
-				"OnCreated"
-				{
-					"FireSound"
-					{
-						"EffectName"	"Hero_Wisp.Overcharge"
-						"Target"		"CASTER"
-					}
-				}
-				
-				"OnDestroy"
-				{
-					"RunScript"
-					{
-						"ScriptFile"		"lua_abilities/heroes/wisp.lua"
-						"Function"			"StopSound"
-						"sound_name"		"Hero_Wisp.Overcharge"
-					}
-				}
-				
-				"ThinkInterval"		"%drain_interval"
-				"OnIntervalThink"
-				{
-					"RunScript"
-					{
-						"ScriptFile"		"lua_abilities/heroes/wisp.lua"
-						"Function"			"TickDrain"
-						
-						"drain_interval"	"%drain_interval"
-						"drain_pct"			"%drain_pct"
-					}
-				}
-			}
-			
-			"modifier_overcharge_check_tether_datadriven"
-			{
-				"IsHidden"	"1"
-				
-				"OnCreated"
-				{
-					"RunScript"
-					{
-						"ScriptFile"		"lua_abilities/heroes/wisp.lua"
-						"Function"			"GrabTetherAbility"
-						
-						"tether_ability_name"	"wisp_tether_datadriven"
-					}
-					
-					"RunScript"
-					{
-						"ScriptFile"		"lua_abilities/heroes/wisp.lua"
-						"Function"			"CheckTetheredAlly"
-						
-						"tether_ally_property_name"		"tether_ally"		// We can access the tethered ally through "tether_ability[tether_ally_property_name]"
-						"buff_modifier"					"modifier_overcharge_buff_datadriven"
-					}
-				}
-				
-				"ThinkInterval"		"0.03"
-				"OnIntervalThink"
-				{
-					"RunScript"
-					{
-						"ScriptFile"		"lua_abilities/heroes/wisp.lua"
-						"Function"			"CheckTetheredAlly"
-						
-						"tether_ally_property_name"		"tether_ally"
-						"buff_modifier"					"modifier_overcharge_buff_datadriven"
-					}
-				}
-				
-				"OnDestroy"
-				{
-					"RunScript"
-					{
-						"ScriptFile"		"lua_abilities/heroes/wisp.lua"
-						"Function"			"RemoveOverchargeFromAlly"
-						
-						"buff_modifier"		"modifier_overcharge_buff_datadriven"
-					}
-				}
-			}
-		
-			"modifier_overcharge_buff_datadriven"
-			{
-				"IsBuff"	"1"
-				"Duration"	"-1"
-				
-				"OnCreated"
-				{
-					"AttachEffect"
-					{
-						"EffectName"		"particles/units/heroes/hero_wisp/wisp_overcharge.vpcf"
-						"EffectAttachType"	"attach_hitloc"
-						"Target"			"TARGET"
-						
-						"ControlPointEntities"
-						{
-							"TARGET"	"attach_hitloc"
-						}
-					}
-				}
-				"ThinkInterval" "0.25"
-				"OnIntervalThink"
-				{
-					"RunScript"
-					{
-						"ScriptFile"		"lua_abilities/heroes/wisp.lua"
-						"Function"			"OverChargeBat"
-					}
-				}
-				"OnDestroy"
-				{
-					"RemoveModifier"
-					{
-						"ModifierName"	"modifier_overcharge_bat"
-						"Target"		"TARGET"
-					}
-				}
-				
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%bonus_attack_speed"
-					"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"	"%bonus_damage_pct"
-					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"		"%bonus_armor"
-					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS"	"%bonus_resistance"
-				}
-			}
-			"modifier_overcharge_bat"
-			{
-				"IsHidden"	"1"
-				"Priority"	"MODIFIER_PRIORITY_ULTRA"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT"	"%base_attack_time"
-				}
-			}
-		}
-	}	
 	//=================================================================================================================
 	// Io : Sacrifice
 	//=================================================================================================================

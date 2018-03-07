@@ -5,12 +5,16 @@ Broodking AI
 require( "ai/ai_core" )
 
 function Spawn( entityKeyValues )
-	thisEntity:SetContextThink( "AIThinker", AIThink, 1 )
+	Timers:CreateTimer(function()
+		if thisEntity and not thisEntity:IsNull() then
+			return AIThink(thisEntity)
+		end
+	end)
 	thisEntity.bloodlust = thisEntity:FindAbilityByName("boss_ogre_magi_bloodlust")
 end
 
 
-function AIThink()
+function AIThink(thisEntity)
 	if not thisEntity:IsDominated() then
 		local radius = thisEntity.bloodlust:GetCastRange()
 		local allies = FindUnitsInRadius( thisEntity:GetTeam(), thisEntity:GetOrigin(), nil, radius, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_ALL, 0, 0, false )

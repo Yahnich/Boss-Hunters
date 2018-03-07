@@ -5,14 +5,18 @@ Broodking AI
 require( "ai/ai_core" )
 
 function Spawn( entityKeyValues )
-	thisEntity:SetContextThink( "AIThinker", AIThink, 1 )
+	Timers:CreateTimer(function()
+		if thisEntity and not thisEntity:IsNull() then
+			return AIThink(thisEntity)
+		end
+	end)
 	thisEntity.smash = thisEntity:FindAbilityByName("creature_melee_smash2")
 	if not thisEntity.smash then thisEntity.smash = thisEntity:FindAbilityByName("creature_melee_smash2_h") end
 	if not thisEntity.smash then thisEntity.smash = thisEntity:FindAbilityByName("creature_melee_smash2_vh") end
 end
 
 
-function AIThink()
+function AIThink(thisEntity)
 	if not thisEntity:IsDominated() then
 		local radius = thisEntity.smash:GetCastRange()
 		if AICore:TotalNotDisabledEnemyHeroesInRange( thisEntity, radius, false) <= AICore:TotalEnemyHeroesInRange( thisEntity, radius ) 

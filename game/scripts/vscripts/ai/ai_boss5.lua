@@ -4,7 +4,11 @@ Broodking AI
 
 require( "ai/ai_core" )
 function Spawn( entityKeyValues )
-	thisEntity:SetContextThink( "AIThink", AIThink, 0.25 )
+	Timers:CreateTimer(function()
+		if thisEntity and not thisEntity:IsNull() then
+			return AIThink(thisEntity)
+		end
+	end)
 	thisEntity.moment = thisEntity:FindAbilityByName("boss_moment_of_courage")
 	thisEntity.odds = thisEntity:FindAbilityByName("boss_overwhelming_odds")
 	thisEntity.press = thisEntity:FindAbilityByName("boss_press_the_attack")
@@ -30,7 +34,7 @@ function Spawn( entityKeyValues )
 end
 
 
-function AIThink()
+function AIThink(thisEntity)
 	if not thisEntity:IsDominated() and not thisEntity:IsChanneling() then
 		if thisEntity.odds:IsFullyCastable() then
 			local radius = thisEntity.odds:GetSpecialValueFor("radius")

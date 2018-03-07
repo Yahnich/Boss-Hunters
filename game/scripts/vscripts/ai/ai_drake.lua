@@ -5,7 +5,11 @@ Broodking AI
 if IsServer() then
 	require( "ai/ai_core" )
 	function Spawn( entityKeyValues )
-		thisEntity:SetContextThink( "AIThinker", AIThink, 0.25 )
+		Timers:CreateTimer(function()
+			if thisEntity and not thisEntity:IsNull() then
+				return AIThink(thisEntity)
+			end
+		end)
 		thisEntity.heal = thisEntity:FindAbilityByName("boss16m_heal_aura")
 		if  math.floor(GameRules.gameDifficulty + 0.5) < 2 then 
 			thisEntity.heal:SetLevel(1)
@@ -15,7 +19,7 @@ if IsServer() then
 	end
 
 
-	function AIThink()
+	function AIThink(thisEntity)
 		if not thisEntity:IsDominated() and not thisEntity:IsChanneling() then
 			local target = AICore:GetHighestPriorityTarget(thisEntity)
 			if target then

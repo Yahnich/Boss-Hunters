@@ -4,13 +4,17 @@ Broodking AI
 
 require( "ai/ai_core" )
 function Spawn( entityKeyValues )
-	thisEntity:SetContextThink( "AIThinker", AIThink, 0.25 )
+	Timers:CreateTimer(function()
+		if thisEntity and not thisEntity:IsNull() then
+			return AIThink(thisEntity)
+		end
+	end)
 	thisEntity.spike = thisEntity:FindAbilityByName("creature_aoe_spikes")
 	thisEntity.lightning = thisEntity:FindAbilityByName("creature_lightning_storm")
 end
 
 
-function AIThink()
+function AIThink(thisEntity)
 	if not thisEntity:IsDominated() then
 		if thisEntity.spike:IsFullyCastable() and thisEntity.lightning:IsFullyCastable() then
 			local range = thisEntity.spike:GetCastRange()

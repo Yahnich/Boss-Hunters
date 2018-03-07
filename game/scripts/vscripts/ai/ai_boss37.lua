@@ -9,7 +9,11 @@ AI_STATE_AGGRESSIVE = 2
 AI_STATE_EGGS = 3
 
 function Spawn( entityKeyValues )
-	thisEntity:SetContextThink( "AIThinker", AIThink, 1 )
+	Timers:CreateTimer(function()
+		if thisEntity and not thisEntity:IsNull() then
+			return AIThink(thisEntity)
+		end
+	end)
 	thisEntity.fate = thisEntity:FindAbilityByName("boss_broodmother_clipped_fate")
 	thisEntity.injection = thisEntity:FindAbilityByName("boss_broodmother_parasitic_injection")
 	thisEntity.brood = thisEntity:FindAbilityByName("boss_broodmother_strength_of_the_brood")
@@ -48,7 +52,7 @@ function Spawn( entityKeyValues )
 	thisEntity.getAIState = AI_STATE_AGGRESSIVE
 end
 
-function AIThink()
+function AIThink(thisEntity)
 	thisEntity.getLastCheckedHealth = thisEntity.getLastCheckedHealth or thisEntity:GetHealth()
 	if not thisEntity:IsDominated() then
 		local target = AICore:GetHighestPriorityTarget(thisEntity)

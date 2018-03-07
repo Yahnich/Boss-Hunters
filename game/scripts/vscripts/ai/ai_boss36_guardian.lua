@@ -5,7 +5,11 @@ Broodking AI
 require( "ai/ai_core" )
 
 function Spawn( entityKeyValues )
-	thisEntity:SetContextThink( "AIThinker", AIThink, 1 )
+	Timers:CreateTimer(function()
+		if thisEntity and not thisEntity:IsNull() then
+			return AIThink(thisEntity)
+		end
+	end)
 	
 	thisEntity.shield = thisEntity:FindAbilityByName("boss_evil_guardian_fire_shield")
 	thisEntity.purge = thisEntity:FindAbilityByName("boss_evil_guardian_purge_their_sin")
@@ -46,7 +50,7 @@ function Spawn( entityKeyValues )
 		end)
 end
 
-function AIThink()
+function AIThink(thisEntity)
 	if not thisEntity:IsDominated() then
 		local target = AICore:GetHighestPriorityTarget(thisEntity)
 		if thisEntity.fist:IsFullyCastable() then

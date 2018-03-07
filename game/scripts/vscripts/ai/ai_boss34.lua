@@ -5,15 +5,18 @@ Broodking AI
 require( "ai/ai_core" )
 
 function Spawn( entityKeyValues )
-	thisEntity:SetContextThink( "AIThinker", AIThink, 1 )
-	
+	Timers:CreateTimer(function()
+		if thisEntity and not thisEntity:IsNull() then
+			return AIThink(thisEntity)
+		end
+	end)
 	thisEntity.orb = thisEntity:FindAbilityByName("boss_death_orb")
 	thisEntity.death = thisEntity:FindAbilityByName("boss_death_time")
 	thisEntity.blink = thisEntity:FindAbilityByName("boss_blink_on_far")
 end
 
 
-function AIThink()
+function AIThink(thisEntity)
 	if not thisEntity:IsDominated() then
 		local radius = 800
 		if AICore:TotalEnemyHeroesInRange( thisEntity, radius ) >= 1 and thisEntity.orb:IsFullyCastable() then

@@ -1,7 +1,11 @@
 if IsServer() then
 	require( "ai/ai_core" )
 	function Spawn( entityKeyValues )
-		thisEntity:SetContextThink( "AIThinker", AIThink, 0.25 )
+		Timers:CreateTimer(function()
+			if thisEntity and not thisEntity:IsNull() then
+				return AIThink(thisEntity)
+			end
+		end)
 		thisEntity.poison = thisEntity:FindAbilityByName("boss33a_devitalize")
 		thisEntity.orb = thisEntity:FindAbilityByName("boss33a_dark_orb")
 		thisEntity.ward = thisEntity:FindAbilityByName("boss33a_protective_ward")
@@ -35,7 +39,7 @@ if IsServer() then
 	end
 
 
-	function AIThink()
+	function AIThink(thisEntity)
 		if not thisEntity:IsDominated() and not thisEntity:IsChanneling() then
 			local target = AICore:GetHighestPriorityTarget(thisEntity)
 			if target and CalculateDistance(target, thisEntity) > thisEntity.poison:GetTrueCastRange() then target = AICore:RandomEnemyHeroInRange( thisEntity, thisEntity.poison:GetTrueCastRange() , false) end

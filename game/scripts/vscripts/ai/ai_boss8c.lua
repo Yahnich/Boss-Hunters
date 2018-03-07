@@ -6,7 +6,11 @@ TECHIES_BEHAVIOR_ROAM_AND_MINE = 2
 require( "ai/ai_core" )
 
 function Spawn( entityKeyValues )
-	thisEntity:SetContextThink( "AIThinker", AIThink, 1 )
+	Timers:CreateTimer(function()
+		if thisEntity and not thisEntity:IsNull() then
+			return AIThink(thisEntity)
+		end
+	end)
 	thisEntity.suicide = thisEntity:FindAbilityByName("boss_suicide")
 	thisEntity.mine = thisEntity:FindAbilityByName("boss_proximity")
 	thisEntity.AIstate = RandomInt(1,2)
@@ -27,7 +31,7 @@ function Spawn( entityKeyValues )
 end
 
 
-function AIThink()
+function AIThink(thisEntity)
 	if not thisEntity:IsAlive() then
 		for _,mine in pairs( FindUnitsInRadius( thisEntity:GetTeam(), thisEntity:GetOrigin(), nil, 99999, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_ALL, 0, 0, false ) ) do
 			if mine:GetUnitName() == "npc_dota_techies_land_mine" or mine:GetName() == "npc_dota_techies_land_mine" or mine:GetUnitLabel() == "npc_dota_techies_land_mine" then

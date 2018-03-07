@@ -5,7 +5,11 @@ Broodking AI
 require( "ai/ai_core" )
 
 function Spawn( entityKeyValues )
-	thisEntity:SetContextThink( "AIThinker", AIThink, 1 )
+	Timers:CreateTimer(function()
+		if thisEntity and not thisEntity:IsNull() then
+			return AIThink(thisEntity)
+		end
+	end)
 	thisEntity.smash = thisEntity:FindAbilityByName("creature_melee_smash")
 	if not thisEntity.smash then thisEntity.smash = thisEntity:FindAbilityByName("creature_melee_smash_h") end
 	thisEntity.summon = thisEntity:FindAbilityByName("creature_summon_ogres")
@@ -13,7 +17,7 @@ function Spawn( entityKeyValues )
 end
 
 
-function AIThink()
+function AIThink(thisEntity)
 	if thisEntity.internalClock + 15 < GameRules:GetGameTime() then
 		CreateUnitByName( "npc_dota_mini_boss2_he" ,thisEntity:GetAbsOrigin() + RandomVector(RandomInt(250,500)), true, nil, nil, DOTA_TEAM_BADGUYS )
 		thisEntity.internalClock = GameRules:GetGameTime()

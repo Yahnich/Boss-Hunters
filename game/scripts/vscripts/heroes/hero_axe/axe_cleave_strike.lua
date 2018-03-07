@@ -33,7 +33,7 @@ end
 
 function modifier_cleave_strike:Spin(target)
 	EmitSoundOn("Hero_Axe.CounterHelix_Blood_Chaser", self:GetCaster())
-	local armorDamage = self:GetCaster():GetPhysicalArmorValue() * self:GetTalentSpecialValueFor("armor_to_damage")/100
+	local armorDamage = self:GetCaster():GetStrength() * self:GetTalentSpecialValueFor("str_to_damage")/100
 	local nfx = ParticleManager:CreateParticle("particles/econ/items/axe/axe_weapon_bloodchaser/axe_attack_blur_counterhelix_bloodchaser.vpcf", PATTACH_POINT_FOLLOW, self:GetCaster())
 	ParticleManager:SetParticleControlEnt( nfx, 0, self:GetCaster(), PATTACH_POINT_FOLLOW, "attach_hitloc", self:GetCaster():GetAbsOrigin(), true )
 	ParticleManager:ReleaseParticleIndex(nfx)
@@ -43,6 +43,7 @@ function modifier_cleave_strike:Spin(target)
 	target:Taunt(self:GetAbility(), self:GetCaster(), self:GetTalentSpecialValueFor("duration"))
 
 	local enemies = self:GetCaster():FindEnemyUnitsInRadius(self:GetCaster():GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"), {})
+	print(self:GetCaster():GetAttackDamage())
 	for _,enemy in pairs(enemies) do
 		self:GetAbility():DealDamage(self:GetCaster(), enemy, self:GetCaster():GetAttackDamage() + armorDamage, {}, 0)
 	end

@@ -5,7 +5,11 @@ Broodking AI
 require( "ai/ai_core" )
 
 function Spawn( entityKeyValues )
-	thisEntity:SetContextThink( "AIThinker", AIThink, 1 )
+	Timers:CreateTimer(function()
+		if thisEntity and not thisEntity:IsNull() then
+			return AIThink(thisEntity)
+		end
+	end)
 	if thisEntity:GetUnitName() == "npc_dota_boss35_h" then 
 		thisEntity.suffix = "_h"
 	elseif thisEntity:GetUnitName() == "npc_dota_boss35_vh" then
@@ -31,7 +35,7 @@ function IsEvilCorePresent(thisEntity)
 	return false
 end
 
-function AIThink()
+function AIThink(thisEntity)
 	if not thisEntity:IsDominated() then
 		if thisEntity.raze:IsFullyCastable() then
 			local width = 300

@@ -1,7 +1,11 @@
 if IsServer() then
 	require( "ai/ai_core" )
 	function Spawn( entityKeyValues )
-		thisEntity:SetContextThink( "AIThinker", AIThink, 0.25 )
+		Timers:CreateTimer(function()
+			if thisEntity and not thisEntity:IsNull() then
+				return AIThink(thisEntity)
+			end
+		end)
 		thisEntity.raze1 = thisEntity:FindAbilityByName("boss33b_shadowrazeN")
 		thisEntity.raze2 = thisEntity:FindAbilityByName("boss33b_shadowrazeM")
 		thisEntity.raze3 = thisEntity:FindAbilityByName("boss33b_shadowrazeF")
@@ -37,7 +41,7 @@ if IsServer() then
 	end
 
 
-	function AIThink()
+	function AIThink(thisEntity)
 		if not thisEntity:IsDominated() and not thisEntity:IsChanneling() then
 			local target = AICore:GetHighestPriorityTarget(thisEntity)
 			if thisEntity:GetHealthPercent() > 50 then

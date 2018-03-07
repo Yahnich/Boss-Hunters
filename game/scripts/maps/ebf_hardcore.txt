@@ -372,7 +372,7 @@
 				"UnitBoss_clockwerk"
 				{
 					"NPCName"				"npc_dota_boss8a"
-					"TotalUnitsToSpawn"		"10"
+					"TotalUnitsToSpawn"		"6"
 					"UnitsPerSpawn"			"1"
 					"SpawnInterval"			"6"
 				}
@@ -389,14 +389,14 @@
 				"UnitBoss_clockwerk"
 				{
 					"NPCName"				"npc_dota_boss8a"
-					"TotalUnitsToSpawn"		"5"
+					"TotalUnitsToSpawn"		"2"
 					"UnitsPerSpawn"			"1"
 					"SpawnInterval"			"3"
 				}
 				"UnitBoss_tinker"
 				{
 					"NPCName"				"npc_dota_boss8b"
-					"TotalUnitsToSpawn"		"4"
+					"TotalUnitsToSpawn"		"6"
 					"UnitsPerSpawn"			"1"
 					"SpawnInterval"			"5"
 				}
@@ -407,7 +407,7 @@
 				"UnitBoss_clockwerk"
 				{
 					"NPCName"				"npc_dota_boss8c_spawner"
-					"TotalUnitsToSpawn"		"13"
+					"TotalUnitsToSpawn"		"8"
 					"UnitsPerSpawn"			"2"
 					"SpawnInterval"			"5"
 				}
@@ -431,7 +431,7 @@
 				"UnitBoss_7"
 				{
 					"NPCName"				"npc_dota_boss9"
-					"TotalUnitsToSpawn"		"8"
+					"TotalUnitsToSpawn"		"5"
 					"UnitsPerSpawn"			"1"
 					"SpawnInterval"			"6"
 				}
@@ -455,9 +455,9 @@
 				"UnitBoss_8"
 				{
 					"NPCName"				"npc_dota_boss10_h"
-					"TotalUnitsToSpawn"		"12"
-					"UnitsPerSpawn"			"2"
-					"SpawnInterval"			"15"
+					"TotalUnitsToSpawn"		"9"
+					"UnitsPerSpawn"			"3"
+					"SpawnInterval"			"20"
 				}
 			}
 		}
@@ -479,9 +479,9 @@
 				"UnitBoss_8"
 				{
 					"NPCName"				"npc_dota_boss11"
-					"TotalUnitsToSpawn"		"8"
-					"UnitsPerSpawn"			"2"
-					"SpawnInterval"			"5"
+					"TotalUnitsToSpawn"		"12"
+					"UnitsPerSpawn"			"3"
+					"SpawnInterval"			"20"
 				}
 			}
 		}

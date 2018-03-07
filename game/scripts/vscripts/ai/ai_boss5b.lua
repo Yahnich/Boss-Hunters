@@ -4,7 +4,11 @@ Broodking AI
 
 require( "ai/ai_core" )
 function Spawn( entityKeyValues )
-	thisEntity:SetContextThink( "AIThink", AIThink, 0.25 )
+	Timers:CreateTimer(function()
+		if thisEntity and not thisEntity:IsNull() then
+			return AIThink(thisEntity)
+		end
+	end)
 	thisEntity.blink = thisEntity:FindAbilityByName("boss_blink")
 	thisEntity.strike = thisEntity:FindAbilityByName("boss_shadow_strike")
 	thisEntity.scream = thisEntity:FindAbilityByName("boss_scream_of_pain")
@@ -29,7 +33,7 @@ function Spawn( entityKeyValues )
 end
 
 
-function AIThink()
+function AIThink(thisEntity)
 	if not thisEntity:IsDominated() then
 		if thisEntity.blink:IsFullyCastable() then
 			local range = thisEntity.blink:GetSpecialValueFor("blink_range")

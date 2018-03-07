@@ -4,7 +4,11 @@ Broodking AI
 
 require( "ai/ai_core" )
 function Spawn( entityKeyValues )
-	thisEntity:SetContextThink( "AIThink", AIThink, 0.25 )
+	Timers:CreateTimer(function()
+		if thisEntity and not thisEntity:IsNull() then
+			return AIThink(thisEntity)
+		end
+	end)
 	thisEntity.ball = thisEntity:FindAbilityByName("boss4_death_ball")
 	thisEntity.summon = thisEntity:FindAbilityByName("boss4_summon_zombies")
 	thisEntity.sacrifice = thisEntity:FindAbilityByName("boss4_sacrifice")
@@ -30,7 +34,7 @@ function Spawn( entityKeyValues )
 end
 
 
-function AIThink()
+function AIThink(thisEntity)
 	if not thisEntity:IsDominated() and not thisEntity:IsChanneling() then
 		local target = AICore:GetHighestPriorityTarget(thisEntity)
 		if (AICore:BeingAttacked(thisEntity) > 1 or AICore:IsNearEnemyUnit(thisEntity, 600)) and thisEntity.tombstone:IsFullyCastable() and not thisEntity:HasModifier("modifier_boss4_tombstone_caster") then

@@ -5,12 +5,16 @@ Broodking AI
 require( "ai/ai_core" )
 
 function Spawn( entityKeyValues )
-	thisEntity:SetContextThink( "AIThinker", AIThink, 1 )
+	Timers:CreateTimer(function()
+		if thisEntity and not thisEntity:IsNull() then
+			return AIThink(thisEntity)
+		end
+	end)
 	thisEntity.berserk = thisEntity:FindAbilityByName("boss3a_berserk")
 end
 
 
-function AIThink()
+function AIThink(thisEntity)
 	if not thisEntity:IsDominated() then
 		local radius = thisEntity:GetAttackRange()+thisEntity:GetAttackRangeBuffer()
 		local target = AICore:HighestThreatHeroInRange(thisEntity, radius, 0, true)

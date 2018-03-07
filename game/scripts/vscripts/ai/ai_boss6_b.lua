@@ -4,7 +4,11 @@ Broodking AI
 
 require( "ai/ai_core" )
 function Spawn( entityKeyValues )
-	thisEntity:SetContextThink( "AIThinker", AIThink, 0.25 )
+	Timers:CreateTimer(function()
+		if thisEntity and not thisEntity:IsNull() then
+			return AIThink(thisEntity)
+		end
+	end)
 	thisEntity.rupture = thisEntity:FindAbilityByName("creature_rupture")
 	thisEntity.pounce = thisEntity:FindAbilityByName("lesser_nightcrawler_pounce")
 	local target = AICore:WeakestEnemyHeroInRange( thisEntity, 9000, true )
@@ -20,7 +24,7 @@ function Spawn( entityKeyValues )
 end
 
 
-function AIThink()
+function AIThink(thisEntity)
 	if not thisEntity:IsDominated() then
 		local target = AICore:WeakestEnemyHeroInRange( thisEntity, thisEntity.rupture:GetCastRange(), true )
 		if target and thisEntity.rupture:IsFullyCastable() and not target:HasModifier("modifier_bloodseeker_rupture") then

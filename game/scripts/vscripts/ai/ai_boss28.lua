@@ -1,7 +1,11 @@
 if IsServer() then
 	require( "ai/ai_core" )
 	function Spawn( entityKeyValues )
-		thisEntity:SetContextThink( "AIThinker", AIThink, 0.25 )
+		Timers:CreateTimer(function()
+			if thisEntity and not thisEntity:IsNull() then
+				return AIThink(thisEntity)
+			end
+		end)
 		thisEntity.trample = thisEntity:FindAbilityByName("boss18b_trample")
 		thisEntity.swipe = thisEntity:FindAbilityByName("boss18b_swipe")
 		thisEntity.frenzy = thisEntity:FindAbilityByName("boss18b_frenzy")

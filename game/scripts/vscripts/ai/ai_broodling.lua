@@ -5,7 +5,11 @@ Broodking AI
 require( "ai/ai_core" )
 
 function Spawn( entityKeyValues )
-	thisEntity:SetContextThink( "AIThinker", AIThink, 1 )
+	Timers:CreateTimer(function()
+		if thisEntity and not thisEntity:IsNull() then
+			return AIThink(thisEntity)
+		end
+	end)
 	
 	thisEntity.spawn = thisEntity:FindAbilityByName("boss_broodling_spawn_spiderling")
 	thisEntity.spawn:StartCooldown(10)
@@ -24,7 +28,7 @@ function Spawn( entityKeyValues )
 end
 
 
-function AIThink()
+function AIThink(thisEntity)
 	if not thisEntity:IsDominated() then
 		if thisEntity.spawn:IsFullyCastable() and AICore:SpecificAlliedUnitsAlive( thisEntity, "npc_dota_creature_spiderling", -1 ) < 15 then
 			ExecuteOrderFromTable({

@@ -198,7 +198,7 @@ function CHoldoutGameMode:InitGameMode()
 	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue( DOTA_ATTRIBUTE_STRENGTH_STATUS_RESISTANCE_PERCENT, 0.00005 )
 	
 	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue( DOTA_ATTRIBUTE_AGILITY_DAMAGE, 1.25 )
-	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue( DOTA_ATTRIBUTE_AGILITY_ARMOR, 0.07 )
+	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue( DOTA_ATTRIBUTE_AGILITY_ARMOR, 0.01 )
 	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue( DOTA_ATTRIBUTE_AGILITY_ATTACK_SPEED, 0.05	 )
 	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue( DOTA_ATTRIBUTE_AGILITY_MOVE_SPEED_PERCENT, 0.00006 )
 	
@@ -649,43 +649,6 @@ function CHoldoutGameMode:FilterModifiers( filterTable )
 	local name = filterTable["name_const"]
 
 	if parent == caster or not caster or not ability or duration == -1 then return true end
-	
-	local parentBuffIncrease = 1
-	local parentDebuffIncrease = 1
-	local casterBuffIncrease = 1
-	local casterDebuffIncrease = 1
-	
-	for _, modifier in pairs( parent:FindAllModifiers() ) do
-		if modifier.BonusDebuffDuration_Constant then
-			parentDebuffIncrease = parentDebuffIncrease + (modifier:BonusDebuffDuration_Constant() / 100)
-		end
-		if modifier.BonusBuffDuration_Constant then
-			parentBuffIncrease = parentBuffIncrease + (modifier:BonusBuffDuration_Constant() / 100)
-		end
-	end
-	for _, modifier in ipairs( caster:FindAllModifiers() ) do
-		if modifier.BonusAppliedDebuffDuration_Constant then
-			casterDebuffIncrease = casterDebuffIncrease + (modifier:BonusAppliedDebuffDuration_Constant() / 100)
-		end
-		if modifier.BonusAppliedBuffDuration_Constant then
-			casterBuffIncrease = casterBuffIncrease + (modifier:BonusAppliedBuffDuration_Constant() / 100)
-		end
-	end
-	
-	Timers:CreateTimer(0,function()
-		if not parent or parent:IsNull() then return end
-		if not caster or caster:IsNull() then return end
-		local modifier = parent:FindModifierByNameAndCaster(name, caster)
-		if modifier and not modifier:IsNull() then
-			if modifier.IsDebuff or parent:GetTeam() ~= caster:GetTeam() and (parentDebuffIncrease > 1 or casterDebuffIncrease > 1) then
-				local duration = modifier:GetRemainingTime()
-				modifier:SetDuration(duration * math.max(0, parentDebuffIncrease * casterDebuffIncrease), true)
-			elseif modifier.IsBuff or parent:GetTeam() == caster:GetTeam() and (parentBuffIncrease > 1 or casterBuffIncrease > 1) then
-				local duration = modifier:GetRemainingTime()
-				modifier:SetDuration(duration * math.max(0, parentBuffIncrease * casterBuffIncrease), true)
-			end
-		end
-	end)
 	return true
 end
 

@@ -161,11 +161,6 @@
 				"var_type"				"FIELD_INTEGER"
 				"heal_bonus"			"100"
 			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"heal_bonus"			"800 1600 3200 6400 12800 24600 37400"
-			}
 		}
 	}
 	
@@ -191,14 +186,14 @@
 			"01"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"bonus_health_regen"			"60 100 200 400 800 1200 2400"
+				"bonus_health_regen"			"30 60 100 200 400 800 1200"
 				"LinkedSpecialBonus"			"special_bonus_unique_dragon_knight_dragons_blood_ebf_1"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
 			"02"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"bonus_armor"					"45 60 85 100 150 200 300"
+				"bonus_armor"					"6 9 15 20 30 45 60"
 				"LinkedSpecialBonus"			"special_bonus_unique_dragon_knight_dragons_blood_ebf_1"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
@@ -206,7 +201,7 @@
 			{
 				"var_type"						"FIELD_INTEGER"
 				"bonus_movespeed"				"12 24 36 48 60 72 84"
-				"LinkedSpecialBonus"			"special_bonus_unique_dragon_knight"
+				"LinkedSpecialBonus"			"special_bonus_unique_dragon_knight_dragons_blood_ebf_1"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
 		}
@@ -387,7 +382,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"1.5"
+				"value"					"2"
 			}
 		}
 	}

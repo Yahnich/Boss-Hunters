@@ -5,7 +5,11 @@ Broodking AI
 require( "ai/ai_core" )
 
 function Spawn( entityKeyValues )
-	thisEntity:SetContextThink( "AIThinker", AIThink, 1 )
+	Timers:CreateTimer(function()
+		if thisEntity and not thisEntity:IsNull() then
+			return AIThink(thisEntity)
+		end
+	end)
 	thisEntity.ankle = thisEntity:FindAbilityByName("boss26b_ankle_biter")
 	thisEntity.wound = thisEntity:FindAbilityByName("boss26b_wound")
 	
@@ -26,7 +30,7 @@ function Spawn( entityKeyValues )
 end
 
 
-function AIThink()
+function AIThink(thisEntity)
 	if not thisEntity:IsDominated() and not thisEntity:IsChanneling() then
 		local target = thisEntity:GetTauntTarget() or FindMarkedTarget(thisEntity) or AttackingMaster(thisEntity) or AICore:GetHighestPriorityTarget(thisEntity)
 		if target then

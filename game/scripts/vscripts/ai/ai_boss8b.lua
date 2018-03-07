@@ -5,7 +5,11 @@ Broodking AI
 require( "ai/ai_core" )
 
 function Spawn( entityKeyValues )
-	thisEntity:SetContextThink( "AIThinker", AIThink, 1 )
+	Timers:CreateTimer(function()
+		if thisEntity and not thisEntity:IsNull() then
+			return AIThink(thisEntity)
+		end
+	end)
 	thisEntity.rockets = thisEntity:FindAbilityByName("boss_rockets")
 	thisEntity.march = thisEntity:FindAbilityByName("boss_march")
 	thisEntity.rearm = thisEntity:FindAbilityByName("boss_rearm")
@@ -29,7 +33,7 @@ function Spawn( entityKeyValues )
 end
 
 
-function AIThink()
+function AIThink(thisEntity)
 	if not thisEntity:IsDominated() then
 		if thisEntity:IsChanneling() then return 0.25 end
 		local danger = AICore:NearestEnemyHeroInRange( thisEntity, 900, true )

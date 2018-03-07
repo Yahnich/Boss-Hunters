@@ -5,8 +5,11 @@ Broodking AI
 if IsServer() then
 	require( "ai/ai_core" )
 	function Spawn( thisEntityKeyValues )
-		thisEntity:SetContextThink( "AIThinker", AIThink, 1 )
-		
+		Timers:CreateTimer(function()
+			if thisEntity and not thisEntity:IsNull() then
+				return AIThink(thisEntity)
+			end
+		end)
 		thisEntity.mark = thisEntity:FindAbilityByName("boss27_kill_them")
 		thisEntity.destroy = thisEntity:FindAbilityByName("boss27_destroy")
 		thisEntity.protect = thisEntity:FindAbilityByName("boss27_protect_me")
@@ -61,7 +64,7 @@ if IsServer() then
 	end
 
 
-	function AIThink()
+	function AIThink(thisEntity)
 		if not thisEntity:IsDominated() and not thisEntity:IsChanneling() then
 			if AICore:BeingAttacked( thisEntity ) > 0 then
 				if thisEntity:GetTotalBearCount() == 0 then

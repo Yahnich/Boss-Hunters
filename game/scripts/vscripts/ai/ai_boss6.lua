@@ -4,7 +4,11 @@ Broodking AI
 
 require( "ai/ai_core" )
 function Spawn( entityKeyValues )
-	thisEntity:SetContextThink( "AIThinker", AIThink, 0.25 )
+	Timers:CreateTimer(function()
+		if thisEntity and not thisEntity:IsNull() then
+			return AIThink(thisEntity)
+		end
+	end)
 	thisEntity.dance = thisEntity:FindAbilityByName("nightcrawler_shadowdance")
 	thisEntity.pounce = thisEntity:FindAbilityByName("lesser_nightcrawler_pounce")
 	local target = AICore:HighestThreatHeroInRange( thisEntity, 9000 , 15, true)
@@ -22,7 +26,7 @@ function Spawn( entityKeyValues )
 end
 
 
-function AIThink()
+function AIThink(thisEntity)
 	if not thisEntity:IsDominated() then
 		local hp = thisEntity:GetHealth()
 		if not thisEntity.prevHP then thisEntity.prevHP = hp end

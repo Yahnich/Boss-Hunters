@@ -181,7 +181,7 @@
 			"03"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"maximum_armor"					"100 200 350 500 750 1000 1500"
+				"maximum_armor"					"10 20 35 50 75 100 150"
 			}
 			"04"
 			{

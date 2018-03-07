@@ -5,13 +5,17 @@ Broodking AI
 require( "ai/ai_core" )
 
 function Spawn( entityKeyValues )
-	thisEntity:SetContextThink( "AIThinker", AIThink, 1 )
+	Timers:CreateTimer(function()
+		if thisEntity and not thisEntity:IsNull() then
+			return AIThink(thisEntity)
+		end
+	end)
 	thisEntity.summon = thisEntity:FindAbilityByName("creature_summon_slither")
 	thisEntity.crush = thisEntity:FindAbilityByName("creature_slithereen_crush")
 end
 
 
-function AIThink()
+function AIThink(thisEntity)
 	if not thisEntity:IsDominated() then
 		local radius = thisEntity.crush:GetSpecialValueFor("crush_radius")
 		if AICore:TotalNotDisabledEnemyHeroesInRange( thisEntity, radius ) > math.floor(AICore:TotalEnemyHeroesInRange( thisEntity, radius )/2) 

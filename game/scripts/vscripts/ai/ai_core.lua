@@ -119,101 +119,63 @@ end
 function AICore:AttackHighestPriority( entity )
 	if not entity and not entity:IsAlive() then return end
 	local flag = DOTA_UNIT_TARGET_FLAG_NOT_ATTACK_IMMUNE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE
-	local range = entity:GetAttackRange() + entity:GetIdealSpeed() * 1.5
 	if not entity:IsDominated() then
-		local enemies = FindUnitsInRadius( entity:GetTeamNumber(), entity:GetAbsOrigin(), nil, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, flag, 0, false )
-		local target = nil
+		local target = entity:GetTauntTarget()
+		local weakestInRange
+		local closestUnit
 		local minThreat = 0
-		if not entity.AIPreviousTargetTimerTicker then entity.AIPreviousTargetTimerTicker = 0 end
-		if entity.AIprevioustarget and not entity.AIprevioustarget:IsNull() and not entity:CanEntityBeSeenByMyTeam( entity.AIprevioustarget ) then
-			if not entity.AIPreviousTargetTimer then
-				entity.AIPreviousTargetTimerTicker = 0 
-				entity.AIPreviousTargetTimerEntity = entity.AIprevioustarget:entindex()
-				entity.AIPreviousTargetTimer = Timers:CreateTimer(0.1, function()
-					if entity.AIPreviousTargetTimerEntity == entity.AIprevioustarget:entindex() then
-						entity.AIPreviousTargetTimerTicker = entity.AIPreviousTargetTimerTicker + 0.1
-					end
-				end)
-			elseif entity.AIPreviousTargetTimerEntity ~= entity.AIprevioustarget:entindex() then
-				Timers:RemoveTimer( entity.AIPreviousTargetTimer )
-				entity.AIPreviousTargetTimerTicker = 0 
-				entity.AIPreviousTargetTimerEntity = entity.AIprevioustarget:entindex()
-				entity.AIPreviousTargetTimer = Timers:CreateTimer(0.1, function()
-					if entity.AIPreviousTargetTimerEntity == entity.AIprevioustarget:entindex() then
-						entity.AIPreviousTargetTimerTicker = entity.AIPreviousTargetTimerTicker + 0.1
-					end
-				end)
-			end
-		elseif entity.AIPreviousTargetTimer then
-			Timers:RemoveTimer( entity.AIPreviousTargetTimer )
-			entity.AIPreviousTargetTimerTicker = 0 
-			entity.AIPreviousTargetTimerEntity = nil
-		end
-		if entity.AIprevioustarget and not entity.AIprevioustarget:IsNull() and entity.AIprevioustarget:IsAlive() and not entity.AIprevioustarget:IsInvisible() and not entity.AIprevioustarget:IsNull() and entity.AIPreviousTargetTimerTicker < 1.5 then 
+		local minHP = 0
+		if entity.AIprevioustarget and not entity.AIprevioustarget:IsNull() and entity.AIprevioustarget:IsAlive() and not entity.AIprevioustarget:IsInvisible() then 
 			target = entity.AIprevioustarget
 			target.threat = target.threat or 0
 			minThreat = target.threat
 		end
-		for _,enemy in pairs(enemies) do
-			if entity:GetTauntTarget() then 
-				target = entity:GetTauntTarget()
-				break
-			end
-			local distanceToEnemy = (entity:GetAbsOrigin() - enemy:GetAbsOrigin()):Length2D()
-			if not enemy.threat then enemy.threat = 0 end
-			if not minThreat then minThreat = 0 end
-			if GridNav:CanFindPath( entity:GetAbsOrigin(), enemy:GetAbsOrigin() ) then
-				if enemy:IsAlive() and (enemy.threat or 0) > minThreat and distanceToEnemy < range and not entity.AIprevioustarget then
-					minThreat = enemy.threat
-					target = enemy
-					entity.AIprevioustarget = target
-				elseif entity.AIprevioustarget and enemy:IsAlive() and enemy.threat > minThreat + 5*(entity.AIbehavior or 1) and distanceToEnemy < range then
-					minThreat = enemy.threat
-					target = enemy
-					entity.AIprevioustarget = target
-				end
-			end
-		end
-		if not target then 
-			local minHP = nil
-			local target = nil
-			enemies = FindUnitsInRadius( entity:GetTeamNumber(), entity:GetAbsOrigin(), nil, range*2, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, flag, 0, false )
+		if not entity:GetTauntTarget() then
+			local range = entity:GetAttackRange() + entity:GetIdealSpeed() * 1.5
+			local minRange = 99999
+			local enemies = FindUnitsInRadius( entity:GetTeamNumber(), entity:GetAbsOrigin(), nil, minRange, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, flag, 0, false )
 			for _,enemy in pairs(enemies) do
 				local distanceToEnemy = (entity:GetAbsOrigin() - enemy:GetAbsOrigin()):Length2D()
-				local HP = enemy:GetHealth()
-				if GridNav:CanFindPath( entity:GetAbsOrigin(), enemy:GetAbsOrigin() ) and enemy:IsAlive() and (minHP == nil or HP < minHP) and distanceToEnemy < range then
-					minHP = HP
-					target = enemy
-					entity.AIprevioustarget = target
+				if not enemy.threat then enemy.threat = 0 end
+				if not minThreat then minThreat = 0 end
+				if GridNav:CanFindPath( entity:GetAbsOrigin(), enemy:GetAbsOrigin() ) and enemy:IsAlive() then
+					if distanceToEnemy < range then
+						if enemy.threat > minThreat and not entity.AIprevioustarget then
+							minThreat = enemy.threat
+							target = enemy
+						elseif entity.AIprevioustarget and enemy.threat > minThreat + 5*(entity.AIbehavior or 1) then
+							minThreat = enemy.threat
+							target = enemy
+						end
+						if not target then
+							local HP = enemy:GetHealth()
+							if HP < minHP then
+								minHP = HP
+								weakestInRange = enemy
+							end
+						end
+					end
+					if not weakestInRange then
+						if minRange > distanceToEnemy then
+							minRange = distanceToEnemy
+							closestUnit = enemy
+						end
+					end
 				end
 			end
 		end
-		if not target then 
-			local minRange = 9999
-			local target = nil
-			enemies = FindUnitsInRadius( entity:GetTeamNumber(), entity:GetAbsOrigin(), nil, minRange, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, flag, 0, false )
-			for _,enemy in pairs(enemies) do
-				local distanceToEnemy = (entity:GetAbsOrigin() - enemy:GetAbsOrigin()):Length2D()
-				if GridNav:CanFindPath( entity:GetAbsOrigin(), enemy:GetAbsOrigin() ) and enemy:IsAlive() and distanceToEnemy < minRange then
-					minRange = distanceToEnemy
-					target = enemy
-					entity.AIprevioustarget = target
-				end
-			end
-		end
-		if entity:GetTauntTarget() then 
-			target = entity:GetTauntTarget()
-		end
+		target = target or weakestInRange or closestUnit
+		entity.AIprevioustarget = target
 		if target and not target:IsNull() then
 			ExecuteOrderFromTable({
 				UnitIndex = entity:entindex(),
 				OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
 				TargetIndex = target:entindex()
 			})
-			return 0.5
+			return 1
 		else
 			AICore:RunToRandomPosition( entity, 5 )
-			return 0.1
+			return 1
 		end
 	end
 end

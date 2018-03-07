@@ -1,7 +1,11 @@
 if IsServer() then
 	require( "ai/ai_core" )
 	function Spawn( entityKeyValues )
-		thisEntity:SetContextThink( "AIThinker", AIThink, 0.25 )
+		Timers:CreateTimer(function()
+			if thisEntity and not thisEntity:IsNull() then
+				return AIThink(thisEntity)
+			end
+		end)
 		thisEntity.thread = thisEntity:FindAbilityByName("boss15_thread_of_life")
 		thisEntity.peel = thisEntity:FindAbilityByName("boss15_peel_the_veil")
 		thisEntity.exorcise = thisEntity:FindAbilityByName("boss15_exorcise")
@@ -31,7 +35,7 @@ if IsServer() then
 	end
 
 
-	function AIThink()
+	function AIThink(thisEntity)
 		if not thisEntity:IsDominated() and not thisEntity:IsChanneling() then
 			local target = AICore:GetHighestPriorityTarget(thisEntity)
 			if target and not target:IsNull() then

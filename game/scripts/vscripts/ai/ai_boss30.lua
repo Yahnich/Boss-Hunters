@@ -5,7 +5,11 @@ Broodking AI
 if IsServer() then
 	require( "ai/ai_core" )
 	function Spawn( entityKeyValues )
-		thisEntity:SetContextThink( "AIThinker", AIThink, 0.25 )
+		Timers:CreateTimer(function()
+			if thisEntity and not thisEntity:IsNull() then
+				return AIThink(thisEntity)
+			end
+		end)
 		thisEntity.burrow = thisEntity:FindAbilityByName("boss19_burrow")
 		thisEntity.ground = thisEntity:FindAbilityByName("boss19_cracked_ground")
 		thisEntity.swarm = thisEntity:FindAbilityByName("boss19_the_swarm")
@@ -34,7 +38,7 @@ if IsServer() then
 			thisEntity:SetHealth(thisEntity:GetMaxHealth())
 		end
 	end
-	function AIThink()
+	function AIThink(thisEntity)
 		local target = AICore:GetHighestPriorityTarget(thisEntity)
 		if not thisEntity:IsDominated() and not thisEntity:IsChanneling() then
 			if target then

@@ -5,6 +5,11 @@ Broodking AI
 if IsServer() then
 	require( "ai/ai_core" )
 	function Spawn( entityKeyValues )
+		Timers:CreateTimer(function()
+			if thisEntity and not thisEntity:IsNull() then
+				return AIThink(thisEntity)
+			end
+		end)
 		thisEntity:SetContextThink( "AIThinker", AIThink, 0.25 )
 		thisEntity.flock = thisEntity:FindAbilityByName("boss16_the_flock")
 		thisEntity.conflag = thisEntity:FindAbilityByName("boss16_conflagration")
@@ -25,7 +30,7 @@ if IsServer() then
 	end
 
 
-	function AIThink()
+	function AIThink(thisEntity)
 		if not thisEntity:IsDominated() and not thisEntity:IsChanneling() then
 			local target = AICore:GetHighestPriorityTarget(thisEntity)
 			if target then

@@ -4,7 +4,11 @@ Broodking AI
 
 require( "ai/ai_core" )
 function Spawn( entityKeyValues )
-	thisEntity:SetContextThink( "AIThinker", AIThink, 0.25 )
+	Timers:CreateTimer(function()
+		if thisEntity and not thisEntity:IsNull() then
+			return AIThink(thisEntity)
+		end
+	end)
 	thisEntity.kick = thisEntity:FindAbilityByName("creature_kick")
 	thisEntity.punch = thisEntity:FindAbilityByName("creature_punch")
 	thisEntity.kick:SetHidden(false)
@@ -16,7 +20,7 @@ function Spawn( entityKeyValues )
 end
 
 
-function AIThink()
+function AIThink(thisEntity)
 	if thisEntity.internalClock + 15 < GameRules:GetGameTime() then
 		CreateUnitByName( "npc_dota_mini_boss2" ,thisEntity:GetAbsOrigin() + RandomVector(RandomInt(250,500)), true, nil, nil, DOTA_TEAM_BADGUYS )
 		thisEntity.internalClock = GameRules:GetGameTime()

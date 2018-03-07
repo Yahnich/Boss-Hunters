@@ -6,12 +6,16 @@ TECHIES_BEHAVIOR_ROAM_AND_MINE = 2
 require( "ai/ai_core" )
 
 function Spawn( entityKeyValues )
-	thisEntity:SetContextThink( "AIThinker", AIThink, 1 )
+	Timers:CreateTimer(function()
+		if thisEntity and not thisEntity:IsNull() then
+			return AIThink(thisEntity)
+		end
+	end)
 	thisEntity.spawn = thisEntity:FindAbilityByName("boss_spawn_techies")
 end
 
 
-function AIThink()
+function AIThink(thisEntity)
 	if not thisEntity:IsDominated() then
 		if thisEntity:IsChanneling() then return 0.25 end
 		if not thisEntity.spawn:IsCooldownReady() then return 0.25 end

@@ -9,7 +9,11 @@ if IsServer() then
 	AI_STATE_STEALTH = 3
 	
 	function Spawn( entityKeyValues )
-		thisEntity:SetContextThink( "AIThinker", AIThink, 0.25 )
+		Timers:CreateTimer(function()
+			if thisEntity and not thisEntity:IsNull() then
+				return AIThink(thisEntity)
+			end
+		end)
 		thisEntity.rush = thisEntity:FindAbilityByName("boss1a_rushdown")
 		thisEntity.blink = thisEntity:FindAbilityByName("boss1a_blink_strike")
 		thisEntity.vanish = thisEntity:FindAbilityByName("boss1a_vanish")
@@ -33,7 +37,7 @@ if IsServer() then
 	end
 
 
-	function AIThink()
+	function AIThink(thisEntity)
 		if not thisEntity:IsDominated() and not thisEntity:IsCommandRestricted() then
 			EvaluateBehavior(thisEntity)
 			if thisEntity.AIstate == AI_STATE_CLOSE_COMBAT then
@@ -137,7 +141,7 @@ if IsServer() then
 										UnitIndex = thisEntity:entindex(),
 										OrderType = DOTA_UNIT_ORDER_CAST_POSITION,
 										Position = thisEntity:GetAbsOrigin() + runDir * thisEntity.blink:GetTrueCastRange(),
-										AbilityIndex = blink.blink:entindex()
+										AbilityIndex = thisEntity.blink:entindex()
 									})
 									return 0.25
 								elseif thisEntity.rush:IsFullyCastable() then

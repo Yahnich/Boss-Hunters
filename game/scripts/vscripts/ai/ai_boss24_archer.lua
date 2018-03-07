@@ -5,13 +5,17 @@ Broodking AI
 require( "ai/ai_core" )
 
 function Spawn( entityKeyValues )
-	thisEntity:SetContextThink( "AIThinker", AIThink, 1 )
+	Timers:CreateTimer(function()
+		if thisEntity and not thisEntity:IsNull() then
+			return AIThink(thisEntity)
+		end
+	end)
 	thisEntity.walk = thisEntity:FindAbilityByName("clinkz_wind_walk")
 	thisEntity.focus = thisEntity:FindAbilityByName("boss_focusfire")
 end
 
 
-function AIThink()
+function AIThink(thisEntity)
 	if not thisEntity:IsDominated() then
 		local range = thisEntity.focus:GetCastRange()
 		local target = AICore:HighestThreatHeroInRange(thisEntity, range, 10, true)
