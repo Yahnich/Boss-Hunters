@@ -41,7 +41,7 @@ if IsServer() then
 					ParticleManager:SetParticleControl(particle_ground, 1, ally:GetAbsOrigin()) --radius
 					ParticleManager:SetParticleControl(particle_ground, 2, ally:GetAbsOrigin()) --ammount of particle
 				else
-					ally:SetHealth(health)
+					ally:SetHealth(math.max(1, health))
 					ally:SetMana(mana)
 					ally:Interrupt()
 					ally:Purge(false,true,false,true,false)
@@ -86,7 +86,7 @@ if IsServer() then
 										9999,
 										DOTA_UNIT_TARGET_TEAM_FRIENDLY,
 										DOTA_UNIT_TARGET_HERO,
-										DOTA_UNIT_TARGET_FLAG_NOT_ILLUSIONS + DOTA_UNIT_TARGET_FLAG_DEAD,
+										DOTA_UNIT_TARGET_FLAG_NOT_ILLUSIONS,
 										FIND_ANY_ORDER,
 										false)
 		for _,ally in pairs(allies) do
