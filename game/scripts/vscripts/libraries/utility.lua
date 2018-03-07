@@ -1622,10 +1622,12 @@ end
 
 function CDOTA_Modifier_Lua:StartMotionController()
 	if not self:GetParent():IsNull() and not self:IsNull() and self.DoControlledMotion and self:GetParent():HasMovementCapability() then
-		self.controlledMotionTimer = Timers:CreateTimer(FrameTime(), function()
+		self:GetParent():StopMotionControllers()
+		self:GetParent():InterruptMotionControllers(true)
+		self.controlledMotionTimer = Timers:CreateTimer(function()
 			if self:IsNull() or self:GetParent():IsNull() then return end
 			self:DoControlledMotion() 
-			return FrameTime()
+			return 0.03
 		end)
 	else
 	end
@@ -1654,8 +1656,19 @@ function CDOTA_Modifier_Lua:AddIndependentStack(duration, limit)
 end
 
 
-function CDOTA_Modifier_Lua:StopMotionController()
+function CDOTA_Modifier_Lua:StopMotionController(bForceDestroy)
+	FindClearSpaceForUnit(self:GetParent(), self:GetParent():GetAbsOrigin(), true)
 	Timers:RemoveTimer(self.controlledMotionTimer)
+	if bForceDestroy then self:Destroy() end
+end
+
+function CDOTA_BaseNPC:StopMotionControllers(bForceDestroy)
+	self:InterruptMotionControllers(true)
+	for _, modifier in ipairs( self:FindAllModifiers() ) do
+		if modifier.controlledMotionTimer then 
+			modifier:StopMotionController(bForceDestroy)
+		end
+	end
 end
 
 function CDOTA_Modifier_Lua:AddEffect(id)
@@ -2104,7 +2117,8 @@ function CDOTA_BaseNPC:RemoveDaze()
 end
 
 function CDOTA_BaseNPC:AttemptKill(sourceAb, attacker)
-	ApplyDamage({victim = self, attacker = attacker, ability = sourceAb, damage_type = DAMAGE_TYPE_PURE, damage = self:GetMaxHealth() * 5, damage_flags = DOTA_DAMAGE_FLAG_BYPASSES_INVULNERABILITY + DOTA_DAMAGE_FLAG_BYPASSES_BLOCK + DOTA_DAMAGE_FLAG_NO_DAMAGE_MULTIPLIERS})
+	self:SetHealth(1)
+	ApplyDamage({victim = self, attacker = attacker, ability = sourceAb, damage_type = DAMAGE_TYPE_PURE, damage = self:GetMaxHealth() * 5, damage_flags = DOTA_DAMAGE_FLAG_BYPASSES_INVULNERABILITY + DOTA_DAMAGE_FLAG_BYPASSES_BLOCK})
 	return not self:IsAlive()
 end
 

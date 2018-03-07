@@ -12,6 +12,7 @@ function MapHandler:CheckAndResolvePositions(hero)
 	if MapHandler:IsOutsideMapBounds(hero) then
 		FindClearSpaceForUnit(hero, SPAWN_POS, true)
 		hero.lastAllowedPosition = Vector(0,0, hero:GetAbsOrigin().z) + SPAWN_POS
+		hero:StopMotionControllers(true)
 	end
 end
 

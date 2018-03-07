@@ -437,7 +437,7 @@ function CHoldoutGameMode:InitGameMode()
 	GameRules:GetGameModeEntity():SetHealingFilter( Dynamic_Wrap( CHoldoutGameMode, "FilterHeal" ), self )
 	GameRules:GetGameModeEntity():SetModifierGainedFilter( Dynamic_Wrap( CHoldoutGameMode, "FilterModifiers" ), self )
 	GameRules:GetGameModeEntity():SetAbilityTuningValueFilter( Dynamic_Wrap( CHoldoutGameMode, "FilterAbilityValues" ), self )
-	GameRules:GetGameModeEntity():SetThink( "OnThink", self, 0.25 ) 
+	GameRules:GetGameModeEntity():SetThink( "OnThink", self, 1 ) 
 end
 
 function CHoldoutGameMode:vote_Round (event)

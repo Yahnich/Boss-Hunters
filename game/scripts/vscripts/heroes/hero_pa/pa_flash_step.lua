@@ -24,15 +24,17 @@ function pa_flash_step:OnSpellStart()
         caster:FindAbilityByName("pa_kunai_toss").CurrentBounces = 0
     end
 	
+	local kunaiRange = caster:FindAbilityByName("pa_kunai_toss"):GetSpecialValueFor("range")
+	
 	local count = 4 -- always fire at least 1 kunai
-    caster:AddNewModifier(caster, self, "modifier_flash_step", {})
+    caster:AddNewModifier(caster, self, "modifier_flash_step", {duration = currentDistance / 100})
     Timers:CreateTimer(0, function()
         if currentDistance > 0 then
             caster:SetAbsOrigin(caster:GetAbsOrigin() + direction * 100)
             currentDistance = currentDistance - 100
 			
 			if hasTalent then
-				local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), caster:FindAbilityByName("pa_kunai_toss"):GetSpecialValueFor("range"), {})
+				local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), kunaiRange, {})
 				count = count + 1
 				for _,enemy in pairs(enemies) do
 					if count >= 4 then

@@ -25,8 +25,9 @@ if IsServer() then
 		self:StartIntervalThink(0.3)
 	end
 	
-	function modifier_boss_evil_core_passive:OnDestroy()
+	function modifier_boss_evil_core_passive:OnRemoved()
 		self:DestroyShield()
+		if not self.asuraSpawn then self.asuraSpawn = self:SpawnAsura(self:GetParent():GetAbsOrigin()) end
 	end
 	
 	function modifier_boss_evil_core_passive:OnIntervalThink()

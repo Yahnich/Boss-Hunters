@@ -27,19 +27,19 @@ function modifier_mag_charge:OnCreated(table)
 		ParticleManager:SetParticleControlEnt(self.nfx, 0, parent, PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", parent:GetAbsOrigin(), true)
 		ParticleManager:SetParticleControlEnt(self.nfx, 1, parent, PATTACH_POINT_FOLLOW, "attach_horn", parent:GetAbsOrigin(), true)
 		self.dir = CalculateDirection(self:GetAbility():GetCursorPosition(), self:GetParent():GetAbsOrigin())
+		self.distance = self:GetAbility():GetTrueCastRange()
 		if parent:HasTalent("special_bonus_unique_mag_charge_1") then
-			self.point = self:GetAbility():GetCursorPosition()
-		else
-			self.point = self:GetParent():GetAbsOrigin() + self.dir*self:GetAbility():GetTrueCastRange()
+			self.distance = CalculateDistance(self:GetAbility():GetCursorPosition(), parent)
 		end
 
-		self:StartIntervalThink(FrameTime())
+		self:StartMotionController()
 	end
 end
 
-function modifier_mag_charge:OnIntervalThink()
+function modifier_mag_charge:DoControlledMotion()
 	local parent = self:GetParent()
-	if CalculateDistance(self.point, parent:GetAbsOrigin()) > 50 then
+	if self.distance > 0 then
+		self.distance = self.distance - 50
 		GridNav:DestroyTreesAroundPoint(parent:GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"), true)
 		parent:SetAbsOrigin(GetGroundPosition(parent:GetAbsOrigin(), parent) + self.dir*50)
 
@@ -71,8 +71,7 @@ function modifier_mag_charge:OnIntervalThink()
 				FindClearSpaceForUnit(magnet, magnet:GetAbsOrigin(), true)
 			end
 		end
-
-		self:Destroy()
+		self:StopMotionController(true)
 	end
 end
 
