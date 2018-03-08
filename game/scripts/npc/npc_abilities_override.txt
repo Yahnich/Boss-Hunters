@@ -23404,7 +23404,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"5638"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY | DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_ALL"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NOT_MAGIC_IMMUNE_ALLIES"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ALLIES_NO"
@@ -23531,35 +23531,40 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"	
-		"LevelsBetweenUpgrades"			"7"
-		"MaxLevel"						"7"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"AbilitySound"					"Hero_Oracle.FalsePromise.Cast"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"600 700 800 900 1000 1100 1200"
+		"AbilityCastRange"				"1000"
 		"AbilityCastPoint"				"0.3"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"60"
+		"AbilityCooldown"				"100 65 30"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"250 325 500 750 1250 2250 4000"
+		"AbilityManaCost"				"100"
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
-			"02"
+			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"duration"				"4 5 6 7 8 9 10"
 				"LinkedSpecialBonus"	"special_bonus_unique_oracle"
 			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"radius"				"400"
+			}
 		}
 	}
-
 
 
 	//=================================================================================================================

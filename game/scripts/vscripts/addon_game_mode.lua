@@ -796,8 +796,7 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 		end)
 	end
 	if attacker:IsCreature() and not inflictor then -- no more oneshots tears-b-gone
-		local damageCap = 0.35
-		if GetMapName() == "epic_boss_fight_hardcore" then damageCap = 0.5 end
+		local damageCap = 2
 		local critmult = damage / (1 - victim:GetPhysicalArmorReduction() / 100 ) / attacker:GetAverageBaseDamage()
 		damageCap = damageCap * critmult
 		if victim:HasModifier("modifier_ethereal_resistance") then 

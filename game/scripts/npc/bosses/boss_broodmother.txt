@@ -229,7 +229,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"attack_speed"				"200 250"
+				"attack_speed"				"300 500"
 			}
 			"03"
 			{

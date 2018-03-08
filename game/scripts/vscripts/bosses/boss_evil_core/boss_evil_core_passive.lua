@@ -26,9 +26,6 @@ if IsServer() then
 	end
 	
 	function modifier_boss_evil_core_passive:OnRemoved()
-		if not self.asuraSpawn then
-			self.asuraSpawn = self:SpawnAsura(self:GetParent():GetAbsOrigin())
-		end
 		self:DestroyShield()
 	end
 	
@@ -86,7 +83,7 @@ if IsServer() then
 		local asura = CreateUnitByName( "npc_dota_boss36_guardian" , position, true, nil, nil, caster:GetTeam() )
 		asura:AddNewModifier(caster, self:GetAbility(), "modifier_spawn_immunity", {duration = 3})
 		self:Destroy()
-		caster:ForceKill(false)
+		Timers:CreateTimer(0.1, function() caster:ForceKill(false) end)
 		GameRules.holdOut:_RefreshPlayers()
 		return true
 	end
