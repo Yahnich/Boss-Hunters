@@ -8274,7 +8274,7 @@
 		"ItemResult"					"item_blade_mail3"
 		"ItemRequirements"
 		{
-			"01"						"item_blade_mail2;item_scythe;item_scythe;item_orb_3"
+			"01"						"item_blade_mail2;item_damage_2;item_damage_2;item_orb_3"
 		}
 	}	
 	//=================================================================================================================
@@ -8423,7 +8423,7 @@
 		"ItemResult"					"item_butterfly3"
 		"ItemRequirements"
 		{
-			"01"						"item_butterfly2;item_scythe;item_orb_2"
+			"01"						"item_butterfly2;item_damage_2;item_orb_2"
 		}
 	}	
 	//=================================================================================================================
@@ -8965,7 +8965,7 @@
 		"ItemResult"					"item_lifesteal3"
 		"ItemRequirements"
 		{
-			"01"						"item_lifesteal2;item_helm_of_mithril_will;item_scythe;item_orb_1"
+			"01"						"item_lifesteal2;item_helm_of_mithril_will;item_damage_2;item_orb_1"
 		}
 	}
 	"item_recipe_lifesteal4"
@@ -9481,7 +9481,7 @@
 		"ItemResult"					"item_phase_boots3"
 		"ItemRequirements"
 		{
-			"01"						"item_phase_boots2;item_scythe"
+			"01"						"item_phase_boots2;item_damage_2"
 		}
 	}
 	"item_recipe_phase_boots4"
