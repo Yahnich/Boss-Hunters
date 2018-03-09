@@ -1737,13 +1737,10 @@ function CHoldoutGameMode:CheckMidas()
 			playerData[unit:GetPlayerID()] = {DT = unit.statsDamageTaken or 0, DD = unit.statsDamageDealt or 0, DH = unit.statsDamageHealed or 0}
 			if player then
 				CustomGameEventManager:Send_ServerToPlayer( player, "player_update_gold", { gold = unit.midasGold, interest = interest} )
-				table.insert(players, player)
 			end
 		end
 	end
-	for _, player in ipairs(players) do
-		CustomGameEventManager:Send_ServerToPlayer( player, "player_update_stats", playerData )
-	end
+	CustomGameEventManager:Send_ServerToAllClients( "player_update_stats", playerData )
 end
 
 BARRIER_DEGRADE_RATE = 0.995

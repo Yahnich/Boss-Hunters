@@ -72,7 +72,7 @@ function modifier_boss_broodmother_arachnids_hunger_active:GetModifierAttackSpee
 end
 
 function modifier_boss_broodmother_arachnids_hunger_active:GetModifierMoveSpeed_AbsoluteMin()
-	return self.speed
+	return self.ms
 end
 
 function modifier_boss_broodmother_arachnids_hunger_active:OnTakeDamage(params)

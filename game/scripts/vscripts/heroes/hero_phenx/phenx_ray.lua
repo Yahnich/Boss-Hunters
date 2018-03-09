@@ -35,8 +35,6 @@ function phenx_ray:OnSpellStart()
         
         ParticleManager:DestroyParticle(pfx, false)
         caster:RemoveModifierByName("modifier_phenx_ray")
-        self:RefundManaCost()
-        self:StartCooldown(self:GetTrueCooldown())
     else
         EmitSoundOn("Hero_Phoenix.SunRay.Cast", caster)
 
@@ -46,15 +44,15 @@ function phenx_ray:OnSpellStart()
 
         caster:StartGesture(ACT_DOTA_OVERRIDE_ABILITY_3)
 
-        pfx = ParticleManager:CreateParticle( "particles/units/heroes/hero_phoenix/phoenix_sunray.vpcf", PATTACH_POINT_FOLLOW, caster )
+		local endPos = caster:GetAbsOrigin() + caster:GetForwardVector() * pathLength
+        pfx = ParticleManager:CreateParticle( "particles/units/heroes/hero_phoenix/phoenix_sunray.vpcf", PATTACH_ABSORIGIN, caster )
         ParticleManager:SetParticleControlEnt( pfx, 0, caster, PATTACH_POINT_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), true )
-
-        local endPos = caster:GetAbsOrigin() + caster:GetForwardVector() * pathLength
+		ParticleManager:SetParticleControl( pfx, 1, endPos )
         Timers:CreateTimer(0, function()
             if caster:HasModifier("modifier_phenx_ray") then
                 endPos = caster:GetAbsOrigin() + caster:GetForwardVector() * pathLength
                 endPos = GetGroundPosition(endPos, nil)
-                endPos.z = endPos.z + 92
+                endPos.z = GetGroundHeight(caster:GetAbsOrigin(), caster) + 92
                 --ParticleManager:SetParticleControlEnt( pfx, 1, caster, PATTACH_POINT_FOLLOW, "attach_hitloc", endPos, true )
                 ParticleManager:SetParticleControl( pfx, 1, endPos )
                 local units = caster:FindAllUnitsInLine(caster:GetAbsOrigin(), endPos, self:GetTalentSpecialValueFor("radius"), {})
@@ -106,7 +104,6 @@ end
 
 function modifier_phenx_ray:OnRemoved()
     if IsServer() then
-        self:GetAbility():StartCooldown(self:GetAbility():GetTrueCooldown())
         EndAnimation(self:GetCaster())
     end
 end
@@ -143,14 +140,20 @@ end
 
 modifier_phenx_ray_enemy = class({})
 function modifier_phenx_ray_enemy:OnCreated(table)
+	self.tick = self:GetTalentSpecialValueFor("tick_interval")
+	self.hpDmg = self:GetTalentSpecialValueFor("hp_perc_damage")/100
+	self.baseDmg = self:GetTalentSpecialValueFor("base_damage")
     if IsServer() then
-        self:StartIntervalThink(self:GetTalentSpecialValueFor("tick_interval"))
+        self:StartIntervalThink(self.tick)
     end
 end
 
 function modifier_phenx_ray_enemy:OnIntervalThink()
-    local damage = self:GetParent():GetMaxHealth() * self:GetTalentSpecialValueFor("hp_perc_damage")/100
+    local damage = (self:GetParent():GetMaxHealth() * self.hpDmg) * self.tick
     self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), damage, {damage_flags=DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION}, 0)
+	
+	 local baseDmg = self.baseDmg * self.tick
+    self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), baseDmg, {}, 0)
 end
 
 function modifier_phenx_ray_enemy:IsDebuff()
@@ -163,13 +166,16 @@ end
 
 modifier_phenx_ray_ally = class({})
 function modifier_phenx_ray_ally:OnCreated(table)
+	self.tick = self:GetTalentSpecialValueFor("tick_interval")
+	self.hpDmg = self:GetTalentSpecialValueFor("hp_perc_damage")/100
+	self.baseDmg = self:GetTalentSpecialValueFor("base_damage")
     if IsServer() then
         ParticleManager:FireParticle("particles/units/heroes/hero_phoenix/phoenix_sunray_beam_friend.vpcf", PATTACH_POINT_FOLLOW, self:GetParent(), {})
-        self:StartIntervalThink(self:GetTalentSpecialValueFor("tick_interval"))
+        self:StartIntervalThink(self.tick)
     end
 end
 
 function modifier_phenx_ray_ally:OnIntervalThink()
-    local heal = self:GetParent():GetMaxHealth() * self:GetTalentSpecialValueFor("hp_perc_damage")/100
+    local heal = (self:GetParent():GetMaxHealth() * self.hpDmg + self.baseDmg) * self.tick
     self:GetParent():HealEvent(heal, self:GetAbility(), self:GetCaster())
 end

@@ -25,7 +25,7 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"35 30 25 20 15 10 5"
+		"AbilityCooldown"				"20 17.5 15 12.5 10 7.5 5"
 	
 
 		// Cost
@@ -46,7 +46,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"hp_cost_perc"			"35 30 25 20 15 10 5"
+				"hp_cost_perc"			"15"
 			}
 			"02"
 			{
@@ -62,7 +62,7 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"dash_width"			"500"
-				"LinkedSpecialBonus"		"special_bonus_unique_phenx_dive_1"
+				"LinkedSpecialBonus"	"special_bonus_unique_phenx_dive_1"
 			}
 			"05"
 			{
@@ -73,7 +73,7 @@
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage_per_second"		"750 1500 3000 6000 9000 12000 24000"
+				"damage_per_second"		"500 1000 2000 4000 8000 16000 32000"
 			}
 			"07"
 			{
@@ -148,12 +148,12 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"45 40 35 30 25 20 15"
+		"AbilityCooldown"				"15"
 	
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"80 90 100 110 120 130 140"
+		"AbilityManaCost"				"20 40 60 100 200 400 800"
 		
 		"precache"
 		{
@@ -171,7 +171,7 @@
 			"01"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"hp_cost_perc"		"35 30 25 20 15 10 5"
+				"hp_cost_perc"		"15"
 			}
 			"02"
 			{
@@ -182,7 +182,7 @@
 			"03"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"damage_per_second"	"1000 2000 4000 8000 12000 24000 48000"
+				"damage_per_second"	"500 1000 2000 4000 8000 16000 32000"
 			}
 			"04"
 			{
@@ -284,7 +284,7 @@
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"100"
+		"AbilityManaCost"				"100 110 120 150 250 500 1000"
 		
 		"precache"
 		{
@@ -308,8 +308,13 @@
 			"02"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"hp_perc_damage"				"1"
+				"hp_perc_damage"				"2"
 				"CalculateSpellDamageTooltip"  	"0"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"base_damage"					"200 400 800 1600 3200 6400 12800"
 			}
 			"04"
 			{
@@ -369,7 +374,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"200"
+				"value"					"250"
 			}
 		}
 	}
@@ -463,7 +468,7 @@
 			"01"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"damage_per_sec"	"250 1000 4000 8000 16000 32000 50000"
+				"damage_per_sec"	"10000 2000 4000 8000 16000 32000 64000"
 			}
 			"02"
 			{
@@ -473,7 +478,7 @@
 			"03"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"max_hero_attacks"	"2 4 6 8 10 12 14"
+				"max_hero_attacks"	"14"
 			}
 			"04"
 			{
