@@ -50,8 +50,8 @@
 			}
 			"02"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"stun_min"				"1.0"
+				"var_type"				"FIELD_FLOAT"
+				"stun_min"				"0.5"
 			}
 			"03"
 			{

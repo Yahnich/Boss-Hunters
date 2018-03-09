@@ -49,7 +49,7 @@
 			"02"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"duration"			"2.0"
+				"duration"			"1.0"
 			}
 			"03"
 			{
@@ -175,7 +175,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"2.0"
+				"duration"				"1.0"
 			}
 		}
 	}
