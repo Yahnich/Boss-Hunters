@@ -51,6 +51,7 @@
 #base "heroes/hero_kotl.txt"
 #base "heroes/hero_lina.txt"
 #base "heroes/hero_legion_commander.txt"
+#base "heroes/hero_phoenix.txt"
 
 "DOTAAbilities"
 {
