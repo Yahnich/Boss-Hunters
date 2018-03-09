@@ -35,6 +35,7 @@ function phenx_ray:OnSpellStart()
         
         ParticleManager:DestroyParticle(pfx, false)
         caster:RemoveModifierByName("modifier_phenx_ray")
+		self:SetCooldown()
     else
         EmitSoundOn("Hero_Phoenix.SunRay.Cast", caster)
 
@@ -104,6 +105,7 @@ end
 
 function modifier_phenx_ray:OnRemoved()
     if IsServer() then
+		self:GetAbility():SetCooldown()
         EndAnimation(self:GetCaster())
     end
 end
