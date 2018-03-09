@@ -1,5 +1,12 @@
 boss14_whirlwind = class({})
 
+function boss14_whirlwind:OnAbilityPhaseStart()
+	local caster = self:GetCaster()
+	caster:AddNewModifier(caster, self, "modifier_status_immunity", {duration = self:GetCastPoint() - 0.01})
+	ParticleManager:FireTargetWarningParticle(caster)
+	return true
+end
+
 function boss14_whirlwind:OnSpellStart()
 	local caster = self:GetCaster()
 	local duration = self:GetSpecialValueFor("duration")
@@ -16,6 +23,7 @@ end
 function modifier_boss14_whirlwind:OnCreated()
 	self.damage = self:GetSpecialValueFor("spin_damage")
 	self.radius = self:GetSpecialValueFor("radius")
+	self.ms = self:GetParent():GetIdealSpeedNoSlows()
 	if IsServer() then 
 		self:StartIntervalThink(0.33)
 		if self:GetParent():GetHealthPercent() < 50 then
@@ -37,6 +45,7 @@ end
 
 function modifier_boss14_whirlwind:OnIntervalThink()
 	local caster = self:GetCaster()
+	self.ms = self:GetParent():GetIdealSpeedNoSlows()
 	caster:StartGestureWithPlaybackRate( ACT_DOTA_CAST_ABILITY_3, 1 )
 	local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), self.radius, {flag = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES})
 	ParticleManager:FireParticle("particles/units/heroes/hero_axe/axe_attack_blur_counterhelix.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
@@ -56,11 +65,22 @@ function modifier_boss14_whirlwind:OnDestroy()
 end
 
 function modifier_boss14_whirlwind:CheckState()
-	return {[MODIFIER_STATE_DISARMED] = true}
+	return {[MODIFIER_STATE_ROOTED] = false,
+			[MODIFIER_STATE_DISARMED] = false,
+			[MODIFIER_STATE_SILENCED] = false,
+			[MODIFIER_STATE_MUTED] = false,
+			[MODIFIER_STATE_STUNNED] = false,
+			[MODIFIER_STATE_HEXED] = false,
+			[MODIFIER_STATE_FROZEN] = false,
+			[MODIFIER_STATE_PASSIVES_DISABLED] = false,
+			[MODIFIER_STATE_DISARMED] = true}
 end
 
 function modifier_boss14_whirlwind:DeclareFunctions()
-	return {MODIFIER_EVENT_ON_ABILITY_START, MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE}
+	return {MODIFIER_EVENT_ON_ABILITY_START, 
+			MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE,
+			MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE_MIN,
+			}
 end
 
 function modifier_boss14_whirlwind:OnAbilityStart(params)
@@ -69,4 +89,8 @@ end
 
 function modifier_boss14_whirlwind:GetModifierBaseDamageOutgoing_Percentage()
 	return self.damage
+end
+
+function modifier_boss_broodmother_arachnids_hunger_active:GetModifierMoveSpeed_AbsoluteMin()
+	return self.ms
 end

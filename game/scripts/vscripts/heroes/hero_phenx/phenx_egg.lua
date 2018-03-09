@@ -80,6 +80,7 @@ end
 function modifier_phenx_egg_form:CheckState()
     local state = { [MODIFIER_STATE_ROOTED] = true,
                     [MODIFIER_STATE_COMMAND_RESTRICTED] = true,
+					[MODIFIER_STATE_FLYING] = true,
                     [MODIFIER_STATE_MAGIC_IMMUNE] = true
                 }
     return state

@@ -28,7 +28,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"stun_damage"			"30000 37500"
+				"stun_damage"			"40000 50000"
 			}
 			"03"
 			{
@@ -72,7 +72,7 @@
 		
 		"AbilityCooldown"				"5"
 		"AbilityCastRange"				"3500 5000"
-		"AbilityCastPoint"				"0.75 0.5"
+		"AbilityCastPoint"				"1.5 1"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
 		
 		// Special	
@@ -82,22 +82,22 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"knockup_duration"		"0.35 0.5"
+				"knockup_duration"		"0.35"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"knockup_damage"		"17500 20000"
+				"knockup_damage"		"32500 40000"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"knockup_height"		"350 500"
+				"knockup_height"		"350"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"proj_speed"			"750 1000"
+				"proj_speed"			"750"
 			}
 			"05"
 			{

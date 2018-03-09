@@ -275,6 +275,7 @@ function modifier_bounty_hunter_veteran_hunter:OnAbilityFullyCast(params)
 					params.unit:SetCursorCastTarget(unit)
 					params.ability:OnSpellStart()
 					tracks = tracks - 1
+					if tracks < 1 then break end
 				end
 			end
 		end

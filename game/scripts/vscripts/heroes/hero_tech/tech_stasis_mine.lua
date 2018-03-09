@@ -1,6 +1,7 @@
 tech_stasis_mine = class({})
 LinkLuaModifier( "modifier_stasis_mine", "heroes/hero_tech/tech_stasis_mine.lua", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_stasis_mine_mr", "heroes/hero_tech/tech_stasis_mine.lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_stasis_mine_root", "heroes/hero_tech/tech_stasis_mine.lua", LUA_MODIFIER_MOTION_NONE )
 
 function tech_stasis_mine:IsStealable()
 	return true
@@ -20,6 +21,26 @@ function tech_stasis_mine:OnSpellStart()
 	EmitSoundOn("Hero_Techies.StasisTrap.Plant", caster)
 	local mine = CreateUnitByName("npc_dota_techies_stasis_trap", caster:GetAbsOrigin(), true, caster, caster, caster:GetTeam())
 	mine:AddNewModifier(caster, self, "modifier_stasis_mine", {})
+end
+
+modifier_stasis_mine_root = class({})
+
+function modifier_stasis_mine_root:GetStatusEffectName()
+	return "particles/status_fx/status_effect_techies_stasis.vpcf"
+end
+
+function modifier_stasis_mine_root:StatusEffectPriority()
+	return 5
+end
+
+
+function modifier_stasis_mine_root:CheckState()
+	local state = { [MODIFIER_STATE_ROOTED] = true}
+	return state
+end
+
+function modifier_stasis_mine_root:IsPurgable()
+	return true
 end
 
 modifier_stasis_mine = ({})
@@ -47,7 +68,7 @@ function modifier_stasis_mine:OnIntervalThink()
 			ParticleManager:DestroyParticle(nfx, false)
 		end)
 
-		self:GetAbility():Stun(enemy, self:GetTalentSpecialValueFor("stun_duration"), false)
+		enemy:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_stasis_mine_root", {Duration = self:GetTalentSpecialValueFor("stun_duration")})
 
 		if self:GetCaster():HasTalent("special_bonus_unique_tech_stasis_mine_1") then
 			enemy:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_stasis_mine_mr", {Duration = self:GetTalentSpecialValueFor("stun_duration")})

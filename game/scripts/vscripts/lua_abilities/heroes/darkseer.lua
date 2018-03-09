@@ -17,7 +17,7 @@ function AdamantiumShell(keys)
 	end
 	
 	if caster:HasTalent("special_bonus_unique_dark_seer_3") then
-		local units = caster:FindFriendlyUnitsInRadius(caster:GetAbsOrigin(), caster:FindTalentValue("special_bonus_unique_dark_seer_3"))
+		local units = caster:FindFriendlyUnitsInRadius(target:GetAbsOrigin(), caster:FindTalentValue("special_bonus_unique_dark_seer_3"))
 		for _,unit in pairs( units ) do
 			AddShell(unit)
 		end

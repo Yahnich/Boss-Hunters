@@ -59,6 +59,10 @@ function UpdateHealthBar(unit)
 		if((unitName.match(/_h/g) != null || unitName.match(/_vh/g) != null)){
 			nameMod = ""
 		}
+		$.Msg($.Localize("#" + unitName + nameMod), unitName)
+		if( (nameMod != "") && ($.Localize("#" + unitName + nameMod) == unitName + nameMod) ){
+			nameMod = ""
+		}
 		$("#bossNameLabel").text = $.Localize("#" + unitName + nameMod);
 		$("#hpBarCurrentText").text = Entities.GetHealth( sUnit ) + " / " + Entities.GetMaxHealth( sUnit );
 		var hpPct = Entities.GetHealth( sUnit )/Entities.GetMaxHealth( sUnit ) * 100

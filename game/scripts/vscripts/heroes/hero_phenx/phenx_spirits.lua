@@ -40,10 +40,10 @@ function phenx_spirits:OnSpellStart()
     if caster:HasModifier("modifier_phenx_spirits_caster") then
         EmitSoundOn("Hero_Phoenix.FireSpirits.Launch", caster)
         -- Update spirits count
-        local modifierStackName = "modifier_phenx_spirits_caster"
-        local currentStack  = caster:GetModifierStackCount( modifierStackName, self )
+        local modifier = caster:FindModifierByName("modifier_phenx_spirits_caster")
+        local currentStack  = modifier:GetStackCount()
         currentStack = currentStack - 1
-        caster:SetModifierStackCount( modifierStackName, self, currentStack )
+        modifier:DecrementStackCount()
 
         local point = self:GetCursorPosition()
         local dir = CalculateDirection(point, caster:GetAbsOrigin())
@@ -53,25 +53,24 @@ function phenx_spirits:OnSpellStart()
         self:FireLinearProjectile("particles/units/heroes/hero_phoenix/phoenix_fire_spirit_launch.vpcf", vel, dist, self:GetTalentSpecialValueFor("radius")/1.5, {}, false, true, self:GetTalentSpecialValueFor("radius"))
 
         -- Update the particle FX
-        ParticleManager:SetParticleControl( pfx, 1, Vector( currentStack, 0, 0 ) )
+        ParticleManager:SetParticleControl( modifier.pfx, 1, Vector( currentStack, 0, 0 ) )
         for i=1, caster.fire_spirits_numSpirits do
             local radius = 0
             if i <= currentStack then
                 radius = 1
             end
 
-            ParticleManager:SetParticleControl( pfx, 8+i, Vector( radius, 0, 0 ) )
+            ParticleManager:SetParticleControl( modifier.pfx, 8+i, Vector( radius, 0, 0 ) )
         end
 
         -- Remove the stack modifier if all the spirits has been launched.
         if currentStack == 0 then
-            caster:RemoveModifierByName( modifierStackName )
+            modifier:Destroy()
         end
-        self:RefundManaCost()
         if caster:FindModifierByName("modifier_phenx_spirits_caster") and caster:FindModifierByName("modifier_phenx_spirits_caster"):GetStackCount() > 0 then
             self:EndCooldown()
         else
-            self:StartCooldown(self:GetTrueCooldown())
+            self:SetCooldown()
         end
         
     else
@@ -80,19 +79,20 @@ function phenx_spirits:OnSpellStart()
         local hpCost        = self:GetTalentSpecialValueFor("hp_cost_perc")
         local numSpirits    = self:GetTalentSpecialValueFor("spirit_count")
 
+		local modifier = caster:AddNewModifier(caster, self, "modifier_phenx_spirits_caster", {})
+        modifier:SetStackCount( numSpirits )
         -- Create particle FX
-        pfx = ParticleManager:CreateParticle( "particles/units/heroes/hero_phoenix/phoenix_fire_spirits.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster )
-        ParticleManager:SetParticleControl( pfx, 1, Vector( numSpirits, 0, 0 ) )
+        modifier.pfx = ParticleManager:CreateParticle( "particles/units/heroes/hero_phoenix/phoenix_fire_spirits.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster )
+        ParticleManager:SetParticleControl( modifier.pfx, 1, Vector( numSpirits, 0, 0 ) )
         for i=1, numSpirits do
-            ParticleManager:SetParticleControl( pfx, 8+i, Vector( 1, 0, 0 ) )
+            ParticleManager:SetParticleControl( modifier.pfx, 8+i, Vector( 1, 0, 0 ) )
         end
 
         caster.fire_spirits_numSpirits  = numSpirits
 
         caster:SetHealth( caster:GetHealth() * ( 100 - hpCost ) / 100 )
 
-        caster:AddNewModifier(caster, self, "modifier_phenx_spirits_caster", {})
-        caster:SetModifierStackCount( "modifier_phenx_spirits_caster", self, numSpirits )
+        
         self:EndCooldown()
     end
 end
@@ -114,9 +114,12 @@ end
 
 modifier_phenx_spirits_caster = class({})
 function modifier_phenx_spirits_caster:OnRemoved()
-    if self:GetStackCount() < 1 then
-        self:GetAbility():StartCooldown(self:GetAbility():GetCooldown(self:GetAbility():GetLevel()))
-    end
+	if IsServer() then
+		if self:GetStackCount() < 1 then
+			self:GetAbility():StartCooldown(self:GetAbility():GetCooldown(self:GetAbility():GetLevel()))
+		end
+		ParticleManager:ClearParticle( self.pfx )
+	end
 end
 
 modifier_phenx_spirits_burn = class({})
