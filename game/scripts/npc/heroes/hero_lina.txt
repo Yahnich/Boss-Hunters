@@ -25,7 +25,7 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"8.5"
+		"AbilityCooldown"				"10"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -43,12 +43,12 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage_flame"				"200 500 1000 1500 3000 5000 10000"
+				"damage_flame"				"100 250 500 750 1500 2500 50000"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"duration"					"1 2 3 4 5 6 7"
+				"duration"					"1 1.5 2 2.5 3 3.5 4"
 			}
 			"04"
 			{
@@ -160,17 +160,16 @@
 			{
 				"var_type"					"FIELD_INTEGER"
 				"damage"					"1250 2500 5000 10000 20000 35000 70000"
-				//"LinkedSpecialBonus"		"special_bonus_unique_lina_3"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage_flame"				"200 500 1000 1500 3000 5000 10000"
+				"damage_flame"				"100 250 500 750 1500 2500 50000"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"duration"					"1 2 3 4 5 6 7"
+				"duration"					"1 1.5 2 2.5 3 3.5 4"
 			}
 			"04"
 			{
@@ -180,9 +179,8 @@
 			"05"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"stun_duration"				"0.8 1 1.2 1.4 1.6 1.8 2"
+				"stun_duration"				"1.0"
 			}
-			
 		}
 	
 		"precache"
@@ -278,17 +276,17 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage_time"				"200 500 1000 1500 3000 5000 10000"
+				"damage_time"				"100 250 500 750 1500 2500 50000"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"duration"					"1 2 3 4 5 6 7"
+				"duration"					"1 1.5 2 2.5 3 3.5 4"
 			}
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"radius"					"500"
+				"radius"					"225 250 275 300 325 350 375"
 			}
 		}
 	

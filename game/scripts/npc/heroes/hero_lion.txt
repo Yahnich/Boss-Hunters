@@ -179,7 +179,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"duration"					"1 1.33 1.66 2 2.33 2.66 3"
+				"duration"					"1 1.25 1.5 1.75 2 2.25 2.5"
 			}
 			"02"
 			{
@@ -358,7 +358,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"duration"					"2"
+				"duration"					"1"
 			}
 			"03"
 			{
@@ -439,7 +439,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"2"
+				"value"					"1"
 			}
 		}
 	}
@@ -495,8 +495,8 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"3"
+				"var_type"				"FIELD_FLOAT"
+				"value"					"2"
 			}
 		}
 	}
