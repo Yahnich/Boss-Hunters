@@ -21,20 +21,18 @@ function UpdatedSpawns(args)
 function UpdatedSelection()
 {
 	var selectedBoss = Players.GetLocalPlayerPortraitUnit();
-	$.Msg(Entities.GetUnitName( selectedBoss ))
 	if (Entities.GetTeamNumber( selectedBoss ) != Players.GetTeam( localID )){ // target is an enemy
 		newestBoss = selectedBoss;
+		UpdateHealthBar(newestBoss);
 	}
-	UpdateHealthBar(newestBoss);
 }
 
 function UpdatedAttack(arg)
 {
-	var selectedBoss = Players.GetLocalPlayerPortraitUnit();
-	if (arg.entindex_inflictor == 0 && arg.entindex_attacker == Players.GetPlayerHeroEntityIndex( localID )){ // auto-attack is dealt by player owned hero
+	if (arg.entindex_inflictor == 0 && arg.entindex_attacker == Players.GetPlayerHeroEntityIndex( localID ) && newestBoss != arg.entindex_killed){ // auto-attack is dealt by player owned hero
 		newestBoss = arg.entindex_killed;
+		UpdateHealthBar(newestBoss);
 	}
-	UpdateHealthBar(newestBoss);
 }
 
 function UpdateHealthBar(unit)
@@ -59,7 +57,6 @@ function UpdateHealthBar(unit)
 		if((unitName.match(/_h/g) != null || unitName.match(/_vh/g) != null)){
 			nameMod = ""
 		}
-		$.Msg($.Localize("#" + unitName + nameMod), unitName)
 		if( (nameMod != "") && ($.Localize("#" + unitName + nameMod) == unitName + nameMod) ){
 			nameMod = ""
 		}
@@ -92,7 +89,7 @@ function UpdateHealthBar(unit)
 			$("#mpBarRoot").visible = false;
 		}
 	}
-	$.Schedule( 0.3, UpdateHealthBar )
+	$.Schedule( 0.33, UpdateHealthBar )
 }
 
 GameEvents.Subscribe( "Update_threat", update_threat);

@@ -279,7 +279,7 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"20 19 18 17 16 15 14"
+		"AbilityCooldown"				"20"
 	
 
 		// Cost
@@ -303,7 +303,7 @@
 			"01"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"hp_cost_perc_per_second"		"3"
+				"hp_cost_perc_per_second"		"6"
 			}
 			"02"
 			{

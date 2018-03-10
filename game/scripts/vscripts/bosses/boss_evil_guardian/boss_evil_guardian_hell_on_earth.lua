@@ -43,9 +43,11 @@ end
 function modifier_boss_evil_guardian_hell_on_earth_handler:OnIntervalThink()
 	local parent = self:GetParent()
 	for _, enemy in ipairs( parent:FindEnemyUnitsInRadius(parent:GetAbsOrigin(), -1, {type = DOTA_UNIT_TARGET_HERO, flag = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES})) do
-		local position = enemy:GetAbsOrigin()
-		ParticleManager:FireWarningParticle(position, self.radius)
-		Timers:CreateTimer(1, function() self:GetAbility():CreateEvilPool(position, self.radius, self.damagePct, self.duration) end)
+		if not enemy:IsFakeHero() then
+			local position = enemy:GetAbsOrigin()
+			ParticleManager:FireWarningParticle(position, self.radius)
+			Timers:CreateTimer(1, function() self:GetAbility():CreateEvilPool(position, self.radius, self.damagePct, self.duration) end)
+		end
 	end
 end
 

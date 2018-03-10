@@ -134,7 +134,7 @@ function BrainSapHeal(keys)
 	local ability = keys.ability
 	local target = keys.target
 	
-	local pctHeal = ability:GetTalentSpecialValueFor("pct_heal")
+	local pctHeal = ability:GetTalentSpecialValueFor("pct_heal") / 100
 	local dmgHeal = ability:GetTalentSpecialValueFor("tooltip_brain_sap_heal_amt")
 	 
 	target:HealEvent(target:GetMaxHealth() * pctHeal + ability.dmgCount * dmgHeal, ability, caster)

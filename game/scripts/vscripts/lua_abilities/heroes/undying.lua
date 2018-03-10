@@ -26,9 +26,9 @@ function ZombieLeech(keys)
 	local caster = keys.caster
 	local ability = keys.ability
 	local damage = ability:GetAbilityDamage()
-	ApplyDamage({victim = target, attacker = caster, damage = damage, damage_type = ability:GetAbilityDamageType(), ability = ability})
-	caster:HealEvent(damage * get_aether_multiplier(caster), ability, caster)
-	caster:Lifesteal(ability, 100, damage, target, ability:GetAbilityDamageType(), DOTA_LIFESTEAL_SOURCE_ABILITY)
+	
+	local heal_pct = ability:GetTalentSpecialValueFor("heal_pct")
+	caster:Lifesteal(ability, heal_pct, damage, target, ability:GetAbilityDamageType(), DOTA_LIFESTEAL_SOURCE_ABILITY)
 	local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_undying/undying_soul_rip_heal.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
 	EmitSoundOn("Hero_Bane.Enfeeble.Cast", caster)
 	Timers:CreateTimer(0.3,function()
@@ -70,7 +70,7 @@ function decay( keys )
                               caster,
                               radius,
                               DOTA_UNIT_TARGET_TEAM_ENEMY,
-                              DOTA_UNIT_TARGET_ALL,
+                              DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
                               DOTA_UNIT_TARGET_FLAG_NONE,
                               FIND_ANY_ORDER,
                               false)
@@ -97,16 +97,19 @@ function decay( keys )
 		if caster:HasScepter() then
 			modifierName = "decay_bonus_strength"
 		end
+		previous_stack_count = previous_stack_count + 1
 		ability:ApplyDataDrivenModifier( caster, caster, modifierName, {duration = duration})
-		
     end
-	if caster:HasTalent("special_bonus_unique_undying_2") then
-		local cooldown = ability:GetCooldownTimeRemaining()
-		ability:EndCooldown()
-		ability:StartCooldown( math.floor(cooldown - caster:FindTalentValue("special_bonus_unique_undying_2") * #units) )
-		ability:ApplyDataDrivenModifier(caster, caster, modifierName_display, {duration = duration})
-		caster:SetModifierStackCount(modifierName_display, caster, previous_stack_count + unit_number_decay)
+	print( #units == 1 )
+	if caster:HasTalent("special_bonus_unique_undying_2") and #units == 1 then
+		ability:ApplyDataDrivenModifier( caster, caster, modifierName, {duration = duration})
+		ability:ApplyDataDrivenModifier( caster, caster, modifierName, {duration = duration})
+		ability:ApplyDataDrivenModifier( caster, caster, modifierName, {duration = duration})
+		ability:ApplyDataDrivenModifier( caster, caster, modifierName, {duration = duration})
+		previous_stack_count = previous_stack_count + 4
 	end
+	ability:ApplyDataDrivenModifier( caster, caster, modifierName_display, {duration = duration})
+	caster:SetModifierStackCount(modifierName_display, caster, previous_stack_count)
 end
 
 function decayBuffOnDestroy(keys)

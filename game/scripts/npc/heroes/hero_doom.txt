@@ -224,8 +224,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage_per_second"			"500 1000 2500 5000 10000 20000 40000"
-				"LinkedSpecialBonus"		"special_bonus_unique_doom_4"
+				"damage_per_second"			"250 500 1000 2000 4000 800 16000"
 			}
 			"02"
 			{

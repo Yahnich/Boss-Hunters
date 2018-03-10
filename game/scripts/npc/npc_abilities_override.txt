@@ -3558,12 +3558,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"vampiric_aura_radius"	"900 900 900 900 950 1000 1200"
+				"vampiric_aura_radius"	"900"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"vampiric_aura"			"15 25 35 45 55 65 75"
+				"var_type"				"FIELD_FLOAT"
+				"vampiric_aura"			"25 27.5 30 32.5 35 37.5 40"
 				"LinkedSpecialBonus"	"special_bonus_unique_wraith_king_2"
 			}
 		}
@@ -3800,12 +3800,12 @@
 			"01"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"damage"					"450 1200 3000 7500 15000 25000 50000"
+				"damage"						"450 1200 3000 5000 7500 15000 25000"
 			}
 			"02"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"damage_pct"					"3"
+				"damage_pct"					"2"
 				"LinkedSpecialBonus"			"special_bonus_unique_death_prophet_3"
 			}
 			"03"
@@ -3826,7 +3826,7 @@
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"max_charges"			"1 1 2 2 3 3 4"
+				"max_charges"			"3"
 			}
 			"07"
 			{
@@ -7226,7 +7226,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"heal"					"1200 1800 3200 6400 12800 25000 50000"
+				"heal"					"750 1250 2500 5000 7500 12500 25000"
 				"LinkedSpecialBonus"	"special_bonus_unique_necrophos_4"
 			}
 			"03"
@@ -7536,7 +7536,7 @@
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"90 110 130 150"		
+		"AbilityManaCost"				"25 50 75 125 250 500 1000"	
 		
 		// Cast Range
 		//-------------------------------------------------------------------------------------------------------------
@@ -9589,11 +9589,10 @@
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"100 115 130 145"
+		"AbilityManaCost"				"25 50 75 125 250 500 1000"
 		
 		// Damage.
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"					"1000 3000 7000 15000 30000 60000 90000"
 		"AbilityDuration"				"10"
 		
 		// Stats
@@ -9627,13 +9626,13 @@
 			"05"
 			{	
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"200 500 1000 2000 4000 8000 16000"
+				"damage"				"400 750 1000 2000 4000 8000 16000"
 				"LinkedSpecialBonus"	"special_bonus_unique_dazzle_3"
 			}
 			"06"
 			{	
 				"var_type"			"FIELD_INTEGER"
-				"slow"			"-14 -16 -18 -20"
+				"slow"				"-14 -16 -18 -20"
 			}
 			"07"
 			{	
@@ -9643,7 +9642,7 @@
 			"08"
 			{	
 				"var_type"			"FIELD_FLOAT"
-				"duration"		"4 5 6 7"
+				"duration"			"4"
 			}
 			"09"
 			{	
@@ -9677,11 +9676,11 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"64 60 56 52 48 44 40"
+		"AbilityCooldown"				"40"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"140 130 120 110"
+		"AbilityManaCost"				"25 50 75 125 250 500 1000"
 		
 		"AbilityDuration"				"4 5 6 7 8 9 10"
 		
@@ -9732,11 +9731,11 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"12 10 8 6"
+		"AbilityCooldown"				"6"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"80 90 100 110"
+		"AbilityManaCost"				"25 50 75 125 250 500 1000"
 		
 
 			
@@ -9766,8 +9765,8 @@
 			}
 			"05"
 			{
-				"var_type"			"FIELD_INTEGER"
-				"damage"			"800 1600 3200 6400 12800 25000 50000"
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"400 800 1600 3200 6400 9600 12800"
 				"LinkedSpecialBonus"	"special_bonus_unique_dazzle_2"
 			}
 		}
@@ -11101,18 +11100,17 @@
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastPoint"				"0.2"
-		"AbilityCastRange"				"400 600 800 1000"
+		"AbilityCastRange"				"1000"
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"24 20 16 12"
+		"AbilityCooldown"				"20 18 16 14 12 10 8"
 		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityDuration"				"8 8 8 8"
+		"AbilityDuration"				"8"
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"25 50 75 125 250 500 1000"
 			
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -11126,7 +11124,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"heal_percent"			"40 50 60 70 80 90 100"
+				"heal_percent"			"50"
 				"LinkedSpecialBonus"	"special_bonus_unique_lifestealer_2"
 			}
 			"03"
@@ -11137,12 +11135,12 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"duration"				"2 3 4 5 6 7 8"
+				"duration"				"8"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"tooltip_range"			"400 600 800 1000"
+				"tooltip_range"			"1000"
 			}
 		}
 	}
@@ -12099,7 +12097,7 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"40.0 35.0 30.0 25.0 20.0 15.0 10.0"
+		"AbilityCooldown"				"15.0"
 		"AbilityDuration"				"5.0"
 
 		
@@ -12119,7 +12117,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"heal"					"100 250 500 750 1000 2500 5000"
+				"heal"					"100"
 				"LinkedSpecialBonus"	"special_bonus_unique_enchantress_5"
 			}
 			"03"
@@ -12130,7 +12128,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"wisp_count"			"10 15 20 20 25 30 35"
+				"wisp_count"			"16 20 24 28 32 36 40"
 				"LinkedSpecialBonus"	"special_bonus_unique_enchantress_2"
 			}
 		}
@@ -15402,7 +15400,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_hp_regen"		"50 150 350 700 1400 2800 5600"
+				"bonus_hp_regen"		"15 30 45 90 180 360 720"
 				"LinkedSpecialBonus"	"special_bonus_unique_lycan_3"
 			}
 		}
@@ -16630,11 +16628,11 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"18.0 16.0 14.0 12.0 10.0 8.0 6.0"
+		"AbilityCooldown"				"8.0"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"140"
+		"AbilityManaCost"				"25 50 75 125 250 500 1000"
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -16648,7 +16646,7 @@
 			"02"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"leech_damage"					"500 1000 2500 5000 10000 25000 50000"
+				"leech_damage"					"500 1000 1500 2500 5000 10000 25000"
 				"LinkedSpecialBonus"			"special_bonus_unique_treant_2"
 			}		
 			"03"
@@ -18310,12 +18308,12 @@
 			"01"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"health_regen_rate"		"3"
+				"health_regen_rate"	"1.5"
 			}
 			"02"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"mana_regen_rate"		"3"
+				"mana_regen_rate"	"1.5"
 			}
 			"03"
 			{
@@ -21017,8 +21015,8 @@
 			}
 			"02"
 			{
-				"var_type"							"FIELD_INTEGER"
-				"bonus_hp_regen"					"10 15 20 25 30 35 40"
+				"var_type"							"FIELD_FLOAT"
+				"bonus_hp_regen"					"20 22.5 25 27.5 30 32.5 35"
 			}
 			"03"
 			{
@@ -26924,7 +26922,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"200"
+				"value"				"40"
 			}
 		}
 	}
@@ -26947,7 +26945,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"250"
+				"value"				"50"
 			}
 		}
 	}
@@ -26970,7 +26968,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"300"
+				"value"				"60"
 			}
 		}
 	}
@@ -26993,7 +26991,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"350"
+				"value"				"70"
 			}
 		}
 	}
@@ -27016,7 +27014,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"400"
+				"value"				"80"
 			}
 		}
 	}
@@ -27039,7 +27037,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"500"
+				"value"				"100"
 			}
 		}
 	}
@@ -27062,7 +27060,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"600"
+				"value"				"120"
 			}
 		}
 	}
@@ -27085,7 +27083,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"700"
+				"value"				"140"
 			}
 		}
 	}
@@ -27108,7 +27106,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"750"
+				"value"				"150"
 			}
 		}
 	}
@@ -27131,7 +27129,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"1000"
+				"value"				"200"
 			}
 		}
 	}
@@ -27154,7 +27152,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"1250"
+				"value"				"250"
 			}
 		}
 	}
@@ -27177,7 +27175,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"1500"
+				"value"				"300"
 			}
 		}
 	}
@@ -27200,7 +27198,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"1750"
+				"value"				"350"
 			}
 		}
 	}
@@ -27223,7 +27221,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"2000"
+				"value"				"400"
 			}
 		}
 	}
@@ -27246,7 +27244,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"2500"
+				"value"				"500"
 			}
 		}
 	}
@@ -27269,7 +27267,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"4000"
+				"value"				"800"
 			}
 		}
 	}
@@ -32467,7 +32465,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"8000"
+				"value"				"3500"
 			}
 		}
 	}
@@ -33935,7 +33933,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"8"
+				"value"				"10"
 			}
 		}
 	}
@@ -34004,7 +34002,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"500"
+				"value"				"75"
 			}
 		}
 	}

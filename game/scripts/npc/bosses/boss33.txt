@@ -14,8 +14,8 @@
 		"MaxLevel"						"2"
 		
 		"AbilityCooldown"				"14 12"
-		"AbilityCastRange"				"1200"
-		"AbilityCastPoint"				"0.75 0.5"
+		"AbilityCastRange"				"3500"
+		"AbilityCastPoint"				"1.5 1"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
 		
 		"precache"
@@ -32,7 +32,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"45000 60000"
+				"damage"				"80000 150000"
 			}
 			"02"
 			{
@@ -42,7 +42,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"orb_speed"				"500 600"
+				"orb_speed"				"300 400"
 			}
 			"04"
 			{
@@ -205,7 +205,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"40000 60000"
+				"damage"				"50000 80000"
 			}
 			"04"
 			{
@@ -265,7 +265,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"40000 60000"
+				"damage"				"50000 80000"
 			}
 			"04"
 			{
@@ -326,7 +326,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"40000 60000"
+				"damage"				"50000 80000"
 			}
 			"04"
 			{

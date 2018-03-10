@@ -91,6 +91,6 @@ function modifier_boss14_whirlwind:GetModifierBaseDamageOutgoing_Percentage()
 	return self.damage
 end
 
-function modifier_boss_broodmother_arachnids_hunger_active:GetModifierMoveSpeed_AbsoluteMin()
+function modifier_boss14_whirlwind:GetModifierMoveSpeed_AbsoluteMin()
 	return self.ms
 end

@@ -1,0 +1,480 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Helm
+	//=================================================================================================================
+	"item_lifesteal2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"22027"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_lifesteal"
+		"AbilityTextureName"			"custom/lifesteal2"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		
+	    "AbilityCooldown"               "20.0"
+		"AbilitySharedCooldown"			"hunger"
+	    "AbilityManaCost"               "0"
+		"AbilityDuration"				"8.0"
+		
+		"ItemCost"						"2855"
+		"ItemShopTags"					"damage;unique"
+		"ItemQuality"					"artifact"
+		"ItemAliases"					"lifesteal"
+		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_ALWAYS"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		"precache"
+		{
+			"particle"	"particles/items2_fx/satanic_buff.vpcf"
+			"soundfile"	"sounds/items/item_satanic.vsnd"
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_all_stats"		"35"
+			}	
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"hp_regen"				"6"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mana_regen_aura"		"2.1"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"armor_aura"			"7.5"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"damage_aura"			"17.5"
+			}			
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"vampiric_aura"			"20"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"vampiric_aura_ranged"	"15"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"aura_radius"			"900"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_damage"			"100"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"lifesteal_buff"		"100"
+			}
+			"10"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"8.0"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Helm
+	//=================================================================================================================
+	"item_lifesteal3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1049"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_lifesteal"
+		"AbilityTextureName"			"custom/lifesteal3"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		
+	    "AbilityCooldown"               "18.0"
+		"AbilitySharedCooldown"			"hunger"
+	    "AbilityManaCost"               "0"
+		"AbilityDuration"				"8.0"
+		
+		"ItemDroppable"					"1"
+		"ItemCost"						"8265"
+		"ItemShopTags"					"damage;unique"
+		"ItemQuality"					"artifact"
+		"ItemAliases"					"lifesteal"
+		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_ALWAYS"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		"precache"
+		{
+			"particle"	"particles/items2_fx/satanic_buff.vpcf"
+			"soundfile"	"sounds/items/item_satanic.vsnd"
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_all_stats"		"150"
+			}	
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"hp_regen"				"12"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mana_regen_aura"		"5"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"armor_aura"			"10"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"damage_aura"			"20"
+			}			
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"vampiric_aura"			"30"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"vampiric_aura_ranged"	"20"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"aura_radius"			"900"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_damage"			"500"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"lifesteal_buff"		"100"
+			}
+			"10"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"8.0"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Helm
+	//=================================================================================================================
+	"item_lifesteal4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1184"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_lifesteal"
+		"AbilityTextureName"			"custom/lifesteal4"
+		
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		
+	    "AbilityCooldown"               "16.0"
+		"AbilitySharedCooldown"			"hunger"
+	    "AbilityManaCost"               "0"
+		"AbilityDuration"				"8.0"
+		
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		"ItemCost"						"30000"
+		"ItemShareability"				"ITEM_PARTIALLY_SHAREABLE"
+		"ItemShopTags"					"damage;unique"
+		"ItemQuality"					"artifact"
+		"ItemAliases"					"lifesteal"
+		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_ALWAYS"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		"precache"
+		{
+			"particle"	"particles/items2_fx/satanic_buff.vpcf"
+			"soundfile"	"sounds/items/item_satanic.vsnd"
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_all_stats"		"500"
+			}	
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"hp_regen"				"25"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mana_regen_aura"		"10"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"armor_aura"			"15"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"damage_aura"			"22.5"
+			}			
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"vampiric_aura"			"40"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"vampiric_aura_ranged"	"30"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"aura_radius"			"900"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_damage"			"1750"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"lifesteal_buff"		"100"
+			}
+			"10"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"8.0"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Helm
+	//=================================================================================================================
+	"item_lifesteal5"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"8763"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_lifesteal"
+		"AbilityTextureName"			"custom/lifesteal5"
+		
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		
+	    "AbilityCooldown"               "14.0"
+		"AbilitySharedCooldown"			"hunger"
+	    "AbilityManaCost"               "0"
+		"AbilityDuration"				"8.0"
+		
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		"ItemCost"						"30000"
+		"ItemShareability"				"ITEM_PARTIALLY_SHAREABLE"
+		"ItemShopTags"					"damage;unique"
+		"ItemQuality"					"artifact"
+		"ItemAliases"					"lifesteal"
+		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_ALWAYS"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		"precache"
+		{
+			"particle"	"particles/items2_fx/satanic_buff.vpcf"
+			"soundfile"	"sounds/items/item_satanic.vsnd"
+		}
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_all_stats"		"1600"
+			}	
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"hp_regen"				"75"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mana_regen_aura"		"25"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"armor_aura"			"25"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"damage_aura"			"25"
+			}			
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"vampiric_aura"			"50"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"vampiric_aura_ranged"	"35"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"aura_radius"			"900"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_damage"			"6000"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"lifesteal_buff"		"100"
+			}
+			"10"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"8.0"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: LifeSteal2
+	//=================================================================================================================
+	"item_recipe_lifesteal2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"3026"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"	"custom/lifesteal2"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_lifesteal2"
+		
+		"ItemRequirements"
+		{
+			"01"						"item_vladmir;item_damage_1;item_orb_1"
+		}
+	}
+	//=================================================================================================================
+	// Recipe: LifeSteal3
+	//=================================================================================================================
+	"item_recipe_lifesteal3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1048"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"	"custom/lifesteal3"
+		
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"15"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_lifesteal3"
+		"ItemRequirements"
+		{
+			"01"						"item_lifesteal2;item_damage_2;item_orb_2"
+		}
+	}
+	"item_recipe_lifesteal4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1183"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"	"custom/lifesteal4"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"2734"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_lifesteal4"
+		"ItemRequirements"
+		{
+			"01"						"item_lifesteal3;item_damage_3;item_orb_3"
+		}
+	}
+	"item_recipe_lifesteal5"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"8762"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"	"custom/lifesteal4"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"2734"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_lifesteal5"
+		"ItemRequirements"
+		{
+			"01"						"item_lifesteal4;item_damage_4;item_orb_4"
+		}
+	}
+}
