@@ -17248,7 +17248,7 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"10.0 10.0 10.0 10.0"
+		"AbilityCooldown"				"7"
 	
 		// Damage.
 		//-------------------------------------------------------------------------------------------------------------
@@ -17265,7 +17265,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"shadowraze_radius"		"300"		
+				"shadowraze_radius"		"350"		
 			}
 			"02"
 			{
@@ -17275,13 +17275,13 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"solo_amp"				"150"
+				"solo_amp"				"140"
 				"LinkedSpecialBonus"	"special_bonus_unique_nevermore_2"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"combo_amp"				"125"
+				"combo_amp"				"180"
 				"LinkedSpecialBonus"	"special_bonus_unique_nevermore_2"
 			}
 			"05"
@@ -17368,23 +17368,23 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"shadowraze_radius"		"300"		
+				"shadowraze_radius"		"350"		
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"shadowraze_range"		"450"
+				"shadowraze_range"		"200"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"solo_amp"				"150"
+				"solo_amp"				"140"
 				"LinkedSpecialBonus"	"special_bonus_unique_nevermore_2"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"combo_amp"				"125"
+				"combo_amp"				"180"
 				"LinkedSpecialBonus"	"special_bonus_unique_nevermore_2"
 			}
 			"05"
@@ -17469,23 +17469,23 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"shadowraze_radius"		"300"		
+				"shadowraze_radius"		"350"		
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"shadowraze_range"		"700"
+				"shadowraze_range"		"200"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"solo_amp"				"150"
+				"solo_amp"				"140"
 				"LinkedSpecialBonus"	"special_bonus_unique_nevermore_2"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"combo_amp"				"125"
+				"combo_amp"				"180"
 				"LinkedSpecialBonus"	"special_bonus_unique_nevermore_2"
 			}
 			"05"
