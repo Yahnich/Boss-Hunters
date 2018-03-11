@@ -58,18 +58,18 @@
 			"03"
 			{	
 				"var_type"					"FIELD_FLOAT"
-				"interval"					"0.6 0.55 0.5 0.45 0.4 0.35 0.3"
+				"interval"					"0.5"
 				"LinkedSpecialBonus"		"special_bonus_unique_rattletrap_battery_assault_2"
 			}
 			"04"
 			{	
 				"var_type"					"FIELD_FLOAT"
-				"damage"					"400 800 1600 3200 6400 9600 19200"
+				"damage"					"200 400 800 1600 3200 6400 9600"
 			}
 		}
 	}
 	
-	"rattletrap_aegis_deflector"
+	"rattletrap_aegis_deflector"	
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -97,8 +97,8 @@
 		{
 			"01"
 			{
-				"var_type"							"FIELD_INTEGER"
-				"bonus_armor"						"5 10 15 20 25 30"
+				"var_type"							"FIELD_FLOAT"
+				"bonus_armor"						"5 7.5 10 12.5 15 17.5 20"
 			}
 			"02"
 			{
@@ -113,13 +113,13 @@
 			"04"
 			{
 				"var_type"							"FIELD_FLOAT"
-				"heal_pct"							"4"
+				"heal_pct"							"2"
 				"LinkedSpecialBonus"				"special_bonus_unique_rattletrap_aegis_deflector_2"
 			}
 			"05"
 			{
 				"var_type"							"FIELD_INTEGER"
-				"proc_chance"						"20"
+				"proc_chance"						"18"
 			}
 			"06"
 			{	
@@ -199,7 +199,7 @@
 			"04"
 			{	
 				"var_type"				"FIELD_INTEGER"
-				"blind"					"50"
+				"blind"					"25"
 				"LinkedSpecialBonus"	"special_bonus_unique_rattletrap_rocket_flare_ebf_2"
 				
 			}
@@ -236,7 +236,7 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"11"
+		"AbilityCooldown"				"14"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -256,7 +256,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"duration"					"4 4.5 5 5.5 6 6.5 7"
+				"duration"					"4"
 			}
 			"03"
 			{	
@@ -295,7 +295,7 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"10"
+		"AbilityCooldown"				"20"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -324,7 +324,7 @@
 			"03"
 			{	
 				"var_type"					"FIELD_FLOAT"
-				"rockets_per_second"		"20"
+				"rockets_per_second"		"15"
 			}
 			"03"
 			{	
@@ -348,7 +348,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"250"
+				"value"					"300"
 			}
 		}
 	}
@@ -386,7 +386,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"10"
+				"value"					"7"
 			}
 		}
 	}
@@ -405,7 +405,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"8"
+				"value"					"6"
 			}
 		}
 	}
@@ -424,7 +424,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"12"
+				"value"					"16"
 			}
 		}
 	}
@@ -443,7 +443,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"25"
+				"value"					"15"
 			}
 		}
 	}

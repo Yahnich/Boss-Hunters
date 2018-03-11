@@ -1064,7 +1064,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"16"			// Physical protection.
+		"ArmorPhysical"				"30"			// Physical protection.
 		"MagicalResistance"			"33"		// Magical protection.  // this should be 33, switch it back once we implement Resistant Skin
 
 		// Attack
@@ -1144,7 +1144,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"32"		// Physical protection.
+		"ArmorPhysical"				"30"		// Physical protection.
 		"MagicalResistance"				"33"		// Magical protection.  // this should be 33, switch it back once we implement Resistant Skin
 
 		// Attack
@@ -1224,7 +1224,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"64"		// Physical protection.
+		"ArmorPhysical"				"30"		// Physical protection.
 		"MagicalResistance"				"33"		// Magical protection.  // this should be 33, switch it back once we implement Resistant Skin
 
 		// Attack
@@ -1303,7 +1303,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"80"		// Physical protection.
+		"ArmorPhysical"				"30"		// Physical protection.
 		"MagicalResistance"				"33"		// Magical protection.  // this should be 33, switch it back once we implement Resistant Skin
 
 		// Attack
@@ -1383,7 +1383,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"120"		// Physical protection.
+		"ArmorPhysical"				"30"		// Physical protection.
 		"MagicalResistance"			"33"		// Magical protection.  // this should be 33, switch it back once we implement Resistant Skin
 
 		// Attack
@@ -1462,7 +1462,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"300"		// Physical protection.
+		"ArmorPhysical"				"30"		// Physical protection.
 		"MagicalResistance"				"33"		// Magical protection.  // this should be 33, switch it back once we implement Resistant Skin
 
 		// Attack
@@ -1541,7 +1541,7 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"600"		// Physical protection.
+		"ArmorPhysical"				"30"		// Physical protection.
 		"MagicalResistance"				"33"		// Magical protection.  // this should be 33, switch it back once we implement Resistant Skin
 
 		// Attack

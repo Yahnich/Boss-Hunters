@@ -21,6 +21,8 @@ function phenx_egg:OnSpellStart()
     EmitSoundOn("Hero_Phoenix.SuperNova.Begin", egg)
 
     caster:AddNewModifier(caster, self, "modifier_phenx_egg_caster", {Duration = self:GetTalentSpecialValueFor("duration")})
+	egg:ModifyThreat(caster:GetThreat())
+	caster:SetThreat(0)
 end
 
 modifier_phenx_egg_caster = class({})
@@ -150,7 +152,7 @@ function modifier_phenx_egg_form:OnRemoved()
         local isDead = egg:GetHealth() == 0
 
         if isDead then
-            hero:Kill( ability, egg.supernova_lastAttacker )
+            hero:AttemptKill( ability, egg.supernova_lastAttacker )
         else
             hero:SetHealth( hero:GetMaxHealth() )
             hero:SetMana( hero:GetMaxMana() )

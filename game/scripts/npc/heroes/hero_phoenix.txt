@@ -308,13 +308,13 @@
 			"02"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"hp_perc_damage"				"2"
+				"hp_perc_damage"				"1.5"
 				"CalculateSpellDamageTooltip"  	"0"
 			}
 			"02"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"base_damage"					"200 400 800 1600 3200 6400 12800"
+				"base_damage"					"100 200 400 800 1600 3200 6400"
 			}
 			"04"
 			{
@@ -324,7 +324,7 @@
 			"05"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"beam_range"					"800 900 1000 1100 1200 1300 1400"
+				"beam_range"					"900"
 			}
 			"06"
 			{
@@ -408,12 +408,12 @@
 			"01"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"hp_percent"		"5.0"
+				"hp_percent"		"5"
 			}
 			"02"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"radius"			"500"
+				"radius"			"600"
 			}			
 		}
 	}
@@ -468,7 +468,7 @@
 			"01"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"damage_per_sec"	"10000 2000 4000 8000 16000 32000 64000"
+				"damage_per_sec"	"1000 2000 4000 8000 16000 32000 64000"
 			}
 			"02"
 			{
@@ -488,7 +488,7 @@
 			"05"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"stun_duration"		"2.0 2.25 2.5 2.75 3.0 3.25 3.5"
+				"stun_duration"		"2.0"
 				"LinkedSpecialBonus" "special_bonus_unique_phenx_egg_1"
 			}
 			"05"

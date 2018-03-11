@@ -90,7 +90,7 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"15.0 14.0 13.0 12.0  11.0 10.0 9.0"
+		"AbilityCooldown"				"15.0"
 		"AbilityDuration"				"4"
 	
 		// Cost
@@ -113,12 +113,12 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius"				"700 750 800 850 900 950 1000"
+				"radius"				"900"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage_reduction_tick"		"-20"
+				"damage_reduction_tick"	"-20"
 			}
 			"04"
 			{
@@ -288,7 +288,7 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"40.0"
+		"AbilityCooldown"				"60.0"
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -334,7 +334,7 @@
 			"06"
 			{	
 				"var_type"				"FIELD_FLOAT"
-				"dot_damage"			"400 800 1600 3200 6400 12800 25600"
+				"dot_damage"			"300 625 1250 2500 5000 10000 20000"
 			}
 			"07"
 			{	
@@ -345,7 +345,7 @@
 			"08"
 			{	
 				"var_type"				"FIELD_FLOAT"
-				"kill_pct"				"15.0"
+				"kill_pct"				"11.0"
 				"LinkedSpecialBonus"	"special_bonus_unique_ancient_apparition_5"
 			}
 			"09"
@@ -1047,7 +1047,7 @@
 	        "01"
 	        {
 	            "var_type"              "FIELD_FLOAT"
-	            "percent"               "0.7 0.8 0.9 1.0 1.1 1.3 1.5"
+	            "percent"               "0.2 0.3 0.4 0.5 0.6 0.7 0.8"
 				"LinkedSpecialBonus"	"special_bonus_unique_bloodseeker_4"
 	        }
 	    }
@@ -12550,7 +12550,6 @@
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"				"30"
-		"AbilityDamage"					"1000 2000 3000 6000 12000 24000 48000"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -12563,7 +12562,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius"				"500 550 600 650 700 750 800"
+				"radius"				"500"
 				"LinkedSpecialBonus"	"special_bonus_unique_enigma"
 			}
 			"02"
@@ -12579,7 +12578,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"damage"				"1000 2000 3000 6000 12000 24000 48000"
+				"damage"				"500 1000 2250 4500 7500 15000"
 				"LinkedSpecialBonus"	"special_bonus_unique_enigma_3"
 			}
 		}
@@ -14955,7 +14954,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"proc_interval"			"0.5"
+				"proc_interval"			"2"
 			}
 			"03"
 			{
@@ -16217,11 +16216,11 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"60"
+		"AbilityCooldown"				"70"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"100"
+		"AbilityManaCost"				"175 340 500 750 1000 2000 4000"	
 		
 		"precache"
 		{
@@ -16241,7 +16240,7 @@
 			"02"
 			{
 				"var_type"							"FIELD_INTEGER"
-				"bonus_armor"						"10 25 40 55 70 85 100"
+				"bonus_armor"						"20 30 40 50 60 70 80"
 				"LinkedSpecialBonus"				"special_bonus_unique_monkey_king_4"
 			}
 			"03"
@@ -16257,7 +16256,7 @@
 			"05"
 			{
 				"var_type"							"FIELD_FLOAT"
-				"bonus_damage"						"350 700 1400 2800 5600 12800 25600"
+				"bonus_damage"						"150 350 700 1400 2800 5600 12800"
 			}
 			"06"
 			{
@@ -16268,12 +16267,12 @@
 			"07"
 			{
 				"var_type"							"FIELD_FLOAT"
-				"duration"							"15.0 17.5 20 22.5 25 27.5 30"
+				"duration"							"20"
 			}
 			"08"
 			{
 				"var_type"							"FIELD_FLOAT"
-				"scepter_passive_bonus"				"8 10 12 14 16 18 20"
+				"scepter_passive_bonus"				"15"
 			}
 		}
 	}
@@ -16480,7 +16479,7 @@
 		
 		// Damage.
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"					"1000 2000 4000 8000 16000 32000 64000"
+		"AbilityDamage"					"25 50 75 125 250 500 1000"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -16661,7 +16660,7 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"80 90 100 110 120 240 360"
+		"AbilityManaCost"				"25 50 75 125 250 500 1000"
 		"AbilityCooldown"				"10.0"
 	
 		// Cost
@@ -16679,7 +16678,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"mr_reduction"				"-12.5 -20 -27.5 -35 -42.5 -50 -57.5"
+				"mr_reduction"				"-12.5 -15 -17.5 -20 -22.5 -25"
 			}
 			"02"
 			{
@@ -17146,6 +17145,11 @@
 				"active_duration"				"10"
 				"LinkedSpecialBonus"			"special_bonus_unique_nevermore_3"
 			}
+			"05"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"attack_duration"				"2.5"
+			}
 		}
 		"OnSpellStart"
 		{
@@ -17167,8 +17171,16 @@
 				"Aura_Teams"    	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 				"Aura_Types"    	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC" //mechanic?
 				"Aura_Flags"    	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES" //immune?
+				
+				"OnDealDamage"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"lua_abilities/heroes/nevermore.lua"
+						"Function"		"OppressiveAttack"
+					}
+				}
 			}
-	
 			"modifier_dark_lord_presence"
 			{
 				"IsHidden"			"0" //hidden?
@@ -19594,12 +19606,12 @@
 			"03"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"bonus_spell_damage_pct"	"-30 -32.5 -35 -37.5 -40 -42.5 -45"
+				"bonus_spell_damage_pct"	"-20 -23 -26 -30 -33 -36 -40"
 			}
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"bonus_movement_speed"		"-30 -32.5 -35 -37.5 -40 -42.5 -45"
+				"bonus_movement_speed"		"-20 -23 -26 -30 -33 -36 -40"
 			}			
 			"05"
 			{
@@ -20151,7 +20163,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"stun_duration"				"1.5 1.75 2.0 2.25 2.5 2.75 3.0"
+				"stun_duration"				"2.0"
 			}
 			"02"
 			{
@@ -20161,7 +20173,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"slam_radius"				"300 350 400 450 500 550 600"
+				"slam_radius"				"400"
 				"LinkedSpecialBonus"		"special_bonus_unique_rubick"
 			}
 			"06"
@@ -20508,7 +20520,7 @@
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"70 80 90 100"
+		"AbilityManaCost"				"10 25 50 75 125 250 500"
 		"AbilityThreat"					"50"		
 		
 		"precache"
@@ -25359,7 +25371,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"disruption_duration"		"1.0"
+				"disruption_duration"		"0.1"
 			}
 			"02"
 			{
@@ -25374,7 +25386,7 @@
 			"04"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"illusion_outgoing_tooltip"	"20"
+				"illusion_outgoing_tooltip"	"80"
 			}
 			"05"
 			{
@@ -25385,7 +25397,7 @@
 			{
 				"var_type"				"FIELD_FLOAT"
 				"tooltip_total_illusion_incoming_damage"	"600.0 500.0 400.0 300.0 200.0 150.0 100.0"
-			}			
+			}
 		}
 	}
 	"terrorblade_zeal"
@@ -25435,13 +25447,12 @@
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"attackspeed_bonus"				"75 150 225 300 375 450 525"
+				"attackspeed_bonus"				"100 200 250 350 420 500 666"
 			}
 			"04"
 			{
-				"var_type"						"FIELD_FLOAT"
-				"health_regen"					"50 100 150 200 250 300 350"
-			}			
+				"var_type"						"50 75 100 200 300 400 500"
+			}		
 		}
 	}
 	"time_walk_datadriven"
@@ -26798,12 +26809,12 @@
 			"01"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"search_radius"						"900"
+				"search_radius"					"900"
 			}
 			"02"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"damage_radius"					"450 500 550 600 650 700 750"
+				"damage_radius"					"450"
 			}
 			"03"
 			{
@@ -26813,12 +26824,12 @@
 			"04"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"damage_per_sec"				"750 1500 3000 6000 9000 12000 24000"
+				"damage_per_sec"				"375 750 1500 3000 6000 9000 12000"
 			}
 			"05"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"heal_per_sec"					"375 750 1500 3000 6000 9000 12000"
+				"heal_per_sec"					"175 375 750 1500 3000 4500 6000"
 			}
 			"06"
 			{
@@ -27097,12 +27108,12 @@
 			"04"
 			{
 				"var_type"              "FIELD_FLOAT"
-				"health_bonus_per_unit"      "500 1000 2000 4000 8000 16000 32000"
+				"health_bonus_per_unit"      "250 500 1000 2000 4000 8000 16000"
 			}
 			"05"
 			{
 				"var_type"              "FIELD_FLOAT"
-				"str_bonus_per_unit_scepter"      "25 50 100 200 400 800 1600"
+				"str_bonus_per_unit_scepter"      "12 25 50 100 200 400 800"
 			}
 		}
 		
@@ -27215,7 +27226,7 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"11 10 9 8 7 6 5"
+		"AbilityCooldown"				"9"
 		"AbilityTextureName"			"custom/undying_soul_rip_ebf"
 		"OnSpellStart"
 			{
@@ -27249,7 +27260,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"range"					"2000"
+				"range"					"1200"
 			}
 		}
 	}
@@ -27287,13 +27298,13 @@
 	
 	    // Time     
 	    //-------------------------------------------------------------------------------------------------------------
-	    "AbilityCooldown"               "16"
-		"AbilityDamage"					"750 1750 4750 9500 19000 38000 76000"
+	    "AbilityCooldown"               "20"
+		"AbilityDamage"					"375 750 1750 4750 9500 19000 38000"
 		"AbilityThreat"					"12"
 	
 	    // Cost
 	    //-------------------------------------------------------------------------------------------------------------
-	    "AbilityManaCost"               "145"
+	    "AbilityManaCost"               "25 50 75 125 250 500 1000"
 	
 	    // Special
 	    //-------------------------------------------------------------------------------------------------------------
@@ -27387,72 +27398,6 @@
 						"Function" "ZombieLeech"
 					}
 				}
-			}
-		}
-	}
-	//=================================================================================================================
-	// Unlock Tower Ability: Fortification
-	//=================================================================================================================
-	"unlock_ability_tower_fortification"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"BaseClass" 					"ability_datadriven"
-		"AbilityTextureName"			"tiny_craggy_exterior"
-		"AbilitySharedWithTeammates"	"1"
-	
-		// Stats
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"0"
-		"AbilityCastPoint"				"0.0"
-		"AbilityManaCost"				"125"
-	
-		"OnSpellStart"
-		{
-			"RemoveAbility"
-			{
-				"Target" "CASTER"
-				"AbilityName" "unlock_ability_tower_fortification"
-			}
-	
-			"AddAbility"
-			{
-				"Target" "CASTER"
-				"AbilityName" "tower_fortification"
-			}
-		}
-	}
-	//=================================================================================================================
-	// Unlock Tower Ability: Freezing Splash
-	//=================================================================================================================
-	"unlock_ability_tower_freezing_splash"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"BaseClass" 					"ability_datadriven"
-		"AbilityTextureName"			"lich_chain_frost"
-		"AbilitySharedWithTeammates"	"1"
-	
-		// Stats
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"0"
-		"AbilityCastPoint"				"0.0"
-		"AbilityManaCost"				"250"
-	
-		"OnSpellStart"
-		{
-			"RemoveAbility"
-			{
-				"Target" "CASTER"
-				"AbilityName" "unlock_ability_tower_freezing_splash"
-			}
-	
-			"AddAbility"
-			{
-				"Target" "CASTER"
-				"AbilityName" "tower_freezing_splash"
 			}
 		}
 	}

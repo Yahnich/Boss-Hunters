@@ -14,7 +14,7 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"20"
+		"AbilityCooldown"				"10"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -23,7 +23,7 @@
 			"01"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"duration"						"5.0"
+				"duration"						"3.5"
 			}
 			"02"
 			{
@@ -65,7 +65,7 @@
 			"01"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"damage_multiplier"				"1 2 3 4 5 6 7"
+				"damage_multiplier"				"3 3.5 4 4.5 5 5.5 6"
 				"LinkedSpecialBonus"			"special_bonus_unique_riki_dagger_2"
 			}
 			"02"
@@ -105,6 +105,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastPoint"				"0.3"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityThreat"					"-5"
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -121,12 +122,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"100 200 300 400 500 600 700"
+				"damage"				"450"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"range"					"800 1000 1200 1400 1600 1800 2000"
+				"range"					"800 900 1000 1100 1200 1300 1400"
 				"LinkedSpecialBonus"	"special_bonus_unique_riki_dance_1"
 			}
 		}
@@ -177,7 +178,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"400 800 1600 3200 6400 12800 25600"
+				"damage"					"375 750 1500 3000 6000 12000 18000"
 			}
 			"02"
 			{
@@ -188,12 +189,12 @@
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"miss_rate"					"35"
+				"miss_rate"					"40"
 			}
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"radius"					"250 275 300 325 350 375 400"
+				"radius"					"400"
 			}		
 		}
 	
@@ -325,7 +326,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"900"
+				"value"					"1200"
 			}
 		}
 	}
@@ -401,7 +402,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"400"
+				"value"					"500"
 			}
 		}
 	}

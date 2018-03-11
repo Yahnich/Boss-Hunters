@@ -4,6 +4,16 @@ function ApplyAuraModifier(keys)
 	ability:ApplyDataDrivenModifier(caster, caster, "active_dark_lord", {duration = ability:GetTalentSpecialValueFor("active_duration")})
 end
 
+function OppressiveAttack(keys)
+	local caster = keys.caster
+	local ability = keys.ability
+	local target = keys.target
+	ability:ApplyDataDrivenModifier(caster, caster, "modifier_dark_lord_presence", {duration = ability:GetTalentSpecialValueFor("attack_duration")})
+	if caster:HasModifier("active_dark_lord") then
+		ability:ApplyDataDrivenModifier(caster, caster, "active_dark_lord_presence", {duration = ability:GetTalentSpecialValueFor("attack_duration")})
+	end
+end
+
 function ShadowRaze(keys)
 	local ability = keys.ability
 	local caster = keys.caster
