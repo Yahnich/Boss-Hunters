@@ -21,8 +21,8 @@ function phenx_egg:OnSpellStart()
     EmitSoundOn("Hero_Phoenix.SuperNova.Begin", egg)
 
     caster:AddNewModifier(caster, self, "modifier_phenx_egg_caster", {Duration = self:GetTalentSpecialValueFor("duration")})
-	egg:ModifyThreat(caster:GetThreat())
-	caster:SetThreat(0)
+    egg:ModifyThreat(caster:GetThreat())
+    caster:SetThreat(0)
 end
 
 modifier_phenx_egg_caster = class({})
@@ -56,6 +56,7 @@ function modifier_phenx_egg_form:OnCreated(table)
         ParticleManager:SetParticleControlEnt(self.nfx, 0, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_hitloc", self:GetParent():GetAbsOrigin(), false)
         ParticleManager:SetParticleControlEnt(self.nfx, 1, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_hitloc", self:GetParent():GetAbsOrigin(), false)
 
+        self.maxAttacks = self:GetTalentSpecialValueFor("max_hero_attacks")
         self:StartIntervalThink(0.5)
     end
 end
@@ -82,7 +83,7 @@ end
 function modifier_phenx_egg_form:CheckState()
     local state = { [MODIFIER_STATE_ROOTED] = true,
                     [MODIFIER_STATE_COMMAND_RESTRICTED] = true,
-					[MODIFIER_STATE_FLYING] = true,
+                    [MODIFIER_STATE_FLYING] = true,
                     [MODIFIER_STATE_MAGIC_IMMUNE] = true
                 }
     return state
@@ -123,15 +124,14 @@ function modifier_phenx_egg_form:OnAttacked(params)
 
             local egg = params.target
             local attacker = params.attacker
-            local maxAttacks = self:GetTalentSpecialValueFor("max_hero_attacks")
             local numAttacked = egg.supernova_numAttacked or 0
             numAttacked = numAttacked + 1
             egg.supernova_numAttacked = numAttacked
 
-            local health = 100 * ( maxAttacks - numAttacked ) / maxAttacks
+            local health = 100 * ( self.maxAttacks - numAttacked ) / self.maxAttacks
             egg:SetHealth( health )
 
-            if numAttacked >= maxAttacks then
+            if numAttacked >= self.maxAttacks then
                 -- Now the egg has been killed.
                 egg.supernova_lastAttacker = attacker
                 self:GetCaster():RemoveModifierByName("modifier_phenx_egg_caster")
@@ -152,7 +152,7 @@ function modifier_phenx_egg_form:OnRemoved()
         local isDead = egg:GetHealth() == 0
 
         if isDead then
-            hero:AttemptKill( ability, egg.supernova_lastAttacker )
+            hero:ForceKill(true)
         else
             hero:SetHealth( hero:GetMaxHealth() )
             hero:SetMana( hero:GetMaxMana() )
@@ -171,6 +171,11 @@ function modifier_phenx_egg_form:OnRemoved()
                     abil:EndCooldown()
                 end
             end
+
+            local enemies = hero:FindEnemyUnitsInRadius(hero:GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"))
+            for _,enemy in pairs(enemies) do
+                ability:Stun(enemy, self:GetTalentSpecialValueFor("stun_duration"), false)
+            end
         end
 
         -- Play sound effect
@@ -182,11 +187,6 @@ function modifier_phenx_egg_form:OnRemoved()
         local pfx = ParticleManager:CreateParticle( pfxName, PATTACH_ABSORIGIN, hero )
         ParticleManager:SetParticleControlEnt( pfx, 0, hero, PATTACH_POINT_FOLLOW, "follow_origin", hero:GetAbsOrigin(), true )
         ParticleManager:SetParticleControlEnt( pfx, 1, hero, PATTACH_POINT_FOLLOW, "attach_hitloc", hero:GetAbsOrigin(), true )
-
-        local enemies = hero:FindEnemyUnitsInRadius(hero:GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"))
-        for _,enemy in pairs(enemies) do
-            ability:Stun(enemy, self:GetTalentSpecialValueFor("stun_duration"), false)
-        end
 
         -- Remove the egg
         egg:ForceKill( false )
