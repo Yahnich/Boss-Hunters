@@ -43,12 +43,12 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage_flame"				"100 250 500 750 1500 2500 50000"
+				"damage_flame"				"250 500 1000 1500 2500 5000 7500"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"duration"					"1 1.5 2 2.5 3 3.5 4"
+				"duration"					"4"
 			}
 			"04"
 			{
@@ -164,12 +164,12 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage_flame"				"100 250 500 750 1500 2500 50000"
+				"damage_flame"				"100 250 500 750 1500 2500 5000"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"duration"					"1 1.5 2 2.5 3 3.5 4"
+				"duration"					"4"
 			}
 			"04"
 			{
@@ -276,12 +276,12 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage_time"				"100 250 500 750 1500 2500 50000"
+				"damage_time"				"400 600 800 1000 2000 4000 8000"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"duration"					"1 1.5 2 2.5 3 3.5 4"
+				"duration"					"4"
 			}
 			"04"
 			{
