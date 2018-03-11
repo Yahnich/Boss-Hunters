@@ -105,7 +105,7 @@ function boss_death_time( keys )
             if vDiff:Length2D() < Death_range and caster:IsAlive() then
                 unit:RemoveModifierByName("modifier_tauntmail")
                 unit.NoTombStone = true
-                unit:KillTarget()
+                unit:AttemptKill(ability, caster)
                 Timers:CreateTimer(timer,function()
                     unit.NoTombStone = false
                 end)
@@ -180,7 +180,7 @@ function projectile_death_orbs_hit( event )
     if not event.caster:IsAlive() then return end
     if target:GetHealth() <= target:GetMaxHealth()/4 then 
         target.NoTombStone = true
-        target:KillTarget()
+        target:AttemptKill(keys.ability, keys.caster)
         Timers:CreateTimer(1.0,function()
             target.NoTombStone = false
         end)
@@ -197,7 +197,7 @@ function hell_tempest_hit( event )
     local target = event.target
     if target.InWater ~= true and event.caster:IsAlive() then
         if target:GetUnitName()~="npc_dota_courier" and target:GetUnitName()~="npc_dota_flying_courier" then
-            target:KillTarget()
+            target:AttemptKill(keys.ability, keys.caster)
         end
     end
 end
@@ -410,7 +410,7 @@ function doom_bringer_boss( event )
             return 0.5
         else
             if GameRules:GetGameTime() <= time + 10 and caster:IsAlive() then
-                target:KillTarget()
+                target:AttemptKill(keys.ability, keys.caster)
             end
         end
     end)
@@ -420,54 +420,9 @@ end
 function storm_projectile_hit( event )
     local target = event.target
     if target.InWater ~= false and caster:IsAlive() then
-        target:KillTarget()
+        target:AttemptKill(keys.ability, keys.caster)
     end
 end
-
-function Give_Control( keys )
-    local target = keys.target
-    if target:GetUnitName() == "npc_dota_boss36" then return end
-    local caster = keys.caster
-    target:Purge(true,true,false,false,false)
-    local PlayerID = caster:GetPlayerOwnerID()
-    target:SetTeam(caster:GetTeamNumber())
-    target:SetControllableByPlayer( PlayerID, false)
-end
-
-function Give_ControlBM( keys )
-    local target = keys.target
-    if target:GetUnitName() == "npc_dota_boss36" then return end
-    local caster = keys.caster
-    local PlayerID = caster:GetPlayerID()
-    target:SetTeam(caster:GetTeamNumber())
-    target:SetControllableByPlayer( PlayerID, false)
-    target:SetOwner(caster)
-    print(PlayerID, caster:GetTeamNumber())
-end
-
-function End_Control( keys )
-    local target = keys.target
-    local caster = keys.caster
-    local level = keys.ability:GetTalentSpecialValueFor( "agh_level" )
-    if target:IsNull() or not target then return end
-    target:SetTeam(DOTA_TEAM_BADGUYS)
-    target:SetControllableByPlayer(-1, false)
-    target:SetControllableByPlayer(GameRules.boss_master_id, false)
-    local hp_percent = keys.ability:GetTalentSpecialValueFor( "hp_regen" ) * 0.01
-    local regen_health = target:GetMaxHealth()*hp_percent
-    if caster:HasScepter() then
-        if target:GetLevel() <= level then
-                target:ForceKill(true)
-        else
-            regen_health = 0
-        end
-    end
-    target:SetHealth(target:GetHealth()+regen_health)
-    if target:GetHealth() > target:GetMaxHealth() then 
-        target:SetHealth(target:GetMaxHealth())
-    end
-end
-
 
 function spawn_unit( keys )
     local caster = keys.caster
@@ -507,7 +462,7 @@ function KillTarget(keys)
     local target = keys.target
     if not keys.caster:IsAlive() then return end
     if target:GetUnitName() ~= "npc_dota_boss36" then
-        target:ForceKill(true)
+        target:AttemptKill(keys.ability, keys.caster)
     else 
         target:SetHealth(60)
     end
@@ -515,7 +470,7 @@ end
 
 function KillCaster(keys)
     local caster = keys.caster
-    caster:ForceKill(true)
+    caster:AttemptKill(keys.ability, caster)
 end
 
 

@@ -1031,7 +1031,6 @@
 	"npc_dota_hero_pudge_ebf"
 	{
 		"override_hero"			"npc_dota_hero_pudge"
-		"Ability1"					"pudge_meat_hook_ebf"
 		"Ability2"					"pudge_rot_lua"					// Ability 4
 		"Ability3"					"pudge_flesh_heap_datadriven"					// Ability 4
 		"Ability6"					"pudge_dismember_lua"					// Ability 4

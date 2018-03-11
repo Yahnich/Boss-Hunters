@@ -408,7 +408,6 @@ if IsServer() then
 
 		-- Main Hook loop
 		Timers:CreateTimer(tick_rate, function()
-
 			-- Check for valid units in the area
 			local units = FindUnitsInRadius(caster:GetTeamNumber(), hook_loc, nil, hook_width, DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_CREEP, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_INVULNERABLE, FIND_CLOSEST, false)
 			for _,unit in pairs(units) do

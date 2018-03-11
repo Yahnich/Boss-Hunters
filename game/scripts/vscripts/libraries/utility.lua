@@ -565,7 +565,7 @@ end
 
 function CDOTA_BaseNPC:KillTarget()
 	if not ( self:IsInvulnerable() or self:IsOutOfGame() or self:IsUnselectable() or self:NoHealthBar() ) then
-		self:ForceKill(true)
+		self:AttemptKill(nil, self)
 	end
 end
 
