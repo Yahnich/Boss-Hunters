@@ -113,7 +113,7 @@ function modifier_item_lifesteal_aura:DeclareFunctions()
 end
 
 function modifier_item_lifesteal_aura:OnTakeDamage(params)
-	if params.attacker == self:GetParent() and not self.inflictor then
+	if params.attacker == self:GetParent() and not params.inflictor then
 		local lifesteal = self.lifesteal
 		if params.attacker:HasModifier("modifier_item_lifesteal_active") then lifesteal = self.unholyLifesteal end
 		local flHeal = params.damage * lifesteal

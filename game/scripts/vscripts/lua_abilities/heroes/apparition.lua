@@ -88,7 +88,7 @@ end
 
 function modifier_ancient_apparition_ice_blast_ebf:OnTakeDamage(params)
 	if params.unit == self:GetParent() and params.unit:GetHealthPercent() <= self.shatter then
-		self:GetParent():Kill( self:GetAbility(), self:GetCaster() )
+		self:GetParent():AttemptKill( self:GetAbility(), self:GetCaster() )
 	end
 end
 

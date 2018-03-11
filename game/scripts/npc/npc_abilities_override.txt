@@ -12861,13 +12861,13 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_gold_self"		"45 90 150 225 315 420 540"
+				"bonus_gold_self"		"60 80 100 125 150 200 250"
 				"LinkedSpecialBonus"	"special_bonus_unique_bounty_hunter_3"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_gold"			"40 80 120 160 210 260 400"
+				"bonus_gold"			"25 50 75 100 125 150 175"
 				"LinkedSpecialBonus"	"special_bonus_unique_bounty_hunter_3"
 			}
 			"06"
@@ -31731,8 +31731,28 @@
 			}
 		}
 	}
-
-
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_bounty_hunter_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"7040"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"100"
+			}
+		}
+	}
 	//=================================================================================================================
 	// Ability: Special Bonus
 	//=================================================================================================================
