@@ -21,7 +21,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"movespeed"				"0.75 1"
+				"movespeed"				"1.5 2"
 			}
 			"02"
 			{

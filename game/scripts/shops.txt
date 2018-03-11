@@ -14,7 +14,7 @@
         "item" "item_hyperstone"
         "item" "item_blade_mail"
         "item" "item_bfury2"
-        "item" "item_vladmir"
+        "item" "item_lifesteal2"
         "item" "item_lifestealtank"
         "item" "item_shivas_guard"
     }
@@ -32,7 +32,7 @@
         "item" "item_moon_shard"
         "item" "item_blade_mail2"
         "item" "item_storm_fury"
-        "item" "item_lifesteal2"
+        "item" "item_lifesteal3"
         "item" "item_tank_booster"
         "item" "item_pixels_guard"
     }
@@ -50,7 +50,7 @@
         "item" "item_celerity_stone"
         "item" "item_blade_mail3"
         "item" "item_midas_fury"
-        "item" "item_lifesteal3"
+        "item" "item_lifesteal4"
         "item" "item_blood_booster"
         "item" "item_echo_sabre"
     }
@@ -68,7 +68,7 @@
         "item" "item_unstable_stone"
         "item" "item_blade_mail4"
         "item" "item_melee_rage"
-        "item" "item_lifesteal4"
+        "item" "item_lifesteal5"
         "item" "item_booster_void"
 		"item" "item_cursed_amulet"
     }

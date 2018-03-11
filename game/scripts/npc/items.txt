@@ -1060,6 +1060,9 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"81"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_lifesteal"
+		"AbilityTextureName"			"item_vladmir"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 
 		// Item Info
@@ -1106,8 +1109,8 @@
 			}
 			"07"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"vampiric_aura_ranged"			"10"
+				"var_type"				"FIELD_FLOAT"
+				"vampiric_aura_ranged"	"10"
 			}
 			"08"
 			{
@@ -3208,73 +3211,6 @@
 			}
 		}
 	}
-
-	
-	//=================================================================================================================
-	// Satanic
-	//=================================================================================================================
-	"item_satanic"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"156"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"FightRecapLevel"				"2"
-
-		// Stats		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"35.0"
-
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"1190"
-		"ItemShopTags"					"damage;str;armor;unique;hard_to_tag"
-		"ItemQuality"					"artifact"
-		"ItemAliases"					"satanic"
-		
-		
-		// Special	
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"20"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_strength"		"25"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_armor"			"5"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"lifesteal_percent"		"25"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"unholy_lifesteal_percent"	"175"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"unholy_lifesteal_total_tooltip"	"200"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"unholy_duration"		"4"
-			}
-		}
-	}
-
 	//=================================================================================================================
 	// Mjollnir
 	//=================================================================================================================

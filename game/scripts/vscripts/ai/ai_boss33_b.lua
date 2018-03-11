@@ -53,8 +53,13 @@ if IsServer() then
 				local raze1Units = thisEntity:FindEnemyUnitsInRadius(raze1Pos, razeRadius)
 				local raze2Units = thisEntity:FindEnemyUnitsInRadius(raze2Pos, razeRadius)
 				local raze3Units = thisEntity:FindEnemyUnitsInRadius(raze3Pos, razeRadius)
+				
+				local razesActive = 0
+				if thisEntity.raze1:IsFullyCastable() then razesActive = razesActive + 1 end
+				if thisEntity.raze2:IsFullyCastable() then razesActive = razesActive + 1 end
+				if thisEntity.raze3:IsFullyCastable() then razesActive = razesActive + 1 end
 
-				if thisEntity.raze1:IsFullyCastable() and ( #raze1Units > 2 or HasValInTable(raze1Units, target) ) then
+				if thisEntity.raze1:IsFullyCastable() and ( #raze1Units > 2 or HasValInTable(raze1Units, target) ) or (#raze1Units > 1 and razesActive > 1) then
 					ExecuteOrderFromTable({
 						UnitIndex = thisEntity:entindex(),
 						OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
@@ -62,7 +67,7 @@ if IsServer() then
 					})
 					return thisEntity.raze1:GetCastPoint() + 0.1
 				end
-				if thisEntity.raze2:IsFullyCastable() and ( #raze2Units > 2 or HasValInTable(raze2Units, target) ) then
+				if thisEntity.raze2:IsFullyCastable() and ( #raze2Units > 2 or HasValInTable(raze2Units, target) ) or (#raze2Units > 1 and razesActive > 1) then
 					ExecuteOrderFromTable({
 						UnitIndex = thisEntity:entindex(),
 						OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
@@ -70,7 +75,7 @@ if IsServer() then
 					})
 					return thisEntity.raze2:GetCastPoint() + 0.1
 				end
-				if thisEntity.raze3:IsFullyCastable() and ( #raze3Units > 2 or HasValInTable(raze3Units, target) ) then
+				if thisEntity.raze3:IsFullyCastable() and ( #raze3Units > 2 or HasValInTable(raze3Units, target) ) or (#raze3Units > 1 and razesActive > 1) then
 					ExecuteOrderFromTable({
 						UnitIndex = thisEntity:entindex(),
 						OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
@@ -88,7 +93,12 @@ if IsServer() then
 				local raze2Units = thisEntity:FindEnemyUnitsInRing(thisEntity:GetAbsOrigin(), thisEntity.raze2:GetSpecialValueFor("distance") + razeRadius,  thisEntity.raze2:GetSpecialValueFor("distance") - razeRadius)
 				local raze3Units = thisEntity:FindEnemyUnitsInLine(thisEntity:GetAbsOrigin(), thisEntity:GetAbsOrigin() + thisEntity:GetForwardVector() * (thisEntity.raze3:GetSpecialValueFor("distance")/3) * thisEntity.raze3:GetSpecialValueFor("phase2_raze_count"), razeRadius)
 				
-				if thisEntity.raze1:IsFullyCastable() and ( #raze1Units > 2 or HasValInTable(raze2Units, target) ) then
+				local razesActive = 0
+				if thisEntity.raze1:IsFullyCastable() then razesActive = razesActive + 1 end
+				if thisEntity.raze2:IsFullyCastable() then razesActive = razesActive + 1 end
+				if thisEntity.raze3:IsFullyCastable() then razesActive = razesActive + 1 end
+				
+				if thisEntity.raze1:IsFullyCastable() and ( #raze1Units > 2 or HasValInTable(raze2Units, target) )  or (#raze1Units > 1 and razesActive > 1) then
 					ExecuteOrderFromTable({
 						UnitIndex = thisEntity:entindex(),
 						OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
@@ -96,7 +106,7 @@ if IsServer() then
 					})
 					return thisEntity.raze1:GetCastPoint() + 0.1
 				end
-				if thisEntity.raze2:IsFullyCastable() and ( #raze2Units > 2 or HasValInTable(raze2Units, target) ) then
+				if thisEntity.raze2:IsFullyCastable() and ( #raze2Units > 2 or HasValInTable(raze2Units, target) )  or (#raze2Units > 1 and razesActive > 1) then
 					ExecuteOrderFromTable({
 						UnitIndex = thisEntity:entindex(),
 						OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
@@ -104,7 +114,7 @@ if IsServer() then
 					})
 					return thisEntity.raze2:GetCastPoint() + 0.1
 				end
-				if thisEntity.raze3:IsFullyCastable() and ( #raze3Units > 2 or HasValInTable(raze2Units, target) ) then
+				if thisEntity.raze3:IsFullyCastable() and ( #raze3Units > 2 or HasValInTable(raze2Units, target) )  or (#raze3Units > 1 and razesActive > 1)then
 					ExecuteOrderFromTable({
 						UnitIndex = thisEntity:entindex(),
 						OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,

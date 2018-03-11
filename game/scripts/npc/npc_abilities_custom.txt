@@ -90,7 +90,7 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"15.0 14.0 13.0 12.0  11.0 10.0 9.0"
+		"AbilityCooldown"				"15.0"
 		"AbilityDuration"				"4"
 	
 		// Cost
@@ -113,12 +113,12 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius"				"700 750 800 850 900 950 1000"
+				"radius"				"900"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage_reduction_tick"		"-20"
+				"damage_reduction_tick"	"-20"
 			}
 			"04"
 			{
@@ -288,7 +288,7 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"40.0"
+		"AbilityCooldown"				"60.0"
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -334,7 +334,7 @@
 			"06"
 			{	
 				"var_type"				"FIELD_FLOAT"
-				"dot_damage"			"400 800 1600 3200 6400 12800 25600"
+				"dot_damage"			"300 625 1250 2500 5000 10000 20000"
 			}
 			"07"
 			{	
@@ -345,7 +345,7 @@
 			"08"
 			{	
 				"var_type"				"FIELD_FLOAT"
-				"kill_pct"				"15.0"
+				"kill_pct"				"11.0"
 				"LinkedSpecialBonus"	"special_bonus_unique_ancient_apparition_5"
 			}
 			"09"
@@ -680,13 +680,13 @@
 			"01"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"tooltip_brain_sap_heal_amt"	"1000 1750 2500 5000 10000 15000 30000"
+				"tooltip_brain_sap_heal_amt"	"1000 1750 2500 5000 10000 20000 40000"
 				"LinkedSpecialBonus"			"special_bonus_unique_bane_2"
 			}
 			"02"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"pct_heal"						"25"
+				"pct_heal"						"10"
 			}
 			"03"
 			{
@@ -1047,7 +1047,7 @@
 	        "01"
 	        {
 	            "var_type"              "FIELD_FLOAT"
-	            "percent"               "0.7 0.8 0.9 1.0 1.1 1.3 1.5"
+	            "percent"               "0.2 0.3 0.4 0.5 0.6 0.7 0.8"
 				"LinkedSpecialBonus"	"special_bonus_unique_bloodseeker_4"
 	        }
 	    }
@@ -11836,7 +11836,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"chance"				"50"
+				"chance"				"25"
 			}
 		}
 		"Modifiers"
@@ -12550,7 +12550,6 @@
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"				"30"
-		"AbilityDamage"					"1000 2000 3000 6000 12000 24000 48000"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -12563,7 +12562,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius"				"500 550 600 650 700 750 800"
+				"radius"				"500"
 				"LinkedSpecialBonus"	"special_bonus_unique_enigma"
 			}
 			"02"
@@ -12579,7 +12578,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"damage"				"1000 2000 3000 6000 12000 24000 48000"
+				"damage"				"500 1000 2250 4500 7500 15000"
 				"LinkedSpecialBonus"	"special_bonus_unique_enigma_3"
 			}
 		}
@@ -14955,7 +14954,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"proc_interval"			"0.5"
+				"proc_interval"			"2"
 			}
 			"03"
 			{
@@ -16217,11 +16216,11 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"60"
+		"AbilityCooldown"				"70"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"100"
+		"AbilityManaCost"				"175 340 500 750 1000 2000 4000"	
 		
 		"precache"
 		{
@@ -16241,7 +16240,7 @@
 			"02"
 			{
 				"var_type"							"FIELD_INTEGER"
-				"bonus_armor"						"10 25 40 55 70 85 100"
+				"bonus_armor"						"20 30 40 50 60 70 80"
 				"LinkedSpecialBonus"				"special_bonus_unique_monkey_king_4"
 			}
 			"03"
@@ -16257,7 +16256,7 @@
 			"05"
 			{
 				"var_type"							"FIELD_FLOAT"
-				"bonus_damage"						"350 700 1400 2800 5600 12800 25600"
+				"bonus_damage"						"150 350 700 1400 2800 5600 12800"
 			}
 			"06"
 			{
@@ -16268,12 +16267,12 @@
 			"07"
 			{
 				"var_type"							"FIELD_FLOAT"
-				"duration"							"15.0 17.5 20 22.5 25 27.5 30"
+				"duration"							"20"
 			}
 			"08"
 			{
 				"var_type"							"FIELD_FLOAT"
-				"scepter_passive_bonus"				"8 10 12 14 16 18 20"
+				"scepter_passive_bonus"				"15"
 			}
 		}
 	}
@@ -16475,7 +16474,7 @@
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"80 90 100 110 120 240 360"
+		"AbilityManaCost"				"25 50 75 125 250 500 1000"
 		"AbilityCastRange"				"600"
 		
 		// Damage.
@@ -16587,8 +16586,8 @@
 		{
 			"01"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"health_regeneration"		"1"
+				"var_type"					"FIELD_FLOAT"
+				"health_regeneration"		"0.75"
 			}
 			"02"
 			{
@@ -16661,7 +16660,7 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"80 90 100 110 120 240 360"
+		"AbilityManaCost"				"25 50 75 125 250 500 1000"
 		"AbilityCooldown"				"10.0"
 	
 		// Cost
@@ -16679,7 +16678,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"mr_reduction"				"-12.5 -20 -27.5 -35 -42.5 -50 -57.5"
+				"mr_reduction"				"-12.5 -15 -17.5 -20 -22.5 -25"
 			}
 			"02"
 			{
@@ -17146,6 +17145,11 @@
 				"active_duration"				"10"
 				"LinkedSpecialBonus"			"special_bonus_unique_nevermore_3"
 			}
+			"05"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"attack_duration"				"2.5"
+			}
 		}
 		"OnSpellStart"
 		{
@@ -17167,8 +17171,16 @@
 				"Aura_Teams"    	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 				"Aura_Types"    	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC" //mechanic?
 				"Aura_Flags"    	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES" //immune?
+				
+				"OnDealDamage"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"lua_abilities/heroes/nevermore.lua"
+						"Function"		"OppressiveAttack"
+					}
+				}
 			}
-	
 			"modifier_dark_lord_presence"
 			{
 				"IsHidden"			"0" //hidden?
@@ -17236,7 +17248,7 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"10.0 10.0 10.0 10.0"
+		"AbilityCooldown"				"7"
 	
 		// Damage.
 		//-------------------------------------------------------------------------------------------------------------
@@ -17253,7 +17265,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"shadowraze_radius"		"300"		
+				"shadowraze_radius"		"350"		
 			}
 			"02"
 			{
@@ -17263,13 +17275,13 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"solo_amp"				"150"
+				"solo_amp"				"140"
 				"LinkedSpecialBonus"	"special_bonus_unique_nevermore_2"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"combo_amp"				"125"
+				"combo_amp"				"180"
 				"LinkedSpecialBonus"	"special_bonus_unique_nevermore_2"
 			}
 			"05"
@@ -17356,23 +17368,23 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"shadowraze_radius"		"300"		
+				"shadowraze_radius"		"350"		
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"shadowraze_range"		"450"
+				"shadowraze_range"		"200"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"solo_amp"				"150"
+				"solo_amp"				"140"
 				"LinkedSpecialBonus"	"special_bonus_unique_nevermore_2"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"combo_amp"				"125"
+				"combo_amp"				"180"
 				"LinkedSpecialBonus"	"special_bonus_unique_nevermore_2"
 			}
 			"05"
@@ -17457,23 +17469,23 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"shadowraze_radius"		"300"		
+				"shadowraze_radius"		"350"		
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"shadowraze_range"		"700"
+				"shadowraze_range"		"200"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"solo_amp"				"150"
+				"solo_amp"				"140"
 				"LinkedSpecialBonus"	"special_bonus_unique_nevermore_2"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"combo_amp"				"125"
+				"combo_amp"				"180"
 				"LinkedSpecialBonus"	"special_bonus_unique_nevermore_2"
 			}
 			"05"
@@ -18608,7 +18620,7 @@
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"100 120 140 160 180 200 220"
+		"AbilityManaCost"				"25 50 75 125 250 500 1000"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -18623,13 +18635,13 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"heal"					"2500 5000 10000 20000 25000 76000 144000"
+				"heal"					"1250 2500 5000 10000 12500 38000 72000"
 				"LinkedSpecialBonus"	"special_bonus_unique_omniknight_1"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"area_of_effect"		"350 375 400 425 450 475 500"
+				"area_of_effect"		"500"
 				"LinkedSpecialBonus"	"special_bonus_unique_omniknight_4"
 			}
 		}
@@ -18908,7 +18920,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"heal_per_second"		"125 250 500 1000 2000 4000 8000"
+				"heal_per_second"		"75 125 250 500 1000 2000 4000"
 			}			
 			"02"
 			{
@@ -19203,6 +19215,7 @@
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"160"
+		"AbilityCastAnimation"			"ACT_DOTA_CHANNEL_ABILITY_4"
 		"AbilityCastPoint"				"0.3 0.3 0.3"
 	
 		"AbilityCooldown"				"30.0"
@@ -19228,7 +19241,7 @@
 				"var_type"				"FIELD_INTEGER"
 				"scepter_flesh_stacks"	"6 7 8 9 10 11 12"
 			}
-			"03"
+			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"duration"				"5.0"
@@ -19238,6 +19251,11 @@
 			{
 				"var_type"				"FIELD_FLOAT"
 				"tick_rate"				"1.01"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"heal_pct"				"25"
 			}
 		}
 	}
@@ -19588,12 +19606,12 @@
 			"03"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"bonus_spell_damage_pct"	"-30 -32.5 -35 -37.5 -40 -42.5 -45"
+				"bonus_spell_damage_pct"	"-20 -23 -26 -30 -33 -36 -40"
 			}
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"bonus_movement_speed"		"-30 -32.5 -35 -37.5 -40 -42.5 -45"
+				"bonus_movement_speed"		"-20 -23 -26 -30 -33 -36 -40"
 			}			
 			"05"
 			{
@@ -19653,7 +19671,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"health_drain"				"1200 2400 4800 9600 19200 38400 76800"
+				"health_drain"				"600 1200 2400 4800 9600 19200 38400"
 			}
 			"02"
 			{
@@ -19668,7 +19686,7 @@
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"health_drain_scepter"		"1800 3600 7200 14400 28800 57600 115200"
+				"health_drain_scepter"		"900 1800 3600 7200 14400 28800 57600"
 			}
 			"05"
 			{
@@ -20145,7 +20163,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"stun_duration"				"1.5 1.75 2.0 2.25 2.5 2.75 3.0"
+				"stun_duration"				"2.0"
 			}
 			"02"
 			{
@@ -20155,7 +20173,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"slam_radius"				"300 350 400 450 500 550 600"
+				"slam_radius"				"400"
 				"LinkedSpecialBonus"		"special_bonus_unique_rubick"
 			}
 			"06"
@@ -20502,7 +20520,7 @@
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"70 80 90 100"
+		"AbilityManaCost"				"10 25 50 75 125 250 500"
 		"AbilityThreat"					"50"		
 		
 		"precache"
@@ -25353,7 +25371,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"disruption_duration"		"1.0"
+				"disruption_duration"		"0.1"
 			}
 			"02"
 			{
@@ -25368,7 +25386,7 @@
 			"04"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"illusion_outgoing_tooltip"	"20"
+				"illusion_outgoing_tooltip"	"80"
 			}
 			"05"
 			{
@@ -25379,7 +25397,7 @@
 			{
 				"var_type"				"FIELD_FLOAT"
 				"tooltip_total_illusion_incoming_damage"	"600.0 500.0 400.0 300.0 200.0 150.0 100.0"
-			}			
+			}
 		}
 	}
 	"terrorblade_zeal"
@@ -25429,13 +25447,13 @@
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"attackspeed_bonus"				"75 150 225 300 375 450 525"
+				"attackspeed_bonus"				"100 200 250 350 420 500 666"
 			}
 			"04"
 			{
-				"var_type"						"FIELD_FLOAT"
-				"health_regen"					"50 150 350 700 2100 4725 10500"
-			}			
+				"var_type"						"FIELD_INTEGER"
+				"health_regen"					"50 75 100 200 300 400 500"
+			}		
 		}
 	}
 	"time_walk_datadriven"
@@ -26078,7 +26096,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"heal"					"50 100 250 750 2500 7500 20000"
+				"heal"					"50 100 200 400 800 1600 3200"
 			}
 			"04"
 			{
@@ -26792,27 +26810,27 @@
 			"01"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"search_radius"						"900"
+				"search_radius"					"900"
 			}
 			"02"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"damage_radius"					"450 500 550 600 650 700 750"
+				"damage_radius"					"450"
 			}
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"explosion_interval"			"0.25"
+				"explosion_interval"			"1"
 			}
 			"04"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"damage_per_sec"				"1500 3000 6000 9000 18000 36000 72000"
+				"damage_per_sec"				"375 750 1500 3000 6000 9000 12000"
 			}
 			"05"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"heal_per_sec"					"750 1500 3000 4500 9000 18000 36000"
+				"heal_per_sec"					"175 375 750 1500 3000 4500 6000"
 			}
 			"06"
 			{
@@ -27075,7 +27093,7 @@
 			"01"
 			{
 				"var_type"              "FIELD_INTEGER"
-				"radius"                "300 400 500 600 700 800 900"
+				"radius"                "600"
 			}
 			"02"
 			{
@@ -27091,12 +27109,12 @@
 			"04"
 			{
 				"var_type"              "FIELD_FLOAT"
-				"health_bonus_per_unit"      "500 1000 2000 4000 8000 16000 32000"
+				"health_bonus_per_unit"      "250 500 1000 2000 4000 8000 16000"
 			}
 			"05"
 			{
 				"var_type"              "FIELD_FLOAT"
-				"str_bonus_per_unit_scepter"      "25 50 100 200 400 800 1600"
+				"str_bonus_per_unit_scepter"      "12 25 50 100 200 400 800"
 			}
 		}
 		
@@ -27209,7 +27227,7 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"17 15 13 11 7 5 3"
+		"AbilityCooldown"				"9"
 		"AbilityTextureName"			"custom/undying_soul_rip_ebf"
 		"OnSpellStart"
 			{
@@ -27237,13 +27255,13 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"health_per_unit"		"320 640 1280 2560 5000 10000 20000"
+				"health_per_unit"		"120 240 320 640 1280 2560 5000"
 				"LinkedSpecialBonus"	"special_bonus_unique_undying"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"range"					"2000"
+				"range"					"1200"
 			}
 		}
 	}
@@ -27281,13 +27299,13 @@
 	
 	    // Time     
 	    //-------------------------------------------------------------------------------------------------------------
-	    "AbilityCooldown"               "16"
-		"AbilityDamage"					"750 1750 4750 9500 19000 38000 76000"
+	    "AbilityCooldown"               "20"
+		"AbilityDamage"					"375 750 1750 4750 9500 19000 38000"
 		"AbilityThreat"					"12"
 	
 	    // Cost
 	    //-------------------------------------------------------------------------------------------------------------
-	    "AbilityManaCost"               "145"
+	    "AbilityManaCost"               "25 50 75 125 250 500 1000"
 	
 	    // Special
 	    //-------------------------------------------------------------------------------------------------------------
@@ -27313,6 +27331,11 @@
 	        {
 	            "var_type"                  "FIELD_FLOAT"
 	            "turn_slow_tooltip"         "-35"
+	        }
+			"05"
+	        {
+	            "var_type"                  "FIELD_FLOAT"
+	            "heal_pct"         			"15"
 	        }
 	    }
 	
@@ -27376,105 +27399,6 @@
 						"Function" "ZombieLeech"
 					}
 				}
-			}
-		}
-	}
-	//=================================================================================================================
-	// Unlock Tower Ability: Fortification
-	//=================================================================================================================
-	"unlock_ability_tower_fortification"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"BaseClass" 					"ability_datadriven"
-		"AbilityTextureName"			"tiny_craggy_exterior"
-		"AbilitySharedWithTeammates"	"1"
-	
-		// Stats
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"0"
-		"AbilityCastPoint"				"0.0"
-		"AbilityManaCost"				"125"
-	
-		"OnSpellStart"
-		{
-			"RemoveAbility"
-			{
-				"Target" "CASTER"
-				"AbilityName" "unlock_ability_tower_fortification"
-			}
-	
-			"AddAbility"
-			{
-				"Target" "CASTER"
-				"AbilityName" "tower_fortification"
-			}
-		}
-	}
-	//=================================================================================================================
-	// Unlock Tower Ability: Freezing Splash
-	//=================================================================================================================
-	"unlock_ability_tower_freezing_splash"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"BaseClass" 					"ability_datadriven"
-		"AbilityTextureName"			"lich_chain_frost"
-		"AbilitySharedWithTeammates"	"1"
-	
-		// Stats
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"0"
-		"AbilityCastPoint"				"0.0"
-		"AbilityManaCost"				"250"
-	
-		"OnSpellStart"
-		{
-			"RemoveAbility"
-			{
-				"Target" "CASTER"
-				"AbilityName" "unlock_ability_tower_freezing_splash"
-			}
-	
-			"AddAbility"
-			{
-				"Target" "CASTER"
-				"AbilityName" "tower_freezing_splash"
-			}
-		}
-	}
-	//=================================================================================================================
-	// Unlock Tower Ability: Healing Aura
-	//=================================================================================================================
-	"unlock_ability_tower_healing_aura"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"BaseClass" 					"ability_datadriven"
-		"AbilityTextureName"			"enchantress_natures_attendants"
-		"AbilitySharedWithTeammates"	"1"
-	
-		// Stats
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"0"
-		"AbilityCastPoint"				"0.0"
-		"AbilityManaCost"				"175"
-	
-		"OnSpellStart"
-		{
-			"RemoveAbility"
-			{
-				"Target" "CASTER"
-				"AbilityName" "unlock_ability_tower_healing_aura"
-			}
-	
-			"AddAbility"
-			{
-				"Target" "CASTER"
-				"AbilityName" "tower_healing_aura"
 			}
 		}
 	}
@@ -28475,476 +28399,6 @@
 		}
 	}
 	//=================================================================================================================
-	// Io
-	//=================================================================================================================
-	"wisp_tether_break_datadriven"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"				"ability_datadriven"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"MaxLevel"						"1"
-		"AbilityTextureName"			"wisp_tether_break"
-	
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0 0 0 0"
-	
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"1.0"
-		
-		// Data driven
-		//-------------------------------------------------------------------------------------------------------------
-		"OnSpellStart"
-		{
-			"RemoveModifier"
-			{
-				"Target"		"CASTER"
-				"ModifierName"	"modifier_tether_caster_datadriven"
-			}
-		}
-		
-		"OnUpgrade"
-		{
-			"RunScript"
-			{
-				"ScriptFile"	"lua_abilities/heroes/wisp.lua"
-				"Function"		"LevelUpAbility"
-				"ability_name"	"wisp_tether_datadriven"
-			}
-		}
-	}
-	"wisp_tether_datadriven"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_datadriven"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
-		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NOT_ILLUSIONS"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityTextureName"			"wisp_tether"
-		"CastFilterRejectCaster" 		"1"
-		"LevelsBetweenUpgrades"			"5"
-		"MaxLevel"						"7"
-	
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0.001 0.001 0.001 0.001"
-	
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"9.0"
-		"AbilityDuration"				"10.0 15.0 20.0 30.0 45.0 60.0 120.0"
-	
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"40 40 40 40"
-		
-		// Cast Range
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"1800 1800 1800 1800"
-	
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"movespeed"					"14 15 16 17 20 30 40"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"slow"						"-100"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"tether_heal_amp"			"90 100 110 120 130 140 150"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"900 1100 1300 1500 1700 1900 2100"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"tether_duration"			"10.0 15.0 20.0 30.0 45.0 60.0 120.0"
-			}
-			"06"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"latch_distance"			"700 800 900 1000 1100 1200 1300"
-			}
-			"07"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"latch_speed"				"1000 1100 1200 1300 1400 1500 1600"
-			}
-			"08"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"attackslow_tooltip"			"-100"
-			}
-			"09"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"stun_duration"				"2"
-			}
-			// Extra variables
-			"10"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"latch_distance_to_target"	"300"
-			}
-			"11"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"latch_destroy_tree_radius"	"350"
-			}
-			"12"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"latch_tick_interval"		"0.03"
-			}
-			"13"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"tether_line_radius"		"32"
-			}
-			"14"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"tether_line_tick_interval"	"0.03"
-			}
-		}
-		// Data driven
-		//-------------------------------------------------------------------------------------------------------------
-		"precache"
-		{
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_wisp.vsndevts"
-			"particle"					"particles/units/heroes/hero_wisp/wisp_tether.vpcf"
-			"particle"					"particles/units/heroes/hero_wisp/wisp_tether_hit.vpcf"
-			"particle"					"particles/units/heroes/hero_wisp/wisp_tether_slow.vpcf"
-		}
-		"OnSpellStart"
-		{
-			"ApplyModifier"
-			{
-				"Target"		"CASTER"
-				"ModifierName"	"modifier_tether_caster_datadriven"
-			}
-			
-			"ApplyModifier"
-			{
-				"Target"		"TARGET"
-				"ModifierName"	"modifier_tether_ally_datadriven"
-			}
-			
-			"RunScript"
-			{
-				"ScriptFile"		"lua_abilities/heroes/wisp.lua"
-				"Function"			"CastTether"
-				"Target"			"TARGET"
-				
-				"latch_distance"	"%latch_distance"
-				"latch_modifier"	"modifier_tether_caster_latching_datadriven"
-				
-				"sub_ability_name"	"wisp_tether_break_datadriven"
-			}
-		}
-		
-		"OnUpgrade"
-		{
-			"RunScript"
-			{
-				"ScriptFile"	"lua_abilities/heroes/wisp.lua"
-				"Function"		"LevelUpAbility"
-				"ability_name"	"wisp_tether_break_datadriven"
-			}
-		}
-		
-		"OnProjectileHitUnit"
-		{
-			"DeleteOnHit"	"0"
-			
-			"RunScript"
-			{
-				"ScriptFile"		"lua_abilities/heroes/wisp.lua"
-				"Function"			"OnProjectileHit"
-				"Target"			"TARGET"
-				
-				"slow_modifier"		"modifier_tether_slow_datadriven"
-			}
-		}
-		
-		"Modifiers"
-		{
-			"modifier_tether_caster_datadriven"
-			{
-				"IsBuff"	"1"
-				"Duration"	"%tether_duration"
-				
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%movespeed"
-				}
-				
-				"OnCreated"
-				{
-					"FireSound"
-					{
-						"EffectName"		"Hero_Wisp.Tether"	// a loop sound
-						"Target"			"CASTER"
-					}
-				}
-				
-				"OnDestroy"
-				{
-					"RemoveModifier"
-					{
-						"Target"			"CASTER"
-						"ModifierName"		"modifier_tether_caster_latching_datadriven"
-					}
-					
-					"RunScript"
-					{
-						"ScriptFile"		"lua_abilities/heroes/wisp.lua"
-						"Function"			"EndTether"
-						
-						"ally_modifier"		"modifier_tether_ally_datadriven"
-						"sub_ability_name"	"wisp_tether_break_datadriven"
-					}
-				
-					"RunScript"
-					{
-						"ScriptFile"		"lua_abilities/heroes/wisp.lua"
-						"Function"			"StopSound"
-						"sound_name"		"Hero_Wisp.Tether"
-					}
-					
-					"FireSound"
-					{
-						"EffectName"		"Hero_Wisp.Tether.Stop"
-						"Target"			"CASTER"
-					}
-				}
-				
-				"OnTakeDamage"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"lua_abilities/heroes/wisp.lua"
-						"Function"		"TrackCurrentHealth"
-					}
-				}
-				
-				"OnHealReceived"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"lua_abilities/heroes/wisp.lua"
-						"Function"		"HealAlly"
-						"tether_heal_amp"	"%tether_heal_amp"
-					}
-					
-					"RunScript"
-					{
-						"ScriptFile"	"lua_abilities/heroes/wisp.lua"
-						"Function"		"TrackCurrentHealth"
-					}
-				}
-				
-				"OnHealthGained"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"lua_abilities/heroes/wisp.lua"
-						"Function"		"HealAlly"
-						"tether_heal_amp"	"%tether_heal_amp"
-					}
-					
-					"RunScript"
-					{
-						"ScriptFile"	"lua_abilities/heroes/wisp.lua"
-						"Function"		"TrackCurrentHealth"
-					}
-				}
-				
-				"OnSpentMana"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"lua_abilities/heroes/wisp.lua"
-						"Function"		"GiveManaToAlly"
-						"tether_heal_amp"	"%tether_heal_amp"
-					}
-					"RunScript"
-					{
-						"ScriptFile"	"lua_abilities/heroes/wisp.lua"
-						"Function"		"TrackCurrentMana"
-					}
-				}
-				
-				"OnManaGained"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"lua_abilities/heroes/wisp.lua"
-						"Function"		"GiveManaToAlly"
-						"tether_heal_amp"	"%tether_heal_amp"
-					}
-				
-					"RunScript"
-					{
-						"ScriptFile"	"lua_abilities/heroes/wisp.lua"
-						"Function"		"TrackCurrentMana"
-					}
-				}
-				
-				"ThinkInterval"		"%tether_line_tick_interval"
-				"OnIntervalThink"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"lua_abilities/heroes/wisp.lua"
-						"Function"		"TrackCurrentHealth"
-					}
-					"RunScript"
-					{
-						"ScriptFile"	"lua_abilities/heroes/wisp.lua"
-						"Function"		"CheckDistance"
-						
-						"radius"			"%radius"
-						"caster_modifier"	"modifier_tether_caster_datadriven"
-						"latch_modifier"	"modifier_tether_caster_latching_datadriven"
-					}
-				}
-			}
-			
-			"modifier_tether_caster_latching_datadriven"
-			{
-				"IsHidden"	"1"
-				
-				"Duration"	"%tether_duration"
-				
-				"ThinkInterval"		"%latch_tick_interval"
-				"OnIntervalThink"
-				{
-					"RunScript"
-					{
-						"ScriptFile"		"lua_abilities/heroes/wisp.lua"
-						"Function"			"Latch"
-						
-						"tick_interval"				"%latch_tick_interval"
-						"latch_speed"				"%latch_speed"
-						"latch_distance_to_target"	"%latch_distance_to_target"
-						"latch_modifier"			"modifier_tether_caster_latching_datadriven"
-					}
-				}
-				
-				"States"
-				{
-					"MODIFIER_STATE_NO_UNIT_COLLISION"	"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_ROOTED"				"MODIFIER_STATE_VALUE_ENABLED"
-				}
-				
-				"OnDestroy"
-				{
-					"DestroyTrees"
-					{
-						"Target"		"TARGET"
-						"Radius"		"%latch_destroy_tree_radius"
-					}
-				}
-			}
-			
-			"modifier_tether_ally_datadriven"
-			{
-				"IsBuff"	"1"
-				"Duration"	"%tether_duration"
-				
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%movespeed"
-				}
-				
-				"OnCreated"
-				{
-					"FireSound"
-					{
-						"EffectName"		"Hero_Wisp.Tether.Target"
-						"Target"			"TARGET"
-					}
-					
-					"AttachEffect"
-					{
-						"EffectName"		"particles/units/heroes/hero_wisp/wisp_tether.vpcf"
-						"EffectAttachType"	"attach_hitloc"
-						"Target"			"TARGET"
-						
-						"ControlPointEntities"
-						{
-							"CASTER"	"attach_hitloc"
-							"TARGET"	"attach_hitloc"
-						}
-					}
-				}
-				
-				"ThinkInterval"			"%tether_line_tick_interval"
-				"OnIntervalThink"
-				{
-					"RunScript"
-					{
-						"ScriptFile"		"lua_abilities/heroes/wisp.lua"
-						"Function"			"FireTetherProjectile"
-						"Target"			"TARGET"
-						
-						"tether_line_radius"	"%tether_line_radius"
-						"tick_interval"			"%tether_line_tick_interval"
-					}
-				}
-			}
-			
-			"modifier_tether_slow_datadriven"
-			{
-				"IsDebuff"	"1"
-			
-				"Duration"	"%stun_duration"
-				
-				"EffectName"		"particles/units/heroes/hero_wisp/wisp_tether_slow.vpcf"
-				"EffectAttachType"	"follow_origin"
-				
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%slow"
-				}
-				
-				"OnCreated"
-				{
-					"FireEffect"
-					{
-						"EffectName"		"particles/units/heroes/hero_wisp/wisp_tether_slow.vpcf"
-						"EffectAttachType"	"attach_hitloc"
-						"Target"			"TARGET"
-					}
-					
-					"FireSound"
-					{
-						"EffectName"	"Hero_Wisp.Tether.Stun"
-						"Target"		"TARGET"
-					}
-				}
-			}
-		}
-	}
-	//=================================================================================================================
 	// Witch Doctor: Death Ward
 	//=================================================================================================================
 	"witch_doctor_death_ward_ebf"
@@ -29154,7 +28608,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"mana_per_second"			"15 30 60 125 250 500 1000"
+				"mana_per_second"			"30 75 150 300 500 750 1000"
 			}
 			"02"
 			{
@@ -29164,13 +28618,13 @@
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"heal"						"200 400 800 1600 3200 4800 6400"
+				"heal"						"250 500 750 1250 2000 3500 5000"
 				"LinkedSpecialBonus"		"special_bonus_unique_witch_doctor_2"
 			}
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"int_to_heal"				"100"
+				"int_to_heal"				"35"
 			}
 			"05"
 			{
@@ -29180,7 +28634,7 @@
 			"05"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"cleanse_heal"				"20"
+				"cleanse_heal"				"10"
 			}
 			"06"
 			{
@@ -29243,22 +28697,22 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"buff_duration"		"15"
+				"buff_duration"			"15"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"self_heal"				"15"
+				"self_heal"				"7.5"
 			}
-			"02"
+			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"heal_proc_chance"		"20 22.5 25 27.5 30 32.5 35"
+				"heal_proc_chance"		"35"
 			}
-			"02"
+			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"scepter_proc_chance"		"25"
+				"scepter_proc_chance"	"25"
 			}
 		}
 		

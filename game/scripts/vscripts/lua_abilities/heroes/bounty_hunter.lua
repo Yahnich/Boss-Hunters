@@ -233,6 +233,12 @@ function modifier_bounty_hunter_veteran_hunter:OnCreated()
 	self.bonusTrack = self:GetAbility():GetSpecialValueFor("bonus_track_targets")
 end
 
+function modifier_bounty_hunter_veteran_hunter:OnRefresh()
+	self.maxShurikens = self:GetAbility():GetSpecialValueFor("bonus_toss_targets")
+	self.minShurikens = self:GetAbility():GetSpecialValueFor("min_shurikens")
+	self.bonusTrack = self:GetAbility():GetSpecialValueFor("bonus_track_targets")
+end
+
 function modifier_bounty_hunter_veteran_hunter:IsHidden()
 	return true
 end

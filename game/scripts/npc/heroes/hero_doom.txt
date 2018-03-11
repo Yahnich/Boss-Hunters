@@ -18,7 +18,7 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"10.0"
+		"AbilityCooldown"				"20.0"
 		"AbilityTextureName"			"custom/doom_devour"
 		
 		"precache"
@@ -133,8 +133,8 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"16 14 12 10 8 6 4"
-		"AbilityManaCost"				"6 12 24 48 96 192 288"
+		"AbilityCooldown"				"8"
+		"AbilityManaCost"				"15 30 45 75 150 300 450"
 		"AbilityCastRange"				"150"
 		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
 		"AbilityCastPoint"				"0.3"
@@ -157,12 +157,12 @@
 			"01"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"burn_damage"					"125 250 500 1250 2500 5000 10000"
+				"burn_damage"					"75 125 250 500 1250 2500 5000"
 			}
 			"02"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"burn_damage_pct"				"2.4"
+				"burn_damage_pct"				"1.6"
 				"LinkedSpecialBonus"			"special_bonus_unique_doom_infernal_blade_ebf_2"
 				"CalculateSpellDamageTooltip"	"0"
 			}
@@ -224,8 +224,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage_per_second"			"500 1000 2500 5000 10000 20000 40000"
-				"LinkedSpecialBonus"		"special_bonus_unique_doom_4"
+				"damage_per_second"			"250 500 1000 2000 4000 800 16000"
 			}
 			"02"
 			{
@@ -355,7 +354,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"2"
+				"value"					"1"
 			}
 		}
 	}

@@ -63,7 +63,7 @@ if IsServer() then
 							return thisEntity.execute:GetCastPoint() + 1.2
 						end
 					end
-					if thisEntity.whirlwind and thisEntity.whirlwind:IsFullyCastable() and AICore:TotalEnemyHeroesInRange( thisEntity,  thisEntity.whirlwind:GetSpecialValueFor("radius") ) > 1 then
+					if thisEntity.whirlwind and thisEntity.whirlwind:IsFullyCastable() and AICore:TotalEnemyHeroesInRange( thisEntity,  thisEntity.whirlwind:GetSpecialValueFor("radius") ) > 0 then
 						ExecuteOrderFromTable({
 							UnitIndex = thisEntity:entindex(),
 							OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,

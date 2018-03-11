@@ -26,35 +26,22 @@ function lion_meteor:OnSpellStart()
 	self.meteorTable = self.meteorTable or {}
 
     EmitSoundOn("Hero_Invoker.ChaosMeteor.Cast", caster)
-
-    ParticleManager:FireParticle("particles/units/heroes/hero_invoker/invoker_chaos_meteor_fly.vpcf", PATTACH_POINT, caster, {[0]=point+Vector(0,0,1000),[1]=point,[2]=Vector(1.3,0,0)}) --1.3 is the particle land time
-    
-    local newRadi = caster:FindTalentValue("special_bonus_unique_lion_meteor_2")
-    local randoVect = Vector(RandomInt(-newRadi,newRadi), RandomInt(-newRadi,newRadi), 0)
-    pointRando = point + randoVect
-
+	self:FireMeteor(point, radius)
     if caster:HasTalent("special_bonus_unique_lion_meteor_2") then
-        ParticleManager:FireParticle("particles/units/heroes/hero_invoker/invoker_chaos_meteor_fly.vpcf", PATTACH_POINT, caster, {[0]=pointRando+Vector(0,0,1000),[1]=pointRando,[2]=Vector(1.3,0,0)}) --1.3 is the particle land time
-    end
-
-    Timers:CreateTimer(1.3, function()
-        EmitSoundOnLocationWithCaster(point, "Hero_Invoker.ChaosMeteor.Impact", caster)
-
-        if caster:HasTalent("special_bonus_unique_lion_meteor_2") then
-            EmitSoundOnLocationWithCaster(pointRando, "Hero_Invoker.ChaosMeteor.Impact", caster)
-
-            ParticleManager:FireParticle("particles/units/heroes/hero_invoker/invoker_sun_strike.vpcf", PATTACH_POINT, caster, {[0]=pointRando, [1]=Vector(radius,radius,radius)}) --1.3 is the particle land time
-            local enemies = caster:FindEnemyUnitsInRadius(pointRando, radius, {flag = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES})
-            for _,enemy in pairs(enemies) do
-                enemy:AddNewModifier(caster, self, "modifier_lion_meteor", {Duration = self:GetSpecialValueFor("burn_duration")})
-                self:DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage"), {}, 0)
-            end
-			local distance = self:GetTalentSpecialValueFor("distance")
-			local direction = CalculateDirection(caster:GetAbsOrigin(), pointRando)
-			local projID = self:FireLinearProjectile("particles/units/heroes/hero_invoker/invoker_chaos_meteor.vpcf", direction*self:GetSpecialValueFor("speed"), distance, self:GetSpecialValueFor("radius"), {origin = pointRando}, false, true, self:GetSpecialValueFor("vision_distance"))
-			self.meteorTable[projID] = GameRules:GetGameTime() + 0.51
+        local meteors = caster:FindTalentValue("special_bonus_unique_lion_meteor_2", "count")
+		local newDistance = caster:FindTalentValue("special_bonus_unique_lion_meteor_2")
+		for i = 1, meteors do
+			local pointRando = point + ActualRandomVector(newDistance, 150)
+			self:FireMeteor(pointRando, radius)
 		end
+    end
+end
 
+function lion_meteor:FireMeteor(point, radius)
+	local caster = self:GetCaster()
+	 ParticleManager:FireParticle("particles/units/heroes/hero_invoker/invoker_chaos_meteor_fly.vpcf", PATTACH_POINT, caster, {[0]=point+Vector(0,0,1000),[1]=point,[2]=Vector(1.3,0,0)}) --1.3 is the particle land time
+	 Timers:CreateTimer(1.3, function()
+        EmitSoundOnLocationWithCaster(point, "Hero_Invoker.ChaosMeteor.Impact", caster)
         ParticleManager:FireParticle("particles/units/heroes/hero_invoker/invoker_sun_strike.vpcf", PATTACH_POINT, caster, {[0]=point, [1]=Vector(radius,radius,radius)}) --1.3 is the particle land time
         local enemies = caster:FindEnemyUnitsInRadius(point, radius, {flag = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES})
         for _,enemy in pairs(enemies) do
@@ -71,7 +58,7 @@ function lion_meteor:OnSpellStart()
 		
         local projID = self:FireLinearProjectile("particles/units/heroes/hero_invoker/invoker_chaos_meteor.vpcf", direction*self:GetSpecialValueFor("speed"), distance, self:GetSpecialValueFor("radius"), {origin = point}, false, true, self:GetSpecialValueFor("vision_distance"))
 		self.meteorTable[projID] = GameRules:GetGameTime() + 0.51
-		end)
+	end)
 end
 
 function lion_meteor:OnProjectileThinkHandle(projID)

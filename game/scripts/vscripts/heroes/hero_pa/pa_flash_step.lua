@@ -45,7 +45,7 @@ function pa_flash_step:OnSpellStart()
 				end
 			end
 
-            return FrameTime()
+            return 0
         else
             caster:RemoveModifierByName("modifier_flash_step")
             FindClearSpaceForUnit(caster, caster:GetAbsOrigin(), true)

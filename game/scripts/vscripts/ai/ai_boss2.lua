@@ -52,16 +52,6 @@ if IsServer() then
 						return 0.25
 					end
 					
-					if thisEntity.pierce:IsFullyCastable() and (AICore:NumEnemiesInLine(thisEntity, thisEntity.pierce:GetSpecialValueFor("spear_distance"), thisEntity.pierce:GetSpecialValueFor("spear_width"), true) <= math.min(PlayerResource:FindActivePlayerCount(), 2) or thisEntity:GetAIBehavior() == AI_BEHAVIOR_AGGRESSIVE) then
-						ExecuteOrderFromTable({
-							UnitIndex = thisEntity:entindex(),
-							OrderType = DOTA_UNIT_ORDER_CAST_POSITION,
-							Position = target:GetAbsOrigin(),
-							AbilityIndex = thisEntity.pierce:entindex()
-						})
-						return 0.25
-					end
-					
 					-- BEHAVIOR SPECIFIC
 					if thisEntity.leap:IsFullyCastable() then
 						local attackedByOthers = (AICore:BeingAttacked( thisEntity ) > 1 and target:IsAttackingEntity(thisEntity) )
@@ -98,6 +88,15 @@ if IsServer() then
 							})
 							return 0.25					
 						end
+					end
+					if thisEntity.pierce:IsFullyCastable() and (AICore:NumEnemiesInLine(thisEntity, thisEntity.pierce:GetSpecialValueFor("spear_distance"), thisEntity.pierce:GetSpecialValueFor("spear_width"), true) <= math.min(PlayerResource:FindActivePlayerCount(), 2) or thisEntity:GetAIBehavior() == AI_BEHAVIOR_AGGRESSIVE) then
+						ExecuteOrderFromTable({
+							UnitIndex = thisEntity:entindex(),
+							OrderType = DOTA_UNIT_ORDER_CAST_POSITION,
+							Position = target:GetAbsOrigin(),
+							AbilityIndex = thisEntity.pierce:entindex()
+						})
+						return 0.25
 					end
 				elseif thisEntity.AIstate == AI_STATE_CHASING then
 					local target = AICore:GetHighestPriorityTarget(thisEntity)

@@ -130,7 +130,7 @@ function AICore:AttackHighestPriority( entity )
 			target.threat = target.threat or 0
 			minThreat = target.threat
 		end
-		if not entity:GetTauntTarget() then
+		if not target then
 			local range = entity:GetAttackRange() + entity:GetIdealSpeed() * 1.5
 			local minRange = 99999
 			local enemies = FindUnitsInRadius( entity:GetTeamNumber(), entity:GetAbsOrigin(), nil, minRange, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, flag, 0, false )

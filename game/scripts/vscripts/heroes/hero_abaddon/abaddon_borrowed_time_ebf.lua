@@ -62,10 +62,22 @@ LinkLuaModifier("modifier_abaddon_borrowed_time_active", "heroes/hero_abaddon/ab
 
 function modifier_abaddon_borrowed_time_active:OnCreated()
 	self.aura_radius = self:GetTalentSpecialValueFor("redirect_range_scepter")
+	if IsServer() then
+		self:StartDelayedCooldown()
+	end
 end
 
 function modifier_abaddon_borrowed_time_active:OnRefresh()
 	self.aura_radius = self:GetTalentSpecialValueFor("redirect_range_scepter")
+	if IsServer() then
+		self:StartDelayedCooldown()
+	end
+end
+
+function modifier_abaddon_borrowed_time_active:OnRemoved()
+	if IsServer() then
+		self:EndDelayedCooldown()
+	end
 end
 
 function modifier_abaddon_borrowed_time_active:GetEffectName()

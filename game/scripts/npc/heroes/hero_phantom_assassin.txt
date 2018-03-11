@@ -40,7 +40,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"200 300 400 500 600 700 800"
+				"damage"				"450"
 			}
 			"02"
 			{
@@ -50,7 +50,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_as"				"50"
+				"bonus_as"				"20 40 60 80 100 120 140"
 				"LinkedSpecialBonus"	"special_bonus_unique_pa_flash_step_1"
 			}
 			"04"
@@ -177,23 +177,63 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"bonus_evasion_tooltip"		"20 25 30 35 40 45 50"
+				"bonus_evasion_tooltip"		"25 30 35 40 45 50 55"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"true_evasion"				"10 12.5 15 17.5 20 22.5 25"
+				"true_evasion"				"12.5 15 17.5 20 22.5 25 27.5"
 				"LinkedSpecialBonus"		"special_bonus_unique_phantom_assassin_3"
 			}
 			"03"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"evasion_chance"			"10 12.5 15 17.5 20 22.5 25"
+				"var_type"					"FIELD_FLOAT"
+				"evasion_chance"			"12.5 15 17.5 20 22.5 25 27.5"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
 				"evasion_stacks"			"2 4 6 8 10 12 14"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Phantom Coup de Grace
+	//=================================================================================================================
+	"phantom_assassin_coup_de_grace_ebf"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"LevelsBetweenUpgrades"			"7"
+		"MaxLevel"						"7"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"crit_chance"				"17"
+				"LinkedSpecialBonus"		"special_bonus_unique_phantom_assassin_2"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"crit_bonus"				"400 500 600 700 800 900 1000"
+			}
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"megacrit_chance"			"5"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"megacrit_bonus"			"800 1000 1200 1400 1600 1800 2000"
 			}
 		}
 	}
@@ -212,7 +252,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"25"
+				"value"					"60"
 			}
 		}
 	}

@@ -89,6 +89,7 @@ function modifier_pudge_dismember_lua:OnCreated( kv )
 	self.tick_rate = self:GetAbility():GetTalentSpecialValueFor( "tick_rate" )
 	self.strength_damage = self:GetAbility():GetTalentSpecialValueFor( "strength_damage" )
 	self.stacks = self:GetAbility():GetTalentSpecialValueFor( "scepter_flesh_stacks" )
+	self.healPct = self:GetTalentSpecialValueFor("heal_pct")
 
 	if IsServer() then
 		self:GetParent():InterruptChannel()
@@ -138,7 +139,7 @@ function modifier_pudge_dismember_lua:OnIntervalThink()
 		end
 		local flDamage = self.dismember_damage
 		flDamage = flDamage + ( self:GetCaster():GetStrength() * self.strength_damage )
-		self:GetCaster():HealEvent( flDamage, self:GetAbility(), self:GetCaster() )
+		self:GetCaster():HealEvent( flDamage * self.healPct, self:GetAbility(), self:GetCaster() )
 		local damage = {
 			victim = self:GetParent(),
 			attacker = self:GetCaster(),
@@ -407,7 +408,6 @@ if IsServer() then
 
 		-- Main Hook loop
 		Timers:CreateTimer(tick_rate, function()
-
 			-- Check for valid units in the area
 			local units = FindUnitsInRadius(caster:GetTeamNumber(), hook_loc, nil, hook_width, DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_CREEP, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_INVULNERABLE, FIND_CLOSEST, false)
 			for _,unit in pairs(units) do

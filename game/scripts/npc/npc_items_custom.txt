@@ -8,6 +8,7 @@
 #base "items/item_urn.txt"
 #base "items/item_generic_damage.txt"
 #base "items/item_generic_stats.txt"
+#base "items/item_lifesteal.txt"
 
 
 "DOTAAbilities"
@@ -120,8 +121,8 @@
 			}
 			"09"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"health_percent_lose"		"1 1 2 2"
+				"var_type"				"FIELD_FLOAT"
+				"health_percent_lose"		"1"
 			}
 			"10"
 			{
@@ -326,7 +327,7 @@
 			"09"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"health_percent_lose"		"1 1 2 2"
+				"health_percent_lose"		"1"
 			}
 			"10"
 			{
@@ -531,7 +532,7 @@
 			"09"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"health_percent_lose"		"1 1 2 2"
+				"health_percent_lose"		"1"
 			}
 			"10"
 			{
@@ -736,7 +737,7 @@
 			"09"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"health_percent_lose"		"1 1 2 2"
+				"health_percent_lose"		"1"
 			}
 			"10"
 			{
@@ -945,12 +946,12 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius"		"450"
+				"radius"		"350"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"splash_damage"		"60"
+				"splash_damage"		"35"
 			}
 		}
 	}
@@ -1743,7 +1744,7 @@
 	 			"05"		
 	 			{		
 	 				"var_type"				"FIELD_INTEGER"		
-	 				"bonus_health_regen"		"2000"		
+	 				"bonus_health_regen"		"500"		
 	 			}		
 	 			"06"		
 	 			{		
@@ -4681,541 +4682,6 @@
 	//=================================================================================================================
 	// Helm
 	//=================================================================================================================
-	"item_lifesteal2"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"22027"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"custom/lifesteal2"
-		"ItemKillable"					"1"
-		"ItemSellable"					"1"
-		"ItemDroppable"					"1"
-		
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-		
-	    "AbilityCooldown"               "7.0"
-		"AbilitySharedCooldown"			"hunger"
-		"HasPureCooldown"				"1"
-	    "AbilityManaCost"               "0"
-		"AbilityDuration"				"8.0"
-		
-		"ItemCost"						"2855"
-		"ItemShopTags"					"damage;unique"
-		"ItemQuality"					"artifact"
-		"ItemAliases"					"lifesteal"
-		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_ALWAYS"
-		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-		
-		"precache"
-		{
-			"particle"	"particles/items2_fx/satanic_buff.vpcf"
-			"soundfile"	"sounds/items/item_satanic.vsnd"
-		}
-		
-		"OnSpellStart"
-		{
-			"ApplyModifier"
-			{
-				"ModifierName"	"lifesteal2_buff"
-				"Target"		"CASTER"
-				"Duration"		"%AbilityDuration"
-			}
-			"FireSound"
-			{
-				"EffectName"	"DOTA_Item.Satanic.Activate"
-				"Target"		"CASTER"
-			}
-		}
-	
-		"Modifiers"
-		{
-			"lifesteal2_buff"
-			{
-				"IsBuff"	"1"
-				"EffectName"      "particles/items2_fx/satanic_buff.vpcf"      
-	            "EffectAttachType"  "follow_origin"
-				"OnAttackLanded"
-				{
-					"Lifesteal"
-					{
-						"Target"				"ATTACKER"
-						"LifestealPercent"		"%lifesteal_buff"
-					}
-				}
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE"	"%bonus_damage_pct"
-					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"		"%bonus_damage"
-				}
-			}
-			"modifier_mask_bonus_damage_pct"
-			{
-				"IsBuff"	"1"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE" "%bonus_damage_pct"
-				}
-				"OnAttackLanded"
-				{
-					"FireEffect"
-					{
-						"EffectName"        "particles/generic_gameplay/generic_lifesteal.vpcf"
-						"EffectAttachType"  "follow_origin"
-						"Target"            "CASTER"
-					}
-					"RunScript"
-					{
-						"ScriptFile"	"lua_item/simple_item.lua"
-						"Function"		"AttackHeal"
-					}
-				}
-			}
-			"lifesteal2"
-			{	
-				"IsHidden"		"1"
-				"Passive"	 	"1"
-				"Attributes"    "MODIFIER_ATTRIBUTE_MULTIPLE"
-				
-				"Aura"          "modifier_mask_bonus_damage_pct"
-				"Aura_Radius"   "900"
-				"Aura_Teams"    "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-				"Aura_Types"    "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-				
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"  		"%bonus_health_regen"
-					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"  		"%bonus_mana_regen"
-					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"		"%bonus_armor"
-					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"		"%bonus_strength"
-					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"		"%bonus_damage"
-				}
-			}
-		}
-	
-	
-	
-		// Special	
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_armor"				"10"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_health_regen"		"5"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_strength"			"40"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"				"170"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_damage_pct"				"20"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_mana_regen"		"6"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"lifesteal_buff"		"75"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"heal_on_attack_pct"		"0.5"
-			}
-			"09"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"duration"				"8"
-			}
-		}
-	}
-	//=================================================================================================================
-	// Helm
-	//=================================================================================================================
-	"item_lifesteal3"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"1049"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"custom/lifesteal3"
-		"ItemKillable"					"1"
-		"ItemSellable"					"1"
-		
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-		
-	    "AbilityCooldown"               "7.0"
-		"AbilitySharedCooldown"			"hunger"
-		"HasPureCooldown"				"1"
-	    "AbilityManaCost"               "0"
-		"AbilityDuration"				"8.0"
-		
-		"ItemDroppable"					"1"
-		"ItemCost"						"8265"
-		"ItemShopTags"					"damage;unique"
-		"ItemQuality"					"artifact"
-		"ItemAliases"					"lifesteal"
-		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_ALWAYS"
-		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-		
-		"precache"
-		{
-			"particle"	"particles/items2_fx/satanic_buff.vpcf"
-			"soundfile"	"sounds/items/item_satanic.vsnd"
-		}
-		
-		"OnSpellStart"
-		{
-			"ApplyModifier"
-			{
-				"ModifierName"	"lifesteal3_buff"
-				"Target"		"CASTER"
-				"Duration"		"%AbilityDuration"
-			}
-			"FireSound"
-			{
-				"EffectName"	"DOTA_Item.Satanic.Activate"
-				"Target"		"CASTER"
-			}
-		}
-	
-		"Modifiers"
-		{
-			"lifesteal3_buff"
-			{
-				"IsBuff"		"1"
-				"EffectName"      "particles/items2_fx/satanic_buff.vpcf"      
-	            "EffectAttachType"  "follow_origin"
-				"OnAttackLanded"
-				{
-					"Lifesteal"
-					{
-						"Target"				"ATTACKER"
-						"LifestealPercent"		"%lifesteal_buff"
-					}
-				}
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE"	"%bonus_damage_pct"
-					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"		"%bonus_damage"
-				}
-			}
-			"modifier_mask_bonus_damage_pct"
-			{
-				"IsBuff"	"1"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE" "%bonus_damage_pct"
-				}
-				"OnAttackLanded"
-				{
-					"FireEffect"
-					{
-						"EffectName"        "particles/generic_gameplay/generic_lifesteal.vpcf"
-						"EffectAttachType"  "follow_origin"
-						"Target"            "CASTER"
-					}
-					"RunScript"
-					{
-						"ScriptFile"	"lua_item/simple_item.lua"
-						"Function"		"AttackHeal"
-					}
-				}
-			}
-			"passive"
-			{
-				"Passive" "1"
-				"IsHidden"		"1"
-				"Attributes"    "MODIFIER_ATTRIBUTE_MULTIPLE"
-				
-				"Aura"          "modifier_mask_bonus_damage_pct"
-				"Aura_Radius"   "900"
-				"Aura_Teams"    "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-				"Aura_Types"    "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-				
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"  		"%bonus_health_regen"
-					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"  		"%bonus_mana_regen"
-					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"		"%bonus_armor"
-					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"		"%bonus_strength"
-					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"		"%bonus_damage"
-				}
-			}
-		}
-	
-	
-	
-		// Special	
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_armor"				"15"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_health_regen"		"20"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_strength"			"130"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"				"470"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_damage_pct"		"25"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_mana_regen"		"12"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"lifesteal_buff"			"100"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"heal_on_attack_pct"	"0.75"
-			}
-			"09"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"8.0"
-			}
-		}
-	}
-	//=================================================================================================================
-	// Helm
-	//=================================================================================================================
-	"item_lifesteal4"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"1184"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"BaseClass"						"item_datadriven"
-		"AbilityTextureName"			"custom/lifesteal4"
-		
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-		
-	    "AbilityCooldown"               "7.0"
-		"AbilitySharedCooldown"			"hunger"
-		"HasPureCooldown"				"1"
-	    "AbilityManaCost"               "0"
-		"AbilityDuration"				"8.0"
-		
-		"ItemKillable"					"1"
-		"ItemSellable"					"1"
-		"ItemDroppable"					"1"
-		"ItemCost"						"30000"
-		"ItemShareability"				"ITEM_PARTIALLY_SHAREABLE"
-		"ItemShopTags"					"damage;unique"
-		"ItemQuality"					"artifact"
-		"ItemAliases"					"lifesteal"
-		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_ALWAYS"
-		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-		"precache"
-		{
-			"particle"	"particles/items2_fx/satanic_buff.vpcf"
-			"soundfile"	"sounds/items/item_satanic.vsnd"
-		}
-		
-		"OnSpellStart"
-		{
-			"ApplyModifier"
-			{
-				"ModifierName"	"activeaoeLS4"
-				"Target"		"CASTER"
-				"Duration"		"%AbilityDuration"
-			}
-			"FireSound"
-			{
-				"EffectName"	"DOTA_Item.Satanic.Activate"
-				"Target"		"CASTER"
-			}
-		}
-	
-		"Modifiers"
-		{
-			"lifesteal4_buff"
-			{
-				"IsBuff"	"1"
-				"EffectName"      "particles/items2_fx/satanic_buff.vpcf"      
-	            "EffectAttachType"  "follow_origin"
-				
-				"OnAttackLanded"
-				{
-					"Lifesteal"
-					{
-						"Target"				"ATTACKER"
-						"LifestealPercent"		"%lifesteal_buff"
-					}
-				}
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE"	"%bonus_damage_pct"
-					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"		"%bonus_damage"
-				}
-			}
-			"modifier_mask_bonus_damage_pct"
-			{
-				"IsBuff"	"1"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE" "%bonus_damage_pct"
-				}
-				"OnAttackLanded"
-				{
-					"FireEffect"
-					{
-						"EffectName"        "particles/generic_gameplay/generic_lifesteal.vpcf"
-						"EffectAttachType"  "follow_origin"
-						"Target"            "CASTER"
-					}
-					"RunScript"
-					{
-						"ScriptFile"	"lua_item/simple_item.lua"
-						"Function"		"AttackHeal"
-					}
-				}
-			}
-			"passive"
-			{
-				"Passive" "1"
-				"IsHidden"		"1"
-				"Attributes"    "MODIFIER_ATTRIBUTE_MULTIPLE"
-				
-				"Aura"          "modifier_mask_bonus_damage_pct"
-				"Aura_Radius"   "900"
-				"Aura_Teams"    "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-				"Aura_Types"    "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-				
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"  		"%bonus_health_regen"
-					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"  		"%bonus_mana_regen"
-					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"		"%bonus_armor"
-					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"		"%bonus_str"
-					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"		"%bonus_int"
-					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"			"%bonus_agi"
-					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"		"%bonus_damage"
-				}
-			}
-			"activeaoeLS4"
-			{
-				"IsHidden" "1"
-				"Aura" "lifesteal4_buff"
-				"Aura_Radius" "%radius"
-				"Aura_Teams" "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-				"Aura_Types" "DOTA_UNIT_TARGET_ALL"
-			}
-		}
-	
-	
-	
-		// Special	
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_armor"			"20"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_health_regen"		"500"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_agi"			"350"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_int"			"350"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_str"			"350"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"tooltip_allstats"			"350"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"				"1500"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_damage_pct"		"30"
-			}
-			"09"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_mana_regen"		"16"
-			}
-			"10"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"					"900"
-			}
-			"11"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"lifesteal_buff"			"150"
-			}
-			"12"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"heal_on_attack_pct"	"1"
-			}
-			"13"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"8.0"
-			}
-		}
-	}
-	//=================================================================================================================
-	// Helm
-	//=================================================================================================================
 	"item_lifestealtank"
 	{
 		// General
@@ -6709,12 +6175,12 @@
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius"		"1000"
+				"radius"		"350"
 			}
 			"07"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"splash_damage"		"100"
+				"splash_damage"		"50"
 			}
 			"07"
 			{
@@ -8914,83 +8380,6 @@
 			"01"						"item_platemail"
 		}
 	}
-	//=================================================================================================================
-	// Recipe: LifeSteal2
-	//=================================================================================================================
-	"item_recipe_lifesteal2"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"3026"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"BaseClass"						"item_recipe_arcane_boots"
-		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"	"custom/lifesteal2"
-		
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"0"	
-		"ItemShopTags"					""
-		
-		// Recipe
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemRecipe"					"1"
-		"ItemResult"					"item_lifesteal2"
-		
-		"ItemRequirements"
-		{
-			"01"						"item_vladmir;item_satanic;item_damage_1"
-		}
-	}
-	//=================================================================================================================
-	// Recipe: LifeSteal3
-	//=================================================================================================================
-	"item_recipe_lifesteal3"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"1048"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"BaseClass"						"item_recipe_arcane_boots"
-		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"	"custom/lifesteal3"
-		
-		
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"15"	
-		"ItemShopTags"					""
-		
-		// Recipe
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemRecipe"					"1"
-		"ItemResult"					"item_lifesteal3"
-		"ItemRequirements"
-		{
-			"01"						"item_lifesteal2;item_helm_of_mithril_will;item_damage_2;item_orb_1"
-		}
-	}
-	"item_recipe_lifesteal4"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"1183"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"BaseClass"						"item_recipe_arcane_boots"
-		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"	"custom/lifesteal4"
-		
-		// Item Info
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"2734"	
-		"ItemShopTags"					""
-		
-		// Recipe
-		//-------------------------------------------------------------------------------------------------------------
-		"ItemRecipe"					"1"
-		"ItemResult"					"item_lifesteal4"
-		"ItemRequirements"
-		{
-			"01"						"item_lifesteal3;item_damage_3;item_orb_3"
-		}
-	}
 	"item_recipe_lifestealtank"
 	{
 		// General
@@ -10589,12 +9978,12 @@
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius"		"600"
+				"radius"				"350"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"splash_damage"		"100"
+				"splash_damage"			"40"
 			}
 			"06"
 			{

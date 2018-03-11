@@ -777,7 +777,7 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 		end
 		if not ability:IsAetherAmplified() then filterTable["damage"] = filterTable["damage"] / (1 + (attacker:GetSpellDamageAmp()))/100 end
 	end
-	if victim:IsHero() and not victim:IsRangedAttacker() then
+	if victim:IsRealHero() and not victim:IsRangedAttacker() and (damagetype == 1 or damagetype == 2) then
 		if not (ability and ability:GetName() == "skeleton_king_reincarnation") then
 			filterTable["damage"] = filterTable["damage"] * 0.66
 		end

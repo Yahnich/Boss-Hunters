@@ -20,7 +20,7 @@ function AllyHeal(keys)
 	local duration = ability:GetTalentSpecialValueFor("duration")
 	local healpct = ability:GetTalentSpecialValueFor("heal_per_health")/100
 	local base_heal = ability:GetTalentSpecialValueFor("base_heal")
-	local healtick = (ability.sacrifice*healpct + base_heal)/(duration/tickrate)
+	local healtick = ((ability.sacrifice*healpct + base_heal)/duration)*tickrate
 	if target:GetMaxHealth() - target:GetHealth() < healtick then
 		local difference = healtick - (target:GetMaxHealth() - target:GetHealth())
 		if target:HasModifier("modifier_plague_health_increase") then
@@ -58,7 +58,7 @@ function EnemyDamage(keys)
 	local duration = ability:GetTalentSpecialValueFor("duration")
 	local damagepct = ability:GetTalentSpecialValueFor("damage_per_health")/100
 	local base_damage = ability:GetTalentSpecialValueFor("base_damage")
-	local damagetick = (ability.sacrifice*damagepct+ base_damage)/(keys.caster:GetSpellDamageAmp()*(duration/tickrate))
+	local damagetick = ((ability.sacrifice*damagepct+ base_damage)/duration) * tickrate
 	local damageType = ability:GetAbilityDamageType()
 	if keys.caster:HasScepter() then damageType = DAMAGE_TYPE_PURE end
 	ability.damage_flags = DOTA_DAMAGE_FLAG_HPLOSS
