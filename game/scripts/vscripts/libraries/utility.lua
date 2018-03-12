@@ -1595,12 +1595,13 @@ function ParticleManager:FireParticle(effect, attach, owner, cps)
 	ParticleManager:ReleaseParticleIndex(FX)
 end
 
-function ParticleManager:FireRopeParticle(effect, attach, owner, target, tCP)
+function ParticleManager:FireRopeParticle(effect, attach, owner, target, tCP, sAttachPoint)
 	local FX = ParticleManager:CreateParticle(effect, attach, owner)
 
-	ParticleManager:SetParticleControlEnt(FX, 0, owner, attach, "attach_hitloc", owner:GetAbsOrigin(), true)
+	local attachPoint = sAttachPoint or "attach_hitloc"
+	ParticleManager:SetParticleControlEnt(FX, 0, owner, attach, attachPoint, owner:GetAbsOrigin(), true)
 	if target.GetAbsOrigin then -- npc (has getabsorigin function
-		ParticleManager:SetParticleControlEnt(FX, 1, target, attach, "attach_hitloc", target:GetAbsOrigin(), true)
+		ParticleManager:SetParticleControlEnt(FX, 1, target, attach, attachPoint, target:GetAbsOrigin(), true)
 	else
 		ParticleManager:SetParticleControl(FX, 1, target) -- vector
 	end

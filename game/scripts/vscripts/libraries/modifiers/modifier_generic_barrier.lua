@@ -1,13 +1,15 @@
 modifier_generic_barrier = class({})
 
 function modifier_generic_barrier:IsHidden()
-	return true
+	return false
 end
 
 if IsServer() then
 	function modifier_generic_barrier:OnCreated(kv)
 		self.barrier = kv.barrier or 0
-		if IsServer() then self:StartIntervalThink(0.3) end
+		self:StartIntervalThink(0.3)
+		self.nfx = ParticleManager:CreateParticle("particles/items3_fx/lotus_orb_shield.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
+		ParticleManager:SetParticleControlEnt(self.nfx, 0, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_hitloc", self:GetParent():GetAbsOrigin(), true)
 	end
 
 	function modifier_generic_barrier:OnIntervalThink()
@@ -18,6 +20,12 @@ if IsServer() then
 	function modifier_generic_barrier:OnRefresh(kv)
 		self.barrier = (self.barrier or 0) + kv.barrier
 		self.ModifierBarrier_Bonus = function() return self.barrier end
+		self.nfx = ParticleManager:CreateParticle("particles/items3_fx/lotus_orb_shield.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
+		ParticleManager:SetParticleControlEnt(self.nfx, 0, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_hitloc", self:GetParent():GetAbsOrigin(), true)
+	end
+
+	function modifier_generic_barrier:OnRemoved()
+		ParticleManager:DestroyParticle(self.nfx, false)
 	end
 	
 	function modifier_generic_barrier:GetAttributes(kv)

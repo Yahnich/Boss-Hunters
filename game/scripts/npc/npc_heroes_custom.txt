@@ -1451,7 +1451,18 @@
 		"override_hero"			"npc_dota_hero_tinker"
 		"Ability1"				"tinker_laser_ebf"
 		"Ability2"				"tinker_missile_ebf"
-		"Ability6"				"tinker_rearm_datadriven"
+		"Ability3"				"tinker_march"
+		"Ability4"				"tinker_turret"
+		"Ability6"				"tinker_rearm_ebf"
+
+		"Ability10"       		"special_bonus_unique_tinker_laser_ebf_1"
+	    "Ability11"       		"special_bonus_unique_tinker_laser_ebf_2"
+	    "Ability12"				"special_bonus_unique_tinker_missile_ebf_1"
+	    "Ability13"				"special_bonus_unique_tinker_missile_ebf_2"
+	    "Ability14"				"special_bonus_unique_tinker_march_1"
+	    "Ability15"				"special_bonus_unique_tinker_march_2"
+	    "Ability16"				"special_bonus_unique_tinker_rearm_ebf_1"
+	    "Ability17"				"special_bonus_unique_tinker_rearm_ebf_2"
 	}
 	"npc_dota_hero_tiny"
 	{

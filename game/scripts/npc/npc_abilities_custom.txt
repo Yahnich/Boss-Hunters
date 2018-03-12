@@ -52,6 +52,7 @@
 #base "heroes/hero_lina.txt"
 #base "heroes/hero_legion_commander.txt"
 #base "heroes/hero_phoenix.txt"
+#base "heroes/hero_tinker.txt"
 
 "DOTAAbilities"
 {
@@ -6323,7 +6324,7 @@
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"100 100 100 100"
+		"AbilityManaCost"				"100"
 	
 		"OnSpellStart"
 		{
@@ -6435,7 +6436,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"impact_radius"			"210"
+				"impact_radius"			"250"
 			}
 			"02"
 			{
@@ -6479,7 +6480,7 @@
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"500 600 700 800 900"
+		"AbilityCastRange"				"900"
 		"AbilityCastPoint"				"1.3"
 	
 		// Cost
@@ -6503,7 +6504,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"damage"				"1000.0 1000.0 1250.0 1500.0"
+				"damage"				"2000"
 			}
 			"04"
 			{
@@ -6661,7 +6662,7 @@
 		
 		// Damage.
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"					"1200 1800"
+		"AbilityDamage"					"3200 5800"
 			
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -8071,7 +8072,7 @@
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"0"
-		"AbilityCastPoint"				"0.35 0.35 0.35 0.35"
+		"AbilityCastPoint"				"0.35"
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -8084,7 +8085,7 @@
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"80 95 105 115"
+		"AbilityManaCost"				"115"
 	
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
@@ -25608,365 +25609,6 @@
 				}
 			}
 		}
-	}
-	//=================================================================================================================
-	// Tinker: Laser
-	//=================================================================================================================
-	"tinker_laser_ebf"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"lua_abilities/heroes/tinker"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"	
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
-		"AbilityTextureName"			"tinker_laser"
-		"FightRecapLevel"				"1"
-		"HasScepterUpgrade"				"1"
-		"AbilitySound"					"Hero_Tinker.Laser"
-		"LevelsBetweenUpgrades"			"6"
-		"MaxLevel"						"7"
-		"RequiredLevel"					"6"
-		
-		"precache"
-		{
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_tinker.vsndevts"
-			"particle"					"particles/units/heroes/hero_tinker/tinker_laser.vpcf"
-			"particle"					"particles/units/heroes/hero_tinker/tinker_laser_debuff.vpcf"
-		}
-		
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"650"
-		"AbilityCastPoint"				"0.53 0.53 0.53 0.53"
-	
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"14.0 14.0 14.0 14.0"
-	
-	
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"95 120 145 170"
-	
-		// Stats
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityModifierSupportValue"	"0.3"	// Primarily about the damageo
-	
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"miss_rate"				"70"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"4.5"
-			}		
-			"03"	
-			{
-				"var_type"				"FIELD_INTEGER"
-				"laser_damage"			"1000 2500 5000 10000 20000 40000 80000"
-				"LinkedSpecialBonus"	"special_bonus_unique_tinker"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"cast_range_tooltip"	"650"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"cast_range_scepter"	"650"
-			}
-		}
-	}
-	"tinker_missile_ebf"
-	{
-	    // General
-	    //-------------------------------------------------------------------------------------------------------------
-	    "BaseClass"             "ability_datadriven"
-	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-	    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
-	    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
-	    "FightRecapLevel"               "1"
-	    "AbilityTextureName"			"tinker_heat_seeking_missile"
-	    "MaxLevel"						"7"
-		"LevelsBetweenUpgrades"			"6"
-		"RequiredLevel"					"7"
-		"HasScepterUpgrade"				"1"
-	
-	    // Casting
-	    //-------------------------------------------------------------------------------------------------------------
-	    "AbilityCastPoint"              "0 0 0 0"
-	    
-	    // Time     
-	    //-------------------------------------------------------------------------------------------------------------
-	    "AbilityCooldown"               "25.0 25.0 25.0 25.0"
-	
-	    // Damage.
-	    //-------------------------------------------------------------------------------------------------------------
-	    "AbilityDamage"                 "1000 2000 4000 8000 16000 32000 64000"
-	
-	    // Cost
-	    //-------------------------------------------------------------------------------------------------------------
-	    "AbilityManaCost"               "120 140 160 180 200 400 800"
-	
-	    // Special
-	    //-------------------------------------------------------------------------------------------------------------
-	    "AbilitySpecial"
-	    { 
-	        "01"
-	        {
-	            "var_type"          "FIELD_INTEGER"
-	            "radius"            "1000 1250 1500 1750 2000 2250 2500"
-	        }
-	        "02"
-	        {
-	            "var_type"          "FIELD_INTEGER"
-	            "targets"           "1 2 2 2 3 3 4"
-	        }
-	        "03"
-	        {
-	            "var_type"          "FIELD_INTEGER"
-	            "speed"             "500 600 700 800 900 1000 1500"
-	        }
-	        "04"
-	        {
-	            "var_type"          "FIELD_INTEGER"
-	            "damage_scepter"    "1500 3000 6000 12000 24000 48000 96000"
-	        }
-	        "05"
-	        {
-	            "var_type"          "FIELD_INTEGER"
-	            "radius_scepter"             "3000"
-	        }
-	        "06"
-	        {
-	            "var_type"          "FIELD_INTEGER"
-	            "targets_scepter"             "2 4 4 6 6 8 8"
-	        }
-	    }
-	    
-	    // Datadriven
-	    //-------------------------------------------------------------------------------------------------------------
-	    "precache"
-	    {
-	        "soundfile"             "soundevents/game_sounds_heroes/game_sounds_tinker.vsndevts"
-	        "particle"              "particles/units/heroes/hero_tinker/tinker_missile.vpcf"
-	        "particle"              "particles/units/heroes/hero_tinker/tinker_missle_explosion.vpcf"
-	        "particle"              "particles/units/heroes/hero_tinker/tinker_missile_dud.vpcf"
-	    }
-	    
-	    "OnSpellStart"
-	    {
-	        "FireSound"
-	        {
-	            "Target"            "CASTER"
-	            "EffectName"        "Hero_Tinker.Heat-Seeking_Missile"
-	        }
-	    
-	        "RunScript"
-	        {
-	            "ScriptFile"        "lua_abilities/heroes/tinker.lua"
-	            "Function"          "heat_seeking_missile_seek_targets"
-	        }
-	    }
-	    
-	    "OnProjectileHitUnit"
-	    {
-	        "FireSound"
-	        {
-	            "Target"            "TARGET"
-	            "EffectName"        "Hero_Tinker.Heat-Seeking_Missile.Impact"
-	        }
-	    
-	        "FireEffect"
-	        {
-	            "Target"            "TARGET"
-	            "EffectName"        "particles/units/heroes/hero_tinker/tinker_missle_explosion.vpcf"
-	            "EffectAttachType"  "start_at_customorigin"
-	            "ControlPointEntities"
-	            {
-	                "TARGET"        "attach_origin"
-	            }
-	        }
-	    
-	        "RunScript"
-	        {
-	        	"Target"			"TARGET"
-	            "ScriptFile"        "lua_abilities/heroes/tinker.lua"
-	            "Function"          "heat_seeking_missile_seek_damage"
-	        }
-	    }
-	    
-	    "Modifiers"
-	    {
-	        "modifier_heat_seeking_missile_dud"
-	        {
-	            "IsHidden"          "1"
-	            "IsPurgable"        "0"
-	            
-	            "Duration"          "1.0"
-	            
-	            "EffectName"        "particles/units/heroes/hero_tinker/tinker_missile_dud.vpcf"
-	            "EffectAttachType"  "start_at_origin"
-	            
-	            "OnCreated"
-	            {
-	                "FireSound"
-	                {
-	                    "Target"    "TARGET"
-	                    "EffectName"    "Hero_Tinker.Heat-Seeking_Missile_Dud"
-	                }
-	            }
-	        }
-	    }
-	}
-	"tinker_rearm_datadriven"
-	{
-	    // General
-	    //-------------------------------------------------------------------------------------------------------------
-	    "BaseClass"             "ability_datadriven"
-	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
-	    "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
-	    "AbilityTextureName"			"tinker_rearm"
-	    "AbilityCastAnimation"          "ACT_DOTA_CHANNEL_ABILITY_4"
-	    "MaxLevel"						"7"
-		"LevelsBetweenUpgrades"			"7"
-	
-	    // Casting
-	    //-------------------------------------------------------------------------------------------------------------
-	    "AbilityCastPoint"              "0.53 0.53 0.53 0.53"
-	    "AbilityChannelTime"            "3 2.5 2 1.5 1 0.5 0.2"
-	    
-	    // Time     
-	    //-------------------------------------------------------------------------------------------------------------
-	    "AbilityCooldown"               "0"
-	
-	    // Cost
-	    //-------------------------------------------------------------------------------------------------------------
-	    "AbilityManaCost"				"25 50 75 125 250 500 1000"
-	    
-	    // Special
-	    //-------------------------------------------------------------------------------------------------------------
-	    "AbilitySpecial"
-	    {
-	        "01"
-	        {
-	            "var_type"              "FIELD_FLOAT"
-	            "channel_tooltip"           "5 4 3 2 1 0.5 0.2"
-	        }
-	    }
-	    
-	    // Data Driven
-	    //-------------------------------------------------------------------------------------------------------------
-	    "precache"
-	    {
-	        "soundfile"             "soundevents/game_sounds_heroes/game_sounds_tinker.vsndevts"
-	        "particle"              "particles/units/heroes/hero_tinker/tinker_rearm.vpcf"
-	    }
-	    
-	    "OnAbilityPhaseStart"
-	    {
-	        "FireSound"
-	        {
-	            "Target"            "CASTER"
-	            "EffectName"        "Hero_Tinker.RearmStart"
-	        }
-	    }
-	    
-	    "OnSpellStart"
-	    {
-	        "FireSound"
-	        {
-	            "Target"            "CASTER"
-	            "EffectName"        "Hero_Tinker.Rearm"
-	        }
-	    
-	        "RunScript"
-	        {
-	            "ScriptFile"        "lua_abilities/heroes/tinker.lua"
-	            "Function"          "rearm_start"
-	        }
-	    }
-	    
-	    "OnChannelInterrupted"
-	    {
-	        "RemoveModifier"
-	        {
-	            "Target"            "CASTER"
-	            "ModifierName"      "modifier_rearm_level_1_datadriven"
-	        }
-	        
-	        "RemoveModifier"
-	        {
-	            "Target"            "CASTER"
-	            "ModifierName"      "modifier_rearm_level_2_datadriven"
-	        }
-	        
-	        "RemoveModifier"
-	        {
-	            "Target"            "CASTER"
-	            "ModifierName"      "modifier_rearm_level_3_datadriven"
-	        }
-	    }
-	    
-	    "OnChannelSucceeded"
-	    {
-	        "RunScript"
-	        {
-	            "ScriptFile"        "lua_abilities/heroes/tinker.lua"
-	            "Function"          "rearm_refresh_cooldown"
-	        }
-	    }
-	    
-	    "Modifiers"
-	    {
-	        "modifier_rearm_level_1_datadriven"
-	        {
-	            "IsHidden"          "0"
-	        
-	            "Duration"          "%channel_tooltip"
-	            
-	            "EffectName"        "particles/units/heroes/hero_tinker/tinker_rearm.vpcf"
-	            "EffectAttachType"  "follow_origin"
-	            
-	            "OverrideAnimation" "ACT_DOTA_TINKER_REARM1"
-	        }
-	        
-	        "modifier_rearm_level_2_datadriven"
-	        {
-	            "IsHidden"          "0"
-	        
-	            "Duration"          "%channel_tooltip"
-	            
-	            "EffectName"        "particles/units/heroes/hero_tinker/tinker_rearm.vpcf"
-	            "EffectAttachType"  "follow_origin"
-	            
-	            "OverrideAnimation" "ACT_DOTA_TINKER_REARM2"
-	        }
-	        
-	        "modifier_rearm_level_3_datadriven"
-	        {
-	            "IsHidden"          "0"
-	        
-	            "Duration"          "%channel_tooltip"
-	            
-	            "EffectName"        "particles/units/heroes/hero_tinker/tinker_rearm.vpcf"
-	            "EffectAttachType"  "follow_origin"
-	            
-	            "OverrideAnimation" "ACT_DOTA_TINKER_REARM3"
-	        }
-	    }
 	}
 	//=================================================================================================================
 	// Treant Protector: Great Protector
