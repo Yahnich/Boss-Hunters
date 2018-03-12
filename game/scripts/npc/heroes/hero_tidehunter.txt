@@ -236,6 +236,7 @@
 				"var_type"				"FIELD_INTEGER"
 				"damage"				"1500 2500 4500 8500 16500 32500 64500"
 				"LinkedSpecialBonus"	"special_bonus_unique_tide_tongue_whip_1"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
 			"02"
 			{
@@ -350,7 +351,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"500"
+				"value"					"800"
 			}
 		}
 	}
@@ -425,8 +426,8 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"2500"
+				"var_type"				"FIELD_FLOAT"
+				"value"					"1.5"
 			}
 		}
 	}

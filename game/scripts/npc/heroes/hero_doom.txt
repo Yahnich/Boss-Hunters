@@ -162,7 +162,7 @@
 			"02"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"burn_damage_pct"				"1.6"
+				"burn_damage_pct"				"1.3"
 				"LinkedSpecialBonus"			"special_bonus_unique_doom_infernal_blade_ebf_2"
 				"CalculateSpellDamageTooltip"	"0"
 			}
@@ -278,7 +278,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"10"
+				"value"					"6"
 			}
 		}
 	}
@@ -297,7 +297,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"50"
+				"value"					"25"
 			}
 		}
 	}
@@ -353,8 +353,8 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"1"
+				"var_type"				"FIELD_FLOAT"
+				"value"					"0.5"
 			}
 		}
 	}

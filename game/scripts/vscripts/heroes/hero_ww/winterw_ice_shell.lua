@@ -44,7 +44,7 @@ function modifier_ice_shell:OnIntervalThink()
     self:GetParent():HealEvent(health, self:GetAbility(), self:GetCaster())
 
     if self:GetCaster():HasTalent("special_bonus_unique_winterw_frozen_ice_shell_2") then
-	    local enemies = self:GetCaster():FindEnemyUnitsInRadius(self:GetParent():GetAbsOrigin(), 500, {})
+	    local enemies = self:GetCaster():FindEnemyUnitsInRadius(self:GetParent():GetAbsOrigin(), 750, {})
 		for _,enemy in pairs(enemies) do
 			enemy:AddChill(self:GetAbility(), self:GetCaster(), self:GetCaster():FindTalentValue("special_bonus_unique_winterw_frozen_ice_shell_2"))
 			enemy:SetChillCount(enemy:GetChillCount()+4)

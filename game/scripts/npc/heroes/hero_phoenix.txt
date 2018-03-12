@@ -118,7 +118,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"2"
+				"value"					"4"
 			}
 		}
 	}
@@ -374,7 +374,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"250"
+				"value"					"300"
 			}
 		}
 	}
@@ -488,7 +488,7 @@
 			"05"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"stun_duration"		"2.0"
+				"stun_duration"		"1.5"
 				"LinkedSpecialBonus" "special_bonus_unique_phenx_egg_1"
 			}
 			"05"
@@ -514,7 +514,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"1.5"
+				"value"					"2.5"
 			}
 		}
 	}

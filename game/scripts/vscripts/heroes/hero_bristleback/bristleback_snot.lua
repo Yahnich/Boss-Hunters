@@ -78,8 +78,10 @@ if IsServer() then
 	end
 	
 	function modifier_bristleback_snot_autocast:OnIntervalThink()
-		if self:GetAbility():IsCooldownReady() and self:GetAbility():GetAutoCastState() and self:GetCaster():IsAlive() then
+		if self:GetAbility():IsCooldownReady() and self:GetAbility():GetAutoCastState() and self:GetCaster():IsAlive() and self:GetAbility():GetManaCost(-1) <= self:GetCaster():GetMana() then
 			self:GetAbility():CastSpell()
+		elseif caster:GetMana() < ability:GetManaCost(-1) then
+			self:GetAbility():ToggleAutoCast()
 		end
 	end
 end

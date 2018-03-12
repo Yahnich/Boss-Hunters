@@ -58,6 +58,8 @@ if IsServer() then
 		local ability = self:GetAbility()
 		if ability:GetAutoCastState() and caster:IsAlive() and ability:IsCooldownReady() and caster:GetMana() >= ability:GetManaCost(-1) then
 			ability:Spray(false)
+		elseif caster:GetMana() < ability:GetManaCost(-1) then
+			ability:ToggleAutoCast()
 		end
 	end
 end

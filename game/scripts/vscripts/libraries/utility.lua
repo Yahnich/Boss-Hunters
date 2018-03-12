@@ -1570,7 +1570,8 @@ function ParticleManager:FireWarningParticle(position, radius)
 end
 
 function ParticleManager:FireLinearWarningParticle(vStartPos, vEndPos, vWidth)
-	local width = Vector(vWidth, vWidth, vWidth)
+	local fWidth = vWidth or 50
+	local width = Vector(fWidth, fWidth, fWidth)
 	local fx = ParticleManager:FireParticle("particles/range_ability_line.vpcf", PATTACH_WORLDORIGIN, nil, {[0] = vStartPos,
 																											[1] = vEndPos,
 																											[2] = width} )																						

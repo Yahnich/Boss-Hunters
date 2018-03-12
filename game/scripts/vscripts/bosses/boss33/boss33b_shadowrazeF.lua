@@ -11,7 +11,7 @@ function boss33b_shadowrazeF:OnAbilityPhaseStart(forceWarning, direction, positi
 	if not belowHPThreshold then
 		ParticleManager:FireWarningParticle(GetGroundPosition( (position or caster:GetAbsOrigin()) + vDir * distance, caster), radius)
 	else
-		ParticleManager:FireLinearWarningParticle(position or caster:GetAbsOrigin(), vPos  + vDir * (distance/3) * self:GetSpecialValueFor("phase2_raze_count"))
+		ParticleManager:FireLinearWarningParticle(vPos, vPos  + vDir * (distance/3) * self:GetSpecialValueFor("phase2_raze_count"), radius)
 	end
 	return true
 end

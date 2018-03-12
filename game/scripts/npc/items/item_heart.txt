@@ -1,0 +1,382 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Hearth Of Titan
+	//=================================================================================================================
+	"item_heart_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1153"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityCooldown"				"13"
+		"AbilitySharedCooldown"			"heart"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_heart"
+		"AbilityTextureName"			"custom/heart_titan"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		
+		"ItemDroppable"					"1"
+		"ItemCost"						"3380"
+		"ItemShopTags"					"damage;unique"
+		"ItemQuality"					"artifact"
+		"ItemAliases"					"heart"
+		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_ALWAYS"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"health_regen_percent"		"0.5"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"max_stacks"				"5"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_strength"			"250"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_health_max"			"2000"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"duration"					"3.5"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"active_regen"				"7.5"
+			}
+			"07"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"stack_regen_melee"			"0.5"
+			}
+			"08"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"stack_regen_ranged"		"1"
+			}
+		}
+	}
+	"item_heart_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"4896"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityCooldown"				"13"
+		"AbilitySharedCooldown"			"heart"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_heart"
+		"AbilityTextureName"			"custom/heart_titan"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		
+		"ItemDroppable"					"1"
+		"ItemCost"						"3380"
+		"ItemShopTags"					"damage;unique"
+		"ItemQuality"					"artifact"
+		"ItemAliases"					"heart"
+		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_ALWAYS"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"health_regen_percent"		"0.5"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"max_stacks"				"7"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_strength"			"500"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_health_max"			"8000"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"duration"					"3.5"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"active_regen"				"10.5"
+			}
+			"07"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"stack_regen_melee"			"0.5"
+			}
+			"08"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"stack_regen_ranged"		"1"
+			}
+		}
+	}
+	"item_heart_4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"4896"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityCooldown"				"13"
+		"AbilitySharedCooldown"			"heart"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_heart"
+		"AbilityTextureName"			"custom/heart_titan"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		
+		"ItemDroppable"					"1"
+		"ItemCost"						"3380"
+		"ItemShopTags"					"damage;unique"
+		"ItemQuality"					"artifact"
+		"ItemAliases"					"heart"
+		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_ALWAYS"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"health_regen_percent"		"0.5"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"max_stacks"				"9"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_strength"			"2000"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_health_max"			"20000"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"duration"					"3.5"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"active_regen"				"13.5"
+			}
+			"07"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"stack_regen_melee"			"0.5"
+			}
+			"08"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"stack_regen_ranged"		"1"
+			}
+		}
+	}
+	"item_heart_4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"4896"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityCooldown"				"13"
+		"AbilitySharedCooldown"			"heart"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_heart"
+		"AbilityTextureName"			"custom/heart_titan"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		
+		"ItemDroppable"					"1"
+		"ItemCost"						"3380"
+		"ItemShopTags"					"damage;unique"
+		"ItemQuality"					"artifact"
+		"ItemAliases"					"heart"
+		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_ALWAYS"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"health_regen_percent"		"0.5"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"max_stacks"				"11"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_strength"			"8000"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_health_max"			"80000"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"duration"					"3.5"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"active_regen"				"16.5"
+			}
+			"07"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"stack_regen_melee"			"0.5"
+			}
+			"08"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"stack_regen_ranged"		"1"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Recipe: TITAN
+	//=================================================================================================================
+	"item_recipe_heart_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1152"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"	"custom/heart_titan"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"20"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_heart_2"
+		"ItemRequirements"
+		{
+			"01"						"item_heart;item_orb_1"
+		}
+	}
+	//=================================================================================================================
+	// Recipe: TITAN
+	//=================================================================================================================
+	"item_recipe_heart_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1055"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"	"custom/heart_3"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"140"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_heart_3"
+		"ItemRequirements"
+		{
+			"01"						"item_heart_2;item_orb_2"
+		}
+	}
+	//=================================================================================================================
+	// Recipe: TITAN
+	//=================================================================================================================
+	"item_recipe_heart_4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1055"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"	"custom/heart_divine"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"340"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_heart_4"
+		"ItemRequirements"
+		{
+			"01"						"item_heart_3;item_orb_3"
+		}
+	}
+	//=================================================================================================================
+	// Recipe: TITAN
+	//=================================================================================================================
+	"item_recipe_heart_5"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1223"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"custom/heart_bahamut"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"540"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_heart_5"
+		"ItemRequirements"
+		{
+			"01"						"item_heart_4;item_orb_4"
+		}
+	}
+}

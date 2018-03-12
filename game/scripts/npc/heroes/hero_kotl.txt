@@ -113,7 +113,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"100"
+				"value"					"125"
 			}
 		}
 	}
@@ -177,7 +177,7 @@
 			"03"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"stun_duration"				"2.0"
+				"stun_duration"				"1.0"
 				"LinkedSpecialBonus"		"special_bonus_unique_kotl_power_leak_1"
 			}
 			"04"
@@ -203,7 +203,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"1"
+				"value"					"1.5"
 			}
 		}
 	}
@@ -529,7 +529,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"20"
+				"value"					"25"
 			}
 		}
 	}
