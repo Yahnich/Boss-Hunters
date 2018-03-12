@@ -3509,7 +3509,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"blast_stun_duration"	"2.0"
+				"blast_stun_duration"	"1.0"
 			}
 			
 			"03"
