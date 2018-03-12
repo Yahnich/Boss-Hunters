@@ -100,7 +100,7 @@
   "npc_dota_hero_magnataur" "1"
   "npc_dota_hero_centaur" "1"
   "npc_dota_hero_slark" "1"
-  "npc_dota_hero_shredder" "1"
+  "npc_dota_hero_shredder" "0"
   "npc_dota_hero_medusa" "1"
   "npc_dota_hero_troll_warlord" "1"
   "npc_dota_hero_tusk" "1"

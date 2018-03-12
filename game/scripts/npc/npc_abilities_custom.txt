@@ -53,6 +53,7 @@
 #base "heroes/hero_legion_commander.txt"
 #base "heroes/hero_phoenix.txt"
 #base "heroes/hero_tinker.txt"
+#base "heroes/hero_timbersaw.txt"
 
 "DOTAAbilities"
 {
@@ -820,7 +821,7 @@
 			"01"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"enfeeble_attack_reduction"		"-200 -600 -1800 -5000 -20000 -60000 -200000"
+				"enfeeble_attack_reduction"		"-20 -60 -180 -500 -2000 -6000 -20000"
 				"LinkedSpecialBonus"			"special_bonus_unique_bane_1"
 			}
 			"02"
@@ -935,7 +936,7 @@
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"				"8"
-		"AbilityDuration"				"1.5"
+		"AbilityDuration"				"1.0"
 	
 		// Damage.
 		//-------------------------------------------------------------------------------------------------------------
@@ -6446,7 +6447,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"35000"
+				"damage"				"999999"
 			}
 			"04"
 			{
@@ -6504,7 +6505,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"damage"				"2000"
+				"damage"				"5000"
 			}
 			"04"
 			{
@@ -6662,7 +6663,7 @@
 		
 		// Damage.
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"					"3200 5800"
+		"AbilityDamage"					"6200 8800"
 			
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -20493,149 +20494,6 @@
 			{
 				"var_type"					"FIELD_FLOAT"
 				"trap_duration"				"5.0"
-			}
-		}
-	}
-	"shredder_bonesplitter"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"				"ability_datadriven"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"FightRecapLevel"				"1"
-		"AbilityTextureName"			"custom/shredder_bonesplitter"
-		"LevelsBetweenUpgrades"			"5"
-		"MaxLevel"						"7"
-		"RequiredLevel"					"7"
-	
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"300"
-		"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
-	
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"8.0 8.0 8.0 8.0"
-	
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"10 25 50 75 125 250 500"
-		"AbilityThreat"					"50"		
-		
-		"precache"
-		{
-			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_shredder.vsndevts"
-			"particle" 			"particles/units/heroes/hero_shredder/shredder_whirling_death.vpcf"
-		}
-	
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"whirling_radius"			"500"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"whirling_damage"			"1200 2400 4800 10000 20000 40000 80000"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"whirling_tick"				"0.3"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"stat_loss_pct"				"-24"
-				"LinkedSpecialBonus"		"special_bonus_unique_timbersaw"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"7.0"
-			}
-		}
-		"OnSpellStart"
-		{
-			"RunScript"
-			{
-				"ScriptFile" "lua_abilities/heroes/shredder"
-				"Function" "InitDeath"
-			}
-			"ActOnTargets"
-	        {
-	            "Target"
-	            {
-					"Center"    "CASTER"
-					"Radius"    "%whirling_radius"
-					"Teams"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
-					"Types"     "DOTA_UNIT_TARGET_ALL"
-	            }
-	            "Action"    
-	            {
-					"ApplyModifier"
-					{
-						"ModifierName" 	"modifier_bonesplitter_stat_loss"
-						"Target"        "TARGET"
-					}
-					"RunScript"
-					{
-						"ScriptFile" "lua_abilities/heroes/shredder"
-						"Function" "StatLoss"
-					}
-				}
-	        }
-			"FireEffect"
-			{
-				"EffectName"		"particles/units/heroes/hero_shredder/shredder_whirling_death.vpcf"
-				"EffectAttachType"	"follow_origin"
-				"Target"			"CASTER"
-			}
-			"FireSound"
-			{
-				"EffectName"	"Hero_Shredder.WhirlingDeath.Cast"
-				"Target"		"CASTER"
-			}
-		}
-		"Modifiers"
-		{
-			"modifier_bonesplitter_stat_loss"
-			{
-				"Duration" "%duration"
-				"OnCreated"
-				{
-					"FireSound"
-					{
-						"EffectName"	"Hero_Shredder.WhirlingDeath.Damage"
-						"Target"		"CASTER"
-					}
-				}
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE" "%stat_loss_pct"
-				}
-				"OnDestroy"
-				{
-					"RunScript"
-				    {
-				        "ScriptFile" "lua_abilities/heroes/shredder"
-				        "Function" "RevertStatLoss"
-				    }
-				}
-			}
-			"modifier_bonesplitter_stat_loss_stacks_armor"
-			{
-				"IsHidden"	"1"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "-1"
-				}
 			}
 		}
 	}
