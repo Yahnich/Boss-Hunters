@@ -115,7 +115,7 @@ end
 function modifier_item_lifesteal_aura:OnTakeDamage(params)
 	if params.attacker == self:GetParent() and not params.inflictor then
 		local lifesteal = self.lifesteal
-		if params.attacker:HasModifier("modifier_item_lifesteal_active") then lifesteal = self.unholyLifesteal end
+		if params.attacker:HasModifier("modifier_item_lifesteal_active") then lifesteal = self:GetAbility():GetSpecialValueFor("lifesteal_buff") / 100 end
 		local flHeal = params.damage * lifesteal
 		params.attacker:HealEvent(flHeal, self:GetAbility(), params.attacker)
 	end
