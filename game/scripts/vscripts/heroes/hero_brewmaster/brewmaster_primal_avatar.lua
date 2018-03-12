@@ -45,6 +45,10 @@ function modifier_brewmaster_primal_avatar:OnDestroy()
 	if IsServer() then self:GetAbility():EndDelayedCooldown() end
 end
 
+function modifier_brewmaster_primal_avatar:CheckState()
+	return {[MODIFIER_STATE_MAGIC_IMMUNE] = true}
+end
+
 function modifier_brewmaster_primal_avatar:DeclareFunctions()
 	return {MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE_MIN, 
 			MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,

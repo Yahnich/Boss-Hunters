@@ -1,4 +1,4 @@
-"DOTAAbilities"
+"ItemHeart"
 {
 	//=================================================================================================================
 	// Hearth Of Titan
@@ -19,7 +19,7 @@
 		
 		"ItemDroppable"					"1"
 		"ItemCost"						"3380"
-		"ItemShopTags"					"damage;unique"
+		"ItemShopTags"					"strength;health"
 		"ItemQuality"					"artifact"
 		"ItemAliases"					"heart"
 		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_ALWAYS"
@@ -31,7 +31,7 @@
 		{
 			"01"
 			{
-				"var_type"					"FIELD_INTEGER"
+				"var_type"					"FIELD_FLOAT"
 				"health_regen_percent"		"0.5"
 			}
 			"02"
@@ -42,7 +42,7 @@
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"bonus_strength"			"250"
+				"bonus_strength"			"150"
 			}
 			"04"
 			{
@@ -51,22 +51,22 @@
 			}
 			"05"
 			{
-				"var_type"					"FIELD_INTEGER"
+				"var_type"					"FIELD_FLOAT"
 				"duration"					"3.5"
 			}
 			"06"
 			{
-				"var_type"					"FIELD_INTEGER"
+				"var_type"					"FIELD_FLOAT"
 				"active_regen"				"7.5"
 			}
 			"07"
 			{
-				"var_type"					"FIELD_INTEGER"
+				"var_type"					"FIELD_FLOAT"
 				"stack_regen_melee"			"0.5"
 			}
 			"08"
 			{
-				"var_type"					"FIELD_INTEGER"
+				"var_type"					"FIELD_FLOAT"
 				"stack_regen_ranged"		"1"
 			}
 		}
@@ -81,13 +81,13 @@
 		"AbilitySharedCooldown"			"heart"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_heart"
-		"AbilityTextureName"			"custom/heart_titan"
+		"AbilityTextureName"			"custom/heart_power"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		
 		"ItemDroppable"					"1"
 		"ItemCost"						"3380"
-		"ItemShopTags"					"damage;unique"
+		"ItemShopTags"					"strength;health"
 		"ItemQuality"					"artifact"
 		"ItemAliases"					"heart"
 		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_ALWAYS"
@@ -99,7 +99,7 @@
 		{
 			"01"
 			{
-				"var_type"					"FIELD_INTEGER"
+				"var_type"					"FIELD_FLOAT"
 				"health_regen_percent"		"0.5"
 			}
 			"02"
@@ -110,7 +110,7 @@
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"bonus_strength"			"500"
+				"bonus_strength"			"400"
 			}
 			"04"
 			{
@@ -119,22 +119,22 @@
 			}
 			"05"
 			{
-				"var_type"					"FIELD_INTEGER"
+				"var_type"					"FIELD_FLOAT"
 				"duration"					"3.5"
 			}
 			"06"
 			{
-				"var_type"					"FIELD_INTEGER"
+				"var_type"					"FIELD_FLOAT"
 				"active_regen"				"10.5"
 			}
 			"07"
 			{
-				"var_type"					"FIELD_INTEGER"
+				"var_type"					"FIELD_FLOAT"
 				"stack_regen_melee"			"0.5"
 			}
 			"08"
 			{
-				"var_type"					"FIELD_INTEGER"
+				"var_type"					"FIELD_FLOAT"
 				"stack_regen_ranged"		"1"
 			}
 		}
@@ -143,19 +143,19 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"4896"
+		"ID"							"4898"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityCooldown"				"13"
 		"AbilitySharedCooldown"			"heart"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_heart"
-		"AbilityTextureName"			"custom/heart_titan"
+		"AbilityTextureName"			"custom/heart_divine"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		
 		"ItemDroppable"					"1"
 		"ItemCost"						"3380"
-		"ItemShopTags"					"damage;unique"
+		"ItemShopTags"					"strength;health"
 		"ItemQuality"					"artifact"
 		"ItemAliases"					"heart"
 		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_ALWAYS"
@@ -167,7 +167,7 @@
 		{
 			"01"
 			{
-				"var_type"					"FIELD_INTEGER"
+				"var_type"					"FIELD_FLOAT"
 				"health_regen_percent"		"0.5"
 			}
 			"02"
@@ -178,7 +178,7 @@
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"bonus_strength"			"2000"
+				"bonus_strength"			"1600"
 			}
 			"04"
 			{
@@ -187,43 +187,43 @@
 			}
 			"05"
 			{
-				"var_type"					"FIELD_INTEGER"
+				"var_type"					"FIELD_FLOAT"
 				"duration"					"3.5"
 			}
 			"06"
 			{
-				"var_type"					"FIELD_INTEGER"
+				"var_type"					"FIELD_FLOAT"
 				"active_regen"				"13.5"
 			}
 			"07"
 			{
-				"var_type"					"FIELD_INTEGER"
+				"var_type"					"FIELD_FLOAT"
 				"stack_regen_melee"			"0.5"
 			}
 			"08"
 			{
-				"var_type"					"FIELD_INTEGER"
+				"var_type"					"FIELD_FLOAT"
 				"stack_regen_ranged"		"1"
 			}
 		}
 	}
-	"item_heart_4"
+	"item_heart_5"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"4896"
+		"ID"							"4897"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityCooldown"				"13"
 		"AbilitySharedCooldown"			"heart"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_heart"
-		"AbilityTextureName"			"custom/heart_titan"
+		"AbilityTextureName"			"custom/heart_bahamut"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		
 		"ItemDroppable"					"1"
 		"ItemCost"						"3380"
-		"ItemShopTags"					"damage;unique"
+		"ItemShopTags"					"strength;health"
 		"ItemQuality"					"artifact"
 		"ItemAliases"					"heart"
 		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_ALWAYS"
@@ -235,7 +235,7 @@
 		{
 			"01"
 			{
-				"var_type"					"FIELD_INTEGER"
+				"var_type"					"FIELD_FLOAT"
 				"health_regen_percent"		"0.5"
 			}
 			"02"
@@ -246,7 +246,7 @@
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"bonus_strength"			"8000"
+				"bonus_strength"			"6000"
 			}
 			"04"
 			{
@@ -255,22 +255,22 @@
 			}
 			"05"
 			{
-				"var_type"					"FIELD_INTEGER"
+				"var_type"					"FIELD_FLOAT"
 				"duration"					"3.5"
 			}
 			"06"
 			{
-				"var_type"					"FIELD_INTEGER"
+				"var_type"					"FIELD_FLOAT"
 				"active_regen"				"16.5"
 			}
 			"07"
 			{
-				"var_type"					"FIELD_INTEGER"
+				"var_type"					"FIELD_FLOAT"
 				"stack_regen_melee"			"0.5"
 			}
 			"08"
 			{
-				"var_type"					"FIELD_INTEGER"
+				"var_type"					"FIELD_FLOAT"
 				"stack_regen_ranged"		"1"
 			}
 		}
@@ -283,9 +283,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"1152"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"BaseClass"						"item_recipe_arcane_boots"
+		"BaseClass"						"item_recipe_heart"
 		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"	"custom/heart_titan"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -308,10 +307,9 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"1055"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"BaseClass"						"item_recipe_arcane_boots"
+		"ID"							"4869"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_heart"
 		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"	"custom/heart_3"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -335,9 +333,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"1055"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"BaseClass"						"item_recipe_arcane_boots"
+		"BaseClass"						"item_recipe_heart"
 		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"	"custom/heart_divine"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -361,9 +358,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"1223"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"BaseClass"						"item_recipe_arcane_boots"
+		"BaseClass"						"item_recipe_heart"
 		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"			"custom/heart_bahamut"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------

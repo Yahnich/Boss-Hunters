@@ -70,7 +70,7 @@ if IsServer() then
 	function modifier_item_blink_handler:OnTakeDamage(params)
         if params.unit == self:GetParent() then
 			if self:GetAbility():GetCooldownTimeRemaining() < self.dmg_cd 
-			and ( HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_HPLOSS) or HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION) )
+			and not ( HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_HPLOSS) or HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION) )
 			and params.damage > self:GetMaxHealth() * 0.03
 			and GameRules.gameDifficulty > 2 then
 				self:GetAbility():EndCooldown()

@@ -28,48 +28,47 @@ function tinker_rearm_ebf:OnSpellStart()
 end
 
 function tinker_rearm_ebf:OnChannelFinish(bInterrupted)
-	local caster = self:GetCaster()
+	if not bInterrupted then
+		local caster = self:GetCaster()
 
-	EmitSoundOn("Hero_Tinker.Rearm", caster)
+		EmitSoundOn("Hero_Tinker.Rearm", caster)
 
-	-- Reset cooldown for abilities
-    for i = 0, caster:GetAbilityCount() - 1 do
-        local ability = caster:GetAbilityByIndex( i )
-        if ability and ability ~= self then
-            ability:Refresh()
-        end
-    end
-
-    local no_refresh_item = {["item_ressurection_stone"] = true,
-							 ["item_refresher"] = true,
-							 ["item_bahamut_chest"]= true,
-							 ["item_asura_plate"]= true,
-							 ["item_octarine_core4"] = true,
-							 ["item_octarine_core5"] = true,
-							 ["item_asura_core"] = true,
-							 ["item_lifesteal2"] = true,
-							 ["item_lifesteal3"] = true,
-							 ["item_lifesteal4"] = true,}
-	local half_refresh_item = {["item_chronos_shard"] = true, 
-							   ["item_blade_mail"] = true,
-							   ["item_blade_mail2"] = true,
-							   ["item_blade_mail3"] = true,
-							   ["item_blade_mail4"] = true,
-							   ["item_pixels_guard"] = true,
-							   ["item_sheepstick"] = true,}
-	
-    for i = 0, 5 do
-        local item = caster:GetItemInSlot( i )
-		if item then
-			local cd = item:GetCooldownTimeRemaining()
-			if not no_refresh_item[ item:GetAbilityName() ] then
-				item:Refresh()
-			end
-			if cd > 1 and half_refresh_item[ item:GetAbilityName() ] then
-				item:StartCooldown(cd/2)
+		-- Reset cooldown for abilities
+		for i = 0, caster:GetAbilityCount() - 1 do
+			local ability = caster:GetAbilityByIndex( i )
+			if ability and ability ~= self then
+				ability:Refresh()
 			end
 		end
-    end
+
+		local no_refresh_item = {["item_refresher"] = true,
+								 ["item_octarine_core4"] = true,
+								 ["item_octarine_core5"] = true,
+								 ["item_asura_core"] = true,
+								 ["item_lifesteal2"] = true,
+								 ["item_lifesteal3"] = true,
+								 ["item_lifesteal4"] = true,}
+		local half_refresh_item = {["item_chronos_shard"] = true, 
+								   ["item_blade_mail"] = true,
+								   ["item_blade_mail2"] = true,
+								   ["item_blade_mail3"] = true,
+								   ["item_blade_mail4"] = true,
+								   ["item_pixels_guard"] = true,
+								   ["item_sheepstick"] = true,}
+		
+		for i = 0, 5 do
+			local item = caster:GetItemInSlot( i )
+			if item then
+				local cd = item:GetCooldownTimeRemaining()
+				if not no_refresh_item[ item:GetAbilityName() ] then
+					item:Refresh()
+				end
+				if cd > 1 and half_refresh_item[ item:GetAbilityName() ] then
+					item:StartCooldown(cd/2)
+				end
+			end
+		end
+	end
 end
 
 modifier_tinker_rearm_ebf = class({})

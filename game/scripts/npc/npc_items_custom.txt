@@ -9,6 +9,7 @@
 #base "items/item_generic_damage.txt"
 #base "items/item_generic_stats.txt"
 #base "items/item_lifesteal.txt"
+#base "items/item_heart.txt"
 
 
 "DOTAAbilities"
