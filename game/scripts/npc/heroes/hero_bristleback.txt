@@ -184,8 +184,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"chance"				"35"
-				"LinkedSpecialBonus"	"special_bonus_unique_bristleback_spiky_shell"
+				"chance"				"20"
 			}
 			"02"
 			{
@@ -313,7 +312,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"5"
+				"value"					"10"
 			}
 		}
 	}

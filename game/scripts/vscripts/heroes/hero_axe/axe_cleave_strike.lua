@@ -43,9 +43,11 @@ function modifier_cleave_strike:Spin(target)
 	target:Taunt(self:GetAbility(), self:GetCaster(), self:GetTalentSpecialValueFor("duration"))
 
 	local enemies = self:GetCaster():FindEnemyUnitsInRadius(self:GetCaster():GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"), {})
-	print(self:GetCaster():GetAttackDamage())
 	for _,enemy in pairs(enemies) do
 		self:GetAbility():DealDamage(self:GetCaster(), enemy, self:GetCaster():GetAttackDamage() + armorDamage, {}, 0)
+		if self:GetCaster():HasTalent("special_bonus_unique_axe_cleave_strike") then
+			enemy:Taunt(self:GetAbility(), self:GetCaster(), self:GetTalentSpecialValueFor("duration"))
+		end
 	end
 
 	self:GetAbility():SetCooldown()

@@ -29,6 +29,7 @@ end
 
 function modifier_earthshaker_enchant_totem_ebf:OnRefresh()
 	self.amp = self:GetTalentSpecialValueFor("totem_damage_percentage")
+	self.cdr = self:GetParent():FindTalentValue("special_bonus_unique_earthshaker_enchant_totem_ebf_1")
 end
 
 function modifier_earthshaker_enchant_totem_ebf:OnDestroy()
@@ -39,7 +40,7 @@ function modifier_earthshaker_enchant_totem_ebf:OnDestroy()
 end
 
 function modifier_earthshaker_enchant_totem_ebf:DeclareFunctions()
-	return {MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE, MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE, MODIFIER_EVENT_ON_ATTACK}
+	return {MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE, MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE, MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE_STACKING ,MODIFIER_EVENT_ON_ATTACK}
 end
 
 function modifier_earthshaker_enchant_totem_ebf:CheckState()
@@ -59,6 +60,10 @@ end
 
 function modifier_earthshaker_enchant_totem_ebf:GetModifierSpellAmplify_Percentage()
 	return self.amp
+end
+
+function modifier_earthshaker_enchant_totem_ebf:GetModifierPercentageCooldownStacking()
+	return self.cdr
 end
 
 function modifier_earthshaker_enchant_totem_ebf:GetModifierBaseDamageOutgoing_Percentage()

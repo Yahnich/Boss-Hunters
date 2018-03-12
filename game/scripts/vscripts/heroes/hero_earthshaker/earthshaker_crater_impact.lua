@@ -61,7 +61,8 @@ if IsServer() then
 		if parent:HasTalent("special_bonus_unique_earthshaker_crater_impact_1") then
 			local delay = parent:FindTalentValue("special_bonus_unique_earthshaker_crater_impact_1", "duration")
 			local multiplier = parent:FindTalentValue("special_bonus_unique_earthshaker_crater_impact_1")
-			Timers:CreateTimer( delay, function() ability:CreateQuake(parentPos, radius * multiplier, damage / multiplier) end)
+			local radMult = parent:FindTalentValue("special_bonus_unique_earthshaker_crater_impact_1", "radius")
+			Timers:CreateTimer( delay, function() ability:CreateQuake(parentPos, radius * radMult, damage * multiplier) end)
 		end
 		self:StopMotionController()
 	end

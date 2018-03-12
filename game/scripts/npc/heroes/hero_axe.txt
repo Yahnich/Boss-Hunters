@@ -128,7 +128,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"str_to_damage"			"350"
+				"str_to_damage"			"345 350 355 360 365 370 375"
 			}
 			"02"
 			{
@@ -139,12 +139,11 @@
 			{
 				"var_type"				"FIELD_FLOAT"
 				"duration"				"2"
-				"LinkedSpecialBonus"	"special_bonus_unique_axe_cleave_strike"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius"				"275 300 325 350 375 400 425"
+				"radius"				"375"
 			}
 		}
 	
@@ -493,7 +492,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"-50"
+				"value"					"-60"
 			}
 		}
 	}

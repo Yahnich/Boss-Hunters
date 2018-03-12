@@ -382,12 +382,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"-25"
+				"value"					"-33"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"3.0"
+				"duration"				"5.0"
 			}
 		}
 	}

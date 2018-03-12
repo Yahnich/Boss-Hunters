@@ -179,7 +179,7 @@
 		"MaxLevel"						"2"
 		
 		"AbilityCooldown"				"6 5"
-		"AbilityCastPoint"				"0.75 0.5"
+		"AbilityCastPoint"				"1.5 1"
 		"AbilityCastAnimation"			"ACT_DOTA_RAZE_3"
 		
 		"precache"
@@ -239,7 +239,7 @@
 		
 		"AbilityCooldown"				"6 5"
 		"AbilityCastRange"				"3500 5000"
-		"AbilityCastPoint"				"0.75 0.5"
+		"AbilityCastPoint"				"1.5 1"
 		"AbilityCastAnimation"			"ACT_DOTA_RAZE_2"
 		
 		"precache"
@@ -300,7 +300,7 @@
 		
 		"AbilityCooldown"				"6 5"
 		"AbilityCastRange"				"3500 5000"
-		"AbilityCastPoint"				"0.75 0.5"
+		"AbilityCastPoint"				"1.5 1"
 		"AbilityCastAnimation"			"ACT_DOTA_RAZE_1"
 		
 		"precache"

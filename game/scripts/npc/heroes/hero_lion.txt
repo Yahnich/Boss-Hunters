@@ -439,7 +439,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"1"
+				"value"					"1.5"
 			}
 		}
 	}
@@ -477,7 +477,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"400"
+				"value"					"600"
 			}
 		}
 	}
