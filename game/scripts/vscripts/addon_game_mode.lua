@@ -54,6 +54,7 @@ LinkLuaModifier( "modifier_tombstone_respawn_immunity", "libraries/modifiers/mod
 -- Precache resources
 function Precache( context )
 	PrecacheResource( "particle", "particles/range_ability_line.vpcf", context )
+	PrecacheResource( "particle", "particles/items3_fx/lotus_orb_shield.vpcf", context )
 	PrecacheResource( "particle", "particles/generic_gameplay/generic_stunned.vpcf", context )
 	PrecacheResource( "particle", "particles/generic_gameplay/generic_silence.vpcf", context )
 	PrecacheResource( "particle", "particles/generic_gameplay/generic_disarm.vpcf", context )

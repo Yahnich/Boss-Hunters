@@ -1,0 +1,478 @@
+"DOTAAbilities"
+{	
+	//=================================================================================================================
+	// Tinker: Laser
+	//=================================================================================================================
+	"tinker_laser_ebf"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_tinker/tinker_laser_ebf.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"tinker_laser"
+		"AbilitySound"					"Hero_Tinker.Laser"
+		"LevelsBetweenUpgrades"			"6"
+		"MaxLevel"						"7"
+		"RequiredLevel"					"6"
+		
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_tinker.vsndevts"
+			"particle"					"particles/units/heroes/hero_tinker/tinker_laser.vpcf"
+			"particle"					"particles/units/heroes/hero_tinker/tinker_laser_debuff.vpcf"
+		}
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1000"
+		"AbilityCastPoint"				"0.53"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+	
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"10.0"
+	
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"95 120 145 170 195 220"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{	
+			"03"	
+			{
+				"var_type"				"FIELD_INTEGER"
+				"laser_damage"			"1000 2500 5000 10000 20000 40000 80000"
+			}
+		}
+	}
+
+	"special_bonus_unique_tinker_laser_ebf_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"100"
+			}
+		}
+	}
+
+	"special_bonus_unique_tinker_laser_ebf_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"3"
+			}
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"blind"					"100"
+			}
+		}
+	}
+
+	"tinker_missile_ebf"
+	{
+	    // General
+	    //-------------------------------------------------------------------------------------------------------------
+	    "BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_tinker/tinker_missile_ebf.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	    "AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+	    "AbilityTextureName"			"tinker_heat_seeking_missile"
+	    "MaxLevel"						"7"
+		"LevelsBetweenUpgrades"			"6"
+		"RequiredLevel"					"7"
+	
+	    // Casting
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilityCastRange"				"1000 1500 2000 2500 3000 3500 4000"
+		"AbilityCastPoint"				"0"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
+	    
+	    // Time     
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilityCooldown"               "20"
+	
+	    // Cost
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilityManaCost"               "120 140 160 180 200 400 800"
+	
+	    // Special
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilitySpecial"
+	    {
+	    	"01"
+	        {
+	            "var_type"          "FIELD_INTEGER"
+	            "damage"    		"1000 2000 4000 8000 16000 32000 64000"
+	        }
+	        "02"
+	        {
+	            "var_type"          "FIELD_INTEGER"
+	            "radius"            "1000 1500 2000 2500 3000 3500 4000"
+	        }
+	        "03"
+	        {
+	            "var_type"          "FIELD_INTEGER"
+	            "speed"             "500 600 700 800 900 1000 1500"
+	        }
+	        "04"
+	        {
+	            "var_type"          "FIELD_INTEGER"
+	            "targets"           "1 2 3 4 5 6 7"
+	            "LinkedSpecialBonus" "special_bonus_unique_tinker_missile_ebf_1"
+	        }
+	        
+	    }
+	    
+	    // Datadriven
+	    //-------------------------------------------------------------------------------------------------------------
+	    "precache"
+	    {
+	        "soundfile"             "soundevents/game_sounds_heroes/game_sounds_tinker.vsndevts"
+	        "particle"              "particles/units/heroes/hero_tinker/tinker_missile.vpcf"
+	        "particle"              "particles/units/heroes/hero_tinker/tinker_missle_explosion.vpcf"
+	    }
+	}
+
+	"special_bonus_unique_tinker_missile_ebf_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"3"
+			}
+		}
+	}
+
+	"special_bonus_unique_tinker_missile_ebf_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"0.25"
+			}
+		}
+	}
+
+	"tinker_march"
+	{
+	    // General
+	    //-------------------------------------------------------------------------------------------------------------
+	    "BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_tinker/tinker_march.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL"
+	    "AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+	    "AbilityTextureName"			"tinker_march_of_the_machines"
+	    "MaxLevel"						"7"
+		"LevelsBetweenUpgrades"			"6"
+		"RequiredLevel"					"7"
+	
+	    // Casting
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilityCastRange"				"1800"
+		"AbilityCastPoint"				"0.53"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_3"
+	    
+	    // Time     
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilityCooldown"               "35"
+	
+	    // Cost
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilityManaCost"               "25 50 75 125 250 500 1000"
+	
+	    // Special
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilitySpecial"
+	    {
+	    	"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"max_robots"			"24"
+			}
+	    	"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"750 1875 3750 7500 15000 22500 45000"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"range"					"1800"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"collision_radius"		"100"
+			}			
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"spawn_radius"			"250"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"spawn_rate"			"0.25"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"speed"					"400"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"splash_radius"			"250"
+			}    
+	    }
+	    
+	    // Datadriven
+	    //-------------------------------------------------------------------------------------------------------------
+	    "precache"
+	    {
+	        "soundfile"					"soundevents/game_sounds_heroes/game_sounds_tinker.vsndevts"
+			"particle" 					"particles/units/heroes/hero_tinker/tinker_machine.vpcf"
+	    }
+	}
+
+	"special_bonus_unique_tinker_march_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"1"
+			}
+		}
+	}
+
+	"special_bonus_unique_tinker_march_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"1"
+			}
+		}
+	}
+
+	"tinker_turret"
+	{
+	    // General
+	    //-------------------------------------------------------------------------------------------------------------
+	    "BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_tinker/tinker_turret.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+	    "AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+	    "AbilityTextureName"			"custom/tinker_turret"
+	    "MaxLevel"						"1"
+		"InnateAbility"					"1"
+		"HasScepterUpgrade"				"1"
+	
+	    // Casting
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilityCastRange"				"1000"
+		"AbilityCastPoint"				"0.53"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_3"
+	    
+	    // Time     
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilityCooldown"               "35"
+	
+	    // Cost
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilityManaCost"               "250"
+	
+	    // Special
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilitySpecial"
+	    {
+	    	"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"10.0"
+			}   
+	    }
+	    
+	    // Datadriven
+	    //-------------------------------------------------------------------------------------------------------------
+	    "precache"
+	    {
+	        "soundfile"					"soundevents/game_sounds_items.vsndevts"
+	        "soundfile"					"soundevents/game_sounds_heroes/game_sounds_zuus.vsndevts"
+			"particle" 					"particles/units/heroes/hero_tinker/tinker_turret_attack.vpcf"
+			"particle"  				"particles/units/heroes/hero_tinker/tinker_turret_ambient.vpcf"
+			"particle"  				"particles/dev/library/base_dust_hit.vpcf"
+			"particle"              	"particles/units/heroes/hero_tinker/tinker_missile.vpcf"
+	        "particle"              	"particles/units/heroes/hero_tinker/tinker_missle_explosion.vpcf"
+	    }
+	}
+	"tinker_rearm_ebf"
+	{
+	    // General
+	    //-------------------------------------------------------------------------------------------------------------
+	    "BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_tinker/tinker_rearm_ebf.lua"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+	    "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
+	    "AbilityTextureName"			"tinker_rearm"
+	    "AbilityCastAnimation"          "ACT_DOTA_CHANNEL_ABILITY_4"
+	    "MaxLevel"						"7"
+		"LevelsBetweenUpgrades"			"7"
+	
+	    // Casting
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilityCastPoint"              "0.53"
+	    "AbilityChannelTime"            "3 2.5 2 1.5 1 0.5 0.2"
+
+	    
+	    // Special
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilitySpecial"
+	    {
+	        "01"
+	        {
+	            "var_type"              "FIELD_FLOAT"
+	            "channel_tooltip"       "7 6 5 4 3 2 1"
+	        }
+	        "01"
+	        {
+	            "var_type"              "FIELD_FLOAT"
+	            "mana_cost"       		"10"
+	            "LinkedSpecialBonus" 	"special_bonus_unique_tinker_rearm_ebf_1"
+	        }
+	    }
+	    
+	    // Data Driven
+	    //-------------------------------------------------------------------------------------------------------------
+	    "precache"
+	    {
+	        "soundfile"             "soundevents/game_sounds_heroes/game_sounds_tinker.vsndevts"
+	        "particle"              "particles/units/heroes/hero_tinker/tinker_rearm.vpcf"
+	    }
+	}
+
+	"special_bonus_unique_tinker_rearm_ebf_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"-3"
+			}
+		}
+	}
+
+	"special_bonus_unique_tinker_rearm_ebf_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"5"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"amount"				"30"
+			}
+		}
+	}
+}
