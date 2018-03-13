@@ -125,12 +125,12 @@ function AICore:AttackHighestPriority( entity )
 		local closestUnit
 		local minThreat = 0
 		local minHP = 0
-		if entity.AIprevioustarget and not entity.AIprevioustarget:IsNull() and entity.AIprevioustarget:IsAlive() and not entity.AIprevioustarget:IsInvisible() then 
-			target = entity.AIprevioustarget
-			target.threat = target.threat or 0
-			minThreat = target.threat
-		end
 		if not target then
+			if entity.AIprevioustarget and not entity.AIprevioustarget:IsNull() and entity.AIprevioustarget:IsAlive() and not entity.AIprevioustarget:IsInvisible() then 
+				target = entity.AIprevioustarget
+				target.threat = target.threat or 0
+				minThreat = target.threat
+			end
 			local range = entity:GetAttackRange() + entity:GetIdealSpeed() * 1.5
 			local minRange = 99999
 			local enemies = FindUnitsInRadius( entity:GetTeamNumber(), entity:GetAbsOrigin(), nil, minRange, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, flag, 0, false )

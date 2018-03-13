@@ -23,26 +23,27 @@ end
 
 function mirana_starcall:OnSpellStart()
     local caster = self:GetCaster()
-    local damage = self:GetTalentSpecialValue("damage")
-    local agi_damage = self:GetTalentSpecialValue("agi_damage")/100
+    local damage = self:GetTalentSpecialValueFor("damage")
+    local agi_damage = self:GetTalentSpecialValueFor("agi_damage")/100
 
     EmitSoundOn("Ability.Starfall", caster)
 
     damage = damage + caster:GetAgility() * agi_damage
-	local radius = self:GetTalentSpecialValue("radius")
+	local radius = self:GetTalentSpecialValueFor("radius")
 	self:StarFall( radius, damage, 0 )
 	local damage2 = damage * 0.75
-	self:StarFall( radius, damage2, self:GetTalentSpecialValue("wave_delay") )
+	self:StarFall( radius, damage2, self:GetTalentSpecialValueFor("wave_delay") )
 	if caster:HasTalent("special_bonus_unique_mirana_starcall_2") then
 		local damage3 = damage * caster:FindTalentValue("special_bonus_unique_mirana_starcall_2", "damage")
-		self:StarFall( radius, damage3, self:GetSpecialValue("wave_delay") )
+		self:StarFall( radius, damage3, self:GetSpecialValueFor("wave_delay") )
 	end
 end
 
 function mirana_starcall:StarFall( radius, damage, delay)
+	local caster = self:GetCaster()
 	 Timers:CreateTimer(delay or 0, function()
         local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), radius)
-        for _,enemy in pairs(enemies2) do
+        for _,enemy in pairs(enemies) do
             ParticleManager:FireParticle("particles/units/heroes/hero_mirana/mirana_loadout.vpcf", PATTACH_POINT_FOLLOW, enemy, {[0]=enemy:GetAbsOrigin()})
             Timers:CreateTimer(0.57, function() --particle delay
                 EmitSoundOn("Ability.StarfallImpact", enemy)
@@ -61,10 +62,10 @@ end
 
 function modifier_mirana_starcall:OnIntervalThink()
     if self:GetParent():HasTalent("special_bonus_unique_mirana_starcall_1") and self:GetParent():IsAlive() and self:GetAbility():GetAutoCastState() then
-        local damage = self:GetTalentSpecialValue("damage")
-        local agi_damage = self:GetTalentSpecialValue("agi_damage")/100
+        local damage = self:GetTalentSpecialValueFor("damage")
+        local agi_damage = self:GetTalentSpecialValueFor("agi_damage")/100
         damage = damage + self:GetParent():GetAgility() * agi_damage
-		self:GetAbility():StarFall( damage, self:GetTalentSpecialValue("radius"), 0 )
+		self:GetAbility():StarFall( self:GetTalentSpecialValueFor("radius"), damage, 0 )
         self:StartIntervalThink(self:GetParent():FindTalentValue("special_bonus_unique_mirana_starcall_1"))
     end
 end
