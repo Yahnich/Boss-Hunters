@@ -87,8 +87,8 @@ function modifier_ancient_apparition_ice_blast_ebf:GetDisableHealing()
 end
 
 function modifier_ancient_apparition_ice_blast_ebf:OnTakeDamage(params)
-	if params.unit == self:GetParent() and params.unit:GetHealthPercent() <= self.shatter and params.inflictor ~= self:GetAbility() then
-		self:GetParent():AttemptKill( self:GetAbility(), params.attacker )
+	if params.unit == self:GetParent() and params.unit:GetHealthPercent() <= self.shatter and params.unit:IsAlive() then
+		self:GetParent():AttemptKill( self:GetAbility(), self:GetCaster() )
 	end
 end
 
