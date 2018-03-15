@@ -268,6 +268,7 @@ function CHoldoutGameMode:InitGameMode()
 	GameRules:GetGameModeEntity():SetTopBarTeamValuesOverride( true )
 	GameRules:GetGameModeEntity():SetTopBarTeamValuesVisible( false )
 	GameRules:GetGameModeEntity():SetCustomBuybackCooldownEnabled(true)
+	GameRules:GetGameModeEntity():SetCustomBuybackCostEnabled(true)
 	GameRules:GetGameModeEntity():SetCameraDistanceOverride(1400)
 	-- GameRules:GetGameModeEntity():SetCustomGameForceHero("npc_dota_hero_wisp")
 	xpTable = {
@@ -945,7 +946,7 @@ function CHoldoutGameMode:OnAbilityLearned(event)
 			end
 		end
 		if GameRules.AbilityKV[abilityname]["LinkedAbilityName"] then
-			local abilityName = GameRules.AbilityKV[abilityname]["LinkedAbilityName"] 
+			local abilityName = GameRules.AbilityKV[abilityname]["LinkedAbilityName"] or ""
 			local ability = hero:FindAbilityByName(abilityName)
 			if ability and ability.OnTalentLearned then
 				ability:OnTalentLearned()
@@ -1785,6 +1786,9 @@ function CHoldoutGameMode:OnThink()
 				self._currentRound:Think()
 				if self._currentRound:IsFinished() then
 					self._currentRound:End()
+					self._nRoundNumber = self._nRoundNumber + 1
+					boss_meteor:SetRoundNumer(self._nRoundNumber)
+					GameRules._roundnumber = self._nRoundNumber
 					CustomGameEventManager:Send_ServerToAllClients( "round_has_ended", {} )
 					self._currentRound = nil
 					-- Heal all players
@@ -1801,6 +1805,7 @@ function CHoldoutGameMode:OnThink()
 					local shareCount = 0
 					for _,unit in pairs ( HeroList:GetAllHeroes()) do
 						if unit:GetTeamNumber() == DOTA_TEAM_GOODGUYS and not unit:IsFakeHero() then
+							PlayerResource:SetCustomBuybackCost(hero:GetPlayerID(), self._nRoundNumber * 100)
 							if unit:HasOwnerAbandoned() then
 								abandonGold = abandonGold + unit:GetGold()
 								unit:SetGold(0, false)
@@ -1836,9 +1841,6 @@ function CHoldoutGameMode:OnThink()
 							unit:SetGold(newGold, true)
 						end
 					end
-					self._nRoundNumber = self._nRoundNumber + 1
-					boss_meteor:SetRoundNumer(self._nRoundNumber)
-					GameRules._roundnumber = self._nRoundNumber
 					-- if math.random(1,25) == 25 then
 						-- self:spawn_unit( Vector(0,0,0) , "npc_dota_treasure" , 2000)
 						-- for _,unit in pairs ( Entities:FindAllByModel( "models/courier/flopjaw/flopjaw.vmdl")) do
@@ -2126,7 +2128,9 @@ function CHoldoutGameMode:OnEntityKilled( event )
 				local tombstone = SpawnEntityFromTableSynchronous( "dota_item_tombstone_drop", {} )
 				tombstone:SetContainedItem( newItem )
 				tombstone:SetAngles( 0, RandomFloat( 0, 360 ), 0 )
-				FindClearSpaceForUnit( tombstone, killedUnit:GetAbsOrigin(), true )	
+				FindClearSpaceForUnit( tombstone, killedUnit:GetAbsOrigin(), true )
+			elseif killedUnit.NoTombStone == true then
+				killedUnit.NoTombStone = false
 			end
 		end
 	end
