@@ -25,12 +25,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"evasion"				"33 45"
+				"evasion"				"25 33"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"hits_to_stun"			"5"
+				"hits_to_stun"			"8"
 			}
 			"03"
 			{
@@ -40,7 +40,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"critical_damage"		"250 275"
+				"critical_damage"		"200 250"
 			}
 		}
 	}
@@ -84,7 +84,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"attackspeed_bonus"		"150 200"
+				"attackspeed_bonus"		"150 175"
 			}
 		}
 	}
@@ -183,7 +183,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"12500 15000"
+				"damage"				"400 500"
 			}
 			"04"
 			{

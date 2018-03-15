@@ -132,7 +132,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"aoe_damage"			"3250 4000"
+				"aoe_damage"			"350 500"
 			}
 			"06"
 			{
@@ -181,7 +181,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"dot"					"125 150"
+				"dot"					"75 125"
 			}
 			"03"
 			{

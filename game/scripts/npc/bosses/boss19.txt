@@ -28,7 +28,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"stun_damage"			"40000 50000"
+				"stun_damage"			"400 500"
 			}
 			"03"
 			{
@@ -87,7 +87,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"knockup_damage"		"32500 40000"
+				"knockup_damage"		"325 400"
 			}
 			"03"
 			{
@@ -223,7 +223,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"armor_reduction"		"60"
+				"armor_reduction"		"-15"
 			}
 			"02"
 			{

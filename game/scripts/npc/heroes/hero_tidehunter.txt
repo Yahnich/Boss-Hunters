@@ -10,13 +10,11 @@
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
 	    "AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
 	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
-		"AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
+		"AbilityUnitDamageType"         "DAMAGE_TYPE_PHYSICAL"   
 		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"tidehunter_anchor_smash"
-		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
-		"RequiredLevel"					"6"
-	
+
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastPoint"				"0.2"
@@ -28,7 +26,7 @@
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"25 50 75 125 150 300 600"
+		"AbilityManaCost"				"30 40 50 60 70 80 90"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -37,7 +35,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"1000 2000 4000 8000 16000 32000 64000"
+				"damage"				"75 125 175 225 275 325 375"
 			}
 			"02"
 			{
@@ -78,9 +76,7 @@
 		"AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
 		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"tidehunter_gush"
-		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
-		"RequiredLevel"					"6"
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -94,7 +90,7 @@
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"25 50 75 125 250 500 1000"
+		"AbilityManaCost"				"90 100 110 120 130 140 150"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -103,7 +99,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"1000 2000 4500 9000 18000 36000 72000"
+				"damage"				"110 160 210 260 310 360 410"
 				"LinkedSpecialBonus"	"special_bonus_unique_tide_hydro_cannon_1"
 			}
 			"02"
@@ -119,7 +115,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"reduc_armor"			"-4 -6 -8 -10 -12 -14 -16"
+				"reduc_armor"			"-3 -4 -5 -6 -7 -8 -9"
 				"LinkedSpecialBonus"	"special_bonus_unique_tide_hydro_cannon_2"
 			}
 		}
@@ -147,10 +143,7 @@
 		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityTextureName"			"tidehunter_ravage"
-		"LevelsBetweenUpgrades"			"5"
-		"MaxLevel"						"7"
-		"LevelsBetweenUpgrades"			"7"
-		"MaxLevel"						"7"
+		"MaxLevel"						"6"
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -163,7 +156,7 @@
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"150 225 325 450 525 625 750"
+		"AbilityManaCost"				"150 225 300 375 450 525"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -171,19 +164,19 @@
 		{
 			"01"
 			{
-				"var_type"			"FIELD_INTEGER"
-				"damage"			"6000 12000 24000 48000 96000 200000 400000"
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"200 290 380 470 560 650"
 			}
 			"02"
 			{	
-				"var_type"			"FIELD_FLOAT"
-				"duration"			"2.5"
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"2.5"
 				"LinkedSpecialBonus"	"special_bonus_unique_tide_the_kraken_1"
 			}
 			"03"
 			{
-				"var_type"			"FIELD_INTEGER"
-				"radius"			"1000 1250 1500 1750 2000 2250 2500"
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"1000 1250 1500 1750 2000 2250 2500"
 			}
 		}
 	
@@ -234,7 +227,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"1500 2500 4500 8500 16500 32500 64500"
+				"damage"				"150 200 250 300 350 400 450"
 				"LinkedSpecialBonus"	"special_bonus_unique_tide_tongue_whip_1"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
@@ -261,7 +254,7 @@
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"eat_health"			"200 400 600 800 1000 1200 1400"
+				"eat_health"			"75"
 			}
 			"07"
 			{

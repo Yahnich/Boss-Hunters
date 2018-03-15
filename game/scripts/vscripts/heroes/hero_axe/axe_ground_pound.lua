@@ -29,7 +29,7 @@ function axe_ground_pound:OnSpellStart()
 			else
 				enemy:Daze(self, caster, self:GetTalentSpecialValueFor("daze_duration"))
 			end
-			if enemy:GetHealthPercent() <= self:GetTalentSpecialValueFor("kill_threshold") then
+			if enemy:GetHealth() <= self:GetTalentSpecialValueFor("kill_threshold") then
 				local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_axe/axe_culling_blade_kill.vpcf", PATTACH_POINT, caster)
 				ParticleManager:SetParticleControl(nfx,4, enemy:GetAbsOrigin())
 				ParticleManager:ReleaseParticleIndex(nfx)
@@ -55,7 +55,7 @@ function axe_ground_pound:OnSpellStart()
 			else
 				ParticleManager:CreateParticle("particles/units/heroes/hero_axe/axe_culling_blade.vpcf", PATTACH_POINT_FOLLOW, caster)
 				EmitSoundOn("Hero_Axe.Culling_Blade_Fail", self:GetCaster())
-				self:DealDamage(caster, enemy, caster:GetStrength() * self:GetTalentSpecialValueFor("damage") / 100, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
+				self:DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage"), {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
 			end
 		end
 	else

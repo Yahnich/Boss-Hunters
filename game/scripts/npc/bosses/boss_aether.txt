@@ -15,7 +15,7 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"3.0 2.0"
+		"AbilityCooldown"				"5.0 3.5"
 	
 		"precache"
 		{
@@ -55,7 +55,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"magic_damage"			"35000 50000"
+				"magic_damage"			"350 500"
 			}
 			"01"
 			{
@@ -96,12 +96,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"max_pull"				"2 3"
+				"max_pull"				"1 2"
 			}
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"max_damage"			"3.5 4"
+				"max_damage"			"0.6 0.9"
 			}
 		}
 	}
@@ -139,12 +139,12 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"impact_radius"				"300 375"
+				"impact_radius"				"300"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"impact_curr_hp_damage"		"35 50"
+				"impact_curr_hp_damage"		"15 20"
 			}
 			"04"
 			{
@@ -168,7 +168,7 @@
 		"MaxLevel"						"3"
 		
 		"AbilityCastAnimation"			"ACT_DOTA_SPAWN"
-		"AbilityCastPoint"				"0.8 0.5"
+		"AbilityCastPoint"				"1.5 1"
 		"AbilityCooldown"				"10"
 	
 		"precache"
@@ -196,7 +196,7 @@
 			"04"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"impact_damage"				"30000 50000"
+				"impact_damage"				"250 375"
 			}
 			"05"
 			{
@@ -275,7 +275,7 @@
 			"03"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"damage_per_second"			"80000 120000"
+				"damage_per_second"			"150 200"
 			}
 			"04"
 			{
@@ -373,7 +373,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage_per_second"			"33 50"
+				"damage_per_second"			"20 25"
 			}
 			"03"
 			{

@@ -13,9 +13,7 @@
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 	    "AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
 	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
-		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
-		"RequiredLevel"					"3"
 		"AbilityTextureName"			"beastmaster_inner_beast"
 	
 		// Special
@@ -26,6 +24,11 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"bonus_cdr"				"3 6 9 12 15 18 21"
+			}
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_attackspeed"		"15 25 35 45 55 65 75"
 			}
 			"02"
 			{
@@ -48,13 +51,9 @@
 	    "AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
 	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
-		"RequiredLevel"					"7"
 		"AbilityTextureName"			"beastmaster_call_of_the_wild"
-	
-		"PiercesDisableReduction"		"1"
-	
+
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastPoint"				"0.3"
@@ -76,7 +75,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"500 1000 2000 4000 8000 16000 32000"
+				"damage"					"125 200 275 350 425 500 575"
 			}
 			"02"
 			{
@@ -144,12 +143,12 @@
 			"02"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"health_regen"				"1 2 3 4 5 6 7"
+				"health_regen"				"1 1.5 2 2.5 3 3.5 4"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"mana_regen"				"20 22 24 26 28 30 32"
+				"mana_regen"				"3 6 9 12 15 18 21"
 			}
 			"04"
 			{
@@ -181,9 +180,7 @@
 	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
-		"LevelsBetweenUpgrades"			"5"
-		"MaxLevel"						"7"
-		"RequiredLevel"					"7"
+		"MaxLevel"						"6"
 		"AbilityTextureName"			"beastmaster_primal_roar"
 	
 		// Casting
@@ -194,7 +191,7 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"80 75 70 65 60 55 50"
+		"AbilityCooldown"				"80 75 70 65 60 55"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -207,7 +204,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"500 1000 2000 4000 8000 16000 32000"
+				"damage"					"150 225 300 375 450 525"
 			}		
 			"02"
 			{

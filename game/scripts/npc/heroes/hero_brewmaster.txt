@@ -22,24 +22,24 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"dodge_chance"				"35"
+				"dodge_chance"				"10 15 20 25 30 35 40"
 				"LinkedSpecialBonus"		"special_bonus_unique_brewmaster_drunken_brawler_1"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"crit_chance"				"35"
+				"crit_chance"				"10 15 20 25 30 35 40"
 				"LinkedSpecialBonus"		"special_bonus_unique_brewmaster_drunken_brawler_1"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"crit_multiplier"			"150 175 200 225 250 275 300"
+				"crit_multiplier"			"230"
 			}
 			"04"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"last_proc"					"1"
+				"last_proc"					"2"
 			}
 		}
 	}
@@ -56,9 +56,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"				"1"
 		"AbilityTextureName"			"brewmaster_drunken_haze"
-		"RequiredLevel"					"5"
 		"MaxLevel"						"7"
-		"LevelsBetweenUpgrades"			"5"
 		"AbilityThreat"					"35"
 		
 		"AoERadius"						"500"
@@ -77,11 +75,11 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"8"
+		"AbilityCooldown"				"11 10 9 8 7 6 5"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"25 50 75 125 250 500 1000"		
+		"AbilityManaCost"				"25"		
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -95,27 +93,27 @@
 			"02"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"duration"					"8.0"
+				"duration"					"4.5"
 			}
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"miss_chance"				"36 40 44 48 52 56 60"
+				"miss_chance"				"70"
 			}
 			"05"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"movement_slow"				"-14 -16 -18 -20 -22 -24 -26"
+				"movement_slow"				"-10 -20 -30 -40 -50 -60 -70"
 			}
 			"06"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"evasion"					"25 27.5 30 32.5 35 37.5 40"
+				"evasion"					"35"
 			}
 			"07"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"movement_bonus"			"14 16 18 20 22 24 26"
+				"movement_bonus"			"10 20 30 40 50 60 70"
 			}			
 		}
 	}
@@ -133,8 +131,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
 		"AbilityTextureName"			"custom/brewmaster_primal_avatar"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
-		"LevelsBetweenUpgrades"			"7"
-		"MaxLevel"						"7"
+		"MaxLevel"						"6"
 		"FightRecapLevel"				"1"
 	
 		// Precache
@@ -160,7 +157,7 @@
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"250 325 500 750 1250 2250 4000"
+		"AbilityManaCost"				"125 150 175 200 225 250 275"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -180,7 +177,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"aoe_damage_tooltip"	"400 800 1600 3200 6400 12800 25600"
+				"aoe_damage_tooltip"	"30 50 70 90 110 130"
 				"LinkedSpecialBonus"	"special_bonus_unique_brewmaster_primal_avatar_2"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
@@ -192,7 +189,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"aoe_blind"				"20 25 30 35 40 45 50"
+				"aoe_blind"				"35"
 				"LinkedSpecialBonus"	"special_bonus_unique_brewmaster_primal_avatar_1"
 			}
 			"06"
@@ -217,13 +214,11 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"brewmaster_thunder_clap"
 		"MaxLevel"						"7"
-		"LevelsBetweenUpgrades"			"5"
-		"RequiredLevel"					"6"
 		"AbilityThreat"					"50"
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"11"
+		"AbilityCooldown"				"12"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -231,7 +226,7 @@
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"25 50 75 125 250 500 1000"	
+		"AbilityManaCost"				"50"	
 		
 		"precache"
 		{
@@ -254,7 +249,7 @@
 			"02"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"damage"						"1000 2000 4500 9000 18000 36000 72000"
+				"damage"						"100 175 250 300 375 450 525"
 				"LinkedSpecialBonus"			"special_bonus_unique_brewmaster_thunder_clap_2"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
@@ -268,7 +263,7 @@
 			"04"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"attack_speed_slow"				"40 60 80 100 120 140 160"
+				"attack_speed_slow"				"30 35 40 45 50 55 60"
 				"LinkedSpecialBonus"			"special_bonus_unique_brewmaster_thunder_clap_2"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}			
@@ -387,7 +382,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"						"15"
+				"value"						"10"
 			}
 		}
 	}

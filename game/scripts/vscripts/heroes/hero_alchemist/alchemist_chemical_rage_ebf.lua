@@ -41,7 +41,7 @@ end
 function modifier_alchemist_chemical_rage_ebf:DeclareFunctions()
 	return {MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT,
 			MODIFIER_PROPERTY_HEALTH_BONUS,
-			MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE,
+			MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
 			MODIFIER_PROPERTY_MANA_REGEN_CONSTANT,
 			MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,
 			MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS}
@@ -56,7 +56,7 @@ function modifier_alchemist_chemical_rage_ebf:GetModifierHealthBonus()
 	return self.hp
 end
 
-function modifier_alchemist_chemical_rage_ebf:GetModifierHealthRegenPercentage()
+function modifier_alchemist_chemical_rage_ebf:GetModifierConstantHealthRegen()
 	return self.hpr
 end
 

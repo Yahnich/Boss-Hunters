@@ -105,12 +105,12 @@ if IsServer() then
 		end
 
 		local spawnedUnit = CreateUnitByName( spawnName, position, true, nil, nil, self:GetCaster():GetTeam() )
-		spawnedUnit:SetBaseMaxHealth(1666666)
-		spawnedUnit:SetMaxHealth(1666666)
+		spawnedUnit:SetBaseMaxHealth(5000*GameRules.gameDifficulty)
+		spawnedUnit:SetMaxHealth(5000*GameRules.gameDifficulty)
 		spawnedUnit:SetHealth(spawnedUnit:GetMaxHealth())
-		spawnedUnit:SetAverageBaseDamage(spawnedUnit:GetAverageBaseDamage() / 3, 20)
+		spawnedUnit:SetAverageBaseDamage(spawnedUnit:GetAverageBaseDamage() / 1.5, 20)
 		
-		spawnedUnit:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_spawn_immunity", {duration = 3})
+		spawnedUnit:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_spawn_immunity", {duration = 2})
 	end
 end
 

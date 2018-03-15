@@ -3658,7 +3658,7 @@
 		// Movement
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
-		"MovementSpeed"				"320"		// Speed.
+		"MovementSpeed"				"400"		// Speed.
 		"MovementTurnRate"			"0.1"		// Turning rate.
 	
 		// Status
@@ -4471,7 +4471,7 @@
 		// Movement
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
-		"MovementSpeed"				"320"		// Speed.
+		"MovementSpeed"				"400"		// Speed.
 		"MovementTurnRate"			"0.1"		// Turning rate.
 	
 		// Status
@@ -4584,7 +4584,7 @@
 		// Movement
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
-		"MovementSpeed"				"320"		// Speed.
+		"MovementSpeed"				"400"		// Speed.
 		"MovementTurnRate"			"0.1"		// Turning rate.
 	
 		// Status
@@ -4687,7 +4687,7 @@
 		// Movement
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
-		"MovementSpeed"				"320"		// Speed.
+		"MovementSpeed"				"400"		// Speed.
 		"MovementTurnRate"			"0.1"		// Turning rate.
 	
 		// Status
@@ -4888,7 +4888,7 @@
 		// Movement
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
-		"MovementSpeed"				"345"		// Speed.
+		"MovementSpeed"				"380"		// Speed.
 		"MovementTurnRate"			"0.1"		// Turning rate.
 	
 		// Status
@@ -5100,7 +5100,7 @@
 		// Movement
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
-		"MovementSpeed"				"320"		// Speed.
+		"MovementSpeed"				"380"		// Speed.
 		"MovementTurnRate"			"0.1"		// Turning rate.
 	
 		// Status
@@ -5814,7 +5814,7 @@
 		// Movement
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
-		"MovementSpeed"				"325"		// Speed.
+		"MovementSpeed"				"380"		// Speed.
 		"MovementTurnRate"			"0.25"		// Turning rate.
 	
 		// Status
@@ -5912,7 +5912,7 @@
 		// Movement
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
-		"MovementSpeed"				"325"		// Speed.
+		"MovementSpeed"				"380"		// Speed.
 		"MovementTurnRate"			"0.25"		// Turning rate.
 	
 		// Status
@@ -6010,7 +6010,7 @@
 		// Movement
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
-		"MovementSpeed"				"325"		// Speed.
+		"MovementSpeed"				"380"		// Speed.
 		"MovementTurnRate"			"0.25"		// Turning rate.
 	
 		// Status
@@ -6203,7 +6203,7 @@
 		// Movement
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
-		"MovementSpeed"				"330"		// Speed.
+		"MovementSpeed"				"380"		// Speed.
 		"MovementTurnRate"			"0.25"		// Turning rate.
 	
 		// Status
@@ -6309,7 +6309,7 @@
 		// Movement
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
-		"MovementSpeed"				"300"		// Speed.
+		"MovementSpeed"				"400"		// Speed.
 		"MovementTurnRate"			"0.25"		// Turning rate.
 	
 		// Status
@@ -6421,7 +6421,7 @@
 		// Movement
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
-		"MovementSpeed"				"200"		// Speed.
+		"MovementSpeed"				"400"		// Speed.
 		"MovementTurnRate"			"0.25"		// Turning rate.
 	
 		// Status
@@ -8870,7 +8870,7 @@
 		// Movement
 		//-------------------------------------------------------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"			// Type of locomotion - ground, air
-		"MovementSpeed"				"325"									// Speed.
+		"MovementSpeed"				"375"									// Speed.
 		"MovementTurnRate"			"0.25"									// Turning rate.
 		
 		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"			// Hull type used for navigation/locomotion.
@@ -9430,7 +9430,7 @@
 		// Movement
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
-		"MovementSpeed"				"200"		// Speed.
+		"MovementSpeed"				"380"		// Speed.
 		"MovementTurnRate"			"0.3"		// Turning rate.
 	
 		// Status

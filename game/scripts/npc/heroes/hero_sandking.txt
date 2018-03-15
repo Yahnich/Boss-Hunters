@@ -12,11 +12,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"sandking_burrowstrike"
 		"ScriptFile"					"heroes/hero_sand/sand_burrow.lua"
-		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
-		"RequiredLevel"					"5"
-
-		"PiercesDisableReduction"		"1"
 		
 		"precache"
 		{
@@ -31,11 +27,11 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"11 10 9 8 7 6 5"
+		"AbilityCooldown"				"11"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"140"
+		"AbilityManaCost"				"110 120 130 140 150 160 170"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -44,12 +40,12 @@
 			"01"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"damage"			"1400 2800 5600 11200 16800 22400 44800"
+				"damage"			"85 150 215 280 345 410 475"
 			}
 			"02"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"duration"			"1.0"
+				"duration"			"1.5"
 			}
 			"03"
 			{
@@ -134,11 +130,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"custom/sand_claw_impact"
 		"ScriptFile"					"heroes/hero_sand/sand_claw_impact.lua"
-		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
-		"RequiredLevel"					"5"
-
-		"PiercesDisableReduction"		"1"
 		
 		"precache"
 		{
@@ -161,7 +153,7 @@
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"25 50 75 125 250 500 1000"
+		"AbilityManaCost"				"80"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -170,7 +162,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"1400 2800 5600 11200 16800 22400 44800"
+				"damage"				"75 150 225 300 375 450 525"
 			}
 			"02"
 			{
@@ -191,9 +183,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityCastAnimation"          "ACT_DOTA_SPAWN" 
-		"LevelsBetweenUpgrades"			"6"
 		"MaxLevel"						"7"
-		"RequiredLevel"					"6"
 		"AbilityTextureName"			"sandking_sand_storm"
 
 		// Time     
@@ -212,7 +202,7 @@
 			"01"
 			{
 				"var_type"                      "FIELD_INTEGER"
-				"sandstorm_damage"     			"500 1000 2000 4000 8000 16000 32000"
+				"sandstorm_damage"     			"40 60 80 100 120 140 160"
 			}
 			"02"
 			{
@@ -237,7 +227,7 @@
 			"06"
 			{
 				"var_type"                      "FIELD_INTEGER"
-				"tornado_damage"     			"125 250 500 1000 2000 4000 8000"
+				"tornado_damage"     			"50 75 100 125 150 175 200"
 			}
 			"07"
 			{
@@ -297,10 +287,8 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityCastAnimation"          "ACT_DOTA_SPAWN" 
-		"LevelsBetweenUpgrades"			"5"
-		"MaxLevel"						"7"
-		"RequiredLevel"					"6"
+		"AbilityCastAnimation"          "ACT_DOTA_SPAWN"
+		"MaxLevel"						"6"
 		"AbilityTextureName"			"sandking_epicenter"
 		"AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
 
@@ -313,7 +301,7 @@
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"               "250 325 500 750 1250 2250 4000"
+		"AbilityManaCost"              	"150 225 300 375 450 525"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -322,7 +310,7 @@
 			"01"
 			{
 				"var_type"              "FIELD_INTEGER"
-				"damage"                "2000 4000 8000 16000 32000 64000 128000"
+				"damage"                "110"
 			}
 			"02"
 			{
@@ -347,7 +335,7 @@
 			"06"
 			{
 				"var_type"              "FIELD_FLOAT"
-				"tremor_rate"           "0.5"
+				"tremor_rate"           "1"
 				"LinkedSpecialBonus"    "special_bonus_unique_sand_tremors_1"
 			}
 		}

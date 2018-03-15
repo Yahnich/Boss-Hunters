@@ -43,12 +43,17 @@ modifier_beast_mode_allies = class({})
 function modifier_beast_mode_allies:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE_STACKING,
+		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT
 	}
 	return funcs
 end
 
 function modifier_beast_mode_allies:GetModifierPercentageCooldownStacking()
 	return self:GetTalentSpecialValueFor("bonus_cdr")
+end
+
+function modifier_beast_mode_allies:GetModifierAttackSpeedBonus_Constant()
+	return self:GetTalentSpecialValueFor("bonus_attackspeed")
 end
 
 function modifier_beast_mode_allies:IsDebuff()

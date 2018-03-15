@@ -18,7 +18,7 @@ function SummonWolves( keys )
 		local spawnOrigin = origin + fv * distance
 		local spawnPoint = RotatePosition(origin, angPoint, spawnOrigin)
 		-- position handling
-		local wolf = CreateUnitByName( "npc_dota_lycan_wolf"..index , spawnPoint, true, caster, caster, caster:GetTeam() )
+		local wolf = CreateUnitByName( "npc_dota_lycan_wolf1" , spawnPoint, true, caster, caster, caster:GetTeam() )
 		wolf:SetForwardVector(caster:GetForwardVector())
 		wolf:SetOwner(caster)
 		wolf:SetControllableByPlayer(caster:GetPlayerID(), true)
@@ -32,6 +32,8 @@ function SummonWolves( keys )
 		wolf:SetMaxHealth(wolfHP)
 		wolf:SetBaseMaxHealth(wolfHP)
 		wolf:SetHealth(wolf:GetMaxHealth())
+		
+		wolf:SetModelScale(0.8 + (ability:GetLevel()/2)/10)
 		
 		wolf:SetAverageBaseDamage(wolfDamage, 15)
 		wolf:SetBaseAttackTime(wolfBAT)

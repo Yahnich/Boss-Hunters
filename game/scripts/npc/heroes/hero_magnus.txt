@@ -13,9 +13,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"AbilityTextureName"			"magnataur_shockwave"
-		"LevelsBetweenUpgrades"			"6"
 		"MaxLevel"						"7"
-		"RequiredLevel"					"6"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -29,7 +27,7 @@
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"25 50 75 125 250 500 1000"
+		"AbilityManaCost"				"90"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -48,12 +46,12 @@
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"1800 3500 6000 14000 28000 56000 84000"
+				"damage"					"75 150 225 300 375 450 525"
 			}
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage_magnet"				"900 1750 3000 7000 14000 28000 42000"
+				"damage_magnet"				"150 175 200 225 250 275 300"
 			}
 			"05"
 			{
@@ -103,7 +101,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"						"0.75"
+				"value"						"0.5"
 			}
 		}
 	}
@@ -119,9 +117,7 @@
 	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"custom/magnataur_reverse_polarity_forgemaster"
-		"LevelsBetweenUpgrades"			"6"
 		"MaxLevel"						"7"
-		"RequiredLevel"					"6"
 	
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
@@ -142,7 +138,7 @@
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"25 50 75 125 250 500 1000"
+		"AbilityManaCost"				"80"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -216,9 +212,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"AbilityTextureName"			"magnataur_skewer"
-		"LevelsBetweenUpgrades"			"6"
 		"MaxLevel"						"7"
-		"RequiredLevel"					"6"
 	
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
@@ -239,7 +233,7 @@
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"25 50 75 125 250 500 1000"
+		"AbilityManaCost"				"80"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -248,7 +242,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"1000 2000 4000 8000 12000 24000 48000"
+				"damage"				"70 140 210 280 350 420 490"
 			}
 			"02"
 			{
@@ -334,12 +328,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"19"
+				"bonus_damage"			"20"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"cleave_damage"			"25"
+				"cleave_damage"			"20"
 			}
 			"03"
 			{
@@ -366,9 +360,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"AbilityTextureName"			"magnataur_reverse_polarity"
-		"LevelsBetweenUpgrades"			"6"
-		"MaxLevel"						"7"
-		"RequiredLevel"					"6"
+		"MaxLevel"						"6"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 	
 		// Precache
@@ -385,7 +377,7 @@
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
 		"AbilityCastPoint"				"0.3"
 		"AbilityCooldown"				"110"
-		"AbilityManaCost"				"250 325 500 750 1250 2250 4000"
+		"AbilityManaCost"				"200 250 300 350 400 450"
 		"AbilityCastRange"				"500 550 600 650 750 800 850"
 	
 		// Special
@@ -395,7 +387,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"3500 9000 24000 90000 210000 420000 630000"
+				"damage"				"50 125 200 275 350 425"
 			}
 			"02"
 			{
@@ -405,7 +397,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage_magnet"			"875 2250 6000 22500 52500 105000 157500"
+				"damage_magnet"			"50 75 100 125 150 175"
 			}
 			"04"
 			{
@@ -499,7 +491,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"90000"
+				"damage"				"350"
 			}
 			"02"
 			{
@@ -509,7 +501,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage_magnet"			"22500"
+				"damage_magnet"			"150"
 			}
 			"04"
 			{

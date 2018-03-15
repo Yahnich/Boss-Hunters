@@ -13,9 +13,7 @@
 	    "AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"  
 		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"lina_dragon_slave"
-		"LevelsBetweenUpgrades"			"6"
 		"MaxLevel"						"7"
-		"RequiredLevel"					"5"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -29,8 +27,8 @@
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"25 50 75 125 250 500 1000"
-	
+		"AbilityManaCost"				"100 115 130 145 160 175 190"
+		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
@@ -38,12 +36,12 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"1000 2500 5000 7500 15000 25000 50000"
+				"damage"					"75 150 225 300 375 450 525"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage_flame"				"250 500 1000 1500 2500 5000 7500"
+				"damage_flame"				"5 10 15 20 25 30 35"
 			}
 			"03"
 			{
@@ -134,9 +132,7 @@
 	    "AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"  
 		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"lina_light_strike_array"
-		"LevelsBetweenUpgrades"			"6"
 		"MaxLevel"						"7"
-		"RequiredLevel"					"5"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -150,7 +146,7 @@
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"25 50 75 125 250 500 1000"
+		"AbilityManaCost"				"100 110 120 130 140 150 160"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -159,12 +155,12 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"1250 2500 5000 10000 20000 35000 70000"
+				"damage"					"40 80 120 160 200 240 280"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage_flame"				"100 250 500 750 1500 2500 5000"
+				"damage_flame"				"5 10 15 20 25 30 35"
 			}
 			"03"
 			{
@@ -174,12 +170,12 @@
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"radius"					"225 250 275 300 325 350 375"
+				"radius"					"225"
 			}		
 			"05"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"stun_duration"				"1.0"
+				"stun_duration"				"1.25"
 			}
 		}
 	
@@ -208,7 +204,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"140"
+				"value"					"100"
 			}
 		}
 	}
@@ -262,7 +258,7 @@
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"25 50 75 125 250 500 1000"
+		"AbilityManaCost"				"120"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -271,12 +267,12 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"1000 2500 5000 7500 15000 25000 50000"
+				"damage"					"50 100 150 200 250 300 350"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage_time"				"400 600 800 1000 2000 4000 8000"
+				"damage_time"				"15 16 17 18 19 20 21"
 			}
 			"03"
 			{
@@ -286,7 +282,7 @@
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"radius"					"225 250 275 300 325 350 375"
+				"radius"					"375"
 			}
 		}
 	
@@ -390,13 +386,11 @@
 		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityTextureName"			"lina_laguna_blade"
-		"LevelsBetweenUpgrades"			"6"
-		"MaxLevel"						"7"
-		"RequiredLevel"					"5"
+		"MaxLevel"						"6"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"500 600 700 800 900 1000 1100"
+		"AbilityCastRange"				"500 600 700 800 900 1000"
 		"AbilityCastPoint"				"0.45"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
 
@@ -406,7 +400,7 @@
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"250 325 500 750 1250 2250 4000"
+		"AbilityManaCost"				"280 420 560 700 840 980"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -415,7 +409,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"7000 12500 25000 45000 90000 180000 360000"
+				"damage"					"450 650 850 1050 1250 1450"
 			}
 			"02"
 			{

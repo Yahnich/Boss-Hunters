@@ -138,7 +138,7 @@ end
 
 function rubick_lift_ebf:GetCooldown(nLevel)
 	local cooldown = self.BaseClass.GetCooldown( self, nLevel )
-	if self:GetCaster():HasModifier("modifier_special_bonus_unique_rubick_4") then cooldown = cooldown - 15 end
+	if self:GetCaster():HasModifier("modifier_special_bonus_unique_rubick_4") then cooldown = cooldown + self:GetCaster():FindTalentValue("modifier_special_bonus_unique_rubick_4") end
 	return cooldown
 end
 

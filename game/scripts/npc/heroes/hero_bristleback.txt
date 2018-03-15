@@ -27,11 +27,11 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"2.5 2.25 2 1.75 1.5 1.25 1"
+		"AbilityCooldown"				"3.0"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"6 12 24 48 96 192 288"
+		"AbilityManaCost"				"35"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -40,19 +40,19 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"quill_base_damage"		"500 1000 2500 5000 7500 10000 20000"
+				"quill_base_damage"		"20 40 60 80 100 120 140"
 			}
 			"02"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"quill_stack_damage"			"250 500 1000 1500 2000 3000 4000"
+				"quill_stack_damage"			"30 32 34 36 38 40 42"
 				"LinkedSpecialBonus"			"special_bonus_unique_bristleback_2"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"quill_stack_duration"	"12.0"
+				"quill_stack_duration"	"14.0"
 			}
 			"04"
 			{
@@ -88,9 +88,7 @@
 	    "AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
 	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
 	    "SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
-		"RequiredLevel"					"5"
 		"AbilityTextureName"			"bristleback_viscous_nasal_goo"
 		"AbilityPierces"				"1"
 		"HasScepterUpgrade"				"1"
@@ -107,7 +105,7 @@
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"6 12 24 48 96 192 288"
+		"AbilityManaCost"				"25"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -126,12 +124,12 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"armor_per_stack"		"-1 -2 -3 -4 -5 -6 -7"
+				"armor_per_stack"		"-1 -1.4 -1.8 -2.2 -2.6 -3.0 -3.4"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"move_slow_per_stack"	"-3 -6 -9 -12 -15"
+				"move_slow_per_stack"	"-15"
 			}
 			"05"
 			{
@@ -189,7 +187,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage_reduction"		"35"
+				"damage_reduction"		"20"
 				"LinkedSpecialBonus"	"special_bonus_unique_bristleback_spiky_shell"
 			}
 		}
@@ -213,7 +211,7 @@
 		"ScriptFile"					"heroes/hero_bristleback/bristleback_worked_up.lua"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"MaxLevel"						"7"
+		"MaxLevel"						"6"
 		"AbilityTextureName"			"bristleback_warpath"
 	
 		// Special
@@ -223,7 +221,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_strength"		"15 30 45 60 120 180 240"
+				"bonus_strength"		"1 2 3 4 5 6"
 			}
 			"02"
 			{
@@ -233,7 +231,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"max_stacks"			"30"
+				"max_stacks"			"20"
 				"LinkedSpecialBonus"	"special_bonus_unique_bristleback_work_up_1"
 			}
 			"04"
@@ -267,13 +265,11 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
-		"RequiredLevel"					"3"
 		"AbilityTextureName"			"custom/bristleback_yer_mum"
 		
 		"AbilityCooldown"				"16 14 12 10 8 6 4"
-		"AbilityManaCost"				"25 50 75 125 250 500 1000"
+		"AbilityManaCost"				"75"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -287,7 +283,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage_reduction"		"-99"
+				"damage_reduction"		"-80"
 			}
 			"01"
 			{

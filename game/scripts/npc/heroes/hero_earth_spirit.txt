@@ -13,9 +13,7 @@
 		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"LevelsBetweenUpgrades"			"6"
 		"MaxLevel"						"7"
-		"RequiredLevel"					"6"
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -38,13 +36,13 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"1200 2200 4200 8200 16500 35000 75000"
+				"damage"				"100"
 				//"LinkedSpecialBonus"	"special_bonus_unique_earth_spirit"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rock_damage"			"800 1800 3600 6400 12400 28000 64000"
+				"rock_damage"			"40 80 120 260 300 340 380"
 			}
 			"03"
 			{
@@ -90,9 +88,7 @@
 		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"LevelsBetweenUpgrades"			"5"
-		"MaxLevel"						"7"
-		"RequiredLevel"					"6"
+		"MaxLevel"						"6"
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -101,7 +97,7 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"80.0"
+		"AbilityCooldown"				"100.0 90.0 80.0 70.0 60.0 50.0"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -114,7 +110,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"150 300 600 1200 2400 4800 9600"
+				"damage"				"50 75 100 125 150 175"
 			}
 			"02"
 			{
@@ -124,7 +120,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius"				"500 550 600 650 700 850 900"
+				"radius"				"650"
 			}
 			"04"
 			{
@@ -208,10 +204,8 @@
 		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"LevelsBetweenUpgrades"			"6"
 		"MaxLevel"						"7"
-		"RequiredLevel"					"6"
-	
+		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"1000"
@@ -233,7 +227,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"1200 2200 4200 8400 16600 32800 65000"
+				"damage"				"50 100 150 200 250 300 350"
 			}
 			"02"
 			{
@@ -287,7 +281,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rock_damage"			"2000 4000 8000 12000 18000 35000 68000"
+				"rock_damage"			"50 75 100 125 150 175 200"
 			}
 			"02"
 			{
@@ -351,7 +345,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"8000"
+				"damage"				"200"
 			}
 			"02"
 			{
@@ -444,7 +438,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"500"
+				"value"					"50"
 			}
 			"01"
 			{

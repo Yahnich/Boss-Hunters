@@ -8,12 +8,11 @@
 		"ScriptFile"					"heroes/hero_legion_commander/legion_commander_war_fury"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
-		"MaxLevel"						"7"
-		"LevelsBetweenUpgrades"			"7"
+		"MaxLevel"						"6"
 		
 		"AbilityCastRange"				"450"
 		"AbilityCooldown"				"60"
-		"AbilityManaCost"				"200 300 400 800 1200 1600 2000"
+		"AbilityManaCost"				"200"
 		"AbilityCastPoint"				"0.3"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
 	
@@ -35,7 +34,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage_aura"		"250 500 1000 2000 3500 5000 7500"
+				"bonus_damage_aura"		"25 50 75 100 125 150"
 			}
 			"02"
 			{
@@ -45,7 +44,7 @@
 			"03"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"armor"							"20 30 40 50 60 80 100"
+				"armor"							"5 8 11 14 17 20"
 				"LinkedSpecialBonus"			"special_bonus_unique_legion_commander_war_fury_2"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
@@ -69,9 +68,7 @@
 		"ScriptFile"					"heroes/hero_legion_commander/legion_commander_fearless_assault"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityTextureName"			"legion_commander_moment_of_courage"
-		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
-		"RequiredLevel"					"4"
 		
 		"precache"
 		{
@@ -91,7 +88,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"trigger_chance"			"35"
+				"trigger_chance"			"25"
 				"LinkedSpecialBonus"		"special_bonus_unique_legion_commander_fearless_assault_1"
 			}
 			"02"
@@ -102,7 +99,7 @@
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"hp_leech_percent"			"30"
+				"hp_leech_percent"			"55 60 65 70 75 80 85"
 			}
 		}
 	}
@@ -116,9 +113,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"				"1"
-		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
-		"RequiredLevel"					"6"
 		"AbilityTextureName"			"legion_commander_overwhelming_odds"
 		
 		"precache"
@@ -131,7 +126,7 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"18.0 18.0 18.0 18.0"
+		"AbilityCooldown"				"15"
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -141,7 +136,7 @@
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"100 100 100 100"
+		"AbilityManaCost"				"100 110 120 130 140 150 160"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -156,12 +151,12 @@
 			"02"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"damage"						"600 1200 2400 4800 9600 20000 40000"
+				"damage"						"40 60 80 100 120 140 160"
 			}
 			"03"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"damage_per_unit"				"200 400 800 1600 3200 6400 12800"
+				"damage_per_unit"				"15 20 25 30 35 40 45"
 				"LinkedSpecialBonus"			"special_bonus_unique_legion_commander_victorious_advance_1"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
@@ -173,7 +168,7 @@
 			"05"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"bonus_armor"					"3 3.5 4 4.5 5 5.5 6"
+				"bonus_armor"					"1.5 1.75 2 2.25 2.5 2.75 3"
 			}
 			"06"
 			{
@@ -196,9 +191,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_ALL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ALLIES_YES"
 		"AbilityTextureName"			"legion_commander_press_the_attack"
-		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
-		"RequiredLevel"					"6"
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -238,12 +231,12 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"attack_speed"			"80 90 100 110 120 150 200"
+				"attack_speed"			"65 90 115 140 165 190 215"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"hp_regen"				"100 250 500 1000 1500 2500 5000"
+				"hp_regen"				"30 35 40 45 50 55 60"
 			}
 			"04"
 			{
@@ -344,7 +337,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"-15"
+				"value"					"-10"
 			}
 		}
 	}
@@ -402,7 +395,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"2"
+				"value"					"5"
 			}
 		}
 	}

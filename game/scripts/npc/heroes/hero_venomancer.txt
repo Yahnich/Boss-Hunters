@@ -12,8 +12,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"FightRecapLevel"				"2"
 		"AbilityTextureName"			"venomancer_poison_nova"
-		"LevelsBetweenUpgrades"			"7"
-		"MaxLevel"						"7"
+		"MaxLevel"						"6"
 		"HasScepterUpgrade"				"1"
 	
 		// Precache
@@ -37,7 +36,7 @@
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"250 325 500 750 1250 2250 4000"
+		"AbilityManaCost"				"200 300 400 500 600 700"
 	
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
@@ -50,7 +49,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"radius"					"950"
+				"radius"					"830"
 				"LinkedSpecialBonus"		"special_bonus_unique_venomancer_6"
 			}
 			"02"
@@ -61,13 +60,13 @@
 			"03"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"duration"					"15.0"
+				"duration"					"16.0"
 				"LinkedSpecialBonus"		"special_bonus_unique_venomancer_4"
 			}
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"300 600 1200 1800 3600 7200 14400"
+				"damage"					"30 55 80 105 130 155"
 			}
 			"06"
 			{
@@ -77,7 +76,7 @@
 			"07"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage_scepter"			"400 800 1600 2400 4800 9600 19200"
+				"damage_scepter"			"60 85 110 135 160 185"
 			}
 			"08"
 			{
@@ -97,8 +96,6 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityTextureName"			"venomancer_poison_sting"
-		"RequiredLevel"					"5"
-		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
 		
 		"precache"
@@ -118,7 +115,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage_stack"				"20 40 60 80 100 120 140"
+				"damage_stack"				"1"
 			}
 			"03"
 			{
@@ -133,7 +130,7 @@
 			"05"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"initial_stacks"			"10 12 14 16 18 20 22"
+				"initial_stacks"			"6 14 22 30 38 46 54"
 			}
 		}
 	}
@@ -148,8 +145,6 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"				"1"
 		"AbilityTextureName"			"venomancer_venomous_gale"
-		"RequiredLevel"					"6"
-		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
 	
 		// Precache
@@ -168,11 +163,11 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"15"
+		"AbilityCooldown"				"20 19 18 17 16 15 14"
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"25 50 75 125 250 500 1000"
+		"AbilityManaCost"				"125"
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
@@ -181,22 +176,22 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"10.0"
+				"duration"				"15.0"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"strike_damage"			"800 1600 3200 6400 12800 32600 65200"
+				"strike_damage"			"25 50 75 100 125 150 175"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"tick_damage"			"150 300 600 1200 2400 4800 9600"
+				"tick_damage"			"10 40 70 100 130 160 190"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"tick_interval"			"1.0"
+				"tick_interval"			"3.0"
 			}
 			"05"
 			{
@@ -206,7 +201,7 @@
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius"				"125 125 250 250 375 375 500"
+				"radius"				"125"
 			}
 			"07"
 			{
@@ -239,11 +234,11 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"10.0"
+		"AbilityCooldown"				"5.0"
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"10 20 40 60 120 240 480"
+		"AbilityManaCost"				"20"
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
@@ -252,7 +247,7 @@
 			"01"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"duration"						"30.0 35.0 40.0 45.0 50.0 55.0 60.0"
+				"duration"						"40"
 			}
 			"02"
 			{
@@ -264,7 +259,7 @@
 			"03"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"ward_damage"					"100 200 300 400 800 1200 2400"
+				"ward_damage"					"13 22 31 40 49 58 67"
 				"LinkedSpecialBonus"			"special_bonus_unique_venomancer_plague_ward_2"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 				"CalculateSpellDamageTooltip"	"0"

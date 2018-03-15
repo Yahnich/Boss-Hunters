@@ -67,7 +67,7 @@ end
 
 function modifier_shadow_shaman_bound_shackles:OnIntervalThink()
 	if not self:GetCaster():IsChanneling() then self:Destroy() end
-	ApplyDamage({ victim = self:GetParent(), attacker = self:GetCaster(), damage = (self.damage/self.duration)*self.tick, damage_type = self:GetAbility():GetAbilityDamageType(), ability = self:GetAbility()})
+	ApplyDamage({ victim = self:GetParent(), attacker = self:GetCaster(), damage = self.damage*self.tick, damage_type = self:GetAbility():GetAbilityDamageType(), ability = self:GetAbility()})
 end
 
 function modifier_shadow_shaman_bound_shackles:OnDestroy()
@@ -132,7 +132,7 @@ function modifier_shadow_shaman_bound_shackles_post:OnCreated()
 end
 
 function modifier_shadow_shaman_bound_shackles_post:OnIntervalThink()
-	ApplyDamage({ victim = self:GetParent(), attacker = self:GetCaster(), damage = (self.damage/self.duration)*self.tick, damage_type = self:GetAbility():GetAbilityDamageType(), ability = self:GetAbility()})
+	ApplyDamage({ victim = self:GetParent(), attacker = self:GetCaster(), damage = self.damage*self.tick, damage_type = self:GetAbility():GetAbilityDamageType(), ability = self:GetAbility()})
 end
 
 function modifier_shadow_shaman_bound_shackles_post:OnDestroy()

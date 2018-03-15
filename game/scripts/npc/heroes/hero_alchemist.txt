@@ -15,10 +15,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityTextureName"			"alchemist_acid_spray"
-		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
-		"RequiredLevel"					"7"
-		"AbilityPierces"				"1"
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -31,7 +28,7 @@
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"25 50 75 125 250 500 1000"
+		"AbilityManaCost"				"130 140 150 160 170 180 190"
 		
 		"precache"
 		{
@@ -47,7 +44,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius"				"625"
+				"radius"				"400 475 550 625 700 775 850"
 				"LinkedSpecialBonus"	"special_bonus_unique_alchemist_acid_spray_2"
 			}
 			"02"
@@ -58,12 +55,12 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"400 800 1600 3200 6400 12800 25600"
+				"damage"				"15 20 25 30 35 40 45"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"armor_reduction"		"-5 -7 -9 -11 -13 -15 -17"
+				"armor_reduction"		"-4 -5 -6 -7 -8 -9 -10
 				"LinkedSpecialBonus"	"special_bonus_unique_alchemist_acid_spray_1"
 			}
 			"05"
@@ -82,17 +79,16 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityTextureName"			"alchemist_goblins_greed"
 		"MaxLevel"						"7"
-		"LevelsBetweenUpgrades"			"7"
 		"HasScepterUpgrade"				"1"
 		
-		"AbilityCooldown"				"0.25"
+		"AbilityCooldown"				"0.5"
 	
 		"AbilitySpecial"
 	    {
 			"01"
 	        {
 	            "var_type"              "FIELD_FLOAT"
-	            "gold_per_hit"          "4 4.5 5 5.5 6 6.5 7"
+	            "gold_per_hit"          "1 1.5 2 2.5 3 3.5 4"
 				"LinkedSpecialBonus"	"special_bonus_unique_alchemist_alchemists_greed_1"
 	        }
 	    }
@@ -110,8 +106,7 @@
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityTextureName"			"alchemist_chemical_rage"
 		"FightRecapLevel"				"2"
-		"LevelsBetweenUpgrades"			"7"
-		"MaxLevel"						"7"
+		"MaxLevel"						"6"
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -123,7 +118,7 @@
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"50 100 150"
+		"AbilityManaCost"				"50 100 150 200 250 300"
 		
 		"precache"
 		{
@@ -150,18 +145,19 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_hp"				"3200 6400 9600 12800 25000 50000 75000"
+				"bonus_hp"				"150 300 450 600 750 900 1050"
 			}
 			"04"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"bonus_health_regen"	"4"
-				"LinkedSpecialBonus"	"special_bonus_unique_alchemist_chemical_rage_1"
+				"var_type"						"FIELD_FLOAT"
+				"bonus_health_regen"			"40 48 56 64 72 80"
+				"LinkedSpecialBonus"			"special_bonus_unique_alchemist_chemical_rage_1"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"bonus_mana_regen"		"3.0 6.0 12.0 18.0 32.0 64.0"
+				"bonus_mana_regen"		"3.0 7.5 12.0 16.5 21 25.5"
 			}
 			"06"
 			{
@@ -185,8 +181,6 @@
 		"AbilityTextureName"			"custom/alchemist_midas_knuckle"
 		"AbilityCastAnimation"			"ACT_DOTA_ATTACK_STATUE"
 		"MaxLevel"						"7"
-		"RequiredLevel"					"7"
-		"LevelsBetweenUpgrades"			"6"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -208,7 +202,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"base_dmg"					"1000 2000 3000 6000 12000 24000 36000"
+				"base_dmg"					"100 150 200 250 300 350 400"
 			}
 			"02"
 			{

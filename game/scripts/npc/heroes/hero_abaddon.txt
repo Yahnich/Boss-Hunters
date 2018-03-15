@@ -16,12 +16,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ALLIES_YES"
 		"AbilityTextureName"			"abaddon_aphotic_shield"
 		"FightRecapLevel"				"1"
-		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
-		"RequiredLevel"					"6"
-		
-	
-	
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -30,11 +25,11 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"12.0"
+		"AbilityCooldown"				"10.0"
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"25 50 75 125 250 500 1000"
+		"AbilityManaCost"				"115"
 	
 		"precache"
 		{
@@ -49,12 +44,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"10.0"
+				"duration"				"15.0"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"damage_absorb"			"1500 3000 6000 12500 25000 50000 75000"
+				"damage_absorb"			"110 140 170 200 230 260 290 320"
 			}
 			"03"
 			{
@@ -76,9 +71,7 @@
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityTextureName"			"abaddon_borrowed_time"
 		"FightRecapLevel"				"2"
-		"LevelsBetweenUpgrades"			"7"
-		"MaxLevel"						"7"
-		"HasScepterUpgrade"				"1"
+		"MaxLevel"						"6"
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -103,12 +96,12 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"duration"					"6.0 7.0 8.0 9.0 10.0 11.0 12.0"
+				"duration"					"6.0 7.0 8.0 9.0 10.0 11.0"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"duration_scepter"			"6.0 8.0 10.0 12.0 14.0 16.0 18.0"
+				"duration_scepter"			"6.0 8.0 10.0 12.0 14.0 16.0"
 			}
 			"03"
 			{
@@ -134,8 +127,6 @@
 		"SpellImmunityType"			"SPELL_IMMUNITY_ALLIES_YES"
 		"AbilityTextureName"		"custom/abaddon_brume_weaver"
 		"MaxLevel"					"7"
-		"RequiredLevel"				"6"
-		"LevelsBetweenUpgrades"		"5"
 		
 		"AbilityCooldown"		"15"
 	
@@ -156,7 +147,7 @@
 			"03"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"base_heal"					"50 100 150 350 1000 2500 5000"
+				"base_heal"					"10 15 20 25 30 35 40"
 			}
 			"04"
 			{
@@ -248,8 +239,6 @@
 		"AbilityTextureName"			"abaddon_death_coil"
 		"CastFilterRejectCaster" 		"1"
 		"MaxLevel"						"7"
-		"RequiredLevel"					"7"
-		"LevelsBetweenUpgrades"			"5"
 	
 		"AbilityCastRange"				"800"
 		"AbilityCastPoint"				"0.452 0.452 0.452 0.452"
@@ -257,11 +246,11 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"8.0"
+		"AbilityCooldown"				"4.5"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"50 60 80 160 320 480 640"
+		"AbilityManaCost"				"50 60 70 80 90 100 110	"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -275,24 +264,24 @@
 			"02"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"self_heal"						"750 1500 3000 6000 12000 18000 30000"
+				"self_heal"						"75 100 125 150 175 200 225"
 				"LinkedSpecialBonus"			"special_bonus_unique_abaddon_death_coil_2"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"target_damage"			"750 1500 3000 6000 12500 25000 50000"
+				"target_damage"			"100 150 200 250 300 350 400"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"heal_amount"			"750 1500 3000 6000 12000 18000 30000"
+				"heal_amount"			"100 150 200 250 300 350 400"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"heal_pct"				"12"
+				"heal_pct"				"6"
 			}
 		}
 	
@@ -386,7 +375,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"-8"
+				"value"				"-6"
 			}
 		}
 	}

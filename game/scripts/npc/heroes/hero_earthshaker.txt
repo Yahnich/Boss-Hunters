@@ -16,9 +16,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"earthshaker_fissure"
 		"FightRecapLevel"				"1"
-		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
-		"RequiredLevel"					"5"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -27,12 +25,12 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"12"
+		"AbilityCooldown"				"15"
 		"AbilityDuration"				"1.0 1.25 1.5 1.75 2.0 2.25 2.5"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"25 50 75 125 250 500 1000"
+		"AbilityManaCost"				"125 140 155 170 185 200 215"
 		
 		"precache"
 		{
@@ -62,12 +60,12 @@
 			"04"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"stun_duration"				"1.0 1.25 1.5 1.75 2.0 2.25 2.5"
+				"stun_duration"				"1.5"
 			}
 			"04"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"damage"					"1500 3000 6000 10000 15000 35000 50000"
+				"damage"					"110 160 210 260 310 360 410"
 			}
 		}
 	}
@@ -83,7 +81,6 @@
 		"ScriptFile"					"heroes/hero_earthshaker/earthshaker_enchant_totem_ebf"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityTextureName"			"earthshaker_enchant_totem"
-		"LevelsBetweenUpgrades"			"6"
 		"MaxLevel"						"7"
 
 		// Casting
@@ -97,7 +94,7 @@
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"25 50 75 125 250 500 1000"
+		"AbilityManaCost"				"50"
 		
 		"precache"
 		{
@@ -119,7 +116,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"duration"					"3"
+				"duration"					"3.0"
 				"LinkedSpecialBonus"		"special_bonus_unique_earthshaker_enchant_totem_ebf_2"
 			}
 		}
@@ -138,7 +135,6 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"AbilityTextureName"			"custom/earthshaker_crater_impact"
 		"AbilityCastAnimation"			"ACT_DOTA_OVERRIDE_ABILITY_2"
-		"LevelsBetweenUpgrades"			"6"
 		"MaxLevel"						"7"
 
 		// Casting
@@ -152,7 +148,7 @@
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"25 50 75 125 250 500 1000"
+		"AbilityManaCost"				"150"
 		
 		"precache"
 		{
@@ -180,7 +176,7 @@
 			"03"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"damage"					"1200 2400 4800 9600 19200 38400 76800"
+				"damage"					"80 140 200 260 320 380 440"
 			}
 			"04"
 			{
@@ -190,7 +186,7 @@
 			"05"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"jump_duration"				"0.75"
+				"jump_duration"				"0.5"
 			}
 			"06"
 			{
@@ -265,8 +261,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"earthshaker_echo_slam"
 		"FightRecapLevel"				"2"
-		"LevelsBetweenUpgrades"			"7"
-		"MaxLevel"						"7"
+		"MaxLevel"						"6"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -274,12 +269,12 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"120.0"
+		"AbilityCooldown"				"150.0 130 110 90 70 50"
 
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"250 325 500 750 1250 2250 4000"
+		"AbilityManaCost"				"145 205 265 325 385 445"
 		
 		"precache"
 		{
@@ -297,12 +292,12 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"main_damage"				"3200 6400 12800 25000 50000 100000 200000"
+				"main_damage"				"100 200 300 400 500 600"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"echo_damage"				"250 500 1000 2000 4000 8000 16000"
+				"echo_damage"				"60 85 110 125 140 155"
 			}
 			"03"
 			{

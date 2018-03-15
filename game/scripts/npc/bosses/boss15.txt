@@ -51,7 +51,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"5000 7000"
+				"damage"				"350 450"
 			}
 			"06"
 			{
@@ -110,12 +110,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"ghost_damage"			"2"
+				"ghost_damage"			"3 3"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"ghost_health"			"1"
+				"ghost_health"			"2 3"
 			}
 			"02"
 			{
@@ -147,7 +147,7 @@
 		// Stats		
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"				"10"
-		"AbilityCastPoint"				"0.5 0.4 0.3"
+		"AbilityCastPoint"				"1.5 1"
 		"AbilityCastRange"				"900 1050 1200"
 		"AbilityCastAnimation"			"ACT_DOTA_DP_SPIRIT_SIPHON"
 	
@@ -168,7 +168,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"200 225 250"
+				"damage"					"125 150 175"
 			}
 			"03"
 			{

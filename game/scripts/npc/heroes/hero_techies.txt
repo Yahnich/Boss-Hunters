@@ -35,7 +35,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"1000 2500 5000 7500 15000 25000 50000"
+				"damage"					"300 400 500 600 700 800 900"
 				"LinkedSpecialBonus"		"special_bonus_unique_tech_blasting_off_1"
 			}
 			"02"
@@ -74,12 +74,8 @@
 		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityTextureName"			"techies_focused_detonate"
-		"LevelsBetweenUpgrades"			"7"
-		"MaxLevel"						"7"
-		"RequiredLevel"					"7"
-		
-		"AbilityCastRange"              "99999999999"
-		"AbilityCastPoint"              "0"
+		"MaxLevel"						"6"
+
 		
 		// Time     
 		//-------------------------------------------------------------------------------------------------------------
@@ -96,7 +92,7 @@
 			"01"
 			{
 				"var_type"                  	"FIELD_INTEGER"
-				"damage"            			"5000 10000 20000 40000 80000 160000 320000"
+				"damage"            			"350 500 650 800 1050 1200"
 			}
 			"02"
 			{
@@ -140,9 +136,7 @@
 		"AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
 		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityTextureName"			"techies_land_mines"
-		"LevelsBetweenUpgrades"			"6"
 		"MaxLevel"						"7"
-		"RequiredLevel"					"6"
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -150,11 +144,11 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"7"
+		"AbilityCooldown"				"12"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"50 60 70 80 90 100 110"
+		"AbilityManaCost"				"110 130 150 170 190 210 230"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -169,12 +163,12 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"2400 3800 5800 12800 23600 45800 88600"
+				"damage"					"200 300 400 500 600 700 800"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"radius"					"300 350 400 450 500 550 600"
+				"radius"					"400"
 			}	
 		}
 	
@@ -226,18 +220,18 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"1200 2400 4800 9600 19200 38400 57600"
+				"damage"					"150 225 300 375 450 525 600"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"radius"					"150 200 250 300 350 400 450"
+				"radius"					"400"
 				"LinkedSpecialBonus"		"special_bonus_unique_tech_robo_mine_2"
 			}
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"move_speed"				"0"
+				"move_speed"				"150"
 				"LinkedSpecialBonus"		"special_bonus_unique_tech_robo_mine_1"
 			}
 		}
@@ -261,11 +255,7 @@
 	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"  
 		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"techies_stasis_trap"
-		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
-		"RequiredLevel"					"5"
-	
-		"PiercesDisableReduction"		"1"
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -278,7 +268,7 @@
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"150"
+		"AbilityManaCost"				"80 110 140 170 200 230 260"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -298,7 +288,7 @@
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"stun_radius"				"300 350 400 450 500 550 600"
+				"stun_radius"				"400"
 			}
 			"04"
 			{

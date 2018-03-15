@@ -184,7 +184,7 @@
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage_on_hit"				"65000 80000"
+				"damage_on_hit"				"650 800"
 			}
 			"05"
 			{
@@ -385,7 +385,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"1250 1750"
+				"damage"					"25 33"
 			}
 			"03"
 			{

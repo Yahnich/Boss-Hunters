@@ -195,19 +195,6 @@ function CHoldoutGameMode:InitGameMode()
 	
 	print(GetMapName())
 	
-	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue( DOTA_ATTRIBUTE_STRENGTH_HP_REGEN_PERCENT, 0.00008 )
-	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue( DOTA_ATTRIBUTE_STRENGTH_STATUS_RESISTANCE_PERCENT, 0.00005 )
-	
-	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue( DOTA_ATTRIBUTE_AGILITY_DAMAGE, 1.25 )
-	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue( DOTA_ATTRIBUTE_AGILITY_ARMOR, 0.01 )
-	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue( DOTA_ATTRIBUTE_AGILITY_ATTACK_SPEED, 0.05	 )
-	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue( DOTA_ATTRIBUTE_AGILITY_MOVE_SPEED_PERCENT, 0.00006 )
-	
-	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue( DOTA_ATTRIBUTE_INTELLIGENCE_MANA_REGEN_PERCENT, 0.0008 )
-	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue( DOTA_ATTRIBUTE_INTELLIGENCE_SPELL_AMP_PERCENT, 0.01 )
-	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue( DOTA_ATTRIBUTE_INTELLIGENCE_MAGIC_RESISTANCE_PERCENT, 0.000055 ) 
-	
-	
 	GameRules.playersDisconnected = 0
 	self._nRoundNumber = 1
 	GameRules._roundnumber = 1
@@ -905,25 +892,6 @@ end
 function CHoldoutGameMode:OnHeroLevelUp(event)
 	local playerID = EntIndexToHScript(event.player):GetPlayerID()
 	local hero = PlayerResource:GetSelectedHeroEntity(playerID)
-	
-	local GetModifierBonusStats_All = function(hero, nType, nBonus)
-		local nLevel = hero:GetLevel()
-		local nStats = (1.07^nLevel * nBonus + nLevel^0.3 * 10) / 2
-		if hero:GetPrimaryAttribute() == nType then 
-			return math.floor(nStats * 1.2)
-		else
-			return math.floor(nStats)
-		end
-	end
-	
-	local strength = GetModifierBonusStats_All(hero, 0, hero:GetStrengthGain())
-	local agility = GetModifierBonusStats_All(hero, 1, hero:GetAgilityGain())
-	local intellect = GetModifierBonusStats_All(hero, 2, hero:GetIntellectGain())
-	
-	hero:SetBaseStrength(hero:GetBaseStrength() + strength )
-	hero:SetBaseAgility(hero:GetBaseAgility() + agility ) 
-	hero:SetBaseIntellect(hero:GetBaseIntellect() + intellect )
-	-- hero.customStatEntity:ManageStats(hero)
 end
 
 function CHoldoutGameMode:OnAbilityLearned(event)
@@ -1233,6 +1201,11 @@ function CHoldoutGameMode:OnHeroPick (event)
 		hero.damageDone = 0
 		hero.hasBeenInitialized = true
 		
+		hero:HeroLevelUp(false)
+		hero:HeroLevelUp(false)
+		hero:HeroLevelUp(false)
+		hero:HeroLevelUp(false)
+		
 		-- StatsManager:CreateCustomStatsForHero(hero)
 		hero:SetRespawnPosition( GetGroundPosition(Vector(973, 99, 0), nil) )
 		CustomGameEventManager:Send_ServerToPlayer(hero:GetPlayerOwner(), "heroLoadIn", {}) -- wtf is this retarded shit stop force-setting my garbage
@@ -1260,7 +1233,7 @@ function CHoldoutGameMode:OnHeroPick (event)
 		end
 		if PlayerResource:HasRandomed( ID ) then
 			local gold = hero:GetGold()
-			hero:SetGold( 600, true )
+			hero:SetGold( gold + 300, true )
 		end
 		
 		hero:SetDayTimeVisionRange(hero:GetDayTimeVisionRange() * 2)
@@ -1805,7 +1778,7 @@ function CHoldoutGameMode:OnThink()
 					local shareCount = 0
 					for _,unit in pairs ( HeroList:GetAllHeroes()) do
 						if unit:GetTeamNumber() == DOTA_TEAM_GOODGUYS and not unit:IsFakeHero() then
-							PlayerResource:SetCustomBuybackCost(unit:GetPlayerID(), self._nRoundNumber * 100)
+							PlayerResource:SetCustomBuybackCost(hero:GetPlayerID(), self._nRoundNumber * 100)
 							if unit:HasOwnerAbandoned() then
 								abandonGold = abandonGold + unit:GetGold()
 								unit:SetGold(0, false)
@@ -2062,29 +2035,34 @@ function CHoldoutGameMode:OnNPCSpawned( event )
 	if not spawnedUnit or spawnedUnit:GetClassname() == "npc_dota_thinker" or spawnedUnit:IsPhantom() or spawnedUnit:IsFakeHero()then
 		return
 	end
-	if spawnedUnit:IsIllusion() then
-		local owner = PlayerResource:GetSelectedHeroEntity( spawnedUnit:GetPlayerID() )
-		spawnedUnit:ModifyAgility( owner:GetAgility() - spawnedUnit:GetAgility() )
-		spawnedUnit:ModifyStrength( owner:GetStrength() - spawnedUnit:GetStrength() )
-		spawnedUnit:ModifyIntellect( owner:GetIntellect() - spawnedUnit:GetIntellect() )
-	end
 	if spawnedUnit:IsCourier() then
 		spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_invulnerable", {})
 	end
-	if spawnedUnit:IsCreature() and spawnedUnit:GetTeam() == DOTA_TEAM_BADGUYS then
+	if spawnedUnit:IsCreature() and spawnedUnit:GetTeam() == DOTA_TEAM_BADGUYS and spawnedUnit:GetUnitName() ~= "npc_dota_boss36" then
+		local expectedHP = ( 3000 + 250 * (GameRules._roundnumber or 0) ) * RandomFloat(0.85, 1.15)
+		local expectedDamage = ( 80 + 15 * (GameRules._roundnumber or 0) ) * RandomFloat(0.85, 1.15)
+		local expectedArmor = ( GameRules._roundnumber or 0 ) * RandomFloat(0.85, 1.15)
+		if not spawnedUnit:IsRangedAttacker() then
+			expectedHP = expectedHP * 1.5
+			expectedArmor = expectedArmor * 1.33
+			expectedDamage = expectedDamage * 1.25
+		end
 		local playerMultiplier = 0.33
 		if GetMapName() == "epic_boss_fight_hardcore" then playerMultiplier = 0.4 end
 		local effective_multiplier = 1 + (HeroList:GetActiveHeroCount() - 1)*playerMultiplier
 		-- if self._currentRound and not self._currentRound:IsFinished() then self._vEnemiesRemaining
-		spawnedUnit:SetBaseMaxHealth(spawnedUnit:GetBaseMaxHealth()*effective_multiplier)
-		spawnedUnit:SetMaxHealth(spawnedUnit:GetMaxHealth()*effective_multiplier)
-		spawnedUnit:SetHealth(spawnedUnit:GetMaxHealth())
+		expectedHP = expectedHP * effective_multiplier
+		spawnedUnit:SetBaseMaxHealth(expectedHP)
+		spawnedUnit:SetMaxHealth(expectedHP)
+		spawnedUnit:SetHealth(expectedHP)
+		spawnedUnit:SetPhysicalArmorBaseValue(expectedArmor)
+		spawnedUnit:SetAverageBaseDamage( expectedDamage, RandomInt(15, 30) )
 		
 		spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_boss_attackspeed", {})
 		spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_spawn_immunity", {duration = 4/GameRules.gameDifficulty})
 		
-		if spawnedUnit:GetHullRadius() >= 24 then
-			spawnedUnit:SetHullRadius( math.ceil(24 * spawnedUnit:GetModelScale()) )
+		if spawnedUnit:GetHullRadius() >= 16 then
+			spawnedUnit:SetHullRadius( math.ceil(16 * spawnedUnit:GetModelScale()) )
 		end
 	end
 end

@@ -16,9 +16,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"winter_wyvern_arctic_burn"
-		"LevelsBetweenUpgrades"			"6"
 		"MaxLevel"						"7"
-		"RequiredLevel"					"7"
 		"HasScepterUpgrade"				"1"
 	
 		// Casting
@@ -32,7 +30,7 @@
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"25 50 75 125 250 500 1000"
+		"AbilityManaCost"				"90"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -62,7 +60,7 @@
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"mana_cost_scepter"		"6 12 24 48 96 192 288"
+				"mana_cost_scepter"		"40"
 			}
 			"07"
 			{
@@ -116,9 +114,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"winter_wyvern_splinter_blast"
-		"LevelsBetweenUpgrades"			"6"
 		"MaxLevel"						"7"
-		"RequiredLevel"					"7"
 	
 		"PiercesDisableReduction"		"1"
 	
@@ -143,7 +139,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"1000 2500 5000 7500 15000 25000 50000"
+				"damage"				"100 180 260 340 420 500 580"
 			}
 			"02"
 			{
@@ -190,9 +186,7 @@
 	    "AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
 	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
 		"AbilityTextureName"			"winter_wyvern_cold_embrace"
-		"LevelsBetweenUpgrades"			"6"
 		"MaxLevel"						"7"
-		"RequiredLevel"					"7"
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -208,7 +202,7 @@
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"50 100 150 250 450 750 1150"
+		"AbilityManaCost"				"75"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -250,9 +244,7 @@
 	    "AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
 	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
 		"AbilityTextureName"			"winter_wyvern_winters_curse"
-		"LevelsBetweenUpgrades"			"6"
-		"MaxLevel"						"7"
-		"RequiredLevel"					"7"
+		"MaxLevel"						"6"
 	
 		"PiercesDisableReduction"		"1"
 		"AbilityThreat"					"20.0"

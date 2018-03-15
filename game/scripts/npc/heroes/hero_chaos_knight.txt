@@ -13,9 +13,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"				"1"
 		"AbilityTextureName"			"chaos_knight_chaos_bolt"
-		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
-		"RequiredLevel"					"5"
 	
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
@@ -61,17 +59,17 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage_min"			"500 1000 4000 6000 8000 12000 24000"
+				"damage_min"			"75 100 125 150 175 200 225"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage_max"			"1000 4000 6000 8000 12000 24000 48000"
+				"damage_max"			"200 225 250 275 300 325 350"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bounce_chance"			"50 55 60 65 70 75 80"
+				"bounce_chance"			"50"
 			}
 		}
 	}
@@ -90,9 +88,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"chaos_knight_reality_rift"
 		"FightRecapLevel"				"1"
-		"LevelsBetweenUpgrades"			"6"
 		"MaxLevel"						"7"
-		"RequiredLevel"					"5"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -128,7 +124,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"armor_reduction"			"-5 -9 -13 -17 -21 -25 -29"
+				"armor_reduction"			"-2 -3 -4 -5 -6 -7 -8"
 				"LinkedSpecialBonus"		"special_bonus_unique_chaos_knight_reality_rift_1"
 			}		
 			"03"
@@ -149,9 +145,7 @@
 		"ScriptFile"					"heroes/hero_chaos_knight/chaos_knight_chaos_strike_ebf"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityTextureName"			"chaos_knight_chaos_strike"
-		"LevelsBetweenUpgrades"			"6"
 		"MaxLevel"						"7"
-		"RequiredLevel"					"6"
 		
 		"precache"
 		{
@@ -166,19 +160,18 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"crit_chance"				"15"
-				"LinkedSpecialBonus"		"special_bonus_unique_chaos_knight_chaos_strike_2"
+				"crit_chance"				"12"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"crit_damage"				"300 375 450 525 600 675 750"
-			}
+				"crit_damage"				"125 175 225 275 325 375 425"
+			}	
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"lifesteal"					"100"
-			}
+				"lifesteal"					"75"
+			}		
 		}
 	}
 	//=================================================================================================================
@@ -305,7 +298,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"20"
+				"value"					"18"
 			}
 		}
 	}
@@ -362,8 +355,8 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"-6"
-			}
+				"value"					"-4"
+			}	
 		}
 	}
 	"special_bonus_unique_chaos_knight_reality_rift_2" 

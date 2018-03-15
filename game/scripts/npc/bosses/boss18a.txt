@@ -113,7 +113,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"impact_damage"			"20000"
+				"impact_damage"			"600 750"
 			}
 			"02"
 			{
@@ -161,12 +161,12 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"10000"
+				"damage"					"400 450"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"bonus_damage_per_stack"	"2000 3500"
+				"bonus_damage_per_stack"	"300 350"
 			}
 			"03"
 			{
@@ -221,7 +221,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"5000"
+				"damage"					"400 500"
 			}
 		}
 	}

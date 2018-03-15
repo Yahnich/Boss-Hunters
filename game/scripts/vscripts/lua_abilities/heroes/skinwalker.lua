@@ -7,7 +7,6 @@ LinkLuaModifier( "modifier_skinwalker_predator_form", "lua_abilities/heroes/skin
 LinkLuaModifier( "modifier_skinwalker_predator_form_bleed", "lua_abilities/heroes/skinwalker.lua" ,LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_skinwalker_human_form", "lua_abilities/heroes/skinwalker.lua" ,LUA_MODIFIER_MOTION_NONE )
 
---------------------------------------------------------------------------------
 
 function skinwalker_fortress_form:OnSpellStart()
 	self:GetCaster():RemoveModifierByName("modifier_skinwalker_predator_form")
@@ -94,7 +93,7 @@ function modifier_skinwalker_fortress_form:OnCreated()
 end
 
 function modifier_skinwalker_fortress_form:OnIntervalThink()
-	if self:GetCaster():HasTalent("special_bonus_unique_beastmaster") then
+	if self:GetCaster():HasTalent("special_bonus_unique_lone_druid_2") then
 		self:GetCaster():FindAbilityByName("skinwalker_fortress_form"):SetOverrideCastPoint(0)
 		self:GetCaster():FindAbilityByName("skinwalker_predator_form"):SetOverrideCastPoint(0)
 		self:GetCaster():FindAbilityByName("skinwalker_human_form"):SetOverrideCastPoint(0)
@@ -156,7 +155,7 @@ function modifier_skinwalker_predator_form:OnCreated()
 end
 
 function modifier_skinwalker_predator_form:OnIntervalThink()
-	if self:GetCaster():HasTalent("special_bonus_unique_beastmaster") then
+	if self:GetCaster():HasTalent("special_bonus_unique_lone_druid_2") then
 		self:GetCaster():FindAbilityByName("skinwalker_fortress_form"):SetOverrideCastPoint(0)
 		self:GetCaster():FindAbilityByName("skinwalker_predator_form"):SetOverrideCastPoint(0)
 		self:GetCaster():FindAbilityByName("skinwalker_human_form"):SetOverrideCastPoint(0)
@@ -252,7 +251,7 @@ function modifier_skinwalker_human_form:OnCreated()
 end
 
 function modifier_skinwalker_human_form:OnIntervalThink()
-	if self:GetCaster():HasTalent("special_bonus_unique_beastmaster") then
+	if self:GetCaster():HasTalent("special_bonus_unique_lone_druid_2") then
 		self:GetCaster():FindAbilityByName("skinwalker_fortress_form"):SetOverrideCastPoint(0)
 		self:GetCaster():FindAbilityByName("skinwalker_predator_form"):SetOverrideCastPoint(0)
 		self:GetCaster():FindAbilityByName("skinwalker_human_form"):SetOverrideCastPoint(0)

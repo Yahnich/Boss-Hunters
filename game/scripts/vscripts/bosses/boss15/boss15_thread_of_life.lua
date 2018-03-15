@@ -119,19 +119,15 @@ if IsServer() then
 		self:SetStackCount(1)
 		self:StartIntervalThink(0.25)
 	end
-
-	function modifier_boss15_thread_of_life_reduction:OnRefresh()
-		self:IncrementStackCount()
-	end
 	
 	function modifier_boss15_thread_of_life_reduction:OnIntervalThink()
-		for id, entindex in ipairs( self:GetAbility():GetTethers() ) do
-			local parent = EntIndexToHScript( entindex )
-			if not parent or not parent:HasModifier("modifier_boss15_thread_of_life_tether") then
-				table.remove(self.tetherList, id)
+		local stacks = 0
+		for id, enemy in ipairs( self:GetParent():FindEnemyUnitsInRadius(self:GetParent():GetAbsOrigin(), -1) ) do
+			if enemy:HasModifier("modifier_boss15_thread_of_life_tether") then
+				stacks = stacks + 1
 			end
 		end
-		if self:GetStackCount() ~= #self:GetAbility():GetTethers() then self:SetStackCount(#self:GetAbility():GetTethers()) end
+		self:SetStackCount( math.min(stacks, 5) )
 		if self:GetStackCount() == 0 then self:Destroy() end
 	end
 

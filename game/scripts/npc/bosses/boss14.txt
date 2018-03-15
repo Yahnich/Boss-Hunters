@@ -160,7 +160,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"suck_power"			"75 100"
+				"suck_power"			"25 50"
 			}
 			"03"
 			{
@@ -170,7 +170,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius"				"375 425"
+				"radius"				"375 400"
 			}
 		}
 		"precache"

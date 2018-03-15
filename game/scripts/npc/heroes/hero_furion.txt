@@ -32,7 +32,7 @@
 			"02"
 			{
 				"var_type"                  "FIELD_INTEGER"
-				"damage"           			"300"
+				"damage"           			"200"
 			}
 			"02"
 			{
@@ -74,9 +74,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"furion_wrath_of_nature"
-		"LevelsBetweenUpgrades"			"7"
-		"MaxLevel"						"7"
-		"RequiredLevel"					"6"
+		"MaxLevel"						"6"
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -90,7 +88,7 @@
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"250 325 500 750 1250 2250 4000"
+		"AbilityManaCost"				"175 225 275 325 375 425"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -99,7 +97,7 @@
 			"01"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"damage"						"1600 3200 6400 12800 25600 51200 124000"
+				"damage"						"110 140 170 200 230 260"
 			}
 			"02"
 			{
@@ -136,15 +134,13 @@
 		"ScriptFile"					"heroes/hero_furion/furion_sprout_tp.lua"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName"			"furion_teleportation"
-		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
-		"RequiredLevel"					"6"
 	
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastPoint"				"3.0 2.5 2.0 1.5 1.0 0.5 0.2"
 		"AbilityCooldown"				"15.0"
-		"AbilityManaCost"				"25 50 75 125 250 500 1000"
+		"AbilityManaCost"				"50"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
 		"AbilityThreat"					"-8"
 		
@@ -175,9 +171,7 @@
 		"ScriptFile"					"heroes/hero_furion/furion_tree_ant.lua"
 		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityTextureName"			"furion_force_of_nature"
-		"LevelsBetweenUpgrades"			"6"
 		"MaxLevel"						"7"
-		"RequiredLevel"					"6"
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -191,7 +185,7 @@
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"25 50 75 125 250 500 1000"
+		"AbilityManaCost"				"130 140 150 160 170 180 190"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -216,7 +210,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"treant_health"			"500 1000 2000 3500 5500 8000 11000"
+				"treant_health"			"100 300 500 700 900 1100 1300"
 			}
 			"05"
 			{
@@ -227,7 +221,7 @@
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"treant_damage"			"25"
+				"treant_damage"			"24 25 26 27 28 29 30"
 				"LinkedSpecialBonus"	"special_bonus_unique_furion_tree_ant_1"
 			}
 		}
@@ -250,11 +244,8 @@
 		"ScriptFile"					"heroes/hero_furion/furion_tree_jail.lua"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityTextureName"			"custom/furion_sprout_ebf"
-		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
-		"RequiredLevel"					"6"
-		"PiercesDisableReduction"		"1"
-		
+
 		// Unit Targeting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
@@ -267,7 +258,7 @@
 		"AbilityCastRange"				"850"
 		"AbilityCastPoint"				"0.35"
 		"AbilityCooldown"				"18"
-		"AbilityManaCost"				"25 50 75 125 250 500 1000"
+		"AbilityManaCost"				"70 90 110 130 150 170 190"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
 		
 		// Special
@@ -277,7 +268,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"500 1000 1500 3000 6000 12000 24000"
+				"damage"				"35 50 65 80 105 120 135"
 			}
 			"02"
 			{

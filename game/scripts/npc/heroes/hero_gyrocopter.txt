@@ -11,9 +11,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"FightRecapLevel"				"1"
 		"AbilityTextureName"			"gyrocopter_flak_cannon"
-		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
-		"RequiredLevel"					"3"
 	
 		"precache"
 		{
@@ -27,7 +25,7 @@
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"5 10 15 20 30 45 60"
+		"AbilityManaCost"				"25"
 						
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -77,9 +75,7 @@
 		"ScriptFile"					"heroes/hero_gyro/gyro_bombing_run.lua"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName"			"custom/gyrocopter_skyhigh_call_down"
-		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
-		"RequiredLevel"					"3"
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
 	    "AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
 	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
@@ -105,7 +101,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"1000 2500 5000 7500 15000 25000 50000"
+				"damage"				"100 150 200 250 300 350 400"
 			}
 			"02"
 			{
@@ -176,7 +172,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"missile_damage"			"300"
+				"missile_damage"			"150"
 			}
 			"02"
 			{
@@ -226,9 +222,7 @@
 		"ScriptFile"					"heroes/hero_gyro/gyro_rocket_salvo.lua"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_TOGGLE"
 		"AbilityTextureName"			"gyrocopter_rocket_barrage"
-		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
-		"RequiredLevel"					"3"
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
 	    "AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
 	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
@@ -243,7 +237,7 @@
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"25 50 75 125 250 500 1000"
+		"AbilityManaCost"				"30"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -252,7 +246,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"125 140 155 160 175 190 205"
+				"damage"				"55 65 75 85 95 105 115"
 			}
 			"02"
 			{
@@ -299,7 +293,7 @@
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"FightRecapLevel"				"2"
 		"AbilitySound"					"Hero_Gyrocopter.CallDown.Fire"
-		"MaxLevel"						"7"
+		"MaxLevel"						"6"
 		"HasScepterUpgrade"				"1"
 		
 		// Casting
@@ -314,7 +308,7 @@
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"250 325 500 750 1250 2250 4000"
+		"AbilityManaCost"				"125"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -333,12 +327,12 @@
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage_first"				"2000 4000 8000 16000 32000 64000 128000"
+				"damage_first"				"200 275 350 425 500 575"
 			}
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage_second"				"750 1500 3000 6000 12000 24000 48000"
+				"damage_second"				"100 150 200 250 300 350"
 			}
 			"05"
 			{

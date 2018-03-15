@@ -13,9 +13,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
 		"AbilityTextureName"			"huskar_inner_vitality"
-		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
-		"RequiredLevel"					"5"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -28,7 +26,7 @@
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"25 50 75 125 250 500 1000"
+		"AbilityManaCost"				"170"
 		
 		"precache"
 		{
@@ -44,7 +42,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"heal"					"50 100 150 300 600 900 1800"
+				"heal"					"10"
 			}
 			"02"
 			{
@@ -64,7 +62,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"attrib_bonus_ms"		"0.3"
+				"attrib_bonus_ms"		"1"
 			}
 			"06"
 			{
@@ -104,9 +102,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"huskar_burning_spear"
-		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
-		"RequiredLevel"					"5"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -130,17 +126,17 @@
 			"01"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"health_cost"					"15 30 60 120 240 480 960"
+				"health_cost"					"15"
 			}
 			"02"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"burn_damage"					"40 80 160 320 640 1280 2560"
+				"burn_damage"					"5 10 15 20 25 30 35"
 			}
 			"03"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"duration"						"10"
+				"duration"						"8"
 			}
 		}
 	}
@@ -156,9 +152,7 @@
 		"ScriptFile"					"heroes/hero_huskar/huskar_raging_berserker"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityTextureName"			"huskar_berserkers_blood"
-		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
-		"RequiredLevel"					"5"
 		
 		"precache"
 		{
@@ -171,7 +165,7 @@
 			"01"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"maximum_damage"				"750 1500 3000 6000 8000 12000 16000"
+				"maximum_damage"				"120 140 160 180 200 220 240"
 			}
 			"02"
 			{
@@ -181,7 +175,7 @@
 			"03"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"maximum_armor"					"10 20 35 50 75 100 150"
+				"maximum_armor"					"15 25 35 45 55 65 75"
 			}
 			"04"
 			{
@@ -206,8 +200,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityTextureName"			"huskar_life_break"
 		"FightRecapLevel"				"2"
-		"LevelsBetweenUpgrades"			"7"
-		"MaxLevel"						"7"
+		"MaxLevel"						"6"
 		"HasScepterUpgrade"				"1"
 		
 		"precache"

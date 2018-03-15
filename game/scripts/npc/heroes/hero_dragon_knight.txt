@@ -18,9 +18,7 @@
 		"AbilityTextureName"			"dragon_knight_breathe_fire"
 		"HasScepterUpgrade"				"1"
 		"FightRecapLevel"				"1"
-		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
-		"RequiredLevel"					"6"
 
 
 		// Casting
@@ -34,7 +32,7 @@
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"25 50 75 125 250 500 1000"
+		"AbilityManaCost"				"100 110 120 130 140 150 160"
 		
 		"precache"
 		{
@@ -81,12 +79,12 @@
 			"06"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"hit_damage"			"1200 2400 4800 9600 18200 36400 54600"
+				"hit_damage"			"90 170 240 300 360 420 480"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"dot_damage"			"125 250 500 1000 1500 3000 4500"
+				"dot_damage"			"5 15 25 35 45 55 65"
 			}
 		}
 	}
@@ -104,8 +102,6 @@
 		"FightRecapLevel"				"1"
 		"AbilityTextureName"			"custom/dragon_knight_intervene"
 		"MaxLevel"						"7"
-		"LevelsBetweenUpgrades"			"5"
-		"RequiredLevel"					"7"
 		"HasScepterUpgrade"				"1"
 	
 	
@@ -130,7 +126,7 @@
 	
 		// Damage.
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"					"800 1600 3200 6400 12800 24600 37400"
+		"AbilityDamage"					"25 50 75 100 125 150 175"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -175,9 +171,7 @@
 		"ScriptFile"					"heroes/hero_dragon_knight/dragon_knight_dragons_blood_ebf"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityTextureName"			"dragon_knight_dragon_blood"
-		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
-		"RequiredLevel"					"6"
 		"HasScepterUpgrade"				"1"
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -186,14 +180,14 @@
 			"01"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"bonus_health_regen"			"30 60 90 120 150 180 210"
+				"bonus_health_regen"			"3 6 9 12 15 18 21"
 				"LinkedSpecialBonus"			"special_bonus_unique_dragon_knight_dragons_blood_ebf_1"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
 			"02"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"bonus_armor"					"6 9 15 20 30 45 60"
+				"bonus_armor"					"3 6 9 12 15 18 21"
 				"LinkedSpecialBonus"			"special_bonus_unique_dragon_knight_dragons_blood_ebf_1"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
@@ -218,8 +212,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"FightRecapLevel"				"2"
 		"AbilityTextureName"			"custom/dragon_knight_elder_dragon_berserker"
-		"MaxLevel"						"7"
-		"LevelsBetweenUpgrades"			"7"
+		"MaxLevel"						"6"
 	
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
@@ -234,11 +227,11 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"25.0"
+		"AbilityCooldown"				"45.0"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"50 50 50"		
+		"AbilityManaCost"				"50"		
 	
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
@@ -251,12 +244,12 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"duration"					"15.0"
+				"duration"					"20.0"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"bonus_movement_speed"		"20"
+				"bonus_movement_speed"		"25"
 			}
 			"03"
 			{

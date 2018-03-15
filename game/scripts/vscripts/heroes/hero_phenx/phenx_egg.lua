@@ -67,14 +67,13 @@ function modifier_phenx_egg_form:OnIntervalThink()
 
     if self:GetCaster():HasTalent("special_bonus_unique_phenx_egg_2") then
         local newRadi = self:GetTalentSpecialValueFor("radius")
-        for i=1,3 do
-            local randoVect = Vector(RandomInt(-newRadi,newRadi), RandomInt(-newRadi,newRadi), 0)
-            pointRando = self:GetParent():GetAbsOrigin() + randoVect
+        for i=1,5 do
+            pointRando = self:GetParent():GetAbsOrigin() + ActualRandomVector(150, self:GetTalentSpecialValueFor("radius"))
 
             ParticleManager:FireParticle("particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_shadowraze.vpcf", PATTACH_POINT, self:GetParent(), {[0]=pointRando})
-            local enemies = self:GetCaster():FindEnemyUnitsInRadius(pointRando, self:GetTalentSpecialValueFor("radius")/5)
+            local enemies = self:GetCaster():FindEnemyUnitsInRadius(pointRando, 275)
             for _,enemy in pairs(enemies) do
-                self:GetAbility():DealDamage(self:GetCaster(), enemy, self:GetTalentSpecialValueFor("damage_per_sec"), {}, 0)
+                self:GetAbility():DealDamage(self:GetCaster(), enemy, self:GetTalentSpecialValueFor("damage_per_sec") * self:GetCaster():FindTalentValue("special_bonus_unique_phenx_egg_2"), {}, 0)
             end
         end
     end

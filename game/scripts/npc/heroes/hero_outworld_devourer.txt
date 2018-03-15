@@ -14,9 +14,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"LevelsBetweenUpgrades"			"8"
 		"MaxLevel"						"7"
-		"RequiredLevel"					"5"
 		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
 		"AbilityTextureName"			"obsidian_destroyer_arcane_orb"
 		"AbilityCastRange"				"450"
@@ -24,7 +22,7 @@
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"25 50 75 125 250 500 1000"
+		"AbilityManaCost"				"100"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -39,7 +37,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"mana_pool_damage_pct"	"1.5 3.0 4.5 6.0 7.5 9.0 11.5"
+				"mana_pool_damage_pct"	"6 6.5 7 7.5 8 8.5 9"
 			}
 			"02"
 			{
@@ -67,9 +65,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"obsidian_destroyer_astral_imprisonment"
-		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
-		"RequiredLevel"					"6"
 	
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
@@ -90,7 +86,7 @@
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"25 50 75 125 250 500 1000"
+		"AbilityManaCost"				"140 160 180 200 220 240 260"
 	
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
@@ -110,12 +106,12 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"int_gain"				"45 75 125 250 500 750 1000"
+				"int_gain"				"2 4 6 8 10 12 14"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"1000 2000 3500 7500 15000 30000 60000"
+				"damage"				"100 175 250 325 400 475 550"
 			}
 			"04"
 			{
@@ -143,9 +139,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
 		"AbilityTextureName"			"obsidian_destroyer_essence_aura"
-		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
-		"RequiredLevel"					"6"
 		
 		"AbilityCooldown"				"20"
 		"AbilityCastPoint"				"0.3"
@@ -165,12 +159,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_mana"	    	"400 800 1600 3200 6400 12800 25000"
+				"bonus_mana"	    	"500 750 1000 1250 1500 1750 2000"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"bonus_mana_regen"		"2 4 8 16 32 64 96"
+				"bonus_mana_regen"		"2 4 8 10 12 14 16"
 			}
 			"03"
 			{
@@ -199,8 +193,7 @@
 		"FightRecapLevel"				"2"
 		"AbilityTextureName"			"obsidian_destroyer_sanity_eclipse"
 		"HasScepterUpgrade"				"1"
-		"LevelsBetweenUpgrades"			"7"
-		"MaxLevel"						"7"
+		"MaxLevel"						"6"
 	
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
@@ -228,7 +221,7 @@
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"250 325 500 750 1250 2250 4000"
+		"AbilityManaCost"				"175 250 325 400 475 550"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -237,7 +230,7 @@
 			"01"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"damage_multiplier"				"14 16 18 20 22 24 26"
+				"damage_multiplier"				"14 16 18 20 22 24"
 			}
 			"02"
 			{
@@ -411,7 +404,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"80"
+				"value"					"50"
 			}
 			"02"
 			{

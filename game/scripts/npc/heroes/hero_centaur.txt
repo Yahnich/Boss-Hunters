@@ -10,9 +10,7 @@
 		"FightRecapLevel"				"1"
 		"AbilityTextureName"			"custom/centaur_champions_presence"
 		"MaxLevel"						"7"
-		"LevelsBetweenUpgrades"			"5"
-		"RequiredLevel"					"6"
-	
+		
 		// Stats		
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"				"12"
@@ -20,7 +18,7 @@
 		"AbilityCastPoint"				"0.5 0.5 0.5 0.5"
 	
 		//------------------------------------------------------------------------------
-		"AbilityManaCost"				"0"
+		"AbilityManaCost"				"40"
 	
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
@@ -35,22 +33,22 @@
 			"02"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"cdr_per_unit"					"5 5.5 6 6.5 7 7.5 8"
+				"cdr_per_unit"					"6"
 			}
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"amp_per_unit"					"10 11 12 13 14 15 16"
+				"amp_per_unit"					"10"
 			}
 			"04"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"max_cdr"						"80"
+				"max_cdr"						"20 25 30 35 40 45 50"
 			}
 			"05"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"max_amp"						"160"
+				"max_amp"						"20 25 30 35 40 45 50"
 			}
 			"06"
 			{
@@ -103,20 +101,19 @@
 			"01"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"edge_damage"					"500 1000 2000 4000 8000 16000 32000"
+				"edge_damage"					"175 250 325 400 475 550 625"
 				"LinkedSpecialBonus"			"special_bonus_unique_centaur_4"
 			}
 			"02"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"edge_str_damage"				"450"
+				"edge_str_damage"				"75"
 			}
 			"03"
 			{
 				"var_type"						"FIELD_INTEGER"
 				"radius"						"200 250 300 350 400 450 500"
 			}
-			
 		}
 	
 		"precache"
@@ -140,15 +137,12 @@
 		"AbilityTextureName"			"centaur_hoof_stomp"
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"7"
-		"LevelsBetweenUpgrades"			"5"
-		"RequiredLevel"					"5"
-	
 		
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastPoint"				"0.3"
 		"AbilityCooldown"				"13.0 13.0 13.0 13.0"
-		"AbilityManaCost"				"25 50 75 125 250 500 1000"
+		"AbilityManaCost"				"130"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -167,12 +161,12 @@
 			"03"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"stomp_damage"					"1200 2400 4800 9600 19200 38400 76800"
+				"stomp_damage"					"100 150 200 250 300 350 400"
 			}
 			"03"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"str_to_radius"					"5"
+				"str_to_radius"					"100"
 			}
 		}
 	}
@@ -192,8 +186,7 @@
 		"AbilityTextureName"			"centaur_stampede"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
 		"FightRecapLevel"				"2"
-		"MaxLevel"						"7"
-		"LevelsBetweenUpgrades"			"7"
+		"MaxLevel"						"6"
 	
 	
 		// Time		
@@ -202,7 +195,7 @@
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"250 325 500 750 1250 2250 4000"
+		"AbilityManaCost"				"100"
 	
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
@@ -220,12 +213,12 @@
 			"02"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"base_damage"					"1500 3000 6000 12000 24000 48000 96000"
+				"base_damage"					"50"
 			}
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"strength_damage"				"10.0"
+				"strength_damage"				"1.0 2.0 3.0 4.0 5.0 6.0"
 			}
 			"04"
 			{
@@ -290,13 +283,13 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"strength_pct"				"130"
+				"strength_pct"				"70"
 				"LinkedSpecialBonus"		"special_bonus_unique_centaur_warchiefs_aegis_2"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"str_to_block"				"75"
+				"str_to_block"				"40"
 				"LinkedSpecialBonus"		"special_bonus_unique_centaur_warchiefs_aegis_2"
 			}
 		}
@@ -464,7 +457,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"1"
+				"value"					"20"
 			}
 		}
 	}

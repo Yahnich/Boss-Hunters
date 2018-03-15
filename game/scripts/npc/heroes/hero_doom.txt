@@ -10,15 +10,14 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"MaxLevel"						"7"
-		"LevelsBetweenUpgrades"			"5"
-		"RequiredLevel"					"7"
 		"AbilityCastRange"				"700"
 		"AbilityCastPoint"				"0.3"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"20.0"
+		"AbilityCooldown"				"40.0"
+		"AbilityManaCost"				"40 50 60 70 80 90 100"
 		"AbilityTextureName"			"custom/doom_devour"
 		
 		"precache"
@@ -67,9 +66,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
 		"FightRecapLevel"				"2"
 		"AbilityTextureName"			"custom/doom_bringer_apocalypse"
-		"LevelsBetweenUpgrades"			"7"
-		"MaxLevel"						"7"
-		"HasScepterUpgrade"				"1"
+		"MaxLevel"						"6"
 		"ScriptFile"					"heroes/hero_doom/doom_apocalypse"
 	
 		// Precache
@@ -94,7 +91,7 @@
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"250 325 500 750 1250 2250 4000"
+		"AbilityManaCost"				"150 200 250 300 350 400"
 		"AbilityThreat"					"50"
 	
 		// Special
@@ -110,7 +107,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"666 1666 3666 6666 12666 36666 66666"
+				"damage"				"25 40 55 70 85 100"
 			}
 		}
 	}
@@ -133,12 +130,11 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"8"
-		"AbilityManaCost"				"15 30 45 75 150 300 450"
+		"AbilityCooldown"				"8 7.5 7 6.5 6 5.5 5"
+		"AbilityManaCost"				"40"
 		"AbilityCastRange"				"150"
 		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
 		"AbilityCastPoint"				"0.3"
-		"LevelsBetweenUpgrades"			"6"
 		"MaxLevel"						"7"
 		
 		"precache"
@@ -157,7 +153,7 @@
 			"01"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"burn_damage"					"75 125 250 500 1250 2500 5000"
+				"burn_damage"					"25 30 35 40 45 50 55"
 			}
 			"02"
 			{
@@ -189,9 +185,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"				"1"
 		"AbilityTextureName"			"doom_bringer_scorched_earth"
-		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
-		"RequiredLevel"					"6"
 		
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
@@ -210,12 +204,12 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"400 500 600 700 800 900 1000"
-		"AbilityCooldown"				"30.0"
+		"AbilityCastRange"				"600"
+		"AbilityCooldown"				"55.0"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"25 50 75 125 250 500 1000"
+		"AbilityManaCost"				"60 65 70 75 80 85 90"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -224,23 +218,23 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage_per_second"			"250 500 1000 2000 4000 800 16000"
+				"damage_per_second"			"16 24 32 40 48 56 64"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"radius"					"800"
+				"radius"					"600"
 				"LinkedSpecialBonus"		"special_bonus_unique_doom_scorched_earth_ebf_2"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"bonus_movement_speed_pct"	"14 16 18 20 22 24 26"
+				"bonus_movement_speed_pct"	"14"
 			}
 			"04"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"10.0"
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"10.0 12.0 14.0 16.0 18.0 20.0 22.0"
 			}
 		}
 	}

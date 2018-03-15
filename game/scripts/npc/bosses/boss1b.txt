@@ -46,7 +46,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"leap_damage"			"400 600"
+				"leap_damage"			"250 400"
 			}
 			"05"
 			{

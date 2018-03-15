@@ -41,7 +41,7 @@
 			"03"
 	        {
 	            "var_type"              "FIELD_FLOAT"
-	            "damage_to_mana_loss"   "0.15 0.1"
+	            "damage_to_mana_loss"   "0.5 0.135"
 	        }
 	    }
 	}
@@ -140,7 +140,7 @@
 	    "MaxLevel"                      "1"
 		
 		"AbilityCooldown"				"22 18"
-		"AbilityCastPoint"				"0.8 0.5"
+		"AbilityCastPoint"				"1 0.75"
 		"AbilityCastAnimation"			"ACT_DOTA_DIE"
 	
 	    // Special
@@ -155,7 +155,7 @@
 	        "01"
 	        {
 	            "var_type"              "FIELD_INTEGER"
-	            "raze_damage"         	"100000 150000"
+	            "raze_damage"         	"600 750"
 	        }
 			"02"
 	        {
@@ -183,7 +183,7 @@
 	    "MaxLevel"                      "1"
 		
 		"AbilityCooldown"				"30 22"
-		"AbilityCastPoint"				"0.8 0.5"
+		"AbilityCastPoint"				"1 0.75"
 		"AbilityCastAnimation"			"ACT_DOTA_DIE"
 	    // Special
 	    //-------------------------------------------------------------------------------------------------------------
@@ -197,7 +197,7 @@
 	        "01"
 	        {
 	            "var_type"              "FIELD_INTEGER"
-	            "raze_damage"         	"100000 150000"
+	            "raze_damage"         	"600 750"
 	        }
 			"02"
 	        {
@@ -235,7 +235,7 @@
 	    "MaxLevel"                      "1"
 		
 		"AbilityCooldown"				"12 9"
-		"AbilityCastPoint"				"0.8 0.5"
+		"AbilityCastPoint"				"1 0.75"
 		"AbilityCastAnimation"			"ACT_DOTA_DIE"
 	
 	    // Special
@@ -250,7 +250,7 @@
 	        "01"
 	        {
 	            "var_type"              "FIELD_INTEGER"
-	            "raze_damage"         	"100000 150000"
+	            "raze_damage"         	"600 750"
 	        }
 			"02"
 	        {

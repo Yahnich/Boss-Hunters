@@ -28,7 +28,7 @@
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"25 50 75 125 250 500 1000"
+		"AbilityManaCost"				"100"
 
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
@@ -58,13 +58,13 @@
 			"03"
 			{	
 				"var_type"					"FIELD_FLOAT"
-				"interval"					"0.5"
+				"interval"					"0.7"
 				"LinkedSpecialBonus"		"special_bonus_unique_rattletrap_battery_assault_2"
 			}
 			"04"
 			{	
 				"var_type"					"FIELD_FLOAT"
-				"damage"					"200 400 800 1600 3200 6400 9600"
+				"damage"					"20 45 70 95 120 145 170"
 			}
 		}
 	}
@@ -78,11 +78,7 @@
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_PURE"
 		"AbilityTextureName"	"custom/rattletrap_aegis_deflector"
-		
-		"RequiredLevel"					"6"
-		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
-		"PiercesDisableReduction"		"1"
 		
 		"precache"
 		{
@@ -98,7 +94,7 @@
 			"01"
 			{
 				"var_type"							"FIELD_FLOAT"
-				"bonus_armor"						"5 7.5 10 12.5 15 17.5 20"
+				"bonus_armor"						"2 5 8 11 14 17 20"
 			}
 			"02"
 			{
@@ -124,7 +120,7 @@
 			"06"
 			{	
 				"var_type"							"FIELD_FLOAT"
-				"mana_damage"						"500 1000 1500 3000 6000 12000 24000"
+				"mana_damage"						"80 120 160 200 240 280 320"
 			}
 			"07"
 			{	
@@ -174,7 +170,7 @@
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"25 50 75 125 250 500 1000"
+		"AbilityManaCost"				"50"
 	
 		
 		// Special
@@ -184,7 +180,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius"				"575 650 725 800 875 950 1025"
+				"radius"				"600"
 			}
 			"02"
 			{	
@@ -206,7 +202,7 @@
 			"04"
 			{	
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"800 1600 3200 6400 12800 25600 51200"
+				"damage"				"80 120 160 200 240 280 320"
 				
 			}
 		}
@@ -226,9 +222,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"custom/rattletrap_reactive_shielding"
 		"FightRecapLevel"				"1"
-		"LevelsBetweenUpgrades"			"5"
-		"MaxLevel"						"7"
-		"RequiredLevel"					"6"
+		"MaxLevel"						"6"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -236,11 +230,11 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"14"
+		"AbilityCooldown"				"14 13.5 13 12.5 12 11.5"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"250 325 500 750 1250 2250 4000"
+		"AbilityManaCost"				"150"
 		
 		"precache"
 		{
@@ -285,9 +279,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"custom/rattletrap_automated_artillery"
 		"FightRecapLevel"				"1"
-		"LevelsBetweenUpgrades"			"5"
-		"MaxLevel"						"7"
-		"RequiredLevel"					"6"
+		"MaxLevel"						"6"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -299,7 +291,7 @@
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"250 325 500 750 1250 2250 4000"
+		"AbilityManaCost"				"200"
 		
 		"precache"
 		{
@@ -329,7 +321,7 @@
 			"03"
 			{	
 				"var_type"					"FIELD_FLOAT"
-				"damage_per_rocket"			"60 120 240 480 960 1920 2840"
+				"damage_per_rocket"			"12 17 22 27 32 37"
 			}
 		}
 	}
@@ -367,7 +359,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"-0.1"
+				"value"					"-0.3"
 			}
 		}
 	}
@@ -386,7 +378,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"7"
+				"value"					"15"
 			}
 		}
 	}

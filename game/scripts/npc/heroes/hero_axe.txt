@@ -28,11 +28,11 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"10"
+		"AbilityCooldown"				"20 17.5 15 12.5 10 7.5 5"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"150"
+		"AbilityManaCost"				"75"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -56,7 +56,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"300 750 1250 3500 7500 15000 45000"
+				"damage"				"16 24 32 40 48 56 64"
 			}
 			"05"
 			{
@@ -82,7 +82,7 @@
 			"09"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"strength_bonus"		"50 100 200 400 600 800 1000"
+				"strength_bonus"		"6"
 			}
 		}
 	
@@ -104,13 +104,11 @@
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_axe/axe_cleave_strike.lua"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"				"1"
 		"AbilityTextureName"			"axe_counter_helix"
-		"LevelsBetweenUpgrades"			"6"
 		"MaxLevel"						"7"
-		"RequiredLevel"					"7"
 	
 		"AbilityThreat"					"10.0"
 		"PiercesDisableReduction"		"1"
@@ -119,7 +117,7 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"0.4"
+		"AbilityCooldown"				"0.45 0.40 0.35 0.3 0.25 0.2 0.15"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -128,12 +126,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"str_to_damage"			"345 350 355 360 365 370 375"
+				"str_to_damage"			"120 125 130 135 140 145 150"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"chance"				"40"
+				"chance"				"20"
 			}
 			"04"
 			{
@@ -169,11 +167,7 @@
 	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
 	    "SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"axe_berserkers_call"
-		"LevelsBetweenUpgrades"			"8"
 		"MaxLevel"						"7"
-		"RequiredLevel"					"3"
-	
-		"PiercesDisableReduction"		"1"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -187,7 +181,7 @@
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"25 50 75 125 250 500 1000"
+		"AbilityManaCost"				"80 90 100 110 120 130 140"	
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -196,13 +190,13 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"armor_bonus"			"50"
+				"armor_bonus"			"40"
 				"LinkedSpecialBonus"	"special_bonus_unique_axe_forced_shout"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"armor_bonus_base"		"80 90 100 110 120 130 140"
+				"armor_bonus_base"		"80"
 			}
 			"03"
 			{
@@ -251,9 +245,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityTextureName"			"axe_culling_blade"
-		"LevelsBetweenUpgrades"			"7"
-		"MaxLevel"						"7"
-		"RequiredLevel"					"7"
+		"MaxLevel"						"6"
 		"IsAetherAmplified"				"0"
 	
 		"PiercesDisableReduction"		"1"
@@ -271,7 +263,7 @@
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"250 325 500 750 1250 2250 4000"
+		"AbilityManaCost"				"60 120 180 240 300 360"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -280,7 +272,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"500 525 550 575 600 625 650"
+				"damage"				"150 250 350 450 550 650"
 			}
 			"02"
 			{
@@ -295,7 +287,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"kill_threshold"		"25"
+				"kill_threshold"		"250 450 650 850 1050 1250"
 			}
 			"05"
 			{

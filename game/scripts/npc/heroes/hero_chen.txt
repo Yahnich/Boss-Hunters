@@ -198,9 +198,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_FLAG_NONE"
 		"AbilityTextureName"			"chen_hand_of_god"
-		"LevelsBetweenUpgrades"			"7"
-		"MaxLevel"						"7"
-		"RequiredLevel"					"6"
+		"MaxLevel"						"6"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 
 		// Casting
@@ -215,7 +213,7 @@
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"250 325 500 750 1250 2250 4000"
+		"AbilityManaCost"				"200 300 400 500 600 700"
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -246,9 +244,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"chen_penitence"
-		"LevelsBetweenUpgrades"			"6"
 		"MaxLevel"						"7"
-		"RequiredLevel"					"6"
 	
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
@@ -268,11 +264,11 @@
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"800"
-		"AbilityCooldown"				"14.0"
+		"AbilityCooldown"				"14.0 13.0 12.0 11.0 10.0 9.0 8.0"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"25 50 75 125 250 500 1000"
+		"AbilityManaCost"				"70"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -527,9 +523,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
 		"AbilityTextureName"			"chen_test_of_faith"
-		"LevelsBetweenUpgrades"			"6"
 		"MaxLevel"						"7"
-		"RequiredLevel"					"6"
 	
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
@@ -551,7 +545,7 @@
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"25 50 75 125 250 500 1000"
+		"AbilityManaCost"				"60 80 100 120 140 160 180"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -560,12 +554,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage_min"			"800 1600 3200 6250 12500 25000 50000"
+				"damage_min"			"50 100 150 200 250 300 350"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage_max"			"1600 3200 6250 12500 25000 50000 100000"
+				"damage_max"			"100 200 300 400 500 600 700"
 			}
 			"03"
 			{
@@ -584,9 +578,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
 		"AbilityTextureName"			"chen_test_of_faith_teleport"
-		"LevelsBetweenUpgrades"			"6"
 		"MaxLevel"						"7"
-		"RequiredLevel"					"6"
 	
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
@@ -603,11 +595,11 @@
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"800"
-		"AbilityCooldown"				"8"
+		"AbilityCooldown"				"16"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"25 50 75 125 250 500 1000"
+		"AbilityManaCost"				"60 80 100 120 140 160 170"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------

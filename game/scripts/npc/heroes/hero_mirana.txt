@@ -13,9 +13,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
 		"AbilityTextureName"			"mirana_arrow"
-		"LevelsBetweenUpgrades"			"6"
 		"MaxLevel"						"7"
-		"RequiredLevel"					"6"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -43,7 +41,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"500 1000 1750 3500 7000 14000 28000"
+				"damage"					"50 140 230 320 410 500 590"
 			}
 			"03"
 			{
@@ -73,9 +71,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
 		"AbilityTextureName"			"mirana_leap"
-		"LevelsBetweenUpgrades"			"6"
 		"MaxLevel"						"7"
-		"RequiredLevel"					"6"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -89,7 +85,7 @@
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"25 50 75 125 250 500 1000"
+		"AbilityManaCost"				"40"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -98,7 +94,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"bonus_agi"					"500 1000 1500 2000 2500 3000 3500"
+				"bonus_agi"					"10 20 30 40 50 60 70"
 			}
 			"02"
 			{
@@ -162,12 +158,12 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"agi_mult"				"20"
+				"agi_mult"				"30"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"chance"				"10"
+				"chance"				"20"
 			}
 			"05"
 			{
@@ -198,9 +194,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
 		"AbilityTextureName"			"mirana_starfall"
-		"LevelsBetweenUpgrades"			"6"
 		"MaxLevel"						"7"
-		"RequiredLevel"					"6"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -209,11 +203,11 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"7"
+		"AbilityCooldown"				"12"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"25 50 75 125 250 500 1000"
+		"AbilityManaCost"				"80 105 130 155 180 205 230"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -227,12 +221,12 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"500 1000 1750 3500 7000 14000 28000"
+				"damage"					"75 150 225 300 375 450 525"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"radius"					"650 700 750 800 850 900 950"		
+				"radius"					"950"		
 			}
 			"04"
 			{
@@ -263,8 +257,7 @@
 		"ScriptFile"					"heroes/hero_mirana/mirana_stardust_reflection.lua"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
-		"LevelsBetweenUpgrades"			"6"
-		"MaxLevel"						"7"
+		"MaxLevel"						"6"
 		"AbilityTextureName"			"custom/mirana_stardust_reflection"
 	
 		// Precache
@@ -403,7 +396,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"1.5"
+				"value"					"7"
 			}
 		}
 	}

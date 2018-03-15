@@ -31,7 +31,7 @@
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"25 50 75 125 250 500 1000"
+		"AbilityManaCost"				"80 100 120 140 160 180 200 220"
 		
 		"precache"
 		{
@@ -75,7 +75,7 @@
 			"06"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"damage"					"1200 2400 4800 9600 19200 38400 76800"
+				"damage"					"70 140 210 280 350 420 490"
 			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
@@ -119,8 +119,6 @@
 		"AbilitySound"					"Hero_Puck.Waning_Rift"
 		"AbilityTextureName"			"puck_waning_rift"
 		"MaxLevel"						"7"
-		"RequiredLevel"					"5"
-		"LevelsBetweenUpgrades"			"5"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -133,7 +131,7 @@
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"25 50 75 125 250 500 1000"	
+		"AbilityManaCost"				"100 110 120 130 140 150 160"
 		
 		"precache"
 		{
@@ -159,7 +157,7 @@
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"800 1600 3200 6400 12800 25600 51200"
+				"damage"					"100 160 220 280 340 400 460"
 			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_2"
@@ -178,8 +176,6 @@
 		"AbilitySound"					"Hero_Puck.Phase_Shift"
 		"AbilityTextureName"			"puck_phase_shift"
 		"MaxLevel"						"7"
-		"RequiredLevel"					"5"
-		"LevelsBetweenUpgrades"			"5"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -233,7 +229,7 @@
 		"HasScepterUpgrade"				"1"
 		"AbilitySound"					"Hero_Puck.Dream_Coil"
 		"AbilityTextureName"			"puck_dream_coil"
-		"MaxLevel"						"7"
+		"MaxLevel"						"6"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -242,11 +238,11 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"70 65 60"
+		"AbilityCooldown"				"70 65 60 55 50 45"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"100 150 200"
+		"AbilityManaCost"				"100 150 200 250 300 350"
 				
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
@@ -273,7 +269,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"coil_init_damage_tooltip"	"1500 3000 6000 12000 24000 48000 96000"
+				"coil_init_damage_tooltip"	"150 200 250 300 350 400"
 			}
 			"03"
 			{
@@ -288,7 +284,7 @@
 			"05"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"coil_break_damage"			"2500 5000 10000 20000 40000 80000 160000"
+				"coil_break_damage"			"150 200 250 300 350 400"
 			}
 			"06"
 			{

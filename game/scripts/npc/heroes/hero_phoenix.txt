@@ -14,8 +14,6 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"phoenix_icarus_dive"
 		"MaxLevel"						"7"
-		"RequiredLevel"					"5"
-		"LevelsBetweenUpgrades"			"5"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -73,7 +71,7 @@
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage_per_second"		"500 1000 2000 4000 8000 16000 32000"
+				"damage_per_second"		"10 30 50 70 90 110 130"
 			}
 			"07"
 			{
@@ -137,8 +135,6 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"phoenix_fire_spirits"
 		"MaxLevel"						"7"
-		"RequiredLevel"					"5"
-		"LevelsBetweenUpgrades"			"5"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -182,7 +178,7 @@
 			"03"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"damage_per_second"	"500 1000 2000 4000 8000 16000 32000"
+				"damage_per_second"	"20 40 60 80 100 120 140"
 			}
 			"04"
 			{
@@ -268,13 +264,11 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"phoenix_sun_ray"
 		"MaxLevel"						"7"
-		"RequiredLevel"					"5"
-		"LevelsBetweenUpgrades"			"5"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastPoint"				"0"
-		"AbilityCastRange"				"800 900 1000 1100 1200 1300 1400"
+		"AbilityCastRange"				"900
 		"AbilityCastAnimation"			"ACT_DOTA_OVERRIDE_ABILITY_3"
 
 		// Time		
@@ -308,13 +302,13 @@
 			"02"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"hp_perc_damage"				"1.5"
+				"hp_perc_damage"				"3"
 				"CalculateSpellDamageTooltip"  	"0"
 			}
 			"02"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"base_damage"					"100 200 400 800 1600 3200 6400"
+				"base_damage"					"14 20 26 32 38 44 50"
 			}
 			"04"
 			{
@@ -431,9 +425,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"phoenix_supernova"
-		"MaxLevel"						"7"
-		"RequiredLevel"					"5"
-		"LevelsBetweenUpgrades"			"5"
+		"MaxLevel"						"6"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -468,7 +460,7 @@
 			"01"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"damage_per_sec"	"1000 2000 4000 8000 16000 32000 64000"
+				"damage_per_sec"	"60 90 120 150 180 210"
 			}
 			"02"
 			{
@@ -533,8 +525,8 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"1"
+				"var_type"				"FIELD_FLOAT"
+				"value"					"1.5"
 			}
 		}
 	}
