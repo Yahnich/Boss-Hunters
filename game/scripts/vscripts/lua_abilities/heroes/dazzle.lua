@@ -1,5 +1,9 @@
 dazzle_weave_ebf = class({})
 
+function dazzle_weave_ebf:GetAOERadius()
+	return self:GetTalentSpecialValueFor("radius")
+end
+
 function dazzle_weave_ebf:OnSpellStart()
 	local caster = self:GetCaster()
 	local targetPos = self:GetCursorPosition()
