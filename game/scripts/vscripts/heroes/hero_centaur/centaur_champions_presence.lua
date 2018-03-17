@@ -57,7 +57,7 @@ function modifier_centaur_champions_presence_buff:OnDestroy()
 end
 
 function modifier_centaur_champions_presence_buff:DeclareFunctions()
-	return {MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE_STACKING, MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE}
+	return {MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE, MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE}
 end
 
 function modifier_centaur_champions_presence_buff:GetModifierPercentageCooldownStacking()
