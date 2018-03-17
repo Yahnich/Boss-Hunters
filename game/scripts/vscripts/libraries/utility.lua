@@ -2265,3 +2265,15 @@ function CDOTA_BaseNPC:RemoveBlind()
 		self:RemoveModifierByName("modifier_blind_generic")
 	end
 end
+
+function CutTreesInRadius(vloc, radius)
+	local trees = GridNav:GetAllTreesAroundPoint(vloc, radius, false)
+	local treesCut = 0
+	if #trees > 0 then
+		for _,tree in pairs(trees) do
+			treesCut = treesCut + 1
+			tree:CutDown(-1)
+		end
+	end
+	return treesCut
+end

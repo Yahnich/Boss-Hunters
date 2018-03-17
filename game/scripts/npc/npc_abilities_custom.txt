@@ -53,6 +53,7 @@
 #base "heroes/hero_legion_commander.txt"
 #base "heroes/hero_phoenix.txt"
 #base "heroes/hero_tinker.txt"
+#base "heroes/hero_timbersaw.txt"
 
 "DOTAAbilities"
 {
