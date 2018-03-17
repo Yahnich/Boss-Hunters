@@ -42,7 +42,7 @@ end
 modifier_beast_mode_allies = class({})
 function modifier_beast_mode_allies:DeclareFunctions()
 	local funcs = {
-		MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE_STACKING,
+		MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE,
 		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT
 	}
 	return funcs
