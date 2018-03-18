@@ -696,19 +696,6 @@ function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, sp
 	for i=1,casterLevel-1 do
 		illusion:HeroLevelUp(false)
 	end
-	
-	local model = self:FirstMoveChild()
-	while model ~= nil do
-		if model:GetClassname() == "dota_item_wearable" then
-			local newWearable = CreateUnitByName("wearable_dummy", Vector(0, 0, 0), false, nil, nil, DOTA_TEAM_NOTEAM)
-			newWearable:SetOriginalModel(model:GetModelName())
-			newWearable:SetModel(model:GetModelName())
-			newWearable:FollowEntity(self, true)
-			newWearable:AddNewModifier(self, nil, "modifier_wearable", {})
-			newWearable:AddNewModifier(self, nil, "modifier_illusion", { duration = duration })
-		end
-		model = model:NextMovePeer()
-	end
 
 	-- Set the skill points to 0 and learn the skills of the caster
 	illusion:SetAbilityPoints(0)
@@ -739,11 +726,13 @@ function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, sp
 	-- modifier_illusion controls many illusion properties like +Green damage not adding to the unit damage, not being able to cast spells and the team-only blue particle
 	if specIllusionModifier then
 		illusion:AddNewModifier(self, ability, specIllusionModifier, { duration = duration, outgoing_damage = outgoingDamage, incoming_damage = incomingDamage })
+	else
+		illusion:AddNewModifier(self, ability, "modifier_illusion", { duration = duration, outgoing_damage = outgoingDamage, incoming_damage = incomingDamage })
 	end
-	illusion:AddNewModifier(self, ability, "modifier_illusion", { duration = duration, outgoing_damage = outgoingDamage, incoming_damage = incomingDamage })
-			
+		
 	-- Without MakeIllusion the unit counts as a hero, e.g. if it dies to neutrals it says killed by neutrals, it respawns, etc.
 	illusion:MakeIllusion()
+	return illusion
 end
 
 

@@ -54,6 +54,7 @@
 #base "heroes/hero_phoenix.txt"
 #base "heroes/hero_tinker.txt"
 #base "heroes/hero_timbersaw.txt"
+#base "heroes/hero_vengeful.txt"
 
 "DOTAAbilities"
 {
@@ -294,7 +295,7 @@
 		
 		"precache"
 		{
-			"particle"					"particles/frostivus_gameplay/holdout_ancient_apparition_ice_blast_final.vpcf"
+			"particle"                  "particles/frostivus_gameplay/holdout_ancient_apparition_ice_blast_final.vpcf"
 			"particle"					"particles/status_fx/status_effect_iceblast.vpcf"
 			"particle"					"particles/units/heroes/hero_ancient_apparition/ancient_apparition_ice_blast_debuff.vpcf"
 			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_ancient_apparition.vsndevts"
@@ -23488,146 +23489,7 @@
 			}
 		}
 	}
-	"vengefulspirit_magic_missile_ebf"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"lua_abilities/heroes/vengefulspirit"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_ALL"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityTextureName"			"custom/vengefulspirit_magic_barrage"
-		"FightRecapLevel"				"1"
-		"LevelsBetweenUpgrades"			"5"
-		"MaxLevel"						"7"
-		"RequiredLevel"					"5"
-		
-		// Precache
-		//-------------------------------------------------------------------------------------------------------------
-		"precache"
-		{
-			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_vengefulspirit.vsndevts"
-			"particle"			"particles/units/heroes/hero_vengeful/vengeful_magic_missle.vpcf"		
-		}
 	
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"800"
-		"AbilityCastPoint"				"0.3 0.3 0.3 0.3"
-		
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"13 12 11 10 9 8 7"
-	
-	
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"25 50 75 125 250 500 1000"
-	
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"magic_missile_speed"	"1250"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"magic_missile_stun"	"1.45 1.55 1.65 1.75 1.85 1.95 2.05"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"magic_missile_damage"	"1000 2000 4000 8000 16000 32000 64000"
-				"LinkedSpecialBonus"	"special_bonus_unique_vengeful_spirit_1"
-			}
-		}
-	}
-	"vengefulspirit_nether_furor"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"lua_abilities/heroes/vengefulspirit"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_ALL"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityTextureName"			"custom/vengefulspirit_nether_furor"
-		"FightRecapLevel"				"1"
-		"LevelsBetweenUpgrades"			"5"
-		"MaxLevel"						"7"
-		"RequiredLevel"					"5"
-		"HasScepterUpgrade"				"1"
-		
-		// Precache
-		//-------------------------------------------------------------------------------------------------------------
-		"precache"
-		{
-			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_vengefulspirit.vsndevts"
-			"particle"			"particles/vengefulspirit_nether_furor_debuff.vpcf"		
-		}
-	
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"800"
-		"AbilityCastPoint"				"0.3 0.3 0.3 0.3"
-		
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"25"
-		"AbilityDuration"				"5"
-		"HasPureCooldown"				"1"
-	
-	
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"100 150 300 600 900 1200 2400"
-	
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"allied_resist"			"-50 -55 -60 -65 -70 -75 -80"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"allied_damage"			"10 12.5 15 17.5 20 22.5 25"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"enemy_amp"				"50 55 60 65 70 75 80"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"enemy_damage"			"-10 -12.5 -15 -17.5 -20 -22.5 -25"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"10"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"scepter_cooldown"		"15"
-			}
-		}
-	}
 	"viper_nethertoxin_ebf"	
 	{
 		// General

@@ -1550,8 +1550,19 @@
 	{
 		"override_hero"			"npc_dota_hero_vengefulspirit"
 		"Ability1"				"vengefulspirit_magic_missile_ebf"
-		"Ability6"				"vengefulspirit_nether_furor"
+		"Ability2"				"vengefulspirit_wave"
+		"Ability3"				"vengefulspirit_haunt"
+		"Ability4"				"vengefulspirit_aura"
+		"Ability6"				"vengefulspirit_swap"
 		
+		"Ability10"		"special_bonus_unique_vengefulspirit_magic_missile_ebf_1"
+		"Ability11"		"special_bonus_unique_vengefulspirit_magic_missile_ebf_2"  
+		"Ability12"		"special_bonus_unique_vengefulspirit_wave_1"
+		"Ability13"		"special_bonus_unique_vengefulspirit_wave_2"
+		"Ability14"		"special_bonus_unique_vengefulspirit_haunt_1"
+		"Ability15"		"special_bonus_unique_vengefulspirit_haunt_2"
+		"Ability16"		"special_bonus_unique_vengefulspirit_swap_1"
+		"Ability17"		"special_bonus_unique_vengefulspirit_swap_2"
 	}
 	"npc_dota_hero_venomancer_ebf"
 	{
