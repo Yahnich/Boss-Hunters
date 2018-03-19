@@ -32,10 +32,6 @@ if IsServer() then
 				thisEntity.raze1:SetLevel(2)
 				thisEntity.raze1:SetLevel(2)
 				thisEntity.raze1:SetLevel(2)
-				
-				thisEntity:SetBaseMaxHealth(thisEntity:GetBaseMaxHealth()*1.5)
-				thisEntity:SetMaxHealth(thisEntity:GetMaxHealth()*1.5)
-				thisEntity:SetHealth(thisEntity:GetMaxHealth())
 			end
 		end)
 	end

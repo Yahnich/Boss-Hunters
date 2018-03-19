@@ -44,10 +44,6 @@ function Spawn( entityKeyValues )
 			thisEntity.pool:SetLevel(2)
 			thisEntity.mass:SetLevel(2)
 			thisEntity.horizon:SetLevel(2)
-			
-			thisEntity:SetBaseMaxHealth(thisEntity:GetMaxHealth()*1.5)
-			thisEntity:SetMaxHealth(thisEntity:GetMaxHealth()*1.5)
-			thisEntity:SetHealth(thisEntity:GetMaxHealth())
 		end
 	end)
 end

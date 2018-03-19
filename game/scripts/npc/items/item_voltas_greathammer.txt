@@ -1,0 +1,92 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Recipe: TITAN Armor
+	//=================================================================================================================
+	"item_recipe_voltas_greathammer"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"6273"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe_assault"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"4750"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_voltas_greathammer"
+		"ItemRequirements"
+		{
+			"01"						"item_lightningrod"
+		}
+	}
+	"item_voltas_greathammer"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"3274"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_voltas_greathammer"
+		"AbilityTextureName"			"item_mjollnir"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemShopTags"					"regen;health"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"heart of tarrasque;voltas_greathammer"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"precache"
+		{
+			"precache"					"soundevents/game_sounds_items.vsndevts"
+		}
+		
+		"AbilityCooldown"				"14"
+		"AbilityManaCost"				"150"
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"primary_to_damage"		"200"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bonus_attack_speed"	"80"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"radius"				"625"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"strike_chance"			"20"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"strike_damage"			"150"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"strike_bounces"		"8"
+			}
+		}
+	}
+}

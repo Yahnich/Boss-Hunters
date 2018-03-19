@@ -25,11 +25,6 @@ function Spawn( entityKeyValues )
 			thisEntity.rend:SetLevel(2)
 		end
 	end)
-	if  math.floor(GameRules.gameDifficulty + 0.5) > 2 then
-		thisEntity:SetBaseMaxHealth(thisEntity:GetMaxHealth()*1.5)
-		thisEntity:SetMaxHealth(thisEntity:GetMaxHealth()*1.5)
-		thisEntity:SetHealth(thisEntity:GetMaxHealth())
-	end
 end
 
 

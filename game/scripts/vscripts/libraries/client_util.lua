@@ -117,7 +117,10 @@ function C_DOTA_BaseNPC:HealDisabled()
 end
 
 function C_DOTA_Modifier_Lua:GetSpecialValueFor(specVal)
-	return self:GetAbility():GetSpecialValueFor(specVal)
+	if self:GetAbility() then
+		return self:GetAbility():GetSpecialValueFor(specVal)
+	end
+	return 0
 end
 
 function C_DOTA_Modifier_Lua:GetTalentSpecialValueFor(specVal)

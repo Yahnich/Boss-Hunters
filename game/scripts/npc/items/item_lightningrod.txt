@@ -1,0 +1,70 @@
+"DOTAAbilities"
+{
+	"item_lightningrod"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"3256"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_lightningrod"
+		"AbilityTextureName"			"item_maelstrom"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"1765"
+		"ItemShopTags"					"magic"
+		"ItemQuality"					"component"
+		"ItemAliases"					"maelstrom;lightningrod"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		"AbilityCooldown"				"18"
+		"AbilityManaCost"				"150"
+		
+		"precache"
+		{
+			"precache"					"soundevents/game_sounds_items.vsndevts"
+		}
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"primary_to_damage"		"200"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bonus_attack_speed"	"35"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"radius"				"625"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"strike_chance"			"15"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"strike_damage"			"125"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"strike_bounces"		"4"
+			}
+		}
+	}
+}

@@ -1,0 +1,52 @@
+"DOTAAbilities"
+{
+	"item_cultists_veil"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"3256"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_cultists_veil"
+		"AbilityTextureName"			"item_veil_of_discord"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"1765"
+		"ItemShopTags"					"magic"
+		"ItemQuality"					"component"
+		"ItemAliases"					"veil of discord;cultists veil"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		"AbilityCooldown"				"25"
+		"AbilityCastRange"				"750"
+		"AbilityManaCost"				"55"
+		
+		"precache"
+		{
+			"precache"					"soundevents/game_sounds_items.vsndevts"
+		}
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_magic_damage"	"25"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"15"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"radius"				"625"
+			}
+		}
+	}
+}

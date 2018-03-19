@@ -11,10 +11,10 @@ function CHoldoutGameRound:ReadConfiguration( kv, gameMode, roundNumber )
 	self._gameMode = gameMode
 	self._nRoundNumber = roundNumber
 
-	self._nMaxGold = tonumber( kv.MaxGold or 0 )
 	self._nBagCount = tonumber( kv.BagCount or 0 )
 	self._nBagVariance = tonumber( kv.BagVariance or 0 )
 	self._nFixedXP = tonumber( kv.FixedXP or 0 )
+	self._nFixedGold = tonumber( kv.FixedGold or 0 )
 
 	self._vSpawners = {}
 	for k, v in pairs( kv ) do
@@ -116,23 +116,18 @@ function CHoldoutGameRound:Begin()
 		ListenToGameEvent( "dota_holdout_revive_complete", Dynamic_Wrap( CHoldoutGameRound, 'OnHoldoutReviveComplete' ), self )
 	}
 	self._nAsuraCoreRemaining = 0
-	local PlayerNumber = GetAllPlayers() or HeroList:GetHeroCount()
-	local GoldMultiplier = (((PlayerNumber)+0.56)/1.8)*0.15
+	local PlayerNumber = HeroList:GetActiveHeroCount()
+	local GoldMultiplier = 1 + (0.2 * (GameRules.BasePlayers - PlayerNumber))
 
 	local roundNumber = self._nRoundNumber
-	self._nGoldRemainingInRound = self._nMaxGold * GoldMultiplier * 1.1
-
-	self._nGoldBagsRemaining = self._nBagCount
-	self._nGoldBagsExpired = 0
-	self._nCoreUnitsTotal = 0
-	if GameRules._NewGamePlus == true then
-		self._nFixedXP = 350000 + (self._nFixedXP * (10 * roundNumber^0.4))
-	end
+	
+	self._nGoldRemainingInRound = self._nFixedGold * GoldMultiplier
 	self._nExpRemainingInRound = self._nFixedXP
+	
 	for _, spawner in pairs( self._vSpawners ) do
 		spawner:Begin()
-		self._nCoreUnitsTotal = self._nCoreUnitsTotal + spawner:GetTotalUnitsToSpawn()
-		if self._nRoundNumber == 29 then
+		self._nCoreUnitsTotal = (self._nCoreUnitsTotal or 0) + spawner:GetTotalUnitsToSpawn()
+		if self._nRoundNumber == 24 then
 			self._nCoreUnitsTotal = self._nCoreUnitsTotal + 1
 		end
 	end
@@ -145,27 +140,10 @@ function CHoldoutGameRound:Begin()
 	for i=1, self._nCoreUnitsTotal do
 		if RollPercentage( elitePct ) and self._nRoundNumber > 1 then
 			self._nElitesToSpawn = self._nElitesToSpawn + 1
-			local elitegold = 100 * self._nRoundNumber^0.2 * PlayerNumber / 4
-			if GameRules._NewGamePlus == true then
-				elitegold = 200 * self._nRoundNumber^0.3 * PlayerNumber / 4
-			end
-			self._nGoldRemainingInRound = self._nGoldRemainingInRound + self._nRoundNumber * elitegold
+			self._nGoldRemainingInRound = self._nGoldRemainingInRound + self._nRoundNumber * 3
 		end
 	end
 	
-	if GameRules._NewGamePlus == true then
-		self._nGoldRemainingInRound = self._nGoldRemainingInRound * (1.3*roundNumber^0.4)
-		if self._nGoldRemainingInRound > 50000 or self._nRoundNumber == 1 then
-			while self._nGoldRemainingInRound > 25000 do
-				self._nGoldRemainingInRound = self._nGoldRemainingInRound - 25000
-				self._nAsuraCoreRemaining = self._nAsuraCoreRemaining + 1 
-			end
-			self._nAsuraCoreRemaining = math.ceil(self._nAsuraCoreRemaining/PlayerNumber)
-			if self._nAsuraCoreRemaining == 0 and roundNumber > 2 then
-				self._nAsuraCoreRemaining = self._nAsuraCoreRemaining + 1
-			end
-		end
-	end
 	self._nElitesRemaining = self._nElitesToSpawn
 	self._nCoreUnitsSpawned = self._nCoreUnitsTotal
 	self._nCoreUnitsKilled = 0
@@ -269,7 +247,7 @@ function CHoldoutGameRound:OnNPCSpawned( event )
 	spawnedUnit:GetUnitName() == "npc_dummy_blank" then
 		return
 	end
-	local nCoreUnitsRemaining = self._nCoreUnitsTotal - self._nCoreUnitsKilled
+	local nCoreUnitsRemaining = (self._nCoreUnitsTotal or 0) - (self._nCoreUnitsKilled or 0)
 	Timers:CreateTimer(0.1,function()
 				self:HandleElites(spawnedUnit)
 	        end)
@@ -336,65 +314,34 @@ function CHoldoutGameRound:OnEntityKilled( event )
 	end
 end
 
-
-
 function CHoldoutGameRound:_CheckForGoldBagDrop( killedUnit )
-	if self._nGoldRemainingInRound <= 0 then
-		return
-	end
-
-	local nGoldToDrop = 0
 	local nCoreUnitsRemaining = self._nCoreUnitsTotal - self._nCoreUnitsKilled
-	local PlayerNumber = HeroList:GetHeroCount()
+	local PlayerNumber = HeroList:GetActiveHeroCount()
 	local exptogain = 0
+	local goldtogain = 0
 	if nCoreUnitsRemaining > 0 then
-		exptogain = ( (self._nFixedXP) / (self._nCoreUnitsTotal) )
+		exptogain = self._nExpRemainingInRound / nCoreUnitsRemaining
+		goldtogain = self._nGoldRemainingInRound / nCoreUnitsRemaining
 	elseif nCoreUnitsRemaining <= 1 then
 		exptogain = self._nExpRemainingInRound
+		goldtogain = self._nGoldRemainingInRound
 	end
+	
 	for _,unit in pairs ( Entities:FindAllByName( "npc_dota_hero*")) do
 		if unit:GetTeamNumber() == DOTA_TEAM_GOODGUYS and not unit:IsFakeHero() then
-			unit:AddExperience (exptogain,false,false)
-		end
-	end
-	if killedUnit:GetUnitName() == "npc_dota_money" and self._nExpRemainingInRound == 0 then
-		for _,unit in pairs ( Entities:FindAllByName( "npc_dota_hero*")) do
-			if not unit:IsFakeHero() then
-				while unit:GetLevel() < 7 do
-					unit:AddExperience (100,false,false)
-				end
+			if exptogain > 0 then
+				unit:AddExperience (exptogain,false,false)
 			end
-		end
-	end
-	if nCoreUnitsRemaining <= 1 then
-		nGoldToDrop = self._nGoldRemainingInRound
-	else
-		local flCurrentDropChance = self._nGoldBagsRemaining / (1 + nCoreUnitsRemaining)
-		if RandomFloat( 0, 1 ) <= flCurrentDropChance then
-			if self._nGoldBagsRemaining <= 1 then
-				nGoldToDrop = self._nGoldRemainingInRound
-			else
-				nGoldToDrop = math.floor( self._nGoldRemainingInRound / self._nGoldBagsRemaining )
-				nCurrentGoldDrop = math.max(1, RandomInt( nGoldToDrop - self._nBagVariance, nGoldToDrop + self._nBagVariance  ) )
+			if goldtogain > 0 then
+				local totalgold = unit:GetGold() + goldtogain
+				unit:SetGold(0 , false)
+				unit:SetGold(totalgold, true)
 			end
 		end
 	end
 	
-	nGoldToDrop = math.min( nGoldToDrop, self._nGoldRemainingInRound )
-	if nGoldToDrop <= 0 then
-		return
-	end
-	self._nGoldRemainingInRound = math.max( 0, self._nGoldRemainingInRound - nGoldToDrop )
-	self._nGoldBagsRemaining = math.max( 0, self._nGoldBagsRemaining - 1 )
+	self._nGoldRemainingInRound = math.max( 0, self._nGoldRemainingInRound - goldtogain )
 	self._nExpRemainingInRound = math.max( 0,self._nExpRemainingInRound - exptogain)
-
-	for _,unit in pairs ( Entities:FindAllByName( "npc_dota_hero*")) do
-		if unit:GetTeamNumber() == DOTA_TEAM_GOODGUYS and not unit:IsFakeHero() then
-			local totalgold = unit:GetGold() + nGoldToDrop / HeroList:GetRealHeroCount()
-			unit:SetGold(0 , false)
-			unit:SetGold(totalgold, true)
-		end
-	end
 end
 
 function CHoldoutGameRound:HandleElites(spawnedUnit)

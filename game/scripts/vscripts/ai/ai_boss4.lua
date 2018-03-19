@@ -25,10 +25,6 @@ function Spawn( entityKeyValues )
 			thisEntity.summon:SetLevel(2)
 			thisEntity.sacrifice:SetLevel(2)
 			thisEntity.tombstone:SetLevel(2)
-			
-			thisEntity:SetBaseMaxHealth(thisEntity:GetMaxHealth()*1.5)
-			thisEntity:SetMaxHealth(thisEntity:GetMaxHealth()*1.5)
-			thisEntity:SetHealth(thisEntity:GetMaxHealth())
 		end
 	end)
 end

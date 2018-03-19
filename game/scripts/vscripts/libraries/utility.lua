@@ -147,7 +147,9 @@ function CDOTA_Modifier_Lua:AttachEffect(pID)
 end
 
 function CDOTA_Modifier_Lua:GetSpecialValueFor(specVal)
-	return self:GetAbility():GetSpecialValueFor(specVal)
+	if self and self:GetAbility() then
+		return self:GetAbility():GetSpecialValueFor(specVal)
+	end
 end
 
 function CDOTABaseAbility:GetAbilityTextureName()
@@ -696,19 +698,6 @@ function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, sp
 	for i=1,casterLevel-1 do
 		illusion:HeroLevelUp(false)
 	end
-	
-	local model = self:FirstMoveChild()
-	while model ~= nil do
-		if model:GetClassname() == "dota_item_wearable" then
-			local newWearable = CreateUnitByName("wearable_dummy", Vector(0, 0, 0), false, nil, nil, DOTA_TEAM_NOTEAM)
-			newWearable:SetOriginalModel(model:GetModelName())
-			newWearable:SetModel(model:GetModelName())
-			newWearable:FollowEntity(self, true)
-			newWearable:AddNewModifier(self, nil, "modifier_wearable", {})
-			newWearable:AddNewModifier(self, nil, "modifier_illusion", { duration = duration })
-		end
-		model = model:NextMovePeer()
-	end
 
 	-- Set the skill points to 0 and learn the skills of the caster
 	illusion:SetAbilityPoints(0)
@@ -720,12 +709,15 @@ function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, sp
 			if illusion:FindAbilityByName(abilityName) ~= nil then
 				local illusionAbility = illusion:FindAbilityByName(abilityName)
 				illusionAbility:SetLevel(abilityLevel)
+			else
+				local illusionAbility = illusion:AddAbility(abilityName)
+				illusionAbility:SetLevel(abilityLevel)
 			end
 		end
 	end
 	
 
-			-- Recreate the items of the caster
+	-- Recreate the items of the caster
 	for itemSlot=0,5 do
 		local item = self:GetItemInSlot(itemSlot)
 		if item ~= nil then
@@ -744,6 +736,7 @@ function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, sp
 			
 	-- Without MakeIllusion the unit counts as a hero, e.g. if it dies to neutrals it says killed by neutrals, it respawns, etc.
 	illusion:MakeIllusion()
+	return illusion
 end
 
 
@@ -904,7 +897,13 @@ end
 
 function CDOTA_BaseNPC:ModifyThreat(val)
 	self.lastHit = GameRules:GetGameTime()
-	self.threat = (self.threat or 0) + val
+	local newVal = val
+	for _, modifier in ipairs( self:FindAllModifiers() ) do
+		if modifier.Bonus_ThreatGain and modifier:Bonus_ThreatGain() then
+			newVal = newVal + ( val * ( 1 + ( modifier:Bonus_ThreatGain()/100 ) ) )
+		end
+	end
+	self.threat = (self.threat or 0) + newVal
 	if not self:IsFakeHero() then 
 		local player = PlayerResource:GetPlayer(self:GetOwner():GetPlayerID())
 

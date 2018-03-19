@@ -18,18 +18,10 @@ if IsServer() then
 				thisEntity.thread:SetLevel(2)
 				thisEntity.peel:SetLevel(2)
 				thisEntity.exorcise:SetLevel(2)
-				
-				thisEntity:SetBaseMaxHealth(thisEntity:GetMaxHealth()*1.2)
-				thisEntity:SetMaxHealth(thisEntity:GetMaxHealth()*1.2)
-				thisEntity:SetHealth(thisEntity:GetMaxHealth())
 			else
 				thisEntity.thread:SetLevel(3)
 				thisEntity.peel:SetLevel(3)
 				thisEntity.exorcise:SetLevel(3)
-				
-				thisEntity:SetBaseMaxHealth(thisEntity:GetMaxHealth()*1.5)
-				thisEntity:SetMaxHealth(thisEntity:GetMaxHealth()*1.5)
-				thisEntity:SetHealth(thisEntity:GetMaxHealth())
 			end
 		end)
 	end
