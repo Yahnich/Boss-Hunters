@@ -34,7 +34,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_arcane_accelerator"
-		"AbilityTextureName"			"custom/arcane_accelerator"
+		"AbilityTextureName"			"item_octarine_core"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"

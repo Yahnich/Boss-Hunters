@@ -2121,7 +2121,6 @@ end
 function CDOTA_BaseNPC:AttemptKill(sourceAb, attacker)
 	self:SetHealth(1)
 	local damage = ApplyDamage({victim = self, attacker = attacker, ability = sourceAb, damage_type = DAMAGE_TYPE_PURE, damage = self:GetMaxHealth(), damage_flags = DOTA_DAMAGE_FLAG_BYPASSES_INVULNERABILITY + DOTA_DAMAGE_FLAG_BYPASSES_BLOCK})
-	print( damage, self:IsAlive() )
 	return not self:IsAlive()
 end
 

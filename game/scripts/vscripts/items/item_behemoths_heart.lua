@@ -58,7 +58,7 @@ function modifier_item_behemoths_heart_passive:IsHidden()
 end
 
 function modifier_item_behemoths_heart_passive:DeclareFunctions()
-	return {MODIFIER_PROPERTY_HEALTH_BONUS
+	return {MODIFIER_PROPERTY_HEALTH_BONUS,
 			MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE,	
 			MODIFIER_EVENT_ON_TAKEDAMAGE,
 			}

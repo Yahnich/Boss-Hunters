@@ -15,6 +15,7 @@ function item_penitent_mail:OnSpellStart()
 		threatgain = threatgain + threatpUnit
 	end
 	caster:ModifyThreat(threatgain)
+	caster:AddNewModifier(caster, self, "modifier_item_penitent_mail_active", {duration = self:GetSpecialValueFor("duration")})
 	EmitSoundOn("DOTA_Item.BladeMail.Activate", caster)
 end
 

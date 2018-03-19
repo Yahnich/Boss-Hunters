@@ -5,7 +5,7 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"3258"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_soul_vessel"
 		"AbilityTextureName"			"custom/soul_vessel"
@@ -19,13 +19,9 @@
 		"ItemAliases"					"urn of shadows;soul_vessel"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		"AbilityCooldown"				"15"
-		"AbilityCastRange"				"750"
-		"AbilityManaCost"				"25"
-		
 		"precache"
 		{
-			"precache"					"soundevents/game_sounds_items.vsndevts"
+			"soundfile"					"soundevents/game_sounds_items.vsndevts"
 		}
 
 		// Special	

@@ -6,5 +6,6 @@
 	"talents",
 	"syncing_purposes",
 	"hero_properties",
+	"stats_panel"
   ]
 }

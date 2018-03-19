@@ -5,7 +5,7 @@ function item_mantle_of_the_fallen:GetIntrinsicModifierName()
 end
 
 modifier_item_mantle_of_the_fallen_stats = class({})
-LinkLuaModifier( "modifier_item_mantle_of_the_fallen_stats", "items/item_lifesteal.lua" ,LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_item_mantle_of_the_fallen_stats", "items/item_mantle_of_the_fallen.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 function modifier_item_mantle_of_the_fallen_stats:OnCreated()
 	self.radius = self:GetSpecialValueFor("radius")
@@ -16,8 +16,10 @@ function modifier_item_mantle_of_the_fallen_stats:OnRefresh()
 end
 
 function modifier_item_mantle_of_the_fallen_stats:OnDestroy()
-	for _, ally in ipairs( self:GetParent():FindFriendlyUnitsInRadius( self:GetParent():GetAbsOrigin(), -1 ) ) do
-		ally:RemoveModifierByName("modifier_item_lifesteal_aura")
+	if IsServer() then
+		for _, ally in ipairs( self:GetParent():FindFriendlyUnitsInRadius( self:GetParent():GetAbsOrigin(), -1 ) ) do
+			ally:RemoveModifierByName("modifier_item_mantle_of_the_fallen_aura")
+		end
 	end
 end
 
@@ -26,7 +28,7 @@ function modifier_item_mantle_of_the_fallen_stats:IsAura()
 end
 
 function modifier_item_mantle_of_the_fallen_stats:GetModifierAura()
-	return "modifier_item_lifesteal_aura"
+	return "modifier_item_mantle_of_the_fallen_aura"
 end
 
 function modifier_item_mantle_of_the_fallen_stats:GetAuraRadius()
@@ -56,6 +58,9 @@ end
 modifier_item_mantle_of_the_fallen_aura = class({})
 LinkLuaModifier( "modifier_item_mantle_of_the_fallen_aura", "items/item_mantle_of_the_fallen.lua" ,LUA_MODIFIER_MOTION_NONE )
 
+function modifier_item_mantle_of_the_fallen_aura:GetTextureName()
+	return "custom/mantle_of_the_fallen"
+end
 
 function modifier_item_mantle_of_the_fallen_aura:OnCreated()
 	self.lifesteal = self:GetSpecialValueFor("lifesteal") / 100

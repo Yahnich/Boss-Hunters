@@ -34,7 +34,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_memento"
-		"AbilityTextureName"			"item_divine_rapier"
+		"AbilityTextureName"			"item_rapier"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
@@ -47,7 +47,8 @@
 		
 		"precache"
 		{
-			"precache"					"soundevents/game_sounds_items.vsndevts"
+			"soundfile"					"soundevents/game_sounds_items.vsndevts"
+			"particle"					"particles/units/heroes/hero_faceless_void/faceless_void_backtrack.vpcf"
 		}
 		
 		"AbilityCooldown"				"4"

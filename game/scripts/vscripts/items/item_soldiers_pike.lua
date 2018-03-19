@@ -21,7 +21,7 @@ end
 function modifier_item_soldiers_pike:OnAttackLanded(params)
 	if IsServer() then
 		if params.attacker == self:GetParent() and RollPercentage(self.chance) then
-			self:GetAbility:DealDamage(self:GetParent(), params.target, self.damage, {damage_type = DAMAGE_TYPE_PURE})
+			self:GetAbility():DealDamage(self:GetParent(), params.target, self.damage, {damage_type = DAMAGE_TYPE_PURE})
 		end
 	end
 end

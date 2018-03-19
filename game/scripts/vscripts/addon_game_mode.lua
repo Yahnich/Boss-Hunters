@@ -29,6 +29,7 @@ require( "statcollection/init" )
 require("libraries/utility")
 require("libraries/animations")
 
+LinkLuaModifier( "modifier_stats_system_handler", "libraries/modifiers/modifier_stats_system_handler.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_blind_generic", "libraries/modifiers/modifier_blind_generic.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_wearable", "libraries/modifiers/modifier_wearable.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_status_immunity", "libraries/modifiers/modifier_status_immunity.lua", LUA_MODIFIER_MOTION_NONE)
@@ -558,6 +559,15 @@ function CHoldoutGameMode:FilterModifiers( filterTable )
     local caster = EntIndexToHScript( caster_index )
 	local ability = EntIndexToHScript( ability_index )
 	local name = filterTable["name_const"]
+	
+	if parent and caster then
+		local params = {healer = healer, target = target, heal = heal}
+		for _, modifier in ipairs( caster:FindAllModifiers() ) do
+			if modifier.GetModifierStatusAmplify_Percentage then
+				filterTable["duration"] = filterTable["duration"] * (1 + modifier:GetModifierStatusAmplify_Percentage( params )/100)
+			end
+		end
+	end
 
 	if parent == caster or not caster or not ability or duration == -1 then return true end
 	return true
@@ -1123,6 +1133,29 @@ function CHoldoutGameMode:OnHeroPick (event)
 		hero:HeroLevelUp(false)
 		hero:HeroLevelUp(false)
 		hero:HeroLevelUp(false)
+		
+		local stats = {}
+		stats.ms = 0
+		stats.mp = 0
+		stats.mpr = 0
+		stats.ha = 0
+		
+		stats.ad = 0
+		stats.sa = 0
+		stats.cdr = 0
+		stats.as = 0
+		stats.sta = 0
+		
+		stats.pr = 0
+		stats.mr = 0
+		stats.db = 0
+		stats.ar = 0
+		stats.hp = 0
+		stats.hpr = 0
+		stats.sr = 0
+		
+		CustomNetTables:SetTableValue("stats_panel", tostring(hero:GetPlayerOwnerID()), stats)
+		hero:AddNewModifier(hero, nil, "modifier_stats_system_handler", {})
 		
 		-- StatsManager:CreateCustomStatsForHero(hero)
 		hero:SetRespawnPosition( GetGroundPosition(Vector(973, 99, 0), nil) )

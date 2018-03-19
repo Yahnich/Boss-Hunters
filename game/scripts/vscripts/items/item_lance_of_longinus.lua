@@ -15,18 +15,18 @@ end
 
 function modifier_item_lance_of_longinus:DeclareFunctions()
 	return {MODIFIER_EVENT_ON_ATTACK_LANDED,
-			MODIFIER_PROPERTY_ATTACK_RANGE_BONUS_UNIQUE}
+			MODIFIER_PROPERTY_ATTACK_RANGE_BONUS}
 end
 
 function modifier_item_lance_of_longinus:OnAttackLanded(params)
 	if IsServer() then
 		if params.attacker == self:GetParent() and RollPercentage(self.chance) then
-			self:GetAbility:DealDamage(self:GetParent(), params.target, self.damage * self:GetParent():GetAttackDamage(), {damage_type = DAMAGE_TYPE_PURE})
+			self:GetAbility():DealDamage(self:GetParent(), params.target, self.damage * self:GetParent():GetAttackDamage(), {damage_type = DAMAGE_TYPE_PURE})
 		end
 	end
 end
 
-function modifier_item_lance_of_longinus:GetModifierAttackRangeBonusUnique()
+function modifier_item_lance_of_longinus:GetModifierAttackRangeBonus()
 	return self.range
 end
 

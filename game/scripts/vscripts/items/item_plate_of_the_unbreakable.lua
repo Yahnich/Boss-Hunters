@@ -1,9 +1,13 @@
 item_plate_of_the_unbreakable = class({})
 
+function item_plate_of_the_unbreakable:GetIntrinsicModifierName()
+	return "modifier_plate_of_the_unbreakable_passive"
+end
+
 function item_plate_of_the_unbreakable:OnSpellStart()
 	local caster = self:GetCaster()
 	caster:Dispel(caster, true)
-	self:HealEvent(self:GetSpecialValueFor("heal"), self, caster)
+	caster:HealEvent(self:GetSpecialValueFor("heal"), self, caster)
 	ParticleManager:FireParticle("particles/generic_gameplay/generic_purge.vpcf", PATTACH_POINT_FOLLOW, caster)
 	EmitSoundOn("DOTA_Item.Tango.Activate", caster)
 end

@@ -25,16 +25,22 @@
 #base "items/item_reaping_scythe.txt"
 #base "items/item_cultists_veil.txt"
 #base "items/item_lightningrod.txt"
-#base "items/item_soul_jar.txt"
+#base "items/item_jar_of_souls.txt"
+#base "items/item_soul_vessel.txt"
+#base "items/item_runed_artifact.txt"
 
 #base "items/item_arcane_accelerator.txt"
 #base "items/item_mantle_of_fallen.txt"
 #base "items/item_leechblade.txt"
 #base "items/item_lazarus_rags.txt"
 #base "items/item_memento.txt"
+#base "items/item_mantle_of_the_fallen.txt"
+
 #base "items/item_behemoths_heart.txt"
 #base "items/item_voltas_greathammer.txt"
 #base "items/item_lucifers_cage.txt"
+#base "items/item_executioners_blade.txt"
+#base "items/item_lance_of_longinus.txt"
 
 
 "DOTAAbilities"

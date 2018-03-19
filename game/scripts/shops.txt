@@ -49,6 +49,7 @@
         "item"		"item_archmages_orb"
 		"item"		"item_runed_artifact"
 		"item"		"item_arcane_accelerator"
+		"item"		"item_lightningrod"
 		"item"		"item_voltas_greathammer"
     }
     // Level 3 - Purple Recipes
@@ -65,7 +66,6 @@
 		"item"		"item_siegebreaker"
 		"item"		"item_ringing_rapier"
 		"item"		"item_reaping_scythe"
-		"item"		"item_lightningrod"
 		"item"		"item_leechblade"
 		"item"		"item_executioners_blade"
 		"item"		"item_lance_of_longinus"
@@ -74,6 +74,7 @@
     "artifacts"
     {
         "item"		"item_ultimate_scepter"
+		"item"		"item_force_boots"
 		"item"		"item_tricksters_blade"
 		"item"		"item_wings_of_icarus"
 		"item"		"item_soul_vessel"

@@ -51,7 +51,7 @@
 		
 		"particle"
 		{
-			"particle"					"particles/items_fx/blink_dagger_start.vpcf"
+			"particle"					"particles/econ/events/ti6/phase_boots_ti6.vpcf"
 			"particle"					"particles/items_fx/blink_dagger_end.vpcf"
 		}
 		"AbilityCooldown"				"12"

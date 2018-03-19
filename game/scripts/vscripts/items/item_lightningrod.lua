@@ -11,8 +11,8 @@ function item_lightningrod:OnSpellStart()
 	local target = self:GetCursorTarget()
 	
 	local damage = caster:GetPrimaryStatValue() * self:GetSpecialValueFor("primary_to_damage") / 100
-	ParticleManager:FireParticle("", PATTACH_POINT_FOLLOW, target)
-	EmitSoundOn("",target)
+	ParticleManager:FireParticle("particles/units/heroes/hero_zuus/zuus_lightning_bolt.vpcf", PATTACH_ABSORIGIN, target, {[1] = target:GetAbsOrigin(), [0] = caster:GetAbsOrigin() + Vector(0,0,1600)})
+	EmitSoundOn("Hero_Zuus.LightningBolt", target)
 	self:DealDamage(caster, target, damage)
 end
 
@@ -36,7 +36,7 @@ end
 
 function modifier_item_lightningrod_handle:OnAttackLanded(params)
 	if IsServer() then
-		if params.attacker == self:GetParent() and params.target:IsAlive() and RollPercentage(self:GetSpecialValueFor("chance")) then
+		if params.attacker == self:GetParent() and params.target:IsAlive() and RollPercentage(self:GetSpecialValueFor("strike_chance")) then
 			local caster = params.attacker
 			local ability = self:GetAbility()
 			local target = params.target
@@ -46,14 +46,14 @@ function modifier_item_lightningrod_handle:OnAttackLanded(params)
 			-- Keeps track of the total number of instances of the ability (increments on cast)
 			if ability.instance == nil then
 				ability.instance = 0
-				ability.jump_count = {}
+				ability.strike_bounces = {}
 				ability.target = {}
 			else
 				ability.instance = ability.instance + 1
 			end
 			
 			-- Sets the total number of jumps for this instance (to be decremented later)
-			ability.jump_count[ability.instance] = ability:GetSpecialValueFor("jump_count")
+			ability.strike_bounces[ability.instance] = ability:GetSpecialValueFor("strike_bounces")
 			-- Sets the first target as the current target for this instance
 			ability.target[ability.instance] = target
 
@@ -104,10 +104,10 @@ function modifier_item_lightningrod_handle_damage:OnCreated()
 			target.hit[current] = true
 		
 			-- Decrements our jump count for this instance
-			ability.jump_count[current] = ability.jump_count[current] - 1
+			ability.strike_bounces[current] = ability.strike_bounces[current] - 1
 		
 			-- Checks if there are jumps left
-			if ability.jump_count[current] > 0 then
+			if ability.strike_bounces[current] > 0 then
 				-- Finds units in the radius to jump to
 				local enemies = caster:FindEnemyUnitsInRadius(target:GetAbsOrigin(), radius, {})
 				local closest = radius

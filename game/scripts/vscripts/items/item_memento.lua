@@ -13,7 +13,7 @@ modifier_item_memento = class({})
 
 function modifier_item_memento:OnCreated()
 	self.delay = self:GetSpecialValueFor("attack_delay")
-	self.chance = self:GetAbility():GetSpecialValueFor("block_chance")
+	self.chance = self:GetAbility():GetSpecialValueFor("dodge_chance")
 end
 
 function modifier_item_memento:DeclareFunctions()
@@ -35,6 +35,7 @@ end
 
 function modifier_item_memento:GetModifierTotal_ConstantBlock(params)
 	if RollPercentage(self.chance) then
+		ParticleManager:FireParticle("particles/units/heroes/hero_faceless_void/faceless_void_backtrack.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
 		return params.damage
 	end
 end

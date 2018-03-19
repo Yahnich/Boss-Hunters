@@ -28,7 +28,8 @@
 		
 		"precache"
 		{
-			"precache"					"soundevents/game_sounds_items.vsndevts"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_zuus.vsndevts"
+			"particle"					"particles/units/heroes/hero_zuus/zuus_lightning_bolt.vpcf"
 		}
 
 		// Special	

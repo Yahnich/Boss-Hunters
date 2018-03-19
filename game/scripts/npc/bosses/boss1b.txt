@@ -111,7 +111,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"spear_damage"			"200 300"
+				"spear_damage"			"50 75"
 			}
 		}
 		"precache"

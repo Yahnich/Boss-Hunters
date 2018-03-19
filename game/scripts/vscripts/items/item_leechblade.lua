@@ -9,7 +9,7 @@ function item_leechblade:OnSpellStart()
 	EmitSoundOn( "DOTA_Item.Satanic.Activate", self:GetCaster() )
 end
 
-modifier_item_leechblade_stats = class(modifier_item_vlads_stats)
+modifier_item_leechblade_stats = class({})
 LinkLuaModifier( "modifier_item_leechblade_stats", "items/item_leechblade.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 function modifier_item_leechblade_stats:OnCreated()
@@ -21,13 +21,17 @@ function modifier_item_leechblade_stats:DeclareFunctions()
 	return {MODIFIER_EVENT_ON_TAKEDAMAGE}
 end
 
-function modifier_item_leechblade_aura:OnTakeDamage(params)
+function modifier_item_leechblade_stats:OnTakeDamage(params)
 	if params.attacker == self:GetParent() and not params.inflictor then
 		local lifesteal = self.lifesteal
 		if params.attacker:HasModifier("modifier_item_leechblade_active") then lifesteal = self.activeLifesteal end
 		local flHeal = params.damage * lifesteal
 		params.attacker:HealEvent(flHeal, self:GetAbility(), params.attacker)
 	end
+end
+
+function modifier_item_leechblade_stats:IsHidden()
+	return true
 end
 
 modifier_item_leechblade_active = class({})
