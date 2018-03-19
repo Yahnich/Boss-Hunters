@@ -1,0 +1,38 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// TITAN Armor
+	//=================================================================================================================
+	"item_ring_of_mana"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"3224"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_ring_of_mana"
+		"AbilityTextureName"			"item_ring_of_basilius"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"200"
+		"ItemShopTags"					"mana;regen"
+		"ItemQuality"					"component"
+		"ItemAliases"					"basilius;ring of mana"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		"AbilityCooldown"				"30"
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_mana_regen"		"3"
+			}
+		}
+	}
+}

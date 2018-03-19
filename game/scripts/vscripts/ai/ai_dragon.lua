@@ -22,10 +22,6 @@ if IsServer() then
 			thisEntity.flock:SetLevel(2)
 			thisEntity.conflag:SetLevel(4)
 			thisEntity.dragonfire:SetLevel(4)
-			
-			thisEntity:SetBaseMaxHealth(thisEntity:GetMaxHealth()*1.5)
-			thisEntity:SetMaxHealth(thisEntity:GetMaxHealth()*1.5)
-			thisEntity:SetHealth(thisEntity:GetMaxHealth())
 		end
 	end
 

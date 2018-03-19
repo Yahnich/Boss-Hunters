@@ -147,7 +147,9 @@ function CDOTA_Modifier_Lua:AttachEffect(pID)
 end
 
 function CDOTA_Modifier_Lua:GetSpecialValueFor(specVal)
-	return self:GetAbility():GetSpecialValueFor(specVal)
+	if self and self:GetAbility() then
+		return self:GetAbility():GetSpecialValueFor(specVal)
+	end
 end
 
 function CDOTABaseAbility:GetAbilityTextureName()
@@ -707,12 +709,15 @@ function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, sp
 			if illusion:FindAbilityByName(abilityName) ~= nil then
 				local illusionAbility = illusion:FindAbilityByName(abilityName)
 				illusionAbility:SetLevel(abilityLevel)
+			else
+				local illusionAbility = illusion:AddAbility(abilityName)
+				illusionAbility:SetLevel(abilityLevel)
 			end
 		end
 	end
 	
 
-			-- Recreate the items of the caster
+	-- Recreate the items of the caster
 	for itemSlot=0,5 do
 		local item = self:GetItemInSlot(itemSlot)
 		if item ~= nil then
@@ -893,7 +898,13 @@ end
 
 function CDOTA_BaseNPC:ModifyThreat(val)
 	self.lastHit = GameRules:GetGameTime()
-	self.threat = (self.threat or 0) + val
+	local newVal = val
+	for _, modifier in ipairs( self:FindAllModifiers() ) do
+		if modifier.Bonus_ThreatGain and modifier:Bonus_ThreatGain() then
+			newVal = newVal + ( val * ( 1 + ( modifier:Bonus_ThreatGain()/100 ) ) )
+		end
+	end
+	self.threat = (self.threat or 0) + newVal
 	if not self:IsFakeHero() then 
 		local player = PlayerResource:GetPlayer(self:GetOwner():GetPlayerID())
 

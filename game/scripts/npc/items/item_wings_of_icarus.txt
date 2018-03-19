@@ -1,0 +1,80 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Recipe: TITAN Armor
+	//=================================================================================================================
+	"item_recipe_wings_of_icarus"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"3249"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe_assault"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"1850"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_wings_of_icarus"
+		"ItemRequirements"
+		{
+			"01"						"item_elven_boots"
+		}
+	}
+	//=================================================================================================================
+	// TITAN Armor
+	//=================================================================================================================
+	"item_wings_of_icarus"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"3250"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_wings_of_icarus"
+		"AbilityTextureName"			"item_travel_boots"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"1450"
+		"ItemShopTags"					"boots;tp"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"travels;wings of icarus;tp boots"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"particle"
+		{
+			"particle"					"particles/items_fx/blink_dagger_start.vpcf"
+			"particle"					"particles/items_fx/blink_dagger_end.vpcf"
+		}
+		"AbilityCooldown"				"12"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_ms"				"50"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"active_ms"				"750"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"4.5"
+			}
+		}
+	}
+}

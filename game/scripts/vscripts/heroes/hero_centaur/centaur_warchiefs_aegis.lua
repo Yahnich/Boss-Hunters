@@ -49,7 +49,9 @@ end
 function modifier_centaur_warchiefs_aegis_return:GetModifierTotal_ConstantBlock( params )
 	local strength = self:GetCaster():GetStrength()
 	local block = self:GetTalentSpecialValueFor("str_to_block") / 100
-	self:ProcReturn(params.attacker)
+	if not ( HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_HPLOSS) or HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION) ) then
+		self:ProcReturn(params.attacker)
+	end
 	return strength * block
 end
 

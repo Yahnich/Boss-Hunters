@@ -1,0 +1,36 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// TITAN Armor
+	//=================================================================================================================
+	"item_crown_of_thorns"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"3221"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_crown_of_thorns"
+		"AbilityTextureName"			"custom/crown_of_thorns"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"250"
+		"ItemShopTags"					"reflect;blade;mail"
+		"ItemQuality"					"component"
+		"ItemAliases"					"blade mail;crown;crown of thorns"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"reflect"				"15"
+			}
+		}
+	}
+}

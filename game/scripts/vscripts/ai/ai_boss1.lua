@@ -28,11 +28,6 @@ if IsServer() then
 				thisEntity.rush:SetLevel(1)
 			end
 		end)
-		if  math.floor(GameRules.gameDifficulty + 0.5) > 2 then
-			thisEntity:SetBaseMaxHealth(thisEntity:GetMaxHealth()*1.5)
-			thisEntity:SetMaxHealth(thisEntity:GetMaxHealth()*1.5)
-			thisEntity:SetHealth(thisEntity:GetMaxHealth())
-		end
 		thisEntity.AIbehavior = RandomInt(1,3)
 	end
 

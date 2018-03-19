@@ -117,7 +117,7 @@ function AICore:GetHighestPriorityTarget(entity)
 end
 
 function AICore:AttackHighestPriority( entity )
-	if not entity and not entity:IsAlive() then return end
+	if not entity or not entity:IsAlive() then return end
 	local flag = DOTA_UNIT_TARGET_FLAG_NOT_ATTACK_IMMUNE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE
 	if not entity:IsDominated() then
 		local target = entity:GetTauntTarget()

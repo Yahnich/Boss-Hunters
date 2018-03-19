@@ -1,0 +1,92 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Recipe: TITAN Armor
+	//=================================================================================================================
+	"item_recipe_lazarus_rags"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"3267"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe_assault"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"1150"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_lazarus_rags"
+		"ItemRequirements"
+		{
+			"01"						"item_archmages_orb;item_angelic_guard"
+		}
+	}
+	"item_lazarus_rags"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"3268"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_lazarus_rags"
+		"AbilityTextureName"			"custom/lazarus_rags"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemShopTags"					"heal;mana"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"guardian greaves;lazarus_rags"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"precache"
+		{
+			"precache"					"soundevents/game_sounds_items.vsndevts"
+		}
+		
+		"AbilityCooldown"				"25"
+		"AbilityManaCost"				"60"
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"mana_restore"			"15"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"heal"					"20"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mana_regen"			"5"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"spell_amp"				"16"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"block_chance"			"100"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"damage_block"			"50"
+			}
+		}
+	}
+}

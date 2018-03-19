@@ -25,10 +25,6 @@ if IsServer() then
 				thisEntity.execute:SetLevel(2)
 				thisEntity.quake:SetLevel(2)
 				thisEntity.whirlwind:SetLevel(2)
-				
-				thisEntity:SetBaseMaxHealth(thisEntity:GetMaxHealth()*1.5)
-				thisEntity:SetMaxHealth(thisEntity:GetMaxHealth()*1.5)
-				thisEntity:SetHealth(thisEntity:GetMaxHealth())
 			end
 		end)
 	end

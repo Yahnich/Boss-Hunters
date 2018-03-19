@@ -1,0 +1,35 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// TITAN Armor
+	//=================================================================================================================
+	"item_dagger_of_escape"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"3223"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_dagger_of_escape"
+		"AbilityTextureName"			"item_blink"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"420"
+		"ItemShopTags"					"blink;mobility"
+		"ItemQuality"					"artifact"
+		"ItemAliases"					"blink;keelans dagger of escape"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		"AbilityCooldown"				"30"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"blink_range"			"1200"
+			}
+		}
+	}
+}

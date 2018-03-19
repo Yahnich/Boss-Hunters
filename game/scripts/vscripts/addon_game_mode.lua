@@ -8,6 +8,7 @@ DOTA_LIFESTEAL_SOURCE_ATTACK = 1
 DOTA_LIFESTEAL_SOURCE_ABILITY = 2
 
 MAP_CENTER = Vector(332, -1545)
+GAME_MAX_LEVEL = 160
 
 GLOBAL_STUN_LIST = {}
 
@@ -258,89 +259,10 @@ function CHoldoutGameMode:InitGameMode()
 	GameRules:GetGameModeEntity():SetCustomBuybackCostEnabled(true)
 	GameRules:GetGameModeEntity():SetCameraDistanceOverride(1400)
 	-- GameRules:GetGameModeEntity():SetCustomGameForceHero("npc_dota_hero_wisp")
-	xpTable = {
-		0,-- 1
-		200,-- 2
-		500,-- 3
-		900,-- 4
-		1400,-- 5
-		2000,-- 6
-		2600,-- 7
-		3200,-- 8
-		4400,-- 9
-		5400,-- 10
-		6000,-- 11
-		8200,-- 12
-		9000,-- 13
-		10400,-- 14
-		11900,-- 15
-		13500,-- 16
-		15200,-- 17
-		17000,-- 18
-		18900,-- 19
-		20900,-- 20
-		23000,-- 21
-		25200,-- 22
-		27500,-- 23
-		29900,-- 24
-		32400, -- 25
-		40000, -- 26
-		50000, -- 27
-		65000, -- 28
-		80000, -- 29
-		100000, -- 30
-		125000, -- 31
-		150000, -- 32
-		175000, -- 33
-		200000, -- 34
-		250000, -- 35
-		300000, -- 36
-		350000, --37
-		400000, --38
-		500000, --39
-		600000, --40
-		700000, --41
-		800000, --42
-		1000000, --43
-		1500000, --44
-		2000000, --45
-		3000000, --46
-		4000000, --47
-		5000000, --48
-		6000000, --49
-		7000000, --50
-		8000000, --51
-		9000000, --52
-		10000000, --53
-		12000000, --54
-		14000000, --55
-		16000000, --56
-		18000000, --57
-		20000000, --58
-		22000000, --59
-		24000000, --60
-		26000000, --61
-		28000000, --62
-		30000000, --63
-		35000000, --64
-		40000000, --65
-		45000000, --66
-		50000000, --67
-		55000000, --68
-		60000000, --69
-		70000000, --70
-		80000000, --71
-		90000000, --72
-		100000000, --73
-		125000000, --74
-		150000000, --75
-		175000000, --76
-		200000000, --77
-		250000000, --78
-		300000000, --79
-		400000000, --80
-	}
-
+	xpTable = {}
+	for i = 1, GAME_MAX_LEVEL do
+		table.insert(xpTable, i * 100)
+	end
 	GameRules:GetGameModeEntity():SetUseCustomHeroLevels( true )
     GameRules:GetGameModeEntity():SetCustomHeroMaxLevel( 80 )
     GameRules:GetGameModeEntity():SetCustomXPRequiredToReachNextLevel( xpTable )
@@ -677,6 +599,14 @@ function CHoldoutGameMode:FilterHeal( filterTable )
 
 	if not healer_index or not heal then return true end
 	healer.statsDamageHealed = (healer.statsDamageHealed or 0) + filterTable["heal"]
+	if target then
+		local totalHealth = 0
+		for _, ally in ipairs( healer:FindFriendlyUnitsInRadius( healer:GetAbsOrigin(), -1 ) ) do
+			totalHealth = totalHealth + ally:GetMaxHealth()
+		end
+		healer:ModifyThreat( math.max( target:GetHealthDeficit(), filterTable["heal"] ) / totalHealth)
+	end
+	
 	return true
 end
 
@@ -771,19 +701,6 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 			filterTable["damage"] = filterTable["damage"] * 0.66
 		end
 	end
-	-- TRUE OCTARINE HEALING --
-	if inflictor and attacker:HasModifier("spell_lifesteal")
-	and EntIndexToHScript( inflictor ).damage_flags ~= DOTA_DAMAGE_FLAG_HPLOSS -- forced flags
-	and EntIndexToHScript( inflictor ):GetName() ~= "necrolyte_heartstopper_aura" then -- special heartstopper exception ty valve
-		local octarine = attacker:FindModifierByName("spell_lifesteal")
-		local tHeal = octarine:GetAbility():GetSpecialValueFor("creep_lifesteal") / 100
-		local heal = filterTable["damage"] * tHeal
-		Timers:CreateTimer(function()
-			attacker:Heal(heal, attacker)
-			local healParticle = ParticleManager:CreateParticle("particles/items3_fx/octarine_core_lifesteal.vpcf", PATTACH_ABSORIGIN_FOLLOW, attacker)
-			ParticleManager:ReleaseParticleIndex(healParticle) 
-		end)
-	end
 	if attacker:IsCreature() and not inflictor then -- no more oneshots tears-b-gone
 		local damageCap = 2
 		local critmult = damage / (1 - victim:GetPhysicalArmorReduction() / 100 ) / attacker:GetAverageBaseDamage()
@@ -823,7 +740,7 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 			local addedthreat = (damage / roundCurrTotalHP)*threatCounter*100
 			local threatcheck = (victim:GetHealth() * threatCounter * 100) / roundCurrTotalHP
 			if addedthreat > threatcheck then addedthreat = threatcheck end -- remove threat from overkill damage
-			attacker.threat = attacker.threat + addedthreat
+			attacker:ModifyThreat( addedthreat )
 			attacker.lastHit = GameRules:GetGameTime()
 			attacker.statsDamageDealt = (attacker.statsDamageDealt or 0) + math.min(victim:GetHealth(), damage)
 			PlayerResource:SortThreat()
@@ -952,8 +869,8 @@ function CHoldoutGameMode:OnAbilityUsed(event)
 			escapemod = 2
 		end
 		if abilityused and not abilityused:IsItem() then modifier = (addedthreat*abilityused:GetLevel())/abilityused:GetMaxLevel() end
-		if not hero.threat then hero.threat = addedthreat
-		else hero.threat = hero.threat + addedthreat + modifier + talentmodifier - negtalentmodifier end
+		if not hero.threat then hero.threat = 0 end
+		hero:ModifyThreat(addedthreat + modifier + talentmodifier - negtalentmodifier)
 		local player = PlayerResource:GetPlayer(PlayerID)
 		hero.lastHit = GameRules:GetGameTime() - escapemod
 		PlayerResource:SortThreat()
@@ -1188,6 +1105,7 @@ end
 function CHoldoutGameMode:OnHeroPick (event)
  	local hero = EntIndexToHScript(event.heroindex)
 	if not hero then return end
+	print(hero:GetName())
 	if hero.hasBeenInitialized then return end
 	if hero:IsFakeHero() then return end
 	Timers:CreateTimer(0.03, function() 
@@ -1778,7 +1696,7 @@ function CHoldoutGameMode:OnThink()
 					local shareCount = 0
 					for _,unit in pairs ( HeroList:GetAllHeroes()) do
 						if unit:GetTeamNumber() == DOTA_TEAM_GOODGUYS and not unit:IsFakeHero() then
-							PlayerResource:SetCustomBuybackCost(hero:GetPlayerID(), self._nRoundNumber * 100)
+							PlayerResource:SetCustomBuybackCost(unit:GetPlayerID(), self._nRoundNumber * 100)
 							if unit:HasOwnerAbandoned() then
 								abandonGold = abandonGold + unit:GetGold()
 								unit:SetGold(0, false)
@@ -2039,16 +1957,17 @@ function CHoldoutGameMode:OnNPCSpawned( event )
 		spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_invulnerable", {})
 	end
 	if spawnedUnit:IsCreature() and spawnedUnit:GetTeam() == DOTA_TEAM_BADGUYS and spawnedUnit:GetUnitName() ~= "npc_dota_boss36" then
-		local expectedHP = ( 3000 + 250 * (GameRules._roundnumber or 0) ) * RandomFloat(0.85, 1.15)
-		local expectedDamage = ( 80 + 15 * (GameRules._roundnumber or 0) ) * RandomFloat(0.85, 1.15)
+		local expectedHP = ( 1750 + 250 * (GameRules._roundnumber or 0) ) * RandomFloat(0.85, 1.15)
+		local expectedDamage = ( 30 + 12 * (GameRules._roundnumber or 0) ) * RandomFloat(0.85, 1.15)
 		local expectedArmor = ( GameRules._roundnumber or 0 ) * RandomFloat(0.85, 1.15)
 		if not spawnedUnit:IsRangedAttacker() then
-			expectedHP = expectedHP * 1.5
-			expectedArmor = expectedArmor * 1.33
-			expectedDamage = expectedDamage * 1.25
+			expectedHP = expectedHP * 1.33
+			expectedArmor = expectedArmor * 1.2
+			expectedDamage = expectedDamage * 1.2
 		end
-		local playerMultiplier = 0.33
-		if GetMapName() == "epic_boss_fight_hardcore" then playerMultiplier = 0.4 end
+		if GetMapName() == "epic_boss_fight_hardcore" then expectedHP = expectedHP * 1.35 end
+		local playerMultiplier = 0.25
+		if GetMapName() == "epic_boss_fight_hardcore" then playerMultiplier = 0.33 end
 		local effective_multiplier = 1 + (HeroList:GetActiveHeroCount() - 1)*playerMultiplier
 		-- if self._currentRound and not self._currentRound:IsFinished() then self._vEnemiesRemaining
 		expectedHP = expectedHP * effective_multiplier

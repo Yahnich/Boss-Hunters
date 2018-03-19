@@ -1,0 +1,52 @@
+"DOTAAbilities"
+{
+	"item_jar_of_souls"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"3257"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_jar_of_souls"
+		"AbilityTextureName"			"item_urn_of_shadows"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"1800"
+		"ItemShopTags"					"heal"
+		"ItemQuality"					"component"
+		"ItemAliases"					"urn of shadows;jar_of_souls"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		"AbilityCooldown"				"15"
+		"AbilityCastRange"				"750"
+		"AbilityManaCost"				"25"
+		
+		"precache"
+		{
+			"precache"					"soundevents/game_sounds_items.vsndevts"
+		}
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_heal"			"100"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"8"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"disables_healing"		"0"
+			}
+		}
+	}
+}

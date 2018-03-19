@@ -32,11 +32,6 @@ if IsServer() then
 		end)
 		thisEntity.ground.uses = 4
 		thisEntity.ground.useTable = {}
-		if  math.floor(GameRules.gameDifficulty + 0.5) > 2 then
-			thisEntity:SetBaseMaxHealth(thisEntity:GetMaxHealth()*1.5)
-			thisEntity:SetMaxHealth(thisEntity:GetMaxHealth()*1.5)
-			thisEntity:SetHealth(thisEntity:GetMaxHealth())
-		end
 	end
 	function AIThink(thisEntity)
 		local target = AICore:GetHighestPriorityTarget(thisEntity)

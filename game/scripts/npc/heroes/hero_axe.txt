@@ -329,7 +329,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"str_to_armor"			"0.008"
+				"str_to_armor"			"0.09"
 			}
 		}
 		"Modifiers"

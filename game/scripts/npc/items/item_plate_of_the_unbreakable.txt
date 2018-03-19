@@ -1,0 +1,76 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Recipe: TITAN Armor
+	//=================================================================================================================
+	"item_recipe_plate_of_the_unbreakable"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"3235"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe_assault"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"1600"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_plate_of_the_unbreakable"
+		"ItemRequirements"
+		{
+			"01"						"item_purging_stone"
+		}
+	}
+	//=================================================================================================================
+	// TITAN Armor
+	//=================================================================================================================
+	"item_plate_of_the_unbreakable"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"3236"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_plate_of_the_unbreakable"
+		"AbilityTextureName"			"item_assault"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"heal;purge;dispel;armor"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"assault;plate of the unbreakable;unbreakable"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"particle"
+		{
+			"particle"					"particles/generic_gameplay/generic_purge.vpcf"
+			"soundfile"					"soundevents/game_sounds_items.vsndevts"
+		}
+	
+		"AbilityCooldown"				"15"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"armor"					"10"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"heal"					"175"
+			}
+		}
+	}
+}

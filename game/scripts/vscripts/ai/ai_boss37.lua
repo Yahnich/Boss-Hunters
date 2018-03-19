@@ -43,10 +43,6 @@ function Spawn( entityKeyValues )
 				thisEntity.hunger:SetLevel(2)
 				thisEntity.web:SetLevel(2)
 				thisEntity.shot:SetLevel(2)
-				
-				thisEntity:SetBaseMaxHealth(thisEntity:GetMaxHealth()*1.5)
-				thisEntity:SetMaxHealth(thisEntity:GetMaxHealth()*1.5)
-				thisEntity:SetHealth(thisEntity:GetMaxHealth())
 			end
 		end)
 	thisEntity.getAIState = AI_STATE_AGGRESSIVE
