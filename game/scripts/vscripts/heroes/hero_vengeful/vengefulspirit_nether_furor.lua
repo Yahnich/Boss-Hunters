@@ -1,33 +1,3 @@
-vengefulspirit_magic_missile_ebf = class({})
-
-if IsServer() then
-	function vengefulspirit_magic_missile_ebf:OnSpellStart()
-		local distance = self:GetTrueCastRange()
-		print(distance)
-		local enemies = FindUnitsInRadius(self:GetCaster():GetTeam(), self:GetCaster():GetAbsOrigin(), nil, distance, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO, 0, 0, false)
-		for _,enemy in pairs(enemies) do
-			local projectile = {
-				Target = enemy,
-				Source = self:GetCaster(),
-				Ability = self,
-				EffectName = "particles/units/heroes/hero_vengeful/vengeful_magic_missle.vpcf",
-				bDodgable = true,
-				bProvidesVision = false,
-				iMoveSpeed = self:GetTalentSpecialValueFor("magic_missile_speed"),
-				iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_ATTACK_1,
-			}
-			ProjectileManager:CreateTrackingProjectile(projectile)
-		end
-		EmitSoundOn("Hero_VengefulSpirit.MagicMissile", self:GetCaster())
-	end
-
-	function vengefulspirit_magic_missile_ebf:OnProjectileHit(target, position)
-		if not target then return end
-		EmitSoundOn("Hero_VengefulSpirit.MagicMissile", target)
-		target:AddNewModifier(caster, self, "modifier_stunned", {duration = self:GetTalentSpecialValueFor("magic_missile_stun")})
-		ApplyDamage({victim = target, attacker = self:GetCaster(), damage = self:GetTalentSpecialValueFor("magic_missile_damage"), damage_type = self:GetAbilityDamageType(), ability = self})
-	end
-end
 
 vengefulspirit_nether_furor = class({})
 

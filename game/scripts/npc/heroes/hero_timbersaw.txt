@@ -1,0 +1,498 @@
+"DOTAAbilities"
+{
+	"timbersaw_bonesplitter"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_timbersaw/timbersaw_bonesplitter.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	    "AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
+	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"custom/shredder_bonesplitter"
+		"LevelsBetweenUpgrades"			"5"
+		"MaxLevel"						"7"
+		"RequiredLevel"					"7"
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"300"
+		"AbilityCastPoint"				"0"
+	
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"6"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"70"
+		"AbilityThreat"					"50"		
+		
+		"precache"
+		{
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_shredder.vsndevts"
+			"particle" 			"particles/units/heroes/hero_shredder/shredder_whirling_death.vpcf"
+			"particle"  		"particles/units/heroes/hero_shredder/shredder_whirling_death_debuff.vpcf"
+		}
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"100 150 200 250 300 350 400"
+			}			
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"debuff"					"-10 -15 -20 -25 -30 -35 -40"
+				"LinkedSpecialBonus"		"special_bonus_unique_timbersaw_bonesplitter_1"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"debuff_duration"			"14.0"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"300"
+			}
+		}
+	}
+	"special_bonus_unique_timbersaw_bonesplitter_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"-10"
+			}
+		}
+	}
+	"special_bonus_unique_timbersaw_bonesplitter_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"-3"
+			}
+		}
+	}
+
+	"timbersaw_claw"
+	{
+		// General
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_timbersaw/timbersaw_claw.lua"	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityUnitDamageType"         "DAMAGE_TYPE_PURE"   
+		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"shredder_timber_chain"
+		"LevelsBetweenUpgrades"			"5"
+		"MaxLevel"						"7"
+		"RequiredLevel"					"6"								
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.3"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCastRange"				"800 1000 1200 1400 1600 1800 2000"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"4"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"60 70 80 90 100 110 120"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"100 140 180 220 260 300 340"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"distance"				"800 1000 1200 1400 1600 1800 2000"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"knockback"				"500"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"speed"					"1600 2000 2400 2800 3200 3600 4000"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"width"					"150"
+			}
+		}
+
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_pudge/pudge_meathook_impact.vpcf"
+			"particle"  "particles/units/heroes/hero_shredder/shredder_timberchain.vpcf"
+
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_shredder.vsndevts"
+		}
+	}
+
+	"special_bonus_unique_timbersaw_claw_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"1"
+			}
+		}
+	}
+	"special_bonus_unique_timbersaw_claw_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"1"
+			}
+		}
+	}
+
+	"timbersaw_reactive"
+	{
+		// General
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_timbersaw/timbersaw_reactive.lua"	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"shredder_reactive_armor"
+		"LevelsBetweenUpgrades"			"6"
+		"MaxLevel"						"7"
+		"RequiredLevel"					"6"								
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"							"FIELD_FLOAT"
+				"bonus_armor"						"1 1.2 1.4 1.6 1.8 2 2.2"
+			}
+			"02"
+			{
+				"var_type"							"FIELD_FLOAT"
+				"bonus_hp_regen"					"1 1.15 1.3 1.45 1.6 1.75 1.9"
+			}
+			"04"
+			{
+				"var_type"							"FIELD_FLOAT"
+				"stack_duration"					"10 13 16 19 22 25 28"
+			}
+			"03"
+			{
+				"var_type"							"FIELD_INTEGER"
+				"stack_limit"						"5 10 15 20 25 30 35"
+				"LinkedSpecialBonus"				"special_bonus_unique_timbersaw_reactive_1"
+			}
+		}
+	}
+
+	"special_bonus_unique_timbersaw_reactive_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"5"
+			}
+		}
+	}
+	"special_bonus_unique_timbersaw_reactive_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"1"
+			}
+		}
+	}
+
+	"timbersaw_hylophobia"
+	{
+		// General
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_timbersaw/timbersaw_hylophobia.lua"	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"shredder_return_chakram"
+		"MaxLevel"						"1"
+		"InnateAbility"					"1"							
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"bonus_spell_amp"				"2"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"duration"						"15.0"
+			}
+		}
+	}
+
+	"timbersaw_chak2"
+	{
+		// General
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_timbersaw/timbersaw_chak2.lua"	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT + DOTA_ABILITY_BEHAVIOR_DIRECTIONAL + DOTA_ABILITY_BEHAVIOR_HIDDEN + DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityUnitDamageType"         "DAMAGE_TYPE_PURE" 
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"  
+		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"shredder_chakram_2"
+		"LevelsBetweenUpgrades"			"6"
+		"MaxLevel"						"7"	
+		"IsGrantedByScepter"			"1"
+		"HasScepterUpgrade"				"1"							
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.3"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+		"AbilityCastRange"				"1200"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"8"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"100 150 200 250 300 350 400"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"260 300 340 380 420 460 500"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"max_distance"			"1200"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"200"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"speed"					"900"
+				"LinkedSpecialBonus"				"special_bonus_unique_timbersaw_chak_1"
+			}			
+		}
+
+		"precache"
+		{
+			"particle"  "particles/econ/items/shredder/hero_shredder_icefx/shredder_chakram_ice.vpcf"
+			"particle"  "particles/econ/items/shredder/hero_shredder_icefx/shredder_chakram_return_ice.vpcf"
+			"particle"  "particles/units/heroes/hero_timbersaw/timbersaw_chak_chain.vpcf"
+			"particle"  "particles/units/heroes/hero_shredder/shredder_chakram_hit.vpcf"
+
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_shredder.vsndevts"
+		}
+	}
+
+	"timbersaw_chak"
+	{
+		// General
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_timbersaw/timbersaw_chak.lua"	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityUnitDamageType"         "DAMAGE_TYPE_PURE" 
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"  
+		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"shredder_chakram"
+		"LevelsBetweenUpgrades"			"6"
+		"MaxLevel"						"7"
+		"RequiredLevel"					"6"								
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.3"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+		"AbilityCastRange"				"1200"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"8"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"100 150 200 250 300 350 400"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"260 300 340 380 420 460 500"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"max_distance"			"1200"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"200"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"speed"					"900"
+				"LinkedSpecialBonus"				"special_bonus_unique_timbersaw_chak_1"
+			}			
+		}
+
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_shredder/shredder_chakram.vpcf"
+			"particle"  "particles/units/heroes/hero_shredder/shredder_chakram_return.vpcf"
+			"particle"  "particles/units/heroes/hero_timbersaw/timbersaw_chak_chain.vpcf"
+			"particle"  "particles/units/heroes/hero_shredder/shredder_chakram_hit.vpcf"
+
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_shredder.vsndevts"
+		}
+	}
+
+	"special_bonus_unique_timbersaw_chak_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"-200"
+			}
+		}
+	}
+	"special_bonus_unique_timbersaw_chak_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"20"
+			}
+		}
+	}
+}

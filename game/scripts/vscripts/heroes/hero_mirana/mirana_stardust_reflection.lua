@@ -54,7 +54,7 @@ function modifier_moonlight_duration:DeclareFunctions()
     funcs = {
                 MODIFIER_EVENT_ON_ATTACK,
                 MODIFIER_EVENT_ON_ABILITY_EXECUTED,
-                MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE_STACKING
+                MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE
             }
     return funcs
 end

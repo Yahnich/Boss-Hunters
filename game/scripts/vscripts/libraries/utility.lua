@@ -731,9 +731,10 @@ function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, sp
 	-- modifier_illusion controls many illusion properties like +Green damage not adding to the unit damage, not being able to cast spells and the team-only blue particle
 	if specIllusionModifier then
 		illusion:AddNewModifier(self, ability, specIllusionModifier, { duration = duration, outgoing_damage = outgoingDamage, incoming_damage = incomingDamage })
+	else
+		illusion:AddNewModifier(self, ability, "modifier_illusion", { duration = duration, outgoing_damage = outgoingDamage, incoming_damage = incomingDamage })
 	end
-	illusion:AddNewModifier(self, ability, "modifier_illusion", { duration = duration, outgoing_damage = outgoingDamage, incoming_damage = incomingDamage })
-			
+		
 	-- Without MakeIllusion the unit counts as a hero, e.g. if it dies to neutrals it says killed by neutrals, it respawns, etc.
 	illusion:MakeIllusion()
 	return illusion
@@ -2263,4 +2264,16 @@ function CDOTA_BaseNPC:RemoveBlind()
 	if self:HasModifier("modifier_blind_generic") then
 		self:RemoveModifierByName("modifier_blind_generic")
 	end
+end
+
+function CutTreesInRadius(vloc, radius)
+	local trees = GridNav:GetAllTreesAroundPoint(vloc, radius, false)
+	local treesCut = 0
+	if #trees > 0 then
+		for _,tree in pairs(trees) do
+			treesCut = treesCut + 1
+			tree:CutDown(-1)
+		end
+	end
+	return treesCut
 end

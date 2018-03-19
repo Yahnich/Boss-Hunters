@@ -84,7 +84,7 @@ end
 function modifier_kotl_spirit:DeclareFunctions()
     local funcs = {
         MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
-        MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE_STACKING
+        MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE
     }
     return funcs
 end

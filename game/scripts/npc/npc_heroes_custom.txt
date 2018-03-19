@@ -1188,9 +1188,21 @@
 	"npc_dota_hero_shredder"
 	{
 		"override_hero"			"npc_dota_hero_shredder"
-		"Ability1"				"shredder_bonesplitter"
+		"Ability1"				"timbersaw_bonesplitter"
+		"Ability2"				"timbersaw_claw"
+		"Ability3"				"timbersaw_reactive"
+		"Ability4"				"timbersaw_hylophobia"
+		"Ability5"				"timbersaw_chak2"
+		"Ability6"				"timbersaw_chak"
 	
-		"Ability11"			"special_bonus_armor_6"
+		"Ability10"					"special_bonus_unique_timbersaw_bonesplitter_1"
+		"Ability11"					"special_bonus_unique_timbersaw_bonesplitter_2"
+		"Ability12"					"special_bonus_unique_timbersaw_claw_1"
+		"Ability13"					"special_bonus_unique_timbersaw_claw_2"
+		"Ability14"					"special_bonus_unique_timbersaw_reactive_1"
+		"Ability15"					"special_bonus_unique_timbersaw_reactive_2"
+		"Ability16"					"special_bonus_unique_timbersaw_chak_1"
+		"Ability17"					"special_bonus_unique_timbersaw_chak_2"
 	}
 	//=================================================================================================================
 	// HERO: Rhastafarian
@@ -1538,8 +1550,19 @@
 	{
 		"override_hero"			"npc_dota_hero_vengefulspirit"
 		"Ability1"				"vengefulspirit_magic_missile_ebf"
-		"Ability6"				"vengefulspirit_nether_furor"
+		"Ability2"				"vengefulspirit_wave"
+		"Ability3"				"vengefulspirit_haunt"
+		"Ability4"				"vengefulspirit_aura"
+		"Ability6"				"vengefulspirit_swap"
 		
+		"Ability10"		"special_bonus_unique_vengefulspirit_magic_missile_ebf_1"
+		"Ability11"		"special_bonus_unique_vengefulspirit_magic_missile_ebf_2"  
+		"Ability12"		"special_bonus_unique_vengefulspirit_wave_1"
+		"Ability13"		"special_bonus_unique_vengefulspirit_wave_2"
+		"Ability14"		"special_bonus_unique_vengefulspirit_haunt_1"
+		"Ability15"		"special_bonus_unique_vengefulspirit_haunt_2"
+		"Ability16"		"special_bonus_unique_vengefulspirit_swap_1"
+		"Ability17"		"special_bonus_unique_vengefulspirit_swap_2"
 	}
 	"npc_dota_hero_venomancer_ebf"
 	{
