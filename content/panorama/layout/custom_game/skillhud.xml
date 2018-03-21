@@ -6,36 +6,38 @@
 	<scripts>
 		<include src="file://{resources}/scripts/custom_game/skillhud.js" />
 	</scripts>
-	
-	<snippets>
-		<snippet name="Ability">
-			<Panel class="AbilityIcon" draggable="true">
-				<DOTAAbilityImage class="AbilityStyle" abilityname="xxxxabilityNamexxx" hittest="false" />
+	 <snippets>
+        <snippet name="StatsContainer">
+			<Panel class="StatsTypeSubContainer">
+				<Label id="StatsTypeLabel" class="StatsTypeLabel" text="STATS_TYPE_ATTACK_DAMAGE"/>
+				<Panel class="StatsTypeLevelContainer">
+					<Label id="StatsTypeLevel" class="StatsTypeLevel" text="0/10"/>
+					<Button id="StatsTypeButton" class="StatsTypeButton"/>
+				</Panel>
 			</Panel>
-        </snippet>
+		</snippet>
 	</snippets>
-	<Panel class="SkillSelectorRoot" hittest="false">
-		<Panel id="SkillSelectorMain" hittest="false">
-			<Panel id="SkillSelectorText" hittest="false">
-				<Label class="SkillSelectorHeader" text="You are currently playing an Epic Boss Fight 2.0 Hero! These heroes will have 8 skills to pick from. You can pick 4 out of 8."/>
+	<Panel class="root">
+		<Panel id="RootContainer">
+			<Button id="MainStatsPanelCloseButton" onactivate="ToggleStatsPanel()"/>
+			<Panel id="MainStatsPanel" class="GenericStatsContainer">
+				<Panel id="StatsSelectorContainer">
+					<Button id="StatsOffenseSelector" class="StatsSelector" hittest="true" onactivate="LoadOffenseLayout()">
+						<Label class="StatsSelectorLabel" text="SKILL_TREE_OFFENSE"/>
+					</Button>
+					<Button id="StatsDefenseSelector" class="StatsSelector" hittest="true" onactivate="LoadDefenseLayout()">
+						<Label class="StatsSelectorLabel" text="SKILL_TREE_DEFENSE"/>
+					</Button>
+					<Button id="StatsOtherSelector" class="StatsSelector" hittest="true" onactivate="LoadOtherLayout()">
+						<Label class="StatsSelectorLabel" text="SKILL_TREE_OTHER"/>
+					</Button>
+					<Button id="StatsUniqueSelector" class="StatsSelector" hittest="true" onactivate="LoadUniqueLayout()">
+						<Label class="StatsSelectorLabel" text="SKILL_TREE_UNIQUE"/>
+					</Button>
+				</Panel>
+				<Panel class="HorizontalSeperator"/>
+				<Panel id="StatsTypeContainer"/>
 			</Panel>
-			<Panel id="SkillSelectorContainer" hittest="false">
-			</Panel>
-			<Panel id="SkillPositionContainer" hittest="false">
-				<DOTAAbilityImage class="AbilityIcon" id="AbilitySlotQ" abilityname="no_ability" draggable="true"/>
-				<DOTAAbilityImage class="AbilityIcon" id="AbilitySlotW" abilityname="no_ability" draggable="true"/>
-				<DOTAAbilityImage class="AbilityIcon" id="AbilitySlotE" abilityname="no_ability" draggable="true"/>
-				<DOTAAbilityImage class="AbilityIcon" id="AbilitySlotR" abilityname="no_ability" draggable="true"/>
-			</Panel>
-			<Panel id="SkillSelectorButtonContainer" hittest="false">
-				<Button class="ConfirmButton" hittestchildren="true" onactivate="SendQueriedAbilities()">
-					<Label class="ConfirmText" text="Confirm"/>
-				</Button>
-				<Button class="RandomButton" hittestchildren="true" onactivate="RandomAbilities()">
-					<Label class="RandomText" text="Random"/>
-				</Button>
-			</Panel>
-			
 		</Panel>
 	</Panel>
 </root>

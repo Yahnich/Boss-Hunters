@@ -1,148 +1,151 @@
-.SkillSelectorRoot
+.root
 {
-	width: 60%;
-	height: 50%;
 	vertical-align: center;
 	horizontal-align: center;	
 	padding-top: 3px;
 	padding-bottom: 50px;
 }
 
- .AspectRatio4x3 .SkillSelectorRoot
+.GenericStatsContainer
 {
-	width: 85%;
-	height: 50%;
+	width: 900px;
+	height: 500px;
+	background-image: url("s2r://panorama/images/hud/reborn/ability_bg_psd.vtex");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	flow-children: down;
 }
 
-#SkillSelectorMain
+#MainStatsPanelCloseButton
 {
+	width: 36px;
+	height: 36px;
+	horizontal-align: right;
+	vertical-align: top;
+	background-image: url("s2r://panorama/images/control_icons/x_close_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	z-index: 5;
+}
+
+#StatsSelectorContainer
+{
+	flow-children: right;
+	vertical-align: top;
+	horizontal-align: center;
+	z-index: 5;
+}
+
+.StatsSelectorSubContainer
+{
+	
+}
+
+.StatsSelector
+{
+	padding: 4px;
+	margin: 14px;
+	background-image: url("s2r://panorama/images/hud/reborn/shop_launcher_button_psd.vtex");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	min-width: 180px;
+	z-index: 5;
+}
+
+.StatsSelectorLabel
+{
+	color: #e1e1e1;
+	font-size: 36px;
+	line-height: 15px;
+	text-shadow: 1px 1px 2px 3.0 #00000077;
+	text-align: center;
+	vertical-align: center;
+	horizontal-align: center;
+	z-index: 5;
+}
+
+#StatsTypeContainer
+{
+	flow-children: down;
 	width: 100%;
 	height: 100%;
-	visibility: collapse;
-	background-color: gradient( linear, 0% 0%, 100% 0%, from( #191919FF ), color-stop( .1, #25282aFF), color-stop( .9, #25282aFF), to( #191919FF ) );
-	border: 2px solid #111111FF;
-	border-radius: 5px 5px;
-	flow-children: down;
+	z-index: 5;
+	vertical-align: middle;
 }
 
-#SkillSelectorText
+.StatsTypeSubContainer
 {
-	background-color: gradient( linear, 0% 0%, 100% 0%, from( #191919FF ), color-stop( .1, #25282aFF), color-stop( .9, #25282aFF), to( #191919FF ) );
-	border: 2px solid #111111FF;
-	border-radius: 5px 5px;
-	flow-children: down;
+	margin-bottom: 12px;
+	horizontal-align: center;
+	padding: 4px;
+	background-image: url("s2r://panorama/images/hud/reborn/shop_launcher_button_psd.vtex");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	width: 75%;
+	z-index: 5;
 }
 
-#SkillSelectorContainer
+.StatsTypeLabel
 {
-	horizontal-align: middle;
-	flow-children: right-wrap;
+	color: #e1e1e1;
+	font-size: 24px;
+	line-height: 15px;
+	text-shadow: 1px 1px 2px 3.0 #00000077;
+	text-align: center;
+	vertical-align: center;
+	horizontal-align: left;
+	z-index: 5;
 }
 
-#SkillPositionContainer
+.StatsTypeLevelContainer
 {
-	horizontal-align: middle;
-	flow-children: right-wrap;
-	border: 2px solid #111111FF;
-	border-radius: 5px 5px;
-	padding: 5px;
-	margin-top: 45px;
-}
-
-#SkillSelectorButtonContainer
-{
-	vertical-align: bottom;
-	horizontal-align: middle;
 	flow-children: right;
-	padding: 5px;
+	horizontal-align: right;
+	width: 120px;
 }
 
-.ConfirmButton
+.StatsTypeLevel
 {
-	vertical-align: bottom;
-	horizontal-align: center;
-	background-color: gradient( linear, 0% 0%, 100% 0%, from( #32CD32FF ), color-stop( .1, #006400FF), color-stop( .9, #006400FF), to( #32CD32FF ) );
-	border: 2px solid #006400FF;
-	border-radius: 5px 5px;
-	padding: 6px;
-	margin-bottom: 20px;
-}
-
-.RandomButton
-{
-	vertical-align: bottom;
-	horizontal-align: center;
-	background-color: gradient( linear, 0% 0%, 100% 0%, from( #ee5959 ), color-stop( .1, #cc0404), color-stop( .9, #cc0404), to( #ee5959 ) );
-	border: 2px solid #b40000;
-	border-radius: 5px 5px;
-	padding: 6px;
-	margin-bottom: 20px;
-}
-.SkillSelectorHeader
-{
-	color: #ffd700;
-	font-weight: thin;
+	margin-right: 5px;
+	color: #e1e1e1;
 	font-size: 24px;
-	letter-spacing: 2px;
-	text-transform: uppercase;
+	line-height: 15px;
+	text-shadow: 1px 1px 2px 3.0 #00000077;
 	text-align: center;
-	horizontal-align: center;
-	text-shadow: 1px 1px 2px 2 #000000;
-	padding: 6px;
-	padding-left: 10px;
-	padding-right: 10px;
-	font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
+	vertical-align: center;
+	z-index: 5;
 }
 
-.ConfirmText
+.StatsTypeButton
 {
-	color: #FFFFFF;
-	font-weight: thin;
-	font-size: 24px;
-	letter-spacing: 2px;
-	text-transform: uppercase;
-	text-align: center;
-	horizontal-align: center;
-	text-shadow: 1px 1px 2px 2 #000000;
-	padding: 6px;
-	padding-left: 10px;
-	padding-right: 10px;
-	font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
+	background-image: url("s2r://panorama/images/hud/reborn/levelup_plus_fill_psd.vtex");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	height: 100%;
+	width: height-percentage(100%);
+	horizontal-align: right;
 }
 
-.RandomText
+.ButtonInactive
 {
-	color: #FFFFFF;
-	font-weight: thin;
-	font-size: 24px;
-	letter-spacing: 2px;
-	text-transform: uppercase;
-	text-align: center;
-	horizontal-align: center;
-	text-shadow: 1px 1px 2px 2 #000000;
-	padding: 6px;
-	padding-left: 10px;
-	padding-right: 10px;
-	font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
+	background-image: url("s2r://panorama/images/hud/reborn/levelup_plus_well_psd.vtex");
 }
 
 
-.Hidden
+.IsHidden
 {
 	visibility: collapse;
-    border: 3px solid #000000;
-    box-shadow: #33333377 -4px -4px 8px 8px;
 }
 
-.AbilityIcon
+.SelectorSelected
 {
-	width: 92px;
-	height: 92px;
-	padding: 5px;
-	margin: 10px;
+	border: 2px solid #ffd700FF;
 }
 
-.AbilitySelected
-{
-	border: 3px solid #ffd70066;
+.HorizontalSeperator {
+	width: 90%;
+	height: 2px;
+	horizontal-align: middle;
+	background-color: #515151CC;
+	margin: 12px;
 }

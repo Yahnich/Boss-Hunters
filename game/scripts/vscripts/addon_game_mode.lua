@@ -28,6 +28,7 @@ require( "libraries/notifications" )
 require( "statcollection/init" )
 require("libraries/utility")
 require("libraries/animations")
+require("stats_screen")
 
 LinkLuaModifier( "modifier_stats_system_handler", "libraries/modifiers/modifier_stats_system_handler.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_blind_generic", "libraries/modifiers/modifier_blind_generic.lua", LUA_MODIFIER_MOTION_NONE)
@@ -349,7 +350,9 @@ function CHoldoutGameMode:InitGameMode()
 	GameRules:GetGameModeEntity():SetHealingFilter( Dynamic_Wrap( CHoldoutGameMode, "FilterHeal" ), self )
 	GameRules:GetGameModeEntity():SetModifierGainedFilter( Dynamic_Wrap( CHoldoutGameMode, "FilterModifiers" ), self )
 	GameRules:GetGameModeEntity():SetAbilityTuningValueFilter( Dynamic_Wrap( CHoldoutGameMode, "FilterAbilityValues" ), self )
-	GameRules:GetGameModeEntity():SetThink( "OnThink", self, 1 ) 
+	GameRules:GetGameModeEntity():SetThink( "OnThink", self, 1 )
+	
+	StatsScreen:StartStatsScreen()
 end
 
 function CHoldoutGameMode:vote_Round (event)
@@ -1134,27 +1137,7 @@ function CHoldoutGameMode:OnHeroPick (event)
 		hero:HeroLevelUp(false)
 		hero:HeroLevelUp(false)
 		
-		local stats = {}
-		stats.ms = 0
-		stats.mp = 0
-		stats.mpr = 0
-		stats.ha = 0
-		
-		stats.ad = 0
-		stats.sa = 0
-		stats.cdr = 0
-		stats.as = 0
-		stats.sta = 0
-		
-		stats.pr = 0
-		stats.mr = 0
-		stats.db = 0
-		stats.ar = 0
-		stats.hp = 0
-		stats.hpr = 0
-		stats.sr = 0
-		
-		CustomNetTables:SetTableValue("stats_panel", tostring(hero:GetPlayerOwnerID()), stats)
+		StatsScreen:RegisterPlayer(hero)
 		hero:AddNewModifier(hero, nil, "modifier_stats_system_handler", {})
 		
 		-- StatsManager:CreateCustomStatsForHero(hero)

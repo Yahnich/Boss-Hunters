@@ -23,10 +23,10 @@
   </script>
 
   <Panel>
-		<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/barebones_hud_base.xml" /> 
-		<CustomUIElement type="Hud"			layoutfile="file://{resources}/layout/custom_game/roundoptions.xml" />
-		<CustomUIElement type="Hud"			layoutfile="file://{resources}/layout/custom_game/quests.xml" />
-		<CustomUIElement type="Hud"			layoutfile="file://{resources}/layout/custom_game/targetbar.xml" />
+		<CustomUIElement type="Hud" 				layoutfile="file://{resources}/layout/custom_game/barebones_hud_base.xml" /> 
+		<CustomUIElement type="Hud"					layoutfile="file://{resources}/layout/custom_game/roundoptions.xml" />
+		<CustomUIElement type="Hud"					layoutfile="file://{resources}/layout/custom_game/quests.xml" />
+		<CustomUIElement type="Hud"					layoutfile="file://{resources}/layout/custom_game/targetbar.xml" />
 		<CustomUIElement type="Hud" 				layoutfile="file://{resources}/layout/custom_game/skillhud.xml" /> 
 		<CustomUIElement type="HudTopBar"			layoutfile="file://{resources}/layout/custom_game/custom_top_scoreboard.xml" />
 		<CustomUIElement type="HudTopBar"			layoutfile="file://{resources}/layout/custom_game/stats_panel.xml" />

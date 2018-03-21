@@ -15,9 +15,7 @@
 	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
 	    "AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
 	    "SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
-		"RequiredLevel"					"6"
 		"AbilityTextureName"			"bristleback_quill_spray"
 		"AbilityPierces"				"1"
 	

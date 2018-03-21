@@ -1,4 +1,3 @@
-EHP_PER_ARMOR = 0.01
 DOTA_LIFESTEAL_SOURCE_NONE = 0
 DOTA_LIFESTEAL_SOURCE_ATTACK = 1
 DOTA_LIFESTEAL_SOURCE_ABILITY = 2
@@ -7,9 +6,14 @@ function SendClientSync(key, value)
 	CustomNetTables:SetTableValue( "syncing_purposes",key, {value = value} )
 end
 
+function Context_Wrap(o, funcname)
+	return function(...) o[funcname](o, ...) end
+end
+
+
 function GetClientSync(key)
  	local value = CustomNetTables:GetTableValue( "syncing_purposes", key).value
-	CustomNetTables:SetTableValue( "syncing_purposes",key, {} )
+	CustomNetTables:SetTableValue( "syncing_purposes",key, nil )
 	return value
 end
 
