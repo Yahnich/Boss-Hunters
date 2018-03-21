@@ -156,10 +156,8 @@ function CHoldoutGameRound:OnHoldoutReviveComplete( event )
 	
 	if castingHero then
 		castingHero.Resurrections = (castingHero.Resurrections or 0) + 1
-		local ngmodifier = 0
-		print( target )
 		target:AddNewModifier(target, nil, "modifier_tombstone_respawn_immunity", {duration = 3})
-		local totalgold = castingHero:GetGold() + (self._nRoundNumber+ngmodifier)*5
+		local totalgold = castingHero:GetGold() + (self._nRoundNumber)
 		castingHero:SetGold(0 , false)
 		castingHero:SetGold(totalgold, true)
 	end

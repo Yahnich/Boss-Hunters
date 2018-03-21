@@ -12,9 +12,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"custom/vengefulspirit_magic_barrage"
-		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
-		"RequiredLevel"					"5"
 		
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
@@ -124,9 +122,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"vengefulspirit_wave_of_terror"
-		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
-		"RequiredLevel"					"5"
 		
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
@@ -245,9 +241,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"custom/vengefulspirit_command_aura_huangs"
-		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
-		"RequiredLevel"					"5"
 		
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
@@ -421,8 +415,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityTextureName"			"vengefulspirit_nether_swap"
-		"LevelsBetweenUpgrades"			"5"
-		"MaxLevel"						"7"
+		"MaxLevel"						"6"
 		
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------

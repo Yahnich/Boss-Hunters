@@ -1915,7 +1915,7 @@ function CHoldoutGameMode:_CheckForDefeat()
 				CustomGameEventManager:Send_ServerToAllClients( "updateQuestLife", { lives = GameRules._life, maxLives = GameRules._maxLives } )
 				for _,unit in pairs ( HeroList:GetAllHeroes()) do
 					if unit:GetTeamNumber() == DOTA_TEAM_GOODGUYS and not unit:IsFakeHero() then
-						local totalgold = unit:GetGold() + ((((self._nRoundNumber/1.5)+5)/((GameRules._life/2) +0.5))*500)
+						local totalgold = unit:GetGold() + self._nRoundNumber * 100
 						unit:SetGold(0 , false)
 						unit:SetGold(totalgold, true)
 					end

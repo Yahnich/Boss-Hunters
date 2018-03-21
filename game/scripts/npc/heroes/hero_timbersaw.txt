@@ -13,9 +13,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"custom/shredder_bonesplitter"
-		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
-		"RequiredLevel"					"7"
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -116,9 +114,7 @@
 		"AbilityUnitDamageType"         "DAMAGE_TYPE_PURE"   
 		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"shredder_timber_chain"
-		"LevelsBetweenUpgrades"			"5"
-		"MaxLevel"						"7"
-		"RequiredLevel"					"6"								
+		"MaxLevel"						"7"					
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -220,9 +216,7 @@
 		"ScriptFile"					"heroes/hero_timbersaw/timbersaw_reactive.lua"	
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityTextureName"			"shredder_reactive_armor"
-		"LevelsBetweenUpgrades"			"6"
-		"MaxLevel"						"7"
-		"RequiredLevel"					"6"								
+		"MaxLevel"						"7"							
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -331,8 +325,7 @@
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"  
 		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"shredder_chakram_2"
-		"LevelsBetweenUpgrades"			"6"
-		"MaxLevel"						"7"	
+		"MaxLevel"						"6"	
 		"IsGrantedByScepter"			"1"
 		"HasScepterUpgrade"				"1"							
 		
@@ -357,7 +350,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"260 300 340 380 420 460 500"
+				"damage"				"260 300 340 380 420 460"
 			}
 			"02"
 			{
@@ -401,9 +394,7 @@
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"  
 		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"shredder_chakram"
-		"LevelsBetweenUpgrades"			"6"
-		"MaxLevel"						"7"
-		"RequiredLevel"					"6"								
+		"MaxLevel"						"6"								
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -426,7 +417,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"260 300 340 380 420 460 500"
+				"damage"				"260 300 340 380 420 460"
 			}
 			"02"
 			{
