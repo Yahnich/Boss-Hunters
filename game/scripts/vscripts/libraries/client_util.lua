@@ -51,7 +51,7 @@ function C_DOTA_BaseNPC:GetThreat()
 end
 
 function C_DOTA_BaseNPC:HasTalent(talentName)
-	local data = CustomNetTables:GetTableValue("talents", tostring(self:GetPlayerOwnerID())) or {}
+	local data = CustomNetTables:GetTableValue("talents", tostring(self:entindex())) or {}
 	if data[talentName] then
 		return true 
 	end

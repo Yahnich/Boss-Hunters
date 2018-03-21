@@ -16,6 +16,11 @@ talentHud.FindChildTraverse("StatBranch").SetPanelEvent("onactivate", ToggleStat
 
 levelUp.FindChildTraverse("LevelUpButton").SetPanelEvent("onactivate", ToggleStatsPanel);
 levelUp.FindChildTraverse("LevelUpTab").SetPanelEvent("onactivate", ToggleStatsPanel);
+levelUp.FindChildTraverse("LevelUpIcon").style.visibility = "collapse";
+var levelLabel = $.CreatePanel("Label", $.GetContextPanel(), "LevelUpLabel");
+levelLabel.SetParent( levelUp.FindChildTraverse("LevelUpButton") )
+levelLabel.SetHasClass("LevelUpLabel", true)
+levelLabel.text = "0"
 
 // EVENT SUBSCRIPTION
 GameEvents.Subscribe("dota_player_gained_level", UpdateStatsPanel);
@@ -102,6 +107,7 @@ function UpdateStatsPanel()
 	if( !($("#RootContainer").BHasClass("IsHidden")) ){
 		RefreshStatsPanel()
 	}
+	levelLabel.text = Entities.GetAbilityPoints( selectedHero )
 }
 
 function ClearStatsTypeContainer(){
@@ -128,7 +134,7 @@ function LoadOffenseLayout()
 	$("#StatsOtherSelector").SetHasClass("SelectorSelected", false)
 	$("#StatsUniqueSelector").SetHasClass("SelectorSelected", false)
 	var statsNetTable = CustomNetTables.GetTableValue("stats_panel", lastRememberedHero)
-	var attackDamage = panel = $.CreatePanel("Panel", statsTypeContainer, "StatsTypeContainerAttackDamage");
+	var attackDamage = $.CreatePanel("Panel", statsTypeContainer, "StatsTypeContainerAttackDamage");
 	attackDamage.BLoadLayoutSnippet("StatsContainer")
 	var adLvl = statsNetTable.ad 
 	attackDamage.FindChildTraverse("StatsTypeLabel").text = $.Localize( "#STATS_TYPE_ATTACK_DAMAGE", attackDamage) + " (+ " + ATTACK_DAMAGE_TABLE[adLvl] + " )"
@@ -139,7 +145,7 @@ function LoadOffenseLayout()
 		attackDamage.FindChildTraverse("StatsTypeButton").SetPanelEvent("onactivate", function(){UpgradeAbility("ad")});
 	}
 	
-	var attackSpeed = panel = $.CreatePanel("Panel", statsTypeContainer, "StatsTypeContainerAttackSpeed");
+	var attackSpeed = $.CreatePanel("Panel", statsTypeContainer, "StatsTypeContainerAttackSpeed");
 	attackSpeed.BLoadLayoutSnippet("StatsContainer")
 	var asLvl = statsNetTable.as
 	attackSpeed.FindChildTraverse("StatsTypeLabel").text = $.Localize( "#STATS_TYPE_ATTACK_SPEED", attackSpeed) + " (+ " + ATTACK_SPEED_TABLE[asLvl] + " )"
@@ -150,7 +156,7 @@ function LoadOffenseLayout()
 		attackSpeed.FindChildTraverse("StatsTypeButton").SetPanelEvent("onactivate", function(){UpgradeAbility("as")});
 	}
 	
-	var spellAmp = panel = $.CreatePanel("Panel", statsTypeContainer, "StatsTypeContainerSpellAmp");
+	var spellAmp = $.CreatePanel("Panel", statsTypeContainer, "StatsTypeContainerSpellAmp");
 	spellAmp.BLoadLayoutSnippet("StatsContainer")
 	var saLvl = statsNetTable.sa
 	spellAmp.FindChildTraverse("StatsTypeLabel").text = $.Localize( "#STATS_TYPE_SPELL_AMP", spellAmp) + " (+ " + SPELL_AMP_TABLE[saLvl] + " )"
@@ -161,7 +167,7 @@ function LoadOffenseLayout()
 		spellAmp.FindChildTraverse("StatsTypeButton").SetPanelEvent("onactivate", function(){UpgradeAbility("sa")});
 	}
 	
-	var cooldownReduction = panel = $.CreatePanel("Panel", statsTypeContainer, "StatsTypeContainerCooldownReduction");
+	var cooldownReduction = $.CreatePanel("Panel", statsTypeContainer, "StatsTypeContainerCooldownReduction");
 	cooldownReduction.BLoadLayoutSnippet("StatsContainer")
 	var cdrLvl = statsNetTable.cdr
 	cooldownReduction.FindChildTraverse("StatsTypeLabel").text = $.Localize( "#STATS_TYPE_COOLDOWN_REDUCTION", cooldownReduction) + " (+ " + COOLDOWN_REDUCTION_TABLE[cdrLvl] + " )"
@@ -172,7 +178,7 @@ function LoadOffenseLayout()
 		cooldownReduction.FindChildTraverse("StatsTypeButton").SetPanelEvent("onactivate", function(){UpgradeAbility("cdr")});
 	}
 	
-	var statusAmp = panel = $.CreatePanel("Panel", statsTypeContainer, "StatsTypeContainerStatusAmp");
+	var statusAmp = $.CreatePanel("Panel", statsTypeContainer, "StatsTypeContainerStatusAmp");
 	statusAmp.BLoadLayoutSnippet("StatsContainer")
 	var staLvl = statsNetTable.sta
 	statusAmp.FindChildTraverse("StatsTypeLabel").text = $.Localize( "#STATS_TYPE_STATUS_AMP", statusAmp) + " (+ " + STATUS_AMP_TABLE[staLvl] + " )"
@@ -196,7 +202,7 @@ function LoadDefenseLayout()
 	ClearStatsTypeContainer()
 	
 	var statsNetTable = CustomNetTables.GetTableValue("stats_panel", lastRememberedHero)
-	var armor = panel = $.CreatePanel("Panel", statsTypeContainer, "StatsTypeContainerArmor");
+	var armor = $.CreatePanel("Panel", statsTypeContainer, "StatsTypeContainerArmor");
 	armor.BLoadLayoutSnippet("StatsContainer")
 	var armorLvl = statsNetTable.pr
 	armor.FindChildTraverse("StatsTypeLabel").text = $.Localize( "#STATS_TYPE_ARMOR", armor) + " (+ " + ARMOR_TABLE[armorLvl] + " )"
@@ -207,7 +213,7 @@ function LoadDefenseLayout()
 		armor.FindChildTraverse("StatsTypeButton").SetPanelEvent("onactivate", function(){UpgradeAbility("pr")});
 	}
 	
-	var magicResist = panel = $.CreatePanel("Panel", statsTypeContainer, "StatsTypeContainerMagicResist");
+	var magicResist = $.CreatePanel("Panel", statsTypeContainer, "StatsTypeContainerMagicResist");
 	magicResist.BLoadLayoutSnippet("StatsContainer")
 	var mrLvl = statsNetTable.mr
 	magicResist.FindChildTraverse("StatsTypeLabel").text = $.Localize( "#STATS_TYPE_MAGIC_RESIST", magicResist) + " (+ " + MAGIC_RESIST_TABLE[mrLvl] + " )"
@@ -219,7 +225,7 @@ function LoadDefenseLayout()
 	}
 	
 	if ( Entities.IsRangedAttacker( lastRememberedHero ) ){
-		var attackRange = panel = $.CreatePanel("Panel", statsTypeContainer, "StatsTypeContainerAttackRange");
+		var attackRange = $.CreatePanel("Panel", statsTypeContainer, "StatsTypeContainerAttackRange");
 		var arLvl = statsNetTable.ar
 		attackRange.BLoadLayoutSnippet("StatsContainer")
 		attackRange.FindChildTraverse("StatsTypeLabel").text = $.Localize( "#STATS_TYPE_ATTACK_RANGE", attackRange) + " (+ " + ATTACK_RANGE_TABLE[arLvl] + " )"
@@ -230,7 +236,7 @@ function LoadDefenseLayout()
 			attackRange.FindChildTraverse("StatsTypeButton").SetPanelEvent("onactivate", function(){UpgradeAbility("ar")});
 		}
 	} else {
-		var damageBlock = panel = $.CreatePanel("Panel", statsTypeContainer, "StatsTypeContainerDamageBlock");
+		var damageBlock = $.CreatePanel("Panel", statsTypeContainer, "StatsTypeContainerDamageBlock");
 		damageBlock.BLoadLayoutSnippet("StatsContainer")
 		var dbLvl = statsNetTable.db
 		damageBlock.FindChildTraverse("StatsTypeLabel").text = $.Localize( "#STATS_TYPE_DAMAGE_BLOCK", damageBlock) + " (+ " + DAMAGE_BLOCK_TABLE[dbLvl] + " )"
@@ -242,7 +248,7 @@ function LoadDefenseLayout()
 		}
 	}
 	
-	var health = panel = $.CreatePanel("Panel", statsTypeContainer, "StatsTypeContainerHealth");
+	var health = $.CreatePanel("Panel", statsTypeContainer, "StatsTypeContainerHealth");
 	health.BLoadLayoutSnippet("StatsContainer")
 	var hpLvl = statsNetTable.hp
 	health.FindChildTraverse("StatsTypeLabel").text = $.Localize( "#STATS_TYPE_HEALTH", health) + " (+ " + HEALTH_TABLE[hpLvl] + " )"
@@ -253,7 +259,7 @@ function LoadDefenseLayout()
 		health.FindChildTraverse("StatsTypeButton").SetPanelEvent("onactivate", function(){UpgradeAbility("hp")});
 	}
 	
-	var healthRegen = panel = $.CreatePanel("Panel", statsTypeContainer, "StatsTypeContainerHealthRegen");
+	var healthRegen = $.CreatePanel("Panel", statsTypeContainer, "StatsTypeContainerHealthRegen");
 	healthRegen.BLoadLayoutSnippet("StatsContainer")
 	var hprLvl = statsNetTable.hpr
 	healthRegen.FindChildTraverse("StatsTypeLabel").text = $.Localize( "#STATS_TYPE_HEALTH_REGEN", healthRegen) + " (+ " + HEALTH_REGEN_TABLE[hprLvl] + " )"
@@ -264,7 +270,7 @@ function LoadDefenseLayout()
 		healthRegen.FindChildTraverse("StatsTypeButton").SetPanelEvent("onactivate", function(){UpgradeAbility("hpr")});
 	}
 	
-	var statusResist = panel = $.CreatePanel("Panel", statsTypeContainer, "StatsTypeContainerStatusResistance");
+	var statusResist = $.CreatePanel("Panel", statsTypeContainer, "StatsTypeContainerStatusResistance");
 	statusResist.BLoadLayoutSnippet("StatsContainer")
 	var srLvl = statsNetTable.sr
 	statusResist.FindChildTraverse("StatsTypeLabel").text = $.Localize( "#STATS_TYPE_STATUS_REDUCTION", statusResist) + " (+ " + STATUS_REDUCTION_TABLE[srLvl] + " )"
@@ -287,7 +293,7 @@ function LoadOtherLayout()
 	$("#StatsUniqueSelector").SetHasClass("SelectorSelected", false)
 	ClearStatsTypeContainer()
 	
-	var moveSpeed = panel = $.CreatePanel("Panel", statsTypeContainer, "StatsTypeContainerMoveSpeed");
+	var moveSpeed = $.CreatePanel("Panel", statsTypeContainer, "StatsTypeContainerMoveSpeed");
 	moveSpeed.BLoadLayoutSnippet("StatsContainer")
 	var msLevel = statsNetTable.ms
 	moveSpeed.FindChildTraverse("StatsTypeLabel").text = $.Localize( "#STATS_TYPE_MOVE_SPEED", moveSpeed) + " (+ " + MOVESPEED_TABLE[msLevel] + " )"
@@ -298,7 +304,7 @@ function LoadOtherLayout()
 		moveSpeed.FindChildTraverse("StatsTypeButton").SetPanelEvent("onactivate", function(){UpgradeAbility("ms")});
 	}
 	
-	var mana = panel = $.CreatePanel("Panel", statsTypeContainer, "StatsTypeContainerMana");
+	var mana = $.CreatePanel("Panel", statsTypeContainer, "StatsTypeContainerMana");
 	mana.BLoadLayoutSnippet("StatsContainer")
 	var mpLevel = statsNetTable.mp
 	mana.FindChildTraverse("StatsTypeLabel").text = $.Localize( "#STATS_TYPE_MANA", mana) + " (+ " + MANA_TABLE[mpLevel] + " )"
@@ -309,7 +315,7 @@ function LoadOtherLayout()
 		mana.FindChildTraverse("StatsTypeButton").SetPanelEvent("onactivate", function(){UpgradeAbility("mp")});
 	}
 	
-	var manaRegen = panel = $.CreatePanel("Panel", statsTypeContainer, "StatsTypeContainerManaRegen");
+	var manaRegen = $.CreatePanel("Panel", statsTypeContainer, "StatsTypeContainerManaRegen");
 	manaRegen.BLoadLayoutSnippet("StatsContainer")
 	var mprLevel = statsNetTable.mpr
 	manaRegen.FindChildTraverse("StatsTypeLabel").text = $.Localize( "#STATS_TYPE_MANA_REGEN", manaRegen) + " (+ " + MANA_REGEN_TABLE[mprLevel] + " )"
@@ -320,7 +326,7 @@ function LoadOtherLayout()
 		manaRegen.FindChildTraverse("StatsTypeButton").SetPanelEvent("onactivate", function(){UpgradeAbility("mpr")});
 	}
 	
-	var healAmp = panel = $.CreatePanel("Panel", statsTypeContainer, "StatsTypeContainerHealAmp");
+	var healAmp = $.CreatePanel("Panel", statsTypeContainer, "StatsTypeContainerHealAmp");
 	healAmp.BLoadLayoutSnippet("StatsContainer")
 	var haLevel = statsNetTable.ha
 	healAmp.FindChildTraverse("StatsTypeLabel").text = $.Localize( "#STATS_TYPE_HEAL_AMP", healAmp) + " (+ " + HEAL_AMP_TABLE[haLevel] + " )"
@@ -340,5 +346,98 @@ function LoadUniqueLayout()
 	$("#StatsDefenseSelector").SetHasClass("SelectorSelected", false)
 	$("#StatsOtherSelector").SetHasClass("SelectorSelected", false)
 	$("#StatsUniqueSelector").SetHasClass("SelectorSelected", true)
-	ClearStatsTypeContainer()	
+	ClearStatsTypeContainer()
+	
+	var levelLabel = $.CreatePanel("Label", statsTypeContainer, "RequiredLevelLabel");
+	levelLabel.SetHasClass("RequiredLevelLabel", true)
+	levelLabel.text = "Next level requirement: 10"
+	
+	var talents = []
+	var talentsSkilled = CustomNetTables.GetTableValue("talents", lastRememberedHero)
+	var talentsSkilledCount = 0
+	$.Msg( talentsSkilled, lastRememberedHero )
+	for(var talent in talentsSkilled){
+		talentsSkilledCount++
+	}
+	var levelRequirement = 10 + talentsSkilledCount * 10
+	for (var id = 0; id < Entities.GetAbilityCount( lastRememberedHero ); id++) {
+		var abilityID = Entities.GetAbility( lastRememberedHero, id )
+		var abilityName = Abilities.GetAbilityName( abilityID )
+		var isTalent = (Abilities.GetAbilityType( abilityID ) & ABILITY_TYPES.ABILITY_TYPE_ATTRIBUTES) == ABILITY_TYPES.ABILITY_TYPE_ATTRIBUTES && abilityName.match(/special_bonus/g) == "special_bonus"
+		if ( isTalent ){
+			if(talents[id] == null) // link sister abilities
+			{
+				CreateTalentContainer(levelRequirement, statsTypeContainer, talentsSkilled, talents, abilityID, id) 
+			}
+		}
+	}
+	
+	levelLabel.text = "Next level requirement: " + levelRequirement
+}
+
+function CreateTalentContainer(levelRequirement, statsTypeContainer, talentsSkilled, talents, abilityID, id){
+	talents[id] = id + 1
+	talents[id + 1] = id 
+	talent1ID = abilityID
+	talent2ID = Entities.GetAbility( lastRememberedHero, id + 1 )
+	
+	var talent1Name = Abilities.GetAbilityName( talent1ID )
+	var talent2Name = Abilities.GetAbilityName( talent2ID )
+	
+	
+	var talent = $.CreatePanel("Panel", statsTypeContainer, "Talentchoice" + id);
+	talent.BLoadLayoutSnippet("TalentContainer")
+
+	talent.FindChildTraverse("TalentLeftLabel").text = $.Localize( "#DOTA_Tooltip_Ability_" + talent1Name, talent)
+	talent.FindChildTraverse("TalentRightLabel").text = $.Localize( "#DOTA_Tooltip_Ability_" + talent2Name, talent)
+	
+	var talentLeft = talent.FindChildTraverse("TalentSubLeft")
+	var talentRight = talent.FindChildTraverse("TalentSubRight")
+	
+	talentLeft.nameid = talent1Name
+	talentLeft.talentname = $.Localize( "#DOTA_Tooltip_Ability_" + talent1Name, talentLeft )
+	talentLeft.talentdescr = $.Localize( "#DOTA_Tooltip_Ability_" + talent1Name + "_Description", talentLeft)
+	
+	talentRight.nameid = talent2Name
+	talentRight.talentname = $.Localize( "#DOTA_Tooltip_Ability_" + talent2Name, talentRight )
+	talentRight.talentdescr = $.Localize( "#DOTA_Tooltip_Ability_" + talent2Name + "_Description", talentRight)
+	
+	if( talentRight.talentdescr != ("DOTA_Tooltip_Ability_" + talent2Name + "_Description") ){
+		talentRight.SetPanelEvent("onmouseover", function(){$.DispatchEvent("DOTAShowTitleTextTooltip", talentRight, talentRight.talentname, talentRight.talentdescr);});
+		talentRight.SetPanelEvent("onmouseout", function(){$.DispatchEvent("DOTAHideTitleTextTooltip", talentRight);});
+	}
+	if ( talentLeft.talentdescr != ("DOTA_Tooltip_Ability_" + talent1Name + "_Description") ){
+		talentLeft.SetPanelEvent("onmouseover", function(){$.DispatchEvent("DOTAShowTitleTextTooltip", talentLeft, talentLeft.talentname, talentLeft.talentdescr);});
+		talentLeft.SetPanelEvent("onmouseout", function(){$.DispatchEvent("DOTAHideTitleTextTooltip", talentLeft);});
+	}
+	var talent1IsSkilled = (talentsSkilled != null && talentsSkilled[talent1Name] != null)
+	var talent2IsSkilled = (talentsSkilled != null && talentsSkilled[talent2Name] != null)
+	var talentIsSkilled = talent1IsSkilled || talent2IsSkilled
+	$.Msg( talentIsSkilled )
+	$.Msg( talentsSkilled )
+	if( Entities.GetAbilityPoints( lastRememberedHero ) == 0 || lastRememberedHero != Players.GetPlayerHeroEntityIndex( localID ) || Entities.GetLevel( lastRememberedHero ) < levelRequirement){
+		talentLeft.SetHasClass("TalentCannotBeSkilled", !talent1IsSkilled)
+		talentRight.SetHasClass("TalentCannotBeSkilled", !talent2IsSkilled)
+	} else if(talentIsSkilled){
+		talentLeft.SetHasClass("TalentCannotBeSkilled", talent2IsSkilled)
+		talentRight.SetHasClass("TalentCannotBeSkilled", talent1IsSkilled)
+	} else {
+		talentLeft.SetHasClass("TalentCanBeSkilled", !talent1IsSkilled)
+		talentRight.SetHasClass("TalentCanBeSkilled", !talent2IsSkilled)
+	}
+	if(talentIsSkilled){
+		talentLeft.SetHasClass("TalentIsSkilled", talent1IsSkilled)
+		talentRight.SetHasClass("TalentIsSkilled", talent2IsSkilled)
+	}
+	if(talentLeft.BHasClass("TalentCanBeSkilled")){
+		talentLeft.SetPanelEvent("onactivate", function(){SelectTalent(talentLeft.nameid)});
+	}
+	if(talentRight.BHasClass("TalentCanBeSkilled")){
+		talentRight.SetPanelEvent("onactivate", function(){SelectTalent(talentRight.nameid)});
+	}
+}
+
+function SelectTalent(talent)
+{
+	GameEvents.SendCustomGameEventToServer( "send_player_selected_talent", {pID : localID, entindex : lastRememberedHero,  talent : talent} )
 }

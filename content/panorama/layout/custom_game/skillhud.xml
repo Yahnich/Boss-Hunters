@@ -16,6 +16,16 @@
 				</Panel>
 			</Panel>
 		</snippet>
+		<snippet name="TalentContainer">
+			<Panel class="TalentContainer">
+				<Panel id="TalentSubLeft" class="TalentSubContainer">
+					<Label id="TalentLeftLabel" class="TalentLabel" text="Axe Fucks"/>
+				</Panel>
+				<Panel id="TalentSubRight" class="TalentSubContainer">
+					<Label id="TalentRightLabel" class="TalentLabel" text="Axe Fucks 2"/>
+				</Panel>
+			</Panel>
+		</snippet>
 	</snippets>
 	<Panel class="root">
 		<Panel id="RootContainer">
@@ -36,7 +46,8 @@
 					</Button>
 				</Panel>
 				<Panel class="HorizontalSeperator"/>
-				<Panel id="StatsTypeContainer"/>
+				<Panel id="StatsTypeContainer">
+				</Panel>
 			</Panel>
 		</Panel>
 	</Panel>

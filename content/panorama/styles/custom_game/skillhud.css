@@ -9,7 +9,7 @@
 .GenericStatsContainer
 {
 	width: 900px;
-	height: 500px;
+	height: 600px;
 	background-image: url("s2r://panorama/images/hud/reborn/ability_bg_psd.vtex");
 	background-repeat: no-repeat;
 	background-size: 100% 100%;
@@ -139,7 +139,7 @@
 
 .SelectorSelected
 {
-	border: 2px solid #ffd700FF;
+	box-shadow: inset #ffd70044 4px 0px 9px 6px;
 }
 
 .HorizontalSeperator {
@@ -148,4 +148,131 @@
 	horizontal-align: middle;
 	background-color: #515151CC;
 	margin: 12px;
+}
+
+.LevelUpLabel
+{
+	margin-right: 5px;
+	color: #664505;
+	text-shadow: 1px 1px 0 #000,
+				-1px 1px 0 #000,
+				1px -1px 0 #000,
+				-1px -1px 0 #000,
+				0px 1px 0 #000,
+				0px -1px 0 #000,
+				-1px 0px 0 #000,
+				1px 0px 0 #000,
+				2px 2px 0 #000,
+				-2px 2px 0 #000,
+				2px -2px 0 #000,
+				-2px -2px 0 #000,
+				0px 2px 0 #000,
+				0px -2px 0 #000,
+				-2px 0px 0 #000,
+				2px 0px 0 #000,
+				1px 2px 0 #000,
+				-1px 2px 0 #000,
+				1px -2px 0 #000,
+				-1px -2px 0 #000,
+				2px 1px 0 #000,
+				-2px 1px 0 #000,
+				2px -1px 0 #000,
+				-2px -1px 0 #000;
+	font-size: 32px;
+	font-weight: bold;
+	text-align: center;
+	vertical-align: center;
+	horizontal-align: center;
+	margin-right: -3px;
+	margin-top: -2px;
+	z-index: 5;
+}
+
+
+.TalentContainer
+{
+	flow-children: right;
+	horizontal-align: center;
+	width: 95%;
+}
+
+.TalentSubContainer
+{
+	margin-bottom: 25px;
+	margin-left: 2px;
+	margin-right: 2px;
+	horizontal-align: center;
+	padding: 4px;
+	background-image: url("s2r://panorama/images/hud/reborn/shop_launcher_button_psd.vtex");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	width: 49%;
+	z-index: 5;
+}
+
+.TalentLabel
+{
+	color: #e1e1e1;
+	font-size: 20px;
+	line-height: 15px;
+	text-shadow: 1px 1px 2px 3.0 #00000077;
+	text-align: center;
+	vertical-align: center;
+	horizontal-align: center;
+	z-index: 5;
+}
+
+.RequiredLevelLabel
+{
+	margin-right: 5px;
+	color: #CCAC00;
+	text-shadow: 1px 1px 0 #000,
+				-1px 1px 0 #000,
+				1px -1px 0 #000,
+				-1px -1px 0 #000,
+				0px 1px 0 #000,
+				0px -1px 0 #000,
+				-1px 0px 0 #000,
+				1px 0px 0 #000,
+				2px 2px 0 #000,
+				-2px 2px 0 #000,
+				2px -2px 0 #000,
+				-2px -2px 0 #000,
+				0px 2px 0 #000,
+				0px -2px 0 #000,
+				-2px 0px 0 #000,
+				2px 0px 0 #000,
+				1px 2px 0 #000,
+				-1px 2px 0 #000,
+				1px -2px 0 #000,
+				-1px -2px 0 #000,
+				2px 1px 0 #000,
+				-2px 1px 0 #000,
+				2px -1px 0 #000,
+				-2px -1px 0 #000;
+	font-size: 32px;
+	font-weight: bold;
+	text-align: center;
+	vertical-align: top;
+	horizontal-align: center;
+	margin-right: -3px;
+	margin-top: -2px;
+	z-index: 5;
+	margin-bottom: 80px;
+}
+
+.TalentCannotBeSkilled
+{
+	wash-color: #333333;
+}
+
+.TalentCanBeSkilled
+{
+	box-shadow: inset #ffd70044 4px 0px 9px 6px;
+}
+
+.TalentIsSkilled
+{
+	box-shadow: inset #c0c0c044 4px 0px 9px 2px;
+	border: 1px solid #c0c0c044;
 }

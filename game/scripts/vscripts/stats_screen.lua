@@ -12,7 +12,8 @@ end
 
 function StatsScreen:StartStatsScreen()
 	StatsScreen = self
-	self.queryListener = CustomGameEventManager:RegisterListener('send_player_upgraded_stats', Context_Wrap( StatsScreen, 'ProcessStatsUpgrade'))
+	CustomGameEventManager:RegisterListener('send_player_upgraded_stats', Context_Wrap( StatsScreen, 'ProcessStatsUpgrade'))
+	CustomGameEventManager:RegisterListener('send_player_selected_talent', Context_Wrap( StatsScreen, 'ProcessTalents'))
 	self.ms = {0,15,20,25,30,35,40,45,50,55,60}
 	self.mp = {0,250,500,750,1000,1250,1500,1750,2000,2250,2500}
 	self.mpr = {0,0.1,0.2,0.3,0.4,0.5}
@@ -55,6 +56,8 @@ function StatsScreen:RegisterPlayer(hero)
 	stats.sr = 0
 	
 	CustomNetTables:SetTableValue("stats_panel", tostring(hero:entindex()), stats)
+	CustomNetTables:SetTableValue( "talents", tostring(hero:entindex()), {} )
+	CustomGameEventManager:Send_ServerToAllClients("dota_player_upgraded_stats", {playerID = hero:GetPlayerID()} )
 end
 
 function StatsScreen:ProcessStatsUpgrade(userid, event)
@@ -71,5 +74,17 @@ function StatsScreen:ProcessStatsUpgrade(userid, event)
 	hero:FindModifierByName("modifier_stats_system_handler"):UpdateStatValues()
 	hero:CalculateStatBonus()
 	CustomGameEventManager:Send_ServerToAllClients("dota_player_upgraded_stats", {playerID = pID} )
+end
 
+function StatsScreen:ProcessTalents(userid, event)
+	local pID = event.pID
+	local entindex = event.entindex
+	local talent = tostring(event.talent)
+	local hero = EntIndexToHScript( entindex )
+	if entindex ~= PlayerResource:GetSelectedHeroEntity( pID ):entindex() or not hero:FindAbilityByName(talent) then return end -- calling
+	if hero:FindAbilityByName(talent):GetLevel() > 0 then return end
+	hero:UpgradeAbility(hero:FindAbilityByName(talent))
+	print("upgraded")
+	hero:CalculateStatBonus()
+	CustomGameEventManager:Send_ServerToAllClients("dota_player_upgraded_stats", {playerID = pID} )
 end

@@ -827,31 +827,35 @@ end
 function CHoldoutGameMode:OnAbilityLearned(event)
 	local abilityname = event.abilityname
 	local pID = event.PlayerID
-	if pID and string.match(abilityname, "special_bonus_unique") and GameRules.AbilityKV[abilityname] then
+	print( pID, abilityname, "initalize", string.match(abilityname, "special_bonus") )
+	if pID and string.match(abilityname, "special_bonus") then
 		local hero = PlayerResource:GetSelectedHeroEntity( pID )
-		local talentData = CustomNetTables:GetTableValue("talents", tostring(pID)) or {}
-		if GameRules.AbilityKV[abilityname]["LinkedModifierName"] then
-			local modifierName = GameRules.AbilityKV[abilityname]["LinkedModifierName"] 
-			for _, unit in ipairs( FindAllUnits() ) do
-				if unit:HasModifier(modifierName) then
-					local mList = unit:FindAllModifiersByName(modifierName)
-					for _, modifier in ipairs( mList ) do
-						local remainingDur = modifier:GetRemainingTime()
-						modifier:ForceRefresh()
-						if remainingDur > 0 then modifier:SetDuration(remainingDur, true) end
+		local talentData = CustomNetTables:GetTableValue("talents", tostring(hero:entindex())) or {}
+		print( talentData, abilityname )
+		if GameRules.AbilityKV[abilityname] then
+			if GameRules.AbilityKV[abilityname]["LinkedModifierName"] then
+				local modifierName = GameRules.AbilityKV[abilityname]["LinkedModifierName"] 
+				for _, unit in ipairs( FindAllUnits() ) do
+					if unit:HasModifier(modifierName) then
+						local mList = unit:FindAllModifiersByName(modifierName)
+						for _, modifier in ipairs( mList ) do
+							local remainingDur = modifier:GetRemainingTime()
+							modifier:ForceRefresh()
+							if remainingDur > 0 then modifier:SetDuration(remainingDur, true) end
+						end
 					end
 				end
 			end
-		end
-		if GameRules.AbilityKV[abilityname]["LinkedAbilityName"] then
-			local abilityName = GameRules.AbilityKV[abilityname]["LinkedAbilityName"] or ""
-			local ability = hero:FindAbilityByName(abilityName)
-			if ability and ability.OnTalentLearned then
-				ability:OnTalentLearned()
+			if GameRules.AbilityKV[abilityname]["LinkedAbilityName"] then
+				local abilityName = GameRules.AbilityKV[abilityname]["LinkedAbilityName"] or ""
+				local ability = hero:FindAbilityByName(abilityName)
+				if ability and ability.OnTalentLearned then
+					ability:OnTalentLearned()
+				end
 			end
 		end
 		talentData[abilityname] = true
-		CustomNetTables:SetTableValue( "talents", tostring(pID), talentData )
+		CustomNetTables:SetTableValue( "talents", tostring(hero:entindex()), talentData )
 	end
 end
 
