@@ -185,15 +185,6 @@ function CHoldoutGameRound:End()
 			return 0.03
 		end
 	end)
-	if self._nRoundNumber == 1 then
-		for _,unit in pairs ( Entities:FindAllByName( "npc_dota_hero*")) do
-			if not unit:IsFakeHero() then
-				while unit:GetLevel() < 7 do
-					unit:AddExperience (100,false,false)
-				end
-			end
-		end
-	end
 	for _,spawner in pairs( self._vSpawners ) do
 		spawner:End()
 	end
@@ -238,6 +229,11 @@ end
 
 function CHoldoutGameRound:OnNPCSpawned( event )
 	local spawnedUnit = EntIndexToHScript( event.entindex )
+	if spawnedUnit then
+		spawnedUnit:SetMaximumGoldBounty(0)
+		spawnedUnit:SetMinimumGoldBounty(0)
+		spawnedUnit:SetDeathXP(0)
+	end
 	if not spawnedUnit or spawnedUnit:IsPhantom() or spawnedUnit:GetClassname() == "npc_dota_thinker" or 
 	spawnedUnit:GetUnitName() == "" or 
 	spawnedUnit:IsIllusion() or 
@@ -245,6 +241,9 @@ function CHoldoutGameRound:OnNPCSpawned( event )
 	spawnedUnit:GetUnitName() == "npc_dummy_blank" then
 		return
 	end
+	spawnedUnit:SetMaximumGoldBounty(0)
+	spawnedUnit:SetMinimumGoldBounty(0)
+	spawnedUnit:SetDeathXP(0)
 	local nCoreUnitsRemaining = (self._nCoreUnitsTotal or 0) - (self._nCoreUnitsKilled or 0)
 	Timers:CreateTimer(0.1,function()
 				self:HandleElites(spawnedUnit)
@@ -309,6 +308,15 @@ function CHoldoutGameRound:OnEntityKilled( event )
 		if nCoreUnitsRemaining == 0 then
 			--self:spawn_treasure()
 		end
+		if RollPercentage(35) then
+			local Item_spawn = CreateItem( "item_potion_of_essence", nil, nil )
+			local drop = CreateItemOnPositionForLaunch( killedUnit:GetAbsOrigin(), Item_spawn )
+			Item_spawn:LaunchLoot( false, 300, 0.75, killedUnit:GetAbsOrigin() + RandomVector( RandomFloat( 50, 350 ) ) )
+		elseif RollPercentage(35) then
+			local Item_spawn = CreateItem( "item_potion_of_recovery", nil, nil )
+			local drop = CreateItemOnPositionForLaunch( killedUnit:GetAbsOrigin(), Item_spawn )
+			Item_spawn:LaunchLoot( false, 300, 0.75, killedUnit:GetAbsOrigin() + RandomVector( RandomFloat( 50, 350 ) ) )
+		end
 	end
 end
 
@@ -325,10 +333,12 @@ function CHoldoutGameRound:_CheckForGoldBagDrop( killedUnit )
 		goldtogain = self._nGoldRemainingInRound
 	end
 	
+	print(exptogain, nCoreUnitsRemaining, "exp to gain")
+	
 	for _,unit in pairs ( Entities:FindAllByName( "npc_dota_hero*")) do
 		if unit:GetTeamNumber() == DOTA_TEAM_GOODGUYS and not unit:IsFakeHero() then
 			if exptogain > 0 then
-				unit:AddExperience (exptogain,false,false)
+				unit:AddExperience(exptogain,false,false)
 			end
 			if goldtogain > 0 then
 				local totalgold = unit:GetGold() + goldtogain

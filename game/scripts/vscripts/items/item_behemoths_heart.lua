@@ -77,7 +77,7 @@ function modifier_item_behemoths_heart_passive:GetModifierHealthRegenPercentage(
 end
 
 function modifier_item_behemoths_heart_passive:OnTakeDamage(params)
-	if params.unit == self:GetParent() and not ( HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_HPLOSS) or HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION) ) then
+	if params.unit == self:GetParent() and not ( HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_HPLOSS) or HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION) ) and params.attacker ~= self:GetParent() then
 		self:SetDuration( self.delay + 0.1, true )
 		self:StartIntervalThink(self.delay)
 		self:GetAbility().stacks = math.max( self:GetAbility().stacks - 1, 1 )

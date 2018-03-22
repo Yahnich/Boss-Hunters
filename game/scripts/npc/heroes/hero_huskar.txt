@@ -62,12 +62,12 @@
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"attrib_bonus_ms"		"1"
+				"attrib_bonus_ms"		"100"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"attrib_bonus_as"		"0.8"
+				"attrib_bonus_as"		"80"
 			}
 			"07"
 			{

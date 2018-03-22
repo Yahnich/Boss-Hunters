@@ -31,7 +31,7 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"3272"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_behemoths_heart"
 		"AbilityTextureName"			"item_heart"
@@ -79,7 +79,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"stack_delay"			"0.5"
+				"stack_delay"			"0.75"
 			}
 			"06"
 			{

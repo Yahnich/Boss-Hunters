@@ -35,12 +35,15 @@
 #base "items/item_lazarus_rags.txt"
 #base "items/item_memento.txt"
 #base "items/item_mantle_of_the_fallen.txt"
-
 #base "items/item_behemoths_heart.txt"
 #base "items/item_voltas_greathammer.txt"
 #base "items/item_lucifers_cage.txt"
 #base "items/item_executioners_blade.txt"
 #base "items/item_lance_of_longinus.txt"
+
+#base "items/item_potion_of_recovery.txt"
+#base "items/item_potion_of_essence.txt"
+#base "items/item_dust_of_stasis.txt"
 
 
 "DOTAAbilities"

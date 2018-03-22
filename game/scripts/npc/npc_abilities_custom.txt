@@ -1031,7 +1031,6 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityTextureName"			"custom/Blood_Seeker_Blood_Smell"
 		"MaxLevel"						"7"
-		"LevelsBetweenUpgrades"			"5"
 	
 		"AbilitySpecial"
 	    {
@@ -6018,8 +6017,7 @@
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityTextureName"			"clinkz_death_pact"
-		"MaxLevel"						"7"
-		"LevelsBetweenUpgrades"			"7"
+		"MaxLevel"						"6"
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -6465,7 +6463,7 @@
 			"07"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"1250"
+				"damage"					"500"
 			}
 		}
 	}
@@ -12062,7 +12060,6 @@
 		"BaseClass"						"ability_datadriven"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_AUTOCAST"
 		"AbilityTextureName"			"custom/faceless_clock_stopper"
-		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
 		"AbilityCooldown"				"20"
 		"AbilityCastPoint"				"0"
@@ -12145,7 +12142,6 @@
 		"BaseClass"						"ability_datadriven"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityTextureName"			"custom/faceless_time_lord"
-		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
 	
 		// Precache
@@ -16173,7 +16169,6 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ALLIES_YES"
 		"FightRecapLevel"				"1"
 		"AbilityTextureName"			"omniknight_purification"
-		"LevelsBetweenUpgrades"			"6"
 		"MaxLevel"						"7"
 	
 		// Casting
@@ -16810,23 +16805,18 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"rot_tick"				"0.2"
+				"rot_tick"				"1"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"rot_slow"				"-30 -40 -50 -60 -70 -80 -90"
+				"rot_slow"				"-20"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"rot_damage"			"30 60 90 120 150 180 210"
 				"LinkedSpecialBonus"	"special_bonus_unique_pudge_2"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"rot_damage_per_creep"	"5"
 			}
 		}
 	}
@@ -16841,8 +16831,6 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_OTHER"//"DOTA_UNIT_TARGET_CUSTOM" //Awful Valve-hack to let it target Nether Ward and Tombstone
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"pugna_decrepify"
-	
-		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
 	
 		// Casting
@@ -17356,7 +17344,6 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------+
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
 		"BaseClass"						"ability_datadriven"
 		"AbilityTextureName"			"custom/rubick_spell_echo"
@@ -20321,7 +20308,6 @@
 		"AbilityTextureName"			"spectre_dispersion"
 		"AbilityCastRange"				"1000"
 		"MaxLevel"						"7"
-		"LevelsBetweenUpgrades"			"5"
 		
 		"NoThreatFlag"				"1"
 		
@@ -20359,8 +20345,7 @@
 		"BaseClass"						"ability_datadriven"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"MaxLevel"						"7"
-		"LevelsBetweenUpgrades"			"7"
+		"MaxLevel"						"6"
 	
 		"AbilityTextureName"			"custom/spectre_ebf_haunt"
 		
@@ -20417,7 +20402,7 @@
 			"01"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"armor_reduction_perstack"		"-0.2 -0.4 -0.6 -0.8 -1 -1.2 -1.4"
+				"armor_reduction_perstack"		"-0.2 -0.4 -0.6 -0.8 -1 -1.2"
 				"LinkedSpecialBonus"			"special_bonus_unique_spectre_4"
 			}
 		}
@@ -20533,7 +20518,6 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityTextureName"			"custom/antimage_hex_shield"
 		"MaxLevel"                      "7"
-	    "LevelsBetweenUpgrades" 		"6"
 		"AbilityCooldown"				"22 20 18 16 14 12 10"
 		"AbilityCastPoint"				"0"
 		"AbilityCastAnimation"			"ACT_DOTA_SPAWN"
@@ -20614,7 +20598,6 @@
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
 	    "AbilityTextureName"			"custom/ground_smash"
 	    "MaxLevel"                      "7"
-	    "LevelsBetweenUpgrades"			"5"
 	
 	
 		"AOERadius" "500 575 650 725 800 875 950"
@@ -20716,7 +20699,6 @@
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
 	    "AbilityTextureName"			"spirit_breaker_charge_of_darkness_alt"
 	    "MaxLevel"                      "7"
-	    "LevelsBetweenUpgrades" 		"8"
 		
 		"precache"
 		{
@@ -21988,119 +21970,6 @@
 			}
 		}
 	}
-	"troll_warlord_battle_trance_ebf"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"				"ability_datadriven"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-		"MaxLevel"						"7"
-		"LevelsBetweenUpgrades"			"7"
-		"FightRecapLevel"				"2"
-		"AbilityTextureName"			"custom/troll_war_song"
-	
-		// Precache
-		//-------------------------------------------------------------------------------------------------------------
-		"precache"
-		{
-			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_troll_warlord.vsndevts"
-			"particle"			"particles/units/heroes/hero_troll_warlord/troll_warlord_battletrance_buff.vpcf"
-		}
-		
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0.0 0.0 0.0"
-	
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"30"
-	
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"250 325 500 750 1250 2250 4000"
-	
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"			"FIELD_FLOAT"
-				"trance_duration"		"8.0"		
-			}
-			"02"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"attack_speed"		"60 90 120 150 180 210 240"
-			}
-			"03"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"attack_speed_max"	"150 175 200 225 250 275 300"
-			}
-		}
-	
-		"OnSpellStart"
-		{
-			"FireSound"
-			{
-				"EffectName"	"Hero_TrollWarlord.BattleTrance.Cast"
-				"Target" 		"CASTER"
-			}
-	
-			"FireSound"
-			{
-				"EffectName"	"Hero_TrollWarlord.BattleTrance.Cast.Team"
-				"Target" 		"CASTER"
-			}
-	
-			"ActOnTargets"
-			{
-				"Target"
-				{
-					"Center"  	"CASTER"
-					"Radius" 	"GLOBAL"
-					"Teams" 	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-					"Types" 	"DOTA_UNIT_TARGET_ALL"
-				}
-			
-				"Action"    
-				{
-					"ApplyModifier"
-					{
-						"ModifierName"	"modifier_battle_trance_datadriven"
-						"Target" 		"TARGET"
-						"Duration"		"%trance_duration"
-					}
-				}
-			}
-		}
-	
-		"Modifiers"
-		{
-			"modifier_battle_trance_datadriven"
-			{
-				"IsBuff"			"1"
-				"IsPurgable"		"0"
-		
-				"EffectName"		"particles/units/heroes/hero_troll_warlord/troll_warlord_battletrance_buff.vpcf"
-				"EffectAttachType"	"follow_origin"
-				"OnCreated"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"lua_abilities/heroes/troll_warlord.lua"
-						"Function"		"Dispel"
-					}
-				}
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%attack_speed"
-				}
-			}
-		}
-	}
 	"tusk_frozen_wasteland"
 	{
 		// General
@@ -22262,7 +22131,6 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"custom/tusk_shield_throw"
 		"MaxLevel"                      "7"
-	    "LevelsBetweenUpgrades" 		"5"
 		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
 		
 		// Precache
@@ -22411,7 +22279,6 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityTextureName"			"custom/underlord_expulsion"
 		"MaxLevel"						"7"
-		"LevelsBetweenUpgrades"			"7"
 		"HasScepterUpgrade"				"1"
 		
 		"precache"
@@ -22692,7 +22559,6 @@
 		"AOERadius"                     "300 400 500 600 700 800 900"
 		"HasScepterUpgrade"				"1"
 		"MaxLevel"						"7"
-		"LevelsBetweenUpgrades"			"7"
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -22836,7 +22702,6 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
 		"MaxLevel"						"7"
-		"LevelsBetweenUpgrades"			"6"
 		"AbilityCastRange"				"1200"
 		"AbilityCastPoint"				"0.3 0.3 0.3"
 		"AbilityCastAnimation"			"ACT_DOTA_CHANNEL_ABILITY_4"
@@ -23131,8 +22996,7 @@
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"weaver_time_lapse"
-		"LevelsBetweenUpgrades"			"7"
-		"MaxLevel"						"7"
+		"MaxLevel"						"6"
 	
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
@@ -23149,7 +23013,7 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"30.0 28.0 26.0 24.0 22.0 20.0 18.0"
+		"AbilityCooldown"				"30.0 28.0 26.0 24.0 22.0 20.0"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -23189,8 +23053,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityTextureName"			"custom/windrunner_focusfire_ebf"
 		"HasScepterUpgrade"				"1"
-		"LevelsBetweenUpgrades"			"7"
-		"MaxLevel"						"7"
+		"MaxLevel"						"6"
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -23204,7 +23067,7 @@
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"75 100 125"
+		"AbilityManaCost"				"75 100 125 150 175 200"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -23213,7 +23076,7 @@
 			"01"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"focusfire_crit"				"150 200 250 300 400 500 600"
+				"focusfire_crit"				"175 200 225 250 275 300"
 			}
 			"02"
 			{
@@ -23223,7 +23086,7 @@
 			"03"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"focusfire_crit_scepter"		"250 300 400 500 600 700 800"
+				"focusfire_crit_scepter"		"200 250 300 350 400 450"
 			}
 			"04"
 			{
@@ -23449,8 +23312,7 @@
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"	
 		"AbilityTextureName"    "custom/wisp_sacrifice"
-		"LevelsBetweenUpgrades"			"7"
-		"MaxLevel"						"7"
+		"MaxLevel"						"6"
 		"HasScepterUpgrade"				"1"
 	
 		// Casting
@@ -23499,12 +23361,12 @@
 			"02"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"invul_duration"					"3.0 3.5 4.0 4.5 5.0 5.5 6.0"
+				"invul_duration"					"3.5 4.0 4.5 5.0 5.5 6.0"
 			}
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"regen_duration"					"3.0 2.5 2.0 1.5 1.0 0.5 0"
+				"regen_duration"					"2.5 2.0 1.5 1.0 0.5 0"
 			}
 			"03"
 			{
@@ -23559,8 +23421,7 @@
 		"AbilityTextureName"			"witch_doctor_death_ward"
 		"ScriptFile"					"lua_abilities/heroes/witch_doctor"
 		"FightRecapLevel"				"2"
-		"LevelsBetweenUpgrades"			"7"
-		"MaxLevel"						"7"
+		"MaxLevel"						"6"
 		"HasScepterUpgrade"				"1"
 		
 		"precache"
@@ -23593,13 +23454,13 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"500 1000 1750 3000 6000 12000 24000"
+				"damage"				"60 105 150 195 240 285"
 				"LinkedSpecialBonus"	"special_bonus_unique_witch_doctor_5"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"base_attack_time"		"0.22 0.2 0.18 0.16 0.14 0.12 0.1"
+				"base_attack_time"		"0.2"
 			}
 			"03"
 			{

@@ -117,7 +117,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"stack_dot"				"50 75"
+				"stack_dot"				"10 15"
 			}
 			"03"
 			{

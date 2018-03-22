@@ -41,7 +41,7 @@ function modifier_boss_attackspeed:GetModifierAttackSpeedBonus_Constant( params 
 end
 
 function modifier_boss_attackspeed:GetModifierMoveSpeedBonus_Constant( params )
-	return (self:GetStackCount() - 1) * 15
+	return (self:GetStackCount() - 1) * 5
 end
 
 function modifier_boss_attackspeed:GetModifierConstantManaRegen( params )

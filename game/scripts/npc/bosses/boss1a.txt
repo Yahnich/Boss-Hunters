@@ -132,7 +132,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"225 350"
+				"bonus_damage"			"150 225"
 			}
 		}
 		

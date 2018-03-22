@@ -81,6 +81,7 @@ if IsServer() then
 			end
 		end
 		local asura = CreateUnitByName( "npc_dota_boss36_guardian" , position, true, nil, nil, caster:GetTeam() )
+		asura.Holdout_IsCore = true
 		asura:AddNewModifier(caster, self:GetAbility(), "modifier_spawn_immunity", {duration = 3})
 		self:Destroy()
 		Timers:CreateTimer(0.1, function() caster:ForceKill(false) end)

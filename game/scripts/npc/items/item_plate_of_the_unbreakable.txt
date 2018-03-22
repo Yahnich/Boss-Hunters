@@ -34,7 +34,7 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"3236"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE |DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_plate_of_the_unbreakable"
 		"AbilityTextureName"			"item_assault"

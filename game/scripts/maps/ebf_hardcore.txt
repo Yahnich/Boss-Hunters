@@ -151,9 +151,9 @@
 				"UnitBoss_4"
 				{
 					"NPCName"				"npc_dota_boss5_vh"
-					"TotalUnitsToSpawn"		"1"
+					"TotalUnitsToSpawn"		"3"
 					"UnitsPerSpawn"			"1"
-					"SpawnInterval"			"30"
+					"SpawnInterval"			"10"
 				}
 			}
 		}

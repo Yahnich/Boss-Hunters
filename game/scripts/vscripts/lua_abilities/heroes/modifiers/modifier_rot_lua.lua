@@ -96,11 +96,6 @@ end
 function modifier_rot_lua:OnIntervalThink()
 	if IsServer() then
 		local flDamagePerTick = self.rot_damage
-		if self:GetParent() ~= self:GetCaster() then
-			local kills = self:GetCaster():FindModifierByName("modifier_rot_death_lua"):GetStackCount()
-			if not kills then kills = 0 end
-			flDamagePerTick = flDamagePerTick + self.rot_bonus_damage * kills
-		end
 		local flDamage =  self.rot_tick * flDamagePerTick
 		if self:GetCaster():IsAlive() then
 			local damage = {

@@ -89,7 +89,7 @@ function modifier_pudge_dismember_lua:OnCreated( kv )
 	self.tick_rate = self:GetAbility():GetTalentSpecialValueFor( "tick_rate" )
 	self.strength_damage = self:GetAbility():GetTalentSpecialValueFor( "strength_damage" )
 	self.stacks = self:GetAbility():GetTalentSpecialValueFor( "scepter_flesh_stacks" )
-	self.healPct = self:GetTalentSpecialValueFor("heal_pct")
+	self.healPct = self:GetTalentSpecialValueFor("heal_pct") / 100
 
 	if IsServer() then
 		self:GetParent():InterruptChannel()
@@ -185,7 +185,6 @@ end
 
 pudge_rot_lua = class({})
 LinkLuaModifier( "modifier_rot_lua", "lua_abilities/heroes/modifiers/modifier_rot_lua.lua" ,LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "modifier_rot_death_lua", "lua_abilities/heroes/pudge.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 --[[Author: Valve
 	Date: 26.09.2015.
@@ -200,12 +199,6 @@ end
 
 function pudge_rot_lua:GetIntrinsicModifierName()
 	return	"modifier_rot_death_lua"
-end
-
-function pudge_rot_lua:OnHeroLevelUp()
-	if not self:GetCaster():HasModifier("modifier_rot_death_lua") then
-		self:GetCaster():AddNewModifier( self:GetCaster(), self, "modifier_rot_death_lua", nil )
-	end
 end
 
 --------------------------------------------------------------------------------
@@ -224,83 +217,6 @@ function pudge_rot_lua:OnToggle()
 		if hRotBuff ~= nil then
 			hRotBuff:Destroy()
 		end
-	end
-end
-
---------------------------------------------------------------------------------
-
---------------------------------------------------------------------------------------------------------
---		Modifier: modifier_rot_death_lua				
---------------------------------------------------------------------------------------------------------
-if modifier_rot_death_lua == nil then modifier_rot_death_lua = class({}) end
---------------------------------------------------------------------------------------------------------
-function modifier_rot_death_lua:IsPassive()
-	return true
-end
-
---------------------------------------------------------------------------------------------------------
-function modifier_rot_death_lua:IsHidden()
-	if self:GetAbility():GetLevel() == 0 then
-		return true
-	else return false end
-end
-
-function modifier_rot_death_lua:IsAura()
-	if self:GetCaster():IsRealHero() then
-		return true
-	else return false end
-end
-
-function modifier_rot_death_lua:RemoveOnDeath()
-	return false
-end
-
-function modifier_rot_death_lua:GetModifierAura()
-	return "modifier_rot_death_lua_aura"
-end
-
-function modifier_rot_death_lua:GetAuraRadius()
-	return 9999
-end
-
-function modifier_rot_death_lua:GetAuraSearchFlags()
-	return DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_NOT_ILLUSIONS
-end
-
-function modifier_rot_death_lua:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_ENEMY
-end
-
-function modifier_rot_death_lua:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_ALL
-end
-
---------------------------------------------------------------------------------------------------------
--- Add additional functions
---------------------------------------------------------------------------------------------------------
-
-LinkLuaModifier( "modifier_rot_death_lua_aura", "lua_abilities/heroes/pudge.lua" ,LUA_MODIFIER_MOTION_NONE )
---------------------------------------------------------------------------------------------------------
---		Aura Modifier: modifier_rot_death_lua_aura		
---------------------------------------------------------------------------------------------------------
-if modifier_rot_death_lua_aura == nil then modifier_rot_death_lua_aura = class({}) end
-
-function modifier_rot_death_lua_aura:IsHidden()
-	return true
-end
-
-function modifier_rot_death_lua_aura:DeclareFunctions()
-  local funcs = {
-    MODIFIER_EVENT_ON_DEATH,
-  }
-  return funcs
-end
-
-function modifier_rot_death_lua_aura:OnDeath(params)
-	if IsServer() and params.unit:HasModifier("modifier_rot_death_lua_aura") and params.unit:IsCore() and not params.unit.triggered then
-		local modifier = self:GetCaster():FindModifierByName("modifier_rot_death_lua")
-		modifier:SetStackCount(modifier:GetStackCount() +1)
-		params.unit.triggered = true
 	end
 end
 

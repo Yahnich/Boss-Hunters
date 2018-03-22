@@ -46,7 +46,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"leap_damage"			"250 400"
+				"leap_damage"			"125 180"
 			}
 			"05"
 			{
@@ -80,7 +80,7 @@
 	
 		// Stats		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"1.5 1.2"
+		"AbilityCooldown"				"3 2"
 		"AbilityCastPoint"				"1 0.8"
 		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
 	
@@ -165,7 +165,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"spear_damage"			"450 600"
+				"spear_damage"			"100 150"
 			}
 			"05"
 			{

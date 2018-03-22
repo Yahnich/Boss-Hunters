@@ -64,7 +64,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage_heal"			"175"
+				"damage_heal"			"150"
 			}
 			"02"
 			{
@@ -79,7 +79,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"heal_amp"				"50"
+				"heal_amp"				"25"
 			}
 		}
 	}

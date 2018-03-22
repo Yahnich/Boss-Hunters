@@ -252,8 +252,8 @@ function CHoldoutGameMode:InitGameMode()
 	GameRules:SetTreeRegrowTime( 30.0 )
 	GameRules:SetCreepMinimapIconScale( 4 )
 	GameRules:SetRuneMinimapIconScale( 1.5 )
-	GameRules:SetGoldTickTime( 600.0 )
-	GameRules:SetGoldPerTick( 0 )
+	GameRules:SetGoldTickTime( 0.5 )
+	GameRules:SetGoldPerTick( 1 )
 	GameRules:GetGameModeEntity():SetRemoveIllusionsOnDeath( true )
 	GameRules:GetGameModeEntity():SetTopBarTeamValuesOverride( true )
 	GameRules:GetGameModeEntity():SetTopBarTeamValuesVisible( false )
@@ -261,13 +261,14 @@ function CHoldoutGameMode:InitGameMode()
 	GameRules:GetGameModeEntity():SetCustomBuybackCostEnabled(true)
 	GameRules:GetGameModeEntity():SetCameraDistanceOverride(1400)
 	-- GameRules:GetGameModeEntity():SetCustomGameForceHero("npc_dota_hero_wisp")
-	xpTable = {}
-	for i = 1, GAME_MAX_LEVEL do
-		table.insert(xpTable, i * 100)
+	XP_PER_LEVEL = {100,
+					200}
+	for i = 3, GAME_MAX_LEVEL do
+		XP_PER_LEVEL[i] = XP_PER_LEVEL[i-1] + i * 100
 	end
+	for lvl, xp in pairs(XP_PER_LEVEL) do print(lvl, xp) end
 	GameRules:GetGameModeEntity():SetUseCustomHeroLevels( true )
-    GameRules:GetGameModeEntity():SetCustomHeroMaxLevel( 80 )
-    GameRules:GetGameModeEntity():SetCustomXPRequiredToReachNextLevel( xpTable )
+    GameRules:GetGameModeEntity():SetCustomXPRequiredToReachNextLevel( XP_PER_LEVEL )
 	
 	GameRules:GetGameModeEntity():SetMaximumAttackSpeed(MAXIMUM_ATTACK_SPEED)
 	GameRules:GetGameModeEntity():SetMinimumAttackSpeed(MINIMUM_ATTACK_SPEED)
@@ -612,7 +613,7 @@ function CHoldoutGameMode:FilterHeal( filterTable )
 
 	if not healer_index or not heal then return true end
 	healer.statsDamageHealed = (healer.statsDamageHealed or 0) + filterTable["heal"]
-	if target then
+	if healer:GetTeam() == DOTA_TEAM_GOODGUYS then
 		local totalHealth = 0
 		for _, ally in ipairs( healer:FindFriendlyUnitsInRadius( healer:GetAbsOrigin(), -1 ) ) do
 			totalHealth = totalHealth + ally:GetMaxHealth()
@@ -1136,10 +1137,7 @@ function CHoldoutGameMode:OnHeroPick (event)
 		hero.damageDone = 0
 		hero.hasBeenInitialized = true
 		
-		hero:HeroLevelUp(false)
-		hero:HeroLevelUp(false)
-		hero:HeroLevelUp(false)
-		hero:HeroLevelUp(false)
+		hero:AddExperience(200+300+400+500+600,false,false)
 		
 		StatsScreen:RegisterPlayer(hero)
 		hero:AddNewModifier(hero, nil, "modifier_stats_system_handler", {})
@@ -1169,10 +1167,12 @@ function CHoldoutGameMode:OnHeroPick (event)
 			Notifications:TopToAll(messageinfo)
 			ParticleManager:FireParticle("particles/roles/dev/vip_particle.vpcf", PATTACH_POINT_FOLLOW, hero)
 		end
+		local gold = 250
+		hero:SetGold( 0, true )
 		if PlayerResource:HasRandomed( ID ) then
-			local gold = hero:GetGold()
-			hero:SetGold( gold + 300, true )
+			gold = gold + 350
 		end
+		hero:SetGold( gold, true )
 		
 		hero:SetDayTimeVisionRange(hero:GetDayTimeVisionRange() * 2)
 		hero:SetNightTimeVisionRange(hero:GetNightTimeVisionRange() * 1.5)
@@ -1969,41 +1969,48 @@ end
 
 
 function CHoldoutGameMode:OnNPCSpawned( event )
-	local spawnedUnit = EntIndexToHScript( event.entindex )
-	if not spawnedUnit or spawnedUnit:GetClassname() == "npc_dota_thinker" or spawnedUnit:IsPhantom() or spawnedUnit:IsFakeHero()then
-		return
-	end
-	if spawnedUnit:IsCourier() then
-		spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_invulnerable", {})
-	end
-	if spawnedUnit:IsCreature() and spawnedUnit:GetTeam() == DOTA_TEAM_BADGUYS and spawnedUnit:GetUnitName() ~= "npc_dota_boss36" then
-		local expectedHP = ( 1750 + 250 * (GameRules._roundnumber or 0) ) * RandomFloat(0.85, 1.15)
-		local expectedDamage = ( 30 + 12 * (GameRules._roundnumber or 0) ) * RandomFloat(0.85, 1.15)
-		local expectedArmor = ( GameRules._roundnumber or 0 ) * RandomFloat(0.85, 1.15)
-		if not spawnedUnit:IsRangedAttacker() then
-			expectedHP = expectedHP * 1.33
-			expectedArmor = expectedArmor * 1.2
-			expectedDamage = expectedDamage * 1.2
+	Timers:CreateTimer(function()
+		local spawnedUnit = EntIndexToHScript( event.entindex )
+		if not spawnedUnit or spawnedUnit:GetClassname() == "npc_dota_thinker" or spawnedUnit:IsPhantom() or spawnedUnit:IsFakeHero()then
+			return
 		end
-		if GetMapName() == "epic_boss_fight_hardcore" then expectedHP = expectedHP * 1.35 end
-		local playerMultiplier = 0.25
-		if GetMapName() == "epic_boss_fight_hardcore" then playerMultiplier = 0.33 end
-		local effective_multiplier = 1 + (HeroList:GetActiveHeroCount() - 1)*playerMultiplier
-		-- if self._currentRound and not self._currentRound:IsFinished() then self._vEnemiesRemaining
-		expectedHP = expectedHP * effective_multiplier
-		spawnedUnit:SetBaseMaxHealth(expectedHP)
-		spawnedUnit:SetMaxHealth(expectedHP)
-		spawnedUnit:SetHealth(expectedHP)
-		spawnedUnit:SetPhysicalArmorBaseValue(expectedArmor)
-		spawnedUnit:SetAverageBaseDamage( expectedDamage, RandomInt(15, 30) )
-		
-		spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_boss_attackspeed", {})
-		spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_spawn_immunity", {duration = 4/GameRules.gameDifficulty})
-		
-		if spawnedUnit:GetHullRadius() >= 16 then
-			spawnedUnit:SetHullRadius( math.ceil(16 * spawnedUnit:GetModelScale()) )
+		if spawnedUnit:IsCourier() then
+			spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_invulnerable", {})
 		end
-	end
+		if spawnedUnit:IsCreature() and spawnedUnit:GetTeam() == DOTA_TEAM_BADGUYS and spawnedUnit:GetUnitName() ~= "npc_dota_boss36" and spawnedUnit:GetUnitName() ~= "npc_dota_boss4_tomb" then
+			local expectedHP = ( 1750 + 250 * (GameRules._roundnumber or 0) ) * RandomFloat(0.85, 1.15)
+			local expectedDamage = ( 15 + 12 * (GameRules._roundnumber or 0) ) * RandomFloat(0.85, 1.15)
+			local expectedArmor = ( GameRules._roundnumber or 0 ) * RandomFloat(0.85, 1.15)
+			if not spawnedUnit:IsRangedAttacker() then
+				expectedHP = expectedHP * 1.33
+				expectedArmor = expectedArmor * 1.2
+				expectedDamage = expectedDamage * 1.2
+			end
+			if not spawnedUnit.Holdout_IsCore then
+				expectedHP = expectedHP * 0.07
+				expectedDamage = expectedDamage * 0.85
+			end
+			if GetMapName() == "epic_boss_fight_hardcore" then expectedHP = expectedHP * 1.35 end
+			local playerMultiplier = 0.25
+			if GetMapName() == "epic_boss_fight_hardcore" then playerMultiplier = 0.33 end
+			local effective_multiplier = 1 + (HeroList:GetActiveHeroCount() - 1)*playerMultiplier
+			-- if self._currentRound and not self._currentRound:IsFinished() then self._vEnemiesRemaining
+			expectedHP = expectedHP * effective_multiplier
+			spawnedUnit:SetBaseMaxHealth(expectedHP)
+			spawnedUnit:SetMaxHealth(expectedHP)
+			spawnedUnit:SetHealth(expectedHP)
+			spawnedUnit:SetPhysicalArmorBaseValue(expectedArmor)
+			spawnedUnit:SetAverageBaseDamage( expectedDamage, RandomInt(15, 30) )
+			spawnedUnit:SetBaseHealthRegen(GameRules._roundnumber * RandomFloat(0.85, 1.15) )
+			
+			spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_boss_attackspeed", {})
+			spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_spawn_immunity", {duration = 4/GameRules.gameDifficulty})
+			
+			if spawnedUnit:GetHullRadius() >= 16 then
+				spawnedUnit:SetHullRadius( math.ceil(16 * spawnedUnit:GetModelScale()) )
+			end
+		end
+	end)
 end
 
 function CHoldoutGameMode:OnEntityKilled( event )
@@ -2055,20 +2062,6 @@ function CHoldoutGameMode:OnEntityKilled( event )
 	if not status  and not self.gameHasBeenBroken then
 		self:SendErrorReport(err)
 	end
-	-- if killedUnit:GetUnitName() == "npc_dota_money_roshan" then
-		-- local count = 0
-		-- Timers:CreateTimer(0.5,function()
-			-- if count < HeroList:GetRealHeroCount() then
-				-- count = count + 1
-				-- local Item_spawn = CreateItem( "item_midas_2", nil, nil )
-				-- local drop = CreateItemOnPositionForLaunch( killedUnit:GetAbsOrigin(), Item_spawn )
-				-- Item_spawn:LaunchLoot( false, 300, 0.75, killedUnit:GetAbsOrigin() + RandomVector( RandomFloat( 50, 350 ) ) )
-				-- return 0.25
-			-- end
-		-- end)
-	-- end
-	
-	
 end
 
 function CHoldoutGameMode:CheckForLootItemDrop( killedUnit )

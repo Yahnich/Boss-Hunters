@@ -8,7 +8,7 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"3224"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_ring_of_mana"
 		"AbilityTextureName"			"item_ring_of_basilius"
@@ -21,8 +21,6 @@
 		"ItemQuality"					"component"
 		"ItemAliases"					"basilius;ring of mana"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-		
-		"AbilityCooldown"				"30"
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
