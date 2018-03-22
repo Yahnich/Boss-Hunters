@@ -1512,12 +1512,20 @@
 	"npc_dota_hero_tusk_ebf"
 	{
 		"override_hero"			"npc_dota_hero_tusk"
-		"Ability2"				"tusk_shield_throw"
+		"Ability1"				"tusk_ice"
+		"Ability2"				"tusk_snow"
 		"Ability3"				"tusk_frozen_wasteland"
-		"Ability4"				"tusk_walrus_kick"
+		"Ability4"				"tusk_kick"
+		"Ability6"				"tusk_punch"
 	
-		"Ability10"				"special_bonus_attack_damage_20"
-		"Ability11"				"special_bonus_armor_3"
+		"Ability10"		"special_bonus_unique_tusk_ice_1"
+		"Ability11"		"special_bonus_unique_tusk_ice_2"
+		"Ability12"		"special_bonus_unique_tusk_snow_1"
+		"Ability13"		"special_bonus_unique_tusk_snow_2"
+		"Ability14"		"special_bonus_unique_tusk_frozen_wasteland_1"
+		"Ability15"		"special_bonus_unique_tusk_frozen_wasteland_2"
+		"Ability16"		"special_bonus_unique_tusk_punch_1"
+		"Ability17"		"special_bonus_unique_tusk_punch_2"
 	}
 	//=================================================================================================================
 	// HERO: undying

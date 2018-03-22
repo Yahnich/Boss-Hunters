@@ -1,0 +1,505 @@
+"DOTAAbilities"
+{
+	"tusk_ice"
+	{
+		// General
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_tusk/tusk_ice.lua"	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"  
+		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"tusk_ice_shards"
+		"MaxLevel"						"7"								
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.1"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastRange"				"2000"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"24 21 19 16 13 10 7"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"100 105 110 115 120 125 130"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"angle"						"35"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"70 130 190 250 310 370 430"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"7"
+				"LinkedSpecialBonus"		"special_bonus_unique_tusk_ice_2"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"200"
+			}			
+			"05"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"speed"						"1200.0"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"width"						"300"
+			}
+		}
+
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_tusk/tusk_ice_shards_projectile.vpcf"
+			"particle"  "particles/units/heroes/hero_tusk/tusk_shards.vpcf"
+			"particle"  "particles/units/heroes/hero_tusk/tusk_ice_shards.vpcf"
+
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_tusk.vsndevts"
+		}
+	}
+
+	"special_bonus_unique_tusk_ice_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"-3"
+			}
+		}
+	}
+	"special_bonus_unique_tusk_ice_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"7"
+			}
+		}
+	}
+
+	"tusk_snow"
+	{
+		// General
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_tusk/tusk_snow.lua"	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"  
+		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"tusk_snowball"
+		"MaxLevel"						"7"							
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.1"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastRange"				"1250"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"21 20 19 18 17 16 15"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"75"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"chill_amount"				"10"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"chill_duration"			"10.0"
+			}
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"80 120 160 200 240 280 320"
+			}
+			"07"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"350"
+			}			
+		}
+
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_lich/lich_frost_nova.vpcf"
+			"particle"  "particles/units/heroes/hero_tusk/tusk_snow_copy.vpcf"
+			"particle"  "particles/units/heroes/hero_tusk/tusk_shards.vpcf"
+			"particle"  "particles/units/heroes/hero_tusk/tusk_ice_shards.vpcf"
+
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_tusk.vsndevts"
+		}
+	}
+
+	"special_bonus_unique_tusk_snow_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"2"
+			}
+		}
+	}
+	"special_bonus_unique_tusk_snow_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"1"
+			}
+		}
+	}
+
+	"tusk_frozen_wasteland"
+	{
+		// General
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_tusk/tusk_frozen_wasteland.lua"	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_OPTIONAL_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityTextureName"			"tusk_frozen_sigil"
+		"MaxLevel"						"7"							
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.1"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_3"
+		"AbilityCastRange"				"600"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"50"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"75"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"duration"					"30"
+			}			
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"slow_attack"				"-30 -40 -50 -60 -70 -80 -90"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"slow_move"					"-10 -15 -20 -25 -30 -35 -40"
+				"LinkedSpecialBonus"		"special_bonus_unique_tusk_frozen_wasteland_1"
+			}
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"600"
+			}		
+		}
+
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_tusk.vsndevts"
+			"particle"			"particles/units/heroes/hero_tusk/tusk_frozen_sigil.vpcf"
+			"particle"			"particles/units/heroes/hero_tusk/tusk_frozen_sigil_status.vpcf"			
+		}
+	}
+
+	"special_bonus_unique_tusk_frozen_wasteland_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"-30"
+			}
+		}
+	}
+	"special_bonus_unique_tusk_frozen_wasteland_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"300"
+			}
+		}
+	}
+
+	"tusk_kick"
+	{
+		// General
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_tusk/tusk_kick.lua"	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"  
+		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"tusk_walrus_kick"
+		"MaxLevel"						"1"
+		"InnateAbility"					"1"		
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.2"
+		"AbilityCastRange"				"150"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_5"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"8"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"100"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"air_time"					"1.0"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"300"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"push_length"				"1400"
+			}			
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"width"						"150"
+			}	
+		}
+
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_tusk.vsndevts"
+
+			"particle"			"particles/units/heroes/hero_tusk/tusk_walruskick_tgt.vpcf"
+			"particle"			"particles/units/heroes/hero_tusk/tusk_walruskick_txt_ult.vpcf"
+			"particle"  		"particles/units/heroes/hero_tusk/tusk_walruskick_tgt_status.vpcf"
+		}
+	}
+
+	"tusk_punch"
+	{
+		// General
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_tusk/tusk_punch.lua"	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"         "DAMAGE_TYPE_PHYSICAL"  
+		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityTextureName"			"tusk_walrus_punch"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE" 
+		"MaxLevel"						"6"							
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0"
+		"AbilityCastRange"				"150"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"36 33 30 24 18 12"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"50 75 100 125 150 175"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"crit_multiplier"			"350"
+				"LinkedSpecialBonus"		"special_bonus_unique_tusk_punch_2"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"air_time"					"2.0"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"2.0 3.0 4.0 5.0 6.0 7.0"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"move_slow"					"-40 -45 -50 -60 -65"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"height"					"650"
+			}		
+		}
+
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_tusk.vsndevts"
+
+			"particle"			"particles/units/heroes/hero_tusk/tusk_walruspunch_txt.vpcf"
+			"particle"			"particles/units/heroes/hero_tusk/tusk_walruspunch_txt_ult.vpcf"
+			"particle"  		"particles/units/heroes/hero_tusk/tusk_walruspunch_tgt_status.vpcf"	
+			"particle"  		"particles/units/heroes/hero_tusk/tusk_walruspunch_tgt.vpcf"
+			"particle"  		"particles/units/heroes/hero_tusk/tusk_walruspunch_status.vpcf"
+			"particle"  		"particles/units/heroes/hero_tusk/tusk_walruspunch_start.vpcf"
+		}
+	}
+
+	"special_bonus_unique_tusk_punch_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"15"
+			}
+		}
+	}
+	"special_bonus_unique_tusk_punch_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"300"
+			}
+		}
+	}
+}
