@@ -100,14 +100,9 @@ function mystic_flare_start( keys )
 		)
 	end
 	
-    
-    -- Create for VFX particles on ground
-    local dummy = CreateUnitByName( "npc_dummy_unit", target, false, caster, caster, caster:GetTeamNumber() )
-    ability:ApplyDataDrivenModifier( caster, dummy, dummyModifierName, {} )
-    
     -- Referencing total damage done per interval
     local damage_per_interval = total_damage / max_instances
-    
+    ParticleManager:FireParticle("particles/units/heroes/hero_skywrath_mage/skywrath_mage_mystic_flare_ambient.vpcf", PATTACH_WORLDORIGIN, nil, {[0] = target, [1] = Vector(radius, duration, interval)})
     -- Deal damage per interval equally
     Timers:CreateTimer( function()
             local units = FindUnitsInRadius(caster:GetTeam(),
@@ -141,7 +136,6 @@ function mystic_flare_start( keys )
             
             -- Check if maximum instances reached
             if current_instance >= max_instances then
-                dummy:Destroy()
                 return nil
             else
                 return interval

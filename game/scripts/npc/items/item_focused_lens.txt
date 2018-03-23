@@ -3,55 +3,59 @@
 	//=================================================================================================================
 	// Recipe: TITAN Armor
 	//=================================================================================================================
-	"item_recipe_lazarus_rags"
+	"item_recipe_focused_lens"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"3267"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"6282"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe_assault"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"1150"	
+		"ItemCost"						"2850"	
 		"ItemShopTags"					""
 		
 		// Recipe
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemRecipe"					"1"
-		"ItemResult"					"item_lazarus_rags"
+		"ItemResult"					"item_focused_lens"
 		"ItemRequirements"
 		{
-			"01"						"item_archmages_orb;item_angelic_guard"
+			"01"						"item_spell_refinery"
 		}
 	}
-	"item_lazarus_rags"
+	"item_focused_lens"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"3268"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"ID"							"3283"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"BaseClass"						"item_lua"
-		"ScriptFile"					"items/item_lazarus_rags"
-		"AbilityTextureName"			"custom/lazarus_rags"
+		"ScriptFile"					"items/item_focused_lens"
+		"AbilityTextureName"			"custom/focused_lens"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
 		
-		"ItemShopTags"					"heal;mana"
+		"ItemShopTags"					"cast range;damage"
 		"ItemQuality"					"epic"
-		"ItemAliases"					"guardian greaves;lazarus_rags"
+		"ItemAliases"					"focused lens"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		"AbilityCooldown"				"12"
+		"AbilityManaCost"				"35"
+		"AbilityCastRange"				"625"
 		
 		
 		"precache"
 		{
 			"precache"					"soundevents/game_sounds_items.vsndevts"
 		}
-		
-		"AbilityCooldown"				"25"
-		"AbilityManaCost"				"60"
+
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
@@ -60,32 +64,17 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"mana_restore"			"15"
+				"bonus_cast_range"		"350"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"heal"					"20"
+				"var_type"				"FIELD_FLOAT"
+				"target_amp"			"35"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"mana_regen"			"5"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"spell_amp"				"16"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"block_chance"			"100"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"damage_block"			"50"
+				"target_cast_range"		"225"
 			}
 		}
 	}

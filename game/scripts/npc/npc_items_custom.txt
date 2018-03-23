@@ -12,6 +12,9 @@
 #base "items/item_pages_buckler.txt"
 #base "items/item_cursed_amulet.txt"
 #base "items/item_soldiers_pike.txt"
+#base "items/item_spell_refinery.txt"
+#base "items/item_calming_skull.txt"
+#base "items/item_breeze_amulet.txt"
 
 #base "items/item_plate_of_the_unbreakable.txt"
 #base "items/item_penitent_mail.txt"
@@ -28,6 +31,9 @@
 #base "items/item_jar_of_souls.txt"
 #base "items/item_soul_vessel.txt"
 #base "items/item_runed_artifact.txt"
+#base "items/item_crystalline_staff.txt"
+#base "items/item_everbright_shield.txt"
+#base "items/item_warlocks_reliquary.txt"
 
 #base "items/item_arcane_accelerator.txt"
 #base "items/item_mantle_of_fallen.txt"
@@ -40,6 +46,7 @@
 #base "items/item_lucifers_cage.txt"
 #base "items/item_executioners_blade.txt"
 #base "items/item_lance_of_longinus.txt"
+#base "items/item_focused_lens.txt"
 
 #base "items/item_potion_of_recovery.txt"
 #base "items/item_potion_of_essence.txt"
@@ -137,7 +144,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_movement_speed"  "55"
+				"bonus_movement_speed"  "40"
 			}
 			"02"
 			{

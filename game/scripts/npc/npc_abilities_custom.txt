@@ -22556,14 +22556,14 @@
 		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"               "2"
 		"AbilityTextureName"			"custom/undying_decay_ebf"
-		"AOERadius"                     "300 400 500 600 700 800 900"
+		"AOERadius"                     "600"
 		"HasScepterUpgrade"				"1"
 		"MaxLevel"						"7"
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"              "1200"
-		"AbilityCastPoint"              "0.1 0.1 0.1 0.1"
+		"AbilityCastRange"				"650"
+		"AbilityCastPoint"            	 "0.45 0.45 0.45 0.45"
 		
 		// Time     
 		//-------------------------------------------------------------------------------------------------------------
@@ -22571,7 +22571,7 @@
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"               "25 50 75 125 250 500 1000"
+		"AbilityManaCost"              	"70 85 100 115 130 145 160"	
 			
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -22585,23 +22585,23 @@
 			"02"
 			{
 				"var_type"              "FIELD_FLOAT"
-				"duration"              "90"
+				"duration"              "45"
 				"LinkedSpecialBonus"	"special_bonus_unique_undying_4"
 			}
 			"03"
 			{
 				"var_type"              "FIELD_INTEGER"
-				"damage"                "800 1600 3200 6400 12800 25000 50000"
+				"damage"				"20 50 80 110 140 170 200"
 			}
 			"04"
 			{
-				"var_type"              "FIELD_FLOAT"
-				"health_bonus_per_unit"      "250 500 1000 2000 4000 8000 16000"
+				"var_type"              	"FIELD_FLOAT"
+				"health_bonus_per_unit" 	"80"
 			}
 			"05"
 			{
-				"var_type"              "FIELD_FLOAT"
-				"str_bonus_per_unit_scepter"      "12 25 50 100 200 400 800"
+				"var_type"              		"FIELD_FLOAT"
+				"str_bonus_per_unit_scepter"	"4"
 			}
 		}
 		
@@ -22714,26 +22714,9 @@
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"				"9"
-		"AbilityTextureName"			"custom/undying_soul_rip_ebf"
-		"OnSpellStart"
-			{
-				"RunScript"
-		        {
-					"ScriptFile" "lua_abilities/heroes/undying"
-					"Function" "Soul_Rip"
-		        }
-		        "FireEffect"
-		        {
-		            "EffectName"        "particles/items2_fx/mekanism.vpcf"
-		            "EffectAttachType"  "follow_origin"
-		            "Target"            "TARGET"
-		            "ControlPointEntities"
-		            {
-		                "TARGET"    "attach_origin"
-		            }
-		        }
-			}
+		"AbilityManaCost"				"100 110 120 130 140 150 160"		
 		
+		"AbilityTextureName"			"custom/undying_soul_rip_ebf"
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
@@ -22741,13 +22724,32 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"health_per_unit"		"120 240 320 640 1280 2560 5000"
+				"health_per_unit"		"18 22 26 30 34 38 42"
 				"LinkedSpecialBonus"	"special_bonus_unique_undying"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"range"					"1200"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile" "lua_abilities/heroes/undying"
+				"Function" "Soul_Rip"
+			}
+			"FireEffect"
+			{
+				"EffectName"        "particles/items2_fx/mekanism.vpcf"
+				"EffectAttachType"  "follow_origin"
+				"Target"            "TARGET"
+				"ControlPointEntities"
+				{
+					"TARGET"    "attach_origin"
+				}
 			}
 		}
 	}
@@ -22784,12 +22786,12 @@
 	    // Time     
 	    //-------------------------------------------------------------------------------------------------------------
 	    "AbilityCooldown"               "20"
-		"AbilityDamage"					"375 750 1750 4750 9500 19000 38000"
+		"AbilityDamage"					"35 70 105 140 175 210 245"
 		"AbilityThreat"					"12"
 	
 	    // Cost
 	    //-------------------------------------------------------------------------------------------------------------
-	    "AbilityManaCost"               "25 50 75 125 250 500 1000"
+	    "AbilityManaCost"               "35 60 85 110 135 160 185"
 	
 	    // Special
 	    //-------------------------------------------------------------------------------------------------------------
@@ -22819,7 +22821,7 @@
 			"05"
 	        {
 	            "var_type"                  "FIELD_FLOAT"
-	            "heal_pct"         			"15"
+	            "heal_pct"         			"50"
 	        }
 	    }
 	

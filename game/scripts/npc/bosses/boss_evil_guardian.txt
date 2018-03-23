@@ -234,7 +234,7 @@
 	    "AbilityTextureName"			"custom/hell_guardian_hell_on_earth3"
 	    "MaxLevel"                      "1"
 		
-		"AbilityCooldown"				"12 9"
+		"AbilityCooldown"				"15 12"
 		"AbilityCastPoint"				"1 0.75"
 		"AbilityCastAnimation"			"ACT_DOTA_DIE"
 	

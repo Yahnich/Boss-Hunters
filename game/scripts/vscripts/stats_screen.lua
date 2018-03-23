@@ -84,7 +84,6 @@ function StatsScreen:ProcessTalents(userid, event)
 	if entindex ~= PlayerResource:GetSelectedHeroEntity( pID ):entindex() or not hero:FindAbilityByName(talent) then return end -- calling
 	if hero:FindAbilityByName(talent):GetLevel() > 0 then return end
 	hero:UpgradeAbility(hero:FindAbilityByName(talent))
-	print("upgraded")
 	hero:CalculateStatBonus()
 	CustomGameEventManager:Send_ServerToAllClients("dota_player_upgraded_stats", {playerID = pID} )
 end

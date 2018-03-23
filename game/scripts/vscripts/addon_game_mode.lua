@@ -252,7 +252,7 @@ function CHoldoutGameMode:InitGameMode()
 	GameRules:SetTreeRegrowTime( 30.0 )
 	GameRules:SetCreepMinimapIconScale( 4 )
 	GameRules:SetRuneMinimapIconScale( 1.5 )
-	GameRules:SetGoldTickTime( 0.5 )
+	GameRules:SetGoldTickTime( 1 )
 	GameRules:SetGoldPerTick( 1 )
 	GameRules:GetGameModeEntity():SetRemoveIllusionsOnDeath( true )
 	GameRules:GetGameModeEntity():SetTopBarTeamValuesOverride( true )
@@ -266,7 +266,7 @@ function CHoldoutGameMode:InitGameMode()
 	for i = 3, GAME_MAX_LEVEL do
 		XP_PER_LEVEL[i] = XP_PER_LEVEL[i-1] + i * 100
 	end
-	for lvl, xp in pairs(XP_PER_LEVEL) do print(lvl, xp) end
+
 	GameRules:GetGameModeEntity():SetUseCustomHeroLevels( true )
     GameRules:GetGameModeEntity():SetCustomXPRequiredToReachNextLevel( XP_PER_LEVEL )
 	
@@ -564,7 +564,7 @@ function CHoldoutGameMode:FilterModifiers( filterTable )
 	local ability = EntIndexToHScript( ability_index )
 	local name = filterTable["name_const"]
 	
-	if parent and caster then
+	if parent and caster and duration ~= -1 then
 		local params = {healer = healer, target = target, heal = heal}
 		for _, modifier in ipairs( caster:FindAllModifiers() ) do
 			if modifier.GetModifierStatusAmplify_Percentage then
@@ -823,16 +823,15 @@ end
 function CHoldoutGameMode:OnHeroLevelUp(event)
 	local playerID = EntIndexToHScript(event.player):GetPlayerID()
 	local hero = PlayerResource:GetSelectedHeroEntity(playerID)
+	if hero:GetLevel() == 17 or hero:GetLevel() == 19 or (hero:GetLevel() > 20 and hero:GetLevel() < 25) then hero:SetAbilityPoints( hero:GetAbilityPoints() + 1) end
 end
 
 function CHoldoutGameMode:OnAbilityLearned(event)
 	local abilityname = event.abilityname
 	local pID = event.PlayerID
-	print( pID, abilityname, "initalize", string.match(abilityname, "special_bonus") )
 	if pID and string.match(abilityname, "special_bonus") then
 		local hero = PlayerResource:GetSelectedHeroEntity( pID )
 		local talentData = CustomNetTables:GetTableValue("talents", tostring(hero:entindex())) or {}
-		print( talentData, abilityname )
 		if GameRules.AbilityKV[abilityname] then
 			if GameRules.AbilityKV[abilityname]["LinkedModifierName"] then
 				local modifierName = GameRules.AbilityKV[abilityname]["LinkedModifierName"] 

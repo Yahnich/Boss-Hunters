@@ -3,61 +3,54 @@
 	//=================================================================================================================
 	// Recipe: TITAN Armor
 	//=================================================================================================================
-	"item_recipe_archmages_orb"
+	"item_recipe_everbright_shield"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"3239"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"6280"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe_assault"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"1500"	
+		"ItemCost"						"2850"	
 		"ItemShopTags"					""
 		
 		// Recipe
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemRecipe"					"1"
-		"ItemResult"					"item_archmages_orb"
+		"ItemResult"					"item_everbright_shield"
 		"ItemRequirements"
 		{
-			"01"						"item_sorcerers_staff;item_ring_of_mana"
+			"01"						"item_pages_buckler;item_spell_refinery"
 		}
 	}
-	//=================================================================================================================
-	// TITAN Armor
-	//=================================================================================================================
-	"item_archmages_orb"
+	"item_everbright_shield"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"3240"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"ID"							"3281"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"BaseClass"						"item_lua"
-		"ScriptFile"					"items/item_archmages_orb"
-		"AbilityTextureName"			"item_sphere"
+		"ScriptFile"					"items/item_everbright_shield"
+		"AbilityTextureName"			"custom/everbright_shield"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
 		
-		"ItemCost"						"400"
-		"ItemShopTags"					"mana;spell amp;mr;mana regen"
+		"ItemShopTags"					"defense;magic resist"
 		"ItemQuality"					"epic"
-		"ItemAliases"					"archmages orb;mana boots"
+		"ItemAliases"					"everbright shield"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"particle"
+		"precache"
 		{
-			"particle"					"particles/items3_fx/warmage_recipient.vpcf"
-			"particle"					"particles/units/heroes/hero_nyx_assassin/nyx_assassin_mana_burn.vpcf"
-			"soundfile"					"soundevents/game_sounds_items.vsndevts"
+			"precache"					"soundevents/game_sounds_items.vsndevts"
 		}
-	
-		"AbilityCooldown"				"15"
-		
+
+
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
@@ -65,22 +58,27 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"mana_regen"			"5"
+				"bonus_cast_range"		"300"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"spell_amp"				"16"
+				"var_type"				"FIELD_FLOAT"
+				"bonus_magic_resist"	"50"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"mana_restore"			"15"
+				"var_type"				"FIELD_FLOAT"
+				"bonus_physical"		"25"
 			}
 			"04"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"900"
+				"var_type"				"FIELD_FLOAT"
+				"damage_block"			"50"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"block_chance"			"50"
 			}
 		}
 	}

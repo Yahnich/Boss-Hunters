@@ -4,7 +4,8 @@ LinkLuaModifier( "modifier_item_potion_of_essence_handle_heal", "items/item_poti
 function item_potion_of_essence:OnSpellStart()
 	EmitSoundOn("DOTA_Item.ClarityPotion.Activate", self:GetCaster() )
 	self:GetCursorTarget():AddNewModifier(self:GetCaster(), self, "modifier_item_potion_of_essence_handle_heal", {Duration = self:GetSpecialValueFor("duration")})
-	self:Destroy()
+	self:SetCurrentCharges(self:GetCurrentCharges() - 1)
+	if self:GetCurrentCharges() == 0 then self:Destroy() end
 end
 
 

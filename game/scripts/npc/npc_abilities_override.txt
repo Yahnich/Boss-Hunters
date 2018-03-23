@@ -3943,7 +3943,7 @@
 			"06"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"slow_duration"			"1.0"
+				"slow_duration"			"2.5"
 			}
 			"07"
 			{
@@ -3958,7 +3958,7 @@
 			"09"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage_scepter"		"100 175 250 325 400 475 550"
+				"damage_scepter"		"100 160 220 280 340 400 460"
 			}
 			"10"
 			{

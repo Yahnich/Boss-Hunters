@@ -12,6 +12,8 @@
        "item"		"item_crystal_of_life"
 	   "item"		"item_ring_of_mana"
 	   "item"		"item_elven_boots"
+	   "item"		"item_spell_refinery"
+	   "item"		"item_calming_skull"
     }
     "weapons_armor"
     {
@@ -19,6 +21,7 @@
 		"item"		"item_hunters_hatchet"
 		"item"		"item_pages_buckler"
 		"item"		"item_soldiers_pike"
+		"item"		"item_breeze_amulet"
     }
     "misc"
     {
@@ -43,14 +46,19 @@
         "item"		"item_jar_of_souls"
 		"item"		"item_mantle_of_the_fallen"
 		"item"		"item_lucifers_cage"
+		"item"		"item_archmages_orb"
+		"item"		"item_lazarus_rags"
+		
     }
     "magics"
     {  
-        "item"		"item_archmages_orb"
 		"item"		"item_runed_artifact"
 		"item"		"item_arcane_accelerator"
 		"item"		"item_lightningrod"
 		"item"		"item_voltas_greathammer"
+		"item"		"item_focused_lens"
+		"item"		"item_crystalline_staff"
+		"item"		"item_warlocks_reliquary"
     }
     // Level 3 - Purple Recipes
     "defense"
@@ -59,6 +67,7 @@
 		"item"		"item_penitent_mail"
 		"item"		"item_memento"
 		"item"		"item_behemoths_heart"
+		"item"		"item_everbright_shield"
     }
 	"weapons"
     {

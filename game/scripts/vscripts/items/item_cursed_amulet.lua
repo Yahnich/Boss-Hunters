@@ -21,3 +21,7 @@ end
 function modifier_item_cursed_amulet:IsHidden()
 	return true
 end
+
+function modifier_item_cursed_amulet:GetAttributes()
+	return MODIFIER_ATTRIBUTE_MULTIPLE
+end

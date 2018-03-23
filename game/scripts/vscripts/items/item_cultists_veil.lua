@@ -4,7 +4,16 @@ LinkLuaModifier( "modifier_item_cultists_veil", "items/item_cultists_veil.lua" ,
 function item_cultists_veil:OnSpellStart()
 	local caster = self:GetCaster()
 	local point = self:GetCursorPosition()
-	return "modifier_item_cultists_veil"
+	
+	local radius = self:GetSpecialValueFor("radius")
+	local duration = self:GetSpecialValueFor("duration")
+	
+	EmitSoundOn( "DOTA_Item.VeilofDiscord.Activate", self:GetCaster() )
+	ParticleManager:FireParticle("particles/items2_fx/veil_of_discord.vpcf", PATTACH_WORLDORIGIN, nil, {[0] = point, [1] = Vector(radius,1,1)})
+	
+	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( point, radius ) ) do
+		enemy:AddNewModifier(caster, self, "modifier_cultists_veil_debuff", {duration = duration})
+	end
 end
 
 LinkLuaModifier( "modifier_cultists_veil_debuff", "items/item_cultists_veil.lua" ,LUA_MODIFIER_MOTION_NONE )

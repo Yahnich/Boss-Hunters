@@ -31,6 +31,10 @@ function modifier_item_crown_of_thorns_passive:OnTakeDamage(params)
 	end
 end
 
+function modifier_item_crown_of_thorns_passive:GetAttributes()
+	return MODIFIER_ATTRIBUTE_MULTIPLE
+end
+
 function modifier_item_crown_of_thorns_passive:IsHidden()
 	return true
 end

@@ -3,61 +3,54 @@
 	//=================================================================================================================
 	// Recipe: TITAN Armor
 	//=================================================================================================================
-	"item_recipe_archmages_orb"
+	"item_recipe_warlocks_reliquary"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"3239"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"6283"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe_assault"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"1500"	
+		"ItemCost"						"1430"	
 		"ItemShopTags"					""
 		
 		// Recipe
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemRecipe"					"1"
-		"ItemResult"					"item_archmages_orb"
+		"ItemResult"					"item_warlocks_reliquary"
 		"ItemRequirements"
 		{
-			"01"						"item_sorcerers_staff;item_ring_of_mana"
+			"01"						"item_calming_skull;item_sorcerers_staff"
 		}
 	}
-	//=================================================================================================================
-	// TITAN Armor
-	//=================================================================================================================
-	"item_archmages_orb"
+	"item_warlocks_reliquary"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"3240"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"ID"							"3284"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_lua"
-		"ScriptFile"					"items/item_archmages_orb"
-		"AbilityTextureName"			"item_sphere"
+		"ScriptFile"					"items/item_warlocks_reliquary"
+		"AbilityTextureName"			"custom/warlocks_reliquary"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
 		
-		"ItemCost"						"400"
-		"ItemShopTags"					"mana;spell amp;mr;mana regen"
+		"ItemShopTags"					"spell amp;mana"
 		"ItemQuality"					"epic"
-		"ItemAliases"					"archmages orb;mana boots"
+		"ItemAliases"					"warlocks reliquary"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"particle"
+		"precache"
 		{
-			"particle"					"particles/items3_fx/warmage_recipient.vpcf"
-			"particle"					"particles/units/heroes/hero_nyx_assassin/nyx_assassin_mana_burn.vpcf"
-			"soundfile"					"soundevents/game_sounds_items.vsndevts"
+			"precache"					"soundevents/game_sounds_items.vsndevts"
 		}
-	
-		"AbilityCooldown"				"15"
-		
+
+
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
@@ -65,22 +58,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"mana_regen"			"5"
+				"bonus_spell_amp"		"20"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"spell_amp"				"16"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"mana_restore"			"15"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"900"
+				"var_type"				"FIELD_FLOAT"
+				"mana_cost_reduction"	"20"
 			}
 		}
 	}

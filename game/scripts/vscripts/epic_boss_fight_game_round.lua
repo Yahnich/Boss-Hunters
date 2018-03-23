@@ -333,8 +333,6 @@ function CHoldoutGameRound:_CheckForGoldBagDrop( killedUnit )
 		goldtogain = self._nGoldRemainingInRound
 	end
 	
-	print(exptogain, nCoreUnitsRemaining, "exp to gain")
-	
 	for _,unit in pairs ( Entities:FindAllByName( "npc_dota_hero*")) do
 		if unit:GetTeamNumber() == DOTA_TEAM_GOODGUYS and not unit:IsFakeHero() then
 			if exptogain > 0 then

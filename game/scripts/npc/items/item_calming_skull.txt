@@ -1,0 +1,36 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// TITAN Armor
+	//=================================================================================================================
+	"item_calming_skull"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"3220"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_calming_skull"
+		"AbilityTextureName"			"custom/calming_skull"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"385"
+		"ItemShopTags"					"mana cost;mana"
+		"ItemQuality"					"component"
+		"ItemAliases"					"calming skull"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"mana_cost_reduction"	"10"
+			}
+		}
+	}
+}

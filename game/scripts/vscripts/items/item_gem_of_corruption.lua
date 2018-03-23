@@ -18,6 +18,10 @@ function modifier_item_gem_of_corruption:OnAttackLanded(params)
 	end
 end
 
+function modifier_item_gem_of_corruption:GetAttributes()
+	return MODIFIER_ATTRIBUTE_MULTIPLE
+end
+
 function modifier_item_gem_of_corruption:IsHidden()
 	return true
 end

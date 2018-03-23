@@ -19,6 +19,10 @@ function modifier_item_amulet_of_aggression_passive:Bonus_ThreatGain()
 	return self.bonusThreat
 end
 
+function modifier_item_amulet_of_aggression_passive:GetAttributes()
+	return MODIFIER_ATTRIBUTE_MULTIPLE
+end
+
 function modifier_item_amulet_of_aggression_passive:IsHidden()
 	return true
 end

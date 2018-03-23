@@ -8,7 +8,8 @@ function item_dust_of_stasis:OnSpellStart()
 		enemy:AddNewModifier( caster, self, "modifier_item_dust_of_stasis_stasis", {duration = self:GetSpecialValueFor("stasis_duration")})
 	end
 	ParticleManager:FireParticle("particles/items_fx/dust_of_appearance.vpcf", PATTACH_ABSORIGIN, caster, {[0] = caster:GetAbsOrigin(), [1] = Vector(1200,1,1)})
-	self:Destroy()
+	self:SetCurrentCharges(self:GetCurrentCharges() - 1)
+	if self:GetCurrentCharges() == 0 then self:Destroy() end
 end
 
 

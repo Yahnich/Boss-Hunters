@@ -3,61 +3,56 @@
 	//=================================================================================================================
 	// Recipe: TITAN Armor
 	//=================================================================================================================
-	"item_recipe_archmages_orb"
+	"item_recipe_lazarus_rags"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"3239"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"3267"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe_assault"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"1500"	
+		"ItemCost"						"1150"	
 		"ItemShopTags"					""
 		
 		// Recipe
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemRecipe"					"1"
-		"ItemResult"					"item_archmages_orb"
+		"ItemResult"					"item_lazarus_rags"
 		"ItemRequirements"
 		{
-			"01"						"item_sorcerers_staff;item_ring_of_mana"
+			"01"						"item_archmages_orb;item_angelic_guard"
 		}
 	}
-	//=================================================================================================================
-	// TITAN Armor
-	//=================================================================================================================
-	"item_archmages_orb"
+	"item_lazarus_rags"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"3240"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"3268"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"BaseClass"						"item_lua"
-		"ScriptFile"					"items/item_archmages_orb"
-		"AbilityTextureName"			"item_sphere"
+		"ScriptFile"					"items/item_lazarus_rags"
+		"AbilityTextureName"			"custom/lazarus_rags"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
 		
-		"ItemCost"						"400"
-		"ItemShopTags"					"mana;spell amp;mr;mana regen"
+		"ItemShopTags"					"heal;mana"
 		"ItemQuality"					"epic"
-		"ItemAliases"					"archmages orb;mana boots"
+		"ItemAliases"					"guardian greaves;lazarus_rags"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"particle"
+		"precache"
 		{
-			"particle"					"particles/items3_fx/warmage_recipient.vpcf"
-			"particle"					"particles/units/heroes/hero_nyx_assassin/nyx_assassin_mana_burn.vpcf"
-			"soundfile"					"soundevents/game_sounds_items.vsndevts"
+			"precache"					"soundevents/game_sounds_items.vsndevts"
 		}
-	
-		"AbilityCooldown"				"15"
 		
+		"AbilityCooldown"				"15"
+		"AbilityManaCost"				"60"
+
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
@@ -65,22 +60,32 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"mana_regen"			"5"
+				"mana_restore"			"20"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
+				"heal"					"20"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mana_regen"			"5"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
 				"spell_amp"				"16"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"mana_restore"			"15"
+				"var_type"				"FIELD_FLOAT"
+				"block_chance"			"100"
 			}
-			"04"
+			"03"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"900"
+				"var_type"				"FIELD_FLOAT"
+				"damage_block"			"50"
 			}
 		}
 	}

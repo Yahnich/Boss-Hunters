@@ -22,6 +22,7 @@ function modifier_plate_of_the_unbreakable_passive:OnCreated()
 end
 
 function modifier_plate_of_the_unbreakable_passive:OnIntervalThink()
+	self.ms = 0
 	self.ms = self:GetParent():GetIdealSpeedNoSlows()
 end
 
