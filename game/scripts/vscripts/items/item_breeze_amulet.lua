@@ -8,7 +8,7 @@ end
 modifier_item_breeze_amulet_passive = class({})
 
 function modifier_item_breeze_amulet_passive:OnCreated()
-	self.manacost = self:GetSpecialValueFor("bonus_evasion")
+	self.evasion = self:GetSpecialValueFor("bonus_evasion")
 end
 
 function modifier_item_breeze_amulet_passive:DeclareFunctions()
@@ -16,7 +16,7 @@ function modifier_item_breeze_amulet_passive:DeclareFunctions()
 end
 
 function modifier_item_breeze_amulet_passive:GetModifierEvasion_Constant()
-	return self.manacost
+	return self.evasion
 end
 
 function modifier_item_breeze_amulet_passive:IsHidden()
