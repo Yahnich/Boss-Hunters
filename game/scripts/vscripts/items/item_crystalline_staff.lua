@@ -29,3 +29,7 @@ end
 function modifier_item_crystalline_staff_passive:GetModifierIncomingDamage_Percentage()
 	return self.bonusdamage
 end
+
+function modifier_item_crystalline_staff_passive:IsHidden()
+	return true
+end

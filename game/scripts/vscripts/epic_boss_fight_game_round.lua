@@ -424,7 +424,7 @@ function CHoldoutGameRound:HandleElites(spawnedUnit)
 				ParticleManager:ReleaseParticleIndex( nParticle )
 				
 				spawnedUnit:SetHealth(spawnedUnit:GetMaxHealth())
-				spawnedUnit:SetModelScale(spawnedUnit:GetModelScale()*1.5)
+				spawnedUnit:SetModelScale(spawnedUnit:GetModelScale()*1.15)
 				
 				local eliteAbType = ""
 				while eliteabstogive > 0 do

@@ -3,56 +3,58 @@
 	//=================================================================================================================
 	// Recipe: TITAN Armor
 	//=================================================================================================================
-	"item_recipe_lazarus_rags"
+	"item_recipe_glacier_boots"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"3267"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"3249"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"			"item_recipe_assault"
+		"AbilityTextureName"			"item_recipe"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"1150"	
+		"ItemCost"						"850"	
 		"ItemShopTags"					""
 		
 		// Recipe
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemRecipe"					"1"
-		"ItemResult"					"item_lazarus_rags"
+		"ItemResult"					"item_glacier_boots"
 		"ItemRequirements"
 		{
-			"01"						"item_archmages_orb;item_angelic_guard"
+			"01"						"item_elven_boots;item_mithril_armor;item_ice_fang"
 		}
 	}
-	"item_lazarus_rags"
+	//=================================================================================================================
+	// TITAN Armor
+	//=================================================================================================================
+	"item_glacier_boots"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"3268"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"ID"							"3250"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_TOGGLE"
 		"BaseClass"						"item_lua"
-		"ScriptFile"					"items/item_lazarus_rags"
-		"AbilityTextureName"			"custom/lazarus_rags"
+		"ScriptFile"					"items/item_glacier_boots"
+		"AbilityTextureName"			"custom/glacier_boots"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
 		
-		"ItemShopTags"					"heal;mana"
+		"ItemCost"						"1450"
+		"ItemShopTags"					"boots;slow"
 		"ItemQuality"					"epic"
-		"ItemAliases"					"guardian greaves;lazarus_rags"
+		"ItemAliases"					"shivas;glacier boots"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"precache"
+		"particle"
 		{
-			"precache"					"soundevents/game_sounds_items.vsndevts"
+			"particle"					"particles/status_fx/status_effect_wyvern_cold_embrace.vpcf"
+			"particle"					"particles/generic_gameplay/generic_slowed_cold.vpcf"
 		}
 		
-		"AbilityCooldown"				"15"
-		"AbilityManaCost"				"60"
-
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
@@ -60,37 +62,42 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"mana_restore"			"20"
+				"bonus_ms"				"50"
+			}
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_armor"			"15"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"heal"					"20"
+				"active_ms"				"-175"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"mana_regen"			"5"
+				"var_type"				"FIELD_INTEGER"
+				"active_armor"			"10"
 			}
 			"04"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"spell_amp"				"16"
+				"var_type"				"FIELD_INTEGER"
+				"active_as"				"-150"
 			}
 			"05"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"block_chance"			"100"
+				"var_type"				"FIELD_INTEGER"
+				"active_ms"				"-60"
 			}
 			"06"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"damage_block"			"50"
+				"var_type"				"FIELD_INTEGER"
+				"aura_slow"				"-50"
 			}
 			"07"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_health_regen"	"5"
+				"radius"				"900"
 			}
 		}
 	}

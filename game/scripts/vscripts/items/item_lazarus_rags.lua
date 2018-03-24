@@ -30,12 +30,18 @@ function modifier_item_lazarus_rags:OnCreated()
 	self.chance = self:GetAbility():GetSpecialValueFor("block_chance")
 	self.spellamp = self:GetSpecialValueFor("spell_amp")
 	self.manaregen = self:GetSpecialValueFor("mana_regen")
+	self.hp_regen = self:GetAbility():GetSpecialValueFor("bonus_health_regen")
 end
 
 function modifier_item_lazarus_rags:DeclareFunctions()
 	return {MODIFIER_PROPERTY_TOTAL_CONSTANT_BLOCK,
 			MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,
-			MODIFIER_PROPERTY_MANA_REGEN_CONSTANT}
+			MODIFIER_PROPERTY_MANA_REGEN_CONSTANT,
+			MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,}
+end
+
+function modifier_item_lazarus_rags:GetModifierConstantHealthRegen()
+	return self.hp_regen
 end
 
 function modifier_item_lazarus_rags:GetModifierTotal_ConstantBlock()

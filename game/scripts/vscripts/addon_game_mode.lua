@@ -824,6 +824,7 @@ function CHoldoutGameMode:OnHeroLevelUp(event)
 	local playerID = EntIndexToHScript(event.player):GetPlayerID()
 	local hero = PlayerResource:GetSelectedHeroEntity(playerID)
 	if hero:GetLevel() == 17 or hero:GetLevel() == 19 or (hero:GetLevel() > 20 and hero:GetLevel() < 25) then hero:SetAbilityPoints( hero:GetAbilityPoints() + 1) end
+	if hero:GetLevel() % 5 == 0 then hero:SetAbilityPoints( hero:GetAbilityPoints() + 1) end
 end
 
 function CHoldoutGameMode:OnAbilityLearned(event)
@@ -1136,7 +1137,8 @@ function CHoldoutGameMode:OnHeroPick (event)
 		hero.damageDone = 0
 		hero.hasBeenInitialized = true
 		
-		hero:AddExperience(200+300+400+500+600,false,false)
+		hero:AddExperience(200+300+400+500+100,false,false)
+		hero:SetAbilityPoints( hero:GetAbilityPoints() + 3)
 		
 		StatsScreen:RegisterPlayer(hero)
 		hero:AddNewModifier(hero, nil, "modifier_stats_system_handler", {})

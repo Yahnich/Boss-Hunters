@@ -14,6 +14,7 @@
 	   "item"		"item_elven_boots"
 	   "item"		"item_spell_refinery"
 	   "item"		"item_calming_skull"
+	   "item"		"item_gauntlet_of_alacrity"
     }
     "weapons_armor"
     {
@@ -22,6 +23,8 @@
 		"item"		"item_pages_buckler"
 		"item"		"item_soldiers_pike"
 		"item"		"item_breeze_amulet"
+		"item"		"item_mithril_armor"
+		"item"		"item_ice_fang"
     }
     "misc"
     {
@@ -32,6 +35,8 @@
 		"item"		"item_purging_stone"
 		"item"		"item_gem_of_corruption"
 		"item"		"item_cursed_amulet"
+		"item"		"item_orb_of_shadows"
+		"item"		"item_warm_fire"
     }
     // Level 1 - Green Recipes
     "basics"
@@ -48,6 +53,7 @@
 		"item"		"item_lucifers_cage"
 		"item"		"item_archmages_orb"
 		"item"		"item_lazarus_rags"
+		"item"		"item_dark_ones_blessing"
 		
     }
     "magics"
@@ -68,6 +74,9 @@
 		"item"		"item_memento"
 		"item"		"item_behemoths_heart"
 		"item"		"item_everbright_shield"
+		"item"		"item_gem_of_inner_power"
+		"item"		"item_fortress_shield"
+		"item"		"item_glacier_boots"
     }
 	"weapons"
     {
@@ -78,6 +87,7 @@
 		"item"		"item_leechblade"
 		"item"		"item_executioners_blade"
 		"item"		"item_lance_of_longinus"
+		"item"		"item_blood_gods_mask"
     }
     // Level 4 - Orange / Orb / Artifacts
     "artifacts"
@@ -87,5 +97,8 @@
 		"item"		"item_tricksters_blade"
 		"item"		"item_wings_of_icarus"
 		"item"		"item_soul_vessel"
+		"item"		"item_incandescance"
+		"item"		"item_frostbite"
+		"item"		"item_berserkers_cape"
     }
 }

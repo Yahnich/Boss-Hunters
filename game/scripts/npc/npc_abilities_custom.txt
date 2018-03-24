@@ -2016,7 +2016,7 @@
 	
 		// Damage.
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"					"20 25 30 35"
+		"AbilityDamage"					"15 18 21 24"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -2791,18 +2791,6 @@
 				{
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"		"%armor_debuff"
 					"MODIFIER_PROPERTY_DISABLE_HEALING" "1" 
-				}
-	        }
-	        "passive_check_death"
-	        {
-	        	"Passive" "1"
-		        "OnDestroy"
-				{
-					"RunScript"
-				        {
-				            "ScriptFile"                                "lua_boss/boss_32_meteor.lua"
-				            "Function"                                  "money_and_exp_gain"
-				        }
 				}
 	        }
 	    }
@@ -3638,7 +3626,7 @@
 			"01"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"damage"			"200 225 250 275"
+				"damage"			"50 60 70 80"
 			}
 			"02"
 			{
@@ -18360,7 +18348,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"				"1"
 		"AbilityTextureName"			"custom/skinwalker_charge_fortress"
-		"MaxLevel"						"6"
+		"MaxLevel"						"7"
 		
 		"precache"
 		{
@@ -18379,7 +18367,7 @@
 		"AbilityCooldown"				"28.0 26.0 24.0 22.0 20.0 16.0 14.0"
 		"AbilityCastRange"				"800 850 900 950 1000 1050 1100"
 		"AOERadius"						"375 400 425 450 475 500 525"
-		"AbilityDamage"					"800 1600 2400 4800 9600 20000 40000"
+		"AbilityDamage"					"80 160 240 320 400 480 560"
 		"AbilityThreat"					"20"
 	
 		// Cost

@@ -6,13 +6,16 @@ function item_pages_buckler:GetIntrinsicModifierName()
 end
 
 modifier_item_pages_buckler = class({})
+
 function modifier_item_pages_buckler:OnCreated()
 	self.block = self:GetAbility():GetSpecialValueFor("damage_block")
 	self.chance = self:GetAbility():GetSpecialValueFor("block_chance")
+	self.hp_regen = self:GetAbility():GetSpecialValueFor("bonus_health_regen")
 end
 
 function modifier_item_pages_buckler:DeclareFunctions()
-	return {MODIFIER_PROPERTY_TOTAL_CONSTANT_BLOCK}
+	return {MODIFIER_PROPERTY_TOTAL_CONSTANT_BLOCK,
+			MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT}
 end
 
 function modifier_item_pages_buckler:GetModifierTotal_ConstantBlock()
@@ -21,6 +24,6 @@ function modifier_item_pages_buckler:GetModifierTotal_ConstantBlock()
 	end
 end
 
-function modifier_item_pages_buckler:IsHidden()
-	return true
+function modifier_item_pages_buckler:GetModifierConstantHealthRegen()
+	return self.hp_regen
 end

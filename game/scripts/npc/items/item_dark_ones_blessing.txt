@@ -3,60 +3,55 @@
 	//=================================================================================================================
 	// Recipe: TITAN Armor
 	//=================================================================================================================
-	"item_recipe_lightningrod"
+	"item_recipe_dark_ones_blessing"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"4132"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"4589"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"			"item_recipe"
+		"AbilityTextureName"			"item_recipe_assault"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"965"	
+		"ItemCost"						"600"	
 		"ItemShopTags"					""
 		
 		// Recipe
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemRecipe"					"1"
-		"ItemResult"					"item_lightningrod"
+		"ItemResult"					"item_dark_ones_blessing"
 		"ItemRequirements"
 		{
-			"01"						"item_gauntlet_of_alacrity"
+			"01"						"item_mantle_of_the_fallen;item_hunters_hatchet;item_mithril_armor;item_orb_of_shadows"
 		}
 	}
-	"item_lightningrod"
+	"item_dark_ones_blessing"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"3219"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"ID"							"4590"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
 		"BaseClass"						"item_lua"
-		"ScriptFile"					"items/item_lightningrod"
-		"AbilityTextureName"			"item_maelstrom"
+		"ScriptFile"					"items/item_dark_ones_blessing"
+		"AbilityTextureName"			"item_vladmir"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
 		
-		"ItemCost"						"1765"
-		"ItemShopTags"					"magic"
-		"ItemQuality"					"component"
-		"ItemAliases"					"maelstrom;lightningrod"
+		"ItemShopTags"					"lifesteal;armor;damage;invis"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"vladmir;dark ones blessing"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		"AbilityCooldown"				"18"
-		"AbilityManaCost"				"150"
 		
 		"precache"
 		{
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_zuus.vsndevts"
-			"particle"					"particles/units/heroes/hero_zuus/zuus_lightning_bolt.vpcf"
+			"precache"					"soundevents/game_sounds_items.vsndevts"
 		}
+		
+		"AbilityCooldown"				"12"
+		"AbilityManaCost"				"50"
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
@@ -65,32 +60,27 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"primary_to_damage"		"200"
+				"lifesteal"				"15"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"bonus_attack_speed"	"35"
+				"bonus_damage"			"20"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"radius"				"625"
+				"bonus_armor"			"5"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"strike_chance"			"15"
+				"radius"				"900"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"strike_damage"			"125"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"strike_bounces"		"4"
+				"duration"				"12"
 			}
 		}
 	}

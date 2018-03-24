@@ -21,10 +21,17 @@ modifier_item_angelic_guard = class({})
 function modifier_item_angelic_guard:OnCreated()
 	self.block = self:GetAbility():GetSpecialValueFor("damage_block")
 	self.chance = self:GetAbility():GetSpecialValueFor("block_chance")
+	self.hp_regen = self:GetAbility():GetSpecialValueFor("bonus_health_regen")
 end
 
 function modifier_item_angelic_guard:DeclareFunctions()
-	return {MODIFIER_PROPERTY_TOTAL_CONSTANT_BLOCK}
+	return {MODIFIER_EVENT_ON_ATTACK_LANDED,
+			MODIFIER_PROPERTY_TOTAL_CONSTANT_BLOCK
+			MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,}
+end
+
+function modifier_item_angelic_guard:GetModifierConstantHealthRegen()
+	return self.hp_regen
 end
 
 function modifier_item_angelic_guard:GetModifierTotal_ConstantBlock()

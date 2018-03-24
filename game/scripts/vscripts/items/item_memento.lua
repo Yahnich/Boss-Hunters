@@ -14,11 +14,17 @@ modifier_item_memento = class({})
 function modifier_item_memento:OnCreated()
 	self.delay = self:GetSpecialValueFor("attack_delay")
 	self.chance = self:GetAbility():GetSpecialValueFor("dodge_chance")
+	self.hp_regen = self:GetAbility():GetSpecialValueFor("bonus_health_regen")
 end
 
 function modifier_item_memento:DeclareFunctions()
 	return {MODIFIER_EVENT_ON_ATTACK_LANDED,
-			MODIFIER_PROPERTY_TOTAL_CONSTANT_BLOCK}
+			MODIFIER_PROPERTY_TOTAL_CONSTANT_BLOCK,
+			MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,}
+end
+
+function modifier_item_memento:GetModifierConstantHealthRegen()
+	return self.hp_regen
 end
 
 function modifier_item_memento:OnAttackLanded(params)
