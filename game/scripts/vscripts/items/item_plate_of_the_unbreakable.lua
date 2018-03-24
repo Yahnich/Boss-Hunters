@@ -17,6 +17,7 @@ LinkLuaModifier("modifier_plate_of_the_unbreakable_passive", "items/item_plate_o
 
 function modifier_plate_of_the_unbreakable_passive:OnCreated()
 	self.armor = self:GetSpecialValueFor("armor")
+	self.radius = self:GetSpecialValueFor("radius")
 	self.ms = self:GetParent():GetIdealSpeedNoSlows()
 	self:StartIntervalThink(0.5)
 end
@@ -48,10 +49,59 @@ function modifier_plate_of_the_unbreakable_passive:GetModifierPhysicalArmorBonus
 	return self.armor
 end
 
+
+function modifier_item_mantle_of_the_fallen_stats:IsAura()
+	return true
+end
+
+function modifier_item_mantle_of_the_fallen_stats:GetModifierAura()
+	return "modifier_plate_of_the_unbreakable_aura"
+end
+
+function modifier_item_mantle_of_the_fallen_stats:GetAuraRadius()
+	return self.radius
+end
+
+function modifier_item_mantle_of_the_fallen_stats:GetAuraDuration()
+	return 0.5
+end
+
+function modifier_item_mantle_of_the_fallen_stats:GetAuraSearchTeam()    
+	return DOTA_UNIT_TARGET_TEAM_FRIENDLY
+end
+
+function modifier_item_mantle_of_the_fallen_stats:GetAuraSearchType()    
+	return DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
+end
+
+function modifier_item_mantle_of_the_fallen_stats:GetAuraSearchFlags()    
+	return DOTA_UNIT_TARGET_FLAG_NONE
+end
+
 function modifier_plate_of_the_unbreakable_passive:IsHidden()
 	return true
 end
 
 function modifier_plate_of_the_unbreakable_passive:GetAttributes()
 	return MODIFIER_ATTRIBUTE_MULTIPLE
+end
+
+modifier_plate_of_the_unbreakable_aura = class({})
+LinkLuaModifier("modifier_plate_of_the_unbreakable_aura", "items/item_plate_of_the_unbreakable", LUA_MODIFIER_MOTION_NONE)
+
+function modifier_plate_of_the_unbreakable_aura:OnCreated()
+	self.armor = self:GetSpecialValueFor("armor_aura")
+end
+
+function modifier_plate_of_the_unbreakable_aura:OnRefresh()
+	self.armor = self:GetSpecialValueFor("armor_aura")
+end
+
+function modifier_plate_of_the_unbreakable_passive:DeclareFunctions()
+	funcs = {MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS}
+	return funcs
+end
+
+function modifier_plate_of_the_unbreakable_passive:GetModifierPhysicalArmorBonus()
+	return self.armor
 end

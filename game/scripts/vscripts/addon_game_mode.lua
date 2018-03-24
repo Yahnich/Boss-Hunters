@@ -563,7 +563,6 @@ function CHoldoutGameMode:FilterModifiers( filterTable )
     local caster = EntIndexToHScript( caster_index )
 	local ability = EntIndexToHScript( ability_index )
 	local name = filterTable["name_const"]
-	
 	if parent and caster and duration ~= -1 then
 		local params = {healer = healer, target = target, heal = heal}
 		for _, modifier in ipairs( caster:FindAllModifiers() ) do

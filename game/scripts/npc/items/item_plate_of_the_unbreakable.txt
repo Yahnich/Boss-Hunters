@@ -14,7 +14,7 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"1600"	
+		"ItemCost"						"925"	
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -23,7 +23,7 @@
 		"ItemResult"					"item_plate_of_the_unbreakable"
 		"ItemRequirements"
 		{
-			"01"						"item_purging_stone"
+			"01"						"item_purging_stone;item_mithril_armor"
 		}
 	}
 	//=================================================================================================================
@@ -64,12 +64,22 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"armor"					"10"
+				"armor"					"5"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"heal"					"175"
+				"heal"					"225"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"armor_aura"			"5"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"900"
 			}
 		}
 	}
