@@ -55,7 +55,7 @@ function modifier_centaur_warchiefs_aegis_return:GetModifierTotal_ConstantBlock(
 	return strength * block
 end
 
-function modifier_centaur_warchiefs_aegis_return:OnAttackFail()
+function modifier_centaur_warchiefs_aegis_return:OnAttackFail(params)
 	if params.unit == self:GetParent() then
 		self:ProcReturn(params.attacker)
 	end

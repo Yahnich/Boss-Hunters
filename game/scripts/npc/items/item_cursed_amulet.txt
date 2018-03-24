@@ -26,8 +26,7 @@
 		{
 			"precache"					"soundevents/game_sounds_items.vsndevts"
 		}
-		
-		"AbilityCooldown"				"15"
+	
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
@@ -36,7 +35,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"chance"				"15"
+				"chance"				"20"
 			}
 			"01"
 			{

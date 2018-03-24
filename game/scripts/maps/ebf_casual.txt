@@ -39,7 +39,7 @@
 		"round_quest_title"			"#DOTA_Holdout_Round_Boss1_Quest_Title"
 		"round_title"				"#DOTA_Holdout_Round_Boss1_Title"
 		"FixedGold"					"100"
-		"FixedXP"					"600"
+		"FixedXP"					"800"
 		
 		// Stage 1 ================================================
 		"RoundBranches"
@@ -105,7 +105,7 @@
 		"round_quest_title"			"#DOTA_Holdout_Round_Boss2_Quest_Title"
 		"round_title"				"#DOTA_Holdout_Round_Boss2_Title"
 		"FixedGold"					"125"
-		"FixedXP"					"700"
+		"FixedXP"					"850"
 		
 		"RoundBranches"
 		{
@@ -143,7 +143,7 @@
 		"round_quest_title"			"#DOTA_Holdout_Round_Boss3_Quest_Title"
 		"round_title"				"#DOTA_Holdout_Round_Boss3_Title"
 		"FixedGold"					"150"
-		"FixedXP"					"800"
+		"FixedXP"					"900"
 		"RoundBranches"
 		{
 			"1"
@@ -163,7 +163,7 @@
 		"round_quest_title"			"#DOTA_Holdout_Round_Boss4_Quest_Title"
 		"round_title"				"#DOTA_Holdout_Round_Boss4_Title"
 		"FixedGold"					"175"
-		"FixedXP"					"900"
+		"FixedXP"					"950"
 		
 		"RoundBranches"
 		{

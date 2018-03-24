@@ -37,7 +37,7 @@ function modifier_centaur_champions_presence_buff:OnRefresh()
 	self.radius = self:GetTalentSpecialValueFor("radius")
 	self.cdr = self:GetTalentSpecialValueFor("cdr_per_unit")
 	self.amp = self:GetTalentSpecialValueFor("amp_per_unit")
-	self.max_stacks = self:GetTalentSpecialValueFor("max_amp") / self:GetTalentSpecialValueFor("amp_per_unit")
+	self.max_amp = self:GetTalentSpecialValueFor("max_amp")
 end
 
 function modifier_centaur_champions_presence_buff:OnIntervalThink()
@@ -60,12 +60,12 @@ function modifier_centaur_champions_presence_buff:DeclareFunctions()
 	return {MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE, MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE}
 end
 
-function modifier_centaur_champions_presence_buff:GetModifierPercentageCooldownStacking()
-	return self.cdr * self:GetStackCount()
+function modifier_centaur_champions_presence_buff:GetModifierPercentageCooldown()
+	return math.min(self.cdr * self:GetStackCount(), self.max_amp)
 end
 
 function modifier_centaur_champions_presence_buff:GetModifierSpellAmplify_Percentage()
-	return self.amp * self:GetStackCount()
+	return math.min(self.amp * self:GetStackCount(), self.max_amp)
 end
 
 function modifier_centaur_champions_presence_buff:GetEffectName()

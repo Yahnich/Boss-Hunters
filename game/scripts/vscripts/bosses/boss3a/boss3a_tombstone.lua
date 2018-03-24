@@ -27,7 +27,8 @@ end
 
 function modifier_boss3a_tombstone_passive:OnDeath(params)
 	if params.unit == self:GetParent() and params.unit:GetMaxHealth() * self.overkillThreshold > params.original_damage then
-		CreateUnitByName("npc_dota_boss3a_b", params.unit:GetAbsOrigin(), true, nil, nil, params.unit:GetTeam())
+		local torso = CreateUnitByName("npc_dota_boss3a_b", params.unit:GetAbsOrigin(), true, nil, nil, params.unit:GetTeam())
+		torso.Holdout_IsCore = true
 	end
 end
 

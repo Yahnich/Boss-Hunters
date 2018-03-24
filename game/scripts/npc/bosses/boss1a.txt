@@ -16,7 +16,7 @@
 		// Stats		
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"				"10 8"
-		"AbilityCastPoint"				"0.75 0.5"
+		"AbilityCastPoint"				"1.5 1"
 		"AbilityCastRange"				"600"
 	
 		// Cost
@@ -60,7 +60,7 @@
 		// Stats		
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"				"7"
-		"AbilityCastPoint"				"0.75 0.5"
+		"AbilityCastPoint"				"1.5 1"
 		"AbilityCastRange"				"1200"
 	
 		// Cost
@@ -102,8 +102,8 @@
 	
 		// Stats		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"15"
-		"AbilityCastPoint"				"0.75 0.5"
+		"AbilityCooldown"				"30"
+		"AbilityCastPoint"				"1.5 1"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -117,19 +117,14 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"8"
+				"duration"				"10"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"fade_time"				"1.5 1.0"
+				"fade_time"				"1.5"
 			}
 			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"movement_speed"		"16 20"
-			}
-			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"bonus_damage"			"150 225"

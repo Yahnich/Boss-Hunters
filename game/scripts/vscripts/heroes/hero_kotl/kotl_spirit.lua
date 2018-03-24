@@ -89,7 +89,7 @@ function modifier_kotl_spirit:DeclareFunctions()
     return funcs
 end
 
-function modifier_kotl_spirit:GetModifierPercentageCooldownStacking()
+function modifier_kotl_spirit:GetModifierPercentageCooldown()
     return self.cdr
 end
 

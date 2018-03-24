@@ -23,6 +23,8 @@ HEALTH_TABLE = {0,150,300,450,600,750,900,1050,1200,1350,1500}
 HEALTH_REGEN_TABLE = {0,3,6,9,12,15,18,21,24,27,30}
 STATUS_REDUCTION_TABLE = {0,10,15,20,25}
 
+ALL_STATS = 2
+
 function modifier_stats_system_handler:OnCreated()
 	self:UpdateStatValues()
 	self:StartIntervalThink(1)
@@ -54,6 +56,8 @@ function modifier_stats_system_handler:UpdateStatValues()
 	self.hpLevel = tonumber(CustomNetTables:GetTableValue("stats_panel", tostring(self:GetCaster():entindex()) )["hp"])
 	self.hprLevel = tonumber(CustomNetTables:GetTableValue("stats_panel", tostring(self:GetCaster():entindex()) )["hpr"])
 	self.srLevel = tonumber(CustomNetTables:GetTableValue("stats_panel", tostring(self:GetCaster():entindex()) )["sr"])
+	
+	self.allStats = tonumber(CustomNetTables:GetTableValue("stats_panel", tostring(self:GetCaster():entindex()) )["all"])
 end
 
 function modifier_stats_system_handler:DeclareFunctions()
@@ -70,14 +74,17 @@ function modifier_stats_system_handler:DeclareFunctions()
 		MODIFIER_PROPERTY_TOTAL_CONSTANT_BLOCK,
 		MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
 		MODIFIER_PROPERTY_HEALTH_BONUS,
-		MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT
+		MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
+		MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
+		MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
+		MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
 	}
 	return funcs
 end
 
 function modifier_stats_system_handler:GetModifierMoveSpeedBonus_Constant() return MOVESPEED_TABLE[self.msLevel + 1] end
-function modifier_stats_system_handler:GetModifierManaBonus() return MANA_TABLE[self.mpLevel + 1] end
-function modifier_stats_system_handler:GetModifierConstantManaRegen() return MANA_REGEN_TABLE[self.mprLevel + 1] end
+function modifier_stats_system_handler:GetModifierManaBonus() return 400 + MANA_TABLE[self.mpLevel + 1] end
+function modifier_stats_system_handler:GetModifierConstantManaRegen() return 1.5 + MANA_REGEN_TABLE[self.mprLevel + 1] end
 function modifier_stats_system_handler:GetModifierHealAmplify_Percentage() return HEAL_AMP_TABLE[self.haLevel + 1] end
 
 function modifier_stats_system_handler:GetModifierBaseAttack_BonusDamage() return ATTACK_DAMAGE_TABLE[self.adLevel + 1] end
@@ -90,9 +97,13 @@ function modifier_stats_system_handler:GetModifierPhysicalArmorBonus() return AR
 function modifier_stats_system_handler:GetModifierMagicalResistanceBonus() return MAGIC_RESIST_TABLE[self.mrLevel + 1] end
 function modifier_stats_system_handler:GetModifierTotal_ConstantBlock() return DAMAGE_BLOCK_TABLE[self.dbLevel + 1] end
 function modifier_stats_system_handler:GetModifierAttackRangeBonus() return ATTACK_RANGE_TABLE[self.arLevel + 1] end
-function modifier_stats_system_handler:GetModifierHealthBonus() return HEALTH_TABLE[self.hpLevel + 1] end
-function modifier_stats_system_handler:GetModifierConstantHealthRegen() return HEALTH_REGEN_TABLE[self.hprLevel + 1] end
+function modifier_stats_system_handler:GetModifierHealthBonus() return 300 + HEALTH_TABLE[self.hpLevel + 1] end
+function modifier_stats_system_handler:GetModifierConstantHealthRegen() return 2.5 + HEALTH_REGEN_TABLE[self.hprLevel + 1] end
 function modifier_stats_system_handler:GetModifierStatusResistance() return STATUS_REDUCTION_TABLE[self.srLevel + 1] end
+
+function modifier_stats_system_handler:GetModifierBonusStats_Strength() return ALL_STATS * self.allStats end
+function modifier_stats_system_handler:GetModifierBonusStats_Agility() return ALL_STATS * self.allStats end
+function modifier_stats_system_handler:GetModifierBonusStats_Intellect() return ALL_STATS * self.allStats end
 
 function modifier_stats_system_handler:IsHidden()
 	return true

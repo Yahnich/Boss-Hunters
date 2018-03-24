@@ -44,9 +44,9 @@
 		"ItemDroppable"					"1"
 		
 		"ItemCost"						"1800"
-		"ItemShopTags"					"mana"
+		"ItemShopTags"					"damage"
 		"ItemQuality"					"epic"
-		"ItemAliases"					"blade mail;penitent mail"
+		"ItemAliases"					"battle fury;culling greataxe"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
@@ -56,7 +56,7 @@
 			"soundfile"					"soundevents/game_sounds_items.vsndevts"
 		}
 	
-		"AbilityCooldown"				"35"
+		"AbilityCooldown"				"6"
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
@@ -65,7 +65,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"15"
+				"bonus_damage"			"35"
 			}
 			"02"
 			{

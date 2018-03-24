@@ -58,7 +58,7 @@ function modifier_earthshaker_enchant_totem_ebf:GetModifierSpellAmplify_Percenta
 	return self.amp
 end
 
-function modifier_earthshaker_enchant_totem_ebf:GetModifierPercentageCooldownStacking()
+function modifier_earthshaker_enchant_totem_ebf:GetModifierPercentageCooldown()
 	return self.cdr
 end
 

@@ -31,7 +31,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"leap_speed"			"600 800"
+				"leap_speed"			"600"
 			}
 			"02"
 			{
@@ -41,7 +41,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"leap_radius"			"175 200"
+				"leap_radius"			"175"
 			}
 			"04"
 			{
@@ -96,7 +96,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"spear_speed"			"1200"
+				"spear_speed"			"900"
 			}
 			"02"
 			{
@@ -111,7 +111,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"spear_damage"			"50 75"
+				"spear_damage"			"75 100"
 			}
 		}
 		"precache"
@@ -165,7 +165,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"spear_damage"			"100 150"
+				"spear_damage"			"75 100"
 			}
 			"05"
 			{

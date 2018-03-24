@@ -27,6 +27,10 @@ function modifier_boss1a_vanish_fade:DeclareFunctions()
 	return funcs
 end
 
+function modifier_boss1a_vanish_fade:CheckState()
+	return {[MODIFIER_STATE_DISARMED] = true}
+end
+
 function modifier_boss1a_vanish_fade:GetModifierInvisibilityLevel( params )
 	return 0.45
 end
@@ -55,16 +59,10 @@ function modifier_boss1a_vanish_invis:DeclareFunctions()
 		MODIFIER_EVENT_ON_ATTACK_LANDED,
 		MODIFIER_EVENT_ON_ABILITY_START,
 		MODIFIER_PROPERTY_PROCATTACK_BONUS_DAMAGE_PHYSICAL,
-		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
 	}
 
 	return funcs
 end
-
-function modifier_boss1a_vanish_invis:GetModifierMoveSpeedBonus_Percentage( params )
-	return self.ms
-end
-
 
 function modifier_boss1a_vanish_invis:OnAbilityStart( params )
 	if params.unit == self:GetParent() then self:Destroy() end

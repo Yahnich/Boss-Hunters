@@ -48,7 +48,7 @@ function modifier_beast_mode_allies:DeclareFunctions()
 	return funcs
 end
 
-function modifier_beast_mode_allies:GetModifierPercentageCooldownStacking()
+function modifier_beast_mode_allies:GetModifierPercentageCooldown()
 	return self:GetTalentSpecialValueFor("bonus_cdr")
 end
 

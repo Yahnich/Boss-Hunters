@@ -10,8 +10,8 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"AbilityTextureName"			"puck_illusory_orb"
 		
-		"AbilityCastPoint"				"0.75 0.5"
-		"AbilityCooldown"				"8 6"
+		"AbilityCastPoint"				"1.5 1"
+		"AbilityCooldown"				"12 8"
 		"AbilityCastRange"				"1200"
 		"AbilityCastAnimation"			"ACT_DOTA_UNDYING_SOUL_RIP"
 		
@@ -31,7 +31,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage_per_unit"		"33 50"
+				"damage_per_unit"		"15 30"
 			}
 			"01"
 			{
@@ -46,7 +46,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"speed"					"600 750"
+				"speed"					"600"
 			}
 			"04"
 			{
@@ -129,7 +129,7 @@
 		"AbilityTextureName"			"undying_soul_rip"
 		
 		"AbilityCastPoint"				"0.3"
-		"AbilityCooldown"				"25 20"
+		"AbilityCooldown"				"20"
 		"AbilityCastAnimation"			"ACT_DOTA_TELEPORT"
 		"AbilityChannelTime"			"2"
 		
@@ -147,7 +147,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"zombie_count"			"6 8"
+				"zombie_count"			"4 6"
 			}
 			"02"
 			{
@@ -165,8 +165,8 @@
 		"ScriptFile"					"bosses/boss4/boss4_tombstone"
 		"AbilityTextureName"			"undying_tombstone"
 		
-		"AbilityCastPoint"				"0.75 0.5"
-		"AbilityCooldown"				"20"
+		"AbilityCastPoint"				"1.2"
+		"AbilityCooldown"				"35 30"
 		"AbilityCastAnimation"			"ACT_DOTA_UNDYING_TOMBSTONE"
 		
 		"precache"
@@ -187,7 +187,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"break_distance"			"750 900"
+				"break_distance"			"500"
 			}
 		}
 	}

@@ -50,14 +50,15 @@ function modifier_blood_hunger:OnIntervalThink()
 	local caster = self:GetCaster()
 
 	if self:GetParent():GetTeam() ~= self:GetCaster():GetTeam() then
-		self:GetAbility():DealDamage(caster, self:GetParent(), self:GetSpecialValueFor("damage"), {}, OVERHEAD_ALERT_BONUS_POISON_DAMAGE)
+		self:GetAbility():DealDamage(caster, self:GetParent(), self:GetSpecialValueFor("damage"), nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE)
 		if self:GetParent():IsTaunted() then
 			if RollPercentage(self:GetSpecialValueFor("chance")) then
 				local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), self:GetSpecialValueFor("radius"), {})
 				for _,enemy in pairs(enemies) do
 					if enemy ~= self:GetParent() then
 						EmitSoundOn("Hero_Axe.Battle_Hunger", enemy)
-						enemy:AddNewModifier(caster, self, "modifier_blood_hunger", {Duration = self:GetSpecialValueFor("duration")})
+						enemy:AddNewModifier(caster, self:GetAbility(), "modifier_blood_hunger", {Duration = self:GetSpecialValueFor("duration")})
+						caster:AddNewModifier(caster, self:GetAbility(), "modifier_blood_hunger_strength", {Duration = self:GetSpecialValueFor("duration")}):IncrementStackCount()
 						break
 					end
 				end

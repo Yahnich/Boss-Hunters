@@ -380,22 +380,22 @@
 	        "02"
 	        {
 	            "var_type"                      "FIELD_INTEGER"
-	            "base"     						"28 40 52 64 76 88 100"
+	            "base"     						"14 20 26 32 38 44 50"
 	        }
 			"03"
 	        {
-	            "var_type"      "FIELD_INTEGER"
-	            "unload"     	"25"
+	            "var_type"      				"FIELD_INTEGER"
+	            "unload"     					"25"
 	        }
 			"04"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "limit"     	"280 400 520 640 760 880 1000"
+	            "limit"     	"140 200 260 320 380 440 500"
 	        }
 			"05"
 	        {
 	            "var_type"      "FIELD_INTEGER"
-	            "limit_scepter" "280 400 520 640 780 900 1080"
+	            "limit_scepter" "150 225 300 375 450 525 600"
 	        }
 			"06"
 	        {
@@ -3680,11 +3680,11 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"9.0 8.0 8.0 7.0"
+		"AbilityCooldown"				"9.0"
 	
 		// Damage.
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"					"400 500 600 750"
+		"AbilityDamage"					"50 60 75 80"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -3707,7 +3707,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"150 175 200 225"
+				"damage"				"50 60 75 80"
 			}
 		}
 	}
@@ -3749,7 +3749,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"strike_damage"			"110"
+				"strike_damage"			"30"
 			}
 			"02"
 			{
@@ -20529,13 +20529,13 @@
 			"01"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"spell_shield_resistance"		"26 34 42 50 55 60 65"
+				"spell_shield_resistance"		"12 16 20 24 28 32 36"
 				"LinkedSpecialBonus"			"special_bonus_unique_antimage_4"
 			}
 			"02"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"purge_interval"				"1.5 1.25 1.0 0.8 0.6 0.4 0.2"
+				"purge_interval"				"1.5"
 			}
 			"03"
 			{

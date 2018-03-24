@@ -32,6 +32,8 @@ function StatsScreen:StartStatsScreen()
 	self.hp = {0,150,300,450,600,750,900,1050,1200,1350,1500}
 	self.hpr = {0,3,6,9,12,15,18,21,24,27,30}
 	self.sr = {0,10,15,20,25}
+	
+	self.all = {2}
 end
 
 function StatsScreen:RegisterPlayer(hero)
@@ -55,6 +57,8 @@ function StatsScreen:RegisterPlayer(hero)
 	stats.hpr = 0
 	stats.sr = 0
 	
+	stats.all = 0
+	
 	CustomNetTables:SetTableValue("stats_panel", tostring(hero:entindex()), stats)
 	CustomNetTables:SetTableValue( "talents", tostring(hero:entindex()), {} )
 	CustomGameEventManager:Send_ServerToAllClients("dota_player_upgraded_stats", {playerID = hero:GetPlayerID()} )
@@ -65,6 +69,7 @@ function StatsScreen:ProcessStatsUpgrade(userid, event)
 	local entindex = event.entindex
 	local skill = tostring(event.skill)
 	local hero = EntIndexToHScript( entindex )
+
 	if entindex ~= PlayerResource:GetSelectedHeroEntity( pID ):entindex() then return end -- calling
 	local netTable = CustomNetTables:GetTableValue("stats_panel", tostring(entindex))
 	if not (netTable[skill] and self[skill]) and hero:GetAbilityPoints() > 0 then return end -- max level

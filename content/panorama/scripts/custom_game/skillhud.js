@@ -448,6 +448,21 @@ function LoadOtherLayout()
 		healAmp.SetPanelEvent("onmouseover", function(){$.DispatchEvent("DOTAShowTextTooltip", healAmp, "Next Level: +" + HEAL_AMP_TABLE[haLevel + 1]);});
 		healAmp.SetPanelEvent("onmouseout", function(){$.DispatchEvent("DOTAHideTextTooltip", healAmp);});
 	}
+	
+	var allStats = $.CreatePanel("Panel", statsTypeContainer, "StatsTypeContainerHealAmp");
+	allStats.BLoadLayoutSnippet("StatsContainer")
+	var bonusAll = statsNetTable["all"]
+	allStats.FindChildTraverse("StatsTypeLabel").text = $.Localize( "#STATS_TYPE_ALL_STATS", allStats)
+	allStats.FindChildTraverse("StatsTypeLevel").text = "+ " + bonusAll * 2
+
+	allStats.SetPanelEvent("onmouseover", function(){$.DispatchEvent("DOTAShowTextTooltip", allStats, "+2 All Stats");});
+	allStats.SetPanelEvent("onmouseout", function(){$.DispatchEvent("DOTAHideTextTooltip", allStats);});
+	
+	if( Entities.GetAbilityPoints( lastRememberedHero ) == 0 || lastRememberedHero != Players.GetPlayerHeroEntityIndex( localID ) ){
+		allStats.FindChildTraverse("StatsTypeButton").SetHasClass("ButtonInactive", true)
+	} else {
+		allStats.FindChildTraverse("StatsTypeButton").SetPanelEvent("onactivate", function(){UpgradeAbility("all")});
+	}
 }
 
 function LoadUniqueLayout()

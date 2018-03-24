@@ -16,7 +16,7 @@ function modifier_item_breeze_amulet_passive:DeclareFunctions()
 end
 
 function modifier_item_breeze_amulet_passive:GetModifierEvasion_Constant()
-	return self.evasion
+	return self.manacost
 end
 
 function modifier_item_breeze_amulet_passive:IsHidden()

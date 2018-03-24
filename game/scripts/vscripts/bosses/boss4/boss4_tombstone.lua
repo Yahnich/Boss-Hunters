@@ -67,11 +67,13 @@ function modifier_boss4_tombstone_tomb:GetModifierIncomingDamage_Percentage(para
 	local parent = self:GetParent()
 	if not params.attacker:IsSameTeam(parent) then params.attacker:ModifyThreat( 100 / parent:GetMaxHealth() ) end
 	local hp = parent:GetHealth()
-	if hp > 1 then
-		parent:SetHealth( hp - 1 )
-	else
+	local damage = 4
+	if not params.attacker:IsRealHero() then damage = 1 end
+	if damage < hp and params.inflictor ~= self:GetAbility() then
+		parent:SetHealth( hp - damage )
+		return -999
+	elseif hp <= 1 then
 		self:GetParent():StartGesture(ACT_DOTA_DIE)
 		parent:Kill(params.inflictor, params.attacker)
 	end
-	return -999
 end

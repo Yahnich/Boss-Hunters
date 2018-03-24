@@ -11,9 +11,9 @@ function MageRageUnload(keys)
 	local caster = keys.caster
 	local target = keys.target
 	local ability = keys.ability
-	if caster.rage > 1 and not target:IsMagicImmune() then
+	local damage = caster.rage*(keys.unload/100)
+	if damage > 1 and not target:IsMagicImmune() then
 		ability:ApplyDataDrivenModifier( caster, target, "mage_rage_active", {duration = 0.08})
-		local damage = caster.rage*(keys.unload/100)
 		ApplyDamage({ victim = target, attacker = caster, damage = damage, damage_type = ability:GetAbilityDamageType(), ability = ability })
 		caster.rage = caster.rage - damage
 	end
@@ -53,12 +53,12 @@ function MageRageVisual(keys)
 	if not caster:HasModifier(keys.modifier_bank)  and caster.bank > 10  then
 		ability:ApplyDataDrivenModifier(caster, target, keys.modifier_bank, {})
 	end
-	caster:SetModifierStackCount( keys.modifier_rage, ability, math.floor(caster.rage/1000 + 0.5) )
-	caster:SetModifierStackCount( keys.modifier_bank, ability, math.floor(caster.bank/1000) )
-	if caster.bank < 10 then
+	caster:SetModifierStackCount( keys.modifier_rage, ability, math.floor(caster.rage + 0.5) )
+	caster:SetModifierStackCount( keys.modifier_bank, ability, math.floor(caster.bank + 0.5) )
+	if caster.bank < 1 then
 		caster:RemoveModifierByName(keys.modifier_bank)
 	end
-	if caster.rage < 10 then
+	if caster.rage < 1 then
 		caster:RemoveModifierByName(keys.modifier_rage)
 	end
 end

@@ -23,10 +23,10 @@ function modifier_item_crown_of_thorns_passive:OnTakeDamage(params)
     local reflectpct = self.reflect / 100
 
 
-	if attacker:GetTeamNumber()  ~= hero:GetTeamNumber() then
+	if attacker:GetTeamNumber() ~= hero:GetTeamNumber() and not ( HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_HPLOSS) or HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION) ) then
 		if params.unit == hero then
 			dmg = dmg * reflectpct
-			self:GetAbility():DealDamage( hero, attacker, dmg, {damage_type = dmgtype} )
+			self:GetAbility():DealDamage( hero, attacker, dmg, {damage_type = dmgtype, damage_flags = DOTA_DAMAGE_FLAG_REFLECTION} )
 		end
 	end
 end

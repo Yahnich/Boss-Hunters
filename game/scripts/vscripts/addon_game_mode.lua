@@ -711,7 +711,7 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 		if not ability:IsAetherAmplified() then filterTable["damage"] = filterTable["damage"] / (1 + (attacker:GetSpellDamageAmp()))/100 end
 	end
 	if victim:IsRealHero() and not victim:IsRangedAttacker() and (damagetype == 1 or damagetype == 2) then
-		if not (ability and ability:GetName() == "skeleton_king_reincarnation") then
+		if not (ability and ability:GetName() == "skeleton_king_reincarnation") and victim ~= attacker then
 			filterTable["damage"] = filterTable["damage"] * 0.66
 		end
 	end
@@ -1696,6 +1696,8 @@ function CHoldoutGameMode:OnThink()
 				self._currentRound:Think()
 				if self._currentRound:IsFinished() then
 					self._currentRound:End()
+					GameRules:SetGoldTickTime( 0 )
+					GameRules:SetGoldPerTick( 0 )
 					self._nRoundNumber = self._nRoundNumber + 1
 					boss_meteor:SetRoundNumer(self._nRoundNumber)
 					GameRules._roundnumber = self._nRoundNumber
@@ -1917,6 +1919,7 @@ function CHoldoutGameMode:_CheckForDefeat()
 						local totalgold = unit:GetGold() + self._nRoundNumber * 100
 						unit:SetGold(0 , false)
 						unit:SetGold(totalgold, true)
+						unit:AddExperience(self._nRoundNumber * 100,false,false)
 					end
 				end
 				self:_RefreshPlayers()
@@ -1954,6 +1957,8 @@ function CHoldoutGameMode:_ThinkPrepTime()
 		end
 		self._currentRound = self._vRounds[ self._nRoundNumber ]
 		self._currentRound:Begin()
+		GameRules:SetGoldTickTime( 1 )
+		GameRules:SetGoldPerTick( 1 )
 		for _,unit in pairs ( HeroList:GetAllHeroes() ) do
 			if not unit:IsFakeHero() then
 				unit.statsDamageDealt = 0
@@ -1977,18 +1982,7 @@ function CHoldoutGameMode:OnNPCSpawned( event )
 			spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_invulnerable", {})
 		end
 		if spawnedUnit:IsCreature() and spawnedUnit:GetTeam() == DOTA_TEAM_BADGUYS and spawnedUnit:GetUnitName() ~= "npc_dota_boss36" and spawnedUnit:GetUnitName() ~= "npc_dota_boss4_tomb" then
-			local expectedHP = ( 1750 + 250 * (GameRules._roundnumber or 0) ) * RandomFloat(0.85, 1.15)
-			local expectedDamage = ( 15 + 12 * (GameRules._roundnumber or 0) ) * RandomFloat(0.85, 1.15)
-			local expectedArmor = ( GameRules._roundnumber or 0 ) * RandomFloat(0.85, 1.15)
-			if not spawnedUnit:IsRangedAttacker() then
-				expectedHP = expectedHP * 1.33
-				expectedArmor = expectedArmor * 1.2
-				expectedDamage = expectedDamage * 1.2
-			end
-			if not spawnedUnit.Holdout_IsCore then
-				expectedHP = expectedHP * 0.07
-				expectedDamage = expectedDamage * 0.85
-			end
+			local expectedHP = spawnedUnit:GetHealth() * RandomFloat(0.9, 1.15)
 			if GetMapName() == "epic_boss_fight_hardcore" then expectedHP = expectedHP * 1.35 end
 			local playerMultiplier = 0.25
 			if GetMapName() == "epic_boss_fight_hardcore" then playerMultiplier = 0.33 end
@@ -1998,8 +1992,6 @@ function CHoldoutGameMode:OnNPCSpawned( event )
 			spawnedUnit:SetBaseMaxHealth(expectedHP)
 			spawnedUnit:SetMaxHealth(expectedHP)
 			spawnedUnit:SetHealth(expectedHP)
-			spawnedUnit:SetPhysicalArmorBaseValue(expectedArmor)
-			spawnedUnit:SetAverageBaseDamage( expectedDamage, RandomInt(15, 30) )
 			spawnedUnit:SetBaseHealthRegen(GameRules._roundnumber * RandomFloat(0.85, 1.15) )
 			
 			spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_boss_attackspeed", {})
