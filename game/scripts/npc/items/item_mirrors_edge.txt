@@ -3,14 +3,14 @@
 	//=================================================================================================================
 	// Recipe: TITAN Armor
 	//=================================================================================================================
-	"item_recipe_tricksters_blade"
+	"item_recipe_mirrors_edge"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"3247"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"6619"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"			"item_recipe_assault"
+		"AbilityTextureName"			"item_recipe"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -20,24 +20,24 @@
 		// Recipe
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemRecipe"					"1"
-		"ItemResult"					"item_tricksters_blade"
+		"ItemResult"					"item_mirrors_edge"
 		"ItemRequirements"
 		{
-			"01"						"item_dagger_of_escape;item_mirrors_edge"
+			"01"						"item_blade_of_agility;item_gauntlet_of_alacrity"
 		}
 	}
 	//=================================================================================================================
 	// TITAN Armor
 	//=================================================================================================================
-	"item_tricksters_blade"
+	"item_mirrors_edge"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"3248"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"6620"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
 		"BaseClass"						"item_lua"
-		"ScriptFile"					"items/item_tricksters_blade"
-		"AbilityTextureName"			"custom/tricksters_blade"
+		"ScriptFile"					"items/item_mirrors_edge"
+		"AbilityTextureName"			"item_manta"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
@@ -54,7 +54,8 @@
 			"particle"					"particles/items_fx/blink_dagger_start.vpcf"
 			"particle"					"particles/items_fx/blink_dagger_end.vpcf"
 		}
-		"AbilityCooldown"				"12"
+		
+		"AbilityCooldown"				"32"
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
@@ -63,7 +64,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_agility"			"25"
+				"bonus_agility"			"16"
 			}
 			"02"
 			{
@@ -73,7 +74,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"blink_range"			"1200"
+				"illusion_count"		"1"
 			}
 			"04"
 			{
@@ -88,7 +89,7 @@
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"duration"				"4"
+				"duration"				"16"
 			}
 		}
 	}

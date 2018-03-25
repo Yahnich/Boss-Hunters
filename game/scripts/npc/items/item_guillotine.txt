@@ -3,14 +3,14 @@
 	//=================================================================================================================
 	// Recipe: TITAN Armor
 	//=================================================================================================================
-	"item_recipe_executioners_blade"
+	"item_recipe_guillotine"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"6279"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"6613"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"			"item_recipe_assault"
+		"AbilityTextureName"			"item_recipe"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -20,28 +20,28 @@
 		// Recipe
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemRecipe"					"1"
-		"ItemResult"					"item_executioners_blade"
+		"ItemResult"					"item_guillotine"
 		"ItemRequirements"
 		{
-			"01"						"item_hunters_hatchet"
+			"01"						"item_executioners_blade"
 		}
 	}
-	"item_executioners_blade"
+	"item_guillotine"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"3280"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"6614"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_lua"
-		"ScriptFile"					"items/item_executioners_blade"
-		"AbilityTextureName"			"item_demon_edge"
+		"ScriptFile"					"items/item_guillotine"
+		"AbilityTextureName"			"item_lesser_crit"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
 		
 		"ItemShopTags"					"damage;crit"
 		"ItemQuality"					"epic"
-		"ItemAliases"					"daedalus;executioners_blade"
+		"ItemAliases"					"crystalys;guillotine"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
@@ -58,12 +58,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"critical_chance"		"20"
+				"critical_chance"		"25"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"critical_damage"		"225"
+				"critical_damage"		"275"
 			}
 		}
 	}

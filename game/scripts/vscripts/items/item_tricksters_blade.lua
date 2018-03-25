@@ -22,3 +22,31 @@ function item_tricksters_blade:OnSpellStart()
 	illusion:SetThreat( caster:GetThreat() )
 	caster:SetThreat( 0 )
 end
+
+
+
+function item_tricksters_blade:GetIntrinsicModifierName()
+	return "modifier_item_tricksters_blade"
+end
+
+modifier_item_tricksters_blade = class({})
+LinkLuaModifier("modifier_item_tricksters_blade", "items/item_tricksters_blade", LUA_MODIFIER_MOTION_NONE)
+
+function modifier_item_tricksters_blade:OnCreated()
+	self.agility = self:GetSpecialValueFor("bonus_agility")
+	self.attackSpeed = self:GetSpecialValueFor("bonus_attackspeed")
+end
+
+function modifier_item_tricksters_blade:DeclareFunctions()
+	return {MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+			MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
+			}
+end
+
+function modifier_item_tricksters_blade:GetModifierAttackSpeedBonus_Constant()
+	return self.attackSpeed
+end
+
+function modifier_item_tricksters_blade:GetModifierBonusStats_Agility()
+	return self.agility
+end

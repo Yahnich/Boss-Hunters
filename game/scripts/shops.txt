@@ -41,7 +41,9 @@
     // Level 1 - Green Recipes
     "basics"
     {
-	
+		"item"		"item_blade_of_agility"
+		"item"		"item_ogre_club"
+		"item"		"item_staff_of_magi"
     }
     // Level 2 - Blue Recipes
     "support"
@@ -54,7 +56,7 @@
 		"item"		"item_archmages_orb"
 		"item"		"item_lazarus_rags"
 		"item"		"item_dark_ones_blessing"
-		
+		"item"		"item_hurricane_blade"
     }
     "magics"
     {  
@@ -77,6 +79,7 @@
 		"item"		"item_gem_of_inner_power"
 		"item"		"item_fortress_shield"
 		"item"		"item_glacier_boots"
+		"item"		"item_legionnaires_dualswords"
     }
 	"weapons"
     {
@@ -88,17 +91,20 @@
 		"item"		"item_executioners_blade"
 		"item"		"item_lance_of_longinus"
 		"item"		"item_blood_gods_mask"
+		"item"		"item_blade_of_storm"
+		"item"		"item_guillotine"
     }
     // Level 4 - Orange / Orb / Artifacts
     "artifacts"
     {
         "item"		"item_ultimate_scepter"
 		"item"		"item_force_boots"
-		"item"		"item_tricksters_blade"
+		"item"		"item_mirrors_edge"
 		"item"		"item_wings_of_icarus"
 		"item"		"item_soul_vessel"
 		"item"		"item_incandescance"
 		"item"		"item_frostbite"
 		"item"		"item_berserkers_cape"
+		"item"		"item_tricksters_blade"
     }
 }

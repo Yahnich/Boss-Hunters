@@ -3,59 +3,54 @@
 	//=================================================================================================================
 	// Recipe: TITAN Armor
 	//=================================================================================================================
-	"item_recipe_tricksters_blade"
+	"item_recipe_blade_of_storm"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"3247"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"6617"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"			"item_recipe_assault"
+		"AbilityTextureName"			"item_recipe"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"240"	
+		"ItemCost"						"1200"	
 		"ItemShopTags"					""
 		
 		// Recipe
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemRecipe"					"1"
-		"ItemResult"					"item_tricksters_blade"
+		"ItemResult"					"item_blade_of_storm"
 		"ItemRequirements"
 		{
-			"01"						"item_dagger_of_escape;item_mirrors_edge"
+			"01"						"item_hunters_hatchet;item_breeze_amulet;item_gauntlet_of_alacrity;item_blade_of_agility"
 		}
 	}
-	//=================================================================================================================
-	// TITAN Armor
-	//=================================================================================================================
-	"item_tricksters_blade"
+	"item_blade_of_storm"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"3248"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"ID"							"6618"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_lua"
-		"ScriptFile"					"items/item_tricksters_blade"
-		"AbilityTextureName"			"custom/tricksters_blade"
+		"ScriptFile"					"items/item_blade_of_storm"
+		"AbilityTextureName"			"item_butterfly"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
 		
-		"ItemCost"						"1650"
-		"ItemShopTags"					"blink;tp"
+		"ItemShopTags"					"damage;crit"
 		"ItemQuality"					"epic"
-		"ItemAliases"					"blink;tricksters blade;manta"
+		"ItemAliases"					"crystalys;blade_of_storm"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"particle"
+		"precache"
 		{
-			"particle"					"particles/items_fx/blink_dagger_start.vpcf"
-			"particle"					"particles/items_fx/blink_dagger_end.vpcf"
+			"precache"					"soundevents/game_sounds_items.vsndevts"
 		}
-		"AbilityCooldown"				"12"
-		
+
+
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
@@ -63,32 +58,37 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_agility"			"25"
+				"bonus_attackspeed"		"35"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_attackspeed"		"35"
+				"var_type"				"FIELD_FLOAT"
+				"bonus_evasion"			"35"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"blink_range"			"1200"
+				"var_type"				"FIELD_FLOAT"
+				"bonus_damage"			"35"
 			}
 			"04"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"illu_outgoing_damage"	"20"
+				"var_type"				"FIELD_FLOAT"
+				"bonus_agility"			"35"
 			}
 			"05"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"illu_incoming_damage"	"200"
+				"var_type"				"FIELD_FLOAT"
+				"shock_chance"			"35"
 			}
 			"06"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"duration"				"4"
+				"var_type"				"FIELD_FLOAT"
+				"shock_damage"			"80"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"shock_duration"		"0.35"
 			}
 		}
 	}

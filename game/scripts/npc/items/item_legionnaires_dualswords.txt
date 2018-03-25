@@ -3,14 +3,14 @@
 	//=================================================================================================================
 	// Recipe: TITAN Armor
 	//=================================================================================================================
-	"item_recipe_tricksters_blade"
+	"item_recipe_legionnaires_dualswords"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"3247"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"6621"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"			"item_recipe_assault"
+		"AbilityTextureName"			"item_recipe"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -20,24 +20,24 @@
 		// Recipe
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemRecipe"					"1"
-		"ItemResult"					"item_tricksters_blade"
+		"ItemResult"					"item_legionnaires_dualswords"
 		"ItemRequirements"
 		{
-			"01"						"item_dagger_of_escape;item_mirrors_edge"
+			"01"						"item_blade_of_agility;item_ogre_club;item_cursed_amulet"
 		}
 	}
 	//=================================================================================================================
 	// TITAN Armor
 	//=================================================================================================================
-	"item_tricksters_blade"
+	"item_legionnaires_dualswords"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"3248"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"ID"							"6622"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_lua"
-		"ScriptFile"					"items/item_tricksters_blade"
-		"AbilityTextureName"			"custom/tricksters_blade"
+		"ScriptFile"					"items/item_legionnaires_dualswords"
+		"AbilityTextureName"			"item_sange_and_yasha"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
@@ -51,10 +51,9 @@
 		
 		"particle"
 		{
-			"particle"					"particles/items_fx/blink_dagger_start.vpcf"
-			"particle"					"particles/items_fx/blink_dagger_end.vpcf"
+			"particle"					"particles/items2_fx/sange_maim.vpcf"
+			"soundfile"					"soundevents/game_sounds_items.vsndevts"
 		}
-		"AbilityCooldown"				"12"
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
@@ -63,33 +62,39 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_agility"			"25"
+				"bonus_agility"			"16"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_attackspeed"		"35"
+				"bonus_attackspeed"		"16"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"blink_range"			"1200"
+				"bonus_strength"		"16"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"illu_outgoing_damage"	"20"
+				"bonus_movespeed"		"16"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"illu_incoming_damage"	"200"
+				"attack_slow"			"-32"
 			}
 			"06"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"duration"				"4"
+				"var_type"				"FIELD_FLOAT"
+				"disable_duration"		"3.5"
 			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"disable_chance"		"25"
+			}
+
 		}
 	}
 }

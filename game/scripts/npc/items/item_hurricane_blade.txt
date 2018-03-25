@@ -3,92 +3,81 @@
 	//=================================================================================================================
 	// Recipe: TITAN Armor
 	//=================================================================================================================
-	"item_recipe_tricksters_blade"
+	"item_recipe_hurricane_blade"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"3247"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"6623"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"			"item_recipe_assault"
+		"AbilityTextureName"			"item_recipe"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"240"	
+		"ItemCost"						"650"	
 		"ItemShopTags"					""
 		
 		// Recipe
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemRecipe"					"1"
-		"ItemResult"					"item_tricksters_blade"
+		"ItemResult"					"item_hurricane_blade"
 		"ItemRequirements"
 		{
-			"01"						"item_dagger_of_escape;item_mirrors_edge"
+			"01"						"item_breeze_amulet;item_ogre_club"
 		}
 	}
 	//=================================================================================================================
 	// TITAN Armor
 	//=================================================================================================================
-	"item_tricksters_blade"
+	"item_hurricane_blade"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"3248"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"ID"							"6624"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"BaseClass"						"item_lua"
-		"ScriptFile"					"items/item_tricksters_blade"
-		"AbilityTextureName"			"custom/tricksters_blade"
+		"ScriptFile"					"items/item_hurricane_blade"
+		"AbilityTextureName"			"item_heavens_halberd"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
 		
 		"ItemCost"						"1650"
-		"ItemShopTags"					"blink;tp"
+		"ItemShopTags"					"evasion;hp;disarm"
 		"ItemQuality"					"epic"
-		"ItemAliases"					"blink;tricksters blade;manta"
+		"ItemAliases"					"heavens halberd;hurricane blade"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
 		"particle"
 		{
-			"particle"					"particles/items_fx/blink_dagger_start.vpcf"
-			"particle"					"particles/items_fx/blink_dagger_end.vpcf"
+			"particle"					"particles/items2_fx/heavens_halberd_debuff_disarm.vpcf"
+			"soundfile"					"soundevents/game_sounds_items.vsndevts"
 		}
-		"AbilityCooldown"				"12"
+		
+		"AbilityCooldown"				"15"
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
 			"01"
+			
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_agility"			"25"
+				"bonus_strength"		"16"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_attackspeed"		"35"
+				"bonus_evasion"			"25"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"blink_range"			"1200"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"illu_outgoing_damage"	"20"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"illu_incoming_damage"	"200"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"duration"				"4"
+				"var_type"				"FIELD_FLOAT"
+				"disarm_duration"		"5.0"
 			}
 		}
 	}
