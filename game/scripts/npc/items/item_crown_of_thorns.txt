@@ -29,7 +29,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"reflect"				"15"
+				"reflect"				"35"
 			}
 		}
 	}

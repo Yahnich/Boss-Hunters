@@ -23,7 +23,7 @@ function modifier_item_arcane_accelerator_passive:GetModifierPercentageCooldownS
 end
 
 function modifier_item_arcane_accelerator_passive:OnAbilityFullyCast(params)
-	if params.ability then
+	if params.ability and params.unit == self:GetParent() then
 		if ( params.ability:GetAbilityType() == 5 and RollPercentage( self.ultChance ) ) or ( params.ability:GetAbilityType() ~= 5 and RollPercentage( self.basicChance ) ) then
 			params.ability:Refresh()
 		end

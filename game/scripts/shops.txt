@@ -45,6 +45,7 @@
 		"item"		"item_blade_of_agility"
 		"item"		"item_ogre_club"
 		"item"		"item_staff_of_magi"
+		"item"		"item_aeon_shard"
     }
     // Level 2 - Blue Recipes
     "support"

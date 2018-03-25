@@ -64,12 +64,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"reflect"				"20"
+				"reflect"				"50"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"active_reflect"		"100"
+				"active_reflect"		"150"
 			}
 			"03"
 			{

@@ -64,7 +64,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"hp_per_str"			"10"
+				"hp_per_str"			"15"
 			}
 			"02"
 			{

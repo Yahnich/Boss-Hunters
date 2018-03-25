@@ -14,7 +14,7 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"3950"	
+		"ItemCost"						"2800"	
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -23,7 +23,7 @@
 		"ItemResult"					"item_crystalline_staff"
 		"ItemRequirements"
 		{
-			"01"						"item_spell_refinery"
+			"01"						"item_spell_refinery;item_sorcerers_staff"
 		}
 	}
 	"item_crystalline_staff"
@@ -63,7 +63,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"bonus_spell_damage"	"25"
+				"bonus_spell_damage"	"50"
 			}
 			"03"
 			{

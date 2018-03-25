@@ -22,7 +22,7 @@
 		"ItemAliases"					"blink;keelans dagger of escape"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		"AbilityCooldown"				"30"
+		"AbilityCooldown"				"16"
 		"AbilitySpecial"
 		{
 			"01"

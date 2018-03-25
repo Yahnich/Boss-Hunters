@@ -20,6 +20,7 @@
 #base "items/item_gauntlet_of_alacrity.txt"
 #base "items/item_warm_fire.txt"
 #base "items/item_ice_fang.txt"
+#base "items/item_aeon_shard.txt"
 
 #base "items/item_plate_of_the_unbreakable.txt"
 #base "items/item_penitent_mail.txt"

@@ -29,7 +29,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"mana_cost_reduction"	"10"
+				"mana_cost_reduction"	"20"
 			}
 		}
 	}
