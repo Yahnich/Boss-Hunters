@@ -10,8 +10,9 @@ function item_archmages_orb:OnSpellStart()
 	ParticleManager:FireParticle("particles/units/heroes/hero_nyx_assassin/nyx_assassin_mana_burn.vpcf", PATTACH_POINT_FOLLOW, caster)
 	EmitSoundOn("DOTA_Item.ArcaneBoots.Activate", caster)
 	local managain = self:GetSpecialValueFor("mana_restore") / 100
+	local minRestore = self:GetSpecialValueFor("min_restore")
 	for _, ally in ipairs( caster:FindFriendlyUnitsInRadius( caster:GetAbsOrigin(), self:GetSpecialValueFor("radius") ) ) do
-		ally:GiveMana( ally:GetMaxMana() * managain )
+		ally:GiveMana( math.max(minRestore, ally:GetMaxMana() * managain) )
 		ParticleManager:FireParticle("particles/items3_fx/warmage_recipient.vpcf", PATTACH_POINT_FOLLOW, ally)
 	end
 end

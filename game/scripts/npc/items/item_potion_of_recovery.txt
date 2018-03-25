@@ -15,7 +15,7 @@
 		"ScriptFile"					"items/item_potion_of_recovery"
 		"AbilityTextureName"			"item_flask"
 		"ItemKillable"					"1"
-		"ItemSellable"					"1"
+		"ItemSellable"					"0"
 		"ItemDroppable"					"1"
 		"Model"							"models/props_gameplay/salve.vmdl"
 		

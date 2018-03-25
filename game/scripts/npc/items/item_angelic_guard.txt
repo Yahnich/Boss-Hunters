@@ -87,6 +87,11 @@
 				"var_type"				"FIELD_INTEGER"
 				"bonus_health_regen"	"3"
 			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"min_heal"				"250"
+			}
 		}
 	}
 }

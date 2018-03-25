@@ -317,6 +317,16 @@ function CHoldoutGameRound:OnEntityKilled( event )
 			local drop = CreateItemOnPositionForLaunch( killedUnit:GetAbsOrigin(), Item_spawn )
 			Item_spawn:LaunchLoot( false, 300, 0.75, killedUnit:GetAbsOrigin() + RandomVector( RandomFloat( 50, 350 ) ) )
 		end
+		
+		for _, hero in ipairs( HeroList:GetAllHeroes() ) do
+			hero:HealEvent( hero:GetMaxHealth() * 0.15, nil, nil )
+			hero:GiveMana( hero:GetMaxMana() * 0.15 )
+		end
+	else
+		for _, hero in ipairs( HeroList:GetAllHeroes() ) do
+			hero:HealEvent( hero:GetMaxHealth() * 0.02, nil, nil )
+			hero:GiveMana( hero:GetMaxMana() * 0.02 )
+		end
 	end
 end
 

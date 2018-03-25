@@ -7,7 +7,7 @@ modifier_item_staff_of_magi_handle = class({})
 LinkLuaModifier( "modifier_item_staff_of_magi_handle", "items/item_staff_of_magi.lua", LUA_MODIFIER_MOTION_NONE )
 
 function modifier_item_staff_of_magi_handle:OnCreated()
-	self.stat = self:GetSpecialValueFor("bonus_strength")
+	self.stat = self:GetSpecialValueFor("bonus_intellect")
 end
 
 function modifier_item_staff_of_magi_handle:GetAttributes()

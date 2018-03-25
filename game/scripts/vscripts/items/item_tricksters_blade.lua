@@ -50,3 +50,7 @@ end
 function modifier_item_tricksters_blade:GetModifierBonusStats_Agility()
 	return self.agility
 end
+
+function modifier_item_tricksters_blade:IsHidden()
+	return true
+end

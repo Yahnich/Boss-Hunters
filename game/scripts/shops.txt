@@ -6,6 +6,7 @@
 		"item"		"item_potion_of_recovery"
 		"item"		"item_potion_of_essence"
 		"item"		"item_dust_of_stasis"
+		"item"		"item_creed_of_knowledge"
     }
     "attributes"
     {

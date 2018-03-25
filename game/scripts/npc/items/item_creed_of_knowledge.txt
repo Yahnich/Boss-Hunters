@@ -3,32 +3,28 @@
 	//=================================================================================================================
 	// TITAN Armor
 	//=================================================================================================================
-	"item_potion_of_essence"
+	"item_creed_of_knowledge"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"4501"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"ID"							"9999"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"BaseClass"						"item_lua"
-		"ScriptFile"					"items/item_potion_of_essence"
-		"AbilityTextureName"			"item_clarity"
+		"ScriptFile"					"items/item_creed_of_knowledge"
+		"AbilityTextureName"			"item_tome_of_knowledge"
 		"ItemKillable"					"1"
 		"ItemSellable"					"0"
 		"ItemDroppable"					"1"
 		"Model"							"models/props_gameplay/clarity.vmdl"	
 		
-		"ItemCost"						"60"
-		"ItemShopTags"					"mana"
+		"ItemCost"						"1000"
+		"ItemShopTags"					"xp;experience"
 		"ItemQuality"					"consumable"
-		"ItemAliases"					"clarity"
+		"ItemAliases"					"tome of knowledge;creed of knowledge"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-		"ItemStackable"					"1"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemPermanent"					"0"
-		"ItemInitialCharges"			"1"
-		"ItemDisplayCharges"			"1"
+		"ItemCastOnPickup"				"1"
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
@@ -37,12 +33,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"regen"					"6"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"10"
+				"bonus_xp"				"1000"
 			}
 		}
 	}

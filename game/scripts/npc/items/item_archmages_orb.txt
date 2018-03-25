@@ -82,6 +82,11 @@
 				"var_type"				"FIELD_INTEGER"
 				"radius"				"900"
 			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"min_restore"			"250"
+			}
 		}
 	}
 }

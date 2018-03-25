@@ -73,6 +73,7 @@
 #base "items/item_potion_of_recovery.txt"
 #base "items/item_potion_of_essence.txt"
 #base "items/item_dust_of_stasis.txt"
+#base "items/item_creed_of_knowledge.txt"
 
 
 "DOTAAbilities"

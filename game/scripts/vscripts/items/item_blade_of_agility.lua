@@ -7,7 +7,7 @@ modifier_item_blade_of_agility_handle = class({})
 LinkLuaModifier( "modifier_item_blade_of_agility_handle", "items/item_blade_of_agility.lua", LUA_MODIFIER_MOTION_NONE )
 
 function modifier_item_blade_of_agility_handle:OnCreated()
-	self.stat = self:GetSpecialValueFor("bonus_strength")
+	self.stat = self:GetSpecialValueFor("bonus_agility")
 end
 
 function modifier_item_blade_of_agility_handle:GetAttributes()

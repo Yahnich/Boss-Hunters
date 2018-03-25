@@ -11,7 +11,7 @@ function MoveUnits( keys )
 	-- Ability variables
 	local radius = ability:GetTalentSpecialValueFor("radius")
 	local tick_rate = ability:GetTalentSpecialValueFor("tick_rate")
-	local damage = ability:GetAbilityDamage() * tick_rate
+	local damage = ability:GetTalentSpecialValueFor("damage") * tick_rate
 
 	-- Targeting variables
 	local target_teams = ability:GetAbilityTargetTeam() 
