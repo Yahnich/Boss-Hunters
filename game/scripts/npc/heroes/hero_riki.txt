@@ -150,8 +150,6 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"riki_smoke_screen"
 		"MaxLevel"						"7"
-		"RequiredLevel"					"6"
-		"LevelsBetweenUpgrades"			"5"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
