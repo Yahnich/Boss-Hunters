@@ -252,6 +252,11 @@
 			}
 			"04"
 			{
+				"var_type"				"FIELD_FLOAT"
+				"health"				"15"
+			}
+			"05"
+			{
 				"var_type"				"FIELD_INTEGER"
 				"scepter_range"			"500"
 			}

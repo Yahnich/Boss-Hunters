@@ -17,7 +17,7 @@ STATUS_AMP_TABLE = {0,5,10,15,20,35}
 -- DEFENSE
 ARMOR_TABLE = {0,2,4,6,8,10,12,14,16,18,25}
 MAGIC_RESIST_TABLE = {0,5,10,15,20,25,30,35,40,45,60}
-DAMAGE_BLOCK_TABLE = {0,20,30,40,50,75}
+DAMAGE_BLOCK_TABLE = {0,20,25,30,35,40,45,50,55,60,75}
 ATTACK_RANGE_TABLE = {0,50,100,150,200,250,300,350,400,450,600}
 HEALTH_TABLE = {0,150,300,450,600,750,900,1050,1200,1350,2000}
 HEALTH_REGEN_TABLE = {0,3,6,9,12,15,18,21,24,27,50}
@@ -95,7 +95,12 @@ function modifier_stats_system_handler:GetModifierStatusAmplify_Percentage() ret
 
 function modifier_stats_system_handler:GetModifierPhysicalArmorBonus() return ARMOR_TABLE[self.prLevel + 1] end
 function modifier_stats_system_handler:GetModifierMagicalResistanceBonus() return MAGIC_RESIST_TABLE[self.mrLevel + 1] end
-function modifier_stats_system_handler:GetModifierTotal_ConstantBlock() return DAMAGE_BLOCK_TABLE[self.dbLevel + 1] end
+function modifier_stats_system_handler:GetModifierTotal_ConstantBlock() 
+	if RollPercentage( 50 ) then 
+		return DAMAGE_BLOCK_TABLE[self.dbLevel + 1] 
+	end
+end
+
 function modifier_stats_system_handler:GetModifierAttackRangeBonus() return ATTACK_RANGE_TABLE[self.arLevel + 1] end
 function modifier_stats_system_handler:GetModifierHealthBonus() return 300 + HEALTH_TABLE[self.hpLevel + 1] end
 function modifier_stats_system_handler:GetModifierConstantHealthRegen() return 2.5 + HEALTH_REGEN_TABLE[self.hprLevel + 1] end

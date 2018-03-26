@@ -6,6 +6,11 @@ function shadow_shaman_snake_totem:OnSpellStart()
 	for i = 1, self:GetTalentSpecialValueFor("ward_count") do
 		local ward = caster:CreateSummon("npc_dota_shadow_shaman_ward_1", self:GetCursorPosition(), self:GetTalentSpecialValueFor("duration"))
 		ward:AddNewModifier(caster, self, "modifier_shadow_shaman_snake_totem_damage_aura", {})
+		local health = self:GetTalentSpecialValueFor("health")
+		ward:SetBaseMaxHealth( health )
+		ward:SetMaxHealth( health )
+		ward:SetHealth( health )
+		ward:SetBaseAttackTime( 0.1 )
 	end
 end
 

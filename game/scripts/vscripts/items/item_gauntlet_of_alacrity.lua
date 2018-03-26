@@ -8,7 +8,7 @@ end
 modifier_item_gauntlet_of_alacrity_passive = class({})
 
 function modifier_item_gauntlet_of_alacrity_passive:OnCreated()
-	self.bonus_attack_speed = self:GetSpecialValueFor("bonus_attack_speed")
+	self.bonus_attack_speed = self:GetSpecialValueFor("bonus_attackspeed")
 end
 
 function modifier_item_gauntlet_of_alacrity_passive:DeclareFunctions()
