@@ -78,7 +78,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"shock_chance"			"35"
+				"shock_chance"			"15"
 			}
 			"06"
 			{
@@ -88,7 +88,7 @@
 			"07"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"shock_duration"		"0.35"
+				"shock_duration"		"0.1"
 			}
 		}
 	}

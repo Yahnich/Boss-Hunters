@@ -312,10 +312,14 @@ function CHoldoutGameRound:OnEntityKilled( event )
 			local Item_spawn = CreateItem( "item_potion_of_essence", nil, nil )
 			local drop = CreateItemOnPositionForLaunch( killedUnit:GetAbsOrigin(), Item_spawn )
 			Item_spawn:LaunchLoot( false, 300, 0.75, killedUnit:GetAbsOrigin() + RandomVector( RandomFloat( 50, 350 ) ) )
+			Timers:CreateTimer(30, function() UTIL_Remove(Item_spawn) end)
+			Timers:CreateTimer(30, function() UTIL_Remove(drop) end)
 		elseif RollPercentage(35) then
 			local Item_spawn = CreateItem( "item_potion_of_recovery", nil, nil )
 			local drop = CreateItemOnPositionForLaunch( killedUnit:GetAbsOrigin(), Item_spawn )
 			Item_spawn:LaunchLoot( false, 300, 0.75, killedUnit:GetAbsOrigin() + RandomVector( RandomFloat( 50, 350 ) ) )
+			Timers:CreateTimer(30, function() UTIL_Remove(Item_spawn) end)
+			Timers:CreateTimer(30, function() UTIL_Remove(drop) end)
 		end
 		
 		for _, hero in ipairs( HeroList:GetAllHeroes() ) do
@@ -364,7 +368,7 @@ function CHoldoutGameRound:HandleElites(spawnedUnit)
 	if spawnedUnit:IsCore() then
 		self._nCoreUnitsSpawned = self._nCoreUnitsSpawned - 1
 		if self._nElitesRemaining > 0 or spawnedUnit:IsElite() then
-			local elitemod = 1 + (GameRules.gameDifficulty - 1)* 0.12 -- Power scaling
+			local elitemod = 1.25
 			spawnedUnit.elite = true
 			local elitelist = {} -- change table with names to array type
 			-- Block non-attacking units from having these
@@ -409,6 +413,7 @@ function CHoldoutGameRound:HandleElites(spawnedUnit)
 					spawnedUnit:SetMaxHealth(spawnedUnit:GetMaxHealth()+self._nRoundNumber * 200)
 				end
 				spawnedUnit:SetMaxHealth(spawnedUnit:GetMaxHealth()*elitemod )
+				spawnedUnit:SetAverageBaseDamage(spawnedUnit:GetAverageBaseDamage() * elitemod, 15)
 			elseif self._nCoreUnitsSpawned > self._nElitesRemaining then -- If leftover enemies, randomize
 				if RollPercentage(33) then
 					if spawnedUnit:GetMaxHealth() < self._nRoundNumber * 250 and spawnedUnit:GetName() ~= "npc_dota_money" and spawnedUnit:GetUnitName() ~= "npc_dota_boss36" then
@@ -417,6 +422,7 @@ function CHoldoutGameRound:HandleElites(spawnedUnit)
 					end
 					spawnedUnit:SetBaseMaxHealth(spawnedUnit:GetMaxHealth()*(2 - 0.90 * self._nRoundNumber/GameRules:GetMaxRound())*elitemod )
 					spawnedUnit:SetMaxHealth(spawnedUnit:GetMaxHealth()*elitemod  )
+					spawnedUnit:SetAverageBaseDamage(spawnedUnit:GetAverageBaseDamage() * elitemod, 15)
 					spawnedUnit.elite = true
 				end
 			else
@@ -426,6 +432,7 @@ function CHoldoutGameRound:HandleElites(spawnedUnit)
 				end
 				spawnedUnit:SetBaseMaxHealth(spawnedUnit:GetMaxHealth()*elitemod )
 				spawnedUnit:SetMaxHealth(spawnedUnit:GetMaxHealth()*elitemod )
+				spawnedUnit:SetAverageBaseDamage(spawnedUnit:GetAverageBaseDamage() * elitemod, 15)
 				spawnedUnit.elite = true
 			end
 			if spawnedUnit:IsElite() then -- is elite, has passed initial checks

@@ -4,9 +4,9 @@ GameEvents.Subscribe( "round_has_ended", ToggleStats);
 
 function UpdateGold(arg)
 {
-	if (typeof arg != 'undefined') {
-		$("#midasGoldLabel").text = arg.gold + " Total\n ( +" + arg.interest + " This round)";
-	}
+	// if (typeof arg != 'undefined') {
+		// $("#midasGoldLabel").text = arg.gold + " Total\n ( +" + arg.interest + " This round)";
+	// }
 }
 
 function UpdateStats(arg)

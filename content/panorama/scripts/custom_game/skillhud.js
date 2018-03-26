@@ -132,12 +132,12 @@ function CreateAttributePanel( valueLvl, valueTable, valueSignifier, valueText, 
 	talentPanel.BLoadLayoutSnippet("StatsContainer")
 	talentPanel.FindChildTraverse("StatsTypeLabel").text = $.Localize( "#" + valueText, talentPanel) + " (+ " + valueTable[valueLvl] + adder + " )"
 	talentPanel.FindChildTraverse("StatsTypeLevel").text = valueLvl + "/" + (valueTable.length - 1)
-	if( GetAttributePoints( lastRememberedHero ) == 0 || lastRememberedHero != Players.GetPlayerHeroEntityIndex( localID ) || valueLvl >= valueTable.length - 1 || Entities.GetLevel( lastRememberedHero ) <= (parseInt(valueLvl) + 1) * LEVELS_BETWEEN_TALENT_UPGRADES){
+	if( GetAttributePoints( lastRememberedHero ) == 0 || lastRememberedHero != Players.GetPlayerHeroEntityIndex( localID ) || valueLvl >= valueTable.length - 1 || Entities.GetLevel( lastRememberedHero ) < (parseInt(valueLvl) + 1) * LEVELS_BETWEEN_TALENT_UPGRADES){
 		talentPanel.FindChildTraverse("StatsTypeButton").SetHasClass("ButtonInactive", true)
 	} else {
 		talentPanel.FindChildTraverse("StatsTypeButton").SetPanelEvent("onactivate", function(){UpgradeAbility(valueSignifier)});
 	}
-	if( Entities.GetLevel( lastRememberedHero ) <= (parseInt(valueLvl) + 1) * LEVELS_BETWEEN_TALENT_UPGRADES ){ // max level
+	if( Entities.GetLevel( lastRememberedHero ) < (parseInt(valueLvl) + 1) * LEVELS_BETWEEN_TALENT_UPGRADES ){ // max level
 		talentPanel.SetPanelEvent("onmouseover", function(){$.DispatchEvent("DOTAShowTextTooltip", talentPanel, "Level Requirement: " + (parseInt(valueLvl) + 1) * LEVELS_BETWEEN_TALENT_UPGRADES)});
 		talentPanel.SetPanelEvent("onmouseout", function(){$.DispatchEvent("DOTAHideTextTooltip", talentPanel);});
 	} else if( valueTable[parseInt(valueLvl) + 1] == null ){

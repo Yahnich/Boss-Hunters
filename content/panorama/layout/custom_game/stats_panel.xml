@@ -24,10 +24,6 @@
 					<Image src="file://{images}/custom_game/slideLeft.png" id="CloseImageID" class="CloseImage" hittest="false"/>
 				</Button>
 			</Panel>
-			<Panel class="rootStatsPanel" id="MGHolder">
-				<Label hittest="false" class="statsHeader" id="midasGoldMain" text="MIDAS GOLD EARNED:"/>
-				<Label hittest="false" class="statsText" id="midasGoldLabel" text="0 Total\n(+0 This round)"/>
-			</Panel>
 		</Panel>
 	</Panel>
 </root>

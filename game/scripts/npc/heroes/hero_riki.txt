@@ -62,7 +62,7 @@
 		{
 			"01"
 			{
-				"var_type"						"FIELD_INTEGER"
+				"var_type"						"FIELD_FLOAT"
 				"damage_multiplier"				"0.6 0.8 1.0 1.2 1.4 1.6 1.8"
 				"LinkedSpecialBonus"			"special_bonus_unique_riki_dagger_2"
 			}

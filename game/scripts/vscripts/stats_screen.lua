@@ -76,7 +76,7 @@ function StatsScreen:ProcessStatsUpgrade(userid, event)
 
 	if entindex ~= PlayerResource:GetSelectedHeroEntity( pID ):entindex() then return end -- calling
 	local netTable = CustomNetTables:GetTableValue("stats_panel", tostring(entindex))
-	if not (netTable[skill] and self[skill]) and hero:GetAttributePoints() > 0 then return end -- max level
+	if (not (netTable[skill] and self[skill]) and hero:GetAttributePoints() > 0) or (hero:GetLevel() < ((netTable[skill]) + 1)*4 and not skill == "all") then return end -- max level
 	netTable[skill] = tostring(tonumber(netTable[skill]) + 1)
 	CustomNetTables:SetTableValue("stats_panel", tostring(entindex), netTable)
 	hero:SetAttributePoints( math.max(0, hero:GetAttributePoints() - 1) )

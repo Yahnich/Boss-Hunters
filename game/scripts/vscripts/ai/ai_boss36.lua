@@ -7,9 +7,9 @@ if IsServer() then
 			FindClearSpaceForUnit(thisEntity, origin, true)
 			
 			if GameRules.gameDifficulty > 2 then 
-				thisEntity:SetBaseMaxHealth(3000)
-				thisEntity:SetMaxHealth(3000)
-				thisEntity:SetHealth(3000)
+				thisEntity:SetBaseMaxHealth(2500)
+				thisEntity:SetMaxHealth(2500)
+				thisEntity:SetHealth(2500)
 			elseif GameRules.gameDifficulty <= 2 then 
 				thisEntity:SetBaseMaxHealth(2000)
 				thisEntity:SetMaxHealth(2000)

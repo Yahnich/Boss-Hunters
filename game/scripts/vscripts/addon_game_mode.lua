@@ -830,13 +830,12 @@ function CHoldoutGameMode:OnHeroLevelUp(event)
 	local hero = PlayerResource:GetSelectedHeroEntity(playerID)
 	if hero:GetLevel() < 32 then
 		if hero:GetLevel() == 17 or hero:GetLevel() == 19 or (hero:GetLevel() > 20 and hero:GetLevel() < 25) then hero:SetAbilityPoints( hero:GetAbilityPoints() + 1) end
+		if hero:GetLevel() % 2 == 0 then
+			hero:SetAttributePoints( hero:GetAttributePoints() + 1) 
+		end
 	else
 		hero:SetAbilityPoints( hero:GetAbilityPoints() - 1)
 		hero:SetAttributePoints( hero:GetAttributePoints() + 1)
-	end
-	if hero:GetLevel() % 2 == 0 then
-		print( hero:GetAttributePoints(), "attributes" )
-		hero:SetAttributePoints( hero:GetAttributePoints() + 1) 
 	end
 end
 
@@ -1998,14 +1997,15 @@ function CHoldoutGameMode:OnNPCSpawned( event )
 		if spawnedUnit:IsCreature() and spawnedUnit:GetTeam() == DOTA_TEAM_BADGUYS and spawnedUnit:GetUnitName() ~= "npc_dota_boss36" and spawnedUnit:GetUnitName() ~= "npc_dota_boss4_tomb" then
 			local expectedHP = spawnedUnit:GetHealth() * RandomFloat(0.9, 1.15)
 			if GetMapName() == "epic_boss_fight_hardcore" then expectedHP = expectedHP * 1.35 end
-			local playerMultiplier = 0.25
-			if GetMapName() == "epic_boss_fight_hardcore" then playerMultiplier = 0.33 end
+			local playerMultiplier = 0.35
+			if GetMapName() == "epic_boss_fight_hardcore" then playerMultiplier = 0.5 end
 			local effective_multiplier = 1 + (HeroList:GetActiveHeroCount() - 1)*playerMultiplier
 			-- if self._currentRound and not self._currentRound:IsFinished() then self._vEnemiesRemaining
 			expectedHP = expectedHP * effective_multiplier
 			spawnedUnit:SetBaseMaxHealth(expectedHP)
 			spawnedUnit:SetMaxHealth(expectedHP)
 			spawnedUnit:SetHealth(expectedHP)
+			spawnedUnit:SetAverageBaseDamage(spawnedUnit:GetAverageBaseDamage() * (1 + (self._nRoundNumber * 1.8)/100), 15)
 			spawnedUnit:SetBaseHealthRegen(GameRules._roundnumber * RandomFloat(0.85, 1.15) )
 			
 			spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_boss_attackspeed", {})
