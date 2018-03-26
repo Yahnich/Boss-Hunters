@@ -30,14 +30,16 @@ function modifier_boss_attackspeed:DeclareFunctions()
 		MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,
 		MODIFIER_PROPERTY_MANA_REGEN_CONSTANT,
 		MODIFIER_PROPERTY_MANA_BONUS,
+		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
 		MODIFIER_EVENT_ON_ABILITY_FULLY_CAST,
+		MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE,
 		MODIFIER_EVENT_ON_ABILITY_START
 	}
 	return funcs
 end
 --------------------------------------------------------------------------------
 function modifier_boss_attackspeed:GetModifierAttackSpeedBonus_Constant( params )
-	return 200* (1 + (self:GetStackCount() - 1)* 0.15)
+	return 200
 end
 
 function modifier_boss_attackspeed:GetModifierMoveSpeedBonus_Constant( params )
@@ -52,9 +54,18 @@ function modifier_boss_attackspeed:GetModifierManaBonus( params )
 	return self:GetStackCount()*250
 end
 
+function modifier_boss_attackspeed:GetModifierPhysicalArmorBonus( params )
+	return self:GetParent():GetPhysicalArmorBaseValue() * 0.15 * self:GetStackCount()
+end
+
+function modifier_boss_attackspeed:GetModifierBaseDamageOutgoing_Percentage( params )
+	return 7.5 * self:GetStackCount()
+end
+
 function modifier_boss_attackspeed:OnAbilityStart( params )
 	if params.unit == self:GetParent() then
 		AddFOWViewer(DOTA_TEAM_GOODGUYS, self:GetParent():GetAbsOrigin(), 516, 3, false)
+		params.unit:AddNewModifier(params.unit, params.ability, "modifier_status_immunity", {duration = params.ability:GetCastPoint() - 0.01})
 	end
 end
 

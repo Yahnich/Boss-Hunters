@@ -1,5 +1,13 @@
 modifier_status_immunity = class({})
 
+function modifier_status_immunity:OnCreated()
+	if IsServer() then
+		local fx = ParticleManager:CreateParticle("particles/items_fx/glyph.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
+		ParticleManager:SetParticleControl(fx, 1, Vector( self:GetParent():GetHullRadius() * 2 + 50, 1, 1) )
+		self:AddEffect(fx)
+	end
+end
+
 function modifier_status_immunity:CheckState()
 	return {[MODIFIER_STATE_ROOTED] = false,
 			[MODIFIER_STATE_DISARMED] = false,
