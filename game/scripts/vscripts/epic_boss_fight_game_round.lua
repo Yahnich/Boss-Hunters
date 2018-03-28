@@ -307,21 +307,7 @@ function CHoldoutGameRound:OnEntityKilled( event )
 		local nCoreUnitsRemaining = self._nCoreUnitsTotal - self._nCoreUnitsKilled
 		if nCoreUnitsRemaining == 0 then
 			--self:spawn_treasure()
-		end
-		if RollPercentage(35) then
-			local Item_spawn = CreateItem( "item_potion_of_essence", nil, nil )
-			local drop = CreateItemOnPositionForLaunch( killedUnit:GetAbsOrigin(), Item_spawn )
-			Item_spawn:LaunchLoot( false, 300, 0.75, killedUnit:GetAbsOrigin() + RandomVector( RandomFloat( 50, 350 ) ) )
-			Timers:CreateTimer(30, function() UTIL_Remove(Item_spawn) end)
-			Timers:CreateTimer(30, function() UTIL_Remove(drop) end)
-		elseif RollPercentage(35) then
-			local Item_spawn = CreateItem( "item_potion_of_recovery", nil, nil )
-			local drop = CreateItemOnPositionForLaunch( killedUnit:GetAbsOrigin(), Item_spawn )
-			Item_spawn:LaunchLoot( false, 300, 0.75, killedUnit:GetAbsOrigin() + RandomVector( RandomFloat( 50, 350 ) ) )
-			Timers:CreateTimer(30, function() UTIL_Remove(Item_spawn) end)
-			Timers:CreateTimer(30, function() UTIL_Remove(drop) end)
-		end
-		
+		end	
 		for _, hero in ipairs( HeroList:GetAllHeroes() ) do
 			hero:HealEvent( hero:GetMaxHealth() * 0.15, nil, nil )
 			hero:GiveMana( hero:GetMaxMana() * 0.15 )

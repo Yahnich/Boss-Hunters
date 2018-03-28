@@ -12,6 +12,15 @@ function Spawn( entityKeyValues )
 	end)
 	thisEntity.fire = thisEntity:FindAbilityByName("creature_fire_breath")
 	thisEntity.crush = thisEntity:FindAbilityByName("creature_slithereen_crush")
+	Timers:CreateTimer(0.1, function()
+		if  math.floor(GameRules.gameDifficulty + 0.5) <= 2 then
+			thisEntity.fire:SetLevel(1)
+			thisEntity.crush:SetLevel(1)
+		else
+			thisEntity.fire:SetLevel(2)
+			thisEntity.crush:SetLevel(2)
+		end
+	end)
 	thisEntity.idle = GameRules:GetGameTime()
 end
 

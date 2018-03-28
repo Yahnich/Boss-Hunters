@@ -31,7 +31,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_attack_speed"	"75"
+				"bonus_attack_speed"	"150 200"
 			}
 			"02"
 			{
@@ -122,7 +122,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"stack_duration"		"2.0 3.0"
+				"stack_duration"		"3.0 3.5"
 			}
 			"04"
 			{
@@ -132,7 +132,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"aoe_damage"			"350 500"
+				"aoe_damage"			"600 750"
 			}
 			"06"
 			{
@@ -181,7 +181,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"dot"					"75 125"
+				"dot"					"125 150"
 			}
 			"03"
 			{

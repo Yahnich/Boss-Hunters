@@ -49,7 +49,7 @@
 				"UnitBoss_1" 
 				{
 					"NPCName"				"npc_dota_boss1"
-					"TotalUnitsToSpawn"		"3"
+					"TotalUnitsToSpawn"		"4"
 					"UnitsPerSpawn"			"1"
 					"SpawnInterval"			"6"
 				}
@@ -59,7 +59,7 @@
 				"UnitBoss_1" 
 				{
 					"NPCName"				"npc_dota_boss2"
-					"TotalUnitsToSpawn"		"3"
+					"TotalUnitsToSpawn"		"4"
 					"UnitsPerSpawn"			"1"
 					"SpawnInterval"			"10"
 				}
@@ -76,7 +76,7 @@
 				"UnitBoss_2" 
 				{
 					"NPCName"				"npc_dota_boss1"
-					"TotalUnitsToSpawn"		"2"
+					"TotalUnitsToSpawn"		"3"
 					"UnitsPerSpawn"			"1"
 					"SpawnInterval"			"10"
 				}
@@ -93,7 +93,7 @@
 				"UnitBoss_2" 
 				{
 					"NPCName"				"npc_dota_boss1"
-					"TotalUnitsToSpawn"		"1"
+					"TotalUnitsToSpawn"		"2"
 					"UnitsPerSpawn"			"1"
 					"SpawnInterval"			"10"
 				}
@@ -114,7 +114,7 @@
 				"UnitBoss_1" 
 				{
 					"NPCName"				"npc_dota_boss3a"
-					"TotalUnitsToSpawn"		"4"
+					"TotalUnitsToSpawn"		"6"
 					"UnitsPerSpawn"			"1"
 					"SpawnInterval"			"15"
 				}
@@ -131,6 +131,30 @@
 				"UnitBoss_5"
 				{
 					"NPCName"				"npc_dota_boss4"
+					"TotalUnitsToSpawn"		"3"
+					"UnitsPerSpawn"			"2"
+					"SpawnInterval"			"12"
+				}
+			}
+			"3"
+			{
+				"UnitBoss_5"
+				{
+					"NPCName"				"npc_dota_boss4"
+					"TotalUnitsToSpawn"		"1"
+					"UnitsPerSpawn"			"1"
+					"SpawnInterval"			"12"
+				}
+				"UnitBoss_1" 
+				{
+					"NPCName"				"npc_dota_boss3a"
+					"TotalUnitsToSpawn"		"4"
+					"UnitsPerSpawn"			"1"
+					"SpawnInterval"			"15"
+				}
+				"UnitBoss_3"
+				{
+					"NPCName"				"npc_dota_boss3b"
 					"TotalUnitsToSpawn"		"2"
 					"UnitsPerSpawn"			"1"
 					"SpawnInterval"			"12"
@@ -172,14 +196,14 @@
 				"UnitBoss_6"
 				{
 					"NPCName"				"npc_dota_boss6"
-					"TotalUnitsToSpawn"		"2"
+					"TotalUnitsToSpawn"		"4"
 					"UnitsPerSpawn"			"1"
 					"SpawnInterval"			"6"
 				}
 				"UnitBoss_7"
 				{
 					"NPCName"				"npc_dota_boss6_b"
-					"TotalUnitsToSpawn"		"1"
+					"TotalUnitsToSpawn"		"2"
 					"UnitsPerSpawn"			"1"
 					"SpawnInterval"			"3"
 				}
@@ -189,9 +213,26 @@
 				"UnitBoss_6"
 				{
 					"NPCName"				"npc_dota_boss6"
-					"TotalUnitsToSpawn"		"3"
+					"TotalUnitsToSpawn"		"6"
 					"UnitsPerSpawn"			"1"
 					"SpawnInterval"			"9"
+				}
+			}
+			"3"
+			{
+				"UnitBoss_6"
+				{
+					"NPCName"				"npc_dota_boss6"
+					"TotalUnitsToSpawn"		"2"
+					"UnitsPerSpawn"			"1"
+					"SpawnInterval"			"6"
+				}
+				"UnitBoss_7"
+				{
+					"NPCName"				"npc_dota_boss6_b"
+					"TotalUnitsToSpawn"		"5"
+					"UnitsPerSpawn"			"1"
+					"SpawnInterval"			"3"
 				}
 			}
 		}
@@ -210,8 +251,8 @@
 				"UnitBoss_7"
 				{
 					"NPCName"				"npc_dota_boss7"
-					"TotalUnitsToSpawn"		"2"
-					"UnitsPerSpawn"			"1"
+					"TotalUnitsToSpawn"		"4"
+					"UnitsPerSpawn"			"2"
 					"SpawnInterval"			"20"
 				}
 			}
@@ -231,14 +272,14 @@
 				"UnitBoss_clockwerk"
 				{
 					"NPCName"				"npc_dota_boss8a"
-					"TotalUnitsToSpawn"		"2"
+					"TotalUnitsToSpawn"		"4"
 					"UnitsPerSpawn"			"1"
 					"SpawnInterval"			"3"
 				}
 				"UnitBoss_tinker"
 				{
 					"NPCName"				"npc_dota_boss8b"
-					"TotalUnitsToSpawn"		"2"
+					"TotalUnitsToSpawn"		"3"
 					"UnitsPerSpawn"			"1"
 					"SpawnInterval"			"3"
 				}
@@ -248,14 +289,14 @@
 				"UnitBoss_clockwerk"
 				{
 					"NPCName"				"npc_dota_boss8a"
-					"TotalUnitsToSpawn"		"1"
+					"TotalUnitsToSpawn"		"2"
 					"UnitsPerSpawn"			"1"
 					"SpawnInterval"			"3"
 				}
 				"UnitBoss_tinker"
 				{
 					"NPCName"				"npc_dota_boss8b"
-					"TotalUnitsToSpawn"		"3"
+					"TotalUnitsToSpawn"		"6"
 					"UnitsPerSpawn"			"1"
 					"SpawnInterval"			"5"
 				}
@@ -266,7 +307,7 @@
 				"UnitBoss_clockwerk"
 				{
 					"NPCName"				"npc_dota_boss8c_spawner"
-					"TotalUnitsToSpawn"		"3"
+					"TotalUnitsToSpawn"		"5"
 					"UnitsPerSpawn"			"1"
 					"SpawnInterval"			"10"
 				}
@@ -287,7 +328,7 @@
 				"UnitBoss_7"
 				{
 					"NPCName"				"npc_dota_boss9"
-					"TotalUnitsToSpawn"		"2"
+					"TotalUnitsToSpawn"		"4"
 					"UnitsPerSpawn"			"1"
 					"SpawnInterval"			"10"
 				}
@@ -308,7 +349,7 @@
 			{
 				"UnitBoss_8"
 				{
-					"NPCName"				"npc_dota_boss10"
+					"NPCName"				"npc_dota_boss10_h"
 					"TotalUnitsToSpawn"		"3"
 					"UnitsPerSpawn"			"1"
 					"SpawnInterval"			"10"
@@ -330,7 +371,7 @@
 				"UnitBoss_8"
 				{
 					"NPCName"				"npc_dota_boss11"
-					"TotalUnitsToSpawn"		"2"
+					"TotalUnitsToSpawn"		"6"
 					"UnitsPerSpawn"			"1"
 					"SpawnInterval"			"8"
 				}
@@ -351,7 +392,7 @@
 				"UnitBoss_8"
 				{
 					"NPCName"				"npc_dota_boss12_a_vh"
-					"TotalUnitsToSpawn"		"1"
+					"TotalUnitsToSpawn"		"2"
 					"UnitsPerSpawn"			"1"
 					"SpawnInterval"			"1"
 				}
@@ -379,14 +420,14 @@
 				"UnitBoss_2"
 				{
 					"NPCName"				"npc_dota_boss15"
-					"TotalUnitsToSpawn"		"2"
+					"TotalUnitsToSpawn"		"4"
 					"UnitsPerSpawn"			"1"
 					"SpawnInterval"			"3"
 				}
 				"UnitBoss_3"
 				{
 					"NPCName"				"npc_dota_boss14"
-					"TotalUnitsToSpawn"		"1"
+					"TotalUnitsToSpawn"		"2"
 					"UnitsPerSpawn"			"1"
 					"SpawnInterval"			"3"
 				}
@@ -404,7 +445,7 @@
 				"UnitBoss_2"
 				{
 					"NPCName"				"npc_dota_boss15"
-					"TotalUnitsToSpawn"		"2"
+					"TotalUnitsToSpawn"		"5"
 					"UnitsPerSpawn"			"1"
 					"SpawnInterval"			"10"
 				}
@@ -425,14 +466,14 @@
 				"UnitBoss_8"
 				{
 					"NPCName"				"npc_dota_boss19_h"
-					"TotalUnitsToSpawn"		"2"
+					"TotalUnitsToSpawn"		"3"
 					"UnitsPerSpawn"			"1"
 					"SpawnInterval"			"10"
 				}
 				"UnitBoss_7"
 				{
 					"NPCName"				"npc_dota_boss18"
-					"TotalUnitsToSpawn"		"2"
+					"TotalUnitsToSpawn"		"5"
 					"UnitsPerSpawn"			"1"
 					"SpawnInterval"			"10"
 				}
@@ -453,7 +494,7 @@
 				"UnitBoss_2"
 				{
 					"NPCName"				"npc_dota_boss21"
-					"TotalUnitsToSpawn"		"1"
+					"TotalUnitsToSpawn"		"5"
 					"UnitsPerSpawn"			"1"
 					"SpawnInterval"			"1"
 				}
@@ -474,7 +515,7 @@
 				"UnitBoss_1"
 				{
 					"NPCName"				"npc_dota_boss22"
-					"TotalUnitsToSpawn"		"1"
+					"TotalUnitsToSpawn"		"2"
 					"UnitsPerSpawn"			"1"
 					"SpawnInterval"			"1"
 				}
@@ -494,7 +535,7 @@
 				"UnitBoss_8"
 				{
 					"NPCName"				"npc_dota_boss23"
-					"TotalUnitsToSpawn"		"1"
+					"TotalUnitsToSpawn"		"2"
 					"UnitsPerSpawn"			"1"
 					"SpawnInterval"			"10"
 				}
@@ -514,7 +555,7 @@
 				"UnitBoss_1"
 				{
 					"NPCName"				"npc_dota_boss25_vh"
-					"TotalUnitsToSpawn"		"1"
+					"TotalUnitsToSpawn"		"2"
 					"UnitsPerSpawn"			"1"
 					"SpawnInterval"			"5"
 				}
@@ -523,8 +564,8 @@
 			{
 				"UnitBoss_2"
 				{
-					"NPCName"				"npc_dota_boss25"
-					"TotalUnitsToSpawn"		"2"
+					"NPCName"				"npc_dota_boss25_h"
+					"TotalUnitsToSpawn"		"4"
 					"UnitsPerSpawn"			"1"
 					"SpawnInterval"			"5"
 				}
@@ -545,7 +586,7 @@
 				"UnitBoss_6"
 				{
 					"NPCName"				"npc_dota_boss27"
-					"TotalUnitsToSpawn"		"1"
+					"TotalUnitsToSpawn"		"4"
 					"UnitsPerSpawn"			"1"
 					"SpawnInterval"			"1"
 				}
@@ -556,7 +597,7 @@
 				"UnitBoss_8"
 				{
 					"NPCName"				"npc_dota_boss28"
-					"TotalUnitsToSpawn"		"1"
+					"TotalUnitsToSpawn"		"2"
 					"UnitsPerSpawn"			"1"
 					"SpawnInterval"			"5"
 				}
@@ -598,7 +639,7 @@
 				"UnitBoss_8"
 				{
 					"NPCName"				"npc_dota_boss31_vh"
-					"TotalUnitsToSpawn"		"1"
+					"TotalUnitsToSpawn"		"4"
 					"UnitsPerSpawn"			"1"
 					"SpawnInterval"			"60"
 				}
@@ -609,7 +650,7 @@
 				"UnitBoss_8"
 				{
 					"NPCName"				"npc_dota_boss32_vh"
-					"TotalUnitsToSpawn"		"1"
+					"TotalUnitsToSpawn"		"2"
 					"UnitsPerSpawn"			"1"
 					"SpawnInterval"			"1"
 				}
@@ -630,16 +671,16 @@
 				"UnitBoss_8"
 				{
 					"NPCName"				"npc_dota_boss33_a"
-					"TotalUnitsToSpawn"		"1"
+					"TotalUnitsToSpawn"		"2"
 					"UnitsPerSpawn"			"1"
-					"SpawnInterval"			"1"
+					"SpawnInterval"			"40"
 				}
 				"UnitBoss_7"
 				{
 					"NPCName"				"npc_dota_boss33_b"
-					"TotalUnitsToSpawn"		"1"
+					"TotalUnitsToSpawn"		"2"
 					"UnitsPerSpawn"			"1"
-					"SpawnInterval"			"1"
+					"SpawnInterval"			"40"
 				}
 			}
 		}
@@ -658,7 +699,7 @@
 				"UnitBoss_8"
 				{
 					"NPCName"				"npc_dota_boss34_vh"
-					"TotalUnitsToSpawn"		"1"
+					"TotalUnitsToSpawn"		"2"
 					"UnitsPerSpawn"			"1"
 					"SpawnInterval"			"35"
 				}
@@ -679,7 +720,7 @@
 				"UnitBoss_8"
 				{
 					"NPCName"				"npc_dota_boss35_vh"
-					"TotalUnitsToSpawn"		"1"
+					"TotalUnitsToSpawn"		"2"
 					"UnitsPerSpawn"			"1"
 					"SpawnInterval"			"40"
 				}

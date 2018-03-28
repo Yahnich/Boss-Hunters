@@ -172,6 +172,7 @@ function modifier_nyx_assassin_ultimyr_justicar_swarm:OnAbilityFullyCast(params)
                               FIND_ANY_ORDER,
                               false)
 				for _,unit in pairs(units) do
+					if unit 
 					params.unit:SetCursorPosition(unit:GetAbsOrigin())
 					params.ability:OnSpellStart()
 				end
@@ -234,7 +235,7 @@ function modifier_nyx_assassin_ultimyr_justicar_swarm_active:OnRefresh()
 end
 
 function modifier_nyx_assassin_ultimyr_justicar_swarm_active:OnIntervalThink()
-	ApplyDamage({victim = self:GetParent(), attacker = self:GetCaster(), damage = self.damage, damage_type = self:GetAbility():GetAbilityDamageType(), ability = self:GetAbility()})
+	local damage = ApplyDamage({victim = self:GetParent(), attacker = self:GetCaster(), damage = self.damage, damage_type = self:GetAbility():GetAbilityDamageType(), ability = self:GetAbility()})
 	local allies = FindUnitsInRadius(self:GetCaster():GetTeam(),
 								  self:GetCaster():GetAbsOrigin(),
 								  nil,
@@ -246,8 +247,7 @@ function modifier_nyx_assassin_ultimyr_justicar_swarm_active:OnIntervalThink()
 								  false)
 	for _,ally in pairs(allies) do
 		if ally:HasModifier("modifier_nyx_assassin_ultimyr_justicar_swarm_active") then
-			local heal = self.damage * self.heal / #allies
-			print(self.damage, self.heal, #allies)
+			local heal = damage * self.heal / #allies
 			ally:HealEvent(heal, ability, self:GetCaster())
 			SendOverheadEventMessage(nil, OVERHEAD_ALERT_HEAL, ally, heal, nil)
 		end

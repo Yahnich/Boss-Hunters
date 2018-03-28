@@ -35,6 +35,7 @@ function modifier_item_behemoths_heart_passive:OnCreated()
 	self.delay = self:GetSpecialValueFor("stack_delay")
 	self.activeRegen = self:GetSpecialValueFor("active_regen")
 	self.bonusHP = self:GetSpecialValueFor("hp_per_str")
+	self.stat = self:GetSpecialValueFor("bonus_strength")
 	if self:GetAbility().stacks < self:GetSpecialValueFor("max_stacks") then
 		self:SetDuration( self.delay + 0.1, true )
 		self:StartIntervalThink(self.delay)
@@ -61,7 +62,12 @@ function modifier_item_behemoths_heart_passive:DeclareFunctions()
 	return {MODIFIER_PROPERTY_HEALTH_BONUS,
 			MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE,	
 			MODIFIER_EVENT_ON_TAKEDAMAGE,
+			MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
 			}
+end
+
+function modifier_item_ogre_club_handle:GetModifierBonusStats_Strength()
+	return self.stat
 end
 
 function modifier_item_behemoths_heart_passive:GetModifierHealthBonus()

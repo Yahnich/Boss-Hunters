@@ -11,6 +11,15 @@ function Spawn( entityKeyValues )
 	end)
 	thisEntity.spike = thisEntity:FindAbilityByName("creature_aoe_spikes")
 	thisEntity.lightning = thisEntity:FindAbilityByName("creature_lightning_storm")
+	Timers:CreateTimer(0.1, function()
+		if  math.floor(GameRules.gameDifficulty + 0.5) <= 2 then
+			thisEntity.lightning:SetLevel(1)
+			thisEntity.spike:SetLevel(1)
+		else
+			thisEntity.lightning:SetLevel(2)
+			thisEntity.spike:SetLevel(2)
+		end
+	end)
 end
 
 

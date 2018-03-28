@@ -234,7 +234,7 @@
 		//----------------------------------------------------------------
 		"AbilityLayout"				"6"
 		"Ability1"					"creature_fire_breath"	// Ability 1.
-		"Ability2"					"true_sight_boss"			// Ability 2.
+		"Ability2"					""			// Ability 2.
 		"Ability3"					"creature_slithereen_crush"			// Ability 3.
 		"Ability4"					""			// Ability 4.
 		"Ability5"					""			// Ability 5.
@@ -244,14 +244,14 @@
 	
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"7"			// Physical protection.
-		"MagicalResistance"			"45"		// Magical protection (percentage).
+		"ArmorPhysical"				"9"			// Physical protection.
+		"MagicalResistance"			"50"		// Magical protection (percentage).
 	
 		// Attack
 		//----------------------------------------------------------------
 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"			"300"		// Damage range min.
-		"AttackDamageMax"			"360"		// Damage range max.
+		"AttackDamageMin"			"330"		// Damage range min.
+		"AttackDamageMax"			"390"		// Damage range max.
 		"AttackRate"				"2.7"			// Speed of attack.
 		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"18000"		// Range within a target can be acquired.
@@ -2977,7 +2977,7 @@
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"2"
 		"ModelScale" 				"1.3"
-		"IsAncient"			"0"
+		"IsAncient"					"0"
 		"IsCore"					"1"
 		"vscripts"					"ai/ai_boss2.lua"
 		
@@ -3417,9 +3417,9 @@
 		// Attack
 		//----------------------------------------------------------------
 		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
-		"AttackDamageMin"			"340"	// Damage range min.
-		"AttackDamageMax"			"360"		// Damage range max.
-		"AttackRate"				"1.6"		// Speed of attack.
+		"AttackDamageMin"			"600"	// Damage range min.
+		"AttackDamageMax"			"640"		// Damage range max.
+		"AttackRate"				"3.2"		// Speed of attack.
 		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
 		"AttackRange"				"600"		// Range within a target can be attacked.
@@ -6498,8 +6498,8 @@
 	
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"12"			// Physical protection.
-		"MagicalResistance"			"20"		// Magical protection.
+		"ArmorPhysical"				"25"			// Physical protection.
+		"MagicalResistance"			"35"		// Magical protection.
 		
 		// Attack
 		//----------------------------------------------------------------
@@ -6605,8 +6605,8 @@
 	
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"12"			// Physical protection.
-		"MagicalResistance"			"20"		// Magical protection.
+		"ArmorPhysical"				"25"			// Physical protection.
+		"MagicalResistance"			"35"		// Magical protection.
 		
 		// Attack
 		//----------------------------------------------------------------
@@ -6713,8 +6713,8 @@
 	
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"12"			// Physical protection.
-		"MagicalResistance"			"20"		// Magical protection.
+		"ArmorPhysical"				"25"			// Physical protection.
+		"MagicalResistance"			"35"		// Magical protection.
 		
 		// Attack
 		//----------------------------------------------------------------
@@ -6820,8 +6820,8 @@
 	
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"10"			// Physical protection.
-		"MagicalResistance"			"0"		// Magical protection.
+		"ArmorPhysical"				"30"			// Physical protection.
+		"MagicalResistance"			"20"		// Magical protection.
 		
 		// Attack
 		//----------------------------------------------------------------
@@ -6961,8 +6961,8 @@
 	
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"10"			// Physical protection.
-		"MagicalResistance"			"0"		// Magical protection.
+		"ArmorPhysical"				"30"			// Physical protection.
+		"MagicalResistance"			"20"		// Magical protection.
 		
 		// Attack
 		//----------------------------------------------------------------
@@ -7102,8 +7102,8 @@
 	
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"10"			// Physical protection.
-		"MagicalResistance"			"0"		// Magical protection.
+		"ArmorPhysical"				"30"			// Physical protection.
+		"MagicalResistance"			"20"		// Magical protection.
 		
 		// Attack
 		//----------------------------------------------------------------
@@ -8514,8 +8514,8 @@
 		// Attack
 		//----------------------------------------------------------------
 		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
-		"AttackDamageMin"			"80"		// Damage range min.
-		"AttackDamageMax"			"100"		// Damage range max.
+		"AttackDamageMin"			"120"		// Damage range min.
+		"AttackDamageMax"			"150"		// Damage range max.
 		"AttackRate"				"6"		// Speed of attack.
 		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
@@ -8541,7 +8541,7 @@
 	
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"1800"		// Base health.
+		"StatusHealth"				"480"		// Base health.
 		"StatusHealthRegen"			"5"			// Health regeneration rate.
 		"StatusMana"				"500"		// Base mana.
 		"StatusManaRegen"			"1"			// Mana regeneration rate.
@@ -9062,7 +9062,7 @@
 		"Model"						"models/heroes/life_stealer/life_stealer.vmdl"	// Model.
 		"SoundSet"					"life_stealer"					// Name of sound set.
 		"GameSoundsFile"			"soundevents/game_sounds_heroes/game_sounds_life_stealer.vsndevts"
-		"ModelScale"				"2.5"
+		"ModelScale"				"2"
 		"Level"						"7"
 		"IsAncient"			"0"
 		"IsCore"					"1"
@@ -9113,7 +9113,7 @@
 	
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"3200"		// Base health.
+		"StatusHealth"				"3500"		// Base health.
 		"StatusHealthRegen"			"0.0"		// Health regeneration rate.
 		"StatusMana"				"0"			// Base mana.
 		"StatusManaRegen"			"0"			// Mana regeneration rate.
@@ -9335,7 +9335,7 @@
 		//----------------------------------------------------------------
 		"StatusHealth"				"1200"		// Base health.
 		"StatusHealthRegen"			"40"			// Health regeneration rate.
-		"StatusMana"				"200"		// Base mana.
+		"StatusMana"				"500"		// Base mana.
 		"StatusManaRegen"			"5.0"		// Mana regeneration rate.		 
 		
 		// Vision
@@ -10017,7 +10017,7 @@
 	
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"60"		// Base health.
+		"StatusHealth"				"50"		// Base health.
 		"StatusHealthRegen"			"2"		// Health regeneration rate.
 		"StatusMana"				"0"			// Base mana.
 		"StatusManaRegen"			"0"			// Mana regeneration rate.

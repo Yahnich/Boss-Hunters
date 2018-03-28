@@ -10,11 +10,11 @@
 		"ID"							"6271"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"			"item_recipe_assault"
+		"AbilityTextureName"			"item_recipe_heart"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"4750"	
+		"ItemCost"						"3850"	
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -23,7 +23,7 @@
 		"ItemResult"					"item_behemoths_heart"
 		"ItemRequirements"
 		{
-			"01"						"item_crystal_of_life"
+			"01"						"item_crystal_of_life;item_ogre_club"
 		}
 	}
 	"item_behemoths_heart"
@@ -85,6 +85,11 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"hp_per_str"			"20"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_strength"		"40"
 			}
 		}
 	}

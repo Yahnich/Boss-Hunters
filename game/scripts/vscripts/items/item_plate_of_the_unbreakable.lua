@@ -50,31 +50,31 @@ function modifier_plate_of_the_unbreakable_passive:GetModifierPhysicalArmorBonus
 end
 
 
-function modifier_item_mantle_of_the_fallen_stats:IsAura()
+function modifier_plate_of_the_unbreakable_passive:IsAura()
 	return true
 end
 
-function modifier_item_mantle_of_the_fallen_stats:GetModifierAura()
+function modifier_plate_of_the_unbreakable_passive:GetModifierAura()
 	return "modifier_plate_of_the_unbreakable_aura"
 end
 
-function modifier_item_mantle_of_the_fallen_stats:GetAuraRadius()
+function modifier_plate_of_the_unbreakable_passive:GetAuraRadius()
 	return self.radius
 end
 
-function modifier_item_mantle_of_the_fallen_stats:GetAuraDuration()
+function modifier_plate_of_the_unbreakable_passive:GetAuraDuration()
 	return 0.5
 end
 
-function modifier_item_mantle_of_the_fallen_stats:GetAuraSearchTeam()    
+function modifier_plate_of_the_unbreakable_passive:GetAuraSearchTeam()    
 	return DOTA_UNIT_TARGET_TEAM_FRIENDLY
 end
 
-function modifier_item_mantle_of_the_fallen_stats:GetAuraSearchType()    
+function modifier_plate_of_the_unbreakable_passive:GetAuraSearchType()    
 	return DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
 end
 
-function modifier_item_mantle_of_the_fallen_stats:GetAuraSearchFlags()    
+function modifier_plate_of_the_unbreakable_passive:GetAuraSearchFlags()    
 	return DOTA_UNIT_TARGET_FLAG_NONE
 end
 
@@ -97,11 +97,11 @@ function modifier_plate_of_the_unbreakable_aura:OnRefresh()
 	self.armor = self:GetSpecialValueFor("armor_aura")
 end
 
-function modifier_plate_of_the_unbreakable_passive:DeclareFunctions()
+function modifier_plate_of_the_unbreakable_aura:DeclareFunctions()
 	funcs = {MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS}
 	return funcs
 end
 
-function modifier_plate_of_the_unbreakable_passive:GetModifierPhysicalArmorBonus()
+function modifier_plate_of_the_unbreakable_aura:GetModifierPhysicalArmorBonus()
 	return self.armor
 end

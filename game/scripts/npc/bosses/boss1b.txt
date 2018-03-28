@@ -46,7 +46,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"leap_damage"			"125 180"
+				"leap_damage"			"200 250"
 			}
 			"05"
 			{
@@ -80,8 +80,8 @@
 	
 		// Stats		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"3 2"
-		"AbilityCastPoint"				"1 0.8"
+		"AbilityCooldown"				"4 3"
+		"AbilityCastPoint"				"1.25 1"
 		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
 	
 		// Cost
@@ -111,7 +111,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"spear_damage"			"75 100"
+				"spear_damage"			"150 175"
 			}
 		}
 		"precache"
@@ -142,6 +142,11 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"				"0"
 		
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_skywrath_mage/skywrath_mage_concussive_projectile_warmup.vpcf"
+		}
+		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
@@ -165,7 +170,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"spear_damage"			"150 200"
+				"spear_damage"			"200 300"
 			}
 			"05"
 			{

@@ -64,11 +64,11 @@ end
 
 function modifier_robo_mine:DeclareFunctions()
 	local funcs = {
-		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE
+		MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT
 	}
 	return funcs
 end
 
-function modifier_robo_mine:GetModifierMoveSpeedBonus_Percentage()
+function modifier_robo_mine:GetModifierMoveSpeedBonus_Constant()
 	return self:GetTalentSpecialValueFor("move_speed")	
 end

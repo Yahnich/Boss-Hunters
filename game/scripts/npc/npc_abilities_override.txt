@@ -3377,8 +3377,8 @@
 			}
 			"02"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"bonus_damage"				"15"
+				"var_type"					"FIELD_FLOAT"
+				"bonus_damage"				"-30"
 			}
 			"03"
 			{
@@ -7290,7 +7290,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"MaxLevel"						"7"
 
-		"AbilityCooldown"				"30 26 22 18"
+		"AbilityCooldown"				"30 26 22 18 14 10 6"
 		"AbilityManaCost"				"80"
 			
 		// Special
@@ -7358,12 +7358,12 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"fixed_vision"			"675"
+				"fixed_vision"			"1800"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"fixed_vision_others"			"800"
+				"fixed_vision_others"	"1800"
 			}
 		}
 	}
@@ -8526,7 +8526,7 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"1.5 1.5 1.5 1.5"
+		"AbilityCooldown"				"1.8"
 
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
