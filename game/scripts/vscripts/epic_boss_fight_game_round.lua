@@ -118,11 +118,13 @@ function CHoldoutGameRound:Begin()
 	self._nAsuraCoreRemaining = 0
 	local PlayerNumber = HeroList:GetActiveHeroCount()
 	local GoldMultiplier = 1 + (0.2 * (GameRules.BasePlayers - PlayerNumber))
+	if GetMapName() == "ebf_casual" then GoldMultiplier = GoldMultiplier * 1.25 end
 
 	local roundNumber = self._nRoundNumber
 	
 	self._nGoldRemainingInRound = self._nFixedGold * GoldMultiplier
 	self._nExpRemainingInRound = self._nFixedXP
+	if GetMapName() == "ebf_casual" then self._nExpRemainingInRound = self._nExpRemainingInRound * 1.5 end
 	
 	for _, spawner in pairs( self._vSpawners ) do
 		spawner:Begin()
@@ -136,6 +138,7 @@ function CHoldoutGameRound:Begin()
 	self._nElitesToSpawn = 0
 	self._EliteAbilities = {}
 	local elitePct = 15
+	if GameRules.gameDifficulty <= 2 then elitePct = 0 end
 
 	for i=1, self._nCoreUnitsTotal do
 		if RollPercentage( elitePct ) and self._nRoundNumber > 1 then
@@ -388,9 +391,6 @@ function CHoldoutGameRound:HandleElites(spawnedUnit)
 			end
 			
 			local eliteabstogive = 1
-			if GameRules._NewGamePlus == true or GameRules.gameDifficulty >= 4 then
-				eliteabstogive = 2
-			end
 			
 			local eliteAbName = elitelist[RandomInt(1,#elitelist)]
 			if spawnedUnit:IsElite() and spawnedUnit.eliteAb then -- if elite spawned through other ways

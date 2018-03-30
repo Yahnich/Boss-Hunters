@@ -40,9 +40,9 @@ function boss_evil_guardian_destruction:OnSpellStart()
 end
 
 function boss_evil_guardian_destruction:CreateRaze(position, damage, radius, delay)
-	local razeFX = ParticleManager:CreateParticle("particles/doom_ring.vpcf", PATTACH_WORLDORIGIN, nil)
-	ParticleManager:SetParticleControl( razeFX, 0, position )
 	local caster = self:GetCaster()
+	local razeFX = ParticleManager:CreateParticle("particles/doom_ring.vpcf", PATTACH_WORLDORIGIN, nil)
+	ParticleManager:SetParticleControl( razeFX, 0, GetGroundPosition(position, caster) )
 	Timers:CreateTimer(delay, function()
 		ParticleManager:ClearParticle( razeFX )
 		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( position, radius ) ) do

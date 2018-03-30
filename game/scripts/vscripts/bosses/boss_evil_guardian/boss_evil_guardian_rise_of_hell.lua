@@ -2,7 +2,7 @@ boss_evil_guardian_rise_of_hell = class({})
 
 function boss_evil_guardian_rise_of_hell:OnAbilityPhaseStart()
 	self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_status_immunity", {duration = self:GetCastPoint() - 0.01})
-	ParticleManager:FireWarningParticle(self:GetCursorPosition(), self:GetSpecialValueFor("radius"))
+	ParticleManager:FireWarningParticle(GetGroundPosition(self:GetCursorPosition(), self:GetCaster()), self:GetSpecialValueFor("radius"))
 	return true
 end
 

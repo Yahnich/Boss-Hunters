@@ -81,7 +81,7 @@ LinkLuaModifier( "modifier_item_gauntlet_of_the_void", "items/item_gauntlet_of_t
 function modifier_item_gauntlet_of_the_void:OnCreated()
 	self.mr = self:GetSpecialValueFor("bonus_mana_regen")
 	self.intellect = self:GetSpecialValueFor("bonus_intellect")
-	self.lifesteal = self:GetSpecialValueFor("lifesteal")
+	self.lifesteal = self:GetSpecialValueFor("lifesteal") / 100
 end
 
 function modifier_item_gauntlet_of_the_void:OnDestroy()

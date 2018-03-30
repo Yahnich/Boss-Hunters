@@ -565,7 +565,7 @@ function CHoldoutGameMode:FilterModifiers( filterTable )
 	local ability = EntIndexToHScript( ability_index )
 	local name = filterTable["name_const"]
 	if parent and caster and duration ~= -1 then
-		local params = {healer = healer, target = target, heal = heal}
+		local params = {caster = caster, target = parent, duration = duration, ability = ability}
 		for _, modifier in ipairs( caster:FindAllModifiers() ) do
 			if modifier.GetModifierStatusAmplify_Percentage then
 				filterTable["duration"] = filterTable["duration"] * (1 + modifier:GetModifierStatusAmplify_Percentage( params )/100)

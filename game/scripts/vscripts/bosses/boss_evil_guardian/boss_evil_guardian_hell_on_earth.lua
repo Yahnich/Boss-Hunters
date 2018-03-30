@@ -12,7 +12,7 @@ function boss_evil_guardian_hell_on_earth:CreateEvilPool(position, radius, damag
 	local tDmg = damage
 
 	local pFX = ParticleManager:CreateParticle("particles/units/bosses/boss_evil_guardian/boss_evil_guardian_hell_on_earth.vpcf", PATTACH_WORLDORIGIN, nil)
-	ParticleManager:SetParticleControl(pFX, 0, tPos )
+	ParticleManager:SetParticleControl(pFX, 0, GetGroundPosition(tPos, caster) )
 	ParticleManager:SetParticleControl(pFX, 1, Vector(radius,1,1) )
 	
 	Timers:CreateTimer(function()

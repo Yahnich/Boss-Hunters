@@ -1568,7 +1568,7 @@ end
 
 function ParticleManager:FireWarningParticle(position, radius)
 	local thinker = ParticleManager:CreateParticle("particles/econ/generic/generic_aoe_shockwave_1/generic_aoe_shockwave_1.vpcf", PATTACH_WORLDORIGIN, nil)
-			ParticleManager:SetParticleControl(thinker, 0, position)
+			ParticleManager:SetParticleControl(thinker, 0, GetGroundPosition( position, nil) )
 			ParticleManager:SetParticleControl(thinker, 2, Vector(6,0,1))
 			ParticleManager:SetParticleControl(thinker, 1, Vector(radius,0,0))
 			ParticleManager:SetParticleControl(thinker, 3, Vector(255,0,0))
@@ -1579,8 +1579,8 @@ end
 function ParticleManager:FireLinearWarningParticle(vStartPos, vEndPos, vWidth)
 	local fWidth = vWidth or 50
 	local width = Vector(fWidth, fWidth, fWidth)
-	local fx = ParticleManager:FireParticle("particles/range_ability_line.vpcf", PATTACH_WORLDORIGIN, nil, {[0] = vStartPos,
-																											[1] = vEndPos,
+	local fx = ParticleManager:FireParticle("particles/range_ability_line.vpcf", PATTACH_WORLDORIGIN, nil, {[0] = GetGroundPosition(vStartPos, nil),
+																											[1] = GetGroundPosition(vEndPos, nil),
 																											[2] = width} )																						
 end
 

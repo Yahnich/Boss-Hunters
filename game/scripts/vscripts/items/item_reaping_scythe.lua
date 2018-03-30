@@ -7,7 +7,12 @@ end
 
 modifier_item_reaping_scythe = class({})
 function modifier_item_reaping_scythe:DeclareFunctions()
-	return {MODIFIER_EVENT_ON_ATTACK_LANDED}
+	return {MODIFIER_EVENT_ON_ATTACK_LANDED,
+			MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE}
+end
+
+function modifier_item_reaping_scythe:GetModifierPreAttack_BonusDamage()
+	return self:GetAbility():GetSpecialValueFor("bonus_damage")
 end
 
 function modifier_item_reaping_scythe:OnAttackLanded(params)

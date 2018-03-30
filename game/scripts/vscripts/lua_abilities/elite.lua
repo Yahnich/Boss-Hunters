@@ -50,7 +50,7 @@ function CreateFrostShards(keys)
 	if not caster:IsAlive() or not ability:IsFullyCastable() then return end
 	local units = FindUnitsInRadius( caster:GetTeam(), caster:GetOrigin(), nil, 800, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, 0, false )
 	if #units == 0 then return end
-	ability:StartCooldown(8)
+	ability:StartCooldown(16)
 	for _, unit in pairs(units) do
 		local shardLoc = unit:GetAbsOrigin() + RandomVector(350)
 		local frostShard = ParticleManager:CreateParticle("particles/elite_freezing_parent.vpcf", PATTACH_WORLDORIGIN, nil)
@@ -62,7 +62,7 @@ function CreateFrostShards(keys)
 			EmitSoundOn("Hero_Ancient_Apparition.IceBlast.Target", caster)
 			local targets = FindUnitsInRadius( caster:GetTeam(), shardLoc, nil, 400, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, 0, false )
 			for _, frozenTarget in pairs(targets) do
-				ApplyDamage({ victim = frozenTarget, attacker = keys.caster, damage = frozenTarget:GetMaxHealth() * 0.25/keys.caster:GetSpellDamageAmp(), damage_type = DAMAGE_TYPE_MAGICAL, ability = ability })
+				ApplyDamage({ victim = frozenTarget, attacker = keys.caster, damage = frozenTarget:GetMaxHealth() * 0.25, damage_type = DAMAGE_TYPE_MAGICAL, ability = ability })
 				ability:ApplyDataDrivenModifier(caster, frozenTarget, "modifier_elite_coldsnapped", {duration = 2})
 			end
 		end)

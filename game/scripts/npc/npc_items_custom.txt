@@ -49,6 +49,7 @@
 #base "items/item_ogre_club.txt"
 #base "items/item_staff_of_magi.txt"
 #base "items/item_legionnaires_dualswords.txt"
+#base "items/item_mirrors_edge.txt"
 #base "items/item_hurricane_blade.txt"
 #base "items/item_orb_of_essence.txt"
 #base "items/item_orb_of_vitality.txt"
@@ -103,9 +104,9 @@
 		
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"100"
+		"AbilityCastRange"				"150"
 		"AbilityCastPoint"				"0.0"
-		"AbilityChannelTime"			"8.0"
+		"AbilityChannelTime"			"7.0"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------

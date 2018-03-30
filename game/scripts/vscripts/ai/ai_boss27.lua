@@ -136,7 +136,7 @@ if IsServer() then
 						})
 						return thisEntity.protect:GetCastPoint() + 0.1
 					end
-					if thisEntity.bigbear:IsFullyCastable() and thisEntity:GetBigBearCount() <= 5 and RollPercentage(50 / thisEntity:GetBigBearCount()) then
+					if thisEntity.bigbear:IsFullyCastable() and thisEntity:GetBigBearCount() <= 3 and RollPercentage(50 / thisEntity:GetBigBearCount()) then
 						ExecuteOrderFromTable({
 							UnitIndex = thisEntity:entindex(),
 							OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
@@ -144,7 +144,7 @@ if IsServer() then
 						})
 						return 0.25
 					end
-					if thisEntity.smallbear:IsFullyCastable() and thisEntity:GetSmallBearCount() <= 10  and RollPercentage(50 / thisEntity:GetSmallBearCount()) then
+					if thisEntity.smallbear:IsFullyCastable() and thisEntity:GetSmallBearCount() <= 6  and RollPercentage(50 / thisEntity:GetSmallBearCount()) then
 						ExecuteOrderFromTable({
 							UnitIndex = thisEntity:entindex(),
 							OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,

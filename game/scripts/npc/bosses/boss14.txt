@@ -26,7 +26,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"damage_amp"			"0.5 0.75"
+				"damage_amp"			"0.25 0.33"
 			}	
 		}
 	}
@@ -48,7 +48,7 @@
 	
 		// Stats		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"15 12"
+		"AbilityCooldown"				"20 15"
 		"AbilityCastPoint"				"0.5"
 		"AbilityCastRange"				"200 250"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
@@ -64,7 +64,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"execution_damage"		"50"
+				"execution_damage"		"15 20"
 			}
 		}
 		"precache"
@@ -90,8 +90,8 @@
 	
 		// Stats		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"15 12"
-		"AbilityCastPoint"				"1 0.8"
+		"AbilityCooldown"				"18 15"
+		"AbilityCastPoint"				"1.5 1"
 		"AbilityCastRange"				"400"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
 	
@@ -139,7 +139,7 @@
 		// Stats		
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"				"7"
-		"AbilityCastPoint"				"1 0.8"
+		"AbilityCastPoint"				"1.5 1.25"
 		"AbilityCastRange"				"650"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_3"
 	
@@ -160,12 +160,12 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"suck_power"			"25 50"
+				"suck_power"			"10 20"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"spin_damage"			"150 200"
+				"spin_damage"			"60 80"
 			}		
 			"03"
 			{

@@ -25,7 +25,8 @@ end
 
 function modifier_item_dust_of_stasis_stasis:OnTakeDamage(params)
 	if params.unit == self:GetParent() and not HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_HPLOSS) then
-		self:Destroy()
+		local hpPct = params.damage / params.unit:GetMaxHealth()
+		self:SetDuration(self:GetRemainingTime() - self:GetDuration() * hpPct, true)
 	end
 end
 

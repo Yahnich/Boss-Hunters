@@ -7,8 +7,14 @@ end
 
 modifier_item_gem_of_corruption = class({})
 function modifier_item_gem_of_corruption:DeclareFunctions()
-	return {MODIFIER_EVENT_ON_ATTACK_LANDED}
+	return {MODIFIER_EVENT_ON_ATTACK_LANDED,
+			MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE}
 end
+
+function modifier_item_gem_of_corruption:GetModifierPreAttack_BonusDamage()
+	return self:GetAbility():GetSpecialValueFor("bonus_damage")
+end
+
 
 function modifier_item_gem_of_corruption:OnAttackLanded(params)
 	if IsServer() then

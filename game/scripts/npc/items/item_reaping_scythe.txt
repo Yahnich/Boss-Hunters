@@ -62,7 +62,12 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"15"
+				"duration"				"15.0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_damage"			"50"
 			}
 		}
 	}

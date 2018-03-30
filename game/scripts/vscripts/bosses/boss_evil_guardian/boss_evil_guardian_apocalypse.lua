@@ -2,7 +2,7 @@ boss_evil_guardian_apocalypse = class({})
 
 function boss_evil_guardian_apocalypse:OnAbilityPhaseStart()
 	self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_status_immunity", {duration = self:GetCastPoint() - 0.01})
-	ParticleManager:FireWarningParticle(self:GetCaster():GetAbsOrigin(), 600)
+	ParticleManager:FireWarningParticle( GetGroundPosition(self:GetCaster():GetAbsOrigin(), self:GetCaster()), 600)
 	return true
 end
 

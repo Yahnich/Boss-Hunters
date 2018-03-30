@@ -27,3 +27,7 @@ end
 function modifier_item_pages_buckler:GetModifierConstantHealthRegen()
 	return self.hp_regen
 end
+
+function modifier_item_pages_buckler:IsHidden()
+	return true
+end

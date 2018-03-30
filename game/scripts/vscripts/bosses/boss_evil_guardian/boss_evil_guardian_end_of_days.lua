@@ -20,7 +20,7 @@ function boss_evil_guardian_end_of_days:CreateTrap(position)
 	local vPos = GetGroundPosition( position, caster ) + Vector(0,0,22)
 	
 	local razeFX = ParticleManager:CreateParticle("particles/doom_ring_D.vpcf", PATTACH_WORLDORIGIN, nil)
-	ParticleManager:SetParticleControl( razeFX, 0, vPos )
+	ParticleManager:SetParticleControl( razeFX, 0, GetGroundPosition(vPos, nil) )
 	
 	local duration = self:GetSpecialValueFor("stun_duration")
 	local radius = self:GetSpecialValueFor("raze_radius")

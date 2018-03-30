@@ -2,7 +2,7 @@ boss_evil_guardian_annihilation = class({})
 
 function boss_evil_guardian_annihilation:OnAbilityPhaseStart()
 	self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_status_immunity", {duration = self:GetCastPoint() - 0.01})
-	ParticleManager:FireWarningParticle(self:GetCaster():GetAbsOrigin(), 600)
+	ParticleManager:FireWarningParticle( GetGroundPosition(self:GetCaster():GetAbsOrigin(), self:GetCaster()), 600)
 	return true
 end
 
@@ -42,7 +42,7 @@ end
 
 function boss_evil_guardian_annihilation:CreateRaze(position, damage, radius, delay)
 	local razeFX = ParticleManager:CreateParticle("particles/doom_ring.vpcf", PATTACH_WORLDORIGIN, nil)
-	ParticleManager:SetParticleControl( razeFX, 0, position )
+	ParticleManager:SetParticleControl( razeFX, 0, GetGroundPosition(position, self:GetCaster()) )
 	local caster = self:GetCaster()
 	Timers:CreateTimer(delay, function()
 		ParticleManager:ClearParticle( razeFX )
