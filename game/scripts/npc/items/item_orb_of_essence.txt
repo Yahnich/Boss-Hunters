@@ -3,45 +3,45 @@
 	//=================================================================================================================
 	// Recipe: TITAN Armor
 	//=================================================================================================================
-	"item_recipe_behemoths_heart"
+	"item_recipe_orb_of_essence"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"6271"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"6627"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"			"item_recipe_heart"
+		"AbilityTextureName"			"item_recipe"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"2050"	
+		"ItemCost"						"350"	
 		"ItemShopTags"					""
 		
 		// Recipe
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemRecipe"					"1"
-		"ItemResult"					"item_behemoths_heart"
+		"ItemResult"					"item_orb_of_essence"
 		"ItemRequirements"
 		{
-			"01"						"item_orb_of_vitality;item_ogre_club"
+			"01"						"item_staff_of_magi;item_ring_of_mana"
 		}
 	}
-	"item_behemoths_heart"
+	"item_orb_of_essence"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"3272"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"ID"							"6628"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_lua"
-		"ScriptFile"					"items/item_behemoths_heart"
-		"AbilityTextureName"			"item_heart"
+		"ScriptFile"					"items/item_orb_of_essence"
+		"AbilityTextureName"			"item_energy_booster"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
 		
-		"ItemShopTags"					"regen;health"
+		"ItemShopTags"					"intelligence;mana regen"
 		"ItemQuality"					"epic"
-		"ItemAliases"					"heart of tarrasque;behemoths_heart"
+		"ItemAliases"					"energy booster;orb of essence"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
@@ -49,8 +49,6 @@
 		{
 			"precache"					"soundevents/game_sounds_items.vsndevts"
 		}
-		
-		"AbilityCooldown"				"14"
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
@@ -58,38 +56,13 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"active_regen"			"10"
+				"var_type"				"FIELD_INTEGER"
+				"bonus_intellect"		"15"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"5"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"stack_regen"			"0.5"
-			}
-			"04"
-			{
 				"var_type"				"FIELD_INTEGER"
-				"max_stacks"			"10"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"stack_delay"			"1.0"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"hp_per_str"			"20"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_strength"		"40"
+				"bonus_mana_regen"		"5"
 			}
 		}
 	}

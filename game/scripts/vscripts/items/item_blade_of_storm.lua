@@ -12,6 +12,7 @@ function modifier_item_blade_of_storm:OnCreated()
 	self.evasion = self:GetSpecialValueFor("bonus_evasion")
 	self.agility = self:GetSpecialValueFor("bonus_agility")
 	self.bonusDamage = self:GetSpecialValueFor("bonus_damage")
+	self.movespeed = self:GetSpecialValueFor("bonus_movespeed")
 	
 	self.shockDamage = self:GetSpecialValueFor("shock_damage")
 	self.shockChance = self:GetSpecialValueFor("shock_chance")
@@ -24,7 +25,12 @@ function modifier_item_blade_of_storm:DeclareFunctions()
 			MODIFIER_PROPERTY_EVASION_CONSTANT,
 			MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE,
 			MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
+			MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE
 			}
+end
+
+function modifier_item_blade_of_storm:GetModifierMoveSpeedBonus_Percentage()
+	return self.movespeed
 end
 
 function modifier_item_blade_of_storm:OnAttackLanded(params)

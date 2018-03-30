@@ -15,9 +15,7 @@
 	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
 	    "AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 	    "SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
-		"RequiredLevel"					"3"
 		"AbilityTextureName"			"axe_battle_hunger"
 	
 		// Casting

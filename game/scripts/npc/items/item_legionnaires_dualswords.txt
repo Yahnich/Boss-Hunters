@@ -23,7 +23,7 @@
 		"ItemResult"					"item_legionnaires_dualswords"
 		"ItemRequirements"
 		{
-			"01"						"item_blade_of_agility;item_ogre_club;item_cursed_amulet"
+			"01"						"item_orb_of_haste;item_ogre_club;item_cursed_amulet"
 		}
 	}
 	//=================================================================================================================
@@ -62,17 +62,17 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_agility"			"16"
+				"bonus_agility"			"20"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_attackspeed"		"16"
+				"bonus_attackspeed"		"32"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_strength"		"16"
+				"bonus_strength"		"20"
 			}
 			"04"
 			{
@@ -82,7 +82,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"attack_slow"			"-32"
+				"attack_slow"			"-64"
 			}
 			"06"
 			{

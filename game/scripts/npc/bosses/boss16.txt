@@ -20,7 +20,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"heal_amount"			"0.25 0.35"
+				"heal_amount"			"0.1 0.15"
 			}			
 		}
 	}
@@ -188,17 +188,17 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"drake_damage"			"40 50"
+				"drake_damage"			"35 40"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"drake_health"			"35 45"
+				"drake_health"			"25 35"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"drake_count"			"4 5"
+				"drake_count"			"4"
 			}
 		}
 		"precache"

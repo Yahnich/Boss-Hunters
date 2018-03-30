@@ -1976,7 +1976,7 @@
 			"01"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"damage_count"		"8"
+				"damage_count"		"3"
 			}
 			"02"
 			{
@@ -6483,7 +6483,7 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"2"
+		"AbilityCooldown"				"3"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -6506,7 +6506,7 @@
 			"02"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"radius"			"350"
+				"radius"			"275"
 			}
 			"03"
 			{
@@ -10962,7 +10962,7 @@
 			{
 				"Passive"	"1"
 				"IsHidden"	"1"
-				"ThinkInterval"	"1"
+				"ThinkInterval"	"2"
 				"OnIntervalThink"
 				{
 					"RunScript"

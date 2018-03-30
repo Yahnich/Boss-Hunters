@@ -549,7 +549,10 @@ function CDOTA_BaseNPC:SetAverageBaseDamage(average, variance) -- variance is in
 	self:SetBaseDamageMin(math.floor(average*(1-(var/100))))
 end
 
+DO_NOT_REFRESH = {["item_flashback"] = true,}
+
 function CDOTABaseAbility:Refresh()
+	if DO_NOT_REFRESH[self:GetName()] then return end
 	if not self:IsActivated() then
 		self:SetActivated(true)
 	end

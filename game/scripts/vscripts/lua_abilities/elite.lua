@@ -405,7 +405,7 @@ function UnstableFunction(keys)
 	local averagehp = totalhp / #enemies
 	local damage = averagehp
 	for _,unit in pairs(enemies) do
-		if RollPercentage(20) then
+		if RollPercentage(15) then
 			local location = unit:GetAbsOrigin() + Vector(math.random(700),math.random(700),0)
 			local rnd = RandomInt(1,100)
 			if rnd > 33 and rnd < 66 then

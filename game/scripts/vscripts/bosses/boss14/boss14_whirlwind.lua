@@ -3,7 +3,7 @@ boss14_whirlwind = class({})
 function boss14_whirlwind:OnAbilityPhaseStart()
 	local caster = self:GetCaster()
 	caster:AddNewModifier(caster, self, "modifier_status_immunity", {duration = self:GetCastPoint() - 0.01})
-	ParticleManager:FireTargetWarningParticle(caster)
+	ParticleManager:FireWarningParticle(caster:GetAbsOrigin(), self:GetSpecialValueFor("radius"))
 	return true
 end
 

@@ -50,8 +50,10 @@
 #base "items/item_staff_of_magi.txt"
 #base "items/item_legionnaires_dualswords.txt"
 #base "items/item_hurricane_blade.txt"
-#base "items/item_mirrors_edge.txt"
-
+#base "items/item_orb_of_essence.txt"
+#base "items/item_orb_of_vitality.txt"
+#base "items/item_orb_of_haste.txt"
+#base "items/item_orb_of_renewal.txt"
 
 #base "items/item_arcane_accelerator.txt"
 #base "items/item_mantle_of_fallen.txt"
@@ -70,6 +72,9 @@
 #base "items/item_berserkers_cape.txt"
 #base "items/item_blade_of_storm.txt"
 #base "items/item_guillotine.txt"
+#base "items/item_arcane_reaver.txt"
+#base "items/item_flashback.txt"
+#base "items/item_gauntlet_of_the_void.txt"
 
 #base "items/item_potion_of_recovery.txt"
 #base "items/item_potion_of_essence.txt"

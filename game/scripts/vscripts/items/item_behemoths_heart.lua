@@ -66,7 +66,7 @@ function modifier_item_behemoths_heart_passive:DeclareFunctions()
 			}
 end
 
-function modifier_item_ogre_club_handle:GetModifierBonusStats_Strength()
+function modifier_item_behemoths_heart_passive:GetModifierBonusStats_Strength()
 	return self.stat
 end
 

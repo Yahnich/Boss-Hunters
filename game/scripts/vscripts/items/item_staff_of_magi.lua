@@ -25,3 +25,7 @@ end
 function modifier_item_staff_of_magi_handle:IsHidden()
 	return true
 end
+
+function modifier_item_staff_of_magi_handle:GetAttributes()
+	return MODIFIER_ATTRIBUTE_MULTIPLE
+end

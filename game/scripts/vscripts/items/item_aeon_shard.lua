@@ -65,3 +65,7 @@ end
 function modifier_item_aeon_shard_consumed:IsPermanent()
 	return true
 end
+
+function modifier_item_aeon_shard_consumed:IsPurgable()
+	return false
+end

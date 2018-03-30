@@ -3,45 +3,45 @@
 	//=================================================================================================================
 	// Recipe: TITAN Armor
 	//=================================================================================================================
-	"item_recipe_behemoths_heart"
+	"item_recipe_orb_of_haste"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"6271"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"6631"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"			"item_recipe_heart"
+		"AbilityTextureName"			"item_recipe"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"2050"	
+		"ItemCost"						"500"	
 		"ItemShopTags"					""
 		
 		// Recipe
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemRecipe"					"1"
-		"ItemResult"					"item_behemoths_heart"
+		"ItemResult"					"item_orb_of_haste"
 		"ItemRequirements"
 		{
-			"01"						"item_orb_of_vitality;item_ogre_club"
+			"01"						"item_gauntlet_of_alacrity;item_blade_of_agility"
 		}
 	}
-	"item_behemoths_heart"
+	"item_orb_of_haste"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"3272"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"ID"							"6632"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_lua"
-		"ScriptFile"					"items/item_behemoths_heart"
-		"AbilityTextureName"			"item_heart"
+		"ScriptFile"					"items/item_orb_of_haste"
+		"AbilityTextureName"			"custom/orb_of_haste"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
 		
-		"ItemShopTags"					"regen;health"
+		"ItemShopTags"					"agility;movespeed;attackspeed"
 		"ItemQuality"					"epic"
-		"ItemAliases"					"heart of tarrasque;behemoths_heart"
+		"ItemAliases"					"haste booster;orb of haste"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
@@ -49,8 +49,6 @@
 		{
 			"precache"					"soundevents/game_sounds_items.vsndevts"
 		}
-		
-		"AbilityCooldown"				"14"
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
@@ -58,38 +56,18 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"active_regen"			"10"
+				"var_type"				"FIELD_INTEGER"
+				"bonus_attackspeed"		"30"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"5"
+				"var_type"				"FIELD_INTEGER"
+				"bonus_agility"			"15"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"stack_regen"			"0.5"
-			}
-			"04"
-			{
 				"var_type"				"FIELD_INTEGER"
-				"max_stacks"			"10"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"stack_delay"			"1.0"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"hp_per_str"			"20"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_strength"		"40"
+				"bonus_movespeed"		"10"
 			}
 		}
 	}

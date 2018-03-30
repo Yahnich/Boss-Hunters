@@ -1731,7 +1731,7 @@ function CHoldoutGameMode:OnThink()
 					local shareCount = 0
 					for _,unit in pairs ( HeroList:GetAllHeroes()) do
 						if unit:GetTeamNumber() == DOTA_TEAM_GOODGUYS and not unit:IsFakeHero() then
-							PlayerResource:SetCustomBuybackCost(unit:GetPlayerID(), self._nRoundNumber * 100)
+							PlayerResource:SetCustomBuybackCost(unit:GetPlayerID(), self._nRoundNumber * 40)
 							if unit:HasOwnerAbandoned() then
 								abandonGold = abandonGold + unit:GetGold()
 								unit:SetGold(0, false)

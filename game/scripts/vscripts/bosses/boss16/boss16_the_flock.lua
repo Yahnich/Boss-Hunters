@@ -23,10 +23,18 @@ end
 
 function boss16_the_flock:CreateDrake()
 	local drake = CreateUnitByName("npc_dota_boss23_m", self:GetCaster():GetAbsOrigin() + ActualRandomVector(600, 400), true, drake, drake, self:GetCaster():GetTeam())
+	
 	drake:SetAverageBaseDamage(self:GetCaster():GetAverageBaseDamage() * self:GetSpecialValueFor("drake_damage")/100, 25)
 	drake:SetBaseMaxHealth(self:GetCaster():GetBaseMaxHealth() * self:GetSpecialValueFor("drake_health")/100)
 	drake:SetMaxHealth(self:GetCaster():GetMaxHealth() * self:GetSpecialValueFor("drake_health")/100)
 	drake:SetHealth(drake:GetMaxHealth())
+	
+	Timer:CreateTimer(0.1, function()
+		drake:SetAverageBaseDamage(self:GetCaster():GetAverageBaseDamage() * self:GetSpecialValueFor("drake_damage")/100, 25)
+		drake:SetBaseMaxHealth(self:GetCaster():GetBaseMaxHealth() * self:GetSpecialValueFor("drake_health")/100)
+		drake:SetMaxHealth(self:GetCaster():GetMaxHealth() * self:GetSpecialValueFor("drake_health")/100)
+		drake:SetHealth(drake:GetMaxHealth())
+	end)
 	ParticleManager:FireParticle("particles/units/heroes/hero_dragon_knight/dragon_knight_transform_red.vpcf", PATTACH_POINT_FOLLOW, drake)
 	drake.owningDragon = self:GetCaster()
 	table.insert(self.drakeCount, drake)

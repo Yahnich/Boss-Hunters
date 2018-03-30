@@ -14,7 +14,7 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"2500"	
+		"ItemCost"						"1550"	
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -23,7 +23,7 @@
 		"ItemResult"					"item_arcane_accelerator"
 		"ItemRequirements"
 		{
-			"01"						"item_runed_artifact"
+			"01"						"item_runed_artifact;item_orb_of_renewal"
 		}
 	}
 	"item_arcane_accelerator"

@@ -172,7 +172,6 @@ function modifier_nyx_assassin_ultimyr_justicar_swarm:OnAbilityFullyCast(params)
                               FIND_ANY_ORDER,
                               false)
 				for _,unit in pairs(units) do
-					if unit 
 					params.unit:SetCursorPosition(unit:GetAbsOrigin())
 					params.ability:OnSpellStart()
 				end

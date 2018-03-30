@@ -23,7 +23,7 @@
 		"ItemResult"					"item_blade_of_storm"
 		"ItemRequirements"
 		{
-			"01"						"item_hunters_hatchet;item_breeze_amulet;item_gauntlet_of_alacrity;item_blade_of_agility"
+			"01"						"item_hunters_hatchet;item_breeze_amulet;item_orb_of_haste"
 		}
 	}
 	"item_blade_of_storm"
@@ -78,14 +78,19 @@
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"shock_chance"			"15"
+				"bonus_movespeed"		"12"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"shock_damage"			"80"
+				"shock_chance"			"15"
 			}
 			"07"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"shock_damage"			"80"
+			}
+			"08"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"shock_duration"		"0.1"
