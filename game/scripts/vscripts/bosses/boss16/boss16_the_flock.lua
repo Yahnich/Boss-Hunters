@@ -29,7 +29,7 @@ function boss16_the_flock:CreateDrake()
 	drake:SetMaxHealth(self:GetCaster():GetMaxHealth() * self:GetSpecialValueFor("drake_health")/100)
 	drake:SetHealth(drake:GetMaxHealth())
 	
-	Timer:CreateTimer(0.1, function()
+	Timers:CreateTimer(0.1, function()
 		drake:SetAverageBaseDamage(self:GetCaster():GetAverageBaseDamage() * self:GetSpecialValueFor("drake_damage")/100, 25)
 		drake:SetBaseMaxHealth(self:GetCaster():GetBaseMaxHealth() * self:GetSpecialValueFor("drake_health")/100)
 		drake:SetMaxHealth(self:GetCaster():GetMaxHealth() * self:GetSpecialValueFor("drake_health")/100)

@@ -48,6 +48,7 @@
 		"item"		"item_orb_of_haste"
 		"item"		"item_orb_of_vitality"
 		"item"		"item_orb_of_essence"
+		"item"		"item_titan_blade"
 		"item"		"item_aeon_shard"
     }
     // Level 2 - Blue Recipes
@@ -87,6 +88,7 @@
 		"item"		"item_fortress_shield"
 		"item"		"item_glacier_boots"
 		"item"		"item_legionnaires_dualswords"
+		"item"		"item_leechblade"
     }
 	"weapons"
     {
@@ -94,26 +96,29 @@
 		"item"		"item_siegebreaker"
 		"item"		"item_ringing_rapier"
 		"item"		"item_reaping_scythe"
-		"item"		"item_leechblade"
 		"item"		"item_executioners_blade"
 		"item"		"item_lance_of_longinus"
-		"item"		"item_blood_gods_mask"
 		"item"		"item_blade_of_storm"
 		"item"		"item_guillotine"
 		"item"		"item_arcane_reaver"
 		"item"		"item_gauntlet_of_the_void"
+		"item"		"item_anvil"
+		"item"		"item_headchopper"
     }
     // Level 4 - Orange / Orb / Artifacts
     "artifacts"
     {
         "item"		"item_ultimate_scepter"
-		"item"		"item_force_boots"
 		"item"		"item_mirrors_edge"
+		"item"		"item_illusionists_charm"
+		"item"		"item_tricksters_blade"
+		"item"		"item_warp_staff"
+		"item"		"item_force_boots"
 		"item"		"item_wings_of_icarus"
 		"item"		"item_soul_vessel"
 		"item"		"item_incandescance"
 		"item"		"item_frostbite"
 		"item"		"item_berserkers_cape"
-		"item"		"item_tricksters_blade"
+		"item"		"item_blood_gods_mask"
     }
 }

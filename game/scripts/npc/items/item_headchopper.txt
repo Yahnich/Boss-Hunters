@@ -3,54 +3,58 @@
 	//=================================================================================================================
 	// Recipe: TITAN Armor
 	//=================================================================================================================
-	"item_recipe_executioners_blade"
+	"item_recipe_headchopper"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"6279"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"6647"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"			"item_recipe_assault"
+		"AbilityTextureName"			"item_recipe"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"1750"	
+		"ItemCost"						"500"	
 		"ItemShopTags"					""
 		
 		// Recipe
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemRecipe"					"1"
-		"ItemResult"					"item_executioners_blade"
+		"ItemResult"					"item_headchopper"
 		"ItemRequirements"
 		{
-			"01"						"item_hunters_hatchet"
+			"01"						"item_titan_blade;item_executioners_blade"
 		}
 	}
-	"item_executioners_blade"
+	//=================================================================================================================
+	// TITAN Armor
+	//=================================================================================================================
+	"item_headchopper"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"3280"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"6648"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_lua"
-		"ScriptFile"					"items/item_executioners_blade"
-		"AbilityTextureName"			"item_demon_edge"
+		"ScriptFile"					"items/item_headchopper"
+		"AbilityTextureName"			"item_sange"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
 		
-		"ItemShopTags"					"damage;crit"
+		"ItemShopTags"					"strength;damage;crit"
 		"ItemQuality"					"epic"
-		"ItemAliases"					"daedalus;executioners_blade"
+		"ItemAliases"					"daedalus;headchopper"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"precache"
+		"particle"
 		{
-			"precache"					"soundevents/game_sounds_items.vsndevts"
+			"particle"					"particles/items_fx/blink_dagger_start.vpcf"
+			"particle"					"particles/items_fx/blink_dagger_end.vpcf"
 		}
 
-
+		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
@@ -58,17 +62,22 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"critical_chance"		"20"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"critical_damage"		"225"
+				"bonus_strength"		"30"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"30"
+				"bonus_damage"			"50"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"critical_chance"		"20"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"critical_damage"		"225"
 			}
 		}
 	}

@@ -55,6 +55,9 @@
 #base "items/item_orb_of_vitality.txt"
 #base "items/item_orb_of_haste.txt"
 #base "items/item_orb_of_renewal.txt"
+#base "items/item_titan_blade.txt"
+#base "items/item_anvil.txt"
+#base "items/item_headchopper.txt"
 
 #base "items/item_arcane_accelerator.txt"
 #base "items/item_mantle_of_fallen.txt"
@@ -76,6 +79,8 @@
 #base "items/item_arcane_reaver.txt"
 #base "items/item_flashback.txt"
 #base "items/item_gauntlet_of_the_void.txt"
+#base "items/item_illusionists_charm.txt"
+#base "items/item_warp_staff.txt"
 
 #base "items/item_potion_of_recovery.txt"
 #base "items/item_potion_of_essence.txt"

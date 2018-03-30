@@ -53,7 +53,7 @@ function InnerTorment(filterTable)
 	end
     local damagetype = filterTable["damagetype_const"]
 	local modifier = attacker:FindModifierByName("modifier_leshrac_inner_torment")
-	local pierce = (modifier.piercing * modifier:GetStackCount()) / 100
+	local pierce = math.min(100, (modifier.piercing * modifier:GetStackCount())) / 100
 	if (victim:GetMagicalArmorValue() <= 0 and damagetype == 2) or (victim:GetPhysicalArmorReduction() <= 0 and damagetype == 1) then return filterTable end
 	filterTable["damage"] = filterTable["damage"] * (1- pierce) -- replace damage by different damage
 	

@@ -14,7 +14,6 @@ end
 function modifier_item_orb_of_essence:DeclareFunctions()
 	return {MODIFIER_PROPERTY_MANA_REGEN_CONSTANT,
 			MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
-			MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
 			}
 end
 

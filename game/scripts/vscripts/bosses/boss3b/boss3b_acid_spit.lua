@@ -33,7 +33,7 @@ function boss3b_acid_spit:OnSpellStart()
 	ParticleManager:SetParticleControl(acidFX, 16, Vector(radius, 0, 0) )
 	
 	Timers:CreateTimer(function()
-		if not caster or caster:IsNull() then
+		if not caster or caster:IsNull() or not ability or ability:IsNull() then
 			ParticleManager:ClearParticle(acidFX)
 		end
 		local enemies = caster:FindEnemyUnitsInRadius(position, radius)

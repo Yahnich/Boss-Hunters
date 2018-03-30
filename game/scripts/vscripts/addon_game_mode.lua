@@ -708,23 +708,10 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 			require('lua_abilities/heroes/leshrac')
 			filterTable = InnerTorment(filterTable)
 		end
-		if not ability:IsAetherAmplified() then filterTable["damage"] = filterTable["damage"] / (1 + (attacker:GetSpellDamageAmp()))/100 end
 	end
 	if victim:IsRealHero() and not victim:IsRangedAttacker() and (damagetype == 1 or damagetype == 2) then
 		if not (ability and ability:GetName() == "skeleton_king_reincarnation") and victim ~= attacker then
 			filterTable["damage"] = filterTable["damage"] * 0.66
-		end
-	end
-	if attacker:IsCreature() and not inflictor then -- no more oneshots tears-b-gone
-		local damageCap = 2
-		local critmult = damage / (1 - victim:GetPhysicalArmorReduction() / 100 ) / attacker:GetAverageBaseDamage()
-		damageCap = damageCap * critmult
-		if victim:HasModifier("modifier_ethereal_resistance") then 
-			local newdamageCap = victim:FindModifierByName("modifier_ethereal_resistance"):GetAbility():GetSpecialValueFor("spooky_block") / 100
-			if newdamageCap < damageCap then damageCap = newdamageCap end
-		end
-		if filterTable["damage"] > victim:GetMaxHealth() * damageCap then
-			filterTable["damage"] = victim:GetMaxHealth() * damageCap 
 		end
 	end
 	
