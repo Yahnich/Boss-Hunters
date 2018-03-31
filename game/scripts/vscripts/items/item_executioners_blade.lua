@@ -9,6 +9,7 @@ LinkLuaModifier( "modifier_item_executioners_blade_handle", "items/item_executio
 function modifier_item_executioners_blade_handle:OnCreated()
 	self.crit_damage = self:GetSpecialValueFor("critical_damage")
 	self.crit_chance = self:GetSpecialValueFor("critical_chance")
+	self.damage = self:GetSpecialValueFor("bonus_damage")
 end
 
 function modifier_item_executioners_blade_handle:GetAttributes()
@@ -16,7 +17,13 @@ function modifier_item_executioners_blade_handle:GetAttributes()
 end
 
 function modifier_item_executioners_blade_handle:DeclareFunctions()
-	return {MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE}
+	return {MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE,
+			MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE
+			}
+end
+
+function modifier_item_titan_blade_handle:GetModifierBaseAttack_BonusDamage()
+	return self.damage
 end
 
 function modifier_item_executioners_blade_handle:GetModifierPreAttack_CriticalStrike()

@@ -12848,7 +12848,7 @@
 	            "var_type"              "FIELD_FLOAT"
 	            "parry_chance"          "40 45 50 55 60 65 70"
 	        }
-			"01"
+			"02"
 	        {
 	            "var_type"              "FIELD_FLOAT"
 	            "damage"                "100 120 140 160 180 200 220"
