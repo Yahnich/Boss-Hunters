@@ -84,11 +84,11 @@ function modifier_item_warp_staff_handler:DeclareFunctions()
 end
 
 function modifier_item_warp_staff_handler:GetModifierConstantManaRegen()
-	return self.mr
+	return self:GetSpecialValueFor("bonus_mana_regen")
 end
 
 function modifier_item_warp_staff_handler:GetModifierBonusStats_Intellect()
-	return self.intellect
+	return self:GetSpecialValueFor("bonus_intellect")
 end
 
 function modifier_item_warp_staff_handler:DestroyOnExpire()

@@ -15,14 +15,27 @@ modifier_item_flashback_passive = class({})
 function modifier_item_flashback_passive:OnCreated()
 	self.ultChance = self:GetSpecialValueFor("ult_chance")
 	self.basicChance = self:GetSpecialValueFor("basic_chance")
+	self.mr = self:GetSpecialValueFor("bonus_mana_regen")
+	self.intellect = self:GetSpecialValueFor("bonus_intellect")
 end
 
 function modifier_item_flashback_passive:DeclareFunctions()
-	return {MODIFIER_EVENT_ON_ABILITY_FULLY_CAST}
+	return {MODIFIER_EVENT_ON_ABILITY_FULLY_CAST,
+			MODIFIER_PROPERTY_MANA_REGEN_CONSTANT,
+			MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,}
 end
 
 function modifier_item_flashback_passive:GetModifierPercentageCooldownStacking(params)
 	return self.cdr
+end
+
+
+function modifier_item_flashback_passive:GetModifierConstantManaRegen()
+	return self.mr
+end
+
+function modifier_item_flashback_passive:GetModifierBonusStats_Intellect()
+	return self.intellect
 end
 
 function modifier_item_flashback_passive:OnAbilityFullyCast(params)
