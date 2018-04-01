@@ -69,7 +69,7 @@ function modifier_puck_phase_shift_immune:GetOverrideAnimation()
 end
 
 function modifier_puck_phase_shift_immune:OnAttackStart(params)
-	if self:GetParent() == params.unit then
+	if self:GetParent() == params.attacker then
 		self:Destroy()
 	end
 end

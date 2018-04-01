@@ -16,8 +16,6 @@
 		"AbilitySound"					"Hero_Puck.Illusory_Orb"
 		"AbilityTextureName"			"puck_illusory_orb"
 		"MaxLevel"						"7"
-		"RequiredLevel"					"5"
-		"LevelsBetweenUpgrades"			"5"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------

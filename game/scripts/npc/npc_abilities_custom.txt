@@ -12865,24 +12865,24 @@
 				{
 					"Random"
 					{
-	   						"Chance" "%parry_chance"
-	   						"PseudoRandom" "DOTA_PSEUDO_RANDOM_JUGG_CRIT"
-	   						"OnSuccess"
-	   						{
-							"RunScript"
-							{
-								"ScriptFile"		"lua_abilities/heroes/juggernaut"
-								"Function"			"QuickParry"
-								"damage"			"%attack_damage"
-							}
-							"FireSound"
-							{
-								"EffectName"        "Hero_Juggernaut.OmniSlash.Damage"
-								"EffectAttachType"  "ATTACKER"
-							}
-	   						}
-	   						"OnFailure"
-	   						{}
+						"Chance" "%parry_chance"
+						"PseudoRandom" "DOTA_PSEUDO_RANDOM_JUGG_CRIT"
+						"OnSuccess"
+						{
+						"RunScript"
+						{
+							"ScriptFile"		"lua_abilities/heroes/juggernaut"
+							"Function"			"QuickParry"
+							"damage"			"%attack_damage"
+						}
+						"FireSound"
+						{
+							"EffectName"        "Hero_Juggernaut.OmniSlash.Damage"
+							"EffectAttachType"  "ATTACKER"
+						}
+						}
+						"OnFailure"
+						{}
 					}
 				}
 			}
