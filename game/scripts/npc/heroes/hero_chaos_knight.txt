@@ -161,6 +161,7 @@
 			{
 				"var_type"					"FIELD_INTEGER"
 				"crit_chance"				"12"
+				"LinkedSpecialBonus"		"special_bonus_unique_chaos_knight_chaos_strike_2"
 			}
 			"02"
 			{

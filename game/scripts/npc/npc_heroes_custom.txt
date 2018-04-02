@@ -55,18 +55,19 @@
 	"npc_dota_hero_ancient_apparition_ebf"
 	{
 		"override_hero"				"npc_dota_hero_ancient_apparition"
-		"AbilityLayout"				"4"
-		"Ability1"					"ancient_apparition_entropy"
-		"Ability6"					"ancient_apparition_ice_blast_ebf"
+		"Ability1"					"aa_cold_feet"
+		"Ability2"					"aa_ice_vortex"
+		"Ability3"					"aa_chilling_touch"
+		"Ability6"					"aa_ice_blast"
 		
-		"Ability10"		"special_bonus_cooldown_reduction_15"
-		"Ability11"		"special_bonus_spell_amplify_5"
-		"Ability12"		"special_bonus_unique_ancient_apparition_3"
-		"Ability13"		"special_bonus_hp_regen_20"
-		"Ability14"		"special_bonus_unique_ancient_apparition_4"
-		"Ability15"		"special_bonus_unique_ancient_apparition_2"
-		"Ability16"		"special_bonus_unique_ancient_apparition_1"
-		"Ability17"		"special_bonus_unique_ancient_apparition_5"
+		"Ability10"		"special_bonus_unique_aa_cold_feet_1"
+		"Ability11"		"special_bonus_unique_aa_cold_feet_2"
+		"Ability12"		"special_bonus_unique_aa_ice_vortex_1"
+		"Ability13"		"special_bonus_unique_aa_ice_vortex_2"
+		"Ability14"		"special_bonus_unique_aa_chilling_touch_1"
+		"Ability15"		"special_bonus_unique_aa_chilling_touch_2"
+		"Ability16"		"special_bonus_unique_aa_ice_blast_1"
+		"Ability17"		"special_bonus_unique_aa_ice_blast_2"
 	}
 	//=================================================================================================================
 	// HERO: Anti-Mage
