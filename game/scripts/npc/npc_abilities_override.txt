@@ -2472,13 +2472,13 @@
 			}
 			"04"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"movement_slow"					"5 10 15 20"
+				"var_type"						"FIELD_INTEGER"
+				"movement_slow"					"30"
 			}
 			"05"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"siphon_buffer"			"250"
+				"var_type"						"FIELD_INTEGER"
+				"siphon_buffer"					"250"
 			}
 			"06"
 			{
@@ -2514,11 +2514,11 @@
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastPoint"				"0.5 0.5 0.5"
-		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_4"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"145.0"
+		"AbilityCooldown"				"100.0"
 		"AbilityDuration"				"35"
 
 		// Cost
@@ -3232,6 +3232,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"				"1"
 		"AbilitySound"					"Hero_Zuus.LightningBolt"
+		"MaxLevel"						"7"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -3378,14 +3379,9 @@
 			"02"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"bonus_damage"				"-30"
+				"duration"					"10"
 			}
 			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"12"
-			}
-			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
 				"river_speed"				"700"

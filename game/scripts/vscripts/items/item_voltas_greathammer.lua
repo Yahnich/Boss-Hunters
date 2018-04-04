@@ -20,6 +20,7 @@ end
 modifier_item_voltas_greathammer_handle = class({})
 function modifier_item_voltas_greathammer_handle:OnCreated()
 	self.attackspeed = self:GetSpecialValueFor("bonus_attack_speed")
+	self.damage = self:GetSpecialValueFor("bonus_damage")
 end
 
 function modifier_item_voltas_greathammer_handle:GetAttributes()
@@ -28,11 +29,16 @@ end
 
 function modifier_item_voltas_greathammer_handle:DeclareFunctions()
 	return {MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+			MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
 			MODIFIER_EVENT_ON_ATTACK_LANDED}
 end
 
 function modifier_item_voltas_greathammer_handle:GetModifierAttackSpeedBonus_Constant()
 	return self.attackspeed
+end
+
+function modifier_item_voltas_greathammer_handle:GetModifierPreAttack_BonusDamage()
+	return self.damage
 end
 
 function modifier_item_voltas_greathammer_handle:OnAttackLanded(params)

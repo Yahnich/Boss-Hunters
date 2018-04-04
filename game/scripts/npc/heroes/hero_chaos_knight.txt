@@ -298,7 +298,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"18"
+				"value"					"8"
 			}
 		}
 	}

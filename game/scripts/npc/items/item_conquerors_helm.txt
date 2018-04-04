@@ -1,0 +1,109 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Recipe: TITAN Armor
+	//=================================================================================================================
+	"item_recipe_conquerors_helm"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"6653"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"1800"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_conquerors_helm"
+		"ItemRequirements"
+		{
+			"01"						"item_orb_of_vitality;item_soul_vessel;item_mithril_armor"
+		}
+	}
+	//=================================================================================================================
+	// TITAN Armor
+	//=================================================================================================================
+	"item_conquerors_helm"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"6654"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_conquerors_helm"
+		"AbilityTextureName"			"item_helm_of_the_dominator"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemShopTags"					"strength;lifesteal;regen;armor;fear;tank"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"helm of the dominator;hotd;conquerors helm"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"particle"
+		{
+			"particle"					"particles/units/heroes/hero_lone_druid/lone_druid_savage_roar.vpcf"
+			"particle"					"particles/units/heroes/hero_lone_druid/lone_druid_savage_roar_debuff.vpcf"
+			"particle"					"particles/status_fx/status_effect_lone_druid_savage_roar.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_lone_druid.vsndevts"
+		}
+		
+		"AbilityCooldown"				"30"
+		"AbilityChannelTime"			"1.5"
+
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_strength"		"15"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bonus_hp_regen"		"0.5"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"hp_per_str"			"10"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"armor"					"5"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"lifesteal"				"20"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"active_channel"		"1.5"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"active_duration"		"6.0"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"active_radius"			"600"
+			}
+		}
+	}
+}

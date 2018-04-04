@@ -60,6 +60,7 @@ LEVELS_BETWEEN_TALENT_UPGRADES = 4
 
 var lastRememberedState = STATS_STATE_OFFENSE
 var lastRememberedHero = Players.GetPlayerHeroEntityIndex( localID )
+var hasQueuedAction = false
 
 $("#RootContainer").SetHasClass("IsHidden", true)
 
@@ -110,6 +111,7 @@ function UpdateStatsPanel()
 		RefreshStatsPanel()
 	}
 	levelLabel.text = GetAttributePoints( selectedHero )
+	hasQueuedAction = false
 }
 
 function ClearStatsTypeContainer(){
@@ -123,7 +125,11 @@ function ClearStatsTypeContainer(){
 
 function UpgradeAbility(nettableString)
 {
-	GameEvents.SendCustomGameEventToServer( "send_player_upgraded_stats", {pID : localID, entindex : lastRememberedHero,  skill : nettableString} )
+	if(hasQueuedAction == false)
+	{
+		hasQueuedAction = true
+		GameEvents.SendCustomGameEventToServer( "send_player_upgraded_stats", {pID : localID, entindex : lastRememberedHero,  skill : nettableString} )
+	}
 }
 
 function CreateAttributePanel( valueLvl, valueTable, valueSignifier, valueText, adder ){
@@ -320,7 +326,11 @@ function CreateTalentContainer(levelRequirement, statsTypeContainer, talentsSkil
 
 function SelectTalent(talent)
 {
-	GameEvents.SendCustomGameEventToServer( "send_player_selected_talent", {pID : localID, entindex : lastRememberedHero,  talent : talent} )
+	if(hasQueuedAction == false)
+	{
+		hasQueuedAction = true
+		GameEvents.SendCustomGameEventToServer( "send_player_selected_talent", {pID : localID, entindex : lastRememberedHero,  talent : talent} )
+	}
 }
 
 function GetAttributePoints( entindex )

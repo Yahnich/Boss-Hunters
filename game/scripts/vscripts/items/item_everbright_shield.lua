@@ -1,7 +1,16 @@
 item_everbright_shield = class({})
-
 LinkLuaModifier( "modifier_item_everbright_shield_on", "items/item_everbright_shield.lua" ,LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_item_everbright_shield_off", "items/item_everbright_shield.lua" ,LUA_MODIFIER_MOTION_NONE )
+
+function item_everbright_shield:GetAbilityTextureName()
+	if self:GetCaster():HasModifier("modifier_item_everbright_shield_on") then
+		return "item_everbright_shield"
+	else
+		return "item_everbright_shield_off"
+	end
+end
+
+
 function item_everbright_shield:GetIntrinsicModifierName()
 	return "modifier_item_everbright_shield_off"
 end
@@ -22,11 +31,14 @@ function modifier_item_everbright_shield_off:OnCreated()
 	self.block = self:GetAbility():GetSpecialValueFor("damage_block")
 	self.chance = self:GetAbility():GetSpecialValueFor("block_chance")
 	self.castrange = self:GetAbility():GetSpecialValueFor("bonus_cast_range")
+	self.armor = self:GetAbility():GetSpecialValueFor("bonus_armor")
 end
 
 function modifier_item_everbright_shield_off:DeclareFunctions()
 	return {MODIFIER_PROPERTY_TOTAL_CONSTANT_BLOCK,
-			MODIFIER_PROPERTY_CAST_RANGE_BONUS}
+			MODIFIER_PROPERTY_CAST_RANGE_BONUS,
+			MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS
+			}
 end
 
 function modifier_item_everbright_shield_off:GetModifierTotal_ConstantBlock()
@@ -39,6 +51,9 @@ function modifier_item_everbright_shield_off:GetModifierCastRangeBonus()
 	return self.castrange
 end
 
+function modifier_item_everbright_shield_off:GetModifierPhysicalArmorBonus()
+	return self.armor
+end
 
 function modifier_item_everbright_shield_off:IsHidden()
 	return true

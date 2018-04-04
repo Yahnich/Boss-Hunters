@@ -4,18 +4,24 @@ function tell_threat()
 	GameEvents.SendCustomGameEventToServer( "Tell_Threat", { pID: ID} );
 }
 
-GameEvents.Subscribe( "UpdateHealthBar", UpdatedSpawns);
+GameEvents.Subscribe( "UpdateHealthBar", UpdatedSelection);
 GameEvents.Subscribe("dota_player_update_selected_unit", UpdatedSelection);
 GameEvents.Subscribe("dota_player_update_query_unit", UpdatedSelection);
+GameEvents.Subscribe("npc_spawned", UpdatedSpawned);
 GameEvents.Subscribe("entity_hurt", UpdatedAttack);
+
+
 
 var newestBoss 
 var localID = Game.GetLocalPlayerID()
 $("#targetPanelMain").visible = false;
 
-function UpdatedSpawns(args)
+function UpdatedSpawned(arg)
 {
-	
+	if($("#targetPanelMain").visible == false && newestBoss != arg.entindex && (Entities.GetTeamNumber( arg.entindex ) != Players.GetTeam( localID ))){
+		newestBoss = arg.entindex;
+		UpdateHealthBar(newestBoss)
+	}
 }
 
 function UpdatedSelection()
