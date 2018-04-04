@@ -2082,7 +2082,7 @@
 		
 		"precache"
 		{
-			"particle"				"particles/nyx_assassin_impale.vpcf"
+			"particle"				"particles/bosses/boss_warlockgolems/boss_ember_spike.vpcf"
 			"particle"				"particles/econ/generic/generic_aoe_shockwave_1/generic_aoe_shockwave_1.vpcf"
 			"soundfile"				"soundevents/voscripts/game_sounds_vo_warlock_golem.vsndevts"
 		}
@@ -2091,7 +2091,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"2000"
 		
-		"AbilityCastAnimation"			"ACT_DOTA_SPAWN"	// Activity
+		"AbilityCastAnimation"			"ACT_DOTA_DISABLED"	// Activity
 		"AnimationPlaybackRate"			"0.4"						// Animation speed multiplier
 		"AnimationIgnoresModelScale"	"1"
 	
@@ -2102,7 +2102,7 @@
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"0 0 0 0"
+		"AbilityManaCost"				"0"
 	
 		"OnAbilityPhaseStart"
 		{
@@ -2171,7 +2171,7 @@
 			"06"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"width"			"150"
+				"width"			"100"
 			}
 			"07"
 			{
@@ -2242,12 +2242,12 @@
 						            "MaxTargets" "1"
 						            "Random"	"1"
 					            }
-					            "EffectName"        "particles/nyx_assassin_impale.vpcf"
-					            "StartRadius"       "200"
-					            "EndRadius"         "275"
+					            "EffectName"        "particles/bosses/boss_warlockgolems/boss_ember_spike.vpcf"
+					            "StartRadius"       "%width"
+					            "EndRadius"         "%width"
 					            "MoveSpeed"         "%speed"
 					            "TargetTeams"       "DOTA_UNIT_TARGET_TEAM_ENEMY"
-					            "TargetTypes"       "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+					            "TargetTypes"       "DOTA_UNIT_TARGET_ALL"
 					            "FixedDistance"     "10000"
 					            "ProvidesVision"    "0"
 					            "HasFrontalCone"    "0"
@@ -2281,7 +2281,7 @@
 		
 		"precache"
 		{
-			"particle"				"particles/nyx_assassin_impale.vpcf"
+			"particle"				"particles/bosses/boss_warlockgolems/boss_ember_spike.vpcf"
 			"particle"				"particles/econ/generic/generic_aoe_shockwave_1/generic_aoe_shockwave_1.vpcf"
 			"soundfile"				"soundevents/voscripts/game_sounds_vo_warlock_golem.vsndevts"
 		}
@@ -2370,7 +2370,7 @@
 			"06"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"width"			"150"
+				"width"			"100"
 			}
 			"07"
 			{
@@ -2441,12 +2441,12 @@
 						            "MaxTargets" "2"
 						            "Random"	"1"
 					            }
-					            "EffectName"        "particles/nyx_assassin_impale.vpcf"
-					            "StartRadius"       "200"
-					            "EndRadius"         "275"
+					            "EffectName"        "particles/bosses/boss_warlockgolems/boss_ember_spike.vpcf"
+					            "StartRadius"       "%width"
+					            "EndRadius"         "%width"
 					            "MoveSpeed"         "%speed"
 					            "TargetTeams"       "DOTA_UNIT_TARGET_TEAM_ENEMY"
-					            "TargetTypes"       "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+					            "TargetTypes"       "DOTA_UNIT_TARGET_ALL"
 					            "FixedDistance"     "10000"
 					            "ProvidesVision"    "0"
 					            "HasFrontalCone"    "0"
@@ -2480,7 +2480,7 @@
 		
 		"precache"
 		{
-			"particle"				"particles/nyx_assassin_impale.vpcf"
+			"particle"				"particles/bosses/boss_warlockgolems/boss_ember_spike.vpcf"
 			"particle"				"particles/econ/generic/generic_aoe_shockwave_1/generic_aoe_shockwave_1.vpcf"
 			"soundfile"				"soundevents/game_sounds_custom.vsndevts"
 		}
@@ -2569,7 +2569,7 @@
 			"06"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"width"			"150"
+				"width"			"100"
 			}
 			"07"
 			{
@@ -2641,8 +2641,8 @@
 						            "Random"	"1"
 					            }
 					            "EffectName"        "particles/nyx_assassin_impale.vpcf"
-					            "StartRadius"       "200"
-					            "EndRadius"         "275"
+					            "StartRadius"       "%width"
+					            "EndRadius"         "%width"
 					            "MoveSpeed"         "%speed"
 					            "TargetTeams"       "DOTA_UNIT_TARGET_TEAM_ENEMY"
 					            "TargetTypes"       "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
