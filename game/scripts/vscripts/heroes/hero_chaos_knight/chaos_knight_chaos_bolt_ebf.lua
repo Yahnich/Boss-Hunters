@@ -21,7 +21,7 @@ if IsServer() then
 			iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_ATTACK_1,
 		}
 		ProjectileManager:CreateTrackingProjectile(projectile)
-		if self:GetCaster():HasTalent("special_bonus_unique_chaos_knight_chaos_bolt_2") and RollPercentage("special_bonus_unique_chaos_knight_chaos_bolt_2") then 
+		if self:GetCaster():HasTalent("special_bonus_unique_chaos_knight_chaos_bolt_2") and RollPercentage(self:GetCaster():FindTalentValue("special_bonus_unique_chaos_knight_chaos_bolt_2")) then 
 			Timers:CreateTimer(self:GetCastPoint(), function() ProjectileManager:CreateTrackingProjectile(projectile) end)
 		end
 		EmitSoundOn("Hero_ChaosKnight.ChaosBolt.Cast", self:GetCaster())

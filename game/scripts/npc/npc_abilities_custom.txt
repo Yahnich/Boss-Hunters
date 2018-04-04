@@ -56,6 +56,7 @@
 #base "heroes/hero_timbersaw.txt"
 #base "heroes/hero_vengeful.txt"
 #base "heroes/hero_tusk.txt"
+#base "heroes/hero_aa.txt"
 
 "DOTAAbilities"
 {
