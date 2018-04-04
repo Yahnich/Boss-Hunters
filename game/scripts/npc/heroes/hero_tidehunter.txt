@@ -208,7 +208,7 @@
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0.3"
+		"AbilityCastPoint"				"0.2"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
 		"AbilityCastRange"				"1000 1100 1200 1300 1400 1500 1600"
 
@@ -239,7 +239,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"speed"					"1600"
+				"speed"					"3200"
 			}
 			"04"
 			{
@@ -249,7 +249,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"eat_threshold"			"5"
+				"eat_threshold"			"10"
 			}
 			"06"
 			{
