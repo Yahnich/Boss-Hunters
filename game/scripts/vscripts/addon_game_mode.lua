@@ -126,6 +126,11 @@ function Precache( context )
 	PrecacheResource("particle", "particles/boss/boss_shadows_orb.vpcf", context)
 	PrecacheResource("particle", "particles/dark_orb.vpcf", context)
 	
+	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_lone_druid.vsndevts", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_lone_druid/lone_druid_savage_roar.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_lone_druid/lone_druid_savage_roar_debuff.vpcf", context)
+	PrecacheResource("particle", "particles/status_fx/status_effect_lone_druid_savage_roar.vpcf", context)
+	
 	PrecacheResource("particle_folder", "particles/econ/generic/generic_aoe_shockwave_1", context)
 	
 	local precacheList = LoadKeyValues('scripts/npc/activelist.txt')

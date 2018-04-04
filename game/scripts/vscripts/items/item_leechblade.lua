@@ -15,10 +15,12 @@ LinkLuaModifier( "modifier_item_leechblade_stats", "items/item_leechblade.lua" ,
 function modifier_item_leechblade_stats:OnCreated()
 	self.lifesteal = self:GetSpecialValueFor("lifesteal") / 100
 	self.activeLifesteal = self:GetSpecialValueFor("active_lifesteal") / 100
+	self.damage = self:GetSpecialValueFor("bonus_damage")
 end
 
 function modifier_item_leechblade_stats:DeclareFunctions()
-	return {MODIFIER_EVENT_ON_TAKEDAMAGE}
+	return {MODIFIER_EVENT_ON_TAKEDAMAGE,
+			MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE}
 end
 
 function modifier_item_leechblade_stats:OnTakeDamage(params)
@@ -28,6 +30,10 @@ function modifier_item_leechblade_stats:OnTakeDamage(params)
 		local flHeal = params.damage * lifesteal
 		params.attacker:HealEvent(flHeal, self:GetAbility(), params.attacker)
 	end
+end
+
+function modifier_item_leechblade_stats:GetModifierPreAttack_BonusDamage()
+	return self.damage
 end
 
 function modifier_item_leechblade_stats:IsHidden()

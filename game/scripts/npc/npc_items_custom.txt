@@ -20,6 +20,8 @@
 #base "items/item_gauntlet_of_alacrity.txt"
 #base "items/item_warm_fire.txt"
 #base "items/item_ice_fang.txt"
+#base "items/item_worn_cloak.txt"
+#base "items/item_broadsword.txt"
 #base "items/item_aeon_shard.txt"
 
 #base "items/item_plate_of_the_unbreakable.txt"
@@ -58,6 +60,7 @@
 #base "items/item_titan_blade.txt"
 #base "items/item_anvil.txt"
 #base "items/item_headchopper.txt"
+#base "items/item_conquerors_helm.txt"
 
 #base "items/item_arcane_accelerator.txt"
 #base "items/item_mantle_of_fallen.txt"

@@ -14,7 +14,7 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"2850"	
+		"ItemCost"						"1550"	
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -23,7 +23,7 @@
 		"ItemResult"					"item_everbright_shield"
 		"ItemRequirements"
 		{
-			"01"						"item_pages_buckler;item_spell_refinery"
+			"01"						"item_pages_buckler;item_spell_refinery;item_chainmail;item_worn_cloak"
 		}
 	}
 	"item_everbright_shield"
@@ -79,6 +79,11 @@
 			{
 				"var_type"				"FIELD_FLOAT"
 				"block_chance"			"50"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bonus_armor"			"5"
 			}
 		}
 	}

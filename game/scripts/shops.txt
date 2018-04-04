@@ -16,6 +16,7 @@
 	   "item"		"item_spell_refinery"
 	   "item"		"item_calming_skull"
 	   "item"		"item_gauntlet_of_alacrity"
+	   "item"		"item_worn_cloak"
     }
     "weapons_armor"
     {
@@ -26,6 +27,7 @@
 		"item"		"item_breeze_amulet"
 		"item"		"item_mithril_armor"
 		"item"		"item_ice_fang"
+		"item"		"item_broadsword"
     }
     "misc"
     {
@@ -89,6 +91,7 @@
 		"item"		"item_glacier_boots"
 		"item"		"item_legionnaires_dualswords"
 		"item"		"item_leechblade"
+		"item"		"item_conquerors_helm"
     }
 	"weapons"
     {
