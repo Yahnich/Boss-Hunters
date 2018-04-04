@@ -1657,7 +1657,7 @@ function CDOTA_Modifier_Lua:AddIndependentStack(duration, limit)
 	local timerID = Timers:CreateTimer(duration or self:GetDuration(), function()
 		if not self:IsNull() then 
 			self:DecrementStackCount()
-			if self:GetStackCount() == 0 then self:Destroy() end
+			if self:GetStackCount() == 0 and self:GetDuration() == -1 then self:Destroy() end
 		end
 	end)
 	self.stackTimers = self.stackTimers or {}
@@ -2021,7 +2021,8 @@ function CDOTA_BaseNPC_Hero:GetEpicBossFightName()
 end
 
 function CDOTA_BaseNPC:AddChill(hAbility, hCaster, chillDuration)
-	self:AddNewModifier(hCaster, hAbility, "modifier_chill_generic", {Duration = chillDuration}):IncrementStackCount()
+	local modifier = self:AddNewModifier(hCaster, hAbility, "modifier_chill_generic", {Duration = chillDuration})
+	if modifier then modifier:IncrementStackCount() end
 end
 
 function CDOTA_BaseNPC:GetChillCount()

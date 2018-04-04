@@ -10,6 +10,7 @@ function item_gem_of_inner_power:OnSpellStart()
 		self:DealDamage( caster, enemy, heal, {damage_type = DAMAGE_TYPE_MAGICAL} )
 	end
 	caster:HealEvent(heal, self, caster)
+	caster:Dispel(caster, false)
 	ParticleManager:FireParticle("particles/titan_selfheal_flare.vpcf", PATTACH_POINT_FOLLOW, caster)
 end
 

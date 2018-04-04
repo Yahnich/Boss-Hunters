@@ -51,6 +51,7 @@
 		"item"		"item_orb_of_vitality"
 		"item"		"item_orb_of_essence"
 		"item"		"item_titan_blade"
+		"item"		"item_power_core"
 		"item"		"item_aeon_shard"
     }
     // Level 2 - Blue Recipes
@@ -82,11 +83,13 @@
     "defense"
     {
         "item"		"item_plate_of_the_unbreakable"
+		"item"		"item_gem_of_inner_power"
+		"item"		"item_gauntlet_of_might"
 		"item"		"item_penitent_mail"
+		"item"		"item_wrathbearers_robes"
 		"item"		"item_memento"
 		"item"		"item_behemoths_heart"
 		"item"		"item_everbright_shield"
-		"item"		"item_gem_of_inner_power"
 		"item"		"item_fortress_shield"
 		"item"		"item_glacier_boots"
 		"item"		"item_legionnaires_dualswords"
@@ -97,8 +100,10 @@
     {
 		"item"		"item_culling_greataxe"
 		"item"		"item_siegebreaker"
+		"item"		"item_trebuchet"
 		"item"		"item_ringing_rapier"
 		"item"		"item_reaping_scythe"
+		"item"		"item_thanatos"
 		"item"		"item_executioners_blade"
 		"item"		"item_lance_of_longinus"
 		"item"		"item_blade_of_storm"
@@ -107,6 +112,7 @@
 		"item"		"item_gauntlet_of_the_void"
 		"item"		"item_anvil"
 		"item"		"item_headchopper"
+		"item"		"item_soothslayer"
     }
     // Level 4 - Orange / Orb / Artifacts
     "artifacts"
@@ -121,6 +127,7 @@
 		"item"		"item_soul_vessel"
 		"item"		"item_incandescance"
 		"item"		"item_frostbite"
+		"item"		"item_emission"
 		"item"		"item_berserkers_cape"
 		"item"		"item_blood_gods_mask"
     }

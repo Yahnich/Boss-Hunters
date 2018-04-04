@@ -23,6 +23,7 @@
 #base "items/item_worn_cloak.txt"
 #base "items/item_broadsword.txt"
 #base "items/item_aeon_shard.txt"
+#base "items/item_power_core.txt"
 
 #base "items/item_plate_of_the_unbreakable.txt"
 #base "items/item_penitent_mail.txt"
@@ -61,6 +62,9 @@
 #base "items/item_anvil.txt"
 #base "items/item_headchopper.txt"
 #base "items/item_conquerors_helm.txt"
+#base "items/item_soothslayer.txt"
+#base "items/item_gauntlet_of_might.txt"
+#base "items/item_wrathbearers_robes.txt"
 
 #base "items/item_arcane_accelerator.txt"
 #base "items/item_mantle_of_fallen.txt"
@@ -84,6 +88,9 @@
 #base "items/item_gauntlet_of_the_void.txt"
 #base "items/item_illusionists_charm.txt"
 #base "items/item_warp_staff.txt"
+#base "items/item_emission.txt"
+#base "items/item_thanatos.txt"
+#base "items/item_trebuchet.txt"
 
 #base "items/item_potion_of_recovery.txt"
 #base "items/item_potion_of_essence.txt"

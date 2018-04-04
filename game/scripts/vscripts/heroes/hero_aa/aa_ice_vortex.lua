@@ -93,7 +93,7 @@ function modifier_aa_ice_vortex_effect:OnCreated(table)
 end
 
 function modifier_aa_ice_vortex_effect:OnIntervalThink()
-    self:GetParent():AddChill(nil, self:GetCaster(), 1)
+    if self:GetParent() and not self:GetParent():IsNull() then self:GetParent():AddChill(self:GetAbility(), self:GetCaster(), 1) end
 end
 
 function modifier_aa_ice_vortex_effect:DeclareFunctions()
