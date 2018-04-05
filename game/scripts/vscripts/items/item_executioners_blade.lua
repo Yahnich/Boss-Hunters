@@ -22,7 +22,7 @@ function modifier_item_executioners_blade_handle:DeclareFunctions()
 			}
 end
 
-function modifier_item_titan_blade_handle:GetModifierBaseAttack_BonusDamage()
+function modifier_item_executioners_blade_handle:GetModifierBaseAttack_BonusDamage()
 	return self.damage
 end
 

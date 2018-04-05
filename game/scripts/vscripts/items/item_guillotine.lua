@@ -21,7 +21,7 @@ function modifier_item_guillotine_handle:DeclareFunctions()
 			MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE}
 end
 
-function modifier_item_titan_blade_handle:GetModifierBaseAttack_BonusDamage()
+function modifier_item_guillotine_handle:GetModifierBaseAttack_BonusDamage()
 	return self.damage
 end
 
