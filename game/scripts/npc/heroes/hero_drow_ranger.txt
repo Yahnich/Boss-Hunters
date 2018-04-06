@@ -44,28 +44,28 @@
 		{
 			"01"
 			{
-				"var_type"			"FIELD_FLOAT"
-				"arrow_speed"		"3000"
+				"var_type"					"FIELD_FLOAT"
+				"arrow_speed"				"3000"
 			}
 			"02"
 			{
-				"var_type"			"FIELD_INTEGER"
-				"arrow_width"		"150"
+				"var_type"					"FIELD_INTEGER"
+				"arrow_width"				"150"
 			}
 			"03"
 			{
-				"var_type"			"FIELD_INTEGER"
-				"arrow_range"		"3000"
+				"var_type"					"FIELD_INTEGER"
+				"arrow_range"				"3000"
 			}
 			"04"
 			{
-				"var_type"			"FIELD_FLOAT"
+				"var_type"					"FIELD_FLOAT"
 				"arrow_agi_multiplier"		"2 2.5 3 3.5 4 4.5 5"
 			}
 			"04"
 			{
-				"var_type"			"FIELD_INTEGER"
-				"break_duration"	"3"
+				"var_type"					"FIELD_INTEGER"
+				"break_duration"			"3"
 			}
 		}
 	

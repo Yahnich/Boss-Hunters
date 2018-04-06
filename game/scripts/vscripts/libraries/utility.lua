@@ -142,8 +142,17 @@ function CDOTA_BaseNPC:PerformAbilityAttack(target, bProcs, ability)
 	Timers:CreateTimer(function() self.autoAttackFromAbilityState = nil end)
 end
 
-function CDOTA_BaseNPC:PerformGenericAttack(target, immediate)
+function CDOTA_BaseNPC:PerformGenericAttack(target, immediate, flBonusDamage, bDamagePct)
+	if flBonusDamage then
+		if bDamagePct then
+			self:AddNewModifier(caster, nil, "modifier_generic_attack_bonus_pct", {damage = flBonusDamage})
+		else
+			self:AddNewModifier(caster, nil, "modifier_generic_attack_bonus", {damage = flBonusDamage})
+		end
+	end
 	self:PerformAttack(target, true, true, true, false, not immediate, false, false)
+	self:RemoveModifierByName("modifier_generic_attack_bonus")
+	self:RemoveModifierByName("modifier_generic_attack_bonus_pct")
 end
 
 function CDOTA_Modifier_Lua:AttachEffect(pID)
@@ -1766,6 +1775,10 @@ function CDOTABaseAbility:FireTrackingProjectile(FX, target, speed, data, iAttac
 	ProjectileManager:CreateTrackingProjectile(projectile)
 end
 
+function CDOTA_BaseNPC:FireAbilityAutoAttack( target, ability, FX )
+	ability:FireTrackingProjectile( FX or self:GetProjectileModel(), target, self:GetProjectileSpeed() )
+end
+
 function CDOTABaseAbility:ApplyAOE(eventTable)
     if eventTable.duration == nil and eventTable.modifier then
         eventTable.duration = self:GetAbilityDuration()
@@ -2236,6 +2249,11 @@ end
 function CDOTA_BaseNPC:Disarm(hAbility, hCaster, duration, bDelay)
 	self:AddNewModifier(hCaster, hAbility, "modifier_disarm_generic", {Duration = duration, delay = bDelay})
 end
+
+function CDOTA_BaseNPC:Break(hAbility, hCaster, duration, bDelay)
+	self:AddNewModifier(hCaster, hAbility, "modifier_break_generic", {Duration = duration, delay = bDelay})
+end
+
 
 function CDOTA_BaseNPC:Silence(hAbility, hCaster, duration, bDelay)
 	self:AddNewModifier(hCaster, hAbility, "modifier_silence_generic", {Duration = duration, delay = bDelay})

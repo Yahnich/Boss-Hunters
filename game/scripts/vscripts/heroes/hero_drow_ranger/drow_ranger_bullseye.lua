@@ -18,8 +18,7 @@ end
 function drow_ranger_bullseye:OnProjectileHit( target, position )
 	local caster = self:GetCaster()
 	
-	target:AddNewModifier( caster, self, "modifier_drow_ranger_bullseye_break", {duration = self:GetTalentSpecialValueFor("break_duration")})
+	target:Break( ability, caster, self:GetTalentSpecialValueFor("break_duration"))
 	local damage = caster:GetAgility() * self:GetTalentSpecialValueFor("arrow_agi_multiplier")
-	self:DealDamage( caster, target, damage )
-	caster:PerformAttack(target, true, true, true, false, false, true, true)
+	caster:PerformGenericAttack(target, true, damage - caster:GetAttackDamage() )
 end
