@@ -7,14 +7,14 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"4599"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"998"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"425"	
+		"ItemCost"						"950"	
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -26,11 +26,89 @@
 			"01"						"item_gauntlet_of_alacrity;item_mithril_armor"
 		}
 	}
+	//=================================================================================================================
+	// Recipe: TITAN Armor
+	//=================================================================================================================
+	"item_recipe_berserkers_cape_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"999"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_berserkers_cape_2"
+		"ItemRequirements"
+		{
+			"01"						"item_berserkers_cape;item_recipe_berserkers_cape"
+		}
+	}
+	//=================================================================================================================
+	// Recipe: TITAN Armor
+	//=================================================================================================================
+	"item_recipe_berserkers_cape_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1000"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_berserkers_cape_3"
+		"ItemRequirements"
+		{
+			"01"						"item_berserkers_cape_2;item_recipe_berserkers_cape"
+		}
+	}
+	//=================================================================================================================
+	// Recipe: TITAN Armor
+	//=================================================================================================================
+	"item_recipe_berserkers_cape_4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1001"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_berserkers_cape_4"
+		"ItemRequirements"
+		{
+			"01"						"item_berserkers_cape_3;item_recipe_berserkers_cape"
+		}
+	}
 	"item_berserkers_cape"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"4600"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"1002"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_TOGGLE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_berserkers_cape"
@@ -38,6 +116,12 @@
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		
+		"MaxUpgradeLevel"				"4"
+		"ItemBaseLevel"					"1"
+		
+		"UpgradesItems"					"item_berserkers_cape;item_berserkers_cape_2;item_berserkers_cape_3;item_berserkers_cape_4"
+		"UpgradeRecipe"					"item_recipe_berserkers_cape"
 		
 		"ItemShopTags"					"attack speed;;damage"
 		"ItemQuality"					"epic"
@@ -57,22 +141,190 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_armor"			"5"
+				"bonus_armor"			"5 6 7 8"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_attack_speed"	"40"
+				"bonus_attack_speed"	"40 45 50 55"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"max_hp_drain"			"1"
+				"max_hp_drain"			"1 2 3 4"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"max_hp_damage"			"2"
+				"max_hp_damage"			"2 4 6 8"
+			}
+		}
+	}
+	"item_berserkers_cape_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1003"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_TOGGLE"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_berserkers_cape"
+		"AbilityTextureName"			"custom/berserkers_cape"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"MaxUpgradeLevel"				"4"
+		"ItemBaseLevel"					"2"
+		
+		"UpgradesItems"					"item_berserkers_cape;item_berserkers_cape_2;item_berserkers_cape_3;item_berserkers_cape_4"
+		"UpgradeRecipe"					"item_recipe_berserkers_cape"
+		
+		"ItemShopTags"					"attack speed;;damage"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"armlet;berserkers cape"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"precache"
+		{
+			"precache"					"soundevents/game_sounds_items.vsndevts"
+		}
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_armor"			"5 6 7 8"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_attack_speed"	"40 45 50 55"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"max_hp_drain"			"1 2 3 4"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"max_hp_damage"			"2 4 6 8"
+			}
+		}
+	}
+	"item_berserkers_cape_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1004"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_TOGGLE"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_berserkers_cape"
+		"AbilityTextureName"			"custom/berserkers_cape"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"MaxUpgradeLevel"				"4"
+		"ItemBaseLevel"					"3"
+		
+		"UpgradesItems"					"item_berserkers_cape;item_berserkers_cape_2;item_berserkers_cape_3;item_berserkers_cape_4"
+		"UpgradeRecipe"					"item_recipe_berserkers_cape"
+		
+		"ItemShopTags"					"attack speed;;damage"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"armlet;berserkers cape"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"precache"
+		{
+			"precache"					"soundevents/game_sounds_items.vsndevts"
+		}
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_armor"			"5 6 7 8"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_attack_speed"	"40 45 50 55"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"max_hp_drain"			"1 2 3 4"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"max_hp_damage"			"2 4 6 8"
+			}
+		}
+	}
+	"item_berserkers_cape_4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1005"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_TOGGLE"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_berserkers_cape"
+		"AbilityTextureName"			"custom/berserkers_cape"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"MaxUpgradeLevel"				"4"
+		"ItemBaseLevel"					"4"
+		
+		"UpgradesItems"					"item_berserkers_cape;item_berserkers_cape_2;item_berserkers_cape_3;item_berserkers_cape_4"
+		"UpgradeRecipe"					"item_recipe_berserkers_cape"
+		
+		"ItemShopTags"					"attack speed;;damage"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"armlet;berserkers cape"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"precache"
+		{
+			"precache"					"soundevents/game_sounds_items.vsndevts"
+		}
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_armor"			"5 6 7 8"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_attack_speed"	"40 45 50 55"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"max_hp_drain"			"1 2 3 4"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"max_hp_damage"			"2 4 6 8"
 			}
 		}
 	}

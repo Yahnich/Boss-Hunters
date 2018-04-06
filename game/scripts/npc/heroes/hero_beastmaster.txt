@@ -75,7 +75,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"125 200 275 350 425 500 575"
+				"damage"					"62 100 137 175 212 250 287"
 			}
 			"02"
 			{
@@ -112,9 +112,8 @@
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 	    "AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
 	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
-		"LevelsBetweenUpgrades"			"5"
-		"MaxLevel"						"7"
-		"RequiredLevel"					"7"
+		"MaxLevel"						"1"
+		"InnateAbility"					"1"
 		"AbilityTextureName"			"beastmaster_call_of_the_wild_hawk"
 	
 		// Casting
@@ -124,11 +123,11 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"60"
+		"AbilityCooldown"				"20"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"50 60 70 80 90 100 110"
+		"AbilityManaCost"				"50"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -137,18 +136,18 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"duration"					"60"
+				"duration"					"20"
 				"LinkedSpecialBonus"		"special_bonus_unique_beast_hawk_spirit_1"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"health_regen"				"1 1.5 2 2.5 3 3.5 4"
+				"health_regen"				"2.5"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"mana_regen"				"3 6 9 12 15 18 21"
+				"mana_regen"				"9"
 			}
 			"04"
 			{

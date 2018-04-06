@@ -70,7 +70,7 @@ function modifier_item_conquerors_helm_passive:OnCreated()
 	self.regen = self:GetSpecialValueFor("bonus_hp_regen")
 	self.bonusHP = self:GetSpecialValueFor("hp_per_str")
 	self.stat = self:GetSpecialValueFor("bonus_strength")
-	self.lifesteal = self:GetSpecialValueFor("lifesteal")
+	self.lifesteal = self:GetSpecialValueFor("lifesteal") / 100
 	self.armor = self:GetSpecialValueFor("bonus_armor")
 end
 

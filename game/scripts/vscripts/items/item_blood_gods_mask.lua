@@ -1,5 +1,6 @@
 item_blood_gods_mask = class({})
 
+
 function item_blood_gods_mask:OnSpellStart()
 	self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_item_blood_gods_mask_active", {duration = self:GetSpecialValueFor("duration")})
 	EmitSoundOn( "DOTA_Item.MaskOfMadness.Activate", self:GetCaster() )
@@ -8,6 +9,11 @@ end
 function item_blood_gods_mask:GetIntrinsicModifierName()
 	return "modifier_item_blood_gods_mask"
 end
+
+item_blood_gods_mask_2 = class(item_blood_gods_mask)
+item_blood_gods_mask_3 = class(item_blood_gods_mask)
+item_blood_gods_mask_4 = class(item_blood_gods_mask)
+item_blood_gods_mask_5 = class(item_blood_gods_mask)
 
 LinkLuaModifier( "modifier_item_blood_gods_mask_active", "items/item_blood_gods_mask.lua" ,LUA_MODIFIER_MOTION_NONE )
 modifier_item_blood_gods_mask_active = class({})

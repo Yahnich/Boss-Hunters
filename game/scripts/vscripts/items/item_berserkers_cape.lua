@@ -22,14 +22,18 @@ function item_berserkers_cape:GetIntrinsicModifierName()
 	return "modifier_item_berserkers_cape"
 end
 
-LinkLuaModifier( "modifier_item_berserkers_cape_visual", "items/item_berserkers_cape.lua" ,LUA_MODIFIER_MOTION_NONE )
+item_berserkers_cape_2 = class(item_berserkers_cape)
+item_berserkers_cape_3 = class(item_berserkers_cape)
+item_berserkers_cape_4 = class(item_berserkers_cape)
+
+LinkLuaModifier( "modifier_item_berserkers_cape_visual", "items/item_berserkers_cape.lua", LUA_MODIFIER_MOTION_NONE )
 modifier_item_berserkers_cape_visual = class({})
 
 function modifier_item_berserkers_cape_visual:GetTexture()
 	return "custom/berserkers_cape_on"
 end
 
-LinkLuaModifier( "modifier_item_berserkers_cape_active", "items/item_berserkers_cape.lua" ,LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_item_berserkers_cape_active", "items/item_berserkers_cape.lua", LUA_MODIFIER_MOTION_NONE )
 modifier_item_berserkers_cape_active = class({})
 function modifier_item_berserkers_cape_active:OnCreated()
 	self.damagePct = self:GetSpecialValueFor("max_hp_damage") / 100

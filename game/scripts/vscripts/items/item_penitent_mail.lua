@@ -25,14 +25,21 @@ function modifier_item_penitent_mail_passive:OnCreated()
 	self.reflect = self:GetSpecialValueFor("reflect")
 	self.activereflect = self:GetSpecialValueFor("active_reflect")
 	self.bonusThreat = self:GetSpecialValueFor("bonus_threat")
+	self.armor = self:GetSpecialValueFor("bonus_armor")
+	self.magicResist = self:GetSpecialValueFor("bonus_magic_resist")
 end
 
 function modifier_item_penitent_mail_passive:DeclareFunctions()
-	return {MODIFIER_EVENT_ON_TAKEDAMAGE}
+	return {MODIFIER_EVENT_ON_TAKEDAMAGE,
+			MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,}
 end
 
 function modifier_item_penitent_mail_passive:Bonus_ThreatGain()
 	return self.bonusThreat
+end
+
+function modifier_item_penitent_mail_passive:GetModifierPhysicalArmorBonus()
+	return self.armor
 end
 
 function modifier_item_penitent_mail_passive:OnTakeDamage(params)

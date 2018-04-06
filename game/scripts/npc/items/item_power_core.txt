@@ -3,49 +3,48 @@
 	//=================================================================================================================
 	// Recipe: TITAN Armor
 	//=================================================================================================================
-	"item_recipe_penitent_mail"
+	"item_recipe_power_core"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"3237"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"6659"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"			"item_recipe_assault"
+		"AbilityTextureName"			"item_recipe"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"750"	
+		"ItemCost"						"0"	
 		"ItemShopTags"					""
 		
 		// Recipe
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemRecipe"					"1"
-		"ItemResult"					"item_penitent_mail"
+		"ItemResult"					"item_power_core"
 		"ItemRequirements"
 		{
-			"01"						"item_crown_of_thorns;item_amulet_of_aggression;item_mithril_armor"
+			"01"						"item_ogre_club;item_blade_of_agility;item_staff_of_magi"
 		}
 	}
 	//=================================================================================================================
 	// TITAN Armor
 	//=================================================================================================================
-	"item_penitent_mail"
+	"item_power_core"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"3238"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"ID"							"6660"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_lua"
-		"ScriptFile"					"items/item_penitent_mail"
-		"AbilityTextureName"			"item_blade_mail"
+		"ScriptFile"					"items/item_power_core"
+		"AbilityTextureName"			"custom/power_core"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
 		
-		"ItemCost"						"400"
-		"ItemShopTags"					"taunt;aggro;threat"
+		"ItemShopTags"					"heal;purge;dispel;armor;aura"
 		"ItemQuality"					"epic"
-		"ItemAliases"					"blade mail;penitent mail"
+		"ItemAliases"					"gauntlet of might"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
@@ -56,6 +55,7 @@
 		}
 	
 		"AbilityCooldown"				"15"
+
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
@@ -64,42 +64,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"reflect"				"50"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"active_reflect"		"150"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_threat"			"50"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"threat_gain"			"40"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"threat_gain_per_unit"	"10"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"900"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"duration"				"8"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_armor"			"5"
+				"bonus_all"				"15"
 			}
 		}
 	}

@@ -14,7 +14,7 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"425"	
+		"ItemCost"						"800"	
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -24,6 +24,110 @@
 		"ItemRequirements"
 		{
 			"01"						"item_gauntlet_of_alacrity;item_sanguine_mask"
+		}
+	}
+	//=================================================================================================================
+	// Recipe: TITAN Armor
+	//=================================================================================================================
+	"item_recipe_blood_gods_mask_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1006"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_blood_gods_mask_2"
+		"ItemRequirements"
+		{
+			"01"						"item_blood_gods_mask;item_recipe_blood_gods_mask"
+		}
+	}
+	//=================================================================================================================
+	// Recipe: TITAN Armor
+	//=================================================================================================================
+	"item_recipe_blood_gods_mask_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1007"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_blood_gods_mask_3"
+		"ItemRequirements"
+		{
+			"01"						"item_blood_gods_mask_2;item_recipe_blood_gods_mask"
+		}
+	}
+	//=================================================================================================================
+	// Recipe: TITAN Armor
+	//=================================================================================================================
+	"item_recipe_blood_gods_mask_4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1008"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_blood_gods_mask_4"
+		"ItemRequirements"
+		{
+			"01"						"item_blood_gods_mask_3;item_recipe_blood_gods_mask"
+		}
+	}
+	//=================================================================================================================
+	// Recipe: TITAN Armor
+	//=================================================================================================================
+	"item_recipe_blood_gods_mask_5"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1009"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_blood_gods_mask_5"
+		"ItemRequirements"
+		{
+			"01"						"item_blood_gods_mask_4;item_recipe_blood_gods_mask"
 		}
 	}
 	"item_blood_gods_mask"
@@ -39,6 +143,12 @@
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
 		
+		"MaxUpgradeLevel"				"5"
+		"ItemBaseLevel"					"1"
+		
+		"UpgradesItems"					"item_blood_gods_mask;item_blood_gods_mask_2;item_blood_gods_mask_3;item_blood_gods_mask_4;item_blood_gods_mask_5"
+		"UpgradeRecipe"					"item_recipe_blood_gods_mask"
+		
 		"ItemShopTags"					"attack speed;lifesteal"
 		"ItemQuality"					"epic"
 		"ItemAliases"					"mask of madness;blood gods mask"
@@ -53,6 +163,7 @@
 		}
 		
 		"AbilityCooldown"				"30"
+		"AbilitySharedCooldown"			"mask"
 		"AbilityManaCost"				"60"
 
 		// Special	
@@ -62,7 +173,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"lifesteal"				"15"
+				"lifesteal"				"16 17 18 19 20"
 			}
 			"02"
 			{
@@ -72,22 +183,330 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"active_attack_speed"	"175"
+				"active_attack_speed"	"125 150 175 200 225"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"active_bonus_damage"	"35"
+				"active_bonus_damage"	"20 25 30 35 40"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"active_movement_speed"	"20"
+				"active_movement_speed"	"20 25 30 35 40"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"active_damage_taken"	"50"
+				"active_damage_taken"	"20 25 30 35 40"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"6.0"
+			}
+		}
+	}
+	"item_blood_gods_mask_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1010"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_blood_gods_mask"
+		"AbilityTextureName"			"item_mask_of_madness"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"MaxUpgradeLevel"				"5"
+		"ItemBaseLevel"					"2"
+		
+		"UpgradesItems"					"item_blood_gods_mask;item_blood_gods_mask_2;item_blood_gods_mask_3;item_blood_gods_mask_4;item_blood_gods_mask_5"
+		"UpgradeRecipe"					"item_recipe_blood_gods_mask"
+		
+		"ItemShopTags"					"attack speed;lifesteal"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"mask of madness;blood gods mask"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_items.vsndevts"
+			"particle"					"particles/items2_fx/mask_of_madness.vpcf"
+			"particle"					"particles/status_fx/status_effect_beserkers_call.vpcf"
+		}
+		
+		"AbilityCooldown"				"30"
+		"AbilitySharedCooldown"			"mask"
+		"AbilityManaCost"				"60"
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"lifesteal"				"16 17 18 19 20"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_attack_speed"	"25"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"active_attack_speed"	"125 150 175 200 225"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"active_bonus_damage"	"20 25 30 35 40"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"active_movement_speed"	"20 25 30 35 40"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"active_damage_taken"	"20 25 30 35 40"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"6.0"
+			}
+		}
+	}
+	"item_blood_gods_mask_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1012"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_blood_gods_mask"
+		"AbilityTextureName"			"item_mask_of_madness"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"MaxUpgradeLevel"				"5"
+		"ItemBaseLevel"					"3"
+		
+		"UpgradesItems"					"item_blood_gods_mask;item_blood_gods_mask_2;item_blood_gods_mask_3;item_blood_gods_mask_4;item_blood_gods_mask_5"
+		"UpgradeRecipe"					"item_recipe_blood_gods_mask"
+		
+		"ItemShopTags"					"attack speed;lifesteal"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"mask of madness;blood gods mask"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_items.vsndevts"
+			"particle"					"particles/items2_fx/mask_of_madness.vpcf"
+			"particle"					"particles/status_fx/status_effect_beserkers_call.vpcf"
+		}
+		
+		"AbilityCooldown"				"30"
+		"AbilitySharedCooldown"			"mask"
+		"AbilityManaCost"				"60"
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"lifesteal"				"16 17 18 19 20"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_attack_speed"	"25"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"active_attack_speed"	"125 150 175 200 225"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"active_bonus_damage"	"20 25 30 35 40"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"active_movement_speed"	"20 25 30 35 40"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"active_damage_taken"	"20 25 30 35 40"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"6.0"
+			}
+		}
+	}
+	"item_blood_gods_mask_4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1013"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_blood_gods_mask"
+		"AbilityTextureName"			"item_mask_of_madness"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"MaxUpgradeLevel"				"5"
+		"ItemBaseLevel"					"4"
+		
+		"UpgradesItems"					"item_blood_gods_mask;item_blood_gods_mask_2;item_blood_gods_mask_3;item_blood_gods_mask_4;item_blood_gods_mask_5"
+		"UpgradeRecipe"					"item_recipe_blood_gods_mask"
+		
+		"ItemShopTags"					"attack speed;lifesteal"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"mask of madness;blood gods mask"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_items.vsndevts"
+			"particle"					"particles/items2_fx/mask_of_madness.vpcf"
+			"particle"					"particles/status_fx/status_effect_beserkers_call.vpcf"
+		}
+		
+		"AbilityCooldown"				"30"
+		"AbilitySharedCooldown"			"mask"
+		"AbilityManaCost"				"60"
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"lifesteal"				"16 17 18 19 20"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_attack_speed"	"25"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"active_attack_speed"	"125 150 175 200 225"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"active_bonus_damage"	"20 25 30 35 40"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"active_movement_speed"	"20 25 30 35 40"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"active_damage_taken"	"20 25 30 35 40"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"6.0"
+			}
+		}
+	}
+	"item_blood_gods_mask_5"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"1014"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_blood_gods_mask"
+		"AbilityTextureName"			"item_mask_of_madness"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"MaxUpgradeLevel"				"5"
+		"ItemBaseLevel"					"5"
+		
+		"UpgradesItems"					"item_blood_gods_mask;item_blood_gods_mask_2;item_blood_gods_mask_3;item_blood_gods_mask_4;item_blood_gods_mask_5"
+		"UpgradeRecipe"					"item_recipe_blood_gods_mask"
+		
+		"ItemShopTags"					"attack speed;lifesteal"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"mask of madness;blood gods mask"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_items.vsndevts"
+			"particle"					"particles/items2_fx/mask_of_madness.vpcf"
+			"particle"					"particles/status_fx/status_effect_beserkers_call.vpcf"
+		}
+		
+		"AbilityCooldown"				"30"
+		"AbilitySharedCooldown"			"mask"
+		"AbilityManaCost"				"60"
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"lifesteal"				"16 17 18 19 20"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_attack_speed"	"25"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"active_attack_speed"	"125 150 175 200 225"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"active_bonus_damage"	"20 25 30 35 40"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"active_movement_speed"	"20 25 30 35 40"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"active_damage_taken"	"20 25 30 35 40"
 			}
 			"07"
 			{
