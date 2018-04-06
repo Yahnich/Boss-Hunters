@@ -7,9 +7,12 @@ function drow_ranger_leapshot:OnSpellStart()
 	ProjectileManager:ProjectileDodge(caster)
 	
 	for _, enemy in pairs( caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), caster:GetAttackRange() ) ) do
-		local FX = caster:GetProjectileModel()
-		if caster:FindAbilityByName("drow_ranger_frost_arrows"):GetAutoCastState() then FX = "particles/units/heroes/hero_drow/drow_frost_arrow.vpcf" end
-		caster:FireAbilityAutoAttack( enemy, self, FX )
+		if caster:FindAbilityByName("drow_ranger_glacier_arrows"):GetAutoCastState() then 
+			caster:FindAbilityByName("drow_ranger_glacier_arrows"):LaunchFrostArrow(enemy, false)
+		else
+			caster:FireAbilityAutoAttack( enemy, self )
+		end
+		
 	end
 	caster:AddNewModifier( caster, self, "modifier_drow_ranger_leapshot_movement", {duration = self:GetTalentSpecialValueFor("leap_distance") / self:GetTalentSpecialValueFor("leap_speed")} )
 end

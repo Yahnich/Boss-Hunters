@@ -19,34 +19,28 @@ end
 
 function drow_ranger_glacier_arrows:OnSpellStart()
 	local target = self:GetCursorTarget()
-	self:LaunchSpear(target, true)
+	self:LaunchFrostArrow(target, true)
 end
 
 function drow_ranger_glacier_arrows:GetCastRange(location, target)
 	return self:GetCaster():GetAttackRange()
 end
 
-function drow_ranger_glacier_arrows:LaunchSpear(target, bAttack)
+function drow_ranger_glacier_arrows:LaunchFrostArrow(target, bAttack, source)
 	local caster = self:GetCaster()
 	caster:SetProjectileModel("particles/empty_projectile.vcpf")
-	EmitSoundOn("Hero_Huskar.Burning_Spear.Cast", caster)
-	local cost = self:GetTalentSpecialValueFor("health_cost")
-	if caster:HasTalent("special_bonus_unique_drow_ranger_glacier_arrows_2") then 
-		cost = 0
-	elseif caster:HasTalent("special_bonus_unique_drow_ranger_glacier_arrows_1") then 
-		cost = cost * 2
-	end
-	local newHP = caster:GetHealth() - cost
-	caster:ModifyHealth( newHP, self, false, 0)
+	EmitSoundOn("Hero_DrowRanger.FrostArrows", caster)
+	caster:SpendMana(self:GetManaCost(-1), self)
 	if bAttack then self:GetCaster():PerformGenericAttack(target, false) end
+	local sourceT = source or caster
 	local projTable = {
-		EffectName = "particles/units/heroes/hero_huskar/huskar_burning_spear.vpcf",
+		EffectName = "particles/units/heroes/hero_drow/drow_frost_arrow.vpcf",
 		Ability = self,
 		Target = target,
-		Source = caster,
+		Source = sourceT,
 		bDodgeable = true,
 		bProvidesVision = false,
-		vSpawnOrigin = caster:GetAbsOrigin(),
+		vSpawnOrigin = sourceT:GetAbsOrigin(),
 		iMoveSpeed = caster:GetProjectileSpeed(),
 		iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_ATTACK_1
 	}
@@ -58,19 +52,17 @@ end
 function drow_ranger_glacier_arrows:OnProjectileHit(target, position)
 	if target then
 		local caster = self:GetCaster()
-		EmitSoundOn("Hero_Huskar.Burning_Spear", caster)
-		if target:IsAlive() then self:BurnTarget( target ) end
+		if target:GetChillCount() < self:GetTalentSpecialValueFor("base_chill") then
+			target:AddChill( self, caster, self:GetTalentSpecialValueFor("duration") )
+			target:SetChillCount( self:GetTalentSpecialValueFor("base_chill"), self:GetTalentSpecialValueFor("duration") )
+		else
+			target:AddChill( self, caster, self:GetTalentSpecialValueFor("duration"), self:GetTalentSpecialValueFor("stack_chill") )
+		end
 	end
 end
 
-function drow_ranger_glacier_arrows:BurnTarget( target )
-	local duration = self:GetTalentSpecialValueFor("duration")
-	local burn = target:AddNewModifier(self:GetCaster(), self, "modifier_drow_ranger_glacier_arrows_debuff", {duration = duration})
-	burn:AddIndependentStack(duration)
-end
-
 modifier_drow_ranger_glacier_arrows_autocast = class({})
-LinkLuaModifier("modifier_drow_ranger_glacier_arrows_autocast", "heroes/hero_huskar/drow_ranger_glacier_arrows", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_drow_ranger_glacier_arrows_autocast", "heroes/hero_drow_ranger/drow_ranger_glacier_arrows", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_drow_ranger_glacier_arrows_autocast:IsHidden()
 	return true
@@ -86,7 +78,7 @@ if IsServer() then
 		if self:GetAbility():GetAutoCastState() then
 			caster:SetProjectileModel("particles/empty_projectile.vcpf")
 		else
-			caster:SetProjectileModel("particles/units/heroes/hero_huskar/huskar_base_attack.vpcf")
+			caster:SetProjectileModel("particles/units/heroes/hero_drow/drow_base_attack.vpcf")
 		end
 	end
 	
@@ -96,7 +88,11 @@ if IsServer() then
 	
 	function modifier_drow_ranger_glacier_arrows_autocast:OnAttack(params)
 		if params.attacker == self:GetParent() and params.target and self:GetAbility():GetAutoCastState() then
-			self:GetAbility():LaunchSpear(params.target)
+			if self:GetParent().autoAttackFromAbilityState then
+				self:GetAbility():OnProjectileHit( params.target, params.target:GetAbsOrigin() )
+			else
+				self:GetAbility():LaunchFrostArrow(params.target)
+			end
 		end
 	end
 end

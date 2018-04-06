@@ -321,7 +321,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_drow_ranger/drow_ranger_glacier_arrows"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_ATTACK"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
@@ -335,6 +335,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"625"
 		"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
+		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -348,6 +349,12 @@
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"				"12"
+		
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_drowranger.vsndevts"
+			"particle"					"particles/units/heroes/hero_drow/drow_frost_arrow.vpcf"
+		}
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -361,7 +368,7 @@
 			"02"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"stack_cill"					"1"
+				"stack_chill"					"1"
 			}
 			"03"
 			{
@@ -383,11 +390,16 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityCastRange"				"400"
-		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_4"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
 		"MaxLevel"						"6"
 		"AbilityTextureName"			"drow_ranger_marksmanship"
 
-		"HasScepterUpgrade"			"1"
+		"HasScepterUpgrade"				"1"
+		
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_drow/drow_marksmanship.vpcf"
+		}
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -439,7 +451,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"600"
+				"value"						"1"
 			}
 		}
 	}
@@ -461,7 +473,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"3"
+				"value"						"1200"
 			}
 		}
 	}

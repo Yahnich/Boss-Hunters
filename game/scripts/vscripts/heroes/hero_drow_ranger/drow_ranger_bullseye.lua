@@ -33,5 +33,5 @@ function drow_ranger_bullseye:BreakAndDamage(target)
 	local caster = self:GetCaster()
 	target:Break( self, caster, self:GetTalentSpecialValueFor("break_duration"))
 	local damage = caster:GetAgility() * self:GetTalentSpecialValueFor("arrow_agi_multiplier")
-	caster:PerformGenericAttack(target, true, damage - caster:GetAttackDamage() )
+	caster:PerformAbilityAttack(target, true, self, damage - caster:GetAttackDamage() )
 end

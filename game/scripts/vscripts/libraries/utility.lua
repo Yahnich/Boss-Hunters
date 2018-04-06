@@ -135,11 +135,22 @@ function CDOTA_BaseNPC:IsBeingAttacked()
 	return false
 end
 
-function CDOTA_BaseNPC:PerformAbilityAttack(target, bProcs, ability)
+function CDOTA_BaseNPC:PerformAbilityAttack(target, bProcs, ability, flBonusDamage, bDamagePct)
 	self.autoAttackFromAbilityState = {} -- basically the same as setting it to true
 	self.autoAttackFromAbilityState.ability = ability
+	print(self:GetAttackDamage(), "pre")
+	if flBonusDamage then
+		if bDamagePct then
+			self:AddNewModifier(caster, nil, "modifier_generic_attack_bonus_pct", {damage = flBonusDamage})
+		else
+			self:AddNewModifier(caster, nil, "modifier_generic_attack_bonus", {damage = flBonusDamage})
+		end
+	end
 	self:PerformAttack(target,bProcs,bProcs,true,false,false,false,true)
-	Timers:CreateTimer(function() self.autoAttackFromAbilityState = nil end)
+	self.autoAttackFromAbilityState = nil
+	print(self:GetAttackDamage(), "post")
+	self:RemoveModifierByName("modifier_generic_attack_bonus")
+	self:RemoveModifierByName("modifier_generic_attack_bonus_pct")
 end
 
 function CDOTA_BaseNPC:PerformGenericAttack(target, immediate, flBonusDamage, bDamagePct)
@@ -2033,9 +2044,12 @@ function CDOTA_BaseNPC_Hero:GetEpicBossFightName()
 	return nameTable[self:GetUnitName()] or self:GetUnitName()
 end
 
-function CDOTA_BaseNPC:AddChill(hAbility, hCaster, chillDuration)
+function CDOTA_BaseNPC:AddChill(hAbility, hCaster, chillDuration, chillAmount)
 	local modifier = self:AddNewModifier(hCaster, hAbility, "modifier_chill_generic", {Duration = chillDuration})
-	if modifier then modifier:IncrementStackCount() end
+	local chillBonus = chillAmount or 1
+	if modifier then
+		modifier:SetStackCount( modifier:GetStackCount() + chillBonus)
+	end
 end
 
 function CDOTA_BaseNPC:GetChillCount()
@@ -2046,9 +2060,14 @@ function CDOTA_BaseNPC:GetChillCount()
 	end
 end
 
-function CDOTA_BaseNPC:SetChillCount( count )
+function CDOTA_BaseNPC:SetChillCount( count, chillDuration )
 	if self:HasModifier("modifier_chill_generic") then
 		self:FindModifierByName("modifier_chill_generic"):SetStackCount(count)
+	elseif chillDuration then
+		local modifier = self:AddNewModifier(hCaster, hAbility, "modifier_chill_generic", {Duration = chillDuration})
+		if modifier then modifier:SetStackCount(count) end
+	else
+		error("Target can't be given chill!")
 	end
 end
 
