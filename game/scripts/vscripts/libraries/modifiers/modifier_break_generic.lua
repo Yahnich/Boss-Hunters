@@ -1,18 +1,5 @@
 modifier_break_generic = class({})
 
-if IsServer() then
-	function modifier_break_generic:OnCreated(kv)
-		if kv.delay == nil or toboolean(kv.delay) == true then
-			self.delay = true
-			self:GetAbility():StartDelayedCooldown(self:GetRemainingTime(), false)
-		end
-	end
-	
-	function modifier_break_generic:OnDestroy()
-		if self.delay then self:GetAbility():EndDelayedCooldown() end
-	end
-end
-
 function modifier_break_generic:GetEffectName()
 	return "particles/generic_gameplay/generic_break.vpcf"
 end

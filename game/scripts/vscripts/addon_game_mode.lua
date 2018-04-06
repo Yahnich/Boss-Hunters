@@ -17,7 +17,6 @@ if CHoldoutGameMode == nil then
 end
 
 
-require("lua_item/simple_item")
 require("lua_map/map")
 require("lua_boss/boss_32_meteor")
 require( "epic_boss_fight_game_round" )
@@ -41,7 +40,7 @@ LinkLuaModifier( "modifier_summon_handler", "libraries/modifiers/modifier_summon
 LinkLuaModifier( "modifier_stunned_generic", "libraries/modifiers/modifier_stunned_generic.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_silence_generic", "libraries/modifiers/modifier_silence_generic.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_disarm_generic", "libraries/modifiers/modifier_disarm_generic.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier( "modifier_break_generic", "libraries/modifiers/modifier_disarm_generic.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier( "modifier_break_generic", "libraries/modifiers/modifier_break_generic.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_daze_generic", "libraries/modifiers/modifier_daze_generic.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_generic_barrier", "libraries/modifiers/modifier_generic_barrier.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_taunt_generic", "libraries/modifiers/modifier_taunt_generic.lua", LUA_MODIFIER_MOTION_NONE)
@@ -64,6 +63,7 @@ function Precache( context )
 	PrecacheResource( "particle", "particles/generic_gameplay/generic_stunned.vpcf", context )
 	PrecacheResource( "particle", "particles/generic_gameplay/generic_silence.vpcf", context )
 	PrecacheResource( "particle", "particles/generic_gameplay/generic_disarm.vpcf", context )
+	PrecacheResource( "particle", "particles/generic_gameplay/generic_break.vpcf", context )
 	PrecacheResource( "particle", "particles/items_fx/glyph.vpcf", context )
 	PrecacheResource( "particle", "particles/generic_dazed_side.vpcf", context )
 	PrecacheResource( "particle", "particles/generic_gameplay/generic_slowed_cold.vpcf", context )
