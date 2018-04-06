@@ -3,6 +3,7 @@ boss_broodmother_arachnids_hunger = class({})
 function boss_broodmother_arachnids_hunger:OnAbilityPhaseStart()
 	local caster = self:GetCaster()
 	caster:AddNewModifier(caster, self, "modifier_status_immunity", {duration = self:GetCastPoint() - 0.01})
+	caster:AddNewModifier(caster, self, "modifier_boss_broodmother_arachnids_hunger_active", {duration = self:GetCastPoint()})
 	ParticleManager:FireTargetWarningParticle(caster)
 	return true
 end
@@ -18,7 +19,7 @@ LinkLuaModifier("modifier_boss_broodmother_arachnids_hunger_active", "bosses/bos
 function modifier_boss_broodmother_arachnids_hunger_active:OnCreated()
 	self.dmg = self:GetSpecialValueFor("damage")
 	self.as = self:GetSpecialValueFor("attack_speed")
-	self.lifesteal = self:GetSpecialValueFor("lifesteal")
+	self.lifesteal = self:GetSpecialValueFor("lifesteal") / 100
 	self.ms = self:GetParent():GetIdealSpeedNoSlows()
 	self:StartIntervalThink(0.5)
 	if IsServer() then
@@ -35,7 +36,7 @@ end
 function modifier_boss_broodmother_arachnids_hunger_active:OnRefresh()
 	self.dmg = self:GetSpecialValueFor("damage")
 	self.as = self:GetSpecialValueFor("attack_speed")
-	self.lifesteal = self:GetSpecialValueFor("lifesteal")
+	self.lifesteal = self:GetSpecialValueFor("lifesteal") / 100
 end
 
 function modifier_boss_broodmother_arachnids_hunger_active:CheckState()

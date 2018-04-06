@@ -27,6 +27,8 @@ function modifier_alchemist_alchemists_greed_handler:OnAttackLanded(params)
 		local ability = self:GetAbility()
 		
 		self.goldonhit = self:GetTalentSpecialValueFor("gold_per_hit")
+		if caster:HasScepter() then self.goldonhit = self:GetTalentSpecialValueFor("scepter_gold_per_hit") end
+		self.alliedgold = self:GetTalentSpecialValueFor("scepter_allied_gold")
 		local excess = self.goldonhit - math.floor(self.goldonhit)
 		if caster:IsIllusion() then
 			local player = caster:GetPlayerOwnerID()
@@ -39,15 +41,16 @@ function modifier_alchemist_alchemists_greed_handler:OnAttackLanded(params)
 		self.goldonhit = math.floor(self.goldonhit)
 		if self.greedRemainder >= 1 then
 			self.goldonhit = self.goldonhit + self.greedRemainder
+			self.alliedgold = self.alliedgold + self.greedRemainder
 			self.greedRemainder = 0
 		end
         local totalgold = caster:GetGold() + self.goldonhit
         caster:SetGold(0 , false)
         caster:SetGold(totalgold, true)
 		if caster:HasScepter() and caster:IsRealHero() then
-			for _,hero in ipairs ( caster:FindFriendlyUnitsInRadius(caster:GetAbsOrigin(), 1200) ) do
-				if hero:IsRealHero() then
-					local gold = hero:GetGold() + self.goldonhit
+			for _,hero in ipairs ( caster:FindFriendlyUnitsInRadius(caster:GetAbsOrigin(), -1) ) do
+				if hero:IsRealHero() and hero ~= caster then
+					local gold = hero:GetGold() + self.alliedgold
 					hero:SetGold(0 , false)
 					hero:SetGold(gold , true)
 				end

@@ -82,7 +82,7 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"1200"	
+		"ItemCost"						"1500"	
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -91,7 +91,7 @@
 		"ItemResult"					"item_ultimate_scepter"
 		"ItemRequirements"
 		{
-			"01"						"item_staff_of_magi;item_ogre_club;item_blade_of_agility"
+			"01"						"item_power_core"
 		}
 	}
 	//=================================================================================================================
@@ -127,7 +127,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_all_stats"		"10"
+				"bonus_all_stats"		"15"
 			}
 			"02"
 			{

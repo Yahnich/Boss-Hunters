@@ -1128,7 +1128,7 @@ end
 function CHoldoutGameMode:OnHeroPick (event)
  	local hero = EntIndexToHScript(event.heroindex)
 	if not hero then return end
-	print(hero:GetName())
+	if StatsScreen:IsPlayerRegistered(hero) and not hero:HasModifier("modifier_stats_system_handler") then hero:AddNewModifier(hero, nil, "modifier_stats_system_handler", {}) end
 	if hero.hasBeenInitialized then return end
 	if hero:IsFakeHero() then return end
 	Timers:CreateTimer(0.03, function() 

@@ -13,9 +13,9 @@
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
 		
-		"AbilityCooldown"				"3.5"
+		"AbilityCooldown"				"4"
 		
-		"ItemCost"						"1650"
+		"ItemCost"						"1200"
 		"ItemShopTags"					"range"
 		"ItemQuality"					"component"
 		"ItemAliases"					"echo sabre;ringing rapier"
@@ -33,7 +33,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"attack_delay"			"0.1"
+				"attack_delay"			"0.3"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"paralyze_duration"		"0.5"
 			}
 		}
 	}

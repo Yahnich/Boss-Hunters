@@ -43,15 +43,12 @@ function UpdateList(pID, tag, value)
 function ToggleStats(arg)
 {
 	var teamInfo = $("#endRoundStats")
-	var midasGold = $("#MGHolder")
 	if(arg != null)
 	{
 		teamInfo.SetHasClass("SetHidden", false )
-		midasGold.SetHasClass("SetHidden", false )
 		$("#CloseImageID").SetImage("file://{images}/custom_game/slideLeft.png")
 	} else {
 		teamInfo.SetHasClass("SetHidden", !(teamInfo.BHasClass("SetHidden")) )
-		midasGold.SetHasClass("SetHidden", (teamInfo.BHasClass("SetHidden")) )
 		if(teamInfo.BHasClass("SetHidden")){
 			$("#CloseImageID").SetImage("file://{images}/custom_game/slideRight.png")
 		} else {

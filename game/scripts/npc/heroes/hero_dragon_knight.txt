@@ -76,12 +76,12 @@
 				"var_type"				"FIELD_FLOAT"
 				"duration"				"8"
 			}
-			"06"
+			"07"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"hit_damage"			"90 170 240 300 360 420 480"
 			}
-			"06"
+			"08"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"dot_damage"			"5 15 25 35 45 55 65"

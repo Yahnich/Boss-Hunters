@@ -48,32 +48,32 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"tank_health"			"300"
+				"tank_health"			"175"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"tank_damage"			"50"
+				"tank_damage"			"33"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"dps_health"			"175"
+				"dps_health"			"100"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"dps_damage"			"300"
+				"dps_damage"			"175"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"support_health"		"100"
+				"support_health"		"75"
 			}
 			"07"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"support_damage"		"100"
+				"support_damage"		"50"
 			}
 			"08"
 			{

@@ -44,7 +44,7 @@ function modifier_item_soothslayer:OnAttackLanded(params)
 	if IsServer() then
 		if not self:GetParent():IsRangedAttacker() and params.attacker == self:GetParent() and self:GetAbility():IsCooldownReady() then
 			local parent = self:GetParent()
-			parent:StartGestureWithPlaybackRate(ACT_DOTA_ATTACK, 17)
+			parent:StartGestureWithPlaybackRate(ACT_DOTA_ATTACK, 6)
 			self:GetAbility():SetCooldown()
 			Timers:CreateTimer(self.delay, function() 
 				parent:PerformGenericAttack(params.target, true) 

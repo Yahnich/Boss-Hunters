@@ -1,7 +1,7 @@
 item_cultists_veil = class({})
 
-function item_cultists_veill:GetIntrinsicModifierName()
-	return "modifier_item_cultists_veill_passive"
+function item_cultists_veil:GetIntrinsicModifierName()
+	return "modifier_item_cultists_veil_passive"
 end
 
 function item_cultists_veil:OnSpellStart()
@@ -39,37 +39,37 @@ function modifier_cultists_veil_debuff:GetModifierMagicalResistanceBonus()
 end
 
 
-modifier_item_cultists_veill_passive = class({})
-LinkLuaModifier( "modifier_item_cultists_veill_passive", "items/item_cultists_veill.lua" ,LUA_MODIFIER_MOTION_NONE )
+modifier_item_cultists_veil_passive = class({})
+LinkLuaModifier( "modifier_item_cultists_veil_passive", "items/item_cultists_veil.lua" ,LUA_MODIFIER_MOTION_NONE )
 
-function modifier_item_cultists_veill_passive:OnCreated()
+function modifier_item_cultists_veil_passive:OnCreated()
 	self.manacost = self:GetSpecialValueFor("mana_cost_reduction")
 	self.armor = self:GetSpecialValueFor("bonus_armor")
 	self.int = self:GetSpecialValueFor("bonus_intellect")
 end
 
-function modifier_item_cultists_veill_passive:DeclareFunctions()
+function modifier_item_cultists_veil_passive:DeclareFunctions()
 	return {MODIFIER_PROPERTY_MANACOST_PERCENTAGE,
 			MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
 			MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS}
 end
 
-function modifier_item_cultists_veill_passive:GetModifierPercentageManacost()
+function modifier_item_cultists_veil_passive:GetModifierPercentageManacost()
 	return self.manacost
 end
 
-function modifier_item_cultists_veill_passive:GetModifierPhysicalArmorBonus()
+function modifier_item_cultists_veil_passive:GetModifierPhysicalArmorBonus()
 	return self.armor
 end
 
-function modifier_item_cultists_veill_passive:GetModifierBonusStats_Intellect()
+function modifier_item_cultists_veil_passive:GetModifierBonusStats_Intellect()
 	return self.int
 end
 
-function modifier_item_cultists_veill_passive:IsHidden()
+function modifier_item_cultists_veil_passive:IsHidden()
 	return true
 end
 
-function modifier_item_cultists_veill_passive:GetAttributes()
+function modifier_item_cultists_veil_passive:GetAttributes()
 	return MODIFIER_ATTRIBUTE_MULTIPLE
 end

@@ -2215,8 +2215,8 @@ function CDOTA_BaseNPC:InWater()
 	end
 end
 
-function CDOTA_BaseNPC:Paralyze(hAbility, hCaster)
-	self:AddNewModifier(hCaster, hAbility, "modifier_paralyze", {Duration = 1})
+function CDOTA_BaseNPC:Paralyze(hAbility, hCaster, duration)
+	self:AddNewModifier(hCaster, hAbility, "modifier_paralyze", {Duration = duration or 1})
 end
 
 function CDOTA_BaseNPC:IsParalyzed()
