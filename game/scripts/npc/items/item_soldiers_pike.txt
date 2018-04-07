@@ -36,12 +36,12 @@
 				"var_type"				"FIELD_INTEGER"
 				"chance"				"20"
 			}
-			"01"
+			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"damage"				"40"
 			}
-			"01"
+			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"bonus_range"			"100"

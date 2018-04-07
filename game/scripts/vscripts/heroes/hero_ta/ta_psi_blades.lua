@@ -51,14 +51,17 @@ end
 function modifier_ta_psi_blades:OnAttackLanded(params)
 	if IsServer() then
 		if params.attacker == self:GetParent() and params.target:IsAlive() then
+			EmitSoundOn("Hero_TemplarAssassin.PsiBlade", params.target)
 			if self:GetAbility().disableLoop then return end
 			local bounces = self:GetTalentSpecialValueFor("max_units")
 			self.disableLoop = false
 			local enemies = params.attacker:FindEnemyUnitsInRadius(params.target:GetAbsOrigin(), params.attacker:GetAttackRange() + self:GetTalentSpecialValueFor("radius"), {})
 			for _,enemy in pairs(enemies) do
 				if enemy ~= params.target and enemy:IsAlive() then
-					ParticleManager:FireRopeParticle("particles/units/heroes/hero_templar_assassin/templar_assassin_psi_blade.vpcf", PATTACH_POINT_FOLLOW, params.target, enemy, {})
-					self:GetAbility():FireTrackingProjectile("", enemy, 99999, {})
+					local FX = ParticleManager:CreateParticle("particles/units/heroes/hero_templar_assassin/templar_assassin_psi_blade.vpcf", PATTACH_POINT_FOLLOW, self:GetCaster())
+					ParticleManager:SetParticleControlEnt(FX, 0, params.target, PATTACH_POINT_FOLLOW, "attach_hitloc", params.target:GetAbsOrigin(), true)
+					ParticleManager:SetParticleControlEnt(FX, 1, enemy, PATTACH_POINT_FOLLOW, "attach_hitloc", enemy:GetAbsOrigin(), true)
+					self:GetAbility():FireTrackingProjectile(nil, enemy, 99999, {})
 					bounces = bounces - 1
 					if bounces < 1 then break end
 				end
