@@ -36,6 +36,10 @@ function StatsScreen:StartStatsScreen()
 	self.all = {2}
 end
 
+function StatsScreen:IsPlayerRegistered(hero)
+	return hero.statsHaveBeenRegistered or false
+end
+
 function StatsScreen:RegisterPlayer(hero)
 	local stats = {}
 	stats.ms = 0
@@ -64,8 +68,8 @@ function StatsScreen:RegisterPlayer(hero)
 	CustomGameEventManager:Send_ServerToAllClients("dota_player_upgraded_stats", {playerID = hero:GetPlayerID()} )
 	local netTable = CustomNetTables:GetTableValue("hero_properties", hero:GetUnitName()..hero:entindex()) or {}
 	netTable.attribute_points = 0
-	PrintAll(netTable)
 	CustomNetTables:SetTableValue("hero_properties", hero:GetUnitName()..hero:entindex(), netTable)
+	hero.statsHaveBeenRegistered = true
 end
 
 function StatsScreen:ProcessStatsUpgrade(userid, event)
@@ -80,7 +84,7 @@ function StatsScreen:ProcessStatsUpgrade(userid, event)
 	netTable[skill] = tostring(tonumber(netTable[skill]) + 1)
 	CustomNetTables:SetTableValue("stats_panel", tostring(entindex), netTable)
 	hero:SetAttributePoints( math.max(0, hero:GetAttributePoints() - 1) )
-	hero:FindModifierByName("modifier_stats_system_handler"):UpdateStatValues()
+	
 	hero:CalculateStatBonus()
 	CustomGameEventManager:Send_ServerToAllClients("dota_player_upgraded_stats", {playerID = pID} )
 end

@@ -1,21 +1,3 @@
-function ArrowHit( keys )
-	local caster = keys.caster
-	local target = keys.target
-	local ability = keys.ability
-
-	-- Initializing the damage table
-	local damage_table = {}
-	damage_table.attacker = caster
-	damage_table.victim = target
-	damage_table.damage_type = ability:GetAbilityDamageType()
-	damage_table.ability = ability	
-	damage_table.damage = ability:GetTalentSpecialValueFor("arrow_agi_multiplier") * caster:GetAgility()
-	if not target:IsMagicImmune() then ability:ApplyDataDrivenModifier(caster, target, "modifier_bullseye_break", {duration = ability:GetTalentSpecialValueFor("break_duration")}) end
-	ApplyDamage(damage_table)
-	caster:PerformAttack(target, true, true, true, false, false, true, true)
-end
-
-
 function trueshot_initialize( keys )
 	local caster = keys.caster
 	local target = keys.target

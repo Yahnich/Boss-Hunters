@@ -73,7 +73,7 @@ function BuildPlayersArray()
 
                     -- Example functions for generic stats are defined in statcollection/lib/utilities.lua
                     -- Add player values here as someValue = GetSomePlayerValue(),
-                    ph = heroName.."/"..mapName, -- Hero
+                    ph = heroName, -- Hero
                     dp = FindDPS(hero) or 0, -- Damage
                     pt = hero:GetTeam(), -- Team
                     td = FindPercentualDamage(hero), -- Map

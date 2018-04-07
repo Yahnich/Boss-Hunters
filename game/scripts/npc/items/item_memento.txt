@@ -51,7 +51,7 @@
 			"particle"					"particles/units/heroes/hero_faceless_void/faceless_void_backtrack.vpcf"
 		}
 		
-		"AbilityCooldown"				"2"
+		"AbilityCooldown"				"3"
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
@@ -60,14 +60,19 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"attack_delay"			"0.1"
+				"attack_delay"			"0.3"
 			}
 			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"paralyze_duration"		"1"
+			}
+			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"dodge_chance"			"25"
 			}
-			"03"
+			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"bonus_health_regen"	"1"

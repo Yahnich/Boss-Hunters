@@ -34,6 +34,22 @@ function phenx_spirits:GetCastAnimation()
     return ACT_DOTA_CAST_ABILITY_2
 end
 
+function phenx_spirits:GetManaCost(iLvl)
+	if caster:HasModifier("modifier_phenx_spirits_caster") then
+		return self.BaseClass.GetManaCost(self, iLvl)
+	else
+		return 0
+	end
+end
+
+function phenx_spirits:GetCooldown(iLvl)
+	if caster:HasModifier("modifier_phenx_spirits_caster") then
+		return self.BaseClass.GetManaCost(self, iLvl)
+	else
+		return 0
+	end
+end
+
 function phenx_spirits:OnSpellStart()
     local caster = self:GetCaster()
     

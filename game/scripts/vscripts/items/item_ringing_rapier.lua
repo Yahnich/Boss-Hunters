@@ -13,6 +13,7 @@ modifier_item_ringing_rapier = class({})
 
 function modifier_item_ringing_rapier:OnCreated()
 	self.delay = self:GetSpecialValueFor("attack_delay")
+	self.paralyze = self:GetAbility():GetSpecialValueFor("paralyze_duration")
 end
 
 function modifier_item_ringing_rapier:DeclareFunctions()
@@ -23,9 +24,12 @@ function modifier_item_ringing_rapier:OnAttackLanded(params)
 	if IsServer() then
 		if not self:GetParent():IsRangedAttacker() and params.attacker == self:GetParent() and self:GetAbility():IsCooldownReady() then
 			local parent = self:GetParent()
-			parent:StartGestureWithPlaybackRate(ACT_DOTA_ATTACK, 17)
+			parent:StartGestureWithPlaybackRate(ACT_DOTA_ATTACK, 6)
 			self:GetAbility():SetCooldown()
-			Timers:CreateTimer(self.delay, function() parent:PerformGenericAttack(params.target, true) end)
+			Timers:CreateTimer(self.delay, function() 
+				parent:PerformGenericAttack(params.target, true)
+				params.target:Paralyze(self:GetAbility(), parent, self.paralyze)
+			end)
 		end
 	end
 end

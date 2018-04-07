@@ -7229,7 +7229,7 @@
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"665"
 		"ModelScale" 				"0.5"
-		"IsAncient"					"0"
+		"IsAncient"					"1"
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"50"
 		"vscripts"					"ai/ai_boss36"

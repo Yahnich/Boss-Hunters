@@ -56,7 +56,7 @@ end
 
 function modifier_item_berserkers_cape_active:OnAttack(params)
 	if params.attacker == self:GetParent() then
-		self:GetAbility():DealDamage( self:GetParent(), self:GetParent(), math.ceil(params.attacker:GetMaxHealth() * self.drain), {damage_type = DAMAGE_TYPE_PURE, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_HPLOSS + DOTA_DAMAGE_FLAG_REFLECTION + DOTA_DAMAGE_FLAG_BYPASSES_BLOCK + DOTA_DAMAGE_FLAG_BYPASSES_BLOCK} )
+		self:GetAbility():DealDamage( self:GetParent(), self:GetParent(), math.ceil(params.attacker:GetMaxHealth() * self.drain), {damage_type = DAMAGE_TYPE_PURE, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_HPLOSS + DOTA_DAMAGE_FLAG_REFLECTION + DOTA_DAMAGE_FLAG_BYPASSES_BLOCK + DOTA_DAMAGE_FLAG_BYPASSES_BLOCK + DOTA_DAMAGE_FLAG_NON_LETHAL} )
 	end
 end
 

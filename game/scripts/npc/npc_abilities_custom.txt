@@ -56,7 +56,8 @@
 #base "heroes/hero_timbersaw.txt"
 #base "heroes/hero_vengeful.txt"
 #base "heroes/hero_tusk.txt"
-#base "heroes/hero_aa.txt"
+#base "heroes/hero_ancient_apparition.txt"
+#base "heroes/hero_drow_ranger.txt"
 
 "DOTAAbilities"
 {
@@ -2640,7 +2641,7 @@
 						            "MaxTargets" "2"
 						            "Random"	"1"
 					            }
-					            "EffectName"        "particles/nyx_assassin_impale.vpcf"
+					            "EffectName"		"particles/bosses/boss_warlockgolems/boss_ember_spike.vpcf"
 					            "StartRadius"       "%width"
 					            "EndRadius"         "%width"
 					            "MoveSpeed"         "%speed"
@@ -6188,12 +6189,12 @@
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"500"
+		"AbilityCastRange"				"800"
 		"AbilityCastPoint"				"1.5 1"
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"15.0"
+		"AbilityCooldown"				"22.0 18.0"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -6311,7 +6312,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"impact_radius"			"250 275"
+				"impact_radius"			"210"
 			}
 			"02"
 			{
@@ -6321,7 +6322,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"2500 3000"
+				"damage"				"2000 2500"
 			}
 			"04"
 			{
@@ -6331,7 +6332,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"think_time_extra"		"1"
+				"think_time_extra"		"1.5"
 			}
 		}
 	}
@@ -9466,394 +9467,6 @@
 				{
 					"MODIFIER_STATE_SILENCED"		"MODIFIER_STATE_VALUE_ENABLED"
 					"MODIFIER_STATE_ROOTED"		"MODIFIER_STATE_VALUE_ENABLED"
-				}
-			}
-		}
-	}
-	"drow_ranger_bullseye"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"				"ability_datadriven"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"	
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"FightRecapLevel"				"1"
-		"AbilityTextureName"			"custom/drow_ranger_bullseye"
-		"MaxLevel"						"7"
-	
-		// Precache
-		//-------------------------------------------------------------------------------------------------------------
-		"precache"
-		{
-			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_mirana.vsndevts"
-			"particle"			"particles/drow_bullseye_arrow.vpcf"
-			"particle"			"particles/units/heroes/hero_mirana/mirana_spell_arrow_launch.vpcf"
-			"particle"			"particles/items3_fx/silver_edge_slow.vpcf"
-		}
-		
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"3000"
-		"AbilityCastPoint"				"0.5 0.5 0.5 0.5"
-	
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"10.0"
-		"AbilityDuration"				"3.11 3.11 3.11 3.11"
-	
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"100 100 100 100"
-	
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"			"FIELD_FLOAT"
-				"arrow_speed"		"3000"
-			}
-			"02"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"arrow_width"		"325"
-			}
-			"03"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"arrow_range"		"3000"
-			}
-			"04"
-			{
-				"var_type"			"FIELD_FLOAT"
-				"arrow_agi_multiplier"		"2 2.5 3 3.5 4 4.5 5"
-			}
-			"04"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"break_duration"	"3"
-			}
-		}
-	
-		"OnSpellStart"
-		{
-			"FireEffect"
-			{
-				"EffectName"			"particles/units/heroes/hero_mirana/mirana_spell_arrow_launch.vpcf"
-				"Target"				"CASTER"
-			}
-			"FireSound"
-			{
-				"EffectName"			"Hero_Mirana.ArrowCast"
-				"Target"				"CASTER"
-			}
-			"LinearProjectile"
-			{
-				"Target"      	"POINT"
-				"EffectName"  	"particles/drow_bullseye_arrow.vpcf"
-				"MoveSpeed"   	"%arrow_speed"
-				"StartRadius"   "%arrow_width"
-				"StartPosition" "attach_origin"
-				"EndRadius"     "%arrow_width"
-				"FixedDistance" "%arrow_range"
-				"TargetTeams"   "DOTA_UNIT_TARGET_TEAM_ENEMY"
-				"TargetTypes"   "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
-				"TargetFlags"   "DOTA_UNIT_TARGET_FLAG_NONE"
-				"HasFrontalCone"    "0"
-				"ProvidesVision"	"1"
-				"VisionRadius"	"%arrow_vision"
-			}	
-		}
-	
-		"OnProjectileHitUnit"
-		{
-			"DeleteOnHit"	"0"
-			"FireSound"
-			{
-				"EffectName"			"Hero_Mirana.ArrowImpact"
-				"Target"
-				{
-					"Center"			"TARGET"
-					"Flags"     		"DOTA_UNIT_TARGET_FLAG_DEAD"
-				}
-			}
-	
-			"RunScript"
-			{
-				"ScriptFile"			"lua_abilities/heroes/drow_ranger"
-				"Function"				"ArrowHit"
-				"Target"				"TARGET"
-			}
-		}
-		"Modifiers"
-		{
-			"modifier_bullseye_break"
-			{
-				"IsDebuff"	"1"
-				"EffectName"	"particles/items3_fx/silver_edge_slow.vpcf"
-				"States"
-				{
-					"MODIFIER_STATE_PASSIVES_DISABLED"	"MODIFIER_STATE_VALUE_ENABLED"
-				}
-			}
-		}
-	}
-	//=================================================================================================================
-	// Ability: Drow Ranger	Frost Arrows
-	//=================================================================================================================
-	"drow_ranger_leapshot"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_datadriven"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_ALL"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityTextureName"			"custom/drow_ranger_leapshot"
-		"MaxLevel"						"7"
-	
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
-		"AbilityCastAnimation"			"ACT_DOTA_TELEPORT_END"
-	
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"9 8.5 8 7.5 7 7.5 6"
-		"AbilityDuration"				"0.75"
-		// Damage.
-		//-------------------------------------------------------------------------------------------------------------
-	
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"25"
-	
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"leap_distance"			"650 675 700 725 750 775 800"
-				"LinkedSpecialBonus"	"special_bonus_unique_drow_ranger_2"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"leap_speed"			"2000.0"
-			}
-			"3"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"silence_duration"		"1"
-				"LinkedSpecialBonus"	"special_bonus_unique_drow_ranger_4"
-			}
-		}
-		"OnSpellStart"
-		{
-			"RunScript"
-			{
-				"ScriptFile"	"lua_abilities/heroes/drow_ranger"
-				"Function"		"LeapShot"
-			}
-			"ApplyMotionController"
-			{
-				"Target"		"CASTER"
-				"ScriptFile"    "lua_abilities/heroes/drow_ranger"
-				"HorizontalControlFunction" "LeapShotHorizonal"
-				"VerticalControlFunction" 	"LeapShotVertical"  
-			}
-			"ApplyModifier"
-			{
-				"ModifierName"	"modifier_leapshot_silence_buffer"
-				"Target"	"CASTER"
-			}
-		}
-		"Modifiers"
-		{
-			"modifier_leapshot_movement"
-			{
-				"IsHidden"  "1"
-				"OverrideAnimation"			"ACT_DOTA_TELEPORT_END"
-				"ThinkInterval"  "0.03"
-				"OnIntervalThink"
-				{
-					"Rotate"
-					{
-						"Target"    "CASTER"
-						"PitchYawRoll"  "48 0 0"
-					}
-				}
-				"OnAttackLanded"
-				{
-					"ApplyModifier"
-					{
-						"ModifierName"	"modifier_leapshot_silence"
-						"Target"	"TARGET"
-					}
-				}
-				"OnDestroy"
-				{
-					"RunScript"
-					{
-						"ScriptFile"			"lua_abilities/heroes/drow_ranger"
-						"Function"				"ResetAngles"
-					}
-				}
-			}
-			"modifier_leapshot_silence_buffer"
-			{
-				"IsHidden"  "1"
-				"Duration"	"2"
-				"OnAttackLanded"
-				{
-					"ApplyModifier"
-					{
-						"ModifierName"	"modifier_leapshot_silence"
-						"Target"	"TARGET"
-					}
-				}
-			}
-			"modifier_leapshot_silence"
-			{
-				"IsDebuff"	"1"
-				"Duration"	"%silence_duration"
-				"States"
-				{
-					"MODIFIER_STATE_SILENCED"	"MODIFIER_STATE_VALUE_ENABLED"
-				}
-			}
-		}
-	}
-	"drow_ranger_trueshot_ebf"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"				"ability_datadriven"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-		"AbilityTextureName"			"drow_ranger_trueshot"
-		"MaxLevel"						"7"
-	
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"0"
-		"AbilityCastPoint"				"0 0 0 0"
-	
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"20"
-		"AbilityDuration"				"5.0"
-	
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"trueshot_ranged_damage"	"20 24 28 32 36 40 44"
-				"LinkedSpecialBonus"		"special_bonus_unique_drow_ranger_1"
-			}
-			
-			// extra variable
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"global_radius"				"9000"
-			}
-		}
-		
-		// Data driven
-		//-------------------------------------------------------------------------------------------------------------
-		"OnSpellStart"
-		{
-			"ApplyModifier"
-			{
-				"Target"				"CASTER"
-				"ModifierName"			"modifier_trueshot_aura_creep_datadriven"
-				"Duration"				"%AbilityDuration"
-			}
-		}
-		
-		"Modifiers"
-		{
-			"modifier_trueshot_aura_datadriven"
-			{
-				"Passive"				"1"
-				"IsPurgable"			"0"
-				"IsHidden"				"1"
-				
-				"Aura"					"modifier_trueshot_effect_datadriven"
-				"Aura_Radius"			"%global_radius"
-				"Aura_Teams"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-				"Aura_Types"			"DOTA_UNIT_TARGET_HERO"
-			}
-			
-			"modifier_trueshot_aura_creep_datadriven"
-			{
-				"IsPurgable"			"0"
-				"IsHidden"				"0"
-				
-				"Aura"					"modifier_trueshot_effect_datadriven"
-				"Aura_Radius"			"%global_radius"
-				"Aura_Teams"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-				"Aura_Types"			"DOTA_UNIT_TARGET_BASIC"
-			}
-			
-			"modifier_trueshot_effect_datadriven"
-			{
-				"IsPurgable"			"0"
-				"IsHidden"				"0"
-				
-				"OnCreated"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"lua_abilities/heroes/drow_ranger"
-						"Function"		"trueshot_initialize"
-						"trueshot_modifier"	"modifier_trueshot_effect_datadriven"
-						"trueshot_damage_modifier"	"modifier_trueshot_damage_datadriven"
-					}
-				}
-	
-				"ThinkInterval"  "0.25"
-				"OnIntervalThink"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"lua_abilities/heroes/drow_ranger"
-						"Function"		"trueshot_initialize"
-						"trueshot_modifier"	"modifier_trueshot_effect_datadriven"
-						"trueshot_damage_modifier"	"modifier_trueshot_damage_datadriven"
-					}
-				}
-	
-				"OnDestroy"
-				{
-					"RemoveModifier"
-					{
-						"ModifierName"	"modifier_trueshot_damage_datadriven"
-						"Target"
-						{
-							"Center"	"TARGET"
-							"Flags"     "DOTA_UNIT_TARGET_FLAG_DEAD | DOTA_UNIT_TARGET_FLAG_INVULNERABLE | DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD"
-						}
-					}
-				}
-			}
-		
-			"modifier_trueshot_damage_datadriven"
-			{
-				"IsPurgable"			"0"
-				"IsHidden"				"1"
-	
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"	"1"
 				}
 			}
 		}
@@ -14848,15 +14461,15 @@
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0.5 0.5 0.5"
+		"AbilityCastPoint"				"1.5"
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"100 95 90 85 80 75 70"
+		"AbilityCooldown"				"70"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"200 350 500 650 800 950"		
+		"AbilityManaCost"				"200 300 400 500 600 700"		
 		
 		// Cast Range
 		//-------------------------------------------------------------------------------------------------------------
@@ -14873,7 +14486,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage_per_health"			"60"
+				"damage_per_health"			"70"
 			}
 			"02"
 			{
@@ -14883,7 +14496,7 @@
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"heal_per_health"			"30"
+				"heal_per_health"			"45"
 			}
 			"03"
 			{
@@ -14900,15 +14513,10 @@
 				"var_type"					"FIELD_INTEGER"
 				"duration"					"10"
 			}
-			"07"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"stun_duration"				"1.5"
-			}
 			"08"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"self_damage"				"80"
+				"self_damage"				"70"
 			}
 			"09"
 			{
@@ -14916,37 +14524,25 @@
 				"tick_rate"					"1.0"
 			}
 		}
-
-		"OnSpellStart"
+		"OnAbilityPhaseStart"
 		{
-			"ApplyModifier"
-			{
-				"ModifierName"	"modifier_plague_sacrifice"
-				"Target"		"CASTER"
-			}
 			"FireSound"
 			{
 				"EffectName"	"Hero_Necrolyte.ReapersScythe.Cast"
 				"Target"		"CASTER"
 			}
-
-			"FireSound"
-			{
-				"EffectName"	"Hero_Necrolyte.ReapersScythe.Target"
-				"Target"		"CASTER"
-			}
-
 			"DelayedAction"
 			{
-				"Delay"		"%stun_duration"
+				// Scythe animation has a 0.7 sec travel time
+				"Delay"		"0.8"
 
 				"Action"
 				{
 					"FireEffect"
 					{
-						"EffectName"	"particles/units/heroes/hero_necrolyte/necrolyte_scythe_orig.vpcf"
-						"EffectAttachType"	"start_at_customorigin"
-						
+						"EffectName"	"particles/units/heroes/hero_necrolyte/necrolyte_scythe_model.vpcf"
+						"EffectAttachType"	"follow_origin"
+
 						"ControlPointEntities"
 						{
 							"CASTER"	"follow_origin"
@@ -14956,92 +14552,70 @@
 				}
 			}
 		}
-
-		"Modifiers"
+		"OnSpellStart"
 		{
-			"modifier_plague_sacrifice"
+			"RunScript"
 			{
-				"IsDebuff"	"1"
-				"Duration"	"%stun_duration"
+				"ScriptFile"		"lua_abilities/heroes/necrophos.lua"
+				"Function"			"SelfDamage"
+			}
+			"FireSound"
+			{
+				"EffectName"	"Hero_Necrolyte.ReapersScythe.Target"
+				"Target"		"CASTER"
+			}
 
-				"OverrideAnimation"	"ACT_DOTA_DISABLED"
-
-				"EffectName" "particles/generic_gameplay/generic_stunned.vpcf"
-				"EffectAttachType" "follow_overhead"
-
+			"FireEffect"
+			{
+				"EffectName"	"particles/units/heroes/hero_necrolyte/necrolyte_scythe_orig.vpcf"
+				"EffectAttachType"	"start_at_customorigin"
 				
-
-				"OnCreated"
+				"ControlPointEntities"
 				{
-					"DelayedAction"
-					{
-						// Scythe animation has a 0.7 sec travel time
-						"Delay"		"%stun_duration - 0.7"
-
-						"Action"
-						{
-							"FireEffect"
-							{
-								"EffectName"	"particles/units/heroes/hero_necrolyte/necrolyte_scythe_model.vpcf"
-								"EffectAttachType"	"follow_origin"
-
-								"ControlPointEntities"
-								{
-									"CASTER"	"follow_origin"
-									"CASTER"	"follow_origin"
-								}
-							}
-							"RunScript"
-							{
-								"ScriptFile"		"lua_abilities/heroes/necrophos.lua"
-								"Function"			"SelfDamage"
-							}
-						}
-					}
-					"AttachEffect"
-					{
-						"EffectName"	"particles/units/heroes/hero_necrolyte/necrolyte_scythe.vpcf"
-						"EffectAttachType"	"follow_origin"
-						"Target"		"CASTER"
-					}
-					"ApplyModifier"
-					{
-						"ModifierName"	"modifier_plague_heal"
-						"Duration"	"%duration"
-						"Target"
-						{
-							"Center"  	"CASTER"
-							"Teams" 	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-							"Types" 	"DOTA_UNIT_TARGET_ALL"
-							"Radius"	"%radius"
-						}
-						
-					}
-					"RemoveModifier"
-					{
-						"ModifierName"	"modifier_plague_heal"
-						"Target"	"CASTER"
-					}
-					"ApplyModifier"
-					{
-						"ModifierName"	"modifier_plague_damage"
-						"Duration"	"%duration"
-						"Target"
-						{
-							"Center"  	"TARGET"
-							"Teams" 	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-							"Types" 	"DOTA_UNIT_TARGET_ALL"
-							"Flags"     "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-							"Radius"	"%radius"
-						}
-					}
-				}
-
-				"States"
-				{
-					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
+					"CASTER"	"follow_origin"
+					"CASTER"	"follow_origin"
 				}
 			}
+			"AttachEffect"
+			{
+				"EffectName"	"particles/units/heroes/hero_necrolyte/necrolyte_scythe.vpcf"
+				"EffectAttachType"	"follow_origin"
+				"Target"		"CASTER"
+			}
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_plague_heal"
+				"Duration"	"%duration"
+				"Target"
+				{
+					"Center"  	"CASTER"
+					"Teams" 	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+					"Types" 	"DOTA_UNIT_TARGET_ALL"
+					"Radius"	"%radius"
+				}
+				
+			}
+			"RemoveModifier"
+			{
+				"ModifierName"	"modifier_plague_heal"
+				"Target"	"CASTER"
+			}
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_plague_damage"
+				"Duration"	"%duration"
+				"Target"
+				{
+					"Center"  	"TARGET"
+					"Teams" 	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+					"Types" 	"DOTA_UNIT_TARGET_ALL"
+					"Flags"     "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+					"Radius"	"%radius"
+				}
+			}
+		}
+		"Modifiers"
+		{
 			"modifier_plague_heal"
 			{
 				"IsBuff"	"1"

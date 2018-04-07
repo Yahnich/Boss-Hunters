@@ -54,7 +54,7 @@
 			"soundfile"					"soundevents/game_sounds_items.vsndevts"
 		}
 	
-		"AbilityCooldown"				"1"
+		"AbilityCooldown"				"2"
 
 		
 		// Special	
@@ -64,7 +64,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"attack_delay"			"0.1"
+				"attack_delay"			"0.3"
 			}
 			"02"
 			{

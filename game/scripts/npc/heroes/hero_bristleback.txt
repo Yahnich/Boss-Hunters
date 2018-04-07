@@ -45,7 +45,6 @@
 				"var_type"						"FIELD_INTEGER"
 				"quill_stack_damage"			"30 32 34 36 38 40 42"
 				"LinkedSpecialBonus"			"special_bonus_unique_bristleback_2"
-				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
 			"03"
 			{

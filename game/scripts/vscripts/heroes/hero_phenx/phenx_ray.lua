@@ -27,6 +27,22 @@ function phenx_ray:GetBehavior()
     return DOTA_ABILITY_BEHAVIOR_POINT
 end
 
+function phenx_ray:GetManaCost(iLvl)
+	if caster:HasModifier("modifier_phenx_ray") then
+		return self.BaseClass.GetManaCost(self, iLvl)
+	else
+		return 0
+	end
+end
+
+function phenx_ray:GetCooldown(iLvl)
+	if caster:HasModifier("modifier_phenx_ray") then
+		return self.BaseClass.GetManaCost(self, iLvl)
+	else
+		return 0
+	end
+end
+
 function phenx_ray:OnSpellStart()
     local caster = self:GetCaster()
 
