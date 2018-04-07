@@ -46,8 +46,8 @@ function ta_trap:OnSpellStart()
 	trap:SetOwner(caster)
 	trap:SetControllableByPlayer(caster:GetPlayerID(), true)
 		
-	trap:FindAbilityByName("self_trap_ebf"):UpgradeAbility(true)
-	trap:FindAbilityByName("self_traptp_ebf"):UpgradeAbility(true)
+	caster:FindAbilityByName("ta_trap_spring"):UpgradeAbility(true)
+	caster:FindAbilityByName("ta_trap_tp"):UpgradeAbility(true)
 	
 	-- Plays the sounds
 	EmitSoundOn("Hero_TemplarAssassin.Trap.Cast", caster)
@@ -96,8 +96,10 @@ end
 
 function modifier_ta_trap:OnDestroy()
 	if IsServer() then
-		ParticleManager:DestroyParticle( self:GetParent().particle , true )
-		ParticleManager:ReleaseParticleIndex( self:GetParent().particle )
+		if self:GetParent().particle then
+			ParticleManager:DestroyParticle( self:GetParent().particle , true )
+			ParticleManager:ReleaseParticleIndex( self:GetParent().particle )
+		end
 	end
 end
 

@@ -2314,10 +2314,7 @@ function CutTreesInRadius(vloc, radius)
 	local trees = GridNav:GetAllTreesAroundPoint(vloc, radius, false)
 	local treesCut = 0
 	if #trees > 0 then
-		for _,tree in pairs(trees) do
-			treesCut = treesCut + 1
-			tree:CutDown(-1)
-		end
+		GridNav:DestroyTreesAroundPoint(vloc, radius, false)
 	end
-	return treesCut
+	return #trees
 end

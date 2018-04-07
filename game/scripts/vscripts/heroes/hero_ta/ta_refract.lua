@@ -11,6 +11,9 @@ end
 
 function ta_refract:OnSpellStart()
 	local caster = self:GetCaster()
+
+	EmitSoundOn("Hero_TemplarAssassin.Refraction", caster)
+
 	caster:AddNewModifier(caster, self, "modifier_ta_refract", {Duration = self:GetTalentSpecialValueFor("duration")})
 end
 
@@ -39,9 +42,20 @@ end
 function modifier_ta_refract:DeclareFunctions()
     local funcs = {
         MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
-        MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE
+        MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,
+        MODIFIER_EVENT_ON_ATTACK_LANDED
     }
     return funcs
+end
+
+function modifier_ta_refract:OnAttackLanded(params)
+	if IsServer() then
+		if params.attacker == self:GetParent() then
+			EmitSoundOn("Hero_TemplarAssassin.Refraction.Damage", params.target)
+		elseif params.target == self:GetParent() then
+			EmitSoundOn("Hero_TemplarAssassin.Refraction.Absorb", self:GetParent())
+		end
+	end
 end
 
 function modifier_ta_refract:GetModifierPreAttack_BonusDamage()
