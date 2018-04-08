@@ -59,7 +59,7 @@ function timbersaw_claw:OnSpellStart()
     local target
 
     -- Main Hook loop
-    Timers:CreateTimer(tick_rate, function()
+    Timers:CreateTimer(0, function()
         -- Check for valid units in the area
         local enemies = caster:FindEnemyUnitsInRadius(hook_loc, hook_width, {})
         for _,enemy in pairs(enemies) do
@@ -84,7 +84,7 @@ function timbersaw_claw:OnSpellStart()
                 for _,tree in pairs(trees) do
                     self.hook_dummy:SetAbsOrigin(tree:GetAbsOrigin())
                     caster:AddNewModifier(caster, self, "modifier_timbersaw_claw_pull", {})
-                    --break
+                    
                     return nil
                 end
             end
@@ -118,7 +118,7 @@ function timbersaw_claw:OnSpellStart()
         local current_tick = 0
 
         -- Hook reeling loop
-        Timers:CreateTimer(tick_rate, function()
+        Timers:CreateTimer(0, function()
 
             -- Recalculate position variables
             caster_loc = caster:GetAbsOrigin()
@@ -145,9 +145,9 @@ function timbersaw_claw:OnSpellStart()
                     break
                 end
             end
-
+            current_tick = current_tick + 1
             -- If the target is close enough, or the hook has been out too long, finalize the hook return
-            if direction:Length2D() < 100 then
+            if direction:Length2D() < 100 or current_tick > 300 then
                 EmitSoundOn("Hero_Shredder.TimberChain.Impact", caster)
                 -- Destroy the hook dummy and particles
                 self.hook_dummy:Destroy()

@@ -58,9 +58,12 @@
 	
 		"precache"
 		{
-			"particle"  "particles/econ/items/templar_assassin/templar_assassin_focal/templar_assassin_meld_focal_attack.vpcf"
+			"particle"  "particles/units/heroes/hero_templar_assassin/templar_assassin_meld.vpcf"
+			"particle"  "particles/units/heroes/hero_templar_assassin/templar_assassin_meld_attack.vpcf"
+			"particle"  "particles/units/heroes/hero_templar_assassin/templar_assassin_meld_armor.vpcf"
+			"particle"  "particles/units/heroes/hero_templar_assassin/templar_meld_overhead.vpcf"
 			
-			"soundfile" "soundevents/game_sounds_heroes/game_sounds_techies.vsndevts"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_templar_assassin.vsndevts"
 		}
 	}
 	"ta_psi_blades"
@@ -110,7 +113,7 @@
 		{
 			"particle"  "particles/units/heroes/hero_templar_assassin/templar_assassin_psi_blade.vpcf"
 			
-			"soundfile" "soundevents/game_sounds_heroes/game_sounds_earth_spirit.vsndevts"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_templar_assassin.vsndevts"
 		}
 	}
 	"ta_refract"
@@ -162,7 +165,7 @@
 			"particle"  "particles/units/heroes/hero_templar_assassin/templar_assassin_refraction.vpcf"
 			//"particle"  "particle_name"
 			
-			"soundfile" "soundevents/game_sounds_heroes/game_sounds_techies.vsndevts"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_templar_assassin.vsndevts"
 		}
 	}
 	"ta_trap"
@@ -186,8 +189,7 @@
 		{
 			"particle"			"particles/units/heroes/hero_templar_assassin/templar_assassin_trap.vpcf"
 			"particle"			"particles/units/heroes/hero_templar_assassin/templar_assassin_trap_explode.vpcf"
-			"soundfile"			"sounds/weapons/hero/templar_assassin/trap_cast.vsnd"
-			"soundfile"			"sounds/weapons/hero/templar_assassin/trap_spawn.vsnd"
+			"soundfile" 		"soundevents/game_sounds_heroes/game_sounds_templar_assassin.vsndevts"
 		}
 		
 		// Casting
@@ -276,8 +278,7 @@
 		{
 			"particle"			"particles/units/heroes/hero_templar_assassin/templar_assassin_trap_slow.vpcf"
 			"particle"			"particles/units/heroes/hero_templar_assassin/templar_assassin_trap_explode.vpcf"
-			"soundfile"			"sounds/weapons/hero/templar_assassin/trap_explode.vsnd"
-			"soundfile"			"sounds/weapons/hero/templar_assassin/trigger_trap.vsnd"
+			"soundfile" 		"soundevents/game_sounds_heroes/game_sounds_templar_assassin.vsndevts"
 		}
 		
 		// Casting
@@ -330,8 +331,8 @@
 		{
 			"particle"			"particles/units/heroes/hero_templar_assassin/templar_assassin_trap_slow.vpcf"
 			"particle"			"particles/units/heroes/hero_templar_assassin/templar_assassin_trap_explode.vpcf"
-			"soundfile"			"sounds/weapons/hero/templar_assassin/trap_explode.vsnd"
-			"soundfile"			"sounds/weapons/hero/templar_assassin/trigger_trap.vsnd"
+			
+			"soundfile" 		"soundevents/game_sounds_heroes/game_sounds_templar_assassin.vsndevts"
 		}
 		
 		// Casting
@@ -381,7 +382,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"-40"
+				"value"						"-8"
 			}
 		}
 	}

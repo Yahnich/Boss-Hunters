@@ -9,13 +9,14 @@ modifier_item_soldiers_pike = class({})
 
 function modifier_item_soldiers_pike:OnCreated()
 	self.range = self:GetSpecialValueFor("bonus_range")
+	--print(self.range)
 	self.damage = self:GetSpecialValueFor("damage")
 	self.chance = self:GetSpecialValueFor("chance")
 end
 
 function modifier_item_soldiers_pike:DeclareFunctions()
 	return {MODIFIER_EVENT_ON_ATTACK_LANDED,
-			MODIFIER_PROPERTY_ATTACK_RANGE_BONUS_UNIQUE}
+			MODIFIER_PROPERTY_ATTACK_RANGE_BONUS}
 end
 
 function modifier_item_soldiers_pike:OnAttackLanded(params)
@@ -26,7 +27,7 @@ function modifier_item_soldiers_pike:OnAttackLanded(params)
 	end
 end
 
-function modifier_item_soldiers_pike:GetModifierAttackRangeBonusUnique()
+function modifier_item_soldiers_pike:GetModifierAttackRangeBonus()
 	if self:GetParent():IsRangedAttacker() then
 		return self.range
 	end
@@ -34,5 +35,5 @@ end
 
 
 function modifier_item_soldiers_pike:IsHidden()
-	return true
+	return false
 end
