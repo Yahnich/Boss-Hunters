@@ -1,0 +1,1 @@
+bane_fiends_grip = class({})

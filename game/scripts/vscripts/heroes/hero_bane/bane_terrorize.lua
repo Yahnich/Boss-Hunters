@@ -1,0 +1,1 @@
+bane_terrorize = class({})
