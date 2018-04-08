@@ -58,6 +58,7 @@
 #base "heroes/hero_tusk.txt"
 #base "heroes/hero_ancient_apparition.txt"
 #base "heroes/hero_drow_ranger.txt"
+#base "heroes/hero_bane.txt"
 
 "DOTAAbilities"
 {
