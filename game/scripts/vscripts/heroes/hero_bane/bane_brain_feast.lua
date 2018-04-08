@@ -51,3 +51,11 @@ function modifier_bane_brain_feast_debuff:OnAbilityFullyCast(params)
 		self:GetAbility():DealDamage( caster, target, self.damage )
 	end
 end
+
+function modifier_bane_brain_feast_debuff:GetEffectName()
+	return "particles/units/heroes/hero_bane/bane_brain_feast_debuff.vpcf"
+end
+
+function modifier_bane_brain_feast_debuff:GetEffectAttachType()
+	return PATTACH_ABSORIGIN_FOLLOW
+end

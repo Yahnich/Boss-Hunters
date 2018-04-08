@@ -19,7 +19,8 @@
 		"precache"
 		{
 			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_bane.vsndevts"		
-			"particle"		"particles/units/heroes/hero_bane/bane_sap.vpcf"	
+			"particle"		"particles/units/heroes/hero_bane/bane_sap.vpcf"
+			"particle"		"particles/units/heroes/hero_bane/bane_brain_feast_debuff.vpcf"
 		}
 	
 		// Casting
