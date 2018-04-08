@@ -2357,7 +2357,7 @@
 			"02"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"damage_pct"					"2.5"
+				"damage_pct"					"1"
 				"LinkedSpecialBonus"			"special_bonus_unique_death_prophet_3"
 			}
 			"03"
