@@ -573,10 +573,13 @@ function CHoldoutGameMode:FilterModifiers( filterTable )
 	local ability = EntIndexToHScript( ability_index )
 	local name = filterTable["name_const"]
 	if parent and caster and duration ~= -1 then
-		local params = {caster = caster, target = parent, duration = duration, ability = ability}
+		local params = {caster = caster, target = parent, duration = duration, ability = ability, modifier_name = name}
 		for _, modifier in ipairs( caster:FindAllModifiers() ) do
 			if modifier.GetModifierStatusAmplify_Percentage then
 				filterTable["duration"] = filterTable["duration"] * (1 + modifier:GetModifierStatusAmplify_Percentage( params )/100)
+			end
+			if modifier.OnModifierAdded then
+				modifier:GetModifierStatusAmplify_Percentage( params )
 			end
 		end
 	end
@@ -1131,7 +1134,6 @@ end
 function CHoldoutGameMode:OnHeroPick (event)
  	local hero = EntIndexToHScript(event.heroindex)
 	if not hero then return end
-	if StatsScreen:IsPlayerRegistered(hero) and not hero:HasModifier("modifier_stats_system_handler") then hero:AddNewModifier(hero, nil, "modifier_stats_system_handler", {}) end
 	if hero.hasBeenInitialized then return end
 	if hero:IsFakeHero() then return end
 	Timers:CreateTimer(0.03, function() 
@@ -1313,6 +1315,7 @@ function CHoldoutGameMode:OnPlayerUIInitialized(keys)
 	Timers:CreateTimer(0.03, function()
 		if PlayerResource:GetSelectedHeroEntity(playerID) then
 			local hero = PlayerResource:GetSelectedHeroEntity(playerID)
+			if StatsScreen:IsPlayerRegistered(hero) and not hero:HasModifier("modifier_stats_system_handler") then hero:AddNewModifier(hero, nil, "modifier_stats_system_handler", {}) end
 			if GameRules.holdOut._NewGamePlus == true then
 				CustomGameEventManager:Send_ServerToPlayer(player,"Display_Shop", {})
 			end

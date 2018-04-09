@@ -62,7 +62,7 @@ function StatsScreen:RegisterPlayer(hero)
 	stats.sr = 0
 	
 	stats.all = 0
-	
+
 	CustomNetTables:SetTableValue("stats_panel", tostring(hero:entindex()), stats)
 	CustomNetTables:SetTableValue( "talents", tostring(hero:entindex()), {} )
 	CustomGameEventManager:Send_ServerToAllClients("dota_player_upgraded_stats", {playerID = hero:GetPlayerID()} )

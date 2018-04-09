@@ -4,7 +4,8 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_datadriven"
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_bane/bane_brain_feast"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
@@ -95,13 +96,13 @@
 			}
 		}
 	}
-	"bane_enfeeble"
+	"bane_enfeeble_ebf"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_bane/bane_enfeeble"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"ScriptFile"					"heroes/hero_bane/bane_enfeeble_ebf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NONE"
@@ -144,23 +145,8 @@
 			}
 			"02"
 			{
-				"var_type"						"FIELD_INTEGER"
-				"duration"						"8.0"
-			}
-		}
-	
-		"OnSpellStart"
-		{
-			"FireSound"
-			{
-				"EffectName"	"Hero_Bane.Enfeeble.Cast"
-				"Target"	"TARGET"
-			}
-	
-			"FireSound"
-			{
-				"EffectName"	"Hero_Bane.Enfeeble"
-				"Target"		"TARGET"
+				"var_type"						"FIELD_FLOAT"
+				"debuff_duration"				"8.0"
 			}
 		}
 	}
@@ -208,7 +194,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"end_radius"			"600"
+				"end_radius"			"350"
 			}
 		}
 	}
@@ -266,72 +252,14 @@
 			"02"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"animation_rate"			"0.2 0.2 0.2 0.2"
+				"min_duration"				"1"
 			}
-		}
-	
-		"OnSpellStart"
-		{
-			"FireSound"
+			"03"
 			{
-				"EffectName"	"Hero_Bane.Nightmare"
-				"Target"		"TARGET"
+				"var_type"					"FIELD_FLOAT"
+				"damage"					"20"
 			}
-			"RunScript"
-			{
-				"ScriptFile"	"lua_abilities/heroes/bane"
-				"Function"		"StartNightmare"
-				"sound"			"Hero_Bane.Nightmare.Loop"
-			} 
-		}
-		"Modifiers"
-		{
-			"modifier_nightmare_datadriven"
-			{
-				"Duration"	"%duration"
-				"IsDebuff"	"1"
-	
-				"EffectName"    		"particles/units/heroes/hero_bane/bane_nightmare.vpcf"
-				"EffectAttachType"      "follow_overhead"
-	
-				"OverrideAnimation"     "ACT_DOTA_FLAIL"
-				"OverrideAnimationRate"	"%animation_rate"
-	
-				"OnCreated"
-				{
-					"FireSound"
-					{
-						"EffectName"	"Hero_Bane.Nightmare.Loop"
-						"Target" 		"TARGET"
-					}
-				}
-	
-				"OnDestroy"
-				{
-					"FireSound"
-					{
-						"EffectName"	"Hero_Bane.Nightmare.End"
-						"Target"
-						{
-							"Center"	"TARGET"
-							"Flags"		"DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
-						}
-					}
-					"RunScript"
-					{
-						"ScriptFile"	"lua_abilities/heroes/bane"
-						"Function"		"NightmareStop"
-						"sound"			"Hero_Bane.Nightmare.Loop"
-					}            	
-				}         
-				"States"
-				{
-					"MODIFIER_STATE_NIGHTMARED"     		"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_STUNNED"        		"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_SPECIALLY_DENIABLE"		"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_LOW_ATTACK_PRIORITY"	"MODIFIER_STATE_VALUE_ENABLED"		
-				}
-			}
+			
 		}
 	}
 	"special_bonus_unique_bane_nightmare_prison_1" 
@@ -348,8 +276,8 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"3"
+				"var_type"				"FIELD_FLOAT"
+				"value"					"6"
 			}
 		}
 	}
@@ -368,7 +296,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"5.0"
+				"value"					"1"
 			}
 		}
 	}
@@ -380,7 +308,7 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_bane/bane_"
+		"ScriptFile"					"heroes/hero_bane/bane_terrorize"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
@@ -389,6 +317,8 @@
 		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
 		"AbilitySound"					"Hero_Bane.Enfeeble"
 		"AbilityTextureName"			"custom/bane_terrorize"
+		"MaxLevel"						"1"
+		"InnateAbility"					"1"
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -401,12 +331,12 @@
 			}
 		}
 	}
-	"bane_fiends_grip"
+	"bane_fiends_grip_ebf"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_bane/bane_fiends_grip"
+		"ScriptFile"					"heroes/hero_bane/bane_fiends_grip_ebf"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_DONT_CANCEL_CHANNEL"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -459,250 +389,16 @@
 			{
 				"var_type"						"FIELD_FLOAT"
 				"fiend_grip_duration"			"5.0"
+				"LinkedSpecialBonus"			"special_bonus_unique_bane_fiends_grip_2"
 			}
 			"04"
 			{
 				"var_type"						"FIELD_INTEGER"
 				"fiend_grip_damage"				"100 155 215 270 325 380"
 			}
-			"05"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"fiend_grip_mana_drain_scepter"	"10"
-			}
-			"07"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"fiend_grip_damage_scepter"		"125 200 275 350 425 500"
-			}
-		}
-	
-		"OnSpellStart"
-		{			
-			"FireSound"
-			{
-				"EffectName"	"Hero_Bane.FiendsGrip.Cast"
-				"Target"
-				{
-					"Center"	"TARGET"
-					"Flags"     "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-				}	
-			}
-	
-			"ApplyModifier"
-			{
-				"ModifierName"	"modifier_fiends_grip_datadriven"
-				"Target"
-				{
-					"Center"	"TARGET"
-					"Flags"     "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-				}
-			}
-	
-			"ApplyModifier"
-			{
-				"ModifierName"	"modifier_fiends_grip_caster_datadriven"
-				"Target" 		"CASTER"
-			}
-			"RunScript"
-			{
-				"ScriptFile"	"lua_abilities/heroes/bane.lua"
-				"Function"		"ApplyGripDamage"
-				"damage"		"%fiend_grip_damage"
-			}
-			"RunScript"
-			{
-				"ScriptFile"	"lua_abilities/heroes/bane.lua"
-				"Function"		"FiendsGripInvisCheck"
-				"modifier_reveal"	"modifier_fiend_grip_invis_datadriven"
-			}
-		}
-	
-		"OnChannelInterrupted"
-		{
-			"RemoveModifier"
-			{
-				"ModifierName"	"modifier_fiends_grip_datadriven"
-				"Target"
-				{
-					"Center"	"TARGET"
-					"Flags"     "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-				}
-			}
-	
-			"RemoveModifier"
-			{
-				"ModifierName"	"modifier_fiends_grip_invis_datadriven"
-				"Target"
-				{
-					"Center"	"TARGET"
-					"Flags"     "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-				}
-			}
-	
-			"RemoveModifier"
-			{
-				"ModifierName"	"modifier_fiends_grip_caster_datadriven"
-				"Target" 		"CASTER"
-			}
-	
-			"RunScript"
-			{
-				"ScriptFile"	"lua_abilities/heroes/bane.lua"
-				"Function"		"FiendsGripStopSound"
-				"sound"			"Hero_Bane.FiendsGrip"
-			}
-	
-			"RunScript"
-			{
-				"ScriptFile"	"lua_abilities/heroes/bane.lua"
-				"Function"		"FiendsGripStopSound"
-				"sound"			"Hero_Bane.FiendsGrip.Cast"
-			}
-		}
-	
-		"OnChannelFinish"
-		{
-			"RemoveModifier"
-			{
-				"ModifierName"	"modifier_fiends_grip_datadriven"
-				"Target"
-				{
-					"Center"	"TARGET"
-					"Flags"     "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-				}
-			}
-	
-			"RemoveModifier"
-			{
-				"ModifierName"	"modifier_fiends_grip_invis_datadriven"
-				"Target"
-				{
-					"Center"	"TARGET"
-					"Flags"     "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-				}
-			}
-	
-			"RemoveModifier"
-			{
-				"ModifierName"	"modifier_fiends_grip_caster_datadriven"
-				"Target" 		"CASTER"
-			}
-	
-			"RunScript"
-			{
-				"ScriptFile"	"lua_abilities/heroes/bane.lua"
-				"Function"		"FiendsGripStopSound"
-				"sound"			"Hero_Bane.FiendsGrip"
-			}
-	
-			"RunScript"
-			{
-				"ScriptFile"	"lua_abilities/heroes/bane.lua"
-				"Function"		"FiendsGripStopSound"
-				"sound"			"Hero_Bane.FiendsGrip.Cast"
-			}
-		}
-	
-		"Modifiers"
-		{
-			"modifier_scepter_check"
-			{
-				"Passive"		"1"
-				"IsHidden"		"1"
-				"ThinkInterval"	"0.1"
-				
-				"OnIntervalThink"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"lua_abilities/heroes/bane.lua"
-						"Function"		"ScepterCheck"
-					}
-				}
-			}
-			"modifier_scepter_channeling"
-			{
-				"IsHidden"		"1"
-				"Aura"			"modifier_scepter_attacked"
-				"Aura_Radius"	"99999"
-				"Aura_Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
-				"Aura_Types" "DOTA_UNIT_TARGET_ALL"
-			}
-			"modifier_scepter_attacked"
-			{
-				"IsHidden"		"1"
-				"OnAttackStart"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"lua_abilities/heroes/bane.lua"
-						"Function"		"ScepterNightmare"
-					}
-				}
-			}
-			"modifier_fiends_grip_datadriven"
-			{
-				"Duration"	"99999999"
-				"IsDebuff"	"1"
-				"EffectName"	"particles/units/heroes/hero_bane/bane_fiends_grip.vpcf"
-				"EffectAttachType"	"attach_origin"
-	
-				"OverrideAnimation" "ACT_DOTA_FLAIL"
-	
-				"OnCreated"
-				{
-					"FireSound"
-					{
-						"EffectName"	"Hero_Bane.FiendsGrip"
-						"Target"		"TARGET"
-					}
-				}
-	
-				"ThinkInterval"	"%fiend_grip_tick_interval"
-				"OnIntervalThink"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"lua_abilities/heroes/bane.lua"
-						"Function"		"ManaDrain"
-						"Target"		"TARGET"
-					}								
-					"RunScript"
-					{
-						"ScriptFile"	"lua_abilities/heroes/bane.lua"
-						"Function"		"ApplyGripDamage"
-						"damage"		"%fiend_grip_damage"
-					}
-				}			
-				
-				"States"
-				{
-					"MODIFIER_STATE_STUNNED" 	"MODIFIER_STATE_VALUE_ENABLED"
-				}
-			}
-	
-			"modifier_fiends_grip_caster_datadriven"
-			{
-				"IsHidden"	"1"
-				"States"
-				{
-					"MODIFIER_STATE_LOW_ATTACK_PRIORITY"	"MODIFIER_STATE_VALUE_ENABLED"
-				}
-			}
-	
-			"modifier_fiend_grip_invis_datadriven"
-			{
-				"IsHidden"	"1"
-	
-				"States"
-				{
-					"MODIFIER_STATE_INVISIBLE"	"MODIFIER_STATE_VALUE_DISABLED"
-				}
-			}
 		}
 	}
-	"special_bonus_unique_bane_fiends_grip_1" 
+	"special_bonus_unique_bane_fiends_grip_ebf_1" 
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -717,11 +413,11 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"3"
+				"value"					"350"
 			}
 		}
 	}
-	"special_bonus_unique_bane_fiends_grip_2" 
+	"special_bonus_unique_bane_fiends_grip_ebf_2" 
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -736,7 +432,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"5.0"
+				"value"					"-2"
 			}
 		}
 	}

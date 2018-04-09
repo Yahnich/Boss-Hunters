@@ -49,7 +49,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"damage_absorb"			"110 140 170 200 230 260 290 320"
+				"damage_absorb"			"110 140 170 200 230 260 290"
 			}
 			"03"
 			{

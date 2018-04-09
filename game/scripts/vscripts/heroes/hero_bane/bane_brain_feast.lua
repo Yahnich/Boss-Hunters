@@ -14,7 +14,7 @@ function bane_brain_feast:OnSpellStart()
 	if caster:HasTalent("special_bonus_unique_bane_brain_feast_1") and target:IsNightmared() then
 		damage = damage * caster:FindTalentValue("special_bonus_unique_bane_brain_feast_1")
 	end
-	caster:DealDamage(caster, target, damage)
+	self:DealDamage(caster, target, damage)
 	target:AddNewModifier(caster, self, "modifier_bane_brain_feast_debuff", {duration = self:GetTalentSpecialValueFor("debuff_duration")})
 	
 	EmitSoundOn("Hero_Bane.BrainSap.Target", target)
@@ -25,7 +25,7 @@ function bane_brain_feast:OnSpellStart()
 		for _, ally in ipairs( caster:FindFriendlyUnitsInRadius( caster:GetAbsOrigin(), caster:FindTalentValue("special_bonus_unique_bane_brain_feast_2") ) ) do
 			if ally ~= caster then
 				ParticleManager:FireRopeParticle("particles/units/heroes/hero_bane/bane_sap.vpcf", PATTACH_POINT_FOLLOW, ally, caster)
-				caster:HealEvent(damage, self, caster)
+				ally:HealEvent(damage, self, caster)
 			end
 		end
 	end
@@ -43,7 +43,12 @@ function modifier_bane_brain_feast_debuff:OnRefresh()
 end
 
 function modifier_bane_brain_feast_debuff:DeclareFunctions()
-	return {MODIFIER_EVENT_ON_ABILITY_FULLY_CAST}
+	return {MODIFIER_EVENT_ON_ABILITY_FULLY_CAST,
+			MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE}
+end
+
+function bane_nightmare_prison_fear:GetModifierIncomingDamage_Percentage()
+	return -5
 end
 
 function modifier_bane_brain_feast_debuff:OnAbilityFullyCast(params)
