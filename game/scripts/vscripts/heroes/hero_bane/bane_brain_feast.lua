@@ -47,7 +47,7 @@ function modifier_bane_brain_feast_debuff:DeclareFunctions()
 			MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE}
 end
 
-function bane_nightmare_prison_fear:GetModifierIncomingDamage_Percentage()
+function modifier_bane_brain_feast_debuff:GetModifierIncomingDamage_Percentage()
 	return -5
 end
 

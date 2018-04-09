@@ -11,7 +11,7 @@
 	    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
 	    "FightRecapLevel"               "1"
 	    "AbilityTextureName"			"custom/hell_guardian_pantagram"
-	    "MaxLevel"                      "1"
+	    "MaxLevel"                      "2"
 	
 	    // Special
 	    //-------------------------------------------------------------------------------------------------------------
@@ -41,7 +41,7 @@
 			"03"
 	        {
 	            "var_type"              "FIELD_FLOAT"
-	            "damage_to_mana_loss"   "0.5 0.135"
+	            "damage_to_mana_loss"   "0.75 0.5"
 	        }
 	    }
 	}
@@ -56,7 +56,7 @@
 	    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
 	    "FightRecapLevel"               "1"
 	    "AbilityTextureName"			"enigma_midnight_pulse"
-	    "MaxLevel"                      "1"
+	    "MaxLevel"                      "2"
 	
 	    // Special
 	    //-------------------------------------------------------------------------------------------------------------
@@ -86,7 +86,7 @@
 			"04"
 	        {
 	            "var_type"              	"FIELD_INTEGER"
-	            "radius"   					"325 350"
+	            "radius"   					"300 325"
 	        }
 	    }
 	}
@@ -101,7 +101,7 @@
 	    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
 	    "FightRecapLevel"               "1"
 	    "AbilityTextureName"			"necrolyte_sadist"
-	    "MaxLevel"                      "1"
+	    "MaxLevel"                      "2"
 	
 	    // Special
 	    //-------------------------------------------------------------------------------------------------------------
@@ -122,7 +122,7 @@
 			"02"
 	        {
 	            "var_type"              "FIELD_INTEGER"
-	            "damage_amp"			"1.5 2"
+	            "damage_amp"			"1 1.5"
 	        }
 	    }
 	}
@@ -137,7 +137,7 @@
 	    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
 	    "FightRecapLevel"               "1"
 	    "AbilityTextureName"			"custom/hell_guardian_hell_on_earth"
-	    "MaxLevel"                      "1"
+	    "MaxLevel"                      "2"
 		
 		"AbilityCooldown"				"22 18"
 		"AbilityCastPoint"				"1 0.75"
@@ -155,7 +155,7 @@
 	        "01"
 	        {
 	            "var_type"              "FIELD_INTEGER"
-	            "raze_damage"         	"600 750"
+	            "raze_damage"         	"800 1000"
 	        }
 			"02"
 	        {
@@ -180,7 +180,7 @@
 	    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
 	    "FightRecapLevel"               "1"
 	    "AbilityTextureName"			"custom/hell_guardian_hell_on_earth2"
-	    "MaxLevel"                      "1"
+	    "MaxLevel"                      "2"
 		
 		"AbilityCooldown"				"30 22"
 		"AbilityCastPoint"				"1 0.75"
@@ -197,7 +197,7 @@
 	        "01"
 	        {
 	            "var_type"              "FIELD_INTEGER"
-	            "raze_damage"         	"600 750"
+	            "raze_damage"         	"800 1000"
 	        }
 			"02"
 	        {
@@ -232,7 +232,7 @@
 	    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
 	    "FightRecapLevel"               "1"
 	    "AbilityTextureName"			"custom/hell_guardian_hell_on_earth3"
-	    "MaxLevel"                      "1"
+	    "MaxLevel"                      "2"
 		
 		"AbilityCooldown"				"15 12"
 		"AbilityCastPoint"				"1 0.75"
@@ -250,7 +250,7 @@
 	        "01"
 	        {
 	            "var_type"              "FIELD_INTEGER"
-	            "raze_damage"         	"600 750"
+	            "raze_damage"         	"800 1000"
 	        }
 			"02"
 	        {
@@ -275,7 +275,7 @@
 	    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
 	    "FightRecapLevel"               "1"
 	    "AbilityTextureName"			"doom_bringer_doom"
-	    "MaxLevel"                      "1"
+	    "MaxLevel"                      "2"
 		
 		"AbilityCooldown"				"30 20"
 		"AbilityCastPoint"				"0.5"
@@ -294,7 +294,7 @@
 			"01"
 	        {
 	            "var_type"              "FIELD_FLOAT"
-	            "raze_delay"			"3 2.5"
+	            "raze_delay"			"3.5 3"
 	        }
 			"02"
 	        {
@@ -319,7 +319,7 @@
 	    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
 	    "FightRecapLevel"               "1"
 	    "AbilityTextureName"			"hell_guardian_flaming_fist"
-	    "MaxLevel"                      "1"
+	    "MaxLevel"                      "2"
 		
 		"AbilityCooldown"				"6"
 		"AbilityCastPoint"				"2 1.5"

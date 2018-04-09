@@ -67,7 +67,7 @@ if IsServer() then
 		local caster = self:GetCaster()
 		local parent = self:GetParent()
 		
-		if caster:IsChanneling() then
+		if caster:IsChanneling() or self:GetCaster():HasTalent("special_bonus_unique_bane_fiends_grip_ebf_2") then
 			self.tick = self.tick - 0.1
 			if self.tick <= 0 then
 				self.tick = self:GetTalentSpecialValueFor("fiend_grip_tick_interval")
@@ -97,7 +97,7 @@ function modifier_bane_fiends_grip_ebf:DeclareFunctions()
 			MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE}
 end
 
-function bane_nightmare_prison_fear:GetModifierIncomingDamage_Percentage()
+function modifier_bane_fiends_grip_ebf:GetModifierIncomingDamage_Percentage()
 	return -5
 end
 
