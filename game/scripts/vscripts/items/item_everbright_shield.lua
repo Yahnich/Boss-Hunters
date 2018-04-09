@@ -4,9 +4,9 @@ LinkLuaModifier( "modifier_item_everbright_shield_off", "items/item_everbright_s
 
 function item_everbright_shield:GetAbilityTextureName()
 	if self:GetCaster():HasModifier("modifier_item_everbright_shield_on") then
-		return "item_everbright_shield"
+		return "custom/everbright_shield"
 	else
-		return "item_everbright_shield_off"
+		return "custom/everbright_shield_off"
 	end
 end
 
@@ -21,8 +21,8 @@ function item_everbright_shield:OnToggle()
 		caster:AddNewModifier(caster, self, "modifier_item_everbright_shield_on", {})
 		caster:RemoveModifierByName("modifier_item_everbright_shield_off")
 	else
-		caster:AddNewModifier(caster, self, "modifier_item_everbright_shield_on", {})
-		caster:RemoveModifierByName("modifier_item_everbright_shield_off")
+		caster:AddNewModifier(caster, self, "modifier_item_everbright_shield_off", {})
+		caster:RemoveModifierByName("modifier_item_everbright_shield_on")
 	end
 end
 

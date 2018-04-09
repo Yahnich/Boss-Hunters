@@ -14,6 +14,7 @@ function StatsScreen:StartStatsScreen()
 	StatsScreen = self
 	CustomGameEventManager:RegisterListener('send_player_upgraded_stats', Context_Wrap( StatsScreen, 'ProcessStatsUpgrade'))
 	CustomGameEventManager:RegisterListener('send_player_selected_talent', Context_Wrap( StatsScreen, 'ProcessTalents'))
+	CustomGameEventManager:RegisterListener('notify_selected_talent', Context_Wrap( StatsScreen, 'NotifyTalent'))
 	self.ms = {0,20,40,60,80,150}
 	self.mp = {0,250,500,750,1000,1250,1500,1750,2000,2250,3000}
 	self.mpr = {0,3,6,9,12,15,18,21,24,27,50}
@@ -99,6 +100,15 @@ function StatsScreen:ProcessTalents(userid, event)
 	hero:UpgradeAbility(hero:FindAbilityByName(talent))
 	hero:CalculateStatBonus()
 	CustomGameEventManager:Send_ServerToAllClients("dota_player_upgraded_stats", {playerID = pID} )
+end
+
+function StatsScreen:NotifyTalent(userid, event)
+	local player = PlayerResource:GetPlayer(event.pID)
+	player.notifyTalentDelayTimer = player.notifyTalentDelayTimer or 0
+	if GameRules:GetGameTime() > player.notifyTalentDelayTimer + 1 then
+		Say(player, event.text, true)
+		player.notifyTalentDelayTimer = GameRules:GetGameTime()
+	end
 end
 
 function CDOTA_BaseNPC_Hero:GetAttributePoints()

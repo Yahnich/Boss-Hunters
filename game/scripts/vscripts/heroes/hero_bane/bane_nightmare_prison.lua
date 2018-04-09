@@ -53,7 +53,7 @@ function bane_nightmare_prison_sleep:GetModifierIncomingDamage_Percentage()
 end
 
 function bane_nightmare_prison_sleep:OnTakeDamage(params)
-	if params.target == self:GetParent() and self:GetElapsedTime() > self.minDuration and params.attacker ~= self:GetCaster() then
+	if params.unit == self:GetParent() and self:GetElapsedTime() > self.minDuration and params.attacker ~= self:GetCaster() then
 		self:Destroy()
 	end
 end

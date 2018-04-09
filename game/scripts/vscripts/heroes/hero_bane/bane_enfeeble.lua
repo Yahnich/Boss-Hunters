@@ -1,1 +1,0 @@
-bane_enfeeble = class({})

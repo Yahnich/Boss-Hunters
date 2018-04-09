@@ -7,10 +7,9 @@ function drow_ranger_leapshot:OnSpellStart()
 	ProjectileManager:ProjectileDodge(caster)
 	
 	for _, enemy in pairs( caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), caster:GetAttackRange() ) ) do
+		caster:FireAbilityAutoAttack( enemy, self )
 		if caster:FindAbilityByName("drow_ranger_glacier_arrows"):GetAutoCastState() then 
 			caster:FindAbilityByName("drow_ranger_glacier_arrows"):LaunchFrostArrow(enemy, false)
-		else
-			caster:FireAbilityAutoAttack( enemy, self )
 		end
 		
 	end

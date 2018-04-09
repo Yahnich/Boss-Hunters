@@ -5245,7 +5245,7 @@
 				"Wearable4" { "ItemDef" "8117" }
 			}
 		
-			"NOSTUNRESIST"			"60.0"
+			"DisableResistance"			"30.0"
 		}
 	}
 	"npc_dota_boss31"
@@ -5357,7 +5357,7 @@
 			
 			"DefaultState"				"Invade"
 			
-			"NOSTUNRESIST"			"80.0"
+			"DisableResistance"			"30.0"
 		}
 	}
 	"npc_dota_boss31_h"
@@ -5469,7 +5469,7 @@
 			
 			"DefaultState"				"Invade"
 			
-			"NOSTUNRESIST"			"80.0"
+			"DisableResistance"			"30.0"
 		}
 	}
 	"npc_dota_boss31_vh"
@@ -5571,7 +5571,7 @@
 			
 			"DefaultState"				"Invade"
 			
-			"NOSTUNRESIST"			"80.0"
+			"DisableResistance"			"30.0"
 		}
 	}
 	"npc_dota_boss32"
@@ -5853,7 +5853,7 @@
 			}
 			
 			"DefaultState"				"Invade"
-			"NOSTUNRESIST"			"80.0"
+			"DisableResistance"			"30.0"
 		}
 	}
 	"npc_dota_boss32_trueform_h"
@@ -5951,7 +5951,7 @@
 			}
 			
 			"DefaultState"				"Invade"
-			"NOSTUNRESIST"			"80.0"
+			"DisableResistance"			"30.0"
 		}
 	}
 	"npc_dota_boss32_trueform_vh"
@@ -6049,7 +6049,7 @@
 			}
 			
 			"DefaultState"				"Invade"
-			"NOSTUNRESIST"			"80.0"
+			"DisableResistance"			"30.0"
 		}
 	}
 	"npc_dota_boss32_vh"
@@ -6144,7 +6144,7 @@
 			}
 			
 			"DefaultState"				"Invade"
-			"NOSTUNRESIST"			"80.0"
+			"DisableResistance"			"30.0"
 		}
 	}
 	"npc_dota_boss33_a"
@@ -6242,7 +6242,7 @@
 			}
 			
 			"DefaultState"				"Invade"
-			"NOSTUNRESIST"			"80.0"
+			"DisableResistance"			"30.0"
 			"AttachWearables" // Default npc_dota_hero_omniknight
 			{
 				"1" { "ItemDef" "7182" } 
@@ -6348,7 +6348,7 @@
 			}
 	
 			"DefaultState"				"Invade"
-			"NOSTUNRESIST"			"80.0"
+			"DisableResistance"			"30.0"
 	
 			"AttachWearables"
 			{
@@ -6579,6 +6579,7 @@
 			"XPGain"					"200"
 			
 			"DefaultState"				"Invade"
+			"DisableResistance"			"30.0"
 		}
 	}
 	"npc_dota_boss34_h"
@@ -6686,6 +6687,7 @@
 			"XPGain"					"200"
 			
 			"DefaultState"				"Invade"
+			"DisableResistance"			"30.0"
 		}
 	}
 	"npc_dota_boss34_vh"
@@ -6794,6 +6796,7 @@
 			"XPGain"					"200"
 			
 			"DefaultState"				"Invade"
+			"DisableResistance"			"30.0"
 		}
 	}
 	"npc_dota_boss35"
@@ -6934,7 +6937,7 @@
 				}
 			}
 	
-			"NOSTUNRESIST"			"80.0"
+			"DisableResistance"			"30.0"
 		}
 	}
 	"npc_dota_boss35_h"
@@ -7075,7 +7078,7 @@
 				}
 			}
 	
-			"NOSTUNRESIST"			"80.0"
+			"DisableResistance"			"30.0"
 		}
 	}
 	"npc_dota_boss35_vh"
@@ -7216,7 +7219,7 @@
 				}
 			}
 	
-			"NOSTUNRESIST"			"80.0"
+			"DisableResistance"			"30.0"
 		}
 	}
 	"npc_dota_boss36"
@@ -7334,7 +7337,7 @@
 				}
 			}
 	
-			"NOSTUNRESIST"			"100.0"
+			"DisableResistance"			"30.0"
 		}
 	}
 	"npc_dota_boss36_guardian"
@@ -7449,7 +7452,7 @@
 			
 			"DefaultState"				"Invade"
 	
-			"NOSTUNRESIST"			"80.0"
+			"DisableResistance"			"30.0"
 		}
 	}
 	"npc_dota_boss37"
@@ -7585,7 +7588,7 @@
 				}
 			}
 	
-			"NOSTUNRESIST"			"80.0"
+			"DisableResistance"			"40.0"
 		}
 	}
 	"npc_dota_boss38"
@@ -7839,7 +7842,7 @@
 				
 			}
 	
-			"NOSTUNRESIST"			"80.0"
+			"DisableResistance"			"30.0"
 		}
 	}
 	//=================================================================================

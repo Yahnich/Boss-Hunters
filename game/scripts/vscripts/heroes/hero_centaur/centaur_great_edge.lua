@@ -29,7 +29,7 @@ function centaur_great_edge:OnSpellStart()
 	ParticleManager:SetParticleControl(particle, 1, target:GetAbsOrigin()) -- Destination
 	ParticleManager:SetParticleControl(particle, 5, target:GetAbsOrigin()) -- Hit Glow
 	
-	self:DealDamage( caster, caster, edgeDamage, {damage_flags = DOTA_DAMAGE_FLAG_NON_LETHAL})
+	self:DealDamage( caster, caster, edgeDamage + bonusDamage, {damage_flags = DOTA_DAMAGE_FLAG_NON_LETHAL})
 	local units = caster:FindEnemyUnitsInRadius(target:GetAbsOrigin(), radius)
 	for _, enemy in ipairs(units) do
 		self:DealDamage( caster, enemy, edgeDamage + bonusDamage )

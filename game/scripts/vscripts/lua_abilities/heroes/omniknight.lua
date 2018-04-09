@@ -33,8 +33,8 @@ function CheckOmniScepter(keys)
     local targetType = DOTA_UNIT_TARGET_ALL
     local targetFlag = ability:GetAbilityTargetFlags()
 	local units = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(), caster, FIND_UNITS_EVERYWHERE, targetTeam, targetType, ability:GetAbilityTargetFlags(), FIND_ANY_ORDER, false)
-    for _,unit in pairs( units ) do
-		if caster:HasScepter() or HasCustomScepter(caster) then
+    for _,unit in ipairs( units ) do
+		if caster:HasScepter() then
 		local duration_scepter = ability:GetTalentSpecialValueFor("duration_scepter")
 		ability:ApplyDataDrivenModifier(caster, unit, sceptermodifier, {duration = duration_scepter})
 		else

@@ -180,7 +180,7 @@ function projectile_death_orbs_hit( event )
     if not event.caster:IsAlive() then return end
     if target:GetHealth() <= target:GetMaxHealth()/4 then 
         target.NoTombStone = true
-        target:AttemptKill(keys.ability, keys.caster)
+        target:AttemptKill(event.ability, event.caster)
         Timers:CreateTimer(1.0,function()
             target.NoTombStone = false
         end)
@@ -197,7 +197,7 @@ function hell_tempest_hit( event )
     local target = event.target
     if target.InWater ~= true and event.caster:IsAlive() then
         if target:GetUnitName()~="npc_dota_courier" and target:GetUnitName()~="npc_dota_flying_courier" then
-            target:AttemptKill(keys.ability, keys.caster)
+            target:AttemptKill(event.ability, event.caster)
         end
     end
 end
@@ -410,7 +410,7 @@ function doom_bringer_boss( event )
             return 0.5
         else
             if GameRules:GetGameTime() <= time + 10 and caster:IsAlive() then
-                target:AttemptKill(keys.ability, keys.caster)
+                target:AttemptKill(event.ability, event.caster)
             end
         end
     end)
@@ -420,7 +420,7 @@ end
 function storm_projectile_hit( event )
     local target = event.target
     if target.InWater ~= false and caster:IsAlive() then
-        target:AttemptKill(keys.ability, keys.caster)
+        target:AttemptKill(event.ability, event.caster)
     end
 end
 
