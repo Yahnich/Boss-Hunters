@@ -1399,9 +1399,13 @@ function CDOTA_BaseNPC:AddBarrier(amount, caster, ability, duration)
 	self:AddNewModifier(caster, ability, "modifier_generic_barrier", {duration = duration, barrier = amount})
 end
 
-function CDOTA_BaseNPC:Lifesteal(source, lifestealPct, damage, target, damage_type, iSource)
+function CDOTA_BaseNPC:Lifesteal(source, lifestealPct, damage, target, damage_type, iSource, bParticles)
 	local damageDealt = damage or 0
 	local sourceType = iSource or DOTA_LIFESTEAL_SOURCE_NONE
+	local particles = true
+	if bParticles == false then
+		particles = false
+	end
 	if sourceType == DOTA_LIFESTEAL_SOURCE_ABILITY then
 		local oldHP = target:GetHealth()
 		ApplyDamage({victim = target, attacker = self, damage = damage, damage_type = damage_type, ability = source})
@@ -1411,15 +1415,20 @@ function CDOTA_BaseNPC:Lifesteal(source, lifestealPct, damage, target, damage_ty
 		self:PerformAttack(target, true, true, true, true, false, false, false)
 		damageDealt = math.abs(oldHP - target:GetHealth())
 	end
+	
+	if particles then
+		if sourceType == DOTA_LIFESTEAL_SOURCE_ABILITY then
+			ParticleManager:FireParticle("particles/items3_fx/octarine_core_lifesteal.vpcf", PATTACH_ABSORIGIN_FOLLOW, self)
+		else
+			local lifesteal = ParticleManager:CreateParticle("particles/units/heroes/hero_skeletonking/wraith_king_vampiric_aura_lifesteal.vpcf", PATTACH_ABSORIGIN_FOLLOW, self)
+				ParticleManager:SetParticleControlEnt(lifesteal, 0, self, PATTACH_POINT_FOLLOW, "attach_hitloc", self:GetAbsOrigin(), true)
+				ParticleManager:SetParticleControlEnt(lifesteal, 1, self, PATTACH_POINT_FOLLOW, "attach_hitloc", self:GetAbsOrigin(), true)
+				ParticleManager:ReleaseParticleIndex(lifesteal)
+		end
+	end
+
 	local flHeal = damageDealt * lifestealPct / 100
 	self:HealEvent(flHeal, source, self)
-	if sourceType == DOTA_LIFESTEAL_SOURCE_ABILITY then
-		ParticleManager:FireParticle("particles/items3_fx/octarine_core_lifesteal.vpcf", PATTACH_ABSORIGIN_FOLLOW, self)
-	end
-	local lifesteal = ParticleManager:CreateParticle("particles/units/heroes/hero_skeletonking/wraith_king_vampiric_aura_lifesteal.vpcf", PATTACH_ABSORIGIN_FOLLOW, self)
-		ParticleManager:SetParticleControlEnt(lifesteal, 0, self, PATTACH_POINT_FOLLOW, "attach_hitloc", self:GetAbsOrigin(), true)
-		ParticleManager:SetParticleControlEnt(lifesteal, 1, self, PATTACH_POINT_FOLLOW, "attach_hitloc", self:GetAbsOrigin(), true)
-	ParticleManager:ReleaseParticleIndex(lifesteal)
 end
 
 function CDOTA_BaseNPC:HealEvent(amount, sourceAb, healer) -- for future shit

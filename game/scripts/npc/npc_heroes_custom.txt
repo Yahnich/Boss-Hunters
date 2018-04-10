@@ -1037,23 +1037,25 @@
 		"Ability17"				"special_bonus_unique_puck_reverie_snap_2"
 	}
 	//=================================================================================================================
-	// HERO: skywrath
+	// HERO: Pudge
 	//=================================================================================================================
 	"npc_dota_hero_pudge_ebf"
 	{
 		"override_hero"			"npc_dota_hero_pudge"
-		"Ability2"					"pudge_rot_lua"					// Ability 4
-		"Ability3"					"pudge_flesh_heap_datadriven"					// Ability 4
-		"Ability6"					"pudge_dismember_lua"					// Ability 4
+		"Ability1"				"pudge_hook_lua"
+		"Ability2"				"pudge_rot_lua"	
+		"Ability3"				"pudge_chain_storm"
+		"Ability4"				"pudge_flesh_heap_lua"
+		"Ability6"				"pudge_dismember_lua"
 	
-		"Ability10"		"special_bonus_armor_5"
-		"Ability11"		"special_bonus_unique_pudge_2"
-		"Ability12"		"special_bonus_spell_lifesteal_13"
-		"Ability13"		"special_bonus_attack_damage_75"
-		"Ability14"		"special_bonus_magic_resistance_20"
-		"Ability15"		"special_bonus_cooldown_reduction_15"
-		"Ability16"		"special_bonus_unique_pudge_3"
-		"Ability17"		"special_bonus_unique_pudge_1"
+		"Ability10"		"special_bonus_unique_pudge_hook_lua_1"
+		"Ability11"		"special_bonus_unique_pudge_hook_lua_2"
+		"Ability12"		"special_bonus_unique_pudge_rot_lua_1"
+		"Ability13"		"special_bonus_unique_pudge_rot_lua_2"
+		"Ability14"		"special_bonus_unique_pudge_chain_storm_1"
+		"Ability15"		"special_bonus_unique_pudge_chain_storm_2"
+		"Ability16"		"special_bonus_unique_pudge_dismember_lua_1"
+		"Ability17"		"special_bonus_unique_pudge_dismember_lua_2"
 	}
 	"npc_dota_hero_pugna_ebf"
 	{
