@@ -394,23 +394,23 @@
 	        }
 			"04"
 	        {
-	            "var_type"      "FIELD_INTEGER"
-	            "limit"     	"140 200 260 320 380 440 500"
+	            "var_type"      				"FIELD_INTEGER"
+	            "limit"     					"140 200 260 320 380 440 500"
 	        }
 			"05"
 	        {
-	            "var_type"      "FIELD_INTEGER"
-	            "limit_scepter" "150 225 300 375 450 525 600"
+	            "var_type"      				"FIELD_INTEGER"
+	            "limit_scepter" 				"150 225 300 375 450 525 600"
 	        }
 			"06"
 	        {
-	            "var_type"      "FIELD_INTEGER"
-	            "bank_pct"     	"50"
+	            "var_type"      				"FIELD_INTEGER"
+	            "bank_pct"     					"50"
 	        }
 			"07"
 	        {
-	            "var_type"      		"FIELD_INTEGER"
-	            "rage_gen_scepter"     	"7 10 13 16 19 22 2"
+	            "var_type"      				"FIELD_INTEGER"
+	            "rage_gen_scepter"     			"7 10 13 16 19 22 25"
 	        }
 	    }
 		"Modifiers"
@@ -5469,8 +5469,8 @@
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0.2"
-		"AbilityCastRange"				"400"
+		"AbilityCastPoint"				"1"
+		"AbilityCastRange"				"600"
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------

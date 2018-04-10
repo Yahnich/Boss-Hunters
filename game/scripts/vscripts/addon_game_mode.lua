@@ -1159,23 +1159,25 @@ function CHoldoutGameMode:OnHeroPick (event)
 		if not ID then return end
 		PlayerResource:SetCustomBuybackCooldown(ID, 120)
 		local playerName = PlayerResource:GetPlayerName( ID )
-		if PlayerResource:IsDeveloper(ID) then
-			
-			local messageinfo = {
-			text = "You are playing with a developer! Say hi to "..playerName.."!",
-			duration = 10
-			}
-			Notifications:TopToAll(messageinfo)
-			ParticleManager:FireParticle("particles/roles/dev/dev_particle.vpcf", PATTACH_POINT_FOLLOW, hero)
-		elseif PlayerResource:IsManager(ID) then
-			ParticleManager:FireParticle("particles/roles/dev/com_particle.vpcf", PATTACH_POINT_FOLLOW, hero)
-		elseif PlayerResource:IsVIP(ID) then
-			local messageinfo = {
-			text = "You are playing with a VIP! "..playerName.." is supporting the development of Epic Boss Fight!",
-			duration = 10
-			}
-			Notifications:TopToAll(messageinfo)
-			ParticleManager:FireParticle("particles/roles/dev/vip_particle.vpcf", PATTACH_POINT_FOLLOW, hero)
+		if not IsInToolsMode() then
+			if PlayerResource:IsDeveloper(ID) then
+				
+				local messageinfo = {
+				text = "You are playing with a developer! Say hi to "..playerName.."!",
+				duration = 10
+				}
+				Notifications:TopToAll(messageinfo)
+				ParticleManager:FireParticle("particles/roles/dev/dev_particle.vpcf", PATTACH_POINT_FOLLOW, hero)
+			elseif PlayerResource:IsManager(ID) then
+				ParticleManager:FireParticle("particles/roles/dev/com_particle.vpcf", PATTACH_POINT_FOLLOW, hero)
+			elseif PlayerResource:IsVIP(ID) then
+				local messageinfo = {
+				text = "You are playing with a VIP! "..playerName.." is supporting the development of Epic Boss Fight!",
+				duration = 10
+				}
+				Notifications:TopToAll(messageinfo)
+				ParticleManager:FireParticle("particles/roles/dev/vip_particle.vpcf", PATTACH_POINT_FOLLOW, hero)
+			end
 		end
 		local gold = 250
 		hero:SetGold( 0, true )
@@ -1836,15 +1838,17 @@ function CDOTA_PlayerResource:SortThreat()
 	local aggrosecond
 	for _,unit in pairs ( HeroList:GetAllHeroes()) do
 		if not unit.threat then unit.threat = 0 end
-		local data = CustomNetTables:GetTableValue("hero_properties", unit:GetUnitName()..unit:entindex() ) or {}
-		data.threat = unit.threat
-		CustomNetTables:SetTableValue("hero_properties", unit:GetUnitName()..unit:entindex(), data )
-		if unit.threat > currThreat then
-			currThreat = unit.threat
-			aggrounit = unit
-		elseif unit.threat > secondThreat and unit.threat < currThreat then
-			secondThreat = unit.threat
-			aggrosecond = unit
+		if not unit:IsFakeHero() then
+			local data = CustomNetTables:GetTableValue("hero_properties", unit:GetUnitName()..unit:entindex() ) or {}
+			data.threat = unit.threat
+			CustomNetTables:SetTableValue("hero_properties", unit:GetUnitName()..unit:entindex(), data )
+			if unit.threat > currThreat then
+				currThreat = unit.threat
+				aggrounit = unit
+			elseif unit.threat > secondThreat and unit.threat < currThreat then
+				secondThreat = unit.threat
+				aggrosecond = unit
+			end
 		end
 	end
 	for _,unit in pairs ( HeroList:GetAllHeroes()) do

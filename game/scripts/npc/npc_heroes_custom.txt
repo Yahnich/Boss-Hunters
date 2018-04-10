@@ -110,7 +110,7 @@
 		"Ability6"				"bane_fiends_grip_ebf"
 		
 		"Ability10"				"special_bonus_unique_bane_enfeeble_ebf_1"
-		"Ability11"				"special_bonus_unique_bane_enfeeble_ebf_1"
+		"Ability11"				"special_bonus_unique_bane_enfeeble_ebf_2"
 		"Ability12"				"special_bonus_unique_bane_brain_feast_1"
 		"Ability13"				"special_bonus_unique_bane_brain_feast_2"
 		"Ability14"				"special_bonus_unique_bane_nightmare_prison_1"
@@ -1322,7 +1322,7 @@
 		"Ability1"		"slark_dark_pact_ebf"
 		"Ability2"		"slark_pounce_ebf"
 		"Ability3"		"slark_essence_shift_ebf"
-		"Ability4"		"generic_hidden"
+		"Ability4"		"slark_acrobatics"
 		"Ability5"		"generic_hidden"
 		"Ability6"		"slark_shadow_dance_ebf"
 		

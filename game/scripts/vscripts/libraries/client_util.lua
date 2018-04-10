@@ -128,7 +128,8 @@ function C_DOTA_Modifier_Lua:GetTalentSpecialValueFor(specVal)
 end
 
 function C_DOTA_Modifier_Lua:AddIndependentStack()
-	self:IncrementStackCount()
+	if self:GetStackCount() == 0 then self:GetStackCount(1)
+	else self:IncrementStackCount() end
 end
 
 
