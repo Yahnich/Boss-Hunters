@@ -106,7 +106,7 @@ function modifier_phenx_ray:OnCreated(table)
 end
 
 function modifier_phenx_ray:OnIntervalThink()
-    self:GetParent():SetHealth( self:GetParent():GetHealth() * ( 100 - self:GetTalentSpecialValueFor("hp_cost_perc_per_second") ) / 100 )
+    self:GetParent():SetHealth( math.max(1, self:GetParent():GetHealth() * ( 100 - self:GetTalentSpecialValueFor("hp_cost_perc_per_second") ) / 100 ) )
 
     if self:GetParent():HasTalent("special_bonus_unique_phenx_ray_2") then
         local damage = self:GetParent():GetIntellect() * self:GetParent():FindTalentValue("special_bonus_unique_phenx_ray_2")/100
