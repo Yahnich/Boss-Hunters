@@ -14,7 +14,7 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"3200"	
+		"ItemCost"						"2650"	
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -23,7 +23,7 @@
 		"ItemResult"					"item_leechblade"
 		"ItemRequirements"
 		{
-			"01"						"item_sanguine_mask;item_broadsword"
+			"01"						"item_sanguine_mask;item_broadsword;item_broadsword"
 		}
 	}
 	"item_leechblade"
@@ -50,7 +50,7 @@
 			"precache"					"soundevents/game_sounds_items.vsndevts"
 		}
 		
-		"AbilityCooldown"				"30"
+		"AbilityCooldown"				"25"
 		"AbilityManaCost"				"75"
 
 		// Special	
@@ -60,7 +60,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"lifesteal"				"15"
+				"lifesteal"				"25"
 			}
 			"02"
 			{

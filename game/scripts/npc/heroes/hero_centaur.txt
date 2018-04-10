@@ -102,7 +102,6 @@
 			{
 				"var_type"						"FIELD_INTEGER"
 				"edge_damage"					"175 250 325 400 475 550 625"
-				"LinkedSpecialBonus"			"special_bonus_unique_centaur_4"
 			}
 			"02"
 			{
@@ -112,7 +111,7 @@
 			"03"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"radius"						"200 250 300 350 400 450 500"
+				"radius"						"250"
 			}
 		}
 	
@@ -289,8 +288,13 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"str_to_block"				"40"
+				"str_to_block"				"25"
 				"LinkedSpecialBonus"		"special_bonus_unique_centaur_warchiefs_aegis_2"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"block_chance"				"60"
 			}
 		}
 	
@@ -438,7 +442,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"1"
+				"value"					"900"
 			}
 		}
 	}

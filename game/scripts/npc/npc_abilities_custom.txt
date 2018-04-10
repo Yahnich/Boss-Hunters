@@ -58,6 +58,8 @@
 #base "heroes/hero_tusk.txt"
 #base "heroes/hero_ancient_apparition.txt"
 #base "heroes/hero_drow_ranger.txt"
+#base "heroes/hero_bane.txt"
+#base "heroes/hero_slark.txt"
 
 "DOTAAbilities"
 {
@@ -392,23 +394,23 @@
 	        }
 			"04"
 	        {
-	            "var_type"      "FIELD_INTEGER"
-	            "limit"     	"140 200 260 320 380 440 500"
+	            "var_type"      				"FIELD_INTEGER"
+	            "limit"     					"140 200 260 320 380 440 500"
 	        }
 			"05"
 	        {
-	            "var_type"      "FIELD_INTEGER"
-	            "limit_scepter" "150 225 300 375 450 525 600"
+	            "var_type"      				"FIELD_INTEGER"
+	            "limit_scepter" 				"150 225 300 375 450 525 600"
 	        }
 			"06"
 	        {
-	            "var_type"      "FIELD_INTEGER"
-	            "bank_pct"     	"50"
+	            "var_type"      				"FIELD_INTEGER"
+	            "bank_pct"     					"50"
 	        }
 			"07"
 	        {
-	            "var_type"      		"FIELD_INTEGER"
-	            "rage_gen_scepter"     	"7 10 13 16 19 22 2"
+	            "var_type"      				"FIELD_INTEGER"
+	            "rage_gen_scepter"     			"7 10 13 16 19 22 25"
 	        }
 	    }
 		"Modifiers"
@@ -632,393 +634,6 @@
 				"States"
 				{
 					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
-				}
-			}
-		}
-	}
-	"bane_brain_feast"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_datadriven"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"		
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"FightRecapLevel"				"1"
-		"AbilityTextureName"			"bane_brain_sap"
-		"MaxLevel"						"7"
-	
-		// Precache
-		//-------------------------------------------------------------------------------------------------------------
-		"precache"
-		{
-			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_bane.vsndevts"		
-			"particle"		"particles/units/heroes/hero_bane/bane_sap.vpcf"	
-		}
-	
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0.5 0.5 0.5 0.5"
-		"AbilityCastRange"				"600"
-		"AOERadius"						"600"
-	
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"8.0"
-	
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"70 100 130 160 190 220 250"
-	
-		
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"tooltip_brain_sap_heal_amt"	"75 150 225 300 375 450 525"
-				"LinkedSpecialBonus"			"special_bonus_unique_bane_2"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"pct_heal"						"10"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"radius"						"600"
-			}
-		}
-	
-		"OnSpellStart"
-		{
-			"FireSound"
-			{
-				"EffectName" "Hero_Bane.BrainSap.Target"
-				"Target"	"TARGET"
-			}
-	
-			"FireSound"
-			{
-				"EffectName"	"Hero_Bane.BrainSap"
-				"Target"	"CASTER"
-			}
-			"RunScript"
-			{
-				"ScriptFile"	"lua_abilities/heroes/bane"
-				"Function"		"BrainSapInit"
-			}
-			"ActOnTargets"
-			{
-				"Target"
-				{
-					"Center"			"TARGET"
-					"Radius"			"%radius"
-					"Teams"				"DOTA_UNIT_TARGET_TEAM_ENEMY"
-					"Types"				"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
-				}	
-				"Action"
-				{
-					"FireEffect"
-					{
-						"EffectName"	"particles/units/heroes/hero_bane/bane_sap.vpcf"
-						"EffectAttachType"	"follow_origin"
-	
-						"ControlPointEntities"
-						{
-							"CASTER" "follow_origin"
-							"TARGET" "follow_origin"		
-						}
-					}
-					"RunScript"
-					{
-						"ScriptFile"	"lua_abilities/heroes/bane"
-						"Function"		"BrainSapDamage"
-					}
-				}
-			}
-			"ActOnTargets"
-			{
-				"Target"
-				{
-					"Center"			"CASTER"
-					"Radius"			"%radius"
-					"Teams"				"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-					"Types"				"DOTA_UNIT_TARGET_HERO"
-				}	
-				"Action"
-				{
-					"FireEffect"
-					{
-						"EffectName"	"particles/units/heroes/hero_bane/bane_sap.vpcf"
-						"EffectAttachType"	"follow_origin"
-	
-						"ControlPointEntities"
-						{
-							"CASTER" "follow_origin"
-							"TARGET" "follow_origin"		
-						}
-					}
-					"RunScript"
-					{
-						"ScriptFile"	"lua_abilities/heroes/bane"
-						"Function"		"BrainSapHeal"
-					}
-				}
-			}
-		}
-	}
-	"bane_mass_enfeeble"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"				"ability_datadriven"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_AOE"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NONE"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityTextureName"			"bane_enfeeble"
-		"MaxLevel"						"7"
-	
-		// Precache
-		//-------------------------------------------------------------------------------------------------------------
-		"precache"
-		{
-			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_bane.vsndevts"		
-			"particle"		"particles/units/heroes/hero_bane/bane_enfeeble.vpcf"		
-		}
-	
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"1000"
-		"AoERadius"						"600"
-		"AbilityCastPoint"				"0.5 0.5 0.5 0.5"
-		"AbilityCastAnimation"			"ACT_DOTA_ENFEEBLE"
-	
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"16"
-		"AbilityDuration"				"8.0"
-	
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"200"		
-	
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"enfeeble_attack_reduction"		"-30 -60 -90 -120 -150 -180 -210"
-				"LinkedSpecialBonus"			"special_bonus_unique_bane_1"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"enfeeble_attack_reduction_alt"	"-15"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"duration"						"8.0"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"radius"						"600"
-			}
-		}
-	
-		"OnSpellStart"
-		{
-			"FireSound"
-			{
-				"EffectName"	"Hero_Bane.Enfeeble.Cast"
-				"Target"	"TARGET"
-			}
-	
-			"FireSound"
-			{
-				"EffectName"	"Hero_Bane.Enfeeble"
-				"Target"		"TARGET"
-			}
-			"ActOnTargets"
-			{
-				"Target"
-				{
-					"Center"			"POINT"
-					"Radius"			"%radius"
-					"Teams"				"DOTA_UNIT_TARGET_TEAM_ENEMY"
-					"Types"				"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
-				}	
-				"Action"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"lua_abilities/heroes/bane"
-						"Function"		"EnfeebleFilter"
-					}
-				}
-			}
-		}
-	
-		"Modifiers"
-		{
-			"modifier_mass_enfeeble"
-			{
-				"IsDebuff"	"1"
-				"Duration"	"%AbilityDuration"
-				"IsPurgable"	"0"
-				"EffectName"	"particles/units/heroes/hero_bane/bane_enfeeble.vpcf"
-				"EffectAttachType"	"follow_overhead"			
-	
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"	"%enfeeble_attack_reduction"
-				}
-			}
-			"modifier_mass_enfeeble_alt"
-			{
-				"IsDebuff"	"1"
-				"Duration"	"%AbilityDuration"
-				"IsPurgable"	"0"
-				"EffectName"	"particles/units/heroes/hero_bane/bane_enfeeble.vpcf"
-				"EffectAttachType"	"follow_overhead"			
-	
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE"	"%enfeeble_attack_reduction_alt"
-				}
-			}
-		}
-	}
-	"bane_nightmare_prison"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_datadriven"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
-		"AbilityTextureName"			"bane_nightmare"
-		"PiercesDisableReduction"		"1"
-		"MaxLevel"						"7"
-	
-		// Precache
-		//-------------------------------------------------------------------------------------------------------------
-		"precache"
-		{
-			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_bane.vsndevts"		
-			"particle"		"particles/units/heroes/hero_bane/bane_nightmare.vpcf"		
-		}	
-	
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"650"
-		"AbilityCastPoint"				"0.5 0.5 0.5 0.5"
-	
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"8"
-		"AbilityDuration"				"1.0"
-	
-		// Damage.
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"					"100 150 200 250 300 350 400"
-	
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"165"	
-		
-		// Stats
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityModifierSupportValue"	"0.5"	// Applies two modifiers
-	
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"1.0"
-				"LinkedSpecialBonus"		"special_bonus_unique_bane_3"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"animation_rate"			"0.2"
-			}
-		}
-	
-		"OnSpellStart"
-		{
-			"FireSound"
-			{
-				"EffectName"	"Hero_Bane.Nightmare"
-				"Target"		"TARGET"
-			}
-			"RunScript"
-			{
-				"ScriptFile"	"lua_abilities/heroes/bane"
-				"Function"		"StartNightmare"
-				"sound"			"Hero_Bane.Nightmare.Loop"
-			} 
-		}
-		"Modifiers"
-		{
-			"modifier_nightmare_datadriven"
-			{
-				"Duration"	"%duration"
-				"IsDebuff"	"1"
-	
-				"EffectName"    		"particles/units/heroes/hero_bane/bane_nightmare.vpcf"
-				"EffectAttachType"      "follow_overhead"
-	
-				"OverrideAnimation"     "ACT_DOTA_FLAIL"
-				"OverrideAnimationRate"	"%animation_rate"
-	
-				"OnCreated"
-				{
-					"FireSound"
-					{
-						"EffectName"	"Hero_Bane.Nightmare.Loop"
-						"Target" 		"TARGET"
-					}
-				}
-	
-				"OnDestroy"
-				{
-					"FireSound"
-					{
-						"EffectName"	"Hero_Bane.Nightmare.End"
-						"Target"
-						{
-							"Center"	"TARGET"
-							"Flags"		"DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
-						}
-					}
-					"RunScript"
-					{
-						"ScriptFile"	"lua_abilities/heroes/bane"
-						"Function"		"NightmareStop"
-						"sound"			"Hero_Bane.Nightmare.Loop"
-					}            	
-				}         
-				"States"
-				{
-					"MODIFIER_STATE_NIGHTMARED"     		"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_STUNNED"        		"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_SPECIALLY_DENIABLE"		"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_LOW_ATTACK_PRIORITY"	"MODIFIER_STATE_VALUE_ENABLED"		
 				}
 			}
 		}
@@ -1517,7 +1132,7 @@
 	
 	    // Damage.
 	    //-------------------------------------------------------------------------------------------------------------
-	    "AbilityDamage"                 "1000"
+	    "AbilityDamage"                 "1250"
 	
 	    // Cost
 	    //-------------------------------------------------------------------------------------------------------------
@@ -1530,7 +1145,7 @@
 	        "01"
 	        {
 	            "var_type"          "FIELD_INTEGER"
-	            "damage" 			"1000"       
+	            "damage" 			"1250"     
 	        }
 	    }
 	
@@ -1570,7 +1185,7 @@
 	
 	    // Damage.
 	    //-------------------------------------------------------------------------------------------------------------
-	    "AbilityDamage"                 "1250"
+	    "AbilityDamage"                 "1500"
 	
 	    // Cost
 	    //-------------------------------------------------------------------------------------------------------------
@@ -1583,7 +1198,7 @@
 	        "01"
 	        {
 	            "var_type"          "FIELD_INTEGER"
-	            "damage" 			"1250"       
+	            "damage" 			"1500"     
 	        }
 	    }
 	
@@ -1623,7 +1238,7 @@
 	
 	    // Damage.
 	    //-------------------------------------------------------------------------------------------------------------
-	    "AbilityDamage"                 "1500"
+	    "AbilityDamage"                 "2000"
 	
 	    // Cost
 	    //-------------------------------------------------------------------------------------------------------------
@@ -1636,7 +1251,7 @@
 	        "01"
 	        {
 	            "var_type"          "FIELD_INTEGER"
-	            "damage" 			"1500"       
+	            "damage" 			"2000"       
 	        }
 	    }
 	
@@ -1722,12 +1337,12 @@
 	        "01"
 	        {
 	            "var_type"              "FIELD_INTEGER"
-	            "armor_debuff"                "-200"
+	            "armor_debuff"          "-30"
 	        }
 	        "02"
 	        {
 	            "var_type"              "FIELD_INTEGER"
-	            "radius"                "700"
+	            "radius"                "400"
 	        }
 	    }
 	
@@ -5854,8 +5469,8 @@
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0.2"
-		"AbilityCastRange"				"400"
+		"AbilityCastPoint"				"1"
+		"AbilityCastRange"				"600"
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -6312,7 +5927,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"impact_radius"			"210"
+				"impact_radius"			"175"
 			}
 			"02"
 			{
@@ -6485,7 +6100,7 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"3"
+		"AbilityCooldown"				"3.5"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -6493,7 +6108,7 @@
 		
 		// Damage.
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"					"150 175"
+		"AbilityDamage"					"200 250"
 			
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -11928,306 +11543,6 @@
 					}
 				}
 			}			
-		}
-	}
-	"fiends_grip_datadriven"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_datadriven"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_DONT_CANCEL_CHANNEL"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
-		"FightRecapLevel"				"2"
-		"AbilityTextureName"			"bane_fiends_grip"
-		"HasScepterUpgrade"				"1"
-		"MaxLevel"						"6"
-	
-		// Precache
-		//-------------------------------------------------------------------------------------------------------------
-		"precache"
-		{
-			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_bane.vsndevts"		
-			"particle"		"particles/units/heroes/hero_bane/bane_fiends_grip.vpcf"		
-		}	
-	
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"625"
-		"AbilityCastPoint"				"0.5 0.5 0.5"
-	
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityChannelTime"			"5.0"
-		"AbilityCooldown"				"60"
-	
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"200 300 400 500 600 700"	
-	
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"fiend_grip_tick_interval"		"1.0"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"fiend_grip_mana_drain"			"5"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"fiend_grip_duration"			"5.0"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"fiend_grip_damage"				"100 155 215 270 325 380"
-			}
-			"05"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"fiend_grip_mana_drain_scepter"	"10"
-			}
-			"07"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"fiend_grip_damage_scepter"		"125 200 275 350 425 500"
-			}
-		}
-	
-		"OnSpellStart"
-		{			
-			"FireSound"
-			{
-				"EffectName"	"Hero_Bane.FiendsGrip.Cast"
-				"Target"
-				{
-					"Center"	"TARGET"
-					"Flags"     "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-				}	
-			}
-	
-			"ApplyModifier"
-			{
-				"ModifierName"	"modifier_fiends_grip_datadriven"
-				"Target"
-				{
-					"Center"	"TARGET"
-					"Flags"     "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-				}
-			}
-	
-			"ApplyModifier"
-			{
-				"ModifierName"	"modifier_fiends_grip_caster_datadriven"
-				"Target" 		"CASTER"
-			}
-			"RunScript"
-			{
-				"ScriptFile"	"lua_abilities/heroes/bane.lua"
-				"Function"		"ApplyGripDamage"
-				"damage"		"%fiend_grip_damage"
-			}
-			"RunScript"
-			{
-				"ScriptFile"	"lua_abilities/heroes/bane.lua"
-				"Function"		"FiendsGripInvisCheck"
-				"modifier_reveal"	"modifier_fiend_grip_invis_datadriven"
-			}
-		}
-	
-		"OnChannelInterrupted"
-		{
-			"RemoveModifier"
-			{
-				"ModifierName"	"modifier_fiends_grip_datadriven"
-				"Target"
-				{
-					"Center"	"TARGET"
-					"Flags"     "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-				}
-			}
-	
-			"RemoveModifier"
-			{
-				"ModifierName"	"modifier_fiends_grip_invis_datadriven"
-				"Target"
-				{
-					"Center"	"TARGET"
-					"Flags"     "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-				}
-			}
-	
-			"RemoveModifier"
-			{
-				"ModifierName"	"modifier_fiends_grip_caster_datadriven"
-				"Target" 		"CASTER"
-			}
-	
-			"RunScript"
-			{
-				"ScriptFile"	"lua_abilities/heroes/bane.lua"
-				"Function"		"FiendsGripStopSound"
-				"sound"			"Hero_Bane.FiendsGrip"
-			}
-	
-			"RunScript"
-			{
-				"ScriptFile"	"lua_abilities/heroes/bane.lua"
-				"Function"		"FiendsGripStopSound"
-				"sound"			"Hero_Bane.FiendsGrip.Cast"
-			}
-		}
-	
-		"OnChannelFinish"
-		{
-			"RemoveModifier"
-			{
-				"ModifierName"	"modifier_fiends_grip_datadriven"
-				"Target"
-				{
-					"Center"	"TARGET"
-					"Flags"     "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-				}
-			}
-	
-			"RemoveModifier"
-			{
-				"ModifierName"	"modifier_fiends_grip_invis_datadriven"
-				"Target"
-				{
-					"Center"	"TARGET"
-					"Flags"     "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-				}
-			}
-	
-			"RemoveModifier"
-			{
-				"ModifierName"	"modifier_fiends_grip_caster_datadriven"
-				"Target" 		"CASTER"
-			}
-	
-			"RunScript"
-			{
-				"ScriptFile"	"lua_abilities/heroes/bane.lua"
-				"Function"		"FiendsGripStopSound"
-				"sound"			"Hero_Bane.FiendsGrip"
-			}
-	
-			"RunScript"
-			{
-				"ScriptFile"	"lua_abilities/heroes/bane.lua"
-				"Function"		"FiendsGripStopSound"
-				"sound"			"Hero_Bane.FiendsGrip.Cast"
-			}
-		}
-	
-		"Modifiers"
-		{
-			"modifier_scepter_check"
-			{
-				"Passive"		"1"
-				"IsHidden"		"1"
-				"ThinkInterval"	"0.1"
-				
-				"OnIntervalThink"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"lua_abilities/heroes/bane.lua"
-						"Function"		"ScepterCheck"
-					}
-				}
-			}
-			"modifier_scepter_channeling"
-			{
-				"IsHidden"		"1"
-				"Aura"			"modifier_scepter_attacked"
-				"Aura_Radius"	"99999"
-				"Aura_Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
-				"Aura_Types" "DOTA_UNIT_TARGET_ALL"
-			}
-			"modifier_scepter_attacked"
-			{
-				"IsHidden"		"1"
-				"OnAttackStart"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"lua_abilities/heroes/bane.lua"
-						"Function"		"ScepterNightmare"
-					}
-				}
-			}
-			"modifier_fiends_grip_datadriven"
-			{
-				"Duration"	"99999999"
-				"IsDebuff"	"1"
-				"EffectName"	"particles/units/heroes/hero_bane/bane_fiends_grip.vpcf"
-				"EffectAttachType"	"attach_origin"
-	
-				"OverrideAnimation" "ACT_DOTA_FLAIL"
-	
-				"OnCreated"
-				{
-					"FireSound"
-					{
-						"EffectName"	"Hero_Bane.FiendsGrip"
-						"Target"		"TARGET"
-					}
-				}
-	
-				"ThinkInterval"	"%fiend_grip_tick_interval"
-				"OnIntervalThink"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"lua_abilities/heroes/bane.lua"
-						"Function"		"ManaDrain"
-						"Target"		"TARGET"
-					}								
-					"RunScript"
-					{
-						"ScriptFile"	"lua_abilities/heroes/bane.lua"
-						"Function"		"ApplyGripDamage"
-						"damage"		"%fiend_grip_damage"
-					}
-				}			
-				
-				"States"
-				{
-					"MODIFIER_STATE_STUNNED" 	"MODIFIER_STATE_VALUE_ENABLED"
-				}
-			}
-	
-			"modifier_fiends_grip_caster_datadriven"
-			{
-				"IsHidden"	"1"
-				"States"
-				{
-					"MODIFIER_STATE_LOW_ATTACK_PRIORITY"	"MODIFIER_STATE_VALUE_ENABLED"
-				}
-			}
-	
-			"modifier_fiend_grip_invis_datadriven"
-			{
-				"IsHidden"	"1"
-	
-				"States"
-				{
-					"MODIFIER_STATE_INVISIBLE"	"MODIFIER_STATE_VALUE_DISABLED"
-				}
-			}
 		}
 	}
 	"hide_hero"
@@ -19316,181 +18631,6 @@
 					"MODIFIER_STATE_NO_UNIT_COLLISION"              "MODIFIER_STATE_VALUE_ENABLED"
 					"MODIFIER_STATE_NOT_ON_MINIMAP"                 "MODIFIER_STATE_VALUE_ENABLED"
 					"MODIFIER_STATE_UNSELECTABLE"                   "MODIFIER_STATE_VALUE_ENABLED"
-				}
-			}
-		}
-	}
-	"slark_ebf_damage_steal"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_datadriven"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"HasScepterUpgrade"				"1"
-		"MaxLevel"						"7"
-		"AbilityCooldown"				"0.5"
-		"AbilityTextureName"			"custom/slark_ebf_damage_steal"
-		"HasScepterUpgrade"				"1"
-	
-	
-		"Modifiers"
-		{
-	
-			"stealpassive"
-			{	
-				"IsHidden"	 "1"
-				"Passive"	 "1"
-				"OnAttackLanded"
-				{
-	
-					"RunScript"
-		            {
-		                  "ScriptFile" "lua_abilities/heroes/slark.lua"
-		                  "Function" "SlarkFunction"
-		            }
-				}
-			}
-			"steal_c"
-			{	
-				"Properties"
-		        {
-		            "MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "%attack_bonus_perstack"
-		        }
-			}
-			"steal_t"
-			{	
-				"Properties"
-		        {
-		            "MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "%attack_reduction_perstack"
-		        }
-			}
-		}
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"attack_reduction_perstack"		"-3 -5 -7 -9 -11 -13 -15"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"attack_bonus_perstack"		"3 5 7 9 11 13 15"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"15"
-				"LinkedSpecialBonus"	"special_bonus_unique_slark_4"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"cooldown_duration"		"1.0 0.875 0.75 0.625 0.5 0.375 0.25"
-			}
-		}
-	}
-	"slark_pounce_ebf"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_datadriven"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_AUTOCAST"
-		"AbilityTextureName"			"slark_pounce"
-		"AbilityCooldown"				"16 14 12 10 8 6 4"
-		"MaxLevel"						"7"
-	
-		// Precache
-		//-------------------------------------------------------------------------------------------------------------
-		"precache"
-		{
-			"particle_folder"				"particles/units/heroes/hero_slark"
-			"particle"						"particles/units/heroes/hero_slark/slark_pounce_splash.vpcf"
-			"particle"						"particles/units/heroes/hero_slark/slark_pounce_start.vpcf"
-			"particle"						"particles/units/heroes/hero_slark/slark_pounce_trail.vpcf"
-			"soundfile"						"soundevents/game_sounds_heroes/game_sounds_slark.vsndevts"
-		}
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"pounce_distance"		"350"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"pounce_speed"			"1200"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"pounce_distance_active"	"750 800 850 900 950 1000 1050"
-			}
-		}
-		"OnSpellStart"
-		{
-			"RunScript"
-			{
-				"ScriptFile"	"lua_abilities/heroes/slark.lua"
-				"Function"		"Pounce"
-				"modifier"		"modifier_dodged"
-				"distance"		"%pounce_distance_active"
-			}
-		}
-	
-		"Modifiers"
-		{
-			"modifier_pounce_dodge"
-			{
-				"Passive"	"1"
-				"IsHidden"	"1"
-	
-				"ThinkInterval"		"0.05"
-	
-				"OnIntervalThink"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"lua_abilities/heroes/slark.lua"
-						"Function"		"PounceHealth"
-					}
-				}
-	
-				"OnTakeDamage"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"lua_abilities/heroes/slark.lua"
-						"Function"		"PounceHeal"
-						"modifier"		"modifier_dodged"
-						"distance"		"%pounce_distance"
-						"damage"		"%attack_damage"
-					}
-				}
-			}
-			"modifier_dodged"
-			{
-				"OnCreated"
-				{
-					"FireSound"
-					{
-						"EffectName"    "Hero_Slark.Pounce.Cast"
-						"Target"        "CASTER"
-					}
-					"ApplyMotionController"
-					{
-						"Target" 		"CASTER"
-						"ScriptFile"    "lua_abilities/heroes/slark.lua"
-						"HorizontalControlFunction" "PounceHorizontal"
-						"VerticalControlFunction"	"PounceVertical"
-					}
 				}
 			}
 		}

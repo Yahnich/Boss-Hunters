@@ -95,13 +95,19 @@ function modifier_stats_system_handler:GetModifierStatusAmplify_Percentage() ret
 
 function modifier_stats_system_handler:GetModifierPhysicalArmorBonus() return ARMOR_TABLE[self.prLevel + 1] end
 function modifier_stats_system_handler:GetModifierMagicalResistanceBonus() return MAGIC_RESIST_TABLE[self.mrLevel + 1] end
+
 function modifier_stats_system_handler:GetModifierTotal_ConstantBlock() 
-	if RollPercentage( 50 ) then 
+	if RollPercentage( 50 ) and not self:GetParent():IsRangedAttacker() then 
 		return DAMAGE_BLOCK_TABLE[self.dbLevel + 1] 
 	end
 end
 
-function modifier_stats_system_handler:GetModifierAttackRangeBonus() return ATTACK_RANGE_TABLE[self.arLevel + 1] end
+function modifier_stats_system_handler:GetModifierAttackRangeBonus() 
+	if self:GetParent():IsRangedAttacker() then 
+		return ATTACK_RANGE_TABLE[self.arLevel + 1] 
+	end
+end
+
 function modifier_stats_system_handler:GetModifierHealthBonus() return 300 + HEALTH_TABLE[self.hpLevel + 1] end
 function modifier_stats_system_handler:GetModifierConstantHealthRegen() return 2.5 + HEALTH_REGEN_TABLE[self.hprLevel + 1] end
 function modifier_stats_system_handler:GetModifierStatusResistance() return STATUS_REDUCTION_TABLE[self.srLevel + 1] end

@@ -66,3 +66,7 @@ function modifier_boss_evil_guardian_fire_shield_active:GetModifierIncomingDamag
 	parent.manaCharge = math.max( 0, parent.manaCharge - damage )
 	return -999
 end
+
+function modifier_boss_evil_guardian_fire_shield_active:IsPurgable()
+	return false
+end

@@ -24,12 +24,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"heal_reduction"		"-25 -33"
+				"heal_reduction"		"-33 -50"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"evasion_reduction"		"-25 -33"
+				"evasion_reduction"		"-33 -50"
 			}
 			"03"
 			{
@@ -102,7 +102,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"str_per_unit"			"1 1.5"
+				"str_per_unit"			"1.4 1.8"
 			}
 		}
 	}

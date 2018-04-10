@@ -82,7 +82,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"armor"					"5"
+				"bonus_armor"			"5"
 			}
 			"05"
 			{

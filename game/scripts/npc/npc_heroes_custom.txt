@@ -103,19 +103,20 @@
 	"npc_dota_hero_bane"
 	{
 		"override_hero"			"npc_dota_hero_bane"
-		"Ability1"				"bane_mass_enfeeble"
+		"Ability1"				"bane_enfeeble_ebf"
 		"Ability2"				"bane_brain_feast"
 		"Ability3"				"bane_nightmare_prison"
-		"Ability6"				"fiends_grip_datadriven"
+		"Ability4"				"bane_terrorize"
+		"Ability6"				"bane_fiends_grip_ebf"
 		
-		"Ability10"		"special_bonus_spell_amplify_6"
-		"Ability11"		"special_bonus_cast_range_100"
-		"Ability12"		"special_bonus_armor_6"
-		"Ability13"		"special_bonus_cooldown_reduction_12"
-		"Ability14"		"special_bonus_unique_bane_1"
-		"Ability15"		"special_bonus_movement_speed_75"
-		"Ability16"		"special_bonus_unique_bane_2"
-		"Ability17"		"special_bonus_unique_bane_3"
+		"Ability10"				"special_bonus_unique_bane_enfeeble_ebf_1"
+		"Ability11"				"special_bonus_unique_bane_enfeeble_ebf_2"
+		"Ability12"				"special_bonus_unique_bane_brain_feast_1"
+		"Ability13"				"special_bonus_unique_bane_brain_feast_2"
+		"Ability14"				"special_bonus_unique_bane_nightmare_prison_1"
+		"Ability15"				"special_bonus_unique_bane_nightmare_prison_2"
+		"Ability16"				"special_bonus_unique_bane_fiends_grip_ebf_1"
+		"Ability17"				"special_bonus_unique_bane_fiends_grip_ebf_2"
 	}
 	"npc_dota_hero_beastmaster_ebf"
 	{
@@ -1318,9 +1319,21 @@
 	"npc_dota_hero_slark_ebf"
 	{
 		"override_hero"			"npc_dota_hero_slark"
-		"Ability2"				"slark_pounce_ebf"
-		"Ability3"				"slark_ebf_damage_steal"					// Ability 2
+		"Ability1"		"slark_dark_pact_ebf"
+		"Ability2"		"slark_pounce_ebf"
+		"Ability3"		"slark_essence_shift_ebf"
+		"Ability4"		"slark_acrobatics"
+		"Ability5"		"generic_hidden"
+		"Ability6"		"slark_shadow_dance_ebf"
 		
+		"Ability10"		"special_bonus_unique_slark_dark_pact_1"
+		"Ability11"		"special_bonus_unique_slark_dark_pact_2"
+		"Ability12"		"special_bonus_unique_slark_pounce_1"
+		"Ability13"		"special_bonus_unique_slark_pounce_2"
+		"Ability14"		"special_bonus_unique_slark_essence_shift_1"
+		"Ability15"		"special_bonus_unique_slark_essence_shift_2"
+		"Ability16"		"special_bonus_unique_slark_shadow_dance_1"
+		"Ability17"		"special_bonus_unique_slark_shadow_dance_2"
 	}
 	//=================================================================================================================
 	// HERO: sniper

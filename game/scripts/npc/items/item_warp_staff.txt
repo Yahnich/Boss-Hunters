@@ -14,7 +14,7 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"1650"	
+		"ItemCost"						"1200"	
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -23,7 +23,7 @@
 		"ItemResult"					"item_warp_staff"
 		"ItemRequirements"
 		{
-			"01"						"item_blade_of_escape;item_orb_of_essence"
+			"01"						"item_dagger_of_escape;item_orb_of_essence"
 		}
 	}
 	//=================================================================================================================

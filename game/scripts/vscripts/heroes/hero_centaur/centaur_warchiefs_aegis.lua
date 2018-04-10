@@ -52,7 +52,7 @@ function modifier_centaur_warchiefs_aegis_return:GetModifierTotal_ConstantBlock(
 	if not ( HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_HPLOSS) or HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION) ) then
 		self:ProcReturn(params.attacker)
 	end
-	return strength * block
+	if RollPercentage(self:GetTalentSpecialValueFor("block_chance")) then return strength * block end
 end
 
 function modifier_centaur_warchiefs_aegis_return:OnAttackFail(params)

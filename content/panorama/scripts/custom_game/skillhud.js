@@ -291,13 +291,18 @@ function CreateTalentContainer(levelRequirement, statsTypeContainer, talentsSkil
 	talentRight.talentname = $.Localize( "#DOTA_Tooltip_Ability_" + talent2Name, talentRight )
 	talentRight.talentdescr = $.Localize( "#DOTA_Tooltip_Ability_" + talent2Name + "_Description", talentRight)
 	
+	var talent1HasDescription = false
+	var talent2HasDescription = false
+	
 	if( talentRight.talentdescr != ("DOTA_Tooltip_Ability_" + talent2Name + "_Description") ){
 		talentRight.SetPanelEvent("onmouseover", function(){$.DispatchEvent("DOTAShowTitleTextTooltip", talentRight, talentRight.talentname, talentRight.talentdescr);});
 		talentRight.SetPanelEvent("onmouseout", function(){$.DispatchEvent("DOTAHideTitleTextTooltip", talentRight);});
+		talent2HasDescription = true
 	}
 	if ( talentLeft.talentdescr != ("DOTA_Tooltip_Ability_" + talent1Name + "_Description") ){
 		talentLeft.SetPanelEvent("onmouseover", function(){$.DispatchEvent("DOTAShowTitleTextTooltip", talentLeft, talentLeft.talentname, talentLeft.talentdescr);});
 		talentLeft.SetPanelEvent("onmouseout", function(){$.DispatchEvent("DOTAHideTitleTextTooltip", talentLeft);});
+		talent1HasDescription = true
 	}
 	var talent1IsSkilled = (talentsSkilled != null && talentsSkilled[talent1Name] != null)
 	var talent2IsSkilled = (talentsSkilled != null && talentsSkilled[talent2Name] != null)
@@ -315,6 +320,23 @@ function CreateTalentContainer(levelRequirement, statsTypeContainer, talentsSkil
 	if(talentIsSkilled){
 		talentLeft.SetHasClass("TalentIsSkilled", talent1IsSkilled)
 		talentRight.SetHasClass("TalentIsSkilled", talent2IsSkilled)
+		if(talent1IsSkilled){
+			var unitText = "I have "
+			if(lastRememberedHero != Players.GetPlayerHeroEntityIndex( localID ) ){
+				unitText = $.Localize( Entities.GetUnitName(lastRememberedHero), talentLeft ) + " has "
+			}
+			var talentInfo = unitText + "skilled " + talentLeft.talentname
+			if(talent1HasDescription){ talentInfo = talentInfo + ": " + talentLeft.talentdescr }
+			talentLeft.SetPanelEvent("onactivate", function(){NotifyTalent(talentInfo)});
+		} else if(talent2IsSkilled){
+			var unitText = "I have "
+			if(lastRememberedHero != Players.GetPlayerHeroEntityIndex( localID ) ){
+				unitText = $.Localize( Entities.GetUnitName(lastRememberedHero), talentRight ) + " has "
+			}
+			var talentInfo = unitText + "skilled " + talentRight.talentname
+			if(talent2HasDescription){ talentInfo = talentInfo + ": " + talentRight.talentdescr }
+			talentRight.SetPanelEvent("onactivate", function(){NotifyTalent(talentInfo)});
+		}
 	}
 	if(talentLeft.BHasClass("TalentCanBeSkilled")){
 		talentLeft.SetPanelEvent("onactivate", function(){SelectTalent(talentLeft.nameid)});
@@ -331,6 +353,11 @@ function SelectTalent(talent)
 		hasQueuedAction = true
 		GameEvents.SendCustomGameEventToServer( "send_player_selected_talent", {pID : localID, entindex : lastRememberedHero,  talent : talent} )
 	}
+}
+
+function NotifyTalent(talentInformation)
+{
+	GameEvents.SendCustomGameEventToServer( "notify_selected_talent", {pID : localID, text : talentInformation} )
 }
 
 function GetAttributePoints( entindex )

@@ -13,7 +13,7 @@
 		"AbilityTextureName"			"puck_illusory_orb"
 		"MaxLevel"						"2"
 		
-		"AbilityCooldown"				"14 12"
+		"AbilityCooldown"				"14"
 		"AbilityCastRange"				"3500"
 		"AbilityCastPoint"				"1.5 1"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
@@ -32,7 +32,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"600 800"
+				"damage"				"8000 1200"
 			}
 			"02"
 			{
@@ -42,12 +42,12 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"orb_speed"				"300 400"
+				"orb_speed"				"300"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"orb_radius"			"100"
+				"orb_radius"			"150"
 			}
 			"05"
 			{
@@ -178,7 +178,7 @@
 		"AbilityTextureName"			"nevermore_shadowraze3"
 		"MaxLevel"						"2"
 		
-		"AbilityCooldown"				"6 5"
+		"AbilityCooldown"				"7 6"
 		"AbilityCastPoint"				"1.5 1"
 		"AbilityCastAnimation"			"ACT_DOTA_RAZE_3"
 		
@@ -205,7 +205,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"500 800"
+				"damage"				"800 1200"
 			}
 			"04"
 			{
@@ -237,7 +237,7 @@
 		"AbilityTextureName"			"nevermore_shadowraze2"
 		"MaxLevel"						"2"
 		
-		"AbilityCooldown"				"6 5"
+		"AbilityCooldown"				"7 6"
 		"AbilityCastRange"				"3500 5000"
 		"AbilityCastPoint"				"1.5 1"
 		"AbilityCastAnimation"			"ACT_DOTA_RAZE_2"
@@ -265,7 +265,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"500 800"
+				"damage"				"800 1200"
 			}
 			"04"
 			{
@@ -298,7 +298,7 @@
 		"AbilityTextureName"			"nevermore_shadowraze1"
 		"MaxLevel"						"2"
 		
-		"AbilityCooldown"				"6 5"
+		"AbilityCooldown"				"7 6"
 		"AbilityCastRange"				"3500 5000"
 		"AbilityCastPoint"				"1.5 1"
 		"AbilityCastAnimation"			"ACT_DOTA_RAZE_1"
@@ -326,7 +326,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"500 800"
+				"damage"				"800 1200"
 			}
 			"04"
 			{

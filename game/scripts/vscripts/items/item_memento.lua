@@ -36,7 +36,7 @@ function modifier_item_memento:OnAttackLanded(params)
 			self:GetAbility():SetCooldown()
 			Timers:CreateTimer(self.delay, function() 
 				parent:PerformGenericAttack(params.target, true) 
-				params.target:Paralyze(self:GetAbility(), parent, self.paralyze)
+				if parent:IsRealHero() then params.target:Paralyze(self:GetAbility(), parent, self.paralyze) end
 			end)
 		end
 	end

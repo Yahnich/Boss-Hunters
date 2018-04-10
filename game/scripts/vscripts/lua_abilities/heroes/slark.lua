@@ -1,5 +1,3 @@
-require("libraries/utility")
-
 function SlarkFunction(keys)
     local modifierName_caster = "steal_c"
     local modifierName_target = "steal_t"
@@ -8,7 +6,7 @@ function SlarkFunction(keys)
     local ability = keys.ability
     local level = ability:GetLevel()-1
     local cool_duration = ability:GetTalentSpecialValueFor("cooldown_duration")
-	if caster:HasScepter() or HasCustomScepter(caster) then
+	if caster:HasScepter() then
 		cool_duration = 0
 	end
     local duration = ability:GetTalentSpecialValueFor("duration")
@@ -30,6 +28,10 @@ function SlarkFunction(keys)
             caster:SetModifierStackCount( modifierName_caster, ability, 1)
         end
         ability:StartCooldown(cool_duration)
+		Timers:CreateTimer(duration, function() 
+			caster:SetModifierStackCount( modifierName_caster, ability, caster:GetModifierStackCount( modifierName_caster, ability ) - 1 ) 
+			if target and not target:IsNull() then target:SetModifierStackCount( modifierName_target, ability, target:GetModifierStackCount( modifierName_target, ability ) - 1 ) end
+		end)
     end
 end
 

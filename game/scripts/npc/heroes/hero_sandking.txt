@@ -227,7 +227,7 @@
 			"06"
 			{
 				"var_type"                      "FIELD_INTEGER"
-				"tornado_damage"     			"50 75 100 125 150 175 200"
+				"tornado_damage"     			"15 45 75 105 135 165 195"
 			}
 			"07"
 			{

@@ -64,6 +64,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+		"HasScepterUpgrade"				"1"
 		"FightRecapLevel"				"2"
 		"AbilityTextureName"			"custom/doom_bringer_apocalypse"
 		"MaxLevel"						"6"

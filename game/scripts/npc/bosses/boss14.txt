@@ -165,7 +165,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"spin_damage"			"60 80"
+				"spin_damage"			"40 60"
 			}		
 			"03"
 			{

@@ -67,7 +67,7 @@ end
 function modifier_boss_attackspeed:OnAbilityStart( params )
 	if params.unit == self:GetParent() then
 		AddFOWViewer(DOTA_TEAM_GOODGUYS, self:GetParent():GetAbsOrigin(), 516, 3, false)
-		params.unit:AddNewModifier(params.unit, params.ability, "modifier_status_immunity", {duration = params.ability:GetCastPoint() - 0.01})
+		params.unit:AddNewModifier(params.unit, params.ability, "modifier_status_immunity", {duration = params.ability:GetCastPoint() + 0.5})
 	end
 end
 
