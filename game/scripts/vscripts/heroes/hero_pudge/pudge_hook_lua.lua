@@ -25,7 +25,8 @@ end
 
 function pudge_hook_lua:GetCooldown(iLvl)
     local cooldown = self.BaseClass.GetCooldown(self, iLvl)
-    if self:GetCaster():HasTalent("special_bonus_unique_pudge_hook_lua_2") then cooldown = cooldown + self:GetCaster():FindTalentValue("special_bonus_unique_pudge_hook_lua_2", "cdr") end
+	if self:GetCaster():HasScepter() then cooldown = self:GetTalentSpecialValueFor("scepter_cooldown") end
+    if self:GetCaster():HasTalent("special_bonus_unique_pudge_hook_lua_2") then cooldown = cooldown * self:GetCaster():FindTalentValue("special_bonus_unique_pudge_hook_lua_2", "cdr") end
     return cooldown
 end
 
@@ -47,6 +48,7 @@ function pudge_hook_lua:OnSpellStart()
 	local hook_width = self:GetTalentSpecialValueFor("width")
 	local hook_range = self:GetTrueCastRange()
 	local hook_damage = self:GetTalentSpecialValueFor("damage")
+	if caster:HasScepter() then hook_damage = self:GetTalentSpecialValueFor("scepter_damage") end
 	local caster_loc = caster:GetAbsOrigin()
 	local direction = CalculateDirection(self:GetCursorPosition(), caster_loc)
 	local start_loc = GetGroundPosition(caster_loc + direction * hook_width, caster) + Vector(0,0,100)

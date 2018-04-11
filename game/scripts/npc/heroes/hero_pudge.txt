@@ -76,6 +76,16 @@
 				"var_type"				"FIELD_INTEGER"
 				"width"					"100"
 			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"scepter_cooldown"		"4.0"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"scepter_damage"		"180 270 360 450 540 630 720"
+			}
 		}
 	}
 
@@ -119,12 +129,12 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"-10"
+				"value"						"-20"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"cdr"						"-5"
+				"cdr"						"0.5"
 			}
 		}
 	}
@@ -297,7 +307,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"100 125 150 175 200 225 250"
+				"damage"				"100 105 110 115 120 125 130"
 			}
 			"02"
 			{
@@ -325,7 +335,12 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"30"
+				"value"						"-20"
+			}
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"duration"					"10"
 			}
 		}
 	}

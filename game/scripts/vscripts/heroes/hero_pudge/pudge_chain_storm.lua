@@ -7,7 +7,9 @@ function pudge_chain_storm:OnSpellStart()
 	local target = self:GetCursorTarget()
 	EmitSoundOn("Hero_Pudge.Dismember.Cast.Arcana", caster)
 	target:AddNewModifier(caster, self, "modifier_pudge_chain_storm", {Duration = self:GetTalentSpecialValueFor("duration")})
-	self:Stun(target, self:GetTalentSpecialValueFor("duration"), false)
+	if self:GetCaster():HasTalent("special_bonus_unique_pudge_chain_storm_1") then
+		target:AddNewModifier(caster, self, "modifier_pudge_chain_storm_talent", {Duration = caster:FindTalentValue("special_bonus_unique_pudge_chain_storm_1", "duration")})
+	end
 end
 
 modifier_pudge_chain_storm = class({})
@@ -22,7 +24,7 @@ function modifier_pudge_chain_storm:OnCreated(table)
 		ParticleManager:SetParticleControl(self.nfx, 4, self:GetParent():GetAbsOrigin())
 		ParticleManager:SetParticleControl(self.nfx, 8, Vector(2,2,2))
 		ParticleManager:SetParticleControl(self.nfx, 15, Vector(142, 2, 2))
-		self:StartIntervalThink(0.5)
+		self:StartIntervalThink( 0.5 )
 	end
 end
 
@@ -37,11 +39,13 @@ function modifier_pudge_chain_storm:OnIntervalThink()
 		end
 
 		if self:GetCaster():HasTalent("special_bonus_unique_pudge_chain_storm_1") then
-			self:GetCaster():Lifesteal(self:GetAbility(), self:GetCaster():FindTalentValue("special_bonus_unique_pudge_chain_storm_1"), self:GetTalentSpecialValueFor("damage")*0.5, self:GetParent(), self:GetAbility():GetAbilityDamageType(), DOTA_LIFESTEAL_SOURCE_ABILITY)
-		else
-			self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self:GetTalentSpecialValueFor("damage")*0.5, {damage_type = DAMAGE_TYPE_PURE}, 0)
+			self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self:GetCaster():GetAttackDamage() * self:GetTalentSpecialValueFor("damage") / 100, {damage_type = DAMAGE_TYPE_PHYSICAL}, 0)
 		end
 	end
+end
+
+function modifier_pudge_chain_storm:CheckState()
+	return {[MODIFIER_STATE_ROOTED] = true}
 end
 
 function modifier_pudge_chain_storm:OnRemoved()
@@ -55,4 +59,19 @@ end
 
 function modifier_pudge_chain_storm:IsDebuff()
 	return true
+end
+
+modifier_pudge_chain_storm_talent = class({})
+LinkLuaModifier("modifier_pudge_chain_storm_talent", "heroes/hero_pudge/pudge_chain_storm", LUA_MODIFIER_MOTION_NONE)
+
+function modifier_pudge_chain_storm_talent:OnCreated()
+	self.mr = caster:FindTalentValue("special_bonus_unique_pudge_chain_storm_1")
+end
+
+function modifier_pudge_chain_storm_talent:DeclareFunctions()
+	return {MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS}
+end
+
+function modifier_pudge_chain_storm_talent:GetModifierMagicalResistanceBonus()
+	return self.mr
 end
