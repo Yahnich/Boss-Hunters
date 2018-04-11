@@ -50,3 +50,15 @@ end
 function modifier_stunned_generic:IsDebuff()
 	return true
 end
+
+function modifier_stunned_generic:DeclareFunctions()
+	local funcs = {
+		MODIFIER_PROPERTY_OVERRIDE_ANIMATION,
+	}
+
+	return funcs
+end
+
+function modifier_stunned_generic:GetOverrideAnimation( params )
+	return ACT_DOTA_DISABLED
+end
