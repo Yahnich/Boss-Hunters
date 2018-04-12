@@ -228,12 +228,16 @@ end
 modifier_meat_hook_lua = class({})
 
 function modifier_meat_hook_lua:OnCreated(table)
+	self.damage = self:GetTalentSpecialValueFor("damage")
+	if self:GetCaster():HasScepter() then self.damage = self:GetTalentSpecialValueFor("scepter_damage") end
+	self.max_damage = 0
 	if IsServer() then self:StartIntervalThink(FrameTime()) end
 end
 
 function modifier_meat_hook_lua:OnIntervalThink()
 	if IsServer() then
-		self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self:GetTalentSpecialValueFor("damage")*FrameTime(), {}, 0)
+		self.max_damage = self.max_damage + self.damage*FrameTime()
+		self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self.damage*FrameTime(), {}, 0)
 	end
 end
 

@@ -17,7 +17,7 @@ STATUS_AMP_TABLE = {0,5,10,15,20,35}
 -- DEFENSE
 ARMOR_TABLE = {0,2,4,6,8,10,12,14,16,18,25}
 MAGIC_RESIST_TABLE = {0,5,10,15,20,25,30,35,40,45,60}
-DAMAGE_BLOCK_TABLE = {0,20,25,30,35,40,45,50,55,60,75}
+DAMAGE_BLOCK_TABLE = {0,10,20,30,40,50,60,70,80,90,120}
 ATTACK_RANGE_TABLE = {0,50,100,150,200,250,300,350,400,450,600}
 HEALTH_TABLE = {0,150,300,450,600,750,900,1050,1200,1350,2000}
 HEALTH_REGEN_TABLE = {0,3,6,9,12,15,18,21,24,27,50}
@@ -93,11 +93,15 @@ function modifier_stats_system_handler:GetModifierPercentageCooldownStacking() r
 function modifier_stats_system_handler:GetModifierAttackSpeedBonus_Constant() return ATTACK_SPEED_TABLE[self.asLevel + 1] end
 function modifier_stats_system_handler:GetModifierStatusAmplify_Percentage() return STATUS_AMP_TABLE[self.staLevel + 1] end
 
-function modifier_stats_system_handler:GetModifierPhysicalArmorBonus() return ARMOR_TABLE[self.prLevel + 1] end
+function modifier_stats_system_handler:GetModifierPhysicalArmorBonus()
+	local bonusarmor = 0
+	if not self:GetParent():IsRangedAttacker() then bonusarmor = 6 end
+	return ARMOR_TABLE[self.prLevel + 1] + bonusarmor
+end
 function modifier_stats_system_handler:GetModifierMagicalResistanceBonus() return MAGIC_RESIST_TABLE[self.mrLevel + 1] end
 
-function modifier_stats_system_handler:GetModifierTotal_ConstantBlock() 
-	if RollPercentage( 50 ) and not self:GetParent():IsRangedAttacker() then 
+function modifier_stats_system_handler:GetModifierTotal_ConstantBlock(params) 
+	if RollPercentage( 50 ) and not self:GetParent():IsRangedAttacker() and params.attacker ~= self:GetParent() then 
 		return DAMAGE_BLOCK_TABLE[self.dbLevel + 1] 
 	end
 end

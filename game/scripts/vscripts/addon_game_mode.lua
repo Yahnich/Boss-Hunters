@@ -720,12 +720,7 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 			filterTable = InnerTorment(filterTable)
 		end
 	end
-	if victim:IsRealHero() and not victim:IsRangedAttacker() and (damagetype == 1 or damagetype == 2) then
-		if not (ability and ability:GetName() == "skeleton_king_reincarnation") and victim ~= attacker then
-			filterTable["damage"] = filterTable["damage"] * 0.66
-		end
-	end
-	
+
 	--- THREAT AND UI NO MORE DAMAGE MANIPULATION ---
 	local damage = filterTable["damage"]
 	local attacker = original_attacker

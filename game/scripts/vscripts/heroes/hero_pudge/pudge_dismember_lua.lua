@@ -19,6 +19,10 @@ function pudge_dismember_lua:GetChannelAnimation()
 	return ACT_DOTA_CHANNEL_ABILITY_4
 end
 
+function pudge_dismember_lua:GetAOERadius()
+	return self:GetTalentSpecialValueFor("width")
+end
+
 function pudge_dismember_lua:GetCooldown(iLvl)
     local cooldown = self.BaseClass.GetCooldown(self, iLvl)
     if self:GetCaster():HasTalent("special_bonus_unique_pudge_dismember_lua_1") then cooldown = cooldown + self:GetCaster():FindTalentValue("special_bonus_unique_pudge_dismember_lua_1", "cdr") end
@@ -58,7 +62,8 @@ function pudge_dismember_lua:OnChannelThink(flInterval)
 			
 		local enemies = caster:FindEnemyUnitsInLine(caster:GetAbsOrigin(), endPoint, self:GetTalentSpecialValueFor("width"), {})
 		if #enemies > 0 then
-			caster:AddNewModifier(caster, caster:FindAbilityByName("pudge_flesh_heap_lua"), "modifier_pudge_flesh_heap_lua_effect", {Duration = self:GetTalentSpecialValueFor("duration")}):AddIndependentStack(self:GetTalentSpecialValueFor("duration"))
+			local fleshheap = caster:FindAbilityByName("pudge_flesh_heap_lua")
+			caster:AddNewModifier(caster, fleshheap, "modifier_pudge_flesh_heap_lua_effect", {Duration = fleshheap:GetTalentSpecialValueFor("duration")}):AddIndependentStack(fleshheap:GetTalentSpecialValueFor("duration"))
 		end
 		for _,enemy in pairs(enemies) do
 			if not enemy:HasModifier("modifier_pudge_dismember_lua") then

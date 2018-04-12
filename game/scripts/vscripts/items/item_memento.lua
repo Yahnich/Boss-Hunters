@@ -44,7 +44,7 @@ end
 
 
 function modifier_item_memento:GetModifierTotal_ConstantBlock(params)
-	if RollPercentage(self.chance) then
+	if RollPercentage(self.chance) and params.attacker ~= self:GetParent() then
 		ParticleManager:FireParticle("particles/units/heroes/hero_faceless_void/faceless_void_backtrack.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
 		return params.damage
 	end

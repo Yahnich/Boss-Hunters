@@ -28,6 +28,7 @@ function modifier_rot_lua:OnCreated(table)
     	ParticleManager:SetParticleControlEnt(self.nfx, 0, self:GetParent(), PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", self:GetParent():GetAbsOrigin(), true)
     	ParticleManager:SetParticleControl(self.nfx, 1, Vector(radius,radius,radius))
     	self:StartIntervalThink(self:GetTalentSpecialValueFor("tick_rate"))
+		EmitSoundOn("Hero_Pudge.Rot", self:GetParent())
     end
 end
 
@@ -40,7 +41,6 @@ end
 
 function modifier_rot_lua:OnIntervalThink()
     if IsServer() then
-    	EmitSoundOn("Hero_Pudge.Rot", self:GetParent())
     	local damage = self:GetTalentSpecialValueFor("damage") + self:GetTalentSpecialValueFor("damage_str")/100 * self:GetCaster():GetStrength()
     	self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), damage*0.2, {}, 0)
     end

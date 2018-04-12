@@ -50,6 +50,7 @@ function modifier_slark_dark_pact_effect:OnIntervalThink()
 	ParticleManager:FireParticle("particles/units/heroes/hero_slark/slark_dark_pact_pulses.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster, {[1] = "attach_hitloc", [2] = Vector(self.radius, self.radius, self.radius)})
 	local damage = self.damage * self.rate
 	local self_damage = damage / 2
+	if caster:HasTalent("special_bonus_unique_slark_dark_pact_1") then self_damage = damage end
 	
 	local enemies = caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), self.radius )
 	for _, enemy in ipairs( enemies ) do

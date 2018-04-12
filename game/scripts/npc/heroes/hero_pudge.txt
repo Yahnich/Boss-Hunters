@@ -167,7 +167,7 @@
 			
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"700"
+		"AbilityCastRange"				"450"
 		"AbilityCastPoint"				"0.0"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_ROT"
 		
@@ -197,7 +197,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius"				"700"
+				"radius"				"450"
 			}
 			"04"
 			{
@@ -334,10 +334,10 @@
 		{
 			"01"
 			{
-				"var_type"					"FIELD_INTEGER"
+				"var_type"					"FIELD_FLOAT"
 				"value"						"-20"
 			}
-			"01"
+			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
 				"duration"					"10"
@@ -387,7 +387,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"str_bonus"				"4"
+				"str_bonus"				"2"
 			}
 			"01"
 			{
@@ -397,7 +397,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"35"
+				"duration"				"20"
 			}
 		}
 	}
@@ -409,9 +409,9 @@
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_pudge/pudge_dismember_lua.lua"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
@@ -451,7 +451,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"str_damage"			"30 45 60 75 90 105"
+				"str_damage"			"60"
 			}
 			"04"
 			{

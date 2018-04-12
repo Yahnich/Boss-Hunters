@@ -41,8 +41,8 @@ function modifier_item_everbright_shield_off:DeclareFunctions()
 			}
 end
 
-function modifier_item_everbright_shield_off:GetModifierTotal_ConstantBlock()
-	if RollPercentage(self.chance) then
+function modifier_item_everbright_shield_off:GetModifierTotal_ConstantBlock(params)
+	if RollPercentage(self.chance) and params.attacker ~= self:GetParent() then
 		return self.block
 	end
 end

@@ -21,8 +21,8 @@ function modifier_item_fortress_shield:GetModifierConstantHealthRegen()
 	return self.hp_regen
 end
 
-function modifier_item_fortress_shield:GetModifierTotal_ConstantBlock()
-	if RollPercentage(self.chance) then
+function modifier_item_fortress_shield:GetModifierTotal_ConstantBlock(params)
+	if RollPercentage(self.chance) and params.attacker ~= self:GetParent() then
 		return self.block
 	end
 end

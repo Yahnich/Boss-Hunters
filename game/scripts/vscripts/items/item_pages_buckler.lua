@@ -18,8 +18,8 @@ function modifier_item_pages_buckler:DeclareFunctions()
 			MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT}
 end
 
-function modifier_item_pages_buckler:GetModifierTotal_ConstantBlock()
-	if RollPercentage(self.chance) then
+function modifier_item_pages_buckler:GetModifierTotal_ConstantBlock(params)
+	if RollPercentage(self.chance) and params.attacker ~= self:GetParent() then
 		return self.block
 	end
 end

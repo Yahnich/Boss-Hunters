@@ -84,10 +84,8 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemCost"						"1500"	
 		"ItemShopTags"					""
-		"ItemPurchasable"				"0"
-		
-		"ItemPurchasable"				"0"
 		"ItemRecipe"					"1"
+		
 		"ItemResult"					"item_ultimate_scepter"
 		"ItemRequirements"
 		{

@@ -169,7 +169,7 @@
 			}
 		}
 	}
-	"special_bonus_unique_bane_enfeeble_ebf_1" 
+	"special_bonus_unique_bane_enfeeble_ebf_2" 
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
