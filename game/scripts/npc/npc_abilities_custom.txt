@@ -61,6 +61,7 @@
 #base "heroes/hero_bane.txt"
 #base "heroes/hero_slark.txt"
 #base "heroes/hero_pudge.txt"
+#base "heroes/hero_juggernaut.txt"
 
 "DOTAAbilities"
 {

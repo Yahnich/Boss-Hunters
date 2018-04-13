@@ -1,10 +1,11 @@
 "DOTAAbilities"
 {	
-	"juggernaut_ronin_slice"
+	"juggernaut_ronins_wind"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"				"ability_datadriven"
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_juggernaut/juggernaut_ronins_wind"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
@@ -140,17 +141,18 @@
 	//=================================================================================================================
 	// Ability: Juggernaut Blade Fury
 	//=================================================================================================================
-	"juggernaut_iron_whirlwind"
+	"juggernaut_mirror_blades"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_juggernaut/juggernaut_iron_whirlwind"
+		"ScriptFile"					"heroes/hero_juggernaut/juggernaut_mirror_blades"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
 		"FightRecapLevel"				"1"
+		"AbilityTextureName"			"juggernaut_blade_fury"
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -192,7 +194,7 @@
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
 	}
-	"special_bonus_unique_juggernaut_iron_whirlwind_1" 
+	"special_bonus_unique_juggernaut_mirror_blades_1" 
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -211,7 +213,7 @@
 			}
 		}
 	}
-	"special_bonus_unique_juggernaut_iron_whirlwind_1" 
+	"special_bonus_unique_juggernaut_mirror_blades_2" 
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -234,11 +236,19 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_datadriven"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_TOGGLE"
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_juggernaut/juggernaut_momentum_strike"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE"
 		"AbilityTextureName"			"juggernaut_blade_dance"
+		"HasScepterUpgrade"				"1"
 		"MaxLevel"						"1"
 		"InnateAbility"					"1"
+		
+		"precache"
+		{
+			"particle"					"particles/econ/items/juggernaut/bladekeeper_omnislash/dc_juggernaut_omni_slash_rope.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_juggernaut,vsndevts"
+		}
 	
 		"AbilitySpecial"
 	    {
@@ -251,6 +261,21 @@
 	        {
 	            "var_type"              "FIELD_FLOAT"
 	            "critical_chance"       "20"
+	        }
+			"03"
+	        {
+	            "var_type"              "FIELD_FLOAT"
+	            "crit_chance_momentum"  "5"
+	        }
+			"04"
+	        {
+	            "var_type"              "FIELD_FLOAT"
+	            "max_momentum_stacks"   "6"
+	        }
+			"05"
+	        {
+	            "var_type"              "FIELD_FLOAT"
+	            "scepter_max_momentum"  "10"
 	        }
 	    }
 	}
@@ -269,7 +294,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"20"
+				"value"					"4"
 			}
 		}
 	}
@@ -277,8 +302,10 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_datadriven"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_juggernaut/juggernaut_quickparry"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
 		"AbilityTextureName"			"custom/juggernaut_quickparry"
 		"MaxLevel"						"7"
 		
@@ -287,24 +314,28 @@
 			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_juggernaut.vsndevts"
 		}
 		
-		"AbilityCooldown"				"0.4"
+		"AbilityCooldown"				"0.5"
 	
 		"AbilitySpecial"
 	    {
 	        "01"
 	        {
 	            "var_type"              "FIELD_FLOAT"
-	            "parry_chance"          "40 45 50 55 60 65 70"
+	            "parry_chance"          "45 47.5 50 52.5 55 57.5 60"
 	        }
 			"02"
 	        {
 	            "var_type"              "FIELD_FLOAT"
 	            "damage"                "100 120 140 160 180 200 220"
-				"LinkedSpecialBonus"	"special_bonus_unique_juggernaut_3"
+	        }
+			"03"
+	        {
+	            "var_type"              "FIELD_FLOAT"
+	            "active_momentum_cost"  "1"
 	        }
 	    }
 	}
-	"special_bonus_unique_juggernaut_quick_parry_1" 
+	"special_bonus_unique_juggernaut_quickparry_1" 
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -319,11 +350,11 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"20"
+				"value"					"1"
 			}
 		}
 	}
-	"special_bonus_unique_juggernaut_quick_parry_2" 
+	"special_bonus_unique_juggernaut_quickparry_2" 
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -338,7 +369,17 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"20"
+				"as"					"25"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"ms"					"5"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"duration"				"2"
 			}
 		}
 	}
@@ -349,7 +390,8 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"					"5030"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_juggernaut/juggernaut_dance_of_blades"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -357,10 +399,9 @@
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"	
+		"AbilityTextureName"			"juggernaut_omni_slash"
 		"FightRecapLevel"				"2"
 		"MaxLevel"						"6"
-
-		"HasScepterUpgrade"			"1"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -370,11 +411,11 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"130.0 120.0 110.0"
+		"AbilityCooldown"				"90"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"200 275 350"
+		"AbilityManaCost"				"200 275 350 425 500 575"
 
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
@@ -387,34 +428,22 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"omni_slash_damage"			"325"
+				"omni_slash_damage"			"200"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"omni_slash_jumps"			"3 6 9 12 15 18"
-				"LinkedSpecialBonus"		"special_bonus_unique_juggernaut_2"
+				"jumps"						"3 6 9 12 15 18"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"omni_slash_radius"			"425"
+				"radius"					"425"
 			}
 			"04"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"omni_slash_bounce_tick"	"0.4"
-			}
-			"05"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"omni_slash_jumps_scepter"		"6 9 12 15 18 21"
-				"LinkedSpecialBonus"			"special_bonus_unique_juggernaut_2"
-			}
-			"06"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"omni_slash_cooldown_scepter"	"70"
+				"bounce_tick"				"0.4"
 			}
 		}
 	}

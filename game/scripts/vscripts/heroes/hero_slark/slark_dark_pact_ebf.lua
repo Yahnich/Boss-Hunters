@@ -39,7 +39,9 @@ function modifier_slark_dark_pact_effect:OnCreated()
 	self.damage = self:GetTalentSpecialValueFor("total_damage")
 	self.radius = self:GetTalentSpecialValueFor("radius")
 	if IsServer() then
+		local caster = self:GetCaster()
 		self:GetParent():StartGesture( ACT_DOTA_CAST_ABILITY_1 )
+		self.particleFire = 0
 		self:StartIntervalThink(self.rate)
 	end
 end
@@ -47,9 +49,14 @@ end
 function modifier_slark_dark_pact_effect:OnIntervalThink()
 	local caster = self:GetCaster()
 	local ability = self:GetAbility()
-	ParticleManager:FireParticle("particles/units/heroes/hero_slark/slark_dark_pact_pulses.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster, {[1] = "attach_hitloc", [2] = Vector(self.radius, self.radius, self.radius)})
 	local damage = self.damage * self.rate
 	local self_damage = damage / 2
+	if self.particleFire <= 0 then
+		ParticleManager:FireParticle("particles/units/heroes/hero_slark/slark_dark_pact_pulses.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster, {[1] = "attach_hitloc", [2] = Vector(self.radius, self.radius, self.radius)})
+		self.particleFire = 1
+	else
+		self.particleFire = self.particleFire - self.rate
+	end
 	if caster:HasTalent("special_bonus_unique_slark_dark_pact_1") then self_damage = damage end
 	
 	local enemies = caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), self.radius )

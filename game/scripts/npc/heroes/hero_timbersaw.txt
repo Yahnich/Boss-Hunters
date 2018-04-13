@@ -48,7 +48,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"debuff"					"-10 -15 -20 -25 -30 -35 -40"
+				"debuff"					"-30"
 				"LinkedSpecialBonus"		"special_bonus_unique_timbersaw_bonesplitter_1"
 			}
 			"03"
@@ -240,7 +240,7 @@
 			"03"
 			{
 				"var_type"							"FIELD_INTEGER"
-				"stack_limit"						"5 10 15 20 25 30 35"
+				"stack_limit"						"20"
 				"LinkedSpecialBonus"				"special_bonus_unique_timbersaw_reactive_1"
 			}
 		}
@@ -261,7 +261,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"5"
+				"value"					"10"
 			}
 		}
 	}
@@ -280,7 +280,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"1"
+				"value"					"1.5"
 			}
 		}
 	}

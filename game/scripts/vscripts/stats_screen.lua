@@ -71,6 +71,7 @@ function StatsScreen:RegisterPlayer(hero)
 	netTable.attribute_points = 0
 	CustomNetTables:SetTableValue("hero_properties", hero:GetUnitName()..hero:entindex(), netTable)
 	hero.statsHaveBeenRegistered = true
+	hero.talentsSkilled = 0
 end
 
 function StatsScreen:ProcessStatsUpgrade(userid, event)
@@ -95,11 +96,12 @@ function StatsScreen:ProcessTalents(userid, event)
 	local entindex = event.entindex
 	local talent = tostring(event.talent)
 	local hero = EntIndexToHScript( entindex )
-	if entindex ~= PlayerResource:GetSelectedHeroEntity( pID ):entindex() or not hero:FindAbilityByName(talent) then return end -- calling
+	if entindex ~= PlayerResource:GetSelectedHeroEntity( pID ):entindex() or not hero:FindAbilityByName(talent) or hero:GetLevel() < (hero.talentsSkilled + 1) * 10 then return end -- calling
 	if hero:FindAbilityByName(talent):GetLevel() > 0 then return end
 	hero:UpgradeAbility(hero:FindAbilityByName(talent))
 	hero:CalculateStatBonus()
 	CustomGameEventManager:Send_ServerToAllClients("dota_player_upgraded_stats", {playerID = pID} )
+	hero.talentsSkilled = hero.talentsSkilled + 1
 end
 
 function StatsScreen:NotifyTalent(userid, event)

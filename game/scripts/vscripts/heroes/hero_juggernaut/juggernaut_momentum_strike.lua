@@ -1,0 +1,122 @@
+juggernaut_momentum_strike = class({})
+
+function juggernaut_momentum_strike:GetIntrinsicModifierName()
+	if not self:GetCaster().GetMomentum then 
+		self:GetCaster().GetMomentum = function( self ) 
+			return self:GetModifierStackCount("modifier_juggernaut_momentum_strike_momentum", self ) 
+		end 
+	end
+	if not self:GetCaster().SetMomentum then 
+		self:GetCaster().SetMomentum = function(self, amount) 
+			self:SetModifierStackCount("modifier_juggernaut_momentum_strike_momentum", self, amount ) 
+		end 
+	end
+	local ability = self
+	if not self:GetCaster().AddMomentum then 
+		self:GetCaster().AddMomentum = function(self, amount)
+			for i = 1, amount do
+				self:AddNewModifier(self, ability, "modifier_juggernaut_momentum_strike_momentum", {})
+			end
+		end 
+	end
+	if not self:GetCaster().AttemptDecrementMomentum then 
+		self:GetCaster().AttemptDecrementMomentum = function(self, amount)
+			local momentum = self:GetMomentum()
+			if momentum > amount then
+				self:SetModifierStackCount("modifier_juggernaut_momentum_strike_momentum", self, momentum - amount )
+				return true
+			elseif momentum == amount then
+				self:RemoveModifierByName("modifier_juggernaut_momentum_strike_momentum")
+				return true
+			end
+			return false
+		end 
+	end
+	return "modifier_juggernaut_momentum_strike_passive"
+end
+
+function juggernaut_momentum_strike:OnToggle()
+end
+
+modifier_juggernaut_momentum_strike_passive = class({})
+LinkLuaModifier("modifier_juggernaut_momentum_strike_passive", "heroes/hero_juggernaut/juggernaut_momentum_strike", LUA_MODIFIER_MOTION_NONE)
+
+function modifier_juggernaut_momentum_strike_passive:OnCreated()
+	self.crit_damage = self:GetTalentSpecialValueFor("critical_bonus")
+	self.crit_chance = self:GetTalentSpecialValueFor("critical_chance")
+	self.momentumHits = 0
+	self.momentum_chance = self:GetTalentSpecialValueFor("crit_chance_momentum")
+end
+
+function modifier_juggernaut_momentum_strike_passive:OnRefresh()
+	self.crit_damage = self:GetTalentSpecialValueFor("critical_bonus")
+	self.crit_chance = self:GetTalentSpecialValueFor("critical_chance")
+	
+	self.momentum_chance = self:GetTalentSpecialValueFor("crit_chance_momentum")
+end
+
+function modifier_juggernaut_momentum_strike_passive:DeclareFunctions()
+	return {MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE}
+end
+
+function modifier_juggernaut_momentum_strike_passive:GetModifierPreAttack_CriticalStrike(params)
+	local caster = self:GetCaster()
+	local roll = RollPercentage( self.crit_chance + caster:GetMomentum() * self.momentum_chance )
+	if (caster:HasTalent("special_bonus_unique_juggernaut_momentum_strike_1") and self.momentumHits >= caster:FindTalentValue("special_bonus_unique_juggernaut_momentum_strike_1")) then
+		self.momentumHits = 0
+		caster:AddNewModifier(caster, self:GetAbility(), "modifier_juggernaut_momentum_strike_momentum", {})
+	else
+		self.momentumHits = self.momentumHits + 1
+	end
+	if roll then
+		caster:AddNewModifier(caster, self:GetAbility(), "modifier_juggernaut_momentum_strike_momentum", {})
+		if not self:GetAbility():GetToggleState() then
+			local target = params.target
+			
+			local direction = CalculateDirection(target, caster)
+			local distance = CalculateDistance(target, caster)
+			local newPosition = target:GetAbsOrigin() + direction * distance + RandomVector(50)
+			local originalPosition = caster:GetAbsOrigin()
+			if CalculateDistance(newPosition, target) ~= caster:GetAttackRange() then newPosition = target:GetAbsOrigin() + CalculateDirection(newPosition, target) * caster:GetAttackRange() end
+			-- Set Juggernaut at random position
+			caster:SetAbsOrigin(newPosition)
+			FindClearSpaceForUnit(caster, newPosition, true)
+			caster:SetForwardVector( CalculateDirection(target, caster) )
+			-- Attack order
+			order = 
+			{
+				UnitIndex = caster:entindex(),
+				OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
+				TargetIndex = target:entindex(),
+				AbilityIndex = ability,
+				Queue = true
+			}
+			ExecuteOrderFromTable(order)
+			ParticleManager:FireParticle("particles/econ/items/juggernaut/bladekeeper_omnislash/dc_juggernaut_omni_slash_rope.vpcf", PATTACH_ABSORIGIN, caster, {[0] = originalPosition, [2] = originalPosition, [3] = newPosition})
+			
+		end
+		EmitSoundOn("Hero_Juggernaut.BladeDance", caster)
+		return self.crit_damage
+	end
+end
+
+function modifier_juggernaut_momentum_strike_passive:IsHidden()
+	return true
+end
+
+modifier_juggernaut_momentum_strike_momentum = class({})
+LinkLuaModifier("modifier_juggernaut_momentum_strike_momentum", "heroes/hero_juggernaut/juggernaut_momentum_strike", LUA_MODIFIER_MOTION_NONE)
+
+if IsServer() then
+	function modifier_juggernaut_momentum_strike_momentum:OnCreated()
+		self.max = self:GetTalentSpecialValueFor("max_momentum_stacks")
+		if self:GetCaster():HasScepter() then self.max = self:GetTalentSpecialValueFor("scepter_max_momentum") end
+		self:SetStackCount(1)
+	end
+
+	function modifier_juggernaut_momentum_strike_momentum:OnRefresh()
+		self.max = self:GetTalentSpecialValueFor("max_momentum_stacks")
+		if self:GetCaster():HasScepter() then self.max = self:GetTalentSpecialValueFor("scepter_max_momentum") end
+		if self:GetStackCount() < self.max then self:IncrementStackCount() end
+	end
+end

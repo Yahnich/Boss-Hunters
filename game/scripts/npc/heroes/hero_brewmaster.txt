@@ -12,8 +12,6 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityTextureName"			"brewmaster_drunken_brawler"
 		"MaxLevel"						"7"
-		"LevelsBetweenUpgrades"			"5"
-		"RequiredLevel"					"6"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------

@@ -612,10 +612,20 @@
 	"npc_dota_hero_juggernaut_ebf"
 	{
 		"override_hero"			"npc_dota_hero_juggernaut"
-		"Ability1"				"juggernaut_ronin_slice"
-		"Ability2"				"juggernaut_quickparry"
-		"Ability3"				"juggernaut_blade_dance_ebf"
+		"Ability1"				"juggernaut_ronins_wind"
+		"Ability2"				"juggernaut_mirror_blades"
+		"Ability3"				"juggernaut_quickparry"
+		"Ability4"				"juggernaut_momentum_strike"
+		"Ability6"				"juggernaut_dance_of_blades"
 		
+		"Ability10"				"special_bonus_unique_juggernaut_ronins_wind_1"
+		"Ability11"				"special_bonus_unique_juggernaut_ronins_wind_2"
+		"Ability12"				"special_bonus_unique_juggernaut_mirror_blades_1"
+		"Ability13"				"special_bonus_unique_juggernaut_mirror_blades_2"
+		"Ability14"				"special_bonus_unique_juggernaut_quickparry_1"
+		"Ability15"				"special_bonus_unique_juggernaut_quickparry_2"
+		"Ability16"				"special_bonus_unique_juggernaut_dance_of_blades_1"
+		"Ability17"				"special_bonus_unique_juggernaut_momentum_strike_1"
 	}
 	"npc_dota_hero_keeper_of_the_light_ebf"
 	{

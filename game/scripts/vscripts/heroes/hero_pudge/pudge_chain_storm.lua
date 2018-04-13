@@ -33,13 +33,13 @@ function modifier_pudge_chain_storm:OnIntervalThink()
 		EmitSoundOn("Hero_Pudge.Dismember.Damage.Arcana", self:GetParent())
 		EmitSoundOn("Hero_Pudge.Dismember.Gore.Arcana", self:GetParent())
 		EmitSoundOn("Hero_Pudge.Dismember.Arcana", self:GetParent())
-
-		if self:GetCaster():HasTalent("special_bonus_unique_pudge_chain_storm_2") then
+		local caster = self:GetCaster()
+		if caster:HasTalent("special_bonus_unique_pudge_chain_storm_2") then
 			local fleshheap = caster:FindAbilityByName("pudge_flesh_heap_lua")
-			self:GetCaster():AddNewModifier(self:GetCaster(), fleshheap, "modifier_pudge_flesh_heap_lua_effect", {Duration = fleshheap:GetTalentSpecialValueFor("duration")}):AddIndependentStack(fleshheap:GetTalentSpecialValueFor("duration"))
+			caster:AddNewModifier(caster, fleshheap, "modifier_pudge_flesh_heap_lua_effect", {Duration = fleshheap:GetTalentSpecialValueFor("duration")}):AddIndependentStack(fleshheap:GetTalentSpecialValueFor("duration"))
 		end
 
-		self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self:GetCaster():GetAttackDamage() * self:GetTalentSpecialValueFor("damage") / 100, {damage_type = DAMAGE_TYPE_PHYSICAL}, 0)
+		self:GetAbility():DealDamage(caster, self:GetParent(), caster:GetAttackDamage() * self:GetTalentSpecialValueFor("damage") / 100, {damage_type = DAMAGE_TYPE_PHYSICAL}, 0)
 	end
 end
 

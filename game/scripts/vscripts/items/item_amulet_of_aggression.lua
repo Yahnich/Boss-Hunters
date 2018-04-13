@@ -5,6 +5,10 @@ function item_amulet_of_aggression:GetIntrinsicModifierName()
 	return "modifier_item_amulet_of_aggression_passive"
 end
 
+function item_amulet_of_aggression:OnSpellStart()
+	self:GetCaster():ModifyThreat( self:GetSpecialValueFor("active_threat") )
+end
+
 modifier_item_amulet_of_aggression_passive = class({})
 
 function modifier_item_amulet_of_aggression_passive:OnCreated()
