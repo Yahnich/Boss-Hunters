@@ -10,17 +10,17 @@ end
 
 function item_emission:OnToggle()
 	if self:GetToggleState() then
-		self:GetCaster():RemoveModifierByName("modifier_item_emission")
-	else
 		self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_item_emission", {})
+	else
+		self:GetCaster():RemoveModifierByName("modifier_item_emission")
 	end
 end
 
 function item_emission:OnOwnerSpawned()
 	if self:GetToggleState() then
-		self:GetCaster():RemoveModifierByName("modifier_item_emission")
-	else
 		self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_item_emission", {})
+	else
+		self:GetCaster():RemoveModifierByName("modifier_item_emission")
 	end
 end
 
@@ -106,7 +106,7 @@ end
 
 
 modifier_item_emission_passive = class({})
-LinkLuaModifier( "modifier_item_emission_passive", "items/item_power_core.lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_item_emission_passive", "items/item_emission.lua", LUA_MODIFIER_MOTION_NONE )
 
 function modifier_item_emission_passive:OnCreated()
 	self.stat = self:GetSpecialValueFor("bonus_all")

@@ -824,7 +824,7 @@ function CHoldoutGameMode:OnHeroLevelUp(event)
 	local hero = PlayerResource:GetSelectedHeroEntity(playerID)
 	if hero:GetLevel() < 32 then
 		if hero:GetLevel() == 17 or hero:GetLevel() == 19 or (hero:GetLevel() > 20 and hero:GetLevel() < 25) then hero:SetAbilityPoints( hero:GetAbilityPoints() + 1) end
-		if hero:GetLevel() % 5 == 0 then
+		if hero:GetLevel() % GameRules.gameDifficulty == 0 then
 			hero:SetAbilityPoints( hero:GetAbilityPoints() + 1)
 		end
 	end
@@ -833,7 +833,7 @@ end
 function CHoldoutGameMode:OnAbilityLearned(event)
 	local abilityname = event.abilityname
 	local pID = event.PlayerID
-	if pID and string.match(abilityname, "special_bonus") then
+	if pID and string.match(abilityname, "special_bonus" ) then
 		local hero = PlayerResource:GetSelectedHeroEntity( pID )
 		local talentData = CustomNetTables:GetTableValue("talents", tostring(hero:entindex())) or {}
 		if GameRules.AbilityKV[abilityname] then

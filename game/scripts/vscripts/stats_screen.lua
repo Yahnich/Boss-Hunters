@@ -131,9 +131,14 @@ function StatsScreen:RespecAll(userid, event)
 			local ability = hero:GetAbilityByIndex(i)
 			if ability then 
 				ability:SetLevel(0)
+				if string.match( ability:GetName(), "special_bonus" ) then
+					local modName = string.match( ability:GetName(), "special_bonus" )
+					print(modName)
+					hero:AddNewModifier(caster, ability, "modifier_special_bonus_"..modName, {})
+				end
 			end
 		end
-		hero:SetAbilityPoints( hero:GetLevel() + math.floor(hero:GetLevel() / 5) ) -- give back ability points
+		hero:SetAbilityPoints( hero:GetLevel() + math.floor(hero:GetLevel() / GameRules.gameDifficulty) ) -- give back ability points
 		CustomGameEventManager:Send_ServerToAllClients("dota_player_upgraded_stats", {playerID = hero:GetPlayerID()} )
 	end
 end
