@@ -23,7 +23,8 @@ function modifier_item_illusionists_charm:OnCreated()
 	self.agility = self:GetSpecialValueFor("bonus_agility")
 	self.attackSpeed = self:GetSpecialValueFor("bonus_attackspeed")
 	self.regen = self:GetSpecialValueFor("bonus_hp_regen")
-	self.bonusHP = self:GetSpecialValueFor("hp_per_str")
+	self.hpBonus = self:GetSpecialValueFor("bonus_health")
+	self.hpPerStr = self:GetSpecialValueFor("hp_per_str")
 	self.stat = self:GetSpecialValueFor("bonus_strength")
 end
 
@@ -49,7 +50,7 @@ function modifier_item_illusionists_charm:GetModifierBonusStats_Strength()
 end
 
 function modifier_item_illusionists_charm:GetModifierHealthBonus()
-	return self:GetParent():GetStrength() * self.bonusHP
+	return self:GetParent():GetStrength() * self.hpPerStr + self.hpBonus
 end
 
 function modifier_item_illusionists_charm:GetModifierHealthRegenPercentage()

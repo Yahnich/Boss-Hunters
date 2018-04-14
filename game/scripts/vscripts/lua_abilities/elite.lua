@@ -51,21 +51,23 @@ function CreateFrostShards(keys)
 	local units = FindUnitsInRadius( caster:GetTeam(), caster:GetOrigin(), nil, 800, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, 0, false )
 	if #units == 0 then return end
 	ability:StartCooldown(16)
-	for _, unit in pairs(units) do
-		local shardLoc = unit:GetAbsOrigin() + RandomVector(350)
-		local frostShard = ParticleManager:CreateParticle("particles/elite_freezing_parent.vpcf", PATTACH_WORLDORIGIN, nil)
-			ParticleManager:SetParticleControl(frostShard, 0, shardLoc)
-		EmitSoundOnLocationWithCaster(shardLoc, "hero_Crystal.frostbite", caster)
-		ParticleManager:FireWarningParticle(shardLoc, 400)
-		Timers:CreateTimer(5, function()
-			ParticleManager:ClearParticle(frostShard)
-			EmitSoundOn("Hero_Ancient_Apparition.IceBlast.Target", caster)
-			local targets = FindUnitsInRadius( caster:GetTeam(), shardLoc, nil, 400, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, 0, false )
-			for _, frozenTarget in pairs(targets) do
-				ApplyDamage({ victim = frozenTarget, attacker = keys.caster, damage = frozenTarget:GetMaxHealth() * 0.25, damage_type = DAMAGE_TYPE_MAGICAL, ability = ability })
-				ability:ApplyDataDrivenModifier(caster, frozenTarget, "modifier_elite_coldsnapped", {duration = 2})
-			end
-		end)
+	for i = 1, PlayerResource:FindActivePlayerCount() + 4 do
+		Timers:CreateTimer(RandomFloat(0.1, 0.8), function()
+			local shardLoc = caster:GetAbsOrigin() + ActualRandomVector(700, 150)
+			local frostShard = ParticleManager:CreateParticle("particles/elite_freezing_parent.vpcf", PATTACH_WORLDORIGIN, nil)
+				ParticleManager:SetParticleControl(frostShard, 0, shardLoc)
+			EmitSoundOnLocationWithCaster(shardLoc, "hero_Crystal.frostbite", caster)
+			ParticleManager:FireWarningParticle(shardLoc, 400)
+			Timers:CreateTimer(5, function()
+				ParticleManager:ClearParticle(frostShard)
+				EmitSoundOn("Hero_Ancient_Apparition.IceBlast.Target", caster)
+				local targets = FindUnitsInRadius( caster:GetTeam(), shardLoc, nil, 400, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, 0, false )
+				for _, frozenTarget in pairs(targets) do
+					ApplyDamage({ victim = frozenTarget, attacker = keys.caster, damage = frozenTarget:GetMaxHealth() * 0.25, damage_type = DAMAGE_TYPE_MAGICAL, ability = ability })
+					ability:ApplyDataDrivenModifier(caster, frozenTarget, "modifier_elite_coldsnapped", {duration = 2})
+				end
+			end)
+		end
 	end
 end
 

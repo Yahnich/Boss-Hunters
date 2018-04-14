@@ -64,14 +64,19 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"hp_per_str"			"15"
+				"hp_per_str"			"5"
 			}
 			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_health"			"650"
+			}
+			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"max_hp_heal"			"35"
 			}
-			"03"
+			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"radius"				"600"

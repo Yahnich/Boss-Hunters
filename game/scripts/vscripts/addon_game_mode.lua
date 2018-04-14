@@ -824,12 +824,9 @@ function CHoldoutGameMode:OnHeroLevelUp(event)
 	local hero = PlayerResource:GetSelectedHeroEntity(playerID)
 	if hero:GetLevel() < 32 then
 		if hero:GetLevel() == 17 or hero:GetLevel() == 19 or (hero:GetLevel() > 20 and hero:GetLevel() < 25) then hero:SetAbilityPoints( hero:GetAbilityPoints() + 1) end
-		if hero:GetLevel() % 2 == 0 then
-			hero:SetAttributePoints( hero:GetAttributePoints() + 1) 
+		if hero:GetLevel() % 5 == 0 then
+			hero:SetAbilityPoints( hero:GetAbilityPoints() + 1)
 		end
-	else
-		hero:SetAbilityPoints( hero:GetAbilityPoints() - 1)
-		hero:SetAttributePoints( hero:GetAttributePoints() + 1)
 	end
 end
 
@@ -1174,7 +1171,7 @@ function CHoldoutGameMode:OnHeroPick (event)
 				ParticleManager:FireParticle("particles/roles/dev/vip_particle.vpcf", PATTACH_POINT_FOLLOW, hero)
 			end
 		end
-		local gold = 250
+		local gold = 250 + 150 * ( GameRules.BasePlayers - PlayerResource:GetPlayerCountForTeam(DOTA_TEAM_GOODGUYS) )
 		hero:SetGold( 0, true )
 		if PlayerResource:HasRandomed( ID ) then
 			gold = gold + 350
@@ -1368,6 +1365,7 @@ function CHoldoutGameMode:OnGameRulesStateChange()
 					if not PlayerResource:HasSelectedHero( nPlayerID ) and PlayerResource:GetPlayer( nPlayerID ) then
 						local player = PlayerResource:GetPlayer( nPlayerID )
 						player:MakeRandomHeroSelection()
+						PlayerResource:SetHasRandomed( nPlayerID )
 					end
 				end
 			end

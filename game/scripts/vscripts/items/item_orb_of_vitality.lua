@@ -13,7 +13,8 @@ LinkLuaModifier("modifier_item_orb_of_vitality_passive", "items/item_orb_of_vita
 
 function modifier_item_orb_of_vitality_passive:OnCreated()
 	self.regen = self:GetSpecialValueFor("bonus_hp_regen")
-	self.bonusHP = self:GetSpecialValueFor("hp_per_str")
+	self.hpPerStr = self:GetSpecialValueFor("hp_per_str")
+	self.bonusHP = self:GetSpecialValueFor("bonus_health")
 	self.stat = self:GetSpecialValueFor("bonus_strength")
 end
 
@@ -33,9 +34,13 @@ function modifier_item_orb_of_vitality_passive:GetModifierBonusStats_Strength()
 end
 
 function modifier_item_orb_of_vitality_passive:GetModifierHealthBonus()
-	return self:GetParent():GetStrength() * self.bonusHP
+	return self:GetParent():GetStrength() * self.hpPerStr + self.bonusHP
 end
 
 function modifier_item_orb_of_vitality_passive:GetModifierHealthRegenPercentage()
 	return self.regen
+end
+
+function modifier_item_orb_of_vitality_passive:GetAttributes()
+	return MODIFIER_ATTRIBUTE_MULTIPLE
 end

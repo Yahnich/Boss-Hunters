@@ -84,7 +84,7 @@ function modifier_boss3b_acid_interior_attack:OnRefresh()
 	self.armor = self:GetSpecialValueFor("stack_armor_reduction")
 	self.dot = self:GetSpecialValueFor("stack_dot")
 	self:IncrementStackCount()
-	if IsServer() then Timers:CreateTimer(self:GetRemainingTime(), function() self:DecrementStackCount() end) end
+	if IsServer() then Timers:CreateTimer(self:GetRemainingTime(), function() if self and not self:IsNull() then self:DecrementStackCount() end end) end
 end
 
 function modifier_boss3b_acid_interior_attack:DeclareFunctions()

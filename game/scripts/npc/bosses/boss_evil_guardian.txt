@@ -139,7 +139,7 @@
 	    "AbilityTextureName"			"custom/hell_guardian_hell_on_earth"
 	    "MaxLevel"                      "2"
 		
-		"AbilityCooldown"				"22 18"
+		"AbilityCooldown"				"28 25"
 		"AbilityCastPoint"				"1 0.75"
 		"AbilityCastAnimation"			"ACT_DOTA_DIE"
 	
@@ -155,7 +155,7 @@
 	        "01"
 	        {
 	            "var_type"              "FIELD_INTEGER"
-	            "raze_damage"         	"800 1000"
+	            "raze_damage"         	"600 800"
 	        }
 			"02"
 	        {
@@ -182,7 +182,7 @@
 	    "AbilityTextureName"			"custom/hell_guardian_hell_on_earth2"
 	    "MaxLevel"                      "2"
 		
-		"AbilityCooldown"				"30 22"
+		"AbilityCooldown"				"20 18"
 		"AbilityCastPoint"				"1 0.75"
 		"AbilityCastAnimation"			"ACT_DOTA_DIE"
 	    // Special
@@ -197,7 +197,7 @@
 	        "01"
 	        {
 	            "var_type"              "FIELD_INTEGER"
-	            "raze_damage"         	"800 1000"
+	            "raze_damage"         	"600 800"
 	        }
 			"02"
 	        {
@@ -250,7 +250,7 @@
 	        "01"
 	        {
 	            "var_type"              "FIELD_INTEGER"
-	            "raze_damage"         	"800 1000"
+	            "raze_damage"         	"600 800"
 	        }
 			"02"
 	        {
