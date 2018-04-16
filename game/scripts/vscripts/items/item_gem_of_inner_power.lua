@@ -21,7 +21,8 @@ end
 modifier_item_gem_of_inner_power_passive = class({})
 
 function modifier_item_gem_of_inner_power_passive:OnCreated()
-	self.bonusHP = self:GetSpecialValueFor("hp_per_str")
+	self.hpBonus = self:GetSpecialValueFor("bonus_health")
+	self.hpPerStr = self:GetSpecialValueFor("hp_per_str")
 end
 
 function modifier_item_gem_of_inner_power_passive:DeclareFunctions()
@@ -29,7 +30,7 @@ function modifier_item_gem_of_inner_power_passive:DeclareFunctions()
 end
 
 function modifier_item_gem_of_inner_power_passive:GetModifierHealthBonus()
-	return self:GetParent():GetStrength() * self.bonusHP
+	return self:GetParent():GetStrength() * self.hpPerStr + self.hpBonus
 end
 
 function modifier_item_gem_of_inner_power_passive:IsHidden()

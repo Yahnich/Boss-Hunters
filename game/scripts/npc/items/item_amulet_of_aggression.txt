@@ -21,6 +21,8 @@
 		"ItemQuality"					"component"
 		"ItemAliases"					"amulet of aggression"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		"AbilityCooldown"				"15"
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------

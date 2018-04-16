@@ -84,12 +84,17 @@
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"hp_per_str"			"20"
+				"hp_per_str"			"10"
 			}
 			"07"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"bonus_strength"		"40"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_health"			"1000"
 			}
 		}
 	}

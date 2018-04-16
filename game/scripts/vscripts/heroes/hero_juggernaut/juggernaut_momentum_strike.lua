@@ -1,37 +1,6 @@
 juggernaut_momentum_strike = class({})
 
 function juggernaut_momentum_strike:GetIntrinsicModifierName()
-	if not self:GetCaster().GetMomentum then 
-		self:GetCaster().GetMomentum = function( self ) 
-			return self:GetModifierStackCount("modifier_juggernaut_momentum_strike_momentum", self ) 
-		end 
-	end
-	if not self:GetCaster().SetMomentum then 
-		self:GetCaster().SetMomentum = function(self, amount) 
-			self:SetModifierStackCount("modifier_juggernaut_momentum_strike_momentum", self, amount ) 
-		end 
-	end
-	local ability = self
-	if not self:GetCaster().AddMomentum then 
-		self:GetCaster().AddMomentum = function(self, amount)
-			for i = 1, amount do
-				self:AddNewModifier(self, ability, "modifier_juggernaut_momentum_strike_momentum", {})
-			end
-		end 
-	end
-	if not self:GetCaster().AttemptDecrementMomentum then 
-		self:GetCaster().AttemptDecrementMomentum = function(self, amount)
-			local momentum = self:GetMomentum()
-			if momentum > amount then
-				self:SetModifierStackCount("modifier_juggernaut_momentum_strike_momentum", self, momentum - amount )
-				return true
-			elseif momentum == amount then
-				self:RemoveModifierByName("modifier_juggernaut_momentum_strike_momentum")
-				return true
-			end
-			return false
-		end 
-	end
 	return "modifier_juggernaut_momentum_strike_passive"
 end
 
@@ -46,6 +15,45 @@ function modifier_juggernaut_momentum_strike_passive:OnCreated()
 	self.crit_chance = self:GetTalentSpecialValueFor("critical_chance")
 	self.momentumHits = 0
 	self.momentum_chance = self:GetTalentSpecialValueFor("crit_chance_momentum")
+	
+	if not self:GetCaster().GetMomentum then 
+		self:GetCaster().GetMomentum = function( self ) 
+			return self:GetModifierStackCount("modifier_juggernaut_momentum_strike_momentum", self ) 
+		end 
+	end
+	if not self:GetCaster().SetMomentum then 
+		self:GetCaster().SetMomentum = function(self, amount) 
+			self:SetModifierStackCount("modifier_juggernaut_momentum_strike_momentum", self, amount ) 
+			if IsServer() and amount == 0 then
+				self:RemoveModifierByName("modifier_juggernaut_momentum_strike_momentum")
+			end
+		end 
+	end
+	local ability = self
+	if not self:GetCaster().AddMomentum then 
+		self:GetCaster().AddMomentum = function(self, amount)
+			if IsServer() then
+				for i = 1, amount do
+					self:AddNewModifier(self, ability, "modifier_juggernaut_momentum_strike_momentum", {})
+				end
+			end
+		end 
+	end
+	if not self:GetCaster().AttemptDecrementMomentum then 
+		self:GetCaster().AttemptDecrementMomentum = function(self, amount)
+			local momentum = self:GetMomentum()
+			if momentum > amount then
+				self:SetModifierStackCount("modifier_juggernaut_momentum_strike_momentum", self, momentum - amount )
+				return true
+			elseif momentum == amount then
+				if IsServer() then
+					self:RemoveModifierByName("modifier_juggernaut_momentum_strike_momentum")
+				end
+				return true
+			end
+			return false
+		end 
+	end
 end
 
 function modifier_juggernaut_momentum_strike_passive:OnRefresh()
@@ -64,13 +72,13 @@ function modifier_juggernaut_momentum_strike_passive:GetModifierPreAttack_Critic
 	local roll = RollPercentage( self.crit_chance + caster:GetMomentum() * self.momentum_chance )
 	if (caster:HasTalent("special_bonus_unique_juggernaut_momentum_strike_1") and self.momentumHits >= caster:FindTalentValue("special_bonus_unique_juggernaut_momentum_strike_1")) then
 		self.momentumHits = 0
-		caster:AddNewModifier(caster, self:GetAbility(), "modifier_juggernaut_momentum_strike_momentum", {})
+		if not caster:HasModifier("modifier_juggernaut_ronins_wind_movement") then caster:AddNewModifier(caster, self:GetAbility(), "modifier_juggernaut_momentum_strike_momentum", {}) end
 	else
 		self.momentumHits = self.momentumHits + 1
 	end
 	if roll then
-		caster:AddNewModifier(caster, self:GetAbility(), "modifier_juggernaut_momentum_strike_momentum", {})
-		if not self:GetAbility():GetToggleState() then
+		if not caster:HasModifier("modifier_juggernaut_ronins_wind_movement") then caster:AddNewModifier(caster, self:GetAbility(), "modifier_juggernaut_momentum_strike_momentum", {}) end
+		if not self:GetAbility():GetToggleState() and not caster:HasModifier("modifier_juggernaut_ronins_wind_movement") and not caster:HasModifier("modifier_juggernaut_dance_of_blades") then
 			local target = params.target
 			
 			local direction = CalculateDirection(target, caster)

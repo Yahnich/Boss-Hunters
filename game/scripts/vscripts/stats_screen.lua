@@ -15,6 +15,7 @@ function StatsScreen:StartStatsScreen()
 	CustomGameEventManager:RegisterListener('send_player_upgraded_stats', Context_Wrap( StatsScreen, 'ProcessStatsUpgrade'))
 	CustomGameEventManager:RegisterListener('send_player_selected_talent', Context_Wrap( StatsScreen, 'ProcessTalents'))
 	CustomGameEventManager:RegisterListener('notify_selected_talent', Context_Wrap( StatsScreen, 'NotifyTalent'))
+	CustomGameEventManager:RegisterListener('send_player_respec_talents', Context_Wrap( StatsScreen, 'RespecAll'))
 	self.ms = {0,20,40,60,80,150}
 	self.mp = {0,250,500,750,1000,1250,1500,1750,2000,2250,3000}
 	self.mpr = {0,3,6,9,12,15,18,21,24,27,50}
@@ -41,7 +42,7 @@ function StatsScreen:IsPlayerRegistered(hero)
 	return hero.statsHaveBeenRegistered or false
 end
 
-function StatsScreen:RegisterPlayer(hero)
+function StatsScreen:RegisterPlayer(hero, bRespec)
 	local stats = {}
 	stats.ms = 0
 	stats.mp = 0
@@ -63,13 +64,14 @@ function StatsScreen:RegisterPlayer(hero)
 	stats.sr = 0
 	
 	stats.all = 0
+	
+	stats.respec = bRespec or false
+	hero.hasRespecced = bRespec or false
 
-	CustomNetTables:SetTableValue("stats_panel", tostring(hero:entindex()), stats)
+	CustomNetTables:SetTableValue( "stats_panel", tostring(hero:entindex()), stats)
 	CustomNetTables:SetTableValue( "talents", tostring(hero:entindex()), {} )
 	CustomGameEventManager:Send_ServerToAllClients("dota_player_upgraded_stats", {playerID = hero:GetPlayerID()} )
-	local netTable = CustomNetTables:GetTableValue("hero_properties", hero:GetUnitName()..hero:entindex()) or {}
-	netTable.attribute_points = 0
-	CustomNetTables:SetTableValue("hero_properties", hero:GetUnitName()..hero:entindex(), netTable)
+	
 	hero.statsHaveBeenRegistered = true
 	hero.talentsSkilled = 0
 end
@@ -82,10 +84,10 @@ function StatsScreen:ProcessStatsUpgrade(userid, event)
 
 	if entindex ~= PlayerResource:GetSelectedHeroEntity( pID ):entindex() then return end -- calling
 	local netTable = CustomNetTables:GetTableValue("stats_panel", tostring(entindex))
-	if (not (netTable[skill] and self[skill]) and hero:GetAttributePoints() > 0) or (hero:GetLevel() < ((netTable[skill]) + 1)*4 and not skill == "all") then return end -- max level
+	if (not (netTable[skill] and self[skill]) and hero:GetAbilityPoints() > 0) or (hero:GetLevel() < ((netTable[skill]) + 1)*4 and not skill == "all") then return end -- max level
 	netTable[skill] = tostring(tonumber(netTable[skill]) + 1)
 	CustomNetTables:SetTableValue("stats_panel", tostring(entindex), netTable)
-	hero:SetAttributePoints( math.max(0, hero:GetAttributePoints() - 1) )
+	hero:SetAbilityPoints( math.max(0, hero:GetAbilityPoints() - 1) )
 	
 	hero:CalculateStatBonus()
 	CustomGameEventManager:Send_ServerToAllClients("dota_player_upgraded_stats", {playerID = pID} )
@@ -113,15 +115,30 @@ function StatsScreen:NotifyTalent(userid, event)
 	end
 end
 
-function CDOTA_BaseNPC_Hero:GetAttributePoints()
-	local netTable = CustomNetTables:GetTableValue("hero_properties", self:GetUnitName()..self:entindex()) or {}
-	if not netTable or not netTable.attribute_points then return 0 end
-	return netTable.attribute_points 
-end
-
-function CDOTA_BaseNPC_Hero:SetAttributePoints(value)
-	local netTable = CustomNetTables:GetTableValue("hero_properties", self:GetUnitName()..self:entindex()) or {}
-	if not netTable or not netTable["attribute_points"] then return nil end
-	netTable.attribute_points = value
-	CustomNetTables:SetTableValue("hero_properties", self:GetUnitName()..self:entindex(), netTable)
+function StatsScreen:RespecAll(userid, event)
+	local pID = event.pID
+	local entindex = event.entindex
+	local hero = EntIndexToHScript( entindex )
+	if hero and not hero.hasRespecced then
+		self:RegisterPlayer(hero, true) -- Reset stats screen
+		local modifiers = hero:FindAllModifiers()
+		for _, modifier in ipairs( modifiers ) do
+			if modifier:GetAbility() and modifier:GetCaster() == hero then -- destroy passive modifiers and any buffs
+				modifier:Destroy()
+			end
+		end
+		for i = 0, 23 do
+			local ability = hero:GetAbilityByIndex(i)
+			if ability then 
+				ability:SetLevel(0)
+				if string.match( ability:GetName(), "special_bonus" ) then
+					local modName = string.match( ability:GetName(), "special_bonus" )
+					print(modName)
+					hero:AddNewModifier(caster, ability, "modifier_special_bonus_"..modName, {})
+				end
+			end
+		end
+		hero:SetAbilityPoints( hero:GetLevel() + math.floor(hero:GetLevel() / GameRules.gameDifficulty) ) -- give back ability points
+		CustomGameEventManager:Send_ServerToAllClients("dota_player_upgraded_stats", {playerID = hero:GetPlayerID()} )
+	end
 end

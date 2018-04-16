@@ -138,7 +138,7 @@ end
 function CDOTA_BaseNPC:PerformAbilityAttack(target, bProcs, ability, flBonusDamage, bDamagePct)
 	self.autoAttackFromAbilityState = {} -- basically the same as setting it to true
 	self.autoAttackFromAbilityState.ability = ability
-	print(self:GetAttackDamage(), "pre")
+
 	if flBonusDamage then
 		if bDamagePct then
 			self:AddNewModifier(caster, nil, "modifier_generic_attack_bonus_pct", {damage = flBonusDamage})
@@ -148,7 +148,7 @@ function CDOTA_BaseNPC:PerformAbilityAttack(target, bProcs, ability, flBonusDama
 	end
 	self:PerformAttack(target,bProcs,bProcs,true,false,false,false,true)
 	self.autoAttackFromAbilityState = nil
-	print(self:GetAttackDamage(), "post")
+
 	self:RemoveModifierByName("modifier_generic_attack_bonus")
 	self:RemoveModifierByName("modifier_generic_attack_bonus_pct")
 end
@@ -2168,9 +2168,11 @@ function CDOTA_BaseNPC:RemoveDaze()
 end
 
 function CDOTA_BaseNPC:AttemptKill(sourceAb, attacker)
-	self:SetHealth(1)
-	local damage = ApplyDamage({victim = self, attacker = attacker, ability = sourceAb, damage_type = DAMAGE_TYPE_PURE, damage = self:GetMaxHealth(), damage_flags = DOTA_DAMAGE_FLAG_BYPASSES_INVULNERABILITY + DOTA_DAMAGE_FLAG_BYPASSES_BLOCK})
-	return not self:IsAlive()
+	if not ( self:NoHealthBar() or self:IsOutOfGame() ) then
+		self:SetHealth(1)
+		local damage = ApplyDamage({victim = self, attacker = attacker, ability = sourceAb, damage_type = DAMAGE_TYPE_PURE, damage = self:GetMaxHealth(), damage_flags = DOTA_DAMAGE_FLAG_BYPASSES_INVULNERABILITY + DOTA_DAMAGE_FLAG_BYPASSES_BLOCK})
+		return not self:IsAlive()
+	end
 end
 
 
@@ -2326,4 +2328,18 @@ function CutTreesInRadius(vloc, radius)
 		GridNav:DestroyTreesAroundPoint(vloc, radius, false)
 	end
 	return #trees
+end
+
+function CBaseEntity:RollPRNG( percentage )
+	local internalInt = (100/percentage)
+	local startingRoll = internalInt^2
+	self.internalPRNGCounter = self.internalPRNGCounter or (1/internalInt)^2
+	if RollPercentage(self.internalPRNGCounter * 100) then
+		self.internalPRNGCounter = (1/internalInt)^2
+		return true
+	else
+		local internalCount = 1/self.internalPRNGCounter
+		self.internalPRNGCounter = 1/( math.max(internalCount - internalInt, 1) )
+		return false
+	end
 end

@@ -35,7 +35,8 @@ function phenx_spirits:GetCastAnimation()
 end
 
 function phenx_spirits:GetManaCost(iLvl)
-	if caster:HasModifier("modifier_phenx_spirits_caster") then
+	local caster = self:GetCaster()
+	if not caster:HasModifier("modifier_phenx_spirits_caster") then
 		return self.BaseClass.GetManaCost(self, iLvl)
 	else
 		return 0
@@ -43,6 +44,7 @@ function phenx_spirits:GetManaCost(iLvl)
 end
 
 function phenx_spirits:GetCooldown(iLvl)
+	local caster = self:GetCaster()
 	if caster:HasModifier("modifier_phenx_spirits_caster") then
 		return self.BaseClass.GetManaCost(self, iLvl)
 	else

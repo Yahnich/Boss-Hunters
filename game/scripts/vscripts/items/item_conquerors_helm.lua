@@ -68,7 +68,8 @@ LinkLuaModifier("modifier_item_conquerors_helm_passive", "items/item_conquerors_
 
 function modifier_item_conquerors_helm_passive:OnCreated()
 	self.regen = self:GetSpecialValueFor("bonus_hp_regen")
-	self.bonusHP = self:GetSpecialValueFor("hp_per_str")
+	self.bonusHP = self:GetSpecialValueFor("bonus_health")
+	self.hpPerStr = self:GetSpecialValueFor("hp_per_str")
 	self.stat = self:GetSpecialValueFor("bonus_strength")
 	self.lifesteal = self:GetSpecialValueFor("lifesteal") / 100
 	self.armor = self:GetSpecialValueFor("bonus_armor")
@@ -104,9 +105,13 @@ function modifier_item_conquerors_helm_passive:GetModifierPhysicalArmorBonus()
 end
 
 function modifier_item_conquerors_helm_passive:GetModifierHealthBonus()
-	return self:GetParent():GetStrength() * self.bonusHP
+	return self:GetParent():GetStrength() * self.hpPerStr + self.bonusHP
 end
 
 function modifier_item_conquerors_helm_passive:GetModifierHealthRegenPercentage()
 	return self.regen
+end
+
+function modifier_item_conquerors_helm_passive:GetAttributes()
+	return MODIFIER_ATTRIBUTE_MULTIPLE
 end

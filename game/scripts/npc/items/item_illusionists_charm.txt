@@ -83,30 +83,35 @@
 			}
 			"05"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"bonus_hp_regen"		"0.5"
+				"var_type"				"FIELD_INTEGER"
+				"bonus_health"			"400"
 			}
 			"06"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"hp_per_str"			"10"
+				"var_type"				"FIELD_FLOAT"
+				"bonus_hp_regen"		"0.5"
 			}
 			"07"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"illusion_count"		"2"
+				"hp_per_str"			"3"
 			}
 			"08"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"illu_outgoing_damage"	"33"
+				"illusion_count"		"2"
 			}
 			"09"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"illu_incoming_damage"	"200"
+				"illu_outgoing_damage"	"33"
 			}
 			"10"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"illu_incoming_damage"	"200"
+			}
+			"11"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"duration"				"16"

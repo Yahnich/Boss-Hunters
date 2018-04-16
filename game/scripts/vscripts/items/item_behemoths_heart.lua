@@ -34,7 +34,8 @@ function modifier_item_behemoths_heart_passive:OnCreated()
 	self:SetStackCount( self:GetAbility().stacks )
 	self.delay = self:GetSpecialValueFor("stack_delay")
 	self.activeRegen = self:GetSpecialValueFor("active_regen")
-	self.bonusHP = self:GetSpecialValueFor("hp_per_str")
+	self.bonusHP = self:GetSpecialValueFor("bonus_health")
+	self.hpPerStr = self:GetSpecialValueFor("hp_per_str")
 	self.stat = self:GetSpecialValueFor("bonus_strength")
 	if self:GetAbility().stacks < self:GetSpecialValueFor("max_stacks") then
 		self:SetDuration( self.delay + 0.1, true )
@@ -43,6 +44,7 @@ function modifier_item_behemoths_heart_passive:OnCreated()
 end
 
 function modifier_item_behemoths_heart_passive:OnIntervalThink()
+	self:GetAbility().stacks = self:GetAbility().stacks or self:GetSpecialValueFor("max_stacks")
 	if self:GetAbility().stacks < self:GetSpecialValueFor("max_stacks") then
 		self:SetDuration( self.delay + 0.1, true )
 		self:StartIntervalThink(self.delay)
@@ -71,7 +73,7 @@ function modifier_item_behemoths_heart_passive:GetModifierBonusStats_Strength()
 end
 
 function modifier_item_behemoths_heart_passive:GetModifierHealthBonus()
-	return self:GetParent():GetStrength() * self.bonusHP
+	return self:GetParent():GetStrength() * self.hpPerStr + self.bonusHP
 end
 
 function modifier_item_behemoths_heart_passive:GetModifierHealthRegenPercentage()

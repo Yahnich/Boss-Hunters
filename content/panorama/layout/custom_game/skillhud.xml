@@ -49,6 +49,9 @@
 				<Panel id="StatsTypeContainer">
 				</Panel>
 			</Panel>
+			<Button id="RespecButton" onactivate="RespecTalents()">
+				<Label id="RespecButtonLabel" text="#RespecText"/>
+			</Button>
 		</Panel>
 	</Panel>
 </root>

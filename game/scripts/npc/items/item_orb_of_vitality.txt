@@ -61,13 +61,18 @@
 			}
 			"02"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"bonus_hp_regen"		"0.5"
+				"var_type"				"FIELD_INTEGER"
+				"bonus_health"			"400"
 			}
 			"03"
 			{
+				"var_type"				"FIELD_FLOAT"
+				"bonus_hp_regen"		"0.5"
+			}
+			"04"
+			{
 				"var_type"				"FIELD_INTEGER"
-				"hp_per_str"			"10"
+				"hp_per_str"			"3"
 			}
 		}
 	}

@@ -78,7 +78,11 @@ function RefreshStatsPanel()
 	if ( !Entities.IsRealHero( lastRememberedHero ) ){ 
 		lastRememberedHero = Players.GetPlayerHeroEntityIndex( localID )
 	}
-
+	
+	var respec = $("#RespecButton")
+	respec.SetHasClass("TalentCannotBeSkilled", CustomNetTables.GetTableValue( "stats_panel", lastRememberedHero).respec);
+	respec.SetPanelEvent("onactivate", function(){ RespecTalents( CustomNetTables.GetTableValue( "stats_panel", lastRememberedHero).respec ) });
+	
 	if(lastRememberedState == STATS_STATE_OFFENSE){
 		LoadOffenseLayout()
 	} else if(lastRememberedState == STATS_STATE_DEFENSE){
@@ -92,10 +96,10 @@ function RefreshStatsPanel()
 
 function UpdateStatsPanel()
 {
-	var selectedHero = Players.GetLocalPlayerPortraitUnit()
-	if ( Entities.IsRealHero( selectedHero ) ){
-		if ( selectedHero == Players.GetPlayerHeroEntityIndex( localID ) ){
-			if( GetAttributePoints( selectedHero ) > 0){
+	lastRememberedHero = Players.GetLocalPlayerPortraitUnit()
+	if ( Entities.IsRealHero( lastRememberedHero ) ){
+		if ( lastRememberedHero == Players.GetPlayerHeroEntityIndex( localID ) ){
+			if( Entities.GetAbilityPoints( lastRememberedHero ) > 0){
 				levelUp.style.visibility = "visible";
 			} else {
 				levelUp.style.visibility = "collapse";
@@ -110,7 +114,7 @@ function UpdateStatsPanel()
 	if( !($("#RootContainer").BHasClass("IsHidden")) ){
 		RefreshStatsPanel()
 	}
-	levelLabel.text = GetAttributePoints( selectedHero )
+	levelLabel.text = Entities.GetAbilityPoints( lastRememberedHero )
 	hasQueuedAction = false
 }
 
@@ -138,7 +142,7 @@ function CreateAttributePanel( valueLvl, valueTable, valueSignifier, valueText, 
 	talentPanel.BLoadLayoutSnippet("StatsContainer")
 	talentPanel.FindChildTraverse("StatsTypeLabel").text = $.Localize( "#" + valueText, talentPanel) + " (+ " + valueTable[valueLvl] + adder + " )"
 	talentPanel.FindChildTraverse("StatsTypeLevel").text = valueLvl + "/" + (valueTable.length - 1)
-	if( GetAttributePoints( lastRememberedHero ) == 0 || lastRememberedHero != Players.GetPlayerHeroEntityIndex( localID ) || valueLvl >= valueTable.length - 1 || Entities.GetLevel( lastRememberedHero ) < (parseInt(valueLvl) + 1) * LEVELS_BETWEEN_TALENT_UPGRADES){
+	if( Entities.GetAbilityPoints( lastRememberedHero ) == 0 || lastRememberedHero != Players.GetPlayerHeroEntityIndex( localID ) || valueLvl >= valueTable.length - 1 || Entities.GetLevel( lastRememberedHero ) < (parseInt(valueLvl) + 1) * LEVELS_BETWEEN_TALENT_UPGRADES){
 		talentPanel.FindChildTraverse("StatsTypeButton").SetHasClass("ButtonInactive", true)
 	} else {
 		talentPanel.FindChildTraverse("StatsTypeButton").SetPanelEvent("onactivate", function(){UpgradeAbility(valueSignifier)});
@@ -221,7 +225,7 @@ function LoadOtherLayout()
 	allStats.SetPanelEvent("onmouseover", function(){$.DispatchEvent("DOTAShowTextTooltip", allStats, "+2 All Stats");});
 	allStats.SetPanelEvent("onmouseout", function(){$.DispatchEvent("DOTAHideTextTooltip", allStats);});
 	
-	if( GetAttributePoints( lastRememberedHero ) == 0 || lastRememberedHero != Players.GetPlayerHeroEntityIndex( localID ) ){
+	if( Entities.GetAbilityPoints( lastRememberedHero ) == 0 || lastRememberedHero != Players.GetPlayerHeroEntityIndex( localID ) ){
 		allStats.FindChildTraverse("StatsTypeButton").SetHasClass("ButtonInactive", true)
 	} else {
 		allStats.FindChildTraverse("StatsTypeButton").SetPanelEvent("onactivate", function(){UpgradeAbility("all")});
@@ -262,6 +266,12 @@ function LoadUniqueLayout()
 	}
 	
 	levelLabel.text = "Next level requirement: " + levelRequirement
+}
+
+function RespecTalents(filter){
+	if(!filter){
+		GameEvents.SendCustomGameEventToServer( "send_player_respec_talents", {pID : localID, entindex : lastRememberedHero} );
+	}
 }
 
 function CreateTalentContainer(levelRequirement, statsTypeContainer, talentsSkilled, talents, abilityID, id){
@@ -358,17 +368,4 @@ function SelectTalent(talent)
 function NotifyTalent(talentInformation)
 {
 	GameEvents.SendCustomGameEventToServer( "notify_selected_talent", {pID : localID, text : talentInformation} )
-}
-
-function GetAttributePoints( entindex )
-{	
-	if(lastRememberedHero == -1 || lastRememberedHero == null){
-		lastRememberedHero = Players.GetPlayerHeroEntityIndex( localID )
-	}
-	var netTable = CustomNetTables.GetTableValue("hero_properties", Entities.GetUnitName( lastRememberedHero ) + lastRememberedHero)
-	if(netTable != null && netTable.attribute_points != null){
-		return netTable.attribute_points
-	} else {
-		return 0
-	}
 }

@@ -61,7 +61,7 @@ function modifier_boss_attackspeed:GetModifierPhysicalArmorBonus( params )
 end
 
 function modifier_boss_attackspeed:GetModifierBaseDamageOutgoing_Percentage( params )
-	return 12.5 * self:GetStackCount()
+	return 5 * self:GetStackCount()
 end
 
 function modifier_boss_attackspeed:OnAbilityStart( params )

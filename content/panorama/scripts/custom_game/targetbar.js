@@ -4,7 +4,6 @@ function tell_threat()
 	GameEvents.SendCustomGameEventToServer( "Tell_Threat", { pID: ID} );
 }
 
-GameEvents.Subscribe( "UpdateHealthBar", UpdatedSelection);
 GameEvents.Subscribe("dota_player_update_selected_unit", UpdatedSelection);
 GameEvents.Subscribe("dota_player_update_query_unit", UpdatedSelection);
 GameEvents.Subscribe("npc_spawned", UpdatedSpawned);
@@ -20,7 +19,6 @@ function UpdatedSpawned(arg)
 {
 	if($("#targetPanelMain").visible == false && newestBoss != arg.entindex && (Entities.GetTeamNumber( arg.entindex ) != Players.GetTeam( localID ))){
 		newestBoss = arg.entindex;
-		UpdateHealthBar(newestBoss)
 	}
 }
 
@@ -29,7 +27,6 @@ function UpdatedSelection()
 	var selectedBoss = Players.GetLocalPlayerPortraitUnit();
 	if (Entities.GetTeamNumber( selectedBoss ) != Players.GetTeam( localID )){ // target is an enemy
 		newestBoss = selectedBoss;
-		UpdateHealthBar(newestBoss);
 	}
 }
 
@@ -37,10 +34,10 @@ function UpdatedAttack(arg)
 {
 	if (arg.entindex_inflictor == 0 && arg.entindex_attacker == Players.GetPlayerHeroEntityIndex( localID ) && newestBoss != arg.entindex_killed){ // auto-attack is dealt by player owned hero
 		newestBoss = arg.entindex_killed;
-		UpdateHealthBar(newestBoss);
 	}
 }
 
+UpdateHealthBar()
 function UpdateHealthBar(unit)
 {
 	var sUnit = unit

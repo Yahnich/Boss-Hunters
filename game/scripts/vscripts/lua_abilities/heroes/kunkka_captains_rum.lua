@@ -12,7 +12,7 @@ end
 
 function kunkka_captains_rum:OnUpgrade()
 	self.charges = self:GetCaster():GetModifierStackCount("modifier_charges", self:GetCaster())
-	if self:GetLevel() == 1 and self.charges < 1 then self.charges = 1 end
+	if self:GetLevel() == 1 and self.charges < self:GetTalentSpecialValueFor("charge_count") then self.charges = self:GetTalentSpecialValueFor("charge_count") end
 	self:GetCaster():RemoveModifierByName("modifier_charges")
 	self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_charges",
         {

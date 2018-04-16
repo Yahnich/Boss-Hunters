@@ -22,15 +22,6 @@ function FlameHealCreate(keys)
 	
 end
 
-function FlameHeal(keys)
-	local ability = keys.ability
-	local target = keys.target
-	local caster = keys.caster
-	local heal = ability:GetTalentSpecialValueFor("heal_per_second")
-	if ability.stack == nil then ability.stack = 0 end
-	target:HealEvent(heal, ability, keys.caster)
-end
-
 function FlameHealDestroy(keys)
 	local ability = keys.ability
 	if ability.stack == nil then ability.stack = 1 end

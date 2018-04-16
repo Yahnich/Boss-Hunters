@@ -18,12 +18,11 @@
 		{
 			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_juggernaut.vsndevts"
 			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_earthshaker.vsndevts"
-			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_mirana.vsndevts"
 			"particle"			"particles/frostivus_herofx/juggernaut_omnislash_ascension.vpcf"
 			"particle"  		"particles/status_fx/status_effect_omnislash.vpcf"
 			"particle"  		"particles/units/heroes/hero_juggernaut/juggernaut_healing_ward_eruption.vpcf"
 			"particle"  		"particles/units/heroes/hero_juggernaut/juggernaut_omni_slash_tgt.vpcf"
-			"particle" 			"particles/units/heroes/hero_pudge/pudge_dismember.vpcf"
+			"particle"			"particles/units/heroes/hero_treant/treant_leech_seed_heal_puffs.vpcf"
 			"particle"			"particles/juggernaut_ronin_slice_buff.vpcf"
 		}
 		
@@ -51,25 +50,9 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"100 160 220 280 340 400 460"
-				"LinkedSpecialBonus"		"special_bonus_unique_juggernaut"
+				"tooltip_range"			"800 850 900 950 1000 1050 1100"
 			}
 			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"3.5"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"			"350"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"tooltip_range"			"800 850 900 950 1000 1200 1300"
-			}
-			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"speed"					"8000"
@@ -78,16 +61,6 @@
 		
 		"OnSpellStart"
 		{
-			"FireEffect"
-			{
-				"EffectName"        "particles/frostivus_herofx/juggernaut_omnislash_ascension.vpcf"
-				"EffectAttachType"  "follow_origin"
-			}
-			"FireEffect"
-			{
-				"EffectName"        "particles/units/heroes/hero_juggernaut/juggernaut_healing_ward_eruption.vpcf"
-				"EffectAttachType"  "follow_origin"
-			}
 			"FireSound"
 			{
 				"EffectName"        "Hero_Juggernaut.PreAttack"
@@ -115,7 +88,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"20"
+				"value"					"1"
 			}
 		}
 	}
@@ -134,7 +107,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"20"
+				"value"					"10"
 			}
 		}
 	}
@@ -147,11 +120,12 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_juggernaut/juggernaut_mirror_blades"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_TOGGLE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
 		"FightRecapLevel"				"1"
+		"MaxLevel"						"7"
 		"AbilityTextureName"			"juggernaut_blade_fury"
 	
 		// Casting
@@ -165,7 +139,7 @@
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"120 110 100 90 80 70 60"	
+		"AbilityManaCost"				"40 35 30 25 20 15 10"	
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -174,22 +148,29 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"blade_fury_damage_tick"	"0.2"
+				"damage_tick"				"0.2"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"blade_fury_radius"			"250"
+				"radius"					"250"
 			}
 			"03"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"blade_fury_damage"			"80 105 130 155"
+				"var_type"						"FIELD_INTEGER"
+				"damage"						"80 105 130 155 180 205 230"
+				"LinkedSpecialBonus"			"special_bonus_unique_juggernaut_mirror_blades_1"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
 			"04"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"5.0"
+				"var_type"						"FIELD_FLOAT"
+				"cycle_duration"				"1.0"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"active_momentum_cost"			"1"
 			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
@@ -209,7 +190,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"20"
+				"value"					"2"
 			}
 		}
 	}

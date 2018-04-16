@@ -29,7 +29,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_ms"				"35"
+				"bonus_ms"				"50"
 			}
 		}
 	}

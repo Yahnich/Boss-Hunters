@@ -2424,7 +2424,7 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"1.6 1.5 1.4 1.3"
+		"AbilityCooldown"				"2 1.8 1.6 1.4"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -2433,7 +2433,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"trigger_chance"			"65"
+				"trigger_chance"			"40"
 			}
 			"02"
 			{
@@ -9227,7 +9227,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"critical_mult"			"400"
+				"critical_mult"			"250"
 			}
 		}
 		"Modifiers"
@@ -15023,15 +15023,6 @@
 						"Function"		"FlameHealCreate"
 					}
 				}
-				"ThinkInterval"	"%tick_rate"
-				"OnIntervalThink"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"lua_abilities/heroes/oracle.lua"
-						"Function"		"FlameHeal"
-					}
-				}
 				"OnDestroy"
 				{
 					"RunScript"
@@ -15039,6 +15030,10 @@
 						"ScriptFile"	"lua_abilities/heroes/oracle.lua"
 						"Function"		"FlameHealDestroy"
 					}
+				}
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"		"%heal"
 				}
 			}
 			"purifying_flames_heal_counter"
@@ -15260,7 +15255,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"dmg_mult"					"1 1.1 1.2 1.3 1.4 1.5"
+				"dmg_mult"					"0.6 0.7 0.8 0.9 1.0 1.1 1.2"
 				"LinkedSpecialBonus"		"special_bonus_unique_pugna_3"
 			}
 		}
@@ -20108,12 +20103,12 @@
 			"08"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"bonus_damage_per_aura_affected_scepter"		"500 1000 1500 3000 6000 9000 12000"
+				"bonus_damage_per_aura_affected_scepter"		"20 30 40 50 60 70"
 			}
 			"09"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"bonus_heal_per_aura_affected_scepter"			"250 500 750 1500 3000 4500 6000"
+				"bonus_heal_per_aura_affected_scepter"			"10 15 20 25 30 35"
 			}
 		}
 		"OnSpellStart"

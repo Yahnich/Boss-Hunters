@@ -8,7 +8,8 @@ end
 modifier_item_crystal_of_life_passive = class({})
 
 function modifier_item_crystal_of_life_passive:OnCreated()
-	self.bonusHP = self:GetSpecialValueFor("hp_per_str")
+	self.bonusHP = self:GetSpecialValueFor("bonus_health")
+	self.hpPerStr = self:GetSpecialValueFor("hp_per_str")
 end
 
 function modifier_item_crystal_of_life_passive:DeclareFunctions()
@@ -16,7 +17,7 @@ function modifier_item_crystal_of_life_passive:DeclareFunctions()
 end
 
 function modifier_item_crystal_of_life_passive:GetModifierHealthBonus()
-	return self:GetParent():GetStrength() * self.bonusHP
+	return self:GetParent():GetStrength() * self.hpPerStr + self.bonusHP
 end
 
 function modifier_item_crystal_of_life_passive:IsHidden()

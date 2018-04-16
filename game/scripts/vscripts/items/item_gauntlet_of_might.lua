@@ -28,7 +28,8 @@ function modifier_gauntlet_of_might_passive:OnCreated()
 	self.armor = self:GetSpecialValueFor("armor")
 	self.radius = self:GetSpecialValueFor("radius")
 	self.ms = self:GetParent():GetIdealSpeedNoSlows()
-	self.bonusHP = self:GetSpecialValueFor("hp_per_str")
+	self.bonusHP = self:GetSpecialValueFor("bonus_health")
+	self.hpPerStr = self:GetSpecialValueFor("hp_per_str")
 	self:StartIntervalThink(0.5)
 end
 
@@ -61,7 +62,7 @@ function modifier_gauntlet_of_might_passive:GetModifierPhysicalArmorBonus()
 end
 
 function modifier_gauntlet_of_might_passive:GetModifierHealthBonus()
-	return self:GetParent():GetStrength() * self.bonusHP
+	return self:GetParent():GetStrength() * self.hpPerStr + self.bonusHP
 end
 
 function modifier_gauntlet_of_might_passive:IsAura()
