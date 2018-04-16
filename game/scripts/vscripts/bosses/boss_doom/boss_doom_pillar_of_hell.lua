@@ -1,0 +1,1 @@
+boss_doom_pillar_of_hell = class({})

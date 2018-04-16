@@ -80,11 +80,11 @@ function projectile_spear( keys )
     projectile = ProjectileManager:CreateLinearProjectile(projectileTable)
 end
 
-function boss_death_time( keys )
+function boss_death_time_end( keys )
     local caster = keys.caster
-    local origin = caster:GetAbsOrigin()
+	local target = keys.target
+    local origin = target:GetAbsOrigin()
     local ability = keys.ability
-    local timer = 6.0
     local Death_range = ability:GetTalentSpecialValueFor("radius")
     local targetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY
     local targetType = DOTA_UNIT_TARGET_ALL
@@ -93,25 +93,15 @@ function boss_death_time( keys )
     local blink_ability = caster:FindAbilityByName("boss_blink_on_far")
     local death_position = caster:GetAbsOrigin()
     local units = FindUnitsInRadius(
-        caster:GetTeamNumber(), origin, caster, FIND_UNITS_EVERYWHERE, targetTeam, targetType, targetFlag, FIND_CLOSEST, false)
+        caster:GetTeamNumber(), origin, caster, Death_range, targetTeam, targetType, targetFlag, FIND_CLOSEST, false)
+	target:Destroy()
+	if not caster:IsAlive() then return end
     for _,unit in pairs( units ) do
-        local particle = ParticleManager:CreateParticle("particles/generic_aoe_persistent_circle_1/death_timer_glow_rev.vpcf",PATTACH_POINT_FOLLOW,unit)
-        if GameRules.gameDifficulty > 2 then timer = 5.0 else timer = 6.0 end
-        ability:ApplyDataDrivenModifier( caster, unit, "target_warning", {duration = timer} )
-        blink_ability:StartCooldown(timer+1)
-        Timers:CreateTimer(timer,function()
-            local vDiff = unit:GetAbsOrigin() - death_position
-            caster:RemoveModifierByName("caster_chrono_fx")
-            if vDiff:Length2D() < Death_range and caster:IsAlive() then
-                unit:RemoveModifierByName("modifier_tauntmail")
-                unit.NoTombStone = true
-                unit:AttemptKill(ability, caster)
-                Timers:CreateTimer(timer,function()
-                    unit.NoTombStone = false
-                end)
-            end
-        end)
-        break
+		unit.NoTombStone = true
+		unit:AttemptKill(ability, caster)
+		Timers:CreateTimer(0.2,function()
+			unit.NoTombStone = false
+		end)
     end
 end
 
@@ -221,6 +211,7 @@ function hell_tempest_charge( event )
     end
     
     Timers:CreateTimer(0.1,function() 
+			if not caster or caster:IsNull() then return end
             if caster.charge < caster:GetMaxMana() then
                 caster.charge = caster.charge + 0.25
                 caster:SetMana(math.ceil(caster.charge)) 

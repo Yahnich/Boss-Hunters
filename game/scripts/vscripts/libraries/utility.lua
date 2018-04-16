@@ -981,12 +981,8 @@ function CDOTA_BaseNPC:IsSlowed()
 	else return false end
 end
 
-function CDOTA_BaseNPC:IsDisabled()
-	local customModifier = false
-	if self:HasModifier("creature_slithereen_crush_stun") then
-		local customModifier = true
-	end
-	if self:IsSlowed() or self:IsStunned() or self:IsRooted() or self:IsSilenced() or self:IsHexed() or self:IsDisarmed() or customModifier then 
+function CDOTA_BaseNPC:IsDisabled(bHard)
+	if (self:IsSlowed() and not bHard) or self:IsStunned() or self:IsRooted() or self:IsSilenced() or self:IsHexed() or self:IsDisarmed() then 
 		return true
 	else return false end
 end

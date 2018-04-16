@@ -1,0 +1,1 @@
+boss_doom_hell_tempest = class({})

@@ -49,6 +49,5 @@ function modifier_thanatos_debuff:DeclareFunctions()
 end
 
 function modifier_thanatos_debuff:GetModifierPhysicalArmorBonus()
-	print(self.armor + self.stack * self:GetStackCount())
 	return self.armor + self.stack * self:GetStackCount()
 end

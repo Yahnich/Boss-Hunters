@@ -1,0 +1,1 @@
+boss_doom_infernal_wave = class({})

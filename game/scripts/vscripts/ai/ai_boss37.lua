@@ -70,6 +70,11 @@ function AIThink(thisEntity)
 							if target then return CastShot(thisEntity, target:GetAbsOrigin() ) end
 						end
 					end
+					if thisEntity.hunger:IsFullyCastable() then
+						if thisEntity:IsAttacking() or thisEntity:IsDisarmed() then
+							return CastHunger(thisEntity)
+						end
+					end
 					if thisEntity.egg:IsFullyCastable() and AICore:SpecificAlliedUnitsAlive( thisEntity, "npc_dota_creature_broodmother", -1 ) < 4 then return CastEggSack(thisEntity, thisEntity:GetAbsOrigin() + RandomVector(thisEntity.egg:GetTrueCastRange()) ) end
 					if thisEntity.infest:IsFullyCastable() then
 						if distance < thisEntity.infest:GetTrueCastRange() then
@@ -77,11 +82,6 @@ function AIThink(thisEntity)
 						else
 							target = AICore:RandomEnemyHeroInRange( thisEntity, thisEntity.shot:GetTrueCastRange(), false)
 							if target then return CastInfest(thisEntity, target:GetAbsOrigin() ) end
-						end
-					end
-					if thisEntity.hunger:IsFullyCastable() then
-						if thisEntity:IsAttacking() or thisEntity:IsDisarmed() then
-							return CastHunger(thisEntity)
 						end
 					end
 					if thisEntity.web:IsFullyCastable() then
@@ -97,6 +97,9 @@ function AIThink(thisEntity)
 					end
 					if AICore:BeingAttacked( thisEntity ) > 2 then
 						thisEntity.getAIState = AI_STATE_COWARD
+						if thisEntity.web:IsFullyCastable() then
+							return CastWeb( thisEntity, thisEntity:GetAbsOrigin() - thisEntity:GetForwardVector() * thisEntity.web:GetTrueCastRange() )
+						end
 						return 0.25
 					end
 					if thisEntity.infest:IsFullyCastable() then

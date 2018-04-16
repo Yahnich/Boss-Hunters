@@ -22,3 +22,7 @@ end
 function modifier_item_gauntlet_of_alacrity_passive:IsHidden()
 	return true
 end
+
+function modifier_item_gauntlet_of_alacrity_passive:GetAttributes()
+	return MODIFIER_ATTRIBUTE_MULTIPLE
+end

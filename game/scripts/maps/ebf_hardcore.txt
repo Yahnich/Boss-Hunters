@@ -496,7 +496,7 @@
 					"NPCName"				"npc_dota_boss21"
 					"TotalUnitsToSpawn"		"5"
 					"UnitsPerSpawn"			"1"
-					"SpawnInterval"			"1"
+					"SpawnInterval"			"5"
 				}
 			}
 		}
@@ -719,7 +719,7 @@
 			{
 				"UnitBoss_8"
 				{
-					"NPCName"				"npc_dota_boss35_vh"
+					"NPCName"				"npc_dota_boss35"
 					"TotalUnitsToSpawn"		"2"
 					"UnitsPerSpawn"			"1"
 					"SpawnInterval"			"60"

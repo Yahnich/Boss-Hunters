@@ -295,7 +295,6 @@ function CHoldoutGameMode:InitGameMode()
 												hero:ForceKill(true)
 											end
 										end, "fixing bug",0)
-										
 	Convars:RegisterCommand( "deepdebugging", function()
 													if not GameRules.DebugCalls then
 														print("Starting DebugCalls")
@@ -836,6 +835,7 @@ function CHoldoutGameMode:OnAbilityLearned(event)
 	if pID and string.match(abilityname, "special_bonus" ) then
 		local hero = PlayerResource:GetSelectedHeroEntity( pID )
 		local talentData = CustomNetTables:GetTableValue("talents", tostring(hero:entindex())) or {}
+		
 		if GameRules.AbilityKV[abilityname] then
 			if GameRules.AbilityKV[abilityname]["LinkedModifierName"] then
 				local modifierName = GameRules.AbilityKV[abilityname]["LinkedModifierName"] 

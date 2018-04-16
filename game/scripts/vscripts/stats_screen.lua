@@ -122,20 +122,15 @@ function StatsScreen:RespecAll(userid, event)
 	if hero and not hero.hasRespecced then
 		self:RegisterPlayer(hero, true) -- Reset stats screen
 		local modifiers = hero:FindAllModifiers()
-		for _, modifier in ipairs( modifiers ) do
-			if modifier:GetAbility() and modifier:GetCaster() == hero then -- destroy passive modifiers and any buffs
-				modifier:Destroy()
-			end
-		end
 		for i = 0, 23 do
 			local ability = hero:GetAbilityByIndex(i)
 			if ability then 
 				ability:SetLevel(0)
-				if string.match( ability:GetName(), "special_bonus" ) then
-					local modName = string.match( ability:GetName(), "special_bonus" )
-					print(modName)
-					hero:AddNewModifier(caster, ability, "modifier_special_bonus_"..modName, {})
-				end
+			end
+		end
+		for _, modifier in ipairs( modifiers ) do
+			if modifier:GetAbility() and modifier:GetCaster() == hero then -- destroy passive modifiers and any buffs
+				modifier:Destroy()
 			end
 		end
 		hero:SetAbilityPoints( hero:GetLevel() + math.floor(hero:GetLevel() / GameRules.gameDifficulty) ) -- give back ability points
