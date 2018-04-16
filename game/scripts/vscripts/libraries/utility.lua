@@ -76,14 +76,20 @@ function CalculateDirection(ent1, ent2)
 	return direction
 end
 
-function CDOTA_BaseNPC:CreateDummy(position)
+function CDOTA_BaseNPC:CreateDummy(position, duration)
 	local dummy = CreateUnitByName("npc_dummy_unit", position, false, nil, nil, self:GetTeam())
+	if duration and duration > 0 then
+		dummy:AddNewModifier(self, nil, "modifier_kill", {duration = duration})
+	end
 	dummy:AddNewModifier(self, nil, "modifier_hidden_generic", {})
 	return dummy
 end
 
-function CDOTABaseAbility:CreateDummy(position)
+function CDOTABaseAbility:CreateDummy(position, duration)
 	local dummy = CreateUnitByName("npc_dummy_unit", position, false, nil, nil, self:GetCaster():GetTeam())
+	if duration and duration > 0 then
+		dummy:AddNewModifier(self, nil, "modifier_kill", {duration = duration})
+	end
 	dummy:AddNewModifier(self:GetCaster(), nil, "modifier_hidden_generic", {})
 	return dummy
 end
