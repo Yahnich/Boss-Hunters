@@ -2,8 +2,8 @@
 {
 	_class = "CParticleSystemDefinition"
 	m_bShouldHitboxesFallbackToRenderBounds = false
-	m_nMaxParticles = 14
-	m_ConstantColor = [ 255, 255, 255, 92 ]
+	m_nMaxParticles = 128
+	m_ConstantColor = [ 86, 86, 86, 255 ]
 	m_Renderers = 
 	[
 		{
@@ -20,131 +20,146 @@
 	[
 		{
 			_class = "C_OP_BasicMovement"
-			m_fDrag = 0.0345
+			m_Gravity = [ 0.0, 0.0, 100.0 ]
 			m_nOpEndCapState = 0
+			m_fDrag = 0.035
 		},
 		{
 			_class = "C_OP_PositionLock"
-			m_nControlPointNumber = 3
 		},
 		{
 			_class = "C_OP_Decay"
 		},
 		{
 			_class = "C_OP_InterpolateRadius"
-			m_flStartScale = 0.4
-			m_flEndScale = 8.0
-			m_flBias = 0.45
 			m_nOpEndCapState = 0
+			m_flBias = 0.4
+			m_flEndScale = 7.0
+			m_flStartScale = 0.0
 		},
 		{
 			_class = "C_OP_RampScalarLinearSimple"
-			m_nField = 4
 			m_Rate = 15.0
-		},
-		{
-			_class = "C_OP_FadeOutSimple"
-			m_nOpEndCapState = 0
-			m_flFadeOutTime = 0.75
+			m_nField = 4
 		},
 		{
 			_class = "C_OP_RampScalarLinearSimple"
-			m_nOpEndCapState = 1
-			m_Rate = 1475.0
 			m_flEndTime = 999.0
+			m_Rate = 1475.0
+			m_nOpEndCapState = 1
 		},
 		{
 			_class = "C_OP_FadeInSimple"
-			m_nOpEndCapState = 0
 			m_flFadeInTime = 0.1
+			m_nOpEndCapState = 0
+		},
+		{
+			_class = "C_OP_VectorNoise"
+			m_vecOutputMax = [ 0.5, 0.5, 1.0 ]
+			m_vecOutputMin = [ -0.5, -0.5, 1.0 ]
+			m_nFieldOutput = 21
+			m_fl4NoiseScale = 0.01
 		},
 		{
 			_class = "C_OP_LerpEndCapScalar"
-			m_flLerpTime = 0.2
-			m_nFieldOutput = 7
 			m_flOutput = 0.0
+			m_nFieldOutput = 7
+			m_flLerpTime = 0.2
 		},
 		{
 			_class = "C_OP_EndCapTimedDecay"
 			m_flDecayTime = 0.25
 		},
 		{
-			_class = "C_OP_LerpEndCapVector"
-			m_flLerpTime = 0.25
-			m_nFieldOutput = 6
+			_class = "C_OP_VectorNoise"
+			m_bAdditive = true
+			m_vecOutputMax = [ 3.0, 3.0, 3.0 ]
+			m_vecOutputMin = [ -3.0, -3.0, -3.0 ]
+			m_nFieldOutput = 0
+			m_fl4NoiseScale = 0.05
 		},
 		{
-			_class = "C_OP_VectorNoise"
-			m_fl4NoiseScale = 0.05
-			m_nFieldOutput = 0
-			m_vecOutputMin = [ -3.0, -3.0, -3.0 ]
-			m_vecOutputMax = [ 3.0, 3.0, 3.0 ]
-			m_bAdditive = true
+			_class = "C_OP_FadeOut"
+			m_flFadeBias = 0.99
+			m_bEaseInAndOut = false
+			m_flFadeOutTimeMax = 0.75
+			m_flFadeOutTimeMin = 0.75
+			m_nOpEndCapState = 0
 		},
 		{
 			_class = "C_OP_FadeOutSimple"
 			m_nFieldOutput = 16
 			m_flFadeOutTime = 1.0
+			m_nOpEndCapState = 0
 		},
 		{
-			_class = "C_OP_ColorInterpolate"
-			m_flFadeEndTime = 0.5
-			m_ColorFade = [ 106, 0, 0, 255 ]
+			_class = "C_OP_LerpEndCapScalar"
+			m_flOutput = 0.0
+			m_nFieldOutput = 16
+			m_flLerpTime = 0.2
 		},
 	]
 	m_Initializers = 
 	[
 		{
+			_class = "C_INIT_RandomAlpha"
+			m_nAlphaMax = 65
+			m_nAlphaMin = 55
+		},
+		{
 			_class = "C_INIT_RandomLifeTime"
-			m_fLifetimeMin = 1.3
-			m_fLifetimeMax = 1.5
+			m_fLifetimeMax = 1.3
+			m_fLifetimeMin = 1.1
 		},
 		{
 			_class = "C_INIT_RandomRadius"
-			m_flRadiusMin = 45.0
-			m_flRadiusMax = 55.0
+			m_flRadiusMax = 35.0
+			m_flRadiusMin = 35.0
 		},
 		{
 			_class = "C_INIT_RandomColor"
-			m_ColorMax = [ 239, 0, 0, 255 ]
-			m_ColorMin = [ 255, 234, 0, 255 ]
-		},
-		{
-			_class = "C_INIT_RandomColor"
-			m_ColorMin = [ 107, 101, 90, 255 ]
-			m_ColorMax = [ 106, 104, 99, 255 ]
+			m_ColorMax = [ 195, 68, 14, 255 ]
+			m_ColorMin = [ 211, 120, 17, 255 ]
 		},
 		{
 			_class = "C_INIT_CreateWithinSphere"
-			m_nControlPointNumber = 3
 		},
 		{
 			_class = "C_INIT_RandomRotation"
 		},
 		{
 			_class = "C_INIT_RandomSequence"
-			m_nSequenceMin = 6
-			m_nSequenceMax = 5
+			m_nSequenceMax = 6
+			m_nSequenceMin = 3
 		},
 		{
 			_class = "C_INIT_InitialVelocityNoise"
 			m_flNoiseScale = 1.5
+			m_vecOutputMax = [ 196.0, 196.0, 942.0 ]
+			m_vecOutputMin = [ -196.0, -196.0, 942.0 ]
 			m_vecAbsVal = [ 1.0, 1.0, 1.0 ]
-			m_vecOutputMin = [ -100.0, -100.0, 780.0 ]
-			m_vecOutputMax = [ 100.0, 100.0, 780.0 ]
 		},
 		{
 			_class = "C_INIT_RemapScalar"
-			m_bScaleInitialRange = true
-			m_nFieldOutput = 7
 			m_flInputMax = 0.5
+			m_nFieldOutput = 7
+			m_bScaleInitialRange = true
+		},
+		{
+			_class = "C_INIT_PositionOffset"
+			m_OffsetMax = [ 0.0, 0.0, 5.0 ]
 		},
 	]
 	m_Emitters = 
 	[
 		{
 			_class = "C_OP_ContinuousEmitter"
-			m_flEmitRate = 10.0
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/bosses/boss_doom/hell_tempest_tornado_b.vpcf"
 		},
 	]
 	m_controlPointConfigurations = 
@@ -154,13 +169,6 @@
 			m_drivers = 
 			[
 				{
-					m_iAttachType = "PATTACH_WORLDORIGIN"
-					m_vecOffset = [ 0.0, 0.0, 0.0 ]
-					m_angOffset = [ null, null, null ]
-					m_entityName = "self"
-				},
-				{
-					m_iControlPoint = 3
 					m_iAttachType = "PATTACH_WORLDORIGIN"
 					m_vecOffset = [ 0.0, 0.0, 0.0 ]
 					m_angOffset = [ null, null, null ]

@@ -3,12 +3,12 @@ boss27_destroy = class({})
 function boss27_destroy:OnAbilityPhaseStart()
 	local caster = self:GetCaster()
 	EmitSoundOn("Hero_Ursa.Overpower", caster)
-	for bear, _ in pairs( caster.bigBearsTable ) do
+	for id, bear in pairs( caster.bigBearsTable ) do
 		if not bear:IsNull() and bear:IsAlive() then
 			ParticleManager:FireTargetWarningParticle(bear)
 		end
 	end
-	for bear, _ in pairs( caster.smallBearsTable ) do
+	for id, bear in pairs( caster.smallBearsTable ) do
 		if not bear:IsNull() and bear:IsAlive() then
 			ParticleManager:FireTargetWarningParticle(bear)
 		end
@@ -20,12 +20,12 @@ function boss27_destroy:OnSpellStart()
 	local caster = self:GetCaster()
 	
 	local duration = self:GetSpecialValueFor("duration")
-	for bear, _ in pairs( caster.bigBearsTable ) do
+	for id, bear in pairs( caster.bigBearsTable ) do
 		if not bear:IsNull() and bear:IsAlive() then
 			bear:AddNewModifier(caster, self, "modifier_boss27_destroy_buff", {duration = duration})
 		end
 	end
-	for bear, _ in pairs( caster.smallBearsTable ) do
+	for id, bear in pairs( caster.smallBearsTable ) do
 		if not bear:IsNull() and bear:IsAlive() then
 			bear:AddNewModifier(caster, self, "modifier_boss27_destroy_buff", {duration = duration})
 		end

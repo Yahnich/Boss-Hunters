@@ -14,6 +14,16 @@ end
 function shadow_fiend_necro:OnToggle() end
 
 modifier_shadow_fiend_necro_handle = class({})
+if IsServer() then
+	function modifier_shadow_fiend_necro_handle:OnCreated()
+		self.max = self:GetTalentSpecialValueFor("max_souls")
+		self.deathLoss = self:GetTalentSpecialValueFor("death_soul_loss") / 100
+	end
+	function modifier_shadow_fiend_necro_handle:OnRefresh()
+		self.max = self:GetTalentSpecialValueFor("max_souls")
+		self.deathLoss = self:GetTalentSpecialValueFor("death_soul_loss") / 100
+	end
+end
 function modifier_shadow_fiend_necro_handle:DeclareFunctions()
     funcs = {MODIFIER_EVENT_ON_DEATH}
     return funcs
@@ -22,15 +32,22 @@ end
 function modifier_shadow_fiend_necro_handle:OnDeath(params)
     --PrintAll(params)
     if IsServer() then
-    	if params.attacker == self:GetCaster() then
+    	if params.attacker == self:GetCaster() and params.unit ~= params.attacker then
+			local necroStacks = params.attacker:FindModifierByName("modifier_shadow_fiend_necro")
     		self:GetAbility():FireTrackingProjectile("particles/units/heroes/hero_nevermore/nevermore_necro_souls.vpcf", self:GetCaster(), 1000, {source=params.unit, origin=params.unit:GetAbsOrigin()})
-    		if params.attacker:HasModifier("modifier_shadow_fiend_necro") then
-    		 	if params.attacker:FindModifierByName("modifier_shadow_fiend_necro"):GetStackCount() <= self:GetTalentSpecialValueFor("max_souls") then
-    		 		params.attacker:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_shadow_fiend_necro", {}):IncrementStackCount()
-    		 	end
+    		if necroStacks and necroStacks:GetStackCount() <= self.max then
+				params.attacker:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_shadow_fiend_necro", {}):IncrementStackCount()
     		else
     			params.attacker:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_shadow_fiend_necro", {}):IncrementStackCount()
     		end
+		end
+		if params.unit == self:GetCaster() then
+			local necroStacks = params.unit:FindModifierByName("modifier_shadow_fiend_necro")
+			if necroStacks then
+				local requiem = self:GetCaster():FindAbilityByName("shadow_fiend_requiem")
+				if requiem and requiem:GetLevel() > 0 then requiem:ReleaseSouls() end
+    		 	necroStacks:SetStackCount( math.ceil(necroStacks:GetStackCount() * self.deathLoss) )
+			end
     	end
     end
 end
@@ -76,6 +93,39 @@ function modifier_shadow_fiend_necro_handle:IsHidden()
 end
 
 modifier_shadow_fiend_necro = class({})
+
+if IsServer() then
+	function modifier_shadow_fiend_necro:OnCreated()
+		self.max = self:GetTalentSpecialValueFor("max_souls")
+		self.deathLoss = self:GetTalentSpecialValueFor("death_soul_loss") / 100
+		self.excessLoss = self:GetTalentSpecialValueFor("excess_loss_rate")
+	end
+	function modifier_shadow_fiend_necro:OnRefresh()
+		self.max = self:GetTalentSpecialValueFor("max_souls")
+		self.deathLoss = self:GetTalentSpecialValueFor("death_soul_loss") / 100
+		self.excessLoss = self:GetTalentSpecialValueFor("excess_loss_rate")
+	end
+	function modifier_shadow_fiend_necro:OnStackCountChanged( oldStacks )
+		if self:GetStackCount() > self.max then
+			self:SetDuration(self.excessLoss, true)
+			self:StartIntervalThink(self.excessLoss)
+		else
+			self:SetDuration(-1, true)
+			self:StartIntervalThink(-1)
+		end
+	end
+	function modifier_shadow_fiend_necro:OnIntervalThink()
+		self:DecrementStackCount()
+		if self:GetStackCount() > self.max then
+			self:SetDuration(self.excessLoss, true)
+			self:StartIntervalThink(self.excessLoss)
+		else
+			self:SetDuration(-1, true)
+			self:StartIntervalThink(-1)
+		end
+	end
+end
+
 function modifier_shadow_fiend_necro:DeclareFunctions()
     funcs = {MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE}
     return funcs

@@ -72,10 +72,6 @@
 		{
 			m_ChildRef = resource:"particles/fire_tornado_dust_trail_b.vpcf"
 		},
-		{
-			m_ChildRef = resource:"particles/econ/items/sniper/sniper_charlie/sniper_base_attack_launch_fire_charlie.vpcf"
-			m_bDisableChild = true
-		},
 	]
 	m_ConstantColor = [ 255, 119, 8, 255 ]
 	m_controlPointConfigurations = 

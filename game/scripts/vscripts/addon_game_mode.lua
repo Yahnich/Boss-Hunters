@@ -1987,6 +1987,11 @@ function CHoldoutGameMode:OnNPCSpawned( event )
 		if not spawnedUnit or spawnedUnit:GetClassname() == "npc_dota_thinker" or spawnedUnit:IsPhantom() or spawnedUnit:IsFakeHero()then
 			return
 		end
+		if spawnedUnit:GetTeam() == DOTA_TEAM_GOODGUYS then
+			if spawnedUnit:IsRealHero() then
+				spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_tombstone_respawn_immunity", {duration = 3})
+			end
+		end
 		if spawnedUnit:IsCourier() then
 			spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_invulnerable", {})
 		end

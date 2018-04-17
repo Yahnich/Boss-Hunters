@@ -6924,6 +6924,93 @@
 			"DisableResistance"			"30.0"
 		}
 	}
+	"npc_dota_boss35b"
+	{
+		// General
+		//----------------------------------------------------------------
+		"Model"						"models/items/courier/dc_demon/dc_demon_flying.vmdl"	// Model.
+		"BaseClass"					"npc_dota_creature"
+		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
+		"Level"						"665"
+		"ModelScale" 				"1.675"
+		"IsAncient"					"0"
+		"MinimapIcon"				"minimap_enemyicon"
+		"MinimapIconSize"			"20"
+		"IsCore"					"1"
+		"vscripts"					"ai/ai_boss35b"
+	
+		// Abilities
+		//----------------------------------------------------------------
+		"AbilityLayout"				"6"
+		"Ability1"					""		// Ability 1.
+		"Ability2"					""			// Ability 2.
+		"Ability3"					""	// Ability 2.
+		"Ability4"					""		// Ability 1.
+		"Ability5"					""	// Ability 2.
+		"Ability6"					""		// Ability 1.
+		"Ability7"					""			// Ability 2.
+		"Ability8"					""	// Ability 2.
+	
+		// Armor
+		//----------------------------------------------------------------
+		"ArmorPhysical"				"5"			// Physical protection.
+		"MagicalResistance"			"15"		// Magical protection.
+		
+		// Attack
+		//----------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+		"AttackDamageMin"			"600"		// Damage range min.
+		"AttackDamageMax"			"650"		// Damage range max.
+		"AttackRate"				"1.8"		// Speed of attack.
+		"AttackAnimationPoint"		"0.4"		// Normalized time in animation cycle to attack.
+		"AttackAcquisitionRange"	"3500"		// Range within a target can be acquired.
+		"AttackRange"				"320"		// Range within a target can be attacked.
+		"ProjectileModel"			""							// Particle system model for projectile.
+		"ProjectileSpeed"			"30"									// Speed of projectile.
+	
+		// Bounds
+		//----------------------------------------------------------------
+		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"			// Hull type used for navigation/locomotion.
+		"RingRadius"				"120"
+		"HealthBarOffset"			"320"
+	
+		// Bounty
+		//----------------------------------------------------------------
+		"BountyXP"					"0"		// Experience earn.
+		"BountyGoldMin"				"0"			// Gold earned min.
+		"BountyGoldMax"				"0"			// Gold earned max.
+	
+		// Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_FLY"
+		"MovementSpeed"				"250"		// Speed.
+		"MovementTurnRate"			"66.6"		// Turning rate.
+	
+		// Status
+		//----------------------------------------------------------------
+		"StatusHealth"				"5000"		// Base health.
+		"StatusHealthRegen"			"0"			// Health regeneration rate.
+		"StatusMana"				"0"			// Base mana.
+		"StatusManaRegen"			"0"			// Mana regeneration rate.		 
+		
+		// Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange"		"666"		// Range of vision during day HERO.
+		"VisionNighttimeRange"		"666"		// Range of vision at night time.
+	
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"					"DOTA_TEAM_BADGUYS"
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		
+		// Creature Data
+		//----------------------------------------------------------------
+		"Creature"
+		{
+		}
+	}
 	"npc_dota_boss36"
 	{
 		// General

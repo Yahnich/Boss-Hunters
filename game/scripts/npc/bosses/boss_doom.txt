@@ -41,7 +41,7 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"25 20"
+		"AbilityCooldown"				"28 25"
 	
 		"precache"
 		{
@@ -53,7 +53,17 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"duration"					"10"
+				"duration"					"8"
+			}
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_damage"				"25"
+			}
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_attackspeed"			"200 300"
 			}
 		}
 	}
@@ -137,12 +147,12 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"curr_hp_damage"			"9 10"
+				"curr_hp_damage"			"7 8"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"duration"					"8 10"
+				"duration"					"6 8"
 			}
 		}
 	}
@@ -279,15 +289,15 @@
 	
 		"precache"
 		{
-			"particle"					"particles/units/heroes/hero_enigma/enigma_blackhole.vpcf"
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_enigma.vsndevts"
+			"particle"					"particles/bosses/boss_doom/hell_tempest_tornado.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_brewmaster.vsndevts"
 		}
 		"AbilitySpecial"
 		{
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"radius"					"125"
+				"radius"					"150"
 			}
 			"02"
 			{
@@ -324,29 +334,35 @@
 		"AbilityChannelTime"			"5"
 		"AbilityCastAnimation"			"ACT_DOTA_CHANNEL_ABILITY_4"
 		"AbilityCastPoint"				"2"
-		"AbilityCooldown"				"30"
+		"AbilityCooldown"				"60"
 	
 		"precache"
 		{
-			"particle"					"particles/units/heroes/hero_enigma/enigma_blackhole.vpcf"
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_enigma.vsndevts"
+			"particle"					"particles/units/heroes/hero_dragon_knight/dragon_knight_transform_red.vpcf"
+			"particle"					"particles/bosses/boss_doom/boss_doom_demonic_servants_link.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_dragon_knight.vsndevts"
 		}
 		"AbilitySpecial"
 		{
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"radius"					"500 600"
+				"servants"					"4 5"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage_per_second"			"35 40"
+				"max_damage_reduction"		"100"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"pull"						"2"
+				"max_bonus_damage"			"100"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"break_radius"				"900"
 			}
 		}
 	}

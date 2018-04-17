@@ -16,8 +16,8 @@ if IsServer() then
 		thisEntity.bigbear = thisEntity:FindAbilityByName("boss27_ursa_giant")
 		thisEntity.smallbear = thisEntity:FindAbilityByName("boss27_ursa_warrior")
 		
-		thisEntity.bigBearsTable = {}
-		thisEntity.smallBearsTable = {}
+		thisEntity.bigBearsTable = thisEntity.bigBearsTable or {}
+		thisEntity.smallBearsTable = thisEntity.smallBearsTable or {}
 		
 		thisEntity.GetBigBears = function(self) return self.bigBearsTable or {} end
 		thisEntity.GetSmallBears = function(self) return self.smallBearsTable or {} end
@@ -28,14 +28,14 @@ if IsServer() then
 		thisEntity.GetTotalBearCount = function(self) return self:GetBigBearCount() + self:GetSmallBearCount() end
 		
 		Timers:CreateTimer(1, function()
-			for bear, _ in pairs( thisEntity.bigBearsTable ) do
+			for id, bear in pairs( thisEntity.bigBearsTable ) do
 				if bear:IsNull() or not bear:IsAlive() then
-					thisEntity.bigBearsTable[bear] = nil
+					table.remove(thisEntity.bigBearsTable, id)
 				end
 			end
-			for bear, _ in pairs( thisEntity.smallBearsTable ) do
+			for id, bear in pairs( thisEntity.smallBearsTable ) do
 				if bear:IsNull() or not bear:IsAlive() then
-					thisEntity.smallBearsTable[bear] = nil
+					table.remove(thisEntity.smallBearsTable, id)
 				end
 			end
 			return 1
@@ -61,6 +61,7 @@ if IsServer() then
 
 	function AIThink(thisEntity)
 		if not thisEntity:IsDominated() and not thisEntity:IsChanneling() then
+			print( thisEntity:GetTotalBearCount(), thisEntity:GetBigBearCount(), thisEntity:GetSmallBearCount() )
 			if AICore:BeingAttacked( thisEntity ) > 0 then
 				if thisEntity:GetTotalBearCount() == 0 then
 					if thisEntity.bigbear:IsFullyCastable() then

@@ -67,7 +67,7 @@ function CreateFrostShards(keys)
 					ability:ApplyDataDrivenModifier(caster, frozenTarget, "modifier_elite_coldsnapped", {duration = 2})
 				end
 			end)
-		end
+		end)
 	end
 end
 

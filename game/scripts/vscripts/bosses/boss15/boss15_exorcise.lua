@@ -1,7 +1,7 @@
 boss15_exorcise = class({})
 
 function boss15_exorcise:OnAbilityPhaseStart()
-	ParticleManager:FireLinearWarningParticle(self:GetCaster():GetAbsOrigin(), self:GetCaster():GetAbsOrigin() + CalculateDirection(self:GetCursorPosition(), self:GetCaster()) * self:GetSpecialValueFor( "distance" ))
+	ParticleManager:FireLinearWarningParticle(self:GetCaster():GetAbsOrigin(), self:GetCaster():GetAbsOrigin() + CalculateDirection(self:GetCursorPosition(), self:GetCaster()) * self:GetSpecialValueFor( "distance" ), self:GetSpecialValueFor( "width_end" ))
 	return true
 end
 
@@ -86,13 +86,11 @@ function boss15_exorcise:OnLinearProjectileHit( hTarget )
 
 		ApplyDamage( damage )
 		EmitSoundOn( "Hero_DeathProphet.CarrionSwarm.Damage.Mortis", self:GetCaster() )
-		if self:GetCaster():GetHealthPercent() > 66 then
+		if self:GetCaster():GetHealthPercent() > 50 then
 			hTarget:AddNewModifier(self:GetCaster(), self, "modifier_boss15_exorcise_damage_debuff", {duration = self:GetSpecialValueFor("debuff_duration")})
-		elseif self:GetCaster():GetHealthPercent() < 66 and self:GetCaster():GetHealthPercent() > 33 then
+		elseif self:GetCaster():GetHealthPercent() < 50 then
 			hTarget:AddNewModifier(self:GetCaster(), self, "modifier_silence", {duration = self:GetSpecialValueFor("debuff_duration")})
 			hTarget:AddNewModifier(self:GetCaster(), self, "modifier_disarmed", {duration = self:GetSpecialValueFor("debuff_duration")})
-		else
-			hTarget:AddNewModifier(self:GetCaster(), self, "modifier_stunned_generic", {duration = self:GetSpecialValueFor("stun_duration")})
 		end
 		
 		ParticleManager:FireParticle( "particles/units/heroes/hero_death_prophet/death_prophet_carrion_swarm_impact.vpcf", PATTACH_ABSORIGIN_FOLLOW, hTarget )

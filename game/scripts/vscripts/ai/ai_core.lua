@@ -79,6 +79,31 @@ function AICore:NearestEnemyHeroInRange( entity, range , magic_immune)
 	return target
 end
 
+function AICore:MostDamageEnemyHeroInRange( entity, range , magic_immune)
+	local flags = DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE + DOTA_UNIT_TARGET_FLAG_NO_INVIS
+	if magic_immune then
+		flags = flags + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
+	end
+	if entity:GetTauntTarget() then return entity:GetTauntTarget() end
+	
+	local enemies = FindUnitsInRadius( entity:GetTeamNumber(), entity:GetAbsOrigin(), nil, range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, flags, 0, false )
+	
+	local minDamage = 0
+	local target = nil
+	
+	for _,enemy in pairs(enemies) do
+		local distanceToEnemy = (entity:GetAbsOrigin() - enemy:GetAbsOrigin()):Length2D()
+		if enemy:IsAlive() and enemy.statsDamageDealt and enemy.statsDamageDealt > minDamage then
+			minDamage = enemy.statsDamageDealt
+			target = enemy
+		end
+	end
+	if entity:GetTauntTarget() then 
+		target = entity:GetTauntTarget()
+	end
+	return target
+end
+
 function AICore:BeingAttacked( entity )
 	local enemies = FindUnitsInRadius( entity:GetTeamNumber(), entity:GetAbsOrigin(), nil, 9999, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false )
 	local count = 0
