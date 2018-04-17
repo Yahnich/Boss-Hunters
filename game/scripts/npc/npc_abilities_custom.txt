@@ -17668,6 +17668,7 @@
 				"var_type"				"FIELD_INTEGER"
 				"damage_reflection_pct"	"10 15 20 25 30 35 40"
 				"LinkedSpecialBonus"	"special_bonus_unique_spectre_5"
+				"CalculateSpellDamageTooltip"		"0"
 			}
 		}
 	}

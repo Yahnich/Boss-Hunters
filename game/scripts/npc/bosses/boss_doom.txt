@@ -118,7 +118,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
-		"AbilityTextureName"			"enigma_black_hole"
+		"AbilityTextureName"			"doom_bringer_doom"
 		"MaxLevel"						"3"
 		
 		"AbilityCastRange"				"450 500"
@@ -137,7 +137,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"curr_hp_damage"			"1.5"
+				"curr_hp_damage"			"9 10"
 			}
 			"02"
 			{
@@ -155,21 +155,20 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"bosses/boss_doom/boss_doom_infernal_wave"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
-		"AbilityTextureName"			"enigma_black_hole"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"nevermore_shadowraze1"
 		"MaxLevel"						"3"
 		
 		"AbilityCastRange"				"450 500"
-		"AbilityChannelTime"			"5"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
 		"AbilityCastPoint"				"1.5 1"
 		"AbilityCooldown"				"30"
 	
 		"precache"
 		{
-			"particle"					"particles/units/heroes/hero_enigma/enigma_blackhole.vpcf"
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_enigma.vsndevts"
+			"particle"					"particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_shadowraze.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_nevermore.vsndevts"
 		}
 		"AbilitySpecial"
 		{
@@ -181,12 +180,32 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"35 40"
+				"damage"					"1800 2500"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"radius"					"250"
+				"radius"					"200"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"raze_spacing"				"175"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"razes_per_line"			"7 9"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"wave_spacing"				"250"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"wave_delay"				"1 0.75"
 			}
 		}
 	}
@@ -199,38 +218,42 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"bosses/boss_doom/boss_doom_pillar_of_hell"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
-		"AbilityTextureName"			"enigma_black_hole"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"nevermore_shadowraze1_demon"
 		"MaxLevel"						"3"
 		
 		"AbilityCastRange"				"450 500"
-		"AbilityChannelTime"			"5"
 		"AbilityCastAnimation"			"ACT_DOTA_GENERIC_CHANNEL_1"
 		"AbilityCastPoint"				"1.5 1"
-		"AbilityCooldown"				"30"
+		"AbilityCooldown"				"12"
 	
 		"precache"
 		{
-			"particle"					"particles/units/heroes/hero_enigma/enigma_blackhole.vpcf"
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_enigma.vsndevts"
+			"particle"					"particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_shadowraze.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_nevermore.vsndevts"
 		}
 		"AbilitySpecial"
 		{
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"radius"					"500 600"
+				"range"						"2000"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage_per_second"			"35 40"
+				"radius"					"200"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"pull"						"2"
+				"damage"					"1200 1500"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"raze_delay"				"0.2"
 			}
 		}
 	}
@@ -245,7 +268,7 @@
 		"ScriptFile"					"bosses/boss_doom/boss_doom_hell_tempest"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
-		"AbilityTextureName"			"enigma_black_hole"
+		"AbilityTextureName"			"nevermore_necromastery_demon"
 		"MaxLevel"						"3"
 		
 		"AbilityCastRange"				"450 500"
@@ -264,17 +287,22 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"radius"					"500 600"
+				"radius"					"125"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage_per_second"			"35 40"
+				"tornadoes_per_second"		"4 5"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"pull"						"2"
+				"tornado_speed"				"180 220"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"tornado_damage"			"5000 6000"
 			}
 		}
 	}
@@ -289,7 +317,7 @@
 		"ScriptFile"					"bosses/boss_doom/boss_doom_demonic_servants"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
-		"AbilityTextureName"			"enigma_black_hole"
+		"AbilityTextureName"			"nevermore_requiem"
 		"MaxLevel"						"3"
 		
 		"AbilityCastRange"				"450 500"

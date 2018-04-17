@@ -2,7 +2,7 @@ boss_doom_ill_fated = class({})
 
 function boss_doom_ill_fated:OnSpellStart()
 	local caster = self:GetCaster()
-	caster:AddNewModifier(caster, self, "modifier_boss_doom_ill_fated", {duration = self:GetSpecialValueFor("duration")})
+	self:GetCursorTarget():AddNewModifier(caster, self, "modifier_boss_doom_ill_fated", {duration = self:GetSpecialValueFor("duration")})
 end
 
 modifier_boss_doom_ill_fated = class({})
@@ -17,7 +17,7 @@ function modifier_boss_doom_ill_fated:OnCreated()
 end
 
 function modifier_boss_doom_ill_fated:OnIntervalThink()
-	self:GetAbility():DealDamage( self:GetCaster(), self:GetParent(), self:GetCaster():GetHealth() * self.damage * 0.1, {damage_type = DAMAGE_TYPE_PURE} )
+	self:GetAbility():DealDamage( self:GetCaster(), self:GetParent(), self:GetParent():GetHealth() * self.damage * 0.1, {damage_type = DAMAGE_TYPE_PURE} )
 end
 
 function modifier_boss_doom_ill_fated:OnDestroy()
@@ -25,6 +25,20 @@ function modifier_boss_doom_ill_fated:OnDestroy()
 end
 
 function modifier_boss_doom_ill_fated:CheckState()
-	return {MODIFIER_STATE_SILENCED,
-			MODIFIER_STATE_PASSIVES_DISABLED}
+	return {[MODIFIER_STATE_SILENCED] = true,
+			[MODIFIER_STATE_PASSIVES_DISABLED] = true,
+			[MODIFIER_STATE_MUTED] = true,
+			}
+end
+
+function modifier_boss_doom_ill_fated:GetEffectName()
+	return "particles/units/heroes/hero_doom_bringer/doom_bringer_doom.vpcf"
+end
+
+function modifier_boss_doom_ill_fated:GetStatusEffectName()
+	return "particles/status_fx/status_effect_doom.vpcf"
+end
+
+function modifier_boss_doom_ill_fated:StatusEffectPriority()
+	return 20
 end
