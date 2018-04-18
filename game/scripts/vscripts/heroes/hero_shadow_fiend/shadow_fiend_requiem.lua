@@ -16,12 +16,12 @@ function shadow_fiend_requiem:OnSpellStart()
 
 	caster:RemoveModifierByName("modifier_phased")
 
-	self.damage = self:GetTalentSpecialValueFor("damage_per_souls")
+	self.damage = self:GetTalentSpecialValueFor("damage")
 
 	self:ReleaseSouls()
 end
 
-function shadow_fiend_requiem:ReleaseSouls()
+function shadow_fiend_requiem:ReleaseSouls(bDeath)
 	local caster = self:GetCaster()
 
 	local startPos = caster:GetAbsOrigin()
@@ -39,8 +39,9 @@ function shadow_fiend_requiem:ReleaseSouls()
 		souls = modifier:GetStackCount()
 	end
 	
-	self.damage = ( self.damage or self:GetTalentSpecialValueFor("damage_per_souls") ) * souls
+	self.damage = ( self.damage or self:GetTalentSpecialValueFor("damage") ) * souls
 	local projectiles = math.floor(necromastery:GetTalentSpecialValueFor("max_souls") / 2)
+	if bDeath then projectiles = math.floor(projectiles) / 2 end
 	
 	ParticleManager:FireParticle("particles/units/heroes/hero_nevermore/nevermore_requiemofsouls_a.vpcf", PATTACH_ABSORIGIN, caster, {[1]=Vector(projectiles, 0, 0),[2]=caster:GetAbsOrigin()})
 	ParticleManager:FireParticle("particles/units/heroes/hero_nevermore/nevermore_requiemofsouls.vpcf", PATTACH_ABSORIGIN, caster, {[1]=Vector(projectiles, 0, 0)})
@@ -48,7 +49,8 @@ function shadow_fiend_requiem:ReleaseSouls()
 	local angle = 360/projectiles
 
 	if caster:FindAbilityByName("shadow_fiend_necro"):GetToggleState() then
-		local newStackCount = modifier:GetStackCount() - souls
+		local cost = self:GetTalentSpecialValueFor("soul_cost")
+		local newStackCount = modifier:GetStackCount() - cost
 		modifier:SetStackCount(newStackCount)
 		if modifier:GetStackCount() < 1 then caster:RemoveModifierByName("modifier_shadow_fiend_necro") end
 
@@ -64,7 +66,7 @@ function shadow_fiend_requiem:ReleaseSouls()
 		ParticleManager:SetParticleControl(particle_lines_fx, 2, Vector(0, distance/speed, 0))
 		ParticleManager:ReleaseParticleIndex(particle_lines_fx)
 
-		self:FireLinearProjectile("particles/units/heroes/hero_nevermore/nevermore_requiemofsouls_line.vpcf", direction*speed, distance, self:GetTalentSpecialValueFor("width_start"), {width_end=self:GetTalentSpecialValueFor("width_end"), extraData={secondProj=false}}, false, true, self:GetTalentSpecialValueFor("width_end"))
+		self:FireLinearProjectile("", direction*speed, distance, self:GetTalentSpecialValueFor("width_start"), {width_end=self:GetTalentSpecialValueFor("width_end"), extraData={secondProj=false}}, false, true, self:GetTalentSpecialValueFor("width_end"))
 	end
 end
 

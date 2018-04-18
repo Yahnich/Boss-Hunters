@@ -720,7 +720,7 @@
 				"UnitBoss_8"
 				{
 					"NPCName"				"npc_dota_boss35"
-					"TotalUnitsToSpawn"		"2"
+					"TotalUnitsToSpawn"		"1"
 					"UnitsPerSpawn"			"1"
 					"SpawnInterval"			"60"
 				}

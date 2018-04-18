@@ -190,17 +190,19 @@ function AICore:AttackHighestPriority( entity )
 			end
 		end
 		target = target or weakestInRange or closestUnit
-		entity.AIprevioustarget = target
+		if entity.AIprevioustarget and entity.AIprevioustarget:GetTeamNumber() ~= entity:GetTeamNumber() then
+			entity.AIprevioustarget = target
+		end
 		if target and not target:IsNull() then
 			ExecuteOrderFromTable({
 				UnitIndex = entity:entindex(),
 				OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
 				TargetIndex = target:entindex()
 			})
-			return 1
+			return 0.25
 		else
 			AICore:RunToRandomPosition( entity, 5 )
-			return 1
+			return 0.25
 		end
 	end
 end

@@ -270,14 +270,14 @@ function CHoldoutGameMode:InitGameMode()
 	GameRules:GetGameModeEntity():SetCustomBuybackCostEnabled(true)
 	GameRules:GetGameModeEntity():SetCameraDistanceOverride(1400)
 	-- GameRules:GetGameModeEntity():SetCustomGameForceHero("npc_dota_hero_wisp")
-	XP_PER_LEVEL = {100,
+	GameRules.XP_PER_LEVEL = {100,
 					200}
 	for i = 3, GAME_MAX_LEVEL do
-		XP_PER_LEVEL[i] = XP_PER_LEVEL[i-1] + i * 100
+		GameRules.XP_PER_LEVEL[i] = GameRules.XP_PER_LEVEL[i-1] + i * 100
 	end
 
 	GameRules:GetGameModeEntity():SetUseCustomHeroLevels( true )
-    GameRules:GetGameModeEntity():SetCustomXPRequiredToReachNextLevel( XP_PER_LEVEL )
+    GameRules:GetGameModeEntity():SetCustomXPRequiredToReachNextLevel( GameRules.XP_PER_LEVEL )
 	
 	GameRules:GetGameModeEntity():SetMaximumAttackSpeed(MAXIMUM_ATTACK_SPEED)
 	GameRules:GetGameModeEntity():SetMinimumAttackSpeed(MINIMUM_ATTACK_SPEED)
@@ -1142,7 +1142,7 @@ function CHoldoutGameMode:OnHeroPick (event)
 		StatsScreen:RegisterPlayer(hero)
 		hero:AddNewModifier(hero, nil, "modifier_stats_system_handler", {})
 		
-		hero:AddExperience(200+300+400+500+600,false,false)
+		hero:AddExperience(GameRules.XP_PER_LEVEL[7],false,false)
 		
 		-- StatsManager:CreateCustomStatsForHero(hero)
 		hero:SetRespawnPosition( GetGroundPosition(Vector(973, 99, 0), nil) )

@@ -5944,13 +5944,13 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"mana_cost_per_second"	"20 40 60 80 100 120"
+				"mana_cost_per_second"	"10 25 40 55 70 85"
 			}
 			
 			"02"
 			{
-				"var_type"			"FIELD_INTEGER"
-				"radius"			"450"
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"700"
 			}
 			"03"
 			{

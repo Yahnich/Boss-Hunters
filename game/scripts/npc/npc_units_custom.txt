@@ -170,7 +170,7 @@
 	
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"7200"		// Base health.
+		"StatusHealth"				"4500"		// Base health.
 		"StatusHealthRegen"			"20"		// Health regeneration rate.
 		"StatusMana"				"250"		// Base mana.
 		"StatusManaRegen"			"5"			// Mana regeneration rate.
@@ -245,7 +245,7 @@
 		// Armor
 		//----------------------------------------------------------------
 		"ArmorPhysical"				"5"			// Physical protection.
-		"MagicalResistance"			"50"		// Magical protection (percentage).
+		"MagicalResistance"			"30"		// Magical protection (percentage).
 	
 		// Attack
 		//----------------------------------------------------------------
@@ -279,7 +279,7 @@
 	
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"7200"		// Base health.
+		"StatusHealth"				"4500"		// Base health.
 		"StatusHealthRegen"			"150"		// Health regeneration rate.
 		"StatusMana"				"250"		// Base mana.
 		"StatusManaRegen"			"5"			// Mana regeneration rate.
@@ -387,7 +387,7 @@
 	
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"6000"		// Base health.
+		"StatusHealth"				"5000"		// Base health.
 		"StatusHealthRegen"			"60"		// Health regeneration rate.
 		"StatusMana"				"500"			// Base mana.
 		"StatusManaRegen"			"10"			// Mana regeneration rate.
@@ -3622,7 +3622,7 @@
 		//----------------------------------------------------------------
 		"AbilityLayout"				"6"
 		"Ability1"					"boss_focusfire"			// Ability 1.
-		"Ability2"					"clinkz_wind_walk"
+		"Ability2"					"boss_wind_walk"
 	
 		// Armor
 		//----------------------------------------------------------------
@@ -3637,7 +3637,7 @@
 		"AttackRate"				"2.1"		// Speed of attack.
 		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
-		"AttackRange"				"1100"		// Range within a target can be attacked.
+		"AttackRange"				"750"		// Range within a target can be attacked.
 		"ProjectileModel"			"particles/units/heroes/hero_clinkz/clinkz_searing_arrow.vpcf"			// Particle system model for projectile.
 		"ProjectileSpeed"			"1400"			// Speed of projectile.		   
 	
@@ -3728,7 +3728,7 @@
 		//----------------------------------------------------------------
 		"AbilityLayout"				"6"
 		"Ability1"					"boss_focusfire"			// Ability 1.
-		"Ability2"					"clinkz_wind_walk"
+		"Ability2"					"boss_wind_walk"
 	
 		// Armor
 		//----------------------------------------------------------------
@@ -3743,7 +3743,7 @@
 		"AttackRate"				"2.1"		// Speed of attack.
 		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
-		"AttackRange"				"1100"		// Range within a target can be attacked.
+		"AttackRange"				"750"		// Range within a target can be attacked.
 		"ProjectileModel"			"particles/units/heroes/hero_clinkz/clinkz_searing_arrow.vpcf"			// Particle system model for projectile.
 		"ProjectileSpeed"			"1400"			// Speed of projectile.		   
 	
@@ -3834,7 +3834,7 @@
 		//----------------------------------------------------------------
 		"AbilityLayout"				"6"
 		"Ability1"					"boss_focusfire"			// Ability 1.
-		"Ability2"					"clinkz_wind_walk"
+		"Ability2"					"boss_wind_walk"
 	
 		// Armor
 		//----------------------------------------------------------------
@@ -3849,7 +3849,7 @@
 		"AttackRate"				"2.1"		// Speed of attack.
 		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
-		"AttackRange"				"1100"		// Range within a target can be attacked.
+		"AttackRange"				"750"		// Range within a target can be attacked.
 		"ProjectileModel"			"particles/units/heroes/hero_clinkz/clinkz_searing_arrow.vpcf"			// Particle system model for projectile.
 		"ProjectileSpeed"			"1400"			// Speed of projectile.		   
 	
@@ -6988,7 +6988,7 @@
 	
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"5000"		// Base health.
+		"StatusHealth"				"1250"		// Base health.
 		"StatusHealthRegen"			"0"			// Health regeneration rate.
 		"StatusMana"				"0"			// Base mana.
 		"StatusManaRegen"			"0"			// Mana regeneration rate.		 
@@ -10017,7 +10017,7 @@
 	
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"2500"		// Base health.
+		"StatusHealth"				"1000"		// Base health.
 		"StatusHealthRegen"			"0"			// Health regeneration rate.
 		"StatusMana"				"0"			// Base mana.
 		"StatusManaRegen"			"0"			// Mana regeneration rate.		 

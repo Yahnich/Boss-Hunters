@@ -45,7 +45,7 @@ function modifier_shadow_fiend_necro_handle:OnDeath(params)
 			local necroStacks = params.unit:FindModifierByName("modifier_shadow_fiend_necro")
 			if necroStacks then
 				local requiem = self:GetCaster():FindAbilityByName("shadow_fiend_requiem")
-				if requiem and requiem:GetLevel() > 0 then requiem:ReleaseSouls() end
+				if requiem and requiem:GetLevel() > 0 then requiem:ReleaseSouls(true) end
     		 	necroStacks:SetStackCount( math.ceil(necroStacks:GetStackCount() * self.deathLoss) )
 			end
     	end
@@ -88,8 +88,8 @@ function modifier_shadow_fiend_necro_handle:IsAuraActiveOnDeath()
     return false
 end
 
-function modifier_shadow_fiend_necro_handle:IsHidden()
-    return true
+function modifier_shadow_fiend_necro_handle:RemoveOnDeath()
+	return false
 end
 
 modifier_shadow_fiend_necro = class({})

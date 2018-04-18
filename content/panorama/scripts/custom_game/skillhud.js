@@ -30,33 +30,33 @@ GameEvents.Subscribe("dota_player_update_selected_unit", UpdateStatsPanel);
 GameEvents.Subscribe("dota_player_upgraded_stats", UpdateStatsPanel);
 
 // OTHER
-MOVESPEED_TABLE = [0,20,40,60,80,150]
-MANA_TABLE = [0,250,500,750,1000,1250,1500,1750,2000,2250,3000]
-MANA_REGEN_TABLE = [0,3,6,9,12,15,18,21,24,27,50]
-HEAL_AMP_TABLE = [0,10,20,30,40,80]
+MOVESPEED_TABLE = [0,25,50,75,100,150]
+MANA_TABLE = [0,500,1000,1500,2000,3000]
+MANA_REGEN_TABLE = [0,8,16,24,32,50]
+HEAL_AMP_TABLE = [0,20,40,60,80,150]
 
 // OFFENSE
-ATTACK_DAMAGE_TABLE = [0,20,40,60,80,100,120,140,160,180,250]
-SPELL_AMP_TABLE = [0,10,15,20,25,30,35,40,45,50,75]
-COOLDOWN_REDUCTION_TABLE = [0,10,12,15,18,25]
-ATTACK_SPEED_TABLE = [0,20,40,60,80,100,120,140,160,180,250]
-STATUS_AMP_TABLE = [0,10,15,20,35]
+ATTACK_DAMAGE_TABLE = [0,35,70,105,140,200]
+SPELL_AMP_TABLE = [0,15,30,45,60,90]
+COOLDOWN_REDUCTION_TABLE = [0,5,10,15,20,30]
+ATTACK_SPEED_TABLE = [0,35,70,105,140,200]
+STATUS_AMP_TABLE = [0,5,10,15,20,30]
 
 // DEFENSE
-ARMOR_TABLE = [0,2,4,6,8,10,12,14,16,18,25]
-MAGIC_RESIST_TABLE = [0,5,10,15,20,25,30,35,40,45,60]
-DAMAGE_BLOCK_TABLE = [0,10,20,30,40,50,60,70,80,90,120]
-ATTACK_RANGE_TABLE = [0,50,100,150,200,250,300,350,400,450,600]
-HEALTH_TABLE = [0,150,300,450,600,750,900,1050,1200,1350,2000]
-HEALTH_REGEN_TABLE = [0,3,6,9,12,15,18,21,24,27,50]
-STATUS_REDUCTION_TABLE = [0,10,15,20,35]
+ARMOR_TABLE = [0,5,10,15,20,30]
+MAGIC_RESIST_TABLE = [0,8,16,24,32,50]
+DAMAGE_BLOCK_TABLE = [0,20,40,60,80,120]
+ATTACK_RANGE_TABLE = [0,100,200,300,400,600]
+HEALTH_TABLE = [0,500,1000,1500,2000,3000]
+HEALTH_REGEN_TABLE = [0,8,16,24,32,50]
+STATUS_REDUCTION_TABLE = [0,5,10,15,20,30]
 
 STATS_STATE_OFFENSE = 1
 STATS_STATE_DEFENSE = 2
 STATS_STATE_OTHER = 3
 STATS_STATE_UNIQUE = 4
 
-LEVELS_BETWEEN_TALENT_UPGRADES = 4
+LEVELS_BETWEEN_TALENT_UPGRADES = 7
 
 var lastRememberedState = STATS_STATE_OFFENSE
 var lastRememberedHero = Players.GetPlayerHeroEntityIndex( localID )
@@ -148,13 +148,43 @@ function CreateAttributePanel( valueLvl, valueTable, valueSignifier, valueText, 
 		talentPanel.FindChildTraverse("StatsTypeButton").SetPanelEvent("onactivate", function(){UpgradeAbility(valueSignifier)});
 	}
 	if( Entities.GetLevel( lastRememberedHero ) < (parseInt(valueLvl) + 1) * LEVELS_BETWEEN_TALENT_UPGRADES ){ // max level
-		talentPanel.SetPanelEvent("onmouseover", function(){$.DispatchEvent("DOTAShowTextTooltip", talentPanel, "Level Requirement: " + (parseInt(valueLvl) + 1) * LEVELS_BETWEEN_TALENT_UPGRADES)});
+		var infoText = ""
+		for(var i = 1; i < valueTable.length; i++){
+			if(valueTable[i] != null){
+				if(i == valueLvl){
+					infoText = infoText + "<b>" + valueTable[i] + adder + "</b>"
+				} else {
+					infoText = infoText + valueTable[i] + adder
+				}
+				if(valueTable[i+1] != null)
+				{
+					infoText = infoText + "/"
+				}
+				$.Msg(infoText)
+			}
+		}
+		talentPanel.SetPanelEvent("onmouseover", function(){$.DispatchEvent("DOTAShowTextTooltip", talentPanel, "Next level - " + (parseInt(valueLvl) + 1) * LEVELS_BETWEEN_TALENT_UPGRADES + "<br>" + infoText)});
 		talentPanel.SetPanelEvent("onmouseout", function(){$.DispatchEvent("DOTAHideTextTooltip", talentPanel);});
 	} else if( valueTable[parseInt(valueLvl) + 1] == null ){
 		talentPanel.SetPanelEvent("onmouseover", function(){$.DispatchEvent("DOTAShowTextTooltip", talentPanel, "Stat maxed!")});
 		talentPanel.SetPanelEvent("onmouseout", function(){$.DispatchEvent("DOTAHideTextTooltip", talentPanel);});
 	} else { // can be leveled
-		talentPanel.SetPanelEvent("onmouseover", function(){$.DispatchEvent("DOTAShowTextTooltip", talentPanel, "Next Level: +" + valueTable[parseInt(valueLvl) + 1]) + adder;});
+		var infoText = ""
+		for(var i = 1; i < valueTable.length; i++){
+			if(valueTable[i] != null){
+				if(i == valueLvl){
+					infoText = infoText + "<b>" + valueTable[i] + adder + "</b>"
+				} else {
+					infoText = infoText + valueTable[i] + adder
+				}
+				if(valueTable[i+1] != null)
+				{
+					infoText = infoText + "/"
+				}
+				$.Msg(infoText)
+			}
+		}
+		talentPanel.SetPanelEvent("onmouseover", function(){$.DispatchEvent("DOTAShowTextTooltip", talentPanel, infoText)});
 		talentPanel.SetPanelEvent("onmouseout", function(){$.DispatchEvent("DOTAHideTextTooltip", talentPanel);});
 	}
 }

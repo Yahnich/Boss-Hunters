@@ -22,7 +22,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"max_cdr"					"50 66"
+				"max_cdr"					"33 50"
 			}
 		}
 	}
@@ -110,7 +110,7 @@
 			"05"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"hp_threshold"				"33 25"
+				"hp_threshold"				"50 33"
 			}
 		}
 	}
@@ -134,7 +134,7 @@
 		"AbilityCastRange"				"450 500"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_6"
 		"AbilityCastPoint"				"1"
-		"AbilityCooldown"				"40"
+		"AbilityCooldown"				"60 50"
 	
 		"precache"
 		{
@@ -152,7 +152,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"duration"					"6 8"
+				"duration"					"5 6"
 			}
 		}
 	}
@@ -312,7 +312,7 @@
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"tornado_damage"			"5000 6000"
+				"tornado_damage"			"4000 5000"
 			}
 		}
 	}

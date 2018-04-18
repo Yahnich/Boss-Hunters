@@ -98,7 +98,7 @@ function shadow_fiend_shadowraze3:LineRaze()
 	if modifier and caster:FindAbilityByName("shadow_fiend_necro"):GetToggleState() and modifier:GetStackCount() >= self:GetTalentSpecialValueFor("soul_cost") then
 		local newStackCount = modifier:GetStackCount() - self:GetTalentSpecialValueFor("soul_cost")
 		caster:FindModifierByName("modifier_shadow_fiend_necro"):SetStackCount(newStackCount)
-		if modifier:GetStackCount() < 1 then caster:RemoveModifierByName(modifier) end
+		if modifier:GetStackCount() < 1 then modifier:Destroy() end
 
 		damage = damage + self:GetTalentSpecialValueFor("soul_cost") * caster:FindAbilityByName("shadow_fiend_necro"):GetTalentSpecialValueFor("damage")
 	end
