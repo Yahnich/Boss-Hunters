@@ -21,16 +21,11 @@ end
 modifier_shadow_fiend_dark_lord = class({})
 function modifier_shadow_fiend_dark_lord:OnCreated(table)
     if IsServer() then
-        if self:GetCaster():HasTalent("special_bonus_unique_shadow_fiend_dark_lord_1") then
-            self:StartIntervalThink(self:GetCaster():FindTalentValue("special_bonus_unique_shadow_fiend_dark_lord_1", "soul_rate"))
-        else
-            self:StartIntervalThink(1)
-        end
-
+        self:StartIntervalThink(self:GetTalentSpecialValueFor("soul_rate") - 0.01 )
         if self:GetCaster():HasTalent("special_bonus_unique_shadow_fiend_dark_lord_2") then
-            self.damage = self:GetTalentSpecialValueFor("damage_weak")
-        else
             self.damage = -self:GetTalentSpecialValueFor("damage_weak")
+        else
+            self.damage = self:GetTalentSpecialValueFor("damage_weak")
         end
     end
 end

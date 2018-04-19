@@ -540,7 +540,25 @@
 	    "Ability16"				"special_bonus_unique_gyrocopter_4"
 	    "Ability17"				"special_bonus_unique_gyrocopter_5"
 		
-		"AttributePrimary"		"DOTA_ATTRIBUTE_INTELLECT"
+		
+		"ArmorPhysical"					"1"
+		"AttackCapabilities"			"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"				"13"
+		"AttackDamageMax"				"23"
+		"AttackRate"					"1.700000"
+		"AttackAnimationPoint"			"0.200000"
+		"AttackAcquisitionRange"		"800"
+		"AttackRange"					"365"
+		"ProjectileSpeed"				"3000"
+		"AttributePrimary"				"DOTA_ATTRIBUTE_INTELLECT"
+		"AttributeBaseStrength"			"18"
+		"AttributeStrengthGain"			"1.8"
+		"AttributeBaseAgility"			"19"
+		"AttributeAgilityGain"			"2.1"
+		"AttributeBaseIntelligence"		"24"
+		"AttributeIntelligenceGain"		"2.8"
+		"MovementSpeed"					"320"
+		"MovementTurnRate"				"0.600000"
 	}
 	//=================================================================================================================
 	// HERO: Huskar

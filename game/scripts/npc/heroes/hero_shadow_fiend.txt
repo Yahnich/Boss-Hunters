@@ -40,12 +40,15 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius"				"350"		
+				"radius"				"350"
+				"LinkedSpecialBonus"	"special_bonus_unique_shadow_fiend_shadowraze_1"
 			}
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"range"					"200"		
+				"var_type"						"FIELD_INTEGER"
+				"range"							"200"
+				"LinkedSpecialBonus"			"special_bonus_unique_shadow_fiend_shadowraze_1"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_SUBTRACT"
 			}
 			"04"
 			{
@@ -90,7 +93,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
+				"value"						"200"
 			}
 		}
 	}
@@ -274,8 +277,7 @@
 		"ScriptFile"					"heroes/hero_shadow_fiend/shadow_fiend_necro.lua"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_TOGGLE"
 		"AbilityTextureName"			"nevermore_necromastery"
-		"MaxLevel"						"1"
-		"InnateAbility"					"1"
+		"MaxLevel"						"7"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -284,8 +286,9 @@
 			"01"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"armor_debuff"					"7"
+				"armor_debuff"					"2 3 4 5 6 7 8"
 				"LinkedSpecialBonus"			"special_bonus_unique_shadow_fiend_necro_2"
+				"LinkedSpecialBonusField"		"value2"
 			}	
 			"02"
 			{
@@ -296,10 +299,19 @@
 			"03"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"max_souls"						"58"
+				"max_souls"						"12 20 28 36 42 50 58"
 				"LinkedSpecialBonus"			"special_bonus_unique_shadow_fiend_necro_2"
 			}
-
+			"04"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"death_soul_loss"				"50"
+			}
+			"05"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"excess_loss_rate"				"1"
+			}
 		}
 	
 		"precache"
@@ -329,7 +341,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"3"
+				"value"						"1"
 			}
 		}
 	}
@@ -353,6 +365,11 @@
 				"var_type"					"FIELD_INTEGER"
 				"value"						"10"
 			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value2"					"3"
+			}
 		}
 	}
 
@@ -373,36 +390,39 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"60 58 56 54 52 50 48"
+		"AbilityCooldown"				"40 38 36 34 32 30 28"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"150 180 210 240 270 300 330"
+		"AbilityManaCost"				"160 180 200 240 280 320 400"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
-			"02"
+			"01"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"damage_weak"					"100"
 				"LinkedSpecialBonus"			"special_bonus_unique_shadow_fiend_dark_lord_1"
 			}
-			"01"
+			"02"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"duration"						"10 11 12 13 14 15 16"
+				"duration"						"9"
 			}
-			"02"
+			"03"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"souls_per_second"				"1"
+				"souls_per_second"				"1 1 1 2 2 2 3"
 			}
-			"02"
+			"04"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"soul_rate"						"1"
+				"LinkedSpecialBonus"			"special_bonus_unique_shadow_fiend_dark_lord_1"
+				"LinkedSpecialBonusField"		"soul_rate"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_SUBTRACT"
 			}
 		}
 	
@@ -466,135 +486,6 @@
 		}
 	}
 
-	"nevermore_oppressive_aura"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_datadriven"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AURA"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
-		"OnCastbar"						"0"
-		"AbilityTextureName"			"nevermore_dark_lord"
-		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
-		"MaxLevel"						"7"
-		
-		"AbilityCooldown"				"40"
-		"AbilityCastPoint"				"0.2"
-		"precache"
-		{
-			"particle"		"particles/oppressive_aura.vpcf"
-		}
-		
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"1500"
-	
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"presence_armor_reduction"		"-3 -4 -5 -6 -7 -8 -9"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"presence_damage_reduction"		"-15"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"presence_radius"				"900"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"active_duration"				"10"
-				"LinkedSpecialBonus"			"special_bonus_unique_nevermore_3"
-			}
-			"05"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"attack_duration"				"2.5"
-			}
-		}
-		"OnSpellStart"
-		{
-			"RunScript"
-			{
-				"ScriptFile"	"lua_abilities/heroes/nevermore"
-				"Function"		"ApplyAuraModifier"
-			}
-		}
-		"Modifiers"
-		{
-			"modifier_dark_lord"
-			{
-				"Passive"			"1"
-				"IsHidden"			"1"
-		
-				"Aura"          	"modifier_dark_lord_presence"
-				"Aura_Radius"   	"%presence_radius"
-				"Aura_Teams"    	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-				"Aura_Types"    	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC" //mechanic?
-				"Aura_Flags"    	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES" //immune?
-				
-				"OnDealDamage"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"lua_abilities/heroes/nevermore.lua"
-						"Function"		"OppressiveAttack"
-					}
-				}
-			}
-			"modifier_dark_lord_presence"
-			{
-				"IsHidden"			"0" //hidden?
-				"IsDebuff"			"1"
-				"OnDeath"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"lua_abilities/heroes/nevermore"
-						"Function"		"CheckNecroStacks"
-					}
-				}
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "%presence_armor_reduction"
-					"MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE" "%presence_damage_reduction"
-				}
-			}
-			"active_dark_lord"
-			{
-				"Duration"			"%active_duration"
-				
-				"EffectName"		"particles/oppressive_aura.vpcf"
-		
-				"Aura"          	"active_dark_lord_presence"
-				"Aura_Radius"   	"%presence_radius"
-				"Aura_Teams"    	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-				"Aura_Types"    	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC" //mechanic?
-				"Aura_Flags"    	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES" //immune?
-			}
-			"active_dark_lord_presence"
-			{
-				"IsHidden"			"1" //hidden?
-				"IsDebuff"			"1"
-			
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "%presence_armor_reduction"
-					"MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE" "%presence_damage_reduction"
-				}
-			}
-		}
-	}
-
 	"shadow_fiend_requiem"
 	{
 		// General
@@ -635,7 +526,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"80 120 160 200 240 280"
+				"damage"				"6 7 8 9 10 11"
 			}	
 			"03"
 			{

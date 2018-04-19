@@ -22,7 +22,7 @@ function boss27_ursa_giant:OnChannelFinish(bInterrupted)
 			bear:FindAbilityByName("boss26_rend"):SetLevel(self:GetLevel())
 			bear:FindAbilityByName("boss26_ravage"):SetLevel(self:GetLevel())
 			EmitSoundOn("ursa_ursa_pain_"..RandomInt(14,20), caster)
-			caster.bigBearsTable[bear] = true
+			table.insert(caster.bigBearsTable, bear)
 		end
 	end
 end

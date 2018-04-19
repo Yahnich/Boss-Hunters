@@ -23,7 +23,7 @@
 		"ItemResult"					"item_flashback"
 		"ItemRequirements"
 		{
-			"01"						"item_runed_artifact;item_orb_of_essence;item_orb_of_essence"
+			"01"						"item_orb_of_renewal;item_orb_of_essence;item_orb_of_essence"
 		}
 	}
 	"item_flashback"

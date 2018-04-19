@@ -8,7 +8,7 @@ function mystic_flare_scepter_check(keys)
 	local caster = keys.caster
 	local ability = keys.ability
 	local scepter_cooldown = ability:GetTalentSpecialValueFor( "scepter_cooldown")
-	if HasCustomScepter(caster) == true or caster:HasScepter() and ability:GetCooldownTimeRemaining() > scepter_cooldown*get_octarine_multiplier(caster) then
+	if caster:HasScepter() and ability:GetCooldownTimeRemaining() > scepter_cooldown*get_octarine_multiplier(caster) then
 		ability:EndCooldown()
 		ability:StartCooldown(scepter_cooldown*get_octarine_multiplier(caster))
 	end
@@ -33,7 +33,7 @@ function mystic_flare_start( keys )
     local targetFlag = ability:GetAbilityTargetFlags() -- DOTA_UNIT_TARGET_FLAG_NOT_ILLUSIONS
     local damageType = ability:GetAbilityDamageType() -- DAMAGE_TYPE_MAGICAL
     local soundTarget = "Hero_SkywrathMage.MysticFlare.Target"
-	if HasCustomScepter(caster) == true or caster:HasScepter() then
+	if caster:HasScepter() then
 		local current_instance_scepter = 0
 		damageType = DAMAGE_TYPE_PURE
 		local search_radius = ability:GetTalentSpecialValueFor( "search_radius_scepter")

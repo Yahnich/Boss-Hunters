@@ -63,12 +63,13 @@ function shadow_fiend_shadowraze3:singleRaze()
 
 	local enemies = caster:FindEnemyUnitsInRadius(position, radius, {})
 	for _,enemy in pairs(enemies) do
+		local enemyDamage = 0
 		if enemy:HasModifier("modifier_shadow_fiend_shadowraze") then
-			damage = damage + self:GetTalentSpecialValueFor("combo_amp") * enemy:FindModifierByName("modifier_shadow_fiend_shadowraze"):GetStackCount()
+			enemyDamage = self:GetTalentSpecialValueFor("combo_amp") * enemy:FindModifierByName("modifier_shadow_fiend_shadowraze"):GetStackCount()
 		end
 
 		enemy:AddNewModifier(caster, self, "modifier_shadow_fiend_shadowraze", {Duration = self:GetTalentSpecialValueFor("combo_time")}):AddIndependentStack(self:GetTalentSpecialValueFor("combo_time"))
-		self:DealDamage(caster, enemy, damage/#enemies, {}, 0)
+		self:DealDamage(caster, enemy, damage/#enemies + enemyDamage, {}, 0)
 	end
 end
 
@@ -97,18 +98,19 @@ function shadow_fiend_shadowraze3:LineRaze()
 	if modifier and caster:FindAbilityByName("shadow_fiend_necro"):GetToggleState() and modifier:GetStackCount() >= self:GetTalentSpecialValueFor("soul_cost") then
 		local newStackCount = modifier:GetStackCount() - self:GetTalentSpecialValueFor("soul_cost")
 		caster:FindModifierByName("modifier_shadow_fiend_necro"):SetStackCount(newStackCount)
-		if modifier:GetStackCount() < 1 then caster:RemoveModifierByName(modifier) end
+		if modifier:GetStackCount() < 1 then modifier:Destroy() end
 
 		damage = damage + self:GetTalentSpecialValueFor("soul_cost") * caster:FindAbilityByName("shadow_fiend_necro"):GetTalentSpecialValueFor("damage")
 	end
 
 	local enemies = caster:FindEnemyUnitsInLine(startPos, startPos + direction * distance, radius, {})
 	for _,enemy in pairs(enemies) do
+		local enemyDamage = 0
 		if enemy:HasModifier("modifier_shadow_fiend_shadowraze") then
-			damage = damage + self:GetTalentSpecialValueFor("combo_amp") * enemy:FindModifierByName("modifier_shadow_fiend_shadowraze"):GetStackCount()
+			enemyDamage = self:GetTalentSpecialValueFor("combo_amp") * enemy:FindModifierByName("modifier_shadow_fiend_shadowraze"):GetStackCount()
 		end
 
 		enemy:AddNewModifier(caster, self, "modifier_shadow_fiend_shadowraze", {Duration = self:GetTalentSpecialValueFor("combo_time")}):AddIndependentStack(self:GetTalentSpecialValueFor("combo_time"))
-		self:DealDamage(caster, enemy, damage/#enemies, {}, 0)
+		self:DealDamage(caster, enemy, damage/#enemies + enemyDamage, {}, 0)
 	end
 end

@@ -987,12 +987,8 @@ function CDOTA_BaseNPC:IsSlowed()
 	else return false end
 end
 
-function CDOTA_BaseNPC:IsDisabled()
-	local customModifier = false
-	if self:HasModifier("creature_slithereen_crush_stun") then
-		local customModifier = true
-	end
-	if self:IsSlowed() or self:IsStunned() or self:IsRooted() or self:IsSilenced() or self:IsHexed() or self:IsDisarmed() or customModifier then 
+function CDOTA_BaseNPC:IsDisabled(bHard)
+	if (self:IsSlowed() and not bHard) or self:IsStunned() or self:IsRooted() or self:IsSilenced() or self:IsHexed() or self:IsDisarmed() then 
 		return true
 	else return false end
 end
@@ -1175,6 +1171,7 @@ function CDOTABaseAbility:GetTalentSpecialValueFor(value)
 	local talentName
 	local valname = "value"
 	local multiply = false
+	local subtract = false
 	local kv = self:GetAbilityKeyValues()
 	for k,v in pairs(kv) do -- trawl through keyvalues
 		if k == "AbilitySpecial" then
@@ -1183,6 +1180,7 @@ function CDOTABaseAbility:GetTalentSpecialValueFor(value)
 					talentName = m["LinkedSpecialBonus"]
 					if m["LinkedSpecialBonusField"] then valname = m["LinkedSpecialBonusField"] end
 					if m["LinkedSpecialBonusOperation"] and m["LinkedSpecialBonusOperation"] == "SPECIAL_BONUS_MULTIPLY" then multiply = true end
+					if m["LinkedSpecialBonusOperation"] and m["LinkedSpecialBonusOperation"] == "SPECIAL_BONUS_SUBTRACT" then subtract = true end
 				end
 			end
 		end
@@ -1192,6 +1190,8 @@ function CDOTABaseAbility:GetTalentSpecialValueFor(value)
 		if talent and talent:GetLevel() > 0 then 
 			if multiply then
 				base = base * talent:GetSpecialValueFor(valname) 
+			elseif subtract then
+				base = base - talent:GetSpecialValueFor(valname) 
 			else
 				base = base + talent:GetSpecialValueFor(valname) 
 			end

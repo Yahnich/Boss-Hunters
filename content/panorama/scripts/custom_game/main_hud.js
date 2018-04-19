@@ -1,6 +1,8 @@
 var pID = Players.GetLocalPlayer();
 var dotaHud = $.GetContextPanel().GetParent().GetParent().GetParent();
-$.Msg("init");
+
+
+
 (function(){
 	$.Msg("fuck");
 	var hud = dotaHud.FindChildTraverse("HUDElements");

@@ -15,6 +15,7 @@
 #base "bosses/boss_evil_core.txt"
 #base "bosses/boss_evil_guardian.txt"
 #base "bosses/boss_broodmother.txt"
+#base "bosses/boss_doom.txt"
 
 #base "heroes/hero_chen.txt"
 #base "heroes/hero_shadow_shaman.txt"
@@ -700,6 +701,50 @@
 	    }
 	}
 	//=================================================================================================================
+	// Clinkz: Wind Walk
+	//=================================================================================================================
+	"boss_wind_walk"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"clinkz_wind_walk"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"AbilitySound"					"Hero_Clinkz.WindWalk"
+		"MaxLevel"						"2"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"20"
+		"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
+		
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"75 75 75 75"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"5"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"fade_time"					"2"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"move_speed_bonus_pct"		"0"
+			}
+		}
+		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
+	}
+	//=================================================================================================================
 	// Queen of Pain: Blink
 	//=================================================================================================================
 	"boss_blink"
@@ -1052,22 +1097,22 @@
 			{
 				"ModifierName"	"target_telegraph_fx"
 				"Target"		"CASTER"
+				"Duration"		"7"
 			}
 			"CreateThinker"
 			{
 				"ModifierName"	"caster_chrono_fx"
 				"Target"		"CASTER"
 			}
-	    	"RunScript"
-	    	{
-	    		"ScriptFile"    "lua_abilities/abilities_simple.lua"
-	            "Function"      "boss_death_time"
-	    	}
 	    }
 	    "Modifiers"
 		{
 			"target_telegraph_fx"
 			{
+				"Aura" "target_warning"
+				"Aura_Radius" "%radius"
+				"Aura_Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"Aura_Types" "DOTA_UNIT_TARGET_ALL"
 				"OnCreated"
 				{
 					"AttachEffect"
@@ -1089,8 +1134,6 @@
 	
 			"caster_chrono_fx"
 			{
-				"Duration"					"6" // Should work without the added time but appears to have a off by one error so time added so it doesnt destroy itself before occuring
-				"ThinkInterval"				"1.0"
 				"OnCreated"
 				{
 					"AttachEffect"
@@ -1106,224 +1149,21 @@
 	                    }
 	                }
 				}
+				"ThinkInterval"		"7"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"    "lua_abilities/abilities_simple.lua"
+						"Function"      "boss_death_time_end"
+					}
+				}
 			}
 			"target_warning"
 			{
 				"IsDebuff"	"1"
 				"IsPurgable"	"0"
-			}
-		}
-	}
-	"boss_doomraze"
-	{
-	    // General
-	    //-------------------------------------------------------------------------------------------------------------
-	    "BaseClass"             "ability_datadriven"
-	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
-	    "AbilityUnitDamageType"         "DAMAGE_TYPE_PURE"   
-	    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
-	    "FightRecapLevel"               "1"
-	    "AbilityTextureName"			"nevermore_shadowraze2"
-	    
-	    // Casting
-	    //-------------------------------------------------------------------------------------------------------------
-	    "AbilityCastPoint"              "2.0"
-	
-	    // Time     
-	    //-------------------------------------------------------------------------------------------------------------
-	    "AbilityCooldown"               "14.0"
-	
-	    // Damage.
-	    //-------------------------------------------------------------------------------------------------------------
-	    "AbilityDamage"                 "1250"
-	
-	    // Cost
-	    //-------------------------------------------------------------------------------------------------------------
-	    "AbilityManaCost"               "0"
-	
-	    // Special
-	    //-------------------------------------------------------------------------------------------------------------
-	    "AbilitySpecial"
-	    {
-	        "01"
-	        {
-	            "var_type"          "FIELD_INTEGER"
-	            "damage" 			"1250"     
-	        }
-	    }
-	
-	    "precache"
-	    {
-	        "particle"  "particles/units/heroes/hero_nevermore/nevermore_shadowraze.vpcf"
-	        "soundfile" "soundevents/game_sounds_heroes/game_sounds_nevermore.vsndevts"
-	    }
-	
-	    "OnSpellStart"
-	    {
-	        "RunScript"
-			{
-				"ScriptFile" "lua_abilities/abilities_simple.lua"
-				"Function" "doom_raze"
-			}	
-		}
-	}
-	"boss_doomraze_h"
-	{
-	    // General
-	    //-------------------------------------------------------------------------------------------------------------
-	    "BaseClass"             "ability_datadriven"
-	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
-	    "AbilityUnitDamageType"         "DAMAGE_TYPE_PURE"   
-	    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
-	    "FightRecapLevel"               "1"
-	    "AbilityTextureName"			"nevermore_shadowraze2"
-	    
-	    // Casting
-	    //-------------------------------------------------------------------------------------------------------------
-	    "AbilityCastPoint"              "1.75"
-	
-	    // Time     
-	    //-------------------------------------------------------------------------------------------------------------
-	    "AbilityCooldown"               "10.0"
-	
-	    // Damage.
-	    //-------------------------------------------------------------------------------------------------------------
-	    "AbilityDamage"                 "1500"
-	
-	    // Cost
-	    //-------------------------------------------------------------------------------------------------------------
-	    "AbilityManaCost"               "0"
-	
-	    // Special
-	    //-------------------------------------------------------------------------------------------------------------
-	    "AbilitySpecial"
-	    {
-	        "01"
-	        {
-	            "var_type"          "FIELD_INTEGER"
-	            "damage" 			"1500"     
-	        }
-	    }
-	
-	    "precache"
-	    {
-	        "particle"  "particles/units/heroes/hero_nevermore/nevermore_shadowraze.vpcf"
-	        "soundfile" "soundevents/game_sounds_heroes/game_sounds_nevermore.vsndevts"
-	    }
-	
-	    "OnSpellStart"
-	    {
-	        "RunScript"
-			{
-				"ScriptFile" "lua_abilities/abilities_simple.lua"
-				"Function" "doom_raze"
-			}	
-		}
-	}
-	"boss_doomraze_vh"
-	{
-	    // General
-	    //-------------------------------------------------------------------------------------------------------------
-	    "BaseClass"             "ability_datadriven"
-	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
-	    "AbilityUnitDamageType"         "DAMAGE_TYPE_PURE"   
-	    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
-	    "FightRecapLevel"               "1"
-	    "AbilityTextureName"			"nevermore_shadowraze3"
-	    
-	    // Casting
-	    //-------------------------------------------------------------------------------------------------------------
-	    "AbilityCastPoint"              "1.5"
-	
-	    // Time     
-	    //-------------------------------------------------------------------------------------------------------------
-	    "AbilityCooldown"               "10.0"
-	
-	    // Damage.
-	    //-------------------------------------------------------------------------------------------------------------
-	    "AbilityDamage"                 "2000"
-	
-	    // Cost
-	    //-------------------------------------------------------------------------------------------------------------
-	    "AbilityManaCost"               "0"
-	
-	    // Special
-	    //-------------------------------------------------------------------------------------------------------------
-	    "AbilitySpecial"
-	    {
-	        "01"
-	        {
-	            "var_type"          "FIELD_INTEGER"
-	            "damage" 			"2000"       
-	        }
-	    }
-	
-	    "precache"
-	    {
-	        "particle"  "particles/units/heroes/hero_nevermore/nevermore_shadowraze.vpcf"
-	        "soundfile" "soundevents/game_sounds_heroes/game_sounds_nevermore.vsndevts"
-	    }
-	
-	    "OnSpellStart"
-	    {
-	        "RunScript"
-			{
-				"ScriptFile" "lua_abilities/abilities_simple.lua"
-				"Function" "doom_raze"
-			}	
-		}
-	}
-	"boss_doom_bring"
-	{
-	    // General
-	    //-------------------------------------------------------------------------------------------------------------
-	    "BaseClass"             "ability_datadriven"
-	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
-	    "AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_ALL"
-	    "AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-	    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
-	    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
-	    "FightRecapLevel"               "1"
-	    "AbilityTextureName"			"doom_bringer_doom"
-	    
-	    // Casting
-	    //-------------------------------------------------------------------------------------------------------------
-	    "AbilityCastPoint"              "0.67"
-	    "AbilityCastRange"				"1000"
-	
-	    // Time     
-	    //-------------------------------------------------------------------------------------------------------------
-	    "AbilityCooldown"               "15.0"
-	
-	
-	    // Cost
-	    //-------------------------------------------------------------------------------------------------------------
-	    "AbilityManaCost"               "0"
-	
-	    // Special
-	    //-------------------------------------------------------------------------------------------------------------
-	
-	    "precache"
-	    {
-	        "particle"  "particles/units/heroes/hero_doom_bringer/doom_bringer_doom_ring.vpcf"
-	    }
-	
-	    "OnSpellStart"
-	    {
-	        "RunScript"
-			{
-				"ScriptFile" "lua_abilities/abilities_simple.lua"
-				"Target"	"TARGET"
-				"Function" "doom_bringer_boss"
-			}	
-		}
-		"Modifiers"
-		{
-			"fuckingdoomed"
-			{
-				"IsDebuff"	"1"
-				"EffectName"	"particles/units/heroes/hero_doom_bringer/doom_bringer_doom_ring.vpcf"
+				"EffectName"	"particles/generic_aoe_persistent_circle_1/death_timer_glow_rev.vpcf"
 			}
 		}
 	}
@@ -1428,110 +1268,6 @@
 				"var_type"						"FIELD_INTEGER"
 				"focusfire_damage_reduction_scepter"	"0"
 			}			
-		}
-	}
-	
-	
-	"boss_hell_tempest"
-	{
-	    // General
-	    //-------------------------------------------------------------------------------------------------------------
-	    "BaseClass"             "ability_datadriven"
-	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-	    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
-	    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
-	    "FightRecapLevel"               "1"
-	    "AbilityTextureName"			"doom_bringer_doom"
-	    
-	    // Casting
-	    //-------------------------------------------------------------------------------------------------------------
-	    "AbilityChannelTime"              "1.66"
-	
-	    // Time     
-	    //-------------------------------------------------------------------------------------------------------------
-	    "AbilityCooldown"               "36.66"
-	
-	
-	    // Cost
-	    //-------------------------------------------------------------------------------------------------------------
-	    "AbilityManaCost"               "666"
-	
-	    // Special
-	    //-------------------------------------------------------------------------------------------------------------
-	
-	    "precache"
-	    {
-	        "particle"  "particles/fire_tornado.vpcf"
-			"particle"  "particles/econ/generic/generic_aoe_shockwave_1/generic_aoe_shockwave_1.vpcf"
-	    }
-	
-	    "OnChannelSucceeded"
-	    {
-	        "RunScript"
-			{
-				"ScriptFile" "lua_abilities/abilities_simple.lua"
-				"Function" "hell_tempest_boss"
-			}	
-		}
-		"OnAbilityPhaseStart"
-		{
-			"CreateThinker"
-			{
-				"ModifierName"	"target_telegraph_fx"
-				"Target"		"CASTER"
-			}
-		}
-		"OnProjectileHitUnit"
-		{	
-			"RunScript"
-			{
-				"ScriptFile" "lua_abilities/abilities_simple.lua"
-				"Function" "hell_tempest_hit"
-			}	     
-	    }
-	    "Modifiers"
-	    {
-	    	"onspawn"
-	    	{
-	    		"passive" "1"
-	    		"IsHidden"	"1"
-	    		"OnCreated"
-	    		{
-	    			"RunScript"
-					{
-						"ScriptFile" "lua_abilities/abilities_simple.lua"
-						"Function" "hell_tempest_charge"
-					}
-	    		}
-	    		"OnTakeDamage"
-	    		{
-	    			"RunScript"
-					{
-						"ScriptFile" "lua_abilities/abilities_simple.lua"
-						"Function" "hell_tempest_charge_damage"
-					}
-	    		}
-	    	}
-			"target_telegraph_fx"
-			{
-				"OnCreated"
-				{
-					"AttachEffect"
-					{
-						"EffectName"		"particles/econ/generic/generic_aoe_shockwave_1/generic_aoe_shockwave_1.vpcf"
-						"EffectAttachType"	"follow_origin"
-						"Target"			"CASTER"
-						"ControlPoints"
-						{
-							"00" "0 0 0"
-							"01" "2000 0 0"
-							"02" "6 0 1" // telegraph
-							"03" "255 0 255"
-							"04" "0 0 0"
-						}
-					}
-				}
-			}
 		}
 	}
 	"boss_lifesteal"
@@ -17976,6 +17712,7 @@
 				"var_type"				"FIELD_INTEGER"
 				"damage_reflection_pct"	"10 15 20 25 30 35 40"
 				"LinkedSpecialBonus"	"special_bonus_unique_spectre_5"
+				"CalculateSpellDamageTooltip"		"0"
 			}
 		}
 	}

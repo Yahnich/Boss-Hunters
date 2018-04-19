@@ -5,8 +5,6 @@ GameEvents.Subscribe( "heroLoadIn", Initialize);
 GameEvents.Subscribe("dota_player_update_query_unit", UpdateCustomHud);
 GameEvents.Subscribe( "round_has_ended", ToggleQuests);
 
-
-
 var ID = Players.GetLocalPlayer();
 var playerHero = Players.GetPlayerSelectedHero(ID);
 

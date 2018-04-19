@@ -84,21 +84,21 @@ function AIThink(thisEntity)
 						OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
 						AbilityIndex = thisEntity.raze1:entindex()
 					})
-					return thisEntity.raze1:GetCastPoint() + 0.1
+					return thisEntity.raze1:GetCastPoint() + 0.1 + 2
 				elseif thisEntity.raze2:IsFullyCastable() and AICore:TotalEnemyHeroesInRange( thisEntity, 1200 ) > 0 and RollPercentage(33/cds) then
 					ExecuteOrderFromTable({
 						UnitIndex = thisEntity:entindex(),
 						OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
 						AbilityIndex = thisEntity.raze2:entindex()
 					})
-					return thisEntity.raze2:GetCastPoint() + 0.1
+					return thisEntity.raze2:GetCastPoint() + 0.1 + 2
 				elseif thisEntity.raze3:IsFullyCastable() and AICore:TotalEnemyHeroesInRange( thisEntity, 1200 ) > 0 and RollPercentage(33/cds) then
 					ExecuteOrderFromTable({
 						UnitIndex = thisEntity:entindex(),
 						OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
 						AbilityIndex = thisEntity.raze3:entindex()
 					})
-					return thisEntity.raze3:GetCastPoint() + 0.1
+					return thisEntity.raze3:GetCastPoint() + 0.1 + 2
 				end
 			end
 			if thisEntity.stun:IsFullyCastable() then

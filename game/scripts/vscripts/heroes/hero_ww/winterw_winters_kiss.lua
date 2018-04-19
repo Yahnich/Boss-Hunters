@@ -58,20 +58,7 @@ function modifier_winters_kiss:OnIntervalThink()
         local enemies = self:GetCaster():FindEnemyUnitsInRadius(self:GetParent():GetAbsOrigin(), self:GetSpecialValueFor("radius"), {})
         for _,enemy in pairs(enemies) do
             if enemy ~= self:GetParent() then
-                enemy:SetForceAttackTargetAlly(self:GetParent())
-                enemy:AddNewModifier(self:GetParent(), self:GetAbility(), "modifier_winters_kiss_enemy", {})
-            end
-        end
-    end
-end
-
-function modifier_winters_kiss:OnRemoved()
-    if IsServer() then
-        local enemies = self:GetCaster():FindEnemyUnitsInRadius(self:GetParent():GetAbsOrigin(), FIND_UNITS_EVERYWHERE, {})
-        for _,enemy in pairs(enemies) do
-            if enemy:HasModifier("modifier_winters_kiss_enemy") then
-                enemy:FindModifierByName("modifier_winters_kiss_enemy"):Destroy()
-                enemy:SetForceAttackTargetAlly(nil)
+                enemy:AddNewModifier(self:GetParent(), self:GetAbility(), "modifier_winters_kiss_enemy", {duration = self:GetRemainingTime()})
             end
         end
     end
@@ -118,6 +105,27 @@ function modifier_winters_kiss_enemy:DeclareFunctions()
     }
     return funcs
 end
+if IsServer() then
+	function modifier_winters_kiss_enemy:OnCreated()
+		local parent = self:GetParent()
+		parent:Stop()
+		parent:Hold()
+		parent:Interrupt()
+		local target = self:GetCaster()
+		ExecuteOrderFromTable({
+			UnitIndex = parent:entindex(),
+			OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
+			TargetIndex = target:entindex()
+		})
+	end
+	
+	function modifier_winters_kiss_enemy:OnDestroy()
+		local parent = self:GetParent()
+		parent:Stop()
+		parent:Hold()
+		parent:Interrupt()
+	end
+end
 
 function modifier_winters_kiss_enemy:GetModifierAttackSpeedBonus_Constant()
     return self:GetSpecialValueFor("bonus_as")
@@ -131,10 +139,15 @@ function modifier_winters_kiss_enemy:GetEffectName()
     return "particles/units/heroes/hero_winter_wyvern/wyvern_winters_curse_buff.vpcf"
 end
 
-function modifier_winters_kiss:GetStatusEffectName()
+function modifier_winters_kiss_enemy:GetStatusEffectName()
     return "particles/econ/items/effigies/status_fx_effigies/status_effect_effigy_frosty_dire.vpcf"
 end
 
-function modifier_winters_kiss:StatusEffectPriority()
+function modifier_winters_kiss_enemy:StatusEffectPriority()
     return 10
+end
+
+function modifier_winters_kiss_enemy:CheckState()
+	local state = { [MODIFIER_STATE_COMMAND_RESTRICTED] = true}
+	return state
 end

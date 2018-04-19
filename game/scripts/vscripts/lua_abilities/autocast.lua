@@ -5,8 +5,8 @@ function ClockStopperAutoCast(keys)
 		ability:CastAbility()
 	end
 	if caster:HasModifier("modifier_faceless_void_chronosphere_speed")	then
-		if caster:HasScepter() or HasCustomScepter(caster) then
-		ability:ApplyDataDrivenModifier(caster,caster, "clock_stopper_buff", {duration = 0.5})
+		if caster:HasScepter() then
+			ability:ApplyDataDrivenModifier(caster,caster, "clock_stopper_buff", {duration = 0.5})
 		end
 	end
 end

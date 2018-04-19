@@ -55,7 +55,7 @@ function modifier_spectre_dispersion_ebf:OnTakeDamage(params)
 				local dmg = dmg*nHeroHeal
 				if distance > self.min_range then dmgmod = 1 end
 				self:GetAbility().damage_flags = DOTA_DAMAGE_FLAG_HPLOSS
-				ApplyDamage({victim = unit, attacker = hero, damage = dmg*dmgmod/get_aether_multiplier(hero), damage_flags = DOTA_DAMAGE_FLAG_HPLOSS, damage_type = DAMAGE_TYPE_PURE, ability = self:GetAbility()})
+				ApplyDamage({victim = unit, attacker = hero, damage = dmg*dmgmod/get_aether_multiplier(hero), damage_flags = DOTA_DAMAGE_FLAG_HPLOSS + DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION, damage_type = DAMAGE_TYPE_PURE, ability = self:GetAbility()})
 				local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_spectre/spectre_dispersion.vpcf",PATTACH_POINT_FOLLOW,unit)
 				ParticleManager:SetParticleControl(particle, 0, unit:GetAbsOrigin())
 				ParticleManager:SetParticleControl(particle, 1, hero:GetAbsOrigin())

@@ -107,12 +107,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"radius"				"320 350"
+				"radius"				"250"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"1.5"
+				"duration"				"1.5 2"
 			}
 		}
 		"precache"

@@ -22,7 +22,7 @@ function boss27_ursa_warrior:OnChannelFinish(bInterrupted)
 			bear:FindAbilityByName("boss26b_screech"):SetLevel(self:GetLevel())
 			bear:FindAbilityByName("boss26b_wound"):SetLevel(self:GetLevel())
 			EmitSoundOn("ursa_ursa_pain_"..RandomInt(14,20), caster)
-			caster.smallBearsTable[bear] = true
+			table.insert(caster.smallBearsTable, bear)
 		end
 	end
 end

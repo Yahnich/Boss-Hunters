@@ -1,0 +1,123 @@
+rework priorities: necro, wk, ogres, doom
+
+Wave3 - Legion Commander
+mostly unchanged but turn all abilities to lua and add following
+Dueling Zone - Small AOE, buffs LC's damage and armor
+
+Succubus - turn all abilities to lua and make corrupt dagger a dodgeable linear projectile
+
+Wave4 - Slarks
+Slark - Mostly unchanged, but add dark pact and change all abilities to lua
+Bloodseeker - Change Rupture to an aoe ability, if you stand still in bloodrite you'll become afflicted by rupture; lower cd as counterpoint and change to lua
+
+Wave5 - Lifestealer
+Mostly unchanged but add some random tiny creeps and have the Lifestealer randomly burst out of them; could be any one of the creeps; uninfest would kill the thrall and deal aoe damage
+
+Wave6 - Robots
+Clockwerk - Give hookshot and power cogs
+Tinker - Make homing missiles linear homing projectiles
+Techies Spawner - add spawn particles
+
+Wave7 - Slitherqueen
+Slitherqueen - Spawns less units, but stronger units; while any spawn is alive will hide and reemerge in a random position once they all die, upon reemerging damages and stuns nearby units
+Rest is the same
+Spawned units now also have slithereen crush
+
+Wave8 - Roshan
+Mostly same, just add some warning particles for the smash and add a linkens effect to block one spell
+Add a deafening blast like wave that pushes enemies back if getting damaged too much too fast
+Spawn 2 small roshlings for every 15% hp lost
+
+Wave10 - Leshrac
+>50%hp mostly the same, except lighning is now point target and not unit target so the bolts are dodgeable, will bounce even on a miss
+Add Pulse Nova beams passively, every 5 seconds one random hero is picked and his position will be struck 0.75/0.5s later
+
+<50%hp
+stun is recast a few times, acting as a cone
+	x
+   xxx
+  xxxxx
+ xxxxxxx
+Lightning is unchanged, just lower cooldown or smth
+Pulse Nova changed to a single constant beam that slowly moves towards the nearest enemy hero
+
+boss11 - splitting golem
+ALL GOLEMS HAVE:
+Split on Death -> splits into 3 lesser golems on death
+Shard Toss -> Reduces own health permanenently, down to 50% max health max and reducing own size; throws a lesser golem at the enemy; golem stuns if it lands on top of someone
+Boulder Roll -> Rolls 400 units forward at 600 speed
+
+Boss12 - Ogres
+
+12a
+Ogre Magi - Spawns baby ogres and grants global buffs, tries to avoid combat unless attacked; if attacked can cas fireball and ignite (ignite would work like lsa and fireball is a linear projectile)
+Ogre King - Has the big AOE smash, cooldown lowered but radius also massively lowered, can buff himself to increase his armor, but can't cast stun while armored
+
+Baby Oges - Fodder, no abilities
+
+12b:
+Troll Warlord - mostly unchanged
+
+boss13 - Trees
+
+Furions - Only spawns treants
+Treant Protector - Can cast leech seed, globally add living armor to all allied units and can cast overgrowth
+Leech seed would only deal damage if they heal
+(overgrowth would be like linear projectiles that root the first person they hit)
+
+Treants - Purely fodder
+
+
+round17 - skellington man
+
+Wraith King: Has AOE wraithfire blast (linear projectiles ofc), upon death will turn into a tombstone that needs to be attacked 16 times in 10 seconds or he'll resurrect, can spawn Clinkz and big skeletons
+can no longer turn himself magic immune
+Clinkz - Same as before, but focus fire is changed to be like Sylph's rapid fire, instead of boosting attackspeed will send a flurry of linear projectiles towards the target point (no spread)
+Skeleton Heavy - Can stomp the ground around them, radius decreased significantly, no longer spawn mini skeletons
+
+round20 - Warlock golem
+
+Hellkeeper: Removed, is the same as warlock just without having to be spawned in or the meteor
+
+Warlock: Same as before, but can cast some actual spells holy shit i know
+can curse the ground, making anyone that stands in it take damage, can channel upheaval, but his upheaval deals minor damage as well as a slow (tries to combo curse + upheaval)
+Warlock Golem, mostly the same; but this time the heal disable meteor is a dodgeable ability and the fire wave no longer instakills you, just deal massive damage and also disables healing
+
+
+R22 Necro Boss: can no longer autoattack
+Passives:
+- Vile Aura:
+Deals constant 1% max hp damage to all units within 1200 radius, reduces healing by 50%
+- Deathbringer:
+When anything dies, will deal double damage on the next real damage tick (aura is hp loss so doesn't count)
+- Take the Weak:
+Any real damage dealt by Necro will instantly kill non-heroes and illusions.
+
+Actives:
+- Plague Wave: 
+Current bullet hell, but takes 1 second to activate to give players time to move out of the way; will now bullet hell in front and in the back so there are no 'safe zones'. Instantly kills and pierces through non-heroes and illusions.
+- Fear the Reaper:
+Uses necro's immortal effect, scythe slashes at a target position, dealing significant damage to all units hit
+- Swan's Song:
+Necro bubble, but marks all units within the bubble for death. Non-heroes and illusions instantly die.
+- Guillotine
+Uses necro's normal ult effect, drops a scythe on every hero and drops their health to 1% + 5s heal disable if they do not run out of the scythe's radius.
+- Weaken:
+Picks the unit that has dealt the most amount of damage to Necro and reduces their damage by 50% for 5 seconds. Necro will be taunted to them and hunt them down for the duration.
+
+
+-------------------------------------------------------------------------
+Aeon:
+Passives:
+Time Acceleration - Every second, Aeon gains 1% bonus movement speed and bonus damage.
+Distortion Field - Aeon slows enemy attack speed by 60 in 900 radius.
+Flashback - Upon taking more than 5% current hp in damage, Aeon will evade that instance of damage. This effect can only happen once every 13/12s
+
+Actives:
+Chronal Sphere - Aeon creates a growing bubble, stunning any enemy units caught in the sphere.
+Sins of the Past - Aeon creates an illusion of an enemy hero, as long as this illusion exists Aeon takes no damage. Illusion deals 100% damage and takes 100% damage.
+Rewind - Summons 3 random previous bosses; only 3 bosses can exist
+Fetal Syndrome - Targets the person dealing the most damage, this unit will deal 75% less damage for 10 seconds.
+Deteriorate - Applies a debuff that makes all enemies in the aoe lose 1 armor per second for 60 seconds, 160s cooldown. Unpurgeable
+
+All of these to lua

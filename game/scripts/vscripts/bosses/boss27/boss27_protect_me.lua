@@ -3,12 +3,12 @@ boss27_protect_me = class({})
 function boss27_protect_me:OnAbilityPhaseStart()
 	local caster = self:GetCaster()
 	EmitSoundOn("Hero_Ursa.Overpower", caster)
-	for bear, _ in pairs( caster.bigBearsTable ) do
+	for id, bear in pairs( caster.bigBearsTable ) do
 		if not bear:IsNull() and bear:IsAlive() then
 			ParticleManager:FireTargetWarningParticle(bear)
 		end
 	end
-	for bear, _ in pairs( caster.smallBearsTable ) do
+	for id, bear in pairs( caster.smallBearsTable ) do
 		if not bear:IsNull() and bear:IsAlive() then
 			ParticleManager:FireTargetWarningParticle(bear)
 		end
@@ -36,7 +36,7 @@ function modifier_boss27_protect_me_buff:OnCreated()
 	if IsServer() then 
 		self:StartIntervalThink(0.5)
 		
-		for bear, _ in pairs( caster.bigBearsTable ) do
+		for id, bear in pairs( caster.bigBearsTable ) do
 			if not bear:IsNull() and bear:IsAlive() then
 				local linkFX = ParticleManager:CreateParticle("particles/bosses/boss27/boss27_protect_me_link.vpcf", PATTACH_POINT_FOLLOW, parent)
 				ParticleManager:SetParticleControlEnt(linkFX, 0, parent, PATTACH_POINT_FOLLOW, "attach_hitloc", parent:GetAbsOrigin(), true)
@@ -50,7 +50,7 @@ function modifier_boss27_protect_me_buff:OnCreated()
 				end)
 			end
 		end
-		for bear, _ in pairs( caster.smallBearsTable ) do
+		for id, bear in pairs( caster.smallBearsTable ) do
 			if not bear:IsNull() and bear:IsAlive() then
 				local linkFX = ParticleManager:CreateParticle("particles/bosses/boss27/boss27_protect_me_link.vpcf", PATTACH_POINT_FOLLOW, parent)
 				ParticleManager:SetParticleControlEnt(linkFX, 0, parent, PATTACH_POINT_FOLLOW, "attach_hitloc", parent:GetAbsOrigin(), true)

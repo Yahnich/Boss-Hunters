@@ -10,7 +10,7 @@ function Spawn( entityKeyValues )
 			return AIThink(thisEntity)
 		end
 	end)
-	thisEntity.walk = thisEntity:FindAbilityByName("clinkz_wind_walk")
+	thisEntity.walk = thisEntity:FindAbilityByName("boss_wind_walk")
 	thisEntity.focus = thisEntity:FindAbilityByName("boss_focusfire")
 end
 
