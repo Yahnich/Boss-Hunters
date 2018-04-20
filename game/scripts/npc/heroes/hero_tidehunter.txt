@@ -227,7 +227,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"150 200 250 300 350 400 450"
+				"damage"				"160 210 260 310 360 410 460"
 				"LinkedSpecialBonus"	"special_bonus_unique_tide_tongue_whip_1"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
@@ -249,12 +249,12 @@
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"eat_threshold"			"10"
+				"eat_threshold"			"15"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"eat_health"			"75"
+				"eat_health"			"100"
 			}
 			"07"
 			{
@@ -296,12 +296,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage_reduction_pct"	"35"
+				"damage_reduction_pct"	"25"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"critical_chance"		"17.5"
+				"critical_chance"		"15"
 			}
 			"03"
 			{

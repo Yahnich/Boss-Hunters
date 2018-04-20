@@ -15,7 +15,7 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"5.0 3.5"
+		"AbilityCooldown"				"5.0 2.5"
 	
 		"precache"
 		{
@@ -50,12 +50,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"stun_duration"			"0.5"
+				"stun_duration"			"3.0"
 			}
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"magic_damage"			"1000 1250"
+				"magic_damage"			"1000 3000"
 			}
 			"01"
 			{
@@ -101,7 +101,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"max_damage"			"0.8 1.2"
+				"max_damage"			"0.8 2"
 			}
 		}
 	}
@@ -144,12 +144,12 @@
 			"03"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"impact_curr_hp_damage"		"30 35"
+				"impact_curr_hp_damage"		"30 50"
 			}
 			"04"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"suck_duration"				"0.5"
+				"suck_duration"				"0.75"
 			}
 		}
 	}
