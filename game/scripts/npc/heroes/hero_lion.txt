@@ -8,7 +8,7 @@
 		"ScriptFile"					"heroes/hero_lion/lion_death_finger.lua"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
@@ -108,7 +108,7 @@
 			"02"
 			{	
 				"var_type"			"FIELD_FLOAT"
-				"duration"			"1.0"
+				"duration"			"0.5"
 				"LinkedSpecialBonus"		"special_bonus_unique_lion_earth_spike_2"
 			}
 			"03"
@@ -173,7 +173,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"duration"					"2.5 2.75 3.0 3.25 3.5 3.75 4.0"
+				"duration"					"0.25 0.5 0.75 1 1.25 1.5 1.75"
 			}
 			"02"
 			{
@@ -436,7 +436,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"1.5"
+				"value"					"0.5"
 			}
 		}
 	}

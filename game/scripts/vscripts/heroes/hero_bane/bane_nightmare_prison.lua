@@ -5,7 +5,9 @@ function bane_nightmare_prison:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 	local duration = self:GetTalentSpecialValueFor("duration")
-	if caster:HasTalent("special_bonus_unique_bane_nightmare_prison_2") then modifierName = "bane_nightmare_prison_fear" end
+	if caster:HasTalent("special_bonus_unique_bane_nightmare_prison_2") then
+		modifierName = "bane_nightmare_prison_fear"
+	end
 	target:AddNewModifier(caster, self, modifierName, {duration = duration})
 
 	EmitSoundOn("Hero_Bane.Nightmare", target)

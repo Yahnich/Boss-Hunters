@@ -11046,7 +11046,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"1 1.5 2 2.5 3 3.5 4.0"
+				"duration"				"1 1.25 1.5 1.75 2 2.25 2.5"
 			}
 		}
 		"OnSpellStart"
@@ -11121,27 +11121,27 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"dodge_chance_pct"		"10 15 20 25 30 35 40"
+				"dodge_chance_pct"		"10 12 14 16 20 22 24"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"1"
+				"duration"				"0.5"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"chance_pct"			"10.0 12.5 15 17.5 20 22.5 25"
+				"chance_pct"			"5 8 11 14 17 20 23"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"attackslow"			"-200"
+				"attackslow"			"-50"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"attackhaste"			"200"
+				"attackhaste"			"50"
 			}
 			"06"
 			{
@@ -11171,10 +11171,10 @@
 			}
 			"modifier_time_lock_haste_datadriven"
 			{
-				"IsDebuff"	"1"
+				"IsDebuff"	"0"
 	
-				"EffectName"	"particles/generic_gameplay/generic_stunned.vpcf"
-				"EffectAttachType"	"follow_overhead"
+				//"EffectName"	"particles/generic_gameplay/generic_stunned.vpcf"
+				//"EffectAttachType"	"follow_overhead"
 				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
 	
 				"StatusEffectName"		"particles/status_fx/status_effect_faceless_chronosphere.vpcf"
@@ -11466,7 +11466,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"pounce_damage"			"125"
+				"pounce_damage"			"100"
 			}
 			"06"
 			{

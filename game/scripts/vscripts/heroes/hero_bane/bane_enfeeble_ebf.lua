@@ -2,7 +2,7 @@ bane_enfeeble_ebf = class({})
 
 function bane_enfeeble_ebf:GetBehavior()
 	local caster = self:GetCaster()
-	if caster:HasTalent("special_bonus_unique_bane_enfeeble_2") then
+	if caster:HasTalent("special_bonus_unique_bane_enfeeble_ebf_2") then
 		return DOTA_ABILITY_BEHAVIOR_POINT + DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING
 	else
 		return DOTA_ABILITY_BEHAVIOR_UNIT_TARGET + DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING
@@ -13,12 +13,12 @@ function bane_enfeeble_ebf:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 	
-	if caster:HasTalent("special_bonus_unique_bane_enfeeble_2") then
+	if caster:HasTalent("special_bonus_unique_bane_enfeeble_ebf_2") then
 		target = self:GetCursorPosition()
-		local speed = caster:FindTalentValue("special_bonus_unique_bane_enfeeble_2", "speed")
-		local startRadius = caster:FindTalentValue("special_bonus_unique_bane_enfeeble_2", "start_radius")
-		local endRadius = caster:FindTalentValue("special_bonus_unique_bane_enfeeble_2", "end_radius")
-		self:FireLinearProjectile("particles/empty_projectile.vpcf", speed * CalculateDirection( target, caster ), self:GetTrueCastRange() - endRadius, startRadius, {width_end = endRadius})
+		local speed = caster:FindTalentValue("special_bonus_unique_bane_enfeeble_ebf_2", "speed")
+		local startRadius = caster:FindTalentValue("special_bonus_unique_bane_enfeeble_ebf_2", "start_radius")
+		local endRadius = caster:FindTalentValue("special_bonus_unique_bane_enfeeble_ebf_2", "end_radius")
+		self:FireLinearProjectile(nil, speed * CalculateDirection( target, caster ), self:GetTrueCastRange(), startRadius, {width_end = endRadius})
 		ParticleManager:FireParticle("particles/units/heroes/hero_bane/bane_enfeeble_talent.vpcf", PATTACH_ABSORIGIN, caster, {[0] = caster:GetAbsOrigin()})
 	else
 		self:ApplyEnfeeble(target)
@@ -33,7 +33,7 @@ end
 function bane_enfeeble_ebf:ApplyEnfeeble(target)
 	local caster = self:GetCaster()
 	target:AddNewModifier(caster, self, "modifier_bane_enfeeble_debuff", {duration = self:GetTalentSpecialValueFor("debuff_duration")})
-	if caster:HasTalent("special_bonus_unique_bane_enfeeble_1") then
+	if caster:HasTalent("special_bonus_unique_bane_enfeeble_ebf_1") then
 		caster:AddNewModifier(caster, self, "modifier_bane_enfeeble_buff", {duration = self:GetTalentSpecialValueFor("debuff_duration")})
 	end
 	EmitSoundOn("Hero_Bane.Enfeeble", caster)
