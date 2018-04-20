@@ -28,7 +28,7 @@ function StatsScreen:StartStatsScreen()
 	self.sta = {0,5,10,15,20,30}
 	
 	self.pr = {0,5,10,15,20,30}
-	self.mr = {0,8,16,24,32,50}
+	self.mr = {0,6,12,18,24,35}
 	self.db = {0,20,40,60,80,120}
 	self.ar = {0,100,200,300,400,600}
 	self.hp = {0,500,1000,1500,2000,3000}
