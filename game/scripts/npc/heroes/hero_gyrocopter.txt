@@ -246,12 +246,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"10 20 30 40 60 70 80"
+				"damage"				"12 24 26 48 72 84"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"fire_rate"				"0.25"
+				"fire_rate"				"0.1"
 				"LinkedSpecialBonus"	"special_bonus_unique_gyro_rocket_salvo_2"
 			}
 			"03"
