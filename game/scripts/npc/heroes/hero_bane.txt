@@ -115,7 +115,8 @@
 		"precache"
 		{
 			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_bane.vsndevts"		
-			"particle"		"particles/units/heroes/hero_bane/bane_enfeeble.vpcf"		
+			"particle"		"particles/units/heroes/hero_bane/bane_enfeeble.vpcf"
+			"particle"  	"particles/units/heroes/hero_bane/bane_enfeeble_projectile.vpcf"		
 		}
 	
 		// Casting
@@ -224,7 +225,7 @@
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"650"
-		"AbilityCastPoint"				"0.5 0.5 0.5 0.5"
+		"AbilityCastPoint"				"0.5"
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -248,6 +249,8 @@
 			{
 				"var_type"					"FIELD_FLOAT"
 				"duration"					"4.0 4.5 5.0 5.5 6.0 6.5 7.0"
+				"LinkedSpecialBonus"			"special_bonus_unique_bane_nightmare_prison_2"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
 			"02"
 			{
@@ -296,7 +299,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"1"
+				"value"					"0.75"
 			}
 		}
 	}

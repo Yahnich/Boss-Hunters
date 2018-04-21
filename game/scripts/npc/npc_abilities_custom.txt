@@ -64,6 +64,7 @@
 #base "heroes/hero_pudge.txt"
 #base "heroes/hero_juggernaut.txt"
 #base "heroes/hero_shadow_fiend.txt"
+#base "heroes/hero_skywrath.txt"
 
 "DOTAAbilities"
 {
@@ -11045,7 +11046,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"1 1.5 2 2.5 3 3.5 4.0"
+				"duration"				"1 1.25 1.5 1.75 2 2.25 2.5"
 			}
 		}
 		"OnSpellStart"
@@ -11120,27 +11121,27 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"dodge_chance_pct"		"10 15 20 25 30 35 40"
+				"dodge_chance_pct"		"10 12 14 16 20 22 24"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"1"
+				"duration"				"0.5"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"chance_pct"			"10.0 12.5 15 17.5 20 22.5 25"
+				"chance_pct"			"5 8 11 14 17 20 23"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"attackslow"			"-200"
+				"attackslow"			"-50"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"attackhaste"			"200"
+				"attackhaste"			"50"
 			}
 			"06"
 			{
@@ -11170,10 +11171,10 @@
 			}
 			"modifier_time_lock_haste_datadriven"
 			{
-				"IsDebuff"	"1"
+				"IsDebuff"	"0"
 	
-				"EffectName"	"particles/generic_gameplay/generic_stunned.vpcf"
-				"EffectAttachType"	"follow_overhead"
+				//"EffectName"	"particles/generic_gameplay/generic_stunned.vpcf"
+				//"EffectAttachType"	"follow_overhead"
 				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
 	
 				"StatusEffectName"		"particles/status_fx/status_effect_faceless_chronosphere.vpcf"
@@ -11465,7 +11466,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"pounce_damage"			"125"
+				"pounce_damage"			"100"
 			}
 			"06"
 			{
@@ -16993,314 +16994,7 @@
 			}
 		}
 	}
-	"skywrath_mage_concussive_shot_datadriven"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"             "ability_datadriven"
-		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
-		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
-		"FightRecapLevel"               "1"
-		"AbilityTextureName"			"skywrath_mage_concussive_shot"
-		"MaxLevel"						"7"
 	
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"              "0.0 0.0 0.0 0.0"
-		"AbilityCastRange"              "1600"
-		
-		// Time     
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"               "20.0 18.0 16.0 14.0 12.0 10.0 8.0"
-	
-	
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"95"
-	
-	
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{ 
-			"01"
-			{
-				"var_type"          "FIELD_INTEGER"
-				"launch_radius"     "1600"
-			}
-			"02"
-			{
-				"var_type"          "FIELD_INTEGER"
-				"slow_radius"       "200"
-			}
-			"03"
-			{
-				"var_type"          "FIELD_INTEGER"
-				"speed"             "800"
-			}
-			"04"
-			{
-				"var_type"          "FIELD_INTEGER"
-				"damage"            "70 140 210 280 350 420 490"
-			}
-			"05"
-			{
-				"var_type"          "FIELD_FLOAT"
-				"slow_duration"     "4.0"
-			}
-			"06"
-			{
-				"var_type"          "FIELD_INTEGER"
-				"movement_speed_pct"    "-35"
-			}
-			"07"
-			{
-				"var_type"          "FIELD_INTEGER"
-				"shot_vision"       "400"
-			}
-			"08"
-			{
-				"var_type"              "FIELD_FLOAT"
-				"vision_duration"       "3.34"
-			}
-		}
-		
-		// Data driven
-		//------------------------------------------------------------------------------------------------------------- 
-		"precache"
-		{
-			"soundfile"         "soundevents/game_sounds_heroes/game_sounds_skywrath_mage.vsndevts"
-			"particle"          "particles/units/heroes/hero_skywrath_mage/skywrath_mage_concussive_shot.vpcf"
-		}
-		
-		"OnSpellStart"
-		{
-			"FireSound"
-			{
-				"Target"        "CASTER"
-				"EffectName"        "Hero_SkywrathMage.ConcussiveShot.Cast"
-			}
-		
-			"RunScript"
-			{
-				"ScriptFile"   "lua_abilities/heroes/skywrath_mage"
-				"Function"      "concussive_shot_seek_target"
-			}
-		}
-		
-		"OnProjectileHitUnit"
-		{
-			"FireSound"
-			{
-				"Target"        "CASTER"
-				"EffectName"        "Hero_SkywrathMage.ConcussiveShot.Target"
-			}
-		
-			"ActOnTargets"
-			{
-				"Target"
-				{
-					"Center"            "TARGET"
-					"Radius"            "%slow_radius"
-					"Teams"             "DOTA_UNIT_TARGET_TEAM_ENEMY"
-					"Flags"             "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-					"Types"             "DOTA_UNIT_TARGET_ALL"
-				}
-				
-				"Action"
-				{
-					"RunScript"
-					{
-						"ScriptFile"    "lua_abilities/heroes/skywrath_mage"
-						"Function"      "concussive_shot_damage"
-						"damage"		"%damage"
-					}
-					
-					"ApplyModifier"
-					{
-						"Target"        "TARGET"
-						"ModifierName"  "modifier_concussive_shot_slow_datadriven"
-					}
-				}
-			}
-		}
-		
-		"Modifiers"
-		{
-			"modifier_concussive_shot_slow_datadriven"
-			{
-				"IsHidden"              "0"
-				"IsDebuff"              "1"
-				
-				"Duration"              "%slow_duration"
-				
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"  "%movement_speed_pct"
-				}
-			}
-		}
-	}
-	"skywrath_mage_mystic_flare_datadriven"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"             "ability_datadriven"
-		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
-		"AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
-		"AbilityUnitTargetType"         "DOTA_UNIT_TARGET_ALL"
-		"AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
-		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
-		"FightRecapLevel"               "2"
-		"AbilityTextureName"			"skywrath_mage_mystic_flare"
-		"AOERadius"                     "225"
-		"MaxLevel"						"6"
-	
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"              "1200"
-		"AbilityCastPoint"              "0.1 0.1 0.1 0.1"
-		
-		// Time     
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"               "60.0 50.0 40.0 30.0 20.0 10.0"
-	
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"300 550 800 1050 1300 1550"
-			
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"              "FIELD_INTEGER"
-				"radius"                "225"
-			}
-			"02"
-			{
-				"var_type"              "FIELD_FLOAT"
-				"duration"              "2.4"
-			}
-			"03"
-			{
-				"var_type"              "FIELD_INTEGER"
-				"damage"                "600 1000 1400 1800 2200 2600"
-				"LinkedSpecialBonus"	"special_bonus_unique_skywrath_5"
-			}
-			"04"
-			{
-				"var_type"              "FIELD_FLOAT"
-				"damage_interval"       "0.1"
-			}
-			"05"
-			{
-				"var_type"              "FIELD_FLOAT"
-				"scepter_cooldown"      "5"
-			}
-			"05"
-			{
-				"var_type"              "FIELD_FLOAT"
-				"search_radius_scepter"      "725"
-			}
-		}
-		
-		// Data driven
-		//-------------------------------------------------------------------------------------------------------------
-		"precache"
-		{
-			"soundfile"             "soundevents/game_sounds_heroes/game_sounds_skywrath_mage.vsndevts"
-			"particle"              "particles/units/heroes/hero_skywrath_mage/skywrath_mage_mystic_flare_ambient_c.vpcf"       // Attach for core
-			"particle"              "particles/units/heroes/hero_skywrath_mage/skywrath_mage_mystic_flare_ambient_f.vpcf"       // Attach for core
-			"particle"              "particles/units/heroes/hero_skywrath_mage/skywrath_mage_mystic_flare_ambient_j.vpcf"       // Attach for core
-			"particle"              "particles/units/heroes/hero_skywrath_mage/skywrath_mage_mystic_flare_ambient.vpcf"         // Main particle
-		}
-		
-		"OnSpellStart"
-		{
-			"FireSound"
-			{
-				"Target"            "CASTER"
-				"EffectName"        "Hero_SkywrathMage.MysticFlare.Cast"
-			}
-		
-			"RunScript"
-			{
-				"ScriptFile"        "lua_abilities/heroes/skywrath_mage"
-				"Function"          "mystic_flare_start"
-				"Target"            "POINT"
-			}
-			"RunScript"
-			{
-				"ScriptFile"        "lua_abilities/heroes/skywrath_mage"
-				"Function"          "mystic_flare_scepter_check"
-			}
-		}
-		
-		"Modifiers"
-		{
-			"modifier_mystic_flare_dummy_vfx_datadriven"
-			{
-				"OnCreated"
-				{
-					"FireSound"
-					{
-						"Target"                "CASTER"
-						"EffectName"            "Hero_SkywrathMage.MysticFlare"
-					}
-				
-					// For some reasons, these three particles do not show up for me so I have to manually put them in
-					"AttachEffect"
-					{
-						"Target"                "TARGET"
-						"EffectName"            "particles/units/heroes/hero_skywrath_mage/skywrath_mage_mystic_flare_ambient_c.vpcf"   
-						"EffectAttachType"      "follow_origin"
-						"EffectRadius"          "%radius"
-					}
-					
-					"AttachEffect"
-					{
-						"Target"                "TARGET"
-						"EffectName"            "particles/units/heroes/hero_skywrath_mage/skywrath_mage_mystic_flare_ambient_f.vpcf"
-						"EffectAttachType"      "follow_origin"
-						"EffectRadius"          "%radius"
-					}
-				
-					"AttachEffect"
-					{
-						"Target"                "TARGET"
-						"EffectName"            "particles/units/heroes/hero_skywrath_mage/skywrath_mage_mystic_flare_ambient_j.vpcf"   
-						"EffectAttachType"      "follow_origin"
-						"EffectRadius"          "%radius"
-					}
-				
-					// Main Effect
-					"AttachEffect"
-					{
-						"Target"                "TARGET"
-						"EffectName"            "particles/units/heroes/hero_skywrath_mage/skywrath_mage_mystic_flare_ambient.vpcf" 
-						"EffectAttachType"      "follow_origin"
-						"EffectRadius"          "%radius"
-						"ControlPoints"
-						{
-							"01"                "0 %duration 0"
-						}
-					}
-				}
-			
-				"States"
-				{
-					"MODIFIER_STATE_INVULNERABLE"                   "MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_NO_HEALTH_BAR"                  "MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_NO_UNIT_COLLISION"              "MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_NOT_ON_MINIMAP"                 "MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_UNSELECTABLE"                   "MODIFIER_STATE_VALUE_ENABLED"
-				}
-			}
-		}
-	}
 	"sniper_assassinate_ebf"
 	{
 		// General
