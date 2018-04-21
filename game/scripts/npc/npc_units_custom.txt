@@ -661,8 +661,8 @@
 		// Attack
 		//----------------------------------------------------------------
 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"			"300"		// Damage range min.
-		"AttackDamageMax"			"360"		// Damage range max.
+		"AttackDamageMin"			"500"		// Damage range min.
+		"AttackDamageMax"			"600"		// Damage range max.
 		"AttackRate"				"3"	
 		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"18000"		// Range within a target can be acquired.
@@ -976,8 +976,8 @@
 		// Attack
 		//----------------------------------------------------------------
 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"			"300"		// Damage range min.
-		"AttackDamageMax"			"360"		// Damage range max.
+		"AttackDamageMin"			"350"		// Damage range min.
+		"AttackDamageMax"			"500"		// Damage range max.
 		"AttackRate"				"2.7"	
 		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
@@ -1270,8 +1270,8 @@
 		// Attack
 		//----------------------------------------------------------------
 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"			"300"		// Damage range min.
-		"AttackDamageMax"			"360"		// Damage range max.
+		"AttackDamageMin"			"275"		// Damage range min.
+		"AttackDamageMax"			"320"		// Damage range max.
 		"AttackRate"				"2.4"
 		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
@@ -1368,8 +1368,8 @@
 		// Attack
 		//----------------------------------------------------------------
 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"			"300"		// Damage range min.
-		"AttackDamageMax"			"360"		// Damage range max.
+		"AttackDamageMin"			"150"		// Damage range min.
+		"AttackDamageMax"			"260"		// Damage range max.
 		"AttackRate"				"2.1"
 		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
@@ -7287,8 +7287,8 @@
 		// Attack
 		//----------------------------------------------------------------
 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"			"1350"		// Damage range min.
-		"AttackDamageMax"			"1500"		// Damage range max.
+		"AttackDamageMin"			"2350"		// Damage range min.
+		"AttackDamageMax"			"2500"		// Damage range max.
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"				"2.0"		// Speed of attack.
 		"AttackAnimationPoint"		"0.5"		// Normalized time in animation cycle to attack.
@@ -7317,7 +7317,7 @@
 	
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"55000"		// Base health.
+		"StatusHealth"				"75000"		// Base health.
 		"StatusHealthRegen"			"20000"		// Health regeneration rate.
 		"StatusMana"				"0"			// Base mana.
 		"StatusManaRegen"			"0"			// Mana regeneration rate.
