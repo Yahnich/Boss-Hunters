@@ -299,7 +299,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"0.75"
+				"value"					"0.5"
 			}
 		}
 	}
