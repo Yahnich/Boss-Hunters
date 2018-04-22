@@ -1,0 +1,493 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Recipe: Dark Wand 1
+	//=================================================================================================================
+	"item_recipe_dark_wand"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"7003"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"800"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_dark_wand"
+		"ItemRequirements"
+		{
+			"01"						"item_staff_of_magi"
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 2
+	//=================================================================================================================
+	"item_recipe_dark_wand_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"7004"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_dark_wand_2"
+		"ItemRequirements"
+		{
+			"01"						"item_dark_wand;item_staff_of_magi"
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 3
+	//=================================================================================================================
+	"item_recipe_dark_wand_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"7005"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_dark_wand_3"
+		"ItemRequirements"
+		{
+			"01"						"item_dark_wand_2;item_staff_of_magi"
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand 4
+	//=================================================================================================================
+	"item_recipe_dark_wand_4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"7006"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_dark_wand_4"
+		"ItemRequirements"
+		{
+			"01"						"item_dark_wand_3;item_staff_of_magi"
+		}
+	}
+	//=================================================================================================================
+	// Recipe: Dark Wand
+	//=================================================================================================================
+	"item_recipe_dark_wand_5"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"7007"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_dark_wand_5"
+		"ItemRequirements"
+		{
+			"01"						"item_dark_wand_4;item_staff_of_magi"
+		}
+	}
+	"item_dark_wand"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"7008"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_dark_wand"
+		"AbilityTextureName"			"dagon"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"MaxUpgradeLevel"				"5"
+		"ItemBaseLevel"					"1"
+		
+		"UpgradesItems"					"item_dark_wand;item_dark_wand_2;item_dark_wand_3;item_dark_wand_4;item_dark_wand_5"
+		"UpgradeRecipe"					"item_recipe_dark_wand"
+		
+		"ItemShopTags"					"magic"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"dagon;wand"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_items.vsndevts"
+			"particle"					"particles/items_fx/dagon.vpcf"
+		}
+		
+		"AbilityCooldown"				"35 30 25 20 15"
+		"AbilitySharedCooldown"			"dagon"
+		"AbilityManaCost"				"180"
+
+		"AbilityCastRange"				"600 650 700 750 800"
+		"AbilityCastPoint"				"0.03"
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_agi"				"3"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_int"				"18 21 24 27 30"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_str"				"3"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"cast_range"			"600 650 700 750 800"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"400 500 600 700 800"
+			}
+		}
+	}
+	"item_dark_wand_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"7009"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_dark_wand"
+		"AbilityTextureName"			"dagon_2"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"MaxUpgradeLevel"				"5"
+		"ItemBaseLevel"					"2"
+		
+		"UpgradesItems"					"item_dark_wand;item_dark_wand_2;item_dark_wand_3;item_dark_wand_4;item_dark_wand_5"
+		"UpgradeRecipe"					"item_recipe_dark_wand"
+		
+		"ItemShopTags"					"magic"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"dagon;wand"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_items.vsndevts"
+			"particle"					"particles/items_fx/dagon.vpcf"
+		}
+		
+		"AbilityCooldown"				"35 30 25 20 15"
+		"AbilitySharedCooldown"			"dagon"
+		"AbilityManaCost"				"180"
+
+		"AbilityCastRange"				"600 650 700 750 800"
+		"AbilityCastPoint"				"0.03"
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_agi"				"3"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_int"				"18 21 24 27 30"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_str"				"3"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"cast_range"			"600 650 700 750 800"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"400 500 600 700 800"
+			}
+		}
+	}
+	"item_dark_wand_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"7010"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_dark_wand"
+		"AbilityTextureName"			"dagon_3"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"MaxUpgradeLevel"				"5"
+		"ItemBaseLevel"					"3"
+		
+		"UpgradesItems"					"item_dark_wand;item_dark_wand_2;item_dark_wand_3;item_dark_wand_4;item_dark_wand_5"
+		"UpgradeRecipe"					"item_recipe_dark_wand"
+		
+		"ItemShopTags"					"magic"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"dagon;wand"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_items.vsndevts"
+			"particle"					"particles/items_fx/dagon.vpcf"
+		}
+		
+		"AbilityCooldown"				"35 30 25 20 15"
+		"AbilitySharedCooldown"			"dagon"
+		"AbilityManaCost"				"180"
+
+		"AbilityCastRange"				"600 650 700 750 800"
+		"AbilityCastPoint"				"0.03"
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_agi"				"3"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_int"				"18 21 24 27 30"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_str"				"3"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"cast_range"			"600 650 700 750 800"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"400 500 600 700 800"
+			}
+		}
+	}
+	"item_dark_wand_4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"7011"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_dark_wand"
+		"AbilityTextureName"			"dagon_4"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"MaxUpgradeLevel"				"5"
+		"ItemBaseLevel"					"4"
+		
+		"UpgradesItems"					"item_dark_wand;item_dark_wand_2;item_dark_wand_3;item_dark_wand_4;item_dark_wand_5"
+		"UpgradeRecipe"					"item_recipe_dark_wand"
+		
+		"ItemShopTags"					"magic"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"dagon;wand"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_items.vsndevts"
+			"particle"					"particles/items_fx/dagon.vpcf"
+		}
+		
+		"AbilityCooldown"				"35 30 25 20 15"
+		"AbilitySharedCooldown"			"dagon"
+		"AbilityManaCost"				"180"
+
+		"AbilityCastRange"				"600 650 700 750 800"
+		"AbilityCastPoint"				"0.03"
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_agi"				"3"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_int"				"18 21 24 27 30"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_str"				"3"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"cast_range"			"600 650 700 750 800"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"400 500 600 700 800"
+			}
+		}
+	}
+	"item_dark_wand_5"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"7012"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_dark_wand"
+		"AbilityTextureName"			"dagon_5"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"MaxUpgradeLevel"				"5"
+		"ItemBaseLevel"					"5"
+		
+		"UpgradesItems"					"item_dark_wand;item_dark_wand_2;item_dark_wand_3;item_dark_wand_4;item_dark_wand_5"
+		"UpgradeRecipe"					"item_recipe_dark_wand"
+		
+		"ItemShopTags"					"magic"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"dagon;wand"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_items.vsndevts"
+			"particle"					"particles/items_fx/dagon.vpcf"
+		}
+		
+		"AbilityCooldown"				"35 30 25 20 15"
+		"AbilitySharedCooldown"			"dagon"
+		"AbilityManaCost"				"180"
+
+		"AbilityCastRange"				"600 650 700 750 800"
+		"AbilityCastPoint"				"0.03"
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_agi"				"3"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_int"				"18 21 24 27 30"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_str"				"3"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"cast_range"			"600 650 700 750 800"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"400 500 600 700 800"
+			}
+		}
+	}
+}

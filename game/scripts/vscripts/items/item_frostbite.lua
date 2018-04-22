@@ -62,6 +62,10 @@ function modifier_item_frostbite:GetAuraSearchFlags()
 	return DOTA_UNIT_TARGET_FLAG_NONE
 end
 
+function modifier_item_frostbite:IsHidden()    
+	return true
+end
+
 LinkLuaModifier( "modifier_frostbite_debuff", "items/item_frostbite.lua" ,LUA_MODIFIER_MOTION_NONE )
 modifier_frostbite_debuff = class({})
 

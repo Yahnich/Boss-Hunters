@@ -1,54 +1,55 @@
 "DOTAAbilities"
 {
 	//=================================================================================================================
-	// Recipe: TITAN Armor
+	// Recipe: Shadow Blade
 	//=================================================================================================================
-	"item_recipe_arcane_accelerator"
+	"item_recipe_shadow_blade"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"3261"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"7000"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe_assault"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"1550"	
+		"ItemCost"						"1680"	
 		"ItemShopTags"					""
 		
 		// Recipe
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemRecipe"					"1"
-		"ItemResult"					"item_arcane_accelerator"
+		"ItemResult"					"item_shadow_blade"
 		"ItemRequirements"
 		{
-			"01"						"item_runed_artifact;item_orb_of_renewal"
+			"01"						"item_orb_of_shadows;item_broadsword;item_gauntlet_of_alacrity"
 		}
 	}
-	"item_arcane_accelerator"
+	//=================================================================================================================
+	// Shadow Blade
+	//=================================================================================================================
+	"item_shadow_blade"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"3262"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"ID"							"7001"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"BaseClass"						"item_lua"
-		"ScriptFile"					"items/item_arcane_accelerator"
-		"AbilityTextureName"			"item_octarine_core"
+		"ScriptFile"					"items/item_shadow_blade"
+		"AbilityTextureName"			"invis_sword"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
 		
-		"ItemShopTags"					"cooldown;reduction"
-		"ItemQuality"					"epic"
-		"ItemAliases"					"octarine core;arcane_accelerator"
+		"ItemCost"						"480"
+		"ItemShopTags"					"invis"
+		"ItemQuality"					"component"
+		"ItemAliases"					"shadow blade"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
-		
-		"precache"
-		{
-			"precache"					"soundevents/game_sounds_items.vsndevts"
-		}
+		"AbilityCooldown"				"28"
+		"AbilityManaCost"				"75"
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
@@ -57,18 +58,38 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"cooldown_reduction"	"20"
+				"attack_speed"			"30"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"basic_chance"			"10"
+				"attack_damage"			"40"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"ult_chance"			"3"
+				"damage"				"250"
 			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"14"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"move_speed"			"20"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"fade_time"				"0.3"
+			}
+		}
+
+		"precache"
+		{
+			"particle"  "particles/generic_hero_status/status_invisibility_start.vpcf"
 		}
 	}
 }

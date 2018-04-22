@@ -97,6 +97,10 @@
 #base "items/item_dust_of_stasis.txt"
 #base "items/item_creed_of_knowledge.txt"
 
+#base "items/item_shadow_blade.txt"
+#base "items/item_dark_wand.txt"
+#base "items/item_war_drum.txt"
+
 
 "DOTAAbilities"
 {

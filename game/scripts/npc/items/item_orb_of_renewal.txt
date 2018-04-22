@@ -32,12 +32,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"basic_chance"			"10"
+				"basic_chance"			"5"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"ult_chance"			"3"
+				"ult_chance"			"2"
 			}
 		}
 	}
