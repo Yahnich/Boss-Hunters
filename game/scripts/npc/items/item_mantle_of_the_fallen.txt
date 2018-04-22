@@ -14,7 +14,7 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"2100"	
+		"ItemCost"						"1200"	
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -23,7 +23,7 @@
 		"ItemResult"					"item_mantle_of_the_fallen"
 		"ItemRequirements"
 		{
-			"01"						"item_sanguine_mask"
+			"01"						"item_sanguine_mask;item_mithril_armor;item_ring_of_mana"
 		}
 	}
 	"item_mantle_of_the_fallen"
@@ -60,6 +60,16 @@
 				"lifesteal"				"15"
 			}
 			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_armor"			"3"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_mana_regen"		"2"
+			}
+			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"radius"				"900"

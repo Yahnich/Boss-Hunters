@@ -8,8 +8,7 @@ end
 modifier_item_orb_of_renewal_passive = class({})
 
 function modifier_item_orb_of_renewal_passive:OnCreated()
-	self.ultChance = self:GetSpecialValueFor("ult_chance")
-	self.basicChance = self:GetSpecialValueFor("basic_chance")
+	self.reduction = self:GetSpecialValueFor("ult_chance")
 end
 
 function modifier_item_orb_of_renewal_passive:DeclareFunctions()
@@ -21,9 +20,20 @@ function modifier_item_orb_of_renewal_passive:GetModifierPercentageCooldownStack
 end
 
 function modifier_item_orb_of_renewal_passive:OnAbilityFullyCast(params)
-	if params.ability and params.unit == self:GetParent() then
-		if ( params.ability:GetAbilityType() == 5 and RollPercentage( self.ultChance ) ) or ( params.ability:GetAbilityType() ~= 5 and RollPercentage( self.basicChance ) ) then
-			params.ability:Refresh()
+	if params.ability and params.ability:GetCooldown(-1) > 0.5 and params.unit == self:GetParent() then
+		for i = 0, self:GetAbilityCount() - 1 do
+			local ability = self:GetAbilityByIndex( i )
+			if ability then
+				ability:ModifyCooldown(self.reduction)
+			end
+		end
+		if bItems then
+			for i=0, 5, 1 do
+				local current_item = self:GetItemInSlot(i)
+				if current_item ~= nil and current_item ~= item then
+					current_item:ModifyCooldown(self.reduction)
+				end
+			end
 		end
 	end
 end

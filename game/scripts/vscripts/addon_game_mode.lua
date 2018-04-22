@@ -71,6 +71,7 @@ function Precache( context )
 	PrecacheResource( "particle", "particles/status_fx/status_effect_beserkers_call.vpcf", context )
 	PrecacheResource( "particle", "particles/econ/items/effigies/status_fx_effigies/status_effect_effigy_frosty_dire.vpcf", context )
 	PrecacheResource( "particle", "particles/units/heroes/hero_keeper_of_the_light/keeper_of_the_light_blinding_light_debuff.vpcf", context )
+	PrecacheResource( "particle", "particles/econ/events/nexon_hero_compendium_2014/blink_dagger_end_nexon_hero_cp_2014.vpcf", context)
 
 	-- Hero Precaches
 	PrecacheUnitByNameSync("npc_dota_warlock_moloch", context)
@@ -83,6 +84,7 @@ function Precache( context )
 	PrecacheResource("particle", "particles/desolator5_projectile.vpcf", context)
 	PrecacheResource("particle", "particles/desolator6_projectile.vpcf", context)
 	PrecacheResource("particle", "particles/skadi2_projectile.vpcf", context)
+	
 	
 	-- Elite particles
 	PrecacheResource("particle", "particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_shadowraze.vpcf", context)

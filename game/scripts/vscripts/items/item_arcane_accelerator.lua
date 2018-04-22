@@ -9,25 +9,32 @@ modifier_item_arcane_accelerator_passive = class({})
 
 function modifier_item_arcane_accelerator_passive:OnCreated()
 	self.cdr = self:GetSpecialValueFor("cooldown_reduction")
-	self.ultChance = self:GetSpecialValueFor("ult_chance")
-	self.basicChance = self:GetSpecialValueFor("basic_chance")
+	self.mr = self:GetSpecialValueFor("bonus_mana_regen")
+	self.intellect = self:GetSpecialValueFor("bonus_intellect")
+	self.bonus_mana = self:GetSpecialValueFor("bonus_mana")
 end
 
 function modifier_item_arcane_accelerator_passive:DeclareFunctions()
 	return {MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE_STACKING,
-			MODIFIER_EVENT_ON_ABILITY_FULLY_CAST}
+			MODIFIER_PROPERTY_MANA_REGEN_CONSTANT,
+			MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
+			MODIFIER_PROPERTY_MANA_BONUS}
 end
 
 function modifier_item_arcane_accelerator_passive:GetModifierPercentageCooldownStacking(params)
 	return self.cdr
 end
 
-function modifier_item_arcane_accelerator_passive:OnAbilityFullyCast(params)
-	if params.ability and params.unit == self:GetParent() then
-		if ( params.ability:GetAbilityType() == 5 and RollPercentage( self.ultChance ) ) or ( params.ability:GetAbilityType() ~= 5 and RollPercentage( self.basicChance ) ) then
-			params.ability:Refresh()
-		end
-	end
+function modifier_item_arcane_accelerator_passive:GetModifierManaBonus()
+	return self.bonus_mana
+end
+
+function modifier_item_arcane_accelerator_passive:GetModifierConstantManaRegen()
+	return self.mr
+end
+
+function modifier_item_arcane_accelerator_passive:GetModifierBonusStats_Intellect()
+	return self.intellect
 end
 
 function modifier_item_arcane_accelerator_passive:IsHidden()
