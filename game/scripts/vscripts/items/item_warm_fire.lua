@@ -62,6 +62,10 @@ function modifier_item_warm_fire:GetAuraSearchFlags()
 	return DOTA_UNIT_TARGET_FLAG_NONE
 end
 
+function modifier_item_warm_fire:IsHidden()   
+	return true
+end
+
 LinkLuaModifier( "modifier_warm_fire_debuff", "items/item_warm_fire.lua" ,LUA_MODIFIER_MOTION_NONE )
 modifier_warm_fire_debuff = class({})
 

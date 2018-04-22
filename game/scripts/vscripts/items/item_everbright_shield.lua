@@ -10,7 +10,6 @@ function item_everbright_shield:GetAbilityTextureName()
 	end
 end
 
-
 function item_everbright_shield:GetIntrinsicModifierName()
 	return "modifier_item_everbright_shield_off"
 end

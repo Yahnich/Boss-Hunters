@@ -35,5 +35,5 @@ end
 
 
 function modifier_item_soldiers_pike:IsHidden()
-	return false
+	return true
 end
