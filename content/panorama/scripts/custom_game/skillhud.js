@@ -80,9 +80,9 @@ function RefreshStatsPanel()
 	}
 	
 	var respec = $("#RespecButton")
-	respec.SetHasClass("TalentCannotBeSkilled", CustomNetTables.GetTableValue( "stats_panel", lastRememberedHero).respec);
+	respec.SetHasClass("TalentCannotBeSkilled", CustomNetTables.GetTableValue( "stats_panel", lastRememberedHero).respec || lastRememberedHero != Players.GetPlayerHeroEntityIndex( localID );
 	if( !respec:BHasClass("TalentCannotBeSkilled") ){
-		respec.SetPanelEvent("onactivate", function(){ RespecTalents( CustomNetTables.GetTableValue( "stats_panel", lastRememberedHero).respec ) });
+		respec.SetPanelEvent("onactivate", function(){ RespecTalents( CustomNetTables.GetTableValue( "stats_panel", Players.GetPlayerHeroEntityIndex( localID )).respec ) });
 	}
 	
 	if(lastRememberedState == STATS_STATE_OFFENSE){
