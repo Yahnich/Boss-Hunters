@@ -22,11 +22,17 @@ LinkLuaModifier( "modifier_item_archmages_orb_passive", "items/item_archmages_or
 function modifier_item_archmages_orb_passive:OnCreated()
 	self.spellamp = self:GetSpecialValueFor("spell_amp")
 	self.manaregen = self:GetSpecialValueFor("mana_regen")
+	self.bonus_mana = self:GetSpecialValueFor("bonus_mana")
 end
 
 function modifier_item_archmages_orb_passive:DeclareFunctions()
 	return {MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,
-			MODIFIER_PROPERTY_MANA_REGEN_CONSTANT}
+			MODIFIER_PROPERTY_MANA_REGEN_CONSTANT,
+			MODIFIER_PROPERTY_MANA_BONUS}
+end
+
+function modifier_item_archmages_orb_passive:GetModifierManaBonus()
+	return self.bonus_mana
 end
 
 function modifier_item_archmages_orb_passive:GetModifierSpellAmplify_Percentage()

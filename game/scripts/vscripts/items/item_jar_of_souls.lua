@@ -2,6 +2,10 @@ item_jar_of_souls = class({})
 LinkLuaModifier( "modifier_item_jar_of_souls_handle_damage", "items/item_jar_of_souls.lua" ,LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_item_jar_of_souls_handle_heal", "items/item_jar_of_souls.lua" ,LUA_MODIFIER_MOTION_NONE )
 
+function item_jar_of_souls:GetIntrinsicModifierName()
+	return "modifier_item_jar_of_souls_passive"
+end
+
 function item_jar_of_souls:OnSpellStart()
 	EmitSoundOn("DOTA_Item.SpiritVessel.Cast", self:GetCaster())
 	if self:GetCursorTarget():GetTeam() == self:GetCaster():GetTeam() then
@@ -80,10 +84,53 @@ function modifier_item_jar_of_souls_handle_damage:IsDebuff()
 end
 
 function modifier_item_jar_of_souls_handle_damage:DeclareFunctions()
-	return {MODIFIER_PROPERTY_DISABLE_HEALING}
+	return {MODIFIER_PROPERTY_DISABLE_HEALING,
+			}
 end
 
 function modifier_item_jar_of_souls_handle_damage:GetDisableHealing()
-	print(self.disable)
 	return tonumber(self.disable)
+end
+
+modifier_item_jar_of_souls_passive = class({})
+LinkLuaModifier( "modifier_item_jar_of_souls_passive", "items/item_jar_of_souls.lua" ,LUA_MODIFIER_MOTION_NONE )
+function modifier_item_jar_of_souls_passive:OnCreated()
+	self.manaregen = self:GetSpecialValueFor("bonus_mana_regen")
+	self.stat = self:GetSpecialValueFor("bonus_all")
+end
+
+function modifier_item_jar_of_souls_passive:OnRefresh()
+end
+
+function modifier_item_jar_of_souls_passive:DeclareFunctions()
+	return {MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
+			MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
+			MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
+			MODIFIER_PROPERTY_MANA_REGEN_CONSTANT,
+			}
+end
+
+function modifier_item_jar_of_souls_passive:GetModifierConstantManaRegen()
+	return self.manaregen
+end
+
+
+function modifier_item_jar_of_souls_passive:GetModifierBonusStats_Strength()
+	return self.stat
+end
+
+function modifier_item_jar_of_souls_passive:GetModifierBonusStats_Agility()
+	return self.stat
+end
+
+function modifier_item_jar_of_souls_passive:GetModifierBonusStats_Intellect()
+	return self.stat
+end
+
+function modifier_item_jar_of_souls_passive:IsHidden()
+	return true
+end
+
+function modifier_item_jar_of_souls_passive:GetAttributes()
+	return MODIFIER_ATTRIBUTE_MULTIPLE
 end

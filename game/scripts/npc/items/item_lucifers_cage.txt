@@ -14,7 +14,7 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"3950"	
+		"ItemCost"						"800"	
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -23,7 +23,7 @@
 		"ItemResult"					"item_lucifers_cage"
 		"ItemRequirements"
 		{
-			"01"						"item_jar_of_souls"
+			"01"						"item_jar_of_souls;item_power_core;item_strange_trinket"
 		}
 	}
 	"item_lucifers_cage"
@@ -80,6 +80,21 @@
 			{
 				"var_type"				"FIELD_FLOAT"
 				"heal_amp"				"25"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bonus_all"				"30"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bonus_mana_regen"		"5"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bonus_mana"			"750"
 			}
 		}
 	}

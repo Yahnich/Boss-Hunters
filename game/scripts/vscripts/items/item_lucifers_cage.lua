@@ -2,6 +2,10 @@ item_lucifers_cage = class({})
 LinkLuaModifier( "modifier_item_lucifers_cage_handle_damage", "items/item_lucifers_cage.lua" ,LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_item_lucifers_cage_handle_heal", "items/item_lucifers_cage.lua" ,LUA_MODIFIER_MOTION_NONE )
 
+function item_lucifers_cage:GetIntrinsicModifierName()
+	return "modifier_item_lucifers_cage_passive"
+end
+
 function item_lucifers_cage:OnSpellStart()
 	EmitSoundOn("DOTA_Item.SpiritVessel.Cast", self:GetCaster())
 	if self:GetCursorTarget():GetTeam() == self:GetCaster():GetTeam() then
@@ -90,4 +94,54 @@ end
 
 function modifier_item_lucifers_cage_handle_damage:GetDisableHealing()
 	return tonumber(self.disable)
+end
+
+
+modifier_item_lucifers_cage_passive = class({})
+LinkLuaModifier( "modifier_item_lucifers_cage_passive", "items/item_lucifers_cage.lua" ,LUA_MODIFIER_MOTION_NONE )
+function modifier_item_lucifers_cage_passive:OnCreated()
+	self.manaregen = self:GetSpecialValueFor("bonus_mana_regen")
+	self.stat = self:GetSpecialValueFor("bonus_all")
+	self.bonus_mana = self:GetSpecialValueFor("bonus_mana")
+end
+
+function modifier_item_lucifers_cage_passive:OnRefresh()
+end
+
+function modifier_item_lucifers_cage_passive:DeclareFunctions()
+	return {MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
+			MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
+			MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
+			MODIFIER_PROPERTY_MANA_REGEN_CONSTANT,
+			MODIFIER_PROPERTY_MANA_BONUS
+			}
+end
+
+function modifier_item_lucifers_cage_passive:GetModifierConstantManaRegen()
+	return self.manaregen
+end
+
+
+function modifier_item_lucifers_cage_passive:GetModifierBonusStats_Strength()
+	return self.stat
+end
+
+function modifier_item_lucifers_cage_passive:GetModifierBonusStats_Agility()
+	return self.stat
+end
+
+function modifier_item_lucifers_cage_passive:GetModifierBonusStats_Intellect()
+	return self.stat
+end
+
+function modifier_item_lucifers_cage_passive:GetModifierManaBonus()
+	return self.bonus_mana
+end
+
+function modifier_item_lucifers_cage_passive:IsHidden()
+	return true
+end
+
+function modifier_item_lucifers_cage_passive:GetAttributes()
+	return MODIFIER_ATTRIBUTE_MULTIPLE
 end

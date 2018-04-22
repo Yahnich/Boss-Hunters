@@ -79,25 +79,30 @@
 			}
 			"05"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"block_chance"			"100"
+				"var_type"				"FIELD_INTEGER"
+				"bonus_mana"			"800"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"damage_block"			"50"
+				"block_chance"			"100"
 			}
 			"07"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_health_regen"	"5"
+				"var_type"				"FIELD_FLOAT"
+				"damage_block"			"50"
 			}
 			"08"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius"				"900"
+				"bonus_health_regen"	"5"
 			}
 			"09"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"900"
+			}
+			"10"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"min_restore"			"325"

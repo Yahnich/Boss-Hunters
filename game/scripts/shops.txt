@@ -17,6 +17,7 @@
 	   "item"		"item_calming_skull"
 	   "item"		"item_gauntlet_of_alacrity"
 	   "item"		"item_worn_cloak"
+	   "item"		"item_strange_trinket"
     }
     "weapons_armor"
     {
@@ -60,12 +61,14 @@
 		"item"		"item_angelic_guard"
 		"item"		"item_cultists_veil"
         "item"		"item_jar_of_souls"
-		"item"		"item_mantle_of_the_fallen"
 		"item"		"item_lucifers_cage"
+		"item"		"item_mantle_of_the_fallen"
+		"item"		"item_dark_ones_blessing"
 		"item"		"item_archmages_orb"
 		"item"		"item_lazarus_rags"
-		"item"		"item_dark_ones_blessing"
 		"item"		"item_hurricane_blade"
+		"item"		"item_lance_of_longinus"
+		"item"		"item_war_drum"
     }
     "magics"
     {  
@@ -78,6 +81,7 @@
 		"item"		"item_focused_lens"
 		"item"		"item_crystalline_staff"
 		"item"		"item_warlocks_reliquary"
+		"item"		"item_dark_wand"
     }
     // Level 3 - Purple Recipes
     "defense"
@@ -105,7 +109,6 @@
 		"item"		"item_reaping_scythe"
 		"item"		"item_thanatos"
 		"item"		"item_executioners_blade"
-		"item"		"item_lance_of_longinus"
 		"item"		"item_blade_of_storm"
 		"item"		"item_guillotine"
 		"item"		"item_arcane_reaver"
@@ -113,6 +116,7 @@
 		"item"		"item_anvil"
 		"item"		"item_headchopper"
 		"item"		"item_soothslayer"
+		"item"		"item_shadow_blade"
     }
     // Level 4 - Orange / Orb / Artifacts
     "artifacts"

@@ -14,7 +14,7 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"600"	
+		"ItemCost"						"900"	
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -23,7 +23,7 @@
 		"ItemResult"					"item_dark_ones_blessing"
 		"ItemRequirements"
 		{
-			"01"						"item_mantle_of_the_fallen;item_hunters_hatchet;item_mithril_armor;item_orb_of_shadows"
+			"01"						"item_mantle_of_the_fallen;item_hunters_hatchet;item_orb_of_shadows"
 		}
 	}
 	"item_dark_ones_blessing"
@@ -75,9 +75,14 @@
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"radius"				"900"
+				"bonus_mana_regen"		"3"
 			}
 			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"radius"				"900"
+			}
+			"06"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"duration"				"12"

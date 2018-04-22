@@ -32,6 +32,56 @@
 			"SpawnerName"			"spawner5"
 			"Waypoint"				"path5"
 		}
+		"6"
+		{
+			"SpawnerName"			"spawner6"
+			"Waypoint"				"path6"
+		}
+		"7"
+		{
+			"SpawnerName"			"spawner7"
+			"Waypoint"				"path7"
+		}
+		"8"
+		{
+			"SpawnerName"			"spawner8"
+			"Waypoint"				"path8"
+		}
+		"9"
+		{
+			"SpawnerName"			"spawner9"
+			"Waypoint"				"path9"
+		}
+		"10"
+		{
+			"SpawnerName"			"spawner10"
+			"Waypoint"				"path10"
+		}
+		"11"
+		{
+			"SpawnerName"			"spawner11"
+			"Waypoint"				"path11"
+		}
+		"12"
+		{
+			"SpawnerName"			"spawner12"
+			"Waypoint"				"path12"
+		}
+		"13"
+		{
+			"SpawnerName"			"spawner13"
+			"Waypoint"				"path13"
+		}
+		"14"
+		{
+			"SpawnerName"			"spawner14"
+			"Waypoint"				"path14"
+		}
+		"15"
+		{
+			"SpawnerName"			"spawner15"
+			"Waypoint"				"path15"
+		}
 	}
 
 	"Round1" // Boss 1 kobolds

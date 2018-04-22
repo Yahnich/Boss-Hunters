@@ -1,3 +1,4 @@
+
 #base "items/item_crystal_of_life.txt"
 #base "items/item_crown_of_thorns.txt"
 #base "items/item_sorcerers_staff.txt"
@@ -24,6 +25,7 @@
 #base "items/item_broadsword.txt"
 #base "items/item_aeon_shard.txt"
 #base "items/item_power_core.txt"
+#base "items/item_strange_trinket.txt"
 
 #base "items/item_plate_of_the_unbreakable.txt"
 #base "items/item_penitent_mail.txt"
@@ -101,6 +103,7 @@
 #base "items/item_dark_wand.txt"
 #base "items/item_war_drum.txt"
 
+// Next ID is 7017
 
 "DOTAAbilities"
 {

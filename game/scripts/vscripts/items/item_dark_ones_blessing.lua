@@ -71,6 +71,7 @@ function modifier_item_dark_ones_blessing_aura:OnCreated()
 	self.lifesteal = self:GetSpecialValueFor("lifesteal") / 100
 	self.armor = self:GetSpecialValueFor("bonus_armor")
 	self.bonus_damage = self:GetSpecialValueFor("bonus_damage")
+	self.mana_regen = self:GetSpecialValueFor("bonus_mana_regen")
 	-- if self:GetParent():IsRangedAttacker() then
 		-- self.lifesteal = self:GetSpecialValueFor("vampiric_aura_ranged") / 100
 	-- end
@@ -80,6 +81,7 @@ function modifier_item_dark_ones_blessing_aura:OnRefresh()
 	self.lifesteal = self:GetSpecialValueFor("lifesteal") / 100
 	self.armor = self:GetSpecialValueFor("bonus_armor")
 	self.bonus_damage = self:GetSpecialValueFor("bonus_damage")
+	self.mana_regen = self:GetSpecialValueFor("bonus_mana_regen")
 	-- if self:GetParent():IsRangedAttacker() then
 		-- self.lifesteal = self:GetSpecialValueFor("vampiric_aura_ranged") / 100
 	-- end
@@ -88,7 +90,12 @@ end
 function modifier_item_dark_ones_blessing_aura:DeclareFunctions()
 	return {MODIFIER_EVENT_ON_TAKEDAMAGE,
 			MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
-			MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE,}
+			MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE,
+			MODIFIER_PROPERTY_MANA_REGEN_CONSTANT}
+end
+
+function modifier_item_dark_ones_blessing_aura:GetModifierConstantManaRegen()
+	return self.mana_regen
 end
 
 function modifier_item_dark_ones_blessing_aura:GetModifierPhysicalArmorBonus()

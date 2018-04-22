@@ -64,6 +64,8 @@ end
 
 function modifier_item_mantle_of_the_fallen_aura:OnCreated()
 	self.lifesteal = self:GetSpecialValueFor("lifesteal") / 100
+	self.armor = self:GetSpecialValueFor("bonus_armor")
+	self.mana_regen = self:GetSpecialValueFor("bonus_mana_regen")
 	-- if self:GetParent():IsRangedAttacker() then
 		-- self.lifesteal = self:GetSpecialValueFor("vampiric_aura_ranged") / 100
 	-- end
@@ -71,13 +73,25 @@ end
 
 function modifier_item_mantle_of_the_fallen_aura:OnRefresh()
 	self.lifesteal = self:GetSpecialValueFor("lifesteal") / 100
+	self.armor = self:GetSpecialValueFor("bonus_armor")
+	self.mana_regen = self:GetSpecialValueFor("bonus_mana_regen")
 	-- if self:GetParent():IsRangedAttacker() then
 		-- self.lifesteal = self:GetSpecialValueFor("vampiric_aura_ranged") / 100
 	-- end
 end
 
 function modifier_item_mantle_of_the_fallen_aura:DeclareFunctions()
-	return {MODIFIER_EVENT_ON_TAKEDAMAGE}
+	return {MODIFIER_EVENT_ON_TAKEDAMAGE,
+			MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
+			MODIFIER_PROPERTY_MANA_REGEN_CONSTANT,}
+end
+
+function modifier_item_mantle_of_the_fallen_aura:GetModifierPhysicalArmorBonus()
+	return self.armor
+end
+
+function modifier_item_mantle_of_the_fallen_aura:GetModifierConstantManaRegen()
+	return self.mana_regen
 end
 
 function modifier_item_mantle_of_the_fallen_aura:OnTakeDamage(params)

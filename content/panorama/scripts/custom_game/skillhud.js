@@ -80,9 +80,9 @@ function RefreshStatsPanel()
 	}
 	
 	var respec = $("#RespecButton")
-	respec.SetHasClass("TalentCannotBeSkilled", CustomNetTables.GetTableValue( "stats_panel", lastRememberedHero).respec);
-	if( !respec:BHasClass("TalentCannotBeSkilled") ){
-		respec.SetPanelEvent("onactivate", function(){ RespecTalents( CustomNetTables.GetTableValue( "stats_panel", lastRememberedHero).respec ) });
+	respec.SetHasClass("TalentCannotBeSkilled", CustomNetTables.GetTableValue( "stats_panel", lastRememberedHero).respec || lastRememberedHero != Players.GetPlayerHeroEntityIndex( localID ) );
+	if( !respec.BHasClass("TalentCannotBeSkilled") ){
+		respec.SetPanelEvent("onactivate", function(){ RespecTalents( CustomNetTables.GetTableValue( "stats_panel", Players.GetPlayerHeroEntityIndex( localID )).respec ) });
 	}
 	
 	if(lastRememberedState == STATS_STATE_OFFENSE){
@@ -162,7 +162,6 @@ function CreateAttributePanel( valueLvl, valueTable, valueSignifier, valueText, 
 				{
 					infoText = infoText + "/"
 				}
-				$.Msg(infoText)
 			}
 		}
 		talentPanel.SetPanelEvent("onmouseover", function(){$.DispatchEvent("DOTAShowTextTooltip", talentPanel, "Next level - " + (parseInt(valueLvl) + 1) * LEVELS_BETWEEN_TALENT_UPGRADES + "<br>" + infoText)});
@@ -183,7 +182,6 @@ function CreateAttributePanel( valueLvl, valueTable, valueSignifier, valueText, 
 				{
 					infoText = infoText + "/"
 				}
-				$.Msg(infoText)
 			}
 		}
 		talentPanel.SetPanelEvent("onmouseover", function(){$.DispatchEvent("DOTAShowTextTooltip", talentPanel, infoText)});
