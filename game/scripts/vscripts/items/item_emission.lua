@@ -70,6 +70,10 @@ function modifier_item_emission:GetAuraSearchFlags()
 	return DOTA_UNIT_TARGET_FLAG_NONE
 end
 
+function modifier_item_emission:IsHidden()    
+	return true
+end
+
 LinkLuaModifier( "modifier_emission_debuff", "items/item_emission.lua" ,LUA_MODIFIER_MOTION_NONE )
 modifier_emission_debuff = class({})
 

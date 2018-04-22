@@ -37,3 +37,7 @@ end
 function modifier_item_mirrors_edge:GetModifierBonusStats_Agility()
 	return self.agility
 end
+
+function modifier_item_mirrors_edge:IsHidden()
+	return true
+end

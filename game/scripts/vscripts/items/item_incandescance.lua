@@ -62,6 +62,10 @@ function modifier_item_incandescance:GetAuraSearchFlags()
 	return DOTA_UNIT_TARGET_FLAG_NONE
 end
 
+function modifier_item_incandescance:IsHidden()    
+	return true
+end
+
 LinkLuaModifier( "modifier_incandescance_debuff", "items/item_incandescance.lua" ,LUA_MODIFIER_MOTION_NONE )
 modifier_incandescance_debuff = class({})
 

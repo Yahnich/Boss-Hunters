@@ -1,56 +1,55 @@
 "DOTAAbilities"
 {
 	//=================================================================================================================
-	// Recipe: TITAN Armor
+	// Recipe: War Drum
 	//=================================================================================================================
-	"item_recipe_flashback"
+	"item_recipe_war_drum"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"6637"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"7013"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"350"	
+		"ItemCost"						"425"	
 		"ItemShopTags"					""
 		
 		// Recipe
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemRecipe"					"1"
-		"ItemResult"					"item_flashback"
+		"ItemResult"					"item_war_drum"
 		"ItemRequirements"
 		{
-			"01"						"item_orb_of_essence;item_orb_of_essence"
+			"01"						"item_elven_boots;item_ring_of_mana"
 		}
 	}
-	"item_flashback"
+	//=================================================================================================================
+	// War Drum
+	//=================================================================================================================
+	"item_war_drum"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"6638"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"7014"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"BaseClass"						"item_lua"
-		"ScriptFile"					"items/item_flashback"
-		"AbilityTextureName"			"item_refresher"
+		"ScriptFile"					"items/item_war_drum"
+		"AbilityTextureName"			"ancient_janggo"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
 		
-		"ItemShopTags"					"cooldown;reduction;refresh"
-		"ItemQuality"					"epic"
-		"ItemAliases"					"refresher orb;flashback"
+		"ItemCost"						"1615"
+		"ItemShopTags"					"stats"
+		"ItemQuality"					"component"
+		"ItemAliases"					"drum of endurance;drum"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-		
-		"AbilityCooldown"				"160"
-		"AbilityManaCost"				"175"
-		
-		"precache"
-		{
-			"precache"					"soundevents/game_sounds_items.vsndevts"
-		}
+
+		"AbilityCooldown"				"30"
+		"AbilityManaCost"				"0"
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
@@ -59,23 +58,54 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"basic_chance"			"20"
+				"bonus_agi"				"3"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"ult_chance"			"10"
+				"bonus_int"				"6"
 			}
-			"02"
+			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_intellect"		"40"
+				"bonus_str"				"7"
 			}
-			"02"
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bonus_mregen"			"3"
+			}
+			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_mana_regen"		"10"
+				"bonus_as"				"35"
 			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_ms_aura"			"20" //flat
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_ms_buff"			"13" //percent
+			}
+			"08"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"6"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"900"
+			}
+		}
+
+		"precache"
+		{
+			"particle"  "particles/items_fx/drum_of_endurance_buff.vpcf"
+			"soundfile" "soundevents/game_sounds_items.vsndevts"
 		}
 	}
 }
