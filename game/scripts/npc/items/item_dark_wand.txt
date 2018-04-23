@@ -49,7 +49,7 @@
 		"ItemResult"					"item_dark_wand_2"
 		"ItemRequirements"
 		{
-			"01"						"item_dark_wand;item_staff_of_magi"
+			"01"						"item_dark_wand;item_recipe_dark_wand"
 		}
 	}
 	//=================================================================================================================
@@ -75,7 +75,7 @@
 		"ItemResult"					"item_dark_wand_3"
 		"ItemRequirements"
 		{
-			"01"						"item_dark_wand_2;item_staff_of_magi"
+			"01"						"item_dark_wand_2;item_recipe_dark_wand"
 		}
 	}
 	//=================================================================================================================
@@ -101,7 +101,7 @@
 		"ItemResult"					"item_dark_wand_4"
 		"ItemRequirements"
 		{
-			"01"						"item_dark_wand_3;item_staff_of_magi"
+			"01"						"item_dark_wand_3;item_recipe_dark_wand"
 		}
 	}
 	//=================================================================================================================
@@ -127,7 +127,7 @@
 		"ItemResult"					"item_dark_wand_5"
 		"ItemRequirements"
 		{
-			"01"						"item_dark_wand_4;item_staff_of_magi"
+			"01"						"item_dark_wand_4;item_recipe_dark_wand"
 		}
 	}
 	"item_dark_wand"

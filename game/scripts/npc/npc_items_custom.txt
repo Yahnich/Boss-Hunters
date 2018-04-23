@@ -102,6 +102,9 @@
 #base "items/item_shadow_blade.txt"
 #base "items/item_dark_wand.txt"
 #base "items/item_war_drum.txt"
+#base "items/item_phantom_staff.txt"
+#base "items/item_ghost_saber.txt"
+//#base "items/item_wabbajack.txt"
 
 // Next ID is 7017
 

@@ -41,6 +41,7 @@
 		"item"		"item_cursed_amulet"
 		"item"		"item_orb_of_shadows"
 		"item"		"item_warm_fire"
+		"item"		"item_phantom_staff"
     }
     // Level 1 - Green Recipes
     "basics"
@@ -134,5 +135,6 @@
 		"item"		"item_emission"
 		"item"		"item_berserkers_cape"
 		"item"		"item_blood_gods_mask"
+		"item"		"item_ghost_saber"
     }
 }
