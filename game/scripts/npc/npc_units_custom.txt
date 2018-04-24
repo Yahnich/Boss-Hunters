@@ -1451,7 +1451,7 @@
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"SoundSet"					"n_creep_Melee"
 		"Level"						"5"
-		"ModelScale" 				"2.45"
+		"ModelScale" 				"1.5"
 		"IsAncient"			"0"
 		"IsCore"					"1"
 		"vscripts"					"ai/ai_generic.lua"
@@ -1550,12 +1550,12 @@
 	{
 		// General
 		//----------------------------------------------------------------
-		"Model"						"models/heroes/ogre_magi/ogre_magi.vmdl"	// Model.
+		"Model"						"models/creeps/ogre_1/small_ogre.vmdl"	// Model.
 		"BaseClass"					"npc_dota_creature"
 		"SoundSet"					"n_creep_Melee"
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"14"
-		"ModelScale" 				"2.4"
+		"ModelScale" 				"1.25"
 		"IsAncient"			"0"
 		"IsCore"					"1"
 		"vscripts"					"ai/ai_boss14.lua"
@@ -1648,11 +1648,7 @@
 			"MoveSpeedGain"				"1"
 			"BountyGain"				"3"
 			"XPGain"					"13"
-			
-			"AttachWearables"
-			{
-				"Wearable1" { "ItemDef" "105" }
-			}
+
 			"NOSTUNRESIST"			"60.0"
 		}
 	}
@@ -1663,12 +1659,12 @@
 	{
 		// General
 		//----------------------------------------------------------------
-		"Model"						"models/creeps/neutral_creeps/n_creep_ogre_med/n_creep_ogre_med.vmdl"
+		"Model"						"models/creeps/ogre_1/large_ogre.vmdl"
 		"BaseClass"					"npc_dota_creature"
 		"SoundSet"					"n_creep_Melee"
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"1"
-		"ModelScale" 				"2.7"
+		"ModelScale" 				"2"
 		"IsAncient"			"0"
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"275"
@@ -1774,12 +1770,12 @@
 	{
 		// General
 		//----------------------------------------------------------------
-		"Model"						"models/creeps/neutral_creeps/n_creep_ogre_med/n_creep_ogre_med.vmdl"
+		"Model"						"models/creeps/ogre_1/large_ogre.vmdl"
 		"BaseClass"					"npc_dota_creature"
 		"SoundSet"					"n_creep_Melee"
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"1"
-		"ModelScale" 				"3"
+		"ModelScale" 				"2"
 		"IsAncient"			"0"
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"275"
@@ -1885,12 +1881,12 @@
 	{
 		// General
 		//----------------------------------------------------------------
-		"Model"						"models/creeps/neutral_creeps/n_creep_ogre_med/n_creep_ogre_med.vmdl"
+		"Model"						"models/creeps/ogre_1/large_ogre.vmdl"
 		"BaseClass"					"npc_dota_creature"
 		"SoundSet"					"n_creep_Melee"
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"1"
-		"ModelScale" 				"2.7"
+		"ModelScale" 				"2"
 		"IsAncient"			"0"
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"275"
@@ -1996,13 +1992,13 @@
 	{
 		// General
 		//----------------------------------------------------------------
-		"Model"						"models/creeps/neutral_creeps/n_creep_ogre_med/n_creep_ogre_med.vmdl"
+		"Model"						"models/creeps/ogre_1/boss_ogre.vmdl"
 		"BaseClass"					"npc_dota_creature"
 		"SoundSet"					"n_creep_Melee"
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"1"
-		"ModelScale" 				"2.6"
-		"IsAncient"			"0"
+		"ModelScale" 				"3"
+		"IsAncient"					"0"
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"275"
 		"IsCore"					"1"
