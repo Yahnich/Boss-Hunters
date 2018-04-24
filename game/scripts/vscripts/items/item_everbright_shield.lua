@@ -11,7 +11,7 @@ function item_everbright_shield:GetAbilityTextureName()
 end
 
 function item_everbright_shield:GetIntrinsicModifierName()
-	return "modifier_item_everbright_shield_off"
+	return "modifier_item_everbright_shield_handler"
 end
 
 function item_everbright_shield:OnToggle()
@@ -24,6 +24,33 @@ function item_everbright_shield:OnToggle()
 		caster:RemoveModifierByName("modifier_item_everbright_shield_on")
 	end
 end
+
+modifier_item_everbright_shield_handler = class({})
+LinkLuaModifier( "modifier_item_everbright_shield_handler", "items/item_everbright_shield.lua" ,LUA_MODIFIER_MOTION_NONE )
+if IsServer() then
+	function modifier_item_everbright_shield_handler:OnCreated()
+		local ability = self:GetAbility()
+		local caster = self:GetParent()
+		if ability:GetToggleState() then
+			caster:AddNewModifier(caster, ability, "modifier_item_everbright_shield_on", {})
+			caster:RemoveModifierByName("modifier_item_everbright_shield_off")
+		else
+			caster:AddNewModifier(caster, ability, "modifier_item_everbright_shield_off", {})
+			caster:RemoveModifierByName("modifier_item_everbright_shield_on")
+		end
+	end
+	
+	function modifier_item_everbright_shield_handler:OnDestroy()
+		local caster = self:GetParent()
+		caster:RemoveModifierByName("modifier_item_everbright_shield_on")
+		caster:RemoveModifierByName("modifier_item_everbright_shield_off")
+	end
+end
+
+function modifier_item_everbright_shield_handler:IsHidden()
+	return true
+end
+
 
 modifier_item_everbright_shield_off = class({})
 function modifier_item_everbright_shield_off:OnCreated()
@@ -61,16 +88,25 @@ end
 modifier_item_everbright_shield_on = class({})
 function modifier_item_everbright_shield_on:OnCreated()
 	self.magic_resist = self:GetAbility():GetSpecialValueFor("bonus_magic_resist")
-	self.bonus_physical = self:GetAbility():GetSpecialValueFor("bonus_physical")
+	self.bonus_physical = self:GetAbility():GetSpecialValueFor("bonus_physical") / 100
+	
+	self.armor_loss = (self:GetParent():GetPhysicalArmorValue() * self.bonus_physical) * (-1)
+	
+	self:StartIntervalThink(0.15)
+end
+
+function modifier_item_everbright_shield_on:OnIntervalThink()
+	self.armor_loss = 0
+	self.armor_loss = (self:GetParent():GetPhysicalArmorValue() * self.bonus_physical) * (-1)
 end
 
 function modifier_item_everbright_shield_on:DeclareFunctions()
-	return {MODIFIER_PROPERTY_INCOMING_PHYSICAL_DAMAGE_PERCENTAGE,
+	return {MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
 			MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS}
 end
 
-function modifier_item_everbright_shield_on:GetModifierIncomingPhysicalDamage_Percentage()
-	return self.bonus_physical
+function modifier_item_everbright_shield_on:GetModifierPhysicalArmorBonus()
+	return self.armor_loss
 end
 
 function modifier_item_everbright_shield_on:GetModifierMagicalResistanceBonus()

@@ -1,0 +1,1 @@
+relic_cursed_cursed_dice = class({})

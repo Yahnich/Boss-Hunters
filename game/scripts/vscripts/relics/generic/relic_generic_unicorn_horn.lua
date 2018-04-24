@@ -1,0 +1,1 @@
+relic_generic_unicorn_horn = class({})

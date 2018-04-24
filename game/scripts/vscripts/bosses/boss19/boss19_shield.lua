@@ -55,7 +55,7 @@ function modifier_boss19_shield_buff:GetModifierIncomingDamage_Percentage()
 end
 
 function modifier_boss19_shield_buff:GetModifierTotalDamageOutgoing_Percentage()
-	return self.dmg
+	return self.dmg * (-1)
 end
 
 function modifier_boss19_shield_buff:GetEffectName()

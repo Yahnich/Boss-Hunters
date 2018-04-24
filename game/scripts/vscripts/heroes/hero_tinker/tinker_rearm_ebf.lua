@@ -10,11 +10,6 @@ function tinker_rearm_ebf:OnAbilityPhaseInterrupted()
 	StopSoundOn("Hero_Tinker.RearmStart", self:GetCaster())
 end
 
-function tinker_rearm_ebf:GetManaCost()
-    local manaCost = self:GetCaster():GetMaxMana()*self:GetTalentSpecialValueFor("mana_cost")/100
-    return manaCost
-end
-
 function tinker_rearm_ebf:OnSpellStart()
 	local caster = self:GetCaster()
 

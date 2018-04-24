@@ -1,0 +1,1 @@
+relic_generic_angelic_water = class({})

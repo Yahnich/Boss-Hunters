@@ -1,21 +1,35 @@
 boss19_the_swarm = class({})
 
+ATTACK_STATE_RADIAL = 1
+ATTACK_STATE_CONE = 2
+ATTACK_STATE_LINEAR = 3
+
 function boss19_the_swarm:OnAbilityPhaseStart()
 	local caster = self:GetCaster()
 	local casterPos = self:GetCaster():GetAbsOrigin()
 	local vDir = CalculateDirection(self:GetCursorPosition(), caster)
 	
+	self.attackState = RandomInt(1,3)
+	
 	local distance = self:GetSpecialValueFor("proj_distance")
-	local frenzyCount = self:GetSpecialValueFor("frenzy_count")
+	local beetleCount = self:GetSpecialValueFor("frenzy_count")
 	
 	local newPos = casterPos + vDir * distance
-	local dirAngle = ToRadians(360 / frenzyCount)
+	local dirAngle = ToRadians(360 / beetleCount)
 	
-	if caster:GetHealthPercent() < 75 then
-		for i = 1, frenzyCount do
+	if self.attackState == ATTACK_STATE_RADIAL then
+		for i = 1, beetleCount do
 			vDir = RotateVector2D(vDir, dirAngle)
 			newPos = casterPos + vDir * distance
 			ParticleManager:FireLinearWarningParticle(casterPos, newPos,self:GetSpecialValueFor("proj_width"))
+		end
+	elseif self.attackState == ATTACK_STATE_CONE then
+		local dirAngle = ToRadians(60 / beetleCount) 
+		
+		for i = 0, beetleCount - 1 do
+			local newDir = RotateVector2D(vDir, dirAngle * math.ceil(i/2) * (-1)^i)
+			newPos = casterPos + newDir * distance
+			ParticleManager:FireLinearWarningParticle(casterPos, newPos, self:GetSpecialValueFor("proj_width"))
 		end
 	else
 		ParticleManager:FireLinearWarningParticle(casterPos, newPos, self:GetSpecialValueFor("proj_width"))
@@ -31,20 +45,33 @@ function boss19_the_swarm:OnSpellStart()
 	local distance = self:GetSpecialValueFor("proj_distance")
 	local speed = self:GetSpecialValueFor("proj_speed")
 	local width = self:GetSpecialValueFor("proj_width")
+	local beetleCount = self:GetSpecialValueFor("frenzy_count")
 		
-	if caster:GetHealthPercent() < 75 then
-	
-		local frenzyCount = self:GetSpecialValueFor("frenzy_count")
+	if self.attackState == ATTACK_STATE_RADIAL then
 		local newPos = casterPos + vDir * distance
-		local dirAngle = ToRadians(360 / frenzyCount) 
+		local dirAngle = ToRadians(360 / beetleCount) 
 		
-		for i = 1, frenzyCount do
+		for i = 1, beetleCount do
 			self:FireLinearProjectile("particles/units/heroes/hero_weaver/weaver_swarm_projectile.vpcf", vDir * speed, distance, width)
 			vDir = RotateVector2D(vDir, dirAngle)
 			newPos = casterPos + vDir * distance
 		end
+	elseif self.attackState == ATTACK_STATE_CONE then
+		local dirAngle = ToRadians(90 / beetleCount) 
+		
+		for i = 0, beetleCount - 1 do
+			local newDir = RotateVector2D(vDir, dirAngle * math.ceil(i/2) * (-1)^i)
+			self:FireLinearProjectile("particles/units/heroes/hero_weaver/weaver_swarm_projectile.vpcf", newDir * speed, distance, width)
+		end
 	else
 		self:FireLinearProjectile("particles/units/heroes/hero_weaver/weaver_swarm_projectile.vpcf", vDir * speed, distance, width)
+		Timers:CreateTimer(function()
+			self:FireLinearProjectile("particles/units/heroes/hero_weaver/weaver_swarm_projectile.vpcf", vDir * speed, distance, width)
+			beetleCount = beetleCount - 1
+			if beetleCount > 0 then
+				return 0.35
+			end
+		end)
 	end
 	if caster:GetHealthPercent() < 40 then
 		local frenzyBlock = self:GetSpecialValueFor("frenzy_block")
@@ -70,6 +97,9 @@ end
 
 function modifier_boss19_the_swarm_buff:GetModifierIncomingDamage_Percentage()
 	self:DecrementStackCount()
+	if self:GetStackCount() == 0 then 
+		self:Destroy()
+	end
 	return -100
 end
 
@@ -109,10 +139,12 @@ LinkLuaModifier("modifier_boss19_the_swarm_debuff", "bosses/boss19/boss19_the_sw
 
 function modifier_boss19_the_swarm_debuff:OnCreated()
 	self.armor = self:GetParent():GetPhysicalArmorValue()*(-1) * self:GetSpecialValueFor("armor_reduction") / 100
+	if IsServer() then self:SetStackCount(1) end
 end
 
 function modifier_boss19_the_swarm_debuff:OnRefresh()
 	self.armor = (self:GetParent():GetPhysicalArmorValue() + self.armor) * (-1) * self:GetSpecialValueFor("armor_reduction") / 100
+	if IsServer() then self:IncrementStackCount() end
 end
 
 function modifier_boss19_the_swarm_debuff:DeclareFunctions()
@@ -120,7 +152,7 @@ function modifier_boss19_the_swarm_debuff:DeclareFunctions()
 end
 
 function modifier_boss19_the_swarm_debuff:GetModifierPhysicalArmorBonus()
-	return self.armor
+	return self.armor * self:GetStackCount()
 end
 
 function modifier_boss19_the_swarm_debuff:GetEffectName()

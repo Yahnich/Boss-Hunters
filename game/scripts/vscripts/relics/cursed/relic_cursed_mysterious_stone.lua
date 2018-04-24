@@ -1,0 +1,1 @@
+relic_cursed_mysterious_stone = class({})

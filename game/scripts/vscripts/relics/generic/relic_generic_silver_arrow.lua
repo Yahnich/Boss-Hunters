@@ -1,0 +1,1 @@
+relic_generic_silver_arrow = class({})

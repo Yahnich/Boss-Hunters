@@ -1,0 +1,1 @@
+relic_generic_giants_toenail = class({})

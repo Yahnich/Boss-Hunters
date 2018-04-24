@@ -1,0 +1,1 @@
+relic_cursed_adamantium_ingot = class({})

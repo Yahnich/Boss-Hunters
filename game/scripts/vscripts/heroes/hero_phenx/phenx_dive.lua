@@ -104,7 +104,8 @@ end
 
 function modifier_phenx_dive_caster:DeclareFunctions()
     local funcs = {
-        MODIFIER_EVENT_ON_STATE_CHANGED
+        MODIFIER_EVENT_ON_STATE_CHANGED,
+		MODIFIER_PROPERTY_IGNORE_CAST_ANGLE
     }
     return funcs
 end
@@ -118,6 +119,10 @@ function modifier_phenx_dive_caster:OnStateChanged(params)
             end
         end
     end
+end
+
+function modifier_phenx_dive_caster:GetModifierIgnoreCastAngle()
+	return 1
 end
 
 function modifier_phenx_dive_caster:GetEffectName()

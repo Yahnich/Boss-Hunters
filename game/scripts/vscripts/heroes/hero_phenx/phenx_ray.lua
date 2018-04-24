@@ -39,7 +39,7 @@ end
 function phenx_ray:GetCooldown(iLvl)
 	local caster = self:GetCaster()
 	if caster:HasModifier("modifier_phenx_ray") then
-		return self.BaseClass.GetManaCost(self, iLvl)
+		return self.BaseClass.GetCooldown(self, iLvl)
 	else
 		return 0
 	end

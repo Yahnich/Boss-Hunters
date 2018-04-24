@@ -1,0 +1,1 @@
+relic_generic_seraphims_feather = class({})

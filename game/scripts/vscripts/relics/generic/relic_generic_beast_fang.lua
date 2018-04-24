@@ -1,0 +1,1 @@
+relic_generic_beast_fang = class({})

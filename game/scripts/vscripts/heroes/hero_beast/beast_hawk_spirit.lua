@@ -30,6 +30,11 @@ function beast_hawk_spirit:OnSpellStart()
 	ParticleManager:ReleaseParticleIndex(nfx)
 
 	hawk:AddNewModifier(caster, self, "modifier_hawk_spirit", {})
+	
+	local hp = self:GetTalentSpecialValueFor("hits_to_kill")
+	hawk:SetBaseMaxHealth(hp)
+	hawk:SetMaxHealth(hp)
+	hawk:SetHealth(hp)
 
 	if caster:HasTalent("special_bonus_unique_beast_hawk_spirit_2") then
 		local hawk2 = caster:CreateSummon("npc_dota_beastmaster_hawk_1", caster:GetAbsOrigin(), self:GetTalentSpecialValueFor("duration"))
@@ -70,6 +75,23 @@ function modifier_hawk_spirit:OnRemoved()
 	end
 end
 
+function modifier_hawk_spirit:DeclareFunctions()
+	return {MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE}
+end
+
+function modifier_hawk_spirit:GetModifierIncomingDamage_Percentage(params)
+	local parent = self:GetParent()
+	local hp = parent:GetHealth()
+	local damage = 1
+	if damage < hp and params.inflictor ~= self:GetAbility() then
+		parent:SetHealth( hp - damage )
+		return -999
+	elseif hp <= 1 then
+		self:GetParent():StartGesture(ACT_DOTA_DIE)
+		parent:Kill(params.inflictor, params.attacker)
+	end
+end
+
 function modifier_hawk_spirit:IsDebuff()
 	return false
 end
@@ -78,7 +100,7 @@ modifier_hawk_spirit_ally = class({})
 function modifier_hawk_spirit_ally:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_MANA_REGEN_CONSTANT,
-		MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE
+		MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE,
 	}
 	return funcs
 end

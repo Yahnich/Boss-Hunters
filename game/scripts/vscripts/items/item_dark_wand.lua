@@ -40,11 +40,11 @@ function modifier_item_dark_wand_passive:GetModifierBonusStats_Agility()
 end
 
 function modifier_item_dark_wand_passive:GetModifierBonusStats_Strength()
-	return self.int
+	return self.str
 end
 
 function modifier_item_dark_wand_passive:GetModifierBonusStats_Intellect()
-	return self.str
+	return self.int
 end
 
 function modifier_item_dark_wand_passive:IsHidden()

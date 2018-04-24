@@ -1,0 +1,1 @@
+relic_cursed_pale_blood = class({})

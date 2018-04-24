@@ -1451,7 +1451,7 @@
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"SoundSet"					"n_creep_Melee"
 		"Level"						"5"
-		"ModelScale" 				"2.45"
+		"ModelScale" 				"1.5"
 		"IsAncient"			"0"
 		"IsCore"					"1"
 		"vscripts"					"ai/ai_generic.lua"
@@ -1550,12 +1550,12 @@
 	{
 		// General
 		//----------------------------------------------------------------
-		"Model"						"models/heroes/ogre_magi/ogre_magi.vmdl"	// Model.
+		"Model"						"models/creeps/ogre_1/small_ogre.vmdl"	// Model.
 		"BaseClass"					"npc_dota_creature"
 		"SoundSet"					"n_creep_Melee"
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"14"
-		"ModelScale" 				"2.4"
+		"ModelScale" 				"1.25"
 		"IsAncient"			"0"
 		"IsCore"					"1"
 		"vscripts"					"ai/ai_boss14.lua"
@@ -1648,11 +1648,7 @@
 			"MoveSpeedGain"				"1"
 			"BountyGain"				"3"
 			"XPGain"					"13"
-			
-			"AttachWearables"
-			{
-				"Wearable1" { "ItemDef" "105" }
-			}
+
 			"NOSTUNRESIST"			"60.0"
 		}
 	}
@@ -1663,12 +1659,12 @@
 	{
 		// General
 		//----------------------------------------------------------------
-		"Model"						"models/creeps/neutral_creeps/n_creep_ogre_med/n_creep_ogre_med.vmdl"
+		"Model"						"models/creeps/ogre_1/large_ogre.vmdl"
 		"BaseClass"					"npc_dota_creature"
 		"SoundSet"					"n_creep_Melee"
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"1"
-		"ModelScale" 				"2.7"
+		"ModelScale" 				"2"
 		"IsAncient"			"0"
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"275"
@@ -1774,12 +1770,12 @@
 	{
 		// General
 		//----------------------------------------------------------------
-		"Model"						"models/creeps/neutral_creeps/n_creep_ogre_med/n_creep_ogre_med.vmdl"
+		"Model"						"models/creeps/ogre_1/large_ogre.vmdl"
 		"BaseClass"					"npc_dota_creature"
 		"SoundSet"					"n_creep_Melee"
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"1"
-		"ModelScale" 				"3"
+		"ModelScale" 				"2"
 		"IsAncient"			"0"
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"275"
@@ -1885,12 +1881,12 @@
 	{
 		// General
 		//----------------------------------------------------------------
-		"Model"						"models/creeps/neutral_creeps/n_creep_ogre_med/n_creep_ogre_med.vmdl"
+		"Model"						"models/creeps/ogre_1/large_ogre.vmdl"
 		"BaseClass"					"npc_dota_creature"
 		"SoundSet"					"n_creep_Melee"
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"1"
-		"ModelScale" 				"2.7"
+		"ModelScale" 				"2"
 		"IsAncient"			"0"
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"275"
@@ -1996,13 +1992,13 @@
 	{
 		// General
 		//----------------------------------------------------------------
-		"Model"						"models/creeps/neutral_creeps/n_creep_ogre_med/n_creep_ogre_med.vmdl"
+		"Model"						"models/creeps/ogre_1/boss_ogre.vmdl"
 		"BaseClass"					"npc_dota_creature"
 		"SoundSet"					"n_creep_Melee"
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"1"
-		"ModelScale" 				"2.6"
-		"IsAncient"			"0"
+		"ModelScale" 				"3"
+		"IsAncient"					"0"
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"275"
 		"IsCore"					"1"
@@ -3087,15 +3083,15 @@
 	
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"7"			// Physical protection.
-		"MagicalResistance"			"15"		// Magical protection.
+		"ArmorPhysical"				"25"			// Physical protection.
+		"MagicalResistance"			"40"		// Magical protection.
 		
 		// Attack
 		//----------------------------------------------------------------
 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"			"400"	// Damage range min.
-		"AttackDamageMax"			"500"		// Damage range max.
-		"AttackRate"				"4.5"		// Speed of attack.
+		"AttackDamageMin"			"600"	// Damage range min.
+		"AttackDamageMax"			"750"		// Damage range max.
+		"AttackRate"				"5"		// Speed of attack.
 		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
 		"AttackRange"				"256"		// Range within a target can be attacked.
@@ -3117,12 +3113,12 @@
 		// Movement
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
-		"MovementSpeed"				"275"		// Speed.
+		"MovementSpeed"				"200"		// Speed.
 		"MovementTurnRate"			"0.15"		// Turning rate.
 	
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"12000"		// Base health.
+		"StatusHealth"				"25000"		// Base health.
 		"StatusHealthRegen"			"150"			// Health regeneration rate.
 		"StatusMana"				"1000"			// Base mana.
 		"StatusManaRegen"			"10"			// Mana regeneration rate.		 
@@ -4865,7 +4861,7 @@
 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
 		"AttackDamageMin"			"150"		// Damage range min.
 		"AttackDamageMax"			"175"		// Damage range max.
-		"AttackRate"				"4"		// Speed of attack.
+		"AttackRate"				"3"		// Speed of attack.
 		"AttackAnimationPoint"		"0.2"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
 		"AttackRange"				"200"		// Range within a target can be attacked.
@@ -4891,7 +4887,7 @@
 	
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"1250"		// Base health.
+		"StatusHealth"				"2000"		// Base health.
 		"StatusHealthRegen"			"8"			// Health regeneration rate.
 		"StatusMana"				"5000"			// Base mana.
 		"StatusManaRegen"			"50"			// Mana regeneration rate.		 
@@ -4996,7 +4992,7 @@
 	
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"16000"		// Base health.
+		"StatusHealth"				"20000"		// Base health.
 		"StatusHealthRegen"			"8"			// Health regeneration rate.
 		"StatusMana"				"5000"			// Base mana.
 		"StatusManaRegen"			"50"			// Mana regeneration rate.		 
@@ -5075,8 +5071,8 @@
 		// Attack
 		//----------------------------------------------------------------
 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"			"450"		// Damage range min.
-		"AttackDamageMax"			"475"		// Damage range max.
+		"AttackDamageMin"			"550"		// Damage range min.
+		"AttackDamageMax"			"600"		// Damage range max.
 		"AttackRate"				"1.8"		// Speed of attack.
 		"AttackAnimationPoint"		"0.2"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
@@ -5103,7 +5099,7 @@
 	
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"17500"		// Base health.
+		"StatusHealth"				"25000"		// Base health.
 		"StatusHealthRegen"			"500"			// Health regeneration rate.
 		"StatusMana"				"5000"			// Base mana.
 		"StatusManaRegen"			"50"			// Mana regeneration rate.		 
@@ -5186,8 +5182,8 @@
 		// Attack
 		//----------------------------------------------------------------
 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"			"425"		// Damage range min.
-		"AttackDamageMax"			"475"		// Damage range max.
+		"AttackDamageMin"			"600"		// Damage range min.
+		"AttackDamageMax"			"750"		// Damage range max.
 		"AttackRate"				"1.8"		// Speed of attack.
 		"AttackAnimationPoint"		"0.2"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
@@ -5214,7 +5210,7 @@
 	
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"18500"		// Base health.
+		"StatusHealth"				"32500"		// Base health.
 		"StatusHealthRegen"			"500"			// Health regeneration rate.
 		"StatusMana"				"5000"			// Base mana.
 		"StatusManaRegen"			"50"			// Mana regeneration rate.		 
@@ -8658,7 +8654,7 @@
 		// Movement
 		//-------------------------------------------------------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"			// Type of locomotion - ground, air
-		"MovementSpeed"				"375"									// Speed.
+		"MovementSpeed"				"300"									// Speed.
 		"MovementTurnRate"			"0.25"									// Turning rate.
 		
 		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"			// Hull type used for navigation/locomotion.
@@ -8790,7 +8786,7 @@
 		// Movement
 		//-------------------------------------------------------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"			// Type of locomotion - ground, air
-		"MovementSpeed"				"300"									// Speed.
+		"MovementSpeed"				"280"									// Speed.
 		"MovementTurnRate"			"0.25"									// Turning rate.
 		
 		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"			// Hull type used for navigation/locomotion.
@@ -10226,8 +10222,8 @@
 		// Attack
 		//----------------------------------------------------------------
 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"			"250"		// Damage range min.
-		"AttackDamageMax"			"300"		// Damage range max.
+		"AttackDamageMin"			"300"		// Damage range min.
+		"AttackDamageMax"			"350"		// Damage range max.
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"				"3.0"			// Speed of attack.
 		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
@@ -10336,8 +10332,8 @@
 		// Attack
 		//----------------------------------------------------------------
 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"			"180"		// Damage range min.
-		"AttackDamageMax"			"220"		// Damage range max.
+		"AttackDamageMin"			"150"		// Damage range min.
+		"AttackDamageMax"			"300"		// Damage range max.
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"				"1.2"			// Speed of attack.
 		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.

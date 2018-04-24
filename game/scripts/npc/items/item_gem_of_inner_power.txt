@@ -74,7 +74,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"max_hp_heal"			"35"
+				"max_hp_heal"			"20"
 			}
 			"04"
 			{

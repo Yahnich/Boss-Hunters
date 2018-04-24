@@ -1,4 +1,49 @@
 "Relics"
 {
-	
+	"relic_type_generic"
+	{
+		"relic_generic_angelic_water"					"1"
+		"relic_generic_banshee_tear"					"1"
+		"relic_generic_beast_fang"						"1"
+		"relic_generic_blood_crystal"					"1"
+		"relic_generic_dead_mans_blood"					"1"
+		"relic_generic_giants_toenail"					"1"
+		"relic_generic_hammerhead"						"1"
+		"relic_generic_pure_heart"						"1"
+		"relic_generic_seraphims_feather"				"1"
+		"relic_generic_silver_arrow"					"1"
+		"relic_generic_time_shard"						"1"
+		"relic_generic_unicorn_horn"					"1"
+	}
+	"relic_type_cursed"
+	{
+		"relic_cursed_adamantium_ingot"					"1"
+		"relic_cursed_boiling_blood"					"1"
+		"relic_cursed_cursed_dice"						"1"
+		"relic_cursed_glass_flower"						"1"
+		"relic_cursed_loaded_coin"						"1"
+		"relic_cursed_mysterious_stone"					"1"
+		"relic_cursed_pale_blood"						"1"
+		"relic_cursed_paupers_eye"						"1"
+		"relic_cursed_phoenix_down"						"1"
+		"relic_cursed_red_key"							"1"
+		"relic_cursed_symbiote"							"1"
+		"relic_cursed_the_pact"							"1"
+		"relic_cursed_titans_eye"						"1"
+	}
+	"relic_type_unique"
+	{
+		"relic_unique_aghanims_amulet"					"1"
+		"relic_unique_frozen_crystal"					"1"
+		"relic_unique_limit_breaker"					"1"
+		"relic_unique_molten_crystal"					"1"
+		"relic_unique_mysterious_hourglass"				"1"
+		"relic_unique_perpetuum_mobile"					"1"
+		"relic_unique_rage_enhancer"					"1"
+		"relic_unique_rapid_totem"						"1"
+		"relic_unique_rolling_boulder"					"1"
+		"relic_unique_rotting_flesh"					"1"
+		"relic_unique_rusty_dumbbell"					"1"
+		"relic_unique_sacrificial_dagger"				"1"
+	}
 }

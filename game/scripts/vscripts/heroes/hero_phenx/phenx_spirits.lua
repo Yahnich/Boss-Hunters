@@ -46,7 +46,7 @@ end
 function phenx_spirits:GetCooldown(iLvl)
 	local caster = self:GetCaster()
 	if caster:HasModifier("modifier_phenx_spirits_caster") then
-		return self.BaseClass.GetManaCost(self, iLvl)
+		return self.BaseClass.GetCooldown(self, iLvl)
 	else
 		return 0
 	end

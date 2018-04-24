@@ -1,0 +1,1 @@
+relic_unique_limit_breaker = class({})

@@ -1,0 +1,1 @@
+relic_cursed_glass_flower = class({})

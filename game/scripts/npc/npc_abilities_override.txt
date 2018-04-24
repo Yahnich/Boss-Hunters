@@ -5268,6 +5268,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"AbilitySound"					"hero_viper.CorrosiveSkin"
+		"MaxLevel"						"7"
 
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
@@ -12008,7 +12009,7 @@
 			"01"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"radius"						"375"
+				"radius"						"425"
 			}
 			"02"
 			{
@@ -12018,7 +12019,7 @@
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"pit_interval"					"3.6"
+				"pit_interval"					"2"
 			}
 			"04"
 			{
@@ -12028,7 +12029,7 @@
 			"05"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"ensnare_duration"				"1.5"
+				"ensnare_duration"				"0.8 0.9 1.0 1.1 1.2 1.3 1.4"
 				"LinkedSpecialBonus"			"special_bonus_unique_underlord"
 			}
 		}
@@ -14347,7 +14348,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"30"
+				"value"				"8"
 			}
 		}
 	}

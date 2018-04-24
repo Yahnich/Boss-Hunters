@@ -1,0 +1,1 @@
+relic_cursed_boiling_blood = class({})

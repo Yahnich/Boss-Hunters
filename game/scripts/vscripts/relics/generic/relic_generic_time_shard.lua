@@ -1,0 +1,1 @@
+relic_generic_time_shard = class({})

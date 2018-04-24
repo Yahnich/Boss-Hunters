@@ -1,0 +1,1 @@
+relic_unique_aghanims_amulet = class({})

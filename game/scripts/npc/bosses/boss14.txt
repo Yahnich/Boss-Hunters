@@ -21,12 +21,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"movespeed"				"1.5 2"
+				"movespeed"				"2 2.5"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"damage_amp"			"0.25 0.33"
+				"damage_amp"			"0.3 0.4"
 			}	
 		}
 	}
@@ -64,7 +64,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"execution_damage"		"15 20"
+				"execution_damage"		"20 25"
 			}
 		}
 		"precache"
@@ -160,17 +160,17 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"suck_power"			"10 20"
+				"suck_power"			"10"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"spin_damage"			"40 60"
+				"spin_damage"			"35 40"
 			}		
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius"				"375 400"
+				"radius"				"375"
 			}
 		}
 		"precache"

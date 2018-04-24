@@ -1,0 +1,1 @@
+relic_unique_frozen_crystal = class({})

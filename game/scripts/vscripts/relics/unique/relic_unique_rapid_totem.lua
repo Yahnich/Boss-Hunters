@@ -1,0 +1,1 @@
+relic_unique_rapid_totem = class({})
