@@ -1,0 +1,50 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Barrier Leaves
+	//=================================================================================================================
+	"item_barrier_leaves"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"7019"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_barrier_leaves"
+		"AbilityTextureName"			"tango"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"1000"
+		"ItemShopTags"					"barrier"
+		"ItemQuality"					"component"
+		"ItemAliases"					"faerie fire"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+
+		"AbilityCooldown"				"20"
+		"AbilityManaCost"				"75"
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"block"					"300"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"3.0"
+			}
+		}
+
+		"precache"
+		{
+			"particle"  "particles/items2_fx/pipe_of_insight.vpcf"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_HERO.vsndevts"
+		}
+	}
+}

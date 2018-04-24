@@ -1,0 +1,79 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Recipe: Rising Salt
+	//=================================================================================================================
+	"item_recipe_rising_salt"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"7024"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"2500"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_rising_salt"
+		"ItemRequirements"
+		{
+			"01"						"item_strange_trinket;item_runed_artifact"
+		}
+	}
+	//=================================================================================================================
+	// Rising Salt
+	//=================================================================================================================
+	"item_rising_salt"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"7025"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_rising_salt"
+		"AbilityTextureName"			"iron_talon"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"1200"
+		"ItemShopTags"					""
+		"ItemQuality"					"component"
+		"ItemAliases"					"sheen"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+
+		"AbilityCooldown"				"1.5"
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_damage"			"150"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cooldown"				"1.5"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_mana"			"400"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bonus_cdr"				"15"
+			}
+		}
+	}
+}
