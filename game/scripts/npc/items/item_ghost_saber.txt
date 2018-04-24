@@ -1,0 +1,77 @@
+"DOTAAbilities"
+{	
+	//=================================================================================================================
+	// Recipe: Ghost Saber
+	//=================================================================================================================
+	"item_recipe_ghost_saber"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"7016"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"1000"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_ghost_saber"
+		"ItemRequirements"
+		{
+			"01"						"item_phantom_staff;item_power_core"
+		}
+	}
+	"item_ghost_saber"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"7017"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_ghost_saber"
+		"AbilityTextureName"			"ethereal_blade"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"1000"
+		"ItemShopTags"					"ethereal blade"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"ethereal blade"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_items.vsndevts"
+			"particle"					"particles/units/heroes/hero_pugna/pugna_decrepify.vpcf"
+			"particle"					"particles/status_fx/status_effect_necrolyte_spirit.vpcf"
+		}
+		
+		"AbilityCooldown"				"60"
+		"AbilitySharedCooldown"			"ghost;ethereal"
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_stats"			"20"
+			}
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"1"
+			}
+		}
+	}
+}

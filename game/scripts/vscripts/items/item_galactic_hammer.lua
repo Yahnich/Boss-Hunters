@@ -125,14 +125,14 @@ end
 modifier_item_galactic_hammer_burn = class({})
 function modifier_item_galactic_hammer_burn:OnCreated(table)
 	if IsServer() then
-		self.damage = self:GetSpecialValueFor("damager_per_sec")
+		self.damage = self:GetSpecialValueFor("damage_per_sec")
 		self:StartIntervalThink(1)
 	end
 end
 
 function modifier_item_galactic_hammer_burn:OnRefresh(table)
 	if IsServer() then
-		self.damage = self:GetSpecialValueFor("damager_per_sec")
+		self.damage = self:GetSpecialValueFor("damage_per_sec")
 	end
 end
 
