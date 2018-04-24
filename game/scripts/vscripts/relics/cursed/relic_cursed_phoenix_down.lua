@@ -1,1 +1,1 @@
-item_arcane_reaver = class({})
+relic_cursed_phoenix_down = class({})

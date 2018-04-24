@@ -1,1 +1,1 @@
-item_arcane_reaver = class({})
+relic_generic_time_shard = class({})

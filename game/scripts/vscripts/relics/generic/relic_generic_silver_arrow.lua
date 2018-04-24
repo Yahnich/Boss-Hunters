@@ -1,1 +1,1 @@
-item_arcane_reaver = class({})
+relic_generic_silver_arrow = class({})

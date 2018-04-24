@@ -1,1 +1,1 @@
-item_arcane_reaver = class({})
+relic_unique_rolling_boulder = class({})
