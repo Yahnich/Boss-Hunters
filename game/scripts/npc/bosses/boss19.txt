@@ -128,7 +128,7 @@
 		"AbilityTextureName"			"nyx_assassin_burrow"
 		"MaxLevel"						"2"
 
-		"AbilityCooldown"				"24 20"
+		"AbilityCooldown"				"40"
 		"AbilityCastRange"				"3500 5000"
 		"AbilityChannelTime"			"2.0 1.5"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_3"
@@ -140,12 +140,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"5"
+				"duration"				"10"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"spike_ticker"			"0.35"
+				"spike_ticker"			"1.5 1.25"
 			}
 			"02"
 			{
@@ -155,7 +155,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage_reduction"		"-50"
+				"damage_reduction"		"-50 -75"
 			}
 			
 		}

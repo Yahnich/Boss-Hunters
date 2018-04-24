@@ -1147,6 +1147,7 @@ function CHoldoutGameMode:OnHeroPick (event)
 		hero:AddNewModifier(hero, nil, "modifier_stats_system_handler", {})
 		
 		hero:AddExperience(GameRules.XP_PER_LEVEL[7],false,false)
+		hero:SetBaseMagicalResistanceValue(0)
 		
 		-- StatsManager:CreateCustomStatsForHero(hero)
 		hero:SetRespawnPosition( GetGroundPosition(Vector(973, 99, 0), nil) )

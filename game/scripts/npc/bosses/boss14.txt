@@ -49,7 +49,7 @@
 		// Stats		
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"				"20 15"
-		"AbilityCastPoint"				"0.5"
+		"AbilityCastPoint"				"1.5 1"
 		"AbilityCastRange"				"200 250"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
 	
@@ -64,7 +64,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"execution_damage"		"20 25"
+				"execution_damage"		"50"
 			}
 		}
 		"precache"
@@ -155,7 +155,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"2"
+				"duration"				"3"
 			}
 			"02"
 			{
@@ -165,12 +165,12 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"spin_damage"			"35 40"
+				"spin_damage"			"15 25"
 			}		
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius"				"375"
+				"radius"				"300"
 			}
 		}
 		"precache"
