@@ -120,9 +120,14 @@ function modifier_skinwalker_fortress_form:DeclareFunctions()
 		MODIFIER_PROPERTY_HEALTH_BONUS,
 		MODIFIER_PROPERTY_MODEL_CHANGE,
 		MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,
+		MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
 		MODIFIER_EVENT_ON_RESPAWN,
 	}
 	return funcs
+end
+
+function modifier_skinwalker_fortress_form:GetModifierAttackRangeBonus()
+	return -400
 end
 
 function modifier_skinwalker_fortress_form:GetModifierHealthBonus()
@@ -183,6 +188,7 @@ end
 function modifier_skinwalker_predator_form:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+		MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
 		MODIFIER_PROPERTY_MODEL_CHANGE,
 		MODIFIER_EVENT_ON_ATTACK_LANDED,
 		MODIFIER_EVENT_ON_RESPAWN,
@@ -192,6 +198,10 @@ end
 
 function modifier_skinwalker_predator_form:GetModifierAttackSpeedBonus_Constant()
 	return self.attackspeed
+end
+
+function modifier_skinwalker_predator_form:GetModifierAttackRangeBonus()
+	return -400
 end
 
 function modifier_skinwalker_predator_form:OnAttackLanded(params)
@@ -396,7 +406,8 @@ function StampedeArmor(keys)
 	local ability = keys.ability
 	if ability:IsHidden() and caster:HasModifier("modifier_stampede_armor_bonus") then
 		caster:RemoveModifierByName("modifier_stampede_armor_bonus")
-	elseif not  ability:IsHidden() and not caster:HasModifier("modifier_stampede_armor_bonus") then
+	elseif not ability:IsHidden() then
+		caster:RemoveModifierByName("modifier_stampede_armor_bonus")
 		ability:ApplyDataDrivenModifier(caster, caster, "modifier_stampede_armor_bonus", {})
 	end
 end

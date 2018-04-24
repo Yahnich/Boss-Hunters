@@ -217,7 +217,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 	    "AbilityTextureName"			"tinker_march_of_the_machines"
-		"RequiredLevel"					"7"
+		"MaxLevel"					"7"
 	
 	    // Casting
 	    //-------------------------------------------------------------------------------------------------------------

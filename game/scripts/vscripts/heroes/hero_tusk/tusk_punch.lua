@@ -48,15 +48,17 @@ function modifier_tusk_punch:OnIntervalThink()
 end
 
 function modifier_tusk_punch:DeclareFunctions()
-    local funcs = { MODIFIER_EVENT_ON_ATTACK }
+    local funcs = { MODIFIER_EVENT_ON_ATTACK_RECORD  }
     return funcs
 end
 
-function modifier_tusk_punch:OnAttack(params)
+function modifier_tusk_punch:OnAttackRecord(params)
     if IsServer() then
         if self:GetCaster():HasTalent("special_bonus_unique_tusk_punch_1") then
             if RollPercentage(self:GetCaster():FindTalentValue("special_bonus_unique_tusk_punch_1")) and params.attacker == self:GetParent() then
                 self:GetAbility().cd = false
+				EmitSoundOn("Hero_Tusk.WalrusPunch.Cast", self:GetParent())
+				self:GetParent():StartGestureWithPlaybackRate(ACT_DOTA_CAST_ABILITY_4, self:GetParent():GetIncreasedAttackSpeed() )
                 self:GetCaster():AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_tusk_punch_crit", {})
             end
         end
@@ -75,7 +77,7 @@ end
 
 function modifier_tusk_punch_crit:OnRemoved()
     if IsServer() then
-        ParticleManager:DestroyParticle(self.nfx, false)
+        ParticleManager:ClearParticle(self.nfx)
     end
 end
 
@@ -88,7 +90,20 @@ function modifier_tusk_punch_crit:DeclareFunctions()
     return funcs
 end
 
-function modifier_tusk_punch_crit:GetModifierPreAttack_CriticalStrike()
+function modifier_tusk_punch_crit:GetModifierPreAttack_CriticalStrike(params)
+	StopSoundOn("Hero_Tusk.WalrusPunch.Cast", self:GetParent())
+	EmitSoundOn("Hero_Tusk.WalrusPunch.Target", params.target)
+	
+	ParticleManager:FireParticle("particles/units/heroes/hero_tusk/tusk_walruspunch_txt_ult.vpcf", PATTACH_POINT, self:GetParent(), {[2]=params.target:GetAbsOrigin()})
+	ParticleManager:FireParticle("particles/units/heroes/hero_tusk/tusk_walruspunch_start.vpcf", PATTACH_POINT, self:GetParent(), {[0]=params.target:GetAbsOrigin()})
+	local airTime = self:GetTalentSpecialValueFor("air_time")
+	params.target:ApplyKnockBack(self:GetParent():GetAbsOrigin(), airTime, airTime, 1, self:GetTalentSpecialValueFor("height"), params.attacker, self:GetAbility())
+	params.target:AddNewModifier(self:GetParent(), self:GetAbility(), "modifier_tusk_punch_slow", {Duration = airTime + self:GetTalentSpecialValueFor("duration")})
+	Timers:CreateTimer(airTime, function() EmitSoundOn("Hero_Tusk.WalrusPunch.Damage", params.target) end)
+	if self:GetAbility().cd then
+		self:GetAbility():UseResources(true, false, true)
+	end
+	self:Destroy()
     return self:GetTalentSpecialValueFor("crit_multiplier")
 end
 
@@ -96,27 +111,7 @@ function modifier_tusk_punch_crit:OnAttackStart(params)
     if IsServer() then
         if params.attacker == self:GetParent() then
             EmitSoundOn("Hero_Tusk.WalrusPunch.Cast", self:GetParent())
-            self:GetParent():StartGestureWithPlaybackRate(ACT_DOTA_CAST_ABILITY_4, self:GetParent():GetAttackSpeed()/1.7)
-        end
-    end
-end
-
-function modifier_tusk_punch_crit:OnAttackLanded(params)
-    if IsServer() then
-        if params.attacker == self:GetParent() then
-            StopSoundOn("Hero_Tusk.WalrusPunch.Cast", self:GetParent())
-            EmitSoundOn("Hero_Tusk.WalrusPunch.Damage", params.target)
-
-            ParticleManager:FireParticle("particles/units/heroes/hero_tusk/tusk_walruspunch_txt_ult.vpcf", PATTACH_POINT, self:GetParent(), {[2]=params.target:GetAbsOrigin()})
-            ParticleManager:FireParticle("particles/units/heroes/hero_tusk/tusk_walruspunch_start.vpcf", PATTACH_POINT, self:GetParent(), {[0]=params.target:GetAbsOrigin()})
-            local airTime = self:GetTalentSpecialValueFor("air_time")
-            params.target:ApplyKnockBack(self:GetParent():GetAbsOrigin(), airTime, airTime, 1, self:GetTalentSpecialValueFor("height"), params.attacker, self:GetAbility())
-            params.target:AddNewModifier(self:GetParent(), self:GetAbility(), "modifier_tusk_punch_slow", {Duration = airTime + self:GetTalentSpecialValueFor("duration")})
-            Timers:CreateTimer(airTime, function() EmitSoundOn("Hero_Tusk.WalrusPunch.Target", params.target) end)
-            if self:GetAbility().cd then
-                self:GetAbility():UseResources(true, false, true)
-            end
-            self:Destroy()
+            self:GetParent():StartGestureWithPlaybackRate(ACT_DOTA_CAST_ABILITY_4, self:GetParent():GetIncreasedAttackSpeed())
         end
     end
 end

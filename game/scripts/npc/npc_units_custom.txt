@@ -8654,7 +8654,7 @@
 		// Movement
 		//-------------------------------------------------------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"			// Type of locomotion - ground, air
-		"MovementSpeed"				"375"									// Speed.
+		"MovementSpeed"				"300"									// Speed.
 		"MovementTurnRate"			"0.25"									// Turning rate.
 		
 		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"			// Hull type used for navigation/locomotion.
@@ -8786,7 +8786,7 @@
 		// Movement
 		//-------------------------------------------------------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"			// Type of locomotion - ground, air
-		"MovementSpeed"				"300"									// Speed.
+		"MovementSpeed"				"280"									// Speed.
 		"MovementTurnRate"			"0.25"									// Turning rate.
 		
 		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"			// Hull type used for navigation/locomotion.

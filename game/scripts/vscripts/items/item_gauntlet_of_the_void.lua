@@ -95,7 +95,7 @@ function modifier_item_gauntlet_of_the_void:DeclareFunctions()
 end
 
 function modifier_item_gauntlet_of_the_void:OnTakeDamage(params)
-	if params.attacker == self:GetParent() and params.unit ~= self:GetParent() and self:GetParent():GetHealth() > params.damage then
+	if params.attacker == self:GetParent() and params.unit ~= self:GetParent() and self:GetParent():GetHealth() > params.damage and not ( HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_HPLOSS) or HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION) ) then
 		local flHeal = params.damage * self.lifesteal
 		if params.inflictor then ParticleManager:FireParticle("particles/items3_fx/octarine_core_lifesteal.vpcf", PATTACH_ABSORIGIN_FOLLOW, self) end
 		params.attacker:HealEvent(flHeal, self:GetAbility(), params.attacker)
