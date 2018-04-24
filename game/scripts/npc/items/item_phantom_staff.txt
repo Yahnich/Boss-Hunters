@@ -1,0 +1,46 @@
+"DOTAAbilities"
+{	
+	"item_phantom_staff"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"7015"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_phantom_staff"
+		"AbilityTextureName"			"ghost"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"425"	
+		"ItemShopTags"					"ghost scepter"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"ghost scepter"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_items.vsndevts"
+			"particle"					"particles/units/heroes/hero_pugna/pugna_decrepify.vpcf"
+			"particle"					"particles/status_fx/status_effect_necrolyte_spirit.vpcf"
+		}
+		
+		"AbilityCooldown"				"60"
+		"AbilitySharedCooldown"			"ghost;ethereal"
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"1"
+			}
+		}
+	}
+}
