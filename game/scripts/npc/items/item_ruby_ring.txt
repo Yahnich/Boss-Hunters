@@ -1,0 +1,36 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Ruby Ring
+	//=================================================================================================================
+	"item_ruby_ring"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"7018"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_ruby_ring"
+		"AbilityTextureName"			"ring_of_regen"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"300"
+		"ItemShopTags"					"regen"
+		"ItemQuality"					"component"
+		"ItemAliases"					"ring of regen"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"hp_regen"				"1.5"
+			}
+		}
+	}
+}
