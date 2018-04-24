@@ -30,7 +30,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"hits_to_stun"			"8"
+				"hits_to_stun"			"7 6"
 			}
 			"03"
 			{
@@ -84,7 +84,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"attackspeed_bonus"		"150 175"
+				"attackspeed_bonus"		"200 250"
 			}
 		}
 	}
@@ -102,7 +102,7 @@
 		"MaxLevel"						"2"
 		
 		"AbilityCooldown"				"8 7"
-		"AbilityCastPoint"				"0.75 0.5"
+		"AbilityCastPoint"				"1.5 1"
 		"AbilityCastRange"				"350"
 		
 		"precache"
@@ -129,7 +129,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"attackslow"			"-300"
+				"attackslow"			"-600"
 			}
 		}
 	}
@@ -147,7 +147,7 @@
 		"MaxLevel"						"2"
 		
 		"AbilityCooldown"				"10 9"
-		"AbilityCastPoint"				"0.75 0.5"
+		"AbilityCastPoint"				"1.5 1"
 		"AbilityCastAnimation"			"ACT_DOTA_ABILITY_END"
 		
 		"precache"
@@ -183,7 +183,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"400 500"
+				"damage"				"800 1000"
 			}
 			"04"
 			{

@@ -18,8 +18,9 @@ end
 
 
 function AIThink(thisEntity)
-	if thisEntity.internalClock + 15 < GameRules:GetGameTime() then
-		CreateUnitByName( "npc_dota_mini_boss2_he" ,thisEntity:GetAbsOrigin() + RandomVector(RandomInt(250,500)), true, nil, nil, DOTA_TEAM_BADGUYS )
+	if thisEntity.internalClock + 15 < GameRules:GetGameTime() and thisEntity:IsAlive() and AICore:SpecificAlliedUnitsInRange( thisEntity, "npc_dota_mini_boss2_he", -1 ) < TernaryOperator(10, GameRules.gameDifficulty > 2, 15)  then
+		local ogre = CreateUnitByName( "npc_dota_mini_boss2_he" ,thisEntity:GetAbsOrigin() + RandomVector(RandomInt(250,500)), true, nil, nil, DOTA_TEAM_BADGUYS )
+		ogre:SetAverageBaseDamage(ogre:GetAverageBaseDamage() * 0.5, 35 )
 		thisEntity.internalClock = GameRules:GetGameTime()
 	end
 	if not thisEntity:IsDominated() then

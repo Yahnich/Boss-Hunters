@@ -25,7 +25,7 @@ end
 
 function gyro_rocket_salvo:OnProjectileHit(hTarget, vLocation)
 	EmitSoundOn("Hero_Gyrocopter.Rocket_Barrage.Impact", caster)
-	self:DealDamage(self:GetCaster(), hTarget, self:GetCaster():GetAttackDamage() * self:GetSpecialValueFor("damage")/100, {damage_type = DAMAGE_TYPE_PHYSICAL}, 0)
+	self:DealDamage(self:GetCaster(), hTarget, self:GetSpecialValueFor("damage"), {damage_type = DAMAGE_TYPE_PHYSICAL}, 0)
 end
 
 modifier_rocket_salvo = class({})

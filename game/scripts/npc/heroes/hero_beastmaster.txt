@@ -25,12 +25,12 @@
 				"var_type"				"FIELD_INTEGER"
 				"bonus_cdr"				"3 6 9 12 15 18 21"
 			}
-			"01"
+			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"bonus_attackspeed"		"15 25 35 45 55 65 75"
 			}
-			"02"
+			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"radius"				"900"
@@ -153,6 +153,11 @@
 			{
 				"var_type"					"FIELD_INTEGER"
 				"radius"					"500"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"hits_to_kill"				"4"
 			}
 		}
 	

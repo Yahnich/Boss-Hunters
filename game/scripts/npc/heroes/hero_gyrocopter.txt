@@ -44,8 +44,8 @@
 			}
 			"02"
 			{
-				"var_type"						"FIELD_INTEGER"
-				"armor_shred_duration"			"10"
+				"var_type"						"FIELD_FLOAT"
+				"armor_shred_duration"			"2.5"
 			}
 			"03"
 			{
@@ -423,7 +423,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"1"
+				"value"					"2"
 			}
 		}
 	}
@@ -442,7 +442,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"-0.1"
+				"value"					"-0.05"
 			}
 		}
 	}
