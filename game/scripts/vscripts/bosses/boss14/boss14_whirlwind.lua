@@ -46,7 +46,7 @@ end
 function modifier_boss14_whirlwind:OnIntervalThink()
 	local caster = self:GetCaster()
 	self.ms = self:GetParent():GetIdealSpeedNoSlows()
-	caster:StartGestureWithPlaybackRate( ACT_DOTA_CAST_ABILITY_3, 5 )
+	caster:StartGestureWithPlaybackRate( ACT_DOTA_CAST_ABILITY_3, 3 )
 	local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), self.radius, {flag = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES})
 	ParticleManager:FireParticle("particles/units/heroes/hero_axe/axe_attack_blur_counterhelix.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
 	EmitSoundOn("Hero_Axe.CounterHelix", caster)

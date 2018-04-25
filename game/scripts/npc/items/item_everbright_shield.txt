@@ -68,7 +68,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"bonus_physical"		"25"
+				"bonus_physical"		"35"
 			}
 			"04"
 			{

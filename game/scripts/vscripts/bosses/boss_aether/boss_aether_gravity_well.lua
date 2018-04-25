@@ -77,12 +77,5 @@ if IsServer() then
 			local tickDamage = (parent:GetMaxHealth() * strength * self.max_dmg / 100 ) * 0.25
 			self:GetAbility():DealDamage( caster, parent, tickDamage, {damage_type = DAMAGE_TYPE_MAGICAL, damage_flags = DOTA_DAMAGE_FLAG_HPLOSS + DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION} )
 		end
-		local tickPull = strength * self.max_pull
-		
-		parent:SetAbsOrigin( GetGroundPosition(parent:GetAbsOrigin() + direction * tickPull, parent) )
-	end
-	
-	function modifier_boss_aether_gravity_well:OnDestroy()
-		FindClearSpaceForUnit( self:GetParent(), self:GetParent():GetAbsOrigin(), true )
 	end
 end

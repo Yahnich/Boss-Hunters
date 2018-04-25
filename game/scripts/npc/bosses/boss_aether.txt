@@ -96,12 +96,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"max_pull"				"1 2"
+				"max_pull"				"0"
 			}
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"max_damage"			"0.8 2"
+				"max_damage"			"1.5 3"
 			}
 		}
 	}

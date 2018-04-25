@@ -53,7 +53,7 @@ function CreateFrostShards(keys)
 	ability:StartCooldown(16)
 	for i = 1, PlayerResource:FindActivePlayerCount() + 4 do
 		Timers:CreateTimer(RandomFloat(0.1, 0.8), function()
-			local shardLoc = caster:GetAbsOrigin() + ActualRandomVector(700, 150)
+			local shardLoc = caster:GetAbsOrigin() + ActualRandomVector(1200, 150)
 			local frostShard = ParticleManager:CreateParticle("particles/elite_freezing_parent.vpcf", PATTACH_WORLDORIGIN, nil)
 				ParticleManager:SetParticleControl(frostShard, 0, shardLoc)
 			EmitSoundOnLocationWithCaster(shardLoc, "hero_Crystal.frostbite", caster)

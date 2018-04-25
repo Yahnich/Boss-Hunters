@@ -18,6 +18,7 @@
 	   "item"		"item_gauntlet_of_alacrity"
 	   "item"		"item_worn_cloak"
 	   "item"		"item_strange_trinket"
+	   "item"		"item_ruby_ring"
     }
     "weapons_armor"
     {
@@ -42,6 +43,7 @@
 		"item"		"item_orb_of_shadows"
 		"item"		"item_warm_fire"
 		"item"		"item_phantom_staff"
+		"item"		"item_barrier_leaves"
     }
     // Level 1 - Green Recipes
     "basics"
@@ -70,6 +72,7 @@
 		"item"		"item_hurricane_blade"
 		"item"		"item_lance_of_longinus"
 		"item"		"item_war_drum"
+		"item"		"item_father_pipe"
     }
     "magics"
     {  
@@ -83,6 +86,7 @@
 		"item"		"item_crystalline_staff"
 		"item"		"item_warlocks_reliquary"
 		"item"		"item_dark_wand"
+		"item"		"item_galactic_hammer"
     }
     // Level 3 - Purple Recipes
     "defense"
@@ -136,5 +140,6 @@
 		"item"		"item_berserkers_cape"
 		"item"		"item_blood_gods_mask"
 		"item"		"item_ghost_saber"
+		"item"		"item_rising_salt"
     }
 }
