@@ -16,48 +16,27 @@ function pa_flash_step:OnSpellStart()
     local caster = self:GetCaster()
     local point = self:GetCursorPosition()
 
-    local direction = CalculateDirection(point, caster:GetAbsOrigin())
-    local currentDistance = CalculateDistance(point, caster:GetAbsOrigin())
-	local hasTalent = caster:HasTalent("special_bonus_unique_pa_flash_step_2")
-    if caster:FindAbilityByName("pa_kunai_toss") then
-        caster:FindAbilityByName("pa_kunai_toss").TotesBounces = caster:FindAbilityByName("pa_kunai_toss"):GetSpecialValueFor("bounces")*caster:FindAbilityByName("pa_kunai_toss"):GetSpecialValueFor("max_targets")
-        caster:FindAbilityByName("pa_kunai_toss").CurrentBounces = 0
-    end
-	
-	local kunaiRange = caster:FindAbilityByName("pa_kunai_toss"):GetSpecialValueFor("range")
-	
-	local count = 4 -- always fire at least 1 kunai
-    caster:AddNewModifier(caster, self, "modifier_flash_step", {duration = currentDistance / 100})
-    Timers:CreateTimer(0, function()
-        if currentDistance > 0 then
-            caster:SetAbsOrigin(caster:GetAbsOrigin() + direction * 100)
-            currentDistance = currentDistance - 100
-			
-			if hasTalent then
-				local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), kunaiRange, {})
-				count = count + 1
-				for _,enemy in pairs(enemies) do
-					if count >= 4 then
-						count = 0
-						caster:FindAbilityByName("pa_kunai_toss"):tossKunai(enemy)
-						break
-					end
-				end
-			end
+    EmitSoundOn("Hero_PhantomAssassin.Strike.Start", caster)
 
-            return 0
-        else
-            caster:RemoveModifierByName("modifier_flash_step")
-            FindClearSpaceForUnit(caster, caster:GetAbsOrigin(), true)
-            return nil
-        end
-    end)
+    caster:AddNewModifier(caster, self, "modifier_flash_step", {Duration = 5})
 end
 
 modifier_flash_step = class({})
 function modifier_flash_step:OnCreated(table)
     if IsServer() then
+        local caster = self:GetParent()
+        self.direction = CalculateDirection(self:GetAbility():GetCursorPosition(), caster:GetAbsOrigin())
+        self.currentDistance = CalculateDistance(self:GetAbility():GetCursorPosition(), caster:GetAbsOrigin())
+
+        self.hasTalent = caster:HasTalent("special_bonus_unique_pa_flash_step_2")
+        if caster:FindAbilityByName("pa_kunai_toss") then
+            caster:FindAbilityByName("pa_kunai_toss").TotesBounces = caster:FindAbilityByName("pa_kunai_toss"):GetSpecialValueFor("bounces")*caster:FindAbilityByName("pa_kunai_toss"):GetSpecialValueFor("max_targets")
+            caster:FindAbilityByName("pa_kunai_toss").CurrentBounces = 0
+        end
+
         self:StartIntervalThink(FrameTime())
+
+        self:StartMotionController()
     end
 end
 
@@ -69,6 +48,32 @@ function modifier_flash_step:OnRemoved()
                 enemy:RemoveModifierByName("modifier_flash_step_enemy")
             end
         end
+    end
+end
+
+function modifier_flash_step:DoControlledMotion()
+    local caster = self:GetParent()
+    --print(self.currentDistance)
+    if self.currentDistance > 0 then
+        caster:SetAbsOrigin(caster:GetAbsOrigin() + self.direction * self:GetSpecialValueFor("speed")*FrameTime())
+        self.currentDistance = self.currentDistance - self:GetSpecialValueFor("speed")*FrameTime()
+        
+        local count = 4
+        if self.hasTalent then
+            local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), caster:FindAbilityByName("pa_kunai_toss"):GetSpecialValueFor("range"), {})
+            count = count + 1
+            for _,enemy in pairs(enemies) do
+                if count >= 4 then
+                    count = 0
+                    caster:FindAbilityByName("pa_kunai_toss"):tossKunai(enemy)
+                    break
+                end
+            end
+        end
+    else
+        FindClearSpaceForUnit(caster, caster:GetAbsOrigin(), true)
+        self:StopMotionController(true)
+        self:Destroy()
     end
 end
 

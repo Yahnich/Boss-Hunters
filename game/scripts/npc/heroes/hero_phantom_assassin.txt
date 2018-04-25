@@ -56,6 +56,11 @@
 				"var_type"				"FIELD_INTEGER"
 				"range"					"1000"
 			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"speed"					"5000"
+			}
 		}
 	
 		"precache"
@@ -64,7 +69,7 @@
 			"particle"  "particles/units/heroes/hero_phantom_assassin/phantom_assassin_stifling_dagger.vpcf"
 			"particle"  "particles/units/heroes/hero_phantom_assassin/phantom_assassin_stifling_dagger_debuff.vpcf"
 	
-			"soundfile" "soundevents/game_sounds_heroes/game_sounds_beastmaster.vsndevts"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_phantom_assassin.vsndevts"
 		}
 	}
 	//=================================================================================================================
@@ -80,7 +85,7 @@
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
 	    "AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
 	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"MaxLevel"						"7"
 		"AbilityTextureName"			"phantom_assassin_stifling_dagger"
 	
@@ -145,7 +150,7 @@
 			"particle"  "particles/units/heroes/hero_phantom_assassin/phantom_assassin_stifling_dagger.vpcf"
 			"particle"  "particles/units/heroes/hero_phantom_assassin/phantom_assassin_stifling_dagger_debuff.vpcf"
 	
-			"soundfile" "soundevents/game_sounds_heroes/game_sounds_beastmaster.vsndevts"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_phantom_assassin.vsndevts"
 		}
 	}
 	"phantom_assassin_blur_ebf"
@@ -199,11 +204,13 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_pa/phantom_assassin_coup_de_grace_ebf.lua"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
-		"LevelsBetweenUpgrades"			"7"
-		"MaxLevel"						"7"
+		"AbilityTextureName"			"phantom_assassin_coup_de_grace"
+		"MaxLevel"						"6"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -212,24 +219,20 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"crit_chance"				"17"
+				"crit_chance"				"15"
 				"LinkedSpecialBonus"		"special_bonus_unique_phantom_assassin_2"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"crit_bonus"				"400 500 600 700 800 900 1000"
+				"crit_bonus"				"230 340 450 560 670 780"
 			}
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"megacrit_chance"			"5"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"megacrit_bonus"			"800 1000 1200 1400 1600 1800 2000"
-			}
+		}
+
+		"precache"
+		{
+			"particle"			"particles/units/heroes/hero_phantom_assassin/phantom_assassin_crit_impact.vpcf"
+			"soundfile" 		"soundevents/game_sounds_heroes/game_sounds_phantom_assassin.vsndevts"
 		}
 	}
 	"special_bonus_unique_pa_flash_step_1" 

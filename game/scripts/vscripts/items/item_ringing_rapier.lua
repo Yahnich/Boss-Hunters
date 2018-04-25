@@ -27,7 +27,7 @@ function modifier_item_ringing_rapier:OnAttackLanded(params)
 			parent:StartGestureWithPlaybackRate(ACT_DOTA_ATTACK, 6)
 			self:GetAbility():SetCooldown()
 			Timers:CreateTimer(self.delay, function() 
-				parent:PerformGenericAttack(params.target, true)
+				parent:PerformGenericAttack(params.target, true, 0, false, true)
 				if parent:IsRealHero() then params.target:Paralyze(self:GetAbility(), parent, self.paralyze) end
 			end)
 		end
