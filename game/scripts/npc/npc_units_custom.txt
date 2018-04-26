@@ -1674,7 +1674,7 @@
 		// Abilities
 		//----------------------------------------------------------------
 		"AbilityLayout"				"6"
-		"Ability1"					"creature_melee_smash"			// Ability 1
+		"Ability1"					"boss_ogre_smash"			// Ability 1
 	
 		// Armor
 		//----------------------------------------------------------------
@@ -1696,7 +1696,7 @@
 		// Bounds
 		//----------------------------------------------------------------
 		"RingRadius"				"80"
-		"HealthBarOffset"			"320"
+		"HealthBarOffset"			"400"
 		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"
 	
 		// Bounty
@@ -1785,7 +1785,7 @@
 		// Abilities
 		//----------------------------------------------------------------
 		"AbilityLayout"				"6"
-		"Ability1"					"creature_melee_smash_h"			// Ability 1
+		"Ability1"					"boss_ogre_smash"			// Ability 1
 	
 		// Armor
 		//----------------------------------------------------------------
@@ -1807,7 +1807,7 @@
 		// Bounds
 		//----------------------------------------------------------------
 		"RingRadius"				"80"
-		"HealthBarOffset"			"320"
+		"HealthBarOffset"			"400"
 		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"
 	
 		// Bounty
@@ -1918,7 +1918,7 @@
 		// Bounds
 		//----------------------------------------------------------------
 		"RingRadius"				"80"
-		"HealthBarOffset"			"320"
+		"HealthBarOffset"			"400"
 		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"
 	
 		// Bounty
@@ -2007,7 +2007,7 @@
 		// Abilities
 		//----------------------------------------------------------------
 		"AbilityLayout"				"6"
-		"Ability1"					"creature_melee_smash"			// Ability 1
+		"Ability1"					"boss_ogre_smash_king"			// Ability 1
 		"Ability2"					"creature_summon_ogres"			// Ability 3
 	
 		// Armor
@@ -2029,8 +2029,8 @@
 	
 		// Bounds
 		//----------------------------------------------------------------
-		"RingRadius"				"80"
-		"HealthBarOffset"			"320"
+		"RingRadius"				"100"
+		"HealthBarOffset"			"800"
 		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"
 	
 		// Bounty
