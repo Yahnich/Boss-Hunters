@@ -1020,6 +1020,7 @@
 		"Ability1"					"pa_kunai_toss"
 		"Ability2"					"pa_flash_step"
 		"Ability3"					"phantom_assassin_blur_ebf"
+		"Ability6"					"phantom_assassin_coup_de_grace_ebf"
 	
 		"Ability10"				"special_bonus_unique_pa_kunai_toss_1"
 		"Ability11"				"special_bonus_unique_pa_kunai_toss_2"

@@ -6,13 +6,21 @@ function item_reaping_scythe:GetIntrinsicModifierName()
 end
 
 modifier_item_reaping_scythe = class({})
+function modifier_item_reaping_scythe:OnCreated(table)
+	self.bonus_damage = self:GetSpecialValueFor("bonus_damage")
+end
+
+function modifier_item_reaping_scythe:OnRefresh()
+	self.bonus_damage = math.max(self.bonus_damage, self:GetSpecialValueFor("bonus_damage"))
+end
+
 function modifier_item_reaping_scythe:DeclareFunctions()
 	return {MODIFIER_EVENT_ON_ATTACK_LANDED,
 			MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE}
 end
 
 function modifier_item_reaping_scythe:GetModifierPreAttack_BonusDamage()
-	return self:GetAbility():GetSpecialValueFor("bonus_damage")
+	return self.bonus_damage
 end
 
 function modifier_item_reaping_scythe:OnAttackLanded(params)

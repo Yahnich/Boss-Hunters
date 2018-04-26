@@ -21,6 +21,8 @@ function pa_kunai_toss:OnSpellStart()
 
     self:tossKunai(target)
 
+    EmitSoundOn("Hero_PhantomAssassin.Dagger.Cast", caster)
+
     local enemies = caster:FindEnemyUnitsInRadius(target:GetAbsOrigin(), self:GetSpecialValueFor("radius"), {})
     for _,enemy in pairs(enemies) do
         if enemy ~= target and currentTargets < maxTargets then
@@ -33,33 +35,17 @@ end
 function pa_kunai_toss:OnProjectileHit(hTarget, vLocation)
     local caster = self:GetCaster()
     if hTarget ~= nil and hTarget:IsAlive() then
-        caster:PerformAttack(hTarget, true, true, true, true, false, false, true)
-        self:DealDamage(caster, hTarget, self:GetSpecialValueFor("damage"), {damage_type = DAMAGE_TYPE_PHYSICAL}, 0)
+        EmitSoundOn("Hero_PhantomAssassin.Dagger.Target", caster)
+
+        caster:PerformGenericAttack(hTarget, true, 0, false, true)
+        self:DealDamage(caster, hTarget, self:GetSpecialValueFor("damage"), {}, 0)
         hTarget:AddNewModifier(caster, self, "modifier_kunai_toss_slow", {Duration = self:GetSpecialValueFor("slow_duration")})
         
         if caster:HasTalent("special_bonus_unique_pa_kunai_toss_1") then
             local enemies = caster:FindEnemyUnitsInRadius(vLocation, self:GetSpecialValueFor("radius"), {})
             for _,enemy in pairs(enemies) do
-                if enemy ~= hTarget and not enemy:HasModifier("modifier_kunai_toss_slow") and self.CurrentBounces < self.TotesBounces then
-                    local info3 = 
-                    {
-                        Target = enemy,
-                        Source = hTarget,
-                        Ability = self,  
-                        EffectName = "particles/units/heroes/hero_phantom_assassin/phantom_assassin_stifling_dagger.vpcf",
-                        iMoveSpeed = 1200,
-                        vSourceLoc= hTarget:GetAbsOrigin(),               -- Optional (HOW)
-                        bDrawsOnMinimap = false,                          -- Optional
-                        bDodgeable = true,                                -- Optional
-                        bIsAttack = false,                                -- Optional
-                        bVisibleToEnemies = true,                         -- Optional
-                        bReplaceExisting = false,                         -- Optional
-                        flExpireTime = GameRules:GetGameTime() + 10,      -- Optional but recommended
-                        bProvidesVision = true,                           -- Optional
-                        iVisionRadius = 100,                              -- Optional
-                        iVisionTeamNumber = caster:GetTeamNumber()        -- Optional
-                    }
-                    projectile = ProjectileManager:CreateTrackingProjectile(info3)
+                if enemy ~= hTarget and self.CurrentBounces < self.TotesBounces then
+                    self:FireTrackingProjectile("particles/units/heroes/hero_phantom_assassin/phantom_assassin_stifling_dagger.vpcf", hTarget, 1200, {}, 0, true, true, 100)
                     self.CurrentBounces = self.CurrentBounces + 1
                     break
                 end
@@ -69,27 +55,7 @@ function pa_kunai_toss:OnProjectileHit(hTarget, vLocation)
 end
 
 function pa_kunai_toss:tossKunai(target)
-    local caster = self:GetCaster()
-    local info = 
-    {
-        Target = target,
-        Source = caster,
-        Ability = self,  
-        EffectName = "particles/units/heroes/hero_phantom_assassin/phantom_assassin_stifling_dagger.vpcf",
-        iMoveSpeed = 1200,
-        iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_ATTACK_2,
-        vSourceLoc= caster:GetAbsOrigin(),                -- Optional (HOW)
-        bDrawsOnMinimap = false,                          -- Optional
-        bDodgeable = true,                                -- Optional
-        bIsAttack = false,                                -- Optional
-        bVisibleToEnemies = true,                         -- Optional
-        bReplaceExisting = false,                         -- Optional
-        flExpireTime = GameRules:GetGameTime() + 10,      -- Optional but recommended
-        bProvidesVision = true,                           -- Optional
-        iVisionRadius = 100,                              -- Optional
-        iVisionTeamNumber = caster:GetTeamNumber()        -- Optional
-    }
-    projectile = ProjectileManager:CreateTrackingProjectile(info)
+    self:FireTrackingProjectile("particles/units/heroes/hero_phantom_assassin/phantom_assassin_stifling_dagger.vpcf", target, 1200, {}, DOTA_PROJECTILE_ATTACHMENT_ATTACK_2, true, true, 100)
 end
 
 modifier_kunai_toss_slow = class({})
