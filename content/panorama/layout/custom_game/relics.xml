@@ -23,7 +23,7 @@
 				<Label id="GenericRelicType" class="RelicTypeLabel" text="RELIC_TYPE_GENERIC"/>
 				<Label id="GenericRelicName" class="RelicNameLabel" text="DOTA_Tooltip_relic_generic_angelic_water"/>
 				<Label id="GenericRelicDescription" class="RelicDescriptionLabel" text="DOTA_Tooltip_relic_generic_angelic_water_Description"/>
-				<Button class="SelectButton">
+				<Button class="SelectButton" onactivate="SelectRelic(1)">
 					<Label id="SelectGenericButtonLabel" class="SelectButtonLabel" text="Select"/>
 				</Button>
 			</Panel>
@@ -32,7 +32,7 @@
 				<Label id="CursedRelicType" class="RelicTypeLabel" text="RELIC_TYPE_CURSED"/>
 				<Label id="GenericRelicName" class="RelicNameLabel" text="DOTA_Tooltip_relic_cursed_boiling_blood"/>
 				<Label id="GenericRelicDescription" class="RelicDescriptionLabel" text="DOTA_Tooltip_relic_cursed_boiling_blood_Description"/>
-				<Button class="SelectButton">
+				<Button class="SelectButton" onactivate="SelectRelic(2)">
 					<Label id="SelectCursedButtonLabel" class="SelectButtonLabel" text="Select"/>
 				</Button>
 			</Panel>
@@ -41,14 +41,14 @@
 				<Label id="UniqueRelicType" class="RelicTypeLabel" text="RELIC_TYPE_UNIQUE"/>
 				<Label id="GenericRelicName" class="RelicNameLabel" text="DOTA_Tooltip_relic_unique_frozen_crystal"/>
 				<Label id="GenericRelicDescription" class="RelicDescriptionLabel" text="DOTA_Tooltip_relic_unique_frozen_crystal_Description"/>
-				<Button class="SelectButton">
+				<Button class="SelectButton" onactivate="SelectRelic(3)">
 					<Label id="SelectUniqueButtonLabel" class="SelectButtonLabel" text="Select"/>
 				</Button>
 			</Panel>
 		</Panel>
 		<Panel class="HorizontalSeperator" hittest="true"/>
 		<Panel class="RelicButtonContainer" hittest="true">
-			<Button id="SkipButton">
+			<Button id="SkipButton" onactivate="SkipRelics()">
 				<Label id="SkipButtonLabel" class="RelicDescriptionLabel" text="Skip Relics"/>
 			</Button>
 		</Panel>
