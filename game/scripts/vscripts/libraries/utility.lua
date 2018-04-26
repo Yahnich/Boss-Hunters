@@ -159,7 +159,9 @@ function CDOTA_BaseNPC:PerformAbilityAttack(target, bProcs, ability, flBonusDama
 	self:RemoveModifierByName("modifier_generic_attack_bonus_pct")
 end
 
-function CDOTA_BaseNPC:PerformGenericAttack(target, immediate, flBonusDamage, bDamagePct)
+function CDOTA_BaseNPC:PerformGenericAttack(target, immediate, flBonusDamage, bDamagePct, bNeverMiss)
+	local neverMiss = false
+	if bNeverMiss == true then neverMiss = true end
 	if flBonusDamage then
 		if bDamagePct then
 			self:AddNewModifier(caster, nil, "modifier_generic_attack_bonus_pct", {damage = flBonusDamage})
@@ -167,7 +169,7 @@ function CDOTA_BaseNPC:PerformGenericAttack(target, immediate, flBonusDamage, bD
 			self:AddNewModifier(caster, nil, "modifier_generic_attack_bonus", {damage = flBonusDamage})
 		end
 	end
-	self:PerformAttack(target, true, true, true, false, not immediate, false, false)
+	self:PerformAttack(target, true, true, true, false, not immediate, false, neverMiss)
 	self:RemoveModifierByName("modifier_generic_attack_bonus")
 	self:RemoveModifierByName("modifier_generic_attack_bonus_pct")
 end

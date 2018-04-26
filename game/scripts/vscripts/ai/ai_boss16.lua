@@ -10,8 +10,8 @@ function Spawn( entityKeyValues )
 			return AIThink(thisEntity)
 		end
 	end)
-	thisEntity.smash = thisEntity:FindAbilityByName("creature_melee_smash")
-	if not thisEntity.smash then thisEntity.smash = thisEntity:FindAbilityByName("creature_melee_smash_h") end
+	thisEntity.smash = thisEntity:FindAbilityByName("boss_ogre_smash_king")
+	if not thisEntity.smash then thisEntity.smash = thisEntity:FindAbilityByName("boss_ogre_smash_king") end
 	thisEntity.summon = thisEntity:FindAbilityByName("creature_summon_ogres")
 	thisEntity.internalClock = GameRules:GetGameTime()
 end
@@ -24,11 +24,12 @@ function AIThink(thisEntity)
 		thisEntity.internalClock = GameRules:GetGameTime()
 	end
 	if not thisEntity:IsDominated() then
-		local radius = thisEntity.smash:GetCastRange()
+		local target = AICore:NearestEnemyHeroInRange( thisEntity, 99999 , true)
+		local radius = thisEntity.smash:GetCastRange(thisEntity:GetAbsOrigin(), target)
 		if AICore:TotalNotDisabledEnemyHeroesInRange( thisEntity, radius, false ) <= AICore:TotalEnemyHeroesInRange( thisEntity, radius ) 
 		and AICore:TotalEnemyHeroesInRange( thisEntity, radius ) ~= 0 
 		and thisEntity.smash:IsFullyCastable() then
-			local smashRadius = thisEntity.smash:GetSpecialValueFor("impact_radius")
+			local smashRadius = thisEntity.smash:GetSpecialValueFor("radius")
 			local position = AICore:OptimalHitPosition(thisEntity, radius, smashRadius)
 			if position then
 				ExecuteOrderFromTable({

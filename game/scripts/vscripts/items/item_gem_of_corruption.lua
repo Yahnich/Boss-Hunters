@@ -6,13 +6,21 @@ function item_gem_of_corruption:GetIntrinsicModifierName()
 end
 
 modifier_item_gem_of_corruption = class({})
+function modifier_item_gem_of_corruption:OnCreated(table)
+	self.bonus_damage = self:GetSpecialValueFor("bonus_damage")
+end
+
+function modifier_item_gem_of_corruption:OnRefresh()
+	self.bonus_damage = math.max(self.bonus_damage, self:GetSpecialValueFor("bonus_damage"))
+end
+
 function modifier_item_gem_of_corruption:DeclareFunctions()
 	return {MODIFIER_EVENT_ON_ATTACK_LANDED,
 			MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE}
 end
 
 function modifier_item_gem_of_corruption:GetModifierPreAttack_BonusDamage()
-	return self:GetAbility():GetSpecialValueFor("bonus_damage")
+	return self.bonus_damage
 end
 
 
