@@ -1,0 +1,1 @@
+relic_cursed_titans_jawbone = class({})

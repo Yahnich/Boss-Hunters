@@ -24,6 +24,7 @@ function ToggleQuests(arg)
 		teamInfo.SetHasClass("SetHidden", false )
 		$("#CloseImageID").SetImage("file://{images}/custom_game/slideLeft.png")
 	} else {
+		Game.EmitSound( "focus_change" )
 		teamInfo.SetHasClass("SetHidden", !(teamInfo.BHasClass("SetHidden")) )
 		if(teamInfo.BHasClass("SetHidden")){
 			$("#CloseImageID").SetImage("file://{images}/custom_game/slideRight.png")
@@ -39,7 +40,7 @@ function UpdateTooltipUI(){
 	if(tooltips != null){
 		tooltips.FindChildTraverse("AbilityCosts").style.flowChildren = "down";
 	} else {
-		$.Schedule(0.1, UpdateTooltipUI);
+		$.Schedule(0.25, UpdateTooltipUI);
 	}
 }
 

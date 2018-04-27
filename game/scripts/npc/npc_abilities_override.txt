@@ -5656,7 +5656,7 @@
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"900"
-		"AbilityCastPoint"				"0.3 0.3 0.3 0.3"
+		"AbilityCastPoint"				"0.3"
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -8085,6 +8085,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"MaxLevel"						"7"
 				
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -14721,7 +14722,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"4"
+				"value"				"3"
 			}
 		}
 	}

@@ -14,9 +14,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"rattletrap_battery_assault"
 		"FightRecapLevel"				"1"
-		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
-		"RequiredLevel"					"6"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -146,9 +144,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"rattletrap_rocket_flare"
 		"FightRecapLevel"				"1"
-		"LevelsBetweenUpgrades"			"5"
 		"MaxLevel"						"7"
-		"RequiredLevel"					"6"
 		
 		"precache"
 		{

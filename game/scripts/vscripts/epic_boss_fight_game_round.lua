@@ -169,7 +169,7 @@ end
 function OnPlayerDisconnected(keys)
 end
 
-function CHoldoutGameRound:End()
+function CHoldoutGameRound:End(bWonRound)
 	for _, eID in pairs( self._vEventHandles ) do
 		StopListeningToGameEvent( eID )
 	end
@@ -190,6 +190,21 @@ function CHoldoutGameRound:End()
 	end)
 	for _,spawner in pairs( self._vSpawners ) do
 		spawner:End()
+	end
+	if bWonRound then
+		for pID = 0, 10 do
+			if PlayerResource:IsValidPlayerID(pID) and PlayerResource:GetSelectedHeroEntity( pID ) then
+				local hero = PlayerResource:GetSelectedHeroEntity( pID )
+				local redKey = hero:FindModifierByName("relic_cursed_red_key")
+				if redKey then hero.internalRelicRNG = math.max(hero.internalRelicRNG, 50) end
+				local roll = RollPercentage(hero.internalRelicRNG)
+				if hero and roll then
+					RelicManager:RollRelicsForPlayer( pID )
+					if redKey then redKey:SetStackCount( 0 ) end
+				end
+				if redKey and not roll then redKey:SetStackCount( 1 ) end
+			end
+		end
 	end
 	self._vEnemiesRemaining = {}
 end

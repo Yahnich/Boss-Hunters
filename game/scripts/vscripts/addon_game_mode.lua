@@ -28,6 +28,7 @@ require( "statcollection/init" )
 require("libraries/utility")
 require("libraries/animations")
 require("stats_screen")
+require("relicmanager")
 
 LinkLuaModifier( "modifier_stats_system_handler", "libraries/modifiers/modifier_stats_system_handler.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_blind_generic", "libraries/modifiers/modifier_blind_generic.lua", LUA_MODIFIER_MOTION_NONE)
@@ -92,6 +93,8 @@ function Precache( context )
 	PrecacheResource("particle", "particles/econ/items/kunkka/kunkka_weapon_whaleblade/kunkka_spell_torrent_splash_whaleblade.vpcf", context)
 	PrecacheResource("particle", "particles/econ/courier/courier_onibi/courier_onibi_yellow_ambient_smoke_lvl21.vpcf", context)			
 	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_enigma.vsndevts" , context)
+	PrecacheResource("soundfile", "soundevents/game_sounds_ui.vsndevts" , context)
+	PrecacheResource("soundfile", "soundevents/soundevents_dota_ui.vsndevts" , context)
 	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_crystalmaiden.vsndevts" , context)
 	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_ancient_apparition.vsndevts"  , context)
 	
@@ -286,10 +289,20 @@ function CHoldoutGameMode:InitGameMode()
 	
 	-- Custom console commands
 	Convars:RegisterCommand( "holdout_test_round", function(...) return self:_TestRoundConsoleCommand( ... ) end, "Test a round of holdout.", FCVAR_CHEAT )
-	Convars:RegisterCommand( "holdout_spawn_gold", function(...) return self._GoldDropConsoleCommand( ... ) end, "Spawn a gold bag.", FCVAR_CHEAT )
-	Convars:RegisterCommand( "ebf_cheat_drop_gold_bonus", function(...) return self._GoldDropCheatCommand( ... ) end, "Cheat gold had being detected !",0)
-	Convars:RegisterCommand( "ebf_gold", function(...) return self._Goldgive( ... ) end, "hello !",0)
-	
+	Convars:RegisterCommand( "test_relics", function()
+											if Convars:GetDOTACommandClient() then
+												local player = Convars:GetDOTACommandClient()
+												RelicManager:RollRelicsForPlayer(player:GetPlayerID()) 
+											end
+										end, "adding relics",0)
+	Convars:RegisterCommand( "add_relic", function(command, relicName)
+											if Convars:GetDOTACommandClient() then
+												local player = Convars:GetDOTACommandClient()
+												local hero = player:GetAssignedHero()
+												print(relicName, "ok")
+												hero:AddRelic(relicName)
+											end
+										end, "adding relics",0)
 	Convars:RegisterCommand( "getdunked", function()
 											if Convars:GetDOTACommandClient() then
 												local player = Convars:GetDOTACommandClient()
@@ -317,13 +330,7 @@ function CHoldoutGameMode:InitGameMode()
 													end
 												end, "fixing bug",0)
 														
-	Convars:RegisterCommand( "ebf_max_level", function(...) return self._LevelGive( ... ) end, "hello !",0)
-	Convars:RegisterCommand( "ebf_drop", function(...) return self._ItemDrop( ... ) end, "hello",0)
-	Convars:RegisterCommand( "ebf_give_core", function(...) return self._GiveCore( ... ) end, "hello",0)
-	Convars:RegisterCommand( "ebf_test_living", function(...) return self._CheckLivingEnt( ... ) end, "hello",0)
 	Convars:RegisterCommand( "spawn_elite", function(...) return self.SpawnTestElites( ... ) end, "look like someone try to steal my map :D",0)
-	Convars:RegisterCommand( "holdout_status_report", function(...) return self:_StatusReportConsoleCommand( ... ) end, "Report the status of the current holdout game.", FCVAR_CHEAT )
-	Convars:RegisterCommand( "keyvalues_reload", function(...) GameRules:Playtesting_UpdateAddOnKeyValues() end, "Update Keyvalues", FCVAR_CHEAT )
 	
 	-- Hook into game events allowing reload of functions at run time
 	ListenToGameEvent( "npc_spawned", Dynamic_Wrap( CHoldoutGameMode, "OnNPCSpawned" ), self )
@@ -364,6 +371,7 @@ function CHoldoutGameMode:InitGameMode()
 	GameRules:GetGameModeEntity():SetThink( "OnThink", self, 1 )
 	
 	StatsScreen:StartStatsScreen()
+	RelicManager:Initialize()
 end
 
 function CHoldoutGameMode:vote_Round (event)
@@ -608,17 +616,21 @@ end
 function CHoldoutGameMode:FilterHeal( filterTable )
 	local healer_index = filterTable["entindex_healer_const"]
 	local target_index = filterTable["entindex_target_const"]
+	local source_index = filterTable["entindex_inflictor_const"]
 	local heal = filterTable["heal"]
-	local healer, target
+	local healer, target, source
 	
 	if healer_index then healer = EntIndexToHScript( healer_index ) end
 	if target_index then target = EntIndexToHScript( target_index ) end
+	if source_index then target = EntIndexToHScript( source ) end
 	
+	-- if no caster then source is regen
 	if target then
-		local params = {healer = healer, target = target, heal = heal}
+		local params = {healer = healer, target = target, heal = heal, ability = source}
 		for _, modifier in ipairs( target:FindAllModifiers() ) do
 			if modifier.GetModifierHealAmplify_Percentage then
-				filterTable["heal"] = filterTable["heal"] * (1 + modifier:GetModifierHealAmplify_Percentage( params )/100)
+				print( source, healer, target, heal )
+				filterTable["heal"] = filterTable["heal"] * math.max(0, (1 + (modifier:GetModifierHealAmplify_Percentage( params ) or 0)/100) )
 			end
 		end
 	end
@@ -1144,6 +1156,7 @@ function CHoldoutGameMode:OnHeroPick (event)
 		hero.hasBeenInitialized = true
 		
 		StatsScreen:RegisterPlayer(hero)
+		RelicManager:RegisterPlayer( hero:GetPlayerID() )
 		hero:AddNewModifier(hero, nil, "modifier_stats_system_handler", {})
 		
 		hero:AddExperience(GameRules.XP_PER_LEVEL[7],false,false)
@@ -1707,7 +1720,7 @@ function CHoldoutGameMode:OnThink()
 			elseif self._currentRound ~= nil then
 				self._currentRound:Think()
 				if self._currentRound:IsFinished() then
-					self._currentRound:End()
+					self._currentRound:End(true)
 					GameRules:SetGoldTickTime( 0 )
 					GameRules:SetGoldPerTick( 0 )
 					self._nRoundNumber = self._nRoundNumber + 1
@@ -2064,6 +2077,7 @@ function CHoldoutGameMode:OnEntityKilled( event )
 				tombstone:SetContainedItem( newItem )
 				tombstone:SetAngles( 0, RandomFloat( 0, 360 ), 0 )
 				FindClearSpaceForUnit( tombstone, killedUnit:GetAbsOrigin(), true )
+				killedUnit.tombstoneEntity = newItem
 			elseif killedUnit.NoTombStone == true then
 				killedUnit.NoTombStone = false
 			end

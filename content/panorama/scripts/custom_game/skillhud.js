@@ -69,6 +69,7 @@ function ToggleStatsPanel()
 	var statsPanel = $("#RootContainer");
 	statsPanel.SetHasClass("IsHidden", !statsPanel.BHasClass("IsHidden") );
 	lastRememberedHero = Players.GetLocalPlayerPortraitUnit()
+	Game.EmitSound( "focus_change" )
 	UpdateStatsPanel()
 }
 
@@ -135,6 +136,7 @@ function UpgradeAbility(nettableString)
 	if(hasQueuedAction == false)
 	{
 		hasQueuedAction = true
+		Game.EmitSound( "Button.Click" )
 		GameEvents.SendCustomGameEventToServer( "send_player_upgraded_stats", {pID : localID, entindex : lastRememberedHero,  skill : nettableString} )
 	}
 }
@@ -301,6 +303,7 @@ function LoadUniqueLayout()
 
 function RespecTalents(filter){
 	if(!filter){
+		Game.EmitSound( "Button.Click" )
 		GameEvents.SendCustomGameEventToServer( "send_player_respec_talents", {pID : localID, entindex : lastRememberedHero} );
 	}
 }
@@ -392,6 +395,7 @@ function SelectTalent(talent)
 	if(hasQueuedAction == false)
 	{
 		hasQueuedAction = true
+		Game.EmitSound( "Button.Click" )
 		GameEvents.SendCustomGameEventToServer( "send_player_selected_talent", {pID : localID, entindex : lastRememberedHero,  talent : talent} )
 	}
 }
