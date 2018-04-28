@@ -59,7 +59,7 @@
 		
 		"AbilityCastRange"				"600"
 		"AbilityCooldown"				"28"
-		"AbilityManaCost"				"125"
+		"AbilityManaCost"				"200"
 
 		"AbilityCastRange"				"600"
 		"AbilityCastAnimation"			"ACT_DOTA_GENERIC_CHANNEL_1"
@@ -96,7 +96,7 @@
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage_per_sec"		"90"
+				"damage_per_sec"		"100"
 			}
 			"07"
 			{
@@ -111,7 +111,7 @@
 			"09"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"channel"				"2.5"
+				"channel"				"1.25"
 			}
 			"10"
 			{

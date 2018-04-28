@@ -107,11 +107,11 @@ function modifier_item_galactic_hammer_passive:GetModifierConstantManaRegen()
 end
 
 function modifier_item_galactic_hammer_passive:GetModifierBonusStats_Strength()
-	return self.int
+	return self.str
 end
 
 function modifier_item_galactic_hammer_passive:GetModifierBonusStats_Intellect()
-	return self.str
+	return self.int
 end
 
 function modifier_item_galactic_hammer_passive:IsHidden()

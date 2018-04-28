@@ -54,7 +54,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"16 24 32 40 48 56 64"
+				"damage"				"20 28 36 44 52 60 68"
 			}
 			"05"
 			{
@@ -124,12 +124,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"str_to_damage"			"120 125 130 135 140 145 150"
+				"str_to_damage"			"100 105 110 115 120 125 130"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"chance"				"20"
+				"chance"				"10"
 			}
 			"04"
 			{
@@ -175,7 +175,7 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"14"
+		"AbilityCooldown"				"20"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -194,12 +194,12 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"armor_bonus_base"		"80"
+				"armor_bonus_base"		"100"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"5.0"
+				"duration"				"5.5"
 				"LinkedSpecialBonus"	"special_bonus_unique_axe_forced_shout_2"
 			}
 			"04"
@@ -327,7 +327,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"str_to_armor"			"0.09"
+				"str_to_armor"			"0.04"
 			}
 		}
 		"Modifiers"
