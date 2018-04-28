@@ -1,11 +1,11 @@
 relic_cursed_the_pact = class({})
 
 function relic_cursed_the_pact:DeclareFunctions()
-	return {MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE, MODIFIER_EVENT_ON_ATTACK_LANDED}
+	return {MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE, MODIFIER_EVENT_ON_TAKEDAMAGE}
 end
 
-function relic_cursed_the_pact:OnAttackLanded(params)
-	if params.attacker == self:GetParent() then
+function relic_cursed_the_pact:OnTakeDamage(params)
+	if params.attacker == self:GetParent() and not params.inflictor and self:GetParent():GetHealth() > params.damage and not ( HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_HPLOSS) or HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION) or HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_NO_SPELL_LIFESTEAL) ) then
 		local heal = math.min( params.attacker:GetHealthDeficit(), params.damage )
 		if heal > 0 then
 			SendOverheadEventMessage(params.attacker, OVERHEAD_ALERT_HEAL, params.attacker, heal, params.attacker)

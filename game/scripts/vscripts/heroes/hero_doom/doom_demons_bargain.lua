@@ -42,9 +42,7 @@ function doom_demons_bargain:OnSpellStart()
     local gold_per_player = gold / total_unit
     for _,unit in pairs ( Entities:FindAllByName( "npc_dota_hero*")) do
         if not unit:IsIllusion() then
-            local totalgold = unit:GetGold() + gold_per_player
-            unit:SetGold(0 , false)
-            unit:SetGold(totalgold, true)
+            unit:AddGold(gold_per_player)
         end
     end
 	if RollPercentage(mod_perc) and boss_perc <= deathThreshold  then

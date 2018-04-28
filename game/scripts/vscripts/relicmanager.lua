@@ -104,6 +104,11 @@ function RelicManager:SkipRelicSelection(userid, event)
 	relicTable[tostring(pID)] = toNumPlayerRelics
 	CustomNetTables:SetTableValue("game_info", "relic_drops", relicTable)
 	
+	if hero:HasRelic("relic_unique_mysterious_hourglass") and hero:FindModifierByName("relic_unique_mysterious_hourglass"):GetStackCount() > 0 then
+		hero:FindModifierByName("relic_unique_mysterious_hourglass"):DecrementStackCount()
+		self:RollRelicsForPlayer(pID)
+	end
+	
 	hero.internalRelicRNG = math.min( (hero.internalRelicRNG or BASE_RELIC_CHANCE) + SKIP_RELIC_CHANCE_INCREASE, 100 )
 end
 
@@ -186,6 +191,20 @@ end
 function CDOTA_BaseNPC_Hero:HasRelic(relic)
 	self.ownedRelics = self.ownedRelics or {}
 	return (self.ownedRelics[relic] ~= nil)
+end
+
+function RelicManager:ClearRelics(pID)
+	local hero = PlayerResource:GetSelectedHeroEntity(pID)
+	relicCount = 0
+	for relic, active in pairs( hero.ownedRelics ) do
+		if relic ~= "relic_cursed_cursed_dice" then -- cursed dice cannot be removed
+			relicCount = relicCount + 1
+			hero:RemoveModifierByName( relic )
+		end
+	end
+	hero.ownedRelics = {}
+	CustomNetTables:SetTableValue("relics", "relic_inventory_player_"..pID, {})
+	return relicCount
 end
 
 function CDOTA_BaseNPC_Hero:AddRelic(relic)

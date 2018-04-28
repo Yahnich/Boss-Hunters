@@ -44,15 +44,11 @@ function modifier_alchemist_alchemists_greed_handler:OnAttackLanded(params)
 			self.alliedgold = self.alliedgold + self.greedRemainder
 			self.greedRemainder = 0
 		end
-        local totalgold = caster:GetGold() + self.goldonhit
-        caster:SetGold(0 , false)
-        caster:SetGold(totalgold, true)
+        caster:AddGold(self.goldonhit)
 		if caster:HasScepter() and caster:IsRealHero() then
 			for _,hero in ipairs ( caster:FindFriendlyUnitsInRadius(caster:GetAbsOrigin(), -1) ) do
 				if hero:IsRealHero() and hero ~= caster then
-					local gold = hero:GetGold() + self.alliedgold
-					hero:SetGold(0 , false)
-					hero:SetGold(gold , true)
+					hero:AddGold(self.alliedgold)
 				end
 			end
 		end

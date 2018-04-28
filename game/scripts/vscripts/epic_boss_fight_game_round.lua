@@ -160,9 +160,7 @@ function CHoldoutGameRound:OnHoldoutReviveComplete( event )
 	if castingHero then
 		castingHero.Resurrections = (castingHero.Resurrections or 0) + 1
 		target:AddNewModifier(target, nil, "modifier_tombstone_respawn_immunity", {duration = 3})
-		local totalgold = castingHero:GetGold() + (self._nRoundNumber)
-		castingHero:SetGold(0 , false)
-		castingHero:SetGold(totalgold, true)
+		castingHero:AddGold(self._nRoundNumber)
 	end
 end
 
@@ -357,9 +355,7 @@ function CHoldoutGameRound:_CheckForGoldBagDrop( killedUnit )
 				unit:AddExperience(exptogain,false,false)
 			end
 			if goldtogain > 0 then
-				local totalgold = unit:GetGold() + goldtogain
-				unit:SetGold(0 , false)
-				unit:SetGold(totalgold, true)
+				unit:AddGold(goldtogain)
 			end
 		end
 	end

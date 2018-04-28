@@ -2329,6 +2329,18 @@ function CDOTA_BaseNPC:RemoveBlind()
 	end
 end
 
+function CDOTA_BaseNPC_Hero:AddGold(val)
+	local gold = val or 0
+	for _, modifier in pairs(self:FindAllModifiers()) do
+		if modifier.GetBonusGold then
+			gold = gold * math.max( 0, (1 + (modifier.GetBonusGold() / 100)) )
+		end
+	end
+	local gold = self:GetGold() + gold
+	self:SetGold(0, false)
+	self:SetGold(gold, true)
+end
+
 function CutTreesInRadius(vloc, radius)
 	local trees = GridNav:GetAllTreesAroundPoint(vloc, radius, false)
 	local treesCut = 0

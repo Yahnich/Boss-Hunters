@@ -9,7 +9,7 @@ function relic_generic_banshee_tear:GetModifierManaBonus()
 end
 
 function relic_generic_banshee_tear:GetModifierConstantManaRegen()
-	return 40
+	return 1
 end
 
 function relic_generic_banshee_tear:IsHidden()
