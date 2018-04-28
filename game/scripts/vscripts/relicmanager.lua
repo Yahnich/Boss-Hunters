@@ -203,7 +203,7 @@ function RelicManager:ClearRelics(pID)
 		end
 	end
 	hero.ownedRelics = {}
-	CustomNetTables:SetTableValue("relics", "relic_inventory_player_"..pID, {})
+	CustomNetTables:SetTableValue("relics", "relic_inventory_player_"..hero:entindex(), {})
 	return relicCount
 end
 
@@ -212,6 +212,6 @@ function CDOTA_BaseNPC_Hero:AddRelic(relic)
 	self.ownedRelics[relic] = true
 	self:AddNewModifier( self, nil, relic, {} )
 	
-	CustomNetTables:SetTableValue("relics", "relic_inventory_player_"..self:GetPlayerID(), self.ownedRelics)
+	CustomNetTables:SetTableValue("relics", "relic_inventory_player_"..self:entindex(), self.ownedRelics)
 end
 

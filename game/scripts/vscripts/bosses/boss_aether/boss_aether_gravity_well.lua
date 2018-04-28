@@ -60,7 +60,7 @@ if IsServer() then
 		self.max_dmg = self:GetTalentSpecialValueFor("max_damage")
 		self.max_pull = self:GetTalentSpecialValueFor("max_pull")
 		self.radius = self:GetTalentSpecialValueFor("aura_radius")
-		self:StartIntervalThink( FrameTime() )
+		self:StartIntervalThink( 0.25 )
 	end
 	
 	function modifier_boss_aether_gravity_well_debuff:OnIntervalThink()
@@ -71,11 +71,8 @@ if IsServer() then
 		local distance = CalculateDistance( caster, parent )
 		
 		local strength = (self.radius - distance) / self.radius
-		
-		self.damageTick = (self.damageTick or 0) + FrameTime()
-		if self.damageTick >= 0.25 then -- don't fuck TA over completely
-			local tickDamage = (parent:GetMaxHealth() * strength * self.max_dmg / 100 ) * 0.25
-			self:GetAbility():DealDamage( caster, parent, tickDamage, {damage_type = DAMAGE_TYPE_MAGICAL, damage_flags = DOTA_DAMAGE_FLAG_HPLOSS + DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION} )
-		end
+
+		local tickDamage = (parent:GetMaxHealth() * strength * self.max_dmg / 100 ) * 0.25
+		self:GetAbility():DealDamage( caster, parent, tickDamage, {damage_type = DAMAGE_TYPE_PURE, damage_flags = DOTA_DAMAGE_FLAG_HPLOSS + DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION} )
 	end
 end

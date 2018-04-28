@@ -2260,11 +2260,7 @@ function CDOTA_BaseNPC:EnableHealing()
 end
 
 function CDOTA_BaseNPC:InWater()
-	if self:HasModifier("modifier_in_water") then
-		return true
-	else
-		return false
-	end
+	return self:HasModifier("modifier_in_water")
 end
 
 function CDOTA_BaseNPC:Paralyze(hAbility, hCaster, duration)

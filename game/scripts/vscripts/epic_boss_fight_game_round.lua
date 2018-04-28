@@ -194,11 +194,18 @@ function CHoldoutGameRound:End(bWonRound)
 			if PlayerResource:IsValidPlayerID(pID) and PlayerResource:GetSelectedHeroEntity( pID ) then
 				local hero = PlayerResource:GetSelectedHeroEntity( pID )
 				local redKey = hero:FindModifierByName("relic_cursed_red_key")
+				local baseChance = 25
+				if redKey then baseChance = 50 end
+				hero.internalRelicPRNGAdder = hero.internalRelicPRNGAdder or -(baseChance / 15)
 				if redKey then hero.internalRelicRNG = math.max(hero.internalRelicRNG, 50) end
-				local roll = RollPercentage(hero.internalRelicRNG)
+				local roll = RollPercentage(hero.internalRelicRNG + hero.internalRelicPRNGAdder)
 				if hero and roll then
 					RelicManager:RollRelicsForPlayer( pID )
+					hero.internalRelicPRNGAdder = -(baseChance / 15)
 					if redKey then redKey:SetStackCount( 0 ) end
+				end
+				if not roll then
+					hero.internalRelicPRNGAdder = hero.internalRelicPRNGAdder + (baseChance / 15)
 				end
 				if redKey and not roll then redKey:SetStackCount( 1 ) end
 			end

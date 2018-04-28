@@ -101,7 +101,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"max_damage"			"1.5 3"
+				"max_damage"			"1.5 2"
 			}
 		}
 	}
@@ -181,12 +181,12 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"meteor_count"				"12 18"
+				"meteor_count"				"20 30"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"impact_radius"				"225 250"
+				"impact_radius"				"200"
 			}
 			"03"
 			{

@@ -38,7 +38,7 @@ function boss_doom_hell_tempest:OnProjectileThinkHandle( projID )
 	local position = ProjectileManager:GetLinearProjectileLocation( projID )
 	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( position, self.tornado_radius ) ) do
 		local damage = self.tornado_damage
-		if enemy:InWater() then damage = damage * 0.05 end
+		if enemy:HasModifier("modifier_in_water") then damage = damage * 0.05 end
 		self:DealDamage( caster, enemy, self.tornado_damage * 0.03 )
 		EmitSoundOn("Brewmaster_Storm.Attack", enemy)
 		
