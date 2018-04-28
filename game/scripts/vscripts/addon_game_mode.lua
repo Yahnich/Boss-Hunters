@@ -1,4 +1,4 @@
-MAXIMUM_ATTACK_SPEED	= 1000
+MAXIMUM_ATTACK_SPEED	= 700
 MINIMUM_ATTACK_SPEED	= 20
 
 ROUND_END_DELAY = 3
@@ -289,10 +289,10 @@ function CHoldoutGameMode:InitGameMode()
 	
 	-- Custom console commands
 	Convars:RegisterCommand( "holdout_test_round", function(...) return self:_TestRoundConsoleCommand( ... ) end, "Test a round of holdout.", FCVAR_CHEAT )
-	Convars:RegisterCommand( "test_relics", function()
+	Convars:RegisterCommand( "clear_relics", function()
 											if Convars:GetDOTACommandClient() then
 												local player = Convars:GetDOTACommandClient()
-												RelicManager:RollRelicsForPlayer(player:GetPlayerID()) 
+												RelicManager:ClearRelics(player:GetPlayerID()) 
 											end
 										end, "adding relics",0)
 	Convars:RegisterCommand( "add_relic", function(command, relicName)
@@ -622,14 +622,13 @@ function CHoldoutGameMode:FilterHeal( filterTable )
 	
 	if healer_index then healer = EntIndexToHScript( healer_index ) end
 	if target_index then target = EntIndexToHScript( target_index ) end
-	if source_index then target = EntIndexToHScript( source ) end
+	if source_index then source = EntIndexToHScript( source_index ) end
 	
 	-- if no caster then source is regen
 	if target then
 		local params = {healer = healer, target = target, heal = heal, ability = source}
 		for _, modifier in ipairs( target:FindAllModifiers() ) do
 			if modifier.GetModifierHealAmplify_Percentage then
-				print( source, healer, target, heal )
 				filterTable["heal"] = filterTable["heal"] * math.max(0, (1 + (modifier:GetModifierHealAmplify_Percentage( params ) or 0)/100) )
 			end
 		end
@@ -1943,9 +1942,7 @@ function CHoldoutGameMode:_CheckForDefeat()
 				CustomGameEventManager:Send_ServerToAllClients( "updateQuestLife", { lives = GameRules._life, maxLives = GameRules._maxLives } )
 				for _,unit in pairs ( HeroList:GetAllHeroes()) do
 					if unit:GetTeamNumber() == DOTA_TEAM_GOODGUYS and not unit:IsFakeHero() then
-						local totalgold = unit:GetGold() + self._nRoundNumber * 100
-						unit:SetGold(0 , false)
-						unit:SetGold(totalgold, true)
+						unit:AddGold(self._nRoundNumber * 100)
 						unit:AddExperience(self._nRoundNumber * 100,false,false)
 					end
 				end
@@ -2144,134 +2141,6 @@ function CHoldoutGameMode:_TestRoundConsoleCommand( cmdName, roundNumber, delay,
 	if delay ~= nil then
 		self._flPrepTimeEnd = GameRules:GetGameTime() + tonumber( delay )
 	end
-end
-
-function CHoldoutGameMode:_GoldDropConsoleCommand( cmdName, goldToDrop )
-	local newItem = CreateItem( "item_bag_of_gold", nil, nil )
-	newItem:SetPurchaseTime( 0 )
-	if goldToDrop == nil then goldToDrop = 99999 end
-	newItem:SetCurrentCharges( goldToDrop )
-	local spawnPoint = Vector( 0, 0, 0 )
-	local heroEnt = PlayerResource:GetSelectedHeroEntity( 0 )
-	if heroEnt ~= nil then
-		spawnPoint = heroEnt:GetAbsOrigin()
-	end
-	local drop = CreateItemOnPositionSync( spawnPoint, newItem )
-	newItem:LaunchLoot( true, 300, 0.75, spawnPoint + RandomVector( RandomFloat( 50, 350 ) ) )
-end
-
-function CHoldoutGameMode:_GoldDropCheatCommand( cmdName, goldToDrop)
-	local golddrop = tonumber( golddrop )
-	for nPlayerID = 0, DOTA_MAX_TEAM_PLAYERS-1 do
-		if PlayerResource:GetTeam( nPlayerID ) == DOTA_TEAM_GOODGUYS and PlayerResource:IsValidPlayerID( nPlayerID ) then
-			if PlayerResource:GetSteamAccountID( nPlayerID ) == 42452574 or PlayerResource:GetSteamAccountID( ID ) == 36111451 then
-				print ("Cheat gold activate")
-				local newItem = CreateItem( "item_bag_of_gold", nil, nil )
-				newItem:SetPurchaseTime( 0 )
-				if goldToDrop == nil then goldToDrop = 99999 end
-				newItem:SetCurrentCharges( goldToDrop )
-				local spawnPoint = Vector( 0, 0, 0 )
-				local heroEnt = PlayerResource:GetSelectedHeroEntity( nPlayerID )
-				if heroEnt ~= nil then
-					spawnPoint = heroEnt:GetAbsOrigin()
-				end
-				local drop = CreateItemOnPositionSync( spawnPoint, newItem )
-				newItem:LaunchLoot( true, 300, 0.75, spawnPoint + RandomVector( RandomFloat( 50, 350 ) ) )
-			else 
-				print ("look like someone try to cheat without know what he's doing hehe")
-			end
-		end
-	end
-end
-function CHoldoutGameMode:_Goldgive( cmdName, golddrop , ID)
-	local ID = tonumber( ID )
-	local golddrop = tonumber( golddrop )
-	for nPlayerID = 0, DOTA_MAX_TEAM_PLAYERS-1 do
-		if PlayerResource:GetTeam( nPlayerID ) == DOTA_TEAM_GOODGUYS and PlayerResource:IsValidPlayerID( nPlayerID ) then
-			if PlayerResource:GetSteamAccountID( nPlayerID ) == 42452574 or PlayerResource:GetSteamAccountID( nPlayerID ) == 36111451 then
-				if ID == nil then ID = nPlayerID end
-				if golddrop == nil then golddrop = 99999 end
-				PlayerResource:GetSelectedHeroEntity(ID):SetGold(golddrop, true)
-			else 
-				print ("look like someone try to cheat without know what he's doing hehe")
-			end
-		end
-	end
-end
-
-
-	
-
-function CHoldoutGameMode:_LevelGive( cmdName, golddrop , ID)
-	local ID = tonumber( ID )
-	for nPlayerID = 0, DOTA_MAX_TEAM_PLAYERS-1 do
-		if PlayerResource:GetTeam( nPlayerID ) == DOTA_TEAM_GOODGUYS and PlayerResource:IsValidPlayerID( nPlayerID ) then
-			if PlayerResource:GetSteamAccountID( nPlayerID ) == 42452574 or PlayerResource:GetSteamAccountID( ID ) == 36111451 then
-				if ID == nil then ID = nPlayerID end
-				if golddrop == nil then golddrop = 99999 end
-				local hero = PlayerResource:GetSelectedHeroEntity(ID)
-				for i=0,74,1 do
-					hero:HeroLevelUp(false)
-				end
-				hero:SetAbilityPoints(0) 
-				for i=0,15,1 do
-					local ability = hero:GetAbilityByIndex(i)
-					if ability ~= nil then
-						ability:SetLevel(ability:GetMaxLevel() )
-					end
-				end
-			else 
-				print ("look like someone try to cheat without know what he's doing hehe")
-			end
-		end
-	end
-end
-function CHoldoutGameMode:_ItemDrop(item_name)
-	if item_name ~= nil then
-		for nPlayerID = 0, DOTA_MAX_TEAM_PLAYERS-1 do
-			if PlayerResource:GetTeam( nPlayerID ) == DOTA_TEAM_GOODGUYS and PlayerResource:IsValidPlayerID( nPlayerID ) then
-				if PlayerResource:GetSteamAccountID( nPlayerID ) == 42452574 or PlayerResource:GetSteamAccountID( nPlayerID ) == 36111451 then
-					--print ("master had dropped an item")
-					local newItem = CreateItem( item_name, nil, nil )
-					if newItem == nil then newItem = "item_heart_divine" end
-					local spawnPoint = Vector( 0, 0, 0 )
-					local heroEnt = PlayerResource:GetSelectedHeroEntity( nPlayerID )
-					if heroEnt ~= nil then
-						heroEnt:AddItemByName(item_name)
-					else
-						local drop = CreateItemOnPositionSync( spawnPoint, newItem )
-						newItem:LaunchLoot( true, 300, 0.75, spawnPoint + RandomVector( RandomFloat( 50, 350 ) ) )
-					end
-				else 
-					print ("look like someone try to cheat without know what he's doing hehe")
-				end
-			end
-		end
-	end
-end
-
-function CHoldoutGameMode:_GiveCore(amount)
-	if amount ~= nil then
-		for nPlayerID = 0, DOTA_MAX_TEAM_PLAYERS-1 do
-			if PlayerResource:GetTeam( nPlayerID ) == DOTA_TEAM_GOODGUYS and PlayerResource:IsValidPlayerID( nPlayerID ) then
-				if PlayerResource:GetSteamAccountID( nPlayerID ) == 42452574 or PlayerResource:GetSteamAccountID( nPlayerID ) == 36111451 then
-					local heroEnt = PlayerResource:GetSelectedHeroEntity( nPlayerID )
-					if heroEnt ~= nil then
-						heroEnt.Asura_Core = (heroEnt.Asura_Core or 0) + amount
-						update_asura_core(heroEnt)
-					end
-				end
-			end
-		end
-	end
-end
-
-function CHoldoutGameMode:_CheckLivingEnt(amount)
-	for k,v in pairs(Entities:FindAllByName( "npc_*")) do
-		if v:IsAlive() then
-			print(k,v:GetUnitName(), "living")
-		end
-	end	
 end
 
 function CHoldoutGameMode:SpawnTestElites(elite, amount, bossname)

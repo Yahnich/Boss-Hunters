@@ -79,7 +79,7 @@ end
 
 function modifier_juggernaut_mirror_blades:GetModifierBaseAttackTimeConstant()
 	if not self.disarmed then
-		return 1.7
+		return 3
 	end
 end
 

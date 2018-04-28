@@ -2662,11 +2662,12 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"100"
-		"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
+		"AbilityCastPoint"				"0.5"
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -3169,12 +3170,13 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_ALL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_3"
 	
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"300 333 366 400"
-		"AbilityCastPoint"				"1.0"
+		"AbilityCastPoint"				"2.0 1.5"
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -3191,7 +3193,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"radius"					"400"
+				"radius"					"350"
 			}
 			"02"
 			{
