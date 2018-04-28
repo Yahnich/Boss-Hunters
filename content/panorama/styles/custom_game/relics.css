@@ -1,0 +1,243 @@
+.root
+{
+	height: 100%;
+	width: 100%;
+}
+
+
+#RelicRoot
+{
+	width: 50%;
+	vertical-align: center;
+	horizontal-align: center;
+	background-image: url("s2r://panorama/images/textures/popup_rock_bg_psd.vtex");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	flow-children: down;
+}
+.RelicChoiceRoot
+{
+	margin-top: 20px;
+	padding-top: 3px;
+	padding: 10px;
+	flow-children: right;
+	max-height: 375px;
+}
+
+.RelicButtonContainer
+{
+	width: 100%;
+}
+
+#SkipButton
+{
+	width: 128px;
+	height: 59px;
+	margin-bottom: 15px;
+	vertical-align: center;
+	horizontal-align: center;
+	
+	background-image: url("s2r://panorama/images/compendium/fall2015_button_2_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	background-position: center;
+}
+
+.RelicChoiceContainer
+{
+	flow-children: down;
+	width: fill-parent-flow( 1.0 );
+}
+
+.VerticalSeperator 
+{
+	width: 2px;
+	height: 90%;
+	horizontal-align: middle;
+	background-color: #51515155;
+	margin: 12px;
+}
+
+.HorizontalSeperator 
+{
+	width: 70%;
+	height: 2px;
+	horizontal-align: middle;
+	background-color: #51515155;
+	margin: 12px;
+}
+
+.RelicTypeLabel
+{
+	color: #e1e1e1;
+	font-size: 36px;
+	line-height: 15px;
+	text-shadow: 1px 1px 2px 3.0 #00000077;
+	text-align: center;
+	vertical-align: center;
+	horizontal-align: center;
+	z-index: 5;
+	
+}
+
+#GenericRelicType
+{
+	color: #FFFFFF;
+}
+
+#CursedRelicType
+{
+	color: #d80f0f;
+}
+
+#UniqueRelicType
+{
+	color: #ffd34a;
+}
+
+.RelicNameLabel
+{
+	color: #e1e1e1;
+	font-size: 24px;
+	line-height: 15px;
+	text-shadow: 1px 1px 2px 3.0 #00000077;
+	text-align: center;
+	vertical-align: center;
+	horizontal-align: center;
+	z-index: 5;
+	height: fill-parent-flow(0.3);
+}
+
+.RelicDescriptionContainer
+{
+	height: fill-parent-flow(1.0);
+	horizontal-align: center;
+}
+
+.RelicDescriptionLabel
+{
+	color: #e1e1e1;
+	font-size: 20px;
+	line-height: 15px;
+	text-shadow: 1px 1px 2px 3.0 #00000077;
+	text-align: center;
+	height: 100%;
+	z-index: 5;
+	padding-bottom: 20px;
+}
+
+.SelectButton
+{
+	width: 78px;
+	height: 40px;
+	margin-bottom: 15px;
+	vertical-align: bottom;
+	horizontal-align: center;
+	
+	background-image: url("s2r://panorama/images/compendium/fall2015_button_2_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	background-position: center;
+}
+
+.SelectButtonLabel
+{
+	color: #e1e1e1;
+	font-size: 20px;
+	line-height: 15px;
+	text-shadow: 1px 1px 2px 3.0 #00000077;
+	text-align: center;
+	margin-top: 5px;
+	vertical-align: center;
+	horizontal-align: center;
+	z-index: 5;
+	height: fill-parent-flow( 1.0 );
+}
+
+#SkipButtonLabel
+{
+	color: #e1e1e1;
+	font-size: 20px;
+	line-height: 15px;
+	text-shadow: 1px 1px 2px 3.0 #00000077;
+	text-align: center;
+	vertical-align: center;
+	horizontal-align: center;
+	z-index: 5;
+}
+
+#RelicInventoryRoot
+{
+	width: 200px;
+	height: 100%;
+	vertical-align: bottom;
+	horizontal-align: right;
+	margin-right: 270px;
+}
+
+#RelicInventoryPanel
+{
+	width: 100%;
+	max-height: 100%;
+	vertical-align: bottom;
+	horizontal-align: right;
+	margin-bottom: 56px;
+	padding-bottom: 20px;
+	background-image: url("s2r://panorama/images/textures/popup_rock_bg_psd.vtex");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	flow-children: down;
+}
+
+#RelicInventoryButton
+{
+	width: 120px;
+	height: 64px;
+	background-image: url("s2r://panorama/images/econ/tools/warhammer_treasure_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	vertical-align: bottom;
+	horizontal-align: center;
+	margin-bottom: 12px;
+	z-index: 5;
+}
+
+.RelicInventoryContainer
+{
+	margin-bottom: 12px;
+	horizontal-align: center;
+	padding: 4px;
+	margin-top: 8px;
+	background-image: url("s2r://panorama/images/hud/reborn/shop_launcher_button_psd.vtex");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	width: 75%;
+	z-index: 5;
+}
+
+.RelicNameText
+{
+	color: #e1e1e1;
+	font-size: 16px;
+	line-height: 15px;
+	text-shadow: 1px 1px 2px 3.0 #00000077;
+	text-align: center;
+	vertical-align: center;
+	horizontal-align: center;
+	z-index: 5;
+}
+
+.RelicButtonSelected
+{
+	saturation: 0.4;
+}
+
+.ButtonHover
+{
+	border: 2px solid #55555599;
+}
+
+.IsHidden
+{
+	visibility: collapse;
+}

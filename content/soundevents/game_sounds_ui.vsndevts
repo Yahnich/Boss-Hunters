@@ -1,0 +1,108 @@
+"Button.Click"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"		"sos_reference_stack"
+				"reference_stack"		"dota_update_default"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"		"sounds/addons/dungeon/door_knock.vsnd"
+						}
+					}
+					"volume_min" {"value"		"1.000000"}
+					"volume_max" {"value"		"1.000000"}
+					"pitch_min"
+					{"value"		"0.950000"}
+					"pitch_max"{"value"		"1.050000"}
+					"chan_type" {"value"		"6"}
+					"memory_type" {"value"		"0"}
+					"soundlevel_min" {"value"		"90.000000"}
+					"soundlevel_max" {"value"		"90.000000"}
+				}
+			}
+		}
+	}
+}
+
+"Relics.GainedRelic"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"		"sos_reference_stack"
+				"reference_stack"		"dota_update_default"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"		"sounds/addons/dungeon/plus_one.vsnd"
+						}
+					}
+					"volume_min" {"value"		"1.000000"}
+					"volume_max" {"value"		"1.000000"}
+					"pitch_min"
+					{"value"		"0.950000"}
+					"pitch_max"{"value"		"1.050000"}
+					"chan_type" {"value"		"6"}
+					"memory_type" {"value"		"0"}
+					"soundlevel_min" {"value"		"90.000000"}
+					"soundlevel_max" {"value"		"90.000000"}
+				}
+			}
+		}
+	}
+}
+
+"Relics.SelectedRelic"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"		"sos_reference_stack"
+				"reference_stack"		"dota_update_default"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"		"sounds/ambient/newyear/firecrackers01.vsnd"
+							"value1"		"sounds/ambient/newyear/firecrackers02.vsnd"
+							"value2"		"sounds/ambient/newyear/firecrackers03.vsnd"
+							"value3"		"sounds/ambient/newyear/firecrackers04.vsnd"
+							"value4"		"sounds/ambient/newyear/firecrackers05.vsnd"
+							"value5"		"sounds/ambient/newyear/firecrackers06.vsnd"
+							"value6"		"sounds/ambient/newyear/firecrackers07.vsnd"
+							"value7"		"sounds/ambient/newyear/firecrackers08.vsnd"
+							"value8"		"sounds/ambient/newyear/firecrackers09.vsnd"
+						}
+					}
+					"volume_min" {"value"		"1.000000"}
+					"volume_max" {"value"		"1.000000"}
+					"pitch_min" {"value"		"0.950000"}
+					"pitch_max"{"value"		"1.050000"}
+					"chan_type" {"value"		"6"}
+					"memory_type" {"value"		"0"}
+					"soundlevel_min" {"value"		"90.000000"}
+					"soundlevel_max" {"value"		"90.000000"}
+				}
+			}
+		}
+	}
+}
