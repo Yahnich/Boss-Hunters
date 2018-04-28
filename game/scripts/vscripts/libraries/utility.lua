@@ -1679,7 +1679,7 @@ function CDOTA_Modifier_Lua:StartMotionController()
 	end
 end
 
-function CDOTA_Modifier_Lua:AddIndependentStack(duration, limit)
+function CDOTA_Modifier_Lua:AddIndependentStack(duration, limit, bDestroy)
 	if limit then
 		if  self:GetStackCount() < limit then
 			self:IncrementStackCount()
@@ -1691,10 +1691,11 @@ function CDOTA_Modifier_Lua:AddIndependentStack(duration, limit)
 	else
 		self:IncrementStackCount()
 	end
+	local destroy = bDestroy or true
 	local timerID = Timers:CreateTimer(duration or self:GetDuration(), function()
 		if not self:IsNull() then 
 			self:DecrementStackCount()
-			if self:GetStackCount() == 0 and self:GetDuration() == -1 then self:Destroy() end
+			if self:GetStackCount() == 0 and self:GetDuration() == -1 and not destroy then self:Destroy() end
 		end
 	end)
 	self.stackTimers = self.stackTimers or {}

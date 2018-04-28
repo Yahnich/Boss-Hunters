@@ -9,7 +9,7 @@ function relic_unique_molten_crystal:DeclareFunctions()
 end
 
 function relic_unique_molten_crystal:OnAbilityFullyCast(params)
-	if params.unit == self:GetParent() then
+	if params.unit == self:GetParent() and params.unit:HasAbility( params.ability:GetName() ) then
 		PrintAll(params)
 		local parent = self:GetParent()
 		local position = parent:GetCursorPosition()

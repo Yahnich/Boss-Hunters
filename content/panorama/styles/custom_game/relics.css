@@ -10,6 +10,7 @@
 	width: 50%;
 	vertical-align: center;
 	horizontal-align: center;
+	margin-top: -150px;
 	background-image: url("s2r://panorama/images/textures/popup_rock_bg_psd.vtex");
 	background-repeat: no-repeat;
 	background-size: 100% 100%;

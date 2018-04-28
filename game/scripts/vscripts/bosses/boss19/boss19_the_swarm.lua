@@ -138,12 +138,12 @@ modifier_boss19_the_swarm_debuff = class({})
 LinkLuaModifier("modifier_boss19_the_swarm_debuff", "bosses/boss19/boss19_the_swarm.lua", 0)
 
 function modifier_boss19_the_swarm_debuff:OnCreated()
-	self.armor = self:GetParent():GetPhysicalArmorValue()*(-1) * self:GetSpecialValueFor("armor_reduction") / 100
+	self.armor = self:GetSpecialValueFor("armor_reduction")
 	if IsServer() then self:SetStackCount(1) end
 end
 
 function modifier_boss19_the_swarm_debuff:OnRefresh()
-	self.armor = (self:GetParent():GetPhysicalArmorValue() + self.armor) * (-1) * self:GetSpecialValueFor("armor_reduction") / 100
+	self.armor = self:GetSpecialValueFor("armor_reduction")
 	if IsServer() then self:IncrementStackCount() end
 end
 

@@ -107,24 +107,41 @@ end
 function modifier_item_ogre_seal_totem:OnCreated( kv )
 	self.bonus_strength = self:GetAbility():GetSpecialValueFor( "bonus_strength" )
 	self.bonus_hp = self:GetAbility():GetSpecialValueFor( "bonus_hp" )
+	self.hpPerStr = self:GetAbility():GetSpecialValueFor( "hp_per_str" )
+	self.regen = self:GetAbility():GetSpecialValueFor( "bonus_hp_regen" )
+	self.bonus_mana = self:GetAbility():GetSpecialValueFor( "bonus_mana" )
 end
 
 function modifier_item_ogre_seal_totem:DeclareFunctions()
 	local funcs = 
 	{
 		MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
-		MODIFIER_PROPERTY_HEALTH_BONUS
+		MODIFIER_PROPERTY_HEALTH_BONUS,
+		MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE,
+		MODIFIER_PROPERTY_MANA_BONUS,
 	}
 
 	return funcs
+end
+
+function modifier_item_ogre_seal_totem:GetModifierManaBonus()
+	return self.bonus_mana
 end
 
 function modifier_item_ogre_seal_totem:GetModifierBonusStats_Strength( params )
 	return self.bonus_strength
 end
 
+function modifier_item_ogre_seal_totem:GetModifierHealthRegenPercentage()
+	return self.regen
+end
+
 function modifier_item_ogre_seal_totem:GetModifierHealthBonus( params )
-	return self.bonus_hp
+	return self:GetParent():GetStrength() * self.hpPerStr + self.bonus_hp
+end
+
+function modifier_item_ogre_seal_totem:GetAttributes()
+	return MODIFIER_ATTRIBUTE_MULTIPLE
 end
 
 modifier_ogreseal_flop = class({})

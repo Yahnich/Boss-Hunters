@@ -73,20 +73,20 @@ function modifier_item_iron_rose_passive:IsHidden()
 	return true
 end
 
-modifier_item_iron_rose_passive = class({})
-function modifier_item_iron_rose_passive:OnCreated(table)
+modifier_item_iron_rose_aura = class({})
+function modifier_item_iron_rose_aura:OnCreated(table)
 	self.reflect = self:GetSpecialValueFor("reflect")
 end
 
-function modifier_item_iron_rose_passive:OnRefresh(table)
+function modifier_item_iron_rose_aura:OnRefresh(table)
 	self.reflect = self:GetSpecialValueFor("reflect")
 end
 
-function modifier_item_iron_rose_passive:DeclareFunctions()
+function modifier_item_iron_rose_aura:DeclareFunctions()
 	return {MODIFIER_EVENT_ON_TAKEDAMAGE}
 end
 
-function modifier_item_iron_rose_passive:OnTakeDamage(params)
+function modifier_item_iron_rose_aura:OnTakeDamage(params)
 	local hero = self:GetParent()
     local dmg = params.original_damage
 	local dmgtype = params.damage_type
