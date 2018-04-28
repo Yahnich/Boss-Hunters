@@ -166,7 +166,7 @@
 		
 		"AbilityCooldown"				"35 30 25 20 15"
 		"AbilitySharedCooldown"			"dagon"
-		"AbilityManaCost"				"180"
+		"AbilityManaCost"				"300"
 
 		"AbilityCastRange"				"600 650 700 750 800"
 		"AbilityCastPoint"				"0.03"
@@ -198,7 +198,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"400 500 600 700 800"
+				"damage"				"600 600 700 800 900"
 			}
 		}
 	}
@@ -238,7 +238,7 @@
 		
 		"AbilityCooldown"				"35 30 25 20 15"
 		"AbilitySharedCooldown"			"dagon"
-		"AbilityManaCost"				"180"
+		"AbilityManaCost"				"300"
 
 		"AbilityCastRange"				"600 650 700 750 800"
 		"AbilityCastPoint"				"0.03"
@@ -270,7 +270,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"400 500 600 700 800"
+				"damage"				"600 600 700 800 900"
 			}
 		}
 	}
@@ -310,7 +310,7 @@
 		
 		"AbilityCooldown"				"35 30 25 20 15"
 		"AbilitySharedCooldown"			"dagon"
-		"AbilityManaCost"				"180"
+		"AbilityManaCost"				"300"
 
 		"AbilityCastRange"				"600 650 700 750 800"
 		"AbilityCastPoint"				"0.03"
@@ -342,7 +342,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"400 500 600 700 800"
+				"damage"				"600 600 700 800 900"
 			}
 		}
 	}
@@ -382,7 +382,7 @@
 		
 		"AbilityCooldown"				"35 30 25 20 15"
 		"AbilitySharedCooldown"			"dagon"
-		"AbilityManaCost"				"180"
+		"AbilityManaCost"				"300"
 
 		"AbilityCastRange"				"600 650 700 750 800"
 		"AbilityCastPoint"				"0.03"
@@ -414,7 +414,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"400 500 600 700 800"
+				"damage"				"600 600 700 800 900"
 			}
 		}
 	}
@@ -454,7 +454,7 @@
 		
 		"AbilityCooldown"				"35 30 25 20 15"
 		"AbilitySharedCooldown"			"dagon"
-		"AbilityManaCost"				"180"
+		"AbilityManaCost"				"300"
 
 		"AbilityCastRange"				"600 650 700 750 800"
 		"AbilityCastPoint"				"0.03"
@@ -486,7 +486,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"400 500 600 700 800"
+				"damage"				"600 600 700 800 900"
 			}
 		}
 	}

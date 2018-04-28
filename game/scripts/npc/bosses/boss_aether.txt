@@ -181,7 +181,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"meteor_count"				"24 36"
+				"meteor_count"				"12 18"
 			}
 			"02"
 			{

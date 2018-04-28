@@ -1,0 +1,74 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Ogre Seal Totem
+	//=================================================================================================================
+	"item_ogre_seal_totem"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"7027"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_ogre_seal_totem"
+		"AbilityTextureName"			"custom/ogre_seal_totem"
+
+		"Model"							"models/props_gameplay/treasure_chest001.vmdl"
+		"Effect"						"particles/generic_gameplay/dropped_aegis.vpcf"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1000"
+		"AbilityCastPoint"				"0.3"
+		"AbilityCooldown"				"40.0"
+	    "AbilityManaCost"               "75"
+
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"3000"
+		"ItemShopTags"					""
+		"ItemQuality"					"epic"
+		"ItemAliases"					"ogre seal club"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_strength"			"15"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_hp"					"400"
+			}
+	        "04"
+	        {
+	            "var_type"                  "FIELD_INTEGER"
+	            "radius"                    "275"
+	        }
+	        "05"
+	        {
+	            "var_type"                  "FIELD_INTEGER"
+	            "damage"                    "250"
+	        }
+	        "06"
+	        {
+	            "var_type"                  "FIELD_FLOAT"
+	            "stun_duration"             "0.5"
+	        }
+	    }
+
+	    "precache"
+	    {
+	    	"particle"  "particles/units/heroes/hero_phantom_assassin/phantom_assassin_crit_impact.vpcf"
+	    	//"soundfile" "soundevents/game_sounds_heroes/game_sounds_HERO.vsndevts"
+	    }
+	}
+}

@@ -110,8 +110,10 @@
 #base "items/item_father_pipe.txt"
 #base "items/item_galactic_hammer.txt"
 #base "items/item_rising_salt.txt"
+#base "items/item_ogre_seal_totem.txt"
+#base "items/item_iron_rose.txt"
 
-// Next ID is 7028
+// Next ID is 7030
 
 "DOTAAbilities"
 {

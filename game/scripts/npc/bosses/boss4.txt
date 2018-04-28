@@ -11,7 +11,7 @@
 		"AbilityTextureName"			"puck_illusory_orb"
 		
 		"AbilityCastPoint"				"1.5 1"
-		"AbilityCooldown"				"12 8"
+		"AbilityCooldown"				"15 10"
 		"AbilityCastRange"				"1200"
 		"AbilityCastAnimation"			"ACT_DOTA_UNDYING_SOUL_RIP"
 		

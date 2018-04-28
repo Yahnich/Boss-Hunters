@@ -6,6 +6,15 @@ function item_rising_salt:GetIntrinsicModifierName()
 	return "modifier_item_rising_salt_passive"	
 end
 
+function item_rising_salt:OnProjectileHit(hTarget, vLocation)
+	local caster = self:GetCaster()
+
+	if hTarget then
+		local damage = caster:GetAttackDamage() * self:GetSpecialValueFor("bonus_damage")/100
+		self:DealDamage(caster, hTarget, damage, {damage_type=DAMAGE_TYPE_PURE}, OVERHEAD_ALERT_DAMAGE)
+	end	
+end
+
 modifier_item_rising_salt_passive = class({})
 function modifier_item_rising_salt_passive:OnCreated()
 	self.bonus_mana = self:GetSpecialValueFor("bonus_mana")
@@ -45,14 +54,13 @@ function modifier_item_rising_salt_attack:GetTextureName()
 end
 
 function modifier_item_rising_salt_attack:DeclareFunctions()
-	return {MODIFIER_EVENT_ON_ATTACK_LANDED}
+	return {MODIFIER_EVENT_ON_ATTACK}
 end
 
-function modifier_item_rising_salt_attack:OnAttackLanded(params)
+function modifier_item_rising_salt_attack:OnAttack(params)
 	if IsServer() then
 		if params.attacker == self:GetParent() then
-			local damage = self:GetParent():GetAttackDamage() * self:GetSpecialValueFor("bonus_damage")/100
-			self:GetAbility():DealDamage(self:GetParent(), params.target, damage, {damage_type=DAMAGE_TYPE_PURE}, OVERHEAD_ALERT_DAMAGE)
+			self:GetAbility():FireTrackingProjectile("", params.target, self:GetParent():GetProjectileSpeed(), {}, DOTA_PROJECTILE_ATTACHMENT_ATTACK_1, true, false, 0)
 			self:Destroy()
 		end
 	end

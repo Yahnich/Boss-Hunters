@@ -1,54 +1,48 @@
 "DOTAAbilities"
 {
 	//=================================================================================================================
-	// Recipe: Rising Salt
+	// Iron Rose
 	//=================================================================================================================
-	"item_recipe_rising_salt"
+	"item_recipe_iron_rose"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"7024"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"7028"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"			"item_recipe"
+		"AbilityTextureName"			"item_recipe_assault"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"2500"	
+		"ItemCost"						"1150"	
 		"ItemShopTags"					""
 		
 		// Recipe
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemRecipe"					"1"
-		"ItemResult"					"item_rising_salt"
+		"ItemResult"					"item_iron_rose"
 		"ItemRequirements"
 		{
-			"01"						"item_strange_trinket;item_runed_artifact"
+			"01"						"item_ogre_club;item_staff_of_magi;item_crown_of_thorns;item_strange_trinket"
 		}
 	}
-	//=================================================================================================================
-	// Rising Salt
-	//=================================================================================================================
-	"item_rising_salt"
+	"item_iron_rose"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"7025"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"ID"							"7029"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
 		"BaseClass"						"item_lua"
-		"ScriptFile"					"items/item_rising_salt"
-		"AbilityTextureName"			"iron_talon"
+		"ScriptFile"					"items/item_iron_rose"
+		"AbilityTextureName"			"lotus_orb"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
 		
-		"ItemCost"						"1200"
-		"ItemShopTags"					""
-		"ItemQuality"					"component"
-		"ItemAliases"					"sheen"
+		"ItemShopTags"					"mana;int;str"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"lotus orb"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-
-		"AbilityCooldown"				"2"
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
@@ -57,22 +51,27 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"175"
+				"bonus_int"				"12"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"cooldown"				"2"
+				"var_type"				"FIELD_INTEGER"
+				"bonus_str"				"15"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_mana"			"400"
+				"bonus_mana"			"500"
 			}
 			"04"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"bonus_cdr"				"15"
+				"var_type"				"FIELD_INTEGER"
+				"reflect"				"20"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"900"
 			}
 		}
 	}
