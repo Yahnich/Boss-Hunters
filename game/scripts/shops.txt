@@ -73,6 +73,7 @@
 		"item"		"item_lance_of_longinus"
 		"item"		"item_war_drum"
 		"item"		"item_father_pipe"
+		"item"		"item_iron_rose"
     }
     "magics"
     {  
@@ -87,6 +88,7 @@
 		"item"		"item_warlocks_reliquary"
 		"item"		"item_dark_wand"
 		"item"		"item_galactic_hammer"
+		"item"		"item_ogre_seal_club"
     }
     // Level 3 - Purple Recipes
     "defense"

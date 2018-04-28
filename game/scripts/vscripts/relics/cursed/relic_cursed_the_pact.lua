@@ -22,7 +22,6 @@ end
 function relic_cursed_the_pact:GetModifierHealAmplify_Percentage(params)
 	-- regen has no caster
 	-- other heals have abilities
-	print(params.target == self:GetParent(), params.healer, params.ability)
 	if not (params.target == self:GetParent() and params.healer and not params.ability) then
 		return -100
 	end

@@ -10,7 +10,7 @@ end
 
 function relic_unique_rolling_boulder:OnAttack(params)
 	if params.attacker == self:GetParent() then
-		self:AddIndependentStack(20)
+		self:AddIndependentStack(20, nil, false)
 	end
 end
 

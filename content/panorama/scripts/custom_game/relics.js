@@ -24,8 +24,8 @@ function SelectRelic(type)
 				// relic = firstDrops[RELIC_TYPE_UNIQUE]
 			// }
 		if( GameUI.IsAltDown() ){
-			var relicName = $.Localize( "#DOTA_Tooltip_" + relic )
-			var relicDescr = $.Localize( "#DOTA_Tooltip_" + relic + "_Description" )
+			var relicName = $.Localize( relic )
+			var relicDescr = $.Localize( relic + "_Description" )
 			GameEvents.SendCustomGameEventToServer( "player_notify_relic", {pID : localID, text : "I will take following relic: " + relicName + " - " + relicDescr} )
 		} else {
 			hasQueuedAction = true
@@ -84,18 +84,18 @@ function HandleRelicMenu()
 		
 		var genericRelicName = $("#GenericRelicName");
 		var genericRelicDescription = $("#GenericRelicDescription");
-		genericRelicName.text = $.Localize( "#DOTA_Tooltip_" + genericRelic )
-		genericRelicDescription.text = $.Localize( "#DOTA_Tooltip_" + genericRelic + "_Description" )
+		genericRelicName.text = $.Localize( genericRelic )
+		genericRelicDescription.text = $.Localize( genericRelic + "_Description" )
 		
 		var cursedRelicName = $("#CursedRelicName");
 		var cursedRelicDescription = $("#CursedRelicDescription");
-		cursedRelicName.text = $.Localize( "#DOTA_Tooltip_" + cursedRelic )
-		cursedRelicDescription.text = $.Localize( "#DOTA_Tooltip_" + cursedRelic + "_Description" )
+		cursedRelicName.text = $.Localize( cursedRelic )
+		cursedRelicDescription.text = $.Localize( cursedRelic + "_Description" )
 		
 		var uniqueRelicName = $("#UniqueRelicName");
 		var uniqueRelicDescription = $("#UniqueRelicDescription");
-		uniqueRelicName.text = $.Localize( "#DOTA_Tooltip_" + uniqueRelic, uniqueRelicName )
-		uniqueRelicDescription.text = $.Localize( "#DOTA_Tooltip_" + uniqueRelic + "_Description" )
+		uniqueRelicName.text = $.Localize( uniqueRelic, uniqueRelicName )
+		uniqueRelicDescription.text = $.Localize( uniqueRelic + "_Description" )
 	} else {
 		$("#RelicRoot").SetHasClass("IsHidden", true)
 	}
@@ -137,8 +137,8 @@ function CreateRelicPanel(name)
 	var inventory = $("#RelicInventoryPanel")
 	var relic = $.CreatePanel("Panel", inventory, "");
 	relic.BLoadLayoutSnippet("RelicInventoryContainer")
-	relic.FindChildTraverse("RelicLabel").text = $.Localize( "DOTA_Tooltip_" + name )
-	relic.SetPanelEvent("onmouseover", function(){$.DispatchEvent("DOTAShowTextTooltip", relic, $.Localize( "DOTA_Tooltip_" + name + "_Description" ))});
+	relic.FindChildTraverse("RelicLabel").text = $.Localize( name )
+	relic.SetPanelEvent("onmouseover", function(){$.DispatchEvent("DOTAShowTextTooltip", relic, $.Localize( name + "_Description" ))});
 	relic.SetPanelEvent("onmouseout", function(){$.DispatchEvent("DOTAHideTextTooltip", relic);});
 }
 
