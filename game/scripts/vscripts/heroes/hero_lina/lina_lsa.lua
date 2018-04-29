@@ -32,10 +32,6 @@ function lina_lsa:OnSpellStart()
 
     local damage = self:GetTalentSpecialValueFor("damage")
 
-    if caster:HasTalent("special_bonus_unique_lina_lsa_1") then
-    	damage = damage + damage*caster:FindTalentValue("special_bonus_unique_lina_lsa_1")/100
-    end
-
 	local enemies = caster:FindEnemyUnitsInRadius(point, radius)
     for _,enemy in pairs(enemies) do
     	self:DealDamage(caster, enemy, damage, {}, 0)

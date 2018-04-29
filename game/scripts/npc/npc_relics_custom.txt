@@ -45,6 +45,9 @@
 		"relic_cursed_titans_jawbone"					"1"
 		"relic_cursed_unstoppable_force"				"1"
 		"relic_cursed_giants_cudgel"					"1"
+		"relic_cursed_battle_brew"						"1"
+		"relic_cursed_first_sin"						"1"
+		"relic_cursed_crystal_skull"					"1"
 	}
 	"relic_type_unique"
 	{
@@ -61,5 +64,13 @@
 		"relic_unique_rusty_dumbbell"					"1"
 		"relic_unique_sacrificial_dagger"				"1"
 		"relic_unique_ornate_timepiece"					"1"
+		"relic_unique_silent_cloak"						"1"
+		"relic_unique_oath_of_purity"					"1"
+		"relic_unique_vampire_eye"						"1"
+		"relic_unique_hawks_eye"						"1"
+		"relic_unique_grain_of_sand"					"1"
+		"relic_unique_memory_alloy"						"1"
+		"relic_unique_a_nickel"							"1"
+		"relic_unique_galactic_synapse"					"1"
 	}
 }
