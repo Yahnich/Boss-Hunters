@@ -15,13 +15,13 @@ function boss_aether_meteor_shower:OnSpellStart()
 	
 	EmitSoundOn( "Hero_AbyssalUnderlord.Firestorm.Cast", caster )
 	for i = 0, self:GetTalentSpecialValueFor("meteor_count") do
-		local randomInt = RandomInt(1, #enemies + 4)
-		local position = caster:GetAbsOrigin() + ActualRandomVector(1200, 500)
+		local randomInt = RandomInt(1, math.min(#enemies * 2.5) )
+		local position = caster:GetAbsOrigin() + ActualRandomVector(1800, 500)
 		if enemies[randomInt] then
 			local enemy = enemies[randomInt]
-			position = enemy:GetAbsOrigin() + ActualRandomVector(200)
+			position = enemy:GetAbsOrigin() + ActualRandomVector(self:GetSpecialValueFor("impact_radius") * 2.5)
 		end
-		Timers:CreateTimer( RandomFloat(0.3, 2), function() self:CreateMeteor(position) end )
+		Timers:CreateTimer( RandomFloat(0.75, 3.5), function() self:CreateMeteor(position) end )
 	end
 end
 

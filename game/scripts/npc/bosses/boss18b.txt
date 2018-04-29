@@ -30,17 +30,17 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"hits_to_stun"			"7 6"
+				"hits_to_stun"			"7"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"stun_duration"			"0.5"
+				"stun_duration"			"0.3 0.5"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"critical_damage"		"200 250"
+				"critical_damage"		"200"
 			}
 		}
 	}
@@ -57,7 +57,9 @@
 		"AbilityTextureName"			"ursa_enrage"
 		"MaxLevel"						"2"
 		
-		"AbilityCooldown"				"11 9"
+		"AbilityCooldown"				"9"
+		"AbilityCastPoint"				"1.5 1"
+		
 		"precache"
 		{
 			"particle"							"particles/units/heroes/hero_riki/riki_backstab.vpcf"
@@ -74,7 +76,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"duration"				"7"
+				"duration"				"4 5"
 			}
 			"02"
 			{
@@ -84,7 +86,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"attackspeed_bonus"		"200 250"
+				"attackspeed_bonus"		"150 200"
 			}
 		}
 	}

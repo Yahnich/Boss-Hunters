@@ -5,6 +5,8 @@ RELIC_TYPE_UNIQUE = 3
 var localID = Players.GetLocalPlayer()
 CustomNetTables.SubscribeNetTableListener( "game_info", HandleRelicMenu )
 CustomNetTables.SubscribeNetTableListener( "relics", UpdateRelicInventory )
+GameEvents.Subscribe("dota_player_update_query_unit", UpdateRelicInventory);
+GameEvents.Subscribe("dota_player_update_selected_unit", UpdateRelicInventory);
 
 var hasQueuedAction = false
 
@@ -122,7 +124,9 @@ function UpdateRelicInventory(){
 		relic.RemoveAndDeleteChildren()
 		relic.DeleteAsync(0)
 	}
-	var relicList = CustomNetTables.GetTableValue("relics", "relic_inventory_player_" + localID)
+	var selectedHero = Players.GetLocalPlayerPortraitUnit()
+	if( !Entities.IsRealHero( selectedHero ) ){ selectedHero = Players.GetPlayerHeroEntityIndex( localID ) }
+	var relicList = CustomNetTables.GetTableValue("relics", "relic_inventory_player_" + selectedHero)
 	if(relicList != null){
 		for(var name in relicList){
 			if(name != 0){
@@ -137,9 +141,16 @@ function CreateRelicPanel(name)
 	var inventory = $("#RelicInventoryPanel")
 	var relic = $.CreatePanel("Panel", inventory, "");
 	relic.BLoadLayoutSnippet("RelicInventoryContainer")
-	relic.FindChildTraverse("RelicLabel").text = $.Localize( name )
-	relic.SetPanelEvent("onmouseover", function(){$.DispatchEvent("DOTAShowTextTooltip", relic, $.Localize( name + "_Description" ))});
+	var relicName = $.Localize( name )
+	var relicDescr = $.Localize( name + "_Description" )
+	relic.FindChildTraverse("RelicLabel").text = relicName
+	relic.SetPanelEvent("onmouseover", function(){$.DispatchEvent("DOTAShowTextTooltip", relic, relicDescr)});
 	relic.SetPanelEvent("onmouseout", function(){$.DispatchEvent("DOTAHideTextTooltip", relic);});
+	var ownerText = "I have "
+	if( Players.GetLocalPlayerPortraitUnit() != Players.GetPlayerHeroEntityIndex( localID ) ){
+		ownerText = $.Localize( Entities.GetUnitName( Players.GetLocalPlayerPortraitUnit() ) ) + " has "
+	}
+	relic.SetPanelEvent("onactivate", function(){ GameEvents.SendCustomGameEventToServer( "player_notify_relic", {pID : localID, text : ownerText + relicName + " - " + relicDescr} ) });
 }
 
 function ShowRelicTooltip()
