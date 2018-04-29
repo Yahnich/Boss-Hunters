@@ -14,8 +14,8 @@
 		// Stats		
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"				"12"
-		"AbilityCastRange"				"150 150 150 150"
-		"AbilityCastPoint"				"0.5 0.5 0.5 0.5"
+		"AbilityCastRange"				"150"
+		"AbilityCastPoint"				"0.5"
 	
 		//------------------------------------------------------------------------------
 		"AbilityManaCost"				"40"
@@ -86,12 +86,12 @@
 	
 		// Stats		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"8.0 8.0 8.0 8.0"
-		"AbilityCastRange"				"150 150 150 150"
-		"AbilityCastPoint"				"0.5 0.5 0.5 0.5"
+		"AbilityCooldown"				"8"
+		"AbilityCastRange"				"150"
+		"AbilityCastPoint"				"0.5"
 	
 		//------------------------------------------------------------------------------
-		"AbilityManaCost"				"0 0 0 0"
+		"AbilityManaCost"				"0"
 	
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
@@ -111,7 +111,7 @@
 			"03"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"radius"						"250"
+				"radius"						"350"
 			}
 		}
 	
@@ -140,7 +140,7 @@
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastPoint"				"0.3"
-		"AbilityCooldown"				"13.0 13.0 13.0 13.0"
+		"AbilityCooldown"				"13"
 		"AbilityManaCost"				"130"
 		
 		// Special
@@ -282,19 +282,19 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"strength_pct"				"70"
+				"strength_pct"				"45"
 				"LinkedSpecialBonus"		"special_bonus_unique_centaur_warchiefs_aegis_2"
 			}
 			"02"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"str_to_block"				"25"
+				"var_type"					"FIELD_FLOAT"
+				"str_to_block"				"12.5"
 				"LinkedSpecialBonus"		"special_bonus_unique_centaur_warchiefs_aegis_2"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"block_chance"				"60"
+				"block_chance"				"20"
 			}
 		}
 	

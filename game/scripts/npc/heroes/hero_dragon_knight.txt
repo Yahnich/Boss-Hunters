@@ -24,11 +24,11 @@
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"500"
-		"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
+		"AbilityCastPoint"				"0"
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"12.0 12.0 12.0 12.0"
+		"AbilityCooldown"				"12"
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -68,13 +68,13 @@
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"reduction"				"-35"
+				"reduction"				"-25"
 				"LinkedSpecialBonus"	"special_bonus_unique_dragon_knight_dragonbreath_2"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"8"
+				"duration"				"5"
 			}
 			"07"
 			{
@@ -118,7 +118,7 @@
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"1200 1250 1300 1350 1400 1450 1500"
-		"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
+		"AbilityCastPoint"				"0"
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -139,7 +139,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"stun_duration"			"2.0 2.25 2.5 2.75 3.0 3.25 3.5"
+				"stun_duration"			"1.0"
 				"LinkedSpecialBonus"	"special_bonus_unique_dragon_knight_intervene_1"
 			}
 			"02"
@@ -149,7 +149,7 @@
 			}
 			"03"
 			{
-				"var_type"				"FIELD_INTEGER"
+				"var_type"				"FIELD_FLOAT"
 				"heal_duration"			"10"
 			}
 			"04"
@@ -187,7 +187,7 @@
 			"02"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"bonus_armor"					"3 6 9 12 15 18 21"
+				"bonus_armor"					"1 3 5 7 9 11 13"
 				"LinkedSpecialBonus"			"special_bonus_unique_dragon_knight_dragons_blood_ebf_1"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
@@ -337,7 +337,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"1.75"
+				"value"					"1.0"
 			}
 		}
 	}
