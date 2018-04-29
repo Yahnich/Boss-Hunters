@@ -38,14 +38,14 @@
 			}
 			"02"
 			{
-				"var_type"						"FIELD_INTEGER"
-				"armor_shred"					"1.2 1.4 1.6 1.8 2 2.2 2.4"
+				"var_type"						"FIELD_FLOAT"
+				"armor_shred"					"1.1 1.2 1.3 1.4 1.5 1.6 1.7"
 				"LinkedSpecialBonus"			"special_bonus_unique_gyrocopter_flak_cannon_ebf_1"
 			}
 			"02"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"armor_shred_duration"			"2.5"
+				"armor_shred_duration"			"1.5"
 			}
 			"03"
 			{
@@ -246,7 +246,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"12 24 26 48 72 84"
+				"damage"				"6 12 13 24 36 42"
 			}
 			"02"
 			{
@@ -423,7 +423,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"2"
+				"value"					"1"
 			}
 		}
 	}
