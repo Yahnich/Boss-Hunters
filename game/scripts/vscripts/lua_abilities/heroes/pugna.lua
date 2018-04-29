@@ -142,7 +142,7 @@ end
 
 function modifier_pugna_nether_turret_thinker:OnTakeDamage(params)
 	if IsServer() then
-		if params and params.attacker and not params.attacker:IsNull() then
+		if params and params.attacker and not params.attacker:IsNull() and not ( HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_HPLOSS) or HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION) ) then
 			if params.attacker:GetTeam() ~= self:GetParent():GetTeam() and params.attacker:HasModifier("modifier_pugna_nether_turret_aura") then
 				local attack = ParticleManager:CreateParticle("particles/units/heroes/hero_pugna/pugna_ward_attack.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetParent())
 				ParticleManager:SetParticleControl(attack, 1, params.attacker:GetAbsOrigin())

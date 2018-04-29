@@ -790,9 +790,9 @@ function CDOTABaseAbility:PiercesDisableResistance()
 	end
 end
 
-function CDOTABaseAbility:HasBehavior(behavior)
+function CDOTABaseAbility:IsOrbAbility()
 	if GameRules.AbilityKV[self:GetName()] then
-		local truefalse = GameRules.AbilityKV[self:GetName()]["PiercesDisableReduction"] or 0
+		local truefalse = GameRules.AbilityKV[self:GetName()]["IsOrb"] or 0
 		if truefalse == 1 then
 			return true
 		else

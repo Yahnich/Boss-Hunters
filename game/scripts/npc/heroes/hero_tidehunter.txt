@@ -51,7 +51,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius"				"500"
+				"radius"				"350"
 				"LinkedSpecialBonus"	"special_bonus_unique_tide_anchor_2"
 			}
 		}
@@ -325,7 +325,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"-25"
+				"value"					"-15"
 			}
 		}
 	}

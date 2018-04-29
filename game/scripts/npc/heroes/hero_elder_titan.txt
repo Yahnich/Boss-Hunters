@@ -36,7 +36,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"75 125 175 225 275 325 375"
+				"damage"					"75 150 225 300 375 450 525"
 			}
 			"02"
 			{
@@ -278,7 +278,7 @@
 			"01"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"reduc"							"-25"
+				"reduc"							"-40"
 			}
 			"03"
 			{

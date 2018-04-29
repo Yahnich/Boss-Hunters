@@ -103,6 +103,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"huskar_burning_spear"
 		"MaxLevel"						"7"
+		"IsOrb"							"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -180,7 +181,7 @@
 			"04"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"hp_threshold_max"				"10"
+				"hp_threshold_max"				"5"
 			}
 		}
 	}
@@ -330,7 +331,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"50"
+				"value"					"33"
 			}
 		}
 	}
@@ -411,7 +412,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"750"
+				"value"					"450"
 			}
 		}
 	}
@@ -449,7 +450,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"15"
+				"value"					"10"
 			}
 		}
 	}

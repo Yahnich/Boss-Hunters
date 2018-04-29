@@ -1022,14 +1022,16 @@
 		"Ability3"					"phantom_assassin_blur_ebf"
 		"Ability6"					"phantom_assassin_coup_de_grace_ebf"
 	
-		"Ability10"				"special_bonus_unique_pa_kunai_toss_1"
-		"Ability11"				"special_bonus_unique_pa_kunai_toss_2"
-		"Ability12"				"special_bonus_unique_pa_flash_step_1"
-		"Ability13"				"special_bonus_unique_pa_flash_step_2"
-		"Ability14"       		"special_bonus_corruption_4"
-	    "Ability15"       		"special_bonus_lifesteal_15"
-	    "Ability16"       		"special_bonus_unique_phantom_assassin_2"
-	    "Ability17"       		"special_bonus_unique_phantom_assassin_3"
+		"Ability10"					"special_bonus_unique_pa_kunai_toss_1"
+		"Ability11"					"special_bonus_unique_pa_kunai_toss_2"
+		"Ability12"					"special_bonus_unique_pa_flash_step_1"
+		"Ability13"					"special_bonus_unique_pa_flash_step_2"
+		"Ability14"      	 		"special_bonus_corruption_4"
+	    "Ability15"      	 		"special_bonus_lifesteal_15"
+	    "Ability16"    		   		"special_bonus_unique_phantom_assassin_2"
+	    "Ability17"  	     		"special_bonus_unique_phantom_assassin_coup_de_grace_1"
+		
+		"AttackRate"				"2.0"
 	}
 	"npc_dota_hero_phoenix" // Justicar
 	{
@@ -1717,6 +1719,8 @@
 		"Ability15"		"special_bonus_unique_weaver_3"
 		"Ability16"		"special_bonus_unique_weaver_2"
 		"Ability17"		"special_bonus_unique_weaver_5"
+		
+		"AttackRate"				"1.9"
 	}
 	"npc_dota_hero_windrunner" // Sylph
 	{

@@ -29,7 +29,7 @@ function MoveUnits( keys )
 			local unit_location = unit:GetAbsOrigin()
 			local vector_distance = target_location - unit_location
 			local distance = (vector_distance):Length2D()
-			local speed = radius/distance * 10
+			local speed = radius/distance * 5
 			local direction = (vector_distance):Normalized()
 			-- If the target is greater than 40 units from the center, we move them 40 units towards it, otherwise we move them directly to the center
 			if distance <= radius then

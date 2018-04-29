@@ -3,7 +3,7 @@ modifier_spectre_dispersion_ebf = class({})
 --------------------------------------------------------------------------------
 function modifier_spectre_dispersion_ebf:DeclareFunctions(params)
 local funcs = {
-    MODIFIER_EVENT_ON_TAKEDAMAGE,
+    MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,
     }
     return funcs
 end
@@ -31,15 +31,13 @@ end
 
 --------------------------------------------------------------------------------
 
-function modifier_spectre_dispersion_ebf:OnTakeDamage(params)
+function modifier_spectre_dispersion_ebf:GetModifierIncomingDamage_Percentage(params)
     local hero = self:GetParent()
-    local dmg = params.damage
 	local dmgtype = params.damage_type
 	local attacker = params.attacker
-    local nHeroHeal = self.reflect / 100
+    local reflect_damage = self.reflect / 100
 	if attacker and attacker:GetTeamNumber()  ~= hero:GetTeamNumber() then
 		if params.unit == hero and hero:GetHealth() >= 1 then
-			hero:SetHealth(hero:GetHealth()+dmg*nHeroHeal)
 			local units = FindUnitsInRadius(self:GetParent():GetTeamNumber(), 
 			hero:GetAbsOrigin(), 
 			hero, 
@@ -52,14 +50,16 @@ function modifier_spectre_dispersion_ebf:OnTakeDamage(params)
 			for _,unit in pairs(units) do
 				local distance = (unit:GetAbsOrigin() - hero:GetAbsOrigin()):Length2D()
 				local dmgmod = 1 - (distance/self.max_range)
-				local dmg = dmg*nHeroHeal
-				if distance > self.min_range then dmgmod = 1 end
+				local dmg = params.original_damage * reflect_damage
+				if distance <= self.min_range then dmgmod = 1 end
 				self:GetAbility().damage_flags = DOTA_DAMAGE_FLAG_HPLOSS
-				ApplyDamage({victim = unit, attacker = hero, damage = dmg*dmgmod/get_aether_multiplier(hero), damage_flags = DOTA_DAMAGE_FLAG_HPLOSS + DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION, damage_type = DAMAGE_TYPE_PURE, ability = self:GetAbility()})
+				ApplyDamage({victim = unit, attacker = hero, damage = dmg*dmgmod, damage_flags = DOTA_DAMAGE_FLAG_HPLOSS + DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION, damage_type = dmgtype, ability = self:GetAbility()})
 				local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_spectre/spectre_dispersion.vpcf",PATTACH_POINT_FOLLOW,unit)
 				ParticleManager:SetParticleControl(particle, 0, unit:GetAbsOrigin())
 				ParticleManager:SetParticleControl(particle, 1, hero:GetAbsOrigin())
+				ParticleManager:ReleaseParticleIndex(particle)
 			end
 		end
 	end
+	return self.reflect * (-1)
 end

@@ -5,7 +5,7 @@ function relic_unique_frozen_crystal:DeclareFunctions()
 end
 
 function relic_unique_frozen_crystal:OnAbilityFullyCast(params)
-	if params.unit == self:GetParent() and params.unit:HasAbility( params.ability:GetName() ) then
+	if params.unit == self:GetParent() and params.unit:HasAbility( params.ability:GetName() ) and not params.ability:IsOrbAbility() then
 		local parent = self:GetParent()
 		local position = parent:GetAbsOrigin()
 		
