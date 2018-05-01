@@ -117,7 +117,7 @@ function modifier_item_ogre_seal_totem:DeclareFunctions()
 	{
 		MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
 		MODIFIER_PROPERTY_HEALTH_BONUS,
-		MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE,
+		MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
 		MODIFIER_PROPERTY_MANA_BONUS,
 	}
 
@@ -132,7 +132,7 @@ function modifier_item_ogre_seal_totem:GetModifierBonusStats_Strength( params )
 	return self.bonus_strength
 end
 
-function modifier_item_ogre_seal_totem:GetModifierHealthRegenPercentage()
+function modifier_item_ogre_seal_totem:GetModifierConstantHealthRegen()
 	return self.regen
 end
 

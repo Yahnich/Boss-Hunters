@@ -72,17 +72,17 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"bonus_hp"					"400"
+				"bonus_hp"					"600"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"hp_per_str"				"3"
+				"hp_per_str"				"0"
 			}
 			"04"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"bonus_hp_regen"			"0.5"
+				"bonus_hp_regen"			"3.5"
 			}
 			"05"
 			{

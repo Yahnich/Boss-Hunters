@@ -81,7 +81,7 @@ end
 
 function modifier_item_conquerors_helm_passive:DeclareFunctions()
 	return {MODIFIER_PROPERTY_HEALTH_BONUS,
-			MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE,	
+			MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,	
 			MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
 			MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
 			MODIFIER_EVENT_ON_TAKEDAMAGE
@@ -108,7 +108,7 @@ function modifier_item_conquerors_helm_passive:GetModifierHealthBonus()
 	return self:GetParent():GetStrength() * self.hpPerStr + self.bonusHP
 end
 
-function modifier_item_conquerors_helm_passive:GetModifierHealthRegenPercentage()
+function modifier_item_conquerors_helm_passive:GetModifierConstantHealthRegen()
 	return self.regen
 end
 

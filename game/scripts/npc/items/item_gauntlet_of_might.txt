@@ -79,12 +79,12 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"hp_per_str"			"5"
+				"hp_per_str"			"0"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_health"			"900"
+				"bonus_health"			"1000"
 			}
 			"06"
 			{

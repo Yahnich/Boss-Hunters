@@ -34,14 +34,19 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage_over_time"		"75"
+				"damage_over_time"		"20"
 			}
-			"01"
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"base_damage"			"12"
+			}
+			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"duration"				"3"
 			}
-			"01"
+			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"slow"					"-12"

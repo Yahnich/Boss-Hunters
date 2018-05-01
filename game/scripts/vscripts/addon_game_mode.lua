@@ -292,13 +292,13 @@ function CHoldoutGameMode:InitGameMode()
 	-- Custom console commands
 	Convars:RegisterCommand( "holdout_test_round", function(...) return self:_TestRoundConsoleCommand( ... ) end, "Test a round of holdout.", FCVAR_CHEAT )
 	Convars:RegisterCommand( "clear_relics", function()
-											if Convars:GetDOTACommandClient() then
+											if Convars:GetDOTACommandClient() and IsInToolsMode() then
 												local player = Convars:GetDOTACommandClient()
 												RelicManager:ClearRelics(player:GetPlayerID()) 
 											end
 										end, "adding relics",0)
 	Convars:RegisterCommand( "add_relic", function(command, relicName)
-											if Convars:GetDOTACommandClient() then
+											if Convars:GetDOTACommandClient() and IsInToolsMode() then
 												local player = Convars:GetDOTACommandClient()
 												local hero = player:GetAssignedHero()
 												print(relicName, "ok")
@@ -332,7 +332,7 @@ function CHoldoutGameMode:InitGameMode()
 													end
 												end, "fixing bug",0)
 														
-	Convars:RegisterCommand( "spawn_elite", function(...) return self.SpawnTestElites( ... ) end, "look like someone try to steal my map :D",0)
+	Convars:RegisterCommand( "spawn_elite", function(...) if IsInToolsMode() then return self.SpawnTestElites( ... ) end end, "look like someone try to steal my map :D",0)
 	
 	-- Hook into game events allowing reload of functions at run time
 	ListenToGameEvent( "npc_spawned", Dynamic_Wrap( CHoldoutGameMode, "OnNPCSpawned" ), self )
