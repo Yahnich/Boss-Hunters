@@ -27,3 +27,7 @@ end
 function relic_generic_haste_stone:AllowIllusionDuplicate()
 	return true
 end
+
+function relic_generic_haste_stone:GetAttributes()
+	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_PERMANENT
+end

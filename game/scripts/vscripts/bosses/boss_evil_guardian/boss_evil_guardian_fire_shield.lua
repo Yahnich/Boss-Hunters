@@ -61,7 +61,7 @@ end
 
 function modifier_boss_evil_guardian_fire_shield_active:GetModifierIncomingDamage_Percentage( params )
 	local parent = self:GetParent()
-	
+	if params.damage <= 0 then return end
 	local damage = params.damage * self.damageTaken
 	parent.manaCharge = math.max( 0, parent.manaCharge - damage )
 	return -999

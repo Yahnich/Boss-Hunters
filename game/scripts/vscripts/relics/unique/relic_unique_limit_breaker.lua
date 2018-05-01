@@ -40,4 +40,8 @@ function relic_unique_limit_breaker:AllowIllusionDuplicate()
 	return true
 end
 
+function relic_unique_limit_breaker:GetAttributes()
+	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_PERMANENT
+end
+
 

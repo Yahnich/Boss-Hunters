@@ -23,7 +23,6 @@ end
 
 function modifier_item_rising_salt_passive:DeclareFunctions()
 	return {	MODIFIER_PROPERTY_MANA_BONUS,
-			 	MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE_STACKING,
 			 	MODIFIER_EVENT_ON_ABILITY_EXECUTED}
 end
 
@@ -31,7 +30,7 @@ function modifier_item_rising_salt_passive:GetModifierManaBonus()
 	return self.bonus_mana
 end
 
-function modifier_item_rising_salt_passive:GetModifierPercentageCooldownStacking()
+function modifier_item_rising_salt_passive:GetCooldownReduction()
 	return self.bonus_cdr
 end
 

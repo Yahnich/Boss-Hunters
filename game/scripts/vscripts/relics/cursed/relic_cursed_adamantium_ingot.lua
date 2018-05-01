@@ -31,3 +31,7 @@ end
 function relic_cursed_adamantium_ingot:AllowIllusionDuplicate()
 	return true
 end
+
+function relic_cursed_adamantium_ingot:GetAttributes()
+	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_PERMANENT
+end

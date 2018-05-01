@@ -1,10 +1,6 @@
 relic_generic_time_shard = class({})
 
-function relic_generic_time_shard:DeclareFunctions()
-	return {MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE_STACKING}
-end
-
-function relic_generic_time_shard:GetModifierPercentageCooldownStacking()
+function relic_generic_time_shard:GetCooldownReduction()
 	return 10
 end
 
@@ -26,4 +22,8 @@ end
 
 function relic_generic_time_shard:AllowIllusionDuplicate()
 	return true
+end
+
+function relic_generic_time_shard:GetAttributes()
+	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_PERMANENT
 end

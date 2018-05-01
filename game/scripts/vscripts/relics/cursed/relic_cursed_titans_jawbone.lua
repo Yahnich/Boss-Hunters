@@ -49,3 +49,7 @@ end
 function relic_cursed_titans_jawbone:AllowIllusionDuplicate()
 	return true
 end
+
+function relic_cursed_titans_jawbone:GetAttributes()
+	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_PERMANENT
+end

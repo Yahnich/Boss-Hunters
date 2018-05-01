@@ -31,3 +31,7 @@ end
 function relic_cursed_glass_flower:AllowIllusionDuplicate()
 	return true
 end
+
+function relic_cursed_glass_flower:GetAttributes()
+	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_PERMANENT
+end

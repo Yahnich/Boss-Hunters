@@ -31,4 +31,7 @@ function relic_unique_perpetuum_mobile:AllowIllusionDuplicate()
 	return true
 end
 
+function relic_unique_perpetuum_mobile:GetAttributes()
+	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_PERMANENT
+end
 

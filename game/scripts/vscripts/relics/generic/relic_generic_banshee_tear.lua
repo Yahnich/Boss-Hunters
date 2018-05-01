@@ -31,3 +31,7 @@ end
 function relic_generic_banshee_tear:AllowIllusionDuplicate()
 	return true
 end
+
+function relic_generic_banshee_tear:GetAttributes()
+	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_PERMANENT
+end

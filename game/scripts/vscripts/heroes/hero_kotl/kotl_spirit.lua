@@ -84,12 +84,11 @@ end
 function modifier_kotl_spirit:DeclareFunctions()
     local funcs = {
         MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
-        MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE
     }
     return funcs
 end
 
-function modifier_kotl_spirit:GetModifierPercentageCooldown()
+function modifier_kotl_spirit:GetCooldownReduction()
     return self.cdr
 end
 

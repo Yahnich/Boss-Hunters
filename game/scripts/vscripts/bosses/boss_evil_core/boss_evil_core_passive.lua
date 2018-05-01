@@ -122,7 +122,7 @@ end
 
 function modifier_boss_evil_core_passive:GetModifierIncomingDamage_Percentage( params )
 	local parent = self:GetParent()
-	
+	if params.damage <= 0 then return end
 	local damage = self.damageTaken * ((GameRules.BasePlayers - PlayerResource:GetPlayerCountForTeam(DOTA_TEAM_GOODGUYS)) + 1)
 	if self.shield then damage = 1 end
 	if parent:GetHealth() > damage then

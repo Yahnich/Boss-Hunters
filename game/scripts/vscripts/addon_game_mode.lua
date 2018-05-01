@@ -56,6 +56,8 @@ LinkLuaModifier( "modifier_spawn_immunity", "libraries/modifiers/modifier_spawn_
 LinkLuaModifier( "modifier_tombstone_respawn_immunity", "libraries/modifiers/modifier_tombstone_respawn_immunity.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_generic_attack_bonus", "libraries/modifiers/modifier_generic_attack_bonus.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_generic_attack_bonus_pct", "libraries/modifiers/modifier_generic_attack_bonus.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier( "modifier_cooldown_reduction_handler", "libraries/modifiers/modifier_cooldown_reduction_handler.lua", LUA_MODIFIER_MOTION_NONE)
+
 
 -- Precache resources
 function Precache( context )
@@ -1157,6 +1159,7 @@ function CHoldoutGameMode:OnHeroPick (event)
 		StatsScreen:RegisterPlayer(hero)
 		RelicManager:RegisterPlayer( hero:GetPlayerID() )
 		hero:AddNewModifier(hero, nil, "modifier_stats_system_handler", {})
+		hero:AddNewModifier(hero, nil, "modifier_cooldown_reduction_handler", {})
 		
 		hero:AddExperience(GameRules.XP_PER_LEVEL[7],false,false)
 		hero:SetBaseMagicalResistanceValue(0)
@@ -1195,8 +1198,8 @@ function CHoldoutGameMode:OnHeroPick (event)
 		end
 		hero:SetGold( gold, true )
 		
-		hero:SetDayTimeVisionRange(hero:GetDayTimeVisionRange() * 2)
-		hero:SetNightTimeVisionRange(hero:GetNightTimeVisionRange() * 1.5)
+		hero:SetDayTimeVisionRange(hero:GetDayTimeVisionRange() * 1.5)
+		hero:SetNightTimeVisionRange(hero:GetNightTimeVisionRange() * 1.25)
 
 			
 		local player = PlayerResource:GetPlayer(ID)

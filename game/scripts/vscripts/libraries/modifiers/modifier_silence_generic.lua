@@ -2,7 +2,7 @@ modifier_silence_generic = class({})
 
 if IsServer() then
 	function modifier_silence_generic:OnCreated(kv)
-		if kv.delay == nil or toboolean(kv.delay) == true then
+		if kv.delay ~= nil or toboolean(kv.delay) == true then
 			self.delay = true
 			self:GetAbility():StartDelayedCooldown(self:GetRemainingTime(), false)
 		end

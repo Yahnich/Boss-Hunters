@@ -12,10 +12,10 @@ function modifier_item_runed_artifact_passive:OnCreated()
 end
 
 function modifier_item_runed_artifact_passive:DeclareFunctions()
-	return {MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE_STACKING}
+	return {}
 end
 
-function modifier_item_runed_artifact_passive:GetModifierPercentageCooldownStacking()
+function modifier_item_runed_artifact_passive:GetCooldownReduction()
 	return self.cdr
 end
 

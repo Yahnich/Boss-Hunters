@@ -1,7 +1,7 @@
 relic_cursed_loaded_coin = class({})
 
 function relic_cursed_loaded_coin:DeclareFunctions()
-	return {MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE	 }
+	return {MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE}
 end
 
 function relic_cursed_loaded_coin:GetModifierIncomingDamage_Percentage()
@@ -30,4 +30,8 @@ end
 
 function relic_cursed_loaded_coin:AllowIllusionDuplicate()
 	return true
+end
+
+function relic_cursed_loaded_coin:GetAttributes()
+	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_PERMANENT
 end

@@ -44,3 +44,7 @@ end
 function relic_unique_sacrificial_dagger:AllowIllusionDuplicate()
 	return true
 end
+
+function relic_unique_sacrificial_dagger:GetAttributes()
+	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_PERMANENT
+end

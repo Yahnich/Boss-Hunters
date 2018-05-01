@@ -5,10 +5,10 @@ function relic_unique_rapid_totem:OnCreated()
 end
 
 function relic_unique_rapid_totem:DeclareFunctions()
-	return {MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE, MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE}
+	return {MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE}
 end
 
-function relic_unique_rapid_totem:GetModifierPercentageCooldown()
+function relic_unique_rapid_totem:GetCooldownReduction()
 	return 50
 end
 
@@ -40,6 +40,10 @@ end
 
 function relic_unique_rapid_totem:AllowIllusionDuplicate()
 	return true
+end
+
+function relic_unique_rapid_totem:GetAttributes()
+	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_PERMANENT
 end
 
 

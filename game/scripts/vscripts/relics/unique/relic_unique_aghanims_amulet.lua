@@ -25,3 +25,7 @@ end
 function relic_unique_aghanims_amulet:AllowIllusionDuplicate()
 	return true
 end
+
+function relic_unique_aghanims_amulet:GetAttributes()
+	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_PERMANENT
+end

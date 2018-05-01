@@ -48,6 +48,7 @@
 		"relic_cursed_battle_brew"						"1"
 		"relic_cursed_first_sin"						"1"
 		"relic_cursed_crystal_skull"					"1"
+		"relic_cursed_hushpuppy"						"1"
 	}
 	"relic_type_unique"
 	{

@@ -15,13 +15,12 @@ function modifier_item_arcane_accelerator_passive:OnCreated()
 end
 
 function modifier_item_arcane_accelerator_passive:DeclareFunctions()
-	return {MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE_STACKING,
-			MODIFIER_PROPERTY_MANA_REGEN_CONSTANT,
+	return {MODIFIER_PROPERTY_MANA_REGEN_CONSTANT,
 			MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
 			MODIFIER_PROPERTY_MANA_BONUS}
 end
 
-function modifier_item_arcane_accelerator_passive:GetModifierPercentageCooldownStacking(params)
+function modifier_item_arcane_accelerator_passive:GetCooldownReduction(params)
 	return self.cdr
 end
 

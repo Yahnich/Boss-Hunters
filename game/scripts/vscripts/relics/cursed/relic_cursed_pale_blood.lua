@@ -51,3 +51,7 @@ end
 function relic_cursed_pale_blood:AllowIllusionDuplicate()
 	return true
 end
+
+function relic_cursed_pale_blood:GetAttributes()
+	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_PERMANENT
+end

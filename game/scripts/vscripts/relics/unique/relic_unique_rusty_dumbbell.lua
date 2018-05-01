@@ -26,3 +26,7 @@ end
 function relic_unique_rusty_dumbbell:AllowIllusionDuplicate()
 	return true
 end
+
+function relic_unique_rusty_dumbbell:GetAttributes()
+	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_PERMANENT
+end

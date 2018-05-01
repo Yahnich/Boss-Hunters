@@ -37,3 +37,7 @@ end
 function relic_unique_frozen_crystal:AllowIllusionDuplicate()
 	return true
 end
+
+function relic_unique_frozen_crystal:GetAttributes()
+	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_PERMANENT
+end
