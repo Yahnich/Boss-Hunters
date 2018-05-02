@@ -29,6 +29,7 @@ require("libraries/utility")
 require("libraries/animations")
 require("stats_screen")
 require("relicmanager")
+require( "ai/ai_core" )
 
 LinkLuaModifier( "modifier_stats_system_handler", "libraries/modifiers/modifier_stats_system_handler.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_blind_generic", "libraries/modifiers/modifier_blind_generic.lua", LUA_MODIFIER_MOTION_NONE)

@@ -5,7 +5,7 @@
 	    // General
 	    //-------------------------------------------------------------------------------------------------------------
 	    "BaseClass"             		"ability_lua"
-		"ScriptFile"					"bosses/boss_evil_core/boss_evil_core_passive"
+		"ScriptFile"					"bosses/boss_golem/boss_golem_split"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
 	    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
 	    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
@@ -21,7 +21,8 @@
 	
 	    "precache"
 	    {
-	        "particle"          "particles/units/heroes/hero_faceless_void/faceless_void_chronosphere.vpcf"
+	        "particle"						"particles/units/heroes/hero_tiny/tiny_toss_blur.vpcf"
+			"soundfile"						"soundevents/game_sounds_heroes/game_sounds_heroes_tiny.vsndevts"
 	    }
 		
 		"AbilitySpecial"
@@ -43,7 +44,7 @@
 	    // General
 	    //-------------------------------------------------------------------------------------------------------------
 	    "BaseClass"             		"ability_lua"
-		"ScriptFile"					"bosses/boss_evil_core/boss_evil_core_passive"
+		"ScriptFile"					"bosses/boss_golem/boss_golem_cracked_mass"
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
 	    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
 	    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
@@ -59,7 +60,8 @@
 	
 	    "precache"
 	    {
-	        "particle"          "particles/units/heroes/hero_faceless_void/faceless_void_chronosphere.vpcf"
+			"particle"						"particles/units/heroes/hero_tiny/tiny_toss_blur.vpcf"
+			"soundfile"						"soundevents/game_sounds_heroes/game_sounds_heroes_tiny.vsndevts"
 	    }
 		
 		"AbilitySpecial"
@@ -81,7 +83,7 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"bosses/boss_ogres/boss_ogre_smash"
+		"ScriptFile"					"bosses/boss_golem/boss_golem_golem_toss"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
@@ -89,9 +91,8 @@
 		
 		"precache"
 		{
-			"particle_folder"				"particles/test_particle"
-			"particle_folder"				"particles/econ/generic/generic_aoe_shockwave_1"
-			"soundfile"						"soundevents/game_sounds/ability_melee_smash.vsndevts"
+			"particle"						"particles/units/heroes/hero_tiny/tiny_toss_blur.vpcf"
+			"soundfile"						"soundevents/game_sounds_heroes/game_sounds_heroes_tiny.vsndevts"
 		}
 		
 		// Casting
@@ -136,7 +137,7 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"bosses/boss_ogres/boss_ogre_smash"
+		"ScriptFile"					"bosses/boss_golem/boss_golem_golem_leap"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
@@ -144,9 +145,62 @@
 		
 		"precache"
 		{
-			"particle_folder"				"particles/test_particle"
-			"particle_folder"				"particles/econ/generic/generic_aoe_shockwave_1"
-			"soundfile"						"soundevents/game_sounds/ability_melee_smash.vsndevts"
+			"particle"						"particles/units/heroes/hero_tiny/tiny_toss_blur.vpcf"
+			"soundfile"						"soundevents/game_sounds_heroes/game_sounds_heroes_tiny.vsndevts"
+		}
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"500"
+		"AbilityCastPoint"				"2" 					// Time before spell goes off when cast
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"	// Activity
+		"AnimationPlaybackRate"			"0.5"						// Animation speed multiplier
+		"AnimationIgnoresModelScale"	"1"
+	
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"12"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"325"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"1.0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"500"
+			}
+		}
+	}
+	"boss_golem_golem_smash"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_golem/boss_golem_golem_smash"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+		"AbilityTextureName" 			"tiny_grow"
+		
+		"precache"
+		{
+			"particle"						"particles/units/heroes/hero_tiny/tiny_toss_blur.vpcf"
+			"soundfile"						"soundevents/game_sounds_heroes/game_sounds_heroes_tiny.vsndevts"
 		}
 		
 		// Casting

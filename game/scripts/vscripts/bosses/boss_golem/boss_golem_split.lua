@@ -1,0 +1,1 @@
+boss_golem_split = class({})

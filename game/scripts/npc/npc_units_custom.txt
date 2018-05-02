@@ -449,19 +449,20 @@
 		//
 		"BaseClass"					"npc_dota_creature"	// Class of entity of link to.
 		"Model"						"models/creeps/neutral_creeps/n_creep_golem_a/neutral_creep_golem_a.vmdl"	// Model.
-		"ModelScale"				"2.3"
+		"ModelScale"				"1.6"
 		"Level"						"12"
-		"IsAncient"			"0"
+		"IsAncient"					"0"
 		"IsCore"					"1"
-		"vscripts"					"ai/ai_generic.lua"
+		"vscripts"					"ai/ai_golem.lua"
 	
 		// Abilities
 		//----------------------------------------------------------------
 		"AbilityLayout"				"6"
-		"Ability1"					"boss_golem_split"			// Ability 1.
-		"Ability2"					"boss_golem_cracked_mass"			// Ability 1.
+		"Ability1"					"boss_golem_golem_leap"			// Ability 1.
+		"Ability2"					"boss_golem_golem_smash"			// Ability 1.
 		"Ability3"					"boss_golem_golem_toss"			// Ability 1.
-		"Ability4"					"boss_golem_golem_leap"			// Ability 1.
+		"Ability4"					"boss_golem_split"			// Ability 1.
+		"Ability5"					"boss_golem_cracked_mass"	
 		// Armor
 		//----------------------------------------------------------------
 		"ArmorPhysical"				"10"			// Physical protection.

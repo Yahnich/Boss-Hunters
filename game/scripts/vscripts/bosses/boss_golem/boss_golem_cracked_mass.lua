@@ -1,0 +1,1 @@
+boss_golem_cracked_mass = class({})

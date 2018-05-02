@@ -118,6 +118,7 @@ function RelicManager:RegisterPlayer(pID)
 	CustomNetTables:SetTableValue("game_info", "relic_drops", relicTable)
 	local hero = PlayerResource:GetSelectedHeroEntity(pID)
 	hero.internalRelicRNG = BASE_RELIC_CHANCE
+	RelicManager:RollRelicsForPlayer(pID)
 end
 
 function RelicManager:RollRelicsForPlayer(pID)
