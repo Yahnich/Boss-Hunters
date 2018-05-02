@@ -39,7 +39,7 @@ AI_BEHAVIOR_AGGRESSIVE = 1 -- Threat is weighted towards damage
 AI_BEHAVIOR_CAUTIOUS = 2 -- Threat is weighted towards health
 AI_BEHAVIOR_SAFE = 3 -- Threat is weighted towards heals and debuffs, requires bigger threat difference to switch aggro
 
-BASE_AGGRO_RADIUS = 350
+BASE_AGGRO_RADIUS = 600
 
 function AICore:RandomEnemyHeroInRange( entity, range , magic_immune)
 	local flags = DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE + DOTA_UNIT_TARGET_FLAG_NO_INVIS
@@ -160,7 +160,7 @@ function AICore:AttackHighestPriority( entity )
 			end
 			local range = entity:GetAttackRange() + entity:GetIdealSpeed() * 0.5 + BASE_AGGRO_RADIUS
 			local minRange = 99999
-			local enemies = FindUnitsInRadius( entity:GetTeamNumber(), entity:GetAbsOrigin(), nil, minRange, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, flag, 0, false )
+			local enemies = FindUnitsInRadius( entity:GetTeamNumber(), entity:GetAbsOrigin(), nil, -1, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, flag, 0, false )
 			for _,enemy in pairs(enemies) do
 				local distanceToEnemy = (entity:GetAbsOrigin() - enemy:GetAbsOrigin()):Length2D()
 				if not enemy.threat then enemy.threat = 0 end

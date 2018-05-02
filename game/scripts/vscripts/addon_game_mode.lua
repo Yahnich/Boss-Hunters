@@ -631,13 +631,19 @@ function CHoldoutGameMode:FilterHeal( filterTable )
 		local params = {healer = healer, target = target, heal = heal, ability = source}
 		for _, modifier in ipairs( target:FindAllModifiers() ) do
 			if modifier.GetModifierHealAmplify_Percentage then
-				filterTable["heal"] = filterTable["heal"] * math.max(0, (1 + (modifier:GetModifierHealAmplify_Percentage( params ) or 0)/100) )
+				filterTable["heal"] = filterTable["heal"] * math.max(0, (1 + ( modifier:GetModifierHealAmplify_Percentage( params ) or 0 )/100) )
 			end
 		end
 	end
 
 	if not healer_index or not heal then return true end
 	healer.statsDamageHealed = (healer.statsDamageHealed or 0) + filterTable["heal"]
+	
+	if healer and target and healer ~= target and healer:HasRelic("relic_cursed_bloody_silk") then
+		target:HealEvent(50, nil, healer, true)
+		ApplyDamage({victim = healer, attacker = healer, damage = 20, damage_type = DAMAGE_TYPE_PURE, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION })
+	end
+	
 	if healer:GetTeam() == DOTA_TEAM_GOODGUYS then
 		local totalHealth = 0
 		for _, ally in ipairs( healer:FindFriendlyUnitsInRadius( healer:GetAbsOrigin(), -1 ) ) do
@@ -677,22 +683,13 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 		end
 	end
 	
-	if not inflictor and not attacker:IsCreature() and attacker:HasModifier("Piercing") and filterTable["damagetype_const"] == 1 then -- APPLY piercing damage to certain damage
-		local originaldamage =  damage / (1 - victim:GetPhysicalArmorReduction() / 100 )
-		local item = attacker:FindModifierByName("Piercing"):GetAbility()
-		local pierce = item:GetSpecialValueFor("Pierce_percent") / 100
-		if attacker:IsIllusion() then pierce = pierce / 7 end
-		ApplyDamage({victim = victim, attacker = attacker, damage = originaldamage * pierce, damage_type = DAMAGE_TYPE_PURE, ability = item, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
-		filterTable["damage"] = filterTable["damage"] - filterTable["damage"]*pierce
-	end
-	if inflictor and not attacker:IsCreature() and attacker:HasModifier("Piercing") and filterTable["damagetype_const"] == 1 then -- APPLY piercing damage to certain damage
-		local ability = EntIndexToHScript( inflictor )
-		if ability:AbilityPierces() and attacker:HasAbility(ability:GetName()) then
-			local originaldamage =  damage / (1 - victim:GetPhysicalArmorReduction() / 100 )
-			local pierce = attacker:FindModifierByName("Piercing"):GetAbility():GetSpecialValueFor("Pierce_percent") / 100
-			ApplyDamage({victim = victim, attacker = attacker, damage = originaldamage * pierce, damage_type = DAMAGE_TYPE_PURE, ability = attacker:FindModifierByName("Piercing"):GetAbility(), damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
-			filterTable["damage"] = filterTable["damage"] - filterTable["damage"]*pierce
+	if attacker:HasModifier("relic_unique_eldritch_rune") and inflictor then
+		if damagetype == DAMAGE_TYPE_PHYSICAL then
+			ApplyDamage({victim = victim, attacker = attacker, damage = damage * (1- victim:GetPhysicalArmorReduction() / 100 ), damage_type = DAMAGE_TYPE_MAGICAL})
+		elseif damagetype == DAMAGE_TYPE_MAGICAL then
+			ApplyDamage({victim = victim, attacker = attacker, damage = damage * (1 - victim:GetMagicalArmorValue()), damage_type = DAMAGE_TYPE_PHYSICAL})
 		end
+		return false
 	end
 	
 	-- CUSTOM DAMAGE PROPERTIES
@@ -705,7 +702,7 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 		if damagetype == 1 then -- physical
 			dmgBlock = damage * (1- victim:GetPhysicalArmorReduction() / 100 )
 		elseif damagetype == 2 then -- magical damage
-			dmgBlock = damage *  (1 - victim:GetMagicalArmorValue())
+			dmgBlock = damage * (1 - victim:GetMagicalArmorValue())
 		elseif damagetype == 4 then -- pure damage
 			dmgBlock = damagefilter
 		end

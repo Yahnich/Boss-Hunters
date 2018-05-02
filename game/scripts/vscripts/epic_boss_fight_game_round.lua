@@ -194,10 +194,10 @@ function CHoldoutGameRound:End(bWonRound)
 			if PlayerResource:IsValidPlayerID(pID) and PlayerResource:GetSelectedHeroEntity( pID ) then
 				local hero = PlayerResource:GetSelectedHeroEntity( pID )
 				local redKey = hero:FindModifierByName("relic_cursed_red_key")
-				local baseChance = 25
-				if redKey then baseChance = 50 end
+				local baseChance = 33
+				if redKey then baseChance = 66 end
 				hero.internalRelicPRNGAdder = hero.internalRelicPRNGAdder or -(baseChance / 15)
-				if redKey then hero.internalRelicRNG = math.max(hero.internalRelicRNG, 50) end
+				if redKey then hero.internalRelicRNG = math.max(hero.internalRelicRNG, 66) end
 				local roll = RollPercentage(hero.internalRelicRNG + hero.internalRelicPRNGAdder)
 				if hero and roll then
 					RelicManager:RollRelicsForPlayer( pID )
@@ -208,6 +208,11 @@ function CHoldoutGameRound:End(bWonRound)
 					hero.internalRelicPRNGAdder = hero.internalRelicPRNGAdder + (baseChance / 15)
 				end
 				if redKey and not roll then redKey:SetStackCount( 1 ) end
+				
+				local stick = hero:FindModifierByName("relic_generic_stick")
+				if stick and self._nRoundNumber % 2 == 0 then
+					stick:SetStackCount( math.ceil( stick:GetStackCount() * 1.6 ) )
+				end
 			end
 		end
 	end
@@ -337,7 +342,6 @@ function CHoldoutGameRound:OnEntityKilled( event )
 		end
 	else
 		for _, hero in ipairs( HeroList:GetAllHeroes() ) do
-			hero:HealEvent( hero:GetMaxHealth() * 0.02, nil, nil )
 			hero:GiveMana( hero:GetMaxMana() * 0.02 )
 		end
 	end

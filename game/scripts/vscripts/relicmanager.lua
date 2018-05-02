@@ -10,8 +10,8 @@ function RelicManager:new( o )
   return o
 end
 
-SKIP_RELIC_CHANCE_INCREASE = 15
-BASE_RELIC_CHANCE = 25
+SKIP_RELIC_CHANCE_INCREASE = 25
+BASE_RELIC_CHANCE = 33
 
 function RelicManager:Initialize()
   RelicManager = self

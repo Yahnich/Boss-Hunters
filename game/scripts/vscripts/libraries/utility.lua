@@ -1322,6 +1322,10 @@ function CDOTABaseAbility:SetCooldown(fCD)
 	end
 end
 
+function CDOTABaseAbility:IsDelayedCooldown()
+	return self.delayedCooldownTimer ~= nil
+end
+
 function CDOTABaseAbility:StartDelayedCooldown(flDelay, newCD)
 	self:EndDelayedCooldown()
 	self:EndCooldown()

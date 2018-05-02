@@ -104,12 +104,21 @@ if IsServer() then
 				picker = picker - weight
 			end
 		end
-
+		
 		local spawnedUnit = CreateUnitByName( spawnName, position, true, nil, nil, self:GetCaster():GetTeam() )
 		spawnedUnit:SetBaseMaxHealth(2000*GameRules.gameDifficulty)
 		spawnedUnit:SetMaxHealth(2000*GameRules.gameDifficulty)
 		spawnedUnit:SetHealth(spawnedUnit:GetMaxHealth())
 		spawnedUnit:SetAverageBaseDamage(spawnedUnit:GetAverageBaseDamage() / 1.5, 20)
+		
+		if spawnName == "npc_dota_boss32_trueform" then
+			spawnedUnit:FindAbilityByName("boss_meteor"):SetActivated(false)
+		elseif spawnName == "npc_dota_boss34" then
+			spawnedUnit:FindAbilityByName("boss_death_time"):SetActivated(false)
+		elseif spawnName == "npc_dota_boss35" then
+			spawnedUnit:FindAbilityByName("boss_doom_hell_tempest"):SetActivated(false)
+			spawnedUnit:FindAbilityByName("boss_doom_demonic_servants"):SetActivated(false)
+		end
 		
 		spawnedUnit:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_spawn_immunity", {duration = 2})
 		spawnedUnit:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_silence_generic", {duration = 2 + RandomInt(4,6)})

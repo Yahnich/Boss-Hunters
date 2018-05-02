@@ -400,7 +400,7 @@
 			{
 				"UnitBoss_8"
 				{
-					"NPCName"				"npc_dota_boss12_a_h"
+					"NPCName"				"npc_dota_boss12_golem"
 					"TotalUnitsToSpawn"		"1"
 					"UnitsPerSpawn"			"1"
 					"SpawnInterval"			"1"

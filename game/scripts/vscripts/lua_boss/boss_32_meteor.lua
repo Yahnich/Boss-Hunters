@@ -61,7 +61,7 @@ function meteor_on_spell_start(keys)
             end
             for _,unit in pairs ( Entities:FindAllByName( "npc_dota_hero*")) do
                 if unit:GetTeamNumber() == DOTA_TEAM_GOODGUYS then
-                    unit:SetHealth(math.ceil(unit:GetHealth()/2))
+                    unit:SetHealth(math.max(unit:GetMaxHealth() * 0.25, math.ceil( unit:GetHealth()/2 ) ) )
                     keys.ability:ApplyDataDrivenModifier(caster, unit, "fire_aura_debuff", {duration = fire_aura_duration})
                 end
             end

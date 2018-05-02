@@ -1,0 +1,189 @@
+"DOTAAbilities"
+{	
+	"boss_golem_split"
+	{
+	    // General
+	    //-------------------------------------------------------------------------------------------------------------
+	    "BaseClass"             		"ability_lua"
+		"ScriptFile"					"bosses/boss_evil_core/boss_evil_core_passive"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
+	    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
+	    "FightRecapLevel"               "1"
+	    "AbilityTextureName"			"mud_golem_rock_destroy"
+	    "MaxLevel"                      "1"
+		"PiercesDisableReduction"		"1"
+		
+		"AbilityCooldown"				"30"
+	
+	    // Special
+	    //-------------------------------------------------------------------------------------------------------------
+	
+	    "precache"
+	    {
+	        "particle"          "particles/units/heroes/hero_faceless_void/faceless_void_chronosphere.vpcf"
+	    }
+		
+		"AbilitySpecial"
+	    {
+	        "01"
+	        {
+	            "var_type"              "FIELD_INTEGER"
+	            "recharge_time"         "15"
+	        }
+	        "02"
+	        {
+	            "var_type"              "FIELD_INTEGER"
+	            "damage_per_hit"        "5"
+	        }
+	    }
+	}
+	"boss_golem_cracked_mass"
+	{
+	    // General
+	    //-------------------------------------------------------------------------------------------------------------
+	    "BaseClass"             		"ability_lua"
+		"ScriptFile"					"bosses/boss_evil_core/boss_evil_core_passive"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
+	    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
+	    "FightRecapLevel"               "1"
+	    "AbilityTextureName"			"tiny_avalanche"
+	    "MaxLevel"                      "1"
+		"PiercesDisableReduction"		"1"
+		
+		"AbilityCooldown"				"30"
+	
+	    // Special
+	    //-------------------------------------------------------------------------------------------------------------
+	
+	    "precache"
+	    {
+	        "particle"          "particles/units/heroes/hero_faceless_void/faceless_void_chronosphere.vpcf"
+	    }
+		
+		"AbilitySpecial"
+	    {
+	        "01"
+	        {
+	            "var_type"              "FIELD_INTEGER"
+	            "recharge_time"         "15"
+	        }
+	        "02"
+	        {
+	            "var_type"              "FIELD_INTEGER"
+	            "damage_per_hit"        "5"
+	        }
+	    }
+	}
+	"boss_golem_golem_toss"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_ogres/boss_ogre_smash"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+		"AbilityTextureName" 			"mud_golem_hurl_boulder"
+		
+		"precache"
+		{
+			"particle_folder"				"particles/test_particle"
+			"particle_folder"				"particles/econ/generic/generic_aoe_shockwave_1"
+			"soundfile"						"soundevents/game_sounds/ability_melee_smash.vsndevts"
+		}
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"500"
+		"AbilityCastPoint"				"2" 					// Time before spell goes off when cast
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"	// Activity
+		"AnimationPlaybackRate"			"0.5"						// Animation speed multiplier
+		"AnimationIgnoresModelScale"	"1"
+	
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"12"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"325"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"1.0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"500"
+			}
+		}
+	}
+	"boss_golem_golem_leap"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_ogres/boss_ogre_smash"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+		"AbilityTextureName" 			"tiny_toss"
+		
+		"precache"
+		{
+			"particle_folder"				"particles/test_particle"
+			"particle_folder"				"particles/econ/generic/generic_aoe_shockwave_1"
+			"soundfile"						"soundevents/game_sounds/ability_melee_smash.vsndevts"
+		}
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"500"
+		"AbilityCastPoint"				"2" 					// Time before spell goes off when cast
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"	// Activity
+		"AnimationPlaybackRate"			"0.5"						// Animation speed multiplier
+		"AnimationIgnoresModelScale"	"1"
+	
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"12"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"325"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"1.0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"500"
+			}
+		}
+	}
+}
