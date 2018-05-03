@@ -35,7 +35,7 @@ end
 
 function AIThink(thisEntity)
 	if not thisEntity:IsDominated() then
-		if thisEntity:IsChanneling() then return 0.25 end
+		if thisEntity:IsChanneling() then return AI_THINK_RATE end
 		local danger = AICore:NearestEnemyHeroInRange( thisEntity, 900, true )
 		if danger then 
 			if thisEntity.march:IsFullyCastable() then
@@ -45,10 +45,10 @@ function AIThink(thisEntity)
 					Position = thisEntity:GetOrigin(),
 					AbilityIndex = thisEntity.march:entindex()
 				})
-				return 0.25
+				return AI_THINK_RATE
 			else
 				AICore:BeAHugeCoward( thisEntity, 900 )
-				return 0.25
+				return AI_THINK_RATE
 			end
 		else
 			if thisEntity.rockets:IsFullyCastable() and AICore:NearestEnemyHeroInRange( thisEntity, 2500, false ) then
@@ -57,7 +57,7 @@ function AIThink(thisEntity)
 					OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
 					AbilityIndex = thisEntity.rockets:entindex()
 				})
-				return 0.25
+				return AI_THINK_RATE
 			elseif not thisEntity.rockets:IsCooldownReady() then
 				ExecuteOrderFromTable({
 					UnitIndex = thisEntity:entindex(),
@@ -67,9 +67,9 @@ function AIThink(thisEntity)
 				return thisEntity.rearm:GetChannelTime() + 0.1
 			else
 				AICore:RunToRandomPosition( thisEntity, 10 )
-				return 0.25
+				return AI_THINK_RATE
 			end
 		end
-		return 0.25
-	else return 0.25 end
+		return AI_THINK_RATE
+	else return AI_THINK_RATE end
 end

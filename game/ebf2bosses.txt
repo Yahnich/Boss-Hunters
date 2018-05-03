@@ -41,12 +41,6 @@ stun is recast a few times, acting as a cone
 Lightning is unchanged, just lower cooldown or smth
 Pulse Nova changed to a single constant beam that slowly moves towards the nearest enemy hero
 
-boss11 - splitting golem
-ALL GOLEMS HAVE:
-Split on Death -> splits into 3 lesser golems on death
-Shard Toss -> Reduces own health permanenently, down to 50% max health max and reducing own size; throws a lesser golem at the enemy; golem stuns if it lands on top of someone
-Boulder Roll -> Rolls 400 units forward at 600 speed
-
 Boss12 - Ogres
 
 12a
@@ -116,7 +110,7 @@ Flashback - Upon taking more than 5% current hp in damage, Aeon will evade that 
 Actives:
 Chronal Sphere - Aeon creates a growing bubble, stunning any enemy units caught in the sphere.
 Sins of the Past - Aeon creates an illusion of an enemy hero, as long as this illusion exists Aeon takes no damage. Illusion deals 100% damage and takes 100% damage.
-Rewind - Summons 3 random previous bosses; only 3 bosses can exist
+Rewind - Summons 3 random previous bosses; only 3 bosses can exist; Aeon is invulnerable during that time and is silenced
 Fetal Syndrome - Targets the person dealing the most damage, this unit will deal 75% less damage for 10 seconds.
 Deteriorate - Applies a debuff that makes all enemies in the aoe lose 1 armor per second for 60 seconds, 160s cooldown. Unpurgeable
 

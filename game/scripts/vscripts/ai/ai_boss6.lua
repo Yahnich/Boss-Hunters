@@ -62,7 +62,7 @@ function AIThink(thisEntity)
 					OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
 					AbilityIndex = thisEntity.pounce:entindex()
 				})
-				return 0.25
+				return AI_THINK_RATE
 			end
 			local target = AICore:HighestThreatHeroInRange(thisEntity, 9000, 15, true)
 			if not target then target = AICore:WeakestEnemyHeroInRange( thisEntity, 9000, true) end
@@ -81,12 +81,12 @@ function AIThink(thisEntity)
 						OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
 						AbilityIndex = thisEntity.pounce:entindex()
 					})
-					return 0.25
+					return AI_THINK_RATE
 				end
 			else
 				AICore:AttackHighestPriority( thisEntity )
 			end
 		thisEntity.prevHP = thisEntity:GetHealth()
-		return 0.25
-	else return 0.25 end
+		return AI_THINK_RATE
+	else return AI_THINK_RATE end
 end

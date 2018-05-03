@@ -100,7 +100,7 @@ function AIThink(thisEntity)
 						if thisEntity.web:IsFullyCastable() then
 							return CastWeb( thisEntity, thisEntity:GetAbsOrigin() - thisEntity:GetForwardVector() * thisEntity.web:GetTrueCastRange() )
 						end
-						return 0.25
+						return AI_THINK_RATE
 					end
 					if thisEntity.infest:IsFullyCastable() then
 						if distance < thisEntity.infest:GetTrueCastRange() then
@@ -127,7 +127,7 @@ function AIThink(thisEntity)
 				else
 					if AICore:BeingAttacked( thisEntity ) > 1 or (thisEntity:IsDisarmed() and not thisEntity.hunger:IsFullyCastable()) or thisEntity:IsSilenced() then
 						thisEntity.getAIState = AI_STATE_COWARD
-						return 0.25
+						return AI_THINK_RATE
 					end
 					if thisEntity.hunger:IsFullyCastable() then
 						if thisEntity:IsAttacking() or (thisEntity:IsDisarmed() and distance < thisEntity:GetAttackRange()) then
@@ -158,7 +158,7 @@ function AIThink(thisEntity)
 					if thisEntity.egg:IsFullyCastable() and AICore:SpecificAlliedUnitsAlive( thisEntity, "npc_dota_creature_broodmother", -1 ) < 4 then return CastEggSack(thisEntity, thisEntity:GetAbsOrigin() + RandomVector(thisEntity.egg:GetTrueCastRange()) ) end
 				end
 				AICore:AttackHighestPriority( thisEntity )
-				return 0.25
+				return AI_THINK_RATE
 			elseif thisEntity.getAIState == AI_STATE_COWARD then
 				local runPosition = AICore:BeAHugeCoward( thisEntity, 800 )
 				if not runPosition then thisEntity:GetAbsOrigin() end
@@ -197,9 +197,9 @@ function AIThink(thisEntity)
 				end
 			end
 		end
-		return 0.25
+		return AI_THINK_RATE
 	else
-		return 0.25
+		return AI_THINK_RATE
 	end
 end
 

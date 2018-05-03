@@ -43,7 +43,7 @@ function AIThink(thisEntity)
 						Position = position,
 						AbilityIndex = thisEntity.smash:entindex()
 					})
-					return 0.25
+					return AI_THINK_RATE
 				end
 			end
 			if AICore:SpecificAlliedUnitsAlive( thisEntity, "npc_dota_boss24_stomper"..thisEntity.suffix ) < (2 + thisEntity.extra) and thisEntity.summon1:IsFullyCastable() then
@@ -71,7 +71,7 @@ function AIThink(thisEntity)
 				return thisEntity.summon3:GetChannelTime()+0.1
 			end
 			AICore:AttackHighestPriority( thisEntity )
-			return 0.25
+			return AI_THINK_RATE
 		else return 0.5 end
-	else return 0.25 end
+	else return AI_THINK_RATE end
 end

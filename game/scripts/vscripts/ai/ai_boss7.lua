@@ -26,7 +26,7 @@ function AIThink(thisEntity)
 				TargetIndex = target:entindex(),
 				AbilityIndex = thisEntity.wounds:entindex()
 			})
-			return 0.25
+			return AI_THINK_RATE
 		end
 		if ((thisEntity:IsAttackingEntity(target) and thisEntity:IsAttacking()) or thisEntity:IsDisabled()) and thisEntity.rage:IsFullyCastable()  then
 			ExecuteOrderFromTable({
@@ -36,6 +36,6 @@ function AIThink(thisEntity)
 			})
 		end
 		AICore:AttackHighestPriority( thisEntity )
-		return 0.25
-	else return 0.25 end
+		return AI_THINK_RATE
+	else return AI_THINK_RATE end
 end

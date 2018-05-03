@@ -34,7 +34,7 @@ function AIThink(thisEntity)
 				TargetIndex = thisEntity:entindex(),
 				AbilityIndex = thisEntity.bloodlust:entindex()
 			})
-			return 0.25
+			return AI_THINK_RATE
 		end
 		if thisEntity.kick:IsFullyCastable() then
 			local target = AICore:RandomEnemyHeroInRange( thisEntity, thisEntity.kick:GetCastRange() + 150, true)
@@ -45,7 +45,7 @@ function AIThink(thisEntity)
 					TargetIndex = target:entindex(),
 					AbilityIndex = thisEntity.kick:entindex()
 				})
-				return 0.25
+				return AI_THINK_RATE
 			end
 		end
 		if thisEntity.punch:IsFullyCastable() then
@@ -57,7 +57,7 @@ function AIThink(thisEntity)
 					TargetIndex = target:entindex(),
 					AbilityIndex =  thisEntity.punch:entindex()
 				})
-				return 0.25
+				return AI_THINK_RATE
 			end
 		end
 		if thisEntity.smash:IsFullyCastable() and AICore:TotalEnemyHeroesInRange( thisEntity, 500) > 2 then
@@ -70,10 +70,10 @@ function AIThink(thisEntity)
 					Position = target:GetOrigin(),
 					AbilityIndex = thisEntity.smash:entindex()
 				})
-				return 0.25
+				return AI_THINK_RATE
 			end
 		end
 		AICore:AttackHighestPriority( thisEntity )
-		return 0.25
-	else return 0.25 end
+		return AI_THINK_RATE
+	else return AI_THINK_RATE end
 end

@@ -1,11 +1,11 @@
 relic_cursed_the_pact = class({})
 
 function relic_cursed_the_pact:DeclareFunctions()
-	return {MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE, MODIFIER_EVENT_ON_TAKEDAMAGE}
+	return {MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE, MODIFIER_PROPERTY_DISABLE_HEALING}
 end
 
 function relic_cursed_the_pact:OnTakeDamage(params)
-	if params.attacker == self:GetParent() and not params.inflictor and self:GetParent():GetHealth() > params.damage and not ( HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_HPLOSS) or HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION) or HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_NO_SPELL_LIFESTEAL) ) then
+	if params.attacker == self:GetParent() and not params.inflictor and self:GetParent():GetHealth() ~= 0 and not ( HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_HPLOSS) or HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION) or HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_NO_SPELL_LIFESTEAL) ) then
 		local heal = math.min( params.attacker:GetHealthDeficit(), params.damage )
 		if heal > 0 then
 			SendOverheadEventMessage(params.attacker, OVERHEAD_ALERT_HEAL, params.attacker, heal, params.attacker)
@@ -19,12 +19,8 @@ function relic_cursed_the_pact:GetModifierDamageOutgoing_Percentage()
 	return 100
 end
 
-function relic_cursed_the_pact:GetModifierHealAmplify_Percentage(params)
-	-- regen has no caster
-	-- other heals have abilities
-	if not (params.target == self:GetParent() and params.healer and not params.ability) then
-		return -100
-	end
+function relic_cursed_the_pact:GetDisableHealing(params)
+	return 1
 end
 
 function relic_cursed_the_pact:IsHidden()

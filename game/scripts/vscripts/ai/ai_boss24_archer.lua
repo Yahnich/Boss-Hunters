@@ -63,10 +63,10 @@ function AIThink(thisEntity)
 						TargetIndex = target:entindex(),
 						AbilityIndex = thisEntity.focus:entindex()
 					})
-				return 0.25
+				return AI_THINK_RATE
 			end
 			AICore:AttackHighestPriority( thisEntity )
-		return 0.25
+		return AI_THINK_RATE
 		end
-	else return 0.25 end
+	else return AI_THINK_RATE end
 end

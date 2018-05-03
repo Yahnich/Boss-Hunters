@@ -38,7 +38,7 @@ function AIThink(thisEntity)
 						OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
 						AbilityIndex = thisEntity.crush:entindex()
 					})
-					return 0.25
+					return AI_THINK_RATE
 				end
 			end
 			if thisEntity.fire:IsFullyCastable() then
@@ -69,9 +69,9 @@ function AIThink(thisEntity)
 				end
 			end
 			AICore:AttackHighestPriority( thisEntity )
-			return 0.25
+			return AI_THINK_RATE
 		else
 			return 0.5
 		end
-	else return 0.25 end
+	else return AI_THINK_RATE end
 end

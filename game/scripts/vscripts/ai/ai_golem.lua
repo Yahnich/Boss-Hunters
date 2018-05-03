@@ -80,8 +80,8 @@ function AIThink(thisEntity)
 				end
 			end
 			AICore:AttackHighestPriority( thisEntity )
-			return 0.25
-		else return 0.25 end
+			return 1
+		else return 1 end
 	end
 end
 

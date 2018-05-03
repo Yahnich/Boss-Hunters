@@ -43,7 +43,7 @@ function AIThink(thisEntity)
 					TargetIndex = target:entindex(),
 					AbilityIndex = thisEntity.lightning:entindex()
 				})
-				return 0.25
+				return AI_THINK_RATE
 			end
 		elseif thisEntity.spike:IsFullyCastable() then
 			local target = AICore:HighestThreatHeroInRange( thisEntity, thisEntity.spike:GetCastRange(), 15, false )
@@ -55,7 +55,7 @@ function AIThink(thisEntity)
 					AbilityIndex = thisEntity.spike:entindex(),
 					Position = target:GetOrigin()
 				})
-				return 0.25
+				return AI_THINK_RATE
 			end
 		elseif thisEntity.lightning:IsFullyCastable() then
 			local target = AICore:HighestThreatHeroInRange( thisEntity, thisEntity.lightning:GetCastRange(), 0, false )
@@ -68,9 +68,9 @@ function AIThink(thisEntity)
 					AbilityIndex = thisEntity.lightning:entindex()
 				})
 			end
-			return 0.25
+			return AI_THINK_RATE
 		end
 		AICore:AttackHighestPriority( thisEntity )
-		return 0.25
-	else return 0.25 end
+		return AI_THINK_RATE
+	else return AI_THINK_RATE end
 end

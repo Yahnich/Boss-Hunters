@@ -54,22 +54,22 @@ if IsServer() then
 					OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
 					AbilityIndex = thisEntity.tombstone:entindex()
 				})
-				return 0.25
+				return AI_THINK_RATE
 			elseif thisEntity.tombstone:IsFullyCastable() and thisEntity:GetHealthPercent() < 10 then
 				if AICore:IsNearEnemyUnit(thisEntity, 600) then
 					AICore:BeAHugeCoward( thisEntity, 600 )
-					return 0.25
+					return AI_THINK_RATE
 				else
 					ExecuteOrderFromTable({
 						UnitIndex = thisEntity:entindex(),
 						OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
 						AbilityIndex = thisEntity.tombstone:entindex()
 					})
-					return 0.25
+					return AI_THINK_RATE
 				end
 			end
 			AICore:AttackHighestPriority( thisEntity )
-			return 0.25
-		else return 0.25 end
+			return AI_THINK_RATE
+		else return AI_THINK_RATE end
 	end
 end

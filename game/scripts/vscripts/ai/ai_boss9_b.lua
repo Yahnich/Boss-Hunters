@@ -26,9 +26,9 @@ function AIThink(thisEntity)
 				OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
 				AbilityIndex = thisEntity.crush:entindex()
 			})
-			return 0.25
+			return AI_THINK_RATE
 		end
 		AICore:AttackHighestPriority( thisEntity )
-		return 0.25
-	else return 0.25 end
+		return AI_THINK_RATE
+	else return AI_THINK_RATE end
 end

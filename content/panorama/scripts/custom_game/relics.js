@@ -57,7 +57,7 @@ function AddHover(panelID)
 	var buttonPanel = $("#"+panelID)
 	buttonPanel.SetHasClass("ButtonHover", true)
 	if(panelID == "SkipButton"){
-		$.DispatchEvent("DOTAShowTextTooltip", buttonPanel, "Skipping a relic will grants a stacking 15% bonus chance of receiving a relic (25% base chance) next round.")
+		$.DispatchEvent("DOTAShowTextTooltip", buttonPanel, "Skipping a relic will grants a stacking 25% bonus chance of receiving a relic (33% base chance) next round.")
 	}
 }
 
@@ -155,7 +155,7 @@ function CreateRelicPanel(name)
 
 function ShowRelicTooltip()
 {
-	$.DispatchEvent("DOTAShowTextTooltip", $("#RelicInventoryButton"), "Relics are permanent bonuses that have a 25% chance of being found at the end of a round.")
+	$.DispatchEvent("DOTAShowTextTooltip", $("#RelicInventoryButton"), "Relics are permanent bonuses that have a 33% chance of being found at the end of a round.")
 }
 
 function HideRelicTooltip()
