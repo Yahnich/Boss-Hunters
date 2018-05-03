@@ -1597,13 +1597,16 @@ end
 function CHoldoutGameMode:CheckHP()
 	local dontdelete = {["npc_dota_lone_druid_bear"] = true}
 	for _,unit in ipairs ( FindAllEntitiesByClassname("npc_dota_creature")) do
-		if unit:GetAbsOrigin().z < 0 or  unit:GetAbsOrigin().z > 500 then
+		if unit:GetAbsOrigin().z < GetGroundHeight(unit:GetAbsOrigin(), unit) or unit:GetAbsOrigin().z > 1800 +  GetGroundHeight(unit:GetAbsOrigin(), unit) then
 			local currOrigin = unit:GetAbsOrigin()
 			FindClearSpaceForUnit(unit, GetGroundPosition(currOrigin, unit), true)
 		end
 		if unit:GetHealth() <= 0 and unit:IsCreature() then
-			if unit:IsAlive() then
+			if not unit:IsNull() then
+				unit:SetBaseMaxHealth( 1 )
+				unit:SetMaxHealth( 1 )
 				unit:SetHealth( 1 )
+				
 				unit:ForceKill( false )
 			end
 		end

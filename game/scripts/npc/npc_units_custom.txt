@@ -476,7 +476,7 @@
 		"AttackRate"				"3"	
 		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"18000"		// Range within a target can be acquired.
-		"AttackRange"				"256"		// Range within a target can be attacked.
+		"AttackRange"				"150"		// Range within a target can be attacked.
 		"ProjectileModel"			""			// Particle system model for projectile.
 		"ProjectileSpeed"			""			// Speed of projectile.
 	
@@ -489,7 +489,7 @@
 		// Bounds
 		//----------------------------------------------------------------
 		"RingRadius"				"120"
-		"HealthBarOffset"			"600"
+		"HealthBarOffset"			"350"
 		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"	
 	
 		// Movement
@@ -550,9 +550,9 @@
 		//
 		"BaseClass"					"npc_dota_creature"	// Class of entity of link to.
 		"Model"						"models/creeps/neutral_creeps/n_creep_golem_b/n_creep_golem_b.vmdl"	// Model.
-		"ModelScale"				"0.5"
+		"ModelScale"				"0.8"
 		"Level"						"12"
-		"IsAncient"			"0"
+		"IsAncient"					"0"
 		"IsCore"					"1"
 		"vscripts"					"ai/ai_generic.lua"
 	
@@ -562,8 +562,8 @@
 		"Ability1"					""			// Ability 1.
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"10"			// Physical protection.
-		"MagicalResistance"			"25"		// Magical protection.
+		"ArmorPhysical"				"0"			// Physical protection.
+		"MagicalResistance"			"0"		// Magical protection.
 	
 		// Attack
 		//----------------------------------------------------------------
@@ -573,7 +573,7 @@
 		"AttackRate"				"3"	
 		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"18000"		// Range within a target can be acquired.
-		"AttackRange"				"256"		// Range within a target can be attacked.
+		"AttackRange"				"150"		// Range within a target can be attacked.
 		"ProjectileModel"			""			// Particle system model for projectile.
 		"ProjectileSpeed"			""			// Speed of projectile.
 	
@@ -586,7 +586,7 @@
 		// Bounds
 		//----------------------------------------------------------------
 		"RingRadius"				"120"
-		"HealthBarOffset"			"600"
+		"HealthBarOffset"			"350"
 		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"	
 	
 		// Movement

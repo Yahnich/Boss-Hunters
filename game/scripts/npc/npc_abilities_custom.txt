@@ -67,6 +67,7 @@
 #base "heroes/hero_juggernaut.txt"
 #base "heroes/hero_shadow_fiend.txt"
 #base "heroes/hero_skywrath.txt"
+#base "heroes/hero_zeus.txt"
 
 "DOTAAbilities"
 {

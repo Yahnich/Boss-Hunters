@@ -106,7 +106,8 @@ if IsServer() then
 		self.deathLoss = self:GetTalentSpecialValueFor("death_soul_loss") / 100
 		self.excessLoss = self:GetTalentSpecialValueFor("excess_loss_rate")
 		if IsServer() then
-			if self.max > self:GetStackCount() then
+			if self.max <= self:GetStackCount() then
+				self:SetDuration(self.excessLoss, true)
 				self:AddIndependentStack( self.excessLoss )
 			else
 				self:IncrementStackCount()
@@ -114,9 +115,8 @@ if IsServer() then
 		end
 	end
 	function modifier_shadow_fiend_necro:OnStackCountChanged( oldStacks )
-		if self:GetStackCount() > self.max then
-			self:SetDuration(self.excessLoss, true)
-		else
+		print(self:GetStackCount() <= self.max, "stack change")
+		if self:GetStackCount() <= self.max then
 			self:SetDuration(-1, true)
 		end
 	end

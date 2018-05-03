@@ -65,31 +65,34 @@ function UpdateHealthBar(unit)
 		}
 		$("#bossNameLabel").text = $.Localize("#" + unitName + nameMod);
 		$("#hpBarCurrentText").text = Entities.GetHealth( sUnit ) + " / " + Entities.GetMaxHealth( sUnit );
-		var hpPct = Entities.GetHealth( sUnit )/Entities.GetMaxHealth( sUnit ) * 100
-		$("#hpBarCurrent").style.clip = "rect( 0% ," + hpPct + "%" + ", 100% ,0% )";
-		
-		var elite = ""
-		for (var i = 0; i < Entities.GetAbilityCount( sUnit ); i++) {
-			var abilityID = Entities.GetAbility( sUnit, i )
-			var abilityName = 	Abilities.GetAbilityName( abilityID )
-			if (abilityName.match(/elite_/g)){
-				elite = elite + " " + $.Localize( "#DOTA_Tooltip_ability_" + abilityName )
+		if(Entities.GetMaxHealth( sUnit ) > 0)
+		{
+			var hpPct = Entities.GetHealth( sUnit )/Entities.GetMaxHealth( sUnit ) * 100
+			$("#hpBarCurrent").style.clip = "rect( 0% ," + hpPct + "%" + ", 100% ,0% )";
+			
+			var elite = ""
+			for (var i = 0; i < Entities.GetAbilityCount( sUnit ); i++) {
+				var abilityID = Entities.GetAbility( sUnit, i )
+				var abilityName = 	Abilities.GetAbilityName( abilityID )
+				if (abilityName.match(/elite_/g)){
+					elite = elite + " " + $.Localize( "#DOTA_Tooltip_ability_" + abilityName )
+				}
 			}
-		}
-		if(elite != ""){
-			$("#eliteSpecsText").visible = true;
-			$("#eliteSpecsText").text = elite;
-		} else {
-			$("#eliteSpecsText").visible = false;
-		}
-		var maxMana = Entities.GetMaxMana( sUnit )
-		if(maxMana > 0){
-			$("#mpBarRoot").visible = true;
-			$("#mpBarCurrentText").text = Entities.GetMana( sUnit ) + " / " + maxMana;
-			var manaPct = Entities.GetMana( sUnit ) / maxMana * 100
-			$("#mpBarCurrent").style.clip = "rect( 0% ," + manaPct + "%" + ", 100% ,0% )";
-		} else {
-			$("#mpBarRoot").visible = false;
+			if(elite != ""){
+				$("#eliteSpecsText").visible = true;
+				$("#eliteSpecsText").text = elite;
+			} else {
+				$("#eliteSpecsText").visible = false;
+			}
+			var maxMana = Entities.GetMaxMana( sUnit )
+			if(maxMana > 0){
+				$("#mpBarRoot").visible = true;
+				$("#mpBarCurrentText").text = Entities.GetMana( sUnit ) + " / " + maxMana;
+				var manaPct = Entities.GetMana( sUnit ) / maxMana * 100
+				$("#mpBarCurrent").style.clip = "rect( 0% ," + manaPct + "%" + ", 100% ,0% )";
+			} else {
+				$("#mpBarRoot").visible = false;
+			}
 		}
 	}
 	$.Schedule( 0.33, UpdateHealthBar )

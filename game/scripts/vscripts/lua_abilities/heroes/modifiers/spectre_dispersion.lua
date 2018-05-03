@@ -37,7 +37,7 @@ function modifier_spectre_dispersion_ebf:GetModifierIncomingDamage_Percentage(pa
 	local attacker = params.attacker
     local reflect_damage = self.reflect / 100
 	if attacker and attacker:GetTeamNumber()  ~= hero:GetTeamNumber() then
-		if params.unit == hero and hero:GetHealth() >= 1 then
+		if hero:GetHealth() >= 1 then
 			local units = FindUnitsInRadius(self:GetParent():GetTeamNumber(), 
 			hero:GetAbsOrigin(), 
 			hero, 

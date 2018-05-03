@@ -1616,12 +1616,9 @@ function CDOTA_BaseNPC:FindAllUnitsInRadius(position, radius, hData)
 end
 
 function ParticleManager:FireWarningParticle(position, radius)
-	local thinker = ParticleManager:CreateParticle("particles/econ/generic/generic_aoe_shockwave_1/generic_aoe_shockwave_1.vpcf", PATTACH_WORLDORIGIN, nil)
+	local thinker = ParticleManager:CreateParticle("particles/generic_radius_warning.vpcf", PATTACH_WORLDORIGIN, nil)
 			ParticleManager:SetParticleControl(thinker, 0, GetGroundPosition( position, nil) )
-			ParticleManager:SetParticleControl(thinker, 2, Vector(6,0,1))
 			ParticleManager:SetParticleControl(thinker, 1, Vector(radius,0,0))
-			ParticleManager:SetParticleControl(thinker, 3, Vector(255,0,0))
-			ParticleManager:SetParticleControl(thinker, 4, Vector(0,0,0))
 	ParticleManager:ReleaseParticleIndex(thinker)
 end
 

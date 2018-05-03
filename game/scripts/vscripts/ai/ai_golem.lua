@@ -37,7 +37,49 @@ end
 function AIThink(thisEntity)
 	if thisEntity and not thisEntity:IsNull() then
 		if not thisEntity:IsDominated() then
-			-- AICore:AttackHighestPriority( thisEntity )
+			local target = AICore:GetHighestPriorityTarget( thisEntity )
+			if thisEntity.smash:IsFullyCastable() and AICore:TotalEnemyHeroesInRange( thisEntity, thisEntity.smash:GetTrueCastRange()) >= 1 then
+				return Smash()
+			end
+			if thisEntity.leap:IsFullyCastable() then
+				if CalculateDistance(target, thisEntity) > thisEntity:GetAttackRange() then
+					if CalculateDistance(target, thisEntity) > thisEntity.leap:GetTrueCastRange() then
+						if RollPercentage(50) then
+							return Leap( thisEntity:GetAbsOrigin() + CalculateDirection(target, thisEntity) * thisEntity.leap:GetTrueCastRange() )
+						else
+							local nearest = AICore:NearestEnemyHeroInRange( thisEntity, thisEntity.leap:GetTrueCastRange() , true )
+							if nearest then
+								return Leap( nearest:GetAbsOrigin() )
+							end
+						end
+					end
+				elseif RollPercentage(50) then
+					local weakest = AICore:WeakestEnemyHeroInRange( thisEntity, thisEntity.leap:GetTrueCastRange() , true )
+					if weakest then
+						return Leap( weakest:GetAbsOrigin() )
+					end
+					local nearest = AICore:NearestEnemyHeroInRange( thisEntity, thisEntity.leap:GetTrueCastRange() , true )
+					if nearest then
+						return Leap( nearest:GetAbsOrigin() )
+					end
+				end
+			end
+			if thisEntity.toss:IsFullyCastable() then
+				local tossTarget = target
+				if RollPercentage(33) then
+					local tossTarget = AICore:MostDamageEnemyHeroInRange( thisEntity, -1, true)
+				elseif RollPercentage(33) then
+					local tossTarget = AICore:WeakestEnemyHeroInRange( thisEntity, -1, true)
+				elseif RollPercentage(33) then
+					local tossTarget = AICore:NearestEnemyHeroInRange( thisEntity, -1, true)
+				end
+				if CalculateDistance( tossTarget, thisEntity ) > thisEntity.toss:GetTrueCastRange() then
+					return TossGolem( thisEntity:GetAbsOrigin() + CalculateDirection(tossTarget, thisEntity) * thisEntity.toss:GetTrueCastRange())
+				else
+					return TossGolem( tossTarget:GetAbsOrigin() )
+				end
+			end
+			AICore:AttackHighestPriority( thisEntity )
 			return 0.25
 		else return 0.25 end
 	end
