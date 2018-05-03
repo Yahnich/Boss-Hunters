@@ -15,6 +15,7 @@ LinkLuaModifier("modifier_boss_doom_unstoppable", "bosses/boss_doom/boss_doom_un
 function modifier_boss_doom_unstoppable:OnCreated()
 	self.dmg = self:GetSpecialValueFor("bonus_damage")
 	self.as = self:GetSpecialValueFor("bonus_attackspeed")
+	self.red = self:GetSpecialValueFor("damage_reduction")
 	if IsServer() then self:StartIntervalThink(0.1) end
 end
 
@@ -28,7 +29,12 @@ end
 
 function modifier_boss_doom_unstoppable:DeclareFunctions()
 	return {MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE,
-			MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT}
+			MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+			MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE}
+end
+
+function modifier_boss_doom_demonic_servants_handler:GetModifierIncomingDamage_Percentage()
+	return self.red
 end
 
 function modifier_boss_doom_unstoppable:GetModifierDamageOutgoing_Percentage()

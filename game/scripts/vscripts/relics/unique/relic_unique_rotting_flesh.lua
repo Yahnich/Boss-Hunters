@@ -54,3 +54,7 @@ end
 function relic_unique_rotting_flesh:AllowIllusionDuplicate()
 	return true
 end
+
+function relic_unique_rotting_flesh:GetAttributes()
+	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_PERMANENT
+end

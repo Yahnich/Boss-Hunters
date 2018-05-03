@@ -31,3 +31,7 @@ end
 function relic_generic_unicorn_horn:AllowIllusionDuplicate()
 	return true
 end
+
+function relic_generic_unicorn_horn:GetAttributes()
+	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_PERMANENT
+end

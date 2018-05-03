@@ -29,6 +29,7 @@ require("libraries/utility")
 require("libraries/animations")
 require("stats_screen")
 require("relicmanager")
+require( "ai/ai_core" )
 
 LinkLuaModifier( "modifier_stats_system_handler", "libraries/modifiers/modifier_stats_system_handler.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_blind_generic", "libraries/modifiers/modifier_blind_generic.lua", LUA_MODIFIER_MOTION_NONE)
@@ -56,6 +57,8 @@ LinkLuaModifier( "modifier_spawn_immunity", "libraries/modifiers/modifier_spawn_
 LinkLuaModifier( "modifier_tombstone_respawn_immunity", "libraries/modifiers/modifier_tombstone_respawn_immunity.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_generic_attack_bonus", "libraries/modifiers/modifier_generic_attack_bonus.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_generic_attack_bonus_pct", "libraries/modifiers/modifier_generic_attack_bonus.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier( "modifier_cooldown_reduction_handler", "libraries/modifiers/modifier_cooldown_reduction_handler.lua", LUA_MODIFIER_MOTION_NONE)
+
 
 -- Precache resources
 function Precache( context )
@@ -290,13 +293,13 @@ function CHoldoutGameMode:InitGameMode()
 	-- Custom console commands
 	Convars:RegisterCommand( "holdout_test_round", function(...) return self:_TestRoundConsoleCommand( ... ) end, "Test a round of holdout.", FCVAR_CHEAT )
 	Convars:RegisterCommand( "clear_relics", function()
-											if Convars:GetDOTACommandClient() then
+											if Convars:GetDOTACommandClient() and IsInToolsMode() then
 												local player = Convars:GetDOTACommandClient()
 												RelicManager:ClearRelics(player:GetPlayerID()) 
 											end
 										end, "adding relics",0)
 	Convars:RegisterCommand( "add_relic", function(command, relicName)
-											if Convars:GetDOTACommandClient() then
+											if Convars:GetDOTACommandClient() and IsInToolsMode() then
 												local player = Convars:GetDOTACommandClient()
 												local hero = player:GetAssignedHero()
 												print(relicName, "ok")
@@ -330,7 +333,7 @@ function CHoldoutGameMode:InitGameMode()
 													end
 												end, "fixing bug",0)
 														
-	Convars:RegisterCommand( "spawn_elite", function(...) return self.SpawnTestElites( ... ) end, "look like someone try to steal my map :D",0)
+	Convars:RegisterCommand( "spawn_elite", function(...) if IsInToolsMode() then return self.SpawnTestElites( ... ) end end, "look like someone try to steal my map :D",0)
 	
 	-- Hook into game events allowing reload of functions at run time
 	ListenToGameEvent( "npc_spawned", Dynamic_Wrap( CHoldoutGameMode, "OnNPCSpawned" ), self )
@@ -629,13 +632,19 @@ function CHoldoutGameMode:FilterHeal( filterTable )
 		local params = {healer = healer, target = target, heal = heal, ability = source}
 		for _, modifier in ipairs( target:FindAllModifiers() ) do
 			if modifier.GetModifierHealAmplify_Percentage then
-				filterTable["heal"] = filterTable["heal"] * math.max(0, (1 + (modifier:GetModifierHealAmplify_Percentage( params ) or 0)/100) )
+				filterTable["heal"] = filterTable["heal"] * math.max(0, (1 + ( modifier:GetModifierHealAmplify_Percentage( params ) or 0 )/100) )
 			end
 		end
 	end
 
 	if not healer_index or not heal then return true end
 	healer.statsDamageHealed = (healer.statsDamageHealed or 0) + filterTable["heal"]
+	
+	if healer and target and healer ~= target and healer:HasRelic("relic_cursed_bloody_silk") then
+		target:HealEvent(50, nil, healer, true)
+		ApplyDamage({victim = healer, attacker = healer, damage = 20, damage_type = DAMAGE_TYPE_PURE, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION })
+	end
+	
 	if healer:GetTeam() == DOTA_TEAM_GOODGUYS then
 		local totalHealth = 0
 		for _, ally in ipairs( healer:FindFriendlyUnitsInRadius( healer:GetAbsOrigin(), -1 ) ) do
@@ -675,22 +684,13 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 		end
 	end
 	
-	if not inflictor and not attacker:IsCreature() and attacker:HasModifier("Piercing") and filterTable["damagetype_const"] == 1 then -- APPLY piercing damage to certain damage
-		local originaldamage =  damage / (1 - victim:GetPhysicalArmorReduction() / 100 )
-		local item = attacker:FindModifierByName("Piercing"):GetAbility()
-		local pierce = item:GetSpecialValueFor("Pierce_percent") / 100
-		if attacker:IsIllusion() then pierce = pierce / 7 end
-		ApplyDamage({victim = victim, attacker = attacker, damage = originaldamage * pierce, damage_type = DAMAGE_TYPE_PURE, ability = item, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
-		filterTable["damage"] = filterTable["damage"] - filterTable["damage"]*pierce
-	end
-	if inflictor and not attacker:IsCreature() and attacker:HasModifier("Piercing") and filterTable["damagetype_const"] == 1 then -- APPLY piercing damage to certain damage
-		local ability = EntIndexToHScript( inflictor )
-		if ability:AbilityPierces() and attacker:HasAbility(ability:GetName()) then
-			local originaldamage =  damage / (1 - victim:GetPhysicalArmorReduction() / 100 )
-			local pierce = attacker:FindModifierByName("Piercing"):GetAbility():GetSpecialValueFor("Pierce_percent") / 100
-			ApplyDamage({victim = victim, attacker = attacker, damage = originaldamage * pierce, damage_type = DAMAGE_TYPE_PURE, ability = attacker:FindModifierByName("Piercing"):GetAbility(), damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
-			filterTable["damage"] = filterTable["damage"] - filterTable["damage"]*pierce
+	if attacker:HasModifier("relic_unique_eldritch_rune") and inflictor then
+		if damagetype == DAMAGE_TYPE_PHYSICAL then
+			ApplyDamage({victim = victim, attacker = attacker, damage = damage * (1- victim:GetPhysicalArmorReduction() / 100 ), damage_type = DAMAGE_TYPE_MAGICAL})
+		elseif damagetype == DAMAGE_TYPE_MAGICAL then
+			ApplyDamage({victim = victim, attacker = attacker, damage = damage * (1 - victim:GetMagicalArmorValue()), damage_type = DAMAGE_TYPE_PHYSICAL})
 		end
+		return false
 	end
 	
 	-- CUSTOM DAMAGE PROPERTIES
@@ -703,7 +703,7 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 		if damagetype == 1 then -- physical
 			dmgBlock = damage * (1- victim:GetPhysicalArmorReduction() / 100 )
 		elseif damagetype == 2 then -- magical damage
-			dmgBlock = damage *  (1 - victim:GetMagicalArmorValue())
+			dmgBlock = damage * (1 - victim:GetMagicalArmorValue())
 		elseif damagetype == 4 then -- pure damage
 			dmgBlock = damagefilter
 		end
@@ -1157,6 +1157,7 @@ function CHoldoutGameMode:OnHeroPick (event)
 		StatsScreen:RegisterPlayer(hero)
 		RelicManager:RegisterPlayer( hero:GetPlayerID() )
 		hero:AddNewModifier(hero, nil, "modifier_stats_system_handler", {})
+		hero:AddNewModifier(hero, nil, "modifier_cooldown_reduction_handler", {})
 		
 		hero:AddExperience(GameRules.XP_PER_LEVEL[7],false,false)
 		hero:SetBaseMagicalResistanceValue(0)
@@ -1195,8 +1196,8 @@ function CHoldoutGameMode:OnHeroPick (event)
 		end
 		hero:SetGold( gold, true )
 		
-		hero:SetDayTimeVisionRange(hero:GetDayTimeVisionRange() * 2)
-		hero:SetNightTimeVisionRange(hero:GetNightTimeVisionRange() * 1.5)
+		hero:SetDayTimeVisionRange(hero:GetDayTimeVisionRange() * 1.5)
+		hero:SetNightTimeVisionRange(hero:GetNightTimeVisionRange() * 1.25)
 
 			
 		local player = PlayerResource:GetPlayer(ID)

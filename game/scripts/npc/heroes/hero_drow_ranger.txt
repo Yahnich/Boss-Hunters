@@ -330,6 +330,7 @@
 		"AbilitySound"					"Hero_DrowRanger.FrostArrows"
 		"MaxLevel"						"1"
 		"InnateAbility"					"1"
+		"IsOrb"							"1"
 		"AbilityTextureName"			"drow_ranger_frost_arrows"
 
 		// Casting

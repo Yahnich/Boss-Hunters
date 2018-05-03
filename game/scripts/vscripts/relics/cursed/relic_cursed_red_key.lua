@@ -33,3 +33,7 @@ end
 function relic_cursed_red_key:IsDebuff()
 	return true
 end
+
+function relic_cursed_red_key:GetAttributes()
+	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_PERMANENT
+end

@@ -64,7 +64,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage_max"			"200 225 250 275 300 325 350"
+				"damage_max"			"200 250 300 350 400 450 500"
 			}
 			"06"
 			{
@@ -92,7 +92,7 @@
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"550 600 650 700 750 800 850"
+		"AbilityCastRange"				"550 600 650 700 750 800 900"
 		"AbilityCastPoint"				"0.4 0.4 0.4 0.4"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST2_STATUE"
 
@@ -160,7 +160,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"crit_chance"				"12"
+				"crit_chance"				"15"
 				"LinkedSpecialBonus"		"special_bonus_unique_chaos_knight_chaos_strike_2"
 			}
 			"02"
@@ -203,11 +203,11 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"160 150 140 130 120 110 100"
+		"AbilityCooldown"				"100"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"125 200 275"
+		"AbilityManaCost"				"125 200 275 350 425 500"
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -226,12 +226,12 @@
 			"03"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"illusion_duration"			"20"
+				"illusion_duration"			"20 24 28 32 36 40"
 			}	
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"outgoing_damage"			"0 50 100"
+				"outgoing_damage"			"0"
 			}
 			"05"
 			{

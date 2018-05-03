@@ -288,13 +288,13 @@
 			"02"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"str_to_block"				"12.5"
+				"str_to_block"				"25"
 				"LinkedSpecialBonus"		"special_bonus_unique_centaur_warchiefs_aegis_2"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"block_chance"				"20"
+				"block_chance"				"50"
 			}
 		}
 	

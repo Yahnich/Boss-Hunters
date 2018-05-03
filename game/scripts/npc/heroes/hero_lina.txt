@@ -94,7 +94,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"-6"
+				"value"					"-4"
 			}
 		}
 	}
@@ -154,18 +154,20 @@
 		{
 			"01"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"40 80 120 160 200 240 280"
+				"var_type"						"FIELD_INTEGER"
+				"damage"						"40 80 120 160 200 240 280"
+				"LinkedSpecialBonus"			"special_bonus_unique_lina_lsa_1"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
 			"02"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"damage_flame"				"5 10 15 20 25 30 35"
+				"var_type"						"FIELD_INTEGER"
+				"damage_flame"					"5 10 15 20 25 30 35"
 			}
 			"03"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"4"
+				"var_type"						"FIELD_FLOAT"
+				"duration"						"4"
 			}
 			"04"
 			{
@@ -203,8 +205,8 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"100"
+				"var_type"				"FIELD_FLOAT"
+				"value"					"1.8"
 			}
 		}
 	}
@@ -272,7 +274,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage_time"				"15 16 17 18 19 20 21"
+				"damage_time"				"21 23 25 27 29 31 33"
 			}
 			"03"
 			{

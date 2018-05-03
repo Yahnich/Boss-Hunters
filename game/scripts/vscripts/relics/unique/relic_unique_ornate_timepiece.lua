@@ -42,3 +42,7 @@ end
 function relic_unique_ornate_timepiece:AllowIllusionDuplicate()
 	return true
 end
+
+function relic_unique_ornate_timepiece:GetAttributes()
+	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_PERMANENT
+end

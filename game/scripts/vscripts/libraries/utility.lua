@@ -790,9 +790,9 @@ function CDOTABaseAbility:PiercesDisableResistance()
 	end
 end
 
-function CDOTABaseAbility:HasBehavior(behavior)
+function CDOTABaseAbility:IsOrbAbility()
 	if GameRules.AbilityKV[self:GetName()] then
-		local truefalse = GameRules.AbilityKV[self:GetName()]["PiercesDisableReduction"] or 0
+		local truefalse = GameRules.AbilityKV[self:GetName()]["IsOrb"] or 0
 		if truefalse == 1 then
 			return true
 		else
@@ -914,7 +914,13 @@ end
 
 function CDOTA_BaseNPC:SetThreat(val)
 	self.lastHit = GameRules:GetGameTime()
-	self.threat = val
+	local newVal = 0
+	for _, modifier in ipairs( self:FindAllModifiers() ) do
+		if modifier.Bonus_ThreatGain and modifier:Bonus_ThreatGain() then
+			newVal = newVal + ( val * ( 1 + ( modifier:Bonus_ThreatGain()/100 ) ) )
+		end
+	end
+	self.threat = newVal
 	
 	if not self:IsFakeHero() then 
 		local player = PlayerResource:GetPlayer(self:GetOwner():GetPlayerID())
@@ -933,7 +939,7 @@ end
 
 function CDOTA_BaseNPC:ModifyThreat(val)
 	self.lastHit = GameRules:GetGameTime()
-	local newVal = val
+	local newVal = 0
 	for _, modifier in ipairs( self:FindAllModifiers() ) do
 		if modifier.Bonus_ThreatGain and modifier:Bonus_ThreatGain() then
 			newVal = newVal + ( val * ( 1 + ( modifier:Bonus_ThreatGain()/100 ) ) )
@@ -1316,6 +1322,10 @@ function CDOTABaseAbility:SetCooldown(fCD)
 	end
 end
 
+function CDOTABaseAbility:IsDelayedCooldown()
+	return self.delayedCooldownTimer ~= nil
+end
+
 function CDOTABaseAbility:StartDelayedCooldown(flDelay, newCD)
 	self:EndDelayedCooldown()
 	self:EndCooldown()
@@ -1439,7 +1449,7 @@ function CDOTA_BaseNPC:Lifesteal(source, lifestealPct, damage, target, damage_ty
 	self:HealEvent(flHeal, source, self)
 end
 
-function CDOTA_BaseNPC:HealEvent(amount, sourceAb, healer) -- for future shit
+function CDOTA_BaseNPC:HealEvent(amount, sourceAb, healer, bRegen) -- for future shit
 	local healBonus = 1
 	local flAmount = amount
 	if healer then
@@ -1470,7 +1480,9 @@ function CDOTA_BaseNPC:HealEvent(amount, sourceAb, healer) -- for future shit
 			end
 		end
 	end
-	SendOverheadEventMessage(self, OVERHEAD_ALERT_HEAL, self, flAmount, healer)
+	if not bRegen then
+		SendOverheadEventMessage(self, OVERHEAD_ALERT_HEAL, self, flAmount, healer)
+	end
 	self:Heal(flAmount, sourceAb)
 	return flAmount
 end

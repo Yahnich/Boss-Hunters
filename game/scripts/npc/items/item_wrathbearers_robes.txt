@@ -108,15 +108,20 @@
 			}
 			"10"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"damage"				"3.5"
+				"var_type"				"FIELD_INTEGER"
+				"base_damage"			"50"
 			}
 			"11"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"blind"					"25"
+				"damage"				"2"
 			}
 			"12"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"blind"					"25"
+			}
+			"13"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"radius"				"900"

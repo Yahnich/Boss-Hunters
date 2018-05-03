@@ -27,6 +27,8 @@
 		"relic_generic_old_sickle"						"1"
 		"relic_generic_broken_mirror"					"1"
 		"relic_generic_champions_spearhead"				"1"
+		"relic_generic_katana"							"1"
+		"relic_generic_stick"							"1"
 	}
 	"relic_type_cursed"
 	{
@@ -45,6 +47,14 @@
 		"relic_cursed_titans_jawbone"					"1"
 		"relic_cursed_unstoppable_force"				"1"
 		"relic_cursed_giants_cudgel"					"1"
+		"relic_cursed_battle_brew"						"1"
+		"relic_cursed_first_sin"						"1"
+		"relic_cursed_crystal_skull"					"1"
+		"relic_cursed_hushpuppy"						"1"
+		"relic_cursed_unchanging_globe"					"1"
+		"relic_cursed_bloody_silk"						"1"
+		"relic_cursed_hungry_blade"						"1"
+		"relic_cursed_delirious_cowl"					"1"
 	}
 	"relic_type_unique"
 	{
@@ -61,5 +71,18 @@
 		"relic_unique_rusty_dumbbell"					"1"
 		"relic_unique_sacrificial_dagger"				"1"
 		"relic_unique_ornate_timepiece"					"1"
+		"relic_unique_silent_cloak"						"1"
+		"relic_unique_oath_of_purity"					"1"
+		"relic_unique_vampire_eye"						"1"
+		"relic_unique_hawks_eye"						"1"
+		"relic_unique_grain_of_sand"					"1"
+		"relic_unique_memory_alloy"						"1"
+		"relic_unique_a_nickel"							"1"
+		"relic_unique_galactic_synapse"					"1"
+		"relic_unique_champions_belt"					"1"
+		"relic_unique_soldiers_banner"					"1"
+		"relic_unique_longbow"							"1"
+		"relic_unique_pocket_sand"						"1"
+		"relic_unique_eldritch_rune"					"1"
 	}
 }

@@ -39,3 +39,7 @@ end
 function relic_generic_breath_of_life:AllowIllusionDuplicate()
 	return true
 end
+
+function relic_generic_breath_of_life:GetAttributes()
+	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_PERMANENT
+end

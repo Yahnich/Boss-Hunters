@@ -31,3 +31,7 @@ end
 function relic_generic_beast_fang:AllowIllusionDuplicate()
 	return true
 end
+
+function relic_generic_beast_fang:GetAttributes()
+	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_PERMANENT
+end

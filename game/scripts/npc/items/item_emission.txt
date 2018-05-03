@@ -62,19 +62,24 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"175"
+				"damage"				"75"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"slow"					"-25"
+				"var_type"				"FIELD_INTEGER"
+				"base_damage"			"75"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"radius"				"900"
+				"slow"					"-20"
 			}
 			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"radius"				"900"
+			}
+			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"bonus_all"				"15"

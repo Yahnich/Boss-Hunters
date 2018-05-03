@@ -32,3 +32,7 @@ end
 function relic_cursed_boiling_blood:AllowIllusionDuplicate()
 	return true
 end
+
+function relic_cursed_boiling_blood:GetAttributes()
+	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_PERMANENT
+end

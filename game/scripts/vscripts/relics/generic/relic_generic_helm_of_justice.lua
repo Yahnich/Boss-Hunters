@@ -27,3 +27,7 @@ end
 function relic_generic_helm_of_justice:AllowIllusionDuplicate()
 	return true
 end
+
+function relic_generic_helm_of_justice:GetAttributes()
+	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_PERMANENT
+end

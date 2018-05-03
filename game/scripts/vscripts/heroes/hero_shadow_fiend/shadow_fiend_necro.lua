@@ -36,9 +36,9 @@ function modifier_shadow_fiend_necro_handle:OnDeath(params)
 			local necroStacks = params.attacker:FindModifierByName("modifier_shadow_fiend_necro")
     		self:GetAbility():FireTrackingProjectile("particles/units/heroes/hero_nevermore/nevermore_necro_souls.vpcf", self:GetCaster(), 1000, {source=params.unit, origin=params.unit:GetAbsOrigin()})
     		if necroStacks and necroStacks:GetStackCount() <= self.max then
-				params.attacker:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_shadow_fiend_necro", {}):IncrementStackCount()
+				params.attacker:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_shadow_fiend_necro", {})
     		else
-    			params.attacker:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_shadow_fiend_necro", {}):IncrementStackCount()
+    			params.attacker:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_shadow_fiend_necro", {})
     		end
 		end
 		if params.unit == self:GetCaster() then
@@ -99,29 +99,25 @@ if IsServer() then
 		self.max = self:GetTalentSpecialValueFor("max_souls")
 		self.deathLoss = self:GetTalentSpecialValueFor("death_soul_loss") / 100
 		self.excessLoss = self:GetTalentSpecialValueFor("excess_loss_rate")
+		if IsServer() then self:SetStackCount(1) end
 	end
 	function modifier_shadow_fiend_necro:OnRefresh()
 		self.max = self:GetTalentSpecialValueFor("max_souls")
 		self.deathLoss = self:GetTalentSpecialValueFor("death_soul_loss") / 100
 		self.excessLoss = self:GetTalentSpecialValueFor("excess_loss_rate")
+		if IsServer() then
+			if self.max > self:GetStackCount() then
+				self:AddIndependentStack( self.excessLoss )
+			else
+				self:IncrementStackCount()
+			end
+		end
 	end
 	function modifier_shadow_fiend_necro:OnStackCountChanged( oldStacks )
 		if self:GetStackCount() > self.max then
 			self:SetDuration(self.excessLoss, true)
-			self:StartIntervalThink(self.excessLoss)
 		else
 			self:SetDuration(-1, true)
-			self:StartIntervalThink(-1)
-		end
-	end
-	function modifier_shadow_fiend_necro:OnIntervalThink()
-		self:DecrementStackCount()
-		if self:GetStackCount() > self.max then
-			self:SetDuration(self.excessLoss, true)
-			self:StartIntervalThink(self.excessLoss)
-		else
-			self:SetDuration(-1, true)
-			self:StartIntervalThink(-1)
 		end
 	end
 end
@@ -133,6 +129,10 @@ end
 
 function modifier_shadow_fiend_necro:GetModifierPreAttack_BonusDamage()
     return self:GetTalentSpecialValueFor("damage") * self:GetStackCount()
+end
+
+function modifier_shadow_fiend_necro:DestroyOnExpire()
+	return false
 end
 
 function modifier_shadow_fiend_necro:GetEffectName()

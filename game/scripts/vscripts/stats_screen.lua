@@ -17,9 +17,9 @@ function StatsScreen:StartStatsScreen()
 	CustomGameEventManager:RegisterListener('notify_selected_talent', Context_Wrap( StatsScreen, 'NotifyTalent'))
 	CustomGameEventManager:RegisterListener('send_player_respec_talents', Context_Wrap( StatsScreen, 'RespecAll'))
 	self.ms = {0,25,50,75,100,150}
-	self.mp = {0,500,1000,1500,2000,3000}
-	self.mpr = {0,8,16,24,32,50}
-	self.ha = {0,20,40,60,80,150}
+	self.mp = {0,3,6,9,12,18}
+	self.mpr = {0,3,6,9,12,18}
+	self.ha = {0,20,40,60,80,120}
 	
 	self.ad = {0,35,70,105,140,200}
 	self.sa = {0,15,30,45,60,90}
@@ -31,8 +31,8 @@ function StatsScreen:StartStatsScreen()
 	self.mr = {0,6,12,18,24,35}
 	self.db = {0,20,40,60,80,120}
 	self.ar = {0,100,200,300,400,600}
-	self.hp = {0,500,1000,1500,2000,3000}
-	self.hpr = {0,8,16,24,32,50}
+	self.hp = {0,2,4,6,8,12}
+	self.hpr = {0,5,10,15,20,30}
 	self.sr = {0,5,10,15,20,30}
 	
 	self.all = {2}

@@ -31,7 +31,7 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"3281"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_everbright_shield"
 		"AbilityTextureName"			"custom/everbright_shield"
@@ -43,7 +43,8 @@
 		"ItemQuality"					"epic"
 		"ItemAliases"					"everbright shield"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-		
+
+		"AbilityCooldown"				"8"
 		
 		"precache"
 		{
@@ -63,12 +64,12 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"bonus_magic_resist"	"50"
+				"bonus_magic_resist"	"12"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"bonus_physical"		"60"
+				"active_magic_resist"	"100"
 			}
 			"04"
 			{
@@ -84,6 +85,11 @@
 			{
 				"var_type"				"FIELD_FLOAT"
 				"bonus_armor"			"5"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"2"
 			}
 		}
 	}

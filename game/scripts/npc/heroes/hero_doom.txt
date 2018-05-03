@@ -16,7 +16,7 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"40.0"
+		"AbilityCooldown"				"10.0"
 		"AbilityManaCost"				"40 50 60 70 80 90 100"
 		"AbilityTextureName"			"custom/doom_devour"
 		
@@ -34,7 +34,7 @@
 			"01"
 			{
 				"var_type"							"FIELD_INTEGER"
-				"total_gold"						"50 80 110 140 170 200 230"
+				"total_gold"						"15 25 35 45 55 65 75"
 				"LinkedSpecialBonus"				"special_bonus_unique_doom_demons_bargain_1"
 				"LinkedSpecialBonusOperation"		"SPECIAL_BONUS_MULTIPLY"
 			}
@@ -88,7 +88,7 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"90.0"
+		"AbilityCooldown"				"110"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -128,6 +128,7 @@
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityTextureName"			"doom_bringer_infernal_blade"
+		"IsOrb"							"1"
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -166,12 +167,12 @@
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"burn_duration"					"4.0"
+				"burn_duration"					"2.0"
 			}
 			"04"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"ministun_duration"				"0.4"
+				"ministun_duration"				"0.1"
 			}
 		}
 	}
@@ -253,8 +254,8 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"2"
+				"var_type"				"FIELD_FLOAT"
+				"value"					"1.5"
 			}
 		}
 	}
@@ -273,7 +274,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"6"
+				"value"					"10"
 			}
 		}
 	}

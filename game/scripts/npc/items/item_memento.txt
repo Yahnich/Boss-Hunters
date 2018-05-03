@@ -14,7 +14,7 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"1150"	
+		"ItemCost"						"750"	
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -23,7 +23,7 @@
 		"ItemResult"					"item_memento"
 		"ItemRequirements"
 		{
-			"01"						"item_pages_buckler;item_ringing_rapier"
+			"01"						"item_pages_buckler;item_ringing_rapier;item_breeze_amulet"
 		}
 	}
 	"item_memento"

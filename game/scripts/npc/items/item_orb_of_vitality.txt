@@ -14,7 +14,7 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"500"	
+		"ItemCost"						"350"	
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -23,7 +23,7 @@
 		"ItemResult"					"item_orb_of_vitality"
 		"ItemRequirements"
 		{
-			"01"						"item_ogre_club;item_crystal_of_life"
+			"01"						"item_ogre_club;item_crystal_of_life;item_ruby_ring"
 		}
 	}
 	"item_orb_of_vitality"
@@ -62,17 +62,17 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_health"			"400"
+				"bonus_health"			"600"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"bonus_hp_regen"		"0.5"
+				"bonus_hp_regen"		"3"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"hp_per_str"			"3"
+				"hp_per_str"			"0"
 			}
 		}
 	}

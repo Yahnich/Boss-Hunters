@@ -67,7 +67,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_armor"			"15"
+				"bonus_armor"			"5"
 			}
 			"02"
 			{
@@ -77,7 +77,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"active_armor"			"10"
+				"active_armor"			"15"
 			}
 			"04"
 			{

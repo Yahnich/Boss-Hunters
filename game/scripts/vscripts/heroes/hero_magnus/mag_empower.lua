@@ -46,13 +46,13 @@ end
 modifier_mag_empower_effect = class({})
 function modifier_mag_empower_effect:DeclareFunctions()
     local funcs = {
-        MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE,
+        MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE,
         MODIFIER_EVENT_ON_ATTACK_LANDED
     }
     return funcs
 end
 
-function modifier_mag_empower_effect:GetModifierDamageOutgoing_Percentage()
+function modifier_mag_empower_effect:GetModifierBaseDamageOutgoing_Percentage()
     return self:GetTalentSpecialValueFor("bonus_damage")
 end
 

@@ -9,7 +9,7 @@ function relic_unique_molten_crystal:DeclareFunctions()
 end
 
 function relic_unique_molten_crystal:OnAbilityFullyCast(params)
-	if params.unit == self:GetParent() and params.unit:HasAbility( params.ability:GetName() ) then
+	if params.unit == self:GetParent() and params.unit:HasAbility( params.ability:GetName() ) and not params.ability:IsOrbAbility() then
 		PrintAll(params)
 		local parent = self:GetParent()
 		local position = parent:GetCursorPosition()
@@ -59,4 +59,8 @@ end
 
 function relic_unique_molten_crystal:AllowIllusionDuplicate()
 	return true
+end
+
+function relic_unique_molten_crystal:GetAttributes()
+	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_PERMANENT
 end

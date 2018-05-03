@@ -61,8 +61,8 @@
 			}
 			"02"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_mana_regen"		"5"
+				"var_type"				"FIELD_FLOAT"
+				"bonus_mana_regen"		"2"
 			}
 		}
 	}

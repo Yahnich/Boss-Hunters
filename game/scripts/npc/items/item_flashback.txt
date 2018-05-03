@@ -66,15 +66,15 @@
 				"var_type"				"FIELD_INTEGER"
 				"ult_chance"			"10"
 			}
-			"02"
+			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"bonus_intellect"		"40"
 			}
-			"02"
+			"04"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_mana_regen"		"10"
+				"var_type"				"FIELD_FLOAT"
+				"bonus_mana_regen"		"5"
 			}
 		}
 	}

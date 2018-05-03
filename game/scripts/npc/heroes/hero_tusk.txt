@@ -401,7 +401,8 @@
 		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityTextureName"			"tusk_walrus_punch"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE" 
-		"MaxLevel"						"6"							
+		"MaxLevel"						"6"
+		"IsOrb"							"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------

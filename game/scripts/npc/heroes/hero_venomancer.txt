@@ -130,7 +130,7 @@
 			"05"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"initial_stacks"			"6 14 22 30 38 46 54"
+				"initial_stacks"			"12 16 20 24 28 32 36"
 			}
 		}
 	}
@@ -186,7 +186,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"tick_damage"			"10 40 70 100 130 160 190"
+				"tick_damage"			"20 40 60 80 100 120 140"
 			}
 			"04"
 			{

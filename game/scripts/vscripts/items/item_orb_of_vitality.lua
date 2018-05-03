@@ -24,7 +24,7 @@ end
 
 function modifier_item_orb_of_vitality_passive:DeclareFunctions()
 	return {MODIFIER_PROPERTY_HEALTH_BONUS,
-			MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE,	
+			MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,	
 			MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
 			}
 end
@@ -37,7 +37,7 @@ function modifier_item_orb_of_vitality_passive:GetModifierHealthBonus()
 	return self:GetParent():GetStrength() * self.hpPerStr + self.bonusHP
 end
 
-function modifier_item_orb_of_vitality_passive:GetModifierHealthRegenPercentage()
+function modifier_item_orb_of_vitality_passive:GetModifierConstantHealthRegen()
 	return self.regen
 end
 

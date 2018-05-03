@@ -12,16 +12,17 @@ function relic_cursed_pale_blood:OnIntervalThink()
 	if IsServer() then
 		self:SetStackCount( 0 )
 		self:GetParent():CalculateStatBonus()
+
 		self:SetStackCount( self:GetParent():GetMaxHealth() * 0.35 )
 		self:GetParent():CalculateStatBonus()
 	end
 end
 
 function relic_cursed_pale_blood:DeclareFunctions()
-	return {MODIFIER_PROPERTY_HEALTH_BONUS, MODIFIER_EVENT_ON_TAKEDAMAGE}
+	return {MODIFIER_PROPERTY_EXTRA_HEALTH_BONUS, MODIFIER_EVENT_ON_TAKEDAMAGE}
 end
 
-function relic_cursed_pale_blood:GetModifierHealthBonus()
+function relic_cursed_pale_blood:GetModifierExtraHealthBonus()
 	return self:GetStackCount() * (-1)
 end
 
@@ -50,4 +51,8 @@ end
 
 function relic_cursed_pale_blood:AllowIllusionDuplicate()
 	return true
+end
+
+function relic_cursed_pale_blood:GetAttributes()
+	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_PERMANENT
 end

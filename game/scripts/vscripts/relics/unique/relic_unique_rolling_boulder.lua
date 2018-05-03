@@ -10,7 +10,7 @@ end
 
 function relic_unique_rolling_boulder:OnAttack(params)
 	if params.attacker == self:GetParent() then
-		self:AddIndependentStack(20, nil, false)
+		self:AddIndependentStack(15, nil, false)
 	end
 end
 
@@ -32,6 +32,10 @@ end
 
 function relic_unique_rolling_boulder:AllowIllusionDuplicate()
 	return true
+end
+
+function relic_unique_rolling_boulder:GetAttributes()
+	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_PERMANENT
 end
 
 

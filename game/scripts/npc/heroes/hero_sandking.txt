@@ -31,7 +31,7 @@
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"110 120 130 140 150 160 170"
+		"AbilityManaCost"				"100"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -143,7 +143,7 @@
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"500"
+		"AbilityCastRange"				"750"
 		"AbilityCastPoint"				"0.4"
 		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
 		
@@ -202,7 +202,7 @@
 			"01"
 			{
 				"var_type"                      "FIELD_INTEGER"
-				"sandstorm_damage"     			"20 30 40 50 60 70 80"
+				"sandstorm_damage"     			"15 45 75 105 135 165 195"
 			}
 			"02"
 			{
@@ -227,7 +227,7 @@
 			"06"
 			{
 				"var_type"                      "FIELD_INTEGER"
-				"tornado_damage"     			"15 45 75 105 135 165 195"
+				"tornado_damage"     			"15 25 35 45 55 65 75"
 			}
 			"07"
 			{
@@ -242,7 +242,7 @@
 			"09"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"tornado_rate"					"1.0"
+				"tornado_rate"					"0.5"
 			}
 			"10"
 			{
@@ -292,7 +292,7 @@
 		"AbilityTextureName"			"sandking_epicenter"
 		"AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
 
-		"AbilityCastPoint"              "2.0"
+		"AbilityCastPoint"              "1.5"
 		"AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_4"
 
 		// Time     
@@ -438,7 +438,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"15"
+				"value"					"25"
 			}
 		}
 	}

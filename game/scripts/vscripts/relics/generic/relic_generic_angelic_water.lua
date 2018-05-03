@@ -27,3 +27,7 @@ end
 function relic_generic_angelic_water:AllowIllusionDuplicate()
 	return true
 end
+
+function relic_generic_angelic_water:GetAttributes()
+	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_PERMANENT
+end

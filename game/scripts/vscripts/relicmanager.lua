@@ -10,8 +10,8 @@ function RelicManager:new( o )
   return o
 end
 
-SKIP_RELIC_CHANCE_INCREASE = 15
-BASE_RELIC_CHANCE = 25
+SKIP_RELIC_CHANCE_INCREASE = 25
+BASE_RELIC_CHANCE = 33
 
 function RelicManager:Initialize()
   RelicManager = self
@@ -118,6 +118,7 @@ function RelicManager:RegisterPlayer(pID)
 	CustomNetTables:SetTableValue("game_info", "relic_drops", relicTable)
 	local hero = PlayerResource:GetSelectedHeroEntity(pID)
 	hero.internalRelicRNG = BASE_RELIC_CHANCE
+	RelicManager:RollRelicsForPlayer(pID)
 end
 
 function RelicManager:RollRelicsForPlayer(pID)

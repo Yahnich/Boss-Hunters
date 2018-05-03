@@ -220,7 +220,7 @@
 			{
 				"var_type"					"FIELD_INTEGER"
 				"crit_chance"				"15"
-				"LinkedSpecialBonus"		"special_bonus_unique_phantom_assassin_2"
+				"LinkedSpecialBonus"		"special_bonus_unique_phantom_assassin_coup_de_grace_1"
 			}
 			"02"
 			{
@@ -308,6 +308,25 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"value"					"50"
+			}
+		}
+	}
+	"special_bonus_unique_phantom_assassin_coup_de_grace_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"5"
 			}
 		}
 	}

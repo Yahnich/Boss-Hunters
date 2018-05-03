@@ -310,7 +310,7 @@
 			"05"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"excess_loss_rate"				"1"
+				"excess_loss_rate"				"30"
 			}
 		}
 	
