@@ -1019,6 +1019,28 @@
 		"Ability16"		"special_bonus_unique_oracle_3"
 		"Ability17"		"special_bonus_unique_oracle"
 	}
+
+	//=================================================================================================================
+	// HERO: Pangolier
+	//=================================================================================================================
+	"npc_dota_hero_pango_ebf"
+	{
+		"override_hero"			"npc_dota_hero_pangolier"
+		"Ability1"				"pango_swashbuckler"
+		"Ability2"				"pango_swift_dash"
+		"Ability3"				"pangolier_shield_crash"
+		"Ability4"				"pangolier_heartpiercer"
+		
+		"Ability10"					"special_bonus_mp_regen_150"
+		"Ability11"					"special_bonus_movement_speed_25"
+		"Ability12"					"special_bonus_unique_pangolier_2"
+		"Ability13"					"special_bonus_attack_speed_30"
+		"Ability14"					"special_bonus_unique_pangolier_3"
+		"Ability15"					"special_bonus_unique_pangolier_4"
+		"Ability16"					"special_bonus_strength_20"
+		"Ability17"					"special_bonus_unique_pangolier_5"
+	}
+
 	//=================================================================================================================
 	// HERO: PA
 	//=================================================================================================================
