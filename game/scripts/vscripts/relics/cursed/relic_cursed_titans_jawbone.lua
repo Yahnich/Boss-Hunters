@@ -10,10 +10,12 @@ end
 
 function relic_cursed_titans_jawbone:OnIntervalThink()
 	if IsServer() then
+		local hpPct = self:GetParent():GetHealthPercent()
 		self:SetStackCount( 0 )
 		self:GetParent():CalculateStatBonus()
 		self:SetStackCount( self:GetParent():GetMaxHealth() * 1 )
 		self:GetParent():CalculateStatBonus()
+		self:GetParent():SetHealth( hpPct * self:GetParent():GetMaxHealth() )
 	end
 end
 
