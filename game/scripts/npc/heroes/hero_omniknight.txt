@@ -219,7 +219,13 @@
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"275"
+		"AbilityCastRange"				"600"
+		"AbilityCooldown"				"30"
+		"AbilityCastPoint"				"0.3"
+		
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"50"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -336,7 +342,7 @@
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"275"
+		"AbilityCastRange"				"350"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -367,6 +373,16 @@
 				"var_type"				"FIELD_INTEGER"
 				"radius"				"350"
 			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"scepter_speed_bonus"	"-3"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"scepter_attack_bonus"	"-12"
+			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
 	}
@@ -386,7 +402,7 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"180 170 160 150 140 130"
+		"AbilityCooldown"				"100 95 90 85 80 75 70"
 		"AbilityCastPoint"				"0.5"
 		
 		// Cost
@@ -405,12 +421,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"radius"					"900"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration_scepter"			"8 9 10 11 12 13"
+				"radius"					"1500"
 			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_4"
@@ -430,7 +441,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"5"
+				"value"					"10"
 			}
 		}
 	}
@@ -449,7 +460,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"5"
+				"value"					"50"
 			}
 		}
 	}

@@ -29,7 +29,7 @@ function boss33b_shadowrazeF:OnSpellStart()
 	
 	local sdDeath = not caster:IsTwinAlive()
 	
-	if sdDeath and caster._Holdout_IsCore then
+	if sdDeath and caster.Holdout_IsCore then
 		local degrees = 360
 		local angleDiff = 72
 		local cd = self:GetCooldownTimeRemaining()
@@ -54,7 +54,7 @@ end
 
 function boss33b_shadowrazeF:CreateRazePattern(hpThreshold, position, radius, damage, ogPos)
 	local caster = self:GetCaster()
-	if hpThreshold and caster._Holdout_IsCore then
+	if hpThreshold and caster.Holdout_IsCore then
 		local count = self:GetSpecialValueFor("phase2_raze_count")
 		for i = -3, count do
 			local newPos = position + CalculateDirection(position, ogPos or caster) * (self:GetSpecialValueFor("distance")/3) * i

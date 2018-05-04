@@ -97,7 +97,7 @@ function boss_death_time_end( keys )
 	target:Destroy()
 	if not caster:IsAlive() then return end
     for _,unit in pairs( units ) do
-		unit.NoTombStone = caster._Holdout_IsCore
+		unit.NoTombStone = caster.Holdout_IsCore
 		unit:AttemptKill(ability, caster)
 		Timers:CreateTimer(0.2,function()
 			unit.NoTombStone = false
@@ -169,7 +169,7 @@ function projectile_death_orbs_hit( event )
     local target = event.target
     if not event.caster:IsAlive() then return end
     if target:GetHealth() <= target:GetMaxHealth()/4 then 
-        target.NoTombStone = caster._Holdout_IsCore
+        target.NoTombStone = caster.Holdout_IsCore
         target:AttemptKill(event.ability, event.caster)
         Timers:CreateTimer(1.0,function()
             target.NoTombStone = false

@@ -4,11 +4,7 @@ function omniknight_seven_blessings:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 	
-	local modifierName = "modifier_omniknight_seven_blessings"
-	if caster:HasTalent("special_bonus_unique_omniknight_repel_2") then
-		modifierName = "modifier_omniknight_repel_talent"
-	end
-	target:AddNewModifier(caster, self, modifierName, {duration = self:GetTalentSpecialValueFor("duration")})
+	target:AddNewModifier(caster, self, "modifier_omniknight_seven_blessings", {duration = self:GetTalentSpecialValueFor("duration")})
 	
 	EmitSoundOn("Hero_Omniknight.Repel", target)
 	ParticleManager:FireParticle("particles/units/heroes/hero_omniknight/omniknight_repel_cast.vpcf", PATTACH_POINT_FOLLOW, target)
@@ -26,10 +22,20 @@ function modifier_omniknight_seven_blessings:OnCreated()
 	self.mp = self:GetTalentSpecialValueFor("bonus_mana")
 	self.ms = self:GetTalentSpecialValueFor("bonus_movespeed")
 	if IsServer() then
-		local nFX = ParticleManager:CreateParticle("particles/econ/items/omniknight/omni_sacred_light_head/omni_ambient_sacred_light.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
-		ParticleManager:SetParticleControlEnt(nFX, 1, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_attack1", self:GetParent():GetAbsOrigin(), true)
-		ParticleManager:SetParticleControlEnt(nFX, 2, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_attack1", self:GetParent():GetAbsOrigin(), true)
-		self:AddEffect(nFX)
+		local lFX = ParticleManager:CreateParticle("particles/econ/items/omniknight/omni_sacred_light_head/omni_ambient_sacred_light.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
+		ParticleManager:SetParticleControlEnt(lFX, 1, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_attack1", self:GetParent():GetAbsOrigin(), true)
+		ParticleManager:SetParticleControlEnt(lFX, 2, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_attack1", self:GetParent():GetAbsOrigin(), true)
+		self:AddEffect(lFX)
+		
+		local rFX = ParticleManager:CreateParticle("particles/econ/items/omniknight/omni_sacred_light_head/omni_ambient_sacred_light.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
+		ParticleManager:SetParticleControlEnt(rFX, 1, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_attack2", self:GetParent():GetAbsOrigin(), true)
+		ParticleManager:SetParticleControlEnt(rFX, 2, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_attack2", self:GetParent():GetAbsOrigin(), true)
+		self:AddEffect(rFX)
+		
+		local hFX = ParticleManager:CreateParticle("particles/econ/items/omniknight/omni_sacred_light_head/omni_ambient_sacred_light.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
+		ParticleManager:SetParticleControlEnt(hFX, 1, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_hitloc", self:GetParent():GetAbsOrigin(), true)
+		ParticleManager:SetParticleControlEnt(hFX, 2, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_hitloc", self:GetParent():GetAbsOrigin(), true)
+		self:AddEffect(hFX)
 	end
 end
 

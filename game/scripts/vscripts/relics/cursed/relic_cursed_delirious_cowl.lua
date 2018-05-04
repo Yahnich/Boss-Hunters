@@ -5,7 +5,7 @@ function relic_cursed_delirious_cowl:DeclareFunctions()
 end
 
 function relic_cursed_delirious_cowl:OnAbilityFullyCast(params)
-	if params.unit == self:GetParent() then
+	if params.unit == self:GetParent() and params.ability:GetName() ~= "item_tombstone" then
 		local delayedCD = params.ability:IsDelayedCooldown()
 		local cd = params.ability:GetCooldownTimeRemaining()
 		params.ability:Refresh()
