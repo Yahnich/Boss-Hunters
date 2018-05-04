@@ -32,7 +32,7 @@
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"bosses/boss_aether/boss_aether_neutron_density"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
 		"AbilityTextureName"			"dark_seer_vacuum"
 		"MaxLevel"						"3"
 		
@@ -101,7 +101,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"max_damage"			"1.5 2"
+				"max_damage"			"1.2 1.5"
 			}
 		}
 	}
@@ -115,7 +115,7 @@
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"bosses/boss_aether/boss_aether_space_rift"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
 		"AbilityTextureName"			"abyssal_underlord_dark_rift"
 		"MaxLevel"						"3"
 		
@@ -134,7 +134,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"pull_radius"				"600 750"
+				"pull_radius"				"450"
 			}
 			"02"
 			{

@@ -100,11 +100,9 @@ function RelicManager:SkipRelicSelection(userid, event)
 		toNumPlayerRelics[tonumber(dropID)] = dropTable
 	end
 	
-	hero.internalRNGPools[1][toNumPlayerRelics[1][1]] = 
-	hero.internalRNGPools[2][toNumPlayerRelics[1][2]] = nil
-	hero.internalRNGPools[3][toNumPlayerRelics[1][3]] = nil
-	table.insert(hero.internalRNGPools, self.cursedDropTable)
-	table.insert(hero.internalRNGPools, self.uniqueDropTable)
+	hero.internalRNGPools[1][toNumPlayerRelics[1]["1"]] = nil
+	hero.internalRNGPools[2][toNumPlayerRelics[1]["2"]] = nil
+	hero.internalRNGPools[3][toNumPlayerRelics[1]["3"]] = nil
 	
 	table.remove( toNumPlayerRelics, 1 )
 	relicTable[tostring(pID)] = toNumPlayerRelics

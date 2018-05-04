@@ -83,7 +83,7 @@ function modifier_hawk_spirit:GetModifierIncomingDamage_Percentage(params)
 	local parent = self:GetParent()
 	local hp = parent:GetHealth()
 	local damage = 1
-	if damage < hp and params.inflictor ~= self:GetAbility() then
+	if damage < hp and hp > 1 then
 		parent:SetHealth( hp - damage )
 		return -999
 	elseif hp <= 1 then

@@ -44,3 +44,7 @@ end
 function modifier_boss16_dragonfire:GetModifierPhysicalArmorBonus()
 	return self.armor
 end
+
+function modifier_boss16_dragonfire:GetAttributes()
+	return MODIFIER_ATTRIBUTE_MULTIPLE
+end

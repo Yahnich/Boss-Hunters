@@ -146,10 +146,11 @@ function CHoldoutGameRound:Begin()
 			self._nGoldRemainingInRound = self._nGoldRemainingInRound + self._nRoundNumber * 3
 		end
 	end
-	
+	GameRules.holdOut:_RefreshPlayers()
 	self._nElitesRemaining = self._nElitesToSpawn
 	self._nCoreUnitsSpawned = self._nCoreUnitsTotal
 	self._nCoreUnitsKilled = 0
+	EmitGlobalSound("Round.Start")
 	-- CustomGameEventManager:Send_ServerToAllClients( "sendDifficultyNotification", { difficulty = GameRules.gameDifficulty, compromised = GameRules.difficultyCompromised } )
 end
 
@@ -190,6 +191,7 @@ function CHoldoutGameRound:End(bWonRound)
 		spawner:End()
 	end
 	if bWonRound then
+		EmitGlobalSound("Round.Won")
 		for pID = 0, 10 do
 			if PlayerResource:IsValidPlayerID(pID) and PlayerResource:GetSelectedHeroEntity( pID ) then
 				local hero = PlayerResource:GetSelectedHeroEntity( pID )
@@ -215,7 +217,10 @@ function CHoldoutGameRound:End(bWonRound)
 				end
 			end
 		end
+	else
+		EmitGlobalSound("Round.Lost")
 	end
+	GameRules.holdOut:_RefreshPlayers()
 	self._vEnemiesRemaining = {}
 end
 

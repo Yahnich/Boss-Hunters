@@ -29,7 +29,7 @@ function boss33a_dark_orb:OnSpellStart()
 	
 	EmitSoundOn("Hero_Puck.Illusory_Orb", caster)
 	
-	if not belowHPThreshold and caster._Holdout_IsCore then
+	if not belowHPThreshold or not caster._Holdout_IsCore then
 		self:CreateDarkOrb(direction)
 	else
 		self:CreateDarkOrb(direction)

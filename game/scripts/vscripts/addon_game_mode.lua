@@ -98,6 +98,7 @@ function Precache( context )
 	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_enigma.vsndevts" , context)
 	PrecacheResource("soundfile", "soundevents/game_sounds_ui.vsndevts" , context)
 	PrecacheResource("soundfile", "soundevents/soundevents_dota_ui.vsndevts" , context)
+	PrecacheResource("soundfile", "soundevents/game_sound.vsndevts" , context)
 	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_crystalmaiden.vsndevts" , context)
 	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_ancient_apparition.vsndevts"  , context)
 	
@@ -1732,7 +1733,6 @@ function CHoldoutGameMode:OnThink()
 					CustomGameEventManager:Send_ServerToAllClients( "round_has_ended", {} )
 					self._currentRound = nil
 					-- Heal all players
-					self:_RefreshPlayers()
 					if self.boss_master_id ~= -1 then
 						local boss_master = PlayerResource:GetSelectedHeroEntity(self.boss_master_id)
 						boss_master:HeroLevelUp(true)
@@ -1950,7 +1950,6 @@ function CHoldoutGameMode:_CheckForDefeat()
 						unit:AddExperience(self._nRoundNumber * 100,false,false)
 					end
 				end
-				self:_RefreshPlayers()
 			end
 			GameRules.deathTimerCheck = false
 		end)

@@ -18,6 +18,7 @@ function boss_golem_golem_toss:OnSpellStart()
 	local golemScale = caster:GetModelScale() * 0.6
 	
 	golem:SetModelScale( math.max(golemScale, 0.4 ) )
+	golem:SetBaseMoveSpeed( golem:GetBaseMoveSpeed() / scale )
 	Timers:CreateTimer(0.1, function()
 		golem:SetBaseMaxHealth( golemHP )
 		golem:SetMaxHealth( golemHP )
@@ -31,6 +32,7 @@ function boss_golem_golem_toss:OnSpellStart()
 	caster:SetModelScale( scale * 0.9 )
 	caster:SetBaseMaxHealth( hp - golemHP )
 	caster:SetMaxHealth( hp - golemHP )
+	caster:SetBaseMoveSpeed( caster:GetBaseMoveSpeed() / scale )
 end
 
 

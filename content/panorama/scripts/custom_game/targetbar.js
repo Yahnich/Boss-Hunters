@@ -32,7 +32,7 @@ function UpdatedSelection()
 
 function UpdatedAttack(arg)
 {
-	if (arg.entindex_inflictor == 0 && arg.entindex_attacker == Players.GetPlayerHeroEntityIndex( localID ) && newestBoss != arg.entindex_killed){ // auto-attack is dealt by player owned hero
+	if (arg.entindex_inflictor == 0 && arg.entindex_attacker == Players.GetPlayerHeroEntityIndex( localID ) && newestBoss != arg.entindex_killed && Entities.GetTeamNumber( arg.entindex_killed ) != Players.GetTeam( localID )){ // auto-attack is dealt by player owned hero
 		newestBoss = arg.entindex_killed;
 	}
 }

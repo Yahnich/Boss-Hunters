@@ -68,6 +68,7 @@
 #base "heroes/hero_shadow_fiend.txt"
 #base "heroes/hero_skywrath.txt"
 #base "heroes/hero_zeus.txt"
+#base "heroes/hero_omniknight.txt"
 
 "DOTAAbilities"
 {
@@ -1020,7 +1021,7 @@
 				{
 					"AttachEffect"
 					{
-						"EffectName"		"particles/econ/generic/generic_aoe_shockwave_1/generic_aoe_shockwave_1.vpcf"
+						"EffectName"		"particles/generic_radius_warning.vpcf"
 						"EffectAttachType"	"follow_origin"
 						"Target"			"CASTER"
 						"ControlPoints"
@@ -1121,7 +1122,7 @@
 				{
 					"AttachEffect"
 					{
-						"EffectName"		"particles/econ/generic/generic_aoe_shockwave_1/generic_aoe_shockwave_1.vpcf"
+						"EffectName"		"particles/generic_radius_warning.vpcf"
 						"EffectAttachType"	"follow_origin"
 						"Target"			"CASTER"
 						"ControlPoints"
@@ -1442,7 +1443,7 @@
 		"precache"
 		{
 			"particle"				"particles/bosses/boss_warlockgolems/boss_ember_spike.vpcf"
-			"particle"				"particles/econ/generic/generic_aoe_shockwave_1/generic_aoe_shockwave_1.vpcf"
+			"particle"				"particles/generic_radius_warning.vpcf"
 			"soundfile"				"soundevents/voscripts/game_sounds_vo_warlock_golem.vsndevts"
 		}
 		
@@ -1565,7 +1566,7 @@
 						}
 						"AttachEffect"
 						{
-							"EffectName"		"particles/econ/generic/generic_aoe_shockwave_1/generic_aoe_shockwave_1.vpcf"
+							"EffectName"		"particles/generic_radius_warning.vpcf"
 							"EffectAttachType"	"follow_origin"
 							"Target"			"CASTER"
 							"ControlPoints"
@@ -1641,7 +1642,7 @@
 		"precache"
 		{
 			"particle"				"particles/bosses/boss_warlockgolems/boss_ember_spike.vpcf"
-			"particle"				"particles/econ/generic/generic_aoe_shockwave_1/generic_aoe_shockwave_1.vpcf"
+			"particle"				"particles/generic_radius_warning.vpcf"
 			"soundfile"				"soundevents/voscripts/game_sounds_vo_warlock_golem.vsndevts"
 		}
 		
@@ -1764,7 +1765,7 @@
 						}
 						"AttachEffect"
 						{
-							"EffectName"		"particles/econ/generic/generic_aoe_shockwave_1/generic_aoe_shockwave_1.vpcf"
+							"EffectName"		"particles/generic_radius_warning.vpcf"
 							"EffectAttachType"	"follow_origin"
 							"Target"			"CASTER"
 							"ControlPoints"
@@ -1840,7 +1841,7 @@
 		"precache"
 		{
 			"particle"				"particles/bosses/boss_warlockgolems/boss_ember_spike.vpcf"
-			"particle"				"particles/econ/generic/generic_aoe_shockwave_1/generic_aoe_shockwave_1.vpcf"
+			"particle"				"particles/generic_radius_warning.vpcf"
 			"soundfile"				"soundevents/game_sounds_custom.vsndevts"
 		}
 		
@@ -1963,7 +1964,7 @@
 						}
 						"AttachEffect"
 						{
-							"EffectName"		"particles/econ/generic/generic_aoe_shockwave_1/generic_aoe_shockwave_1.vpcf"
+							"EffectName"		"particles/generic_radius_warning.vpcf"
 							"EffectAttachType"	"follow_origin"
 							"Target"			"CASTER"
 							"ControlPoints"
@@ -2206,7 +2207,7 @@
 			"particle"	"particles/units/heroes/hero_legion_commander/legion_commander_odds_cast.vpcf"
 			"particle"	"particles/units/heroes/hero_legion_commander/legion_commander_odds.vpcf"
 			"particle"	"particles/units/heroes/hero_legion_commander/legion_commander_odds_buff.vpcf"
-			"particle"	"particles/econ/generic/generic_aoe_shockwave_1/generic_aoe_shockwave_1.vpcf"
+			"particle"	"particles/generic_radius_warning.vpcf"
 		}
 	
 		// Time		
@@ -5418,16 +5419,13 @@
 				{
 					"AttachEffect"
 					{
-						"EffectName"		"particles/econ/generic/generic_aoe_shockwave_1/generic_aoe_shockwave_1.vpcf"
+						"EffectName"		"particles/generic_radius_warning.vpcf"
 						"EffectAttachType"	"follow_origin"
 						"Target"			"TARGET"
 						"ControlPoints"
 						{
 							"00" "0 0 0"
 							"01" "%impact_radius 0 0"
-							"02" "6 0 1" // telegraph
-							"03" "200 0 0"
-							"04" "0 0 0"
 						}
 					}
 				}
@@ -5779,7 +5777,7 @@
 				{
 					"AttachEffect"
 					{
-						"EffectName"		"particles/econ/generic/generic_aoe_shockwave_1/generic_aoe_shockwave_1.vpcf"
+						"EffectName"		"particles/generic_radius_warning.vpcf"
 						"EffectAttachType"	"follow_origin"
 						"Target"			"TARGET"
 						"ControlPoints"
@@ -5955,7 +5953,7 @@
 				{
 					"AttachEffect"
 					{
-						"EffectName"		"particles/econ/generic/generic_aoe_shockwave_1/generic_aoe_shockwave_1.vpcf"
+						"EffectName"		"particles/generic_radius_warning.vpcf"
 						"EffectAttachType"	"follow_origin"
 						"Target"			"TARGET"
 						"ControlPoints"
@@ -6130,7 +6128,7 @@
 				{
 					"AttachEffect"
 					{
-						"EffectName"		"particles/econ/generic/generic_aoe_shockwave_1/generic_aoe_shockwave_1.vpcf"
+						"EffectName"		"particles/generic_radius_warning.vpcf"
 						"EffectAttachType"	"follow_origin"
 						"Target"			"TARGET"
 						"ControlPoints"
@@ -6305,7 +6303,7 @@
 				{
 					"AttachEffect"
 					{
-						"EffectName"		"particles/econ/generic/generic_aoe_shockwave_1/generic_aoe_shockwave_1.vpcf"
+						"EffectName"		"particles/generic_radius_warning.vpcf"
 						"EffectAttachType"	"follow_origin"
 						"Target"			"TARGET"
 						"ControlPoints"
@@ -6480,7 +6478,7 @@
 				{
 					"AttachEffect"
 					{
-						"EffectName"		"particles/econ/generic/generic_aoe_shockwave_1/generic_aoe_shockwave_1.vpcf"
+						"EffectName"		"particles/generic_radius_warning.vpcf"
 						"EffectAttachType"	"follow_origin"
 						"Target"			"TARGET"
 						"ControlPoints"
@@ -6655,7 +6653,7 @@
 				{
 					"AttachEffect"
 					{
-						"EffectName"		"particles/econ/generic/generic_aoe_shockwave_1/generic_aoe_shockwave_1.vpcf"
+						"EffectName"		"particles/generic_radius_warning.vpcf"
 						"EffectAttachType"	"follow_origin"
 						"Target"			"TARGET"
 						"ControlPoints"
@@ -6830,7 +6828,7 @@
 				{
 					"AttachEffect"
 					{
-						"EffectName"		"particles/econ/generic/generic_aoe_shockwave_1/generic_aoe_shockwave_1.vpcf"
+						"EffectName"		"particles/generic_radius_warning.vpcf"
 						"EffectAttachType"	"follow_origin"
 						"Target"			"TARGET"
 						"ControlPoints"
@@ -9216,10 +9214,9 @@
 			}
 			"modifier_elite_burning_dummy"
 			{
-				"Passive"	"1"
 				"IsHidden"	"1"
 				"Aura" "modifier_elite_burning_aura"
-				"Aura_Radius" "240"
+				"Aura_Radius" "150"
 				"Aura_Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
 				"Aura_Types" "DOTA_UNIT_TARGET_ALL"
 				

@@ -84,6 +84,16 @@ function modifier_item_behemoths_heart_regen:OnCreated()
 	end
 end
 
+function modifier_item_behemoths_heart_regen:OnRefresh()
+	self.regen = self:GetSpecialValueFor("stack_regen")
+	self:GetAbility().stacks = self:GetAbility().stacks or self:GetStackCount() or self:GetSpecialValueFor("max_stacks")
+	self.delay = self:GetSpecialValueFor("stack_delay")
+	self.activeRegen = self:GetSpecialValueFor("active_regen")
+	self.bonusHP = self:GetSpecialValueFor("bonus_health")
+	self.hpPerStr = self:GetSpecialValueFor("hp_per_str")
+	self.stat = self:GetSpecialValueFor("bonus_strength")
+end
+
 function modifier_item_behemoths_heart_regen:OnIntervalThink()
 	self:GetAbility().stacks = self:GetAbility().stacks or self:GetSpecialValueFor("max_stacks")
 	if self:GetAbility().stacks < self:GetSpecialValueFor("max_stacks") then
@@ -120,7 +130,7 @@ function modifier_item_behemoths_heart_regen:OnTakeDamage(params)
 	if params.unit == self:GetParent() and not ( HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_HPLOSS) or HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION) ) and params.attacker ~= self:GetParent() then
 		self:SetDuration( self.delay + 0.1, true )
 		self:StartIntervalThink(self.delay)
-		self:GetAbility().stacks = math.max( self:GetAbility().stacks - 1, 1 )
+		self:GetAbility().stacks = math.max( (self:GetAbility().stacks or self:GetSpecialValueFor("max_stacks")) - 1, 1 )
 		self:SetStackCount( self:GetAbility().stacks )
 	end
 end

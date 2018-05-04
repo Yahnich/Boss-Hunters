@@ -195,7 +195,7 @@ function CDOTABaseAbility:DealDamage(attacker, victim, damage, data, spellText)
 	--OVERHEAD_ALERT_BONUS_SPELL_DAMAGE, OVERHEAD_ALERT_DAMAGE, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, OVERHEAD_ALERT_MANA_LOSS
 	local internalData = data or {}
 	local damageType =  internalData.damage_type or self:GetAbilityDamageType() or DAMAGE_TYPE_MAGICAL
-	local damageFlags = internalData.damage_flags or self:GetAbilityTargetFlags() or DOTA_DAMAGE_FLAG_NONE
+	local damageFlags = internalData.damage_flags or DOTA_DAMAGE_FLAG_NONE
 	local localdamage = damage
 	local spellText = spellText or 0
 	local ability = self or internalData.ability
@@ -2368,4 +2368,12 @@ function CBaseEntity:RollPRNG( percentage )
 		self.internalPRNGCounter = 1/( math.max(internalCount - internalInt, 1) )
 		return false
 	end
+end
+
+function GameRules:IsRoundGoing()
+	return self.holdOut._currentRound ~= nil
+end
+
+function GameRules:InPrepTime()
+	return self.holdOut._currentRound == nil
 end

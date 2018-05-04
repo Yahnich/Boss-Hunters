@@ -1,10 +1,3 @@
-GameEvents.Subscribe( "updateQuestLife", UpdateLives);
-GameEvents.Subscribe( "updateQuestPrepTime", UpdateTimer);
-GameEvents.Subscribe( "updateQuestRound", UpdateRound);
-GameEvents.Subscribe( "heroLoadIn", Initialize);
-GameEvents.Subscribe("dota_player_update_query_unit", UpdateCustomHud);
-GameEvents.Subscribe( "round_has_ended", ToggleQuests);
-
 var ID = Players.GetLocalPlayer();
 var playerHero = Players.GetPlayerSelectedHero(ID);
 
@@ -15,6 +8,18 @@ var healthBar = dotaHud.FindChildTraverse("HealthContainer");
 var shieldLabel = $.CreatePanel( "Label", $.GetContextPanel(), "ShieldLabel");
 shieldLabel.SetParent(healthBar);
 shieldLabel.AddClass("HealthContainerShieldLabel");
+
+GameEvents.Subscribe( "updateQuestLife", UpdateLives);
+GameEvents.Subscribe( "updateQuestPrepTime", UpdateTimer);
+GameEvents.Subscribe( "updateQuestRound", UpdateRound);
+GameEvents.Subscribe( "heroLoadIn", Initialize);
+GameEvents.Subscribe("dota_player_update_query_unit", UpdateCustomHud);
+GameEvents.Subscribe( "round_has_ended", ToggleQuests);
+
+(function()
+{
+	$.RegisterForUnhandledEvent( "DOTAShowAbilityTooltipForEntityIndex", UpdateTooltipUI );
+})();
 
 function ToggleQuests(arg)
 {
@@ -34,14 +39,54 @@ function ToggleQuests(arg)
 	}
 }
 
-UpdateTooltipUI()
-function UpdateTooltipUI(){
+var DELAYED_COOLDOWN = {"omniknight_repel_ebf":true,
+						"omniknight_guardian_angel_ebf":true,
+						"life_stealer_rage":true,
+						"winterw_ice_shell":true,
+						"winterw_winters_kiss":true,
+						"dark_seer_adamantium_shell":true,
+						"death_prophet_weaken_silence":true,
+						"morphling_cosmic_projection":true,
+						"nyx_hide":true,
+						"skinwalker_kickback_fortress":true,
+						"windrunner_windrun":true,
+						"necrolyte_sadist":true,
+						"viper_nethertoxin":true,
+						"night_stalker_crippling_fear":true,
+						"weaver_shukuchi":true,
+						"bristleback_yer_mum":true,
+						"item_leechblade":true,
+						"rattletrap_battery_assault_ebf":true,
+						"rattletrap_reactive_shielding":true,
+						"puck_phase_shift_ebf":true,
+						"rattletrap_automated_artillery":true,
+						"shadow_shaman_ignited_voodoo":true,
+						"item_penitent_mail":true,
+						"item_hurricane_blade":true,
+						"axe_forced_shout":true,
+						"skywrath_seal":true,
+						"item_everbright_shield":true,
+						"huskar_raging_berserker":true,
+						"brewmaster_primal_avatar":true,
+						"shadow_shaman_binding_shackles":true,
+						"abaddon_borrowed_time_ebf":true,
+						"item_wrathbearers_robes":true,
+						"item_behemoths_heart":true,
+						"centaur_champions_presence":true,
+						"timbersaw_chak2":true,
+						"timbersaw_chak":true,
+						"dragon_knight_intervene":true,
+						"dragon_knight_elder_dragon_berserker":true,
+						}
+
+function UpdateTooltipUI(id, abilityname, abilityid){
 	var tooltips = dotaHud.FindChildTraverse("DOTAAbilityTooltip")
-	if(tooltips != null){
-		tooltips.FindChildTraverse("AbilityCosts").style.flowChildren = "down";
+	if( DELAYED_COOLDOWN != null && DELAYED_COOLDOWN[abilityname] != null){
+		tooltips.FindChildTraverse("AbilityCooldown").style.backgroundImage = "url('file://{images}/custom_game/ability_delayed_cooldown_png.vtex')";
 	} else {
-		$.Schedule(0.25, UpdateTooltipUI);
+		tooltips.FindChildTraverse("AbilityCooldown").style.backgroundImage = "url('s2r://panorama/images/status_icons/ability_cooldown_icon_psd.vtex')";
 	}
+	tooltips.FindChildTraverse("AbilityCosts").style.flowChildren = "down";
 }
 
 

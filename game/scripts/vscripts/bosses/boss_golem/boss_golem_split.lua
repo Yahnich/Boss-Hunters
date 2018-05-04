@@ -15,11 +15,12 @@ function modifier_boss_golem_split:OnDeath(params)
 	if params.unit == self:GetParent() and self:GetParent():GetModelScale() >= self:GetSpecialValueFor("minimum_scale") then
 		local divider = self:GetSpecialValueFor("golem_hp") / 100
 		local hp = self:GetParent():GetMaxHealth() * divider
-		local scale = self:GetParent():GetModelScale() * divider
+		local scale = self:GetParent():GetModelScale() * 0.85
 		for i = 1, self:GetSpecialValueFor("split_count") do
 			golem = CreateUnitByName("npc_dota_boss12_golem", self:GetParent():GetAbsOrigin() + RandomVector(250), false, nil, nil, self:GetParent():GetTeamNumber())
 			
 			golem:SetModelScale( scale )
+			golem:SetBaseMoveSpeed( golem:GetBaseMoveSpeed() / scale)
 			Timers:CreateTimer(0.1, function()
 				golem:SetBaseMaxHealth( hp )
 				golem:SetMaxHealth( hp )

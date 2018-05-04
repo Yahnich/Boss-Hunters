@@ -8,7 +8,9 @@ function relic_cursed_hungry_blade:OnCreated()
 end
 function relic_cursed_hungry_blade:OnIntervalThink()
 	self:StartIntervalThink(0.33)
-	ApplyDamage({victim = self:GetParent(), attacker = self:GetParent(), damage = self:GetParent():GetMaxHealth() * 0.05 * 0.33, damage_type = DAMAGE_TYPE_PURE, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_HPLOSS + DOTA_DAMAGE_FLAG_NON_LETHAL})
+	if GameRules:IsRoundGoing() then
+		ApplyDamage({victim = self:GetParent(), attacker = self:GetParent(), damage = self:GetParent():GetMaxHealth() * 0.05 * 0.33, damage_type = DAMAGE_TYPE_PURE, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_HPLOSS + DOTA_DAMAGE_FLAG_NON_LETHAL})
+	end
 end
 
 function relic_cursed_hungry_blade:DeclareFunctions()

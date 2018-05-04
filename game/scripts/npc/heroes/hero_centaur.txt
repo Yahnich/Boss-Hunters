@@ -288,13 +288,14 @@
 			"02"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"str_to_block"				"25"
-				"LinkedSpecialBonus"		"special_bonus_unique_centaur_warchiefs_aegis_2"
+				"str_to_block"				"40"
+				
 			}
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"block_chance"				"50"
+				"block_chance"				"60"
+				"LinkedSpecialBonus"		"special_bonus_unique_centaur_warchiefs_aegis_2"
 			}
 		}
 	
@@ -461,7 +462,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"20"
+				"value"					"25"
 			}
 		}
 	}
