@@ -73,6 +73,15 @@ end
 modifier_omniknight_stalwart_defender_aura = class({})
 LinkLuaModifier("modifier_omniknight_stalwart_defender_aura", "heroes/hero_omniknight/omniknight_stalwart_defender", LUA_MODIFIER_MOTION_NONE)
 
+function modifier_omniknight_stalwart_defender_aura:OnCreated()
+	self.ms = self:GetTalentSpecialValueFor("speed_bonus")
+	self.as = self:GetTalentSpecialValueFor("attack_bonus_tooltip")
+	
+	self.scepter_ms = self:GetTalentSpecialValueFor("scepter_speed_bonus")
+	self.scepter_as = self:GetTalentSpecialValueFor("scepter_attack_bonus")
+end
+
+
 function modifier_omniknight_stalwart_defender_aura:OnRefresh()
 	self.ms = self:GetTalentSpecialValueFor("speed_bonus")
 	self.as = self:GetTalentSpecialValueFor("attack_bonus_tooltip")
@@ -87,7 +96,6 @@ end
 
 function modifier_omniknight_stalwart_defender_aura:GetModifierMoveSpeedBonus_Percentage()
 	local slow = self.ms
-	print( self.ms )
 	if self:GetCaster():HasScepter() then slow = slow + self.scepter_ms * self:GetCaster():GetModifierStackCount("modifier_omniknight_stalwart_defender", self:GetCaster() ) end
 	return slow
 end

@@ -337,6 +337,7 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"omniknight_degen_aura"
+		"HasScepterUpgrade"				"1"
 		"MaxLevel"						"1"
 		"InnateAbility"					"1"
 		
@@ -397,7 +398,6 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ALLIES_YES"
 		"FightRecapLevel"				"2"
 		"AbilityTextureName"			"omniknight_guardian_angel"
-		"HasScepterUpgrade"				"1"
 		"MaxLevel"						"6"
 	
 		// Time		
