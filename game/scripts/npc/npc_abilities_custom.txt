@@ -69,6 +69,7 @@
 #base "heroes/hero_skywrath.txt"
 #base "heroes/hero_zeus.txt"
 #base "heroes/hero_omniknight.txt"
+#base "heroes/hero_pango.txt"
 
 "DOTAAbilities"
 {
