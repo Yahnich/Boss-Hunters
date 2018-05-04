@@ -54,7 +54,7 @@ function AIThink(thisEntity)
 						AbilityIndex = thisEntity.rewind:entindex(),
 						TargetIndex = thisEntity:entindex()
 					})
-					return 0.25
+					return AI_THINK_RATE
 				else
 					local target = AICore:HighestThreatHeroInRange(thisEntity, thisEntity.rewind:GetCastRange(), 10, false)
 					if not target then target = AICore:WeakestEnemyHeroInRange( thisEntity, thisEntity.rewind:GetCastRange() + 200, false) end
@@ -71,7 +71,7 @@ function AIThink(thisEntity)
 								AbilityIndex = thisEntity.rewind:entindex(),
 								TargetIndex = target:entindex()
 							})
-							return 0.25
+							return AI_THINK_RATE
 						elseif distancelapse < distancenow and distancelapse > (thisEntity:GetAttackRange() + thisEntity:GetAttackRangeBuffer()) then
 							ExecuteOrderFromTable({
 								UnitIndex = thisEntity:entindex(),
@@ -79,7 +79,7 @@ function AIThink(thisEntity)
 								AbilityIndex = thisEntity.rewind:entindex(),
 								TargetIndex = target:entindex()
 							})
-							return 0.25
+							return AI_THINK_RATE
 						end
 					end
 				end
@@ -94,7 +94,7 @@ function AIThink(thisEntity)
 						AbilityIndex = thisEntity.juncture:entindex(),
 						TargetIndex = target:entindex()
 					})
-					return 0.25
+					return AI_THINK_RATE
 				end
 			end
 			if thisEntity.overtime:IsFullyCastable() and not thisEntity.chronoactive then
@@ -121,11 +121,11 @@ function AIThink(thisEntity)
 				return interval
 			end
 			AICore:AttackHighestPriority( thisEntity )
-			return 0.25
+			return AI_THINK_RATE
 		else
-			return 0.25
+			return AI_THINK_RATE
 		end
 	else
-		return 0.25
+		return AI_THINK_RATE
 	end
 end

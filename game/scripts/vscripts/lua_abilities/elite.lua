@@ -16,9 +16,9 @@ function ApplyFire(keys)
 	local units = FindUnitsInRadius( caster:GetTeam(), caster:GetOrigin(), nil, 800, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, 0, false )
 	if #units == 0 then return end
 	EmitSoundOn("n_black_dragon.Fireball.Target", caster)
-	ability:StartCooldown(14)
+	ability:StartCooldown(7)
 	local initLoc = caster:GetAbsOrigin()
-	local forwardLoc =  caster:GetForwardVector():Normalized() * 280
+	local forwardLoc =  caster:GetForwardVector():Normalized() * 300
 	
 	for i = 1, 6 do
 		local dummy = caster:CreateDummy(initLoc + forwardLoc * i)
@@ -27,12 +27,12 @@ function ApplyFire(keys)
 			ParticleManager:SetParticleControl(macropyre, 0, dummy:GetOrigin())
 			ParticleManager:SetParticleControl(macropyre, 2, Vector(12,0,0))
 		ParticleManager:ReleaseParticleIndex(macropyre)
-		Timers:CreateTimer(12.1, function() dummy:RemoveSelf() end)
+		Timers:CreateTimer(5, function() dummy:RemoveSelf() end)
 	end
 end
 
 function BurningAura(keys)
-	local damage = keys.target:GetMaxHealth() * 0.12
+	local damage = keys.target:GetMaxHealth() * 0.09
 	-- ability:ApplyDataDrivenModifier(caster,unit,"modifier_elite_burning_health_regen_block",{duration = 0.5})
 	ApplyDamage({ victim = keys.target, attacker = keys.caster, damage = damage/keys.caster:GetSpellDamageAmp(), damage_type = DAMAGE_TYPE_MAGICAL, ability = ability })
 end
@@ -63,7 +63,7 @@ function CreateFrostShards(keys)
 				EmitSoundOn("Hero_Ancient_Apparition.IceBlast.Target", caster)
 				local targets = FindUnitsInRadius( caster:GetTeam(), shardLoc, nil, 400, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, 0, false )
 				for _, frozenTarget in pairs(targets) do
-					ApplyDamage({ victim = frozenTarget, attacker = keys.caster, damage = frozenTarget:GetMaxHealth() * 0.25, damage_type = DAMAGE_TYPE_MAGICAL, ability = ability })
+					ApplyDamage({ victim = frozenTarget, attacker = keys.caster, damage = 10 * GameRules._roundnumber, damage_type = DAMAGE_TYPE_MAGICAL, ability = ability })
 					ability:ApplyDataDrivenModifier(caster, frozenTarget, "modifier_elite_coldsnapped", {duration = 2})
 				end
 			end)
@@ -415,7 +415,7 @@ function UnstableFunction(keys)
 								  location = location,
 								  radius = 250,
 								  damage = damage*0.2,
-								  damage_type = DAMAGE_TYPE_MAGICAL,
+								  damage_type = DAMAGE_TYPE_PHYSICAL,
 								  delay = 2.5,
 								  sound = "Hero_Enigma.Demonic_Conversion"})				
 			elseif rnd < 33 then
@@ -423,7 +423,7 @@ function UnstableFunction(keys)
 								  location = location,
 								  radius = 200,
 								  damage = damage*0.1,
-								  damage_type = DAMAGE_TYPE_MAGICAL,
+								  damage_type = DAMAGE_TYPE_PURE,
 								  modifier = "modifier_elite_unstable_stun",
 								  duration = 1,
 								  delay = 2.5,

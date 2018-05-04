@@ -67,6 +67,8 @@
 #base "heroes/hero_juggernaut.txt"
 #base "heroes/hero_shadow_fiend.txt"
 #base "heroes/hero_skywrath.txt"
+#base "heroes/hero_zeus.txt"
+#base "heroes/hero_omniknight.txt"
 
 "DOTAAbilities"
 {
@@ -1019,7 +1021,7 @@
 				{
 					"AttachEffect"
 					{
-						"EffectName"		"particles/econ/generic/generic_aoe_shockwave_1/generic_aoe_shockwave_1.vpcf"
+						"EffectName"		"particles/generic_radius_warning.vpcf"
 						"EffectAttachType"	"follow_origin"
 						"Target"			"CASTER"
 						"ControlPoints"
@@ -1120,7 +1122,7 @@
 				{
 					"AttachEffect"
 					{
-						"EffectName"		"particles/econ/generic/generic_aoe_shockwave_1/generic_aoe_shockwave_1.vpcf"
+						"EffectName"		"particles/generic_radius_warning.vpcf"
 						"EffectAttachType"	"follow_origin"
 						"Target"			"CASTER"
 						"ControlPoints"
@@ -1441,7 +1443,7 @@
 		"precache"
 		{
 			"particle"				"particles/bosses/boss_warlockgolems/boss_ember_spike.vpcf"
-			"particle"				"particles/econ/generic/generic_aoe_shockwave_1/generic_aoe_shockwave_1.vpcf"
+			"particle"				"particles/generic_radius_warning.vpcf"
 			"soundfile"				"soundevents/voscripts/game_sounds_vo_warlock_golem.vsndevts"
 		}
 		
@@ -1564,7 +1566,7 @@
 						}
 						"AttachEffect"
 						{
-							"EffectName"		"particles/econ/generic/generic_aoe_shockwave_1/generic_aoe_shockwave_1.vpcf"
+							"EffectName"		"particles/generic_radius_warning.vpcf"
 							"EffectAttachType"	"follow_origin"
 							"Target"			"CASTER"
 							"ControlPoints"
@@ -1640,7 +1642,7 @@
 		"precache"
 		{
 			"particle"				"particles/bosses/boss_warlockgolems/boss_ember_spike.vpcf"
-			"particle"				"particles/econ/generic/generic_aoe_shockwave_1/generic_aoe_shockwave_1.vpcf"
+			"particle"				"particles/generic_radius_warning.vpcf"
 			"soundfile"				"soundevents/voscripts/game_sounds_vo_warlock_golem.vsndevts"
 		}
 		
@@ -1763,7 +1765,7 @@
 						}
 						"AttachEffect"
 						{
-							"EffectName"		"particles/econ/generic/generic_aoe_shockwave_1/generic_aoe_shockwave_1.vpcf"
+							"EffectName"		"particles/generic_radius_warning.vpcf"
 							"EffectAttachType"	"follow_origin"
 							"Target"			"CASTER"
 							"ControlPoints"
@@ -1839,7 +1841,7 @@
 		"precache"
 		{
 			"particle"				"particles/bosses/boss_warlockgolems/boss_ember_spike.vpcf"
-			"particle"				"particles/econ/generic/generic_aoe_shockwave_1/generic_aoe_shockwave_1.vpcf"
+			"particle"				"particles/generic_radius_warning.vpcf"
 			"soundfile"				"soundevents/game_sounds_custom.vsndevts"
 		}
 		
@@ -1962,7 +1964,7 @@
 						}
 						"AttachEffect"
 						{
-							"EffectName"		"particles/econ/generic/generic_aoe_shockwave_1/generic_aoe_shockwave_1.vpcf"
+							"EffectName"		"particles/generic_radius_warning.vpcf"
 							"EffectAttachType"	"follow_origin"
 							"Target"			"CASTER"
 							"ControlPoints"
@@ -2205,7 +2207,7 @@
 			"particle"	"particles/units/heroes/hero_legion_commander/legion_commander_odds_cast.vpcf"
 			"particle"	"particles/units/heroes/hero_legion_commander/legion_commander_odds.vpcf"
 			"particle"	"particles/units/heroes/hero_legion_commander/legion_commander_odds_buff.vpcf"
-			"particle"	"particles/econ/generic/generic_aoe_shockwave_1/generic_aoe_shockwave_1.vpcf"
+			"particle"	"particles/generic_radius_warning.vpcf"
 		}
 	
 		// Time		
@@ -5417,16 +5419,13 @@
 				{
 					"AttachEffect"
 					{
-						"EffectName"		"particles/econ/generic/generic_aoe_shockwave_1/generic_aoe_shockwave_1.vpcf"
+						"EffectName"		"particles/generic_radius_warning.vpcf"
 						"EffectAttachType"	"follow_origin"
 						"Target"			"TARGET"
 						"ControlPoints"
 						{
 							"00" "0 0 0"
 							"01" "%impact_radius 0 0"
-							"02" "6 0 1" // telegraph
-							"03" "200 0 0"
-							"04" "0 0 0"
 						}
 					}
 				}
@@ -5778,7 +5777,7 @@
 				{
 					"AttachEffect"
 					{
-						"EffectName"		"particles/econ/generic/generic_aoe_shockwave_1/generic_aoe_shockwave_1.vpcf"
+						"EffectName"		"particles/generic_radius_warning.vpcf"
 						"EffectAttachType"	"follow_origin"
 						"Target"			"TARGET"
 						"ControlPoints"
@@ -5954,7 +5953,7 @@
 				{
 					"AttachEffect"
 					{
-						"EffectName"		"particles/econ/generic/generic_aoe_shockwave_1/generic_aoe_shockwave_1.vpcf"
+						"EffectName"		"particles/generic_radius_warning.vpcf"
 						"EffectAttachType"	"follow_origin"
 						"Target"			"TARGET"
 						"ControlPoints"
@@ -6129,7 +6128,7 @@
 				{
 					"AttachEffect"
 					{
-						"EffectName"		"particles/econ/generic/generic_aoe_shockwave_1/generic_aoe_shockwave_1.vpcf"
+						"EffectName"		"particles/generic_radius_warning.vpcf"
 						"EffectAttachType"	"follow_origin"
 						"Target"			"TARGET"
 						"ControlPoints"
@@ -6304,7 +6303,7 @@
 				{
 					"AttachEffect"
 					{
-						"EffectName"		"particles/econ/generic/generic_aoe_shockwave_1/generic_aoe_shockwave_1.vpcf"
+						"EffectName"		"particles/generic_radius_warning.vpcf"
 						"EffectAttachType"	"follow_origin"
 						"Target"			"TARGET"
 						"ControlPoints"
@@ -6479,7 +6478,7 @@
 				{
 					"AttachEffect"
 					{
-						"EffectName"		"particles/econ/generic/generic_aoe_shockwave_1/generic_aoe_shockwave_1.vpcf"
+						"EffectName"		"particles/generic_radius_warning.vpcf"
 						"EffectAttachType"	"follow_origin"
 						"Target"			"TARGET"
 						"ControlPoints"
@@ -6654,7 +6653,7 @@
 				{
 					"AttachEffect"
 					{
-						"EffectName"		"particles/econ/generic/generic_aoe_shockwave_1/generic_aoe_shockwave_1.vpcf"
+						"EffectName"		"particles/generic_radius_warning.vpcf"
 						"EffectAttachType"	"follow_origin"
 						"Target"			"TARGET"
 						"ControlPoints"
@@ -6829,7 +6828,7 @@
 				{
 					"AttachEffect"
 					{
-						"EffectName"		"particles/econ/generic/generic_aoe_shockwave_1/generic_aoe_shockwave_1.vpcf"
+						"EffectName"		"particles/generic_radius_warning.vpcf"
 						"EffectAttachType"	"follow_origin"
 						"Target"			"TARGET"
 						"ControlPoints"
@@ -9215,10 +9214,9 @@
 			}
 			"modifier_elite_burning_dummy"
 			{
-				"Passive"	"1"
 				"IsHidden"	"1"
 				"Aura" "modifier_elite_burning_aura"
-				"Aura_Radius" "240"
+				"Aura_Radius" "150"
 				"Aura_Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
 				"Aura_Types" "DOTA_UNIT_TARGET_ALL"
 				
@@ -13486,216 +13484,6 @@
 	            }
 			}
 	    }
-	}
-	"omniknight_guardian_angel_datadriven"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_datadriven"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ALLIES_YES"
-		"FightRecapLevel"				"2"
-		"AbilityTextureName"			"omniknight_guardian_angel"
-		"HasScepterUpgrade"				"1"
-		"MaxLevel"						"6"
-	
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"180 170 160 150 140 130"
-		"AbilityCastPoint"				"0.5"
-		
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"125 175 250 350 475 625"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"6 7 8 9 10 11"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"99999"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration_scepter"			"8 9 10 11 12 13"
-			}
-		}
-	
-		"precache"
-		{
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_omniknight.vsndevts"
-			"particle"	"particles/units/heroes/hero_omniknight/omniknight_guardian_angel_halo_buff.vpcf"
-			"particle"  "particles/status_fx/status_effect_guardian_angel.vpcf"
-			"particle"  "particles/units/heroes/hero_omniknight/omniknight_guardian_angel_ally.vpcf"
-		}
-	
-		"OnSpellStart"
-		{
-			"FireSound"
-			{
-				"EffectName"	"Hero_Omniknight.GuardianAngel.Cast"
-				"Target"		"CASTER"
-			}
-			"RunScript"
-			{
-					"ScriptFile"		"lua_abilities/heroes/omniknight.lua"
-					"Function"			"CheckOmniScepter"
-					"sceptermodifier"			"modifier_guardian_angel_scepter"
-					"modifier"					"modifier_guardian_angel"
-			}
-		}
-	
-		"Modifiers"
-		{
-			"modifier_guardian_angel"
-			{
-				"IsBuff"			"1"
-				"IsPurgable"		"1"
-				"Duration"			"%duration"
-				"StatusEffectName"     "particles/status_fx/status_effect_guardian_angel.vpcf"
-				"StatusEffectPriority" "10"
-	
-				"OnCreated"
-				{
-					"AttachEffect"
-					{
-						"EffectName"		"particles/units/heroes/hero_omniknight/omniknight_guardian_angel_halo_buff.vpcf"
-						"EffectAttachType"	"follow_overhead"
-						"Target"			"CASTER"
-					}
-	
-					"AttachEffect"
-					{
-						"Target"
-						{
-							"Center"  		"CASTER"
-							"Radius"		"%radius"
-							"Teams" 		"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-							"Types" 		"DOTA_UNIT_TARGET_HERO"
-						}
-						"EffectName"				"particles/units/heroes/hero_omniknight/omniknight_guardian_angel_ally.vpcf"
-						"EffectAttachType"			"follow_origin"
-						"EffectRadius"				"%radius"
-					}
-				}
-	
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL"	"1"
-				}
-			}
-			"modifier_guardian_angel_scepter"
-			{
-				"IsBuff"			"1"
-				"IsPurgable"		"1"
-				"Duration"			"%duration_scepter"
-				"StatusEffectName"     "particles/status_fx/status_effect_guardian_angel.vpcf"
-				"StatusEffectPriority" "10"
-	
-				"OnCreated"
-				{
-					"AttachEffect"
-					{
-						"EffectName"		"particles/units/heroes/hero_omniknight/omniknight_guardian_angel_halo_buff.vpcf"
-						"EffectAttachType"	"follow_overhead"
-						"Target"			"CASTER"
-					}
-	
-					"AttachEffect"
-					{
-						"Target"
-						{
-							"Center"  		"CASTER"
-							"Radius"		"%radius"
-							"Teams" 		"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-							"Types" 		"DOTA_UNIT_TARGET_HERO"
-						}
-						"EffectName"				"particles/units/heroes/hero_omniknight/omniknight_guardian_angel_ally.vpcf"
-						"EffectAttachType"			"follow_origin"
-						"EffectRadius"				"%radius"
-					}
-				}
-	
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL"	"1"
-				}
-				"States"
-				{
-					"MODIFIER_STATE_MAGIC_IMMUNE"		"MODIFIER_STATE_VALUE_ENABLED"
-				}
-			}
-		}
-	}
-	"omniknight_purification_ebf"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"lua_abilities/heroes/omniknight"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_MECHANICAL"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ALLIES_YES"
-		"FightRecapLevel"				"1"
-		"AbilityTextureName"			"omniknight_purification"
-		"MaxLevel"						"7"
-	
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"800"
-		"AbilityCastPoint"				"0.2"
-		
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"11"
-		
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"85 100 115 130 145 160 175"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"90 160 230 300 370 440 510"
-				"LinkedSpecialBonus"	"special_bonus_unique_omniknight_1"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"heal"					"90 160 230 300 370 440 510"
-				"LinkedSpecialBonus"	"special_bonus_unique_omniknight_1"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"area_of_effect"		"260"
-				"LinkedSpecialBonus"	"special_bonus_unique_omniknight_4"
-			}
-		}
-	
-		"precache"
-		{
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_omniknight.vsndevts"
-			"particle"	"particles/units/heroes/hero_omniknight/omniknight_purification.vpcf"
-			"particle"	"particles/units/heroes/hero_omniknight/omniknight_purification_hit.vpcf"
-			"particle"	"particles/units/heroes/hero_omniknight/omniknight_purification_cast.vpcf"
-	
-		}
 	}
 	"oracle_fate_extension"
 	{

@@ -36,13 +36,13 @@ function AIThink(thisEntity)
 		end
 		if AICore:TotalAlliedUnitsInRange( thisEntity, 1200 ) > math.ceil(4 * (thisEntity:GetHealthPercent()/100)) then
 			AICore:AttackHighestPriority( thisEntity )
-			return 0.25
+			return AI_THINK_RATE
 		else
 			AICore:BeAHugeCoward( thisEntity, 800 )
-			return 0.25
+			return AI_THINK_RATE
 		end
-		return 0.25
+		return AI_THINK_RATE
 	else
-		return 0.25
+		return AI_THINK_RATE
 	end
 end

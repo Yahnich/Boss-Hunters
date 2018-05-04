@@ -17,13 +17,13 @@ end
 
 function AIThink(thisEntity)
 	if not thisEntity:IsDominated() then
-		if thisEntity:IsChanneling() then return 0.25 end
-		if not thisEntity.spawn:IsCooldownReady() then return 0.25 end
+		if thisEntity:IsChanneling() then return AI_THINK_RATE end
+		if not thisEntity.spawn:IsCooldownReady() then return AI_THINK_RATE end
 		ExecuteOrderFromTable({
 			UnitIndex = thisEntity:entindex(),
 			OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
 			AbilityIndex = thisEntity.spawn:entindex()
 		})
-		return 0.25
-	else return 0.25 end
+		return AI_THINK_RATE
+	else return AI_THINK_RATE end
 end

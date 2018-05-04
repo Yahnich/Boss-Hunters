@@ -27,9 +27,9 @@ function AIThink(thisEntity)
 				Position = target:GetOrigin(),
 				AbilityIndex = thisEntity.spear:entindex()
 			})
-			return 0.25
+			return AI_THINK_RATE
 		end
 		AICore:AttackHighestPriority( thisEntity )
-		return 0.25
-	else return 0.25 end
+		return AI_THINK_RATE
+	else return AI_THINK_RATE end
 end

@@ -1,0 +1,1 @@
+omniknight_guardian_angel_ebf = class({})

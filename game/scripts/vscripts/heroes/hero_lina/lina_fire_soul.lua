@@ -16,7 +16,7 @@ function modifier_lina_fire_soul_handle:DeclareFunctions()
 end
 
 function modifier_lina_fire_soul_handle:OnAbilityExecuted(params)
-    if params.unit == self:GetCaster() then
+    if params.unit == self:GetCaster() and params.ability:GetCooldown(-1) > 0 then
         self:GetCaster():AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_lina_fire_soul", {Duration = self:GetSpecialValueFor("stack_duration")}):AddIndependentStack(self:GetSpecialValueFor("stack_duration"))
     end
 end

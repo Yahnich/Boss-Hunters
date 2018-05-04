@@ -32,7 +32,7 @@ function AIThink(thisEntity)
 				Position = thisEntity:GetOrigin(),
 				AbilityIndex = thisEntity.fire:entindex()
 			})
-			return 0.25
+			return AI_THINK_RATE
 		end
 		if thisEntity.meteor:IsFullyCastable() then
 			ExecuteOrderFromTable({
@@ -41,11 +41,11 @@ function AIThink(thisEntity)
 				Position = thisEntity:GetOrigin(),
 				AbilityIndex = thisEntity.meteor:entindex()
 			})
-			return 0.25
+			return AI_THINK_RATE
 		end
 		AICore:AttackHighestPriority( thisEntity )
-		return 0.25
+		return AI_THINK_RATE
 	else
-		return 0.25
+		return AI_THINK_RATE
 	end
 end

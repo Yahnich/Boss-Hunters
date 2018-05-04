@@ -14,12 +14,10 @@ function Spawn( entityKeyValues )
 end
 
 function AIThink(thisEntity)
-	local returnVal = 0.25
 	if not thisEntity:IsDominated() then
 		if not thisEntity:HasModifier("modifier_boss_doom_demonic_servants_checker") then
 			if AICore:BeingAttacked( thisEntity ) > 0 or thisEntity.previousHealth > thisEntity:GetHealth() then
 				AICore:BeAHugeCoward( thisEntity, 300 )
-				returnVal = 1
 				goto done
 			else
 				ExecuteOrderFromTable({
@@ -27,7 +25,6 @@ function AIThink(thisEntity)
 					OrderType = DOTA_UNIT_ORDER_MOVE_TO_POSITION,
 					Position = thisEntity:GetOwnerEntity():GetAbsOrigin() + CalculateDirection(thisEntity, thisEntity:GetOwnerEntity()) * 450
 				})
-				returnVal = 1
 				goto done
 			end
 		else
@@ -37,6 +34,6 @@ function AIThink(thisEntity)
 	end
 	::done::
 	thisEntity.previousHealth = thisEntity:GetHealth()
-	return returnVal
+	return AI_THINK_RATE
 end
 

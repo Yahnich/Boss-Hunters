@@ -48,7 +48,7 @@ function AIThink(thisEntity)
 						Position = position,
 						AbilityIndex = thisEntity.odds:entindex()
 					})
-					return 0.25
+					return AI_THINK_RATE
 				end
 			end
 		end
@@ -61,7 +61,7 @@ function AIThink(thisEntity)
 					TargetIndex = thisEntity:entindex(),
 					AbilityIndex = thisEntity.press:entindex()
 				})
-				return 0.25
+				return AI_THINK_RATE
 			elseif AICore:TotalAlliedUnitsInRange( thisEntity, thisEntity.press:GetCastRange() ) then
 				local ally = AICore:WeakestAlliedUnitInRange( thisEntity, thisEntity.press:GetCastRange() , false)
 				if ally and ally:GetHealthDeficit() > hpregen and RollPercentage(8) then
@@ -71,7 +71,7 @@ function AIThink(thisEntity)
 						TargetIndex = ally:entindex(),
 						AbilityIndex = thisEntity.press:entindex()
 					})
-					return 0.25
+					return AI_THINK_RATE
 				end
 			end
 		end
@@ -84,6 +84,6 @@ function AIThink(thisEntity)
 			return thisEntity.call:GetChannelTime()
 		end
 		AICore:AttackHighestPriority( thisEntity )
-		return 0.25
-	else return 0.25 end
+		return AI_THINK_RATE
+	else return AI_THINK_RATE end
 end

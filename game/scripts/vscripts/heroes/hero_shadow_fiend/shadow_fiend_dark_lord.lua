@@ -40,7 +40,7 @@ function modifier_shadow_fiend_dark_lord:OnIntervalThink()
         local dummy = self:GetCaster():CreateDummy(pointRando, 0.04)
         
         self:GetAbility():FireTrackingProjectile("particles/units/heroes/hero_nevermore/nevermore_necro_souls.vpcf", self:GetCaster(), 1000, {source=dummy, origin=dummy:GetAbsOrigin()})
-        self:GetParent():AddNewModifier(self:GetCaster(), self:GetCaster():FindAbilityByName("shadow_fiend_necro"), "modifier_shadow_fiend_necro", {}):IncrementStackCount()
+        self:GetParent():AddNewModifier(self:GetCaster(), self:GetCaster():FindAbilityByName("shadow_fiend_necro"), "modifier_shadow_fiend_necro", {})
     end
 end
 

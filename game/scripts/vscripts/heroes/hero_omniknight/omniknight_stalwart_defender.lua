@@ -1,0 +1,1 @@
+omniknight_stalwart_defender = class({})

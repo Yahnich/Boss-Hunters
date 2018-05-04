@@ -9,6 +9,16 @@ function relic_unique_ornate_timepiece:OnCreated()
 				ability:SetOverrideCastPoint(0)
 			end
 		end
+		self:StartIntervalThink(5)
+	end
+end
+
+function relic_unique_ornate_timepiece:OnIntervalThink()
+	for i = 0, self:GetParent():GetAbilityCount() - 1 do
+		local ability = self:GetParent():GetAbilityByIndex( i )
+		if ability then
+			ability:SetOverrideCastPoint(0)
+		end
 	end
 end
 

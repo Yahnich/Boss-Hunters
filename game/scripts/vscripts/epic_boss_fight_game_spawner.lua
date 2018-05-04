@@ -250,6 +250,7 @@ function CHoldoutGameSpawner:_DoSpawn()
 		AddFOWViewer(DOTA_TEAM_GOODGUYS, vSpawnLocation, 516, 3, false) -- show spawns
 		if entUnit then
 			ParticleManager:FireParticle("particles/econ/events/nexon_hero_compendium_2014/blink_dagger_end_nexon_hero_cp_2014.vpcf", PATTACH_POINT_FOLLOW, entUnit)
+			EmitSoundOn("DOTA_Item.BlinkDagger.NailedIt", entUnit)
 			if entUnit:IsCreature() then
 				if bIsChampion then
 					self._nChampionsSpawnedThisRound = self._nChampionsSpawnedThisRound + 1

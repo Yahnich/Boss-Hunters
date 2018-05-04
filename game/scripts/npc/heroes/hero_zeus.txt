@@ -263,7 +263,7 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"30"
+		"AbilityCooldown"				"38 36 34 32 30 28 26"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -281,7 +281,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"2 4 6 8 10 12 14"
+				"duration"				"10"
 				"LinkedSpecialBonus"	"special_bonus_unique_zeus_nimbus_storm_2"
 			}
 			"02"
@@ -391,13 +391,13 @@
 				"var_type"						"FIELD_FLOAT"
 				"damage_health_pct"				"3.5"
 				"CalculateSpellDamageTooltip"	"0"
-				"LinkedSpecialBonus"			"special_bonus_unique_zeus"
 			}
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"pct_per_stack"					"0.8"
+				"pct_per_stack"					"0.5"
 				"CalculateSpellDamageTooltip"	"0"
+				"LinkedSpecialBonus"			"special_bonus_unique_zeus_static_field_1"
 			}
 			"04"
 			{
@@ -406,7 +406,27 @@
 			}
 		}
 	}
-
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_zeus_static_field_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"value"						"0.3"
+			}
+		}
+	}
 	//=================================================================================================================
 	// Olympus Calls
 	//=================================================================================================================
@@ -521,125 +541,6 @@
 			{
 				"var_type"					"FIELD_FLOAT"
 				"value"						"1"
-			}
-		}
-	}
-
-	"zuus_static_aegis"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_datadriven"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityTargetTeam"				"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityTargetType"				"DOTA_UNIT_TARGET_HERO"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
-		"SpellImmunityType"				"SPELL_IMMUNITY_ALLIES_YES"
-		"FightRecapLevel"				"2"
-		"MaxLevel"						"6"
-		"AbilityTextureName"			"custom/zuus_static_aegis"
-	
-		"precache"
-		{
-			"particle"		"particles/units/heroes/hero_zuus/zuus_thundergods_wrath.vpcf"
-			"particle"		"particles/units/heroes/hero_zuus/zuus_thundergods_wrath_start_bolt_parent.vpcf"
-			"particle"		"particles/items2_fx/mjollnir_shield.vpcf"
-			"particle"		"particles/items_fx/chain_lightning.vpcf"
-			"soundfile"		"sounds/weapons/hero/zuus/gods_wrath_precast.vsnd"
-			"soundfile"		"sounds/weapons/hero/zuus/gods_wrath_cast.vsnd"
-			"soundfile"		"sounds/weapons/hero/zuus/gods_wrath_target.vsnd"
-			"soundfile"		"sounds/items/item_mael_lightning_chain.vsnd"
-		}
-		
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0.4 0.4 0.4 0.4"
-		"NoThreatFlag"					"1"
-		
-		// Damage.
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"					"225 325 425 525 625 725"
-		"AbilityThreat"					"6"
-	
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"90.0 85.0 80.0 75.0 70.0 65.0 60.0"
-	
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"225 300 375 450 525 600"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"buff_duration"			"15"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"self_heal"				"7.5"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"heal_proc_chance"		"35"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"scepter_proc_chance"	"25"
-			}
-		}
-		
-		"OnAbilityPhaseStart"
-		{
-			"FireSound"
-			{
-				"EffectName"	"Hero_Zuus.GodsWrath.PreCast"
-				"Target"		"CASTER"
-			}
-		}
-		
-		"OnSpellStart"
-		{
-			"RunScript"
-			{
-				"ScriptFile"	"lua_abilities/heroes/zuus"
-				"Function"		"StaticAegis"
-				"sound"			"Hero_Zuus.GodsWrath.Target"
-				"particle"		"particles/units/heroes/hero_zuus/zuus_thundergods_wrath.vpcf"
-			}
-			"FireSound"
-			{
-				"EffectName"	"Hero_Zuus.GodsWrath"
-				"Target"		"CASTER"
-			}
-		}
-		
-		"Modifiers"
-		{
-			"modifier_thundergods_wrath_datadriven"
-			{
-				"Duration"	"%sight_duration"
-				"IsBuff"	"1"
-				"IsPurgable"	"1"
-				
-				"EffectName"	"particles/items2_fx/mjollnir_shield.vpcf"
-				"EffectAttachType"	"follow_origin"
-				"OnAttacked"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"lua_abilities/heroes/zuus"
-						"Function"		"StaticAegisAttacked"
-						"particle"		"particles/items_fx/chain_lightning.vpcf"
-					}
-				}
 			}
 		}
 	}

@@ -99,12 +99,12 @@ if IsServer() then
 				end
 				
 				AICore:AttackHighestPriority( thisEntity )
-				return 0.25
+				return AI_THINK_RATE
 			else
 				AICore:AttackHighestPriority( thisEntity )
-				return 0.25
+				return AI_THINK_RATE
 			end
 		end
-		return 0.25
+		return AI_THINK_RATE
 	end
 end

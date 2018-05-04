@@ -41,7 +41,7 @@ if IsServer() then
 							Position = target:GetAbsOrigin(),
 							AbilityIndex = thisEntity.pin:entindex()
 						})
-						return 0.25
+						return AI_THINK_RATE
 					end
 					
 					-- BEHAVIOR SPECIFIC
@@ -56,7 +56,7 @@ if IsServer() then
 									Position = target:GetAbsOrigin(),
 									AbilityIndex = thisEntity.leap:entindex()
 								})
-								return 0.25
+								return AI_THINK_RATE
 							end
 						elseif attackedByOthers then -- only uses leap if not being focused
 							local targetPos
@@ -70,7 +70,7 @@ if IsServer() then
 								Position =  thisEntity:GetAbsOrigin() + runDir * thisEntity.leap:GetTrueCastRange(),
 								AbilityIndex = thisEntity.leap:entindex()
 							})
-							return 0.25
+							return AI_THINK_RATE
 						elseif thisEntity.AIbehavior == AI_BEHAVIOR_CAUTIOUS then -- holds leap to jump out if focused
 							ExecuteOrderFromTable({
 								UnitIndex = thisEntity:entindex(),
@@ -78,7 +78,7 @@ if IsServer() then
 								Position = target:GetAbsOrigin(),
 								AbilityIndex = thisEntity.leap:entindex()
 							})
-							return 0.25					
+							return AI_THINK_RATE					
 						end
 					end
 					if thisEntity.pierce:IsFullyCastable() and (AICore:NumEnemiesInLine(thisEntity, thisEntity.pierce:GetSpecialValueFor("spear_distance"), thisEntity.pierce:GetSpecialValueFor("spear_width"), true) <= math.min(PlayerResource:FindActivePlayerCount(), 2) or thisEntity:GetAIBehavior() == AI_BEHAVIOR_AGGRESSIVE) then
@@ -88,7 +88,7 @@ if IsServer() then
 							Position = target:GetAbsOrigin(),
 							AbilityIndex = thisEntity.pierce:entindex()
 						})
-						return 0.25
+						return AI_THINK_RATE
 					end
 				elseif thisEntity.AIstate == AI_STATE_CHASING then
 					local target = AICore:GetHighestPriorityTarget(thisEntity)
@@ -103,13 +103,13 @@ if IsServer() then
 								Position = targetPos,
 								AbilityIndex = thisEntity.leap:entindex()
 							})
-							return 0.25
+							return AI_THINK_RATE
 						end
 					end
 				end
 				AICore:AttackHighestPriority( thisEntity )
-				return 0.25
-			else return 0.25 end
+				return AI_THINK_RATE
+			else return AI_THINK_RATE end
 		end
 	end
 	

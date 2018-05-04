@@ -100,6 +100,10 @@ function RelicManager:SkipRelicSelection(userid, event)
 		toNumPlayerRelics[tonumber(dropID)] = dropTable
 	end
 	
+	hero.internalRNGPools[1][toNumPlayerRelics[1]["1"]] = nil
+	hero.internalRNGPools[2][toNumPlayerRelics[1]["2"]] = nil
+	hero.internalRNGPools[3][toNumPlayerRelics[1]["3"]] = nil
+	
 	table.remove( toNumPlayerRelics, 1 )
 	relicTable[tostring(pID)] = toNumPlayerRelics
 	CustomNetTables:SetTableValue("game_info", "relic_drops", relicTable)
@@ -118,6 +122,10 @@ function RelicManager:RegisterPlayer(pID)
 	CustomNetTables:SetTableValue("game_info", "relic_drops", relicTable)
 	local hero = PlayerResource:GetSelectedHeroEntity(pID)
 	hero.internalRelicRNG = BASE_RELIC_CHANCE
+	hero.internalRNGPools = {}
+	table.insert(hero.internalRNGPools, self.genericDropTable)
+	table.insert(hero.internalRNGPools, self.cursedDropTable)
+	table.insert(hero.internalRNGPools, self.uniqueDropTable)
 	RelicManager:RollRelicsForPlayer(pID)
 end
 
@@ -151,7 +159,7 @@ function RelicManager:RollRandomGenericRelicForPlayer(pID)
 	local dropTable = {}
 	local hero = PlayerResource:GetSelectedHeroEntity(pID)
 	hero.ownedRelics = hero.ownedRelics or {}
-	for relic, weight in pairs( self.genericDropTable ) do
+	for relic, weight in pairs( hero.internalRNGPools[1] ) do
 		if not hero:HasRelic(relic) then
 			for i = 1, weight do
 				table.insert(dropTable, relic)
@@ -165,7 +173,7 @@ function RelicManager:RollRandomCursedRelicForPlayer(pID)
 	local dropTable = {}
 	local hero = PlayerResource:GetSelectedHeroEntity(pID)
 	hero.ownedRelics = hero.ownedRelics or {}
-	for relic, weight in pairs( self.cursedDropTable ) do
+	for relic, weight in pairs( hero.internalRNGPools[2] ) do
 		if not hero:HasRelic(relic) then
 			for i = 1, weight do
 				table.insert(dropTable, relic)
@@ -179,7 +187,7 @@ function RelicManager:RollRandomUniqueRelicForPlayer(pID)
 	local dropTable = {}
 	local hero = PlayerResource:GetSelectedHeroEntity(pID)
 	hero.ownedRelics = hero.ownedRelics or {}
-	for relic, weight in pairs( self.uniqueDropTable ) do
+	for relic, weight in pairs( hero.internalRNGPools[3] ) do
 		if not hero:HasRelic(relic) then
 			for i = 1, weight do
 				table.insert(dropTable, relic)

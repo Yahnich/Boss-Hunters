@@ -39,6 +39,7 @@ AI_BEHAVIOR_AGGRESSIVE = 1 -- Threat is weighted towards damage
 AI_BEHAVIOR_CAUTIOUS = 2 -- Threat is weighted towards health
 AI_BEHAVIOR_SAFE = 3 -- Threat is weighted towards heals and debuffs, requires bigger threat difference to switch aggro
 
+AI_THINK_RATE = 1
 BASE_AGGRO_RADIUS = 600
 
 function AICore:RandomEnemyHeroInRange( entity, range , magic_immune)

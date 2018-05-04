@@ -18,10 +18,10 @@ function relic_cursed_titans_jawbone:OnIntervalThink()
 end
 
 function relic_cursed_titans_jawbone:DeclareFunctions()
-	return {MODIFIER_PROPERTY_HEALTH_BONUS, MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE}
+	return {MODIFIER_PROPERTY_EXTRA_HEALTH_BONUS, MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE}
 end
 
-function relic_cursed_titans_jawbone:GetModifierHealthBonus()
+function relic_cursed_titans_jawbone:GetModifierExtraHealthBonus()
 	return self:GetStackCount()
 end
 

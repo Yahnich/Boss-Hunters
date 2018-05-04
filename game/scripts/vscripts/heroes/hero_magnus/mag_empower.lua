@@ -63,7 +63,7 @@ function modifier_mag_empower_effect:OnAttackLanded(params)
     	for _,enemy in pairs(enemies) do
     		if enemy ~= params.target then
     			local damage = params.damage*self:GetTalentSpecialValueFor("cleave_damage")/100
-    			self:GetAbility():DealDamage(params.attacker, params.target, damage, {damage_type = DAMAGE_TYPE_PURE}, 0)
+    			self:GetAbility():DealDamage(params.attacker, enemy, damage, {damage_type = DAMAGE_TYPE_PURE}, 0)
     		end
     	end
     end

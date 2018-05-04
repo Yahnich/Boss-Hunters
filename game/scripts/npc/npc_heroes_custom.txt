@@ -983,12 +983,21 @@
 	}
 	"npc_dota_hero_omniknight" // Justicar
 	{
-		"override_hero"			"npc_dota_hero_omniknight"
-		"Ability1"				"omniknight_purification_ebf"
-		"Ability6"				"omniknight_guardian_angel_datadriven"
+		"override_hero"				"npc_dota_hero_omniknight"
+		"Ability1"					"omniknight_purification_ebf"
+		"Ability2"					"omniknight_repel_ebf"
+		"Ability3"					"omniknight_seven_blessings"
+		"Ability4"					"omniknight_stalwart_defender"
+		"Ability6"					"omniknight_guardian_angel_ebf"
 	
-		"Ability10"		"special_bonus_movement_speed_15"
-		"Ability12"		"special_bonus_strength_10"
+		"Ability10"					"special_bonus_unique_omniknight_purification_1"
+		"Ability11"					"special_bonus_unique_omniknight_purification_2"
+		"Ability12"					"special_bonus_unique_omniknight_repel_1"
+		"Ability13"					"special_bonus_unique_omniknight_repel_2"
+		"Ability14"      	 		"special_bonus_unique_omniknight_seven_blessings_1"
+	    "Ability15"      	 		"special_bonus_unique_omniknight_seven_blessings_2"
+	    "Ability16"    		   		"special_bonus_unique_omniknight_guardian_angel_1"
+	    "Ability17"  	     		"special_bonus_unique_omniknight_guardian_angel_2"
 	}
 	"npc_dota_hero_oracle_ebf"
 	{
@@ -1013,7 +1022,7 @@
 	//=================================================================================================================
 	// HERO: PA
 	//=================================================================================================================
-	"npc_dota_hero_phantom_assassin" // Shinigami
+	"npc_dota_hero_phantom_assassin"
 	{
 		"override_hero"				"npc_dota_hero_phantom_assassin"
 	
@@ -1028,7 +1037,7 @@
 		"Ability13"					"special_bonus_unique_pa_flash_step_2"
 		"Ability14"      	 		"special_bonus_corruption_4"
 	    "Ability15"      	 		"special_bonus_lifesteal_15"
-	    "Ability16"    		   		"special_bonus_unique_phantom_assassin_2"
+	    "Ability16"    		   		"special_bonus_unique_phantom_assassin_3"
 	    "Ability17"  	     		"special_bonus_unique_phantom_assassin_coup_de_grace_1"
 		
 		"AttackRate"				"2.0"

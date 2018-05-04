@@ -75,6 +75,6 @@ function AIThink(thisEntity)
 			return thisEntity.sacrifice:GetCastPoint() + 0.1
 		end
 		AICore:AttackHighestPriority( thisEntity )
-		return 0.25
-	else return 0.25 end
+		return AI_THINK_RATE
+	else return AI_THINK_RATE end
 end

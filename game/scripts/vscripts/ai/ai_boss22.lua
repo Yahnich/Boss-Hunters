@@ -39,7 +39,7 @@ if IsServer() then
 							TargetIndex = target:entindex(),
 							AbilityIndex = thisEntity.thread:entindex()
 						})
-						return 0.25
+						return AI_THINK_RATE
 					end
 				else
 					if thisEntity.thread:IsFullyCastable() then
@@ -49,7 +49,7 @@ if IsServer() then
 							TargetIndex = target:entindex(),
 							AbilityIndex = thisEntity.thread:entindex()
 						})
-						return 0.25
+						return AI_THINK_RATE
 					end
 				end
 				if thisEntity.exorcise:IsFullyCastable() and AICore:EnemiesInLine(thisEntity, thisEntity.exorcise:GetSpecialValueFor("distance"), thisEntity.exorcise:GetSpecialValueFor("width_end"), false) then
@@ -60,7 +60,7 @@ if IsServer() then
 						Position = targetPos,
 						AbilityIndex = thisEntity.exorcise:entindex()
 					})
-					return 0.25
+					return AI_THINK_RATE
 				end
 				if thisEntity.peel:IsFullyCastable() and thisEntity.peel:GetGhostCount() < 25 then
 					ExecuteOrderFromTable({
@@ -68,11 +68,11 @@ if IsServer() then
 						OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
 						AbilityIndex = thisEntity.peel:entindex()
 					})
-					return 0.25
+					return AI_THINK_RATE
 				end
 			end
 			AICore:AttackHighestPriority( thisEntity )
-			return 0.25
-		else return 0.25 end
+			return AI_THINK_RATE
+		else return AI_THINK_RATE end
 	end
 end

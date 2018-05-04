@@ -25,7 +25,7 @@ function AIThink(thisEntity)
 					TargetIndex = thisEntity:entindex(),
 					AbilityIndex = thisEntity.armor:entindex()
 				})
-				return 0.25
+				return AI_THINK_RATE
 			end
 			if thisEntity.summon:IsFullyCastable() then
 				ExecuteOrderFromTable({
@@ -33,10 +33,10 @@ function AIThink(thisEntity)
 					OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
 					AbilityIndex = thisEntity.summon:entindex()
 				})
-				return 0.25
+				return AI_THINK_RATE
 			end
 			AICore:AttackHighestPriority( thisEntity )
-			return 0.25
+			return AI_THINK_RATE
 		else return 0.5 end
-	else return 0.25 end
+	else return AI_THINK_RATE end
 end

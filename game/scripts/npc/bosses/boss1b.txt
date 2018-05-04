@@ -106,7 +106,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"spear_width"			"150"
+				"spear_width"			"125"
 			}
 			"04"
 			{
@@ -165,7 +165,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"spear_width"			"150"
+				"spear_width"			"125"
 			}
 			"04"
 			{

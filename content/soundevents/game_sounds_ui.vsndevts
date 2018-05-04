@@ -19,9 +19,107 @@
 					}
 					"volume_min" {"value"		"1.000000"}
 					"volume_max" {"value"		"1.000000"}
-					"pitch_min"
-					{"value"		"0.950000"}
-					"pitch_max"{"value"		"1.050000"}
+					"pitch_min" {"value"		"0.950000"}
+					"pitch_max" {"value"		"1.050000"}
+					"chan_type" {"value"		"6"}
+					"memory_type" {"value"		"0"}
+					"soundlevel_min" {"value"		"90.000000"}
+					"soundlevel_max" {"value"		"90.000000"}
+				}
+			}
+		}
+	}
+}
+
+"Round.Start"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"		"sos_reference_stack"
+				"reference_stack"		"dota_update_default"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"		"sounds/ambient/horn_radiant.vsnd"
+						}
+					}
+					"volume_min" {"value"		"1.000000"}
+					"volume_max" {"value"		"1.000000"}
+					"pitch_min" {"value"		"0.950000"}
+					"pitch_max" {"value"		"1.050000"}
+					"chan_type" {"value"		"6"}
+					"memory_type" {"value"		"0"}
+					"soundlevel_min" {"value"		"90.000000"}
+					"soundlevel_max" {"value"		"90.000000"}
+				}
+			}
+		}
+	}
+}
+
+"Round.Won"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"		"sos_reference_stack"
+				"reference_stack"		"dota_update_default"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"		"sounds/addons/conquest/capture_point_timer.vsnd"
+						}
+					}
+					"volume_min" {"value"		"1.000000"}
+					"volume_max" {"value"		"1.000000"}
+					"pitch_min" {"value"		"0.950000"}
+					"pitch_max" {"value"		"1.050000"}
+					"chan_type" {"value"		"6"}
+					"memory_type" {"value"		"0"}
+					"soundlevel_min" {"value"		"90.000000"}
+					"soundlevel_max" {"value"		"90.000000"}
+				}
+			}
+		}
+	}
+}
+
+"Round.Lost"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"		"sos_reference_stack"
+				"reference_stack"		"dota_update_default"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"		"sounds/addons/conquest/capture_point_timer_hallow.vsnd"
+						}
+					}
+					"volume_min" {"value"		"1.000000"}
+					"volume_max" {"value"		"1.000000"}
+					"pitch_min" {"value"		"0.950000"}
+					"pitch_max" {"value"		"1.050000"}
 					"chan_type" {"value"		"6"}
 					"memory_type" {"value"		"0"}
 					"soundlevel_min" {"value"		"90.000000"}
