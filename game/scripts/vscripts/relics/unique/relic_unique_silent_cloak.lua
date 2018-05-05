@@ -1,7 +1,7 @@
 relic_unique_silent_cloak = class({})
 
 function relic_unique_silent_cloak:Bonus_ThreatGain()
-	return -100
+	return -999
 end
 
 function relic_unique_silent_cloak:IsHidden()
