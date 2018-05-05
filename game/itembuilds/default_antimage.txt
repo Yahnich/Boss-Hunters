@@ -6,34 +6,33 @@
 
     "Items"
     {
-        "#DOTA_Item_Build_Starting_Items"
-        {
-            "item"    "item_hand_of_midas"
-        }
-        "#DOTA_Item_Build_Early_Game"
-        {
-            "item"    "item_midas_2"
-            "item"    "item_unstable_stone"
-            "item"    "item_force_boots"
-            "item"    "item_lifesteal2"
-
-            "item"    "item_butterfly2"
-            "item"    "item_octarine_core2"
-            
-        }
-        "#DOTA_Item_Build_Core_Items"
-        {
-            "item"    "item_blink_boots"
-            "item"    "item_divine_armor"
-            "item"    "item_bloodthorn4"
-            "item"    "item_purethorn"
-        }
-        "#DOTA_Item_Build_Luxury"
-        {
-            "item"    "item_octarine_core3"
-            "item"    "item_butterfly5"
-            "item"    "item_scythe_of_decay"
-            "item"    "item_ultimate_amulet"
-        }
+       "#DOTA_Item_Build_Starting_Items"
+		{
+			"item"	"item_gauntlet_of_alacrity"
+			"item"	"item_mithril_armor"
+			"item"	"item_sanguine_mask"
+		}
+		"#DOTA_Item_Build_Early_Game"
+		{	
+			"item"	"item_cultists_veil"
+			"item"	"item_soul_vessel"
+			"item"	"item_lightningrod"
+			"item"	"item_mirrors_edge"
+		}
+		"#DOTA_Item_Build_Core_Items"
+		{
+			"item"	"item_gauntlet_of_the_void"
+			"item"	"item_voltas_greathammer"
+			"item"	"item_illusionists_charm"
+		}
+		"#DOTA_Item_Build_Luxury"
+		{
+			
+			"item"	"item_ultimate_scepter"
+			"item"	"item_soothslayer"
+			"item"	"item_tricksters_blade"
+			"item"	"item_behemoths_heart"
+			"item"	"item_blade_of_storm"
+		}
     }
 }

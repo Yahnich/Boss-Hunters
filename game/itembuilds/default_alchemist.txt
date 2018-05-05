@@ -8,30 +8,37 @@
 	{	
 		"#DOTA_Item_Build_Starting_Items"
 		{
-			"item"	"item_hand_of_midas"
+			"item"	"item_gauntlet_of_alacrity"
+			"item"	"item_pages_buckler"
+			"item"	"item_crystal_of_life
+			"item"	"item_breeze_amulet"
 		}
 		"#DOTA_Item_Build_Early_Game"
 		{	
-			"item"	"item_midas_2"
-			"item"	"item_unstable_stone"
-			"item"	"item_force_boots"
-			"item"	"item_octarine_core"
-			"item"	"item_ultimate_scepter"
+			"item"	"item_aeon_shard"
+			"item"	"item_ringing_rapier"
+			"item"	"item_runed_artifact"
+			"item"	"item_mirrors_edge"
 		}
 		"#DOTA_Item_Build_Core_Items"
 		{
-			"item"	"item_blink_boots"
-			"item"	"item_divine_armor"
-			"item"	"item_lifesteal2"
-			"item"	"item_recipe_purethorn"
-			"item"	"item_melee_rage"
-			"item"	"item_desolator5"
+			"item"	"item_ultimate_scepter"
+			"item"	"item_memento"
+			"item"	"item_arcane_accelerator"
+			"item"	"item_illusionists_charm"
 		}
 		"#DOTA_Item_Build_Luxury"
 		{
-			"item"	"item_bahamut_claw"
-			"item"	"item_bahamut_chest"
-			"item"	"item_heart_bahamut"
+			"item"	"item_soothslayer"
+			"item"	"item_gauntlet_of_might"
+			"item"	"item_behemoths_heart"
+			"item"	"item_blade_of_storm"
+			"item"	"item_thanatos"
+			"item"	"item_headchopper"
+			"item"	"item_ultimate_scepter"
+			"item"	"item_ultimate_scepter
+			"item"	"item_ultimate_scepter
+			"item"	"item_ultimate_scepter
 		}
 	}
 }
