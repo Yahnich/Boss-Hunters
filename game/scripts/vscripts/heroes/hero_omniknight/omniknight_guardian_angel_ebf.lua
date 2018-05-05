@@ -5,7 +5,7 @@ function omniknight_guardian_angel_ebf:OnSpellStart()
 	
 	local duration = self:GetTalentSpecialValueFor("duration")
 	for _, ally in ipairs( caster:FindFriendlyUnitsInRadius( caster:GetAbsOrigin(), self:GetTalentSpecialValueFor("radius") ) ) do
-		ally:AddNewModifier(caster, self, "modifier_omniknight_guardian_angel_ebf", {duraton = duration})
+		ally:AddNewModifier(caster, self, "modifier_omniknight_guardian_angel_ebf", {duration = duration})
 	end
 end
 
