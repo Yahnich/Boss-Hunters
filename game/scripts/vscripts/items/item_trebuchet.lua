@@ -40,7 +40,7 @@ function modifier_item_trebuchet:OnAttackLanded(params)
 	if IsServer() then
 		if self:GetParent():IsRangedAttacker() and params.attacker == self:GetParent() and RollPercentage(self.chance) then
 			for _, enemy in ipairs( params.attacker:FindEnemyUnitsInRadius( params.target:GetAbsOrigin(), self.radius ) ) do
-				self:GetAbility():DealDamage(self:GetParent(), enemy, self.damage * params.original_damage, {damage_type = DAMAGE_TYPE_PURE})
+				self:GetAbility():DealDamage(self:GetParent(), enemy, self.damage * params.original_damage, {damage_type = DAMAGE_TYPE_PURE}, OVERHEAD_ALERT_DAMAGE)
 			end
 		end
 	end

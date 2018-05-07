@@ -21,7 +21,7 @@ end
 function modifier_item_lance_of_longinus:OnAttackLanded(params)
 	if IsServer() then
 		if params.attacker == self:GetParent() and RollPercentage(self.chance) then
-			self:GetAbility():DealDamage(self:GetParent(), params.target, self.damage * self:GetParent():GetAttackDamage(), {damage_type = DAMAGE_TYPE_PURE})
+			self:GetAbility():DealDamage(self:GetParent(), params.target, self.damage * self:GetParent():GetAttackDamage(), {damage_type = DAMAGE_TYPE_PURE}, OVERHEAD_ALERT_DAMAGE)
 		end
 	end
 end
