@@ -4,16 +4,19 @@ function relic_cursed_titans_jawbone:OnCreated()
 	if IsServer() then
 		self:SetStackCount( self:GetParent():GetMaxHealth() * 1 )
 		self:GetParent():CalculateStatBonus()
-		self:StartIntervalThink(0.15)
+		self:StartIntervalThink(0.33)
 	end
 end
 
 function relic_cursed_titans_jawbone:OnIntervalThink()
 	if IsServer() then
+		local hpPct = self:GetParent():GetHealth() / self:GetParent():GetMaxHealth()
+
 		self:SetStackCount( 0 )
 		self:GetParent():CalculateStatBonus()
 		self:SetStackCount( self:GetParent():GetMaxHealth() * 1 )
 		self:GetParent():CalculateStatBonus()
+		self:GetParent():SetHealth( hpPct * self:GetParent():GetMaxHealth() )
 	end
 end
 

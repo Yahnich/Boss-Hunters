@@ -89,6 +89,8 @@ function Precache( context )
 	PrecacheResource("particle", "particles/desolator6_projectile.vpcf", context)
 	PrecacheResource("particle", "particles/skadi2_projectile.vpcf", context)
 	
+	-- Relic particles
+	PrecacheResource("particle", "particles/relics/relic_cursed_demon_wings_trail.vpcf", context)
 	
 	-- Elite particles
 	PrecacheResource("particle", "particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_shadowraze.vpcf", context)
@@ -641,7 +643,7 @@ function CHoldoutGameMode:FilterHeal( filterTable )
 	if not healer_index or not heal then return true end
 	healer.statsDamageHealed = (healer.statsDamageHealed or 0) + filterTable["heal"]
 	
-	if healer and target and healer ~= target and healer:HasRelic("relic_cursed_bloody_silk") then
+	if healer and healer:IsRealHero() and target and healer ~= target and healer:HasRelic("relic_cursed_bloody_silk") then
 		target:HealEvent(50, nil, healer, true)
 		ApplyDamage({victim = healer, attacker = healer, damage = 20, damage_type = DAMAGE_TYPE_PURE, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION })
 	end

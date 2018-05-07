@@ -8,38 +8,35 @@
 	{	
 		"#DOTA_Item_Build_Starting_Items"
 		{
-			"item"	"item_midas_2"
-			"item"	"item_helm_of_mithril_will"
-			"item"	"item_helm_of_mithril_will"
+			"item"	"item_pages_buckler"
+			"item"	"item_ring_of_mana"
+			"item"	"item_amulet_of_aggression"
 		}
 
 		"#DOTA_Item_Build_Early_Game"
 		{
-			"item"	"item_heart_titan"
-			"item"	"item_midas_3"	
-			"item"	"item_octarine_core3"
-			"item"	"item_blade_mail2"
+			"item"	"item_gem_of_inner_power"
+			"item"	"item_plate_of_the_unbreakable"	
+			"item"	"item_archmages_orb"
+			"item"	"item_penitent_mail"
 		}
 		"#DOTA_Item_Build_Core_Items"
 		{
-			"item"	"item_octarine_core4"
-			"item"	"item_heart_divine"
-			"item"	"item_blade_mail3"
-			"item"	"item_blood_booster"
+			"item"	"item_behemoths_heart"
+			"item"	"item_wrathbearers_robes"
+			"item"	"item_gauntlet_of_might"
+			"item"	"item_angelic_guard"
 		}
 		"#DOTA_Item_Build_Luxury"
 		{
-			"item"	"item_heart_bahamut"
-			"item"	"item_octarine_core5"
-			"item"	"item_blade_mail4"
-			"item"	"item_booster_void"
-		}
-		"#DOTA_Item_Build_End_Game"
-		{
-			"item"	"item_ultimate_amulet"
-			"item"	"item_pixels_guard"
-			"item"	"item_blink_boots"
-			"item"	"item_omni_lens"
+			"item"	"item_ultimate_scepter"
+			"item"	"item_emission"
+			"item"	"item_soothslayer"
+			"item"	"item_arcane_accelerator"
+			"item"	"item_galactic_hammer"
+			"item"	"item_legionnaires_dualswords"
+			"item"	"item_everbright_shield"
+			"item"	"item_fortress_shield"
 		}
 	}
 }

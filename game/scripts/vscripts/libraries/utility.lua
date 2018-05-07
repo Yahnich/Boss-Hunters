@@ -939,10 +939,10 @@ end
 
 function CDOTA_BaseNPC:ModifyThreat(val)
 	self.lastHit = GameRules:GetGameTime()
-	local newVal = 0
+	local newVal = val
 	for _, modifier in ipairs( self:FindAllModifiers() ) do
 		if modifier.Bonus_ThreatGain and modifier:Bonus_ThreatGain() then
-			newVal = newVal + ( val * ( 1 + ( modifier:Bonus_ThreatGain()/100 ) ) )
+			newVal = newVal + ( val * ( 1 + ( math.max(0, modifier:Bonus_ThreatGain()/100 ) ) ) )
 		end
 	end
 	self.threat = (self.threat or 0) + newVal

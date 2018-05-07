@@ -1,0 +1,1 @@
+night_stalker_hunter_in_the_night_ebf = class({})

@@ -18,7 +18,8 @@ function boss_golem_golem_toss:OnSpellStart()
 	local golemScale = caster:GetModelScale() * 0.6
 	
 	golem:SetModelScale( math.max(golemScale, 0.4 ) )
-	golem:SetBaseMoveSpeed( golem:GetBaseMoveSpeed() / scale )
+	golem:SetBaseMoveSpeed( math.min( 300, golem:GetBaseMoveSpeed() / scale ) )
+	golem:SetAverageBaseDamage( caster:GetAverageBaseDamage() * 0.8, 25 )
 	Timers:CreateTimer(0.1, function()
 		golem:SetBaseMaxHealth( golemHP )
 		golem:SetMaxHealth( golemHP )
@@ -29,10 +30,16 @@ function boss_golem_golem_toss:OnSpellStart()
 	else
 		golem:FindAbilityByName("boss_golem_golem_toss"):SetCooldown()
 	end
-	caster:SetModelScale( scale * 0.9 )
+	
+	if caster:GetModelScale() < 0.5 then
+		golem:FindAbilityByName("boss_golem_golem_toss"):SetActivated(false)
+	end
+	
+	caster:SetModelScale( scale * 0.8 )
 	caster:SetBaseMaxHealth( hp - golemHP )
 	caster:SetMaxHealth( hp - golemHP )
 	caster:SetBaseMoveSpeed( caster:GetBaseMoveSpeed() / scale )
+	caster:SetAverageBaseDamage( caster:GetAverageBaseDamage() * 0.9, 25 )
 end
 
 
@@ -59,6 +66,7 @@ if IsServer() then
 		local parentPos = parent:GetAbsOrigin()
 
 		FindClearSpaceForUnit(parent, parentPos, true)
+		if parent:IsFrozen() then return end
 		local ability = self:GetAbility()
 		local damage = self:GetSpecialValueFor("base_damage") * parent:GetModelScale()
 		local radius = self:GetSpecialValueFor("base_radius") * parent:GetModelScale()
@@ -76,7 +84,7 @@ if IsServer() then
 		local parent = self:GetParent()
 		self.distanceTraveled =  self.distanceTraveled or 0
 		
-		if parent:IsAlive() and self.distanceTraveled < self.distance then
+		if parent:IsAlive() and self.distanceTraveled < self.distance and not parent:IsFrozen() then
 			local newPos = GetGroundPosition(parent:GetAbsOrigin(), parent) + self.direction * self.speed
 			newPos.z = self.height + self.maxHeight * math.sin( (self.distanceTraveled/self.distance) * math.pi )
 			parent:SetAbsOrigin( newPos )

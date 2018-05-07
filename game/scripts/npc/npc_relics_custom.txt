@@ -29,6 +29,13 @@
 		"relic_generic_champions_spearhead"				"1"
 		"relic_generic_katana"							"1"
 		"relic_generic_stick"							"1"
+		"relic_generic_mystic_gauntlet"					"1"
+		"relic_generic_power_glove"						"1"
+		"relic_generic_dragon_scales"					"1"
+		"relic_generic_ifrit_tear"						"1"
+		"relic_generic_scythegeist"						"1"
+		"relic_generic_barbedbell"						"1"
+		"relic_generic_stone_fist"						"1"
 	}
 	"relic_type_cursed"
 	{
@@ -55,6 +62,16 @@
 		"relic_cursed_bloody_silk"						"1"
 		"relic_cursed_hungry_blade"						"1"
 		"relic_cursed_delirious_cowl"					"1"
+		"relic_cursed_whale_heart"						"1"
+		"relic_cursed_demon_wings"						"1"
+		"relic_cursed_immaculate_staff"					"1"
+		"relic_cursed_icon_of_pride"					"1"
+		"relic_cursed_icon_of_sloth"					"1"
+		"relic_cursed_icon_of_greed"					"1"
+		"relic_cursed_icon_of_wrath"					"1"
+		"relic_cursed_icon_of_gluttony"					"1"
+		"relic_cursed_icon_of_lust"						"1"
+		"relic_cursed_icon_of_envy"						"1"
 	}
 	"relic_type_unique"
 	{
@@ -84,5 +101,14 @@
 		"relic_unique_longbow"							"1"
 		"relic_unique_pocket_sand"						"1"
 		"relic_unique_eldritch_rune"					"1"
+		"relic_unique_eagles_beak"						"1"
+		"relic_unique_deathrow"							"1"
+		"relic_unique_hylophage"						"1"
+		"relic_unique_chlorophyl_cloak"					"1"
+		"relic_unique_anaerobic_ring"					"1"
+		"relic_unique_hestias_hearth"					"1"
+		"relic_unique_spirit_painting"					"1"
+		"relic_unique_charons_obol"						"1"
+		"relic_unique_kashas_wheelbarrow"				"1"
 	}
 }

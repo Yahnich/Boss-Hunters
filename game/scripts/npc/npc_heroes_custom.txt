@@ -931,6 +931,19 @@
 	{
 		"override_hero"			"npc_dota_hero_night_stalker"
 		"Ability1"				"night_stalker_void_ebf"
+		"Ability2"				"night_stalker_crippling_fear_ebf"
+		"Ability3"				"night_stalker_hunter_in_the_night_ebf"
+		"Ability4"				"night_stalker_stalkers_eyes"
+		"Ability6"				"night_stalker_darkness_ebf"
+		
+		"Ability10"				"special_bonus_unique_night_stalker_void_1"
+		"Ability11"				"special_bonus_unique_night_stalker_void_2"
+		"Ability12"				"special_bonus_unique_night_stalker_crippling_fear_1"
+		"Ability13"				"special_bonus_unique_night_stalker_crippling_fear_2"
+		"Ability14"				"special_bonus_unique_night_stalker_hunter_in_the_night_1"
+		"Ability15"				"special_bonus_unique_night_stalker_hunter_in_the_night_2"
+		"Ability16"				"special_bonus_unique_night_stalker_darkness_1"
+		"Ability17"				"special_bonus_unique_night_stalker_darkness_2"
 	}
 	"npc_dota_hero_nyx_assassin_ebf"
 	{
@@ -939,14 +952,14 @@
 		"Ability3"				"nyx_assassin_carapace"
 		"Ability6"				"nyx_assassin_ultimyr_justicar"
 	
-		"Ability10"		"special_bonus_spell_amplify_6"
-		"Ability11"		"special_bonus_hp_325"
-		"Ability12"		"special_bonus_cooldown_reduction_15"
-		"Ability13"		"special_bonus_movement_speed_35"
-		"Ability14"		"special_bonus_unique_nyx"
-		"Ability15"		"special_bonus_unique_nyx_2"
-		"Ability16"		"special_bonus_agility_100"
-		"Ability17"		"special_bonus_unique_nyx_3"
+		"Ability10"				"special_bonus_spell_amplify_6"
+		"Ability11"				"special_bonus_hp_325"
+		"Ability12"				"special_bonus_cooldown_reduction_15"
+		"Ability13"				"special_bonus_movement_speed_35"
+		"Ability14"				"special_bonus_unique_nyx"
+		"Ability15"				"special_bonus_unique_nyx_2"
+		"Ability16"				"special_bonus_agility_100"
+		"Ability17"				"special_bonus_unique_nyx_3"
 	}
 	//=================================================================================================================
 	// HERO: outworld
@@ -1025,11 +1038,11 @@
 	//=================================================================================================================
 	"npc_dota_hero_pango_ebf"
 	{
-		"override_hero"			"npc_dota_hero_pangolier"
-		"Ability1"				"pango_swashbuckler"
-		"Ability2"				"pango_swift_dash"
-		"Ability3"				"pangolier_shield_crash"
-		"Ability4"				"pangolier_heartpiercer"
+		"override_hero"				"npc_dota_hero_pangolier"
+		"Ability1"					"pango_swashbuckler"
+		"Ability2"					"pango_swift_dash"
+		"Ability3"					"pangolier_shield_crash"
+		"Ability4"					"pangolier_heartpiercer"
 		
 		"Ability10"					"special_bonus_mp_regen_150"
 		"Ability11"					"special_bonus_movement_speed_25"

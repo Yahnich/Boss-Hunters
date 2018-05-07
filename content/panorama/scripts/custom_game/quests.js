@@ -81,12 +81,14 @@ var DELAYED_COOLDOWN = {"omniknight_repel_ebf":true,
 
 function UpdateTooltipUI(id, abilityname, abilityid){
 	var tooltips = dotaHud.FindChildTraverse("DOTAAbilityTooltip")
-	if( DELAYED_COOLDOWN != null && DELAYED_COOLDOWN[abilityname] != null){
-		tooltips.FindChildTraverse("AbilityCooldown").style.backgroundImage = "url('file://{images}/custom_game/ability_delayed_cooldown_png.vtex')";
-	} else {
-		tooltips.FindChildTraverse("AbilityCooldown").style.backgroundImage = "url('s2r://panorama/images/status_icons/ability_cooldown_icon_psd.vtex')";
+	if(tooltips != null){
+		if( DELAYED_COOLDOWN != null && DELAYED_COOLDOWN[abilityname] != null){
+			tooltips.FindChildTraverse("AbilityCooldown").style.backgroundImage = "url('file://{images}/custom_game/ability_delayed_cooldown_png.vtex')";
+		} else {
+			tooltips.FindChildTraverse("AbilityCooldown").style.backgroundImage = "url('s2r://panorama/images/status_icons/ability_cooldown_icon_psd.vtex')";
+		}
+		tooltips.FindChildTraverse("AbilityCosts").style.flowChildren = "down";
 	}
-	tooltips.FindChildTraverse("AbilityCosts").style.flowChildren = "down";
 }
 
 

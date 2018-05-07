@@ -11,6 +11,12 @@ function pango_swift_dash:IsHiddenWhenStolen()
     return false
 end
 
+function pango_swift_dash:OnUpgrade()
+	if self:GetCaster():FindAbilityByName("pango_swashbuckler"):GetLevel() < self:GetLevel() then
+		self:GetCaster():FindAbilityByName("pango_swashbuckler"):SetLevel( self:GetLevel() )
+	end
+end
+
 function pango_swift_dash:OnSpellStart()
 	EmitSoundOn("Hero_Pangolier.Swashbuckle.Cast", self:GetCaster())
 	EmitSoundOn("Hero_Pangolier.Swashbuckle.Layer", self:GetCaster())

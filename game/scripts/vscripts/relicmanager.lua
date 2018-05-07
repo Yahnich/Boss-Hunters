@@ -205,10 +205,11 @@ end
 function RelicManager:ClearRelics(pID)
 	local hero = PlayerResource:GetSelectedHeroEntity(pID)
 	relicCount = 0
-	for relic, active in pairs( hero.ownedRelics ) do
+	for relic, item in pairs( hero.ownedRelics ) do
 		if relic ~= "relic_cursed_cursed_dice" then -- cursed dice cannot be removed
 			relicCount = relicCount + 1
 			hero:RemoveModifierByName( relic )
+			UTIL_Remove( EntIndexToHScript(item) )
 		end
 	end
 	hero.ownedRelics = {}
@@ -218,8 +219,10 @@ end
 
 function CDOTA_BaseNPC_Hero:AddRelic(relic)
 	self.ownedRelics = self.ownedRelics or {}
-	self.ownedRelics[relic] = true
-	self:AddNewModifier( self, nil, relic, {} )
+	
+	local relicEntity = CreateItem("item_relic_handler", nil, nil)
+	self.ownedRelics[relic] = relicEntity:entindex()
+	self:AddNewModifier( self, relicEntity, relic, {} )
 	
 	CustomNetTables:SetTableValue("relics", "relic_inventory_player_"..self:entindex(), self.ownedRelics)
 end

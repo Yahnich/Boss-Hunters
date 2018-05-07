@@ -21,7 +21,7 @@ function boss33b_shadowrazeN:OnSpellStart()
 	
 	local sdDeath = not caster:IsTwinAlive()
 	
-	if sdDeath and caster._Holdout_IsCore then
+	if sdDeath and caster.Holdout_IsCore then
 		local duration = self:GetSpecialValueFor("sd_death_duration")
 		local ogPos = caster:GetAbsOrigin()
 		
@@ -46,7 +46,7 @@ end
 
 function boss33b_shadowrazeN:CreateRazePattern(hpThreshold, position, radius, damage)
 	local caster = self:GetCaster()
-	if hpThreshold and caster._Holdout_IsCore then
+	if hpThreshold and caster.Holdout_IsCore then
 		self:CreateRaze(position, radius, damage)
 		for i = 1, self:GetSpecialValueFor("phase2_cross_count") do
 			local newPos = position + RotateVector2D(caster:GetForwardVector(), ToRadians(90*i)) * self:GetSpecialValueFor("distance")
