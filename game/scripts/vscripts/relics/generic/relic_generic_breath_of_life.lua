@@ -12,11 +12,11 @@ function relic_generic_breath_of_life:GetModifierConstantHealthRegen()
 	return 5
 end
 
-function relic_generic_breath_of_life:GetModifierConstantManaRegen()
+function relic_generic_breath_of_life:GetModifierManaBonus()
 	return 200
 end
 
-function relic_generic_breath_of_life:GetModifierCastRangeBonusStacking()
+function relic_generic_breath_of_life:GetModifierConstantManaRegen()
 	return 5
 end
 

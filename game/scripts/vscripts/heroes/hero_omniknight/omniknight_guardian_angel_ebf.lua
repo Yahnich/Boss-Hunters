@@ -15,11 +15,23 @@ LinkLuaModifier("modifier_omniknight_guardian_angel_ebf", "heroes/hero_omniknigh
 function modifier_omniknight_guardian_angel_ebf:OnCreated()
 	self.health_regen = self:GetCaster():FindTalentValue("special_bonus_unique_omniknight_guardian_angel_1")
 	self.damage = self:GetCaster():FindTalentValue("special_bonus_unique_omniknight_guardian_angel_2")
+	if IsServer() then
+		self:GetAbility():StartDelayedCooldown()
+	end
 end
 
 function modifier_omniknight_guardian_angel_ebf:OnRefresh()
 	self.health_regen = self:GetCaster():FindTalentValue("special_bonus_unique_omniknight_guardian_angel_1")
 	self.damage = self:GetCaster():FindTalentValue("special_bonus_unique_omniknight_guardian_angel_2")
+	if IsServer() then
+		self:GetAbility():StartDelayedCooldown()
+	end
+end
+
+function modifier_omniknight_guardian_angel_ebf:OnDestroy()
+	if IsServer() then
+		self:GetAbility():EndDelayedCooldown()
+	end
 end
 
 function modifier_omniknight_guardian_angel_ebf:DeclareFunctions()

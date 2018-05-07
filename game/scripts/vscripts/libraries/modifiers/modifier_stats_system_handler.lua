@@ -27,7 +27,7 @@ ALL_STATS = 2
 
 function modifier_stats_system_handler:OnCreated()
 	self:OnIntervalThink()
-	self:StartIntervalThink(0.5)
+	self:StartIntervalThink(0.1)
 end
 
 function modifier_stats_system_handler:OnIntervalThink()

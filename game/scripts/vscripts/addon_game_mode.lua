@@ -89,6 +89,8 @@ function Precache( context )
 	PrecacheResource("particle", "particles/desolator6_projectile.vpcf", context)
 	PrecacheResource("particle", "particles/skadi2_projectile.vpcf", context)
 	
+	-- Relic particles
+	PrecacheResource("particle", "particles/relics/relic_cursed_demon_wings_trail.vpcf", context)
 	
 	-- Elite particles
 	PrecacheResource("particle", "particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_shadowraze.vpcf", context)

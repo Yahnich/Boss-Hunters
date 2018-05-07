@@ -444,7 +444,7 @@
 					"NPCName"				"npc_dota_boss12_golem"
 					"TotalUnitsToSpawn"		"3"
 					"UnitsPerSpawn"			"1"
-					"SpawnInterval"			"1"
+					"SpawnInterval"			"25"
 				}
 			}
 		}
