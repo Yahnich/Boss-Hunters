@@ -15,12 +15,6 @@ function pango_swashbuckler:GetCooldown(iLvl)
     return cooldown
 end
 
-function pango_swashbuckler:OnUpgrade()
-	if self:GetCaster():FindAbilityByName("pango_swift_dash"):GetLevel() < self:GetLevel() then
-		self:GetCaster():FindAbilityByName("pango_swift_dash"):SetLevel( self:GetLevel() )
-	end
-end
-
 function pango_swashbuckler:GetChannelTime()
 	return self:GetSpecialValueFor("strikes") * self:GetSpecialValueFor("attack_interval")
 end
@@ -115,7 +109,8 @@ function modifier_pango_swashbuckler:OnIntervalThink()
 				self:GetAbility():DealDamage(self:GetCaster(), enemy, self.damage, {}, 0)
 
 				--Apply on-hit effects
-				self:GetCaster():PerformAttack(enemy, true, true, true, true, false, false, true)
+				self:GetCaster():PerformAttack(enemy, true, true, true, true, false, true, true)
+				
 			end
 		end
 
