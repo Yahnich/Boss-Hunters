@@ -35,6 +35,8 @@
 		{
 			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_nightstalker.vsndevts"
 			"particle"			"particles/units/heroes/hero_night_stalker/nightstalker_void.vpcf"
+			"particle"			"particles/units/heroes/hero_night_stalker/nightstalker_void_hit.vpcf"
+			"particle"			"particles/units/heroes/hero_night_stalker/nightstalker_loadout.vpcf"
 			"particle"			"particles/generic_gameplay/generic_stunned.vpcf"
 		}
 			
@@ -86,6 +88,7 @@
 		"BaseClass"						"special_bonus_undefined"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"LinkedAbilityName"				"night_stalker_void_ebf"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------

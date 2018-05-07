@@ -870,7 +870,7 @@ function CHoldoutGameMode:OnAbilityLearned(event)
 				local abilityName = GameRules.AbilityKV[abilityname]["LinkedAbilityName"] or ""
 				local ability = hero:FindAbilityByName(abilityName)
 				if ability and ability.OnTalentLearned then
-					ability:OnTalentLearned()
+					ability:OnTalentLearned(abilityname)
 				end
 			end
 		end
