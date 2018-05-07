@@ -1,0 +1,1 @@
+night_stalker_darkness_ebf = class({})
