@@ -12,7 +12,7 @@ if IsServer() then
 		local duration = 1
 		Timers:CreateTimer(0.33, function()
 			for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( point, 150 ) ) do
-				
+				self:GetAbility():DealDamage( caster, enemy, caster:GetPrimaryStatValue(), {damage_type = DAMAGE_TYPE_MAGICAL} )
 			end
 			duration = duration - 0.34
 			if duration > 0 then

@@ -643,7 +643,7 @@ function CHoldoutGameMode:FilterHeal( filterTable )
 	if not healer_index or not heal then return true end
 	healer.statsDamageHealed = (healer.statsDamageHealed or 0) + filterTable["heal"]
 	
-	if healer and target and healer ~= target and healer:HasRelic("relic_cursed_bloody_silk") then
+	if healer and healer:IsRealHero() and target and healer ~= target and healer:HasRelic("relic_cursed_bloody_silk") then
 		target:HealEvent(50, nil, healer, true)
 		ApplyDamage({victim = healer, attacker = healer, damage = 20, damage_type = DAMAGE_TYPE_PURE, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION })
 	end

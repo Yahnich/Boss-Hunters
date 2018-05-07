@@ -2,7 +2,7 @@ relic_cursed_icon_of_envy = class({})
 
 function relic_cursed_icon_of_envy:IncreaseEnvy()
 	for _, pIDtable in pairs( CustomNetTables:GetTableValue("game_info", "relic_drops") ) do
-		if pIDtable[1] then
+		if pIDtable["1"] then
 			self:IncrementStackCount()
 		end
 	end

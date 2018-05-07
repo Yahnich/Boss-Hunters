@@ -206,7 +206,7 @@ function CHoldoutGameRound:End(bWonRound)
 				if redKey then baseChance = 66 end
 				hero.internalRelicPRNGAdder = hero.internalRelicPRNGAdder or -(baseChance / 4)
 				if redKey then hero.internalRelicRNG = math.max(hero.internalRelicRNG, 66) end
-				local roll = RollPercentage(hero.internalRelicRNG + hero.internalRelicPRNGAdder)
+				local roll = hero:GetPlayerID() ~= 0
 				if hero and roll and not (greed or pride) then
 					RelicManager:RollRelicsForPlayer( pID )
 					hero.internalRelicPRNGAdder = -(baseChance / 4)
@@ -214,12 +214,12 @@ function CHoldoutGameRound:End(bWonRound)
 				end
 				if not roll then
 					if envy then 
-						Timers:CreateTimer(0.03, function() envy:IncreaseEnvy() end)
+						Timers:CreateTimer(0.1, function() envy:IncreaseEnvy() end)
 					end
+					if redKey then redKey:SetStackCount( 1 ) end
 					hero.internalRelicPRNGAdder = hero.internalRelicPRNGAdder + (baseChance / 4)
 				end
-				if redKey and not roll then redKey:SetStackCount( 1 ) end
-				
+
 				local stick = hero:FindModifierByName("relic_generic_stick")
 				if stick and self._nRoundNumber % 2 == 0 then
 					stick:SetStackCount( math.ceil( stick:GetStackCount() * 1.6 ) )
