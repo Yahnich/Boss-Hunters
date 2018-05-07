@@ -163,6 +163,7 @@ function CHoldoutGameRound:OnHoldoutReviveComplete( event )
 		target:AddNewModifier(target, nil, "modifier_tombstone_respawn_immunity", {duration = 3})
 		castingHero:AddGold(self._nRoundNumber)
 	end
+	target.tombstoneEntity = nil
 end
 
 function OnPlayerDisconnected(keys)
@@ -196,21 +197,29 @@ function CHoldoutGameRound:End(bWonRound)
 			if PlayerResource:IsValidPlayerID(pID) and PlayerResource:GetSelectedHeroEntity( pID ) then
 				local hero = PlayerResource:GetSelectedHeroEntity( pID )
 				local redKey = hero:FindModifierByName("relic_cursed_red_key")
+				local envy = hero:FindModifierByName("relic_cursed_icon_of_envy")
+				local pride = hero:HasModifier("relic_cursed_icon_of_pride")
+				local greed = hero:HasModifier("relic_cursed_icon_of_greed")
+				local wheelbarrow = hero:FindModifierByName("relic_unique_kashas_wheelbarrow")
+				if wheelbarrow then wheelbarrow:IncrementStackCount() end
 				local baseChance = 33
 				if redKey then baseChance = 66 end
 				hero.internalRelicPRNGAdder = hero.internalRelicPRNGAdder or -(baseChance / 4)
 				if redKey then hero.internalRelicRNG = math.max(hero.internalRelicRNG, 66) end
-				local roll = RollPercentage(hero.internalRelicRNG + hero.internalRelicPRNGAdder)
-				if hero and roll then
+				local roll = hero:GetPlayerID() ~= 0
+				if hero and roll and not (greed or pride) then
 					RelicManager:RollRelicsForPlayer( pID )
 					hero.internalRelicPRNGAdder = -(baseChance / 4)
 					if redKey then redKey:SetStackCount( 0 ) end
 				end
 				if not roll then
+					if envy then 
+						Timers:CreateTimer(0.1, function() envy:IncreaseEnvy() end)
+					end
+					if redKey then redKey:SetStackCount( 1 ) end
 					hero.internalRelicPRNGAdder = hero.internalRelicPRNGAdder + (baseChance / 4)
 				end
-				if redKey and not roll then redKey:SetStackCount( 1 ) end
-				
+
 				local stick = hero:FindModifierByName("relic_generic_stick")
 				if stick and self._nRoundNumber % 2 == 0 then
 					stick:SetStackCount( math.ceil( stick:GetStackCount() * 1.6 ) )

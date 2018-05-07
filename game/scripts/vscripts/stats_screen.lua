@@ -129,7 +129,7 @@ function StatsScreen:RespecAll(userid, event)
 			end
 		end
 		for _, modifier in ipairs( modifiers ) do
-			if modifier:GetAbility() and not modifier:GetAbility():IsInnateAbility() and modifier:GetCaster() == hero then -- destroy passive modifiers and any buffs
+			if modifier:GetAbility() and not modifier:GetAbility():IsInnateAbility() and modifier:GetAbility():GetName() ~= "item_relic_handler" and modifier:GetCaster() == hero then -- destroy passive modifiers and any buffs
 				modifier:Destroy()
 			end
 		end
