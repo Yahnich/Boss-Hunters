@@ -1,7 +1,7 @@
 relic_unique_soldiers_banner = class({})
 
 function relic_unique_soldiers_banner:OnCreated()
-	self.ar = 150 - self:GetParent():GetAttackRange()
+	self.ar = 150 - self:GetParent():GetBaseAttackRange()
 	if IsServer() then
 		self:GetParent():SetAttackCapability( DOTA_UNIT_CAP_MELEE_ATTACK )
 		self:StartIntervalThink(0)
@@ -10,7 +10,7 @@ end
 
 function relic_unique_soldiers_banner:OnIntervalThink()
 	self.ar = 0
-	self.ar = 150 - self:GetParent():GetAttackRange()
+	self.ar = 150 - self:GetParent():GetBaseAttackRange()
 end
 
 

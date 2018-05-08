@@ -12,14 +12,11 @@ function relic_cursed_symbiote:OnIntervalThink()
 end
 
 function relic_cursed_symbiote:DeclareFunctions()
-	return {MODIFIER_EVENT_ON_SPENT_MANA, MODIFIER_PROPERTY_HEALTH_BONUS, MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT}
+	return {MODIFIER_PROPERTY_SPELLS_REQUIRE_HP, MODIFIER_PROPERTY_HEALTH_BONUS, MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT}
 end
 
-function relic_cursed_symbiote:OnSpentMana(params)
-	if params.unit == self:GetParent() then
-		ApplyDamage({victim = params.unit, attacker = params.unit, damage = params.cost, ability = params.ability, damage_type = DAMAGE_TYPE_PURE})
-		params.unit:GiveMana(params.cost)
-	end
+function relic_cursed_symbiote:GetModifierSpellsRequireHP()
+	return 1
 end
 
 function relic_cursed_symbiote:GetModifierHealthBonus()

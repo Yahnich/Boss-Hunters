@@ -251,6 +251,7 @@ function CHoldoutGameMode:InitGameMode()
 	GameRules._maxLives =  mapInfo.Lives
 	GameRules.gameDifficulty =  mapInfo.Difficulty
 	CustomNetTables:SetTableValue( "game_info", "difficulty", {difficulty = GameRules.gameDifficulty} )
+	CustomNetTables:SetTableValue( "game_info", "timeofday", {timeofday = 0} )
 	
 	GameRules._used_life = 0
 	GameRules._life = GameRules._maxLives
@@ -1695,6 +1696,11 @@ function CHoldoutGameMode:SendErrorReport(err)
 	end
 end
 
+DAY_TIME = 0
+NIGHT_TIME = 1
+TEMPORARY_NIGHT = 2
+NIGHT_STALKER_NIGHT = 3
+
 function CHoldoutGameMode:OnThink()
 	if GameRules:State_Get() >= 7 and GameRules:State_Get() <= 8 then
 		local OnPThink = function(self)
@@ -1718,7 +1724,10 @@ function CHoldoutGameMode:OnThink()
 			if not status  and not self.gameHasBeenBroken then
 				self:SendErrorReport(err)
 			end
-			
+			local timeofday = GameRules:IsDaytime()
+			if GameRules:IsTemporaryNight() then timeofday = TEMPORARY_NIGHT end
+			if GameRules:IsNightstalkerNight() then timeofday = NIGHT_STALKER_NIGHT end
+			CustomNetTables:SetTableValue( "game_info", "timeofday", {timeofday = timeofday} )
 			if self._flPrepTimeEnd then
 				local timeLeft = self._flPrepTimeEnd - GameRules:GetGameTime()
 				CustomGameEventManager:Send_ServerToAllClients( "updateQuestPrepTime", { prepTime = math.floor(timeLeft + 0.5) } )

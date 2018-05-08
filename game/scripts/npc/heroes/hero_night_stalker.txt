@@ -25,7 +25,7 @@
 		"AbilityCastPoint"				"0.3 0.3 0.3 0.3"
 		"AbilityCooldown"				"8"
 		"AbilityManaCost"				"80 90 100 110 120 130 140"
-		"AbilityDamage"					"90 160 230 300 370 440"
+		"AbilityDamage"					"90 160 230 300 370 440 510"
 		"MaxLevel"						"7"
 		"AOERadius"						"300"
 	
@@ -155,13 +155,13 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"duration_day"			"3.0"
+				"var_type"					"FIELD_FLOAT"
+				"cooldown_day"				"12"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"duration_night"		"5.0 5.5 6.0 6.5 7.0 7.5 8.0"
+				"var_type"					"FIELD_FLOAT"
+				"cooldown_night"			"6"
 			}
 			"03"
 			{
@@ -172,6 +172,11 @@
 			{
 				"var_type"					"FIELD_INTEGER"
 				"miss_rate_night"			"50"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"DURATION"					"3 3.5 4 4.5 5 5.5 6"
 			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_2"
@@ -244,12 +249,16 @@
 			{
 				"var_type"							"FIELD_INTEGER"
 				"bonus_attack_speed_night"			"30 50 70 90 110 130 150"
-				"LinkedSpecialBonus"				"special_bonus_unique_night_stalker_2"
 			}
 			"03"
 			{
 				"var_type"							"FIELD_FLOAT"
 				"duration"							"2"
+			}
+			"04"
+			{
+				"var_type"							"FIELD_FLOAT"
+				"scepter_pct"						"50"
 			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
@@ -261,6 +270,7 @@
 		"BaseClass"						"special_bonus_undefined"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"LinkedModifierName"			"modifier_night_stalker_hunter_in_the_night_ebf"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -269,7 +279,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"60"
+				"value"					"50"
 			}
 		}
 	}
@@ -280,6 +290,7 @@
 		"BaseClass"						"special_bonus_undefined"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"LinkedModifierName"			"modifier_night_stalker_hunter_in_the_night_ebf"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -343,7 +354,7 @@
 			"02"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"blind_percentage"				"-25"
+				"blind_percentage"				"25"
 			}
 		}
 	}

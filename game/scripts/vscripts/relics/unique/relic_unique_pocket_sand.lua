@@ -14,7 +14,7 @@ function relic_unique_pocket_sand:OnTakeDamage(params)
 		local direction = CalculateDirection( params.unit, params.attacker )
 		FindClearSpaceForUnit(params.unit, params.unit:GetAbsOrigin() + direction * 300, true)
 		
-		ApplyDamage({victim = params.attacker, attacker = params.unit, damage = params.unit:GetPrimaryStatValue() * 2.75, damage_type = DAMAGE_TYPE_PURE})
+		self:GetAbility():DealDamage(params.unit, params.attacker, params.unit:GetPrimaryStatValue(), {damage_type = DAMAGE_TYPE_PURE})
 		
 		self:SetDuration(12, true)
 		self:StartIntervalThink(12)

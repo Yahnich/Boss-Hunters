@@ -6,7 +6,7 @@ end
 
 function relic_generic_barbedbell:OnTakeDamage(params)
 	if params.unit == self:GetParent() and params.attacker ~= self:GetParent() and not ( HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_HPLOSS) or HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION) )  then
-		ApplyDamage({victim = params.attacker, attacker = params.unit, damage = 35, damage_type = DAMAGE_TYPE_PHYSICAL, damage_flags = DOTA_DAMAGE_FLAG_REFLECTION})
+		self:GetAbility():DealDamage( params.unit, params.attacker, 35, {damage_type = DAMAGE_TYPE_PHYSICAL, damage_flags = DOTA_DAMAGE_FLAG_REFLECTION})
 		ParticleManager:FireRopeParticle("particles/units/heroes/hero_centaur/centaur_return.vpcf", PATTACH_POINT_FOLLOW, params.unit, params.attacker)
 	end
 end

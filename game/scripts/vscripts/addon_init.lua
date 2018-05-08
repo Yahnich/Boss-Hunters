@@ -10,5 +10,11 @@ CDR_PER_INT = 0.385
 SPELL_AMP_PER_INT = 0.0075
 
 if IsClient() then -- Load clientside utility lib
+	if GameRules == nil then
+		GameRules = class({})
+	end
+	print(GameRules, "?")
+	print("client-side has been initialized")
 	require("libraries/client_util")
+	print(GameRules.IsDaytime, "?")
 end

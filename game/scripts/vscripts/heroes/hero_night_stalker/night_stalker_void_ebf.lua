@@ -21,7 +21,7 @@ function night_stalker_void_ebf:OnSpellStart()
 		duration = self:GetTalentSpecialValueFor("duration_night")
 	end
 	
-	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), radius ) ) do
+	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( target:GetAbsOrigin(), radius ) ) do
 		self:DealDamage( caster, enemy, damage )
 		ParticleManager:FireParticle("particles/units/heroes/hero_night_stalker/nightstalker_void_hit.vpcf", PATTACH_POINT_FOLLOW, enemy)
 	end
