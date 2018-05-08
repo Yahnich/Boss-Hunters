@@ -78,16 +78,21 @@ LinkLuaModifier("modifier_night_stalker_void_talent", "heroes/hero_night_stalker
 
 if IsServer() then
 	function modifier_night_stalker_void_talent:OnCreated()
-		self.delay = self:FindTalentValue("special_bonus_unique_night_stalker_void_1")
+		self.delay = self:GetCaster():FindTalentValue("special_bonus_unique_night_stalker_void_1")
 		self:StartIntervalThink(self.delay)
+		self:SetDuration(self.delay, true)
 	end
 	
-	function modifier_night_stalker_void_talent:OnCreated()
+	function modifier_night_stalker_void_talent:OnIntervalThink()
 		local caster = self:GetCaster()
 		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), self:GetAbility():GetTrueCastRange() ) ) do
 			caster:SetCursorCastTarget( enemy )
 			self:GetAbility():OnSpellStart()
+			self:SetDuration(self.delay, true)
+			self:StartIntervalThink(self.delay)
 			return
 		end
+		self:SetDuration(-1, true)
+		self:StartIntervalThink(0.25)
 	end
 end
