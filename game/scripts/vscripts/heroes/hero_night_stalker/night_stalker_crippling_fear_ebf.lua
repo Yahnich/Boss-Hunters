@@ -27,13 +27,13 @@ function night_stalker_crippling_fear_ebf:OnSpellStart()
 end
 
 modifier_night_stalker_crippling_fear_ebf_silence = class({})
-LinkLuaModifier("modifier_night_stalker_crippling_fear_ebf_silence", "heroes/hero_night_stalker", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_night_stalker_crippling_fear_ebf_silence", "heroes/hero_night_stalker/night_stalker_crippling_fear_ebf", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_night_stalker_crippling_fear_ebf_silence:OnCreated()
 	self.miss_day = self:GetTalentSpecialValueFor("miss_rate_day")
 	self.miss_night = self:GetTalentSpecialValueFor("miss_rate_night")
 	if IsServer() then
-		self:GetAbility:StartDelayedCooldown()
+		self:GetAbility():StartDelayedCooldown()
 	end
 end
 
@@ -41,18 +41,22 @@ function modifier_night_stalker_crippling_fear_ebf_silence:OnRefresh()
 	self.miss_day = self:GetTalentSpecialValueFor("miss_rate_day")
 	self.miss_night = self:GetTalentSpecialValueFor("miss_rate_night")
 	if IsServer() then
-		self:GetAbility:StartDelayedCooldown()
+		self:GetAbility():StartDelayedCooldown()
 	end
 end
 
 function modifier_night_stalker_crippling_fear_ebf_silence:OnDestroy()
 	if IsServer() then
-		self:GetAbility:EndDelayedCooldown()
+		self:GetAbility():EndDelayedCooldown()
 	end
 end
 
 function modifier_night_stalker_crippling_fear_ebf_silence:GetEffectName()
 	return "particles/units/heroes/hero_night_stalker/nightstalker_crippling_fear.vpcf"
+end
+
+function modifier_night_stalker_crippling_fear_ebf_silence:GetEffectAttachType()
+	return PATTACH_OVERHEAD_FOLLOW
 end
 
 function modifier_night_stalker_crippling_fear_ebf_silence:DeclareFunctions()

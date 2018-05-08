@@ -3,7 +3,7 @@ night_stalker_darkness_ebf = class({})
 function night_stalker_darkness_ebf:OnSpellStart()
 	local caster = self:GetCaster()
 	local darkness = caster:AddNewModifier(caster, self, "modifier_night_stalker_darkness_ebf", {duration = self:GetTalentSpecialValueFor("duration")})
-	darkness:OnRefresh() -- WTF????? WHY CANT I CALL ONCREATED WHAT THE FUCK
+
 	ParticleManager:FireParticle("particles/units/heroes/hero_night_stalker/nightstalker_ulti.vpcf", PATTACH_POINT_FOLLOW, caster)
 	EmitGlobalSound("Hero_Nightstalker.Darkness.Team")
 end
@@ -12,7 +12,6 @@ modifier_night_stalker_darkness_ebf = class({})
 LinkLuaModifier("modifier_night_stalker_darkness_ebf", "heroes/hero_night_stalker/night_stalker_darkness_ebf", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_night_stalker_darkness_ebf:OnCreated()
-	print("WHY ARENT YOU WORKING")
 	if IsServer() then
 		GameRules:BeginNightstalkerNight( self:GetRemainingTime() )
 	end
@@ -71,7 +70,7 @@ end
 modifier_night_stalker_darkness_ebf_aura = class({})
 LinkLuaModifier("modifier_night_stalker_darkness_ebf_aura", "heroes/hero_night_stalker/night_stalker_darkness_ebf", LUA_MODIFIER_MOTION_NONE)
 
-function modifier_night_stalker_darkness_ebf:OnCreated()
+function modifier_night_stalker_darkness_ebf_aura:OnCreated()
 	self.blind = self:GetTalentSpecialValueFor("blind_percentage")
 end
 
