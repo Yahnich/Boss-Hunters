@@ -22,7 +22,7 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityChannelTime"			"1 1.25 1.5 1.75 2 2.25 2.5"
+		"AbilityChannelTime"			"2 2.5 3 3.5 4 4.5 5"
 		"AbilityCooldown"				"16"
 	
 		// Cost
@@ -41,7 +41,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"channel_time"			"1 1.25 1.5 1.75 2 2.25 2.5"
+				"channel_time"			"2 2.5 3 3.5 4 4.5 5"
 				"LinkedSpecialBonus"	"special_bonus_unique_shadow_shaman_binding_shackle_1"
 			}
 			"03"
@@ -53,8 +53,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"aftershackle_duration"	"0.5"
-				"LinkedSpecialBonus"	"special_bonus_unique_shadow_shaman_binding_shackle_2"
+				"aftershackle_duration"	"1"
 			}
 		}
 	
@@ -224,7 +223,7 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"45"
+		"AbilityCooldown"				"30"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -248,7 +247,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"45"
+				"duration"				"30"
 			}
 			"04"
 			{
@@ -340,8 +339,8 @@
 		{
 			"01"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
+				"var_type"					"FIELD_FLOAT"
+				"value"						"2"
 			}
 		}
 	}
@@ -359,8 +358,8 @@
 		{
 			"01"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"2"
+				"var_type"					"FIELD_FLOAT"
+				"value"						"1"
 			}
 		}
 	}
@@ -378,8 +377,8 @@
 		{
 			"01"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"0.75"
+				"var_type"					"FIELD_INTEGER"
+				"value"						"1"
 			}
 		}
 	}
@@ -398,7 +397,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"450"
+				"value"						"600"
 			}
 		}
 	}

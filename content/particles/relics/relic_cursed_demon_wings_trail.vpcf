@@ -45,7 +45,7 @@
 		{
 			_class = "C_OP_FadeInSimple"
 			m_flFadeInTime = 0.1
-			m_nFieldOutput = 16
+			m_nFieldOutput = "16"
 		},
 		{
 			_class = "C_OP_EndCapTimedDecay"
@@ -53,42 +53,42 @@
 		},
 		{
 			_class = "C_OP_LerpEndCapScalar"
-			m_nFieldOutput = 16
+			m_nFieldOutput = "16"
 			m_flOutput = 0.0
 		},
 		{
 			_class = "C_OP_LerpEndCapScalar"
 			m_flOutput = 0.0
-			m_nFieldOutput = 7
+			m_nFieldOutput = "7"
 		},
 		{
 			_class = "C_OP_DifferencePreviousParticle"
 			m_nOpEndCapState = 0
 			m_flInputMin = 71.0
 			m_flInputMax = 72.0
-			m_nFieldOutput = 16
+			m_nFieldOutput = "16"
 			m_flOutputMin = 1.0
 			m_flOutputMax = 0.0
 			m_bSetPreviousParticle = true
 		},
 		{
 			_class = "C_OP_RemapScalarEndCap"
-			m_nFieldOutput = 16
+			m_nFieldOutput = "16"
 			m_flInputMax = 15.0
-			m_nFieldInput = 8
+			m_nFieldInput = "8"
 		},
 		{
 			_class = "C_OP_RemapVisibilityScalar"
 			m_flRadiusScale = 0.1
-			m_nFieldOutput = 7
+			m_nFieldOutput = "7"
 		},
 	]
 	m_Initializers = 
 	[
 		{
 			_class = "C_INIT_RandomLifeTime"
-			m_fLifetimeMax = 1.0
-			m_fLifetimeMin = 1.0
+			m_fLifetimeMax = 1.5
+			m_fLifetimeMin = 1.5
 		},
 		{
 			_class = "C_INIT_RandomRadius"
@@ -97,7 +97,7 @@
 		},
 		{
 			_class = "C_INIT_RemapParticleCountToScalar"
-			m_nFieldOutput = 7
+			m_nFieldOutput = "7"
 			m_nInputMax = 2
 			m_bScaleInitialRange = true
 		},
@@ -120,7 +120,7 @@
 		},
 		{
 			_class = "C_INIT_RandomColor"
-			m_nFieldOutput = 22
+			m_nFieldOutput = "22"
 			m_TintMax = [ 0, 0, 0, 255 ]
 			m_ColorMax = [ 61, 61, 61, 255 ]
 		},

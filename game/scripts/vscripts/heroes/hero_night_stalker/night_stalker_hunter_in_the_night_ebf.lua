@@ -81,65 +81,65 @@ end
 function modifier_night_stalker_hunter_in_the_night_ebf:GetModifierMoveSpeedBonus_Percentage()
 	local ms = self.ms
 	local caster = self:GetParent()
-	if GameRules:IsDaytime() then 
-		if caster:HasScepter() then
-			ms = ms * self.scepter_pct
-		else
-			ms = 0 
-		end
+	local multiplier = 1
+	if GameRules:IsDaytime() then
+		multiplier = 0
+	end
+	if caster:HasScepter() then
+		multiplier = multiplier + self.scepter_pct
 	end
 	if GameRules:IsNightstalkerNight() and caster:HasTalent("special_bonus_unique_night_stalker_darkness_2") then 
 		ms = ms * caster:FindTalentValue("special_bonus_unique_night_stalker_darkness_2") 
 	end
-	return ms
+	return ms * multiplier
 end
 
 function modifier_night_stalker_hunter_in_the_night_ebf:GetModifierAttackSpeedBonus_Constant()
 	local as = self.as
 	local caster = self:GetParent()
-	if GameRules:IsDaytime() then 
-		if caster:HasScepter() then
-			as = as * self.scepter_pct
-		else
-			as = 0 
-		end
+	local multiplier = 1
+	if GameRules:IsDaytime() then
+		multiplier = 0
+	end
+	if caster:HasScepter() then
+		multiplier = multiplier + self.scepter_pct
 	end
 	if GameRules:IsNightstalkerNight() and caster:HasTalent("special_bonus_unique_night_stalker_darkness_2") then 
 		as = as * caster:FindTalentValue("special_bonus_unique_night_stalker_darkness_2") 
 	end
-	return as
+	return as * multiplier
 end
 
 function modifier_night_stalker_hunter_in_the_night_ebf:GetModifierSpellAmplify_Percentage()
 	local amp = self.amp
 	local caster = self:GetParent()
-	if GameRules:IsDaytime() then 
-		if caster:HasScepter() then
-			amp = amp * self.scepter_pct
-		else
-			amp = 0 
-		end
+	local multiplier = 1
+	if GameRules:IsDaytime() then
+		multiplier = 0
+	end
+	if caster:HasScepter() then
+		multiplier = multiplier + self.scepter_pct
 	end
 	if GameRules:IsNightstalkerNight() and caster:HasTalent("special_bonus_unique_night_stalker_darkness_2") then 
 		amp = amp * caster:FindTalentValue("special_bonus_unique_night_stalker_darkness_2") 
 	end
-	return amp
+	return amp * multiplier
 end
 
 function modifier_night_stalker_hunter_in_the_night_ebf:GetModifierPhysicalArmorBonus()
 	local armor = self.armor
 	local caster = self:GetParent()
-	if GameRules:IsDaytime() then 
-		if caster:HasScepter() then
-			armor = armor * self.scepter_pct
-		else
-			armor = 0 
-		end
+	local multiplier = 1
+	if GameRules:IsDaytime() then
+		multiplier = 0
+	end
+	if caster:HasScepter() then
+		multiplier = multiplier + self.scepter_pct
 	end
 	if GameRules:IsNightstalkerNight() and caster:HasTalent("special_bonus_unique_night_stalker_darkness_2") then 
 		armor = armor * caster:FindTalentValue("special_bonus_unique_night_stalker_darkness_2") 
 	end
-	return armor
+	return armor * multiplier
 end
 
 function modifier_night_stalker_hunter_in_the_night_ebf:IsHidden()

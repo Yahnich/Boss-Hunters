@@ -21,6 +21,12 @@ function mirana_starcall:GetBehavior()
 	end
 end
 
+function mirana_starcall:OnTalentLearned()
+	if self:GetCaster():HasTalent("special_bonus_unique_mirana_starcall_1") then
+		self:ToggleAutoCast()
+	end
+end
+
 function mirana_starcall:OnSpellStart()
     local caster = self:GetCaster()
     local damage = self:GetTalentSpecialValueFor("damage")
@@ -56,17 +62,20 @@ end
 modifier_mirana_starcall = class({})
 function modifier_mirana_starcall:OnCreated(table)
     if IsServer() then
-        self:StartIntervalThink(FrameTime())
+        self:StartIntervalThink(0.15)
     end
 end
 
 function modifier_mirana_starcall:OnIntervalThink()
     if self:GetParent():HasTalent("special_bonus_unique_mirana_starcall_1") and self:GetParent():IsAlive() and self:GetAbility():GetAutoCastState() then
-        local damage = self:GetTalentSpecialValueFor("damage")
-        local agi_damage = self:GetTalentSpecialValueFor("agi_damage")/100
-        damage = damage + self:GetParent():GetAgility() * agi_damage
-		self:GetAbility():StarFall( self:GetTalentSpecialValueFor("radius"), damage, 0 )
-        self:StartIntervalThink(self:GetParent():FindTalentValue("special_bonus_unique_mirana_starcall_1"))
+		local caster = self:GetCaster()
+		local enemies = caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), self:GetTalentSpecialValueFor("radius") )
+		if #enemies > 0 then
+			self:GetAbility():OnSpellStart()
+			self:StartIntervalThink(self:GetParent():FindTalentValue("special_bonus_unique_mirana_starcall_1"))
+		else
+			self:StartIntervalThink(0.35)
+		end
     end
 end
 

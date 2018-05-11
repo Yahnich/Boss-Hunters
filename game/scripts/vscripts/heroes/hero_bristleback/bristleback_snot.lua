@@ -78,9 +78,11 @@ if IsServer() then
 	end
 	
 	function modifier_bristleback_snot_autocast:OnIntervalThink()
+		local caster = self:GetCaster()
+		local ability = self:GetAbility()
 		if self:GetAbility():IsCooldownReady() and self:GetAbility():GetAutoCastState() and self:GetCaster():IsAlive() and self:GetAbility():GetManaCost(-1) <= self:GetCaster():GetMana() then
-			self:GetAbility():CastSpell()
-		elseif caster:GetMana() < ability:GetManaCost(-1) then
+			caster:CastAbilityImmediately( ability, caster:GetPlayerOwnerID() )
+		elseif caster:GetMana() < ability:GetManaCost(-1) and ability:GetAutoCastState() then
 			self:GetAbility():ToggleAutoCast()
 		end
 	end
@@ -94,6 +96,7 @@ function modifier_snot:DeclareFunctions()
     local funcs = {
         MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
         MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
+		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
     }
     return funcs
 end
@@ -104,6 +107,10 @@ end
 
 function modifier_snot:GetModifierPhysicalArmorBonus()
     return self:GetTalentSpecialValueFor("armor_per_stack") * self:GetStackCount()
+end
+
+function modifier_snot:GetModifierAttackSpeedBonus_Constant()
+    return self:GetTalentSpecialValueFor("attackspeed_loss") * self:GetStackCount()
 end
 
 function modifier_snot:IsDebuff()

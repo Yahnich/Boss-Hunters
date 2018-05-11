@@ -28,13 +28,26 @@ function shadow_shaman_binding_shackle:OnSpellStart()
 	else
 		hTarget:AddNewModifier(hCaster, self, "modifier_shadow_shaman_bound_shackles", {duration = self:GetTalentSpecialValueFor("channel_time")})
 	end
+	
+	if hCaster:HasTalent("special_bonus_unique_shadow_shaman_binding_shackle_2") then
+		for _, enemy in ipairs( hCaster:FindEnemyUnitsInRadius( hTarget:GetAbsOrigin(), self:GetTrueCastRange() ) ) do
+			if enemy ~= hTarget then
+				if enemy:IsIllusion() then
+					enemy:ForceKill(true)
+				else
+					enemy:AddNewModifier(hCaster, self, "modifier_shadow_shaman_bound_shackles", {duration = self:GetTalentSpecialValueFor("channel_time"), origin = hTarget:entindex() })
+				end
+				break
+			end
+		end
+	end
 end
 
 
 LinkLuaModifier("modifier_shadow_shaman_bound_shackles", "heroes/hero_shadow_shaman/shadow_shaman_binding_shackle", LUA_MODIFIER_MOTION_NONE)
 modifier_shadow_shaman_bound_shackles = class({})
 
-function modifier_shadow_shaman_bound_shackles:OnCreated()
+function modifier_shadow_shaman_bound_shackles:OnCreated(kv)
 	self.duration = self:GetRemainingTime()
 	self.damage = self:GetAbility():GetTalentSpecialValueFor("total_damage")
 	self.tick = self:GetAbility():GetTalentSpecialValueFor("tick_interval")
@@ -42,17 +55,20 @@ function modifier_shadow_shaman_bound_shackles:OnCreated()
 	if IsServer() then
 		self:StartIntervalThink(self.tick)
 		self:GetAbility():StartDelayedCooldown()
+		
+		local origin = self:GetCaster()
+		if kv.origin then origin = EntIndexToHScript( tonumber(kv.origin) ) end
+		local shackles = ParticleManager:CreateParticle("particles/units/heroes/hero_shadowshaman/shadowshaman_shackle.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
+		ParticleManager:SetParticleControlEnt(shackles, 0, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_hitloc", self:GetParent():GetAbsOrigin(), true)
+		ParticleManager:SetParticleControlEnt(shackles, 1, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_hitloc", self:GetParent():GetAbsOrigin(), true)
+		ParticleManager:SetParticleControlEnt(shackles, 3, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_hitloc", self:GetParent():GetAbsOrigin(), true)
+		ParticleManager:SetParticleControlEnt(shackles, 4, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_hitloc", self:GetParent():GetAbsOrigin(), true)
+		
+		ParticleManager:SetParticleControlEnt(shackles, 5, origin, PATTACH_POINT_FOLLOW, "attach_attack1", origin:GetAbsOrigin(), true)
+		ParticleManager:SetParticleControlEnt(shackles, 6, origin, PATTACH_POINT_FOLLOW, "attach_attack2", origin:GetAbsOrigin(), true)
+		
+		self:AddParticle(shackles, false, false, 10, false, false)
 	end
-	local shackles = ParticleManager:CreateParticle("particles/units/heroes/hero_shadowshaman/shadowshaman_shackle.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
-	ParticleManager:SetParticleControlEnt(shackles, 0, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_hitloc", self:GetParent():GetAbsOrigin(), true)
-	ParticleManager:SetParticleControlEnt(shackles, 1, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_hitloc", self:GetParent():GetAbsOrigin(), true)
-	ParticleManager:SetParticleControlEnt(shackles, 3, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_hitloc", self:GetParent():GetAbsOrigin(), true)
-	ParticleManager:SetParticleControlEnt(shackles, 4, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_hitloc", self:GetParent():GetAbsOrigin(), true)
-	
-	ParticleManager:SetParticleControlEnt(shackles, 5, self:GetCaster(), PATTACH_POINT_FOLLOW, "attach_attack1", self:GetCaster():GetAbsOrigin(), true)
-	ParticleManager:SetParticleControlEnt(shackles, 6, self:GetCaster(), PATTACH_POINT_FOLLOW, "attach_attack2", self:GetCaster():GetAbsOrigin(), true)
-	
-	self:AddParticle(shackles, false, false, 10, false, false)
 end
 
 function modifier_shadow_shaman_bound_shackles:OnRefresh()

@@ -11,9 +11,11 @@ function night_stalker_void_ebf:GetAOERadius()
 end
 
 function night_stalker_void_ebf:OnSpellStart()
+	self:Void(self:GetCursorTarget())
+end
+
+function night_stalker_void_ebf:Void(target)
 	local caster = self:GetCaster()
-	local target = self:GetCursorTarget()
-	
 	local damage = self:GetAbilityDamage()
 	local radius = self:GetTalentSpecialValueFor("aoe")
 	local duration = self:GetTalentSpecialValueFor("duration_day")
@@ -26,7 +28,7 @@ function night_stalker_void_ebf:OnSpellStart()
 		ParticleManager:FireParticle("particles/units/heroes/hero_night_stalker/nightstalker_void_hit.vpcf", PATTACH_POINT_FOLLOW, enemy)
 	end
 	
-	self:Stun( target, self:GetTalentSpecialValueFor("mini_stun") )
+	self:Stun( target, self:GetTalentSpecialValueFor("mini_stun"), false )
 	target:AddNewModifier(caster, self, "modifier_night_stalker_void_ebf", {duration = duration})
 	
 	ParticleManager:FireParticle("particles/units/heroes/hero_night_stalker/nightstalker_loadout.vpcf", PATTACH_POINT_FOLLOW, target)
@@ -79,15 +81,14 @@ LinkLuaModifier("modifier_night_stalker_void_talent", "heroes/hero_night_stalker
 if IsServer() then
 	function modifier_night_stalker_void_talent:OnCreated()
 		self.delay = self:GetCaster():FindTalentValue("special_bonus_unique_night_stalker_void_1")
-		self:StartIntervalThink(self.delay)
-		self:SetDuration(self.delay, true)
+		self:SetDuration(-1, true)
+		self:StartIntervalThink(0.25)
 	end
 	
 	function modifier_night_stalker_void_talent:OnIntervalThink()
 		local caster = self:GetCaster()
 		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), self:GetAbility():GetTrueCastRange() ) ) do
-			caster:SetCursorCastTarget( enemy )
-			self:GetAbility():OnSpellStart()
+			self:GetAbility():Void( enemy )
 			self:SetDuration(self.delay, true)
 			self:StartIntervalThink(self.delay)
 			return

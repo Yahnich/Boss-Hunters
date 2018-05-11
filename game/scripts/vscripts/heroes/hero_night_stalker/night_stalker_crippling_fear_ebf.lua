@@ -9,6 +9,14 @@ function night_stalker_crippling_fear_ebf:GetBehavior()
 	end
 end
 
+function night_stalker_crippling_fear_ebf:GetCooldown(nLvl)
+	if GameRules:IsDaytime() then
+		return self:GetTalentSpecialValueFor("cooldown_day")
+	else
+		return self:GetTalentSpecialValueFor("cooldown_night")
+	end
+end
+
 function night_stalker_crippling_fear_ebf:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget() or self:GetCursorPosition()

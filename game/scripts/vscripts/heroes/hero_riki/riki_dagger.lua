@@ -8,12 +8,12 @@ end
 modifier_dagger = class({})
 function modifier_dagger:DeclareFunctions()
     local funcs = {
-        MODIFIER_EVENT_ON_ATTACK_LANDED
+        MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE
     }   
     return funcs
 end
 
-function modifier_dagger:OnAttackLanded(params)
+function modifier_dagger:GetModifierPreAttack_BonusDamage(params)
     if IsServer() then
         local caster = self:GetCaster()
         if params.attacker == caster then
@@ -45,13 +45,12 @@ function modifier_dagger:OnAttackLanded(params)
                 -- Set Control Point 1 for the backstab particle; this controls where it's positioned in the world. In this case, it should be positioned on the victim.
                 ParticleManager:SetParticleControlEnt(particle, 1, params.target, PATTACH_POINT_FOLLOW, "attach_hitloc", params.target:GetAbsOrigin(), true)
                 ParticleManager:ReleaseParticleIndex(particle)
-                -- Apply extra backstab damage based on Riki's agility
-                self:GetAbility():DealDamage(params.attacker, params.target, damage, {}, OVERHEAD_ALERT_DAMAGE)
-                
+
                 if params.attacker:HasTalent("special_bonus_unique_riki_dagger_1") then
                     params.attacker:ModifyGold(params.attacker:FindTalentValue("special_bonus_unique_riki_dagger_1"), true, 0)
                     SendOverheadEventMessage(params.attacker:GetPlayerOwner(),OVERHEAD_ALERT_GOLD,params.attacker,params.attacker:FindTalentValue("special_bonus_unique_riki_dagger_1"),params.attacker:GetPlayerOwner())
                 end
+				return damage
             end
         end
     end

@@ -214,9 +214,12 @@
 		// General
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_timbersaw/timbersaw_reactive.lua"	
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityTextureName"			"shredder_reactive_armor"
 		"MaxLevel"						"7"							
+		
+		"AbilityCooldown"				"60"
+		"AbilityManaCost"				"200"
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -253,6 +256,7 @@
 		"BaseClass"						"special_bonus_undefined"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"LinkedModifierName"			"modifier_timbersaw_reactive_handle"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------

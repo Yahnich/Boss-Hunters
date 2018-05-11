@@ -148,7 +148,9 @@ function CheckCooldowns(keys)
 	local caster = keys.caster
 	local target = keys.target
 	local ability = keys.ability
-	
+	if caster:IsIllusion() then -- get main naga
+		caster = PlayerResource:GetSelectedHeroEntity( caster:GetPlayerID() )
+	end
 	local counter = 0
 	for i = 0, 5 do
 		local cooldownAb = caster:GetAbilityByIndex(i)

@@ -6,17 +6,23 @@ function juggernaut_dance_of_blades:OnSpellStart()
 	
 	local talent = caster:HasTalent("special_bonus_unique_juggernaut_dance_of_blades_1")
 	local bounces = self:GetTalentSpecialValueFor("jumps") + caster:GetMomentum()
+	local ogBounces = bounces
 	caster:SetMomentum(0)
 	
 	
 	local radius = self:GetTalentSpecialValueFor("radius")
 	local tick = self:GetTalentSpecialValueFor("bounce_tick")
 	caster:AddNewModifier(caster, self, "modifier_juggernaut_dance_of_blades", {duration = bounces * tick + 0.1})
-	self:Bounce(target)
-	Timers:CreateTimer(tick, function()
+	Timers:CreateTimer(function()
 		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), radius) ) do
 			target = enemy
 			break
+		end
+		if not target or target:IsNull() or not target:IsAlive() then
+			local cd = self:GetCooldownTimeRemaining()
+			self:EndCooldown()
+			self:StartCooldown( cd * (1 - ( bounces / ogBounces)) )
+			return caster:RemoveModifierByName("modifier_juggernaut_dance_of_blades") 
 		end
 		self:Bounce(target)
 		bounces = bounces - 1

@@ -34,7 +34,7 @@
 			
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"1000 1100 1200 1300 1400 1500 1600"
+		"AbilityCastRange"				"1500"
 		"AbilityCastPoint"				"0.3"
 		"AbilityCastAnimation"			"ACT_DOTA_OVERRIDE_ABILITY_1"
 		
@@ -192,7 +192,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"damage_str"			"10"
+				"damage_str"			"4 5 6 7 8 9 10"
 			}
 			"03"
 			{
@@ -207,7 +207,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"slow"					"-17 -22 -27 -32 -37 -42 -47"
+				"slow"					"-35"
 				"LinkedSpecialBonus"	"special_bonus_unique_pudge_rot_lua_2"
 			}
 			
@@ -294,7 +294,7 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"30 29 28 27 26 25 24"
+		"AbilityCooldown"				"20"
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -389,12 +389,12 @@
 				"var_type"				"FIELD_INTEGER"
 				"str_bonus"				"2"
 			}
-			"01"
+			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"magic_resist"			"0"
+				"magic_resist"			"0.5"
 			}
-			"02"
+			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"duration"				"20"
@@ -451,7 +451,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"str_damage"			"60"
+				"str_damage"			"75 80 85 90 95 100"
 			}
 			"04"
 			{

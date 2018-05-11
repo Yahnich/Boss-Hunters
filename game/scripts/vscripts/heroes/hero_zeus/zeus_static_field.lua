@@ -6,6 +6,20 @@ function zeus_static_field:GetIntrinsicModifierName()
     return "modifier_zeus_static_field"
 end
 
+function zeus_static_field:ApplyStaticShock(target)
+	if not target:IsAlive() then return end
+	-- Attaches the particle
+	local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_zuus/zuus_static_field.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
+	ParticleManager:SetParticleControl(particle,0,target:GetAbsOrigin())
+	ParticleManager:ReleaseParticleIndex(particle)
+	-- Plays the sound on the target
+	EmitSoundOn("Hero_Zuus.StaticField", target)
+	local stacks = target:AddNewModifier(self:GetCaster(), self, "modifier_zeus_static_field_static_charge", {duration = self.stack_duration}):GetStackCount()
+	local damage_health_pct = self.hpdamage + stacks * self.pct_per_stack
+	-- Deals the damage based on the target's current health
+	self:DealDamage(self:GetCaster(), target, target:GetHealth() * damage_health_pct, {damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION}, 0)
+end
+
 modifier_zeus_static_field = class({})
 function modifier_zeus_static_field:IsPassive()
 	return true
@@ -24,37 +38,31 @@ end
 if IsServer() then
 	function modifier_zeus_static_field:OnCreated()
 		self.radius = self:GetAbility():GetTalentSpecialValueFor("radius")
-		self.hpdamage = self:GetAbility():GetTalentSpecialValueFor("damage_health_pct") / 100
-		self.pct_per_stack = self:GetAbility():GetTalentSpecialValueFor("pct_per_stack") / 100
-		self.stack_duration = self:GetAbility():GetTalentSpecialValueFor("stack_duration")
+		self:GetAbility().hpdamage = self:GetAbility():GetTalentSpecialValueFor("damage_health_pct") / 100
+		self:GetAbility().pct_per_stack = self:GetAbility():GetTalentSpecialValueFor("pct_per_stack") / 100
+		self:GetAbility().stack_duration = self:GetAbility():GetTalentSpecialValueFor("stack_duration")
 	end
 
 	function modifier_zeus_static_field:OnAbilityFullyCast(params)
 		if params.unit ~= self:GetParent() then return end
 		if self:GetParent():HasAbility(params.ability:GetName()) then -- check if caster has ability
 			local ability = self:GetAbility()
-			local units = FindUnitsInRadius(self:GetCaster():GetTeamNumber(), self:GetCaster():GetAbsOrigin(), nil, self.radius, ability:GetAbilityTargetTeam(), ability:GetAbilityTargetType(), 0, 0, false)
+			local caster = self:GetCaster()
+			local units = caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), self.radius )
 			for i,unit in ipairs(units) do
-				-- Attaches the particle
-				local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_zuus/zuus_static_field.vpcf", PATTACH_ABSORIGIN_FOLLOW, unit)
-				ParticleManager:SetParticleControl(particle,0,unit:GetAbsOrigin())
-				ParticleManager:ReleaseParticleIndex(particle)
-				-- Plays the sound on the unit
-				EmitSoundOn("Hero_Zuus.StaticField", unit)
-				if not unit:HasModifier("modifier_zeus_static_field_static_charge") then 
-					local modifier = unit:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_zeus_static_field_static_charge", {duration = self.stack_duration})
-					modifier:SetStackCount(1)
-				else
-					local modifier = unit:FindModifierByName("modifier_zeus_static_field_static_charge")
-					modifier:IncrementStackCount()
-					modifier:SetDuration(modifier:GetDuration(), true)
-				end
-				local damage_health_pct = self.hpdamage + unit:FindModifierByName("modifier_zeus_static_field_static_charge"):GetStackCount() * self.pct_per_stack
-				-- Deals the damage based on the unit's current health
-				self:GetAbility():DealDamage(self:GetCaster(), unit, unit:GetHealth() * damage_health_pct, {damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION}, 0)
+				self:GetAbility():ApplyStaticShock(unit)
 			end
 		end
 	end
 end
 
 modifier_zeus_static_field_static_charge = class({})
+
+if IsServer() then
+	function modifier_zeus_static_field_static_charge:OnCreated()
+		self:SetStackCount(1)
+	end
+	function modifier_zeus_static_field_static_charge:OnRefresh()
+		self:IncrementStackCount()
+	end
+end

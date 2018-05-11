@@ -29,12 +29,11 @@ function modifier_juggernaut_momentum_strike_passive:OnCreated()
 			end
 		end 
 	end
-	local ability = self
 	if not self:GetCaster().AddMomentum then 
 		self:GetCaster().AddMomentum = function(self, amount)
 			if IsServer() then
 				for i = 1, amount do
-					self:AddNewModifier(self, ability, "modifier_juggernaut_momentum_strike_momentum", {})
+					self:AddNewModifier(self, self:FindAbilityByName("juggernaut_momentum_strike"), "modifier_juggernaut_momentum_strike_momentum", {})
 				end
 			end
 		end 

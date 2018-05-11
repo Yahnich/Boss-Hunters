@@ -182,8 +182,8 @@
 		"Ability4"					"bristleback_spiky_shell"
 		"Ability6"					"bristleback_worked_up"
 	
-		"Ability10"				"special_bonus_unique_bristleback"
-	    "Ability11"				"special_bonus_unique_bristleback_snot_1"
+		"Ability10"				"special_bonus_unique_bristleback_snot_1"
+	    "Ability11"				"special_bonus_unique_bristleback_snot_2"
 	    "Ability12"				"special_bonus_unique_bristleback_2"
 	    "Ability13"				"special_bonus_unique_bristleback_yer_mum_1"
 	    "Ability14"				"special_bonus_unique_bristleback_work_up_1"
@@ -1604,7 +1604,6 @@
 		"override_hero"				"npc_dota_hero_treant"
 		
 		"Ability1"					"treant_happy_little_tree"
-		"Ability3"					"treant_living_armor_ebf"
 		"Ability6"					"treant_great_protector"
 	
 		"Ability10"		"special_bonus_mp_125"

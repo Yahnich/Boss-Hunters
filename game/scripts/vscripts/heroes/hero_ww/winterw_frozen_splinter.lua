@@ -44,29 +44,27 @@ function winterw_frozen_splinter:OnSpellStart()
 	if caster:HasTalent("special_bonus_unique_winterw_frozen_splinter_2") then
 		local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), self:GetTrueCastRange(), {})
 		for _,enemy in pairs(enemies) do
-			if enemy ~= target then
-				local info =
-				{
-					Target = enemy,
-					Source = caster,
-					Ability = self,	
-					EffectName = "particles/units/heroes/hero_winter_wyvern/wyvern_splinter.vpcf",
-				    iMoveSpeed = 1000,
-					iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_ATTACK_1,
-					bDrawsOnMinimap = false,                          -- Optional
-			        bDodgeable = true,                                -- Optional
-			        bIsAttack = false,                                -- Optional
-			        bVisibleToEnemies = true,                         -- Optional
-			        bReplaceExisting = false,                         -- Optional
-			        flExpireTime = GameRules:GetGameTime() + 10,      -- Optional but recommended
-					bProvidesVision = true,                           -- Optional
-					iVisionRadius = 400,                              -- Optional
-					iVisionTeamNumber = caster:GetTeamNumber(),        -- Optional
-					ExtraData = {name = "firstProj"}
-				}
-				ProjectileManager:CreateTrackingProjectile(info)
-				break
-			end
+			local info =
+			{
+				Target = enemy,
+				Source = caster,
+				Ability = self,	
+				EffectName = "particles/units/heroes/hero_winter_wyvern/wyvern_splinter.vpcf",
+				iMoveSpeed = 1000,
+				iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_ATTACK_1,
+				bDrawsOnMinimap = false,                          -- Optional
+				bDodgeable = true,                                -- Optional
+				bIsAttack = false,                                -- Optional
+				bVisibleToEnemies = true,                         -- Optional
+				bReplaceExisting = false,                         -- Optional
+				flExpireTime = GameRules:GetGameTime() + 10,      -- Optional but recommended
+				bProvidesVision = true,                           -- Optional
+				iVisionRadius = 400,                              -- Optional
+				iVisionTeamNumber = caster:GetTeamNumber(),        -- Optional
+				ExtraData = {name = "firstProj"}
+			}
+			ProjectileManager:CreateTrackingProjectile(info)
+			break
 		end
 	end
 end

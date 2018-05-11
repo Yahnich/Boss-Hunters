@@ -69,11 +69,16 @@ function StatsScreen:RegisterPlayer(hero, bRespec)
 	hero.hasRespecced = bRespec or false
 
 	CustomNetTables:SetTableValue( "stats_panel", tostring(hero:entindex()), stats)
+	print( "registering player" )
+	stats = nil
 	CustomNetTables:SetTableValue( "talents", tostring(hero:entindex()), {} )
 	CustomGameEventManager:Send_ServerToAllClients("dota_player_upgraded_stats", {playerID = hero:GetPlayerID()} )
 	
 	hero.statsHaveBeenRegistered = true
 	hero.talentsSkilled = 0
+	
+	hero:AddNewModifier(hero, nil, "modifier_stats_system_handler", {})
+	hero:AddNewModifier(hero, nil, "modifier_cooldown_reduction_handler", {})
 end
 
 function StatsScreen:ProcessStatsUpgrade(userid, event)

@@ -72,20 +72,16 @@ modifier_frostbite_debuff = class({})
 function modifier_frostbite_debuff:OnCreated()
 	self.slow = self:GetAbility():GetSpecialValueFor("slow")
 	if IsServer() then
-		self.damage = self:GetAbility():GetSpecialValueFor("base_damage") + self:GetCaster():GetPrimaryStatValue() * self:GetAbility():GetSpecialValueFor("damage") / 100
 		self:StartIntervalThink(1)
 	end
 end
 
 function modifier_frostbite_debuff:OnRefresh()
 	self.slow = self:GetAbility():GetSpecialValueFor("slow")
-	if IsServer() then
-		self.damage = self:GetAbility():GetSpecialValueFor("base_damage") + self:GetCaster():GetPrimaryStatValue() * self:GetAbility():GetSpecialValueFor("damage") / 100
-	end
 end
 
 function modifier_frostbite_debuff:OnIntervalThink()
-	self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self.damage, {damage_type = DAMAGE_TYPE_MAGICAL})
+	self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self:GetAbility():GetSpecialValueFor("base_damage") + self:GetCaster():GetPrimaryStatValue() * self:GetAbility():GetSpecialValueFor("damage") / 100, {damage_type = DAMAGE_TYPE_MAGICAL})
 end
 
 function modifier_frostbite_debuff:DeclareFunctions()

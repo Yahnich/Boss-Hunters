@@ -666,7 +666,7 @@
 	        "01"
 	        {
 	            "var_type"              "FIELD_FLOAT"
-	            "percent"               "0.2 0.3 0.4 0.5 0.6 0.7 0.8"
+	            "percent"               "0.5 0.55 0.6 0.65 0.7 0.75 0.8"
 				"LinkedSpecialBonus"	"special_bonus_unique_bloodseeker_4"
 	        }
 	    }
@@ -5209,7 +5209,7 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"30"
+		"AbilityCooldown"				"20"
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -7785,13 +7785,13 @@
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"1200"
-		"AbilityChannelTime"			"10 10 10"
-		"AbilityCastPoint"				"0.3 0.3 0.3"
+		"AbilityChannelTime"			"15"
+		"AbilityCastPoint"				"0.3"
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"				"90"
-		"AbilityDuration"				"10"
+		"AbilityDuration"				"15"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -7808,12 +7808,12 @@
 			"01"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"radius"			"835"
+				"radius"			"1000"
 			}		
 			"02"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"explosion_radius"	"300"
+				"explosion_radius"	"350"
 			}
 			"04"
 			{
@@ -7828,7 +7828,7 @@
 			"06"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"attack_slow"	"-90"
+				"attack_slow"		"-90"
 			}
 			"07"
 			{
@@ -11141,12 +11141,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"pounce_distance"		"700"
+				"pounce_distance"		"500"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"pounce_speed"			"933.33"
+				"pounce_speed"			"600"
 			}
 			"03"
 			{
@@ -11156,12 +11156,12 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"pounce_radius"			"95"
+				"pounce_radius"			"60"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"pounce_damage"			"100"
+				"pounce_damage"			"75"
 			}
 			"06"
 			{
@@ -11529,17 +11529,17 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"bonus_damage"				"16 28 40 52 64 76 88"
+				"bonus_damage"				"20 35 50 65 80 95 110"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"bonus_damage_pct"			"15"
+				"bonus_damage_pct"			"20"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"bonus_lucent_targets"		"1 2 3 4 5 6 7"
+				"bonus_lucent_targets"		"2 3 4 5 6 7 8"
 			}
 			"04"
 			{
@@ -11600,7 +11600,7 @@
 			"06"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"spear_damage"			"100 150 200 250 300 350 400"
+				"spear_damage"			"100 175 250 325 400 475 550"
 			}
 			"06"
 			{
@@ -12117,7 +12117,7 @@
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"bonus_damage"				"60 90 120 150 180 210 240"
+				"bonus_damage"				"135 165 195 225 255 285 315"
 			}
 			"05"
 			{
@@ -12497,7 +12497,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"damage_reduction"			"-25"
+				"damage_reduction"			"-23 -25 -27 -29 -31 -33 -35"
 			}
 			"02"
 			{
@@ -12685,7 +12685,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"mr_reduction"				"-25"
+				"mr_reduction"				"-23 -25 -27 -29 -31 -33 -35"
 			}
 			"02"
 			{
@@ -13745,7 +13745,7 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"24.0"
+		"AbilityCooldown"				"24.0 23 22 21 20 19 18"
 		"AbilityDuration"				"4.0"
 	
 		// Cost
@@ -13816,7 +13816,7 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"22.0 22.0 22.0"
+		"AbilityCooldown"				"22 20 18 16 14 12"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -13958,17 +13958,17 @@
 			"02"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"attackspeed"		"5"
+				"attackspeed"				"10"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"bonus_damage"		"0.5"
+				"bonus_damage"				"1"
 			}
 			"04"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"duration"		"10"
+				"duration"					"10"
 			}
 		}
 	}
@@ -14229,7 +14229,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"slam_damage"				"50 100 150 200 250 300 350"
+				"slam_damage"				"100 150 200 250 300 350 400"
 			}
 			"02"
 			{
@@ -14262,7 +14262,7 @@
 			
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"20 18 16 14 12 10 8"
+		"AbilityCooldown"				"14 13 12 11 10 9 8"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -14272,7 +14272,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"delay"		"0.5"
+				"delay"					"0.5"
 			}
 		}
 		"Modifiers"
@@ -14326,7 +14326,7 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"60"
+		"AbilityCooldown"				"60 55 50 45 40 35 30"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -14334,7 +14334,7 @@
 		
 		// Cast Range
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"%cast_range_tooltip"
+		"AbilityCastRange"				"1000"
 			
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
@@ -14357,8 +14357,8 @@
 			}
 			"03"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"damage_initial"		"150 200 250 300 350 400"
+				"var_type"					"FIELD_INTEGER"
+				"damage_initial"			"150 225 300 375 450 525"
 			}
 			"04"
 			{
@@ -14954,7 +14954,7 @@
 	
 		// Damage.
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"					"125 150 175 200 225 250"
+		"AbilityDamage"					"200 300 400 500 600 700"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -15131,7 +15131,7 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"60"
+		"AbilityCooldown"				"35"
 		"AbilitySharedCooldown"			"callofnature"
 	
 		// Cost
@@ -15461,12 +15461,12 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"bonus_hp"					"250 500 750 1000 1250 1500 1750"
+				"bonus_hp"					"300 600 900 1200 1500 1800 2100"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"movespeed_slow"					"-20"
+				"movespeed_slow"			"-20"
 			}
 			"02"
 			{
@@ -15660,7 +15660,7 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"14.0"
+		"AbilityCooldown"				"20 18 16 14 12 10 8"
 		"AbilityDuration"				"10.0"
 	
 		// Cost
@@ -15704,7 +15704,7 @@
 			"07"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"bleed_stacks"			"2 3 4 5 6 7 8"
+				"bleed_stacks"			"8"
 			}
 		}
 		"OnUpgrade"
@@ -15820,7 +15820,7 @@
 			"02"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"bleed_stacks"			"4 5 6 7 8 9 10"
+				"bleed_stacks"			"4 6 8 10 12 14 16"
 			}
 			"03"
 			{
@@ -16276,7 +16276,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"healdamage"			"180 240 300 360 420 480"
+				"healdamage"			"180 260 340 420 500 580 660"
 			}
 			"02"
 			{
@@ -16812,6 +16812,7 @@
 			}
 			"haunt"
 			{
+				"Duration"				"%duration"
 				"Properties"
 		        {
 		            "MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "%armor_reduction_perstack"
@@ -16828,6 +16829,11 @@
 				"var_type"						"FIELD_FLOAT"
 				"armor_reduction_perstack"		"-0.2 -0.4 -0.6 -0.8 -1 -1.2"
 				"LinkedSpecialBonus"			"special_bonus_unique_spectre_4"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"duration"						"7"
 			}
 		}
 	}
@@ -17830,27 +17836,27 @@
 			"02"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"illusion_duration"			"10.0"
+				"illusion_duration"			"4.0 5.0 6.0 7.0 8.0 9.0 10.0"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"illusion_outgoing_damage"	"-20"
+				"illusion_outgoing_damage"	"-30 -25 -20 -15 -10 -5 -0"
 			}
 			"04"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"illusion_outgoing_tooltip"	"80"
+				"illusion_outgoing_tooltip"	"70 75 80 85 90 95 100"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"illusion_incoming_damage"	"500.0 400.0 300.0 200.0 100.0 50.0 1.0"
+				"illusion_incoming_damage"	"50.0"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"tooltip_total_illusion_incoming_damage"	"600.0 500.0 400.0 300.0 200.0 150.0 100.0"
+				"tooltip_total_illusion_incoming_damage"	"150"
 			}
 		}
 	}
@@ -17905,7 +17911,7 @@
 			"04"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"health_regen"					"4 8 12 16 20 24"
+				"health_regen"					"5 10 15 20 25 30"
 			}		
 		}
 	}
@@ -18301,9 +18307,9 @@
 		{
 			"01"
 			{
-				"var_type"			"FIELD_INTEGER"
-				"damage_count"		"10"
-				"LinkedSpecialBonus"		"special_bonus_unique_treant"
+				"var_type"				"FIELD_INTEGER"
+				"damage_count"			"6"
+				"LinkedSpecialBonus"	"special_bonus_unique_treant"
 			}
 			"02"
 			{
@@ -18318,7 +18324,7 @@
 			"04"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"damage_block"		"80"
+				"damage_block"		"20 40 60 80 100 120 140"
 			}
 			"05"
 			{
@@ -19569,7 +19575,7 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"80.0"
+		"AbilityCooldown"				"60.0"
 		"AbilityChannelTime"			"8.0 8.0 8.0"
 	
 		// Cost
@@ -19599,7 +19605,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bounce_radius"			"650 725 800"
+				"bounce_radius"			"650"
 			}
 			"05"
 			{
@@ -19670,12 +19676,12 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"hero_damage"			"50"
+				"hero_damage"			"50 60 70 80 90 100 110"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"creep_damage"			"50"
+				"creep_damage"			"50 60 70 80 90 100 110"
 			}
 			"05"
 			{
@@ -19759,7 +19765,7 @@
 			"05"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"cleanse_interval"			"5"
+				"cleanse_interval"			"2.5"
 			}
 			"05"
 			{

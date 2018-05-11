@@ -41,7 +41,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage_flame"				"5 10 15 20 25 30 35"
+				"damage_flame"				"18 37 56 75 93 112 131"
 			}
 			"03"
 			{
@@ -162,7 +162,7 @@
 			"02"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"damage_flame"					"5 10 15 20 25 30 35"
+				"damage_flame"					"10 20 30 40 50 60 70"
 			}
 			"03"
 			{
@@ -171,13 +171,13 @@
 			}
 			"04"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"225"
+				"var_type"						"FIELD_INTEGER"
+				"radius"						"225"
 			}		
 			"05"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"stun_duration"				"1.25"
+				"var_type"						"FIELD_FLOAT"
+				"stun_duration"					"1.25 1.5 1.75 2 2.25 2.5 2.75"
 			}
 		}
 	
@@ -274,7 +274,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage_time"				"21 23 25 27 29 31 33"
+				"damage_time"				"15 30 45 60 75 90 105"
 			}
 			"03"
 			{
@@ -398,7 +398,7 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"80"
+		"AbilityCooldown"				"80 75 70 65 60 55"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------

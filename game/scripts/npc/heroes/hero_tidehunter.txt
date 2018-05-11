@@ -288,6 +288,8 @@
 			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_tidehunter.vsndevts"
 			"particle"			"particles/units/heroes/hero_tidehunter/tidehunter_krakenshell_purge.vpcf"
 		}
+		
+		"AbilityCooldown"				"2"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -301,12 +303,12 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"critical_chance"		"15"
+				"critical_chance"		"30"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"critical_heal"			"4"
+				"critical_heal"			"15"
 			}
 		}
 	}
