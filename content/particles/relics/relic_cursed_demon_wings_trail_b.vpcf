@@ -46,7 +46,7 @@
 		},
 		{
 			_class = "C_OP_RampScalarLinear"
-			m_nField = 4
+			m_nField = "4"
 			m_RateMin = -0.1
 			m_RateMax = 0.1
 		},
@@ -61,12 +61,12 @@
 		},
 		{
 			_class = "C_OP_LerpEndCapScalar"
-			m_nFieldOutput = 16
+			m_nFieldOutput = "16"
 			m_flOutput = 0.0
 		},
 		{
 			_class = "C_OP_LerpEndCapScalar"
-			m_nFieldOutput = 7
+			m_nFieldOutput = "7"
 			m_flOutput = 0.0
 		},
 		{
@@ -76,7 +76,7 @@
 		{
 			_class = "C_OP_RemapVisibilityScalar"
 			m_flRadiusScale = 0.1
-			m_nFieldOutput = 16
+			m_nFieldOutput = "16"
 		},
 	]
 	m_Initializers = 
@@ -91,7 +91,7 @@
 		},
 		{
 			_class = "C_INIT_InheritFromParentParticles"
-			m_nFieldOutput = 21
+			m_nFieldOutput = "21"
 		},
 		{
 			_class = "C_INIT_RandomSequence"
@@ -102,8 +102,8 @@
 		},
 		{
 			_class = "C_INIT_RandomLifeTime"
-			m_fLifetimeMin = 1.0
-			m_fLifetimeMax = 2.0
+			m_fLifetimeMin = 1.5
+			m_fLifetimeMax = 1.5
 		},
 		{
 			_class = "C_INIT_CreateFromParentParticles"

@@ -10,6 +10,9 @@ if IsServer() then
 		local point = caster:GetAbsOrigin()
 		ParticleManager:FireParticle("particles/relics/relic_cursed_demon_wings_trail.vpcf", PATTACH_WORLDORIGIN, nil, {[0] = point})
 		local duration = 1
+		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( point, 300 ) ) do
+			self:GetAbility():DealDamage( caster, enemy, caster:GetPrimaryStatValue(), {damage_type = DAMAGE_TYPE_MAGICAL} )
+		end
 		Timers:CreateTimer(0.33, function()
 			for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( point, 150 ) ) do
 				self:GetAbility():DealDamage( caster, enemy, caster:GetPrimaryStatValue(), {damage_type = DAMAGE_TYPE_MAGICAL} )

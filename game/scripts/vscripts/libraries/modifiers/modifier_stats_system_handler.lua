@@ -27,7 +27,7 @@ ALL_STATS = 2
 
 function modifier_stats_system_handler:OnCreated()
 	self:OnIntervalThink()
-	self:StartIntervalThink(0.1)
+	self:StartIntervalThink(0.5)
 end
 
 function modifier_stats_system_handler:OnIntervalThink()
@@ -37,28 +37,29 @@ end
 
 function modifier_stats_system_handler:UpdateStatValues()
 	-- OTHER
-	self.msLevel = tonumber(CustomNetTables:GetTableValue("stats_panel", tostring(self:GetCaster():entindex()) )["ms"])
-	self.mpLevel = tonumber(CustomNetTables:GetTableValue("stats_panel", tostring(self:GetCaster():entindex()) )["mp"])
-	self.mprLevel = tonumber(CustomNetTables:GetTableValue("stats_panel", tostring(self:GetCaster():entindex()) )["mpr"])
-	self.haLevel = tonumber(CustomNetTables:GetTableValue("stats_panel", tostring(self:GetCaster():entindex()) )["ha"])
+	local netTable = CustomNetTables:GetTableValue("stats_panel", tostring(self:GetCaster():entindex()) )
+	self.ms = MOVESPEED_TABLE[tonumber(netTable["ms"]) + 1]
+	self.mp = 400 + MANA_TABLE[tonumber(netTable["mp"]) + 1] * self:GetParent():GetIntellect()
+	self.mpr = 4 + MANA_REGEN_TABLE[tonumber(netTable["mpr"]) + 1]
+	self.ha = HEAL_AMP_TABLE[tonumber(netTable["ha"]) + 1]
 	
 	-- OFFENSE
-	self.adLevel = tonumber(CustomNetTables:GetTableValue("stats_panel", tostring(self:GetCaster():entindex()) )["ad"])
-	self.saLevel = tonumber(CustomNetTables:GetTableValue("stats_panel", tostring(self:GetCaster():entindex()) )["sa"])
-	self.cdrLevel = tonumber(CustomNetTables:GetTableValue("stats_panel", tostring(self:GetCaster():entindex()) )["cdr"])
-	self.asLevel = tonumber(CustomNetTables:GetTableValue("stats_panel", tostring(self:GetCaster():entindex()) )["as"])
-	self.staLevel = tonumber(CustomNetTables:GetTableValue("stats_panel", tostring(self:GetCaster():entindex()) )["sta"])
+	self.ad = ATTACK_DAMAGE_TABLE[tonumber(netTable["ad"]) + 1]
+	self.sa = SPELL_AMP_TABLE[tonumber(netTable["sa"]) + 1]
+	self.cdr = COOLDOWN_REDUCTION_TABLE[tonumber(netTable["cdr"]) + 1]
+	self.as = ATTACK_SPEED_TABLE[tonumber(netTable["as"]) + 1]
+	self.sta = STATUS_AMP_TABLE[tonumber(netTable["sta"]) + 1]
 	
 	-- DEFENSE
-	self.prLevel = tonumber(CustomNetTables:GetTableValue("stats_panel", tostring(self:GetCaster():entindex()) )["pr"])
-	self.mrLevel = tonumber(CustomNetTables:GetTableValue("stats_panel", tostring(self:GetCaster():entindex()) )["mr"])
-	self.dbLevel = tonumber(CustomNetTables:GetTableValue("stats_panel", tostring(self:GetCaster():entindex()) )["db"])
-	self.arLevel = tonumber(CustomNetTables:GetTableValue("stats_panel", tostring(self:GetCaster():entindex()) )["ar"])
-	self.hpLevel = tonumber(CustomNetTables:GetTableValue("stats_panel", tostring(self:GetCaster():entindex()) )["hp"])
-	self.hprLevel = tonumber(CustomNetTables:GetTableValue("stats_panel", tostring(self:GetCaster():entindex()) )["hpr"])
-	self.srLevel = tonumber(CustomNetTables:GetTableValue("stats_panel", tostring(self:GetCaster():entindex()) )["sr"])
+	self.pr = ARMOR_TABLE[tonumber(netTable["pr"]) + 1]
+	self.mr = MAGIC_RESIST_TABLE[tonumber(netTable["mr"]) + 1]
+	self.db = DAMAGE_BLOCK_TABLE[tonumber(netTable["db"]) + 1]
+	self.ar = ATTACK_RANGE_TABLE[tonumber(netTable["ar"]) + 1]
+	self.hp = 300 + HEALTH_TABLE[tonumber(netTable["hp"]) + 1] * self:GetParent():GetStrength()
+	self.hpr = 5 + HEALTH_REGEN_TABLE[tonumber(netTable["hpr"]) + 1]
+	self.sr = STATUS_REDUCTION_TABLE[tonumber(netTable["sr"]) + 1]
 	
-	self.allStats = tonumber(CustomNetTables:GetTableValue("stats_panel", tostring(self:GetCaster():entindex()) )["all"])
+	self.allStats =  ALL_STATS * tonumber(netTable["all"])
 end
 
 function modifier_stats_system_handler:DeclareFunctions()
@@ -82,43 +83,43 @@ function modifier_stats_system_handler:DeclareFunctions()
 	return funcs
 end
 
-function modifier_stats_system_handler:GetModifierMoveSpeedBonus_Constant() return MOVESPEED_TABLE[self.msLevel + 1] end
-function modifier_stats_system_handler:GetModifierManaBonus() return 400 + MANA_TABLE[self.mpLevel + 1] * self:GetParent():GetIntellect() end
-function modifier_stats_system_handler:GetModifierConstantManaRegen() return 4 + MANA_REGEN_TABLE[self.mprLevel + 1] end
-function modifier_stats_system_handler:GetModifierHealAmplify_Percentage() return HEAL_AMP_TABLE[self.haLevel + 1] end
+function modifier_stats_system_handler:GetModifierMoveSpeedBonus_Constant() return self.ms end
+function modifier_stats_system_handler:GetModifierManaBonus() return self.mp end
+function modifier_stats_system_handler:GetModifierConstantManaRegen() return self.mpr end
+function modifier_stats_system_handler:GetModifierHealAmplify_Percentage() return self.ha end
 
-function modifier_stats_system_handler:GetModifierBaseAttack_BonusDamage() return ATTACK_DAMAGE_TABLE[self.adLevel + 1] end
-function modifier_stats_system_handler:GetModifierSpellAmplify_Percentage() return SPELL_AMP_TABLE[self.saLevel + 1] end
-function modifier_stats_system_handler:GetCooldownReduction() return COOLDOWN_REDUCTION_TABLE[self.cdrLevel + 1] end
-function modifier_stats_system_handler:GetModifierAttackSpeedBonus_Constant() return ATTACK_SPEED_TABLE[self.asLevel + 1] end
-function modifier_stats_system_handler:GetModifierStatusAmplify_Percentage() return STATUS_AMP_TABLE[self.staLevel + 1] end
+function modifier_stats_system_handler:GetModifierBaseAttack_BonusDamage() return self.ad end
+function modifier_stats_system_handler:GetModifierSpellAmplify_Percentage() return self.sa end
+function modifier_stats_system_handler:GetCooldownReduction() return self.cdr end
+function modifier_stats_system_handler:GetModifierAttackSpeedBonus_Constant() return self.as end
+function modifier_stats_system_handler:GetModifierStatusAmplify_Percentage() return self.sta end
 
 function modifier_stats_system_handler:GetModifierPhysicalArmorBonus()
 	local bonusarmor = 0
 	if not self:GetParent():IsRangedAttacker() then bonusarmor = 6 end
-	return ARMOR_TABLE[self.prLevel + 1] + bonusarmor
+	return self.pr + bonusarmor
 end
-function modifier_stats_system_handler:GetModifierMagicalResistanceBonus() return MAGIC_RESIST_TABLE[self.mrLevel + 1] end
+function modifier_stats_system_handler:GetModifierMagicalResistanceBonus() return self.mr end
 
 function modifier_stats_system_handler:GetModifierTotal_ConstantBlock(params) 
 	if RollPercentage( 50 ) and not self:GetParent():IsRangedAttacker() and params.attacker ~= self:GetParent() then 
-		return DAMAGE_BLOCK_TABLE[self.dbLevel + 1] 
+		return self.db
 	end
 end
 
 function modifier_stats_system_handler:GetModifierAttackRangeBonus() 
 	if self:GetParent():IsRangedAttacker() then 
-		return ATTACK_RANGE_TABLE[self.arLevel + 1] 
+		return self.ar
 	end
 end
 
-function modifier_stats_system_handler:GetModifierHealthBonus() return 300 + HEALTH_TABLE[self.hpLevel + 1] * self:GetParent():GetStrength() end
-function modifier_stats_system_handler:GetModifierConstantHealthRegen() return 5 + HEALTH_REGEN_TABLE[self.hprLevel + 1] end
-function modifier_stats_system_handler:GetModifierStatusResistance() return STATUS_REDUCTION_TABLE[self.srLevel + 1] end
+function modifier_stats_system_handler:GetModifierHealthBonus() return self.hp end
+function modifier_stats_system_handler:GetModifierConstantHealthRegen() return self.hpr end
+function modifier_stats_system_handler:GetModifierStatusResistance() return self.sr end
 
-function modifier_stats_system_handler:GetModifierBonusStats_Strength() return ALL_STATS * self.allStats end
-function modifier_stats_system_handler:GetModifierBonusStats_Agility() return ALL_STATS * self.allStats end
-function modifier_stats_system_handler:GetModifierBonusStats_Intellect() return ALL_STATS * self.allStats end
+function modifier_stats_system_handler:GetModifierBonusStats_Strength() return self.allStats end
+function modifier_stats_system_handler:GetModifierBonusStats_Agility() return self.allStats end
+function modifier_stats_system_handler:GetModifierBonusStats_Intellect() return self.allStats end
 
 function modifier_stats_system_handler:IsHidden()
 	return true

@@ -206,7 +206,7 @@ function CHoldoutGameRound:End(bWonRound)
 				if redKey then baseChance = 66 end
 				hero.internalRelicPRNGAdder = hero.internalRelicPRNGAdder or -(baseChance / 4)
 				if redKey then hero.internalRelicRNG = math.max(hero.internalRelicRNG, 66) end
-				local roll = hero:GetPlayerID() ~= 0
+				local roll = RollPercentage(hero.internalRelicRNG)
 				if hero and roll and not (greed or pride) then
 					RelicManager:RollRelicsForPlayer( pID )
 					hero.internalRelicPRNGAdder = -(baseChance / 4)
@@ -318,7 +318,7 @@ function CHoldoutGameRound:OnEntityKilled( event )
 	if not killedUnit then
 		return
 	end
-	
+	print("unit died")
 	if killedUnit:GetUnitName() == "npc_dota_boss38" then
 		for _,unit in pairs( FindUnitsInRadius( DOTA_TEAM_BADGUYS, Vector( 0, 0, 0 ), nil, FIND_UNITS_EVERYWHERE, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )) do
 			if not unit:IsTower() or unit:IsHero() == false and not unit:GetName() == "npc_dota_creature" then -- remove dummy units

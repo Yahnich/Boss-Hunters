@@ -5,6 +5,10 @@ function tide_turtle_shell:GetIntrinsicModifierName()
     return "modifier_turtle_shell"
 end
 
+function tide_turtle_shell:ShouldUseResources()
+	return true
+end
+
 modifier_turtle_shell = class({})
 function modifier_turtle_shell:OnCreated()
     self.blockPct = self:GetAbility():GetSpecialValueFor("damage_reduction_pct") / 100
@@ -27,7 +31,7 @@ end
 function modifier_turtle_shell:GetModifierPhysical_ConstantBlock(params)
     if IsServer() then
         self.currBlock = params.damage * self.blockPct
-        if RollPercentage(self.crit) then 
+        if RollPercentage(self.crit) and self:GetAbility():IsCooldownReady() then 
             self.currBlock = self.currBlock * 2
             self:GetParent():HealEvent(self:GetParent():GetMaxHealth() * self.heal, self:GetAbility(), self:GetParent())
             local FXIndex = ParticleManager:CreateParticle( "particles/units/heroes/hero_tidehunter/tidehunter_krakenshell_purge.vpcf", PATTACH_POINT_FOLLOW, self:GetParent() )
@@ -45,6 +49,7 @@ function modifier_turtle_shell:GetModifierPhysical_ConstantBlock(params)
                     end
                 end
             end
+			self:GetAbility():SetCooldown()
         end
         return self.currBlock
     end

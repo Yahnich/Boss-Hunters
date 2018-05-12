@@ -163,28 +163,6 @@ function Activate()
 	-- require('statsmanager')
 end
 
-function DeleteAbility( unit)
-    for i=0,15,1 do
-					local ability = unit:GetAbilityByIndex(i)
-					if ability ~= nil then
-						unit:RemoveAbility(ability:GetName())
-						if ability ~= nil then
-							ability:Destroy()
-						end
-					end
-				end
-end
-
-function TeachAbility( unit, ability_name, level )
-    if not level then level = 1 end
-        unit:AddAbility(ability_name)
-        local ability = unit:FindAbilityByName(ability_name)
-        if ability then
-            ability:SetLevel(tonumber(level))
-            return ability
-        end
-end
-
 function CHoldoutGameMode:InitGameMode()
 	print ("Epic Boss Fight Loaded")
 	GameRules._finish = false
@@ -197,12 +175,6 @@ function CHoldoutGameMode:InitGameMode()
 	GameRules.voteTableLives = {};
 	
 	GameRules._Elites = LoadKeyValues( "scripts/kv/elites.kv" )
-	-- Load unit KVs into main kv
-	-- GameRules.UnitKV = LoadKeyValues("scripts/npc/npc_heroes_custom.txt")
-	-- MergeTables(GameRules.UnitKV, LoadKeyValues("scripts/npc/npc_units_custom.txt"))
-	
-	-- GameRules.AbilityKV = LoadKeyValues("scripts/npc/npc_abilities_custom.txt")
-	-- MergeTables(GameRules.AbilityKV, LoadKeyValues("scripts/npc/npc_items_custom.txt"))
 	
 	GameRules.UnitKV = LoadKeyValues("scripts/npc/npc_heroes.txt")
 	MergeTables(GameRules.UnitKV, LoadKeyValues("scripts/npc/npc_heroes_custom.txt"))
@@ -251,6 +223,7 @@ function CHoldoutGameMode:InitGameMode()
 	GameRules._maxLives =  mapInfo.Lives
 	GameRules.gameDifficulty =  mapInfo.Difficulty
 	CustomNetTables:SetTableValue( "game_info", "difficulty", {difficulty = GameRules.gameDifficulty} )
+	CustomNetTables:SetTableValue( "game_info", "timeofday", {timeofday = 0} )
 	
 	GameRules._used_life = 0
 	GameRules._life = GameRules._maxLives
@@ -398,181 +371,6 @@ function CHoldoutGameMode:vote_Round (event)
 			CustomGameEventManager:Send_ServerToAllClients("RoundVoteResults", event_data)
 		end
 	end
-end
-
-function CHoldoutGameMode:PreGameVotingHandler(event)
-	  -- VoteTable is initialised in InitGameMode()
-	local pid = event.PlayerID
-	if event.category == 'difficulty' then
-		GameRules.voteTableDifficulty[pid] = event.vote
-	elseif event.category == 'lives' then
-		if not GameRules.voteTableLives then GameRules.voteTableLives = {} end
-		GameRules.voteTableLives[pid] = event.vote
-	end
-
-end
-
-function CHoldoutGameMode:vote_NG_fct (event)
- 	local ID = event.pID
- 	local vote = event.vote
- 	local player = PlayerResource:GetPlayer(ID)
- 	--print ("vote"..vote)
- 	if player~= nil then
-	 	if player.Has_Voted ~= true then
-	 		player.Has_Voted = true
-	 		if vote == 1 then
-	 			GameRules.vote_Yes = GameRules.vote_Yes + 1
-	 		else
-	 			GameRules.vote_No = GameRules.vote_No + 1
-	 		end
-			local event_data =
-			{
-			No = GameRules.vote_No,
-			Yes = GameRules.vote_Yes,
-			}
-			CustomGameEventManager:Send_ServerToAllClients("VoteResults", event_data)
-	 	end
-	end
-end
-
-function CHoldoutGameMode:InitializeRoundSystem()
-	local mode 	= GameMode
-	local votesDifficulty = GameRules.voteTableDifficulty
-	local votesLives = GameRules.voteTableLives
-	
-	-- Insert and count votes
-	local difficultyVoteTable = {}
-	for playerID, vote in pairs(votesDifficulty) do
-		difficultyVoteTable[vote] = difficultyVoteTable[vote] or 0
-		difficultyVoteTable[vote] = difficultyVoteTable[vote] + 1
-	end
-	
-	local livesVoteTable = {}
-	for playerID, vote in pairs(votesLives) do
-		livesVoteTable[vote] = livesVoteTable[vote] or 0
-		livesVoteTable[vote] = livesVoteTable[vote] + 1
-	end
-	-- End counting
-	
-	-- Vote setting behavior
-	local winningVoteDifficulty = 1
-	if GetMapName() == "epic_boss_fight_impossible" then winningVoteDifficulty = 2 end
-	local difficultyVoteCount = 0
-	local difficultyLeftover = 0
-	local difficultyCompromise = 0
-	for vote, count in pairs(difficultyVoteTable) do
-		if count > difficultyVoteCount then
-			difficultyLeftover = difficultyLeftover + difficultyVoteCount
-			difficultyVoteCount = count
-			winningVoteDifficulty = tonumber(vote)
-			difficultyCompromise = difficultyCompromise + count*vote
-		end
-	end
-	difficultyCompromise = difficultyCompromise / PlayerResource:GetPlayerCount()
-	
-	local winningVoteLives = 7
-	if GetMapName() == "epic_boss_fight_impossible" then winningVoteLives = 3 end
-	local livesVoteCount = 0
-	local livesLeftover = 0
-	local livesCompromise = 0
-	for vote, count in pairs(livesVoteTable) do
-		if count > livesVoteCount then
-			livesLeftover = livesLeftover + livesVoteCount
-			livesVoteCount = count
-			winningVoteLives = tonumber(vote)
-			livesCompromise = livesCompromise + count*vote
-		end
-	end
-	livesCompromise = livesCompromise / PlayerResource:GetPlayerCount()
-	if livesVoteCount < livesLeftover then
-		winningVoteLives = livesCompromise
-		CHoldoutGameMode.livesCompromised = true
-	end
-	if difficultyVoteCount < difficultyLeftover then
-		winningVoteDifficulty = difficultyCompromise
-		CHoldoutGameMode.difficultyCompromised = true
-	end
-	
-	GameRules.gameDifficulty = winningVoteDifficulty
-	if GetMapName() ~= "epic_boss_fight_impossible" then
-		winningVoteLives = winningVoteLives * 2
-	end
-	GameRules._life = winningVoteLives
-	GameRules._maxLives = winningVoteLives
-	-- Life._life = math.floor(winningVoteLives + 0.5)
-	-- Life._MaxLife = math.floor(winningVoteLives + 0.5)
-	-- GameRules._live = Life._life
-	-- Life:SetTextReplaceValue( QUEST_TEXT_REPLACE_VALUE_CURRENT_VALUE, Life._life )
-   	-- Life:SetTextReplaceValue( QUEST_TEXT_REPLACE_VALUE_TARGET_VALUE, Life._MaxLife )
-	-- value on the bar
-	-- LifeBar:SetTextReplaceValue( SUBQUEST_TEXT_REPLACE_VALUE_CURRENT_VALUE, Life._life )
-	-- LifeBar:SetTextReplaceValue( SUBQUEST_TEXT_REPLACE_VALUE_TARGET_VALUE, Life._MaxLife )
-	Timers:CreateTimer(0.1,function()
-		CustomGameEventManager:Send_ServerToAllClients( "sendDifficultyNotification", { difficulty = GameRules.gameDifficulty, compromised = GameRules.difficultyCompromised } )
-		CustomGameEventManager:Send_ServerToAllClients( "updateQuestLife", { lives = GameRules._life, maxLives = GameRules._maxLives } )
-	end
-	)
-end
-
-function CHoldoutGameMode:Health_Bar_Command (event)
- 	local ID = event.pID
- 	local player = PlayerResource:GetPlayer(ID)
- 	--print (event.Enabled)
- 	if event.Enabled == 0 then
- 		player.HB = false
- 		player.Health_Bar_Open = false
- 	else
- 		player.HB = true
- 	end
-end
-
-function comma_value(amount)
-  local formatted = amount
-  while true do  
-    formatted, k = string.gsub(formatted, "^(-?%d+)(%d%d%d)", '%1,%2')
-    if (k==0) then
-      break
-    end
-  end
-  return formatted
-end
-
----============================================================
--- rounds a number to the nearest decimal places
---
-function round(val, decimal)
-  if (decimal) then
-    return math.floor( (val * 10^decimal) + 0.5) / (10^decimal)
-  else
-    return math.floor(val+0.5)
-  end
-end
-
---===================================================================
--- given a numeric value formats output with comma to separate thousands
--- and rounded to given decimal places
---
---
-function set_comma_thousand(amount, decimal)
-  local str_amount,  formatted, famount, remain
-
-  decimal = decimal or 2  -- default 2 decimal places
-
-  famount = math.abs(round(amount,decimal))
-  famount = math.floor(famount)
-
-  remain = round(math.abs(amount) - famount, decimal)
-
-        -- comma to separate the thousands
-  formatted = comma_value(famount)
-
-        -- attach the decimal portion
-  if (decimal > 0) then
-    remain = string.sub(tostring(remain),3)
-    formatted = formatted .. "." .. remain ..
-                string.rep("0", decimal - string.len(remain))
-  end
-  return formatted
 end
 
 function CHoldoutGameMode:FilterModifiers( filterTable )
@@ -851,7 +649,7 @@ function CHoldoutGameMode:OnAbilityLearned(event)
 	if pID and string.match(abilityname, "special_bonus" ) then
 		local hero = PlayerResource:GetSelectedHeroEntity( pID )
 		local talentData = CustomNetTables:GetTableValue("talents", tostring(hero:entindex())) or {}
-		
+		print( "talent stuff" )
 		if GameRules.AbilityKV[abilityname] then
 			if GameRules.AbilityKV[abilityname]["LinkedModifierName"] then
 				local modifierName = GameRules.AbilityKV[abilityname]["LinkedModifierName"] 
@@ -870,7 +668,7 @@ function CHoldoutGameMode:OnAbilityLearned(event)
 				local abilityName = GameRules.AbilityKV[abilityname]["LinkedAbilityName"] or ""
 				local ability = hero:FindAbilityByName(abilityName)
 				if ability and ability.OnTalentLearned then
-					ability:OnTalentLearned()
+					ability:OnTalentLearned(abilityname)
 				end
 			end
 		end
@@ -1144,6 +942,7 @@ end
 function CHoldoutGameMode:OnHeroPick (event)
  	local hero = EntIndexToHScript(event.heroindex)
 	if not hero then return end
+
 	if hero.hasBeenInitialized then return end
 	if hero:IsFakeHero() then return end
 	Timers:CreateTimer(0.03, function() 
@@ -1159,13 +958,10 @@ function CHoldoutGameMode:OnHeroPick (event)
 		
 		StatsScreen:RegisterPlayer(hero)
 		RelicManager:RegisterPlayer( hero:GetPlayerID() )
-		hero:AddNewModifier(hero, nil, "modifier_stats_system_handler", {})
-		hero:AddNewModifier(hero, nil, "modifier_cooldown_reduction_handler", {})
 		
 		hero:AddExperience(GameRules.XP_PER_LEVEL[7],false,false)
 		hero:SetBaseMagicalResistanceValue(0)
-		
-		-- StatsManager:CreateCustomStatsForHero(hero)
+
 		hero:SetRespawnPosition( GetGroundPosition(Vector(973, 99, 0), nil) )
 		CustomGameEventManager:Send_ServerToPlayer(hero:GetPlayerOwner(), "heroLoadIn", {}) -- wtf is this retarded shit stop force-setting my garbage
 		local ID = hero:GetPlayerID()
@@ -1208,37 +1004,6 @@ function CHoldoutGameMode:OnHeroPick (event)
 		player.HB = true
 		player.Health_Bar_Open = false
 	end)
-end
-
-function CHoldoutGameMode:mute_sound (event)
- 	local ID = event.pID
- 	local player = PlayerResource:GetPlayer(ID)
- 	StopSoundOn("music.music",player)
- 	player.NoMusic = true
-end
-function CHoldoutGameMode:unmute_sound (event)
- 	local ID = event.pID
- 	local player = PlayerResource:GetPlayer(ID)
- 	EmitSoundOnClient("music.music",player)
- 	player.NoMusic = false
-end
-
-function CHoldoutGameMode:Boss_Master (event)
- 	local ID = event.pID
- 	local commandname = event.Command
- 	local player = PlayerResource:GetPlayer(ID)
- 	if commandname == "magic_immunity_1" then
-
- 	elseif commandname == "magic_immunity_2" then
-
- 	elseif commandname == "damage_immunity" then
-
- 	elseif commandname == "double_damage" then
-
- 	elseif commandname == "quad_damage" then
-
- 	end
- 	
 end
 
 
@@ -1695,6 +1460,11 @@ function CHoldoutGameMode:SendErrorReport(err)
 	end
 end
 
+DAY_TIME = 0
+NIGHT_TIME = 1
+TEMPORARY_NIGHT = 2
+NIGHT_STALKER_NIGHT = 3
+
 function CHoldoutGameMode:OnThink()
 	if GameRules:State_Get() >= 7 and GameRules:State_Get() <= 8 then
 		local OnPThink = function(self)
@@ -1718,7 +1488,10 @@ function CHoldoutGameMode:OnThink()
 			if not status  and not self.gameHasBeenBroken then
 				self:SendErrorReport(err)
 			end
-			
+			local timeofday = GameRules:IsDaytime()
+			if GameRules:IsTemporaryNight() then timeofday = TEMPORARY_NIGHT end
+			if GameRules:IsNightstalkerNight() then timeofday = NIGHT_STALKER_NIGHT end
+			CustomNetTables:SetTableValue( "game_info", "timeofday", {timeofday = timeofday} )
 			if self._flPrepTimeEnd then
 				local timeLeft = self._flPrepTimeEnd - GameRules:GetGameTime()
 				CustomGameEventManager:Send_ServerToAllClients( "updateQuestPrepTime", { prepTime = math.floor(timeLeft + 0.5) } )

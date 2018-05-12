@@ -9,6 +9,13 @@ function pango_swashbuckler:IsHiddenWhenStolen()
     return false
 end
 
+function pango_swashbuckler:OnUpgrade()
+	local dash = self:GetCaster():FindAbilityByName("pango_swift_dash")
+	if dash:GetLevel() < self:GetLevel() then
+		dash:SetLevel( self:GetLevel() ) 
+	end
+end
+
 function pango_swashbuckler:GetCooldown(iLvl)
     local cooldown = self.BaseClass.GetCooldown(self, iLvl)
     if self:GetCaster():HasTalent("special_bonus_unique_pangolier_4") then cooldown = cooldown - self:GetCaster():FindTalentValue("special_bonus_unique_pangolier_4") end

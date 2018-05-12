@@ -7,6 +7,7 @@ end
 function relic_unique_galactic_synapse:OnAbilityFullyCast(params)
 	if params.unit == self:GetParent() and params.unit:HasAbility( params.ability:GetName() ) and not params.ability:IsOrbAbility() and params.ability:GetCooldown(-1) > 0 then
 		self:AddIndependentStack(30, nil, false)
+		self:GetParent():CalculateStatBonus()
 	end
 end
 

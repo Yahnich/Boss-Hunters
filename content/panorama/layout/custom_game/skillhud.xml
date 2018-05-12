@@ -27,8 +27,8 @@
 			</Panel>
 		</snippet>
 	</snippets>
-	<Panel class="root">
-		<Panel id="RootContainer">
+	<Panel class="root" hittest="false">
+		<Panel id="RootContainer" hittest="false">
 			<Button id="MainStatsPanelCloseButton" onactivate="ToggleStatsPanel()"/>
 			<Panel id="MainStatsPanel" class="GenericStatsContainer">
 				<Panel id="StatsSelectorContainer">

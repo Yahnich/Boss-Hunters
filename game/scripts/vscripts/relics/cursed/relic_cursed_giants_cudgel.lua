@@ -5,25 +5,23 @@ function relic_cursed_giants_cudgel:OnCreated()
 end
 
 function relic_cursed_giants_cudgel:OnIntervalThink()
-	self.bat = 0
-	self.bat = self:GetParent():GetBaseAttackTime() * 1.8
+	self.as = 0
+	self.as = self:GetParent():GetIncreasedAttackSpeed() * (-0.4)
 end
 
 function relic_cursed_giants_cudgel:DeclareFunctions()
-	return {MODIFIER_EVENT_ON_ATTACK_LANDED, MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT}
+	return {MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT, MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT}
 end
 
-function relic_cursed_giants_cudgel:GetModifierBaseAttackTimeConstant()
-	return self.bat
+function relic_cursed_giants_cudgel:GetModifierAttackSpeedBonus_Constant()
+	return self.as
 end
 
 function relic_cursed_giants_cudgel:OnAttackLanded(params)
 	if params.attacker == self:GetParent() then
 		ParticleManager:FireParticle("particles/test_particle/ogre_melee_smash.vpcf", PATTACH_ABSORIGIN, params.target, {[1] = Vector(275,1,1)})
 		for _, enemy in ipairs( params.attacker:FindEnemyUnitsInRadius( params.target:GetAbsOrigin(), 275 ) ) do
-			if enemy ~= params.target then
-				ApplyDamage({victim = enemy, attacker = params.attacker, damage = params.original_damage, damage_type = DAMAGE_TYPE_PHYSICAL})
-			end
+			ApplyDamage({victim = enemy, attacker = params.attacker, damage = params.original_damage, damage_type = DAMAGE_TYPE_PHYSICAL})
 		end
 	end
 end

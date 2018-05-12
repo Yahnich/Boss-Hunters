@@ -124,7 +124,7 @@ function modifier_arctic_sting:OnAttackLanded(params)
     if params.attacker == self:GetCaster() and params.target:IsAlive() then
         
         if self:GetCaster():HasTalent("special_bonus_unique_winterw_arctic_sting_2") then
-            params.target:AddChill(self:GetAbility(), self:GetCaster(), self:GetCaster():FindTalentValue("special_bonus_unique_winterw_arctic_sting_2"))
+            params.target:AddChill(self:GetAbility(), self:GetCaster(), self:GetTalentSpecialValueFor("duration"), self:GetCaster():FindTalentValue("special_bonus_unique_winterw_arctic_sting_2"))
         end
 
         if self:GetCaster():HasScepter() then

@@ -50,7 +50,7 @@
 			"03"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"range"							"350 450 550 650 750 850 950"
+				"range"							"350 450 600 750 900 1050 1200"
 				"LinkedSpecialBonus"			"special_bonus_unique_sand_burrow_2"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
@@ -91,29 +91,24 @@
 		{
 			"01"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"350"
+				"var_type"						"FIELD_INTEGER"
+				"radius"						"350"
 			}
 			"02"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"10"
+				"var_type"						"FIELD_INTEGER"
+				"damage"						"15"
 				"CalculateSpellDamageTooltip"	"0"
 			}
 			"03"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"2"
+				"var_type"						"FIELD_FLOAT"
+				"duration"						"2"
 			}
-			"03"
+			"04"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"2"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"scepter_damage"			"20"
+				"var_type"						"FIELD_INTEGER"
+				"scepter_damage"				"30"
 				"CalculateSpellDamageTooltip"	"0"
 			}
 		}
@@ -167,7 +162,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"1.0"
+				"duration"				"2"
 			}
 		}
 	}
@@ -202,12 +197,12 @@
 			"01"
 			{
 				"var_type"                      "FIELD_INTEGER"
-				"sandstorm_damage"     			"15 45 75 105 135 165 195"
+				"sandstorm_damage"     			"30 60 90 120 150 180 210"
 			}
 			"02"
 			{
 				"var_type"                      "FIELD_FLOAT"
-				"sandstorm_duration"     		"15"
+				"sandstorm_duration"     		"10"
 			}
 			"03"
 			{
@@ -310,7 +305,7 @@
 			"01"
 			{
 				"var_type"              "FIELD_INTEGER"
-				"damage"                "110"
+				"damage"                "150"
 			}
 			"02"
 			{
@@ -438,7 +433,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"25"
+				"value"					"30"
 			}
 		}
 	}

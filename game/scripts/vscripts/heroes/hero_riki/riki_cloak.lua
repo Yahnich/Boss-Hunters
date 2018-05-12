@@ -6,6 +6,10 @@ function riki_cloak:GetIntrinsicModifierName()
     return "modifier_cloak"
 end
 
+function riki_cloak:ShouldUseResources()
+	return true
+end
+
 modifier_cloak = class({})
 function modifier_cloak:DeclareFunctions()
     local funcs = {
@@ -17,7 +21,7 @@ end
 function modifier_cloak:OnTakeDamage(params)
     if IsServer() then
         local caster = self:GetCaster()
-        if params.unit == caster and self:GetAbility():IsCooldownReady() and not caster:HasModifier("modifier_invisible") then
+        if params.unit == caster and self:GetAbility():IsCooldownReady() and not caster:IsInvisible() then
             EmitSoundOn("Hero_Riki.Invisibility", caster)
 
             caster:AddNewModifier(caster, self:GetAbility(), "modifier_invisible", {Duration = self:GetTalentSpecialValueFor("duration")})
@@ -28,10 +32,10 @@ function modifier_cloak:OnTakeDamage(params)
             end
 
             caster:SetThreat(0)
-            self:GetAbility():StartCooldown(self:GetAbility():GetTrueCooldown())
+            self:GetAbility():SetCooldown()
         end
 
-        if not caster:HasModifier("modifier_invisible") then
+        if not caster:IsInvisible() then
             caster:RemoveModifierByName("modifier_invulnerable")
             caster:RemoveModifierByName("modifier_cloak_speed")
         end
@@ -43,6 +47,18 @@ function modifier_cloak:IsHidden()
 end
 
 modifier_cloak_speed = class({})
+if IsServer() then
+	function modifier_cloak_speed:OnCreated()
+		self:GetAbility():StartDelayedCooldown()
+	end
+	function modifier_cloak_speed:OnRefresh()
+		self:GetAbility():StartDelayedCooldown()
+	end
+	function modifier_cloak_speed:OnDestroy()
+		self:GetAbility():EndDelayedCooldown()
+	end
+end
+
 function modifier_cloak_speed:DeclareFunctions()
     local funcs = {
         MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE

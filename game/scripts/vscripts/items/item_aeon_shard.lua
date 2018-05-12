@@ -58,6 +58,10 @@ function modifier_item_aeon_shard_consumed:GetModifierAttackSpeedBonus_Constant(
 	return self.bonus_attack_speed * math.max(1, self:GetStackCount())
 end
 
+function modifier_item_aeon_shard_consumed:DestroyOnExpire()
+	return false
+end
+
 function modifier_item_aeon_shard_consumed:RemoveOnDeath()
 	return false
 end
@@ -68,4 +72,12 @@ end
 
 function modifier_item_aeon_shard_consumed:IsPurgable()
 	return false
+end
+
+function modifier_item_aeon_shard_consumed:AllowIllusionDuplicate()
+return true
+end
+
+function modifier_item_aeon_shard_consumed:GetAttributes()
+return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_PERMANENT
 end

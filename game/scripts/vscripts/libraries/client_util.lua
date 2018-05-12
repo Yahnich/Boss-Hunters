@@ -178,3 +178,18 @@ function C_DOTA_BaseNPC:GetPrimaryStatValue()
 	end
 	return 0
 end
+
+function GameRules:IsDaytime()
+	local timeofday = CustomNetTables:GetTableValue( "game_info", "timeofday")
+	return timeofday["timeofday"] == 1
+end
+
+function GameRules:IsTemporaryNight()
+	local timeofday = CustomNetTables:GetTableValue( "game_info", "timeofday")
+	return timeofday["timeofday"] == 2
+end
+
+function GameRules:IsNightstalkerNight()
+	local timeofday = CustomNetTables:GetTableValue( "game_info", "timeofday")
+	return timeofday["timeofday"] == 3
+end

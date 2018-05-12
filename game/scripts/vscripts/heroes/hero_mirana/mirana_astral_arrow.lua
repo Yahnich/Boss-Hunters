@@ -30,8 +30,8 @@ function mirana_astral_arrow:OnSpellStart()
         local spawn_point = casterPos + direction * self:GetTrueCastRange() 
 
         -- Set QAngles
-        local left_QAngle = QAngle(0, 30, 0)
-        local right_QAngle = QAngle(0, -30, 0)
+        local left_QAngle = QAngle(0, 20, 0)
+        local right_QAngle = QAngle(0, -20, 0)
 
         -- Left arrow variables
         local left_spawn_point = RotatePosition(caster:GetAbsOrigin(), left_QAngle, spawn_point)

@@ -16,6 +16,8 @@ function modifier_zeus_nimbus_storm:OnCreated(table)
 		local caster = self:GetCaster()
 		local cloud = self:GetParent()
 		local radius = self:GetTalentSpecialValueFor("radius")
+		
+		self.damage = self:GetCaster():FindAbilityByName("zeus_thunder_bolt"):GetTalentSpecialValueFor("damage")
 
 		local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_zeus/zeus_cloud.vpcf", PATTACH_POINT, caster)
 		ParticleManager:SetParticleControl(nfx, 0, cloud:GetAbsOrigin())
@@ -41,7 +43,11 @@ function modifier_zeus_nimbus_storm:OnIntervalThink()
 					ParticleManager:SetParticleControl(nfx, 6, Vector(math.random(1,5),math.random(1,5),math.random(1,5)))
 					ParticleManager:ReleaseParticleIndex(nfx)
 
-		self:GetAbility():DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage"), {}, 0)
+		self:GetAbility():DealDamage(caster, enemy, self.damage, {}, 0)
+		if caster:HasTalent("special_bonus_unique_zeus_nimbus_storm_2") then
+			local static = caster:FindAbilityByName("zeus_static_field")
+			if static then static:ApplyStaticShock(enemy) end
+		end
 		break
 	end
 end
