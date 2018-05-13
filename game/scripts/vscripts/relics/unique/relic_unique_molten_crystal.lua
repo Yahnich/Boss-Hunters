@@ -25,7 +25,7 @@ function relic_unique_molten_crystal:OnAbilityFullyCast(params)
 			local duration = 8
 			local radius = 250
 			
-			local fireFX = ParticleManager:CreateParticle("particles/items_fx/molten_crystal/molten_crystal_fire.vpcf", PATTACH_WORLDORIGIN, nil)
+			local fireFX = ParticleManager:CreateParticle("particles/relics/molten_crystal/molten_crystal_fire.vpcf", PATTACH_WORLDORIGIN, nil)
 			ParticleManager:SetParticleControl(fireFX, 0, position)
 			ParticleManager:SetParticleControl(fireFX, 1, Vector(radius,1,1))
 			

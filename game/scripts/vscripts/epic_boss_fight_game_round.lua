@@ -315,10 +315,11 @@ end
 
 function CHoldoutGameRound:OnEntityKilled( event )
 	local killedUnit = EntIndexToHScript( event.entindex_killed )
+
 	if not killedUnit then
 		return
 	end
-	print("unit died")
+ 
 	if killedUnit:GetUnitName() == "npc_dota_boss38" then
 		for _,unit in pairs( FindUnitsInRadius( DOTA_TEAM_BADGUYS, Vector( 0, 0, 0 ), nil, FIND_UNITS_EVERYWHERE, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false )) do
 			if not unit:IsTower() or unit:IsHero() == false and not unit:GetName() == "npc_dota_creature" then -- remove dummy units

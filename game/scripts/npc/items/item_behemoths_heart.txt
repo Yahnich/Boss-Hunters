@@ -23,7 +23,7 @@
 		"ItemResult"					"item_behemoths_heart"
 		"ItemRequirements"
 		{
-			"01"						"item_orb_of_vitality;item_ogre_club"
+			"01"						"item_orb_of_vitality;item_orb_of_vitality"
 		}
 	}
 	"item_behemoths_heart"

@@ -2,7 +2,7 @@
 {
 	_class = "CParticleSystemDefinition"
 	m_bShouldHitboxesFallbackToRenderBounds = false
-	m_nMaxParticles = 250
+	m_nMaxParticles = 80
 	m_flConstantLifespan = 3.0
 	m_ConstantColor = [ 237, 255, 0, 25 ]
 	m_bShouldSort = false
@@ -39,7 +39,7 @@
 			_class = "C_OP_RampScalarLinear"
 			m_RateMax = 0.1
 			m_RateMin = -0.1
-			m_nField = 4
+			m_nField = "4"
 		},
 		{
 			_class = "C_OP_InterpolateRadius"
@@ -52,17 +52,17 @@
 		{
 			_class = "C_OP_RemapVisibilityScalar"
 			m_flRadiusScale = 0.1
-			m_nFieldOutput = 16
+			m_nFieldOutput = "16"
 		},
 		{
 			_class = "C_OP_LerpEndCapScalar"
 			m_flOutput = 0.0
-			m_nFieldOutput = 16
+			m_nFieldOutput = "16"
 		},
 		{
 			_class = "C_OP_LerpEndCapScalar"
 			m_flOutput = 0.0
-			m_nFieldOutput = 7
+			m_nFieldOutput = "7"
 		},
 		{
 			_class = "C_OP_BasicMovement"
@@ -81,12 +81,12 @@
 		},
 		{
 			_class = "C_INIT_InheritFromParentParticles"
-			m_nFieldOutput = 21
+			m_nFieldOutput = "21"
 		},
 		{
 			_class = "C_INIT_InheritFromParentParticles"
 			m_flScale = 1.25
-			m_nFieldOutput = 7
+			m_nFieldOutput = "7"
 		},
 		{
 			_class = "C_INIT_RandomSequence"
@@ -111,7 +111,7 @@
 		{
 			_class = "C_OP_ContinuousEmitter"
 			m_flOpEndFadeInTime = 8.0
-			m_flEmitRate = 80.0
+			m_flEmitRate = 20.0
 			m_nScaleControlPoint = 11
 		},
 		{

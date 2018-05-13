@@ -10520,7 +10520,15 @@
 	}
 	"npc_illusion_template"
 	{
-		"BaseClass"     "npc_dota_creature"
+		"BaseClass"     "npc_dota_base_additive"
+		"Model"						"models/heroes/brewmaster/brewmaster_earthspirit.vmdl"
+		"IsSummoned"				"1"
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		
+		"HasInventory"				"1"
+		"AttackRange"				"0"
+		"ProjectileSpeed"			"0"
 	}
 	"npc_chen_creature_1"
 	{										
