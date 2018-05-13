@@ -40,6 +40,8 @@ function nyx_impale:OnSpellStart()
 	local width = self:GetTalentSpecialValueFor("width")
 	local speed = self:GetTalentSpecialValueFor("speed")
 
+	EmitSoundOn("Hero_NyxAssassin.Impale", caster)
+
 	self:FireLinearProjectile("particles/units/heroes/hero_nyx_assassin/nyx_assassin_impale.vpcf", direction*speed, distance, width, {}, false, true, width*2)
 
 	if caster:HasTalent("special_bonus_unique_nyx_impale_2") then
@@ -57,11 +59,13 @@ function nyx_impale:OnProjectileHit(hTarget, vLocation)
 	local duration = self:GetTalentSpecialValueFor("duration")
 
 	if hTarget then
+		EmitSoundOn("Hero_NyxAssassin.Impale.Target", hTarget)
 		ParticleManager:FireParticle("particles/units/heroes/hero_nyx_assassin/nyx_assassin_impale_hit.vpcf", PATTACH_POINT, caster, {[0]=hTarget:GetAbsOrigin()})
 
 		hTarget:ApplyKnockBack(vLocation, duration, duration, 0, 350, caster, self)
 		--self:Stun(hTarget, duration, false)
 		Timers:CreateTimer(duration, function()
+			EmitSoundOn("Hero_NyxAssassin.Impale.TargetLand", hTarget)
 			self:DealDamage(caster, hTarget, self:GetTalentSpecialValueFor("damage"), {}, 0)
 		end)
 	end
