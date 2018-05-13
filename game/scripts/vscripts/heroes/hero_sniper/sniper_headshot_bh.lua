@@ -41,13 +41,15 @@ function modifier_sniper_headshot_bh:OnAttackLanded(params)
 			target:AddNewModifier(caster, self:GetAbility(), "modifier_sniper_headshot_bh_slow", {Duration = self:GetTalentSpecialValueFor("duration")})
 			self:GetAbility():DealDamage(caster, target, self:GetTalentSpecialValueFor("damage"), {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
 
+			local assassinate = caster:FindAbilityByName("sniper_assassinate_bh")
 			if caster:RollPRNG( self:GetTalentSpecialValueFor("assassinate_chance")) and not caster:HasModifier("modifier_sniper_rapid_fire") then
-				local assassinate = caster:FindAbilityByName("sniper_assassinate_bh")
-				if assassinate and assassinate:GetLevel() > 0 and assassinate:IsCooldownReady() then
-					local cooldown = assassinate:GetTrueCooldown() * self:GetTalentSpecialValueFor("assassinate_cooldown")/100
+				if assassinate and assassinate:IsTrained() and assassinate:IsCooldownReady() and assassinate:IsOwnersManaEnough() then
 					caster:SetCursorCastTarget(target)
-					--assassinate:OnSpellStart()
+
 					caster:CastAbilityImmediately( assassinate, caster:GetPlayerOwnerID() )
+					local cooldown = assassinate:GetCooldownTimeRemaining() * self:GetTalentSpecialValueFor("assassinate_cooldown")/100
+					--print(cooldown)
+					assassinate:EndCooldown()
 					assassinate:StartCooldown(cooldown)
 				end
 			end

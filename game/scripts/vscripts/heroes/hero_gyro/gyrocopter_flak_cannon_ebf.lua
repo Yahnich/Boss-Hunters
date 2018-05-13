@@ -12,7 +12,7 @@ function gyrocopter_flak_cannon_ebf:OnProjectileHit(target, position)
 	local caster = self:GetCaster()
 	
 	self.disableLoop = true
-	caster:PerformAttack(target, true, true, true, false, false, false, true)
+	caster:PerformAttack(target, false, false, false, false, false, false, true)
 	target:AddNewModifier(caster, self, "modifier_gyrocopter_flak_cannon_shred", {duration = self:GetTalentSpecialValueFor("armor_shred_duration")})
 end
 
@@ -46,29 +46,9 @@ function modifier_gyrocopter_flak_cannon_active:OnAttack(params)
 					local units = self:GetCaster():FindEnemyUnitsInRadius(params.target:GetAbsOrigin(), self:GetAbility():GetTalentSpecialValueFor("radius"), {})
 					for _,unit in pairs(units) do
 						if RollPercentage(50) then
-							local projectile = {
-								Target = unit,
-								Source = self:GetParent(),
-								Ability = self:GetAbility(),
-								EffectName = self:GetParent():GetProjectileModel(),
-								bDodgable = true,
-								bProvidesVision = false,
-								iMoveSpeed = self:GetParent():GetProjectileSpeed(),
-								iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_ATTACK_1,
-							}
-							ProjectileManager:CreateTrackingProjectile(projectile)
+							self:GetAbility():FireTrackingProjectile(self:GetParent():GetProjectileModel(), unit, self:GetParent():GetProjectileSpeed(), {}, DOTA_PROJECTILE_ATTACHMENT_ATTACK_1, true, false, 0)
 						else
-							local projectile = {
-								Target = unit,
-								Source = self:GetParent(),
-								Ability = self:GetAbility(),
-								EffectName = self:GetParent():GetProjectileModel(),
-								bDodgable = true,
-								bProvidesVision = false,
-								iMoveSpeed = self:GetParent():GetProjectileSpeed(),
-								iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_ATTACK_2,
-							}
-							ProjectileManager:CreateTrackingProjectile(projectile)
+							self:GetAbility():FireTrackingProjectile(self:GetParent():GetProjectileModel(), unit, self:GetParent():GetProjectileSpeed(), {}, DOTA_PROJECTILE_ATTACHMENT_ATTACK_2, true, false, 0)
 						end
 					end
 				else
