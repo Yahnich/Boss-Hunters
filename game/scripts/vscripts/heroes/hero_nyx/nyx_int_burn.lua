@@ -27,6 +27,9 @@ function nyx_int_burn:OnSpellStart()
 
 	local damage = caster:GetIntellect() * self:GetTalentSpecialValueFor("damage")/100
 
+	EmitSoundOn("Hero_NyxAssassin.ManaBurn.Cast", caster)
+	EmitSoundOn("Hero_NyxAssassin.ManaBurn.Cast", target)
+
 	local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_nyx_assassin/nyx_assassin_mana_burn.vpcf", PATTACH_POINT, caster)
 				ParticleManager:SetParticleControlEnt(nfx, 0, target, PATTACH_POINT, "attach_hitloc", target:GetAbsOrigin(), true)
 				ParticleManager:ReleaseParticleIndex(nfx)

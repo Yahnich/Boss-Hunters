@@ -79,6 +79,7 @@ var DELAYED_COOLDOWN = {"omniknight_repel_ebf":true,
 						"dragon_knight_elder_dragon_berserker":true,
 						"dark_willow_shadow_realm":true,
 						"bloodseeker_blood_bath":true,
+						"nyx_vendetta":true,
 						}
 
 function UpdateTooltipUI(id, abilityname, abilityid){
