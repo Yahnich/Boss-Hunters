@@ -3,6 +3,9 @@ LinkLuaModifier( "modifier_nyx_vendetta", "heroes/hero_nyx/nyx_vendetta.lua" ,LU
 
 function nyx_vendetta:OnSpellStart()
 	local caster = self:GetCaster()
+
+	EmitSoundOn("Hero_NyxAssassin.Vendetta", caster)
+
 	ParticleManager:FireParticle("particles/units/heroes/hero_nyx_assassin/nyx_loadout.vpcf", PATTACH_POINT, caster, {})
 	caster:AddNewModifier(caster, self, "modifier_nyx_vendetta", {Duration = self:GetTalentSpecialValueFor("duration")})
 
@@ -62,6 +65,7 @@ end
 function modifier_nyx_vendetta:OnAttackLanded(params)
 	if IsServer() then
 		if params.attacker == self:GetParent() then
+			EmitSoundOn("Hero_NyxAssassin.Vendetta.Crit", params.target)
 			if self:GetParent():HasModifier("modifier_nyx_burrow") then
 				ParticleManager:FireParticle("particles/units/heroes/hero_nyx_assassin/nyx_assassin_impale_hit.vpcf", PATTACH_POINT, self:GetParent(), {[0]=params.target:GetAbsOrigin()})
 			end

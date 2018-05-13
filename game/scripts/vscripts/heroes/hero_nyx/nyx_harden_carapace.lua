@@ -17,6 +17,8 @@ end
 function nyx_harden_carapace:OnSpellStart()
 	local caster = self:GetCaster()
 	
+	EmitSoundOn("Hero_NyxAssassin.SpikedCarapace", caster)
+
 	if caster:HasTalent("special_bonus_unique_nyx_harden_carapace_2") then
 		caster:ModifyThreat(caster:FindTalentValue("special_bonus_unique_nyx_harden_carapace_2"))
 	end
@@ -24,6 +26,7 @@ function nyx_harden_carapace:OnSpellStart()
 	caster:AddNewModifier(caster, self, "modifier_nyx_harden_carapace", {Duration = self:GetTalentSpecialValueFor("duration")})
 
 	if caster:HasModifier("modifier_nyx_burrow") then
+		EmitSoundOn("Hero_NyxAssassin.Impale.Target", caster)
 		ParticleManager:FireParticle("particles/units/heroes/hero_nyx/nyx_harden_carapace_burrow/nyx_harden_carapace_burrow.vpcf", PATTACH_POINT, caster, {[0]=caster:GetAbsOrigin(), [1]=Vector(self:GetSpecialValueFor("carapace_radius"), 0, 0)})
 		local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), self:GetSpecialValueFor("carapace_radius"))
 		for _,enemy in pairs(enemies) do
@@ -54,6 +57,7 @@ function modifier_nyx_harden_carapace:OnTakeDamage(params)
 		local stunDuration = self:GetTalentSpecialValueFor("stun_duration")
 
 		if caster == self:GetParent() and not attacker:IsMagicImmune() and attacker ~= caster then
+			EmitSoundOn("Hero_NyxAssassin.SpikedCarapace.Stun", caster)
 			local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_nyx_assassin/nyx_assassin_spiked_carapace_hit.vpcf", PATTACH_POINT_FOLLOW, caster)
 						ParticleManager:SetParticleControlEnt(nfx, 0, attacker, PATTACH_POINT_FOLLOW, "attach_hitloc", attacker:GetAbsOrigin(), true)
 						ParticleManager:SetParticleControlEnt(nfx, 1, attacker, PATTACH_POINT_FOLLOW, "attach_hitloc", attacker:GetAbsOrigin(), true)

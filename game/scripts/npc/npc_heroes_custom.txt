@@ -540,25 +540,14 @@
 	    "Ability16"				"special_bonus_unique_gyrocopter_4"
 	    "Ability17"				"special_bonus_unique_gyrocopter_5"
 		
-		
-		"ArmorPhysical"					"1"
-		"AttackCapabilities"			"DOTA_UNIT_CAP_RANGED_ATTACK"
-		"AttackDamageMin"				"13"
-		"AttackDamageMax"				"23"
-		"AttackRate"					"1.700000"
-		"AttackAnimationPoint"			"0.200000"
-		"AttackAcquisitionRange"		"800"
-		"AttackRange"					"365"
-		"ProjectileSpeed"				"3000"
-		"AttributePrimary"				"DOTA_ATTRIBUTE_INTELLECT"
+		"AttributePrimary"				"DOTA_ATTRIBUTE_AGILITY"
 		"AttributeBaseStrength"			"18"
 		"AttributeStrengthGain"			"1.8"
-		"AttributeBaseAgility"			"19"
-		"AttributeAgilityGain"			"2.1"
-		"AttributeBaseIntelligence"		"24"
-		"AttributeIntelligenceGain"		"2.8"
-		"MovementSpeed"					"320"
-		"MovementTurnRate"				"0.600000"
+		"AttributeBaseAgility"			"24"
+		"AttributeAgilityGain"			"2.8"
+		"AttributeBaseIntelligence"		"19"
+		"AttributeIntelligenceGain"		"2.1"
+
 	}
 	//=================================================================================================================
 	// HERO: Huskar
@@ -948,18 +937,20 @@
 	"npc_dota_hero_nyx_assassin_ebf"
 	{
 		"override_hero"			"npc_dota_hero_nyx_assassin"
-		"Ability2"				"nyx_hide"
-		"Ability3"				"nyx_assassin_carapace"
-		"Ability6"				"nyx_assassin_ultimyr_justicar"
+		"Ability1"				"nyx_impale"
+		"Ability2"				"nyx_int_burn"
+		"Ability3"				"nyx_harden_carapace"
+		"Ability4"				"nyx_burrow"
+		"Ability6"				"nyx_vendetta"
 	
-		"Ability10"				"special_bonus_spell_amplify_6"
-		"Ability11"				"special_bonus_hp_325"
-		"Ability12"				"special_bonus_cooldown_reduction_15"
-		"Ability13"				"special_bonus_movement_speed_35"
-		"Ability14"				"special_bonus_unique_nyx"
-		"Ability15"				"special_bonus_unique_nyx_2"
-		"Ability16"				"special_bonus_agility_100"
-		"Ability17"				"special_bonus_unique_nyx_3"
+		"Ability10"		"special_bonus_unique_nyx_impale_1"
+		"Ability11"		"special_bonus_unique_nyx_impale_2"
+		"Ability12"		"special_bonus_unique_nyx_int_burn_1"
+		"Ability13"		"special_bonus_unique_nyx_int_burn_2"
+		"Ability14"		"special_bonus_unique_nyx_harden_carapace_1"
+		"Ability15"		"special_bonus_unique_nyx_harden_carapace_2"
+		"Ability16"		"special_bonus_unique_nyx_vendetta_1"
+		"Ability17"		"special_bonus_unique_nyx_vendetta_2"
 	}
 	//=================================================================================================================
 	// HERO: outworld
@@ -1423,8 +1414,20 @@
 	"npc_dota_hero_sniper_ebf"
 	{
 		"override_hero"			"npc_dota_hero_sniper"
-		"Ability2"				"sniper_headshot_ebf"
-		"Ability6"				"sniper_assassinate_ebf"
+		"Ability1"				"sniper_shrapnel_bh"
+		"Ability2"				"sniper_headshot_bh"
+		"Ability3"				"sniper_rapid_fire"
+		"Ability4"				"sniper_take_aim_bh"
+		"Ability6"				"sniper_assassinate_bh"
+
+		"Ability10"		"special_bonus_unique_sniper_shrapnel_bh_1"
+		"Ability11"		"special_bonus_unique_sniper_shrapnel_bh_2"
+		"Ability12"		"special_bonus_unique_sniper_headshot_bh_1"
+		"Ability13"		"special_bonus_unique_sniper_headshot_bh_2"
+		"Ability14"		"special_bonus_unique_sniper_rapid_fire_1"
+		"Ability15"		"special_bonus_unique_sniper_take_aim_bh_1"
+		"Ability16"		"special_bonus_unique_sniper_assassinate_bh_1"
+		"Ability17"		"special_bonus_unique_sniper_assassinate_bh_2"
 		
 	}
 	//=================================================================================================================

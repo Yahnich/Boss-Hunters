@@ -24,6 +24,8 @@ end
 function nyx_burrow:OnAbilityPhaseStart()
 	local caster = self:GetCaster()
 
+	EmitSoundOn("Hero_NyxAssassin.Burrow.In", caster)
+
 	if not caster:HasModifier("modifier_nyx_burrow") then
 		if caster:HasModifier("modifier_in_water") then
 			ParticleManager:FireParticle("particles/units/heroes/hero_nyx_assassin/nyx_assassin_burrow_water.vpcf", PATTACH_POINT, caster, {})
@@ -99,8 +101,10 @@ function modifier_nyx_burrow:OnRemoved()
 		local caster = self:GetCaster()
 		StartAnimation(caster, {duration=0.5, activity=ACT_DOTA_CAST_BURROW_END, rate=1})
 		if caster:HasModifier("modifier_in_water") then
+			EmitSoundOn("Hero_NyxAssassin.Burrow.Out.River", caster)
 			ParticleManager:FireParticle("particles/units/heroes/hero_nyx_assassin/nyx_assassin_burrow_exit_water.vpcf", PATTACH_POINT, caster, {})
 		else
+			EmitSoundOn("Hero_NyxAssassin.Burrow.Out", caster)
 			ParticleManager:FireParticle("particles/units/heroes/hero_nyx_assassin/nyx_assassin_burrow_exit.vpcf", PATTACH_POINT, caster, {})
 		end
 	end
