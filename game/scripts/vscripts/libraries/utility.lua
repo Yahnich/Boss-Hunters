@@ -714,31 +714,26 @@ function CDOTA_BaseNPC:RefreshAllCooldowns(bItems)
 	end
 end
 
+function CDOTA_BaseNPC:IsIllusion()
+	return self.isCustomIllusion == true
+end
 
-function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, specIllusionModifier )
+
+function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, specIllusionModifier, ability )
 	local player = self:GetPlayerID()
 
 	local unit_name = self:GetUnitName()
 	local origin = position or self:GetAbsOrigin() + RandomVector(100)
-	local outgoingDamage = outgoing
-	local incomingDamage = incoming
+	local outgoingDamage = outgoing or 0
+	local incomingDamage = incoming or 0
 
 	-- handle_UnitOwner needs to be nil, else it will crash the game.
-	local illusion = CreateUnitByName(unit_name, origin, true, self, nil, self:GetTeamNumber())
-	illusion:SetPlayerID(self:GetPlayerID())
+	local illusion = CreateUnitByName("npc_illusion_template", origin, true, self, self, self:GetTeamNumber())
 	illusion:SetControllableByPlayer(player, true)
 		
-	-- Level Up the unit to the casters level
-	local casterLevel = self:GetLevel()
-	for i=1,casterLevel-1 do
-		illusion:HeroLevelUp(false)
-	end
-
-	-- Set the skill points to 0 and learn the skills of the caster
-	illusion:SetAbilityPoints(0)
 	for abilitySlot=0,15 do
 		local abilityillu = self:GetAbilityByIndex(abilitySlot)
-		if abilityillu ~= nil then 
+		if abilityillu ~= nil then
 			local abilityLevel = abilityillu:GetLevel()
 			local abilityName = abilityillu:GetAbilityName()
 			if illusion:FindAbilityByName(abilityName) ~= nil then
@@ -751,7 +746,41 @@ function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, sp
 		end
 	end
 	
-
+	-- Make illusion look like owner
+	illusion:SetBaseMaxHealth( self:GetMaxHealth() )
+	illusion:SetMaxHealth( self:GetMaxHealth() )
+	illusion:SetHealth( self:GetHealth() )
+	
+	illusion:SetAverageBaseDamage( self:GetAverageBaseDamage(), 15 )
+	illusion:SetPhysicalArmorBaseValue( self:GetPhysicalArmorValue() )
+	illusion:SetBaseAttackTime( self:GetBaseAttackTime() )
+	illusion:SetBaseMoveSpeed( self:GetBaseMoveSpeed() )
+	
+	illusion:SetOriginalModel( self:GetModelName() )
+	illusion:SetModel( self:GetModelName() )
+	
+	local moveCap = DOTA_UNIT_CAP_MOVE_NONE
+	if self:HasMovementCapability() then
+		moveCap = DOTA_UNIT_CAP_MOVE_GROUND
+		if self:HasFlyMovementCapability() then
+			moveCap = DOTA_UNIT_CAP_MOVE_FLY
+		end
+	end
+	illusion:SetMoveCapability( moveCap )
+	illusion:SetAttackCapability( self:GetAttackCapability() )
+	illusion:SetUnitName( self:GetUnitName() )
+	if self:IsRangedAttacker() then
+		illusion:SetRangedProjectileName( self:GetRangedProjectileName() )
+	end
+	
+	for _, modifier in ipairs( self:FindAllModifiers() ) do
+		if modifier.AllowIllusionDuplicate and modifier:AllowIllusionDuplicate() then
+			illusion:AddNewModifier( modifier:GetCaster(), modifier:GetAbility(), modifier:GetName(), { duration = modifier:GetRemainingTime() })
+		end
+	end
+	
+	illusion:AddNewModifier( self, nil, "modifier_illusion_bonuses", { duration = duration })
+	
 	-- Recreate the items of the caster
 	for itemSlot=0,5 do
 		local item = self:GetItemInSlot(itemSlot)
@@ -764,14 +793,22 @@ function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, sp
 
 	-- Set the unit as an illusion
 	-- modifier_illusion controls many illusion properties like +Green damage not adding to the unit damage, not being able to cast spells and the team-only blue particle
-	if specIllusionModifier then
-		illusion:AddNewModifier(self, ability, specIllusionModifier, { duration = duration, outgoing_damage = outgoingDamage, incoming_damage = incomingDamage })
-	else
-		illusion:AddNewModifier(self, ability, "modifier_illusion", { duration = duration, outgoing_damage = outgoingDamage, incoming_damage = incomingDamage })
+	local illuMod = "modifier_illusion" or specIllusionModifier
+	illusion:AddNewModifier(self, ability, illuMod, { duration = duration, outgoing_damage = outgoingDamage, incoming_damage = incomingDamage })
+	
+	for _, wearable in ipairs( self:GetChildren() ) do
+		if wearable:GetClassname() == "dota_item_wearable" and wearable:GetModelName() ~= "" then
+			local newWearable = SpawnEntityFromTableSynchronous("prop_dynamic", {model=wearable:GetModelName()})
+			newWearable:SetParent(illusion, nil)
+			newWearable:FollowEntity(illusion, true)
+			newWearable:SetRenderColor(100,100,255)
+		end
 	end
+	
 		
 	-- Without MakeIllusion the unit counts as a hero, e.g. if it dies to neutrals it says killed by neutrals, it respawns, etc.
 	illusion:MakeIllusion()
+	illusion.isCustomIllusion = true
 	return illusion
 end
 

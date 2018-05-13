@@ -31,6 +31,7 @@ require("stats_screen")
 require("relicmanager")
 require( "ai/ai_core" )
 
+LinkLuaModifier( "modifier_illusion_bonuses", "libraries/modifiers/illusions/modifier_illusion_bonuses.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_stats_system_handler", "libraries/modifiers/modifier_stats_system_handler.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_blind_generic", "libraries/modifiers/modifier_blind_generic.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_wearable", "libraries/modifiers/modifier_wearable.lua", LUA_MODIFIER_MOTION_NONE)
@@ -91,6 +92,7 @@ function Precache( context )
 	
 	-- Relic particles
 	PrecacheResource("particle", "particles/relics/relic_cursed_demon_wings_trail.vpcf", context)
+	PrecacheResource("particle", "particles/relics/molten_crystal/molten_crystal_fire.vpcf", context)
 	
 	-- Elite particles
 	PrecacheResource("particle", "particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_shadowraze.vpcf", context)

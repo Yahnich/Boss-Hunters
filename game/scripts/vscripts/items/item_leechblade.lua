@@ -24,7 +24,7 @@ function modifier_item_leechblade_stats:DeclareFunctions()
 end
 
 function modifier_item_leechblade_stats:OnTakeDamage(params)
-	if params.attacker == self:GetParent() and not params.inflictor then
+	if params.attacker == self:GetParent() and params.damage_category == DOTA_DAMAGE_CATEGORY_ATTACK and self:GetParent():GetHealth() > 0 and self:GetParent():IsRealHero() and not params.inflictor then
 		local lifesteal = self.lifesteal
 		if params.attacker:HasModifier("modifier_item_leechblade_active") then lifesteal = self.activeLifesteal end
 		local flHeal = params.damage * lifesteal

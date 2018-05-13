@@ -83,3 +83,7 @@ end
 function modifier_alchemist_chemical_rage_ebf:HeroEffectPriority()
 	return 10
 end
+
+function modifier_alchemist_chemical_rage_ebf:AllowIllusionDuplicate()
+	return true
+end
