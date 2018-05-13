@@ -14,7 +14,7 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"2800"	
+		"ItemCost"						"2300"	
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -23,7 +23,7 @@
 		"ItemResult"					"item_crystalline_staff"
 		"ItemRequirements"
 		{
-			"01"						"item_spell_refinery;item_sorcerers_staff"
+			"01"						"item_spell_refinery;item_sorcerers_staff;item_staff_of_magi"
 		}
 	}
 	"item_crystalline_staff"
@@ -68,7 +68,12 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"bonus_damage_taken"	"20"
+				"bonus_intellect"		"20"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bonus_damage_taken"	"35"
 			}
 		}
 	}
