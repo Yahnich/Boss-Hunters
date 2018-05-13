@@ -10518,6 +10518,10 @@
 	{
 		"BaseClass"     "npc_dota_creature"
 	}
+	"npc_illusion_template"
+	{
+		"BaseClass"     "npc_dota_creature"
+	}
 	"npc_chen_creature_1"
 	{										
 		// General
