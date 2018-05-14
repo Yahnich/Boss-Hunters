@@ -243,9 +243,7 @@
 	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
 		"AbilityTextureName"			"custom/armadillo_swashbuckle"
 	    "AbilityUnitDamageType"         "DAMAGE_TYPE_PHYSICAL"
-	    "RequiredLevel"  				"7"
 		"MaxLevel"						"7"
-		"LevelsBetweenUpgrades"			"5"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------

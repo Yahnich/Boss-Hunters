@@ -10,10 +10,11 @@ end
 
 function gyrocopter_flak_cannon_ebf:OnProjectileHit(target, position)
 	local caster = self:GetCaster()
-	
 	self.disableLoop = true
-	caster:PerformAttack(target, false, false, false, false, false, false, true)
-	target:AddNewModifier(caster, self, "modifier_gyrocopter_flak_cannon_shred", {duration = self:GetTalentSpecialValueFor("armor_shred_duration")})
+	if target then
+		self:DealDamage(caster, target, caster:GetAttackDamage(), {}, 0)
+		target:AddNewModifier(caster, self, "modifier_gyrocopter_flak_cannon_shred", {duration = self:GetTalentSpecialValueFor("armor_shred_duration")})
+	end
 end
 
 function gyrocopter_flak_cannon_ebf:OnToggle()
