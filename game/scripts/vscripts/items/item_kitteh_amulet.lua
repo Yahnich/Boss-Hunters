@@ -13,14 +13,10 @@ function item_kitteh_amulet:OnSpellStart()
 	end
 
 	EmitSoundOn("DOTA_Item.BlinkDagger.Activate", caster)
-	ParticleManager:FireParticle("particles/econ/events/ti6/blink_dagger_start_ti6_lvl2.vpcf", PATTACH_ABSORIGIN, 
-
-caster, {[0] = caster:GetAbsOrigin()})
+	ParticleManager:FireParticle("particles/econ/events/ti6/blink_dagger_start_ti6_lvl2.vpcf", PATTACH_ABSORIGIN, caster, {[0] = caster:GetAbsOrigin()})
 	FindClearSpaceForUnit(caster, targetPos, true)
 	ProjectileManager:ProjectileDodge( caster )
-	ParticleManager:FireParticle("particles/econ/events/ti6/blink_dagger_end_ti6_lvl2.vpcf", PATTACH_ABSORIGIN, 
-
-caster, {[0] = caster:GetAbsOrigin()})
+	ParticleManager:FireParticle("particles/econ/events/ti6/blink_dagger_end_ti6_lvl2.vpcf", PATTACH_ABSORIGIN, caster, {[0] = caster:GetAbsOrigin()})
 	EmitSoundOn("DOTA_Item.BlinkDagger.NailedIt", caster)
 	
 	local illusion = caster:ConjureImage( ogPos, 30, 0, 0 )
@@ -91,13 +87,9 @@ function modifier_item_kitteh_amulet_passive:GetModifierManaRegenPercentage()
 end
 
 function modifier_item_kitteh_amulet_passive:OnTakeDamage(params)
-	if params.attacker == self:GetParent() and params.unit ~= self:GetParent() and self:GetParent():GetHealth() > 
-
-params.damage then
+	if params.attacker == self:GetParent() and params.unit ~= self:GetParent() and self:GetParent():GetHealth() > params.damage then
 		local flHeal = params.damage * 100
-		if params.inflictor then ParticleManager:FireParticle 
-
-("particles/items3_fx/octarine_core_lifesteal.vpcf", PATTACH_ABSORIGIN_FOLLOW, self) end
+		if params.inflictor then ParticleManager:FireParticle ("particles/items3_fx/octarine_core_lifesteal.vpcf", PATTACH_ABSORIGIN_FOLLOW, self) end
 		params.attacker:HealEvent(flHeal, self:GetAbility(), params.attacker)
 		end
 end
@@ -131,9 +123,7 @@ function modifier_item_kitteh_amulet_passive:OnAttackLanded(params)
 				EmitSoundOn("DOTA_Item.SkullBasher", params.target)
 				parent:PerformGenericAttack(params.target, true, 0, false, true)  
 				self:GetAbility():Stun(params.target, 1, true)
-				GetAbility():DealDamage(self:GetParent(), params.target, 100, {damage_type = 
-
-DAMAGE_TYPE_PURE})
+				GetAbility():DealDamage(self:GetParent(), params.target, 100, {damage_type = DAMAGE_TYPE_PURE})
 				params.target:DisableHealing(8)
 			end)
 		end
