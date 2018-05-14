@@ -19,10 +19,6 @@ function dragon_knight_dragonbreath:OnSpellStart()
 
 	self:FireLinearProjectile("particles/units/heroes/hero_dragon_knight/dragon_knight_breathe_fire.vpcf", velocity * direction, distance, width, {width_end = endWidth})
 	
-	if caster:HasTalent("special_bonus_unique_dragon_knight_dragonbreath_1") then
-		self:DropFirePool( caster:GetAbsOrigin() + direction * distance, endWidth, self:GetTalentSpecialValueFor("duration") * caster:FindTalentValue("special_bonus_unique_dragon_knight_dragonbreath_1"))
-	end
-	
 	EmitSoundOn("Hero_DragonKnight.BreathFire", caster)
 end
 
@@ -32,9 +28,11 @@ function dragon_knight_dragonbreath:DropFirePool( position, radius, duration )
 	local dur = duration
 	local caster = self:GetCaster()
 	local ability = self
-	local poolFX = ParticleManager:CreateParticle("particles/neutral_fx/black_dragon_fireball.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
+	local poolFX = ParticleManager:CreateParticle("particles/neutral_fx/black_dragon_fireball.vpcf", PATTACH_POINT, caster)
 	ParticleManager:SetParticleControl(poolFX, 0, vPos )
 	ParticleManager:SetParticleControl(poolFX, 1, vPos )
+	ParticleManager:SetParticleControl(poolFX, 2, Vector(duration,0,0) )
+	ParticleManager:SetParticleControl(poolFX, 3, vPos )
 	local damage = ability:GetTalentSpecialValueFor("dot_damage")
 	Timers:CreateTimer(1, function()
 		local enemies = caster:FindEnemyUnitsInRadius(vPos, rad)
@@ -51,14 +49,17 @@ function dragon_knight_dragonbreath:DropFirePool( position, radius, duration )
 end
 
 function dragon_knight_dragonbreath:OnProjectileHit(target, position)
+	local caster = self:GetCaster()
 	if target and not target:IsMagicImmune() and not target:IsInvulnerable() then
-		local caster = self:GetCaster()
-		
 		local damage = self:GetTalentSpecialValueFor("end_radius")
 		local duration = self:GetTalentSpecialValueFor("duration")
 		
 		self:DealDamage( caster, target, damage )
 		target:AddNewModifier( caster, self, "modifier_dragon_knight_dragonbreath_debuff", {duration = duration} )
+	else
+		if caster:HasTalent("special_bonus_unique_dragon_knight_dragonbreath_1") then
+			self:DropFirePool( position, self:GetTalentSpecialValueFor("end_radius"), self:GetTalentSpecialValueFor("duration") * caster:FindTalentValue("special_bonus_unique_dragon_knight_dragonbreath_1"))
+		end
 	end
 	return false
 end

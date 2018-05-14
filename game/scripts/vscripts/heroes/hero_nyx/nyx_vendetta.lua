@@ -28,7 +28,7 @@ function modifier_nyx_vendetta:DeclareFunctions()
         MODIFIER_EVENT_ON_ABILITY_EXECUTED,
         MODIFIER_EVENT_ON_ATTACK_START,
         MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
-        MODIFIER_PROPERTY_STATS_AGILITY_BONUS
+        MODIFIER_PROPERTY_STATS_INTELLECT_BONUS
     }
 
     return funcs
@@ -84,7 +84,7 @@ function modifier_nyx_vendetta:GetModifierMoveSpeedBonus_Percentage()
     return self.move
 end
 
-function modifier_nyx_vendetta:GetModifierBonusStats_Agility()
+function modifier_nyx_vendetta:GetModifierBonusStats_Intellect()
     if self:GetCaster():HasTalent("special_bonus_unique_nyx_vendetta_2") then
     	return self:GetCaster():FindTalentValue("special_bonus_unique_nyx_vendetta_2")
     end

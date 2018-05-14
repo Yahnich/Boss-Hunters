@@ -951,6 +951,14 @@
 		"Ability15"		"special_bonus_unique_nyx_harden_carapace_2"
 		"Ability16"		"special_bonus_unique_nyx_vendetta_1"
 		"Ability17"		"special_bonus_unique_nyx_vendetta_2"
+
+		"AttributePrimary"				"DOTA_ATTRIBUTE_INTELLECT"
+		"AttributeBaseStrength"			"18"
+		"AttributeStrengthGain"			"1.8"
+		"AttributeBaseAgility"			"19"
+		"AttributeAgilityGain"			"2.1"
+		"AttributeBaseIntelligence"		"24"
+		"AttributeIntelligenceGain"		"2.8"
 	}
 	//=================================================================================================================
 	// HERO: outworld

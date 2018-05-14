@@ -1,8 +1,13 @@
 nyx_harden_carapace = class({})
 LinkLuaModifier( "modifier_nyx_harden_carapace", "heroes/hero_nyx/nyx_harden_carapace.lua" ,LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_nyx_harden_carapace_armor", "heroes/hero_nyx/nyx_harden_carapace.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 function nyx_harden_carapace:IsStealable()
 	return true
+end
+
+function nyx_harden_carapace:GetIntrinsicModifierName()
+	return "modifier_nyx_harden_carapace_armor"
 end
 
 function nyx_harden_carapace:GetBehavior()
@@ -38,6 +43,30 @@ function nyx_harden_carapace:OnSpellStart()
 	end
 end
 
+modifier_nyx_harden_carapace_armor = class({})
+function modifier_nyx_harden_carapace_armor:DeclareFunctions()
+	local funcs = {
+		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS
+	}
+	return funcs
+end
+
+function modifier_nyx_harden_carapace_armor:GetModifierPhysicalArmorBonus()
+	return self:GetSpecialValueFor("bonus_armor")
+end
+
+function modifier_nyx_harden_carapace_armor:IsHidden()
+	return true
+end
+
+function modifier_nyx_harden_carapace_armor:IsPurgable()
+	return false
+end
+
+function modifier_nyx_harden_carapace_armor:IsPurgeException()
+	return false
+end
+
 modifier_nyx_harden_carapace = class({})
 function modifier_nyx_harden_carapace:DeclareFunctions()
 	local funcs = {
@@ -64,7 +93,7 @@ function modifier_nyx_harden_carapace:OnTakeDamage(params)
 						ParticleManager:SetParticleControl(nfx, 2, Vector(1,0,0))
 						ParticleManager:ReleaseParticleIndex(nfx)
 
-			caster:SetHealth(caster:GetHealth() - damageTaken)
+			caster:SetHealth(caster:GetHealth() + damageTaken)
 			self:GetAbility():Stun(attacker, stunDuration, false)
 			self:GetAbility():DealDamage(caster, attacker, damageTaken, {damage_type=damageType, damage_flags=DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_REFLECTION}, 0)
 			

@@ -165,7 +165,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"50 75 100 125 150 175 200"
+				"damage"				"100 125 150 175 200 225 250"
 			}
 			"02"
 			{
@@ -280,28 +280,33 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"16 30 44 58 72 86 100"
-				"LinkedSpecialBonus"		"special_bonus_unique_nyx_harden_carapace_1"
+				"bonus_armor"				"5 9 13 17 21 25 29"
 			}
 			"02"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"2.25"
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"100"
+				"LinkedSpecialBonus"		"special_bonus_unique_nyx_harden_carapace_1"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"stun_duration"				"0.5"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"carapace_radius"			"500"
+				"duration"					"2.25"
 			}
 			"04"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"carapace_health"			"5"
+				"stun_duration"				"0.5"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"carapace_radius"			"500"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"carapace_health"			"10"
 			}
 		}
 	
@@ -393,12 +398,12 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"regen"						"1.5"
+				"regen"						"3"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"reduction"					"40"
+				"reduction"					"55"
 			}
 		}
 	
@@ -426,7 +431,7 @@
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
 	    "AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
 	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
-	    "AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+	    "AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 	    "SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 	    "SpellDispellableType"			"SPELL_DISPELLABLE_NO"
 		"MaxLevel"						"6"
@@ -440,7 +445,7 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"70 65 60 55 50 45"
+		"AbilityCooldown"				"25"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -463,12 +468,12 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"movement_speed"		"16 18 20 22 24 26"
+				"movement_speed"		"100"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"attack_range"			"400"
+				"attack_range"			"500"
 			}
 		}
 	
