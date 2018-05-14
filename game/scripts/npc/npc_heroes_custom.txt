@@ -529,7 +529,7 @@
 		"Ability3"				"gyrocopter_flak_cannon_ebf"
 		"Ability4"				"gyro_homing_missile"
 		"Ability5"				"generic_hidden"
-		"Ability6"        		"gyrocopter_call_down"
+		"Ability6"        		"gyro_calldown"
 	
 		"Ability10"				"special_bonus_unique_gyro_rocket_salvo_1"
 	    "Ability11"				"special_bonus_unique_gyro_rocket_salvo_2"
