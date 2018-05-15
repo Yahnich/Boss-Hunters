@@ -9,10 +9,5 @@ function item_dagger_of_escape:OnSpellStart()
 	if distance > self:GetSpecialValueFor("blink_range") then
 		targetPos = caster:GetAbsOrigin() + direction * self:GetSpecialValueFor("blink_range")
 	end
-	EmitSoundOn("DOTA_Item.BlinkDagger.Activate", caster)
-	ParticleManager:FireParticle("particles/items_fx/blink_dagger_start.vpcf", PATTACH_ABSORIGIN, caster, {[0] = caster:GetAbsOrigin()})
-	FindClearSpaceForUnit(caster, targetPos, true)
-	ProjectileManager:ProjectileDodge( caster )
-	ParticleManager:FireParticle("particles/items_fx/blink_dagger_end.vpcf", PATTACH_ABSORIGIN, caster, {[0] = caster:GetAbsOrigin()})
-	EmitSoundOn("DOTA_Item.BlinkDagger.NailedIt", caster)
+	caster:Blink(targetPos)
 end

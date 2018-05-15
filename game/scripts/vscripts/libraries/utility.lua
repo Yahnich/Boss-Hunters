@@ -250,6 +250,15 @@ function FindUnitsInCone(teamNumber, vDirection, vPosition, flSideRadius, flLeng
 	return unitTable
 end
 
+function CDOTA_BaseNPC:Blink(position)
+	EmitSoundOn("DOTA_Item.BlinkDagger.Activate", self)
+	ParticleManager:FireParticle("particles/items_fx/blink_dagger_start.vpcf", PATTACH_ABSORIGIN, self, {[0] = self:GetAbsOrigin()})
+	FindClearSpaceForUnit(self, position, true)
+	ProjectileManager:ProjectileDodge( self )
+	ParticleManager:FireParticle("particles/items_fx/blink_dagger_end.vpcf", PATTACH_ABSORIGIN, self, {[0] = self:GetAbsOrigin()})
+	EmitSoundOn("DOTA_Item.BlinkDagger.NailedIt", self)
+end
+
 -- New taunt mechanics
 function CDOTA_BaseNPC:GetTauntTarget()
 	local target = nil
