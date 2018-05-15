@@ -13018,7 +13018,7 @@
 			"02"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"damage"						"120 200 280 360 440 520 600"
+				"damage"						"150 250 350 450 550 650 750"
 				"LinkedSpecialBonus"			"special_bonus_unique_dark_willow_1"
 			}
 			"03"
@@ -13029,7 +13029,7 @@
 			"04"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"max_damage_duration"			"0.3"
+				"max_damage_duration"			"1.5"
 				"CalculateSpellDamageTooltip"	"0"
 			}
 		}

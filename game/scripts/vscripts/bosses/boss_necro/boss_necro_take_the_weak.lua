@@ -1,0 +1,1 @@
+boss_necro_take_the_weak = class({})

@@ -1,0 +1,1 @@
+boss_necro_vile_aura = class({})

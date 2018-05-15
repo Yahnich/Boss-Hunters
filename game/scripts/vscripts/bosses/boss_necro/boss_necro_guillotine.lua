@@ -1,0 +1,1 @@
+boss_necro_guillotine = class({})
