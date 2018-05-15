@@ -12816,7 +12816,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"latch_range"			"90"
+				"latch_range"			"125"
 			}
 			"06"
 			{
@@ -12897,7 +12897,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"roaming_radius"		"200"
+				"roaming_radius"		"125"
 			}
 			"06"
 			{
@@ -13029,7 +13029,7 @@
 			"04"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"max_damage_duration"			"1.5"
+				"max_damage_duration"			"0.3"
 				"CalculateSpellDamageTooltip"	"0"
 			}
 		}

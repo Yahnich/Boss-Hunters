@@ -294,16 +294,25 @@
 	//=================================================================================================================
 	"npc_dota_hero_dark_willow"
 	{
-		"override_hero"				"npc_dota_hero_dark_willow"
+		"override_hero"					"npc_dota_hero_dark_willow"
 		
-		"Ability10"		"special_bonus_attack_damage_20"
-		"Ability11"		"special_bonus_cast_range_125"
-		"Ability12"		"special_bonus_mp_100"
-		"Ability13"		"special_bonus_movement_speed_40"
-		"Ability14"		"special_bonus_spell_lifesteal_10"
-		"Ability15"		"special_bonus_unique_dark_willow_1"
-		"Ability16"		"special_bonus_attack_speed_200"
-		"Ability17"		"special_bonus_unique_dark_willow_2"
+		"Ability10"						"special_bonus_attack_damage_20"
+		"Ability11"						"special_bonus_cast_range_125"
+		"Ability12"						"special_bonus_cooldown_reduction_12"
+		"Ability13"						"special_bonus_movement_speed_40"
+		"Ability14"						"special_bonus_spell_lifesteal_10"
+		"Ability15"						"special_bonus_unique_dark_willow_1"
+		"Ability16"						"special_bonus_attack_speed_200"
+		"Ability17"						"special_bonus_unique_dark_willow_2"
+		
+		"ArmorPhysical"					"1"
+		"AttributeBaseStrength"			"22"
+		"AttributeStrengthGain"			"1.9"
+		"AttributeBaseAgility"			"18"
+		"AttributeAgilityGain"			"1.600000"
+		"AttributeBaseIntelligence"		"18"
+		"AttributeIntelligenceGain"		"3.000000"
+		"MovementSpeed"					"325"
 	}
 	"npc_dota_hero_dazzle" // Mystic -> need to do it like this for mergetables
 	{
