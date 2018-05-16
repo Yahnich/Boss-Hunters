@@ -33,7 +33,8 @@ function modifier_mirana_mooneye_stack:OnCreated(table)
 end
 
 function modifier_mirana_mooneye_stack:OnRefresh(table)
-    self.agi = (self:GetParent():GetAgility() - self.agi) * self:GetSpecialValueFor("agi_mult")/100 * self:GetStackCount()
+	self.agi = 0
+    self.agi = 	self:GetParent():GetAgility() * self:GetSpecialValueFor("agi_mult")/100 * self:GetStackCount()
 end
 
 function modifier_mirana_mooneye_stack:DeclareFunctions()
