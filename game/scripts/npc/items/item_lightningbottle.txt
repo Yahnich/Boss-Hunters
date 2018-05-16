@@ -1,0 +1,124 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Lighting Bottle
+	//=================================================================================================================
+	"item_recipe_lightningbottle"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"7030"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"965"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_lightningbottle"
+		"ItemRequirements"
+		{
+			"01"						"item_runed_artifact;item_lightningrod;item_orb_of_renewal"
+		}
+	}
+	"item_lightningbottle"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"7031"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_lightningbottle.lua"
+		"AbilityTextureName"			"bottle_doubledamage"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"1765"
+		"ItemShopTags"					"magic"
+		"ItemQuality"					"component"
+		"ItemAliases"					"bottle;lightningbottle;lightning"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		"AbilityCooldown"				"35"
+		"AbilityManaCost"				"150"
+		"AbilityCastRange"				"625"
+		
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_items.vsndevts"
+			"particle"					"particles/units/heroes/hero_zuus/zuus_lightning_bolt.vpcf"
+			"particle"  				"particles/items2_fx/mjollnir_shield.vpcf"
+		}
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"primary_to_damage"		"200"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bonus_attack_speed"	"35"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"radius"				"625"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"strike_chance"			"15"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"strike_damage"			"125"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"strike_bounces"		"4"
+			}
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cd_reduction"			"-0.75"
+			}
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cd_reduction_spell"	"-0.1"
+			}
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cd_reduction_shield"	"-0.2"
+			}
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"15"
+			}
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"cdr"					"15"
+			}
+		}
+	}
+}

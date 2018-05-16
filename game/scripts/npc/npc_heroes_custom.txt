@@ -503,10 +503,19 @@
 	"npc_dota_hero_faceless_void_ebf"
 	{
 		"override_hero"			"npc_dota_hero_faceless_void"
-		"Ability1"				"time_walk_datadriven"
+		"Ability1"				"faceless_time_walk"
 		"Ability2"				"faceless_clock_stopper"
-		"Ability3"				"faceless_time_lord"
+		"Ability3"				"faceless_chrono_trigger"
+		"Ability6"				"faceless_chrono"
 		
+		"Ability10"		"special_bonus_unique_faceless_time_walk_1"
+		"Ability11"		"special_bonus_unique_faceless_time_walk_2"
+		"Ability12"		"special_bonus_unique_faceless_clock_stopper_1"
+		"Ability13"		"special_bonus_unique_faceless_clock_stopper_2"
+		"Ability14"		"special_bonus_unique_faceless_chrono_trigger_1"
+		"Ability15"		"special_bonus_unique_faceless_chrono_trigger_2"
+		"Ability16"		"special_bonus_unique_faceless_chrono_1"
+		"Ability17"		"special_bonus_unique_faceless_chrono_2"
 	}
 	"npc_dota_hero_furion_ebf"
 	{
