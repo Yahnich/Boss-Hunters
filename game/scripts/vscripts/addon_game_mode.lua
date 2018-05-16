@@ -1135,12 +1135,10 @@ end
 -- When game state changes set state in script
 function CHoldoutGameMode:OnGameRulesStateChange()
 	local nNewState = GameRules:State_Get()
-	if nNewState >= DOTA_GAMERULES_STATE_INIT and not statCollection.doneInit then
-        if PlayerResource:GetPlayerCount() >= 1 then
-            statCollection:init()
-            customSchema:init()
-			statCollection.doneInit = true
-        end
+	if nNewState >= DOTA_GAMERULES_STATE_INIT and not statCollection.doneInit and not IsInToolsMode() and not IsCheatMode() then
+		statCollection:init()
+		customSchema:init()
+		statCollection.doneInit = true
 		print("start")
     end
 	if nNewState == DOTA_GAMERULES_STATE_CUSTOM_GAME_SETUP then

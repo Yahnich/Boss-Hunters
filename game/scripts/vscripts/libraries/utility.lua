@@ -250,6 +250,15 @@ function FindUnitsInCone(teamNumber, vDirection, vPosition, flSideRadius, flLeng
 	return unitTable
 end
 
+function CDOTA_BaseNPC:Blink(position)
+	EmitSoundOn("DOTA_Item.BlinkDagger.Activate", self)
+	ParticleManager:FireParticle("particles/items_fx/blink_dagger_start.vpcf", PATTACH_ABSORIGIN, self, {[0] = self:GetAbsOrigin()})
+	FindClearSpaceForUnit(self, position, true)
+	ProjectileManager:ProjectileDodge( self )
+	ParticleManager:FireParticle("particles/items_fx/blink_dagger_end.vpcf", PATTACH_ABSORIGIN, self, {[0] = self:GetAbsOrigin()})
+	EmitSoundOn("DOTA_Item.BlinkDagger.NailedIt", self)
+end
+
 -- New taunt mechanics
 function CDOTA_BaseNPC:GetTauntTarget()
 	local target = nil
@@ -979,10 +988,10 @@ function CDOTA_BaseNPC:ModifyThreat(val)
 	local newVal = val
 	for _, modifier in ipairs( self:FindAllModifiers() ) do
 		if modifier.Bonus_ThreatGain and modifier:Bonus_ThreatGain() then
-			newVal = newVal + ( val * ( 1 + ( math.max(0, modifier:Bonus_ThreatGain()/100 ) ) ) )
+			newVal = newVal + ( val * ( math.max(0, modifier:Bonus_ThreatGain()/100 ) ) )
 		end
 	end
-	self.threat = (self.threat or 0) + newVal
+	self.threat = math.max(0, (self.threat or 0) + newVal )
 	if not self:IsFakeHero() then 
 		local player = PlayerResource:GetPlayer(self:GetOwner():GetPlayerID())
 

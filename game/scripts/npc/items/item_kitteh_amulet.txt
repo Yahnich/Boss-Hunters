@@ -1,0 +1,39 @@
+"DOTAAbilities" 
+{
+	"item_kitteh_amulet"
+	{
+		"ID"							"131313"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_kitteh_amulet"
+		"AbilityTextureName"			"custom/longclaws_amulet"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		"ItemPurchasable"				"0"
+		
+		"ItemCost"						"131313"
+		"ItemShopTags"					"blink;tp;move_speed;mana_pool;boost_mana;cdr"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"octarine amulet;god core;kitteh lil shineh amulet"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		"AbilityCooldown"				"5"
+		
+		"particle"
+		{
+			"particle"	"particles/econ/events/ti6/blink_dagger_start_ti6_lvl2.vpcf"
+			"particle"	"particles/econ/events/ti6/blink_dagger_end_ti6_lvl2.vpcf"
+			"particle"	"particles/items3_fx/octarine_core_lifesteal.vpcf"
+		}
+		
+
+
+		// Special	
+		
+
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+		}
+	}
+}

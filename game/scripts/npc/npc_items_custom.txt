@@ -112,6 +112,7 @@
 #base "items/item_rising_salt.txt"
 #base "items/item_ogre_seal_totem.txt"
 #base "items/item_iron_rose.txt"
+#base "items/item_kitteh_amulet.txt"
 
 // Next ID is 7030
 

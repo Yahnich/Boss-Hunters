@@ -78,28 +78,6 @@ can curse the ground, making anyone that stands in it take damage, can channel u
 Warlock Golem, mostly the same; but this time the heal disable meteor is a dodgeable ability and the fire wave no longer instakills you, just deal massive damage and also disables healing
 
 
-R22 Necro Boss: can no longer autoattack
-Passives:
-- Vile Aura:
-Deals constant 1% max hp damage to all units within 1200 radius, reduces healing by 50%
-- Deathbringer:
-When anything dies, will deal double damage on the next real damage tick (aura is hp loss so doesn't count)
-- Take the Weak:
-Any real damage dealt by Necro will instantly kill non-heroes and illusions.
-
-Actives:
-- Plague Wave: 
-Current bullet hell, but takes 1 second to activate to give players time to move out of the way; will now bullet hell in front and in the back so there are no 'safe zones'. Instantly kills and pierces through non-heroes and illusions.
-- Fear the Reaper:
-Uses necro's immortal effect, scythe slashes at a target position, dealing significant damage to all units hit
-- Swan's Song:
-Necro bubble, but marks all units within the bubble for death. Non-heroes and illusions instantly die.
-- Guillotine
-Uses necro's normal ult effect, drops a scythe on every hero and drops their health to 1% + 5s heal disable if they do not run out of the scythe's radius.
-- Weaken:
-Picks the unit that has dealt the most amount of damage to Necro and reduces their damage by 50% for 5 seconds. Necro will be taunted to them and hunt them down for the duration.
-
-
 -------------------------------------------------------------------------
 Aeon:
 Passives:

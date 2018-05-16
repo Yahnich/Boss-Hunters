@@ -18,6 +18,7 @@
 #base "bosses/boss_doom.txt"
 #base "bosses/boss_ogres.txt"
 #base "bosses/boss_golem.txt"
+#base "bosses/boss_necro.txt"
 
 #base "heroes/hero_chen.txt"
 #base "heroes/hero_shadow_shaman.txt"
