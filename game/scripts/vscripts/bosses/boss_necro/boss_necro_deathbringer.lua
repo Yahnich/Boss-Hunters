@@ -11,7 +11,7 @@ function modifier_boss_necro_deathbringer:DeclareFunctions()
 	return {MODIFIER_EVENT_ON_DEATH}
 end
 
-function modifier_boss_necro_deathbringer:OnDeath()
+function modifier_boss_necro_deathbringer:OnDeath(params)
 	if params.attacker == self:GetParent() then
 		self:GetParent():AddNewModifier( self:GetParent(), self:GetAbility(), "modifier_boss_necro_deathbringer_damage", {} )
 	end

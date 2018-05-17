@@ -5581,10 +5581,14 @@
 		// Abilities
 		//----------------------------------------------------------------
 		"AbilityLayout"				"6"
-		"Ability1"					"boss_death_orb"			// Ability 1.
-		"Ability2"					"boss_death_time"			// Ability 2.
-		"Ability3"					"boss_blink_on_far"			// Ability 3.
-		"Ability4"					"boss_lifesteal"			// Ability 3.
+		"Ability1"					"boss_necro_plague_wave"			// Ability 1.
+		"Ability2"					"boss_necro_fear_the_reaper"			// Ability 2.
+		"Ability3"					"boss_necro_swans_song"			// Ability 3.
+		"Ability4"					"boss_necro_guillotine"			// Ability 3.
+		"Ability5"					"boss_necro_weaken"			// Ability 3.
+		"Ability6"					"boss_necro_vile_aura"			// Ability 3.
+		"Ability7"					"boss_necro_deathbringer"			// Ability 3.
+		"Ability8"					"boss_necro_take_the_weak"			// Ability 3.
 	
 		// Armor
 		//----------------------------------------------------------------

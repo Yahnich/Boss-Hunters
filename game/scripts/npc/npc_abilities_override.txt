@@ -10997,6 +10997,7 @@
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"FightRecapLevel"				"1"
 		"AbilitySound"					"Hero_TrollWarlord.WhirlingAxes.Ranged"
+		"MaxLevel"						"7"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------

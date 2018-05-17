@@ -193,6 +193,7 @@ end
 
 function CDOTABaseAbility:DealDamage(attacker, victim, damage, data, spellText)
 	--OVERHEAD_ALERT_BONUS_SPELL_DAMAGE, OVERHEAD_ALERT_DAMAGE, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, OVERHEAD_ALERT_MANA_LOSS
+	if self:IsNull() or victim:IsNull() or attacker:IsNull() then return end
 	local internalData = data or {}
 	local damageType =  internalData.damage_type or self:GetAbilityDamageType() or DAMAGE_TYPE_MAGICAL
 	local damageFlags = internalData.damage_flags or DOTA_DAMAGE_FLAG_NONE
@@ -1193,6 +1194,12 @@ function CDOTA_BaseNPC:IsFakeHero()
 	if self:IsIllusion() or (self:HasModifier("modifier_monkey_king_fur_army_soldier") or self:HasModifier("modifier_monkey_king_fur_army_soldier_hidden")) or self:IsTempestDouble() then
 		return true
 	else return false end
+end
+
+function CDOTA_BaseNPC:IsRealHero()
+	if not self:IsNull() then
+		return self:IsHero() and not ( self:IsIllusion() or self:IsClone() )
+	end
 end
 
 function CDOTA_Buff:IsStun()
@@ -2236,9 +2243,10 @@ function CDOTA_BaseNPC:RemoveDaze()
 end
 
 function CDOTA_BaseNPC:AttemptKill(sourceAb, attacker)
-	if not ( self:NoHealthBar() or self:IsOutOfGame() ) then
+	if not ( self:NoHealthBar() or self:IsOutOfGame() or self:IsNull() or attacker:IsNull() or sourceAb:IsNull() ) then
 		self:SetHealth(1)
 		local damage = ApplyDamage({victim = self, attacker = attacker, ability = sourceAb, damage_type = DAMAGE_TYPE_PURE, damage = self:GetMaxHealth(), damage_flags = DOTA_DAMAGE_FLAG_BYPASSES_INVULNERABILITY + DOTA_DAMAGE_FLAG_BYPASSES_BLOCK})
+		if self:IsNull() then return end
 		return not self:IsAlive()
 	end
 end
