@@ -439,20 +439,12 @@ function CHoldoutGameRound:HandleElites(spawnedUnit)
 				spawnedUnit:SetAverageBaseDamage(spawnedUnit:GetAverageBaseDamage() * elitemod, 15)
 			elseif self._nCoreUnitsSpawned > self._nElitesRemaining then -- If leftover enemies, randomize
 				if RollPercentage(33) then
-					if spawnedUnit:GetMaxHealth() < self._nRoundNumber * 250 and spawnedUnit:GetName() ~= "npc_dota_money" and spawnedUnit:GetUnitName() ~= "npc_dota_boss36" then
-						spawnedUnit:SetBaseMaxHealth(spawnedUnit:GetMaxHealth()+self._nRoundNumber * 250)
-						spawnedUnit:SetMaxHealth(spawnedUnit:GetMaxHealth()+self._nRoundNumber * 250)
-					end
 					spawnedUnit:SetBaseMaxHealth(spawnedUnit:GetMaxHealth()*(2 - 0.90 * self._nRoundNumber/GameRules:GetMaxRound())*elitemod )
 					spawnedUnit:SetMaxHealth(spawnedUnit:GetMaxHealth()*elitemod  )
 					spawnedUnit:SetAverageBaseDamage(spawnedUnit:GetAverageBaseDamage() * elitemod, 15)
 					spawnedUnit.elite = true
 				end
 			else
-				if spawnedUnit:GetMaxHealth() < self._nRoundNumber * 250 and spawnedUnit:GetName() ~= "npc_dota_money" and spawnedUnit:GetUnitName() ~= "npc_dota_boss36" then
-					spawnedUnit:SetBaseMaxHealth(spawnedUnit:GetMaxHealth()+self._nRoundNumber * 250)
-					spawnedUnit:SetMaxHealth(spawnedUnit:GetMaxHealth()+self._nRoundNumber * 250)
-				end
 				spawnedUnit:SetBaseMaxHealth(spawnedUnit:GetMaxHealth()*elitemod )
 				spawnedUnit:SetMaxHealth(spawnedUnit:GetMaxHealth()*elitemod )
 				spawnedUnit:SetAverageBaseDamage(spawnedUnit:GetAverageBaseDamage() * elitemod, 15)

@@ -70,6 +70,7 @@ function ToggleStatsPanel()
 	statsPanel.SetHasClass("IsHidden", !statsPanel.BHasClass("IsHidden") );
 	lastRememberedHero = Players.GetLocalPlayerPortraitUnit()
 	Game.EmitSound( "focus_change" )
+	if(statsPanel.BHasClass("IsHidden") ){$.DispatchEvent("DropInputFocus", statsPanel);};
 	UpdateStatsPanel()
 }
 
