@@ -51,7 +51,7 @@
 			"particle"					"particles/units/heroes/hero_faceless_void/faceless_void_backtrack.vpcf"
 		}
 		
-		"AbilityCooldown"				"3"
+		"AbilityCooldown"				"4"
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------

@@ -13,7 +13,7 @@
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
 		
-		"AbilityCooldown"				"4"
+		"AbilityCooldown"				"5"
 		
 		"ItemCost"						"1200"
 		"ItemShopTags"					"range"

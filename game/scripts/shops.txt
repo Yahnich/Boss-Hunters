@@ -80,6 +80,7 @@
 		"item"		"item_runed_artifact"
 		"item"		"item_orb_of_renewal"
 		"item"		"item_arcane_accelerator"
+		"item"		"item_lightningbottle"
 		"item"		"item_flashback"
 		"item"		"item_lightningrod"
 		"item"		"item_voltas_greathammer"
@@ -88,7 +89,7 @@
 		"item"		"item_warlocks_reliquary"
 		"item"		"item_dark_wand"
 		"item"		"item_galactic_hammer"
-		"item"		"item_ogre_seal_club"
+		"item"		"item_ogre_seal_totem"
     }
     // Level 3 - Purple Recipes
     "defense"
