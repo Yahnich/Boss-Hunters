@@ -54,7 +54,7 @@
 			"particle"					"particles/items_fx/blink_dagger_end.vpcf"
 		}
 		
-		"AbilityCooldown"				"1"
+		"AbilityCooldown"				"2"
 
 		
 		// Special	

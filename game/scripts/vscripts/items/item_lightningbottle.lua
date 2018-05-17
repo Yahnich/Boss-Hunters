@@ -42,7 +42,7 @@ end
 
 function modifier_item_lightningbottle_handle:OnAbilityFullyCast(params)
 	local caster = params.unit
-	if params.ability and params.ability:GetCooldown(-1) > 0.75 and params.unit == self:GetParent() then
+	if params.ability and params.ability:GetRemainingCooldown(-1) > 0.75 and params.unit == self:GetParent() then
 		if not caster:HasModifier("modifier_item_orb_of_renewal_passive") then
 			for i = 0, params.unit:GetAbilityCount() - 1 do
 				local ability = params.unit:GetAbilityByIndex( i )
@@ -61,18 +61,19 @@ function modifier_item_lightningbottle_handle:OnAbilityFullyCast(params)
 
 		local enemies = self:GetParent():FindEnemyUnitsInRadius(self:GetParent():GetAbsOrigin(), self:GetSpecialValueFor("radius"))
 		for _,enemy in pairs(enemies) do
-
-			for i = 0, params.unit:GetAbilityCount() - 1 do
-				local ability = params.unit:GetAbilityByIndex( i )
-				if ability then
-					ability:ModifyCooldown(self.reductionSpell)
+			if enemy:IsRoundBoss() then
+				for i = 0, params.unit:GetAbilityCount() - 1 do
+					local ability = params.unit:GetAbilityByIndex( i )
+					if ability then
+						ability:ModifyCooldown(self.reductionSpell)
+					end
 				end
-			end
 
-			for i=0, 5, 1 do
-				local current_item = params.unit:GetItemInSlot(i)
-				if current_item ~= nil and current_item ~= self:GetAbility() then
-					current_item:ModifyCooldown(self.reductionSpell)
+				for i=0, 5, 1 do
+					local current_item = params.unit:GetItemInSlot(i)
+					if current_item ~= nil and current_item ~= self:GetAbility() then
+						current_item:ModifyCooldown(self.reductionSpell)
+					end
 				end
 			end
 
@@ -109,18 +110,19 @@ function modifier_item_lightningbottle_handle_shield:OnTakeDamage(params)
 			local damage = caster:GetPrimaryStatValue() * self:GetSpecialValueFor("primary_to_damage") / 100
 
 			self:GetAbility():DealDamage(caster, attacker, damage)
-
-			for i = 0, params.unit:GetAbilityCount() - 1 do
-				local ability = params.unit:GetAbilityByIndex( i )
-				if ability then
-					ability:ModifyCooldown(self.reductionShield)
+			if attacker:IsRoundBoss() then
+				for i = 0, params.unit:GetAbilityCount() - 1 do
+					local ability = params.unit:GetAbilityByIndex( i )
+					if ability then
+						ability:ModifyCooldown(self.reductionShield)
+					end
 				end
-			end
-			
-			for i=0, 5, 1 do
-				local current_item = params.unit:GetItemInSlot(i)
-				if current_item ~= nil and current_item ~= self:GetAbility() then
-					current_item:ModifyCooldown(self.reductionShield)
+				
+				for i=0, 5, 1 do
+					local current_item = params.unit:GetItemInSlot(i)
+					if current_item ~= nil and current_item ~= self:GetAbility() then
+						current_item:ModifyCooldown(self.reductionShield)
+					end
 				end
 			end
 		end

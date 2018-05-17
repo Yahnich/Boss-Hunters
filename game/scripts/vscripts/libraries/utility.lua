@@ -983,6 +983,10 @@ function CDOTA_BaseNPC:SetThreat(val)
 	end
 end
 
+function CDOTA_BaseNPC:IsRoundBoss()
+	return self.Holdout_IsCore == true
+end
+
 function CDOTA_BaseNPC:ModifyThreat(val)
 	self.lastHit = GameRules:GetGameTime()
 	local newVal = val

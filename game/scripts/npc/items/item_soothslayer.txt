@@ -54,7 +54,7 @@
 			"soundfile"					"soundevents/game_sounds_items.vsndevts"
 		}
 	
-		"AbilityCooldown"				"2"
+		"AbilityCooldown"				"3"
 
 		
 		// Special	

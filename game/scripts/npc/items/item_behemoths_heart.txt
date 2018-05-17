@@ -79,7 +79,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"stack_delay"			"1.0"
+				"stack_delay"			"1.5"
 			}
 			"06"
 			{
