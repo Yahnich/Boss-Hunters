@@ -115,7 +115,7 @@
 #base "items/item_kitteh_amulet.txt"
 #base "items/item_lightningbottle.txt"
 
-// Next ID is 7030
+// Next ID is 7033
 
 "DOTAAbilities"
 {
