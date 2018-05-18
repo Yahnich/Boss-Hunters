@@ -1791,15 +1791,21 @@ function CHoldoutGameMode:OnNPCSpawned( event )
 		if spawnedUnit:IsCreature() and spawnedUnit:GetTeam() == DOTA_TEAM_BADGUYS and spawnedUnit:GetUnitName() ~= "npc_dota_boss36" and spawnedUnit:GetUnitName() ~= "npc_dota_boss4_tomb" then
 			local expectedHP = spawnedUnit:GetHealth() * RandomFloat(0.9, 1.15)
 			if GetMapName() == "epic_boss_fight_hardcore" then expectedHP = expectedHP * 1.35 end
-			local playerMultiplier = 0.35
-			if GetMapName() == "epic_boss_fight_hardcore" then playerMultiplier = 0.5 end
-			local effective_multiplier = 1 + (HeroList:GetActiveHeroCount() - 1)*playerMultiplier
-			-- if self._currentRound and not self._currentRound:IsFinished() then self._vEnemiesRemaining
-			expectedHP = expectedHP * effective_multiplier
+			local playerHPMultiplier = 0.35
+			local playerDMGMultiplier = 0.05
+			if GetMapName() == "epic_boss_fight_hardcore" then 
+				playerHPMultiplier = 0.5 
+				local playerDMGMultiplier = 0.07
+			end
+			local effective_multiplier = (HeroList:GetActiveHeroCount() - 1)
+			local effPlayerHPMult = 1 + effective_multiplier * playerHPMultiplier
+			local effPlayerDMGMult = 0.9 + effective_multiplier * playerDMGMultiplier
+
+			expectedHP = expectedHP * effPlayerHPMult
 			spawnedUnit:SetBaseMaxHealth(expectedHP)
 			spawnedUnit:SetMaxHealth(expectedHP)
 			spawnedUnit:SetHealth(expectedHP)
-			spawnedUnit:SetAverageBaseDamage(spawnedUnit:GetAverageBaseDamage() * (1 + (self._nRoundNumber * 1.8)/100), 15)
+			spawnedUnit:SetAverageBaseDamage(spawnedUnit:GetAverageBaseDamage() * effPlayerDMGMult * RandomFloat(0.85, 1.15), 30)
 			spawnedUnit:SetBaseHealthRegen(GameRules._roundnumber * RandomFloat(0.85, 1.15) )
 			
 			spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_boss_attackspeed", {})

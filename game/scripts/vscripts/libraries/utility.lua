@@ -993,7 +993,7 @@ function CDOTA_BaseNPC:ModifyThreat(val)
 	local newVal = val
 	for _, modifier in ipairs( self:FindAllModifiers() ) do
 		if modifier.Bonus_ThreatGain and modifier:Bonus_ThreatGain() then
-			newVal = newVal + ( val * ( math.max(0, modifier:Bonus_ThreatGain()/100 ) ) )
+			newVal = newVal + ( val * ( modifier:Bonus_ThreatGain()/100 ) )
 		end
 	end
 	self.threat = math.max(0, (self.threat or 0) + newVal )

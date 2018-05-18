@@ -10,7 +10,7 @@
 		{
 			"item"	"item_amulet_of_aggression"
 			"item"	"item_pages_buckler"
-			"item"	"item_crystal_of_life
+			"item"	"item_crystal_of_life"
 			"item"	"item_crown_of_thorns"
 		}
 		"#DOTA_Item_Build_Early_Game"
@@ -32,7 +32,7 @@
 			"item"	"item_dark_ones_blessing"
 			"item"	"item_blood_gods_mask"
 			"item"	"item_berserkers_pelt"
-			"item"	"item_ultimate_scepter
+			"item"	"item_ultimate_scepter"
 		}
 	}
 }

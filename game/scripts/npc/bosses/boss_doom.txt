@@ -41,7 +41,7 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"28 25"
+		"AbilityCooldown"				"20"
 	
 		"precache"
 		{
@@ -60,7 +60,7 @@
 				"var_type"					"FIELD_INTEGER"
 				"bonus_damage"				"75"
 			}
-			"02"
+			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
 				"bonus_attackspeed"			"200 400"
@@ -115,7 +115,7 @@
 			"05"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"hp_threshold"				"50 33"
+				"hp_threshold"				"33 25"
 			}
 		}
 	}

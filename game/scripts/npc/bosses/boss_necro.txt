@@ -46,7 +46,7 @@
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"bosses/boss_necro/boss_necro_deathbringer"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityTextureName"			"nevermore_dark_lords_presence"
+		"AbilityTextureName"			"nevermore_dark_lord"
 		"MaxLevel"						"2"
 		
 		"precache"
@@ -103,27 +103,26 @@
 		"MaxLevel"						"3"
 		
 		"AbilityCastRange"				"1200 1400"
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_6"
+		"AbilityCastAnimation"			"ACT_DOTA_NECRO_GHOST_SHROUD"
 		"AbilityCastPoint"				"1"
 		"AbilityCooldown"				"8"
 	
 		"precache"
 		{
 			"particle"					"particles/death_spear.vpcf"
-			"particle"					"particles/status_fx/status_effect_doom.vpcf"
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_doombringer.vsndevts"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_necrolyte.vsndevts"	
 		}
 		"AbilitySpecial"
 		{
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"max_hp_damage"				"7 10"
+				"max_hp_damage"				"7 8"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"duration"					"5 7"
+				"duration"					"4 5"
 			}
 			"03"
 			{
@@ -156,33 +155,32 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"bosses/boss_necro/boss_necro_fear_the_reaper"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
 		"AbilityTextureName"			"necrolyte_sadist"
 		"MaxLevel"						"3"
 		
-		"AbilityCastRange"				"450 500"
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_6"
-		"AbilityCastPoint"				"1"
-		"AbilityCooldown"				"60 50"
+		"AbilityCastRange"				"600 800"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastPoint"				"0.5"
+		"AbilityCooldown"				"6 4"
 	
 		"precache"
 		{
-			"particle"					"particles/units/heroes/hero_doom_bringer/doom_bringer_doom.vpcf"
-			"particle"					"particles/status_fx/status_effect_doom.vpcf"
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_doombringer.vsndevts"
+			"particle"					"particles/econ/items/necrolyte/necro_sullen_harvest/necro_sullen_harvest_scythe_model.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_necrolyte.vsndevts"	
 		}
 		"AbilitySpecial"
 		{
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"curr_hp_damage"			"7 10"
+				"damage"					"800"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"duration"					"5 7"
+				"radius"					"250 275"
 			}
 		}
 	}
@@ -195,33 +193,39 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"bosses/boss_necro/boss_necro_swans_song"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
-		"AbilityTextureName"			"faceless_void_chronosphere"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"AbilityTextureName"			"necrolyte/apostle_of_decay_icons/necrolyte_death_pulse"
 		"MaxLevel"						"3"
 		
-		"AbilityCastRange"				"450 500"
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_6"
-		"AbilityCastPoint"				"1"
-		"AbilityCooldown"				"60 50"
+		"AbilityCastRange"				"1500"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+		"AbilityCastPoint"				"1.25 1"
+		"AbilityCooldown"				"40"
 	
 		"precache"
 		{
-			"particle"					"particles/units/heroes/hero_doom_bringer/doom_bringer_doom.vpcf"
-			"particle"					"particles/status_fx/status_effect_doom.vpcf"
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_doombringer.vsndevts"
+			"particle"					"particles/units/heroes/hero_necrolyte/necrolyte_spirit.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_necrolyte.vsndevts"	
 		}
 		"AbilitySpecial"
 		{
 			"01"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"curr_hp_damage"			"7 10"
+				"var_type"					"FIELD_FLOAT"
+				"max_hp_damage"				"2.25 2.5"
 			}
 			"02"
 			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"8"
+			}
+			"03"
+			{
 				"var_type"					"FIELD_INTEGER"
-				"duration"					"5 7"
+				"radius"					"750"
 			}
 		}
 	}
@@ -234,33 +238,44 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"bosses/boss_necro/boss_necro_guillotine"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
 		"AbilityTextureName"			"necrolyte_reapers_scythe"
 		"MaxLevel"						"3"
 		
-		"AbilityCastRange"				"450 500"
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_6"
-		"AbilityCastPoint"				"1"
-		"AbilityCooldown"				"60 50"
+		"AbilityCastAnimation"			"ACT_DOTA_VICTORY"
+		"AbilityCastPoint"				"0.5"
+		"AbilityCooldown"				"35 30"
 	
 		"precache"
 		{
-			"particle"					"particles/units/heroes/hero_doom_bringer/doom_bringer_doom.vpcf"
-			"particle"					"particles/status_fx/status_effect_doom.vpcf"
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_doombringer.vsndevts"
+			"particle"					"particles/units/heroes/hero_necrolyte/necrolyte_scythe_start.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_necrolyte.vsndevts"	
 		}
 		"AbilitySpecial"
 		{
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"curr_hp_damage"			"7 10"
+				"radius"					"175"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"duration"					"5 7"
+				"hp_set"					"50 35"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"kill_threshold"			"25"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"duration"					"4 5"
 			}
 		}
 	}
@@ -277,32 +292,30 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
 		"AbilityTextureName"			"bane_enfeeble"
 		"MaxLevel"						"3"
 		
-		"AbilityCastRange"				"450 500"
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_6"
+		"AbilityCastRange"				"1200"
+		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
 		"AbilityCastPoint"				"1"
-		"AbilityCooldown"				"60 50"
+		"AbilityCooldown"				"30"
 	
 		"precache"
 		{
-			"particle"					"particles/units/heroes/hero_doom_bringer/doom_bringer_doom.vpcf"
-			"particle"					"particles/status_fx/status_effect_doom.vpcf"
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_doombringer.vsndevts"
+			"particle"					"particles/status_fx/status_effect_necrolyte_spirit.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_necrolyte.vsndevts"	
 		}
 		"AbilitySpecial"
 		{
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"curr_hp_damage"			"7 10"
+				"damage_reduction"			"-33 -50"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"duration"					"5 7"
+				"duration"					"15"
 			}
 		}
 	}

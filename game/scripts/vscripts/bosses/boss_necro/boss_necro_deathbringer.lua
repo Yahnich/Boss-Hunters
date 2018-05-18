@@ -17,6 +17,10 @@ function modifier_boss_necro_deathbringer:OnDeath(params)
 	end
 end
 
+function modifier_boss_necro_deathbringer:IsHidden()
+	return true
+end
+
 modifier_boss_necro_deathbringer_damage = class({})
 LinkLuaModifier("modifier_boss_necro_deathbringer_damage", "bosses/boss_necro/boss_necro_deathbringer", LUA_MODIFIER_MOTION_NONE )
 

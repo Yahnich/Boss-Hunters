@@ -42,7 +42,7 @@ end
 
 function modifier_item_lightningbottle_handle:OnAbilityFullyCast(params)
 	local caster = params.unit
-	if params.ability and params.ability:GetRemainingCooldown() > 0.75 and params.unit == self:GetParent() then
+	if params.ability and params.ability:GetCooldownTimeRemaining() > 0.75 and params.unit == self:GetParent() then
 		if not caster:HasModifier("modifier_item_orb_of_renewal_passive") then
 			for i = 0, params.unit:GetAbilityCount() - 1 do
 				local ability = params.unit:GetAbilityByIndex( i )

@@ -16,3 +16,7 @@ function modifier_boss_necro_take_the_weak:OnTakeDamage(params)
 		params.unit:AttemptKill(self:GetAbility(), params.attacker)
 	end
 end
+
+function modifier_boss_necro_take_the_weak:IsHidden()
+	return true
+end

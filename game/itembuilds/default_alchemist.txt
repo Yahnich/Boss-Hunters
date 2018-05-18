@@ -10,7 +10,7 @@
 		{
 			"item"	"item_gauntlet_of_alacrity"
 			"item"	"item_pages_buckler"
-			"item"	"item_crystal_of_life
+			"item"	"item_crystal_of_life"
 			"item"	"item_breeze_amulet"
 		}
 		"#DOTA_Item_Build_Early_Game"
@@ -36,9 +36,9 @@
 			"item"	"item_thanatos"
 			"item"	"item_headchopper"
 			"item"	"item_ultimate_scepter"
-			"item"	"item_ultimate_scepter
-			"item"	"item_ultimate_scepter
-			"item"	"item_ultimate_scepter
+			"item"	"item_ultimate_scepter"
+			"item"	"item_ultimate_scepter"
+			"item"	"item_ultimate_scepter"
 		}
 	}
 }
