@@ -1,16 +1,18 @@
 relic_cursed_giants_cudgel = class({})
 
 function relic_cursed_giants_cudgel:OnCreated()
+	self.as = self:GetParent():GetIncreasedAttackSpeed() * (-40)
 	self:StartIntervalThink(0.33)
 end
 
 function relic_cursed_giants_cudgel:OnIntervalThink()
 	self.as = 0
-	self.as = self:GetParent():GetIncreasedAttackSpeed() * (-0.4)
+	self.as = self:GetParent():GetIncreasedAttackSpeed() * (-40)
+	print(self.as)
 end
 
 function relic_cursed_giants_cudgel:DeclareFunctions()
-	return {MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT, MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT}
+	return {MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT, MODIFIER_EVENT_ON_ATTACK_LANDED}
 end
 
 function relic_cursed_giants_cudgel:GetModifierAttackSpeedBonus_Constant()

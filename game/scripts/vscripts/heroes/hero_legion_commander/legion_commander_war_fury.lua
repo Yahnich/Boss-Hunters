@@ -142,7 +142,7 @@ end
 
 function modifier_legion_commander_war_fury_buff:OnTakeDamage(params)
 	if IsServer() then
-		if params.attacker == self:GetParent() and not params.inflictor then
+		if params.attacker == self:GetParent() and params.damage_category == DOTA_DAMAGE_CATEGORY_ATTACK and self:GetParent():GetHealth() > 0 and self:GetParent():IsRealHero() and not params.inflictor then
 			local flHeal = params.damage * self.lifesteal
 			params.attacker:HealEvent(flHeal, self:GetAbility(), params.attacker)
 		end

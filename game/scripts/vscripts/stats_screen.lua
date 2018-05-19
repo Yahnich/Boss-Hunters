@@ -16,6 +16,7 @@ function StatsScreen:StartStatsScreen()
 	CustomGameEventManager:RegisterListener('send_player_selected_talent', Context_Wrap( StatsScreen, 'ProcessTalents'))
 	CustomGameEventManager:RegisterListener('notify_selected_talent', Context_Wrap( StatsScreen, 'NotifyTalent'))
 	CustomGameEventManager:RegisterListener('send_player_respec_talents', Context_Wrap( StatsScreen, 'RespecAll'))
+	
 	self.ms = {0,25,50,75,100,150}
 	self.mp = {0,3,6,9,12,18}
 	self.mpr = {0,3,6,9,12,18}
@@ -108,7 +109,6 @@ function StatsScreen:ProcessTalents(userid, event)
 	hero:UpgradeAbility(hero:FindAbilityByName(talent))
 	hero:CalculateStatBonus()
 	CustomGameEventManager:Send_ServerToAllClients("dota_player_upgraded_stats", {playerID = pID} )
-	hero.talentsSkilled = hero.talentsSkilled + 1
 end
 
 function StatsScreen:NotifyTalent(userid, event)
@@ -134,7 +134,7 @@ function StatsScreen:RespecAll(userid, event)
 			end
 		end
 		for _, modifier in ipairs( modifiers ) do
-			if modifier:GetAbility() and not modifier:GetAbility():IsInnateAbility() and modifier:GetCaster() == hero and not modifier:GetAbility():IsItem() then -- destroy passive modifiers and any buffs
+			if modifier:GetAbility() and not modifier:GetAbility():IsInnateAbility() and modifier:GetCaster() == hero and not modifier:IsItem() and modifier:GetAbility():GetName() ~= "item_relic_handler" then -- destroy passive modifiers and any buffs
 				modifier:Destroy()
 			end
 		end

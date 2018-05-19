@@ -78,7 +78,7 @@ function AIThink(thisEntity)
 				if reaperTarget then
 					return CastReaper( reaperTarget:GetAbsOrigin(), thisEntity )
 				end
-			elseif RollPercentage(50) then
+			elseif RollPercentage(50) and target then
 				return CastReaper( target:GetAbsOrigin(), thisEntity )
 			else
 				AICore:OptimalHitPosition(thisEntity, thisEntity.reaper:GetTrueCastRange(), thisEntity.reaper:GetSpecialValueFor("radius"), false)

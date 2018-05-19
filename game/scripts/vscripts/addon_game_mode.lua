@@ -346,6 +346,7 @@ function CHoldoutGameMode:InitGameMode()
 
 	-- Register OnThink with the game engine so it is called every 0.25 seconds
 	GameRules:GetGameModeEntity():SetDamageFilter( Dynamic_Wrap( CHoldoutGameMode, "FilterDamage" ), self )
+	GameRules:GetGameModeEntity():SetExecuteOrderFilter( Dynamic_Wrap( CHoldoutGameMode, "FilterOrders" ), self )
 	GameRules:GetGameModeEntity():SetHealingFilter( Dynamic_Wrap( CHoldoutGameMode, "FilterHeal" ), self )
 	GameRules:GetGameModeEntity():SetModifierGainedFilter( Dynamic_Wrap( CHoldoutGameMode, "FilterModifiers" ), self )
 	GameRules:GetGameModeEntity():SetAbilityTuningValueFilter( Dynamic_Wrap( CHoldoutGameMode, "FilterAbilityValues" ), self )
@@ -456,6 +457,18 @@ function CHoldoutGameMode:FilterHeal( filterTable )
 		healer:ModifyThreat( math.max( target:GetHealthDeficit(), filterTable["heal"] ) / totalHealth)
 	end
 	
+	return true
+end
+
+function CHoldoutGameMode:FilterOrders( filterTable )
+	print(filterTable["order_type"], DOTA_UNIT_ORDER_TRAIN_ABILITY, "init")
+	if filterTable["order_type"] == DOTA_UNIT_ORDER_TRAIN_ABILITY then
+		local talent = EntIndexToHScript( filterTable["entindex_ability"] )
+		print(talent, talent:GetAbilityName(), string.match( talent:GetAbilityName(), "special_bonus" ))
+		if talent and string.match( talent:GetAbilityName(), "special_bonus" ) and hero:GetLevel() < (hero.talentsSkilled + 1) * 10 then
+			return false
+		end
+	end
 	return true
 end
 
@@ -651,7 +664,6 @@ function CHoldoutGameMode:OnAbilityLearned(event)
 	if pID and string.match(abilityname, "special_bonus" ) then
 		local hero = PlayerResource:GetSelectedHeroEntity( pID )
 		local talentData = CustomNetTables:GetTableValue("talents", tostring(hero:entindex())) or {}
-		print( "talent stuff" )
 		if GameRules.AbilityKV[abilityname] then
 			if GameRules.AbilityKV[abilityname]["LinkedModifierName"] then
 				local modifierName = GameRules.AbilityKV[abilityname]["LinkedModifierName"] 
@@ -676,6 +688,7 @@ function CHoldoutGameMode:OnAbilityLearned(event)
 		end
 		talentData[abilityname] = true
 		CustomNetTables:SetTableValue( "talents", tostring(hero:entindex()), talentData )
+		hero.talentsSkilled = hero.talentsSkilled + 1
 	end
 end
 

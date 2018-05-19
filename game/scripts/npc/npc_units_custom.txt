@@ -4440,8 +4440,6 @@
 				"Wearable3" { "ItemDef" "8116" }
 				"Wearable4" { "ItemDef" "8117" }
 			}
-		
-			"DisableResistance"			"30.0"
 		}
 	}
 	"npc_dota_boss31"
@@ -4552,8 +4550,6 @@
 			"XPGain"					"200"
 			
 			"DefaultState"				"Invade"
-			
-			"DisableResistance"			"30.0"
 		}
 	}
 	"npc_dota_boss31_h"
@@ -4664,8 +4660,6 @@
 			"XPGain"					"200"
 			
 			"DefaultState"				"Invade"
-			
-			"DisableResistance"			"30.0"
 		}
 	}
 	"npc_dota_boss31_vh"
@@ -4766,8 +4760,6 @@
 			}
 			
 			"DefaultState"				"Invade"
-			
-			"DisableResistance"			"30.0"
 		}
 	}
 	"npc_dota_boss32"
@@ -5049,7 +5041,6 @@
 			}
 			
 			"DefaultState"				"Invade"
-			"DisableResistance"			"30.0"
 		}
 	}
 	"npc_dota_boss32_trueform_h"
@@ -5147,7 +5138,6 @@
 			}
 			
 			"DefaultState"				"Invade"
-			"DisableResistance"			"30.0"
 		}
 	}
 	"npc_dota_boss32_trueform_vh"
@@ -5245,7 +5235,6 @@
 			}
 			
 			"DefaultState"				"Invade"
-			"DisableResistance"			"30.0"
 		}
 	}
 	"npc_dota_boss32_vh"
@@ -5340,7 +5329,6 @@
 			}
 			
 			"DefaultState"				"Invade"
-			"DisableResistance"			"30.0"
 		}
 	}
 	"npc_dota_boss33_a"
@@ -5438,7 +5426,6 @@
 			}
 			
 			"DefaultState"				"Invade"
-			"DisableResistance"			"30.0"
 			"AttachWearables" // Default npc_dota_hero_omniknight
 			{
 				"1" { "ItemDef" "7182" } 
@@ -5544,7 +5531,6 @@
 			}
 	
 			"DefaultState"				"Invade"
-			"DisableResistance"			"30.0"
 	
 			"AttachWearables"
 			{
@@ -5673,7 +5659,6 @@
 			"XPGain"					"200"
 			
 			"DefaultState"				"Invade"
-			"DisableResistance"			"30.0"
 		}
 	}
 	"npc_dota_boss35"
@@ -5797,8 +5782,6 @@
 				"Wearable6" { "ItemDef"			"6278" }
 				"Wearable7" { "ItemDef"			"6279" }
 			}
-	
-			"DisableResistance"			"30.0"
 		}
 	}
 	"npc_dota_boss35b"
@@ -6002,8 +5985,6 @@
 					"MinimumTargets" "1"
 				}
 			}
-	
-			"DisableResistance"			"30.0"
 		}
 	}
 	"npc_dota_boss36_guardian"
@@ -6117,8 +6098,6 @@
 			"XPGain"					"200"
 			
 			"DefaultState"				"Invade"
-	
-			"DisableResistance"			"30.0"
 		}
 	}
 	"npc_dota_boss37"
@@ -6253,8 +6232,6 @@
 					"ItemDef"			"7617"		
 				}
 			}
-	
-			"DisableResistance"			"40.0"
 		}
 	}
 	"npc_dota_boss38"
@@ -6507,8 +6484,6 @@
 				"Wearable2"{"ItemDef"			"549"}
 				
 			}
-	
-			"DisableResistance"			"30.0"
 		}
 	}
 	//=================================================================================
