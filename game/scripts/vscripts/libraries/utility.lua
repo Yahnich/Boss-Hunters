@@ -1823,6 +1823,10 @@ end
 
 function CDOTABaseAbility:FireLinearProjectile(FX, velocity, distance, width, data, bDelete, bVision, vision)
 	local internalData = data or {}
+	local delete = false
+	if bDelete then delete = bDelete end
+	local vision = true
+	if bVision then vision = bVision end
 	local info = {
 		EffectName = FX,
 		Ability = self,
@@ -1835,9 +1839,9 @@ function CDOTABaseAbility:FireLinearProjectile(FX, velocity, distance, width, da
 		iUnitTargetTeam = internalData.team or DOTA_UNIT_TARGET_TEAM_ENEMY,
 		iUnitTargetType = internalData.type or DOTA_UNIT_TARGET_ALL,
 		iUnitTargetFlags = internalData.type or DOTA_UNIT_TARGET_FLAG_NONE,
-		bDeleteOnHit = bDelete or false,
+		bDeleteOnHit = delete,
 		fExpireTime = GameRules:GetGameTime() + 10.0,
-		bProvidesVision = bVision or false,
+		bProvidesVision = bVision,
 		iVisionRadius = vision or 0,
 		iVisionTeamNumber = self:GetCaster():GetTeamNumber(),
 		ExtraData = internalData.extraData
