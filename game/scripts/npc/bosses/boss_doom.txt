@@ -45,7 +45,8 @@
 	
 		"precache"
 		{
-			
+			"particle"					"particles/status_fx/status_effect_doom.vpcf"
+			"particle"					"particles/units/heroes/hero_ogre_magi/ogre_magi_bloodlust_buff.vpcf"
 		}
 		
 		"AbilitySpecial"

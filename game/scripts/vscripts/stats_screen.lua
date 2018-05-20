@@ -80,6 +80,7 @@ function StatsScreen:RegisterPlayer(hero, bRespec)
 	
 	hero:AddNewModifier(hero, nil, "modifier_stats_system_handler", {})
 	hero:AddNewModifier(hero, nil, "modifier_cooldown_reduction_handler", {})
+	hero:AddNewModifier(hero, nil, "modifier_base_attack_time_handler", {})
 end
 
 function StatsScreen:ProcessStatsUpgrade(userid, event)
@@ -134,8 +135,10 @@ function StatsScreen:RespecAll(userid, event)
 			end
 		end
 		for _, modifier in ipairs( modifiers ) do
-			if modifier:GetAbility() and not modifier:GetAbility():IsInnateAbility() and modifier:GetCaster() == hero and not modifier:IsItem() and modifier:GetAbility():GetName() ~= "item_relic_handler" then -- destroy passive modifiers and any buffs
-				modifier:Destroy()
+			if modifier:GetAbility() then
+				if not modifier:GetAbility():IsInnateAbility() and modifier:GetCaster() == hero and not modifier:GetAbility():IsItem() and modifier:GetAbility():GetName() ~= "item_relic_handler" then -- destroy passive modifiers and any buffs
+					modifier:Destroy()
+				end
 			end
 		end
 		hero:SetAbilityPoints( hero:GetLevel() + math.floor(hero:GetLevel() / GameRules.gameDifficulty) ) -- give back ability points

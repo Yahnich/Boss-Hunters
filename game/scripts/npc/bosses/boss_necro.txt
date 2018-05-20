@@ -105,7 +105,7 @@
 		"AbilityCastRange"				"1200 1400"
 		"AbilityCastAnimation"			"ACT_DOTA_NECRO_GHOST_SHROUD"
 		"AbilityCastPoint"				"1"
-		"AbilityCooldown"				"8"
+		"AbilityCooldown"				"12"
 	
 		"precache"
 		{
@@ -122,7 +122,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"duration"					"4 5"
+				"duration"					"6 7"
 			}
 			"03"
 			{
@@ -137,12 +137,12 @@
 			"05"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"bolt_angle"				"15"
+				"bolt_angle"				"20"
 			}
 			"06"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"bolt_delay"				"0.2 0.15"
+				"bolt_delay"				"0.15 0.1"
 			}
 		}
 	}
@@ -160,7 +160,7 @@
 		"AbilityTextureName"			"necrolyte_sadist"
 		"MaxLevel"						"3"
 		
-		"AbilityCastRange"				"600 800"
+		"AbilityCastRange"				"800 1000"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
 		"AbilityCastPoint"				"0.5"
 		"AbilityCooldown"				"6 4"
@@ -175,7 +175,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"800"
+				"damage"					"900"
 			}
 			"02"
 			{
@@ -215,7 +215,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"max_hp_damage"				"2.25 2.5"
+				"max_hp_damage"				"3.25 3.5"
 			}
 			"02"
 			{
@@ -260,7 +260,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"radius"					"175"
+				"radius"					"200"
 			}
 			"02"
 			{

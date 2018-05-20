@@ -11748,7 +11748,7 @@
 			"06"
 			{
 				"var_type"							"FIELD_FLOAT"
-				"base_attack_time"					"1.4"
+				"base_attack_time"					"-0.3"
 				"LinkedSpecialBonus"				"special_bonus_unique_monkey_king_6"
 			}
 			"07"

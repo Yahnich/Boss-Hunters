@@ -36,6 +36,7 @@
 		"relic_generic_scythegeist"						"1"
 		"relic_generic_barbedbell"						"1"
 		"relic_generic_stone_fist"						"1"
+		"relic_generic_spinning_top"					"1"
 	}
 	"relic_type_cursed"
 	{
@@ -72,6 +73,7 @@
 		"relic_cursed_icon_of_gluttony"					"1"
 		"relic_cursed_icon_of_lust"						"1"
 		"relic_cursed_icon_of_envy"						"1"
+		"relic_cursed_mask_of_janus"					"1"
 	}
 	"relic_type_unique"
 	{
@@ -110,5 +112,6 @@
 		"relic_unique_spirit_painting"					"1"
 		"relic_unique_charons_obol"						"1"
 		"relic_unique_kashas_wheelbarrow"				"1"
+		"relic_unique_inversion_stone"					"1"
 	}
 }

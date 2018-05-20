@@ -71,9 +71,9 @@ function RelicManager:ConfirmRelicSelection(userid, event)
 	local pID = event.pID
 	local hero = PlayerResource:GetSelectedHeroEntity(pID)
 	local relic = event.relic
-	if not hero:HasRelic(relic) then
-		hero:AddRelic(relic)
-	end
+
+	hero:AddRelic(relic)
+
 	local relicTable = CustomNetTables:GetTableValue( "game_info", "relic_drops") or {}
 	local playerRelics = relicTable[tostring(pID)] or {}
 	
@@ -81,6 +81,8 @@ function RelicManager:ConfirmRelicSelection(userid, event)
 	for dropID, dropTable in pairs(playerRelics) do
 		toNumPlayerRelics[tonumber(dropID)] = dropTable
 	end
+	
+	
 	
 	table.remove( toNumPlayerRelics, 1 )
 	relicTable[tostring(pID)] = toNumPlayerRelics
@@ -160,11 +162,13 @@ function RelicManager:RollRandomGenericRelicForPlayer(pID)
 	local hero = PlayerResource:GetSelectedHeroEntity(pID)
 	hero.ownedRelics = hero.ownedRelics or {}
 	for relic, weight in pairs( hero.internalRNGPools[1] ) do
-		if not hero:HasRelic(relic) then
-			for i = 1, weight do
-				table.insert(dropTable, relic)
-			end
+		for i = 1, weight do
+			table.insert(dropTable, relic)
 		end
+	end
+	if dropTable[1] == nil then
+		hero.internalRNGPools[1] = self.genericDropTable
+		return self:RollRandomGenericRelicForPlayer(pID)
 	end
 	return dropTable[RandomInt(1, #dropTable)]
 end
@@ -174,11 +178,13 @@ function RelicManager:RollRandomCursedRelicForPlayer(pID)
 	local hero = PlayerResource:GetSelectedHeroEntity(pID)
 	hero.ownedRelics = hero.ownedRelics or {}
 	for relic, weight in pairs( hero.internalRNGPools[2] ) do
-		if not hero:HasRelic(relic) then
-			for i = 1, weight do
-				table.insert(dropTable, relic)
-			end
+		for i = 1, weight do
+			table.insert(dropTable, relic)
 		end
+	end
+	if dropTable[1] == nil then
+		hero.internalRNGPools[2] = self.cursedDropTable
+		return self:RollRandomGenericRelicForPlayer(pID)
 	end
 	return dropTable[RandomInt(1, #dropTable)]
 end
@@ -188,11 +194,13 @@ function RelicManager:RollRandomUniqueRelicForPlayer(pID)
 	local hero = PlayerResource:GetSelectedHeroEntity(pID)
 	hero.ownedRelics = hero.ownedRelics or {}
 	for relic, weight in pairs( hero.internalRNGPools[3] ) do
-		if not hero:HasRelic(relic) then
-			for i = 1, weight do
-				table.insert(dropTable, relic)
-			end
+		for i = 1, weight do
+			table.insert(dropTable, relic)
 		end
+	end
+	if dropTable[1] == nil then
+		hero.internalRNGPools[3] = self.uniqueDropTable
+		return self:RollRandomGenericRelicForPlayer(pID)
 	end
 	return dropTable[RandomInt(1, #dropTable)]
 end
@@ -215,6 +223,15 @@ function RelicManager:ClearRelics(pID)
 	hero.ownedRelics = {}
 	CustomNetTables:SetTableValue("relics", "relic_inventory_player_"..hero:entindex(), {})
 	return relicCount
+end
+
+function RelicManager:RemoveRelicOnPlayer(relic, pID)
+	local hero = PlayerResource:GetSelectedHeroEntity(pID)
+	hero:RemoveModifierByName( relic )
+	UTIL_Remove( EntIndexToHScript(hero.ownedRelics[relic]) )
+	
+	hero.ownedRelics[relic] = nil
+	CustomNetTables:SetTableValue("relics", "relic_inventory_player_"..hero:entindex(), hero.ownedRelics)
 end
 
 function CDOTA_BaseNPC_Hero:AddRelic(relic)

@@ -182,7 +182,7 @@
 				{
 					"NPCName"				"npc_dota_boss4"
 					"TotalUnitsToSpawn"		"3"
-					"UnitsPerSpawn"			"2"
+					"UnitsPerSpawn"			"1"
 					"SpawnInterval"			"12"
 				}
 			}

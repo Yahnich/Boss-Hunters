@@ -48,7 +48,7 @@ function modifier_alchemist_chemical_rage_ebf:DeclareFunctions()
 end
 
 
-function modifier_alchemist_chemical_rage_ebf:GetModifierBaseAttackTimeConstant()
+function modifier_alchemist_chemical_rage_ebf:GetBaseAttackTime_Bonus()
 	return self.bat
 end
 

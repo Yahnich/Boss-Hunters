@@ -59,6 +59,7 @@ LinkLuaModifier( "modifier_tombstone_respawn_immunity", "libraries/modifiers/mod
 LinkLuaModifier( "modifier_generic_attack_bonus", "libraries/modifiers/modifier_generic_attack_bonus.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_generic_attack_bonus_pct", "libraries/modifiers/modifier_generic_attack_bonus.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_cooldown_reduction_handler", "libraries/modifiers/modifier_cooldown_reduction_handler.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier( "modifier_base_attack_time_handler", "libraries/modifiers/modifier_base_attack_time_handler.lua", LUA_MODIFIER_MOTION_NONE)
 
 
 -- Precache resources
@@ -461,10 +462,8 @@ function CHoldoutGameMode:FilterHeal( filterTable )
 end
 
 function CHoldoutGameMode:FilterOrders( filterTable )
-	print(filterTable["order_type"], DOTA_UNIT_ORDER_TRAIN_ABILITY, "init")
 	if filterTable["order_type"] == DOTA_UNIT_ORDER_TRAIN_ABILITY then
 		local talent = EntIndexToHScript( filterTable["entindex_ability"] )
-		print(talent, talent:GetAbilityName(), string.match( talent:GetAbilityName(), "special_bonus" ))
 		if talent and string.match( talent:GetAbilityName(), "special_bonus" ) and hero:GetLevel() < (hero.talentsSkilled + 1) * 10 then
 			return false
 		end

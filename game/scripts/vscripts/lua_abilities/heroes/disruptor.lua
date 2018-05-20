@@ -1,7 +1,7 @@
 function ApplyTeslaEffects(keys)
 	local caster = keys.caster
 	local ability = keys.ability
-	local target = keys.target
+	local target = keys.unit
 	if RollPercentage( ability:GetTalentSpecialValueFor("chance") ) then
 		EmitSoundOn("Item.Maelstrom.Chain_Lightning", target)
 		ApplyDamage({ victim = target, attacker = caster, damage = ability:GetAbilityDamage(), damage_type = ability:GetAbilityDamageType(), ability = ability })
@@ -113,14 +113,14 @@ modifier_disruptor_kinetic_charge_pull_aura = class({})
 function modifier_disruptor_kinetic_charge_pull_aura:OnCreated()
 	self.pullTick = self:GetAbility():GetSpecialValueFor("pull_speed") * 0.03
 	self.pullRadius = self:GetAbility():GetSpecialValueFor("pull_radius")
-	local units = FindUnitsInRadius( self:GetCaster():GetTeamNumber(), self:GetParent():GetAbsOrigin(), nil, self.pullRadius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO, 0, 1, false )
-	for _, unit in pairs(units) do
-		if unit:HasModifier("modifier_disruptor_kinetic_charge_pull") then
-			self.auraParent = unit
-			break
-		end
-	end
 	if IsServer() then
+		local units = FindUnitsInRadius( self:GetCaster():GetTeamNumber(), self:GetParent():GetAbsOrigin(), nil, self.pullRadius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO, 0, 1, false )
+		for _, unit in pairs(units) do
+			if unit:HasModifier("modifier_disruptor_kinetic_charge_pull") then
+				self.auraParent = unit
+				break
+			end
+		end
 		self:StartIntervalThink(0.03)
 	end
 end

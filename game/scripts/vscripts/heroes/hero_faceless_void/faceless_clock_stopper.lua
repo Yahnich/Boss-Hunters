@@ -69,7 +69,7 @@ function modifier_faceless_clock_stopper_buff:OnAttackStart(params)
 	end
 end
 
-function modifier_faceless_clock_stopper_buff:GetModifierBaseAttackTimeConstant()
+function modifier_faceless_clock_stopper_buff:GetBaseAttackTime_Bonus()
 	return self:GetTalentSpecialValueFor("base_attack_time")
 end
 

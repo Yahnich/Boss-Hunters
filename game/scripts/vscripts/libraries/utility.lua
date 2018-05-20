@@ -725,7 +725,7 @@ function CDOTA_BaseNPC:RefreshAllCooldowns(bItems)
 end
 
 function CDOTA_BaseNPC:IsIllusion()
-	return self.isCustomIllusion == true
+	return self:HasModifier("modifier_illusion") or self.isCustomIllusion == true
 end
 
 
@@ -1948,10 +1948,10 @@ function CDOTABaseAbility:ApplyAOE(eventTable)
 end
 
 function get_octarine_multiplier(caster)
-	local cooldown = caster:FindModifierByName("spell_lifesteal") or caster:FindModifierByName("modifier_item_octarine_core")
+	local cooldown = caster:FindModifierByName("spell_lifesteal")
 	local octarine_multiplier = 1
 	if cooldown then
-		octarine_multiplier = octarine_multiplier - cooldown:GetAbility():GetSpecialValueFor("bonus_cooldown")/100
+		octarine_multiplier = octarine_multiplier - (cooldown:GetStackCount()/100)/100
 	end
 	local talentMult = 1 - caster:HighestTalentTypeValue("cooldown_reduction")/100
 	octarine_multiplier = octarine_multiplier*talentMult
@@ -1960,17 +1960,7 @@ end
 
 
 function get_core_cdr(caster)
-    local octarine_multiplier = 1
-    for itemSlot = 0, 5, 1 do
-        local Item = caster:GetItemInSlot( itemSlot )
-        if Item ~= nil then
-            local cdr = 1 - Item:GetSpecialValueFor("bonus_cooldown") / 100
-            if octarine_multiplier > cdr then
-                octarine_multiplier = cdr
-            end
-        end
-    end
-    return octarine_multiplier
+    return get_octarine_multiplier(caster)
 end
 
 function CDOTAGamerules:GetMaxRound()
