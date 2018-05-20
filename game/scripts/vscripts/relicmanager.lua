@@ -220,6 +220,9 @@ function RelicManager:ClearRelics(pID)
 			UTIL_Remove( EntIndexToHScript(item) )
 		end
 	end
+	hero.internalRNGPools[1] = self.genericDropTable
+	hero.internalRNGPools[2] = self.cursedDropTable
+	hero.internalRNGPools[3] = self.uniqueDropTable
 	hero.ownedRelics = {}
 	CustomNetTables:SetTableValue("relics", "relic_inventory_player_"..hero:entindex(), {})
 	return relicCount
@@ -230,12 +233,30 @@ function RelicManager:RemoveRelicOnPlayer(relic, pID)
 	hero:RemoveModifierByName( relic )
 	UTIL_Remove( EntIndexToHScript(hero.ownedRelics[relic]) )
 	
+	if string.match(relic, "unique") then
+		hero.internalRNGPools[3][relic] = "1"
+	elseif string.match(relic, "cursed") then
+		hero.internalRNGPools[2][relic] = "1"
+	else
+		hero.internalRNGPools[1][relic] = "1"
+	end
+	
 	hero.ownedRelics[relic] = nil
 	CustomNetTables:SetTableValue("relics", "relic_inventory_player_"..hero:entindex(), hero.ownedRelics)
 end
 
 function CDOTA_BaseNPC_Hero:AddRelic(relic)
 	self.ownedRelics = self.ownedRelics or {}
+	
+	if string.match(relic, "unique") then
+		self.internalRNGPools[3][relic] = nil
+	elseif string.match(relic, "cursed") then
+		self.internalRNGPools[2][relic] = nil
+	else
+		self.internalRNGPools[1][relic] = nil
+	end
+	
+	
 	
 	local relicEntity = CreateItem("item_relic_handler", nil, nil)
 	self.ownedRelics[relic] = relicEntity:entindex()

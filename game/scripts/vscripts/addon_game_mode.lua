@@ -702,8 +702,8 @@ function CHoldoutGameMode:OnAbilityUsed(event)
 	local abilityused = hero:FindAbilityByName(abilityname)
 	if not abilityused then abilityused = hero:FindItemByName(abilityname, false) end
 	if not abilityused then return end
-	if self._threat[abilityname] or (abilityused) then
-		local addedthreat = self._threat[abilityname] or abilityused:GetThreat()
+	if abilityused then
+		local addedthreat = abilityused:GetThreat()
 		local modifier = 0
 		local escapemod = 0
 		local talentmodifier = 0
@@ -1026,8 +1026,6 @@ function CHoldoutGameMode:_ReadGameConfiguration()
 	local kv = LoadKeyValues( "scripts/maps/" .. GetMapName() .. ".txt" )
 	kv = kv or {} -- Handle the case where there is not keyvalues file
 	
-	self._threat = LoadKeyValues( "scripts/kv/threat.kv" )
-
 	self._bAlwaysShowPlayerGold = kv.AlwaysShowPlayerGold or false
 	self._bRestoreHPAfterRound = kv.RestoreHPAfterRound or false
 	self._bRestoreMPAfterRound = kv.RestoreMPAfterRound or false
