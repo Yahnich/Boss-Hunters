@@ -16,14 +16,6 @@ function item_emission:OnToggle()
 	end
 end
 
-function item_emission:OnOwnerSpawned()
-	if self:GetToggleState() then
-		self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_item_emission", {})
-	else
-		self:GetCaster():RemoveModifierByName("modifier_item_emission")
-	end
-end
-
 function item_emission:GetIntrinsicModifierName()
 	return "modifier_item_emission_passive"
 end
@@ -117,7 +109,7 @@ function modifier_item_emission_passive:OnCreated()
 end
 
 function modifier_item_emission_passive:OnDestroy()
-	self:GetParent():RemoveModifierByName("modifier_item_emission")
+	if IsServer() then self:GetParent():RemoveModifierByName("modifier_item_emission") end
 end
 
 function modifier_item_emission_passive:GetAttributes()

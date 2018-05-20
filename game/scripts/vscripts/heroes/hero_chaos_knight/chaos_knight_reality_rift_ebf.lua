@@ -32,7 +32,7 @@ function chaos_knight_reality_rift_ebf:OnAbilityPhaseStart()
 	table.insert(self.FX, oRiftFX)
 	
 	local searchRadius = 450
-	self.illusions = self.caster:FindFriendlyUnitsInRadius(self.caster:GetAbsOrigin(), searchRadius, {flag = DOTA_UNIT_TARGET_FLAG_PLAYER_CONTROLLED, type = DOTA_UNIT_TARGET_HERO})
+	self.illusions = self.caster:FindFriendlyUnitsInRadius(self.caster:GetAbsOrigin(), searchRadius, {flag = DOTA_UNIT_TARGET_FLAG_PLAYER_CONTROLLED})
 	for _, illusion in ipairs( self.illusions ) do
 		if self.caster ~= illusion and illusion:IsIllusion() and illusion:GetPlayerOwnerID() == self.caster:GetPlayerOwnerID() then
 			illusion:StartGesture(ACT_DOTA_OVERRIDE_ABILITY_2)

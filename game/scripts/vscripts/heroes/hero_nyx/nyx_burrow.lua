@@ -17,13 +17,14 @@ function nyx_burrow:GetCastPoint()
 	if self:GetCaster():HasModifier("modifier_nyx_burrow") then
 		return 0
 	else
-		return 1.5
+		return 0.75
 	end
 end
 
 function nyx_burrow:OnAbilityPhaseStart()
 	local caster = self:GetCaster()
-
+	caster:RemoveGesture(ACT_DOTA_CAST_ABILITY_4)
+	caster:StartGestureWithPlaybackRate( ACT_DOTA_CAST_ABILITY_4, 1.5 )
 	EmitSoundOn("Hero_NyxAssassin.Burrow.In", caster)
 
 	if not caster:HasModifier("modifier_nyx_burrow") then

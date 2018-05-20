@@ -186,7 +186,7 @@ function modifier_monkey_king_wukongs_stature_active:GetModifierMoveSpeed_Limit(
 	return self.ms
 end
 
-function modifier_monkey_king_wukongs_stature_active:GetModifierBaseAttackTimeConstant()
+function modifier_monkey_king_wukongs_stature_active:GetBaseAttackTime_Bonus()
 	return self.bat
 end
 

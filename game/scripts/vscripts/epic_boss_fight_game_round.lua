@@ -201,12 +201,15 @@ function CHoldoutGameRound:End(bWonRound)
 				local pride = hero:HasModifier("relic_cursed_icon_of_pride")
 				local greed = hero:HasModifier("relic_cursed_icon_of_greed")
 				local wheelbarrow = hero:FindModifierByName("relic_unique_kashas_wheelbarrow")
+				local mask = hero:FindModifierByName("relic_cursed_mask_of_janus")
+				if mask then
+					mask:RerollRelic()
+				end
 				if wheelbarrow then wheelbarrow:IncrementStackCount() end
-				local baseChance = 33
-				if redKey then baseChance = 66 end
+				local baseChance = TernaryOperator(66, redKey ~= nil, 33)
 				hero.internalRelicPRNGAdder = hero.internalRelicPRNGAdder or -(baseChance / 4)
 				if redKey then hero.internalRelicRNG = math.max(hero.internalRelicRNG, 66) end
-				local roll = RollPercentage(hero.internalRelicRNG)
+				local roll = RollPercentage(hero.internalRelicRNG + hero.internalRelicPRNGAdder)
 				if hero and roll and not (greed or pride) then
 					RelicManager:RollRelicsForPlayer( pID )
 					hero.internalRelicPRNGAdder = -(baseChance / 4)

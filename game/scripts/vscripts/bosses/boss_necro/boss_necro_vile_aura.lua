@@ -5,7 +5,7 @@ function boss_necro_vile_aura:GetIntrinsicModifierName()
 end
 
 modifier_boss_necro_vile_aura = class({})
-LinkLuaModifier("modifier_boss_necro_vile_aura", "bosses/boss_necro/boss_necro_vile_aura1", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_boss_necro_vile_aura", "bosses/boss_necro/boss_necro_vile_aura", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_boss_necro_vile_aura:OnCreated()
 	self.radius = self:GetSpecialValueFor("radius")
@@ -24,7 +24,7 @@ function modifier_boss_necro_vile_aura:OnIntervalThink()
 		if parent:GetTauntTarget() then
 			position = parent:GetTauntTarget():GetAbsOrigin() + ActualRandomVector(600, 150)
 		else
-			for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( parent:GetAbsOrigin(), 1500 ) ) do
+			for _, enemy in ipairs( parent:FindEnemyUnitsInRadius( parent:GetAbsOrigin(), -1 ) ) do
 				if RollPercentage(60) then
 					position = enemy:GetAbsOrigin() + ActualRandomVector(600, 150)
 					break
@@ -32,7 +32,11 @@ function modifier_boss_necro_vile_aura:OnIntervalThink()
 			end
 		end
 	end
-	parent:Blink(position)
+	ParticleManager:FireWarningParticle( position, self:GetParent():GetHullRadius() )
+	Timers:CreateTimer(1, function()
+		parent:Blink(position)
+		if IsServer() then self:StartIntervalThink( self:GetSpecialValueFor("blink_rate") ) end
+	end)
 end
 
 function modifier_boss_necro_vile_aura:IsAura()
@@ -63,8 +67,12 @@ function modifier_boss_necro_vile_aura:GetAuraSearchFlags()
 	return DOTA_UNIT_TARGET_FLAG_NONE
 end
 
+function modifier_boss_necro_vile_aura:IsHidden()
+	return true
+end
+
 modifier_boss_necro_vile_aura_effect = class({})
-LinkLuaModifier("modifier_boss_necro_vile_aura_effect", "bosses/boss_necro/boss_necro_vile_aura1", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_boss_necro_vile_aura_effect", "bosses/boss_necro/boss_necro_vile_aura", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_boss_necro_vile_aura_effect:OnCreated()
 	self.healRed = self:GetSpecialValueFor("heal_reduction")

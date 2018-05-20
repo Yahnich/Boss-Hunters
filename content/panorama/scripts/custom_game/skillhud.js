@@ -8,7 +8,7 @@ var localID = Players.GetLocalPlayer()
 lowerHud.FindChildTraverse("StatBranchDrawer").style.visibility = "collapse";
 
 
-lowerHud.FindChildTraverse("StatBranchDrawer").style.visibility = "visible";
+lowerHud.FindChildTraverse("StatBranchDrawer").visible = false
 
 talentHud.FindChildTraverse("StatBranch").SetPanelEvent("onmouseover", function(){});
 talentHud.FindChildTraverse("StatBranch").SetPanelEvent("onmouseout", function(){});

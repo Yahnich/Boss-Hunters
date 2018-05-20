@@ -44,6 +44,12 @@ function modifier_item_behemoths_heart_passive:OnIntervalThink()
 	end
 end
 
+function modifier_item_behemoths_heart_passive:OnDestroy()
+	if IsServer() then
+		self:GetParent():RemoveModifierByName("modifier_item_behemoths_heart_regen")
+	end
+end
+
 function modifier_item_behemoths_heart_passive:IsHidden()
 	return true
 end

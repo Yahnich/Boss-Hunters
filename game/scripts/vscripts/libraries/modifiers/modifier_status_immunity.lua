@@ -22,3 +22,7 @@ end
 function modifier_status_immunity:GetPriority()
 	return MODIFIER_PRIORITY_SUPER_ULTRA
 end
+
+function modifier_status_immunity:GetAttributes()
+	return
+end

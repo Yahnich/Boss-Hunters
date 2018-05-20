@@ -77,9 +77,9 @@ function modifier_juggernaut_mirror_blades:DeclareFunctions()
 	return {MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT}
 end
 
-function modifier_juggernaut_mirror_blades:GetModifierBaseAttackTimeConstant()
+function modifier_juggernaut_mirror_blades:GetBaseAttackTime_Bonus()
 	if not self.disarmed then
-		return 3
+		return self:GetParent():GetBaseAttackTime()
 	end
 end
 

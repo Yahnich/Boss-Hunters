@@ -58,13 +58,13 @@ function AIThink(thisEntity)
 		if thisEntity.servants:IsFullyCastable() and ( AICore:BeingAttacked( thisEntity ) > 0 or RollPercentage( 2 ) ) then
 			return CastServants(thisEntity)
 		end
-		if thisEntity.tempest:IsFullyCastable() and ( AICore:TotalEnemyHeroesInRange( thisEntity, 1200) > 1 or ( AICore:TotalEnemyHeroesInRange( thisEntity, 1200) > 0 and RollPercentage(2) ) ) then
+		if thisEntity.tempest:IsFullyCastable() and ( AICore:TotalEnemyHeroesInRange( thisEntity, 1200) > 1 or ( AICore:TotalEnemyHeroesInRange( thisEntity, 1200) > 0 and RollPercentage(5) ) ) then
 			return CastTempest(thisEntity)
 		end
-		if thisEntity.wave:IsFullyCastable() and ( AICore:NumEnemiesInLine(thisEntity, 2000, 1000, false) > 1 or ( AICore:NumEnemiesInLine(thisEntity, 2000, 1000, false) > 0 and RollPercentage(20) ) ) then
+		if thisEntity.wave:IsFullyCastable() and ( AICore:NumEnemiesInLine(thisEntity, 2000, 1000, false) > 1 or ( AICore:NumEnemiesInLine(thisEntity, 2000, 1000, false) > 0 and RollPercentage(25) ) ) then
 			return CastWave(thisEntity)
 		end
-		if thisEntity.pillar:IsFullyCastable() and ( AICore:NumEnemiesInLine(thisEntity, 1200, 250, false) > 1 or ( AICore:NumEnemiesInLine(thisEntity, 1200, 250, false) > 0 and RollPercentage(10) ) ) then
+		if thisEntity.pillar:IsFullyCastable() and ( AICore:NumEnemiesInLine(thisEntity, 1200, 250, false) > 1 or ( AICore:NumEnemiesInLine(thisEntity, 1200, 250, false) > 0 and RollPercentage(20) ) ) then
 			return CastPillar(target:GetAbsOrigin(), thisEntity)
 		end
 		AICore:AttackHighestPriority( thisEntity )

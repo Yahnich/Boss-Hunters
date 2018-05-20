@@ -1,7 +1,7 @@
 boss15_exorcise = class({})
 
 function boss15_exorcise:OnAbilityPhaseStart()
-	ParticleManager:FireLinearWarningParticle(self:GetCaster():GetAbsOrigin(), self:GetCaster():GetAbsOrigin() + CalculateDirection(self:GetCursorPosition(), self:GetCaster()) * self:GetSpecialValueFor( "distance" ), self:GetSpecialValueFor( "width_end" ))
+	ParticleManager:FireLinearWarningParticle(self:GetCaster():GetAbsOrigin(), self:GetCaster():GetAbsOrigin() + CalculateDirection(self:GetCursorPosition(), self:GetCaster()) * self:GetSpecialValueFor( "distance" ), self:GetSpecialValueFor( "width_end" ) * 2)
 	return true
 end
 

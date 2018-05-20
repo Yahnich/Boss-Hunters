@@ -15,7 +15,7 @@
 	
 		// Stats		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"9"
+		"AbilityCooldown"				"6"
 		"AbilityCastPoint"				"1.5 1"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
 	
@@ -36,12 +36,12 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"width_initial"			"150"
+				"width_initial"			"100"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"width_end"				"200"
+				"width_end"				"150"
 			}
 			"04"
 			{
@@ -56,7 +56,7 @@
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"debuff_duration"		"8"
+				"debuff_duration"		"3"
 			}
 			"07"
 			{
@@ -146,7 +146,7 @@
 	
 		// Stats		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"10"
+		"AbilityCooldown"				"12"
 		"AbilityCastPoint"				"1.5 1"
 		"AbilityCastRange"				"900 1050 1200"
 		"AbilityCastAnimation"			"ACT_DOTA_DP_SPIRIT_SIPHON"

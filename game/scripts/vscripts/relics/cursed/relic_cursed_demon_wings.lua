@@ -13,15 +13,6 @@ if IsServer() then
 		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( point, 300 ) ) do
 			self:GetAbility():DealDamage( caster, enemy, caster:GetPrimaryStatValue(), {damage_type = DAMAGE_TYPE_MAGICAL} )
 		end
-		Timers:CreateTimer(0.33, function()
-			for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( point, 150 ) ) do
-				self:GetAbility():DealDamage( caster, enemy, caster:GetPrimaryStatValue(), {damage_type = DAMAGE_TYPE_MAGICAL} )
-			end
-			duration = duration - 0.34
-			if duration > 0 then
-				return 0.33
-			end
-		end)
 	end
 end
 
@@ -34,7 +25,7 @@ function relic_cursed_demon_wings:DeclareFunctions()
 end
 
 function relic_cursed_demon_wings:GetModifierMoveSpeedBonus_Percentage()
-	return -50
+	return -33
 end
 
 function relic_cursed_demon_wings:IsHidden()

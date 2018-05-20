@@ -45,9 +45,8 @@ function et_elder_spirit:OnSpellStart()
 		self.spiritPull = true
 		self.truePull = true
 		self:RefundManaCost()
-		if self:IsCooldownReady() then
-			self:StartCooldown(self:GetTrueCooldown())
-		end
+		
+		self:SetCooldown()
 	else
 		self.spirit = true
 		self.spiritPull = false
@@ -60,12 +59,7 @@ function et_elder_spirit:OnSpellStart()
 		end
 
 		ParticleManager:FireParticle("particles/units/heroes/hero_elder_titan/elder_titan_ancestral_spirit_cast.vpcf", PATTACH_POINT, caster, {[2] = point})
-
-		local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"), {})
-		for _,enemy in pairs(enemies) do
-			self:DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage"), {}, 0)
-		end
-
+		
 		caster:RemoveModifierByName("modifier_elder_spirit_check")
 		local spirit = caster:CreateSummon("npc_elder_spirit", point)
 		EmitSoundOn("Hero_ElderTitan.AncestralSpirit.Spawn", spirit)
@@ -234,7 +228,7 @@ function modifier_elder_spirit:IsAura()
 end
 
 function modifier_elder_spirit:GetAuraDuration()
-    return 0.5
+    return 0.99
 end
 
 function modifier_elder_spirit:GetAuraRadius()
@@ -264,13 +258,13 @@ end
 modifier_elder_spirit_enemy = class({})
 function modifier_elder_spirit_enemy:OnCreated(table)
 	if IsServer() then
-		self:StartIntervalThink(FrameTime())
+		self:GetAbility():DealDamage( self:GetCaster(), self:GetParent(), self:GetTalentSpecialValueFor("damage") )
+		self:StartIntervalThink(1.0)
 	end
 end
 
 function modifier_elder_spirit_enemy:OnIntervalThink()
-	self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self:GetTalentSpecialValueFor("dot_damage"), {}, 0)
-	self:StartIntervalThink(1.0)
+	self:GetAbility():DealDamage( self:GetCaster(), self:GetParent(), self:GetTalentSpecialValueFor("dot") )
 end
 
 function modifier_elder_spirit_enemy:IsHidden()

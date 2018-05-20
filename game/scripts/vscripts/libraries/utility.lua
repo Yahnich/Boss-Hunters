@@ -193,6 +193,7 @@ end
 
 function CDOTABaseAbility:DealDamage(attacker, victim, damage, data, spellText)
 	--OVERHEAD_ALERT_BONUS_SPELL_DAMAGE, OVERHEAD_ALERT_DAMAGE, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, OVERHEAD_ALERT_MANA_LOSS
+	if self:IsNull() or victim:IsNull() or attacker:IsNull() then return end
 	local internalData = data or {}
 	local damageType =  internalData.damage_type or self:GetAbilityDamageType() or DAMAGE_TYPE_MAGICAL
 	local damageFlags = internalData.damage_flags or DOTA_DAMAGE_FLAG_NONE
@@ -724,7 +725,7 @@ function CDOTA_BaseNPC:RefreshAllCooldowns(bItems)
 end
 
 function CDOTA_BaseNPC:IsIllusion()
-	return self.isCustomIllusion == true
+	return self:HasModifier("modifier_illusion") or self.isCustomIllusion == true
 end
 
 
@@ -992,7 +993,7 @@ function CDOTA_BaseNPC:ModifyThreat(val)
 	local newVal = val
 	for _, modifier in ipairs( self:FindAllModifiers() ) do
 		if modifier.Bonus_ThreatGain and modifier:Bonus_ThreatGain() then
-			newVal = newVal + ( val * ( math.max(0, modifier:Bonus_ThreatGain()/100 ) ) )
+			newVal = newVal + ( math.abs(val) * ( modifier:Bonus_ThreatGain()/100 ) )
 		end
 	end
 	self.threat = math.max(0, (self.threat or 0) + newVal )
@@ -1193,6 +1194,12 @@ function CDOTA_BaseNPC:IsFakeHero()
 	if self:IsIllusion() or (self:HasModifier("modifier_monkey_king_fur_army_soldier") or self:HasModifier("modifier_monkey_king_fur_army_soldier_hidden")) or self:IsTempestDouble() then
 		return true
 	else return false end
+end
+
+function CDOTA_BaseNPC:IsRealHero()
+	if not self:IsNull() then
+		return self:IsHero() and not ( self:IsIllusion() or self:IsClone() )
+	end
 end
 
 function CDOTA_Buff:IsStun()
@@ -1941,10 +1948,10 @@ function CDOTABaseAbility:ApplyAOE(eventTable)
 end
 
 function get_octarine_multiplier(caster)
-	local cooldown = caster:FindModifierByName("spell_lifesteal") or caster:FindModifierByName("modifier_item_octarine_core")
+	local cooldown = caster:FindModifierByName("spell_lifesteal")
 	local octarine_multiplier = 1
 	if cooldown then
-		octarine_multiplier = octarine_multiplier - cooldown:GetAbility():GetSpecialValueFor("bonus_cooldown")/100
+		octarine_multiplier = octarine_multiplier - (cooldown:GetStackCount()/100)/100
 	end
 	local talentMult = 1 - caster:HighestTalentTypeValue("cooldown_reduction")/100
 	octarine_multiplier = octarine_multiplier*talentMult
@@ -1953,17 +1960,7 @@ end
 
 
 function get_core_cdr(caster)
-    local octarine_multiplier = 1
-    for itemSlot = 0, 5, 1 do
-        local Item = caster:GetItemInSlot( itemSlot )
-        if Item ~= nil then
-            local cdr = 1 - Item:GetSpecialValueFor("bonus_cooldown") / 100
-            if octarine_multiplier > cdr then
-                octarine_multiplier = cdr
-            end
-        end
-    end
-    return octarine_multiplier
+    return get_octarine_multiplier(caster)
 end
 
 function CDOTAGamerules:GetMaxRound()
@@ -2236,9 +2233,10 @@ function CDOTA_BaseNPC:RemoveDaze()
 end
 
 function CDOTA_BaseNPC:AttemptKill(sourceAb, attacker)
-	if not ( self:NoHealthBar() or self:IsOutOfGame() ) then
+	if not ( self:NoHealthBar() or self:IsOutOfGame() or self:IsNull() or attacker:IsNull() or sourceAb:IsNull() ) then
 		self:SetHealth(1)
 		local damage = ApplyDamage({victim = self, attacker = attacker, ability = sourceAb, damage_type = DAMAGE_TYPE_PURE, damage = self:GetMaxHealth(), damage_flags = DOTA_DAMAGE_FLAG_BYPASSES_INVULNERABILITY + DOTA_DAMAGE_FLAG_BYPASSES_BLOCK})
+		if self:IsNull() then return end
 		return not self:IsAlive()
 	end
 end

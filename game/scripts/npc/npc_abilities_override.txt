@@ -3190,12 +3190,12 @@
 			"02"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"movespeed_slow"	"65"
+				"movespeed_slow"	"-65"
 			}
 			"03"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"attackspeed_slow"	"65"
+				"attackspeed_slow"	"-65"
 			}
 			"04"
 			{
@@ -10997,6 +10997,7 @@
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"FightRecapLevel"				"1"
 		"AbilitySound"					"Hero_TrollWarlord.WhirlingAxes.Ranged"
+		"MaxLevel"						"7"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------

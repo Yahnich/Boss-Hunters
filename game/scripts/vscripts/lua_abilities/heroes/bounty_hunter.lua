@@ -116,29 +116,20 @@ function modifier_bounty_hunter_jinada_crit:OnAttackLanded(params)
 					end
 				end
 			end
-			EmitSoundOn("Hero_BountyHunter.Jinada", params.attacker)
-			local jinada = ParticleManager:CreateParticle("particles/units/heroes/hero_bounty_hunter/bounty_hunter_jinda_slow.vpcf", PATTACH_ABSORIGIN_FOLLOW, params.target)
-			ParticleManager:SetParticleControlEnt(jinada, 1, params.target, PATTACH_POINT_FOLLOW, "attach_hitloc", params.target:GetAbsOrigin(), true)
-			ParticleManager:ReleaseParticleIndex(jinada)
-			if not params.attacker:HasModifier("modifier_bounty_hunter_jinada_dash") then
-				self:GetAbility():SetActivated(true) 
-				local cd = self:GetAbility():GetCooldown(-1) * get_octarine_multiplier(self:GetCaster())
-				self:GetAbility():StartCooldown(cd)
-			end
 		end
 	end
 end
 
 function modifier_bounty_hunter_jinada_crit:GetModifierPreAttack_CriticalStrike()
 	if self:GetAbility():IsCooldownReady() then
-		return self.crit
-	else
-		return
-	end
-end
-
-function modifier_bounty_hunter_jinada_crit:GetModifierPreAttack_CriticalStrike()
-	if self:GetAbility():IsCooldownReady() then
+		EmitSoundOn("Hero_BountyHunter.Jinada", params.attacker)
+		local jinada = ParticleManager:CreateParticle("particles/units/heroes/hero_bounty_hunter/bounty_hunter_jinda_slow.vpcf", PATTACH_ABSORIGIN_FOLLOW, params.target)
+		ParticleManager:SetParticleControlEnt(jinada, 1, params.target, PATTACH_POINT_FOLLOW, "attach_hitloc", params.target:GetAbsOrigin(), true)
+		ParticleManager:ReleaseParticleIndex(jinada)
+		if not params.attacker:HasModifier("modifier_bounty_hunter_jinada_dash") then
+			self:GetAbility():SetActivated(true) 
+			local cd = self:GetAbility():SetCooldown()
+		end
 		return self.crit
 	else
 		return
@@ -165,7 +156,7 @@ function modifier_bounty_hunter_jinada_dash:OnIntervalThink()
 end
 
 function modifier_bounty_hunter_jinada_dash:OnDestroy()
-	self:GetParent():SetForceAttackTarget(nil)
+	if IsServer() then self:GetParent():SetForceAttackTarget(nil) end
 end
 
 function modifier_bounty_hunter_jinada_dash:IsHidden()
