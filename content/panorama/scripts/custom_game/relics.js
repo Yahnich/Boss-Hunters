@@ -119,6 +119,7 @@ function CreateRelicSelection(relic, id)
 }
 
 $("#RelicInventoryPanel").SetHasClass("IsHidden", true)
+$("#RelicInventoryButton").SetHasClass("IsHidden", true)
 
 function OpenRelicInventory()
 {

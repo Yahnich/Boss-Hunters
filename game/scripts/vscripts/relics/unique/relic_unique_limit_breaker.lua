@@ -16,6 +16,6 @@ end
 
 function relic_unique_limit_breaker:GetBaseAttackTime_Bonus(params)
 	if self:GetParent():GetAttackSpeed() > 7 then
-		return self.batdecrease
+		return self.batdecrease * (-1)
 	end
 end

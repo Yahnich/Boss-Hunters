@@ -193,3 +193,45 @@ function GameRules:IsNightstalkerNight()
 	local timeofday = CustomNetTables:GetTableValue( "game_info", "timeofday")
 	return timeofday["timeofday"] == 3
 end
+
+function C_BaseEntity:RollPRNG( percentage )
+	local internalInt = (100/percentage)
+	local startingRoll = internalInt^2
+	self.internalPRNGCounter = self.internalPRNGCounter or (1/internalInt)^2
+	if RollPercentage(self.internalPRNGCounter * 100) then
+		self.internalPRNGCounter = (1/internalInt)^2
+		return true
+	else
+		local internalCount = 1/self.internalPRNGCounter
+		self.internalPRNGCounter = 1/( math.max(internalCount - internalInt, 1) )
+		return false
+	end
+end
+
+function C_DOTA_Ability_Lua:RollPRNG( percentage )
+	local internalInt = (100/percentage)
+	local startingRoll = internalInt^2
+	self.internalPRNGCounter = self.internalPRNGCounter or (1/internalInt)^2
+	if RollPercentage(self.internalPRNGCounter * 100) then
+		self.internalPRNGCounter = (1/internalInt)^2
+		return true
+	else
+		local internalCount = 1/self.internalPRNGCounter
+		self.internalPRNGCounter = 1/( math.max(internalCount - internalInt, 1) )
+		return false
+	end
+end
+
+function C_DOTA_Modifier_Lua:RollPRNG( percentage )
+	local internalInt = (100/percentage)
+	local startingRoll = internalInt^2
+	self.internalPRNGCounter = self.internalPRNGCounter or (1/internalInt)^2
+	if RollPercentage(self.internalPRNGCounter * 100) then
+		self.internalPRNGCounter = (1/internalInt)^2
+		return true
+	else
+		local internalCount = 1/self.internalPRNGCounter
+		self.internalPRNGCounter = 1/( math.max(internalCount - internalInt, 1) )
+		return false
+	end
+end

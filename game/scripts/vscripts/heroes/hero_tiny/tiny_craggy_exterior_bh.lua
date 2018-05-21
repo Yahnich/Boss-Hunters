@@ -17,7 +17,7 @@ end
 
 function modifier_tiny_craggy_exterior_bh:OnAttackLanded(params)
 	if IsServer() then 
-		if params.attacker ~= self:GetParent() and self:GetParent():RollPRNG(self:GetSpecialValueFor("chance")) then
+		if params.attacker ~= self:GetParent() and not self:GetParent():IsSameTeam(params.attacker) and self:RollPRNG(self:GetSpecialValueFor("chance")) then
 			local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_tiny/tiny_craggy_hit.vpcf", PATTACH_POINT, self:GetParent())
 						ParticleManager:SetParticleControlEnt(nfx, 0, self:GetParent(), PATTACH_POINT, "attch_hitloc", self:GetParent():GetAbsOrigin(), true)
 						ParticleManager:SetParticleControlForward(nfx, 1, CalculateDirection(params.attacker, self:GetParent()))

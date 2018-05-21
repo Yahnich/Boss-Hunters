@@ -240,7 +240,7 @@ function RelicManager:ClearRelics(pID, bHardClear)
 	local hero = PlayerResource:GetSelectedHeroEntity(pID)
 	relicCount = 0
 	for item, relic in pairs( hero.ownedRelics ) do
-		if relic ~= "relic_cursed_cursed_dice" and not bHardClear then -- cursed dice cannot be removed
+		if (relic == "relic_cursed_cursed_dice" and bHardClear) or relic ~= "relic_cursed_cursed_dice" then -- cursed dice cannot be removed
 			relicCount = relicCount + 1
 			hero:RemoveModifierByName( relic )
 			UTIL_Remove( EntIndexToHScript(item) )
@@ -251,7 +251,7 @@ function RelicManager:ClearRelics(pID, bHardClear)
 	hero.internalRNGPools[2] = self.cursedDropTable
 	hero.internalRNGPools[3] = self.uniqueDropTable
 
-	CustomNetTables:SetTableValue("relics", "relic_inventory_player_"..hero:entindex(), hero.ownedRelics)
+	CustomNetTables:SetTableValue("relics", "relic_inventory_player_"..hero:entindex(), {})
 	return relicCount
 end
 
@@ -278,7 +278,7 @@ function RelicManager:RemoveRelicOnPlayer(relic, pID, bAll)
 			if not bAll then break end
 		end
 	end
-	CustomNetTables:SetTableValue("relics", "relic_inventory_player_"..hero:entindex(), hero.ownedRelics)
+	CustomNetTables:SetTableValue("relics", "relic_inventory_player_"..hero:entindex(), {})
 end
 
 function CDOTA_BaseNPC_Hero:AddRelic(relic)
@@ -296,6 +296,6 @@ function CDOTA_BaseNPC_Hero:AddRelic(relic)
 	self.ownedRelics[relicEntity:entindex()] = relic
 	self:AddNewModifier( self, relicEntity, relic, {} )
 	
-	CustomNetTables:SetTableValue("relics", "relic_inventory_player_"..self:entindex(), self.ownedRelics)
+	CustomNetTables:SetTableValue("relics", "relic_inventory_player_"..self:entindex(), {})
 end
 

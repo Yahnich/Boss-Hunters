@@ -184,10 +184,8 @@
 	horizontal-align: right;
 	margin-bottom: 56px;
 	padding-bottom: 20px;
-	background-image: url("s2r://panorama/images/textures/popup_rock_bg_psd.vtex");
-	background-repeat: no-repeat;
-	background-size: 100% 100%;
 	flow-children: down;
+	overflow: squish scroll;
 }
 
 #RelicInventoryButton

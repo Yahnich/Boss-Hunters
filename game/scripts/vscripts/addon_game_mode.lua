@@ -399,9 +399,21 @@ function CHoldoutGameMode:FilterModifiers( filterTable )
 				modifier:GetModifierStatusAmplify_Percentage( params )
 			end
 		end
+		if parent:GetTeam() ~= caster:GetTeam() then
+			local resistance = 0
+			local stackResist = 0
+			for _, modifier in ipairs( parent:FindAllModifiers() ) do
+				if modifier.GetModifierStatusResistanceStacking and modifier:GetModifierStatusResistanceStacking(params) then
+					stackResist = stackResist + modifier:GetModifierStatusResistanceStacking(params)
+				end
+				if modifier.GetModifierStatusResistance and modifier:GetModifierStatusResistance(params) and modifier:GetModifierStatusResistance(params) > resistance then
+					resistance = modifier:GetModifierStatusResistance( params )
+				end
+			end
+			filterTable["duration"] = filterTable["duration"] * (1 - resistance/100) * (1 - stackResist/100)
+		end
 	end
-
-	if parent == caster or not caster or not ability or duration == -1 then return true end
+	if filterTable["duration"] == 0 then return false end
 	return true
 end
 
