@@ -18,13 +18,7 @@ function SelectRelic(type)
 		var playerRelics = relicTable[localID];
 		var firstDrops = playerRelics[1];
 		var relic = firstDrops[type]
-			// if(type == RELIC_TYPE_GENERIC){
-				// relic = firstDrops[RELIC_TYPE_GENERIC]
-			// } else if(type == RELIC_TYPE_CURSED){
-				// relic = firstDrops[RELIC_TYPE_CURSED]
-			// } else if(type == RELIC_TYPE_UNIQUE){
-				// relic = firstDrops[RELIC_TYPE_UNIQUE]
-			// }
+
 		if( GameUI.IsAltDown() ){
 			var relicName = $.Localize( relic )
 			var relicDescr = $.Localize( relic + "_Description" )
@@ -57,7 +51,7 @@ function AddHover(panelID)
 	var buttonPanel = $("#"+panelID)
 	buttonPanel.SetHasClass("ButtonHover", true)
 	if(panelID == "SkipButton"){
-		$.DispatchEvent("DOTAShowTextTooltip", buttonPanel, "Skipping a relic will grants a stacking 25% bonus chance of receiving a relic (33% base chance) next round.")
+		$.DispatchEvent("DOTAShowTextTooltip", buttonPanel, "Skipping a relic rerolls the relic into a new relic of the same type as well as removing the skipped relic from your pool of possibilities.")
 	}
 }
 
@@ -71,37 +65,58 @@ function RemoveHover(panelID)
 }
 
 $("#RelicRoot").SetHasClass("IsHidden", true)
-
+HandleRelicMenu()
 function HandleRelicMenu()
 {
 	var relicTable = CustomNetTables.GetTableValue( "game_info", "relic_drops")
 	var playerRelics = relicTable[localID]
 	var lastDrop = playerRelics[1]
 	if(lastDrop != null){
+		var holder = $("#RelicChoiceHolder")
+		for(var choice of holder.Children()){
+			choice.style.visibility = "collapse"
+			choice.RemoveAndDeleteChildren()
+			choice.DeleteAsync(0)
+		}
+		for(var id in lastDrop){
+			CreateRelicSelection(lastDrop[id], id)
+		}
 		Game.EmitSound( "Relics.GainedRelic" )
 		$("#RelicRoot").SetHasClass("IsHidden", false)
-		var genericRelic = lastDrop[RELIC_TYPE_GENERIC]
-		var cursedRelic = lastDrop[RELIC_TYPE_CURSED]
-		var uniqueRelic = lastDrop[RELIC_TYPE_UNIQUE]
-		
-		var genericRelicName = $("#GenericRelicName");
-		var genericRelicDescription = $("#GenericRelicDescription");
-		genericRelicName.text = $.Localize( genericRelic )
-		genericRelicDescription.text = $.Localize( genericRelic + "_Description" )
-		
-		var cursedRelicName = $("#CursedRelicName");
-		var cursedRelicDescription = $("#CursedRelicDescription");
-		cursedRelicName.text = $.Localize( cursedRelic )
-		cursedRelicDescription.text = $.Localize( cursedRelic + "_Description" )
-		
-		var uniqueRelicName = $("#UniqueRelicName");
-		var uniqueRelicDescription = $("#UniqueRelicDescription");
-		uniqueRelicName.text = $.Localize( uniqueRelic, uniqueRelicName )
-		uniqueRelicDescription.text = $.Localize( uniqueRelic + "_Description" )
 	} else {
 		$("#RelicRoot").SetHasClass("IsHidden", true)
 	}
 	hasQueuedAction = false
+}
+
+function CreateRelicSelection(relic, id)
+{
+	$.Msg(relic)
+	var holder = $("#RelicChoiceHolder")
+	$.CreatePanel("Panel", holder, "").SetHasClass("VerticalSeperator", true)
+	var relicChoice = $.CreatePanel("Panel", holder, "");
+	relicChoice.BLoadLayoutSnippet("RelicChoiceContainer");
+	var relicType = "";
+	var selectButton = relicChoice.FindChildTraverse("SelectButtonSnippet");
+	selectButton.SetPanelEvent("onactivate", function(){SelectRelic(id)})
+	selectButton.SetPanelEvent("onmouseover", function(){selectButton.SetHasClass("ButtonHover", true)})
+	selectButton.SetPanelEvent("onmouseout", function(){selectButton.SetHasClass("ButtonHover", true)})
+	var typeLabel = relicChoice.FindChildTraverse("RelicTypeSnippet")
+	if(relic.match(/unique/g) != null){
+		relicType = "RELIC_TYPE_UNIQUE"
+		typeLabel.style.color = "#ffd34a"
+	} else if(relic.match(/cursed/g) != null){
+		relicType = "RELIC_TYPE_CURSED"
+		typeLabel.style.color = "#d80f0f"
+	} else{
+		relicType = "RELIC_TYPE_GENERIC"
+		typeLabel.style.color = "#FFFFFF"
+	}
+	typeLabel.text = $.Localize( relicType )
+	relicChoice.FindChildTraverse("RelicNameSnippet").text = $.Localize( relic )
+	relicChoice.FindChildTraverse("SnippetRelicDescription").text = $.Localize( relic + "_Description" )
+	
+	$.CreatePanel("Panel", holder, "").SetHasClass("VerticalSeperator", true)
 }
 
 $("#RelicInventoryPanel").SetHasClass("IsHidden", true)
@@ -129,6 +144,7 @@ function UpdateRelicInventory(){
 	var relicList = CustomNetTables.GetTableValue("relics", "relic_inventory_player_" + selectedHero)
 	if(relicList != null){
 		for(var name in relicList){
+			$.Msg(relicList[name], name)
 			if(name != 0){
 				CreateRelicPanel(name)
 			}
@@ -155,7 +171,7 @@ function CreateRelicPanel(name)
 
 function ShowRelicTooltip()
 {
-	$.DispatchEvent("DOTAShowTextTooltip", $("#RelicInventoryButton"), "Relics are permanent bonuses that have a 33% chance of being found at the end of a round.")
+	$.DispatchEvent("DOTAShowTextTooltip", $("#RelicInventoryButton"), "Relics are permanent bonuses that appear at the end of a round.")
 }
 
 function HideRelicTooltip()

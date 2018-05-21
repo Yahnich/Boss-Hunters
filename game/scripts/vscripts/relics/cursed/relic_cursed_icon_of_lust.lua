@@ -1,4 +1,4 @@
-relic_cursed_icon_of_lust = class({})
+relic_cursed_icon_of_lust = class(relicBaseClass)
 
 function relic_cursed_icon_of_lust:OnCreated()
 	if IsServer() then
@@ -30,28 +30,4 @@ end
 
 function relic_cursed_icon_of_lust:GetModifierExtraHealthBonus()
 	return self:GetStackCount() * (-1)
-end
-
-function relic_cursed_icon_of_lust:IsHidden()
-	return true
-end
-
-function relic_cursed_icon_of_lust:IsPurgable()
-	return false
-end
-
-function relic_cursed_icon_of_lust:RemoveOnDeath()
-	return false
-end
-
-function relic_cursed_icon_of_lust:IsPermanent()
-	return true
-end
-
-function relic_cursed_icon_of_lust:AllowIllusionDuplicate()
-	return true
-end
-
-function relic_cursed_icon_of_lust:GetAttributes()
-	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_PERMANENT
 end

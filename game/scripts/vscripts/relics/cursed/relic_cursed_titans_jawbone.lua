@@ -1,4 +1,4 @@
-relic_cursed_titans_jawbone = class({})
+relic_cursed_titans_jawbone = class(relicBaseClass)
 
 function relic_cursed_titans_jawbone:OnCreated()
 	if IsServer() then
@@ -30,29 +30,4 @@ end
 
 function relic_cursed_titans_jawbone:GetModifierTotalDamageOutgoing_Percentage()
 	return -33
-end
-
-
-function relic_cursed_titans_jawbone:IsHidden()
-	return true
-end
-
-function relic_cursed_titans_jawbone:IsPurgable()
-	return false
-end
-
-function relic_cursed_titans_jawbone:RemoveOnDeath()
-	return false
-end
-
-function relic_cursed_titans_jawbone:IsPermanent()
-	return true
-end
-
-function relic_cursed_titans_jawbone:AllowIllusionDuplicate()
-	return true
-end
-
-function relic_cursed_titans_jawbone:GetAttributes()
-	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_PERMANENT
 end

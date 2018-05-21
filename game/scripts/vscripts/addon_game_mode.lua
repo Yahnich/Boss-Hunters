@@ -433,11 +433,20 @@ function CHoldoutGameMode:FilterHeal( filterTable )
 	if source_index then source = EntIndexToHScript( source_index ) end
 	
 	-- if no caster then source is regen
-	if target then
+	if source then
 		local params = {healer = healer, target = target, heal = heal, ability = source}
-		for _, modifier in ipairs( target:FindAllModifiers() ) do
-			if modifier.GetModifierHealAmplify_Percentage then
-				filterTable["heal"] = filterTable["heal"] * math.max(0, (1 + ( modifier:GetModifierHealAmplify_Percentage( params ) or 0 )/100) )
+		if target then
+			for _, modifier in ipairs( target:FindAllModifiers() ) do
+				if modifier.GetModifierHealAmplify_Percentage then
+					filterTable["heal"] = filterTable["heal"] * math.max(0, (1 + ( modifier:GetModifierHealAmplify_Percentage( params ) or 0 )/100) )
+				end
+			end
+		end
+		if healer and healer ~= target then
+			for _, modifier in ipairs( healer:FindAllModifiers() ) do
+				if modifier.GetModifierHealAmplify_Percentage then
+					filterTable["heal"] = filterTable["heal"] * math.max(0, (1 + ( modifier:GetModifierHealAmplify_Percentage( params ) or 0 )/100) )
+				end
 			end
 		end
 	end

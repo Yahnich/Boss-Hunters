@@ -1,4 +1,4 @@
-relic_cursed_phoenix_down = class({})
+relic_cursed_phoenix_down = class(relicBaseClass)
 
 function relic_cursed_phoenix_down:OnCreated()
 	if IsServer() then
@@ -18,32 +18,4 @@ function relic_cursed_phoenix_down:OnIntervalThink()
 	else
 		self:GetParent():SetBuyBackDisabledByReapersScythe( true )
 	end
-end
-
-function relic_cursed_phoenix_down:IsHidden()
-	return true
-end
-
-function relic_cursed_phoenix_down:IsPurgable()
-	return false
-end
-
-function relic_cursed_phoenix_down:RemoveOnDeath()
-	return false
-end
-
-function relic_cursed_phoenix_down:IsPermanent()
-	return true
-end
-
-function relic_cursed_phoenix_down:AllowIllusionDuplicate()
-	return true
-end
-
-function relic_cursed_phoenix_down:IsDebuff()
-	return true
-end
-
-function relic_cursed_phoenix_down:GetAttributes()
-	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_PERMANENT
 end

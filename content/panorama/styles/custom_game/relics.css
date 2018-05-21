@@ -7,7 +7,7 @@
 
 #RelicRoot
 {
-	width: 50%;
+	min-width: 300px;
 	vertical-align: center;
 	horizontal-align: center;
 	margin-top: -150px;
@@ -47,7 +47,7 @@
 .RelicChoiceContainer
 {
 	flow-children: down;
-	width: fill-parent-flow( 1.0 );
+	width: 250px;
 }
 
 .VerticalSeperator 

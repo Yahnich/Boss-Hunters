@@ -8,7 +8,6 @@ end
 function relic_cursed_giants_cudgel:OnIntervalThink()
 	self.as = 0
 	self.as = self:GetParent():GetIncreasedAttackSpeed() * (-40)
-	print(self.as)
 end
 
 function relic_cursed_giants_cudgel:DeclareFunctions()

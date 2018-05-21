@@ -1,4 +1,4 @@
-relic_cursed_immaculate_staff = class({})
+relic_cursed_immaculate_staff = class(relicBaseClass)
 
 function relic_cursed_immaculate_staff:DeclareFunctions()
 	return {MODIFIER_EVENT_ON_SPENT_MANA}
@@ -13,28 +13,4 @@ end
 
 function relic_cursed_immaculate_staff:GetCooldownReduction()
 	return 40
-end
-
-function relic_cursed_immaculate_staff:IsHidden()
-	return true
-end
-
-function relic_cursed_immaculate_staff:IsPurgable()
-	return false
-end
-
-function relic_cursed_immaculate_staff:RemoveOnDeath()
-	return false
-end
-
-function relic_cursed_immaculate_staff:IsPermanent()
-	return true
-end
-
-function relic_cursed_immaculate_staff:AllowIllusionDuplicate()
-	return true
-end
-
-function relic_cursed_immaculate_staff:GetAttributes()
-	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_PERMANENT
 end

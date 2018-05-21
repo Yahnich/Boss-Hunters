@@ -1,4 +1,4 @@
-relic_cursed_mask_of_janus = class({})
+relic_cursed_mask_of_janus = class(relicBaseClass)
 
 if IsServer() then
 	function relic_cursed_mask_of_janus:RerollRelic()
@@ -6,7 +6,7 @@ if IsServer() then
 		local pID = hero:GetPlayerID()
 		local relicList = {}
 		for relic, item in pairs( hero.ownedRelics ) do
-			if relic ~= relic_cursed_mask_of_janus then
+			if relic ~= "relic_cursed_mask_of_janus" then
 				table.insert(relicList, relic)
 			end
 		end
@@ -21,28 +21,4 @@ if IsServer() then
 			hero:AddRelic( RelicManager:RollRandomUniqueRelicForPlayer(pID) )
 		end
 	end
-end
-
-function relic_cursed_mask_of_janus:IsHidden()
-	return true
-end
-
-function relic_cursed_mask_of_janus:IsPurgable()
-	return false
-end
-
-function relic_cursed_mask_of_janus:RemoveOnDeath()
-	return false
-end
-
-function relic_cursed_mask_of_janus:IsPermanent()
-	return true
-end
-
-function relic_cursed_mask_of_janus:AllowIllusionDuplicate()
-	return true
-end
-
-function relic_cursed_mask_of_janus:GetAttributes()
-	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_PERMANENT
 end

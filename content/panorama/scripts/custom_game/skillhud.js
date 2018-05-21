@@ -30,26 +30,26 @@ GameEvents.Subscribe("dota_player_update_selected_unit", UpdateStatsPanel);
 GameEvents.Subscribe("dota_player_upgraded_stats", UpdateStatsPanel);
 
 // OTHER
-MOVESPEED_TABLE = [0,25,50,75,100,150]
-MANA_TABLE = [0,3,6,9,12,18]
-MANA_REGEN_TABLE = [0,3,6,9,12,18]
-HEAL_AMP_TABLE = [0,20,40,60,80,120]
+MOVESPEED_TABLE = [0,25,50,75,100,150,175,200,225,250,300]
+MANA_TABLE = [0,500,1000,1500,2000,3000,3500,4000,4500,5000,6000]
+MANA_REGEN_TABLE = [0,3,6,9,12,18,21,24,27,30,40]
+HEAL_AMP_TABLE = [0,10,20,30,40,60,70,80,90,100,120]
 
 // OFFENSE
-ATTACK_DAMAGE_TABLE = [0,35,70,105,140,200]
-SPELL_AMP_TABLE = [0,15,30,45,60,90]
-COOLDOWN_REDUCTION_TABLE = [0,5,10,15,20,30]
-ATTACK_SPEED_TABLE = [0,35,70,105,140,200]
-STATUS_AMP_TABLE = [0,5,10,15,20,30]
+ATTACK_DAMAGE_TABLE = [0,35,70,105,140,200,235,270,305,340,400]
+SPELL_AMP_TABLE = [0,15,30,45,60,90,105,120,135,150,180]
+COOLDOWN_REDUCTION_TABLE = [0,4,8,12,16,24,28,32,36,40,48]
+ATTACK_SPEED_TABLE = [0,35,70,105,140,200,235,270,305,340,400]
+STATUS_AMP_TABLE = [0,4,8,12,16,24,28,32,36,40,48]
 
 // DEFENSE
-ARMOR_TABLE = [0,5,10,15,20,30]
-MAGIC_RESIST_TABLE = [0,6,12,18,24,35]
-DAMAGE_BLOCK_TABLE = [0,20,40,60,80,120]
-ATTACK_RANGE_TABLE = [0,100,200,300,400,600]
-HEALTH_TABLE = [0,2,4,6,8,12]
-HEALTH_REGEN_TABLE = [0,5,10,15,20,30]
-STATUS_REDUCTION_TABLE = [0,5,10,15,20,30]
+ARMOR_TABLE = [0,4,8,12,16,24,28,32,36,40,48]
+MAGIC_RESIST_TABLE = [0,4,8,12,16,24,28,32,36,40,48]
+DAMAGE_BLOCK_TABLE = [0,20,40,60,80,120,140,160,180,200,240]
+ATTACK_RANGE_TABLE = [0,100,200,300,400,600,700,800,900,1000,1200]
+HEALTH_TABLE = [0,300,600,900,1200,1800,2100,2400,2700,3000,3600]
+HEALTH_REGEN_TABLE = [0,5,10,15,20,30,35,40,45,50,60]
+STATUS_REDUCTION_TABLE = [0,5,10,15,20,30,35,40,45,50,60]
 
 STATS_STATE_OFFENSE = 1
 STATS_STATE_DEFENSE = 2
@@ -166,6 +166,9 @@ function CreateAttributePanel( valueLvl, valueTable, valueSignifier, valueText, 
 				{
 					infoText = infoText + "/"
 				}
+				if(i % 5 == 0){
+					infoText = infoText + "\n"
+				}
 			}
 		}
 		talentPanel.SetPanelEvent("onmouseover", function(){$.DispatchEvent("DOTAShowTextTooltip", talentPanel, "Next level - " + (parseInt(valueLvl) + 1) * LEVELS_BETWEEN_TALENT_UPGRADES + "<br>" + infoText)});
@@ -185,6 +188,9 @@ function CreateAttributePanel( valueLvl, valueTable, valueSignifier, valueText, 
 				if(valueTable[i+1] != null)
 				{
 					infoText = infoText + "/"
+				}
+				if(i % 5 == 0){
+					infoText = infoText + "<br>"
 				}
 			}
 		}
@@ -355,7 +361,7 @@ function CreateTalentContainer(levelRequirement, statsTypeContainer, talentsSkil
 	if( Entities.GetAbilityPoints( lastRememberedHero ) == 0 || lastRememberedHero != Players.GetPlayerHeroEntityIndex( localID ) || Entities.GetLevel( lastRememberedHero ) < levelRequirement){
 		talentLeft.SetHasClass("TalentCannotBeSkilled", !talent1IsSkilled)
 		talentRight.SetHasClass("TalentCannotBeSkilled", !talent2IsSkilled)
-	} else if(talentIsSkilled){
+	} else if(talentIsSkilled && Entities.GetLevel( lastRememberedHero ) < 50){
 		talentLeft.SetHasClass("TalentCannotBeSkilled", talent2IsSkilled)
 		talentRight.SetHasClass("TalentCannotBeSkilled", talent1IsSkilled)
 	} else {
@@ -363,9 +369,8 @@ function CreateTalentContainer(levelRequirement, statsTypeContainer, talentsSkil
 		talentRight.SetHasClass("TalentCanBeSkilled", !talent2IsSkilled)
 	}
 	if(talentIsSkilled){
-		talentLeft.SetHasClass("TalentIsSkilled", talent1IsSkilled)
-		talentRight.SetHasClass("TalentIsSkilled", talent2IsSkilled)
 		if(talent1IsSkilled){
+			talentLeft.SetHasClass("TalentIsSkilled", talent1IsSkilled)
 			var unitText = "I have "
 			if(lastRememberedHero != Players.GetPlayerHeroEntityIndex( localID ) ){
 				unitText = $.Localize( Entities.GetUnitName(lastRememberedHero), talentLeft ) + " has "
@@ -374,6 +379,7 @@ function CreateTalentContainer(levelRequirement, statsTypeContainer, talentsSkil
 			if(talent1HasDescription){ talentInfo = talentInfo + ": " + talentLeft.talentdescr }
 			talentLeft.SetPanelEvent("onactivate", function(){NotifyTalent(talentInfo)});
 		} else if(talent2IsSkilled){
+			talentRight.SetHasClass("TalentIsSkilled", talent2IsSkilled)
 			var unitText = "I have "
 			if(lastRememberedHero != Players.GetPlayerHeroEntityIndex( localID ) ){
 				unitText = $.Localize( Entities.GetUnitName(lastRememberedHero), talentRight ) + " has "

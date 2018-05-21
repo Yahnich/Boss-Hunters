@@ -1,4 +1,4 @@
-relic_cursed_symbiote = class({})
+relic_cursed_symbiote = class(relicBaseClass)
 
 function relic_cursed_symbiote:OnCreated()
 	if IsServer() then
@@ -25,28 +25,4 @@ end
 
 function relic_cursed_symbiote:GetModifierConstantHealthRegen()
 	return self:GetStackCount()
-end
-
-function relic_cursed_symbiote:IsHidden()
-	return true
-end
-
-function relic_cursed_symbiote:IsPurgable()
-	return false
-end
-
-function relic_cursed_symbiote:RemoveOnDeath()
-	return false
-end
-
-function relic_cursed_symbiote:IsPermanent()
-	return true
-end
-
-function relic_cursed_symbiote:AllowIllusionDuplicate()
-	return true
-end
-
-function relic_cursed_symbiote:GetAttributes()
-	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_PERMANENT
 end

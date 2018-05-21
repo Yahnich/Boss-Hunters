@@ -42,7 +42,7 @@ function modifier_item_lucifers_cage_handle_heal:GetModifierConstantHealthRegen(
 	return self.regen
 end
 
-function modifier_item_lucifers_cage_handle_heal:GetModifierHealAmplify_Percentage()
+function modifier_item_lucifers_cage_handle_heal:GetModifierHealAmplify_Percentage(params)
 	return self.healAmp
 end
 

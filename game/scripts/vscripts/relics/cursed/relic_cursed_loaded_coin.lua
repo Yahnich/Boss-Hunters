@@ -1,4 +1,4 @@
-relic_cursed_loaded_coin = class({})
+relic_cursed_loaded_coin = class(relicBaseClass)
 
 function relic_cursed_loaded_coin:DeclareFunctions()
 	return {MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE}
@@ -10,28 +10,4 @@ function relic_cursed_loaded_coin:GetModifierIncomingDamage_Percentage()
 	else
 		return 200
 	end
-end
-
-function relic_cursed_loaded_coin:IsHidden()
-	return true
-end
-
-function relic_cursed_loaded_coin:IsPurgable()
-	return false
-end
-
-function relic_cursed_loaded_coin:RemoveOnDeath()
-	return false
-end
-
-function relic_cursed_loaded_coin:IsPermanent()
-	return true
-end
-
-function relic_cursed_loaded_coin:AllowIllusionDuplicate()
-	return true
-end
-
-function relic_cursed_loaded_coin:GetAttributes()
-	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_PERMANENT
 end

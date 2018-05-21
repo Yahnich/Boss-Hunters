@@ -1,4 +1,4 @@
-relic_cursed_unchanging_globe = class({})
+relic_cursed_unchanging_globe = class(relicBaseClass)
 
 function relic_cursed_unchanging_globe:OnCreated()
 	self.int = 10 - self:GetParent():GetIntellect()
@@ -27,28 +27,4 @@ function relic_cursed_unchanging_globe:OnAbilityFullyCast(params)
 			params.ability:StartCooldown(9)
 		end
 	end
-end
-
-function relic_cursed_unchanging_globe:IsHidden()
-	return true
-end
-
-function relic_cursed_unchanging_globe:IsPurgable()
-	return false
-end
-
-function relic_cursed_unchanging_globe:RemoveOnDeath()
-	return false
-end
-
-function relic_cursed_unchanging_globe:IsPermanent()
-	return true
-end
-
-function relic_cursed_unchanging_globe:AllowIllusionDuplicate()
-	return true
-end
-
-function relic_cursed_unchanging_globe:GetAttributes()
-	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_PERMANENT
 end

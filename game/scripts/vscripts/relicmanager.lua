@@ -22,15 +22,21 @@ function RelicManager:Initialize()
   self.uniqueDropTable = relics.relic_type_unique
   
   for relic, weight in pairs( self.genericDropTable ) do
-	LinkLuaModifier( relic, "relics/generic/"..relic, LUA_MODIFIER_MOTION_NONE )
+	if weight ~= 0 then
+		LinkLuaModifier( relic, "relics/generic/"..relic, LUA_MODIFIER_MOTION_NONE )
+	end
   end
   
   for relic, weight in pairs( self.cursedDropTable ) do
-	LinkLuaModifier( relic, "relics/cursed/"..relic, LUA_MODIFIER_MOTION_NONE )
+	if weight ~= 0 then
+		LinkLuaModifier( relic, "relics/cursed/"..relic, LUA_MODIFIER_MOTION_NONE )
+	end
   end
   
   for relic, weight in pairs( self.uniqueDropTable ) do
-	LinkLuaModifier( relic, "relics/unique/"..relic, LUA_MODIFIER_MOTION_NONE )
+	if weight ~= 0 then
+		LinkLuaModifier( relic, "relics/unique/"..relic, LUA_MODIFIER_MOTION_NONE )
+	end
   end
   
   CustomGameEventManager:RegisterListener('player_selected_relic', Context_Wrap( RelicManager, 'ConfirmRelicSelection'))
@@ -102,14 +108,24 @@ function RelicManager:SkipRelicSelection(userid, event)
 		toNumPlayerRelics[tonumber(dropID)] = dropTable
 	end
 	
-	hero.internalRNGPools[1][toNumPlayerRelics[1]["1"]] = nil
-	hero.internalRNGPools[2][toNumPlayerRelics[1]["2"]] = nil
-	hero.internalRNGPools[3][toNumPlayerRelics[1]["3"]] = nil
-	
 	table.remove( toNumPlayerRelics, 1 )
 	relicTable[tostring(pID)] = toNumPlayerRelics
 	CustomNetTables:SetTableValue("game_info", "relic_drops", relicTable)
 	
+	for id, relic in pairs( playerRelics["1"] ) do
+		relicType = 1
+		if string.match(relic, "unique") then
+			relicType = 3
+		elseif string.match(relic, "cursed") then
+			relicType = 2
+		end
+		hero.internalRNGPools[relicType][playerRelics["1"][id]] = nil
+		if not hero.hasRerolledThisRound then
+			print(relicType)
+			RelicManager:RollRelicsForPlayer(pID, relicType)
+		end
+	end
+	hero.hasRerolledThisRound = true
 	if hero:HasRelic("relic_unique_mysterious_hourglass") and hero:FindModifierByName("relic_unique_mysterious_hourglass"):GetStackCount() > 0 then
 		hero:FindModifierByName("relic_unique_mysterious_hourglass"):DecrementStackCount()
 		self:RollRelicsForPlayer(pID)
@@ -131,7 +147,7 @@ function RelicManager:RegisterPlayer(pID)
 	RelicManager:RollRelicsForPlayer(pID)
 end
 
-function RelicManager:RollRelicsForPlayer(pID)
+function RelicManager:RollRelicsForPlayer(pID, relicType)
 	local hero = PlayerResource:GetSelectedHeroEntity(pID)
 
 	if not hero then return end
@@ -146,10 +162,14 @@ function RelicManager:RollRelicsForPlayer(pID)
 	end
 	
 	local dropTable = {}
-	table.insert( dropTable, self:RollRandomGenericRelicForPlayer(pID) )
-	table.insert( dropTable, self:RollRandomCursedRelicForPlayer(pID) )
-	table.insert( dropTable, self:RollRandomUniqueRelicForPlayer(pID) )
-	
+	local roll = RandomInt(1,5)
+	if (roll == 1 and not relicType) or relicType == 3 then
+		table.insert( dropTable, self:RollRandomUniqueRelicForPlayer(pID) )
+	elseif (roll == 2 and not relicType) or relicType == 2 then
+		table.insert( dropTable, self:RollRandomCursedRelicForPlayer(pID) )
+	else
+		table.insert( dropTable, self:RollRandomGenericRelicForPlayer(pID) )
+	end
 	table.insert( toNumPlayerRelics, dropTable )
 
 	relicTable[tostring(pID)] = toNumPlayerRelics
@@ -207,41 +227,51 @@ end
 
 function CDOTA_BaseNPC_Hero:HasRelic(relic)
 	self.ownedRelics = self.ownedRelics or {}
-	return (self.ownedRelics[relic] ~= nil)
+	return self:HasModifier(relic)
 end
 
 function RelicManager:ClearRelics(pID)
 	local hero = PlayerResource:GetSelectedHeroEntity(pID)
 	relicCount = 0
-	for relic, item in pairs( hero.ownedRelics ) do
+	for item, relic in pairs( hero.ownedRelics ) do
 		if relic ~= "relic_cursed_cursed_dice" then -- cursed dice cannot be removed
 			relicCount = relicCount + 1
 			hero:RemoveModifierByName( relic )
 			UTIL_Remove( EntIndexToHScript(item) )
+			hero.ownedRelics[item] = nil
 		end
 	end
 	hero.internalRNGPools[1] = self.genericDropTable
 	hero.internalRNGPools[2] = self.cursedDropTable
 	hero.internalRNGPools[3] = self.uniqueDropTable
-	hero.ownedRelics = {}
-	CustomNetTables:SetTableValue("relics", "relic_inventory_player_"..hero:entindex(), {})
+
+	CustomNetTables:SetTableValue("relics", "relic_inventory_player_"..hero:entindex(), hero.ownedRelics)
 	return relicCount
 end
 
-function RelicManager:RemoveRelicOnPlayer(relic, pID)
+function RelicManager:RemoveRelicOnPlayer(relic, pID, bAll)
 	local hero = PlayerResource:GetSelectedHeroEntity(pID)
-	hero:RemoveModifierByName( relic )
-	UTIL_Remove( EntIndexToHScript(hero.ownedRelics[relic]) )
 	
-	if string.match(relic, "unique") then
-		hero.internalRNGPools[3][relic] = "1"
-	elseif string.match(relic, "cursed") then
-		hero.internalRNGPools[2][relic] = "1"
-	else
-		hero.internalRNGPools[1][relic] = "1"
+	
+	for entindex, relicName in pairs(hero.ownedRelics) do
+		if relicName == relic then
+			local item = EntIndexToHScript(entindex)
+			UTIL_Remove( item )
+			for _, modifier in ipairs( hero:FindAllModifiers() ) do
+				if modifier:GetAbility() == item then modifier:Destroy() end
+			end
+			if string.match(relicName, "unique") then
+				hero.internalRNGPools[3][relicName] = "1"
+			elseif string.match(relic, "cursed") then
+				hero.internalRNGPools[2][relicName] = "1"
+			else
+				hero.internalRNGPools[1][relicName] = "1"
+			end
+			
+			hero.ownedRelics[entindex] = nil
+			if not bAll then break end
+		end
 	end
-	
-	hero.ownedRelics[relic] = nil
 	CustomNetTables:SetTableValue("relics", "relic_inventory_player_"..hero:entindex(), hero.ownedRelics)
 end
 
@@ -256,10 +286,8 @@ function CDOTA_BaseNPC_Hero:AddRelic(relic)
 		self.internalRNGPools[1][relic] = nil
 	end
 	
-	
-	
 	local relicEntity = CreateItem("item_relic_handler", nil, nil)
-	self.ownedRelics[relic] = relicEntity:entindex()
+	self.ownedRelics[relicEntity:entindex()] = relic
 	self:AddNewModifier( self, relicEntity, relic, {} )
 	
 	CustomNetTables:SetTableValue("relics", "relic_inventory_player_"..self:entindex(), self.ownedRelics)

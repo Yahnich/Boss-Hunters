@@ -1,4 +1,4 @@
-relic_cursed_mysterious_stone = class({})
+relic_cursed_mysterious_stone = class(relicBaseClass)
 
 function relic_cursed_mysterious_stone:OnIntervalThink()
 	self:SetDuration(-1, true)
@@ -20,29 +20,4 @@ function relic_cursed_mysterious_stone:GetAbsorbSpell(params)
 		self:StartIntervalThink(12)
 		return 1
 	end
-end
-
-
-function relic_cursed_mysterious_stone:IsHidden()
-	return true
-end
-
-function relic_cursed_mysterious_stone:IsPurgable()
-	return false
-end
-
-function relic_cursed_mysterious_stone:RemoveOnDeath()
-	return false
-end
-
-function relic_cursed_mysterious_stone:IsPermanent()
-	return true
-end
-
-function relic_cursed_mysterious_stone:AllowIllusionDuplicate()
-	return true
-end
-
-function relic_cursed_mysterious_stone:GetAttributes()
-	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_PERMANENT
 end
