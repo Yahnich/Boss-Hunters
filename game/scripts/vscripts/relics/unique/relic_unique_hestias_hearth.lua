@@ -14,7 +14,7 @@ function relic_unique_hestias_hearth:OnIntervalThink()
 	end
 end
 
-modifier_relic_unique_hestias_hearth = class(relicBaseClass)
+modifier_relic_unique_hestias_hearth = class({})
 function modifier_relic_unique_hestias_hearth:DeclareFunctions()
 	return {MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT}
 end
