@@ -1,4 +1,4 @@
-relic_unique_charons_obol = class({})
+relic_unique_charons_obol = class(relicBaseClass)
 
 function relic_unique_charons_obol:DeclareFunctions()
 	return {MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE, MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE}
@@ -21,29 +21,4 @@ end
 
 function relic_unique_charons_obol:IsHidden()
 	return self:GetDuration() == -1
-end
-
-function relic_unique_charons_obol:IsPurgable()
-	return false
-end
-
-function relic_unique_charons_obol:DestroyOnExpire()
-	return false
-end
-
-
-function relic_unique_charons_obol:RemoveOnDeath()
-	return false
-end
-
-function relic_unique_charons_obol:IsPermanent()
-	return true
-end
-
-function relic_unique_charons_obol:AllowIllusionDuplicate()
-	return true
-end
-
-function relic_unique_charons_obol:GetAttributes()
-	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_PERMANENT
 end

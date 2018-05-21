@@ -39,7 +39,7 @@ function modifier_stats_system_handler:UpdateStatValues()
 	-- OTHER
 	local netTable = CustomNetTables:GetTableValue("stats_panel", tostring(self:GetCaster():entindex()) )
 	self.ms = MOVESPEED_TABLE[tonumber(netTable["ms"]) + 1]
-	self.mp = 400 + MANA_TABLE[tonumber(netTable["mp"]) + 1] * self:GetParent():GetIntellect()
+	self.mp = 400 + MANA_TABLE[tonumber(netTable["mp"]) + 1]
 	self.mpr = 4 + MANA_REGEN_TABLE[tonumber(netTable["mpr"]) + 1]
 	self.ha = HEAL_AMP_TABLE[tonumber(netTable["ha"]) + 1]
 	
@@ -55,7 +55,7 @@ function modifier_stats_system_handler:UpdateStatValues()
 	self.mr = MAGIC_RESIST_TABLE[tonumber(netTable["mr"]) + 1]
 	self.db = DAMAGE_BLOCK_TABLE[tonumber(netTable["db"]) + 1]
 	self.ar = ATTACK_RANGE_TABLE[tonumber(netTable["ar"]) + 1]
-	self.hp = 300 + HEALTH_TABLE[tonumber(netTable["hp"]) + 1] * self:GetParent():GetStrength()
+	self.hp = 300 + HEALTH_TABLE[tonumber(netTable["hp"]) + 1]
 	self.hpr = 5 + HEALTH_REGEN_TABLE[tonumber(netTable["hpr"]) + 1]
 	self.sr = STATUS_REDUCTION_TABLE[tonumber(netTable["sr"]) + 1]
 	

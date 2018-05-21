@@ -1,4 +1,4 @@
-relic_unique_rapid_totem = class({})
+relic_unique_rapid_totem = class(relicBaseClass)
 
 function relic_unique_rapid_totem:OnCreated()
 	self:SetStackCount(0)
@@ -21,29 +21,3 @@ end
 function relic_unique_rapid_totem:GetModifierStatusAmplify_Percentage(params)
 	return -50
 end
-
-function relic_unique_rapid_totem:IsHidden()
-	return true
-end
-
-function relic_unique_rapid_totem:IsPurgable()
-	return false
-end
-
-function relic_unique_rapid_totem:RemoveOnDeath()
-	return false
-end
-
-function relic_unique_rapid_totem:IsPermanent()
-	return true
-end
-
-function relic_unique_rapid_totem:AllowIllusionDuplicate()
-	return true
-end
-
-function relic_unique_rapid_totem:GetAttributes()
-	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_PERMANENT
-end
-
-

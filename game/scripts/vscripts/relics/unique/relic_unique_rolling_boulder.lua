@@ -1,4 +1,4 @@
-relic_unique_rolling_boulder = class({})
+relic_unique_rolling_boulder = class(relicBaseClass)
 
 function relic_unique_rolling_boulder:OnCreated()
 	self:SetStackCount(0)
@@ -18,24 +18,6 @@ function relic_unique_rolling_boulder:GetModifierBonusStats_Agility()
 	return self:GetStackCount()
 end
 
-function relic_unique_rolling_boulder:IsPurgable()
+function relic_unique_rolling_boulder:IsHidden()
 	return false
 end
-
-function relic_unique_rolling_boulder:RemoveOnDeath()
-	return false
-end
-
-function relic_unique_rolling_boulder:IsPermanent()
-	return true
-end
-
-function relic_unique_rolling_boulder:AllowIllusionDuplicate()
-	return true
-end
-
-function relic_unique_rolling_boulder:GetAttributes()
-	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_PERMANENT
-end
-
-

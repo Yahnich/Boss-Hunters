@@ -177,13 +177,15 @@ function RelicManager:RollRelicsForPlayer(pID, relicType)
 	CustomNetTables:SetTableValue("game_info", "relic_drops", relicTable)
 end
 
-function RelicManager:RollRandomGenericRelicForPlayer(pID)
+function RelicManager:RollRandomGenericRelicForPlayer(pID, notThisRelic)
 	local dropTable = {}
 	local hero = PlayerResource:GetSelectedHeroEntity(pID)
 	hero.ownedRelics = hero.ownedRelics or {}
 	for relic, weight in pairs( hero.internalRNGPools[1] ) do
-		for i = 1, weight do
-			table.insert(dropTable, relic)
+		if relic ~= notThisRelic then
+			for i = 1, weight do
+				table.insert(dropTable, relic)
+			end
 		end
 	end
 	if dropTable[1] == nil then
@@ -193,13 +195,15 @@ function RelicManager:RollRandomGenericRelicForPlayer(pID)
 	return dropTable[RandomInt(1, #dropTable)]
 end
 
-function RelicManager:RollRandomCursedRelicForPlayer(pID)
+function RelicManager:RollRandomCursedRelicForPlayer(pID, notThisRelic)
 	local dropTable = {}
 	local hero = PlayerResource:GetSelectedHeroEntity(pID)
 	hero.ownedRelics = hero.ownedRelics or {}
 	for relic, weight in pairs( hero.internalRNGPools[2] ) do
-		for i = 1, weight do
-			table.insert(dropTable, relic)
+		if relic ~= notThisRelic then
+			for i = 1, weight do
+				table.insert(dropTable, relic)
+			end
 		end
 	end
 	if dropTable[1] == nil then
@@ -209,13 +213,15 @@ function RelicManager:RollRandomCursedRelicForPlayer(pID)
 	return dropTable[RandomInt(1, #dropTable)]
 end
 
-function RelicManager:RollRandomUniqueRelicForPlayer(pID)
+function RelicManager:RollRandomUniqueRelicForPlayer(pID, notThisRelic)
 	local dropTable = {}
 	local hero = PlayerResource:GetSelectedHeroEntity(pID)
 	hero.ownedRelics = hero.ownedRelics or {}
 	for relic, weight in pairs( hero.internalRNGPools[3] ) do
-		for i = 1, weight do
-			table.insert(dropTable, relic)
+		if relic ~= notThisRelic then
+			for i = 1, weight do
+				table.insert(dropTable, relic)
+			end
 		end
 	end
 	if dropTable[1] == nil then
@@ -230,11 +236,11 @@ function CDOTA_BaseNPC_Hero:HasRelic(relic)
 	return self:HasModifier(relic)
 end
 
-function RelicManager:ClearRelics(pID)
+function RelicManager:ClearRelics(pID, bHardClear)
 	local hero = PlayerResource:GetSelectedHeroEntity(pID)
 	relicCount = 0
 	for item, relic in pairs( hero.ownedRelics ) do
-		if relic ~= "relic_cursed_cursed_dice" then -- cursed dice cannot be removed
+		if relic ~= "relic_cursed_cursed_dice" and not bHardClear then -- cursed dice cannot be removed
 			relicCount = relicCount + 1
 			hero:RemoveModifierByName( relic )
 			UTIL_Remove( EntIndexToHScript(item) )

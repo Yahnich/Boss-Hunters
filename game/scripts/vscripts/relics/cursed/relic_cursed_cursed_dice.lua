@@ -1,4 +1,4 @@
-relic_cursed_cursed_dice = class({})
+relic_cursed_cursed_dice = class(relicBaseClass)
 
 function relic_cursed_cursed_dice:OnCreated()
 	if IsServer() then
@@ -8,36 +8,12 @@ function relic_cursed_cursed_dice:OnCreated()
 		for i = 1, rerolls + bonusRolls do
 			local roll = RandomInt( 1, 3 )
 			if roll == 1 then
-				self:GetParent():AddRelic( RelicManager:RollRandomGenericRelicForPlayer(pID) )
+				self:GetParent():AddRelic( RelicManager:RollRandomGenericRelicForPlayer(pID), "relic_cursed_cursed_dice" )
 			elseif roll == 2 then
-				self:GetParent():AddRelic( RelicManager:RollRandomCursedRelicForPlayer(pID) )
+				self:GetParent():AddRelic( RelicManager:RollRandomCursedRelicForPlayer(pID), "relic_cursed_cursed_dice" )
 			else
-				self:GetParent():AddRelic( RelicManager:RollRandomUniqueRelicForPlayer(pID) )
+				self:GetParent():AddRelic( RelicManager:RollRandomUniqueRelicForPlayer(pID), "relic_cursed_cursed_dice" )
 			end
 		end
 	end
-end
-
-function relic_cursed_cursed_dice:IsHidden()
-	return true
-end
-
-function relic_cursed_cursed_dice:IsPurgable()
-	return false
-end
-
-function relic_cursed_cursed_dice:RemoveOnDeath()
-	return false
-end
-
-function relic_cursed_cursed_dice:IsPermanent()
-	return true
-end
-
-function relic_cursed_cursed_dice:AllowIllusionDuplicate()
-	return true
-end
-
-function relic_cursed_cursed_dice:GetAttributes()
-	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_PERMANENT
 end

@@ -274,7 +274,7 @@ function CHoldoutGameMode:InitGameMode()
 	Convars:RegisterCommand( "clear_relics", function()
 											if Convars:GetDOTACommandClient() and IsInToolsMode() then
 												local player = Convars:GetDOTACommandClient()
-												RelicManager:ClearRelics(player:GetPlayerID()) 
+												RelicManager:ClearRelics(player:GetPlayerID(), true) 
 											end
 										end, "adding relics",0)
 	Convars:RegisterCommand( "add_relic", function(command, relicName)

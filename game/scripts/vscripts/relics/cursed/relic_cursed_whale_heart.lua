@@ -1,4 +1,4 @@
-relic_cursed_whale_heart = class({})
+relic_cursed_whale_heart = class(relicBaseClass)
 
 function relic_cursed_whale_heart:DeclareFunctions()
 	return {MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE}
@@ -13,7 +13,11 @@ function relic_cursed_whale_heart:GetModifierHPRegenAmplify_Percentage()
 end
 
 function relic_cursed_whale_heart:IsHidden()
-	return true
+	return false
+end
+
+function relic_cursed_whale_heart:IsDebuff()
+	return not self:GetParent():HasModifier("modifier_in_water")
 end
 
 function relic_cursed_whale_heart:IsPurgable()

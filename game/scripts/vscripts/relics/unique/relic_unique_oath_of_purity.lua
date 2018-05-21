@@ -1,4 +1,4 @@
-relic_unique_oath_of_purity = class({})
+relic_unique_oath_of_purity = class(relicBaseClass)
 
 function relic_unique_oath_of_purity:OnCreated()
 	if IsServer() then
@@ -34,22 +34,6 @@ function relic_unique_oath_of_purity:GetModifierBonusStats_Intellect()
 	return 10 * self:GetStackCount()
 end
 
-function relic_unique_oath_of_purity:IsPurgable()
+function relic_unique_oath_of_purity:IsHidden()
 	return false
-end
-
-function relic_unique_oath_of_purity:RemoveOnDeath()
-	return false
-end
-
-function relic_unique_oath_of_purity:IsPermanent()
-	return true
-end
-
-function relic_unique_oath_of_purity:AllowIllusionDuplicate()
-	return true
-end
-
-function relic_unique_oath_of_purity:GetAttributes()
-	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_PERMANENT
 end

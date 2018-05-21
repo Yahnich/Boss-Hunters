@@ -1,4 +1,4 @@
-relic_unique_frozen_crystal = class({})
+relic_unique_frozen_crystal = class(relicBaseClass)
 
 function relic_unique_frozen_crystal:DeclareFunctions()
 	return {MODIFIER_EVENT_ON_ABILITY_FULLY_CAST}
@@ -16,28 +16,4 @@ function relic_unique_frozen_crystal:OnAbilityFullyCast(params)
 			enemy:AddChill(nil, parent, duration, 15)
 		end
 	end
-end
-
-function relic_unique_frozen_crystal:IsHidden()
-	return true
-end
-
-function relic_unique_frozen_crystal:IsPurgable()
-	return false
-end
-
-function relic_unique_frozen_crystal:RemoveOnDeath()
-	return false
-end
-
-function relic_unique_frozen_crystal:IsPermanent()
-	return true
-end
-
-function relic_unique_frozen_crystal:AllowIllusionDuplicate()
-	return true
-end
-
-function relic_unique_frozen_crystal:GetAttributes()
-	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_PERMANENT
 end

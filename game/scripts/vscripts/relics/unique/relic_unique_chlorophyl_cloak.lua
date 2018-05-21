@@ -1,4 +1,4 @@
-relic_unique_chlorophyl_cloak = class({})
+relic_unique_chlorophyl_cloak = class(relicBaseClass)
 
 function relic_unique_chlorophyl_cloak:OnCreated()	
 	if IsServer() then
@@ -32,24 +32,4 @@ end
 
 function relic_unique_chlorophyl_cloak:IsHidden()
 	return self:GetStackCount() == 1
-end
-
-function relic_unique_chlorophyl_cloak:IsPurgable()
-	return false
-end
-
-function relic_unique_chlorophyl_cloak:RemoveOnDeath()
-	return false
-end
-
-function relic_unique_chlorophyl_cloak:IsPermanent()
-	return true
-end
-
-function relic_unique_chlorophyl_cloak:AllowIllusionDuplicate()
-	return true
-end
-
-function relic_unique_chlorophyl_cloak:GetAttributes()
-	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_PERMANENT
 end

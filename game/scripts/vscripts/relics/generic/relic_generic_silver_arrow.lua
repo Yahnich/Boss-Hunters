@@ -1,4 +1,4 @@
-relic_generic_silver_arrow = class({})
+relic_generic_silver_arrow = class(relicBaseClass)
 
 function relic_generic_silver_arrow:DeclareFunctions()
 	return {MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE}
@@ -10,28 +10,4 @@ end
 
 function relic_generic_silver_arrow:GetModifierPreAttack_BonusDamage()
 	return 35
-end
-
-function relic_generic_silver_arrow:IsHidden()
-	return true
-end
-
-function relic_generic_silver_arrow:IsPurgable()
-	return false
-end
-
-function relic_generic_silver_arrow:RemoveOnDeath()
-	return false
-end
-
-function relic_generic_silver_arrow:IsPermanent()
-	return true
-end
-
-function relic_generic_silver_arrow:AllowIllusionDuplicate()
-	return true
-end
-
-function relic_generic_silver_arrow:GetAttributes()
-	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_PERMANENT
 end

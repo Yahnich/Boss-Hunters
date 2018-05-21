@@ -1,4 +1,4 @@
-relic_unique_rotting_flesh = class({})
+relic_unique_rotting_flesh = class(relicBaseClass)
 
 function relic_unique_rotting_flesh:OnCreated()
 	self:SetStackCount(1)
@@ -37,24 +37,4 @@ end
 
 function relic_unique_rotting_flesh:IsHidden()
 	return self:GetStackCount() == 1
-end
-
-function relic_unique_rotting_flesh:IsPurgable()
-	return false
-end
-
-function relic_unique_rotting_flesh:RemoveOnDeath()
-	return false
-end
-
-function relic_unique_rotting_flesh:IsPermanent()
-	return true
-end
-
-function relic_unique_rotting_flesh:AllowIllusionDuplicate()
-	return true
-end
-
-function relic_unique_rotting_flesh:GetAttributes()
-	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_PERMANENT
 end

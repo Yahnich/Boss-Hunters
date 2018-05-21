@@ -1,4 +1,4 @@
-relic_cursed_crystal_skull = class({})
+relic_cursed_crystal_skull = class(relicBaseClass)
 
 function relic_cursed_crystal_skull:OnCreated()
 	self:SetStackCount(0)
@@ -50,28 +50,4 @@ end
 
 function relic_cursed_crystal_skull:IsHidden()
 	return self:GetStackCount() ~= 0
-end
-
-function relic_cursed_crystal_skull:IsPurgable()
-	return false
-end
-
-function relic_cursed_crystal_skull:RemoveOnDeath()
-	return false
-end
-
-function relic_cursed_crystal_skull:IsPermanent()
-	return true
-end
-
-function relic_cursed_crystal_skull:IsDebuff()
-	return self:IsHidden()
-end
-
-function relic_cursed_crystal_skull:AllowIllusionDuplicate()
-	return true
-end
-
-function relic_cursed_crystal_skull:GetAttributes()
-	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_PERMANENT
 end

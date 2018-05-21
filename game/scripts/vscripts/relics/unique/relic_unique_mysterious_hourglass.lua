@@ -1,4 +1,4 @@
-relic_unique_mysterious_hourglass = class({})
+relic_unique_mysterious_hourglass = class(relicBaseClass)
 
 function relic_unique_mysterious_hourglass:OnCreated()
 	self:SetStackCount(3)
@@ -6,24 +6,4 @@ end
 
 function relic_unique_mysterious_hourglass:IsHidden()
 	return self:GetStackCount() == 0
-end
-
-function relic_unique_mysterious_hourglass:IsPurgable()
-	return false
-end
-
-function relic_unique_mysterious_hourglass:RemoveOnDeath()
-	return false
-end
-
-function relic_unique_mysterious_hourglass:IsPermanent()
-	return true
-end
-
-function relic_unique_mysterious_hourglass:AllowIllusionDuplicate()
-	return true
-end
-
-function relic_unique_mysterious_hourglass:GetAttributes()
-	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_PERMANENT
 end

@@ -1,4 +1,4 @@
-relic_cursed_first_sin = class({})
+relic_cursed_first_sin = class(relicBaseClass)
 
 function relic_cursed_first_sin:OnCreated()
 	if IsServer() then 
@@ -13,28 +13,4 @@ function relic_cursed_first_sin:OnIntervalThink()
 			enemy:Taunt(nil, self:GetParent(), 0.51)
 		end
 	end
-end
-
-function relic_cursed_first_sin:IsHidden()
-	return true
-end
-
-function relic_cursed_first_sin:IsPurgable()
-	return false
-end
-
-function relic_cursed_first_sin:RemoveOnDeath()
-	return false
-end
-
-function relic_cursed_first_sin:IsPermanent()
-	return true
-end
-
-function relic_cursed_first_sin:AllowIllusionDuplicate()
-	return true
-end
-
-function relic_cursed_first_sin:GetAttributes()
-	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_PERMANENT
 end

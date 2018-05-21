@@ -1,4 +1,4 @@
-relic_cursed_demon_wings = class({})
+relic_cursed_demon_wings = class(relicBaseClass)
 
 if IsServer() then
 	function relic_cursed_demon_wings:OnCreated()
@@ -24,28 +24,4 @@ end
 
 function relic_cursed_demon_wings:GetModifierMoveSpeedBonus_Percentage()
 	return -33
-end
-
-function relic_cursed_demon_wings:IsHidden()
-	return true
-end
-
-function relic_cursed_demon_wings:IsPurgable()
-	return false
-end
-
-function relic_cursed_demon_wings:RemoveOnDeath()
-	return false
-end
-
-function relic_cursed_demon_wings:IsPermanent()
-	return true
-end
-
-function relic_cursed_demon_wings:AllowIllusionDuplicate()
-	return true
-end
-
-function relic_cursed_demon_wings:GetAttributes()
-	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_PERMANENT
 end

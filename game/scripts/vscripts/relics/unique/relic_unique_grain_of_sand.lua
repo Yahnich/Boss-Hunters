@@ -1,4 +1,4 @@
-relic_unique_grain_of_sand = class({})
+relic_unique_grain_of_sand = class(relicBaseClass)
 
 function relic_unique_grain_of_sand:OnCreated()
 	self.delay = 15
@@ -22,26 +22,6 @@ function relic_unique_grain_of_sand:OnIntervalThink()
 	self:SetDuration(self.delay, true)
 end
 
-function relic_unique_grain_of_sand:DestroyOnExpire()
+function relic_unique_grain_of_sand:IsHidden()
 	return false
-end
-
-function relic_unique_grain_of_sand:IsPurgable()
-	return false
-end
-
-function relic_unique_grain_of_sand:RemoveOnDeath()
-	return false
-end
-
-function relic_unique_grain_of_sand:IsPermanent()
-	return true
-end
-
-function relic_unique_grain_of_sand:AllowIllusionDuplicate()
-	return true
-end
-
-function relic_unique_grain_of_sand:GetAttributes()
-	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_PERMANENT
 end

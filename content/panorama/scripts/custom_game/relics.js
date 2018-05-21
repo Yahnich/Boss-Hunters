@@ -91,7 +91,6 @@ function HandleRelicMenu()
 
 function CreateRelicSelection(relic, id)
 {
-	$.Msg(relic)
 	var holder = $("#RelicChoiceHolder")
 	$.CreatePanel("Panel", holder, "").SetHasClass("VerticalSeperator", true)
 	var relicChoice = $.CreatePanel("Panel", holder, "");
@@ -144,9 +143,8 @@ function UpdateRelicInventory(){
 	var relicList = CustomNetTables.GetTableValue("relics", "relic_inventory_player_" + selectedHero)
 	if(relicList != null){
 		for(var name in relicList){
-			$.Msg(relicList[name], name)
 			if(name != 0){
-				CreateRelicPanel(name)
+				CreateRelicPanel(relicList[name])
 			}
 		}
 	}

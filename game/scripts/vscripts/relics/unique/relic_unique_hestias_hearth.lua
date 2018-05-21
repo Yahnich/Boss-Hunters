@@ -1,4 +1,4 @@
-relic_unique_hestias_hearth = class({})
+relic_unique_hestias_hearth = class(relicBaseClass)
 
 function relic_unique_hestias_hearth:OnCreated()
 	if IsServer() then
@@ -14,31 +14,7 @@ function relic_unique_hestias_hearth:OnIntervalThink()
 	end
 end
 
-function relic_unique_hestias_hearth:IsHidden()
-	return true
-end
-
-function relic_unique_hestias_hearth:IsPurgable()
-	return false
-end
-
-function relic_unique_hestias_hearth:RemoveOnDeath()
-	return false
-end
-
-function relic_unique_hestias_hearth:IsPermanent()
-	return true
-end
-
-function relic_unique_hestias_hearth:AllowIllusionDuplicate()
-	return true
-end
-
-function relic_unique_hestias_hearth:GetAttributes()
-	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_PERMANENT
-end
-
-modifier_relic_unique_hestias_hearth = class({})
+modifier_relic_unique_hestias_hearth = class(relicBaseClass)
 function modifier_relic_unique_hestias_hearth:DeclareFunctions()
 	return {MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT}
 end

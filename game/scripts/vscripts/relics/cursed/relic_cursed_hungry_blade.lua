@@ -1,4 +1,4 @@
-relic_cursed_hungry_blade = class({})
+relic_cursed_hungry_blade = class(relicBaseClass)
 
 function relic_cursed_hungry_blade:OnCreated()
 	if IsServer() then
@@ -38,28 +38,4 @@ end
 
 function relic_cursed_hungry_blade:IsDebuff()
 	return self:GetDuration() == 0
-end
-
-function relic_cursed_hungry_blade:DestroyOnExpire()
-	return false
-end
-
-function relic_cursed_hungry_blade:IsPurgable()
-	return false
-end
-
-function relic_cursed_hungry_blade:RemoveOnDeath()
-	return false
-end
-
-function relic_cursed_hungry_blade:IsPermanent()
-	return true
-end
-
-function relic_cursed_hungry_blade:AllowIllusionDuplicate()
-	return true
-end
-
-function relic_cursed_hungry_blade:GetAttributes()
-	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_PERMANENT
 end

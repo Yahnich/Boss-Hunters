@@ -1,4 +1,4 @@
-relic_unique_limit_breaker = class({})
+relic_unique_limit_breaker = class(relicBaseClass)
 
 function relic_unique_limit_breaker:OnCreated()
 	self.batdecrease = self:GetParent():GetBaseAttackTime() * ( 7 / self:GetParent():GetAttackSpeed() )
@@ -18,30 +18,4 @@ function relic_unique_limit_breaker:GetBaseAttackTime_Bonus(params)
 	if self:GetParent():GetAttackSpeed() > 7 then
 		return self.batdecrease
 	end
-end 
-
-function relic_unique_limit_breaker:IsHidden()
-	return true
 end
-
-function relic_unique_limit_breaker:IsPurgable()
-	return false
-end
-
-function relic_unique_limit_breaker:RemoveOnDeath()
-	return false
-end
-
-function relic_unique_limit_breaker:IsPermanent()
-	return true
-end
-
-function relic_unique_limit_breaker:AllowIllusionDuplicate()
-	return true
-end
-
-function relic_unique_limit_breaker:GetAttributes()
-	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_PERMANENT
-end
-
-

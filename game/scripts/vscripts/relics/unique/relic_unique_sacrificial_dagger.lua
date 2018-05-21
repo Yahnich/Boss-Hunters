@@ -1,4 +1,4 @@
-relic_unique_sacrificial_dagger = class({})
+relic_unique_sacrificial_dagger = class(relicBaseClass)
 
 function relic_unique_sacrificial_dagger:OnCreated()
 	self:SetStackCount(1)
@@ -27,24 +27,4 @@ end
 
 function relic_unique_sacrificial_dagger:IsHidden()
 	return self:GetStackCount() == 0
-end
-
-function relic_unique_sacrificial_dagger:IsPurgable()
-	return false
-end
-
-function relic_unique_sacrificial_dagger:RemoveOnDeath()
-	return false
-end
-
-function relic_unique_sacrificial_dagger:IsPermanent()
-	return true
-end
-
-function relic_unique_sacrificial_dagger:AllowIllusionDuplicate()
-	return true
-end
-
-function relic_unique_sacrificial_dagger:GetAttributes()
-	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_PERMANENT
 end

@@ -1,4 +1,4 @@
-relic_unique_ornate_timepiece = class({})
+relic_unique_ornate_timepiece = class(relicBaseClass)
 
 function relic_unique_ornate_timepiece:OnCreated()
 	if IsServer() then
@@ -31,28 +31,4 @@ function relic_unique_ornate_timepiece:OnDestroy()
 			end
 		end
 	end
-end
-
-function relic_unique_ornate_timepiece:IsHidden()
-	return true
-end
-
-function relic_unique_ornate_timepiece:IsPurgable()
-	return false
-end
-
-function relic_unique_ornate_timepiece:RemoveOnDeath()
-	return false
-end
-
-function relic_unique_ornate_timepiece:IsPermanent()
-	return true
-end
-
-function relic_unique_ornate_timepiece:AllowIllusionDuplicate()
-	return true
-end
-
-function relic_unique_ornate_timepiece:GetAttributes()
-	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_PERMANENT
 end
