@@ -120,12 +120,12 @@ function RelicManager:SkipRelicSelection(userid, event)
 			relicType = 2
 		end
 		hero.internalRNGPools[relicType][playerRelics["1"][id]] = nil
-		if not hero.hasRerolledThisRound then
-			print(relicType)
-			RelicManager:RollRelicsForPlayer(pID, relicType)
-		end
 	end
-	hero.hasRerolledThisRound = true
+	if not hero.hasRerolledThisRound then
+		RelicManager:RollRelicsForPlayer(pID)
+		hero.hasRerolledThisRound = true
+	end
+	
 	if hero:HasRelic("relic_unique_mysterious_hourglass") and hero:FindModifierByName("relic_unique_mysterious_hourglass"):GetStackCount() > 0 then
 		hero:FindModifierByName("relic_unique_mysterious_hourglass"):DecrementStackCount()
 		self:RollRelicsForPlayer(pID)
@@ -162,13 +162,15 @@ function RelicManager:RollRelicsForPlayer(pID, relicType)
 	end
 	
 	local dropTable = {}
-	local roll = RandomInt(1,5)
-	if (roll == 1 and not relicType) or relicType == 3 then
-		table.insert( dropTable, self:RollRandomUniqueRelicForPlayer(pID) )
-	elseif (roll == 2 and not relicType) or relicType == 2 then
-		table.insert( dropTable, self:RollRandomCursedRelicForPlayer(pID) )
-	else
-		table.insert( dropTable, self:RollRandomGenericRelicForPlayer(pID) )
+	for i = 1, 3 do
+		local roll = RandomInt(1,6)
+		if (roll == 1 and not relicType) or relicType == 3 then
+			table.insert( dropTable, self:RollRandomUniqueRelicForPlayer(pID) )
+		elseif (roll == 2 and not relicType) or relicType == 2 then
+			table.insert( dropTable, self:RollRandomCursedRelicForPlayer(pID) )
+		else
+			table.insert( dropTable, self:RollRandomGenericRelicForPlayer(pID) )
+		end
 	end
 	table.insert( toNumPlayerRelics, dropTable )
 
@@ -251,7 +253,7 @@ function RelicManager:ClearRelics(pID, bHardClear)
 	hero.internalRNGPools[2] = self.cursedDropTable
 	hero.internalRNGPools[3] = self.uniqueDropTable
 
-	CustomNetTables:SetTableValue("relics", "relic_inventory_player_"..hero:entindex(), {})
+	CustomNetTables:SetTableValue("relics", "relic_inventory_player_"..hero:entindex(), self.ownedRelics)
 	return relicCount
 end
 
@@ -278,7 +280,7 @@ function RelicManager:RemoveRelicOnPlayer(relic, pID, bAll)
 			if not bAll then break end
 		end
 	end
-	CustomNetTables:SetTableValue("relics", "relic_inventory_player_"..hero:entindex(), {})
+	CustomNetTables:SetTableValue("relics", "relic_inventory_player_"..hero:entindex(), self.ownedRelics)
 end
 
 function CDOTA_BaseNPC_Hero:AddRelic(relic)
@@ -296,6 +298,6 @@ function CDOTA_BaseNPC_Hero:AddRelic(relic)
 	self.ownedRelics[relicEntity:entindex()] = relic
 	self:AddNewModifier( self, relicEntity, relic, {} )
 	
-	CustomNetTables:SetTableValue("relics", "relic_inventory_player_"..self:entindex(), {})
+	CustomNetTables:SetTableValue("relics", "relic_inventory_player_"..self:entindex(), self.ownedRelics)
 end
 

@@ -3365,7 +3365,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"powershot_damage"		"180 260 340 420 500 580 660"
+				"powershot_damage"		"180 270 360 450 540 630 720"
 				"LinkedSpecialBonus"	"special_bonus_unique_windranger_3"
 			}
 			"02"

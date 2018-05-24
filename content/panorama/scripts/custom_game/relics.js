@@ -15,6 +15,7 @@ function SelectRelic(type)
 	if(hasQueuedAction == false)
 	{
 		var relicTable = CustomNetTables.GetTableValue( "game_info", "relic_drops");
+		
 		var playerRelics = relicTable[localID];
 		var firstDrops = playerRelics[1];
 		var relic = firstDrops[type]
@@ -51,7 +52,7 @@ function AddHover(panelID)
 	var buttonPanel = $("#"+panelID)
 	buttonPanel.SetHasClass("ButtonHover", true)
 	if(panelID == "SkipButton"){
-		$.DispatchEvent("DOTAShowTextTooltip", buttonPanel, "Skipping a relic rerolls the relic into a new relic of the same type as well as removing the skipped relic from your pool of possibilities.")
+		$.DispatchEvent("DOTAShowTextTooltip", buttonPanel, "Skipping a relic rerolls the relics once as well as removing the skipped relic from your pool of possibilities.")
 	}
 }
 
@@ -71,6 +72,7 @@ function HandleRelicMenu()
 	var relicTable = CustomNetTables.GetTableValue( "game_info", "relic_drops")
 	var playerRelics = relicTable[localID]
 	var lastDrop = playerRelics[1]
+	$.Msg(relicTable)
 	if(lastDrop != null){
 		var holder = $("#RelicChoiceHolder")
 		for(var choice of holder.Children()){
@@ -99,7 +101,7 @@ function CreateRelicSelection(relic, id)
 	var selectButton = relicChoice.FindChildTraverse("SelectButtonSnippet");
 	selectButton.SetPanelEvent("onactivate", function(){SelectRelic(id)})
 	selectButton.SetPanelEvent("onmouseover", function(){selectButton.SetHasClass("ButtonHover", true)})
-	selectButton.SetPanelEvent("onmouseout", function(){selectButton.SetHasClass("ButtonHover", true)})
+	selectButton.SetPanelEvent("onmouseout", function(){selectButton.SetHasClass("ButtonHover", false)})
 	var typeLabel = relicChoice.FindChildTraverse("RelicTypeSnippet")
 	if(relic.match(/unique/g) != null){
 		relicType = "RELIC_TYPE_UNIQUE"
@@ -119,7 +121,6 @@ function CreateRelicSelection(relic, id)
 }
 
 $("#RelicInventoryPanel").SetHasClass("IsHidden", true)
-$("#RelicInventoryButton").SetHasClass("IsHidden", true)
 
 function OpenRelicInventory()
 {

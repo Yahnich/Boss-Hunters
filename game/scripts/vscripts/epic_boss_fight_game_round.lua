@@ -212,7 +212,8 @@ function CHoldoutGameRound:End(bWonRound)
 				if redKey then hero.internalRelicRNG = math.max(hero.internalRelicRNG, 66) end
 				-- local roll = RollPercentage(hero.internalRelicRNG + hero.internalRelicPRNGAdder)
 				-- if hero and roll and not (greed or pride) then
-				if hero and not (greed or pride) then
+				print(self._nRoundNumber, "round")
+				if hero and self._nRoundNumber % 5 == 0 and not (greed or pride) then
 					RelicManager:RollRelicsForPlayer( pID )
 					hero.internalRelicPRNGAdder = -(baseChance / 4)
 					if redKey then redKey:SetStackCount( 0 ) end
