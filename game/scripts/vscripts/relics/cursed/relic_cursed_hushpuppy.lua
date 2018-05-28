@@ -19,7 +19,7 @@ function relic_cursed_hushpuppy:OnAbilityStart(params)
 end
 
 function relic_cursed_hushpuppy:OnAbilityFullyCast(params)
-	if params.unit == self:GetParent() and self:GetDuration() == -1 then
+	if params.unit == self:GetParent() and self:GetDuration() == -1 and not self:GetParent():HasModifier("relic_unique_ritual_candle") then
 		params.unit:RemoveModifierByName("modifier_status_immunity")
 		params.unit:Silence(nil, self:GetParent(), 3)
 		self:SetDuration(15.1, true)

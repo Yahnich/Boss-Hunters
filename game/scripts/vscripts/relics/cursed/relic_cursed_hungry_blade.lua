@@ -8,7 +8,7 @@ function relic_cursed_hungry_blade:OnCreated()
 end
 function relic_cursed_hungry_blade:OnIntervalThink()
 	self:StartIntervalThink(0.33)
-	if GameRules:IsRoundGoing() then
+	if GameRules:IsRoundGoing() and not self:GetParent():HasModifier("relic_unique_ritual_candle") then
 		ApplyDamage({victim = self:GetParent(), attacker = self:GetParent(), damage = self:GetParent():GetMaxHealth() * 0.05 * 0.33, damage_type = DAMAGE_TYPE_PURE, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_HPLOSS + DOTA_DAMAGE_FLAG_NON_LETHAL})
 	end
 end
@@ -26,7 +26,7 @@ function relic_cursed_hungry_blade:GetModifierAttackSpeedBonus_Constant()
 end
 
 function relic_cursed_hungry_blade:GetModifierMoveSpeedBonus_Percentage()
-	return -15
+	if not self:GetParent():HasModifier("relic_unique_ritual_candle") then return -15 end
 end
 
 function relic_cursed_hungry_blade:OnAttackLanded(params)
@@ -38,4 +38,8 @@ end
 
 function relic_cursed_hungry_blade:IsDebuff()
 	return self:GetDuration() == 0
+end
+
+function relic_cursed_hungry_blade:IsHidden()
+	return false
 end

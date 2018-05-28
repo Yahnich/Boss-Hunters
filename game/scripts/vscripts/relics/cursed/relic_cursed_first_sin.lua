@@ -8,7 +8,7 @@ function relic_cursed_first_sin:OnCreated()
 end
 
 function relic_cursed_first_sin:OnIntervalThink()
-	if self:GetParent():IsAlive() then
+	if self:GetParent():IsAlive() and not self:GetParent():HasModifier("relic_unique_ritual_candle") then
 		for _, enemy in ipairs( self:GetParent():FindEnemyUnitsInRadius( Vector(0,0,0), -1 ) ) do
 			enemy:Taunt(nil, self:GetParent(), 0.51)
 		end

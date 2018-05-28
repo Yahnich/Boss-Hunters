@@ -5,11 +5,11 @@ function relic_cursed_icon_of_gluttony:DeclareFunctions()
 end
 
 function relic_cursed_icon_of_gluttony:GetModifierHPRegenAmplify_Percentage()
-	return -33
+	if not self:GetParent():HasModifier("relic_unique_ritual_candle") then return -33 end
 end
 
 function relic_cursed_icon_of_gluttony:GetModifierMPRegenAmplify_Percentage()
-	return -33
+	if not self:GetParent():HasModifier("relic_unique_ritual_candle") then return -33 end
 end
 
 function relic_cursed_icon_of_gluttony:OnDeath(params)

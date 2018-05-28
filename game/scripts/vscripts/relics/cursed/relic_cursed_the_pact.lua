@@ -28,5 +28,5 @@ function relic_cursed_the_pact:GetModifierPhysicalArmorBonus()
 end
 
 function relic_cursed_the_pact:GetDisableHealing(params)
-	return 1
+	if not self:GetParent():HasModifier("relic_unique_ritual_candle") then return 1 end
 end

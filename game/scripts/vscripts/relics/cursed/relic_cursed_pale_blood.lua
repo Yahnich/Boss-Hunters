@@ -23,7 +23,7 @@ function relic_cursed_pale_blood:DeclareFunctions()
 end
 
 function relic_cursed_pale_blood:GetModifierExtraHealthBonus()
-	return self:GetStackCount() * (-1)
+	if not self:GetParent():HasModifier("relic_unique_ritual_candle") then return self:GetStackCount() * (-1) end
 end
 
 function relic_cursed_pale_blood:OnTakeDamage(params)

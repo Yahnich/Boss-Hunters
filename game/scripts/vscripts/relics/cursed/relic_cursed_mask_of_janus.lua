@@ -4,8 +4,9 @@ if IsServer() then
 	function relic_cursed_mask_of_janus:RerollRelic()
 		local hero = self:GetParent()
 		local pID = hero:GetPlayerID()
+		if self:GetParent():HasModifier("relic_unique_ritual_candle") then return end
 		local relicList = {}
-		for relic, item in pairs( hero.ownedRelics ) do
+		for item, relic in pairs( hero.ownedRelics ) do
 			if relic ~= "relic_cursed_mask_of_janus" then
 				table.insert(relicList, relic)
 			end

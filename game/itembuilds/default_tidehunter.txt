@@ -5,42 +5,40 @@
 	"Title"			"Recommended items for Tidehunter"
 	
 	"Items"
-	{
+	{	
 		"#DOTA_Item_Build_Starting_Items"
 		{
-			"item"	"item_hand_of_midas"
-			"item"	"item_heart"
+			"item"	"item_crystal_of_life"
+			"item"	"item_ring_of_mana"
+			"item"	"item_pages_buckler"
 		}
 		"#DOTA_Item_Build_Early_Game"
-		{
-			"item"  "item_blade_mail2"
-			"item"	"item_heart_titan"
-			"item"	"item_titan_armor"
-			"item"	"item_s_a_y_2"
-			"item"	"item_midas_2"
+		{	
+			"item"	"item_angelic_guard"
+			"item"	"item_jar_of_souls"
+			"item"	"item_penitent_mail"
+			"item"	"item_culling_greataxe"
 		}
 		"#DOTA_Item_Build_Mid_Game"
 		{
-			"item"  "item_blade_mail3"
-			"item"	"item_heart_divine"
-			"item"	"item_divine_armor"
-			"item"	"item_tank_booster"
-			"item"	"item_s_a_y_3"
+			"item"	"item_lazarus_rags"
+			"item"	"item_wrathbearers_robes"
+			"item"	"item_gem_of_inner_power"
 		}
 		"#DOTA_Item_Build_Late_Game"
 		{
-			"item"  "item_blade_mail4"
-			"item"	"item_heart_bahamut"
-			"item"	"item_bahamut_chest"
-			"item"	"item_s_a_y_4"
+			"item"	"item_behemoths_heart"
+			"item"	"item_gauntlet_of_might"
 		}
-		"#DOTA_Item_Build_End_Game"
+		"#DOTA_Item_Build_Other_Items"
 		{
-			"item"	"item_booster_void"
-			"item"	"item_octarine_core5"
-			"item"  "item_blink_boots"
- 			"item"  "item_heart_boots"
-			"item"	"item_ultimate_amulet"
+			"item"	"item_dark_ones_blessing"
+			"item"	"item_berserkers_cape"
+			"item"	"item_dark_wand"
+			"item"	"item_ogre_seal_totem"
+			"item"	"item_hurricane_blade"
+			"item"	"item_arcane_accelerator"
+			"item"	"item_blood_gods_mask"
 		}
 	}
 }

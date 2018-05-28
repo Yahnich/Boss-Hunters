@@ -475,7 +475,7 @@ function CHoldoutGameMode:FilterHeal( filterTable )
 	
 	if healer and healer:IsRealHero() and target and healer ~= target and healer:HasRelic("relic_cursed_bloody_silk") then
 		target:HealEvent(50, nil, healer, true)
-		ApplyDamage({victim = healer, attacker = healer, damage = 20, damage_type = DAMAGE_TYPE_PURE, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION })
+		if not self:GetParent():HasModifier("relic_unique_ritual_candle") then ApplyDamage({victim = healer, attacker = healer, damage = 20, damage_type = DAMAGE_TYPE_PURE, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION }) end
 	end
 	
 	if healer:GetTeam() == DOTA_TEAM_GOODGUYS then
@@ -690,6 +690,21 @@ function CHoldoutGameMode:OnAbilityLearned(event)
 	local pID = event.PlayerID
 	if pID and string.match(abilityname, "special_bonus" ) then
 		local hero = PlayerResource:GetSelectedHeroEntity( pID )
+		
+		if hero:GetLevel() < (hero.talentsSkilled + 1) * 10 then
+			local talent = hero:FindAbilityByName(abilityname)
+			talent:SetLevel(0)
+			for _, modifier in ipairs( hero:FindAllModifiers() ) do
+				if modifier:GetAbility() then
+					if not modifier:GetAbility():IsInnateAbility() and modifier:GetCaster() == hero and not modifier:GetAbility():IsItem() and modifier:GetAbility():GetName() ~= "item_relic_handler" then -- destroy passive modifiers and any buffs
+						modifier:Destroy()
+					end
+				end
+			end
+			hero:SetAbilityPoints( hero:GetAbilityPoints() + 1 )
+			return false
+		end
+		
 		local talentData = CustomNetTables:GetTableValue("talents", tostring(hero:entindex())) or {}
 		if GameRules.AbilityKV[abilityname] then
 			if GameRules.AbilityKV[abilityname]["LinkedModifierName"] then
@@ -766,8 +781,10 @@ function CHoldoutGameMode:OnAbilityUsed(event)
 		abilityused:EndCooldown()
 		if abilityused:GetDuration() > 0 then
 			local duration = abilityused:GetDuration()
+			if modifier.GetModifierStatusAmplify_Percentage then
+				duration = duration * (1 + modifier:GetModifierStatusAmplify_Percentage( params )/100)
+			end
 			if abilityname == "night_stalker_crippling_fear" and not GameRules:IsDaytime() then duration = abilityused:GetTalentSpecialValueFor("duration_night") end
-			print(duration, abilityname)
 			abilityused:StartDelayedCooldown(duration)
 		else
 			abilityused:StartCooldown(abilityused:GetCooldown(-1))

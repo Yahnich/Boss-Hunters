@@ -17,5 +17,5 @@ function relic_cursed_battle_brew:GetModifierAttackSpeedBonus_Constant()
 end
 
 function relic_cursed_battle_brew:GetModifierMiss_Percentage()
-	return 20
+	if not self:GetParent():HasModifier("relic_unique_ritual_candle") then return 20 end
 end

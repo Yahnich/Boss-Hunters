@@ -52,7 +52,7 @@ function AddHover(panelID)
 	var buttonPanel = $("#"+panelID)
 	buttonPanel.SetHasClass("ButtonHover", true)
 	if(panelID == "SkipButton"){
-		$.DispatchEvent("DOTAShowTextTooltip", buttonPanel, "Skipping a relic rerolls the relics once as well as removing the skipped relic from your pool of possibilities.")
+		$.DispatchEvent("DOTAShowTextTooltip", buttonPanel, "Skipping a relic removes the relics from your pool and gives you 2 generic relics.")
 	}
 }
 
@@ -171,7 +171,7 @@ function CreateRelicPanel(name)
 
 function ShowRelicTooltip()
 {
-	$.DispatchEvent("DOTAShowTextTooltip", $("#RelicInventoryButton"), "Relics are permanent bonuses that appear at the end of a round.")
+	$.DispatchEvent("DOTAShowTextTooltip", $("#RelicInventoryButton"), "Relics are permanent bonuses that appear at the end of every 5th round.")
 }
 
 function HideRelicTooltip()

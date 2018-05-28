@@ -26,18 +26,17 @@ STATUS_REDUCTION_TABLE = {0,5,10,15,20,30,35,40,45,50,60}
 ALL_STATS = 2
 
 function modifier_stats_system_handler:OnCreated()
-	self:OnIntervalThink()
-	self:StartIntervalThink(0.5)
+	self:UpdateStatValues()
 end
 
-function modifier_stats_system_handler:OnIntervalThink()
+function modifier_stats_system_handler:OnStackCountChanged(iStacks)
 	self:UpdateStatValues()
-	if IsServer() then self:GetParent():CalculateStatBonus() end
 end
 
 function modifier_stats_system_handler:UpdateStatValues()
 	-- OTHER
-	local netTable = CustomNetTables:GetTableValue("stats_panel", tostring(self:GetCaster():entindex()) )
+	local netTable = CustomNetTables:GetTableValue("stats_panel", tostring(self:GetCaster():entindex()) ) or {}
+	
 	self.ms = MOVESPEED_TABLE[tonumber(netTable["ms"]) + 1]
 	self.mp = 400 + MANA_TABLE[tonumber(netTable["mp"]) + 1]
 	self.mpr = 4 + MANA_REGEN_TABLE[tonumber(netTable["mpr"]) + 1]
@@ -60,6 +59,9 @@ function modifier_stats_system_handler:UpdateStatValues()
 	self.sr = STATUS_REDUCTION_TABLE[tonumber(netTable["sr"]) + 1]
 	
 	self.allStats =  ALL_STATS * tonumber(netTable["all"])
+	
+	
+	if IsServer() then self:GetParent():CalculateStatBonus() end
 end
 
 function modifier_stats_system_handler:DeclareFunctions()

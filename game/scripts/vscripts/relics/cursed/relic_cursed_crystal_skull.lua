@@ -31,11 +31,11 @@ function relic_cursed_crystal_skull:DeclareFunctions()
 end
 
 function relic_cursed_crystal_skull:GetModifierPhysicalArmorBonus()
-	return (self.total_armor or 0) * (-1)
+	if not self:GetParent():HasModifier("relic_unique_ritual_candle") then return (self.total_armor or 0) * (-1) end
 end
 
 function relic_cursed_crystal_skull:GetModifierMagicalResistanceBonus()
-	return (self.magic_resistance or 0) * (-1)
+	if not self:GetParent():HasModifier("relic_unique_ritual_candle") then return (self.magic_resistance or 0) * (-1) end
 end
 
 function relic_cursed_crystal_skull:GetModifierInvisibilityLevel()

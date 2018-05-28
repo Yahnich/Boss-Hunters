@@ -29,5 +29,5 @@ function relic_cursed_titans_jawbone:GetModifierExtraHealthBonus()
 end
 
 function relic_cursed_titans_jawbone:GetModifierTotalDamageOutgoing_Percentage()
-	return -33
+	if not self:GetParent():HasModifier("relic_unique_ritual_candle") then return -33 end
 end

@@ -171,7 +171,7 @@
 			"02"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"maximum_resistance"			"65 70 75 80 85 90 95 100"
+				"maximum_resistance"			"65 70 75 80 85 90 95"
 			}
 			"03"
 			{

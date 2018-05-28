@@ -3,9 +3,9 @@ night_stalker_crippling_fear_ebf = class({})
 function night_stalker_crippling_fear_ebf:GetBehavior()
 	local caster = self:GetCaster()
 	if caster:HasTalent("special_bonus_unique_night_stalker_crippling_fear_1") then
-		return DOTA_ABILITY_BEHAVIOR_POINT + DOTA_ABILITY_BEHAVIOR_OPTIONAL_UNIT_TARGET
+		return DOTA_ABILITY_BEHAVIOR_POINT + DOTA_ABILITY_BEHAVIOR_UNIT_TARGET
 	else
-		return DOTA_ABILITY_BEHAVIOR_UNIT_TARGET
+		return DOTA_ABILITY_BEHAVIOR_UNIT_TARGET	
 	end
 end
 
@@ -23,6 +23,7 @@ function night_stalker_crippling_fear_ebf:OnSpellStart()
 	
 	local duration = self:GetTalentSpecialValueFor("duration")
 	
+	EmitSoundOn("Hero_Nightstalker.Trickling_Fear", caster)
 	if caster:HasTalent("special_bonus_unique_night_stalker_crippling_fear_1") then
 		local startPos = caster:GetAbsOrigin()
 		local endPos = startPos + CalculateDirection(target, caster) * self:GetTrueCastRange()
@@ -55,6 +56,7 @@ end
 
 function modifier_night_stalker_crippling_fear_ebf_silence:OnDestroy()
 	if IsServer() then
+		EmitSoundOn("Hero_Nightstalker.Trickling_Fear_end", self:GetParent() )
 		self:GetAbility():EndDelayedCooldown()
 	end
 end

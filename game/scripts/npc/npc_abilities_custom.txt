@@ -1356,7 +1356,7 @@
 					            "EndRadius"         "%width"
 					            "MoveSpeed"         "%speed"
 					            "TargetTeams"       "DOTA_UNIT_TARGET_TEAM_ENEMY"
-					            "TargetTypes"       "DOTA_UNIT_TARGET_ALL"
+					            "TargetTypes"       "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 					            "FixedDistance"     "10000"
 					            "ProvidesVision"    "0"
 					            "HasFrontalCone"    "0"

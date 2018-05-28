@@ -5,6 +5,7 @@ function relic_cursed_cursed_dice:OnCreated()
 		local pID = self:GetParent():GetPlayerID()
 		local rerolls = RelicManager:ClearRelics( pID )
 		local bonusRolls = RandomInt(0, math.floor(rerolls/2) )
+		if self:GetParent():HasModifier("relic_unique_ritual_candle") then return end
 		for i = 1, rerolls + bonusRolls do
 			local roll = RandomInt( 1, 3 )
 			if roll == 1 then

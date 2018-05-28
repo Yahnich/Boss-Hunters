@@ -95,8 +95,7 @@ function StatsScreen:ProcessStatsUpgrade(userid, event)
 	netTable[skill] = tostring(tonumber(netTable[skill]) + 1)
 	CustomNetTables:SetTableValue("stats_panel", tostring(entindex), netTable)
 	hero:SetAbilityPoints( math.max(0, hero:GetAbilityPoints() - 1) )
-	
-	hero:CalculateStatBonus()
+	hero:FindModifierByName("modifier_stats_system_handler"):IncrementStackCount()
 	CustomGameEventManager:Send_ServerToAllClients("dota_player_upgraded_stats", {playerID = pID} )
 end
 

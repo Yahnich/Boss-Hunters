@@ -37,6 +37,7 @@
 		"relic_generic_barbedbell"						"1"
 		"relic_generic_stone_fist"						"1"
 		"relic_generic_spinning_top"					"1"
+		"relic_generic_tiger_blood"						"1"
 	}
 	"relic_type_cursed"
 	{
@@ -74,6 +75,8 @@
 		"relic_cursed_icon_of_lust"						"1"
 		"relic_cursed_icon_of_envy"						"0"
 		"relic_cursed_mask_of_janus"					"1"
+		"relic_cursed_heavy_tome"						"1"
+		"relic_cursed_thorned_bandages"					"1"
 	}
 	"relic_type_unique"
 	{
@@ -113,5 +116,8 @@
 		"relic_unique_charons_obol"						"1"
 		"relic_unique_kashas_wheelbarrow"				"1"
 		"relic_unique_inversion_stone"					"1"
+		"relic_unique_ritual_candle"					"1"
+		"relic_unique_lunar_needle"						"1"
+		"relic_unique_cold_heart"						"1"
 	}
 }

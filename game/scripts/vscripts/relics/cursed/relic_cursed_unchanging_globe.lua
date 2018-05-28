@@ -14,7 +14,7 @@ function relic_cursed_unchanging_globe:DeclareFunctions()
 end
 
 function relic_cursed_unchanging_globe:GetModifierBonusStats_Intellect()
-	return self.int
+	if not self:GetParent():HasModifier("relic_unique_ritual_candle") then return self.int end
 end
 
 function relic_cursed_unchanging_globe:OnAbilityFullyCast(params)

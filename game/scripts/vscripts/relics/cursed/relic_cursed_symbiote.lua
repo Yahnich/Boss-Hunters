@@ -16,7 +16,7 @@ function relic_cursed_symbiote:DeclareFunctions()
 end
 
 function relic_cursed_symbiote:GetModifierSpellsRequireHP()
-	return 1
+	if not self:GetParent():HasModifier("relic_unique_ritual_candle") then return 1 end
 end
 
 function relic_cursed_symbiote:GetModifierHealthBonus()

@@ -23,5 +23,5 @@ function relic_cursed_demon_wings:DeclareFunctions()
 end
 
 function relic_cursed_demon_wings:GetModifierMoveSpeedBonus_Percentage()
-	return -33
+	if not self:GetParent():HasModifier("relic_unique_ritual_candle") then return -33 end
 end

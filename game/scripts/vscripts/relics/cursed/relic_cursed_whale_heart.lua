@@ -6,18 +6,18 @@ end
 
 function relic_cursed_whale_heart:GetModifierHPRegenAmplify_Percentage()
 	local regen = 50
-	if not self:GetParent():HasModifier("modifier_in_water") then
+	if not self:GetParent():HasModifier("modifier_in_water") and not self:GetParent():HasModifier("relic_unique_ritual_candle") then
 		regen = -50
 	end
 	return regen
 end
 
 function relic_cursed_whale_heart:IsHidden()
-	return false
+	return not self:GetParent():HasModifier("modifier_in_water")
 end
 
 function relic_cursed_whale_heart:IsDebuff()
-	return not self:GetParent():HasModifier("modifier_in_water")
+	return not self:GetParent():HasModifier("modifier_in_water") and not self:GetParent():HasModifier("relic_unique_ritual_candle")
 end
 
 function relic_cursed_whale_heart:IsPurgable()

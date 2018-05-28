@@ -13,5 +13,5 @@ function relic_cursed_unstoppable_force:GetModifierMoveSpeed_AbsoluteMin()
 end
 
 function relic_cursed_unstoppable_force:GetModifierTurnRate_Percentage()
-	return -80
+	if not self:GetParent():HasModifier("relic_unique_ritual_candle") then return -80 end
 end

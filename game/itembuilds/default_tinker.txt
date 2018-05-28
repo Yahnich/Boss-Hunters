@@ -8,33 +8,36 @@
 	{	
 		"#DOTA_Item_Build_Starting_Items"
 		{
-			"item"	"item_midas"
-			"item"	"item_midas_2"
-			"item"	"item_force_boots"
+			"item"	"item_dagger_of_escape"
+			"item"	"item_ring_of_mana"
+			"item"	"item_sorcerers_staff"
 		}
-
 		"#DOTA_Item_Build_Early_Game"
 		{	
-			"item"	"item_aether_lens"	
-			"item"	"item_octarine_core"
-			"item"	"item_sunium_lens"
-			"item"	"item_ghost"
+			"item"	"item_dark_wand"
+			"item"	"item_archmages_orb"
 		}
-		"#DOTA_Item_Build_Core_Items"
+		"#DOTA_Item_Build_Mid_Game"
 		{
-			"item"	"item_octarine_core4"
-			"item"	"item_sunium_lens"
-			"item"	"item_blink_boots"
-			"item"	"item_pixels_guard"
+			"item"	"item_dark_wand_3"
 			"item"	"item_ultimate_scepter"
+			"item"	"item_lazarus_rags"
+			"item"	"item_warlocks_reliquary"
 		}
-		"#DOTA_Item_Build_Luxury"
+		"#DOTA_Item_Build_Late_Game"
 		{
-			"item"	"item_bloodthorn4"
-			"item"	"item_octarine_core4"
-			"item"	"item_omni_lens"
-			"item"	"item_Dagon_Mystic"
-			"item"	"item_ultimate_amulet"
+			"item"	"item_dark_wand_5"
+			"item"	"item_tricksters_blade"
+		}
+		"#DOTA_Item_Build_Other_Items"
+		{
+			"item"	"item_galactic_hammer"
+			"item"	"item_lightningbottle"
+			"item"	"item_crystalline_staff"
+			"item"	"item_ogre_seal_totem"
+			"item"	"item_hurricane_blade"
+			"item"	"item_ghost_saber"
+			"item"	"item_rising_salt"
 		}
 	}
 }

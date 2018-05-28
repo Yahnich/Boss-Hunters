@@ -29,5 +29,5 @@ function relic_cursed_icon_of_lust:GetModifierIncomingDamage_Percentage(params)
 end
 
 function relic_cursed_icon_of_lust:GetModifierExtraHealthBonus()
-	return self:GetStackCount() * (-1)
+	if not self:GetParent():HasModifier("relic_unique_ritual_candle") then return self:GetStackCount() * (-1) end
 end

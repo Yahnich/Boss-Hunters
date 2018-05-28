@@ -5,7 +5,7 @@ function relic_cursed_glass_flower:DeclareFunctions()
 end
 
 function relic_cursed_glass_flower:GetModifierIncomingDamage_Percentage()
-	return 50
+	if not self:GetParent():HasModifier("relic_unique_ritual_candle") then return 50 end
 end
 
 function relic_cursed_glass_flower:GetModifierSpellAmplify_Percentage()

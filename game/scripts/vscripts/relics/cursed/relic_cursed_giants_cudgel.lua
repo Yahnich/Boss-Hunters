@@ -15,7 +15,7 @@ function relic_cursed_giants_cudgel:DeclareFunctions()
 end
 
 function relic_cursed_giants_cudgel:GetModifierAttackSpeedBonus_Constant()
-	return self.as
+	if not self:GetParent():HasModifier("relic_unique_ritual_candle") then return self.as end
 end
 
 function relic_cursed_giants_cudgel:OnAttackLanded(params)

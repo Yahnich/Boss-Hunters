@@ -121,11 +121,10 @@ function RelicManager:SkipRelicSelection(userid, event)
 		end
 		hero.internalRNGPools[relicType][playerRelics["1"][id]] = nil
 	end
-	if not hero.hasRerolledThisRound then
-		RelicManager:RollRelicsForPlayer(pID)
-		hero.hasRerolledThisRound = true
-	end
 	
+	for i = 1, 2 do
+		hero:AddRelic( RelicManager:RollRandomGenericRelicForPlayer(pID) )
+	end
 	if hero:HasRelic("relic_unique_mysterious_hourglass") and hero:FindModifierByName("relic_unique_mysterious_hourglass"):GetStackCount() > 0 then
 		hero:FindModifierByName("relic_unique_mysterious_hourglass"):DecrementStackCount()
 		self:RollRelicsForPlayer(pID)
@@ -162,16 +161,9 @@ function RelicManager:RollRelicsForPlayer(pID, relicType)
 	end
 	
 	local dropTable = {}
-	for i = 1, 3 do
-		local roll = RandomInt(1,6)
-		if (roll == 1 and not relicType) or relicType == 3 then
-			table.insert( dropTable, self:RollRandomUniqueRelicForPlayer(pID) )
-		elseif (roll == 2 and not relicType) or relicType == 2 then
-			table.insert( dropTable, self:RollRandomCursedRelicForPlayer(pID) )
-		else
-			table.insert( dropTable, self:RollRandomGenericRelicForPlayer(pID) )
-		end
-	end
+	table.insert( dropTable, self:RollRandomUniqueRelicForPlayer(pID) )
+	table.insert( dropTable, self:RollRandomCursedRelicForPlayer(pID) )
+	
 	table.insert( toNumPlayerRelics, dropTable )
 
 	relicTable[tostring(pID)] = toNumPlayerRelics

@@ -7,7 +7,7 @@ end
 function relic_cursed_loaded_coin:GetModifierIncomingDamage_Percentage()
 	if RollPercentage( 70 ) then
 		return -100
-	else
-		return 200
+	elseif not self:GetParent():HasModifier("relic_unique_ritual_candle") then 
+		return 200 
 	end
 end
