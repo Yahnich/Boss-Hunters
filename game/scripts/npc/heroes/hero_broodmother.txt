@@ -38,20 +38,21 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"70 140 210 280 350 420 490"
-				"LinkedSpecialBonus"	"special_bonus_unique_broodmother_spawn_spiderlings_bh_2"
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"70 140 210 280 350 420 490"
+				"LinkedSpecialBonus"		"special_bonus_unique_broodmother_spawn_spiderlings_bh_2"
 			}
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"damage_per_second"		"35 70 105 140 175 210 245"
-				"LinkedSpecialBonus"	"special_bonus_unique_broodmother_spawn_spiderlings_bh_2"
+				"var_type"					"FIELD_INTEGER"
+				"damage_per_second"			"35 70 105 140 175 210 245"
+				"LinkedSpecialBonus"		"special_bonus_unique_broodmother_spawn_spiderlings_bh_2"
+				"LinkedSpecialBonusField"	"value2"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"3"
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"3"
 			}
 			"03"
 			{
@@ -67,12 +68,12 @@
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"spider_damage"			"75"
+				"spider_damage"			"33"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"spider_health"			"75"
+				"spider_health"			"25"
 			}		 
 			"07"
 			{
@@ -131,7 +132,12 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"75"
+				"value"						"150"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value2"					"50"
 			}
 		}
 	}
@@ -289,12 +295,12 @@
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"spider_damage"			"20"
+				"spider_damage"			"15"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"spider_health"			"20"
+				"spider_health"			"15"
 			}
 			"07"
 			{
@@ -381,19 +387,19 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"miss_chance"			"40"
+				"miss_chance"			"25"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_movespeed"		"-46"
+				"bonus_movespeed"		"-25"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"duration"				"2"
 			}
-			"03"
+			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"damage"				"50"

@@ -142,18 +142,21 @@ function OpenRelicInventory()
 }
 
 function UpdateRelicInventory(table){
-	var inventory = $("#RelicInventoryPanel")
-	for(var relic of inventory.Children()){
-		relic.style.visibility = "collapse"
-		relic.RemoveAndDeleteChildren()
-		relic.DeleteAsync(0)
-	}
 	var selectedHero = Players.GetLocalPlayerPortraitUnit()
 	if( !Entities.IsRealHero( selectedHero ) ){ selectedHero = Players.GetPlayerHeroEntityIndex( localID ) }
-	if(table != null && table.relics != null){
-		for(var name in table.relics){
-			if(name != 0){
-				CreateRelicPanel(table.relics[name])
+	if(table.hero == selectedHero){
+		var inventory = $("#RelicInventoryPanel")
+		for(var relic of inventory.Children()){
+			relic.style.visibility = "collapse"
+			relic.RemoveAndDeleteChildren()
+			relic.DeleteAsync(0)
+		}
+		
+		if(table != null && table.relics != null){
+			for(var name in table.relics){
+				if(name != 0){
+					CreateRelicPanel(table.relics[name])
+				}
 			}
 		}
 	}

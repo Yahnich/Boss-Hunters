@@ -102,7 +102,7 @@ function RelicManager:RemoveDropFromTable(pID)
 	table.remove( hero.relicsToSelect, 1 )
 	local player = PlayerResource:GetPlayer(pID)
 	if player then
-		CustomGameEventManager:Send_ServerToPlayer(player,"dota_player_updated_relic_drops", {playerID = pID, drops = hero.relicsToSelect})
+		CustomGameEventManager:Send_ServerToPlayer(player,"dota_player_updated_relic_drops", {entindex = hero:entindex(), drops = hero.relicsToSelect})
 	end
 end
 
