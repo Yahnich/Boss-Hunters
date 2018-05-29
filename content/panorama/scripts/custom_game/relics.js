@@ -3,23 +3,19 @@ RELIC_TYPE_CURSED = 2
 RELIC_TYPE_UNIQUE = 3
 
 var localID = Players.GetLocalPlayer()
-CustomNetTables.SubscribeNetTableListener( "game_info", HandleRelicMenu )
-CustomNetTables.SubscribeNetTableListener( "relics", UpdateRelicInventory )
-GameEvents.Subscribe("dota_player_update_query_unit", UpdateRelicInventory);
-GameEvents.Subscribe("dota_player_update_selected_unit", UpdateRelicInventory);
+var lastRememberedHero = Players.GetPlayerHeroEntityIndex( localID )
+
+GameEvents.Subscribe( "dota_player_updated_relic_drops", HandleRelicMenu )
+GameEvents.Subscribe( "dota_player_update_relic_inventory", UpdateRelicInventory )
+GameEvents.Subscribe("dota_player_update_query_unit", SendRelicQuery);
+GameEvents.Subscribe("dota_player_update_selected_unit", SendRelicQuery);
 
 var hasQueuedAction = false
 
-function SelectRelic(type)
+function SelectRelic(relic)
 {
 	if(hasQueuedAction == false)
 	{
-		var relicTable = CustomNetTables.GetTableValue( "game_info", "relic_drops");
-		
-		var playerRelics = relicTable[localID];
-		var firstDrops = playerRelics[1];
-		var relic = firstDrops[type]
-
 		if( GameUI.IsAltDown() ){
 			var relicName = $.Localize( relic )
 			var relicDescr = $.Localize( relic + "_Description" )
@@ -47,6 +43,14 @@ function SkipRelics()
 	}
 }
 
+function SendRelicQuery(){
+	lastRememberedHero = Players.GetLocalPlayerPortraitUnit()
+	if ( !Entities.IsRealHero( lastRememberedHero ) ){ 
+		lastRememberedHero = Players.GetPlayerHeroEntityIndex( localID )
+	}
+	GameEvents.SendCustomGameEventToServer( "dota_player_query_relic_inventory", {entindex : lastRememberedHero, playerID : localID} )
+}
+
 function AddHover(panelID)
 {
 	var buttonPanel = $("#"+panelID)
@@ -67,31 +71,35 @@ function RemoveHover(panelID)
 
 $("#RelicRoot").SetHasClass("IsHidden", true)
 HandleRelicMenu()
-function HandleRelicMenu()
+function HandleRelicMenu(relicTable)
 {
-	var relicTable = CustomNetTables.GetTableValue( "game_info", "relic_drops")
-	var playerRelics = relicTable[localID]
-	var lastDrop = playerRelics[1]
-	$.Msg(relicTable)
-	if(lastDrop != null){
-		var holder = $("#RelicChoiceHolder")
-		for(var choice of holder.Children()){
-			choice.style.visibility = "collapse"
-			choice.RemoveAndDeleteChildren()
-			choice.DeleteAsync(0)
+	if(relicTable != null) {
+		if(relicTable.playerID == localID){
+			
 		}
-		for(var id in lastDrop){
-			CreateRelicSelection(lastDrop[id], id)
+		var lastDrop = relicTable.drops[1]
+		if(lastDrop != null){
+			var holder = $("#RelicChoiceHolder")
+			for(var choice of holder.Children()){
+				choice.style.visibility = "collapse"
+				choice.RemoveAndDeleteChildren()
+				choice.DeleteAsync(0)
+			}
+			for(var id in lastDrop){
+				CreateRelicSelection(lastDrop[id], id)
+			}
+			Game.EmitSound( "Relics.GainedRelic" )
+			$("#RelicRoot").SetHasClass("IsHidden", false)
+		} else {
+			$("#RelicRoot").SetHasClass("IsHidden", true)
 		}
-		Game.EmitSound( "Relics.GainedRelic" )
-		$("#RelicRoot").SetHasClass("IsHidden", false)
 	} else {
 		$("#RelicRoot").SetHasClass("IsHidden", true)
 	}
 	hasQueuedAction = false
 }
 
-function CreateRelicSelection(relic, id)
+function CreateRelicSelection(relic)
 {
 	var holder = $("#RelicChoiceHolder")
 	$.CreatePanel("Panel", holder, "").SetHasClass("VerticalSeperator", true)
@@ -99,7 +107,7 @@ function CreateRelicSelection(relic, id)
 	relicChoice.BLoadLayoutSnippet("RelicChoiceContainer");
 	var relicType = "";
 	var selectButton = relicChoice.FindChildTraverse("SelectButtonSnippet");
-	selectButton.SetPanelEvent("onactivate", function(){SelectRelic(id)})
+	selectButton.SetPanelEvent("onactivate", function(){SelectRelic(relic)})
 	selectButton.SetPanelEvent("onmouseover", function(){selectButton.SetHasClass("ButtonHover", true)})
 	selectButton.SetPanelEvent("onmouseout", function(){selectButton.SetHasClass("ButtonHover", false)})
 	var typeLabel = relicChoice.FindChildTraverse("RelicTypeSnippet")
@@ -127,13 +135,13 @@ function OpenRelicInventory()
 	var inventory = $("#RelicInventoryPanel")
 	var invButton = $("#RelicInventoryButton")
 	if(invButton.BHasClass("RelicButtonSelected") == false){
-		UpdateRelicInventory()
+		SendRelicQuery()
 	}
 	inventory.SetHasClass("IsHidden", invButton.BHasClass("RelicButtonSelected") )
 	invButton.SetHasClass("RelicButtonSelected", !invButton.BHasClass("RelicButtonSelected") )
 }
 
-function UpdateRelicInventory(){
+function UpdateRelicInventory(table){
 	var inventory = $("#RelicInventoryPanel")
 	for(var relic of inventory.Children()){
 		relic.style.visibility = "collapse"
@@ -142,11 +150,10 @@ function UpdateRelicInventory(){
 	}
 	var selectedHero = Players.GetLocalPlayerPortraitUnit()
 	if( !Entities.IsRealHero( selectedHero ) ){ selectedHero = Players.GetPlayerHeroEntityIndex( localID ) }
-	var relicList = CustomNetTables.GetTableValue("relics", "relic_inventory_player_" + selectedHero)
-	if(relicList != null){
-		for(var name in relicList){
+	if(table != null && table.relics != null){
+		for(var name in table.relics){
 			if(name != 0){
-				CreateRelicPanel(relicList[name])
+				CreateRelicPanel(table.relics[name])
 			}
 		}
 	}

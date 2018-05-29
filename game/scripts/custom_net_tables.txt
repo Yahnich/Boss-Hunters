@@ -4,9 +4,7 @@
   [
     "game_info",
 	"talents",
-	"syncing_purposes",
 	"hero_properties",
 	"stats_panel",
-	"relics"
   ]
 }

@@ -1152,10 +1152,8 @@ function CHoldoutGameMode:OnPlayerUIInitialized(keys)
 	Timers:CreateTimer(0.03, function()
 		if PlayerResource:GetSelectedHeroEntity(playerID) then
 			local hero = PlayerResource:GetSelectedHeroEntity(playerID)
+			CustomGameEventManager:Send_ServerToPlayer(player,"dota_player_updated_relic_drops", {playerID = pID, drops = hero.relicsToSelect})
 			if StatsScreen:IsPlayerRegistered(hero) and not hero:HasModifier("modifier_stats_system_handler") then hero:AddNewModifier(hero, nil, "modifier_stats_system_handler", {}) end
-			if GameRules.holdOut._NewGamePlus == true then
-				CustomGameEventManager:Send_ServerToPlayer(player,"Display_Shop", {})
-			end
 			CustomGameEventManager:Send_ServerToAllClients( "updateQuestLife", { lives = GameRules._life, maxLives = GameRules._maxLives } )
 			CustomGameEventManager:Send_ServerToPlayer(player, "heroLoadIn", {})
 			if GameRules.holdOut._flPrepTimeEnd then

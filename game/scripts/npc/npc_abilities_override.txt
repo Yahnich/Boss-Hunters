@@ -12999,6 +12999,7 @@
 			{
 				"var_type"				"FIELD_FLOAT"
 				"duration"				"8.0"
+				"LinkedSpecialBonus"	"special_bonus_unique_pangolier_6"
 			}
 			"12"
 			{
