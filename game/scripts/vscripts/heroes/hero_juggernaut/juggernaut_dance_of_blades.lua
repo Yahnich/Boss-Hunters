@@ -48,7 +48,9 @@ function juggernaut_dance_of_blades:Bounce(target)
 		return
 	end
 	
-	ParticleManager:FireParticle("particles/units/heroes/hero_juggernaut/juggernaut_omni_slash_tgt.vpcf", PATTACH_POINT_FOLLOW, caster)
+	ParticleManager:FireParticle("particles/units/heroes/hero_juggernaut/juggernaut_omni_slash_tgt.vpcf", PATTACH_POINT_FOLLOW, caster, {[0]=caster:GetAbsOrigin(), [1]=target:GetAbsOrigin()})
+	ParticleManager:FireParticle("particles/units/heroes/hero_juggernaut/juggernaut_omni_slash_trail.vpcf", PATTACH_POINT, caster, {[0]="attach_hitloc", [1]=target:GetAbsOrigin()})
+	ParticleManager:FireParticle("particles/units/heroes/hero_juggernaut/juggernaut_omni_slash_jugg.vpcf", PATTACH_POINT, caster, {[0]=target:GetAbsOrigin(), [1]=target:GetAbsOrigin()})
 	EmitSoundOn("Hero_Juggernaut.OmniSlash", caster)
 	EmitSoundOn("Hero_Juggernaut.OmniSlash.Damage", caster)
 	
@@ -72,7 +74,7 @@ if IsServer() then
 	function modifier_juggernaut_dance_of_blades:OnCreated()
 		local caster = self:GetCaster()
 		caster:RemoveGesture(ACT_DOTA_OVERRIDE_ABILITY_1)
-		caster:StartGestureWithPlaybackRate(ACT_DOTA_OVERRIDE_ABILITY_4, 0.8)
+		caster:StartGestureWithPlaybackRate(ACT_DOTA_OVERRIDE_ABILITY_4, 1/self:GetTalentSpecialValueFor("bounce_tick"))
 	end
 	function modifier_juggernaut_dance_of_blades:OnDestroy()
 		local caster = self:GetCaster()
@@ -81,10 +83,6 @@ if IsServer() then
 			caster:StartGesture(ACT_DOTA_OVERRIDE_ABILITY_1)
 		end
 	end
-end
-
-function modifier_juggernaut_dance_of_blades:GetEffectName()
-	return "particles/units/heroes/hero_juggernaut/juggernaut_omni_slash_trail.vpcf"
 end
 
 function modifier_juggernaut_dance_of_blades:GetStatusEffectName()

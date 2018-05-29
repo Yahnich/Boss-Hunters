@@ -191,6 +191,24 @@
 	    "Ability16"				"special_bonus_unique_bristleback_spiky_shell"
 	    "Ability17"				"special_bonus_spell_lifesteal_20"
 	}
+	"npc_dota_hero_broodmother_ebf"
+	{
+		"override_hero"			"npc_dota_hero_broodmother"
+		"Ability1"				"broodmother_spawn_spiderlings_bh"
+		"Ability2"				"broodmother_web"
+		"Ability3"				"broodmother_spiderite"
+		"Ability4"				"broodmother_bite"
+		"Ability6"				"broodmother_hunger"
+	
+		"Ability10"				"special_bonus_unique_broodmother_spawn_spiderlings_bh_1"
+	    "Ability11"				"special_bonus_unique_broodmother_spawn_spiderlings_bh_2"
+	    "Ability12"				"special_bonus_unique_broodmother_web_1"
+	    "Ability13"				"special_bonus_unique_broodmother_web_2"
+	    "Ability14"				"special_bonus_unique_broodmother_spiderite_1"
+	    "Ability15"				"special_bonus_unique_broodmother_spiderite_2"
+	    "Ability16"				"special_bonus_unique_broodmother_hunger_1"
+	    "Ability17"				"special_bonus_unique_broodmother_hunger_2"
+	}
 	"npc_dota_hero_centaur_ebf"
 	{
 		"override_hero"			"npc_dota_hero_centaur"
