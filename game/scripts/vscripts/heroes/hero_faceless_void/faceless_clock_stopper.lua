@@ -38,7 +38,7 @@ if IsServer() then
 		local ability = self:GetAbility()
 
 		if caster:HasTalent("special_bonus_unique_faceless_clock_stopper_2") and caster:HasModifier("modifier_faceless_chrono_buff") then
-			caster:AddNewModifier(caster, ability, "modifier_faceless_clock_stopper_buff", {Duration = 0.25})
+			caster:AddNewModifier(caster, ability, "modifier_faceless_clock_stopper_buff", {Duration = 1})
 		else
 			if caster == self:GetParent() then
 				if ability:GetAutoCastState() and ability:IsCooldownReady() and ability:IsOwnersManaEnough() then

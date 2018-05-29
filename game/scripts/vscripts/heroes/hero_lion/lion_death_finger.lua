@@ -30,8 +30,13 @@ function lion_death_finger:OnSpellStart()
     for _,enemy in pairs(enemies) do
         local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_lion/lion_spell_finger_of_death.vpcf", PATTACH_POINT, caster)
         ParticleManager:SetParticleControlEnt(nfx, 0, caster, PATTACH_POINT, "attach_attack2", caster:GetAbsOrigin(), true)
+        ParticleManager:SetParticleControlForward(nfx, 0, caster:GetForwardVector())
         ParticleManager:SetParticleControlEnt(nfx, 1, enemy, PATTACH_POINT, "attach_hitloc", enemy:GetAbsOrigin(), true)
         ParticleManager:SetParticleControl(nfx, 2, enemy:GetAbsOrigin())
+        local position = caster:GetAbsOrigin() + ActualRandomVector(CalculateDistance(enemy, caster), caster:GetAttackRange())
+        ParticleManager:SetParticleControl(nfx, 6, position)
+        local position = caster:GetAbsOrigin() + ActualRandomVector(CalculateDistance(enemy, caster), caster:GetAttackRange())
+        ParticleManager:SetParticleControl(nfx, 10, position)
         ParticleManager:ReleaseParticleIndex(nfx)
 
         self:DealDamage(caster, enemy, damage, {}, 0)

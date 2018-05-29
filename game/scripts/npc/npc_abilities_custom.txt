@@ -76,6 +76,7 @@
 #base "heroes/hero_sniper.txt"
 #base "heroes/hero_faceless_void.txt"
 #base "heroes/hero_tiny.txt"
+#base "heroes/hero_broodmother.txt"
 
 "DOTAAbilities"
 {
