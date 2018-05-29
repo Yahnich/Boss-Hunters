@@ -1,4 +1,4 @@
-relic_unique_molten_crystal = class({})
+relic_unique_molten_crystal = class(relicBaseClass)
 
 function relic_unique_molten_crystal:OnIntervalThink()
 	self:SetDuration(-1, true)
@@ -49,28 +49,4 @@ end
 
 function relic_unique_molten_crystal:GetModifierExtraStrengthBonus()
 	return self:GetStackCount()
-end
-
-function relic_unique_molten_crystal:IsHidden()
-	return true
-end
-
-function relic_unique_molten_crystal:IsPurgable()
-	return false
-end
-
-function relic_unique_molten_crystal:RemoveOnDeath()
-	return false
-end
-
-function relic_unique_molten_crystal:IsPermanent()
-	return true
-end
-
-function relic_unique_molten_crystal:AllowIllusionDuplicate()
-	return true
-end
-
-function relic_unique_molten_crystal:GetAttributes()
-	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_PERMANENT
 end

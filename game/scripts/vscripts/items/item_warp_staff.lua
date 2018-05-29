@@ -46,14 +46,15 @@ if IsServer() then
     end
 	
 	function modifier_item_warp_staff_handler:OnIntervalThink()
-		self:GetAbility().lastChargeTime = self:GetAbility().lastChargeTime or {}
-		for id, gameTime in ipairs ( self:GetAbility().lastChargeTime ) do
-			self:GetAbility().lastChargeTime[id] = gameTime - FrameTime()
+		local ability = self:GetAbility()
+		ability.lastChargeTime = ability.lastChargeTime or {}
+		for id, gameTime in ipairs ( ability.lastChargeTime ) do
+			ability.lastChargeTime[id] = gameTime - FrameTime()
 		end
-		for id, gameTime in ipairs ( self:GetAbility().lastChargeTime ) do
+		for id, gameTime in ipairs ( ability.lastChargeTime ) do
 			if gameTime <= 0 then 
-				self:GetAbility():SetCurrentCharges( math.min(self:GetAbility():GetCurrentCharges() + 1, self.max_count ) )
-				table.remove(self:GetAbility().lastChargeTime, id)
+				ability:SetCurrentCharges( math.min(ability:GetCurrentCharges() + 1, self.max_count ) )
+				table.remove(ability.lastChargeTime, id)
 			end
 		end
 	end
@@ -62,13 +63,18 @@ if IsServer() then
         if params.unit == self:GetParent() then
             local ability = self:GetAbility()
             if params.ability == self:GetAbility() then
-				ability:SetCurrentCharges( ability:GetCurrentCharges() - 1 )
+				ability:SetCurrentCharges( math.max( ability:GetCurrentCharges() - 1, 0 ) )
 				local chargeDur = ability:GetCooldownTimeRemaining()
-				table.insert(ability.lastChargeTime, chargeDur)
+				if #ability.lastChargeTime < self.max_count then 
+					table.insert(ability.lastChargeTime, chargeDur)
+				else
+					table.remove(ability.lastChargeTime, 1)
+					table.insert(ability.lastChargeTime, chargeDur)
+				end
 				ability:EndCooldown()
 				if ability:GetCurrentCharges() == 0 then ability:StartCooldown(ability.lastChargeTime[1]) end
 			elseif params.ability:GetName() == "item_flashback" and ability:GetCurrentCharges() < self.max_count then
-                ability:SetCurrentCharges( self:GetCurrentCharges() + 1 )
+                ability:SetCurrentCharges( ability:GetCurrentCharges() + 1 )
             end
         end
 

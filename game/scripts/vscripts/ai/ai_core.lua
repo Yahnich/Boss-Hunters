@@ -196,12 +196,12 @@ function AICore:AttackHighestPriority( entity )
 		if entity.AIprevioustarget and entity.AIprevioustarget:GetTeamNumber() ~= entity:GetTeamNumber() then
 			entity.AIprevioustarget = target
 		end
-		if target and not target:IsNull() and CalculateDistance(target, entity) > entity:GetAttackRange() * 0.75 then
+		if target and not target:IsNull() and CalculateDistance(target, entity) > entity:GetAttackRange() * 0.95 then
 			if entity:GetAttackCapability() == DOTA_UNIT_CAP_NO_ATTACK then
 				ExecuteOrderFromTable({
 					UnitIndex = entity:entindex(),
-					OrderType = DOTA_UNIT_ORDER_MOVE_TO_TARGET,
-					TargetIndex = target:entindex()
+					OrderType = DOTA_UNIT_ORDER_MOVE_TO_POSITION,
+					Position = entity:GetAbsOrigin() + CalculateDirection(target, entity) * math.min(entity:GetIdealSpeed() * AI_THINK_RATE, CalculateDistance(target, entity) - entity:GetAttackRange() * 0.95)
 				})
 			else
 				ExecuteOrderFromTable({
@@ -210,10 +210,10 @@ function AICore:AttackHighestPriority( entity )
 					TargetIndex = target:entindex()
 				})
 			end
-			return 0.25
+			return AI_THINK_RATE
 		else
-			AICore:RunToRandomPosition( entity, 5 )
-			return 0.25
+			AICore:RunToRandomPosition( entity, 20 )
+			return AI_THINK_RATE
 		end
 	end
 end

@@ -1,4 +1,4 @@
-relic_cursed_giants_cudgel = class({})
+relic_cursed_giants_cudgel = class(relicBaseClass)
 
 function relic_cursed_giants_cudgel:OnCreated()
 	self.as = self:GetParent():GetIncreasedAttackSpeed() * (-40)
@@ -8,7 +8,6 @@ end
 function relic_cursed_giants_cudgel:OnIntervalThink()
 	self.as = 0
 	self.as = self:GetParent():GetIncreasedAttackSpeed() * (-40)
-	print(self.as)
 end
 
 function relic_cursed_giants_cudgel:DeclareFunctions()
@@ -16,7 +15,7 @@ function relic_cursed_giants_cudgel:DeclareFunctions()
 end
 
 function relic_cursed_giants_cudgel:GetModifierAttackSpeedBonus_Constant()
-	return self.as
+	if not self:GetParent():HasModifier("relic_unique_ritual_candle") then return self.as end
 end
 
 function relic_cursed_giants_cudgel:OnAttackLanded(params)
@@ -26,28 +25,4 @@ function relic_cursed_giants_cudgel:OnAttackLanded(params)
 			ApplyDamage({victim = enemy, attacker = params.attacker, damage = params.original_damage, damage_type = DAMAGE_TYPE_PHYSICAL})
 		end
 	end
-end
-
-function relic_cursed_giants_cudgel:IsHidden()
-	return true
-end
-
-function relic_cursed_giants_cudgel:IsPurgable()
-	return false
-end
-
-function relic_cursed_giants_cudgel:RemoveOnDeath()
-	return false
-end
-
-function relic_cursed_giants_cudgel:IsPermanent()
-	return true
-end
-
-function relic_cursed_giants_cudgel:AllowIllusionDuplicate()
-	return true
-end
-
-function relic_cursed_giants_cudgel:GetAttributes()
-	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_PERMANENT
 end

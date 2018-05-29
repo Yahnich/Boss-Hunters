@@ -1,4 +1,4 @@
-relic_unique_soldiers_banner = class({})
+relic_unique_soldiers_banner = class(relicBaseClass)
 
 function relic_unique_soldiers_banner:OnCreated()
 	self.ar = 150 - self:GetParent():GetBaseAttackRange()
@@ -24,28 +24,4 @@ end
 
 function relic_unique_soldiers_banner:GetModifierPhysicalArmorBonus()
 	return 6
-end
-
-function relic_unique_soldiers_banner:IsHidden()
-	return true
-end
-
-function relic_unique_soldiers_banner:IsPurgable()
-	return false
-end
-
-function relic_unique_soldiers_banner:RemoveOnDeath()
-	return false
-end
-
-function relic_unique_soldiers_banner:IsPermanent()
-	return true
-end
-
-function relic_unique_soldiers_banner:AllowIllusionDuplicate()
-	return true
-end
-
-function relic_unique_soldiers_banner:GetAttributes()
-	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_PERMANENT
 end

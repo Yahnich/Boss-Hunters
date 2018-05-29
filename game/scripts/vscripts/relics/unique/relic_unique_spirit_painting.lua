@@ -1,4 +1,4 @@
-relic_unique_spirit_painting = class({})
+relic_unique_spirit_painting = class(relicBaseClass)
 
 function relic_unique_spirit_painting:OnCreated()	
 	if IsServer() then
@@ -31,28 +31,4 @@ end
 
 function relic_unique_spirit_painting:IsHidden()
 	return false
-end
-
-function relic_unique_spirit_painting:IsPurgable()
-	return false
-end
-
-function relic_unique_spirit_painting:DestroyOnExpire()
-	return false
-end
-
-function relic_unique_spirit_painting:RemoveOnDeath()
-	return false
-end
-
-function relic_unique_spirit_painting:IsPermanent()
-	return true
-end
-
-function relic_unique_spirit_painting:AllowIllusionDuplicate()
-	return true
-end
-
-function relic_unique_spirit_painting:GetAttributes()
-	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_PERMANENT
 end

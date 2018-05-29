@@ -196,6 +196,7 @@ function CHoldoutGameRound:End(bWonRound)
 		for pID = 0, 10 do
 			if PlayerResource:IsValidPlayerID(pID) and PlayerResource:GetSelectedHeroEntity( pID ) then
 				local hero = PlayerResource:GetSelectedHeroEntity( pID )
+				hero.hasRerolledThisRound = false
 				local redKey = hero:FindModifierByName("relic_cursed_red_key")
 				local envy = hero:FindModifierByName("relic_cursed_icon_of_envy")
 				local pride = hero:HasModifier("relic_cursed_icon_of_pride")
@@ -209,19 +210,21 @@ function CHoldoutGameRound:End(bWonRound)
 				local baseChance = TernaryOperator(66, redKey ~= nil, 33)
 				hero.internalRelicPRNGAdder = hero.internalRelicPRNGAdder or -(baseChance / 4)
 				if redKey then hero.internalRelicRNG = math.max(hero.internalRelicRNG, 66) end
-				local roll = RollPercentage(hero.internalRelicRNG + hero.internalRelicPRNGAdder)
-				if hero and roll and not (greed or pride) then
+				-- local roll = RollPercentage(hero.internalRelicRNG + hero.internalRelicPRNGAdder)
+				-- if hero and roll and not (greed or pride) then
+				print(self._nRoundNumber, "round")
+				if hero and self._nRoundNumber % 5 == 0 and (not (greed or pride) or self:GetParent():HasModifier("relic_unique_ritual_candle")) then
 					RelicManager:RollRelicsForPlayer( pID )
 					hero.internalRelicPRNGAdder = -(baseChance / 4)
 					if redKey then redKey:SetStackCount( 0 ) end
 				end
-				if not roll then
-					if envy then 
-						Timers:CreateTimer(0.1, function() envy:IncreaseEnvy() end)
-					end
-					if redKey then redKey:SetStackCount( 1 ) end
-					hero.internalRelicPRNGAdder = hero.internalRelicPRNGAdder + (baseChance / 4)
-				end
+				-- if not roll then
+					-- if envy then 
+						-- Timers:CreateTimer(0.1, function() envy:IncreaseEnvy() end)
+					-- end
+					-- if redKey then redKey:SetStackCount( 1 ) end
+					-- hero.internalRelicPRNGAdder = hero.internalRelicPRNGAdder + (baseChance / 4)
+				-- end
 
 				local stick = hero:FindModifierByName("relic_generic_stick")
 				if stick and self._nRoundNumber % 2 == 0 then

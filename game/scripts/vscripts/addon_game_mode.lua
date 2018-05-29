@@ -274,7 +274,7 @@ function CHoldoutGameMode:InitGameMode()
 	Convars:RegisterCommand( "clear_relics", function()
 											if Convars:GetDOTACommandClient() and IsInToolsMode() then
 												local player = Convars:GetDOTACommandClient()
-												RelicManager:ClearRelics(player:GetPlayerID()) 
+												RelicManager:ClearRelics(player:GetPlayerID(), true) 
 											end
 										end, "adding relics",0)
 	Convars:RegisterCommand( "add_relic", function(command, relicName)
@@ -283,6 +283,13 @@ function CHoldoutGameMode:InitGameMode()
 												local hero = player:GetAssignedHero()
 												print(relicName, "ok")
 												hero:AddRelic(relicName)
+											end
+										end, "adding relics",0)
+	Convars:RegisterCommand( "roll_relics", function(command, relicName)
+											if Convars:GetDOTACommandClient() and IsInToolsMode() then
+												local player = Convars:GetDOTACommandClient()
+												local hero = player:GetAssignedHero()
+												RelicManager:RollRelicsForPlayer( player:GetPlayerID() )
 											end
 										end, "adding relics",0)
 	Convars:RegisterCommand( "getdunked", function()
@@ -399,9 +406,21 @@ function CHoldoutGameMode:FilterModifiers( filterTable )
 				modifier:GetModifierStatusAmplify_Percentage( params )
 			end
 		end
+		if parent:GetTeam() ~= caster:GetTeam() then
+			local resistance = 0
+			local stackResist = 0
+			for _, modifier in ipairs( parent:FindAllModifiers() ) do
+				if modifier.GetModifierStatusResistanceStacking and modifier:GetModifierStatusResistanceStacking(params) then
+					stackResist = stackResist + modifier:GetModifierStatusResistanceStacking(params)
+				end
+				if modifier.GetModifierStatusResistance and modifier:GetModifierStatusResistance(params) and modifier:GetModifierStatusResistance(params) > resistance then
+					resistance = modifier:GetModifierStatusResistance( params )
+				end
+			end
+			filterTable["duration"] = filterTable["duration"] * (1 - resistance/100) * (1 - stackResist/100)
+		end
 	end
-
-	if parent == caster or not caster or not ability or duration == -1 then return true end
+	if filterTable["duration"] == 0 then return false end
 	return true
 end
 
@@ -433,11 +452,20 @@ function CHoldoutGameMode:FilterHeal( filterTable )
 	if source_index then source = EntIndexToHScript( source_index ) end
 	
 	-- if no caster then source is regen
-	if target then
+	if source then
 		local params = {healer = healer, target = target, heal = heal, ability = source}
-		for _, modifier in ipairs( target:FindAllModifiers() ) do
-			if modifier.GetModifierHealAmplify_Percentage then
-				filterTable["heal"] = filterTable["heal"] * math.max(0, (1 + ( modifier:GetModifierHealAmplify_Percentage( params ) or 0 )/100) )
+		if target then
+			for _, modifier in ipairs( target:FindAllModifiers() ) do
+				if modifier.GetModifierHealAmplify_Percentage then
+					filterTable["heal"] = filterTable["heal"] * math.max(0, (1 + ( modifier:GetModifierHealAmplify_Percentage( params ) or 0 )/100) )
+				end
+			end
+		end
+		if healer and healer ~= target then
+			for _, modifier in ipairs( healer:FindAllModifiers() ) do
+				if modifier.GetModifierHealAmplify_Percentage then
+					filterTable["heal"] = filterTable["heal"] * math.max(0, (1 + ( modifier:GetModifierHealAmplify_Percentage( params ) or 0 )/100) )
+				end
 			end
 		end
 	end
@@ -447,7 +475,7 @@ function CHoldoutGameMode:FilterHeal( filterTable )
 	
 	if healer and healer:IsRealHero() and target and healer ~= target and healer:HasRelic("relic_cursed_bloody_silk") then
 		target:HealEvent(50, nil, healer, true)
-		ApplyDamage({victim = healer, attacker = healer, damage = 20, damage_type = DAMAGE_TYPE_PURE, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION })
+		if not self:GetParent():HasModifier("relic_unique_ritual_candle") then ApplyDamage({victim = healer, attacker = healer, damage = 20, damage_type = DAMAGE_TYPE_PURE, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION }) end
 	end
 	
 	if healer:GetTeam() == DOTA_TEAM_GOODGUYS then
@@ -662,6 +690,21 @@ function CHoldoutGameMode:OnAbilityLearned(event)
 	local pID = event.PlayerID
 	if pID and string.match(abilityname, "special_bonus" ) then
 		local hero = PlayerResource:GetSelectedHeroEntity( pID )
+		
+		if hero:GetLevel() < (hero.talentsSkilled + 1) * 10 then
+			local talent = hero:FindAbilityByName(abilityname)
+			talent:SetLevel(0)
+			for _, modifier in ipairs( hero:FindAllModifiers() ) do
+				if modifier:GetAbility() then
+					if not modifier:GetAbility():IsInnateAbility() and modifier:GetCaster() == hero and not modifier:GetAbility():IsItem() and modifier:GetAbility():GetName() ~= "item_relic_handler" then -- destroy passive modifiers and any buffs
+						modifier:Destroy()
+					end
+				end
+			end
+			hero:SetAbilityPoints( hero:GetAbilityPoints() + 1 )
+			return false
+		end
+		
 		local talentData = CustomNetTables:GetTableValue("talents", tostring(hero:entindex())) or {}
 		if GameRules.AbilityKV[abilityname] then
 			if GameRules.AbilityKV[abilityname]["LinkedModifierName"] then
@@ -738,8 +781,10 @@ function CHoldoutGameMode:OnAbilityUsed(event)
 		abilityused:EndCooldown()
 		if abilityused:GetDuration() > 0 then
 			local duration = abilityused:GetDuration()
+			if modifier.GetModifierStatusAmplify_Percentage then
+				duration = duration * (1 + modifier:GetModifierStatusAmplify_Percentage( params )/100)
+			end
 			if abilityname == "night_stalker_crippling_fear" and not GameRules:IsDaytime() then duration = abilityused:GetTalentSpecialValueFor("duration_night") end
-			print(duration, abilityname)
 			abilityused:StartDelayedCooldown(duration)
 		else
 			abilityused:StartCooldown(abilityused:GetCooldown(-1))

@@ -1,0 +1,1 @@
+relic_unique_ritual_candle = class(relicBaseClass)

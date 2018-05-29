@@ -12,42 +12,23 @@
 				<Label id="RelicLabel" class="RelicNameText" text="Mysterious Water"/>
 			</Panel>
 		</snippet>
+		<snippet name="RelicChoiceContainer">
+			<Panel class="RelicChoiceContainer" hittest="true">
+				<Label id="RelicTypeSnippet" class="RelicTypeLabel" text="RELIC_TYPE_GENERIC"/>
+				<Label id="RelicNameSnippet" class="RelicNameLabel" text="DOTA_Tooltip_relic_generic_angelic_water"/>
+				<Panel class="RelicDescriptionContainer" hittest="true">
+					<Label id="SnippetRelicDescription" class="RelicDescriptionLabel" text="DOTA_Tooltip_relic_generic_angelic_water_Description"/>
+				</Panel>
+				<Button id="SelectButtonSnippet" class="SelectButton" onactivate="SelectRelic(1)" onmouseover="AddHover('SelectButtonGeneric')" onmouseout="RemoveHover('SelectButtonGeneric')">
+					<Label id="SelectButtonLabelSnippet" class="SelectButtonLabel" text="Select"/>
+				</Button>
+			</Panel>
+		</snippet>
 	</snippets>
 	<Panel class="root" hittest="false">
 		<Panel id="RelicRoot" hittest="true">
-			<Panel class="RelicChoiceRoot" hittest="true">
-				<Panel class="RelicChoiceContainer" id="GenericRelicContainer" hittest="true">
-					<Label id="GenericRelicType" class="RelicTypeLabel" text="RELIC_TYPE_GENERIC"/>
-					<Label id="GenericRelicName" class="RelicNameLabel" text="DOTA_Tooltip_relic_generic_angelic_water"/>
-					<Panel class="RelicDescriptionContainer" hittest="true">
-						<Label id="GenericRelicDescription" class="RelicDescriptionLabel" text="DOTA_Tooltip_relic_generic_angelic_water_Description"/>
-					</Panel>
-					<Button id="SelectButtonGeneric" class="SelectButton" onactivate="SelectRelic(1)" onmouseover="AddHover('SelectButtonGeneric')" onmouseout="RemoveHover('SelectButtonGeneric')">
-						<Label id="SelectGenericButtonLabel" class="SelectButtonLabel" text="Select"/>
-					</Button>
-				</Panel>
-				<Panel class="VerticalSeperator" hittest="true"/>
-				<Panel class="RelicChoiceContainer" id="CursedRelicContainer" hittest="true">
-					<Label id="CursedRelicType" class="RelicTypeLabel" text="RELIC_TYPE_CURSED"/>
-					<Label id="CursedRelicName" class="RelicNameLabel" text="DOTA_Tooltip_relic_cursed_boiling_blood"/>
-					<Panel class="RelicDescriptionContainer" hittest="true">
-						<Label id="CursedRelicDescription" class="RelicDescriptionLabel" text="DOTA_Tooltip_relic_cursed_boiling_blood_Description"/>
-					</Panel>
-					<Button id="SelectButtonCursed" class="SelectButton" onactivate="SelectRelic(2)" onmouseover="AddHover('SelectButtonCursed')" onmouseout="RemoveHover('SelectButtonCursed')">
-						<Label id="SelectCursedButtonLabel" class="SelectButtonLabel" text="Select"/>
-					</Button>
-				</Panel>
-				<Panel class="VerticalSeperator" hittest="true"/>
-				<Panel class="RelicChoiceContainer" id="UniqueRelicContainer" hittest="true">
-					<Label id="UniqueRelicType" class="RelicTypeLabel" text="RELIC_TYPE_UNIQUE"/>
-					<Label id="UniqueRelicName" class="RelicNameLabel" text="DOTA_Tooltip_relic_unique_frozen_crystal"/>
-					<Panel class="RelicDescriptionContainer" hittest="true">
-						<Label id="UniqueRelicDescription" class="RelicDescriptionLabel" text="DOTA_Tooltip_relic_unique_frozen_crystal_Description"/>
-					</Panel>
-					<Button id="SelectButtonUnique" class="SelectButton" onactivate="SelectRelic(3)" onmouseover="AddHover('SelectButtonUnique')" onmouseout="RemoveHover('SelectButtonUnique')">
-						<Label id="SelectUniqueButtonLabel" class="SelectButtonLabel" text="Select"/>
-					</Button>
-				</Panel>
+			<Panel class="RelicChoiceRoot" id="RelicChoiceHolder" hittest="true">
+				
 			</Panel>
 			<Panel class="HorizontalSeperator" hittest="true"/>
 			<Panel class="RelicButtonContainer" hittest="true">

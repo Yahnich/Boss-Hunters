@@ -1,4 +1,4 @@
-relic_cursed_battle_brew = class({})
+relic_cursed_battle_brew = class(relicBaseClass)
 
 function relic_cursed_battle_brew:DeclareFunctions()
 	return {MODIFIER_PROPERTY_STATS_STRENGTH_BONUS, MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT, MODIFIER_PROPERTY_MISS_PERCENTAGE}
@@ -17,29 +17,5 @@ function relic_cursed_battle_brew:GetModifierAttackSpeedBonus_Constant()
 end
 
 function relic_cursed_battle_brew:GetModifierMiss_Percentage()
-	return 33
-end
-
-function relic_cursed_battle_brew:IsHidden()
-	return true
-end
-
-function relic_cursed_battle_brew:IsPurgable()
-	return false
-end
-
-function relic_cursed_battle_brew:RemoveOnDeath()
-	return false
-end
-
-function relic_cursed_battle_brew:IsPermanent()
-	return true
-end
-
-function relic_cursed_battle_brew:AllowIllusionDuplicate()
-	return true
-end
-
-function relic_cursed_battle_brew:GetAttributes()
-	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_PERMANENT
+	if not self:GetParent():HasModifier("relic_unique_ritual_candle") then return 20 end
 end

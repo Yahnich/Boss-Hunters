@@ -1,4 +1,4 @@
-relic_cursed_adamantium_ingot = class({})
+relic_cursed_adamantium_ingot = class(relicBaseClass)
 
 function relic_cursed_adamantium_ingot:DeclareFunctions()
 	return {MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS, MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS}
@@ -9,29 +9,6 @@ function relic_cursed_adamantium_ingot:GetModifierPhysicalArmorBonus()
 end
 
 function relic_cursed_adamantium_ingot:GetModifierMagicalResistanceBonus()
-	return -50
+	if not self:GetParent():HasModifier("relic_unique_ritual_candle") then return -50 end
 end
 
-function relic_cursed_adamantium_ingot:IsHidden()
-	return true
-end
-
-function relic_cursed_adamantium_ingot:IsPurgable()
-	return false
-end
-
-function relic_cursed_adamantium_ingot:RemoveOnDeath()
-	return false
-end
-
-function relic_cursed_adamantium_ingot:IsPermanent()
-	return true
-end
-
-function relic_cursed_adamantium_ingot:AllowIllusionDuplicate()
-	return true
-end
-
-function relic_cursed_adamantium_ingot:GetAttributes()
-	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_PERMANENT
-end

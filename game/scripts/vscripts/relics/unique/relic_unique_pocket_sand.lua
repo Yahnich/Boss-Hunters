@@ -1,4 +1,4 @@
-relic_unique_pocket_sand = class({})
+relic_unique_pocket_sand = class(relicBaseClass)
 
 function relic_unique_pocket_sand:OnIntervalThink()
 	self:SetDuration(-1, true)
@@ -21,26 +21,6 @@ function relic_unique_pocket_sand:OnTakeDamage(params)
 	end
 end
 
-function relic_unique_pocket_sand:DestroyOnExpire()
+function relic_unique_pocket_sand:IsHidden()
 	return false
-end
-
-function relic_unique_pocket_sand:IsPurgable()
-	return false
-end
-
-function relic_unique_pocket_sand:RemoveOnDeath()
-	return false
-end
-
-function relic_unique_pocket_sand:IsPermanent()
-	return true
-end
-
-function relic_unique_pocket_sand:AllowIllusionDuplicate()
-	return true
-end
-
-function relic_unique_pocket_sand:GetAttributes()
-	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_PERMANENT
 end

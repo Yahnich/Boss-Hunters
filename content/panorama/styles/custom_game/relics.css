@@ -7,7 +7,7 @@
 
 #RelicRoot
 {
-	width: 50%;
+	min-width: 300px;
 	vertical-align: center;
 	horizontal-align: center;
 	margin-top: -150px;
@@ -47,7 +47,7 @@
 .RelicChoiceContainer
 {
 	flow-children: down;
-	width: fill-parent-flow( 1.0 );
+	width: 250px;
 }
 
 .VerticalSeperator 
@@ -184,10 +184,8 @@
 	horizontal-align: right;
 	margin-bottom: 56px;
 	padding-bottom: 20px;
-	background-image: url("s2r://panorama/images/textures/popup_rock_bg_psd.vtex");
-	background-repeat: no-repeat;
-	background-size: 100% 100%;
 	flow-children: down;
+	overflow: squish scroll;
 }
 
 #RelicInventoryButton

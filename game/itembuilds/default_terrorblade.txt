@@ -8,32 +8,33 @@
 	{	
 		"#DOTA_Item_Build_Starting_Items"
 		{
-			"item"	"item_midas_2"
-			"item"	"item_shivas_guard"
-			"item"	"item_talisman_of_evasion"
+			"item"	"item_hunters_hatchet"
+			"item"	"item_dagger_of_escape"
 		}
 		"#DOTA_Item_Build_Early_Game"
 		{	
-			"item"	"item_midas_3"	
-			"item"	"item_lifesteal2"	
-			"item"	"item_butterfly3"
-			"item"	"item_unstable_stone"
-			"item"	"item_tank_booster"
+			"item"	"item_mirror_blade"
+			"item"	"item_item_legionnaires_dualswords"
 		}
-		"#DOTA_Item_Build_Core_Items"
+		"#DOTA_Item_Build_Mid_Game"
 		{
-			"item"	"item_midas_fury"
-			"item"	"item_melee_rage"
-			"item"	"item_s_a_y_3"
-			"item"	"item_desolator5"
-			"item"	"item_pixels_guard"
+			"item"	"item_blade_of_storm"
+			"item"	"item_illusionists_charm"
+			"item"	"item_gem_of_inner_power"
 		}
-		"#DOTA_Item_Build_Luxury"
+		"#DOTA_Item_Build_Late_Game"
 		{
-			"item"	"item_gungnir_3"
-			"item"	"item_bahamut_claw"
-			"item"	"item_bahamut_chest"
-			"item"	"item_butterfly5"
+			"item"	"item_soothslayer"
+		}
+		"#DOTA_Item_Build_Other_Items"
+		{
+			"item"	"item_dark_ones_blessing"
+			"item"	"item_berserkers_cape"
+			"item"	"item_lightningbottle"
+			"item"	"item_ogre_seal_totem"
+			"item"	"item_hurricane_blade"
+			"item"	"item_arcane_accelerator"
+			"item"	"item_blood_gods_mask"
 		}
 	}
 }

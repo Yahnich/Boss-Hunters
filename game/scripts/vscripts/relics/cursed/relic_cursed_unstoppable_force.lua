@@ -1,4 +1,4 @@
-relic_cursed_unstoppable_force = class({})
+relic_cursed_unstoppable_force = class(relicBaseClass)
 
 function relic_cursed_unstoppable_force:DeclareFunctions()
 	return {MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE_MIN, MODIFIER_PROPERTY_TURN_RATE_PERCENTAGE}
@@ -13,29 +13,5 @@ function relic_cursed_unstoppable_force:GetModifierMoveSpeed_AbsoluteMin()
 end
 
 function relic_cursed_unstoppable_force:GetModifierTurnRate_Percentage()
-	return -80
-end
-
-function relic_cursed_unstoppable_force:IsHidden()
-	return true
-end
-
-function relic_cursed_unstoppable_force:IsPurgable()
-	return false
-end
-
-function relic_cursed_unstoppable_force:RemoveOnDeath()
-	return false
-end
-
-function relic_cursed_unstoppable_force:IsPermanent()
-	return true
-end
-
-function relic_cursed_unstoppable_force:AllowIllusionDuplicate()
-	return true
-end
-
-function relic_cursed_unstoppable_force:GetAttributes()
-	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_PERMANENT
+	if not self:GetParent():HasModifier("relic_unique_ritual_candle") then return -80 end
 end

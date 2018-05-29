@@ -1,4 +1,4 @@
-relic_cursed_icon_of_envy = class({})
+relic_cursed_icon_of_envy = class(relicBaseClass)
 
 function relic_cursed_icon_of_envy:IncreaseEnvy()
 	for _, pIDtable in pairs( CustomNetTables:GetTableValue("game_info", "relic_drops") ) do
@@ -13,41 +13,23 @@ function relic_cursed_icon_of_envy:DeclareFunctions()
 end
 
 function relic_cursed_icon_of_envy:GetModifierBonusStats_Strength()
-	return -20 + 5 * self:GetStackCount()
+	local baseLoss = -20
+	if not self:GetParent():HasModifier("relic_unique_ritual_candle") then baseLoss = 0 end
+	return baseLoss + 5 * self:GetStackCount()
 end
 
 function relic_cursed_icon_of_envy:GetModifierBonusStats_Agility()
-	return -20 + 5 * self:GetStackCount()
+	local baseLoss = -20
+	if not self:GetParent():HasModifier("relic_unique_ritual_candle") then baseLoss = 0 end
+	return baseLoss + 5 * self:GetStackCount()
 end
 
 function relic_cursed_icon_of_envy:GetModifierBonusStats_Intellect()
-	return -20 + 5 * self:GetStackCount()
+	local baseLoss = -20
+	if not self:GetParent():HasModifier("relic_unique_ritual_candle") then baseLoss = 0 end
+	return baseLoss + 5 * self:GetStackCount()
 end
 
 function relic_cursed_icon_of_envy:IsDebuff()
 	return self:GetStackCount() <= 4
-end
-
-function relic_cursed_icon_of_envy:IsHidden()
-	return true
-end
-
-function relic_cursed_icon_of_envy:IsPurgable()
-	return false
-end
-
-function relic_cursed_icon_of_envy:RemoveOnDeath()
-	return false
-end
-
-function relic_cursed_icon_of_envy:IsPermanent()
-	return true
-end
-
-function relic_cursed_icon_of_envy:AllowIllusionDuplicate()
-	return true
-end
-
-function relic_cursed_icon_of_envy:GetAttributes()
-	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_PERMANENT
 end

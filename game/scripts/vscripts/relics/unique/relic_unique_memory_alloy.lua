@@ -1,4 +1,4 @@
-relic_unique_memory_alloy = class({})
+relic_unique_memory_alloy = class(relicBaseClass)
 
 function relic_unique_memory_alloy:DeclareFunctions()
 	return {MODIFIER_EVENT_ON_TAKEDAMAGE }
@@ -22,24 +22,4 @@ end
 
 function relic_unique_memory_alloy:IsHidden()
 	return self:GetStackCount() == 0
-end
-
-function relic_unique_memory_alloy:IsPurgable()
-	return false
-end
-
-function relic_unique_memory_alloy:RemoveOnDeath()
-	return false
-end
-
-function relic_unique_memory_alloy:IsPermanent()
-	return true
-end
-
-function relic_unique_memory_alloy:AllowIllusionDuplicate()
-	return true
-end
-
-function relic_unique_memory_alloy:GetAttributes()
-	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_PERMANENT
 end

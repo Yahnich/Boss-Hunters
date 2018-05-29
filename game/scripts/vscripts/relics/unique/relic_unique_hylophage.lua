@@ -1,4 +1,4 @@
-relic_unique_hylophage = class({})
+relic_unique_hylophage = class(relicBaseClass)
 
 function relic_unique_hylophage:OnCreated()	
 	if IsServer() then
@@ -22,28 +22,4 @@ end
 
 function relic_unique_hylophage:IsHidden()
 	return false
-end
-
-function relic_unique_hylophage:IsPurgable()
-	return false
-end
-
-function relic_unique_hylophage:DestroyOnExpire()
-	return false
-end
-
-function relic_unique_hylophage:RemoveOnDeath()
-	return false
-end
-
-function relic_unique_hylophage:IsPermanent()
-	return true
-end
-
-function relic_unique_hylophage:AllowIllusionDuplicate()
-	return true
-end
-
-function relic_unique_hylophage:GetAttributes()
-	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_PERMANENT
 end

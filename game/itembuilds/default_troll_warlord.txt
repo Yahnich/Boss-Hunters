@@ -8,44 +8,38 @@
 	{
 		"#DOTA_Item_Build_Starting_Items"
 		{
-			"item"	"item_midas_2"
-			"item"	"item_vladmir"
+			"item"	"item_hunters_hatchet"
+			"item"	"item_gauntlet_of_alacrity"
 		}
 
 		"#DOTA_Item_Build_Early_Game"
 		{
-			"item"	"item_butterfly2"
-			"item"	"item_lifesteal2"
-			"item"	"item_celerity_stone"
-			"item"	"item_midas_3"
+			"item"	"item_lightningrod"
+			"item"	"item_ringing_rapier"
 		}
 
 		"#DOTA_Item_Build_Mid_Game"
 		{
-			"item"	"item_melee_rage"
-			"item"	"item_heart_divine"
-			"item"	"item_s_a_y_3"
-			"item"	"item_crit3"
-			"item"	"item_lifesteal3"
-			"item"	"item_butterfly3"
+			"item"	"item_voltas_greathammer"
+			"item"	"item_leechblade"
+			"item"	"item_executioners_blade"
 		}
-
 		"#DOTA_Item_Build_Late_Game"
 		{
-			"item"	"item_heart_bahamut"
-			"item"	"item_lifesteal4"
-			"item"	"item_divine_hammer"
+			"item"	"item_blade_of_storm"
+			"item"	"item_soothslayer"
+			"item"	"item_guillotine"
 			"item"	"item_butterfly5"
 		}
 
-		"#DOTA_Item_Build_Situational"
+		"#DOTA_Item_Build_Other_Items"
 		{
-			"item"	"item_booster_void"
-			"item"	"item_gungnir_3"
-			"item"	"item_s_a_y_4"
-			"item"	"item_bahamut_claw"
-			"item"	"item_bahamut_chest"
-			"item"	"item_octarine_core5"
+			"item"	"item_trebuchet"
+			"item"	"item_headchopper"
+			"item"	"item_wings_of_icarus"
+			"item"	"item_emission"
+			"item"	"item_berserkers_cape"
+			"item"	"item_rising_salt"
 		}
 	}
 }

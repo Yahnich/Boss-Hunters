@@ -1,4 +1,4 @@
-relic_unique_anaerobic_ring = class({})
+relic_unique_anaerobic_ring = class(relicBaseClass)
 
 function relic_unique_anaerobic_ring:OnCreated()	
 	if IsServer() then
@@ -24,24 +24,4 @@ end
 
 function relic_unique_anaerobic_ring:IsHidden()
 	return self:GetStackCount() == 1
-end
-
-function relic_unique_anaerobic_ring:IsPurgable()
-	return false
-end
-
-function relic_unique_anaerobic_ring:RemoveOnDeath()
-	return false
-end
-
-function relic_unique_anaerobic_ring:IsPermanent()
-	return true
-end
-
-function relic_unique_anaerobic_ring:AllowIllusionDuplicate()
-	return true
-end
-
-function relic_unique_anaerobic_ring:GetAttributes()
-	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_PERMANENT
 end

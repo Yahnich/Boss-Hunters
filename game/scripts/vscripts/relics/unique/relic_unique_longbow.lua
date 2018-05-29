@@ -1,4 +1,4 @@
-relic_unique_longbow = class({})
+relic_unique_longbow = class(relicBaseClass)
 
 function relic_unique_longbow:OnCreated()
 	if IsServer() then
@@ -13,28 +13,4 @@ end
 
 function relic_unique_longbow:GetModifierAttackRangeBonus()
 	return 200
-end
-
-function relic_unique_longbow:IsHidden()
-	return true
-end
-
-function relic_unique_longbow:IsPurgable()
-	return false
-end
-
-function relic_unique_longbow:RemoveOnDeath()
-	return false
-end
-
-function relic_unique_longbow:IsPermanent()
-	return true
-end
-
-function relic_unique_longbow:AllowIllusionDuplicate()
-	return true
-end
-
-function relic_unique_longbow:GetAttributes()
-	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_PERMANENT
 end

@@ -2,44 +2,43 @@ modifier_stats_system_handler = class({})
 
 
 -- OTHER
-MOVESPEED_TABLE = {0,25,50,75,100,150}
-MANA_TABLE = {0,3,6,9,12,18}
-MANA_REGEN_TABLE = {0,5,10,15,20,30}
-HEAL_AMP_TABLE = {0,20,40,60,80,120}
+MOVESPEED_TABLE = {0,25,50,75,100,150,175,200,225,250,300}
+MANA_TABLE = {0,500,1000,1500,2000,3000,3500,4000,4500,5000,6000}
+MANA_REGEN_TABLE = {0,3,6,9,12,18,21,24,27,30,40}
+HEAL_AMP_TABLE = {0,10,20,30,40,60,70,80,90,100,120}
 
 -- OFFENSE
-ATTACK_DAMAGE_TABLE = {0,35,70,105,140,200}
-SPELL_AMP_TABLE = {0,15,30,45,60,90}
-COOLDOWN_REDUCTION_TABLE = {0,5,10,15,20,30}
-ATTACK_SPEED_TABLE = {0,35,70,105,140,200}
-STATUS_AMP_TABLE = {0,5,10,15,20,30}
+ATTACK_DAMAGE_TABLE = {0,35,70,105,140,200,235,270,305,340,400}
+SPELL_AMP_TABLE = {0,15,30,45,60,90,105,120,135,150,180}
+COOLDOWN_REDUCTION_TABLE = {0,4,8,12,16,24,28,32,36,40,48}
+ATTACK_SPEED_TABLE = {0,35,70,105,140,200,235,270,305,340,400}
+STATUS_AMP_TABLE = {0,4,8,12,16,24,28,32,36,40,48}
 
 -- DEFENSE
-ARMOR_TABLE = {0,5,10,15,20,30}
-MAGIC_RESIST_TABLE = {0,6,12,18,24,35}
-DAMAGE_BLOCK_TABLE = {0,20,40,60,80,120}
-ATTACK_RANGE_TABLE = {0,100,200,300,400,600}
-HEALTH_TABLE = {0,2,4,6,8,12}
-HEALTH_REGEN_TABLE = {0,5,10,15,20,30}
-STATUS_REDUCTION_TABLE = {0,5,10,15,20,30}
+ARMOR_TABLE = {0,4,8,12,16,24,28,32,36,40,48}
+MAGIC_RESIST_TABLE = {0,4,8,12,16,24,28,32,36,40,48}
+DAMAGE_BLOCK_TABLE = {0,20,40,60,80,120,140,160,180,200,240}
+ATTACK_RANGE_TABLE = {0,100,200,300,400,600,700,800,900,1000,1200}
+HEALTH_TABLE = {0,300,600,900,1200,1800,2100,2400,2700,3000,3600}
+HEALTH_REGEN_TABLE = {0,5,10,15,20,30,35,40,45,50,60}
+STATUS_REDUCTION_TABLE = {0,5,10,15,20,30,35,40,45,50,60}
 
 ALL_STATS = 2
 
 function modifier_stats_system_handler:OnCreated()
-	self:OnIntervalThink()
-	self:StartIntervalThink(0.5)
+	self:UpdateStatValues()
 end
 
-function modifier_stats_system_handler:OnIntervalThink()
+function modifier_stats_system_handler:OnStackCountChanged(iStacks)
 	self:UpdateStatValues()
-	if IsServer() then self:GetParent():CalculateStatBonus() end
 end
 
 function modifier_stats_system_handler:UpdateStatValues()
 	-- OTHER
-	local netTable = CustomNetTables:GetTableValue("stats_panel", tostring(self:GetCaster():entindex()) )
+	local netTable = CustomNetTables:GetTableValue("stats_panel", tostring(self:GetCaster():entindex()) ) or {}
+	
 	self.ms = MOVESPEED_TABLE[tonumber(netTable["ms"]) + 1]
-	self.mp = 400 + MANA_TABLE[tonumber(netTable["mp"]) + 1] * self:GetParent():GetIntellect()
+	self.mp = 400 + MANA_TABLE[tonumber(netTable["mp"]) + 1]
 	self.mpr = 4 + MANA_REGEN_TABLE[tonumber(netTable["mpr"]) + 1]
 	self.ha = HEAL_AMP_TABLE[tonumber(netTable["ha"]) + 1]
 	
@@ -55,11 +54,14 @@ function modifier_stats_system_handler:UpdateStatValues()
 	self.mr = MAGIC_RESIST_TABLE[tonumber(netTable["mr"]) + 1]
 	self.db = DAMAGE_BLOCK_TABLE[tonumber(netTable["db"]) + 1]
 	self.ar = ATTACK_RANGE_TABLE[tonumber(netTable["ar"]) + 1]
-	self.hp = 300 + HEALTH_TABLE[tonumber(netTable["hp"]) + 1] * self:GetParent():GetStrength()
+	self.hp = 300 + HEALTH_TABLE[tonumber(netTable["hp"]) + 1]
 	self.hpr = 5 + HEALTH_REGEN_TABLE[tonumber(netTable["hpr"]) + 1]
 	self.sr = STATUS_REDUCTION_TABLE[tonumber(netTable["sr"]) + 1]
 	
 	self.allStats =  ALL_STATS * tonumber(netTable["all"])
+	
+	
+	if IsServer() then self:GetParent():CalculateStatBonus() end
 end
 
 function modifier_stats_system_handler:DeclareFunctions()

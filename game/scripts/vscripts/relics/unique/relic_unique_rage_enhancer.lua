@@ -1,4 +1,4 @@
-relic_unique_rage_enhancer = class({})
+relic_unique_rage_enhancer = class(relicBaseClass)
 
 function relic_unique_rage_enhancer:OnCreated()
 	self:SetStackCount(0)
@@ -22,24 +22,6 @@ function relic_unique_rage_enhancer:GetModifierExtraStrengthBonus()
 	return self:GetStackCount()
 end
 
-function relic_unique_rage_enhancer:IsPurgable()
+function relic_unique_rage_enhancer:IsHidden()
 	return false
 end
-
-function relic_unique_rage_enhancer:RemoveOnDeath()
-	return false
-end
-
-function relic_unique_rage_enhancer:IsPermanent()
-	return true
-end
-
-function relic_unique_rage_enhancer:AllowIllusionDuplicate()
-	return true
-end
-
-function relic_unique_rage_enhancer:GetAttributes()
-	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_PERMANENT
-end
-
-

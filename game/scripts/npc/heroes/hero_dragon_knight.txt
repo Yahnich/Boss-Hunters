@@ -155,7 +155,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"heal_bonus"			"100"
+				"heal_bonus"			"50"
 			}
 		}
 	}

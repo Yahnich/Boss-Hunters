@@ -1,4 +1,4 @@
-relic_unique_champions_belt = class({})
+relic_unique_champions_belt = class(relicBaseClass)
 
 function relic_unique_champions_belt:OnCreated()
 	self.str = self:GetParent():GetStrength() * 0.35
@@ -33,28 +33,4 @@ end
 
 function relic_unique_champions_belt:GetModifierBonusStats_Intellect()
 	return self.int
-end
-
-function relic_unique_champions_belt:IsHidden()
-	return true
-end
-
-function relic_unique_champions_belt:IsPurgable()
-	return false
-end
-
-function relic_unique_champions_belt:RemoveOnDeath()
-	return false
-end
-
-function relic_unique_champions_belt:IsPermanent()
-	return true
-end
-
-function relic_unique_champions_belt:AllowIllusionDuplicate()
-	return true
-end
-
-function relic_unique_champions_belt:GetAttributes()
-	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_PERMANENT
 end

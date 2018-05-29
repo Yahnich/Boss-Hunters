@@ -996,7 +996,8 @@ function CDOTA_BaseNPC:ModifyThreat(val)
 			newVal = newVal + ( math.abs(val) * ( modifier:Bonus_ThreatGain()/100 ) )
 		end
 	end
-	self.threat = math.max(0, (self.threat or 0) + newVal )
+	print(newVal)
+	self.threat = math.min(math.max(0, (self.threat or 0) + newVal ), 10000)
 	if not self:IsFakeHero() then 
 		local player = PlayerResource:GetPlayer(self:GetOwner():GetPlayerID())
 
@@ -2409,6 +2410,34 @@ function CutTreesInRadius(vloc, radius)
 end
 
 function CBaseEntity:RollPRNG( percentage )
+	local internalInt = (100/percentage)
+	local startingRoll = internalInt^2
+	self.internalPRNGCounter = self.internalPRNGCounter or (1/internalInt)^2
+	if RollPercentage(self.internalPRNGCounter * 100) then
+		self.internalPRNGCounter = (1/internalInt)^2
+		return true
+	else
+		local internalCount = 1/self.internalPRNGCounter
+		self.internalPRNGCounter = 1/( math.max(internalCount - internalInt, 1) )
+		return false
+	end
+end
+
+function CDOTA_Ability_Lua:RollPRNG( percentage )
+	local internalInt = (100/percentage)
+	local startingRoll = internalInt^2
+	self.internalPRNGCounter = self.internalPRNGCounter or (1/internalInt)^2
+	if RollPercentage(self.internalPRNGCounter * 100) then
+		self.internalPRNGCounter = (1/internalInt)^2
+		return true
+	else
+		local internalCount = 1/self.internalPRNGCounter
+		self.internalPRNGCounter = 1/( math.max(internalCount - internalInt, 1) )
+		return false
+	end
+end
+
+function CDOTA_Modifier_Lua:RollPRNG( percentage )
 	local internalInt = (100/percentage)
 	local startingRoll = internalInt^2
 	self.internalPRNGCounter = self.internalPRNGCounter or (1/internalInt)^2
