@@ -65,7 +65,7 @@
 			"08"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"strikes"				"4"
+				"strikes"				"5"
 			}
 		}
 	}

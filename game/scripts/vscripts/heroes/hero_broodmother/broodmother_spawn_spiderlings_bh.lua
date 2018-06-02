@@ -46,9 +46,10 @@ function modifier_broodmother_spawn_spiderlings_bh:OnRemoved()
     		spider:SetBaseDamageMin(caster:GetBaseDamageMin() * percentD)
     		spider:SetBaseDamageMax(caster:GetBaseDamageMax() * percentD)
     		spider:SetBaseAttackTime(caster:GetSecondsPerAttack())
-    		spider:SetMaxHealth(caster:GetMaxHealth() * percentH)
-    		spider:SetHealth(caster:GetMaxHealth() * percentH)
-    		spider:SetBaseMoveSpeed(caster:GetBaseMoveSpeed())
+			local hp = caster:GetMaxHealth() * percentH
+			spider:SetBaseMaxHealth(hp)
+    		spider:SetMaxHealth(hp)
+    		spider:SetHealth(hp)
 
     		spider:AddAbility("broodmother_bite"):SetLevel(1)
     		

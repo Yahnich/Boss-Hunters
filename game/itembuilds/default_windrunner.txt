@@ -5,43 +5,31 @@
 	"Title"			"Epic Boss Fight"
 	
 	"Items"
-	{		
+	{	
 		"#DOTA_Item_Build_Starting_Items"
 		{
-			"item"   "item_midas_2"
-			"item"   "item_force_boots"
-			"item"   "item_octarine_core"
+			"item"	"item_gem_of_corruption"
+			"item"	"item_hunters_hatchet"
 		}
-		
 		"#DOTA_Item_Build_Early_Game"
 		{	
-		       "item"   "item_midas_3"	
-		       "item"   "item_octarine_core2"	
-		       "item"   "item_gungnir"
-	           "item"   "item_crit3"
+			"item"	"item_reaping_scythe"	
+			"item"	"item_executioners_blade"
 		}
-		
 		"#DOTA_Item_Build_Core_Items"
-		{				
-			"item"			 "item_ultimate_scepter"
-	        "item"           "item_octarine_core4"
-	        "item"           "item_blink_boots"
-	        "item"           "item_gungnir_2"
-	        "item"           "item_Dagon_Mystic"
+		{
+			"item"	"item_thanatos"
+			"item"	"item_guillotine"
 		}
 		"#DOTA_Item_Build_Luxury"
 		{
-	        "item"           "item_midas_fury"
-	        "item"           "item_gungnir_2"
-			"item"           "item_octarine_core5"
-	        "item"           "item_gungnir_3"
-			
-		}
-		"#DOTA_Item_Build_End_Game"
-		{
-			"item"           "item_abyssal_soul"
-	        "item"   		 "item_ultimate_amulet"
-			"item"			 "item_pixels_guard"
+			"item"	"item_blade_of_storm"
+			"item"	"item_headchopper"
+			"item"	"item_crystalline_staff"
+			"item"	"item_lightningbottle"
+			"item"	"item_emission"
+			"item"	"item_leechblade"
+			"item"	"item_dark_wand_5"
 		}
 	}
 }

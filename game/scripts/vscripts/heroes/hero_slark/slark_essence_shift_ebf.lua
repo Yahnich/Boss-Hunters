@@ -34,6 +34,7 @@ function modifier_slark_essence_shift_handler:OnAttackLanded(params)
 		if caster:HasTalent("special_bonus_unique_slark_essence_shift_2") then
 			ability:DealDamage( caster, params.target, caster:GetPrimaryStatValue() * caster:FindTalentValue("special_bonus_unique_slark_essence_shift_2") / 100, {damage_type = DAMAGE_TYPE_PURE})
 		end
+		caster:CalculateStatBonus()
 	end
 end
 

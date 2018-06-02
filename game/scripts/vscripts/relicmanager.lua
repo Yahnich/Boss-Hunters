@@ -53,7 +53,7 @@ function RelicManager:SendHeroRelicInventory(userid, event)
 	if hero then
 		local player = PlayerResource:GetPlayer(pID)
 		if player then
-			CustomGameEventManager:Send_ServerToPlayer(player,"dota_player_update_relic_inventory", {relics = hero.ownedRelics})
+			CustomGameEventManager:Send_ServerToPlayer(player,"dota_player_update_relic_inventory", {relics = hero.ownedRelics, hero = hero:entindex()})
 		end
 		
 	end
@@ -102,7 +102,7 @@ function RelicManager:RemoveDropFromTable(pID)
 	table.remove( hero.relicsToSelect, 1 )
 	local player = PlayerResource:GetPlayer(pID)
 	if player then
-		CustomGameEventManager:Send_ServerToPlayer(player,"dota_player_updated_relic_drops", {entindex = hero:entindex(), drops = hero.relicsToSelect})
+		CustomGameEventManager:Send_ServerToPlayer(player,"dota_player_updated_relic_drops", {playerID = pID, drops = hero.relicsToSelect})
 	end
 end
 
@@ -247,10 +247,10 @@ function RelicManager:RemoveRelicOnPlayer(relic, pID, bAll)
 	for entindex, relicName in pairs(hero.ownedRelics) do
 		if relicName == relic then
 			local item = EntIndexToHScript(entindex)
-			UTIL_Remove( item )
 			for _, modifier in ipairs( hero:FindAllModifiers() ) do
 				if modifier:GetAbility() == item then modifier:Destroy() end
 			end
+			UTIL_Remove( item )
 			if string.match(relicName, "unique") then
 				hero.internalRNGPools[3][relicName] = "1"
 			elseif string.match(relic, "cursed") then

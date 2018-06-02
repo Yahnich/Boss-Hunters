@@ -51,7 +51,15 @@ end
 
 function modifier_slark_shadow_dance_handler:DeclareFunctions()
 	return {MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE,
-			MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE}
+			MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
+			MODIFIER_EVENT_ON_TAKEDAMAGE}
+end
+
+function modifier_slark_shadow_dance_handler:OnTakeDamage(params)
+	if params.unit == self:GetParent() and self:GetParent():HasTalent("special_bonus_unique_slark_shadow_dance_2") then
+		self:SetStackCount(1)
+		self:StartIntervalThink( self:GetParent():FindTalentValue("special_bonus_unique_slark_shadow_dance_2", "duration") )
+	end
 end
 
 function modifier_slark_shadow_dance_handler:GetModifierHealthRegenPercentage()

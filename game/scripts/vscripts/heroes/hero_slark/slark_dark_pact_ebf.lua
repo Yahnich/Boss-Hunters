@@ -57,13 +57,13 @@ function modifier_slark_dark_pact_effect:OnIntervalThink()
 	else
 		self.particleFire = self.particleFire - self.rate
 	end
-	if caster:HasTalent("special_bonus_unique_slark_dark_pact_1") then self_damage = damage end
+	if caster:HasTalent("special_bonus_unique_slark_dark_pact_1") then self_damage = damage * caster:FindTalentValue("special_bonus_unique_slark_dark_pact_1") end
 	
 	local enemies = caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), self.radius )
 	for _, enemy in ipairs( enemies ) do
 		local enemyDamage = damage
 		if caster:HasTalent("special_bonus_unique_slark_dark_pact_2") then
-			enemyDamage = damage + (self_damage / #enemies)
+			enemyDamage = damage + self_damage
 		end
 		ability:DealDamage( caster, enemy, enemyDamage)
 	end

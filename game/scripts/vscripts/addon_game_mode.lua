@@ -271,6 +271,14 @@ function CHoldoutGameMode:InitGameMode()
 	
 	-- Custom console commands
 	Convars:RegisterCommand( "holdout_test_round", function(...) return self:_TestRoundConsoleCommand( ... ) end, "Test a round of holdout.", FCVAR_CHEAT )
+	Convars:RegisterCommand( "game_tools_ask_nettable_info", function()
+																local player = Convars:GetDOTACommandClient()
+																Timers:CreateTimer(function()
+																	if not player or player:IsNull() then return end
+																	CustomGameEventManager:Send_ServerToPlayer( player, "game_tools_ask_nettable_info", {} )
+																	return 1
+																end)
+															end, "test",0)
 	Convars:RegisterCommand( "clear_relics", function()
 											if Convars:GetDOTACommandClient() and IsInToolsMode() then
 												local player = Convars:GetDOTACommandClient()
@@ -781,23 +789,19 @@ function CHoldoutGameMode:OnAbilityUsed(event)
 		abilityused:EndCooldown()
 		if abilityused:GetDuration() > 0 then
 			local duration = abilityused:GetDuration()
-			if modifier.GetModifierStatusAmplify_Percentage then
-				duration = duration * (1 + modifier:GetModifierStatusAmplify_Percentage( params )/100)
-			end
 			if abilityname == "night_stalker_crippling_fear" and not GameRules:IsDaytime() then duration = abilityused:GetTalentSpecialValueFor("duration_night") end
+			for _, modifier in ipairs( hero:FindAllModifiers() ) do
+				if modifier.GetModifierStatusAmplify_Percentage then
+					duration = duration * (1 + modifier:GetModifierStatusAmplify_Percentage( params )/100)
+				end
+			end
 			abilityused:StartDelayedCooldown(duration)
 		else
 			abilityused:StartCooldown(abilityused:GetCooldown(-1))
 		end
 	end
-	if abilityname == "troll_warlord_battle_trance_ebf" then
-		local trance = abilityused
-		local duration = trance:GetSpecialValueFor("trance_duration")
-		local max_as = trance:GetSpecialValueFor("attack_speed_max")
-		GameRules:GetGameModeEntity():SetMaximumAttackSpeed(MAXIMUM_ATTACK_SPEED + max_as)
-		Timers:CreateTimer(duration,function()
- 			GameRules:GetGameModeEntity():SetMaximumAttackSpeed(MAXIMUM_ATTACK_SPEED)
- 		end)
+	if abilityname == "pangolier_shield_crash" then
+		hero:AddNewModifier(hero, abilityused, "modifier_pangolier_shield_crash_buff", {duration = abilityused:GetTalentSpecialValueFor("duration")}):SetStackCount( abilityused:GetTalentSpecialValueFor("hero_stacks") )
 	end
 	if hero:GetName() == "npc_dota_hero_rubick"  and abilityname ~= "rubick_spell_steal" and hero:IsRealHero() then
 		local spell_echo = hero:FindAbilityByName("rubick_spell_echo")
@@ -821,74 +825,6 @@ function CHoldoutGameMode:OnAbilityUsed(event)
 	end
 end
 
-function CHoldoutGameMode:Buy_Asura_Core_shop(event)
-	pID = event.pID
-	local player = PlayerResource:GetPlayer(pID)
-	local hero = player:GetAssignedHero() 
-	--print ("bought item")
-	if hero:GetGold() >= 24999 then
-		PlayerResource:SpendGold(pID, 24999, 0)
-	 	hero.Asura_Core = (hero.Asura_Core or 0) + 1
-		Notifications:Top(pID, {text="You have purchased an Asura Core", duration=3})
-		update_asura_core(hero)
-	else
-		Notifications:Top(pID, {text="You don't have enough gold to purchase an Asura Core", duration=3})
-	end
-end
-
-
-function CHoldoutGameMode:_Buy_Demon_Shop(pID,item_name,Hprice,item_recipe)
-	local player = PlayerResource:GetPlayer(pID)
-	local hero = player:GetAssignedHero() 
-	local money = hero:GetGold() 
-	local Have_Recipe = false
-	if item_recipe ~= nil and item_recipe ~= "none" then
-		--print ("check if have the item")
-		for itemSlot = 0, 11, 1 do
-			local item = hero:GetItemInSlot(itemSlot)
-			if item ~= nil and item:GetName() == item_recipe then 
-				Have_Recipe = true  
-				--print ("have the item")
-			end
-		end
-	elseif item_recipe == "none" then
-		Have_Recipe = true
-	end
-	if Have_Recipe == true then
-		if (hero.Asura_Core or 0) >= Hprice or money > 24999 then
-			if (hero.Asura_Core or 0) < Hprice then
-				self:_Buy_Asura_Core(pID)
-			end
-			local found_recipe = false
-			for itemSlot = 0, 11, 1 do
-				local item = hero:GetItemInSlot(itemSlot)
-				if item ~= nil and item:GetName() == item_recipe and found_recipe == false then 
-					item:Destroy()
-					found_recipe = true
-				end
-			end
-			hero.Asura_Core = (hero.Asura_Core or 0) - Hprice
-			update_asura_core(hero)
-			hero:AddItemByName(item_name)
-		else
-			return
-		end
-	end
-end
-
-function CHoldoutGameMode:Asura_Core_Left(event)
-	--print ("show asura core count")
-	local pID = event.pID
-	local player = PlayerResource:GetPlayer(pID)
-	local hero = player:GetAssignedHero() 
-	local message = "I have "..(hero.Asura_Core or 0).." Asura Cores"
-	hero.tellCoreDelayTimer = hero.tellCoreDelayTimer or GameRules:GetGameTime()
-	if GameRules:GetGameTime() > hero.tellCoreDelayTimer + 1 then
-		Say(player, message, true)
-		hero.tellCoreDelayTimer = GameRules:GetGameTime()
-	end
-end
-	
 function CHoldoutGameMode:Tell_threat(event)
 	--print ("show asura core count")
 	local pID = event.pID
@@ -904,99 +840,6 @@ function CHoldoutGameMode:Tell_threat(event)
 		hero.tellThreatDelayTimer = GameRules:GetGameTime()
 	end
 end
-
-function CHoldoutGameMode:Buy_Demon_Shop_check(event)
-	--print ("buy an asura item")
-	local pID = event.pID
-	local item_name = event.item_name
-	local price = event.price
-	local item_recipe = event.item_recipe
-	if price == nil then return end
-	local player = PlayerResource:GetPlayer(pID)
-	local hero = player:GetAssignedHero()
-	if hero ~= nil then
-		--print (hero.Asura_Core)
-		if (hero.Asura_Core or 0) + 1 >= price then --check if player have enought Asura Heart (or have enought if he buy one) to buy item
-			CHoldoutGameMode:_Buy_Demon_Shop(pID,item_name,price,item_recipe)
-		else
-		    Notifications:Top(pID, {text="You don't have enough Asura Cores to purchase this", duration=3})
-		end
-	end
-end
-
-function CHoldoutGameMode:Buy_Perk_check(event)
-	--print ("buy perk")
-	local pID = event.pID
-	local perk_name = event.perk_name
-	local price = event.price
-	local pricegain = event.pricegain
-	local message = CHoldoutGameMode._message
-	if price == nil then return end
-	local player = PlayerResource:GetPlayer(pID)
-	local hero = player:GetAssignedHero()
-	if hero ~= nil then
-		local perk = hero:FindAbilityByName(perk_name)
-		local checksum = true
-		if perk and perk:GetLevel() >= perk:GetMaxLevel() then
-			checksum = false
-		end
-		if (hero.Asura_Core or 0) + 1 >= price and checksum then --check if player asura core count is sufficient and perk not maxed
-			CHoldoutGameMode:_Buy_Perk(pID, perk_name, price, pricegain)
-		elseif not message and checksum then
-		    Notifications:Top(pID, {text="You need "..(price - hero.Asura_Core).." more Asura Cores", duration=2})
-			CHoldoutGameMode._message = true
-			Timers:CreateTimer(2,function()
-				CHoldoutGameMode._message = false
-			end)
-		elseif not message and not checksum then
-			Notifications:Top(pID, {text="Perk is maxed!", duration=2})
-			CHoldoutGameMode._message = true
-			Timers:CreateTimer(2,function()
-				CHoldoutGameMode._message = false
-			end)
-		end
-	end
-end
-
-function CHoldoutGameMode:_Buy_Perk(pID,perk_name,Hprice, pricegain)
-	local player = PlayerResource:GetPlayer(pID)
-	local hero = PlayerResource:GetSelectedHeroEntity(pID)
-	local money = hero:GetGold()
-	local difference = (hero.Asura_Core or 0) - Hprice
-	if difference >= 0 or -difference >= (money/24999) then
-		while difference < 0 do
-			self:_Buy_Asura_Core(pID)
-		end
-		hero.Asura_Core = (hero.Asura_Core or 0) - Hprice
-		update_asura_core(hero)
-		if not hero:FindAbilityByName(perk_name) then
-			hero:AddAbility(perk_name)
-		end
-		local perk = hero:FindAbilityByName(perk_name)
-		perk:SetLevel(perk:GetLevel()+1)
-		local event_data =
-		{
-			perk = perk_name,
-			price = Hprice,
-			pricegain = pricegain or 0,
-			level = perk:GetLevel() or 0
-		}
-		if player then
-			CustomGameEventManager:Send_ServerToPlayer( player, "Update_perk", event_data )
-		end
-	else
-		return
-	end
-end
-
-function CHoldoutGameMode:_EnterNG()
-	GameRules.Winner = DOTA_TEAM_GOODGUYS
-	GameRules.EndTime = GameRules:GetGameTime()
-	statCollection:submitRound(false)
-end
-
-
-
 
 function CHoldoutGameMode:OnHeroPick (event)
  	local hero = EntIndexToHScript(event.heroindex)
@@ -1550,120 +1393,126 @@ function CHoldoutGameMode:OnThink()
 				CustomGameEventManager:Send_ServerToAllClients( "updateQuestPrepTime", { prepTime = math.floor(timeLeft + 0.5) } )
 				self:_ThinkPrepTime()
 			elseif self._currentRound ~= nil then
-				self._currentRound:Think()
-				if self._currentRound:IsFinished() then
-					self._currentRound:End(true)
-					GameRules:SetGoldTickTime( 0 )
-					GameRules:SetGoldPerTick( 0 )
-					self._nRoundNumber = self._nRoundNumber + 1
-					boss_meteor:SetRoundNumer(self._nRoundNumber)
-					GameRules._roundnumber = self._nRoundNumber
-					CustomGameEventManager:Send_ServerToAllClients( "round_has_ended", {} )
-					self._currentRound = nil
-					-- Heal all players
-					if self.boss_master_id ~= -1 then
-						local boss_master = PlayerResource:GetSelectedHeroEntity(self.boss_master_id)
-						boss_master:HeroLevelUp(true)
-					end
-					local ngmodifier = 0
-					if self._NewGamePlus then ngmodifier = math.floor(GameRules:GetMaxRound()/2) end
-					local round = math.floor((self._nRoundNumber + ngmodifier))
-					local passive_gold = round*30
-					local abandonGold = 0
-					local shareCount = 0
-					for _,unit in pairs ( HeroList:GetAllHeroes()) do
-						if unit:GetTeamNumber() == DOTA_TEAM_GOODGUYS and not unit:IsFakeHero() then
-							PlayerResource:SetCustomBuybackCost(unit:GetPlayerID(), self._nRoundNumber * 40)
-							if unit:HasOwnerAbandoned() then
-								abandonGold = abandonGold + unit:GetGold()
-								unit:SetGold(0, false)
-								unit:SetGold(0, true)
-							else
-								shareCount = shareCount + 1
-							end
-							local midas_modifier = 0
-							if unit:HasModifier("passive_midas_3") then
-								midas_modifier = 15
-							elseif unit:HasModifier("passive_midas_2") then
-								midas_modifier = 10
-							elseif unit:HasModifier("passive_midas_1") or unit:FindItemByName("item_hand_of_midas", false) then
-								midas_modifier = 5
-							end
-							local interest = math.floor( unit:GetGold()*midas_modifier / 100 + 0.5 )
-							if interest > midas_modifier*10*round then interest = midas_modifier*10*round end
-							local totalgold = unit:GetGold() + passive_gold + interest
-							unit.midasGold = unit.midasGold or 0
-							unit.midasGold = unit.midasGold + interest
-							unit:SetGold(0 , false)
-							unit:SetGold(totalgold, true)
-							local player = unit:GetPlayerOwner()
-							if player then
-								CustomGameEventManager:Send_ServerToPlayer( player, "player_update_gold", { gold = unit.midasGold, interest = interest} )
-							end
+				local RoundHandler = function(self)
+					self._currentRound:Think()
+					if self._currentRound:IsFinished() then
+						self._currentRound:End(true)
+						GameRules:SetGoldTickTime( 0 )
+						GameRules:SetGoldPerTick( 0 )
+						self._nRoundNumber = self._nRoundNumber + 1
+						boss_meteor:SetRoundNumer(self._nRoundNumber)
+						GameRules._roundnumber = self._nRoundNumber
+						CustomGameEventManager:Send_ServerToAllClients( "round_has_ended", {} )
+						self._currentRound = nil
+						-- Heal all players
+						if self.boss_master_id ~= -1 then
+							local boss_master = PlayerResource:GetSelectedHeroEntity(self.boss_master_id)
+							boss_master:HeroLevelUp(true)
 						end
-					end
-					for _, unit in ipairs( HeroList:GetActiveHeroes() ) do
-						if not unit:HasOwnerAbandoned() then
-							local newGold = unit:GetGold() + math.floor(abandonGold / shareCount)
-							unit:SetGold(0 , false)
-							unit:SetGold(newGold, true)
-						end
-					end
-					-- if math.random(1,25) == 25 then
-						-- self:spawn_unit( Vector(0,0,0) , "npc_dota_treasure" , 2000)
-						-- for _,unit in pairs ( Entities:FindAllByModel( "models/courier/flopjaw/flopjaw.vmdl")) do
-							-- Waypoint = Entities:FindByName( nil, "path_invader1_1" )
-							-- unit:SetInitialGoalEntity(Waypoint) 
-							-- Timers:CreateTimer(15,function()
-								-- unit:ForceKill(true)
-							-- end)
-						-- end
-						-- self._flPrepTimeEnd = GameRules:GetGameTime() + self._flPrepTimeBetweenRounds + 15
-
-					-- end 
-					if self._nRoundNumber > #self._vRounds then
-						-- if self._NewGamePlus == false then
-							-- self:_Start_Vote()
-						-- else
-							SendToConsole("dota_health_per_vertical_marker 250")
-							GameRules:SetCustomVictoryMessage ("Congratulations!")
-							GameRules:SetGameWinner(DOTA_TEAM_GOODGUYS)
-							GameRules.Winner = DOTA_TEAM_GOODGUYS
-							GameRules._finish = true
-							GameRules.EndTime = GameRules:GetGameTime()
-							statCollection:submitRound(true)
-						-- end
-					else
-						self._flPrepTimeEnd = GameRules:GetGameTime() + self._flPrepTimeBetweenRounds
-						
-						GameRules.voteRound_No = PlayerResource:GetTeamPlayerCount()
-						GameRules.voteRound_Yes = 0
-						
-						
-			
-						CustomGameEventManager:Send_ServerToAllClients("Display_RoundVote", {})
-						local event_data =
-						{
-							No = GameRules.voteRound_No,
-							Yes = GameRules.voteRound_Yes,
-						}
-						CustomGameEventManager:Send_ServerToAllClients("RoundVoteResults", event_data)
-
-						Timers:CreateTimer(1,function()
-							if GameRules.voteRound_No <= 0 then
-								CustomGameEventManager:Send_ServerToAllClients("Close_RoundVote", {})
-								if self._flPrepTimeEnd~= nil then
-									self._flPrepTimeEnd = 0
+						local ngmodifier = 0
+						if self._NewGamePlus then ngmodifier = math.floor(GameRules:GetMaxRound()/2) end
+						local round = math.floor((self._nRoundNumber + ngmodifier))
+						local passive_gold = round*30
+						local abandonGold = 0
+						local shareCount = 0
+						for _,unit in pairs ( HeroList:GetAllHeroes()) do
+							if unit:GetTeamNumber() == DOTA_TEAM_GOODGUYS and not unit:IsFakeHero() then
+								PlayerResource:SetCustomBuybackCost(unit:GetPlayerID(), self._nRoundNumber * 40)
+								if unit:HasOwnerAbandoned() then
+									abandonGold = abandonGold + unit:GetGold()
+									unit:SetGold(0, false)
+									unit:SetGold(0, true)
+								else
+									shareCount = shareCount + 1
 								end
-							else
-								return 1
+								local midas_modifier = 0
+								if unit:HasModifier("passive_midas_3") then
+									midas_modifier = 15
+								elseif unit:HasModifier("passive_midas_2") then
+									midas_modifier = 10
+								elseif unit:HasModifier("passive_midas_1") or unit:FindItemByName("item_hand_of_midas", false) then
+									midas_modifier = 5
+								end
+								local interest = math.floor( unit:GetGold()*midas_modifier / 100 + 0.5 )
+								if interest > midas_modifier*10*round then interest = midas_modifier*10*round end
+								local totalgold = unit:GetGold() + passive_gold + interest
+								unit.midasGold = unit.midasGold or 0
+								unit.midasGold = unit.midasGold + interest
+								unit:SetGold(0 , false)
+								unit:SetGold(totalgold, true)
+								local player = unit:GetPlayerOwner()
+								if player then
+									CustomGameEventManager:Send_ServerToPlayer( player, "player_update_gold", { gold = unit.midasGold, interest = interest} )
+								end
 							end
-						end)
+						end
+						for _, unit in ipairs( HeroList:GetActiveHeroes() ) do
+							if not unit:HasOwnerAbandoned() then
+								local newGold = unit:GetGold() + math.floor(abandonGold / shareCount)
+								unit:SetGold(0 , false)
+								unit:SetGold(newGold, true)
+							end
+						end
+						-- if math.random(1,25) == 25 then
+							-- self:spawn_unit( Vector(0,0,0) , "npc_dota_treasure" , 2000)
+							-- for _,unit in pairs ( Entities:FindAllByModel( "models/courier/flopjaw/flopjaw.vmdl")) do
+								-- Waypoint = Entities:FindByName( nil, "path_invader1_1" )
+								-- unit:SetInitialGoalEntity(Waypoint) 
+								-- Timers:CreateTimer(15,function()
+									-- unit:ForceKill(true)
+								-- end)
+							-- end
+							-- self._flPrepTimeEnd = GameRules:GetGameTime() + self._flPrepTimeBetweenRounds + 15
+
+						-- end 
+						if self._nRoundNumber > #self._vRounds then
+							-- if self._NewGamePlus == false then
+								-- self:_Start_Vote()
+							-- else
+								SendToConsole("dota_health_per_vertical_marker 250")
+								GameRules:SetCustomVictoryMessage ("Congratulations!")
+								GameRules:SetGameWinner(DOTA_TEAM_GOODGUYS)
+								GameRules.Winner = DOTA_TEAM_GOODGUYS
+								GameRules._finish = true
+								GameRules.EndTime = GameRules:GetGameTime()
+								statCollection:submitRound(true)
+							-- end
+						else
+							self._flPrepTimeEnd = GameRules:GetGameTime() + self._flPrepTimeBetweenRounds
+							
+							GameRules.voteRound_No = PlayerResource:GetTeamPlayerCount()
+							GameRules.voteRound_Yes = 0
+							
+							
+				
+							CustomGameEventManager:Send_ServerToAllClients("Display_RoundVote", {})
+							local event_data =
+							{
+								No = GameRules.voteRound_No,
+								Yes = GameRules.voteRound_Yes,
+							}
+							CustomGameEventManager:Send_ServerToAllClients("RoundVoteResults", event_data)
+
+							Timers:CreateTimer(1,function()
+								if GameRules.voteRound_No <= 0 then
+									CustomGameEventManager:Send_ServerToAllClients("Close_RoundVote", {})
+									if self._flPrepTimeEnd~= nil then
+										self._flPrepTimeEnd = 0
+									end
+								else
+									return 1
+								end
+							end)
+						end
 					end
+				end
+				status, err, ret = xpcall(RoundHandler, debug.traceback, self)
+				if not status  and not self.gameHasBeenBroken then
+					self:SendErrorReport(err)
 				end
 			end
 		end
-		local status, err, ret = xpcall(OnPThink, debug.traceback, self)
+		status, err, ret = xpcall(OnPThink, debug.traceback, self)
 		if not status  and not self.gameHasBeenBroken then
 			self:SendErrorReport(err)
 		end

@@ -7,7 +7,7 @@ if IsServer() then
 		if self:GetParent():HasModifier("relic_unique_ritual_candle") then return end
 		local relicList = {}
 		for item, relic in pairs( hero.ownedRelics ) do
-			if relic ~= "relic_cursed_mask_of_janus" then
+			if relic and relic ~= "relic_cursed_mask_of_janus" then
 				table.insert(relicList, relic)
 			end
 		end

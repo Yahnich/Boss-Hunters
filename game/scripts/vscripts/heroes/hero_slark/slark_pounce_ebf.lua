@@ -1,5 +1,9 @@
 slark_pounce_ebf = class({})
 
+function slark_pounce_ebf:GetCooldown(iLvl)
+	return self.BaseClass.GetCooldown(self, iLvl) + self:GetCaster():FindTalentValue("special_bonus_unique_slark_pounce_1")
+end
+
 function slark_pounce_ebf:OnSpellStart()
 	local caster = self:GetCaster()
 	
