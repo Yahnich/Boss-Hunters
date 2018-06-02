@@ -8281,10 +8281,10 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_SHOW_IN_GUIDES"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"MaxLevel"						"1"
-		"RequiredLevel"						"1"
+		"RequiredLevel"					"1"
 		"AbilitySound"					"Hero_Invoker.Invoke"
-
-		"HasScepterUpgrade"			"1"
+		"InnateAbility"					"1"
+		"HasScepterUpgrade"				"1"
 
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
