@@ -2468,3 +2468,30 @@ end
 function GameRules:InPrepTime()
 	return self.holdOut._currentRound == nil
 end
+
+function CDOTA_BaseNPC:FindEnemyUnitsInCone(vDirection, vPosition, flSideRadius, flLength, hData)
+	if not self:IsNull() then
+		local vDirectionCone = Vector( vDirection.y, -vDirection.x, 0.0 )
+		local team = self:GetTeamNumber()
+		local data = hData or {}
+		local iTeam = data.team or DOTA_UNIT_TARGET_TEAM_ENEMY
+		local iType = data.type or DOTA_UNIT_TARGET_ALL
+		local iFlag = data.flag or DOTA_UNIT_TARGET_FLAG_NONE
+		local iOrder = data.order or FIND_ANY_ORDER
+		local enemies = self:FindEnemyUnitsInRadius(vPosition, flSideRadius + flLength, hData)
+		local unitTable = {}
+		if #enemies > 0 then
+			for _,enemy in pairs(enemies) do
+				if enemy ~= nil then
+					local vToPotentialTarget = enemy:GetOrigin() - vPosition
+					local flSideAmount = math.abs( vToPotentialTarget.x * vDirectionCone.x + vToPotentialTarget.y * vDirectionCone.y + vToPotentialTarget.z * vDirectionCone.z )
+					local flLengthAmount = ( vToPotentialTarget.x * vDirection.x + vToPotentialTarget.y * vDirection.y + vToPotentialTarget.z * vDirection.z )
+					if ( flSideAmount < flSideRadius ) and ( flLengthAmount > 0.0 ) and ( flLengthAmount < flLength ) then
+						table.insert(unitTable, enemy)
+					end
+				end
+			end
+		end
+		return unitTable
+	else return {} end
+end
