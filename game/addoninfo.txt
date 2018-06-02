@@ -1,15 +1,15 @@
 "AddonInfo"
 {
-	maps			"ebf_casual ebf_hardcore"
+	maps			"bh_casual bh_hardcore"
 	"IsPlayable"	"1"
 
-	"ebf_casual"
+	"bh_casual"
 	{
 		"MaxPlayers"                    "5"
 		"Lives"							"7"
 		"Difficulty"					"2"
 	}
-	"ebf_hardcore"
+	"bh_hardcore"
 	{
 		"MaxPlayers"                    "5"
 		"Lives"							"3"

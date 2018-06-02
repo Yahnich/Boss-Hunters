@@ -1,6 +1,19 @@
 zeus_olympus_calls = class({})
 LinkLuaModifier( "modifier_zeus_olympus_calls", "heroes/hero_zeus/zeus_olympus_calls.lua" ,LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_zeus_olympus_calls_ally", "heroes/hero_zeus/zeus_olympus_calls.lua" ,LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_zeus_olympus_calls_talent", "heroes/hero_zeus/zeus_olympus_calls.lua" ,LUA_MODIFIER_MOTION_NONE )
+
+function zeus_olympus_calls:GetIntrinsicModifierName()
+	if self:GetCaster():HasTalent("special_bonus_unique_zeus_olympus_calls_1") then
+		return "modifier_zeus_olympus_calls_talent"
+	end
+end
+
+function zeus_olympus_calls:OnTalentLearned(talent)
+	if talent == "special_bonus_unique_zeus_olympus_calls_1" then
+		self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_zeus_olympus_calls_talent", {})
+	end
+end
 
 function zeus_olympus_calls:OnAbilityPhaseStart()
 	EmitSoundOn("Hero_Zuus.GodsWrath.PreCast", self:GetCaster())
@@ -67,17 +80,6 @@ function modifier_zeus_olympus_calls:DeclareFunctions()
 	return funcs
 end
 
-function modifier_zeus_olympus_calls:OnAttackLanded(params)
-	if IsServer() then
-		local caster = params.attacker
-		local enemy = params.target
-		if caster:HasTalent("special_bonus_unique_zeus_olympus_calls_1") then
-			ParticleManager:FireRopeParticle("particles/units/heroes/hero_zeus/zeus_olympus_calls.vpcf", PATTACH_POINT_FOLLOW, caster, enemy, {})
-			self:GetAbility():DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage"), {}, 0)
-		end
-	end
-end
-
 function modifier_zeus_olympus_calls:GetModifierSpellAmplify_Percentage()
 	return self.amp
 end
@@ -115,4 +117,37 @@ end
 
 function modifier_zeus_olympus_calls_ally:IsDebuff()
 	return false
+end
+
+modifier_zeus_olympus_calls_talent = class({})
+function modifier_zeus_olympus_calls_talent:OnCreated()
+	self.chance = self:GetCaster():FindTalentValue("special_bonus_unique_zeus_olympus_calls_1")
+	self.damage = self:GetTalentSpecialValueFor("damage")
+end
+
+function modifier_zeus_olympus_calls_talent:OnRefresh()
+	self.chance = self:GetCaster():FindTalentValue("special_bonus_unique_zeus_olympus_calls_1")
+	self.damage = self:GetTalentSpecialValueFor("damage")
+end
+
+function modifier_zeus_olympus_calls_talent:DeclareFunctions()
+	local funcs = {
+		MODIFIER_EVENT_ON_ATTACK_LANDED
+	}
+	return funcs
+end
+
+function modifier_zeus_olympus_calls_talent:OnAttackLanded(params)
+	if IsServer() then
+		local caster = params.attacker
+		local enemy = params.target
+		if caster:HasTalent("special_bonus_unique_zeus_olympus_calls_1") and self:RollPRNG( self.chance ) then
+			ParticleManager:FireRopeParticle("particles/units/heroes/hero_zeus/zeus_olympus_calls.vpcf", PATTACH_POINT_FOLLOW, caster, enemy, {})
+			self:GetAbility():DealDamage(caster, enemy, self.damage)
+		end
+	end
+end
+
+function modifier_zeus_olympus_calls_talent:IsHidden()
+	return true
 end

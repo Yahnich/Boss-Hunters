@@ -42,7 +42,21 @@ function RelicManager:Initialize()
   CustomGameEventManager:RegisterListener('player_selected_relic', Context_Wrap( RelicManager, 'ConfirmRelicSelection'))
   CustomGameEventManager:RegisterListener('player_skipped_relic', Context_Wrap( RelicManager, 'SkipRelicSelection'))
   CustomGameEventManager:RegisterListener('player_notify_relic', Context_Wrap( RelicManager, 'NotifyRelics'))
+  CustomGameEventManager:RegisterListener('dota_player_query_relic_inventory', Context_Wrap( RelicManager, 'SendHeroRelicInventory'))
   
+  
+end
+
+function RelicManager:SendHeroRelicInventory(userid, event)
+	local hero = EntIndexToHScript(event.entindex)
+	local pID = event.playerID
+	if hero then
+		local player = PlayerResource:GetPlayer(pID)
+		if player then
+			CustomGameEventManager:Send_ServerToPlayer(player,"dota_player_update_relic_inventory", {relics = hero.ownedRelics, hero = hero:entindex()})
+		end
+		
+	end
 end
 
 function RelicManager:NotifyRelics(userid, event)
@@ -72,55 +86,43 @@ function RelicManager:NotifyRelics(userid, event)
 		player.notifyRelicDelayTimer = GameRules:GetGameTime()
 	end
 end
-
+	
 function RelicManager:ConfirmRelicSelection(userid, event)
 	local pID = event.pID
 	local hero = PlayerResource:GetSelectedHeroEntity(pID)
 	local relic = event.relic
 
 	hero:AddRelic(relic)
-
-	local relicTable = CustomNetTables:GetTableValue( "game_info", "relic_drops") or {}
-	local playerRelics = relicTable[tostring(pID)] or {}
-	
-	local toNumPlayerRelics = {}
-	for dropID, dropTable in pairs(playerRelics) do
-		toNumPlayerRelics[tonumber(dropID)] = dropTable
-	end
-	
-	
-	
-	table.remove( toNumPlayerRelics, 1 )
-	relicTable[tostring(pID)] = toNumPlayerRelics
-	CustomNetTables:SetTableValue("game_info", "relic_drops", relicTable)
-	
+	RelicManager:RemoveDropFromTable(pID)
 	hero.internalRelicRNG = BASE_RELIC_CHANCE
+end
+
+function RelicManager:RemoveDropFromTable(pID)
+	local hero = PlayerResource:GetSelectedHeroEntity(pID)
+	table.remove( hero.relicsToSelect, 1 )
+	local player = PlayerResource:GetPlayer(pID)
+	if player then
+		CustomGameEventManager:Send_ServerToPlayer(player,"dota_player_updated_relic_drops", {playerID = pID, drops = hero.relicsToSelect})
+	end
 end
 
 function RelicManager:SkipRelicSelection(userid, event)
 	local pID = event.pID
 	local hero = PlayerResource:GetSelectedHeroEntity(pID)
-	local relicTable = CustomNetTables:GetTableValue( "game_info", "relic_drops") or {}
-	local playerRelics = relicTable[tostring(pID)] or {}
-
-	local toNumPlayerRelics = {}
-	for dropID, dropTable in pairs(playerRelics) do
-		toNumPlayerRelics[tonumber(dropID)] = dropTable
-	end
 	
-	table.remove( toNumPlayerRelics, 1 )
-	relicTable[tostring(pID)] = toNumPlayerRelics
-	CustomNetTables:SetTableValue("game_info", "relic_drops", relicTable)
 	
-	for id, relic in pairs( playerRelics["1"] ) do
+	
+	for id, relic in pairs( hero.relicsToSelect[1] ) do
 		relicType = 1
 		if string.match(relic, "unique") then
 			relicType = 3
 		elseif string.match(relic, "cursed") then
 			relicType = 2
 		end
-		hero.internalRNGPools[relicType][playerRelics["1"][id]] = nil
+		hero.internalRNGPools[relicType][relic] = nil
 	end
+	
+	RelicManager:RemoveDropFromTable(pID)
 	
 	for i = 1, 2 do
 		hero:AddRelic( RelicManager:RollRandomGenericRelicForPlayer(pID) )
@@ -134,9 +136,6 @@ function RelicManager:SkipRelicSelection(userid, event)
 end
 
 function RelicManager:RegisterPlayer(pID)
-	local relicTable = CustomNetTables:GetTableValue( "game_info", "relic_drops") or {}
-	relicTable[tostring(pID)] = {}
-	CustomNetTables:SetTableValue("game_info", "relic_drops", relicTable)
 	local hero = PlayerResource:GetSelectedHeroEntity(pID)
 	hero.internalRelicRNG = BASE_RELIC_CHANCE
 	hero.internalRNGPools = {}
@@ -148,27 +147,20 @@ end
 
 function RelicManager:RollRelicsForPlayer(pID, relicType)
 	local hero = PlayerResource:GetSelectedHeroEntity(pID)
-
+	local player = PlayerResource:GetPlayer(pID)
 	if not hero then return end
 
 	hero.ownedRelics = hero.ownedRelics or {}
-	local relicTable = CustomNetTables:GetTableValue( "game_info", "relic_drops") or {}
-	local playerRelics = relicTable[tostring(pID)] or {}
-
-	local toNumPlayerRelics = {}
-	for dropID, dropTable in pairs(playerRelics) do
-		toNumPlayerRelics[tonumber(dropID)] = dropTable
-	end
-	
+	hero.relicsToSelect = hero.relicsToSelect or {}
 	local dropTable = {}
 	table.insert( dropTable, self:RollRandomUniqueRelicForPlayer(pID) )
 	table.insert( dropTable, self:RollRandomCursedRelicForPlayer(pID) )
 	
-	table.insert( toNumPlayerRelics, dropTable )
-
-	relicTable[tostring(pID)] = toNumPlayerRelics
-
-	CustomNetTables:SetTableValue("game_info", "relic_drops", relicTable)
+	table.insert( hero.relicsToSelect, dropTable )
+	
+	if player then
+		CustomGameEventManager:Send_ServerToPlayer(player,"dota_player_updated_relic_drops", {playerID = pID, drops = hero.relicsToSelect})
+	end
 end
 
 function RelicManager:RollRandomGenericRelicForPlayer(pID, notThisRelic)
@@ -245,7 +237,6 @@ function RelicManager:ClearRelics(pID, bHardClear)
 	hero.internalRNGPools[2] = self.cursedDropTable
 	hero.internalRNGPools[3] = self.uniqueDropTable
 
-	CustomNetTables:SetTableValue("relics", "relic_inventory_player_"..hero:entindex(), self.ownedRelics)
 	return relicCount
 end
 
@@ -256,10 +247,10 @@ function RelicManager:RemoveRelicOnPlayer(relic, pID, bAll)
 	for entindex, relicName in pairs(hero.ownedRelics) do
 		if relicName == relic then
 			local item = EntIndexToHScript(entindex)
-			UTIL_Remove( item )
 			for _, modifier in ipairs( hero:FindAllModifiers() ) do
 				if modifier:GetAbility() == item then modifier:Destroy() end
 			end
+			UTIL_Remove( item )
 			if string.match(relicName, "unique") then
 				hero.internalRNGPools[3][relicName] = "1"
 			elseif string.match(relic, "cursed") then
@@ -272,7 +263,6 @@ function RelicManager:RemoveRelicOnPlayer(relic, pID, bAll)
 			if not bAll then break end
 		end
 	end
-	CustomNetTables:SetTableValue("relics", "relic_inventory_player_"..hero:entindex(), self.ownedRelics)
 end
 
 function CDOTA_BaseNPC_Hero:AddRelic(relic)
@@ -290,6 +280,6 @@ function CDOTA_BaseNPC_Hero:AddRelic(relic)
 	self.ownedRelics[relicEntity:entindex()] = relic
 	self:AddNewModifier( self, relicEntity, relic, {} )
 	
-	CustomNetTables:SetTableValue("relics", "relic_inventory_player_"..self:entindex(), self.ownedRelics)
+	CustomGameEventManager:Send_ServerToAllClients( "dota_player_update_relic_inventory", { hero = self:entindex(), relics = self.ownedRelics } )
 end
 

@@ -5,48 +5,35 @@
 	"Title""Epic_Boss_Fight"
 
 	"Items"
-	{
+	{	
 		"#DOTA_Item_Build_Starting_Items"
 		{
-			"item"	"item_midas_2"
-			"item"	"item_vladmir"
+			"item"	"item_pages_buckler"
+			"item"	"item_gauntlet_of_alacrity"
 		}
 
 		"#DOTA_Item_Build_Early_Game"
 		{
-			"item"	"item_butterfly2"
-			"item"	"item_lifesteal2"
-			"item"	"item_celerity_stone"
-			"item"	"item_midas_3"
+			"item"	"item_aeon_shard"
+			"item"	"item_ringing_rapier"	
+			"item"	"item_lightningrod"
+			"item"	"item_penitent_mail"
 		}
-
-		"#DOTA_Item_Build_Mid_Game"
+		"#DOTA_Item_Build_Core_Items"
 		{
-			"item"	"item_melee_rage"
-			"item"	"item_heart_divine"
-			"item"	"item_s_a_y_3"
-			"item"	"item_crit3"
-			"item"	"item_lifesteal3"
-			"item"	"item_butterfly3"
+			"item"	"item_memento"
+			"item"	"item_voltas_greathammer"
 		}
-
-		"#DOTA_Item_Build_Late_Game"
+		"#DOTA_Item_Build_Luxury"
 		{
-			"item"	"item_heart_bahamut"
-			"item"	"item_lifesteal4"
-			"item"	"item_divine_hammer"
-			"item"	"item_butterfly5"
-		}
-
-		"#DOTA_Item_Build_Situational"
-		{
-			"item"	"item_booster_void"
-			"item"	"item_gungnir_3"
-			"item"	"item_s_a_y_4"
-			"item"	"item_bahamut_claw"
-			"item"	"item_bahamut_chest"
-			"item"	"item_octarine_core5"
-			"item"	"item_ultimate_amulet"
+			"item"	"item_ultimate_scepter"
+			"item"	"item_emission"
+			"item"	"item_soothslayer"
+			"item"	"item_arcane_accelerator"
+			"item"	"item_blade_of_storm"
+			"item"	"item_legionnaires_dualswords"
+			"item"	"item_behemoths_heart"
+			"item"	"item_wrathbearers_robes"
 		}
 	}
 }

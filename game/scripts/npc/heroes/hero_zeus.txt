@@ -210,7 +210,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"						"0.5"
+				"value"						"1"
 			}
 		}
 	}
@@ -263,7 +263,7 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"38 36 34 32 30 28 26"
+		"AbilityCooldown"				"30"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -462,6 +462,7 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"bonus_spell_amp"		"100 105 110 115 120 125"
+				"LinkedSpecialBonus"	"special_bonus_unique_zeus_olympus_calls_2"
 			}
 			"02"
 			{
@@ -476,7 +477,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius"				"500"
+				"radius"				"750"
 			}
 			"05"
 			{
@@ -505,6 +506,7 @@
 		"BaseClass"						"special_bonus_undefined"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"LinkedAbilityName"				"zeus_olympus_calls"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -513,7 +515,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"						"1"
+				"value"						"25"
 			}
 		}
 	}
@@ -535,7 +537,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"						"1"
+				"value"						"25"
 			}
 		}
 	}

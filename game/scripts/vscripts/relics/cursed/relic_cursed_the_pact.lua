@@ -20,11 +20,11 @@ function relic_cursed_the_pact:GetModifierDamageOutgoing_Percentage()
 end
 
 function relic_cursed_the_pact:GetModifierMagicalResistanceBonus()
-	return -50
+	if not self:GetParent():HasModifier("relic_unique_ritual_candle") then return -50 end
 end
 
 function relic_cursed_the_pact:GetModifierPhysicalArmorBonus()
-	return -25
+	if not self:GetParent():HasModifier("relic_unique_ritual_candle") then return -25 end
 end
 
 function relic_cursed_the_pact:GetDisableHealing(params)

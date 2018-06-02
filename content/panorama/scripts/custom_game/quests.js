@@ -16,10 +16,21 @@ GameEvents.Subscribe( "heroLoadIn", Initialize);
 GameEvents.Subscribe("dota_player_update_query_unit", UpdateCustomHud);
 GameEvents.Subscribe( "round_has_ended", ToggleQuests);
 
+GameEvents.Subscribe( "game_tools_ask_nettable_info", SendNetTableInfo);
+
 (function()
 {
 	$.RegisterForUnhandledEvent( "DOTAShowAbilityTooltipForEntityIndex", UpdateTooltipUI );
 })();
+
+function SendNetTableInfo()
+{
+	$.Msg( "-----------------------------------")
+	$.Msg( CustomNetTables.GetAllTableValues( "game_info" ) )
+	$.Msg( CustomNetTables.GetAllTableValues( "talents" ) )
+	$.Msg( CustomNetTables.GetAllTableValues( "hero_properties" ) )
+	$.Msg( CustomNetTables.GetAllTableValues( "stats_panel" ) )
+}
 
 function ToggleQuests(arg)
 {

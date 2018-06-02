@@ -3072,7 +3072,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"chance"				"25"
+				"chance"				"15"
 				"LinkedSpecialBonus"	"special_bonus_unique_slardar"
 			}
 			"02"
@@ -6315,7 +6315,7 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"25"
+		"AbilityCooldown"				"15"
 		"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
 		
 		// Cost
@@ -6329,19 +6329,13 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"duration"					"5.0"
+				"duration"					"3.5"
 				"LinkedSpecialBonus"		"special_bonus_unique_clinkz_2"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
 				"attack_speed_bonus_pct"	"80 140 200 260 320 380 440"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"disjoint_count"			"5"
-				"LinkedSpecialBonus"		"special_bonus_unique_clinkz_2"
 			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
@@ -6375,7 +6369,7 @@
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"10"
+		"AbilityManaCost"				"10 9 8 7 6 5 4"
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -12699,84 +12693,6 @@
 		"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
 		"AbilityCastAnimation"			"ACT_INVALID"
 	}
-
-	//=================================================================================================================
-	// Pangolier: Swashbuckle
-	//=================================================================================================================
-	"pangolier_swashbuckle"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"6344"	// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_MOVEMENT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
-		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
-		"MaxLevel"					"7"
-
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0.0"
-		"AbilityCastRange"				"1000"
-		
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"20 18 16 14 12 10 8"
-		
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"70 80 90 100 110 120 130"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"dash_range"			"1000"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"range"					"900"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"24 42 60 78 96 114 132"
-				"LinkedSpecialBonus"	"special_bonus_unique_pangolier_3"
-				"CalculateSpellDamageTooltip"	"0"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"dash_speed"			"2000"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"attack_interval"		"0.1 0.1 0.1 0.1"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"start_radius"			"125"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"end_radius"			"125"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"strikes"				"4"
-			}
-		}
-		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
-	}
-
 	//=================================================================================================================
 	// Pangolier: Shield Crash
 	//=================================================================================================================
@@ -12822,7 +12738,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"10.0"
+				"duration"				"6.0"
 			}
 			"04"
 			{
@@ -12999,6 +12915,7 @@
 			{
 				"var_type"				"FIELD_FLOAT"
 				"duration"				"8.0"
+				"LinkedSpecialBonus"	"special_bonus_unique_pangolier_6"
 			}
 			"12"
 			{
@@ -19091,7 +19008,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"15"
+				"value"				"10"
 			}
 		}
 	}

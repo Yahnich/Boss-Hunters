@@ -92,7 +92,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"						"25"
+				"value"						"0.75"
 			}
 		}
 	}
@@ -202,7 +202,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"						"25"
+				"value"						"-1.5"
 			}
 		}
 	}
@@ -252,28 +252,36 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"agi_gain"				"3"
+				"var_type"						"FIELD_INTEGER"
+				"agi_gain"						"3"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"ad_loss"				"-1"
+				"var_type"						"FIELD_INTEGER"
+				"ad_loss"						"-1"
+				"LinkedSpecialBonus"			"special_bonus_unique_slark_essence_shift_1"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"as_loss"				"-1"
+				"var_type"						"FIELD_INTEGER"
+				"as_loss"						"-1"
+				"LinkedSpecialBonus"			"special_bonus_unique_slark_essence_shift_1"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
 			"04"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"hp_loss"				"-20"
+				"var_type"						"FIELD_INTEGER"
+				"hp_loss"						"-20"
+				"LinkedSpecialBonus"			"special_bonus_unique_slark_essence_shift_1"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
 			"04"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"ar_loss"				"-0.16"
+				"var_type"						"FIELD_FLOAT"
+				"ar_loss"						"-0.16"
+				"LinkedSpecialBonus"			"special_bonus_unique_slark_essence_shift_1"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
 			"05"
 			{
@@ -302,7 +310,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"						"1"
+				"value"						"2"
 			}
 		}
 	}
@@ -324,7 +332,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"						"10"
+				"value"						"15"
 			}
 		}
 	}
@@ -423,7 +431,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"						"500"
+				"value"						"900"
 			}
 		}
 	}
@@ -446,7 +454,12 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"						"-350"
+				"value"						"-750"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"2"
 			}
 		}
 	}

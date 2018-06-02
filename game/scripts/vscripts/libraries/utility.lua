@@ -85,6 +85,14 @@ function CDOTA_BaseNPC:CreateDummy(position, duration)
 	return dummy
 end
 
+function CDOTA_BaseNPC:CalculateStatBonus()
+	return false
+end
+
+function CDOTA_BaseNPC:GetPlayerID()
+	return self:GetPlayerOwnerID()
+end
+
 function CDOTABaseAbility:CreateDummy(position, duration)
 	local dummy = CreateUnitByName("npc_dummy_unit", position, false, nil, nil, self:GetCaster():GetTeam())
 	if duration and duration > 0 then
@@ -803,8 +811,10 @@ function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, sp
 
 	-- Set the unit as an illusion
 	-- modifier_illusion controls many illusion properties like +Green damage not adding to the unit damage, not being able to cast spells and the team-only blue particle
-	local illuMod = "modifier_illusion" or specIllusionModifier
-	illusion:AddNewModifier(self, ability, illuMod, { duration = duration, outgoing_damage = outgoingDamage, incoming_damage = incomingDamage })
+	illusion:AddNewModifier(self, ability, "modifier_illusion", { duration = duration, outgoing_damage = outgoingDamage, incoming_damage = incomingDamage })
+	if specIllusionModifier then
+		illusion:AddNewModifier(self, ability, specIllusionModifier, { duration = duration })
+	end
 	
 	for _, wearable in ipairs( self:GetChildren() ) do
 		if wearable:GetClassname() == "dota_item_wearable" and wearable:GetModelName() ~= "" then

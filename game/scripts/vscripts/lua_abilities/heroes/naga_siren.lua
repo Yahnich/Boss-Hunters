@@ -6,7 +6,7 @@ function GetIllusions( hero )
 									  nil,
 									  FIND_UNITS_EVERYWHERE,
 									  DOTA_UNIT_TARGET_TEAM_FRIENDLY,
-									  DOTA_UNIT_TARGET_HERO,
+									  DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_OTHER,
 									  DOTA_UNIT_TARGET_FLAG_NONE,
 									  FIND_ANY_ORDER,
 									  false )

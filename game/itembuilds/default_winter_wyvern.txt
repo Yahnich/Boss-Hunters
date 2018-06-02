@@ -8,31 +8,26 @@
 	{	
 		"#DOTA_Item_Build_Starting_Items"
 		{
-			"item"	"item_midas"
-			"item"	"item_midas_2"
-			"item"	"item_force_boots"
+			"item"	"item_calming_skull"
+			"item"	"item_ring_of_mana"
 		}
 
 		"#DOTA_Item_Build_Early_Game"
 		{	
-			"item"	"item_aether_lens"	
-			"item"	"item_octarine_core"
-			"item"	"item_sunium_lens"
+			"item"	"item_angelic_guard"	
+			"item"	"item_cultists_veil"
 		}
 		"#DOTA_Item_Build_Core_Items"
 		{
-			"item"	"item_octarine_core4"
-			"item"	"item_veil_of_discord3"
-			"item"	"item_sunium_lens"
-			"item"	"item_blink_boots"
-			"item"	"item_pixels_guard"
+			"item"	"item_lazarus_rags"
+			"item"	"item_arcane_accelerator"
 		}
 		"#DOTA_Item_Build_Luxury"
 		{
-			"item"	"item_octarine_core5"
-			"item"	"item_omni_lens"
-			"item"	"item_veil_of_discord4"
-			"item"	"item_Dagon_Mystic"
+			"item"	"item_lightningbottle"
+			"item"	"item_flashback"
+			"item"	"item_dark_wand_5"
+			"item"	"item_dark_ones_blessing"
 		}
 	}
 }
