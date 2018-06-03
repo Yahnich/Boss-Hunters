@@ -144,7 +144,7 @@ function modifier_kunkka_ghostship_rum:OnCreated()
 end
 
 function modifier_kunkka_ghostship_rum:GetModifierIncomingDamage_Percentage()
-    return self:GetTalentSpecialValueFor("absorb")
+    return -math.abs(self:GetTalentSpecialValueFor("absorb"))
 end
 
 function modifier_kunkka_ghostship_rum:DeclareFunctions()

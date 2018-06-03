@@ -57,7 +57,7 @@ function modifier_kunkka_captains_rum:OnCreated()
 end
 
 function modifier_kunkka_captains_rum:GetModifierIncomingDamage_Percentage()
-    return self.damagereduction
+    return -math.abs(self.damagereduction)
 end
 
 function modifier_kunkka_captains_rum:GetModifierMoveSpeedBonus_Percentage()
