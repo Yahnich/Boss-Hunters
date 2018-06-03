@@ -1,5 +1,4 @@
 function SummonWolves( keys )
-	print("lul")
     local caster = keys.caster
 	local ability = keys.ability
     local targets = caster.wolves or {}

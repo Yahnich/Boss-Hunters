@@ -72,8 +72,7 @@ function espirit_rock_punch:OnProjectileHit(hTarget, vLocation)
 				stone:ForceKill(false)
 			end
 		end
-
-		--print(#self.rockCount)
+		
 		--local numberRock = #self.rockCount + 1
 
 		local enemies = caster:FindEnemyUnitsInRadius(vLocation, self:GetTalentSpecialValueFor("radius"), {})
@@ -86,7 +85,6 @@ function espirit_rock_punch:OnProjectileHit(hTarget, vLocation)
 			if #self.rockCount > 0 then
 				damage = self:GetTalentSpecialValueFor("rock_damage") * (#self.rockCount)
 			end
-			--print(damage)
 			self:DealDamage(caster, enemy, damage, {}, 0)
 		end
 

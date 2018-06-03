@@ -11,3 +11,7 @@ end
 function relic_unique_kashas_wheelbarrow:GetModifierMoveSpeedBonus_Percentage()
 	return 5 * self:GetStackCount()
 end
+
+function relic_unique_kashas_wheelbarrow:IsHidden()
+	return false
+end

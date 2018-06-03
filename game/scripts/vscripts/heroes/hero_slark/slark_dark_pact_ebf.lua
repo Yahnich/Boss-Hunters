@@ -71,7 +71,7 @@ function modifier_slark_dark_pact_effect:OnIntervalThink()
 		self_damage = 0
 	end
 	caster:Dispel(caster, true)
-	ability:DealDamage( caster, caster, self_damage, {damage_flags = DOTA_DAMAGE_FLAG_NON_LETHAL})
+	ability:DealDamage( caster, caster, self_damage, {damage_flags = DOTA_DAMAGE_FLAG_NON_LETHAL + DOTA_DAMAGE_FLAG_HPLOSS})
 end
 
 function modifier_slark_dark_pact_effect:GetAttributes()

@@ -45,6 +45,15 @@ function phenx_ray:GetCooldown(iLvl)
 	end
 end
 
+function phenx_ray:GetCastPoint()
+	local caster = self:GetCaster()
+	if caster:HasModifier("modifier_phenx_ray") then
+		return self.BaseClass.GetCastPoint(self)
+	else
+		return 0
+	end
+end
+
 function phenx_ray:OnSpellStart()
     local caster = self:GetCaster()
 

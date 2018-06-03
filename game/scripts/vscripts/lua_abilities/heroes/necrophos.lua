@@ -26,11 +26,9 @@ function AllyHeal(keys)
 		if target:HasModifier("modifier_plague_health_increase") then
 			local stacks = target:GetModifierStackCount("modifier_plague_health_increase", caster)
 			target:SetModifierStackCount("modifier_plague_health_increase", caster, stacks + difference)
-			print("trigger1")
 		else
 			ability:ApplyDataDrivenModifier(caster, target, "modifier_plague_health_increase", {})
 			target:SetModifierStackCount("modifier_plague_health_increase", caster, difference)
-			print("trigger2")
 		end
 	end
 	target:CalculateStatBonus()
@@ -44,7 +42,6 @@ end
 
 function RemoveBonusHealth(keys)
 	local health = keys.target:GetHealth()
-	print("check")
 	keys.target:RemoveModifierByName("modifier_plague_health_increase")
 	if health > keys.target:GetMaxHealth() then health = keys.target:GetMaxHealth() end
 	keys.target:SetHealth(health)

@@ -51,12 +51,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration_day"			"2.0"
+				"duration_day"			"2.0 2.5 3 3.5 4 4.5 5.0"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration_night"		"4.0 5.0 6.0 7.0 8.0 9.0 10.0"
+				"duration_night"		"10.0"
 			}
 			"03"
 			{
@@ -165,8 +165,8 @@
 			}
 			"03"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"miss_rate_day"				"10 10 10 10"
+				"var_type"					"FIELD_FLOAT"
+				"miss_rate_day"				"10 12.5 15 17.5 20 22.5 25"
 			}
 			"04"
 			{
@@ -248,7 +248,7 @@
 			"02"
 			{
 				"var_type"							"FIELD_INTEGER"
-				"bonus_attack_speed_night"			"30 50 70 90 110 130 150"
+				"bonus_attack_speed_night"			"30 60 90 120 150 180 210"
 			}
 			"03"
 			{
@@ -299,7 +299,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"15"
+				"value"					"20"
 			}
 		}
 	}
@@ -348,7 +348,7 @@
 			"01"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"duration"						"30.0"
+				"duration"						"40.0"
 				"LinkedSpecialBonus"			"special_bonus_unique_night_stalker_darkness_1"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}

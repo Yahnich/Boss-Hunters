@@ -19,8 +19,6 @@ function modifier_sniper_headshot_bh:OnAttackLanded(params)
 		local caster = params.attacker
 		local target = params.target
 		if caster == self:GetCaster() and caster:RollPRNG(self:GetTalentSpecialValueFor("chance")) then
-			--print("true2")
-			--ParticleManager:FireParticle("particles/units/heroes/hero_sniper/sniper_headshot_slow_caster.vpcf", PATTACH_POINT, caster, {[1]=caster:GetAbsOrigin()})
 			local nfx = ParticleManager:CreateParticle("particles/econ/items/sniper/sniper_immortal_cape/sniper_immortal_cape_headshot_slow_caster.vpcf", PATTACH_POINT, caster)
 						ParticleManager:SetParticleControlEnt(nfx, 0, caster, PATTACH_POINT, "attach_hitloc", caster:GetAbsOrigin(), true)
 						ParticleManager:SetParticleControlEnt(nfx, 1, caster, PATTACH_POINT, "attach_hitloc", caster:GetAbsOrigin(), true)
@@ -28,7 +26,7 @@ function modifier_sniper_headshot_bh:OnAttackLanded(params)
 
 			local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_sniper/sniper_headshot_slow.vpcf", PATTACH_POINT, caster)
 						ParticleManager:SetParticleControlEnt(nfx, 0, target, PATTACH_OVERHEAD_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
-						--ParticleManager:ReleaseParticleIndex(nfx)
+						ParticleManager:ReleaseParticleIndex(nfx)
 
 			Timers:CreateTimer(self:GetTalentSpecialValueFor("duration"), function()
 				ParticleManager:ClearParticle(nfx)
@@ -48,7 +46,6 @@ function modifier_sniper_headshot_bh:OnAttackLanded(params)
 
 					caster:CastAbilityImmediately( assassinate, caster:GetPlayerOwnerID() )
 					local cooldown = assassinate:GetCooldownTimeRemaining() * self:GetTalentSpecialValueFor("assassinate_cooldown")/100
-					--print(cooldown)
 					assassinate:EndCooldown()
 					assassinate:StartCooldown(cooldown)
 				end

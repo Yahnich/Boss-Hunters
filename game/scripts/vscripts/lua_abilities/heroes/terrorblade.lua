@@ -1,6 +1,4 @@
 function Reflection( event )
-	print("Reflection Start")
-
 	----- Conjure Image  of the target -----
 	local caster = event.caster
 	local target = event.target

@@ -52,6 +52,15 @@ function phenx_spirits:GetCooldown(iLvl)
 	end
 end
 
+function phenx_spirits:GetCastPoint()
+	local caster = self:GetCaster()
+	if caster:HasModifier("modifier_phenx_spirits_caster") then
+		return 0
+	else
+		return self.BaseClass.GetCastPoint(self)
+	end
+end
+
 function phenx_spirits:OnSpellStart()
     local caster = self:GetCaster()
     

@@ -138,7 +138,7 @@
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0"
+		"AbilityCastPoint"				"0.01"
 		"AbilityCastRange"				"1400"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
 
@@ -188,8 +188,8 @@
 			}
 			"05"
 			{
-				"var_type"			"FIELD_INTEGER"
-				"radius"			"175"
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"175"
 				"LinkedSpecialBonus"		"special_bonus_unique_phenx_spirits_2"
 			}
 			"06"
@@ -268,7 +268,7 @@
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0"
+		"AbilityCastPoint"				"0.01"
 		"AbilityCastRange"				"900"
 		"AbilityCastAnimation"			"ACT_DOTA_OVERRIDE_ABILITY_3"
 
@@ -423,7 +423,8 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
 		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"phoenix_supernova"
 		"MaxLevel"						"6"

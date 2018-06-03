@@ -26,6 +26,14 @@ function phenx_dive:GetBehavior()
     return DOTA_ABILITY_BEHAVIOR_POINT
 end
 
+function phenx_dive:GetCastPoint()
+    if self:GetCaster():HasModifier("modifier_phenx_dive_caster") then
+        return 0
+    end
+
+    return self.BaseClass.GetCastPoint(self)
+end
+
 function phenx_dive:OnSpellStart()
     local caster = self:GetCaster()
     local point = self:GetCursorPosition()

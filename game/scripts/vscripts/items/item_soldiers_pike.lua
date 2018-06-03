@@ -9,7 +9,6 @@ modifier_item_soldiers_pike = class({})
 
 function modifier_item_soldiers_pike:OnCreated()
 	self.range = self:GetSpecialValueFor("bonus_range")
-	--print(self.range)
 	self.damage = self:GetSpecialValueFor("damage")
 	self.chance = self:GetSpecialValueFor("chance")
 end

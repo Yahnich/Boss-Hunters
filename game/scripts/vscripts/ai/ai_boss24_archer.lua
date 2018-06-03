@@ -22,7 +22,6 @@ function AIThink(thisEntity)
 		if not target then target = AICore:WeakestEnemyHeroInRange( thisEntity, range, true ) end
 		if thisEntity:GetHealth() < thisEntity:GetMaxHealth()*0.3 then
 			if not thisEntity:HasModifier("modifier_clinkz_wind_walk") and thisEntity.walk:IsFullyCastable() and not thisEntity.override then
-				print("check1")
 				ExecuteOrderFromTable({
 					UnitIndex = thisEntity:entindex(),
 					OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,

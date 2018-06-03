@@ -13,3 +13,7 @@ function relic_unique_deathrow:OnDeath(params)
 		self:IncrementStackCount()
 	end
 end
+
+function relic_unique_deathrow:IsHidden()
+	return false
+end

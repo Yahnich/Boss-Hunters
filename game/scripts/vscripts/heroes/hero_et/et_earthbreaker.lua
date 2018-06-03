@@ -93,8 +93,6 @@ function et_earthbreaker:OnSpellStart()
 end
 
 function et_earthbreaker:OnProjectileHit_ExtraData(hTarget, vLocation, table)
-	--print(table.name)
-
 	local caster = self:GetCaster()
 
 	local damage = self:GetTalentSpecialValueFor("damage")

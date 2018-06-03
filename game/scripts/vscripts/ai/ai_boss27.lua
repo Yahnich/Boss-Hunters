@@ -61,7 +61,6 @@ if IsServer() then
 
 	function AIThink(thisEntity)
 		if not thisEntity:IsDominated() and not thisEntity:IsChanneling() then
-			print( thisEntity:GetTotalBearCount(), thisEntity:GetBigBearCount(), thisEntity:GetSmallBearCount() )
 			if AICore:BeingAttacked( thisEntity ) > 0 then
 				if thisEntity:GetTotalBearCount() == 0 then
 					if thisEntity.bigbear:IsFullyCastable() then

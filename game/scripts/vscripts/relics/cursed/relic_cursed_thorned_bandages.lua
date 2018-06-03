@@ -6,7 +6,6 @@ function relic_cursed_thorned_bandages:GetModifierHealAmplify_Percentage(params)
 	local ability = self:GetAbility()
 	local target = params.target
 	local attacker = params.healer
-	print( "regen?", damage, target:GetUnitName() )
 	Timers:CreateTimer(1, function()
 		if target:IsAlive() then
 			ability:DealDamage(attacker, target, damage, {damage_type = DAMAGE_TYPE_PURE})

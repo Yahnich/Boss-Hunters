@@ -26,7 +26,6 @@ function CheckJingu(keys)
 			
 		end
 		jinguStack:SetStackCount(jinguStack:GetStackCount() + 1)
-		print(jinguStack:GetStackCount())
 		if not target.OverHeadJingu then 
 			target.OverHeadJingu = ParticleManager:CreateParticle(keys.particle, PATTACH_OVERHEAD_FOLLOW, target)
 			ParticleManager:SetParticleControl(target.OverHeadJingu, 0, target:GetAbsOrigin())

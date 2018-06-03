@@ -103,7 +103,6 @@ function modifier_boss_broodmother_fates_web_handler:OnCreated()
 	local parent = self:GetParent()
 	
 	self.sameTeam = caster:IsSameTeam(parent)
-	print(self.sameTeam)
 	if self.sameTeam then
 		self.ms = self:GetSpecialValueFor("bonus_ms")
 	else

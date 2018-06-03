@@ -1,5 +1,5 @@
 if RelicManager == nil then
-  print ( 'creating projectile manager' )
+  print ( 'creating relic manager' )
   RelicManager = {}
   RelicManager.__index = RelicManager
 end

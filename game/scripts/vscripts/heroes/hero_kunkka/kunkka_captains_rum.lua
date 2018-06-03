@@ -30,7 +30,7 @@ end
 
 modifier_kunkka_captains_rum = class({})
 function modifier_kunkka_captains_rum:OnIntervalThink()
-    if IsServer() then
+    if IsServer() and self:RollPRNG(25) then
         self:GetParent():SetInitialGoalEntity(nil)
         self:GetParent():Stop()
         self:GetParent():Interrupt()
@@ -53,7 +53,7 @@ function modifier_kunkka_captains_rum:OnCreated()
     self.movespeedbonus = self:GetAbility():GetTalentSpecialValueFor("movespeed_bonus")
     self.damageamp = self:GetAbility():GetTalentSpecialValueFor("bonus_basedamage_perc")
     self.bonusdamage = self:GetAbility():GetTalentSpecialValueFor("bonus_damage")
-    self:StartIntervalThink(0.5)
+    self:StartIntervalThink(0.35)
 end
 
 function modifier_kunkka_captains_rum:GetModifierIncomingDamage_Percentage()

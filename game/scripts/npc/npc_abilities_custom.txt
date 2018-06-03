@@ -1982,22 +1982,22 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius"				"350"
+				"radius"				"300"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"175 200 225 250"
+				"damage"				"200 225 250 275"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage_per_unit"		"50 60"
+				"damage_per_unit"		"60 75"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage_per_hero"		"150 200"
+				"damage_per_hero"		"200 250"
 			}
 			"05"
 			{
@@ -2007,17 +2007,17 @@
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_speed_creeps"		"3"
+				"bonus_speed_creeps"	"15"
 			}
 			"07"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_speed_heroes"		"9"
+				"bonus_speed_heroes"	"20"
 			}
 			"08"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"7.0"
+				"duration"				"4.0"
 			}
 		}
 		"OnAbilityPhaseStart"
@@ -10507,63 +10507,6 @@
 				}
 			}
 		}		
-	}
-	"kunkka_captains_rum"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"				"ability_lua"
-		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
-		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-		"AbilityTextureName"	"custom/kunkka_captains_rum"
-		"MaxLevel"				"7"
-		"ScriptFile"			"lua_abilities/heroes/kunkka_captains_rum"
-		
-		"AbilityCastRange"		"900"
-		"AbilityCastPoint"		"0.3"
-		"AbilityThreat"			"2"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"charge_count"					"8"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"recharge_time"					"50 45 40 35 30 25 20"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"buff_duration"					"8"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"damage_reduction"					"-50"
-			}
-			"05"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"movespeed_bonus"					"35 40 45 50 55 60 65"
-			}
-			"06"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"bonus_basedamage_perc"			"75"
-			}
-			"07"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"bonus_damage"						"50 70 90 110 130 150 170"
-			}
-		}
 	}
 	"leshrac_inner_torment"
 	{

@@ -61,7 +61,6 @@ function AIThink(thisEntity)
 			end
 		end
 		if thisEntity.smash:IsFullyCastable() and AICore:TotalEnemyHeroesInRange( thisEntity, 500) > 2 then
-			print(AICore:TotalEnemyHeroesInRange( thisEntity, 500))
 			local target = AICore:NearestEnemyHeroInRange( thisEntity, thisEntity.smash:GetCastRange())
 			if target then
 				ExecuteOrderFromTable({

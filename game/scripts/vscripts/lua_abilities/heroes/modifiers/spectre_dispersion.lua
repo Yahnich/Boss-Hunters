@@ -18,7 +18,6 @@ function modifier_spectre_dispersion_ebf:OnCreated( kv )
     self.reflect = self:GetAbility():GetSpecialValueFor( "damage_reflection_pct" )
 	self.max_range = self:GetAbility():GetSpecialValueFor( "max_radius" )
 	self.min_range = self:GetAbility():GetSpecialValueFor( "min_radius" )
-	print("test")
 end
 
 --------------------------------------------------------------------------------

@@ -17,7 +17,6 @@ end
 
 function boss_meteor:SetRoundNumer(round)
     boss_meteor._round = round
-    print (boss_meteor._round)
 end
 
 function meteor_on_spell_start(keys)

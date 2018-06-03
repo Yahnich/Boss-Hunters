@@ -18,12 +18,13 @@ end
 
 function modifier_boss19_shield_passive:OnIntervalThink()
 	local caster = self:GetCaster()
-	if not self:GetAbility():IsCooldownReady() or not caster:IsDisabled() then return end
-	caster:Dispel(caster, true)
-	EmitSoundOn("Hero_NyxAssassin.ManaBurn.Target", caster)
-	self:GetAbility():UseResources(false, false, true)
-	caster:AddNewModifier(caster, self:GetAbility(), "modifier_boss19_shield_buff", {duration = self.duration})
-	ParticleManager:FireParticle("particles/units/heroes/hero_nyx_assassin/nyx_assassin_mana_burn.vpcf", PATTACH_POINT_FOLLOW, caster)
+	if self:GetAbility():IsCooldownReady() and caster:IsDisabled() then
+		caster:Dispel(caster, true)
+		EmitSoundOn("Hero_NyxAssassin.ManaBurn.Target", caster)
+		self:GetAbility():UseResources(false, false, true)
+		caster:AddNewModifier(caster, self:GetAbility(), "modifier_boss19_shield_buff", {duration = self.duration})
+		ParticleManager:FireParticle("particles/units/heroes/hero_nyx_assassin/nyx_assassin_mana_burn.vpcf", PATTACH_POINT_FOLLOW, caster)
+	end
 end
 
 function modifier_boss19_shield_passive:IsHidden()
