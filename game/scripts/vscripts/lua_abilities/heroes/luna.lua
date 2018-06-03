@@ -70,7 +70,6 @@ function modifier_luna_lunar_blessing_passive:OnAbilityFullyCast(params)
 			if self:GetParent():HasTalent("special_bonus_unique_luna_3") then radius = -1 end
 			local units = FindUnitsInRadius(params.unit:GetTeam(), params.target:GetAbsOrigin(), nil, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO, 0, 0, false)
 			local beams = self.lucent
-			print(beams)
 			for _,unit in pairs(units) do
 				if unit ~= params.target then
 					params.unit:SetCursorCastTarget(unit)

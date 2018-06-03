@@ -59,7 +59,6 @@ if IsServer() then
 		for _, enemy in ipairs( parent:FindEnemyUnitsInRadius( parent:GetAbsOrigin(), self.radius ) ) do
 			if not self.hitTable[tostring(enemy:entindex())] then
 				self.hitTable[tostring( enemy:entindex() )] = true
-				print("damaging")
 				self:Trample(enemy)
 			end
 		end

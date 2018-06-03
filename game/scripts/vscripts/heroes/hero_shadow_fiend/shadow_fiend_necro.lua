@@ -30,7 +30,6 @@ function modifier_shadow_fiend_necro_handle:DeclareFunctions()
 end
 
 function modifier_shadow_fiend_necro_handle:OnDeath(params)
-    --PrintAll(params)
     if IsServer() then
     	if params.attacker == self:GetCaster() and params.unit ~= params.attacker then
 			local necroStacks = params.attacker:FindModifierByName("modifier_shadow_fiend_necro")
@@ -115,7 +114,6 @@ if IsServer() then
 		end
 	end
 	function modifier_shadow_fiend_necro:OnStackCountChanged( oldStacks )
-		print(self:GetStackCount() <= self.max, "stack change")
 		if self:GetStackCount() <= self.max then
 			self:SetDuration(-1, true)
 		end

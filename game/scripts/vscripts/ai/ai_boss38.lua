@@ -111,7 +111,6 @@ function AIThink(thisEntity)
 			if (thisEntity.yesteryear:IsFullyCastable() and not thisEntity.overtime:IsFullyCastable() and not thisEntity.juncture:IsFullyCastable() and not thisEntity.chronoactive) 
 			or (thisEntity.yesteryear:IsFullyCastable() and ( thisEntity:GetMana() < thisEntity.overtime:GetManaCost(-1) or thisEntity:GetMana() < thisEntity.juncture:GetManaCost(-1) ) )
 			or thisEntity:GetHealth() <= thisEntity:GetMaxHealth()*0.35 then
-				print("yesteryear")
 				local interval = (thisEntity.yesteryear:GetChannelTime()+0.25)
 				ExecuteOrderFromTable({
 					UnitIndex = thisEntity:entindex(),

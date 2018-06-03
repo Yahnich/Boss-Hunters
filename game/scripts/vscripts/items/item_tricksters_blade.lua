@@ -8,7 +8,6 @@ function item_tricksters_blade:OnSpellStart()
 	local distance = CalculateDistance( targetPos, caster )
 	local direction = CalculateDirection( targetPos, caster )
 	if distance > self:GetSpecialValueFor("blink_range") then
-		print( self:GetSpecialValueFor("blink_range") )
 		targetPos = caster:GetAbsOrigin() + direction * self:GetSpecialValueFor("blink_range")
 	end
 	EmitSoundOn("DOTA_Item.BlinkDagger.Activate", caster)

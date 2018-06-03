@@ -53,7 +53,6 @@ end
 
 function modifier_flash_step:DoControlledMotion()
     local caster = self:GetParent()
-    --print(self.currentDistance)
     if self.currentDistance > 0 then
         caster:SetAbsOrigin(caster:GetAbsOrigin() + self.direction * self:GetSpecialValueFor("speed")*FrameTime())
         self.currentDistance = self.currentDistance - self:GetSpecialValueFor("speed")*FrameTime()

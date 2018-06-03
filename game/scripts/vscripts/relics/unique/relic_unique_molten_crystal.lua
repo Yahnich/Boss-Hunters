@@ -15,11 +15,10 @@ end
 
 function relic_unique_molten_crystal:OnAbilityFullyCast(params)
 	if params.unit == self:GetParent() and params.unit:HasAbility( params.ability:GetName() ) and not params.ability:IsOrbAbility() and self:GetDuration() == -1 then
-		--if params.ability:GetBehavior() ~= DOTA_ABILITY_BEHAVIOR_NO_TARGET then 
-			PrintAll(params)
+		--if params.ability:GetBehavior() ~= DOTA_ABILITY_BEHAVIOR_NO_TARGET then
 			local parent = self:GetParent()
 			local position = parent:GetCursorPosition()
-			if parent:GetCursorTargetingNothing() then position = parent:GetAbsOrigin() end
+			if parent:GetCursorTargetingNothing() or CalculateDistance( Vector(0,0), position ) < 2 then position = parent:GetAbsOrigin() end
 			
 			local damage = parent:GetPrimaryStatValue() * 1
 			local duration = 8
@@ -47,6 +46,6 @@ function relic_unique_molten_crystal:OnAbilityFullyCast(params)
 	end
 end
 
-function relic_unique_molten_crystal:GetModifierExtraStrengthBonus()
-	return self:GetStackCount()
+function relic_unique_molten_crystal:IsHidden()
+	return self:GetDuration() == -1
 end

@@ -56,7 +56,7 @@ function modifier_slark_shadow_dance_handler:DeclareFunctions()
 end
 
 function modifier_slark_shadow_dance_handler:OnTakeDamage(params)
-	if params.unit == self:GetParent() and self:GetParent():HasTalent("special_bonus_unique_slark_shadow_dance_2") then
+	if params.unit == self:GetParent() and self:GetParent():HasTalent("special_bonus_unique_slark_shadow_dance_2") and not HasBit( params.damage_flags, DOTA_DAMAGE_FLAG_HPLOSS ) then
 		self:SetStackCount(1)
 		self:StartIntervalThink( self:GetParent():FindTalentValue("special_bonus_unique_slark_shadow_dance_2", "duration") )
 	end

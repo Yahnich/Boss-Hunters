@@ -120,7 +120,6 @@ function sand_claw_impact:OnProjectileHitHandle(hTarget, vLocation, projectileID
             end)
         end
 	else
-		print("deleting")
 		self.projectiles[tostring(projectileID)] = nil
     end
 end

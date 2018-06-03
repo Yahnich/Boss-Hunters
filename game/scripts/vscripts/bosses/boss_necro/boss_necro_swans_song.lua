@@ -24,7 +24,6 @@ function modifier_boss_necro_swans_song:OnIntervalThink()
 	local caster = self:GetCaster()
 	local heroes = caster:FindEnemyUnitsInRadius( self:GetParent():GetAbsOrigin(), self:GetSpecialValueFor("radius") , {type = DOTA_UNIT_TARGET_HERO} )
 	local damage = self:GetParent():GetMaxHealth() * self.damage * HeroList:GetActiveHeroCount() / #heroes
-	print(self:GetParent():GetMaxHealth(), self.damage, HeroList:GetActiveHeroCount(), #heroes)
 	for _, hero in ipairs( heroes ) do
 		self:GetAbility():DealDamage( self:GetCaster(), hero, damage )
 	end

@@ -384,9 +384,6 @@ function modifier_animation:OnCreated(keys)
     self.activity = activity
     self.rate = rate / 20 
     self.rest = rest
-    --print(self.activity)
-    --print(self.rate)
-    --print(self.rest)
 
     self.translate = _CODE_TO_ANIMATION_TRANSLATE[self.rest]
   else

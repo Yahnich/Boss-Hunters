@@ -49,7 +49,6 @@ function modifier_chen_dps_crit:GetModifierPreAttack_CriticalStrike()
 end
 
 function modifier_chen_dps_crit:OnAttackLanded(params)
-	--PrintAll(params)
 	if IsServer() and params.attacker == self:GetParent() then
 		local radius = self:GetTalentSpecialValueFor("radius")
 		ParticleManager:FireParticle("particles/units/heroes/hero_jakiro/jakiro_liquid_fire_explosion.vpcf", PATTACH_POINT, params.target, {[0]="attach_hitloc",[1]=Vector(radius,radius,radius)})

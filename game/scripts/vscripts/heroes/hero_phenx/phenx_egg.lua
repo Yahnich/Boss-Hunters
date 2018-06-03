@@ -17,6 +17,12 @@ function phenx_egg:OnSpellStart()
     EmitSoundOn("Hero_Phoenix.SuperNova.Cast", caster)
 
     local egg = caster:CreateSummon("npc_dota_phoenix_sun", caster:GetAbsOrigin(), self:GetTalentSpecialValueFor("duration"))
+	
+	local hp = self:GetTalentSpecialValueFor("max_hero_attacks")
+	egg:SetBaseMaxHealth(hp)
+	egg:SetMaxHealth(hp)
+	egg:SetHealth(hp)
+	
     egg:AddNewModifier(caster, self, "modifier_phenx_egg_form", {Duration = self:GetTalentSpecialValueFor("duration")})
     EmitSoundOn("Hero_Phoenix.SuperNova.Begin", egg)
 
@@ -42,7 +48,11 @@ end
 function modifier_phenx_egg_caster:CheckState()
     local state = { [MODIFIER_STATE_NO_UNIT_COLLISION] = true,
                     [MODIFIER_STATE_COMMAND_RESTRICTED] = true,
-                    [MODIFIER_STATE_STUNNED] = true,
+                    [MODIFIER_STATE_ATTACK_IMMUNE] = true,
+					[MODIFIER_STATE_MAGIC_IMMUNE] = true,
+					[MODIFIER_STATE_PROVIDES_VISION] = true,
+					[MODIFIER_STATE_NO_HEALTH_BAR] = true,
+					[MODIFIER_STATE_UNTARGETABLE] = true,
                     [MODIFIER_STATE_OUT_OF_GAME] = true
                 }
     return state
@@ -57,20 +67,27 @@ function modifier_phenx_egg_form:OnCreated(table)
         ParticleManager:SetParticleControlEnt(self.nfx, 1, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_hitloc", self:GetParent():GetAbsOrigin(), false)
 
         self.maxAttacks = self:GetTalentSpecialValueFor("max_hero_attacks")
+		self:GetParent().supernova_numAttacked = 0
         self:StartIntervalThink(0.5)
     end
 end
 
 function modifier_phenx_egg_form:OnIntervalThink()
-    self:GetParent():ModifyThreat(self:GetTalentSpecialValueFor("threat_gain"))
-    GridNav:DestroyTreesAroundPoint(self:GetParent():GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"), false)
-
+	local egg = self:GetParent()
+	local caster = self:GetCaster()
+	
+    egg:ModifyThreat(self:GetTalentSpecialValueFor("threat_gain"))
+    GridNav:DestroyTreesAroundPoint(egg:GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"), false)
+	
+	egg:ModifyThreat( caster:GetThreat() )
+	caster:SetThreat(0)
+	
     if self:GetCaster():HasTalent("special_bonus_unique_phenx_egg_2") then
         local newRadi = self:GetTalentSpecialValueFor("radius")
         for i=1,5 do
-            pointRando = self:GetParent():GetAbsOrigin() + ActualRandomVector(150, self:GetTalentSpecialValueFor("radius"))
+            pointRando = egg:GetAbsOrigin() + ActualRandomVector(self:GetTalentSpecialValueFor("radius"))
 
-            ParticleManager:FireParticle("particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_shadowraze.vpcf", PATTACH_POINT, self:GetParent(), {[0]=pointRando})
+            ParticleManager:FireParticle("particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_shadowraze.vpcf", PATTACH_POINT, egg, {[0]=pointRando})
             local enemies = self:GetCaster():FindEnemyUnitsInRadius(pointRando, 275)
             for _,enemy in pairs(enemies) do
                 self:GetAbility():DealDamage(self:GetCaster(), enemy, self:GetTalentSpecialValueFor("damage_per_sec") * self:GetCaster():FindTalentValue("special_bonus_unique_phenx_egg_2"), {}, 0)
@@ -83,72 +100,51 @@ function modifier_phenx_egg_form:CheckState()
     local state = { [MODIFIER_STATE_ROOTED] = true,
                     [MODIFIER_STATE_COMMAND_RESTRICTED] = true,
                     [MODIFIER_STATE_FLYING] = true,
-                    [MODIFIER_STATE_MAGIC_IMMUNE] = true
                 }
     return state
 end
 
 function modifier_phenx_egg_form:DeclareFunctions()
-    local funcs = {
+    return {
         MODIFIER_PROPERTY_DISABLE_HEALING,
-        MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_MAGICAL,
-        MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL,
-        MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PURE,
-        MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,
-        MODIFIER_EVENT_ON_ATTACKED
+        MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE
     }
-    return funcs
 end
 
 function modifier_phenx_egg_form:GetDisableHealing()
-    return true
+    return 1
 end
 
-function modifier_phenx_egg_form:GetAbsoluteNoDamageMagical()
-    return true
-end
 
-function modifier_phenx_egg_form:GetAbsoluteNoDamagePhysical()
-    return true
-end
+function modifier_phenx_egg_form:GetModifierIncomingDamage_Percentage(params)
+	ParticleManager:FireParticle("particles/units/heroes/hero_phoenix/phoenix_supernova_hit.vpcf", PATTACH_POINT, params.target, {})
+	
+	local egg = self:GetParent()
+	local attacker = params.attacker
+	local numAttacked = egg.supernova_numAttacked or 0
+	numAttacked = numAttacked + 1
+	egg.supernova_numAttacked = numAttacked
 
-function modifier_phenx_egg_form:GetAbsoluteNoDamagePure()
-    return true
-end
-
-function modifier_phenx_egg_form:OnAttacked(params)
-    if IsServer() then
-        if params.target == self:GetParent() then
-            ParticleManager:FireParticle("particles/units/heroes/hero_phoenix/phoenix_supernova_hit.vpcf", PATTACH_POINT, params.target, {})
-
-            local egg = params.target
-            local attacker = params.attacker
-            local numAttacked = egg.supernova_numAttacked or 0
-            numAttacked = numAttacked + 1
-            egg.supernova_numAttacked = numAttacked
-
-            local health = 100 * ( self.maxAttacks - numAttacked ) / self.maxAttacks
-            egg:SetHealth( health )
-
-            if numAttacked >= self.maxAttacks then
-                -- Now the egg has been killed.
-                egg.supernova_lastAttacker = attacker
-                self:GetCaster():RemoveModifierByName("modifier_phenx_egg_caster")
-                egg:RemoveModifierByName("modifier_phenx_egg_form")
-            end
-        end
-    end
+	if numAttacked >= self.maxAttacks then
+		-- Now the egg has been killed.
+		egg:ForceKill(true)
+		egg.supernova_lastAttacker = attacker
+		self:GetCaster():RemoveModifierByName("modifier_phenx_egg_caster")
+		egg:RemoveModifierByName("modifier_phenx_egg_form")
+	else
+		egg:SetHealth( egg:GetHealth() - 1 )
+	end
+	return -999
 end
 
 function modifier_phenx_egg_form:OnRemoved()
     if IsServer() then
-        local egg       = self:GetParent()
+		local egg       = self:GetParent()
         local hero      = self:GetCaster()
         local ability   = self:GetAbility()
 
         ParticleManager:DestroyParticle(self.nfx, false)
-
-        local isDead = egg:GetHealth() == 0
+        local isDead = egg.supernova_numAttacked >= self.maxAttacks
 
         if isDead then
             hero:ForceKill(true)

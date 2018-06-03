@@ -25,7 +25,6 @@ function broodmother_web:OnSpellStart()
     local dummies = caster:FindAllUnitsInRadius(caster:GetAbsOrigin(), FIND_UNITS_EVERYWHERE, {flag=DOTA_UNIT_TARGET_FLAG_INVULNERABLE})
     for _,dummy2 in pairs(dummies) do
         if dummy2:HasModifier("modifier_broodmother_web_aura") then
-            --print("true2")
             dummy2:RemoveSelf()
         end
     end

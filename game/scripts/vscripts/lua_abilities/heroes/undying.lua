@@ -100,7 +100,6 @@ function decay( keys )
 		previous_stack_count = previous_stack_count + 1
 		ability:ApplyDataDrivenModifier( caster, caster, modifierName, {duration = duration})
     end
-	print( #units == 1 )
 	if caster:HasTalent("special_bonus_unique_undying_2") and #units == 1 then
 		ability:ApplyDataDrivenModifier( caster, caster, modifierName, {duration = duration})
 		ability:ApplyDataDrivenModifier( caster, caster, modifierName, {duration = duration})

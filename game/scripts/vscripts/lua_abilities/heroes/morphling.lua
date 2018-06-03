@@ -27,8 +27,6 @@ function SpreadStats(keys)
 	local statpct = (ability:GetTalentSpecialValueFor("stat_increase") - 100)/100
 	local stats = math.floor((agility + strength)*statpct)
 	
-	print(stats,statpct)
-	
 	if agility > strength then
 		caster:RemoveModifierByName(keys.modstr)
 		if caster:HasModifier(keys.modagi) then

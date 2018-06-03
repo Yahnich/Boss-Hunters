@@ -1006,7 +1006,6 @@ function CDOTA_BaseNPC:ModifyThreat(val)
 			newVal = newVal + ( math.abs(val) * ( modifier:Bonus_ThreatGain()/100 ) )
 		end
 	end
-	print(newVal)
 	self.threat = math.min(math.max(0, (self.threat or 0) + newVal ), 10000)
 	if not self:IsFakeHero() then 
 		local player = PlayerResource:GetPlayer(self:GetOwner():GetPlayerID())

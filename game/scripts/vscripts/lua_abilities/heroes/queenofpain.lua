@@ -35,7 +35,6 @@ function modifier_queenofpain_sadomasochism:OnIntervalThink()
 		end
 		if self:GetStackCount() ~= #self:GetParent().painTable then	
 			self:SetStackCount(#self:GetParent().painTable) 
-			print("applied") 
 		end
 		if #self:GetParent().painTable == 0 then
 			self:SetDuration(-1,true)
@@ -90,11 +89,9 @@ function SadoMasochism(filterTable)
 	local caster_index = filterTable["entindex_caster_const"]
     local caster = EntIndexToHScript( caster_index )
 	local modifier = caster:FindModifierByName("modifier_queenofpain_sadomasochism")
-	PrintAll(filterTable)
 	local valToMod = filterTable["value"]
 	local newVal = valToMod + valToMod * modifier.bonus * modifier:GetStackCount()
 	filterTable["value"] = newVal
-	print(newVal, "adjusted")
 end
 
 function ScreamTargets(keys)

@@ -33,7 +33,6 @@ function puck_illusory_orb_ebf:CreateOrb(velocity)
 	local vision = self:GetTalentSpecialValueFor("orb_vision")
 	local projID = self:FireLinearProjectile("particles/units/heroes/hero_puck/puck_illusory_orb.vpcf", velocity, distance, width, {}, false, true, vision)
 	self.orbProjectiles[projID] = true
-	PrintAll(self.orbProjectiles)
 end
 
 function puck_illusory_orb_ebf:OnProjectileHitHandle( target, position, projID )	

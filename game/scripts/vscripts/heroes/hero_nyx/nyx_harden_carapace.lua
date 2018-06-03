@@ -76,11 +76,9 @@ function modifier_nyx_harden_carapace:DeclareFunctions()
 end
 
 function modifier_nyx_harden_carapace:OnTakeDamage(params)
-	--PrintAll(params)
 	if IsServer() then
 		local caster = params.unit
 		local attacker = params.attacker
-		--print(params.damage)
 		local damageTaken = params.damage * self:GetTalentSpecialValueFor("damage")/100
 		local damageType = params.damage_type
 		local stunDuration = self:GetTalentSpecialValueFor("stun_duration")

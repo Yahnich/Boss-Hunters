@@ -196,7 +196,7 @@ function AICore:AttackHighestPriority( entity )
 		if entity.AIprevioustarget and entity.AIprevioustarget:GetTeamNumber() ~= entity:GetTeamNumber() then
 			entity.AIprevioustarget = target
 		end
-		if target and not target:IsNull() and CalculateDistance(target, entity) > entity:GetAttackRange() * 0.95 then
+		if target and not target:IsNull() and ( CalculateDistance(target, entity) > entity:GetAttackRange() * 0.95 or entity:GetTauntTarget() ) then
 			if entity:GetAttackCapability() == DOTA_UNIT_CAP_NO_ATTACK then
 				ExecuteOrderFromTable({
 					UnitIndex = entity:entindex(),
