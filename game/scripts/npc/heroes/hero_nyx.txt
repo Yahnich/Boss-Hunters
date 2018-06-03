@@ -403,7 +403,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"reduction"					"55"
+				"reduction"					"-55"
 			}
 		}
 	
