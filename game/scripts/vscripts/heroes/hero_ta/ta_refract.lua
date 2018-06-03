@@ -63,5 +63,5 @@ function modifier_ta_refract:GetModifierPreAttack_BonusDamage()
 end
 
 function modifier_ta_refract:GetModifierIncomingDamage_Percentage()
-	return self:GetSpecialValueFor("damage_reduction")
+	return -math.abs(self:GetSpecialValueFor("damage_reduction"))
 end

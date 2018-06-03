@@ -27,7 +27,7 @@ function modifier_spiky_shell:OnTakeDamage(params)
 end
 
 function modifier_spiky_shell:GetModifierIncomingDamage_Percentage()
-	return self:GetTalentSpecialValueFor("damage_reduction")
+	return -math.abs(self:GetTalentSpecialValueFor("damage_reduction"))
 end
 
 function modifier_spiky_shell:IsHidden()
