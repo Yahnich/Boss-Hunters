@@ -18,7 +18,7 @@ function huskar_unleash_vitality:GetCooldown(iLvl)
 end
 
 function huskar_unleash_vitality:OnAbilityPhaseStart()
-	ParticleManager:FireParticle("particles/units/heroes/hero_huskar/huskar_inner_vitality_cast.vpcf", PATTACH_POINT_FOLLOW, self:GetCaster())
+	ParticleManager:FireParticle("particles/units/heroes/hero_huskar/huskar_inner_vitality_cast.vpcf", PATTACH_POINT_FOLLOW, self:GetCaster(), {[1] = "attach_hitloc"})
 	return true
 end
 

@@ -863,7 +863,9 @@ function CHoldoutGameMode:OnHeroPick (event)
 		
 		hero:AddExperience(GameRules.XP_PER_LEVEL[7],false,false)
 		hero:SetBaseMagicalResistanceValue(0)
-
+		
+		UTIL_MessageTextAll("Ok motherfUCKERS", 255, 255, 255, 255)
+		
 		hero:SetRespawnPosition( GetGroundPosition(Vector(973, 99, 0), nil) )
 		CustomGameEventManager:Send_ServerToPlayer(hero:GetPlayerOwner(), "heroLoadIn", {}) -- wtf is this retarded shit stop force-setting my garbage
 		local ID = hero:GetPlayerID()
