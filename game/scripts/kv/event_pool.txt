@@ -1,0 +1,35 @@
+"Events"
+{
+	// Undead + Sewer dwellers
+	"Sepulcher"
+	{
+		"1"
+		{
+			"EventName"
+			{
+				"Choice1"			"Result1"
+				"Choice2"			"Result2"
+			}
+		}
+	}
+	// Regular ass monsters
+	"Grove"
+	{
+		
+	}
+	// Gods, spirits, elementals
+	"Elysium"
+	{
+		
+	}
+	// Demons, corrupted things
+	"Solitude"
+	{
+		
+	}
+	// Fits everywhere
+	"Generic"
+	{
+		
+	}
+}

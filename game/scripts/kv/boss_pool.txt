@@ -1,0 +1,48 @@
+"FinalBosses"
+{
+	// Undead + Sewer dwellers
+	"Sepulcher"
+	{
+		"sepulcher_boss_reaper"				"1"
+		"sepulcher_boss_prophet"			"1"
+		"sepulcher_boss_wraith_king"		"1"
+		"sepulcher_boss_the_horde"			"1"
+		"sepulcher_boss_lifestealer"		"1"
+	}
+	// Regular ass monsters
+	"Grove"
+	{
+		"grove_boss_slardar"				"1"
+		"grove_boss_axe"					"1"
+		"grove_boss_dragon"					"1"
+		"grove_boss_robots"					"1"
+		"grove_boss_trees"					"1"
+	}
+	// Gods, spirits, elementals
+	"Elysium"
+	{
+		"elysium_boss_aether"				"1"
+		"elysium_boss_asura"				"1"
+		"elysium_boss_broodmother"			"1"
+		"elysium_boss_aeon"					"1"
+		"elysium_boss_aeon"					"1"
+	}
+	// Demons, corrupted things
+	"Solitude"
+	{
+		"solitude_boss_legion"				"1"
+		"solitude_boss_doom"				"1"
+		"solitude_boss_evil_core"			"1"
+		"solitude_boss_twin_demons"			"1"
+		"solitude_boss_hell_golem"			"1"
+	}
+	// Fits everywhere
+	"Generic"
+	{
+		"generic_boss_golem"				"1"
+		"generic_boss_ogres"				"1"
+		"generic_boss_leshrac"				"1"
+		"generic_boss_warlord"				"1"
+		"generic_boss_roshan"				"1"
+	}
+}

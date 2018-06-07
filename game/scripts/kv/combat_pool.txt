@@ -1,0 +1,31 @@
+"Combat"
+{
+	// Undead + Sewer dwellers
+	"Sepulcher"
+	{
+		"1"
+		{
+			"UnitName"			"Amount"
+		}
+	}
+	// Regular ass monsters
+	"Grove"
+	{
+		
+	}
+	// Gods, spirits, elementals
+	"Elysium"
+	{
+		
+	}
+	// Demons, corrupted things
+	"Solitude"
+	{
+		
+	}
+	// Fits everywhere
+	"Generic"
+	{
+		
+	}
+}

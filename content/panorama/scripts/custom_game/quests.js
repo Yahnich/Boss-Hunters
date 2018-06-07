@@ -162,17 +162,3 @@ function UpdateRound(arg){
 	$("#QuestRoundText").SetDialogVariable( "roundText", $.Localize( arg.roundText ) );
 	$("#QuestRoundText").text =  $.Localize( "#QuestRoundText", $("#QuestRoundText") );
 }
-
-function ReplaceIntWithToken(token){
-	if(token == 1){
-		return "#difficultyNormal"
-	} else if(token == 2){
-		return "#difficultyImpossible"
-	} else if(token == 3){
-		return "#difficultyPainful"
-	} else if(token == 4){
-		return "#difficultySadistic"
-	} else if(token == 5){
-		return "#difficultyOutrageous"
-	}
-}

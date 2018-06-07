@@ -1,0 +1,94 @@
+.IsHidden
+{
+	visibility: collapse;
+}
+ 
+.QuestsRoot
+{
+	margin-left: -5px;
+	margin-top: 125px;
+	horizontal-align: left;
+	padding: 10px;
+	height: 120px;
+	flow-children: right;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #25282a88 ), color-stop( .6, #25282acc), color-stop( .8, #25282a88), to( #00000022 ) );
+}
+
+.QuestsContainer
+{
+	flow-children: down;
+	margin-top: 6%;
+	margin-left: 35px;
+	
+	transition-timing-function: ease-in-out;
+	transition-property: transform;
+	transition-duration: 0.3s;
+}
+
+.CloseImage
+{
+	vertical-align: center;
+	margin-top: 30px;
+	horizontal-align: right;
+	width: 35px;
+	height: 35px;
+	wash-color: #FFFFFF;
+}
+
+@keyframes 'FadeInText'
+{
+	0%
+	{
+		opacity: 0;
+	}
+
+	100%
+	{
+		opacity: 1;
+	}
+}
+
+@keyframes 'FadeOutText'
+{
+	0%
+	{
+		opacity: 1;
+	}
+
+	100%
+	{
+		opacity: 0;
+	}
+}
+
+#NotificationCenterText
+{
+	align: center center;
+	font-family: TH Sarabun New,YDYGO 540,Gulim,MingLiU;
+	text-shadow: 2px 2px 1px 3.0 #333333b0;
+	text-transform: uppercase;
+	font-weight: bold;
+	color: #FFFFFF;
+	font-size: 40px;
+}
+
+#QuestPrepText
+{
+	visibility: collapse;
+}
+
+#QuestRoundText
+{
+	visibility: collapse;
+}
+
+.QuestGenericText
+{
+	font-family: TH Sarabun New,YDYGO 540,Gulim,MingLiU;
+	text-shadow: 2px 2px 1px 3.0 #333333b0;
+	text-transform: uppercase;
+	font-weight: bold;
+	color: #FFFFFF;
+	font-size: 20px;
+	vertical-align: top;
+}

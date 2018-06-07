@@ -379,6 +379,7 @@ function MergeTables( t1, t2 )
 			t1[name] = info
 		end
 	end
+	return t1
 end
 
 function PrintAll(t)
@@ -2494,3 +2495,23 @@ function CDOTA_BaseNPC:FindEnemyUnitsInCone(vDirection, vPosition, flSideRadius,
 		return unitTable
 	else return {} end
 end
+
+function GameRules:RefreshPlayers()
+	for nPlayerID = 0, DOTA_MAX_TEAM_PLAYERS-1 do
+		if PlayerResource:GetTeam( nPlayerID ) == DOTA_TEAM_GOODGUYS then
+			if PlayerResource:HasSelectedHero( nPlayerID ) then
+				local hero = PlayerResource:GetSelectedHeroEntity( nPlayerID )
+				if hero ~=nil then
+					if not hero:IsAlive() then
+						hero:RespawnHero(false, false)
+					end
+					hero:SetHealth( hero:GetMaxHealth() )
+					hero:SetMana( hero:GetMaxMana() )
+					hero.threat = 0
+					ResolveNPCPositions( hero:GetAbsOrigin(), hero:GetHullRadius() + hero:GetCollisionPadding() )
+				end
+			end
+		end
+	end
+end
+
