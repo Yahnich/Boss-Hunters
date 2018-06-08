@@ -33,10 +33,10 @@ function RoundManager:Initialize()
 end
 
 EVENTS_PER_RAID = 5
-RAIDS_PER_ZONE = 4
-ZONE_COUNT = 3
+RAIDS_PER_ZONE = 3
+ZONE_COUNT = 2
 
-POSSIBLE_ZONES = {"Elysium", "Sepulcher", "Grove", "Solitude"}
+POSSIBLE_ZONES = {"Sepulcher", "Grove"}
 
 COMBAT_CHANCE = 70
 ELITE_CHANCE = 20

@@ -3,10 +3,10 @@
 	// Undead + Sewer dwellers
 	"Sepulcher"
 	{
-		"1"
-		{
-			"UnitName"			"Amount"
-		}
+		"sepulcher_combat_zombies"				"1"
+		"sepulcher_combat_bone_boys"			"1"
+		"sepulcher_combat_vhouls"				"1"
+		"sepulcher_combat_tactics"				"1"
 	}
 	// Regular ass monsters
 	"Grove"
