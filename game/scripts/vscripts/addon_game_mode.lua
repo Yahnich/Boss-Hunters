@@ -28,6 +28,7 @@ require("libraries/animations")
 require("stats_screen")
 require("relicmanager")
 require("roundmanager")
+require("eventmanager")
 require( "ai/ai_core" )
 
 LinkLuaModifier( "modifier_illusion_bonuses", "libraries/modifiers/illusions/modifier_illusion_bonuses.lua", LUA_MODIFIER_MOTION_NONE)
@@ -79,8 +80,6 @@ function Precache( context )
 	PrecacheResource( "particle", "particles/econ/events/nexon_hero_compendium_2014/blink_dagger_end_nexon_hero_cp_2014.vpcf", context)
 
 	-- Hero Precaches
-	PrecacheUnitByNameSync("npc_dota_warlock_moloch", context)
-    PrecacheUnitByNameSync("npc_dota_warlock_naamah", context)
 	PrecacheResource("particle", "particles/warlock_deepfire_ember.vpcf", context)
 	
 	-- UAM particles
@@ -146,15 +145,6 @@ function Precache( context )
 	PrecacheResource("particle", "particles/units/heroes/hero_lone_druid/lone_druid_savage_roar.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_lone_druid/lone_druid_savage_roar_debuff.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_lone_druid_savage_roar.vpcf", context)
-	
-	PrecacheResource("particle_folder", "particles/econ/generic/generic_aoe_shockwave_1", context)
-	
-	local precacheList = LoadKeyValues('scripts/npc/activelist.txt')
-	for hero, activated in pairs(precacheList) do
-		if activated  == "1" then
-			PrecacheUnitByNameSync(hero, context)
-		end
-	end
 end
 
 -- Actually make the game mode when we activate

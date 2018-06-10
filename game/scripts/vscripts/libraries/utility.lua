@@ -372,14 +372,18 @@ function CDOTA_PlayerResource:IsVIP(id)
 end
 
 function MergeTables( t1, t2 )
+	local copyTable = {}
+	for name, info in pairs(t1) do
+		copyTable[name] = info
+	end
     for name,info in pairs(t2) do
-		if type(info) == "table"  and type(t1[name]) == "table" then
-			MergeTables(t1[name], info)
+		if type(info) == "table"  and type(copyTable[name]) == "table" then
+			MergeTables(copyTable[name], info)
 		else
-			t1[name] = info
+			copyTable[name] = info
 		end
 	end
-	return t1
+	return copyTable
 end
 
 function PrintAll(t)
@@ -996,7 +1000,11 @@ function CDOTA_BaseNPC:SetThreat(val)
 end
 
 function CDOTA_BaseNPC:IsRoundBoss()
-	return self.Holdout_IsCore == true
+	return self.IsRoundBoss == true
+end
+
+function CDOTA_BaseNPC:IsMinion()
+	return self.IsRoundBoss ~= true
 end
 
 function CDOTA_BaseNPC:ModifyThreat(val)
@@ -2513,5 +2521,9 @@ function GameRules:RefreshPlayers()
 			end
 		end
 	end
+end
+
+function GameRules:GetGameDifficulty()
+	return GameRules.gameDifficulty
 end
 

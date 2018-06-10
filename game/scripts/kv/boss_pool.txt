@@ -14,9 +14,10 @@
 	// Regular ass monsters
 	"Grove"
 	{
-		"grove_boss_slardar"				"1"
+		"grove_boss_drowsa"					"1"
 		"grove_boss_axe"					"1"
 		"grove_boss_dragon"					"1"
+		"grove_boss_bearmaster"				"1"
 		"elysium_boss_aether"				"1"
 		"elysium_boss_asura"				"1"
 		"elysium_boss_broodmother"			"1"
@@ -43,5 +44,6 @@
 	{
 		"generic_boss_golem"				"1"
 		"generic_boss_warlord"				"1"
+		"generic_boss_scarab"				"1"
 	}
 }

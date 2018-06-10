@@ -6,12 +6,27 @@
 		"sepulcher_combat_zombies"				"1"
 		"sepulcher_combat_bone_boys"			"1"
 		"sepulcher_combat_vhouls"				"1"
-		"sepulcher_combat_tactics"				"1"
+		"sepulcher_combat_vhouls2"				"1"
+		"sepulcher_combat_vhouls3"				"1"
+		"sepulcher_combat_everything"			"1"
+		"sepulcher_combat_lifestealer"			"1"
+		"solitude_combat_golem"					"1"
+		"solitude_combat_commander"				"1"
+		"solitude_combat_madness_demon"			"1"
+		"solitude_combat_wrath_demon"			"1"
 	}
 	// Regular ass monsters
 	"Grove"
 	{
-		
+		"grove_combat_small_dragons"			"1"
+		"grove_combat_techies"					"1"
+		"grove_combat_robots"					"1"
+		"grove_combat_roborage"					"1"
+		"grove_combat_roshan"					"1"
+		"grove_combat_bearboys"					"1"
+		"grove_combat_trees"					"1"
+		"grove_combat_slardar"					"1"
+		"elysium_combat_spiders"				"1"
 	}
 	// Gods, spirits, elementals
 	"Elysium"
@@ -26,6 +41,8 @@
 	// Fits everywhere
 	"Generic"
 	{
-		
+		"generic_combat_ogres"					"1"
+		"generic_combat_leshrac"				"1"
+		"generic_combat_slarks"					"1"
 	}
 }
