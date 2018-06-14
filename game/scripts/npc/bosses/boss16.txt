@@ -70,7 +70,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage_over_time"		"150 175 200 225"
+				"damage_over_time"		"33 50 66 75"
 			}
 			"03"
 			{
@@ -145,12 +145,12 @@
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"initial_damage"		"350 450 550 650"
+				"initial_damage"		"125 150 175 200"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage_over_time"		"0 0 75 125"
+				"damage_over_time"		"0 0 33 50"
 			}
 		}
 		"precache"

@@ -69,7 +69,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"stack_damage"			"175 300"
+				"stack_damage"			"100 150"
 			}
 			"02"
 			{
@@ -113,7 +113,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"impact_damage"			"1000 1250"
+				"impact_damage"			"200 250"
 			}
 			"02"
 			{
@@ -161,12 +161,12 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"600 750"
+				"damage"					"100 125"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"bonus_damage_per_stack"	"600 750"
+				"bonus_damage_per_stack"	"50 75"
 			}
 			"03"
 			{
@@ -221,7 +221,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"1250 1750"
+				"damage"					"150 175"
 			}
 		}
 	}
@@ -418,7 +418,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"spawn_count"			"4 6"
+				"spawn_count"			"3 4"
 			}
 			"02"
 			{

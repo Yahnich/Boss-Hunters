@@ -28,7 +28,7 @@ function zeus_olympus_calls:OnSpellStart()
 	caster:AddNewModifier(caster, self, "modifier_zeus_olympus_calls", {Duration = self:GetTalentSpecialValueFor("duration")})
 
 	if caster:HasTalent("special_bonus_unique_zeus_olympus_calls_2") then
-		local allies = self:FindFriendlyUnitsInRadius(caster, FIND_UNITS_EVERYWHERE)
+		local allies = caster:FindFriendlyUnitsInRadius(caster, FIND_UNITS_EVERYWHERE)
 		for _,ally in pairs(allies) do
 			if ally ~= caster then
 				ally:AddNewModifier(caster, self, "modifier_zeus_olympus_calls_ally", {Duration = self:GetTalentSpecialValueFor("duration")})

@@ -21,7 +21,6 @@
 		"elysium_boss_aether"				"1"
 		"elysium_boss_asura"				"1"
 		"elysium_boss_broodmother"			"1"
-		"elysium_boss_aeon"					"1"
 	}
 	// Gods, spirits, elementals
 	"Elysium"
@@ -29,7 +28,6 @@
 		"elysium_boss_aether"				"1"
 		"elysium_boss_asura"				"1"
 		"elysium_boss_broodmother"			"1"
-		"elysium_boss_aeon"					"1"
 	}
 	// Demons, corrupted things
 	"Solitude"

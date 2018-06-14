@@ -97,7 +97,7 @@
 			"02"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"damage"						"20"
+				"damage"						"18"
 				"CalculateSpellDamageTooltip"	"0"
 			}
 			"03"

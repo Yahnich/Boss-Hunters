@@ -1000,11 +1000,11 @@ function CDOTA_BaseNPC:SetThreat(val)
 end
 
 function CDOTA_BaseNPC:IsRoundBoss()
-	return self.IsRoundBoss == true
+	return self.unitIsRoundBoss == true
 end
 
 function CDOTA_BaseNPC:IsMinion()
-	return self.IsRoundBoss ~= true
+	return self.unitIsRoundBoss ~= true
 end
 
 function CDOTA_BaseNPC:ModifyThreat(val)
@@ -1426,6 +1426,17 @@ function CDOTABaseAbility:EndDelayedCooldown()
 		Timers:RemoveTimer(self.delayedCooldownTimer)
 		self.delayedCooldownTimer = nil
 	end
+end
+
+function CDOTA_BaseNPC_Hero:CreateTombstone()
+	local newItem = CreateItem( "item_tombstone", self, self )
+	newItem:SetPurchaseTime( 0 )
+	newItem:SetPurchaser( self )
+	local tombstone = SpawnEntityFromTableSynchronous( "dota_item_tombstone_drop", {} )
+	tombstone:SetContainedItem( newItem )
+	tombstone:SetAngles( 0, RandomFloat( 0, 360 ), 0 )
+	FindClearSpaceForUnit( tombstone, self:GetAbsOrigin(), true )
+	self.tombstoneEntity = newItem
 end
 
 function CDOTABaseAbility:ModifyCooldown(amt)

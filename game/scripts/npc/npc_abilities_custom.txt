@@ -936,7 +936,7 @@
 	        "01"
 	        {
 	            "var_type"              "FIELD_INTEGER"
-	            "armor_debuff"          "-30"
+	            "armor_debuff"          "-20"
 	        }
 	        "02"
 	        {
@@ -1128,7 +1128,7 @@
 	
 		// Damage.
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"					"27 34 40 50"
+		"AbilityDamage"					"18 22 26 34"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -2568,7 +2568,7 @@
 			"01"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"damage"			"60 70 75 90"
+				"damage"			"45 50 55 60"
 			}
 			"02"
 			{
@@ -2853,7 +2853,7 @@
 			"01"
 	        {
 	            "var_type"              "FIELD_FLOAT"
-	            "damage"             	"350"  //The meteor lands on the ground this many seconds after it was cast.
+	            "damage"             	"200"  //The meteor lands on the ground this many seconds after it was cast.
 	        }
 	        "02"
 	        {
@@ -2905,7 +2905,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius"		"500"
+				"radius"		"325"
 			}
 			"02"
 			{
@@ -2947,12 +2947,12 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"radius"					"350"
+				"radius"					"250"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"1500 2000 2500 3000"
+				"damage"					"1000 1250 1500 1750"
 			}
 			"03"
 			{
@@ -5260,7 +5260,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"2000 2500"
+				"damage"				"1500 1800"
 			}
 			"04"
 			{
@@ -5318,7 +5318,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"damage"				"120 150"
+				"damage"				"70 80"
 			}
 			"04"
 			{
@@ -5431,7 +5431,7 @@
 		
 		// Damage.
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"					"200 250"
+		"AbilityDamage"					"125 150"
 			
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -5802,7 +5802,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"600"
+				"damage"				"200"
 			}
 			"04"
 			{
@@ -6797,7 +6797,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"movement_damage_pct"		"40"
+				"movement_damage_pct"		"25"
 			}
 			"03"
 			{
@@ -6850,7 +6850,7 @@
 	
 		// Damage.
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"					"400 500"
+		"AbilityDamage"					"150 180"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -10581,7 +10581,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"pounce_damage"			"75"
+				"pounce_damage"			"50"
 			}
 			"06"
 			{
@@ -12460,6 +12460,7 @@
 			{
 				"var_type"					"FIELD_FLOAT"
 				"duration"					"2.0"
+				"LinkedSpecialBonus"		"special_bonus_unique_slark_3"
 			}
 			"02"
 			{
@@ -12469,22 +12470,32 @@
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"bonus_movement_speed"		"50"
+				"bonus_movement_speed"		"30 40 50"
 			}
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"bonus_regen_pct"			"17"
+				"bonus_regen_pct"			"15"
 			}
 			"05"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"activation_delay"			"0.0"
+				"activation_delay"			"0.5 0.5 0.5"
 			}
 			"06"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"neutral_disable"			"0.0"
+				"neutral_disable"			"2.0 2.0 2.0"
+			}
+			"07"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"scepter_aoe"				"325"
+			}
+			"08"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"cooldown_scepter"			"30"
 			}
 			
 		}

@@ -5,16 +5,19 @@ EVENT_TYPE_ELITE = 2
 EVENT_TYPE_EVENT = 3
 EVENT_TYPE_BOSS = 4
 
+ROUND_END_DELAY = 3
+
 function BaseEvent:constructor(zoneName, eventType, eventName)
-	self.eventType = eventType
+	self.eventType = tonumber(eventType)
 	self.eventName = eventName
 	self.zoneName = zoneName
 	eventFolder = "combat"
-	if eventType == EVENT_TYPE_EVENT then
+	if self.eventType == EVENT_TYPE_EVENT then
 		eventFolder = "event"
-	elseif eventType == EVENT_TYPE_BOSS then
+	elseif self.eventType == EVENT_TYPE_BOSS then
 		eventFolder = "boss"
 	end
+	
 	local funcs = require("events/"..eventFolder.."/"..eventName)
 	for functionName, functionMethod in pairs( funcs ) do
 		self[functionName] = functionMethod
@@ -36,6 +39,17 @@ end
 
 function BaseEvent:GetZone()
 	return self.zoneName
+end
+
+function BaseEvent:HandoutRewards()
+	local eventScaling = RoundManager:GetEventsFinished()
+	local playerScaling = GameRules.BasePlayers - HeroList:GetActiveHeroCount()
+	local baseXP = 500 + eventScaling * (100 + 10 * playerScaling)
+	local baseGold = 100 + eventScaling * (25 + 3 * playerScaling)
+	for _, hero in ipairs( HeroList:GetRealHeroes() ) do
+		hero:AddGold( baseGold )
+		hero:AddExperience( baseXP, DOTA_ModifyXP_Unspecified, false, false )
+	end
 end
 
 function BaseEvent:IsEvent()

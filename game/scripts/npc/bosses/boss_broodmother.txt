@@ -184,7 +184,7 @@
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage_on_hit"				"650 800"
+				"damage_on_hit"				"200 250"
 			}
 			"05"
 			{
@@ -415,7 +415,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"hatch_delay"				"12 10"
+				"hatch_delay"				"10 8"
 			}
 		}
 	}

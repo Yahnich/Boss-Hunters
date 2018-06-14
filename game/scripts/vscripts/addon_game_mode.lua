@@ -60,6 +60,7 @@ LinkLuaModifier( "modifier_generic_attack_bonus", "libraries/modifiers/modifier_
 LinkLuaModifier( "modifier_generic_attack_bonus_pct", "libraries/modifiers/modifier_generic_attack_bonus.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_cooldown_reduction_handler", "libraries/modifiers/modifier_cooldown_reduction_handler.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_base_attack_time_handler", "libraries/modifiers/modifier_base_attack_time_handler.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier( "modifier_power_scaling", "libraries/modifiers/modifier_power_scaling.lua", LUA_MODIFIER_MOTION_NONE)
 
 
 -- Precache resources
@@ -232,6 +233,14 @@ function CHoldoutGameMode:InitGameMode()
 																	return 1
 																end)
 															end, "test",0)
+	Convars:RegisterCommand( "bh_test_round", function( zone, roundName, roundType )
+											if Convars:GetDOTACommandClient() and IsInToolsMode() then
+												RoundManager.zones[RoundManager.currentZone][1][1] = BaseEvent(zone, roundType, roundName )
+												RoundManager:EndEvent(false)
+												RoundManager:EndPrepTime(true)
+												RoundManager:StartPrepTime()
+											end
+										end, "adding relics",0)
 	Convars:RegisterCommand( "clear_relics", function()
 											if Convars:GetDOTACommandClient() and IsInToolsMode() then
 												local player = Convars:GetDOTACommandClient()

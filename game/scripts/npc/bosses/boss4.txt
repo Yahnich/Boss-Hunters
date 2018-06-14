@@ -31,7 +31,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage_per_unit"		"20 40"
+				"damage_per_unit"		"15 30"
 			}
 			"01"
 			{

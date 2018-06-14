@@ -41,3 +41,11 @@ function EventManager:SendErrorReport(err)
 	Notifications:BottomToAll({text="An error has occurred! Please screenshot this: "..err, duration=15.0})
 	print(err)
 end
+
+function EventManager:CreateNewEvent(name)
+	PUBLIC_EVENTS[name] = {}
+end
+
+function EventManager:RemoveEvent(name)
+	PUBLIC_EVENTS[name] = nil
+end

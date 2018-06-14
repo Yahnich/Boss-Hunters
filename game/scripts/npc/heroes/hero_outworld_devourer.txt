@@ -24,7 +24,7 @@
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"100"
+		"AbilityManaCost"				"80 115 150 185 220 255 290"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -40,17 +40,6 @@
 			{
 				"var_type"				"FIELD_FLOAT"
 				"mana_pool_damage_pct"	"6 6.5 7 7.5 8 8.5 9"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"int_splash"			"40"
-				"LinkedSpecialBonus"	"special_bonus_unique_obsidian_destroyer_arcane_missile_2"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"int_splash_radius"		"350"
 			}
 		}
 	}	
@@ -286,7 +275,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"25"
+				"value"					"20"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"radius"				"325"
 			}
 		}
 	}

@@ -6,8 +6,6 @@
 		"sepulcher_combat_zombies"				"1"
 		"sepulcher_combat_bone_boys"			"1"
 		"sepulcher_combat_vhouls"				"1"
-		"sepulcher_combat_vhouls2"				"1"
-		"sepulcher_combat_vhouls3"				"1"
 		"sepulcher_combat_everything"			"1"
 		"sepulcher_combat_lifestealer"			"1"
 		"solitude_combat_golem"					"1"
