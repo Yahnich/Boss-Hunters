@@ -191,9 +191,8 @@ function CHoldoutGameMode:InitGameMode()
 	GameRules.gameDifficulty =  mapInfo.Difficulty
 	CustomNetTables:SetTableValue( "game_info", "difficulty", {difficulty = GameRules.gameDifficulty} )
 	CustomNetTables:SetTableValue( "game_info", "timeofday", {timeofday = 0} )
-	
-	GameRules._used_life = 0
-	GameRules._life = GameRules._maxLives
+
+	GameRules._lives = GameRules._maxLives
 	
 	GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_GOODGUYS, mapInfo.MaxPlayers)
 	
@@ -904,7 +903,7 @@ function CHoldoutGameMode:OnGameRulesStateChange()
 			end
 		end
 		Timers:CreateTimer(0.1,function()
-			CustomGameEventManager:Send_ServerToAllClients( "updateQuestLife", { lives = GameRules._life, maxLives = GameRules._maxLives } )
+			CustomGameEventManager:Send_ServerToAllClients( "updateQuestLife", { lives = GameRules._lives, maxLives = GameRules._maxLives } )
 			CustomGameEventManager:Send_ServerToAllClients("heroLoadIn", {})
 			-- for nPlayerID = 0, DOTA_MAX_TEAM_PLAYERS-1 do
 				-- if not PlayerResource:HasSelectedHero( nPlayerID ) and PlayerResource:GetPlayer( nPlayerID ) then
@@ -995,6 +994,7 @@ function CHoldoutGameMode:CheckHP()
 		end
 	end
 	if not GameRules:IsGamePaused() then
+		local playerData = {}
 		for _, hero in ipairs ( HeroList:GetAllHeroes() ) do
 			if not hero:IsFakeHero() then
 				local data = CustomNetTables:GetTableValue("hero_properties", hero:GetUnitName()..hero:entindex() ) or {}
@@ -1012,10 +1012,13 @@ function CHoldoutGameMode:CheckHP()
 				data.intellect = hero:GetIntellect()
 				data.agility = hero:GetAgility()
 				CustomNetTables:SetTableValue("hero_properties", hero:GetUnitName()..hero:entindex(), data )
+				playerData[hero:GetPlayerID()] = {DT = hero.statsDamageTaken or 0, DD = hero.statsDamageDealt or 0, DH = hero.statsDamageHealed or 0}
 			end
 		end
+		CustomGameEventManager:Send_ServerToAllClients( "player_update_stats", playerData )
 	end
 end
+
 
 DAY_TIME = 0
 NIGHT_TIME = 1

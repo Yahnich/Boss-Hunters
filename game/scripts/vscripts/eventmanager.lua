@@ -22,9 +22,9 @@ function EventManager:SubscribeListener(event, callback)
 	return id
 end
 
-function EventManager:FireEvent(event)
+function EventManager:FireEvent(event, args)
 	for id, callback in pairs( PUBLIC_EVENTS[event] ) do
-		status, err, ret = xpcall(callback, debug.traceback, self)
+		status, err, ret = xpcall(callback, debug.traceback, self, args)
 		if not status  and not self.gameHasBeenBroken then
 			self:SendErrorReport(err)
 		end

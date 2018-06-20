@@ -20,7 +20,7 @@ local function StartCombat(self)
 	
 	self.timeRemaining = 30
 	
-	self.demon = CreateUnitByName("npc_dota_money_roshan", START_VECTOR, true, nil, nil, DOTA_TEAM_GOODGUYS)
+	self.demon = CreateUnitByName("npc_dota_money_roshan", START_VECTOR, true, nil, nil, DOTA_TEAM_BADGUYS)
 	
 	local activeHeroes = HeroList:GetActiveHeroCount()
 	
@@ -77,6 +77,7 @@ local function EndEvent(self, bWon)
 end
 
 local function PrecacheUnits(self)
+	PrecacheUnitByNameAsync("npc_dota_money_roshan", function() end)
 	return true
 end
 

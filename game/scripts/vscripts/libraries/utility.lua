@@ -486,8 +486,8 @@ function CDOTA_BaseNPC:IsCore()
 end
 
 function CDOTA_BaseNPC:IsElite()
-	self.elite = self.elite or false
-	return self.elite
+	self.NPCIsElite = self.NPCIsElite or false
+	return self.NPCIsElite
 end
 
 function CDOTA_BaseNPC:HasTalent(talentName)
@@ -976,15 +976,15 @@ end
 
 function CDOTA_BaseNPC:SetThreat(val)
 	self.lastHit = GameRules:GetGameTime()
-	local newVal = 0
+	local newVal = val
 	for _, modifier in ipairs( self:FindAllModifiers() ) do
 		if modifier.Bonus_ThreatGain and modifier:Bonus_ThreatGain() then
-			newVal = newVal + ( val * ( 1 + ( modifier:Bonus_ThreatGain()/100 ) ) )
+			newVal = newVal + ( math.abs(val) * ( modifier:Bonus_ThreatGain()/100 ) )
 		end
 	end
-	self.threat = newVal
-	
-	if not self:IsFakeHero() then 
+	self.threat = math.min(math.max(0, (self.threat or 0) + newVal ), 10000)
+	print(val, newVal, self.threat)
+	if self:IsHero() and not self:IsFakeHero() then 
 		local player = PlayerResource:GetPlayer(self:GetOwner():GetPlayerID())
 		PlayerResource:SortThreat()
 		local event_data =
@@ -2419,9 +2419,11 @@ end
 
 function CDOTA_BaseNPC_Hero:AddGold(val)
 	local gold = val or 0
-	for _, modifier in pairs(self:FindAllModifiers()) do
-		if modifier.GetBonusGold then
-			gold = gold * math.max( 0, (1 + (modifier.GetBonusGold() / 100)) )
+	if gold >= 0 then
+		for _, modifier in pairs(self:FindAllModifiers()) do
+			if modifier.GetBonusGold then
+				gold = gold * math.max( 0, (1 + (modifier.GetBonusGold() / 100)) )
+			end
 		end
 	end
 	local gold = self:GetGold() + gold

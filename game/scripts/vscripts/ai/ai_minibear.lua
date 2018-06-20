@@ -66,9 +66,10 @@ function FindMarkedTarget(entity)
 end
 
 function AttackingMaster(entity)
-	local attackers = AICore:BeingAttackedBy( entity:GetOwnerEntity() )
-	for _, attacker in ipairs(attackers) do
-		return attacker
+	if entity.bearMaster then
+		local attackers = AICore:BeingAttackedBy( entity.bearMaster )
+		for _, attacker in ipairs(attackers) do
+			return attacker
+		end
 	end
-	return nil
 end

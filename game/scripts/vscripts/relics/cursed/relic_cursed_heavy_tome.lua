@@ -10,7 +10,6 @@ function relic_cursed_heavy_tome:OnIntervalThink()
 	self.int = 0
 	self.int = self:GetParent():GetIntellect()
 	self.slow = math.min( -10, -100 + (self:GetParent():GetMana() / self:GetParent():GetMaxMana()) * (100) )
-	print(self.slow)
 	if IsServer() then self:GetParent():CalculateStatBonus() end
 end
 

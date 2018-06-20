@@ -23,20 +23,20 @@
 		"elysium_boss_broodmother"			"1"
 	}
 	// Gods, spirits, elementals
-	"Elysium"
-	{
-		"elysium_boss_aether"				"1"
-		"elysium_boss_asura"				"1"
-		"elysium_boss_broodmother"			"1"
-	}
+	// "Elysium"
+	// {
+		// "elysium_boss_aether"				"1"
+		// "elysium_boss_asura"				"1"
+		// "elysium_boss_broodmother"			"1"
+	// }
 	// Demons, corrupted things
-	"Solitude"
-	{
-		"solitude_boss_doom"				"1"
-		"solitude_boss_evil_core"			"1"
-		"solitude_boss_twin_demons"			"1"
-		"solitude_boss_hell_golem"			"1"
-	}
+	// "Solitude"
+	// {
+		// "solitude_boss_doom"				"1"
+		// "solitude_boss_evil_core"			"1"
+		// "solitude_boss_twin_demons"			"1"
+		// "solitude_boss_hell_golem"			"1"
+	// }
 	// Fits everywhere
 	"Generic"
 	{

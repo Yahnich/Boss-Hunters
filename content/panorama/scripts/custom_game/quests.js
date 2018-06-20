@@ -1,5 +1,4 @@
-var ID = Players.GetLocalPlayer();
-var playerHero = Players.GetPlayerSelectedHero(ID);
+var localID = Players.GetLocalPlayer();
 
 var dotaHud = $.GetContextPanel().GetParent().GetParent().GetParent()
 var healthBar = dotaHud.FindChildTraverse("HealthContainer");
@@ -14,7 +13,10 @@ GameEvents.Subscribe( "updateQuestPrepTime", UpdateTimer);
 GameEvents.Subscribe( "updateQuestRound", UpdateRound);
 GameEvents.Subscribe( "heroLoadIn", Initialize);
 GameEvents.Subscribe("dota_player_update_query_unit", UpdateCustomHud);
-GameEvents.Subscribe( "round_has_ended", ToggleQuests);
+GameEvents.Subscribe( "boss_hunters_event_has_ended", RemoveEventPopup);
+GameEvents.Subscribe( "boss_hunters_event_has_started", ShowEventPopup);
+GameEvents.Subscribe( "boss_hunters_prep_time_has_ended", RemoveRewardsPopup);
+GameEvents.Subscribe( "boss_hunters_event_reward_given", ShowRewardsPopup);
 
 GameEvents.Subscribe( "game_tools_ask_nettable_info", SendNetTableInfo);
 
@@ -32,17 +34,84 @@ function SendNetTableInfo()
 	$.Msg( CustomNetTables.GetAllTableValues( "stats_panel" ) )
 }
 
+function ShowEventPopup(arg)
+{
+	var eventName = arg.event
+	var choiceCount = arg.choices
+	$("#QuestsEventHolder").style.visibility = "visible";
+	var holder = $("#QuestsEventChoices")
+	for(var choice of holder.Children()){
+		choice.style.visibility = "collapse"
+		choice.RemoveAndDeleteChildren()
+		choice.DeleteAsync(0)
+	}
+	
+	var description = $("#QuestsEventDescription")
+	var descriptionText = $("#QuestsEventDescriptionLabel")
+
+
+	descriptionText.text = $.Localize( "#event_" + eventName + "_Description", descriptionText );
+	
+	for(var i = 1; i <= choiceCount; i++){
+		CreateEventChoice(eventName, i)
+	}
+}
+
+function ShowRewardsPopup(arg)
+{
+	var eventName = arg.event
+	var choiceCount = arg.choices
+	$("#QuestRewardsHolder").style.visibility = "visible";
+	
+	var reward = $("#QuestsRewardDescription")
+	var rewardText = $("#QuestsRewardDescriptionLabel")
+	
+	var rewardButton = $("#QuestRewardConfirmButton")
+	
+	rewardButton.SetPanelEvent("onmouseover", function(){rewardButton.SetHasClass("ButtonHover", true);});
+	rewardButton.SetPanelEvent("onmouseout", function(){rewardButton.SetHasClass("ButtonHover", false);});
+	
+	rewardText.text = $.Localize( "#event_" + eventName + "_Reward" + arg.reward, rewardText );
+}
+
+function RemoveEventPopup(arg)
+{
+	$("#QuestsEventHolder").style.visibility = "collapse";
+}
+
+function RemoveRewardsPopup(arg)
+{
+	$("#QuestRewardsHolder").style.visibility = "collapse";
+}
+
+function CreateEventChoice(eventName, choice)
+{
+	var holder = $("#QuestsEventChoices")
+	var eventChoice = $.CreatePanel("Panel", holder, "QuestsEventChoice" + choice);
+	eventChoice.BLoadLayoutSnippet("QuestsEventChoice");
+
+	var eventChoiceText = eventChoice.FindChildTraverse("QuestsEventChoiceText")
+	eventChoiceText.text = $.Localize( "#event_" + eventName + "_option_" + choice );
+	
+	eventChoice.SetPanelEvent("onmouseover", function(){eventChoice.SetHasClass("ButtonHover", true);});
+	eventChoice.SetPanelEvent("onmouseout", function(){eventChoice.SetHasClass("ButtonHover", false);});
+	eventChoice.SetPanelEvent("onactivate", function(){
+		$("#QuestsEventHolder").style.visibility = "collapse";
+		GameEvents.SendCustomGameEventToServer( "player_selected_event_choice_" + choice, {pID : localID} )
+	} );
+}
+
 function ToggleQuests(arg)
 {
 	var teamInfo = $("#QuestCenter")
 	if(arg != null)
 	{
-		teamInfo.SetHasClass("SetHidden", false )
+		teamInfo.SetHasClass("IsHidden", false )
 		$("#CloseImageID").SetImage("file://{images}/custom_game/slideLeft.png")
 	} else {
 		Game.EmitSound( "focus_change" )
-		teamInfo.SetHasClass("SetHidden", !(teamInfo.BHasClass("SetHidden")) )
-		if(teamInfo.BHasClass("SetHidden")){
+		teamInfo.SetHasClass("IsHidden", !(teamInfo.BHasClass("IsHidden")) )
+		if(teamInfo.BHasClass("IsHidden")){
 			$("#CloseImageID").SetImage("file://{images}/custom_game/slideRight.png")
 		} else {
 			$("#CloseImageID").SetImage("file://{images}/custom_game/slideLeft.png")
@@ -158,7 +227,5 @@ function UpdateTimer(arg){
 
 function UpdateRound(arg){
 	$("#QuestRoundText").visible =  true
-	$("#QuestRoundText").SetDialogVariableInt( "roundNumber", arg.roundNumber );
-	$("#QuestRoundText").SetDialogVariable( "roundText", $.Localize( arg.roundText ) );
-	$("#QuestRoundText").text =  $.Localize( "#QuestRoundText", $("#QuestRoundText") );
+	$("#QuestRoundText").text = arg.roundText + " - " + $.Localize( "#event_" + arg.eventName, $("#QuestRoundText") )
 }

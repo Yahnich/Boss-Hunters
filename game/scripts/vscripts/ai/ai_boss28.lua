@@ -33,7 +33,7 @@ if IsServer() then
 					OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
 					AbilityIndex = thisEntity.frenzy:entindex()
 				})
-				return thisEntity.frenzy:GetChannelTime() + 0.1
+				return thisEntity.frenzy:GetCastPoint() + 0.1
 			end
 			if target then
 				if thisEntity.trample:IsFullyCastable() then	
@@ -48,7 +48,7 @@ if IsServer() then
 							Position = target:GetAbsOrigin(),
 							AbilityIndex = thisEntity.trample:entindex()
 						})
-						return thisEntity.trample:GetChannelTime() + 0.1
+						return (thisEntity.trample:GetCastPoint() * jumps) + 1
 					elseif AICore:NumEnemiesInLine(thisEntity, jumpDistance, thisEntity.trample:GetSpecialValueFor("starting_radius"), false) > 2 then
 						ExecuteOrderFromTable({
 							UnitIndex = thisEntity:entindex(),
@@ -56,7 +56,7 @@ if IsServer() then
 							Position = caster:GetAbsOrigin() + caster:GetForwardVector() * 200,
 							AbilityIndex = thisEntity.trample:entindex()
 						})
-						return thisEntity.trample:GetChannelTime() + 0.1
+						return (thisEntity.trample:GetCastPoint() * jumps) + 1
 					end
 				end
 				if thisEntity.swipe:IsFullyCastable() and CalculateDistance(thisEntity, target) <= thisEntity:GetAttackRange() + thisEntity:GetIdealSpeed() then
@@ -66,7 +66,7 @@ if IsServer() then
 							Position = target:GetAbsOrigin(),
 							AbilityIndex = thisEntity.swipe:entindex()
 						})
-					return thisEntity.swipe:GetChannelTime() + 0.1
+					return thisEntity.swipe:GetCastPoint() + 0.1
 				end
 			end
 			AICore:AttackHighestPriority( thisEntity )

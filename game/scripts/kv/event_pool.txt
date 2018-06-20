@@ -9,7 +9,7 @@
 		"solitude_event_devil_deal"				"1"
 		"solitude_event_cursed_glove"			"1"
 		"solitude_event_crossroads"				"1"
-		"solitude_event_avarice"				"1"
+		"solitude_event_demon_of_avarice"		"1"
 	}
 	// Regular ass monsters
 	"Grove"

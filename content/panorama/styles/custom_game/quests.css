@@ -2,8 +2,25 @@
 {
 	visibility: collapse;
 }
- 
+
+.ButtonSelected
+{
+	saturation: 0.4;
+}
+
+.ButtonHover
+{
+	box-shadow: inset #888888b0 2px 2px 2px 2px;
+}
+
 .QuestsRoot
+{
+	height: 100%;
+	width: 100%;
+	z-index: -50;
+}
+ 
+.QuestsContainerRoot
 {
 	margin-left: -5px;
 	margin-top: 125px;
@@ -35,6 +52,146 @@
 	wash-color: #FFFFFF;
 }
 
+#QuestPrepText
+{
+	visibility: collapse;
+}
+
+#QuestRoundText
+{
+	visibility: collapse;
+}
+
+.QuestGenericText
+{
+	font-family: TH Sarabun New,YDYGO 540,Gulim,MingLiU;
+	text-shadow: 2px 2px 1px 3.0 #333333b0;
+	text-transform: uppercase;
+	font-weight: bold;
+	color: #FFFFFF;
+	font-size: 20px;
+	vertical-align: top;
+}
+
+#QuestsEventHolder
+{
+	height: 40%;
+	width: 60%;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #121218FF ), color-stop( .2, #25282aFF), color-stop( .8, #25282aFF), to( #121218FF ) );
+	background-image: url("s2r://panorama/images/hud/reborn/ability_bg_psd.vtex");
+	background-repeat: no-repeat;
+	opacity: 0.9;
+	background-size: 100% 100%;
+	visibility: collapse;
+	z-index: 5;
+	vertical-align: center;
+	horizontal-align: center;
+	margin-top: -50px;
+	padding: 20px;
+	flow-children: down;
+	
+}
+
+#QuestsEventDescription
+{
+	width: 85%;
+	vertical-align: top;
+	margin-top: 10%;
+	horizontal-align: center;
+}
+
+#QuestsEventDescriptionLabel
+{
+	
+	font-family: TH Sarabun New,YDYGO 540,Gulim,MingLiU;
+	text-shadow: 2px 2px 1px 3.0 #333333b0;
+	font-weight: bold;
+	color: #FFFFFF;
+	font-size: 24px;
+}
+
+#QuestsEventChoices
+{
+	flow-children: down;
+	vertical-align: bottom;
+	width: 100%;
+	margin-bottom: 10px;
+}
+
+.QuestsEventChoice
+{
+	margin-bottom: 12px;
+	horizontal-align: center;
+	padding: 4px;
+	background-image: url("s2r://panorama/images/hud/reborn/shop_launcher_button_psd.vtex");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	height: 40px;	
+	width: 60%;
+	z-index: 5;
+}
+
+.QuestsEventChoiceText
+{
+	font-family: TH Sarabun New,YDYGO 540,Gulim,MingLiU;
+	text-shadow: 2px 2px 1px 3.0 #333333b0;
+	font-weight: bold;
+	color: #FFFFFF;
+	font-size: 20px;
+	vertical-align: center;
+	horizontal-align: center;
+	text-align: center;
+}
+
+#QuestRewardsHolder
+{
+	height: 30%;
+	width: 50%;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #121218FF ), color-stop( .2, #25282aFF), color-stop( .8, #25282aFF), to( #121218FF ) );
+	background-image: url("s2r://panorama/images/hud/reborn/ability_bg_psd.vtex");
+	background-repeat: no-repeat;
+	opacity: 0.9;
+	background-size: 100% 100%;
+	visibility: collapse;
+	z-index: 5;
+	vertical-align: center;
+	horizontal-align: center;
+	margin-top: -50px;
+	
+	flow-children: down;
+	
+}
+
+#QuestsRewardDescription
+{
+	max-width: 80%;
+	vertical-align: top;
+	margin-top: 10%;
+	horizontal-align: center;
+}
+
+#QuestsRewardDescriptionLabel
+{
+	font-family: TH Sarabun New,YDYGO 540,Gulim,MingLiU;
+	text-shadow: 2px 2px 1px 3.0 #333333b0;
+	font-weight: bold;
+	color: #FFFFFF;
+	font-size: 24px;
+}
+
+#QuestRewardConfirmButton
+{
+	margin-bottom: 12px;
+	horizontal-align: center;
+	vertical-align: bottom;
+	background-image: url("s2r://panorama/images/hud/reborn/shop_launcher_button_psd.vtex");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	height: 40px;	
+	width: 60%;
+	z-index: 5;
+}
+
 @keyframes 'FadeInText'
 {
 	0%
@@ -59,36 +216,4 @@
 	{
 		opacity: 0;
 	}
-}
-
-#NotificationCenterText
-{
-	align: center center;
-	font-family: TH Sarabun New,YDYGO 540,Gulim,MingLiU;
-	text-shadow: 2px 2px 1px 3.0 #333333b0;
-	text-transform: uppercase;
-	font-weight: bold;
-	color: #FFFFFF;
-	font-size: 40px;
-}
-
-#QuestPrepText
-{
-	visibility: collapse;
-}
-
-#QuestRoundText
-{
-	visibility: collapse;
-}
-
-.QuestGenericText
-{
-	font-family: TH Sarabun New,YDYGO 540,Gulim,MingLiU;
-	text-shadow: 2px 2px 1px 3.0 #333333b0;
-	text-transform: uppercase;
-	font-weight: bold;
-	color: #FFFFFF;
-	font-size: 20px;
-	vertical-align: top;
 }

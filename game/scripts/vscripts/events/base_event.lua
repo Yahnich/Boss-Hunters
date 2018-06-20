@@ -11,6 +11,7 @@ function BaseEvent:constructor(zoneName, eventType, eventName)
 	self.eventType = tonumber(eventType)
 	self.eventName = eventName
 	self.zoneName = zoneName
+	self.eventID = DoUniqueString(eventName)
 	eventFolder = "combat"
 	if self.eventType == EVENT_TYPE_EVENT then
 		eventFolder = "event"
@@ -22,6 +23,7 @@ function BaseEvent:constructor(zoneName, eventType, eventName)
 	for functionName, functionMethod in pairs( funcs ) do
 		self[functionName] = functionMethod
 	end
+	print( self, self.eventID )
 end
 
 function BaseEvent:StartEvent()
@@ -34,7 +36,7 @@ function BaseEvent:PrecacheUnits()
 end
 
 function BaseEvent:EndEvent()
-	RoundManager:EndEvent()
+	print("EndEvent not initialized")
 end
 
 function BaseEvent:GetZone()
@@ -42,13 +44,21 @@ function BaseEvent:GetZone()
 end
 
 function BaseEvent:HandoutRewards()
-	local eventScaling = RoundManager:GetEventsFinished()
-	local playerScaling = GameRules.BasePlayers - HeroList:GetActiveHeroCount()
-	local baseXP = 500 + eventScaling * (100 + 10 * playerScaling)
-	local baseGold = 100 + eventScaling * (25 + 3 * playerScaling)
-	for _, hero in ipairs( HeroList:GetRealHeroes() ) do
-		hero:AddGold( baseGold )
-		hero:AddExperience( baseXP, DOTA_ModifyXP_Unspecified, false, false )
+	if not self:IsEvent() then
+		local eventScaling = RoundManager:GetEventsFinished()
+		local playerScaling = GameRules.BasePlayers - HeroList:GetActiveHeroCount()
+		local baseXP = 500 + eventScaling * (100 + 10 * playerScaling)
+		local baseGold = 100 + eventScaling * (25 + 3 * playerScaling)
+		for _, hero in ipairs( HeroList:GetRealHeroes() ) do
+			hero:AddGold( baseGold )
+			hero:AddExperience( baseXP, DOTA_ModifyXP_Unspecified, false, false )
+			local pID = hero:GetPlayerOwnerID()
+			if self:IsElite() then
+				RelicManager:RollEliteRelicsForPlayer(pID)
+			elseif self:IsBoss() then
+				RelicManager:RollBossRelicsForPlayer(pID)
+			end
+		end
 	end
 end
 
