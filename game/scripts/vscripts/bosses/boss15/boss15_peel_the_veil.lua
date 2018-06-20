@@ -21,6 +21,7 @@ function boss15_peel_the_veil:CreateGhost()
 		self:GetCaster():Interrupt()
 	end
 	local ghost = CreateUnitByName("npc_dota_boss22b", self:GetCaster():GetAbsOrigin() + ActualRandomVector(300, 200), true, nil, nil, self:GetTeam())
+	ghost.hasBeenInitialized = true
 	ghost:SetAverageBaseDamage(self:GetCaster():GetAverageBaseDamage() * self:GetSpecialValueFor("ghost_damage")/100, 25)
 	ghost:SetBaseMaxHealth(self:GetCaster():GetBaseMaxHealth() * self:GetSpecialValueFor("ghost_health")/100)
 	ghost:SetMaxHealth(self:GetCaster():GetMaxHealth() * self:GetSpecialValueFor("ghost_health")/100)

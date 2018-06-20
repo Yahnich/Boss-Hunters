@@ -149,7 +149,7 @@
 		"MaxLevel"						"2"
 		
 		"AbilityCooldown"				"10 9"
-		"AbilityCastPoint"				"1.5 1"
+		"AbilityCastPoint"				"0.75 0.5"
 		"AbilityCastAnimation"			"ACT_DOTA_ABILITY_END"
 		
 		"precache"
@@ -170,12 +170,12 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"starting_radius"		"325"
+				"starting_radius"		"250"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius_growth"			"50 75"
+				"radius_growth"			"25 35"
 			}
 			"04"
 			{
@@ -185,12 +185,12 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"800 1000"
+				"damage"				"200 225"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"stun_duration"			"1.75 2"
+				"stun_duration"			"1"
 			}
 		}
 	}

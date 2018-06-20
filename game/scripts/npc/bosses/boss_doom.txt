@@ -106,7 +106,7 @@
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"2000 4000"
+				"damage"					"350 500"
 			}
 			"04"
 			{
@@ -196,7 +196,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"1800 4500"
+				"damage"					"200 300"
 			}
 			"03"
 			{
@@ -264,7 +264,7 @@
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"1200 2500"
+				"damage"					"120 175"
 			}
 			"04"
 			{
@@ -318,7 +318,7 @@
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"tornado_damage"			"4000 8000"
+				"tornado_damage"			"400 600"
 			}
 		}
 	}

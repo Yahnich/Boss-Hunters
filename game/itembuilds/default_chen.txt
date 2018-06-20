@@ -34,8 +34,6 @@
 			"item"  "item_bloodthorn4"
 			"item" "item_moon_crest"
 		}
-			
-		}
 		"#DOTA_Item_Build_End_Game"
 		{
 		
@@ -47,8 +45,6 @@
 			"item" "item_lunar_crest"
 			"item" "item_mekansm5"
 			"item" "item_Dagon_Mystic"
-			
-			
 		}
 	}
 }

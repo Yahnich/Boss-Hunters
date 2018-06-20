@@ -46,7 +46,7 @@ if IsServer() then
 				distance_traveled = distance_traveled + speed
 				return FrameTime()
 			else
-				self:DealDamage(caster, target, ability:GetSpecialValueFor("knockup_damage"))
+				self:DealDamage(caster, target, ability:GetSpecialValueFor("knockup_damage") )
 				target:SetAbsOrigin(target:GetAbsOrigin() - Z_VECTOR * speed)
 				FindClearSpaceForUnit(target, target:GetAbsOrigin(), true)
 				EmitSoundOn("Hero_NyxAssassin.Impale.TargetLand", target)

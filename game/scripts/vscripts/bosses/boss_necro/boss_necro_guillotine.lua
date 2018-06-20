@@ -24,7 +24,7 @@ function boss_necro_guillotine:CreateGuillotine( enemy )
 	local caster = self:GetCaster()
 	local position = enemy:GetAbsOrigin()
 
-	local damage = self:GetSpecialValueFor("hp_set") / 100
+	local damage = (100 - self:GetSpecialValueFor("hp_set")) / 100
 	local radius = self:GetSpecialValueFor("radius")
 	local kill_threshold = self:GetSpecialValueFor("kill_threshold")
 	local duration = self:GetSpecialValueFor("duration")

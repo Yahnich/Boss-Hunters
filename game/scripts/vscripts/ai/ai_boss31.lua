@@ -10,14 +10,7 @@ function Spawn( entityKeyValues )
 			return AIThink(thisEntity)
 		end
 	end)
-	if thisEntity:GetUnitName() == "npc_dota_boss31_h" then 
-		thisEntity.suffix = "_h"
-	elseif thisEntity:GetUnitName() == "npc_dota_boss31_vh" then
-		thisEntity.suffix = "_vh"
-	else
-		thisEntity.suffix = ""
-	end
-	thisEntity.fire = thisEntity:FindAbilityByName("boss_melee_fire_orb"..thisEntity.suffix)
+	thisEntity.fire = thisEntity:FindAbilityByName("boss_melee_fire_orb_vh")
 end
 
 

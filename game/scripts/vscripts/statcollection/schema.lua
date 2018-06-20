@@ -43,10 +43,10 @@ function BuildGameArray()
     local game = {}
 
     -- Add game values here as game.someValue = GetSomeGameValue()
-    game.mr = GameRules._roundnumber -- max round achieved
+    game.mr = RoundManager:GetEventsFinished() -- events scaled
     game.cg = GameRules._finish -- has the game finished (win)
-    game.ll = GameRules._life -- how many lives left
-    game.lu = GameRules._used_life -- Used Life
+    game.ll = GameRules._lives -- how many lives left
+    game.lu = GameRules._maxLives - GameRules._lives -- Used Life
     game.lt = GameRules._maxLives -- max lives
 	game.gd = GameRules.gameDifficulty -- difficulty
 
@@ -63,10 +63,9 @@ function BuildPlayersArray()
                 local hero = PlayerResource:GetSelectedHeroEntity(playerID)
 				if not hero then return end
 				local heroName = string.gsub(hero:GetUnitName(), "npc_dota_hero_", "")
-				local mapName = string.gsub(GetMapName(), "epic_boss_fight_", "")
+				local mapName = string.gsub(GetMapName(), "bh_", "")
 				
 				local talents = FindChosenTalentRow(hero)
-				PrintAll(talents)
                 table.insert(players, {
                     -- steamID32 required in here
                     steamID32 = PlayerResource:GetSteamAccountID(playerID),

@@ -1,0 +1,43 @@
+"Events"
+{
+	// Undead + Sewer dwellers
+	"Sepulcher"
+	{
+		"sepulcher_event_tombstone"				"1"
+		"sepulcher_event_the_horde"				"1"
+		"sepulcher_event_graverobber"			"1"
+		"solitude_event_devil_deal"				"1"
+		"solitude_event_cursed_glove"			"1"
+		"solitude_event_crossroads"				"1"
+		"solitude_event_demon_of_avarice"		"1"
+	}
+	// Regular ass monsters
+	"Grove"
+	{
+		"grove_event_cut_the_trees"				"1"
+		"grove_event_help_treant"				"1"
+		"grove_event_the_river"					"1"
+		"grove_event_well_of_youth"				"1"
+		"elysium_event_divine_knowledge"		"1"
+		"elysium_event_old_shrine"				"1"
+	}
+	// Gods, spirits, elementals
+	"Elysium"
+	{
+		
+	}
+	// Demons, corrupted things
+	"Solitude"
+	{
+		
+	}
+	// Fits everywhere
+	"Generic"
+	{
+		"generic_event_surge_of_knowledge"		"1"
+		"generic_event_defense_or_offense"		"1"
+		"generic_event_fight_or_flight"			"1"
+		"generic_event_protect"					"1"
+		"generic_event_gold_or_relic"			"1"
+	}
+}

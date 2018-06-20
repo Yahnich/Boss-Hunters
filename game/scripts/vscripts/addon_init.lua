@@ -13,10 +13,28 @@ if IsClient() then -- Load clientside utility lib
 	if GameRules == nil then
 		GameRules = class({})
 	end
-	print(GameRules, "?")
 	print("client-side has been initialized")
 	require("libraries/client_util")
-	print(GameRules.IsDaytime, "?")
+	
+	Convars:RegisterCommand( "cl_deepdebugging", function()
+													if not GameRules.DebugCalls then
+														print("Starting DebugCalls")
+														GameRules.DebugCalls = true
+
+														debug.sethook(function(...)
+															local info = debug.getinfo(2)
+															local src = tostring(info.short_src)
+															local name = tostring(info.name)
+															if name ~= "__index" then
+																print("Call: ".. src .. " -- " .. name)
+															end
+														end, "c")
+													else
+														print("Stopped DebugCalls")
+														GameRules.DebugCalls = false
+														debug.sethook(nil, "c")
+													end
+												end, "fixing bug",0)
 end
 
 relicBaseClass = class({})

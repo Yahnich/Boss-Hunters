@@ -7,7 +7,8 @@ end
 function obsidian_destroyer_arcane_missile:OnSpellStart()
 	local target = self:GetCursorTarget()
 	self:LaunchArcaneOrb(target, true)
-	self:SetOverrideCastPoint(self:GetCaster():GetSecondsPerAttack())
+	self:SetOverrideCastPoint(self:GetCaster():GetCastPoint(true))
+	self:StartCooldown( self:GetCaster():GetSecondsPerAttack() - self:GetCastPoint() )
 end
 
 function obsidian_destroyer_arcane_missile:IsStealable()
@@ -50,10 +51,12 @@ function obsidian_destroyer_arcane_missile:OnProjectileHit(target, position)
 		local spellsteal = caster:FindTalentValue("special_bonus_unique_obsidian_destroyer_arcane_missile_1") / 100
 		local mainDamage = self:DealDamage(caster, target, caster:GetMana() * self:GetTalentSpecialValueFor("mana_pool_damage_pct") / 100)
 		heal = heal + mainDamage * spellsteal
-		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius(target:GetAbsOrigin(), self:GetTalentSpecialValueFor("int_splash_radius")) ) do
-			if enemy ~= target then
-				local aoeDamage = self:DealDamage(caster, enemy, self:GetTalentSpecialValueFor("int_splash") * caster:GetIntellect() / 100)
-				heal = heal + aoeDamage * spellsteal
+		if caster:HasTalent("special_bonus_unique_obsidian_destroyer_arcane_missile_2") then
+			for _, enemy in ipairs( caster:FindEnemyUnitsInRadius(target:GetAbsOrigin(),  caster:FindTalentValue("special_bonus_unique_obsidian_destroyer_arcane_missile_2", "radius") ) ) do
+				if enemy ~= target then
+					local aoeDamage = self:DealDamage(caster, enemy, mainDamage * caster:FindTalentValue("special_bonus_unique_obsidian_destroyer_arcane_missile_2")/100)
+					heal = heal + aoeDamage * spellsteal
+				end
 			end
 		end
 		if heal > 0 then

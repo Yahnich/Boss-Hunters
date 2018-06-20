@@ -81,301 +81,25 @@
 
 "DOTAAbilities"
 {
-	"ancient_apparition_entropy"
+	"generic_hp_limiter"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_datadriven"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"FightRecapLevel"				"1"
-		"AbilityTextureName"			"custom/ancient_apparition_entropy"
-		"MaxLevel"						"7"
-	
-		// Precache
-		//-------------------------------------------------------------------------------------------------------------
-		"precache"
-		{
-			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_ancient_apparition.vsndevts"
-			"particle"			"particles/units/heroes/hero_ancient_apparition/ancient_apparition_cold_feet.vpcf"
-			"particle"			"particles/units/heroes/hero_ancient_apparition/ancient_apparition_cold_feet_frozen.vpcf"
-			"particle"			"particles/units/heroes/hero_ancient_apparition/ancient_apparition_cold_feet_marker.vpcf"
-			"particle"  		"particles/generic_gameplay/generic_stunned.vpcf"	
-		}
-		
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"700 750 800 850 900 950 1000"
-		"AbilityCastPoint"				"0.01 0.01 0.01 0.01"
-	
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"15.0"
-		"AbilityDuration"				"4"
-	
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"125"
-	
-		// Stats
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityModifierSupportValue"	"0.5"	// Does two modifiers 
-	
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"30 50 70 90 110 130 150"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"740"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage_reduction_tick"	"-20"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"freeze_duration"		"1"
-			}
-			// Extra
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"damage_interval"		"1.01"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"4.0"
-			}
-		}
-		"OnSpellStart"
-		{
-			"FireSound"
-			{
-				"EffectName"	"Hero_Ancient_Apparition.ColdFeetCast"
-				"Target" 		"TARGET"
-			}
-			"ActOnTargets"
-			{
-				"Target"
-				{
-					"Center"	"CASTER"
-					"Radius"	"%radius"
-					"Teams"		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-					"Types"		"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-				}		
-				"Action"
-				{
-					"RemoveModifier"
-					{
-						"ModifierName"	"modifier_entropy_handler"
-						"Target"	"TARGET"
-					}
-					"ApplyModifier"
-					{
-						"ModifierName"	"modifier_entropy_handler"
-						"Target"	"TARGET"
-					}
-				}
-			}
-		}
-	
-		"Modifiers"
-		{
-			"modifier_entropy_talent_checker"
-			{
-				"IsHidden"	"1"
-				"Passive"	"1"
-				"ThinkInterval"	"0.1"
-				"OnIntervalThink"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"lua_abilities/heroes/apparition.lua"
-						"Function"		"EntropyTalent"
-					}
-				}
-			}
-			"modifier_entropy_handler"
-			{
-				"IsDebuff"	"1"
-				"Duration"	"%duration"
-				"EffectName"	"particles/units/heroes/hero_ancient_apparition/ancient_apparition_cold_feet.vpcf"
-				"EffectAttachType"	"follow_overhead"
-				
-				"OnCreated"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"lua_abilities/heroes/apparition.lua"
-						"Function"		"ApplyEntropy"
-					}
-				}
-				"ThinkInterval"	"%damage_interval"
-				"OnIntervalThink"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"lua_abilities/heroes/apparition.lua"
-						"Function"		"ApplyEntropy"
-					}
-				}
-				"OnDestroy"
-				{
-					"ApplyModifier"
-					{
-						"ModifierName"	"modifier_entropy_stun"
-						"Target"	"TARGET"
-					}
-					"RemoveModifier"
-					{
-						"ModifierName"	"modifier_entropy_damage_reduction"
-						"Target"	"TARGET"
-					}
-				}
-			}
-			"modifier_entropy_damage_reduction"
-			{
-				"IsHidden"	"1"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE"	"%damage_reduction_tick"
-				}
-			}
-			"modifier_entropy_stun"
-			{
-				"IsDebuff"		"1"
-				"IsPurgable"	"0"
-				"Duration"		"%freeze_duration"
-	
-				"EffectName"	"particles/units/heroes/hero_ancient_apparition/ancient_apparition_cold_feet_frozen.vpcf"
-				"EffectAttachType"	"follow_origin"
-	
-				"OnCreated"
-				{
-					"FireSound"
-					{
-						"EffectName"	"Hero_Ancient_Apparition.ColdFeetFreeze"
-						"Target" 		"TARGET"
-					}
-	
-					"AttachEffect"
-					{
-						"EffectName"        "particles/generic_gameplay/generic_stunned.vpcf"
-						"EffectAttachType"  "follow_overhead"
-						"Target"            "TARGET"
-					}
-				}
-				"States"
-				{
-					"MODIFIER_STATE_STUNNED"		"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_FROZEN"			"MODIFIER_STATE_VALUE_ENABLED"
-				}
-			}
-		}
+		"BaseClass"				"ability_lua"
+		"ScriptFile"			"generic/generic_hp_limiter"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"	"modifier_magicimmune"
+		"MaxLevel"				"1"
 	}
-	//=================================================================================================================
-	// Ancient Apparition: Ice Blast
-	//=================================================================================================================
-	"ancient_apparition_ice_blast_ebf"
+	"generic_gold_dropper"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"lua_abilities/heroes/apparition"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
-		"FightRecapLevel"				"2"
-		"MaxLevel"						"6"
-		"AbilityTextureName"			"ancient_apparition_ice_blast"
-	
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0.01 0.01 0.01"
-		"AbilityCastRange"				"0"
-		
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"40.0"
-		
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"150"
-		
-		"precache"
-		{
-			"particle"                  "particles/frostivus_gameplay/holdout_ancient_apparition_ice_blast_final.vpcf"
-			"particle"					"particles/status_fx/status_effect_iceblast.vpcf"
-			"particle"					"particles/units/heroes/hero_ancient_apparition/ancient_apparition_ice_blast_debuff.vpcf"
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_ancient_apparition.vsndevts"
-		}
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius_min"			"275"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"radius_grow"			"50.0 75.0 100.0 125.0 150.0 175.0 200.0"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius_max"			"5000"
-			}
-			"04"
-			{	
-				"var_type"				"FIELD_INTEGER"
-				"speed"					"1500 1500 1500 1500"
-			}
-			"05"
-			{	
-				"var_type"				"FIELD_FLOAT"
-				"frostbite_duration"	"10.0"
-			}
-			"06"
-			{	
-				"var_type"				"FIELD_FLOAT"
-				"dot_damage"			"12.5 20.0 32.0 50.0 70.0 100.0"
-			}
-			"07"
-			{	
-				"var_type"				"FIELD_FLOAT"
-				"damage"				"250 350 450 550 650 750"
-			}
-			
-			"08"
-			{	
-				"var_type"				"FIELD_FLOAT"
-				"kill_pct"				"11.0"
-				"LinkedSpecialBonus"	"special_bonus_unique_ancient_apparition_5"
-			}
-			"09"
-			{	
-				"var_type"				"FIELD_FLOAT"
-				"frostbite_duration_scepter"	"20"
-			}
-		}
+		"BaseClass"				"ability_lua"
+		"ScriptFile"			"generic/generic_gold_dropper"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"	"modifier_magicimmune"
+		"MaxLevel"				"1"
 	}
 	//----------ANTIMAGE
 	"antimage_mage_rage"
@@ -936,7 +660,7 @@
 	        "01"
 	        {
 	            "var_type"              "FIELD_INTEGER"
-	            "armor_debuff"          "-30"
+	            "armor_debuff"          "-20"
 	        }
 	        "02"
 	        {
@@ -1128,7 +852,7 @@
 	
 		// Damage.
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"					"27 34 40 50"
+		"AbilityDamage"					"18 22 26 34"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -2568,7 +2292,7 @@
 			"01"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"damage"			"60 70 75 90"
+				"damage"			"45 50 55 60"
 			}
 			"02"
 			{
@@ -2853,7 +2577,7 @@
 			"01"
 	        {
 	            "var_type"              "FIELD_FLOAT"
-	            "damage"             	"350"  //The meteor lands on the ground this many seconds after it was cast.
+	            "damage"             	"200"  //The meteor lands on the ground this many seconds after it was cast.
 	        }
 	        "02"
 	        {
@@ -2905,7 +2629,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius"		"500"
+				"radius"		"325"
 			}
 			"02"
 			{
@@ -2947,12 +2671,12 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"radius"					"350"
+				"radius"					"250"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"1500 2000 2500 3000"
+				"damage"					"1000 1250 1500 1750"
 			}
 			"03"
 			{
@@ -5260,7 +4984,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"2000 2500"
+				"damage"				"1500 1800"
 			}
 			"04"
 			{
@@ -5318,7 +5042,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"damage"				"120 150"
+				"damage"				"70 80"
 			}
 			"04"
 			{
@@ -5431,7 +5155,7 @@
 		
 		// Damage.
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"					"200 250"
+		"AbilityDamage"					"125 150"
 			
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -5802,7 +5526,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"600"
+				"damage"				"200"
 			}
 			"04"
 			{
@@ -6797,7 +6521,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"movement_damage_pct"		"40"
+				"movement_damage_pct"		"25"
 			}
 			"03"
 			{
@@ -6850,7 +6574,7 @@
 	
 		// Damage.
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"					"400 500"
+		"AbilityDamage"					"150 180"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -10581,7 +10305,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"pounce_damage"			"75"
+				"pounce_damage"			"50"
 			}
 			"06"
 			{
@@ -12460,6 +12184,7 @@
 			{
 				"var_type"					"FIELD_FLOAT"
 				"duration"					"2.0"
+				"LinkedSpecialBonus"		"special_bonus_unique_slark_3"
 			}
 			"02"
 			{
@@ -12469,22 +12194,32 @@
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"bonus_movement_speed"		"50"
+				"bonus_movement_speed"		"30 40 50"
 			}
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"bonus_regen_pct"			"17"
+				"bonus_regen_pct"			"15"
 			}
 			"05"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"activation_delay"			"0.0"
+				"activation_delay"			"0.5 0.5 0.5"
 			}
 			"06"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"neutral_disable"			"0.0"
+				"neutral_disable"			"2.0 2.0 2.0"
+			}
+			"07"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"scepter_aoe"				"325"
+			}
+			"08"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"cooldown_scepter"			"30"
 			}
 			
 		}

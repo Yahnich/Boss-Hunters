@@ -20,6 +20,7 @@ function boss27_ursa_warrior:OnChannelFinish(bInterrupted)
 			ParticleManager:FireParticle("particles/units/heroes/hero_ursa/ursa_earthshock_energy.vpcf", PATTACH_POINT_FOLLOW, bear)
 			bear:FindAbilityByName("boss26b_ankle_biter"):SetLevel(self:GetLevel())
 			bear:FindAbilityByName("boss26b_wound"):SetLevel(self:GetLevel())
+			bear.bearMaster = caster
 			EmitSoundOn("ursa_ursa_pain_"..RandomInt(14,20), caster)
 			table.insert(caster.smallBearsTable, bear)
 		end

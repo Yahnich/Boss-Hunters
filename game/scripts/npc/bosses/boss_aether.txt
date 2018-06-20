@@ -50,17 +50,17 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"stun_duration"			"3.0"
+				"stun_duration"			"1.0"
 			}
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"magic_damage"			"1000 3000"
+				"magic_damage"			"150 250"
 			}
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"orb_radius"			"250"
+				"orb_radius"			"200"
 			}
 			"01"
 			{
@@ -196,7 +196,7 @@
 			"04"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"impact_damage"				"750 900"
+				"impact_damage"				"75 90"
 			}
 			"05"
 			{
@@ -275,7 +275,7 @@
 			"03"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"damage_per_second"			"1500 2000"
+				"damage_per_second"			"150 200"
 			}
 			"04"
 			{

@@ -53,7 +53,7 @@ end
 
 function modifier_bane_brain_feast_debuff:OnAbilityFullyCast(params)
 	if params.unit == self:GetParent() then
-		self:GetAbility():DealDamage( caster, target, self.damage )
+		self:GetAbility():DealDamage( caster, params.unit, self.damage )
 	end
 end
 

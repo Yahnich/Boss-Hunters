@@ -19,8 +19,6 @@ end
 
 require("lua_map/map")
 require("lua_boss/boss_32_meteor")
-require( "epic_boss_fight_game_round" )
-require( "epic_boss_fight_game_spawner" )
 
 require( "libraries/Timers" )
 require( "libraries/notifications" )
@@ -29,6 +27,8 @@ require("libraries/utility")
 require("libraries/animations")
 require("stats_screen")
 require("relicmanager")
+require("roundmanager")
+require("eventmanager")
 require( "ai/ai_core" )
 
 LinkLuaModifier( "modifier_illusion_bonuses", "libraries/modifiers/illusions/modifier_illusion_bonuses.lua", LUA_MODIFIER_MOTION_NONE)
@@ -60,6 +60,7 @@ LinkLuaModifier( "modifier_generic_attack_bonus", "libraries/modifiers/modifier_
 LinkLuaModifier( "modifier_generic_attack_bonus_pct", "libraries/modifiers/modifier_generic_attack_bonus.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_cooldown_reduction_handler", "libraries/modifiers/modifier_cooldown_reduction_handler.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_base_attack_time_handler", "libraries/modifiers/modifier_base_attack_time_handler.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier( "modifier_power_scaling", "libraries/modifiers/modifier_power_scaling.lua", LUA_MODIFIER_MOTION_NONE)
 
 
 -- Precache resources
@@ -80,8 +81,6 @@ function Precache( context )
 	PrecacheResource( "particle", "particles/econ/events/nexon_hero_compendium_2014/blink_dagger_end_nexon_hero_cp_2014.vpcf", context)
 
 	-- Hero Precaches
-	PrecacheUnitByNameSync("npc_dota_warlock_moloch", context)
-    PrecacheUnitByNameSync("npc_dota_warlock_naamah", context)
 	PrecacheResource("particle", "particles/warlock_deepfire_ember.vpcf", context)
 	
 	-- UAM particles
@@ -147,15 +146,6 @@ function Precache( context )
 	PrecacheResource("particle", "particles/units/heroes/hero_lone_druid/lone_druid_savage_roar.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_lone_druid/lone_druid_savage_roar_debuff.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_lone_druid_savage_roar.vpcf", context)
-	
-	PrecacheResource("particle_folder", "particles/econ/generic/generic_aoe_shockwave_1", context)
-	
-	local precacheList = LoadKeyValues('scripts/npc/activelist.txt')
-	for hero, activated in pairs(precacheList) do
-		if activated  == "1" then
-			PrecacheUnitByNameSync(hero, context)
-		end
-	end
 end
 
 -- Actually make the game mode when we activate
@@ -168,16 +158,9 @@ end
 
 function CHoldoutGameMode:InitGameMode()
 	print ("Epic Boss Fight Loaded")
-	GameRules._finish = false
-	GameRules.vote_Yes = 0
-	GameRules.vote_No = 0
-	GameRules.gameDifficulty = 1
-	GameRules.voteRound_Yes = 0;
-	GameRules.voteRound_No = 0;
-	GameRules.voteTableDifficulty = {};
-	GameRules.voteTableLives = {};
-	
 	GameRules._Elites = LoadKeyValues( "scripts/kv/elites.kv" )
+	GameRules._maxLives = 10
+	GameRules.gameDifficulty = 1
 	
 	GameRules.UnitKV = LoadKeyValues("scripts/npc/npc_heroes.txt")
 	MergeTables(GameRules.UnitKV, LoadKeyValues("scripts/npc/npc_heroes_custom.txt"))
@@ -193,27 +176,8 @@ function CHoldoutGameMode:InitGameMode()
 	
 	print(GetMapName())
 	
-	GameRules.playersDisconnected = 0
-	self._nRoundNumber = 1
-	GameRules._roundnumber = 1
-	self._NewGamePlus = false
 	self._message = false
-	self.Last_Target_HB = nil
-	self.Shield = false
-	self.Last_HP_Display = -1
-	self._currentRound = nil
-	self._regenround25 = false
-	self._regenround13 = false
-	self._regenNG = false
-	self._check_check_dead = false
-	self._flLastThinkGameTime = nil
-	self._check_dead = false
-	self._timetocheck = 0
-	self._freshstart = true
-	self.boss_master_id = -1
-	GameRules.boss_master_id = -1
 	
-	GameRules._maxLives = 10
 	GameRules:SetHeroSelectionTime( 80.0 )
 	GameRules:SetPreGameTime( 30.0 )
 	GameRules:SetShowcaseTime( 0 )
@@ -227,21 +191,11 @@ function CHoldoutGameMode:InitGameMode()
 	GameRules.gameDifficulty =  mapInfo.Difficulty
 	CustomNetTables:SetTableValue( "game_info", "difficulty", {difficulty = GameRules.gameDifficulty} )
 	CustomNetTables:SetTableValue( "game_info", "timeofday", {timeofday = 0} )
-	
-	GameRules._used_life = 0
-	GameRules._life = GameRules._maxLives
-	
-	CustomGameEventManager:Send_ServerToAllClients( "updateQuestLife", { lives = GameRules._life, maxLives = GameRules._maxLives } )
+
+	GameRules._lives = GameRules._maxLives
 	
 	GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_GOODGUYS, mapInfo.MaxPlayers)
-	if GetMapName() == "epic_boss_fight_boss_master" then
-		GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_BADGUYS, 1 )
-	else 
-		GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_BADGUYS, 0 )
-	end
-	GameRules._life = GameRules._maxLives
 	
-	self:_ReadGameConfiguration()
 	GameRules:SetHeroRespawnEnabled( false )
 	GameRules:SetUseUniversalShopMode( true )
 
@@ -250,7 +204,7 @@ function CHoldoutGameMode:InitGameMode()
 	GameRules:SetRuneMinimapIconScale( 1.5 )
 	GameRules:SetGoldTickTime( 1 )
 	GameRules:SetGoldPerTick( 1 )
-	GameRules:GetGameModeEntity():SetRemoveIllusionsOnDeath( true )
+	
 	GameRules:GetGameModeEntity():SetTopBarTeamValuesOverride( true )
 	GameRules:GetGameModeEntity():SetTopBarTeamValuesVisible( false )
 	GameRules:GetGameModeEntity():SetCustomBuybackCooldownEnabled(true)
@@ -270,7 +224,6 @@ function CHoldoutGameMode:InitGameMode()
 	GameRules:GetGameModeEntity():SetMinimumAttackSpeed(MINIMUM_ATTACK_SPEED)
 	
 	-- Custom console commands
-	Convars:RegisterCommand( "holdout_test_round", function(...) return self:_TestRoundConsoleCommand( ... ) end, "Test a round of holdout.", FCVAR_CHEAT )
 	Convars:RegisterCommand( "game_tools_ask_nettable_info", function()
 																local player = Convars:GetDOTACommandClient()
 																Timers:CreateTimer(function()
@@ -279,6 +232,14 @@ function CHoldoutGameMode:InitGameMode()
 																	return 1
 																end)
 															end, "test",0)
+	Convars:RegisterCommand( "bh_test_round", function( zone, roundName, roundType )
+											if Convars:GetDOTACommandClient() and IsInToolsMode() then
+												RoundManager.zones[RoundManager.currentZone][1][1] = BaseEvent(zone, roundType, roundName )
+												RoundManager:EndEvent(false)
+												RoundManager:EndPrepTime(true)
+												RoundManager:StartPrepTime()
+											end
+										end, "adding relics",0)
 	Convars:RegisterCommand( "clear_relics", function()
 											if Convars:GetDOTACommandClient() and IsInToolsMode() then
 												local player = Convars:GetDOTACommandClient()
@@ -330,34 +291,15 @@ function CHoldoutGameMode:InitGameMode()
 	Convars:RegisterCommand( "spawn_elite", function(...) if IsInToolsMode() then return self.SpawnTestElites( ... ) end end, "look like someone try to steal my map :D",0)
 	
 	-- Hook into game events allowing reload of functions at run time
-	ListenToGameEvent( "npc_spawned", Dynamic_Wrap( CHoldoutGameMode, "OnNPCSpawned" ), self )
+	
 	ListenToGameEvent( "player_disconnect", Dynamic_Wrap( CHoldoutGameMode, 'OnPlayerDisconnected' ), self )
-	ListenToGameEvent( "entity_killed", Dynamic_Wrap( CHoldoutGameMode, 'OnEntityKilled' ), self )
 	ListenToGameEvent( "game_rules_state_change", Dynamic_Wrap( CHoldoutGameMode, "OnGameRulesStateChange" ), self )
 	ListenToGameEvent("dota_player_pick_hero", Dynamic_Wrap( CHoldoutGameMode, "OnHeroPick"), self )
     ListenToGameEvent('dota_player_used_ability', Dynamic_Wrap(CHoldoutGameMode, 'OnAbilityUsed'), self)
 	ListenToGameEvent('dota_player_learned_ability', Dynamic_Wrap(CHoldoutGameMode, 'OnAbilityLearned'), self)
 	ListenToGameEvent( "dota_player_gained_level", Dynamic_Wrap( CHoldoutGameMode, "OnHeroLevelUp" ), self )
 	
-	
-	
-	-- CustomGameEventManager:RegisterListener('Boss_Master', Dynamic_Wrap( CHoldoutGameMode, 'Boss_Master'))
-	CustomGameEventManager:RegisterListener('Demon_Shop', Dynamic_Wrap( CHoldoutGameMode, 'Buy_Demon_Shop_check'))
 	CustomGameEventManager:RegisterListener('Tell_Threat', Dynamic_Wrap( CHoldoutGameMode, 'Tell_threat'))
-	CustomGameEventManager:RegisterListener('Buy_Perk', Dynamic_Wrap( CHoldoutGameMode, 'Buy_Perk_check'))
-	CustomGameEventManager:RegisterListener('Asura_Core', Dynamic_Wrap( CHoldoutGameMode, 'Buy_Asura_Core_shop'))
-	CustomGameEventManager:RegisterListener('Tell_Core', Dynamic_Wrap( CHoldoutGameMode, 'Asura_Core_Left'))
-	
-	
-	CustomGameEventManager:RegisterListener('preGameVoting', Dynamic_Wrap( CHoldoutGameMode, 'PreGameVotingHandler'))
-
-	CustomGameEventManager:RegisterListener('mute_sound', Dynamic_Wrap( CHoldoutGameMode, 'mute_sound'))
-	CustomGameEventManager:RegisterListener('unmute_sound', Dynamic_Wrap( CHoldoutGameMode, 'unmute_sound'))
-	CustomGameEventManager:RegisterListener('Health_Bar_Command', Dynamic_Wrap( CHoldoutGameMode, 'Health_Bar_Command'))
-
-	CustomGameEventManager:RegisterListener('Vote_NG', Dynamic_Wrap( CHoldoutGameMode, 'vote_NG_fct'))
-	CustomGameEventManager:RegisterListener('Vote_Round', Dynamic_Wrap( CHoldoutGameMode, 'vote_Round'))
-	
 	CustomGameEventManager:RegisterListener('playerUILoaded', Dynamic_Wrap( CHoldoutGameMode, 'OnPlayerUIInitialized'))
 
 	-- Register OnThink with the game engine so it is called every 0.25 seconds
@@ -370,26 +312,7 @@ function CHoldoutGameMode:InitGameMode()
 	
 	StatsScreen:StartStatsScreen()
 	RelicManager:Initialize()
-end
-
-function CHoldoutGameMode:vote_Round (event)
- 	local ID = event.pID
- 	local vote = event.vote
- 	local player = PlayerResource:GetPlayer(ID)
-
- 	if player~= nil then
-	 	if vote == 1 then
-	 		GameRules.voteRound_Yes = GameRules.voteRound_Yes + 1
-			GameRules.voteRound_No = GameRules.voteRound_No - 1
-
-			local event_data =
-			{
-				No = GameRules.voteRound_No,
-				Yes = GameRules.voteRound_Yes,
-			}
-			CustomGameEventManager:Send_ServerToAllClients("RoundVoteResults", event_data)
-		end
-	end
+	RoundManager:Initialize()
 end
 
 function CHoldoutGameMode:FilterModifiers( filterTable )
@@ -677,11 +600,6 @@ function GetHeroDamageDone(hero)
     return hero.damageDone
 end
 
-function update_asura_core(hero)
-		local key = "player_"..hero:GetPlayerID()
-		CustomNetTables:SetTableValue( "Asura_core",key, {core = hero.Asura_Core} )
-end
-
 function CHoldoutGameMode:OnHeroLevelUp(event)
 	local playerID = EntIndexToHScript(event.player):GetPlayerID()
 	local hero = PlayerResource:GetSelectedHeroEntity(playerID)
@@ -863,7 +781,9 @@ function CHoldoutGameMode:OnHeroPick (event)
 		
 		hero:AddExperience(GameRules.XP_PER_LEVEL[7],false,false)
 		hero:SetBaseMagicalResistanceValue(0)
-
+		
+		UTIL_MessageTextAll("Ok motherfUCKERS", 255, 255, 255, 255)
+		
 		hero:SetRespawnPosition( GetGroundPosition(Vector(973, 99, 0), nil) )
 		CustomGameEventManager:Send_ServerToPlayer(hero:GetPlayerOwner(), "heroLoadIn", {}) -- wtf is this retarded shit stop force-setting my garbage
 		local ID = hero:GetPlayerID()
@@ -908,87 +828,6 @@ function CHoldoutGameMode:OnHeroPick (event)
 	end)
 end
 
-
--- Read and assign configurable keyvalues if applicable
-function CHoldoutGameMode:_ReadGameConfiguration()
-	local kv = LoadKeyValues( "scripts/maps/" .. GetMapName() .. ".txt" )
-	kv = kv or {} -- Handle the case where there is not keyvalues file
-	
-	self._bAlwaysShowPlayerGold = kv.AlwaysShowPlayerGold or false
-	self._bRestoreHPAfterRound = kv.RestoreHPAfterRound or false
-	self._bRestoreMPAfterRound = kv.RestoreMPAfterRound or false
-	self._bRewardForTowersStanding = kv.RewardForTowersStanding or false
-	self._bUseReactiveDifficulty = kv.UseReactiveDifficulty or false
-
-	self._flPrepTimeBetweenRounds = tonumber( kv.PrepTimeBetweenRounds or 0 )
-	self._flItemExpireTime = tonumber( kv.ItemExpireTime or 10.0 )
-
-	self:_ReadRandomSpawnsConfiguration( kv["RandomSpawns"] )
-	self:_ReadLootItemDropsConfiguration( kv["ItemDrops"] )
-	self:_ReadRoundConfigurations( kv )
-	GameRules.maxRounds = #self._vRounds
-end
-
--- Verify spawners if random is set
-function CHoldoutGameMode:OnConnectFull()
-	SendToServerConsole("dota_combine_models 0")
-    SendToConsole("dota_combine_models 0") 
-    SendToServerConsole("dota_health_per_vertical_marker 1000")
-end
-
-function CHoldoutGameMode:ChooseRandomSpawnInfo()
-	if #self._vRandomSpawnsList == 0 then
-		error( "Attempt to choose a random spawn, but no random spawns are specified in the data." )
-		return nil
-	end
-	return self._vRandomSpawnsList[ RandomInt( 1, #self._vRandomSpawnsList ) ]
-end
-
--- Verify valid spawns are defined and build a table with them from the keyvalues file
-function CHoldoutGameMode:_ReadRandomSpawnsConfiguration( kvSpawns )
-	self._vRandomSpawnsList = {}
-	if type( kvSpawns ) ~= "table" then
-		return
-	end
-	for _,sp in pairs( kvSpawns ) do			-- Note "_" used as a shortcut to create a temporary throwaway variable
-		table.insert( self._vRandomSpawnsList, {
-			szSpawnerName = sp.SpawnerName or "",
-			szFirstWaypoint = sp.Waypoint or ""
-		} )
-	end
-end
-
-
--- If random drops are defined read in that data
-function CHoldoutGameMode:_ReadLootItemDropsConfiguration( kvLootDrops )
-	self._vLootItemDropsList = {}
-	if type( kvLootDrops ) ~= "table" then
-		return
-	end
-	for _,lootItem in pairs( kvLootDrops ) do
-		table.insert( self._vLootItemDropsList, {
-			szItemName = lootItem.Item or "",
-			nChance = tonumber( lootItem.Chance or 0 )
-		})
-	end
-end
-
-
--- Set number of rounds without requiring index in text file
-function CHoldoutGameMode:_ReadRoundConfigurations( kv )
-	self._vRounds = {}
-	while true do
-		local szRoundName = string.format("Round%d", #self._vRounds + 1 )
-		local kvRoundData = kv[ szRoundName ]
-		if kvRoundData == nil then
-			return
-		end
-		local roundObj = CHoldoutGameRound()
-		roundObj:ReadConfiguration( kvRoundData, self, #self._vRounds + 1 )
-		table.insert( self._vRounds, roundObj )
-	end
-end
-
 function CHoldoutGameMode:OnPlayerUIInitialized(keys)
 	local playerID = keys.PlayerID
 	local player = PlayerResource:GetPlayer(playerID)
@@ -997,7 +836,6 @@ function CHoldoutGameMode:OnPlayerUIInitialized(keys)
 			local hero = PlayerResource:GetSelectedHeroEntity(playerID)
 			CustomGameEventManager:Send_ServerToPlayer(player,"dota_player_updated_relic_drops", {playerID = pID, drops = hero.relicsToSelect})
 			if StatsScreen:IsPlayerRegistered(hero) and not hero:HasModifier("modifier_stats_system_handler") then hero:AddNewModifier(hero, nil, "modifier_stats_system_handler", {}) end
-			CustomGameEventManager:Send_ServerToAllClients( "updateQuestLife", { lives = GameRules._life, maxLives = GameRules._maxLives } )
 			CustomGameEventManager:Send_ServerToPlayer(player, "heroLoadIn", {})
 			if GameRules.holdOut._flPrepTimeEnd then
 				local timeLeft = GameRules.holdOut._flPrepTimeEnd - GameRules:GetGameTime()
@@ -1065,7 +903,7 @@ function CHoldoutGameMode:OnGameRulesStateChange()
 			end
 		end
 		Timers:CreateTimer(0.1,function()
-			CustomGameEventManager:Send_ServerToAllClients( "updateQuestLife", { lives = GameRules._life, maxLives = GameRules._maxLives } )
+			CustomGameEventManager:Send_ServerToAllClients( "updateQuestLife", { lives = GameRules._lives, maxLives = GameRules._maxLives } )
 			CustomGameEventManager:Send_ServerToAllClients("heroLoadIn", {})
 			-- for nPlayerID = 0, DOTA_MAX_TEAM_PLAYERS-1 do
 				-- if not PlayerResource:HasSelectedHero( nPlayerID ) and PlayerResource:GetPlayer( nPlayerID ) then
@@ -1080,10 +918,7 @@ function CHoldoutGameMode:OnGameRulesStateChange()
 			-- end
 		end)
 	elseif nNewState == 8 then
-		CustomGameEventManager:Send_ServerToAllClients( "updateQuestLife", { lives = GameRules._life, maxLives = GameRules._maxLives } )
-		self._flPrepTimeEnd = GameRules:GetGameTime() + self._flPrepTimeBetweenRounds
-		-- Say(nil, "You can support the development of Epic Boss Fight by becoming a patron at\nhttps://www.patreon.com/houthakker", false)
-		-- Timers:CreateTimer(6, function() Say(nil, "You can also support through donations at https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DVVMPE8L27YAG", false) end)
+		RoundManager:StartGame()
 	end
 end
 
@@ -1134,130 +969,6 @@ function CHoldoutGameMode:DegradeThreat()
 	end
 end
 
-function CHoldoutGameMode:_regenlifecheck()
-	if self._regenround25 == false and self._nRoundNumber >= 26 and GameRules.gameDifficulty < 3 then
-		self._regenround25 = true
-		local messageinfo = {
-		message = "One life has been gained , you just hit a checkpoint !",
-		duration = 5
-		}
-		SendToServerConsole("dota_health_per_vertical_marker 100000")
-		FireGameEvent("show_center_message",messageinfo)   
-		self._checkpoint = 26
-		-- Life._MaxLife = Life._MaxLife + 1
-		-- Life._life = Life._life + 1
-		GameRules._life = GameRules._life + 1
-		GameRules._maxLives = GameRules._maxLives + 1
-		CustomGameEventManager:Send_ServerToAllClients( "updateQuestLife", { lives = GameRules._life, maxLives = GameRules._maxLives } )
-		-- Life:SetTextReplaceValue( QUEST_TEXT_REPLACE_VALUE_CURRENT_VALUE, Life._life )
-   		-- Life:SetTextReplaceValue( QUEST_TEXT_REPLACE_VALUE_TARGET_VALUE, Life._MaxLife )
-		-- value on the bar
-		-- LifeBar:SetTextReplaceValue( SUBQUEST_TEXT_REPLACE_VALUE_CURRENT_VALUE, Life._life )
-		-- LifeBar:SetTextReplaceValue( SUBQUEST_TEXT_REPLACE_VALUE_TARGET_VALUE, Life._MaxLife )
-	end
-	if self._regenround13 == false and self._nRoundNumber >= 14 and GameRules.gameDifficulty < 4 then
-		self._regenround13 = true
-		local messageinfo = {
-		message = "One life has been gained , you just hit a checkpoint !",
-		duration = 5
-		}
-		SendToConsole("dota_combine_models 0")
-		SendToServerConsole("dota_health_per_vertical_marker 10000")
-		FireGameEvent("show_center_message",messageinfo)   
-		self._checkpoint = 14
-		
-		GameRules._life = GameRules._life + 1
-		GameRules._maxLives = GameRules._maxLives + 1
-		CustomGameEventManager:Send_ServerToAllClients( "updateQuestLife", { lives = GameRules._life, maxLives = GameRules._maxLives } )
-		-- Life._MaxLife = Life._MaxLife + 1
-		-- Life._life = Life._life + 1
-		-- GameRules._live = Life._life
-		-- Life:SetTextReplaceValue( QUEST_TEXT_REPLACE_VALUE_CURRENT_VALUE, Life._life )
-   		-- Life:SetTextReplaceValue( QUEST_TEXT_REPLACE_VALUE_TARGET_VALUE, Life._MaxLife )
-		-- value on the bar
-		-- LifeBar:SetTextReplaceValue( SUBQUEST_TEXT_REPLACE_VALUE_CURRENT_VALUE, Life._life )
-		-- LifeBar:SetTextReplaceValue( SUBQUEST_TEXT_REPLACE_VALUE_TARGET_VALUE, Life._MaxLife )
-	end
-	if self._regenNG == false and self._NewGamePlus == true then
-		self._regenNG = true
-		
-		local messageinfo = {
-		message = "Five life has been gained , Welcome to NewGame + .Mouahahaha !",
-		duration = 5
-		}
-		SendToConsole("dota_combine_models 0")
-		SendToServerConsole("dota_health_per_vertical_marker 100000")
-		FireGameEvent("show_center_message",messageinfo)   
-		self._checkpoint = 1
-		
-		
-		GameRules._life = GameRules._life + 5 - math.floor(GameRules.gameDifficulty + 0.5)
-		GameRules._maxLives = GameRules._maxLives + 5 - math.floor(GameRules.gameDifficulty + 0.5)
-		CustomGameEventManager:Send_ServerToAllClients( "updateQuestLife", { lives = GameRules._life, maxLives = GameRules._maxLives } )
-			
-		-- GameRules._live = Life._life
-		-- Life:SetTextReplaceValue( QUEST_TEXT_REPLACE_VALUE_CURRENT_VALUE, Life._life )
-   		-- Life:SetTextReplaceValue( QUEST_TEXT_REPLACE_VALUE_TARGET_VALUE, Life._MaxLife )
-		-- value on the bar
-		-- LifeBar:SetTextReplaceValue( SUBQUEST_TEXT_REPLACE_VALUE_CURRENT_VALUE, Life._life )
-		-- LifeBar:SetTextReplaceValue( SUBQUEST_TEXT_REPLACE_VALUE_TARGET_VALUE, Life._MaxLife )
-	end
-end
-
-function CHoldoutGameMode:_Start_Vote()
-	CustomGameEventManager:Send_ServerToAllClients("Display_Vote", {})
-	local tickTime = 0
-	Timers:CreateTimer(1,function()
-		tickTime = tickTime + 1
-		CustomGameEventManager:Send_ServerToAllClients("refresh_time", {tickTime = 60-tickTime})
-		if tickTime >= 60 or (GameRules.vote_Yes + GameRules.vote_No) == PlayerResource:GetTeamPlayerCount() then
-			CustomGameEventManager:Send_ServerToAllClients("Close_Vote", {})
-			if GameRules.vote_Yes >= GameRules.vote_No then
-				self:_EnterNG()
-				self._nRoundNumber = 1
-				self._flPrepTimeEnd = GameRules:GetGameTime() + 70-tickTime
-			else
-				SendToConsole("dota_health_per_vertical_marker 250")
-				GameRules:SetCustomVictoryMessage ("Congratulations!")
-				GameRules:SetGameWinner(DOTA_TEAM_GOODGUYS)
-				GameRules.Winner = DOTA_TEAM_GOODGUYS
-				GameRules._finish = true
-				GameRules.EndTime = GameRules:GetGameTime()
-				statCollection:submitRound(true)
-			end
-		else
-			return 1
-		end
-	end)
-end
-
-function CHoldoutGameMode:spawn_unit( place , unitname , radius , unit_number)
-    if radius == nil then radius = 400 end
-    if core == nil then core = false end
-    if unit_number == nil then unit_number = 1 end
-    for i = 0, unit_number-1 do
-        --print   ("spawn unit : "..unitname)
-        PrecacheUnitByNameAsync( unitname, function() 
-        local unit = CreateUnitByName( unitname ,place + RandomVector(RandomInt(radius,radius)), true, nil, nil, DOTA_TEAM_BADGUYS ) 
-            Timers:CreateTimer(0.03,function()
-            end)
-        end,
-        nil)
-    end
-end
-
-if simple_item == nil then
-    print ( '[simple_item] creating simple_item' )
-    simple_item = {} -- Creates an array to let us beable to index simple_item when creating new functions
-    simple_item.__index = simple_item
-    simple_item.midas_gold_on_round = 0
-    simple_item._round = 1
-end
-
-function simple_item:start() -- Runs whenever the simple_item.lua is ran
-    print('[simple_item] simple_item started!')
-end
-
 function CHoldoutGameMode:CheckHP()
 	local dontdelete = {["npc_dota_lone_druid_bear"] = true}
 	for _,unit in ipairs ( FindAllEntitiesByClassname("npc_dota_creature")) do
@@ -1283,6 +994,7 @@ function CHoldoutGameMode:CheckHP()
 		end
 	end
 	if not GameRules:IsGamePaused() then
+		local playerData = {}
 		for _, hero in ipairs ( HeroList:GetAllHeroes() ) do
 			if not hero:IsFakeHero() then
 				local data = CustomNetTables:GetTableValue("hero_properties", hero:GetUnitName()..hero:entindex() ) or {}
@@ -1300,54 +1012,19 @@ function CHoldoutGameMode:CheckHP()
 				data.intellect = hero:GetIntellect()
 				data.agility = hero:GetAgility()
 				CustomNetTables:SetTableValue("hero_properties", hero:GetUnitName()..hero:entindex(), data )
+				playerData[hero:GetPlayerID()] = {DT = hero.statsDamageTaken or 0, DD = hero.statsDamageDealt or 0, DH = hero.statsDamageHealed or 0}
 			end
 		end
+		CustomGameEventManager:Send_ServerToAllClients( "player_update_stats", playerData )
 	end
 end
 
-function CHoldoutGameMode:SetHealthMarkers()
-	local averagehp = 0
-	local heroes = HeroList:GetAllHeroes()
-	for _,unit in pairs ( heroes ) do
-		if not unit:IsFakeHero() then
-			averagehp = averagehp + unit:GetMaxHealth()
-		end
-	end
-	averagehp = averagehp / #heroes
-	SendToConsole("dota_health_per_vertical_marker "..averagehp/16)
-end
 
-function CHoldoutGameMode:CheckMidas()
-	local playerData = {}
-	local players = {}
-	for _,unit in pairs ( HeroList:GetAllHeroes() ) do
-		if not unit:IsFakeHero() then
-			local midas_modifier = 0
-			local ngmodifier = 0
-			if self._NewGamePlus then ngmodifier = math.floor(GameRules:GetMaxRound()/2) end
-			local round = math.floor((self._nRoundNumber + ngmodifier))
-			if unit:HasModifier("passive_midas_3") or unit:FindItemByName("item_midas_3", false) then
-				midas_modifier = 15
-			elseif unit:HasModifier("passive_midas_2") or unit:FindItemByName("item_midas_2", false) then
-				midas_modifier = 10
-			elseif unit:HasModifier("passive_midas_1") or unit:FindItemByName("item_hand_of_midas", false) then
-				midas_modifier = 5
-			end
-			local interest = math.floor( unit:GetGold()*midas_modifier / 100 + 0.5 )
-			if interest > midas_modifier*10*round then interest = midas_modifier*10*round end
-			local player = unit:GetPlayerOwner()
-			unit.midasGold = unit.midasGold or 0
-			
-			playerData[unit:GetPlayerID()] = {DT = unit.statsDamageTaken or 0, DD = unit.statsDamageDealt or 0, DH = unit.statsDamageHealed or 0}
-			if player then
-				CustomGameEventManager:Send_ServerToPlayer( player, "player_update_gold", { gold = unit.midasGold, interest = interest} )
-			end
-		end
-	end
-	CustomGameEventManager:Send_ServerToAllClients( "player_update_stats", playerData )
-end
+DAY_TIME = 0
+NIGHT_TIME = 1
+TEMPORARY_NIGHT = 2
+NIGHT_STALKER_NIGHT = 3
 
-BARRIER_DEGRADE_RATE = 0.995
 function CHoldoutGameMode:SendErrorReport(err)
 	if not self.gameHasBeenBroken then 
 		self.gameHasBeenBroken = true
@@ -1356,27 +1033,11 @@ function CHoldoutGameMode:SendErrorReport(err)
 	end
 end
 
-DAY_TIME = 0
-NIGHT_TIME = 1
-TEMPORARY_NIGHT = 2
-NIGHT_STALKER_NIGHT = 3
 
 function CHoldoutGameMode:OnThink()
 	if GameRules:State_Get() >= 7 and GameRules:State_Get() <= 8 then
 		local OnPThink = function(self)
-			local status, err, ret = xpcall(self._CheckForDefeat, debug.traceback, self)
-			if not status  and not self.gameHasBeenBroken then
-				self:SendErrorReport(err)
-			end
-			status, err, ret = xpcall(self._regenlifecheck, debug.traceback, self)
-			if not status  and not self.gameHasBeenBroken then
-				self:SendErrorReport(err)
-			end
 			status, err, ret = xpcall(self.CheckHP, debug.traceback, self)
-			if not status  and not self.gameHasBeenBroken then
-				self:SendErrorReport(err)
-			end
-			status, err, ret = xpcall(self.CheckMidas, debug.traceback, self)
 			if not status  and not self.gameHasBeenBroken then
 				self:SendErrorReport(err)
 			end
@@ -1388,129 +1049,6 @@ function CHoldoutGameMode:OnThink()
 			if GameRules:IsTemporaryNight() then timeofday = TEMPORARY_NIGHT end
 			if GameRules:IsNightstalkerNight() then timeofday = NIGHT_STALKER_NIGHT end
 			CustomNetTables:SetTableValue( "game_info", "timeofday", {timeofday = timeofday} )
-			if self._flPrepTimeEnd then
-				local timeLeft = self._flPrepTimeEnd - GameRules:GetGameTime()
-				CustomGameEventManager:Send_ServerToAllClients( "updateQuestPrepTime", { prepTime = math.floor(timeLeft + 0.5) } )
-				self:_ThinkPrepTime()
-			elseif self._currentRound ~= nil then
-				local RoundHandler = function(self)
-					self._currentRound:Think()
-					if self._currentRound:IsFinished() then
-						self._currentRound:End(true)
-						GameRules:SetGoldTickTime( 0 )
-						GameRules:SetGoldPerTick( 0 )
-						self._nRoundNumber = self._nRoundNumber + 1
-						boss_meteor:SetRoundNumer(self._nRoundNumber)
-						GameRules._roundnumber = self._nRoundNumber
-						CustomGameEventManager:Send_ServerToAllClients( "round_has_ended", {} )
-						self._currentRound = nil
-						-- Heal all players
-						if self.boss_master_id ~= -1 then
-							local boss_master = PlayerResource:GetSelectedHeroEntity(self.boss_master_id)
-							boss_master:HeroLevelUp(true)
-						end
-						local ngmodifier = 0
-						if self._NewGamePlus then ngmodifier = math.floor(GameRules:GetMaxRound()/2) end
-						local round = math.floor((self._nRoundNumber + ngmodifier))
-						local passive_gold = round*30
-						local abandonGold = 0
-						local shareCount = 0
-						for _,unit in pairs ( HeroList:GetAllHeroes()) do
-							if unit:GetTeamNumber() == DOTA_TEAM_GOODGUYS and not unit:IsFakeHero() then
-								PlayerResource:SetCustomBuybackCost(unit:GetPlayerID(), self._nRoundNumber * 40)
-								if unit:HasOwnerAbandoned() then
-									abandonGold = abandonGold + unit:GetGold()
-									unit:SetGold(0, false)
-									unit:SetGold(0, true)
-								else
-									shareCount = shareCount + 1
-								end
-								local midas_modifier = 0
-								if unit:HasModifier("passive_midas_3") then
-									midas_modifier = 15
-								elseif unit:HasModifier("passive_midas_2") then
-									midas_modifier = 10
-								elseif unit:HasModifier("passive_midas_1") or unit:FindItemByName("item_hand_of_midas", false) then
-									midas_modifier = 5
-								end
-								local interest = math.floor( unit:GetGold()*midas_modifier / 100 + 0.5 )
-								if interest > midas_modifier*10*round then interest = midas_modifier*10*round end
-								local totalgold = unit:GetGold() + passive_gold + interest
-								unit.midasGold = unit.midasGold or 0
-								unit.midasGold = unit.midasGold + interest
-								unit:SetGold(0 , false)
-								unit:SetGold(totalgold, true)
-								local player = unit:GetPlayerOwner()
-								if player then
-									CustomGameEventManager:Send_ServerToPlayer( player, "player_update_gold", { gold = unit.midasGold, interest = interest} )
-								end
-							end
-						end
-						for _, unit in ipairs( HeroList:GetActiveHeroes() ) do
-							if not unit:HasOwnerAbandoned() then
-								local newGold = unit:GetGold() + math.floor(abandonGold / shareCount)
-								unit:SetGold(0 , false)
-								unit:SetGold(newGold, true)
-							end
-						end
-						-- if math.random(1,25) == 25 then
-							-- self:spawn_unit( Vector(0,0,0) , "npc_dota_treasure" , 2000)
-							-- for _,unit in pairs ( Entities:FindAllByModel( "models/courier/flopjaw/flopjaw.vmdl")) do
-								-- Waypoint = Entities:FindByName( nil, "path_invader1_1" )
-								-- unit:SetInitialGoalEntity(Waypoint) 
-								-- Timers:CreateTimer(15,function()
-									-- unit:ForceKill(true)
-								-- end)
-							-- end
-							-- self._flPrepTimeEnd = GameRules:GetGameTime() + self._flPrepTimeBetweenRounds + 15
-
-						-- end 
-						if self._nRoundNumber > #self._vRounds then
-							-- if self._NewGamePlus == false then
-								-- self:_Start_Vote()
-							-- else
-								SendToConsole("dota_health_per_vertical_marker 250")
-								GameRules:SetCustomVictoryMessage ("Congratulations!")
-								GameRules:SetGameWinner(DOTA_TEAM_GOODGUYS)
-								GameRules.Winner = DOTA_TEAM_GOODGUYS
-								GameRules._finish = true
-								GameRules.EndTime = GameRules:GetGameTime()
-								statCollection:submitRound(true)
-							-- end
-						else
-							self._flPrepTimeEnd = GameRules:GetGameTime() + self._flPrepTimeBetweenRounds
-							
-							GameRules.voteRound_No = PlayerResource:GetTeamPlayerCount()
-							GameRules.voteRound_Yes = 0
-							
-							
-				
-							CustomGameEventManager:Send_ServerToAllClients("Display_RoundVote", {})
-							local event_data =
-							{
-								No = GameRules.voteRound_No,
-								Yes = GameRules.voteRound_Yes,
-							}
-							CustomGameEventManager:Send_ServerToAllClients("RoundVoteResults", event_data)
-
-							Timers:CreateTimer(1,function()
-								if GameRules.voteRound_No <= 0 then
-									CustomGameEventManager:Send_ServerToAllClients("Close_RoundVote", {})
-									if self._flPrepTimeEnd~= nil then
-										self._flPrepTimeEnd = 0
-									end
-								else
-									return 1
-								end
-							end)
-						end
-					end
-				end
-				status, err, ret = xpcall(RoundHandler, debug.traceback, self)
-				if not status  and not self.gameHasBeenBroken then
-					self:SendErrorReport(err)
-				end
-			end
 		end
 		status, err, ret = xpcall(OnPThink, debug.traceback, self)
 		if not status  and not self.gameHasBeenBroken then
@@ -1546,286 +1084,6 @@ function CDOTA_PlayerResource:SortThreat()
 		if unit == aggrosecond then unit.aggro = 2
 		elseif unit == aggrounit then unit.aggro = 1
 		else unit.aggro = 0 end
-	end
-end
-
-function CHoldoutGameMode:_RefreshPlayers()
-	for nPlayerID = 0, DOTA_MAX_TEAM_PLAYERS-1 do
-		if PlayerResource:GetTeam( nPlayerID ) == DOTA_TEAM_GOODGUYS then
-			if PlayerResource:HasSelectedHero( nPlayerID ) then
-				local hero = PlayerResource:GetSelectedHeroEntity( nPlayerID )
-				if hero ~=nil then
-					if not hero:IsAlive() then
-						hero:RespawnHero(false, false)
-					end
-					hero:SetHealth( hero:GetMaxHealth() )
-					hero:SetMana( hero:GetMaxMana() )
-					hero.threat = 0
-					ResolveNPCPositions( hero:GetAbsOrigin(), hero:GetHullRadius() + hero:GetCollisionPadding() )
-				end
-			end
-		end
-	end
-end
-
-
-function CHoldoutGameMode:_CheckForDefeat()
-	if GameRules:State_Get() ~= DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
-		return
-	end
-	self._check_dead = false
-	local AllRPlayersDead = true
-	local PlayerNumberRadiant = 0
-	GameRules.playersDisconnected = 0
-	GameRules.playersAbandoned = 0
-	for nPlayerID = 0, DOTA_MAX_TEAM_PLAYERS-1 do
-		if PlayerResource:GetTeam( nPlayerID ) == DOTA_TEAM_GOODGUYS then
-			PlayerNumberRadiant = PlayerNumberRadiant + 1
-			if not PlayerResource:HasSelectedHero( nPlayerID ) and self._nRoundNumber == 1 and self._currentRound == nil then
-				AllRPlayersDead = false
-			elseif PlayerResource:HasSelectedHero( nPlayerID ) then
-				local hero = PlayerResource:GetSelectedHeroEntity( nPlayerID )
-				if hero and hero:NotDead() then
-					AllRPlayersDead = false
-					if PlayerResource:GetConnectionState(hero:GetPlayerID()) == 3 then
-						GameRules.playersDisconnected = GameRules.playersDisconnected + 1
-					end
-					if hero:HasOwnerAbandoned() then
-						GameRules.playersAbandoned = GameRules.playersAbandoned + 1
-					end
-				end
-			end
-		end
-	end
-
-	if not GameRules.deathTimerCheck and AllRPlayersDead and GameRules._life > 0 then
-		GameRules.deathTimerCheck = true
-		Timers:CreateTimer(ROUND_END_DELAY, function()
-			for nPlayerID = 0, DOTA_MAX_TEAM_PLAYERS-1 do
-				if PlayerResource:GetTeam( nPlayerID ) == DOTA_TEAM_GOODGUYS then
-					if PlayerResource:HasSelectedHero( nPlayerID ) then
-						local hero = PlayerResource:GetSelectedHeroEntity( nPlayerID )
-						if hero and hero:IsAlive() then
-							AllRPlayersDead = false
-						end
-					end
-				end
-			end
-			
-			if AllRPlayersDead then
-				if self._currentRound ~= nil then
-					self._currentRound:End()
-					self._currentRound = nil
-				end
-				self._flPrepTimeEnd = GameRules:GetGameTime() + 20
-				GameRules._life = GameRules._life - 1
-				GameRules._used_life = GameRules._used_life + 1
-				CustomGameEventManager:Send_ServerToAllClients( "updateQuestLife", { lives = GameRules._life, maxLives = GameRules._maxLives } )
-				for _,unit in pairs ( HeroList:GetAllHeroes()) do
-					if unit:GetTeamNumber() == DOTA_TEAM_GOODGUYS and not unit:IsFakeHero() then
-						unit:AddGold(self._nRoundNumber * 100)
-						unit:AddExperience(self._nRoundNumber * 100,false,false)
-					end
-				end
-			end
-			GameRules.deathTimerCheck = false
-		end)
-	end
-	if PlayerNumberRadiant == 1 then GameRules.playersDisconnected = 0 end -- ignore solo players
-	if PlayerNumberRadiant == 0 or GameRules._life == 0 or (GameRules.playersDisconnected + GameRules.playersAbandoned) >= PlayerNumberRadiant or AllPlayersAbandoned() then
-		self:_OnLose()
-	end
-end
-
-
-function CHoldoutGameMode:_OnLose()
-	SendToConsole("dota_health_per_vertical_marker 250")
-	GameRules:SetGameWinner( DOTA_TEAM_BADGUYS )
-	GameRules.Winner = DOTA_TEAM_BADGUYS
-	GameRules.EndTime = GameRules:GetGameTime()
-	statCollection:submitRound(true)
-end
-
-
-function CHoldoutGameMode:_ThinkPrepTime()
-	if GameRules:GetGameTime() >= self._flPrepTimeEnd then
-		CustomGameEventManager:Send_ServerToAllClients("Close_RoundVote", {})
-		self._flPrepTimeEnd = nil
-
-		if self._nRoundNumber > #self._vRounds then
-			GameRules:SetGameWinner( DOTA_TEAM_GOODGUYS )
-			GameRules.Winner = DOTA_TEAM_GOODGUYS
-			GameRules.EndTime = GameRules:GetGameTime()
-			statCollection:submitRound(true)
-			return false
-		end
-		self._currentRound = self._vRounds[ self._nRoundNumber ]
-		self._currentRound:Begin()
-		GameRules:SetGoldTickTime( 1 )
-		GameRules:SetGoldPerTick( 1 )
-		for _,unit in pairs ( HeroList:GetAllHeroes() ) do
-			if not unit:IsFakeHero() then
-				unit.statsDamageDealt = 0
-				unit.statsDamageTaken = 0
-				unit.statsDamageHealed = 0
-			end
-		end
-		CustomGameEventManager:Send_ServerToAllClients( "updateQuestRound", { roundNumber = self._nRoundNumber, roundText = self._currentRound._szRoundQuestTitle } )
-		return
-	end
-end
-
-
-function CHoldoutGameMode:OnNPCSpawned( event )
-	Timers:CreateTimer(function()
-		local spawnedUnit = EntIndexToHScript( event.entindex )
-		if not spawnedUnit or spawnedUnit:GetClassname() == "npc_dota_thinker" or spawnedUnit:IsPhantom() or spawnedUnit:IsFakeHero()then
-			return
-		end
-		if spawnedUnit:GetTeam() == DOTA_TEAM_GOODGUYS then
-			if spawnedUnit:IsRealHero() then
-				spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_tombstone_respawn_immunity", {duration = 3})
-			end
-		end
-		if spawnedUnit:IsCourier() then
-			spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_invulnerable", {})
-		end
-		if spawnedUnit:IsCreature() and spawnedUnit:GetTeam() == DOTA_TEAM_BADGUYS and spawnedUnit:GetUnitName() ~= "npc_dota_boss36" and spawnedUnit:GetUnitName() ~= "npc_dota_boss4_tomb" then
-			local expectedHP = spawnedUnit:GetHealth() * RandomFloat(0.9, 1.15)
-			if GetMapName() == "epic_boss_fight_hardcore" then expectedHP = expectedHP * 1.35 end
-			local playerHPMultiplier = 0.35
-			local playerDMGMultiplier = 0.05
-			if GetMapName() == "epic_boss_fight_hardcore" then 
-				playerHPMultiplier = 0.5 
-				local playerDMGMultiplier = 0.07
-			end
-			local effective_multiplier = (HeroList:GetActiveHeroCount() - 1)
-			local effPlayerHPMult = 1 + effective_multiplier * playerHPMultiplier
-			local effPlayerDMGMult = 0.9 + effective_multiplier * playerDMGMultiplier
-
-			expectedHP = expectedHP * effPlayerHPMult
-			spawnedUnit:SetBaseMaxHealth(expectedHP)
-			spawnedUnit:SetMaxHealth(expectedHP)
-			spawnedUnit:SetHealth(expectedHP)
-			spawnedUnit:SetAverageBaseDamage(spawnedUnit:GetAverageBaseDamage() * effPlayerDMGMult * RandomFloat(0.85, 1.15), 30)
-			spawnedUnit:SetBaseHealthRegen(GameRules._roundnumber * RandomFloat(0.85, 1.15) )
-			
-			spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_boss_attackspeed", {})
-			spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_spawn_immunity", {duration = 4/GameRules.gameDifficulty})
-			
-			if spawnedUnit:GetHullRadius() >= 16 then
-				spawnedUnit:SetHullRadius( math.ceil(16 * spawnedUnit:GetModelScale()) )
-			end
-		end
-	end)
-end
-
-function CHoldoutGameMode:OnEntityKilled( event )
-	local check_tombstone = true
-	local killedUnit = EntIndexToHScript( event.entindex_killed )
-	if not killedUnit or killedUnit:IsFakeHero() then return end
-	local DeathHandler = function(self, killedUnit )
-		if killedUnit.Asura_To_Give ~= nil then
-			for _,hero in pairs ( HeroList:GetRealHeroCount()) do
-				if not hero:IsFakeHero() then
-					hero.Asura_Core = (hero.Asura_Core or 0) + killedUnit.Asura_To_Give
-					update_asura_core(hero)
-				end
-			end
-			Notifications:TopToAll({text="You have received an Asura Core", duration=3.0})
-		end
-		if killedUnit:IsRealHero() then
-			local player = killedUnit:GetPlayerOwner()
-			if player then
-				Timers:CreateTimer(0.03, function()
-					player:SetKillCamUnit(nil)
-				end)
-			end
-			if killedUnit:NotDead() then
-				self._check_check_dead = true
-				check_tombstone = false
-				self._check_dead = false
-				if GameRules._life == 1 then
-					AllRPlayersDead = false
-				end
-			end
-			-- if GetMapName() == "epic_boss_fight_hardcore" then
-				-- check_tombstone = false
-			-- end
-			if check_tombstone == true and killedUnit.NoTombStone ~= true then
-				local newItem = CreateItem( "item_tombstone", killedUnit, killedUnit )
-				newItem:SetPurchaseTime( 0 )
-				newItem:SetPurchaser( killedUnit )
-				local tombstone = SpawnEntityFromTableSynchronous( "dota_item_tombstone_drop", {} )
-				tombstone:SetContainedItem( newItem )
-				tombstone:SetAngles( 0, RandomFloat( 0, 360 ), 0 )
-				FindClearSpaceForUnit( tombstone, killedUnit:GetAbsOrigin(), true )
-				killedUnit.tombstoneEntity = newItem
-			elseif killedUnit.NoTombStone == true then
-				killedUnit.NoTombStone = false
-			end
-		end
-	end
-	status, err, ret = xpcall(DeathHandler, debug.traceback, self, killedUnit)
-	if not status  and not self.gameHasBeenBroken then
-		self:SendErrorReport(err)
-	end
-end
-
-function CHoldoutGameMode:CheckForLootItemDrop( killedUnit )
-	for _,itemDropInfo in pairs( self._vLootItemDropsList ) do
-		if RollPercentage( itemDropInfo.nChance ) then
-			local newItem = CreateItem( itemDropInfo.szItemName, nil, nil )
-			newItem:SetPurchaseTime( 0 )
-			local drop = CreateItemOnPositionSync( killedUnit:GetAbsOrigin(), newItem )
-			drop.Holdout_IsLootDrop = true
-		end
-	end
-end
-
-
--- Custom game specific console command "holdout_test_round"
-function CHoldoutGameMode:_TestRoundConsoleCommand( cmdName, roundNumber, delay, NG)
-	local nRoundToTest = tonumber( roundNumber )
-	-- print( "Testing round %d", nRoundToTest )
-	if nRoundToTest <= 0 or nRoundToTest > #self._vRounds then
-		print( "Cannot test invalid round %d", nRoundToTest )
-		return
-	end
-	GameRules._roundnumber = nRoundToTest
-	--print (NG)
-	if NG then
-		self:_EnterNG()
-	end
-
-	local nExpectedGold = 0
-	local nExpectedXP = 0
-	for nPlayerID = 0, DOTA_MAX_PLAYERS-1 do
-		if PlayerResource:IsValidPlayer( nPlayerID ) then
-			PlayerResource:SetBuybackCooldownTime( nPlayerID, 0 )
-			PlayerResource:SetBuybackGoldLimitTime( nPlayerID, 0 )
-			PlayerResource:ResetBuybackCostTime( nPlayerID )
-		end
-	end
-
-	if self._currentRound ~= nil then
-		self._currentRound:End()
-		self._currentRound = nil
-	end
-
-	for _,item in pairs( Entities:FindAllByClassname( "dota_item_drop")) do
-		local containedItem = item:GetContainedItem()
-		if containedItem then
-			UTIL_RemoveImmediate( containedItem )
-		end
-		UTIL_RemoveImmediate( item )
-	end
-
-	self._flPrepTimeEnd = GameRules:GetGameTime() + 5
-	self._nRoundNumber = nRoundToTest
-
-	if delay ~= nil then
-		self._flPrepTimeEnd = GameRules:GetGameTime() + tonumber( delay )
 	end
 end
 

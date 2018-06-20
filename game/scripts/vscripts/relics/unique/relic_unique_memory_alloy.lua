@@ -7,7 +7,7 @@ end
 function relic_unique_memory_alloy:OnTakeDamage(params)
 	if params.unit == self:GetParent() and not ( HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_HPLOSS) or HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION) )  then
 		local healticks = math.ceil(40 / 0.33)
-		local healpTick = params.damage / healticks
+		local healpTick = (params.damage * 1) / healticks
 
 		local parent = self:GetParent()
 		Timers:CreateTimer(0.33, function()

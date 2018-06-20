@@ -12,8 +12,8 @@ if IsServer() then
 						["npc_dota_boss32_trueform"] = 100,
 						["npc_dota_boss33_a"] = 80, 
 						["npc_dota_boss33_b"] = 80, 
-						["npc_dota_boss34"] = 25, 
-						["npc_dota_boss35"] = 60,}
+						["npc_dota_boss34"] = 60, 
+						["npc_dota_boss35"] = 25,}
 
 	function modifier_boss_evil_core_passive:OnCreated()
 		self.manaCharge = self:GetParent():GetMaxMana()
@@ -32,6 +32,7 @@ if IsServer() then
 	function modifier_boss_evil_core_passive:OnIntervalThink()
 		local parent = self:GetParent()
 		FindClearSpaceForUnit(parent, Vector(969, 132), true)
+		parent:SetBaseHealthRegen(0)
 		if not self.asuraSpawn then
 			parent:SetMana(self.manaCharge)
 			if not self.shield then
@@ -75,17 +76,7 @@ if IsServer() then
 	
 	function modifier_boss_evil_core_passive:SpawnAsura(position)
 		local caster = self:GetCaster()
-		for _,unit in pairs ( Entities:FindAllByName( "npc_dota_creature")) do
-			if unit:GetTeamNumber() == DOTA_TEAM_BADGUYS and unit:GetUnitName() ~= "npc_dota_boss36" and unit:GetUnitName() ~= "npc_dota_boss36_guardian" then
-				unit:ForceKill(true)
-			end
-		end
-		local asura = CreateUnitByName( "npc_dota_boss36_guardian" , position, true, nil, nil, caster:GetTeam() )
-		asura.Holdout_IsCore = true
-		asura:AddNewModifier(caster, self:GetAbility(), "modifier_spawn_immunity", {duration = 3})
-		self:Destroy()
-		Timers:CreateTimer(0.1, function() caster:ForceKill(false) end)
-		GameRules.holdOut:_RefreshPlayers()
+		caster:ForceKill(false)
 		return true
 	end
 	
@@ -106,15 +97,13 @@ if IsServer() then
 		end
 		
 		local spawnedUnit = CreateUnitByName( spawnName, position, true, nil, nil, self:GetCaster():GetTeam() )
-		spawnedUnit:SetBaseMaxHealth(2000*GameRules.gameDifficulty)
-		spawnedUnit:SetMaxHealth(2000*GameRules.gameDifficulty)
+		spawnedUnit:SetBaseMaxHealth(650*GameRules.gameDifficulty)
+		spawnedUnit:SetMaxHealth(650*GameRules.gameDifficulty)
 		spawnedUnit:SetHealth(spawnedUnit:GetMaxHealth())
 		spawnedUnit:SetAverageBaseDamage(spawnedUnit:GetAverageBaseDamage() / 1.5, 20)
 		
 		if spawnName == "npc_dota_boss32_trueform" then
 			spawnedUnit:FindAbilityByName("boss_meteor"):SetActivated(false)
-		elseif spawnName == "npc_dota_boss34" then
-			spawnedUnit:FindAbilityByName("boss_death_time"):SetActivated(false)
 		elseif spawnName == "npc_dota_boss35" then
 			spawnedUnit:FindAbilityByName("boss_doom_hell_tempest"):SetActivated(false)
 			spawnedUnit:FindAbilityByName("boss_doom_demonic_servants"):SetActivated(false)

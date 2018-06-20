@@ -223,7 +223,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"500"
+				"damage"				"325"
 			}
 		}
 	}
@@ -279,7 +279,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"500"
+				"damage"				"325"
 			}
 		}
 	}

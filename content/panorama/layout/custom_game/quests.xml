@@ -1,19 +1,43 @@
 <root>
 	<styles>
 		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
-		<include src="file://{resources}/styles/custom_game/option.css" />
+		<include src="file://{resources}/styles/custom_game/quests.css" />
 	</styles> 
 	<scripts>
 		<include src="file://{resources}/scripts/custom_game/quests.js" />
 	</scripts>
+	<snippets>
+        <snippet name="QuestsEventChoice">
+			<Panel class="QuestsEventChoice" hittest="true">
+				<Label class="QuestsEventChoiceText" id="QuestsEventChoiceText" text="The Art of War [Gain 25% bonus damage]"/>
+			</Panel>
+		</snippet>
+	</snippets>
 	<Panel class="QuestsRoot" hittest="false">
-		<Panel class="QuestsContainer" id="QuestCenter" hittest="false">
-			<Label hittest="false" class="QuestGenericText" id="QuestRoundText" text=""/>
-			<Label hittest="false" class="QuestGenericText" id="QuestLifeText" text="CURRENT LIVES: 7"/>
-			<Label hittest="false" class="QuestGenericText" id="QuestPrepText" text="TIME UNTIL NEXT ROUND: 28"/>
+		<Panel class="QuestsContainerRoot" hittest="false">
+			<Panel class="QuestsContainer" id="QuestCenter" hittest="false">
+				<Label hittest="false" class="QuestGenericText" id="QuestRoundText" text=""/>
+				<Label hittest="false" class="QuestGenericText" id="QuestLifeText" text="CURRENT LIVES: 7"/>
+				<Label hittest="false" class="QuestGenericText" id="QuestPrepText" text="TIME UNTIL NEXT ROUND: 28"/>
+			</Panel>
+			<Button id="PlayerInfoContainerCloseID" onactivate="ToggleQuests()">
+				<Image src="file://{images}/custom_game/slideLeft.png" id="CloseImageID" class="CloseImage" hittest="false"/>
+			</Button>
 		</Panel>
-		<Button id="PlayerInfoContainerCloseID" onactivate="ToggleQuests()">
-			<Image src="file://{images}/custom_game/slideLeft.png" id="CloseImageID" class="CloseImage" hittest="false"/>
-		</Button>
+		<Panel id="QuestsEventHolder" hittest="true" hittestchildren="true">
+			<Panel id="QuestsEventDescription" hittest="true">
+				<Label id="QuestsEventDescriptionLabel" text=""/>
+			</Panel>
+			<Panel id="QuestsEventChoices" hittest="true">
+			</Panel>
+		</Panel>
+		<Panel id="QuestRewardsHolder" hittest="true" hittestchildren="true">
+			<Panel id="QuestsRewardDescription" hittest="true">
+				<Label id="QuestsRewardDescriptionLabel" text=""/>
+			</Panel>
+			<Button id="QuestRewardConfirmButton" hittest="true" onactivate="RemoveRewardsPopup()" onmouseover="">
+				<Label class="QuestsEventChoiceText" id="QuestRewardConfirmButtonLabel" text="Ok."/>
+			</Button>
+		</Panel>
 	</Panel>
 </root>

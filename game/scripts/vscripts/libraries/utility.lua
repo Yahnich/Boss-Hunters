@@ -372,13 +372,18 @@ function CDOTA_PlayerResource:IsVIP(id)
 end
 
 function MergeTables( t1, t2 )
+	local copyTable = {}
+	for name, info in pairs(t1) do
+		copyTable[name] = info
+	end
     for name,info in pairs(t2) do
-		if type(info) == "table"  and type(t1[name]) == "table" then
-			MergeTables(t1[name], info)
+		if type(info) == "table"  and type(copyTable[name]) == "table" then
+			MergeTables(copyTable[name], info)
 		else
-			t1[name] = info
+			copyTable[name] = info
 		end
 	end
+	return copyTable
 end
 
 function PrintAll(t)
@@ -481,8 +486,8 @@ function CDOTA_BaseNPC:IsCore()
 end
 
 function CDOTA_BaseNPC:IsElite()
-	self.elite = self.elite or false
-	return self.elite
+	self.NPCIsElite = self.NPCIsElite or false
+	return self.NPCIsElite
 end
 
 function CDOTA_BaseNPC:HasTalent(talentName)
@@ -971,15 +976,15 @@ end
 
 function CDOTA_BaseNPC:SetThreat(val)
 	self.lastHit = GameRules:GetGameTime()
-	local newVal = 0
+	local newVal = val
 	for _, modifier in ipairs( self:FindAllModifiers() ) do
 		if modifier.Bonus_ThreatGain and modifier:Bonus_ThreatGain() then
-			newVal = newVal + ( val * ( 1 + ( modifier:Bonus_ThreatGain()/100 ) ) )
+			newVal = newVal + ( math.abs(val) * ( modifier:Bonus_ThreatGain()/100 ) )
 		end
 	end
-	self.threat = newVal
-	
-	if not self:IsFakeHero() then 
+	self.threat = math.min(math.max(0, (self.threat or 0) + newVal ), 10000)
+	print(val, newVal, self.threat)
+	if self:IsHero() and not self:IsFakeHero() then 
 		local player = PlayerResource:GetPlayer(self:GetOwner():GetPlayerID())
 		PlayerResource:SortThreat()
 		local event_data =
@@ -995,7 +1000,11 @@ function CDOTA_BaseNPC:SetThreat(val)
 end
 
 function CDOTA_BaseNPC:IsRoundBoss()
-	return self.Holdout_IsCore == true
+	return self.unitIsRoundBoss == true
+end
+
+function CDOTA_BaseNPC:IsMinion()
+	return self.unitIsRoundBoss ~= true
 end
 
 function CDOTA_BaseNPC:ModifyThreat(val)
@@ -1417,6 +1426,17 @@ function CDOTABaseAbility:EndDelayedCooldown()
 		Timers:RemoveTimer(self.delayedCooldownTimer)
 		self.delayedCooldownTimer = nil
 	end
+end
+
+function CDOTA_BaseNPC_Hero:CreateTombstone()
+	local newItem = CreateItem( "item_tombstone", self, self )
+	newItem:SetPurchaseTime( 0 )
+	newItem:SetPurchaser( self )
+	local tombstone = SpawnEntityFromTableSynchronous( "dota_item_tombstone_drop", {} )
+	tombstone:SetContainedItem( newItem )
+	tombstone:SetAngles( 0, RandomFloat( 0, 360 ), 0 )
+	FindClearSpaceForUnit( tombstone, self:GetAbsOrigin(), true )
+	self.tombstoneEntity = newItem
 end
 
 function CDOTABaseAbility:ModifyCooldown(amt)
@@ -2399,9 +2419,11 @@ end
 
 function CDOTA_BaseNPC_Hero:AddGold(val)
 	local gold = val or 0
-	for _, modifier in pairs(self:FindAllModifiers()) do
-		if modifier.GetBonusGold then
-			gold = gold * math.max( 0, (1 + (modifier.GetBonusGold() / 100)) )
+	if gold >= 0 then
+		for _, modifier in pairs(self:FindAllModifiers()) do
+			if modifier.GetBonusGold then
+				gold = gold * math.max( 0, (1 + (modifier.GetBonusGold() / 100)) )
+			end
 		end
 	end
 	local gold = self:GetGold() + gold
@@ -2494,3 +2516,27 @@ function CDOTA_BaseNPC:FindEnemyUnitsInCone(vDirection, vPosition, flSideRadius,
 		return unitTable
 	else return {} end
 end
+
+function GameRules:RefreshPlayers()
+	for nPlayerID = 0, DOTA_MAX_TEAM_PLAYERS-1 do
+		if PlayerResource:GetTeam( nPlayerID ) == DOTA_TEAM_GOODGUYS then
+			if PlayerResource:HasSelectedHero( nPlayerID ) then
+				local hero = PlayerResource:GetSelectedHeroEntity( nPlayerID )
+				if hero ~=nil then
+					if not hero:IsAlive() then
+						hero:RespawnHero(false, false)
+					end
+					hero:SetHealth( hero:GetMaxHealth() )
+					hero:SetMana( hero:GetMaxMana() )
+					hero.threat = 0
+					ResolveNPCPositions( hero:GetAbsOrigin(), hero:GetHullRadius() + hero:GetCollisionPadding() )
+				end
+			end
+		end
+	end
+end
+
+function GameRules:GetGameDifficulty()
+	return GameRules.gameDifficulty
+end
+

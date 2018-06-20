@@ -24,7 +24,7 @@ function boss18b_trample:OnSpellStart()
 		self:BlinkAndBreak(position, radius)
 		jumps = jumps - 1
 		if jumps > 0 then
-			self:OnAbilityPhaseStart(vDir)
+			self:OnAbilityPhaseStart(vDir, radius)
 			radius = radius + growth
 			jump_distance = jump_distance + growth
 			return self:GetCastPoint()

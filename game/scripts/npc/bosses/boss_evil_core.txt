@@ -14,7 +14,7 @@
 	    "MaxLevel"                      "1"
 		"PiercesDisableReduction"		"1"
 		
-		"AbilityCooldown"				"30"
+		"AbilityCooldown"				"35"
 	
 	    // Special
 	    //-------------------------------------------------------------------------------------------------------------
@@ -29,7 +29,7 @@
 	        "01"
 	        {
 	            "var_type"              "FIELD_INTEGER"
-	            "recharge_time"         "15"
+	            "recharge_time"         "20"
 	        }
 	        "02"
 	        {
