@@ -32,22 +32,11 @@ function modifier_tusk_frozen_wasteland:OnCreated(table)
     if IsServer() then
         EmitSoundOn("Hero_Tusk.FrozenSigil", self:GetParent())
 
-        local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_tusk/tusk_frozen_sigil.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetParent())
+        local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_tusk/tusk_frozen_sigil.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
                     ParticleManager:SetParticleControlEnt(self.nfx, 0, self:GetParent(), PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", self:GetParent():GetAbsOrigin(), true)
                     ParticleManager:SetParticleControl(self.nfx, 1, Vector(self:GetTalentSpecialValueFor("radius"), 0, -self:GetTalentSpecialValueFor("radius")))
         self:AttachEffect(nfx)
         self:StartIntervalThink(0.1)
-    end
-end
-
-function modifier_tusk_frozen_wasteland:OnRefresh(table)
-    if IsServer() then
-        EmitSoundOn("Hero_Tusk.FrozenSigil", self:GetParent())
-
-        self.nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_tusk/tusk_frozen_sigil.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetParent())
-        ParticleManager:SetParticleControlEnt(self.nfx, 0, self:GetParent(), PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", self:GetParent():GetAbsOrigin(), true)
-        ParticleManager:SetParticleControl(self.nfx, 1, Vector(self:GetTalentSpecialValueFor("radius"), 0, -self:GetTalentSpecialValueFor("radius")))
-        self:StartIntervalThink(FrameTime())
     end
 end
 
