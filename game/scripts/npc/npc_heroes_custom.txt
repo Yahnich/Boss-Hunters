@@ -773,14 +773,21 @@
 	"npc_dota_hero_life_stealer_ebf"
 	{
 		"override_hero"			"npc_dota_hero_life_stealer"
-		"Ability1"		"life_stealer_rage"
-		"Ability2"		"life_stealer_hunger"
-		"Ability3"		"life_stealer_open_wounds"
-		"Ability4"		"life_stealer_assimilate"
-		"Ability5"		"life_stealer_assimilate_eject"
-		"Ability6"		"life_stealer_devour"
-		"Ability7"		""
-		"Ability8"		""
+		"Ability1"		"lifestealer_rage_bh"
+		"Ability2"		"lifestealer_hunger"
+		"Ability3"		"lifestealer_flesh_wounds"
+		"Ability4"		"lifestealer_infest_bh"
+		"Ability5"		"lifestealer_assimilate_bh"
+		"Ability6"		"lifestealer_rend"
+
+		"Ability10"		"special_bonus_unique_lifestealer_rage_bh_1"
+		"Ability11"		"special_bonus_unique_lifestealer_rage_bh_2"
+		"Ability12"		"special_bonus_unique_lifestealer_hunger_1"
+		"Ability13"		"special_bonus_unique_lifestealer_hunger_2"
+		"Ability14"		"special_bonus_unique_lifestealer_flesh_wounds_1"
+		"Ability15"		"special_bonus_unique_lifestealer_flesh_wounds_2"
+		"Ability16"		"special_bonus_unique_lifestealer_rend_1"
+		"Ability17"		"special_bonus_unique_lifestealer_rend_2"
 		
 	}
 	"npc_dota_hero_lina_ebf" // Ifrit
@@ -1257,8 +1264,20 @@
 	"npc_dota_hero_razor_ebf"
 	{
 		"override_hero"			"npc_dota_hero_razor"
-		"Ability2"					"razor_static_link"					// Ability 2
-		"Ability3"					"razor_high_voltage"					// Ability 3
+		"Ability1"				"razor_plasma_field_bh"					// Ability 2
+		"Ability2"				"razor_static_link_bh"					// Ability 2
+		"Ability3"				"razor_unstable_current_bh"					// Ability 3
+		"Ability4"				"razor_static_shock"					// Ability 3
+		"Ability6"				"razor_eye_of_the_storm_bh"					// Ability 3
+
+		"Ability10"					"special_bonus_unique_razor_plasma_field_bh_1"
+		"Ability11"					"special_bonus_unique_razor_plasma_field_bh_2"
+		"Ability12"					"special_bonus_unique_razor_static_link_bh_1"
+		"Ability13"					"special_bonus_unique_razor_static_link_bh_2"
+		"Ability14"					"special_bonus_unique_razor_unstable_current_bh_1"
+		"Ability15"					"special_bonus_unique_razor_unstable_current_bh_2"
+		"Ability16"					"special_bonus_unique_razor_eye_of_the_storm_bh_1"
+		"Ability17"					"special_bonus_unique_razor_eye_of_the_storm_bh_2"
 		
 	}
 	//=================================================================================================================

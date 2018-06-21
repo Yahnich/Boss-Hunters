@@ -78,6 +78,9 @@
 #base "heroes/hero_tiny.txt"
 #base "heroes/hero_broodmother.txt"
 #base "heroes/hero_kunkka.txt"
+#base "heroes/hero_lifestealer.txt"
+#base "heroes/hero_razor.txt"
+#base "heroes/hero_ogre_magi.txt"
 
 "DOTAAbilities"
 {
@@ -10577,54 +10580,6 @@
 						"modifier_counter_name"		"modifier_burning_spear_datadriven_debuff_counter"
 					}
 				}
-			}
-		}
-	}
-	"life_stealer_hunger"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"lua_abilities/heroes/lifestealer"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
-		"AbilityTextureName"			"life_stealer_feast"
-		"MaxLevel"						"7"
-		
-		"AbilityCastRange"				"900 950 1000 1050 1100 1150 1200"
-	
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"max_damage_amp"		"40 50 60 70 80 90 100"
-				"LinkedSpecialBonus"	"special_bonus_unique_lifestealer_3"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"max_lifesteal"			"40 50 60 70 80 90 100"
-				"LinkedSpecialBonus"	"special_bonus_unique_lifestealer_3"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"min_damage_amp"		"20"
-				"LinkedSpecialBonus"	"special_bonus_unique_lifestealer_3"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"min_lifesteal"			"15"
-				"LinkedSpecialBonus"	"special_bonus_unique_lifestealer_3"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"radius"				"900 950 1000 1050 1100 1150 1200"
 			}
 		}
 	}

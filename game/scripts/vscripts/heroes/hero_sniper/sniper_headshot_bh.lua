@@ -19,14 +19,13 @@ function modifier_sniper_headshot_bh:OnAttackLanded(params)
 		local caster = params.attacker
 		local target = params.target
 		if caster == self:GetCaster() and caster:RollPRNG(self:GetTalentSpecialValueFor("chance")) then
-			local nfx = ParticleManager:CreateParticle("particles/econ/items/sniper/sniper_immortal_cape/sniper_immortal_cape_headshot_slow_caster.vpcf", PATTACH_POINT, caster)
-						ParticleManager:SetParticleControlEnt(nfx, 0, caster, PATTACH_POINT, "attach_hitloc", caster:GetAbsOrigin(), true)
-						ParticleManager:SetParticleControlEnt(nfx, 1, caster, PATTACH_POINT, "attach_hitloc", caster:GetAbsOrigin(), true)
-						ParticleManager:ReleaseParticleIndex(nfx)
+			local nfx1 = ParticleManager:CreateParticle("particles/econ/items/sniper/sniper_immortal_cape/sniper_immortal_cape_headshot_slow_caster.vpcf", PATTACH_POINT, caster)
+						ParticleManager:SetParticleControlEnt(nfx1, 0, caster, PATTACH_POINT, "attach_hitloc", caster:GetAbsOrigin(), true)
+						ParticleManager:SetParticleControlEnt(nfx1, 1, caster, PATTACH_POINT, "attach_hitloc", caster:GetAbsOrigin(), true)
+						ParticleManager:ReleaseParticleIndex(nfx1)
 
-			local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_sniper/sniper_headshot_slow.vpcf", PATTACH_POINT, caster)
+			local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_sniper/sniper_headshot_slow.vpcf", PATTACH_POINT_FOLLOW, caster)
 						ParticleManager:SetParticleControlEnt(nfx, 0, target, PATTACH_OVERHEAD_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
-						ParticleManager:ReleaseParticleIndex(nfx)
 
 			Timers:CreateTimer(self:GetTalentSpecialValueFor("duration"), function()
 				ParticleManager:ClearParticle(nfx)
