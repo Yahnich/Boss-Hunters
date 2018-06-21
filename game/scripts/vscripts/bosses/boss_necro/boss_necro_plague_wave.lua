@@ -36,7 +36,7 @@ function boss_necro_plague_wave:OnProjectileHit( target, position )
 	if target then
 		local caster = self:GetCaster()
 		
-		self:DealDamage( caster, target, math.max( self:GetSpecialValueFor("max_hp_damage") * target:GetHealth() / 100, 100) )
+		self:DealDamage( caster, target, math.max( self:GetSpecialValueFor("max_hp_damage") * target:GetHealth() / 100, 100), {damage_type = DAMAGE_TYPE_PURE, damage_flags = DOTA_DAMAGE_FLAG_HPLOSS + DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION} )
 		target:AddNewModifier(caster, self, "modifier_boss_necro_plague_wave", {duration = self:GetSpecialValueFor("duration")})
 		
 		if target:IsNull() then

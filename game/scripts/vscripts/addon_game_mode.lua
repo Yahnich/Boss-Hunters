@@ -163,14 +163,14 @@ function CHoldoutGameMode:InitGameMode()
 	GameRules.gameDifficulty = 1
 	
 	GameRules.UnitKV = LoadKeyValues("scripts/npc/npc_heroes.txt")
-	MergeTables(GameRules.UnitKV, LoadKeyValues("scripts/npc/npc_heroes_custom.txt"))
-	MergeTables(GameRules.UnitKV, LoadKeyValues("scripts/npc/npc_units.txt"))
-	MergeTables(GameRules.UnitKV, LoadKeyValues("scripts/npc/npc_units_custom.txt"))
+	GameRules.UnitKV = MergeTables(GameRules.UnitKV, LoadKeyValues("scripts/npc/npc_heroes_custom.txt"))
+	GameRules.UnitKV = MergeTables(GameRules.UnitKV, LoadKeyValues("scripts/npc/npc_units.txt"))
+	GameRules.UnitKV = MergeTables(GameRules.UnitKV, LoadKeyValues("scripts/npc/npc_units_custom.txt"))
 	
 	GameRules.AbilityKV = LoadKeyValues("scripts/npc/npc_abilities_custom.txt")
-	MergeTables(GameRules.AbilityKV, LoadKeyValues("scripts/npc/npc_abilities_override.txt"))
-	MergeTables(GameRules.AbilityKV, LoadKeyValues("scripts/npc/npc_items_custom.txt"))
-	MergeTables(GameRules.AbilityKV, LoadKeyValues("scripts/npc/items.txt"))
+	GameRules.AbilityKV = MergeTables(GameRules.AbilityKV, LoadKeyValues("scripts/npc/npc_abilities_override.txt"))
+	GameRules.AbilityKV = MergeTables(GameRules.AbilityKV, LoadKeyValues("scripts/npc/npc_items_custom.txt"))
+	GameRules.AbilityKV = MergeTables(GameRules.AbilityKV, LoadKeyValues("scripts/npc/items.txt"))
 	
 	GameRules.HeroList = LoadKeyValues("scripts/npc/activelist.txt")
 	
@@ -193,8 +193,10 @@ function CHoldoutGameMode:InitGameMode()
 	CustomNetTables:SetTableValue( "game_info", "timeofday", {timeofday = 0} )
 
 	GameRules._lives = GameRules._maxLives
+	CustomGameEventManager:Send_ServerToAllClients( "updateQuestLife", { lives = GameRules._lives, maxLives = GameRules._maxLives } )
 	
 	GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_GOODGUYS, mapInfo.MaxPlayers)
+	GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_BADGUYS, 0)
 	
 	GameRules:SetHeroRespawnEnabled( false )
 	GameRules:SetUseUniversalShopMode( true )
@@ -781,8 +783,6 @@ function CHoldoutGameMode:OnHeroPick (event)
 		
 		hero:AddExperience(GameRules.XP_PER_LEVEL[7],false,false)
 		hero:SetBaseMagicalResistanceValue(0)
-		
-		UTIL_MessageTextAll("Ok motherfUCKERS", 255, 255, 255, 255)
 		
 		hero:SetRespawnPosition( GetGroundPosition(Vector(973, 99, 0), nil) )
 		CustomGameEventManager:Send_ServerToPlayer(hero:GetPlayerOwner(), "heroLoadIn", {}) -- wtf is this retarded shit stop force-setting my garbage

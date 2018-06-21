@@ -37,7 +37,7 @@
 		"generic_event_surge_of_knowledge"		"1"
 		"generic_event_defense_or_offense"		"1"
 		"generic_event_fight_or_flight"			"1"
-		"generic_event_protect"					"1"
+		// "generic_event_protect"				"0"
 		"generic_event_gold_or_relic"			"1"
 	}
 }

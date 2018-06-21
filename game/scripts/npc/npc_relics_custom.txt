@@ -48,7 +48,7 @@
 		"relic_cursed_loaded_coin"						"1"
 		"relic_cursed_mysterious_stone"					"1"
 		"relic_cursed_pale_blood"						"1"
-		"relic_cursed_paupers_finger"					"1"
+		"relic_cursed_paupers_finger"					"0"
 		"relic_cursed_phoenix_down"						"1"
 		"relic_cursed_red_key"							"0"
 		"relic_cursed_symbiote"							"1"

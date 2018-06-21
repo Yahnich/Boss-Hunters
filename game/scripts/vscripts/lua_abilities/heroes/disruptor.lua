@@ -114,7 +114,7 @@ function modifier_disruptor_kinetic_charge_pull_aura:OnCreated()
 	self.pullTick = self:GetAbility():GetSpecialValueFor("pull_speed") * 0.03
 	self.pullRadius = self:GetAbility():GetSpecialValueFor("pull_radius")
 	if IsServer() then
-		local units = FindUnitsInRadius( self:GetCaster():GetTeamNumber(), self:GetParent():GetAbsOrigin(), nil, self.pullRadius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO, 0, 1, false )
+		local units = FindUnitsInRadius( self:GetCaster():GetTeamNumber(), self:GetParent():GetAbsOrigin(), nil, -1, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO, 0, 1, false )
 		for _, unit in pairs(units) do
 			if unit:HasModifier("modifier_disruptor_kinetic_charge_pull") then
 				self.auraParent = unit
@@ -134,6 +134,7 @@ end
 function modifier_disruptor_kinetic_charge_pull_aura:OnIntervalThink()
 	local targetPos = self:GetParent():GetAbsOrigin()
     local casterPos = self.auraParent:GetAbsOrigin()
+	if not self.auraParent then return end
 	if not self.auraParent:IsAlive() then return end
     local direction = targetPos - casterPos
     local vec = direction:Normalized() * self.pullTick

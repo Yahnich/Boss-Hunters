@@ -16,15 +16,15 @@ local function CheckPlayerChoices(self)
 			end
 		end
 	end
-	print(votedYes, votedNo, players, voted)
-	print(votedYes > votedNo + (players - voted), "yes wins?")
-	print(votedNo > votedYes + (players - voted), "no wins?")
-	if votedYes > votedNo + (players - voted) then -- yes votes exceed non-votes and no votes
-		self:StartCombat(true)
-		return true
-	elseif votedNo > votedYes + (players - voted) then -- no votes exceed yes and non-votes and every other situation
-		self:StartCombat(false)
-		return true
+	
+	if not self.eventEnded then
+		if votedYes > votedNo + (players - voted) then -- yes votes exceed non-votes and no votes
+			self:StartCombat(true)
+			return true
+		elseif votedNo > votedYes + (players - voted) then -- no votes exceed yes and non-votes and every other situation
+			self:StartCombat(false)
+			return true
+		end
 	end
 	return false
 end

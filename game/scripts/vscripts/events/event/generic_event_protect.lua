@@ -33,7 +33,7 @@ local function StartCombat(self)
 		if not self.combatEnded then
 			if self.timeRemaining >= 0 then
 				self.timeRemaining = self.timeRemaining - 1
-				local spawns = 1 + math.floor( (60 - self.timeRemaining)/10 ) * math.ceil( 1 + math.log(activeHeroes) )
+				local spawns = 1 + math.floor( (60 - self.timeRemaining)/10 ) + math.floor(activeHeroes / 2)
 				for i = 1, spawns do
 					local zombie = CreateUnitByName("npc_dota_mini_boss1", START_VECTOR + ActualRandomVector(1500, 900), true, nil, nil, DOTA_TEAM_BADGUYS)
 				end

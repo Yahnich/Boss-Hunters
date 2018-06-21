@@ -1,4 +1,4 @@
-local function CheckPlayerChoices(self)
+	local function CheckPlayerChoices(self)
 	local votedYes = 0
 	local votedNo = 0
 	local voted = 0
@@ -16,21 +16,25 @@ local function CheckPlayerChoices(self)
 			end
 		end
 	end
-
-	if votedYes > votedNo + (players - voted) then -- yes votes exceed non-votes and no votes
-		self:StartCombat(true)
-		return true
-	elseif votedNo > votedYes + (players - voted) then -- no votes exceed yes and non-votes and every other situation
-		self:StartCombat(false)
-		return true
+	
+	if not self.eventEnded then
+		if votedYes > votedNo + (players - voted) then -- yes votes exceed non-votes and no votes
+			self:StartCombat(true)
+			return true
+		elseif votedNo > votedYes + (players - voted) then -- no votes exceed yes and non-votes and every other situation
+			self:StartCombat(false)
+			return true
+		end
 	end
 	return false
 end
 
 local function StartCombat(self, bFight)
 	if bFight then
+		self._vEventHandles = {
+			ListenToGameEvent( "entity_killed", require("events/base_combat"), self ),
+		}
 		self.timeRemaining = 0
-		self.eventEnded = true
 		self.bossesToSpawn = 1 + math.floor( math.log( RoundManager:GetRaidsFinished() + 1 ) )
 		self.mobsToSpawn = 4 + math.floor( math.log( RoundManager:GetEventsFinished() + 1 ) )
 		self.helpedTreant = true
@@ -78,18 +82,16 @@ end
 
 local function StartEvent(self)	
 	CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_has_started", {event = "grove_event_help_treant", choices = 2})
-	self._vEventHandles = {
-		ListenToGameEvent( "entity_killed", require("events/base_combat"), self ),
-	}
 	self._vListenerHandles = {
 		CustomGameEventManager:RegisterListener('player_selected_event_choice_1', Context_Wrap( self, 'FirstChoice') ),
 		CustomGameEventManager:RegisterListener('player_selected_event_choice_2', Context_Wrap( self, 'SecondChoice') ),
 	}
+	self._vEventHandles = {}
 	self.timeRemaining = 15
 	self.eventEnded = false
 	self.waitTimer = Timers:CreateTimer(1, function()
 		CustomGameEventManager:Send_ServerToAllClients("updateQuestPrepTime", {prepTime = self.timeRemaining})
-		if not self.eventEnded then
+		if not self.eventEnded and not self.helpedTreant then
 			if self.timeRemaining >= 0 then
 				self.timeRemaining = self.timeRemaining - 1
 				return 1

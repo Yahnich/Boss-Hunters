@@ -12,7 +12,7 @@ function boss14_execute:OnSpellStart()
 	
 	if target:TriggerSpellAbsorb(self) then return end
 	
-	self:DealDamage(caster, target, target:GetMaxHealth() * self:GetSpecialValueFor("execution_damage") / 100)
+	self:DealDamage(caster, target, target:GetMaxHealth() * self:GetSpecialValueFor("execution_damage") / 100, {damage_type = DAMAGE_TYPE_PURE, damage_flags = DOTA_DAMAGE_FLAG_HPLOSS + DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
 	if target:GetHealth() == 0 then
 		EmitSoundOn("Hero_Axe.Culling_Blade_Success", target)
 	else

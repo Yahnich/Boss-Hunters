@@ -16,19 +16,22 @@ local function CheckPlayerChoices(self)
 			end
 		end
 	end
-
-	if votedYes > votedNo + (players - voted) then -- yes votes exceed non-votes and no votes
-		self:GivePlayerGold()
-		self.treesCut = (self.treesCut or 0) + 1
-		if RollPercentage(25) then
-			self:StartCombat(true)
+	if not self.eventEnded then
+		if votedYes > votedNo + (players - voted) then -- yes votes exceed non-votes and no votes
+			self:GivePlayerGold()
+			self.treesCut = (self.treesCut or 0) + 1
+			Timers:CreateTimer(3, function()
+				if RollPercentage(25) then
+					self:StartCombat(true)
+				else
+					self:RetryVote()
+				end
+			end)
 			return true
-		else
-			self:RetryVote()
+		elseif votedNo > votedYes + (players - voted) then -- no votes exceed yes and non-votes and every other situation
+			self:StartCombat(false)
+			return true
 		end
-	elseif votedNo > votedYes + (players - voted) then -- no votes exceed yes and non-votes and every other situation
-		self:StartCombat(false)
-		return true
 	end
 	return false
 end
@@ -42,7 +45,7 @@ end
 local function StartCombat(self, bFight)
 	if bFight then
 		self.timeRemaining = 0
-		self.eventEnded = true
+		self.combatStarted = true
 		self.drowsToSpawn = 1 + math.ceil( math.log(self.treesCut) )
 		self.treantsToSpawn = (1 + math.ceil( math.log(self.treesCut) ) ) * HeroList:GetActiveHeroCount()
 		self.furionsToSpawn = (2 + math.ceil( math.log(self.treesCut) ) ) * HeroList:GetActiveHeroCount()
@@ -109,9 +112,10 @@ local function StartEvent(self)
 	self.treesCut = 0
 	self.timeRemaining = 15
 	self.eventEnded = false
+	self.combatStarted = false
 	self.waitTimer = Timers:CreateTimer(1, function()
 		CustomGameEventManager:Send_ServerToAllClients("updateQuestPrepTime", {prepTime = self.timeRemaining})
-		if not self.eventEnded then
+		if not self.eventEnded and not self.combatStarted then
 			if self.timeRemaining >= 0 then
 				self.timeRemaining = self.timeRemaining - 1
 				return 1
@@ -136,7 +140,7 @@ local function EndEvent(self, bWon)
 	
 	self.eventEnded = true
 	self.timeRemaining = -1
-	Timers:CreateTimer(3, function() RoundManager:EndEvent(true) end)
+	Timers:CreateTimer(3, function() RoundManager:EndEvent(bWon) end)
 end
 
 local function HandoutRewards(self)
