@@ -97,8 +97,8 @@ if IsServer() then
 		end
 		
 		local spawnedUnit = CreateUnitByName( spawnName, position, true, nil, nil, self:GetCaster():GetTeam() )
-		spawnedUnit:SetBaseMaxHealth(650*GameRules.gameDifficulty)
-		spawnedUnit:SetMaxHealth(650*GameRules.gameDifficulty)
+		spawnedUnit:SetBaseMaxHealth(250*GameRules.gameDifficulty)
+		spawnedUnit:SetMaxHealth(250*GameRules.gameDifficulty)
 		spawnedUnit:SetHealth(spawnedUnit:GetMaxHealth())
 		spawnedUnit:SetAverageBaseDamage(spawnedUnit:GetAverageBaseDamage() / 1.5, 20)
 		
@@ -121,7 +121,7 @@ end
 function modifier_boss_evil_core_passive:GetModifierIncomingDamage_Percentage( params )
 	local parent = self:GetParent()
 	if params.damage <= 0 then return end
-	local damage = self.damageTaken * ((GameRules.BasePlayers - PlayerResource:GetPlayerCountForTeam(DOTA_TEAM_GOODGUYS)) + 1)
+	local damage = self.damageTaken
 	if self.shield then damage = 1 end
 	if parent:GetHealth() > damage then
 		parent:SetHealth( math.max(1, parent:GetHealth() - damage) )
