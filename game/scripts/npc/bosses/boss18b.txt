@@ -170,7 +170,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"starting_radius"		"250"
+				"starting_radius"		"200"
 			}
 			"03"
 			{

@@ -983,7 +983,6 @@ function CDOTA_BaseNPC:SetThreat(val)
 		end
 	end
 	self.threat = math.min(math.max(0, (self.threat or 0) + newVal ), 10000)
-	print(val, newVal, self.threat)
 	if self:IsHero() and not self:IsFakeHero() then 
 		local player = PlayerResource:GetPlayer(self:GetOwner():GetPlayerID())
 		PlayerResource:SortThreat()

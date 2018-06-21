@@ -45,6 +45,8 @@ function RoundManager:Initialize()
 		end
 	end
 	
+	self.eventsCreated = nil
+	
 	self.spawnPositions = {}
 	for _,spawnPos in ipairs(Entities:FindAllByName("boss_spawner")) do
 		table.insert( self.spawnPositions, spawnPos:GetAbsOrigin() )
@@ -124,6 +126,8 @@ function RoundManager:ConstructRaids(zoneName)
 	local eventPool = {}
 	local combatPool = {}
 	
+	self.eventsCreated = self.eventsCreated or 0
+	
 	for event, weight in pairs( MergeTables(self.bossPool[zoneName], self.bossPool["Generic"]) ) do
 		for i = 1, weight do
 			table.insert(bossPool, event)
@@ -145,16 +149,19 @@ function RoundManager:ConstructRaids(zoneName)
 		local raid = {}
 		local raidContent
 		for i = 1, EVENTS_PER_RAID do
-			if RollPercentage(COMBAT_CHANCE) then -- Rolled Combat
+			if RollPercentage(COMBAT_CHANCE) or not eventPool[1] then -- Rolled Combat
 				local combatType = EVENT_TYPE_COMBAT
-				if RollPercentage(ELITE_CHANCE) then
+				if RollPercentage(ELITE_CHANCE) and self.eventsCreated > 3 then
 					combatType = EVENT_TYPE_ELITE
 				end
 				raidContent = BaseEvent(zoneName, combatType, combatPool[RandomInt(1, #combatPool)] )
 			else -- Event
-				raidContent = BaseEvent(zoneName, EVENT_TYPE_EVENT, eventPool[RandomInt(1, #eventPool)] ) 
+				local eventPick = RandomInt(1, #eventPool)
+				raidContent = BaseEvent(zoneName, EVENT_TYPE_EVENT, eventPool[eventPick] )
+				table.remove( eventPool, eventPick )
 			end
 			table.insert( raid, raidContent )
+			self.eventsCreated = self.eventsCreated + 1
 		end
 		local bossRoll = RandomInt(1, #bossPool)
 		local bossPick = bossPool[bossRoll]
@@ -189,6 +196,9 @@ end
 function RoundManager:StartPrepTime(fPrep)
 	if self.zones[self.currentZone] and self.zones[self.currentZone][1] and not self.prepTimeTimer then
 		local event = self.zones[self.currentZone][1][1]
+		for _, hero in ipairs( HeroList:GetRealHeroes() ) do
+			PlayerResource:SetCustomBuybackCost(hero:GetPlayerID(), 100 + self.eventsFinished * 25)
+		end
 		if event and not event.precacheComplete then
 			event.precacheComplete = event:PrecacheUnits()
 		end
@@ -248,7 +258,10 @@ function RoundManager:StartEvent()
 	CustomGameEventManager:Send_ServerToAllClients( "player_update_stats", playerData )
 	
 	if self.zones[self.currentZone] and self.zones[self.currentZone][1] and self.zones[self.currentZone][1][1] then
-		self.zones[self.currentZone][1][1]:StartEvent()
+		local event = RoundManager:GetCurrentEvent()
+		event.eventHasStarted = true
+		event.eventEnded = false
+		event:StartEvent()
 		return true
 	else
 		RoundManager:GameIsFinished()
@@ -258,22 +271,27 @@ end
 
 function RoundManager:EndEvent(bWonRound)
 	GameRules:RefreshPlayers()
-	print("Ending event", self:GetCurrentEvent():GetEventName(), self:GetCurrentEvent():IsElite() )
 	CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_has_ended", {})
-	if bWonRound then
-		local event = self.zones[self.currentZone][1][1]
-		EventManager:FireEvent("boss_hunters_event_finished", {eventType = event:GetEventType()})
-		event:HandoutRewards()
-		self.zones[self.currentZone][1][1] = false
-		UTIL_Remove( event )
-		table.remove( self.zones[self.currentZone][1], 1 )
-		
-		self.eventsFinished = self.eventsFinished + 1
-		if self.zones[self.currentZone][1][1] == nil then RoundManager:RaidIsFinished() end
-		EmitGlobalSound("Round.Won")
-	else
-		GameRules._lives = GameRules._lives - 1
-		EmitGlobalSound("Round.Lost")
+	local event = self.zones[self.currentZone][1][1]
+	event.eventEnded = true
+	event.eventHasStarted = false
+	if event.eventHandler then Timers:RemoveTimer( event.eventHandler ) end
+	if event then
+		if bWonRound then
+			EventManager:FireEvent("boss_hunters_event_finished", {eventType = event:GetEventType()})
+			event:HandoutRewards(true)
+			self.zones[self.currentZone][1][1] = false
+			UTIL_Remove( event )
+			table.remove( self.zones[self.currentZone][1], 1 )
+			
+			self.eventsFinished = self.eventsFinished + 1
+			if self.zones[self.currentZone][1][1] == nil then RoundManager:RaidIsFinished() end
+			EmitGlobalSound("Round.Won")
+		else
+			GameRules._lives = GameRules._lives - 1
+			event:HandoutRewards(false)
+			EmitGlobalSound("Round.Lost")
+		end
 	end
 	
 	local clearPeriod = 3
@@ -373,19 +391,23 @@ function RoundManager:GetCurrentZone()
 	return self.currentZone
 end
 
+function RoundManager:IsRoundGoing()
+	return self:GetCurrentEvent():HasStarted()
+end
+
 function RoundManager:InitializeUnit(unit, bElite)
 	unit.hasBeenInitialized = true
 	local expectedHP = unit:GetBaseMaxHealth() * RandomFloat(0.9, 1.15)
 	local playerHPMultiplier = 0.35
-	local playerDMGMultiplier = 0.05
+	local playerDMGMultiplier = 0.06
 	if GameRules:GetGameDifficulty() == 4 then 
 		expectedHP = expectedHP * 1.35
 		playerHPMultiplier = 0.5 
-		playerDMGMultiplier = 0.07
+		playerDMGMultiplier = 0.09
 	end
-	local effective_multiplier = (HeroList:GetActiveHeroCount() - 1) * ( 1 + (self.eventsFinished * 0.1) )
-	local effPlayerHPMult = 1 + effective_multiplier * playerHPMultiplier
-	local effPlayerDMGMult = 0.9 + effective_multiplier * playerDMGMultiplier
+	local effective_multiplier = (HeroList:GetActiveHeroCount() - 1) 
+	local effPlayerHPMult = ( 1 + (RoundManager:GetEventsFinished() * 0.08) + (RoundManager:GetRaidsFinished() * 0.33) ) + effective_multiplier * playerHPMultiplier
+	local effPlayerDMGMult = ( 0.8 + (RoundManager:GetEventsFinished() * 0.04) + (RoundManager:GetRaidsFinished() * 0.40) ) + effective_multiplier * playerDMGMultiplier
 	
 	if bElite then
 		effPlayerHPMult = effPlayerHPMult * 1.35
@@ -400,7 +422,7 @@ function RoundManager:InitializeUnit(unit, bElite)
 		
 		local eliteTypes = {}
 		for eliteType, activated in pairs(GameRules._Elites) do
-			if activated == "1" then
+			if activated ~= "0" then
 				table.insert(eliteTypes, eliteType)
 			end
 		end
@@ -409,7 +431,6 @@ function RoundManager:InitializeUnit(unit, bElite)
 			local roll = RandomInt(1, #eliteTypes)
 			local eliteAbName = eliteTypes[roll]
 			table.remove(eliteTypes, roll)
-			print(eliteAbName)
 			local eliteAb = unit:AddAbilityPrecache(eliteAbName)
 			eliteAb:SetLevel(eliteAb:GetMaxLevel())
 		end
@@ -420,7 +441,8 @@ function RoundManager:InitializeUnit(unit, bElite)
 	unit:SetMaxHealth(expectedHP)
 	unit:SetHealth(expectedHP)
 	
-	unit:SetAverageBaseDamage(unit:GetAverageBaseDamage() * effPlayerDMGMult * RandomFloat(0.85, 1.15), 30)
+	unit:SetAverageBaseDamage(unit:GetAverageBaseDamage() * effPlayerDMGMult * RandomFloat(0.85, 1.15) + self.eventsFinished, 35)
+	unit:SetBaseHealthRegen(self.eventsFinished * RandomFloat(0.85, 1.15) )
 	unit:SetBaseHealthRegen(self.eventsFinished * RandomFloat(0.85, 1.15) )
 	
 	unit:AddNewModifier(unit, nil, "modifier_boss_attackspeed", {})

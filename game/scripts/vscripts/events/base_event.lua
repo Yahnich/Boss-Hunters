@@ -12,7 +12,8 @@ function BaseEvent:constructor(zoneName, eventType, eventName)
 	self.eventName = eventName
 	self.zoneName = zoneName
 	self.eventID = DoUniqueString(eventName)
-	eventFolder = "combat"
+	self.eventHasStarted = false
+	local eventFolder = "combat"
 	if self.eventType == EVENT_TYPE_EVENT then
 		eventFolder = "event"
 	elseif self.eventType == EVENT_TYPE_BOSS then
@@ -43,20 +44,31 @@ function BaseEvent:GetZone()
 	return self.zoneName
 end
 
-function BaseEvent:HandoutRewards()
+function BaseEvent:HandoutRewards(bWon)
 	if not self:IsEvent() then
 		local eventScaling = RoundManager:GetEventsFinished()
+		local raidScaling = 1 + RoundManager:GetRaidsFinished() * 0.33
 		local playerScaling = GameRules.BasePlayers - HeroList:GetActiveHeroCount()
-		local baseXP = 500 + eventScaling * (100 + 10 * playerScaling)
-		local baseGold = 100 + eventScaling * (25 + 3 * playerScaling)
+		local baseXP = ( 700 + eventScaling * (100 + 10 * playerScaling) ) * raidScaling
+		local baseGold = ( 250 + eventScaling * (25 + 3 * playerScaling) ) * raidScaling
+		if not bWon then
+			baseXP = baseXP / 4
+			baseGold = baseGold / 4
+		end
+		if self:IsBoss() then
+			baseXP = baseXP * 1.5
+			baseGold = baseGold * 1.5
+		end
 		for _, hero in ipairs( HeroList:GetRealHeroes() ) do
 			hero:AddGold( baseGold )
 			hero:AddExperience( baseXP, DOTA_ModifyXP_Unspecified, false, false )
 			local pID = hero:GetPlayerOwnerID()
-			if self:IsElite() then
-				RelicManager:RollEliteRelicsForPlayer(pID)
-			elseif self:IsBoss() then
-				RelicManager:RollBossRelicsForPlayer(pID)
+			if bWon then
+				if self:IsElite() then
+					RelicManager:RollEliteRelicsForPlayer(pID)
+				elseif self:IsBoss() then
+					RelicManager:RollBossRelicsForPlayer(pID)
+				end
 			end
 		end
 	end
@@ -84,4 +96,8 @@ end
 
 function BaseEvent:GetEventType()
 	return self.eventType
+end
+
+function BaseEvent:HasStarted()
+	return self.eventHasStarted or false
 end

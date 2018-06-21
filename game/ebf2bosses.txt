@@ -81,8 +81,8 @@ Warlock Golem, mostly the same; but this time the heal disable meteor is a dodge
 -------------------------------------------------------------------------
 Aeon:
 Passives:
-Time Acceleration - Every second, Aeon gains 1% bonus movement speed and bonus damage.
-Distortion Field - Aeon slows enemy attack speed by 60 in 900 radius.
+Time Acceleration - Every second, Aeon gains 1% bonus movement speed and 1 attack speed.
+Distortion Field - After casting 5 abilities, all of your abilities will be put on a 20 second cooldown.
 Flashback - Upon taking more than 5% current hp in damage, Aeon will evade that instance of damage. This effect can only happen once every 13/12s
 
 Actives:

@@ -1,7 +1,7 @@
 local function StartEvent(self)
 	local spawnPos = RoundManager:PickRandomSpawn()
 	self.enemiesToSpawn = 4 + math.floor( math.log( RoundManager:GetEventsFinished() + 1 ) )
-	Timers:CreateTimer(3, function()
+	self.eventHandler = Timers:CreateTimer(3, function()
 		local enemyName = ""
 		local roll = RandomInt(1, 11)
 		if roll <= 3 then

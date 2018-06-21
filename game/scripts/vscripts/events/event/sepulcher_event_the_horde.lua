@@ -27,12 +27,12 @@ local function StartCombat(self)
 		if not self.combatEnded then
 			if self.timeRemaining >= 0 then
 				self.timeRemaining = self.timeRemaining - 1
-				local spawns = 1 + math.floor( (60 - self.timeRemaining)/20 )
+				local spawns = 1 + math.floor( (60 - self.timeRemaining)/30 )
 				for _, hero in ipairs( HeroList:GetActiveHeroes() ) do
 					for i = 1, spawns do
 						local roll = RandomInt(1, 12)
 						local zombieType = "npc_dota_mini_boss1"
-						if roll <= 8 then
+						if roll <= 6 then
 							zombieType = "npc_dota_mini_boss1"
 						elseif roll <= 10 then
 							zombieType = "npc_dota_boss3a_b"

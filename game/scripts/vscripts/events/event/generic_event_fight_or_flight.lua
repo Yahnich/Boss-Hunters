@@ -16,11 +16,10 @@ local function CheckPlayerChoices(self)
 			end
 		end
 	end
-
 	if votedYes > votedNo + (players - voted) then -- yes votes exceed non-votes and no votes
 		self:StartCombat(true)
 		return true
-	elseif votedNo > votedYes + (players - voted) then -- no votes exceed yes and non-votes and every other situation
+	else -- no votes exceed yes and non-votes and every other situation
 		self:StartCombat(false)
 		return true
 	end
@@ -54,7 +53,7 @@ local function StartEvent(self)
 		CustomGameEventManager:RegisterListener('player_selected_event_choice_1', Context_Wrap( self, 'FirstChoice') ),
 		CustomGameEventManager:RegisterListener('player_selected_event_choice_2', Context_Wrap( self, 'SecondChoice') )
 	}
-	self.timeRemaining = 20
+	self.timeRemaining = 15
 	self.eventEnded = false
 	Timers:CreateTimer(1, function()
 		CustomGameEventManager:Send_ServerToAllClients("updateQuestPrepTime", {prepTime = self.timeRemaining})

@@ -10,7 +10,7 @@ local function StartEvent(self)
 	local spawnPos = RoundManager:PickRandomSpawn()
 	self.enemiesToSpawn = 1 + math.floor( math.log( RoundManager:GetRaidsFinished() + 1 ) )
 	self.eventEnded = false
-	Timers:CreateTimer(3, function()
+	self.eventHandler = Timers:CreateTimer(3, function()
 		local spawn = CreateUnitByName("npc_dota_boss17", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
 		spawn.unitIsRoundBoss = true
 		self.enemiesToSpawn = self.enemiesToSpawn - 1
@@ -19,7 +19,7 @@ local function StartEvent(self)
 		end
 	end)
 	self.minionsAlive = 0
-	Timers:CreateTimer(5, function()
+	self.minionHandler = Timers:CreateTimer(5, function()
 		if not self.eventEnded then
 			if self.minionsAlive < ( math.floor( math.log( RoundManager:GetRaidsFinished() + 1) + 2 ) ) * GameRules.gameDifficulty then
 				local spawn = CreateUnitByName("npc_dota_mini_boss2", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
@@ -37,6 +37,7 @@ local function EndEvent(self, bWon)
 	for _, eID in pairs( self._vEventHandles ) do
 		StopListeningToGameEvent( eID )
 	end
+	Timers:RemoveTimer( self.minionHandler )
 	self.eventEnded = true
 	RoundManager:EndEvent(bWon)
 end

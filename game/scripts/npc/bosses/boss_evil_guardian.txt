@@ -155,7 +155,7 @@
 	        "01"
 	        {
 	            "var_type"              "FIELD_INTEGER"
-	            "raze_damage"         	"250 300"
+	            "raze_damage"         	"200 250"
 	        }
 			"02"
 	        {
@@ -197,7 +197,7 @@
 	        "01"
 	        {
 	            "var_type"              "FIELD_INTEGER"
-	            "raze_damage"         	"175 250"
+	            "raze_damage"         	"150 200"
 	        }
 			"02"
 	        {
@@ -250,7 +250,7 @@
 	        "01"
 	        {
 	            "var_type"              "FIELD_INTEGER"
-	            "raze_damage"         	"200 225"
+	            "raze_damage"         	"180 220"
 	        }
 			"02"
 	        {
@@ -294,7 +294,7 @@
 			"01"
 	        {
 	            "var_type"              "FIELD_FLOAT"
-	            "raze_delay"			"3.5 3"
+	            "raze_delay"			"5 3.5"
 	        }
 			"02"
 	        {

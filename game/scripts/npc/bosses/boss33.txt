@@ -179,7 +179,7 @@
 		"MaxLevel"						"2"
 		
 		"AbilityCooldown"				"7 6"
-		"AbilityCastPoint"				"1.5 1"
+		"AbilityCastPoint"				"1.5 1.25"
 		"AbilityCastAnimation"			"ACT_DOTA_RAZE_3"
 		
 		"precache"
@@ -205,7 +205,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"800 1200"
+				"damage"				"175 225"
 			}
 			"04"
 			{
@@ -239,7 +239,7 @@
 		
 		"AbilityCooldown"				"7 6"
 		"AbilityCastRange"				"3500 5000"
-		"AbilityCastPoint"				"1.5 1"
+		"AbilityCastPoint"				"1.5 1.25"
 		"AbilityCastAnimation"			"ACT_DOTA_RAZE_2"
 		
 		"precache"
@@ -265,7 +265,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"800 1200"
+				"damage"				"175 225"
 			}
 			"04"
 			{
@@ -326,7 +326,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"800 1200"
+				"damage"				"175 225"
 			}
 			"04"
 			{

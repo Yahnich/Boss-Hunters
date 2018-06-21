@@ -1,7 +1,7 @@
 local function StartEvent(self)
 	local spawnPos = RoundManager:PickRandomSpawn()
 	self.enemiesToSpawn = 3 + math.floor( math.log( RoundManager:GetEventsFinished() + 1 ) )
-	Timers:CreateTimer(3, function()
+	self.eventHandler = Timers:CreateTimer(3, function()
 		local enemyName = "npc_dota_boss18"
 		local roll = RandomInt(1, 11)
 		if RollPercentage(33) then
@@ -12,7 +12,7 @@ local function StartEvent(self)
 		
 		self.enemiesToSpawn = self.enemiesToSpawn - 1
 		if self.enemiesToSpawn > 0 then
-			return 12
+			return 5
 		end
 	end)
 	

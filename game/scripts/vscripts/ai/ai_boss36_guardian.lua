@@ -10,40 +10,16 @@ function Spawn( entityKeyValues )
 			return AIThink(thisEntity)
 		end
 	end)
-	
 	thisEntity.shield = thisEntity:FindAbilityByName("boss_evil_guardian_fire_shield")
 	thisEntity.purge = thisEntity:FindAbilityByName("boss_evil_guardian_purge_their_sin")
 	thisEntity.pool = thisEntity:FindAbilityByName("boss_evil_guardian_hell_on_earth")
-	
+
 	thisEntity.raze1 = thisEntity:FindAbilityByName("boss_evil_guardian_annihilation")
 	thisEntity.raze2 = thisEntity:FindAbilityByName("boss_evil_guardian_destruction")
 	thisEntity.raze3 = thisEntity:FindAbilityByName("boss_evil_guardian_apocalypse")
 	thisEntity.fist = thisEntity:FindAbilityByName("boss_evil_guardian_rise_of_hell")
 	thisEntity.stun = thisEntity:FindAbilityByName("boss_evil_guardian_end_of_days")
-	
 	thisEntity.getRazingFactor = 0
-	
-	Timers:CreateTimer(0.1, function()
-			if  math.floor(GameRules.gameDifficulty + 0.5) < 2 then 
-				thisEntity.shield:SetLevel(1)
-				thisEntity.purge:SetLevel(1)
-				thisEntity.pool:SetLevel(1)
-				thisEntity.raze1:SetLevel(1)
-				thisEntity.raze2:SetLevel(1)
-				thisEntity.raze3:SetLevel(1)
-				thisEntity.fist:SetLevel(1)
-				thisEntity.stun:SetLevel(1)
-			else
-				thisEntity.shield:SetLevel(2)
-				thisEntity.purge:SetLevel(2)
-				thisEntity.pool:SetLevel(2)
-				thisEntity.raze1:SetLevel(2)
-				thisEntity.raze2:SetLevel(2)
-				thisEntity.raze3:SetLevel(2)
-				thisEntity.fist:SetLevel(2)
-				thisEntity.stun:SetLevel(2)
-			end
-		end)
 end
 
 function AIThink(thisEntity)

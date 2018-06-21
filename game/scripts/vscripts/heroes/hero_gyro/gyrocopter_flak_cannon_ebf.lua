@@ -46,7 +46,7 @@ function modifier_gyrocopter_flak_cannon_active:OnAttack(params)
 					self:GetParent():SpendMana( self:GetAbility():GetManaCost(-1), self:GetAbility() )
 					local units = self:GetCaster():FindEnemyUnitsInRadius(params.target:GetAbsOrigin(), self:GetAbility():GetTalentSpecialValueFor("radius"), {})
 					for _,unit in pairs(units) do
-						if unit == params.target then
+						if unit ~= params.target then
 							if RollPercentage(50) then
 								self:GetAbility():FireTrackingProjectile(self:GetParent():GetProjectileModel(), unit, self:GetParent():GetProjectileSpeed(), {}, DOTA_PROJECTILE_ATTACHMENT_ATTACK_1, true, false, 0)
 							else
