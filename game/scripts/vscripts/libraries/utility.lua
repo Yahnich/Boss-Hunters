@@ -1622,7 +1622,7 @@ end
 function CDOTA_BaseNPC:FindFriendlyUnitsInLine(startPos, endPos, width, hData)
 	local team = self:GetTeamNumber()
 	local data = hData or {}
-	local iTeam = data.team or DOTA_UNIT_TARGET_TEAM_ENEMY
+	local iTeam = data.team or DOTA_UNIT_TARGET_TEAM_FRIENDLY
 	local iType = data.type or DOTA_UNIT_TARGET_ALL
 	local iFlag = data.flag or DOTA_UNIT_TARGET_FLAG_NONE
 	return FindUnitsInLine(team, startPos, endPos, nil, width, iTeam, iType, iFlag)
@@ -1631,7 +1631,7 @@ end
 function CDOTA_BaseNPC:FindAllUnitsInLine(startPos, endPos, width, hData)
 	local team = self:GetTeamNumber()
 	local data = hData or {}
-	local iTeam = data.team or DOTA_UNIT_TARGET_TEAM_ENEMY
+	local iTeam = data.team or DOTA_UNIT_TARGET_TEAM_BOTH
 	local iType = data.type or DOTA_UNIT_TARGET_ALL
 	local iFlag = data.flag or DOTA_UNIT_TARGET_FLAG_NONE
 	return FindUnitsInLine(team, startPos, endPos, nil, width, iTeam, iType, iFlag)
@@ -1740,7 +1740,7 @@ function ParticleManager:FireRopeParticle(effect, attach, owner, target, tCP, sA
 	local attachPoint = sAttachPoint or "attach_hitloc"
 	ParticleManager:SetParticleControlEnt(FX, 0, owner, attach, attachPoint, owner:GetAbsOrigin(), true)
 	if target.GetAbsOrigin then -- npc (has getabsorigin function
-		ParticleManager:SetParticleControlEnt(FX, 1, target, attach, attachPoint, target:GetAbsOrigin(), true)
+		ParticleManager:SetParticleControlEnt(FX, 1, target, attach, "attach_hitloc", target:GetAbsOrigin(), true)
 	else
 		ParticleManager:SetParticleControl(FX, 1, target) -- vector
 	end
