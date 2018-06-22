@@ -296,9 +296,10 @@ function RoundManager:EndEvent(bWonRound)
 	
 	local clearPeriod = 3
 	Timers:CreateTimer(function()
-		for _, unit in ipairs( FindAllUnits({team = DOTA_UNIT_TARGET_TEAM_ENEMY}) ) do
+		for _, unit in ipairs( FindAllUnits({team = DOTA_UNIT_TARGET_TEAM_ENEMY, flags = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_DEAD + DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD}) ) do
 			if unit:IsCreature() then
 				unit:ForceKill(false)
+				UTIL_Remove(unit)
 			end
 		end
 		clearPeriod = clearPeriod - 0.1

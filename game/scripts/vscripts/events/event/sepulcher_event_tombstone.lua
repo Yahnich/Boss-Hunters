@@ -64,16 +64,20 @@ local function StartCombat(self)
 		if not self.combatEnded then
 			if self.timeRemaining >= 0 then
 				self.timeRemaining = self.timeRemaining - 1
-				local spawns = 1 + math.floor( (60 - self.timeRemaining)/10 ) * math.ceil( 1 + math.log(activeHeroes) )
+				local spawns = 1 + math.floor( (60 - self.timeRemaining)/15 )
 				for i = 1, spawns do
 					local zombieType = "npc_dota_mini_boss1"
 					if RollPercentage(20) then
 						zombieType = "npc_dota_boss3a_b"
 					end
 					local zombie = CreateUnitByName(zombieType, START_VECTOR + ActualRandomVector(1500, 900), true, nil, nil, DOTA_TEAM_BADGUYS)
+					local hp = zombie:GetBaseMaxHealth() * math.ceil( 1 + math.log(activeHeroes) )
+					zombie:SetBaseMaxHealth( hp )
+					zombie:SetMaxHealth( hp )
+					zombie:SetHealth( hp )
 				end
 				
-				return 1
+				return 5
 			else
 				self:EndEvent(true)
 			end

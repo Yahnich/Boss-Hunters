@@ -84,7 +84,7 @@ function modifier_item_arcane_reaver:OnCreated()
 end
 
 function modifier_item_arcane_reaver:OnDestroy()
-	self:GetCaster():RemoveModifierByName("modifier_item_arcane_reaver_active")
+	if IsServer() then self:GetCaster():RemoveModifierByName("modifier_item_arcane_reaver_active") end
 end
 
 function modifier_item_arcane_reaver:DeclareFunctions()

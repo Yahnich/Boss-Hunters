@@ -3,7 +3,7 @@ event_buff_tombstone = class(relicBaseClass)
 function event_buff_tombstone:OnCreated(kv)
 	if IsServer() then
 		self:SetStackCount(3)
-		self.funcID = EventManager:SubscribeListener("boss_hunters_event_finished", self.OnEventFinished)
+		self.funcID = EventManager:SubscribeListener("boss_hunters_event_finished", function(args) self:OnEventFinished(args) end)
 	end
 end
 

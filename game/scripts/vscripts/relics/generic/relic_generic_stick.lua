@@ -9,7 +9,6 @@ end
 
 function relic_generic_stick:OnEventFinished(args)
 	EVENT_TYPE_EVENT = 3
-	PrintAll(args)
 	if args.eventType ~= EVENT_TYPE_EVENT and RoundManager:GetEventsFinished() % 2 == 0 then
 		self:SetStackCount( math.ceil(self:GetStackCount() * 0.6) )
 	end

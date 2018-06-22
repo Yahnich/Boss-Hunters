@@ -23,6 +23,7 @@ local function StartEvent(self)
 		if not self.eventEnded then
 			if self.minionsAlive < ( math.floor( math.log( RoundManager:GetRaidsFinished() + 1) + 2 ) ) * GameRules.gameDifficulty then
 				local spawn = CreateUnitByName("npc_dota_mini_boss2", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
+				spawn.unitIsRoundBoss = true
 				self.minionsAlive = self.minionsAlive + 1
 			end
 			return 5
