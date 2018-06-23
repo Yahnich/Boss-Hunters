@@ -260,7 +260,7 @@ function CHoldoutGameMode:InitGameMode()
 											if Convars:GetDOTACommandClient() and IsInToolsMode() then
 												local player = Convars:GetDOTACommandClient()
 												local hero = player:GetAssignedHero()
-												RelicManager:RollRelicsForPlayer( player:GetPlayerID() )
+												RelicManager:RollBossRelicsForPlayer( player:GetPlayerID() )
 											end
 										end, "adding relics",0)
 	Convars:RegisterCommand( "getdunked", function()
@@ -976,7 +976,7 @@ function CHoldoutGameMode:CheckHP()
 			local currOrigin = unit:GetAbsOrigin()
 			FindClearSpaceForUnit(unit, GetGroundPosition(currOrigin, unit), true)
 		end
-		if unit:GetHealth() <= 0 and unit:IsCreature() then
+		if ( unit:GetHealth() <= 0 and unit:IsAlive() ) or ( unit:GetHealth() > 0 and not unit:IsAlive() ) then
 			if not unit:IsNull() then
 				unit:SetBaseMaxHealth( 1 )
 				unit:SetMaxHealth( 1 )

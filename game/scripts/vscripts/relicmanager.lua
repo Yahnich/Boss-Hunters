@@ -93,20 +93,22 @@ function RelicManager:ConfirmRelicSelection(userid, event)
 	local relic = event.relic
 
 	hero:AddRelic(relic)
-	RelicManager:RemoveDropFromTable(pID)
+	RelicManager:RemoveDropFromTable(pID, false, relic)
 	hero.internalRelicRNG = BASE_RELIC_CHANCE
 end
 
-function RelicManager:RemoveDropFromTable(pID, bRemove)
+function RelicManager:RemoveDropFromTable(pID, bRemove, sRemoveSpecific)
 	local hero = PlayerResource:GetSelectedHeroEntity(pID)
 	if not bRemove then
 		for id, relicName in ipairs( hero.relicsToSelect[1] ) do
-			if string.match(relicName, "unique") then
-				hero.internalRNGPools[3][relicName] = "1"
-			elseif string.match(relicName, "cursed") then
-				hero.internalRNGPools[2][relicName] = "1"
-			else
-				hero.internalRNGPools[1][relicName] = "1"
+			if relicName ~= sRemoveSpecific then
+				if string.match(relicName, "unique") then
+					hero.internalRNGPools[3][relicName] = "1"
+				elseif string.match(relicName, "cursed") then
+					hero.internalRNGPools[2][relicName] = "1"
+				else
+					hero.internalRNGPools[1][relicName] = "1"
+				end
 			end
 		end
 	end
@@ -124,13 +126,6 @@ function RelicManager:SkipRelicSelection(userid, event)
 	local copy = {}
 	
 	for id, relic in pairs( hero.relicsToSelect[1] ) do
-		relicType = 1
-		if string.match(relic, "unique") then
-			relicType = 3
-		elseif string.match(relic, "cursed") then
-			relicType = 2
-		end
-		hero.internalRNGPools[relicType][relic] = nil
 		copy[id] = relic
 	end
 	
@@ -147,11 +142,11 @@ function RelicManager:SkipRelicSelection(userid, event)
 			else
 				table.insert( dropTable, self:RollRandomGenericRelicForPlayer(pID) )
 			end
-			table.insert( hero.relicsToSelect, dropTable )
-			local player = PlayerResource:GetPlayer(pID)
-			if player then
-				CustomGameEventManager:Send_ServerToPlayer(player,"dota_player_updated_relic_drops", {playerID = pID, drops = hero.relicsToSelect})
-			end
+		end
+		table.insert( hero.relicsToSelect, dropTable )
+		local player = PlayerResource:GetPlayer(pID)
+		if player then
+			CustomGameEventManager:Send_ServerToPlayer(player,"dota_player_updated_relic_drops", {playerID = pID, drops = hero.relicsToSelect})
 		end
 		return
 	end

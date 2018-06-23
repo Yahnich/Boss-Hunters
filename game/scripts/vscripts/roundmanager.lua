@@ -70,7 +70,7 @@ function RoundManager:OnNPCSpawned(event)
 			return
 		end
 		if spawnedUnit then
-			if spawnedUnit:IsCreature() then
+			if spawnedUnit:IsAlive() and spawnedUnit:IsCreature() and spawnedUnit:GetTeam() == DOTA_TEAM_BADGUYS then
 				AddFOWViewer(DOTA_TEAM_GOODGUYS, spawnedUnit:GetAbsOrigin(), 516, 3, false) -- show spawns
 				if spawnedUnit:IsRoundBoss() then
 					ParticleManager:FireParticle("particles/econ/events/nexon_hero_compendium_2014/blink_dagger_end_nexon_hero_cp_2014.vpcf", PATTACH_POINT_FOLLOW, spawnedUnit)
@@ -407,7 +407,8 @@ function RoundManager:InitializeUnit(unit, bElite)
 		playerDMGMultiplier = 0.09
 	end
 	local effective_multiplier = (HeroList:GetActiveHeroCount() - 1) 
-	local effPlayerHPMult = ( 1 + (RoundManager:GetEventsFinished() * 0.08) + (RoundManager:GetRaidsFinished() * 0.33) ) + effective_multiplier * playerHPMultiplier
+	
+	local effPlayerHPMult =  1 + ( (RoundManager:GetEventsFinished() * 0.08) + (RoundManager:GetRaidsFinished() * 0.33) ) + ( effective_multiplier * playerHPMultiplier )
 	local effPlayerDMGMult = ( 0.8 + (RoundManager:GetEventsFinished() * 0.04) + (RoundManager:GetRaidsFinished() * 0.40) ) + effective_multiplier * playerDMGMultiplier
 	
 	if bElite then
@@ -441,6 +442,8 @@ function RoundManager:InitializeUnit(unit, bElite)
 	unit:SetBaseMaxHealth(expectedHP)
 	unit:SetMaxHealth(expectedHP)
 	unit:SetHealth(expectedHP)
+	
+	print( (RoundManager:GetEventsFinished() * 0.08), (RoundManager:GetRaidsFinished() * 0.33), effPlayerHPMult, "hp scaling; expected hp: ", expectedHP)
 	
 	unit:SetAverageBaseDamage(unit:GetAverageBaseDamage() * effPlayerDMGMult * RandomFloat(0.85, 1.15) + self.eventsFinished, 35)
 	unit:SetBaseHealthRegen(self.eventsFinished * RandomFloat(0.85, 1.15) )
