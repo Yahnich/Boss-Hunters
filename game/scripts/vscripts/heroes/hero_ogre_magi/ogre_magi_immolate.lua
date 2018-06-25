@@ -39,7 +39,7 @@ function ogre_magi_immolate:Immolate()
 				ParticleManager:SetParticleControl(nfx, 1, target:GetAbsOrigin())
 				ParticleManager:ReleaseParticleIndex(nfx)
 	
-	target:AddNewModifier(caster, self, "modifier_ogre_magi_immolate_buff", {Duration = self:GetSpecialValueFor("duration")})
+	target:AddNewModifier(caster, self, "modifier_ogre_magi_immolate_buff", {Duration = self:GetTalentSpecialValueFor("duration")})
 end
 
 modifier_ogre_magi_immolate = class({})
@@ -86,9 +86,9 @@ function modifier_ogre_magi_immolate_buff:OnIntervalThink()
 	local caster = self:GetCaster()
 	local parent = self:GetParent()
 
-	local enemies = caster:FindEnemyUnitsInRadius(parent:GetAbsOrigin(), self:GetSpecialValueFor("radius"), {})
+	local enemies = caster:FindEnemyUnitsInRadius(parent:GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"), {})
 	for _,enemy in pairs(enemies) do
-		self:GetAbility():DealDamage(caster, enemy, self:GetSpecialValueFor("damage")*0.25, {}, 0)
+		self:GetAbility():DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage")*0.25, {}, 0)
 	end
 end
 

@@ -17,9 +17,9 @@ function modifier_ogre_magi_multicast_bh:OnAbilityFullyCast(params)
 	if IsServer() then
 		local caster = self:GetCaster()
 		if params.unit == caster then
-			local two_times = self:GetSpecialValueFor("multicast_2_times")
-			local three_times = self:GetSpecialValueFor("multicast_3_times")
-			local four_times = self:GetSpecialValueFor("multicast_4_times")
+			local two_times = self:GetTalentSpecialValueFor("multicast_2_times")
+			local three_times = self:GetTalentSpecialValueFor("multicast_3_times")
+			local four_times = self:GetTalentSpecialValueFor("multicast_4_times")
 			local multiCast = 1
 			local currentCasts = 1
 
@@ -47,8 +47,8 @@ function modifier_ogre_magi_multicast_bh:OnAbilityFullyCast(params)
 			------------------------------------------------------
 			if ability == caster:FindAbilityByName("ogre_magi_fireblast_bh") then
 				if multiCast > 1 then
-					ability.newCoolDown = math.random(0, self:GetSpecialValueFor("fireblast_cooldown"))
-					bonusCastRange = math.random(0, self:GetSpecialValueFor("fireblast_range"))
+					ability.newCoolDown = math.random(0, self:GetTalentSpecialValueFor("fireblast_cooldown"))
+					bonusCastRange = math.random(0, self:GetTalentSpecialValueFor("fireblast_range"))
 					EmitSoundOn("Hero_OgreMagi.Fireblast.x" .. (multiCast - 1), ability:GetCursorTarget()) 
 				end
 
@@ -93,7 +93,7 @@ function modifier_ogre_magi_multicast_bh:OnAbilityFullyCast(params)
 			------------------------------------------------------
 			elseif ability == caster:FindAbilityByName("ogre_magi_bloodlust_bh") then
 				if multiCast > 1 then
-					ability.newCoolDown = math.random(0, self:GetSpecialValueFor("bloodlust_cooldown"))
+					ability.newCoolDown = math.random(0, self:GetTalentSpecialValueFor("bloodlust_cooldown"))
 				end
 
 				Timers:CreateTimer(tick_rate, function()
@@ -115,7 +115,7 @@ function modifier_ogre_magi_multicast_bh:OnAbilityFullyCast(params)
 			------------------------------------------------------
 			elseif ability == caster:FindAbilityByName("ogre_magi_fireblast_bh") then
 				if multiCast > 1 then
-					ability.newCoolDown = math.random(0, self:GetSpecialValueFor("unrefined_fireblast_cooldown"))
+					ability.newCoolDown = math.random(0, self:GetTalentSpecialValueFor("unrefined_fireblast_cooldown"))
 					EmitSoundOn("Hero_OgreMagi.Fireblast.x" .. (multiCast - 1), ability:GetCursorTarget()) 
 				end
 

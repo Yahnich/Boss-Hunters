@@ -26,12 +26,12 @@ function ogre_magi_ignite_bh:OnProjectileHit(hTarget, vLocation)
 
 	if hTarget then
 		EmitSoundOn("Hero_OgreMagi.Ignite.Target", hTarget)
-		hTarget:AddNewModifier(caster, self, "modifier_ogre_magi_ignite_bh", {Duration = self:GetSpecialValueFor("duration")})
-		if RollPercentage(self:GetSpecialValueFor("chance")) then
-			local enemies = caster:FindEnemyUnitsInRadius(vLocation, self:GetSpecialValueFor("ignite_aoe"))
+		hTarget:AddNewModifier(caster, self, "modifier_ogre_magi_ignite_bh", {Duration = self:GetTalentSpecialValueFor("duration")})
+		if RollPercentage(self:GetTalentSpecialValueFor("chance")) then
+			local enemies = caster:FindEnemyUnitsInRadius(vLocation, self:GetTalentSpecialValueFor("ignite_aoe"))
 			for _,enemy in pairs(enemies) do
 				if enemy ~= hTarget then
-					enemy:AddNewModifier(caster, self, "modifier_ogre_magi_ignite_bh", {Duration = self:GetSpecialValueFor("duration")})
+					enemy:AddNewModifier(caster, self, "modifier_ogre_magi_ignite_bh", {Duration = self:GetTalentSpecialValueFor("duration")})
 				end
 			end
 		end
@@ -45,7 +45,7 @@ end
 
 function modifier_ogre_magi_ignite_bh:OnIntervalThink()
 	EmitSoundOn("Hero_OgreMagi.Ignite.Damage", self:GetParent())
-	self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self:GetSpecialValueFor("damage"), {}, 0)
+	self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self:GetTalentSpecialValueFor("damage"), {}, 0)
 end
 
 function modifier_ogre_magi_ignite_bh:DeclareFunctions()
