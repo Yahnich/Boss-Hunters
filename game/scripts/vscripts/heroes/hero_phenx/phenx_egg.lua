@@ -53,7 +53,8 @@ function modifier_phenx_egg_caster:CheckState()
 					[MODIFIER_STATE_PROVIDES_VISION] = true,
 					[MODIFIER_STATE_NO_HEALTH_BAR] = true,
 					[MODIFIER_STATE_UNTARGETABLE] = true,
-                    [MODIFIER_STATE_OUT_OF_GAME] = true
+                    [MODIFIER_STATE_OUT_OF_GAME] = true,
+                    [MODIFIER_STATE_SILENCED] = true
                 }
     return state
 end
