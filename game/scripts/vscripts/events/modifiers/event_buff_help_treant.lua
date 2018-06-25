@@ -3,7 +3,7 @@ event_buff_help_treant = class(relicBaseClass)
 function event_buff_help_treant:OnCreated(kv)
 	if IsServer() then
 		self:SetStackCount(3)
-		self.funcID = EventManager:SubscribeListener("boss_hunters_event_finished", self.OnEventFinished)
+		self.funcID = EventManager:SubscribeListener("boss_hunters_event_finished", function(args) self:OnEventFinished(args) end)
 	end
 end
 

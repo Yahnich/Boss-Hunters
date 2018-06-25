@@ -34,6 +34,9 @@ function boss_golem_golem_toss:OnSpellStart()
 		golem:FindAbilityByName("boss_golem_golem_toss"):SetActivated(false)
 	end
 	
+	golem.unitIsRoundBoss = true
+	golem.hasBeenInitialized = true
+	
 	caster:SetModelScale( scale * 0.8 )
 	caster:SetBaseMaxHealth( hp - golemHP )
 	caster:SetMaxHealth( hp - golemHP )
