@@ -1,7 +1,7 @@
 relic_cursed_the_pact = class(relicBaseClass)
 
 function relic_cursed_the_pact:DeclareFunctions()
-	return {MODIFIER_EVENT_ON_TAKEDAMAGE, MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE, MODIFIER_PROPERTY_DISABLE_HEALING, MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS, MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS}
+	return {MODIFIER_EVENT_ON_TAKEDAMAGE, MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE, MODIFIER_PROPERTY_DISABLE_HEALING, MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS, MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS}
 end
 
 function relic_cursed_the_pact:OnTakeDamage(params)
@@ -14,7 +14,7 @@ function relic_cursed_the_pact:OnTakeDamage(params)
 	end
 end
 
-function relic_cursed_the_pact:GetModifierDamageOutgoing_Percentage()
+function relic_cursed_the_pact:GetModifierBaseDamageOutgoing_Percentage()
 	return 100
 
 end

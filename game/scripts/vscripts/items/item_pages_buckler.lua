@@ -31,3 +31,7 @@ end
 function modifier_item_pages_buckler:IsHidden()
 	return true
 end
+
+function modifier_item_pages_buckler:GetAttributes()
+	return MODIFIER_ATTRIBUTE_MULTIPLE
+end

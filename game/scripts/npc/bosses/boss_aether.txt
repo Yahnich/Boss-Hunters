@@ -38,7 +38,7 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"6.0 5.0"
+		"AbilityCooldown"				"3.0 2.0"
 	
 		"precache"
 		{
@@ -55,17 +55,17 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"magic_damage"			"150 250"
+				"magic_damage"			"100 150"
 			}
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"orb_radius"			"200"
+				"orb_radius"			"150"
 			}
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"orb_speed"				"400"
+				"orb_speed"				"300"
 			}
 		}
 	}

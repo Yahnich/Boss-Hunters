@@ -112,3 +112,7 @@ end
 function modifier_item_warp_staff_handler:IsHidden()
 	return true
 end
+
+function modifier_item_warp_staff_handler:GetAttributes()
+	return MODIFIER_ATTRIBUTE_MULTIPLE
+end

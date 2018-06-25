@@ -38,6 +38,10 @@ function modifier_item_focused_lens_passive:IsHidden()
 	return true
 end
 
+function modifier_item_focused_lens_passive:GetAttributes()
+	return MODIFIER_ATTRIBUTE_MULTIPLE
+end
+
 LinkLuaModifier( "modifier_item_focused_lens_active", "items/item_focused_lens.lua" ,LUA_MODIFIER_MOTION_NONE )
 modifier_item_focused_lens_active = class({})
 

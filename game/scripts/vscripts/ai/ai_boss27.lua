@@ -157,8 +157,8 @@ if IsServer() then
 				AICore:AttackHighestPriority( thisEntity )
 				return AI_THINK_RATE
 			else
-				if thisEntity:GetTotalBearCount() == 0 then
-					if thisEntity.bigbear:IsFullyCastable() then
+				if thisEntity:GetTotalBearCount() == 0 and thisEntity:GetTotalBearCount() < 9 then
+					if thisEntity.bigbear:IsFullyCastable() and thisEntity:GetBigBearCount() <= 3 then
 						ExecuteOrderFromTable({
 							UnitIndex = thisEntity:entindex(),
 							OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
@@ -166,7 +166,7 @@ if IsServer() then
 						})
 						return AI_THINK_RATE
 					end
-					if thisEntity.smallbear:IsFullyCastable() then
+					if thisEntity.smallbear:IsFullyCastable() and thisEntity:GetSmallBearCount() <= 6 then
 						ExecuteOrderFromTable({
 							UnitIndex = thisEntity:entindex(),
 							OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,

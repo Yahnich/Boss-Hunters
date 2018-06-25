@@ -73,6 +73,10 @@ function modifier_item_iron_rose_passive:IsHidden()
 	return true
 end
 
+function modifier_item_iron_rose_passive:GetAttributes()
+	return MODIFIER_ATTRIBUTE_MULTIPLE
+end
+
 modifier_item_iron_rose_aura = class({})
 function modifier_item_iron_rose_aura:OnCreated(table)
 	self.reflect = self:GetSpecialValueFor("reflect")

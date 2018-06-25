@@ -46,3 +46,7 @@ end
 function modifier_item_archmages_orb_passive:IsHidden()
 	return true
 end
+
+function modifier_item_archmages_orb_passive:GetAttributes()
+	return MODIFIER_ATTRIBUTE_MULTIPLE
+end

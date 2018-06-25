@@ -82,6 +82,10 @@ function modifier_item_war_drum_passive:IsHidden()
 	return true
 end
 
+function modifier_item_war_drum_passive:GetAttributes()
+	return MODIFIER_ATTRIBUTE_MULTIPLE
+end
+
 modifier_item_war_drum_passive_aura = class({})
 function modifier_item_war_drum_passive_aura:GetTextureName()
 	return "ancient_janggo"

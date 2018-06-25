@@ -41,3 +41,7 @@ end
 function modifier_item_mirrors_edge:IsHidden()
 	return true
 end
+
+function modifier_item_mirrors_edge:GetAttributes()
+	return MODIFIER_ATTRIBUTE_MULTIPLE
+end

@@ -37,3 +37,7 @@ end
 function modifier_item_ringing_rapier:IsHidden()
 	return true
 end
+
+function modifier_item_ringing_rapier:GetAttributes()
+	return MODIFIER_ATTRIBUTE_MULTIPLE
+end

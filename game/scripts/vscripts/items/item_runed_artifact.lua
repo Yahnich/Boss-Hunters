@@ -22,3 +22,7 @@ end
 function modifier_item_runed_artifact_passive:IsHidden()
 	return true
 end
+
+function modifier_item_runed_artifact_passive:GetAttributes()
+	return MODIFIER_ATTRIBUTE_MULTIPLE
+end

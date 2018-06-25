@@ -28,6 +28,10 @@ function modifier_item_thanatos:IsHidden()
 	return true
 end
 
+function modifier_item_thanatos:GetAttributes()
+	return MODIFIER_ATTRIBUTE_MULTIPLE
+end
+
 LinkLuaModifier( "modifier_thanatos_debuff", "items/item_thanatos.lua" ,LUA_MODIFIER_MOTION_NONE )
 modifier_thanatos_debuff = class({})
 

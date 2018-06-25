@@ -119,52 +119,54 @@ end
 function RoundManager:ConstructRaids(zoneName)
 	self.zones[zoneName] = {}
 	
-	local bossPool = {}
-	local eventPool = {}
-	local combatPool = {}
+	local zoneEventPool = {}
+	local zoneCombatPool = MergeTables(self.combatPool[zoneName], self.combatPool["Generic"])
+	local zoneBossPool = {}
 	
 	self.eventsCreated = self.eventsCreated or 0
 	
 	for event, weight in pairs( MergeTables(self.bossPool[zoneName], self.bossPool["Generic"]) ) do
 		for i = 1, weight do
-			table.insert(bossPool, event)
+			table.insert(zoneBossPool, event)
 		end
 	end
 	
 	for event, weight in pairs( MergeTables(self.eventPool[zoneName], self.eventPool["Generic"]) ) do
 		for i = 1, weight do
-			table.insert(eventPool, event)
-		end
-	end
-	
-	for event, weight in pairs( MergeTables(self.combatPool[zoneName], self.combatPool["Generic"]) ) do
-		for i = 1, weight do
-			table.insert(combatPool, event)
+			table.insert(zoneEventPool, event)
 		end
 	end
 	for j = 1, RAIDS_PER_ZONE do
 		local raid = {}
+		local raidCombatPool = {}
 		local raidContent
+		for event, weight in pairs( zoneCombatPool ) do
+			for i = 1, weight do
+				table.insert(raidCombatPool, event)
+			end
+		end
 		for i = 1, EVENTS_PER_RAID do
-			if RollPercentage(COMBAT_CHANCE) or not eventPool[1] then -- Rolled Combat
+			if RollPercentage(COMBAT_CHANCE) or not zoneEventPool[1] then -- Rolled Combat
 				local combatType = EVENT_TYPE_COMBAT
 				if RollPercentage(ELITE_CHANCE) and self.eventsCreated > 3 then
 					combatType = EVENT_TYPE_ELITE
 				end
-				raidContent = BaseEvent(zoneName, combatType, combatPool[RandomInt(1, #combatPool)] )
+				local combatPick = RandomInt(1, #raidCombatPool)
+				raidContent = BaseEvent(zoneName, combatType, raidCombatPool[combatPick] )
+				table.remove( raidCombatPool, combatPick )
 			else -- Event
-				local eventPick = RandomInt(1, #eventPool)
-				raidContent = BaseEvent(zoneName, EVENT_TYPE_EVENT, eventPool[RandomInt(1, #eventPool)] )
-				table.remove( eventPool, eventPick )
+				local eventPick = RandomInt(1, #zoneEventPool)
+				raidContent = BaseEvent(zoneName, EVENT_TYPE_EVENT, zoneEventPool[eventPick] )
+				table.remove( zoneEventPool, eventPick )
 			end
 			table.insert( raid, raidContent )
 			self.eventsCreated = self.eventsCreated + 1
 		end
-		local bossRoll = RandomInt(1, #bossPool)
-		local bossPick = bossPool[bossRoll]
+		local bossRoll = RandomInt(1, #zoneBossPool)
+		local bossPick = zoneBossPool[bossRoll]
 		RoundManager:RemoveEventFromPool(bossPick, "boss")
-		table.remove(bossPool, bossRoll)
-		table.insert( raid, BaseEvent(zoneName, EVENT_TYPE_BOSS, "grove_boss_bearmaster" ) )
+		table.remove(zoneBossPool, bossRoll)
+		table.insert( raid, BaseEvent(zoneName, EVENT_TYPE_BOSS, bossPick ) )
 		
 		table.insert( self.zones[zoneName], raid )
 	end
@@ -411,7 +413,7 @@ function RoundManager:InitializeUnit(unit, bElite)
 	
 	local effPlayerHPMult =  1 + ( (RoundManager:GetEventsFinished() * 0.08) + (RoundManager:GetRaidsFinished() * 0.33) + ( RoundManager:GetZonesFinished() * 0.75 )  ) + ( effective_multiplier * playerHPMultiplier )
 	local effPlayerDMGMult = ( 0.8 + (RoundManager:GetEventsFinished() * 0.04) + (RoundManager:GetRaidsFinished() * 0.40) + ( RoundManager:GetZonesFinished() * 0.5 ) ) + effective_multiplier * playerDMGMultiplier
-	print(effPlayerHPMult, "HP MULTIPLIER BECAUSE OF:", (RoundManager:GetEventsFinished() * 0.08), (RoundManager:GetRaidsFinished() * 0.33), ( RoundManager:GetZonesFinished() * 0.75 ), ( effective_multiplier * playerHPMultiplier ) )
+	
 	if bElite then
 		effPlayerHPMult = effPlayerHPMult * 1.35
 		effPlayerDMGMult = effPlayerDMGMult * 1.2

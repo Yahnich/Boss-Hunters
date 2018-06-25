@@ -60,3 +60,7 @@ end
 function modifier_item_illusionists_charm:IsHidden()
 	return true
 end
+
+function modifier_item_illusionists_charm:GetAttributes()
+	return MODIFIER_ATTRIBUTE_MULTIPLE
+end

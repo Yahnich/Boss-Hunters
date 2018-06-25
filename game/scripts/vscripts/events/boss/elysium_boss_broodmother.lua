@@ -1,12 +1,22 @@
 local function StartEvent(self)
 	local spawnPos = RoundManager:PickRandomSpawn()
-	self.enemiesToSpawn = 1
+	self.enemiesToSpawn = 1 + math.floor( math.log(RoundManager:GetRaidsFinished() + 1) )
 	self.eventHandler = Timers:CreateTimer(3, function()
 		local spawn = CreateUnitByName("npc_dota_boss37", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
 		spawn.unitIsRoundBoss = true
 		self.enemiesToSpawn = self.enemiesToSpawn - 1
+		
+		spawn.egg = spawn:FindAbilityByName("boss_broodmother_egg_sack")
+		spawn.egg:SetLevel( math.min( math.floor( GameRules:GetGameDifficulty() / 2) + math.floor(RoundManager:GetRaidsFinished() / 2), 6 ) )
+		spawn.egg:StartCooldown(6)
+		
+		spawn.web = spawn:FindAbilityByName("boss_broodmother_fates_web")
+		spawn.web:SetLevel( math.min( math.floor( GameRules:GetGameDifficulty() / 2) + math.floor(RoundManager:GetRaidsFinished() / 2), 6 ) )
+		
+		spawn.infest = spawn:FindAbilityByName("boss_broodmother_infest")
+		spawn.infest:SetLevel( math.min( math.floor( GameRules:GetGameDifficulty() / 2) + math.floor(RoundManager:GetRaidsFinished() / 2), 6 ) )
 		if self.enemiesToSpawn > 0 then
-			return 10
+			return 25
 		end
 	end)
 	

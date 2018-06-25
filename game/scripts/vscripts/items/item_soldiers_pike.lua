@@ -32,7 +32,10 @@ function modifier_item_soldiers_pike:GetModifierAttackRangeBonus()
 	end
 end
 
-
 function modifier_item_soldiers_pike:IsHidden()
 	return true
+end
+
+function modifier_item_soldiers_pike:GetAttributes()
+	return MODIFIER_ATTRIBUTE_MULTIPLE
 end

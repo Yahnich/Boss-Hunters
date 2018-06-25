@@ -8,6 +8,11 @@ local function StartEvent(self)
 			enemyName = "npc_dota_boss19"
 		end
 		local spawn = CreateUnitByName(enemyName, RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
+		
+		if enemyName == "npc_dota_boss19" or enemyName == "npc_dota_boss18" then
+			spawn.armor = spawn:FindAbilityByName("boss_living_armor")
+			if spawn.armor then spawn.armor:SetLevel( math.max(5, RoundManager:GetRaidsFinished() ) ) end
+		end
 		spawn.unitIsRoundBoss = true
 		
 		self.enemiesToSpawn = self.enemiesToSpawn - 1

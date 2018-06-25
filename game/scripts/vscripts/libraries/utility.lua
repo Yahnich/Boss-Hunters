@@ -1027,7 +1027,7 @@ function CDOTA_BaseNPC:ModifyThreat(val)
 	end
 	self.threat = math.min(math.max(0, (self.threat or 0) + newVal ), 10000)
 	if not self:IsFakeHero() then 
-		local player = PlayerResource:GetPlayer(self:GetOwner():GetPlayerID())
+		local player = PlayerResource:GetPlayer( self:GetOwner():GetPlayerID() )
 
 		PlayerResource:SortThreat()
 		local event_data =

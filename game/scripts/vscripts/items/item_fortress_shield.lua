@@ -30,3 +30,7 @@ end
 function modifier_item_fortress_shield:IsHidden()
 	return true
 end
+
+function modifier_item_fortress_shield:GetAttributes()
+	return MODIFIER_ATTRIBUTE_MULTIPLE
+end

@@ -137,3 +137,7 @@ end
 function modifier_item_emission_passive:IsHidden()
 	return true
 end
+
+function modifier_item_emission_passive:GetAttributes()
+	return MODIFIER_ATTRIBUTE_MULTIPLE
+end

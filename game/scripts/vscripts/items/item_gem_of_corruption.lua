@@ -23,7 +23,6 @@ function modifier_item_gem_of_corruption:GetModifierPreAttack_BonusDamage()
 	return self.bonus_damage
 end
 
-
 function modifier_item_gem_of_corruption:OnAttackLanded(params)
 	if IsServer() then
 		if params.attacker == self:GetParent() then

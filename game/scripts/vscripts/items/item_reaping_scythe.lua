@@ -35,6 +35,10 @@ function modifier_item_reaping_scythe:IsHidden()
 	return true
 end
 
+function modifier_item_reaping_scythe:GetAttributes()
+	return MODIFIER_ATTRIBUTE_MULTIPLE
+end
+
 LinkLuaModifier( "modifier_reaping_scythe_debuff", "items/item_reaping_scythe.lua" ,LUA_MODIFIER_MOTION_NONE )
 modifier_reaping_scythe_debuff = class({})
 

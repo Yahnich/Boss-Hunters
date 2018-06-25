@@ -40,6 +40,10 @@ function modifier_item_leechblade_stats:IsHidden()
 	return true
 end
 
+function modifier_item_leechblade_stats:GetAttributes()
+	return MODIFIER_ATTRIBUTE_MULTIPLE
+end
+
 modifier_item_leechblade_active = class({})
 LinkLuaModifier( "modifier_item_leechblade_active", "items/item_leechblade.lua" ,LUA_MODIFIER_MOTION_NONE )
 

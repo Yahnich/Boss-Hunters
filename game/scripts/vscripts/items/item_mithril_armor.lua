@@ -22,3 +22,7 @@ end
 function modifier_item_mithril_armor_passive:IsHidden()
 	return true
 end
+
+function modifier_item_mithril_armor_passive:GetAttributes()
+	return MODIFIER_ATTRIBUTE_MULTIPLE
+end

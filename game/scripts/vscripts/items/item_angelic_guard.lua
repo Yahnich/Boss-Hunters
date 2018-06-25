@@ -44,3 +44,7 @@ end
 function modifier_item_angelic_guard:IsHidden()
 	return true
 end
+
+function modifier_item_angelic_guard:GetAttributes()
+	return MODIFIER_ATTRIBUTE_MULTIPLE
+end

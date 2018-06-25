@@ -87,3 +87,7 @@ end
 function modifier_item_berserkers_cape:IsHidden()
 	return true
 end
+
+function modifier_item_berserkers_cape:GetAttributes()
+	return MODIFIER_ATTRIBUTE_MULTIPLE
+end

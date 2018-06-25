@@ -801,6 +801,7 @@
 		"AbilityCastRange"				"0"
 		"AbilityCastPoint"				"0.5 0.5 0.5 0.5"
 		"FightRecapLevel"				"1"
+		"MaxLevel"						"5"
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -815,7 +816,7 @@
 			"01"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"damage_count"		"3"
+				"damage_count"		"1 2 3 4 5"
 			}
 			"02"
 			{
@@ -830,7 +831,7 @@
 			"04"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"duration"			"15.0"
+				"duration"			"10.0"
 			}
 	
 		}

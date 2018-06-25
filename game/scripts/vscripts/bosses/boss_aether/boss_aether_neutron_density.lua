@@ -12,16 +12,19 @@ function boss_aether_neutron_density:LaunchOrb(position)
 	local velocity = CalculateDirection( position, caster ) * speed
 	local distance = CalculateDistance(position, caster )
 	ParticleManager:FireWarningParticle(position, radius)
-	self:FireLinearProjectile("particles/units/heroes/hero_puck/puck_illusory_orb.vpcf", velocity, distance, 0)
+	self:FireLinearProjectile("particles/units/heroes/hero_puck/puck_illusory_orb.vpcf", velocity, distance, radius)
 end
 
 function boss_aether_neutron_density:OnProjectileHit(target, position)
-	if not target then
+	local radius = self:GetTalentSpecialValueFor("orb_radius")
+	local damage = self:GetTalentSpecialValueFor("magic_damage")
+	local stun = self:GetTalentSpecialValueFor("stun_duration")
+	if target then
+		self:DealDamage(caster, target, damage)
+	elseif not target then
 		local caster = self:GetCaster()
 		
-		local radius = self:GetTalentSpecialValueFor("orb_radius")
-		local damage = self:GetTalentSpecialValueFor("magic_damage")
-		local stun = self:GetTalentSpecialValueFor("stun_duration")
+		
 		local enemies = caster:FindEnemyUnitsInRadius(position, radius)
 		for _, enemy in ipairs( enemies ) do
 			self:DealDamage(caster, enemy, damage)
