@@ -1057,18 +1057,24 @@
 		"AttackRate"					"2.1"
 		
 	}
-	"npc_dota_hero_ogre_magi"
+		"npc_dota_hero_ogre_magi"
 	{
-		"override_hero"					"npc_dota_hero_ogre_magi"
-		
-		"Ability10"						"special_bonus_cooldown_reduction_12"
-		"Ability11"						"special_bonus_cast_range_100"
-		"Ability12"						"special_bonus_attack_damage_90"
-		"Ability13"						"special_bonus_hp_300"
-		"Ability14"						"special_bonus_strength_30"
-		"Ability15"						"special_bonus_unique_ogre_magi"
-		"Ability16"						"special_bonus_movement_speed_90"
-		"Ability17"						"special_bonus_unique_ogre_magi_2"
+		"override_hero"			"npc_dota_hero_ogre_magi"
+		"Ability1"				"ogre_magi_fireblast_bh"
+		"Ability2"				"ogre_magi_ignite_bh"
+		"Ability3"				"ogre_magi_bloodlust_bh"
+		"Ability4"				"ogre_magi_multicast_bh"
+		"Ability5"				"ogre_magi_unrefined_fireblast_bh"
+		"Ability6"				"ogre_magi_immolate"					// Ability 2
+
+		"Ability10"		"special_bonus_unique_ogre_magi_fireblast_bh_1"
+		"Ability11"		"special_bonus_unique_ogre_magi_fireblast_bh_2"
+		"Ability12"		"special_bonus_unique_ogre_magi_ignite_bh_1"
+		"Ability13"		"special_bonus_unique_ogre_magi_ignite_bh_2"
+		"Ability14"		"special_bonus_unique_ogre_magi_bloodlust_bh_1"
+		"Ability15"		"special_bonus_unique_ogre_magi_bloodlust_bh_2"
+		"Ability16"		"special_bonus_unique_ogre_magi_immolate_1"
+		"Ability17"		"special_bonus_unique_ogre_magi_immolate_2"
 	}
 	"npc_dota_hero_omniknight" // Justicar
 	{

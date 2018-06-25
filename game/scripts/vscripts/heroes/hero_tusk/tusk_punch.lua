@@ -37,7 +37,7 @@ function modifier_tusk_punch:OnIntervalThink()
         local caster = self:GetCaster()
         local ability = self:GetAbility()
         if ability:GetAutoCastState() then
-            if caster:IsAlive() and ability:IsCooldownReady() and caster:GetMana() >= ability:GetManaCost(ability:GetLevel()) then
+            if caster:IsAlive() and ability:IsCooldownReady() and caster:GetMana() >= ability:GetManaCost(ability:GetLevel()) and caster:IsHero() then
                 self:GetAbility().cd = true
                 caster:AddNewModifier(caster, self:GetAbility(), "modifier_tusk_punch_crit", {})
             end
@@ -55,7 +55,7 @@ end
 function modifier_tusk_punch:OnAttackRecord(params)
     if IsServer() then
         if self:GetCaster():HasTalent("special_bonus_unique_tusk_punch_1") then
-            if RollPercentage(self:GetCaster():FindTalentValue("special_bonus_unique_tusk_punch_1")) and params.attacker == self:GetParent() then
+            if RollPercentage(self:GetCaster():FindTalentValue("special_bonus_unique_tusk_punch_1")) and params.attacker == self:GetParent() and caster:IsHero() then
                 self:GetAbility().cd = false
 				EmitSoundOn("Hero_Tusk.WalrusPunch.Cast", self:GetParent())
 				self:GetParent():StartGestureWithPlaybackRate(ACT_DOTA_CAST_ABILITY_4, self:GetParent():GetIncreasedAttackSpeed() )
