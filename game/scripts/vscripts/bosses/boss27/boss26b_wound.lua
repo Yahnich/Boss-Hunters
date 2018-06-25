@@ -9,12 +9,12 @@ LinkLuaModifier("modifier_boss26b_wound_passive", "bosses/boss27/boss26b_wound.l
 
 function modifier_boss26b_wound_passive:OnCreated()
 	self.duration = self:GetSpecialValueFor("duration")
-	self.stack_damage = self:GetSpecialValueFor("stack_damage")
+	self.stack_damage = self:GetSpecialValueFor("stack_damage") / 100
 end
 
 function modifier_boss26b_wound_passive:OnRefresh()
 	self.duration = self:GetSpecialValueFor("duration")
-	self.stack_damage = self:GetSpecialValueFor("stack_damage")
+	self.stack_damage = self:GetSpecialValueFor("stack_damage") / 100
 end
 
 function modifier_boss26b_wound_passive:DeclareFunctions()
@@ -24,12 +24,9 @@ end
 function modifier_boss26b_wound_passive:OnAttackLanded(params)
 	if self:GetParent() == params.attacker then
 		params.target:AddNewModifier(self:GetParent(), self:GetAbility(), "modifier_boss26b_wound_stack", {duration = self.duration})
-		self:GetAbility():DealDamage(params.attacker, params.target, self.stack_damage * params.target:FindModifierByName("modifier_boss26b_wound_stack"):GetStackCount())
+		self:GetAbility():DealDamage(params.attacker, params.target, params.attacker:GetAttackDamage() * self.stack_damage * params.target:FindModifierByName("modifier_boss26b_wound_stack"):GetStackCount(), {damage_type = DAMAGE_TYPE_PHYSICAL, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION} )
 	end
 end
-
-
-
 
 modifier_boss26b_wound_stack = class({})
 LinkLuaModifier("modifier_boss26b_wound_stack", "bosses/boss27/boss26b_wound.lua", 0)

@@ -5,6 +5,7 @@ local function OnEntityKilled(self, event)
 		Timers:CreateTimer(3, function()
 			if self.eventEnded then return end
 			for _, unit in ipairs( FindAllUnits({team = DOTA_UNIT_TARGET_TEAM_ENEMY}) ) do
+				print( unit:IsRoundBoss() and unit:IsAlive(), unit:GetName() )
 				if unit:IsRoundBoss() and unit:IsAlive() then
 					return
 				end

@@ -45,7 +45,6 @@ function AIThink(thisEntity)
 				UnitIndex = thisEntity:entindex(),
 				OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
 				TargetIndex = target:entindex(),
-				AbilityIndex = thisEntity.ankle:entindex()
 			})
 		end
 		return 0.25

@@ -54,9 +54,6 @@
 		"AbilityTextureName"			"ursa_fury_swipes"
 		"MaxLevel"						"2"
 		
-		"AbilityCooldown"				"10"
-		"AbilityCastPoint"				"0.75 0.5"
-		
 		"precache"
 		{
 			"particle"					"particles/units/heroes/hero_bounty_hunter/bounty_hunter_track_scroll_blood.vpcf"
@@ -69,7 +66,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"stack_damage"			"100 150"
+				"stack_damage"			"8 12"
 			}
 			"02"
 			{

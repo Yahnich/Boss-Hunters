@@ -65,6 +65,7 @@ LinkLuaModifier( "modifier_power_scaling", "libraries/modifiers/modifier_power_s
 
 -- Precache resources
 function Precache( context )
+	print("precaching shit")
 	PrecacheResource( "particle", "particles/range_ability_line.vpcf", context )
 	PrecacheResource( "particle", "particles/items3_fx/lotus_orb_shield.vpcf", context )
 	PrecacheResource( "particle", "particles/generic_gameplay/generic_stunned.vpcf", context )
@@ -146,6 +147,8 @@ function Precache( context )
 	PrecacheResource("particle", "particles/units/heroes/hero_lone_druid/lone_druid_savage_roar.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_lone_druid/lone_druid_savage_roar_debuff.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_lone_druid_savage_roar.vpcf", context)
+	
+	RoundManager:Initialize(context)
 end
 
 -- Actually make the game mode when we activate
@@ -314,7 +317,6 @@ function CHoldoutGameMode:InitGameMode()
 	
 	StatsScreen:StartStatsScreen()
 	RelicManager:Initialize()
-	RoundManager:Initialize()
 end
 
 function CHoldoutGameMode:FilterModifiers( filterTable )

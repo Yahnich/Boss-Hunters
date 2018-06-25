@@ -37,7 +37,7 @@ function boss_necro_plague_wave:OnProjectileHit( target, position )
 		local caster = self:GetCaster()
 		
 		self:DealDamage( caster, target, math.max( self:GetSpecialValueFor("max_hp_damage") * target:GetHealth() / 100, 100), {damage_type = DAMAGE_TYPE_PURE, damage_flags = DOTA_DAMAGE_FLAG_HPLOSS + DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION} )
-		target:AddNewModifier(caster, self, "modifier_boss_necro_plague_wave", {duration = self:GetSpecialValueFor("duration")})
+		target:DisableHealing( self:GetSpecialValueFor("duration")}) )
 		
 		if target:IsNull() then
 			if target:IsRealHero() then
@@ -48,39 +48,5 @@ function boss_necro_plague_wave:OnProjectileHit( target, position )
 		end
 		return true
 	end
-end
-
-modifier_boss_necro_plague_wave = class({})
-LinkLuaModifier("modifier_boss_necro_plague_wave", "bosses/boss_necro/boss_necro_plague_wave", LUA_MODIFIER_MOTION_NONE)
-
-if IsServer() then
-	function modifier_boss_necro_plague_wave:OnCreated()
-		self.stacks = 1
-		self:SetStackCount( math.min( math.floor(self:GetParent():GetMaxHealth() * self:GetSpecialValueFor("max_hp_damage") / 100 * self.stacks), math.floor(self:GetParent():GetMaxHealth() * 0.9 ) ) ) 
-		self:StartIntervalThink(0.33)
-	end
-	
-	function modifier_boss_necro_plague_wave:OnRefresh()
-		self.stacks = (self.stacks or 0) + 1
-	end
-
-	function modifier_boss_necro_plague_wave:OnIntervalThink()
-		self:SetStackCount( 0 )
-		self:GetParent():CalculateStatBonus()
-
-		self:SetStackCount( math.min( math.floor(self:GetParent():GetMaxHealth() * self:GetSpecialValueFor("max_hp_damage") / 100 * self.stacks), math.floor(self:GetParent():GetMaxHealth() * 0.9 ) ) ) 
-		self:GetParent():CalculateStatBonus()
-	end
-end
-function modifier_boss_necro_plague_wave:DeclareFunctions()
-	return {MODIFIER_PROPERTY_EXTRA_HEALTH_BONUS}
-end
-
-function modifier_boss_necro_plague_wave:GetModifierExtraHealthBonus()
-	return self:GetStackCount() * (-1)
-end
-
-function modifier_boss_necro_plague_wave:IsHidden()
-	return true
 end
 

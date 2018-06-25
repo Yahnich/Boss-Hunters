@@ -71,7 +71,7 @@ local function EndEvent(self, bWon)
 	Timers:CreateTimer(3, function() RoundManager:EndEvent(true) end)
 end
 
-local function PrecacheUnits(self)
+local function PrecacheUnits(self, context)
 	return true
 end
 

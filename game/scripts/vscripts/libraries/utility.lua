@@ -738,7 +738,11 @@ function CDOTA_BaseNPC:RefreshAllCooldowns(bItems)
 end
 
 function CDOTA_BaseNPC:IsIllusion()
-	return self:HasModifier("modifier_illusion") or self.isCustomIllusion == true
+	local isMainHero = true
+	if self:GetPlayerOwnerID() then
+		isMainHero = PlayerResource:GetSelectedHeroEntity( self:GetPlayerOwnerID() ) == self
+	end
+	return ( self:HasModifier("modifier_illusion") or self.isCustomIllusion == true ) and not isMainHero
 end
 
 
@@ -827,6 +831,13 @@ function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, sp
 			newWearable:SetParent(illusion, nil)
 			newWearable:FollowEntity(illusion, true)
 			newWearable:SetRenderColor(100,100,255)
+			Timers:CreateTimer(1, function()
+				if illusion and not illusion:IsNull() and illusion:IsAlive() then
+					return 0.25
+				else
+					UTIL_Remove( newWearable )
+				end
+			end)
 		end
 	end
 	

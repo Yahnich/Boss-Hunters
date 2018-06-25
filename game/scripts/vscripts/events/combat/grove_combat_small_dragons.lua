@@ -11,7 +11,7 @@ local function StartEvent(self)
 		
 		self.enemiesToSpawn = self.enemiesToSpawn - 1
 		if self.enemiesToSpawn > 0 then
-			return 12
+			return 5
 		end
 	end)
 	
@@ -27,9 +27,11 @@ local function EndEvent(self, bWon)
 	RoundManager:EndEvent(bWon)
 end
 
-local function PrecacheUnits(self)
-	PrecacheUnitByNameAsync("npc_dota_boss23_m", function() end)
-	Timers:CreateTimer(1, function() PrecacheUnitByNameAsync("npc_dota_boss18", function() end) end)
+local function PrecacheUnits(self, context)
+	PrecacheUnitByNameSync("npc_dota_boss23_m", context)
+	PrecacheUnitByNameSync("npc_dota_boss18", context)
+	PrecacheUnitByNameSync("npc_dota_mini_tree", context)
+	PrecacheUnitByNameSync("npc_dota_mini_tree2", context)
 	return true
 end
 

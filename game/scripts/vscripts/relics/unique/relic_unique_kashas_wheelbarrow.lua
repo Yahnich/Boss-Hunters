@@ -14,6 +14,12 @@ function relic_unique_kashas_wheelbarrow:OnEventFinished(args)
 	end
 end
 
+function relic_unique_kashas_wheelbarrow:OnDestroy()
+	if IsServer() then
+		EventManager:UnsubscribeListener("boss_hunters_event_finished", self.funcID)
+	end
+end
+
 
 function relic_unique_kashas_wheelbarrow:DeclareFunctions()	
 	return {MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT, MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE}

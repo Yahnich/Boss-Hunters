@@ -12,7 +12,7 @@ end
 
 require("events/base_event")
 
-EVENTS_PER_RAID = 3
+EVENTS_PER_RAID = 4
 RAIDS_PER_ZONE = 4
 ZONE_COUNT = 2
 
@@ -26,7 +26,7 @@ PREP_TIME = 15
 
 ELITE_ABILITIES_TO_GIVE = 1
 
-function RoundManager:Initialize()
+function RoundManager:Initialize(context)
 	RoundManager = self
 	self.bossPool = LoadKeyValues('scripts/kv/boss_pool.txt')
 	self.eventPool = LoadKeyValues('scripts/kv/event_pool.txt')
@@ -47,13 +47,10 @@ function RoundManager:Initialize()
 	
 	self.eventsCreated = nil
 	
-	self.spawnPositions = {}
-	for _,spawnPos in ipairs(Entities:FindAllByName("boss_spawner")) do
-		table.insert( self.spawnPositions, spawnPos:GetAbsOrigin() )
-	end
-	
 	ListenToGameEvent( "npc_spawned", Dynamic_Wrap( RoundManager, "OnNPCSpawned" ), self )
 	ListenToGameEvent( "dota_holdout_revive_complete", Dynamic_Wrap( RoundManager, 'OnHoldoutReviveComplete' ), self )
+	
+	self:PrecacheRounds(context)
 end
 
 function RoundManager:OnNPCSpawned(event)
@@ -157,7 +154,7 @@ function RoundManager:ConstructRaids(zoneName)
 				raidContent = BaseEvent(zoneName, combatType, combatPool[RandomInt(1, #combatPool)] )
 			else -- Event
 				local eventPick = RandomInt(1, #eventPool)
-				raidContent = BaseEvent(zoneName, EVENT_TYPE_EVENT, eventPool[eventPick] )
+				raidContent = BaseEvent(zoneName, EVENT_TYPE_EVENT, eventPool[RandomInt(1, #eventPool)] )
 				table.remove( eventPool, eventPick )
 			end
 			table.insert( raid, raidContent )
@@ -167,7 +164,7 @@ function RoundManager:ConstructRaids(zoneName)
 		local bossPick = bossPool[bossRoll]
 		RoundManager:RemoveEventFromPool(bossPick, "boss")
 		table.remove(bossPool, bossRoll)
-		table.insert( raid, BaseEvent(zoneName, EVENT_TYPE_BOSS, bossPick ) )
+		table.insert( raid, BaseEvent(zoneName, EVENT_TYPE_BOSS, "grove_boss_bearmaster" ) )
 		
 		table.insert( self.zones[zoneName], raid )
 	end
@@ -185,6 +182,12 @@ end
 
 function RoundManager:StartGame()
 	local selection = {}
+	
+	self.spawnPositions = {}
+	for _,spawnPos in ipairs(Entities:FindAllByName("boss_spawner")) do
+		table.insert( self.spawnPositions, spawnPos:GetAbsOrigin() )
+	end
+	
 	for zoneName, _ in pairs( self.zones ) do
 		table.insert(selection, zoneName)
 	end
@@ -195,12 +198,9 @@ end
 
 function RoundManager:StartPrepTime(fPrep)
 	if self.zones[self.currentZone] and self.zones[self.currentZone][1] and not self.prepTimeTimer then
-		local event = self.zones[self.currentZone][1][1]
+		local event = RoundManager:GetCurrentEvent()
 		for _, hero in ipairs( HeroList:GetRealHeroes() ) do
 			PlayerResource:SetCustomBuybackCost(hero:GetPlayerID(), 100 + self.eventsFinished * 25)
-		end
-		if event and not event.precacheComplete then
-			event.precacheComplete = event:PrecacheUnits()
 		end
 		
 		local timer = fPrep or PREP_TIME
@@ -264,7 +264,7 @@ function RoundManager:StartEvent()
 		event:StartEvent()
 		return true
 	else
-		RoundManager:GameIsFinished()
+		RoundManager:GameIsFinished(true)
 		return false
 	end
 end
@@ -281,7 +281,6 @@ function RoundManager:EndEvent(bWonRound)
 			EventManager:FireEvent("boss_hunters_event_finished", {eventType = event:GetEventType()})
 			event:HandoutRewards(true)
 			self.zones[self.currentZone][1][1] = false
-			UTIL_Remove( event )
 			table.remove( self.zones[self.currentZone][1], 1 )
 			
 			self.eventsFinished = self.eventsFinished + 1
@@ -297,14 +296,15 @@ function RoundManager:EndEvent(bWonRound)
 	local clearPeriod = 3
 	Timers:CreateTimer(function()
 		for _, unit in ipairs( FindAllUnits({team = DOTA_UNIT_TARGET_TEAM_ENEMY, flags = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_DEAD + DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD}) ) do
-			if unit:IsCreature() then
-				unit:ForceKill(false)
-				UTIL_Remove(unit)
+			if unit:IsCreature() and not unit:IsNull() then 
+				if unit:IsAlive() then
+					unit:ForceKill(false)
+				end
 			end
 		end
-		clearPeriod = clearPeriod - 0.1
+		clearPeriod = clearPeriod - 0.25
 		if clearPeriod > 0 then
-			return 0.1
+			return 0.25
 		end
 	end)
 	local fTime = PREP_TIME
@@ -313,7 +313,7 @@ function RoundManager:EndEvent(bWonRound)
 	end
 	CustomGameEventManager:Send_ServerToAllClients( "updateQuestLife", { lives = GameRules._lives, maxLives = GameRules._maxLives } )
 	if GameRules._lives == 0 then
-		return RoundManager:GameIsFinished()
+		return RoundManager:GameIsFinished(false)
 	end
 	self:StartPrepTime(fTime)
 end
@@ -334,21 +334,19 @@ function RoundManager:ZoneIsFinished()
 		table.insert(selection, zoneName)
 	end
 	self.currentZone = selection[RandomInt(1, #selection)]
-	EventManager:FireEvent("boss_hunters_game_finished")
+	EventManager:FireEvent("boss_hunters_zone_finished")
 	self.zonesFinished = (self.zonesFinished or 0) + 1
 	if self.currentZone == nil then
-		RoundManager:GameIsFinished()
+		RoundManager:GameIsFinished(true)
 	end
 end
 
 function RoundManager:GameIsFinished(bWon)
-	EventManager:FireEvent("boss_hunters_event_finished")
+	EventManager:FireEvent("boss_hunters_game_finished")
 	if bWon then
-		GameRules:SetCustomVictoryMessage ("Congratulations!")
 		GameRules:SetGameWinner(DOTA_TEAM_GOODGUYS)
 		GameRules.Winner = DOTA_TEAM_GOODGUYS
 	else
-		GameRules:SetCustomVictoryMessage ("Congratulations!")
 		GameRules:SetGameWinner(DOTA_TEAM_BADGUYS)
 		GameRules.Winner = DOTA_TEAM_BADGUYS
 	end
@@ -373,14 +371,17 @@ function RoundManager:EvaluateLoss()
 end
 
 function RoundManager:GetEventsFinished()
+	self.eventsFinished = self.eventsFinished or 0
 	return self.eventsFinished or 0
 end
 
 function RoundManager:GetRaidsFinished()
+	self.raidsFinished = self.raidsFinished or 0
 	return self.raidsFinished or 0
 end
 
 function RoundManager:GetZonesFinished()
+	self.zonesFinished = self.zonesFinished or 0
 	return self.zonesFinished or 0
 end
 
@@ -398,7 +399,7 @@ end
 
 function RoundManager:InitializeUnit(unit, bElite)
 	unit.hasBeenInitialized = true
-	local expectedHP = unit:GetBaseMaxHealth() * RandomFloat(0.9, 1.15)
+	local expectedHP = unit:GetBaseMaxHealth() * RandomFloat(0.9, 1.1)
 	local playerHPMultiplier = 0.35
 	local playerDMGMultiplier = 0.06
 	if GameRules:GetGameDifficulty() == 4 then 
@@ -408,9 +409,9 @@ function RoundManager:InitializeUnit(unit, bElite)
 	end
 	local effective_multiplier = (HeroList:GetActiveHeroCount() - 1) 
 	
-	local effPlayerHPMult =  1 + ( (RoundManager:GetEventsFinished() * 0.08) + (RoundManager:GetRaidsFinished() * 0.33) ) + ( effective_multiplier * playerHPMultiplier )
-	local effPlayerDMGMult = ( 0.8 + (RoundManager:GetEventsFinished() * 0.04) + (RoundManager:GetRaidsFinished() * 0.40) ) + effective_multiplier * playerDMGMultiplier
-	
+	local effPlayerHPMult =  1 + ( (RoundManager:GetEventsFinished() * 0.08) + (RoundManager:GetRaidsFinished() * 0.33) + ( RoundManager:GetZonesFinished() * 0.75 )  ) + ( effective_multiplier * playerHPMultiplier )
+	local effPlayerDMGMult = ( 0.8 + (RoundManager:GetEventsFinished() * 0.04) + (RoundManager:GetRaidsFinished() * 0.40) + ( RoundManager:GetZonesFinished() * 0.5 ) ) + effective_multiplier * playerDMGMultiplier
+	print(effPlayerHPMult, "HP MULTIPLIER BECAUSE OF:", (RoundManager:GetEventsFinished() * 0.08), (RoundManager:GetRaidsFinished() * 0.33), ( RoundManager:GetZonesFinished() * 0.75 ), ( effective_multiplier * playerHPMultiplier ) )
 	if bElite then
 		effPlayerHPMult = effPlayerHPMult * 1.35
 		effPlayerDMGMult = effPlayerDMGMult * 1.2
@@ -443,14 +444,12 @@ function RoundManager:InitializeUnit(unit, bElite)
 	unit:SetMaxHealth(expectedHP)
 	unit:SetHealth(expectedHP)
 	
-	print( (RoundManager:GetEventsFinished() * 0.08), (RoundManager:GetRaidsFinished() * 0.33), effPlayerHPMult, "hp scaling; expected hp: ", expectedHP)
-	
-	unit:SetAverageBaseDamage(unit:GetAverageBaseDamage() * effPlayerDMGMult * RandomFloat(0.85, 1.15) + self.eventsFinished, 35)
-	unit:SetBaseHealthRegen(self.eventsFinished * RandomFloat(0.85, 1.15) )
-	unit:SetBaseHealthRegen(self.eventsFinished * RandomFloat(0.85, 1.15) )
+	unit:SetAverageBaseDamage(unit:GetAverageBaseDamage() * effPlayerDMGMult * RandomFloat(0.85, 1.15) + RoundManager:GetEventsFinished(), 35)
+	unit:SetBaseHealthRegen(RoundManager:GetEventsFinished() * RandomFloat(0.85, 1.15) )
+	unit:SetBaseHealthRegen(RoundManager:GetEventsFinished() * RandomFloat(0.85, 1.15) )
 	
 	unit:AddNewModifier(unit, nil, "modifier_boss_attackspeed", {})
-	unit:AddNewModifier(unit, nil, "modifier_power_scaling", {}):SetStackCount(self.eventsFinished)
+	unit:AddNewModifier(unit, nil, "modifier_power_scaling", {}):SetStackCount( math.floor( (self:GetEventsFinished() / 3) * (1 + self:GetRaidsFinished() ) * ( RoundManager:GetZonesFinished() * 1.5 ) ))
 	unit:AddNewModifier(unit, nil, "modifier_spawn_immunity", {duration = 4/GameRules.gameDifficulty})
 	
 	if unit:GetHullRadius() >= 16 then
@@ -460,4 +459,14 @@ function RoundManager:InitializeUnit(unit, bElite)
 	unit:SetMaximumGoldBounty(0)
 	unit:SetMinimumGoldBounty(0)
 	unit:SetDeathXP(0)
+end
+
+function RoundManager:PrecacheRounds(context)
+	for zone, raids in pairs( self.zones ) do
+		for _, raid in pairs( raids ) do
+			for _, event in pairs(raid) do
+				event:PrecacheUnits(context)
+			end
+		end
+	end
 end

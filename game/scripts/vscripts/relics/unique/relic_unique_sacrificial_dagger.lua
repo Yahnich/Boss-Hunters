@@ -11,20 +11,14 @@ end
 function relic_unique_sacrificial_dagger:OnDeath(params)
 	if params.unit == self:GetParent() and self:GetStackCount() > 0 then
 		self:DecrementStackCount()
-		for _,unit in pairs ( Entities:FindAllByName( "npc_dota_hero*")) do
-			if not unit:IsAlive() then
-				local origin = unit:GetOrigin()
-				unit:RespawnHero(false, false)
-				unit:SetOrigin(origin)
-			end
-			if unit:IsAlive() then
-				unit:SetHealth( unit:GetMaxHealth() )
-				unit:SetMana( unit:GetMaxMana() )
-			end
-		end
+		GameRules:RefreshPlayers()
 	end
 end
 
 function relic_unique_sacrificial_dagger:IsHidden()
 	return self:GetStackCount() == 0
+end
+
+function relicBaseClass:AllowIllusionDuplicate()
+	return false
 end

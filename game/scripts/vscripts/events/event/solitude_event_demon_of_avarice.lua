@@ -76,8 +76,8 @@ local function EndEvent(self, bWon)
 	Timers:CreateTimer(3, function() RoundManager:EndEvent(true) end)
 end
 
-local function PrecacheUnits(self)
-	PrecacheUnitByNameAsync("npc_dota_money_roshan", function() end)
+local function PrecacheUnits(self, context)
+	PrecacheUnitByNameSync("npc_dota_money_roshan", context)
 	return true
 end
 

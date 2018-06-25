@@ -28,12 +28,13 @@ local function EndEvent(self, bWon)
 	RoundManager:EndEvent(bWon)
 end
 
-local function PrecacheUnits(self)
-	PrecacheUnitByNameAsync("npc_dota_boss24_archer", function() end)
-	Timers:CreateTimer(1, function() PrecacheUnitByNameAsync("npc_dota_boss24_stomper", function() end) end)
-	Timers:CreateTimer(2, function() PrecacheUnitByNameAsync("npc_dota_boss24_m", function() end) end)
+local function PrecacheUnits(self, context)
+	PrecacheUnitByNameSync("npc_dota_boss24_archer", context)
+	PrecacheUnitByNameSync("npc_dota_boss24_stomper", context)
+	PrecacheUnitByNameSync("npc_dota_boss24_m", context)
 	return true
 end
+
 
 local funcs = {
 	["StartEvent"] = StartEvent,

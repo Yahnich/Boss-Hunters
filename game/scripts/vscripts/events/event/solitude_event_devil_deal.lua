@@ -41,7 +41,7 @@ local function ThirdChoice(self, userid, event)
 		end
 	end
 	local relic = relicList[RandomInt(1, #relicList)]
-	RelicManager:RemoveRelicOnPlayer(relic, pID)
+	RelicManager:RemoveRelicOnPlayer(relic, event.pID)
 	
 	local relicTable = {}
 	table.insert(relicTable, RelicManager:RollRandomUniqueRelicForPlayer(event.pID))

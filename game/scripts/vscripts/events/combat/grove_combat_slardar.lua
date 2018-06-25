@@ -24,9 +24,9 @@ local function EndEvent(self, bWon)
 	RoundManager:EndEvent(bWon)
 end
 
-local function PrecacheUnits(self)
-	PrecacheUnitByNameAsync("npc_dota_boss9", function() end)
-	Timers:CreateTimer(1, function() PrecacheUnitByNameAsync("npc_dota_mini_slither", function() end) end)
+local function PrecacheUnits(self, context)
+	PrecacheUnitByNameSync("npc_dota_boss9", context)
+	PrecacheUnitByNameSync("npc_dota_mini_slither", context)
 	return true
 end
 

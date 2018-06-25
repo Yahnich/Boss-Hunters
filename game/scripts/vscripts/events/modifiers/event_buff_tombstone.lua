@@ -20,7 +20,7 @@ end
 
 function event_buff_tombstone:OnDestroy()
 	if IsServer() then
-		EventManager:UnsubscribeListener(self.funcID)
+		EventManager:UnsubscribeListener("boss_hunters_event_finished", self.funcID)
 	end
 end
 

@@ -14,6 +14,12 @@ function relic_generic_stick:OnEventFinished(args)
 	end
 end
 
+function relic_generic_stick:OnDestroy()
+	if IsServer() then
+		EventManager:UnsubscribeListener("boss_hunters_event_finished", self.funcID)
+	end
+end
+
 
 function relic_generic_stick:DeclareFunctions()
 	return {MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE}

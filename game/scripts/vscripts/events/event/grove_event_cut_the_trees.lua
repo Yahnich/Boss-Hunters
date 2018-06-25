@@ -16,7 +16,7 @@ local function CheckPlayerChoices(self)
 			end
 		end
 	end
-	if not self.eventEnded then
+	if not self.eventEnded and not self.combatStarted then
 		if votedYes > votedNo + (players - voted) then -- yes votes exceed non-votes and no votes
 			self:GivePlayerGold()
 			self.treesCut = (self.treesCut or 0) + 1
@@ -158,7 +158,12 @@ local function HandoutRewards(self)
 	end
 end
 
-local function PrecacheUnits(self)
+local function PrecacheUnits(self, context)
+	PrecacheUnitByNameSync("npc_dota_boss28", context)
+	PrecacheUnitByNameSync("npc_dota_boss18", context)
+	PrecacheUnitByNameSync("npc_dota_boss19", context)
+	PrecacheUnitByNameSync("npc_dota_mini_tree", context)
+	PrecacheUnitByNameSync("npc_dota_mini_tree2", context)
 	return true
 end
 
