@@ -100,9 +100,11 @@ function modifier_ogre_magi_multicast_bh:OnAbilityFullyCast(params)
 					if currentCasts < multiCast then
 						local friends = caster:FindFriendlyUnitsInRadius(caster:GetAbsOrigin(), ability:GetTrueCastRange()+caster:GetModelRadius(), {})
 						for _,friend in pairs(friends) do
-							caster:SetCursorCastTarget(friend)
-							ability:Bloodlust()
-							break
+							if not friend:HasModifier("modifier_ogre_magi_bloodlust_bh_buff") then
+								caster:SetCursorCastTarget(friend)
+								ability:Bloodlust()
+								break
+							end
 						end
 						currentCasts = currentCasts + 1
 						return tick_rate
@@ -136,9 +138,11 @@ function modifier_ogre_magi_multicast_bh:OnAbilityFullyCast(params)
 					if currentCasts < multiCast then
 						local friends = caster:FindFriendlyUnitsInRadius(caster:GetAbsOrigin(), ability:GetTrueCastRange()+caster:GetModelRadius(), {})
 						for _,friend in pairs(friends) do
-							caster:SetCursorCastTarget(friend)
-							ability:Immolate()
-							break
+							if not friend:HasModifier("modifier_ogre_magi_immolate_buff") then
+								caster:SetCursorCastTarget(friend)
+								ability:Immolate()
+								break
+							end
 						end
 						currentCasts = currentCasts + 1
 						return tick_rate
