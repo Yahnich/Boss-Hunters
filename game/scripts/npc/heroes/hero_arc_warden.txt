@@ -1,0 +1,493 @@
+"DOTAAbilities"
+{	
+	"arc_warden_flux_bh"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_arc_warden/arc_warden_flux_bh.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"MaxLevel"						"7"
+		"AbilityTextureName"			"arc_warden_flux"
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"500 600 700 800 900 1000 1100"
+		"AbilityCastPoint"				"0.3"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"16"
+		
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"75"
+		
+		"precache"
+		{
+			"particle"                  "particles/units/heroes/hero_arc_warden/arc_warden_flux_cast.vpcf"
+			"particle"  				"particles/units/heroes/hero_arc_warden/arc_warden_flux_tgt.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_arc_warden.vsndevts"
+		}
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"cast_range"					"500 600 700 800 900 1000 1100"
+				"LinkedSpecialBonus"			"special_bonus_unique_arc_warden_flux_bh_1"
+			}
+			"01"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"duration"						"6"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"damage_per_second"				"15 30 45 60 75 90 105"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"think_interval"				"0.5"
+			}
+			"05"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"move_speed_slow_pct"			"-20 -30 -40 -50 -60 -70 -80"
+				"LinkedSpecialBonus"			"special_bonus_unique_arc_warden_flux_bh_2"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_arc_warden_flux_bh_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"400"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_arc_warden_flux_bh_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"value"						"-20"
+			}
+		}
+	}
+
+	"arc_warden_magnetic_field_bh"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_arc_warden/arc_warden_magnetic_field_bh.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"MaxLevel"						"7"
+		"AbilityTextureName"			"arc_warden_magnetic_field"
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"900"
+		"AbilityCastPoint"				"0.3"
+		"AbilityCastAnimation"			"ACT_DOTA_AW_MAGNETIC_FIELD"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"20"
+		
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"50 70 90 110 130 150"
+		
+		"precache"
+		{
+			"particle"                  "particles/units/heroes/hero_arc_warden/arc_warden_magnetic.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_arc_warden.vsndevts"
+		}
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"300"
+				"LinkedSpecialBonus"		"special_bonus_unique_arc_warden_magnetic_field_bh_1"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"3.5 4.5 5.5 6.5 7.5 8.5 9.5"
+				"LinkedSpecialBonus"		"special_bonus_unique_arc_warden_magnetic_field_bh_2"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"attack_speed_bonus"		"50 60 70 80 90 100 110"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"evasion_chance"			"100"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_arc_warden_magnetic_field_bh_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"200"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_arc_warden_magnetic_field_bh_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"value"						"3"
+			}
+		}
+	}
+
+	"arc_warden_spark_wrath_bh"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_arc_warden/arc_warden_spark_wrath_bh.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"MaxLevel"						"7"
+		"AbilityTextureName"			"arc_warden_spark_wraith"
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"2000"
+		"AbilityCastPoint"				"0.3"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_3"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"4"
+		
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"80"
+		
+		"precache"
+		{
+			"particle"                  "particles/units/heroes/hero_arc_warden/arc_warden_wraith.vpcf"
+			"particle"  				"particles/units/heroes/hero_arc_warden/arc_warden_wraith_prj.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_arc_warden.vsndevts"
+		}
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"radius"						"375"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"activation_delay"				"2.0"
+			}			
+			"03"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"duration"						"50"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"speed"							"400"
+			}
+			"05"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"damage"						"100 160 220 280 340 400 460"
+				"LinkedSpecialBonus"			"special_bonus_unique_arc_warden_magnetic_field_bh_1"
+			}
+			"06"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"think_interval"				"0.2"
+			}
+			"07"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"wraith_vision_radius"			"300"
+			}  
+			"08"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"wraith_vision_duration"		"3.34"
+			}
+			"09"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"ministun_duration"				"0.4 0.5 0.6 0.7 0.8 0.9 1"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_arc_warden_spark_wrath_bh_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"350"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_arc_warden_spark_wrath_bh_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"value"						"-1.5"
+			}
+		}
+	}
+
+	"arc_warden_echo_ward"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_arc_warden/arc_warden_echo_ward.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"						"1"
+		"AbilityTextureName"			"arc_warden_tempest_double"
+		"InnateAbility"					"1"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"4"
+		
+		"precache"
+		{
+			"particle"                  "particles/units/heroes/hero_arc_warden/arc_warden_wraith.vpcf"
+			"particle"  				"particles/units/heroes/hero_arc_warden/arc_warden_wraith_prj.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_arc_warden.vsndevts"
+		}
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"delay"					"0.5"
+			}
+		}
+	}
+
+	"arc_warden_primordial_current"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_arc_warden/arc_warden_primordial_current.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"MaxLevel"						"6"
+		"AbilityTextureName"			"custom/arc_warden_primordial_current"
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"500"
+		"AbilityCastPoint"				"0.3"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_3"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityChannelTime"			"2 2.5 3 3.5 4 4.5"
+		"AbilityCooldown"				"60 50 40 30 20 10"
+		
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"140 150 160 170 180 190"
+		
+		"precache"
+		{
+			"particle"                  "particles/units/heroes/hero_arc_warden/arc_warden_primordial_current.vpcf"
+			"particle"  				"particles/status_fx/status_effect_shaman_shackle.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_leshrac.vsndevts"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_razor.vsndevts"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_shadowshaman.vsndevts"
+		}
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"tick_interval"			"0.1"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"channel_time"			"2 2.5 3 3.5 4 4.5"
+				"LinkedSpecialBonus"	"special_bonus_unique_arc_warden_primordial_current_1"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"total_damage"			"500"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_arc_warden_primordial_current_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"value"						"1"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_arc_warden_primordial_current_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"1"
+			}
+		}
+	}
+}

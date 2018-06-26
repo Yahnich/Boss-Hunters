@@ -81,6 +81,7 @@
 #base "heroes/hero_lifestealer.txt"
 #base "heroes/hero_razor.txt"
 #base "heroes/hero_ogre_magi.txt"
+#base "heroes/hero_arc_warden.txt"
 
 "DOTAAbilities"
 {
