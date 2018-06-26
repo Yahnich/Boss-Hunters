@@ -7,7 +7,7 @@ local function StartEvent(self)
 		
 		self.enemiesToSpawn = self.enemiesToSpawn - 1
 		if self.enemiesToSpawn > 0 then
-			return 4
+			return 12 / (RoundManager:GetRaidsFinished() + 1)
 		end
 	end)
 	
@@ -23,8 +23,8 @@ local function EndEvent(self, bWon)
 	RoundManager:EndEvent(bWon)
 end
 
-local function PrecacheUnits(self)
-	PrecacheUnitByNameAsync("npc_dota_boss11", function() end)
+local function PrecacheUnits(self, context)
+	PrecacheUnitByNameSync("npc_dota_boss11", context)
 	return true
 end
 

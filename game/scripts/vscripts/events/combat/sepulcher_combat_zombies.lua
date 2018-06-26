@@ -27,10 +27,10 @@ local function EndEvent(self, bWon)
 	RoundManager:EndEvent(bWon)
 end
 
-local function PrecacheUnits(self)
-	PrecacheUnitByNameAsync("npc_dota_boss3a", function() end)
-	Timers:CreateTimer(1, function() PrecacheUnitByNameAsync("npc_dota_boss3a_b", function() end) end)
-	Timers:CreateTimer(1, function() PrecacheUnitByNameAsync("npc_dota_boss3b", function() end) end)
+local function PrecacheUnits(self, context)
+	PrecacheUnitByNameSync("npc_dota_boss3a", context)
+	PrecacheUnitByNameSync("npc_dota_boss3a_b", context)
+	PrecacheUnitByNameSync("npc_dota_boss3b", context)
 	return true
 end
 

@@ -100,6 +100,10 @@ function modifier_item_wrathbearers_robes_passive:IsHidden()
 	return true
 end
 
+function modifier_item_wrathbearers_robes_passive:GetAttributes()
+	return MODIFIER_ATTRIBUTE_MULTIPLE
+end
+
 modifier_item_wrathbearers_robes_active = class({})
 LinkLuaModifier( "modifier_item_wrathbearers_robes_active", "items/item_wrathbearers_robes.lua" ,LUA_MODIFIER_MOTION_NONE )
 

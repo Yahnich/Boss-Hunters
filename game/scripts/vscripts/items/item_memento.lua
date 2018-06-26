@@ -53,3 +53,7 @@ end
 function modifier_item_memento:IsHidden()
 	return true
 end
+
+function modifier_item_memento:GetAttributes()
+	return MODIFIER_ATTRIBUTE_MULTIPLE
+end

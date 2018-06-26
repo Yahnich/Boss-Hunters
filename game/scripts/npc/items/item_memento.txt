@@ -35,6 +35,7 @@
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_memento"
 		"AbilityTextureName"			"item_rapier"
+		"AbilitySharedCooldown"			"reverb"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"

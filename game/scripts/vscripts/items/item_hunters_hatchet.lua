@@ -28,3 +28,7 @@ end
 function modifier_item_hunters_hatchet_passive:IsHidden()
 	return true
 end
+
+function modifier_item_hunters_hatchet_passive:GetAttributes()
+	return MODIFIER_ATTRIBUTE_MULTIPLE
+end

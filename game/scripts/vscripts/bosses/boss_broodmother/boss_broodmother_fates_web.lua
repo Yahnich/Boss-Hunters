@@ -4,8 +4,11 @@ function boss_broodmother_fates_web:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorPosition()
 	
-	local dummy = CreateUnitByName("npc_dummy_blank", target, false, nil, nil, self:GetTeam())
+	local dummy = CreateUnitByName("npc_dummy_unit", target, false, nil, nil, caster:GetTeam())
 	dummy:AddNewModifier(caster, self, "modifier_boss_broodmother_fates_web_web", {})
+	dummy:SetBaseMaxHealth( self:GetSpecialValueFor("hits_to_kill") )
+	dummy:SetMaxHealth( self:GetSpecialValueFor("hits_to_kill") )
+	dummy:SetHealth( self:GetSpecialValueFor("hits_to_kill") )
 end
 
 
@@ -44,7 +47,8 @@ end
 
 function modifier_boss_broodmother_fates_web_web:CheckState()
 	return {[MODIFIER_STATE_MAGIC_IMMUNE] = true,
-			[MODIFIER_STATE_NO_HEALTH_BAR] = true,}
+			[MODIFIER_STATE_NO_UNIT_COLLISION ] = true,
+			[MODIFIER_STATE_FLYING ] = true,}
 end
 
 function modifier_boss_broodmother_fates_web_web:GetModifierIncomingDamage_Percentage( params )
@@ -53,7 +57,7 @@ function modifier_boss_broodmother_fates_web_web:GetModifierIncomingDamage_Perce
 	if parent:GetHealth() > 1 then
 		parent:SetHealth( math.max(1, parent:GetHealth() - 1) )
 		return -999
-	else
+	elseif parent:IsAlive() then
 		self:ForceKill(false)
 	end
 end

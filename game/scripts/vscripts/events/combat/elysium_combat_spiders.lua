@@ -1,6 +1,6 @@
 local function StartEvent(self)
 	local spawnPos = RoundManager:PickRandomSpawn()
-	self.enemiesToSpawn = RoundManager:GetEventsFinished()
+	self.enemiesToSpawn = ( 1 + RoundManager:GetRaidsFinished() ) * 3
 	self.eventHandler = Timers:CreateTimer(3, function()
 		local bigSpider = CreateUnitByName("npc_dota_creature_broodmother", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
 		bigSpider.unitIsRoundBoss = true
@@ -11,7 +11,7 @@ local function StartEvent(self)
 		end
 		self.enemiesToSpawn = self.enemiesToSpawn - 1
 		if self.enemiesToSpawn > 0 then
-			return 10
+			return 3
 		end
 	end)
 	
@@ -27,9 +27,9 @@ local function EndEvent(self, bWon)
 	RoundManager:EndEvent(bWon)
 end
 
-local function PrecacheUnits(self)
-	PrecacheUnitByNameAsync("npc_dota_creature_broodmother", function() end)
-	Timers:CreateTimer(1, function() PrecacheUnitByNameAsync("npc_dota_creature_spiderling", function() end) end)
+local function PrecacheUnits(self, context)
+	PrecacheUnitByNameSync("npc_dota_creature_broodmother", context)
+	PrecacheUnitByNameSync("npc_dota_creature_spiderling", context)
 	return true
 end
 

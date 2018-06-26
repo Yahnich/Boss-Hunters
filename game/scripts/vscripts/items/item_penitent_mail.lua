@@ -64,6 +64,10 @@ function modifier_item_penitent_mail_passive:IsHidden()
 	return true
 end
 
+function modifier_item_penitent_mail_passive:GetAttributes()
+	return MODIFIER_ATTRIBUTE_MULTIPLE
+end
+
 modifier_item_penitent_mail_active = class({})
 LinkLuaModifier( "modifier_item_penitent_mail_active", "items/item_penitent_mail.lua" ,LUA_MODIFIER_MOTION_NONE )
 

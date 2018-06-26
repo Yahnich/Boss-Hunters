@@ -58,12 +58,21 @@ local function StartCombat(self)
 	self.totemUnit:SetModel("models/props_structures/dire_tower002.vmdl")
 	
 	local activeHeroes = HeroList:GetActiveHeroCount()
-	
+	Timers:CreateTimer(1, function()
+		CustomGameEventManager:Send_ServerToAllClients("updateQuestPrepTime", {prepTime = self.timeRemaining})
+		self.timeRemaining = self.timeRemaining - 1
+		if not self.combatEnded then
+			if self.timeRemaining >= 0 then
+				return 1
+			else
+				self:EndEvent(true)
+			end
+		end
+	end)
 	Timers:CreateTimer(1, function()
 		CustomGameEventManager:Send_ServerToAllClients("updateQuestPrepTime", {prepTime = self.timeRemaining})
 		if not self.combatEnded then
 			if self.timeRemaining >= 0 then
-				self.timeRemaining = self.timeRemaining - 1
 				local spawns = 1 + math.floor( (60 - self.timeRemaining)/15 )
 				for i = 1, spawns do
 					local zombieType = "npc_dota_mini_boss1"
@@ -78,8 +87,6 @@ local function StartCombat(self)
 				end
 				
 				return 5
-			else
-				self:EndEvent(true)
 			end
 		end
 	end)
@@ -166,7 +173,11 @@ local function EndEvent(self, bWon)
 	Timers:CreateTimer(3, function() RoundManager:EndEvent(true) end)
 end
 
-local function PrecacheUnits(self)
+local function PrecacheUnits(self, context)
+	PrecacheUnitByNameSync("npc_dota_event_totem", context)
+	PrecacheModel("models/props_structures/dire_tower002.vmdl", context)
+	PrecacheUnitByNameSync("npc_dota_boss3a_b", context)
+	PrecacheUnitByNameSync("npc_dota_mini_boss1", context)
 	return true
 end
 

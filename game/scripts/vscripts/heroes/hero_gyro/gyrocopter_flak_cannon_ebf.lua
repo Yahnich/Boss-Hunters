@@ -44,6 +44,7 @@ function modifier_gyrocopter_flak_cannon_active:OnAttack(params)
 			elseif self:GetAbility():GetToggleState() then
 				if self:GetParent():GetMana() > self:GetAbility():GetManaCost(-1) then
 					self:GetParent():SpendMana( self:GetAbility():GetManaCost(-1), self:GetAbility() )
+					params.target:AddNewModifier(caster, self:GetAbility(), "modifier_gyrocopter_flak_cannon_shred", {duration = self:GetAbility():GetTalentSpecialValueFor("armor_shred_duration")})
 					local units = self:GetCaster():FindEnemyUnitsInRadius(params.target:GetAbsOrigin(), self:GetAbility():GetTalentSpecialValueFor("radius"), {})
 					for _,unit in pairs(units) do
 						if unit ~= params.target then

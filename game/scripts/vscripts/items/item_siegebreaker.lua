@@ -35,7 +35,10 @@ function modifier_item_siegebreaker:GetModifierAttackRangeBonus()
 	end
 end
 
-
 function modifier_item_siegebreaker:IsHidden()
 	return true
+end
+
+function modifier_item_siegebreaker:GetAttributes()
+	return MODIFIER_ATTRIBUTE_MULTIPLE
 end

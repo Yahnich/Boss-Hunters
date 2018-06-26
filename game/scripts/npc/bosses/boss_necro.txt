@@ -122,7 +122,7 @@
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"bolt_speed"				"600"
+				"bolt_speed"				"300"
 			}
 			"04"
 			{
@@ -137,7 +137,7 @@
 			"06"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"bolt_delay"				"0.15 0.1"
+				"bolt_delay"				"0.18 0.15"
 			}
 		}
 	}
@@ -170,12 +170,12 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"600"
+				"damage"					"400"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"radius"					"250 275"
+				"radius"					"200 225"
 			}
 		}
 	}

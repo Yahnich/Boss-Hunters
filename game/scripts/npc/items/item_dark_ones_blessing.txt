@@ -35,6 +35,7 @@
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_dark_ones_blessing"
 		"AbilityTextureName"			"item_vladmir"
+		"AbilitySharedCooldown"			"invis"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"

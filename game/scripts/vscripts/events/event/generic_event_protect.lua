@@ -33,6 +33,17 @@ local function StartCombat(self)
 		if not self.combatEnded then
 			if self.timeRemaining >= 0 then
 				self.timeRemaining = self.timeRemaining - 1
+				return 1
+			else
+				self:EndEvent(true)
+			end
+		end
+	end)
+	
+	Timers:CreateTimer(1, function()
+		CustomGameEventManager:Send_ServerToAllClients("updateQuestPrepTime", {prepTime = self.timeRemaining})
+		if not self.combatEnded then
+			if self.timeRemaining >= 0 then
 				local spawns = 1 + math.floor( (60 - self.timeRemaining)/15 )
 				for i = 1, spawns do
 					local zombie = CreateUnitByName("npc_dota_mini_boss1", START_VECTOR + ActualRandomVector(1500, 900), true, nil, nil, DOTA_TEAM_BADGUYS)
@@ -124,7 +135,8 @@ local function EndEvent(self, bWon)
 	Timers:CreateTimer(3, function() RoundManager:EndEvent(true) end)
 end
 
-local function PrecacheUnits(self)
+local function PrecacheUnits(self, context)
+	PrecacheUnitByNameSync("npc_dota_mini_boss1", context)
 	return true
 end
 

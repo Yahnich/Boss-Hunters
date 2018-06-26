@@ -53,3 +53,7 @@ end
 function modifier_item_tricksters_blade:IsHidden()
 	return true
 end
+
+function modifier_item_tricksters_blade:GetAttributes()
+	return MODIFIER_ATTRIBUTE_MULTIPLE
+end

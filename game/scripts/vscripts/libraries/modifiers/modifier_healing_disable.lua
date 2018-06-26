@@ -19,3 +19,7 @@ end
 function modifier_healing_disable:IsDebuff()
 	return true
 end
+
+function modifier_healing_disable:IsHidden()
+	return false
+end

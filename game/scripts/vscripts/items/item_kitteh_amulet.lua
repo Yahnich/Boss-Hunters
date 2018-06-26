@@ -8,7 +8,6 @@ function item_kitteh_amulet:OnSpellStart()
 	local distance = CalculateDistance( targetPos, caster )
 	local direction = CalculateDirection( targetPos, caster )
 	if distance > 9999 then
-		print( 9999 )
 		targetPos = caster:GetAbsOrigin() + direction * 9999
 	end
 

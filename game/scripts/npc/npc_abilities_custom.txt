@@ -801,6 +801,7 @@
 		"AbilityCastRange"				"0"
 		"AbilityCastPoint"				"0.5 0.5 0.5 0.5"
 		"FightRecapLevel"				"1"
+		"MaxLevel"						"5"
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -815,7 +816,7 @@
 			"01"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"damage_count"		"3"
+				"damage_count"		"1 2 3 4 5"
 			}
 			"02"
 			{
@@ -830,7 +831,7 @@
 			"04"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"duration"			"15.0"
+				"duration"			"10.0"
 			}
 	
 		}
@@ -855,7 +856,7 @@
 	
 		// Damage.
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"					"18 22 26 34"
+		"AbilityDamage"					"9 12 15 18"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -2295,7 +2296,7 @@
 			"01"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"damage"			"45 50 55 60"
+				"damage"			"25 30 35 40"
 			}
 			"02"
 			{
@@ -2580,7 +2581,7 @@
 			"01"
 	        {
 	            "var_type"              "FIELD_FLOAT"
-	            "damage"             	"200"  //The meteor lands on the ground this many seconds after it was cast.
+	            "damage"             	"100"  //The meteor lands on the ground this many seconds after it was cast.
 	        }
 	        "02"
 	        {

@@ -55,9 +55,12 @@ function modifier_item_everbright_shield_off:GetModifierMagicalResistanceBonus()
 	return self.magic_resist
 end
 
-
 function modifier_item_everbright_shield_off:IsHidden()
 	return true
+end
+
+function modifier_item_everbright_shield_off:GetAttributes()
+	return MODIFIER_ATTRIBUTE_MULTIPLE
 end
 
 modifier_item_everbright_shield_on = class({})

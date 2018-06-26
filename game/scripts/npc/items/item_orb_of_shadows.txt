@@ -12,6 +12,7 @@
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_orb_of_shadows"
 		"AbilityTextureName"			"custom/orb_of_shadows"
+		"AbilitySharedCooldown"			"invis"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"

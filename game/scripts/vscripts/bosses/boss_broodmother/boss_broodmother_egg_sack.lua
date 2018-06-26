@@ -11,7 +11,6 @@ function boss_broodmother_egg_sack:OnSpellStart()
 	local position = self:GetCursorPosition()
 	
 	local eggs = self:GetSpecialValueFor("eggs")
-	local hits = self:GetSpecialValueFor("egg_hits")
 	for i = 1, eggs do
 		local egg = CreateUnitByName("npc_dota_creature_broodmother_egg", position + ActualRandomVector(650), true, self, nil, self:GetCaster():GetTeam())
 		egg:AddNewModifier(caster, self, "modifier_boss_broodmother_egg_sack_handler", {})

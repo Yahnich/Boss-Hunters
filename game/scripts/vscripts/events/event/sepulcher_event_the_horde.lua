@@ -21,13 +21,22 @@ local function StartCombat(self)
 	self.timeRemaining = 60
 	
 	local activeHeroes = HeroList:GetActiveHeroCount()
-	
+	Timers:CreateTimer(function()
+		CustomGameEventManager:Send_ServerToAllClients("updateQuestPrepTime", {prepTime = self.timeRemaining})
+		self.timeRemaining = self.timeRemaining - 1
+		if not self.combatEnded then
+			if self.timeRemaining >= 0 then
+				return 1
+			else
+				self:EndEvent(true)
+			end
+		end
+	end)
 	Timers:CreateTimer(1, function()
 		CustomGameEventManager:Send_ServerToAllClients("updateQuestPrepTime", {prepTime = self.timeRemaining})
 		if not self.combatEnded then
 			if self.timeRemaining >= 0 then
-				self.timeRemaining = self.timeRemaining - 1
-				local spawns = 1 + math.floor( (60 - self.timeRemaining)/30 )
+				local spawns = 1
 				for _, hero in ipairs( HeroList:GetActiveHeroes() ) do
 					for i = 1, spawns do
 						local roll = RandomInt(1, 12)
@@ -47,9 +56,7 @@ local function StartCombat(self)
 				end
 				
 				
-				return 1
-			else
-				self:EndEvent(true)
+				return math.max( 1, (self.timeRemaining or 60) / 15 )
 			end
 		end
 	end)
@@ -112,13 +119,14 @@ local function EndEvent(self, bWon)
 	Timers:CreateTimer(3, function() RoundManager:EndEvent(bWon) end)
 end
 
-local function PrecacheUnits(self)
-	PrecacheUnitByNameAsync("npc_dota_mini_boss1", function() end)
-	Timers:CreateTimer(1, function() PrecacheUnitByNameAsync("npc_dota_boss3a_b", function() end) end)
-	Timers:CreateTimer(2, function() PrecacheUnitByNameAsync("npc_dota_boss3b", function() end) end)
-	Timers:CreateTimer(3, function() PrecacheUnitByNameAsync("npc_dota_boss3a", function() end) end)
+local function PrecacheUnits(self, context)
+	PrecacheUnitByNameSync("npc_dota_mini_boss1", context)
+	PrecacheUnitByNameSync("npc_dota_boss3a_b", context)
+	PrecacheUnitByNameSync("npc_dota_boss3b", context)
+	PrecacheUnitByNameSync("npc_dota_boss3a", context)
 	return true
 end
+
 
 local function HandoutRewards(self)
 	local eventScaling = RoundManager:GetEventsFinished()

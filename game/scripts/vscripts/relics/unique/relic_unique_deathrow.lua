@@ -9,7 +9,7 @@ function relic_unique_deathrow:GetModifierPreAttack_CriticalStrike()
 end
 
 function relic_unique_deathrow:OnDeath(params)
-	if params.attacker == self:GetParent() and params.unit.Holdout_IsCore then
+	if params.attacker == self:GetParent() and params.unit:IsRoundBoss() then
 		self:IncrementStackCount()
 	end
 end

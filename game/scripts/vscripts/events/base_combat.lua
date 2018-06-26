@@ -1,4 +1,5 @@
 local function OnEntityKilled(self, event)
+	if not event.entindex_killed then return end
 	local killedTarget = EntIndexToHScript(event.entindex_killed)
 	if not killedTarget or not self then return end
 	if killedTarget:IsRoundBoss() and self.enemiesToSpawn <= 0 then

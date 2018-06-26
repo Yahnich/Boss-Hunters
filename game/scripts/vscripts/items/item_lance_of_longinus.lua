@@ -30,7 +30,6 @@ function modifier_item_lance_of_longinus:GetModifierAttackRangeBonus()
 	return self.range
 end
 
-
 function modifier_item_lance_of_longinus:IsHidden()
 	return true
 end

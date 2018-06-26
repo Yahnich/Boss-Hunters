@@ -42,6 +42,10 @@ function modifier_item_ghost_saber_passive:IsHidden()
 	return true
 end
 
+function modifier_item_ghost_saber_passive:GetAttributes()
+	return MODIFIER_ATTRIBUTE_MULTIPLE
+end
+
 modifier_item_ghost_saber_active = class({})
 function modifier_item_ghost_saber_active:GetTextureName()
 	return "ethereal_blade"

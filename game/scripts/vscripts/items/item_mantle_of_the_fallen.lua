@@ -55,6 +55,7 @@ function modifier_item_mantle_of_the_fallen_stats:IsHidden()
 	return true
 end
 
+
 modifier_item_mantle_of_the_fallen_aura = class({})
 LinkLuaModifier( "modifier_item_mantle_of_the_fallen_aura", "items/item_mantle_of_the_fallen.lua" ,LUA_MODIFIER_MOTION_NONE )
 

@@ -39,7 +39,7 @@ function modifier_boss_attackspeed:DeclareFunctions()
 end
 --------------------------------------------------------------------------------
 function modifier_boss_attackspeed:GetModifierAttackSpeedBonus_Constant( params )
-	return 200
+	return 50 * self:GetStackCount()
 end
 
 function modifier_boss_attackspeed:GetModifierMoveSpeedBonus_Constant( params )
@@ -57,7 +57,7 @@ end
 function modifier_boss_attackspeed:GetModifierPhysicalArmorBonus( params )
 	local bonusarmor = self:GetStackCount()
 	if self:GetParent():IsRangedAttacker() then bonusarmor = bonusarmor / 2 end
-	return self:GetParent():GetPhysicalArmorBaseValue() * 0.25 * self:GetStackCount() + bonusarmor
+	return self:GetParent():GetPhysicalArmorBaseValue() * 0.08 * self:GetStackCount() + bonusarmor
 end
 
 function modifier_boss_attackspeed:GetModifierBaseDamageOutgoing_Percentage( params )

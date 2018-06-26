@@ -34,3 +34,7 @@ end
 function modifier_item_guillotine_handle:IsHidden()
 	return true
 end
+
+function modifier_item_guillotine_handle:GetAttributes()
+	return MODIFIER_ATTRIBUTE_MULTIPLE
+end

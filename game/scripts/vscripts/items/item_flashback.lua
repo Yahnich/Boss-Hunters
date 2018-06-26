@@ -39,3 +39,7 @@ end
 function modifier_item_flashback_passive:IsHidden()
 	return true
 end
+
+function modifier_item_flashback_passive:GetAttributes()
+	return MODIFIER_ATTRIBUTE_MULTIPLE
+end

@@ -8,11 +8,16 @@ local function StartEvent(self)
 			enemyName = "npc_dota_boss19"
 		end
 		local spawn = CreateUnitByName(enemyName, RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
+		
+		if enemyName == "npc_dota_boss19" or enemyName == "npc_dota_boss18" then
+			spawn.armor = spawn:FindAbilityByName("boss_living_armor")
+			if spawn.armor then spawn.armor:SetLevel( math.max(5, RoundManager:GetRaidsFinished() ) ) end
+		end
 		spawn.unitIsRoundBoss = true
 		
 		self.enemiesToSpawn = self.enemiesToSpawn - 1
 		if self.enemiesToSpawn > 0 then
-			return 5
+			return 4
 		end
 	end)
 	
@@ -28,11 +33,11 @@ local function EndEvent(self, bWon)
 	RoundManager:EndEvent(bWon)
 end
 
-local function PrecacheUnits(self)
-	PrecacheUnitByNameAsync("npc_dota_boss18", function() end)
-	Timers:CreateTimer(1, function() PrecacheUnitByNameAsync("npc_dota_boss19", function() end) end)
-	Timers:CreateTimer(2, function() PrecacheUnitByNameAsync("npc_dota_mini_tree", function() end) end)
-	Timers:CreateTimer(3, function() PrecacheUnitByNameAsync("npc_dota_mini_tree2", function() end) end)
+local function PrecacheUnits(self, context)
+	PrecacheUnitByNameSync("npc_dota_boss18", context)
+	PrecacheUnitByNameSync("npc_dota_boss19", context)
+	PrecacheUnitByNameSync("npc_dota_mini_tree", context)
+	PrecacheUnitByNameSync("npc_dota_mini_tree2", context)
 	return true
 end
 

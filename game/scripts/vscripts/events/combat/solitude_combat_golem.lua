@@ -23,8 +23,8 @@ local function EndEvent(self, bWon)
 	RoundManager:EndEvent(bWon)
 end
 
-local function PrecacheUnits(self)
-	PrecacheUnitByNameAsync("npc_dota_boss31", function() end)
+local function PrecacheUnits(self, context)
+	PrecacheUnitByNameSync("npc_dota_boss31", context)
 	return true
 end
 

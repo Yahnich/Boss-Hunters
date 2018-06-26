@@ -50,9 +50,12 @@ function modifier_item_legionnaires_dualswords:GetModifierBonusStats_Agility()
 	return self.agility
 end
 
-
 function modifier_item_legionnaires_dualswords:IsHidden()
 	return true
+end
+
+function modifier_item_legionnaires_dualswords:GetAttributes()
+	return MODIFIER_ATTRIBUTE_MULTIPLE
 end
 
 

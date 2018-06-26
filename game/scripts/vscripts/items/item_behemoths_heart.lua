@@ -25,6 +25,16 @@ if IsServer() then
 	end
 end
 
+function modifier_item_behemoths_heart_active:DeclareFunctions()
+	return {MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE,	
+			MODIFIER_EVENT_ON_TAKEDAMAGE,
+			}
+end
+
+function modifier_item_behemoths_heart_active:GetModifierHealthRegenPercentage()
+	return self:GetSpecialValueFor("active_regen")
+end
+
 modifier_item_behemoths_heart_passive = class({})
 LinkLuaModifier("modifier_item_behemoths_heart_passive", "items/item_behemoths_heart", LUA_MODIFIER_MOTION_NONE)
 
@@ -94,7 +104,6 @@ function modifier_item_behemoths_heart_regen:OnRefresh()
 	self.regen = self:GetSpecialValueFor("stack_regen")
 	self:GetAbility().stacks = self:GetAbility().stacks or self:GetStackCount() or self:GetSpecialValueFor("max_stacks")
 	self.delay = self:GetSpecialValueFor("stack_delay")
-	self.activeRegen = self:GetSpecialValueFor("active_regen")
 	self.bonusHP = self:GetSpecialValueFor("bonus_health")
 	self.hpPerStr = self:GetSpecialValueFor("hp_per_str")
 	self.stat = self:GetSpecialValueFor("bonus_strength")
@@ -119,17 +128,13 @@ function modifier_item_behemoths_heart_regen:IsHidden()
 end
 
 function modifier_item_behemoths_heart_regen:DeclareFunctions()
-	return {MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE,	
+	return {MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,	
 			MODIFIER_EVENT_ON_TAKEDAMAGE,
 			}
 end
 
-function modifier_item_behemoths_heart_regen:GetModifierHealthRegenPercentage()
-	if not self:GetParent():HasModifier("modifier_item_behemoths_heart_active") then
-		return self.regen * self:GetStackCount()
-	else
-		return self.activeRegen
-	end
+function modifier_item_behemoths_heart_regen:GetModifierConstantHealthRegen()
+	return self.regen * self:GetStackCount()
 end
 
 function modifier_item_behemoths_heart_regen:OnTakeDamage(params)

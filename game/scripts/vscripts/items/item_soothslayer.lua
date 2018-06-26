@@ -55,7 +55,6 @@ function modifier_item_soothslayer:OnAttackLanded(params)
 	end
 end
 
-
 function modifier_item_soothslayer:GetModifierTotal_ConstantBlock(params)
 	if RollPercentage(self.chance) and params.attacker ~= self:GetParent() then
 		ParticleManager:FireParticle("particles/units/heroes/hero_faceless_void/faceless_void_backtrack.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
@@ -65,4 +64,8 @@ end
 
 function modifier_item_soothslayer:IsHidden()
 	return true
+end
+
+function modifier_item_soothslayer:GetAttributes()
+	return MODIFIER_ATTRIBUTE_MULTIPLE
 end

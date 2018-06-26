@@ -21,3 +21,7 @@ end
 function modifier_item_spell_refinery_passive:IsHidden()
 	return true
 end
+
+function modifier_item_spell_refinery_passive:GetAttributes()
+	return MODIFIER_ATTRIBUTE_MULTIPLE
+end

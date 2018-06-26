@@ -35,3 +35,7 @@ end
 function modifier_item_power_core_handle:IsHidden()
 	return true
 end
+
+function modifier_item_power_core_handle:GetAttributes()
+	return MODIFIER_ATTRIBUTE_MULTIPLE
+end

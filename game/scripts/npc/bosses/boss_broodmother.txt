@@ -117,7 +117,7 @@
 		"ScriptFile"					"bosses/boss_broodmother/boss_broodmother_egg_sack"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName"			"broodmother_spawn_spiderite"
-		"MaxLevel"						"3"
+		"MaxLevel"						"7"
 		
 		"AbilityCastRange"				"350"
 		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
@@ -134,7 +134,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"eggs"						"15 20"
+				"eggs"						"3 5 10 15 20 25 30"
 			}
 			"02"
 			{
@@ -152,7 +152,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"AbilityTextureName"			"life_stealer_assimilate"
-		"MaxLevel"						"3"
+		"MaxLevel"						"5"
 		
 		"AbilityCastRange"				"900"
 		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
@@ -184,17 +184,17 @@
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage_on_hit"				"200 250"
+				"damage_on_hit"				"125 150"
 			}
 			"05"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"spiders_on_hit"			"5 8"
+				"spiders_on_hit"			"2 3 4 5 8"
 			}
 			"06"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"spiders_on_miss"			"0 1"
+				"spiders_on_miss"			"0 0 1 1 2"
 			}
 		}
 	}
@@ -251,7 +251,7 @@
 		"ScriptFile"					"bosses/boss_broodmother/boss_broodmother_fates_web"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName"			"broodmother_spin_web"
-		"MaxLevel"						"3"
+		"MaxLevel"						"7"
 		
 		"AbilityCastRange"				"350"
 		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
@@ -284,7 +284,7 @@
 			"04"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"hits_to_kill"				"8"
+				"hits_to_kill"				"2 3 4 5 6 7 8"
 			}
 		}
 	}
@@ -385,7 +385,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"25 33"
+				"damage"					"2 3"
 			}
 			"03"
 			{
@@ -415,7 +415,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"hatch_delay"				"10 8"
+				"hatch_delay"				"10"
 			}
 		}
 	}

@@ -46,7 +46,7 @@ function modifier_worked_up_stack:OnCreated(kv)
 end
 
 function modifier_worked_up_stack:OnRefresh(kv)
-	self:AddIndependentStack(kv.duration, self:GetTalentSpecialValueFor("max_stacks"))
+	if IsServer() then self:AddIndependentStack(kv.duration, self:GetTalentSpecialValueFor("max_stacks")) end
 end
 
 function modifier_worked_up_stack:OnStackCountChanged(iStacks)

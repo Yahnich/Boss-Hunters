@@ -58,7 +58,10 @@ function modifier_item_blade_of_storm:GetModifierBonusStats_Agility()
 	return self.agility
 end
 
-
 function modifier_item_blade_of_storm:IsHidden()
 	return true
+end
+
+function modifier_item_blade_of_storm:GetAttributes()
+	return MODIFIER_ATTRIBUTE_MULTIPLE
 end

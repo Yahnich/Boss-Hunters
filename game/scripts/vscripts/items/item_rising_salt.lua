@@ -47,6 +47,10 @@ function modifier_item_rising_salt_passive:IsHidden()
 	return true
 end
 
+function modifier_item_rising_salt_passive:GetAttributes()
+	return MODIFIER_ATTRIBUTE_MULTIPLE
+end
+
 modifier_item_rising_salt_attack = class({})
 function modifier_item_rising_salt_attack:GetTextureName()
 	return "iron_talon"

@@ -42,3 +42,7 @@ end
 function modifier_item_culling_greataxe_passive:IsHidden()
 	return true
 end
+
+function modifier_item_culling_greataxe_passive:GetAttributes()
+	return MODIFIER_ATTRIBUTE_MULTIPLE
+end

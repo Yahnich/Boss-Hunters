@@ -16,7 +16,7 @@
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
 		
-		"ItemCost"						"1000"
+		"ItemCost"						"525"
 		"ItemShopTags"					"barrier"
 		"ItemQuality"					"component"
 		"ItemAliases"					"faerie fire"

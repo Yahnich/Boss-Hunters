@@ -68,6 +68,10 @@ function modifier_item_lightningrod_handle:IsHidden()
 	return true
 end
 
+function modifier_item_lightningrod_handle:GetAttributes()
+	return MODIFIER_ATTRIBUTE_MULTIPLE
+end
+
 modifier_item_lightningrod_handle_damage = class({})
 function modifier_item_lightningrod_handle_damage:OnCreated()
 	if IsServer() then

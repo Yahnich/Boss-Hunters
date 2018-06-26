@@ -69,7 +69,7 @@ function modifier_stats_system_handler:DeclareFunctions()
 		MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,
 		MODIFIER_PROPERTY_MANA_BONUS,
 		MODIFIER_PROPERTY_MANA_REGEN_CONSTANT,
-		MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE,
+		MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
 		MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,
 		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
 		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
@@ -90,7 +90,7 @@ function modifier_stats_system_handler:GetModifierManaBonus() return self.mp end
 function modifier_stats_system_handler:GetModifierConstantManaRegen() return self.mpr end
 function modifier_stats_system_handler:GetModifierHealAmplify_Percentage() return self.ha end
 
-function modifier_stats_system_handler:GetModifierBaseAttack_BonusDamage() return self.ad end
+function modifier_stats_system_handler:GetModifierPreAttack_BonusDamage() return self.ad end
 function modifier_stats_system_handler:GetModifierSpellAmplify_Percentage() return self.sa end
 function modifier_stats_system_handler:GetCooldownReduction() return self.cdr end
 function modifier_stats_system_handler:GetModifierAttackSpeedBonus_Constant() return self.as end
@@ -141,4 +141,8 @@ end
 
 function modifier_stats_system_handler:GetAttributes()
 	return MODIFIER_ATTRIBUTE_PERMANENT
+end
+
+function modifier_stats_system_handler:AllowIllusionDuplicate()
+	return true
 end

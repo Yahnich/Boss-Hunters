@@ -31,4 +31,8 @@ end
 
 function modifier_item_titan_blade_handle:IsHidden()
 	return true
-end 	
+end
+
+function modifier_item_titan_blade_handle:GetAttributes()
+	return MODIFIER_ATTRIBUTE_MULTIPLE
+end

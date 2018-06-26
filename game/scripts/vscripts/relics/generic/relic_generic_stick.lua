@@ -9,11 +9,18 @@ end
 
 function relic_generic_stick:OnEventFinished(args)
 	EVENT_TYPE_EVENT = 3
-	if args.eventType ~= EVENT_TYPE_EVENT and RoundManager:GetEventsFinished() % 2 == 0 then
-		self:SetStackCount( math.ceil(self:GetStackCount() * 0.6) )
+	print("stick upgrade", args.eventType)
+	if args.eventType ~= EVENT_TYPE_EVENT then
+		print("stick upgraded!")
+		self:SetStackCount( math.ceil(self:GetStackCount() * 0.3) )
 	end
 end
 
+function relic_generic_stick:OnDestroy()
+	if IsServer() then
+		EventManager:UnsubscribeListener("boss_hunters_event_finished", self.funcID)
+	end
+end
 
 function relic_generic_stick:DeclareFunctions()
 	return {MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE}

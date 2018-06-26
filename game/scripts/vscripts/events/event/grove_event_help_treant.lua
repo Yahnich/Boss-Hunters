@@ -51,7 +51,7 @@ local function StartCombat(self, bFight)
 			self.bossesToSpawn = self.bossesToSpawn - 1
 			self.enemiesToSpawn = self.enemiesToSpawn - 1
 			if self.bossesToSpawn > 0 then
-				return 15
+				return 15 / RoundManager:GetRaidsFinished()
 			end
 		end)
 		Timers:CreateTimer(5, function()
@@ -60,7 +60,7 @@ local function StartCombat(self, bFight)
 			self.mobsToSpawn = self.mobsToSpawn - 1
 			self.enemiesToSpawn = self.enemiesToSpawn - 1
 			if self.mobsToSpawn > 0 then
-				return 5
+				return 5 / RoundManager:GetRaidsFinished()
 			end
 		end)
 	else
@@ -126,13 +126,13 @@ local function EndEvent(self, bWon)
 	Timers:CreateTimer(3, function() RoundManager:EndEvent(true) end)
 end
 
-local function PrecacheUnits(self)
-	PrecacheUnitByNameAsync("npc_dota_boss23_m", function() end)
-	Timers:CreateTimer(1, function() PrecacheUnitByNameAsync("npc_dota_boss21", function() end) end)
-	Timers:CreateTimer(2, function() PrecacheUnitByNameAsync("npc_dota_boss26_mini", function() end) end)
-	Timers:CreateTimer(3, function() PrecacheUnitByNameAsync("npc_dota_boss6", function() end) end)
-	Timers:CreateTimer(4, function() PrecacheUnitByNameAsync("npc_dota_creature_broodmother", function() end) end)
-	Timers:CreateTimer(5, function() PrecacheUnitByNameAsync("npc_dota_boss10", function() end) end)
+local function PrecacheUnits(self, context)
+	PrecacheUnitByNameSync("npc_dota_boss23_m", context)
+	PrecacheUnitByNameSync("npc_dota_boss21", context)
+	PrecacheUnitByNameSync("npc_dota_boss26_mini", context)
+	PrecacheUnitByNameSync("npc_dota_boss6", context)
+	PrecacheUnitByNameSync("npc_dota_creature_broodmother", context)
+	PrecacheUnitByNameSync("npc_dota_boss10", context)
 	return true
 end
 
