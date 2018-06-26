@@ -156,7 +156,7 @@ function RoundManager:ConstructRaids(zoneName)
 				table.remove( raidCombatPool, combatPick )
 			else -- Event
 				local eventPick = RandomInt(1, #zoneEventPool)
-				raidContent = BaseEvent(zoneName, EVENT_TYPE_EVENT, zoneEventPool[eventPick] )
+				raidContent = BaseEvent(zoneName, EVENT_TYPE_EVENT, zoneEventPool[eventPick])
 				table.remove( zoneEventPool, eventPick )
 			end
 			table.insert( raid, raidContent )
@@ -408,11 +408,13 @@ function RoundManager:InitializeUnit(unit, bElite)
 		expectedHP = expectedHP * 1.35
 		playerHPMultiplier = 0.5 
 		playerDMGMultiplier = 0.09
+		playerArmorMultiplier = 0.06
 	end
 	local effective_multiplier = (HeroList:GetActiveHeroCount() - 1) 
 	
 	local effPlayerHPMult =  1 + ( (RoundManager:GetEventsFinished() * 0.08) + (RoundManager:GetRaidsFinished() * 0.33) + ( RoundManager:GetZonesFinished() * 0.75 )  ) + ( effective_multiplier * playerHPMultiplier )
 	local effPlayerDMGMult = ( 0.8 + (RoundManager:GetEventsFinished() * 0.04) + (RoundManager:GetRaidsFinished() * 0.40) + ( RoundManager:GetZonesFinished() * 0.5 ) ) + effective_multiplier * playerDMGMultiplier
+	local effPlayerArmorMult = ( 0.85 + (RoundManager:GetRaidsFinished() * 0.15) + ( RoundManager:GetZonesFinished() ) ) + effective_multiplier * playerArmorMultiplier
 	
 	if bElite then
 		effPlayerHPMult = effPlayerHPMult * 1.35
@@ -448,7 +450,7 @@ function RoundManager:InitializeUnit(unit, bElite)
 	
 	unit:SetAverageBaseDamage(unit:GetAverageBaseDamage() * effPlayerDMGMult * RandomFloat(0.85, 1.15) + RoundManager:GetEventsFinished(), 35)
 	unit:SetBaseHealthRegen(RoundManager:GetEventsFinished() * RandomFloat(0.85, 1.15) )
-	unit:SetBaseHealthRegen(RoundManager:GetEventsFinished() * RandomFloat(0.85, 1.15) )
+	unit:SetPhysicalArmorBaseValue( (unit:GetPhysicalArmorBaseValue() + RoundManager:GetRaidsFinished() ) * effPlayerArmorMult )
 	
 	unit:AddNewModifier(unit, nil, "modifier_boss_attackspeed", {})
 	unit:AddNewModifier(unit, nil, "modifier_power_scaling", {}):SetStackCount( math.floor( (self:GetEventsFinished() / 3) * (1 + self:GetRaidsFinished() ) * ( RoundManager:GetZonesFinished() * 1.5 ) ))

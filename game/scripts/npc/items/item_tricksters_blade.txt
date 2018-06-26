@@ -38,6 +38,7 @@
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_tricksters_blade"
 		"AbilityTextureName"			"custom/tricksters_blade"
+		"AbilitySharedCooldown"			"manta"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"

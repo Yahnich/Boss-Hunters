@@ -7,6 +7,7 @@
 		"ID"							"7015"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"BaseClass"						"item_lua"
+		"AbilitySharedCooldown"			"ghost"
 		"ScriptFile"					"items/item_phantom_staff"
 		"AbilityTextureName"			"ghost"
 		"ItemKillable"					"1"

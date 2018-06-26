@@ -38,6 +38,7 @@
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_soothslayer"
 		"AbilityTextureName"			"custom/soothslayer"
+		"AbilitySharedCooldown"			"reverb"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"

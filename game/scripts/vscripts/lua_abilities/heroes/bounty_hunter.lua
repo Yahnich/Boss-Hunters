@@ -86,33 +86,39 @@ end
 
 function modifier_bounty_hunter_jinada_crit:OnAttackLanded(params)
 	if IsServer() then
-		if params.attacker == self:GetParent() and self:GetAbility():IsCooldownReady() then
+		if params.attacker == self:GetParent() then
 			if params.attacker:HasModifier("modifier_bounty_hunter_jinada_dash") then
 				local dashModifier = params.attacker:FindModifierByName("modifier_bounty_hunter_jinada_dash")
 				dashModifier:DecrementStackCount()
+				
+				EmitSoundOn("Hero_BountyHunter.Jinada", params.attacker)
+				
+				local jinada = ParticleManager:CreateParticle("particles/units/heroes/hero_bounty_hunter/bounty_hunter_jinda_slow.vpcf", PATTACH_ABSORIGIN_FOLLOW, params.target)
+				ParticleManager:SetParticleControlEnt(jinada, 1, params.target, PATTACH_POINT_FOLLOW, "attach_hitloc", params.target:GetAbsOrigin(), true)
+				ParticleManager:ReleaseParticleIndex(jinada)
+				params.attacker:Stop()
 				if dashModifier:GetStackCount() < 1 then 
 					params.attacker:RemoveModifierByName("modifier_bounty_hunter_jinada_dash")
-					self:GetCaster():SetForceAttackTarget(nil)
+					params.attacker:SetForceAttackTarget(nil)
 				else
-					local units = FindUnitsInRadius(params.attacker:GetTeam(), params.attacker:GetAbsOrigin(), nil, self:GetAbility():GetCastRange(self:GetParent():GetAbsOrigin(), params.target)/2, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false)
+					local units = FindUnitsInRadius(params.attacker:GetTeam(), params.target:GetAbsOrigin(), nil, self:GetAbility():GetTrueCastRange(), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_CLOSEST, false)
 					if #units > 1 then
-						for _,unit in pairs(units) do
+						for _,unit in ipairs(units) do
 							if unit ~= params.target then
 								self:GetCaster():SetForceAttackTarget(nil)
-								self:GetCaster():SetForceAttackTarget(unit)
 								ExecuteOrderFromTable({
 									UnitIndex = params.attacker:entindex(),
 									OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
 									TargetIndex = unit:entindex()
 								})
-								break
-							else
-								self:GetCaster():SetForceAttackTarget(nil)
+								self:GetCaster():SetForceAttackTarget(unit)
+								return
 							end
 						end
+						params.attacker:SetForceAttackTarget(nil)
 					else
 						params.attacker:RemoveModifierByName("modifier_bounty_hunter_jinada_dash")
-						self:GetCaster():SetForceAttackTarget(nil)
+						params.attacker:SetForceAttackTarget(nil)
 					end
 				end
 			end
@@ -120,16 +126,13 @@ function modifier_bounty_hunter_jinada_crit:OnAttackLanded(params)
 	end
 end
 
-function modifier_bounty_hunter_jinada_crit:GetModifierPreAttack_CriticalStrike()
+function modifier_bounty_hunter_jinada_crit:GetModifierPreAttack_CriticalStrike(params)
 	if self:GetAbility():IsCooldownReady() then
-		EmitSoundOn("Hero_BountyHunter.Jinada", params.attacker)
-		local jinada = ParticleManager:CreateParticle("particles/units/heroes/hero_bounty_hunter/bounty_hunter_jinda_slow.vpcf", PATTACH_ABSORIGIN_FOLLOW, params.target)
-		ParticleManager:SetParticleControlEnt(jinada, 1, params.target, PATTACH_POINT_FOLLOW, "attach_hitloc", params.target:GetAbsOrigin(), true)
-		ParticleManager:ReleaseParticleIndex(jinada)
-		if not params.attacker:HasModifier("modifier_bounty_hunter_jinada_dash") then
-			self:GetAbility():SetActivated(true) 
-			local cd = self:GetAbility():SetCooldown()
-		end
+		self:GetAbility():SetActivated(true) 
+		local cd = self:GetAbility():SetCooldown()
+
+		return self.crit
+	elseif self:GetParent():HasModifier("modifier_bounty_hunter_jinada_dash") then
 		return self.crit
 	else
 		return
@@ -143,15 +146,8 @@ function modifier_bounty_hunter_jinada_dash:OnCreated()
 	self.speed = self:GetAbility():GetSpecialValueFor("dash_speed")
 	if IsServer() then
 		local hunterLvl = self:GetCaster():FindAbilityByName("bounty_hunter_veteran_hunter"):GetSpecialValueFor("bonus_jinada_targets")
-		self:SetStackCount(hunterLvl + 1)
+		self:SetStackCount(hunterLvl)
 		self:StartIntervalThink(0.5)
-	end
-end
-
-function modifier_bounty_hunter_jinada_dash:OnIntervalThink()
-	if not (self:GetParent():IsMoving() or self:GetParent():IsAttacking()) then
-		self:GetParent():SetForceAttackTarget(nil)
-		self:Destroy()
 	end
 end
 

@@ -38,6 +38,7 @@
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_illusionists_charm"
 		"AbilityTextureName"			"custom/illusionists_charm"
+		"AbilitySharedCooldown"			"manta"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"

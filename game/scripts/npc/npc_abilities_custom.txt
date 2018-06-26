@@ -856,7 +856,7 @@
 	
 		// Damage.
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"					"18 22 26 34"
+		"AbilityDamage"					"9 12 15 18"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -2296,7 +2296,7 @@
 			"01"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"damage"			"45 50 55 60"
+				"damage"			"25 30 35 40"
 			}
 			"02"
 			{
@@ -2581,7 +2581,7 @@
 			"01"
 	        {
 	            "var_type"              "FIELD_FLOAT"
-	            "damage"             	"200"  //The meteor lands on the ground this many seconds after it was cast.
+	            "damage"             	"100"  //The meteor lands on the ground this many seconds after it was cast.
 	        }
 	        "02"
 	        {

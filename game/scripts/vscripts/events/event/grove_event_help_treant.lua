@@ -51,7 +51,7 @@ local function StartCombat(self, bFight)
 			self.bossesToSpawn = self.bossesToSpawn - 1
 			self.enemiesToSpawn = self.enemiesToSpawn - 1
 			if self.bossesToSpawn > 0 then
-				return 15
+				return 15 / RoundManager:GetRaidsFinished()
 			end
 		end)
 		Timers:CreateTimer(5, function()
@@ -60,7 +60,7 @@ local function StartCombat(self, bFight)
 			self.mobsToSpawn = self.mobsToSpawn - 1
 			self.enemiesToSpawn = self.enemiesToSpawn - 1
 			if self.mobsToSpawn > 0 then
-				return 5
+				return 5 / RoundManager:GetRaidsFinished()
 			end
 		end)
 	else

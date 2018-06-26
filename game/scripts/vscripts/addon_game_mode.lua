@@ -182,7 +182,11 @@ function CHoldoutGameMode:InitGameMode()
 	self._message = false
 	
 	GameRules:SetHeroSelectionTime( 80.0 )
-	GameRules:SetPreGameTime( 30.0 )
+	if IsInToolsMode() then
+		GameRules:SetPreGameTime( 999.0 )
+	else
+		GameRules:SetPreGameTime( 30.0 )
+	end
 	GameRules:SetShowcaseTime( 0 )
 	GameRules:SetStrategyTime( 0 )
 	GameRules:SetCustomGameSetupAutoLaunchDelay( 0 ) -- fix valve bullshit

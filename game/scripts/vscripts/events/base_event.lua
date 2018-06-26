@@ -24,7 +24,6 @@ function BaseEvent:constructor(zoneName, eventType, eventName)
 	for functionName, functionMethod in pairs( funcs ) do
 		self[functionName] = functionMethod
 	end
-	print( self, self.eventID )
 end
 
 function BaseEvent:StartEvent()
@@ -92,6 +91,10 @@ end
 
 function BaseEvent:GetEventName()
 	return self.eventName
+end
+
+function BaseEvent:GetEventID()
+	return self.eventID
 end
 
 function BaseEvent:GetEventType()

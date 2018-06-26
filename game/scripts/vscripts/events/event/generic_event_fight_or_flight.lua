@@ -1,27 +1,30 @@
 local function CheckPlayerChoices(self)
-	local votedYes = 0
-	local votedNo = 0
-	local voted = 0
-	local players = 0
-	for i = 0, GameRules.BasePlayers do
-		if PlayerResource:IsValidPlayerID(i) and PlayerResource:GetPlayer(i) then
-			players = players + 1
-			if self._playerChoices[i] ~= nil then
-				voted = voted + 1
-				if self._playerChoices[i] then
-					votedYes = votedYes + 1
-				else
-					votedNo = votedNo + 1
+	if not self.eventEnded then
+		local votedYes = 0
+		local votedNo = 0
+		local voted = 0
+		local players = 0
+		for i = 0, GameRules.BasePlayers do
+			if PlayerResource:IsValidPlayerID(i) and PlayerResource:GetPlayer(i) then
+				players = players + 1
+				if self._playerChoices[i] ~= nil then
+					voted = voted + 1
+					if self._playerChoices[i] then
+						votedYes = votedYes + 1
+					else
+						votedNo = votedNo + 1
+					end
 				end
 			end
 		end
-	end
-	if votedYes > votedNo + (players - voted) then -- yes votes exceed non-votes and no votes
-		self:StartCombat(true)
-		return true
-	else -- no votes exceed yes and non-votes and every other situation
-		self:StartCombat(false)
-		return true
+		
+		if votedYes > votedNo + (players - voted) then -- yes votes exceed non-votes and no votes
+			self:StartCombat(true)
+			return true
+		elseif votedNo > votedYes + (players - voted) then -- no votes exceed yes and non-votes and every other situation
+			self:StartCombat(false)
+			return true
+		end
 	end
 	return false
 end
@@ -33,18 +36,20 @@ local function StartCombat(self, bFight)
 		RoundManager.zones[RoundManager:GetCurrentZone()][1][1] = RoundManager:RollRandomEvent(RoundManager:GetCurrentZone(), EVENT_TYPE_ELITE) 
 		RoundManager:StartPrepTime(5)
 	else
-		self:EndEvent(true)
+		self:EndEvent(false)
 	end
 end
 
 local function FirstChoice(self, userid, event)
 	local hero = PlayerResource:GetSelectedHeroEntity( event.pID )
 	self._playerChoices[event.pID] = true
+	CheckPlayerChoices(self)
 end
 
 local function SecondChoice(self, userid, event)
 	local hero = PlayerResource:GetSelectedHeroEntity( event.pID )
 	self._playerChoices[event.pID] = false
+	CheckPlayerChoices(self)
 end
 
 local function StartEvent(self)	
@@ -62,7 +67,9 @@ local function StartEvent(self)
 				self.timeRemaining = self.timeRemaining - 1
 				return 1
 			else
-				CheckPlayerChoices(self)
+				if not CheckPlayerChoices(self) then
+					self:EndEvent(false)
+				end
 			end
 		end
 	end)
@@ -77,7 +84,7 @@ local function EndEvent(self, bFought)
 	self.eventEnded = true
 	self.timeRemaining = -1
 	if not bFought then
-		Timers:CreateTimer(3, function() RoundManager:EndEvent(true) end)
+		RoundManager:EndEvent(true)
 	end
 end
 

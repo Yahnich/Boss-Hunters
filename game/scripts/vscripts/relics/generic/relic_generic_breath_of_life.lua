@@ -9,7 +9,7 @@ function relic_generic_breath_of_life:GetModifierHealthBonus()
 end
 
 function relic_generic_breath_of_life:GetModifierConstantHealthRegen()
-	return 5
+	return 3
 end
 
 function relic_generic_breath_of_life:GetModifierManaBonus()
@@ -17,5 +17,5 @@ function relic_generic_breath_of_life:GetModifierManaBonus()
 end
 
 function relic_generic_breath_of_life:GetModifierConstantManaRegen()
-	return 5
+	return 3
 end

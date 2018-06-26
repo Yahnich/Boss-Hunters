@@ -142,3 +142,7 @@ end
 function modifier_stats_system_handler:GetAttributes()
 	return MODIFIER_ATTRIBUTE_PERMANENT
 end
+
+function modifier_stats_system_handler:AllowIllusionDuplicate()
+	return true
+end

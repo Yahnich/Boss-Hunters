@@ -7,7 +7,7 @@ local function StartEvent(self)
 		
 		self.enemiesToSpawn = self.enemiesToSpawn - 1
 		if self.enemiesToSpawn > 0 then
-			return 4
+			return 12 / (RoundManager:GetRaidsFinished() + 1)
 		end
 	end)
 	
