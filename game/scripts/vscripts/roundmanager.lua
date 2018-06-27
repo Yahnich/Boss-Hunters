@@ -148,7 +148,7 @@ function RoundManager:ConstructRaids(zoneName)
 		for i = 1, EVENTS_PER_RAID do
 			if RollPercentage(COMBAT_CHANCE) or not zoneEventPool[1] then -- Rolled Combat
 				local combatType = EVENT_TYPE_COMBAT
-				if RollPercentage(ELITE_CHANCE) and self.eventsCreated > 3 then
+				if RollPercentage(100) and self.eventsCreated > 0 then
 					combatType = EVENT_TYPE_ELITE
 				end
 				local combatPick = RandomInt(1, #raidCombatPool)

@@ -263,11 +263,15 @@ function CHoldoutGameMode:InitGameMode()
 												hero:AddRelic(relicName)
 											end
 										end, "adding relics",0)
-	Convars:RegisterCommand( "roll_relics", function(command, relicName)
+	Convars:RegisterCommand( "roll_relics", function(command, fBoss)
 											if Convars:GetDOTACommandClient() and IsInToolsMode() then
 												local player = Convars:GetDOTACommandClient()
 												local hero = player:GetAssignedHero()
-												RelicManager:RollBossRelicsForPlayer( player:GetPlayerID() )
+												if fBoss then
+													RelicManager:RollBossRelicsForPlayer( player:GetPlayerID() )
+												else
+													RelicManager:RollEliteRelicsForPlayer( player:GetPlayerID() )
+												end
 											end
 										end, "adding relics",0)
 	Convars:RegisterCommand( "getdunked", function()

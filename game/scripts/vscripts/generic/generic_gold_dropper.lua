@@ -16,7 +16,9 @@ function modifier_generic_gold_dropper:GetModifierIncomingDamage_Percentage(para
 	for _, hero in ipairs( HeroList:GetRealHeroes() ) do
 		hero:AddGold(2)
 	end
-	return -999
+	if params.damage > 0 then
+		return -999
+	end
 end
 
 function modifier_generic_gold_dropper:IsHidden()

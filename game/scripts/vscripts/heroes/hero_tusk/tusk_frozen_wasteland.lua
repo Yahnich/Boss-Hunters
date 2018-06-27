@@ -33,8 +33,8 @@ function modifier_tusk_frozen_wasteland:OnCreated(table)
         EmitSoundOn("Hero_Tusk.FrozenSigil", self:GetParent())
 
         local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_tusk/tusk_frozen_sigil.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
-                    ParticleManager:SetParticleControlEnt(self.nfx, 0, self:GetParent(), PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", self:GetParent():GetAbsOrigin(), true)
-                    ParticleManager:SetParticleControl(self.nfx, 1, Vector(self:GetTalentSpecialValueFor("radius"), 0, -self:GetTalentSpecialValueFor("radius")))
+                    ParticleManager:SetParticleControlEnt(nfx, 0, self:GetParent(), PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", self:GetParent():GetAbsOrigin(), true)
+                    ParticleManager:SetParticleControl(nfx, 1, Vector(self:GetTalentSpecialValueFor("radius"), 0, -self:GetTalentSpecialValueFor("radius")))
         self:AttachEffect(nfx)
         self:StartIntervalThink(0.1)
     end
@@ -45,7 +45,7 @@ function modifier_tusk_frozen_wasteland:OnIntervalThink()
         local damage = self:GetParent():GetStrength() * self:GetCaster():FindTalentValue("special_bonus_unique_tusk_frozen_wasteland_2")/100
         local enemies = self:GetParent():FindEnemyUnitsInRadius(self:GetParent():GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"))
         for _,enemy in pairs(enemies) do
-            self:GetAbility():DealDamage(self:GetCaster(), enemy, damage, {damage_type=DAMAGE_TYPE_MAGICAL, damage_flags=DOTA_DAMAGE_FLAG_NONE}, 0)
+            self:GetAbility():DealDamage(self:GetCaster(), enemy, damage, {damage_type=DAMAGE_TYPE_MAGICAL})
         end
         self:StartIntervalThink(1.0)
     end

@@ -54,12 +54,13 @@ end
 
 function modifier_tusk_punch:OnAttackRecord(params)
     if IsServer() then
-        if self:GetCaster():HasTalent("special_bonus_unique_tusk_punch_1") then
-            if RollPercentage(self:GetCaster():FindTalentValue("special_bonus_unique_tusk_punch_1")) and params.attacker == self:GetParent() and caster:IsHero() then
+		local caster = self:GetCaster()
+        if caster:HasTalent("special_bonus_unique_tusk_punch_1") then
+            if RollPercentage(caster:FindTalentValue("special_bonus_unique_tusk_punch_1")) and params.attacker == self:GetParent() and caster:IsHero() then
                 self:GetAbility().cd = false
 				EmitSoundOn("Hero_Tusk.WalrusPunch.Cast", self:GetParent())
 				self:GetParent():StartGestureWithPlaybackRate(ACT_DOTA_CAST_ABILITY_4, self:GetParent():GetIncreasedAttackSpeed() )
-                self:GetCaster():AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_tusk_punch_crit", {})
+                caster:AddNewModifier(caster, self:GetAbility(), "modifier_tusk_punch_crit", {})
             end
         end
     end

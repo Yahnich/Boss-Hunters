@@ -2555,4 +2555,3 @@ end
 function GameRules:GetGameDifficulty()
 	return GameRules.gameDifficulty
 end
-
