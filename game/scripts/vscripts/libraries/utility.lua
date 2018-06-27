@@ -1882,7 +1882,7 @@ function CDOTABaseAbility:FireLinearProjectile(FX, velocity, distance, width, da
 		bDeleteOnHit = delete,
 		fExpireTime = GameRules:GetGameTime() + 10.0,
 		bProvidesVision = bVision,
-		iVisionRadius = vision or 0,
+		iVisionRadius = vision or 100,
 		iVisionTeamNumber = self:GetCaster():GetTeamNumber(),
 		ExtraData = internalData.extraData
 	}
@@ -1892,6 +1892,10 @@ end
 
 function CDOTABaseAbility:FireTrackingProjectile(FX, target, speed, data, iAttach, bDodge, bVision, vision)
 	local internalData = data or {}
+	local dodgable = false
+	if bDodge then dodgable = bDodge end
+	local vision = true
+	if bVision then	vision = bVision end
 	local projectile = {
 		Target = target,
 		Source = internalData.source or self:GetCaster(),
@@ -1900,13 +1904,13 @@ function CDOTABaseAbility:FireTrackingProjectile(FX, target, speed, data, iAttac
 	    iMoveSpeed = speed,
 		vSourceLoc= internalData.origin or self:GetCaster():GetAbsOrigin(),
 		bDrawsOnMinimap = false,
-        bDodgeable = bDodge or false,
+        bDodgeable = dodgable,
         bIsAttack = false,
         bVisibleToEnemies = true,
         bReplaceExisting = false,
         flExpireTime = GameRules:GetGameTime() + 10,
 		bProvidesVision = bVision or false,
-		iVisionRadius = vision or 0,
+		iVisionRadius = vision or 100,
 		iVisionTeamNumber = self:GetCaster():GetTeamNumber(),
 		iSourceAttachment = iAttach or 0,
 		ExtraData = internalData.extraData
