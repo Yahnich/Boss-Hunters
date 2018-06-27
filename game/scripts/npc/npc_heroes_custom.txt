@@ -80,6 +80,30 @@
 		"Ability6"					"antimage_ragevoid"					// Ability 4
 		
 	}
+	//=================================================================================================================
+	// HERO: Arc Warden
+	//=================================================================================================================
+	"npc_dota_hero_arc_warden"
+	{
+		"Ability1"        "arc_warden_flux_bh"
+	    "Ability2"        "arc_warden_magnetic_field_bh" 
+	    "Ability3"        "arc_warden_spark_wrath_bh"
+	    "Ability4"        "arc_warden_echo_ward"
+	    "Ability6"        "arc_warden_primordial_current"
+
+	    "Ability10"       "special_bonus_unique_arc_warden_flux_bh_1"
+	    "Ability11"       "special_bonus_unique_arc_warden_flux_bh_2"
+	    "Ability12"       "special_bonus_unique_arc_warden_magnetic_field_bh_1"
+	    "Ability13"       "special_bonus_unique_arc_warden_magnetic_field_bh_2"
+	    "Ability14"       "special_bonus_unique_arc_warden_spark_wrath_bh_1"
+	    "Ability15"       "special_bonus_unique_arc_warden_spark_wrath_bh_2"
+	    "Ability16"       "special_bonus_unique_arc_warden_primordial_current_1"
+	    "Ability17"       "special_bonus_unique_arc_warden_primordial_current_2"
+
+	    // Attributes
+		//-------------------------------------------------------------------------------------------------------------
+		"AttributePrimary"		"DOTA_ATTRIBUTE_INTELLECT"
+	}
 	"npc_dota_hero_axe_ebf"
 	{
 	    "override_hero"   "npc_dota_hero_axe"
