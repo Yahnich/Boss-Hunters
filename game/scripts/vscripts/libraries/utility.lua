@@ -1858,6 +1858,8 @@ function CDOTA_BaseNPC:SmoothFindClearSpace(position)
 end
 
 function CDOTABaseAbility:Stun(target, duration, bDelay)
+	local delay = false
+	if bDelay then delay = Bdelay end
 	target:AddNewModifier(self:GetCaster(), self, "modifier_stunned_generic", {duration = duration, delay = bDelay})
 end
 
