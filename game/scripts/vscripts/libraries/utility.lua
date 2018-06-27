@@ -400,6 +400,14 @@ function table.removekey(t1, key)
 	end
 end
 
+function table.copy(t1)
+	copy = {}
+	for k,v in pairs(t1) do
+		copy[k] = v
+	end
+	return copy
+end
+
 function table.removeval(t1, val)
     for k,v in pairs(t1) do
 		if t1[k] == val then

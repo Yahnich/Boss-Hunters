@@ -157,9 +157,9 @@ function RelicManager:RegisterPlayer(pID)
 	local hero = PlayerResource:GetSelectedHeroEntity(pID)
 	hero.internalRelicRNG = BASE_RELIC_CHANCE
 	hero.internalRNGPools = {}
-	table.insert(hero.internalRNGPools, self.genericDropTable)
-	table.insert(hero.internalRNGPools, self.cursedDropTable)
-	table.insert(hero.internalRNGPools, self.uniqueDropTable)
+	table.insert(hero.internalRNGPools, table.copy(self.genericDropTable) )
+	table.insert(hero.internalRNGPools, table.copy(self.cursedDropTable) )
+	table.insert(hero.internalRNGPools, table.copy(self.uniqueDropTable) )
 	RelicManager:RollEliteRelicsForPlayer(pID)
 end
 
@@ -228,13 +228,25 @@ function RelicManager:RollRandomGenericRelicForPlayer(pID, notThisRelic)
 			end
 		end
 	end
+	
 	if dropTable[1] == nil then
-		hero.internalRNGPools[1] = self.genericDropTable
-		return self:RollRandomGenericRelicForPlayer(pID)
+		hero.internalRNGPools[1] = table.copy(self.genericDropTable)
+		for relic, weight in pairs( hero.internalRNGPools[1] ) do
+			if relic ~= notThisRelic then
+				for i = 1, weight do
+					table.insert(dropTable, relic)
+				end
+			end
+		end
 	end
-	local relic = dropTable[RandomInt(1, #dropTable)]
-	hero.internalRNGPools[1][relic] = nil
-	return relic
+	
+	if dropTable[1] ~= nil then
+		local relic = dropTable[RandomInt(1, #dropTable)]
+		hero.internalRNGPools[1][relic] = nil
+		return relic
+	else
+		return "generic_relic_not_found"
+	end
 end
 
 function RelicManager:RollRandomCursedRelicForPlayer(pID, notThisRelic)
@@ -249,12 +261,22 @@ function RelicManager:RollRandomCursedRelicForPlayer(pID, notThisRelic)
 		end
 	end
 	if dropTable[1] == nil then
-		hero.internalRNGPools[2] = self.cursedDropTable
-		return self:RollRandomGenericRelicForPlayer(pID)
+		hero.internalRNGPools[2] = table.copy(self.cursedDropTable)
+		for relic, weight in pairs( hero.internalRNGPools[2] ) do
+			if relic ~= notThisRelic then
+				for i = 1, weight do
+					table.insert(dropTable, relic)
+				end
+			end
+		end
 	end
-	local relic = dropTable[RandomInt(1, #dropTable)]
-	hero.internalRNGPools[2][relic] = nil
-	return relic
+	if dropTable[1] ~= nil then
+		local relic = dropTable[RandomInt(1, #dropTable)]
+		hero.internalRNGPools[2][relic] = nil
+		return relic
+	else
+		return "cursed_relic_not_found"
+	end
 end
 
 function RelicManager:RollRandomUniqueRelicForPlayer(pID, notThisRelic)
@@ -269,12 +291,22 @@ function RelicManager:RollRandomUniqueRelicForPlayer(pID, notThisRelic)
 		end
 	end
 	if dropTable[1] == nil then
-		hero.internalRNGPools[3] = self.uniqueDropTable
-		return self:RollRandomGenericRelicForPlayer(pID)
+		hero.internalRNGPools[3] = table.copy(self.uniqueDropTable)
+		for relic, weight in pairs( hero.internalRNGPools[3] ) do
+			if relic ~= notThisRelic then
+				for i = 1, weight do
+					table.insert(dropTable, relic)
+				end
+			end
+		end
 	end
-	local relic = dropTable[RandomInt(1, #dropTable)]
-	hero.internalRNGPools[3][relic] = nil
-	return relic
+	if dropTable[1] ~= nil then
+		local relic = dropTable[RandomInt(1, #dropTable)]
+		hero.internalRNGPools[3][relic] = nil
+		return relic
+	else
+		return "unique_relic_not_found"
+	end
 end
 
 function CDOTA_BaseNPC_Hero:HasRelic(relic)

@@ -36,27 +36,23 @@ local function StartCombat(self)
 		CustomGameEventManager:Send_ServerToAllClients("updateQuestPrepTime", {prepTime = self.timeRemaining})
 		if not self.combatEnded then
 			if self.timeRemaining >= 0 then
-				local spawns = 1
 				for _, hero in ipairs( HeroList:GetActiveHeroes() ) do
-					for i = 1, spawns do
-						local roll = RandomInt(1, 12)
-						local zombieType = "npc_dota_mini_boss1"
-						if roll <= 6 then
-							zombieType = "npc_dota_mini_boss1"
-						elseif roll <= 10 then
-							zombieType = "npc_dota_boss3a_b"
-						elseif roll == 12 then
-							zombieType = "npc_dota_boss3b"
-						end
-						local zombie = CreateUnitByName(zombieType, hero:GetAbsOrigin() + ActualRandomVector(1200, 600), true, nil, nil, DOTA_TEAM_BADGUYS)
-						zombie:SetBaseMaxHealth(150 * GameRules:GetGameDifficulty())
-						zombie:SetMaxHealth(150 * GameRules:GetGameDifficulty())
-						zombie:SetHealth(150 * GameRules:GetGameDifficulty())
+					local roll = RandomInt(1, 12)
+					local zombieType = "npc_dota_mini_boss1"
+					if roll <= 6 then
+						zombieType = "npc_dota_mini_boss1"
+					elseif roll <= 10 then
+						zombieType = "npc_dota_boss3a_b"
+					elseif roll == 12 then
+						zombieType = "npc_dota_boss3b"
 					end
+					local zombie = CreateUnitByName(zombieType, hero:GetAbsOrigin() + ActualRandomVector(1200, 600), true, nil, nil, DOTA_TEAM_BADGUYS)
+					zombie:SetBaseMaxHealth(150 * GameRules:GetGameDifficulty())
+					zombie:SetMaxHealth(150 * GameRules:GetGameDifficulty())
+					zombie:SetHealth(150 * GameRules:GetGameDifficulty())
 				end
-				
-				
-				return math.max( 1, (self.timeRemaining or 60) / 15 )
+					
+				return math.max( 2, (self.timeRemaining or 60) / 15 )
 			end
 		end
 	end)

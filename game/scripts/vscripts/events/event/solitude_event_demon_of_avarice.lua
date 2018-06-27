@@ -21,6 +21,7 @@ local function StartCombat(self)
 	self.timeRemaining = 30
 	
 	self.demon = CreateUnitByName("npc_dota_money_roshan", START_VECTOR, true, nil, nil, DOTA_TEAM_BADGUYS)
+	self.demon:FindAbilityByName("generic_gold_dropper"):SetLevel(1)
 	
 	local activeHeroes = HeroList:GetActiveHeroCount()
 	
@@ -71,7 +72,7 @@ local function EndEvent(self, bWon)
 	self.combatEnded = true
 	self.timeRemaining = -1
 	
-	self.demon:ForceKill( false )
+	if self.demon and not self.demon:IsNull() then self.demon:ForceKill( false ) end
 	
 	Timers:CreateTimer(3, function() RoundManager:EndEvent(true) end)
 end
