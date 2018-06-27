@@ -408,6 +408,14 @@ function table.removeval(t1, val)
 	end
 end
 
+function table.copy(t1)
+	copy = {}
+	for k,v in pairs(t1) do
+		copy[k] = v
+	end
+	return copy
+end
+
 function GetAllPlayers()
 	local counter = 0
 	local abandon = 0
