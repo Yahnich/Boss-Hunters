@@ -1860,7 +1860,7 @@ end
 function CDOTABaseAbility:Stun(target, duration, bDelay)
 	local delay = false
 	if bDelay then delay = Bdelay end
-	target:AddNewModifier(self:GetCaster(), self, "modifier_stunned_generic", {duration = duration, delay = bDelay})
+	target:AddNewModifier(self:GetCaster(), self, "modifier_stunned_generic", {duration = duration, delay = delay})
 end
 
 function CDOTABaseAbility:FireLinearProjectile(FX, velocity, distance, width, data, bDelete, bVision, vision)
