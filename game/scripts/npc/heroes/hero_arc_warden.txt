@@ -281,7 +281,7 @@
 			{
 				"var_type"						"FIELD_INTEGER"
 				"damage"						"100 160 220 280 340 400 460"
-				"LinkedSpecialBonus"			"special_bonus_unique_arc_warden_magnetic_field_bh_1"
+				"LinkedSpecialBonus"			"special_bonus_unique_arc_warden_spark_wrath_bh_1"
 			}
 			"06"
 			{
