@@ -408,8 +408,8 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityChannelTime"			"2 2.5 3 3.5 4 4.5"
-		"AbilityCooldown"				"60 50 40 30 20 10"
+		"AbilityChannelTime"			"5"
+		"AbilityCooldown"				"40 35 30 25 20 15"
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -436,13 +436,13 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"channel_time"			"2 2.5 3 3.5 4 4.5"
+				"channel_time"			"5"
 				"LinkedSpecialBonus"	"special_bonus_unique_arc_warden_primordial_current_1"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"total_damage"			"500"
+				"total_damage"			"100 125 150 175 200 225"
 			}
 		}
 	}

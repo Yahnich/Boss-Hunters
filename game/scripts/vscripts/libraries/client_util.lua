@@ -179,6 +179,14 @@ function C_DOTA_BaseNPC:GetPrimaryStatValue()
 	return 0
 end
 
+function C_DOTA_BaseNPC:GetIllusionOwnerEntindex()
+	if self:HasModifier("modifier_illusion_tag") then
+		return self:GetModifierStackCount("modifier_illusion_tag", self)
+	else
+		error("Not an illusion!")
+	end
+end
+
 function GameRules:IsDaytime()
 	local timeofday = CustomNetTables:GetTableValue( "game_info", "timeofday")
 	return timeofday["timeofday"] == 1

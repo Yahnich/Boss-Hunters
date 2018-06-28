@@ -31,6 +31,7 @@ require("roundmanager")
 require("eventmanager")
 require( "ai/ai_core" )
 
+LinkLuaModifier( "modifier_illusion_tag", "libraries/modifiers/illusions/modifier_illusion_tag.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_illusion_bonuses", "libraries/modifiers/illusions/modifier_illusion_bonuses.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_stats_system_handler", "libraries/modifiers/modifier_stats_system_handler.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_blind_generic", "libraries/modifiers/modifier_blind_generic.lua", LUA_MODIFIER_MOTION_NONE)
@@ -777,8 +778,8 @@ function CHoldoutGameMode:OnHeroPick (event)
 
 	if hero.hasBeenInitialized then return end
 	if hero:IsFakeHero() then return end
-	Timers:CreateTimer(0.03, function() 
-		if hero:IsFakeHero() or hero:IsIllusion() then return end
+	Timers:CreateTimer(0.03, function()
+		if hero:IsFakeHero() then return end
 		for i = 0, 17 do
 			local skill = hero:GetAbilityByIndex(i)
 			if skill and skill:IsInnateAbility() then

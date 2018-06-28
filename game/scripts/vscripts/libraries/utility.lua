@@ -746,11 +746,11 @@ function CDOTA_BaseNPC:RefreshAllCooldowns(bItems)
 end
 
 function CDOTA_BaseNPC:IsIllusion()
-	local isMainHero = true
+	local isIllusion = false
 	if self:GetPlayerOwnerID() then
-		isMainHero = PlayerResource:GetSelectedHeroEntity( self:GetPlayerOwnerID() ) == self
+		isIllusion = PlayerResource:GetSelectedHeroEntity( self:GetPlayerOwnerID() ) ~= self
 	end
-	return ( self:HasModifier("modifier_illusion") or self.isCustomIllusion == true ) and not isMainHero
+	return isIllusion
 end
 
 
@@ -1228,14 +1228,14 @@ function CDOTA_BaseNPC:FindModifierByAbility(abilityname)
 end
 
 function CDOTA_BaseNPC:IsFakeHero()
-	if self:IsIllusion() or (self:HasModifier("modifier_monkey_king_fur_army_soldier") or self:HasModifier("modifier_monkey_king_fur_army_soldier_hidden")) or self:IsTempestDouble() then
+	if (self:HasModifier("modifier_monkey_king_fur_army_soldier") or self:HasModifier("modifier_monkey_king_fur_army_soldier_hidden")) or self:IsTempestDouble() or self:IsClone() then
 		return true
 	else return false end
 end
 
 function CDOTA_BaseNPC:IsRealHero()
 	if not self:IsNull() then
-		return self:IsHero() and not ( self:IsIllusion() or self:IsClone() )
+		return self:IsHero() and not ( self:IsIllusion() or self:IsClone() ) and not self:IsFakeHero()
 	end
 end
 
@@ -1467,7 +1467,7 @@ function CScriptHeroList:GetRealHeroes()
 	local heroes = self:GetAllHeroes()
 	local realHeroes = {}
 	for _,hero in pairs(heroes) do
-		if hero:IsRealHero() and not (hero:HasModifier("modifier_monkey_king_fur_army_soldier") or hero:HasModifier("modifier_monkey_king_fur_army_soldier_hidden")) then
+		if hero:IsRealHero() then
 			table.insert(realHeroes, hero)
 		end
 	end
@@ -1475,21 +1475,14 @@ function CScriptHeroList:GetRealHeroes()
 end
 
 function CScriptHeroList:GetRealHeroCount()
-	local heroes = self:GetAllHeroes()
-	local realHeroes = {}
-	for _,hero in pairs(heroes) do
-		if hero:IsRealHero() and not (hero:HasModifier("modifier_monkey_king_fur_army_soldier") or hero:HasModifier("modifier_monkey_king_fur_army_soldier_hidden")) then
-			table.insert(realHeroes, hero)
-		end
-	end
 	return #self:GetRealHeroes()
 end
 
 function CScriptHeroList:GetActiveHeroes()
-	local heroes = self:GetAllHeroes()
+	local heroes = self:GetRealHeroes()
 	local activeHeroes = {}
 	for _, hero in pairs(heroes) do
-		if hero:GetPlayerOwner() and not hero:IsFakeHero() then
+		if hero:GetPlayerOwner() then
 			table.insert(activeHeroes, hero)
 		end
 	end
@@ -2562,4 +2555,12 @@ end
 
 function GameRules:GetGameDifficulty()
 	return GameRules.gameDifficulty
+end
+
+function CDOTA_BaseNPC:GetIllusionOwnerEntindex()
+	if self:HasModifier("modifier_illusion_tag") then
+		return self:GetModifierStackCount("modifier_illusion_tag", self)
+	else
+		error("Not an illusion!")
+	end
 end

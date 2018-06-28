@@ -9,10 +9,8 @@ end
 
 function relic_generic_stick:OnEventFinished(args)
 	EVENT_TYPE_EVENT = 3
-	print("stick upgrade", args.eventType)
 	if args.eventType ~= EVENT_TYPE_EVENT then
-		print("stick upgraded!")
-		self:SetStackCount( math.ceil(self:GetStackCount() * 0.3) )
+		self:SetStackCount( math.ceil(self:GetStackCount() * 1.3) )
 	end
 end
 

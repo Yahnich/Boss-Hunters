@@ -16,7 +16,7 @@ EVENTS_PER_RAID = 4
 RAIDS_PER_ZONE = 4
 ZONE_COUNT = 2
 
-POSSIBLE_ZONES = {"Sepulcher", "Grove"}
+POSSIBLE_ZONES = {"Grove", "Elysium"}
 
 COMBAT_CHANCE = 60
 ELITE_CHANCE = 20
@@ -36,9 +36,7 @@ function RoundManager:Initialize(context)
 	self.eventsFinished = 0
 	local zonesToSpawn = ZONE_COUNT
 	for i = 1, ZONE_COUNT do
-		local zoneID = RandomInt(1, #POSSIBLE_ZONES)
-		local zoneName = POSSIBLE_ZONES[zoneID]
-		table.remove(POSSIBLE_ZONES, zoneID)
+		local zoneName = POSSIBLE_ZONES[i]
 		RoundManager:ConstructRaids(zoneName)
 		if zonesToSpawn <= 0 then
 			break
@@ -67,6 +65,7 @@ function RoundManager:OnNPCSpawned(event)
 			return
 		end
 		if spawnedUnit then
+			print( spawnedUnit:IsIllusion() )
 			if spawnedUnit:IsAlive() and spawnedUnit:IsCreature() and spawnedUnit:GetTeam() == DOTA_TEAM_BADGUYS then
 				AddFOWViewer(DOTA_TEAM_GOODGUYS, spawnedUnit:GetAbsOrigin(), 516, 3, false) -- show spawns
 				if spawnedUnit:IsRoundBoss() then
@@ -80,6 +79,8 @@ function RoundManager:OnNPCSpawned(event)
 				end
 			elseif spawnedUnit:IsRealHero() then
 				spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_tombstone_respawn_immunity", {duration = 3})
+			elseif spawnedUnit:IsIllusion() then
+				spawnedUnit:FindModifierByName("modifier_stats_system_handler"):SetStackCount( PlayerResource:GetSelectedHeroEntity( spawnedUnit:GetPlayerOwnerID() ):entindex() )
 			end
 		end
 	end)
@@ -107,9 +108,11 @@ function RoundManager:RollRandomEvent(zoneName, eventType)
 	else
 		eventTypeName = "boss"
 	end
-	for event, weight in pairs( MergeTables(self[eventTypeName.."Pool"][zoneName], self[eventTypeName.."Pool"]["Generic"]) ) do
-		for i = 1, weight do
-			table.insert(eventPool, event)
+	for event, weight in pairs( self[eventTypeName.."Pool"][zoneName] ) do
+		if weight > 0 then
+			for i = 1, weight do
+				table.insert(eventPool, event)
+			end
 		end
 	end
 	
@@ -120,20 +123,24 @@ function RoundManager:ConstructRaids(zoneName)
 	self.zones[zoneName] = {}
 	
 	local zoneEventPool = {}
-	local zoneCombatPool = MergeTables(self.combatPool[zoneName], self.combatPool["Generic"])
+	local zoneCombatPool = self.combatPool[zoneName]
 	local zoneBossPool = {}
 	
 	self.eventsCreated = self.eventsCreated or 0
 	
-	for event, weight in pairs( MergeTables(self.bossPool[zoneName], self.bossPool["Generic"]) ) do
-		for i = 1, weight do
-			table.insert(zoneBossPool, event)
+	for event, weight in pairs( self.bossPool[zoneName] ) do
+		if weight > 0 then
+			for i = 1, weight do
+				table.insert(zoneBossPool, event)
+			end
 		end
 	end
 	
-	for event, weight in pairs( MergeTables(self.eventPool[zoneName], self.eventPool["Generic"]) ) do
-		for i = 1, weight do
-			table.insert(zoneEventPool, event)
+	for event, weight in pairs( self.eventPool[zoneName] ) do
+		if weight > 0 then
+			for i = 1, weight do
+				table.insert(zoneEventPool, event)
+			end
 		end
 	end
 	for j = 1, RAIDS_PER_ZONE do
@@ -141,14 +148,16 @@ function RoundManager:ConstructRaids(zoneName)
 		local raidCombatPool = {}
 		local raidContent
 		for event, weight in pairs( zoneCombatPool ) do
-			for i = 1, weight do
-				table.insert(raidCombatPool, event)
+			if weight > 0 then
+				for i = 1, weight do
+					table.insert(raidCombatPool, event)
+				end
 			end
 		end
 		for i = 1, EVENTS_PER_RAID do
 			if RollPercentage(COMBAT_CHANCE) or not zoneEventPool[1] then -- Rolled Combat
 				local combatType = EVENT_TYPE_COMBAT
-				if RollPercentage(100) and self.eventsCreated > 0 then
+				if RollPercentage(ELITE_CHANCE) and self.eventsCreated > 3 then
 					combatType = EVENT_TYPE_ELITE
 				end
 				local combatPick = RandomInt(1, #raidCombatPool)
@@ -183,17 +192,14 @@ function RoundManager:RemoveEventFromPool(eventToRemove, pool)
 end
 
 function RoundManager:StartGame()
-	local selection = {}
 	
 	self.spawnPositions = {}
 	for _,spawnPos in ipairs(Entities:FindAllByName("boss_spawner")) do
 		table.insert( self.spawnPositions, spawnPos:GetAbsOrigin() )
 	end
 	
-	for zoneName, _ in pairs( self.zones ) do
-		table.insert(selection, zoneName)
-	end
-	self.currentZone = selection[RandomInt(1, #selection)]
+	self.currentZone = POSSIBLE_ZONES[1]
+	table.remove(POSSIBLE_ZONES, 1)
 	
 	RoundManager:StartPrepTime()
 end
@@ -331,15 +337,14 @@ function RoundManager:ZoneIsFinished()
 	self.zones[self.currentZone] = nil
 	self.currentZone = nil
 	
-	local selection = {}
-	for zoneName, _ in pairs( self.zones ) do
-		table.insert(selection, zoneName)
-	end
-	self.currentZone = selection[RandomInt(1, #selection)]
+	self.currentZone = POSSIBLE_ZONES[1]
+
 	EventManager:FireEvent("boss_hunters_zone_finished")
 	self.zonesFinished = (self.zonesFinished or 0) + 1
 	if self.currentZone == nil then
 		RoundManager:GameIsFinished(true)
+	else
+		table.remove(POSSIBLE_ZONES, 1)
 	end
 end
 
@@ -402,18 +407,20 @@ end
 function RoundManager:InitializeUnit(unit, bElite)
 	unit.hasBeenInitialized = true
 	local expectedHP = unit:GetBaseMaxHealth() * RandomFloat(0.9, 1.1)
-	local playerHPMultiplier = 0.35
-	local playerDMGMultiplier = 0.06
+	local expectedDamage = ( unit:GetAverageBaseDamage() + RoundManager:GetEventsFinished() ) * RandomFloat(0.9, 1.1)
+	local playerHPMultiplier = 0.4
+	local playerDMGMultiplier = 0.1
 	if GameRules:GetGameDifficulty() == 4 then 
-		expectedHP = expectedHP * 1.35
-		playerHPMultiplier = 0.5 
-		playerDMGMultiplier = 0.09
+		expectedHP = expectedHP * 1.5
+		expectedDamage = expectedDamage * 1.2
+		playerHPMultiplier = 0.6 
+		playerDMGMultiplier = 0.15
 		playerArmorMultiplier = 0.06
 	end
 	local effective_multiplier = (HeroList:GetActiveHeroCount() - 1) 
 	
-	local effPlayerHPMult =  1 + ( (RoundManager:GetEventsFinished() * 0.08) + (RoundManager:GetRaidsFinished() * 0.33) + ( RoundManager:GetZonesFinished() * 0.75 )  ) + ( effective_multiplier * playerHPMultiplier )
-	local effPlayerDMGMult = ( 0.8 + (RoundManager:GetEventsFinished() * 0.04) + (RoundManager:GetRaidsFinished() * 0.40) + ( RoundManager:GetZonesFinished() * 0.5 ) ) + effective_multiplier * playerDMGMultiplier
+	local effPlayerHPMult =  0.7 + ( (RoundManager:GetEventsFinished() * 0.1) + (RoundManager:GetRaidsFinished() * 0.5) + ( RoundManager:GetZonesFinished() * 1.5 )  ) + ( effective_multiplier * playerHPMultiplier )
+	local effPlayerDMGMult = ( 0.6 + (RoundManager:GetEventsFinished() * 0.05) + (RoundManager:GetRaidsFinished() * 0.60) + ( RoundManager:GetZonesFinished() ) ) + effective_multiplier * playerDMGMultiplier
 	local effPlayerArmorMult = ( 0.85 + (RoundManager:GetRaidsFinished() * 0.15) + ( RoundManager:GetZonesFinished() ) ) + effective_multiplier * playerArmorMultiplier
 	
 	if bElite then
@@ -423,8 +430,6 @@ function RoundManager:InitializeUnit(unit, bElite)
 		
 		local nParticle = ParticleManager:CreateParticle( "particles/econ/courier/courier_onibi/courier_onibi_yellow_ambient_smoke_lvl21.vpcf", PATTACH_ABSORIGIN_FOLLOW, unit )
 		ParticleManager:ReleaseParticleIndex( nParticle )
-		
-		unit:SetHealth(unit:GetMaxHealth())
 		unit:SetModelScale(unit:GetModelScale()*1.15)
 		
 		local eliteTypes = {}
@@ -443,17 +448,17 @@ function RoundManager:InitializeUnit(unit, bElite)
 		end
 	end
 	
-	expectedHP = expectedHP * effPlayerHPMult
+	expectedHP = ( 20 * RoundManager:GetRaidsFinished() + expectedHP ) * effPlayerHPMult
 	unit:SetBaseMaxHealth(expectedHP)
 	unit:SetMaxHealth(expectedHP)
 	unit:SetHealth(expectedHP)
 	
-	unit:SetAverageBaseDamage(unit:GetAverageBaseDamage() * effPlayerDMGMult * RandomFloat(0.85, 1.15) + RoundManager:GetEventsFinished(), 35)
+	unit:SetAverageBaseDamage( expectedDamage * RandomFloat(0.85, 1.15) , 35)
 	unit:SetBaseHealthRegen(RoundManager:GetEventsFinished() * RandomFloat(0.85, 1.15) )
 	unit:SetPhysicalArmorBaseValue( (unit:GetPhysicalArmorBaseValue() + RoundManager:GetRaidsFinished() ) * effPlayerArmorMult )
 	
 	unit:AddNewModifier(unit, nil, "modifier_boss_attackspeed", {})
-	unit:AddNewModifier(unit, nil, "modifier_power_scaling", {}):SetStackCount( math.floor( (self:GetEventsFinished() / 3) * (1 + self:GetRaidsFinished() ) * ( RoundManager:GetZonesFinished() * 1.5 ) ))
+	unit:AddNewModifier(unit, nil, "modifier_power_scaling", {}):SetStackCount( math.floor( (self:GetEventsFinished() / 3) * (1 + self:GetRaidsFinished() * 1.5 ) * ( RoundManager:GetZonesFinished() * 3 ) ))
 	unit:AddNewModifier(unit, nil, "modifier_spawn_immunity", {duration = 4/GameRules.gameDifficulty})
 	
 	if unit:GetHullRadius() >= 16 then

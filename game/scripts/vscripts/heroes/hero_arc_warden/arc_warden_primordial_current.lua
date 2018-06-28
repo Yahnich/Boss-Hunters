@@ -34,7 +34,7 @@ function arc_warden_primordial_current:OnSpellStart()
 		hTarget:Paralyze(self, hCaster, self:GetTalentSpecialValueFor("channel_time"))
 		hTarget:AddNewModifier(hCaster, self, "modifier_arc_warden_primordial_current", {duration = self:GetTalentSpecialValueFor("channel_time")})
 
-		if hCaster:HasTalent("special_bonus_unique_arc_warden_spark_wrath_bh_2") then
+		if hCaster:HasTalent("special_bonus_unique_arc_warden_primordial_current_2") then
 			local enemies = hCaster:FindEnemyUnitsInRadius(hCaster:GetAbsOrigin(), self:GetTrueCastRange())
 			for _,enemy in pairs(enemies) do
 				if enemy ~= hTarget then
