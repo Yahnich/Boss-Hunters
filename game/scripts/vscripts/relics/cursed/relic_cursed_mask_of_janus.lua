@@ -23,3 +23,23 @@ if IsServer() then
 		end
 	end
 end
+
+
+function relic_cursed_mask_of_janus:OnCreated()
+	if IsServer() then
+		self.funcID = EventManager:SubscribeListener("boss_hunters_event_finished", function(args) self:OnEventFinished(args) end)
+	end
+end
+
+function relic_cursed_mask_of_janus:OnEventFinished(args)
+	EVENT_TYPE_EVENT = 3
+	if args.eventType ~= EVENT_TYPE_EVENT then
+		self:RerollRelic()
+	end
+end
+
+function relic_cursed_mask_of_janus:OnDestroy()
+	if IsServer() then
+		EventManager:UnsubscribeListener("boss_hunters_event_finished", self.funcID)
+	end
+end

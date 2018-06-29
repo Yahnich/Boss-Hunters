@@ -12,7 +12,7 @@ end
 
 require("events/base_event")
 
-EVENTS_PER_RAID = 4
+EVENTS_PER_RAID = 3
 RAIDS_PER_ZONE = 4
 ZONE_COUNT = 2
 
@@ -65,7 +65,6 @@ function RoundManager:OnNPCSpawned(event)
 			return
 		end
 		if spawnedUnit then
-			print( spawnedUnit:IsIllusion() )
 			if spawnedUnit:IsAlive() and spawnedUnit:IsCreature() and spawnedUnit:GetTeam() == DOTA_TEAM_BADGUYS then
 				AddFOWViewer(DOTA_TEAM_GOODGUYS, spawnedUnit:GetAbsOrigin(), 516, 3, false) -- show spawns
 				if spawnedUnit:IsRoundBoss() then
@@ -79,7 +78,7 @@ function RoundManager:OnNPCSpawned(event)
 				end
 			elseif spawnedUnit:IsRealHero() then
 				spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_tombstone_respawn_immunity", {duration = 3})
-			elseif spawnedUnit:IsIllusion() then
+			elseif spawnedUnit:IsIllusion() and spawnedUnit:GetPlayerOwnerID() and PlayerResource:GetSelectedHeroEntity( spawnedUnit:GetPlayerOwnerID() ) then
 				spawnedUnit:FindModifierByName("modifier_stats_system_handler"):SetStackCount( PlayerResource:GetSelectedHeroEntity( spawnedUnit:GetPlayerOwnerID() ):entindex() )
 			end
 		end
@@ -122,48 +121,35 @@ end
 function RoundManager:ConstructRaids(zoneName)
 	self.zones[zoneName] = {}
 	
-	local zoneEventPool = {}
-	local zoneCombatPool = self.combatPool[zoneName]
-	local zoneBossPool = {}
+	local zoneEventPool = TableToWeightedArray( self.eventPool[zoneName] )
+	local zoneCombatPool = TableToWeightedArray( self.combatPool[zoneName] )
+	local zoneBossPool = TableToWeightedArray( self.bossPool[zoneName] )
 	
 	self.eventsCreated = self.eventsCreated or 0
 	
-	for event, weight in pairs( self.bossPool[zoneName] ) do
-		if weight > 0 then
-			for i = 1, weight do
-				table.insert(zoneBossPool, event)
-			end
-		end
-	end
-	
-	for event, weight in pairs( self.eventPool[zoneName] ) do
-		if weight > 0 then
-			for i = 1, weight do
-				table.insert(zoneEventPool, event)
-			end
-		end
-	end
 	for j = 1, RAIDS_PER_ZONE do
 		local raid = {}
-		local raidCombatPool = {}
 		local raidContent
-		for event, weight in pairs( zoneCombatPool ) do
-			if weight > 0 then
-				for i = 1, weight do
-					table.insert(raidCombatPool, event)
-				end
-			end
-		end
+		
 		for i = 1, EVENTS_PER_RAID do
-			if RollPercentage(COMBAT_CHANCE) or not zoneEventPool[1] then -- Rolled Combat
+			if RollPercentage(COMBAT_CHANCE) then -- Rolled Combat
 				local combatType = EVENT_TYPE_COMBAT
 				if RollPercentage(ELITE_CHANCE) and self.eventsCreated > 3 then
 					combatType = EVENT_TYPE_ELITE
 				end
-				local combatPick = RandomInt(1, #raidCombatPool)
-				raidContent = BaseEvent(zoneName, combatType, raidCombatPool[combatPick] )
-				table.remove( raidCombatPool, combatPick )
+				
+				if zoneCombatPool[1] == nil then
+					zoneCombatPool = TableToWeightedArray( self.combatPool[zoneName] )
+				end
+				
+				local combatPick = RandomInt(1, #zoneCombatPool)
+				raidContent = BaseEvent(zoneName, combatType, zoneCombatPool[combatPick] )
+				table.remove( zoneCombatPool, combatPick )
 			else -- Event
+				if zoneEventPool[1] == nil then
+					zoneEventPool = TableToWeightedArray( self.eventPool[zoneName] )
+				end
+				
 				local eventPick = RandomInt(1, #zoneEventPool)
 				raidContent = BaseEvent(zoneName, EVENT_TYPE_EVENT, zoneEventPool[eventPick])
 				table.remove( zoneEventPool, eventPick )
@@ -171,10 +157,16 @@ function RoundManager:ConstructRaids(zoneName)
 			table.insert( raid, raidContent )
 			self.eventsCreated = self.eventsCreated + 1
 		end
+		
+		if zoneBossPool[1] == nil then
+			zoneBossPool = TableToWeightedArray( self.bossPool[zoneName] )
+		end
+		
 		local bossRoll = RandomInt(1, #zoneBossPool)
 		local bossPick = zoneBossPool[bossRoll]
 		RoundManager:RemoveEventFromPool(bossPick, "boss")
 		table.remove(zoneBossPool, bossRoll)
+		
 		table.insert( raid, BaseEvent(zoneName, EVENT_TYPE_BOSS, bossPick ) )
 		
 		table.insert( self.zones[zoneName], raid )
@@ -410,6 +402,7 @@ function RoundManager:InitializeUnit(unit, bElite)
 	local expectedDamage = ( unit:GetAverageBaseDamage() + RoundManager:GetEventsFinished() ) * RandomFloat(0.9, 1.1)
 	local playerHPMultiplier = 0.4
 	local playerDMGMultiplier = 0.1
+	local playerArmorMultiplier = 0.05
 	if GameRules:GetGameDifficulty() == 4 then 
 		expectedHP = expectedHP * 1.5
 		expectedDamage = expectedDamage * 1.2
@@ -458,7 +451,7 @@ function RoundManager:InitializeUnit(unit, bElite)
 	unit:SetPhysicalArmorBaseValue( (unit:GetPhysicalArmorBaseValue() + RoundManager:GetRaidsFinished() ) * effPlayerArmorMult )
 	
 	unit:AddNewModifier(unit, nil, "modifier_boss_attackspeed", {})
-	unit:AddNewModifier(unit, nil, "modifier_power_scaling", {}):SetStackCount( math.floor( (self:GetEventsFinished() / 3) * (1 + self:GetRaidsFinished() * 1.5 ) * ( RoundManager:GetZonesFinished() * 3 ) ))
+	unit:AddNewModifier(unit, nil, "modifier_power_scaling", {}):SetStackCount( math.floor( (self:GetEventsFinished() / 3) * (1 + (self:GetRaidsFinished() * 1.5) + ( RoundManager:GetZonesFinished() * 3 ) ) ))
 	unit:AddNewModifier(unit, nil, "modifier_spawn_immunity", {duration = 4/GameRules.gameDifficulty})
 	
 	if unit:GetHullRadius() >= 16 then

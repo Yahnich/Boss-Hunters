@@ -1,9 +1,8 @@
 relic_unique_champions_belt = class(relicBaseClass)
 
 function relic_unique_champions_belt:OnCreated()
-	self.str = self:GetParent():GetStrength() * 0.35
-	self.agi = self:GetParent():GetAgility() * 0.35
-	self.int = self:GetParent():GetIntellect() * -0.9
+	self.str = self:GetParent():GetStrength() * 0.2
+	self.agi = self:GetParent():GetAgility() * 0.2
 	if IsServer() then self:GetParent():CalculateStatBonus() end
 	self:StartIntervalThink(0)
 end
@@ -13,9 +12,8 @@ function relic_unique_champions_belt:OnIntervalThink()
 	self.agi = 0
 	self.int = 0
 	
-	self.str = self:GetParent():GetStrength() * 0.35
-	self.agi = self:GetParent():GetAgility() * 0.35
-	self.int = self:GetParent():GetIntellect() * -0.9
+	self.str = self:GetParent():GetStrength() * 0.2
+	self.agi = self:GetParent():GetAgility() * 0.2
 	if IsServer() then self:GetParent():CalculateStatBonus() end
 end
 
@@ -29,8 +27,4 @@ end
 
 function relic_unique_champions_belt:GetModifierBonusStats_Agility()
 	return self.agi
-end
-
-function relic_unique_champions_belt:GetModifierBonusStats_Intellect()
-	return self.int
 end

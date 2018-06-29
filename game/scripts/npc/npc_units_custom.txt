@@ -144,7 +144,7 @@
 		"AttackDamageMin"			"35"		// Damage range min.
 		"AttackDamageMax"			"50"		// Damage range max.
 		"AttackRate"				"2.7"			// Speed of attack.
-		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
+		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"18000"		// Range within a target can be acquired.
 		"AttackRange"				"256"		// Range within a target can be attacked.
 		"ProjectileModel"			"particles/base_attacks/ranged_goodguy.vpcf" // Particle system model for projectile.
@@ -248,7 +248,7 @@
 		"AttackDamageMin"			"20"		// Damage range min.
 		"AttackDamageMax"			"35"		// Damage range max.
 		"AttackRate"				"2.7"			// Speed of attack.
-		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
+		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"18000"		// Range within a target can be acquired.
 		"AttackRange"				"600"		// Range within a target can be attacked.
 		"ProjectileModel"			"particles/units/heroes/hero_leshrac/leshrac_base_attack.vpcf"						// Particle system model for projectile.
@@ -365,7 +365,7 @@
 		"AttackDamageMin"			"90"		// Damage range min.
 		"AttackDamageMax"			"120"		// Damage range max.
 		"AttackRate"				"3"	
-		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
+		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"18000"		// Range within a target can be acquired.
 		"AttackRange"				"150"		// Range within a target can be attacked.
 		"ProjectileModel"			""			// Particle system model for projectile.
@@ -462,7 +462,7 @@
 		"AttackDamageMin"			"20"		// Damage range min.
 		"AttackDamageMax"			"30"		// Damage range max.
 		"AttackRate"				"3"	
-		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
+		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"18000"		// Range within a target can be acquired.
 		"AttackRange"				"150"		// Range within a target can be attacked.
 		"ProjectileModel"			""			// Particle system model for projectile.
@@ -561,7 +561,7 @@
 		"AttackDamageMin"			"65"		// Damage range min.
 		"AttackDamageMax"			"80"		// Damage range max.
 		"AttackRate"				"2.7"		// Speed of attack.
-		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
+		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
 		"AttackRange"				"200"		// Range within a target can be attacked.
 		"ProjectileModel"			""			// Particle system model for projectile.
@@ -667,7 +667,7 @@
 		"AttackDamageMin"			"65"		// Damage range min.
 		"AttackDamageMax"			"80"		// Damage range max.	
 		"AttackRate"				"6"			// Speed of attack.
-		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
+		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
 		"AttackRange"				"100"		// Range within a target can be attacked.
 		"ProjectileModel"			""			// Particle system model for projectile.
@@ -778,7 +778,7 @@
 		"AttackDamageMin"			"65"		// Damage range min.
 		"AttackDamageMax"			"80"		// Damage range max.	
 		"AttackRate"				"4.5"		// Speed of attack.
-		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
+		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"18000"		// Range within a target can be acquired.
 		"AttackRange"				"200"		// Range within a target can be attacked.
 		"ProjectileModel"			""			// Particle system model for projectile.
@@ -889,7 +889,7 @@
 		"AttackDamageMin"			"65"		// Damage range min.
 		"AttackDamageMax"			"80"		// Damage range max.	
 		"AttackRate"				"2.4"		// Speed of attack.
-		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
+		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"18000"		// Range within a target can be acquired.
 		"AttackRange"				"200"		// Range within a target can be attacked.
 		"ProjectileModel"			""			// Particle system model for projectile.
@@ -1001,7 +1001,7 @@
 		"AttackDamageMin"			"80"		// Damage range min.
 		"AttackDamageMax"			"120"		// Damage range max.	
 		"AttackRate"				"6.0"		// Speed of attack.
-		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
+		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"18000"		// Range within a target can be acquired.
 		"AttackRange"				"250"		// Range within a target can be attacked.
 		"ProjectileModel"			""			// Particle system model for projectile.
@@ -1119,7 +1119,7 @@
 		"AttackDamageMin"			"80"		// Damage range min.
 		"AttackDamageMax"			"120"		// Damage range max.	
 		"AttackRate"				"6.0"		// Speed of attack.
-		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
+		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"18000"		// Range within a target can be acquired.
 		"AttackRange"				"120"		// Range within a target can be attacked.
 		"ProjectileModel"			""			// Particle system model for projectile.
@@ -1244,7 +1244,7 @@
 		"AttackDamageMin"			"160"		// Damage range min.1
 		"AttackDamageMax"			"240"		// Damage range max.	
 		"AttackRate"				"12.0"		// Speed of attack.
-		"AttackAnimationPoint"		"1.2"		// Normalized time in animation cycle to attack.
+		"AttackAnimationPoint"		"3.6"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
 		"AttackRange"				"300"		// Range within a target can be attacked.
 		"ProjectileModel"			"particles/base_attacks/ranged_goodguy.vpcf" // Particle system model for projectile.
@@ -1359,7 +1359,7 @@
 		"AttackDamageMin"			"80"		// Damage range min.
 		"AttackDamageMax"			"100"		// Damage range max.	
 		"AttackRate"				"6.0"		// Speed of attack.
-		"AttackAnimationPoint"		"0.4"									// Normalized time in animation cycle to attack.
+		"AttackAnimationPoint"		"1.2"									// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"16000"		// Range within a target can be acquired.
 		"AttackRange"				"600"		// Range within a target can be attacked.
 		"ProjectileModel"			"particles/units/heroes/hero_furion/furion_base_attack.vpcf"					// Particle system model for projectile.
@@ -1484,7 +1484,7 @@
 		"AttackDamageMin"			"100"		// Damage range min.
 		"AttackDamageMax"			"120"		// Damage range max.
 		"AttackRate"				"5"		// Speed of attack.
-		"AttackAnimationPoint"		"0.8"		// Normalized time in animation cycle to attack.
+		"AttackAnimationPoint"		"3"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
 		"AttackRange"				"800"		// Range within a target can be attacked.
 		"ProjectileModel"			"particles/neutral_fx/gnoll_base_attack.vpcf" // Particle system model for projectile.
@@ -1576,7 +1576,7 @@
 		"AttackDamageMin"			"125"	// Damage range min.
 		"AttackDamageMax"			"150"		// Damage range max.
 		"AttackRate"				"5"		// Speed of attack.
-		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
+		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
 		"AttackRange"				"256"		// Range within a target can be attacked.
 		"ProjectileModel"			""			// Particle system model for projectile.
@@ -1671,7 +1671,7 @@
 		"AttackDamageMin"			"80"	// Damage range min.
 		"AttackDamageMax"			"100"		// Damage range max.
 		"AttackRate"				"1.8"		// Speed of attack.
-		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
+		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
 		"AttackRange"				"1000"		// Range within a target can be attacked.
 		"ProjectileModel"			"particles/units/heroes/hero_leshrac/leshrac_base_attack.vpcf"			// Particle system model for projectile.
@@ -1789,7 +1789,7 @@
 		"AttackDamageMin"			"20"		// Damage range min.
 		"AttackDamageMax"			"20"		// Damage range max.
 		"AttackRate"				"2.8"		// Speed of attack.
-		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
+		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
 		"AttackRange"				"256"		// Range within a target can be attacked.
 		"ProjectileModel"			""			// Particle system model for projectile.
@@ -1900,7 +1900,7 @@
 		"AttackDamageMin"			"75"	// Damage range min.
 		"AttackDamageMax"			"90"		// Damage range max.
 		"AttackRate"				"7.0"		// Speed of attack.
-		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
+		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
 		"AttackRange"				"600"		// Range within a target can be attacked.
 		"ProjectileModel"			"particles/neutral_fx/black_dragon_attack.vpcf"			// Particle system model for projectile.
@@ -2007,7 +2007,7 @@
 		"AttackDamageMin"			"90"	// Damage range min.
 		"AttackDamageMax"			"100"		// Damage range max.
 		"AttackRate"				"5"		// Speed of attack.
-		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
+		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
 		"AttackRange"				"700"		// Range within a target can be attacked.
 		"ProjectileModel"			"particles/neutral_fx/black_dragon_attack.vpcf"			// Particle system model for projectile.
@@ -2115,7 +2115,7 @@
 		"AttackDamageMin"			"80"		// Damage range min.
 		"AttackDamageMax"			"120"		// Damage range max.
 		"AttackRate"				"2.1"		// Speed of attack.
-		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
+		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
 		"AttackRange"				"750"		// Range within a target can be attacked.
 		"ProjectileModel"			"particles/units/heroes/hero_clinkz/clinkz_searing_arrow.vpcf"			// Particle system model for projectile.
@@ -2218,7 +2218,7 @@
 		"AttackDamageMin"			"40"		// Damage range min.
 		"AttackDamageMax"			"50"		// Damage range max.
 		"AttackRate"				"1.8"		// Speed of attack.
-		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
+		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
 		"AttackRange"				"200"		// Range within a target can be attacked.
 		"ProjectileModel"			""			// Particle system model for projectile.
@@ -2324,7 +2324,7 @@
 		"AttackDamageMin"			"50"		// Damage range min.
 		"AttackDamageMax"			"75"		// Damage range max.
 		"AttackRate"				"3.6"		// Speed of attack.
-		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
+		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
 		"AttackRange"				"256"		// Range within a target can be attacked.
 		"ProjectileModel"			""			// Particle system model for projectile.
@@ -2423,7 +2423,7 @@
 		"AttackDamageMin"			"150"		// Damage range min.
 		"AttackDamageMax"			"180"		// Damage range max.
 		"AttackRate"				"3.6"		// Speed of attack.
-		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
+		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
 		"AttackRange"				"256"		// Range within a target can be attacked.
 		"ProjectileModel"			""			// Particle system model for projectile.
@@ -2532,7 +2532,7 @@
 		"AttackDamageMin"			"80"		// Damage range min.
 		"AttackDamageMax"			"120"		// Damage range max.
 		"AttackRate"				"4"		// Speed of attack.
-		"AttackAnimationPoint"		"0.2"		// Normalized time in animation cycle to attack.
+		"AttackAnimationPoint"		"1.6"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
 		"AttackRange"				"200"		// Range within a target can be attacked.
 		"ProjectileModel"			""			// Particle system model for projectile.
@@ -2552,7 +2552,7 @@
 		// Movement
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
-		"MovementSpeed"				"300"		// Speed.
+		"MovementSpeed"				"220"		// Speed.
 		"MovementTurnRate"			"0.1"		// Turning rate.
 	
 		// Status
@@ -2636,7 +2636,7 @@
 		"AttackDamageMin"			"75"		// Damage range min.
 		"AttackDamageMax"			"100"		// Damage range max.
 		"AttackRate"				"3"		// Speed of attack.
-		"AttackAnimationPoint"		"0.2"		// Normalized time in animation cycle to attack.
+		"AttackAnimationPoint"		"1.6"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
 		"AttackRange"				"200"		// Range within a target can be attacked.
 		"ProjectileModel"			""			// Particle system model for projectile.
@@ -2656,7 +2656,7 @@
 		// Movement
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
-		"MovementSpeed"				"325"		// Speed.
+		"MovementSpeed"				"280"		// Speed.
 		"MovementTurnRate"			"0.1"		// Turning rate.
 	
 		// Status
@@ -2741,7 +2741,7 @@
 		"AttackDamageMin"			"150"		// Damage range min.
 		"AttackDamageMax"			"200"		// Damage range max.
 		"AttackRate"				"6"		// Speed of attack.
-		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
+		"AttackAnimationPoint"		"1.8"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
 		"AttackRange"				"200"		// Range within a target can be attacked.
 		"ProjectileModel"			""			// Particle system model for projectile.
@@ -2848,7 +2848,7 @@
 		"AttackDamageMin"			"125"		// Damage range min.
 		"AttackDamageMax"			"150"		// Damage range max.
 		"AttackRate"				"2.4"		// Speed of attack.
-		"AttackAnimationPoint"		"0.2"		// Normalized time in animation cycle to attack.
+		"AttackAnimationPoint"		"2"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
 		"AttackRange"				"300"		// Range within a target can be attacked.
 		"ProjectileModel"			""			// Particle system model for projectile.
@@ -2959,7 +2959,7 @@
 		"AttackDamageMin"			"80"		// Damage range min.
 		"AttackDamageMax"			"120"		// Damage range max.
 		"AttackRate"				"1.8"		// Speed of attack.
-		"AttackAnimationPoint"		"0.2"		// Normalized time in animation cycle to attack.
+		"AttackAnimationPoint"		"3"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
 		"AttackRange"				"200"		// Range within a target can be attacked.
 		"ProjectileModel"			""			// Particle system model for projectile.
@@ -3052,7 +3052,7 @@
 		"AttackDamageMin"			"60"		// Damage range min.
 		"AttackDamageMax"			"70"		// Damage range max.
 		"AttackRate"				"2.4"		// Speed of attack.
-		"AttackAnimationPoint"		"0.4"		// Normalized time in animation cycle to attack.
+		"AttackAnimationPoint"		"2.4"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
 		"AttackRange"				"350"		// Range within a target can be attacked.
 		"ProjectileModel"			""			// Particle system model for projectile.
@@ -3116,7 +3116,7 @@
 			"DefaultState"				"Invade"
 		}
 	}
-	"npc_dota_boss32_trueform"
+	"npc_do_trueform"
 	{
 		// General
 		//----------------------------------------------------------------
@@ -3149,7 +3149,7 @@
 		"AttackDamageMin"			"60"		// Damage range min.
 		"AttackDamageMax"			"75"		// Damage range max.
 		"AttackRate"				"1.5"		// Speed of attack.
-		"AttackAnimationPoint"		"0.4"		// Normalized time in animation cycle to attack.
+		"AttackAnimationPoint"		"2.4"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
 		"AttackRange"				"300"		// Range within a target can be attacked.
 		"ProjectileModel"			""							// Particle system model for projectile.
@@ -3243,7 +3243,7 @@
 		"AttackDamageMin"			"200"		// Damage range min.
 		"AttackDamageMax"			"250"		// Damage range max.
 		"AttackRate"				"12.0"		// Speed of attack.
-		"AttackAnimationPoint"		"0.4"		// Normalized time in animation cycle to attack.
+		"AttackAnimationPoint"		"2.4"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
 		"AttackRange"				"700"		// Range within a target can be attacked.
 		"ProjectileModel"			"warlock_base_attack"							// Particle system model for projectile.
@@ -3340,7 +3340,7 @@
 		"AttackDamageMin"			"60"		// Damage range min.
 		"AttackDamageMax"			"70"		// Damage range max.
 		"AttackRate"				"3.0"		// Speed of attack.
-		"AttackAnimationPoint"		"0.4"		// Normalized time in animation cycle to attack.
+		"AttackAnimationPoint"		"1.2"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
 		"AttackRange"				"600"		// Range within a target can be attacked.
 		"ProjectileModel"			"particles/units/heroes/hero_shadow_demon/shadow_demon_base_attack.vpcf"							// Particle system model for projectile.
@@ -3563,7 +3563,7 @@
 		"AttackDamageMin"			"0"		// Damage range min.
 		"AttackDamageMax"			"0"		// Damage range max.
 		"AttackRate"				"9"		// Speed of attack.
-		"AttackAnimationPoint"		"0.4"		// Normalized time in animation cycle to attack.
+		"AttackAnimationPoint"		"1.2"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"3500"		// Range within a target can be acquired.
 		"AttackRange"				"0"		// Range within a target can be attacked.
 		"ProjectileModel"			"particles/base_attacks/ranged_tower_bad.vpcf"							// Particle system model for projectile.
@@ -3675,7 +3675,7 @@
 		"AttackDamageMin"			"125"		// Damage range min.
 		"AttackDamageMax"			"160"		// Damage range max.
 		"AttackRate"				"3.0"		// Speed of attack.
-		"AttackAnimationPoint"		"0.4"		// Normalized time in animation cycle to attack.
+		"AttackAnimationPoint"		"1.2"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"3500"		// Range within a target can be acquired.
 		"AttackRange"				"320"		// Range within a target can be attacked.
 		"ProjectileModel"			""							// Particle system model for projectile.
@@ -3798,7 +3798,7 @@
 		"AttackDamageMin"			"30"		// Damage range min.
 		"AttackDamageMax"			"40"		// Damage range max.
 		"AttackRate"				"1.8"		// Speed of attack.
-		"AttackAnimationPoint"		"0.4"		// Normalized time in animation cycle to attack.
+		"AttackAnimationPoint"		"1.2"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"3500"		// Range within a target can be acquired.
 		"AttackRange"				"320"		// Range within a target can be attacked.
 		"ProjectileModel"			""							// Particle system model for projectile.
@@ -4502,7 +4502,7 @@
 		"AttackDamageMin"			"70"		// Damage range min.
 		"AttackDamageMax"			"80"		// Damage range max.
 		"AttackRate"				"3.0"		// Speed of attack.
-		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
+		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
 		"AttackRange"				"128"		// Range within a target can be attacked.
 		"ProjectileModel"			""			// Particle system model for projectile.
@@ -4617,7 +4617,7 @@
 		"AttackDamageMin"			"70"		// Damage range min.
 		"AttackDamageMax"			"80"		// Damage range max.
 		"AttackRate"				"3.0"		// Speed of attack.
-		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
+		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
 		"AttackRange"				"128"		// Range within a target can be attacked.
 		"ProjectileModel"			""			// Particle system model for projectile.
@@ -4709,7 +4709,7 @@
 		"AttackDamageMin"			"80"		// Damage range min.
 		"AttackDamageMax"			"90"		// Damage range max.
 		"AttackRate"				"4.5"		// Speed of attack.
-		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
+		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
 		"AttackRange"				"400"		// Range within a target can be attacked.
 		"ProjectileModel"			"particles/units/heroes/hero_viper/viper_poison_attack.vpcf"			// Particle system model for projectile.
@@ -4822,7 +4822,7 @@
 		"AttackDamageMin"			"150"		// Damage range min.
 		"AttackDamageMax"			"175"		// Damage range max.
 		"AttackRate"				"8"		// Speed of attack.
-		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
+		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
 		"AttackRange"				"128"		// Range within a target can be attacked.
 	
@@ -4928,7 +4928,7 @@
 		"AttackDamageMin"			"0"		// Damage range min.
 		"AttackDamageMax"			"0"		// Damage range max.
 		"AttackRate"				"3.75"		// Speed of attack.
-		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
+		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
 		"AttackRange"				"128"		// Range within a target can be attacked.
 	
@@ -5031,7 +5031,7 @@
 		"AttackDamageMin"			"35"		// Damage range min.
 		"AttackDamageMax"			"50"		// Damage range max.
 		"AttackRate"				"6"		// Speed of attack.
-		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
+		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
 		"AttackRange"				"600"		// Range within a target can be attacked.
 		"ProjectileModel"			"particles/units/heroes/hero_queenofpain/queen_base_attack.vpcf"
@@ -5138,7 +5138,7 @@
 		"AttackDamageMin"			"80"		// Damage range min.
 		"AttackDamageMax"			"90"		// Damage range max.
 		"AttackRate"				"5"		// Speed of attack.
-		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
+		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
 		"AttackRange"				"128"		// Range within a target can be attacked.
 	
@@ -5495,7 +5495,7 @@
 		"AttackDamageMin"			"135"		// Damage range min.
 		"AttackDamageMax"			"150"		// Damage range max.
 		"AttackRate"				"2.1"		// Speed of attack.
-		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
+		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"18000"		// Range within a target can be acquired.
 		"AttackRange"				"200"		// Range within a target can be attacked.
 		"ProjectileModel"			""			// Particle system model for projectile.
@@ -5607,10 +5607,10 @@
 		// Attack
 		//-------------------------------------------------------------------------------------------------------------
 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"			"150"		// Damage range min.
-		"AttackDamageMax"			"175"		// Damage range max.
+		"AttackDamageMin"			"100"		// Damage range min.
+		"AttackDamageMax"			"125"		// Damage range max.
 		"AttackRate"				"10"									// Speed of attack.
-		"AttackAnimationPoint"		"0.33"									// Normalized time in animation cycle to attack.
+		"AttackAnimationPoint"		"3"										// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"16000"									// Range within a target can be acquired.
 		"AttackRange"				"128"									// Range within a target can be attacked.
 	
@@ -6026,7 +6026,7 @@
 		"AttackDamageMin"			"80"		// Damage range min.
 		"AttackDamageMax"			"120"		// Damage range max.
 		"AttackRate"				"3"		// Speed of attack.
-		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
+		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"18000"		// Range within a target can be acquired.
 		"AttackRange"				"128"		// Range within a target can be attacked.
 		"ProjectileModel"			""			// Particle system model for projectile.
@@ -6151,7 +6151,7 @@
 		"AttackDamageMax"			"30"		// Damage range max.
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"				"2.7"		// Speed of attack.
-		"AttackAnimationPoint"		"0.5"		// Normalized time in animation cycle to attack.
+		"AttackAnimationPoint"		"1.5"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"1500"		// Range within a target can be acquired.
 		"AttackRange"				"100"		// Range within a target can be attacked.
 		"ProjectileModel"			""			// Particle system model for projectile.
@@ -6304,7 +6304,7 @@
 		"AttackDamageMax"			"25"		// Damage range max.
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"				"1.5"		// Speed of attack.
-		"AttackAnimationPoint"		"0.5"		// Normalized time in animation cycle to attack.
+		"AttackAnimationPoint"		"1.5"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"18000"		// Range within a target can be acquired.
 		"AttackRange"				"100"		// Range within a target can be attacked.
 		"ProjectileModel"			""			// Particle system model for projectile.
@@ -6399,7 +6399,7 @@
 		"AttackDamageMin"			"35"		// Damage range min.
 		"AttackDamageMax"			"50"		// Damage range max.
 		"AttackRate"				"2"		// Speed of attack.
-		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
+		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
 		"AttackRange"				"128"		// Range within a target can be attacked.
 		"ProjectileModel"			""			// Particle system model for projectile.
@@ -6500,7 +6500,7 @@
 		"AttackDamageMin"			"30"		// Damage range min.
 		"AttackDamageMax"			"40"		// Damage range max.
 		"AttackRate"				"2.4"		// Speed of attack.
-		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
+		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
 		"AttackRange"				"100"		// Range within a target can be attacked.
 		"ProjectileModel"			""			// Particle system model for projectile.
@@ -6608,7 +6608,7 @@
 		"AttackDamageMin"			"30"		// Damage range min.
 		"AttackDamageMax"			"40"		// Damage range max.
 		"AttackRate"				"2.4"		// Speed of attack.
-		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
+		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
 		"AttackRange"				"100"		// Range within a target can be attacked.
 		"ProjectileModel"			""			// Particle system model for projectile.
@@ -6719,7 +6719,7 @@
 		"AttackDamageMin"			"50"		// Damage range min.
 		"AttackDamageMax"			"60"		// Damage range max.
 		"AttackRate"				"2"		// Speed of attack.
-		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
+		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"18000"		// Range within a target can be acquired.
 		"AttackRange"				"128"		// Range within a target can be attacked.
 		"ProjectileModel"			""			// Particle system model for projectile.
@@ -6846,7 +6846,7 @@
 		"AttackDamageMax"			"60"		// Damage range max.
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"				"3.0"			// Speed of attack.
-		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
+		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
 		"AttackRange"				"128"		// Range within a target can be attacked.
 		"ProjectileModel"			"particles/base_attacks/ranged_goodguy.vpcf" // Particle system model for projectile.
@@ -6956,7 +6956,7 @@
 		"AttackDamageMax"			"70"		// Damage range max.
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"				"1.2"			// Speed of attack.
-		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
+		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
 		"AttackRange"				"128"		// Range within a target can be attacked.
 		"ProjectileModel"			"particles/base_attacks/ranged_goodguy.vpcf" // Particle system model for projectile.
@@ -7735,7 +7735,7 @@
 		"AttackDamageMin"			"150"		// Damage range min.
 		"AttackDamageMax"			"150"		// Damage range max.	
 		"AttackRate"				"1.25"		// Speed of attack.
-		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
+		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"600"		// Range within a target can be acquired.
 		"AttackRange"				"150"		// Range within a target can be attacked.
 		"ProjectileModel"			""			// Particle system model for projectile.
@@ -7807,7 +7807,7 @@
 		"AttackDamageMin"			"150"		// Damage range min.
 		"AttackDamageMax"			"150"		// Damage range max.	
 		"AttackRate"				"0.1"		// Speed of attack.
-		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
+		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"600"		// Range within a target can be acquired.
 		"AttackRange"				"600"		// Range within a target can be attacked.
 		"ProjectileModel"			"particles/units/heroes/hero_lina/lina_base_attack.vpcf"			// Particle system model for projectile.
@@ -7880,7 +7880,7 @@
 		"AttackDamageMin"			"150"		// Damage range min.
 		"AttackDamageMax"			"150"		// Damage range max.	
 		"AttackRate"				"0.75"		// Speed of attack.
-		"AttackAnimationPoint"		"0.4"		// Normalized time in animation cycle to attack.
+		"AttackAnimationPoint"		"1.2"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"600"		// Range within a target can be acquired.
 		"AttackRange"				"600"		// Range within a target can be attacked.
 		"ProjectileModel"			"particles/units/heroes/hero_brewmaster/brewmaster_storm_attack.vpcf"			// Particle system model for projectile.
@@ -8247,7 +8247,7 @@
 		"AttackDamageMin"			"0"		// Damage range min.
 		"AttackDamageMax"			"0"		// Damage range max.
 		"AttackRate"				"3.75"		// Speed of attack.
-		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
+		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
 		"AttackRange"				"128"		// Range within a target can be attacked.
 	

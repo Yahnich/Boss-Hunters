@@ -318,7 +318,7 @@
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"tornado_damage"			"400 600"
+				"tornado_damage"			"800 1200"
 			}
 		}
 	}

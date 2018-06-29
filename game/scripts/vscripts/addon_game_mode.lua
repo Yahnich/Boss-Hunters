@@ -875,6 +875,9 @@ function CHoldoutGameMode:OnPlayerDisconnected(keys)
 	if not playerID then return end
 	local hero = PlayerResource:GetSelectedHeroEntity(playerID)
 	if hero then hero.disconnect = GameRules:GetGameTime() end
+	if HeroList:GetActiveHeroCount() == 0 then
+		RoundManager:GameIsFinished(false)
+	end
 end
 
 -- When game state changes set state in script

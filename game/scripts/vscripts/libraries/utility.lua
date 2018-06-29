@@ -24,6 +24,26 @@ function HasValInTable(checkTable, val)
 	return false
 end
 
+function TableToWeightedArray(t1)
+	local copy = {}
+	for value, weight in pairs( t1 ) do
+		if weight > 0 then
+			for i = 1, weight do
+				table.insert(copy, value)
+			end
+		end
+	end
+	return copy
+end
+
+function TableToArray(t1)
+	local copy = {}
+	for key, value in pairs( t1 ) do
+		table.insert(copy, value)
+	end
+	return copy
+end
+
 function TernaryOperator(value, bCheck, default)
 	if bCheck then 
 		return value 
@@ -747,8 +767,8 @@ end
 
 function CDOTA_BaseNPC:IsIllusion()
 	local isIllusion = false
-	if self:GetPlayerOwnerID() then
-		isIllusion = PlayerResource:GetSelectedHeroEntity( self:GetPlayerOwnerID() ) ~= self
+	if self:GetPlayerOwnerID() ~= -1 then
+		isIllusion = PlayerResource:GetSelectedHeroEntity( self:GetPlayerOwnerID() ) ~= self and PlayerResource:GetSelectedHeroEntity( self:GetPlayerOwnerID() ) ~= nil
 	end
 	return isIllusion
 end

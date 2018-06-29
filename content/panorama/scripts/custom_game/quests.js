@@ -36,7 +36,7 @@ function SendNetTableInfo()
 
 function ShowEventPopup(arg)
 {
-	var eventName = arg.event
+	var eventName = arg.event 
 	var choiceCount = arg.choices
 	$("#QuestsEventHolder").style.visibility = "visible";
 	var holder = $("#QuestsEventChoices")
@@ -84,6 +84,18 @@ function RemoveRewardsPopup(arg)
 	$("#QuestRewardsHolder").style.visibility = "collapse";
 }
 
+
+function extractAllText(str){
+	const re = /%(.*?)%/g;
+	const result = [];
+	var current;
+	while (current = re.exec(str)) {
+		result.push(current.pop());
+	}
+
+	return result[0]
+}
+
 function CreateEventChoice(eventName, choice)
 {
 	var holder = $("#QuestsEventChoices")
@@ -91,10 +103,30 @@ function CreateEventChoice(eventName, choice)
 	eventChoice.BLoadLayoutSnippet("QuestsEventChoice");
 
 	var eventChoiceText = eventChoice.FindChildTraverse("QuestsEventChoiceText")
-	eventChoiceText.text = $.Localize( "#event_" + eventName + "_option_" + choice );
 	
-	eventChoice.SetPanelEvent("onmouseover", function(){eventChoice.SetHasClass("ButtonHover", true);});
-	eventChoice.SetPanelEvent("onmouseout", function(){eventChoice.SetHasClass("ButtonHover", false);});
+	var eventText = $.Localize( "#event_" + eventName + "_option_" + choice );
+	
+	var prelim = extractAllText(eventText);
+	var captured;
+	if( ! (typeof prelim === "undefined") ){
+		captured = $.Localize( "#" + extractAllText(eventText), eventChoiceText );
+	}
+	var capturedDescription = $.Localize( "#" + extractAllText(eventText) + "_Description", eventChoiceText );
+	var replacement = eventText.replace(/%.*?%/, captured);
+
+	eventChoiceText.text = replacement
+	
+	eventChoice.SetPanelEvent("onmouseover", function(){
+		eventChoice.SetHasClass("ButtonHover", true);
+		if(captured != null){
+			$.DispatchEvent("DOTAShowTextTooltip", eventChoice, capturedDescription)
+		}
+	});
+	eventChoice.SetPanelEvent("onmouseout", function(){eventChoice.SetHasClass("ButtonHover", false);
+		if(captured != null){
+			$.DispatchEvent("DOTAHideTextTooltip", eventChoice)
+		}
+	});
 	eventChoice.SetPanelEvent("onactivate", function(){
 		$("#QuestsEventHolder").style.visibility = "collapse";
 		GameEvents.SendCustomGameEventToServer( "player_selected_event_choice_" + choice, {pID : localID} )

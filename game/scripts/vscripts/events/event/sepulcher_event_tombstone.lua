@@ -138,7 +138,7 @@ local function StartEvent(self)
 			self._playerChoices[i] = false
 		end
 	end
-	LinkLuaModifier("event_buff_protect", "events/modifiers/event_buff_protect", LUA_MODIFIER_MOTION_NONE)
+	LinkLuaModifier("event_buff_tombstone", "events/modifiers/event_buff_tombstone", LUA_MODIFIER_MOTION_NONE)
 end
 
 local function EndEvent(self, bWon)

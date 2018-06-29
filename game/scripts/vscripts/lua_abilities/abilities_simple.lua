@@ -420,31 +420,12 @@ function spawn_unit( keys )
     local unit = keys.unit_to_spawn
     local ability
     local abilityname = {}
-    if caster.elite then
-        local ability
-        local i = 1
-        for k,v in pairs(GameRules._Elites) do -- make splintered units elites
-            if not ability then
-                ability = caster:FindAbilityByName(k)
-                if ability then
-                    abilityname[i] = k
-                    i = i + 1
-                end
-            end
-        end
-    end
     if keys.number_of_unit==nil then keys.number_of_unit=1 end
     for i = 1, keys.number_of_unit do
         if caster:GetOwnerEntity() and caster:GetOwnerEntity().IsRealHero and caster:GetOwnerEntity():IsRealHero() then
             caster:GetOwnerEntity():CreateSummon(unit, caster:GetAbsOrigin() + RandomVector(RandomInt(250,500)), 30)
         else
             local entUnit = CreateUnitByName( unit, caster:GetAbsOrigin() + RandomVector(RandomInt(250,500)), true, nil, nil, caster:GetTeamNumber() )
-        end
-        if entUnit then
-            if #abilityname > 0 and RollPercentage(100/i) then
-                entUnit.elite = true
-                entUnit.eliteAb = abilityname
-            end
         end
     end
 end

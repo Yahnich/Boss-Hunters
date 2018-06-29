@@ -27,7 +27,7 @@ end
 
 function modifier_boss33a_protective_ward:OnAttackLanded(params)
 	if params.attacker == self:GetParent() then
-		self:GetAbility():DealDamage(params.attacker, params.target, self:GetParent():GetAverageBaseDamage(), {damage_type = DAMAGE_TYPE_MAGICAL})
+		self:GetAbility():DealDamage(params.attacker, params.target, self:GetParent():GetAverageBaseDamage(), {damage_type = DAMAGE_TYPE_MAGICAL damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
 	end
 end
 

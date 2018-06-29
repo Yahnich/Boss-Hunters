@@ -17,7 +17,7 @@ function modifier_boss_doom_ill_fated:OnCreated()
 end
 
 function modifier_boss_doom_ill_fated:OnIntervalThink()
-	self:GetAbility():DealDamage( self:GetCaster(), self:GetParent(), self:GetParent():GetHealth() * self.damage * 0.1, {damage_type = DAMAGE_TYPE_PURE} )
+	self:GetAbility():DealDamage( self:GetCaster(), self:GetParent(), self:GetParent():GetHealth() * self.damage * 0.1, {damage_type = DAMAGE_TYPE_PURE, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION} )
 end
 
 function modifier_boss_doom_ill_fated:OnDestroy()

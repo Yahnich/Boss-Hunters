@@ -45,9 +45,11 @@ function modifier_robo_mine:OnIntervalThink()
 		ParticleManager:ReleaseParticleIndex(nfx)
 
 		self:GetAbility():DealDamage(self:GetCaster(), enemy, self:GetTalentSpecialValueFor("damage"), {}, 0)
-		self:GetParent():ForceKill(false)
-		self:Destroy()
 		break
+	end
+	if enemies[1] then 
+		self:Destroy()
+		self:GetParent():ForceKill(false) 
 	end
 end
 

@@ -373,7 +373,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage_per_second"			"35 40"
+				"damage_per_second"			"15 20"
 			}
 			"03"
 			{

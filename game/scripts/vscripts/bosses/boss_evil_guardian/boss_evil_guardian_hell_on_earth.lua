@@ -18,7 +18,7 @@ function boss_evil_guardian_hell_on_earth:CreateEvilPool(position, radius, damag
 	Timers:CreateTimer(function()
 		if not caster or caster:IsNull() then ParticleManager:ClearParticle(pFX) end
 		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius(tPos, tRadius) ) do
-			self:DealDamage(caster, enemy, enemy:GetMaxHealth() * tDmg)
+			self:DealDamage(caster, enemy, enemy:GetMaxHealth() * tDmg, {damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
 		end
 		if tDur > 0 then
 			tDur = tDur - 1

@@ -9,7 +9,7 @@ function modifier_power_scaling:DeclareFunctions()
 end
 
 function modifier_power_scaling:GetModifierSpellAmplify_Percentage()
-  return 5 * self:GetStackCount()
+  return math.floor(4 * self:GetStackCount())
 end
 
 function modifier_power_scaling:IsHidden()
