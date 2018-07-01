@@ -19,3 +19,7 @@ end
 function event_buff_demon_shrine:GetModifierMagicalResistanceBonus()
 	return -20
 end
+
+function event_buff_demon_shrine:IsDebuff( )
+    return true
+end

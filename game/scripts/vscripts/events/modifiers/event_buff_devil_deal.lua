@@ -25,3 +25,7 @@ end
 function event_buff_devil_deal:GetModifierExtraHealthBonus()
 	return self:GetStackCount() * (-1)
 end
+
+function event_buff_devil_deal:IsDebuff( )
+    return true
+end

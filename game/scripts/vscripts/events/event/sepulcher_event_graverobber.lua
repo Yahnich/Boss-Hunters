@@ -45,12 +45,12 @@ local function GiveRelicChoices(self)
 		RelicManager:PushCustomRelicDropsForPlayer(pID, uniqueTable)
 		if self._playerChoices[pID] and hero:HasRelic("relic_unique_ofuda") and hero:FindModifierByName("relic_unique_ofuda"):GetStackCount() > 0 then
 			votesWithOfuda = votesWithOfuda + 1
-		elseif self._playerChoices[pID]
+		elseif self._playerChoices[pID] then
 			votesWithout = votesWithout + 1
 		end
 	end
 	if votesWithOfuda < votesWithout then
-		GameRules._lives = 1
+		GameRules:SetLives(1, true)
 	else
 		for id, vote in pairs(self._playerChoices) do
 			local hero = PlayerResource:GetSelectedHeroEntity(id)
@@ -60,8 +60,6 @@ local function GiveRelicChoices(self)
 			end
 		end
 	end
-	
-	CustomGameEventManager:Send_ServerToAllClients( "updateQuestLife", { lives = GameRules._lives, maxLives = GameRules._maxLives } )
 	self:EndEvent(true)
 end
 

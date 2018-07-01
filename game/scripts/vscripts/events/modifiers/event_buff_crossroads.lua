@@ -25,3 +25,7 @@ end
 function event_buff_crossroads:GetModifierExtraHealthBonus()
 	return self:GetStackCount() * (-1)
 end
+
+function event_buff_crossroads:IsDebuff( )
+    return true
+end

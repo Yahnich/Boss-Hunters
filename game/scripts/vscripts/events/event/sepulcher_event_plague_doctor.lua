@@ -11,11 +11,19 @@ end
 local function FirstChoice(self, userid, event)
 	local hero = PlayerResource:GetSelectedHeroEntity( event.pID )
 	
+	hero:AddBlessing("event_buff_plague_doctor_blessing")
+	hero:AddCurse("event_buff_plague_doctor_curse")
 	self._playerChoices[event.pID] = true
 	CheckPlayerChoices(self)
 end
 
 local function SecondChoice(self, userid, event)
+	local hero = PlayerResource:GetSelectedHeroEntity( event.pID )
+	self._playerChoices[event.pID] = true
+	CheckPlayerChoices(self)
+end
+
+local function ThirdChoice(self, userid, event)
 	local hero = PlayerResource:GetSelectedHeroEntity( event.pID )
 	
 	self._playerChoices[event.pID] = true
@@ -23,10 +31,11 @@ local function SecondChoice(self, userid, event)
 end
 
 local function StartEvent(self)
-	CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_has_started", {event = "elysium_event_silent_guardian", choices = 2})
+	CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_has_started", {event = self:GetEventName(), choices = 2})
 	self._vEventHandles = {
 		CustomGameEventManager:RegisterListener('player_selected_event_choice_1', Context_Wrap( self, 'FirstChoice') ),
 		CustomGameEventManager:RegisterListener('player_selected_event_choice_2', Context_Wrap( self, 'SecondChoice') ),
+		CustomGameEventManager:RegisterListener('player_selected_event_choice_2', Context_Wrap( self, 'ThirdChoice') ),
 	}
 	self.timeRemaining = 30
 	self.eventEnded = false
@@ -46,6 +55,8 @@ local function StartEvent(self)
 			self._playerChoices[i] = false
 		end
 	end
+	LinkLuaModifier("event_buff_plague_doctor_curse", "events/modifiers/event_buff_plague_doctor", LUA_MODIFIER_MOTION_NONE)
+	LinkLuaModifier("event_buff_plague_doctor_blessing", "events/modifiers/event_buff_plague_doctor", LUA_MODIFIER_MOTION_NONE)
 end
 
 local function EndEvent(self, bWon)
@@ -67,6 +78,7 @@ local funcs = {
 	["PrecacheUnits"] = PrecacheUnits,
 	["FirstChoice"] = FirstChoice,
 	["SecondChoice"] = SecondChoice,
+	["ThirdChoice"] = ThirdChoice,
 }
 
 return funcs
