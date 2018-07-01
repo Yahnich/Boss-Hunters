@@ -57,19 +57,24 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"lifesteal"				"15"
+				"ranged_lifesteal"		"10"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_armor"			"3"
+				"melee_lifesteal"		"15"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_mana_regen"		"2"
+				"bonus_armor"			"3"
 			}
 			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_mana_regen"		"2"
+			}
+			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"radius"				"900"

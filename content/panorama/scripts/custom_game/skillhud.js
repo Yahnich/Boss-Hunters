@@ -231,11 +231,11 @@ function LoadDefenseLayout()
 	var statsNetTable = CustomNetTables.GetTableValue("stats_panel", lastRememberedHero)
 	CreateAttributePanel( statsNetTable.pr, ARMOR_TABLE, "pr", "STATS_TYPE_ARMOR", "" )
 	CreateAttributePanel( statsNetTable.mr, MAGIC_RESIST_TABLE, "mr", "STATS_TYPE_MAGIC_RESIST", "%" )
-	if ( Entities.IsRangedAttacker( lastRememberedHero ) ){
-		CreateAttributePanel( statsNetTable.ar, ATTACK_RANGE_TABLE, "ar", "STATS_TYPE_ATTACK_RANGE", "" )
-	} else {
-		CreateAttributePanel( statsNetTable.db, DAMAGE_BLOCK_TABLE, "db", "STATS_TYPE_DAMAGE_BLOCK", "" )
-	}
+	// if ( Entities.IsRangedAttacker( lastRememberedHero ) ){
+		// CreateAttributePanel( statsNetTable.ar, ATTACK_RANGE_TABLE, "ar", "STATS_TYPE_ATTACK_RANGE", "" )
+	// } else {
+		// CreateAttributePanel( statsNetTable.db, DAMAGE_BLOCK_TABLE, "db", "STATS_TYPE_DAMAGE_BLOCK", "" )
+	// }
 	CreateAttributePanel( statsNetTable.hp, HEALTH_TABLE, "hp", "STATS_TYPE_HEALTH", "" )
 	CreateAttributePanel( statsNetTable.hpr, HEALTH_REGEN_TABLE, "hpr", "STATS_TYPE_HEALTH_REGEN", "" )
 	CreateAttributePanel( statsNetTable.sr, STATUS_REDUCTION_TABLE, "sr", "STATS_TYPE_STATUS_REDUCTION", "%" )

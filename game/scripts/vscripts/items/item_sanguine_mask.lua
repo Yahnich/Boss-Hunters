@@ -8,7 +8,10 @@ end
 modifier_item_sanguine_mask_passive = class({})
 
 function modifier_item_sanguine_mask_passive:OnCreated()
-	self.lifesteal = self:GetSpecialValueFor("lifesteal") / 100
+	self.lifesteal = self:GetSpecialValueFor("melee_lifesteal") / 100
+	if self:GetParent():IsRangedAttacker() then
+		self.lifesteal = self:GetSpecialValueFor("ranged_lifesteal") / 100
+	end
 end
 
 function modifier_item_sanguine_mask_passive:DeclareFunctions()

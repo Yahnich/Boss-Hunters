@@ -13,7 +13,10 @@ modifier_item_leechblade_stats = class({})
 LinkLuaModifier( "modifier_item_leechblade_stats", "items/item_leechblade.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 function modifier_item_leechblade_stats:OnCreated()
-	self.lifesteal = self:GetSpecialValueFor("lifesteal") / 100
+	self.lifesteal = self:GetSpecialValueFor("melee_lifesteal") / 100
+	if self:GetParent():IsRangedAttacker() then
+		self.lifesteal = self:GetSpecialValueFor("ranged_lifesteal") / 100
+	end
 	self.activeLifesteal = self:GetSpecialValueFor("active_lifesteal") / 100
 	self.damage = self:GetSpecialValueFor("bonus_damage")
 end

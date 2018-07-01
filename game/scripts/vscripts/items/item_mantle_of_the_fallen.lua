@@ -64,21 +64,22 @@ function modifier_item_mantle_of_the_fallen_aura:GetTextureName()
 end
 
 function modifier_item_mantle_of_the_fallen_aura:OnCreated()
-	self.lifesteal = self:GetSpecialValueFor("lifesteal") / 100
+	self.lifesteal = self:GetSpecialValueFor("melee_lifesteal") / 100
+	if self:GetParent():IsRangedAttacker() then
+		self.lifesteal = self:GetSpecialValueFor("ranged_lifesteal") / 100
+	end
 	self.armor = self:GetSpecialValueFor("bonus_armor")
 	self.mana_regen = self:GetSpecialValueFor("bonus_mana_regen")
-	-- if self:GetParent():IsRangedAttacker() then
-		-- self.lifesteal = self:GetSpecialValueFor("vampiric_aura_ranged") / 100
-	-- end
+
 end
 
 function modifier_item_mantle_of_the_fallen_aura:OnRefresh()
-	self.lifesteal = self:GetSpecialValueFor("lifesteal") / 100
+	self.lifesteal = self:GetSpecialValueFor("melee_lifesteal") / 100
+	if self:GetParent():IsRangedAttacker() then
+		self.lifesteal = self:GetSpecialValueFor("ranged_lifesteal") / 100
+	end
 	self.armor = self:GetSpecialValueFor("bonus_armor")
 	self.mana_regen = self:GetSpecialValueFor("bonus_mana_regen")
-	-- if self:GetParent():IsRangedAttacker() then
-		-- self.lifesteal = self:GetSpecialValueFor("vampiric_aura_ranged") / 100
-	-- end
 end
 
 function modifier_item_mantle_of_the_fallen_aura:DeclareFunctions()

@@ -173,34 +173,39 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"lifesteal"				"16 17 18 19 20"
+				"ranged_lifesteal"		"12 13 14 15 16"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_attack_speed"	"25"
+				"melee_lifesteal"		"18 19 20 21 22"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"active_attack_speed"	"125 150 175 200 225"
+				"bonus_attack_speed"	"25"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"active_bonus_damage"	"20 25 30 35 40"
+				"active_attack_speed"	"125 150 175 200 225"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"active_movement_speed"	"20 25 30 35 40"
+				"active_bonus_damage"	"20 25 30 35 40"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"active_damage_taken"	"20 25 30 35 40"
+				"active_movement_speed"	"20 25 30 35 40"
 			}
 			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"active_damage_taken"	"20 25 30 35 40"
+			}
+			"08"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"duration"				"6.0"
@@ -250,34 +255,39 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"lifesteal"				"16 17 18 19 20"
+				"ranged_lifesteal"		"12 13 14 15 16"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_attack_speed"	"25"
+				"melee_lifesteal"		"18 19 20 21 22"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"active_attack_speed"	"125 150 175 200 225"
+				"bonus_attack_speed"	"25"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"active_bonus_damage"	"20 25 30 35 40"
+				"active_attack_speed"	"125 150 175 200 225"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"active_movement_speed"	"20 25 30 35 40"
+				"active_bonus_damage"	"20 25 30 35 40"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"active_damage_taken"	"20 25 30 35 40"
+				"active_movement_speed"	"20 25 30 35 40"
 			}
 			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"active_damage_taken"	"20 25 30 35 40"
+			}
+			"08"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"duration"				"6.0"
@@ -327,34 +337,39 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"lifesteal"				"16 17 18 19 20"
+				"ranged_lifesteal"		"12 13 14 15 16"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_attack_speed"	"25"
+				"melee_lifesteal"		"18 19 20 21 22"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"active_attack_speed"	"125 150 175 200 225"
+				"bonus_attack_speed"	"25"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"active_bonus_damage"	"20 25 30 35 40"
+				"active_attack_speed"	"125 150 175 200 225"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"active_movement_speed"	"20 25 30 35 40"
+				"active_bonus_damage"	"20 25 30 35 40"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"active_damage_taken"	"20 25 30 35 40"
+				"active_movement_speed"	"20 25 30 35 40"
 			}
 			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"active_damage_taken"	"20 25 30 35 40"
+			}
+			"08"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"duration"				"6.0"
@@ -404,34 +419,39 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"lifesteal"				"16 17 18 19 20"
+				"ranged_lifesteal"		"12 13 14 15 16"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_attack_speed"	"25"
+				"melee_lifesteal"		"18 19 20 21 22"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"active_attack_speed"	"125 150 175 200 225"
+				"bonus_attack_speed"	"25"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"active_bonus_damage"	"20 25 30 35 40"
+				"active_attack_speed"	"125 150 175 200 225"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"active_movement_speed"	"20 25 30 35 40"
+				"active_bonus_damage"	"20 25 30 35 40"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"active_damage_taken"	"20 25 30 35 40"
+				"active_movement_speed"	"20 25 30 35 40"
 			}
 			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"active_damage_taken"	"20 25 30 35 40"
+			}
+			"08"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"duration"				"6.0"
@@ -481,34 +501,39 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"lifesteal"				"16 17 18 19 20"
+				"ranged_lifesteal"		"12 13 14 15 16"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_attack_speed"	"25"
+				"melee_lifesteal"		"18 19 20 21 22"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"active_attack_speed"	"125 150 175 200 225"
+				"bonus_attack_speed"	"25"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"active_bonus_damage"	"20 25 30 35 40"
+				"active_attack_speed"	"125 150 175 200 225"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"active_movement_speed"	"20 25 30 35 40"
+				"active_bonus_damage"	"20 25 30 35 40"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"active_damage_taken"	"20 25 30 35 40"
+				"active_movement_speed"	"20 25 30 35 40"
 			}
 			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"active_damage_taken"	"20 25 30 35 40"
+			}
+			"08"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"duration"				"6.0"

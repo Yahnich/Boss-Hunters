@@ -14,6 +14,24 @@ end
 
 
 modifier_item_dust_of_stasis_stasis = class({})
+if IsServer() then
+	function modifier_item_dust_of_stasis_stasis:OnCreated()
+		self:StartIntervalThink(0.1)
+	end
+	
+	function modifier_item_dust_of_stasis_stasis:OnIntervalThink()
+		local parent = self:GetParent()
+		for i = 0, 20 do
+			local ability = parent:GetAbilityByIndex(i)
+			if ability then
+				local cd = ability:GetCooldownTimeRemaining()
+				ability:EndCooldown()
+				ability:StartCooldown(cd + 0.1)
+			end
+		end
+	end
+end
+
 function modifier_item_dust_of_stasis_stasis:CheckState()
 	return {[MODIFIER_STATE_FROZEN] = true,}
 end

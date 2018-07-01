@@ -61,29 +61,34 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"lifesteal"				"15"
+				"ranged_lifesteal"		"15"
 			}
-			"02"
+			"01"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"bonus_damage"			"20"
+				"var_type"				"FIELD_INTEGER"
+				"melee_lifesteal"		"20"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"bonus_armor"			"5"
+				"bonus_damage"			"20"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"bonus_mana_regen"		"3"
+				"bonus_armor"			"5"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"radius"				"900"
+				"bonus_mana_regen"		"3"
 			}
 			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"radius"				"900"
+			}
+			"07"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"duration"				"12"
