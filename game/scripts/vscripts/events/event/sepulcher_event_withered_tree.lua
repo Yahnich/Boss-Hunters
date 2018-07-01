@@ -10,20 +10,20 @@ end
 
 local function FirstChoice(self, userid, event)
 	local hero = PlayerResource:GetSelectedHeroEntity( event.pID )
-	
+	hero:AddBlessing("event_buff_withered_tree")
 	self._playerChoices[event.pID] = true
 	CheckPlayerChoices(self)
 end
 
 local function SecondChoice(self, userid, event)
 	local hero = PlayerResource:GetSelectedHeroEntity( event.pID )
-	
+	hero:AddGold(500)
 	self._playerChoices[event.pID] = true
 	CheckPlayerChoices(self)
 end
 
 local function StartEvent(self)
-	CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_has_started", {event = "elysium_event_silent_guardian", choices = 2})
+	CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_has_started", {event = "generic_event_defense_or_offense", choices = 3})
 	self._vEventHandles = {
 		CustomGameEventManager:RegisterListener('player_selected_event_choice_1', Context_Wrap( self, 'FirstChoice') ),
 		CustomGameEventManager:RegisterListener('player_selected_event_choice_2', Context_Wrap( self, 'SecondChoice') ),
@@ -46,6 +46,7 @@ local function StartEvent(self)
 			self._playerChoices[i] = false
 		end
 	end
+	LinkLuaModifier("event_buff_withered_tree", "events/modifiers/event_buff_withered_tree", LUA_MODIFIER_MOTION_NONE)
 end
 
 local function EndEvent(self, bWon)

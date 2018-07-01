@@ -20,7 +20,7 @@ function modifier_status_immunity:CheckState()
 end
 
 function modifier_status_immunity:GetPriority()
-	return MODIFIER_PRIORITY_SUPER_ULTRA
+	return MODIFIER_PRIORITY_ULTRA
 end
 
 function modifier_status_immunity:GetAttributes()

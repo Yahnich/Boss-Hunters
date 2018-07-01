@@ -60,7 +60,7 @@ function BaseEvent:HandoutRewards(bWon)
 		end
 		for _, hero in ipairs( HeroList:GetRealHeroes() ) do
 			hero:AddGold( baseGold )
-			hero:AddExperience( baseXP, DOTA_ModifyXP_Unspecified, false, false )
+			hero:AddXP( baseXP )
 			local pID = hero:GetPlayerOwnerID()
 			if bWon then
 				if self:IsElite() then

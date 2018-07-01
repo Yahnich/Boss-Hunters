@@ -116,7 +116,7 @@ local function EndEvent(self, bWon)
 	
 	if self.helpedTreant then
 		for _, hero in ipairs( HeroList:GetRealHeroes() ) do
-			hero:AddNewModifier(hero, nil, "event_buff_help_treant", {})
+			hero:AddBlessing("event_buff_help_treant")
 		end
 		CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_reward_given", {event = "grove_event_help_treant", reward = 1})
 	end

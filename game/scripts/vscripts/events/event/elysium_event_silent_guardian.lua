@@ -11,7 +11,7 @@ end
 local function FirstChoice(self, userid, event)
 	local hero = PlayerResource:GetSelectedHeroEntity( event.pID )
 	
-	hero:AddNewModifier(hero, nil, "event_buff_ethereal", {})
+	hero:AddBlessing("event_buff_ethereal")
 	self._playerChoices[event.pID] = true
 	CheckPlayerChoices(self)
 end

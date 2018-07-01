@@ -63,7 +63,7 @@ local function StartCombat(self, bFight)
 		end)
 	else
 		for _, hero in ipairs( HeroList:GetRealHeroes() ) do
-			hero:AddNewModifier(hero, nil, "event_buff_demon_shrine", {})
+			hero:AddBlessing("event_buff_demon_shrine")
 		end
 		CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_reward_given", {event = self:GetEventName(), reward = 1})
 		self:EndEvent(true)
@@ -143,7 +143,7 @@ function BaseEvent:HandoutRewards(bWon)
 		
 		for _, hero in ipairs( HeroList:GetRealHeroes() ) do
 			hero:AddGold( baseGold )
-			hero:AddExperience( baseXP, DOTA_ModifyXP_Unspecified, false, false )
+			hero:AddXP( baseXP )
 			local pID = hero:GetPlayerOwnerID()
 			if bWon then
 				RelicManager:RollEliteRelicsForPlayer(pID)

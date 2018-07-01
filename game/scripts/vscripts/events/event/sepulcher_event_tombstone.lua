@@ -51,8 +51,6 @@ local function StartCombat(self)
 	
 	self.totemUnit = CreateUnitByName("npc_dota_event_totem", START_VECTOR, true, nil, nil, DOTA_TEAM_GOODGUYS)
 	local ability = self.totemUnit:AddAbility("generic_hp_limiter")
-	ability:SetLevel(1)
-	self.totemUnit:AddNewModifier(self.totemUnit, ability, "modifier_generic_hp_limiter", {})
 	self.totemUnit:SetThreat(5000)
 	self.totemUnit:SetOriginalModel("models/props_structures/dire_tower002.vmdl")
 	self.totemUnit:SetModel("models/props_structures/dire_tower002.vmdl")
@@ -156,7 +154,7 @@ local function EndEvent(self, bWon)
 	local reward = 3
 	if self.totemUnit and not self.totemUnit:IsNull() and self.totemUnit:IsAlive() then
 		for _, hero in ipairs( HeroList:GetRealHeroes() ) do
-			hero:AddNewModifier(hero, nil, "event_buff_tombstone", {})
+			hero:AddBlessing("event_buff_tombstone")
 		end
 		reward = 2
 		if self.totemUnit:GetHealth() == self.totemUnit:GetMaxHealth() then
@@ -189,7 +187,7 @@ local function HandoutRewards(self)
 		local baseGold = 100 + eventScaling * (25 + 3 * playerScaling)
 		for _, hero in ipairs( HeroList:GetRealHeroes() ) do
 			hero:AddGold( baseGold )
-			hero:AddExperience( baseXP, DOTA_ModifyXP_Unspecified, false, false )
+			hero:AddXP( baseXP )
 		end
 	end
 end

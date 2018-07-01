@@ -113,7 +113,7 @@ local function EndEvent(self, bWon)
 	
 	CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_reward_given", {event = self:GetEventName(), reward = 1})
 	for _, hero in ipairs( HeroList:GetRealHeroes() ) do
-		hero:AddNewModifier(hero, nil, "event_buff_demonic_horde", {})
+		hero:AddBlessing("event_buff_demonic_horde")
 	end
 	Timers:CreateTimer(3, function() RoundManager:EndEvent(bWon) end)
 end

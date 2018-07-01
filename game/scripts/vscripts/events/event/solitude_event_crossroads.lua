@@ -10,7 +10,7 @@ end
 
 local function FirstChoice(self, userid, event)
 	local hero = PlayerResource:GetSelectedHeroEntity( event.pID )
-	hero:AddNewModifier(hero, nil, "event_buff_crossroads", {})
+	hero:AddCurse("event_buff_crossroads")
 	
 	local relicTable = {}
 	local relic = ""

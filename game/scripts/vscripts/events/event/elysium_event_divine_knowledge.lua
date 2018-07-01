@@ -10,21 +10,21 @@ end
 
 local function FirstChoice(self, userid, event)
 	local hero = PlayerResource:GetSelectedHeroEntity( event.pID )
-	hero:AddNewModifier(hero, nil, "event_buff_divine_knowledge_1", {})
+	hero:AddBlessing("event_buff_divine_knowledge_1")
 	self._playerChoices[event.pID] = true
 	CheckPlayerChoices(self)
 end
 
 local function SecondChoice(self, userid, event)
 	local hero = PlayerResource:GetSelectedHeroEntity( event.pID )
-	hero:AddNewModifier(hero, nil, "event_buff_divine_knowledge_2", {})
+	hero:AddBlessing("event_buff_divine_knowledge_2")
 	self._playerChoices[event.pID] = true
 	CheckPlayerChoices(self)
 end
 
 local function ThirdChoice(self, userid, event)
 	local hero = PlayerResource:GetSelectedHeroEntity( event.pID )
-	hero:AddNewModifier(hero, nil, "event_buff_divine_knowledge_3", {})
+	hero:AddBlessing("event_buff_divine_knowledge_3")
 	self._playerChoices[event.pID] = true
 	CheckPlayerChoices(self)
 end

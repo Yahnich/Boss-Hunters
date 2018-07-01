@@ -24,8 +24,6 @@ local function StartCombat(self)
 	
 	self.totemUnit = CreateUnitByName("npc_dota_event_totem", START_VECTOR, true, nil, nil, DOTA_TEAM_GOODGUYS)
 	local ability = self.totemUnit:AddAbility("generic_hp_limiter")
-	ability:SetLevel(1)
-	self.totemUnit:AddNewModifier(self.totemUnit, ability, "modifier_generic_hp_limiter", {})
 	self.totemUnit:SetThreat(5000)
 	
 	local activeHeroes = HeroList:GetActiveHeroCount()

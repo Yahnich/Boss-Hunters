@@ -131,7 +131,7 @@ local function HandoutRewards(self)
 	local baseGold = 100 + eventScaling * (25 + 3 * playerScaling)
 	for _, hero in ipairs( HeroList:GetRealHeroes() ) do
 		hero:AddGold( baseGold )
-		hero:AddExperience( baseXP, DOTA_ModifyXP_Unspecified, false, false )
+		hero:AddXP( baseXP )
 		
 		hero:ModifyAgility( 10 )
 		hero:ModifyIntellect( 10 )

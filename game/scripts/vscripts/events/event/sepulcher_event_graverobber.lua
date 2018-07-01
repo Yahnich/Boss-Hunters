@@ -28,6 +28,8 @@ local function CheckPlayerChoices(self)
 end
 
 local function GiveRelicChoices(self)
+	local votesWithOfuda = 0
+	local votesWithout = 0
 	for _, hero in ipairs( HeroList:GetRealHeroes() ) do
 		local pID = hero:GetPlayerID()
 		local cursedTable = {}
@@ -41,8 +43,24 @@ local function GiveRelicChoices(self)
 		
 		RelicManager:PushCustomRelicDropsForPlayer(pID, cursedTable)
 		RelicManager:PushCustomRelicDropsForPlayer(pID, uniqueTable)
+		if self._playerChoices[pID] and hero:HasRelic("relic_unique_ofuda") and hero:FindModifierByName("relic_unique_ofuda"):GetStackCount() > 0 then
+			votesWithOfuda = votesWithOfuda + 1
+		elseif self._playerChoices[pID]
+			votesWithout = votesWithout + 1
+		end
 	end
-	GameRules._lives = 1
+	if votesWithOfuda < votesWithout then
+		GameRules._lives = 1
+	else
+		for id, vote in pairs(self._playerChoices) do
+			local hero = PlayerResource:GetSelectedHeroEntity(id)
+			if vote and hero:HasRelic("relic_unique_ofuda")  and hero:FindModifierByName("relic_unique_ofuda"):GetStackCount() > 0 then
+				local ofuda = hero:FindModifierByName("relic_unique_ofuda")
+				ofuda:DecrementStackCount()
+			end
+		end
+	end
+	
 	CustomGameEventManager:Send_ServerToAllClients( "updateQuestLife", { lives = GameRules._lives, maxLives = GameRules._maxLives } )
 	self:EndEvent(true)
 end

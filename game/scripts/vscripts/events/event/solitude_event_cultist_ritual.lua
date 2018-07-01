@@ -61,7 +61,7 @@ local function StartCombat(self, bFight)
 		end)
 	else
 		for _, hero in ipairs( HeroList:GetRealHeroes() ) do
-			hero:AddNewModifier(hero, nil, "event_buff_cultist_ritual", {})
+			hero:AddCurse("event_buff_cultist_ritual")
 			local pID = hero:GetPlayerOwnerID()
 			for i = 1, 2 do
 				table.insert(relicTable, RelicManager:RollRandomCursedRelicForPlayer(pID))

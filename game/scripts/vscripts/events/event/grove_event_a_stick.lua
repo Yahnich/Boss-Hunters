@@ -19,7 +19,7 @@ end
 local function SecondChoice(self, userid, event)
 	local hero = PlayerResource:GetSelectedHeroEntity( event.pID )
 	
-	hero:AddModifier(hero, nil, "event_buff_stick", {})
+	hero:AddBlessing("event_buff_stick")
 	self._playerChoices[event.pID] = true
 	CheckPlayerChoices(self)
 end

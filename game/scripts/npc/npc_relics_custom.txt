@@ -37,7 +37,9 @@
 		"relic_generic_barbedbell"						"1"
 		"relic_generic_stone_fist"						"1"
 		"relic_generic_spinning_top"					"1"
-		"relic_generic_tiger_blood"						"1"
+		"relic_generic_tiger_blood"						"1"		
+		"relic_generic_amplifier"						"1"		
+		"relic_generic_heavy_rock"						"1"
 	}
 	"relic_type_cursed"
 	{
@@ -48,7 +50,7 @@
 		"relic_cursed_loaded_coin"						"1"
 		"relic_cursed_mysterious_stone"					"1"
 		"relic_cursed_pale_blood"						"1"
-		"relic_cursed_paupers_finger"					"0"
+		"relic_cursed_paupers_finger"					"1"
 		"relic_cursed_phoenix_down"						"1"
 		"relic_cursed_red_key"							"0"
 		"relic_cursed_symbiote"							"1"
@@ -77,6 +79,9 @@
 		"relic_cursed_mask_of_janus"					"1"
 		"relic_cursed_heavy_tome"						"1"
 		"relic_cursed_thorned_bandages"					"1"
+		"relic_cursed_archmages_reliquary"				"1"
+		"relic_cursed_crimson_gauntlet"					"1"
+		"relic_cursed_ritual_kris"						"1"
 	}
 	"relic_type_unique"
 	{
@@ -119,5 +124,12 @@
 		"relic_unique_ritual_candle"					"1"
 		"relic_unique_lunar_needle"						"1"
 		"relic_unique_cold_heart"						"1"
+		"relic_unique_shopkeepers_heart"				"1"
+		"relic_unique_rex_dominatur"					"1"
+		"relic_unique_sharp_machete"					"1"
+		"relic_unique_gazaer_tirdh"						"1"
+		"relic_unique_chainsword"						"1"
+		"relic_unique_antique_pouch"					"1"
+		"relic_unique_ofuda"							"1"
 	}
 }

@@ -2474,6 +2474,18 @@ function CDOTA_BaseNPC_Hero:AddGold(val)
 	self:SetGold(gold, true)
 end
 
+function CDOTA_BaseNPC_Hero:AddXP( val )
+	local xp = val or 0
+	if xp >= 0 then
+		for _, modifier in pairs(self:FindAllModifiers()) do
+			if modifier.GetBonusExp then
+				xp = xp * math.max( 0, (1 + (modifier.GetBonusExp() / 100)) )
+			end
+		end
+	end
+	self:AddExperience(xp, DOTA_ModifyXP_Unspecified , false, true)
+end
+
 function CutTreesInRadius(vloc, radius)
 	local trees = GridNav:GetAllTreesAroundPoint(vloc, radius, false)
 	local treesCut = 0
@@ -2589,4 +2601,23 @@ function CDOTA_BaseNPC:GetIllusionOwnerEntindex()
 	else
 		error("Not an illusion!")
 	end
+end
+
+function CDOTA_BaseNPC:AddCurse(curseName)	
+	local curse = self:AddNewModifier(self, nil, curseName, {})
+	curse.isCurse = true
+	
+	if self:HasRelic("relic_unique_ofuda") and self:FindModifierByName("relic_unique_ofuda"):GetStackCount() > 0 then
+		local ofuda = self:FindModifierByName("relic_unique_ofuda")
+		ofuda:DecrementStackCount()
+		curse:Destroy()
+	end
+	
+	return curse
+end
+
+function CDOTA_BaseNPC:AddBlessing( blessingName )
+	local blessing = self:AddNewModifier(self, nil, blessingName, {})
+	blessing.isBlessing = true
+	return blessing
 end

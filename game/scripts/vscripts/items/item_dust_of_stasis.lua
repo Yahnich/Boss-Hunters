@@ -15,12 +15,15 @@ end
 
 modifier_item_dust_of_stasis_stasis = class({})
 function modifier_item_dust_of_stasis_stasis:CheckState()
-	return {[MODIFIER_STATE_STUNNED] = true,
-			[MODIFIER_STATE_FROZEN] = true,}
+	return {[MODIFIER_STATE_FROZEN] = true,}
 end
 
 function modifier_item_dust_of_stasis_stasis:DeclareFunctions()
 	return {MODIFIER_EVENT_ON_TAKEDAMAGE}
+end
+
+function modifier_item_dust_of_stasis_stasis:GetPriority()
+	return MODIFIER_PRIORITY_SUPER_ULTRA
 end
 
 function modifier_item_dust_of_stasis_stasis:OnTakeDamage(params)

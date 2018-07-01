@@ -22,7 +22,7 @@ end
 local function SecondChoice(self, userid, event)
 	local hero = PlayerResource:GetSelectedHeroEntity( event.pID )
 	
-	hero:AddNewModifier(hero, nil, "event_buff_devil_deal", {})
+	hero:AddCurse("event_buff_devil_deal")
 	local relicTable = {}
 	table.insert(relicTable, RelicManager:RollRandomCursedRelicForPlayer(event.pID))
 	RelicManager:PushCustomRelicDropsForPlayer(event.pID, relicTable)

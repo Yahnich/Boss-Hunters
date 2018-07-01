@@ -180,10 +180,7 @@ function RelicManager:RollBossRelicsForPlayer(pID)
 		end
 	end
 	
-	table.insert( hero.relicsToSelect, dropTable )
-	if player then
-		CustomGameEventManager:Send_ServerToPlayer(player,"dota_player_updated_relic_drops", {playerID = pID, drops = hero.relicsToSelect})
-	end
+	RelicManager:PushCustomRelicDropsForPlayer(pID, dropTable)
 end
 
 function RelicManager:RollEliteRelicsForPlayer(pID)
@@ -198,11 +195,7 @@ function RelicManager:RollEliteRelicsForPlayer(pID)
 	table.insert( dropTable, self:RollRandomGenericRelicForPlayer(pID) )
 	table.insert( dropTable, self:RollRandomGenericRelicForPlayer(pID) )
 	
-	table.insert( hero.relicsToSelect, dropTable )
-	
-	if player then
-		CustomGameEventManager:Send_ServerToPlayer(player,"dota_player_updated_relic_drops", {playerID = pID, drops = hero.relicsToSelect})
-	end
+	RelicManager:PushCustomRelicDropsForPlayer(pID, dropTable)
 end
 
 function RelicManager:PushCustomRelicDropsForPlayer(pID, relicTable)
@@ -210,9 +203,13 @@ function RelicManager:PushCustomRelicDropsForPlayer(pID, relicTable)
 	local player = PlayerResource:GetPlayer(pID)
 	if not hero then return end
 	
-	table.insert( hero.relicsToSelect, relicTable )
+	local greed = hero:HasRelic("relic_cursed_icon_of_greed")
+	local pride = hero:HasRelic("relic_cursed_icon_of_pride")
 	
-	if player then
+	table.insert( hero.relicsToSelect, relicTable )
+	if (greed or pride) and not hero:HasRelic("relic_unique_ritual_candle") then
+		RelicManager:RemoveDropFromTable(pID, false)
+	elseif player then
 		CustomGameEventManager:Send_ServerToPlayer(player,"dota_player_updated_relic_drops", {playerID = pID, drops = hero.relicsToSelect})
 	end
 end
