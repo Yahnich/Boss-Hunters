@@ -1891,20 +1891,32 @@
 		
 		"AttackRate"				"1.9"
 	}
-	"npc_dota_hero_windrunner" // Sylph
+	"npc_dota_hero_windrunner" // Windranger WindRunner
 	{
 		"override_hero"			"npc_dota_hero_windrunner"
-		"Ability1"				"windrunner_skillshot"
-		"Ability6"				"windrunner_focusfire_datadriven"
 		
-		"Ability10"		"special_bonus_mp_200"
-		"Ability11"		"special_bonus_unique_windranger_2"
-		"Ability12"		"special_bonus_unique_windranger_3"
-		"Ability13"		"special_bonus_attack_range_100"
-		"Ability14"		"special_bonus_unique_windranger_5"
-		"Ability15"		"special_bonus_unique_windranger"
-		"Ability16"		"special_bonus_unique_windranger_4"
-		"Ability17"		"special_bonus_cooldown_reduction_30"
+		"Ability1"				"windrunner_bolas"
+		"Ability2"				"windrunner_powershot_bh"
+		"Ability3"				"windrunner_windrun_bh"
+		"Ability4"				"windrunner_skillshot"
+		"Ability6"				"windrunner_focusfire_bh"
+		
+		"Ability10"		"special_bonus_unique_windrunner_bolas_1"
+		"Ability11"		"special_bonus_unique_windrunner_bolas_2"
+		"Ability12"		"special_bonus_unique_windrunner_powershot_bh_1"
+		"Ability13"		"special_bonus_unique_windrunner_powershot_bh_2"
+		"Ability14"		"special_bonus_unique_windrunner_windrun_bh_1"
+		"Ability15"		"special_bonus_unique_windrunner_windrun_bh_2"
+		"Ability16"		"special_bonus_unique_windrunner_focusfire_bh_1"
+		"Ability17"		"special_bonus_unique_windrunner_focusfire_bh_2"
+
+		"AttributePrimary"		"DOTA_ATTRIBUTE_AGILITY"
+		"AttributeBaseStrength"		"17"
+		"AttributeStrengthGain"		"2.8"
+		"AttributeBaseIntelligence"	"17"
+		"AttributeIntelligenceGain"	"1.4"
+		"AttributeBaseAgility"		"18"
+		"AttributeAgilityGain"		"2.6"
 	}
 	"npc_dota_hero_winter_wyvern_ebf"
 	{

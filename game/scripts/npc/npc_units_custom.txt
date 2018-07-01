@@ -8301,4 +8301,219 @@
 		"MovementSpeed"				"0"		// Speed.
 		"MovementTurnRate"			"1"		// Turning rate.
 	}
+
+	//=================================================================================
+	// Green Dragon Boss
+	//=================================================================================
+	"npc_dota_green_dragon"
+	{
+		// General
+		//----------------------------------------------------------------
+		"Model"						"models/heroes/dragon_knight/dragon_knight_dragon.vmdl"
+		"BaseClass"					"npc_dota_creature"
+		"SoundSet"					"n_creep_Ranged"
+		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
+		"Level"						"22"
+		"ModelScale" 				"1.5"
+		"IsAncient"					"0"
+		"MinimapIcon"				"minimap_enemyicon"
+		"MinimapIconSize"			"275"
+		"IsCore"					"1"
+		"vscripts"					"ai/ai_dragon_green"
+	
+		// Abilities
+		//----------------------------------------------------------------
+		"AbilityLayout"				"3"
+		"Ability1"					"green_dragon_toxic_pool"			// Ability 1.
+		"Ability2"					"green_dragon_etheral_armor"
+		"Ability3"					"green_dragon_rot"
+		"Ability4"					"green_dragon_volatile_rot"
+		"Ability5"					""
+		"Ability6"					""
+	
+		// Armor
+		//----------------------------------------------------------------
+		"ArmorPhysical"				"6"			// Physical protection.
+		"MagicalResistance"			"25"		// Magical protection.
+		
+		// Attack
+		//----------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"			"75"	// Damage range min.
+		"AttackDamageMax"			"90"		// Damage range max.
+		"AttackRate"				"7.0"		// Speed of attack.
+		"AttackAnimationPoint"		"1"		// Normalized time in animation cycle to attack.
+		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
+		"AttackRange"				"400"		// Range within a target can be attacked.
+		"ProjectileModel"			"particles/units/heroes/hero_dragon_knight/dragon_knight_elder_dragon_corrosive.vpcf"			// Particle system model for projectile.
+		"ProjectileSpeed"			"1000"			// Speed of projectile.		   
+	
+		// Bounds
+		//----------------------------------------------------------------
+		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"			// Hull type used for navigation/locomotion.
+		"RingRadius"				"100"
+		"HealthBarOffset"			"320"
+	
+		// Bounty
+		//----------------------------------------------------------------
+		"BountyXP"					"0"	// Experience earn.
+		"BountyGoldMin"				"0"			// Gold earned min.
+		"BountyGoldMax"				"0"			// Gold earned max.
+	
+		// Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"350"		// Speed.
+		"MovementTurnRate"			"0.25"		// Turning rate.
+	
+		// Status
+		//----------------------------------------------------------------
+		"StatusHealth"				"35000"		// Base health.
+		"StatusHealthRegen"			"500"			// Health regeneration rate.
+		"StatusMana"				"100"			// Base mana.
+		"StatusManaRegen"			"0"			// Mana regeneration rate.		 
+		
+		// Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange"		"800"		// Range of vision during day HERO.
+		"VisionNighttimeRange"		"800"		// Range of vision at night time.
+	
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"					"DOTA_TEAM_BADGUYS"
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		
+		// Creature Data
+		//----------------------------------------------------------------
+		"Creature"
+		{	
+			"CanRespawn"				"0"
+			//HERO AI State
+			//------------------------------------------------------------
+			"States"
+			{
+				"Invade"
+				{
+					"Name"				"Invade"
+					"Aggression"		"100.0"
+					"Avoidance"			"0.0"
+					"Support"			"0.0"
+				}
+			}
+			"DefaultState"				"Invade"
+	
+			//Level Up Parameters
+			//------------------------------------------------------------
+			"HPGain"					"8000"
+			"DamageGain"				"300"
+			"ArmorGain"					"10"
+			"MagicResistGain"			"50"
+			"MoveSpeedGain"				"0"
+			"BountyGain"				"0"
+			"XPGain"					"200"
+			
+			"NOSTUNRESIST"			"60.0"
+		}
+	}
+
+	//=================================================================================
+	// Green Dragon Boss Bug
+	//=================================================================================
+	"npc_dota_green_dragon_bug"
+	{
+		// General
+		//----------------------------------------------------------------
+		"Model"						"models/items/broodmother/spiderling/lycosidae_spiderling/lycosidae_spiderling.vmdl"
+		"BaseClass"					"npc_dota_creature"
+		"SoundSet"					"n_creep_Ranged"
+		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
+		"Level"						"1"
+		"ModelScale" 				"0.5"
+		"IsAncient"					"0"
+		"MinimapIcon"				"minimap_enemyicon"
+		"MinimapIconSize"			"50"
+		"IsCore"					"0"
+		"vscripts"					"ai/ai_generic"
+	
+		// Abilities
+		//----------------------------------------------------------------
+		"AbilityLayout"				"1"
+		"Ability1"					"green_dragon_bug_explode"			// Ability 1.
+	
+		// Armor
+		//----------------------------------------------------------------
+		"ArmorPhysical"				"6"			// Physical protection.
+		"MagicalResistance"			"25"		// Magical protection.
+		
+		// Attack
+		//----------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+		"AttackDamageMin"			"0"	// Damage range min.
+		"AttackDamageMax"			"0"		// Damage range max.
+		"AttackRate"				"0"		// Speed of attack.
+		"AttackAnimationPoint"		"0"		// Normalized time in animation cycle to attack.
+		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
+		"AttackRange"				"0"		// Range within a target can be attacked.
+		"ProjectileModel"			""			// Particle system model for projectile.
+		"ProjectileSpeed"			"0"			// Speed of projectile.		   
+	
+		// Bounds
+		//----------------------------------------------------------------
+		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"			// Hull type used for navigation/locomotion.
+		"RingRadius"				"100"
+		"HealthBarOffset"			"320"
+	
+		// Bounty
+		//----------------------------------------------------------------
+		"BountyXP"					"0"	// Experience earn.
+		"BountyGoldMin"				"0"			// Gold earned min.
+		"BountyGoldMax"				"0"			// Gold earned max.
+	
+		// Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"350"		// Speed.
+		"MovementTurnRate"			"0.25"		// Turning rate.
+	
+		// Status
+		//----------------------------------------------------------------
+		"StatusHealth"				"100"		// Base health.
+		"StatusHealthRegen"			"0"			// Health regeneration rate.
+		"StatusMana"				"0"			// Base mana.
+		"StatusManaRegen"			"0"			// Mana regeneration rate.		 
+		
+		// Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange"		"8000"		// Range of vision during day HERO.
+		"VisionNighttimeRange"		"8000"		// Range of vision at night time.
+	
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"					"DOTA_TEAM_BADGUYS"
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		
+		// Creature Data
+		//----------------------------------------------------------------
+		"Creature"
+		{	
+			"CanRespawn"				"0"
+			//HERO AI State
+			//------------------------------------------------------------
+			"States"
+			{
+				"Invade"
+				{
+					"Name"				"Invade"
+					"Aggression"		"100.0"
+					"Avoidance"			"0.0"
+					"Support"			"0.0"
+				}
+			}
+			"DefaultState"				"Invade"
+		}
+	}
 }
