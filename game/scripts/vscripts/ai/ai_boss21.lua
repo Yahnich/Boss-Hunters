@@ -5,7 +5,7 @@ Broodking AI
 if IsServer() then
 	require( "ai/ai_core" )
 	function Spawn( entityKeyValues )
-		Timers:CreateTimer(function()
+		AITimers:CreateTimer(function()
 			if thisEntity and not thisEntity:IsNull() then
 				return AIThink(thisEntity)
 			end
@@ -14,7 +14,7 @@ if IsServer() then
 		thisEntity.execute = thisEntity:FindAbilityByName("boss14_execute")
 		thisEntity.quake = thisEntity:FindAbilityByName("boss14_quake")
 		thisEntity.whirlwind = thisEntity:FindAbilityByName("boss14_whirlwind")
-		Timers:CreateTimer(0.1, function()
+		AITimers:CreateTimer(0.1, function()
 			if  math.floor(GameRules.gameDifficulty + 0.5) < 2 then 
 				thisEntity.bloodlust:SetLevel(1)
 				thisEntity.execute:SetLevel(1)

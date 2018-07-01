@@ -3116,7 +3116,7 @@
 			"DefaultState"				"Invade"
 		}
 	}
-	"npc_do_trueform"
+	"npc_dota_boss32_trueform"
 	{
 		// General
 		//----------------------------------------------------------------

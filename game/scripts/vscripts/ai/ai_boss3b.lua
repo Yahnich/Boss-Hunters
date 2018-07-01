@@ -5,14 +5,14 @@ Broodking AI
 require( "ai/ai_core" )
 if IsServer() then
 	function Spawn( entityKeyValues )
-		Timers:CreateTimer(function()
+		AITimers:CreateTimer(function()
 			if thisEntity and not thisEntity:IsNull() then
 				return AIThink(thisEntity)
 			end
 		end)
 		thisEntity.spit = thisEntity:FindAbilityByName("boss3b_acid_spit")
 		thisEntity.passive = thisEntity:FindAbilityByName("boss3b_acid_interior")
-		Timers:CreateTimer(function()
+		AITimers:CreateTimer(function()
 			if  math.floor(GameRules.gameDifficulty + 0.5) <= 2 then 
 				thisEntity.spit:SetLevel(1)
 				thisEntity.passive:SetLevel(1)

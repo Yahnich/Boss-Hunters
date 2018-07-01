@@ -7,7 +7,7 @@ require( "ai/ai_core" )
 -- GENERIC AI FOR SIMPLE CHASE ATTACKERS
 
 function Spawn( entityKeyValues )
-	Timers:CreateTimer(function()
+	AITimers:CreateTimer(function()
 		if thisEntity and not thisEntity:IsNull() then
 			return AIThink(thisEntity)
 		end

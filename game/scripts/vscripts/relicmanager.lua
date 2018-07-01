@@ -173,7 +173,7 @@ function RelicManager:RollBossRelicsForPlayer(pID)
 	hero.relicsToSelect = hero.relicsToSelect or {}
 	local dropTable = {}
 	for i = 1, 3 do
-		if RollPercentage(50) then
+		if RollPercentage(65) then
 			table.insert( dropTable, self:RollRandomUniqueRelicForPlayer(pID) )
 		else
 			table.insert( dropTable, self:RollRandomCursedRelicForPlayer(pID) )

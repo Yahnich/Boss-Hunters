@@ -6,7 +6,6 @@ end
 
 function modifier_spawn_immunity:CheckState()
 	return {[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
-			[MODIFIER_STATE_ROOTED] = true,
 			[MODIFIER_STATE_ATTACK_IMMUNE] = true,
 			[MODIFIER_STATE_MAGIC_IMMUNE] = true,
 			[MODIFIER_STATE_DISARMED] = true,

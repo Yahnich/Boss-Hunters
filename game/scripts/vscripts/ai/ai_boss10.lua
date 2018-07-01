@@ -5,14 +5,14 @@ Broodking AI
 require( "ai/ai_core" )
 
 function Spawn( entityKeyValues )
-	Timers:CreateTimer(function()
+	AITimers:CreateTimer(function()
 		if thisEntity and not thisEntity:IsNull() then
 			return AIThink(thisEntity)
 		end
 	end)
 	thisEntity.fire = thisEntity:FindAbilityByName("creature_fire_breath")
 	thisEntity.crush = thisEntity:FindAbilityByName("creature_slithereen_crush")
-	Timers:CreateTimer(0.1, function()
+	AITimers:CreateTimer(0.1, function()
 		if  math.floor(GameRules.gameDifficulty + 0.5) <= 2 then
 			thisEntity.fire:SetLevel(1)
 			thisEntity.crush:SetLevel(1)

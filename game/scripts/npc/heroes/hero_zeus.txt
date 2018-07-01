@@ -384,13 +384,13 @@
 			"02"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"damage_health_pct"				"3.5"
+				"damage_health_pct"				"6"
 				"CalculateSpellDamageTooltip"	"0"
 			}
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"pct_per_stack"					"0.5"
+				"pct_per_stack"					"0"
 				"CalculateSpellDamageTooltip"	"0"
 				"LinkedSpecialBonus"			"special_bonus_unique_zeus_static_field_1"
 			}
@@ -461,7 +461,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_spell_amp"		"100 105 110 115 120 125"
+				"bonus_spell_amp"		"20 40 60 80 100 120"
 				"LinkedSpecialBonus"	"special_bonus_unique_zeus_olympus_calls_2"
 			}
 			"02"

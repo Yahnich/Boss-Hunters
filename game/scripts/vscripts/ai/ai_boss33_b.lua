@@ -1,7 +1,7 @@
 if IsServer() then
 	require( "ai/ai_core" )
 	function Spawn( entityKeyValues )
-		Timers:CreateTimer(function()
+		AITimers:CreateTimer(function()
 			if thisEntity and not thisEntity:IsNull() then
 				return AIThink(thisEntity)
 			end
@@ -21,7 +21,7 @@ if IsServer() then
 			return false
 		end
 		
-		Timers:CreateTimer(function()
+		AITimers:CreateTimer(function()
 			if  math.floor(GameRules.gameDifficulty + 0.5) < 2 then 
 				thisEntity.raze1:SetLevel(1)
 				thisEntity.raze1:SetLevel(1)

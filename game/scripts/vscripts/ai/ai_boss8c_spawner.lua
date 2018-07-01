@@ -6,7 +6,7 @@ TECHIES_BEHAVIOR_ROAM_AND_MINE = 2
 require( "ai/ai_core" )
 
 function Spawn( entityKeyValues )
-	Timers:CreateTimer(function()
+	AITimers:CreateTimer(function()
 		if thisEntity and not thisEntity:IsNull() then
 			return AIThink(thisEntity)
 		end

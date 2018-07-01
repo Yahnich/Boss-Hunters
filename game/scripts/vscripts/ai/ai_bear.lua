@@ -5,7 +5,7 @@ Broodking AI
 require( "ai/ai_core" )
 
 function Spawn( entityKeyValues )
-	Timers:CreateTimer(function()
+	AITimers:CreateTimer(function()
 		if thisEntity and not thisEntity:IsNull() then
 			return AIThink(thisEntity)
 		end
@@ -14,7 +14,7 @@ function Spawn( entityKeyValues )
 	thisEntity.smash = thisEntity:FindAbilityByName("boss26_smash")
 	thisEntity.rend = thisEntity:FindAbilityByName("boss26_rend")
 	
-	Timers:CreateTimer(0.1, function()
+	AITimers:CreateTimer(0.1, function()
 		if  math.floor(GameRules.gameDifficulty + 0.5) <= 2 then
 			thisEntity.ravage:SetLevel(1)
 			thisEntity.smash:SetLevel(1)

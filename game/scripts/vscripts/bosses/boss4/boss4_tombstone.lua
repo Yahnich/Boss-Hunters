@@ -60,7 +60,7 @@ end
 
 
 function modifier_boss4_tombstone_tomb:DeclareFunctions()
-	return {MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE}
+	return {MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE, MODIFIER_PROPERTY_DISABLE_HEALING}
 end
 
 function modifier_boss4_tombstone_tomb:GetModifierIncomingDamage_Percentage(params)
@@ -80,4 +80,8 @@ function modifier_boss4_tombstone_tomb:GetModifierIncomingDamage_Percentage(para
 			parent:Kill(params.inflictor, params.attacker)
 		end
 	end
+end
+
+function modifier_boss4_tombstone_tomb:GetDisableHealing()
+	return 1
 end

@@ -16,6 +16,10 @@ local function FirstChoice(self, userid, event)
 		hero:AddRelic( RelicManager:RollRandomUniqueRelicForPlayer( event.pID ) )
 	end
 	
+	if hero:GetPlayer() then
+		Timers:CreateTimer(0.5, function() CustomGameEventManager:Send_ServerToPlayer(hero:GetPlayer(), "boss_hunters_event_reward_given", {event = self:GetEventName(), reward = 1}) end)
+	end
+	
 	self._playerChoices[event.pID] = true
 	CheckPlayerChoices(self)
 end
@@ -48,7 +52,7 @@ local function ThirdChoice(self, userid, event)
 end
 
 local function StartEvent(self)
-	CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_has_started", {event = "elysium_event_old_shrine", choices = 3})
+	CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_has_started", {event = self:GetEventName(), choices = 3})
 	self._vEventHandles = {
 		CustomGameEventManager:RegisterListener('player_selected_event_choice_1', Context_Wrap( self, 'FirstChoice') ),
 		CustomGameEventManager:RegisterListener('player_selected_event_choice_2', Context_Wrap( self, 'SecondChoice') ),

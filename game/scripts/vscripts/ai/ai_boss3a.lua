@@ -5,14 +5,14 @@ Broodking AI
 require( "ai/ai_core" )
 if IsServer() then
 	function Spawn( entityKeyValues )
-		Timers:CreateTimer(function()
+		AITimers:CreateTimer(function()
 			if thisEntity and not thisEntity:IsNull() then
 				return AIThink(thisEntity)
 			end
 		end)
 		thisEntity.berserk = thisEntity:FindAbilityByName("boss3a_berserk")
 		thisEntity.tombstone = thisEntity:FindAbilityByName("boss3a_tombstone")
-		Timers:CreateTimer(0.1, function()
+		AITimers:CreateTimer(0.1, function()
 			if  math.floor(GameRules.gameDifficulty + 0.5) < 2 then 
 				thisEntity.berserk:SetLevel(1)
 				thisEntity.tombstone:SetLevel(1)

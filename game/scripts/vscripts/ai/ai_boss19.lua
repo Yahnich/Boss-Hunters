@@ -5,7 +5,7 @@ Broodking AI
 require( "ai/ai_core" )
 
 function Spawn( entityKeyValues )
-	Timers:CreateTimer(function()
+	AITimers:CreateTimer(function()
 		if thisEntity and not thisEntity:IsNull() then
 			return AIThink(thisEntity)
 		end
@@ -14,6 +14,8 @@ function Spawn( entityKeyValues )
 	thisEntity.summon = thisEntity:FindAbilityByName("creature_summon_tree")
 	thisEntity.summon2 = thisEntity:FindAbilityByName("creature_summon_tree2")
 	thisEntity.sprout = thisEntity:FindAbilityByName("furion_sprout")
+	
+	AITimers:CreateTimer(0.1, function() spawn.armor:SetLevel( math.max(spawn.armor:GetMaxLevel(), math.floor(GameRules:GetGameDifficulty()/2) + RoundManager:GetRaidsFinished() ) ) end)
 end
 
 

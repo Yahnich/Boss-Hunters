@@ -5,7 +5,7 @@ Broodking AI
 require( "ai/ai_core" )
 
 function Spawn( entityKeyValues )
-	Timers:CreateTimer(function()
+	AITimers:CreateTimer(function()
 		if thisEntity and not thisEntity:IsNull() then
 			return AIThink(thisEntity)
 		end
@@ -14,7 +14,7 @@ function Spawn( entityKeyValues )
 	thisEntity.spawn = thisEntity:FindAbilityByName("boss_broodling_spawn_spiderling")
 	thisEntity.spawn:StartCooldown(10)
 
-	Timers:CreateTimer(0.1, function()
+	AITimers:CreateTimer(0.1, function()
 		if  math.floor(GameRules.gameDifficulty + 0.5) < 2 then 
 			thisEntity.spawn:SetLevel(1)
 		else

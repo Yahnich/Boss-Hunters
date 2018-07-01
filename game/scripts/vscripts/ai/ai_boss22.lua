@@ -1,7 +1,7 @@
 if IsServer() then
 	require( "ai/ai_core" )
 	function Spawn( entityKeyValues )
-		Timers:CreateTimer(function()
+		AITimers:CreateTimer(function()
 			if thisEntity and not thisEntity:IsNull() then
 				return AIThink(thisEntity)
 			end
@@ -9,7 +9,7 @@ if IsServer() then
 		thisEntity.thread = thisEntity:FindAbilityByName("boss15_thread_of_life")
 		thisEntity.peel = thisEntity:FindAbilityByName("boss15_peel_the_veil")
 		thisEntity.exorcise = thisEntity:FindAbilityByName("boss15_exorcise")
-		Timers:CreateTimer(0.1, function()
+		AITimers:CreateTimer(0.1, function()
 			if  math.floor(GameRules.gameDifficulty + 0.5) < 2 then 
 				thisEntity.thread:SetLevel(1)
 				thisEntity.peel:SetLevel(1)

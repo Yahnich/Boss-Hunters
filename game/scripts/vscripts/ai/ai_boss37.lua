@@ -9,7 +9,7 @@ AI_STATE_AGGRESSIVE = 2
 AI_STATE_EGGS = 3
 
 function Spawn( entityKeyValues )
-	Timers:CreateTimer(function()
+	AITimers:CreateTimer(function()
 		if thisEntity and not thisEntity:IsNull() then
 			return AIThink(thisEntity)
 		end
@@ -24,7 +24,7 @@ function Spawn( entityKeyValues )
 	thisEntity.web = thisEntity:FindAbilityByName("boss_broodmother_fates_web")
 	thisEntity.shot = thisEntity:FindAbilityByName("boss_broodmother_web_shot")
 
-	Timers:CreateTimer(0.1, function()
+	AITimers:CreateTimer(0.1, function()
 			if  math.floor(GameRules.gameDifficulty + 0.5) < 2 then 
 				thisEntity.fate:SetLevel(1)
 				thisEntity.injection:SetLevel(1)

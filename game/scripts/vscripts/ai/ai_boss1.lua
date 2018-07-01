@@ -9,7 +9,7 @@ if IsServer() then
 	AI_STATE_STEALTH = 3
 	
 	function Spawn( entityKeyValues )
-		Timers:CreateTimer(function()
+		AITimers:CreateTimer(function()
 			if thisEntity and not thisEntity:IsNull() then
 				return AIThink(thisEntity)
 			end
@@ -17,7 +17,7 @@ if IsServer() then
 		thisEntity.rush = thisEntity:FindAbilityByName("boss1a_rushdown")
 		thisEntity.blink = thisEntity:FindAbilityByName("boss1a_blink_strike")
 		thisEntity.vanish = thisEntity:FindAbilityByName("boss1a_vanish")
-		Timers:CreateTimer(0.1, function()
+		AITimers:CreateTimer(0.1, function()
 			if  math.floor(GameRules.gameDifficulty + 0.5) > 2 then
 				thisEntity.vanish:SetLevel(2)
 				thisEntity.blink:SetLevel(2)

@@ -4321,7 +4321,7 @@
 		        	{
 		        	    "ScriptFile" "lua_abilities/abilities_simple.lua"
 			    		"Function" "spawn_unit"
-			    		"unit_to_spawn"		"npc_dota_boss32_trueform_vh"
+			    		"unit_to_spawn"		"npc_dota_boss32_trueform"
 			    		"number_of_unit"		"2"
 		   		    }
 		        }
@@ -5152,7 +5152,7 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"5"
+		"AbilityCooldown"				"3"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -5160,7 +5160,7 @@
 		
 		// Damage.
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"					"125 150"
+		"AbilityDamage"					"50 75"
 			
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -5168,19 +5168,19 @@
 		{
 			"01"
 			{
-				"var_type"			"FIELD_INTEGER"
-				"jump_count"			"12"
+				"var_type"				"FIELD_INTEGER"
+				"jump_count"			"5"
 			}
 			
 			"02"
 			{
-				"var_type"			"FIELD_INTEGER"
-				"radius"			"275"
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"200"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"jump_delay"			"0.25"
+				"jump_delay"			"0.6"
 			}
 			"04"
 			{

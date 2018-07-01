@@ -426,6 +426,7 @@ function spawn_unit( keys )
             caster:GetOwnerEntity():CreateSummon(unit, caster:GetAbsOrigin() + RandomVector(RandomInt(250,500)), 30)
         else
             local entUnit = CreateUnitByName( unit, caster:GetAbsOrigin() + RandomVector(RandomInt(250,500)), true, nil, nil, caster:GetTeamNumber() )
+			entUnit.unitIsRoundBoss = true
         end
     end
 end

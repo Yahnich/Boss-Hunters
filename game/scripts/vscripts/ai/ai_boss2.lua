@@ -5,7 +5,7 @@ if IsServer() then
 	AI_STATE_CHASING = 2
 	
 	function Spawn( entityKeyValues )
-		Timers:CreateTimer(function()
+		AITimers:CreateTimer(function()
 			if thisEntity and not thisEntity:IsNull() then
 				return AIThink(thisEntity)
 			end
@@ -14,7 +14,7 @@ if IsServer() then
 		thisEntity.pin = thisEntity:FindAbilityByName("boss1b_spear_pin")
 		thisEntity.pierce = thisEntity:FindAbilityByName("boss1b_spear_pierce")
 		
-		Timers:CreateTimer(0.1, function()
+		AITimers:CreateTimer(0.1, function()
 			if  math.floor(GameRules.gameDifficulty + 0.5) <= 2 then
 				thisEntity.leap:SetLevel(1)
 				thisEntity.pin:SetLevel(1)

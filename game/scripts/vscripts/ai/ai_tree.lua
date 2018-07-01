@@ -5,13 +5,15 @@ Broodking AI
 require( "ai/ai_core" )
 
 function Spawn( entityKeyValues )
-	Timers:CreateTimer(function()
+	AITimers:CreateTimer(function()
 		if thisEntity and not thisEntity:IsNull() then
 			return AIThink(thisEntity)
 		end
 	end)
 	thisEntity.armor = thisEntity:FindAbilityByName("boss_living_armor")
 	thisEntity.summon = thisEntity:FindAbilityByName("creature_summon_tree")
+	
+	AITimers:CreateTimer(0.1, function() spawn.armor:SetLevel( math.max(spawn.armor:GetMaxLevel(), math.floor(GameRules:GetGameDifficulty()/4) + RoundManager:GetRaidsFinished() ) ) end)
 end
 
 

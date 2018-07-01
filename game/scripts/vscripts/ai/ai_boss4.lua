@@ -4,7 +4,7 @@ Broodking AI
 
 require( "ai/ai_core" )
 function Spawn( entityKeyValues )
-	Timers:CreateTimer(function()
+	AITimers:CreateTimer(function()
 		if thisEntity and not thisEntity:IsNull() then
 			return AIThink(thisEntity)
 		end
@@ -14,7 +14,7 @@ function Spawn( entityKeyValues )
 	thisEntity.sacrifice = thisEntity:FindAbilityByName("boss4_sacrifice")
 	thisEntity.tombstone = thisEntity:FindAbilityByName("boss4_tombstone")
 	
-	Timers:CreateTimer(function()
+	AITimers:CreateTimer(function()
 		if  math.floor(GameRules.gameDifficulty + 0.5) <= 2 then 
 			thisEntity.ball:SetLevel(1)
 			thisEntity.summon:SetLevel(1)

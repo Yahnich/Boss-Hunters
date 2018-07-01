@@ -5,7 +5,7 @@ Broodking AI
 if IsServer() then
 	require( "ai/ai_core" )
 	function Spawn( entityKeyValues )
-		Timers:CreateTimer(function()
+		AITimers:CreateTimer(function()
 			if thisEntity and not thisEntity:IsNull() then
 				return AIThink(thisEntity)
 			end
@@ -15,7 +15,7 @@ if IsServer() then
 		thisEntity.swarm = thisEntity:FindAbilityByName("boss19_the_swarm")
 		thisEntity.chasm = thisEntity:FindAbilityByName("boss19_chasm")
 		thisEntity.shield = thisEntity:FindAbilityByName("boss19_shield")
-		Timers:CreateTimer(0.1, function()
+		AITimers:CreateTimer(0.1, function()
 			if  math.floor(GameRules.gameDifficulty + 0.5) <= 2 then
 				thisEntity.burrow:SetLevel(1)
 				thisEntity.ground:SetLevel(1)

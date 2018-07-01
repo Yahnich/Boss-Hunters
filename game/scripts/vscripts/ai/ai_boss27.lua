@@ -5,7 +5,7 @@ Broodking AI
 if IsServer() then
 	require( "ai/ai_core" )
 	function Spawn( thisEntityKeyValues )
-		Timers:CreateTimer(function()
+		AITimers:CreateTimer(function()
 			if thisEntity and not thisEntity:IsNull() then
 				return AIThink(thisEntity)
 			end
@@ -27,7 +27,7 @@ if IsServer() then
 		
 		thisEntity.GetTotalBearCount = function(self) return self:GetBigBearCount() + self:GetSmallBearCount() end
 		
-		Timers:CreateTimer(1, function()
+		AITimers:CreateTimer(1, function()
 			for id, bear in pairs( thisEntity.bigBearsTable ) do
 				if bear:IsNull() or not bear:IsAlive() then
 					table.remove(thisEntity.bigBearsTable, id)
@@ -41,7 +41,7 @@ if IsServer() then
 			return 1
 		end)
 		
-		Timers:CreateTimer(0.1, function()
+		AITimers:CreateTimer(0.1, function()
 			if  math.floor(GameRules.gameDifficulty + 0.5) <= 2 then
 				thisEntity.mark:SetLevel(1)
 				thisEntity.destroy:SetLevel(1)

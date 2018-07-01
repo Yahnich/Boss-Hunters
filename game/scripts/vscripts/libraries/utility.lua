@@ -306,6 +306,12 @@ function CDOTA_BaseNPC:AddAbilityPrecache(abName)
 	return self:AddAbility(abName)
 end
 
+function CDOTA_BaseNPC:SetCoreHealth(newHP)
+	self:SetBaseMaxHealth(newHP)
+	self:SetMaxHealth(newHP)
+	self:SetHealth(newHP)
+end
+
 function get_aether_multiplier(caster)
     local aether_multiplier = 1
     for itemSlot = 0, 5, 1 do
@@ -2366,7 +2372,7 @@ function CDOTABaseAbility:CastSpell(target)
 end
 
 function CDOTA_BaseNPC:DisableHealing(Duration)
-	if Duration == -1 then
+	if Duration == -1 or Duration == nil then
 		self:AddNewModifier(nil, nil, "modifier_healing_disable", {})
 	else
 		self:AddNewModifier(nil, nil, "modifier_healing_disable", {Duration = Duration})

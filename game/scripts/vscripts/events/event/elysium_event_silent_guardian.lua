@@ -11,6 +11,7 @@ end
 local function FirstChoice(self, userid, event)
 	local hero = PlayerResource:GetSelectedHeroEntity( event.pID )
 	
+	hero:AddNewModifier(hero, nil, "event_buff_ethereal", {})
 	self._playerChoices[event.pID] = true
 	CheckPlayerChoices(self)
 end
@@ -46,6 +47,7 @@ local function StartEvent(self)
 			self._playerChoices[i] = false
 		end
 	end
+	LinkLuaModifier("event_buff_ethereal", "events/modifiers/event_buff_ethereal", LUA_MODIFIER_MOTION_NONE)
 end
 
 local function EndEvent(self, bWon)

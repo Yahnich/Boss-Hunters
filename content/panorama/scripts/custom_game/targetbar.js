@@ -60,7 +60,7 @@ function UpdateHealthBar(unit)
 		if((unitName.match(/_h/g) != null || unitName.match(/_vh/g) != null)){
 			nameMod = ""
 		}
-		if( (nameMod != "") && ($.Localize("#" + unitName + nameMod) == unitName + nameMod) ){
+		if( (nameMod != "") && ($.Localize("#" + unitName + nameMod) == "#" + unitName + nameMod) ){
 			nameMod = ""
 		}
 		$("#bossNameLabel").text = $.Localize("#" + unitName + nameMod);

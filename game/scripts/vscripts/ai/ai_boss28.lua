@@ -1,7 +1,7 @@
 if IsServer() then
 	require( "ai/ai_core" )
 	function Spawn( entityKeyValues )
-		Timers:CreateTimer(function()
+		AITimers:CreateTimer(function()
 			if thisEntity and not thisEntity:IsNull() then
 				return AIThink(thisEntity)
 			end
@@ -10,7 +10,7 @@ if IsServer() then
 		thisEntity.swipe = thisEntity:FindAbilityByName("boss18b_swipe")
 		thisEntity.frenzy = thisEntity:FindAbilityByName("boss18b_frenzy")
 		thisEntity.huntress = thisEntity:FindAbilityByName("boss18b_elusive_huntress")
-		Timers:CreateTimer(0.1, function()
+		AITimers:CreateTimer(0.1, function()
 			if  math.floor(GameRules.gameDifficulty + 0.5) <= 2 then
 				thisEntity.trample:SetLevel(1)
 				thisEntity.swipe:SetLevel(1)

@@ -32,7 +32,6 @@
 #base "items/item_archmages_orb.txt"
 #base "items/item_culling_greataxe.txt"
 #base "items/item_angelic_guard.txt"
-#base "items/item_tricksters_blade.txt"
 #base "items/item_wings_of_icarus.txt"
 #base "items/item_siegebreaker.txt"
 #base "items/item_ringing_rapier.txt"
@@ -54,7 +53,6 @@
 #base "items/item_ogre_club.txt"
 #base "items/item_staff_of_magi.txt"
 #base "items/item_legionnaires_dualswords.txt"
-#base "items/item_mirrors_edge.txt"
 #base "items/item_hurricane_blade.txt"
 #base "items/item_orb_of_essence.txt"
 #base "items/item_orb_of_vitality.txt"
@@ -88,7 +86,6 @@
 #base "items/item_arcane_reaver.txt"
 #base "items/item_flashback.txt"
 #base "items/item_gauntlet_of_the_void.txt"
-#base "items/item_illusionists_charm.txt"
 #base "items/item_warp_staff.txt"
 #base "items/item_emission.txt"
 #base "items/item_thanatos.txt"
@@ -114,6 +111,10 @@
 #base "items/item_iron_rose.txt"
 #base "items/item_kitteh_amulet.txt"
 #base "items/item_lightningbottle.txt"
+
+// #base "items/item_illusionists_charm.txt"
+// #base "items/item_tricksters_blade.txt"
+// #base "items/item_mirrors_edge.txt"
 
 // Next ID is 7034
 

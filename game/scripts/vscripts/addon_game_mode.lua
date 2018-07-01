@@ -30,6 +30,7 @@ require("relicmanager")
 require("roundmanager")
 require("eventmanager")
 require( "ai/ai_core" )
+require( "ai/ai_timers")
 
 LinkLuaModifier( "modifier_illusion_tag", "libraries/modifiers/illusions/modifier_illusion_tag.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_illusion_bonuses", "libraries/modifiers/illusions/modifier_illusion_bonuses.lua", LUA_MODIFIER_MOTION_NONE)

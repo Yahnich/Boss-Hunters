@@ -4,7 +4,9 @@ local function CheckPlayerChoices(self)
 			return false
 		end
 	end
-	self:StartCombat(true)
+	if not self.eventEnded then
+		self:StartCombat(true)
+	end
 	return true
 end
 
@@ -95,7 +97,7 @@ local function StartEvent(self)
 				self.timeRemaining = self.timeRemaining - 1
 				return 1
 			else
-				self:StartCombat(true)
+				CheckPlayerChoices(self)
 			end
 		end
 	end)
