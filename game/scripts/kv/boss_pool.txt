@@ -16,6 +16,7 @@
 		"sepulcher_boss_undying"			"1"
 		"generic_boss_golem"				"1"
 		"generic_boss_warlord"				"1"
+		"grove_boss_green_dragon"			"1"
 	}
 	// Gods, spirits, elementals
 	"Elysium"

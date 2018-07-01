@@ -19,6 +19,7 @@
 #base "bosses/boss_ogres.txt"
 #base "bosses/boss_golem.txt"
 #base "bosses/boss_necro.txt"
+#base "bosses/boss_green_dragon.txt"
 
 #base "heroes/hero_chen.txt"
 #base "heroes/hero_shadow_shaman.txt"
@@ -82,6 +83,7 @@
 #base "heroes/hero_razor.txt"
 #base "heroes/hero_ogre_magi.txt"
 #base "heroes/hero_arc_warden.txt"
+#base "heroes/hero_windrunner.txt"
 
 "DOTAAbilities"
 {
@@ -17934,159 +17936,6 @@
 				}
 			}
 			
-		}
-	}
-	//=================================================================================================================
-	// Holdout: Windrunner: Shackleshot
-	//=================================================================================================================
-	"windrunner_skillshot"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_datadriven"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityTextureName"			"custom/windrunner_skillshot"
-		"MaxLevel"						"7"
-		
-		"precache"
-		{
-			"particle"		"particles/skillshot.vpcf"
-			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_windrunner.vsndevts"
-		}
-	
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0"
-		
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"12.0"
-	
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"passive_cooldown"		"2.5 2.25 2.0 1.75 1.5 1.25 1.0"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"stun_duration"			"1.0"
-				"LinkedSpecialBonus"	"special_bonus_unique_windranger_5"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"proc_chance"			"10"
-				"LinkedSpecialBonus"	"special_bonus_unique_windranger_4"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"pierce_pct"			"40"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"base_damage"			"50"
-			}
-		}
-		"OnSpellStart"
-		{
-			"ApplyModifier"
-			{
-				"ModifierName"	"modifier_windrunner_skillshot_proc"
-				"Target"		"CASTER"
-			}
-		}
-		"Modifiers"
-		{
-			"modifier_windrunner_skillshot"
-			{
-				"IsHidden"	"1"
-				"Passive"	"1"
-				"OnAttackStart"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"lua_abilities/heroes/windrunner"
-						"Function"		"PierceRNG"
-						"modifier"		"modifier_windrunner_skillshot_proc"
-					}
-				}
-			}
-			"modifier_windrunner_skillshot_proc"
-			{
-				"IsHidden"	"0"
-				"OnCreated"
-				{
-					"FireSound"
-					{
-						"EffectName"	"Hero_Windrunner.ShackleshotCast"
-						"Target"		"TARGET"
-					}
-				}
-				"OnAttack"
-				{
-					"TrackingProjectile"
-					{
-						"Target"           	"TARGET"
-						"EffectName"       	"particles/skillshot.vpcf"
-						"Dodgeable"        	"1"
-						"ProvidesVision"   	"0"
-						"MoveSpeed"        	"2500"
-						"SourceAttachment"  "DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
-						"TargetTypes"    	"DOTA_UNIT_TARGET_ALL"
-						"TargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-					}
-					"ApplyModifier"
-					{
-						"ModifierName"	"modifier_windrunner_skillshot_damage"
-						"Target"		"CASTER"
-					}
-					"RemoveModifier"
-					{
-						"ModifierName"	"modifier_windrunner_skillshot_proc"
-						"Target"		"CASTER"
-					}
-				}
-			}
-			"modifier_windrunner_skillshot_damage"
-			{
-				"IsHidden"	"1"
-				"OnAttackLanded"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"lua_abilities/heroes/windrunner"
-						"Function"		"PierceDamage"
-						"damage"		"%attack_damage"
-					}
-					"FireSound"
-					{
-						"EffectName"	"Hero_Windrunner.ShackleshotStun"
-						"Target"		"TARGET"
-					}
-					"RemoveModifier"
-					{
-						"ModifierName"	"modifier_windrunner_skillshot_damage"
-						"Target"		"CASTER"
-					}
-				}
-				"OnAttackFailed"
-				{
-					"RemoveModifier"
-					{
-						"ModifierName"	"modifier_windrunner_skillshot_damage"
-						"Target"		"CASTER"
-					}
-				}
-			}
 		}
 	}
 	//=================================================================================================================

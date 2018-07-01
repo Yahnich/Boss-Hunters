@@ -46,13 +46,13 @@ function modifier_boss_attackspeed:GetModifierMoveSpeedBonus_Constant( params )
 	return (self:GetStackCount() - 1) * 5
 end
 
-function modifier_boss_attackspeed:GetModifierConstantManaRegen( params )
+--[[function modifier_boss_attackspeed:GetModifierConstantManaRegen( params )
 	return self:GetStackCount()*2.5
 end
 
 function modifier_boss_attackspeed:GetModifierManaBonus( params )
 	return self:GetStackCount()*250
-end
+end]]
 
 function modifier_boss_attackspeed:GetModifierPhysicalArmorBonus( params )
 	local bonusarmor = self:GetStackCount()
@@ -67,7 +67,7 @@ end
 function modifier_boss_attackspeed:OnAbilityStart( params )
 	if params.unit == self:GetParent() then
 		AddFOWViewer(DOTA_TEAM_GOODGUYS, self:GetParent():GetAbsOrigin(), 516, 3, false)
-		if params.unit:IsRoundBoss() then params.unit:AddNewModifier(params.unit, params.ability, "modifier_status_immunity", {duration = params.ability:GetCastPoint() + 0.1}) end
+		params.unit:AddNewModifier(params.unit, params.ability, "modifier_status_immunity", {duration = params.ability:GetCastPoint() + 0.1})
 	end
 end
 
