@@ -5,11 +5,17 @@ function relic_cursed_crimson_gauntlet:OnCreated()
 		self:SetStackCount( self:GetParent():GetMaxHealth() * 0.75 )
 		self:GetParent():CalculateStatBonus()
 		self:StartIntervalThink(0.33)
+		LinkLuaModifier( "modifier_relic_cursed_crimson_gauntlet", "relics/cursed/relic_cursed_crimson_gauntlet", LUA_MODIFIER_MOTION_NONE)
 	end
 end
 
 function relic_cursed_crimson_gauntlet:OnIntervalThink()
 	if IsServer() then
+		local parent = self:GetParent()
+		for _, enemy in ipairs( parent:FindEnemyUnitsInRadius( parent:GetAbsOrigin(), 900 ) ) do
+			enemy:AddNewModifier(parent, self:GetAbility(), "modifier_relic_cursed_crimson_gauntlet", {duration = 0.5})
+		end
+	
 		local hpPct = self:GetParent():GetHealth() / self:GetParent():GetMaxHealth()
 
 		self:SetStackCount( 0 )
@@ -21,16 +27,22 @@ function relic_cursed_crimson_gauntlet:OnIntervalThink()
 end
 
 function relic_cursed_crimson_gauntlet:DeclareFunctions()
-	return {MODIFIER_PROPERTY_PREATTACK_TARGET_CRITICALSTRIKE, 
-			MODIFIER_PROPERTY_EXTRA_HEALTH_BONUS}
-end
-
-function relic_cursed_crimson_gauntlet:GetModifierPreAttack_Target_CriticalStrike()
-	if self:RollPRNG( 25 ) and not self:GetParent():HasModifier("relic_unique_ritual_candle") then
-		return 300
-	end
+	return {MODIFIER_PROPERTY_EXTRA_HEALTH_BONUS}
 end
 
 function relic_cursed_crimson_gauntlet:GetModifierExtraHealthBonus()
 	return self:GetStackCount()
 end
+
+modifier_relic_cursed_crimson_gauntlet = class({})
+function modifier_relic_cursed_crimson_gauntlet:DeclareFunctions()
+	return {MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE}
+end
+
+function modifier_relic_cursed_crimson_gauntlet:GetModifierPreAttack_CriticalStrike(params)
+	if params.target == self:GetCaster() and RollPercentage(25) then
+		return 300
+	end
+end
+
+function modifier_relic_cursed_crimson_gauntlet:IsHidden() return true end

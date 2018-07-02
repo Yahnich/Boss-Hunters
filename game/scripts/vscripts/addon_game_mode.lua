@@ -245,10 +245,10 @@ function CHoldoutGameMode:InitGameMode()
 															end, "test",0)
 	Convars:RegisterCommand( "bh_test_round", function( zone, roundName, roundType )
 											if Convars:GetDOTACommandClient() and IsInToolsMode() then
-												RoundManager.zones[RoundManager.currentZone][1][1] = BaseEvent(zone, roundType, roundName )
 												RoundManager:EndEvent(false)
 												RoundManager:EndPrepTime(true)
-												RoundManager:StartPrepTime()
+												GameRules:SetLives(3)
+												BaseEvent(zone, roundType, roundName ):StartEvent()
 											end
 										end, "adding relics",0)
 	Convars:RegisterCommand( "clear_relics", function()

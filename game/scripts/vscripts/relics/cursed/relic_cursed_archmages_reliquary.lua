@@ -5,7 +5,7 @@ function relic_cursed_archmages_reliquary:DeclareFunctions()
 			MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE }
 end
 
-function relic_cursed_archmages_reliquary:DeclareFunctions()
+function relic_cursed_archmages_reliquary:CheckState()
 	return {[MODIFIER_STATE_DISARMED] = not self:GetParent():HasModifier("relic_unique_ritual_candle")}
 end
 

@@ -66,13 +66,13 @@ end
 
 local function FirstChoice(self, userid, event)
 	local hero = PlayerResource:GetSelectedHeroEntity( event.pID )
-	self._playerChoices[event.pID] = false
+	self._playerChoices[event.pID] = true
 	CheckPlayerChoices(self)
 end
 
 local function SecondChoice(self, userid, event)
 	local hero = PlayerResource:GetSelectedHeroEntity( event.pID )
-	self._playerChoices[event.pID] = true
+	self._playerChoices[event.pID] = false
 	CheckPlayerChoices(self)
 end
 
