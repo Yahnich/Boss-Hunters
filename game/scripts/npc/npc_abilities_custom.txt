@@ -20,6 +20,7 @@
 #base "bosses/boss_golem.txt"
 #base "bosses/boss_necro.txt"
 #base "bosses/boss_green_dragon.txt"
+#base "bosses/boss_warlock.txt"
 
 #base "heroes/hero_chen.txt"
 #base "heroes/hero_shadow_shaman.txt"
