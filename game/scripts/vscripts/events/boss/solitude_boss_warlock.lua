@@ -3,7 +3,7 @@ local function StartEvent(self)
 	self.enemiesToSpawn = 1 + math.floor( math.log( RoundManager:GetRaidsFinished() + 1) )
 	self.eventEnded = false
 	self.eventHandler = Timers:CreateTimer(3, function()
-		local spawn = CreateUnitByName("npc_dota_boss32", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
+		local spawn = CreateUnitByName("npc_dota_boss_warlock", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
 		spawn.unitIsRoundBoss = true
 		self.enemiesToSpawn = self.enemiesToSpawn - 1
 		if self.enemiesToSpawn > 0 then
@@ -24,8 +24,9 @@ local function EndEvent(self, bWon)
 end
 
 local function PrecacheUnits(self, context)
-	PrecacheUnitByNameSync("npc_dota_boss32", context)
-	PrecacheUnitByNameSync("npc_dota_boss32_trueform", context)
+	PrecacheUnitByNameSync("npc_dota_boss_warlock", context)
+	PrecacheUnitByNameSync("npc_dota_boss_warlock_demon", context)
+	PrecacheUnitByNameSync("npc_dota_boss_warlock_true_form", context)
 	return true
 end
 
