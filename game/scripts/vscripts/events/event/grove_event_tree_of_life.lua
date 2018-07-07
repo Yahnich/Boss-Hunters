@@ -12,7 +12,6 @@ local function FirstChoice(self, userid, event)
 	local hero = PlayerResource:GetSelectedHeroEntity( event.pID )
 	
 	hero:AddBlessing("event_buff_tree_of_life_blessing_1")
-	hero:AddCurse("event_buff_tree_of_life_curse")
 	self._playerChoices[event.pID] = true
 	CheckPlayerChoices(self)
 end
@@ -21,24 +20,23 @@ local function SecondChoice(self, userid, event)
 	local hero = PlayerResource:GetSelectedHeroEntity( event.pID )
 	
 	hero:AddBlessing("event_buff_tree_of_life_blessing_2")
-	hero:AddCurse("event_buff_tree_of_life_curse")
 	self._playerChoices[event.pID] = true
 	CheckPlayerChoices(self)
 end
 
 local function ThirdChoice(self, userid, event)
 	local hero = PlayerResource:GetSelectedHeroEntity( event.pID )
-	
+	hero:AddBlessing("event_buff_tree_of_life_blessing_2")
 	self._playerChoices[event.pID] = true
 	CheckPlayerChoices(self)
 end
 
 local function StartEvent(self)
-	CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_has_started", {event = self:GetEventName(), choices = 2})
+	CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_has_started", {event = self:GetEventName(), choices = 3})
 	self._vEventHandles = {
 		CustomGameEventManager:RegisterListener('player_selected_event_choice_1', Context_Wrap( self, 'FirstChoice') ),
 		CustomGameEventManager:RegisterListener('player_selected_event_choice_2', Context_Wrap( self, 'SecondChoice') ),
-		CustomGameEventManager:RegisterListener('player_selected_event_choice_2', Context_Wrap( self, 'ThirdChoice') ),
+		CustomGameEventManager:RegisterListener('player_selected_event_choice_3', Context_Wrap( self, 'ThirdChoice') ),
 	}
 	self.timeRemaining = 30
 	self.eventEnded = false

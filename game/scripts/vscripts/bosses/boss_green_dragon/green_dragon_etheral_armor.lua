@@ -39,13 +39,15 @@ end
 function modifier_green_dragon_etheral_armor:OnIntervalThink()
 	local caster = self:GetCaster()
 	caster:GiveMana(caster:GetMaxMana()*0.1/self:GetSpecialValueFor("duration"))
-	if RollPercentage(25) then
-		ProjectileManager:ProjectileDodge(caster)
-	end
+	if caster:IsAlive() then
+		if RollPercentage(25) then
+			ProjectileManager:ProjectileDodge(caster)
+		end
 
-	if RollPercentage(3) then
-		local pos = self:GetCaster():GetAbsOrigin() + ActualRandomVector(10000, 250)
-		CreateUnitByName("npc_dota_green_dragon_bug", pos, true, caster, caster, caster:GetTeam())
+		if RollPercentage(3) then
+			local pos = self:GetCaster():GetAbsOrigin() + ActualRandomVector(10000, 250)
+			CreateUnitByName("npc_dota_green_dragon_bug", pos, true, caster, caster, caster:GetTeam())
+		end
 	end
 end
 

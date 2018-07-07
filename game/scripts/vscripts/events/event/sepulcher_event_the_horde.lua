@@ -16,6 +16,7 @@ end
 local function StartCombat(self)
 	self.eventEnded = true
 	self.combatStarted = true
+	self.eventType = EVENT_TYPE_COMBAT
 	local START_VECTOR = Vector(949, 130)
 	
 	self.timeRemaining = 60
@@ -110,8 +111,14 @@ local function EndEvent(self, bWon)
 	self.combatEnded = true
 	self.timeRemaining = -1
 	
-	CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_reward_given", {event = "sepulcher_event_the_horde", reward = 1})
-
+	if bWon then
+		CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_reward_given", {event = "sepulcher_event_the_horde", reward = 1})
+		for _, hero in ipairs( HeroList:GetRealHeroes() ) do
+			hero:ModifyAgility( 10 )
+			hero:ModifyIntellect( 10 )
+			hero:ModifyStrength( 10 )
+		end
+	end
 	Timers:CreateTimer(3, function() RoundManager:EndEvent(bWon) end)
 end
 
@@ -121,22 +128,6 @@ local function PrecacheUnits(self, context)
 	PrecacheUnitByNameSync("npc_dota_boss3b", context)
 	PrecacheUnitByNameSync("npc_dota_boss3a", context)
 	return true
-end
-
-
-local function HandoutRewards(self)
-	local eventScaling = RoundManager:GetEventsFinished()
-	local playerScaling = GameRules.BasePlayers - HeroList:GetActiveHeroCount()
-	local baseXP = 500 + eventScaling * (100 + 10 * playerScaling)
-	local baseGold = 100 + eventScaling * (25 + 3 * playerScaling)
-	for _, hero in ipairs( HeroList:GetRealHeroes() ) do
-		hero:AddGold( baseGold )
-		hero:AddXP( baseXP )
-		
-		hero:ModifyAgility( 10 )
-		hero:ModifyIntellect( 10 )
-		hero:ModifyStrength( 10 )
-	end
 end
 
 local funcs = {

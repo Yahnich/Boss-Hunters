@@ -61,7 +61,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"200"
+				"damage"				"125"
 			}
 			"04"
 			{
@@ -178,7 +178,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"500"
+				"damage"				"75"
 			}
 			"02"
 			{
@@ -236,7 +236,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"1500"
+				"damage"				"400"
 			}
 			"02"
 			{
@@ -264,10 +264,13 @@
 		"precache"
 		{
 			"particle"					"particles/bosses/boss_green_dragon/boss_green_dragon_rot_explosion.vpcf"
+			"particle"					"particles/bosses/boss_green_dragon/boss_green_dragon_rot_explosion_prep.vpcf"
 			"particle"  				"particles/econ/items/viper/viper_ti7_immortal/viper_poison_crimson_debuff_ti7.vpcf"
 
 			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_broodmother.vsndevts"
 		}
+		
+		"AbilityCastPoint"				"1.5"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -276,7 +279,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"1500"
+				"damage"				"400"
 			}
 			"02"
 			{

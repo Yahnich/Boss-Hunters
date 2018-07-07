@@ -10,23 +10,43 @@ end
 
 local function FirstChoice(self, userid, event)
 	local hero = PlayerResource:GetSelectedHeroEntity( event.pID )
-	
+	hero:AddBlessing("event_buff_bloom_crystal")
 	self._playerChoices[event.pID] = true
 	CheckPlayerChoices(self)
 end
 
 local function SecondChoice(self, userid, event)
 	local hero = PlayerResource:GetSelectedHeroEntity( event.pID )
-	
+	hero:AddGold(1000)
+	self._playerChoices[event.pID] = true
+	CheckPlayerChoices(self)
+end
+
+local function ThirdChoice(self, userid, event)
+	local hero = PlayerResource:GetSelectedHeroEntity( event.pID )
+	if RollPercentage( 50 ) then
+		local relic = ""
+		local roll = RandomInt(1, 5)
+		if roll == 1 then
+			relic = RelicManager:RollRandomUniqueRelicForPlayer(event.pID)
+		elseif roll == 2 then
+			relic = RelicManager:RollRandomCursedRelicForPlayer(event.pID)
+		else
+			relic = RelicManager:RollRandomGenericRelicForPlayer(event.pID)
+		end
+		table.insert(relicTable, relic)
+		RelicManager:PushCustomRelicDropsForPlayer(event.pID, relicTable)
+	end
 	self._playerChoices[event.pID] = true
 	CheckPlayerChoices(self)
 end
 
 local function StartEvent(self)
-	CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_has_started", {event = "elysium_event_silent_guardian", choices = 2})
+	CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_has_started", {event = self:GetEventName(), choices = 3})
 	self._vEventHandles = {
 		CustomGameEventManager:RegisterListener('player_selected_event_choice_1', Context_Wrap( self, 'FirstChoice') ),
 		CustomGameEventManager:RegisterListener('player_selected_event_choice_2', Context_Wrap( self, 'SecondChoice') ),
+		CustomGameEventManager:RegisterListener('player_selected_event_choice_3', Context_Wrap( self, 'ThirdChoice') ),
 	}
 	self.timeRemaining = 30
 	self.eventEnded = false
@@ -46,6 +66,7 @@ local function StartEvent(self)
 			self._playerChoices[i] = false
 		end
 	end
+	LinkLuaModifier("event_buff_bloom_crystal", "events/modifiers/event_buff_bloom_crystal", LUA_MODIFIER_MOTION_NONE)
 end
 
 local function EndEvent(self, bWon)
@@ -67,6 +88,7 @@ local funcs = {
 	["PrecacheUnits"] = PrecacheUnits,
 	["FirstChoice"] = FirstChoice,
 	["SecondChoice"] = SecondChoice,
+	["ThirdChoice"] = ThirdChoice,
 }
 
 return funcs

@@ -510,8 +510,35 @@ function CDOTA_BaseNPC:IsSpawner()
 	end
 end
 
-function CDOTA_BaseNPC:IsCore()
-	local resourceType = GameRules.UnitKV[self:GetUnitName()]["IsCore"]
+function CDOTA_BaseNPC:IsUndead()
+	local resourceType = GameRules.UnitKV[self:GetUnitName()]["IsUndead"]
+	if resourceType == 1 or self.Holdout_IsCore then
+		return true
+	else
+		return false
+	end
+end
+
+function CDOTA_BaseNPC:IsWild()
+	local resourceType = GameRules.UnitKV[self:GetUnitName()]["IsWild"]
+	if resourceType == 1 or self.Holdout_IsCore then
+		return true
+	else
+		return false
+	end
+end
+
+function CDOTA_BaseNPC:IsDemon()
+	local resourceType = GameRules.UnitKV[self:GetUnitName()]["IsDemon"]
+	if resourceType == 1 or self.Holdout_IsCore then
+		return true
+	else
+		return false
+	end
+end
+
+function CDOTA_BaseNPC:IsCelestial()
+	local resourceType = GameRules.UnitKV[self:GetUnitName()]["IsCelestial"]
 	if resourceType == 1 or self.Holdout_IsCore then
 		return true
 	else
@@ -2593,6 +2620,23 @@ end
 
 function GameRules:GetGameDifficulty()
 	return GameRules.gameDifficulty
+end
+
+function GameRules:SetLives(val, bMax)
+	GameRules._lives = val
+	CustomGameEventManager:Send_ServerToAllClients( "updateQuestLife", { lives = GameRules._lives, maxLives = GameRules._maxLives } )
+end
+
+function GameRules:ModifyLives(val, bMax)
+	GameRules._lives = GameRules._lives + val
+	if bMax then
+		GameRules._maxLives = GameRules._maxLives + val
+	end
+	CustomGameEventManager:Send_ServerToAllClients( "updateQuestLife", { lives = GameRules._lives, maxLives = GameRules._maxLives } )
+end
+
+function GameRules:GetLives()
+	return GameRules._lives
 end
 
 function CDOTA_BaseNPC:GetIllusionOwnerEntindex()

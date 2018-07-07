@@ -41,3 +41,7 @@ event_buff_blighted_land_curse = class(relicBaseClass)
 function event_buff_blighted_land_curse:GetModifierHealAmplify_Percentage( params )
     return -25
 end
+
+function event_buff_blighted_land_curse:IsDebuff( )
+    return true
+end
