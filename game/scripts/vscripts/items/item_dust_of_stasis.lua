@@ -33,7 +33,8 @@ if IsServer() then
 end
 
 function modifier_item_dust_of_stasis_stasis:CheckState()
-	return {[MODIFIER_STATE_FROZEN] = true,}
+	return {[MODIFIER_STATE_FROZEN] = true,
+			[MODIFIER_STATE_STUNNED] = true,}
 end
 
 function modifier_item_dust_of_stasis_stasis:DeclareFunctions()

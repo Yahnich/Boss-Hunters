@@ -19,17 +19,17 @@
 			end
 		end
 	end
-	local nonVotes = (players - votes)
-	if not self.eventEnded then
+	local nonVotes = (players - voted)
+	if not self.eventEnded and not self.foughtElites then
 		if votedPray > votedLeave + votedDestroy + nonVotes then
 			self:StartCombat(false)
 		elseif votedDestroy > votedLeave + votedPray + nonVotes then
 			self:StartCombat(true)
 		elseif votedLeave > votedDestroy + votedPray + nonVotes then
 			self:EndEvent(true)
-		elseif votedPray >= votedDestroy + nonVotes and votes > nonVotes then -- pray has priority
+		elseif votedPray >= votedDestroy + nonVotes and voted > nonVotes then -- pray has priority
 			self:StartCombat(false)
-		elseif votedDestroy >= votedPray + nonVotes and votes > nonVotes then -- fight
+		elseif votedDestroy >= votedPray + nonVotes and voted > nonVotes then -- fight
 			self:StartCombat(true)
 		elseif votedLeave > nonVotes then -- most people voted, force leave
 			self:EndEvent(true)
@@ -48,13 +48,12 @@ local function StartCombat(self, bFight)
 		}
 		self.timeRemaining = 0
 		self.enemiesToSpawn = 3 + RoundManager:GetRaidsFinished()
-		local START_VECTOR = Vector(949, 130)
 		Timers:CreateTimer(5, function()
 			local enemyType = "npc_dota_boss31"
 			if RollPercentage(20) then
 				enemyType = "npc_dota_boss32_trueform"
 			end
-			local spawn = CreateUnitByName(enemyType, START_VECTOR + RandomVector(600), true, nil, nil, DOTA_TEAM_BADGUYS)
+			local spawn = CreateUnitByName(enemyType, RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
 			spawn.unitIsRoundBoss = true
 			self.enemiesToSpawn = self.enemiesToSpawn - 1
 			if self.enemiesToSpawn > 0 then
@@ -89,7 +88,7 @@ local function ThirdChoice(self, userid, event)
 end
 
 local function StartEvent(self)	
-	CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_has_started", {event = "grove_event_help_treant", choices = 2})
+	CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_has_started", {event = self:GetEventName(), choices = 3})
 	self._vListenerHandles = {
 		CustomGameEventManager:RegisterListener('player_selected_event_choice_1', Context_Wrap( self, 'FirstChoice') ),
 		CustomGameEventManager:RegisterListener('player_selected_event_choice_2', Context_Wrap( self, 'SecondChoice') ),
@@ -98,9 +97,10 @@ local function StartEvent(self)
 	self._vEventHandles = {}
 	self.timeRemaining = 15
 	self.eventEnded = false
+	self.foughtElites = false
 	self.waitTimer = Timers:CreateTimer(1, function()
 		CustomGameEventManager:Send_ServerToAllClients("updateQuestPrepTime", {prepTime = self.timeRemaining})
-		if not self.eventEnded and not self.helpedTreant then
+		if not self.eventEnded and not self.foughtElites then
 			if self.timeRemaining >= 0 then
 				self.timeRemaining = self.timeRemaining - 1
 				return 1
@@ -129,7 +129,7 @@ local function EndEvent(self, bWon)
 	Timers:CreateTimer(3, function() RoundManager:EndEvent(bWon) end)
 end
 
-function BaseEvent:HandoutRewards(bWon)
+function HandoutRewards(self, bWon)
 	if self.foughtElites then
 		local eventScaling = RoundManager:GetEventsFinished()
 		local raidScaling = 1 + RoundManager:GetRaidsFinished() * 0.2
@@ -163,10 +163,28 @@ local function PrecacheUnits(self, context)
 	return true
 end
 
+local function LoadSpawns(self)
+	if not self.spawnLoadCompleted then
+		RoundManager.spawnPositions = {}
+		RoundManager.boundingBox = "solitude_event_shrine"
+		for _,spawnPos in ipairs( Entities:FindAllByName( RoundManager.boundingBox.."_spawner" ) ) do
+			table.insert( RoundManager.spawnPositions, spawnPos:GetAbsOrigin() )
+		end
+		self.heroSpawnPosition = self.heroSpawnPosition or nil
+		for _,spawnPos in ipairs( Entities:FindAllByName( RoundManager.boundingBox.."_heroes") ) do
+			self.heroSpawnPosition = spawnPos:GetAbsOrigin()
+			break
+		end
+		
+		self.spawnLoadCompleted = true
+	end
+end
+
 local funcs = {
 	["StartEvent"] = StartEvent,
 	["EndEvent"] = EndEvent,
 	["PrecacheUnits"] = PrecacheUnits,
+	["LoadSpawns"] = LoadSpawns,
 	["FirstChoice"] = FirstChoice,
 	["SecondChoice"] = SecondChoice,
 	["ThirdChoice"] = ThirdChoice,

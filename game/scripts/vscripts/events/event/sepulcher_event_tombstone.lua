@@ -45,15 +45,22 @@ local function StartCombat(self)
 	self.eventEnded = true
 	self.combatEnded = false
 	self.foughtWave = true
-	local START_VECTOR = Vector(949, 130)
+	
+	local zoneName = RoundManager:GetCurrentZone()
+	local event = RoundManager:GetCurrentEvent()
+	local eventType = "combat"
+	if event:GetEventType() == EVENT_TYPE_BOSS then
+		eventType = "boss"
+	end
 	
 	self.timeRemaining = 60
 	
-	self.totemUnit = CreateUnitByName("npc_dota_event_totem", START_VECTOR, true, nil, nil, DOTA_TEAM_GOODGUYS)
+	self.totemUnit = CreateUnitByName("npc_dota_event_totem", self:GetHeroSpawnPosition(), true, nil, nil, DOTA_TEAM_GOODGUYS)
 	local ability = self.totemUnit:AddAbility("generic_hp_limiter")
 	self.totemUnit:SetThreat(5000)
 	self.totemUnit:SetOriginalModel("models/props_structures/dire_tower002.vmdl")
 	self.totemUnit:SetModel("models/props_structures/dire_tower002.vmdl")
+	AddFOWViewer(DOTA_TEAM_BADGUYS, self.totemUnit:GetAbsOrigin(), 312, self.timeRemaining, false)
 	
 	local activeHeroes = HeroList:GetActiveHeroCount()
 	Timers:CreateTimer(1, function()
@@ -68,16 +75,17 @@ local function StartCombat(self)
 		end
 	end)
 	Timers:CreateTimer(1, function()
+		if self.totemUnit:IsAlive() then self.totemUnit:SetThreat(5000) end
 		CustomGameEventManager:Send_ServerToAllClients("updateQuestPrepTime", {prepTime = self.timeRemaining})
 		if not self.combatEnded then
 			if self.timeRemaining >= 0 then
 				local spawns = 1 + math.floor( (60 - self.timeRemaining)/15 )
 				for i = 1, spawns do
 					local zombieType = "npc_dota_mini_boss1"
-					if RollPercentage(20) then
+					if RollPercentage(8) then
 						zombieType = "npc_dota_boss3a_b"
 					end
-					local zombie = CreateUnitByName(zombieType, START_VECTOR + ActualRandomVector(1500, 900), true, nil, nil, DOTA_TEAM_BADGUYS)
+					local zombie = CreateUnitByName(zombieType, RoundManager:PickRandomSpawn() + RandomVector(75), true, nil, nil, DOTA_TEAM_BADGUYS)
 					local hp = zombie:GetBaseMaxHealth() * math.ceil( 1 + math.log(activeHeroes) )
 					zombie:SetBaseMaxHealth( hp )
 					zombie:SetMaxHealth( hp )
@@ -163,10 +171,9 @@ local function EndEvent(self, bWon)
 			CustomGameEventManager:Send_ServerToAllClients( "updateQuestLife", { lives = GameRules._lives, maxLives = GameRules._maxLives } )
 			reward = 1
 		end
+		self.totemUnit:ForceKill(false)
 	end
-	if self.totemUnit then
-		CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_reward_given", {event = "sepulcher_event_tombstone", reward = reward})
-	end
+	CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_reward_given", {event = "sepulcher_event_tombstone", reward = reward})
 	
 	Timers:CreateTimer(3, function() RoundManager:EndEvent(true) end)
 end
@@ -192,10 +199,28 @@ local function HandoutRewards(self)
 	end
 end
 
+local function LoadSpawns(self)
+	if not self.spawnLoadCompleted then
+		RoundManager.spawnPositions = {}
+		RoundManager.boundingBox = "grove_event_tombstone"
+		for _,spawnPos in ipairs( Entities:FindAllByName( RoundManager.boundingBox.."_spawner" ) ) do
+			table.insert( RoundManager.spawnPositions, spawnPos:GetAbsOrigin() )
+		end
+		self.heroSpawnPosition = self.heroSpawnPosition or nil
+		for _,spawnPos in ipairs( Entities:FindAllByName( RoundManager.boundingBox.."_heroes") ) do
+			self.heroSpawnPosition = spawnPos:GetAbsOrigin()
+			break
+		end
+		
+		self.spawnLoadCompleted = true
+	end
+end
+
 local funcs = {
 	["StartEvent"] = StartEvent,
 	["EndEvent"] = EndEvent,
 	["PrecacheUnits"] = PrecacheUnits,
+	["LoadSpawns"] = LoadSpawns,
 	["FirstChoice"] = FirstChoice,
 	["SecondChoice"] = SecondChoice,
 	["StartCombat"] = StartCombat,

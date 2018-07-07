@@ -1,6 +1,6 @@
 local function StartEvent(self)
 	local spawnPos = RoundManager:PickRandomSpawn()
-	self.enemiesToSpawn = 6 + math.floor( math.log( RoundManager:GetEventsFinished() + 1 ) ) * 2
+	self.enemiesToSpawn = 3 + math.floor( math.log( RoundManager:GetEventsFinished() + 1 ) ) * 2
 	self.eventHandler = Timers:CreateTimer(3, function()
 		local enemyName = ""
 		local roll = RandomInt(1, 8)

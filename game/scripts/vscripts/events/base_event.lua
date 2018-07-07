@@ -21,9 +21,11 @@ function BaseEvent:constructor(zoneName, eventType, eventName)
 	end
 	
 	local funcs = require("events/"..eventFolder.."/"..eventName)
+	self["HandoutRewards"] = BaseEvent.HandoutRewards
 	for functionName, functionMethod in pairs( funcs ) do
 		self[functionName] = functionMethod
 	end
+	print(zoneName, eventName, RoundManager.eventsCreated,"created")
 end
 
 function BaseEvent:StartEvent()
@@ -43,13 +45,41 @@ function BaseEvent:GetZone()
 	return self.zoneName
 end
 
+function BaseEvent:LoadSpawns()
+	if not self.spawnLoadCompleted then
+		RoundManager.spawnPositions = {}
+		local zoneName = self:GetZone()
+		local eventType = "combat"
+		local choices = 4
+		if self:GetEventType() == EVENT_TYPE_BOSS then
+			eventType = "boss"
+			choices = 2
+		end
+		local roll = RandomInt(1,choices)
+		RoundManager.boundingBox = string.lower(zoneName).."_"..eventType.."_"..roll
+		for _,spawnPos in ipairs( Entities:FindAllByName( RoundManager.boundingBox.."_spawner" ) ) do
+			table.insert( RoundManager.spawnPositions, spawnPos:GetAbsOrigin() )
+		end
+		self.heroSpawnPosition = self.heroSpawnPosition or nil
+		for _,spawnPos in ipairs( Entities:FindAllByName( RoundManager.boundingBox.."_heroes") ) do
+			self.heroSpawnPosition = spawnPos:GetAbsOrigin()
+			break
+		end
+		self.spawnLoadCompleted = true
+	end
+end
+
+function BaseEvent:GetHeroSpawnPosition()
+	return self.heroSpawnPosition
+end
+
 function BaseEvent:HandoutRewards(bWon)
 	if not self:IsEvent() then
 		local eventScaling = RoundManager:GetEventsFinished()
 		local raidScaling = 1 + RoundManager:GetRaidsFinished() * 0.2
 		local playerScaling = GameRules.BasePlayers - HeroList:GetActiveHeroCount()
-		local baseXP = ( 700 + ( (50 + 10 * playerScaling) * eventScaling ) ) * raidScaling
-		local baseGold = ( 250 + ( (20 + 3 * playerScaling) * eventScaling ) ) * raidScaling
+		local baseXP = ( 700 + ( (50 + 10 * playerScaling) * eventScaling ) ) + (350 * raidScaling)
+		local baseGold = ( 250 + ( (20 + 3 * playerScaling) * eventScaling ) ) + (100 * raidScaling)
 		if not bWon then
 			baseXP = baseXP / 4
 			baseGold = baseGold / 4

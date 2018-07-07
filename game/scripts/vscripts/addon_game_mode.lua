@@ -82,6 +82,12 @@ function Precache( context )
 	PrecacheResource( "particle", "particles/econ/items/effigies/status_fx_effigies/status_effect_effigy_frosty_dire.vpcf", context )
 	PrecacheResource( "particle", "particles/units/heroes/hero_keeper_of_the_light/keeper_of_the_light_blinding_light_debuff.vpcf", context )
 	PrecacheResource( "particle", "particles/econ/events/nexon_hero_compendium_2014/blink_dagger_end_nexon_hero_cp_2014.vpcf", context)
+	
+	-- map stuff
+	PrecacheResource( "particle", "particles/units/heroes/hero_doom_bringer/doom_bringer_doom.vpcf", context)
+	PrecacheResource( "particle", "particles/alacrity_fire.vpcf", context)
+	PrecacheResource( "particle", "particles/econ/items/ember_spirit/ember_spirit_vanishing_flame/ember_spirit_vanishing_flame_ambient_smoke.vpcf", context)
+	
 
 	-- Hero Precaches
 	PrecacheResource("particle", "particles/warlock_deepfire_ember.vpcf", context)
@@ -245,10 +251,11 @@ function CHoldoutGameMode:InitGameMode()
 															end, "test",0)
 	Convars:RegisterCommand( "bh_test_round", function( zone, roundName, roundType )
 											if Convars:GetDOTACommandClient() and IsInToolsMode() then
+												RoundManager.zones[RoundManager.currentZone][1][1] = BaseEvent(zone, roundType, roundName )
 												RoundManager:EndEvent(false)
 												RoundManager:EndPrepTime(true)
 												GameRules:SetLives(3)
-												BaseEvent(zone, roundType, roundName ):StartEvent()
+												RoundManager:StartPrepTime()
 											end
 										end, "adding relics",0)
 	Convars:RegisterCommand( "clear_relics", function()
@@ -509,16 +516,19 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 		end
 	end
 	
-	if inflictor and attacker:IsHero() and not attacker:IsCreature() then
-		local ability = EntIndexToHScript( inflictor )
-		if ability:GetName() == "item_blade_mail" then
-			local reflect = ability:GetSpecialValueFor("reflect_pct") / 100
-			filterTable["damage"] = filterTable["damage"] * reflect
+	if attacker:IsHero() and not attacker:IsCreature() then
+		if ability then 
+			if attacker:GetName() == "npc_dota_hero_leshrac" and attacker:HasAbility(ability:GetName()) then -- reapply damage in pure after all amp/crit
+				require('lua_abilities/heroes/leshrac')
+				filterTable = InnerTorment(filterTable)
+			end
 		end
-		if attacker:GetName() == "npc_dota_hero_leshrac" and attacker:HasAbility(ability:GetName()) then -- reapply damage in pure after all amp/crit
-			require('lua_abilities/heroes/leshrac')
-			filterTable = InnerTorment(filterTable)
-		end
+	end
+	
+	if original_attacker:GetTeam() == DOTA_TEAM_BADGUYS then
+		AddFOWViewer(DOTA_TEAM_GOODGUYS, original_attacker:GetAbsOrigin(), 256, 1, false)
+	else
+		AddFOWViewer(DOTA_TEAM_BADGUYS, original_attacker:GetAbsOrigin(), 256, 1, false)
 	end
 
 	--- THREAT AND UI NO MORE DAMAGE MANIPULATION ---
@@ -682,6 +692,7 @@ function CHoldoutGameMode:OnAbilityUsed(event)
 	local hero = PlayerResource:GetSelectedHeroEntity(PlayerID)
 	if not hero then return end
 	if not abilityname then return end
+	AddFOWViewer(DOTA_TEAM_BADGUYS, hero:GetAbsOrigin(), 256, 3, false)
 	local abilityused = hero:FindAbilityByName(abilityname)
 	if not abilityused then abilityused = hero:FindItemByName(abilityname, false) end
 	if not abilityused then return end
@@ -795,8 +806,6 @@ function CHoldoutGameMode:OnHeroPick (event)
 		
 		hero:AddExperience(GameRules.XP_PER_LEVEL[7],false,false)
 		hero:SetBaseMagicalResistanceValue(0)
-		
-		hero:SetRespawnPosition( GetGroundPosition(Vector(973, 99, 0), nil) )
 		CustomGameEventManager:Send_ServerToPlayer(hero:GetPlayerOwner(), "heroLoadIn", {}) -- wtf is this retarded shit stop force-setting my garbage
 		local ID = hero:GetPlayerID()
 		if not ID then return end
@@ -1001,12 +1010,8 @@ function CHoldoutGameMode:CheckHP()
 			end
 		end
 	end
-	if not GameRules:IsGamePaused() and GameRules:State_Get() >= 7 and GameRules:State_Get() <= 8 then
-		for _,unit in ipairs ( FindUnitsInRadius(DOTA_TEAM_GOODGUYS, Vector(0,0), nil, -1, DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, FIND_ANY_ORDER, false) ) do
-			if (not unit:IsFakeHero()) or unit:IsCreature() then
-				MapHandler:CheckAndResolvePositions(unit)
-			end
-		end
+	for _,unit in ipairs ( FindUnitsInRadius(DOTA_TEAM_GOODGUYS, Vector(0,0), nil, -1, DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, FIND_ANY_ORDER, false) ) do
+		MapHandler:CheckAndResolvePositions(unit)
 	end
 	if not GameRules:IsGamePaused() then
 		local playerData = {}
@@ -1113,7 +1118,7 @@ function CHoldoutGameMode:SpawnTestElites(elite, amount, bossname)
 			spawnName = "npc_dota_treasure"
 		end
 		for i = 1, spawns do
-			local spawnLoc = Entities:FindByName(nil, "spawner"..RandomInt(1, 5)):GetAbsOrigin()
+			local spawnLoc = Vector(900,300)
 			PrecacheUnitByNameAsync( spawnName, function()
 				local entUnit = CreateUnitByName( spawnName, spawnLoc, true, nil, nil, DOTA_TEAM_BADGUYS )
 				if elite then

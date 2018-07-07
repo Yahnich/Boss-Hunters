@@ -34,8 +34,7 @@ local function ThirdChoice(self, userid, event)
 		else
 			relic = RelicManager:RollRandomGenericRelicForPlayer(event.pID)
 		end
-		table.insert(relicTable, relic)
-		RelicManager:PushCustomRelicDropsForPlayer(event.pID, relicTable)
+		RelicManager:PushCustomRelicDropsForPlayer(event.pID, {relic})
 	end
 	self._playerChoices[event.pID] = true
 	CheckPlayerChoices(self)

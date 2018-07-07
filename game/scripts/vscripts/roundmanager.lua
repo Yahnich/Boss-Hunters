@@ -38,6 +38,7 @@ function RoundManager:Initialize(context)
 	for i = 1, ZONE_COUNT do
 		local zoneName = POSSIBLE_ZONES[i]
 		RoundManager:ConstructRaids(zoneName)
+		print(self.zones[zoneName])
 		if zonesToSpawn <= 0 then
 			break
 		end
@@ -78,7 +79,10 @@ function RoundManager:OnNPCSpawned(event)
 				end
 			elseif spawnedUnit:IsRealHero() then
 				spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_tombstone_respawn_immunity", {duration = 3})
-			elseif spawnedUnit:IsIllusion() and spawnedUnit:GetPlayerOwnerID() and PlayerResource:GetSelectedHeroEntity( spawnedUnit:GetPlayerOwnerID() ) then
+				if self:GetCurrentEvent() then
+					FindClearSpaceForUnit(spawnedUnit, self:GetCurrentEvent():GetHeroSpawnPosition(), true)
+				end
+			elseif spawnedUnit:IsIllusion() and spawnedUnit:GetPlayerOwnerID() and PlayerResource:GetSelectedHeroEntity( spawnedUnit:GetPlayerOwnerID() ) and spawnedUnit:FindModifierByName("modifier_stats_system_handler") then
 				spawnedUnit:FindModifierByName("modifier_stats_system_handler"):SetStackCount( PlayerResource:GetSelectedHeroEntity( spawnedUnit:GetPlayerOwnerID() ):entindex() )
 			end
 		end
@@ -124,7 +128,6 @@ function RoundManager:ConstructRaids(zoneName)
 	local zoneEventPool = TableToWeightedArray( self.eventPool[zoneName] )
 	local zoneCombatPool = TableToWeightedArray( self.combatPool[zoneName] )
 	local zoneBossPool = TableToWeightedArray( self.bossPool[zoneName] )
-	
 	self.eventsCreated = self.eventsCreated or 0
 	
 	for j = 1, RAIDS_PER_ZONE do
@@ -132,6 +135,7 @@ function RoundManager:ConstructRaids(zoneName)
 		local raidContent
 		
 		for i = 1, EVENTS_PER_RAID do
+			self.eventsCreated = self.eventsCreated + 1
 			if RollPercentage(COMBAT_CHANCE) then -- Rolled Combat
 				local combatType = EVENT_TYPE_COMBAT
 				if RollPercentage(ELITE_CHANCE) and self.eventsCreated > 3 then
@@ -155,7 +159,6 @@ function RoundManager:ConstructRaids(zoneName)
 				table.remove( zoneEventPool, eventPick )
 			end
 			table.insert( raid, raidContent )
-			self.eventsCreated = self.eventsCreated + 1
 		end
 		
 		if zoneBossPool[1] == nil then
@@ -166,6 +169,7 @@ function RoundManager:ConstructRaids(zoneName)
 		local bossPick = zoneBossPool[bossRoll]
 		RoundManager:RemoveEventFromPool(bossPick, "boss")
 		table.remove(zoneBossPool, bossRoll)
+		self.eventsCreated = self.eventsCreated + 1
 		
 		table.insert( raid, BaseEvent(zoneName, EVENT_TYPE_BOSS, bossPick ) )
 		
@@ -184,12 +188,6 @@ function RoundManager:RemoveEventFromPool(eventToRemove, pool)
 end
 
 function RoundManager:StartGame()
-	
-	self.spawnPositions = {}
-	for _,spawnPos in ipairs(Entities:FindAllByName("boss_spawner")) do
-		table.insert( self.spawnPositions, spawnPos:GetAbsOrigin() )
-	end
-	
 	self.currentZone = POSSIBLE_ZONES[1]
 	table.remove(POSSIBLE_ZONES, 1)
 	
@@ -197,12 +195,28 @@ function RoundManager:StartGame()
 end
 
 function RoundManager:StartPrepTime(fPrep)
+	
+	
 	if self.zones[self.currentZone] and self.zones[self.currentZone][1] and not self.prepTimeTimer then
 		local event = RoundManager:GetCurrentEvent()
-		for _, hero in ipairs( HeroList:GetRealHeroes() ) do
-			PlayerResource:SetCustomBuybackCost(hero:GetPlayerID(), 100 + self.eventsFinished * 25)
-		end
 		
+		local lastSpawns = RoundManager.boundingBox
+		event:LoadSpawns()
+		
+		for _, hero in ipairs( FindAllUnits({team = DOTA_UNIT_TARGET_TEAM_FRIENDLY}) ) do
+			if RoundManager.boundingBox ~= lastSpawns then
+				CustomGameEventManager:Send_ServerToAllClients( "bh_move_camera_position", { position = event:GetHeroSpawnPosition() } )
+				local position = event:GetHeroSpawnPosition() + RandomVector(64)
+				FindClearSpaceForUnit(hero, position, true)
+			end
+			if hero:IsRealHero() then
+				PlayerResource:SetCustomBuybackCost(hero:GetPlayerID(), 100 + RoundManager:GetEventsFinished() * 25)
+			end
+		end
+		ResolveNPCPositions( event.heroSpawnPosition, 150 )
+		for _, hero in ipairs( HeroList:GetRealHeroes() ) do
+			hero:SetRespawnPosition( GetGroundPosition(hero:GetAbsOrigin(), hero) )
+		end
 		local timer = fPrep or PREP_TIME
 		local textFormatting = RAIDS_PER_ZONE - #self.zones[self.currentZone] + 1
 		local romanVersion = ""
@@ -296,7 +310,7 @@ function RoundManager:EndEvent(bWonRound)
 	local clearPeriod = 3
 	Timers:CreateTimer(function()
 		for _, unit in ipairs( FindAllUnits({team = DOTA_UNIT_TARGET_TEAM_ENEMY, flags = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_DEAD + DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD}) ) do
-			if unit:IsCreature() and not unit:IsNull() then 
+			if unit:IsCreature() and not unit:IsNull() then
 				if unit:IsAlive() then
 					unit:ForceKill(false)
 				end
@@ -329,10 +343,16 @@ function RoundManager:ZoneIsFinished()
 	self.zones[self.currentZone] = nil
 	self.currentZone = nil
 	
+	PrintAll(POSSIBLE_ZONES)
 	self.currentZone = POSSIBLE_ZONES[1]
+	if not self.zones[self.currentZone] and POSSIBLE_ZONES[2] then
+		table.remove(POSSIBLE_ZONES, 1)
+		self.currentZone = POSSIBLE_ZONES[1]
+	end
 
 	EventManager:FireEvent("boss_hunters_zone_finished")
 	self.zonesFinished = (self.zonesFinished or 0) + 1
+
 	if self.currentZone == nil then
 		RoundManager:GameIsFinished(true)
 	else
@@ -355,7 +375,9 @@ function RoundManager:GameIsFinished(bWon)
 end
 
 function RoundManager:GetCurrentEvent()
-	return self.zones[self.currentZone][1][1]
+	if self.currentZone and self.zones[self.currentZone] and self.zones[self.currentZone][1] then
+		return self.zones[self.currentZone][1][1]
+	end
 end
 
 function RoundManager:PickRandomSpawn()

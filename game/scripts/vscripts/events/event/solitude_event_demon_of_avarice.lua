@@ -16,7 +16,7 @@ end
 local function StartCombat(self)
 	self.eventEnded = true
 	self.combatEnded = false
-	local START_VECTOR = Vector(949, 130)
+	local START_VECTOR = self:GetHeroSpawnPosition()
 	
 	self.timeRemaining = 30
 	

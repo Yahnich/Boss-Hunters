@@ -148,7 +148,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"				"12"
 		"AbilityCastPoint"				"1.5 1"
-		"AbilityCastRange"				"900 1050 1200"
+		"AbilityCastRange"				"400 500 600"
 		"AbilityCastAnimation"			"ACT_DOTA_DP_SPIRIT_SIPHON"
 	
 		// Cost

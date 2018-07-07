@@ -1,15 +1,15 @@
 "AddonInfo"
 {
-	maps			"bh_casual bh_hardcore"
+	maps			"bh_adventure_casual bh_adventure_hardcore"
 	"IsPlayable"	"1"
 
-	"bh_casual"
+	"bh_adventure_casual"
 	{
 		"MaxPlayers"                    "5"
-		"Lives"							"7"
+		"Lives"							"5"
 		"Difficulty"					"2"
 	}
-	"bh_hardcore"
+	"bh_adventure_hardcore"
 	{
 		"MaxPlayers"                    "5"
 		"Lives"							"3"

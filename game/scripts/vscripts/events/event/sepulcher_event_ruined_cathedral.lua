@@ -30,6 +30,7 @@ end
 
 local function StartCombat(self, bFight)
 	if bFight then
+		self.combatStarted = true
 		self.eventType = EVENT_TYPE_ELITE
 		self.timeRemaining = 0
 		self.combatStarted = true
@@ -137,8 +138,8 @@ local function HandoutRewards(self)
 			local pID = hero:GetPlayerOwnerID()
 			local generic = {}
 			local cursed = {}
-			table.insert(generic, self:RollRandomGenericRelicForPlayer(pID) )
-			table.insert(cursed, self:RollRandomCursedRelicForPlayer(pID) )
+			table.insert(generic, RelicManager:RollRandomGenericRelicForPlayer(pID) )
+			table.insert(cursed, RelicManager:RollRandomCursedRelicForPlayer(pID) )
 			RelicManager:PushCustomRelicDropsForPlayer(pID, generic)
 			RelicManager:PushCustomRelicDropsForPlayer(pID, cursed)
 		end
@@ -154,10 +155,28 @@ local function PrecacheUnits(self, context)
 	return true
 end
 
+local function LoadSpawns(self)
+	if not self.spawnLoadCompleted then
+		RoundManager.spawnPositions = {}
+		RoundManager.boundingBox = "sepulcher_event_ruined_cathedral"
+		for _,spawnPos in ipairs( Entities:FindAllByName( RoundManager.boundingBox.."_spawner" ) ) do
+			table.insert( RoundManager.spawnPositions, spawnPos:GetAbsOrigin() )
+		end
+		self.heroSpawnPosition = self.heroSpawnPosition or nil
+		for _,spawnPos in ipairs( Entities:FindAllByName( RoundManager.boundingBox.."_heroes") ) do
+			self.heroSpawnPosition = spawnPos:GetAbsOrigin()
+			break
+		end
+		
+		self.spawnLoadCompleted = true
+	end
+end
+
 local funcs = {
 	["StartEvent"] = StartEvent,
 	["EndEvent"] = EndEvent,
 	["PrecacheUnits"] = PrecacheUnits,
+	["LoadSpawns"] = LoadSpawns,
 	["FirstChoice"] = FirstChoice,
 	["SecondChoice"] = SecondChoice,
 	["StartCombat"] = StartCombat,

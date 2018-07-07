@@ -211,7 +211,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"100"
+				"value"						"300"
 			}
 		}
 	}
@@ -434,6 +434,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
 		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityTextureName"			"windrunner_focusfire"
 		"MaxLevel"						"6"
 		
@@ -452,7 +453,7 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"70"
+		"AbilityCooldown"				"70 60 50 40 30 20"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -467,7 +468,7 @@
 				"var_type"						"FIELD_INTEGER"
 				"bonus_as"						"400"
 			}
-			"01"
+			"02"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"bonus_at"						"-0.2"

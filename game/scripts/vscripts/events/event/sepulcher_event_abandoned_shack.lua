@@ -17,7 +17,7 @@
 		end
 	end
 	
-	if not self.eventEnded then
+	if not self.eventEnded and not self.combatStarted then
 		if votedYes > votedNo + (players - voted) then -- yes votes exceed non-votes and no votes
 			self:RollLoot( RollPercentage(50) )
 			Timers:CreateTimer(3, function()
@@ -41,10 +41,9 @@ end
 
 local function RollLoot(self, bRelic)
 	for _, hero in ipairs( HeroList:GetRealHeroes() ) do
+		local pID = hero:GetPlayerOwnerID()
 		if bRelic then
-			local generic = {}
-			table.insert(generic, self:RollRandomGenericRelicForPlayer(pID) )
-			RelicManager:PushCustomRelicDropsForPlayer(pID, generic)
+			RelicManager:PushCustomRelicDropsForPlayer(pID, {RelicManager:RollRandomGenericRelicForPlayer(pID)})
 		else
 			hero:AddGold(500)
 		end
@@ -62,7 +61,7 @@ local function StartCombat(self, bFight, bBoss)
 			ListenToGameEvent( "entity_killed", require("events/base_combat"), self ),
 		}
 		self.timeRemaining = 0
-		
+		self.combatStarted = true
 		local mobToSpawn = "npc_dota_boss22b"
 		if bBoss then
 			self.eventType = EVENT_TYPE_ELITE
@@ -71,7 +70,7 @@ local function StartCombat(self, bFight, bBoss)
 			mobToSpawn = "npc_dota_boss22"
 		else
 			CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_reward_given", {event = self:GetEventName(), reward = 2})
-			self.enemiesToSpawn = 5 * RoundManager:GetRaidsFinished() * HeroList:GetActiveHeroCount()
+			self.enemiesToSpawn = 5 * (RoundManager:GetRaidsFinished() + 1) * HeroList:GetActiveHeroCount()
 			mobToSpawn = "npc_dota_boss22b"
 		end
 		
@@ -80,7 +79,7 @@ local function StartCombat(self, bFight, bBoss)
 			spawn.unitIsRoundBoss = true
 			if not bBoss then spawn:SetCoreHealth( 100 * GameRules:GetGameDifficulty() ) end
 			self.enemiesToSpawn = self.enemiesToSpawn - 1
-			if self.mobsToSpawn > 0 then
+			if self.enemiesToSpawn > 0 then
 				return 3 / (RoundManager:GetRaidsFinished() + 1)
 			end
 		end)
@@ -110,9 +109,10 @@ local function StartEvent(self)
 	self._vEventHandles = {}
 	self.timeRemaining = 15
 	self.eventEnded = false
+	self.combatStarted = false
 	self.waitTimer = Timers:CreateTimer(1, function()
 		CustomGameEventManager:Send_ServerToAllClients("updateQuestPrepTime", {prepTime = self.timeRemaining})
-		if not self.eventEnded and not self.helpedTreant then
+		if not self.eventEnded and not self.combatStarted then
 			if self.timeRemaining >= 0 then
 				self.timeRemaining = self.timeRemaining - 1
 				return 1
@@ -146,10 +146,28 @@ local function PrecacheUnits(self, context)
 	return true
 end
 
+local function LoadSpawns(self)
+	if not self.spawnLoadCompleted then
+		RoundManager.spawnPositions = {}
+		RoundManager.boundingBox = "sepulcher_event_abandoned_shack"
+		for _,spawnPos in ipairs( Entities:FindAllByName( RoundManager.boundingBox.."_spawner" ) ) do
+			table.insert( RoundManager.spawnPositions, spawnPos:GetAbsOrigin() )
+		end
+		self.heroSpawnPosition = self.heroSpawnPosition or nil
+		for _,spawnPos in ipairs( Entities:FindAllByName( RoundManager.boundingBox.."_heroes") ) do
+			self.heroSpawnPosition = spawnPos:GetAbsOrigin()
+			break
+		end
+		
+		self.spawnLoadCompleted = true
+	end
+end
+
 local funcs = {
 	["StartEvent"] = StartEvent,
 	["EndEvent"] = EndEvent,
 	["PrecacheUnits"] = PrecacheUnits,
+	["LoadSpawns"] = LoadSpawns,
 	["FirstChoice"] = FirstChoice,
 	["SecondChoice"] = SecondChoice,
 	["StartCombat"] = StartCombat,

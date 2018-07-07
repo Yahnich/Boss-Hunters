@@ -34,10 +34,9 @@ end
 function et_elder_spirit:OnSpellStart()
 	local caster = self:GetCaster()
 	local point = self:GetCursorPosition()
-
 	EmitSoundOn("Hero_ElderTitan.AncestralSpirit.Cast", caster)
 
-	if self.spirit then
+	if not self:GetCaster():HasModifier("modifier_elder_spirit_check") then
 		StopSoundOn("Hero_ElderTitan.AncestralSpirit.Cast", caster)
 		EmitSoundOn("Hero_ElderTitan.AncestralSpirit.Return", caster)
 
@@ -47,6 +46,7 @@ function et_elder_spirit:OnSpellStart()
 		self:RefundManaCost()
 		
 		self:SetCooldown()
+		caster:AddNewModifier(caster, self, "modifier_elder_spirit_check", {})
 	else
 		self.spirit = true
 		self.spiritPull = false
@@ -82,7 +82,8 @@ function et_elder_spirit:OnSpellStart()
 		end
 		spirit:AddNewModifier(caster, self, "modifier_elder_spirit", {})
 		spirit:SetBaseMoveSpeed(caster:GetIdealSpeed())
-
+		
+		print(point, spirit:GetAbsOrigin() )
 		self:EndCooldown()
 	end
 end
@@ -133,6 +134,13 @@ function modifier_elder_spirit:OnCreated(table)
     end
 end
 
+function modifier_elder_spirit:OnRemoved(table)
+    if IsServer() then
+    	self:GetCaster():AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_elder_spirit_check", {})
+    end
+end
+
+
 function modifier_elder_spirit:OnIntervalThink()
 	local caster = self:GetCaster()
 	local parent = self:GetParent()
@@ -140,29 +148,36 @@ function modifier_elder_spirit:OnIntervalThink()
 	if self:GetAbility().spiritPull then
 		local direction = CalculateDirection(parent, caster)
 		local distance = CalculateDistance(parent, caster)
+	
 
 		parent:StartGesture(ACT_DOTA_FLAIL)
-
+		self.distance = self.distance or distance
 		if distance > 20 then
 			parent:SetForwardVector(-direction)
 			parent:SetAbsOrigin(parent:GetAbsOrigin() - direction * 20)
+			self.distance = (self.distance or distance) - 20
+			if self.distance <= 0 then
+				FindClearSpaceForUnit(parent, parent:GetAbsOrigin(), true)
+			end
 		else
 			FindClearSpaceForUnit(parent, parent:GetAbsOrigin(), true)
 		end
-	end
+	
 
-	local units = caster:FindFriendlyUnitsInRadius(parent:GetAbsOrigin(), 150, {})
-	for _,unit in pairs(units) do
-		if unit == caster then
-			caster:RemoveModifierByName("modifier_elder_spirit_check_out")
-			unit:AddNewModifier(caster, self:GetAbility(), "modifier_elder_spirit_check", {})
-			self:GetAbility().spirit = false
-			if self:GetAbility():IsCooldownReady() then
-				self:GetAbility():StartCooldown(self:GetAbility():GetTrueCooldown())
+		local units = caster:FindFriendlyUnitsInRadius(parent:GetAbsOrigin(), 150, {})
+		for _,unit in pairs(units) do
+			if unit == caster then
+				caster:RemoveModifierByName("modifier_elder_spirit_check_out")
+				unit:AddNewModifier(caster, self:GetAbility(), "modifier_elder_spirit_check", {})
+				self:GetAbility().spirit = false
+				self.distance = nil
+				if self:GetAbility():IsCooldownReady() then
+					self:GetAbility():SetCooldown()
+				end
+
+				parent:AddNoDraw()
+				parent:ForceKill(false)
 			end
-
-			parent:AddNoDraw()
-			parent:ForceKill(false)
 		end
 	end
 end

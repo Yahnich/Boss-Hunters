@@ -13,7 +13,9 @@ function Spawn( entityKeyValues )
 	thisEntity.armor = thisEntity:FindAbilityByName("boss_living_armor")
 	thisEntity.summon = thisEntity:FindAbilityByName("creature_summon_tree")
 	
-	AITimers:CreateTimer(0.1, function() spawn.armor:SetLevel( math.max(spawn.armor:GetMaxLevel(), math.floor(GameRules:GetGameDifficulty()/4) + RoundManager:GetRaidsFinished() ) ) end)
+	AITimers:CreateTimer(0.1, function() 
+		thisEntity.armor:SetLevel( math.min(thisEntity.armor:GetMaxLevel(), math.floor(GameRules:GetGameDifficulty()/4) + RoundManager:GetRaidsFinished() ) )
+	end)
 end
 
 

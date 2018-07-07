@@ -18,13 +18,13 @@ end
 local function StartCombat(self)
 	self.eventEnded = true
 	self.combatEnded = false
-	local START_VECTOR = Vector(949, 130)
 	
 	self.timeRemaining = 60
 	
-	self.totemUnit = CreateUnitByName("npc_dota_event_totem", START_VECTOR, true, nil, nil, DOTA_TEAM_GOODGUYS)
+	self.totemUnit = CreateUnitByName("npc_dota_event_totem", self:GetHeroSpawnPosition(), true, nil, nil, DOTA_TEAM_GOODGUYS)
 	local ability = self.totemUnit:AddAbility("generic_hp_limiter")
 	self.totemUnit:SetThreat(5000)
+	AddFOWViewer(DOTA_TEAM_BADGUYS, self.totemUnit:GetAbsOrigin(), 312, self.timeRemaining, false)
 	
 	local activeHeroes = HeroList:GetActiveHeroCount()
 	
@@ -46,7 +46,7 @@ local function StartCombat(self)
 			if self.timeRemaining >= 0 then
 				local spawns = 1 + math.floor( (60 - self.timeRemaining)/15 )
 				for i = 1, spawns do
-					local zombie = CreateUnitByName("npc_dota_mini_boss1", START_VECTOR + ActualRandomVector(1500, 900), true, nil, nil, DOTA_TEAM_BADGUYS)
+					local zombie = CreateUnitByName("npc_dota_mini_boss1", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
 					local hp = zombie:GetBaseMaxHealth() * (activeHeroes / 2) * 1.2
 					zombie:SetBaseMaxHealth( hp )
 					zombie:SetMaxHealth( hp )
@@ -129,6 +129,7 @@ local function EndEvent(self, bWon)
 			CustomGameEventManager:Send_ServerToAllClients("dota_player_upgraded_stats", {playerID = hero:GetPlayerID()} )
 		end
 		reward = 1
+		self.totemUnit:ForceKill(false)
 	end
 	
 	CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_reward_given", {event = "generic_event_protect", reward = reward})
@@ -145,10 +146,28 @@ local function HandoutRewards(self)
 	return false
 end
 
+local function LoadSpawns(self)
+	if not self.spawnLoadCompleted then
+		RoundManager.spawnPositions = {}
+		RoundManager.boundingBox = "elysium_combat_3"
+		for _,spawnPos in ipairs( Entities:FindAllByName( RoundManager.boundingBox.."_spawner" ) ) do
+			table.insert( RoundManager.spawnPositions, spawnPos:GetAbsOrigin() )
+		end
+		self.heroSpawnPosition = self.heroSpawnPosition or nil
+		for _,spawnPos in ipairs( Entities:FindAllByName( RoundManager.boundingBox.."_heroes") ) do
+			self.heroSpawnPosition = spawnPos:GetAbsOrigin()
+			break
+		end
+		
+		self.spawnLoadCompleted = true
+	end
+end
+
 local funcs = {
 	["StartEvent"] = StartEvent,
 	["EndEvent"] = EndEvent,
 	["PrecacheUnits"] = PrecacheUnits,
+	["LoadSpawns"] = LoadSpawns,
 	["FirstChoice"] = FirstChoice,
 	["StartCombat"] = StartCombat,
 	["HandoutRewards"] = HandoutRewards,

@@ -31,7 +31,8 @@ if IsServer() then
 	
 	function modifier_boss_evil_core_passive:OnIntervalThink()
 		local parent = self:GetParent()
-		FindClearSpaceForUnit(parent, Vector(969, 132), true)
+		self.startPosition = self.startPosition or self:GetParent():GetAbsOrigin()
+		FindClearSpaceForUnit(parent, self.startPosition, true)
 		parent:SetBaseHealthRegen(0)
 		if not self.asuraSpawn then
 			parent:SetMana(self.manaCharge)

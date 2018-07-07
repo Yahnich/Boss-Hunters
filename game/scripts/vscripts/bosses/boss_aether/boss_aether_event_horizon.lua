@@ -36,7 +36,6 @@ function modifier_boss_aether_event_horizon_aura:OnIntervalThink()
 		if not caster or caster:IsNull() then self:Destroy() end
 		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), -1 ) ) do
 			enemy:SetAbsOrigin( GetGroundPosition(enemy:GetAbsOrigin() + CalculateDirection( caster, enemy ) * self.pull, enemy) )
-			self:GetAbility():DealDamage( caster, parent, tickDamage, {damage_type = DAMAGE_TYPE_PURE, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION} )
 		end
 		ResolveNPCPositions(caster:GetAbsOrigin(), 9000)
 	end
@@ -91,5 +90,6 @@ function modifier_boss_aether_event_horizon_debuff:OnIntervalThink()
 	if IsServer() then
 		local parent = self:GetParent()
 		local caster = self:GetCaster()
+		self:GetAbility():DealDamage( caster, parent, enemy:GetMaxHealth() * self.damage, {damage_type = DAMAGE_TYPE_PURE, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION} )
 	end
 end
