@@ -38,6 +38,10 @@ function event_buff_berries_curse:IsDebuff()
 	return true
 end
 
+function event_buff_berries_curse:IsPurgable()
+	return false
+end
+
 event_buff_berries_curse_2 = class(relicBaseClass)
 
 function event_buff_berries_curse_2:DeclareFunctions()

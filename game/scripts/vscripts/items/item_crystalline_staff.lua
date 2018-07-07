@@ -39,3 +39,7 @@ end
 function modifier_item_crystalline_staff_passive:GetAttributes()
 	return MODIFIER_ATTRIBUTE_MULTIPLE
 end
+
+function modifier_item_crystalline_staff_passive:IsHidden()
+	return true
+end

@@ -15,7 +15,9 @@ function Spawn( entityKeyValues )
 	thisEntity.summon2 = thisEntity:FindAbilityByName("creature_summon_tree2")
 	thisEntity.sprout = thisEntity:FindAbilityByName("furion_sprout")
 	
-	AITimers:CreateTimer(0.1, function() spawn.armor:SetLevel( math.max(spawn.armor:GetMaxLevel(), math.floor(GameRules:GetGameDifficulty()/2) + RoundManager:GetRaidsFinished() ) ) end)
+	AITimers:CreateTimer(0.1, function() 
+		thisEntity.armor:SetLevel( math.min(thisEntity.armor:GetMaxLevel(), math.floor(GameRules:GetGameDifficulty()/2) + RoundManager:GetRaidsFinished() ) )
+	end)
 end
 
 

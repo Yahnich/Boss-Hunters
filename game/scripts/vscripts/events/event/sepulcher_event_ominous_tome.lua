@@ -2,13 +2,13 @@
 	local votedRead = 0
 	local votedDestroy = 0
 	local votedLeave = 0
-	local voted = 0
+	local votes = 0
 	local players = 0
 	for i = 0, GameRules.BasePlayers do
 		if PlayerResource:IsValidPlayerID(i) and PlayerResource:GetPlayer(i) then
 			players = players + 1
 			if self._playerChoices[i] ~= nil then
-				voted = voted + 1
+				votes = votes + 1
 				if self._playerChoices[i] == 1 then
 					votedRead = votedRead + 1
 				elseif self._playerChoices[i] == 2 then
@@ -20,7 +20,7 @@
 		end
 	end
 	local nonVotes = (players - votes)
-	if not self.eventEnded then
+	if not self.foughtElites then
 		if votedRead > votedLeave + votedDestroy + nonVotes then
 			self:StartCombat(false)
 		elseif votedDestroy > votedLeave + votedRead + nonVotes then
@@ -49,20 +49,22 @@ local function StartCombat(self, bFight)
 		self.timeRemaining = 0
 		self.bossesToSpawn = 1
 		self.mobsToSpawn = math.ceil(RoundManager:GetRaidsFinished() / 2)
-		local START_VECTOR = Vector(949, 130)
+		self.enemiesToSpawn = self.bossesToSpawn + self.mobsToSpawn
 		Timers:CreateTimer(5, function()
-			local spawn = CreateUnitByName("npc_dota_boss34", START_VECTOR + RandomVector(600), true, nil, nil, DOTA_TEAM_BADGUYS)
+			local spawn = CreateUnitByName("npc_dota_boss34", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
 			spawn.unitIsRoundBoss = true
 			self.enemiesToSpawn = self.enemiesToSpawn - 1
-			if self.enemiesToSpawn > 0 then
+			self.bossesToSpawn = self.bossesToSpawn - 1
+			if self.bossesToSpawn > 0 then
 				return 20 / (RoundManager:GetRaidsFinished() + 1)
 			end
 		end)
 		Timers:CreateTimer(5, function()
-			local spawn = CreateUnitByName("npc_dota_boss22", START_VECTOR + RandomVector(600), true, nil, nil, DOTA_TEAM_BADGUYS)
+			local spawn = CreateUnitByName("npc_dota_boss22", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
 			spawn.unitIsRoundBoss = true
 			self.enemiesToSpawn = self.enemiesToSpawn - 1
-			if self.enemiesToSpawn > 0 then
+			self.mobsToSpawn = self.mobsToSpawn - 1
+			if self.mobsToSpawn > 0 then
 				return 10 / (RoundManager:GetRaidsFinished() + 1)
 			end
 		end)
@@ -96,7 +98,7 @@ local function ThirdChoice(self, userid, event)
 end
 
 local function StartEvent(self)	
-	CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_has_started", {event = "grove_event_help_treant", choices = 2})
+	CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_has_started", {event = self:GetEventName(), choices = 3})
 	self._vListenerHandles = {
 		CustomGameEventManager:RegisterListener('player_selected_event_choice_1', Context_Wrap( self, 'FirstChoice') ),
 		CustomGameEventManager:RegisterListener('player_selected_event_choice_2', Context_Wrap( self, 'SecondChoice') ),
@@ -105,9 +107,10 @@ local function StartEvent(self)
 	self._vEventHandles = {}
 	self.timeRemaining = 15
 	self.eventEnded = false
+	self.foughtElites = false
 	self.waitTimer = Timers:CreateTimer(1, function()
 		CustomGameEventManager:Send_ServerToAllClients("updateQuestPrepTime", {prepTime = self.timeRemaining})
-		if not self.eventEnded and not self.helpedTreant then
+		if not self.eventEnded and not self.foughtElites then
 			if self.timeRemaining >= 0 then
 				self.timeRemaining = self.timeRemaining - 1
 				return 1
@@ -137,7 +140,7 @@ local function EndEvent(self, bWon)
 	Timers:CreateTimer(3, function() RoundManager:EndEvent(bWon) end)
 end
 
-function BaseEvent:HandoutRewards(bWon)
+function HandoutRewards(self, bWon)
 	if self.foughtElites then
 		local eventScaling = RoundManager:GetEventsFinished()
 		local raidScaling = 1 + RoundManager:GetRaidsFinished() * 0.2
@@ -171,10 +174,28 @@ local function PrecacheUnits(self, context)
 	return true
 end
 
+local function LoadSpawns(self)
+	if not self.spawnLoadCompleted then
+		RoundManager.spawnPositions = {}
+		RoundManager.boundingBox = "grove_boss_green_dragon"
+		for _,spawnPos in ipairs( Entities:FindAllByName( RoundManager.boundingBox.."_spawner" ) ) do
+			table.insert( RoundManager.spawnPositions, spawnPos:GetAbsOrigin() )
+		end
+		self.heroSpawnPosition = self.heroSpawnPosition or nil
+		for _,spawnPos in ipairs( Entities:FindAllByName( RoundManager.boundingBox.."_heroes") ) do
+			self.heroSpawnPosition = spawnPos:GetAbsOrigin()
+			break
+		end
+		
+		self.spawnLoadCompleted = true
+	end
+end
+
 local funcs = {
 	["StartEvent"] = StartEvent,
 	["EndEvent"] = EndEvent,
 	["PrecacheUnits"] = PrecacheUnits,
+	["LoadSpawns"] = LoadSpawns,
 	["FirstChoice"] = FirstChoice,
 	["SecondChoice"] = SecondChoice,
 	["ThirdChoice"] = ThirdChoice,

@@ -151,7 +151,7 @@ local function EndEvent(self, bWon)
 end
 
 local function HandoutRewards(self)
-	if self.fought then
+	if self.combatStarted then
 		local eventScaling = RoundManager:GetEventsFinished()
 		local playerScaling = GameRules.BasePlayers - HeroList:GetActiveHeroCount()
 		local baseXP = 500 + eventScaling * (100 + 10 * playerScaling)
@@ -174,10 +174,28 @@ local function PrecacheUnits(self, context)
 	return true
 end
 
+local function LoadSpawns(self)
+	if not self.spawnLoadCompleted then
+		RoundManager.spawnPositions = {}
+		RoundManager.boundingBox = "grove_combat_2"
+		for _,spawnPos in ipairs( Entities:FindAllByName( RoundManager.boundingBox.."_spawner" ) ) do
+			table.insert( RoundManager.spawnPositions, spawnPos:GetAbsOrigin() )
+		end
+		self.heroSpawnPosition = self.heroSpawnPosition or nil
+		for _,spawnPos in ipairs( Entities:FindAllByName( RoundManager.boundingBox.."_heroes") ) do
+			self.heroSpawnPosition = spawnPos:GetAbsOrigin()
+			break
+		end
+		
+		self.spawnLoadCompleted = true
+	end
+end
+
 local funcs = {
 	["StartEvent"] = StartEvent,
 	["EndEvent"] = EndEvent,
 	["PrecacheUnits"] = PrecacheUnits,
+	["LoadSpawns"] = LoadSpawns,
 	["FirstChoice"] = FirstChoice,
 	["SecondChoice"] = SecondChoice,
 	["StartCombat"] = StartCombat,

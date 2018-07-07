@@ -1665,7 +1665,7 @@ function CDOTA_BaseNPC:ApplyLinearKnockback(distance, strength, source)
 	end)
 end
 
-function FindAllUnits(data)
+function FindAllUnits(hData)
 	local team = DOTA_TEAM_GOODGUYS
 	local data = hData or {}
 	local iTeam = data.team or DOTA_UNIT_TARGET_TEAM_BOTH
@@ -2510,6 +2510,7 @@ function CDOTA_BaseNPC_Hero:AddXP( val )
 			end
 		end
 	end
+	print(xp, val, "added xp")
 	self:AddExperience(xp, DOTA_ModifyXP_Unspecified , false, true)
 end
 
@@ -2649,12 +2650,14 @@ end
 
 function CDOTA_BaseNPC:AddCurse(curseName)	
 	local curse = self:AddNewModifier(self, nil, curseName, {})
-	curse.isCurse = true
+	if curse then 
+		curse.isCurse = true
 	
-	if self:HasRelic("relic_unique_ofuda") and self:FindModifierByName("relic_unique_ofuda"):GetStackCount() > 0 then
-		local ofuda = self:FindModifierByName("relic_unique_ofuda")
-		ofuda:DecrementStackCount()
-		curse:Destroy()
+		if self:HasRelic("relic_unique_ofuda") and self:FindModifierByName("relic_unique_ofuda"):GetStackCount() > 0 then
+			local ofuda = self:FindModifierByName("relic_unique_ofuda")
+			ofuda:DecrementStackCount()
+			curse:Destroy()
+		end
 	end
 	
 	return curse
@@ -2662,6 +2665,6 @@ end
 
 function CDOTA_BaseNPC:AddBlessing( blessingName )
 	local blessing = self:AddNewModifier(self, nil, blessingName, {})
-	blessing.isBlessing = true
+	if blessing then blessing.isBlessing = true end
 	return blessing
 end

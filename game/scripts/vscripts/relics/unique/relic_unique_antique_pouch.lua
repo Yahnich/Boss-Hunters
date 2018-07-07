@@ -14,6 +14,7 @@ end
 
 function relic_unique_antique_pouch:LookRelics()
 	local relics = 0
+	local hero = self:GetParent()
 	for entindex, relicName in pairs(hero.ownedRelics) do
 		if relicName ~= "relic_unique_antique_pouch" then
 			relics = relics + 1
@@ -22,7 +23,7 @@ function relic_unique_antique_pouch:LookRelics()
 	self:SetStackCount(relics)
 end
 
-function relic_unique_molten_crystal:DeclareFunctions()
+function relic_unique_antique_pouch:DeclareFunctions()
 	return {MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
 			MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
 			MODIFIER_PROPERTY_STATS_INTELLECT_BONUS}

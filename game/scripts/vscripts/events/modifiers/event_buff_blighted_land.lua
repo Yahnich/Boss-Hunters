@@ -24,15 +24,15 @@ function event_buff_blighted_land_blessing_2:DeclareFunctions()
     return funcs
 end
 
-function event_buff_blighted_land_blessing_2:GetModifierBonusStats_Intellect( params )
+function event_buff_blighted_land_blessing_2:GetModifierBonusStats_Intellect( )
     return 15
 end
 
-function event_buff_blighted_land_blessing_2:GetModifierBonusStats_Strength( params )
+function event_buff_blighted_land_blessing_2:GetModifierBonusStats_Strength( )
     return 15
 end
 
-function event_buff_blighted_land_blessing_2:GetModifierBonusStats_Agility( params )
+function event_buff_blighted_land_blessing_2:GetModifierBonusStats_Agility( )
     return 15
 end
 

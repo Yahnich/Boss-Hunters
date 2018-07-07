@@ -146,7 +146,7 @@ end
 
 function AICore:AttackHighestPriority( entity )
 	if not entity or not entity:IsAlive() then return end
-	local flag = DOTA_UNIT_TARGET_FLAG_NOT_ATTACK_IMMUNE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE
+	local flag = DOTA_UNIT_TARGET_FLAG_NOT_ATTACK_IMMUNE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
 	if not entity:IsDominated() then
 		local target = entity:GetTauntTarget()
 		local weakestInRange
@@ -154,7 +154,7 @@ function AICore:AttackHighestPriority( entity )
 		local minThreat = 0
 		local minHP = 0
 		if not target then
-			if entity.AIprevioustarget and not entity.AIprevioustarget:IsNull() and entity.AIprevioustarget:IsAlive() and not entity.AIprevioustarget:IsInvisible() then 
+			if entity.AIprevioustarget and not entity.AIprevioustarget:IsNull() and entity.AIprevioustarget:IsAlive() and entity:CanEntityBeSeenByMyTeam(entity.AIprevioustarget) then 
 				target = entity.AIprevioustarget
 				target.threat = target.threat or 0
 				minThreat = target.threat
@@ -166,7 +166,7 @@ function AICore:AttackHighestPriority( entity )
 				local distanceToEnemy = (entity:GetAbsOrigin() - enemy:GetAbsOrigin()):Length2D()
 				if not enemy.threat then enemy.threat = 0 end
 				if not minThreat then minThreat = 0 end
-				if GridNav:CanFindPath( entity:GetAbsOrigin(), enemy:GetAbsOrigin() ) and enemy:IsAlive() then
+				if GridNav:CanFindPath( entity:GetAbsOrigin(), enemy:GetAbsOrigin() ) and entity:CanEntityBeSeenByMyTeam(enemy) and enemy:IsAlive() then
 					if distanceToEnemy < range then
 						if enemy.threat > minThreat and not entity.AIprevioustarget then
 							minThreat = enemy.threat
@@ -192,9 +192,20 @@ function AICore:AttackHighestPriority( entity )
 				end
 			end
 		end
-		target = target or weakestInRange or closestUnit
-		if entity.AIprevioustarget and entity.AIprevioustarget:GetTeamNumber() ~= entity:GetTeamNumber() then
+		target = target or weakestInRange or closestUnit	
+		if target then
 			entity.AIprevioustarget = target
+			if target then entity.AIprevioustargetPosition = target:GetAbsOrigin() end
+		end
+		if not target and entity.AIprevioustargetPosition and CalculateDistance(entity.AIprevioustargetPosition, entity) > 150 then
+			ExecuteOrderFromTable({
+				UnitIndex = entity:entindex(),
+				OrderType = DOTA_UNIT_ORDER_ATTACK_MOVE,
+				Position = entity.AIprevioustargetPosition,
+			})
+			return AI_THINK_RATE
+		elseif not target and entity.AIprevioustargetPosition then
+			entity.AIprevioustargetPosition = nil
 		end
 		if target and not target:IsNull() and ( CalculateDistance(target, entity) > entity:GetAttackRange() * 0.95 or entity:GetTauntTarget() ) and RollPercentage(80) then
 			if entity:GetAttackCapability() == DOTA_UNIT_CAP_NO_ATTACK then
@@ -212,7 +223,7 @@ function AICore:AttackHighestPriority( entity )
 			end
 			return AI_THINK_RATE
 		else
-			AICore:RunToRandomPosition( entity, 20 )
+			AICore:RunToRandomPosition( entity, 80, true )
 			return AI_THINK_RATE
 		end
 	end
@@ -250,12 +261,14 @@ function AICore:BeAHugeCoward( entity, runbuffer )
 	return position
 end
 
-function AICore:RunToRandomPosition( entity, spasticness )
-	local position = entity:GetAbsOrigin() + Vector( RandomInt(-1000, 1000), RandomInt(-1000, 1000), 0)
+function AICore:RunToRandomPosition( entity, spasticness, bAggro )
+	local position = entity:GetAbsOrigin() + RandomVector( entity:GetIdealSpeed() * 1.5 )
+	local order = DOTA_UNIT_ORDER_MOVE_TO_POSITION
+	if bAggro then order = DOTA_UNIT_ORDER_ATTACK_MOVE end
 	if RollPercentage(spasticness) and not entity:GetTauntTarget() then
 		ExecuteOrderFromTable({
 			UnitIndex = entity:entindex(),
-			OrderType = DOTA_UNIT_ORDER_MOVE_TO_POSITION,
+			OrderType = order,
 			Position = position
 		})
 	elseif entity:GetTauntTarget() then

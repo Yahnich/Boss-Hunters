@@ -39,20 +39,22 @@ local function StartCombat(self)
 				for _, hero in ipairs( HeroList:GetActiveHeroes() ) do
 					local roll = RandomInt(1, 12)
 					local demonType = "npc_dota_boss5b"
-					if roll <= 6 then
+					if roll <= 10 then
 						demonType = "npc_dota_boss5b"
-					elseif roll <= 10 then
+					elseif roll == 11 then
 						demonType = "npc_dota_boss33_a"
 					elseif roll == 12 then
-						demonType = "npc_dota_boss3b"
+						demonType = "npc_dota_boss33_b"
 					end
 					local zombie = CreateUnitByName(demonType, hero:GetAbsOrigin() + ActualRandomVector(1200, 600), true, nil, nil, DOTA_TEAM_BADGUYS)
 					zombie:SetBaseMaxHealth(100 * GameRules:GetGameDifficulty())
 					zombie:SetMaxHealth(100 * GameRules:GetGameDifficulty())
 					zombie:SetHealth(100 * GameRules:GetGameDifficulty())
+					
+					zombie:SetModelScale(1)
 				end
 					
-				return math.max( 2, (self.timeRemaining or 60) / 15 )
+				return math.max( 5, (self.timeRemaining or 60) / 5 )
 			end
 		end
 	end)

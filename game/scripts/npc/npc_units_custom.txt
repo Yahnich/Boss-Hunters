@@ -1015,7 +1015,7 @@
 		// Bounds
 		//----------------------------------------------------------------
 		"RingRadius"				"100"
-		"HealthBarOffset"			"800"
+		"HealthBarOffset"			"550"
 		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"
 	
 		// Bounty
@@ -3877,7 +3877,6 @@
 		"IsDemon"					"1"
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"50"
-		"vscripts"					"ai/ai_boss36"
 	
 		// Abilities
 		//----------------------------------------------------------------
@@ -3921,7 +3920,7 @@
 	
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"400"		// Base health.
+		"StatusHealth"				"175"		// Base health.
 		"StatusHealthRegen"			"0"			// Health regeneration rate.
 		"StatusMana"				"1000"			// Base mana.
 		"StatusManaRegen"			"0"			// Mana regeneration rate.		 
@@ -6855,8 +6854,8 @@
 		// Attack
 		//----------------------------------------------------------------
 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"			"50"		// Damage range min.
-		"AttackDamageMax"			"60"		// Damage range max.
+		"AttackDamageMin"			"35"		// Damage range min.
+		"AttackDamageMax"			"45"		// Damage range max.
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"				"3.0"			// Speed of attack.
 		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
@@ -6995,7 +6994,7 @@
 	
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"1000"		// Base health.
+		"StatusHealth"				"350"		// Base health.
 		"StatusHealthRegen"			"750"		// Health regeneration rate.
 		"StatusMana"				"500"		// Base mana.
 		"StatusManaRegen"			"20"			// Mana regeneration rate.

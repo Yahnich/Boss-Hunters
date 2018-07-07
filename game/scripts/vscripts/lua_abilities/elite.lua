@@ -63,7 +63,7 @@ function CreateFrostShards(keys)
 				EmitSoundOn("Hero_Ancient_Apparition.IceBlast.Target", caster)
 				local targets = FindUnitsInRadius( caster:GetTeam(), shardLoc, nil, 400, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, 0, false )
 				for _, frozenTarget in pairs(targets) do
-					ApplyDamage({ victim = frozenTarget, attacker = keys.caster, damage = 10 * GameRules._roundnumber, damage_type = DAMAGE_TYPE_MAGICAL, ability = ability })
+					ApplyDamage({ victim = frozenTarget, attacker = keys.caster, damage = 75, damage_type = DAMAGE_TYPE_MAGICAL, ability = ability })
 					ability:ApplyDataDrivenModifier(caster, frozenTarget, "modifier_elite_coldsnapped", {duration = 2})
 				end
 			end)
@@ -138,8 +138,8 @@ function BlinkAI(keys)
 			target = enemy
 		end
 	end
-	if target then
-		caster:SetCursorPosition(target:GetAbsOrigin() + Vector(math.random(200), math.random(200),0))
+	if target and not caster:IsStunned() and not caster:IsChanneling() and not caster:IsRooted() then
+		caster:SetCursorPosition(target:GetAbsOrigin() + Vector(math.random(350), math.random(350),0))
 		ability:OnSpellStart()
 		ability:StartCooldown(ability:GetCooldown(-1))
 	end
@@ -254,7 +254,7 @@ end
 
 function PiercingDamage(keys)
 	if keys.caster:PassivesDisabled() then return end
-	local damage = keys.damage*50/(GameRules._roundnumber*25) + keys.target:GetMaxHealth() * 0.02
+	local damage = keys.damage*50/(RoundManager:GetEventsFinished()*25) + keys.target:GetMaxHealth() * 0.02
 	ApplyDamage({ victim = keys.target, attacker = keys.caster, damage = damage/keys.caster:GetSpellDamageAmp(), damage_type = DAMAGE_TYPE_PURE, ability = keys.ability })
 end
 

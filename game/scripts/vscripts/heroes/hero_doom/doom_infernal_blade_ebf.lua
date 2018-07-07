@@ -71,7 +71,7 @@ if IsServer() then
 	end
 end
 function modifier_doom_infernal_blade_ebf_autocast:GetActivityTranslationModifiers(params)
-	if self:GetAbility():IsCooldownReady() then
+	if self:GetAbility():IsCooldownReady() and IsServer() then
 		return "infernal_blade"
 	end
 end

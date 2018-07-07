@@ -47,7 +47,7 @@ local function StartCombat(self)
 					elseif roll == 12 then
 						zombieType = "npc_dota_boss3b"
 					end
-					local zombie = CreateUnitByName(zombieType, hero:GetAbsOrigin() + ActualRandomVector(1200, 600), true, nil, nil, DOTA_TEAM_BADGUYS)
+					local zombie = CreateUnitByName(zombieType, RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
 					zombie:SetBaseMaxHealth(75 * GameRules:GetGameDifficulty())
 					zombie:SetMaxHealth(75 * GameRules:GetGameDifficulty())
 					zombie:SetHealth(75 * GameRules:GetGameDifficulty())
@@ -130,10 +130,28 @@ local function PrecacheUnits(self, context)
 	return true
 end
 
+local function LoadSpawns(self)
+	if not self.spawnLoadCompleted then
+		RoundManager.spawnPositions = {}
+		RoundManager.boundingBox = "sepulcher_event_cursed_cemetary"
+		for _,spawnPos in ipairs( Entities:FindAllByName( RoundManager.boundingBox.."_spawner" ) ) do
+			table.insert( RoundManager.spawnPositions, spawnPos:GetAbsOrigin() )
+		end
+		self.heroSpawnPosition = self.heroSpawnPosition or nil
+		for _,spawnPos in ipairs( Entities:FindAllByName( RoundManager.boundingBox.."_heroes") ) do
+			self.heroSpawnPosition = spawnPos:GetAbsOrigin()
+			break
+		end
+
+		self.spawnLoadCompleted = true
+	end
+end
+
 local funcs = {
 	["StartEvent"] = StartEvent,
 	["EndEvent"] = EndEvent,
 	["PrecacheUnits"] = PrecacheUnits,
+	["LoadSpawns"] = LoadSpawns,
 	["FirstChoice"] = FirstChoice,
 	["StartCombat"] = StartCombat,
 	["HandoutRewards"] = HandoutRewards,

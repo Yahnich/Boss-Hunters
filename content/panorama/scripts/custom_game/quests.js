@@ -17,6 +17,13 @@ GameEvents.Subscribe( "boss_hunters_event_has_ended", RemoveEventPopup);
 GameEvents.Subscribe( "boss_hunters_event_has_started", ShowEventPopup);
 GameEvents.Subscribe( "boss_hunters_prep_time_has_ended", RemoveRewardsPopup);
 GameEvents.Subscribe( "boss_hunters_event_reward_given", ShowRewardsPopup);
+GameEvents.Subscribe( "bh_move_camera_position", UpdateCameraPosition);
+
+function UpdateCameraPosition(args)
+{
+	GameUI.SetCameraTargetPosition(args.position, 0.3)
+}
+
 
 GameEvents.Subscribe( "game_tools_ask_nettable_info", SendNetTableInfo);
 

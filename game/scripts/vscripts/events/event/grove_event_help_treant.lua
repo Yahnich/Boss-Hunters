@@ -36,7 +36,7 @@ local function StartCombat(self, bFight)
 		}
 		self.timeRemaining = 0
 		self.bossesToSpawn = 1 + math.floor( math.log( RoundManager:GetRaidsFinished() + 1 ) )
-		self.mobsToSpawn = 4 + math.floor( math.log( RoundManager:GetEventsFinished() + 1 ) )
+		self.mobsToSpawn = 2 + math.floor( math.log( RoundManager:GetEventsFinished() + 1 ) )
 		self.helpedTreant = true
 		BOSS_SPAWNS = {"npc_dota_boss21", "npc_dota_boss23_m"}
 		MOB_SPAWNS = {"npc_dota_boss26_mini", "npc_dota_boss6", "npc_dota_creature_broodmother", "npc_dota_boss10"}
@@ -114,7 +114,7 @@ local function EndEvent(self, bWon)
 		CustomGameEventManager:UnregisterListener( eID )
 	end
 	
-	if self.helpedTreant then
+	if self.helpedTreant and bWon then
 		for _, hero in ipairs( HeroList:GetRealHeroes() ) do
 			hero:AddBlessing("event_buff_help_treant")
 		end
@@ -136,10 +136,27 @@ local function PrecacheUnits(self, context)
 	return true
 end
 
+local function LoadSpawns(self)
+	if not self.spawnLoadCompleted then
+		RoundManager.spawnPositions = {}
+		RoundManager.boundingBox = "grove_combat_2"
+		for _,spawnPos in ipairs( Entities:FindAllByName( RoundManager.boundingBox.."_spawner" ) ) do
+			table.insert( RoundManager.spawnPositions, spawnPos:GetAbsOrigin() )
+		end
+		self.heroSpawnPosition = self.heroSpawnPosition or nil
+		for _,spawnPos in ipairs( Entities:FindAllByName( RoundManager.boundingBox.."_heroes") ) do
+			self.heroSpawnPosition = spawnPos:GetAbsOrigin()
+			break
+		end
+		self.spawnLoadCompleted = true
+	end
+end
+
 local funcs = {
 	["StartEvent"] = StartEvent,
 	["EndEvent"] = EndEvent,
 	["PrecacheUnits"] = PrecacheUnits,
+	["LoadSpawns"] = LoadSpawns,
 	["FirstChoice"] = FirstChoice,
 	["SecondChoice"] = SecondChoice,
 	["StartCombat"] = StartCombat,
