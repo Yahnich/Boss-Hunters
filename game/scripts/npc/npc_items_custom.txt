@@ -111,12 +111,15 @@
 #base "items/item_iron_rose.txt"
 #base "items/item_kitteh_amulet.txt"
 #base "items/item_lightningbottle.txt"
+#base "items/item_hawks_feather.txt"
+#base "items/item_iron_rod.txt"
+#base "items/item_visionarys_cutlass.txt"
 
 // #base "items/item_illusionists_charm.txt"
 // #base "items/item_tricksters_blade.txt"
 // #base "items/item_mirrors_edge.txt"
 
-// Next ID is 7034
+// Next ID is 7038
 
 "DOTAAbilities"
 {

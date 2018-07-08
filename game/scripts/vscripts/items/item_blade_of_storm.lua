@@ -37,7 +37,7 @@ function modifier_item_blade_of_storm:OnAttackLanded(params)
 	if IsServer() then
 		if params.attacker == self:GetParent() and RollPercentage(self.shockChance) then
 			self:GetAbility():DealDamage(self:GetParent(), params.target, self.shockDamage, {damage_type = DAMAGE_TYPE_PURE})
-			self:GetAbility():Stun(params.target, self.shockDuration, false)
+			params.target:Paralyze(self:GetAbility(), self:GetCaster(), self.shockDuration)
 		end
 	end
 end

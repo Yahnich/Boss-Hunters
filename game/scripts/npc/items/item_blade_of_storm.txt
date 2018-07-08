@@ -14,7 +14,7 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"2400"	
+		"ItemCost"						"2750"	
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -93,7 +93,7 @@
 			"08"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"shock_duration"		"0.1"
+				"shock_duration"		"0.5"
 			}
 		}
 	}

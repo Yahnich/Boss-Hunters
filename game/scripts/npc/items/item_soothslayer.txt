@@ -55,7 +55,7 @@
 			"soundfile"					"soundevents/game_sounds_items.vsndevts"
 		}
 	
-		"AbilityCooldown"				"3"
+		"AbilityCooldown"				"5"
 
 		
 		// Special	
@@ -85,7 +85,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"50"
+				"bonus_damage"			"40"
 			}
 			"06"
 			{

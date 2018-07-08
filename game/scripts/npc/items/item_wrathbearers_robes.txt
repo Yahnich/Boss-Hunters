@@ -114,7 +114,7 @@
 			"11"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"damage"				"2"
+				"damage"				"1.5"
 			}
 			"12"
 			{

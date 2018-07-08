@@ -27,10 +27,6 @@ function modifier_plate_of_the_unbreakable_passive:OnIntervalThink()
 	self.ms = self:GetParent():GetIdealSpeedNoSlows()
 end
 
-function modifier_plate_of_the_unbreakable_passive:CheckState()
-	return {[MODIFIER_STATE_ROOTED] = false}
-end
-
 function modifier_plate_of_the_unbreakable_passive:GetPriority()
 	return MODIFIER_PRIORITY_SUPER_ULTRA
 end

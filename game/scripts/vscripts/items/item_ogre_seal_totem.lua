@@ -168,11 +168,6 @@ end
 
 function modifier_ogreseal_flop:OnCreated( kv )
 	if IsServer() then
-		if self.nHopCount == nil then
-			self.nHopCount = 1
-			self.flop_distances = {300, 300, 600}
-		end
-
 		if self:GetCaster():IsRealHero() then
 			self:GetCaster():StartGesture( ACT_DOTA_FLAIL )
 		end
@@ -193,7 +188,15 @@ function modifier_ogreseal_flop:OnCreated( kv )
 
 		self.vLoc = Vector( kv.vLocX, kv.vLocY, kv.vLocZ )
 		self.vLastKnownTargetPos = self.vLoc
+		
+		
 
+		if self.nHopCount == nil then
+			local flopDist = CalculateDistance( self.vStartPosition, self.vLoc )
+			self.nHopCount = 1
+			self.flop_distances = {flopDist, flopDist, flopDist}
+		end
+		
 		local duration = 0
 		local flDesiredHeight = OGRE_MINIMUM_HEIGHT_ABOVE_LOWEST * self.nHopCount * duration * duration
 		local flLowZ = math.min( self.vLastKnownTargetPos.z, self.vStartPosition.z )

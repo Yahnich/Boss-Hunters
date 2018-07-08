@@ -247,8 +247,8 @@
 		// Attack
 		//----------------------------------------------------------------
 		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
-		"AttackDamageMin"			"20"		// Damage range min.
-		"AttackDamageMax"			"35"		// Damage range max.
+		"AttackDamageMin"			"50"		// Damage range min.
+		"AttackDamageMax"			"60"		// Damage range max.
 		"AttackRate"				"2.7"			// Speed of attack.
 		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"18000"		// Range within a target can be acquired.
@@ -3027,7 +3027,7 @@
 			}
 		}
 	}
-	"npc_dota_boss31"
+	"npc_dota_boss_warlock_demon"
 	{
 		// General
 		//----------------------------------------------------------------
@@ -3047,10 +3047,10 @@
 		// Abilities
 		//----------------------------------------------------------------
 		"AbilityLayout"				"6"
-		"Ability1"					"boss_true_strike_vh"			// Ability 1.
-		"Ability2"					"boss_fire_aura"			// Ability 1.
-		"Ability3"					"boss_splash"			// Ability 1.
-		"Ability4"					"boss_melee_fire_orb_vh"			// Ability 1.
+		"Ability1"					"boss_warlock_demon_lust"				// Ability 1.
+		"Ability2"					"boss_fire_aura"						// Ability 1.
+		"Ability3"					"boss_splash"							// Ability 1.
+		"Ability4"					"boss_warlock_inferno_spikes"			// Ability 1.
 	
 		// Armor
 		//----------------------------------------------------------------
@@ -3127,7 +3127,7 @@
 			"DefaultState"				"Invade"
 		}
 	}
-	"npc_dota_boss32_trueform"
+	"npc_dota_boss_warlock_true_form"
 	{
 		// General
 		//----------------------------------------------------------------
@@ -3146,9 +3146,9 @@
 		// Abilities
 		//----------------------------------------------------------------
 		"AbilityLayout"				"6"
-		"Ability1"					"boss_melee_fire_orb_vh"			// Ability 1.
-		"Ability2"					"boss_meteor"			// Ability 1.
-		"Ability3"					"boss_true_strike_vh"			// Ability 1.
+		"Ability1"					"boss_warlock_demon_lust"			// Ability 1.
+		"Ability2"					"boss_warlock_rain_of_fire"			// Ability 1.
+		"Ability3"					"boss_warlock_inferno_spikes"		// Ability 1.
 	
 		// Armor
 		//----------------------------------------------------------------
@@ -3225,7 +3225,7 @@
 			"DefaultState"				"Invade"
 		}
 	}
-	"npc_dota_boss32"
+	"npc_dota_boss_warlock"
 	{
 		// General
 		//----------------------------------------------------------------
@@ -3243,7 +3243,11 @@
 	
 		// Abilities
 		//----------------------------------------------------------------
-		"Ability3"					"boss_trueform_warlock_vh"			// Ability 1.
+		"Ability1"					"boss_warlock_desecrate"			// Ability 1.
+		"Ability2"					"boss_warlock_conflagration"			// Ability 1.
+		"Ability3"					"boss_warlock_fatal_bonds"			// Ability 1.
+		"Ability3"					"boss_warlock_unholy_summon"			// Ability 1.
+		"Ability3"					"boss_warlock_ultimate_form"			// Ability 1.
 	
 		// Armor
 		//----------------------------------------------------------------
@@ -4016,8 +4020,8 @@
 		// Attack
 		//----------------------------------------------------------------
 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"			"40"		// Damage range min.
-		"AttackDamageMax"			"60"		// Damage range max.
+		"AttackDamageMin"			"60"		// Damage range min.
+		"AttackDamageMax"			"90"		// Damage range max.
 		"AttackRate"				"1.5"		// Speed of attack.
 		"AttackAnimationPoint"		"0.5"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"2500"		// Range within a target can be acquired.
@@ -6158,8 +6162,8 @@
 		// Attack
 		//----------------------------------------------------------------
 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"			"25"		// Damage range min.
-		"AttackDamageMax"			"30"		// Damage range max.
+		"AttackDamageMin"			"50"		// Damage range min.
+		"AttackDamageMax"			"75"		// Damage range max.
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"				"2.7"		// Speed of attack.
 		"AttackAnimationPoint"		"1.5"		// Normalized time in animation cycle to attack.
@@ -6187,7 +6191,7 @@
 	
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"150"		// Base health.
+		"StatusHealth"				"500"		// Base health.
 		"StatusHealthRegen"			"15.0"		// Health regeneration rate.
 		"StatusMana"				"0"			// Base mana.
 		"StatusManaRegen"			"0"			// Mana regeneration rate.
@@ -6312,8 +6316,8 @@
 		// Attack
 		//----------------------------------------------------------------
 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"			"20"		// Damage range min.
-		"AttackDamageMax"			"25"		// Damage range max.
+		"AttackDamageMin"			"40"		// Damage range min.
+		"AttackDamageMax"			"50"		// Damage range max.
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"				"1.5"		// Speed of attack.
 		"AttackAnimationPoint"		"1.5"		// Normalized time in animation cycle to attack.
@@ -6341,7 +6345,7 @@
 	
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"50"		// Base health.
+		"StatusHealth"				"150"		// Base health.
 		"StatusHealthRegen"			"0.5"		// Health regeneration rate.
 		"StatusMana"				"0"			// Base mana.
 		"StatusManaRegen"			"0"			// Mana regeneration rate.
@@ -6437,7 +6441,7 @@
 	
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"50"		// Base health.
+		"StatusHealth"				"75"		// Base health.
 		"StatusHealthRegen"			"2"		// Health regeneration rate.
 		"StatusMana"				"0"			// Base mana.
 		"StatusManaRegen"			"0"			// Mana regeneration rate.

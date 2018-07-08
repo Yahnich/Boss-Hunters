@@ -230,6 +230,10 @@ function C_DOTA_Ability_Lua:RollPRNG( percentage )
 	end
 end
 
+function RollPercentage( percentage )
+	return RandomInt(1, 100) <= percentage
+end
+
 function C_DOTA_Modifier_Lua:RollPRNG( percentage )
 	local internalInt = (100/percentage)
 	local startingRoll = internalInt^2

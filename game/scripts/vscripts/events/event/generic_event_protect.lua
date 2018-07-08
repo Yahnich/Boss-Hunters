@@ -47,13 +47,13 @@ local function StartCombat(self)
 				local spawns = 1 + math.floor( (60 - self.timeRemaining)/15 )
 				for i = 1, spawns do
 					local zombie = CreateUnitByName("npc_dota_mini_boss1", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
-					local hp = zombie:GetBaseMaxHealth() * (activeHeroes / 2) * 1.2
+					local hp = zombie:GetBaseMaxHealth() * (activeHeroes / 2) * 1.6
 					zombie:SetBaseMaxHealth( hp )
 					zombie:SetMaxHealth( hp )
 					zombie:SetHealth( hp )
 				end
 				
-				return 3
+				return 2
 			else
 				self:EndEvent(true)
 			end

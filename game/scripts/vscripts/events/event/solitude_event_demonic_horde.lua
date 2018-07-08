@@ -47,14 +47,11 @@ local function StartCombat(self)
 						demonType = "npc_dota_boss33_b"
 					end
 					local zombie = CreateUnitByName(demonType, hero:GetAbsOrigin() + ActualRandomVector(1200, 600), true, nil, nil, DOTA_TEAM_BADGUYS)
-					zombie:SetBaseMaxHealth(100 * GameRules:GetGameDifficulty())
-					zombie:SetMaxHealth(100 * GameRules:GetGameDifficulty())
-					zombie:SetHealth(100 * GameRules:GetGameDifficulty())
-					
+					zombie:SetAverageBaseDamage( math.min(7, roll) * 15, 35 )
 					zombie:SetModelScale(1)
 				end
 					
-				return math.max( 5, (self.timeRemaining or 60) / 5 )
+				return math.max( 8, (self.timeRemaining or 60) / 5 )
 			end
 		end
 	end)

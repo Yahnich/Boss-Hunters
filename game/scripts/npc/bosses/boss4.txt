@@ -31,12 +31,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage_per_unit"		"15 30"
+				"damage_per_unit"		"25 50"
 			}
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"search_radius"			"600"
+				"search_radius"			"900"
 			}
 			"02"
 			{
@@ -129,7 +129,7 @@
 		"AbilityTextureName"			"undying_soul_rip"
 		
 		"AbilityCastPoint"				"0.3"
-		"AbilityCooldown"				"20"
+		"AbilityCooldown"				"15"
 		"AbilityCastAnimation"			"ACT_DOTA_TELEPORT"
 		"AbilityChannelTime"			"2"
 		

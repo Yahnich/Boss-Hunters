@@ -1,30 +1,27 @@
 "DOTAAbilities"
 {
 	//=================================================================================================================
-	// TITAN Armor
+	// Barrier Leaves
 	//=================================================================================================================
-	"item_hunters_hatchet"
+	"item_hawks_feather"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"3227"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_TREE | DOTA_UNIT_TARGET_CUSTOM"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_CUSTOM"
+		"ID"							"7034"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_lua"
-		"ScriptFile"					"items/item_hunters_hatchet"
-		"AbilityTextureName"			"item_quelling_blade"
+		"ScriptFile"					"items/item_hawks_feather"
+		"AbilityTextureName"			"custom/hawks_feather"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
 		
-		"ItemCost"						"450"
-		"ItemShopTags"					"damage"
+		"ItemCost"						"325"
+		"ItemShopTags"					"barrier"
 		"ItemQuality"					"component"
-		"ItemAliases"					"quelling_blade;hunters hatchet"
+		"ItemAliases"					"faerie fire"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-		
-		"AbilityCooldown"				"0.1"
+
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
@@ -33,7 +30,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"20"
+				"pierce_chance"			"35"
 			}
 		}
 	}

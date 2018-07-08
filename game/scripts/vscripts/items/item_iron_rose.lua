@@ -80,14 +80,22 @@ end
 modifier_item_iron_rose_aura = class({})
 function modifier_item_iron_rose_aura:OnCreated(table)
 	self.reflect = self:GetSpecialValueFor("reflect")
+	self.bonus_armor = self:GetSpecialValueFor("bonus_armor")
 end
 
 function modifier_item_iron_rose_aura:OnRefresh(table)
 	self.reflect = self:GetSpecialValueFor("reflect")
+	self.bonus_armor = self:GetSpecialValueFor("bonus_armor")
 end
 
 function modifier_item_iron_rose_aura:DeclareFunctions()
-	return {MODIFIER_EVENT_ON_TAKEDAMAGE}
+	return {MODIFIER_EVENT_ON_TAKEDAMAGE,
+			MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS
+			}
+end
+
+function modifier_item_iron_rose_aura:GetModifierPhysicalArmorBonus()
+	return self.bonus_armor
 end
 
 function modifier_item_iron_rose_aura:OnTakeDamage(params)

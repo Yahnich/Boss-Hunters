@@ -27,7 +27,6 @@
 			"precache"					"soundevents/game_sounds_items.vsndevts"
 		}
 		
-		"AbilityCooldown"				"15"
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
@@ -46,7 +45,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"20"
+				"bonus_damage"			"15"
 			}
 		}
 	}

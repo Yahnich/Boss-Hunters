@@ -69,12 +69,12 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"stack_regen"			"20"
+				"stack_regen"			"15"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"max_stacks"			"10"
+				"max_stacks"			"15"
 			}
 			"05"
 			{
@@ -89,12 +89,12 @@
 			"07"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_strength"		"40"
+				"bonus_strength"		"25"
 			}
 			"08"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_health"			"1600"
+				"bonus_health"			"1200"
 			}
 		}
 	}

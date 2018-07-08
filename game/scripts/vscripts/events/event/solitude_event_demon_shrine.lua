@@ -49,9 +49,9 @@ local function StartCombat(self, bFight)
 		self.timeRemaining = 0
 		self.enemiesToSpawn = 3 + RoundManager:GetRaidsFinished()
 		Timers:CreateTimer(5, function()
-			local enemyType = "npc_dota_boss31"
+			local enemyType = "npc_dota_boss_warlock_demon"
 			if RollPercentage(20) then
-				enemyType = "npc_dota_boss32_trueform"
+				enemyType = "npc_dota_boss_warlock_true_form"
 			end
 			local spawn = CreateUnitByName(enemyType, RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
 			spawn.unitIsRoundBoss = true
@@ -158,8 +158,8 @@ function HandoutRewards(self, bWon)
 end
 
 local function PrecacheUnits(self, context)
-	PrecacheUnitByNameSync("npc_dota_boss31", context)
-	PrecacheUnitByNameSync("npc_dota_boss32", context)
+	PrecacheUnitByNameSync("npc_dota_boss_warlock_demon", context)
+	PrecacheUnitByNameSync("npc_dota_boss_warlock_true_form", context)
 	return true
 end
 

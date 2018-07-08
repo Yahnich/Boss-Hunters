@@ -23,7 +23,7 @@
 		"ItemResult"					"item_siegebreaker"
 		"ItemRequirements"
 		{
-			"01"						"item_soldiers_pike"
+			"01"						"item_soldiers_pike;item_hawks_feather"
 		}
 	}
 	"item_siegebreaker"
@@ -57,22 +57,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"pierce_chance"				"20"
+				"pierce_chance"			"50"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"pierce_damage"				"65"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
 				"bonus_range"			"400"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"radius"				"325"
 			}
 		}
 	}

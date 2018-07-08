@@ -54,7 +54,7 @@
 			"soundfile"					"soundevents/game_sounds_items.vsndevts"
 		}
 	
-		"AbilityCooldown"				"15"
+		"AbilityCooldown"				"20"
 
 		
 		// Special	
@@ -64,7 +64,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"armor"					"10"
+				"armor"					"0"
 			}
 			"02"
 			{
@@ -84,12 +84,12 @@
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_health"			"1000"
+				"bonus_health"			"750"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"max_hp_heal"			"27"
+				"max_hp_heal"			"20"
 			}
 			"07"
 			{

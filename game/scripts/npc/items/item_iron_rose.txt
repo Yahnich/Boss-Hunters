@@ -14,7 +14,7 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"1150"	
+		"ItemCost"						"950"	
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -23,7 +23,7 @@
 		"ItemResult"					"item_iron_rose"
 		"ItemRequirements"
 		{
-			"01"						"item_ogre_club;item_staff_of_magi;item_crown_of_thorns;item_strange_trinket"
+			"01"						"item_ogre_club;item_staff_of_magi;item_crown_of_thorns;item_strange_trinket;item_mithril_armor"
 		}
 	}
 	"item_iron_rose"
@@ -61,14 +61,19 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_mana"			"500"
+				"bonus_armor"			"5"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"reflect"				"20"
+				"bonus_mana"			"500"
 			}
 			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"reflect"				"20"
+			}
+			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"radius"				"900"

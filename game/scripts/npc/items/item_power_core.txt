@@ -53,8 +53,7 @@
 			"particle"					"particles/items_fx/blademail.vpcf"
 			"soundfile"					"soundevents/game_sounds_items.vsndevts"
 		}
-	
-		"AbilityCooldown"				"15"
+
 
 		
 		// Special	
@@ -64,7 +63,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_all"				"15"
+				"bonus_all"				"10"
 			}
 		}
 	}
