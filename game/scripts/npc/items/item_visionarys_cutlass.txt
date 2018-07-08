@@ -3,58 +3,52 @@
 	//=================================================================================================================
 	// Recipe: TITAN Armor
 	//=================================================================================================================
-	"item_recipe_glacier_boots"
+	"item_recipe_visionarys_cutlass"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"3249"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"7036"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"850"	
+		"ItemCost"						"1800"	
 		"ItemShopTags"					""
 		
 		// Recipe
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemRecipe"					"1"
-		"ItemResult"					"item_glacier_boots"
+		"ItemResult"					"item_visionarys_cutlass"
 		"ItemRequirements"
 		{
-			"01"						"item_elven_boots;item_mithril_armor;item_ice_fang"
+			"01"						"item_broadsword;item_hawks_feather;item_iron_rod"
 		}
 	}
 	//=================================================================================================================
-	// TITAN Armor
+	// Barrier Leaves
 	//=================================================================================================================
-	"item_glacier_boots"
+	"item_visionarys_cutlass"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"3250"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_TOGGLE"
+		"ID"							"7037"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_lua"
-		"ScriptFile"					"items/item_glacier_boots"
-		"AbilityTextureName"			"custom/glacier_boots"
+		"ScriptFile"					"items/item_visionarys_cutlass"
+		"AbilityTextureName"			"custom/visionarys_cutlass"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
 		
-		"ItemCost"						"1450"
-		"ItemShopTags"					"boots;slow"
+		"ItemCost"						"525"
+		"ItemShopTags"					"damage;mkb"
 		"ItemQuality"					"epic"
-		"ItemAliases"					"shivas;glacier boots"
+		"ItemAliases"					"visionarys cutlass"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-		
-		
-		"particle"
-		{
-			"particle"					"particles/status_fx/status_effect_wyvern_cold_embrace.vpcf"
-			"particle"					"particles/generic_gameplay/generic_slowed_cold.vpcf"
-		}
-		
+
+
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
@@ -62,38 +56,24 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_ms"				"60"
+				"bonus_damage"			"55"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_armor"			"5"
+				"var_type"				"FIELD_FLOAT"
+				"pierce_chance"			"65"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"active_ms"				"-175"
+				"var_type"				"FIELD_FLOAT"
+				"pierce_damage"			"80"
 			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"active_armor"			"15"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"active_as"				"-150"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"aura_slow"				"-50"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"900"
-			}
+		}
+
+		"precache"
+		{
+			"particle"  "particles/items2_fx/pipe_of_insight.vpcf"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_HERO.vsndevts"
 		}
 	}
 }

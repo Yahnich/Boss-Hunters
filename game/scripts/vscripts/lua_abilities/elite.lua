@@ -33,8 +33,7 @@ end
 
 function BurningAura(keys)
 	local damage = keys.target:GetMaxHealth() * 0.09
-	-- ability:ApplyDataDrivenModifier(caster,unit,"modifier_elite_burning_health_regen_block",{duration = 0.5})
-	ApplyDamage({ victim = keys.target, attacker = keys.caster, damage = damage/keys.caster:GetSpellDamageAmp(), damage_type = DAMAGE_TYPE_MAGICAL, ability = ability })
+	ApplyDamage({ victim = keys.target, attacker = keys.caster, damage = damage, damage_type = DAMAGE_TYPE_MAGICAL, ability = ability, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION })
 end
 
 function FarseerRange(keys)
@@ -63,8 +62,8 @@ function CreateFrostShards(keys)
 				EmitSoundOn("Hero_Ancient_Apparition.IceBlast.Target", caster)
 				local targets = FindUnitsInRadius( caster:GetTeam(), shardLoc, nil, 400, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, 0, false )
 				for _, frozenTarget in pairs(targets) do
-					ApplyDamage({ victim = frozenTarget, attacker = keys.caster, damage = 75, damage_type = DAMAGE_TYPE_MAGICAL, ability = ability })
-					ability:ApplyDataDrivenModifier(caster, frozenTarget, "modifier_elite_coldsnapped", {duration = 2})
+					ApplyDamage({ victim = frozenTarget, attacker = keys.caster, damage = 80, damage_type = DAMAGE_TYPE_MAGICAL, ability = ability })
+					ability:ApplyDataDrivenModifier(caster, frozenTarget, "modifier_elite_coldsnapped", {duration = 4})
 				end
 			end)
 		end)

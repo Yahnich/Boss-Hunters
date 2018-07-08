@@ -8,8 +8,8 @@ modifier_boss_evil_core_passive = class({})
 LinkLuaModifier("modifier_boss_evil_core_passive", "bosses/boss_evil_core/boss_evil_core_passive", LUA_MODIFIER_MOTION_NONE)
 
 if IsServer() then
-	POSSIBLE_BOSSES = {	["npc_dota_boss31"] = 100, 
-						["npc_dota_boss32_trueform"] = 100,
+	POSSIBLE_BOSSES = {	["npc_dota_boss_warlock_golem"] = 100, 
+						["npc_dota_boss_warlock_true_form"] = 100,
 						["npc_dota_boss33_a"] = 80, 
 						["npc_dota_boss33_b"] = 80, 
 						["npc_dota_boss34"] = 60, 

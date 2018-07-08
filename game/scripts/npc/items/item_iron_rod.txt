@@ -1,30 +1,27 @@
 "DOTAAbilities"
 {
 	//=================================================================================================================
-	// TITAN Armor
+	// Barrier Leaves
 	//=================================================================================================================
-	"item_hunters_hatchet"
+	"item_iron_rod"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"3227"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_TREE | DOTA_UNIT_TARGET_CUSTOM"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_CUSTOM"
+		"ID"							"7035"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_lua"
-		"ScriptFile"					"items/item_hunters_hatchet"
-		"AbilityTextureName"			"item_quelling_blade"
+		"ScriptFile"					"items/item_iron_rod"
+		"AbilityTextureName"			"custom/iron_rod"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
 		
-		"ItemCost"						"450"
-		"ItemShopTags"					"damage"
+		"ItemCost"						"525"
+		"ItemShopTags"					"barrier"
 		"ItemQuality"					"component"
-		"ItemAliases"					"quelling_blade;hunters hatchet"
+		"ItemAliases"					"faerie fire"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-		
-		"AbilityCooldown"				"0.1"
+
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
@@ -32,9 +29,20 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"20"
+				"var_type"				"FIELD_FLOAT"
+				"pierce_chance"			"25"
 			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"pierce_damage"			"80"
+			}
+		}
+
+		"precache"
+		{
+			"particle"  "particles/items2_fx/pipe_of_insight.vpcf"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_HERO.vsndevts"
 		}
 	}
 }

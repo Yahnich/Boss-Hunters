@@ -19,19 +19,20 @@ function modifier_item_orb_of_renewal_passive:GetModifierPercentageCooldownStack
 	return self.cdr
 end
 
-function modifier_item_orb_of_renewal_passive:OnAbilityFullyCast(params)
-	if params.ability and params.ability:GetCooldownTimeRemaining() > 0.5 and params.unit == self:GetParent() then
+function modifier_item_orb_of_renewal_passive:OnAbilityFullyCast(params)	
+	local cdReduction = self.reduction * self:GetParent():GetCooldownReduction()
+	if params.ability and params.ability:GetCooldownTimeRemaining() > cdReduction and params.unit == self:GetParent() then
 		for i = 0, params.unit:GetAbilityCount() - 1 do
 			local ability = params.unit:GetAbilityByIndex( i )
 			if ability and params.ability ~= ability then
-				ability:ModifyCooldown(self.reduction)
+				ability:ModifyCooldown(cdReduction)
 			end
 		end
 		if bItems then
 			for i=0, 5, 1 do
 				local current_item = params.unit:GetItemInSlot(i)
 				if current_item ~= nil and params.ability ~= current_item then
-					current_item:ModifyCooldown(self.reduction)
+					current_item:ModifyCooldown(cdReduction)
 				end
 			end
 		end

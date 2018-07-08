@@ -30,6 +30,7 @@
 		"item"		"item_mithril_armor"
 		"item"		"item_ice_fang"
 		"item"		"item_broadsword"
+		"item"		"item_iron_rod"
     }
     "misc"
     {
@@ -44,6 +45,7 @@
 		"item"		"item_warm_fire"
 		"item"		"item_phantom_staff"
 		"item"		"item_barrier_leaves"
+		"item"		"item_hawks_feather"
     }
     // Level 1 - Green Recipes
     "basics"
@@ -125,6 +127,7 @@
 		"item"		"item_headchopper"
 		"item"		"item_soothslayer"
 		"item"		"item_shadow_blade"
+		"item"		"item_visionarys_cutlass"
     }
     // Level 4 - Orange / Orb / Artifacts
     "artifacts"

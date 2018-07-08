@@ -75,7 +75,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"bonus_all"				"10"
+				"bonus_all"				"8"
 			}
 			"05"
 			{

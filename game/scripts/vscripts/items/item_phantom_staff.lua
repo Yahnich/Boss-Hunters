@@ -12,9 +12,7 @@ function modifier_item_phantom_staff:GetTextureName()
 end
 
 function modifier_item_phantom_staff:CheckState()
-	return {[MODIFIER_STATE_STUNNED] = true,
-			[MODIFIER_STATE_FROZEN] = true,
-			[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
+	return {[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
 			[MODIFIER_STATE_MAGIC_IMMUNE] = true,
 			[MODIFIER_STATE_ATTACK_IMMUNE] = true,
 			[MODIFIER_STATE_UNTARGETABLE] = true,

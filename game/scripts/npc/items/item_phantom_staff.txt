@@ -30,7 +30,7 @@
 			"particle"					"particles/status_fx/status_effect_necrolyte_spirit.vpcf"
 		}
 		
-		"AbilityCooldown"				"60"
+		"AbilityCooldown"				"40"
 		"AbilitySharedCooldown"			"ghost;ethereal"
 
 		// Special	
@@ -40,7 +40,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"1"
+				"duration"				"1.5"
 			}
 		}
 	}

@@ -3,22 +3,22 @@ modifier_stats_system_handler = class({})
 
 -- OTHER
 MOVESPEED_TABLE = {0,25,50,75,100,150,175,200,225,250,300}
-MANA_TABLE = {0,500,1000,1500,2000,3000,3500,4000,4500,5000,6000}
+MANA_TABLE = {0,300,600,900,1200,1800,2100,2400,2700,3000,3600}
 MANA_REGEN_TABLE = {0,3,6,9,12,18,21,24,27,30,40}
 HEAL_AMP_TABLE = {0,10,20,30,40,60,70,80,90,100,120}
 -- OFFENSE
-ATTACK_DAMAGE_TABLE = {0,35,70,105,140,200,235,270,305,340,400}
-SPELL_AMP_TABLE = {0,15,30,45,60,90,105,120,135,150,180}
+ATTACK_DAMAGE_TABLE = {0,25,50,75,100,150,175,200,225,250,300}
+SPELL_AMP_TABLE = {0,12,24,36,48,60,72,84,96,108,120}
 COOLDOWN_REDUCTION_TABLE = {0,4,8,12,16,24,28,32,36,40,48}
-ATTACK_SPEED_TABLE = {0,35,70,105,140,200,235,270,305,340,400}
+ATTACK_SPEED_TABLE = {0,25,50,75,100,150,175,200,225,250,300}
 STATUS_AMP_TABLE = {0,4,8,12,16,24,28,32,36,40,48}
 
 -- DEFENSE
-ARMOR_TABLE = {0,4,8,12,16,24,28,32,36,40,48}
+ARMOR_TABLE = {0,2,4,6,8,12,14,16,18,20,24}
 MAGIC_RESIST_TABLE = {0,4,8,12,16,24,28,32,36,40,48}
-DAMAGE_BLOCK_TABLE = {0,20,40,60,80,120,140,160,180,200,240}
-ATTACK_RANGE_TABLE = {0,100,200,300,400,600,700,800,900,1000,1200}
-HEALTH_TABLE = {0,300,600,900,1200,1800,2100,2400,2700,3000,3600}
+ATTACK_RANGEM_TABLE = {0,25,50,75,100,150,175,200,225,250,300}
+ATTACK_RANGE_TABLE = {0,50,100,150,200,300,350,400,450,500,600}
+HEALTH_TABLE = {0,250,500,750,1000,1500,1750,2000,2250,2500,3000}
 HEALTH_REGEN_TABLE = {0,5,10,15,20,30,35,40,45,50,60}
 STATUS_REDUCTION_TABLE = {0,5,10,15,20,30,35,40,45,50,60}
 
@@ -51,8 +51,13 @@ function modifier_stats_system_handler:UpdateStatValues()
 	-- DEFENSE
 	self.pr = ARMOR_TABLE[tonumber(netTable["pr"]) + 1]
 	self.mr = MAGIC_RESIST_TABLE[tonumber(netTable["mr"]) + 1]
-	self.db = DAMAGE_BLOCK_TABLE[tonumber(netTable["db"]) + 1]
-	self.ar = ATTACK_RANGE_TABLE[tonumber(netTable["ar"]) + 1]
+	
+	if self:GetParent():IsRangedAttacker() then 
+		self.ar = ATTACK_RANGE_TABLE[tonumber(netTable["ar"]) + 1]
+	else
+		self.ar = ATTACK_RANGE_TABLE[tonumber(netTable["ar"]) + 1]
+	end
+	
 	self.hp = HEALTH_TABLE[tonumber(netTable["hp"]) + 1]
 	self.hpr = HEALTH_REGEN_TABLE[tonumber(netTable["hpr"]) + 1]
 	self.sr = STATUS_REDUCTION_TABLE[tonumber(netTable["sr"]) + 1]
@@ -73,7 +78,7 @@ function modifier_stats_system_handler:DeclareFunctions()
 		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
 		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
 		MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
-		MODIFIER_PROPERTY_TOTAL_CONSTANT_BLOCK,
+		-- MODIFIER_PROPERTY_TOTAL_CONSTANT_BLOCK,
 		MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
 		MODIFIER_PROPERTY_HEALTH_BONUS,
 		MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
@@ -102,16 +107,14 @@ function modifier_stats_system_handler:GetModifierPhysicalArmorBonus()
 end
 function modifier_stats_system_handler:GetModifierMagicalResistanceBonus() return self.mr end
 
-function modifier_stats_system_handler:GetModifierTotal_ConstantBlock(params) 
-	if RollPercentage( 50 ) and not self:GetParent():IsRangedAttacker() and params.attacker ~= self:GetParent() then 
-		return self.db or 0
-	end
-end
+-- function modifier_stats_system_handler:GetModifierTotal_ConstantBlock(params) 
+	-- if RollPercentage( 50 ) and not self:GetParent():IsRangedAttacker() and params.attacker ~= self:GetParent() then 
+		-- return self.db or 0
+	-- end
+-- end
 
 function modifier_stats_system_handler:GetModifierAttackRangeBonus() 
-	if self:GetParent():IsRangedAttacker() then 
-		return self.ar or 0
-	end
+	return self.ar or 0
 end
 
 function modifier_stats_system_handler:GetModifierHealthBonus() return 300 + (self.hp or 0) end

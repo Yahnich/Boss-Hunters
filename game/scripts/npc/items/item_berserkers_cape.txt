@@ -151,7 +151,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"max_hp_drain"			"1 2 3 4"
+				"max_hp_drain"			"1.25 2.5 3.75 5"
 			}
 			"04"
 			{
@@ -207,7 +207,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"max_hp_drain"			"1 2 3 4"
+				"max_hp_drain"			"1.25 2.5 3.75 5"
 			}
 			"04"
 			{
@@ -263,7 +263,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"max_hp_drain"			"1 2 3 4"
+				"max_hp_drain"			"1.25 2.5 3.75 5"
 			}
 			"04"
 			{
@@ -319,7 +319,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"max_hp_drain"			"1 2 3 4"
+				"max_hp_drain"			"1.25 2.5 3.75 5"
 			}
 			"04"
 			{

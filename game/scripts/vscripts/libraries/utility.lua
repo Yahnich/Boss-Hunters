@@ -2062,6 +2062,15 @@ function get_octarine_multiplier(caster)
     return octarine_multiplier
 end
 
+function CDOTA_BaseNPC:GetCooldownReduction()
+	local cdr = self:FindModifierByName("modifier_cooldown_reduction_handler")
+	if cdr then
+		local mult = cdr:GetStackCount() / 100
+		return mult
+	end
+	return 0
+end
+
 
 function get_core_cdr(caster)
     return get_octarine_multiplier(caster)
