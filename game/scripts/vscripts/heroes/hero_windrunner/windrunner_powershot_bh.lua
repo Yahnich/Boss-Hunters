@@ -13,11 +13,11 @@ function windrunner_powershot_bh:GetChannelAnimation()
 end
 
 function windrunner_powershot_bh:GetChannelTime()
-	return self:GetSpecialValueFor("channel_time")
+	return self:GetTalentSpecialValueFor("channel_time")
 end
 
 function windrunner_powershot_bh:OnChannelThink(flInterval)
-	self.damage = self.damage + self:GetSpecialValueFor("damage")/self:GetChannelTime()*flInterval
+	self.damage = self.damage + self:GetTalentSpecialValueFor("damage")/self:GetChannelTime()*flInterval
 end
 
 function windrunner_powershot_bh:OnChannelFinish(bInterrupted)
@@ -28,7 +28,7 @@ function windrunner_powershot_bh:OnChannelFinish(bInterrupted)
 	EmitSoundOn("Ability.Powershot", caster)
 
 	caster:StartGesture(ACT_DOTA_OVERRIDE_ABILITY_2)
-	self:FireLinearProjectile("particles/units/heroes/hero_windrunner/windrunner_spell_powershot.vpcf", caster:GetForwardVector() * self:GetSpecialValueFor("arrow_speed"), self:GetTrueCastRange(), self:GetSpecialValueFor("arrow_width"), {ExtraData={damage=self.damage}}, false, true, self:GetSpecialValueFor("vision_radius"))
+	self:FireLinearProjectile("particles/units/heroes/hero_windrunner/windrunner_spell_powershot.vpcf", caster:GetForwardVector() * self:GetTalentSpecialValueFor("arrow_speed"), self:GetTrueCastRange(), self:GetTalentSpecialValueFor("arrow_width"), {ExtraData={damage=self.damage}}, false, true, self:GetTalentSpecialValueFor("vision_radius"))
 end
 
 function windrunner_powershot_bh:OnSpellStart()
@@ -49,13 +49,13 @@ function windrunner_powershot_bh:OnProjectileHit(hTarget, vLocation)
 		EmitSoundOn("Ability.PowershotDamage", hTarget)
 		self:DealDamage(self:GetCaster(), hTarget, self.damage, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
 		if not self:GetCaster():HasTalent("special_bonus_unique_windrunner_powershot_bh_2") then
-			self.damage = self.damage * (100 - self:GetSpecialValueFor("damage_reduction"))/100
+			self.damage = self.damage * (100 - self:GetTalentSpecialValueFor("damage_reduction"))/100
 		end
 	else
-		AddFOWViewer(self:GetCaster():GetTeam(), vLocation, self:GetSpecialValueFor("vision_radius"), self:GetSpecialValueFor("vision_duration"), true)
+		AddFOWViewer(self:GetCaster():GetTeam(), vLocation, self:GetTalentSpecialValueFor("vision_radius"), self:GetTalentSpecialValueFor("vision_duration"), true)
 	end
 end
 
 function windrunner_powershot_bh:OnProjectileThink(vLocation)
-	GridNav:DestroyTreesAroundPoint(vLocation, self:GetSpecialValueFor("arrow_width"), true)
+	GridNav:DestroyTreesAroundPoint(vLocation, self:GetTalentSpecialValueFor("arrow_width"), true)
 end

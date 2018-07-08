@@ -85,6 +85,7 @@
 #base "heroes/hero_ogre_magi.txt"
 #base "heroes/hero_arc_warden.txt"
 #base "heroes/hero_windrunner.txt"
+#base "heroes/hero_warlock.txt"
 
 "DOTAAbilities"
 {

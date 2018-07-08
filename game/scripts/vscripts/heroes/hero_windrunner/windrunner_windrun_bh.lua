@@ -14,7 +14,7 @@ function windrunner_windrun_bh:OnSpellStart()
 	local caster = self:GetCaster()
 	
     EmitSoundOn("Ability.Windrun", caster)
-	caster:AddNewModifier(caster, self, "modifier_windrunner_windrun_bh_handle", {Duration = self:GetSpecialValueFor("buff_duration")})
+	caster:AddNewModifier(caster, self, "modifier_windrunner_windrun_bh_handle", {Duration = self:GetTalentSpecialValueFor("buff_duration")})
 end
 
 modifier_windrunner_windrun_bh_handle = class({})
@@ -51,19 +51,19 @@ function modifier_windrunner_windrun_bh_handle:GetModifierInvisibilityLevel()
 end
 
 function modifier_windrunner_windrun_bh_handle:GetModifierMoveSpeedBonus_Percentage()
-    return self:GetSpecialValueFor("movespeed_bonus_pct")
+    return self:GetTalentSpecialValueFor("movespeed_bonus_pct")
 end
 
 function modifier_windrunner_windrun_bh_handle:GetModifierMoveSpeed_Limit()
-    return self:GetSpecialValueFor("movespeed_bonus_limit")
+    return self:GetTalentSpecialValueFor("movespeed_bonus_limit")
 end
 
 function modifier_windrunner_windrun_bh_handle:GetModifierMoveSpeed_Max()
-    return self:GetSpecialValueFor("movespeed_bonus_limit")
+    return self:GetTalentSpecialValueFor("movespeed_bonus_limit")
 end
 
 function modifier_windrunner_windrun_bh_handle:GetModifierEvasion_Constant()
-    return self:GetSpecialValueFor("evasion")
+    return self:GetTalentSpecialValueFor("evasion")
 end
 
 function modifier_windrunner_windrun_bh_handle:GetEffectName()
@@ -75,11 +75,11 @@ function modifier_windrunner_windrun_bh_handle:IsAura()
 end
 
 function modifier_windrunner_windrun_bh_handle:GetAuraDuration()
-    return self:GetSpecialValueFor("debuff_duration")
+    return self:GetTalentSpecialValueFor("debuff_duration")
 end
 
 function modifier_windrunner_windrun_bh_handle:GetAuraRadius()
-    return self:GetSpecialValueFor("radius")
+    return self:GetTalentSpecialValueFor("radius")
 end
 
 function modifier_windrunner_windrun_bh_handle:GetAuraSearchFlags()
@@ -111,7 +111,7 @@ function modifier_windrunner_windrun_bh:DeclareFunctions()
 end
 
 function modifier_windrunner_windrun_bh:GetModifierMoveSpeedBonus_Percentage()
-    return self:GetSpecialValueFor("enemy_movespeed_bonus_pct")
+    return self:GetTalentSpecialValueFor("enemy_movespeed_bonus_pct")
 end
 
 function modifier_windrunner_windrun_bh:IsDebuff()
