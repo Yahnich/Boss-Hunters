@@ -85,6 +85,7 @@ function LeftBoundingBox(trigger)
 	local edge = trigger.caller
 	local distance = 0
 	if RoundManager.boundingBox and unit and edge then
+		print( unit:GetName(), unit:GetUnitName(), unit:GetClassname() )
 		if edge:GetName() == RoundManager.boundingBox.."_edge_collider" and not edge:IsTouching(unit) and unit.lastAllowedPosition then
 			FindClearSpaceForUnit( unit, GetGroundPosition( unit.lastAllowedPosition, unit ), true )
 			GridNav:DestroyTreesAroundPoint( unit.lastAllowedPosition, 120, true )

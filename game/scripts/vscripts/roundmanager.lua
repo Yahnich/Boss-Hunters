@@ -435,7 +435,7 @@ function RoundManager:InitializeUnit(unit, bElite)
 	local effective_multiplier = (HeroList:GetActiveHeroCount() - 1) 
 	
 	local effPlayerHPMult =  0.7 + ( (RoundManager:GetEventsFinished() * 0.1) + (RoundManager:GetRaidsFinished() * 0.5) + ( RoundManager:GetZonesFinished() * 1.5 )  ) + ( effective_multiplier * playerHPMultiplier )
-	local effPlayerDMGMult = ( 0.6 + (RoundManager:GetEventsFinished() * 0.01) + (RoundManager:GetRaidsFinished() * 0.80) + ( RoundManager:GetZonesFinished() * 1.25 ) ) + effective_multiplier * playerDMGMultiplier
+	local effPlayerDMGMult = ( 0.6 + (RoundManager:GetEventsFinished() * 0.02) + (RoundManager:GetRaidsFinished() * 0.80) + ( RoundManager:GetZonesFinished() * 3 ) ) + ( effective_multiplier * playerDMGMultiplier )
 	local effPlayerArmorMult = ( 0.85 + (RoundManager:GetRaidsFinished() * 0.15) + ( RoundManager:GetZonesFinished() ) ) + effective_multiplier * playerArmorMultiplier
 	
 	if bElite then
@@ -473,7 +473,7 @@ function RoundManager:InitializeUnit(unit, bElite)
 	unit:SetPhysicalArmorBaseValue( (unit:GetPhysicalArmorBaseValue() + RoundManager:GetRaidsFinished() ) * effPlayerArmorMult )
 	
 	unit:AddNewModifier(unit, nil, "modifier_boss_attackspeed", {})
-	unit:AddNewModifier(unit, nil, "modifier_power_scaling", {}):SetStackCount( math.floor( (self:GetEventsFinished() / 3) * (1 + (self:GetRaidsFinished() * 1.5) + ( RoundManager:GetZonesFinished() * 3 ) ) ))
+	unit:AddNewModifier(unit, nil, "modifier_power_scaling", {}):SetStackCount( math.floor( (self:GetEventsFinished() * 0.25) * (1 + (self:GetRaidsFinished() * 1.5) + ( RoundManager:GetZonesFinished() * 4 ) ) ))
 	unit:AddNewModifier(unit, nil, "modifier_spawn_immunity", {duration = 4/GameRules.gameDifficulty})
 	
 	if unit:GetHullRadius() >= 16 then

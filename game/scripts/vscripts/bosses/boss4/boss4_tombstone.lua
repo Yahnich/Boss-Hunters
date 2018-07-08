@@ -6,6 +6,7 @@ function boss4_tombstone:OnSpellStart()
 	
 	local tombstone = CreateUnitByName("npc_dota_boss4_tomb", position, true, caster, caster, caster:GetTeamNumber())
 	tombstone:AddNewModifier(caster, self, "modifier_boss4_tombstone_tomb", {})
+	tombstone.hasBeenInitialized = true
 	tombstone:StartGesture(ACT_DOTA_SPAWN)
 	caster:AddNewModifier(tombstone, self, "modifier_boss4_tombstone_caster", {})
 	

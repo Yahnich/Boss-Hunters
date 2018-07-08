@@ -20,7 +20,7 @@ function boss_doom_hell_tempest:OnChannelThink(dt)
 	local caster = self:GetCaster()
 	if self.tornado_think > self.tornado_delay then
 		self.tornado_think = 0
-		local projID = self:FireLinearProjectile("", self.tornado_speed * RandomVector(1), 9000, self.tornado_radius)
+		local projID = self:FireLinearProjectile("", self.tornado_speed * RandomVector(1), self:GetSpecialValueFor("tornado_speed") * self:GetChannelTime(), self.tornado_radius)
 		local fxID = ParticleManager:CreateParticle("particles/bosses/boss_doom/hell_tempest_tornado.vpcf", PATTACH_WORLDORIGIN, nil)
 		self.tornadoes[projID] = fxID
 		ParticleManager:SetParticleControl( self.tornadoes[projID], 0, caster:GetAbsOrigin() )
@@ -33,12 +33,12 @@ function boss_doom_hell_tempest:OnProjectileThinkHandle( projID )
 	local caster = self:GetCaster()
 	if RollPercentage( 10 ) then
 		local vVelocity = RotateVector2D( ProjectileManager:GetLinearProjectileVelocity(projID), ToRadians( RandomFloat(-20, 20) ) ) * self.tornado_speed
-		ProjectileManager:UpdateLinearProjectileDirection( projID, vVelocity, 9000 )
+		ProjectileManager:UpdateLinearProjectileDirection( projID, vVelocity, self:GetSpecialValueFor("tornado_speed") * self:GetChannelTime() )
 	end
 	local position = ProjectileManager:GetLinearProjectileLocation( projID )
 	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( position, self.tornado_radius ) ) do
 		local damage = self.tornado_damage
-		if enemy:HasModifier("modifier_in_water") then damage = damage * 0.05 end
+		if enemy:HasModifier("modifier_in_water") then damage = damage * 0.01 end
 		self:DealDamage( caster, enemy, self.tornado_damage * 0.03 )
 		EmitSoundOn("Brewmaster_Storm.Attack", enemy)
 		

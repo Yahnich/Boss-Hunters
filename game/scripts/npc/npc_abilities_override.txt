@@ -1349,7 +1349,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"vampiric_aura"			"15 20 25 30 35 40 45"
+				"vampiric_aura"			"20 22.5 25 27.5 30 32.5 35"
 				"LinkedSpecialBonus"	"special_bonus_unique_wraith_king_2"
 			}
 		}
@@ -14026,7 +14026,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"0"
+				"value"						"0"
 			}
 		}
 	}
@@ -14049,7 +14049,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"25"
+				"value"				"5"
 			}
 		}
 	}
