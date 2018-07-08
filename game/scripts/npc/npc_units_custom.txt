@@ -8532,4 +8532,102 @@
 			"DefaultState"				"Invade"
 		}
 	}
+	"npc_dota_warlock_imp"
+	{
+		// General
+		//----------------------------------------------------------------
+		"Model"						"models/creeps/lane_creeps/creep_bad_ranged/lane_dire_ranged.vmdl"	// Model.
+		"BaseClass"					"npc_dota_creature"
+		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
+		"Level"						"1"
+		"ModelScale" 				"1"
+		"IsAncient"					"0"
+		"MinimapIcon"				"minimap_enemyicon"
+		"MinimapIconSize"			"300"
+		"IsCore"					"0"
+		"vscripts"					"ai/ai_warlock_imp"
+	
+		// Abilities
+		//----------------------------------------------------------------
+		"Ability1"					"warlock_imp_bolt"			// Ability 1.
+		"Ability2"					""
+		"Ability3"					""
+		"Ability4"					""
+		"Ability5"					""
+
+		// Armor
+		//----------------------------------------------------------------
+		"ArmorPhysical"				"0"			// Physical protection.
+		"MagicalResistance"			"0"		// Magical protection.
+		
+		// Attack
+		//----------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+		"AttackDamageMin"			"200"		// Damage range min.
+		"AttackDamageMax"			"100"		// Damage range max.
+		"AttackRate"				"1.25"
+		"AttackAnimationPoint"		"0.3"
+		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
+		"AttackRange"				"15000"		// Range within a target can be attacked.
+		"ProjectileModel"			"particles/units/heroes/hero_warlock/warlock_base_attack.vpcf"							// Particle system model for projectile.
+		"ProjectileSpeed"			"1200"									// Speed of projectile.
+	
+		// Bounds
+		//----------------------------------------------------------------
+		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"			// Hull type used for navigation/locomotion.
+		"RingRadius"				"120"
+		"HealthBarOffset"			"320"
+	
+		// Bounty
+		//----------------------------------------------------------------
+		"BountyXP"					"0"		// Experience earn.
+		"BountyGoldMin"				"0"			// Gold earned min.
+		"BountyGoldMax"				"0"			// Gold earned max.
+	
+		// Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"380"		// Speed.
+		"MovementTurnRate"			"0.3"		// Turning rate.
+	
+		// Status
+		//----------------------------------------------------------------
+		"StatusHealth"				"500"		// Base health.
+		"StatusHealthRegen"			"0"			// Health regeneration rate.
+		"StatusMana"				"0"			// Base mana.
+		"StatusManaRegen"			"0"			// Mana regeneration rate.		 
+		
+		// Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange"		"800"		// Range of vision during day HERO.
+		"VisionNighttimeRange"		"800"		// Range of vision at night time.
+	
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"					"DOTA_TEAM_GOODGUYS"
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		
+		// Creature Data
+		//----------------------------------------------------------------
+		"Creature"
+		{
+			//HERO AI State
+			//------------------------------------------------------------
+			"States"
+			{
+				"Invade"
+				{
+					"Name"				"Invade"
+					"Aggression"		"97.0"
+					"Avoidance"			"60.0"
+					"Support"			"60.0"
+					"RoamDistance"  	"500"
+				}
+			}
+			
+			"DefaultState"				"Invade"
+		}
+	}
 }
