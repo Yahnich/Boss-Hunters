@@ -22,7 +22,7 @@ COMBAT_CHANCE = 60
 ELITE_CHANCE = 20
 EVENT_CHANCE = 100 - COMBAT_CHANCE
 
-PREP_TIME = 15
+PREP_TIME = 30
 
 ELITE_ABILITIES_TO_GIVE = 1
 
@@ -38,7 +38,6 @@ function RoundManager:Initialize(context)
 	for i = 1, ZONE_COUNT do
 		local zoneName = POSSIBLE_ZONES[i]
 		RoundManager:ConstructRaids(zoneName)
-		print(self.zones[zoneName])
 		if zonesToSpawn <= 0 then
 			break
 		end
@@ -48,8 +47,19 @@ function RoundManager:Initialize(context)
 	
 	ListenToGameEvent( "npc_spawned", Dynamic_Wrap( RoundManager, "OnNPCSpawned" ), self )
 	ListenToGameEvent( "dota_holdout_revive_complete", Dynamic_Wrap( RoundManager, 'OnHoldoutReviveComplete' ), self )
+	CustomGameEventManager:RegisterListener('bh_player_voted_to_skip', Context_Wrap( RoundManager, 'VoteSkipPrepTime'))
 	
 	self:PrecacheRounds(context)
+end
+
+function RoundManager:VoteSkipPrepTime(userid, event)
+	self.votedToSkipPrep = self.votedToSkipPrep or 0
+	self.votedToSkipPrep = self.votedToSkipPrep + 1
+	local noVotes = HeroList:GetActiveHeroCount() - self.votedToSkipPrep
+	CustomGameEventManager:Send_ServerToAllClients("bh_update_votes_prep_time", {yes = self.votedToSkipPrep, no = noVotes})
+	if noVotes <= 0 then
+		self.prepTimer = 0
+	end
 end
 
 function RoundManager:OnNPCSpawned(event)
@@ -190,16 +200,17 @@ end
 function RoundManager:StartGame()
 	self.currentZone = POSSIBLE_ZONES[1]
 	table.remove(POSSIBLE_ZONES, 1)
-	
+	if self.zones[self.currentZone][1] then
+		local boss = self.zones[self.currentZone][1][#self.zones[self.currentZone][1]]
+		CustomGameEventManager:Send_ServerToAllClients( "updateQuestBoss", { bossName = boss:GetEventName() } ) 
+	end
 	RoundManager:StartPrepTime()
 end
 
 function RoundManager:StartPrepTime(fPrep)
-	
-	
 	if self.zones[self.currentZone] and self.zones[self.currentZone][1] and not self.prepTimeTimer then
 		local event = RoundManager:GetCurrentEvent()
-		
+		CustomGameEventManager:Send_ServerToAllClients("bh_start_prep_time", {})
 		local lastSpawns = RoundManager.boundingBox
 		event:LoadSpawns()
 		
@@ -217,7 +228,7 @@ function RoundManager:StartPrepTime(fPrep)
 		for _, hero in ipairs( HeroList:GetRealHeroes() ) do
 			hero:SetRespawnPosition( GetGroundPosition(hero:GetAbsOrigin(), hero) )
 		end
-		local timer = fPrep or PREP_TIME
+		self.prepTimer = fPrep or PREP_TIME
 		local textFormatting = RAIDS_PER_ZONE - #self.zones[self.currentZone] + 1
 		local romanVersion = ""
 		if textFormatting < 4 then
@@ -235,12 +246,12 @@ function RoundManager:StartPrepTime(fPrep)
 				end
 			end
 		end
+	
 		CustomGameEventManager:Send_ServerToAllClients( "updateQuestRound", { eventName = RoundManager:GetCurrentEventName(), roundText = self.currentZone.." "..romanVersion } )
 		self.prepTimeTimer = Timers:CreateTimer(1, function()
-			timer = timer - 1
-			CustomGameEventManager:Send_ServerToAllClients( "updateQuestPrepTime", { prepTime = math.floor(timer + 0.5) } )
-			if timer <= 0 then
-				
+			self.prepTimer = self.prepTimer - 1
+			CustomGameEventManager:Send_ServerToAllClients( "updateQuestPrepTime", { prepTime = math.floor(self.prepTimer + 0.5) } )
+			if self.prepTimer <= 0 then
 				RoundManager:EndPrepTime()
 			else
 				return 1
@@ -250,10 +261,13 @@ function RoundManager:StartPrepTime(fPrep)
 end
 
 function RoundManager:EndPrepTime(bReset)
-	print("Starting event", self:GetCurrentEvent():GetEventName(), self:GetCurrentEvent():IsElite() )
 	if self.prepTimeTimer then Timers:RemoveTimer( self.prepTimeTimer ) end
 	self.prepTimeTimer = nil
-	CustomGameEventManager:Send_ServerToAllClients("boss_hunters_prep_time_has_ended", {})
+	
+	self.votedToSkipPrep = 0
+	self.votedToSkipPrep = 0
+	CustomGameEventManager:Send_ServerToAllClients("bh_end_prep_time", {})
+	
 	if not bReset then
 		RoundManager:StartEvent()
 	end
@@ -322,9 +336,9 @@ function RoundManager:EndEvent(bWonRound)
 		end
 	end)
 	local fTime = PREP_TIME
-	if RoundManager:GetCurrentEvent():IsEvent() then
-		fTime = 5
-	end
+	-- if RoundManager:GetCurrentEvent():IsEvent() then
+		-- fTime = 5
+	-- end
 	CustomGameEventManager:Send_ServerToAllClients( "updateQuestLife", { lives = GameRules._lives, maxLives = GameRules._maxLives } )
 	if GameRules._lives == 0 then
 		return RoundManager:GameIsFinished(false)
@@ -336,14 +350,18 @@ function RoundManager:RaidIsFinished()
 	table.remove( self.zones[self.currentZone], 1 )
 	EventManager:FireEvent("boss_hunters_raid_finished")
 	self.raidsFinished = (self.raidsFinished or 0) + 1
+	
 	if self.zones[self.currentZone][1] == nil then RoundManager:ZoneIsFinished() end
+	if self.zones[self.currentZone][1] then
+		local boss = self.zones[self.currentZone][1][#self.zones[self.currentZone][1]]
+		CustomGameEventManager:Send_ServerToAllClients( "updateQuestBoss", { bossName = boss:GetEventName() } )
+	end
 end
 
 function RoundManager:ZoneIsFinished()
 	self.zones[self.currentZone] = nil
 	self.currentZone = nil
 	
-	PrintAll(POSSIBLE_ZONES)
 	self.currentZone = POSSIBLE_ZONES[1]
 	if not self.zones[self.currentZone] and POSSIBLE_ZONES[2] then
 		table.remove(POSSIBLE_ZONES, 1)
@@ -421,7 +439,7 @@ end
 function RoundManager:InitializeUnit(unit, bElite)
 	unit.hasBeenInitialized = true
 	local expectedHP = unit:GetBaseMaxHealth() * RandomFloat(0.9, 1.1)
-	local expectedDamage = ( unit:GetAverageBaseDamage() + RoundManager:GetEventsFinished() ) * RandomFloat(0.9, 1.1)
+	local expectedDamage = ( unit:GetAverageBaseDamage() + (RoundManager:GetEventsFinished() * 4) ) * RandomFloat(0.9, 1.2)
 	local playerHPMultiplier = 0.4
 	local playerDMGMultiplier = 0.1
 	local playerArmorMultiplier = 0.05
@@ -434,8 +452,8 @@ function RoundManager:InitializeUnit(unit, bElite)
 	end
 	local effective_multiplier = (HeroList:GetActiveHeroCount() - 1) 
 	
-	local effPlayerHPMult =  0.7 + ( (RoundManager:GetEventsFinished() * 0.1) + (RoundManager:GetRaidsFinished() * 0.5) + ( RoundManager:GetZonesFinished() * 1.5 )  ) + ( effective_multiplier * playerHPMultiplier )
-	local effPlayerDMGMult = ( 0.6 + (RoundManager:GetEventsFinished() * 0.02) + (RoundManager:GetRaidsFinished() * 0.80) + ( RoundManager:GetZonesFinished() * 3 ) ) + ( effective_multiplier * playerDMGMultiplier )
+	local effPlayerHPMult =  0.65 + ( (RoundManager:GetEventsFinished() * 0.15) + (RoundManager:GetRaidsFinished() * 0.5) + ( RoundManager:GetZonesFinished() * 2.5 )  ) + ( effective_multiplier * playerHPMultiplier )
+	local effPlayerDMGMult = ( 0.6 + (RoundManager:GetEventsFinished() * 0.05) + (RoundManager:GetRaidsFinished() * 0.80) + ( RoundManager:GetZonesFinished() * 3 ) ) + ( effective_multiplier * playerDMGMultiplier )
 	local effPlayerArmorMult = ( 0.85 + (RoundManager:GetRaidsFinished() * 0.15) + ( RoundManager:GetZonesFinished() ) ) + effective_multiplier * playerArmorMultiplier
 	
 	if bElite then
@@ -463,21 +481,23 @@ function RoundManager:InitializeUnit(unit, bElite)
 		end
 	end
 	
-	expectedHP = ( 20 * RoundManager:GetRaidsFinished() + expectedHP ) * effPlayerHPMult
+	expectedHP = ( (75 * RoundManager:GetRaidsFinished() ) + expectedHP ) * effPlayerHPMult
 	unit:SetBaseMaxHealth(expectedHP)
 	unit:SetMaxHealth(expectedHP)
 	unit:SetHealth(expectedHP)
 	
-	unit:SetAverageBaseDamage( expectedDamage * RandomFloat(0.85, 1.15) , 35)
+	unit:SetAverageBaseDamage( expectedDamage * RandomFloat(0.85, 1.15) , 33)
 	unit:SetBaseHealthRegen(RoundManager:GetEventsFinished() * RandomFloat(0.85, 1.15) )
-	unit:SetPhysicalArmorBaseValue( (unit:GetPhysicalArmorBaseValue() + RoundManager:GetRaidsFinished() ) * effPlayerArmorMult )
+	unit:SetPhysicalArmorBaseValue( (unit:GetPhysicalArmorBaseValue() + (RoundManager:GetRaidsFinished() * 3) ) * effPlayerArmorMult )
 	
 	unit:AddNewModifier(unit, nil, "modifier_boss_attackspeed", {})
 	unit:AddNewModifier(unit, nil, "modifier_power_scaling", {}):SetStackCount( math.floor( (self:GetEventsFinished() * 0.25) * (1 + (self:GetRaidsFinished() * 1.5) + ( RoundManager:GetZonesFinished() * 4 ) ) ))
 	unit:AddNewModifier(unit, nil, "modifier_spawn_immunity", {duration = 4/GameRules.gameDifficulty})
+	unit:AddNewModifier(unit, nil, "modifier_boss_evasion", {}):SetStackCount( self:GetEventsFinished() )
 	
-	if unit:GetHullRadius() >= 16 then
-		unit:SetHullRadius( math.ceil(16 * unit:GetModelScale()) )
+	
+	if unit:GetHullRadius() <= 16 then
+		unit:SetHullRadius( math.ceil(16 * unit:GetModelScale() ) )
 	end
 	
 	unit:SetMaximumGoldBounty(0)

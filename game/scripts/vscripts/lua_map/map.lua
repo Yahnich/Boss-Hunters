@@ -17,6 +17,9 @@ function MapHandler:CheckAndResolvePositions(hero)
 		hero:StopMotionControllers(true)
 		return
 	end
+	if CalculateDistance( hero, self:GetCurrentEvent():GetHeroSpawnPosition() ) > 2000 then
+		FindClearSpaceForUnit(hero, self:GetCurrentEvent():GetHeroSpawnPosition(), true)
+	end
 	if GridNav:IsTraversable(hero:GetAbsOrigin()) then
 		hero.lastAllowedPosition = hero:GetAbsOrigin()
 	end

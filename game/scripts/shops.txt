@@ -76,6 +76,7 @@
 		"item"		"item_war_drum"
 		"item"		"item_father_pipe"
 		"item"		"item_iron_rose"
+		"item"		"item_inspiring_bongos"
     }
     "magics"
     {  
@@ -92,6 +93,7 @@
 		"item"		"item_dark_wand"
 		"item"		"item_galactic_hammer"
 		"item"		"item_ogre_seal_totem"
+		"item"		"item_echoing_tambourine"
     }
     // Level 3 - Purple Recipes
     "defense"
@@ -109,6 +111,7 @@
 		"item"		"item_legionnaires_dualswords"
 		"item"		"item_leechblade"
 		"item"		"item_conquerors_helm"
+		"item"		"item_mighty_timpani"
     }
 	"weapons"
     {

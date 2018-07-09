@@ -63,6 +63,7 @@ LinkLuaModifier( "modifier_generic_attack_bonus_pct", "libraries/modifiers/modif
 LinkLuaModifier( "modifier_cooldown_reduction_handler", "libraries/modifiers/modifier_cooldown_reduction_handler.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_base_attack_time_handler", "libraries/modifiers/modifier_base_attack_time_handler.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_power_scaling", "libraries/modifiers/modifier_power_scaling.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier( "modifier_boss_evasion", "libraries/modifiers/modifier_boss_evasion.lua", LUA_MODIFIER_MOTION_NONE)
 
 
 -- Precache resources

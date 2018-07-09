@@ -68,7 +68,7 @@
 				"var_type"				"FIELD_INTEGER"
 				"bonus_stats"			"20"
 			}
-			"01"
+			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"duration"				"1.5"

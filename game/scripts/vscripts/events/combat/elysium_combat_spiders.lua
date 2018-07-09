@@ -5,8 +5,8 @@ local function StartEvent(self)
 		local position = RoundManager:PickRandomSpawn()
 		local bigSpider = CreateUnitByName("npc_dota_creature_broodmother", position, true, nil, nil, DOTA_TEAM_BADGUYS)
 		bigSpider.unitIsRoundBoss = true
-		bigSpider:SetCoreHealth( bigSpider:GetMaxHealth() * 20 )
-		bigSpider:SetAverageBaseDamage(150, 30)
+		bigSpider:SetCoreHealth( bigSpider:GetMaxHealth() * 12 )
+		bigSpider:SetAverageBaseDamage(175, 30)
 		
 		for i = 1, 2 do
 			local smallSpider = CreateUnitByName("npc_dota_creature_spiderling", position + RandomVector(450), true, nil, nil, DOTA_TEAM_BADGUYS)

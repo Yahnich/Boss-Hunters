@@ -14,7 +14,7 @@
 		"ItemDroppable"					"1"
 		
 		"ItemShopTags"					"cooldown;reduction"
-		"ItemCost"						"950"
+		"ItemCost"						"1200"
 		"ItemQuality"					"epic"
 		"ItemAliases"					"octarine core;orb of renewal"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"

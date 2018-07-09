@@ -1,0 +1,116 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Recipe: War Drum
+	//=================================================================================================================
+	"item_recipe_mighty_timpani"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"7040"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"250"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_mighty_timpani"
+		"ItemRequirements"
+		{
+			"01"						"item_power_core;item_power_core;item_war_drum"
+		}
+	}
+	//=================================================================================================================
+	// War Drum
+	//=================================================================================================================
+	"item_mighty_timpani"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"7041"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_mighty_timpani"
+		"AbilityTextureName"			"custom/mighty_timpani"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"1615"
+		"ItemShopTags"					"stats"
+		"ItemQuality"					"component"
+		"ItemAliases"					"drum of endurance;drum"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+
+		"AbilityCooldown"				"30"
+		"AbilityManaCost"				"0"
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_agi"				"30"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_int"				"30"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_str"				"30"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bonus_mregen"			"3"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_as"				"35"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_ms_aura"			"35" //flat
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_dmg"				"20" //percent
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_ms_buff"			"13" //percent
+			}
+			"09"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"6"
+			}
+			"10"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"900"
+			}
+		}
+
+		"precache"
+		{
+			"particle"  "particles/items_fx/drum_of_endurance_buff.vpcf"
+			"soundfile" "soundevents/game_sounds_items.vsndevts"
+		}
+	}
+}

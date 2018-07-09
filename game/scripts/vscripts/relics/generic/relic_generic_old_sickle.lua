@@ -6,6 +6,6 @@ end
 
 function relic_generic_old_sickle:OnAttackLanded(params)
 	if params.attacker == self:GetParent() then
-		DoCleaveAttack( params.attacker, params.target, nil, 0.25 * params.attacker:GetAttackDamage(), 150, 350, 500, "particles/units/heroes/hero_sven/sven_spell_great_cleave.vpcf" )
+		DoCleaveAttack( params.attacker, params.target, nil, 0.25 * params.damage, 150, 350, 500, "particles/units/heroes/hero_sven/sven_spell_great_cleave.vpcf" )
 	end
 end

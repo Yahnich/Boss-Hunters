@@ -113,6 +113,11 @@ function modifier_legion_commander_war_fury_buff:OnCreated()
 	self.bonusDamage = self:GetAbility():GetTalentSpecialValueFor("bonus_damage_aura")
 	self.lifesteal = self:GetAbility():GetTalentSpecialValueFor("lifesteal") / 100
 	self.bonusArmor = self:GetAbility():GetTalentSpecialValueFor("armor")
+	if self:GetParent() == self:GetCaster() and self:GetCaster():HasTalent("special_bonus_unique_legion_commander_war_fury_1") then
+		self.bonusDamage = self.bonusDamage / 2
+		self.lifesteal = self.lifesteal / 2
+		self.bonusArmor = self.bonusArmor / 2
+	end
 end
 
 function modifier_legion_commander_war_fury_buff:DeclareFunctions()
