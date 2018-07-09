@@ -5,39 +5,36 @@
 	"Title"			"Recommended items for Templar Assassin"
 	
 	"Items"
-	{	
-		"#DOTA_Item_Build_Starting_Items"
+	{
+       "#DOTA_Item_Build_Starting_Items"
 		{
-			"item"	"item_midas_2"
-			"item"	"item_force_boots"
+			"item"	"item_gauntlet_of_alacrity"
+			"item"	"item_iron_rod"
+			"item"	"item_sanguine_mask"
 		}
 		"#DOTA_Item_Build_Early_Game"
 		{	
-			"item"	"item_midas_2"	
-			"item"	"item_lifesteal2"	
-			"item"	"item_butterfly2"
-			"item"	"item_unstable_stone"
-			"item"	"item_desolator4"
+			"item"	"item_reaping_scythe"
+			"item"	"item_visionarys_cutlass"
+			"item"	"item_lightningrod"
 		}
 		"#DOTA_Item_Build_Core_Items"
 		{
-			"item"	"item_desolator5"
-			"item"	"item_midas_fury"
-			"item"	"item_gungnir_2"
-			"item"	"item_s_a_y_3" 
+			"item"	"item_thanatos"
+			"item"	"item_voltas_greathammer"
+			"item"	"item_blade_of_storm"
 		}
 		"#DOTA_Item_Build_Luxury"
 		{
-			"item"	"item_gungnir_3"
-			"item"	"item_bahamut_claw"
-			"item"	"item_bahamut_chest"
-			"item"	"item_butterfly5"
-		}
-		"#DOTA_Item_Build_End_Game"
-		{
-			"item"	"item_pixels_guard"
-			"item"	"item_octarine_core5"
-			"item"	"item_ultimate_amulet"
+			"item"	"item_ultimate_scepter"
+			"item"	"item_tricksters_blade"
+			"item"	"item_behemoths_heart"
+			"item"	"item_trebuchet"
+			"item"	"item_guillotine"
+			"item"	"item_headchopper"
+			"item"	"item_wings_of_icarus"
+			"item"	"item_emission"
+			"item"	"item_trebuchet"
 		}
 	}
 }

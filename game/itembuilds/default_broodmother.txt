@@ -5,41 +5,34 @@
 	"Title"			"Recommended items for Broodmother"
 	
 	"Items"
-	{		
-		"#DOTA_Item_Build_Starting_Items"
+    {
+       "#DOTA_Item_Build_Starting_Items"
 		{
-			"item"		"item_flask"
-			"item"		"item_tango"
-			"item"		"item_clarity"
-			"item"		"item_branches"
-			"item"		"item_branches"
-			"item"		"item_ring_of_protection"
+			"item"	"item_gauntlet_of_alacrity"
+			"item"	"item_mithril_armor"
+			"item"	"item_sanguine_mask"
 		}
-		
 		"#DOTA_Item_Build_Early_Game"
 		{	
-			"item"		"item_boots"
-			"item"		"item_soul_ring"
-			"item"		"item_ring_of_basilius"
+			"item"	"item_cultists_veil"
+			"item"	"item_soul_vessel"
+			"item"	"item_lightningrod"
+			"item"	"item_mirrors_edge"
 		}
-		
 		"#DOTA_Item_Build_Core_Items"
 		{
-			"item"		"item_power_treads"
-			"item"		"item_vladmir"
-			"item"		"item_orchid"
+			"item"	"item_gauntlet_of_the_void"
+			"item"	"item_voltas_greathammer"
+			"item"	"item_illusionists_charm"
 		}
-		
 		"#DOTA_Item_Build_Luxury"
 		{
-			"item"		"item_black_king_bar"
-			"item"		"item_manta"
-			"item"		"item_butterfly"
-			"item"		"item_monkey_king_bar"
-			"item"		"item_assault"
-			"item"		"item_radiance"
-			"item"		"item_heart"
-			"item"		"item_necronomicon_3"
+			
+			"item"	"item_ultimate_scepter"
+			"item"	"item_soothslayer"
+			"item"	"item_tricksters_blade"
+			"item"	"item_behemoths_heart"
+			"item"	"item_blade_of_storm"
 		}
-	}
+    }
 }

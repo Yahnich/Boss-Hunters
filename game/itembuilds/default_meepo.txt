@@ -5,34 +5,31 @@
 	"Title"			"Recommended items for Meepo"
 	
 	"Items"
-	{		
-		"#DOTA_Item_Build_Starting_Items"
+    {
+       "#DOTA_Item_Build_Starting_Items"
 		{
-			"item"		"item_midas_2"	
+			"item"	"item_gauntlet_of_alacrity"
+			"item"	"item_iron_rod"
+			"item"	"item_sanguine_mask"
 		}
-		
 		"#DOTA_Item_Build_Early_Game"
 		{	
-			"item"		"item_ring_of_basilius"
-			"item"		"item_boots"
+			"item"	"item_visionarys_cutlass"
+			"item"	"item_lightningrod"
+			"item"	"item_mirrors_edge"
 		}
-		
 		"#DOTA_Item_Build_Core_Items"
 		{
-			"item"		"item_power_treads"
-			"item"		"item_mekansm"
-			"item"		"item_ultimate_scepter"
-			"item"		"item_tpscroll"
+			"item"	"item_aeon_shard"
+			"item"	"item_voltas_greathammer"
+			"item"	"item_memento"
 		}
-		
 		"#DOTA_Item_Build_Luxury"
 		{
-			"item"		"item_vladmir"
-			"item"		"item_pipe"
-			"item"		"item_blink"
-			"item"		"item_sheepstick"
-			"item"		"item_heart"
-			"item"		"item_assault"
+			"item"	"item_ultimate_scepter"
+			"item"	"item_soothslayer"
+			"item"	"item_behemoths_heart"
+			"item"	"item_blade_of_storm"
 		}
-	}
+    }
 }

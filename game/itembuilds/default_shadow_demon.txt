@@ -5,44 +5,36 @@
 	"Title"			"Recommended items for Shadow Demon"
 	
 	"Items"
-	{		
+	{	
 		"#DOTA_Item_Build_Starting_Items"
 		{
-			"item"		"item_tango"
-			"item"		"item_flask"
-			"item"		"item_clarity"
-			"item"		"item_clarity"
-			"item"		"item_branches"
-			"item"		"item_branches"
-			"item"		"item_courier"
+			"item"	"item_sorcerers_staff"
+			"item"	"item_ring_of_mana"
 		}
-		
 		"#DOTA_Item_Build_Early_Game"
-		{	
-			"item"		"item_magic_stick"
-			"item"		"item_boots"
-			"item"		"item_null_talisman"
+		{
+			"item"	"item_warlocks_reliquary"
+			"item"	"item_war_drum"
+			"item"	"item_archmages_orb"
 		}
-		
 		"#DOTA_Item_Build_Core_Items"
 		{
-			"item"		"item_magic_wand"
-			"item"		"item_arcane_boots"
-			"item"		"item_force_staff"
-			"item"		"item_ward_observer"
-			"item"		"item_tpscroll"
+			"item"	"item_mighty_timpani"
+			"item"	"item_arcane_accelerator"
+			"item"	"item_lazarus_rags"
 		}
-		
 		"#DOTA_Item_Build_Luxury"
 		{
-			"item"		"item_ultimate_scepter"
-			"item"		"item_pipe"
-			"item"		"item_shivas_guard"
-			"item"		"item_necronomicon_3"
-			"item"		"item_mekansm"
-			"item"		"item_cyclone"
-			"item"		"item_sheepstick"
-			"item"		"item_flying_courier"
+			
+			"item"	"item_ultimate_scepter"
+			"item"	"item_lightningbottle"
+			"item"	"item_flashback"
+			"item"	"item_focused_lens"
+			"item"	"item_crystalline_staff"
+			"item"	"item_inspiring_bongos"
+			"item"	"item_echoing_tambourine"
+			"item"	"item_lucifers_cage"
+			"item"	"item_warp_staff"
 		}
 	}
 }

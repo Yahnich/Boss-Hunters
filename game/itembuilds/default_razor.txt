@@ -8,37 +8,31 @@
 	{	
 		"#DOTA_Item_Build_Starting_Items"
 		{
-			"item"	"item_midas_2"
-			"item"	"item_force_boots"
-			"item"	"item_octarine_core"
+			"item"	"item_hunters_hatchet"
+			"item"	"item_gauntlet_of_alacrity"
 		}
 		"#DOTA_Item_Build_Early_Game"
-		{	
-			"item"	"item_midas_3"	
-			"item"	"item_unstable_stone"
-			"item"	"item_divine_hammer"
-			"item"	"item_aether_lens"
-			"item"	"item_veil_of_discord"
+		{
+			"item"	"item_lightningrod"
+			"item"	"item_executioners_blade"
 		}
 		"#DOTA_Item_Build_Core_Items"
 		{
-			"item"	"item_midas_fury"
-			"item"	"item_octarine_core3"	
-			"item"	"item_sunium_lens"
-			"item"	"item_veil_of_discord3"
+			"item"	"item_gauntlet_of_might"
+			"item"	"item_voltas_greathammer"
+			"item"	"item_blade_of_storm"
 		}
 		"#DOTA_Item_Build_Luxury"
 		{
-			"item"	"item_omni_lens"
-			"item"	"item_octarine_core5"
-			"item"	"item_scythe_of_decay"
-		}
-		"#DOTA_Item_Build_End_Game"
-		{
-			"item"	"item_abyssal_soul"
-			"item"	"item_gungnir_3"
-			"item"	"item_pixels_guard"
-			"item"	"item_ultimate_amulet"
+			
+			"item"	"item_ultimate_scepter"
+			"item"	"item_legionnaires_dualswords"
+			"item"	"item_leechblade"
+			"item"	"item_hurricane_blade"
+			"item"	"item_guillotine"
+			"item"	"item_emission"
+			"item"	"item_thanatos"
+			"item"	"item_lucifers_cage"
 		}
 	}
 }

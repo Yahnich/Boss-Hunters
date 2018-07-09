@@ -5,43 +5,35 @@
 	"Title"			"Recommended items for Naga Siren"
 	
 	"Items"
-	{		
+	{	
 		"#DOTA_Item_Build_Starting_Items"
 		{
-			"item"		"item_midas_2"
-			"item"		"item_heart"
+			"item"	"item_sorcerers_staff"
+			"item"	"item_ring_of_mana"
 		}
-		
 		"#DOTA_Item_Build_Early_Game"
-		{	
-			"item"		"item_radiance"
-			"item"		"item_s_a_y_2"
-			"item"		"item_heart_titan"
-			"item"		"item_octarine_core"
-			"item"		"item_butterfly3"
+		{
+			"item"	"item_warlocks_reliquary"
+			"item"	"item_war_drum"
+			"item"	"item_archmages_orb"
 		}
-		
 		"#DOTA_Item_Build_Core_Items"
 		{
-			"item"		"item_s_a_y_3"
-			"item"		"item_zero"
-			"item"		"item_skadi2"
-			"item"		"item_octarine_core3"
-			"item"		"item_heart_divine"
-			"item"		"item_melee_rage"
+			"item"	"item_mighty_timpani"
+			"item"	"item_arcane_accelerator"
+			"item"	"item_lazarus_rags"
 		}
 		"#DOTA_Item_Build_Luxury"
-		{			
-			"item"		"item_s_a_y_4"
-			"item"		"item_heart_bahamut"
-			"item"		"item_butterfly4"
-			"item"		"item_octarine_core5"
-		}
-		"#DOTA_Item_Build_End_Game"
 		{
-	        "item"	"item_bahamut_chest"
-			"item"	"item_ultimate_amulet"
-			"item"	"item_blade_mail4"
+			
+			"item"	"item_ultimate_scepter"
+			"item"	"item_lightningbottle"
+			"item"	"item_flashback"
+			"item"	"item_focused_lens"
+			"item"	"item_crystalline_staff"
+			"item"	"item_inspiring_bongos"
+			"item"	"item_echoing_tambourine"
+			"item"	"item_lucifers_cage"
 		}
 	}
 }
