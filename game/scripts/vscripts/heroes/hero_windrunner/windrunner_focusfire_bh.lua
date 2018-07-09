@@ -12,7 +12,7 @@ end
 function windrunner_focusfire_bh:OnSpellStart()
 	local caster = self:GetCaster()
 	EmitSoundOn("Ability.Windrun", caster)
-	caster:AddNewModifier(caster, self, "modifier_windrunner_focusfire_bh", {Duration = self:GetSpecialValueFor("duration")})
+	caster:AddNewModifier(caster, self, "modifier_windrunner_focusfire_bh", {Duration = self:GetTalentSpecialValueFor("duration")})
 end
 
 modifier_windrunner_focusfire_bh = class({})
@@ -58,11 +58,11 @@ function modifier_windrunner_focusfire_bh:DeclareFunctions()
 end
 
 function modifier_windrunner_focusfire_bh:GetModifierAttackSpeedBonus_Constant()
-    return self:GetSpecialValueFor("bonus_as")
+    return self:GetTalentSpecialValueFor("bonus_as")
 end
 
 function modifier_windrunner_focusfire_bh:GetBaseAttackTime_Bonus()
-    return self:GetSpecialValueFor("bonus_at")
+    return self:GetTalentSpecialValueFor("bonus_at")
 end
 
 function modifier_windrunner_focusfire_bh:IsDebuff()

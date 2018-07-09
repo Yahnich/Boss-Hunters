@@ -14,11 +14,11 @@ end
 
 function windrunner_bolas:OnProjectileHit(hTarget, vLocation)
 	local caster = self:GetCaster()
-	local maxTargets = self:GetSpecialValueFor("max_targets")
+	local maxTargets = self:GetTalentSpecialValueFor("max_targets")
 	local currentTargets = 0
 	if hTarget then
-		hTarget:AddNewModifier(caster, self, "modifier_windrunner_bolas_primary", {Duration = self:GetSpecialValueFor("duration")})
-		self:DealDamage(caster, hTarget, self:GetSpecialValueFor("damage"), {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
+		hTarget:AddNewModifier(caster, self, "modifier_windrunner_bolas_primary", {Duration = self:GetTalentSpecialValueFor("duration")})
+		self:DealDamage(caster, hTarget, self:GetTalentSpecialValueFor("damage"), {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
 	end
 end
 
@@ -27,7 +27,7 @@ function modifier_windrunner_bolas_primary:OnCreated(table)
     if IsServer() then
     	local caster = self:GetCaster()
     	local parent = self:GetParent()
-    	local enemies = caster:FindEnemyUnitsInRadius(parent:GetAbsOrigin(), self:GetSpecialValueFor("radius"), {order = FIND_CLOSEST})
+    	local enemies = caster:FindEnemyUnitsInRadius(parent:GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"), {order = FIND_CLOSEST})
     	if #enemies > 1 then
     		for _,enemy in pairs(enemies) do
     			if enemy ~= parent then
@@ -35,19 +35,19 @@ function modifier_windrunner_bolas_primary:OnCreated(table)
 	    			local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_windrunner/windrunner_shackleshot_pair.vpcf", PATTACH_POINT, caster)
 	    						ParticleManager:SetParticleControlEnt(nfx, 0, parent, PATTACH_POINT, "attach_hitloc", parent:GetAbsOrigin(), true)
 	    						ParticleManager:SetParticleControlEnt(nfx, 1, enemy, PATTACH_POINT, "attach_hitloc", enemy:GetAbsOrigin(), true)
-	    						ParticleManager:SetParticleControl(nfx, 2, Vector(self:GetSpecialValueFor("duration"), 0, 0))
+	    						ParticleManager:SetParticleControl(nfx, 2, Vector(self:GetTalentSpecialValueFor("duration"), 0, 0))
 	    			self:AttachEffect(nfx)
 
 	    			enemy:AddNewModifier(caster, self:GetAbility(), "modifier_windrunner_bolas_secondary", {Duration = self:GetDuration()})
 
 	    			if caster:HasTalent("special_bonus_unique_windrunner_bolas_2") then
-	    				self:GetAbility():DealDamage(caster, enemy, self:GetSpecialValueFor("damage"), {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
+	    				self:GetAbility():DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage"), {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
 	    			end
 	    			break
 	    		end
     		end
     	else
-    		local newDuration = self:GetSpecialValueFor("duration")/10
+    		local newDuration = self:GetTalentSpecialValueFor("duration")/10
     		self:SetDuration(newDuration, true)
     		EmitSoundOn("Hero_Windrunner.ShackleshotStun", parent)
     		local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_windrunner/windrunner_shackleshot_single.vpcf", PATTACH_POINT, caster)
