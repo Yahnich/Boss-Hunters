@@ -32,7 +32,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cd_reduction"			"-0.75"
+				"cd_reduction"			"0.75"
 			}
 		}
 	}

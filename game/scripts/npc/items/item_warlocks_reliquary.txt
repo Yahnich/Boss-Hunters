@@ -58,12 +58,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_spell_amp"		"35"
+				"bonus_spell_amp"		"25"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"mana_cost_reduction"	"35"
+				"mana_cost_reduction"	"25"
 			}
 		}
 	}

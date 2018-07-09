@@ -67,7 +67,7 @@
 			
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_strength"		"16"
+				"bonus_strength"		"20"
 			}
 			"02"
 			{

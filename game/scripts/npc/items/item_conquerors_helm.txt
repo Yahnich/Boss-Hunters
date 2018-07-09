@@ -72,7 +72,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_health"			"800"
+				"bonus_health"			"750"
 			}
 			"03"
 			{
@@ -92,7 +92,7 @@
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"lifesteal"				"20"
+				"lifesteal"				"15"
 			}
 			"07"
 			{

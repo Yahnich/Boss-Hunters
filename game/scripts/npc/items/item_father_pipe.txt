@@ -23,7 +23,7 @@
 		"ItemResult"					"item_father_pipe"
 		"ItemRequirements"
 		{
-			"01"						"item_barrier_leaves;item_ruby_ring"
+			"01"						"item_barrier_leaves;item_ruby_ring;item_worn_cloak"
 		}
 	}
 	//=================================================================================================================
@@ -69,6 +69,11 @@
 			{
 				"var_type"				"FIELD_FLOAT"
 				"hp_regen"				"10"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"magic_resist"			"15"
 			}
 			"04"
 			{
