@@ -5,44 +5,31 @@
 	"Title""Epic_Boss_Fight"
 
 	"Items"
-	{
-		"#DOTA_Item_Build_Starting_Items"
+    {
+       "#DOTA_Item_Build_Starting_Items"
 		{
-			"item""item_midas_2"
-			"item""item_vladmir"
+			"item"	"item_gauntlet_of_alacrity"
+			"item"	"item_iron_rod"
+			"item"	"item_sanguine_mask"
 		}
-
 		"#DOTA_Item_Build_Early_Game"
-		{
-			"item""item_butterfly2"
-			"item""item_lifesteal2"
-			"item""item_celerity_stone"
-			"item""item_midas_3"
+		{	
+			"item"	"item_visionarys_cutlass"
+			"item"	"item_lightningrod"
+			"item"	"item_mirrors_edge"
 		}
-
-		"#DOTA_Item_Build_Mid_Game"
+		"#DOTA_Item_Build_Core_Items"
 		{
-			"item""item_melee_rage"
-			"item""item_heart_divine"
-			"item""item_s_a_y_3"
-			"item""item_butterfly3"
-			"item""item_lifesteal3"
+			"item"	"item_aeon_shard"
+			"item"	"item_voltas_greathammer"
+			"item"	"item_memento"
 		}
-
-		"#DOTA_Item_Build_Late_Game"
+		"#DOTA_Item_Build_Luxury"
 		{
-			"item""item_heart_bahamut"
-			"item""item_lifesteal4"
-			"item""item_butterfly5"
+			"item"	"item_ultimate_scepter"
+			"item"	"item_soothslayer"
+			"item"	"item_behemoths_heart"
+			"item"	"item_blade_of_storm"
 		}
-
-		"#DOTA_Item_Build_Situational"
-		{
-			"item""item_booster_void"
-			"item""item_gungnir_3"
-			"item""item_s_a_y_4"
-			"item""item_bahamut_claw"
-			"item""item_bahamut_chest"
-		}
-	}
+    }
 }

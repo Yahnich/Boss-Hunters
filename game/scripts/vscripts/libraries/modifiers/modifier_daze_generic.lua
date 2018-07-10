@@ -2,13 +2,13 @@ modifier_daze_generic = class({})
 
 function modifier_daze_generic:OnCreated()
 	--if IsServer() then
-		self:StartIntervalThink(FrameTime())
+		self:StartIntervalThink(0.5)
 	--end
 end
 
 function modifier_daze_generic:OnIntervalThink()
 	if IsServer() then
-		if RollPercentage(12) then
+		if RollPercentage(25) then
 			self:GetParent():SetInitialGoalEntity(nil)
 			self:GetParent():Stop()
 			self:GetParent():Interrupt()

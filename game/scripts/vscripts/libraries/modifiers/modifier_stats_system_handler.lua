@@ -12,6 +12,7 @@ SPELL_AMP_TABLE = {0,12,24,36,48,60,72,84,96,108,120}
 COOLDOWN_REDUCTION_TABLE = {0,4,8,12,16,24,28,32,36,40,48}
 ATTACK_SPEED_TABLE = {0,25,50,75,100,150,175,200,225,250,300}
 STATUS_AMP_TABLE = {0,4,8,12,16,24,28,32,36,40,48}
+ACCURACY_TABLE = {0,10,15,20,25,35,40,45,50,55,65}
 
 -- DEFENSE
 ARMOR_TABLE = {0,2,4,6,8,12,14,16,18,20,24}
@@ -47,6 +48,7 @@ function modifier_stats_system_handler:UpdateStatValues()
 	self.cdr = COOLDOWN_REDUCTION_TABLE[tonumber(netTable["cdr"]) + 1]
 	self.as = ATTACK_SPEED_TABLE[tonumber(netTable["as"]) + 1]
 	self.sta = STATUS_AMP_TABLE[tonumber(netTable["sta"]) + 1]
+	self.acc = ACCURACY_TABLE[tonumber(netTable["acc"]) + 1]
 	
 	-- DEFENSE
 	self.pr = ARMOR_TABLE[tonumber(netTable["pr"]) + 1]
@@ -55,7 +57,7 @@ function modifier_stats_system_handler:UpdateStatValues()
 	if self:GetParent():IsRangedAttacker() then 
 		self.ar = ATTACK_RANGE_TABLE[tonumber(netTable["ar"]) + 1]
 	else
-		self.ar = ATTACK_RANGE_TABLE[tonumber(netTable["ar"]) + 1]
+		self.ar = ATTACK_RANGEM_TABLE[tonumber(netTable["ar"]) + 1]
 	end
 	
 	self.hp = HEALTH_TABLE[tonumber(netTable["hp"]) + 1]
@@ -66,6 +68,10 @@ function modifier_stats_system_handler:UpdateStatValues()
 	
 	
 	if IsServer() then self:GetParent():CalculateStatBonus() end
+end
+
+function modifier_stats_system_handler:CheckState()
+	return {[MODIFIER_STATE_CANNOT_MISS] = self:RollPRNG(self.acc or 0) }
 end
 
 function modifier_stats_system_handler:DeclareFunctions()

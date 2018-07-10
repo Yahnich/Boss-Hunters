@@ -115,11 +115,16 @@
 #base "items/item_iron_rod.txt"
 #base "items/item_visionarys_cutlass.txt"
 
+#base "items/item_echoing_tambourine.txt"
+#base "items/item_mighty_timpani.txt"
+#base "items/item_inspiring_bongos.txt"
+
+
 // #base "items/item_illusionists_charm.txt"
 // #base "items/item_tricksters_blade.txt"
 // #base "items/item_mirrors_edge.txt"
 
-// Next ID is 7038
+// Next ID is 7044
 
 "DOTAAbilities"
 {

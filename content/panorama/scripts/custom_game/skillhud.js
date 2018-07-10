@@ -41,6 +41,7 @@ SPELL_AMP_TABLE = [0,12,24,36,48,60,72,84,96,108,120]
 COOLDOWN_REDUCTION_TABLE = [0,4,8,12,16,24,28,32,36,40,48]
 ATTACK_SPEED_TABLE = [0,25,50,75,100,150,175,200,225,250,300]
 STATUS_AMP_TABLE = [0,4,8,12,16,24,28,32,36,40,48]
+ACCURACY_TABLE = [0,10,15,20,25,35,40,45,50,55,65]
 
 // DEFENSE
 ARMOR_TABLE = [0,2,4,6,8,12,14,16,18,20,24]
@@ -153,6 +154,7 @@ function CreateAttributePanel( valueLvl, valueTable, valueSignifier, valueText, 
 	} else {
 		talentPanel.FindChildTraverse("StatsTypeButton").SetPanelEvent("onactivate", function(){UpgradeAbility(valueSignifier)});
 	}
+	var description = "<br>" + $.Localize( "#" + valueText + "_Description", talentPanel)
 	if( Entities.GetLevel( lastRememberedHero ) < (parseInt(valueLvl) + 1) * LEVELS_BETWEEN_TALENT_UPGRADES ){ // max level
 		var infoText = ""
 		for(var i = 1; i < valueTable.length; i++){
@@ -171,10 +173,11 @@ function CreateAttributePanel( valueLvl, valueTable, valueSignifier, valueText, 
 				}
 			}
 		}
-		talentPanel.SetPanelEvent("onmouseover", function(){$.DispatchEvent("DOTAShowTextTooltip", talentPanel, "Next level - " + (parseInt(valueLvl) + 1) * LEVELS_BETWEEN_TALENT_UPGRADES + "<br>" + infoText)});
+		
+		talentPanel.SetPanelEvent("onmouseover", function(){$.DispatchEvent("DOTAShowTextTooltip", talentPanel, "Next level - " + (parseInt(valueLvl) + 1) * LEVELS_BETWEEN_TALENT_UPGRADES + "<br>" + infoText + description)});
 		talentPanel.SetPanelEvent("onmouseout", function(){$.DispatchEvent("DOTAHideTextTooltip", talentPanel);});
 	} else if( valueTable[parseInt(valueLvl) + 1] == null ){
-		talentPanel.SetPanelEvent("onmouseover", function(){$.DispatchEvent("DOTAShowTextTooltip", talentPanel, "Stat maxed!")});
+		talentPanel.SetPanelEvent("onmouseover", function(){$.DispatchEvent("DOTAShowTextTooltip", talentPanel, "Stat maxed!" + description)});
 		talentPanel.SetPanelEvent("onmouseout", function(){$.DispatchEvent("DOTAHideTextTooltip", talentPanel);});
 	} else { // can be leveled
 		var infoText = ""
@@ -194,7 +197,7 @@ function CreateAttributePanel( valueLvl, valueTable, valueSignifier, valueText, 
 				}
 			}
 		}
-		talentPanel.SetPanelEvent("onmouseover", function(){$.DispatchEvent("DOTAShowTextTooltip", talentPanel, infoText)});
+		talentPanel.SetPanelEvent("onmouseover", function(){$.DispatchEvent("DOTAShowTextTooltip", talentPanel, infoText + description)});
 		talentPanel.SetPanelEvent("onmouseout", function(){$.DispatchEvent("DOTAHideTextTooltip", talentPanel);});
 	}
 }
@@ -215,6 +218,8 @@ function LoadOffenseLayout()
 	CreateAttributePanel( statsNetTable.sa, SPELL_AMP_TABLE, "sa", "STATS_TYPE_SPELL_AMP", "%" )
 	CreateAttributePanel( statsNetTable.cdr, COOLDOWN_REDUCTION_TABLE, "cdr", "STATS_TYPE_COOLDOWN_REDUCTION", "%" )
 	CreateAttributePanel( statsNetTable.sta, STATUS_AMP_TABLE, "sta", "STATS_TYPE_STATUS_AMP", "%" )
+	CreateAttributePanel( statsNetTable.acc, ACCURACY_TABLE, "acc", "STATS_TYPE_ACCURACY", "%" )
+	
 }
 
 function LoadDefenseLayout()
@@ -262,7 +267,7 @@ function LoadOtherLayout()
 	allStats.FindChildTraverse("StatsTypeLabel").text = $.Localize( "#STATS_TYPE_ALL_STATS", allStats)
 	allStats.FindChildTraverse("StatsTypeLevel").text = "+ " + bonusAll * 2
 
-	allStats.SetPanelEvent("onmouseover", function(){$.DispatchEvent("DOTAShowTextTooltip", allStats, "+2 All Stats");});
+	allStats.SetPanelEvent("onmouseover", function(){$.DispatchEvent("DOTAShowTextTooltip", allStats, $.Localize( "#STATS_TYPE_ALL_STATS_Description", allStats));});
 	allStats.SetPanelEvent("onmouseout", function(){$.DispatchEvent("DOTAHideTextTooltip", allStats);});
 	
 	if( Entities.GetAbilityPoints( lastRememberedHero ) == 0 || lastRememberedHero != Players.GetPlayerHeroEntityIndex( localID ) ){

@@ -17,6 +17,7 @@
 		<Panel class="QuestsContainerRoot" hittest="false">
 			<Panel class="QuestsContainer" id="QuestCenter" hittest="false">
 				<Label hittest="false" class="QuestGenericText" id="QuestRoundText" text=""/>
+				<Label hittest="false" class="QuestGenericText" id="QuestBossText" text=""/>
 				<Label hittest="false" class="QuestGenericText" id="QuestLifeText" text="CURRENT LIVES: 7"/>
 				<Label hittest="false" class="QuestGenericText" id="QuestPrepText" text="TIME UNTIL NEXT ROUND: 28"/>
 			</Panel>
@@ -37,6 +38,16 @@
 			</Panel>
 			<Button id="QuestRewardConfirmButton" hittest="true" onactivate="RemoveRewardsPopup()" onmouseover="">
 				<Label class="QuestsEventChoiceText" id="QuestRewardConfirmButtonLabel" text="Ok."/>
+			</Button>
+		</Panel>
+		<Panel id="QuestsPrepVoteHolder" hittest="true" hittestchildren="true">
+			<Label id="QuestsPrepVoteDescriptionLabel" text="Skip preparation time?"/>
+			<Panel id="QuestsPrepVoteCountHolder" hittest="true" hittestchildren="true">
+				<Label class="QuestsPrepVoteText" id="QuestPrepVoteNoLabel" text="No: 0"/>
+				<Label class="QuestsPrepVoteText" id="QuestPrepVoteYesLabel" text="Yes: 0"/>
+			</Panel>
+			<Button id="QuestPrepVoteConfirmButton" hittest="true">
+				<Label class="QuestsEventChoiceText" id="QuestPrepVoteConfirmButtonLabel" text="Yes"/>
 			</Button>
 		</Panel>
 	</Panel>

@@ -97,17 +97,17 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cd_reduction"			"-0.75"
+				"cd_reduction"			"0.75"
 			}
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cd_reduction_spell"	"-0.1"
+				"cd_reduction_spell"	"0.1"
 			}
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cd_reduction_shield"	"-0.2"
+				"cd_reduction_shield"	"0.2"
 			}
 			"01"
 			{

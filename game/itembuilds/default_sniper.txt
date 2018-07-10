@@ -4,37 +4,38 @@
     "hero"            "npc_dota_hero_sniper"
     "Title"            "Magic DPS Sniper FFS. EAT THE AGHS AS WELL."
 
-    "Items"
-    {
-        "#DOTA_Item_Build_Starting_Items"
-        {
-            "item"    "item_midas_2"
-            "item"    "item_blink"
-        }
-        "#DOTA_Item_Build_Early_Game"
-        {
-            "item"    "item_midas_3"
-            "item"    "item_aether_lens"
-            "item"    "item_octarine_core2"
-            "item"    "item_ultimate_scepter"
-            "item"    "item_bloodthorn2"
-        }
-        "#DOTA_Item_Build_Core_Items"
-        {
-            "item"    "item_blink_boots"
-            "item"    "item_octarine_core5"
-            "item"    "item_purethorn"
-            "item"    "item_omni_lens"
-            "item"    "item_scythe_of_decay"
-            "item"    "item_butterfly5"
-        }
-        "#DOTA_Item_Build_Luxury"
-        {
-            "item"    "item_pixels_guard"
-            "item"    "item_Dagon_Mystic"
-            "item"    "item_chronos_shard"
-            "item"    "item_manta"
-			"item"    "item_ultimate_amulet"
-        }
-    }
+	"Items"
+	{
+       "#DOTA_Item_Build_Starting_Items"
+		{
+			"item"	"item_gauntlet_of_alacrity"
+			"item"	"item_soldiers_pike"
+			"item"	"item_gem_of_corruption"
+		}
+		"#DOTA_Item_Build_Early_Game"
+		{	
+			"item"	"item_reaping_scythe"
+			"item"	"item_siegebreaker"
+			"item"	"item_lightningrod"
+		}
+		"#DOTA_Item_Build_Core_Items"
+		{
+			"item"	"item_thanatos"
+			"item"	"item_voltas_greathammer"
+			"item"	"item_blade_of_storm"
+			"item"	"item_trebuchet"
+		}
+		"#DOTA_Item_Build_Luxury"
+		{
+			"item"	"item_ultimate_scepter"
+			"item"	"item_legionnaires_dualswords"
+			"item"	"item_leechblade"
+			"item"	"item_winters_breath"
+			"item"  "item_aeon_shard"
+            "item"  "item_blood_gods_mask"
+			"item"	"item_visionarys_cutlass"
+			"item"	"item_guillotine"
+			"item"	"item_lance_of_longinus"
+		}
+	}
 }

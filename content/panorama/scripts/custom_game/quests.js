@@ -11,6 +11,7 @@ shieldLabel.AddClass("HealthContainerShieldLabel");
 GameEvents.Subscribe( "updateQuestLife", UpdateLives);
 GameEvents.Subscribe( "updateQuestPrepTime", UpdateTimer);
 GameEvents.Subscribe( "updateQuestRound", UpdateRound);
+GameEvents.Subscribe( "updateQuestBoss", UpdateBoss);
 GameEvents.Subscribe( "heroLoadIn", Initialize);
 GameEvents.Subscribe("dota_player_update_query_unit", UpdateCustomHud);
 GameEvents.Subscribe( "boss_hunters_event_has_ended", RemoveEventPopup);
@@ -18,6 +19,54 @@ GameEvents.Subscribe( "boss_hunters_event_has_started", ShowEventPopup);
 GameEvents.Subscribe( "boss_hunters_prep_time_has_ended", RemoveRewardsPopup);
 GameEvents.Subscribe( "boss_hunters_event_reward_given", ShowRewardsPopup);
 GameEvents.Subscribe( "bh_move_camera_position", UpdateCameraPosition);
+
+GameEvents.Subscribe( "bh_update_votes_prep_time", UpdatePrepVote);
+GameEvents.Subscribe( "bh_start_prep_time", StartPrepVote);
+GameEvents.Subscribe( "bh_end_prep_time", RemovePrepVotes);
+Initialize()
+
+var pressed = false
+
+function UpdatePrepVote(args)
+{
+	$("#QuestPrepVoteNoLabel").text =  "No: " + args.no
+	$("#QuestPrepVoteYesLabel").text =  "Yes: " + args.yes
+	pressed = false
+}
+
+function VoteSkipPrep()
+{
+	$("#QuestsPrepVoteHolder").visible =  false
+	if(pressed == false){
+		GameEvents.SendCustomGameEventToServer( "bh_player_voted_to_skip", {pID : localID} )
+		var voteYes = $("#QuestPrepVoteConfirmButton")
+		voteYes.SetPanelEvent("onmouseover", function(){});
+		voteYes.SetPanelEvent("onmouseout", function(){});
+		voteYes.SetPanelEvent("onactivate", function(){});
+		pressed = true
+	}
+}
+
+function RemovePrepVotes(args)
+{
+	$("#QuestsPrepVoteHolder").visible =  false
+	var voteYes = $("#QuestPrepVoteConfirmButton")
+	voteYes.SetPanelEvent("onmouseover", function(){voteYes.SetHasClass("ButtonHover", true);});
+	voteYes.SetPanelEvent("onmouseout", function(){voteYes.SetHasClass("ButtonHover", false);});
+	voteYes.SetPanelEvent("onactivate", VoteSkipPrep);
+}
+
+
+function StartPrepVote(args)
+{
+	$("#QuestsPrepVoteHolder").visible =  true
+	
+	var voteYes = $("#QuestPrepVoteConfirmButton")
+	voteYes.SetPanelEvent("onmouseover", function(){voteYes.SetHasClass("ButtonHover", true);});
+	voteYes.SetPanelEvent("onmouseout", function(){voteYes.SetHasClass("ButtonHover", false);});
+	voteYes.SetPanelEvent("onactivate", VoteSkipPrep);
+	
+}
 
 function UpdateCameraPosition(args)
 {
@@ -246,6 +295,13 @@ function Initialize(arg){
 	var killCS = dotaHud.FindChildTraverse("quickstats");
 	killCS.FindChildTraverse("QuickStatsContainer").style.visibility = "collapse";
 	dotaHud.FindChildTraverse("GlyphScanContainer").style.visibility = "collapse";
+	$("#QuestBossText").visible =  false
+	$("#QuestRoundText").visible =  true
+	$("#QuestsPrepVoteHolder").visible =  false
+	
+	var voteYes = $("#QuestPrepVoteConfirmButton")
+	voteYes.SetPanelEvent("onmouseover", function(){voteYes.SetHasClass("ButtonHover", true);});
+	voteYes.SetPanelEvent("onmouseout", function(){voteYes.SetHasClass("ButtonHover", false);});
 }
 
 function UpdateLives(arg){
@@ -267,4 +323,10 @@ function UpdateTimer(arg){
 function UpdateRound(arg){
 	$("#QuestRoundText").visible =  true
 	$("#QuestRoundText").text = arg.roundText + " - " + $.Localize( "#event_" + arg.eventName, $("#QuestRoundText") )
+}
+
+function UpdateBoss(arg){
+	$("#QuestBossText").visible =  true
+	$.Msg( arg )
+	$("#QuestBossText").text = "UPCOMING BOSS - " + $.Localize( "#event_" + arg.bossName, $("#QuestBossText") )
 }

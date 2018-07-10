@@ -1,0 +1,38 @@
+"itembuilds/test_drow_ranger.txt"
+{
+	"author"		"Valve"
+	"hero"			"npc_dota_hero_pangolier"
+	"Title"			"Recommended items for Pangolier"
+	
+	"Items"
+	{	
+		"#DOTA_Item_Build_Starting_Items"
+		{
+			"item"	"item_item_iron_rod"
+			"item"	"item_pages_buckler"
+
+		"#DOTA_Item_Build_Early_Game"
+		{	
+			"item"	"item_lightningrod"
+			"item"	"item_orb_of_haste"
+			"item"	"item_executioners_blade"
+			"item"	"item_memento"
+		}
+		"#DOTA_Item_Build_Core_Items"
+		{
+			"item"	"item_visionarys_cutlass."
+			"item"	"item_anvil"
+			"item"	"item_guillotine"
+			"item"	"item_voltas_greathammer"
+		}
+		"#DOTA_Item_Build_Luxury"
+		{
+			"item"	"item_lance_of_longinus"
+			"item"	"item_soothsayer"
+			"item"	"item_blade_of_storm"
+			"item"	"item_culling_greataxe"
+			"item"	"item_behemoths_heart"
+			"item"	"item_legionnaires_dualswords"
+			"item"	"item_winters_breath"
+		}
+}

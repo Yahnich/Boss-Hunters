@@ -48,6 +48,7 @@ local function StartCombat(self)
 						zombieType = "npc_dota_boss3b"
 					end
 					local zombie = CreateUnitByName(zombieType, RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
+					zombie:SetCoreHealth(500)
 					zombie:SetAverageBaseDamage( math.min(7, roll) * 10, 35 )
 				end
 					

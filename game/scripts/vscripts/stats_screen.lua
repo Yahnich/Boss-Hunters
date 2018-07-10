@@ -27,6 +27,7 @@ function StatsScreen:StartStatsScreen()
 	self.cdr = {0,4,8,12,16,24,28,32,36,40,48}
 	self.as = {0,25,50,75,100,150,175,200,225,250,300}
 	self.sta = {0,4,8,12,16,24,28,32,36,40,48}
+	self.acc = {0,10,15,20,25,35,40,45,50,55,65}
 	
 	self.pr = {0,2,4,6,8,12,14,16,18,20,24}
 	self.mr = {0,4,8,12,16,24,28,32,36,40,48}
@@ -55,6 +56,7 @@ function StatsScreen:RegisterPlayer(hero, bRespec)
 	stats.cdr = 0
 	stats.as = 0
 	stats.sta = 0
+	stats.acc = 0
 	
 	stats.pr = 0
 	stats.mr = 0

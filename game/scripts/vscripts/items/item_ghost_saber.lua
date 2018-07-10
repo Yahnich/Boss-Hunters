@@ -8,8 +8,8 @@ end
 
 function item_ghost_saber:OnSpellStart()
 	EmitSoundOn("DOTA_Item.GhostScepter.Activate", self:GetCaster())
-	if self:GetCursorTarget():GetTeam() == self:GetCaster():GetTeam() and PlayerResource:IsDisableHelpSetForPlayerID(self:GetCursorTarget():GetPlayerID(), self:GetCursorTarget():GetPlayerID()) then
-		self:GetCursorTarget():AddNewModifier(self:GetCaster(), self, "modifier_item_ghost_saber_active", {Duration = self:GetSpecialValueFor("duration")})	
+	if self:GetCursorTarget():GetTeam() == self:GetCaster():GetTeam() and not PlayerResource:IsDisableHelpSetForPlayerID(self:GetCursorTarget():GetPlayerID(), self:GetCaster():GetPlayerID()) then
+		self:GetCursorTarget():AddNewModifier(self:GetCaster(), self, "modifier_item_ghost_saber_active", {Duration = self:GetSpecialValueFor("duration")})
 	end
 end
 

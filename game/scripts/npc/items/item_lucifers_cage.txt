@@ -14,7 +14,7 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"800"	
+		"ItemCost"						"400"	
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -23,7 +23,7 @@
 		"ItemResult"					"item_lucifers_cage"
 		"ItemRequirements"
 		{
-			"01"						"item_jar_of_souls;item_power_core;item_strange_trinket"
+			"01"						"item_jar_of_souls;item_power_core;item_strange_trinket;item_cursed_amulet"
 		}
 	}
 	"item_lucifers_cage"

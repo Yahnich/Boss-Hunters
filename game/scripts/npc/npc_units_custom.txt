@@ -116,7 +116,7 @@
 		"BaseClass"					"npc_dota_creature"	// Class of entity of link to.
 		"Model"						"models/creeps/roshan/roshan.vmdl"	// Model.
 		"SoundSet"					"Roshan"					// Name of sound set.
-		"ModelScale"				"1.8"
+		"ModelScale"				"1"
 		"Level"						"10"
 		"IsAncient"					"0"
 		"IsDemon"					"1"
@@ -226,7 +226,7 @@
 		//
 		"BaseClass"					"npc_dota_creature"	// Class of entity of link to.
 		"Model"						"models/heroes/leshrac/leshrac.vmdl"	// Model.
-		"ModelScale"				"2.25"
+		"ModelScale"				"1.5"
 		"Level"						"11"
 		"IsAncient"					"0"
 		"IsDemon"					"1"
@@ -758,7 +758,7 @@
 		"SoundSet"					"n_creep_Melee"
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"1"
-		"ModelScale" 				"2"
+		"ModelScale" 				"1.6"
 		"IsAncient"					"0"
 		"IsWild"					"1"
 		"MinimapIcon"				"minimap_enemyicon"
@@ -870,7 +870,7 @@
 		"SoundSet"					"n_creep_Melee"
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"1"
-		"ModelScale" 				"2"
+		"ModelScale" 				"1.6"
 		"IsAncient"					"0"
 		"IsWild"					"1"
 		"MinimapIcon"				"minimap_enemyicon"
@@ -982,7 +982,7 @@
 		"SoundSet"					"n_creep_Melee"
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"1"
-		"ModelScale" 				"3"
+		"ModelScale" 				"2.2"
 		"IsWild"					"1"
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"275"
@@ -1221,7 +1221,7 @@
 		"BaseClass"					"npc_dota_creature"	// Class of entity of link to.
 		"Model"						"models/heroes/treant_protector/treant_protector.vmdl"	// Model.
 		"SoundSet"					""					// Name of sound set.
-		"ModelScale"				"2.5"
+		"ModelScale"				"1.8"
 		"Level"						"4"
 		"IsAncient"			"0"
 		"MinimapIcon"				"minimap_enemyicon"
@@ -2101,7 +2101,7 @@
 		"SoundSet"					"n_creep_Ranged"
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"24"
-		"ModelScale" 				"2.3"
+		"ModelScale" 				"1.6"
 		"IsAncient"					"0"
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"275"
@@ -2312,7 +2312,7 @@
 		"SoundSet"					"n_creep_Melee"
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"24"
-		"ModelScale" 				"3.3"
+		"ModelScale" 				"2.5"
 		"IsAncient"			"0"
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"275"
@@ -2724,7 +2724,7 @@
 		"SoundSet"					"n_creep_Melee"
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"60"
-		"ModelScale" 				"2.5"
+		"ModelScale" 				"1.8"
 		"IsWild"					"1"
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"275"
@@ -2832,7 +2832,7 @@
 		"SoundSet"					"n_creep_Melee"
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"65"
-		"ModelScale" 				"2.5"
+		"ModelScale" 				"2"
 		"IsWild"					"1"
 		"IsCelestial"				"1"
 		"MinimapIcon"				"minimap_enemyicon"
@@ -3037,12 +3037,12 @@
 		"IdleSoundLoop"				"Hero_WarlockGolem.Spawn_Loop"
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"80"
-		"ModelScale" 				"2.6"
+		"ModelScale" 				"1.8"
 		"IsDemon"					"1"
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"275"
 		"IsCore"					"1"
-		"vscripts"					"ai/ai_boss31"
+		"vscripts"					"ai/ai_warlock"
 	
 		// Abilities
 		//----------------------------------------------------------------
@@ -3141,7 +3141,7 @@
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"350"
 		"IsCore"					"1"
-		"vscripts"					"ai/ai_boss32"
+		"vscripts"					"ai/ai_warlock"
 	
 		// Abilities
 		//----------------------------------------------------------------
@@ -3239,7 +3239,7 @@
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"300"
 		"IsCore"					"1"
-		"vscripts"					"ai/ai_generic"
+		"vscripts"					"ai/ai_warlock"
 	
 		// Abilities
 		//----------------------------------------------------------------
@@ -4105,7 +4105,7 @@
 		"Model"						"models/heroes/broodmother/broodmother.vmdl"	// Model.
 		"SoundSet"					"Hero_Broodmother"					// Name of sound set.
 		"GameSoundsFile"			"soundevents/game_sounds_heroes/game_sounds_broodmother.vsndevts"
-		"ModelScale"				"2.5"								// old 1.0
+		"ModelScale"				"2.0"								// old 1.0
 		"Level"						"300"
 		"IsAncient"					"0"
 		"MinimapIcon"				"minimap_roshancamp"
@@ -4368,7 +4368,7 @@
 		"Model"						"models/items/invoker/forge_spirit/sempiternal_revelations_forged_spirits/sempiternal_revelations_forged_spirits.vmdl"	// Model.
 		"SoundSet"					"Hero_Invoker"					// Name of sound set.
 		"GameSoundsFile"			"soundevents/game_sounds_heroes/game_sounds_invoker.vsndevts"
-		"ModelScale"				"3.5"								// old 1.0
+		"ModelScale"				"2.6"								// old 1.0
 		"Level"						"999"
 		"IsCelestial"				"1"
 		"MinimapIcon"				"minimap_roshancamp"

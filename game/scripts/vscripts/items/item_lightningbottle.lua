@@ -42,38 +42,39 @@ end
 
 function modifier_item_lightningbottle_handle:OnAbilityFullyCast(params)
 	local caster = params.unit
-	local cdReduction = self.reduction * self:GetParent():GetCooldownReduction()
+	local cdReduction = self.reduction * ( 1 - self:GetParent():GetCooldownReduction() / 100 )
 	if params.ability and params.ability:GetCooldownTimeRemaining() > cdReduction and params.unit == self:GetParent() then
 		if not caster:HasModifier("modifier_item_orb_of_renewal_passive") then
 			for i = 0, params.unit:GetAbilityCount() - 1 do
 				local ability = params.unit:GetAbilityByIndex( i )
 				if ability and ability ~= params.ability then
-					ability:ModifyCooldown(cdReduction)
+					ability:ModifyCooldown(-cdReduction)
 				end
 			end
 
 			for i=0, 5, 1 do
 				local current_item = params.unit:GetItemInSlot(i)
 				if current_item ~= nil  and current_item ~= params.ability then
-					current_item:ModifyCooldown(cdReduction)
+					current_item:ModifyCooldown(-cdReduction)
 				end
 			end
 		end
 
 		local enemies = self:GetParent():FindEnemyUnitsInRadius(self:GetParent():GetAbsOrigin(), self:GetSpecialValueFor("radius"))
+		local cdReductionSpell = self.reductionSpell * ( 1 - self:GetParent():GetCooldownReduction() / 100 )
 		for _,enemy in pairs(enemies) do
 			if enemy:IsRoundBoss() then
 				for i = 0, params.unit:GetAbilityCount() - 1 do
 					local ability = params.unit:GetAbilityByIndex( i )
 					if ability then
-						ability:ModifyCooldown(self.reductionSpell)
+						ability:ModifyCooldown(-cdReductionSpell)
 					end
 				end
 
 				for i=0, 5, 1 do
 					local current_item = params.unit:GetItemInSlot(i)
 					if current_item ~= nil and current_item ~= self:GetAbility() then
-						current_item:ModifyCooldown(self.reductionSpell)
+						current_item:ModifyCooldown(-cdReductionSpell)
 					end
 				end
 			end
@@ -109,20 +110,20 @@ function modifier_item_lightningbottle_handle_shield:OnTakeDamage(params)
 			ParticleManager:FireRopeParticle("particles/items_fx/chain_lightning.vpcf", PATTACH_POINT_FOLLOW, attacker, caster, {})
 
 			local damage = caster:GetPrimaryStatValue() * self:GetSpecialValueFor("primary_to_damage") / 100
-
+			local cdReductionShield = self.reductionShield * ( 1 - self:GetParent():GetCooldownReduction() / 100 )
 			self:GetAbility():DealDamage(caster, attacker, damage)
 			if attacker:IsRoundBoss() then
 				for i = 0, params.unit:GetAbilityCount() - 1 do
 					local ability = params.unit:GetAbilityByIndex( i )
 					if ability then
-						ability:ModifyCooldown(self.reductionShield)
+						ability:ModifyCooldown(-cdReductionShield)
 					end
 				end
 				
 				for i=0, 5, 1 do
 					local current_item = params.unit:GetItemInSlot(i)
 					if current_item ~= nil and current_item ~= self:GetAbility() then
-						current_item:ModifyCooldown(self.reductionShield)
+						current_item:ModifyCooldown(-cdReductionShield)
 					end
 				end
 			end
