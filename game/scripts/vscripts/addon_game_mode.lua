@@ -489,34 +489,6 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 		return false
 	end
 	
-	-- CUSTOM DAMAGE PROPERTIES
-	-- MODIFIER_PROPERTY_ALLDAMAGE_CONSTANT_BLOCK
-	local modifierPropertyAllBlock = victim:GetModifierPropertyValue("MODIFIER_PROPERTY_ALLDAMAGE_CONSTANT_BLOCK")
-	if modifierPropertyAllBlock > 0 and victim:IsHero() then
-		local damagetype = filterTable["damagetype_const"]
-		local block = modifierPropertyAllBlock
-		local dmgBlock = damage
-		if damagetype == 1 then -- physical
-			dmgBlock = damage * (1- victim:GetPhysicalArmorReduction() / 100 )
-		elseif damagetype == 2 then -- magical damage
-			dmgBlock = damage * (1 - victim:GetMagicalArmorValue())
-		elseif damagetype == 4 then -- pure damage
-			dmgBlock = damagefilter
-		end
-		if dmgBlock > block then
-			dmgBlock = dmgBlock - block
-			if damagetype == 1 then -- physical
-				dmgBlock = dmgBlock / (1- victim:GetPhysicalArmorReduction() / 100 )
-			elseif damagetype == 2 then -- magical damage
-				dmgBlock = dmgBlock / (1 - victim:GetMagicalArmorValue())
-			end
-			SendOverheadEventMessage( victim, OVERHEAD_ALERT_BLOCK, victim, block, victim )
-		else
-			filterTable["damage"] = 0
-			SendOverheadEventMessage( victim, OVERHEAD_ALERT_BLOCK, victim, dmgBlock, victim )
-		end
-	end
-	
 	if attacker:IsHero() and not attacker:IsCreature() then
 		if ability then 
 			if attacker:GetName() == "npc_dota_hero_leshrac" and attacker:HasAbility(ability:GetName()) then -- reapply damage in pure after all amp/crit

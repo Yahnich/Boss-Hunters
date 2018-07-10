@@ -970,8 +970,8 @@
 		"Ability1"						"naga_siren_spring_tide"	
 		"Ability2"						"naga_siren_dead_tide"
 		"Ability4"						"naga_siren_ebb_and_flow"
-		"Ability5"						"naga_siren_song_of_the_siren"
-		"Ability6"						"naga_siren_mirror_image"
+		"Ability5"						"generic_hidden"
+		"Ability6"						"naga_siren_song_of_the_siren"
 		"Ability7"						"naga_siren_song_of_the_siren_cancel"
 		
 		"Ability10"						"special_bonus_movement_speed_25"

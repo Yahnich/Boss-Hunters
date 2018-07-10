@@ -9468,9 +9468,10 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"FightRecapLevel"				"2"
-		"MaxLevel"						"1"
-		"InnateAbility"					"1"
+		"MaxLevel"						"6"
+		"InnateAbility"					"0"
 		"HasScepterUpgrade"				"1"
 		"AbilitySound"					"Hero_NagaSiren.SongOfTheSiren"
 
@@ -9482,7 +9483,7 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"120.0"
+		"AbilityCooldown"				"120.0 110.0 100.0 90.0 80.0 70.0"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -9500,27 +9501,27 @@
 			"02"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"duration"					"7.0 7.0 7.0"
+				"duration"					"8.0"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"animation_rate"				"0.55 0.55 0.55"
+				"animation_rate"			"0.55 0.55 0.55"
 			}
 			"04"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"regen_rate"				"10.0"
+				"regen_rate"				"10.0 11.0 12.0 13.0 14.0 15.0"
 			}
 			"05"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"regen_rate_self"				"10.0"
+				"regen_rate_self"			"10.0 11.0 12.0 13.0 14.0 15.0"
 			}
 			"06"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"regen_rate_tooltip_scepter"				"10"
+				"var_type"						"FIELD_INTEGER"
+				"regen_rate_tooltip_scepter"	"10"
 			}
 		}
 	}
