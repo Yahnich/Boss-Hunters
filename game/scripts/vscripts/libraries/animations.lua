@@ -433,6 +433,8 @@ local _ANIMATION_TRANSLATE_TO_CODE = {
   twinblade_run=368,
   twinblade_run_injured=369,
   windwalk=370,  
+  walk=371,  
+  run=372, 
 
 }
 

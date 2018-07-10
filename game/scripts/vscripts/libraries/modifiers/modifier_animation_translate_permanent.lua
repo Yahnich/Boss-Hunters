@@ -383,7 +383,7 @@ function modifier_animation_translate_permanent:OnCreated(keys)
 end
 
 function modifier_animation_translate_permanent:GetAttributes()
-  return MODIFIER_ATTRIBUTE_PERMANENT + MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE --+ MODIFIER_ATTRIBUTE_MULTIPLE
+  return MODIFIER_ATTRIBUTE_PERMANENT + MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_MULTIPLE
 end
 
 function modifier_animation_translate_permanent:IsHidden()
