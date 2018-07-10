@@ -372,6 +372,8 @@ local _CODE_TO_ANIMATION_TRANSLATE = {
   [368]="twinblade_run",
   [369]="twinblade_run_injured",
   [370]="windwalk",
+  [371]="walk",
+  [372]="run",
 }
 
 function modifier_animation_translate:OnCreated(keys) 
@@ -383,7 +385,7 @@ function modifier_animation_translate:OnCreated(keys)
 end
 
 function modifier_animation_translate:GetAttributes()
-  return MODIFIER_ATTRIBUTE_PERMANENT + MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE --+ MODIFIER_ATTRIBUTE_MULTIPLE
+  return MODIFIER_ATTRIBUTE_PERMANENT + MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_MULTIPLE
 end
 
 function modifier_animation_translate:IsHidden()

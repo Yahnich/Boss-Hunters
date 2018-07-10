@@ -1,0 +1,361 @@
+"DOTAAbilities"
+{	
+	"boss_troll_warlord_axe_fury"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_troll_warlord/boss_troll_warlord_axe_fury.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"troll_warlord_whirling_axes_ranged"
+		"MaxLevel"						"1"
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1000"
+		"AbilityCastPoint"				"1"
+		"AnimationPlaybackRate"  		"0.5"
+		"AbilityCastAnimation"			"ACT_DOTA_WHIRLING_AXES_RANGED"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"25"
+		
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"50"
+	
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_troll_warlord/troll_warlord_whirling_axe_ranged.vpcf"
+
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_troll_warlord.vsndevts"
+		}
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"03"
+	        {
+	            "var_type"                      "FIELD_INTEGER"
+	            "damage"     					"300"
+	        }
+	        "02"
+	        {
+	            "var_type"                      "FIELD_FLOAT"
+	            "duration"     					"10"
+	        }
+			"03"
+	        {
+	            "var_type"                      "FIELD_INTEGER"
+	            "spread_rad"     				"90"
+	        }
+	        "04"
+	        {
+	            "var_type"                      "FIELD_INTEGER"
+	            "range"     					"2000"
+	        }
+	        "05"
+	        {
+	            "var_type"                      "FIELD_INTEGER"
+	            "width"     					"75"
+	        }
+		}
+	}
+
+	"boss_troll_warlord_ensare"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_troll_warlord/boss_troll_warlord_ensare.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"meepo_earthbind"
+		"MaxLevel"						"1"
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1000"
+		"AbilityCastPoint"				"0.4"
+		"AnimationPlaybackRate"  		"0.5"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_3"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"20"
+		
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"100"
+	
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_meepo/meepo_earthbind_projectile_fx.vpcf"
+			"particle"  				"particles/units/heroes/hero_meepo/meepo_earthbind.vpcf"
+
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_meepo.vsndevts"
+			
+		}
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+	        "02"
+	        {
+	            "var_type"                      "FIELD_FLOAT"
+	            "duration"     					"5"
+	        }
+	        "04"
+	        {
+	            "var_type"                      "FIELD_INTEGER"
+	            "range"     					"1000"
+	        }
+	        "05"
+	        {
+	            "var_type"                      "FIELD_INTEGER"
+	            "radius"     					"300"
+	        }
+	         "02"
+	        {
+	            "var_type"                      "FIELD_INTEGER"
+	            "max_targets"     				"2"
+	        }
+		}
+	}
+
+	"boss_troll_warlord_mystic_axes"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_troll_warlord/boss_troll_warlord_mystic_axes.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"troll_warlord_whirling_axes_melee"
+		"MaxLevel"						"1"
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"0"
+		"AbilityCastPoint"				"0"
+		"AnimationPlaybackRate"  		"1"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_3"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"60"
+		
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"50"
+	
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_troll_warlord/troll_warlord_whirling_axe_melee.vpcf"
+
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_venomancer.vsndevts"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_viper.vsndevts"
+		}
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+	        "02"
+	        {
+	            "var_type"                      "FIELD_INTEGER"
+	            "spin_radius"     				"350"
+	        }
+	        "04"
+	        {
+	            "var_type"                      "FIELD_INTEGER"
+	            "axe_radius"     				"100"
+	        }
+	        "05"
+	        {
+	            "var_type"                      "FIELD_INTEGER"
+	            "damage"     					"300"
+	        }
+	        "02"
+	        {
+	            "var_type"                      "FIELD_FLOAT"
+	            "duration"     					"55"
+	        }
+	        "02"
+	        {
+	            "var_type"                      "FIELD_INTEGER"
+	            "axe_number"     				"2"
+	        }
+		}
+	}
+
+	"boss_troll_warlord_mystic_axes_charge"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_troll_warlord/boss_troll_warlord_mystic_axes_charge.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"troll_warlord_whirling_axes_melee"
+		"MaxLevel"						"1"
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1000"
+		"AbilityCastPoint"				"0.75"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"1"
+	
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_troll_warlord/troll_warlord_whirling_axe_melee.vpcf"
+		}
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+	        "02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"100"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"range"					"1500"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"speed"					"2000"
+			}
+		}
+	}
+
+	"boss_troll_warlord_enrage"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_troll_warlord/boss_troll_warlord_enrage.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"troll_warlord_battle_trance"
+		"MaxLevel"						"1"
+	
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_ogre_magi/ogre_magi_bloodlust_buff.vpcf"
+
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_ogre_magi.vsndevts"
+		}
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+	        "01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_as"				"400"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bouns_at"				"0.1"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_ms"				"100"
+			}
+		}
+	}
+
+	"boss_troll_warlord_savage_leap"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_troll_warlord/boss_troll_warlord_savage_leap.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"bounty_hunter_track"
+		"MaxLevel"						"1"
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1000"
+		"AbilityCastPoint"				"1"
+		"AnimationPlaybackRate"  		"1"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"15"
+		
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"50"
+	
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_troll_warlord/troll_warlord_whirling_axe_melee.vpcf"
+
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_mirana.vsndevts"
+		}
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+	        "02"
+	        {
+	            "var_type"                      "FIELD_INTEGER"
+	            "radius"     					"350"
+	        }
+	        "05"
+	        {
+	            "var_type"                      "FIELD_INTEGER"
+	            "damage"     					"300"
+	        }
+	        "02"
+	        {
+	            "var_type"                      "FIELD_FLOAT"
+	            "leap_duration"     			"1"
+	        }
+	        "02"
+	        {
+	            "var_type"                      "FIELD_FLOAT"
+	            "duration"     					"5"
+	        }
+		}
+	}
+
+}
