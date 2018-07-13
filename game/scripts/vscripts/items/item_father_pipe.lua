@@ -11,15 +11,14 @@ function item_father_pipe:OnSpellStart()
 	
 	local allies = caster:FindFriendlyUnitsInRadius(caster:GetAbsOrigin(), self:GetSpecialValueFor("radius"))
 	for _,friend in pairs(allies) do
-		if not friend:HasModifier("modifier_item_barrier_leaves") then
-			friend:AddNewModifier(caster, self, "modifier_item_father_pipe_active", {Duration = self:GetSpecialValueFor("duration")}):SetStackCount(self:GetSpecialValueFor("block"))
-		end
+		friend:AddNewModifier(caster, self, "modifier_item_father_pipe_active", {Duration = self:GetSpecialValueFor("duration")}):SetStackCount(self:GetSpecialValueFor("block"))
 	end
 end
 
 modifier_item_father_pipe_passive = class({})
 function modifier_item_father_pipe_passive:OnCreated()
 	self.hp_regen = self:GetSpecialValueFor("hp_regen")
+	self.radius = self:GetSpecialValueFor("radius")
 end
 
 function modifier_item_father_pipe_passive:DeclareFunctions()
@@ -30,12 +29,57 @@ function modifier_item_father_pipe_passive:GetModifierConstantHealthRegen()
 	return self.hp_regen
 end
 
+
+function modifier_item_father_pipe_passive:IsAura()
+	return true
+end
+
+function modifier_item_father_pipe_passive:GetModifierAura()
+	return "modifier_item_father_pipe_aura"
+end
+
+function modifier_item_father_pipe_passive:GetAuraRadius()
+	return self.radius
+end
+
+function modifier_item_father_pipe_passive:GetAuraDuration()
+	return 0.5
+end
+
+function modifier_item_father_pipe_passive:GetAuraSearchTeam()    
+	return DOTA_UNIT_TARGET_TEAM_FRIENDLY
+end
+
+function modifier_item_father_pipe_passive:GetAuraSearchType()    
+	return DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
+end
+
+function modifier_item_father_pipe_passive:GetAuraSearchFlags()    
+	return DOTA_UNIT_TARGET_FLAG_NONE
+end
+
 function modifier_item_father_pipe_passive:IsHidden()
 	return true
 end
 
 function modifier_item_father_pipe_passive:GetAttributes()
 	return MODIFIER_ATTRIBUTE_MULTIPLE
+end
+
+
+modifier_item_father_pipe_aura = class({})
+LinkLuaModifier( "modifier_item_father_pipe_aura", "items/item_father_pipe.lua" ,LUA_MODIFIER_MOTION_NONE )
+
+function modifier_item_father_pipe_aura:OnCreated()
+	self.magic_resist = self:GetSpecialValueFor("aura_magic_resist")
+end
+
+function modifier_item_father_pipe_aura:DeclareFunctions()
+	return {MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS}
+end
+
+function modifier_item_father_pipe_aura:GetModifierMagicalResistanceBonus()
+	return self.magic_resist
 end
 
 modifier_item_father_pipe_active = class({})

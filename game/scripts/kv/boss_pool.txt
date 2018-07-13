@@ -33,6 +33,5 @@
 	// Demons, corrupted things
 	"Solitude"
 	{
-		"Solitude_boss_warlock"				"1"
 	}
 }

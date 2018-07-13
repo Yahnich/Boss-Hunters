@@ -17,8 +17,12 @@ function MapHandler:CheckAndResolvePositions(hero)
 		hero:StopMotionControllers(true)
 		return
 	end
-	if CalculateDistance( hero, self:GetCurrentEvent():GetHeroSpawnPosition() ) > 2000 then
-		FindClearSpaceForUnit(hero, self:GetCurrentEvent():GetHeroSpawnPosition(), true)
+	if RoundManager.boundingBox and Entities:FindByName(nil, RoundManager.boundingBox.."_edge_collider") and hero then
+		local collider = Entities:FindByName(nil, RoundManager.boundingBox.."_edge_collider")
+		local dist = math.max(  FindRadius(collider) * 1.2, math.max(FindWidth(collider) * 1.1, FindLength(collider) * 1.1 ) )
+		if CalculateDistance( hero, collider ) > dist then
+			FindClearSpaceForUnit(hero, RoundManager:GetCurrentEvent():GetHeroSpawnPosition(), true)
+		end
 	end
 	if GridNav:IsTraversable(hero:GetAbsOrigin()) then
 		hero.lastAllowedPosition = hero:GetAbsOrigin()
@@ -76,7 +80,7 @@ function FindRadius(unit)
 	local radius = 0
 	local count = 0
 	for tag, vector in pairs( unit:GetBounds() ) do
-		count = count + 2
+		count = count + 1
 		radius = math.abs(vector.x) + math.abs(vector.y)
 	end
 	radius = radius / count
@@ -88,7 +92,6 @@ function LeftBoundingBox(trigger)
 	local edge = trigger.caller
 	local distance = 0
 	if RoundManager.boundingBox and unit and edge then
-		print( unit:GetName(), unit:GetUnitName(), unit:GetClassname() )
 		if edge:GetName() == RoundManager.boundingBox.."_edge_collider" and not edge:IsTouching(unit) and unit.lastAllowedPosition then
 			FindClearSpaceForUnit( unit, GetGroundPosition( unit.lastAllowedPosition, unit ), true )
 			GridNav:DestroyTreesAroundPoint( unit.lastAllowedPosition, 120, true )

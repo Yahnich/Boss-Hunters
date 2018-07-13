@@ -3,39 +3,37 @@ Troll Warlord Boss
 ]]
 
 if IsServer() then
-	require( "ai/ai_core" )
 	function Spawn( entityKeyValues )
 		Timers:CreateTimer(function()
 			if thisEntity and not thisEntity:IsNull() then
 				return AIThink(thisEntity)
 			end
 		end)
-		thisEntity:SetContextThink( "AIThinker", AIThink, 0.25 )
 
 		thisEntity.axe_fury = thisEntity:FindAbilityByName("boss_troll_warlord_axe_fury")
 		if thisEntity.axe_fury then
-			thisEntity.axe_fury:SetLevel(1)
+			thisEntity.axe_fury:SetLevel( math.ceil(GameRules:GetGameDifficulty()/2) )
 			--thisEntity.axe_fury:SetCooldown()
 		end
 
 		thisEntity.ensare = thisEntity:FindAbilityByName("boss_troll_warlord_ensare")
 		if thisEntity.ensare then
-			thisEntity.ensare:SetLevel(1)
+			thisEntity.ensare:SetLevel( math.ceil(GameRules:GetGameDifficulty()/2) )
 		end
 
 		thisEntity.mystic_axes = thisEntity:FindAbilityByName("boss_troll_warlord_mystic_axes")
 		if thisEntity.mystic_axes then
-			thisEntity.mystic_axes:SetLevel(1)
+			thisEntity.mystic_axes:SetLevel( math.ceil(GameRules:GetGameDifficulty()/2) )
 		end
 
 		thisEntity.enrage = thisEntity:FindAbilityByName("boss_troll_warlord_enrage")
 		if thisEntity.enrage then
-			thisEntity.enrage:SetLevel(1)
+			thisEntity.enrage:SetLevel( math.ceil(GameRules:GetGameDifficulty()/2) )
 		end
 
 		thisEntity.leap = thisEntity:FindAbilityByName("boss_troll_warlord_savage_leap")
 		if thisEntity.leap then
-			thisEntity.leap:SetLevel(1)
+			thisEntity.leap:SetLevel( math.ceil(GameRules:GetGameDifficulty()/2) )
 		end
 	end
 

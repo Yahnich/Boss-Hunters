@@ -13,7 +13,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"troll_warlord_whirling_axes_ranged"
-		"MaxLevel"						"1"
+		"MaxLevel"						"2"
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -24,7 +24,7 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"25"
+		"AbilityCooldown"				"40 35"
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -44,7 +44,7 @@
 			"03"
 	        {
 	            "var_type"                      "FIELD_INTEGER"
-	            "damage"     					"300"
+	            "damage"     					"40"
 	        }
 	        "02"
 	        {
@@ -81,7 +81,7 @@
 		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"meepo_earthbind"
-		"MaxLevel"						"1"
+		"MaxLevel"						"2"
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -114,7 +114,7 @@
 	        "02"
 	        {
 	            "var_type"                      "FIELD_FLOAT"
-	            "duration"     					"5"
+	            "duration"     					"3"
 	        }
 	        "04"
 	        {
@@ -124,7 +124,7 @@
 	        "05"
 	        {
 	            "var_type"                      "FIELD_INTEGER"
-	            "radius"     					"300"
+	            "radius"     					"250 300"
 	        }
 	         "02"
 	        {
@@ -147,7 +147,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"troll_warlord_whirling_axes_melee"
-		"MaxLevel"						"1"
+		"MaxLevel"						"2"
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -158,7 +158,7 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"60"
+		"AbilityCooldown"				"60 40"
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -189,12 +189,12 @@
 	        "05"
 	        {
 	            "var_type"                      "FIELD_INTEGER"
-	            "damage"     					"300"
+	            "damage"     					"200"
 	        }
 	        "02"
 	        {
 	            "var_type"                      "FIELD_FLOAT"
-	            "duration"     					"55"
+	            "duration"     					"40"
 	        }
 	        "02"
 	        {
@@ -217,7 +217,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"troll_warlord_whirling_axes_melee"
-		"MaxLevel"						"1"
+		"MaxLevel"						"2"
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -250,7 +250,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"speed"					"2000"
+				"speed"					"1500 2000"
 			}
 		}
 	}
@@ -263,7 +263,7 @@
 		"ScriptFile"					"bosses/boss_troll_warlord/boss_troll_warlord_enrage.lua"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityTextureName"			"troll_warlord_battle_trance"
-		"MaxLevel"						"1"
+		"MaxLevel"						"2"
 	
 		"precache"
 		{
@@ -279,7 +279,7 @@
 	        "01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_as"				"400"
+				"bonus_as"				"400 600"
 			}
 			"02"
 			{
@@ -289,7 +289,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_ms"				"100"
+				"bonus_ms"				"100 200"
 			}
 		}
 	}
@@ -307,12 +307,12 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"bounty_hunter_track"
-		"MaxLevel"						"1"
+		"MaxLevel"						"2"
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"1000"
-		"AbilityCastPoint"				"1"
+		"AbilityCastPoint"				"1.5 1"
 		"AnimationPlaybackRate"  		"1"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
 
@@ -338,12 +338,12 @@
 	        "02"
 	        {
 	            "var_type"                      "FIELD_INTEGER"
-	            "radius"     					"350"
+	            "radius"     					"325"
 	        }
 	        "05"
 	        {
 	            "var_type"                      "FIELD_INTEGER"
-	            "damage"     					"300"
+	            "damage"     					"200"
 	        }
 	        "02"
 	        {

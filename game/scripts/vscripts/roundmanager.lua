@@ -351,6 +351,12 @@ function RoundManager:RaidIsFinished()
 	EventManager:FireEvent("boss_hunters_raid_finished")
 	self.raidsFinished = (self.raidsFinished or 0) + 1
 	
+	for _, hero in ipairs(HeroList:GetRealHeroes() ) do
+		hero.statsDamageTaken = 0
+		hero.statsDamageDealt = 0
+		hero.statsDamageHealed = 0
+	end
+	
 	if self.zones[self.currentZone][1] == nil then RoundManager:ZoneIsFinished() end
 	if self.zones[self.currentZone][1] then
 		local boss = self.zones[self.currentZone][1][#self.zones[self.currentZone][1]]

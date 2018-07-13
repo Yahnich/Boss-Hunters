@@ -22,6 +22,7 @@ end
 
 modifier_boss_troll_warlord_mystic_axes = class({})
 function modifier_boss_troll_warlord_mystic_axes:OnCreated(table)
+	self.damage = self:GetSpecialValueFor("damage") * FrameTime()
 	if IsServer() then
 		local parent = self:GetParent()
 		self.nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_troll_warlord/troll_warlord_whirling_axe_melee.vpcf", PATTACH_POINT_FOLLOW, parent)
@@ -44,7 +45,7 @@ function modifier_boss_troll_warlord_mystic_axes:OnIntervalThink()
 
 	local enemies = caster:FindEnemyUnitsInRadius(parent:GetAbsOrigin(), self:GetSpecialValueFor("axe_radius"))
 	for _,enemy in pairs(enemies) do
-		self:GetAbility():DealDamage(caster, enemy, self:GetSpecialValueFor("damage"), {}, 0)
+		self:GetAbility():DealDamage(caster, enemy, self.damage, {}, 0)
 	end
 
 	if not caster:IsAlive() then

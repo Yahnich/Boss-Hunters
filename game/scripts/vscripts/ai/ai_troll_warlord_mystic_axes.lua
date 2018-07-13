@@ -3,14 +3,12 @@ Troll Warlord Boss Axes
 ]]
 
 if IsServer() then
-	require( "ai/ai_core" )
 	function Spawn( entityKeyValues )
 		Timers:CreateTimer(function()
 			if thisEntity and not thisEntity:IsNull() then
 				return AIThink(thisEntity)
 			end
 		end)
-		thisEntity:SetContextThink( "AIThinker", AIThink, 0.25 )
 
 		thisEntity.charge = thisEntity:FindAbilityByName("boss_troll_warlord_mystic_axes_charge")
 		if thisEntity.charge then

@@ -9,22 +9,25 @@
 		"#DOTA_Item_Build_Starting_Items"
 		{
 			"item"	"item_pages_buckler"
-			"item"	"item_crystal_of_life"
-			"item"	"item_ruby_ring"
+			"item"	"item_purging_stone"
+			"item"	"item_warm_fire"
 		}
 		"#DOTA_Item_Build_Early_Game"
 		{	
-			"item"	"item_orb_of_vitality"
-			"item"	"item_glacier_boots"
+			"item"	"item_angelic_guard"
+			"item"	"item_war_drum"
 			"item"	"item_plate_of_the_unbreakable"
-			"item"	"item_gem_of_inner_power"
+			"item"	"item_incandescance"
 			"item"	"item_frostbite"
+            "item"  "item_soul_vessel"
 		}
 		"#DOTA_Item_Build_Core_Items"
 		{
-			"item"	"item_gauntlet_of_might"
-			"item"	"item_behemoths_heart"
-			"item"	"item_emission"
+		    "item"  "item_blade_of_dominion
+			"item"	"item_frostfire_brand"
+            "item"  "item_emission"
+            "item"  "item_gauntlet_of_might"
+			"item"	"item_mighty_timpani"
 		}
 		"#DOTA_Item_Build_Luxury"
 		{

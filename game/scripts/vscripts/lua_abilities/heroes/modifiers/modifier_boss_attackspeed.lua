@@ -33,6 +33,7 @@ function modifier_boss_attackspeed:DeclareFunctions()
 		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
 		MODIFIER_EVENT_ON_ABILITY_FULLY_CAST,
 		MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE,
+		MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE,
 		MODIFIER_EVENT_ON_ABILITY_START
 	}
 	return funcs
@@ -53,6 +54,12 @@ end
 function modifier_boss_attackspeed:GetModifierManaBonus( params )
 	return self:GetStackCount()*250
 end]]
+
+function modifier_boss_attackspeed:GetModifierPreAttack_CriticalStrike( params )
+	if self:RollPRNG( 5 * self:GetStackCount() ) then
+		return 175
+	end
+end
 
 function modifier_boss_attackspeed:GetModifierPhysicalArmorBonus( params )
 	local bonusarmor = self:GetStackCount()
