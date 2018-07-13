@@ -5,7 +5,7 @@
 	m_nMaxParticles = 1
 	m_flCullRadius = 100.0
 	m_nCullControlPoint = 3
-	m_flConstantRadius = 1.0
+	m_flConstantRadius = 2.0
 	m_bShouldSort = false
 	m_flMaxRecreationTime = -1.0
 	m_Renderers = 
@@ -39,7 +39,7 @@
 		},
 		{
 			_class = "C_OP_RampScalarLinear"
-			m_nField = 4
+			m_nField = "4"
 			m_RateMin = 1.0
 			m_RateMax = 2.0
 		},
@@ -61,7 +61,7 @@
 		{
 			_class = "C_OP_RemapVelocityToVector"
 			m_bNormalize = true
-			m_nFieldOutput = 21
+			m_nFieldOutput = "21"
 		},
 	]
 	m_Initializers = 
@@ -139,6 +139,9 @@
 		},
 		{
 			m_ChildRef = resource:"particles/bosses/boss_warlockgolems/boss_ember_spike_a1.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/bosses/boss_warlock/boss_warlock_crackedgroundlinear.vpcf"
 		},
 	]
 }

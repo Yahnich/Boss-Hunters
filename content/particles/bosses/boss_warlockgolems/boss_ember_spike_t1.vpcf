@@ -40,8 +40,8 @@
 	[
 		{
 			_class = "C_INIT_RandomLifeTime"
-			m_fLifetimeMax = 1.2
-			m_fLifetimeMin = 1.0
+			m_fLifetimeMax = 1.0
+			m_fLifetimeMin = 0.1
 		},
 		{
 			_class = "C_INIT_RandomRadius"

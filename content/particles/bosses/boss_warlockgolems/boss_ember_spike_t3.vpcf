@@ -47,7 +47,6 @@
 		},
 		{
 			_class = "C_INIT_RandomAlpha"
-			m_nAlphaMax = 76
 			m_nAlphaMin = 0
 		},
 		{
