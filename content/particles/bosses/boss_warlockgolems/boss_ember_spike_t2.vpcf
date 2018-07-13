@@ -11,7 +11,8 @@
 			m_nSequenceCombineMode = "SEQUENCE_COMBINE_MODE_USE_SEQUENCE_0"
 			m_hTexture = resource:"materials/particle/lava_blasts/lava_gloops.vtex"
 			m_nOrientationType = 2
-			m_flAnimationRate = 2.0
+			m_flAnimationRate = 1.0
+			m_bFitCycleToLifetime = true
 		},
 	]
 	m_Operators = 
@@ -39,8 +40,8 @@
 	[
 		{
 			_class = "C_INIT_RandomLifeTime"
-			m_fLifetimeMin = 1.2
-			m_fLifetimeMax = 1.5
+			m_fLifetimeMin = 0.1
+			m_fLifetimeMax = 1.0
 		},
 		{
 			_class = "C_INIT_RandomRadius"
@@ -50,7 +51,6 @@
 		{
 			_class = "C_INIT_RandomAlpha"
 			m_nAlphaMin = 0
-			m_nAlphaMax = 110
 		},
 		{
 			_class = "C_INIT_RandomRotation"

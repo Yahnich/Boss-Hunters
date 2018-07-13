@@ -449,7 +449,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"width"					"400"
+				"width"					"150"
 			}
 			"02"
 			{

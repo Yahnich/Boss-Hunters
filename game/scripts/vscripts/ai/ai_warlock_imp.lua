@@ -3,12 +3,14 @@ Warlock Imp
 ]]
 
 if IsServer() then
+	require( "ai/ai_core" )
 	function Spawn( entityKeyValues )
 		AITimers:CreateTimer(function()
 			if thisEntity and not thisEntity:IsNull() then
 				return AIThink(thisEntity)
 			end
 		end)
+		thisEntity:SetContextThink( "AIThinker", AIThink, 0.25 )
 
 		thisEntity.bolt = thisEntity:FindAbilityByName("warlock_imp_bolt")
 		thisEntity.bolt:SetLevel(1)
