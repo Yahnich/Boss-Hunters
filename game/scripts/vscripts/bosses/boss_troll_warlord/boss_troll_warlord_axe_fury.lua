@@ -61,3 +61,11 @@ function modifier_boss_troll_warlord_axe_fury:CheckState()
 	local state = { [MODIFIER_STATE_ROOTED] = true}
 	return state
 end
+
+function modifier_boss_troll_warlord_axe_fury:DeclareFunctions()
+	return {MODIFIER_PROPERTY_TURN_RATE_PERCENTAGE}
+end
+
+function modifier_boss_troll_warlord_axe_fury:GetModifierTurnRate_Percentage()
+	return -50
+end

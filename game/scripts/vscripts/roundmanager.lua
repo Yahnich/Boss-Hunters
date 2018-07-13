@@ -487,7 +487,7 @@ function RoundManager:InitializeUnit(unit, bElite)
 		end
 	end
 	
-	expectedHP = ( (75 * RoundManager:GetRaidsFinished() ) + expectedHP ) * effPlayerHPMult
+	expectedHP = math.max( 1, ( (75 * RoundManager:GetRaidsFinished() ) + expectedHP ) * effPlayerHPMult )
 	unit:SetBaseMaxHealth(expectedHP)
 	unit:SetMaxHealth(expectedHP)
 	unit:SetHealth(expectedHP)
@@ -497,9 +497,11 @@ function RoundManager:InitializeUnit(unit, bElite)
 	unit:SetPhysicalArmorBaseValue( (unit:GetPhysicalArmorBaseValue() + (RoundManager:GetRaidsFinished() * 3) ) * effPlayerArmorMult )
 	
 	unit:AddNewModifier(unit, nil, "modifier_boss_attackspeed", {})
-	unit:AddNewModifier(unit, nil, "modifier_power_scaling", {}):SetStackCount( math.floor( (self:GetEventsFinished() * 0.25) * (1 + (self:GetRaidsFinished() * 1.5) + ( RoundManager:GetZonesFinished() * 4 ) ) ))
+	local powerScale = unit:AddNewModifier(unit, nil, "modifier_power_scaling", {})
+	if powerScale then powerScale:SetStackCount( math.floor( (RoundManager:GetEventsFinished() * 0.25) * (1 + (RoundManager:GetRaidsFinished() * 1.5) + ( RoundManager:GetZonesFinished() * 4 ) ) )) end
 	unit:AddNewModifier(unit, nil, "modifier_spawn_immunity", {duration = 4/GameRules.gameDifficulty})
-	unit:AddNewModifier(unit, nil, "modifier_boss_evasion", {}):SetStackCount( self:GetEventsFinished() )
+	local evasion = unit:AddNewModifier(unit, nil, "modifier_boss_evasion", {})
+	if evasion then evasion:SetStackCount( RoundManager:GetEventsFinished() ) end
 	
 	
 	if unit:GetHullRadius() <= 16 then

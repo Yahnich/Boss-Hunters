@@ -11,7 +11,6 @@ function boss_troll_warlord_mystic_axes:OnSpellStart()
 			local axe = CreateUnitByName("npc_dota_boss_troll_warlord_mystic_axe", caster:GetAbsOrigin() + ActualRandomVector(500, 250), true, caster, caster, caster:GetTeam())
 			EmitSoundOn("Hero_TrollWarlord.WhirlingAxes.Melee", axe)
 			axe:AddNewModifier(caster, self, "modifier_boss_troll_warlord_mystic_axes", {duration = self:GetSpecialValueFor("duration")})
-			axe:AddNewModifier(caster, self, "modifier_kill", {duration = self:GetSpecialValueFor("duration")})
 			currentAxe = currentAxe + 1
 			return 0.1
 		else
@@ -22,32 +21,30 @@ end
 
 modifier_boss_troll_warlord_mystic_axes = class({})
 function modifier_boss_troll_warlord_mystic_axes:OnCreated(table)
-	self.damage = self:GetSpecialValueFor("damage") * FrameTime()
+	self.damage = self:GetSpecialValueFor("damage") * 0.1
 	if IsServer() then
 		local parent = self:GetParent()
-		self.nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_troll_warlord/troll_warlord_whirling_axe_melee.vpcf", PATTACH_POINT_FOLLOW, parent)
-					ParticleManager:SetParticleControl(self.nfx, 0, parent:GetAbsOrigin()+Vector(0,0,150))
-					ParticleManager:SetParticleControl(self.nfx, 1, parent:GetAbsOrigin()+Vector(0,0,150))
-					ParticleManager:SetParticleControl(self.nfx, 3, parent:GetAbsOrigin()+Vector(0,0,150))
-					ParticleManager:SetParticleControl(self.nfx, 4, Vector(500, 0, 0))
-
-		self:StartIntervalThink(FrameTime()) 
+		local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_troll_warlord/troll_warlord_whirling_axe_melee.vpcf", PATTACH_POINT_FOLLOW, parent)
+					ParticleManager:SetParticleControlEnt(nfx, 0, parent, PATTACH_POINT_FOLLOW, "attach_hitloc", parent:GetAbsOrigin()+Vector(0,0,150), true)
+					ParticleManager:SetParticleControlEnt(nfx, 1, parent, PATTACH_POINT_FOLLOW, "attach_hitloc", parent:GetAbsOrigin()+Vector(0,0,150), true)
+					ParticleManager:SetParticleControlEnt(nfx, 3, parent, PATTACH_POINT_FOLLOW, "attach_hitloc", parent:GetAbsOrigin()+Vector(0,0,150), true)
+					ParticleManager:SetParticleControl(nfx, 4, Vector(500, 0, 0))
+		self:AddEffect(nfx)
+		self:StartIntervalThink(1)
 	end
 end
 
 function modifier_boss_troll_warlord_mystic_axes:OnIntervalThink()
 	local caster = self:GetCaster()
 	local parent = self:GetParent()
-
-	ParticleManager:SetParticleControl(self.nfx, 0, parent:GetAbsOrigin()+Vector(0,0,150))
-	ParticleManager:SetParticleControl(self.nfx, 1, parent:GetAbsOrigin()+Vector(0,0,150))
-	ParticleManager:SetParticleControl(self.nfx, 3, parent:GetAbsOrigin()+Vector(0,0,150))
-
+	if not self.init then
+		self.init = true
+		self:StartIntervalThink(0.1)
+	end
 	local enemies = caster:FindEnemyUnitsInRadius(parent:GetAbsOrigin(), self:GetSpecialValueFor("axe_radius"))
 	for _,enemy in pairs(enemies) do
-		self:GetAbility():DealDamage(caster, enemy, self.damage, {}, 0)
+		self:GetAbility():DealDamage(parent, enemy, self.damage, {damage_flags = DOTA_DAMAGE_FLAG_BYPASSES_BLOCK}, 0)
 	end
-
 	if not caster:IsAlive() then
 		parent:Destroy()
 		self:Destroy()
@@ -56,7 +53,8 @@ end
 
 function modifier_boss_troll_warlord_mystic_axes:OnRemoved()
 	if IsServer() then
-		ParticleManager:ClearParticle(self.nfx)
+		self:GetParent():ForceKill(false)
+		UTIL_Remove( self:GetParent() )
 	end
 end
 

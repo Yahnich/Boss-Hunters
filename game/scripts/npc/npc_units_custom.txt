@@ -74,8 +74,8 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"8000"		// Range of vision during day HERO.
-		"VisionNighttimeRange"		"8000"		// Range of vision at night time.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
+		"VisionNighttimeRange"		"1200"		// Range of vision at night time.
 	
 		// Team
 		//----------------------------------------------------------------
@@ -595,7 +595,7 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"800"		// Range of vision during day HERO.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
 		"VisionNighttimeRange"		"800"		// Range of vision at night time.
 	
 		// Team
@@ -702,7 +702,7 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"800"		// Range of vision during day HERO.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
 		"VisionNighttimeRange"		"800"		// Range of vision at night time.
 	
 		// Team
@@ -815,7 +815,7 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"800"		// Range of vision during day HERO.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
 		"VisionNighttimeRange"		"800"		// Range of vision at night time.
 	
 		// Team
@@ -927,7 +927,7 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"800"		// Range of vision during day HERO.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
 		"VisionNighttimeRange"		"800"		// Range of vision at night time.
 	
 		// Team
@@ -1039,7 +1039,7 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"800"		// Range of vision during day HERO.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
 		"VisionNighttimeRange"		"800"		// Range of vision at night time.
 	
 		// Team
@@ -1394,8 +1394,8 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"8000"		// Range of vision during day HERO.
-		"VisionNighttimeRange"		"8000"		// Range of vision at night time.
+		"VisionDaytimeRange"		"2400"		// Range of vision during day HERO.
+		"VisionNighttimeRange"		"1200"		// Range of vision at night time.
 	
 		// Team
 		//----------------------------------------------------------------
@@ -1489,8 +1489,8 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"8000"		// Range of vision during day HERO.
-		"VisionNighttimeRange"		"8000"		// Range of vision at night time.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
+		"VisionNighttimeRange"		"800"		// Range of vision at night time.
 	
 		// Team
 		//----------------------------------------------------------------
@@ -1585,7 +1585,7 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"800"		// Range of vision during day HERO.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
 		"VisionNighttimeRange"		"800"		// Range of vision at night time.
 	
 		// Team
@@ -1703,7 +1703,7 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"800"		// Range of vision during day HERO.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
 		"VisionNighttimeRange"		"800"		// Range of vision at night time.
 	
 		// Team
@@ -1814,7 +1814,7 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"800"		// Range of vision during day HERO.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
 		"VisionNighttimeRange"		"800"		// Range of vision at night time.
 	
 		// Team
@@ -1921,7 +1921,7 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"800"		// Range of vision during day HERO.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
 		"VisionNighttimeRange"		"800"		// Range of vision at night time.
 	
 		// Team
@@ -2029,7 +2029,7 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"800"		// Range of vision during day HERO.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
 		"VisionNighttimeRange"		"800"		// Range of vision at night time.
 	
 		// Team
@@ -2132,7 +2132,7 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"800"		// Range of vision during day HERO.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
 		"VisionNighttimeRange"		"800"		// Range of vision at night time.
 	
 		// Team
@@ -2238,7 +2238,7 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"800"		// Range of vision during day HERO.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
 		"VisionNighttimeRange"		"800"		// Range of vision at night time.
 	
 		// Team
@@ -2336,7 +2336,7 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"800"		// Range of vision during day HERO.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
 		"VisionNighttimeRange"		"800"		// Range of vision at night time.
 	
 		// Team
@@ -2445,7 +2445,7 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"800"		// Range of vision during day HERO.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
 		"VisionNighttimeRange"		"800"		// Range of vision at night time.
 	
 		// Team
@@ -2549,7 +2549,7 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"800"		// Range of vision during day HERO.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
 		"VisionNighttimeRange"		"800"		// Range of vision at night time.
 	
 		// Team
@@ -2654,7 +2654,7 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"800"		// Range of vision during day HERO.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
 		"VisionNighttimeRange"		"800"		// Range of vision at night time.
 	
 		// Team
@@ -2762,7 +2762,7 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"800"		// Range of vision during day HERO.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
 		"VisionNighttimeRange"		"800"		// Range of vision at night time.
 	
 		// Team
@@ -2873,7 +2873,7 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"800"		// Range of vision during day HERO.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
 		"VisionNighttimeRange"		"800"		// Range of vision at night time.
 	
 		// Team
@@ -2966,7 +2966,7 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"800"		// Range of vision during day HERO.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
 		"VisionNighttimeRange"		"800"		// Range of vision at night time.
 	
 		// Team
@@ -3065,7 +3065,7 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"800"		// Range of vision during day HERO.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
 		"VisionNighttimeRange"		"800"		// Range of vision at night time.
 	
 		// Team
@@ -3164,7 +3164,7 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"800"		// Range of vision during day HERO.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
 		"VisionNighttimeRange"		"800"		// Range of vision at night time.
 	
 		// Team
@@ -3263,7 +3263,7 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"800"		// Range of vision during day HERO.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
 		"VisionNighttimeRange"		"800"		// Range of vision at night time.
 	
 		// Team
@@ -3369,7 +3369,7 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"800"		// Range of vision during day HERO.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
 		"VisionNighttimeRange"		"800"		// Range of vision at night time.
 	
 		// Team
@@ -3488,7 +3488,7 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"800"		// Range of vision during day HERO.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
 		"VisionNighttimeRange"		"800"		// Range of vision at night time.
 	
 		// Team
@@ -3600,8 +3600,8 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"6666"		// Range of vision during day HERO.
-		"VisionNighttimeRange"		"6666"		// Range of vision at night time.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
+		"VisionNighttimeRange"		"800"		// Range of vision at night time.
 	
 		// Team
 		//----------------------------------------------------------------
@@ -6419,7 +6419,7 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"800"		// Range of vision during day HERO.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
 		"VisionNighttimeRange"		"800"		// Range of vision at night time.
 	
 		// Team
@@ -6527,7 +6527,7 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"800"		// Range of vision during day HERO.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
 		"VisionNighttimeRange"		"800"		// Range of vision at night time.
 	
 		// Team
@@ -8262,7 +8262,7 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"800"		// Range of vision during day HERO.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
 		"VisionNighttimeRange"		"800"		// Range of vision at night time.
 	
 		// Team
@@ -8470,7 +8470,7 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"800"		// Range of vision during day HERO.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
 		"VisionNighttimeRange"		"800"		// Range of vision at night time.
 	
 		// Team
@@ -8569,7 +8569,7 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"800"		// Range of vision during day HERO.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
 		"VisionNighttimeRange"		"800"		// Range of vision at night time.
 	
 		// Team
@@ -8648,15 +8648,15 @@
 	
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"1"		// Base health.
+		"StatusHealth"				"2"		// Base health.
 		"StatusHealthRegen"			"1"			// Health regeneration rate.
 		"StatusMana"				"1"			// Base mana.
 		"StatusManaRegen"			"1"			// Mana regeneration rate.		 
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"18000"		// Range of vision during day HERO.
-		"VisionNighttimeRange"		"18000"		// Range of vision at night time.
+		"VisionDaytimeRange"		"600"		// Range of vision during day HERO.
+		"VisionNighttimeRange"		"600"		// Range of vision at night time.
 	
 		// Team
 		//----------------------------------------------------------------
@@ -8669,21 +8669,6 @@
 		//----------------------------------------------------------------
 		"Creature"
 		{
-			//HERO AI State
-			//------------------------------------------------------------
-			"States"
-			{
-				"Invade"
-				{
-					"Name"				"Invade"
-					"Aggression"		"100.0"
-					"Avoidance"			"0.0"
-					"Support"			"0.0"
-					"RoamDistance"  	"1000"
-				}
-			}
-			
-			"DefaultState"				"Invade"
 		}
 	}
 }

@@ -20,8 +20,8 @@ function modifier_boss_troll_warlord_enrage_handle:OnIntervalThink()
 	if self:GetParent():GetHealthPercent() < 50 then
 		if not self:GetParent():HasModifier("modifier_boss_troll_warlord_enrage") then
 			EmitSoundOn("Hero_OgreMagi.Bloodlust.Target", handle_2)
-			self:GetParent():AddNewModifier(self:GetParent(), self:GetAbility(), "modifier_boss_troll_warlord_enrage", {})
-			self:StartIntervalThink(10)
+			self:GetParent():AddNewModifier(self:GetParent(), self:GetAbility(), "modifier_boss_troll_warlord_enrage", {duration = 10})
+			self:StartIntervalThink(15)
 			--self:Destroy()
 		end
 	end

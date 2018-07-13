@@ -111,6 +111,7 @@ function modifier_boss_troll_warlord_savage_leap_ride:OnRemoved()
 	if IsServer() then
 		FindClearSpaceForUnit(self:GetParent(), self:GetParent():GetAbsOrigin(), false)
 		self:GetAbility().enemy = nil
+		self:GetParent():SetForceAttackTarget(nil)
 	end
 end
 
