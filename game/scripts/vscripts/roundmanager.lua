@@ -351,7 +351,7 @@ function RoundManager:RaidIsFinished()
 	EventManager:FireEvent("boss_hunters_raid_finished")
 	self.raidsFinished = (self.raidsFinished or 0) + 1
 	
-	for _, hero in ipairs(HeroList:GetRealHeroes) do
+	for _, hero in ipairs(HeroList:GetRealHeroes() ) do
 		hero.statsDamageTaken = 0
 		hero.statsDamageDealt = 0
 		hero.statsDamageHealed = 0

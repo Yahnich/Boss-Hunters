@@ -1,55 +1,57 @@
 "DOTAAbilities"
 {
 	//=================================================================================================================
-	// Recipe: Father Pipe
+	// Recipe: TITAN Armor
 	//=================================================================================================================
-	"item_recipe_father_pipe"
+	"item_recipe_cloak_of_the_hunter"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"7020"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"7049"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"3000"	
+		"ItemCost"						"405"	
 		"ItemShopTags"					""
 		
 		// Recipe
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemRecipe"					"1"
-		"ItemResult"					"item_father_pipe"
+		"ItemResult"					"item_cloak_of_the_hunter"
 		"ItemRequirements"
 		{
-			"01"						"item_barrier_leaves;item_ruby_ring;item_worn_cloak"
+			"01"						"item_hawks_feather;item_gauntlet_of_alacrity;item_orb_of_shadows;item_power_core"
 		}
 	}
-	//=================================================================================================================
-	// Pipe
-	//=================================================================================================================
-	"item_father_pipe"
+	"item_cloak_of_the_hunter"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"7021"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"ID"							"7050"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"BaseClass"						"item_lua"
-		"ScriptFile"					"items/item_father_pipe"
-		"AbilityTextureName"			"pipe"
+		"ScriptFile"					"items/item_cloak_of_the_hunter"
+		"AbilityTextureName"			"custom/cloak_of_the_hunter"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
 		
-		"ItemCost"						"1615"
-		"ItemShopTags"					"stats"
-		"ItemQuality"					"component"
-		"ItemAliases"					"drum of endurance;drum"
+		"ItemShopTags"					"damage;slow"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"radiance;cloak_of_the_hunter"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-
-		"AbilityCooldown"				"50"
-		"AbilityManaCost"				"125"
+		
+		"AbilityCooldown"				"15"
+		"HasPureCooldown"				"1"
+		"Abilityduration"				"7"
+		
+		"precache"
+		{
+			"precache"					"soundevents/game_sounds_items.vsndevts"
+		}
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
@@ -57,35 +59,34 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"block"					"500"
+				"var_type"				"FIELD_FLOAT"
+				"invis_duration"		"7"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"5"
+				"var_type"				"FIELD_INTEGER"
+				"bonus_attack_speed"	"15"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"hp_regen"				"10"
+				"var_type"				"FIELD_INTEGER"
+				"bonus_all"				"10"
 			}
 			"04"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"aura_magic_resist"		"15"
+				"var_type"				"FIELD_INTEGER"
+				"bonus_accuracy"		"35"
 			}
 			"05"
 			{
-				"var_type"				"FIELD_INTEGER"
+				"var_type"				"FIELD_FLOAT"
+				"bonus_aura_as"			"30"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
 				"radius"				"900"
 			}
-		}
-
-		"precache"
-		{
-			"particle"  "particles/items2_fx/pipe_of_insight.vpcf"
-			"soundfile" "soundevents/game_sounds_items.vsndevts"
 		}
 	}
 }

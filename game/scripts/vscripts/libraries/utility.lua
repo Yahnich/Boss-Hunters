@@ -1634,6 +1634,7 @@ function CDOTA_BaseNPC:HealEvent(amount, sourceAb, healer, bRegen) -- for future
 	if not bRegen then
 		SendOverheadEventMessage(self, OVERHEAD_ALERT_HEAL, self, flAmount, healer)
 	end
+	flAmount = math.min( flAmount, self:GetHealthDeficit() )
 	self:Heal(flAmount, sourceAb)
 	return flAmount
 end

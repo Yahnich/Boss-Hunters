@@ -1,55 +1,54 @@
 "DOTAAbilities"
 {
 	//=================================================================================================================
-	// Recipe: Father Pipe
+	// Recipe: TITAN Armor
 	//=================================================================================================================
-	"item_recipe_father_pipe"
+	"item_recipe_blade_of_dominion"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"7020"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"7051"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"3000"	
+		"ItemCost"						"1000"	
 		"ItemShopTags"					""
 		
 		// Recipe
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemRecipe"					"1"
-		"ItemResult"					"item_father_pipe"
+		"ItemResult"					"item_blade_of_dominion"
 		"ItemRequirements"
 		{
-			"01"						"item_barrier_leaves;item_ruby_ring;item_worn_cloak"
+			"01"						"item_angelic_guard;item_incandescance;item_sorcerers_staff"
 		}
 	}
-	//=================================================================================================================
-	// Pipe
-	//=================================================================================================================
-	"item_father_pipe"
+	"item_blade_of_dominion"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"7021"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"ID"							"7052"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_TOGGLE"
 		"BaseClass"						"item_lua"
-		"ScriptFile"					"items/item_father_pipe"
-		"AbilityTextureName"			"pipe"
+		"ScriptFile"					"items/item_blade_of_dominion"
+		"AbilityTextureName"			"custom/blade_of_dominion"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
 		
-		"ItemCost"						"1615"
-		"ItemShopTags"					"stats"
-		"ItemQuality"					"component"
-		"ItemAliases"					"drum of endurance;drum"
+		"ItemShopTags"					"damage;slow"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"radiance;blade_of_dominion"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-
-		"AbilityCooldown"				"50"
-		"AbilityManaCost"				"125"
+		
+		
+		"precache"
+		{
+			"precache"					"soundevents/game_sounds_items.vsndevts"
+		}
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
@@ -58,34 +57,48 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"block"					"500"
+				"damage"				"50"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"5"
+				"var_type"				"FIELD_INTEGER"
+				"blind"					"33"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"hp_regen"				"10"
+				"heal_per_second"		"50"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"aura_magic_resist"		"15"
+				"heal_mana_cost"		"20"
 			}
 			"05"
 			{
-				"var_type"				"FIELD_INTEGER"
+				"var_type"				"FIELD_FLOAT"
+				"bonus_spell_amp"		"15"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bonus_health_regen"	"5"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"block_chance"			"50"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"damage_block"			"60"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_FLOAT"
 				"radius"				"900"
 			}
-		}
-
-		"precache"
-		{
-			"particle"  "particles/items2_fx/pipe_of_insight.vpcf"
-			"soundfile" "soundevents/game_sounds_items.vsndevts"
 		}
 	}
 }

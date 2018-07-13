@@ -10,9 +10,9 @@ end
 
 function item_emission:OnToggle()
 	if self:GetToggleState() then
-		self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_item_emission", {})
-	else
 		self:GetCaster():RemoveModifierByName("modifier_item_emission")
+	else
+		self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_item_emission", {})
 	end
 end
 
@@ -106,6 +106,7 @@ LinkLuaModifier( "modifier_item_emission_passive", "items/item_emission.lua", LU
 
 function modifier_item_emission_passive:OnCreated()
 	self.stat = self:GetSpecialValueFor("bonus_all")
+	if IsServer() then self:GetAbility():OnToggle() end
 end
 
 function modifier_item_emission_passive:OnDestroy()

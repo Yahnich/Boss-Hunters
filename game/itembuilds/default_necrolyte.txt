@@ -8,28 +8,30 @@
 	{	
 		"#DOTA_Item_Build_Starting_Items"
 		{
-			"item"	"item_sorcerers_staff"
+			"item"	"item_warm_fire"
 			"item"	"item_ring_of_mana"
+            "item"  "item_calming_skull"
 		}
 		"#DOTA_Item_Build_Early_Game"
 		{
 			"item"	"item_warlocks_reliquary"
-			"item"	"item_war_drum"
-			"item"	"item_archmages_orb"
+			"item"	"item_incandescance"
+			"item"	"item_angelic_guard"
+            "item"  "item_soul_vessel"
 		}
 		"#DOTA_Item_Build_Core_Items"
 		{
-			"item"	"item_mighty_timpani"
+			"item"	"item_blade_of_dominion"
 			"item"	"item_arcane_accelerator"
 			"item"	"item_lazarus_rags"
+            "item"  "item_behemoths_heart"
 		}
 		"#DOTA_Item_Build_Luxury"
 		{
-			
+            "item"  "item_emission"
+            "item"  "item_frostfire_brand"
 			"item"	"item_ultimate_scepter"
 			"item"	"item_lightningbottle"
-			"item"	"item_flashback"
-			"item"	"item_focused_lens"
 			"item"	"item_crystalline_staff"
 			"item"	"item_inspiring_bongos"
 			"item"	"item_echoing_tambourine"

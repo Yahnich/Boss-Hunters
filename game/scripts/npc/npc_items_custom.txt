@@ -119,12 +119,17 @@
 #base "items/item_mighty_timpani.txt"
 #base "items/item_inspiring_bongos.txt"
 
+#base "items/item_frostfire_brand.txt"
+#base "items/item_cloak_of_the_hunter.txt"
+#base "items/item_winters_breath.txt"
+#base "items/item_blade_of_dominion.txt"
+
 
 // #base "items/item_illusionists_charm.txt"
 // #base "items/item_tricksters_blade.txt"
 // #base "items/item_mirrors_edge.txt"
 
-// Next ID is 7044
+// Next ID is 7053
 
 "DOTAAbilities"
 {
