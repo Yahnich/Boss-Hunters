@@ -62,7 +62,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"bonus_range"			"400"
+				"bonus_range"			"300"
 			}
 		}
 	}

@@ -29,6 +29,7 @@ function modifier_item_blade_of_dominion_stats:OnCreated()
 	self.chance = self:GetAbility():GetSpecialValueFor("block_chance")
 	self.hp_regen = self:GetAbility():GetSpecialValueFor("bonus_health_regen")
 	self.spell_amp = self:GetAbility():GetSpecialValueFor("bonus_spell_amp")
+	self.radius = self:GetAbility():GetSpecialValueFor("radius")
 	if IsServer() then self:GetAbility():OnToggle() end
 end
 

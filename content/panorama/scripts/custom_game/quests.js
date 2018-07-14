@@ -292,6 +292,7 @@ function UpdateCustomHud(){
 function Initialize(arg){
 	var shop = dotaHud.FindChildTraverse("shop")    
 	shop.RemoveClass("GuidesDisabled")
+	shop.FindChildTraverse("CommonItems").style.visibility = "collapse";
 	var killCS = dotaHud.FindChildTraverse("quickstats");
 	killCS.FindChildTraverse("QuickStatsContainer").style.visibility = "collapse";
 	dotaHud.FindChildTraverse("GlyphScanContainer").style.visibility = "collapse";

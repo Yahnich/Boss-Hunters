@@ -67,5 +67,5 @@ function modifier_boss_troll_warlord_axe_fury:DeclareFunctions()
 end
 
 function modifier_boss_troll_warlord_axe_fury:GetModifierTurnRate_Percentage()
-	return -50
+	return -80
 end

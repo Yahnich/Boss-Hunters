@@ -95,6 +95,14 @@ function RoundManager:OnNPCSpawned(event)
 			elseif spawnedUnit:IsIllusion() and spawnedUnit:GetPlayerOwnerID() and PlayerResource:GetSelectedHeroEntity( spawnedUnit:GetPlayerOwnerID() ) and spawnedUnit:FindModifierByName("modifier_stats_system_handler") then
 				spawnedUnit:FindModifierByName("modifier_stats_system_handler"):SetStackCount( PlayerResource:GetSelectedHeroEntity( spawnedUnit:GetPlayerOwnerID() ):entindex() )
 			end
+			if spawnedUnit:GetTeam() == DOTA_TEAM_GOODGUYS then
+				if not spawnedUnit:HasModifier("modifier_cooldown_reduction_handler") then
+					spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_cooldown_reduction_handler", {})
+				end
+				if not spawnedUnit:HasModifier("modifier_base_attack_time_handler") then
+					spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_base_attack_time_handler", {})
+				end
+			end
 		end
 	end)
 end
@@ -458,8 +466,8 @@ function RoundManager:InitializeUnit(unit, bElite)
 	end
 	local effective_multiplier = (HeroList:GetActiveHeroCount() - 1) 
 	
-	local effPlayerHPMult =  0.65 + ( (RoundManager:GetEventsFinished() * 0.15) + (RoundManager:GetRaidsFinished() * 0.5) + ( RoundManager:GetZonesFinished() * 2.5 )  ) + ( effective_multiplier * playerHPMultiplier )
-	local effPlayerDMGMult = ( 0.6 + (RoundManager:GetEventsFinished() * 0.05) + (RoundManager:GetRaidsFinished() * 0.80) + ( RoundManager:GetZonesFinished() * 3 ) ) + ( effective_multiplier * playerDMGMultiplier )
+	local effPlayerHPMult =  0.65 + ( (RoundManager:GetEventsFinished() * 0.15) + (RoundManager:GetRaidsFinished() * 0.5) + ( RoundManager:GetZonesFinished() * 4 )  ) + ( effective_multiplier * playerHPMultiplier )
+	local effPlayerDMGMult = ( 0.4 + (RoundManager:GetEventsFinished() * 0.05) + (RoundManager:GetRaidsFinished() * 1) + ( RoundManager:GetZonesFinished() * 6 ) ) + ( effective_multiplier * playerDMGMultiplier )
 	local effPlayerArmorMult = ( 0.85 + (RoundManager:GetRaidsFinished() * 0.15) + ( RoundManager:GetZonesFinished() ) ) + effective_multiplier * playerArmorMultiplier
 	
 	if bElite then
@@ -494,11 +502,11 @@ function RoundManager:InitializeUnit(unit, bElite)
 	
 	unit:SetAverageBaseDamage( expectedDamage * RandomFloat(0.85, 1.15) , 33)
 	unit:SetBaseHealthRegen(RoundManager:GetEventsFinished() * RandomFloat(0.85, 1.15) )
-	unit:SetPhysicalArmorBaseValue( (unit:GetPhysicalArmorBaseValue() + (RoundManager:GetRaidsFinished() * 3) ) * effPlayerArmorMult )
+	unit:SetPhysicalArmorBaseValue( (unit:GetPhysicalArmorBaseValue() + (RoundManager:GetRaidsFinished() * 1.5) ) * effPlayerArmorMult )
 	
 	unit:AddNewModifier(unit, nil, "modifier_boss_attackspeed", {})
 	local powerScale = unit:AddNewModifier(unit, nil, "modifier_power_scaling", {})
-	if powerScale then powerScale:SetStackCount( math.floor( (RoundManager:GetEventsFinished() * 0.25) * (1 + (RoundManager:GetRaidsFinished() * 1.5) + ( RoundManager:GetZonesFinished() * 4 ) ) )) end
+	if powerScale then powerScale:SetStackCount( math.floor( (RoundManager:GetEventsFinished() * 0.2) * (1 + (RoundManager:GetRaidsFinished() * 4 ) + ( RoundManager:GetZonesFinished() * 6 ) ) )) end
 	unit:AddNewModifier(unit, nil, "modifier_spawn_immunity", {duration = 4/GameRules.gameDifficulty})
 	local evasion = unit:AddNewModifier(unit, nil, "modifier_boss_evasion", {})
 	if evasion then evasion:SetStackCount( RoundManager:GetEventsFinished() ) end

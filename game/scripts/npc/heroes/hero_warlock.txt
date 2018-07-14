@@ -57,7 +57,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"crit_mult"				"200"
+				"crit_mult"				"300"
 			}
 		}
 	}
@@ -213,7 +213,10 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_warlock/warlock_sacrifice.lua"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_PLAYER_CONTROLLED"
 		"AbilityTextureName"			"warlock_fatal_bonds"
 		"MaxLevel"						"7"
 		
@@ -250,12 +253,22 @@
 				"var_type"				"FIELD_FLOAT"
 				"spell_amp"				"15 25 35 45 55 65 75"
 			}
-			"01"
+			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"health_regen"			"10 13 16 18 21 24 27"
+				"health_regen"			"9 12 15 18 21 24 27"
 			}
-			"02"
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"golem_health_regen"	"27 36 45 54 63 72 81"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"golem_bonus_damage"	"15 25 35 45 55 65 75"
+			}
+			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"duration"				"5"
@@ -455,20 +468,30 @@
 				"var_type"				"FIELD_INTEGER"
 				"stun_radius"			"600"
 			}
-			"03"
+			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"golem_number"			"1"
 				"LinkedSpecialBonus"	"special_bonus_unique_warlock_demonic_summons_1"
 			}
-			"03"
+			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"golem_duration"		"60"
 				"LinkedSpecialBonus"	"special_bonus_unique_warlock_demonic_summons_2"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
-			"03"
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"golem_damage"			"250 375 500 625 750 875"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"golem_hp"				"250 375 500 625 750 875"
+			}
+			"06"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"delay"					"0.5"
@@ -493,7 +516,12 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
+				"mr"						"100"
+			}
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"armor"						"15"
 			}
 		}
 	}

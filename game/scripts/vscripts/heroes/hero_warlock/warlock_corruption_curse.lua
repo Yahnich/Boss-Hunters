@@ -20,10 +20,15 @@ end
 
 modifier_warlock_corruption_curse = class({})
 function modifier_warlock_corruption_curse:OnCreated(table)
+	self.damage = self:GetTalentSpecialValueFor("damage")
 	if IsServer() then 
 		EmitSoundOn("Hero_Warlock.ShadowWord", self:GetParent())
 		if self:GetCaster():HasTalent("special_bonus_unique_warlock_corruption_curse_2") then
-			self.damageAmp = self:GetCaster():FindTalentValue("special_bonus_unique_warlock_corruption_curse_2")
+			if self:GetParent():IsSameTeam( self:GetCaster() ) then
+				self.damageAmp = 1 - self:GetCaster():FindTalentValue("special_bonus_unique_warlock_corruption_curse_2") / 100
+			else
+				self.damageAmp = 1 + self:GetCaster():FindTalentValue("special_bonus_unique_warlock_corruption_curse_2") / 100
+			end
 		else
 			self.damageAmp = 0
 		end
@@ -38,10 +43,12 @@ function modifier_warlock_corruption_curse:OnRemoved()
 end
 
 function modifier_warlock_corruption_curse:OnIntervalThink()
-	if self:GetCaster():HasTalent("special_bonus_unique_warlock_corruption_curse_2") then
-		self.damageAmp = self:GetCaster():FindTalentValue("special_bonus_unique_warlock_corruption_curse_2") / 100
+	if self:GetParent():IsSameTeam( self:GetCaster() ) then
+		self:GetParent():HealEvent(self.damage, self:GetAbility(), self:GetCaster() ) 
+	else
+		self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self.damage, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
 	end
-	self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self:GetTalentSpecialValueFor("damage"), {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
+	
 end
 
 function modifier_warlock_corruption_curse:DeclareFunctions()
@@ -58,7 +65,7 @@ function modifier_warlock_corruption_curse:OnDeath(params)
 		local parent = self:GetParent()
 
 		if caster:HasTalent("special_bonus_unique_warlock_corruption_curse_1") and params.unit == parent then
-			local enemies = caster:FindEnemyUnitsInRadius(parent:GetAbsOrigin(), caster:FindTalentValue("special_bonus_unique_warlock_corruption_curse_1"))
+			local enemies = caster:FindAllUnitsInRadius(parent:GetAbsOrigin(), caster:FindTalentValue("special_bonus_unique_warlock_corruption_curse_1"))
 			for _,enemy in pairs(enemies) do
 				enemy:AddNewModifier(caster, self:GetAbility(), "modifier_warlock_corruption_curse", {Duration = self:GetTalentSpecialValueFor("duration")})
 				break
@@ -76,5 +83,5 @@ function modifier_warlock_corruption_curse:GetEffectName()
 end
 
 function modifier_warlock_corruption_curse:IsDebuff()
-	return true
+	return self:GetParent():IsSameTeam( self:GetCaster() )
 end

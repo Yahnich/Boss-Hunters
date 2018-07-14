@@ -72,13 +72,15 @@
 		"item"		"item_dark_ones_blessing"
 		"item"		"item_archmages_orb"
 		"item"		"item_lazarus_rags"
-		"item"		"item_hurricane_blade"
-		"item"		"item_lance_of_longinus"
 		"item"		"item_war_drum"
+		"item"		"item_inspiring_bongos"
 		"item"		"item_father_pipe"
 		"item"		"item_iron_rose"
-		"item"		"item_inspiring_bongos"
 		"item"		"item_cloak_of_the_hunter"
+		"item"		"item_valiant_locket"
+		"item"		"item_hurricane_blade"
+		"item"		"item_rapture"
+		
     }
     "magics"
     {  
@@ -90,6 +92,7 @@
 		"item"		"item_lightningrod"
 		"item"		"item_voltas_greathammer"
 		"item"		"item_focused_lens"
+		"item"		"item_essence_piercer"
 		"item"		"item_crystalline_staff"
 		"item"		"item_warlocks_reliquary"
 		"item"		"item_dark_wand"
@@ -109,6 +112,7 @@
 		"item"		"item_behemoths_heart"
 		"item"		"item_everbright_shield"
 		"item"		"item_fortress_shield"
+		"item"		"item_royal_guardian"
 		"item"		"item_glacier_boots"
 		"item"		"item_legionnaires_dualswords"
 		"item"		"item_leechblade"
@@ -132,7 +136,9 @@
 		"item"		"item_headchopper"
 		"item"		"item_soothslayer"
 		"item"		"item_shadow_blade"
+		"item"		"item_penumbra"
 		"item"		"item_visionarys_cutlass"
+		"item"		"item_antique_battlestaff"
     }
     // Level 4 - Orange / Orb / Artifacts
     "artifacts"
@@ -154,5 +160,6 @@
 		"item"		"item_blood_gods_mask"
 		"item"		"item_ghost_saber"
 		"item"		"item_rising_salt"
+		"item"		"item_lance_of_longinus"
     }
 }

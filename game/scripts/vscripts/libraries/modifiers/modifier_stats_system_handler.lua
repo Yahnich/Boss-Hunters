@@ -2,15 +2,15 @@ modifier_stats_system_handler = class({})
 
 
 -- OTHER
-MOVESPEED_TABLE = {0,25,50,75,100,150,175,200,225,250,300}
+MOVESPEED_TABLE = {0,10,20,30,40,60,70,80,90,100,120}
 MANA_TABLE = {0,300,600,900,1200,1800,2100,2400,2700,3000,3600}
 MANA_REGEN_TABLE = {0,3,6,9,12,18,21,24,27,30,40}
 HEAL_AMP_TABLE = {0,10,20,30,40,60,70,80,90,100,120}
 -- OFFENSE
-ATTACK_DAMAGE_TABLE = {0,25,50,75,100,150,175,200,225,250,300}
+ATTACK_DAMAGE_TABLE = {0,20,40,60,80,120,140,160,180,200,240}
 SPELL_AMP_TABLE = {0,12,24,36,48,60,72,84,96,108,120}
 COOLDOWN_REDUCTION_TABLE = {0,4,8,12,16,24,28,32,36,40,48}
-ATTACK_SPEED_TABLE = {0,25,50,75,100,150,175,200,225,250,300}
+ATTACK_SPEED_TABLE = {0,15,30,45,60,90,105,120,135,150,180}
 STATUS_AMP_TABLE = {0,4,8,12,16,24,28,32,36,40,48}
 ACCURACY_TABLE = {0,10,15,20,25,35,40,45,50,55,65}
 
@@ -100,7 +100,7 @@ function modifier_stats_system_handler:GetModifierManaBonus() return 400 + (self
 function modifier_stats_system_handler:GetModifierConstantManaRegen() return 4 + (self.mpr or 0) end
 function modifier_stats_system_handler:GetModifierHealAmplify_Percentage() return self.ha or 0 end
 
-function modifier_stats_system_handler:GetModifierPreAttack_BonusDamage() return self.ad or 0 end
+function modifier_stats_system_handler:GetModifierPreAttack_BonusDamage() return 10 + (self.ad or 0) end
 function modifier_stats_system_handler:GetModifierSpellAmplify_Percentage() return self.sa or 0 end
 function modifier_stats_system_handler:GetCooldownReduction() return self.cdr or 0 end
 function modifier_stats_system_handler:GetModifierAttackSpeedBonus_Constant() return self.as or 0 end
@@ -123,7 +123,7 @@ function modifier_stats_system_handler:GetModifierAttackRangeBonus()
 	return self.ar or 0
 end
 
-function modifier_stats_system_handler:GetModifierHealthBonus() return 300 + (self.hp or 0) end
+function modifier_stats_system_handler:GetModifierHealthBonus() return 500 + (self.hp or 0) end
 function modifier_stats_system_handler:GetModifierConstantHealthRegen() return 5 + (self.hpr or 0) end
 function modifier_stats_system_handler:GetModifierStatusResistance() return self.sr or 0 end
 

@@ -51,22 +51,17 @@ end
 function modifier_warlock_summon_imp_aghs:OnDeath(params)
 	if IsServer() then
 		local caster = self:GetCaster()
-		if params.unit == caster and caster:HasScepter() then
-			local ability = params.unit:FindAbilityByName("warlock_demonic_summons")
+		if caster:HasScepter() then
+			local ability = caster:FindAbilityByName("warlock_demonic_summons")
 			if ability:IsTrained() then
-				local golem = params.unit:CreateSummon("npc_dota_warlock_golem_1", params.unit:GetAbsOrigin(), ability:GetTalentSpecialValueFor("golem_duration"))
-				golem:RemoveAbility("warlock_golem_flaming_fists")
-				golem:AddAbility("warlock_golem_gloves"):SetLevel(ability:GetLevel())
-				golem:RemoveAbility("warlock_golem_permanent_immolation")
-				golem:AddAbility("warlock_golem_immolation"):SetLevel(ability:GetLevel())
-				golem:SetBaseDamageMin( (25 + 50 * ability:GetLevel()) )
-				golem:SetBaseDamageMax( (25 + 50 * ability:GetLevel()) )
-				golem:SetPhysicalArmorBaseValue( (3 + 3 * ability:GetLevel()) )
-				golem:SetBaseMoveSpeed(310 + 10 * ability:GetLevel())
-				golem:SetBaseMaxHealth( (1000 * ability:GetLevel()) )
-				golem:SetHealth( (1000 * ability:GetLevel()) )
-				golem:SetBaseHealthRegen( (25 * ability:GetLevel()) )
-				golem:SetModelScale( 1 + ability:GetLevel()/10 )
+				local position = params.unit:GetAbsOrigin()
+				if params.unit == caster then
+					ability:CreateGolem(position)
+				elseif params.unit:GetUnitName() == "npc_dota_warlock_imp" then
+					local golem = ability:CreateGolem(position)
+					golem:SetCoreHealth( golem:GetBaseMaxHealth() * 0.33 )
+					golem:SetModelScale( golem:GetModelScale() * 0.66 )
+				end
 			end
 		end
 	end

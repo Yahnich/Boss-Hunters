@@ -31,7 +31,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage_per_unit"		"25 50"
+				"damage_per_unit"		"45 60"
 			}
 			"01"
 			{
@@ -147,7 +147,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"zombie_count"			"10 14"
+				"zombie_count"			"6 10"
 			}
 			"02"
 			{

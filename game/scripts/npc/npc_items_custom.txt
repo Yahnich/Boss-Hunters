@@ -124,12 +124,18 @@
 #base "items/item_winters_breath.txt"
 #base "items/item_blade_of_dominion.txt"
 
+#base "items/item_essence_piercer.txt"
+#base "items/item_penumbra.txt"
+#base "items/item_royal_guardian.txt"
+#base "items/item_valiant_locket.txt"
+#base "items/item_rapture.txt"
+#base "items/item_antique_battlestaff.txt"
 
 // #base "items/item_illusionists_charm.txt"
 // #base "items/item_tricksters_blade.txt"
 // #base "items/item_mirrors_edge.txt"
 
-// Next ID is 7053
+// Next ID is 7065
 
 "DOTAAbilities"
 {
