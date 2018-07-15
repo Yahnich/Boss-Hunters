@@ -1,0 +1,1 @@
+lycan_feral_impulse_bh = class({})

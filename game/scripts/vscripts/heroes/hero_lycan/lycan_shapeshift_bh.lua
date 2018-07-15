@@ -1,0 +1,1 @@
+lycan_shapeshift_bh = class({})

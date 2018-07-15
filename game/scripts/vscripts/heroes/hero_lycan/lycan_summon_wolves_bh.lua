@@ -1,0 +1,52 @@
+lycan_summon_wolves_bh = class({})
+
+function lycan_summon_wolves_bh:OnSpellStart()
+	local caster = self:GetCaster()
+	caster.summonedWolves = caster.summonedWolves or {}
+	for _, wolf in ipairs( caster.summonedWolves ) do
+		if unit and IsValidEntity(unit) then
+            unit:ForceKill(true)
+        end
+	end
+	caster.summonedWolves = {}
+	
+	local startPos = caster:GetAbsOrigin()
+	local wolfCount = self:GetTalentSpecialValueFor("wolf_count")
+	if caster:HasTalent("special_bonus_unique_lycan_summon_wolves_2") then wolfCount = 1 end
+	
+	local distance = self:GetTalentSpecialValueFor("spawn_distance")
+	EmitSoundOn("Hero_Lycan.SummonWolves", caster)
+	ParticleManager:FireParticle("particles/units/heroes/hero_lycan/lycan_summon_wolves_cast.vpcf", PATTACH_POINT_FOLLOW, caster)
+	for i = 1, wolfCount do
+		local angPoint = QAngle(0, ((-1)^i)*30, 0)
+		local fv = caster:GetForwardVector()*((-1)^( math.ceil( i/2 ) -1 ) )
+		local spawnOrigin = startPos + fv * distance
+		local position = RotatePosition(startPos, angPoint, spawnOrigin)
+		self:CreateWolf(position)
+	end
+end
+
+function lycan_summon_wolves_bh:CreateWolf(position, duration)
+	local caster = self:GetCaster()
+	local fDur = duration or self:GetTalentSpecialValueFor("wolf_duration")
+	local wolf = caster:CreateSummon("npc_dota_lycan_wolf1", position, fDur)
+	wolf:SetForwardVector(caster:GetForwardVector())
+	table.insert(caster.summonedWolves, wolf)
+	-- health handling
+	local wolfHP = self:GetTalentSpecialValueFor("wolf_hp")
+	local wolfDamage = self:GetTalentSpecialValueFor("wolf_damage")
+	wolf:SetCoreHealth(wolfHP)
+	wolf:SetAverageBaseDamage(wolfDamage, 15)
+	wolf:SetModelScale(0.8 + (self:GetLevel()/2)/10)
+	
+	if self:GetLevel() > 1 then
+		wolf:AddAbility("lycan_summon_wolves_critical_strike"):SetLevel( self:GetLevel() - 1 )
+	end
+	if self:GetLevel() >= 4 then
+		wolf:AddAbility("lycan_summon_wolves_invisibility"):SetLevel( 1 )
+	end
+	if self:GetLevel() >= 5 then
+		wolf:SetBaseHealthRegen(25 + (self:GetLevel() - 5) * 15)
+	end
+	ParticleManager:FireParticle("particles/units/heroes/hero_lycan/lycan_summon_wolves_spawn.vpcf", PATTACH_POINT_FOLLOW, wolf)
+end

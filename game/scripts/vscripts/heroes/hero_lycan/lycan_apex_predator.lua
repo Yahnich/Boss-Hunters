@@ -1,0 +1,1 @@
+lycan_apex_predator = class({})
