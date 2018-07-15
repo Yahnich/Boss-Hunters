@@ -76,8 +76,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"             		"ability_lua"
-		"ScriptFile"					"heroes/hero_lycan/lycan_summon_wolves_bh"
+		"BaseClass"						"special_bonus_undefined"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		
@@ -142,6 +141,13 @@
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityModifierSupportBonus"	"5"
+		
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_lycan.vsndevts"
+			"particle"					"particles/units/heroes/hero_lycan/lycan_howl_cast.vpcf"
+			"particle"					"particles/units/heroes/hero_lycan/lycan_howl_buff.vpcf"
+		}
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -149,29 +155,32 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"howl_duration"			"13.0"		
+				"var_type"						"FIELD_FLOAT"
+				"howl_duration"					"13.0"		
 			}
 			"02"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"hero_bonus_damage"		"10 15 20 25 30 35 40"
+				"var_type"						"FIELD_INTEGER"
+				"hero_bonus_damage"				"10 15 20 25 30 35 40"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"unit_bonus_damage"		"4 6 8 10 12 14 16"
+				"var_type"						"FIELD_INTEGER"
+				"unit_bonus_damage"				"4 6 8 10 12 14 16"
 			}
 			"04"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"hero_bonus_hp"			"50 100 150 200 250 300 350"
-				"LinkedSpecialBonus"	"special_bonus_unique_lycan_5"
+				"var_type"						"FIELD_INTEGER"
+				"hero_bonus_hp"					"50 100 150 200 250 300 350"
+				"LinkedSpecialBonus"			"special_bonus_unique_lycan_howl_1"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
 			"05"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"unit_bonus_hp"			"25 50 75 100 125 150 175"
+				"var_type"						"FIELD_INTEGER"
+				"unit_bonus_hp"					"25 50 75 100 125 150 175"
+				"LinkedSpecialBonus"			"special_bonus_unique_lycan_howl_1"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
 		}
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
@@ -211,7 +220,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"3"
+				"value"					"600"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"5"
 			}
 		}
 	}
@@ -226,27 +240,27 @@
 		"ScriptFile"					"heroes/hero_lycan/lycan_feral_impulse_bh"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"MaxLevel"						"7"
-		"AbilityTextureName"			"lycan_howl"
+		"AbilityTextureName"			"lycan_feral_impulse"
 		
 		// Casting
 		"AbilitySpecial"
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"900 900 900 900"
+				"var_type"						"FIELD_INTEGER"
+				"radius"						"900"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"10 15 20 25 30 35 40"
-				"LinkedSpecialBonus"	"special_bonus_unique_lycan_4"
+				"var_type"						"FIELD_INTEGER"
+				"bonus_damage"					"10 15 20 25 30 35 40"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_hp_regen"		"1 3 5 7 9 11 13"
-				"LinkedSpecialBonus"	"special_bonus_unique_lycan_3"
+				"var_type"						"FIELD_INTEGER"
+				"bonus_hp_regen"				"1 3 5 7 9 11 13"
+				"LinkedSpecialBonus"			"special_bonus_unique_lycan_feral_impulse_1"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
 
 		}
@@ -267,7 +281,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"2"
+				"value"					"3"
 			}
 		}
 	}
@@ -286,12 +300,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"3"
+				"value"					"30"
 			}
 		}
 	}
 	//=================================================================================================================
-	// Lycan: Summon Wolves Critical Strike
+	// Lycan: Apex Predator
 	//=================================================================================================================
 	"lycan_apex_predator"
 	{
@@ -304,7 +318,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"AbilityTextureName"			"lycan_summon_wolves_critical_strike"
-		"MaxLevel"						"6"
+		"MaxLevel"						"1"
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
@@ -312,17 +326,17 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"maim_chance"				"20 20 20 20 20 20"
+				"critical_damage"			"200"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"maim_duration"				"4.0"
+				"day_critical_chance"		"30"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"maim_movement_speed"		"0"
+				"night_critical_chance"		"60"
 			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
@@ -340,7 +354,7 @@
 		"FightRecapLevel"				"2"
 		"AbilitySound"					"Hero_Lycan.Shapeshift.Cast"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
-		"AbilityTextureName"			"lycan_howl"
+		"AbilityTextureName"			"lycan_shapeshift"
 		"MaxLevel"						"6"
 
 		// Time		
@@ -349,7 +363,15 @@
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"100 100 100"		
+		"AbilityManaCost"				"100 100 100"
+		
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_lycan/lycan_shapeshift_buff.vpcf"
+			"particle"					"particles/units/heroes/hero_lycan/lycan_shapeshift_cast.vpcf"
+			"model"						"models/heroes/lycan/lycan_wolf.vmdl"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_lycan.vsndevts"
+		}
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -359,7 +381,6 @@
 			{
 				"var_type"					"FIELD_FLOAT"
 				"duration"					"18"
-				"LinkedSpecialBonus"		"special_bonus_unique_lycan_1"
 			}
 			"02"
 			{
@@ -378,13 +399,8 @@
 			}		
 			"05"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"crit_chance"			"40"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"crit_multiplier"		"160 180 200 220 240 260"
+				"var_type"					"FIELD_FLOAT"
+				"bat_reduction"				"-0.2"
 			}
 		}
 	}
@@ -403,7 +419,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"2"
+				"value"					"1"
 			}
 		}
 	}
@@ -422,7 +438,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"3"
+				"value"					"100"
 			}
 		}
 	}

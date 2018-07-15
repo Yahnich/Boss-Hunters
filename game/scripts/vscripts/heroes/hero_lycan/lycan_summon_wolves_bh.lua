@@ -4,15 +4,15 @@ function lycan_summon_wolves_bh:OnSpellStart()
 	local caster = self:GetCaster()
 	caster.summonedWolves = caster.summonedWolves or {}
 	for _, wolf in ipairs( caster.summonedWolves ) do
-		if unit and IsValidEntity(unit) then
-            unit:ForceKill(true)
+		if wolf and IsValidEntity(wolf) then
+            wolf:ForceKill(true)
         end
 	end
 	caster.summonedWolves = {}
 	
 	local startPos = caster:GetAbsOrigin()
 	local wolfCount = self:GetTalentSpecialValueFor("wolf_count")
-	if caster:HasTalent("special_bonus_unique_lycan_summon_wolves_2") then wolfCount = 1 end
+	if caster:HasTalent("special_bonus_unique_lycan_summon_wolves_2") then wolfCount = math.floor(wolfCount / 2) end
 	
 	local distance = self:GetTalentSpecialValueFor("spawn_distance")
 	EmitSoundOn("Hero_Lycan.SummonWolves", caster)

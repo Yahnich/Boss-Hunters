@@ -1028,6 +1028,10 @@ end
 
 
 function CHoldoutGameMode:OnThink()
+	local timeofday = GameRules:IsDaytime()
+	if GameRules:IsTemporaryNight() then timeofday = TEMPORARY_NIGHT end
+	if GameRules:IsNightstalkerNight() then timeofday = NIGHT_STALKER_NIGHT end
+	CustomNetTables:SetTableValue( "game_info", "timeofday", {timeofday = timeofday} )
 	if GameRules:State_Get() >= 7 and GameRules:State_Get() <= 8 then
 		local OnPThink = function(self)
 			status, err, ret = xpcall(self.CheckHP, debug.traceback, self)
@@ -1038,10 +1042,6 @@ function CHoldoutGameMode:OnThink()
 			if not status  and not self.gameHasBeenBroken then
 				self:SendErrorReport(err)
 			end
-			local timeofday = GameRules:IsDaytime()
-			if GameRules:IsTemporaryNight() then timeofday = TEMPORARY_NIGHT end
-			if GameRules:IsNightstalkerNight() then timeofday = NIGHT_STALKER_NIGHT end
-			CustomNetTables:SetTableValue( "game_info", "timeofday", {timeofday = timeofday} )
 		end
 		status, err, ret = xpcall(OnPThink, debug.traceback, self)
 		if not status  and not self.gameHasBeenBroken then

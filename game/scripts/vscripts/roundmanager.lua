@@ -453,7 +453,7 @@ end
 function RoundManager:InitializeUnit(unit, bElite)
 	unit.hasBeenInitialized = true
 	local expectedHP = unit:GetBaseMaxHealth() * RandomFloat(0.9, 1.1)
-	local expectedDamage = ( unit:GetAverageBaseDamage() + (RoundManager:GetEventsFinished() * 4) ) * RandomFloat(0.9, 1.2)
+	local expectedDamage = ( unit:GetAverageBaseDamage() + (RoundManager:GetEventsFinished() * 2) ) * RandomFloat(0.85, 1.15)
 	local playerHPMultiplier = 0.4
 	local playerDMGMultiplier = 0.1
 	local playerArmorMultiplier = 0.05
@@ -462,13 +462,13 @@ function RoundManager:InitializeUnit(unit, bElite)
 		expectedDamage = expectedDamage * 1.2
 		playerHPMultiplier = 0.6 
 		playerDMGMultiplier = 0.15
-		playerArmorMultiplier = 0.06
+		playerArmorMultiplier = 0.12
 	end
 	local effective_multiplier = (HeroList:GetActiveHeroCount() - 1) 
 	
-	local effPlayerHPMult =  0.65 + ( (RoundManager:GetEventsFinished() * 0.15) + (RoundManager:GetRaidsFinished() * 0.5) + ( RoundManager:GetZonesFinished() * 4 )  ) + ( effective_multiplier * playerHPMultiplier )
-	local effPlayerDMGMult = ( 0.4 + (RoundManager:GetEventsFinished() * 0.05) + (RoundManager:GetRaidsFinished() * 1) + ( RoundManager:GetZonesFinished() * 6 ) ) + ( effective_multiplier * playerDMGMultiplier )
-	local effPlayerArmorMult = ( 0.85 + (RoundManager:GetRaidsFinished() * 0.15) + ( RoundManager:GetZonesFinished() ) ) + effective_multiplier * playerArmorMultiplier
+	local effPlayerHPMult =  0.6 + ( (RoundManager:GetEventsFinished() * 0.08) + (RoundManager:GetRaidsFinished() * 0.75) + ( RoundManager:GetZonesFinished() * 8 )  ) + ( effective_multiplier * playerHPMultiplier )
+	local effPlayerDMGMult = ( 0.5 + (RoundManager:GetEventsFinished() * 0.05) + (RoundManager:GetRaidsFinished() * 0.6) + ( RoundManager:GetZonesFinished() * 4 ) ) + ( effective_multiplier * playerDMGMultiplier )
+	local effPlayerArmorMult = 0.7 + (effective_multiplier * playerArmorMultiplier)
 	
 	if bElite then
 		effPlayerHPMult = effPlayerHPMult * 1.35
@@ -495,12 +495,12 @@ function RoundManager:InitializeUnit(unit, bElite)
 		end
 	end
 	
-	expectedHP = math.max( 1, ( (75 * RoundManager:GetRaidsFinished() ) + expectedHP ) * effPlayerHPMult )
+	expectedHP = math.max( 1, ( (25 * RoundManager:GetRaidsFinished() ) + expectedHP ) * effPlayerHPMult )
 	unit:SetBaseMaxHealth(expectedHP)
 	unit:SetMaxHealth(expectedHP)
 	unit:SetHealth(expectedHP)
 	
-	unit:SetAverageBaseDamage( expectedDamage * RandomFloat(0.85, 1.15) , 33)
+	unit:SetAverageBaseDamage( expectedDamage * effPlayerDMGMult, 33)
 	unit:SetBaseHealthRegen(RoundManager:GetEventsFinished() * RandomFloat(0.85, 1.15) )
 	unit:SetPhysicalArmorBaseValue( (unit:GetPhysicalArmorBaseValue() + (RoundManager:GetRaidsFinished() * 1.5) ) * effPlayerArmorMult )
 	

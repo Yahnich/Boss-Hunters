@@ -36,7 +36,7 @@ local function StartCombat(self, bFight)
 		self.combatStarted = true
 		self.prophets = 1
 		self.undying = 1 + math.ceil(RoundManager:GetRaidsFinished() / 2)
-		self.minions = math.ceil( (2 + RoundManager:GetEventsFinished() ) * HeroList:GetActiveHeroCount() / 1.5 )
+		self.minions = math.floor( math.log(2 + RoundManager:GetEventsFinished() ) * HeroList:GetActiveHeroCount() / 1.5 )
 		self.enemiesToSpawn = self.prophets + self.undying + self.minions
 		Timers:CreateTimer(3, function()
 			local spawn = CreateUnitByName("npc_dota_boss22", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)

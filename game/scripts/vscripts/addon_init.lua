@@ -10,12 +10,27 @@ CDR_PER_INT = 0.385
 SPELL_AMP_PER_INT = 0.0075
 
 if IsClient() then -- Load clientside utility lib
-	if GameRules == nil then
-		GameRules = class({})
-	end
 	print("client-side has been initialized")
 	require("libraries/client_util")
 	
+	
+	if GameRules == nil then
+		GameRules = class({})
+	end
+	GameRules.IsDaytime = function()
+		local timeofday = CustomNetTables:GetTableValue( "game_info", "timeofday")
+		return timeofday["timeofday"] == 1
+	end
+	
+	GameRules.IsTemporaryNight = function()
+		local timeofday = CustomNetTables:GetTableValue( "game_info", "timeofday")
+		return timeofday["timeofday"] == 2
+	end
+	
+	GameRules.IsNightstalkerNight = function()
+		local timeofday = CustomNetTables:GetTableValue( "game_info", "timeofday")
+		return timeofday["timeofday"] == 3
+	end
 	Convars:RegisterCommand( "cl_deepdebugging", function()
 													if not GameRules.DebugCalls then
 														print("Starting DebugCalls")

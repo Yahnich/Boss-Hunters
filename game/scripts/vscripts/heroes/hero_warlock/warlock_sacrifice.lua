@@ -40,6 +40,9 @@ function warlock_sacrifice:OnSpellStart()
 	if caster:HasTalent("special_bonus_unique_warlock_sacrifice_2") then
 		ParticleManager:FireParticle("particles/units/heroes/hero_life_stealer/life_stealer_infest_emerge_bloody.vpcf", PATTACH_POINT, target, {})
 		local damage = caster:GetIntellect() * caster:FindTalentValue("special_bonus_unique_warlock_sacrifice_2", "damage")/100
+		if target:GetUnitName() == "npc_dota_warlock_golem_1" then
+			damage = damage * 3
+		end
 		local enemies = caster:FindEnemyUnitsInRadius(target:GetAbsOrigin(), caster:FindTalentValue("special_bonus_unique_warlock_sacrifice_2", "radius"), {})
 		for _,enemy in pairs(enemies) do
 			self:DealDamage(caster, enemy, damage, {damage_type = DAMAGE_TYPE_MAGICAL}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)

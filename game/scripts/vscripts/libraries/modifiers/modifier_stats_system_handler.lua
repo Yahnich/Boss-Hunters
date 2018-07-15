@@ -123,7 +123,7 @@ function modifier_stats_system_handler:GetModifierAttackRangeBonus()
 	return self.ar or 0
 end
 
-function modifier_stats_system_handler:GetModifierHealthBonus() return 800 + (self.hp or 0) end
+function modifier_stats_system_handler:GetModifierHealthBonus() return 400 + (self.hp or 0) end
 function modifier_stats_system_handler:GetModifierConstantHealthRegen() return 6 + (self.hpr or 0) end
 function modifier_stats_system_handler:GetModifierStatusResistance() return self.sr or 0 end
 

@@ -5,19 +5,19 @@ function boss18b_swipe:OnAbilityPhaseStart()
 	local direction = CalculateDirection(self:GetCursorPosition(), caster)
 	local distance =  self:GetCastRange(caster:GetAbsOrigin(), caster)
 	local position = caster:GetAbsOrigin() + direction * distance
-	ParticleManager:FireWarningParticle(position, distance)
+	ParticleManager:FireWarningParticle(position, distance/2)
 	if caster:GetHealthPercent() < 66 then
 		for i = 1, 2 do
 			local newDir = RotateVector2D(direction, ToRadians(45) * (-1)^i )
 			local position = caster:GetAbsOrigin() + newDir * distance
-			ParticleManager:FireWarningParticle(position, distance)
+			ParticleManager:FireWarningParticle(position, distance/2)
 		end
 	end
 	if caster:GetHealthPercent() < 33 then
-		for i = 1, 2 do
+		for i = 1, 4 do
 			local newDir = RotateVector2D(direction, ToRadians(45) * 2 * (-1)^i )
 			local position = caster:GetAbsOrigin() + newDir * distance
-			ParticleManager:FireWarningParticle(position, distance)
+			ParticleManager:FireWarningParticle(position, distance/2)
 		end
 	end
 	return true
@@ -30,7 +30,7 @@ function boss18b_swipe:OnSpellStart()
 	local position = caster:GetAbsOrigin() + direction * distance
 	
 	ParticleManager:FireParticle("particles/dev/library/base_attack_swipe.vpcf", PATTACH_WORLDORIGIN, nil, {[0] = position, [1] =  caster:GetAnglesAsVector()})
-	local enemies = caster:FindEnemyUnitsInRadius(position, distance)
+	local enemies = caster:FindEnemyUnitsInRadius(position, distance/2)
 	for _, enemy in ipairs(enemies) do
 		caster:PerformGenericAttack(enemy, true)
 		enemy:AddNewModifier(caster, self, "modifier_boss18b_swipe_bleed", {duration = self:GetSpecialValueFor("duration")})
@@ -41,7 +41,7 @@ function boss18b_swipe:OnSpellStart()
 			local newDir = RotateVector2D(direction, ToRadians(45) * (-1)^i )
 			local newPos = caster:GetAbsOrigin() + newDir * distance
 			ParticleManager:FireParticle("particles/dev/library/base_attack_swipe.vpcf", PATTACH_WORLDORIGIN, nil, {[0] = newPos, [1] =  caster:GetAnglesAsVector()})
-			local enemies = caster:FindEnemyUnitsInRadius(newPos, distance)
+			local enemies = caster:FindEnemyUnitsInRadius(newPos, distance/2)
 			for _, enemy in ipairs(enemies) do
 				caster:PerformGenericAttack(enemy, true)
 				enemy:AddNewModifier(caster, self, "modifier_boss18b_swipe_bleed", {duration = self:GetSpecialValueFor("duration")})
@@ -49,12 +49,12 @@ function boss18b_swipe:OnSpellStart()
 		end
 	end
 	if caster:GetHealthPercent() < 33 then
-		for i = 1, 2 do
+		for i = 1, 4 do
 			local newDir = RotateVector2D(direction, ToRadians(45) * 2 * (-1)^i )
 			local newPos = caster:GetAbsOrigin() + newDir * distance
 			local newPos = caster:GetAbsOrigin() + newDir * distance
 			ParticleManager:FireParticle("particles/dev/library/base_attack_swipe.vpcf", PATTACH_WORLDORIGIN, nil, {[0] = newPos, [1] =  caster:GetAnglesAsVector()})
-			local enemies = caster:FindEnemyUnitsInRadius(newPos, distance)
+			local enemies = caster:FindEnemyUnitsInRadius(newPos, distance/2)
 			for _, enemy in ipairs(enemies) do
 				caster:PerformGenericAttack(enemy, true)
 				enemy:AddNewModifier(caster, self, "modifier_boss18b_swipe_bleed", {duration = self:GetSpecialValueFor("duration")})

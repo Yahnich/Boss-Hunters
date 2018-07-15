@@ -144,6 +144,10 @@ function CDOTA_BaseNPC_Hero:RemoveSummon(entity)
 	end
 end
 
+function CDOTA_BaseNPC_Hero:GetSummons()
+	return self.summonTable or {}
+end
+
 function CDOTA_BaseNPC_Hero:GetBarrier()
 	return self._barrierHP or 0
 end
