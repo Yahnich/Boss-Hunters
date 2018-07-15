@@ -3,81 +3,108 @@
 	//=================================================================================================================
 	// Recipe: TITAN Armor
 	//=================================================================================================================
-	"item_recipe_memento"
+	"item_recipe_ferrum_ascensus"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"6269"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"7083"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
-		"AbilityTextureName"			"item_recipe_assault"
+		"AbilityTextureName"			"item_recipe"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"750"	
+		"ItemCost"						"1400"	
 		"ItemShopTags"					""
 		
 		// Recipe
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemRecipe"					"1"
-		"ItemResult"					"item_memento"
+		"ItemResult"					"item_ferrum_ascensus"
 		"ItemRequirements"
 		{
-			"01"						"item_pages_buckler;item_ringing_rapier;item_breeze_amulet"
+			"01"						"item_legionnaires_dualswords;item_warlocks_reliquary"
 		}
 	}
-	"item_memento"
+	//=================================================================================================================
+	// TITAN Armor
+	//=================================================================================================================
+	"item_ferrum_ascensus"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"3270"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"7084"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"item_lua"
-		"ScriptFile"					"items/item_memento"
-		"AbilityTextureName"			"item_rapier"
-		"AbilitySharedCooldown"			"reverb"
+		"ScriptFile"					"items/item_ferrum_ascensus"
+		"AbilityTextureName"			"custom/ferrum_ascensus"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
 		
-		"ItemShopTags"					"damage"
+		"ItemCost"						"1650"
+		"ItemShopTags"					"blink;tp"
 		"ItemQuality"					"epic"
-		"ItemAliases"					"echo sabre;memento"
+		"ItemAliases"					"blink;tricksters blade;manta"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"precache"
+		"particle"
 		{
+			"particle"					"particles/items2_fx/sange_maim.vpcf"
 			"soundfile"					"soundevents/game_sounds_items.vsndevts"
-			"particle"					"particles/units/heroes/hero_faceless_void/faceless_void_backtrack.vpcf"
 		}
 		
-		"AbilityCooldown"				"5"
-
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
 			"01"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"attack_delay"			"0.3"
+				"var_type"				"FIELD_INTEGER"
+				"bonus_agility"			"25"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"paralyze_duration"		"1"
+				"var_type"				"FIELD_INTEGER"
+				"bonus_attackspeed"		"40"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"dodge_chance"			"17"
+				"bonus_strength"		"25"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_health_regen"	"1"
+				"bonus_movespeed"		"16"
 			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_spell_amp"		"33"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mana_cost_reduction"	"33"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"attack_slow"			"-64"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"disable_duration"		"3.5"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"disable_chance"		"50"
+			}
+
 		}
 	}
 }

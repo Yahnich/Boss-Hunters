@@ -10,36 +10,37 @@
 		{
 			"item"	"item_warm_fire"
 			"item"	"item_ring_of_mana"
-            "item"  "item_page_buckler"
+			"item"  "item_page_buckler"
 		}
 		"#DOTA_Item_Build_Early_Game"
 		{
-			"item"	"item_frostbite"
-			"item"	"item_daggers_of_escape"
-			"item"	"item_war_drum"
-			"item"	"item_angelic_guard"
+			"item"	"item_incandescance"			
+			"item"	"item_arcane_accelerator"
+			"item"	"item_hurricane_blade"
+			"item"  "item_valiant_locket"
+			"item"	"item_soul_vessel"
 		}
 		"#DOTA_Item_Build_Core_Items"
 		{
-			"item"	"item_mighty_timpani"
-	        "item"  "item_frostfire_brand"
+			"item"	"item_rapture"
+			"item"  "item_lucys_ring"
 			"item"	"item_blade_of_dominion"
-            "item"  "item_warp_staff"
-            "item"  "item_behemoths_heart"
+			"item"  "item_lifeweavers_clockwork"
+			"item"  "item_behemoths_heart"
+			"item"  "item_ferrum_ascensus"
 		}
 		"#DOTA_Item_Build_Luxury"
 		{	
 			"item"	"item_ultimate_scepter"
-			"item"	"item_emission"
-			"item"	"item_cloak_of_the_hunter"
+			"item"	"item_frostfire_brand"
 			"item"	"item_lightningbottle"
-			"item"	"item_flashback"
-			"item"	"item_crystalline_staff"
+			"item"	"item_warp_staff"
 			"item"	"item_inspiring_bongos"
 			"item"	"item_echoing_tambourine"
 			"item"	"item_lucifers_cage"
 			"item"	"item_winters_breath"
-            "item"  "item_galactic_hammer"
+			"item"  "item_galactic_hammer"
+			"item"  "item_keshas_booze_barrel"
 		}
 	}
 }

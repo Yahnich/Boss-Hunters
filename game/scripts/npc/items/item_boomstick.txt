@@ -1,62 +1,61 @@
-	"DOTAAbilities"
+"DOTAAbilities"
 {
 	//=================================================================================================================
 	// Recipe: TITAN Armor
 	//=================================================================================================================
-	"item_recipe_soothslayer"
+	"item_recipe_boomstick"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"6667"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"7081"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"750"	
+		"ItemCost"						"900"	
 		"ItemShopTags"					""
 		
 		// Recipe
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemRecipe"					"1"
-		"ItemResult"					"item_soothslayer"
+		"ItemResult"					"item_boomstick"
 		"ItemRequirements"
 		{
-			"01"						"item_anvil;item_memento"
+			"01"						"item_siegebreaker;item_executioners_blade;item_gem_of_corruption"
 		}
 	}
 	//=================================================================================================================
 	// TITAN Armor
 	//=================================================================================================================
-	"item_soothslayer"
+	"item_boomstick"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"6668"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"ID"							"7082"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"BaseClass"						"item_lua"
-		"ScriptFile"					"items/item_soothslayer"
-		"AbilityTextureName"			"custom/soothslayer"
-		"AbilitySharedCooldown"			"reverb"
+		"ScriptFile"					"items/item_boomstick"
+		"AbilityTextureName"			"custom/boomstick"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
+		"ItemStackable"					"1"
 		
-		"ItemShopTags"					"heal;purge;dispel;armor;aura"
+		"ItemShopTags"					"blink;mobility"
 		"ItemQuality"					"epic"
-		"ItemAliases"					"gauntlet of might"
+		"ItemAliases"					"blink dagger;warp staff"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
 		"particle"
 		{
-			"particle"					"particles/items_fx/blademail.vpcf"
-			"soundfile"					"soundevents/game_sounds_items.vsndevts"
+			"particle"					"particles/econ/items/sniper/sniper_charlie/sniper_assassinate_charlie.vpcf"
 		}
-	
-		"AbilityCooldown"				"5"
-
+		
+		"AbilityCooldown"				"14"
+		"AbilityManaCost"				"100"
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
@@ -64,33 +63,58 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"attack_delay"			"0.3"
+				"var_type"				"FIELD_INTEGER"
+				"critical_chance"		"20"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"dodge_chance"			"17"
+				"var_type"				"FIELD_FLOAT"
+				"critical_damage"		"225"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_health_regen"	"3"
+				"var_type"				"FIELD_FLOAT"
+				"armor_shred"			"-3"
 			}
 			"04"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_strength"		"30"
+				"var_type"				"FIELD_FLOAT"
+				"shred_duration"		"7"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"40"
+				"bonus_damage"			"55"
 			}
 			"06"
 			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_accuracy"		"40"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_range"			"300"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"active_shred"			"-8"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"active_crit"			"300"
+			}
+			"10"
+			{
 				"var_type"				"FIELD_FLOAT"
-				"bash_duration"			"1"
+				"active_duration"		"6"
+			}
+			"11"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"active_distance"		"1000"
 			}
 		}
 	}

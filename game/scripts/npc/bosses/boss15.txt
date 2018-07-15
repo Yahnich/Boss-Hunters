@@ -110,7 +110,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"ghost_damage"			"3 4"
+				"ghost_damage"			"8 10"
 			}
 			"02"
 			{

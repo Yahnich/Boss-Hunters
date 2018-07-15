@@ -21,7 +21,7 @@ local function CheckPlayerChoices(self)
 			self:GivePlayerGold()
 			self.treesCut = (self.treesCut or 0) + 1
 			Timers:CreateTimer(3, function()
-				if RollPercentage(25) then
+				if RollPercentage(25) or self.treesCut >= 4 then
 					self:StartCombat(true)
 				else
 					self:RetryVote()
@@ -119,20 +119,23 @@ local function StartEvent(self)
 	self.treesCut = 0
 	self.timeRemaining = 15
 	self.eventEnded = false
-	self.combatStarted = false
-	self.waitTimer = Timers:CreateTimer(1, function()
-		CustomGameEventManager:Send_ServerToAllClients("updateQuestPrepTime", {prepTime = self.timeRemaining})
-		if not self.eventEnded and not self.combatStarted then
-			if self.timeRemaining >= 0 then
-				self.timeRemaining = self.timeRemaining - 1
-				return 1
-			else
-				if not CheckPlayerChoices(self) then
-					self:EndEvent(true)
+	if not self.combatStarted then
+		self.waitTimer = Timers:CreateTimer(1, function()
+			CustomGameEventManager:Send_ServerToAllClients("updateQuestPrepTime", {prepTime = self.timeRemaining})
+			if not self.eventEnded and not self.combatStarted then
+				if self.timeRemaining >= 0 then
+					self.timeRemaining = self.timeRemaining - 1
+					return 1
+				else
+					if not CheckPlayerChoices(self) then
+						self:EndEvent(true)
+					end
 				end
 			end
-		end
-	end)
+		end)
+	else
+		self:StartCombat(true)
+	end
 	
 	self._playerChoices = {}
 end
@@ -150,8 +153,8 @@ local function EndEvent(self, bWon)
 	Timers:CreateTimer(3, function() RoundManager:EndEvent(bWon) end)
 end
 
-local function HandoutRewards(self)
-	if self.combatStarted then
+local function HandoutRewards(self, bWon)
+	if self.combatStarted and bWon then
 		local eventScaling = RoundManager:GetEventsFinished()
 		local playerScaling = GameRules.BasePlayers - HeroList:GetActiveHeroCount()
 		local baseXP = 500 + eventScaling * (100 + 10 * playerScaling)

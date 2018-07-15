@@ -34,7 +34,7 @@ local function StartEvent(self)
 	self._vEventHandles = {
 		CustomGameEventManager:RegisterListener('player_selected_event_choice_1', Context_Wrap( self, 'FirstChoice') ),
 		CustomGameEventManager:RegisterListener('player_selected_event_choice_2', Context_Wrap( self, 'SecondChoice') ),
-		CustomGameEventManager:RegisterListener('player_selected_event_choice_2', Context_Wrap( self, 'ThirdChoice') ),
+		CustomGameEventManager:RegisterListener('player_selected_event_choice_3', Context_Wrap( self, 'ThirdChoice') ),
 	}
 	self.timeRemaining = 30
 	self.eventEnded = false

@@ -3,7 +3,6 @@ Broodking AI
 ]]
 
 if IsServer() then
-	require( "ai/ai_core" )
 	function Spawn( entityKeyValues )
 		AITimers:CreateTimer(function()
 			if thisEntity and not thisEntity:IsNull() then
@@ -43,7 +42,7 @@ if IsServer() then
 				end
 			end
 			AICore:AttackHighestPriority( thisEntity )
-			return 0.25
-		else return 0.25 end
+			return AI_THINK
+		else return AI_THINK_RATE end
 	end
 end

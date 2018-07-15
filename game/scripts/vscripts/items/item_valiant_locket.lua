@@ -25,6 +25,7 @@ function modifier_item_valiant_locket:OnCreated()
 	self.hp_regen = self:GetSpecialValueFor("bonus_hp_regen")
 	self.armor = self:GetSpecialValueFor("bonus_armor")
 	self.heal_amp = self:GetSpecialValueFor("bonus_heal_amp")
+	self:SetStackCount(1)
 end
 
 function modifier_item_valiant_locket:DeclareFunctions()
@@ -67,6 +68,15 @@ end
 modifier_item_valiant_locket_ally = class(modifier_item_valiant_locket)
 LinkLuaModifier( "modifier_item_valiant_locket_ally", "items/item_valiant_locket.lua" ,LUA_MODIFIER_MOTION_NONE )
 
+function modifier_item_valiant_locket_ally:OnCreated()
+	self.chance = self:GetSpecialValueFor("block_chance")
+	self.block = self:GetSpecialValueFor("damage_block")
+	self.hp_regen = self:GetSpecialValueFor("bonus_hp_regen")
+	self.armor = self:GetSpecialValueFor("bonus_armor")
+	self.heal_amp = self:GetSpecialValueFor("bonus_heal_amp")
+	self:SetStackCount(1)
+end
+
 function modifier_item_valiant_locket_ally:OnDestroy()
 	if IsServer() then self:GetCaster():FindModifierByName("modifier_item_valiant_locket"):SetStackCount(1) end
 end
@@ -80,7 +90,7 @@ function modifier_item_valiant_locket_ally:GetEffectAttachType()
 end
 
 function modifier_item_valiant_locket_ally:IsHidden()
-	return true
+	return false
 end
 
 ------------------------------------------------------------------------

@@ -131,11 +131,18 @@
 #base "items/item_rapture.txt"
 #base "items/item_antique_battlestaff.txt"
 
+#base "items/item_keshas_booze_barrel.txt"
+#base "items/item_presence_booster.txt"
+#base "items/item_lifeweavers_clockwork.txt"
+#base "items/item_lucys_ring.txt"
+#base "items/item_boomstick.txt"
+#base "items/item_ferrum_ascensus.txt"
+
 // #base "items/item_illusionists_charm.txt"
 // #base "items/item_tricksters_blade.txt"
 // #base "items/item_mirrors_edge.txt"
 
-// Next ID is 7065
+// Next ID is 7084
 
 "DOTAAbilities"
 {

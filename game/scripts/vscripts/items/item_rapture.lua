@@ -27,6 +27,7 @@ function modifier_item_rapture:OnCreated()
 	self.hp_regen = self:GetSpecialValueFor("bonus_hp_regen")
 	self.armor = self:GetSpecialValueFor("bonus_armor")
 	self.heal_amp = self:GetSpecialValueFor("bonus_heal_amp")
+	self:SetStackCount(1)
 end
 
 function modifier_item_rapture:DeclareFunctions()
@@ -79,12 +80,23 @@ end
 modifier_item_rapture_ally = class(modifier_item_rapture)
 LinkLuaModifier( "modifier_item_rapture_ally", "items/item_rapture.lua" ,LUA_MODIFIER_MOTION_NONE )
 
+function modifier_item_rapture_ally:OnCreated()
+	self.strength = self:GetSpecialValueFor("bonus_strength")
+	self.evasion = self:GetSpecialValueFor("bonus_evasion")
+	self.chance = self:GetSpecialValueFor("block_chance")
+	self.block = self:GetSpecialValueFor("damage_block")
+	self.hp_regen = self:GetSpecialValueFor("bonus_hp_regen")
+	self.armor = self:GetSpecialValueFor("bonus_armor")
+	self.heal_amp = self:GetSpecialValueFor("bonus_heal_amp")
+	self:SetStackCount(1)
+end
+
 function modifier_item_rapture_ally:OnDestroy()
 	if IsServer() then self:GetCaster():FindModifierByName("modifier_item_rapture"):SetStackCount(1) end
 end
 
 function modifier_item_rapture_ally:IsHidden()
-	return true
+	return false
 end
 
 ------------------------------------------------------------------------

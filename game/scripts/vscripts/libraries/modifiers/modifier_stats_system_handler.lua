@@ -96,8 +96,8 @@ function modifier_stats_system_handler:DeclareFunctions()
 end
 
 function modifier_stats_system_handler:GetModifierMoveSpeedBonus_Constant() return self.ms or 0 end
-function modifier_stats_system_handler:GetModifierManaBonus() return 400 + (self.mp or 0) end
-function modifier_stats_system_handler:GetModifierConstantManaRegen() return 4 + (self.mpr or 0) end
+function modifier_stats_system_handler:GetModifierManaBonus() return 500 + (self.mp or 0) end
+function modifier_stats_system_handler:GetModifierConstantManaRegen() return 5 + (self.mpr or 0) end
 function modifier_stats_system_handler:GetModifierHealAmplify_Percentage() return self.ha or 0 end
 
 function modifier_stats_system_handler:GetModifierPreAttack_BonusDamage() return 10 + (self.ad or 0) end
@@ -108,7 +108,7 @@ function modifier_stats_system_handler:GetModifierStatusAmplify_Percentage() ret
 
 function modifier_stats_system_handler:GetModifierPhysicalArmorBonus()
 	local bonusarmor = 0
-	if not self:GetParent():IsRangedAttacker() then bonusarmor = 6 end
+	if not self:GetParent():IsRangedAttacker() then bonusarmor = 3 end
 	return ( self.pr or 0 ) + bonusarmor
 end
 function modifier_stats_system_handler:GetModifierMagicalResistanceBonus() return self.mr end
@@ -123,8 +123,8 @@ function modifier_stats_system_handler:GetModifierAttackRangeBonus()
 	return self.ar or 0
 end
 
-function modifier_stats_system_handler:GetModifierHealthBonus() return 500 + (self.hp or 0) end
-function modifier_stats_system_handler:GetModifierConstantHealthRegen() return 5 + (self.hpr or 0) end
+function modifier_stats_system_handler:GetModifierHealthBonus() return 800 + (self.hp or 0) end
+function modifier_stats_system_handler:GetModifierConstantHealthRegen() return 6 + (self.hpr or 0) end
 function modifier_stats_system_handler:GetModifierStatusResistance() return self.sr or 0 end
 
 function modifier_stats_system_handler:GetModifierBonusStats_Strength() return self.allStats or 0 end

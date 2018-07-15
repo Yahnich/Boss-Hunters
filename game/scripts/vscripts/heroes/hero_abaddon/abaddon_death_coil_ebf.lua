@@ -41,6 +41,7 @@ function abaddon_death_coil_ebf:OnSpellStart()
 			end
 		end
 	end
+	caster:HealEvent(self_heal + caster:GetMaxHealth()*heal_pct, self, caster)
 end
 
 function abaddon_death_coil_ebf:CreateMistCoil(target, source)

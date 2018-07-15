@@ -142,7 +142,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"heal_pct"					"10 15 20 25 30 35 40"
+				"heal_pct"					"20"
 			}
 			"03"
 			{
@@ -152,7 +152,7 @@
 			"04"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"evasion"					"10"
+				"evasion"					"10 12.5 15 17.5 20 22.5 25"
 				"LinkedSpecialBonus"		"special_bonus_unique_abaddon_brume_weaver_2"
 			}
 			"04"

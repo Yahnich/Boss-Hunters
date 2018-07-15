@@ -78,8 +78,8 @@ function BaseEvent:HandoutRewards(bWon)
 		local eventScaling = RoundManager:GetEventsFinished()
 		local raidScaling = 1 + RoundManager:GetRaidsFinished() * 0.2
 		local playerScaling = GameRules.BasePlayers - HeroList:GetActiveHeroCount()
-		local baseXP = ( 700 + ( (50 + 10 * playerScaling) * eventScaling ) ) + (350 * raidScaling)
-		local baseGold = ( 250 + ( (20 + 3 * playerScaling) * eventScaling ) ) + (100 * raidScaling)
+		local baseXP = ( 900 + ( (50 + 10 * playerScaling) * eventScaling ) ) + (350 * raidScaling)
+		local baseGold = ( 200 + ( (15 + 3 * playerScaling) * eventScaling ) ) + (75 * raidScaling)
 		if not bWon then
 			baseXP = baseXP / 4
 			baseGold = baseGold / 4
