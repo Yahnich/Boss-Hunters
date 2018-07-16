@@ -1,0 +1,1 @@
+undying_summon_zombies = class({})

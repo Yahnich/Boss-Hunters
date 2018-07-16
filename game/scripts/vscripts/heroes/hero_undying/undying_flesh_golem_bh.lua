@@ -1,0 +1,1 @@
+undying_flesh_golem_bh = class({})

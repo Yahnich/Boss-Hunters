@@ -1,0 +1,1 @@
+undying_decay_bh = class({})
