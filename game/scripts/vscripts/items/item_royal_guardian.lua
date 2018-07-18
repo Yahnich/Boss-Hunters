@@ -15,7 +15,7 @@ function item_royal_guardian:OnSpellStart()
 	ParticleManager:FireParticle("particles/econ/items/centaur/centaur_ti6_gold/centaur_ti6_warstomp_gold.vpcf", PATTACH_POINT_FOLLOW, caster, {[1] = Vector(slamRadius, 0, 0)})
 	
 	for _, enemy in ipairs( caster:FindEnemyUnitsInCone(caster:GetForwardVector(), caster:GetAbsOrigin(), slamRadius, slamRange) ) do
-		self:DealDamage( caster, enemy, slamDamage * caster:GetPhysicalArmorValue() )
+		self:DealDamage( caster, enemy, slamDamage * caster:GetPhysicalArmorValue(), {damage_type = DAMAGE_TYPE_PHYSICAL} )
 		enemy:Blind(slamBlind, self, caster, slamDuration)
 	end
 end

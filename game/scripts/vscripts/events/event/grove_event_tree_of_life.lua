@@ -26,7 +26,7 @@ end
 
 local function ThirdChoice(self, userid, event)
 	local hero = PlayerResource:GetSelectedHeroEntity( event.pID )
-	hero:AddBlessing("event_buff_tree_of_life_blessing_2")
+	hero:AddBlessing("event_buff_tree_of_life_blessing_3")
 	self._playerChoices[event.pID] = true
 	CheckPlayerChoices(self)
 end

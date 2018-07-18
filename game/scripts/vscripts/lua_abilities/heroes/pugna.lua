@@ -61,8 +61,8 @@ LinkLuaModifier( "modifier_pugna_decrepify_enemy", "lua_abilities/heroes/pugna.l
 modifier_pugna_decrepify_enemy = class({})
 
 function modifier_pugna_decrepify_enemy:OnCreated()
-	self.magic_damage = self:GetAbility():GetSpecialValueFor("bonus_spell_damage_pct_allies")
-	self.slow = self:GetAbility():GetSpecialValueFor("bonus_movement_speed_allies")
+	self.magic_damage = self:GetAbility():GetSpecialValueFor("bonus_spell_damage_pct")
+	self.slow = self:GetAbility():GetSpecialValueFor("bonus_movement_speed")
 end
 
 function modifier_pugna_decrepify_enemy:CheckState()

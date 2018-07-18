@@ -858,9 +858,12 @@ function CHoldoutGameMode:OnPlayerDisconnected(keys)
 	if not playerID then return end
 	local hero = PlayerResource:GetSelectedHeroEntity(playerID)
 	if hero then hero.disconnect = GameRules:GetGameTime() end
-	if HeroList:GetActiveHeroCount() == 0 then
-		RoundManager:GameIsFinished(false)
+	for pID = 0, GameRules.BasePlayers do -- check if game has to die
+		if PlayerResource:IsValidPlayerID( pID ) and PlayerResource:GetConnectionState() == DOTA_CONNECTION_STATE_CONNECTED then
+			return
+		end
 	end
+	RoundManager:GameIsFinished(false)
 end
 
 -- When game state changes set state in script

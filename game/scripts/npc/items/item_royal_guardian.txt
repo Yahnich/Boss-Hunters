@@ -44,6 +44,8 @@
 		"ItemAliases"					"vanguard;royal guardian"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
+		"AbilityCooldown"				"12"
+		"AbilityManaCost"				"100"
 		
 		"precache"
 		{
@@ -105,7 +107,7 @@
 				"var_type"				"FIELD_FLOAT"
 				"slam_duration"			"5"
 			}
-			"10"
+			"11"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"armor_damage"			"10"

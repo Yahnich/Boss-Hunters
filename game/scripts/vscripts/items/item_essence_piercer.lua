@@ -56,6 +56,10 @@ end
 LinkLuaModifier( "modifier_item_essence_piercer_active", "items/item_essence_piercer.lua" ,LUA_MODIFIER_MOTION_NONE )
 modifier_item_essence_piercer_active = class({})
 
+function modifier_item_essence_piercer_active:GetTextureName()
+	return "orchid"
+end
+
 function modifier_item_essence_piercer_active:DeclareFunctions()
 	return {MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE}
 end

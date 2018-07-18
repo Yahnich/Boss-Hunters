@@ -467,7 +467,7 @@ function RoundManager:InitializeUnit(unit, bElite)
 	local effective_multiplier = (HeroList:GetActiveHeroCount() - 1) 
 	
 	local effPlayerHPMult =  0.6 + ( (RoundManager:GetEventsFinished() * 0.08) + (RoundManager:GetRaidsFinished() * 0.75) + ( RoundManager:GetZonesFinished() * 8 )  ) + ( effective_multiplier * playerHPMultiplier )
-	local effPlayerDMGMult = ( 0.5 + (RoundManager:GetEventsFinished() * 0.05) + (RoundManager:GetRaidsFinished() * 0.6) + ( RoundManager:GetZonesFinished() * 4 ) ) + ( effective_multiplier * playerDMGMultiplier )
+	local effPlayerDMGMult = ( 0.5 + (RoundManager:GetEventsFinished() * 0.05) + (RoundManager:GetRaidsFinished() * 0.45) + ( RoundManager:GetZonesFinished() * 2 ) ) + ( effective_multiplier * playerDMGMultiplier )
 	local effPlayerArmorMult = 0.7 + (effective_multiplier * playerArmorMultiplier)
 	
 	if bElite then

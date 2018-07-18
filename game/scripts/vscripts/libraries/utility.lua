@@ -878,13 +878,14 @@ function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, sp
 		local item = self:GetItemInSlot(itemSlot)
 		if item ~= nil then
 			local itemName = item:GetName()
-			local newItem = CreateItem(itemName, illusion, illusion)
+			local newItem = CreateItem(itemName, nil, nil)
 			illusion:AddItem(newItem)
 		end
 	end
 
 	-- Set the unit as an illusion
 	-- modifier_illusion controls many illusion properties like +Green damage not adding to the unit damage, not being able to cast spells and the team-only blue particle
+	illusion:AddNewModifier(self, ability, "modifier_kill", { duration = duration })
 	illusion:AddNewModifier(self, ability, "modifier_illusion", { duration = duration, outgoing_damage = outgoingDamage, incoming_damage = incomingDamage })
 	if specIllusionModifier then
 		illusion:AddNewModifier(self, ability, specIllusionModifier, { duration = duration })

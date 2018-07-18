@@ -12677,7 +12677,7 @@
 			}
 			"03"
 			{
-				"var_type"					"FIELD_FLOAT"
+				"var_type"					"FIELD_INTEGER"
 				"bonus_spell_damage_pct"	"-20 -23 -26 -30 -33 -36 -40"
 			}
 			"04"
