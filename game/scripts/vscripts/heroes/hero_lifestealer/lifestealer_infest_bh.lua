@@ -92,7 +92,6 @@ function modifier_lifestealer_infest_bh:OnIntervalThink()
 		self:GetCaster():SetAbsOrigin(self:GetAbility().target:GetAbsOrigin())
 	else
 		self:Destroy()
-		self:Se
 	end
 end
 
