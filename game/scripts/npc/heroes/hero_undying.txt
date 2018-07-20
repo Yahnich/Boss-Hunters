@@ -23,7 +23,7 @@
 		
 		// Time     
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"               "12 11 10 9 8 5 4"
+		"AbilityCooldown"               "10 9 8 7 6 5 4"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -35,29 +35,34 @@
 		{
 			"01"
 			{
-				"var_type"              "FIELD_INTEGER"
-				"radius"                "600"
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"325"
 			}
 			"02"
 			{
-				"var_type"              "FIELD_FLOAT"
-				"duration"              "45"
-				"LinkedSpecialBonus"	"special_bonus_unique_undying_4"
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"45"
 			}
 			"03"
 			{
-				"var_type"              "FIELD_INTEGER"
-				"damage"				"20 50 80 110 140 170 200"
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"80 140 200 260 320 380 440"
+				"LinkedSpecialBonus"		"special_bonus_unique_undying_decay_1"
 			}
 			"04"
 			{
 				"var_type"              	"FIELD_FLOAT"
-				"health_bonus_per_unit" 	"80"
+				"str_per_boss"			 	"4"
 			}
 			"05"
 			{
-				"var_type"              		"FIELD_FLOAT"
-				"str_bonus_per_unit_scepter"	"4"
+				"var_type"              	"FIELD_FLOAT"
+				"str_per_mob"				"1"
+			}
+			"06"
+			{
+				"var_type"              	"FIELD_FLOAT"
+				"scepter_str_per_boss"		"4"
 			}
 		}
 		
@@ -126,7 +131,6 @@
 		"MaxLevel"						"7"
 		"AbilityCastRange"				"1200"
 		"AbilityCastPoint"				"0.3 0.3 0.3"
-		"AbilityCastAnimation"			"ACT_DOTA_CHANNEL_ABILITY_4"
 		"precache"
 	    {
 	        "soundfile"     			"sounds/weapons/hero/undying/decay_cast.vsnd"        
@@ -146,14 +150,19 @@
 			"01"
 			{
 				"var_type"						"FIELD_INTEGER"
+				"enemy_hp_loss"					"36 44 52 60 68 76 84"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
 				"health_per_unit"				"18 22 26 30 34 38 42"
 				"LinkedSpecialBonus"			"special_bonus_unique_undying_soul_rip_1"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
-			"02"
+			"03"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"range"					"1200"
+				"var_type"						"FIELD_INTEGER"
+				"range"							"1200"
 			}
 		}
 	}
@@ -213,6 +222,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 	    "AbilityTextureName"			"custom/undying_summon_zombies"
+		"AbilityCastAnimation"			"ACT_DOTA_CHANNEL_ABILITY_4"
 	    "MaxLevel"						"7"
 		"HasScepterUpgrade"				"1"
 	
@@ -235,8 +245,6 @@
 	    // Time     
 	    //-------------------------------------------------------------------------------------------------------------
 	    "AbilityCooldown"               "20"
-		"AbilityDamage"					"35 70 105 140 175 210 245"
-		"AbilityThreat"					"12"
 	
 	    // Cost
 	    //-------------------------------------------------------------------------------------------------------------
@@ -270,6 +278,12 @@
 	        {
 	            "var_type"                  "FIELD_FLOAT"
 	            "heal_pct"         			"50"
+				"LinkedSpecialBonus"		"special_bonus_unique_undying_summon_zombies_2"
+	        }
+			"06"
+	        {
+	            "var_type"                  "FIELD_FLOAT"
+	            "damage"					"35 70 105 140 175 210 245"
 	        }
 	    }
 	}
@@ -291,7 +305,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"						"1"
+				"value"						"600"
 			}
 		}
 	}
@@ -327,22 +341,13 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
-		"MaxLevel"						"7"
-		"AbilityCastRange"				"1200"
-		"AbilityCastPoint"				"0.3 0.3 0.3"
-		"AbilityCastAnimation"			"ACT_DOTA_CHANNEL_ABILITY_4"
+		"AbilityTextureName"			"undying_tombstone"
+		"MaxLevel"						"1"
+		"InnateAbility"					"1"
 		"precache"
 	    {
 	        "soundfile"     			"sounds/weapons/hero/undying/decay_cast.vsnd"        
-	    } 
-	    
-	
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"9"
-		"AbilityManaCost"				"100 110 120 130 140 150 160"		
-		
-		"AbilityTextureName"			"undying_soul_rip"
+	    }
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
@@ -350,21 +355,29 @@
 			"01"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"health_per_unit"				"18 22 26 30 34 38 42"
-				"LinkedSpecialBonus"			"special_bonus_unique_undying_soul_rip_1"
-				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
+				"damage_pct"					"20"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"range"					"1200"
+				"var_type"						"FIELD_INTEGER"
+				"health_pct"					"5"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"duration"						"45"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"radius"						"900"
 			}
 		}
 	}
 	//=================================================================================================================
 	// Undying: Flesh Golem
 	//=================================================================================================================
-	"undying_flesh_golem"
+	"undying_flesh_golem_bh"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -437,7 +450,7 @@
 			"09"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"death_heal_creep"			"10"
+				"death_heal_creep"			"2"
 			}		
 		}
 	}
@@ -481,12 +494,12 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"						"20"
+				"value"						"10"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"duration"					"1"
+				"duration"					"2"
 			}
 		}
 	}
