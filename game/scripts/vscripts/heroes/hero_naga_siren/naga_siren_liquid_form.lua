@@ -1,0 +1,1 @@
+naga_siren_liquid_form = class({})

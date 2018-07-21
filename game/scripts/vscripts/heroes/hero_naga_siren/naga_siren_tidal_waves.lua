@@ -1,0 +1,1 @@
+naga_siren_tidal_waves = class({})

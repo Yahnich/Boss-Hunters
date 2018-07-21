@@ -1,0 +1,450 @@
+"DOTAAbilities"
+{
+	"naga_siren_liquid_form"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_naga_siren/naga_siren_liquid_form"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"				"1"
+		"AbilityTextureName"			"naga_siren_mirror_image"
+		"MaxLevel"						"7"
+	
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_naga_siren.vsndevts"
+			"particle"		"particles/units/heroes/hero_naga_siren/naga_siren_water_snare.vpcf"
+			"particle"		"particles/units/heroes/hero_naga_siren/naga_siren_bolt_msg.vpcf"
+		}
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"500"
+		"AbilityCastPoint"				"0.4 0.4 0.4 0.4"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"10.0 10.0 10.0 10.0"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"140 140 140 140"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"chaos_bolt_speed"		"1000"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"stun_min"				"0.5"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"stun_max"				"1.0 1.5 2.0 2.5 3.0 3.5 4.0"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_min"			"75 100 125 150 175 200 225"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_max"			"200 250 300 350 400 450 500"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bounce_chance"			"50"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Chaos Knight: Reality Rift
+	//=================================================================================================================
+	"naga_siren_water_snare"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_naga_siren/naga_siren_water_snare"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_ALL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"naga_siren_ensnare"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"7"
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"550 600 650 700 750 800 900"
+		"AbilityCastPoint"				"0.4 0.4 0.4 0.4"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST2_STATUE"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"24 21 18 15 12 9 6"
+
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"50"
+
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_naga_siren/naga_siren_tidal_waves.vpcf"
+			"particle"					"particles/units/heroes/hero_naga_siren/naga_siren_tidal_waves_buff.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_naga_siren.vsndevts"
+		}
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"cast_range"				"550 600 650 700 750 800 900"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"armor_reduction"			"-2 -3 -4 -5 -6 -7 -8"
+				"LinkedSpecialBonus"		"special_bonus_unique_naga_siren_tidal_waves_1"
+			}		
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"armor_duration"			"8"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Chaos Knight: Chaos Strike
+	//=================================================================================================================
+	"naga_siren_tidal_waves"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_naga_siren/naga_siren_tidal_waves"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"naga_siren_rip_tide"
+		"MaxLevel"						"7"
+		
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_naga_siren/naga_siren_weapon_blur_critical.vpcf"
+			"particle"					"particles/items_fx/battlefury_cleave.vpcf"
+		}
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"crit_chance"				"15"
+				"LinkedSpecialBonus"		"special_bonus_unique_naga_siren_liquid_form_2"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"crit_damage"				"125 175 225 275 325 375 425"
+			}	
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"lifesteal"					"75"
+			}		
+		}
+	}
+	"naga_siren_ebb_and_flow"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_naga_siren/naga_siren_ebb_and_flow"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
+		"FightRecapLevel"				"1"
+		"AbilityTextureName"			"custom/naga_siren_ebb_and_flow"
+		"MaxLevel"						"1"
+		"InnateAbility"					"1"
+	
+		"AbilityCastRange"				"900"
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"health_regeneration"		"0.85"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"900"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Chaos Knight: Phantasm
+	//=================================================================================================================
+	"naga_siren_song_of_the_siren_bh"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_naga_siren/naga_siren_song_of_the_siren_bh"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityTextureName"			"naga_siren_song_of_the_siren"
+		"FightRecapLevel"				"2"
+		"LevelsBetweenUpgrades"			"7"
+		"MaxLevel"						"7"
+		"HasScepterUpgrade"				"1"
+		
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO"
+		"AbilityCastRange"				"1200"
+		"HasScepterUpgrade"				"1"
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.4 0.4 0.4"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"100"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"125 200 275 350 425 500"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"images_count"				"1 1 1 2 2 2 3"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"extra_phantasm_chance_pct_tooltip"			"50"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"illusion_duration"			"20 24 28 32 36 40"
+			}	
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"outgoing_damage"			"0"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"outgoing_damage_tooltip"			"100"
+			}	
+			"06"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"incoming_damage"			"0"
+			}
+			"07"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"incoming_damage_tooltip"			"100"
+			}			
+			"08"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"invuln_duration"		"0.5"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"vision_radius"			"400"
+			}			
+			"10"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"cooldown_scepter"		"60"
+			}
+		}
+	}
+	"special_bonus_unique_naga_siren_liquid_form_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"100"
+			}
+		}
+	}
+	"special_bonus_unique_naga_siren_liquid_form_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"8"
+			}
+		}
+	}
+	"special_bonus_unique_naga_siren_water_snare_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"25"
+			}
+		}
+	}
+	"special_bonus_unique_naga_siren_water_snare_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"25"
+			}
+		}
+	}
+	"special_bonus_unique_naga_siren_tidal_waves_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"-4"
+			}	
+		}
+	}
+	"special_bonus_unique_naga_siren_tidal_waves_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"900"
+			}
+		}
+	}
+	"special_bonus_unique_naga_siren_song_of_the_siren_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"-4"
+			}	
+		}
+	}
+	"special_bonus_unique_naga_siren_song_of_the_siren_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"900"
+			}
+		}
+	}
+}
