@@ -103,7 +103,6 @@ function modifier_bounty_hunter_jinada_crit:OnAttackLanded(params)
 						for _,unit in ipairs(units) do
 							if unit ~= params.target then
 								caster:MoveToTargetToAttack(unit)
-								print("work?")
 								caster:AddNewModifier(caster, self:GetAbility(), "modifier_bounty_hunter_jinada_dash", {duration = CalculateDistance(unit, caster) / self:GetAbility():GetSpecialValueFor("dash_speed") + 0.1 })
 								return
 							end

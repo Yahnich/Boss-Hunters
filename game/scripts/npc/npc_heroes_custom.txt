@@ -1783,11 +1783,22 @@
 	// HERO: undying
 	//=================================================================================================================
 	"npc_dota_hero_undying_ebf"
-	{
-		"override_hero"			"npc_dota_hero_undying"
-		"Ability1"					"undying_decay_ebf"					// Ability 4
-		"Ability2"					"undying_soul_rip_ebf"					// Ability 4
+	{	
+		"override_hero"				"npc_dota_hero_undying"
+		"Ability1"					"undying_decay_bh"					// Ability 4
+		"Ability2"					"undying_soul_rip_bh"				// Ability 4
 		"Ability3"					"undying_summon_zombies"					// Ability 4
+		"Ability4"					"undying_the_undying"
+		"ability6"					"undying_flesh_golem_bh"
+		
+		"Ability10"					"special_bonus_unique_undying_decay_1"
+		"Ability11"					"special_bonus_unique_undying_decay_2"
+		"Ability12"					"special_bonus_unique_undying_soul_rip_1"
+		"Ability13"					"special_bonus_unique_undying_soul_rip_2"
+		"Ability14"					"special_bonus_unique_undying_summon_zombies_1"
+		"Ability15"					"special_bonus_unique_undying_summon_zombies_2"
+		"Ability16"					"special_bonus_unique_undying_flesh_golem_1"
+		"Ability17"					"special_bonus_unique_undying_flesh_golem_2"
 	}
 	//=================================================================================================================
 	// HERO: ursa

@@ -18,6 +18,7 @@
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"650"
+		"AbilityCastAnimation"			"ACT_DOTA_UNDYING_DECAY"
 		"AbilityCastPoint"            	 "0.45 0.45 0.45 0.45"
 		
 		// Time     
@@ -27,6 +28,14 @@
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"              	"70 85 100 115 130 145 160"	
+		
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_undying/undying_decay.vpcf"
+			"particle"					"particles/units/heroes/hero_undying/undying_decay_strength_buff.vpcf"
+			"particle"					"particles/units/heroes/hero_undying/undying_decay_strength_xfer.vpcf"
+			"particle"					"particles/units/heroes/hero_undying/undying_decay_fakeprojectile_glow.vpcf"
+		}
 			
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -124,24 +133,29 @@
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_undying/undying_soul_rip_bh"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+		"AbilityTextureName"			"undying_soul_rip"
 		"MaxLevel"						"7"
-		"AbilityCastRange"				"1200"
-		"AbilityCastPoint"				"0.3 0.3 0.3"
+		
 		"precache"
 	    {
-	        "soundfile"     			"sounds/weapons/hero/undying/decay_cast.vsnd"        
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_undying.vsndevts"
+	        "particle"					"particles/units/heroes/hero_undying/undying_soul_rip_damage.vpcf"
+			"particle"					"particles/units/heroes/hero_undying/undying_soul_rip_heal.vpcf"
 	    } 
 	    
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"				"9"
+		"AbilityCastAnimation"			"ACT_DOTA_UNDYING_SOUL_RIP"
 		"AbilityManaCost"				"100 110 120 130 140 150 160"		
 		
-		"AbilityTextureName"			"undying_soul_rip"
+		"AbilityCastRange"				"1200"
+		"AbilityCastPoint"				"0.3 0.3 0.3"
+		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
@@ -221,7 +235,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 	    "AbilityTextureName"			"custom/undying_summon_zombies"
-		"AbilityCastAnimation"			"ACT_DOTA_CHANNEL_ABILITY_4"
+		"AbilityCastAnimation"			"ACT_DOTA_UNDYING_TOMBSTONE"
 	    "MaxLevel"						"7"
 		"HasScepterUpgrade"				"1"
 	
@@ -266,23 +280,18 @@
 			"03"
 	        {
 	            "var_type"                  "FIELD_FLOAT"
-	            "turn_slow"             	"65"
+	            "turn_slow_tooltip"         "-35"
 	        }
 			"04"
 	        {
 	            "var_type"                  "FIELD_FLOAT"
-	            "turn_slow_tooltip"         "-35"
+	            "damage"					"35 70 105 140 175 210 245"
 	        }
 			"05"
 	        {
 	            "var_type"                  "FIELD_FLOAT"
 	            "heal_pct"         			"50"
 				"LinkedSpecialBonus"		"special_bonus_unique_undying_summon_zombies_2"
-	        }
-			"06"
-	        {
-	            "var_type"                  "FIELD_FLOAT"
-	            "damage"					"35 70 105 140 175 210 245"
 	        }
 	    }
 	}
@@ -398,7 +407,13 @@
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"100 100 100"		
+		"AbilityManaCost"				"100 100 100"
+
+		"precache"
+		{
+			"model"						"models/heroes/undying/undying_flesh_golem.vmdl"
+			"particle"					"particles/units/heroes/hero_undying/undying_fg_aura.vpcf"
+		}
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------

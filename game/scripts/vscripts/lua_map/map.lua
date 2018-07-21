@@ -12,20 +12,22 @@ SPAWN_POS = GetGroundPosition(Vector(6456, 6944, 0), nil)
 
 function MapHandler:CheckAndResolvePositions(hero)
 	hero.lastAllowedPosition = hero.lastAllowedPosition or hero:GetAbsOrigin()
-	if MapHandler:IsOutsideMapBounds(hero) then
-		FindClearSpaceForUnit(hero, hero.lastAllowedPosition, true)
-		hero:StopMotionControllers(true)
-		return
-	end
-	if RoundManager.boundingBox and Entities:FindByName(nil, RoundManager.boundingBox.."_edge_collider") and hero then
-		local collider = Entities:FindByName(nil, RoundManager.boundingBox.."_edge_collider")
-		local dist = math.max(  FindRadius(collider) * 1.2, math.max(FindWidth(collider) * 1.1, FindLength(collider) * 1.1 ) )
-		if CalculateDistance( hero, collider ) > dist then
-			FindClearSpaceForUnit(hero, RoundManager:GetCurrentEvent():GetHeroSpawnPosition(), true)
+	if not RoundManager.boundingBox then return end
+	local edgeBox = Entities:FindByName(nil, RoundManager.boundingBox.."_edge_collider")
+	if edgeBox then
+		if MapHandler:IsOutsideMapBounds(hero) or ( not edgeBox:IsTouching(hero) ) then
+			FindClearSpaceForUnit(hero, hero.lastAllowedPosition, true)
+			hero:StopMotionControllers(true)
+			if not edgeBox:IsTouching(hero) then
+				hero.lastAllowedPosition = RoundManager:GetCurrentEvent():GetHeroSpawnPosition()
+				hero:StopMotionControllers(true)
+				FindClearSpaceForUnit(hero, hero.lastAllowedPosition, true)
+			end
+			return
 		end
-	end
-	if GridNav:IsTraversable(hero:GetAbsOrigin()) then
-		hero.lastAllowedPosition = hero:GetAbsOrigin()
+		if GridNav:IsTraversable(hero:GetAbsOrigin()) and RoundManager.boundingBox and edgeBox:IsTouching(hero) then
+			hero.lastAllowedPosition = hero:GetAbsOrigin()
+		end
 	end
 end
 

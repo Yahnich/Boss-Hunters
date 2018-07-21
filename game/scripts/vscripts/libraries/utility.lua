@@ -2484,6 +2484,10 @@ function CDOTA_BaseNPC:RemoveSilence()
 	end
 end
 
+function CDOTA_BaseNPC:Fear(hAbility, hCaster, duration)
+	self:AddNewModifier(hCaster, hAbility, "modifier_fear_generic", {Duration = duration})
+end
+
 function CDOTA_BaseNPC:Blind(missChance, hAbility, hCaster, duration)
 	self:AddNewModifier(hCaster, hAbility, "modifier_blind_generic", {Duration = duration, miss = missChance})
 end

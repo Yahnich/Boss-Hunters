@@ -2,7 +2,7 @@ undying_summon_zombies = class({})
 
 function undying_summon_zombies:OnSpellStart()
 	local caster = self:GetCaster()
-	local taget = self:GetCursorTarget()
+	local target = self:GetCursorTarget()
 	target:AddNewModifier(caster, self, "modifier_undying_summon_zombies", {duration = self:GetSpecialValueFor("zombie_duration")})
 end
 
@@ -13,7 +13,7 @@ function modifier_undying_summon_zombies:OnCreated()
 	self.damage = self:GetSpecialValueFor("damage")
 	self.heal = self:GetSpecialValueFor("heal_pct")
 	self.slow = self:GetSpecialValueFor("movement_slow")
-	self.turn = self:GetSpecialValueFor("turn_slow")
+	self.turn = self:GetSpecialValueFor("turn_slow_tooltip")
 	if IsServer() then
 		self:StartIntervalThink(1)
 	end
@@ -23,7 +23,7 @@ function modifier_undying_summon_zombies:OnRefresh()
 	self.damage = self:GetSpecialValueFor("damage")
 	self.heal = self:GetSpecialValueFor("heal_pct")
 	self.slow = self:GetSpecialValueFor("movement_slow")
-	self.turn = self:GetSpecialValueFor("turn_slow")
+	self.turn = self:GetSpecialValueFor("turn_slow_tooltip")
 end
 
 function modifier_undying_summon_zombies:OnIntervalThink()
@@ -31,7 +31,7 @@ function modifier_undying_summon_zombies:OnIntervalThink()
 	local target = self:GetParent()
 	local ability = self:GetAbility()
 	
-	caster:Lifesteal(ability, self.heal_pct, self.damage, target, ability:GetAbilityDamageType(), DOTA_LIFESTEAL_SOURCE_ABILITY)
+	caster:Lifesteal(ability, self.heal, self.damage, target, ability:GetAbilityDamageType(), DOTA_LIFESTEAL_SOURCE_ABILITY)
 	local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_undying/undying_soul_rip_heal.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
 	EmitSoundOn("Hero_Bane.Enfeeble.Cast", caster)
 	Timers:CreateTimer(0.5,function()
@@ -44,7 +44,7 @@ function modifier_undying_summon_zombies:OnIntervalThink()
 	
 	if caster:HasTalent("special_bonus_unique_undying_summon_zombies_1") then
 		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( target:GetAbsOrigin(), caster:FindTalentValue("special_bonus_unique_undying_summon_zombies_1") ) ) do
-			if enemy ~= target then
+			if enemy ~= target and not enemy:HasModifier("modifier_undying_summon_zombies") then
 				enemy:AddNewModifier(caster, ability, "modifier_undying_summon_zombies", { duration = self:GetRemainingTime() })
 				break
 			end
@@ -53,14 +53,18 @@ function modifier_undying_summon_zombies:OnIntervalThink()
 end
 
 function modifier_undying_summon_zombies:DeclareFunctions()
-	return {MODIFIER_PROPERTY_TURNRATE_PER,
-			MODIFIER_PROPERTY_MOVESPEED_PER}
+	return {MODIFIER_PROPERTY_TURN_RATE_PERCENTAGE,
+			MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE}
 end
 
-function modifier_undying_summon_zombies:Getturnslow()
+function modifier_undying_summon_zombies:GetModifierTurnRate_Percentage()
 	return self.turn
 end
 
-function modifier_undying_summon_zombies:Getms()
+function modifier_undying_summon_zombies:GetModifierMoveSpeedBonus_Percentage()
 	return self.slow
+end
+
+function modifier_undying_summon_zombies:GetEffectName()
+	return "particles/zombie_grab.vpcf"
 end

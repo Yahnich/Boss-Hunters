@@ -49,6 +49,7 @@ LinkLuaModifier( "modifier_break_generic", "libraries/modifiers/modifier_break_g
 LinkLuaModifier( "modifier_daze_generic", "libraries/modifiers/modifier_daze_generic.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_generic_barrier", "libraries/modifiers/modifier_generic_barrier.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_taunt_generic", "libraries/modifiers/modifier_taunt_generic.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier( "modifier_fear_generic", "libraries/modifiers/modifier_fear_generic.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_chill_generic", "libraries/modifiers/modifier_chill_generic.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_frozen_generic", "libraries/modifiers/modifier_frozen_generic.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_hidden_generic", "libraries/modifiers/modifier_hidden_generic.lua", LUA_MODIFIER_MOTION_NONE)
@@ -269,7 +270,18 @@ function CHoldoutGameMode:InitGameMode()
 											if Convars:GetDOTACommandClient() and IsInToolsMode() then
 												local player = Convars:GetDOTACommandClient()
 												local hero = player:GetAssignedHero()
-												print(relicName, "ok")
+												hero:AddRelic(relicName)
+											end
+										end, "adding relics",0)
+	Convars:RegisterCommand( "add_all_relics", function(command)
+											if Convars:GetDOTACommandClient() and IsInToolsMode() then
+												local player = Convars:GetDOTACommandClient()
+												local hero = player:GetAssignedHero()
+												for id, relicPool in ipairs( hero.internalRNGPools ) do
+													for relicName, weight in pairs(relicPool) do
+														hero:AddRelic(relicName)
+													end
+												end
 												hero:AddRelic(relicName)
 											end
 										end, "adding relics",0)

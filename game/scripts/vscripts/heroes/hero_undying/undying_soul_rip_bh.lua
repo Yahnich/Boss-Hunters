@@ -19,27 +19,27 @@ function undying_soul_rip_bh:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 	
-	local radius = self:GetTalentSpecialValueFor("")
-	local hploss = self:GetTalentSpecialValueFor("")
-	local healPUnit = self:GetTalentSpecialValueFor("")
+	local radius = self:GetTalentSpecialValueFor("range")
+	local hploss = self:GetTalentSpecialValueFor("enemy_hp_loss")
+	local healPUnit = self:GetTalentSpecialValueFor("health_per_unit")
 	
 	local units = caster:FindAllUnitsInRadius( caster:GetAbsOrigin(), radius )
 	local unitCount = #units
-	if target:IsSameTeam() then
+	
+	local ripFX = "particles/units/heroes/hero_undying/undying_soul_rip_heal.vpcf"
+	if target:IsSameTeam(caster) then
 		EmitSoundOn("Hero_Undying.SoulRip.Ally", target)
 		target:HealEvent( unitCount * healPUnit, self, caster )
 	else
 		EmitSoundOn("Hero_Undying.SoulRip.Enemy", target)
-		target:DealDamage( caster, target, unitCount * healPUnit )
+		self:DealDamage( caster, target, unitCount * healPUnit )
+		ripFX = "particles/units/heroes/hero_undying/undying_soul_rip_damage.vpcf"
 	end
 	
 	for _, unit in ipairs( units ) do
 		if not unit:IsSameTeam(caster) or caster:HasTalent("special_bonus_unique_undying_soul_rip_1") then
-			unit:DealDamage( caster, unit, hploss, {damage_type = DAMAGE_TYPE_PURE, damage_flags = DAMAGE_FLAGS_HPLOSS})
-			local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_undying/undying_soul_rip_heal.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
-			ParticleManager:SetParticleControlEnt(particle, 0, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
-			ParticleManager:SetParticleControlEnt(particle, 1, unit, PATTACH_POINT_FOLLOW, "attach_hitloc", unit:GetAbsOrigin(), true)
-			ParticleManager:ClearParticle( particle )
+			self:DealDamage( caster, unit, hploss, {damage_type = DAMAGE_TYPE_PURE, damage_flags = DAMAGE_FLAGS_HPLOSS})
+			ParticleManager:FireRopeParticle(ripFX, PATTACH_ABSORIGIN_FOLLOW, target, unit)
 		end
 	end
 end
