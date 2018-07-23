@@ -21,7 +21,6 @@
 	end
 	local nonVotes = (players - voted)
 	if not self.eventEnded and not self.foughtElites then
-		print("checking votes", votedStop, votedLeave, votedJoin, nonVotes)
 		if votedStop > votedLeave + votedJoin + nonVotes then
 			self:StartCombat(true)
 		elseif votedJoin > votedLeave + votedStop + nonVotes then
@@ -41,12 +40,11 @@ end
 
 local function StartCombat(self, bFight)
 	if bFight then
-		print("FDIGHT")
 		self.foughtElites = true
 		self.eventType = EVENT_TYPE_ELITE
 
 		self.timeRemaining = 0
-		self.enemiesToSpawn = math.max( 1, math.floor(RoundManager:GetRaidsFinished() / 2) )
+		self.enemiesToSpawn = math.max( 1, math.floor(RoundManager:GetRaidsFinished() / 3) )
 		Timers:CreateTimer(5, function()
 			for i = 1, self.enemiesToSpawn do
 				local spawn = CreateUnitByName("npc_dota_boss_warlock", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)

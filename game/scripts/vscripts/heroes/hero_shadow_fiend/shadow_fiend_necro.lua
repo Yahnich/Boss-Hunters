@@ -44,8 +44,8 @@ function modifier_shadow_fiend_necro_handle:OnDeath(params)
 			local necroStacks = params.unit:FindModifierByName("modifier_shadow_fiend_necro")
 			if necroStacks then
 				local requiem = self:GetCaster():FindAbilityByName("shadow_fiend_requiem")
+				necroStacks:SetStackCount( math.ceil(necroStacks:GetStackCount() * self.deathLoss) )
 				if requiem and requiem:GetLevel() > 0 then requiem:ReleaseSouls(true) end
-    		 	necroStacks:SetStackCount( math.ceil(necroStacks:GetStackCount() * self.deathLoss) )
 			end
     	end
     end

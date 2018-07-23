@@ -6,9 +6,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_naga_siren/naga_siren_liquid_form"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"				"1"
@@ -20,56 +18,53 @@
 		"precache"
 		{
 			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_naga_siren.vsndevts"
-			"particle"		"particles/units/heroes/hero_naga_siren/naga_siren_water_snare.vpcf"
-			"particle"		"particles/units/heroes/hero_naga_siren/naga_siren_bolt_msg.vpcf"
+			"particle"		"particles/status_fx/status_effect_slardar_amp_damage.vpcf"
+			"particle"		"particles/units/heroes/hero_naga_siren/naga_siren_liquid_form.vpcf"
+			"particle"		"particles/units/heroes/hero_siren/naga_siren_mirror_image.vpcf"
 		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"500"
-		"AbilityCastPoint"				"0.4 0.4 0.4 0.4"
-		
+		"AbilityCastPoint"				"0.6"
+
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"10.0 10.0 10.0 10.0"
-	
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"140 140 140 140"
-	
+		"AbilityCooldown"				"40"
+
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"chaos_bolt_speed"		"1000"
+				"var_type"						"FIELD_FLOAT"
+				"duration"						"15"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"stun_min"				"0.5"
+				"var_type"						"FIELD_INTEGER"
+				"bonus_evasion"					"50"
+				"LinkedSpecialBonus"			"special_bonus_unique_naga_siren_liquid_form_2"
+				"LinkedSpecialBonusField"		"evasion"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"stun_max"				"1.0 1.5 2.0 2.5 3.0 3.5 4.0"
+				"var_type"						"FIELD_INTEGER"
+				"bonus_hp_regen"				"5 10 15 20 25 30 35"
+				"LinkedSpecialBonus"			"special_bonus_unique_naga_siren_liquid_form_2"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
 			"04"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"damage_min"			"75 100 125 150 175 200 225"
+				"var_type"						"FIELD_INTEGER"
+				"water_hp_regen"				"10 20 30 40 50 60 70"
+				"LinkedSpecialBonus"			"special_bonus_unique_naga_siren_liquid_form_2"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
 			"05"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"damage_max"			"200 250 300 350 400 450 500"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bounce_chance"			"50"
+				"var_type"						"FIELD_INTEGER"
+				"water_bonus_ms"				"20"	
 			}
 		}
 	}
@@ -88,7 +83,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"100"
+				"value"					"1"
 			}
 		}
 	}
@@ -107,7 +102,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"8"
+				"value"					"2"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"evasion"				"20"
 			}
 		}
 	}
@@ -123,6 +123,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"naga_siren_ensnare"
 		"FightRecapLevel"				"1"
@@ -130,45 +131,49 @@
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"550 600 650 700 750 800 900"
-		"AbilityCastPoint"				"0.4 0.4 0.4 0.4"
-		"AbilityCastAnimation"			"ACT_DOTA_CAST2_STATUE"
+		"AbilityCastPoint"				"0.6"
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"24 21 18 15 12 9 6"
-
+		"AbilityCooldown"				"14"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"50"
-
+		"AbilityManaCost"				"70 80 90 100 110 120 130"
+		
+		// Cast Range
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"650 650 650 650"
+		
 		"precache"
 		{
-			"particle"					"particles/units/heroes/hero_naga_siren/naga_siren_tidal_waves.vpcf"
-			"particle"					"particles/units/heroes/hero_naga_siren/naga_siren_tidal_waves_buff.vpcf"
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_naga_siren.vsndevts"
+			"particle"					"particles/units/heroes/hero_siren/siren_net.vpcf"
+			"particle"					"particles/units/heroes/hero_siren/siren_net_projectile.vpcf"
 		}
-		
+
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
 			"01"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"cast_range"				"550 600 650 700 750 800 900"
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"2.0 2.5 3.0 3.5 4.0 4.5 5.0"
 			}
 			"02"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"armor_reduction"			"-2 -3 -4 -5 -6 -7 -8"
-				"LinkedSpecialBonus"		"special_bonus_unique_naga_siren_tidal_waves_1"
-			}		
+				"var_type"					"FIELD_INTEGER"
+				"net_speed"					"1500 1500 1500 1500"
+			}
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"armor_duration"			"8"
+				"fake_ensnare_distance"		"900 900 900 900"	
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"agility_damage"			"20"	
 			}
 		}
 	}
@@ -187,7 +192,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"25"
+				"value"					"100"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value2"				"30"
 			}
 		}
 	}
@@ -206,7 +216,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"25"
+				"value"					"325"
 			}
 		}
 	}
@@ -219,7 +229,8 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_naga_siren/naga_siren_tidal_waves"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
 		"AbilityTextureName"			"naga_siren_rip_tide"
 		"MaxLevel"						"7"
 		
@@ -237,7 +248,7 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"8.0"
+		"AbilityCooldown"				"10.0"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -253,19 +264,32 @@
 		{
 			"01"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"armor_reduction"			"-2 -3 -4 -5 -6 -7 -8"
-				"LinkedSpecialBonus"		"special_bonus_unique_naga_siren_3"
+				"var_type"						"FIELD_INTEGER"
+				"armor_reduction"				"-2 -3 -4 -5 -6 -7 -8"
 			}
 			"02"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"600"
+				"var_type"						"FIELD_INTEGER"
+				"damage_reduction"				"-18 -19 -20 -21 -22 -23 -24"
 			}
 			"03"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"8.0"
+				"var_type"						"FIELD_INTEGER"
+				"mr_reduction"					"-18 -19 -20 -21 -22 -23 -24"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"radius"						"320"
+				"LinkedSpecialBonus"			"special_bonus_unique_naga_siren_tidal_waves_2"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
+			}
+			"05"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"duration"						"8.0"
+				"LinkedSpecialBonus"			"special_bonus_unique_naga_siren_tidal_waves_2"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
 		}
 	}
@@ -284,7 +308,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"-4"
+				"value"					"1"
 			}	
 		}
 	}
@@ -303,7 +327,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"900"
+				"value"					"2"
 			}
 		}
 	}
@@ -318,8 +342,6 @@
 		"AbilityTextureName"			"custom/naga_siren_ebb_and_flow"
 		"MaxLevel"						"1"
 		"InnateAbility"					"1"
-	
-		"AbilityCastRange"				"900"
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
@@ -327,12 +349,17 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"health_regeneration"		"0.85"
+				"health_regeneration"		"0.25"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"radius"					"900"
+				"duration"					"30"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"scepter_radius"			"900"
 			}
 		}
 	}
@@ -358,11 +385,18 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"120.0 110.0 100.0 90.0 80.0 70.0"
+		"AbilityCooldown"				"140.0 130.0 120.0 110 100.0 90.0"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"				"100"
+		
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_siren/naga_siren_siren_song_cast.vpcf"
+			"particle"					"particles/units/heroes/hero_siren/naga_siren_song_aura.vpcf"
+			"particle"					"particles/units/heroes/hero_siren/naga_siren_song_debuff.vpcf"
+		}
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -377,26 +411,7 @@
 			{
 				"var_type"					"FIELD_FLOAT"
 				"duration"					"8.0"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"animation_rate"			"0.55 0.55 0.55"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"regen_rate"				"10.0 11.0 12.0 13.0 14.0 15.0"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"regen_rate_self"			"10.0 11.0 12.0 13.0 14.0 15.0"
-			}
-			"06"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"regen_rate_tooltip_scepter"	"10"
+				"LinkedSpecialBonus"		"special_bonus_unique_naga_siren_song_of_the_siren_1"
 			}
 		}
 	}
@@ -415,7 +430,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"-4"
+				"value"					"-3"
 			}	
 		}
 	}
@@ -434,7 +449,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"900"
+				"value"					"56"
 			}
 		}
 	}

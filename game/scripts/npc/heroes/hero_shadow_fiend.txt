@@ -305,12 +305,12 @@
 			"04"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"death_soul_loss"				"50"
+				"death_soul_loss"				"60"
 			}
 			"05"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"excess_loss_rate"				"30"
+				"excess_loss_rate"				"40"
 			}
 		}
 	

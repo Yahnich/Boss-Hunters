@@ -187,6 +187,10 @@ function C_DOTA_BaseNPC:GetIllusionOwnerEntindex()
 	end
 end
 
+function C_DOTA_BaseNPC:InWater()
+	return self:HasModifier("modifier_in_water")
+end
+
 function C_BaseEntity:RollPRNG( percentage )
 	local internalInt = (100/percentage)
 	local startingRoll = internalInt^2

@@ -25,7 +25,9 @@ function modifier_item_echoing_tambourine_passive:OnCreated()
 	self.bonus_str = self:GetSpecialValueFor("bonus_str")
 	self.bonus_mregen = self:GetSpecialValueFor("bonus_mregen")
 	self.radius = self:GetSpecialValueFor("radius")
-	self.reduction = self:GetSpecialValueFor("cooldown_reduction")
+	
+	self.mRestore = self:GetSpecialValueFor("mana_restore")
+	self.hRestore = self:GetSpecialValueFor("heal_restore")
 	
 	self.daze_radius = self:GetSpecialValueFor("daze_radius")
 	self.daze_duration = self:GetSpecialValueFor("daze_duration")
@@ -42,23 +44,10 @@ end
 
 function modifier_item_echoing_tambourine_passive:OnAbilityFullyCast(params)
 	local caster = params.unit
-	local cdReduction = self.reduction * ( 1 - self:GetParent():GetCooldownReduction() / 100 )
-	if params.ability and params.ability:GetCooldownTimeRemaining() > cdReduction and params.unit == self:GetParent() then
-		if not caster:HasModifier("modifier_item_orb_of_renewal_passive") then
-			for i = 0, params.unit:GetAbilityCount() - 1 do
-				local ability = params.unit:GetAbilityByIndex( i )
-				if ability and ability ~= params.ability then
-					ability:ModifyCooldown(-cdReduction)
-				end
-			end
-
-			for i=0, 5, 1 do
-				local current_item = params.unit:GetItemInSlot(i)
-				if current_item ~= nil  and current_item ~= params.ability then
-					current_item:ModifyCooldown(-cdReduction)
-				end
-			end
-		end
+	if params.unit == self:GetParent() then
+		self:GetParent():GiveMana(self.mRestore)
+		self:GetParent():HealEvent(self.hRestore, self:GetAbility(), self:GetParent())
+		
 		ParticleManager:FireParticle("particles/neutral_fx/neutral_centaur_khan_war_stomp.vpcf", PATTACH_POINT_FOLLOW, caster, {[1] = Vector( self.daze_radius, self.daze_radius, self.daze_radius )})
 		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), self.daze_radius ) ) do
 			enemy:Daze(self:GetAbility(), caster, self.daze_duration)

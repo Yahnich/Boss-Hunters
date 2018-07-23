@@ -1,6 +1,5 @@
 shadow_fiend_requiem = class({})
 LinkLuaModifier( "modifier_shadow_fiend_requiem","heroes/hero_shadow_fiend/shadow_fiend_requiem.lua",LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "modifier_shadow_fiend_requiem_passive","heroes/hero_shadow_fiend/shadow_fiend_requiem.lua",LUA_MODIFIER_MOTION_NONE )
 
 function shadow_fiend_requiem:OnAbilityPhaseStart()
 	EmitSoundOn("Hero_Nevermore.RequiemOfSoulsCast", self:GetCaster())
@@ -40,7 +39,7 @@ function shadow_fiend_requiem:ReleaseSouls(bDeath)
 	end
 	
 	self.damage = ( self.damage or self:GetTalentSpecialValueFor("damage") ) * souls
-	local projectiles = math.floor(necromastery:GetTalentSpecialValueFor("max_souls") / 2)
+	local projectiles = 18
 	if bDeath then projectiles = math.floor(projectiles) / 2 end
 	
 	ParticleManager:FireParticle("particles/units/heroes/hero_nevermore/nevermore_requiemofsouls_a.vpcf", PATTACH_ABSORIGIN, caster, {[1]=Vector(projectiles, 0, 0),[2]=caster:GetAbsOrigin()})

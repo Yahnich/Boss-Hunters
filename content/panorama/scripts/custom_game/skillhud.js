@@ -350,12 +350,12 @@ function CreateTalentContainer(levelRequirement, statsTypeContainer, talentsSkil
 	var talent1HasDescription = false
 	var talent2HasDescription = false
 	
-	if( talentRight.talentdescr != ("#DOTA_Tooltip_Ability_" + talent2Name + "_Description") ){
+	if( talentRight.talentdescr != ("DOTA_Tooltip_Ability_" + talent2Name + "_Description") ){
 		talentRight.SetPanelEvent("onmouseover", function(){$.DispatchEvent("DOTAShowTitleTextTooltip", talentRight, talentRight.talentname, talentRight.talentdescr);});
 		talentRight.SetPanelEvent("onmouseout", function(){$.DispatchEvent("DOTAHideTitleTextTooltip", talentRight);});
 		talent2HasDescription = true
 	}
-	if ( talentLeft.talentdescr != ("#DOTA_Tooltip_Ability_" + talent1Name + "_Description") ){
+	if ( talentLeft.talentdescr != ("DOTA_Tooltip_Ability_" + talent1Name + "_Description") ){
 		talentLeft.SetPanelEvent("onmouseover", function(){$.DispatchEvent("DOTAShowTitleTextTooltip", talentLeft, talentLeft.talentname, talentLeft.talentdescr);});
 		talentLeft.SetPanelEvent("onmouseout", function(){$.DispatchEvent("DOTAHideTitleTextTooltip", talentLeft);});
 		talent1HasDescription = true

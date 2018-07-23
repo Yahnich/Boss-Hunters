@@ -94,20 +94,35 @@
 				"var_type"				"FIELD_FLOAT"
 				"strike_bounces"		"4"
 			}
-			"01"
+			"10"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cd_reduction"			"0.75"
+				"heal_restore"			"20" //percent
 			}
-			"01"
+			"11"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cd_reduction_spell"	"0.1"
+				"mana_restore"			"10" //percent
 			}
-			"01"
+			"10"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cd_reduction_shield"	"0.2"
+				"heal_restore_lightning""20" //percent
+			}
+			"11"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mana_restore_lightning""10" //percent
+			}
+			"10"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"heal_restore_shield"	"20" //percent
+			}
+			"11"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mana_restore_shield"	"10" //percent
 			}
 			"01"
 			{

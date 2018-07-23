@@ -103,24 +103,29 @@
 			"10"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown_reduction"	"0.75" //percent
+				"heal_restore"			"20" //percent
 			}
 			"11"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mana_restore"			"10" //percent
+			}
+			"12"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"daze_radius"			"500" //percent
 			}
-			"12"
+			"13"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"daze_duration"			"2.5" //percent
 			}
-			"13"
+			"14"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"duration"				"6"
 			}
-			"14"
+			"15"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"radius"				"900"

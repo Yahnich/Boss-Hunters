@@ -128,7 +128,7 @@
 		"AbilityTextureName"		"custom/abaddon_brume_weaver"
 		"MaxLevel"					"7"
 		
-		"AbilityCooldown"		"15"
+		"AbilityCooldown"			"15"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -155,7 +155,7 @@
 				"evasion"					"10 12.5 15 17.5 20 22.5 25"
 				"LinkedSpecialBonus"		"special_bonus_unique_abaddon_brume_weaver_2"
 			}
-			"04"
+			"05"
 			{
 				"var_type"					"FIELD_FLOAT"
 				"buff_duration"				"10"
