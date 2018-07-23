@@ -230,7 +230,7 @@
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_naga_siren/naga_siren_tidal_waves"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"AbilityTextureName"			"naga_siren_rip_tide"
 		"MaxLevel"						"7"
 		

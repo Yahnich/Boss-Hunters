@@ -2,7 +2,7 @@ naga_siren_liquid_form = class({})
 
 function naga_siren_liquid_form:GetBehavior()
 	if self:GetCaster():HasTalent("special_bonus_unique_naga_siren_liquid_form_1") then
-		return DOTA_ABILITY_BEHAVIOR_UNIT_TARGET + DOTA_ABILITY_BEHAVIOR_IMMEDIATE
+		return DOTA_ABILITY_BEHAVIOR_UNIT_TARGET + DOTA_ABILITY_BEHAVIOR_POINT + DOTA_ABILITY_BEHAVIOR_IMMEDIATE
 	else
 		return DOTA_ABILITY_BEHAVIOR_NO_TARGET + DOTA_ABILITY_BEHAVIOR_IMMEDIATE
 	end

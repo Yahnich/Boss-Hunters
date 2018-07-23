@@ -226,17 +226,20 @@ function RelicManager:RollRandomGenericRelicForPlayer(pID, notThisRelic)
 		end
 	end
 	
+	print(dropTable[1], "check?")
 	if dropTable[1] == nil then
+		
 		hero.internalRNGPools[1] = table.copy(self.genericDropTable)
 		for relic, weight in pairs( hero.internalRNGPools[1] ) do
 			if relic ~= notThisRelic then
+				print(relic, weight, "reset")
 				for i = 1, weight do
 					table.insert(dropTable, relic)
 				end
 			end
 		end
 	end
-		
+	print(dropTable[1], "final")
 	if dropTable[1] ~= nil then
 		local relic = dropTable[RandomInt(1, #dropTable)]
 		hero.internalRNGPools[1][relic] = nil
@@ -322,10 +325,9 @@ function RelicManager:ClearRelics(pID, bHardClear)
 			hero.ownedRelics[item] = nil
 		end
 	end
-	hero.internalRNGPools[1] = self.genericDropTable
-	hero.internalRNGPools[2] = self.cursedDropTable
-	hero.internalRNGPools[3] = self.uniqueDropTable
-
+	hero.internalRNGPools[1] = table.copy(self.genericDropTable)
+	hero.internalRNGPools[2] = table.copy(self.cursedDropTable)
+	hero.internalRNGPools[3] = table.copy(self.uniqueDropTable)
 	return relicCount
 end
 

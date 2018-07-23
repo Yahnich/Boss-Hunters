@@ -282,7 +282,6 @@ function CHoldoutGameMode:InitGameMode()
 														hero:AddRelic(relicName)
 													end
 												end
-												hero:AddRelic(relicName)
 											end
 										end, "adding relics",0)
 	Convars:RegisterCommand( "roll_relics", function(command, fBoss)

@@ -174,7 +174,7 @@ end
 
 function modifier_blade_of_dominion_buff:OnIntervalThink()
 	local heal = self:GetParent():HealEvent( self.heal, self:GetAbility(), self:GetCaster() )
-	if heal > 0 then self:GetCaster():SpendMana( self.cost, self:GetParent()) end
+	if heal > 0 then self:GetCaster():SpendMana( self.cost, self:GetAbility()) end
 end
 
 function modifier_blade_of_dominion_buff:GetEffectName()

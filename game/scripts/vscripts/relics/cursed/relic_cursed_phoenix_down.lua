@@ -18,7 +18,7 @@ function relic_cursed_phoenix_down:OnIntervalThink()
 	else
 		self:GetParent():SetBuyBackDisabledByReapersScythe( true )
 	end
-	if self:GetParent():HasModifier("relic_unique_ritual_candle") and not self:GetParent().tombstoneEntity:IsChanneling() then
+	if self:GetParent():HasModifier("relic_unique_ritual_candle") and self:GetParent().tombstoneEntity and not self:GetParent().tombstoneEntity:IsChanneling() then
 		PlayerResource:SetCustomBuybackCost(hero:GetPlayerID(), 100 + RoundManager:GetEventsFinished() * 25)
 		PlayerResource:SetCustomBuybackCooldown(self:GetParent():GetPlayerID(), 120)
 	end
