@@ -16238,11 +16238,11 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"45"
+		"AbilityCooldown"				"60"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"250"
+		"AbilityManaCost"				"225 275 325 375 425 475"
 		
 		"precache"
 		{
@@ -16326,7 +16326,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"leech"					"15 30 45 60 75 90 105"
+				"leech"					"15 20 25 30 35 40 45"
 			}
 			"02"
 			{
@@ -16338,7 +16338,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"heal"					"15 30 45 60 75 90 105"
+				"heal"					"15 20 25 30 35 40 45"
 			}
 			"04"
 			{
@@ -16416,133 +16416,6 @@
 				{
 					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"		"%heal"
 					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" 	"%heal_pct"
-				}
-			}
-		}
-	}
-	"treant_living_armor_ebf"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_datadriven"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_ALL | DOTA_UNIT_TARGET_BUILDING"					
-		"SpellImmunityType"				"SPELL_IMMUNITY_ALLIES_YES"
-		"AbilityTextureName"			"treant_living_armor"
-		
-		"AbilityCastRange"				"0"
-		"AbilityCastPoint"				"0.4"
-		"FightRecapLevel"				"1"
-		"MaxLevel"						"7"
-		
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"12.0"
-		"AbilityThreat"					"8"
-		
-		"precache"
-		{
-			"particle"	"particles/units/heroes/hero_treant/treant_livingarmor.vpcf"
-		}
-	
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"50"
-	
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage_count"			"6"
-				"LinkedSpecialBonus"	"special_bonus_unique_treant"
-			}
-			"02"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"heal_increase"		"100"
-			}
-			"03"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"bonus_armor"		"10 12 14 16 18 20 22"
-			}
-			"04"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"damage_block"		"20 40 60 80 100 120 140"
-			}
-			"05"
-			{
-				"var_type"			"FIELD_FLOAT"
-				"duration"			"30"
-			}
-		}
-		"OnSpellStart"
-		{
-			"RunScript"
-			{
-				"ScriptFile"	"lua_abilities/heroes/treant_protector.lua"
-				"Function"		"ApplyLivingArmor"
-			}
-		}
-		"Modifiers"
-		{
-			"modifier_living_armor_ebf_stacks"
-			{
-				"IsPurgable"	"1"
-			}
-			"modifier_living_armor_ebf"
-			{
-				"IsHidden"	"1"
-				"IsPurgable"	"1"
-				"OnCreated"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"lua_abilities/heroes/treant_protector.lua"
-						"Function"		"AddParticle"
-					}
-				}
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"%bonus_armor"
-				}
-				"OnTakeDamage"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"lua_abilities/heroes/treant_protector.lua"
-						"Function"		"HandleLivingArmor"
-						"damage"		"%attack_damage"
-					}
-				}
-				"OnHealReceived"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"lua_abilities/heroes/treant_protector.lua"
-						"Function"		"DoubleHeal"
-						"source"		"heal"
-					}					
-				}
-				"OnHealthGained"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"lua_abilities/heroes/treant_protector.lua"
-						"Function"		"DoubleHeal"
-						"source"		"health"
-					}				
-				}
-				"OnDestroy"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"lua_abilities/heroes/treant_protector.lua"
-						"Function"		"RemoveParticle"
-					}	
 				}
 			}
 		}

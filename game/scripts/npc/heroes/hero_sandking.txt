@@ -97,7 +97,7 @@
 			"02"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"damage"						"18"
+				"damage"						"5"
 				"CalculateSpellDamageTooltip"	"0"
 			}
 			"03"
@@ -108,7 +108,7 @@
 			"04"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"scepter_damage"				"20"
+				"scepter_damage"				"8"
 				"CalculateSpellDamageTooltip"	"0"
 			}
 		}
@@ -305,7 +305,7 @@
 			"01"
 			{
 				"var_type"              "FIELD_INTEGER"
-				"damage"                "150"
+				"damage"                "150 175 200 225 250 275"
 			}
 			"02"
 			{

@@ -137,18 +137,18 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"heal_duration"				"4"
+				"heal_duration"				"10"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_FLOAT"
 				"heal_pct"					"20"
 			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"base_heal"					"10 15 20 25 30 35 40"
-			}
+			// "03"
+			// {
+				// "var_type"					"FIELD_FLOAT"
+				// "base_heal"					"10 15 20 25 30 35 40"
+			// }
 			"04"
 			{
 				"var_type"					"FIELD_FLOAT"
