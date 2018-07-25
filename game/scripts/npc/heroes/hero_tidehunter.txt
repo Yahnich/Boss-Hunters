@@ -40,7 +40,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage_reduction"		"-35"
+				"damage_reduction"		"-25"
 				"LinkedSpecialBonus"	"special_bonus_unique_tide_anchor_1"
 			}
 			"03"
@@ -73,7 +73,7 @@
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
 	    "AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
 	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
-		"AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
+		"AbilityUnitDamageType"         "DAMAGE_TYPE_PHYSICAL"   
 		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"tidehunter_gush"
 		"MaxLevel"						"7"
@@ -139,7 +139,7 @@
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
 	    "AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
 	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
-		"AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
+		"AbilityUnitDamageType"         "DAMAGE_TYPE_PHYSICAL   
 		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityTextureName"			"tidehunter_ravage"
@@ -165,7 +165,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"200 290 380 470 560 650"
+				"damage"				"300 420 540 660 680 800"
 			}
 			"02"
 			{	

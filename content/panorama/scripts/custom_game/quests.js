@@ -209,7 +209,7 @@ function ToggleQuests(arg)
 
 var DELAYED_COOLDOWN = {"omniknight_repel_ebf":true,
 						"omniknight_guardian_angel_ebf":true,
-						"life_stealer_rage":true,
+						"life_stealer_rage_bh":true,
 						"winterw_ice_shell":true,
 						"winterw_winters_kiss":true,
 						"dark_seer_adamantium_shell":true,

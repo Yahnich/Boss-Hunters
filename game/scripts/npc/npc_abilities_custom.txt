@@ -11230,7 +11230,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"20"
+				"duration"				"25"
 			}
 			"03"
 			{
@@ -12963,7 +12963,7 @@
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage_initial"			"150 225 300 375 450 525"
+				"damage_initial"			"200 325 450 575 700 825"
 			}
 			"04"
 			{
@@ -16829,7 +16829,7 @@
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"100"
+		"AbilityManaCost"				"150 200 250 300 350 400 450"
 	
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
@@ -16854,109 +16854,6 @@
 				"var_type"				"FIELD_FLOAT"
 				"remember_interval"		"0.2"
 			}
-		}
-	}
-	"windrunner_focusfire_datadriven"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_datadriven"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
-		"AbilityTextureName"			"custom/windrunner_focusfire_ebf"
-		"HasScepterUpgrade"				"1"
-		"MaxLevel"						"6"
-	
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"600"
-		"AbilityCastPoint"				"0"
-		
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"40.0"
-		"AbilityDuration"				"10.0"
-	
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"75 100 125 150 175 200"
-	
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"focusfire_crit"				"175 200 225 250 275 300"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"base_attack_time"				"1"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"focusfire_crit_scepter"		"200 250 300 350 400 450"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"duration"		"10"
-			}
-		}
-		
-		// Data driven
-		//-------------------------------------------------------------------------------------------------------------
-		"precache"
-		{
-			"soundfile"							"soundevents/game_sounds_heroes/game_sounds_windrunner.vsndevts"
-		}
-		
-		"OnSpellStart"
-		{
-			"FireSound"
-			{
-				"Target"						"CASTER"
-				"EffectName"					"Ability.Focusfire"
-			}
-	
-			"RunScript"
-			{
-				"ScriptFile"					"lua_abilities/heroes/windrunner"
-				"Function"						"FocusFireScepterCheck"
-				"modifier"						"modifier_focusfire_crit"
-				"bat"							"modifier_focusfire_bat"
-			}
-		}
-		
-		"Modifiers"
-		{
-			"modifier_focusfire_crit_scepter"
-			{
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE"	"%focusfire_crit_scepter"
-				}
-			}
-			"modifier_focusfire_crit"
-			{
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE"	"%focusfire_crit"
-				}
-			}
-			"modifier_focusfire_bat"
-			{
-				"IsHidden"	"1"
-				"Priority"                     					"MODIFIER_PRIORITY_ULTRA"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT"	"%base_attack_time"
-				}
-			}
-			
 		}
 	}
 	//=================================================================================================================

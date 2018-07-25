@@ -125,14 +125,14 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"min_damage_amp"		"20"
+				"min_damage_amp"		"1"
 				"LinkedSpecialBonus"	"special_bonus_unique_lifestealer_hunger_1"
 				"CalculateSpellDamageTooltip"	"0"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"min_lifesteal"			"15"
+				"min_lifesteal"			"1"
 				"LinkedSpecialBonus"	"special_bonus_unique_lifestealer_hunger_1"
 			}
 			"05"
@@ -160,7 +160,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"						"5"
+				"value"						"14"
 			}
 		}
 	}
@@ -240,7 +240,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"heal_percent"			"10 20 30 40 50 60 70"
+				"heal_percent"			"35"
 				"LinkedSpecialBonus"	"special_bonus_unique_lifestealer_flesh_wounds_1"
 			}
 			"03"
