@@ -7572,7 +7572,7 @@
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"FightRecapLevel"				"2"
-		"MaxLevel"						"7"
+		"MaxLevel"						"6"
 		"AbilityTextureName"			"dazzle_weave"
 		
 		// Casting
@@ -7602,7 +7602,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"radius"					"575 600 625 650 675 700 725"
+				"radius"					"575 600 625 650 675 700"
 			}
 			"02"
 			{	

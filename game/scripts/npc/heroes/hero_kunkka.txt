@@ -210,7 +210,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"						"-1"
+				"value"						"-1.25"
 			}
 		}
 	}
@@ -232,7 +232,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"40"
+				"value"						"50"
 			}
 		}
 	}
@@ -286,7 +286,7 @@
 			"04"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"damage_reduction"				"-25"
+				"damage_reduction"				"-35"
 				"LinkedSpecialBonus"			"special_bonus_unique_kunkka_captains_rum_1"
 			}
 			"05"
@@ -440,7 +440,7 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"60 50 40 30 20 10"
+		"AbilityCooldown"				"40 35 30 25 20 15"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -489,6 +489,8 @@
 			{
 				"var_type"					"FIELD_FLOAT"
 				"stun_duration"				"1.4"
+				"LinkedSpecialBonus"		"special_bonus_unique_kunkka_ghost_ship_bh_2"
+				"LinkedSpecialBonusField"	"duration"
 			}
 			"07"
 			{
@@ -543,6 +545,11 @@
 			{
 				"var_type"					"FIELD_INTEGER"
 				"value"						"1"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"duration"					"1"
 			}
 		}
 	}

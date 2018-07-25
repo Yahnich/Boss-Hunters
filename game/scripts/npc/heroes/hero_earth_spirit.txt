@@ -437,7 +437,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"50"
+				"value"					"75"
 			}
 			"01"
 			{
@@ -486,7 +486,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"2"
+				"value"					"3"
 			}
 		}
 	}

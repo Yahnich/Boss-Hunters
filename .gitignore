@@ -12,3 +12,9 @@ game/ebf2_bosses.txt
 game/tools_asset_info.bin
 game/panorama_debugger.cfg
 game/network_measurement.txt
+game/tools_thumbnail_cache.bin
+game/server_log.txt
+game/rich_presence_persistent_data.txt
+game/maps/bh_adventure_hardcore.vpk
+game/maps/bh_adventure_casual.vpk
+game/models/

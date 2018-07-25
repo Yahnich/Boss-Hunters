@@ -1458,7 +1458,7 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"8 7.5 7 6.5 6 5.5 5"
+		"AbilityCooldown"				"5"
 
 		// Damage.
 		//-------------------------------------------------------------------------------------------------------------
@@ -1538,7 +1538,7 @@
 			"02"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"damage_pct"					"1"
+				"damage_pct"					"3.5"
 				"LinkedSpecialBonus"			"special_bonus_unique_death_prophet_3"
 			}
 			"03"
@@ -1558,13 +1558,13 @@
 			}
 			"06"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"max_charges"			"1 2 3 4 5 6 7"
+				"var_type"						"FIELD_INTEGER"
+				"max_charges"					"1 2 3 4 5 6 7"
 			}
 			"07"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"charge_restore_time"	"45"
+				"var_type"						"FIELD_INTEGER"
+				"charge_restore_time"			"45"
 			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
@@ -4343,29 +4343,29 @@
 			}
 			"05"
 			{	
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"55"
-				"LinkedSpecialBonus"	"special_bonus_unique_dazzle_3"
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"55 60 65 70 75 80 85"
+				"LinkedSpecialBonus"		"special_bonus_unique_dazzle_3"
 			}
 			"06"
 			{	
-				"var_type"			"FIELD_INTEGER"
-				"slow"				"-14 -16 -18 -20 -22 -24 -26"
+				"var_type"					"FIELD_INTEGER"
+				"slow"						"-14 -16 -18 -20 -22 -24 -26"
 			}
 			"07"
 			{	
-				"var_type"			"FIELD_INTEGER"
-				"projectile_speed"	"1300"
+				"var_type"					"FIELD_INTEGER"
+				"projectile_speed"			"1300"
 			}
 			"08"
 			{	
-				"var_type"			"FIELD_FLOAT"
-				"duration"			"4 5 6 7 8 9 10"
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"4 5 6 7 8 9 10"
 			}
 			"09"
 			{	
-				"var_type"			"FIELD_INTEGER"
-				"range_tooltip"		"600 700 800 900 1000 1100 1200"
+				"var_type"					"FIELD_INTEGER"
+				"range_tooltip"				"600 700 800 900 1000 1100 1200"
 			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
@@ -4397,7 +4397,9 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"30 28 26 24 22 20 18"
+		"AbilityCooldown"				"18 16 14 12 10 8 6"
+		"AbilityDuration"				"5"
+		"HasPureCooldown"				"1"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -4411,17 +4413,17 @@
 		{
 			"01"
 			{	
-				"var_type"			"FIELD_FLOAT"
+				"var_type"				"FIELD_FLOAT"
 				"duration_tooltip"		"5 5 5 5"
 			}
 			"02"
 			{	
-				"var_type"			"FIELD_INTEGER"
-				"range_tooltip"		"1000"
+				"var_type"				"FIELD_INTEGER"
+				"range_tooltip"			"1000"
 			}
 			"03"
 			{	
-				"var_type"			"FIELD_INTEGER"
+				"var_type"				"FIELD_INTEGER"
 				"scepter_radius"		"450"
 			}
 		}
@@ -4451,7 +4453,7 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"10 9 8 7 6 5 4"
+		"AbilityCooldown"				"5"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -6957,7 +6959,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"health_regen_per_instance"	"1 3 5 7 9 11 13"
+				"health_regen_per_instance"	"2 4 6 8 10 12 14"
 			}
 		}
 	}
@@ -7165,7 +7167,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"3.0 3.5 4.0 4.5 5.0 5.5 6.0 6.5"
+				"duration"				"6.5"
 				"levelkey"				"quaslevel"	
 				"LinkedSpecialBonus"	"special_bonus_unique_invoker_7"
 			}
@@ -7183,7 +7185,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"freeze_damage"			"7 14 21 28 35 42 49 56"
+				"freeze_damage"			"10 18 26 34 42 50 58 66"
 				"levelkey"				"quaslevel"	
 			}
 			"05"
@@ -7308,7 +7310,7 @@
 			"06"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"lift_duration"			"0.8 1.1 1.4 1.7 2.0 2.3 2.6 2.9"
+				"lift_duration"			"1.2"
 				"LinkedSpecialBonus"	"special_bonus_unique_invoker_8"
 				"levelkey"				"quaslevel"
 			}
@@ -7326,7 +7328,7 @@
 			"09"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"wex_damage"			"45 90 135 180 225 270 315 360"
+				"wex_damage"			"50 100 150 200 250 300 350 400"
 				"levelkey"				"wexlevel"
 			}
 		}
@@ -7380,7 +7382,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage_per_mana_pct"	"60"
+				"damage_per_mana_pct"	"100"
 			}
 		}
 	}
@@ -7514,7 +7516,7 @@
 			"08"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"main_damage"			"57.5 75 92.5 110 127.5 145 162.5 180"
+				"main_damage"			"60 100 140 180 220 260 300 360"
 				"LinkedSpecialBonus"		"special_bonus_unique_invoker_6"
 				"levelkey"				"exortlevel"
 			}
@@ -7526,7 +7528,7 @@
 			"10"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"burn_dps"				"11.5 15 18.5 22 25.5 29 32.5 36"
+				"burn_dps"				"10 15 20 25 30 35 40 45"
 				"levelkey"				"exortlevel"
 				"CalculateSpellDamageTooltip"	"1"
 			}
@@ -7575,7 +7577,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"damage"				"100 162.5 225 287.5 350 412.5 475 537.5"
+				"damage"				"100 200 300 400 500 600 700 800"
 				"levelkey"				"exortlevel"
 			}
 			"04"
@@ -7631,7 +7633,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"spirit_armor"			"0 1 2 3 4 5 6 7"
+				"spirit_armor"			"7"
 				"levelkey"				"exortlevel"
 			}
 			"04"
@@ -7743,7 +7745,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"damage_per_second"		"6 12 18 24 30 36 42 48"
+				"damage_per_second"		"7 14 21 28 35 42 49 56"
 				"levelkey"				"exortlevel"
 			}
 			"05"
@@ -7829,7 +7831,7 @@
 			"06"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"damage"				"40 80 120 160 200 240 280 320"
+				"damage"				"80 140 200 260 320 380 440 500"
 				"levelkey"				"exortlevel"
 			}
 			"07"
@@ -7871,7 +7873,7 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"20 18 16 14 12 10 8"
+		"AbilityCooldown"				"10"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -7887,29 +7889,29 @@
 		{
 			"01"
 			{
-				"var_type"			"FIELD_INTEGER"
-				"damage"			"14 22 30 38 46 52 60"
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"14 22 30 38 46 52 60"
 				"LinkedSpecialBonus"	"special_bonus_unique_silencer"
 			}
 			"02"
 			{
-				"var_type"			"FIELD_INTEGER"
-				"radius"			"425"
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"425"
 			}
 			"03"
 			{
-				"var_type"			"FIELD_INTEGER"
-				"duration"			"6"
+				"var_type"				"FIELD_INTEGER"
+				"duration"				"6"
 			}
 			"04"
 			{
-				"var_type"			"FIELD_INTEGER"
-				"penalty_duration"			"4"
+				"var_type"				"FIELD_INTEGER"
+				"penalty_duration"		"4"
 			}
 			"05"
 			{
-				"var_type"			"FIELD_INTEGER"
-				"movespeed"			"-15"
+				"var_type"				"FIELD_INTEGER"
+				"movespeed"				"-15"
 			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
@@ -7985,7 +7987,9 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"18"
+		"AbilityCooldown"				"8"
+		"AbilityDuration"				"4"
+		"HasPureCooldown"				"1"
 		"AbilityManaCost"				"115"
 
 		// Stats
@@ -8005,7 +8009,7 @@
 			"02"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"debuff_duration"	"0"
+				"debuff_duration"	"1"
 			}
 			"03"
 			{
@@ -8039,8 +8043,9 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"130.0"
-		"AbilityDuration"				"4.5 5.0 5.5 6.0 6.5 7.0"
+		"AbilityCooldown"				"100.0"
+		"HasPureCooldown"				"1"
+		"AbilityDuration"				"4.5 5.5 6.5 7.5 8.5 9.5"
 
 
 		// Cost
@@ -8059,7 +8064,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"tooltip_duration"		"4.5 5.0 5.5 6.0 6.5 7.0"
+				"tooltip_duration"		"4.5 5.5 6.5 7.5 8.5 9.5"
 				"LinkedSpecialBonus"	"special_bonus_unique_silencer_4"
 			}
 		}
@@ -12660,7 +12665,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"3"
+				"value"				"4"
 			}
 		}
 	}

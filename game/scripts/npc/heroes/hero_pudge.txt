@@ -232,7 +232,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"35"
+				"value"						"45"
 			}
 		}
 	}
@@ -254,7 +254,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"-30"
+				"value"						"-35"
 			}
 		}
 	}
@@ -335,7 +335,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"						"-20"
+				"value"						"-35"
 			}
 			"02"
 			{
@@ -387,7 +387,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"str_bonus"				"2"
+				"str_bonus"				"3"
 			}
 			"02"
 			{
