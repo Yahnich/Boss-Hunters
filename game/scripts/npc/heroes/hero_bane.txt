@@ -56,6 +56,11 @@
 				"var_type"						"FIELD_INTEGER"
 				"damage_on_cast"				"50 100 150 200 250 350 400"
 			}
+			"04"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"scepter_cooldown"				"1.5"
+			}
 		}
 	}
 	"special_bonus_unique_bane_brain_feast_1" 
@@ -190,12 +195,12 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"start_radius"			"150"
+				"start_radius"			"200"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"end_radius"			"350"
+				"end_radius"			"450"
 			}
 		}
 	}
@@ -391,7 +396,7 @@
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"fiend_grip_duration"			"5.0"
+				"fiend_grip_duration"			"7.0"
 				"LinkedSpecialBonus"			"special_bonus_unique_bane_fiends_grip_2"
 			}
 			"04"
