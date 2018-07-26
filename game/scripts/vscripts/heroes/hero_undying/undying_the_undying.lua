@@ -29,7 +29,8 @@ end
 
 function modifier_undying_the_undying:OnDeath(params)
 	if not params.unit:IsSameTeam( self:GetParent() )
-	and CalculateDistance( params.unit, self:GetParent() ) <= self.radius then
+	and CalculateDistance( params.unit, self:GetParent() ) <= self.radius
+	and self:GetParent():IsAlive() then
 		self:GetAbility():SummonZombie( params.unit:GetAbsOrigin(), params.unit:GetMaxHealth() * self.health_pct, params.unit:GetAverageBaseDamage() * self.damage_pct, self.duration )
 	end
 end

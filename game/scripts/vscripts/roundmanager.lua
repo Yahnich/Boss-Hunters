@@ -508,8 +508,10 @@ function RoundManager:InitializeUnit(unit, bElite)
 	local powerScale = unit:AddNewModifier(unit, nil, "modifier_power_scaling", {})
 	if powerScale then powerScale:SetStackCount( math.floor( (RoundManager:GetEventsFinished() * 0.2) * (1 + (RoundManager:GetRaidsFinished() * 4 ) + ( RoundManager:GetZonesFinished() * 6 ) ) )) end
 	unit:AddNewModifier(unit, nil, "modifier_spawn_immunity", {duration = 4/GameRules.gameDifficulty})
-	local evasion = unit:AddNewModifier(unit, nil, "modifier_boss_evasion", {})
-	if evasion then evasion:SetStackCount( RoundManager:GetEventsFinished() ) end
+	if unit:IsRoundBoss() then
+		local evasion = unit:AddNewModifier(unit, nil, "modifier_boss_evasion", {})
+		if evasion then evasion:SetStackCount( RoundManager:GetEventsFinished() ) end
+	end
 	
 	
 	if unit:GetHullRadius() <= 16 then

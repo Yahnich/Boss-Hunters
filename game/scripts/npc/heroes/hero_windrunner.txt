@@ -477,8 +477,13 @@
 			{
 				"var_type"						"FIELD_FLOAT"
 				"dmg_reduction"					"-25"
-			}			
+			}
 			"04"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"scepter_dmg_reduction"			"0"
+			}
+			"05"
 			{
 				"var_type"						"FIELD_INTEGER"
 				"duration"						"8 9 10 11 12 13"

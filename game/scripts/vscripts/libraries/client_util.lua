@@ -19,6 +19,14 @@ function AddTableToTable( t1, t2)
 	end
 end
 
+function TernaryOperator(value, bCheck, default)
+	if bCheck then 
+		return value 
+	else 
+		return default
+	end
+end
+
 function GetTableLength(rndTable)
 	local counter = 0
 	for k,v in pairs(rndTable) do
@@ -189,6 +197,10 @@ end
 
 function C_DOTA_BaseNPC:InWater()
 	return self:HasModifier("modifier_in_water")
+end
+
+function C_DOTA_BaseNPC:IsRoundBoss()
+	return self:HasModifier("modifier_boss_evasion")
 end
 
 function C_BaseEntity:RollPRNG( percentage )

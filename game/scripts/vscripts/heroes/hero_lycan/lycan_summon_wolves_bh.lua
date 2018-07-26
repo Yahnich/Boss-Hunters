@@ -8,11 +8,15 @@ function lycan_summon_wolves_bh:OnSpellStart()
             wolf:ForceKill(true)
         end
 	end
-	caster.summonedWolves = {}
+	
 	
 	local startPos = caster:GetAbsOrigin()
 	local wolfCount = self:GetTalentSpecialValueFor("wolf_count")
-	if caster:HasTalent("special_bonus_unique_lycan_summon_wolves_2") then wolfCount = math.floor(wolfCount / 2) end
+	if caster:HasTalent("special_bonus_unique_lycan_summon_wolves_2") then 
+		wolfCount = math.floor(wolfCount / 2)
+	else
+		caster.summonedWolves = {}
+	end
 	
 	local distance = self:GetTalentSpecialValueFor("spawn_distance")
 	EmitSoundOn("Hero_Lycan.SummonWolves", caster)
@@ -22,7 +26,12 @@ function lycan_summon_wolves_bh:OnSpellStart()
 		local fv = caster:GetForwardVector()*((-1)^( math.ceil( i/2 ) -1 ) )
 		local spawnOrigin = startPos + fv * distance
 		local position = RotatePosition(startPos, angPoint, spawnOrigin)
-		self:CreateWolf(position)
+		if #caster.summonedWolves < wolfCount then
+			self:CreateWolf(position)
+		else
+			caster.summonedWolves[i]:RespawnUnit()
+			FindClearSpaceForUnit( caster.summonedWolves[i], position, true )
+		end
 	end
 end
 
@@ -38,6 +47,11 @@ function lycan_summon_wolves_bh:CreateWolf(position, duration)
 	wolf:SetCoreHealth(wolfHP)
 	wolf:SetAverageBaseDamage(wolfDamage, 15)
 	wolf:SetModelScale(0.8 + (self:GetLevel()/2)/10)
+	
+	if caster:HasTalent("special_bonus_unique_lycan_summon_wolves_2") then
+		wolf:SetHasInventory(true)
+		wolf:SetUnitCanRespawn(true)
+	end
 	
 	if self:GetLevel() > 1 then
 		wolf:AddAbility("lycan_summon_wolves_critical_strike"):SetLevel( self:GetLevel() - 1 )

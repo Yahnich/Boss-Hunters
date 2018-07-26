@@ -30,6 +30,7 @@ if IsServer() then
 		EmitSoundOn("Hero_Brewmaster.DrunkenHaze.Target", target)
 		if target:GetTeam() == caster:GetTeam() then
 			target:AddNewModifier(caster, self, "modifier_brewmaster_drunken_haze_buff", {duration = duration})
+			self:Daze(self, caster, duration)
 		else
 			target:AddNewModifier(caster, self, "modifier_brewmaster_drunken_haze_debuff", {duration = duration})
 		end

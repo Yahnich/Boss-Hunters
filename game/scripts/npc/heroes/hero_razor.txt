@@ -144,8 +144,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"link_duration"			"8"
-				"LinkedSpecialBonus"	"special_bonus_unique_razor_static_link_bh_2"
+				"link_duration"			"5"
 			}
 			"02"
 			{

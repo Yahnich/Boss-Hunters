@@ -24,8 +24,6 @@ function skywrath_seal:OnSpellStart()
             end
         end
     end
-
-	self:StartDelayedCooldown(self:GetTalentSpecialValueFor("duration"))
 end
 
 modifier_skywrath_seal = class({})
@@ -34,12 +32,14 @@ function modifier_skywrath_seal:OnCreated(table)
 		self.nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_skywrath_mage/skywrath_mage_ancient_seal_debuff.vpcf", PATTACH_OVERHEAD_FOLLOW, self:GetCaster())
    		ParticleManager:SetParticleControlEnt(self.nfx, 0, self:GetParent(), PATTACH_OVERHEAD_FOLLOW, "attach_hitloc", self:GetParent():GetAbsOrigin(), true)
    		ParticleManager:SetParticleControlEnt(self.nfx, 1, self:GetParent(), PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", self:GetParent():GetAbsOrigin(), true)
+		self:StartDelayedCooldown()
 	end
 end
 
 function modifier_skywrath_seal:OnRemoved()
 	if IsServer() then
 		ParticleManager:ClearParticle(self.nfx)
+		self:EndDelayedCooldown()
 	end
 end
 

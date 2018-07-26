@@ -10,7 +10,8 @@ modifier_spiky_shell = class({})
 function modifier_spiky_shell:DeclareFunctions()
 	local funcs = {
 		MODIFIER_EVENT_ON_TAKEDAMAGE,
-		MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE
+		MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,
+		MODIFIER_EVENT_ON_ATTACK_LANDED
 	}
 	return funcs
 end
@@ -22,6 +23,15 @@ function modifier_spiky_shell:OnTakeDamage(params)
 			if RollPercentage(self:GetTalentSpecialValueFor("chance")) and ability:IsTrained() then
 				ability:Spray(true)
 			end
+		end
+	end
+end
+
+function modifier_spiky_shell:OnAttackLanded(params)
+	if self:GetParent():HasTalent("special_bonus_unique_bristleback_quills_1") and params.attacker == self:GetParent() then
+		local roll = self:RollPRNG( self:GetParent():FindTalentValue("special_bonus_unique_bristleback_quills_1")
+		if roll then
+			ability:Spray(true)
 		end
 	end
 end
