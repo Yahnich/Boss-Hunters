@@ -77,7 +77,7 @@ function modifier_juggernaut_momentum_strike_passive:GetModifierPreAttack_Critic
 	end
 	if roll then
 		if not caster:HasModifier("modifier_juggernaut_ronins_wind_movement") then caster:AddNewModifier(caster, self:GetAbility(), "modifier_juggernaut_momentum_strike_momentum", {}) end
-		if not self:GetAbility():GetToggleState() and not caster:HasModifier("modifier_juggernaut_ronins_wind_movement") and not caster:HasModifier("modifier_juggernaut_dance_of_blades") then
+		if self:GetAbility():GetToggleState() and not caster:HasModifier("modifier_juggernaut_ronins_wind_movement") and not caster:HasModifier("modifier_juggernaut_dance_of_blades") then
 			local target = params.target
 			
 			local direction = CalculateDirection(target, caster)

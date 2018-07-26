@@ -19,6 +19,17 @@ modifier_pugna_decrepify_ally = class({})
 function modifier_pugna_decrepify_ally:OnCreated()
 	self.magic_damage = self:GetAbility():GetSpecialValueFor("bonus_spell_damage_pct_allies")
 	self.slow = self:GetAbility():GetSpecialValueFor("bonus_movement_speed_allies")
+	if IsServer() then self:StartDelayedCooldown() end
+end
+
+function modifier_pugna_decrepify_ally:OnRefresh()
+	self.magic_damage = self:GetAbility():GetSpecialValueFor("bonus_spell_damage_pct_allies")
+	self.slow = self:GetAbility():GetSpecialValueFor("bonus_movement_speed_allies")
+	if IsServer() then self:StartDelayedCooldown() end
+end
+
+function modifier_pugna_decrepify_ally:OnDestroy()
+	if IsServer() then self:EndDelayedCooldown() end
 end
 
 function modifier_pugna_decrepify_ally:CheckState()
@@ -63,6 +74,17 @@ modifier_pugna_decrepify_enemy = class({})
 function modifier_pugna_decrepify_enemy:OnCreated()
 	self.magic_damage = self:GetAbility():GetSpecialValueFor("bonus_spell_damage_pct")
 	self.slow = self:GetAbility():GetSpecialValueFor("bonus_movement_speed")
+	if IsServer() then self:StartDelayedCooldown() end
+end
+
+function modifier_pugna_decrepify_enemy:OnRefresh()
+	self.magic_damage = self:GetAbility():GetSpecialValueFor("bonus_spell_damage_pct")
+	self.slow = self:GetAbility():GetSpecialValueFor("bonus_movement_speed")
+	if IsServer() then self:StartDelayedCooldown() end
+end
+
+function modifier_pugna_decrepify_enemy:OnDestroy()
+	if IsServer() then self:EndDelayedCooldown() end
 end
 
 function modifier_pugna_decrepify_enemy:CheckState()

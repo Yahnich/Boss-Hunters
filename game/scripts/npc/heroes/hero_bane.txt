@@ -13,6 +13,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"				"1"
 		"AbilityTextureName"			"bane_brain_sap"
+		"HasScepterUpgrade"				"1"
 		"MaxLevel"						"7"
 	
 		// Precache
@@ -354,7 +355,6 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"FightRecapLevel"				"2"
 		"AbilityTextureName"			"bane_fiends_grip"
-		"HasScepterUpgrade"				"1"
 		"MaxLevel"						"6"
 	
 		// Precache

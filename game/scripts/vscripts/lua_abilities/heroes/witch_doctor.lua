@@ -25,7 +25,7 @@ function witch_doctor_paralyzing_cask_ebf:OnProjectileHit(target, vLocation)
 	local bounce_range = self:GetSpecialValueFor("bounce_range")
 	local caster = self:GetCaster()
 	if not target then return end
-	if target:IsRealHero() or target:IsCore() then
+	if target:IsRealHero() or target:IsRoundBoss() then
 		if self.remainingBounces then self.remainingBounces = self.remainingBounces - 1 end
 		local healdmg = self:GetSpecialValueFor("hero_damage")
 		if target:GetTeamNumber() ~= caster:GetTeamNumber() then
@@ -215,13 +215,14 @@ function witch_doctor_death_ward_ebf:OnSpellStart()
 		self.death_ward:SetBaseAttackTime( self:GetSpecialValueFor("base_attack_time") )
 		self.death_ward:AddNewModifier(caster, self, "modifier_death_ward_handling", {duration = self:GetChannelTime()})
 		EmitSoundOn("Hero_WitchDoctor.Death_WardBuild", self.death_ward)
-		local exceptionList = {["item_starfury"] = true,}
+
 		for i = 0, 5 do
 			local item = caster:GetItemInSlot(i)
 			if item and not exceptionList[item:GetName()] then
 				self.death_ward:AddItemByName(item:GetName())
 			end
 		end
+		self.death_ward:SetCanSellItems(false)
 		local damageOffset = self.death_ward:GetAverageTrueAttackDamage(self.death_ward)
 		self.death_ward:SetBaseDamageMax( self.wardDamage - damageOffset )
 		self.death_ward:SetBaseDamageMin( self.wardDamage - damageOffset )
@@ -319,6 +320,8 @@ function modifier_death_ward_handling:CheckState()
 		[MODIFIER_STATE_ATTACK_IMMUNE] = true,
 		[MODIFIER_STATE_NO_HEALTH_BAR] = true,
 		[MODIFIER_STATE_DISARMED] = true,
+		[MODIFIER_STATE_COMMAND_RESTRICTED] = true,
+		[MODIFIER_STATE_NO_TEAM_SELECT] = true,
 	}
 	return state
 end

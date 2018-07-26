@@ -23,6 +23,13 @@ function espirit_rock_punch:OnSpellStart()
     end
 
     self.rockCount = {}
+	
+	if caster:HasTalent("special_bonus_unique_espirit_rock_punch_2") then
+		pointRando = point + ActualRandomVector(100, 25)
+		if caster:FindAbilityByName("espirit_rock") then
+			caster:FindAbilityByName("espirit_rock"):CreateStoneRemnant(pointRando)
+		end
+	end
 
     self.dummy = self:CreateDummy(point)
 
@@ -90,15 +97,12 @@ function espirit_rock_punch:OnProjectileHit(hTarget, vLocation)
 
 		if caster:HasTalent("special_bonus_unique_espirit_rock_punch_2") then
     		pointRando = vLocation + ActualRandomVector(100, 25)
-			local rock2 = caster:CreateSummon("npc_dota_earth_spirit_stone", pointRando, self:GetTalentSpecialValueFor("rock_duration"))
-			FindClearSpaceForUnit(rock2, pointRando, false)
-			rock2:SetForwardVector(caster:GetForwardVector())
-			rock2:AddNewModifier(caster, self, "modifier_rock_punch", {})
+			if caster:FindAbilityByName("espirit_rock") then
+				caster:FindAbilityByName("espirit_rock"):CreateStoneRemnant(pointRando)
+			end
 		end
 
-		if caster:FindAbilityByName("espirit_rock") then
-			caster:FindAbilityByName("espirit_rock"):CreateStoneRemnant(vLocation)
-		end
+		
 
 		hTarget:ForceKill(false)
 	end

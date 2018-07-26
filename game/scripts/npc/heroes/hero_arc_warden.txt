@@ -44,7 +44,6 @@
 			{
 				"var_type"						"FIELD_INTEGER"
 				"cast_range"					"500 600 700 800 900 1000 1100"
-				"LinkedSpecialBonus"			"special_bonus_unique_arc_warden_flux_bh_1"
 			}
 			"01"
 			{
@@ -65,7 +64,6 @@
 			{
 				"var_type"						"FIELD_FLOAT"
 				"move_speed_slow_pct"			"-20 -30 -40 -50 -60 -70 -80"
-				"LinkedSpecialBonus"			"special_bonus_unique_arc_warden_flux_bh_2"
 			}
 		}
 	}
@@ -87,7 +85,12 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"400"
+				"value"						"450"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value2"					"100"
 			}
 		}
 	}
@@ -109,7 +112,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"						"-20"
+				"value"						"0.1"
 			}
 		}
 	}
@@ -158,12 +161,12 @@
 			{
 				"var_type"					"FIELD_FLOAT"
 				"duration"					"3.5 4.5 5.5 6.5 7.5 8.5 9.5"
-				"LinkedSpecialBonus"		"special_bonus_unique_arc_warden_magnetic_field_bh_2"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
 				"attack_speed_bonus"		"50 60 70 80 90 100 110"
+				"LinkedSpecialBonus"		"special_bonus_unique_arc_warden_magnetic_field_bh_2"
 			}
 			"04"
 			{
@@ -212,7 +215,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"						"3"
+				"value"						"190"
 			}
 		}
 	}
