@@ -30,16 +30,26 @@ function arc_warden_primordial_current:OnSpellStart()
 		self:EndCooldown()
 	else
 		EmitSoundOn("Hero_Leshrac.Lightning_Storm", hTarget)
-		hTarget:Daze(self, hCaster, self:GetTalentSpecialValueFor("channel_time"))
-		hTarget:Paralyze(self, hCaster, self:GetTalentSpecialValueFor("channel_time"))
-		hTarget:AddNewModifier(hCaster, self, "modifier_arc_warden_primordial_current", {duration = self:GetTalentSpecialValueFor("channel_time")})
-
+		local duration = self:GetTalentSpecialValueFor("channel_time")
+		hTarget:Daze(self, hCaster, duration)
+		hTarget:Paralyze(self, hCaster, duration)
+		hTarget:AddNewModifier(hCaster, self, "modifier_arc_warden_primordial_current", {duration = duration})
+		
+		if hCaster:HasTalent("special_bonus_unique_arc_warden_primordial_current_1") then
+			local modifier = hCaster:AddNewModifier(hCaster, self, "modifier_invulnerable", {duration = duration}
+			Timers:CreateTimer(function()
+				if not caster:IsChanneling() then
+					modifier:Destroy()
+				end
+				return 0.2
+			end)
+		end
 		if hCaster:HasTalent("special_bonus_unique_arc_warden_primordial_current_2") then
 			local enemies = hCaster:FindEnemyUnitsInRadius(hCaster:GetAbsOrigin(), self:GetTrueCastRange())
 			for _,enemy in pairs(enemies) do
 				if enemy ~= hTarget then
-					enemy:Daze(self, hCaster, self:GetTalentSpecialValueFor("channel_time"))
-					enemy:Paralyze(self, hCaster, self:GetTalentSpecialValueFor("channel_time"))
+					enemy:Daze(self, hCaster, duration)
+					enemy:Paralyze(self, hCaster, duration)
 					enemy:AddNewModifier(hCaster, self, "modifier_arc_warden_primordial_current", {duration = self:GetTalentSpecialValueFor("channel_time")})
 					break
 				end

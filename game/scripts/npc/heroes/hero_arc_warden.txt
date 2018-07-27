@@ -340,6 +340,7 @@
 		"BaseClass"						"special_bonus_undefined"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"LinkedAbilityName"				"arc_warden_spark_wrath_bh"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -348,7 +349,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"						"-1.5"
+				"value"						"6"
 			}
 		}
 	}

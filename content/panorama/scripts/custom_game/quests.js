@@ -23,9 +23,36 @@ GameEvents.Subscribe( "bh_move_camera_position", UpdateCameraPosition);
 GameEvents.Subscribe( "bh_update_votes_prep_time", UpdatePrepVote);
 GameEvents.Subscribe( "bh_start_prep_time", StartPrepVote);
 GameEvents.Subscribe( "bh_end_prep_time", RemovePrepVotes);
+
+GameEvents.Subscribe( "bh_start_ng_vote", StartNGVote)
 Initialize()
 
 var pressed = false
+
+function StartNGVote(args)
+{
+	$("#QuestsPrepVoteHolder").visible =  true
+	
+	var voteYes = $("#QuestPrepVoteConfirmButton")
+	var voteLabel = $("#QuestsPrepVoteDescriptionLabel")
+	voteLabel.text = "Do you want to ascend? Ascending resets the game, but you keep your items, relics and levels."
+	voteYes.SetPanelEvent("onmouseover", function(){voteYes.SetHasClass("ButtonHover", true);});
+	voteYes.SetPanelEvent("onmouseout", function(){voteYes.SetHasClass("ButtonHover", false);});
+	voteYes.SetPanelEvent("onactivate", VoteNG);
+}
+
+function VoteSkipPrep()
+{
+	$("#QuestsPrepVoteHolder").visible =  false
+	if(pressed == false){
+		GameEvents.SendCustomGameEventToServer( "bh_player_voted_to_ng", {pID : localID} )
+		var voteYes = $("#QuestPrepVoteConfirmButton")
+		voteYes.SetPanelEvent("onmouseover", function(){});
+		voteYes.SetPanelEvent("onmouseout", function(){});
+		voteYes.SetPanelEvent("onactivate", function(){});
+		pressed = true
+	}
+}
 
 function UpdatePrepVote(args)
 {
@@ -62,10 +89,11 @@ function StartPrepVote(args)
 	$("#QuestsPrepVoteHolder").visible =  true
 	
 	var voteYes = $("#QuestPrepVoteConfirmButton")
+	var voteLabel = $("#QuestsPrepVoteDescriptionLabel")
+	voteLabel.text = "Skip preparation time?"
 	voteYes.SetPanelEvent("onmouseover", function(){voteYes.SetHasClass("ButtonHover", true);});
 	voteYes.SetPanelEvent("onmouseout", function(){voteYes.SetHasClass("ButtonHover", false);});
 	voteYes.SetPanelEvent("onactivate", VoteSkipPrep);
-	
 }
 
 function UpdateCameraPosition(args)

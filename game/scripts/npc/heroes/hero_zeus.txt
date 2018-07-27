@@ -341,7 +341,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"						"1"
+				"value"						"5"
 			}
 		}
 	}
@@ -390,7 +390,7 @@
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"pct_per_stack"					"0"
+				"pct_per_stack"					"0.2"
 				"CalculateSpellDamageTooltip"	"0"
 				"LinkedSpecialBonus"			"special_bonus_unique_zeus_static_field_1"
 			}

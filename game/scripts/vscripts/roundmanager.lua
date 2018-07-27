@@ -34,13 +34,10 @@ function RoundManager:Initialize(context)
 
 	self.zones = {}
 	self.eventsFinished = 0
-	local zonesToSpawn = ZONE_COUNT
+	
 	for i = 1, ZONE_COUNT do
 		local zoneName = POSSIBLE_ZONES[i]
 		RoundManager:ConstructRaids(zoneName)
-		if zonesToSpawn <= 0 then
-			break
-		end
 	end
 	
 	self.eventsCreated = nil
@@ -48,7 +45,7 @@ function RoundManager:Initialize(context)
 	ListenToGameEvent( "npc_spawned", Dynamic_Wrap( RoundManager, "OnNPCSpawned" ), self )
 	ListenToGameEvent( "dota_holdout_revive_complete", Dynamic_Wrap( RoundManager, 'OnHoldoutReviveComplete' ), self )
 	CustomGameEventManager:RegisterListener('bh_player_voted_to_skip', Context_Wrap( RoundManager, 'VoteSkipPrepTime'))
-	
+	CustomGameEventManager:RegisterListener('bh_player_voted_to_ng', Context_Wrap( RoundManager, 'VoteNewGame'))
 	self:PrecacheRounds(context)
 end
 
@@ -59,6 +56,20 @@ function RoundManager:VoteSkipPrepTime(userid, event)
 	CustomGameEventManager:Send_ServerToAllClients("bh_update_votes_prep_time", {yes = self.votedToSkipPrep, no = noVotes})
 	if noVotes <= 0 then
 		self.prepTimer = 0
+	end
+end
+
+function RoundManager:VoteNewGame(userid, event)
+	self.votedToNG = (self.votedToSkipPrep or 0) + 1
+	local noVotes = HeroList:GetActiveHeroCount() - self.votedToSkipPrep
+	CustomGameEventManager:Send_ServerToAllClients("bh_update_votes_prep_time", {yes = self.votedToSkipPrep, no = noVotes})
+	if noVotes <= 0 then
+		self.zones = {}
+		POSSIBLE_ZONES = {"Grove", "Elysium"}
+		for i = 1, ZONE_COUNT do
+			local zoneName = POSSIBLE_ZONES[i]
+			RoundManager:ConstructRaids(zoneName)
+		end
 	end
 end
 
@@ -395,8 +406,22 @@ end
 function RoundManager:GameIsFinished(bWon)
 	EventManager:FireEvent("boss_hunters_game_finished")
 	if bWon then
-		GameRules:SetGameWinner(DOTA_TEAM_GOODGUYS)
+		self.prepTimer = 30
+		self.ng = false
+		CustomGameEventManager:Send_ServerToAllClients("bh_start_ng_vote", {})
 		GameRules.Winner = DOTA_TEAM_GOODGUYS
+		Timers(1, function()
+			CustomGameEventManager:Send_ServerToAllClients( "updateQuestPrepTime", { prepTime = math.floor(self.prepTimer + 0.5) } )
+			if self.prepTimer <= 0 then
+				if not self.ng then
+					GameRules:SetGameWinner(DOTA_TEAM_GOODGUYS)
+				end
+				CustomGameEventManager:Send_ServerToAllClients("bh_end_prep_time", {})
+			else
+				self.prepTimer = self.prepTimer - 1
+				return 1
+			end
+		end)
 	else
 		GameRules:SetGameWinner(DOTA_TEAM_BADGUYS)
 		GameRules.Winner = DOTA_TEAM_BADGUYS

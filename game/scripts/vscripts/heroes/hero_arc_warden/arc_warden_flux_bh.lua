@@ -14,13 +14,14 @@ function arc_warden_flux_bh:GetCastRange(vLocation, hTarget)
 end
 
 function arc_warden_flux_bh:OnSpellStart()
+	local target = self:GetCursorTarget()
 	EmitSoundOn("Hero_ArcWarden.Flux.Cast", self:GetCaster())
-	self:Flux()
+	self:Flux(target)
 end
 
-function arc_warden_flux_bh:Flux()
+function arc_warden_flux_bh:Flux(target)
 	local caster = self:GetCaster()
-	local target = self:GetCursorTarget()
+	
 
 	EmitSoundOn("Hero_ArcWarden.Flux.Target", target)
 	local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_arc_warden/arc_warden_flux_cast.vpcf", PATTACH_POINT, caster)
@@ -28,7 +29,7 @@ function arc_warden_flux_bh:Flux()
 				ParticleManager:SetParticleControlEnt(nfx, 1, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
 				ParticleManager:SetParticleControlEnt(nfx, 2, caster, PATTACH_POINT_FOLLOW, "attach_attack2", caster:GetAbsOrigin(), true)
 				ParticleManager:ReleaseParticleIndex(nfx)
-
+	target:RemoveModifierByName("modifier_arc_warden_flux_bh")
 	target:AddNewModifier(caster, self, "modifier_arc_warden_flux_bh", { duration = self:GetTalentSpecialValueFor("duration")})
 end
 
@@ -38,6 +39,7 @@ function modifier_arc_warden_flux_bh:OnCreated( event )
 	local tick_interval = self:GetTalentSpecialValueFor("think_interval")
 	self.damage_per_tick = self:GetTalentSpecialValueFor("damage_per_second") * tick_interval
 	self.slow = self:GetTalentSpecialValueFor("move_speed_slow_pct")
+	self.duration = self:GetRemainingTime()
 	self:StartIntervalThink(tick_interval) 
 	if IsServer() then
 		local caster = self:GetCaster()
@@ -57,7 +59,36 @@ function modifier_arc_warden_flux_bh:OnIntervalThink()
 	if IsServer() then
 		local caster = self:GetCaster()
 		local target = self:GetParent()
-		self:GetAbility():DealDamage(caster, target, self.damage_per_tick)
+		local ability = self:GetAbility()
+		ability:DealDamage(caster, target, self.damage_per_tick)
+		if caster:HasTalent("special_bonus_unique_arc_warden_flux_bh_2") then
+			local cdr = caster:FindTalentValue("special_bonus_unique_arc_warden_flux_bh_2")
+			 for i = 0, self:GetAbilityCount() - 1 do
+				local othAb = self:GetAbilityByIndex( i )
+				if othAb and ability ~= ability then
+					local remainingCD = self:GetCooldownTimeRemaing()
+					othAb:EndCooldown()
+					othAb:StartCooldown( remainingCD )
+					if othAb:GetName() == "skeleton_king_reincarnation" then
+						self:RemoveModifierByName("modifier_skeleton_king_reincarnation_cooldown")
+					end
+				end
+			end
+		end
+	end
+end
+
+function modifier_arc_warden_flux_bh:OnDestroy()
+	local parent = self:GetParent()
+	local caster = self:GetCaster()
+	local ability = self:GetAbility()
+	if IsServer() and parent:HasTalent("special_bonus_unique_arc_warden_flux_bh_1") then
+		local duration = self.duration - self:GetRemainingTime()
+		local damage = duration * self:GetTalentSpecialValueFor("damage_per_second") * caster:FindTalentValue("special_bonus_unique_arc_warden_flux_bh_1", "value2")
+		local radius = caster:FindTalentValue("special_bonus_unique_arc_warden_flux_bh_1")
+		for _, enemy in ipairs( caster:FindEnemyUnitInRadius( parent:GetAbsOrigin(), radius ) ) do
+			if enemy ~= parent then ability:DealDamage( caster, enemy, damage ) end
+		end
 	end
 end
 
