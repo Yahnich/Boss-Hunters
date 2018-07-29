@@ -56,16 +56,17 @@ local function StartCombat(self, bFight)
 			self.enemiesToSpawn = self.enemiesToSpawn - 1
 			self.bossesToSpawn = self.bossesToSpawn - 1
 			if self.bossesToSpawn > 0 then
-				return 20 / (RoundManager:GetRaidsFinished() + 1)
+				return 60 / (RoundManager:GetRaidsFinished() + 1)
 			end
 		end)
-		Timers:CreateTimer(5, function()
+		Timers:CreateTimer(12, function()
 			local spawn = CreateUnitByName("npc_dota_boss22", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
+			spawn:SetCoreHealth( spawn:GetBaseMaxHealth() / 2 )
 			spawn.unitIsRoundBoss = true
 			self.enemiesToSpawn = self.enemiesToSpawn - 1
 			self.mobsToSpawn = self.mobsToSpawn - 1
 			if self.mobsToSpawn > 0 then
-				return 10 / (RoundManager:GetRaidsFinished() + 1)
+				return 40 / (RoundManager:GetRaidsFinished() + 1)
 			end
 		end)
 	else

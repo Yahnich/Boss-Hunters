@@ -27,7 +27,7 @@ LinkLuaModifier("modifier_rattletrap_reactive_shielding", "heroes/hero_rattletra
 function modifier_rattletrap_reactive_shielding:OnCreated()
 	self.reduction = self:GetTalentSpecialValueFor("damage_reduction")
 	self.slow = self:GetTalentSpecialValueFor("slow")
-	if self:GetParent():HasTalent("special_bonus_unique_rattletrap_reactive_shielding_1") then self.slow = 0 end
+	-- if self:GetParent():HasTalent("special_bonus_unique_rattletrap_reactive_shielding_1") then self.slow = 0 end
 	if IsServer() then 
 		self.sisterAb = self:GetCaster():FindAbilityByName("rattletrap_automated_artillery")
 		self:GetAbility():StartDelayedCooldown()
@@ -43,7 +43,7 @@ end
 function modifier_rattletrap_reactive_shielding:OnRefresh()
 	self.reduction = self:GetTalentSpecialValueFor("damage_reduction")
 	self.slow = self:GetTalentSpecialValueFor("slow")
-	if self:GetParent():HasTalent("special_bonus_unique_rattletrap_reactive_shielding_1") then self.slow = 0 end
+	-- if self:GetParent():HasTalent("special_bonus_unique_rattletrap_reactive_shielding_1") then self.slow = 0 end
 	if IsServer() then 
 		self:GetAbility():StartDelayedCooldown() 
 		if self.sisterAb then

@@ -520,7 +520,7 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 	local attacker = original_attacker
 	if attacker:GetPlayerOwnerID() then 
 		local mainHero = PlayerResource:GetSelectedHeroEntity( attacker:GetPlayerOwnerID() )
-		if mainHero then 
+		if mainHero and mainHero ~= attacker then 
 			mainHero.statsDamageDealt = (mainHero.statsDamageDealt or 0) + math.min(victim:GetHealth(), damage)
 		end
 	end
@@ -529,37 +529,30 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 		return true 
 	end
 	if not victim:IsHero() and victim ~= attacker then
-		local ability
-		if inflictor then
-			ability = EntIndexToHScript( inflictor )
-		end
-		if not inflictor or (ability and not ability:HasNoThreatFlag()) then
-			if not victim.threatTable then victim.threatTable = {} end
+		if not ability or (ability and not ability:HasNoThreatFlag()) then
+			-- if not victim.threatTable then victim.threatTable = {} end
 			if not attacker.threat then attacker.threat = 0 end
 			local roundCurrTotalHP = 0
-			local threatCounter = 0
-			for _,unit in pairs(FindAllEntitiesByClassname("npc_dota_creature")) do
+			local enemies = FindAllUnits({team = DOTA_UNIT_TARGET_TEAM_ENEMY})
+			for _,unit in ipairs( enemies ) do
 				roundCurrTotalHP = roundCurrTotalHP + unit:GetMaxHealth()
-				if threatCounter < 3 then
-					threatCounter = threatCounter + 1
-				end
 			end
-			local addedthreat = (damage / roundCurrTotalHP)*threatCounter*100
-			local threatcheck = (victim:GetHealth() * threatCounter * 100) / roundCurrTotalHP
-			if addedthreat > threatcheck then addedthreat = threatcheck end -- remove threat from overkill damage
-			attacker:ModifyThreat( addedthreat )
-			attacker.lastHit = GameRules:GetGameTime()
-			attacker.statsDamageDealt = (attacker.statsDamageDealt or 0) + math.min(victim:GetHealth(), damage)
-			PlayerResource:SortThreat()
-			local event_data =
-			{
-				threat = attacker.threat,
-				lastHit = attacker.lastHit,
-				aggro = attacker.aggro
-			}
-			local player = attacker:GetPlayerOwner()
-			if player then
-				CustomGameEventManager:Send_ServerToPlayer( player, "Update_threat", event_data )
+			local addedthreat = math.min( (damage / roundCurrTotalHP)*#enemies*100, (victim:GetHealth() * #enemies * 100) / roundCurrTotalHP )
+			if addedthreat > 0.15 then
+				attacker:ModifyThreat( addedthreat )
+				attacker.lastHit = GameRules:GetGameTime()
+				attacker.statsDamageDealt = (attacker.statsDamageDealt or 0) + math.min(victim:GetHealth(), damage)
+				PlayerResource:SortThreat()
+				local event_data =
+				{
+					threat = attacker.threat,
+					lastHit = attacker.lastHit,
+					aggro = attacker.aggro
+				}
+				local player = attacker:GetPlayerOwner()
+				if player then
+					CustomGameEventManager:Send_ServerToPlayer( player, "Update_threat", event_data )
+				end
 			end
 		end
 	end

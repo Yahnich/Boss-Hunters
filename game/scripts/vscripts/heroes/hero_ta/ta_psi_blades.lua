@@ -19,12 +19,15 @@ end
 
 modifier_ta_psi_blades = ({})
 function modifier_ta_psi_blades:OnCreated(table)
-	self.bonusRange = 0
-	self:StartIntervalThink(FrameTime())
+	self.endBonusRange = 0
+	self.bonus_range = self:GetTalentSpecialValueFor("bonus_range")
+	self.bonus_range_pct = self:GetTalentSpecialValueFor("bonus_range_pct")
+	self:StartIntervalThink(0.1)
 end
 
 function modifier_ta_psi_blades:OnIntervalThink()
-	self.bonusRange = self:GetTalentSpecialValueFor("bonus_range") + self:GetCaster():GetAttackRange() * self:GetTalentSpecialValueFor("bonus_range_pct")/100
+	self.endBonusRange = 0
+	self.endBonusRange = self:GetCaster():GetAttackRange() * self.bonus_range_pct/100
 end
 
 function modifier_ta_psi_blades:DeclareFunctions()
@@ -37,7 +40,7 @@ function modifier_ta_psi_blades:DeclareFunctions()
 end
 
 function modifier_ta_psi_blades:GetModifierAttackRangeBonus()
-	return self.bonusRange
+	return self.bonus_range + self.endBonusRange
 end
 
 function modifier_ta_psi_blades:OnAttackStart(params)
@@ -55,6 +58,9 @@ function modifier_ta_psi_blades:OnAttackLanded(params)
 			if self:GetAbility().disableLoop then return end
 			local bounces = self:GetTalentSpecialValueFor("max_units")
 			self.disableLoop = false
+			if self:GetCaster():HasTalent("special_bonus_unique_ta_psi_blades_2") then
+				params.target:Paralyze(self, self:GetCaster(), 0.5)
+			end
 			local enemies = params.attacker:FindEnemyUnitsInRadius(params.target:GetAbsOrigin(), params.attacker:GetAttackRange() + self:GetTalentSpecialValueFor("radius"), {})
 			for _,enemy in pairs(enemies) do
 				if enemy ~= params.target and enemy:IsAlive() then

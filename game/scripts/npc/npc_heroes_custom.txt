@@ -116,12 +116,12 @@
 	    "Ability6"        "axe_ground_pound"
 	
 	    "Ability10"       "special_bonus_unique_axe_forced_shout_2"
-	    "Ability11"       "special_bonus_unique_axe_forced_shout"
-	    "Ability12"       "special_bonus_unique_axe_blood_hunger"
+	    "Ability11"       "special_bonus_unique_axe_forced_shout_1"
+	    "Ability12"       "special_bonus_unique_axe_blood_hunger_1"
 	    "Ability13"       "special_bonus_unique_axe_blood_hunger_2"
-	    "Ability14"       "special_bonus_unique_axe_cleave_strike"
+	    "Ability14"       "special_bonus_unique_axe_cleave_strike_1"
 	    "Ability15"       "special_bonus_unique_axe_cleave_strike_2"
-	    "Ability16"       "special_bonus_unique_axe_ground_pound"
+	    "Ability16"       "special_bonus_unique_axe_ground_pound_1"
 	    "Ability17"       "special_bonus_unique_axe_ground_pound_2"
 	}
 	"npc_dota_hero_bane"
@@ -212,7 +212,7 @@
 	    "Ability13"				"special_bonus_unique_bristleback_yer_mum_1"
 	    "Ability14"				"special_bonus_unique_bristleback_work_up_1"
 	    "Ability15"				"special_bonus_unique_bristleback_work_up_2"
-	    "Ability16"				"special_bonus_unique_bristleback_spiky_shell"
+	    "Ability16"				"special_bonus_unique_bristleback_quills_1"
 	    "Ability17"				"special_bonus_spell_lifesteal_20"
 	}
 	"npc_dota_hero_broodmother_ebf"
@@ -1370,7 +1370,7 @@
 	    "Ability14"       	"special_bonus_unique_riki_dagger_1"
 	    "Ability15"       	"special_bonus_unique_riki_dagger_2"
 	    "Ability16"       	"special_bonus_unique_riki_traded_tricks_1"
-	    "Ability17"       	"special_bonus_lifesteal_10"
+	    "Ability17"       	"special_bonus_unique_riki_traded_tricks_2"
 		
 	}
 	//=================================================================================================================

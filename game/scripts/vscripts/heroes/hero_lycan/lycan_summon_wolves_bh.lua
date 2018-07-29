@@ -29,8 +29,11 @@ function lycan_summon_wolves_bh:OnSpellStart()
 		if #caster.summonedWolves < wolfCount then
 			self:CreateWolf(position)
 		else
-			caster.summonedWolves[i]:RespawnUnit()
-			FindClearSpaceForUnit( caster.summonedWolves[i], position, true )
+			local wolf = caster.summonedWolves[i]
+			wolf:RespawnUnit()
+			FindClearSpaceForUnit( wolf, position, true )
+			wolf:AddNewModifier(caster, self, "modifier_kill", {duration = self:GetTalentSpecialValueFor("wolf_duration")})
+			
 		end
 	end
 end
@@ -51,6 +54,7 @@ function lycan_summon_wolves_bh:CreateWolf(position, duration)
 	if caster:HasTalent("special_bonus_unique_lycan_summon_wolves_2") then
 		wolf:SetHasInventory(true)
 		wolf:SetUnitCanRespawn(true)
+		wolf:SetCanSellItems(true)
 	end
 	
 	if self:GetLevel() > 1 then

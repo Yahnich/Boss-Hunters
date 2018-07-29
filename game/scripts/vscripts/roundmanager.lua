@@ -12,9 +12,9 @@ end
 
 require("events/base_event")
 
-EVENTS_PER_RAID = 3
-RAIDS_PER_ZONE = 4
-ZONE_COUNT = 2
+EVENTS_PER_RAID = 1
+RAIDS_PER_ZONE = 1
+ZONE_COUNT = 1
 
 POSSIBLE_ZONES = {"Grove", "Elysium"}
 
@@ -377,7 +377,7 @@ function RoundManager:RaidIsFinished()
 	end
 	
 	if self.zones[self.currentZone][1] == nil then RoundManager:ZoneIsFinished() end
-	if self.zones[self.currentZone][1] then
+	if self.zones[self.currentZone] and self.zones[self.currentZone][1] then
 		local boss = self.zones[self.currentZone][1][#self.zones[self.currentZone][1]]
 		CustomGameEventManager:Send_ServerToAllClients( "updateQuestBoss", { bossName = boss:GetEventName() } )
 	end
@@ -396,7 +396,7 @@ function RoundManager:ZoneIsFinished()
 	EventManager:FireEvent("boss_hunters_zone_finished")
 	self.zonesFinished = (self.zonesFinished or 0) + 1
 
-	if self.currentZone == nil then
+	if self.currentZone == nil or self.zones[self.currentZone] == nil then
 		RoundManager:GameIsFinished(true)
 	else
 		table.remove(POSSIBLE_ZONES, 1)
@@ -405,10 +405,12 @@ end
 
 function RoundManager:GameIsFinished(bWon)
 	EventManager:FireEvent("boss_hunters_game_finished")
+	print("game is done", bWon)
 	if bWon then
 		self.prepTimer = 30
 		self.ng = false
 		CustomGameEventManager:Send_ServerToAllClients("bh_start_ng_vote", {})
+		print("new game vote activated")
 		GameRules.Winner = DOTA_TEAM_GOODGUYS
 		Timers(1, function()
 			CustomGameEventManager:Send_ServerToAllClients( "updateQuestPrepTime", { prepTime = math.floor(self.prepTimer + 0.5) } )

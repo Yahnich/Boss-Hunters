@@ -21,21 +21,21 @@ function riki_traded_tricks:OnSpellStart()
     ParticleManager:SetParticleControl(nfx, 0, caster:GetAbsOrigin())
     ParticleManager:ReleaseParticleIndex(nfx)
 
-    caster:AddNewModifier(caster, self, "modifier_traded_tricks", {Duration = self:GetSpecialValueFor("duration")})
+    caster:AddNewModifier(caster, self, "modifier_traded_tricks", {Duration = self:GetTalentSpecialValueFor("duration")})
 end
 
 modifier_traded_tricks = class({})
 function modifier_traded_tricks:OnCreated(table)
     if IsServer() then
         EmitSoundOn("Hero_Riki.TricksOfTheTrade.Cast", self:GetCaster())
-
-        self:StartIntervalThink(self:GetSpecialValueFor("interval"))
+		self.radius = self:GetTalentSpecialValueFor("radius")
+        self:StartIntervalThink(self:GetTalentSpecialValueFor("interval"))
     end
 end
 
 function modifier_traded_tricks:OnIntervalThink()
     local caster = self:GetCaster()
-    local radius = self:GetSpecialValueFor("radius")
+    local radius = self.radius
 
     if nfx then
         ParticleManager:DestroyParticle(nfx, false)
@@ -52,7 +52,7 @@ function modifier_traded_tricks:OnIntervalThink()
         caster:PerformAttack(enemy, true, true, true, true, false, false, true)
     end
 
-    Timers:CreateTimer(self:GetSpecialValueFor("interval"), function()
+    Timers:CreateTimer(self:GetTalentSpecialValueFor("interval"), function()
         ParticleManager:DestroyParticle(nfx, false)
     end)
 end

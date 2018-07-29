@@ -1712,7 +1712,6 @@ function CDOTA_BaseNPC:FindAllUnitsInLine(startPos, endPos, width, hData)
 	return FindUnitsInLine(team, startPos, endPos, nil, width, iTeam, iType, iFlag)
 end
 
-
 function CDOTA_BaseNPC:FindEnemyUnitsInRing(position, maxRadius, minRadius, hData)
 	if not self:IsNull() then
 		local team = self:GetTeamNumber()

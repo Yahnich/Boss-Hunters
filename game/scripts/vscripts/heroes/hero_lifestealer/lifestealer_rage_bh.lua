@@ -14,15 +14,15 @@ if IsServer() then
 		local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_life_stealer/life_stealer_rage.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
 					ParticleManager:SetParticleControlEnt(nfx, 2, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_hitloch", self:GetParent():GetAbsOrigin(), true)
 		self:AttachEffect(nfx)
-		self:StartDelayedCooldown()
+		self:GetAbility():StartDelayedCooldown()
 	end
 
 	function modifier_lifestealer_rage_bh:OnRefresh()
-		self:StartDelayedCooldown()
+		self:GetAbility():StartDelayedCooldown()
 	end
 	
 	function modifier_lifestealer_rage_bh:OnDestroy()
-		self:EndDelayedCooldown()
+		self:GetAbility():EndDelayedCooldown()
 	end
 end
 

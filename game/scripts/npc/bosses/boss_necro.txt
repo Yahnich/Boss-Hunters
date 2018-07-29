@@ -122,7 +122,7 @@
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"bolt_speed"				"300"
+				"bolt_speed"				"200"
 			}
 			"04"
 			{
@@ -132,7 +132,7 @@
 			"05"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"bolt_angle"				"20"
+				"bolt_angle"				"35"
 			}
 			"06"
 			{

@@ -218,7 +218,7 @@ function witch_doctor_death_ward_ebf:OnSpellStart()
 
 		for i = 0, 5 do
 			local item = caster:GetItemInSlot(i)
-			if item and not exceptionList[item:GetName()] then
+			if item then
 				self.death_ward:AddItemByName(item:GetName())
 			end
 		end

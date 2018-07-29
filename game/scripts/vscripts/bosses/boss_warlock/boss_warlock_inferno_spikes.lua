@@ -4,6 +4,7 @@ LinkLuaModifier( "modifier_boss_warlock_inferno_spikes", "bosses/boss_warlock/bo
 function boss_warlock_inferno_spikes:OnAbilityPhaseStart()
 	local caster = self:GetCaster()
 	ParticleManager:FireWarningParticle(caster:GetAbsOrigin(), 1000)
+	caster:EmitSound("Creature.Laugh")
 	return true
 end
 

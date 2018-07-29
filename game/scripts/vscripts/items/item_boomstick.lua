@@ -68,7 +68,7 @@ function modifier_item_boomstick_handle:GetModifierPreAttack_BonusDamage()
 end
 
 function modifier_item_boomstick_handle:GetModifierAttackRangeBonus()
-	return self.range
+	if self:GetParent():IsRangedAttacker() then return self.range end
 end
 
 function modifier_item_boomstick_handle:GetModifierPreAttack_CriticalStrike()

@@ -94,6 +94,7 @@ modifier_obsidian_destroyer_astral_isolation_prison = class({})
 function modifier_obsidian_destroyer_astral_isolation_prison:OnCreated()
 	if IsServer() then
 		EmitSoundOn("Hero_ObsidianDestroyer.AstralImprisonment", self:GetParent())
+		self:GetAbility():StartDelayedCooldown()
 	end
 end
 
@@ -107,6 +108,7 @@ function modifier_obsidian_destroyer_astral_isolation_prison:OnDestroy()
 		for _,enemy in pairs(enemies) do
 			ApplyDamage({victim = enemy, attacker = self:GetCaster(), damage = self:GetTalentSpecialValueFor("damage"), damage_type = self:GetAbility():GetAbilityDamageType(), ability = self})
 		end
+		self:GetAbility():EndDelayedCooldown()
 	end
 end
 

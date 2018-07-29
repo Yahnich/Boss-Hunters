@@ -20,7 +20,16 @@ function venomancer_poison_nova_ebf:GetCustomCastErrorTarget(target)
 end
 
 function venomancer_poison_nova_ebf:OnOwnerDied()
-	if self:GetCaster():HasTalent("special_bonus_unique_venomancer_poison_nova_1") then self:OnSpellStart() end
+	if self:GetCaster():HasTalent("special_bonus_unique_venomancer_poison_nova_1") then
+		local novas = self:GetCaster():FindTalentValue("special_bonus_unique_venomancer_poison_nova_1")
+		Timers:CreateTimer(function()
+			self:OnSpellStart() 
+			novas = novas - 1
+			if novas > 0 then
+				return 0.35
+			end
+		end)
+	end
 end
 
 function venomancer_poison_nova_ebf:OnAbilityPhaseStart()

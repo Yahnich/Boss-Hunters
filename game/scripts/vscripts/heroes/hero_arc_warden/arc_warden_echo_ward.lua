@@ -32,8 +32,7 @@ function modifier_arc_warden_echo_ward:OnAbilityFullyCast(params)
 					if currentCasts < maxCasts then
 						local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), ability:GetTrueCastRange()+caster:GetModelRadius(), {})
 						for _,enemy in pairs(enemies) do
-							caster:SetCursorCastTarget(enemy)
-							ability:Flux()
+							ability:Flux(enemy)
 							break
 						end
 						currentCasts = currentCasts + 1

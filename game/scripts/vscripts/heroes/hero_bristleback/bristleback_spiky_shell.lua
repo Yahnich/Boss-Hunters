@@ -29,8 +29,9 @@ end
 
 function modifier_spiky_shell:OnAttackLanded(params)
 	if self:GetParent():HasTalent("special_bonus_unique_bristleback_quills_1") and params.attacker == self:GetParent() then
-		local roll = self:RollPRNG( self:GetParent():FindTalentValue("special_bonus_unique_bristleback_quills_1")
-		if roll then
+		local roll = self:RollPRNG( self:GetParent():FindTalentValue("special_bonus_unique_bristleback_quills_1") )
+		local ability = self:GetCaster():FindAbilityByName("bristleback_quills")
+		if roll and ability then
 			ability:Spray(true)
 		end
 	end

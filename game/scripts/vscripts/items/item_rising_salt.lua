@@ -23,7 +23,7 @@ end
 
 function modifier_item_rising_salt_passive:DeclareFunctions()
 	return {	MODIFIER_PROPERTY_MANA_BONUS,
-			 	MODIFIER_EVENT_ON_ABILITY_EXECUTED}
+			 	MODIFIER_EVENT_ON_ABILITY_FULLY_CAST}
 end
 
 function modifier_item_rising_salt_passive:GetModifierManaBonus()
@@ -34,7 +34,7 @@ function modifier_item_rising_salt_passive:GetCooldownReduction()
 	return self.bonus_cdr
 end
 
-function modifier_item_rising_salt_passive:OnAbilityExecuted(params)
+function modifier_item_rising_salt_passive:OnAbilityFullyCast(params)
 	if IsServer() then
 		if params.unit == self:GetParent() and self:GetAbility():IsCooldownReady() then
 			self:GetParent():AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_item_rising_salt_attack", {})

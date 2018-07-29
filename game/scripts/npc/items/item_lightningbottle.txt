@@ -97,7 +97,7 @@
 			"10"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"heal_restore"			"20" //percent
+				"heal_restore"			"30" //percent
 			}
 			"11"
 			{
@@ -107,22 +107,22 @@
 			"10"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"heal_restore_lightning""20" //percent
+				"heal_restore_lightning""10" //percent
 			}
 			"11"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"mana_restore_lightning""10" //percent
+				"mana_restore_lightning""5" //percent
 			}
 			"10"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"heal_restore_shield"	"20" //percent
+				"heal_restore_shield"	"15" //percent
 			}
 			"11"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"mana_restore_shield"	"10" //percent
+				"mana_restore_shield"	"8" //percent
 			}
 			"01"
 			{

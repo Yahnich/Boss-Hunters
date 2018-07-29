@@ -36,12 +36,12 @@ function arc_warden_primordial_current:OnSpellStart()
 		hTarget:AddNewModifier(hCaster, self, "modifier_arc_warden_primordial_current", {duration = duration})
 		
 		if hCaster:HasTalent("special_bonus_unique_arc_warden_primordial_current_1") then
-			local modifier = hCaster:AddNewModifier(hCaster, self, "modifier_invulnerable", {duration = duration}
+			local modifier = hCaster:AddNewModifier(hCaster, self, "modifier_invulnerable", {duration = duration})
 			Timers:CreateTimer(function()
-				if not caster:IsChanneling() then
+				if not hCaster:IsChanneling() and not modifier:IsNull() then
 					modifier:Destroy()
 				end
-				return 0.2
+				if not modifier:IsNull() then return 0.2 end
 			end)
 		end
 		if hCaster:HasTalent("special_bonus_unique_arc_warden_primordial_current_2") then

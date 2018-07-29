@@ -19,9 +19,7 @@ function phenx_egg:OnSpellStart()
     local egg = caster:CreateSummon("npc_dota_phoenix_sun", caster:GetAbsOrigin(), self:GetTalentSpecialValueFor("duration"))
 	
 	local hp = self:GetTalentSpecialValueFor("max_hero_attacks")
-	egg:SetBaseMaxHealth(hp)
-	egg:SetMaxHealth(hp)
-	egg:SetHealth(hp)
+	egg:SetCoreHealth(hp * 2)
 	
     egg:AddNewModifier(caster, self, "modifier_phenx_egg_form", {Duration = self:GetTalentSpecialValueFor("duration")})
     EmitSoundOn("Hero_Phoenix.SuperNova.Begin", egg)
@@ -54,6 +52,7 @@ function modifier_phenx_egg_caster:CheckState()
 					[MODIFIER_STATE_NO_HEALTH_BAR] = true,
 					[MODIFIER_STATE_UNTARGETABLE] = true,
                     [MODIFIER_STATE_OUT_OF_GAME] = true,
+					[MODIFIER_STATE_DISARMED] = true,
                     [MODIFIER_STATE_SILENCED] = true
                 }
     return state
@@ -67,7 +66,7 @@ function modifier_phenx_egg_form:OnCreated(table)
         ParticleManager:SetParticleControlEnt(self.nfx, 0, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_hitloc", self:GetParent():GetAbsOrigin(), false)
         ParticleManager:SetParticleControlEnt(self.nfx, 1, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_hitloc", self:GetParent():GetAbsOrigin(), false)
 
-        self.maxAttacks = self:GetTalentSpecialValueFor("max_hero_attacks")
+        self.maxAttacks = self:GetTalentSpecialValueFor("max_hero_attacks") * 2
 		self:GetParent().supernova_numAttacked = 0
         self:StartIntervalThink(0.5)
     end
@@ -123,17 +122,19 @@ function modifier_phenx_egg_form:GetModifierIncomingDamage_Percentage(params)
 	local egg = self:GetParent()
 	local attacker = params.attacker
 	local numAttacked = egg.supernova_numAttacked or 0
-	numAttacked = numAttacked + 1
+	local damage = 1
+	if attacker:IsRoundBoss() then damage = 2 end
+	numAttacked = numAttacked + damage
 	egg.supernova_numAttacked = numAttacked
 
 	if numAttacked >= self.maxAttacks then
 		-- Now the egg has been killed.
-		egg:ForceKill(true)
 		egg.supernova_lastAttacker = attacker
 		self:GetCaster():RemoveModifierByName("modifier_phenx_egg_caster")
 		egg:RemoveModifierByName("modifier_phenx_egg_form")
+		egg:ForceKill(true)
 	else
-		egg:SetHealth( egg:GetHealth() - 1 )
+		egg:SetHealth( egg:GetHealth() - damage )
 	end
 	return -999
 end

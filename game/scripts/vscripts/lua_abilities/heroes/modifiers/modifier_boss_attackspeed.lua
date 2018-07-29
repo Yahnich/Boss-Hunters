@@ -56,8 +56,12 @@ function modifier_boss_attackspeed:GetModifierManaBonus( params )
 end]]
 
 function modifier_boss_attackspeed:GetModifierPreAttack_CriticalStrike( params )
-	if self:RollPRNG( 5 * self:GetStackCount() ) then
+	self.min = self.min or true
+	if self:RollPRNG( 5 * self:GetStackCount() ) and self.min then	
+		self.min = false
 		return 175
+	elseif not self.min then
+		self.min = true
 	end
 end
 
@@ -82,4 +86,8 @@ function modifier_boss_attackspeed:OnAbilityFullyCast( params )
 	if params.unit == self:GetParent() then
 		AddFOWViewer(DOTA_TEAM_GOODGUYS, self:GetParent():GetAbsOrigin(), 516, 3, false)
 	end
+end
+
+function modifier_boss_attackspeed:IsPurgable()
+	return false
 end

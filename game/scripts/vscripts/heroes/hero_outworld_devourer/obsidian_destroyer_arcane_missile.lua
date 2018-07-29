@@ -80,7 +80,7 @@ if IsServer() then
 	
 	function modifier_obsidian_destroyer_arcane_missile_autocast:OnIntervalThink()
 		local caster = self:GetCaster()
-		if self:GetAbility():GetAutoCastState() then
+		if self:GetAbility():GetAutoCastState() and params.attacker:GetMana() > self:GetAbility():GetManaCost(-1) then
 			caster:SetProjectileModel("particles/empty_projectile.vcpf")
 		else
 			caster:SetProjectileModel("particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_base_attack.vpcf")
@@ -92,7 +92,7 @@ if IsServer() then
 	end
 	
 	function modifier_obsidian_destroyer_arcane_missile_autocast:OnAttack(params)
-		if params.attacker == self:GetParent() and params.target and self:GetAbility():GetAutoCastState() then
+		if params.attacker == self:GetParent() and params.target and self:GetAbility():GetAutoCastState() and params.attacker:GetMana() > self:GetAbility():GetManaCost(-1) then
 			self:GetAbility():LaunchArcaneOrb(params.target)
 			params.attacker:SpendMana(self:GetAbility():GetManaCost(-1), self:GetAbility())
 		end

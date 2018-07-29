@@ -5,6 +5,14 @@ function venomancer_venomous_gale_ebf:GetCooldown(nLevel)
 	return cooldown
 end
 
+function venomancer_venomous_gale_ebf:GetManaCost(nLvl)
+	if self:GetCaster():IsHero() then
+		return self.BaseClass.GetManaCost(self, nLvl)
+	else
+		return 0
+	end
+end
+
 if IsServer() then
 	function venomancer_venomous_gale_ebf:OnSpellStart()
 		self.speed = self:GetSpecialValueFor( "speed" )
@@ -25,7 +33,6 @@ if IsServer() then
 		vDirection.z = 0.0
 		vDirection = vDirection:Normalized()
 		
-		self.talentCast = nil
 		local info = {
 			EffectName = "particles/units/heroes/hero_venomancer/venomancer_venomous_gale.vpcf",
 			Ability = self,
@@ -68,8 +75,7 @@ if IsServer() then
 				ability = self
 			}
 			ApplyDamage( damage )
-			if caster:HasTalent("special_bonus_unique_venomancer_venomous_gale_1") and not self.talentCast then
-				self.talentCast = true
+			if caster:HasTalent("special_bonus_unique_venomancer_venomous_gale_1") and not hTarget:IsRoundBoss() then
 				local ward = caster:FindAbilityByName("venomancer_plague_ward_ebf")
 				for i = 1, 2 do
 					local position  = hTarget:GetAbsOrigin() + RandomVector(250)

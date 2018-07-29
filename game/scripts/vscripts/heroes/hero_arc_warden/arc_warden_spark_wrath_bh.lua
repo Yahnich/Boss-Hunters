@@ -133,7 +133,7 @@ function arc_warden_spark_wrath_bh_thinker:CheckState()
 	return nil
 end
 
-modifier_arc_warden_spark_wrath_talent = clas({})
+modifier_arc_warden_spark_wrath_talent = class({})
 
 if IsServer() then
 	function modifier_arc_warden_spark_wrath_talent:OnCreated()
@@ -144,10 +144,23 @@ if IsServer() then
 	function modifier_arc_warden_spark_wrath_talent:OnIntervalThink()
 		local caster = self:GetCaster()
 		if caster:IsAlive() then
-			self:GetAbility:Spark( caster:GetAbsOrigin() )
+			self:GetAbility():Spark( caster:GetAbsOrigin() )
 			self:StartIntervalThink(self.interval)
+			self:SetDuration( self.interval + 1 )
 		else
 			self:StartIntervalThink(0.1)
 		end
 	end
+end
+
+function modifier_arc_warden_spark_wrath_talent:IsPermanent()
+	return true
+end
+
+function modifier_arc_warden_spark_wrath_talent:RemoveOnDeath()
+	return false
+end
+
+function modifier_arc_warden_spark_wrath_talent:DestroyOnExpire()
+	return false
 end

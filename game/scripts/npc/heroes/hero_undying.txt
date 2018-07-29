@@ -122,7 +122,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"						"3"
+				"value"						"5"
 			}
 		}
 	}
@@ -270,7 +270,7 @@
 	        "01"
 	        {
 	            "var_type"                  "FIELD_FLOAT"
-	            "zombie_duration"           "8"
+	            "zombie_duration"           "12"
 	        }
 			"02"
 	        {
@@ -313,7 +313,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"						"600"
+				"value"						"900"
 			}
 		}
 	}
@@ -368,7 +368,7 @@
 			"02"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"health_pct"					"5"
+				"health_pct"					"10"
 			}
 			"03"
 			{

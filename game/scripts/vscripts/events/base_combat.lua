@@ -15,11 +15,13 @@ local function OnEntityKilled(self, event)
 		if not killedTarget:NotDead() then
 			killedTarget:CreateTombstone()
 		end
-		Timers:CreateTimer(3, function()
-			if RoundManager:EvaluateLoss() then
-				self:EndEvent(false)
-			end
-		end)
+		if RoundManager:EvaluateLoss() then
+			Timers:CreateTimer(3, function()
+				if RoundManager:EvaluateLoss() then
+					self:EndEvent(false)
+				end
+			end)
+		end
 	end
 end
 

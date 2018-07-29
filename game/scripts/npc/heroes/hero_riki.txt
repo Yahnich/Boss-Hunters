@@ -245,6 +245,7 @@
 			{
 				"var_type"				"FIELD_FLOAT"
 				"interval"				"1"
+				"LinkedSpecialBonus"	"special_bonus_unique_riki_traded_tricks_2"
 			}
 			"03"
 			{
@@ -280,7 +281,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"5"
+				"value"					"8"
 			}
 		}
 	}
@@ -299,7 +300,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"0.4"
+				"value"					"0.5"
 			}
 		}
 	}
@@ -375,7 +376,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"1"
+				"value"					"3"
 			}
 		}
 	}
@@ -395,6 +396,25 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"value"					"500"
+			}
+		}
+	}
+	"special_bonus_unique_riki_traded_tricks_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"-0.3"
 			}
 		}
 	}

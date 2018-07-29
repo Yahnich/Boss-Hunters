@@ -15,3 +15,7 @@ end
 function modifier_boss_evasion:IsHidden()
     return true
 end
+
+function modifier_boss_evasion:IsPurgable()
+	return false
+end

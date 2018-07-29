@@ -67,11 +67,6 @@ function modifier_ta_trap:OnCreated()
 	self.maxDmg = self:GetAbility():GetTalentSpecialValueFor("damage_max_tooltip")
 	self.maxSlow = self:GetAbility():GetTalentSpecialValueFor("movement_speed_max_tooltip")
 
-	if self:GetCaster():HasTalent("special_bonus_unique_ta_trap_1") then
-		self.minDmg = self.minDmg + self.minDmg*self:GetCaster():FindTalentValue("special_bonus_unique_ta_trap_1")/100
-		self.maxDmg = self.maxDmg + self.maxDmg*self:GetCaster():FindTalentValue("special_bonus_unique_ta_trap_1")/100
-	end
-
 	if IsServer() then	
 		self.timer = 0
 		self.maxTimer = self:GetAbility():GetTalentSpecialValueFor("total_tick_time")

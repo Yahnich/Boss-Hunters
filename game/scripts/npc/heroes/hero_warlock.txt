@@ -52,7 +52,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"chance"				"25"
+				"chance"				"30"
 			}
 			"03"
 			{
@@ -79,7 +79,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"damage"					"50"
+				"damage"					"80"
 			}
 			"02"
 			{
@@ -180,7 +180,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"300"
+				"value"						"600"
 			}
 		}
 	}
@@ -202,7 +202,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"						"10"
+				"value"						"15"
 			}
 		}
 	}
@@ -293,7 +293,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"						"15"
+				"value"						"0.5"
 			}
 		}
 	}
@@ -317,10 +317,15 @@
 				"var_type"					"FIELD_FLOAT"
 				"damage"					"100"
 			}
-			"01"
+			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
 				"radius"					"500"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"golem_mult"				"3"
 			}
 		}
 	}
@@ -518,10 +523,15 @@
 				"var_type"					"FIELD_INTEGER"
 				"mr"						"100"
 			}
-			"01"
+			"02"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"armor"						"15"
+				"var_type"					"FIELD_FLOAT"
+				"hp"						"1.5"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"dmg"						"1.5"
 			}
 		}
 	}

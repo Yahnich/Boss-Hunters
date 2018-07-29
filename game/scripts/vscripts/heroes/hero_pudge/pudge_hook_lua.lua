@@ -2,10 +2,6 @@ pudge_hook_lua = class({})
 LinkLuaModifier( "modifier_meat_hook_lua", "heroes/hero_pudge/pudge_hook_lua.lua" ,LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_meat_hook_followthrough_lua", "heroes/hero_pudge/pudge_hook_lua.lua" ,LUA_MODIFIER_MOTION_NONE )
 
-function pudge_hook_lua:GetCustomCastErrorLocation(loc)
-	return "Already sent out your hook!"
-end
-
 function pudge_hook_lua:OnAbilityPhaseStart()
 	self:GetCaster():StartGesture( ACT_DOTA_OVERRIDE_ABILITY_1 )
 	return true
@@ -13,14 +9,6 @@ end
 
 function pudge_hook_lua:OnAbilityPhaseInterrupted()
 	self:GetCaster():RemoveGesture( ACT_DOTA_OVERRIDE_ABILITY_1 )
-end
-
-function pudge_hook_lua:CastFilterResultLocation(loc)
-	if self.hook_launched then
-		return UF_FAIL_CUSTOM
-	else
-		return UF_SUCCESS
-	end
 end
 
 function pudge_hook_lua:GetCooldown(iLvl)
@@ -32,16 +20,6 @@ end
 
 function pudge_hook_lua:OnSpellStart()
 	local caster = self:GetCaster()
-
-	-- If another hook is already out, refund mana cost and do nothing
-	if self.hook_launched then
-		caster:GiveMana(self:GetManaCost(self:GetLevel()))
-		self:EndCooldown()
-		return nil
-	end
-
-	-- Set the global hook_launched variable
-	self.hook_launched = true
 	
 	-- Parameters
 	local hook_speed = self:GetTalentSpecialValueFor("speed")
@@ -204,8 +182,6 @@ function pudge_hook_lua:OnSpellStart()
 					weapon_hook:RemoveEffects( EF_NODRAW )
 				end
 
-				-- Clear global variables
-				self.hook_launched = false
 
 			-- If this is not the final step, keep reeling the hook in
 			else

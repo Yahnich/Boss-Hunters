@@ -1,5 +1,13 @@
 skywrath_arcane = class({})
 
+function skywrath_arcane:GetBehavior()
+	return DOTA_ABILITY_BEHAVIOR_UNIT_TARGET + DOTA_ABILITY_BEHAVIOR_AOE
+end
+
+function skywrath_arcane:GetAOERadius()
+	return self:GetCaster():FindTalentValue("special_bonus_unique_skywrath_arcane_1", "radius")
+end
+
 function skywrath_arcane:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
@@ -26,9 +34,9 @@ function skywrath_arcane:OnProjectileHit(hTarget, vLocation)
         EmitSoundOn("Hero_SkywrathMage.ArcaneBolt.Impact", hTarget)
         local damage = self:GetTalentSpecialValueFor("damage") + self:GetTalentSpecialValueFor("int_multiplier")/100 * caster:GetIntellect()
         self:DealDamage(caster, hTarget, damage, {}, 0)
-		if caster:HasTalent("special_bonus_skywrath_arcane_1") then
-			local spreadDamage = damage * caster:FindTalentValue("special_bonus_skywrath_arcane_1") / 100
-			local radius = caster:FindTalentValue("special_bonus_skywrath_arcane_1", "radius")
+		if caster:HasTalent("special_bonus_unique_skywrath_arcane_1") then
+			local spreadDamage = damage * caster:FindTalentValue("special_bonus_unique_skywrath_arcane_1") / 100
+			local radius = caster:FindTalentValue("special_bonus_unique_skywrath_arcane_1", "radius")
 			for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( hTarget:GetAbsOrigin(), radius ) ) do
 				if enemy ~= hTarget then
 					self:DealDamage( caster, enemy, spreadDamage )

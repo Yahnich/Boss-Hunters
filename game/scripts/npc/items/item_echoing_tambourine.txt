@@ -103,7 +103,7 @@
 			"10"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"heal_restore"			"20" //percent
+				"heal_restore"			"30" //percent
 			}
 			"11"
 			{

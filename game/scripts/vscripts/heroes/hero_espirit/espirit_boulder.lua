@@ -21,13 +21,6 @@ function espirit_boulder:OnSpellStart()
 
     local direction = CalculateDirection(point, caster:GetAbsOrigin())
 	self:LaunchBoulder( direction )
-	
-	if caster:HasTalent("special_bonus_unique_espirit_boulder_2") then
-		pointRando = point + ActualRandomVector(100, 25)
-		if caster:FindAbilityByName("espirit_rock") then
-			caster:FindAbilityByName("espirit_rock"):CreateStoneRemnant(pointRando)
-		end
-	end
 end
 
 function espirit_boulder:LaunchBoulder(direction)
@@ -86,6 +79,12 @@ function espirit_boulder:OnProjectileHit(hTarget, vLocation)
 		end
 	else
 		if caster:HasTalent("special_bonus_unique_espirit_boulder_2") then
+			if caster:HasTalent("special_bonus_unique_espirit_boulder_2") then
+				pointRando = caster:GetAbsOrigin() + ActualRandomVector(100, 25)
+				if caster:FindAbilityByName("espirit_rock") then
+					caster:FindAbilityByName("espirit_rock"):CreateStoneRemnant(pointRando)
+				end
+			end
 			FindClearSpaceForUnit(caster, vLocation, true)
 			ProjectileManager:ProjectileDodge(caster)
 		end

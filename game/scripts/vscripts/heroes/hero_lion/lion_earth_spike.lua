@@ -33,11 +33,11 @@ function lion_earth_spike:OnSpellStart()
     local distance = CalculateDistance(point, caster:GetAbsOrigin())
     local direction = CalculateDirection(point,caster:GetAbsOrigin())
     local velocity = direction * self:GetTalentSpecialValueFor("speed")
-
-    self:FireLinearProjectile("particles/units/heroes/hero_lion/lion_spell_impale.vpcf", velocity, distance, self:GetTalentSpecialValueFor("width"), {}, false, true, 250)
+	self.direction = direction
+    self:FireLinearProjectile("particles/units/heroes/hero_lion/lion_spell_impale.vpcf", velocity, distance, self:GetTalentSpecialValueFor("width"), {extraData = {}}, false, true, 250)
 end
 
-function lion_earth_spike:OnProjectileHit(hTarget, vLocation)
+function lion_earth_spike:OnProjectileHit_ExtraData(hTarget, vLocation, extraData)
     local caster = self:GetCaster()
 	
     if hTarget ~= nil then
@@ -48,7 +48,7 @@ function lion_earth_spike:OnProjectileHit(hTarget, vLocation)
         hTarget:ApplyKnockBack(vLocation, 0.5, 0.5, 0, 350, caster, self)
         self:Stun(hTarget, self:GetTalentSpecialValueFor("duration"), false)
         self:DealDamage(caster, hTarget, self:GetTalentSpecialValueFor("damage"), {}, 0)
-    else
+    elseif not extraData.secondary then 
         EmitSoundOnLocationWithCaster(vLocation, "Hero_Leshrac.Split_Earth", caster)
 
         local radius = self:GetTalentSpecialValueFor("radius")
@@ -60,5 +60,18 @@ function lion_earth_spike:OnProjectileHit(hTarget, vLocation)
             self:Stun(enemy, self:GetTalentSpecialValueFor("duration"), false)
             self:DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage"), {}, 0)
         end
+		if caster:HasTalent("special_bonus_unique_lion_earth_spike_1") then
+			local spikes = caster:FindTalentValue("special_bonus_unique_lion_earth_spike_1")
+			
+			local direction = caster:GetForwardVector()
+			local speed = self:GetTalentSpecialValueFor("speed")
+			local width = self:GetTalentSpecialValueFor("width") 
+			
+			for i = 1, spikes do
+				local rotation = ToRadians(30 * math.floor(i / 2) * (-1)^i)
+				local newVelocity = RotateVector2D( direction, rotation ) * speed
+				self:FireLinearProjectile("particles/units/heroes/hero_lion/lion_spell_impale.vpcf", newVelocity, self:GetTrueCastRange(), width, {extraData = {["secondary"] = true}, origin = vLocation}, false, true, 250)
+			end
+		end
     end
 end

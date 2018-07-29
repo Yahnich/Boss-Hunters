@@ -84,7 +84,7 @@
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"825"
+		"AbilityCastRange"				"900"
 		"AbilityCastPoint"				"0.3"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
 	
@@ -102,30 +102,29 @@
 		{
 			"01"
 			{	
-				"var_type"			"FIELD_INTEGER"
-				"damage"			"80 140 200 260 320 380 440"
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"80 140 200 260 320 380 440"
 			}
 			"02"
 			{	
-				"var_type"			"FIELD_FLOAT"
-				"duration"			"1"
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"1"
 				"LinkedSpecialBonus"		"special_bonus_unique_lion_earth_spike_2"
 			}
 			"03"
 			{
-				"var_type"			"FIELD_INTEGER"
-				"radius"			"300"
-				"LinkedSpecialBonus"		"special_bonus_unique_lion_earth_spike_1"
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"300"
 			}
 			"04"
 			{
-				"var_type"			"FIELD_INTEGER"
-				"speed"				"1600"
+				"var_type"					"FIELD_INTEGER"
+				"speed"						"1600"
 			}
 			"05"
 			{
-				"var_type"			"FIELD_INTEGER"
-				"width"				"125"
+				"var_type"					"FIELD_INTEGER"
+				"width"						"125"
 			}
 		}	
 	}
@@ -154,7 +153,7 @@
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"500"
+		"AbilityCastRange"				"900"
 		"AbilityCastPoint"				"0.0"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
 	
@@ -235,7 +234,7 @@
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"700"
+		"AbilityCastRange"				"900"
 		"AbilityCastPoint"				"0.3"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
 	
@@ -326,7 +325,7 @@
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"675"
+		"AbilityCastRange"				"900"
 		"AbilityCastPoint"				"0.3"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
 	
@@ -417,7 +416,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"450"
+				"value"					"3"
 			}
 		}
 	}

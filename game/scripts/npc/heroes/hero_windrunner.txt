@@ -415,11 +415,11 @@
 				"var_type"				"FIELD_INTEGER"
 				"pierce_pct"			"40"
 			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"base_damage"			"50"
-			}
+			// "06"
+			// {
+			// 	"var_type"				"FIELD_INTEGER"
+			// 	"base_damage"			"0"
+			// }
 		}
 	}
 
@@ -436,6 +436,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityTextureName"			"windrunner_focusfire"
+		"HasScepterUpgrade"				"1"
 		"MaxLevel"						"6"
 		
 		"precache"

@@ -19,24 +19,32 @@ end
 
 modifier_ta_refract = ({})
 function modifier_ta_refract:OnCreated(table)
+	self.reduction = self:GetTalentSpecialValueFor("damage_reduction")
+	self.dmg = self:GetTalentSpecialValueFor("bonus_damage")
 	if IsServer() then
-		self.nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_templar_assassin/templar_assassin_refraction.vpcf", PATTACH_POINT_FOLLOW, self:GetCaster())
-		ParticleManager:SetParticleControlEnt(self.nfx, 1, self:GetCaster(), PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", self:GetCaster():GetAbsOrigin(), false)
-		self:StartIntervalThink(FrameTime())
+		local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_templar_assassin/templar_assassin_refraction.vpcf", PATTACH_POINT_FOLLOW, self:GetCaster())
+		ParticleManager:SetParticleControlEnt(nfx, 1, self:GetCaster(), PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", self:GetCaster():GetAbsOrigin(), false)
+		self:AddEffect(nfx)
+		self:StartDelayedCooldown()
+		if self:GetCaster():HasTalent("special_bonus_unique_ta_refract_1") then self:StartIntervalThink( self:GetCaster():FindTalentValue("special_bonus_unique_ta_refract_1") ) end
+	end
+end
+
+function modifier_ta_refract:OnRefresh(table)
+	self.reduction = self:GetTalentSpecialValueFor("damage_reduction")
+	self.dmg = self:GetTalentSpecialValueFor("bonus_damage")
+	if IsServer() then
+		self:StartDelayedCooldown()
+		if self:GetCaster():HasTalent("special_bonus_unique_ta_refract_1") then self:StartIntervalThink( self:GetCaster():FindTalentValue("special_bonus_unique_ta_refract_1") ) end
 	end
 end
 
 function modifier_ta_refract:OnIntervalThink()
-	if self:GetCaster():HasTalent("special_bonus_unique_ta_refract_1") then
-		self:GetCaster():Dispel(self:GetCaster(), true)
-		self:StartIntervalThink(0.5)
-	end
+	self:GetCaster():Dispel(self:GetCaster(), true)
 end
 
 function modifier_ta_refract:OnRemoved()
-	if IsServer() then
-		ParticleManager:DestroyParticle(self.nfx, false)
-	end
+	if IsServer() then self:EndDelayedCooldown() end
 end
 
 function modifier_ta_refract:DeclareFunctions()
@@ -59,9 +67,9 @@ function modifier_ta_refract:OnAttackLanded(params)
 end
 
 function modifier_ta_refract:GetModifierPreAttack_BonusDamage()
-	return self:GetSpecialValueFor("bonus_damage")
+	return self.dmg
 end
 
 function modifier_ta_refract:GetModifierIncomingDamage_Percentage()
-	return -math.abs(self:GetSpecialValueFor("damage_reduction"))
+	return -math.abs( self.reduction )
 end

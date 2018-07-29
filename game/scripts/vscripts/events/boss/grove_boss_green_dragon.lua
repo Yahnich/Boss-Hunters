@@ -4,6 +4,8 @@ local function StartEvent(self)
 	self.eventEnded = false
 	self.eventHandler = Timers:CreateTimer(3, function()
 		local spawn = CreateUnitByName("npc_dota_green_dragon", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
+		local greenPool = spawn:FindAbilityByName("green_dragon_toxic_pool")
+		if greenPool then greenPool:StartCooldown(10) end
 		spawn.unitIsRoundBoss = true
 		self.enemiesToSpawn = self.enemiesToSpawn - 1
 		if self.enemiesToSpawn > 0 then

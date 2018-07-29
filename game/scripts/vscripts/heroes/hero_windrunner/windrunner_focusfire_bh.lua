@@ -21,7 +21,7 @@ function modifier_windrunner_focusfire_bh:OnCreated(table)
 	self.bat = self:GetTalentSpecialValueFor("bonus_at")
 	self.dmg = TernaryOperator( self:GetTalentSpecialValueFor("scepter_dmg_reduction"), self:GetCaster():HasScepter(), self:GetTalentSpecialValueFor("dmg_reduction") )
     if IsServer() then
-        self:StartIntervalThink(self:GetCaster():GetSeondsPerAttack())
+        self:StartIntervalThink(self:GetCaster():GetSecondsPerAttack())
     end
 end
 

@@ -23,7 +23,7 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"20 17.5 15 12.5 10 7.5 5"
+		"AbilityCooldown"				"14 13 12 11 10 9 8"
 	
 
 		// Cost
@@ -45,6 +45,7 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"hp_cost_perc"			"15"
+				"LinkedSpecialBonus"	"special_bonus_unique_phenx_dive_1"
 			}
 			"02"
 			{
@@ -60,7 +61,6 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"dash_width"			"500"
-				"LinkedSpecialBonus"	"special_bonus_unique_phenx_dive_1"
 			}
 			"05"
 			{
@@ -96,7 +96,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"200"
+				"value"					"10"
 			}
 		}
 	}
@@ -167,24 +167,24 @@
 		{
 			"01"
 			{
-				"var_type"			"FIELD_INTEGER"
-				"hp_cost_perc"		"15"
+				"var_type"					"FIELD_INTEGER"
+				"hp_cost_perc"				"15"
 			}
 			"02"
 			{
-				"var_type"			"FIELD_INTEGER"
-				"attackspeed_slow"	"-80 -90 -100 -110 -120 -130 -140"
+				"var_type"					"FIELD_INTEGER"
+				"attackspeed_slow"			"-140"
 				
 			}
 			"03"
 			{
-				"var_type"			"FIELD_INTEGER"
-				"damage_per_second"	"20 40 60 80 100 120 140"
+				"var_type"					"FIELD_INTEGER"
+				"damage_per_second"			"20 40 60 80 100 120 140"
 			}
 			"04"
 			{
-				"var_type"			"FIELD_FLOAT"
-				"duration"			"4.0"
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"4.0"
 			}
 			"05"
 			{
@@ -194,19 +194,19 @@
 			}
 			"06"
 			{
-				"var_type"			"FIELD_INTEGER"
-				"spirit_count"		"4"
+				"var_type"					"FIELD_INTEGER"
+				"spirit_count"				"4"
 				"LinkedSpecialBonus"		"special_bonus_unique_phenx_spirits_1"
 			}
 			"07"
 			{	
-				"var_type"			"FIELD_INTEGER"
-				"spirit_speed"		"900"
+				"var_type"					"FIELD_INTEGER"
+				"spirit_speed"				"900"
 			}
 			"08"
 			{
-				"var_type"			"FIELD_FLOAT"
-				"tick_interval"		"1.0"
+				"var_type"					"FIELD_FLOAT"
+				"tick_interval"				"1.0"
 			}
 		}
 	}
@@ -461,34 +461,34 @@
 		{
 			"01"
 			{
-				"var_type"			"FIELD_INTEGER"
-				"damage_per_sec"	"60 90 120 150 180 210"
+				"var_type"				"FIELD_INTEGER"
+				"damage_per_sec"		"60 90 120 150 180 210"
 			}
 			"02"
 			{
-				"var_type"			"FIELD_FLOAT"
-				"duration"			"6"
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"6"
 			}
 			"03"
 			{
-				"var_type"			"FIELD_INTEGER"
-				"max_hero_attacks"	"14"
+				"var_type"				"FIELD_INTEGER"
+				"max_hero_attacks"		"14"
 			}
 			"04"
 			{
-				"var_type"			"FIELD_INTEGER"
-				"radius"			"1000"
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"1000"
 			}
 			"05"
 			{
-				"var_type"			"FIELD_FLOAT"
-				"stun_duration"		"1.5"
-				"LinkedSpecialBonus" "special_bonus_unique_phenx_egg_1"
+				"var_type"				"FIELD_FLOAT"
+				"stun_duration"			"1.5"
+				"LinkedSpecialBonus"	"special_bonus_unique_phenx_egg_1"
 			}
 			"05"
 			{
-				"var_type"			"FIELD_FLOAT"
-				"threat_gain"		"10"
+				"var_type"				"FIELD_FLOAT"
+				"threat_gain"			"10"
 			}			
 		}
 	}

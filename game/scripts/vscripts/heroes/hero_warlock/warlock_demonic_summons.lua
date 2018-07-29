@@ -70,16 +70,16 @@ function warlock_demonic_summons:CreateGolem(position, duration, golemPct)
 	golem:AddAbility("warlock_golem_immolation"):SetLevel(self:GetLevel())
 	golem:SetBaseDamageMin( ( 75 * self:GetLevel() ) * golem_pct )
 	golem:SetBaseDamageMax( ( 75 * self:GetLevel() ) * golem_pct )
-	golem:SetPhysicalArmorBaseValue( ( 3 + 3 * self:GetLevel() ) )
+	golem:SetPhysicalArmorBaseValue( ( 5 * self:GetLevel() ) )
 	golem:SetBaseMoveSpeed( 310 + 10 * self:GetLevel() )
 	golem:SetCoreHealth( ( 1000 * self:GetLevel() ) * golem_pct )
-	print( self:GetLevel() )
 	golem:SetBaseHealthRegen( (25 * self:GetLevel() ) * golem_pct )
-	golem:SetModelScale( 1 + ( self:GetLevel()/10 ) * golem_pct )
+	golem:SetModelScale( 0.7 + ( self:GetLevel()/20 ) * golem_pct )
 	if caster:HasTalent("special_bonus_unique_warlock_demonic_summons_1") then
-		golem:SetPhysicalArmorBaseValue( golem:GetPhysicalArmorBaseValue() + caster:FindTalentValue("special_bonus_unique_warlock_demonic_summons_1", "armor") )
 		golem:SetBaseMagicalResistanceValue( caster:FindTalentValue("special_bonus_unique_warlock_demonic_summons_1", "mr") )
-		golem:SetModelScale(golem:GetModelScale() * 1.5 )
+		golem:SetAverageBaseDamage( golem:GetAverageBaseDamage() * caster:FindTalentValue("special_bonus_unique_warlock_demonic_summons_1", "dmg"), 25 )
+		golem:SetCoreHealth( golem:GetBaseMaxHealth() * caster:FindTalentValue("special_bonus_unique_warlock_demonic_summons_1", "hp") )
+		golem:SetModelScale( golem:GetModelScale() * 1.33 )
 	end
 	return golem
 end

@@ -22,12 +22,26 @@ function venomancer_plague_ward_ebf:CreateWard(position)
 	ward:SetBaseMaxHealth(hp)
 	ward:SetMaxHealth(hp)
 	ward:SetHealth(hp)
-	ward:SetModelScale(0.6 + self:GetLevel()/10)
+	ward:SetModelScale(0.6 + self:GetLevel()/20)
 	ward:SetHullRadius(0)
 	ResolveNPCPositions(position, 64)
 	ward:AddNewModifier(self:GetCaster(), self, "modifier_venomancer_plague_ward_handler", {})
 	ward:SetAverageBaseDamage(damage, 15)
 	ward:AddAbility("venomancer_poison_sting_ebf"):SetLevel( caster:FindAbilityByName("venomancer_poison_sting_ebf"):GetLevel() )
+	if caster:HasTalent("special_bonus_unique_venomancer_plague_ward_2") then
+		ward:SetModelScale(ward:GetModelScale() * 1.25)
+		local gale = ward:AddAbility("venomancer_venomous_gale_ebf")
+		gale:SetLevel( caster:FindAbilityByName("venomancer_venomous_gale_ebf"):GetLevel() )
+		AITimers:CreateTimer(1, function()
+			if ward and not ward:IsNull() and ward:IsAlive() then
+				if gale:IsFullyCastable() and ward:GetAttackTarget() then
+					ward:SetCursorPosition( ward:GetAttackTarget():GetAbsOrigin() )
+					gale:CastAbility()
+				end
+				return 1
+			end
+		end)
+	end
 	ward:MoveToPositionAggressive(ward:GetAbsOrigin())
 end
 

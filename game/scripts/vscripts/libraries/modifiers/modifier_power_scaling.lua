@@ -15,3 +15,7 @@ end
 function modifier_power_scaling:IsHidden()
     return true
 end
+
+function modifier_power_scaling:IsPurgable()
+	return false
+end

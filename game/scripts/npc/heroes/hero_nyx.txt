@@ -39,7 +39,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"80 140 200 260 320 380 440"
+				"damage"				"100 175 250 325 400 475 550"
 				"LinkedSpecialBonus"	"special_bonus_unique_nyx_impale_1"
 			}
 			"02"

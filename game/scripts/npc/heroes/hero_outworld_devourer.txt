@@ -67,7 +67,8 @@
 			"particle"		"particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_prison_end.vpcf"
 			"particle"		"particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_prison_start.vpcf"
 		}
-		"AbilityCooldown"				"18.0 17.0 16.0 15.0 14.0 13.0 12.0"
+		
+		"AbilityCooldown"				"14.0 13.0 12.0 11.0 10.0 9.0 8.0"
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -222,6 +223,8 @@
 			{
 				"var_type"						"FIELD_INTEGER"
 				"damage_multiplier"				"14 16 18 20 22 24"
+				"LinkedSpecialBonus"			"special_bonus_unique_obsidian_destroyer_celestial_obliteration_1"
+				"LinkedSpecialBonusField"		"damage"
 			}
 			"02"
 			{
@@ -275,7 +278,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"20"
+				"value"					"25"
 			}
 			"02"
 			{
@@ -318,7 +321,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"2"
+				"value"					"4"
 			}
 		}
 	}
@@ -337,7 +340,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"2"
+				"value"					"3"
 			}
 		}
 	}
@@ -381,7 +384,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"3000"
+				"value"					"1400"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"4"
 			}
 		}
 	}
@@ -400,7 +408,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"50"
+				"value"					"60"
 			}
 			"02"
 			{

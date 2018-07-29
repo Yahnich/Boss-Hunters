@@ -21,6 +21,7 @@ function centaur_great_edge:OnSpellStart()
 	
 	local edgeDamage = self:GetTalentSpecialValueFor( "edge_damage" )
 	local bonusDamage = caster:GetStrength() * self:GetTalentSpecialValueFor( "edge_str_damage" ) / 100
+	local selfDamage = self:GetTalentSpecialValueFor("self_damage") / 100
 	local radius = self:GetTalentSpecialValueFor("radius")
 	
 	EmitSoundOn( "Hero_Centaur.DoubleEdge", caster )
@@ -29,7 +30,7 @@ function centaur_great_edge:OnSpellStart()
 	ParticleManager:SetParticleControl(particle, 1, target:GetAbsOrigin()) -- Destination
 	ParticleManager:SetParticleControl(particle, 5, target:GetAbsOrigin()) -- Hit Glow
 	
-	self:DealDamage( caster, caster, edgeDamage + bonusDamage, {damage_flags = DOTA_DAMAGE_FLAG_NON_LETHAL})
+	self:DealDamage( caster, caster, edgeDamage + bonusDamage * selfDamage, {damage_flags = DOTA_DAMAGE_FLAG_NON_LETHAL})
 	local units = caster:FindEnemyUnitsInRadius(target:GetAbsOrigin(), radius)
 	for _, enemy in ipairs(units) do
 		self:DealDamage( caster, enemy, edgeDamage + bonusDamage )
