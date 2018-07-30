@@ -6,6 +6,17 @@ function chaos_knight_chaos_strike_ebf:GetIntrinsicModifierName()
 end
 
 
+modifier_chaos_knight_chaos_strike_actCrit = class({})
+LinkLuaModifier("modifier_chaos_knight_chaos_strike_actCrit", "heroes/hero_chaos_knight/chaos_knight_chaos_strike_ebf", LUA_MODIFIER_MOTION_NONE)
+
+function modifier_chaos_knight_chaos_strike_actCrit:GetModifierPreAttack_CriticalStrike( params )
+	local parent = self:GetParent()
+	EmitSoundOn( "Hero_ChaosKnight.ChaosStrike", parent)
+	ParticleManager:FireParticle("particles/units/heroes/hero_chaos_knight/chaos_knight_weapon_blur_critical.vpcf", PATTACH_ABSORIGIN_FOLLOW, parent)
+	self:Destroy()
+	return self:GetTalentSpecialValueFor("crit_damage")
+end
+
 modifier_chaos_knight_chaos_strike_ebf = class({})
 LinkLuaModifier("modifier_chaos_knight_chaos_strike_ebf", "heroes/hero_chaos_knight/chaos_knight_chaos_strike_ebf", LUA_MODIFIER_MOTION_NONE)
 
@@ -14,7 +25,7 @@ function modifier_chaos_knight_chaos_strike_ebf:DeclareFunctions()
 end
 
 function modifier_chaos_knight_chaos_strike_ebf:GetModifierPreAttack_CriticalStrike( params )
-	if RollPercentage( self:GetTalentSpecialValueFor("crit_chance") ) and not params.attacker:PassivesDisabled() then
+	if RollPercentage( self:GetTalentSpecialValueFor("crit_chance") ) and not params.attacker:PassivesDisabled() or params.attacker then
 		local parent = self:GetParent()
 		self.on_crit = true
 		EmitSoundOn( "Hero_ChaosKnight.ChaosStrike", parent)

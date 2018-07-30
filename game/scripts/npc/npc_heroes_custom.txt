@@ -871,13 +871,13 @@
 	"npc_dota_hero_luna_ebf"
 	{
 		"override_hero"					"npc_dota_hero_luna"
-		"Ability1"						"luna_lucent_beam"
+		"Ability1"						"luna_lucent_beam_bh"
 		"Ability2"						"luna_nightsilver_resolve"
-		"Ability3"						"luna_lunar_blessing_ebf"
-		"Ability4"						"luna_moon_glaive"
-		"Ability6"						"luna_eclipse"
-		"VisionDaytimeRange"			"3000"
-		"VisionNighttimeRange"			"3000"
+		"Ability3"						"luna_lunar_blessing_bh"
+		"Ability4"						"luna_moon_glaive_bh"
+		"Ability6"						"luna_eclipse_bh"
+		"VisionDaytimeRange"			"1800"
+		"VisionNighttimeRange"			"1800"
 		
 		"ArmorPhysical"					"0"
 		"AttackCapabilities"			"DOTA_UNIT_CAP_RANGED_ATTACK"
@@ -925,7 +925,7 @@
 	//=================================================================================================================
 	"npc_dota_hero_magnataur_ebf"
 	{
-		"override_hero"			"npc_dota_hero_magnataur"
+		"override_hero"					"npc_dota_hero_magnataur"
 		"Ability1"						"mag_shockwave"
 		"Ability2"						"mag_magnet"					
 		"Ability3"						"mag_charge"

@@ -1,0 +1,1 @@
+luna_moon_glaive_bh = class({})

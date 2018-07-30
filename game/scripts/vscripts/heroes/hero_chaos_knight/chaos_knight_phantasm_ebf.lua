@@ -50,10 +50,18 @@ if IsServer() then
 		
 		local delay = self:GetTalentSpecialValueFor("invuln_duration")
 		target:Dispel(caster)
+		
+		ParticleManager:FireParticle("", PATTACH_POINT_FOLLOW, target)
+		target:EmitSound("")
+		
 		target:AddNewModifier(caster, self, "modifier_invulnerable", {duration = delay})
 		Timers:CreateTimer(delay, function()
 			if caster:HasTalent("special_bonus_unique_chaos_knight_phantasm_1") then
 				local cBolt = caster:FindAbilityByName("chaos_knight_chaos_bolt_ebf")
+				local cStrike = caster:FindAbilityByName("chaos_knight_chaos_strike_ebf")
+				if cStrike then
+					illusion:AddNewModifier( caster, self, "modifier_chaos_knight_chaos_strike_actCrit", {} )
+				end
 				if cBolt then
 					local enemy = caster:FindRandomEnemyInRadius( illusion:GetAbsOrigin(), cBolt:GetTrueCastRange() )
 					if enemy then 
@@ -65,6 +73,10 @@ if IsServer() then
 				local illusion = target:ConjureImage( position, duration, outDmg, inDmg, nil, self )
 				if caster:HasTalent("special_bonus_unique_chaos_knight_phantasm_1") then
 					local cBolt = caster:FindAbilityByName("chaos_knight_chaos_bolt_ebf")
+					local cStrike = caster:FindAbilityByName("chaos_knight_chaos_strike_ebf")
+					if cStrike then
+						illusion:AddNewModifier( caster, self, "modifier_chaos_knight_chaos_strike_actCrit", {} )
+					end
 					if cBolt then
 						local enemy = caster:FindRandomEnemyInRadius( illusion:GetAbsOrigin(), cBolt:GetTrueCastRange() )
 						if enemy then 
