@@ -10,23 +10,30 @@ end
 
 if IsServer() then
 	function chaos_knight_chaos_bolt_ebf:OnSpellStart()
+		local target = self:GetCursorTarget()
+		self:ThrowChaosBolt( target )
+		if self:GetCaster():HasTalent("special_bonus_unique_chaos_knight_chaos_bolt_2") and RollPercentage(self:GetCaster():FindTalentValue("special_bonus_unique_chaos_knight_chaos_bolt_2")) then 
+			Timers:CreateTimer(self:GetCastPoint(), function() self:ThrowChaosBolt(target) end)
+		end
+	end
+	
+	function chaos_knight_chaos_bolt_ebf:ThrowChaosBolt(target, origin)
+		local source = origin or self:GetCaster()
 		local projectile = {
-			Target = self:GetCursorTarget(),
-			Source = self:GetCaster(),
+			Target = target or self:GetCursorTarget(),
+			Source = source,
 			Ability = self,
+			vSourceLoc = source:GetAbsOrigin(),
 			EffectName = "particles/units/heroes/hero_chaos_knight/chaos_knight_chaos_bolt.vpcf",
-			bDodgable = true,
+			bDodgable = true
 			bProvidesVision = false,
 			iMoveSpeed = self:GetTalentSpecialValueFor("chaos_bolt_speed"),
 			iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_ATTACK_1,
 		}
 		ProjectileManager:CreateTrackingProjectile(projectile)
-		if self:GetCaster():HasTalent("special_bonus_unique_chaos_knight_chaos_bolt_2") and RollPercentage(self:GetCaster():FindTalentValue("special_bonus_unique_chaos_knight_chaos_bolt_2")) then 
-			Timers:CreateTimer(self:GetCastPoint(), function() ProjectileManager:CreateTrackingProjectile(projectile) end)
-		end
 		EmitSoundOn("Hero_ChaosKnight.ChaosBolt.Cast", self:GetCaster())
 	end
-
+	
 	function chaos_knight_chaos_bolt_ebf:OnProjectileHit(target, position)
 		local caster = self:GetCaster()
 		local target_location = target:GetAbsOrigin()

@@ -28,7 +28,7 @@ function modifier_boss1a_vanish_fade:DeclareFunctions()
 end
 
 function modifier_boss1a_vanish_fade:CheckState()
-	return {[MODIFIER_STATE_DISARMED] = true}
+	return {[MODIFIER_STATE_STUNNED] = true}
 end
 
 function modifier_boss1a_vanish_fade:GetModifierInvisibilityLevel( params )

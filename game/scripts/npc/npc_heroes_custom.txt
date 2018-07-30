@@ -265,7 +265,8 @@
 		"Ability1"				"chaos_knight_chaos_bolt_ebf"
 		"Ability2"				"chaos_knight_reality_rift_ebf"
 		"Ability3"				"chaos_knight_chaos_strike_ebf"
-		// "Ability6"				"chaos_knight_phantasm_ebf"
+		"Ability6"				"chaos_knight_phantasm_ebf"
+		
 		"Ability10"				"special_bonus_unique_chaos_knight_chaos_strike_1"
 		"Ability11"				"special_bonus_unique_chaos_knight_chaos_strike_2"
 		"Ability12"				"special_bonus_unique_chaos_knight_reality_rift_1"
@@ -274,6 +275,8 @@
 		"Ability15"				"special_bonus_unique_chaos_knight_chaos_bolt_2"
 		"Ability16"				"special_bonus_strength_25"
 		"Ability17"				"special_bonus_cooldown_reduction_20"
+		"Ability16"				"special_bonus_unique_chaos_knight_phantasm_1"
+		"Ability17"				"special_bonus_unique_chaos_knight_phantasm_2"
 	}
 	//=================================================================================================================
 	// HERO: Chen
