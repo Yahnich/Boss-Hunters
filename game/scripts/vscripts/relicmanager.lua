@@ -226,7 +226,6 @@ function RelicManager:RollRandomGenericRelicForPlayer(pID, notThisRelic)
 		end
 	end
 	
-	print(dropTable[1], "check?")
 	if dropTable[1] == nil then
 		
 		hero.internalRNGPools[1] = table.copy(self.genericDropTable)
@@ -239,7 +238,7 @@ function RelicManager:RollRandomGenericRelicForPlayer(pID, notThisRelic)
 			end
 		end
 	end
-	print(dropTable[1], "final")
+	
 	if dropTable[1] ~= nil then
 		local relic = dropTable[RandomInt(1, #dropTable)]
 		hero.internalRNGPools[1][relic] = nil

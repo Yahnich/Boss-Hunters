@@ -17,17 +17,19 @@ function modifier_item_antique_battlestaff:OnCreated()
 	self.bonus_move_speed = self:GetSpecialValueFor("bonus_move_speed")
 end
 
-function modifier_item_antique_battlestaff:CheckState()
-	self.miss = self:RollPRNG(self.chance)
-	return {[MODIFIER_STATE_CANNOT_MISS] = self.miss}
-end
-
 function modifier_item_antique_battlestaff:DeclareFunctions()
 	return {MODIFIER_EVENT_ON_ATTACK_LANDED,
 			MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
 			MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
 			MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
 			MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,}
+end
+
+function modifier_item_antique_battlestaff:GetAccuracy()
+	self.miss = self:RollPRNG(self.chance)
+	if self.miss then
+		return 100
+	end
 end
 
 function modifier_item_antique_battlestaff:OnAttackLanded(params)

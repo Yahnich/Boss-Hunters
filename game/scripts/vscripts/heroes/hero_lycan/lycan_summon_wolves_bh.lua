@@ -12,6 +12,7 @@ function lycan_summon_wolves_bh:OnSpellStart()
 	
 	local startPos = caster:GetAbsOrigin()
 	local wolfCount = self:GetTalentSpecialValueFor("wolf_count")
+	
 	if caster:HasTalent("special_bonus_unique_lycan_summon_wolves_2") then 
 		wolfCount = math.floor(wolfCount / 2)
 	else
@@ -26,7 +27,7 @@ function lycan_summon_wolves_bh:OnSpellStart()
 		local fv = caster:GetForwardVector()*((-1)^( math.ceil( i/2 ) -1 ) )
 		local spawnOrigin = startPos + fv * distance
 		local position = RotatePosition(startPos, angPoint, spawnOrigin)
-		if #caster.summonedWolves < wolfCount then
+		if #caster.summonedWolves < wolfCount or caster.summonedWolves[1]:IsNull() then
 			self:CreateWolf(position)
 		else
 			local wolf = caster.summonedWolves[i]

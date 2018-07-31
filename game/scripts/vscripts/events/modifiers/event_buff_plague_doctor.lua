@@ -5,11 +5,11 @@ function event_buff_plague_doctor_curse:DeclareFunctions()
 			MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS}
 end
 
-function event_buff_plague_doctor_curse:armor()
+function event_buff_plague_doctor_curse:GetModifierPhysicalArmorBonus()
 	return -10
 end
 
-function event_buff_plague_doctor_curse:magicres()
+function event_buff_plague_doctor_curse:GetModifierMagicalResistanceBonus()
 	return -25
 end
 

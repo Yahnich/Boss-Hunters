@@ -70,10 +70,6 @@ function modifier_stats_system_handler:UpdateStatValues()
 	if IsServer() then self:GetParent():CalculateStatBonus() end
 end
 
-function modifier_stats_system_handler:CheckState()
-	return {[MODIFIER_STATE_CANNOT_MISS] = self:RollPRNG(self.acc or 0) }
-end
-
 function modifier_stats_system_handler:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,
@@ -105,6 +101,7 @@ function modifier_stats_system_handler:GetModifierSpellAmplify_Percentage() retu
 function modifier_stats_system_handler:GetCooldownReduction() return self.cdr or 0 end
 function modifier_stats_system_handler:GetModifierAttackSpeedBonus_Constant() return self.as or 0 end
 function modifier_stats_system_handler:GetModifierStatusAmplify_Percentage() return self.sta or 0 end
+function modifier_stats_system_handler:GetAccuracy() return self.acc or 0 end
 
 function modifier_stats_system_handler:GetModifierPhysicalArmorBonus()
 	local bonusarmor = 0

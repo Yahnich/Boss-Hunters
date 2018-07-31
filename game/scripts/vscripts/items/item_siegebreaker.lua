@@ -12,12 +12,12 @@ function modifier_item_siegebreaker:OnCreated()
 	self.chance = self:GetSpecialValueFor("pierce_chance")
 end
 
-function modifier_item_siegebreaker:CheckState()
-	return {[MODIFIER_STATE_CANNOT_MISS] = self:RollPRNG(self.chance)}
-end
-
 function modifier_item_siegebreaker:DeclareFunctions()
 	return {MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,}
+end
+
+function modifier_item_siegebreaker:GetAccuracy()
+	return self.chance
 end
 
 function modifier_item_siegebreaker:GetModifierAttackRangeBonus()

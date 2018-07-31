@@ -63,7 +63,7 @@ if IsServer() then
 		local caster = self:GetCaster()
 		local ability = self:GetAbility()
 		if ability:GetAutoCastState() and caster:IsAlive() and ability:IsCooldownReady() and caster:GetMana() >= ability:GetManaCost(ability:GetLevel()) then
-			ability:Spray()
+			ability:CastAbility()
 		end
 	end
 end

@@ -13,15 +13,16 @@ function modifier_item_lance_of_longinus:OnCreated()
 	self.chance = self:GetSpecialValueFor("pierce_chance")
 end
 
-function modifier_item_lance_of_longinus:CheckState()
-	self.miss = self:RollPRNG(self.chance)
-	return {[MODIFIER_STATE_CANNOT_MISS] = self.miss}
-end
-
-
 function modifier_item_lance_of_longinus:DeclareFunctions()
 	return {MODIFIER_EVENT_ON_ATTACK_LANDED,
 			MODIFIER_PROPERTY_ATTACK_RANGE_BONUS}
+end
+
+function modifier_item_lance_of_longinus:GetAccuracy()
+	self.miss = self:RollPRNG(self.chance)
+	if self.miss then
+		return 100
+	end
 end
 
 function modifier_item_lance_of_longinus:OnAttackLanded(params)

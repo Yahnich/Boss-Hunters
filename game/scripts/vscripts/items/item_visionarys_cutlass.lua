@@ -14,17 +14,19 @@ function modifier_item_visionarys_cutlass:OnCreated()
 	self.bonus_damage = self:GetSpecialValueFor("bonus_damage")
 end
 
-function modifier_item_visionarys_cutlass:CheckState()
-	self.miss = self:RollPRNG(self.chance)
-	return {[MODIFIER_STATE_CANNOT_MISS] = self.miss}
-end
-
 function modifier_item_visionarys_cutlass:DeclareFunctions()
 	return {MODIFIER_EVENT_ON_ATTACK_LANDED,
 			MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE}
 end
 
-function modifier_item_visionarys_cutlass:OnAttackLanded(params)
+function modifier_item_visionarys_cutlass:GetAccuracy()
+	self.miss = self:RollPRNG(self.chance)
+	if self.miss then
+		return 100
+	end
+end
+
+function modifier_item_visionarys_cutlass:GetAccuracy(params)
 	if params.attacker == self:GetParent() and self.miss then
 		self.miss = false
 		self:GetAbility():DealDamage(params.attacker, params.target, self.damage, {damage_type = DAMAGE_TYPE_MAGICAL})

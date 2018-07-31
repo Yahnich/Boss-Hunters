@@ -12,18 +12,12 @@ function modifier_item_iron_rod:OnCreated()
 	self.damage = self:GetSpecialValueFor("pierce_damage")
 end
 
-function modifier_item_iron_rod:CheckState()
-	self.miss = self:RollPRNG(self.chance)
-	return {[MODIFIER_STATE_CANNOT_MISS] = self.miss}
-end
-
 function modifier_item_iron_rod:DeclareFunctions()
 	return {MODIFIER_EVENT_ON_ATTACK_LANDED}
 end
 
 function modifier_item_iron_rod:OnAttackLanded(params)
-	if params.attacker == self:GetParent() and self.miss then
-		self.miss = false
+	if params.attacker == self:GetParent() and self:RollPRNG(self.chance) then
 		self:GetAbility():DealDamage(params.attacker, params.target, self.damage, {damage_type = DAMAGE_TYPE_MAGICAL})
 	end
 end

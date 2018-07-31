@@ -1,13 +1,17 @@
 if StatsScreen == nil then
-  print ( 'creating skill selection manager' )
-  StatsScreen = {}
-  StatsScreen.__index = StatsScreen
+	print ( 'creating skill selection manager' )
+	StatsScreen = {}
+	StatsScreen.__index = StatsScreen
+	LinkLuaModifier( "modifier_stats_system_handler", "libraries/modifiers/modifier_stats_system_handler.lua", LUA_MODIFIER_MOTION_NONE)
+	LinkLuaModifier( "modifier_cooldown_reduction_handler", "libraries/modifiers/modifier_cooldown_reduction_handler.lua", LUA_MODIFIER_MOTION_NONE)
+	LinkLuaModifier( "modifier_base_attack_time_handler", "libraries/modifiers/modifier_base_attack_time_handler.lua", LUA_MODIFIER_MOTION_NONE)
+	LinkLuaModifier( "modifier_accuracy_handler", "libraries/modifiers/modifier_accuracy_handler.lua", LUA_MODIFIER_MOTION_NONE)
 end
 
 function StatsScreen:new( o )
-  o = o or {}
-  setmetatable( o, StatsScreen )
-  return o
+	o = o or {}
+	setmetatable( o, StatsScreen )
+	return o
 end
 
 function StatsScreen:StartStatsScreen()
@@ -82,6 +86,7 @@ function StatsScreen:RegisterPlayer(hero, bRespec)
 	hero:AddNewModifier(hero, nil, "modifier_stats_system_handler", {})
 	hero:AddNewModifier(hero, nil, "modifier_cooldown_reduction_handler", {})
 	hero:AddNewModifier(hero, nil, "modifier_base_attack_time_handler", {})
+	hero:AddNewModifier(hero, nil, "modifier_accuracy_handler", {})
 end
 
 function StatsScreen:ProcessStatsUpgrade(userid, event)

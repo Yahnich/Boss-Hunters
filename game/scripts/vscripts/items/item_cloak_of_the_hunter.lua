@@ -95,14 +95,12 @@ function modifier_item_cloak_of_the_hunter_passive_aura:OnCreated()
 	self.accuracy = self:GetSpecialValueFor("bonus_accuracy")
 end
 
-function modifier_item_cloak_of_the_hunter_passive_aura:CheckState()
-	local state = { [MODIFIER_STATE_CANNOT_MISS] = self:RollPRNG( self.accuracy ),}
-	
-	return state
-end
-
 function modifier_item_cloak_of_the_hunter_passive_aura:DeclareFunctions()
 	return {MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT}
+end
+
+function modifier_item_cloak_of_the_hunter_passive_aura:GetAccuracy()
+	return self.accuracy
 end
 
 function modifier_item_cloak_of_the_hunter_passive_aura:GetModifierAttackSpeedBonus_Constant()

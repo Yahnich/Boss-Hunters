@@ -14,15 +14,15 @@ function modifier_item_trebuchet:OnCreated()
 	self.stat = self:GetSpecialValueFor("bonus_all")
 end
 
-function modifier_item_trebuchet:CheckState()
-	return {[MODIFIER_STATE_CANNOT_MISS] = self:RollPRNG(self.chance)}
-end
-
 function modifier_item_trebuchet:DeclareFunctions()
 	return {MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
 			MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
 			MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
 			MODIFIER_PROPERTY_STATS_INTELLECT_BONUS}
+end
+
+function modifier_item_trebuchet:GetAccuracy()
+	return self.chance
 end
 
 function modifier_item_trebuchet:GetModifierBonusStats_Strength()

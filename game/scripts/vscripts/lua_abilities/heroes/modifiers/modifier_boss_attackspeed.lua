@@ -24,6 +24,16 @@ function modifier_boss_attackspeed:OnIntervalThink()
 	end
 end
 
+function modifier_boss_attackspeed:CheckState()
+	if IsServer() then
+		return {[MODIFIER_STATE_CANNOT_MISS] = self:RollPRNG( 15 + RoundManager:GetZonesFinished() * 10 ) }
+	end
+end
+
+function modifier_boss_attackspeed:GetPriority()
+	return MODIFIER_PRIORITY_LOW
+end
+
 function modifier_boss_attackspeed:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,

@@ -60,7 +60,7 @@ function UpdateHealthBar(unit)
 		if((unitName.match(/_h/g) != null || unitName.match(/_vh/g) != null)){
 			nameMod = ""
 		}
-		if( (nameMod != "") && ($.Localize("#" + unitName + nameMod) == "#" + unitName + nameMod) ){
+		if( (nameMod != "") && ($.Localize("#" + unitName + nameMod) == unitName + nameMod) ){
 			nameMod = ""
 		}
 		$("#bossNameLabel").text = $.Localize("#" + unitName + nameMod);
@@ -75,7 +75,8 @@ function UpdateHealthBar(unit)
 				var abilityID = Entities.GetAbility( sUnit, i )
 				var abilityName = 	Abilities.GetAbilityName( abilityID )
 				if (abilityName.match(/elite_/g)){
-					elite = elite + " " + $.Localize( "#DOTA_Tooltip_ability_" + abilityName )
+					// elite = elite + " " + $.Localize( "#DOTA_Tooltip_ability_" + abilityName )
+					$("#bossNameLabel").text = $.Localize( "#DOTA_Tooltip_ability_" + abilityName ) + " " + $("#bossNameLabel").text
 				}
 			}
 			if(elite != ""){

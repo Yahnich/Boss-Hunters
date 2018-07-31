@@ -122,5 +122,5 @@ function modifier_blood_hunger_strength:DeclareFunctions()
 end
 
 function modifier_blood_hunger_strength:GetModifierBonusStats_Strength()
-	return self:GetTalentSpecialValueFor("strength_bonus") + self:GetStackCount()
+	return self:GetTalentSpecialValueFor("strength_bonus") * self:GetStackCount()
 end

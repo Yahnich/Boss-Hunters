@@ -51,8 +51,8 @@ function modifier_item_boomstick_handle:DeclareFunctions()
 			}
 end
 
-function modifier_item_boomstick_handle:CheckState()
-	return {[MODIFIER_STATE_CANNOT_MISS] = self:RollPRNG(self.accuracy)}
+function modifier_item_boomstick_handle:GetAccuracy()
+	return self.accuracy
 end
 
 function modifier_item_boomstick_handle:OnAttackLanded(params)

@@ -144,13 +144,14 @@
 			{
 				"var_type"						"FIELD_INTEGER"
 				"radius"						"240 260 280 300 320 340 360"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"max_units"						"2"
 				"LinkedSpecialBonus"			"special_bonus_unique_ta_psi_blades_1"
 			}
+			// "04"
+			// {
+				// "var_type"						"FIELD_INTEGER"
+				// "max_units"						"2"
+				// "LinkedSpecialBonus"			"special_bonus_unique_ta_psi_blades_1"
+			// }
 		}
 	
 		"precache"
@@ -178,7 +179,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"3"
+				"value"						"340"
 			}
 		}
 	}
