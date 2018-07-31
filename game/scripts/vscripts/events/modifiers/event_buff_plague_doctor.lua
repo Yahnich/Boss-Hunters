@@ -1,11 +1,16 @@
 event_buff_plague_doctor_curse = class(relicBaseClass)
 
 function event_buff_plague_doctor_curse:DeclareFunctions()
-	return {MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE}
+	return {MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
+			MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS}
 end
 
-function event_buff_plague_doctor_curse:GetModifierHPRegenAmplify_Percentage()
-	return -100
+function event_buff_plague_doctor_curse:armor()
+	return -10
+end
+
+function event_buff_plague_doctor_curse:magicres()
+	return -25
 end
 
 function event_buff_plague_doctor_curse:IsDebuff( )
