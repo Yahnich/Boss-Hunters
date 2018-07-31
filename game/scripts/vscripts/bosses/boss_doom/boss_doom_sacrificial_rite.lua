@@ -33,7 +33,7 @@ function modifier_boss_doom_sacrificial_rite:DeclareFunctions()
 end
 
 function modifier_boss_doom_sacrificial_rite:OnTakeDamage(params)
-	if params.unit == self:GetParent() then
+	if params.unit == self:GetParent() and self:GetAbility():IsActivated() then
 		self.dmgTaken = (self.dmgTaken or 0) + params.damage
 		if self.dmgTaken > params.unit:GetMaxHealth() * self.threshold then
 			self.dmgTaken = 0

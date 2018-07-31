@@ -19,21 +19,22 @@ end
 
 function modifier_boss_necro_vile_aura:OnIntervalThink()
 	local parent = self:GetParent()
-	local position = parent:GetAbsOrigin() + ActualRandomVector(600, 150)
+	local position = parent:GetAbsOrigin() + ActualRandomVector(600, 250)
 	if RollPercentage(50) then -- random position
 		if parent:GetTauntTarget() then
-			position = parent:GetTauntTarget():GetAbsOrigin() + ActualRandomVector(600, 150)
+			position = parent:GetTauntTarget():GetAbsOrigin() + ActualRandomVector(600, 250)
 		else
 			for _, enemy in ipairs( parent:FindEnemyUnitsInRadius( parent:GetAbsOrigin(), -1 ) ) do
 				if RollPercentage(60) then
-					position = enemy:GetAbsOrigin() + ActualRandomVector(600, 150)
+					position = enemy:GetAbsOrigin() + ActualRandomVector(600, 250)
 					break
 				end
 			end
 		end
 	end
-	ParticleManager:FireWarningParticle( position, self:GetParent():GetHullRadius() )
-	Timers:CreateTimer(1, function()
+	self:StartIntervalThink( -1 )
+	ParticleManager:FireWarningParticle( position, self:GetParent():GetHullRadius() * 2.5 )
+	Timers:CreateTimer(1.5, function()
 		parent:Blink(position)
 		if IsServer() then self:StartIntervalThink( self:GetSpecialValueFor("blink_rate") ) end
 	end)

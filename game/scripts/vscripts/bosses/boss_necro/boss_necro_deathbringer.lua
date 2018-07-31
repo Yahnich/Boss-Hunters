@@ -37,5 +37,6 @@ function modifier_boss_necro_deathbringer_damage:DeclareFunctions()
 end
 
 function modifier_boss_necro_deathbringer_damage:GetModifierTotalDamageOutgoing_Percentage()
+	self:Destroy()
 	return self.amp
 end
