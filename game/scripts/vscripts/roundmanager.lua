@@ -12,9 +12,9 @@ end
 
 require("events/base_event")
 
-EVENTS_PER_RAID = 1
-RAIDS_PER_ZONE = 1
-ZONE_COUNT = 1
+EVENTS_PER_RAID = 3
+RAIDS_PER_ZONE = 4
+ZONE_COUNT = 2
 
 POSSIBLE_ZONES = {"Grove", "Elysium"}
 
@@ -61,11 +61,17 @@ end
 
 function RoundManager:VoteNewGame(userid, event)
 	self.votedToNG = (self.votedToSkipPrep or 0) + 1
-	local noVotes = HeroList:GetActiveHeroCount() - self.votedToSkipPrep
-	CustomGameEventManager:Send_ServerToAllClients("bh_update_votes_prep_time", {yes = self.votedToSkipPrep, no = noVotes})
-	if noVotes <= 0 then
+	local noVotes = HeroList:GetActiveHeroCount() - self.votedToNG
+	CustomGameEventManager:Send_ServerToAllClients("bh_update_votes_prep_time", {yes = self.votedToNG, no = noVotes})
+	if noVotes <= self.votedToNG then	
+		self.ng = true
+		self.ascensionLevel = 1
 		self.zones = {}
+		self.bossPool = LoadKeyValues('scripts/kv/boss_pool.txt')
+		self.eventPool = LoadKeyValues('scripts/kv/event_pool.txt')
+		self.combatPool = LoadKeyValues('scripts/kv/combat_pool.txt')
 		POSSIBLE_ZONES = {"Grove", "Elysium"}
+		self.prepTimer = 0
 		for i = 1, ZONE_COUNT do
 			local zoneName = POSSIBLE_ZONES[i]
 			RoundManager:ConstructRaids(zoneName)
@@ -405,20 +411,21 @@ end
 
 function RoundManager:GameIsFinished(bWon)
 	EventManager:FireEvent("boss_hunters_game_finished")
-	print("game is done", bWon)
 	if bWon then
 		self.prepTimer = 30
 		self.ng = false
 		CustomGameEventManager:Send_ServerToAllClients("bh_start_ng_vote", {})
-		print("new game vote activated")
 		GameRules.Winner = DOTA_TEAM_GOODGUYS
 		Timers(1, function()
 			CustomGameEventManager:Send_ServerToAllClients( "updateQuestPrepTime", { prepTime = math.floor(self.prepTimer + 0.5) } )
 			if self.prepTimer <= 0 then
 				if not self.ng then
 					GameRules:SetGameWinner(DOTA_TEAM_GOODGUYS)
+				else
+					RoundManager:StartGame()
 				end
 				CustomGameEventManager:Send_ServerToAllClients("bh_end_prep_time", {})
+				self.ng = false
 			else
 				self.prepTimer = self.prepTimer - 1
 				return 1
@@ -522,7 +529,7 @@ function RoundManager:InitializeUnit(unit, bElite)
 		end
 	end
 	
-	expectedHP = math.max( 1, ( (25 * RoundManager:GetRaidsFinished() ) + expectedHP ) * effPlayerHPMult )
+	expectedHP = math.max( 1, ( (10 * RoundManager:GetRaidsFinished() ) + expectedHP ) * effPlayerHPMult )
 	unit:SetBaseMaxHealth(expectedHP)
 	unit:SetMaxHealth(expectedHP)
 	unit:SetHealth(expectedHP)

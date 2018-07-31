@@ -35,13 +35,19 @@ function StartNGVote(args)
 	
 	var voteYes = $("#QuestPrepVoteConfirmButton")
 	var voteLabel = $("#QuestsPrepVoteDescriptionLabel")
-	voteLabel.text = "Do you want to ascend? Ascending resets the game, but you keep your items, relics and levels."
+	voteLabel.text = "Ascend?"
+	voteLabel.SetPanelEvent("onmouseover", function(){$.DispatchEvent("DOTAShowTextTooltip", voteLabel, "Ascending resets the game, but you keep your relics, levels and items.");});
+	voteLabel.SetPanelEvent("onmouseout", function(){$.DispatchEvent("DOTAHideTextTooltip", voteLabel);});
+	
+	$("#QuestPrepVoteNoLabel").text =  "No: " + 0
+	$("#QuestPrepVoteYesLabel").text =  "Yes: " + 0
+	
 	voteYes.SetPanelEvent("onmouseover", function(){voteYes.SetHasClass("ButtonHover", true);});
 	voteYes.SetPanelEvent("onmouseout", function(){voteYes.SetHasClass("ButtonHover", false);});
 	voteYes.SetPanelEvent("onactivate", VoteNG);
 }
 
-function VoteSkipPrep()
+function VoteNG()
 {
 	$("#QuestsPrepVoteHolder").visible =  false
 	if(pressed == false){
@@ -91,6 +97,8 @@ function StartPrepVote(args)
 	var voteYes = $("#QuestPrepVoteConfirmButton")
 	var voteLabel = $("#QuestsPrepVoteDescriptionLabel")
 	voteLabel.text = "Skip preparation time?"
+	$("#QuestPrepVoteNoLabel").text =  "No: " + 0
+	$("#QuestPrepVoteYesLabel").text =  "Yes: " + 0
 	voteYes.SetPanelEvent("onmouseover", function(){voteYes.SetHasClass("ButtonHover", true);});
 	voteYes.SetPanelEvent("onmouseout", function(){voteYes.SetHasClass("ButtonHover", false);});
 	voteYes.SetPanelEvent("onactivate", VoteSkipPrep);

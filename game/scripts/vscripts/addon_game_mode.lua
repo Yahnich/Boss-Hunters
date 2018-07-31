@@ -723,26 +723,6 @@ function CHoldoutGameMode:OnAbilityUsed(event)
 	if abilityname == "pangolier_shield_crash" then
 		hero:AddNewModifier(hero, abilityused, "modifier_pangolier_shield_crash_buff", {duration = abilityused:GetTalentSpecialValueFor("duration")}):SetStackCount( abilityused:GetTalentSpecialValueFor("hero_stacks") )
 	end
-	if hero:GetName() == "npc_dota_hero_rubick"  and abilityname ~= "rubick_spell_steal" and hero:IsRealHero() then
-		local spell_echo = hero:FindAbilityByName("rubick_spell_echo")
-		if spell_echo:GetLevel()-1 >= 0 then
-			if hero:FindAbilityByName(abilityname) then
-				local ability = hero:FindAbilityByName(abilityname)
-				spell_echo.echo = ability
-				spell_echo.echotime = GameRules:GetGameTime()
-				if ability:GetCursorTarget() then
-					spell_echo.echotarget = ability:GetCursorTarget()
-					spell_echo.type = DOTA_ABILITY_BEHAVIOR_UNIT_TARGET
-				elseif ability:GetCursorTargetingNothing() then
-					spell_echo.echotarget = ability:GetCursorTargetingNothing()
-					spell_echo.type = DOTA_ABILITY_BEHAVIOR_NO_TARGET
-				elseif ability:GetCursorPosition() then
-					spell_echo.echotarget = ability:GetCursorPosition()
-					spell_echo.type = DOTA_ABILITY_BEHAVIOR_POINT
-				end
-			end
-		end
-	end
 end
 
 function CHoldoutGameMode:Tell_threat(event)

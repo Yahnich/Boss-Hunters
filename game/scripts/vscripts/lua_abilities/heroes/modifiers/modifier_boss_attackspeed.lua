@@ -56,12 +56,11 @@ function modifier_boss_attackspeed:GetModifierManaBonus( params )
 end]]
 
 function modifier_boss_attackspeed:GetModifierPreAttack_CriticalStrike( params )
-	self.min = self.min or true
-	if self:RollPRNG( 5 * self:GetStackCount() ) and self.min then	
-		self.min = false
+	local maxTick = 100 / ( 5 * self:GetStackCount() )
+	self.ticks = (self.ticks or 0) + 1
+	if self.ticks >= maxTick then	
+		self.ticks = 0
 		return 175
-	elseif not self.min then
-		self.min = true
 	end
 end
 
