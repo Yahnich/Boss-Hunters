@@ -32,16 +32,36 @@ local function StartCombat(self, bFight)
 	if bFight then
 		self.timeRemaining = 0
 		self.combatStarted = true
-		self.undying = math.min(1, 0 + math.ceil(RoundManager:GetRaidsFinished() / 3))
-		self.zombos = math.ceil( (2 + RoundManager:GetEventsFinished() ) * HeroList:GetActiveHeroCount() / 1.5 )
+		self.undying = math.min(2, 0 + math.ceil(RoundManager:GetRaidsFinished() / 2))
+		self.zombos = math.floor( (2 + RoundManager:GetRaidsFinished() ) * HeroList:GetActiveHeroCount() / 1.5 )
 		self.enemiesToSpawn = self.undying + self.zombos
 		Timers:CreateTimer(3, function()
-			local spawn = CreateUnitByName("npc_dota_boss4", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
+			local boss = "npc_dota_boss4"
+			if RollPercentage(33) then
+				boss = "npc_dota_boss7"
+			elseif RollPercentage(20) then
+				boss = "npc_dota_boss22"
+			end
+			local spawn = CreateUnitByName(boss, RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
 			spawn.unitIsRoundBoss = true
 			self.undying = self.undying - 1
 			self.enemiesToSpawn = self.enemiesToSpawn - 1
 			if self.undying > 0 then
 				return 15
+			end
+		end)
+		Timers:CreateTimer(5, function()
+			local zombie = "npc_dota_boss3a"
+			if RollPercentage(33) then
+				zombie = "npc_dota_boss3b"
+			end
+			local spawn = CreateUnitByName(zombie, RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
+			spawn.unitIsRoundBoss = true
+			
+			self.zombos = self.zombos - 1
+			self.enemiesToSpawn = self.enemiesToSpawn - 1
+			if self.zombos > 0 then
+				return 5
 			end
 		end)
 		Timers:CreateTimer(5, function()
@@ -141,6 +161,8 @@ local function PrecacheUnits(self, context)
 	PrecacheUnitByNameSync("npc_dota_boss3a_b", context)
 	PrecacheUnitByNameSync("npc_dota_boss3b", context)
 	PrecacheUnitByNameSync("npc_dota_mini_boss1", context)
+	PrecacheUnitByNameSync("npc_dota_boss7", context)
+	PrecacheUnitByNameSync("npc_dota_boss22", context)
 	return true
 end
 

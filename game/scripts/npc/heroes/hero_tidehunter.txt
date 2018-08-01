@@ -139,7 +139,7 @@
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
 	    "AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
 	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
-		"AbilityUnitDamageType"         "DAMAGE_TYPE_PHYSICAL   
+		"AbilityUnitDamageType"         "DAMAGE_TYPE_PHYSICAL"
 		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityTextureName"			"tidehunter_ravage"
