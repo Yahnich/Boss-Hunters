@@ -60,12 +60,12 @@ function RoundManager:VoteSkipPrepTime(userid, event)
 end
 
 function RoundManager:VoteNewGame(userid, event)
-	self.votedToNG = (self.votedToSkipPrep or 0) + 1
+	self.votedToNG = (self.votedToNG or 0) + 1
 	local noVotes = HeroList:GetActiveHeroCount() - self.votedToNG
 	CustomGameEventManager:Send_ServerToAllClients("bh_update_votes_prep_time", {yes = self.votedToNG, no = noVotes})
 	if noVotes <= self.votedToNG then	
 		self.ng = true
-		self.ascensionLevel = 1
+		self.ascensionLevel = (self.ascensionLevel or 0) + 1
 		self.zones = {}
 		self.bossPool = LoadKeyValues('scripts/kv/boss_pool.txt')
 		self.eventPool = LoadKeyValues('scripts/kv/event_pool.txt')
@@ -132,6 +132,8 @@ function RoundManager:OnHoldoutReviveComplete( event )
 		castingHero.Resurrections = (castingHero.Resurrections or 0) + 1
 		target:AddNewModifier(target, nil, "modifier_tombstone_respawn_immunity", {duration = 3})
 		castingHero:AddGold(self._nRoundNumber)
+		local position = target:GetAbsOrigin()
+		Timers:CreateTimer(0.1, function() FindClearSpaceForUnit(target, position, true) end)
 	end
 	target.tombstoneEntity = nil
 end
@@ -249,7 +251,7 @@ function RoundManager:StartPrepTime(fPrep)
 				PlayerResource:SetCustomBuybackCost(hero:GetPlayerID(), 100 + RoundManager:GetEventsFinished() * 25)
 			end
 		end
-		ResolveNPCPositions( event.heroSpawnPosition, 150 )
+		ResolveNPCPositions( event:GetHeroSpawnPosition(), 150 )
 		for _, hero in ipairs( HeroList:GetRealHeroes() ) do
 			hero:SetRespawnPosition( GetGroundPosition(hero:GetAbsOrigin(), hero) )
 		end
@@ -472,6 +474,11 @@ function RoundManager:GetZonesFinished()
 	return self.zonesFinished or 0
 end
 
+function RoundManager:GetAscensions()
+	self.ascensionLevel = self.ascensionLevel or 0
+	return self.ascensionLevel or 0
+end
+
 function RoundManager:GetCurrentEventName()
 	return self.zones[self.currentZone][1][1]:GetEventName()
 end
@@ -489,20 +496,20 @@ function RoundManager:InitializeUnit(unit, bElite)
 	local expectedHP = unit:GetBaseMaxHealth() * RandomFloat(0.9, 1.1)
 	local expectedDamage = ( unit:GetAverageBaseDamage() + (RoundManager:GetEventsFinished() * 2) ) * RandomFloat(0.85, 1.15)
 	local playerHPMultiplier = 0.4
-	local playerDMGMultiplier = 0.1
+	local playerDMGMultiplier = 0.075
 	local playerArmorMultiplier = 0.05
 	if GameRules:GetGameDifficulty() == 4 then 
 		expectedHP = expectedHP * 1.5
 		expectedDamage = expectedDamage * 1.2
-		playerHPMultiplier = 0.6 
-		playerDMGMultiplier = 0.15
+		playerHPMultiplier = 0.55 
+		playerDMGMultiplier = 0.1
 		playerArmorMultiplier = 0.12
 	end
 	local effective_multiplier = (HeroList:GetActiveHeroCount() - 1) 
 	
-	local effPlayerHPMult =  0.6 + ( (RoundManager:GetEventsFinished() * 0.1) + (RoundManager:GetRaidsFinished() * 1.25 ) + ( RoundManager:GetZonesFinished() * 4 )  ) + ( effective_multiplier * playerHPMultiplier )
-	local effPlayerDMGMult = ( 0.5 + (RoundManager:GetEventsFinished() * 0.05) + (RoundManager:GetRaidsFinished() * 0.45) + ( RoundManager:GetZonesFinished() * 2 ) ) + ( effective_multiplier * playerDMGMultiplier )
-	local effPlayerArmorMult = 0.7 + (effective_multiplier * playerArmorMultiplier)
+	local effPlayerHPMult =  (0.6 + (RoundManager:GetEventsFinished() * 0.1)) * ( 1 + RoundManager:GetRaidsFinished() * 0.33 ) * ( 1 + RoundManager:GetZonesFinished() * 0.25 ) * ( 1 + RoundManager:GetAscensions() * 0.1 )  * (1 + effective_multiplier * playerHPMultiplier )
+	local effPlayerDMGMult = ( 0.5 + (RoundManager:GetEventsFinished() * 0.05)) * ( 1 + RoundManager:GetRaidsFinished() * 0.1) * ( 1 + RoundManager:GetZonesFinished() * 0.08 ) * (1 + RoundManager:GetAscensions() * 0.2 ) * (0.8 + effective_multiplier * playerDMGMultiplier )
+	local effPlayerArmorMult = 0.7 + (effective_multiplier * playerArmorMultiplier) 
 	
 	if bElite then
 		effPlayerHPMult = effPlayerHPMult * 1.35
@@ -529,7 +536,7 @@ function RoundManager:InitializeUnit(unit, bElite)
 		end
 	end
 	
-	expectedHP = math.max( 1, ( (10 * RoundManager:GetRaidsFinished() ) + expectedHP ) * effPlayerHPMult )
+	expectedHP = math.max( 1, expectedHP * effPlayerHPMult )
 	unit:SetBaseMaxHealth(expectedHP)
 	unit:SetMaxHealth(expectedHP)
 	unit:SetHealth(expectedHP)

@@ -8,6 +8,10 @@ function chaos_knight_phantasm_ebf:IsHiddenWhenStolen()
 	return false
 end
 
+function chaos_knight_phantasm_ebf:GetCastAnimation()
+	return ACT_DOTA_CAST_ABILITY_4
+end
+
 function chaos_knight_phantasm_ebf:GetBehavior()
 	if self:GetCaster():HasScepter() then
 		return DOTA_ABILITY_BEHAVIOR_UNIT_TARGET
@@ -41,6 +45,7 @@ if IsServer() then
 					illusions = illusions + 1
 				end
 			end
+			target:EmitSound("Hero_ChaosKnight.Phantasm.Plus")
 		end
 		
 		local firstDir = -target:GetForwardVector()
@@ -51,19 +56,20 @@ if IsServer() then
 		local delay = self:GetTalentSpecialValueFor("invuln_duration")
 		target:Dispel(caster)
 		
-		ParticleManager:FireParticle("", PATTACH_POINT_FOLLOW, target)
-		target:EmitSound("")
+		local cFX = ParticleManager:CreateParticle("particles/units/heroes/hero_chaos_knight/chaos_knight_phantasm.vpcf", PATTACH_POINT_FOLLOW, target)
+		target:EmitSound("Hero_ChaosKnight.Phantasm")
 		
 		target:AddNewModifier(caster, self, "modifier_invulnerable", {duration = delay})
 		Timers:CreateTimer(delay, function()
+			ParticleManager:ClearParticle(cFX)
 			if caster:HasTalent("special_bonus_unique_chaos_knight_phantasm_1") then
 				local cBolt = caster:FindAbilityByName("chaos_knight_chaos_bolt_ebf")
 				local cStrike = caster:FindAbilityByName("chaos_knight_chaos_strike_ebf")
 				if cStrike then
-					illusion:AddNewModifier( caster, self, "modifier_chaos_knight_chaos_strike_actCrit", {} )
+					caster:AddNewModifier( caster, cStrike, "modifier_chaos_knight_chaos_strike_actCrit", {} )
 				end
 				if cBolt then
-					local enemy = caster:FindRandomEnemyInRadius( illusion:GetAbsOrigin(), cBolt:GetTrueCastRange() )
+					local enemy = caster:FindRandomEnemyInRadius( caster:GetAbsOrigin(), cBolt:GetTrueCastRange() )
 					if enemy then 
 						cBolt:ThrowChaosBolt(enemy, target)
 					end
@@ -75,16 +81,17 @@ if IsServer() then
 					local cBolt = caster:FindAbilityByName("chaos_knight_chaos_bolt_ebf")
 					local cStrike = caster:FindAbilityByName("chaos_knight_chaos_strike_ebf")
 					if cStrike then
-						illusion:AddNewModifier( caster, self, "modifier_chaos_knight_chaos_strike_actCrit", {} )
+						illusion:AddNewModifier( caster, cStrike, "modifier_chaos_knight_chaos_strike_actCrit", {} )
 					end
 					if cBolt then
 						local enemy = caster:FindRandomEnemyInRadius( illusion:GetAbsOrigin(), cBolt:GetTrueCastRange() )
 						if enemy then 
-							cBolt:ThrowChaosBolt(enemy, target)
+							cBolt:ThrowChaosBolt(enemy, illusion)
 						end
 					end
 				end
 			end
-		end
+		end)
 	end
 end
+

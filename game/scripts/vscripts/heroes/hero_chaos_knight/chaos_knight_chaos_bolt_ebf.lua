@@ -25,7 +25,7 @@ if IsServer() then
 			Ability = self,
 			vSourceLoc = source:GetAbsOrigin(),
 			EffectName = "particles/units/heroes/hero_chaos_knight/chaos_knight_chaos_bolt.vpcf",
-			bDodgable = true
+			bDodgable = true,
 			bProvidesVision = false,
 			iMoveSpeed = self:GetTalentSpecialValueFor("chaos_bolt_speed"),
 			iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_ATTACK_1,

@@ -25,7 +25,7 @@ function BaseEvent:constructor(zoneName, eventType, eventName)
 	for functionName, functionMethod in pairs( funcs ) do
 		self[functionName] = functionMethod
 	end
-	print(zoneName, eventName, RoundManager.eventsCreated,"created")
+	print(zoneName, eventName, RoundManager.eventsCreated ,"created")
 end
 
 function BaseEvent:StartEvent()
@@ -46,6 +46,7 @@ function BaseEvent:GetZone()
 end
 
 function BaseEvent:LoadSpawns()
+	print( self.spawnLoadCompleted, "what")
 	if not self.spawnLoadCompleted then
 		RoundManager.spawnPositions = {}
 		local zoneName = self:GetZone()
@@ -57,11 +58,13 @@ function BaseEvent:LoadSpawns()
 		end
 		local roll = RandomInt(1,choices)
 		RoundManager.boundingBox = string.lower(zoneName).."_"..eventType.."_"..roll
+		print( RoundManager.boundingBox, "bounding box" )
 		for _,spawnPos in ipairs( Entities:FindAllByName( RoundManager.boundingBox.."_spawner" ) ) do
 			table.insert( RoundManager.spawnPositions, spawnPos:GetAbsOrigin() )
 		end
 		self.heroSpawnPosition = self.heroSpawnPosition or nil
 		for _,spawnPos in ipairs( Entities:FindAllByName( RoundManager.boundingBox.."_heroes") ) do
+			print("?")
 			self.heroSpawnPosition = spawnPos:GetAbsOrigin()
 			break
 		end

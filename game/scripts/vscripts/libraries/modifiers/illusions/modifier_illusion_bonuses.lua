@@ -15,7 +15,7 @@ function modifier_illusion_bonuses:GetModifierAttackRangeBonus( params )
 end
 
 function modifier_illusion_bonuses:GetModifierAttackSpeedBonus_Constant( params )
-    return self:GetCaster():GetIncreasedAttackSpeed()
+    return self:GetCaster():GetIncreasedAttackSpeed() * 100
 end
 
 function modifier_illusion_bonuses:GetModifierProjectileSpeedBonus()

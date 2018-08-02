@@ -1911,7 +1911,8 @@ end
 
 function CDOTA_BaseNPC:Dispel(hCaster, bHard)
 	local sameTeam = (hCaster:GetTeam() == self:GetTeam())
-	self:Purge(not sameTeam, sameTeam, false, bHard, bHard)
+	local hardDispel = bHard or false
+	self:Purge(not sameTeam, sameTeam, false, hardDispel, hardDispel)
 end
 
 function CDOTA_BaseNPC:SmoothFindClearSpace(position)

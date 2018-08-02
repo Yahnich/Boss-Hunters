@@ -248,11 +248,13 @@ function CHoldoutGameMode:InitGameMode()
 																	return 1
 																end)
 															end, "test",0)
-	Convars:RegisterCommand( "bh_test_round", function( zone, roundName, roundType )
+	Convars:RegisterCommand( "bh_test_round", function( command, zone, roundName, roundType )
 											if Convars:GetDOTACommandClient() and IsInToolsMode() then
-												RoundManager.zones[RoundManager.currentZone][1][1] = BaseEvent(zone, roundType, roundName )
 												RoundManager:EndEvent(false)
 												RoundManager:EndPrepTime(true)
+												local event = BaseEvent(zone, roundType, roundName )
+												RoundManager.zones[RoundManager.currentZone][1][1] = event
+												event:LoadSpawns()
 												GameRules:SetLives(3)
 												RoundManager:StartPrepTime()
 											end

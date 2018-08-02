@@ -1,6 +1,6 @@
 local function StartEvent(self)
 	local spawnPos = RoundManager:PickRandomSpawn()
-	self.enemiesToSpawn = math.min( 10, math.ceil( math.log( 1 + RoundManager:GetRaidsFinished() ) * 1.5) )
+	self.enemiesToSpawn = math.min( 2, math.ceil( math.log( 1 + RoundManager:GetRaidsFinished() * 15 ) * 1.5) )
 	self.eventHandler = Timers:CreateTimer(3, function()
 		local position = RoundManager:PickRandomSpawn()
 		local bigSpider = CreateUnitByName("npc_dota_creature_broodmother", position, true, nil, nil, DOTA_TEAM_BADGUYS)

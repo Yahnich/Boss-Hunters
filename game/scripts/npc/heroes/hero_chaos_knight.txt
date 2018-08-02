@@ -309,6 +309,7 @@
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO"
 		"AbilityCastRange"				"1200"
 		"HasScepterUpgrade"				"1"
+		"AbilityTextureName"			"chaos_knight_phantasm"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -322,6 +323,11 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"				"125 200 275 350 425 500"
 
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_chaos_knight/chaos_knight_phantasm.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_chaos_knight.vsndevts"
+		}
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"

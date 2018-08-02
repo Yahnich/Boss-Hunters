@@ -46,6 +46,20 @@ function puck_reverie_snap:ReverieSnap(position)
 		enemy:AddNewModifier(caster, self, "modifier_puck_reverie_snap_pull", {duration = suckDur})
 	end
 	
+	if caster:HasScepter() then
+		local illusoryOrb = caster:FindAbilityByName( "puck_illusory_orb_ebf" )
+		if illusoryOrb then
+			local orbs = self:GetTalentSpecialValueFor("scepter_orbs")
+			local speed = illusoryOrb:GetTalentSpecialValueFor("orb_speed")
+			local direction =  caster:GetForwardVector()
+			local angle = 360 / orbs
+			for i = 1, orbs do
+				illusoryOrb:CreateOrb(speed * direction, position)
+				direction = RotateVector2D( direction, ToRadians(angle) )
+			end
+		end
+	end
+	
 	Timers:CreateTimer(suckDur, function()
 		EmitSoundOnLocationWithCaster(vPos, "Hero_Puck.Dream_Coil", caster)
 		CreateModifierThinker(caster, self, "modifier_puck_reverie_snap_coil", {duration = self:GetTalentSpecialValueFor("coil_duration")}, vPos, caster:GetTeam(), false)

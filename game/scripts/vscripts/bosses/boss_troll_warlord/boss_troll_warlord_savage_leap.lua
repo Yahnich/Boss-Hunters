@@ -95,7 +95,10 @@ end
 
 modifier_boss_troll_warlord_savage_leap_ride = class({})
 function modifier_boss_troll_warlord_savage_leap_ride:OnCreated(table)
-	if IsServer() then self:StartIntervalThink(FrameTime()) end
+	if IsServer() then 
+		self:StartIntervalThink(FrameTime())
+		self:GetParent():FindAbilityByName("boss_troll_warlord_axe_fury"):SetActivated(true)
+	end
 end
 
 function modifier_boss_troll_warlord_savage_leap_ride:OnIntervalThink()
@@ -112,6 +115,7 @@ function modifier_boss_troll_warlord_savage_leap_ride:OnRemoved()
 		FindClearSpaceForUnit(self:GetParent(), self:GetParent():GetAbsOrigin(), false)
 		self:GetAbility().enemy = nil
 		self:GetParent():SetForceAttackTarget(nil)
+		self:GetParent():FindAbilityByName("boss_troll_warlord_axe_fury"):SetActivated(false)
 	end
 end
 

@@ -35,7 +35,14 @@ end
 modifier_boss_troll_warlord_axe_fury = class({})
 function modifier_boss_troll_warlord_axe_fury:OnCreated(table)
 	if IsServer() then
+		self:GetCaster():FindAbilityByName("boss_troll_warlord_savage_leap"):SetActivated(false)
 		self:StartIntervalThink(FrameTime())
+	end
+end
+
+function modifier_boss_troll_warlord_axe_fury:OnRemoved(table)
+	if IsServer() then
+		self:GetCaster():FindAbilityByName("boss_troll_warlord_savage_leap"):SetActivated(true)
 	end
 end
 
