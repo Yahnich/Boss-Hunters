@@ -284,6 +284,7 @@ function FindUnitsInCone(teamNumber, vDirection, vPosition, flSideRadius, flLeng
 end
 
 function CDOTA_BaseNPC:Blink(position)
+	if self:IsNull() then return end
 	EmitSoundOn("DOTA_Item.BlinkDagger.Activate", self)
 	ParticleManager:FireParticle("particles/items_fx/blink_dagger_start.vpcf", PATTACH_ABSORIGIN, self, {[0] = self:GetAbsOrigin()})
 	FindClearSpaceForUnit(self, position, true)
@@ -2514,8 +2515,8 @@ function CDOTA_BaseNPC_Hero:AddGold(val)
 	local gold = val or 0
 	if gold >= 0 then
 		for _, modifier in pairs(self:FindAllModifiers()) do
-			if modifier.GetBonusGold then
-				gold = gold * math.max( 0, (1 + (modifier.GetBonusGold() / 100)) )
+			if modifier.GetBonusGold and modifier:GetBonusGold() then
+				gold = gold * math.max( 0, (1 + (modifier:GetBonusGold() / 100)) )
 			end
 		end
 	end
@@ -2528,7 +2529,7 @@ function CDOTA_BaseNPC_Hero:AddXP( val )
 	local xp = val or 0
 	if xp >= 0 then
 		for _, modifier in pairs(self:FindAllModifiers()) do
-			if modifier.GetBonusExp then
+			if modifier.GetBonusExp and modifier:GetBonusExp() then
 				xp = xp * math.max( 0, (1 + (modifier.GetBonusExp() / 100)) )
 			end
 		end

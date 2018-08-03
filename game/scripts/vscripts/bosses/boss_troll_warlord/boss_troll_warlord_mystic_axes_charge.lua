@@ -22,6 +22,7 @@ function boss_troll_warlord_mystic_axes_charge:OnSpellStart()
 	local speed = self:GetSpecialValueFor("speed")*FrameTime()
 	local damage = self:GetSpecialValueFor("damage")
 	Timers:CreateTimer(function()
+		if self:IsNull() then return end
 		if self.distance > 0 then
 			self.distance = self.distance - speed
 			GridNav:DestroyTreesAroundPoint(caster:GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"), true)

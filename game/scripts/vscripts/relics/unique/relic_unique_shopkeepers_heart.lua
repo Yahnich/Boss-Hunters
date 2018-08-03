@@ -7,7 +7,6 @@ function relic_unique_shopkeepers_heart:OnCreated(kv)
 end
 
 function relic_unique_shopkeepers_heart:OnEventFinished(args)
-	EVENT_TYPE_EVENT = 3
 	self:GetParent():AddGold( 150 )
 	self:GetParent():AddXP( 150 )
 end

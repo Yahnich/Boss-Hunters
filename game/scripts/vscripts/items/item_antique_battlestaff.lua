@@ -27,7 +27,6 @@ end
 
 function modifier_item_antique_battlestaff:GetAccuracy()
 	self.miss = self:RollPRNG(self.chance)
-	print("?")
 	if self.miss then
 		return 100
 	end

@@ -65,6 +65,7 @@ function RoundManager:VoteNewGame(userid, event)
 	CustomGameEventManager:Send_ServerToAllClients("bh_update_votes_prep_time", {yes = self.votedToNG, no = noVotes})
 	if noVotes <= self.votedToNG then	
 		self.ng = true
+		self.votedToNG = 0
 		self.ascensionLevel = (self.ascensionLevel or 0) + 1
 		self.zones = {}
 		self.bossPool = LoadKeyValues('scripts/kv/boss_pool.txt')
@@ -161,7 +162,6 @@ end
 
 function RoundManager:ConstructRaids(zoneName)
 	self.zones[zoneName] = {}
-	
 	local zoneEventPool = TableToWeightedArray( self.eventPool[zoneName] )
 	local zoneCombatPool = TableToWeightedArray( self.combatPool[zoneName] )
 	local zoneBossPool = TableToWeightedArray( self.bossPool[zoneName] )
@@ -484,6 +484,94 @@ function RoundManager:GameIsFinished(bWon)
 	end
 end
 
+function RoundManager:InitializeUnit(unit, bElite)
+	unit.hasBeenInitialized = true
+	local expectedHP = unit:GetBaseMaxHealth() * RandomFloat(0.9, 1.1)
+	local expectedDamage = ( unit:GetAverageBaseDamage() + (RoundManager:GetEventsFinished() * 2) ) * RandomFloat(0.85, 1.15)
+	local playerHPMultiplier = 0.4
+	local playerDMGMultiplier = 0.075
+	local playerArmorMultiplier = 0.05
+	if GameRules:GetGameDifficulty() == 4 then 
+		expectedHP = expectedHP * 1.5
+		expectedDamage = expectedDamage * 1.2
+		playerHPMultiplier = 0.55 
+		playerDMGMultiplier = 0.1
+		playerArmorMultiplier = 0.12
+	end
+	local effective_multiplier = (HeroList:GetActiveHeroCount() - 1) 
+	
+	local effPlayerHPMult =  (0.6 + (RoundManager:GetEventsFinished() * 0.1)) * ( 1 + RoundManager:GetRaidsFinished() * 0.33 ) * ( 1 + RoundManager:GetZonesFinished() * 0.25 ) * ( 1 + RoundManager:GetAscensions() * 0.08 )  * (1 + effective_multiplier * playerHPMultiplier )
+	local effPlayerDMGMult = ( 0.5 + (RoundManager:GetEventsFinished() * 0.05)) * ( 1 + RoundManager:GetRaidsFinished() * 0.1) * ( 1 + RoundManager:GetZonesFinished() * 0.08 ) * (1 + RoundManager:GetAscensions() * 0.2 ) * (0.8 + effective_multiplier * playerDMGMultiplier )
+	local effPlayerArmorMult = 0.7 + (effective_multiplier * playerArmorMultiplier) 
+	
+	if bElite then
+		effPlayerHPMult = effPlayerHPMult * 1.35
+		effPlayerDMGMult = effPlayerDMGMult * 1.2
+		
+		
+		local nParticle = ParticleManager:CreateParticle( "particles/econ/courier/courier_onibi/courier_onibi_yellow_ambient_smoke_lvl21.vpcf", PATTACH_ABSORIGIN_FOLLOW, unit )
+		ParticleManager:ReleaseParticleIndex( nParticle )
+		unit:SetModelScale(unit:GetModelScale()*1.15)
+		
+		local eliteTypes = {}
+		for eliteType, activated in pairs(GameRules._Elites) do
+			if activated ~= "0" then
+				table.insert(eliteTypes, eliteType)
+			end
+		end
+		
+		for i = 1, ELITE_ABILITIES_TO_GIVE do
+			local roll = RandomInt(1, #eliteTypes)
+			local eliteAbName = eliteTypes[roll]
+			table.remove(eliteTypes, roll)
+			local eliteAb = unit:AddAbilityPrecache(eliteAbName)
+			eliteAb:SetLevel(eliteAb:GetMaxLevel())
+		end
+	end
+	
+	expectedHP = math.max( 1, expectedHP * effPlayerHPMult )
+	unit:SetBaseMaxHealth(expectedHP)
+	unit:SetMaxHealth(expectedHP)
+	unit:SetHealth(expectedHP)
+	
+	unit:SetAverageBaseDamage( expectedDamage * effPlayerDMGMult, 33)
+	unit:SetBaseHealthRegen(RoundManager:GetEventsFinished() * RandomFloat(0.85, 1.15) )
+	unit:SetPhysicalArmorBaseValue( (unit:GetPhysicalArmorBaseValue() + (RoundManager:GetRaidsFinished() * 1.5) ) * effPlayerArmorMult )
+	
+	unit:AddNewModifier(unit, nil, "modifier_boss_attackspeed", {})
+	local powerScale = unit:AddNewModifier(unit, nil, "modifier_power_scaling", {})
+	if powerScale then powerScale:SetStackCount( math.floor( (RoundManager:GetEventsFinished() * 0.2) * ( (1 + (RoundManager:GetRaidsFinished() * 4 ) + ( RoundManager:GetZonesFinished() * 6 ) ) * (RoundManager:GetAscensions() * 1.5) ) ) ) end
+	unit:AddNewModifier(unit, nil, "modifier_spawn_immunity", {duration = 4/GameRules.gameDifficulty})
+	if unit:IsRoundBoss() then
+		local evasion = unit:AddNewModifier(unit, nil, "modifier_boss_evasion", {})
+		if evasion then evasion:SetStackCount( RoundManager:GetEventsFinished() ) end
+	end
+	
+	
+	if unit:GetHullRadius() <= 16 then
+		unit:SetHullRadius( math.ceil(16 * unit:GetModelScale() ) )
+	end
+	
+	unit:SetMaximumGoldBounty(0)
+	unit:SetMinimumGoldBounty(0)
+	unit:SetDeathXP(0)
+end
+
+function RoundManager:PrecacheRounds(context)
+	for zone, raids in pairs( self.zones ) do
+		for _, raid in pairs( raids ) do
+			for _, event in pairs(raid) do
+				event:PrecacheUnits(context)
+			end
+		end
+	end
+end
+
+
+
+
+--- UTILITY FUNCTIONS
+
 function RoundManager:GetCurrentEvent()
 	if self.currentZone and self.zones[self.currentZone] and self.zones[self.currentZone][1] then
 		return self.zones[self.currentZone][1][1]
@@ -530,88 +618,9 @@ function RoundManager:GetCurrentZone()
 end
 
 function RoundManager:IsRoundGoing()
-	return self:GetCurrentEvent():HasStarted()
-end
-
-function RoundManager:InitializeUnit(unit, bElite)
-	unit.hasBeenInitialized = true
-	local expectedHP = unit:GetBaseMaxHealth() * RandomFloat(0.9, 1.1)
-	local expectedDamage = ( unit:GetAverageBaseDamage() + (RoundManager:GetEventsFinished() * 2) ) * RandomFloat(0.85, 1.15)
-	local playerHPMultiplier = 0.4
-	local playerDMGMultiplier = 0.075
-	local playerArmorMultiplier = 0.05
-	if GameRules:GetGameDifficulty() == 4 then 
-		expectedHP = expectedHP * 1.5
-		expectedDamage = expectedDamage * 1.2
-		playerHPMultiplier = 0.55 
-		playerDMGMultiplier = 0.1
-		playerArmorMultiplier = 0.12
-	end
-	local effective_multiplier = (HeroList:GetActiveHeroCount() - 1) 
-	
-	local effPlayerHPMult =  (0.6 + (RoundManager:GetEventsFinished() * 0.1)) * ( 1 + RoundManager:GetRaidsFinished() * 0.33 ) * ( 1 + RoundManager:GetZonesFinished() * 0.25 ) * ( 1 + RoundManager:GetAscensions() * 0.1 )  * (1 + effective_multiplier * playerHPMultiplier )
-	local effPlayerDMGMult = ( 0.5 + (RoundManager:GetEventsFinished() * 0.05)) * ( 1 + RoundManager:GetRaidsFinished() * 0.1) * ( 1 + RoundManager:GetZonesFinished() * 0.08 ) * (1 + RoundManager:GetAscensions() * 0.2 ) * (0.8 + effective_multiplier * playerDMGMultiplier )
-	local effPlayerArmorMult = 0.7 + (effective_multiplier * playerArmorMultiplier) 
-	
-	if bElite then
-		effPlayerHPMult = effPlayerHPMult * 1.35
-		effPlayerDMGMult = effPlayerDMGMult * 1.2
-		
-		
-		local nParticle = ParticleManager:CreateParticle( "particles/econ/courier/courier_onibi/courier_onibi_yellow_ambient_smoke_lvl21.vpcf", PATTACH_ABSORIGIN_FOLLOW, unit )
-		ParticleManager:ReleaseParticleIndex( nParticle )
-		unit:SetModelScale(unit:GetModelScale()*1.15)
-		
-		local eliteTypes = {}
-		for eliteType, activated in pairs(GameRules._Elites) do
-			if activated ~= "0" then
-				table.insert(eliteTypes, eliteType)
-			end
-		end
-		
-		for i = 1, ELITE_ABILITIES_TO_GIVE do
-			local roll = RandomInt(1, #eliteTypes)
-			local eliteAbName = eliteTypes[roll]
-			table.remove(eliteTypes, roll)
-			local eliteAb = unit:AddAbilityPrecache(eliteAbName)
-			eliteAb:SetLevel(eliteAb:GetMaxLevel())
-		end
-	end
-	
-	expectedHP = math.max( 1, expectedHP * effPlayerHPMult )
-	unit:SetBaseMaxHealth(expectedHP)
-	unit:SetMaxHealth(expectedHP)
-	unit:SetHealth(expectedHP)
-	
-	unit:SetAverageBaseDamage( expectedDamage * effPlayerDMGMult, 33)
-	unit:SetBaseHealthRegen(RoundManager:GetEventsFinished() * RandomFloat(0.85, 1.15) )
-	unit:SetPhysicalArmorBaseValue( (unit:GetPhysicalArmorBaseValue() + (RoundManager:GetRaidsFinished() * 1.5) ) * effPlayerArmorMult )
-	
-	unit:AddNewModifier(unit, nil, "modifier_boss_attackspeed", {})
-	local powerScale = unit:AddNewModifier(unit, nil, "modifier_power_scaling", {})
-	if powerScale then powerScale:SetStackCount( math.floor( (RoundManager:GetEventsFinished() * 0.2) * (1 + (RoundManager:GetRaidsFinished() * 4 ) + ( RoundManager:GetZonesFinished() * 6 ) ) )) end
-	unit:AddNewModifier(unit, nil, "modifier_spawn_immunity", {duration = 4/GameRules.gameDifficulty})
-	if unit:IsRoundBoss() then
-		local evasion = unit:AddNewModifier(unit, nil, "modifier_boss_evasion", {})
-		if evasion then evasion:SetStackCount( RoundManager:GetEventsFinished() ) end
-	end
-	
-	
-	if unit:GetHullRadius() <= 16 then
-		unit:SetHullRadius( math.ceil(16 * unit:GetModelScale() ) )
-	end
-	
-	unit:SetMaximumGoldBounty(0)
-	unit:SetMinimumGoldBounty(0)
-	unit:SetDeathXP(0)
-end
-
-function RoundManager:PrecacheRounds(context)
-	for zone, raids in pairs( self.zones ) do
-		for _, raid in pairs( raids ) do
-			for _, event in pairs(raid) do
-				event:PrecacheUnits(context)
-			end
-		end
+	if self:GetCurrentEvent() then
+		return self:GetCurrentEvent():HasStarted()
+	else
+		return false
 	end
 end
