@@ -6734,18 +6734,18 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"enrage_multiplier"			"1.4 1.6 1.8 2.0 2.2"
+				"enrage_multiplier"			"1.4 1.6 1.8 2.0 2.2 2.4"
 			}
 			"02"
 			{
-				"var_type"						"FIELD_INTEGER"
+				"var_type"					"FIELD_INTEGER"
 				"damage_reduction"			"80"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_FLOAT"
 				"duration"					"4.0"
-				"LinkedSpecialBonus"	"special_bonus_unique_ursa_3"
+				"LinkedSpecialBonus"		"special_bonus_unique_ursa_3"
 			}
 			"04"
 			{

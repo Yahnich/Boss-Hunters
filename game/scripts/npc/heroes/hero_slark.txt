@@ -285,7 +285,7 @@
 			"05"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"duration"						"30"
+				"duration"						"15 17.5 20 22.5 25 27.5 30"
 			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"

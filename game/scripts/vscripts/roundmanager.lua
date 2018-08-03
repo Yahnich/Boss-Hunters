@@ -235,211 +235,253 @@ function RoundManager:StartGame()
 end
 
 function RoundManager:StartPrepTime(fPrep)
-	if self.zones[self.currentZone] and self.zones[self.currentZone][1] and not self.prepTimeTimer then
-		local event = RoundManager:GetCurrentEvent()
-		CustomGameEventManager:Send_ServerToAllClients("bh_start_prep_time", {})
-		local lastSpawns = RoundManager.boundingBox
-		event:LoadSpawns()
-		
-		for _, hero in ipairs( FindAllUnits({team = DOTA_UNIT_TARGET_TEAM_FRIENDLY}) ) do
-			if RoundManager.boundingBox ~= lastSpawns then
-				CustomGameEventManager:Send_ServerToAllClients( "bh_move_camera_position", { position = event:GetHeroSpawnPosition() } )
-				local position = event:GetHeroSpawnPosition() + RandomVector(64)
-				FindClearSpaceForUnit(hero, position, true)
-			end
-			if hero:IsRealHero() then
-				PlayerResource:SetCustomBuybackCost(hero:GetPlayerID(), 100 + RoundManager:GetEventsFinished() * 25)
-			end
-		end
-		ResolveNPCPositions( event:GetHeroSpawnPosition(), 150 )
-		for _, hero in ipairs( HeroList:GetRealHeroes() ) do
-			hero:SetRespawnPosition( GetGroundPosition(hero:GetAbsOrigin(), hero) )
-		end
-		self.prepTimer = fPrep or PREP_TIME
-		local textFormatting = RAIDS_PER_ZONE - #self.zones[self.currentZone] + 1
-		local romanVersion = ""
-		if textFormatting < 4 then
-			for i = 1, textFormatting do
-				romanVersion = romanVersion.."I"
-			end
-		elseif textFormatting == 4 then
-			romanVersion = "IV"
-		else
-			textFormatting = textFormatting - 5
-			romanVersion = "V"
-			if textFormatting > 0 then
-				for i = textFormatting, 3 do
-					romanVersion = romanVersion.."I"
+	local PrepCatch = function( ... )
+		if self.zones[self.currentZone] and self.zones[self.currentZone][1] and not self.prepTimeTimer then
+			local event = RoundManager:GetCurrentEvent()
+			CustomGameEventManager:Send_ServerToAllClients("bh_start_prep_time", {})
+			local lastSpawns = RoundManager.boundingBox
+			event:LoadSpawns()
+			
+			for _, hero in ipairs( FindAllUnits({team = DOTA_UNIT_TARGET_TEAM_FRIENDLY}) ) do
+				if RoundManager.boundingBox ~= lastSpawns then
+					CustomGameEventManager:Send_ServerToAllClients( "bh_move_camera_position", { position = event:GetHeroSpawnPosition() } )
+					local position = event:GetHeroSpawnPosition() + RandomVector(64)
+					FindClearSpaceForUnit(hero, position, true)
+				end
+				if hero:IsRealHero() then
+					PlayerResource:SetCustomBuybackCost(hero:GetPlayerID(), 100 + RoundManager:GetEventsFinished() * 25)
 				end
 			end
-		end
-	
-		CustomGameEventManager:Send_ServerToAllClients( "updateQuestRound", { eventName = RoundManager:GetCurrentEventName(), roundText = self.currentZone.." "..romanVersion } )
-		self.prepTimeTimer = Timers:CreateTimer(1, function()
-			self.prepTimer = self.prepTimer - 1
-			CustomGameEventManager:Send_ServerToAllClients( "updateQuestPrepTime", { prepTime = math.floor(self.prepTimer + 0.5) } )
-			if self.prepTimer <= 0 then
-				RoundManager:EndPrepTime()
-			else
-				return 1
+			ResolveNPCPositions( event:GetHeroSpawnPosition(), 150 )
+			for _, hero in ipairs( HeroList:GetRealHeroes() ) do
+				hero:SetRespawnPosition( GetGroundPosition(hero:GetAbsOrigin(), hero) )
 			end
-		end)
+			self.prepTimer = fPrep or PREP_TIME
+			local textFormatting = RAIDS_PER_ZONE - #self.zones[self.currentZone] + 1
+			local romanVersion = ""
+			if textFormatting < 4 then
+				for i = 1, textFormatting do
+					romanVersion = romanVersion.."I"
+				end
+			elseif textFormatting == 4 then
+				romanVersion = "IV"
+			else
+				textFormatting = textFormatting - 5
+				romanVersion = "V"
+				if textFormatting > 0 then
+					for i = textFormatting, 3 do
+						romanVersion = romanVersion.."I"
+					end
+				end
+			end
+		
+			CustomGameEventManager:Send_ServerToAllClients( "updateQuestRound", { eventName = RoundManager:GetCurrentEventName(), roundText = self.currentZone.." "..romanVersion } )
+			self.prepTimeTimer = Timers:CreateTimer(1, function()
+				self.prepTimer = self.prepTimer - 1
+				CustomGameEventManager:Send_ServerToAllClients( "updateQuestPrepTime", { prepTime = math.floor(self.prepTimer + 0.5) } )
+				if self.prepTimer <= 0 then
+					RoundManager:EndPrepTime()
+				else
+					return 1
+				end
+			end)
+		end
+	end
+	status, err, ret = xpcall(PrepCatch, debug.traceback, self, fPrep )
+	if not status  and not self.gameHasBeenBroken then
+		SendErrorReport(err, self)
 	end
 end
 
 function RoundManager:EndPrepTime(bReset)
-	if self.prepTimeTimer then Timers:RemoveTimer( self.prepTimeTimer ) end
-	self.prepTimeTimer = nil
-	
-	self.votedToSkipPrep = 0
-	self.votedToSkipPrep = 0
-	CustomGameEventManager:Send_ServerToAllClients("bh_end_prep_time", {})
-	
-	if not bReset then
-		RoundManager:StartEvent()
+	local EndPrepCatch = function( ... )
+		if self.prepTimeTimer then Timers:RemoveTimer( self.prepTimeTimer ) end
+		self.prepTimeTimer = nil
+		
+		self.votedToSkipPrep = 0
+		CustomGameEventManager:Send_ServerToAllClients("bh_end_prep_time", {})
+		
+		if not bReset then
+			RoundManager:StartEvent()
+		end
+	end
+	status, err, ret = xpcall(EndPrepCatch, debug.traceback, self, bReset )
+	if not status  and not self.gameHasBeenBroken then
+		SendErrorReport(err, self)
 	end
 end
 
 function RoundManager:StartEvent()
-	GameRules:RefreshPlayers()
-	EmitGlobalSound("Round.Start")
-	
-	local playerData = {}
-	for _, hero in ipairs ( HeroList:GetAllHeroes() ) do
-		if not hero:IsFakeHero() then
-			playerData[hero:GetPlayerID()] = {DT = hero.statsDamageTaken or 0, DD = hero.statsDamageDealt or 0, DH = hero.statsDamageHealed or 0}
+	local StartEventCatch = function( ... )
+		GameRules:RefreshPlayers()
+		EmitGlobalSound("Round.Start")
+		
+		local playerData = {}
+		for _, hero in ipairs ( HeroList:GetAllHeroes() ) do
+			if not hero:IsFakeHero() then
+				playerData[hero:GetPlayerID()] = {DT = hero.statsDamageTaken or 0, DD = hero.statsDamageDealt or 0, DH = hero.statsDamageHealed or 0}
+			end
+		end
+		CustomGameEventManager:Send_ServerToAllClients( "player_update_stats", playerData )
+		
+		if self.zones[self.currentZone] and self.zones[self.currentZone][1] and self.zones[self.currentZone][1][1] then
+			local event = RoundManager:GetCurrentEvent()
+			event.eventHasStarted = true
+			event.eventEnded = false
+			event:StartEvent()
+			return true
+		else
+			RoundManager:GameIsFinished(true)
+			return false
 		end
 	end
-	CustomGameEventManager:Send_ServerToAllClients( "player_update_stats", playerData )
-	
-	if self.zones[self.currentZone] and self.zones[self.currentZone][1] and self.zones[self.currentZone][1][1] then
-		local event = RoundManager:GetCurrentEvent()
-		event.eventHasStarted = true
-		event.eventEnded = false
-		event:StartEvent()
-		return true
-	else
-		RoundManager:GameIsFinished(true)
-		return false
+	status, err, ret = xpcall(StartEventCatch, debug.traceback, self )
+	if not status  and not self.gameHasBeenBroken then
+		SendErrorReport(err, self)
 	end
 end
 
 function RoundManager:EndEvent(bWonRound)
-	GameRules:RefreshPlayers()
-	CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_has_ended", {})
-	local event = self.zones[self.currentZone][1][1]
-	event.eventEnded = true
-	event.eventHasStarted = false
-	if event.eventHandler then Timers:RemoveTimer( event.eventHandler ) end
-	if event then
-		if bWonRound then
-			EventManager:FireEvent("boss_hunters_event_finished", {eventType = event:GetEventType()})
-			event:HandoutRewards(true)
-			self.zones[self.currentZone][1][1] = false
-			table.remove( self.zones[self.currentZone][1], 1 )
-			
-			self.eventsFinished = self.eventsFinished + 1
-			if self.zones[self.currentZone][1][1] == nil then RoundManager:RaidIsFinished() end
-			EmitGlobalSound("Round.Won")
-		else
-			GameRules._lives = GameRules._lives - 1
-			event:HandoutRewards(false)
-			EmitGlobalSound("Round.Lost")
-		end
-	end
-	
-	local clearPeriod = 3
-	Timers:CreateTimer(function()
-		for _, unit in ipairs( FindAllUnits({team = DOTA_UNIT_TARGET_TEAM_ENEMY, flags = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_DEAD + DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD}) ) do
-			if unit:IsCreature() and not unit:IsNull() then
-				if unit:IsAlive() then
-					unit:ForceKill(false)
-				end
+	print(bWonRound, "end event result")
+	local EndEventCatch = function(  )
+		GameRules:RefreshPlayers()
+		CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_has_ended", {})
+		local event = self.zones[self.currentZone][1][1]
+		event.eventEnded = true
+		event.eventHasStarted = false
+		if event.eventHandler then Timers:RemoveTimer( event.eventHandler ) end
+		if event then
+			if bWonRound then
+				EventManager:FireEvent("boss_hunters_event_finished", {eventType = event:GetEventType()})
+				event:HandoutRewards(true)
+				self.zones[self.currentZone][1][1] = false
+				table.remove( self.zones[self.currentZone][1], 1 )
+				
+				self.eventsFinished = self.eventsFinished + 1
+				if self.zones[self.currentZone][1][1] == nil then RoundManager:RaidIsFinished() end
+				EmitGlobalSound("Round.Won")
+			else
+				GameRules._lives = GameRules._lives - 1
+				event:HandoutRewards(false)
+				EmitGlobalSound("Round.Lost")
 			end
 		end
-		clearPeriod = clearPeriod - 0.25
-		if clearPeriod > 0 then
-			return 0.25
+		
+		local clearPeriod = 3
+		Timers:CreateTimer(function()
+			for _, unit in ipairs( FindAllUnits({team = DOTA_UNIT_TARGET_TEAM_ENEMY, flags = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_DEAD + DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD}) ) do
+				if unit:IsCreature() and not unit:IsNull() then
+					if unit:IsAlive() then
+						unit:ForceKill(false)
+					end
+				end
+			end
+			clearPeriod = clearPeriod - 0.25
+			if clearPeriod > 0 then
+				return 0.25
+			end
+		end)
+		local fTime = PREP_TIME
+		-- if RoundManager:GetCurrentEvent():IsEvent() then
+			-- fTime = 5
+		-- end
+		CustomGameEventManager:Send_ServerToAllClients( "updateQuestLife", { lives = GameRules._lives, maxLives = GameRules._maxLives } )
+		if GameRules._lives == 0 then
+			return RoundManager:GameIsFinished(false)
 		end
-	end)
-	local fTime = PREP_TIME
-	-- if RoundManager:GetCurrentEvent():IsEvent() then
-		-- fTime = 5
-	-- end
-	CustomGameEventManager:Send_ServerToAllClients( "updateQuestLife", { lives = GameRules._lives, maxLives = GameRules._maxLives } )
-	if GameRules._lives == 0 then
-		return RoundManager:GameIsFinished(false)
+		self:StartPrepTime(fTime)
 	end
-	self:StartPrepTime(fTime)
+	status, err, ret = xpcall(EndEventCatch, debug.traceback, self, bWonRound )
+	if not status  and not self.gameHasBeenBroken then
+		SendErrorReport(err, self)
+	end
 end
 
 function RoundManager:RaidIsFinished()
-	table.remove( self.zones[self.currentZone], 1 )
-	EventManager:FireEvent("boss_hunters_raid_finished")
-	self.raidsFinished = (self.raidsFinished or 0) + 1
-	
-	for _, hero in ipairs(HeroList:GetRealHeroes() ) do
-		hero.statsDamageTaken = 0
-		hero.statsDamageDealt = 0
-		hero.statsDamageHealed = 0
+	local RaidFinishCatch = function()
+		table.remove( self.zones[self.currentZone], 1 )
+		EventManager:FireEvent("boss_hunters_raid_finished")
+		self.raidsFinished = (self.raidsFinished or 0) + 1
+		
+		for _, hero in ipairs(HeroList:GetRealHeroes() ) do
+			hero.statsDamageTaken = 0
+			hero.statsDamageDealt = 0
+			hero.statsDamageHealed = 0
+		end
+		
+		if self.zones[self.currentZone][1] == nil then RoundManager:ZoneIsFinished() end
+		if self.zones[self.currentZone] and self.zones[self.currentZone][1] then
+			local boss = self.zones[self.currentZone][1][#self.zones[self.currentZone][1]]
+			CustomGameEventManager:Send_ServerToAllClients( "updateQuestBoss", { bossName = boss:GetEventName() } )
+		end
 	end
-	
-	if self.zones[self.currentZone][1] == nil then RoundManager:ZoneIsFinished() end
-	if self.zones[self.currentZone] and self.zones[self.currentZone][1] then
-		local boss = self.zones[self.currentZone][1][#self.zones[self.currentZone][1]]
-		CustomGameEventManager:Send_ServerToAllClients( "updateQuestBoss", { bossName = boss:GetEventName() } )
+	status, err, ret = xpcall(RaidFinishCatch, debug.traceback, self)
+	if not status  and not self.gameHasBeenBroken then
+		SendErrorReport(err, self)
 	end
 end
 
 function RoundManager:ZoneIsFinished()
-	self.zones[self.currentZone] = nil
-	self.currentZone = nil
-	
-	self.currentZone = POSSIBLE_ZONES[1]
-	if not self.zones[self.currentZone] and POSSIBLE_ZONES[2] then
-		table.remove(POSSIBLE_ZONES, 1)
+	local ZoneFinishCatch = function()
+		self.zones[self.currentZone] = nil
+		self.currentZone = nil
+		
 		self.currentZone = POSSIBLE_ZONES[1]
+		if not self.zones[self.currentZone] and POSSIBLE_ZONES[2] then
+			table.remove(POSSIBLE_ZONES, 1)
+			self.currentZone = POSSIBLE_ZONES[1]
+		end
+
+		EventManager:FireEvent("boss_hunters_zone_finished")
+		self.zonesFinished = (self.zonesFinished or 0) + 1
+
+		if self.currentZone == nil or self.zones[self.currentZone] == nil then
+			RoundManager:GameIsFinished(true)
+		else
+			table.remove(POSSIBLE_ZONES, 1)
+		end
 	end
-
-	EventManager:FireEvent("boss_hunters_zone_finished")
-	self.zonesFinished = (self.zonesFinished or 0) + 1
-
-	if self.currentZone == nil or self.zones[self.currentZone] == nil then
-		RoundManager:GameIsFinished(true)
-	else
-		table.remove(POSSIBLE_ZONES, 1)
+	status, err, ret = xpcall(ZoneFinishCatch, debug.traceback, self)
+	if not status  and not self.gameHasBeenBroken then
+		SendErrorReport(err, self)
 	end
 end
 
 function RoundManager:GameIsFinished(bWon)
-	EventManager:FireEvent("boss_hunters_game_finished")
-	if bWon then
-		self.prepTimer = 30
-		self.ng = false
-		CustomGameEventManager:Send_ServerToAllClients("bh_start_ng_vote", {})
-		GameRules.Winner = DOTA_TEAM_GOODGUYS
-		Timers(1, function()
-			CustomGameEventManager:Send_ServerToAllClients( "updateQuestPrepTime", { prepTime = math.floor(self.prepTimer + 0.5) } )
-			if self.prepTimer <= 0 then
-				if not self.ng then
-					GameRules:SetGameWinner(DOTA_TEAM_GOODGUYS)
+	local GameFinishCatch = function()
+		EventManager:FireEvent("boss_hunters_game_finished")
+		if bWon then
+			self.prepTimer = 30
+			self.ng = false
+			CustomGameEventManager:Send_ServerToAllClients("bh_start_ng_vote", {})
+			GameRules.Winner = DOTA_TEAM_GOODGUYS
+			Timers(1, function()
+				CustomGameEventManager:Send_ServerToAllClients( "updateQuestPrepTime", { prepTime = math.floor(self.prepTimer + 0.5) } )
+				if self.prepTimer <= 0 then
+					if not self.ng then
+						GameRules:SetGameWinner(DOTA_TEAM_GOODGUYS)
+					else
+						RoundManager:StartGame()
+					end
+					CustomGameEventManager:Send_ServerToAllClients("bh_end_prep_time", {})
+					self.ng = false
 				else
-					RoundManager:StartGame()
+					self.prepTimer = self.prepTimer - 1
+					return 1
 				end
-				CustomGameEventManager:Send_ServerToAllClients("bh_end_prep_time", {})
-				self.ng = false
-			else
-				self.prepTimer = self.prepTimer - 1
-				return 1
-			end
-		end)
-	else
-		GameRules:SetGameWinner(DOTA_TEAM_BADGUYS)
-		GameRules.Winner = DOTA_TEAM_BADGUYS
+			end)
+		else
+			GameRules:SetGameWinner(DOTA_TEAM_BADGUYS)
+			GameRules.Winner = DOTA_TEAM_BADGUYS
+		end
+		GameRules._finish = true
+		GameRules.EndTime = GameRules:GetGameTime()
+		statCollection:submitRound(true)
 	end
-	GameRules._finish = true
-	GameRules.EndTime = GameRules:GetGameTime()
-	statCollection:submitRound(true)
+	status, err, ret = xpcall(GameFinishCatch, debug.traceback, self)
+	if not status  and not self.gameHasBeenBroken then
+		SendErrorReport(err, self)
+	end
 end
 
 function RoundManager:GetCurrentEvent()

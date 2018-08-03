@@ -172,6 +172,7 @@ function Timers:HandleEventError(name, event, err)
   if not self.errorHandled then
     -- Store that we handled an error
     self.errorHandled = true
+	SendErrorReport(err)
   end
 end
 

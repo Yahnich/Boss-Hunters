@@ -16,6 +16,11 @@ if CHoldoutGameMode == nil then
 	CHoldoutGameMode = class({})
 end
 
+function SendErrorReport(err, context)
+	Notifications:BottomToAll({text="An error has occurred! Please screenshot this: "..err, duration=15.0})
+	print(err)
+	if context then context.gameHasBeenBroken = true end
+end
 
 require("lua_map/map")
 require("lua_boss/boss_32_meteor")
@@ -1004,15 +1009,6 @@ NIGHT_TIME = 1
 TEMPORARY_NIGHT = 2
 NIGHT_STALKER_NIGHT = 3
 
-function CHoldoutGameMode:SendErrorReport(err)
-	if not self.gameHasBeenBroken then 
-		self.gameHasBeenBroken = true
-		Notifications:BottomToAll({text="An error has occurred! Please screenshot this: "..err, duration=15.0})
-		print(err)
-	end
-end
-
-
 function CHoldoutGameMode:OnThink()
 	local timeofday = GameRules:IsDaytime()
 	if GameRules:IsTemporaryNight() then timeofday = TEMPORARY_NIGHT end
@@ -1022,16 +1018,16 @@ function CHoldoutGameMode:OnThink()
 		local OnPThink = function(self)
 			status, err, ret = xpcall(self.CheckHP, debug.traceback, self)
 			if not status  and not self.gameHasBeenBroken then
-				self:SendErrorReport(err)
+				SendErrorReport(err, self)
 			end
 			status, err, ret = xpcall(self.DegradeThreat, debug.traceback, self)
 			if not status  and not self.gameHasBeenBroken then
-				self:SendErrorReport(err)
+				SendErrorReport(err, self)
 			end
 		end
 		status, err, ret = xpcall(OnPThink, debug.traceback, self)
 		if not status  and not self.gameHasBeenBroken then
-			self:SendErrorReport(err)
+			SendErrorReport(err, self)
 		end
 	elseif GameRules:State_Get() >= DOTA_GAMERULES_STATE_POST_GAME then		-- Safe guard catching any state that may exist beyond DOTA_GAMERULES_STATE_POST_GAME
 		return nil

@@ -7,6 +7,12 @@ EVENT_TYPE_BOSS = 4
 
 ROUND_END_DELAY = 3
 
+function SendErrorReport(err, context)
+	Notifications:BottomToAll({text="An error has occurred! Please screenshot this: "..err, duration=15.0})
+	print(err)
+	if context then context.gameHasBeenBroken = true end
+end
+
 function BaseEvent:constructor(zoneName, eventType, eventName)
 	self.eventType = tonumber(eventType)
 	self.eventName = eventName
@@ -23,7 +29,20 @@ function BaseEvent:constructor(zoneName, eventType, eventName)
 	local funcs = require("events/"..eventFolder.."/"..eventName)
 	self["HandoutRewards"] = BaseEvent.HandoutRewards
 	for functionName, functionMethod in pairs( funcs ) do
-		self[functionName] = functionMethod
+		-- Precaching really doesn't like it when you change context
+		if functionName ~= 'PrecacheUnits' then
+			self[functionName] = function( self, optArg1, optArg2, optArg3  )
+									status, err, ret = xpcall(functionMethod, debug.traceback, self, optArg1, optArg2, optArg3 ) -- optArg1 to 3 should just be nil and ignored if empty
+									print(status, self, optArg1, optArg2, optArg3, "status" )
+									print(err)
+									print(ret)
+									if not status  and not self.gameHasBeenBroken then
+										SendErrorReport(err)
+									end
+								end
+		else
+			self[functionName] = functionMethod
+		end
 	end
 	print(zoneName, eventName, RoundManager.eventsCreated ,"created")
 end
