@@ -10,7 +10,7 @@ end
 
 local function FirstChoice(self, userid, event)
 	local hero = PlayerResource:GetSelectedHeroEntity( event.pID )
-	
+	if not hero then return end
 	hero:AddGold(-800)
 	if RollPercentage(33) then
 		hero:AddRelic( RelicManager:RollRandomUniqueRelicForPlayer( event.pID ) )

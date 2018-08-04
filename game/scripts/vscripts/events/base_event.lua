@@ -65,7 +65,6 @@ function BaseEvent:GetZone()
 end
 
 function BaseEvent:LoadSpawns()
-	print( self.spawnLoadCompleted, "what")
 	if not self.spawnLoadCompleted then
 		RoundManager.spawnPositions = {}
 		local zoneName = self:GetZone()
@@ -77,13 +76,11 @@ function BaseEvent:LoadSpawns()
 		end
 		local roll = RandomInt(1,choices)
 		RoundManager.boundingBox = string.lower(zoneName).."_"..eventType.."_"..roll
-		print( RoundManager.boundingBox, "bounding box" )
 		for _,spawnPos in ipairs( Entities:FindAllByName( RoundManager.boundingBox.."_spawner" ) ) do
 			table.insert( RoundManager.spawnPositions, spawnPos:GetAbsOrigin() )
 		end
 		self.heroSpawnPosition = self.heroSpawnPosition or nil
 		for _,spawnPos in ipairs( Entities:FindAllByName( RoundManager.boundingBox.."_heroes") ) do
-			print("?")
 			self.heroSpawnPosition = spawnPos:GetAbsOrigin()
 			break
 		end
@@ -115,7 +112,7 @@ function BaseEvent:HandoutRewards(bWon)
 			hero:AddXP( baseXP )
 			local pID = hero:GetPlayerOwnerID()
 			if bWon then
-				if self:IsElite() then
+				if self:IsElite() and RoundManager:GetAscensions() < 1 then
 					RelicManager:RollEliteRelicsForPlayer(pID)
 				elseif self:IsBoss() then
 					RelicManager:RollBossRelicsForPlayer(pID)

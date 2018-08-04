@@ -880,7 +880,10 @@ function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, sp
 		if item ~= nil then
 			local itemName = item:GetName()
 			local newItem = CreateItem(itemName, nil, nil)
+			newItem:SetStacksWithOtherOwners(true)
 			illusion:AddItem(newItem)
+			newItem:SetPurchaser(nil)
+			
 		end
 	end
 

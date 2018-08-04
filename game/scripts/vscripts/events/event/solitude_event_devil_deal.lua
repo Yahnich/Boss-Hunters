@@ -21,7 +21,7 @@ end
 
 local function SecondChoice(self, userid, event)
 	local hero = PlayerResource:GetSelectedHeroEntity( event.pID )
-	
+	if not hero then return end
 	hero:AddCurse("event_buff_devil_deal")
 	local relicTable = {}
 	table.insert(relicTable, RelicManager:RollRandomCursedRelicForPlayer(event.pID))

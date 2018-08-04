@@ -77,8 +77,7 @@ if IsServer() then
 					return thisEntity.leap:GetCastPoint() + 0.1
 				end
 			end
-			AICore:AttackHighestPriority( thisEntity )
-			return 0.25
+			return AICore:AttackHighestPriority( thisEntity )
 		else return 0.25 end
 	end
 end

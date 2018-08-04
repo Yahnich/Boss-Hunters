@@ -37,6 +37,7 @@ require("eventmanager")
 require( "ai/ai_core" )
 require( "ai/ai_timers")
 
+LinkLuaModifier( "modifier_boss_ascension", "lua_abilities/heroes/modifiers/modifier_boss_ascension.lua", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_illusion_tag", "libraries/modifiers/illusions/modifier_illusion_tag.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_illusion_bonuses", "libraries/modifiers/illusions/modifier_illusion_bonuses.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_blind_generic", "libraries/modifiers/modifier_blind_generic.lua", LUA_MODIFIER_MOTION_NONE)
@@ -385,7 +386,8 @@ function CHoldoutGameMode:FilterModifiers( filterTable )
 					resistance = modifier:GetModifierStatusResistance( params )
 				end
 			end
-			filterTable["duration"] = filterTable["duration"] * (1 - resistance/100) * (1 - stackResist/100)
+			print((1 - resistance/100), (1 - stackResist/100))
+			filterTable["duration"] = filterTable["duration"] * math.max(0, (1 - resistance/100)) * math.max(0, (1 - stackResist/100))
 		end
 	end
 	if filterTable["duration"] == 0 then return false end
@@ -422,23 +424,32 @@ function CHoldoutGameMode:FilterHeal( filterTable )
 	-- if no caster then source is regen
 	if source then
 		local params = {healer = healer, target = target, heal = heal, ability = source}
+		healFactorSelf = 1
+		healFactorAllied = 1
 		if target then
 			for _, modifier in ipairs( target:FindAllModifiers() ) do
 				if modifier.GetModifierHealAmplify_Percentage then
-					filterTable["heal"] = filterTable["heal"] * math.max(0, (1 + ( modifier:GetModifierHealAmplify_Percentage( params ) or 0 )/100) )
+					healFactorSelf = healFactorSelf + math.max(0, (modifier:GetModifierHealAmplify_Percentage( params ) or 0 )/100)
 				end
+			end
+			if RoundManager:GetAscensions() >= 3 then
+				healFactorSelf = math.max(0, healFactorSelf - 0.75)
 			end
 		end
 		if healer and healer ~= target then
 			for _, modifier in ipairs( healer:FindAllModifiers() ) do
 				if modifier.GetModifierHealAmplify_Percentage then
-					filterTable["heal"] = filterTable["heal"] * math.max(0, (1 + ( modifier:GetModifierHealAmplify_Percentage( params ) or 0 )/100) )
+					healFactorAllied = healFactorAllied + math.max(0, ( modifier:GetModifierHealAmplify_Percentage( params ) or 0 )/100)
 				end
+			end
+			if RoundManager:GetAscensions() >= 3 then
+				healFactorAllied = math.max(0, healFactorAllied - 0.75)
 			end
 		end
 	end
-
+	
 	if not healer_index or not heal then return true end
+	filterTable["heal"] = heal * healFactorSelf * healFactorAllied
 	healer.statsDamageHealed = (healer.statsDamageHealed or 0) + filterTable["heal"]
 	
 	if healer and healer:IsRealHero() and target and healer ~= target and healer:HasRelic("relic_cursed_bloody_silk") then

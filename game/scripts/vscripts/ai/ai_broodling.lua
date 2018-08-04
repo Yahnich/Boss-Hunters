@@ -35,8 +35,7 @@ function AIThink(thisEntity)
 			return thisEntity.spawn:GetCastPoint() + 0.1
 		end
 		if AICore:TotalAlliedUnitsInRange( thisEntity, 1200 ) > math.ceil(4 * (thisEntity:GetHealthPercent()/100)) then
-			AICore:AttackHighestPriority( thisEntity )
-			return AI_THINK_RATE
+			return AICore:AttackHighestPriority( thisEntity )
 		else
 			AICore:BeAHugeCoward( thisEntity, 800 )
 			return AI_THINK_RATE

@@ -103,7 +103,11 @@ function modifier_frostfire_brand_debuff:OnRefresh()
 end
 
 function modifier_frostfire_brand_debuff:OnIntervalThink()
-	self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self:GetAbility():GetSpecialValueFor("base_damage") + self:GetCaster():GetPrimaryStatValue() * self:GetAbility():GetSpecialValueFor("damage") / 100, {damage_type = DAMAGE_TYPE_MAGICAL})
+	local statOwner = self:GetCaster()
+	if statOwner:IsIllusion() then
+		statOwner = statOwner:GetOwnerEntity()
+	end
+	self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self:GetAbility():GetSpecialValueFor("base_damage") + statOwner:GetPrimaryStatValue() * self:GetAbility():GetSpecialValueFor("damage") / 100, {damage_type = DAMAGE_TYPE_MAGICAL})
 end
 
 function modifier_frostfire_brand_debuff:DeclareFunctions()

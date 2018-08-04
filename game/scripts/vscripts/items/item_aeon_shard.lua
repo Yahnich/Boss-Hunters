@@ -42,6 +42,9 @@ end
 
 function modifier_item_aeon_shard_consumed:OnCreated()
 	self.bonus_attack_speed = self:GetSpecialValueFor("consumed_attackspeed")
+	if IsServer() then
+		self:SetStackCount(1)
+	end
 end
 
 function modifier_item_aeon_shard_consumed:OnRefresh()
@@ -55,7 +58,7 @@ function modifier_item_aeon_shard_consumed:DeclareFunctions()
 end
 
 function modifier_item_aeon_shard_consumed:GetModifierAttackSpeedBonus_Constant()
-	return self.bonus_attack_speed * math.max(1, self:GetStackCount())
+	return self.bonus_attack_speed * self:GetStackCount()
 end
 
 function modifier_item_aeon_shard_consumed:DestroyOnExpire()

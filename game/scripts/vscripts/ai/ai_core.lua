@@ -221,7 +221,7 @@ function AICore:AttackHighestPriority( entity )
 					TargetIndex = target:entindex()
 				})
 			end
-			return AI_THINK_RATE
+			return entity:GetSecondsPerAttack()
 		else
 			AICore:RunToRandomPosition( entity, 80, true )
 			return AI_THINK_RATE

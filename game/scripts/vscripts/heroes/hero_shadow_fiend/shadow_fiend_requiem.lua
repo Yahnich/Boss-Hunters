@@ -15,8 +15,6 @@ function shadow_fiend_requiem:OnSpellStart()
 
 	caster:RemoveModifierByName("modifier_phased")
 
-	self.damage = self:GetTalentSpecialValueFor("damage")
-
 	self:ReleaseSouls()
 end
 
@@ -38,7 +36,7 @@ function shadow_fiend_requiem:ReleaseSouls(bDeath)
 		souls = modifier:GetStackCount()
 	end
 	
-	self.damage = ( self.damage or self:GetTalentSpecialValueFor("damage") ) * souls
+	self.damage = self:GetTalentSpecialValueFor("damage") * souls
 	local projectiles = 18
 	if bDeath then projectiles = math.floor(projectiles) / 2 end
 	

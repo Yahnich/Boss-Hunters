@@ -69,8 +69,7 @@ if IsServer() then
 					return thisEntity.swipe:GetCastPoint() + 0.1
 				end
 			end
-			AICore:AttackHighestPriority( thisEntity )
-			return AI_THINK_RATE
+			return AICore:AttackHighestPriority( thisEntity )
 		end
 		return AI_THINK_RATE
 	end

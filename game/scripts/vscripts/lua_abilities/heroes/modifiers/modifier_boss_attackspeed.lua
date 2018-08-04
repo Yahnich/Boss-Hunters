@@ -6,7 +6,7 @@ end
 
 function modifier_boss_attackspeed:OnCreated()
 	if IsServer() then
-		self:SetStackCount(math.floor(GameRules.gameDifficulty + 0.5))
+		self:SetStackCount(math.floor(GameRules.gameDifficulty + 0.5) + RoundManager:GetAscensions())
 		self.thinkTime = 0
 		self:StartIntervalThink(0.1)
 	end
@@ -44,13 +44,14 @@ function modifier_boss_attackspeed:DeclareFunctions()
 		MODIFIER_EVENT_ON_ABILITY_FULLY_CAST,
 		MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE,
 		MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE,
-		MODIFIER_EVENT_ON_ABILITY_START
+		MODIFIER_EVENT_ON_ABILITY_START,
+		MODIFIER_EVENT_ON_ATTACK_START
 	}
 	return funcs
 end
 --------------------------------------------------------------------------------
 function modifier_boss_attackspeed:GetModifierAttackSpeedBonus_Constant( params )
-	return 50 * self:GetStackCount()
+	return 100 + self:GetStackCount() * 25
 end
 
 function modifier_boss_attackspeed:GetModifierMoveSpeedBonus_Constant( params )
@@ -65,8 +66,20 @@ function modifier_boss_attackspeed:GetModifierManaBonus( params )
 	return self:GetStackCount()*250
 end]]
 
+function modifier_boss_attackspeed:OnAttackStart(params)
+	if params.attacker == self:GetParent() then
+		if IsServer() then
+			Timers:CreateTimer(function()
+				self:GetParent():RemoveGesture(ACT_DOTA_ATTACK)
+				self:GetParent():RemoveGesture(ACT_DOTA_ATTACK2)
+				self:GetParent():StartGestureWithPlaybackRate( TernaryOperator(ACT_DOTA_ATTACK2, RollPercentage(50), ACT_DOTA_ATTACK), self:GetParent():GetAttackSpeed() / 3  )
+			end)
+		end
+	end
+end
+
 function modifier_boss_attackspeed:GetModifierPreAttack_CriticalStrike( params )
-	local maxTick = 100 / ( 5 * self:GetStackCount() )
+	local maxTick = math.floor( 100 / ( 5 * self:GetStackCount() ) + 0.5 )
 	self.ticks = (self.ticks or 0) + 1
 	if self.ticks >= maxTick then	
 		self.ticks = 0
@@ -81,7 +94,7 @@ function modifier_boss_attackspeed:GetModifierPhysicalArmorBonus( params )
 end
 
 function modifier_boss_attackspeed:GetModifierBaseDamageOutgoing_Percentage( params )
-	return 5 * self:GetStackCount()
+	return 10 + 2.5 * self:GetStackCount()
 end
 
 function modifier_boss_attackspeed:OnAbilityStart( params )

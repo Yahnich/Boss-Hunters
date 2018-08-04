@@ -151,8 +151,7 @@ function AIThink(thisEntity)
 					end
 					if thisEntity.egg:IsFullyCastable() and AICore:SpecificAlliedUnitsAlive( thisEntity, "npc_dota_creature_broodmother", -1 ) < 4 then return CastEggSack(thisEntity, thisEntity:GetAbsOrigin() + RandomVector(thisEntity.egg:GetTrueCastRange()) ) end
 				end
-				AICore:AttackHighestPriority( thisEntity )
-				return AI_THINK_RATE
+				return AICore:AttackHighestPriority( thisEntity )
 			elseif thisEntity.getAIState == AI_STATE_COWARD then
 				local runPosition = AICore:BeAHugeCoward( thisEntity, 800 )
 				if not runPosition then thisEntity:GetAbsOrigin() end

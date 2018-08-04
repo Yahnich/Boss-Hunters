@@ -34,7 +34,8 @@ function modifier_item_memento:OnAttackLanded(params)
 			local parent = self:GetParent()
 			parent:StartGestureWithPlaybackRate(ACT_DOTA_ATTACK, 6)
 			self:GetAbility():SetCooldown()
-			Timers:CreateTimer(self.delay, function() 
+			Timers:CreateTimer(self.delay, function()
+				if parent:IsNull() or params.target:IsNull() or self:IsNull() or self:GetAbility():IsNull() then return end
 				parent:PerformGenericAttack(params.target, true, 0, false, true) 
 				if parent:IsRealHero() then params.target:Paralyze(self:GetAbility(), parent, self.paralyze) end
 			end)

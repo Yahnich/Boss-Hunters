@@ -39,15 +39,16 @@ local function ThirdChoice(self, userid, event)
 		local relic = ""
 		local roll = RandomInt(1, 5)
 		if roll == 1 then
-			relic = self:RollRandomUniqueRelicForPlayer(event.pID)
+			relic = RelicManager:RollRandomUniqueRelicForPlayer(event.pID)
 		elseif roll == 2 then
-			relic = self:RollRandomCursedRelicForPlayer(event.pID)
+			relic = RelicManager:RollRandomCursedRelicForPlayer(event.pID)
 		else
-			relic = self:RollRandomGenericRelicForPlayer(event.pID)
+			relic = RelicManager:RollRandomGenericRelicForPlayer(event.pID)
 		end
 		table.insert(relicTable, relic)
-		
-		RelicManager:PushCustomRelicDropsForPlayer(event.pID, relicTable)
+		if #relicTable > 0 then
+			RelicManager:PushCustomRelicDropsForPlayer(event.pID, relicTable)
+		end
 		hero:AddGold(1500)
 	end
 	self._playerChoices[event.pID] = true

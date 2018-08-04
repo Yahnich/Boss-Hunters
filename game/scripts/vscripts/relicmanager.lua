@@ -207,7 +207,7 @@ function RelicManager:PushCustomRelicDropsForPlayer(pID, relicTable)
 	local pride = hero:HasRelic("relic_cursed_icon_of_pride")
 	
 	table.insert( hero.relicsToSelect, relicTable )
-	if (greed or pride) and not hero:HasRelic("relic_unique_ritual_candle") then
+	if ( (greed or pride) and not hero:HasRelic("relic_unique_ritual_candle") ) or RoundManager:GetAscensions() >= 2 then
 		RelicManager:RemoveDropFromTable(pID, false)
 	elseif player then
 		CustomGameEventManager:Send_ServerToPlayer(player,"dota_player_updated_relic_drops", {playerID = pID, drops = hero.relicsToSelect})

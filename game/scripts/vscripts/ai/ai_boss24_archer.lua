@@ -49,11 +49,11 @@ function AIThink(thisEntity)
 				})
 				AICore:BeAHugeCoward( thisEntity, 500)
 			elseif (thisEntity.currHP and thisEntity.currHP <= thisEntity:GetHealth()) or not thisEntity.walk:IsFullyCastable() and not thisEntity:HasModifier("modifier_clinkz_wind_walk") then
-				AICore:AttackHighestPriority( thisEntity )
+				return AICore:AttackHighestPriority( thisEntity )
 			else 
 				AICore:BeAHugeCoward( thisEntity, 300)
 			end		
-			return 1
+			return 1.5
 		else
 			if target and thisEntity.focus:IsFullyCastable() and not thisEntity:HasModifier("modifier_clinkz_wind_walk") then
 				ExecuteOrderFromTable({
@@ -64,8 +64,7 @@ function AIThink(thisEntity)
 					})
 				return AI_THINK_RATE
 			end
-			AICore:AttackHighestPriority( thisEntity )
-		return AI_THINK_RATE
+			return AICore:AttackHighestPriority( thisEntity )
 		end
 	else return AI_THINK_RATE end
 end

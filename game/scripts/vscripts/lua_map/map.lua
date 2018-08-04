@@ -1,4 +1,4 @@
-MapHandler = class({})
+	MapHandler = class({})
 
 MIN_POS_Y = -8191
 MAX_POS_Y = 8191
@@ -11,6 +11,7 @@ MIN_POS_Z = 0
 SPAWN_POS = GetGroundPosition(Vector(6456, 6944, 0), nil)
 
 function MapHandler:CheckAndResolvePositions(hero)
+	if not hero or not hero.GetAbsOrigin then return end
 	hero.lastAllowedPosition = hero.lastAllowedPosition or hero:GetAbsOrigin()
 	if not RoundManager.boundingBox then return end
 	local edgeBox = Entities:FindByName(nil, RoundManager.boundingBox.."_edge_collider")

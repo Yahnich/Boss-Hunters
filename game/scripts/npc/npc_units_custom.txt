@@ -1121,7 +1121,7 @@
 		"AttackDamageMin"			"160"		// Damage range min.1
 		"AttackDamageMax"			"240"		// Damage range max.	
 		"AttackRate"				"12.0"		// Speed of attack.
-		"AttackAnimationPoint"		"3.6"		// Normalized time in animation cycle to attack.
+		"AttackAnimationPoint"		"2.4"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
 		"AttackRange"				"300"		// Range within a target can be attacked.
 		"ProjectileModel"			"particles/base_attacks/ranged_goodguy.vpcf" // Particle system model for projectile.
@@ -5259,10 +5259,10 @@
 		// Attack
 		//----------------------------------------------------------------
 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"			"120"		// Damage range min.
+		"AttackDamageMin"			"150"		// Damage range min.
 		"AttackDamageMax"			"220"		// Damage range max.
 		"AttackRate"				"12.0"			// Speed of attack.
-		"AttackAnimationPoint"		"0.467"		// Normalized time in animation cycle to attack.
+		"AttackAnimationPoint"		"1.5"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
 		"AttackRange"				"40"		// Range within a target can be attacked.
 		"ProjectileModel"			""			// Particle system model for projectile.
@@ -5600,8 +5600,8 @@
 		// Attack
 		//-------------------------------------------------------------------------------------------------------------
 		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
-		"AttackDamageMin"			"0"									// Damage range min.
-		"AttackDamageMax"			"0"									// Damage range max.
+		"AttackDamageMin"			"35"									// Damage range min.
+		"AttackDamageMax"			"42"									// Damage range max.
 		"AttackRate"				"3.6"									// Speed of attack.
 		"AttackAnimationPoint"		"0.33"									// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"16000"									// Range within a target can be acquired.

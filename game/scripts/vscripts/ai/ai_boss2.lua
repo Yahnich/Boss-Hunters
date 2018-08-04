@@ -107,8 +107,7 @@ if IsServer() then
 						end
 					end
 				end
-				AICore:AttackHighestPriority( thisEntity )
-				return AI_THINK_RATE
+				return AICore:AttackHighestPriority( thisEntity )
 			else return AI_THINK_RATE end
 		end
 	end

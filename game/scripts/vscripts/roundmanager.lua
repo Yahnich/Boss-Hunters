@@ -101,13 +101,13 @@ function RoundManager:OnNPCSpawned(event)
 					EmitSoundOn("DOTA_Item.BlinkDagger.NailedIt", spawnedUnit)
 				end
 				if not spawnedUnit.hasBeenInitialized then
-					RoundManager:InitializeUnit(spawnedUnit, spawnedUnit:IsRoundBoss() and RoundManager:GetCurrentEvent():IsElite() )
+					RoundManager:InitializeUnit(spawnedUnit, spawnedUnit:IsRoundBoss() and (RoundManager:GetCurrentEvent():IsElite() or RoundManager:GetAscensions() > 0) )
 					GridNav:DestroyTreesAroundPoint(spawnedUnit:GetAbsOrigin(), spawnedUnit:GetHullRadius() + spawnedUnit:GetCollisionPadding() + 350, true)
 					FindClearSpaceForUnit(spawnedUnit, spawnedUnit:GetAbsOrigin(), true)
 				end
 			elseif spawnedUnit:IsRealHero() then
 				spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_tombstone_respawn_immunity", {duration = 3})
-				if self:GetCurrentEvent() then
+				if self:GetCurrentEvent() and self:GetCurrentEvent():GetHeroSpawnPosition() then
 					FindClearSpaceForUnit(spawnedUnit, self:GetCurrentEvent():GetHeroSpawnPosition(), true)
 				end
 			elseif spawnedUnit:IsIllusion() and spawnedUnit:GetPlayerOwnerID() and PlayerResource:GetSelectedHeroEntity( spawnedUnit:GetPlayerOwnerID() ) and spawnedUnit:FindModifierByName("modifier_stats_system_handler") then
@@ -175,7 +175,7 @@ function RoundManager:ConstructRaids(zoneName)
 			self.eventsCreated = self.eventsCreated + 1
 			if RollPercentage(COMBAT_CHANCE) then -- Rolled Combat
 				local combatType = EVENT_TYPE_COMBAT
-				if RollPercentage(ELITE_CHANCE) and self.eventsCreated > 3 then
+				if (RollPercentage(ELITE_CHANCE) and self.eventsCreated > 3) or self:GetAscensions() > 0 then
 					combatType = EVENT_TYPE_ELITE
 				end
 				
@@ -342,7 +342,6 @@ function RoundManager:StartEvent()
 end
 
 function RoundManager:EndEvent(bWonRound)
-	print(bWonRound, "end event result")
 	local EndEventCatch = function(  )
 		GameRules:RefreshPlayers()
 		CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_has_ended", {})
@@ -545,6 +544,7 @@ function RoundManager:InitializeUnit(unit, bElite)
 	if unit:IsRoundBoss() then
 		local evasion = unit:AddNewModifier(unit, nil, "modifier_boss_evasion", {})
 		if evasion then evasion:SetStackCount( RoundManager:GetEventsFinished() ) end
+		if RoundManager:GetAscensions() > 0 then unit:AddNewModifier(unit, nil, "modifier_boss_ascension", {}) end
 	end
 	
 	

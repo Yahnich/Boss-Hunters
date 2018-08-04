@@ -46,13 +46,6 @@ local function StartCombat(self)
 	self.combatEnded = false
 	self.foughtWave = true
 	
-	local zoneName = RoundManager:GetCurrentZone()
-	local event = RoundManager:GetCurrentEvent()
-	local eventType = "combat"
-	if event:GetEventType() == EVENT_TYPE_BOSS then
-		eventType = "boss"
-	end
-	
 	self.timeRemaining = 60
 	
 	self.totemUnit = CreateUnitByName("npc_dota_event_totem", self:GetHeroSpawnPosition(), true, nil, nil, DOTA_TEAM_GOODGUYS)

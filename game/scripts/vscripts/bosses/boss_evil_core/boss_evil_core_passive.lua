@@ -23,7 +23,7 @@ if IsServer() then
 		
 		
 		self:GetParent().hasBeenInitialized = true
-		self:GetParent():SetCoreHealth( (500 + GameRules:GetGameDifficulty() * 125 + 25 * RoundManager:GetEventsFinished() + 100 * RoundManager:GetRaidsFinished()) * HeroList:GetActiveHeroCount() )
+		self:GetParent():SetCoreHealth( math.min( ( GameRules:GetGameDifficulty() * 125 + 25 * RoundManager:GetRaidsFinished() + 250 * RoundManager:GetZonesFinished() ) * HeroList:GetActiveHeroCount(), 15000 ) )
 		
 		self:StartIntervalThink(0.3)
 	end

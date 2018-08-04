@@ -154,8 +154,7 @@ if IsServer() then
 
 					end
 				end
-				AICore:AttackHighestPriority( thisEntity )
-				return AI_THINK_RATE
+				return AICore:AttackHighestPriority( thisEntity )
 			else
 				if thisEntity:GetTotalBearCount() == 0 and thisEntity:GetTotalBearCount() < 9 then
 					if thisEntity.bigbear:IsFullyCastable() and thisEntity:GetBigBearCount() <= 3 then
