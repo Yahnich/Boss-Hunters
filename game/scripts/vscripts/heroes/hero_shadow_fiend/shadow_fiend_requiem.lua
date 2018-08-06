@@ -45,8 +45,8 @@ function shadow_fiend_requiem:ReleaseSouls(bDeath)
 
 	local angle = 360/projectiles
 
-	if caster:FindAbilityByName("shadow_fiend_necro"):GetToggleState() then
-		local cost = self:GetTalentSpecialValueFor("soul_cost")
+	if caster:FindAbilityByName("shadow_fiend_necro"):GetToggleState() or caster:HasScepter() then
+		local cost = TernaryOperator( 0, caster:HasScepter(), self:GetTalentSpecialValueFor("soul_cost") )
 		local newStackCount = modifier:GetStackCount() - cost
 		modifier:SetStackCount(newStackCount)
 		if modifier:GetStackCount() < 1 then caster:RemoveModifierByName("modifier_shadow_fiend_necro") end

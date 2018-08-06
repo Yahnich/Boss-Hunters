@@ -24,22 +24,15 @@ function modifier_razor_plasma_field_bh:OnCreated(table)
 					ParticleManager:SetParticleControl(nfx, 1, Vector(maxRadius, self:GetTalentSpecialValueFor("speed"), 1))
 
 		Timers:CreateTimer(0,function()
-			if currentRadius < maxRadius then
-				local enemies
-				if currentRadius < 200 then
-					enemies = caster:FindEnemyUnitsInRing(caster:GetAbsOrigin(), currentRadius, 0, {})
-				else
-					enemies = caster:FindEnemyUnitsInRing(caster:GetAbsOrigin(), currentRadius, currentRadius-200, {})
-				end
-				for _,enemy in pairs(enemies) do
-					--print("True")
+			if currentRadius < maxRadius and not self:IsNull() then
+				local enemies = caster:FindEnemyUnitsInRing(caster:GetAbsOrigin(), currentRadius, math.max(0, currentRadius-200), {})
+				for _, enemy in pairs(enemies) do
 					if caster:HasTalent("special_bonus_unique_razor_plasma_field_bh_2") then
-						enemy:Paralyze(self:GetAbility(), caster, 1)
+						enemy:Paralyze( self:GetAbility(), caster, 1)
 					end
-					self:GetAbility():DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage_max")*FrameTime(), {}, 0)
+					self:GetAbility():DealDamage( caster, enemy, self:GetTalentSpecialValueFor("damage_max")*FrameTime(), {}, 0 )
 				end
 				currentRadius = currentRadius + maxRadius*FrameTime()
-				--print(currentRadius)
 				return 0.03
 			else
 				return nil

@@ -54,6 +54,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"				"1"
 		"AbilityTextureName"			"brewmaster_drunken_haze"
+		"HasScepterUpgrade"				"1"
 		"MaxLevel"						"7"
 		"AbilityThreat"					"35"
 		
@@ -112,6 +113,11 @@
 			{
 				"var_type"					"FIELD_INTEGER"
 				"movement_bonus"			"10 20 30 40 50 60 70"
+			}
+			"08"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"scepter_radius"			"325"
 			}			
 		}
 	}

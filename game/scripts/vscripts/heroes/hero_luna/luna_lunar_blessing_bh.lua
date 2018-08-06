@@ -4,7 +4,28 @@ function luna_lunar_blessing_bh:GetIntrinsicModifierName()
 	return "modifier_luna_lunar_blessing_passive"
 end
 
-LinkLuaModifier( "modifier_luna_lunar_blessing_passive", "lua_abilities/heroes/luna.lua" ,LUA_MODIFIER_MOTION_NONE )
+function luna_lunar_blessing_bh:GetCooldown(iLvl)
+	local caster = self:GetCaster()
+	if caster:HasTalent("special_bonus_unique_luna_lunar_blessing_1") then
+		return caster:FindTalentValue("special_bonus_unique_luna_lunar_blessing_1", "cd")
+	end
+end
+
+function luna_lunar_blessing_bh:GetBehavior()
+	local caster = self:GetCaster()
+	if caster:HasTalent("special_bonus_unique_luna_lunar_blessing_1") then
+		return DOTA_ABILITY_BEHAVIOR_NO_TARGET + DOTA_ABILITY_BEHAVIOR_IMMEDIATE
+	else
+		return DOTA_ABILITY_BEHAVIOR_PASSIVE + DOTA_ABILITY_BEHAVIOR_AURA
+	end
+end
+
+function luna_lunar_blessing_bh:OnSpellStart()
+	local caster = self:GetCaster()
+	caster:AddNewModifier(caster, self, "modifier_luna_lunar_blessing_active", {duration = caster:FindTalentValue("special_bonus_unique_luna_lunar_blessing_1", "duration")})
+end
+
+LinkLuaModifier( "modifier_luna_lunar_blessing_passive", "heroes/hero_luna/luna_lunar_blessing_bh.lua", LUA_MODIFIER_MOTION_NONE )
 modifier_luna_lunar_blessing_passive = class({})
 
 function modifier_luna_lunar_blessing_passive:OnCreated()
@@ -28,7 +49,7 @@ end
 --------------------------------------------------------------------------------
 
 function modifier_luna_lunar_blessing_passive:GetModifierAura()
-	return "modifier_luna_lunar_blessing_aura"
+	return "modifier_luna_lunar_blessing_bh_aura"
 end
 
 --------------------------------------------------------------------------------
@@ -54,42 +75,59 @@ function modifier_luna_lunar_blessing_passive:IsPurgable()
     return false
 end
 
-LinkLuaModifier( "modifier_luna_lunar_blessing_aura", "lua_abilities/heroes/luna.lua" ,LUA_MODIFIER_MOTION_NONE )
-modifier_luna_lunar_blessing_aura = class({})
+LinkLuaModifier( "modifier_luna_lunar_blessing_active", "heroes/hero_luna/luna_lunar_blessing_bh.lua", LUA_MODIFIER_MOTION_NONE )
+modifier_luna_lunar_blessing_active = class({})
 
-function modifier_luna_lunar_blessing_aura:OnCreated()
+LinkLuaModifier( "modifier_luna_lunar_blessing_bh_aura", "heroes/hero_luna/luna_lunar_blessing_bh.lua", LUA_MODIFIER_MOTION_NONE )
+modifier_luna_lunar_blessing_bh_aura = class({})
+
+function modifier_luna_lunar_blessing_bh_aura:OnCreated()
     self.damage = self:GetAbility():GetSpecialValueFor("bonus_damage")
 	self.dmg_pct = self:GetAbility():GetSpecialValueFor("bonus_damage_pct")
 end
 
-function modifier_luna_lunar_blessing_aura:OnRefresh()
+function modifier_luna_lunar_blessing_bh_aura:OnRefresh()
     self.damage = self:GetAbility():GetSpecialValueFor("bonus_damage")
 	self.dmg_pct = self:GetAbility():GetSpecialValueFor("bonus_damage_pct")
 end
 
-function modifier_luna_lunar_blessing_aura:DeclareFunctions()
+function modifier_luna_lunar_blessing_bh_aura:DeclareFunctions()
 	funcs = {
 				MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
 				MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE,
-				MODIFIER_PROPERTY_ATTACKSPEED_BONUS,
+				MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
 				MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE
 				,
 			}
 	return funcs
 end
 
-function modifier_luna_lunar_blessing_aura:GetModifierPreAttack_BonusDamage()
-    return self.damage
+function modifier_luna_lunar_blessing_bh_aura:GetModifierPreAttack_BonusDamage()
+	local damage = self.damage
+	if self:GetCaster():HasModifier("modifier_luna_lunar_blessing_active") then damage = damage * self:GetCaster():FindTalentValue("special_bonus_unique_luna_lunar_blessing_1") end
+    return damage
 end
 
-function modifier_luna_lunar_blessing_aura:AS()
-    return self:GetCaster():FindTalentValue("special_bonus_unique_luna_lunar_blessing_2", "as")
+function modifier_luna_lunar_blessing_bh_aura:GetModifierBaseDamageOutgoing_Percentage()
+	if not GameRules:IsDaytime() then
+		local damage = self.dmg_pct
+		if self:GetCaster():HasModifier("modifier_luna_lunar_blessing_active") then damage = damage * self:GetCaster():FindTalentValue("special_bonus_unique_luna_lunar_blessing_1") end
+		return damage
+	end
 end
 
-function modifier_luna_lunar_blessing_aura:MS()
-    return self:GetCaster():FindTalentValue("special_bonus_unique_luna_lunar_blessing_2", "ms")
+function modifier_luna_lunar_blessing_bh_aura:GetModifierAttackSpeedBonus_Constant()
+	if not GameRules:IsDaytime() and self:GetCaster():HasTalent("special_bonus_unique_luna_lunar_blessing_2") then
+		local as = self:GetCaster():FindTalentValue("special_bonus_unique_luna_lunar_blessing_2", "as")
+		if self:GetCaster():HasModifier("modifier_luna_lunar_blessing_active") then as = as * self:GetCaster():FindTalentValue("special_bonus_unique_luna_lunar_blessing_1") end
+		return as
+	end
 end
 
-function modifier_luna_lunar_blessing_aura:GetModifierBaseDamageOutgoing_Percentage()
-	if not GameRules:IsDaytime() then return self.dmg_pct end
+function modifier_luna_lunar_blessing_bh_aura:GetModifierMoveSpeedBonus_Percentage()
+	if not GameRules:IsDaytime() and self:GetCaster():HasTalent("special_bonus_unique_luna_lunar_blessing_2") then
+		local ms = self:GetCaster():FindTalentValue("special_bonus_unique_luna_lunar_blessing_2", "ms")
+		if self:GetCaster():HasModifier("modifier_luna_lunar_blessing_active") then ms = ms * self:GetCaster():FindTalentValue("special_bonus_unique_luna_lunar_blessing_1") end
+		return ms
+	end
 end

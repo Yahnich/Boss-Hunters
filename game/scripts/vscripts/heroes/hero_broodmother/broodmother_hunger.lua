@@ -1,4 +1,4 @@
-broodmother_hunger = class({})
+	broodmother_hunger = class({})
 LinkLuaModifier("modifier_broodmother_hunger", "heroes/hero_broodmother/broodmother_hunger", LUA_MODIFIER_MOTION_NONE)
 
 function broodmother_hunger:OnSpellStart()
@@ -6,7 +6,7 @@ function broodmother_hunger:OnSpellStart()
 	
 	local friends = caster:FindFriendlyUnitsInRadius(caster:GetAbsOrigin(), FIND_UNITS_EVERYWHERE)
     for _,friend in pairs(friends) do
-        if friend:GetPlayerOwnerID() == caster:GetPlayerOwnerID() then
+        if friend:GetPlayerOwnerID() == caster:GetPlayerOwnerID() or caster:HasScepter() then
             friend:AddNewModifier(caster, self, "modifier_broodmother_hunger", {Duration = self:GetTalentSpecialValueFor("duration")})
         end
     end

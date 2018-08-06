@@ -277,6 +277,7 @@
 		"ScriptFile"					"heroes/hero_shadow_fiend/shadow_fiend_necro.lua"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_TOGGLE"
 		"AbilityTextureName"			"nevermore_necromastery"
+		"HasScepterUpgrade"				"1"
 		"MaxLevel"						"7"
 	
 		// Special

@@ -10,18 +10,16 @@ end
 
 if IsServer() then
 	function brewmaster_drunken_haze_ebf:OnSpellStart()
-		local projectile = {
-			Target = self:GetCursorTarget(),
-			Source = self:GetCaster(),
-			Ability = self,
-			EffectName = "particles/units/heroes/hero_brewmaster/brewmaster_drunken_haze.vpcf",
-			bDodgable = false,
-			bProvidesVision = false,
-			iMoveSpeed = 1300,
-			iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_ATTACK_1,
-		}
-		ProjectileManager:CreateTrackingProjectile(projectile)
-		EmitSoundOn("Hero_Brewmaster.DrunkenHaze.Cast", self:GetCaster())
+		local caster = self:GetCaster()
+		local target = self:GetCursorTarget()
+		if caster:HasScepter() then
+			for _, unit in ipairs( caster:FindAllUnitsInRadius( target:GetAbsOrigin(), self:GetTalentSpecialValueFor("scepter_radius") ) ) do
+				self:FireTrackingProjectile("particles/units/heroes/hero_brewmaster/brewmaster_drunken_haze.vpcf", unit, 1300)
+			end
+		else
+			self:FireTrackingProjectile("particles/units/heroes/hero_brewmaster/brewmaster_drunken_haze.vpcf", target, 1300)
+		end
+		EmitSoundOn("Hero_Brewmaster.DrunkenHaze.Cast", caster)
 	end
 
 	function brewmaster_drunken_haze_ebf:OnProjectileHit(target, position)

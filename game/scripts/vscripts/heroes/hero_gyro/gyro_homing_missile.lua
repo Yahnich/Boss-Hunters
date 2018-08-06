@@ -69,7 +69,7 @@ function modifier_homing_missile:LaunchMissile(hTarget)
 		if fuse then
 			ParticleManager:DestroyParticle(fuse,false)
 		end
-
+		if homingMissile:IsNull() or target:IsNull() then return end
 		--if the missile is alive. If the missile gets destoryed before reaching the target location, remove the fire particle
 		if homingMissile:IsAlive() then
 			--if we dont have the particles

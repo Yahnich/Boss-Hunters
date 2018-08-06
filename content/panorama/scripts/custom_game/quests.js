@@ -115,7 +115,30 @@ GameEvents.Subscribe( "game_tools_ask_nettable_info", SendNetTableInfo);
 (function()
 {
 	$.RegisterForUnhandledEvent( "DOTAShowAbilityTooltipForEntityIndex", UpdateTooltipUI );
+	UpdateAccuracyTooltip()
 })();
+
+function UpdateAccuracyTooltip()
+{
+	var tooltips = dotaHud.FindChildTraverse("Tooltips");
+	var uiTooltip = tooltips.FindChildTraverse("DOTAHUDDamageArmorTooltip");
+	var currUnit = 	Players.GetLocalPlayerPortraitUnit()
+	if(uiTooltip != null){
+		var textLabel = uiTooltip.FindChildTraverse("PhysicalResistLabel");
+		var valueLabel = uiTooltip.FindChildTraverse("PhysicalResist");
+		textLabel.text = "Accuracy:";
+		valueLabel.text = "0%";
+		for (var i = 0; i < Entities.GetNumBuffs(currUnit); i++) {
+			var buffID = Entities.GetBuff(currUnit, i)
+			Buffs.GetName( currUnit, buffID )
+			if (Buffs.GetName( currUnit, buffID ) == "modifier_accuracy_handler"){
+				valueLabel.text = Buffs.GetStackCount( currUnit, buffID ) + "%";
+			}
+		}
+		
+	}
+	$.Schedule( 0.33, UpdateAccuracyTooltip );
+}
 
 function SendNetTableInfo()
 {

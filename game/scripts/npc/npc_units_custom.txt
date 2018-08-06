@@ -1477,7 +1477,7 @@
 		// Movement
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
-		"MovementSpeed"				"200"		// Speed.
+		"MovementSpeed"				"125"		// Speed.
 		"MovementTurnRate"			"0.15"		// Turning rate.
 	
 		// Status
@@ -3447,7 +3447,7 @@
 		// Armor
 		//----------------------------------------------------------------
 		"ArmorPhysical"				"0"			// Physical protection.
-		"MagicalResistance"			"50"		// Magical protection.
+		"MagicalResistance"			"33"		// Magical protection.
 		
 		// Attack
 		//----------------------------------------------------------------

@@ -12,7 +12,7 @@ function undying_decay_bh:OnSpellStart()
 	local damage = self:GetTalentSpecialValueFor("damage")
 	local duration = self:GetTalentSpecialValueFor("duration")
 	local radius = self:GetTalentSpecialValueFor("radius")
-	local bossStr = TernaryOperator( self:GetTalentSpecialValueFor("str_per_boss"), caster:HasScepter(), self:GetTalentSpecialValueFor("scepter_str_per_boss") )
+	local bossStr = TernaryOperator( self:GetTalentSpecialValueFor("scepter_str_per_boss"), caster:HasScepter(), self:GetTalentSpecialValueFor("str_per_boss") )
 	local mobStr = self:GetTalentSpecialValueFor("str_per_mob")
 	
 	local modifierName = TernaryOperator("modifier_undying_decay_bh_talent", caster:HasTalent("special_bonus_unique_undying_decay_2"), "modifier_undying_decay_bh")

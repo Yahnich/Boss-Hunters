@@ -37,7 +37,16 @@ function legion_commander_war_fury:OnSpellStart()
 	else
 		caster:AddNewModifier(caster, self, "modifier_legion_commander_war_fury_amp", {duration = duration})
 	end
+	if caster:HasScepter() then
+		caster:AddNewModifier(caster, self, "modifier_status_immunity", {duration = duration})
+		caster:AddNewModifier(caster, self, "modifier_rune_haste", {duration = duration})
+	end
 end
+
+LinkLuaModifier( "modifier_legion_commander_war_fury_scepter", "heroes/hero_legion_commander/legion_commander_war_fury", LUA_MODIFIER_MOTION_NONE )
+modifier_legion_commander_war_fury_scepter = class({})
+
+function 
 
 LinkLuaModifier( "modifier_legion_commander_war_fury_amp", "heroes/hero_legion_commander/legion_commander_war_fury", LUA_MODIFIER_MOTION_NONE )
 modifier_legion_commander_war_fury_amp = class({})

@@ -196,7 +196,7 @@ function CHoldoutGameMode:InitGameMode()
 	
 	GameRules:SetHeroSelectionTime( 80.0 )
 	if IsInToolsMode() then
-		GameRules:SetPreGameTime( 999.0 )
+		GameRules:SetPreGameTime( 9999.0 )
 	else
 		GameRules:SetPreGameTime( 30.0 )
 	end
@@ -724,7 +724,6 @@ function CHoldoutGameMode:OnAbilityUsed(event)
 		abilityused:EndCooldown()
 		if abilityused:GetDuration() > 0 then
 			local duration = abilityused:GetDuration()
-			if abilityname == "night_stalker_crippling_fear" and not GameRules:IsDaytime() then duration = abilityused:GetTalentSpecialValueFor("duration_night") end
 			for _, modifier in ipairs( hero:FindAllModifiers() ) do
 				if modifier.GetModifierStatusAmplify_Percentage then
 					duration = duration * (1 + modifier:GetModifierStatusAmplify_Percentage( params )/100)

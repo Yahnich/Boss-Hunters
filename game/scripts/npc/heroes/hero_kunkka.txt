@@ -429,6 +429,7 @@
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NONE"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"kunkka_ghostship"
+		"HasScepterUpgrade"				"1"
 		"MaxLevel"						"6"
 		
 
@@ -502,6 +503,12 @@
 				"var_type"					"FIELD_FLOAT"
 				"absorb"					"40 45 50 55 60 65"
 			}
+			"10"
+			{
+				"var_type"								"FIELD_FLOAT"
+				"torrent_travel_distance_scepter"		"500"
+			}
+			
 		}
 	}
 	//=================================================================================================================

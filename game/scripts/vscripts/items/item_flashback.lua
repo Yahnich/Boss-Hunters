@@ -1,6 +1,10 @@
 item_flashback = class({})
 LinkLuaModifier( "modifier_item_flashback_passive", "items/item_flashback.lua" ,LUA_MODIFIER_MOTION_NONE )
 
+function item_flashback:IsRefreshable()
+	return false
+end
+
 function item_flashback:OnSpellStart()
 	local caster = self:GetCaster()
 	caster:RefreshAllCooldowns(true)

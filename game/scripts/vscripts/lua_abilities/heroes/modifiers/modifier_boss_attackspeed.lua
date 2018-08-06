@@ -70,6 +70,7 @@ function modifier_boss_attackspeed:OnAttackStart(params)
 	if params.attacker == self:GetParent() then
 		if IsServer() then
 			Timers:CreateTimer(function()
+				if self:IsNull() or self:GetParent():IsNull() then return end
 				self:GetParent():RemoveGesture(ACT_DOTA_ATTACK)
 				self:GetParent():RemoveGesture(ACT_DOTA_ATTACK2)
 				self:GetParent():StartGestureWithPlaybackRate( TernaryOperator(ACT_DOTA_ATTACK2, RollPercentage(50), ACT_DOTA_ATTACK), self:GetParent():GetAttackSpeed() / 3  )

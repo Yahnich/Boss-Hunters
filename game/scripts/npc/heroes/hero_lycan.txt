@@ -318,6 +318,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"AbilityTextureName"			"lycan_summon_wolves_critical_strike"
+		"HasScepterUpgrade"				"1"
 		"MaxLevel"						"1"
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -337,6 +338,16 @@
 			{
 				"var_type"					"FIELD_INTEGER"
 				"night_critical_chance"		"60"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"scepter_armor"				"15"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"scepter_armor_night"		"30"
 			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"

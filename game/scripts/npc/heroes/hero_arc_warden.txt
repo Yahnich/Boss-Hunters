@@ -385,6 +385,16 @@
 				"var_type"				"FIELD_FLOAT"
 				"delay"					"0.5"
 			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_casts"			"1"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"scepter_casts"			"2"
+			}
 		}
 	}
 

@@ -149,6 +149,11 @@
 				"var_type"				"FIELD_FLOAT"
 				"duration"				"1 1.25 1.5 1.75 2 2.25 2.5"
 			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"scepter_radius"		"900"
+			}
 		}
 	}
 

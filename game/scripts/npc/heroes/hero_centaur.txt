@@ -294,6 +294,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"centaur_stampede"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+		"HasScepterUpgrade"				"1"
 		"FightRecapLevel"				"2"
 		"MaxLevel"						"6"
 	

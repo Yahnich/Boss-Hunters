@@ -50,19 +50,19 @@ function CreateFrostShards(keys)
 	local units = FindUnitsInRadius( caster:GetTeam(), caster:GetOrigin(), nil, 800, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, 0, false )
 	if #units == 0 then return end
 	ability:StartCooldown(16)
-	for i = 1, PlayerResource:FindActivePlayerCount() + 4 do
+	for i = 1, PlayerResource:FindActivePlayerCount() + 5 do
 		Timers:CreateTimer(RandomFloat(0.1, 0.8), function()
 			local shardLoc = caster:GetAbsOrigin() + ActualRandomVector(1200, 150)
 			local frostShard = ParticleManager:CreateParticle("particles/elite_freezing_parent.vpcf", PATTACH_WORLDORIGIN, nil)
 				ParticleManager:SetParticleControl(frostShard, 0, shardLoc)
 			EmitSoundOnLocationWithCaster(shardLoc, "hero_Crystal.frostbite", caster)
-			ParticleManager:FireWarningParticle(shardLoc, 400)
+			ParticleManager:FireWarningParticle(shardLoc, 225)
 			Timers:CreateTimer(5, function()
 				ParticleManager:ClearParticle(frostShard)
 				EmitSoundOn("Hero_Ancient_Apparition.IceBlast.Target", caster)
-				local targets = FindUnitsInRadius( caster:GetTeam(), shardLoc, nil, 400, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, 0, false )
+				local targets = FindUnitsInRadius( caster:GetTeam(), shardLoc, nil, 225, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, 0, false )
 				for _, frozenTarget in pairs(targets) do
-					ApplyDamage({ victim = frozenTarget, attacker = keys.caster, damage = 80, damage_type = DAMAGE_TYPE_MAGICAL, ability = ability })
+					ApplyDamage({ victim = frozenTarget, attacker = keys.caster, damage = 100, damage_type = DAMAGE_TYPE_MAGICAL, ability = ability })
 					ability:ApplyDataDrivenModifier(caster, frozenTarget, "modifier_elite_coldsnapped", {duration = 4})
 				end
 			end)
@@ -399,30 +399,24 @@ function UnstableFunction(keys)
                                     FIND_ANY_ORDER,
                                     false)
 	if not enemies then return end
-	local totalhp = 0
 	for _,unit in pairs(enemies) do
-		totalhp = totalhp + unit:GetHealth()
-	end
-	local averagehp = totalhp / #enemies
-	local damage = averagehp
-	for _,unit in pairs(enemies) do
-		if RollPercentage(10) then
+		if RollPercentage(25) then
 			local location = unit:GetAbsOrigin() + Vector(math.random(700),math.random(700),0)
 			local rnd = RandomInt(1,100)
 			if rnd > 33 and rnd < 66 then
 				ability:ApplyAOE({particles = "particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_shadowraze.vpcf",
 								  location = location,
 								  radius = 250,
-								  damage = damage*0.2,
-								  damage_type = DAMAGE_TYPE_PHYSICAL,
+								  damage = 175,
+								  damage_type = DAMAGE_TYPE_MAGICAL,
 								  delay = 2.5,
 								  sound = "Hero_Enigma.Demonic_Conversion"})				
 			elseif rnd < 33 then
 				ability:ApplyAOE({particles = "particles/units/heroes/hero_lina/lina_spell_light_strike_array.vpcf",
 								  location = location,
 								  radius = 200,
-								  damage = damage*0.1,
-								  damage_type = DAMAGE_TYPE_PURE,
+								  damage = 75,
+								  damage_type = DAMAGE_TYPE_MAGICAL,
 								  modifier = "modifier_elite_unstable_stun",
 								  duration = 1,
 								  delay = 2.5,
@@ -431,7 +425,7 @@ function UnstableFunction(keys)
 				ability:ApplyAOE({particles = "particles/econ/items/kunkka/kunkka_weapon_whaleblade/kunkka_spell_torrent_splash_whaleblade.vpcf",
 								  location = location,
 								  radius = 250,
-								  damage = damage*0.15,
+								  damage = 125,
 								  damage_type = DAMAGE_TYPE_MAGICAL,
 								  modifier = "modifier_elite_unstable_slow",
 								  duration = 3,

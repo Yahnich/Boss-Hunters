@@ -211,7 +211,7 @@ function CDOTA_Modifier_Lua:AttachEffect(pID)
 end
 
 function CDOTA_Modifier_Lua:GetSpecialValueFor(specVal)
-	if self and self:GetAbility() then
+	if self and not self:IsNull() and self:GetAbility() and not self:GetAbility():IsNull() then
 		return self:GetAbility():GetSpecialValueFor(specVal)
 	end
 end
@@ -666,10 +666,8 @@ function CDOTA_BaseNPC:SetAverageBaseDamage(average, variance) -- variance is in
 	self:SetBaseDamageMin(math.floor(average*(1-(var/100))))
 end
 
-DO_NOT_REFRESH = {["item_flashback"] = true,}
-
 function CDOTABaseAbility:Refresh()
-	if DO_NOT_REFRESH[self:GetName()] then return end
+	if self.IsRefreshable and not self:IsRefreshable() then return end
 	if not self:IsActivated() then
 		self:SetActivated(true)
 	end
@@ -783,11 +781,13 @@ function CDOTA_BaseNPC:IsAtAngleWithEntity(hEntity, flDesiredAngle)
 end
 	
 
-function CDOTA_BaseNPC:RefreshAllCooldowns(bItems)
+function CDOTA_BaseNPC:RefreshAllCooldowns(bItems, bNoUltimate)
     for i = 0, self:GetAbilityCount() - 1 do
         local ability = self:GetAbilityByIndex( i )
         if ability then
-			ability:Refresh()
+			if (bNoUltimate and abiliy:GetAbility() ~= 1) or not bNoUltimate then
+				ability:Refresh()
+			end
 			if ability:GetName() == "skeleton_king_reincarnation" then
 				self:RemoveModifierByName("modifier_skeleton_king_reincarnation_cooldown")
 			end
@@ -1804,6 +1804,8 @@ function ParticleManager:FireParticle(effect, attach, owner, cps)
 		for cp, value in pairs(cps) do
 			if type(value) == "userdata" then
 				ParticleManager:SetParticleControl(FX, tonumber(cp), value)
+			elseif type(value) == "table" then
+				ParticleManager:SetParticleControlEnt(FX, cp, owner, value.attach, value.point, owner:GetAbsOrigin(), true)
 			else
 				ParticleManager:SetParticleControlEnt(FX, cp, owner, attach, value, owner:GetAbsOrigin(), true)
 			end
@@ -2012,13 +2014,7 @@ function CDOTABaseAbility:ApplyAOE(eventTable)
 	end
 	eventTable.location.z = eventTable.location.z + GetGroundHeight(eventTable.location, nil) / 2
 	if eventTable.delay then
-		local thinker = ParticleManager:CreateParticle("particles/econ/generic/generic_aoe_shockwave_1/generic_aoe_shockwave_1.vpcf", PATTACH_WORLDORIGIN , nil)
-			ParticleManager:SetParticleControl(thinker, 0, eventTable.location)
-			ParticleManager:SetParticleControl(thinker, 2, Vector(6,0,1))
-			ParticleManager:SetParticleControl(thinker, 1, Vector(eventTable.radius,0,0))
-			ParticleManager:SetParticleControl(thinker, 3, Vector(255,0,0))
-			ParticleManager:SetParticleControl(thinker, 4, Vector(0,0,0))
-		ParticleManager:ReleaseParticleIndex(thinker)
+		ParticleManager:FireWarningParticle( eventTable.location, eventTable.radius )
 	else
 		eventTable.delay = 0
 	end
@@ -2066,14 +2062,7 @@ function CDOTABaseAbility:ApplyAOE(eventTable)
 end
 
 function get_octarine_multiplier(caster)
-	local cooldown = caster:FindModifierByName("spell_lifesteal")
-	local octarine_multiplier = 1
-	if cooldown then
-		octarine_multiplier = octarine_multiplier - (cooldown:GetStackCount()/100)/100
-	end
-	local talentMult = 1 - caster:HighestTalentTypeValue("cooldown_reduction")/100
-	octarine_multiplier = octarine_multiplier*talentMult
-    return octarine_multiplier
+    return caster:GetCooldownReduction()
 end
 
 function CDOTA_BaseNPC:GetCooldownReduction()

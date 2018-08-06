@@ -879,6 +879,15 @@
 		"VisionDaytimeRange"			"1800"
 		"VisionNighttimeRange"			"1800"
 		
+		"Ability10"						"special_bonus_unique_luna_lucent_beam_1"
+		"Ability11"						"special_bonus_unique_luna_lucent_beam_2"
+		"Ability12"						"special_bonus_unique_luna_nightsilver_resolve_1"
+		"Ability13"						"special_bonus_unique_luna_nightsilver_resolve_2"
+		"Ability14"						"special_bonus_unique_luna_lunar_blessing_1"
+		"Ability15"						"special_bonus_unique_luna_lunar_blessing_2"
+		"Ability16"						"special_bonus_unique_luna_eclipse_1"
+		"Ability17"						"special_bonus_unique_luna_eclipse_2"
+		
 		"ArmorPhysical"					"0"
 		"AttackCapabilities"			"DOTA_UNIT_CAP_RANGED_ATTACK"
 		"AttackDamageMin"				"28"

@@ -32,7 +32,7 @@ if IsServer() then
 			vVelocity = vDirection * self.spear_speed,
 			fDistance = self.spear_distance,
 			Source = self:GetCaster(),
-			iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY,
+			iUnitTargetTeam = TernaryOperator( DOTA_UNIT_TARGET_TEAM_BOTH, self:GetCaster():HasTalent("special_bonus_unique_luna_nightsilver_resolve_2"), DOTA_UNIT_TARGET_TEAM_ENEMY),
 			iUnitTargetType = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
 		}
 
@@ -43,31 +43,47 @@ if IsServer() then
 
 	function luna_nightsilver_resolve:OnProjectileHit( hTarget, vLocation )
 		if hTarget ~= nil and ( not hTarget:IsMagicImmune() ) and ( not hTarget:IsInvulnerable() ) then
-			local damage = {
-				victim = hTarget,
-				attacker = self:GetCaster(),
-				damage = self.spear_damage,
-				damage_type = DAMAGE_TYPE_MAGICAL,
-				ability = self
-			}
+			local caster = self:GetCaster()
+			if hTarget:IsSameTeam( caster ) then
+				hTarget:HealEvent( self.spear_damage, self, caster )
+				hTarget:AddNewModifier(caster, self, "modifier_luna_nightsilver_resolve_strengthen", {duration = self:GetSpecialValueFor("weaken_duration")})
+			else
+				local damage = {
+					victim = hTarget,
+					attacker = self:GetCaster(),
+					damage = self.spear_damage,
+					damage_type = DAMAGE_TYPE_MAGICAL,
+					ability = self
+				}
 
-			ApplyDamage( damage )
-			hTarget:AddNewModifier(self:GetCaster(), self, "modifier_luna_nightsilver_resolve_weaken", {duration = self:GetSpecialValueFor("weaken_duration")})
-
-			local vDirection = vLocation - self:GetCaster():GetOrigin()
-			vDirection.z = 0.0
-			vDirection = vDirection:Normalized()
-			
-			local nFXIndex = ParticleManager:CreateParticle( "particles/units/heroes/hero_lina/lina_spell_dragon_slave_impact.vpcf", PATTACH_ABSORIGIN_FOLLOW, hTarget )
-			ParticleManager:SetParticleControlForward( nFXIndex, 1, vDirection )
-			ParticleManager:ReleaseParticleIndex( nFXIndex )
+				ApplyDamage( damage )
+				hTarget:AddNewModifier( caster, self, "modifier_luna_nightsilver_resolve_weaken", {duration = self:GetSpecialValueFor("weaken_duration")})
+			end
 		end
 
 		return false
 	end
 end
 
-LinkLuaModifier( "modifier_luna_nightsilver_resolve_weaken", "lua_abilities/heroes/luna.lua" ,LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_luna_nightsilver_resolve_strengthen", "heroes/hero_luna/luna_nightsilver_resolve", LUA_MODIFIER_MOTION_NONE )
+modifier_luna_nightsilver_resolve_strengthen = class({})
+
+function modifier_luna_nightsilver_resolve_strengthen:OnCreated()
+	self.weaken = self:GetAbility():GetSpecialValueFor("spear_weaken") * (-1)
+end
+
+function modifier_luna_nightsilver_resolve_strengthen:DeclareFunctions()
+	funcs = {
+				MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE,
+			}
+	return funcs
+end
+
+function modifier_luna_nightsilver_resolve_strengthen:GetModifierBaseDamageOutgoing_Percentage()
+	return self.weaken
+end
+
+LinkLuaModifier( "modifier_luna_nightsilver_resolve_weaken", "heroes/hero_luna/luna_nightsilver_resolve", LUA_MODIFIER_MOTION_NONE )
 modifier_luna_nightsilver_resolve_weaken = class({})
 
 function modifier_luna_nightsilver_resolve_weaken:OnCreated()

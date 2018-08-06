@@ -21,7 +21,9 @@ function MapHandler:CheckAndResolvePositions(hero)
 		if edgeBox and not edgeBox:IsTouching(hero) then
 			hero.lastAllowedPosition = RoundManager:GetCurrentEvent():GetHeroSpawnPosition()
 			hero:StopMotionControllers(true)
-			FindClearSpaceForUnit(hero, hero.lastAllowedPosition, true)
+			if hero and hero.lastAllowedPosition then
+				FindClearSpaceForUnit(hero, hero.lastAllowedPosition, true)
+			end
 		end
 		return
 	end

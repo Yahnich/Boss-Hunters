@@ -11,9 +11,17 @@ function phenx_egg:IsHiddenWhenStolen()
     return false
 end
 
+function phenx_egg:GetBehavior()
+	if self:GetCaster():HasScepter() then
+		return DOTA_ABILITY_BEHAVIOR_UNIT_TARGET + DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK + DOTA_ABILITY_BEHAVIOR_UNRESTRICTED
+	else
+		return DOTA_ABILITY_BEHAVIOR_NO_TARGET + DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK + DOTA_ABILITY_BEHAVIOR_UNRESTRICTED
+	end
+end
+
 function phenx_egg:OnSpellStart()
     local caster = self:GetCaster()
-
+	
     EmitSoundOn("Hero_Phoenix.SuperNova.Cast", caster)
 
     local egg = caster:CreateSummon("npc_dota_phoenix_sun", caster:GetAbsOrigin(), self:GetTalentSpecialValueFor("duration"))
@@ -22,24 +30,32 @@ function phenx_egg:OnSpellStart()
 	egg:SetCoreHealth(hp * 2)
 	
     egg:AddNewModifier(caster, self, "modifier_phenx_egg_form", {Duration = self:GetTalentSpecialValueFor("duration")})
+	egg.owners = {}
     EmitSoundOn("Hero_Phoenix.SuperNova.Begin", egg)
 
     caster:AddNewModifier(caster, self, "modifier_phenx_egg_caster", {Duration = self:GetTalentSpecialValueFor("duration")})
     egg:ModifyThreat(caster:GetThreat())
     caster:SetThreat(0)
+	table.insert(egg.owners, caster)
+	if self:GetCursorTarget() then
+		local target = self:GetCursorTarget()
+		target:AddNewModifier(caster, self, "modifier_phenx_egg_caster", {Duration = self:GetTalentSpecialValueFor("duration")})
+		table.insert(egg.owners, target)
+		target:SetAbsOrigin(egg:GetAbsOrigin())
+	end
 end
 
 modifier_phenx_egg_caster = class({})
 function modifier_phenx_egg_caster:OnCreated(table)
     if IsServer() then
-        self:GetCaster():AddNoDraw()
+        self:GetParent():AddNoDraw()
     end
 end
 
 function modifier_phenx_egg_caster:OnRemoved()
     if IsServer() then
-        self:GetCaster():RemoveNoDraw()
-        self:GetCaster():StartGesture(ACT_DOTA_INTRO)
+        self:GetParent():RemoveNoDraw()
+        self:GetParent():StartGesture(ACT_DOTA_INTRO)
     end
 end
 
@@ -141,35 +157,33 @@ end
 
 function modifier_phenx_egg_form:OnRemoved()
     if IsServer() then
-		local egg       = self:GetParent()
-        local hero      = self:GetCaster()
-        local ability   = self:GetAbility()
+		local egg = self:GetParent()
+        local caster = self:GetCaster()
+        local ability = self:GetAbility()
 
         ParticleManager:DestroyParticle(self.nfx, false)
         local isDead = egg.supernova_numAttacked >= self.maxAttacks
 
         if isDead then
-            hero:ForceKill(true)
+            for _, hero in ipairs( egg.owners ) do
+				hero:ForceKill(true)
+			end
         else
-            hero:SetHealth( hero:GetMaxHealth() )
-            hero:SetMana( hero:GetMaxMana() )
+			for _, hero in ipairs( egg.owners ) do
+				hero:SetHealth( hero:GetMaxHealth() )
+				hero:SetMana( hero:GetMaxMana() )
+				hero:Dispel(caster, true)
 
-            -- Strong despel
-            local RemovePositiveBuffs = true
-            local RemoveDebuffs = true
-            local BuffsCreatedThisFrameOnly = false
-            local RemoveStuns = true
-            local RemoveExceptions = true
-            hero:Purge( RemovePositiveBuffs, RemoveDebuffs, BuffsCreatedThisFrameOnly, RemoveStuns, RemoveExceptions )
+				for i=0,6 do
+					local abil = self:GetCaster():GetAbilityByIndex(i)
+					if abil:GetAbilityType() ~= 1 then
+						abil:EndCooldown()
+					end
+				end
+			end
+            
 
-            for i=0,3 do
-                local abil = self:GetCaster():GetAbilityByIndex(i)
-                if abil ~= self then
-                    abil:EndCooldown()
-                end
-            end
-
-            local enemies = hero:FindEnemyUnitsInRadius(hero:GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"))
+            local enemies = caster:FindEnemyUnitsInRadius(egg:GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"))
             for _,enemy in pairs(enemies) do
                 ability:Stun(enemy, self:GetTalentSpecialValueFor("stun_duration"), false)
             end
@@ -177,14 +191,14 @@ function modifier_phenx_egg_form:OnRemoved()
 
         -- Play sound effect
         local soundName = "Hero_Phoenix.SuperNova." .. ( isDead and "Death" or "Explode" )
-        StartSoundEvent( soundName, hero )
+        StartSoundEvent( soundName, caster )
 
         -- Create particle effect
         local pfxName = "particles/units/heroes/hero_phoenix/phoenix_supernova_" .. ( isDead and "death" or "reborn" ) .. ".vpcf"
-        local pfx = ParticleManager:CreateParticle( pfxName, PATTACH_ABSORIGIN, hero )
-        ParticleManager:SetParticleControlEnt( pfx, 0, hero, PATTACH_POINT_FOLLOW, "follow_origin", hero:GetAbsOrigin(), true )
-        ParticleManager:SetParticleControlEnt( pfx, 1, hero, PATTACH_POINT_FOLLOW, "attach_hitloc", hero:GetAbsOrigin(), true )
-
+        local pfx = ParticleManager:CreateParticle( pfxName, PATTACH_ABSORIGIN, caster )
+        ParticleManager:SetParticleControlEnt( pfx, 0, caster, PATTACH_POINT_FOLLOW, "follow_origin", caster:GetAbsOrigin(), true )
+        ParticleManager:SetParticleControlEnt( pfx, 1, caster, PATTACH_POINT_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), true )
+		ResolveNPCPositions(egg:GetAbsOrigin(), 9000)
         -- Remove the egg
         egg:ForceKill( false )
         egg:AddNoDraw()

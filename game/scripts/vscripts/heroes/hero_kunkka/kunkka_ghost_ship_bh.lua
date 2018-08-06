@@ -83,6 +83,28 @@ function kunkka_ghost_ship_bh:SendShip(spawn_pos, totalDistance, radius, directi
     local crash_pfx = ParticleManager:CreateParticleForTeam("particles/units/heroes/hero_kunkka/kunkka_ghostship_marker.vpcf", PATTACH_POINT, caster, caster:GetTeam())
     ParticleManager:SetParticleControl(crash_pfx, 0, crash_pos )
     -- Destroy particle after the crash
+	local inMotion = true
+	
+	
+	if caster:HasScepter() then
+		local travelDistance = 0
+		local position = spawn_pos
+		local torrentDistance = self:GetTalentSpecialValueFor("torrent_travel_distance_scepter")
+		local torrent = caster:FindAbilityByName("kunkka_torrent_bh")
+		if torrent then
+			Timers:CreateTimer(0.1, function()
+				travelDistance = travelDistance + speed * 0.1
+				if travelDistance >= torrentDistance then
+					torrent:CreateTorrent( position + direction * travelDistance )
+					position = position + direction * travelDistance
+					travelDistance = 0
+				end
+				if inMotion then
+					return 0.1
+				end
+			end)
+		end
+	end
     Timers:CreateTimer(travel_time, function()
         ParticleManager:DestroyParticle(crash_pfx, false)
         ParticleManager:ReleaseParticleIndex(crash_pfx)
@@ -97,6 +119,7 @@ function kunkka_ghost_ship_bh:SendShip(spawn_pos, totalDistance, radius, directi
                 caster:EmitSound("kunkka_kunk_ability_failure_0"..math.random(1,2))
             end
         end
+		inMotion = false
         for _, enemy in pairs(enemies) do
             self:Stun(enemy, self:GetTalentSpecialValueFor("stun_duration"), false)
             self:DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage"), {}, 0)

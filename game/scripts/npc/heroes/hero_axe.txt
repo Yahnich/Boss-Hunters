@@ -462,9 +462,11 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_datadriven"
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_axe/axe_steeled_temper"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityTextureName"			"custom/axe_steeled_temper"
+		"HasScepterUpgrade"				"1"
 		"InnateAbility"					"1"
 		"MaxLevel"						"1"
 	
@@ -477,26 +479,10 @@
 				"var_type"				"FIELD_FLOAT"
 				"str_to_armor"			"0.05"
 			}
-		}
-		"Modifiers"
-		{
-			"modifier_axe_steeled_temper"
+			"02"
 			{
-				"Passive" "1"
-				"IsHidden"	"1"
-				"ThinkInterval"	"0.03"
-				"OnIntervalThink"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"heroes/hero_axe/axe_steeled_temper"
-						"Function"		"AxeSteeledTemper"						
-					}
-				}
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"%str_to_armor"
-				}
+				"var_type"				"FIELD_FLOAT"
+				"scepter_str_to_as"		"1"
 			}
 		}
 	}

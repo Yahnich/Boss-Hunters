@@ -9834,7 +9834,7 @@
 				"Passive"	"1"
 				"IsHidden"	"1"
 	
-				"ThinkInterval"	"0.4"
+				"ThinkInterval"	"1"
 				"OnIntervalThink"
 				{
 					"RunScript"
@@ -16688,6 +16688,7 @@
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"weaver_time_lapse"
+		"HasScepterUpgrade"				"1"
 		"MaxLevel"						"6"
 	
 		// Precache

@@ -327,7 +327,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"2"
+				"value"					"4"
 			}
 		}
 	}

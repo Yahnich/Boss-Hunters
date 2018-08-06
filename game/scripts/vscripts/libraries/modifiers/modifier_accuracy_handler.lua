@@ -1,5 +1,29 @@
 modifier_accuracy_handler = class({})
 
+
+function modifier_accuracy_handler:OnCreated()
+	self:SetStackCount(1)
+	if IsServer() then
+		self:StartIntervalThink(0.33)
+	end
+end
+
+if IsServer() then
+	function modifier_accuracy_handler:OnIntervalThink()
+		local stacks = 1
+		for _, modifier in ipairs( self:GetParent():FindAllModifiers() ) do
+			if modifier.GetAccuracy then
+				local roll = modifier:GetAccuracy(params) 
+				if roll then
+					stacks = stacks * (1 - roll / 100)
+				end
+			end
+		end
+		local accuracy = (1 - stacks) * 100
+		self:SetStackCount(accuracy)
+	end
+end
+	
 function modifier_accuracy_handler:CheckState()
 	return {[MODIFIER_STATE_CANNOT_MISS] = self.state }
 end

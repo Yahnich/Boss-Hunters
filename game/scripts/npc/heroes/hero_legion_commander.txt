@@ -15,6 +15,7 @@
 		"AbilityManaCost"				"200"
 		"AbilityCastPoint"				"0.3"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+		"HasScepterUpgrade"				"1"
 	
 		"AbilityTextureName"			"legion_commander_duel"
 		

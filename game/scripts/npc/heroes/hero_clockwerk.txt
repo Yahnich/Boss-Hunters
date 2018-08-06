@@ -71,11 +71,12 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"				"ability_lua"
-		"ScriptFile"			"heroes/hero_rattletrap/rattletrap_aegis_deflector"
-		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityUnitDamageType"	"DAMAGE_TYPE_PURE"
-		"AbilityTextureName"	"custom/rattletrap_aegis_deflector"
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_rattletrap/rattletrap_aegis_deflector"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+		"AbilityTextureName"			"custom/rattletrap_aegis_deflector"
+		"HasScepterUpgrade"				"1"
 		"MaxLevel"						"7"
 		
 		"precache"

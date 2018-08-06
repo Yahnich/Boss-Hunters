@@ -13,7 +13,7 @@
 		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-
+		"HasScepterUpgrade"				"1"
 		"AbilityTextureName"			"pudge_meat_hook"
 		
 		"MaxLevel"						"7"

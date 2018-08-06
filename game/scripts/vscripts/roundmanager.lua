@@ -497,16 +497,26 @@ function RoundManager:InitializeUnit(unit, bElite)
 		playerDMGMultiplier = 0.1
 		playerArmorMultiplier = 0.12
 	end
-	local effective_multiplier = (HeroList:GetActiveHeroCount() - 1) 
+	local effective_multiplier = (HeroList:GetActiveHeroCount() - 1)
 	
-	local effPlayerHPMult =  (0.6 + (RoundManager:GetEventsFinished() * 0.1)) * ( 1 + RoundManager:GetRaidsFinished() * 0.33 ) * ( 1 + RoundManager:GetZonesFinished() * 0.25 ) * ( 1 + RoundManager:GetAscensions() * 0.08 )  * (1 + effective_multiplier * playerHPMultiplier )
-	local effPlayerDMGMult = ( 0.5 + (RoundManager:GetEventsFinished() * 0.05)) * ( 1 + RoundManager:GetRaidsFinished() * 0.1) * ( 1 + RoundManager:GetZonesFinished() * 0.08 ) * (1 + RoundManager:GetAscensions() * 0.2 ) * (0.8 + effective_multiplier * playerDMGMultiplier )
+	local HPMultiplierFunc = function( events, raids, zones ) return (0.6 + (events * 0.1)) * ( 1 + raids * 0.33 ) * ( 1 + zones * 0.25 ) end
+	local DMGMultiplierFunc = function( events, raids, zones ) return ( 0.5 + (events * 0.05)) * ( 1 + raids * 0.1) * ( 1 + zones * 0.08 ) end
+	
+	local effPlayerHPMult =  HPMultiplierFunc( RoundManager:GetEventsFinished(), RoundManager:GetRaidsFinished(), RoundManager:GetZonesFinished() )
+	local effPlayerDMGMult = DMGMultiplierFunc( RoundManager:GetEventsFinished(), RoundManager:GetRaidsFinished(), RoundManager:GetZonesFinished() )
 	local effPlayerArmorMult = 0.7 + (effective_multiplier * playerArmorMultiplier) 
+	
+	maxPlayerHPMult = HPMultiplierFunc( EVENTS_PER_RAID * RAIDS_PER_ZONE * ZONE_COUNT, RAIDS_PER_ZONE * ZONE_COUNT, ZONE_COUNT)
+	effPlayerHPMult = math.min( effPlayerHPMult, maxPlayerHPMult )
+	effPlayerHPMult = effPlayerHPMult * ( 1 + RoundManager:GetAscensions() * 0.5 )  * (1 + effective_multiplier * playerHPMultiplier )
+	
+	maxPlayerDMGMult = DMGMultiplierFunc( EVENTS_PER_RAID * RAIDS_PER_ZONE * ZONE_COUNT, RAIDS_PER_ZONE * ZONE_COUNT, ZONE_COUNT)
+	effPlayerDMGMult = math.min( effPlayerDMGMult, maxPlayerDMGMult )
+	effPlayerDMGMult = effPlayerDMGMult * ( 1 + RoundManager:GetAscensions() )  * (1 + effective_multiplier * playerDMGMultiplier )
 	
 	if bElite then
 		effPlayerHPMult = effPlayerHPMult * 1.35
 		effPlayerDMGMult = effPlayerDMGMult * 1.2
-		
 		
 		local nParticle = ParticleManager:CreateParticle( "particles/econ/courier/courier_onibi/courier_onibi_yellow_ambient_smoke_lvl21.vpcf", PATTACH_ABSORIGIN_FOLLOW, unit )
 		ParticleManager:ReleaseParticleIndex( nParticle )

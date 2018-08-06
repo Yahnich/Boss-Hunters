@@ -48,5 +48,6 @@ function sniper_assassinate_bh:OnProjectileHit(hTarget, vLocation)
 		EmitSoundOn("Hero_Sniper.AssassinateDamage", caster)
 		self:Stun(hTarget, self:GetTalentSpecialValueFor("ministun_duration"), false)
 		self:DealDamage(caster, hTarget, self:GetTalentSpecialValueFor("damage"), {}, 0)
+		if caster:HasScepter() then caster:PerformGenericAttack(target, true, nil, nil, true) end
 	end
 end

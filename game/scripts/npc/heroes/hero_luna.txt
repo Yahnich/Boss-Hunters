@@ -38,6 +38,14 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityModifierSupportValue"	"0.5"	// Mostly about the damage
 		
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_luna/luna_lucent_beam.vpcf"
+			"particle"					"particles/units/heroes/hero_luna/luna_lucent_beam_cast.vpcf"
+			"particle"					"particles/units/heroes/hero_luna/luna_lucent_beam_precast.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_luna.vsndevts"
+		}
+		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
@@ -45,7 +53,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"stun_duration"			"0.8"
+				"stun_duration"			"0.2"
 			}
 			"02"
 			{
@@ -77,8 +85,13 @@
 		{
 			"01"
 			{
+				"var_type"					"FIELD_FLOAT"
+				"value"						"0.1"
+			}
+			"02"
+			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"1"
+				"radius"					"150"
 			}
 		}
 	}
@@ -100,7 +113,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"1"
+				"value"						"-4"
 			}
 		}
 	}
@@ -156,6 +169,7 @@
 			{
 				"var_type"				"FIELD_FLOAT"
 				"spear_damage"			"100 175 250 325 400 475 550"
+				"LinkedSpecialBonus"	"special_bonus_unique_luna_nightsilver_resolve_1"
 			}
 			"06"
 			{
@@ -195,7 +209,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"1"
+				"value"						"200"
 			}
 		}
 	}
@@ -217,7 +231,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"1"
+				"value"						"1"
 			}
 		}
 	}
@@ -226,7 +240,7 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"lua_abilities/heroes/luna"
+		"ScriptFile"					"heroes/hero_luna/luna_lunar_blessing_bh"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityTextureName"			"luna_lunar_blessing"
 		"MaxLevel"						"7"
@@ -266,7 +280,6 @@
 			{
 				"var_type"					"FIELD_INTEGER"
 				"bonus_beam_radius"			"750"
-				"LinkedSpecialBonus"		"special_bonus_unique_luna_3"
 			}
 		}
 	}
@@ -288,7 +301,17 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"1"
+				"value"						"2"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"cd"						"60"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"duration"					"20"
 			}
 		}
 	}
@@ -310,7 +333,12 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"1"
+				"as"						"12"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"ms"						"80"
 			}
 		}
 	}
@@ -322,8 +350,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_luna/luna_eclipse_bh"
-		"AbilityTextureName"			"luna_eclipse"	
+		"ScriptFile"					"heroes/hero_luna/luna_moon_glaive_bh"
+		"AbilityTextureName"			"luna_moon_glaive"	
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilitySound"					"Hero_Luna.MoonGlaive.Impact"
@@ -395,52 +423,52 @@
 		{
 			"01"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"beams"						"20"
+				"var_type"						"FIELD_INTEGER"
+				"beams"							"20"
 			}
 			"02"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"hit_count"					"5 6 7 8 9 10"
+				"var_type"						"FIELD_INTEGER"
+				"hit_count"						"5 6 7 8 9 10"
 			}
 			"03"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"beam_interval"				"0.6 0.6 0.6"
+				"var_type"						"FIELD_FLOAT"
+				"beam_interval"					"0.6 0.6 0.6"
 			}
 			"04"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"beam_interval_scepter"		"0.3"
+				"var_type"						"FIELD_FLOAT"
+				"beam_interval_scepter"			"0.4"
 			}
 			"05"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"duration_tooltip"			"2.4 4.2 6.0 8.4 10.2 12"
+				"var_type"						"FIELD_FLOAT"
+				"duration_tooltip"				"12"
 			}
 			"06"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"675 675 675"
+				"var_type"						"FIELD_INTEGER"
+				"radius"						"675 675 675"
 			}	
 			"07"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"beams_scepter"				"34"
+				"var_type"						"FIELD_INTEGER"
+				"beams_scepter"					"30"
 			}
 			"08"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"hit_count_scepter"			"9 15 19 24 29 34"
+				"var_type"						"FIELD_INTEGER"
+				"hit_count_scepter"				"30"
 			}
 			"09"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"duration_tooltip_scepter"	"1.8 3.6 5.4 6.6 8.4 10.2"
+				"var_type"						"FIELD_FLOAT"
+				"duration_tooltip_scepter"		"12"
 			}
 			"10"
 			{
-				"var_type"					"FIELD_INTEGER"
+				"var_type"						"FIELD_INTEGER"
 				"cast_range_tooltip_scepter"	"2500"
 			}
 		}

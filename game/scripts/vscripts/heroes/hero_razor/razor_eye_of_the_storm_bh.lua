@@ -13,7 +13,8 @@ modifier_razor_eye_of_the_storm_bh = class({})
 function modifier_razor_eye_of_the_storm_bh:OnCreated(table)
 	if IsServer() then
 		EmitSoundOn("Hero_Razor.Storm.Loop", self:GetCaster())
-		self:StartIntervalThink(self:GetTalentSpecialValueFor("strike_interval")) 
+		self.interval = TernaryOperator( self:GetTalentSpecialValueFor("scepter_strike_interval"), self:GetCaster():HasScepter(), self:GetTalentSpecialValueFor("strike_interval") )
+		self:StartIntervalThink( self.interval ) 
 	end 
 end
 
