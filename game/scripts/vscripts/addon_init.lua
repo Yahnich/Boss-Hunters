@@ -19,18 +19,19 @@ if IsClient() then -- Load clientside utility lib
 	end
 	GameRules.IsDaytime = function()
 		local timeofday = CustomNetTables:GetTableValue( "game_info", "timeofday")
-		return timeofday["timeofday"] == 1
+		return tonumber(timeofday["timeofday"]) == 1
 	end
 	
 	GameRules.IsTemporaryNight = function()
 		local timeofday = CustomNetTables:GetTableValue( "game_info", "timeofday")
-		return timeofday["timeofday"] == 2
+		return tonumber(timeofday["timeofday"]) == 2
 	end
 	
 	GameRules.IsNightstalkerNight = function()
 		local timeofday = CustomNetTables:GetTableValue( "game_info", "timeofday")
-		return timeofday["timeofday"] == 3
+		return tonumber(timeofday["timeofday"]) == 3
 	end
+	print( "initialized gamerules", GameRules, GameRules.IsDaytime )
 	Convars:RegisterCommand( "cl_deepdebugging", function()
 													if not GameRules.DebugCalls then
 														print("Starting DebugCalls")
