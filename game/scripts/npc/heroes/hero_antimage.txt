@@ -9,6 +9,7 @@
 	    "AbilityTextureName"			"custom/antimage_mage_rage"
 	    "MaxLevel"                      "7"
 		"HasScepterUpgrade"				"1"
+		
 		// Precache	
 		//-------------------------------------------------------------------------------------------------------------
 		"precache"
@@ -45,7 +46,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"-1
+				"value"					"-1"
 			}
 		}
 	}
@@ -249,7 +250,7 @@
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_antimage/antimage_ender_of_magic"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityTextureName"			"custom/antimage_hex_shield"
+		"AbilityTextureName"			"custom/antimage_ender_of_magic"
 		"MaxLevel"                      "1"
 		"InnateAbility"					"1"
 		

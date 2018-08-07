@@ -812,17 +812,19 @@ function CDOTA_BaseNPC:IsIllusion()
 end
 
 
-function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, specIllusionModifier, ability )
+function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, specIllusionModifier, ability, controllable )
 	local player = self:GetPlayerID()
 
 	local unit_name = self:GetUnitName()
 	local origin = position or self:GetAbsOrigin() + RandomVector(100)
 	local outgoingDamage = outgoing or 0
 	local incomingDamage = incoming or 0
-
+	
+	bControl = controllable
+	if bControl == nil then bControl = true end
 	-- handle_UnitOwner needs to be nil, else it will crash the game.
 	local illusion = CreateUnitByName("npc_illusion_template", origin, true, self, self, self:GetTeamNumber())
-	illusion:SetControllableByPlayer(player, true)
+	if bControl then illusion:SetControllableByPlayer(player, true) end
 		
 	for abilitySlot=0,15 do
 		local abilityillu = self:GetAbilityByIndex(abilitySlot)
