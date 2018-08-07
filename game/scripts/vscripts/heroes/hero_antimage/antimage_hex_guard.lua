@@ -1,0 +1,1 @@
+antimage_hex_guard = class ({})

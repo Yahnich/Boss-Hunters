@@ -1,0 +1,1 @@
+antimage_magus_breaker = class ({})

@@ -74,10 +74,21 @@
 	//=================================================================================================================
 	"npc_dota_hero_antimage_ebf"
 	{
-		"override_hero"			"npc_dota_hero_antimage"
-		"Ability1"					"antimage_mage_rage"					// Ability 4
-		"Ability3"					"spell_shield_datadriven"
-		"Ability6"					"antimage_ragevoid"					// Ability 4
+		"override_hero"					"npc_dota_hero_antimage"
+		"Ability1"						"antimage_magus_breaker"					// Ability 4
+		"Ability2"						"antimage_blink_bh"
+		"Ability3"						"antimage_hex_guard"
+		"Ability4"						"antimage_ender_of_magic"
+		"Ability6"						"antimage_void_of_hatred"					// Ability 4
+		
+		"Ability10"						"special_bonus_unique_antimage_magus_breaker_1"
+		"Ability11"						"special_bonus_unique_antimage_magus_breaker_2"
+		"Ability12"						"special_bonus_unique_antimage_blink_1"
+		"Ability13"						"special_bonus_unique_antimage_blink_2"
+		"Ability14"						"special_bonus_unique_antimage_hex_guard_1"
+		"Ability15"						"special_bonus_unique_antimage_hex_guard_2"
+		"Ability16"						"special_bonus_unique_antimage_void_of_hatred_1"
+		"Ability17"						"special_bonus_unique_antimage_void_of_hatred_2"
 		
 	}
 	//=================================================================================================================
