@@ -1,0 +1,1 @@
+antimage_ender_of_magic = class ({})

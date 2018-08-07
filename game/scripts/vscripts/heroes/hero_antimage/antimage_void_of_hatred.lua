@@ -1,0 +1,1 @@
+antimage_void_of_hatred = class ({})

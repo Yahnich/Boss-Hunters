@@ -60,7 +60,7 @@
 				"var_type"				"FIELD_INTEGER"
 				"beam_damage"			"100 175 250 325 400 475 550"
 			}
-			"02"
+			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"night_beam_damage"		"150 250 350 450 550 650 750"

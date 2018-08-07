@@ -37,7 +37,8 @@ function modifier_boss_necro_vile_aura:OnIntervalThink()
 	local modifier = self
 	Timers:CreateTimer(1.5, function()
 		parent:Blink(position)
-		if IsServer() then modifier:StartIntervalThink( modifier:GetSpecialValueFor("blink_rate") ) end
+		if not modifier or modifier:IsNull() then return end
+		if IsServer() then modifier:StartIntervalThink( modifier:GetAbility():GetSpecialValueFor("blink_rate") ) end
 	end)
 end
 
