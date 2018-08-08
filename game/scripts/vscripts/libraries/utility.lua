@@ -1868,8 +1868,9 @@ function CDOTA_Modifier_Lua:AddIndependentStack(duration, limit, bDestroy)
 	else
 		self:IncrementStackCount()
 	end
-	local destroy = bDestroy or true
-	local timerID = Timers:CreateTimer(duration or self:GetDuration(), function()
+	local destroy = bDestroy
+	if bDestroy == nil then bDestroy = true end
+	local timerID = Timers:CreateTimer(duration or self:GetRemainingTime(), function()
 		if not self:IsNull() then 
 			self:DecrementStackCount()
 			if self:GetStackCount() == 0 and self:GetDuration() == -1 and not destroy then self:Destroy() end

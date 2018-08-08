@@ -172,11 +172,9 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_antimage/antimage_hex_guard"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityTextureName"			"custom/antimage_hex_shield"
 		"MaxLevel"                      "7"
-		"AbilityCooldown"				"22 20 18 16 14 12 10"
-		"AbilityCastPoint"				"0"
 		"AbilityCastAnimation"			"ACT_DOTA_SPAWN"
 		
 		// Special
