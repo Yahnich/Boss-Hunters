@@ -28,7 +28,7 @@ function modifier_antimage_magus_breaker:GetModifierProcAttack_BonusDamage_Pure(
 	if params.target:GetModifierStackCount("modifier_antimage_magus_breaker_debuff", caster) > 0 then
 		damage = damage * params.target:GetModifierStackCount("modifier_antimage_magus_breaker_debuff", caster)
 		params.target:EmitSound("Hero_Antimage.ManaBreak")
-		ParticleManager:FireParticle("particles/units/heroes/hero_antimage/antimage_blade_hit.vpcf", PATTACH_POINT_FOLLOW, params.target)
+		ParticleManager:FireParticle("particles/mage_rage.vpcf", PATTACH_ABSORIGIN_FOLLOW, params.target)
 	end
 	return damage
 end
@@ -43,21 +43,26 @@ LinkLuaModifier( "modifier_antimage_magus_breaker_debuff", "heroes/hero_antimage
 function modifier_antimage_magus_breaker_debuff:OnCreated()
 	self.armor = self:GetCaster():FindTalentValue("special_bonus_unique_antimage_magus_breaker_1")
 	self.mr = self:GetCaster():FindTalentValue("special_bonus_unique_antimage_magus_breaker_2")
+	self.duration = self:GetTalentSpecialValueFor("duration")
 	if IsServer() then
 		self:SetStackCount( 1 )
 	end
 end
 
-function modifier_antimage_magus_breaker_debuff:OnCreated()
+function modifier_antimage_magus_breaker_debuff:OnRefresh()
 	self.armor = self:GetCaster():FindTalentValue("special_bonus_unique_antimage_magus_breaker_1")
 	self.mr = self:GetCaster():FindTalentValue("special_bonus_unique_antimage_magus_breaker_2")
-	if IsServer() then
-		self:AddIndependentStack( self:GetRemainingTime() )
-	end
+	self.duration = self:GetTalentSpecialValueFor("duration")
 end
 
 function modifier_antimage_magus_breaker_debuff:DeclareFunctions()
-	return {MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS, MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS}
+	return {MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS, MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS, MODIFIER_EVENT_ON_ABILITY_EXECUTED}
+end
+
+function modifier_antimage_magus_breaker_debuff:OnAbilityExecuted(params)
+	if params.unit == self:GetParent() then
+		self:AddIndependentStack(self.duration)
+	end
 end
 
 function modifier_antimage_magus_breaker_debuff:GetModifierPhysicalArmorBonus()

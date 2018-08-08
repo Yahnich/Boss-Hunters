@@ -78,9 +78,9 @@ function modifier_phenx_dive_caster:OnCreated(table)
     end
 end
 
-function modifier_phenx_dive_caster:OnRemoved()
+function modifier_phenx_dive_caster:OnDestroy()
     if IsServer() then
-        self:GetAbility():StartCooldown(self:GetAbility():GetTrueCooldown())
+        self:GetAbility():SetCooldown()
     end
 end
 

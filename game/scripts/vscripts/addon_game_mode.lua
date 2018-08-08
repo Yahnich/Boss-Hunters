@@ -386,7 +386,6 @@ function CHoldoutGameMode:FilterModifiers( filterTable )
 					resistance = modifier:GetModifierStatusResistance( params )
 				end
 			end
-			print((1 - resistance/100), (1 - stackResist/100))
 			filterTable["duration"] = filterTable["duration"] * math.max(0, (1 - resistance/100)) * math.max(0, (1 - stackResist/100))
 		end
 	end

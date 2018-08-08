@@ -22,7 +22,7 @@ local function CheckPlayerChoices(self)
 			self:StartCombat(true)
 			return true
 		elseif votedNo > votedYes + (players - voted) then -- no votes exceed yes and non-votes and every other situation
-			self:StartCombat(false)
+			self:EndEvent(true)
 			return true
 		end
 	end
@@ -151,23 +151,23 @@ local function EndEvent(self, bWon)
 	self.combatEnded = true
 	self.timeRemaining = -1
 	
-	
-	local reward = 3
-	if self.totemUnit and not self.totemUnit:IsNull() and self.totemUnit:IsAlive() then
-		for _, hero in ipairs( HeroList:GetRealHeroes() ) do
-			hero:AddBlessing("event_buff_tombstone")
+	if self.foughtWave then
+		local reward = 3
+		if self.totemUnit and not self.totemUnit:IsNull() and self.totemUnit:IsAlive() then
+			for _, hero in ipairs( HeroList:GetRealHeroes() ) do
+				hero:AddBlessing("event_buff_tombstone")
+			end
+			reward = 2
+			if self.totemUnit:GetHealth() == self.totemUnit:GetMaxHealth() then
+				GameRules._lives = GameRules._lives + 1
+				GameRules._maxLives = GameRules._maxLives + 1
+				CustomGameEventManager:Send_ServerToAllClients( "updateQuestLife", { lives = GameRules._lives, maxLives = GameRules._maxLives } )
+				reward = 1
+			end
+			self.totemUnit:ForceKill(false)
 		end
-		reward = 2
-		if self.totemUnit:GetHealth() == self.totemUnit:GetMaxHealth() then
-			GameRules._lives = GameRules._lives + 1
-			GameRules._maxLives = GameRules._maxLives + 1
-			CustomGameEventManager:Send_ServerToAllClients( "updateQuestLife", { lives = GameRules._lives, maxLives = GameRules._maxLives } )
-			reward = 1
-		end
-		self.totemUnit:ForceKill(false)
+		CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_reward_given", {event = "sepulcher_event_tombstone", reward = reward})
 	end
-	CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_reward_given", {event = "sepulcher_event_tombstone", reward = reward})
-	
 	Timers:CreateTimer(3, function() RoundManager:EndEvent(true) end)
 end
 

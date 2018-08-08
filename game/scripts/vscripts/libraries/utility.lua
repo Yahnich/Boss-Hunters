@@ -1260,26 +1260,6 @@ function CDOTABaseAbility:ProvidesModifier(modifiername)
 	return found
 end
 
-function CDOTA_BaseNPC:GetModifierPropertyValue(propertyname)
-    local modifiers = self:FindAllModifiers()
-	local value = 0
-	local checkedMod = {}
-	
-	for k,v in pairs(modifiers) do
-		if not checkedMod[v:GetName()] then
-			local stacks = v:GetStackCount()
-			if stacks == 0 then stacks = 1 end
-			local propVal = v:GetModifierPropertyValue(propertyname) * stacks
-			if propVal > 0 then
-				value = propVal
-				break
-			end
-			checkedMod[v:GetName()] = true
-		end
-	end
-	return value
-end
-
 function CDOTA_BaseNPC:FindModifierByAbility(abilityname)
 	local modifiers = self:FindAllModifiers()
 	local returnTable = {}
@@ -1305,31 +1285,6 @@ end
 
 function CDOTA_Buff:IsStun()
 	if GLOBAL_STUN_LIST[self:GetName()] then return true else return false end
-end
-
-function CDOTA_Buff:GetModifierPropertyValue(propertyname)
-	if not self:GetAbility() then return 0 end
-	local kv = self:GetAbility():GetAbilityKeyValues()
-	local value = 0
-	for k,v in pairs(kv) do -- trawl through keyvalues
-		if k == "Modifiers" then
-			for l,m in pairs(v) do
-				if l == self:GetName() then
-					for j,k in pairs(m) do
-						if j == "Properties" then
-							for g,h in pairs(k) do
-								if g == propertyname then
-									value = h			
-									break
-								end
-							end
-						end
-					end
-				end
-			end
-		end
-	end
-	return value
 end
 
 function CDOTABaseAbility:GetTalentSpecialValueFor(value)
@@ -1397,76 +1352,10 @@ function CDOTA_BaseNPC:IncreaseIntellect(amount)
 	self:SetBaseStrength(intellect)
 end
 
-function CDOTA_BaseNPC:StatsItemslot(index)
-	local item = self:GetItemInSlot(index)
-	if item then return item:GetName() else return 0 end
-end
-
-function CDOTA_BaseNPC:GetSpellDamageAmp()
-	local aether_multiplier = 1
-    for itemSlot = 0, 5, 1 do
-        local Item = self:GetItemInSlot( itemSlot )
-		if Item ~= nil and aether_multiplier < 4 then
-			local itemAmp = Item:GetSpecialValueFor("spell_amp")/100
-			if Item:GetName() == "item_aether_lens" then
-				aether_multiplier = aether_multiplier + itemAmp
-			end
-			if Item:GetName() == "item_redium_lens" then
-				aether_multiplier = aether_multiplier + itemAmp
-			end
-			if Item:GetName() == "item_sunium_lens" then
-				aether_multiplier = aether_multiplier + itemAmp
-			end
-			if Item:GetName() == "item_omni_lens" then
-				aether_multiplier = aether_multiplier + itemAmp
-			end
-		end
-    end
-	local ampint = 0
-	if self:IsHero() then
-		ampint = (self:GetIntellect() * 0.01)/100
-	end
-	local totalamp = aether_multiplier + ampint
-	return totalamp
-end
-
-function CDOTA_BaseNPC:GetOriginalSpellDamageAmp()
-	local aether_multiplier = 1
-    for itemSlot = 0, 5, 1 do
-        local Item = self:GetItemInSlot( itemSlot )
-		if Item ~= nil then
-			local itemAmp = Item:GetSpecialValueFor("spell_amp")/100
-			if Item:GetName() == "item_aether_lens" then
-				aether_multiplier = aether_multiplier + itemAmp
-			end
-			if Item:GetName() == "item_redium_lens" then
-				aether_multiplier = aether_multiplier + itemAmp
-			end
-			if Item:GetName() == "item_sunium_lens" then
-				aether_multiplier = aether_multiplier + itemAmp
-			end
-			if Item:GetName() == "item_omni_lens" then
-				aether_multiplier = aether_multiplier + itemAmp
-			end
-			if Item:GetName() == "item_asura_lens" then
-				aether_multiplier = aether_multiplier + itemAmp
-			end
-		end
-    end
-	if self:FindAbilityByName("new_game_damage_increase") then
-		aether_multiplier = aether_multiplier + self:FindAbilityByName("new_game_damage_increase"):GetSpecialValueFor("spell_amp")/100
-	end
-	local ampint = 0
-	if self:IsHero() then
-		ampint = self:GetIntellect() / 1400
-	end
-	local totalamp = aether_multiplier + ampint
-	return totalamp
-end
-
 function CDOTABaseAbility:GetTrueCooldown()
 	local cooldown = self:GetCooldown(-1)
-	local octarineMult = get_octarine_multiplier(self:GetCaster())
+	local octarineMult = 1 - self:GetCaster():GetCooldownReduction() / 100
+	print(octarineMult)
 	cooldown = cooldown * octarineMult
 	return cooldown
 end
@@ -2074,6 +1963,7 @@ function CDOTA_BaseNPC:GetCooldownReduction()
 		local mult = cdr:GetStackCount() / 100
 		return mult
 	end
+	
 	return 0
 end
 

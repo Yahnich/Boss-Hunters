@@ -1,6 +1,6 @@
 antimage_ender_of_magic = class ({})
 
-function antimage_ender_of_magic:GetIntriniscModifierName()
+function antimage_ender_of_magic:GetIntrinsicModifierName()
 	return "modifier_antimage_ender_of_magic_handler"
 end
 
@@ -20,6 +20,10 @@ function modifier_antimage_ender_of_magic_handler:OnAbilityExecuted(params)
 	if CalculateDistance( params.unit, self:GetParent() ) < self.radius then
 		self:GetParent():AddNewModifier( self:GetParent(), self:GetAbility(), "modifier_antimage_ender_of_magic_buff", {duration = self.duration})
 	end
+end
+
+function modifier_antimage_ender_of_magic_handler:IsHidden()
+	return true
 end
 
 modifier_antimage_ender_of_magic_buff = class({})

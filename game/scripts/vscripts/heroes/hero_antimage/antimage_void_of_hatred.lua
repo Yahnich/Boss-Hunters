@@ -5,12 +5,16 @@ function antimage_void_of_hatred:GetAOERadius()
 end
 
 function antimage_void_of_hatred:OnAbilityPhaseStart()
-	self:GetCaster():EmitSound("Hero_Antimage.ManaVoid")
+	self:GetCaster():EmitSound("Hero_Antimage.ManaVoidCast")
 	return true
 end
 
 function antimage_void_of_hatred:OnAbilityPhaseInterrupted()
-	self:GetCaster():StopSound("Hero_Antimage.ManaVoid")
+	self:GetCaster():StopSound("Hero_Antimage.ManaVoidCast")
+end
+
+function antimage_void_of_hatred:GetCastAnimation()
+	return ACT_DOTA_CAST_ABILITY_4
 end
 
 function antimage_void_of_hatred:OnSpellStart()
@@ -31,12 +35,12 @@ function antimage_void_of_hatred:OnSpellStart()
 	end
 	if breaker then
 		damage = damage + stackDmg * breaker:GetStackCount()
-		magus:Destroy()
+		breaker:Destroy()
 	end
 	
 	self:Stun( target, stunDur )
 	
-	ParticleManager:FireParticle("", PATTACH_POINT_FOLLOW, target)
+	ParticleManager:FireParticle("particles/antimage_ragevoid.vpcf", PATTACH_POINT_FOLLOW, target, {[1] = Vector(radius,1,1)})
 	target:EmitSound("Hero_Antimage.ManaVoid")
 	
 	local talent = caster:HasTalent("special_bonus_unique_antimage_void_of_hatred_2")

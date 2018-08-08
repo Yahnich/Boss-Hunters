@@ -19,6 +19,7 @@ end
 function antimage_hex_guard:OnSpellStart()
 	local caster = self:GetCaster()
 	caster:AddNewModifier( caster, self, "modifier_antimage_hex_guard_talent", {duration = caster:FindTalentValue("special_bonus_unique_antimage_hex_guard_2", "duration")})
+	ParticleManager:FireParticle("particles/units/heroes/hero_antimage/antimage_spellshield.vpcf", PATTACH_POINT_FOLLOW, caster)
 end
 
 modifier_antimage_hex_guard_talent = class({})
@@ -27,23 +28,15 @@ LinkLuaModifier( "modifier_antimage_hex_guard_talent", "heroes/hero_antimage/ant
 if IsServer() then
 	function modifier_antimage_hex_guard_talent:OnCreated()
 		self:GetAbility():StartDelayedCooldown()
-		local hex = self:GetParent():FindModifierByName("modifier_antimage_hex_guard_talent")
-		if hex then
-			hex:ForceRefresh()
-		end
 	end
-	
+		
 	function modifier_antimage_hex_guard_talent:OnDestroy()
 		self:GetAbility():EndDelayedCooldown()
-		local hex = self:GetParent():FindModifierByName("modifier_antimage_hex_guard_talent")
-		if hex then
-			hex:ForceRefresh()
-		end
 	end
+end
 	
-	function modifier_antimage_hex_guard_talent:GetEffectName()
-		return ""
-	end
+function modifier_antimage_hex_guard_talent:GetEffectName()
+	return ""
 end
 
 modifier_antimage_hex_guard = class({})
@@ -57,22 +50,38 @@ end
 function modifier_antimage_hex_guard:OnRefresh()
 	self.mr = self:GetTalentSpecialValueFor("magic_resistance")
 	self.sr = self:GetTalentSpecialValueFor("status_resistance")
-	if self:GetParent():HasModifier("modifier_antimage_hex_guard_talent") then
-		self.mr = self:GetCaster():FindTalentValue("special_bonus_unique_antimage_hex_guard_2")
-		self.sr = self.mr
-	end
 end
 
 function modifier_antimage_hex_guard:DeclareFunctions()
-	return {MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS, MODIFIER_PROPERTY_STATUS_RESISTANCE_BONUS}
+	return {MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS, MODIFIER_PROPERTY_STATUS_RESISTANCE, MODIFIER_EVENT_ON_TAKEDAMAGE}
 end
 
-function modifier_antimage_hex_guard:GetModifierMagicalResistanceBonus(params)
-	PrintAll(params)
-	print(--------magic resist-------------)
-	return self.mr
+function modifier_antimage_hex_guard:GetModifierMagicalResistanceBonus()
+	if self:GetParent():HasModifier("modifier_antimage_hex_guard_talent") then
+		return self:GetCaster():FindTalentValue("special_bonus_unique_antimage_hex_guard_2")
+	else
+		return self.mr
+	end
 end
 
 function modifier_antimage_hex_guard:GetModifierStatusResistance()
-	return self.sr
+	if self:GetParent():HasModifier("modifier_antimage_hex_guard_talent") then
+		return self:GetCaster():FindTalentValue("special_bonus_unique_antimage_hex_guard_2")
+	else
+		return self.sr
+	end
+end
+
+function modifier_antimage_hex_guard:OnTakeDamage(params)
+	local parent = self:GetParent()
+	if params.unit == parent and params.damage_type == DAMAGE_TYPE_MAGICAL and parent:HasTalent("special_bonus_unique_antimage_hex_guard_1") then
+		local damage = params.original_damage * self.mr / 100
+		for _, enemy in ipairs( parent:FindEnemyUnitsInRadius( parent:GetAbsOrigin(), parent:FindTalentValue("special_bonus_unique_antimage_hex_guard_1") ) ) do
+			self:GetAbility():DealDamage( parent, params.attacker, damage, {damage_type = DAMAGE_TYPE_MAGICAL, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_REFLECTION})
+		end
+	end
+end
+
+function modifier_antimage_hex_guard:IsHidden()
+	return true
 end
