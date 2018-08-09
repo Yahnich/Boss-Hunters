@@ -3,19 +3,21 @@
 	//=================================================================================================================
 	// Ability: Storm Bolt
 	//=================================================================================================================
-	"sven_storm_bolt"
+	"sven_storm_bolt_bh"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"					"5094"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_sven/sven_storm_bolt_bh"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES_STRONG"
 		"FightRecapLevel"				"1"
 		"AbilitySound"					"Hero_Sven.StormBoltImpact"
+		"AbilityTextureName"			"sven_storm_bolt"
 		"MaxLevel"						"7"
 
 		// Casting
@@ -35,7 +37,12 @@
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"				"140"
-
+		
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_sven/sven_spell_storm_bolt.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_sven.vsndevts"
+		}
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
@@ -63,7 +70,7 @@
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
 	}
-	"special_bonus_unique_sven_stormbolt_1" 
+	"special_bonus_unique_sven_storm_bolt_1" 
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -82,7 +89,7 @@
 			}
 		}
 	}
-	"special_bonus_unique_sven_stormbolt_2" 
+	"special_bonus_unique_sven_storm_bolt_2" 
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -96,8 +103,13 @@
 		{
 			"01"
 			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"1"
+			}
+			"02"
+			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"-0.2"
+				"duration"				"14"
 			}
 		}
 	}
@@ -107,8 +119,9 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_sven/sven_valiant_charge"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-		"AbilityTextureName"			"sven_warcry"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName"			"custom/sven_valiant_charge"
 		"MaxLevel"						"7"
 	
 		// Precache
@@ -122,17 +135,20 @@
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
-		"AbilityCastRange"				"900"
+		"AbilityCastPoint"				"0"
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"24.0 22.0 20.0 18.0 16.0 14.0 12.0"
-		"AbilityDuration"				"8.0"
+		"AbilityCooldown"				"16"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"25 25 25 25"
+		"AbilityManaCost"				"50"
+		
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_earthshaker/earthshaker_totem_leap_blur.vpcf"
+		}
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -141,32 +157,27 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"warcry_armor"				"5 10 15 20 25 30 35"		
+				"distance"					"300 450 600 750 900 1050 1200"		
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"warcry_passive_armor"		"5 8 11 14 17 20 23"	
+				"knockback"					"300"	
 			}
 			"03"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"warcry_movespeed"			"35"
+				"var_type"					"FIELD_FLOAT"
+				"armor_damage"				"8 8.5 9 9.5 10 10.5 11"
 			}
 			"04"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"warcry_passive_movespeed"	"10 15 20 25 30 35 40"
+				"var_type"					"FIELD_FLOAT"
+				"daze_duration"				"5"
 			}
 			"05"
 			{
-				"var_type"			"FIELD_INTEGER"
-				"warcry_radius"		"900"
-			}
-			"06"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"duration_tooltip"		"8"
+				"var_type"					"FIELD_FLOAT"
+				"movespeed"					"550"
 			}
 		}
 	}
@@ -204,7 +215,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"-0.2"
+				"value"					"8"
 			}
 		}
 	}
@@ -247,23 +258,25 @@
 		{
 			"01"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"warcry_armor"				"5 10 15 20 25 30 35"		
+				"var_type"							"FIELD_INTEGER"
+				"warcry_armor"						"5 10 15 20 25 30 35"
+				"LinkedSpecialBonus"				"special_bonus_unique_sven_warcry_2"
+				"LinkedSpecialBonusOperation"		"SPECIAL_BONUS_MULTIPLY"				
 			}
 			"02"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"warcry_movespeed"			"35"
+				"var_type"							"FIELD_INTEGER"
+				"warcry_movespeed"					"35"
 			}
 			"03"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"warcry_radius"				"900"
+				"var_type"							"FIELD_INTEGER"
+				"warcry_radius"						"900"
 			}
 			"04"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"duration_tooltip"			"8"
+				"var_type"							"FIELD_INTEGER"
+				"duration_tooltip"					"8"
 			}
 		}
 	}
@@ -281,8 +294,8 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"2"
+				"var_type"				"FIELD_INTEGER"
+				"value"					"80"
 			}
 		}
 	}
@@ -300,8 +313,8 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"-0.2"
+				"var_type"				"FIELD_INTEGER"
+				"value"					"2"
 			}
 		}
 	}
@@ -353,16 +366,18 @@
 	//=================================================================================================================
 	// Ability: God's Strength
 	//=================================================================================================================
-	"sven_gods_strength"
+	"sven_gods_strength_bh"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"					"5097"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_sven/sven_gods_strength_bh"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
 		"FightRecapLevel"				"1"
 		"AbilitySound"					"Hero_Sven.GodsStrength"
+		"AbilityTextureName"			"sven_gods_strength"
 		"MaxLevel"						"6"
 
 		"HasScepterUpgrade"				"1"
@@ -445,7 +460,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"-0.2"
+				"value"					"2"
+			}
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"8"
 			}
 		}
 	}

@@ -93,7 +93,7 @@ function RelicManager:ConfirmRelicSelection(userid, event)
 	local relic = event.relic
 
 	hero:AddRelic(relic)
-	RelicManager:RemoveDropFromTable(pID, false, relic)
+	RelicManager:RemoveDropFromTable(pID, true, relic)
 	hero.internalRelicRNG = BASE_RELIC_CHANCE
 end
 
@@ -150,7 +150,7 @@ function RelicManager:SkipRelicSelection(userid, event)
 		end
 		return
 	end
-	hero:AddRelic( RelicManager:RollRandomGenericRelicForPlayer(pID) )
+	-- hero:AddRelic( RelicManager:RollRandomGenericRelicForPlayer(pID) )
 end
 
 function RelicManager:RegisterPlayer(pID)
@@ -172,13 +172,9 @@ function RelicManager:RollBossRelicsForPlayer(pID)
 	hero.ownedRelics = hero.ownedRelics or {}
 	hero.relicsToSelect = hero.relicsToSelect or {}
 	local dropTable = {}
-	for i = 1, 3 do
-		if RollPercentage(65) then
-			table.insert( dropTable, self:RollRandomUniqueRelicForPlayer(pID) )
-		else
-			table.insert( dropTable, self:RollRandomCursedRelicForPlayer(pID) )
-		end
-	end
+	
+	table.insert( dropTable, self:RollRandomUniqueRelicForPlayer(pID)	)
+	table.insert( dropTable, self:RollRandomCursedRelicForPlayer(pID) )
 	
 	RelicManager:PushCustomRelicDropsForPlayer(pID, dropTable)
 end

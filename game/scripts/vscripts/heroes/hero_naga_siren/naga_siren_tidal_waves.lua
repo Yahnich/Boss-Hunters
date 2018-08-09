@@ -20,7 +20,6 @@ end
 
 function naga_siren_tidal_waves:OnSpellStart()
 	local caster = self:GetCaster()
-	
 	self.state = self.state or "rip"
 	if caster:HasTalent("special_bonus_unique_naga_siren_tidal_waves_1") then
 		self.cooldownTracker = self.cooldownTracker or {}
@@ -66,6 +65,7 @@ function naga_siren_tidal_waves:OnSpellStart()
 		self.state = "dead"
 	end
 	caster:EmitSound("Hero_NagaSiren.Riptide.Cast")
+	caster:StartGesture(ACT_DOTA_CAST_ABILITY_3)
 	if caster:HasTalent("special_bonus_unique_naga_siren_tidal_waves_1") then
 		self.cooldownTracker = self.cooldownTracker or {}
 		local cd = self.cooldownTracker[self.state]

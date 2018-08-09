@@ -1294,14 +1294,17 @@ function CDOTABaseAbility:GetTalentSpecialValueFor(value)
 	local multiply = false
 	local subtract = false
 	local kv = self:GetAbilityKeyValues()
-	for k,v in pairs(kv) do -- trawl through keyvalues
-		if k == "AbilitySpecial" then
-			for l,m in pairs(v) do
-				if m[value] then
-					talentName = m["LinkedSpecialBonus"]
-					if m["LinkedSpecialBonusField"] then valname = m["LinkedSpecialBonusField"] end
-					if m["LinkedSpecialBonusOperation"] and m["LinkedSpecialBonusOperation"] == "SPECIAL_BONUS_MULTIPLY" then multiply = true end
-					if m["LinkedSpecialBonusOperation"] and m["LinkedSpecialBonusOperation"] == "SPECIAL_BONUS_SUBTRACT" then subtract = true end
+	if kv["AbilitySpecial"] then
+		for k,v in pairs( kv["AbilitySpecial"] ) do -- trawl through keyvalues
+			if k == "AbilitySpecial" then
+				for l,m in pairs(v) do
+					if m[value] then
+						talentName = m["LinkedSpecialBonus"]
+						if m["LinkedSpecialBonusField"] then valname = m["LinkedSpecialBonusField"] end
+						if m["LinkedSpecialBonusOperation"] and m["LinkedSpecialBonusOperation"] == "SPECIAL_BONUS_MULTIPLY" then multiply = true end
+						if m["LinkedSpecialBonusOperation"] and m["LinkedSpecialBonusOperation"] == "SPECIAL_BONUS_SUBTRACT" then subtract = true end
+						break
+					end
 				end
 			end
 		end
@@ -1355,7 +1358,6 @@ end
 function CDOTABaseAbility:GetTrueCooldown()
 	local cooldown = self:GetCooldown(-1)
 	local octarineMult = 1 - self:GetCaster():GetCooldownReduction() / 100
-	print(octarineMult)
 	cooldown = cooldown * octarineMult
 	return cooldown
 end
@@ -1857,10 +1859,10 @@ end
 
 function CDOTABaseAbility:FireTrackingProjectile(FX, target, speed, data, iAttach, bDodge, bVision, vision)
 	local internalData = data or {}
-	local dodgable = false
-	if bDodge then dodgable = bDodge end
-	local provideVision = true
-	if bVision then	provideVision = bVision end
+	local dodgable = true
+	if bVision ~= nil then dodgable = bDodge end
+	local provideVision = false
+	if bVision ~= nil then provideVision = bVision end
 	local projectile = {
 		Target = target,
 		Source = internalData.source or self:GetCaster(),
@@ -1874,7 +1876,7 @@ function CDOTABaseAbility:FireTrackingProjectile(FX, target, speed, data, iAttac
         bVisibleToEnemies = true,
         bReplaceExisting = false,
         flExpireTime = GameRules:GetGameTime() + 10,
-		bProvidesVision = provideVision or false,
+		bProvidesVision = provideVision,
 		iVisionRadius = vision or 100,
 		iVisionTeamNumber = self:GetCaster():GetTeamNumber(),
 		iSourceAttachment = iAttach or 0,
@@ -2263,7 +2265,7 @@ function CDOTA_BaseNPC:ApplyKnockBack(position, stunDuration, knockbackDuration,
 		duration = stunDuration,
 		knockback_duration = knockbackDuration,
 		knockback_distance = distance,
-		knockback_height = height,
+		knockback_height = height or 0,
 	}
 	self:AddNewModifier(caster, ability, "modifier_knockback", modifierKnockback )
 end

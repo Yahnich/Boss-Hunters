@@ -1672,14 +1672,14 @@
 	"npc_dota_hero_sven" // Guardian
 	{
 		"override_hero"				"npc_dota_hero_sven"
-		"Ability1"					"sven_stormbolt_bh"
+		"Ability1"					"sven_storm_bolt_bh"
 		"Ability2"					"sven_valiant_charge"
 		"Ability3"					"sven_warcry_bh"
 		"Ability4"					"sven_great_cleave_bh"
 		"Ability6"					"sven_gods_strength_bh"
 		
-		"Ability10"					"special_bonus_unique_sven_stormbolt_1"
-		"Ability11"					"special_bonus_unique_sven_stormbolt_2"
+		"Ability10"					"special_bonus_unique_sven_storm_bolt_1"
+		"Ability11"					"special_bonus_unique_sven_storm_bolt_2"
 		"Ability12"					"special_bonus_unique_sven_valiant_charge_1"
 		"Ability13"					"special_bonus_unique_sven_valiant_charge_2"
 		"Ability14"					"special_bonus_unique_sven_warcry_1"

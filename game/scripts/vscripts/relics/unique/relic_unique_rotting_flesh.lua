@@ -5,6 +5,7 @@ function relic_unique_rotting_flesh:OnCreated()
 end
 
 function relic_unique_rotting_flesh:OnIntervalThink()
+	local parent = self:GetParent()
 	if not parent:IsAlive() then
 		local origin = parent:GetOrigin()
 		parent:RespawnHero(false, false)

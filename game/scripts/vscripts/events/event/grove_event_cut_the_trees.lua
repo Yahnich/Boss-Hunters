@@ -16,8 +16,9 @@ local function CheckPlayerChoices(self)
 			end
 		end
 	end
+	local superMajority = math.ceil(math.players * 0.66)
 	if not self.eventEnded and not self.combatStarted then
-		if votedYes > votedNo + (players - voted) then -- yes votes exceed non-votes and no votes
+		if votedYes > superMajority then -- yes votes exceed non-votes and no votes
 			self:GivePlayerGold()
 			self.treesCut = (self.treesCut or 0) + 1
 			Timers:CreateTimer(3, function()

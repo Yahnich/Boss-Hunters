@@ -5,10 +5,10 @@ function ta_psi_blades:GetIntrinsicModifierName()
 	return "modifier_ta_psi_blades"
 end
 
-function ta_psi_blades:OnProjectileHit(hTarget, vLocation)
+function ta_psi_blades:PsiBlade(hTarget)
 	if hTarget ~= nil then
-		self:DealDamage(self:GetCaster(), hTarget, self:GetCaster():GetAttackDamage(), {damage_type = DAMAGE_TYPE_PHYSICAL}, 0)
-
+		self:DealDamage( self:GetCaster(), hTarget, self:GetCaster():GetAttackDamage(), {damage_type = DAMAGE_TYPE_PHYSICAL}, 0)
+		print("?")
 		if self:GetCaster():HasTalent("special_bonus_unique_ta_psi_blades_2") then
 			hTarget:Paralyze(self, self:GetCaster())
 		end
@@ -61,6 +61,7 @@ function modifier_ta_psi_blades:OnAttackLanded(params)
 					local FX = ParticleManager:CreateParticle("particles/units/heroes/hero_templar_assassin/templar_assassin_psi_blade.vpcf", PATTACH_POINT_FOLLOW, self:GetCaster())
 					ParticleManager:SetParticleControlEnt(FX, 0, params.target, PATTACH_POINT_FOLLOW, "attach_hitloc", params.target:GetAbsOrigin(), true)
 					ParticleManager:SetParticleControlEnt(FX, 1, enemy, PATTACH_POINT_FOLLOW, "attach_hitloc", enemy:GetAbsOrigin(), true)
+					self:GetAbility():PsiBlade(enemy)
 				end
 			end
 		end
