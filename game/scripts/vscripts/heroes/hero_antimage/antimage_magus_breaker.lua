@@ -61,7 +61,7 @@ end
 
 function modifier_antimage_magus_breaker_debuff:OnAbilityExecuted(params)
 	if params.unit == self:GetParent() then
-		self:AddIndependentStack(self.duration)
+		self:IncrementStackCount()
 	end
 end
 

@@ -92,6 +92,7 @@
 #base "heroes/hero_naga_siren.txt"
 #base "heroes/hero_luna.txt"
 #base "heroes/hero_antimage.txt"
+#base "heroes/hero_sven.txt"
 
 "DOTAAbilities"
 {
@@ -11228,124 +11229,6 @@
 					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%overload_move_slow"
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%overload_attack_slow"
 				}
-			}
-		}
-	}
-	"sven_great_cleave_ebf"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"lua_abilities/heroes/sven"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_TOGGLE"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
-		"AbilityTextureName"			"sven_great_cleave"
-		"MaxLevel"						"7"
-	
-		// Precache
-		//-------------------------------------------------------------------------------------------------------------
-		"precache"
-		{
-			"particle"			"particles/units/heroes/hero_sven/sven_spell_great_cleave.vpcf"
-		}
-				
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"cleave_starting_width"			"300"
-			}			
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"cleave_ending_width"			"400"
-			}			
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"cleave_distance"			"550"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"great_cleave_damage"	"20 25 30 35 40 45 50"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"focused_strike_damage"	"20 25 30 35 40 45 50"
-			}
-		}
-	}
-	"sven_warcry_ebf"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"lua_abilities/heroes/sven"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-		"AbilityTextureName"			"sven_warcry"
-		"MaxLevel"						"7"
-	
-		// Precache
-		//-------------------------------------------------------------------------------------------------------------
-		"precache"
-		{
-			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_sven.vsndevts"
-			"particle"			"particles/units/heroes/hero_sven/sven_spell_warcry.vpcf"
-			"particle"			"particles/units/heroes/hero_sven/sven_warcry_buff.vpcf"
-		}
-		
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
-		"AbilityCastRange"				"900"
-
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"24.0 22.0 20.0 18.0 16.0 14.0 12.0"
-		"AbilityDuration"				"8.0"
-	
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"25 25 25 25"
-	
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"warcry_armor"				"5 10 15 20 25 30 35"		
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"warcry_passive_armor"		"5 8 11 14 17 20 23"	
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"warcry_movespeed"			"35"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"warcry_passive_movespeed"	"10 15 20 25 30 35 40"
-			}
-			"05"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"warcry_radius"		"900"
-			}
-			"06"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"duration_tooltip"		"8"
 			}
 		}
 	}

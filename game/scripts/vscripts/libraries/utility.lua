@@ -1381,6 +1381,7 @@ function CDOTABaseAbility:StartDelayedCooldown(flDelay, newCD)
 	local ability = self
 	self:SetActivated(false)
 	self.delayedCooldownTimer = Timers:CreateTimer(FrameTime(), function()
+		if not ability or ability:IsNull() then return end
 		ability:EndCooldown()
 		ability:StartCooldown(cd)
 		return FrameTime()

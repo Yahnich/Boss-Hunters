@@ -17,7 +17,7 @@ function modifier_antimage_ender_of_magic_handler:DeclareFunctions()
 end
 
 function modifier_antimage_ender_of_magic_handler:OnAbilityExecuted(params)
-	if CalculateDistance( params.unit, self:GetParent() ) < self.radius then
+	if CalculateDistance( params.unit, self:GetParent() ) < self.radius and params.ability and not params.ability:IsItem() and params.ability:GetCooldown(-1) ~= 0 then
 		self:GetParent():AddNewModifier( self:GetParent(), self:GetAbility(), "modifier_antimage_ender_of_magic_buff", {duration = self.duration})
 	end
 end

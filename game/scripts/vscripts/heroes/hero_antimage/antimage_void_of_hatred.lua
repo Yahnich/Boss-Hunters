@@ -31,11 +31,11 @@ function antimage_void_of_hatred:OnSpellStart()
 	local breaker = caster:FindModifierByNameAndCaster("modifier_antimage_ender_of_magic_buff", caster)
 	if magus then 
 		damage = damage + stackDmg * magus:GetStackCount()
-		magus:Destroy()
+		if not caster:HasScepter() then magus:Destroy() end
 	end
 	if breaker then
 		damage = damage + stackDmg * breaker:GetStackCount()
-		breaker:Destroy()
+		if not caster:HasScepter() then breaker:Destroy() end
 	end
 	
 	self:Stun( target, stunDur )

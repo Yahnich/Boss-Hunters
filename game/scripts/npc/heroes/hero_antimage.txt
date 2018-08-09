@@ -8,7 +8,6 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 	    "AbilityTextureName"			"custom/antimage_mage_rage"
 	    "MaxLevel"                      "7"
-		"HasScepterUpgrade"				"1"
 		
 		// Precache	
 		//-------------------------------------------------------------------------------------------------------------
@@ -259,7 +258,7 @@
 			"01"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"bonus_attackspeed"				"15"
+				"bonus_attackspeed"				"12"
 			}
 			"02"
 			{
@@ -269,7 +268,7 @@
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"duration"						"12.0"
+				"duration"						"11.0"
 			}
 			"04"
 			{
