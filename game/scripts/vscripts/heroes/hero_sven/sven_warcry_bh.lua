@@ -20,13 +20,13 @@ modifier_sven_warcry_bh_buff = class({})
 function modifier_sven_warcry_bh_buff:OnCreated()
 	self.ms = self:GetAbility():GetTalentSpecialValueFor("warcry_movespeed")
 	self.armor = self:GetAbility():GetTalentSpecialValueFor("warcry_armor")
-	self.as = self:GetCaster():FindTalentValue("special_bonus_unique_sven_warcry_2")
+	self.as = self:GetCaster():FindTalentValue("special_bonus_unique_sven_warcry_1")
 end
 
 function modifier_sven_warcry_bh_buff:OnRefresh()
 	self.ms = self:GetAbility():GetTalentSpecialValueFor("warcry_movespeed")
 	self.armor = self:GetAbility():GetTalentSpecialValueFor("warcry_armor")
-	self.as = self:GetCaster():FindTalentValue("special_bonus_unique_sven_warcry_2")
+	self.as = self:GetCaster():FindTalentValue("special_bonus_unique_sven_warcry_1")
 end
 
 function modifier_sven_warcry_bh_buff:GetEffectName()

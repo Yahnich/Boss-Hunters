@@ -119,7 +119,7 @@ function modifier_sven_gods_strength_bonus_strength:OnRefresh()
 end
 
 function modifier_sven_gods_strength_bonus_strength:OnIntervalThink()
-	self.str = self.str +  	aself.bonusStr * 0.5
+	self.str = self.str + self.bonusStr * 0.5
 	self:GetCaster():CalculateStatBonus()
 end
 

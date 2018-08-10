@@ -47,6 +47,7 @@ function modifier_item_soothslayer:OnAttackLanded(params)
 			parent:StartGestureWithPlaybackRate(ACT_DOTA_ATTACK, 6)
 			self:GetAbility():SetCooldown()
 			Timers:CreateTimer(self.delay, function()
+				if params.target:IsNull() then return end
 				EmitSoundOn("DOTA_Item.SkullBasher", params.target)
 				parent:PerformGenericAttack(params.target, true, 0, false, true)  
 				if parent:IsRealHero() then self:GetAbility():Stun(params.target, self.bash_duration, true) end
