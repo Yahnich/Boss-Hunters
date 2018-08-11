@@ -71,7 +71,9 @@ function C_DOTA_BaseNPC:FindTalentValue(talentName, valname)
 	if self:HasTalent(talentName) and AbilityKV[talentName] then  
 		local specialVal = AbilityKV[talentName]["AbilitySpecial"]
 		for l,m in pairs(specialVal) do
-			return m[value] or 0
+			if m[value] then
+				return m[value]
+			end
 		end
 	end    
 	return 0

@@ -265,6 +265,25 @@ function CHoldoutGameMode:InitGameMode()
 												RoundManager:StartPrepTime()
 											end
 										end, "adding relics",0)
+	Convars:RegisterCommand( "bh_unit_stress_test", function( command, units )
+											if Convars:GetDOTACommandClient() and IsInToolsMode() then
+												local hero = Convars:GetDOTACommandClient():GetAssignedHero()
+												units = units or 10
+												for i = 1, units do 
+													CreateUnitByNameAsync(
+														"npc_dota_creature_spiderling",
+														hero:GetAbsOrigin() + RandomVector(600),
+														false,
+														nil,
+														nil,
+														DOTA_TEAM_BADGUYS,
+														function(unit)
+															
+														end
+													)
+												end
+											end
+										end, "adding relics",0)
 	Convars:RegisterCommand( "clear_relics", function()
 											if Convars:GetDOTACommandClient() and IsInToolsMode() then
 												local player = Convars:GetDOTACommandClient()
@@ -485,7 +504,6 @@ function CHoldoutGameMode:FilterDamage( filterTable )
     if not victim_index or not attacker_index then
         return true
     end
-	
 	local damage = filterTable["damage"] --Post reduction
 	local inflictor = filterTable["entindex_inflictor_const"]
     local victim = EntIndexToHScript( victim_index )
@@ -1004,6 +1022,9 @@ function CHoldoutGameMode:CheckHP()
 				data.strength = hero:GetStrength()
 				data.intellect = hero:GetIntellect()
 				data.agility = hero:GetAgility()
+				if hero:GetPlayerOwner() and hero:GetAttackTarget() then
+					CustomGameEventManager:Send_ServerToPlayer( hero:GetPlayerOwner(), "bh_update_attack_target", {entindex = hero:GetAttackTarget():entindex()} )
+				end
 				CustomNetTables:SetTableValue("hero_properties", hero:GetUnitName()..hero:entindex(), data )
 				playerData[hero:GetPlayerID()] = {DT = hero.statsDamageTaken or 0, DD = hero.statsDamageDealt or 0, DH = hero.statsDamageHealed or 0}
 			end
@@ -1019,7 +1040,7 @@ TEMPORARY_NIGHT = 2
 NIGHT_STALKER_NIGHT = 3
 
 function CHoldoutGameMode:OnThink()
-	local timeofday = GameRules:IsDaytime()
+	local timeofday = tonumber(GameRules:IsDaytime())
 	if GameRules:IsTemporaryNight() then timeofday = TEMPORARY_NIGHT end
 	if GameRules:IsNightstalkerNight() then timeofday = NIGHT_STALKER_NIGHT end
 	CustomNetTables:SetTableValue( "game_info", "timeofday", {timeofday = timeofday} )

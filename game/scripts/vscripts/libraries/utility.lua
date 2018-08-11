@@ -1296,16 +1296,12 @@ function CDOTABaseAbility:GetTalentSpecialValueFor(value)
 	local kv = self:GetAbilityKeyValues()
 	if kv["AbilitySpecial"] then
 		for k,v in pairs( kv["AbilitySpecial"] ) do -- trawl through keyvalues
-			if k == "AbilitySpecial" then
-				for l,m in pairs(v) do
-					if m[value] then
-						talentName = m["LinkedSpecialBonus"]
-						if m["LinkedSpecialBonusField"] then valname = m["LinkedSpecialBonusField"] end
-						if m["LinkedSpecialBonusOperation"] and m["LinkedSpecialBonusOperation"] == "SPECIAL_BONUS_MULTIPLY" then multiply = true end
-						if m["LinkedSpecialBonusOperation"] and m["LinkedSpecialBonusOperation"] == "SPECIAL_BONUS_SUBTRACT" then subtract = true end
-						break
-					end
-				end
+			if v[value] then
+				talentName = v["LinkedSpecialBonus"]
+				if v["LinkedSpecialBonusField"] then valname = v["LinkedSpecialBonusField"] end
+				if v["LinkedSpecialBonusOperation"] and v["LinkedSpecialBonusOperation"] == "SPECIAL_BONUS_MULTIPLY" then multiply = true end
+				if v["LinkedSpecialBonusOperation"] and v["LinkedSpecialBonusOperation"] == "SPECIAL_BONUS_SUBTRACT" then subtract = true end
+				break
 			end
 		end
 	end

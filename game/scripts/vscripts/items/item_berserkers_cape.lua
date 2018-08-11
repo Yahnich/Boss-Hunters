@@ -71,6 +71,10 @@ function modifier_item_berserkers_cape:OnCreated()
 	self.armor = self:GetSpecialValueFor("bonus_armor")
 end
 
+function modifier_item_berserkers_cape:OnDestroy()
+	self:GetParent():RemoveModifierByName("modifier_item_berserkers_cape_active")
+end
+
 function modifier_item_berserkers_cape:DeclareFunctions()
 	return {MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
 			MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT}

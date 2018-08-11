@@ -24,11 +24,11 @@ function modifier_boss_attackspeed:OnIntervalThink()
 	end
 end
 
-function modifier_boss_attackspeed:CheckState()
-	if IsServer() then
-		return {[MODIFIER_STATE_CANNOT_MISS] = self:RollPRNG( 15 + RoundManager:GetZonesFinished() * 10 ) }
-	end
-end
+-- function modifier_boss_attackspeed:CheckState()
+	-- if IsServer() then
+		-- return {[MODIFIER_STATE_CANNOT_MISS] = self:RollPRNG( 15 + RoundManager:GetZonesFinished() * 10 ) }
+	-- end
+-- end
 
 function modifier_boss_attackspeed:GetPriority()
 	return MODIFIER_PRIORITY_LOW
@@ -45,7 +45,6 @@ function modifier_boss_attackspeed:DeclareFunctions()
 		MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE,
 		MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE,
 		MODIFIER_EVENT_ON_ABILITY_START,
-		MODIFIER_EVENT_ON_ATTACK_START
 	}
 	return funcs
 end
@@ -65,19 +64,6 @@ end
 function modifier_boss_attackspeed:GetModifierManaBonus( params )
 	return self:GetStackCount()*250
 end]]
-
-function modifier_boss_attackspeed:OnAttackStart(params)
-	if params.attacker == self:GetParent() then
-		if IsServer() then
-			Timers:CreateTimer(function()
-				if self:IsNull() or self:GetParent():IsNull() then return end
-				self:GetParent():RemoveGesture(ACT_DOTA_ATTACK)
-				self:GetParent():RemoveGesture(ACT_DOTA_ATTACK2)
-				self:GetParent():StartGestureWithPlaybackRate( TernaryOperator(ACT_DOTA_ATTACK2, RollPercentage(50), ACT_DOTA_ATTACK), self:GetParent():GetAttackSpeed() / 3  )
-			end)
-		end
-	end
-end
 
 function modifier_boss_attackspeed:GetModifierPreAttack_CriticalStrike( params )
 	local maxTick = math.floor( 100 / ( 5 * self:GetStackCount() ) + 0.5 )

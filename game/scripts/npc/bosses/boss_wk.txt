@@ -8,9 +8,9 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"bosses/boss_wk/boss_wk_vile_aura"
+		"ScriptFile"					"bosses/boss_wk/boss_wk_reincarnation"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityTextureName"			"necrolyte_heartstopper_aura"
+		"AbilityTextureName"			"skeleton_king_reincarnation"
 		"MaxLevel"						"2"
 		
 		"precache"
@@ -22,17 +22,47 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"radius"					"600 900"
+				"reincarnation_cd"			"90 60"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"heal_reduction"			"-50"
+				"reincarnation_delay"		"3"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"blink_rate"				"6 5"
+				"phase_bonus_cd"			"20 15"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"enrage_as"					"200 300"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"enrage_ms"					"10 15"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"enrage_dmg"				"15 20"
+			}
+			"07"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"enrage_radius"				"350"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"revive_bonus_as"			"50 100"
+			}
+			"07"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"revive_bonus_dmg"			"5 10"
 			}
 		}
 	}
@@ -44,9 +74,9 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"bosses/boss_wk/boss_wk_deathbringer"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityTextureName"			"nevermore_dark_lord"
+		"ScriptFile"					"bosses/boss_wk/boss_wk_hellfire_fury"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityTextureName"			"skeleton_king_vampiric_aura"
 		"MaxLevel"						"2"
 		
 		"precache"
@@ -70,17 +100,30 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"bosses/boss_wk/boss_wk_take_the_weak"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityTextureName"			"nevermore_necromastery"
+		"ScriptFile"					"bosses/boss_wk/boss_wk_summon_reaper"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELED"
+		"AbilityTextureName"			"undying_decay"
+		"AbilityCastPoint"				"1"
 		"MaxLevel"						"2"
 		
 		"precache"
 		{
+			"soundfile"						"soundevents/game_sounds_heroes/game_sounds_skeletonking.vsndevts"
+			"particle"						"particles/bosses/boss_wk/boss_wk_summon_reaper.vpcf"
 		}
 		
 		"AbilitySpecial"
 		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"max_reaper"				"3"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"spawn_reaper"				"1 2"
+			}
 		}
 	}
 	//=================================================================================================================
@@ -91,10 +134,10 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"bosses/boss_wk/boss_wk_plague_wave"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"ScriptFile"					"bosses/boss_wk/boss_wk_summon_vanguard"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELED"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
-		"AbilityTextureName"			"necrolyte_death_pulse"
+		"AbilityTextureName"			"undying_soul_rip"
 		"MaxLevel"						"3"
 		
 		"AbilityCastRange"				"1200 1400"
@@ -104,40 +147,20 @@
 	
 		"precache"
 		{
-			"particle"					"particles/death_spear.vpcf"
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_necrolyte.vsndevts"	
+			"soundfile"						"soundevents/game_sounds_heroes/game_sounds_skeletonking.vsndevts"
+			"particle"						"particles/bosses/boss_wk/boss_wk_summon_vanguard.vpcf"
 		}
 		"AbilitySpecial"
 		{
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"max_hp_damage"				"12 15"
+				"max_vanguard"				"6"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"duration"					"6"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"bolt_speed"				"200"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"bolt_radius"				"100"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"bolt_angle"				"35"
-			}
-			"06"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"bolt_delay"				"0.18 0.15"
+				"spawn_vanguard"			"2 3"
 			}
 		}
 	}
@@ -149,16 +172,16 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"bosses/boss_wk/boss_wk_fear_the_reaper"
+		"ScriptFile"					"bosses/boss_wk/boss_wk_scourge_blast"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
-		"AbilityTextureName"			"necrolyte_sadist"
+		"AbilityTextureName"			"skeleton_king_hellfire_blast"
 		"MaxLevel"						"3"
 		
 		"AbilityCastRange"				"800 1000"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
-		"AbilityCastPoint"				"0.5"
-		"AbilityCooldown"				"6 4"
+		"AbilityCastPoint"				"1.25 1"
+		"AbilityCooldown"				"16 14"
 	
 		"precache"
 		{
@@ -187,18 +210,16 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"bosses/boss_wk/boss_wk_swans_song"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"ScriptFile"					"bosses/boss_wk/boss_wk_culling_blow"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
-		"AbilityTextureName"			"necrolyte/apostle_of_decay_icons/necrolyte_death_pulse"
+		"AbilityTextureName"			"skeleton_king_mortal_strike"
 		"MaxLevel"						"3"
 		
 		"AbilityCastRange"				"1500"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
-		"AbilityCastPoint"				"3 2"
-		"AbilityCooldown"				"40"
+		"AbilityCastPoint"				"1"
+		"AbilityCooldown"				"10 8"
 	
 		"precache"
 		{
@@ -215,12 +236,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"duration"					"10"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"750"
+				"critical"					"300 400"
 			}
 		}
 	}
@@ -232,13 +248,13 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"bosses/boss_wk/boss_wk_guillotine"
+		"ScriptFile"					"bosses/boss_wk/boss_vanguard_bone_wall"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
-		"AbilityTextureName"			"necrolyte_reapers_scythe"
+		"AbilityTextureName"			"pugna_nether_ward_alt"
 		"MaxLevel"						"3"
 		
 		"AbilityCastAnimation"			"ACT_DOTA_VICTORY"
@@ -282,12 +298,12 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"bosses/boss_wk/boss_wk_weaken"
+		"ScriptFile"					"bosses/boss_wk/boss_vanguard_shin_shatter"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-		"AbilityTextureName"			"bane_enfeeble"
+		"AbilityTextureName"			"pugna_decrepify"
 		"MaxLevel"						"3"
 		
 		"AbilityCastRange"				"1200"
@@ -322,12 +338,12 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"bosses/boss_wk/boss_wk_weaken"
+		"ScriptFile"					"bosses/boss_wk/boss_vanguard_back_breaker"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-		"AbilityTextureName"			"bane_enfeeble"
+		"AbilityTextureName"			"slardar_bash"
 		"MaxLevel"						"3"
 		
 		"AbilityCastRange"				"1200"
@@ -362,12 +378,12 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"bosses/boss_wk/boss_wk_weaken"
+		"ScriptFile"					"bosses/boss_wk/boss_reaper_necrotic_hail"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-		"AbilityTextureName"			"bane_enfeeble"
+		"AbilityTextureName"			"clinkz_searing_arrows"
 		"MaxLevel"						"3"
 		
 		"AbilityCastRange"				"1200"
@@ -402,12 +418,12 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"bosses/boss_wk/boss_wk_weaken"
+		"ScriptFile"					"bosses/boss_wk/boss_reaper_reposition"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-		"AbilityTextureName"			"bane_enfeeble"
+		"AbilityTextureName"			"clinkz_wind_walk"
 		"MaxLevel"						"3"
 		
 		"AbilityCastRange"				"1200"
@@ -442,12 +458,12 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"bosses/boss_wk/boss_wk_weaken"
+		"ScriptFile"					"bosses/boss_wk/boss_reaper_multi_shot"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-		"AbilityTextureName"			"bane_enfeeble"
+		"AbilityTextureName"			"clinkz_strafe"
 		"MaxLevel"						"3"
 		
 		"AbilityCastRange"				"1200"

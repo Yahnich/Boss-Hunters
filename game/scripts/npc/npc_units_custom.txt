@@ -2287,8 +2287,8 @@
 		"SoundSet"					"n_creep_Melee"
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"40"
-		"ModelScale" 				"1.6"
-		"IsAncient"			"0"
+		"ModelScale" 				"1.2"
+		"IsAncient"					"0"
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"275"
 		"IsWild"					"1"
@@ -2392,7 +2392,7 @@
 		"SoundSet"					"n_creep_Melee"
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"38"
-		"ModelScale" 				"0.7"
+		"ModelScale" 				"0.8"
 		"IsWild"					"1"
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"275"
@@ -2494,7 +2494,7 @@
 		"SoundSet"					"n_creep_Melee"
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"60"
-		"ModelScale" 				"1.8"
+		"ModelScale" 				"1.4"
 		"IsWild"					"1"
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"275"
@@ -6086,10 +6086,10 @@
 		// Attack
 		//----------------------------------------------------------------
 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"			"20"		// Damage range min.
-		"AttackDamageMax"			"25"		// Damage range max.
+		"AttackDamageMin"			"40"		// Damage range min.
+		"AttackDamageMax"			"50"		// Damage range max.
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
-		"AttackRate"				"1.5"		// Speed of attack.
+		"AttackRate"				"3"		// Speed of attack.
 		"AttackAnimationPoint"		"1.2"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"18000"		// Range within a target can be acquired.
 		"AttackRange"				"100"		// Range within a target can be attacked.
@@ -7295,7 +7295,7 @@
 	    "AttackRate"        "1"     // Speed of attack.
 	    "AttackAnimationPoint"    "0.5"   // Normalized time in animation cycle to attack.
 	    "AttackAcquisitionRange"  "250"   // Range within a target can be acquired.
-	    "AttackRange"       "100"   // Range within a target can be attacked.
+	    "AttackRange"       "300"   // Range within a target can be attacked.
 	    "ProjectileModel"     "" // Particle system model for projectile.
 	    "ProjectileSpeed"     "900"   // Speed of projectile.
 	

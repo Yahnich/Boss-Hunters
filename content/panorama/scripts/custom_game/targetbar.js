@@ -7,18 +7,19 @@ function tell_threat()
 GameEvents.Subscribe("dota_player_update_selected_unit", UpdatedSelection);
 GameEvents.Subscribe("dota_player_update_query_unit", UpdatedSelection);
 GameEvents.Subscribe("npc_spawned", UpdatedSpawned);
-GameEvents.Subscribe("entity_hurt", UpdatedAttack);
+GameEvents.Subscribe("bh_update_attack_target", UpdatedAttack);
 
 
 
-var newestBoss 
+var newestBoss
+var currPID
 var localID = Game.GetLocalPlayerID()
 $("#targetPanelMain").visible = false;
 
 function UpdatedSpawned(arg)
 {
 	if($("#targetPanelMain").visible == false && newestBoss != arg.entindex && (Entities.GetTeamNumber( arg.entindex ) != Players.GetTeam( localID ))){
-		newestBoss = arg.entindex;
+		UpdateCurrentTarget(arg.entindex);
 	}
 }
 
@@ -26,14 +27,29 @@ function UpdatedSelection()
 {
 	var selectedBoss = Players.GetLocalPlayerPortraitUnit();
 	if (Entities.GetTeamNumber( selectedBoss ) != Players.GetTeam( localID )){ // target is an enemy
-		newestBoss = selectedBoss;
+		UpdateCurrentTarget(selectedBoss);
 	}
 }
 
 function UpdatedAttack(arg)
 {
-	if (arg.entindex_inflictor == 0 && arg.entindex_attacker == Players.GetPlayerHeroEntityIndex( localID ) && newestBoss != arg.entindex_killed && Entities.GetTeamNumber( arg.entindex_killed ) != Players.GetTeam( localID )){ // auto-attack is dealt by player owned hero
-		newestBoss = arg.entindex_killed;
+	UpdateCurrentTarget(arg.entindex);
+}
+
+function UpdateCurrentTarget(entindex)
+{	
+	if(newestBoss != entindex){
+		newestBoss = entindex;
+		if( currPID != null){
+			Particles.DestroyParticleEffect( currPID, true );
+			Particles.ReleaseParticleIndex( currPID );
+		}
+		
+		currPID = Particles.CreateParticle( "particles/ui_mouseactions/unit_highlight.vpcf", ParticleAttachment_t.PATTACH_POINT_FOLLOW, newestBoss );
+		Particles.SetParticleControl(currPID, 0, Entities.GetAbsOrigin(newestBoss) );
+		Particles.SetParticleControl(currPID, 1, [255,0,0] );
+		Particles.SetParticleControl(currPID, 2, [ ( Entities.GetHullRadius( newestBoss ) + Entities.GetPaddedCollisionRadius( newestBoss ) + 12 ) * 3, 1, 1 ] );
+		$.Msg(currPID)
 	}
 }
 

@@ -1,5 +1,4 @@
 item_kitteh_amulet = class({})
-LinkLuaModifier( "modifier_item_kitteh_amulet_passive", "items/item_kitteh_amulet.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 function item_kitteh_amulet:OnSpellStart()
 	local caster = self:GetCaster()
@@ -12,6 +11,7 @@ function item_kitteh_amulet:OnSpellStart()
 		print( 9999 )
 		targetPos = caster:GetAbsOrigin() + direction * 9999
 	end
+
 	EmitSoundOn("DOTA_Item.BlinkDagger.Activate", caster)
 	ParticleManager:FireParticle("particles/econ/events/ti6/blink_dagger_start_ti6_lvl2.vpcf", PATTACH_ABSORIGIN, caster, {[0] = caster:GetAbsOrigin()})
 	FindClearSpaceForUnit(caster, targetPos, true)
@@ -30,21 +30,21 @@ function item_kitteh_amulet:GetIntrinsicModifierName()
 	return "modifier_item_kitteh_amulet_passive"
 end
 
-modifier_item_kitteh_amulet_passive = class({})
 
+modifier_item_kitteh_amulet_passive = class({})
+LinkLuaModifier( "modifier_item_kitteh_amulet_passive", "items/item_kitteh_amulet.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 function modifier_item_kitteh_amulet_passive:DeclareFunctions()
 	return {MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,
-			MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE,
 			MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE_STACKING,
+			MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE,
 			MODIFIER_PROPERTY_MANA_REGEN_CONSTANT,
 			MODIFIER_EVENT_ON_TAKEDAMAGE,
-			MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE
+			MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE,
 			MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE_MIN,
 			MODIFIER_PROPERTY_MOVESPEED_LIMIT,
 			MODIFIER_PROPERTY_MOVESPEED_MAX,
 			MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,
-			MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE,
 			MODIFIER_EVENT_ON_ATTACK_LANDED,
 			MODIFIER_PROPERTY_ATTACK_RANGE_BONUS_UNIQUE,
 			MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
@@ -63,6 +63,11 @@ function modifier_item_kitteh_amulet_passive:DeclareFunctions()
 			MODIFIER_PROPERTY_CAST_RANGE_BONUS_STACKING,
 			MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE}
 
+end
+
+
+function modifier_item_kitteh_amulet_passive:OnCreated()
+    self:GetParent():AddNewModifier( self:GetParent(), self:GetAbility(), "modifier_item_ultimate_scepter", {})
 end
 
 function modifier_item_kitteh_amulet_passive:GetModifierSpellAmplify_Percentage()
@@ -86,23 +91,18 @@ function modifier_item_kitteh_amulet_passive:GetModifierManaRegenPercentage()
 end
 
 function modifier_item_kitteh_amulet_passive:OnTakeDamage(params)
-	if params.attacker == self:GetParent() and not params.inflictor then
+	if params.attacker == self:GetParent() and params.unit ~= self:GetParent() and self:GetParent():GetHealth() > params.damage then
 		local flHeal = params.damage * 100
+		if params.inflictor then ParticleManager:FireParticle ("particles/items3_fx/octarine_core_lifesteal.vpcf", PATTACH_ABSORIGIN_FOLLOW, self) end
 		params.attacker:HealEvent(flHeal, self:GetAbility(), params.attacker)
-	end
-
-	if params.attacker == self:GetParent() then
-		local flHeal = params.damage * 100
-		if params.inflictor then ParticleManager:FireParticle("particles/items3_fx/octarine_core_lifesteal.vpcf", PATTACH_ABSORIGIN_FOLLOW, self) end
-		params.attacker:HealEvent(flHeal, self:GetAbility(), params.attacker)
-	end
-end
-
-function modifier_item_kitteh_amulet_passive:GetModifierMoveSpeedBonus_Constant()
-	return 550
+		end
 end
 
 function modifier_item_kitteh_amulet_passive:GetModifierMoveSpeed_AbsoluteMin()
+	return 550
+end
+
+function modifier_item_kitteh_amulet_passive:GetModifierMoveSpeedBonus_Constant()
 	return 550
 end
 
@@ -120,22 +120,24 @@ end
 
 
 function modifier_item_kitteh_amulet_passive:GetModifierAttackRangeBonusUnique()
-		return 800
+	return 800
 end
 
-function modifier_item_kitteh_amulet_passive:GetModifierPercentageCooldown()
-		return 95
-end
 
 function modifier_item_kitteh_amulet_passive:GetModifierPercentageCooldownStacking()
-		return 95
+	return 95
 end
 
-function modifier_item_kitteh_amulet_passive:GetModifierTotal_ConstantBlock()
-	if RollPercentage(100) then
-		return 500
-	end
+
+function modifier_item_kitteh_amulet_passive:GetModifierPercentageCooldown()
+	return 95
 end
+
+
+function modifier_item_kitteh_amulet_passive:GetModifierTotal_ConstantBlock()
+	return 500
+end
+
 
 function modifier_item_kitteh_amulet_passive:GetModifierAttackRangeBonus()
 	return 500

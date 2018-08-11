@@ -1,0 +1,1 @@
+boss_wk_culling_blow = class({})

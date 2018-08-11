@@ -1,0 +1,1 @@
+boss_wk_hellfire_fury = class({})

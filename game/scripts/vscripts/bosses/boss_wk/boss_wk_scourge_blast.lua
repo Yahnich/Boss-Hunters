@@ -1,0 +1,1 @@
+boss_wk_scourge_blast = class({})
