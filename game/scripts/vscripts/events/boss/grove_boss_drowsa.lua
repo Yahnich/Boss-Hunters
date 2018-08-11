@@ -1,5 +1,5 @@
 local function StartEvent(self)
-	self.enemiesToSpawn = 1
+	self.enemiesToSpawn = 1 + RoundManager:GetAscensions()
 	self.eventHandler = Timers:CreateTimer(3, function()
 		local spawn = CreateUnitByName("npc_dota_boss28", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
 		spawn.unitIsRoundBoss = true
