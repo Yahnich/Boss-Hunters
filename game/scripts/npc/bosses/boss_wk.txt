@@ -105,6 +105,8 @@
 		"AbilityTextureName"			"undying_decay"
 		"AbilityCastPoint"				"1"
 		"MaxLevel"						"2"
+		"AbilityCooldown"				"50 40"
+		"AbilityCastAnimation"			""
 		
 		"precache"
 		{
@@ -139,11 +141,9 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
 		"AbilityTextureName"			"undying_soul_rip"
 		"MaxLevel"						"3"
-		
-		"AbilityCastRange"				"1200 1400"
-		"AbilityCastAnimation"			"ACT_DOTA_NECRO_GHOST_SHROUD"
+		"AbilityCastAnimation"			""
 		"AbilityCastPoint"				"1"
-		"AbilityCooldown"				"12"
+		"AbilityCooldown"				"50 35"
 	
 		"precache"
 		{
@@ -193,12 +193,37 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"400"
+				"impact_damage"				"70 80"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
+				"burn_damage"				"20 30"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"slow"						"-15 -20"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"stun_duration"				"1 2"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"total_duration"			"5"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_INTEGER"
 				"radius"					"200 225"
+			}
+			"07"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"width"						"120"
 			}
 		}
 	}
@@ -216,9 +241,8 @@
 		"AbilityTextureName"			"skeleton_king_mortal_strike"
 		"MaxLevel"						"3"
 		
-		"AbilityCastRange"				"1500"
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
-		"AbilityCastPoint"				"1"
+		"AbilityCastAnimation"			"ACT_DOTA_VICTORY"
+		"AbilityCastPoint"				"0.5"
 		"AbilityCooldown"				"10 8"
 	
 		"precache"
@@ -231,7 +255,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"max_hp_damage"				"2.0 2.25"
+				"max_hp_damage"				"15 20"
 			}
 			"02"
 			{
@@ -249,21 +273,18 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"bosses/boss_wk/boss_vanguard_bone_wall"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
 		"AbilityTextureName"			"pugna_nether_ward_alt"
 		"MaxLevel"						"3"
 		
-		"AbilityCastAnimation"			"ACT_DOTA_VICTORY"
+		"AbilityCastAnimation"			"ACT_DOTA_SPAWN"
 		"AbilityCastPoint"				"0.5"
 		"AbilityCooldown"				"35 30"
 	
 		"precache"
 		{
-			"particle"					"particles/units/heroes/hero_necrolyte/necrolyte_scythe_start.vpcf"
+			"particle"					"particles/status_fx/status_effect_charge_of_darkness.vpcf"
 			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_necrolyte.vsndevts"	
 		}
 		"AbilitySpecial"
@@ -271,22 +292,17 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"radius"					"250"
+				"damage_red"				"-60 -80"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"hp_set"					"50 35"
+				"slow"						"-100"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"kill_threshold"			"25"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"duration"					"4 5"
+				"duration"					"5"
 			}
 		}
 	}
@@ -299,17 +315,15 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"bosses/boss_wk/boss_vanguard_shin_shatter"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityTextureName"			"pugna_decrepify"
 		"MaxLevel"						"3"
 		
 		"AbilityCastRange"				"1200"
-		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
-		"AbilityCastPoint"				"1"
-		"AbilityCooldown"				"30"
+		"AbilityCastAnimation"			"ACT_DOTA_DIE"
+		"AbilityCastPoint"				"3 2"
+		"AnimationPlaybackRate"			"0.5"
+		"AbilityCooldown"				"22"
 	
 		"precache"
 		{
@@ -321,12 +335,17 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage_reduction"			"-33 -50"
+				"radius"					"325"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"duration"					"15"
+				"damage"					"20 35"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"stun_duration"				"3"
 			}
 		}
 	}
@@ -339,17 +358,9 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"bosses/boss_wk/boss_vanguard_back_breaker"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityTextureName"			"slardar_bash"
 		"MaxLevel"						"3"
-		
-		"AbilityCastRange"				"1200"
-		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
-		"AbilityCastPoint"				"1"
-		"AbilityCooldown"				"30"
 	
 		"precache"
 		{
@@ -361,12 +372,12 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage_reduction"			"-33 -50"
+				"attacks_to_proc"			"6 5"
 			}
 			"02"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"duration"					"15"
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"1.5"
 			}
 		}
 	}
@@ -379,34 +390,46 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"bosses/boss_wk/boss_reaper_necrotic_hail"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName"			"clinkz_searing_arrows"
 		"MaxLevel"						"3"
 		
 		"AbilityCastRange"				"1200"
 		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
 		"AbilityCastPoint"				"1"
-		"AbilityCooldown"				"30"
+		"AbilityCooldown"				"18 15"
 	
 		"precache"
 		{
 			"particle"					"particles/status_fx/status_effect_necrolyte_spirit.vpcf"
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_necrolyte.vsndevts"	
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_clinkz.vsndevts"	
 		}
 		"AbilitySpecial"
 		{
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage_reduction"			"-33 -50"
+				"radius"					"325 375"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"duration"					"15"
+				"damage"					"120 150"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"duration"					"4 5"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"heal_reduction"			"-33 -50"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage_amp"				"15 20"
 			}
 		}
 	}
@@ -419,34 +442,30 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"bosses/boss_wk/boss_reaper_reposition"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityTextureName"			"clinkz_wind_walk"
 		"MaxLevel"						"3"
 		
-		"AbilityCastRange"				"1200"
-		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
 		"AbilityCastPoint"				"1"
-		"AbilityCooldown"				"30"
+		"AbilityCooldown"				"20"
 	
 		"precache"
 		{
 			"particle"					"particles/status_fx/status_effect_necrolyte_spirit.vpcf"
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_necrolyte.vsndevts"	
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_clinkz.vsndevts"	
 		}
 		"AbilitySpecial"
 		{
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage_reduction"			"-33 -50"
+				"bonus_ms"					"100 150"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"duration"					"15"
+				"duration"					"6"
 			}
 		}
 	}
@@ -459,34 +478,26 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"bosses/boss_wk/boss_reaper_multi_shot"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityTextureName"			"clinkz_strafe"
 		"MaxLevel"						"3"
-		
-		"AbilityCastRange"				"1200"
-		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
-		"AbilityCastPoint"				"1"
-		"AbilityCooldown"				"30"
 	
 		"precache"
 		{
 			"particle"					"particles/status_fx/status_effect_necrolyte_spirit.vpcf"
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_necrolyte.vsndevts"	
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_clinkz.vsndevts"
 		}
 		"AbilitySpecial"
 		{
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage_reduction"			"-33 -50"
+				"search_radius"				"325"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"duration"					"15"
+				"attacks_to_proc"			"4 3"
 			}
 		}
 	}

@@ -60,12 +60,19 @@ function RoundManager:VoteSkipPrepTime(userid, event)
 end
 
 function RoundManager:VoteNewGame(userid, event)
-	self.votedToNG = (self.votedToNG or 0) + 1
+	self.votedToNG = (self.votedToNG or 0)
+	self.votedNoNg = (self.votedNoNg or 0)
+	if toboolean(event.vote) then
+		self.votedToNG = (self.votedToNG or 0) + 1
+	else
+		self.votedNoNg = (self.votedNoNg or 0) + 1
+	end
 	local noVotes = HeroList:GetActiveHeroCount() - self.votedToNG
-	CustomGameEventManager:Send_ServerToAllClients("bh_update_votes_prep_time", {yes = self.votedToNG, no = noVotes})
+	CustomGameEventManager:Send_ServerToAllClients("bh_update_votes_prep_time", {yes = self.votedToNG, no = noVotes, ascension = true})
 	if noVotes <= self.votedToNG then	
 		self.ng = true
 		self.votedToNG = 0
+		self.votedNoNg = 0
 		self.ascensionLevel = (self.ascensionLevel or 0) + 1
 		self.zones = {}
 		self.bossPool = LoadKeyValues('scripts/kv/boss_pool.txt')
@@ -77,6 +84,8 @@ function RoundManager:VoteNewGame(userid, event)
 			local zoneName = POSSIBLE_ZONES[i]
 			RoundManager:ConstructRaids(zoneName)
 		end
+	elseif self.votedNoNg > self.votedToNG then
+		self.prepTimer = 0
 	end
 end
 
@@ -173,7 +182,7 @@ function RoundManager:ConstructRaids(zoneName)
 		
 		for i = 1, EVENTS_PER_RAID do
 			self.eventsCreated = self.eventsCreated + 1
-			if RollPercentage(COMBAT_CHANCE) then -- Rolled Combat
+			if RollPercentage(COMBAT_CHANCE) or self.eventsCreated < 3 then -- Rolled Combat
 				local combatType = EVENT_TYPE_COMBAT
 				if (RollPercentage(ELITE_CHANCE) and self.eventsCreated > 3) or self:GetAscensions() > 0 then
 					combatType = EVENT_TYPE_ELITE
@@ -274,8 +283,11 @@ function RoundManager:StartPrepTime(fPrep)
 					end
 				end
 			end
-		
-			CustomGameEventManager:Send_ServerToAllClients( "updateQuestRound", { eventName = RoundManager:GetCurrentEventName(), roundText = self.currentZone.." "..romanVersion } )
+			local ascensionText
+			if RoundManager:GetAscensions() > 0 then
+				ascensionText = "A" .. RoundManager:GetAscensions()
+			end
+			CustomGameEventManager:Send_ServerToAllClients( "updateQuestRound", { eventName = RoundManager:GetCurrentEventName(), roundText = self.currentZone.." "..romanVersion, ascensionText = ascensionText} )
 			self.prepTimeTimer = Timers:CreateTimer(1, function()
 				self.prepTimer = self.prepTimer - 1
 				CustomGameEventManager:Send_ServerToAllClients( "updateQuestPrepTime", { prepTime = math.floor(self.prepTimer + 0.5) } )
@@ -452,7 +464,7 @@ function RoundManager:GameIsFinished(bWon)
 		if bWon then
 			self.prepTimer = 30
 			self.ng = false
-			CustomGameEventManager:Send_ServerToAllClients("bh_start_ng_vote", {})
+			CustomGameEventManager:Send_ServerToAllClients("bh_start_ng_vote", {ascLevel = RoundManager:GetAscensions() + 1})
 			GameRules.Winner = DOTA_TEAM_GOODGUYS
 			Timers(1, function()
 				CustomGameEventManager:Send_ServerToAllClients( "updateQuestPrepTime", { prepTime = math.floor(self.prepTimer + 0.5) } )
@@ -549,7 +561,13 @@ function RoundManager:InitializeUnit(unit, bElite)
 	
 	unit:AddNewModifier(unit, nil, "modifier_boss_attackspeed", {})
 	local powerScale = unit:AddNewModifier(unit, nil, "modifier_power_scaling", {})
-	if powerScale then powerScale:SetStackCount( math.floor( (RoundManager:GetEventsFinished() * 0.2) * ( (1 + (RoundManager:GetRaidsFinished() * 4 ) + ( RoundManager:GetZonesFinished() * 6 ) ) * (RoundManager:GetAscensions() * 1.5) ) ) ) end
+	
+	local SAMultiplierFunc = function( events, raids, zones ) return math.floor( (events * 0.3) * ( (1 + (raids * 2 ) + ( zones * 3 ) ) ) ) end
+	local maxSpellAmpScale = SAMultiplierFunc( (EVENTS_PER_RAID + 1) * RAIDS_PER_ZONE * ZONE_COUNT, RAIDS_PER_ZONE * ZONE_COUNT, ZONE_COUNT)
+	local spellAmpScale = SAMultiplierFunc( RoundManager:GetEventsFinished(), RoundManager:GetRaidsFinished(), RoundManager:GetZonesFinished() )
+	spellAmpScale = math.min( maxSpellAmpScale, spellAmpScale ) * ( (1 +  RoundManager:GetAscensions()) * 1.5)
+	
+	if powerScale then powerScale:SetStackCount( spellAmpScale ) end
 	unit:AddNewModifier(unit, nil, "modifier_spawn_immunity", {duration = 4/GameRules.gameDifficulty})
 	if unit:IsRoundBoss() then
 		local evasion = unit:AddNewModifier(unit, nil, "modifier_boss_evasion", {})

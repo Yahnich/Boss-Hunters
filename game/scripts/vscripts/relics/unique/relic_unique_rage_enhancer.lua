@@ -11,7 +11,7 @@ end
 
 function relic_unique_rage_enhancer:OnAttack(params)
 	if params.target == self:GetParent() and not self.internalcooldown then
-		self:AddIndependentStack(25, nil, false)
+		self:AddIndependentStack(25, nil)
 		params.target:CalculateStatBonus()
 		self.internalcooldown = true
 		Timers:CreateTimer(0.2, function() self.internalcooldown = false end)

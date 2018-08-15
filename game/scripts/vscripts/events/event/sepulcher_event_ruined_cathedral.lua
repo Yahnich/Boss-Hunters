@@ -132,8 +132,8 @@ local function EndEvent(self, bWon)
 	Timers:CreateTimer(3, function() RoundManager:EndEvent(bWon) end)
 end
 
-local function HandoutRewards(self)
-	if self.combatStarted then
+local function HandoutRewards(self, bWon)
+	if self.combatStarted and bWon then
 		for _, hero in ipairs( HeroList:GetRealHeroes() ) do
 			local pID = hero:GetPlayerOwnerID()
 			local generic = {}

@@ -98,7 +98,7 @@ function modifier_stats_system_handler:GetModifierConstantManaRegen() return 5 +
 function modifier_stats_system_handler:GetModifierHealAmplify_Percentage() return self.ha or 0 end
 
 function modifier_stats_system_handler:GetModifierPreAttack_BonusDamage() return 10 + (self.ad or 0) end
-function modifier_stats_system_handler:GetModifierSpellAmplify_Percentage() return self.sa or 0 end
+function modifier_stats_system_handler:GetModifierSpellAmplify_Percentage() return self:GetParent():GetIntellect() * 0.13333 + (self.sa or 0) end
 function modifier_stats_system_handler:GetCooldownReduction() return self.cdr or 0 end
 function modifier_stats_system_handler:GetModifierAttackSpeedBonus_Constant() return self.as or 0 end
 function modifier_stats_system_handler:GetModifierStatusAmplify_Percentage() return self.sta or 0 end

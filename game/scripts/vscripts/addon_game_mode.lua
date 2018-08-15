@@ -255,6 +255,7 @@ function CHoldoutGameMode:InitGameMode()
 																end)
 															end, "test",0)
 	Convars:RegisterCommand( "bh_test_round", function( command, zone, roundName, roundType )
+											print( command, zone, roundName, roundType )
 											if Convars:GetDOTACommandClient() and IsInToolsMode() then
 												RoundManager:EndEvent(false)
 												RoundManager:EndPrepTime(true)
@@ -408,6 +409,7 @@ function CHoldoutGameMode:FilterModifiers( filterTable )
 			filterTable["duration"] = filterTable["duration"] * math.max(0, (1 - resistance/100)) * math.max(0, (1 - stackResist/100))
 		end
 	end
+	print(name, filterTable["duration"])
 	if filterTable["duration"] == 0 then return false end
 	return true
 end

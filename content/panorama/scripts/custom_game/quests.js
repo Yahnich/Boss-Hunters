@@ -31,28 +31,37 @@ var pressed = false
 
 function StartNGVote(args)
 {
-	$("#QuestsPrepVoteHolder").visible =  true
+	$("#QuestsAscensionVoteHolder").visible =  true
 	
-	var voteYes = $("#QuestPrepVoteConfirmButton")
-	var voteLabel = $("#QuestsPrepVoteDescriptionLabel")
-	voteLabel.text = "Ascend?"
-	voteLabel.SetPanelEvent("onmouseover", function(){$.DispatchEvent("DOTAShowTextTooltip", voteLabel, "Ascending resets the game, but you keep your relics, levels and items.");});
-	voteLabel.SetPanelEvent("onmouseout", function(){$.DispatchEvent("DOTAHideTextTooltip", voteLabel);});
+	var voteYes = $("#QuestAscensionVoteConfirmButton")
+	var voteNo = $("#QuestAscensionVoteDeclineButton")
+	var voteHolder = $("#QuestsAscensionVoteHolder")
 	
-	$("#QuestPrepVoteNoLabel").text =  "No: " + 0
-	$("#QuestPrepVoteYesLabel").text =  "Yes: " + 0
+	var ascDescription = $.Localize( "#ascension_Generic_Description", voteHolder );
+	for(var i = 1; i <= Math.min(args.ascLevel,4); i++ ){
+		ascDescription = ascDescription + " \n<br> " + $.Localize( "#ascension_" + i + "_Description", voteHolder );
+	}
+	voteHolder.SetPanelEvent("onmouseover", function(){$.DispatchEvent("DOTAShowTextTooltip", voteHolder, ascDescription);});
+	voteHolder.SetPanelEvent("onmouseout", function(){$.DispatchEvent("DOTAHideTextTooltip", voteHolder);});
+	
+	$("#QuestAscensionVoteNoLabel").text =  "No: " + 0
+	$("#QuestAscensionVoteYesLabel").text =  "Yes: " + 0
 	
 	voteYes.SetPanelEvent("onmouseover", function(){voteYes.SetHasClass("ButtonHover", true);});
 	voteYes.SetPanelEvent("onmouseout", function(){voteYes.SetHasClass("ButtonHover", false);});
-	voteYes.SetPanelEvent("onactivate", VoteNG);
+	voteYes.SetPanelEvent("onactivate", function(){ VoteNG(true) });
+	
+	voteNo.SetPanelEvent("onmouseover", function(){voteNo.SetHasClass("ButtonHover", true);});
+	voteNo.SetPanelEvent("onmouseout", function(){voteNo.SetHasClass("ButtonHover", false);});
+	voteNo.SetPanelEvent("onactivate", function(){ VoteNG(false) });
 }
 
-function VoteNG()
+function VoteNG(bVote)
 {
-	$("#QuestsPrepVoteHolder").visible =  false
+	$("#QuestsAscensionVoteHolder").visible = false;
 	if(pressed == false){
-		GameEvents.SendCustomGameEventToServer( "bh_player_voted_to_ng", {pID : localID} )
-		var voteYes = $("#QuestPrepVoteConfirmButton")
+		GameEvents.SendCustomGameEventToServer( "bh_player_voted_to_ng", {pID : localID, vote : bVote} )
+		var voteYes = $("#QuestAscensionVoteConfirmButton")
 		voteYes.SetPanelEvent("onmouseover", function(){});
 		voteYes.SetPanelEvent("onmouseout", function(){});
 		voteYes.SetPanelEvent("onactivate", function(){});
@@ -62,9 +71,16 @@ function VoteNG()
 
 function UpdatePrepVote(args)
 {
-	$("#QuestPrepVoteNoLabel").text =  "No: " + args.no
-	$("#QuestPrepVoteYesLabel").text =  "Yes: " + args.yes
-	pressed = false
+	if(args.ascension != null){
+		$("#QuestAscensionVoteNoLabel").text =  "No: " + args.no
+		$("#QuestAscensionVoteYesLabel").text =  "Yes: " + args.yes
+		pressed = false
+	} else {
+		$("#QuestPrepVoteNoLabel").text =  "No: " + args.no
+		$("#QuestPrepVoteYesLabel").text =  "Yes: " + args.yes
+		pressed = false
+	}
+	
 }
 
 function VoteSkipPrep()
@@ -82,11 +98,24 @@ function VoteSkipPrep()
 
 function RemovePrepVotes(args)
 {
-	$("#QuestsPrepVoteHolder").visible =  false
-	var voteYes = $("#QuestPrepVoteConfirmButton")
-	voteYes.SetPanelEvent("onmouseover", function(){voteYes.SetHasClass("ButtonHover", true);});
-	voteYes.SetPanelEvent("onmouseout", function(){voteYes.SetHasClass("ButtonHover", false);});
-	voteYes.SetPanelEvent("onactivate", VoteSkipPrep);
+	if(args.ascension != null){
+		$("#QuestsAscensionVoteHolder").visible =  false
+		var voteYes = $("#QuestAscensionVoteConfirmButton")
+		voteYes.SetPanelEvent("onmouseover", function(){});
+		voteYes.SetPanelEvent("onmouseout", function(){});
+		voteYes.SetPanelEvent("onactivate", function(){});
+		
+		var voteNo = $("#QuestAscensionVoteDeclineButton")
+		voteNo.SetPanelEvent("onmouseover", function(){});
+		voteNo.SetPanelEvent("onmouseout", function(){});
+		voteNo.SetPanelEvent("onactivate", function(){});
+	} else {
+		$("#QuestsPrepVoteHolder").visible =  false
+		var voteYes = $("#QuestPrepVoteConfirmButton")
+		voteYes.SetPanelEvent("onmouseover", function(){});
+		voteYes.SetPanelEvent("onmouseout", function(){});
+		voteYes.SetPanelEvent("onactivate", function(){});
+	}
 }
 
 
@@ -218,7 +247,6 @@ function CreateEventChoice(eventName, choice)
 	eventChoice.BLoadLayoutSnippet("QuestsEventChoice");
 
 	var eventChoiceText = eventChoice.FindChildTraverse("QuestsEventChoiceText")
-	
 	var eventText = $.Localize( "#event_" + eventName + "_option_" + choice );
 	
 	var prelim = extractAllText(eventText);
@@ -228,7 +256,8 @@ function CreateEventChoice(eventName, choice)
 	}
 	var capturedDescription = $.Localize( "#" + extractAllText(eventText) + "_Description", eventChoiceText );
 	var replacement = eventText.replace(/%.*?%/, captured);
-
+	
+	eventChoiceText.html = true;
 	eventChoiceText.text = replacement
 	
 	eventChoice.SetPanelEvent("onmouseover", function(){
@@ -382,7 +411,11 @@ function UpdateTimer(arg){
 
 function UpdateRound(arg){
 	$("#QuestRoundText").visible =  true
-	$("#QuestRoundText").text = arg.roundText + " - " + $.Localize( "#event_" + arg.eventName, $("#QuestRoundText") )
+	var ascension = "";
+	if(arg.ascensionText != null){
+		ascension = arg.ascensionText + ": "
+	}
+	$("#QuestRoundText").text = ascension + arg.roundText + " - " + $.Localize( "#event_" + arg.eventName, $("#QuestRoundText") )
 }
 
 function UpdateBoss(arg){

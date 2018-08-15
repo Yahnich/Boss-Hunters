@@ -785,7 +785,7 @@ function CDOTA_BaseNPC:RefreshAllCooldowns(bItems, bNoUltimate)
     for i = 0, self:GetAbilityCount() - 1 do
         local ability = self:GetAbilityByIndex( i )
         if ability then
-			if (bNoUltimate and abiliy:GetAbility() ~= 1) or not bNoUltimate then
+			if (bNoUltimate and ability:GetAbilityType() ~= 1) or not bNoUltimate then
 				ability:Refresh()
 			end
 			if ability:GetName() == "skeleton_king_reincarnation" then
@@ -1504,7 +1504,7 @@ end
 function CDOTA_BaseNPC:HealEvent(amount, sourceAb, healer, bRegen) -- for future shit
 	local healBonus = 1
 	local flAmount = amount
-	if healer then
+	if healer and not healer:IsNull() then
 		for _,modifier in ipairs( healer:FindAllModifiers() ) do
 			if modifier.GetOnHealBonus then
 				healBonus = healBonus + ((modifier:GetOnHealBonus() or 0)/100)
@@ -1757,7 +1757,7 @@ function CDOTA_Modifier_Lua:AddIndependentStack(duration, limit, bDestroy)
 		self:IncrementStackCount()
 	end
 	local destroy = bDestroy
-	if bDestroy == nil then bDestroy = true end
+	if bDestroy == nil then destroy = true end
 	local timerID = Timers:CreateTimer(duration or self:GetRemainingTime(), function()
 		if not self:IsNull() then 
 			self:DecrementStackCount()
@@ -1871,7 +1871,7 @@ function CDOTABaseAbility:FireTrackingProjectile(FX, target, speed, data, iAttac
         bIsAttack = false,
         bVisibleToEnemies = true,
         bReplaceExisting = false,
-        flExpireTime = GameRules:GetGameTime() + 10,
+        flExpireTime = internalData.duration or (GameRules:GetGameTime() + 10),
 		bProvidesVision = provideVision,
 		iVisionRadius = vision or 100,
 		iVisionTeamNumber = self:GetCaster():GetTeamNumber(),
@@ -1956,14 +1956,23 @@ function get_octarine_multiplier(caster)
     return caster:GetCooldownReduction()
 end
 
-function CDOTA_BaseNPC:GetCooldownReduction()
+function CDOTA_BaseNPC:GetCooldownReduction(bReduced)
 	local cdr = self:FindModifierByName("modifier_cooldown_reduction_handler")
-	if cdr then
-		local mult = cdr:GetStackCount() / 100
-		return mult
+	if bReduced then
+		if cdr then
+			local mult = cdr:GetStackCount() / 100
+			return mult
+		end
+		
+		return 0
+	else
+		if cdr then
+			local mult = cdr:GetStackCount() / 100
+			return 1 - mult/100
+		end
+		
+		return 1
 	end
-	
-	return 0
 end
 
 

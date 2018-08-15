@@ -2,10 +2,12 @@ relic_cursed_thorned_bandages = class(relicBaseClass)
 
 function relic_cursed_thorned_bandages:GetModifierHealAmplify_Percentage(params)
 	local duration = 30
-	local damage = params.heal / duration
+	
 	local ability = self:GetAbility()
 	local target = params.target
 	local attacker = params.healer
+	local damage = math.min( params.heal, target:GetHealthDeficit() ) / duration
+	
 	if not attacker:HasModifier("relic_unique_ritual_candle") then
 		Timers:CreateTimer(1, function()
 			if target:IsAlive() then

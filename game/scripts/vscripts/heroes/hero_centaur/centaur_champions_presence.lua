@@ -23,7 +23,7 @@ function modifier_centaur_champions_presence_buff:OnCreated()
 	self.radius = self:GetTalentSpecialValueFor("radius")
 	self.cdr = self:GetTalentSpecialValueFor("cdr_per_unit")
 	self.amp = self:GetTalentSpecialValueFor("amp_per_unit")	
-	self.max_stacks = self:GetTalentSpecialValueFor("max_amp") / self:GetTalentSpecialValueFor("amp_per_unit")
+	self.max_amp = self:GetTalentSpecialValueFor("max_amp")
 	
 	self:SetStackCount(0)
 	
@@ -48,7 +48,6 @@ function modifier_centaur_champions_presence_buff:OnIntervalThink()
 	for _, target in ipairs( targets ) do
 		if target:HasModifier("modifier_centaur_champions_presence_taunt") then count = count + 1 end
 	end
-	count = math.min(count, self.max_stacks)
 	self:SetStackCount(count)
 end
 

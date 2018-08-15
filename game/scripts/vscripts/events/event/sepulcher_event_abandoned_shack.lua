@@ -63,14 +63,16 @@ local function StartCombat(self, bFight, bBoss)
 		self.timeRemaining = 0
 		self.combatStarted = true
 		local mobToSpawn = "npc_dota_boss22b"
+		local spawnRate = 3
 		if bBoss then
 			self.eventType = EVENT_TYPE_ELITE
 			CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_reward_given", {event = self:GetEventName(), reward = 3})
-			self.enemiesToSpawn = 1
+			self.enemiesToSpawn = 1 + RoundManager:GetAscensions()
 			mobToSpawn = "npc_dota_boss22"
+			spawnRate = 12
 		else
 			CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_reward_given", {event = self:GetEventName(), reward = 4})
-			self.enemiesToSpawn = 5 * (RoundManager:GetRaidsFinished() + 1) * HeroList:GetActiveHeroCount()
+			self.enemiesToSpawn = 5 * math.floor( math.log( (RoundManager:GetRaidsFinished() + 1) * HeroList:GetActiveHeroCount() ) )
 			mobToSpawn = "npc_dota_boss22b"
 		end
 		
@@ -80,7 +82,7 @@ local function StartCombat(self, bFight, bBoss)
 			if not bBoss then spawn:SetCoreHealth( 100 * GameRules:GetGameDifficulty() ) end
 			self.enemiesToSpawn = self.enemiesToSpawn - 1
 			if self.enemiesToSpawn > 0 then
-				return 3 / (RoundManager:GetRaidsFinished() + 1)
+				return spawnRate
 			end
 		end)
 	else

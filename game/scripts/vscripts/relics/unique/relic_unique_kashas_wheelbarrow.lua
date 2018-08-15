@@ -14,7 +14,7 @@ function relic_unique_kashas_wheelbarrow:OnEventFinished(args)
 	end
 end
 
-function relic_unique_kashas_wheelbarrow:OnDestroy()
+function relic_unique_kashas_wheelbarrow:OnRemoved()
 	if IsServer() then
 		EventManager:UnsubscribeListener("boss_hunters_event_finished", self.funcID)
 	end

@@ -25,9 +25,8 @@ function espirit_rock_punch:OnSpellStart()
     self.rockCount = {}
 	
 	if caster:HasTalent("special_bonus_unique_espirit_rock_punch_2") then
-		pointRando = point + ActualRandomVector(100, 25)
 		if caster:FindAbilityByName("espirit_rock") then
-			caster:FindAbilityByName("espirit_rock"):CreateStoneRemnant(pointRando)
+			caster:FindAbilityByName("espirit_rock"):CreateStoneRemnant(caster:GetAbsOrigin())
 		end
 	end
 
@@ -94,7 +93,13 @@ function espirit_rock_punch:OnProjectileHit(hTarget, vLocation)
 			end
 			self:DealDamage(caster, enemy, damage, {}, 0)
 		end
-
+			
+			
+		local pointRando = vLocation + ActualRandomVector(100, 25)
+		if caster:FindAbilityByName("espirit_rock") then
+			caster:FindAbilityByName("espirit_rock"):CreateStoneRemnant(pointRando)
+		end
+			
 		if caster:HasTalent("special_bonus_unique_espirit_rock_punch_2") then
     		pointRando = vLocation + ActualRandomVector(100, 25)
 			if caster:FindAbilityByName("espirit_rock") then

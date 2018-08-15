@@ -100,8 +100,6 @@
 		"FightRecapLevel"				"1"
 		"AbilityTextureName"			"centaur_double_edge"
 		"MaxLevel"						"7"
-		"LevelsBetweenUpgrades"			"5"
-		"RequiredLevel"					"6"
 	
 		// Stats		
 		//-------------------------------------------------------------------------------------------------------------

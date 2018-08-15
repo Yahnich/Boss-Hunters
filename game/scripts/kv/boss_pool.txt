@@ -13,6 +13,7 @@
 		"grove_boss_bearmaster"				"1"
 		"sepulcher_boss_prophet"			"1"
 		"sepulcher_boss_undying"			"1"
+		"sepulcher_boss_wraith_king"		"1"
 		"generic_boss_golem"				"1"
 		"grove_boss_troll_warlord"			"1"
 		"grove_boss_green_dragon"			"1"

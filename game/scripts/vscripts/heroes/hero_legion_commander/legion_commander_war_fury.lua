@@ -43,11 +43,6 @@ function legion_commander_war_fury:OnSpellStart()
 	end
 end
 
-LinkLuaModifier( "modifier_legion_commander_war_fury_scepter", "heroes/hero_legion_commander/legion_commander_war_fury", LUA_MODIFIER_MOTION_NONE )
-modifier_legion_commander_war_fury_scepter = class({})
-
-function 
-
 LinkLuaModifier( "modifier_legion_commander_war_fury_amp", "heroes/hero_legion_commander/legion_commander_war_fury", LUA_MODIFIER_MOTION_NONE )
 modifier_legion_commander_war_fury_amp = class({})
 

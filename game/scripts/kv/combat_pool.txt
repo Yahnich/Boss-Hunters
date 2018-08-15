@@ -18,6 +18,7 @@
 		"grove_combat_slardar"					"1"
 		"generic_combat_ogres"					"1"
 		"generic_combat_slarks"					"1"
+		"sepulcher_combat_bone_boys"			"1"
 	}
 	// Gods, spirits, elementals
 	"Elysium"

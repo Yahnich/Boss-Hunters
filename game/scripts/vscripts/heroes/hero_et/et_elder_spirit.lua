@@ -213,6 +213,7 @@ function modifier_elder_spirit:OnAbilityExecuted(params)
 	if params.unit == self:GetCaster() and self:GetAbility().truePull then
 		if params.ability:GetAbilityName() == "et_earth_splitter" then
 			Timers:CreateTimer(3.14, function()
+				if self:IsNull() or self:GetAbility():IsNull() then return end
 				self:GetAbility().spiritPull = true
 			end)
 		else

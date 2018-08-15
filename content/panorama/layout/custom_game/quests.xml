@@ -9,7 +9,7 @@
 	<snippets>
         <snippet name="QuestsEventChoice">
 			<Panel class="QuestsEventChoice" hittest="true">
-				<Label class="QuestsEventChoiceText" id="QuestsEventChoiceText" text="The Art of War [Gain 25% bonus damage]"/>
+				<Label class="QuestsEventChoiceText" id="QuestsEventChoiceText" html="true"/>
 			</Panel>
 		</snippet>
 	</snippets>
@@ -49,6 +49,21 @@
 			<Button id="QuestPrepVoteConfirmButton" hittest="true">
 				<Label class="QuestsEventChoiceText" id="QuestPrepVoteConfirmButtonLabel" text="Yes"/>
 			</Button>
+		</Panel>
+		<Panel id="QuestsAscensionVoteHolder" hittest="true" hittestchildren="true">
+			<Label id="QuestsAscensionVoteDescriptionLabel" text="Ascend?"/>
+			<Panel id="QuestsAscensionVoteCountHolder" hittest="true" hittestchildren="true">
+				<Label class="QuestsPrepVoteText" id="QuestAscensionVoteNoLabel" text="No: 0"/>
+				<Label class="QuestsPrepVoteText" id="QuestAscensionVoteYesLabel" text="Yes: 0"/>
+			</Panel>
+			<Panel id="QuestsAscensionVoteButtonHolder" hittest="true" hittestchildren="true">
+				<Button class="QuestAscensionVoteButton" id="QuestAscensionVoteConfirmButton" hittest="true">
+					<Label class="QuestsEventChoiceText" id="QuestAscensionVoteConfirmButtonLabel" text="Yes"/>
+				</Button>
+				<Button class="QuestAscensionVoteButton" id="QuestAscensionVoteDeclineButton" hittest="true">
+					<Label class="QuestsEventChoiceText" id="QuestAscensionVoteDeclineButtonLabel" text="No"/>
+				</Button>
+			</Panel>
 		</Panel>
 	</Panel>
 </root>

@@ -67,6 +67,10 @@ function relicBaseClass:IsPurgable()
 	return false
 end
 
+function relicBaseClass:IsPurgeException()
+	return false
+end
+
 function relicBaseClass:RemoveOnDeath()
 	return false
 end
@@ -76,7 +80,7 @@ function relicBaseClass:IsPermanent()
 end
 
 function relicBaseClass:AllowIllusionDuplicate()
-	return true
+	return false
 end
 
 function relicBaseClass:GetAttributes()

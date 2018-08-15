@@ -1,6 +1,6 @@
 local function StartEvent(self)
 	local spawnPos = RoundManager:PickRandomSpawn()
-	self.enemiesToSpawn = 1 + RoundManager:GetZonesFinished()
+	self.enemiesToSpawn = 1 + RoundManager:GetAscensions()
 	self.eventEnded = false
 	self.eventHandler = Timers:CreateTimer(3, function()
 		local spawn = CreateUnitByName("npc_dota_boss25", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
@@ -26,7 +26,6 @@ end
 local function PrecacheUnits(self, context)
 	PrecacheUnitByNameSync("npc_dota_boss25", context)
 	PrecacheUnitByNameSync("npc_dota_boss24_stomper", context)
-	PrecacheUnitByNameSync("npc_dota_boss24_m", context)
 	PrecacheUnitByNameSync("npc_dota_boss24_archer", context)
 	return true
 end
