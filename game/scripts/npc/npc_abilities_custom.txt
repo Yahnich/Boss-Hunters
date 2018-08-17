@@ -23,6 +23,7 @@
 #base "bosses/boss_warlock.txt"
 #base "bosses/boss_troll_warlord.txt"
 #base "bosses/boss_wk.txt"
+#base "bosses/boss_aeon.txt"
 
 #base "heroes/hero_chen.txt"
 #base "heroes/hero_shadow_shaman.txt"

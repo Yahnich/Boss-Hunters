@@ -3740,17 +3740,6 @@
 			"XPGain"					"200"
 			
 			"DefaultState"				"Invade"
-			
-			"OffensiveAbilities"
-			{
-				"Ability2"
-				{
-					"Name"				"boss_evil_core_cast"
-					"AOE"                "1"
-	       				"Radius"             "9000"
-					"MinimumTargets" "1"
-				}
-			}
 		}
 	}
 	"npc_dota_boss36_guardian"
@@ -3819,7 +3808,7 @@
 	
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"2250"		// Base health.
+		"StatusHealth"				"2550"		// Base health.
 		"StatusHealthRegen"			"1"			// Health regeneration rate.
 		"StatusMana"				"1500"			// Base mana.
 		"StatusManaRegen"			"0"			// Mana regeneration rate.		 
@@ -4028,14 +4017,14 @@
 		//----------------------------------------------------------------
 		
 		"AbilityLayout"				"6"
-		"Ability1"					"boss_rewind"					// Ability 1.
-		"Ability2"					"boss_juncture"	// Ability 2
-		"Ability3"					"boss_overtime"				// Ability 3.
-		"Ability4"					"boss_yesteryear"	// Ability 4.
-		"Ability5"					""		// Ability 5.
-		"Ability6"					"true_sight_boss"			// Ability 6 - Extra.
-		"Ability7"					""			// Ability 7 - Extra.
-		"Ability8"					""			// Ability 8 - Extra.
+		"Ability1"					"boss_aeon_time_acceleration"					// Ability 1.
+		"Ability2"					"boss_aeon_distortion_field"	// Ability 2
+		"Ability3"					"boss_aeon_flashback"				// Ability 3.
+		"Ability4"					"boss_aeon_chronal_sphere"	// Ability 4.
+		"Ability5"					"boss_aeon_sins_of_the_past"		// Ability 5.
+		"Ability6"					"boss_aeon_rewind"			// Ability 6 - Extra.
+		"Ability7"					"boss_aeon_fetal_syndrome"			// Ability 7 - Extra.
+		"Ability8"					"boss_aeon_deteriorate"			// Ability 8 - Extra.
 	
 		// Armor
 		//----------------------------------------------------------------
@@ -4045,8 +4034,8 @@
 		// Attack
 		//----------------------------------------------------------------
 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"			"100"		// Damage range min.
-		"AttackDamageMax"			"200"		// Damage range max.
+		"AttackDamageMin"			"50"		// Damage range min.
+		"AttackDamageMax"			"60"		// Damage range max.
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"				"3"		// Speed of attack.
 		"AttackAnimationPoint"		"0.1"		// Normalized time in animation cycle to attack.
@@ -4075,7 +4064,7 @@
 	
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"3500"		// Base health.
+		"StatusHealth"				"2750"		// Base health.
 		"StatusHealthRegen"			"1"		// Health regeneration rate.
 		"StatusMana"				"2000"			// Base mana.
 		"StatusManaRegen"			"10"			// Mana regeneration rate.
@@ -5148,7 +5137,7 @@
 		"AbilityLayout"				"6"
 		"Ability1"					"lesser_nightcrawler_pounce"			// Ability 1.
 		"Ability2"					"creature_rupture"
-		"Ability3"					"true_sight_boss"
+		"Ability3"					""
 	
 		// Armor
 		//----------------------------------------------------------------
@@ -6485,7 +6474,7 @@
 		//----------------------------------------------------------------
 		
 		"AbilityLayout"				"6"
-		"Ability1"					"true_sight_boss"			// Ability 1.
+		"Ability1"					""			// Ability 1.
 		"Ability2"					""			// Ability 2.
 		"Ability3"					""			// Ability 3.
 		"Ability4"					""			// Ability 4.

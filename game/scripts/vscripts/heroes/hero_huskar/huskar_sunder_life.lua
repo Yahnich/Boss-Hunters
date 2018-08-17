@@ -26,7 +26,7 @@ function huskar_sunder_life:SunderLife(position)
 	local caster = self:GetCaster()
 	local damagePct = TernaryOperator(self:GetTalentSpecialValueFor("health_damage_scepter"), caster:HasScepter(), self:GetTalentSpecialValueFor("health_cost_percent")) / 100
 	local damage = caster:GetHealth() * damagePct + caster:GetMaxHealth() * caster:FindTalentValue("special_bonus_unique_huskar_sunder_life_2") / 100
-	self:DealDamage( caster, caster, damage, {damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
+	self:DealDamage( caster, caster, damage, {damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_NON_LETHAL})
 	
 	local enemies = caster:FindEnemyUnitsInRadius(position, self:GetTalentSpecialValueFor("damage_radius"))
 	for _, enemy in ipairs( enemies ) do

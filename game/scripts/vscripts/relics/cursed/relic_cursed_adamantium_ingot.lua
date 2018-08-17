@@ -5,7 +5,7 @@ function relic_cursed_adamantium_ingot:DeclareFunctions()
 end
 
 function relic_cursed_adamantium_ingot:GetModifierPhysicalArmorBonus()
-	return 20
+	return 30
 end
 
 function relic_cursed_adamantium_ingot:GetModifierMagicalResistanceBonus()

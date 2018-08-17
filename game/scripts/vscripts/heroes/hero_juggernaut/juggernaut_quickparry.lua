@@ -71,7 +71,7 @@ function modifier_juggernaut_quickparry_talent:OnCreated()
 	local caster = self:GetCaster()
 	self.as = caster:FindTalentValue("special_bonus_unique_juggernaut_quickparry_2", "as")
 	self.ms = caster:FindTalentValue("special_bonus_unique_juggernaut_quickparry_2", "ms")
-	self:SetStackCount(1)
+	if IsServer() then self:SetStackCount(1) end
 end
 
 function modifier_juggernaut_quickparry_talent:OnRefresh()

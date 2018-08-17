@@ -61,6 +61,7 @@ function modifier_juggernaut_mirror_blades:MirrorBladeCycle()
 	local caster = self:GetCaster()
 	self:SetDuration( self.cycleDur + 0.1, true )
 	self.momentumUsed = caster:AttemptDecrementMomentum( self.cost )
+	if self.momentumUsed then caster:Dispel(caster, false) end
 end
 
 function modifier_juggernaut_mirror_blades:MirrorBladeDamage(radius, damage)

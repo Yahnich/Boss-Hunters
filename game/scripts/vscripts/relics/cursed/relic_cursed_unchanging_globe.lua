@@ -1,12 +1,12 @@
 relic_cursed_unchanging_globe = class(relicBaseClass)
 
 function relic_cursed_unchanging_globe:OnCreated()
-	self.int = 10 - self:GetParent():GetIntellect()
+	self.mana = 10 - self:GetParent():GetMaxMana()
 	self:StartIntervalThink(0)
 end
 
 function relic_cursed_unchanging_globe:OnIntervalThink()	
-	self.int = 10 - self:GetParent():GetIntellect() + self.int
+	self.mana = 10 - self:GetParent():GetMaxMana() + self.mana
 end
 
 function relic_cursed_unchanging_globe:DeclareFunctions()

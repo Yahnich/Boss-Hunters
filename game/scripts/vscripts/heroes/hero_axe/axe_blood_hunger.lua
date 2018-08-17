@@ -20,7 +20,7 @@ function axe_blood_hunger:OnSpellStart()
 		if currentUnits < maxUnits then
 			EmitSoundOn("Hero_Axe.Battle_Hunger", enemy)
 			enemy:AddNewModifier(caster, self, "modifier_blood_hunger", {Duration = self:GetSpecialValueFor("duration")})
-			caster:AddNewModifier(caster, self, "modifier_blood_hunger_strength", {Duration = self:GetSpecialValueFor("duration")}):IncrementStackCount()
+			caster:AddNewModifier(caster, self, "modifier_blood_hunger_strength", {Duration = self:GetSpecialValueFor("duration")}):AddIndependentStack()
 			currentUnits = currentUnits + 1
 		end
 	end
@@ -31,7 +31,7 @@ function axe_blood_hunger:OnSpellStart()
 			if ally ~= caster then
 				EmitSoundOn("Hero_Axe.Battle_Hunger", ally)
 				ally:AddNewModifier(caster, self, "modifier_blood_hunger", {Duration = self:GetSpecialValueFor("duration")})
-				caster:AddNewModifier(caster, self, "modifier_blood_hunger_strength", {Duration = self:GetSpecialValueFor("duration")}):IncrementStackCount()
+				caster:AddNewModifier(caster, self, "modifier_blood_hunger_strength", {Duration = self:GetSpecialValueFor("duration")}):AddIndependentStack()
 			end
 			break
 		end
@@ -58,7 +58,7 @@ function modifier_blood_hunger:OnIntervalThink()
 					if enemy ~= self:GetParent() then
 						EmitSoundOn("Hero_Axe.Battle_Hunger", enemy)
 						enemy:AddNewModifier(caster, self:GetAbility(), "modifier_blood_hunger", {Duration = self:GetSpecialValueFor("duration")})
-						caster:AddNewModifier(caster, self:GetAbility(), "modifier_blood_hunger_strength", {Duration = self:GetSpecialValueFor("duration")}):IncrementStackCount()
+						caster:AddNewModifier(caster, self:GetAbility(), "modifier_blood_hunger_strength", {Duration = self:GetSpecialValueFor("duration")}):AddIndependentStack()
 						break
 					end
 				end

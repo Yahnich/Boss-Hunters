@@ -469,7 +469,7 @@ function CHoldoutGameMode:FilterHeal( filterTable )
 	end
 	
 	if not healer_index or not heal then return true end
-	filterTable["heal"] = heal * healFactorSelf * healFactorAllied
+	filterTable["heal"] = math.max(0, heal * healFactorSelf * healFactorAllied)
 	healer.statsDamageHealed = (healer.statsDamageHealed or 0) + filterTable["heal"]
 	
 	if healer and healer:IsRealHero() and target and healer ~= target and healer:HasRelic("relic_cursed_bloody_silk") then
