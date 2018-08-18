@@ -12,15 +12,18 @@ function boss_aeon_deteriorate:OnSpellStart()
 	local radius = self:GetSpecialValueFor("radius")
 	
 	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( position, radius ) ) do
-		enemy:AddNewModifier(caster, self, "modifier_boss_aeon_deteriorate", {})
+		enemy:AddNewModifier(caster, self, "modifier_boss_aeon_deteriorate", {duration = self:GetSpecialValueFor("duration")})
 	end
+	
+	caster:EmitSound("Hero_Dazzle.Weave")
+	ParticleManager:FireParticle("particles/units/heroes/hero_dazzle/dazzle_weave.vpcf", PATTACH_WORLDORIGIN, nil, {[0] = position, [1] = Vector(radius,1,1)})
 end
 
 modifier_boss_aeon_deteriorate = class({})
 LinkLuaModifier("modifier_boss_aeon_deteriorate", "bosses/boss_aeon/boss_aeon_deteriorate", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_boss_aeon_deteriorate:OnCreated()
-	self.armor = -1
+	self.armor = 0
 	self.loss = self:GetSpecialValueFor("total_armor_reduction") / self:GetRemainingTime()
 	self:StartIntervalThink(1)
 end
@@ -35,4 +38,8 @@ end
 
 function modifier_boss_aeon_deteriorate:GetModifierPhysicalArmorBonus()
 	return self.armor
+end
+
+function modifier_boss_aeon_deteriorate:IsPurgable()
+	return false
 end

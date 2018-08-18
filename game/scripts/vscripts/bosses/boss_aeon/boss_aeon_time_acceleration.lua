@@ -32,9 +32,9 @@ function modifier_boss_aeon_time_acceleration:DeclareFunctions()
 end
 
 function modifier_boss_aeon_time_acceleration:GetModifierBaseDamageOutgoing_Percentage()
-	return self.dmg * self:GetTalentSpecialValueFor()
+	return self.dmg * self:GetStackCount()
 end
 
 function modifier_boss_aeon_time_acceleration:GetModifierMoveSpeedBonus_Percentage()
-	return self.ms * self:GetTalentSpecialValueFor()
+	return self.ms * self:GetStackCount()
 end

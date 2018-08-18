@@ -3994,16 +3994,15 @@
 	"npc_dota_boss38"
 	{
 		// General
-		//
 		"BaseClass"					"npc_dota_creature"	// Class of entity of link to.
 		"Model"						"models/heroes/weaver/weaver.vmdl"	// Model.
 		"SoundSet"					"Hero_Weaver"					// Name of sound set.
 		"GameSoundsFile"			"soundevents/game_sounds_heroes/game_sounds_weaver.vsndevts"
-		"ModelScale"				"2"								// old 1.0
-		"Level"						"999"
+		"ModelScale"				"1.4"								// old 1.0
+		"Level"						"100"
 		"IsCelestial"				"1"
 		"MinimapIcon"				"minimap_roshancamp"
-		"MinimapIconSize"			"200"
+		"MinimapIconSize"			"150"
 		"IsCore"					"1"
 		"vscripts"					"ai/ai_boss38"
 		
@@ -4028,14 +4027,14 @@
 	
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"15"		// Physical protection.
-		"MagicalResistance"			"30"		// Magical protection.
+		"ArmorPhysical"				"10"		// Physical protection.
+		"MagicalResistance"			"25"		// Magical protection.
 	
 		// Attack
 		//----------------------------------------------------------------
 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"			"50"		// Damage range min.
-		"AttackDamageMax"			"60"		// Damage range max.
+		"AttackDamageMin"			"75"		// Damage range min.
+		"AttackDamageMax"			"80"		// Damage range max.
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"				"3"		// Speed of attack.
 		"AttackAnimationPoint"		"0.1"		// Normalized time in animation cycle to attack.
@@ -4059,8 +4058,8 @@
 		// Movement
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_FLY"			// Type of locomotion - ground, air
-		"MovementSpeed"				"300"		// Speed
-		"MovementTurnRate"			"0.3"		// Turning rate.
+		"MovementSpeed"				"200"		// Speed
+		"MovementTurnRate"			"0.1"		// Turning rate.
 	
 		// Status
 		//----------------------------------------------------------------
@@ -4115,8 +4114,6 @@
 				"Wearable4"{"ItemDef"			"4636"}
 				"Wearable4"{"ItemDef"			"6134"}
 			}
-	
-			"NOSTUNRESIST"			"80.0"
 		}
 	}
 	"npc_dota_boss39"

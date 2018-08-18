@@ -8,11 +8,11 @@ modifier_boss_aeon_distortion_field = class({})
 LinkLuaModifier("modifier_boss_aeon_distortion_field", "bosses/boss_aeon/boss_aeon_distortion_field", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_boss_aeon_distortion_field:OnCreated()
-	self.radius = self:GetTalentSpecialValueFor("radius")
+	self.radius = self:GetSpecialValueFor("radius")
 end
 
 function modifier_boss_aeon_distortion_field:OnRefresh()
-	self.radius = self:GetTalentSpecialValueFor("radius")
+	self.radius = self:GetSpecialValueFor("radius")
 end
 
 function modifier_boss_aeon_distortion_field:IsAura()
@@ -43,17 +43,21 @@ function modifier_boss_aeon_distortion_field:GetAuraSearchFlags()
 	return DOTA_UNIT_TARGET_FLAG_NONE
 end
 
+function modifier_boss_aeon_distortion_field:IsHidden()
+	return true
+end
+
 modifier_boss_aeon_distortion_field_aura = class({})
 LinkLuaModifier("modifier_boss_aeon_distortion_field_aura", "bosses/boss_aeon/boss_aeon_distortion_field", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_boss_aeon_distortion_field_aura:OnCreated()
-	self.as = self:GetTalentSpecialValueFor("as_slow")
-	self.cdr = self:GetTalentSpecialValueFor("cdr_slow")
+	self.as = self:GetSpecialValueFor("as_slow")
+	self.cdr = self:GetSpecialValueFor("cdr_slow")
 end
 
 function modifier_boss_aeon_distortion_field_aura:OnRefresh()
-	self.as = self:GetTalentSpecialValueFor("as_slow")
-	self.cdr = self:GetTalentSpecialValueFor("cdr_slow")
+	self.as = self:GetSpecialValueFor("as_slow")
+	self.cdr = self:GetSpecialValueFor("cdr_slow")
 end
 
 function modifier_boss_aeon_distortion_field_aura:DeclareFunctions()

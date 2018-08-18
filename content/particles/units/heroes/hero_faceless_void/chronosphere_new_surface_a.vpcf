@@ -1,0 +1,121 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf1:version{d47d07e6-072c-49cb-9718-5bfd8d6c3d21} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 280
+	m_flConstantRadius = 80.0
+	m_flConstantLifespan = 0.9
+	m_ConstantColor = [ 124, 84, 255, 255 ]
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderTrails"
+			m_nSequenceCombineMode = "SEQUENCE_COMBINE_MODE_USE_SEQUENCE_0"
+			m_bAdditive = true
+			m_hTexture = resource:"materials/particle/particle_glow_02.vtex"
+			m_flMaxLength = 800.0
+			m_flRadiusScale = 0.5
+			m_flFinalTextureScaleV = -1.0
+			m_flFinalTextureOffsetV = 1.0
+			m_vEndTrailTintFactor = [ 0.5, 1.0, 4.0, 0.0 ]
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_Decay"
+		},
+		{
+			_class = "C_OP_FadeInSimple"
+		},
+		{
+			_class = "C_OP_FadeOutSimple"
+			m_flFadeOutTime = 0.75
+		},
+		{
+			_class = "C_OP_BasicMovement"
+			m_Gravity = [ 0.0, 0.0, 900.0 ]
+		},
+		{
+			_class = "C_OP_MovementRotateParticleAroundAxis"
+			m_flRotRate = 20.0
+		},
+		{
+			_class = "C_OP_LerpScalar"
+			m_nFieldOutput = 10
+			m_nOpEndCapState = 0
+			m_flOutput = 0.75
+		},
+		{
+			_class = "C_OP_LerpEndCapScalar"
+			m_flLerpTime = 0.25
+			m_flOutput = 0.0
+		},
+		{
+			_class = "C_OP_LerpEndCapScalar"
+			m_flLerpTime = 0.25
+			m_nFieldOutput = 10
+			m_flOutput = 0.0
+		},
+		{
+			_class = "C_OP_SetSingleControlPointPosition"
+			m_vecCP1Pos = [ 256.0, 0.0, 256.0 ]
+			m_nCP1 = 6
+		},
+		{
+			_class = "C_OP_DistanceToCP"
+			m_nStartCP = 6
+			m_flOutputMin = 0.25
+			m_nFieldOutput = 16
+			m_flInputMax = 384.0
+			m_flInputMin = 160.0
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_RingWave"
+			m_nOverrideCP = 1
+			m_bXYVelocityOnly = false
+			m_flParticlesPerOrbit = 40.0
+			m_flInitialRadius = 1.0
+		},
+		{
+			_class = "C_INIT_RandomAlpha"
+		},
+		{
+			_class = "C_INIT_RandomTrailLength"
+			m_flMaxLength = 0.0
+			m_flMinLength = 0.0
+		},
+		{
+			_class = "C_INIT_VelocityRandom"
+			m_LocalCoordinateSystemSpeedMax = [ 0.0, 0.0, 530.0 ]
+			m_LocalCoordinateSystemSpeedMin = [ 0.0, 0.0, 330.0 ]
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_ContinuousEmitter"
+			m_flEmitRate = 280.0
+		},
+	]
+	m_ForceGenerators = 
+	[
+		{
+			_class = "C_OP_TurbulenceForce"
+			m_vecNoiseAmount0 = [ 128.0, 128.0, 128.0 ]
+			m_flNoiseCoordScale0 = 0.01
+		},
+	]
+	m_Constraints = 
+	[
+		{
+			_class = "C_OP_ConstrainDistance"
+			m_nScaleCP = 1
+			m_fMaxDistance = 1.0
+			m_fMinDistance = 0.99
+		},
+	]
+}

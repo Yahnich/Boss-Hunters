@@ -17,22 +17,20 @@ LinkLuaModifier("modifier_boss_aeon_chronal_sphere_thinker", "bosses/boss_aeon/b
 
 
 function modifier_boss_aeon_chronal_sphere_thinker:OnCreated()
-	self.max_radius = self:GetTalentSpecialValueFor("max_radius")
+	self.max_radius = self:GetSpecialValueFor("max_radius")
 	self.radius = 125
 	self.growth = (self.max_radius - self.radius) / self:GetRemainingTime()
 	if IsServer() then
-		-- self.nFX = ParticleManager:CreateParticle("particles/units/heroes/hero_alchemist/alchemist_acid_spray.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
-		-- ParticleManager:SetParticleControl(nFX, 0, (Vector(0, 0, 0)))
-		-- ParticleManager:SetParticleControl(nFX, 1, (Vector(self.radius, 1, 1)))
-		-- ParticleManager:SetParticleControl(nFX, 15, (Vector(25, 150, 25)))
-		-- ParticleManager:SetParticleControl(nFX, 16, (Vector(0, 0, 0)))
-		
-		self:StartIntervalThink(0.01)
+		self.nFX = ParticleManager:CreateParticle("particles/units/bosses/boss_aeon/boss_aeon_chronal_sphere.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
+		ParticleManager:SetParticleControl(self.nFX, 1, (Vector(self.radius, self.radius, self.radius)))
+		self:GetParent():EmitSound("Hero_FacelessVoid.Chronosphere")
+		self:StartIntervalThink(FrameTime())
 	end
 end
 
 function modifier_boss_aeon_chronal_sphere_thinker:OnIntervalThink()
 	self.radius = self.radius + self.growth * FrameTime()
+	ParticleManager:SetParticleControl(self.nFX, 1, (Vector(self.radius, self.radius, self.radius)))
 end
 
 function modifier_boss_aeon_chronal_sphere_thinker:OnDestroy()
@@ -73,5 +71,14 @@ modifier_boss_aeon_chronal_sphere_freeze = class({})
 LinkLuaModifier("modifier_boss_aeon_chronal_sphere_freeze", "bosses/boss_aeon/boss_aeon_chronal_sphere", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_boss_aeon_chronal_sphere_freeze:CheckState()
-	return {[MODIFIER_STATE_FROZEN] = true}
+	return {[MODIFIER_STATE_FROZEN] = true,
+			[MODIFIER_STATE_STUNNED] = true}
+end
+
+function modifier_boss_aeon_chronal_sphere_freeze:GetStatusEffectName()
+	return "particles/status_fx/status_effect_faceless_chronosphere.vpcf"
+end
+
+function modifier_boss_aeon_chronal_sphere_freeze:StatusEffectPriority()
+	return 10
 end

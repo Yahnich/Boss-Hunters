@@ -118,7 +118,7 @@
 		"MaxLevel"						"3"
 		
 		"AbilityCastRange"				"350"
-		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
+		"AbilityCastAnimation"			"ACT_DOTA_GENERIC_CHANNEL_1"
 		"AbilityCastPoint"				"0.8 0.5"
 		"AbilityCooldown"				"18"
 	
@@ -152,14 +152,16 @@
 		"ScriptFile"					"bosses/boss_aeon/boss_aeon_sins_of_the_past"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"AbilityTextureName"			"terrorblade_reflection"
 		"MaxLevel"						"3"
 		
 		"AbilityCastAnimation"			"ACT_DOTA_SPAWN"
-		"AbilityCastPoint"				"1.5 1"
-		"AbilityCooldown"				"24"
+		"AbilityCastPoint"				"2 1.5"
+		"AbilityCooldown"				"60"
+		"AbilityCastRange"				"550"
 	
 		"precache"
 		{
@@ -181,7 +183,7 @@
 			"03"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"illusion_out"				"50 0"
+				"illusion_out"				"50 100"
 			}
 		}
 	}
@@ -234,20 +236,19 @@
 		"ScriptFile"					"bosses/boss_aeon/boss_aeon_fetal_syndrome"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
 		"AbilityTextureName"			"bane_enfeeble"
 		"MaxLevel"						"3"
 		
-		"AbilityCastRange"				"350"
-		"AbilityCastAnimation"			"ACT_DOTA_DIE"
+		"AbilityCastRange"				"650"
+		"AbilityCastAnimation"			"ACT_DOTA_VICTORY"
 		"AbilityCastPoint"				"1.5 1"
-		"AbilityChannelTime"			"5"
 		"AbilityCooldown"				"35 30"
 	
 		"precache"
 		{
-			"particle"					"particles/bosses/boss_aeon/boss_aeon_fetal_syndrome.vpcf"
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_enigma.vsndevts"
+			"particle"					"particles/units/heroes/hero_bane/bane_enfeeble.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_bane.vsndevts"
 		}
 		"AbilitySpecial"
 		{
@@ -277,28 +278,26 @@
 		"MaxLevel"						"3"
 		
 		"AbilityCastRange"				"800"
-		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
 		"AbilityCastPoint"				"1.5 1"
 		"AbilityCooldown"				"160"
 	
 		"precache"
 		{
-			"particle"					"particles/status_fx/status_effect_enigma_malefice.vpcf"
-			"particle"					"particles/units/heroes/hero_enigma/enigma_malefice.vpcf"
-			"particle"					"particles/bosses/boss_aeon/boss_aeon_deteriorate.vpcf"
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_elder_titan.vsndevts"
+			"particle"					"particles/units/heroes/hero_dazzle/dazzle_weave.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_dazzle.vsndevts"
 		}
 		"AbilitySpecial"
 		{
 			"01"
             {
                 "var_type"                      "FIELD_FLOAT"
-                "total_armor_reduction"     	"60"
+                "total_armor_reduction"     	"60 80"
             }
     		"02"
             {
                 "var_type"                      "FIELD_INTEGER"
-                "duration"     					"60"
+                "duration"     					"60 80"
             }
     		"03"
             {

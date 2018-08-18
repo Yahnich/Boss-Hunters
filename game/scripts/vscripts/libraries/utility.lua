@@ -920,7 +920,17 @@ function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, sp
 	return illusion
 end
 
+function CDOTA_BaseNPC:GetAgility()
+	return 0
+end
 
+function CDOTA_BaseNPC:GetStrength()
+	return 0
+end
+
+function CDOTA_BaseNPC:GetIntellect()
+	return 0
+end
 
 function CDOTABaseAbility:PiercesDisableResistance()
 	if GameRules.AbilityKV[self:GetName()] then

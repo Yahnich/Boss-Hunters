@@ -7,7 +7,7 @@ function relic_unique_sacrificial_dagger:OnCreated()
 	end
 end
 
-function relic_unique_shopkeepers_heart:OnEventFinished(args)
+function relic_unique_sacrificial_dagger:OnEventFinished(args)
 	self:SetStackCount(1)
 end
 

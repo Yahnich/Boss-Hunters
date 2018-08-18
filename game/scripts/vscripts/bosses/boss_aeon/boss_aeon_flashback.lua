@@ -12,11 +12,11 @@ modifier_boss_aeon_flashback = class({})
 LinkLuaModifier("modifier_boss_aeon_flashback", "bosses/boss_aeon/boss_aeon_flashback", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_boss_aeon_flashback:OnCreated()
-	self.currHP = self:GetTalentSpecialValueFor("curr_hp_evade") / 100
+	self.currHP = self:GetSpecialValueFor("curr_hp_evade") / 100
 end
 
 function modifier_boss_aeon_flashback:OnRefresh()
-	self.currHP = self:GetTalentSpecialValueFor("curr_hp_evade") / 100
+	self.currHP = self:GetSpecialValueFor("curr_hp_evade") / 100
 end
 
 function modifier_boss_aeon_flashback:DeclareFunctions()
@@ -29,4 +29,8 @@ function modifier_boss_aeon_flashback:GetModifierTotal_ConstantBlock(params)
 		ParticleManager:FireParticle("particles/units/heroes/hero_faceless_void/faceless_void_backtrack.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
 		return params.damage
 	end
+end
+
+function modifier_boss_aeon_flashback:IsHidden()
+	return true
 end

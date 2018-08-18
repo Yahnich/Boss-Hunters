@@ -1,12 +1,15 @@
 relic_cursed_unchanging_globe = class(relicBaseClass)
 
 function relic_cursed_unchanging_globe:OnCreated()
-	self.mana = 10 - self:GetParent():GetMaxMana()
-	self:StartIntervalThink(0)
+	self.mana = -(self:GetParent():GetMaxMana() * 0.8)
+	self:StartIntervalThink(0.33)
 end
 
-function relic_cursed_unchanging_globe:OnIntervalThink()	
-	self.mana = 10 - self:GetParent():GetMaxMana() + self.mana
+function relic_cursed_unchanging_globe:OnIntervalThink()
+	self.mana = 0
+	if IsServer() then self:GetParent():CalculateStatBonus() end
+	self.mana = -(self:GetParent():GetMaxMana() * 0.8)
+	if IsServer() then self:GetParent():CalculateStatBonus() end
 end
 
 function relic_cursed_unchanging_globe:DeclareFunctions()
