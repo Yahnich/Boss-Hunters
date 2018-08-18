@@ -22,7 +22,7 @@ end
 
 
 function relic_unique_soldiers_banner:DeclareFunctions()
-	return {MODIFIER_PROPERTY_ATTACK_RANGE_BONUS, MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS}
+	return {MODIFIER_PROPERTY_ATTACK_RANGE_BONUS, MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS, MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE}
 end
 
 function relic_unique_soldiers_banner:GetModifierAttackRangeBonus()
@@ -31,4 +31,8 @@ end
 
 function relic_unique_soldiers_banner:GetModifierPhysicalArmorBonus()
 	return 6
+end
+
+function relic_unique_soldiers_banner:GetModifierMoveSpeedBonus_Percentage()
+	return 15
 end

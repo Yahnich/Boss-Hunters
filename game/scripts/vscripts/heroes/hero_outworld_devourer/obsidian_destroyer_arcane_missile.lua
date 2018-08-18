@@ -49,12 +49,12 @@ function obsidian_destroyer_arcane_missile:OnProjectileHit(target, position)
 		ParticleManager:FireParticle("particles/units/hero_obsidian_destroyer/obsidian_destroyer_arcane_orb_aoe.vpcf", PATTACH_POINT_FOLLOW, target)
 		local heal = 0
 		local spellsteal = caster:FindTalentValue("special_bonus_unique_obsidian_destroyer_arcane_missile_1") / 100
-		local mainDamage = self:DealDamage(caster, target, caster:GetMana() * self:GetTalentSpecialValueFor("mana_pool_damage_pct") / 100)
+		local mainDamage = self:DealDamage(caster, target, caster:GetMana() * self:GetTalentSpecialValueFor("mana_pool_damage_pct") / 100, {damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
 		heal = heal + mainDamage * spellsteal
 		if caster:HasTalent("special_bonus_unique_obsidian_destroyer_arcane_missile_2") then
 			for _, enemy in ipairs( caster:FindEnemyUnitsInRadius(target:GetAbsOrigin(),  caster:FindTalentValue("special_bonus_unique_obsidian_destroyer_arcane_missile_2", "radius") ) ) do
 				if enemy ~= target then
-					local aoeDamage = self:DealDamage(caster, enemy, mainDamage * caster:FindTalentValue("special_bonus_unique_obsidian_destroyer_arcane_missile_2")/100)
+					local aoeDamage = self:DealDamage(caster, enemy, mainDamage * caster:FindTalentValue("special_bonus_unique_obsidian_destroyer_arcane_missile_2")/100, {damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
 					heal = heal + aoeDamage * spellsteal
 				end
 			end

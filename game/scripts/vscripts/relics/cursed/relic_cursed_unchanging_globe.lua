@@ -10,11 +10,11 @@ function relic_cursed_unchanging_globe:OnIntervalThink()
 end
 
 function relic_cursed_unchanging_globe:DeclareFunctions()
-	return {MODIFIER_EVENT_ON_ABILITY_FULLY_CAST, MODIFIER_PROPERTY_STATS_INTELLECT_BONUS }
+	return {MODIFIER_EVENT_ON_ABILITY_FULLY_CAST, MODIFIER_PROPERTY_MANA_BONUS }
 end
 
-function relic_cursed_unchanging_globe:GetModifierBonusStats_Intellect()
-	if not self:GetParent():HasModifier("relic_unique_ritual_candle") then return self.int end
+function relic_cursed_unchanging_globe:GetModifierManaBonus()
+	if not self:GetParent():HasModifier("relic_unique_ritual_candle") then return self.mana end
 end
 
 function relic_cursed_unchanging_globe:OnAbilityFullyCast(params)

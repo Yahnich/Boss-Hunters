@@ -557,18 +557,21 @@
 	}
 	"npc_dota_hero_enigma_ebf"
 	{
-		"override_hero"			"npc_dota_hero_enigma"
-		"Ability2"				"enigma_midnight_pulse"
-		"Ability3"				"enigma_white_hole"
+		"override_hero"				"npc_dota_hero_enigma"
 		
-		"Ability10"		"special_bonus_movement_speed_25"
-		"Ability11"		"special_bonus_magic_resistance_15"
-		"Ability12"		"special_bonus_cooldown_reduction_15"
-		"Ability13"		"special_bonus_spell_amplify_8"
-		"Ability14"		"special_bonus_hp_400"
-		"Ability15"		"special_bonus_unique_enigma_3"
-		"Ability16"		"special_bonus_unique_enigma_2"
-		"Ability17"		"special_bonus_unique_enigma"
+		"Ability1"					"enigma_malefice_bh"
+		"Ability2"					"enigma_white_hole"
+		"Ability3"					"enigma_midnight_pulse_bh"
+		"Ability6"					"enigma_black_hole_bh"
+		
+		"Ability10"					"special_bonus_unique_enigma_malefice_1"
+		"Ability11"					"special_bonus_unique_enigma_malefice_2"
+		"Ability12"					"special_bonus_unique_enigma_white_hole_1"
+		"Ability13"					"special_bonus_unique_enigma_white_hole_2"
+		"Ability14"					"special_bonus_unique_enigma_midnight_pulse_1"
+		"Ability15"					"special_bonus_unique_enigma_midnight_pulse_2"
+		"Ability16"					"special_bonus_unique_enigma_black_hole_1"
+		"Ability17"					"special_bonus_unique_enigma_black_hole_2"
 	}
 	"npc_dota_hero_faceless_void_ebf"
 	{

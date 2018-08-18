@@ -511,7 +511,7 @@ function RoundManager:InitializeUnit(unit, bElite)
 	end
 	local effective_multiplier = (HeroList:GetActiveHeroCount() - 1)
 	
-	local HPMultiplierFunc = function( events, raids, zones ) return (0.6 + (events * 0.1)) * ( 1 + raids * 0.33 ) * ( 1 + zones * 0.25 ) end
+	local HPMultiplierFunc = function( events, raids, zones ) return (0.8 + (events * 0.08)) * ( 1 + raids * 0.33 ) * ( 1 + zones * 0.25 ) end
 	local DMGMultiplierFunc = function( events, raids, zones ) return ( 0.5 + (events * 0.05)) * ( 1 + raids * 0.1) * ( 1 + zones * 0.08 ) end
 	
 	local effPlayerHPMult =  HPMultiplierFunc( RoundManager:GetEventsFinished(), RoundManager:GetRaidsFinished(), RoundManager:GetZonesFinished() )
@@ -524,7 +524,7 @@ function RoundManager:InitializeUnit(unit, bElite)
 	
 	maxPlayerDMGMult = DMGMultiplierFunc( EVENTS_PER_RAID * RAIDS_PER_ZONE * ZONE_COUNT, RAIDS_PER_ZONE * ZONE_COUNT, ZONE_COUNT)
 	effPlayerDMGMult = math.min( effPlayerDMGMult, maxPlayerDMGMult )
-	effPlayerDMGMult = effPlayerDMGMult * ( 1 + RoundManager:GetAscensions() )  * (1 + effective_multiplier * playerDMGMultiplier )
+	effPlayerDMGMult = effPlayerDMGMult * ( 1 + RoundManager:GetAscensions() * 1.5 )  * (1 + effective_multiplier * playerDMGMultiplier )
 	
 	if bElite then
 		effPlayerHPMult = effPlayerHPMult * 1.35

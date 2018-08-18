@@ -1736,9 +1736,11 @@ function CDOTA_Modifier_Lua:StartMotionController()
 		self:GetParent():StopMotionControllers()
 		self:GetParent():InterruptMotionControllers(true)
 		self.controlledMotionTimer = Timers:CreateTimer(function()
-			if self:IsNull() or self:GetParent():IsNull() then return end
-			self:DoControlledMotion() 
-			return 0.03
+			if pcall( function() self:DoControlledMotion() end ) then
+				return 0.03
+			elseif not self:IsNull() then
+				self:Destroy()
+			end
 		end)
 	else
 	end

@@ -239,8 +239,12 @@ end
 
 pugna_lifedrain_end = class({})
 
-function pugna_lifedrain_ebf:GetAssociatedPrimaryAbilities()
+function pugna_lifedrain_end:GetAssociatedPrimaryAbilities()
 	return "pugna_lifedrain_ebf"
+end
+
+function pugna_lifedrain_end:IsHiddenWhenStolen()
+	return false
 end
 
 if IsServer() then
@@ -254,16 +258,19 @@ end
 
 pugna_lifedrain_ebf = class({})
 
+function pugna_lifedrain_ebf:GetAssociatedSecondaryAbilities()
+	return "pugna_lifedrain_end"
+end
+
+function pugna_lifedrain_ebf:IsHiddenWhenStolen()
+	return false
+end
+
 function pugna_lifedrain_ebf:GetCooldown(nLevel)
 	local cooldown = self.BaseClass.GetCooldown( self, nLevel )
 	if self:GetCaster():HasScepter() then cooldown = self:GetSpecialValueFor("scepter_cooldown") end
 	return cooldown
 end
-
-function pugna_lifedrain_ebf:GetAssociatedSecondaryAbilities()
-	return "pugna_lifedrain_end"
-end
-
 if IsServer() then
 	function pugna_lifedrain_ebf:OnSpellStart()
 		local caster = self:GetCaster()
