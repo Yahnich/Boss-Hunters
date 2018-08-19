@@ -6,8 +6,16 @@
 	<scripts>
 		<include src="file://{resources}/scripts/custom_game/targetbar.js" />
 	</scripts>
-	
+	<snippets>
+		<snippet name="ModifierBuff">
+			<Panel class="PlayerInfoModifierHolder" hittestchildren="false">
+				<DOTAAbilityImage id="buff" class="PlayerMainModifier" abilityname="invoker_wex" hittestchildren="false"/>
+				<Panel id="buffBorder" hittestchildren="false"/>
+			</Panel>
+		</snippet>
+	</snippets>
 	<Panel class="targetPanelRoot" hittest="false">
+		<DOTAAbilityImage id="currentlyCastAbility" abilityname="generic_hidden"/>
 		<Panel id="targetPanelMain" hittest="false">
 			<Panel id="bossNameContainer" hittestchildren="false">
 				<Label hittest="false" id="bossNameLabel" text="Dildo King" />
@@ -20,11 +28,14 @@
 				<Panel id="mpBarCurrent" hittestchildren="false"/>
 				<Label hittest="false" class="barCurrentText" id="mpBarCurrentText" text="10" />
 			</Panel>
-			<Label hittest="false" id="eliteSpecsText" text="Freezing Burning Crotchrot" />
-			
 			<Button id="threatButton" onactivate='tell_threat()'>
 				<Label hittest="true" id="threatLabel" text= "85.3"/>
 			</Button>
+			<Panel id="informationRoot" hittestchildren="true">
+				
+				<Panel id="buffBar" hittestchildren="true"/>
+				<Panel id="debuffBar" hittestchildren="true"/>
+			</Panel>
 		</Panel>
 	</Panel>
 </root>

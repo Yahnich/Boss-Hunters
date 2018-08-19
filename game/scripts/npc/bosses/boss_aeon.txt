@@ -216,7 +216,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"spawns"					"3"
+				"spawns"					"2"
 			}
 			"02"
 			{

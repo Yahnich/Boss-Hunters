@@ -71,8 +71,8 @@ function modifier_ta_trap:OnCreated()
 		self.timer = 0
 		self.maxTimer = self:GetAbility():GetTalentSpecialValueFor("total_tick_time")
 		self.tick = self:GetAbility():GetTalentSpecialValueFor("tick_rate")
-		self.dmgPerTick = (self.maxDmg - self.minDmg) / self.maxTimer
-		self.slowPerTick = (self.maxSlow - self.minSlow) / self.maxTimer
+		self.dmgPerTick = ( (self.maxDmg - self.minDmg) * self.tick ) / self.maxTimer
+		self.slowPerTick = ( (self.maxSlow - self.minSlow) * self.tick ) / self.maxTimer
 		self:GetParent().currDamage = self.minDmg
 		self:GetParent().currSlow = self.minSlow
 		self:StartIntervalThink(self.tick)

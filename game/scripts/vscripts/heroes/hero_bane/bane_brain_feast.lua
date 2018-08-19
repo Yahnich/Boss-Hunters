@@ -6,6 +6,14 @@ function bane_brain_feast:GetCooldown(iLvl)
 	return cd
 end
 
+function bane_brain_feast:GetCastPoint()
+	if self:GetCaster():HasScepter() then
+		return 0.15
+	else
+		return 0.5
+	end
+end
+
 function bane_brain_feast:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()

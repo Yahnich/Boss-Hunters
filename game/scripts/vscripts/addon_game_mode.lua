@@ -23,8 +23,6 @@ function SendErrorReport(err, context)
 end
 
 require("lua_map/map")
-require("lua_boss/boss_32_meteor")
-
 require( "libraries/Timers" )
 require( "libraries/notifications" )
 require( "statcollection/init" )
@@ -359,6 +357,7 @@ function CHoldoutGameMode:InitGameMode()
 	ListenToGameEvent( "dota_player_gained_level", Dynamic_Wrap( CHoldoutGameMode, "OnHeroLevelUp" ), self )
 	
 	CustomGameEventManager:RegisterListener('Tell_Threat', Dynamic_Wrap( CHoldoutGameMode, 'Tell_threat'))
+	CustomGameEventManager:RegisterListener('bh_notify_modifier', Dynamic_Wrap( CHoldoutGameMode, 'NotifyBuffs'))
 	CustomGameEventManager:RegisterListener('playerUILoaded', Dynamic_Wrap( CHoldoutGameMode, 'OnPlayerUIInitialized'))
 
 	-- Register OnThink with the game engine so it is called every 0.25 seconds
@@ -767,12 +766,29 @@ function CHoldoutGameMode:Tell_threat(event)
 	local result = math.floor( hero.threat*10 + 0.5 ) / 10
 	if result == 0 then result = "no" end
 	local message = "I have "..result.." threat!"
-	hero.tellThreatDelayTimer = hero.tellThreatDelayTimer or GameRules:GetGameTime()
+	hero.tellThreatDelayTimer = hero.tellThreatDelayTimer or 0
 	if GameRules:GetGameTime() > hero.tellThreatDelayTimer + 1 then
 		Say(player, message, true)
 		hero.tellThreatDelayTimer = GameRules:GetGameTime()
 	end
 end
+
+function CHoldoutGameMode:NotifyBuffs(event)
+	--print ("show asura core count")
+	local pID = event.pID
+	local player = PlayerResource:GetPlayer(pID)
+	local hero = player:GetAssignedHero() 
+	if not hero.threat then hero.threat = 0 end
+	local result = math.floor( hero.threat*10 + 0.5 ) / 10
+	if result == 0 then result = "no" end
+	local message = "Enemy "..event.unitname.." is affected by: "..event.buffname.." - "..event.duration.." seconds remaining!"
+	hero.tellBuffDelayTimer = hero.tellBuffDelayTimer or 0
+	if GameRules:GetGameTime() > hero.tellBuffDelayTimer + 1 then
+		Say(player, message, true)
+		hero.tellBuffDelayTimer = GameRules:GetGameTime()
+	end
+end
+
 
 function CHoldoutGameMode:OnHeroPick (event)
  	local hero = EntIndexToHScript(event.heroindex)

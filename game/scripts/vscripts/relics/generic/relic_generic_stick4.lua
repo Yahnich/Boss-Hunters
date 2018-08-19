@@ -20,6 +20,7 @@ function relic_generic_stick4:OnEventFinished(args)
 			if parent:GetPlayerOwner() then
 				CustomGameEventManager:Send_ServerToAllClients( "dota_player_update_relic_inventory", { hero = parent:entindex(), relics = parent.ownedRelics } )
 			end
+			self:Destroy()
 		end
 	end
 end
