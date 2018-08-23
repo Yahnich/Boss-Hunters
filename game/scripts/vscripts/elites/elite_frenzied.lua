@@ -1,0 +1,47 @@
+elite_frenzied = class({})
+
+function elite_frenzied:OnSpellStart()
+	local caster = self:GetCaster()
+	
+	caster:AddNewModifier( caster, self, "modifier_elite_frenzied_buff", {duration = self:GetSpecialValueFor("duration")})
+end
+
+function elite_frenzied:GetIntriniscModifierName()
+	return "modifier_elite_frenzied"
+end
+
+modifier_elite_frenzied = class({})
+LinkLuaModifier("modifier_elite_frenzied", "elites/elite_frenzied", LUA_MODIFIER_MOTION_NONE)
+if IsServer() then
+	function modifier_elite_frenzied:OnCreated()
+		self:StartIntervalThink(1)
+	end
+	
+	function modifier_elite_frenzied:OnIntervalThink()
+		local caster = self:GetCaster()
+		local ability = self:GetAbility()
+		if not caster:IsAttacking() or not ability:IsFullyCastable() or caster:PassivesDisabled() then return end
+		ability:CastSpell()
+	end
+end
+
+
+modifier_elite_frenzied_buff = class({})
+LinkLuaModifier("modifier_elite_frenzied_buff", "elites/elite_frenzied", LUA_MODIFIER_MOTION_NONE)
+
+function modifier_elite_frenzied_buff:OnCreated()
+	self.as = self:GetSpecialValueFor("attackspeed")
+	self.ms = self:GetSpecialValueFor("movespeed")
+end
+
+function modifier_elite_frenzied_buff:DeclareFunctions()
+	return {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE, MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT}
+end
+
+function modifier_elite_frenzied_buff:DeclareFunctions()
+	return self.as
+end
+
+function modifier_elite_frenzied_buff:DeclareFunctions()
+	return self.ms
+end

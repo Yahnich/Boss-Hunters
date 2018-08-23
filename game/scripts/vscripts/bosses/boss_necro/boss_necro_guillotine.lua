@@ -37,7 +37,7 @@ function boss_necro_guillotine:CreateGuillotine( enemy )
 	Timers:CreateTimer(1.5, function()
 		if CalculateDistance(position, enemy) < radius then
 			if enemy:GetHealthPercent() <= kill_threshold then
-				enemy.NoTombStone = true
+				enemy.tombstoneDisabled = true
 				enemy:AttemptKill(self, caster)
 			else
 				self:DealDamage( caster, enemy, enemy:GetHealth() * damage, {damage_type = DAMAGE_TYPE_PURE, damage_flags = DOTA_DAMAGE_FLAG_HPLOSS + DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION} )

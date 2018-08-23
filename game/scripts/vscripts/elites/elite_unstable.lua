@@ -1,0 +1,1 @@
+elite_unstable = class({})

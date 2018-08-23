@@ -1411,14 +1411,17 @@ function CDOTABaseAbility:EndDelayedCooldown()
 end
 
 function CDOTA_BaseNPC_Hero:CreateTombstone()
-	local newItem = CreateItem( "item_tombstone", self, self )
-	newItem:SetPurchaseTime( 0 )
-	newItem:SetPurchaser( self )
-	local tombstone = SpawnEntityFromTableSynchronous( "dota_item_tombstone_drop", {} )
-	tombstone:SetContainedItem( newItem )
-	tombstone:SetAngles( 0, RandomFloat( 0, 360 ), 0 )
-	FindClearSpaceForUnit( tombstone, self:GetAbsOrigin(), true )
-	self.tombstoneEntity = newItem
+	if not self.tombstoneDisabled then
+		local newItem = CreateItem( "item_tombstone", self, self )
+		newItem:SetPurchaseTime( 0 )
+		newItem:SetPurchaser( self )
+		local tombstone = SpawnEntityFromTableSynchronous( "dota_item_tombstone_drop", {} )
+		tombstone:SetContainedItem( newItem )
+		tombstone:SetAngles( 0, RandomFloat( 0, 360 ), 0 )
+		FindClearSpaceForUnit( tombstone, self:GetAbsOrigin(), true )
+		self.tombstoneEntity = newItem
+	end
+	self.tombstoneDisabled = false
 end
 
 function CDOTABaseAbility:ModifyCooldown(amt)
@@ -2319,8 +2322,8 @@ function CDOTABaseAbility:CastSpell(target)
 			caster:SetCursorPosition(target)
 		end
 	end
-	self:OnSpellStart()
-	self:UseResources(true, true, true)
+	caster:SetCursorTargetingNothing(target == nil)
+	self:CastAbility()
 end
 
 function CDOTA_BaseNPC:DisableHealing(Duration)

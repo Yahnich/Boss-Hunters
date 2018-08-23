@@ -1,0 +1,84 @@
+"elite_temporal"
+{
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"BaseClass"						"ability_datadriven"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	"MaxLevel"						"1"
+
+	// Time		
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityTextureName"			"faceless_void_chronosphere"
+	
+	"precache"
+	{
+		"particle"					"particles/econ/courier/courier_onibi/courier_onibi_yellow_ambient_smoke_lvl21.vpcf"
+		"particle"					"particles/units/heroes/hero_faceless_void/faceless_void_chronosphere.vpcf"
+	}
+	
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"				"FIELD_INTEGER"
+			"chance"				"5 10 15 20 25"
+		}
+	}
+	"Modifiers"
+	{
+		"modifier_elite_temporal_passive"
+		{
+			"Passive"	"1"
+			"IsHidden"	"1"
+			"ThinkInterval" "1"
+			"OnIntervalThink"
+			{
+				"RunScript"
+				{
+					"ScriptFile"	"lua_abilities/elite"
+					"Function"		"CreateBubbles"
+				}
+			}
+		}
+		"modifier_elite_temporal_aura_handler"
+		{
+			"Aura" "modifier_elite_temporal_aura"
+			"Aura_Radius" "250"
+			"Aura_Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+			"Aura_Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"			
+			"EffectName"	"particles/econ/courier/courier_onibi/courier_onibi_yellow_ambient_smoke_lvl21.vpcf"
+		}
+		"modifier_elite_temporal_aura"
+		{
+			"IsDebuff"	"1"
+			"ThinkInterval" "0.03"
+			"OnIntervalThink"
+			{
+				"RunScript"
+				{
+					"ScriptFile"	"lua_abilities/elite"
+					"Function"		"IncreaseCD"
+				}
+			}
+		}
+		"acid_spray_fx"
+		{
+			"Passive"			"1"
+			"IsHidden"			"1"
+			"OnCreated"
+			{
+				"AttachEffect"
+				{
+					"Target"					"CASTER"
+					"EffectName"				"particles/elite_warning.vpcf"
+					"EffectAttachType"			"follow_overhead"
+					"EffectLifeDurationScale"	"1"
+					"EffectColorA"				"255 0 255"
+					"EffectAlphaScale"			"1"
+				}
+			}
+		}
+	}
+}

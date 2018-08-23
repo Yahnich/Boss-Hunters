@@ -32,9 +32,9 @@ end
 
 function modifier_juggernaut_quickparry_passive:GetModifierTotal_ConstantBlock(params)
 	local ability = self:GetAbility()
+	local caster = self:GetCaster()
 	if params.attacker == self:GetParent() then return end
 	if ability:IsCooldownReady() then
-		local caster = self:GetCaster()
 		if ability:GetToggleState() and caster:AttemptDecrementMomentum(self.cost) then
 			caster:StartGestureWithPlaybackRate( ACT_DOTA_ATTACK_STATUE , 5 )
 			ability:DealDamage(caster, params.attacker, self.damage )

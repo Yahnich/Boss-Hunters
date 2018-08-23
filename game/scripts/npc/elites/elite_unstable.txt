@@ -1,0 +1,82 @@
+"elite_unstable"
+{
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"BaseClass"						"ability_datadriven"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+	"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+	"MaxLevel"						"1"
+
+	// Time		
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityTextureName"			"nevermore_shadowraze1"
+	
+	"precache"
+	{
+		"particle"			"particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_shadowraze.vpcf"
+		"particle"			"particles/units/heroes/hero_lina/lina_spell_light_strike_array.vpcf"
+		"particle"			"particles/econ/items/kunkka/kunkka_weapon_whaleblade/kunkka_spell_torrent_splash_whaleblade.vpcf"
+		"particle"			"particles/econ/courier/courier_onibi/courier_onibi_yellow_ambient_smoke_lvl21.vpcf"
+		"particle"			"particles/status_fx/status_effect_repel.vpcf"
+		"soundfile"     	"soundevents/game_sounds_heroes/game_sounds_enigma.vsndevts" 
+	}
+	
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"Modifiers"
+	{
+		"modifier_elite_unstable_passive"
+		{
+			"Passive"	"1"
+			"IsHidden"	"1"
+
+			"ThinkInterval"	"1"
+			"OnIntervalThink"
+			{
+				"RunScript"
+				{
+					"ScriptFile"	"lua_abilities/elite"
+					"Function"		"UnstableFunction"
+				}
+			}
+		}
+		"modifier_elite_unstable_slow"
+		{
+			"IsPurgable"	"1"
+
+			"Properties"
+			{
+				"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"-400"
+				"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"-100"
+			}
+		}
+		"modifier_elite_unstable_stun"
+		{
+			"IsPurgable"	"1"
+			"IsStunDebuff"	"1"
+			"States"
+			{
+				"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
+			}
+		}
+		"acid_spray_fx"
+		{
+			"Passive"			"1"
+			"IsHidden"			"1"
+			"OnCreated"
+			{
+				"AttachEffect"
+				{
+					"Target"					"CASTER"
+					"EffectName"				"particles/elite_warning.vpcf"
+					"EffectAttachType"			"follow_overhead"
+					"EffectLifeDurationScale"	"1"
+					"EffectColorA"				"80 125 255"
+					"EffectAlphaScale"			"1"
+				}
+			}
+		}
+	}
+}

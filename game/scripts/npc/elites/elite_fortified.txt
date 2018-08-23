@@ -1,0 +1,34 @@
+"elite_fortified"
+{
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"BaseClass"						"ability_datadriven"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	"AbilityTextureName"			"tidehunter_kraken_shell"
+	"MaxLevel"						"1"
+	
+	"precache"
+	{
+		"soundfile"			"soundevents/game_sounds_heroes/game_sounds_tidehunter.vsndevts"
+		"particle"			"particles/units/heroes/hero_tidehunter/tidehunter_krakenshell_purge.vpcf"
+	}
+
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"              "FIELD_FLOAT"
+			"dmg_reduction"         "-80"
+		}
+		"02"
+		{
+			"var_type"              "FIELD_FLOAT"
+			"move_slow"         	"-100"
+		}
+		"03"
+		{
+			"var_type"              "FIELD_FLOAT"
+			"duration"        		"4"
+		}
+	}
+}

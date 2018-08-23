@@ -2,7 +2,6 @@ item_aeon_shard = class({})
 
 function item_aeon_shard:OnSpellStart()
 	self:GetCursorTarget():AddNewModifier(self:GetCaster(), self, "modifier_item_aeon_shard_consumed", {})
-	self:Destroy()
 end
 
 function item_aeon_shard:GetIntrinsicModifierName()
@@ -43,12 +42,12 @@ end
 function modifier_item_aeon_shard_consumed:OnCreated()
 	self.bonus_attack_speed = self:GetSpecialValueFor("consumed_attackspeed")
 	if IsServer() then
+		self:GetAbility():Destroy()
 		self:SetStackCount(1)
 	end
 end
 
 function modifier_item_aeon_shard_consumed:OnRefresh()
-	self.bonus_attack_speed = self:GetSpecialValueFor("consumed_attackspeed")
 	if IsServer() then
 		self:IncrementStackCount()
 	end
@@ -60,7 +59,7 @@ function modifier_item_aeon_shard_consumed:DeclareFunctions()
 end
 
 function modifier_item_aeon_shard_consumed:GetModifierAttackSpeedBonus_Constant()
-	return (self.bonus_attack_speed or 30) * self:GetStackCount()
+	return 30 * self:GetStackCount()
 end
 
 function modifier_item_aeon_shard_consumed:DestroyOnExpire()
@@ -80,7 +79,7 @@ function modifier_item_aeon_shard_consumed:IsPurgable()
 end
 
 function modifier_item_aeon_shard_consumed:AllowIllusionDuplicate()
-return true
+	return true
 end
 
 function modifier_item_aeon_shard_consumed:GetAttributes()

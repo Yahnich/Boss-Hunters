@@ -1,0 +1,80 @@
+"elite_parrying"
+{
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"BaseClass"						"ability_datadriven"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	"AbilityTextureName"			"nyx_spiky_carapace"
+	"MaxLevel"						"1"
+	
+	"precache"
+	{
+		"soundfile"			"soundevents/game_sounds_heroes/game_sounds_juggernaut.vsndevts"
+		"particle"			"particles/units/heroes/hero_centaur/centaur_return.vpcf"
+	}
+	"AbilityCooldown"	"1"
+
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"              "FIELD_FLOAT"
+			"parry_chance"                "25"
+		}
+	}
+	"Modifiers"
+	{
+		"acid_spray_fx"
+		{
+			"Passive"			"1"
+			"IsHidden"			"1"
+			"OnCreated"
+			{
+				"AttachEffect"
+				{
+					"Target"					"CASTER"
+					"EffectName"				"particles/elite_warning.vpcf"
+					"EffectAttachType"			"follow_overhead"
+					"EffectLifeDurationScale"	"1"
+					"EffectColorA"				"170 100 20"
+					"EffectAlphaScale"			"1"
+				}
+			}
+		}
+		"jugger_parry_passive"
+		{
+			"IsHidden"	 "1"
+			"Passive"	 "1"
+			"OnAttacked"
+			{
+				"Random"
+				{
+						"Chance" "%parry_chance"
+						"PseudoRandom" "DOTA_PSEUDO_RANDOM_JUGG_CRIT"
+						"OnSuccess"
+						{
+						"RunScript"
+						{
+							"ScriptFile"		"lua_abilities/elite"
+							"Function"			"Parrying"
+							"damage"			"%attack_damage"
+						}
+						"FireSound"
+						{
+							"EffectName"        "Hero_Juggernaut.OmniSlash.Damage"
+							"EffectAttachType"  "ATTACKER"
+						}
+						"FireEffect"
+						{
+							"EffectName"        "particles/generic_gameplay/generic_lifesteal.vpcf"
+							"EffectAttachType"  "follow_origin"
+							"Target"            "CASTER"
+						}
+						}
+						"OnFailure"
+						{}
+				}
+			}
+		}
+	}
+}

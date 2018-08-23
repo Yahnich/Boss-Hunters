@@ -70,7 +70,11 @@ function modifier_boss_attackspeed:GetModifierPreAttack_CriticalStrike( params )
 	self.ticks = (self.ticks or 0) + 1
 	if self.ticks >= maxTick then	
 		self.ticks = 0
-		return 175
+		if self:GetParent():HasModifier("modifier_elite_assassin") then
+			return 250
+		else
+			return 175
+		end
 	end
 end
 
