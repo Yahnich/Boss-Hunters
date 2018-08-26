@@ -9,6 +9,13 @@ LinkLuaModifier("modifier_elite_freezing", "elites/elite_freezing", LUA_MODIFIER
 
 if IsServer() then
 	function modifier_elite_freezing:OnCreated()
+		self:StartIntervalThink(1)
+	end
+
+	function modifier_elite_freezing:OnIntervalThink()
+		local caster = self:GetCaster()
+		local ability = self:GetAbility()
+		if not caster:IsAlive() or caster:PassivesDisabled() then return end
 		self.radius = self:GetSpecialValueFor("radius")
 		self.damage = self:GetSpecialValueFor("damage")
 		self.stDur = self:GetSpecialValueFor("snap_duration")
@@ -16,12 +23,7 @@ if IsServer() then
 		self.grDur = self:GetSpecialValueFor("growth_duration")
 		self.tick = self:GetSpecialValueFor("tick_rate")
 		self:StartIntervalThink(self.tick)
-	end
-
-	function modifier_elite_freezing:OnIntervalThink()
-		local caster = self:GetCaster()
-		local ability = self:GetAbility()
-		if not caster:IsAlive() or caster:PassivesDisabled() then return end
+		
 		local shardLoc = caster:GetAbsOrigin() + ActualRandomVector(800, 150)
 		local frostShard = ParticleManager:CreateParticle("particles/elite_freezing_parent.vpcf", PATTACH_WORLDORIGIN, nil)
 		ParticleManager:SetParticleControl(frostShard, 0, shardLoc)

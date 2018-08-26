@@ -1,103 +1,37 @@
-"elite_plagued"
+"DOTAAbilities"
 {
-	// General
-	//-------------------------------------------------------------------------------------------------------------
-	"BaseClass"						"ability_datadriven"
-	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-	"MaxLevel"						"1"
+	"elite_plagued"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"elites/elite_plagued"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"						"1"
 
-	// Time		
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityTextureName"			"undying_decay"
-	
-	"precache"
-	{
-		"particle"					"particles/econ/courier/courier_onibi/courier_onibi_yellow_ambient_smoke_lvl21.vpcf"
-		"particle"					"particles/status_fx/status_effect_repel.vpcf"
-	}
-	
-	// Special
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilitySpecial"
-	{
-		"01"
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityTextureName"			"undying_decay"
+		
+		"precache"
 		{
-			"var_type"				"FIELD_INTEGER"
-			"chance"				"5 10 15 20 25"
+			"particle"					"particles/econ/courier/courier_onibi/courier_onibi_yellow_ambient_smoke_lvl21.vpcf"
+			"particle"					"particles/status_fx/status_effect_repel.vpcf"
 		}
-	}
-	"Modifiers"
-	{
-		"modifier_elite_plagued_passive"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
 		{
-			"Passive"	"1"
-			"IsHidden"	"1"
-			"EffectName"	"particles/econ/courier/courier_onibi/courier_onibi_yellow_ambient_smoke_lvl21.vpcf"
-			"OnAttackLanded"
+			"01"
 			{
-				"RunScript"
-				{
-					"ScriptFile"	"lua_abilities/elite"
-					"Function"		"ApplyPlague"
-					"counter"	"modifier_elite_plagued_debuff_counter"
-					"modifier"	"modifier_elite_plagued_debuff"
-				}
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"1"
 			}
-		}
-		"modifier_elite_plagued_debuff"
-		{
-			"IsDebuff"	"1"
-			"IsHidden"	"1"
-			"IsPurgable"	"1"
-			
-			"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
-			"OnCreated"
+			"02"
 			{
-				"RunScript"
-				{
-					"ScriptFile"	"lua_abilities/elite"
-					"Function"		"PlagueDamage"
-				}
-			}
-			"ThinkInterval"	"0.5"
-			"OnIntervalThink"
-			{
-				"RunScript"
-				{
-					"ScriptFile"	"lua_abilities/elite"
-					"Function"		"PlagueDamage"
-				}
-			}
-			"OnDestroy"
-			{
-				"RunScript"
-				{
-					"ScriptFile"	"lua_abilities/elite"
-					"Function"		"DecreasePlague"
-					"counter"		"modifier_elite_plagued_debuff_counter"
-				}
-			}
-		}
-		"modifier_elite_plagued_debuff_counter"
-		{
-			"IsDebuff"	"1"
-			"IsPurgable"	"1"
-		}
-		"acid_spray_fx"
-		{
-			"Passive"			"1"
-			"IsHidden"			"1"
-			"OnCreated"
-			{
-				"AttachEffect"
-				{
-					"Target"					"CASTER"
-					"EffectName"				"particles/elite_warning.vpcf"
-					"EffectAttachType"			"follow_overhead"
-					"EffectLifeDurationScale"	"1"
-					"EffectColorA"				"28 255 28"
-					"EffectAlphaScale"			"1"
-				}
+				"var_type"				"FIELD_INTEGER"
+				"duration"				"8"
 			}
 		}
 	}

@@ -408,7 +408,6 @@ function CHoldoutGameMode:FilterModifiers( filterTable )
 			filterTable["duration"] = filterTable["duration"] * math.max(0, (1 - resistance/100)) * math.max(0, (1 - stackResist/100))
 		end
 	end
-	print(name, filterTable["duration"])
 	if filterTable["duration"] == 0 then return false end
 	return true
 end
@@ -698,8 +697,8 @@ function CHoldoutGameMode:OnAbilityUsed(event)
 	--will be used in future :p
     local PlayerID = event.PlayerID
     local abilityname = event.abilityname
-		
-	local hero = PlayerResource:GetSelectedHeroEntity(PlayerID)
+	local hero = EntIndexToHScript( event.caster_entindex )
+	
 	if not hero then return end
 	if not abilityname then return end
 	AddFOWViewer(DOTA_TEAM_BADGUYS, hero:GetAbsOrigin(), 256, 3, false)
@@ -1110,7 +1109,7 @@ function CDOTA_PlayerResource:SortThreat()
 	end
 end
 
-function CHoldoutGameMode:SpawnTestElites(elite, amount, bossname)
+function CHoldoutGameMode:SpawnTestElites(elite, bossname, amount)
 	if IsInToolsMode() or IsCheatMode() then
 		local spawns = 1
 		if amount then
@@ -1121,7 +1120,7 @@ function CHoldoutGameMode:SpawnTestElites(elite, amount, bossname)
 			spawnName = "npc_dota_treasure"
 		end
 		for i = 1, spawns do
-			local spawnLoc = Vector(900,300)
+			local spawnLoc = Vector(0,0)
 			PrecacheUnitByNameAsync( spawnName, function()
 				local entUnit = CreateUnitByName( spawnName, spawnLoc, true, nil, nil, DOTA_TEAM_BADGUYS )
 				if elite then
@@ -1129,6 +1128,7 @@ function CHoldoutGameMode:SpawnTestElites(elite, amount, bossname)
 					local nParticle = ParticleManager:CreateParticle( "particles/econ/courier/courier_onibi/courier_onibi_yellow_ambient_smoke_lvl21.vpcf", PATTACH_ABSORIGIN_FOLLOW, entUnit )
 					ParticleManager:ReleaseParticleIndex( nParticle )
 					entUnit:SetModelScale(entUnit:GetModelScale()*1.5)
+					entUnit:SetControllableByPlayer(Convars:GetDOTACommandClient():GetPlayerID(), true)
 				end
 			end)
 		end

@@ -11,11 +11,19 @@ function modifier_elite_hasted:OnCreated()
 	self.ms = self:GetSpecialValueFor("movespeed")
 end
 
+function modifier_elite_hasted:OnRefresh()
+	self.ms = self:GetSpecialValueFor("movespeed")
+end
+
 function modifier_elite_hasted:DeclareFunctions()
-	return {MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE_MIN, MODIFIER_PROPERTY_MOVESPEED_LIMIT, MODIFIER_PROPERTY_MOVESPEED_MAX}
+	return {MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE_MIN, MODIFIER_PROPERTY_MOVESPEED_LIMIT, MODIFIER_PROPERTY_MOVESPEED_MAX, MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT }
 end
 
 function modifier_elite_hasted:GetModifierMoveSpeed_AbsoluteMin()
+	return self.ms
+end
+
+function modifier_elite_hasted:GetModifierMoveSpeedBonus_Constant()
 	return self.ms
 end
 
@@ -25,4 +33,8 @@ end
 
 function modifier_elite_hasted:GetModifierMoveSpeed_Max()
 	return self.ms
+end
+
+function modifier_elite_hasted:GetEffectName()
+	return "particles/generic_gameplay/rune_haste_owner.vpcf"
 end

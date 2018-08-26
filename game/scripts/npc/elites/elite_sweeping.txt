@@ -1,56 +1,34 @@
-"elite_sweeping"
+"DOTAAbilities"
 {
-	// General
-	//-------------------------------------------------------------------------------------------------------------
-	"BaseClass"						"ability_datadriven"
-	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-	"MaxLevel"						"1"
+	"elite_sweeping"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"elites/elite_sweeping"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"						"1"
 
-	// Time		
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityTextureName"			"sven_great_cleave"
-	
-	"precache"
-	{
-		"particle"					"particles/econ/courier/courier_onibi/courier_onibi_yellow_ambient_smoke_lvl21.vpcf"
-		"particle"					"particles/status_fx/status_effect_repel.vpcf"
-	}
-	
-	// Special
-	//-------------------------------------------------------------------------------------------------------------
-	"Modifiers"
-	{
-		"modifier_elite_sweeping_passive"
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityTextureName"			"sven_great_cleave"
+		
+		"precache"
 		{
-			"Passive"	"1"
-			"IsHidden"	"1"
-			"EffectName"	"particles/econ/courier/courier_onibi/courier_onibi_yellow_ambient_smoke_lvl21.vpcf"
-			"EffectAttachType"	"follow_origin"
-			
-			"OnAttackLanded"
-			{
-				"RunScript"
-				{
-					"ScriptFile"	"lua_abilities/elite"
-					"Function"		"SweepingStrikes"
-				}
-			}
+			"particle"					"particles/econ/courier/courier_onibi/courier_onibi_yellow_ambient_smoke_lvl21.vpcf"
+			"particle"					"particles/status_fx/status_effect_repel.vpcf"
 		}
-		"acid_spray_fx"
+		"AbilitySpecial"
 		{
-			"Passive"			"1"
-			"IsHidden"			"1"
-			"OnCreated"
+			"01"
 			{
-				"AttachEffect"
-				{
-					"Target"					"CASTER"
-					"EffectName"				"particles/elite_warning.vpcf"
-					"EffectAttachType"			"follow_overhead"
-					"EffectLifeDurationScale"	"1"
-					"EffectColorA"				"255 255 80"
-					"EffectAlphaScale"			"1"
-				}
+				"var_type"				"FIELD_FLOAT"
+				"radius"				"325"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"damage_pct"			"35"
 			}
 		}
 	}

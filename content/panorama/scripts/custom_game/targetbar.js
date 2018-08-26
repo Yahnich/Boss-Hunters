@@ -64,6 +64,7 @@ function UpdateCurrentTarget(entindex)
 }
 
 UpdateHealthBar()
+var currBossAbility = "generic_hidden"
 function UpdateHealthBar(unit)
 {
 	var sUnit = unit;
@@ -130,7 +131,6 @@ function UpdateHealthBar(unit)
 		for (var i = 0; i < Entities.GetAbilityCount( sUnit ); i++) {
 			var ability = Entities.GetAbility( sUnit, i )
 			if ( Abilities.IsInAbilityPhase( ability ) === true){
-				$.Msg( Abilities.GetAbilityName( ability ) )
 				localAbility.abilityname = Abilities.GetAbilityName( ability );
 				localAbility.SetHasClass("SpellActiveBorder", true)
 				localAbility.onMouseOver = function()
@@ -156,26 +156,25 @@ function UpdateHealthBar(unit)
 				localAbility.SetPanelEvent("onmouseout", localAbility.onMouseOut );
 				localAbility.SetPanelEvent("onmouseover", localAbility.onMouseOver );
 				localAbility.SetPanelEvent("onactivate", localAbility.onActivate );
+				currBossAbility = localAbility.abilityname;
 				break
 			}
 		}
-		if ( localAbility.abilityname == "generic_hidden"){
+		if ( localAbility.abilityname == "generic_hidden" && currBossAbility != "generic_hidden"){
 			$.DispatchEvent("DOTAHideAbilityTooltip", localAbility);
+			currBossAbility = "generic_hidden";
 		}
 		
 		
 		var buffContainer = $("#buffBar");
-		for( var i = 0; i <= buffContainer.GetChildCount(); i++){
-			var buff = buffContainer.GetChild(i)
+		for( var buff of buffContainer.Children() ){
 			if( buff != null && Buffs.GetName(sUnit, buff.buffID )  == "" && Buffs.GetParent( sUnit, buff.buffID ) != sUnit){
 				buff.style.visibility = "collapse";
 				buff.DeleteAsync(0)
 			}
 		}
 		var debuffContainer = $("#debuffBar");
-		for( var i = 0; i <= debuffContainer.GetChildCount(); i++){
-			var debuff = debuffContainer.GetChild(i)
-			if(debuff != null){ $.Msg( Buffs.GetName(sUnit, debuff.buffID ), " / " ,Buffs.GetParent( sUnit, debuff.buffID ), sUnit) }
+		for( var debuff of debuffContainer.Children() ){
 			if( debuff != null && Buffs.GetName(sUnit, debuff.buffID )  == "" && Buffs.GetParent( sUnit, debuff.buffID ) != sUnit){
 				debuff.style.visibility = "collapse";
 				debuff.DeleteAsync(0)
@@ -188,7 +187,7 @@ function UpdateHealthBar(unit)
 			}
 		}
 	}
-	$.Schedule( 0.03, UpdateHealthBar )
+	$.Schedule( 0.1, UpdateHealthBar )
 }
 
 function CreateMainBuff(heroID, buffID, heroName)

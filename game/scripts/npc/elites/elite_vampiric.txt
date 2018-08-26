@@ -1,35 +1,33 @@
-"elite_vampiric"
+"DOTAAbilities"
 {
-	// General
-	//-------------------------------------------------------------------------------------------------------------
-	"BaseClass"						"skeleton_king_vampiric_aura"
-	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-	"MaxLevel"						"1"
+	"elite_vampiric"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"elites/elite_vampiric"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"						"1"
 
-	// Time		
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityTextureName"			"custom/boss_lifesteal"
-	
-	"precache"
-	{
-		"particle"					"particles/econ/courier/courier_onibi/courier_onibi_yellow_ambient_smoke_lvl21.vpcf"
-		"particle"					"particles/status_fx/status_effect_repel.vpcf"
-	}
-	
-	// Special
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilitySpecial"
-	{
-		"01"
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityTextureName"			"custom/boss_lifesteal"
+		
+		"precache"
 		{
-			"var_type"				"FIELD_INTEGER"
-			"vampiric_aura_radius"	"900"
-		}
-		"02"
-		{
-			"var_type"				"FIELD_INTEGER"
-			"vampiric_aura"			"35"
+			"particle"					"particles/econ/courier/courier_onibi/courier_onibi_yellow_ambient_smoke_lvl21.vpcf"
+			"particle"					"particles/status_fx/status_effect_repel.vpcf"
 		}
 		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"lifesteal"				"35"
+			}
+		}
 	}
 }

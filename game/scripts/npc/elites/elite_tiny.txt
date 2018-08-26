@@ -1,17 +1,17 @@
 "DOTAAbilities"
 {
-	"elite_accurate"
+	"elite_tiny"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"elites/elite_accurate"
+		"ScriptFile"					"elites/elite_tiny"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"MaxLevel"						"1"
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityTextureName"			"sniper_take_aim"
+		"AbilityTextureName"			"custom/boss_lifesteal"
 		
 		"precache"
 		{
@@ -19,8 +19,15 @@
 			"particle"					"particles/status_fx/status_effect_repel.vpcf"
 		}
 		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"size"					"-35"
+			}
 		}
 	}
 }

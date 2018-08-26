@@ -1362,10 +1362,7 @@ function CDOTA_BaseNPC:IncreaseIntellect(amount)
 end
 
 function CDOTABaseAbility:GetTrueCooldown()
-	local cooldown = self:GetCooldown(-1)
-	local octarineMult = 1 - self:GetCaster():GetCooldownReduction() / 100
-	cooldown = cooldown * octarineMult
-	return cooldown
+	return self:GetCooldown(-1) * self:GetCaster():GetCooldownReduction()
 end
 
 function CDOTABaseAbility:SetCooldown(fCD)
@@ -1955,7 +1952,8 @@ function CDOTABaseAbility:ApplyAOE(eventTable)
 					if not unit:IsMagicImmune() or (unit:IsMagicImmune() and eventTable.magic_immune) then
 						if eventTable.modifier and unit:IsAlive() and not unit:HasModifier(eventTable.modifier) then
 							if self:GetClassname() == "ability_lua" then
-								unit:AddNewModifier( self:GetCaster(), self, eventTable.modifier, { duration = eventTable.duration } )
+								local modifier = unit:AddNewModifier( self:GetCaster(), self, eventTable.modifier, { duration = eventTable.duration } )
+								if eventTable.stacks then modifier:SetStackCount(eventTable.stacks) end
 							elseif self:GetClassname() == "ability_datadriven" then
 								self:ApplyDataDrivenModifier(self:GetCaster(), unit, eventTable.modifier , { duration = eventTable.duration })
 							end
@@ -2599,4 +2597,8 @@ function CDOTA_BaseNPC:AddBlessing( blessingName )
 	local blessing = self:AddNewModifier(self, nil, blessingName, {})
 	if blessing then blessing.isBlessing = true end
 	return blessing
+end
+
+function CDOTA_BaseNPC:HasActiveAbility( blessingName )
+	return self:GetCurrentActiveAbility() ~= nil or self:IsChanneling()
 end

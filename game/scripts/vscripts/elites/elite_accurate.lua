@@ -14,7 +14,7 @@ function modifier_elite_accurate:OnCreated()
 end
 
 function modifier_elite_accurate:CheckState()
-	return {[UNIT_CANNOT_MISS] = not self:GetParent():PassivesDisabled()}
+	return {[MODIFIER_STATE_CANNOT_MISS] = not self:GetParent():PassivesDisabled()}
 end
 
 function modifier_elite_accurate:GetPriority()

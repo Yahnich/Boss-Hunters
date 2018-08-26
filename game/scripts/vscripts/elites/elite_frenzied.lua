@@ -6,11 +6,11 @@ function elite_frenzied:OnSpellStart()
 	caster:AddNewModifier( caster, self, "modifier_elite_frenzied_buff", {duration = self:GetSpecialValueFor("duration")})
 end
 
-function elite_frenzied:GetIntriniscModifierName()
+function elite_frenzied:GetIntrinsicModifierName()
 	return "modifier_elite_frenzied"
 end
 
-modifier_elite_frenzied = class({})
+modifier_elite_frenzied = class(relicBaseClass)
 LinkLuaModifier("modifier_elite_frenzied", "elites/elite_frenzied", LUA_MODIFIER_MOTION_NONE)
 if IsServer() then
 	function modifier_elite_frenzied:OnCreated()
@@ -38,10 +38,14 @@ function modifier_elite_frenzied_buff:DeclareFunctions()
 	return {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE, MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT}
 end
 
-function modifier_elite_frenzied_buff:DeclareFunctions()
+function modifier_elite_frenzied_buff:GetModifierAttackSpeedBonus_Constant()
 	return self.as
 end
 
-function modifier_elite_frenzied_buff:DeclareFunctions()
+function modifier_elite_frenzied_buff:GetModifierMoveSpeedBonus_Percentage()
 	return self.ms
+end
+
+function modifier_elite_frenzied_buff:GetEffectName()
+	return	"particles/items2_fx/mask_of_madness.vpcf"
 end

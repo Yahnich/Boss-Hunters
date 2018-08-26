@@ -3,9 +3,13 @@ elite_fortified = class({})
 function elite_fortified:OnSpellStart()
 	local caster = self:GetCaster()
 	
+	ParticleManager:FireParticle("particles/units/heroes/hero_tidehunter/tidehunter_krakenshell_purge.vpcf", PATTACH_POINT_FOLLOW, caster)
 	caster:AddNewModifier(caster, self, "modifier_elite_fortified_buff", {duration = self:GetSpecialValueFor("duration")})
 end
 
+function elite_fortified:GetIntrinsicModifierName()
+	return "modifier_elite_fortified"
+end
 
 modifier_elite_fortified = class(relicBaseClass)
 LinkLuaModifier("modifier_elite_fortified", "elites/elite_fortified", LUA_MODIFIER_MOTION_NONE)
@@ -42,6 +46,10 @@ function modifier_elite_fortified_buff:GetModifierIncomingDamage_Percentage()
 	return self.reduction
 end
 
-function modifier_elite_fortified:GetModifierMoveSpeedBonus_Percentage
+function modifier_elite_fortified_buff:GetModifierMoveSpeedBonus_Percentage()
 	return self.slow
+end
+
+function modifier_elite_fortified_buff:GetEffectName()
+	return "particles/units/heroes/hero_tidehunter/tidehunter_gush_slow.vpcf"
 end

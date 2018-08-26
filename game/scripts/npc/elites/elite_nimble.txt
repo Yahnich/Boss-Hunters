@@ -1,88 +1,34 @@
-"elite_nimble"
+"DOTAAbilities"
 {
-	// General
-	//-------------------------------------------------------------------------------------------------------------
-	"BaseClass"						"ability_datadriven"
-	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-	"MaxLevel"						"1"
+	"elite_nimble"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"elites/elite_nimble"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"MaxLevel"						"1"
+		"AbilityCooldown"				"10"
 
-	// Time		
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityTextureName"			"phantom_assassin_blur"
-	
-	"precache"
-	{
-		"particle"					"particles/econ/courier/courier_onibi/courier_onibi_yellow_ambient_smoke_lvl21.vpcf"
-		"particle"					"particles/status_fx/status_effect_repel.vpcf"
-		"particle"					"particles/units/heroes/hero_faceless_void/faceless_void_backtrack.vpcf"
-	}
-	
-	// Special
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilitySpecial"
-	{
-		"01"
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityTextureName"			"phantom_assassin_blur"
+		
+		"precache"
 		{
-			"var_type"				"FIELD_INTEGER"
-			"chance"				"25"
+			"particle"					"particles/econ/courier/courier_onibi/courier_onibi_yellow_ambient_smoke_lvl21.vpcf"
+			"particle"					"particles/status_fx/status_effect_repel.vpcf"
+			"particle"					"particles/units/heroes/hero_faceless_void/faceless_void_backtrack.vpcf"
 		}
-	}
-	"Modifiers"
-	{
-		"modifier_backtrack_datadriven"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
 		{
-			"Passive"	"1"
-			"IsHidden"	"1"
-
-			"ThinkInterval"		"0.03"
-
-			"OnIntervalThink"
+			"01"
 			{
-				"RunScript"
-				{
-					"ScriptFile"	"lua_abilities/elite"
-					"Function"		"NimbleHealth"
-				}
-			}
-
-			"OnTakeDamage"
-			{
-				"Random"
-				{
-					"Chance"	"%chance"
-					"OnSuccess"
-					{
-						"FireEffect"
-						{
-							"EffectName"	"particles/units/heroes/hero_faceless_void/faceless_void_backtrack.vpcf"
-							"EffectAttachType"	"follow_origin"
-							"Target"		"CASTER"
-						}
-
-						"RunScript"
-						{
-							"ScriptFile"	"lua_abilities/elite"
-							"Function"		"NimbleHeal"
-						}
-					}
-				}
-			}
-		}
-		"acid_spray_fx"
-		{
-			"Passive"			"1"
-			"IsHidden"			"1"
-			"OnCreated"
-			{
-				"AttachEffect"
-				{
-					"Target"					"CASTER"
-					"EffectName"				"particles/elite_warning.vpcf"
-					"EffectAttachType"			"follow_overhead"
-					"EffectLifeDurationScale"	"1"
-					"EffectColorA"				"255 175 175"
-					"EffectAlphaScale"			"1"
-				}
+				"var_type"				"FIELD_INTEGER"
+				"duration"				"5"
 			}
 		}
 	}

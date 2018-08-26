@@ -18,17 +18,18 @@ if IsServer() then
 		if caster:PassivesDisabled() or not caster:IsAlive() then return end
 		local ability = self:GetAbility()
 		if not ability:IsFullyCastable() then return end
-		if #caster:FindUnitsInRadius( caster:GetAbsOrigin(), 800 ) <= 0 then return end
+		if #caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), 800 ) <= 0 then return end
 		
+		local duration = self:GetAbility():GetSpecialValueFor("duration")
 		EmitSoundOn("n_black_dragon.Fireball.Target", caster)
-		ability:StartCooldown( ability:GetCooldown(-1) )
+		ability:StartCooldown( duration * 2 )
 		
 		local startPos = caster:GetAbsOrigin()
 		local direction = caster:GetForwardVector()
 		local distance = self:GetSpecialValueFor("radius") * 0.95
 		
 		for i = 1, 6 do
-			CreateModifierThinker(caster, ability, "modifier_elite_burning_dummy", {Duration = self.duration}, startPos + direction * distance * i, caster:GetTeam(), false)
+			CreateModifierThinker(caster, ability, "modifier_elite_burning_dummy", {Duration = duration}, startPos + direction * distance * i, caster:GetTeam(), false)
 		end
 	end
 end
@@ -38,8 +39,10 @@ LinkLuaModifier("modifier_elite_burning_dummy", "elites/elite_burning", LUA_MODI
 
 function modifier_elite_burning_dummy:OnCreated()
 	self.radius = self:GetSpecialValueFor("radius")
+	print("created")
 	if IsServer() then
-		local  macropyre = ParticleManager:CreateParticle("particles/neutral_fx/black_dragon_fireball.vpcf", PATTACH_ABSORIGIN, self:GetParent())
+		local  macropyre = ParticleManager:CreateParticle("particles/neutral_fx/black_dragon_fireball.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetParent())
+		ParticleManager:SetParticleControl(macropyre, 0, self:GetParent():GetAbsOrigin())
 		ParticleManager:SetParticleControl(macropyre, 2, Vector(self:GetRemainingTime(),0,0))
 		self:AddEffect( macropyre )
 	end
