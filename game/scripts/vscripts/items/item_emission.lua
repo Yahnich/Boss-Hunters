@@ -83,8 +83,8 @@ end
 
 function modifier_emission_debuff:OnIntervalThink()
 	local statOwner = self:GetCaster()
-	if statOwner:GetOwnerEntity() then
-		statOwner = statOwner:GetOwnerEntity()
+	if not statOwner:IsRealHero() then
+		statOwner = PlayerResource:GetSelectedHeroEntity( statOwner:GetPlayerID() )
 	end
 	self.damage = self:GetAbility():GetSpecialValueFor("base_damage") + statOwner:GetPrimaryStatValue() * self:GetAbility():GetSpecialValueFor("damage") / 100
 	self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self.damage, {damage_type = DAMAGE_TYPE_MAGICAL})

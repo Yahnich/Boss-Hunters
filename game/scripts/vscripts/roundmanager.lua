@@ -240,6 +240,16 @@ function RoundManager:StartGame()
 		local boss = self.zones[self.currentZone][1][#self.zones[self.currentZone][1]]
 		CustomGameEventManager:Send_ServerToAllClients( "updateQuestBoss", { bossName = boss:GetEventName() } ) 
 	end
+	for nPlayerID = 0, DOTA_MAX_TEAM_PLAYERS-1 do
+		if PlayerResource:GetTeam( nPlayerID ) == DOTA_TEAM_GOODGUYS and PlayerResource:IsValidPlayerID( nPlayerID ) then
+			if PlayerResource:HasSelectedHero( nPlayerID ) then
+				local hero = PlayerResource:GetSelectedHeroEntity( nPlayerID )
+				if hero ~=nil then
+					RelicManager:RollEliteRelicsForPlayer( nPlayerID )
+				end
+			end
+		end
+	end
 	RoundManager:StartPrepTime()
 end
 

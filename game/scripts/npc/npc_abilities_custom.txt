@@ -48,6 +48,7 @@
 #base "elites/elite_overgrown.txt"
 #base "elites/elite_unbreakable.txt"
 #base "elites/elite_graverobber.txt"
+#base "elites/elite_tiny.txt"
 
 #base "heroes/hero_chen.txt"
 #base "heroes/hero_shadow_shaman.txt"

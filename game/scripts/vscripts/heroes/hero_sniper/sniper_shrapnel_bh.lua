@@ -77,7 +77,7 @@ function modifier_sniper_shrapnel_bh_slow:DeclareFunctions()
 end
 
 function modifier_sniper_shrapnel_bh_slow:GetModifierMoveSpeedBonus_Percentage()
-	return self:GetTalentSpecialValueFor("movespeed_slow")
+	return self:GetTalentSpecialValueFor("slow_movement_speed")
 end
 
 function modifier_sniper_shrapnel_bh_slow:IsDebuff()

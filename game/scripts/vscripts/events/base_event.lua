@@ -114,7 +114,7 @@ function BaseEvent:HandoutRewards(bWon)
 			if bWon then
 				if self:IsElite() and RoundManager:GetAscensions() < 1 then
 					RelicManager:RollEliteRelicsForPlayer(pID)
-				elseif self:IsBoss() then
+				elseif self:IsBoss() and RoundManager:GetAscensions() < 2 then
 					RelicManager:RollBossRelicsForPlayer(pID)
 				end
 			end

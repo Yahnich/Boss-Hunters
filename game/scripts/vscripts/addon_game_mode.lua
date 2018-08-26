@@ -56,8 +56,6 @@ LinkLuaModifier( "modifier_fear_generic", "libraries/modifiers/modifier_fear_gen
 LinkLuaModifier( "modifier_chill_generic", "libraries/modifiers/modifier_chill_generic.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_frozen_generic", "libraries/modifiers/modifier_frozen_generic.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier( "modifier_hidden_generic", "libraries/modifiers/modifier_hidden_generic.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier( "modifier_necrolyte_sadist_aura_reduction", "lua_abilities/heroes/modifiers/modifier_necrolyte_sadist_aura_reduction", LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "modifier_skeleton_king_reincarnation_cooldown", "lua_abilities/heroes/modifiers/modifier_skeleton_king_reincarnation_cooldown.lua", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_boss_attackspeed", "lua_abilities/heroes/modifiers/modifier_boss_attackspeed.lua", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_boss_damagedecrease", "lua_abilities/heroes/modifiers/modifier_boss_damagedecrease.lua", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_spawn_immunity", "libraries/modifiers/modifier_spawn_immunity.lua", LUA_MODIFIER_MOTION_NONE)
