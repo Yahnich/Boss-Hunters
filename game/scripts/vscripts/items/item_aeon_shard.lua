@@ -2,6 +2,7 @@ item_aeon_shard = class({})
 
 function item_aeon_shard:OnSpellStart()
 	self:GetCursorTarget():AddNewModifier(self:GetCaster(), self, "modifier_item_aeon_shard_consumed", {})
+	self:Destroy()
 end
 
 function item_aeon_shard:GetIntrinsicModifierName()
@@ -42,7 +43,6 @@ end
 function modifier_item_aeon_shard_consumed:OnCreated()
 	self.bonus_attack_speed = self:GetSpecialValueFor("consumed_attackspeed")
 	if IsServer() then
-		self:GetAbility():Destroy()
 		self:SetStackCount(1)
 	end
 end
