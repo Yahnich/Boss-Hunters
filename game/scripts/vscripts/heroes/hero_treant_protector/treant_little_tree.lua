@@ -6,18 +6,20 @@ function treant_little_tree:OnSpellStart()
 	
 	local duration = self:GetTalentSpecialValueFor("duration")
 	
-	self:CreateLittleTree(position)
-	if caster:HasTalent("special_bonus_unique_treant_happy_little_tree_2") then
-		local spread = caster:FindTalentValue("special_bonus_unique_treant_happy_little_tree_2", "radius")
-		for i = 1, caster:FindTalentValue("special_bonus_unique_treant_happy_little_tree_2") do
+	self:CreateLittleTree(position, duration)
+	if caster:HasTalent("special_bonus_unique_treant_little_tree_2") then
+		local spread = caster:FindTalentValue("special_bonus_unique_treant_little_tree_2", "radius")
+		for i = 1, caster:FindTalentValue("special_bonus_unique_treant_little_tree_2") do
 			local randPos = position + ActualRandomVector( spread, 125 )
-			self:CreateLittleTree(randPos)
+			self:CreateLittleTree(randPos, duration)
 		end
 	end
+	EmitSoundOnLocationWithCaster(position, "Hero_Treant.Eyes.Cast", caster )
 end
 
-function treant_little_tree:CreateLittleTree(position)
-	CreateModifierThinker(caster, self, "modifier_treant_little_tree_thinker", {Duration = duration}, target, caster:GetTeam(), false)
+function treant_little_tree:CreateLittleTree(position, duration)
+	local caster = self:GetCaster()
+	CreateModifierThinker(caster, self, "modifier_treant_little_tree_thinker", {Duration = duration}, position, caster:GetTeam(), false)
 	CreateTempTree(position, duration)
 	ResolveNPCPositions(position, 150)
 end
@@ -29,6 +31,8 @@ function modifier_treant_little_tree_thinker:OnCreated()
 	self.radius = self:GetTalentSpecialValueFor("aura_radius")
 	if IsServer() then
 		self:StartIntervalThink(0.1)
+		local FX = ParticleManager:CreateParticle("particles/units/heroes/hero_treant/treant_eyesintheforest.vpcf", PATTACH_ABSORIGIN, self:GetParent() )
+		ParticleManager:SetParticleControl( FX, 1, Vector(self.radius,self.radius,self.radius) )
 	end
 end
 
@@ -36,7 +40,7 @@ function modifier_treant_little_tree_thinker:OnIntervalThink()
 	local parent = self:GetParent()
 	local caster = self:GetCaster()
 	local ability = self:GetAbility()
-	if not GridNav:IsNearbyTree(self:GetParent(), 10, false) then
+	if not GridNav:IsNearbyTree( parent:GetAbsOrigin(), 10, false) then
         self:Destroy()
 		return
 	else
@@ -44,14 +48,16 @@ function modifier_treant_little_tree_thinker:OnIntervalThink()
 			if caster:IsSameTeam( unit ) then
 				local modifier = unit:FindModifierByName("modifier_treant_little_tree_buff")
 				if not modifier then
-					modifier = unit:AddNewModifierByName(caster, ability, "modifier_treant_little_tree_buff", {})
+					modifier = unit:AddNewModifier(caster, ability, "modifier_treant_little_tree_buff", {})
 				end
+				modifier:SetDuration( -1, true )
 				modifier:SetDuration( 0.5, false )
 			else
 				local modifier = unit:FindModifierByName("modifier_treant_little_tree_debuff")
 				if not modifier then
-					modifier = unit:AddNewModifierByName(caster, ability, "modifier_treant_little_tree_debuff", {})
+					modifier = unit:AddNewModifier(caster, ability, "modifier_treant_little_tree_debuff", {})
 				end
+				modifier:SetDuration( -1, true )
 				modifier:SetDuration( 0.5, false )
 			end
 		end

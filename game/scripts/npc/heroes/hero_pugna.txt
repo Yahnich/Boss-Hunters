@@ -97,7 +97,7 @@
 		{
 			"01"
 			{
-				"var_type"					"FIELD_INTEGER"
+				"var_type"					"FIELD_FLOAT"
 				"value"						"-0.9"
 			}
 			"02"
@@ -325,7 +325,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_pugna/pugna_power_vacuum"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"	
 		"AbilityTextureName"			"custom/pugna_power_vacuum"
 		"FightRecapLevel"				"1"
 		"InnateAbility"					"1"

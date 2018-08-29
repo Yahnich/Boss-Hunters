@@ -124,6 +124,7 @@
 #base "heroes/hero_enigma.txt"
 #base "heroes/hero_treant_protector.txt"
 #base "heroes/hero_pugna.txt"
+#base "heroes/hero_witch_doctor.txt"
 
 "DOTAAbilities"
 {

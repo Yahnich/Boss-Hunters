@@ -23,7 +23,7 @@ end
 
 --------------------------------------------------------------------------------
 
-LinkLuaModifier( "modifier_treant_great_protector", "lua_abilities/heroes/treant_protector", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_treant_great_protector", "heroes/hero_treant_protector/treant_great_protector", LUA_MODIFIER_MOTION_NONE )
 modifier_treant_great_protector = class({})
 
 --------------------------------------------------------------------------------
@@ -34,6 +34,8 @@ function modifier_treant_great_protector:OnCreated( kv )
 	self.bonus_strength = self:GetAbility():GetTalentSpecialValueFor( "bonus_strength" )
 	self.rootDur = self:GetTalentSpecialValueFor("root_duration")
 	self.chance = self:GetTalentSpecialValueFor("root_chance")
+	
+	self.armor = self:GetCaster():FindTalentValue("special_bonus_unique_treant_great_protector_1", "armor")
 	if IsServer() then
 		self.nHealTicks = 0
 		self:StartIntervalThink( 0.05 )
@@ -82,6 +84,7 @@ function modifier_treant_great_protector:DeclareFunctions()
 		MODIFIER_PROPERTY_MODEL_SCALE,
 		MODIFIER_PROPERTY_EXTRA_STRENGTH_BONUS,
 		MODIFIER_PROPERTY_MOVESPEED_LIMIT,
+		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS
 	}
 
 	return funcs
@@ -94,11 +97,13 @@ function modifier_treant_great_protector:OnAttackLanded( params )
 	if IsServer() then
 		local hTarget = params.target
 
-		if hTarget == nil or params.attacker ~= self:GetParent() or not self:RollPRNG( self.chance ) then
+		if hTarget == nil or params.attacker ~= self:GetParent() then
 			return 0
 		end
-		hTarget:AddNewModifier(params.attacker, self:GetAbility(), "modifier_treant_great_protector_root", {duration = self.rootDur})
-		EmitSoundOn( "Hero_Treant.Overgrowth.Target", hTarget )
+		if self:RollPRNG( self.chance ) then
+			hTarget:AddNewModifier(params.attacker, self:GetAbility(), "modifier_treant_great_protector_root", {duration = self.rootDur})
+			EmitSoundOn( "Hero_Treant.Overgrowth.Target", hTarget )
+		end
 	end
 end
 
@@ -122,7 +127,13 @@ end
 
 --------------------------------------------------------------------------------
 
-LinkLuaModifier( "modifier_treant_great_protector_root", "lua_abilities/heroes/treant_protector", LUA_MODIFIER_MOTION_NONE )
+function modifier_treant_great_protector:GetModifierPhysicalArmorBonus( params )
+	return self.armor
+end
+
+--------------------------------------------------------------------------------
+
+LinkLuaModifier( "modifier_treant_great_protector_root", "heroes/hero_treant_protector/treant_great_protector", LUA_MODIFIER_MOTION_NONE )
 modifier_treant_great_protector_root = class({})
 
 function modifier_treant_great_protector_root:CheckState()

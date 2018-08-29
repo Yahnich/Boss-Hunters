@@ -13,7 +13,7 @@ function pugna_lifedrain_bh:GetBehavior()
 		return DOTA_ABILITY_BEHAVIOR_NO_TARGET + baseFlags
 	else
 		if not self:GetCaster():HasTalent("special_bonus_unique_pugna_lifedrain_1") then
-			baseFlags = baseFlags + DOTA_ABILITY_BEHAVIOR_CHANNELED
+			baseFlags = baseFlags + DOTA_ABILITY_BEHAVIOR_CHANNELLED 
 		end
 		return DOTA_ABILITY_BEHAVIOR_UNIT_TARGET + baseFlags
 	end
@@ -37,7 +37,6 @@ end
 function pugna_lifedrain_bh:OnSpellStart()
 	local caster = self:GetCaster()
 	local hTarget = self:GetCursorTarget()
-	EmitSoundOn("Hero_Pugna.LifeDrain.Target", hTarget)
 	
 	if self.drain and not self.drain:IsNull() then
 		self.drain:Destroy()
@@ -62,17 +61,25 @@ function modifier_pugna_life_drain_bh:OnCreated()
 	self.breakBuffer = self:GetTalentSpecialValueFor("break_buffer")
 	self.tick = self:GetTalentSpecialValueFor("tick_rate")
 	
-	self.slow = self:GetCaster:FindTalentValue("special_bonus_unique_pugna_lifedrain_2")
+	self.slow = self:GetCaster():FindTalentValue("special_bonus_unique_pugna_lifedrain_2")
+	if self:GetCaster():IsSameTeam( self:GetParent() ) then self.slow = 0 end
 	if IsServer() then
-		ability:SetActivated(false)
 		self:StartIntervalThink( self.tick )
 		
 		local caster = self:GetCaster()
 		caster:AddNewModifier( caster, ability, "modifier_pugna_life_drain_bh_channel", { duration = self:GetRemainingTime() } )
 		
 		-- particles
-		if caster:IsSameTeam( parent ) then
+		local parent = self:GetParent()
+		EmitSoundOn("Hero_Pugna.LifeDrain.Target", parent)
+		if not caster:IsSameTeam( parent ) then
+			self.beamFX = ParticleManager:CreateParticle("particles/units/heroes/hero_pugna/pugna_life_drain.vpcf", PATTACH_POINT_FOLLOW, caster)
+			ParticleManager:SetParticleControlEnt(self.beamFX, 0, caster, PATTACH_POINT_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), true)
+			ParticleManager:SetParticleControlEnt(self.beamFX, 1, parent, PATTACH_POINT_FOLLOW, "attach_hitloc", parent:GetAbsOrigin(), true)
 		else
+			self.beamFX = ParticleManager:CreateParticle("particles/units/heroes/hero_pugna/pugna_life_drain_beam_give.vpcf", PATTACH_POINT_FOLLOW, caster)
+			ParticleManager:SetParticleControlEnt(self.beamFX, 0, caster, PATTACH_POINT_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), true)
+			ParticleManager:SetParticleControlEnt(self.beamFX, 1, parent, PATTACH_POINT_FOLLOW, "attach_hitloc", parent:GetAbsOrigin(), true)
 		end
 	end
 end
@@ -84,9 +91,9 @@ function modifier_pugna_life_drain_bh:OnRefresh()
 	self.breakBuffer = self:GetTalentSpecialValueFor("break_buffer")
 	self.tick = self:GetTalentSpecialValueFor("tick_rate")
 	
-	self.slow = self:GetCaster:FindTalentValue("special_bonus_unique_pugna_lifedrain_2")
+	self.slow = self:GetCaster():FindTalentValue("special_bonus_unique_pugna_lifedrain_2")
+	if self:GetCaster():IsSameTeam( self:GetParent() ) then self.slow = 0 end
 	if IsServer() then
-		ability:SetActivated(false)
 		self:StartIntervalThink( self.tick )
 		
 		local caster = self:GetCaster()
@@ -107,18 +114,31 @@ function modifier_pugna_life_drain_bh:OnIntervalThink()
 	
 	if caster:IsSameTeam( parent ) then
 		local damage = ability:DealDamage( caster, caster, self.drain * self.tick )
-		parent:HealEvent( damage, ability, caster )
+		if parent:GetHealth() < parent:GetMaxHealth() then
+			parent:HealEvent( damage, ability, caster )
+			ParticleManager:SetParticleControl( self.beamFX, 11, Vector(0,0,0) )
+		else
+			parent:GiveMana( damage )
+			ParticleManager:SetParticleControl( self.beamFX, 11, Vector(1,0,0) )
+		end
 	else
 		local damage = ability:DealDamage( caster, parent, self.drain * self.tick )
-		caster:HealEvent( damage, ability, caster )
+		if caster:GetHealth() < caster:GetMaxHealth() then
+			caster:HealEvent( damage, ability, caster )
+			ParticleManager:SetParticleControl( self.beamFX, 11, Vector(0,0,0) )
+		else
+			caster:GiveMana( damage )
+			ParticleManager:SetParticleControl( self.beamFX, 11, Vector(1,0,0) )
+		end
 	end
 end
 
 function modifier_pugna_life_drain_bh:OnDestroy()
 	self:GetAbility().drain = nil
 	if IsServer() then
-		self:GetAbility():SetActivated(true)
-		ParticleManager:ClearParticle( self.linkFX )
+		self:GetCaster():RemoveModifierByName( "modifier_pugna_life_drain_bh_channel" )
+		ParticleManager:ClearParticle( self.beamFX )
+		StopSoundOn("Hero_Pugna.LifeDrain.Target", parent)
 	end
 end
 
@@ -138,5 +158,5 @@ function modifier_pugna_life_drain_bh_channel:DeclareFunctions()
 end
 
 function modifier_pugna_life_drain_bh_channel:GetOverrideAnimation()
-	return ACT_THE_SUCK
+	return ACT_DOTA_CAST_ABILITY_4
 end

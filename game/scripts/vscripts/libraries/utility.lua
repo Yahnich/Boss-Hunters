@@ -1882,7 +1882,7 @@ function CDOTABaseAbility:FireTrackingProjectile(FX, target, speed, data, iAttac
         bIsAttack = false,
         bVisibleToEnemies = true,
         bReplaceExisting = false,
-        flExpireTime = internalData.duration or (GameRules:GetGameTime() + 10),
+        flExpireTime = internalData.duration,
 		bProvidesVision = provideVision,
 		iVisionRadius = vision or 100,
 		iVisionTeamNumber = self:GetCaster():GetTeamNumber(),

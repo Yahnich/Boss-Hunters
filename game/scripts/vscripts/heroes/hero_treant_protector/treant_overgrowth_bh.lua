@@ -2,7 +2,7 @@ treant_overgrowth_bh = class({})
 
 function treant_overgrowth_bh:GetBehavior()
 	if self:GetCaster():HasTalent("special_bonus_unique_treant_overgrowth_1") then
-		return DOTA_ABILITY_BEHAVIOR_UNIT_TARGET
+		return DOTA_ABILITY_BEHAVIOR_NO_TARGET
 	else
 		return self.BaseClass.GetBehavior(self)
 	end
@@ -11,6 +11,8 @@ end
 function treant_overgrowth_bh:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
+	
+	caster:EmitSound("Hero_Treant.Overgrowth.Cast")
 	
 	local duration = self:GetTalentSpecialValueFor("duration")
 	if target then
@@ -27,6 +29,8 @@ function treant_overgrowth_bh:ApplyOverGrowth(target, duration)
 	
 	local flDur = duration or self:GetTalentSpecialValueFor("duration")
 	target:AddNewModifier(caster, self, "modifier_treant_overgrowth_bh_root", {duration = duration})
+	ParticleManager:FireRopeParticle("particles/units/heroes/hero_treant/treant_overgrowth_trails.vpcf", PATTACH_POINT_FOLLOW, caster, target)
+	target:EmitSound("Hero_Treant.Overgrowth.Target")
 	
 	if caster:HasTalent("special_bonus_unique_treant_overgrowth_2") then
 		local seed = caster:FindAbilityByName("treant_leech_seed_bh")
@@ -56,4 +60,8 @@ LinkLuaModifier("modifier_treant_overgrowth_bh_root", "heroes/hero_treant_protec
 function modifier_treant_overgrowth_bh_root:CheckState()
 	return {[MODIFIER_STATE_ROOTED] = true,
 			[MODIFIER_STATE_DISARMED] = true}
+end
+
+function modifier_treant_overgrowth_bh_root:GetEffectName()
+	return "particles/units/heroes/hero_treant/treant_overgrowth_vines.vpcf"
 end

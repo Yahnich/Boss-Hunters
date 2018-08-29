@@ -4,17 +4,19 @@ function treant_living_armor_bh:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 	if not target then
-		target = caster:FindFriendlyUnitsInRadius( caster:GetAbsOrigin(), -1, {order = FIND_CLOSEST} )[1]
+		target = caster:FindFriendlyUnitsInRadius( self:GetCursorPosition(), -1, {order = FIND_CLOSEST} )[1]
 	end
 	if target then
 		self:ApplyLivingArmor(target)
 	end
+	caster:EmitSound("Hero_Treant.LivingArmor.Cast")
 end
 
 function treant_living_armor_bh:ApplyLivingArmor(target, duration)
 	local caster = self:GetCaster()
 	local bDur = duration or self:GetTalentSpecialValueFor("duration")
 	target:AddNewModifier( caster, self, "modifier_treant_living_armor_bh", {duration = bDur})
+	target:EmitSound("Hero_Treant.LivingArmor.Target")
 end
 
 modifier_treant_living_armor_bh = class({})
@@ -28,6 +30,12 @@ function modifier_treant_living_armor_bh:OnCreated()
 	self.healAmp = self:GetCaster():FindTalentValue("special_bonus_unique_treant_living_armor_2")
 	if IsServer() then
 		self:SetStackCount( self.instances )
+		
+		local target = self:GetParent()
+		local treeFX = ParticleManager:CreateParticle("particles/units/heroes/hero_treant/treant_livingarmor.vpcf", PATTACH_POINT_FOLLOW, target)
+		ParticleManager:SetParticleControlEnt(treeFX, 0, target, PATTACH_POINT_FOLLOW, "attach_feet", target:GetAbsOrigin(), true)
+		ParticleManager:SetParticleControlEnt(treeFX, 1, target, PATTACH_POINT_FOLLOW, "attach_feet", target:GetAbsOrigin(), true)
+		self:AddEffect(treeFX)
 	end
 end
 
@@ -59,9 +67,9 @@ function modifier_treant_living_armor_bh:GetModifierConstantHealthRegen()
 end
 
 function modifier_treant_living_armor_bh:GetModifierPhysicalArmorBonus()
-	return self.regen
+	return self.armor
 end
 
 function modifier_treant_living_armor_bh:GetModifierHealAmplify_Percentage()
-	return self.regen
+	return self.healAmp
 end

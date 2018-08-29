@@ -67,7 +67,7 @@ function witch_doctor_death_ward_bh:CreateBounceAttack(originalTarget, extraData
 	EmitSoundOn("Hero_Jakiro.Attack" ,originalTarget)
 end
 
-LinkLuaModifier("modifier_death_ward_handling", "lua_abilities/heroes/witch_doctor", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_death_ward_handling", "heroes/hero_witch_doctor/witch_doctor_death_ward_bh", LUA_MODIFIER_MOTION_NONE)
 modifier_death_ward_handling = class({})
 
 function modifier_death_ward_handling:OnCreated()
@@ -107,8 +107,8 @@ end
 
 function modifier_death_ward_handling:OnDestroy()
 	if IsServer() then
-		StopSoundEvent("Hero_WitchDoctor.Death_WardBuild", self.death_ward)
-		UTIL_Remove(self.death_ward)	
+		StopSoundEvent("Hero_WitchDoctor.Death_WardBuild", self:GetParent() )
+		UTIL_Remove( self:GetParent() )	
 	end
 end
 

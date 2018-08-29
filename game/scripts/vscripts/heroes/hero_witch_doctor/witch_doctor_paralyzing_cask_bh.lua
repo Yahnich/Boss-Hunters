@@ -1,6 +1,6 @@
-witch_doctor_paralyzing_cask_ebf = class({})
+witch_doctor_paralyzing_cask_bh = class({})
 
-function witch_doctor_paralyzing_cask_ebf:OnSpellStart()
+function witch_doctor_paralyzing_cask_bh:OnSpellStart()
 	local hTarget = self:GetCursorTarget()
 	local projectile = {
 			Target = hTarget,
@@ -17,7 +17,7 @@ function witch_doctor_paralyzing_cask_ebf:OnSpellStart()
 	ProjectileManager:CreateTrackingProjectile(projectile)
 end
 
-function witch_doctor_paralyzing_cask_ebf:OnProjectileHit_ExtraData(target, vLocation, extraData)
+function witch_doctor_paralyzing_cask_bh:OnProjectileHit_ExtraData(target, vLocation, extraData)
 	EmitSoundOn("Hero_WitchDoctor.Paralyzing_Cask_Bounce", target)
 	local bounce_delay  = self:GetSpecialValueFor("bounce_delay")
 	local bounce_range = self:GetSpecialValueFor("bounce_range")

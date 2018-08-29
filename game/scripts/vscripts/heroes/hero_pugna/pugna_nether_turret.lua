@@ -50,14 +50,12 @@ function modifier_pugna_nether_turret_thinker:OnAbilityStart(params)
 	if IsServer() then
 		if params and params.unit and not params.unit:IsNull() then
 			local ward = self:GetParent()
-			if params.unit:GetTeam() ~= ward:GetTeam() and CalculateDistance( params.unit, ward ) < self.radius then
-				local attack = ParticleManager:CreateParticle("particles/units/heroes/hero_pugna/pugna_ward_attack.vpcf", PATTACH_ABSORIGIN_FOLLOW, ward)
-				ParticleManager:SetParticleControl(attack, 1, params.unit:GetAbsOrigin())
-				ParticleManager:ReleaseParticleIndex(attack)
+			if params.unit:GetTeam() ~= ward:GetTeam() and CalculateDistance( params.unit, ward ) <= self.radius then
+				ParticleManager:FireRopeParticle("particles/units/heroes/hero_pugna/pugna_ward_attack.vpcf", PATTACH_ABSORIGIN_FOLLOW, params.attacker, ward)
 				
 				params.unit:EmitSound("Hero_Pugna.NetherWard.Target")
 				ward:EmitSound("Hero_Pugna.NetherWard.Attack")
-				ApplyDamage({ victim = params.unit, attacker = self:GetCaster(), damage = params.damage*self.dmg_mult, damage_type = DAMAGE_TYPE_MAGICAL, ability = self:GetAbility() })
+				ApplyDamage({ victim = params.unit, attacker = self:GetCaster(), damage = self:GetCaster():GetIntellect()*self.dmg_mult, damage_type = DAMAGE_TYPE_MAGICAL, ability = self:GetAbility() })
 			end
 		end
 	end
@@ -65,16 +63,15 @@ end
 
 function modifier_pugna_nether_turret_thinker:OnAttackStart(params)
 	if IsServer() and self.attackTalent then
-		if params and params.unit and not params.unit:IsNull() then
+		if params and params.attacker and not params.attacker:IsNull() then
 			local ward = self:GetParent()
-			if params.unit:GetTeam() ~= ward:GetTeam() and CalculateDistance( params.unit, ward ) < self.radius then
-				local attack = ParticleManager:CreateParticle("particles/units/heroes/hero_pugna/pugna_ward_attack.vpcf", PATTACH_ABSORIGIN_FOLLOW, ward)
-				ParticleManager:SetParticleControl(attack, 1, params.unit:GetAbsOrigin())
-				ParticleManager:ReleaseParticleIndex(attack)
+			if params.attacker:GetTeam() ~= ward:GetTeam() and CalculateDistance( params.attacker, ward ) <= self.radius then
+				ParticleManager:FireRopeParticle("particles/units/heroes/hero_pugna/pugna_ward_attack.vpcf", PATTACH_ABSORIGIN_FOLLOW, params.attacker, ward)
 				
-				params.unit:EmitSound("Hero_Pugna.NetherWard.Target")
+				params.attacker:EmitSound("Hero_Pugna.NetherWard.Target")
 				ward:EmitSound("Hero_Pugna.NetherWard.Attack")
-				ApplyDamage({ victim = params.unit, attacker = self:GetCaster(), damage = params.damage*self.dmg_mult*self.attackTalentValue, damage_type = DAMAGE_TYPE_MAGICAL, ability = self:GetAbility() })
+				
+				ApplyDamage({ victim = params.attacker, attacker = self:GetCaster(), damage = self:GetCaster():GetIntellect()*self.dmg_mult*self.attackTalentValue, damage_type = DAMAGE_TYPE_MAGICAL, ability = self:GetAbility() })
 			end
 		end
 	end
