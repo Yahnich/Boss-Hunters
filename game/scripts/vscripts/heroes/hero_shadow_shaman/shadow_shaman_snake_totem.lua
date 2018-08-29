@@ -11,6 +11,7 @@ function shadow_shaman_snake_totem:OnSpellStart()
 		ward:SetMaxHealth( health )
 		ward:SetHealth( health )
 		ward:SetBaseAttackTime( 0.1 )
+		ward:SetModelScale( 0.9 + self:GetLevel/10 )
 	end
 end
 

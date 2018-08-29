@@ -107,6 +107,206 @@
 		}
 	}
 	//=================================================================================
+	// Creature: Boss 1
+	//=================================================================================
+	"npc_dota_boss_wolf"
+	{										
+		// General
+		//----------------------------------------------------------------
+		"Model"						"models/creeps/neutral_creeps/n_creep_kobold/kobold_c/n_creep_kobold_frost.vmdl"	// Model.
+		"BaseClass"					"npc_dota_creature"
+		"SoundSet"					"n_creep_Melee"
+		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
+		"Level"						"1"
+		"ModelScale" 				"1.2"
+		"IsAncient"					"0"
+		"IsUndead"					"1"
+		"IsWild"					"1"
+		"vscripts"					"ai/ai_wolf.lua"
+		
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_creeps.vsndevts"
+			"model"	"models/creeps/neutral_creeps/n_creep_kobold/kobold_c/n_creep_kobold_frost.vmdl"
+		}
+	
+		// Abilities
+		//----------------------------------------------------------------
+		"AbilityLayout"				"6"
+		"Ability1"					"boss_wolves_critical"			// Ability 1
+		"Ability2"					"bosS_wolves_leap"			// Ability 2
+	
+		// Armor
+		//----------------------------------------------------------------
+		"ArmorPhysical"				"2"			// Physical protection.
+	
+		// Attack
+		//----------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"			"60"		// Damage range min.
+		"AttackDamageMax"			"80"		// Damage range max.	
+		"AttackRate"				"4.5"		// Speed of attack.
+		"AttackAnimationPoint"		"0.38"		// Normalized time in animation cycle to attack.
+		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
+		"AttackRange"				"150"		// Range within a target can be attacked.
+		"ProjectileModel"			""			// Particle system model for projectile.
+		"ProjectileSpeed"			"0"			// Speed of projectile.		   
+	
+		// Bounds
+		//----------------------------------------------------------------
+		"RingRadius"				"40"
+		"HealthBarOffset"			"200"
+		"BoundsHullName"			"DOTA_HULL_SIZE_REGULAR"
+	
+		// Bounty
+		//----------------------------------------------------------------
+		"BountyXP"					"0"		// Experience earn.
+		"BountyGoldMin"				"0"		// Gold earned min.
+		"BountyGoldMax"				"0"		// Gold earned max.
+	
+		// Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"250"		// Speed.
+	
+		// Status
+		//----------------------------------------------------------------
+		"StatusHealth"				"1500"		// Base health.
+		"StatusHealthRegen"			"10"		// Health regeneration rate.
+		"StatusMana"				"0"			// Base mana.
+		"StatusManaRegen"			"0.0"		// Mana regeneration rate.		 
+		
+		// Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
+		"VisionNighttimeRange"		"1200"		// Range of vision at night time.
+	
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"					"DOTA_TEAM_BADGUYS"							// Team name.
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+	
+		
+		// Creature Data
+		//----------------------------------------------------------------------------------------------------------------------
+		"Creature"
+		{
+			//"CanRespawn"				"0"
+			
+			"DisableClumpingBehavior"   "0"
+			"CanRespawn"				"0"
+			"DefaultState"				"Invade"
+			"States"
+			{
+				"Invade"
+				{
+					"Name"				"Invade"
+					"Aggression"		"0.0"
+					"Avoidance"			"0.0"
+					"Support"			"0.0"
+				}
+			}
+		}
+	}
+	//=================================================================================
+	// Creature: Boss 1
+	//=================================================================================
+	"npc_dota_boss_alpha_wolf"
+	{										
+		// General
+		//----------------------------------------------------------------
+		"Model"						"models/creeps/neutral_creeps/n_creep_kobold/kobold_c/n_creep_kobold_frost.vmdl"	// Model.
+		"BaseClass"					"npc_dota_creature"
+		"SoundSet"					"n_creep_Melee"
+		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
+		"Level"						"1"
+		"ModelScale" 				"1.5"
+		"IsAncient"					"0"
+		"IsWild"					"1"
+		"vscripts"					"ai/ai_alpha_wolf.lua"
+		
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_creeps.vsndevts"
+			"model"	"models/creeps/neutral_creeps/n_creep_kobold/kobold_c/n_creep_kobold_frost.vmdl"
+		}
+	
+		// Abilities
+		//----------------------------------------------------------------
+		"AbilityLayout"				"6"
+		"Ability1"					"boss_wolves_critical"			// Ability 1
+		"Ability2"					"boss_wolves_leap"			// Ability 2
+		"Ability3"					"boss_alpha_wolf_leap"
+		"Ability4"					"boss_alpha_wolf_aura"
+	
+		// Armor
+		//----------------------------------------------------------------
+		"ArmorPhysical"				"8"			// Physical protection.
+		"MagicalResistance"			"25"
+	
+		// Attack
+		//----------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"			"80"		// Damage range min.
+		"AttackDamageMax"			"120"		// Damage range max.	
+		"AttackRate"				"4.5"		// Speed of attack.
+		"AttackAnimationPoint"		"0.38"		// Normalized time in animation cycle to attack.
+		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
+		"AttackRange"				"150"		// Range within a target can be attacked.
+		"ProjectileModel"			""			// Particle system model for projectile.
+		"ProjectileSpeed"			"0"			// Speed of projectile.		   
+	
+		// Bounds
+		//----------------------------------------------------------------
+		"RingRadius"				"40"
+		"HealthBarOffset"			"200"
+		"BoundsHullName"			"DOTA_HULL_SIZE_REGULAR"
+	
+		// Bounty
+		//----------------------------------------------------------------
+		"BountyXP"					"0"		// Experience earn.
+		"BountyGoldMin"				"0"		// Gold earned min.
+		"BountyGoldMax"				"0"		// Gold earned max.
+	
+		// Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"250"		// Speed.
+		"MovementTurnRate"			"0.25"
+	
+		// Status
+		//----------------------------------------------------------------
+		"StatusHealth"				"2500"		// Base health.
+		"StatusHealthRegen"			"10"		// Health regeneration rate.
+		"StatusMana"				"0"			// Base mana.
+		"StatusManaRegen"			"0.0"		// Mana regeneration rate.		 
+		
+		// Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
+		"VisionNighttimeRange"		"1200"		// Range of vision at night time.
+	
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"					"DOTA_TEAM_BADGUYS"							// Team name.
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+	
+		
+		// Creature Data
+		//----------------------------------------------------------------------------------------------------------------------
+		"Creature"
+		{
+			//"CanRespawn"				"0"
+			
+			"DisableClumpingBehavior"   "0"
+			"CanRespawn"				"0"
+		}
+	}
+	//=================================================================================
 	// Creature: "Mini" Roshan
 	//=================================================================================
 	"npc_dota_boss10"
@@ -8557,8 +8757,8 @@
 		}
 	}
 	//=================================================================================
-// Lycan Wolves
-//=================================================================================
+	// Lycan Wolves
+	//=================================================================================
 	"npc_dota_lycan_wolf1"
 	{										
 		// General

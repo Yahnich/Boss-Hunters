@@ -1,0 +1,486 @@
+"DOTAAbilities"
+{	
+	"treant_happy_little_tree"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"AbilityTextureName"			"custom/treant_happy_little_tree"
+		"ScriptFile"					"heroes/hero_treant_protector/treant_great_protector"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+		"FightRecapLevel"				"1"
+		
+		"MaxLevel"						"7"
+	
+		"precache"
+		{
+			"particle"	"particles/items_fx/ironwood_tree.vpcf"
+		}
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"750"
+		"AbilityCastPoint"				"0.2"
+		"AbilityCooldown"				"20"
+		"AbilityThreat"					"3.5"
+		"AbilityManaCost"				"120"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"aura_radius"				"750"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"leech"							"30 40 50 60 70 80 90"
+				"LinkedSpecialBonus"			"special_bonus_unique_treant_happy_little_tree_1"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"heal"							"15 20 25 30 35 40 45"
+				"LinkedSpecialBonus"			"special_bonus_unique_treant_happy_little_tree_1"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"duration"					"20"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_treant_happy_little_tree_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"2"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_treant_happy_little_tree_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"value"						"5"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"radius"					"500"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Treant Protector: Overgrowth
+	//=================================================================================================================
+	"treant_overgrowth_bh"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"AbilityTextureName"			"treant_overgrowth"
+		"ScriptFile"					"heroes/hero_treant_protector/treant_overgrowth_bh"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"		
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"		
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"AbilitySound"					"Hero_Treant.Overgrowth.Cast"
+		"MaxLevel"						"7"
+		
+		"AbilityCastPoint"				"0.5 0.5 0.5 0.5"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_5"
+
+		"FightRecapLevel"				"2"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"20 18 16 14 12 10 8"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"150 175 200 225 250 275 300"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"duration"						"2.0 2.5 3.0 3.5 4.0 4.5 5"
+			}	
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_treant_overgrowth_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"1"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_treant_overgrowth_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"value"						"1"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Treant Protector: Living Armor
+	//=================================================================================================================
+	"treant_living_armor_bh"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"AbilityTextureName"			"treant_living_armor"
+		"ScriptFile"					"heroes/hero_treant_protector/treant_living_armor_bh"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"					
+		"SpellImmunityType"				"SPELL_IMMUNITY_ALLIES_YES"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"AbilitySound"					"Hero_Treant.LivingArmor.Cast"
+
+		"AbilityCastRange"				"0"
+		"AbilityCastPoint"				"0.5 0.5 0.5 0.5"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"7"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"12"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"50"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_count"			"4 5 6 7 8 9 10"
+				"LinkedSpecialBonus"	"special_bonus_unique_treant"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"health_regen"			"4 7 10 13 16 19 22"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_block"			"60 65 70 75 80 85 90"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"30.0"
+			}
+
+		}
+		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_treant_living_armor_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"8"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_treant_living_armor_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"value"						"25"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Treant Protector: Leech Seed
+	//=================================================================================================================
+	"treant_leech_seed_bh"
+	{
+		"BaseClass"						"ability_lua"
+		"AbilityTextureName"			"treant_leech_seed"
+		"ScriptFile"					"heroes/hero_treant_protector/treant_leech_seed_bh"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"	
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"AbilitySound"					"Hero_Treant.LeechSeed.Cast"
+		"MaxLevel"						"1"
+
+		"AbilityCastRange"				"350"
+		"AbilityCastPoint"				"0.5 0.5 0.5 0.5"
+		"FightRecapLevel"				"1"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"8"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"80 95 110 125 140 155 170"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"leech_heal"					"40"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"leech_damage"					"40"
+			}		
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"movement_slow"					"-40"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"radius"						"500"
+			}
+			"05"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"duration"						"4.5"
+			}
+			"06"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"projectile_speed"				"400"
+			}
+		}
+		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_2"
+	}
+	//=================================================================================================================
+	// Treant Protector: Great Protector
+	//=================================================================================================================
+	"treant_great_protector"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"AbilityTextureName"			"treant_natures_guise"
+		"ScriptFile"					"heroes/hero_treant_protector/treant_great_protector"
+	
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"		
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		
+		"HasScepterUpgrade"				"1"
+		"MaxLevel"						"6"
+		
+		"AbilityCastPoint"				"0.0"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"60"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"225 275 325 375 425 475"
+		
+		"precache"
+		{
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_treant.vsndevts"
+			"particle"			"particles/units/heroes/hero_lone_druid/lone_druid_bear_entangle.vpcf"
+			"particle"			"particles/units/heroes/hero_treant/treant_overgrowth_cast.vpcf"
+		}
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"duration"						"20"
+			}		
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"bonus_strength"				"35 70 105 140 175 220"
+				"LinkedSpecialBonus"			"special_bonus_unique_treant_great_protector_1"
+			}			
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"move_speed"					"150"
+				"LinkedSpecialBonus"			"special_bonus_unique_treant_great_protector_2"
+			}	
+			"04"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"model_scale"					"40 50 60 70 80 90 100"
+			}	
+			"05"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"root_duration"					"3.5"
+			}
+			"06"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"root_chance"					"15"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_treant_great_protector_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"30"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"armor"						"20"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_treant_great_protector_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"value"						"150"
+			}
+		}
+	}
+}

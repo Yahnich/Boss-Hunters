@@ -438,29 +438,27 @@ function CHoldoutGameMode:FilterHeal( filterTable )
 	if source_index then source = EntIndexToHScript( source_index ) end
 	
 	-- if no caster then source is regen
-	if source then
-		local params = {healer = healer, target = target, heal = heal, ability = source}
-		healFactorSelf = 1
-		healFactorAllied = 1
-		if target then
-			for _, modifier in ipairs( target:FindAllModifiers() ) do
-				if modifier.GetModifierHealAmplify_Percentage then
-					healFactorSelf = healFactorSelf + math.max(0, (modifier:GetModifierHealAmplify_Percentage( params ) or 0 )/100)
-				end
-			end
-			if RoundManager:GetAscensions() >= 3 then
-				healFactorSelf = math.max(0, healFactorSelf - 0.75)
+	local params = {healer = healer, target = target, heal = heal, ability = source}
+	healFactorSelf = 1
+	healFactorAllied = 1
+	if target then
+		for _, modifier in ipairs( target:FindAllModifiers() ) do
+			if modifier.GetModifierHealAmplify_Percentage then
+				healFactorSelf = healFactorSelf + (modifier:GetModifierHealAmplify_Percentage( params ) or 0 )/100
 			end
 		end
-		if healer and healer ~= target then
-			for _, modifier in ipairs( healer:FindAllModifiers() ) do
-				if modifier.GetModifierHealAmplify_Percentage then
-					healFactorAllied = healFactorAllied + math.max(0, ( modifier:GetModifierHealAmplify_Percentage( params ) or 0 )/100)
-				end
+		if RoundManager:GetAscensions() >= 3 then
+			healFactorSelf = healFactorSelf - 0.75
+		end
+	end
+	if healer and healer ~= target then
+		for _, modifier in ipairs( healer:FindAllModifiers() ) do
+			if modifier.GetModifierHealAmplify_Percentage then
+				healFactorAllied = healFactorAllied + ( modifier:GetModifierHealAmplify_Percentage( params ) or 0 )/100
 			end
-			if RoundManager:GetAscensions() >= 3 then
-				healFactorAllied = math.max(0, healFactorAllied - 0.75)
-			end
+		end
+		if RoundManager:GetAscensions() >= 3 then
+			healFactorAllied = healFactorAllied - 0.75
 		end
 	end
 	
@@ -1107,7 +1105,7 @@ function CDOTA_PlayerResource:SortThreat()
 	end
 end
 
-function CHoldoutGameMode:SpawnTestElites(elite, bossname, amount)
+function CHoldoutGameMode:SpawnTestElites(elite, amount, bossname)
 	if IsInToolsMode() or IsCheatMode() then
 		local spawns = 1
 		if amount then
@@ -1118,7 +1116,7 @@ function CHoldoutGameMode:SpawnTestElites(elite, bossname, amount)
 			spawnName = "npc_dota_treasure"
 		end
 		for i = 1, spawns do
-			local spawnLoc = Vector(0,0)
+			local spawnLoc = Vector(900,300)
 			PrecacheUnitByNameAsync( spawnName, function()
 				local entUnit = CreateUnitByName( spawnName, spawnLoc, true, nil, nil, DOTA_TEAM_BADGUYS )
 				if elite then
@@ -1126,7 +1124,6 @@ function CHoldoutGameMode:SpawnTestElites(elite, bossname, amount)
 					local nParticle = ParticleManager:CreateParticle( "particles/econ/courier/courier_onibi/courier_onibi_yellow_ambient_smoke_lvl21.vpcf", PATTACH_ABSORIGIN_FOLLOW, entUnit )
 					ParticleManager:ReleaseParticleIndex( nParticle )
 					entUnit:SetModelScale(entUnit:GetModelScale()*1.5)
-					entUnit:SetControllableByPlayer(Convars:GetDOTACommandClient():GetPlayerID(), true)
 				end
 			end)
 		end

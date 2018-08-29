@@ -398,7 +398,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"passive_cooldown"		"2"
+				"passive_cooldown"		"2.5"
 			}
 			"02"
 			{

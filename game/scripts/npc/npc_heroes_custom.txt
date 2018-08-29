@@ -1310,19 +1310,20 @@
 	"npc_dota_hero_pugna_ebf"
 	{
 		"override_hero"			"npc_dota_hero_pugna"
-		"Ability2"				"pugna_decrepify_ebf"
+		"Ability1"				"pugna_nether_blast_bh
+		"Ability2"				"pugna_decrepify_bh
 		"Ability3"				"pugna_nether_turret"
-		"Ability4"				"pugna_lifedrain_end"
-		"Ability6"				"pugna_lifedrain_ebf"
+		"Ability4"				"pugna_power_vacuum"
+		"Ability6"				"pugna_lifedrain_bh"
 		
-		"Ability10"		"special_bonus_movement_speed_25"
-		"Ability11"		"special_bonus_hp_225"
-		"Ability12"		"special_bonus_unique_pugna_4"
-		"Ability13"		"special_bonus_cooldown_reduction_15"
-		"Ability14"		"special_bonus_unique_pugna_1"
-		"Ability15"		"special_bonus_unique_pugna_5"
-		"Ability16"		"special_bonus_unique_pugna_2"
-		"Ability17"		"special_bonus_unique_pugna_3"
+		"Ability10"				"special_bonus_unique_pugna_nether_blast_1"
+		"Ability11"				"special_bonus_unique_pugna_nether_blast_2"
+		"Ability12"				"special_bonus_unique_pugna_decrepify_1"
+		"Ability13"				"special_bonus_unique_pugna_decrepify_2"
+		"Ability14"				"special_bonus_unique_pugna_nether_turret_1"
+		"Ability15"				"special_bonus_unique_pugna_nether_turret_2"
+		"Ability16"				"special_bonus_unique_pugna_lifedrain_1"
+		"Ability17"				"special_bonus_unique_pugna_lifedrain_2"
 	}
 	//=================================================================================================================
 	// HERO: Storm
@@ -1813,17 +1814,20 @@
 	{
 		"override_hero"				"npc_dota_hero_treant"
 		
-		"Ability1"					"treant_happy_little_tree"
+		"Ability1"					"treant_little_tree"
+		"Ability2"					"treant_overgrowth_bh"
+		"Ability3"					"treant_living_armor_bh"
+		"Ability4"					"treant_leech_seed_bh"
 		"Ability6"					"treant_great_protector"
 	
-		"Ability10"		"special_bonus_mp_125"
-		"Ability11"		"special_bonus_mp_regen_4"
-		"Ability12"		"special_bonus_attack_damage_90"
-		"Ability13"		"special_bonus_cooldown_reduction_20"
-		"Ability14"		"special_bonus_unique_treant_4"
-		"Ability15"		"special_bonus_unique_treant_2"
-		"Ability16"		"special_bonus_unique_treant"
-		"Ability17"		"special_bonus_unique_treant_5"
+		"Ability10"		"special_bonus_unique_treant_little_tree_1"
+		"Ability11"		"special_bonus_unique_treant_little_tree_2"
+		"Ability12"		"special_bonus_unique_treant_overgrowth_1"
+		"Ability13"		"special_bonus_unique_treant_overgrowth_2"
+		"Ability14"		"special_bonus_unique_treant_living_armor_1"
+		"Ability15"		"special_bonus_unique_treant_living_armor_2"
+		"Ability16"		"special_bonus_unique_treant_great_protector_1"
+		"Ability17"		"special_bonus_unique_treant_great_protector_2"
 	}
 	//=================================================================================================================
 	// HERO: Troll Warlord
@@ -2061,18 +2065,19 @@
 	"npc_dota_hero_witch_doctor_ebf"
 	{
 		"override_hero"			"npc_dota_hero_witch_doctor"
-		"Ability1"				"witch_doctor_paralyzing_cask_ebf"
-		"Ability2"				"witch_doctor_voodoo_restoration_ebf"
-		"Ability6"				"witch_doctor_death_ward_ebf"
+		"Ability1"				"witch_doctor_paralyzing_cask_bh"
+		"Ability2"				"witch_doctor_voodoo_restoration_bh"
+		"Ability3"				"witch_doctor_maledict_bh"
+		"Ability6"				"witch_doctor_death_ward_bh"
 		
-		"Ability10"		"special_bonus_attack_damage_75"
-		"Ability11"		"special_bonus_armor_5"
-		"Ability12"		"special_bonus_unique_witch_doctor_3"
-		"Ability13"		"special_bonus_intelligence_15"
-		"Ability14"		"special_bonus_unique_witch_doctor_1"
-		"Ability15"		"special_bonus_unique_witch_doctor_4"
-		"Ability16"		"special_bonus_unique_witch_doctor_2"
-		"Ability17"		"special_bonus_unique_witch_doctor_5"
+		"Ability10"				"special_bonus_unique_witch_doctor_paralyzing_cask_1"
+		"Ability11"				"special_bonus_unique_witch_doctor_paralyzing_cask_2"
+		"Ability12"				"special_bonus_unique_witch_doctor_voodoo_restoration_1"
+		"Ability13"				"special_bonus_unique_witch_doctor_voodoo_restoration_2"
+		"Ability14"				"special_bonus_unique_witch_doctor_maledict_1"
+		"Ability15"				"special_bonus_unique_witch_doctor_maledict_2"
+		"Ability16"				"special_bonus_unique_witch_doctor_death_ward_1"
+		"Ability17"				"special_bonus_unique_witch_doctor_death_ward_2"
 	}
 	"npc_dota_hero_zuus_ebf"
 	{

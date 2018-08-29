@@ -173,7 +173,7 @@ function CDOTA_BaseNPC:IsBeingAttacked()
 	return false
 end
 
-function CDOTA_BaseNPC:PerformAbilityAttack(target, bProcs, ability, flBonusDamage, bDamagePct)
+function CDOTA_BaseNPC:PerformAbilityAttack(target, bProcs, ability, flBonusDamage, bDamagePct, bNeverMiss)
 	self.autoAttackFromAbilityState = {} -- basically the same as setting it to true
 	self.autoAttackFromAbilityState.ability = ability
 
@@ -184,7 +184,7 @@ function CDOTA_BaseNPC:PerformAbilityAttack(target, bProcs, ability, flBonusDama
 			self:AddNewModifier(caster, nil, "modifier_generic_attack_bonus", {damage = flBonusDamage})
 		end
 	end
-	self:PerformAttack(target,bProcs,bProcs,true,false,false,false,true)
+	self:PerformAttack(target,bProcs,bProcs,true,false,false,false,bNeverMiss or true)
 	self.autoAttackFromAbilityState = nil
 
 	self:RemoveModifierByName("modifier_generic_attack_bonus")
@@ -1813,9 +1813,8 @@ function CDOTA_Modifier_Lua:AddHeroEffect(id)
 end
 
 function CDOTA_BaseNPC:FindRandomEnemyInRadius(position, radius, data)
-	for _, unit in ipairs(self:FindEnemyUnitsInRadius(position, radius, data)) do
-		return unit
-	end
+	local enemies = self:FindEnemyUnitsInRadius(position, radius, data)
+	return enemies[RandomInt(1, #enemies)]
 end
 
 function CDOTA_BaseNPC:Dispel(hCaster, bHard)
@@ -1991,14 +1990,6 @@ end
 
 function get_core_cdr(caster)
     return get_octarine_multiplier(caster)
-end
-
-function CDOTAGamerules:GetMaxRound()
-	return GameRules.maxRounds
-end
-
-function CDOTAGamerules:GetCurrentRound()
-	return GameRules._roundnumber
 end
 
 function ApplyKnockback( keys )
@@ -2302,14 +2293,6 @@ function CDOTA_BaseNPC:RemoveKnockBack()
 	end
 end
 
-function CDOTABaseAbility:CD_pure()
-    local CD = self:GetCooldown(-1)
-    if self:GetCooldownTimeRemaining() <= CD then
-		self:EndCooldown()
-        self:StartCooldown(CD)
-    end
-end
-
 function CDOTABaseAbility:CastSpell(target)
 	local caster = self:GetCaster()
 	if target then
@@ -2440,7 +2423,6 @@ function CDOTA_BaseNPC_Hero:AddXP( val )
 			end
 		end
 	end
-	print(xp, val, "added xp")
 	self:AddExperience(xp, DOTA_ModifyXP_Unspecified , false, true)
 end
 
@@ -2493,14 +2475,6 @@ function CDOTA_Modifier_Lua:RollPRNG( percentage )
 		self.internalPRNGCounter = 1/( math.max(internalCount - internalInt, 1) )
 		return false
 	end
-end
-
-function GameRules:IsRoundGoing()
-	return self.holdOut._currentRound ~= nil
-end
-
-function GameRules:InPrepTime()
-	return self.holdOut._currentRound == nil
 end
 
 function CDOTA_BaseNPC:FindEnemyUnitsInCone(vDirection, vPosition, flSideRadius, flLength, hData)
@@ -2597,8 +2571,4 @@ function CDOTA_BaseNPC:AddBlessing( blessingName )
 	local blessing = self:AddNewModifier(self, nil, blessingName, {})
 	if blessing then blessing.isBlessing = true end
 	return blessing
-end
-
-function CDOTA_BaseNPC:HasActiveAbility( blessingName )
-	return self:GetCurrentActiveAbility() ~= nil or self:IsChanneling()
 end

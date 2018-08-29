@@ -1,5 +1,5 @@
 item_strange_trinket = class({})
-LinkLuaModifier( "modifier_item_strange_trinket_passive", "items/item_strange_trinket.lua" ,LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_item_strange_trinket_passive", "items/item_strange_trinket", LUA_MODIFIER_MOTION_NONE )
 
 function item_strange_trinket:GetIntrinsicModifierName()
 	return "modifier_item_strange_trinket_passive"

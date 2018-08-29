@@ -47,7 +47,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"total_damage"			"50"
+				"total_damage"			"55"
 			}
 			// Extra, calculated as total_damage / channel_time * tick_interval
 			"03"
@@ -117,7 +117,7 @@
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"targets"					"7"
+				"targets"					"8"
 			}
 			"05"
 			{
@@ -226,7 +226,7 @@
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"200 350 500 650 800 950"
+		"AbilityManaCost"				"200 300 400 500 600 700"
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -241,7 +241,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"50 85 110 145 180 215"
+				"damage"				"50 90 130 170 210 250"
 			}
 			"03"
 			{
@@ -256,7 +256,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"scepter_range"			"500"
+				"scepter_range"			"600"
 			}
 		}
 	}
@@ -296,7 +296,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"40"
+				"value"						"50"
 			}
 		}
 	}

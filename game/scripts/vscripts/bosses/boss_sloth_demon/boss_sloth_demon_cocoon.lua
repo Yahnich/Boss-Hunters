@@ -1,0 +1,1 @@
+boss_sloth_demon_cocoon = class({})

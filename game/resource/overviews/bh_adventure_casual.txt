@@ -1,8 +1,8 @@
 bh_adventure_casual
 {
 	material materials/overviews/bh_adventure_casual.vmat
-	pos_x -9216
-	pos_y 9216
-	scale 18.000
+	pos_x -8192
+	pos_y 8192
+	scale 16.000
 }
 
