@@ -16,6 +16,6 @@ end
 function relic_cursed_grey_fox_tunic:OnAttackLanded(params)
 	local parent = self:GetParent()
 	if params.attacker == parent then
-		parent:ModifyGold(2)
+		parent:AddGold(2)
 	end
 end

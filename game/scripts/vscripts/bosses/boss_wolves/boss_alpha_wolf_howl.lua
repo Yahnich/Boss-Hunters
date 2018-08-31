@@ -12,8 +12,8 @@ modifier_boss_alpha_wolf_howl = class({})
 LinkLuaModifier("modifier_boss_alpha_wolf_howl", "bosses/boss_wolves/boss_alpha_wolf_howl", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_boss_alpha_wolf_howl:OnCreated()
-	self.damage = self:GetSpecialValuefor("damage")
-	self.health = self:GetSpecialValuefor("health") / 100
+	self.damage = self:GetSpecialValueFor("damage")
+	self.health = self:GetSpecialValueFor("health") / 100
 	if IsServer() then
 		local bonusHealth = self:GetParent():GetMaxHealth() * self.health
 		self:SetStackCount(bonusHealth)
@@ -22,8 +22,8 @@ function modifier_boss_alpha_wolf_howl:OnCreated()
 end
 
 function modifier_boss_alpha_wolf_howl:OnRefresh()
-	self.damage = self:GetSpecialValuefor("damage")
-	self.health = self:GetSpecialValuefor("health") / 100
+	self.damage = self:GetSpecialValueFor("damage")
+	self.health = self:GetSpecialValueFor("health") / 100
 	if IsServer() then
 		local bonusHealth = self:GetParent():GetMaxHealth() * self.health
 		self:SetStackCount(bonusHealth)

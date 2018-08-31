@@ -12,7 +12,7 @@
 		"MaxLevel"						"2"
 	
 		"AbilityCastPoint"				"1 0.75"
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -119,7 +119,7 @@
 		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityTextureName"			"venomancer_poison_sting"
+		"AbilityTextureName"			"lycan_feral_impulse"
 		"MaxLevel"						"2"
 	
 		"precache"
@@ -163,12 +163,13 @@
 		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
-		"AbilityTextureName"			"custom/undying_decay_pale"
+		"AbilityTextureName"			"lycan_howl"
 		"MaxLevel"						"2"
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"				"24 20"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------

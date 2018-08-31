@@ -31,6 +31,7 @@
 #base "elites/elite_assassin.txt"
 #base "elites/elite_freezing.txt"
 #base "elites/elite_burning.txt"
+#base "elites/elite_breaking.txt"
 #base "elites/elite_temporal.txt"
 #base "elites/elite_plagued.txt"
 #base "elites/elite_frenzied.txt"

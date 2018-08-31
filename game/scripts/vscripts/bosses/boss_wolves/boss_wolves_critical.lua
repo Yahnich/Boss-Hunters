@@ -30,6 +30,10 @@ function modifier_boss_wolves_critical:GetModifierPreAttack_CriticalStrike(param
 	end
 end
 
+function modifier_boss_wolves_critical:IsHidden()
+	return true
+end
+
 modifier_boss_wolves_critical_cripple = class({})
 LinkLuaModifier("modifier_boss_wolves_critical_cripple", "bosses/boss_wolves/boss_wolves_critical", LUA_MODIFIER_MOTION_NONE)
 

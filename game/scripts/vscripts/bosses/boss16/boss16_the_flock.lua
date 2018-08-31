@@ -69,6 +69,7 @@ function modifier_boss16_the_flock_manager:OnDeath(params)
 				local health = drake:GetHealth()
 				drake:ForceKill(false)
 				dragon = CreateUnitByName("npc_dota_boss23", drake:GetAbsOrigin(), true, nil, nil, drake:GetTeam())
+				dragon.isRoundBoss = true;
 				self:GetAbility().drakeCount[id] = nil
 				Timers:CreateTimer(0.1, function() 
 					dragon:SetHealth( health )

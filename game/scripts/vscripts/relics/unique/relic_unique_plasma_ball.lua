@@ -29,3 +29,7 @@ if IsServer() then
 		end
 	end
 end
+
+function relic_unique_plasma_ball:IsHidden()
+	return false
+end

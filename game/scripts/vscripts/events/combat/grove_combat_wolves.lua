@@ -1,24 +1,29 @@
 local function StartEvent(self)
-	local spawnPos = RoundManager:PickRandomSpawn()
-	self.enemiesToSpawn = 2 + math.floor( math.log( RoundManager:GetEventsFinished() + 1 ) )
+	local wolves = math.max( 2, math.floor( math.log( RoundManager:GetEventsFinished() + 1 ) ) )
+	local alpha = 1
+	
+	self.enemiesToSpawn = 1 + alpha
+	
+	local delay = 10
+	tick = 15 / (GameRules:GetGameDifficulty() + 1)
 	self.eventHandler = Timers:CreateTimer(3, function()
-		local enemyName = ""
-		local roll = RandomInt(1, 5)
-		
-		if roll <= 2 then
-			enemyName = "npc_dota_boss8a"
-		elseif roll <= 4 then
-			enemyName = "npc_dota_boss8b"
-		else
-			enemyName = "npc_dota_boss8c_spawner"
+		if wolves > 0 then
+			local wolf = CreateUnitByName("npc_dota_boss_wolf", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
+			wolf.unitIsRoundBoss = true
+			
+			self.enemiesToSpawn = self.enemiesToSpawn - 1
+			wolves = wolves - 1
 		end
 		
-		local spawn = CreateUnitByName(enemyName, RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
-		spawn.unitIsRoundBoss = true
-		
-		self.enemiesToSpawn = self.enemiesToSpawn - 1
+		delay = delay - tick
+		if delay <= 0 and alpha > 0 then
+			local alpha = CreateUnitByName("npc_dota_boss_alpha_wolf", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
+			alpha.unitIsRoundBoss = true
+			self.enemiesToSpawn = self.enemiesToSpawn - 1
+			alpha = alpha - 1
+		end
 		if self.enemiesToSpawn > 0 then
-			return 15 / (GameRules:GetGameDifficulty() + 1)
+			return tick
 		end
 	end)
 	
@@ -35,10 +40,8 @@ local function EndEvent(self, bWon)
 end
 
 local function PrecacheUnits(self, context)
-	PrecacheUnitByNameSync("npc_dota_boss8c", context)
-	PrecacheUnitByNameSync("npc_dota_boss8c_spawner", context)
-	PrecacheUnitByNameSync("npc_dota_boss8a", context)
-	PrecacheUnitByNameSync("npc_dota_boss8b", context)
+	PrecacheUnitByNameSync("npc_dota_boss_alpha_wolf", context)
+	PrecacheUnitByNameSync("npc_dota_boss_wolf", context)
 	return true
 end
 

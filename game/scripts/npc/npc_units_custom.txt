@@ -113,7 +113,7 @@
 	{										
 		// General
 		//----------------------------------------------------------------
-		"Model"						"models/creeps/neutral_creeps/n_creep_kobold/kobold_c/n_creep_kobold_frost.vmdl"	// Model.
+		"Model"						"models/creeps/neutral_creeps/n_creep_worg_small/n_creep_worg_small.vmdl"	// Model.
 		"BaseClass"					"npc_dota_creature"
 		"SoundSet"					"n_creep_Melee"
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
@@ -127,14 +127,14 @@
 		"precache"
 		{
 			"soundfile"	"soundevents/game_sounds_creeps.vsndevts"
-			"model"	"models/creeps/neutral_creeps/n_creep_kobold/kobold_c/n_creep_kobold_frost.vmdl"
+			"model"	"models/creeps/neutral_creeps/n_creep_worg_small/n_creep_worg_small.vmdl"
 		}
 	
 		// Abilities
 		//----------------------------------------------------------------
 		"AbilityLayout"				"6"
 		"Ability1"					"boss_wolves_critical"			// Ability 1
-		"Ability2"					"bosS_wolves_leap"			// Ability 2
+		"Ability2"					"boss_wolves_leap"			// Ability 2
 	
 		// Armor
 		//----------------------------------------------------------------
@@ -173,8 +173,8 @@
 		//----------------------------------------------------------------
 		"StatusHealth"				"1500"		// Base health.
 		"StatusHealthRegen"			"10"		// Health regeneration rate.
-		"StatusMana"				"0"			// Base mana.
-		"StatusManaRegen"			"0.0"		// Mana regeneration rate.		 
+		"StatusMana"				"200"			// Base mana.
+		"StatusManaRegen"			"5"		// Mana regeneration rate.		 
 		
 		// Vision
 		//----------------------------------------------------------------
@@ -217,12 +217,12 @@
 	{										
 		// General
 		//----------------------------------------------------------------
-		"Model"						"models/creeps/neutral_creeps/n_creep_kobold/kobold_c/n_creep_kobold_frost.vmdl"	// Model.
+		"Model"						"models/creeps/neutral_creeps/n_creep_worg_large/n_creep_worg_large.vmdl"	// Model.
 		"BaseClass"					"npc_dota_creature"
 		"SoundSet"					"n_creep_Melee"
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"1"
-		"ModelScale" 				"1.5"
+		"ModelScale" 				"1.35"
 		"IsAncient"					"0"
 		"IsWild"					"1"
 		"vscripts"					"ai/ai_alpha_wolf.lua"
@@ -230,7 +230,7 @@
 		"precache"
 		{
 			"soundfile"	"soundevents/game_sounds_creeps.vsndevts"
-			"model"	"models/creeps/neutral_creeps/n_creep_kobold/kobold_c/n_creep_kobold_frost.vmdl"
+			"model"	"models/creeps/neutral_creeps/n_creep_worg_large/n_creep_worg_large.vmdl"
 		}
 	
 		// Abilities
@@ -238,7 +238,7 @@
 		"AbilityLayout"				"6"
 		"Ability1"					"boss_wolves_critical"			// Ability 1
 		"Ability2"					"boss_wolves_leap"			// Ability 2
-		"Ability3"					"boss_alpha_wolf_leap"
+		"Ability3"					"boss_alpha_wolf_howl"
 		"Ability4"					"boss_alpha_wolf_aura"
 	
 		// Armor
@@ -280,8 +280,8 @@
 		//----------------------------------------------------------------
 		"StatusHealth"				"2500"		// Base health.
 		"StatusHealthRegen"			"10"		// Health regeneration rate.
-		"StatusMana"				"0"			// Base mana.
-		"StatusManaRegen"			"0.0"		// Mana regeneration rate.		 
+		"StatusMana"				"300"			// Base mana.
+		"StatusManaRegen"			"5"		// Mana regeneration rate.		 
 		
 		// Vision
 		//----------------------------------------------------------------
@@ -374,7 +374,7 @@
 		//----------------------------------------------------------------
 		"StatusHealth"				"2000"		// Base health.
 		"StatusHealthRegen"			"150"		// Health regeneration rate.
-		"StatusMana"				"250"		// Base mana.
+		"StatusMana"				"300"		// Base mana.
 		"StatusManaRegen"			"5"			// Mana regeneration rate.
 	
 		// Team

@@ -250,6 +250,7 @@ function RoundManager:StartGame()
 			end
 		end
 	end
+	RoundManager:LoadSpawns()
 	RoundManager:StartPrepTime()
 end
 
@@ -258,15 +259,8 @@ function RoundManager:StartPrepTime(fPrep)
 		if self.zones[self.currentZone] and self.zones[self.currentZone][1] and not self.prepTimeTimer then
 			local event = RoundManager:GetCurrentEvent()
 			CustomGameEventManager:Send_ServerToAllClients("bh_start_prep_time", {})
-			local lastSpawns = RoundManager.boundingBox
-			event:LoadSpawns()
 			
 			for _, hero in ipairs( FindAllUnits({team = DOTA_UNIT_TARGET_TEAM_FRIENDLY}) ) do
-				if RoundManager.boundingBox ~= lastSpawns then
-					CustomGameEventManager:Send_ServerToAllClients( "bh_move_camera_position", { position = event:GetHeroSpawnPosition() } )
-					local position = event:GetHeroSpawnPosition() + RandomVector(64)
-					FindClearSpaceForUnit(hero, position, true)
-				end
 				if hero:IsRealHero() then
 					PlayerResource:SetCustomBuybackCost(hero:GetPlayerID(), 100 + RoundManager:GetEventsFinished() * 25)
 				end
@@ -418,23 +412,53 @@ function RoundManager:EndEvent(bWonRound)
 	end
 end
 
+function RoundManager:LoadSpawns()
+	RoundManager.spawnPositions = {}
+	local zoneName = RoundManager:GetCurrentZone()
+	
+	RoundManager.raidNumber = (RoundManager.raidNumber or 0) + 1
+	RoundManager.boundingBox = string.lower(zoneName).."_raid_"..RoundManager.raidNumber
+	for _,spawnPos in ipairs( Entities:FindAllByName( RoundManager.boundingBox.."_spawner" ) ) do
+		table.insert( RoundManager.spawnPositions, spawnPos:GetAbsOrigin() )
+	end
+	RoundManager.heroSpawnPosition = RoundManager.heroSpawnPosition or nil
+	for _,spawnPos in ipairs( Entities:FindAllByName( RoundManager.boundingBox.."_heroes") ) do
+		RoundManager.heroSpawnPosition = spawnPos:GetAbsOrigin()
+		break
+	end
+end
+
+function RoundManager:GetHeroSpawnPosition()
+	return RoundManager.heroSpawnPosition
+end
+
 function RoundManager:RaidIsFinished()
 	local RaidFinishCatch = function()
 		table.remove( self.zones[self.currentZone], 1 )
 		EventManager:FireEvent("boss_hunters_raid_finished")
-		self.raidsFinished = (self.raidsFinished or 0) + 1
-		
-		for _, hero in ipairs(HeroList:GetRealHeroes() ) do
-			hero.statsDamageTaken = 0
-			hero.statsDamageDealt = 0
-			hero.statsDamageHealed = 0
-		end
 		
 		if self.zones[self.currentZone][1] == nil then RoundManager:ZoneIsFinished() end
 		if self.zones[self.currentZone] and self.zones[self.currentZone][1] then
 			local boss = self.zones[self.currentZone][1][#self.zones[self.currentZone][1]]
 			CustomGameEventManager:Send_ServerToAllClients( "updateQuestBoss", { bossName = boss:GetEventName() } )
 		end
+		
+		self.raidsFinished = (self.raidsFinished or 0) + 1
+		
+		local lastSpawns = RoundManager.boundingBox
+		RoundManager:LoadSpawns()
+		for _, hero in ipairs(HeroList:GetRealHeroes() ) do
+			hero.statsDamageTaken = 0
+			hero.statsDamageDealt = 0
+			hero.statsDamageHealed = 0
+			if RoundManager.boundingBox ~= lastSpawns then
+				CustomGameEventManager:Send_ServerToAllClients( "bh_move_camera_position", { position = RoundManager:GetHeroSpawnPosition() } )
+				local position = RoundManager:GetHeroSpawnPosition() + RandomVector(64)
+				FindClearSpaceForUnit(hero, position, true)
+			end
+		end
+		
+		
 	end
 	status, err, ret = xpcall(RaidFinishCatch, debug.traceback, self)
 	if not status  and not self.gameHasBeenBroken then
@@ -446,6 +470,8 @@ function RoundManager:ZoneIsFinished()
 	local ZoneFinishCatch = function()
 		self.zones[self.currentZone] = nil
 		self.currentZone = nil
+		
+		self.raidNumber = 0
 		
 		self.currentZone = POSSIBLE_ZONES[1]
 		if not self.zones[self.currentZone] and POSSIBLE_ZONES[2] then
@@ -605,9 +631,6 @@ function RoundManager:PrecacheRounds(context)
 	end
 end
 
-
-
-
 --- UTILITY FUNCTIONS
 
 function RoundManager:GetCurrentEvent()
@@ -617,7 +640,7 @@ function RoundManager:GetCurrentEvent()
 end
 
 function RoundManager:PickRandomSpawn()
-	return self.spawnPositions[RandomInt(1, #self.spawnPositions)]
+	return RoundManager.spawnPositions[RandomInt(1, #RoundManager.spawnPositions)]
 end
 
 function RoundManager:EvaluateLoss()

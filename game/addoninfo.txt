@@ -4,17 +4,11 @@
 	"IsPlayable"	"1"
 	"ShouldForceDefaultGuide"	"1"
 
-	"bh_adventure_casual"
+	"bh_raid_casual"
 	{
 		"MaxPlayers"                    "5"
 		"Lives"							"5"
 		"Difficulty"					"2"
-	}
-	"bh_adventure_hardcore"
-	{
-		"MaxPlayers"                    "5"
-		"Lives"							"3"
-		"Difficulty"					"4"
 	}
 	"bh_raid_hardcore"
 	{

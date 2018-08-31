@@ -44,7 +44,7 @@ function modifier_boss_alpha_wolf_aura:IsHidden()
 end
 
 modifier_boss_alpha_wolf_aura_buff = class({})
-LinkLuaModifier("modifier_boss_alpha_wolf_aura_buff", "boss", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_boss_alpha_wolf_aura_buff", "bosses/boss_wolves/boss_alpha_wolf_aura", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_boss_alpha_wolf_aura_buff:OnCreated()
 	self.dmg = self:GetSpecialValueFor("damage")

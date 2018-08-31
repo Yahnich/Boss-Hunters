@@ -66,3 +66,7 @@ function modifier_warlock_summon_imp_aghs:OnDeath(params)
 		end
 	end
 end
+
+function modifier_warlock_summon_imp_aghs:IsHidden()
+	return true
+end

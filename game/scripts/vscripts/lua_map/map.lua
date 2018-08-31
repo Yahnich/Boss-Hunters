@@ -35,8 +35,6 @@ end
 function OnWaterEnter(trigger)
     local ent = trigger.activator
 	if not ent then return end
-    ent.InWater = true
-
     if ent:IsHero() then
     	ent:AddNewModifier(ent, nil, "modifier_in_water", {})
     end
@@ -45,7 +43,6 @@ end
 function OnWaterExit(trigger)
     local ent = trigger.activator
     if not ent then return end
-    ent.InWater = false
     ent:RemoveModifierByName("modifier_in_water")
     return
 end
@@ -95,6 +92,7 @@ function LeftBoundingBox(trigger)
 	local edge = trigger.caller
 	local distance = 0
 	if RoundManager.boundingBox and unit and edge then
+		print( RoundManager.boundingBox, unit:GetUnitName(), edge )
 		if edge:GetName() == RoundManager.boundingBox.."_edge_collider" and not edge:IsTouching(unit) and unit.lastAllowedPosition then
 			FindClearSpaceForUnit( unit, GetGroundPosition( unit.lastAllowedPosition, unit ), true )
 			GridNav:DestroyTreesAroundPoint( unit.lastAllowedPosition, 120, true )

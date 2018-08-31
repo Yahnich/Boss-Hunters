@@ -257,7 +257,6 @@ function CHoldoutGameMode:InitGameMode()
 												RoundManager:EndPrepTime(true)
 												local event = BaseEvent(zone, roundType, roundName )
 												RoundManager.zones[RoundManager.currentZone][1][1] = event
-												event:LoadSpawns()
 												GameRules:SetLives(3)
 												RoundManager:StartPrepTime()
 											end

@@ -34,6 +34,6 @@ function AIThink(thisEntity)
 	end
 	::done::
 	thisEntity.previousHealth = thisEntity:GetHealth()
-	return thisEntity.previousHealth = thisEntity:GetHealth()
+	return AI_THINK_RATE
 end
 

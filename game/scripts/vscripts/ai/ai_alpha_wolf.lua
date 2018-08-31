@@ -13,7 +13,7 @@ function Spawn( entityKeyValues )
 	thisEntity.leap = thisEntity:FindAbilityByName("boss_wolves_leap")
 	thisEntity.cripple = thisEntity:FindAbilityByName("boss_wolves_critical")
 	thisEntity.howl = thisEntity:FindAbilityByName("boss_alpha_wolf_howl")
-	thisEntity.leap = thisEntity:FindAbilityByName("boss_alpha_wolf_aura")
+	thisEntity.aura = thisEntity:FindAbilityByName("boss_alpha_wolf_aura")
 	
 	AITimers:CreateTimer(0.1, 	function()
 		thisEntity.leap:SetLevel(1)
@@ -32,7 +32,7 @@ end
 function AIThink(thisEntity)
 	if not thisEntity:IsDominated() and not thisEntity:IsChanneling() then
 		local target = AICore:GetHighestPriorityTarget(thisEntity)
-		if thisEntity.leap:IsFullyCastable() target and CalculateDistance( target, thisEntity ) > thisEntity:GetAttackRange() then
+		if thisEntity.leap:IsFullyCastable() and target and CalculateDistance( target, thisEntity ) > thisEntity:GetAttackRange() then
 			return CastLeap( target:GetAbsOrigin() )
 		end
 		if thisEntity.howl:IsFullyCastable() and ( thisEntity:IsAttacking() or AICore:BeingAttacked( thisEntity ) > 0 ) then

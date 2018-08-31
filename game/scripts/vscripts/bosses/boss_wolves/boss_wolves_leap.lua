@@ -34,7 +34,7 @@ if IsServer() then
 		if self:GetParent():IsNull() then return end
 		local parent = self:GetParent()
 		self.distanceTraveled =  self.distanceTraveled or 0
-		if parent:IsAlive() and self.distanceTraveled =< self.distance and not parent:IsStunned() and not parent:IsRooted() then
+		if parent:IsAlive() and self.distanceTraveled <= self.distance and not parent:IsStunned() and not parent:IsRooted() then
 			local newPos = GetGroundPosition(parent:GetAbsOrigin(), parent) + self.direction * self.speed
 			newPos.z = self.height + self.maxHeight * math.sin( (self.distanceTraveled/self.distance) * math.pi )
 			parent:SetAbsOrigin( newPos )

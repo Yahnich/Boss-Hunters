@@ -18,7 +18,7 @@ local function CheckPlayerChoices(self)
 	end
 	local superMajority = math.ceil(players * 0.66)
 	if not self.eventEnded and not self.combatStarted then
-		if votedYes > superMajority then -- yes votes exceed non-votes and no votes
+		if votedYes >= superMajority then -- yes votes exceed non-votes and no votes
 			self:GivePlayerGold()
 			self.treesCut = (self.treesCut or 0) + 1
 			Timers:CreateTimer(3, function()
@@ -29,7 +29,7 @@ local function CheckPlayerChoices(self)
 				end
 			end)
 			return true
-		elseif votedNo > votedYes + (players - voted) then -- no votes exceed yes and non-votes and every other situation
+		elseif votedNo >= votedYes + (players - voted) then -- no votes exceed yes and non-votes and every other situation
 			self:StartCombat(false)
 			return true
 		end
@@ -47,9 +47,9 @@ local function StartCombat(self, bFight)
 	if bFight then
 		self.timeRemaining = 0
 		self.combatStarted = true
-		self.drowsToSpawn = 1 + math.ceil( math.log(self.treesCut) )
-		self.treantsToSpawn = (1 + math.ceil( math.log(self.treesCut) ) ) * HeroList:GetActiveHeroCount()
-		self.furionsToSpawn = (2 + math.ceil( math.log(self.treesCut) ) ) * HeroList:GetActiveHeroCount()
+		self.drowsToSpawn = math.ceil( math.log(self.treesCut + 1) )
+		self.treantsToSpawn = (math.ceil( math.log(self.treesCut + 1) ) ) * HeroList:GetActiveHeroCount()
+		self.furionsToSpawn = (1 + math.ceil( math.log(self.treesCut + 1) ) ) * HeroList:GetActiveHeroCount()
 		self.enemiesToSpawn = self.drowsToSpawn + self.treantsToSpawn + self.furionsToSpawn
 		Timers:CreateTimer(3, function()
 			local spawn = CreateUnitByName("npc_dota_boss28", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
@@ -178,28 +178,10 @@ local function PrecacheUnits(self, context)
 	return true
 end
 
-local function LoadSpawns(self)
-	if not self.spawnLoadCompleted then
-		RoundManager.spawnPositions = {}
-		RoundManager.boundingBox = "grove_combat_2"
-		for _,spawnPos in ipairs( Entities:FindAllByName( RoundManager.boundingBox.."_spawner" ) ) do
-			table.insert( RoundManager.spawnPositions, spawnPos:GetAbsOrigin() )
-		end
-		self.heroSpawnPosition = self.heroSpawnPosition or nil
-		for _,spawnPos in ipairs( Entities:FindAllByName( RoundManager.boundingBox.."_heroes") ) do
-			self.heroSpawnPosition = spawnPos:GetAbsOrigin()
-			break
-		end
-		
-		self.spawnLoadCompleted = true
-	end
-end
-
 local funcs = {
 	["StartEvent"] = StartEvent,
 	["EndEvent"] = EndEvent,
 	["PrecacheUnits"] = PrecacheUnits,
-	["LoadSpawns"] = LoadSpawns,
 	["FirstChoice"] = FirstChoice,
 	["SecondChoice"] = SecondChoice,
 	["StartCombat"] = StartCombat,

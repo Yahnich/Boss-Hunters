@@ -14,11 +14,11 @@ local function FirstChoice(self, userid, event)
 	hero:AddGold(-800)
 	if RollPercentage(33) then
 		hero:AddRelic( RelicManager:RollRandomUniqueRelicForPlayer( event.pID ) )
+		if hero:GetPlayerOwner() then
+			Timers:CreateTimer(0.5, function() CustomGameEventManager:Send_ServerToPlayer(hero:GetPlayerOwner(), "boss_hunters_event_reward_given", {event = self:GetEventName(), reward = 1}) end)
+		end
 	end
 	
-	if hero:GetPlayerOwner() then
-		Timers:CreateTimer(0.5, function() CustomGameEventManager:Send_ServerToPlayer(hero:GetPlayerOwner(), "boss_hunters_event_reward_given", {event = self:GetEventName(), reward = 1}) end)
-	end
 	
 	self._playerChoices[event.pID] = true
 	CheckPlayerChoices(self)

@@ -23,11 +23,13 @@ end
 function AIThink(thisEntity)
 	if not thisEntity:IsDominated() and not thisEntity:IsChanneling() then
 		local target = AICore:GetHighestPriorityTarget(thisEntity)
-		if thisEntity.leap:IsFullyCastable() target and CalculateDistance( target, thisEntity ) > thisEntity:GetAttackRange() then
+		if thisEntity.leap:IsFullyCastable() and target and CalculateDistance( target, thisEntity ) > thisEntity:GetAttackRange() then
 			return CastLeap( target:GetAbsOrigin() )
 		end
 		return AICore:AttackHighestPriority( thisEntity )
-	else return AI_THINK_RATE end
+	else 
+		return AI_THINK_RATE 
+	end
 end
 
 function CastLeap(position)

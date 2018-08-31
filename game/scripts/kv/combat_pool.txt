@@ -32,7 +32,7 @@
 		"solitude_combat_commander"				"1"
 		"solitude_combat_madness_demon"			"1"
 		"solitude_combat_wrath_demon"			"1"
-		"solitude_combat_sloth_demon"			"1"
+		// "solitude_combat_sloth_demon"			"1"
 		"generic_combat_leshrac"				"1"
 		"elysium_combat_spiders"				"1"
 	}
