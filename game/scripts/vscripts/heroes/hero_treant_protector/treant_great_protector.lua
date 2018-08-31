@@ -19,6 +19,22 @@ function treant_great_protector:OnSpellStart()
 	
 	EmitSoundOn( "Hero_Treant.Overgrowth.Cast", self:GetCaster() )
 	ParticleManager:FireParticle("particles/units/heroes/hero_treant/treant_overgrowth_cast.vpcf", PATTACH_POINT_FOLLOW, caster)
+	
+	if caster:HasScepter() then
+		local tree = caster:FindAbilityByName("treant_little_tree")
+		local overgrowth = caster:FindAbilityByName("treant_overgrowth_bh")
+		local armor = caster:FindAbilityByName("treant_living_armor_bh")
+		for _, unit in ipairs( caster:FindFriendlyUnitsInRadius( caster:GetAbsOrigin(), -1 ) ) do
+			if unit:IsSameTeam( caster ) and armor then
+				armor:ApplyLivingArmor( unit )
+			elseif not unit:IsSameTeam( caster ) and overgrowth then
+				overgrowth:ApplyOverGrowth( unit )
+			end
+			if tree then
+				tree:CreateLittleTree( unit:GetAbsOrigin() + ActualRandomVector( 750, 150 ) )
+			end
+		end
+	end
 end
 
 --------------------------------------------------------------------------------

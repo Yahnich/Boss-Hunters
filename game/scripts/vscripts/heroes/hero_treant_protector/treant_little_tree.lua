@@ -19,8 +19,10 @@ end
 
 function treant_little_tree:CreateLittleTree(position, duration)
 	local caster = self:GetCaster()
-	CreateModifierThinker(caster, self, "modifier_treant_little_tree_thinker", {Duration = duration}, position, caster:GetTeam(), false)
-	CreateTempTree(position, duration)
+	
+	local fDur = duration or self:GetTalentSpecialValueFor("duration")
+	CreateModifierThinker(caster, self, "modifier_treant_little_tree_thinker", {Duration = fDur}, position, caster:GetTeam(), false)
+	CreateTempTree(position, fDur)
 	ResolveNPCPositions(position, 150)
 end
 

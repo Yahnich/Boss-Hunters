@@ -1,6 +1,6 @@
 "AddonInfo"
 {
-	maps			"bh_adventure_casual bh_raid_hardcore"
+	maps			"bh_raid_casual bh_raid_hardcore"
 	"IsPlayable"	"1"
 	"ShouldForceDefaultGuide"	"1"
 
