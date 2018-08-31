@@ -200,8 +200,18 @@ function RelicManager:PushCustomRelicDropsForPlayer(pID, relicTable)
 	
 	local greed = hero:HasRelic("relic_cursed_icon_of_greed")
 	local pride = hero:HasRelic("relic_cursed_icon_of_pride")
+	local contract = hero:HasRelic("relic_cursed_forbidden_contract")
+	if ( contract and not hero:HasRelic("relic_unique_ritual_candle") ) then
+		local corruptTable = {}
+		table.insert( corruptTable, self:RollRandomCursedRelicForPlayer(pID) )
+		table.insert( corruptTable, self:RollRandomCursedRelicForPlayer(pID) )
+		table.insert( corruptTable, self:RollRandomCursedRelicForPlayer(pID) )
+		
+		table.insert( hero.relicsToSelect, corruptTable )
+	else
+		table.insert( hero.relicsToSelect, relicTable )
+	end
 	
-	table.insert( hero.relicsToSelect, relicTable )
 	if ( (greed or pride) and not hero:HasRelic("relic_unique_ritual_candle") ) then
 		RelicManager:RemoveDropFromTable(pID, false)
 	elseif player then

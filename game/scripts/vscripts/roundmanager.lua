@@ -250,7 +250,21 @@ function RoundManager:StartGame()
 			end
 		end
 	end
+	self.raidsFinished = (self.raidsFinished or 0) + 1
+		
+	local lastSpawns = RoundManager.boundingBox
 	RoundManager:LoadSpawns()
+	for _, hero in ipairs(HeroList:GetRealHeroes() ) do
+		hero.statsDamageTaken = 0
+		hero.statsDamageDealt = 0
+		hero.statsDamageHealed = 0
+		if RoundManager.boundingBox ~= lastSpawns then
+			
+			local position = RoundManager:GetHeroSpawnPosition() + RandomVector(64)
+			CustomGameEventManager:Send_ServerToAllClients( "bh_move_camera_position", { position = position } )
+			FindClearSpaceForUnit(hero, position, true)
+		end
+	end
 	RoundManager:StartPrepTime()
 end
 
@@ -438,6 +452,9 @@ function RoundManager:RaidIsFinished()
 		EventManager:FireEvent("boss_hunters_raid_finished")
 		
 		if self.zones[self.currentZone][1] == nil then RoundManager:ZoneIsFinished() end
+		if self.currentZone == nil then
+			return
+		end
 		if self.zones[self.currentZone] and self.zones[self.currentZone][1] then
 			local boss = self.zones[self.currentZone][1][#self.zones[self.currentZone][1]]
 			CustomGameEventManager:Send_ServerToAllClients( "updateQuestBoss", { bossName = boss:GetEventName() } )

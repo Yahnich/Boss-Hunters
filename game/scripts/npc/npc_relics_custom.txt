@@ -98,6 +98,7 @@
 		"relic_cursed_apple_of_eden"					"1"
 		"relic_cursed_olive_branch"						"1"
 		"relic_cursed_eye_of_the_oligarch"				"1"
+		"relic_cursed_forbidden_contract"				"1"
 	}
 	"relic_type_unique"
 	{

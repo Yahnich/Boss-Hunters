@@ -287,8 +287,9 @@ function CHoldoutGameMode:InitGameMode()
 											end
 										end, "adding relics",0)
 	Convars:RegisterCommand( "add_relic", function(command, relicName)
-											if Convars:GetDOTACommandClient() and IsInToolsMode() then
+											if Convars:GetDOTACommandClient() then
 												local player = Convars:GetDOTACommandClient()
+												if not ( PlayerResource:IsDeveloper( player:GetPlayerID() ) or PlayerResource:IsManager( player:GetPlayerID() ) ) then return end
 												local hero = player:GetAssignedHero()
 												hero:AddRelic(relicName)
 											end
