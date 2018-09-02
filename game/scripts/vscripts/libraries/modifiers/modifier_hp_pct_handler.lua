@@ -1,7 +1,7 @@
-modifier_hp_pct_handler = class(relicBaseClass)
+modifier_hp_pct_handler = class({})
 
 function modifier_hp_pct_handler:OnCreated()
-	self:SetStackCount(1)
+	self:SetStackCount(0)
 	if IsServer() then
 		self:StartIntervalThink(0.33)
 	end
@@ -10,9 +10,11 @@ end
 if IsServer() then
 	function modifier_hp_pct_handler:OnIntervalThink()
 		local stacks = 0
+		self:SetStackCount( 0 )
 		for _, modifier in ipairs( self:GetParent():FindAllModifiers() ) do
 			if modifier.GetModifierHealthBonus_Percentage then
 				local roll = modifier:GetModifierHealthBonus_Percentage() 
+				print(modifier:GetName(), stacks)
 				if roll then
 					stacks = stacks + roll
 				end
@@ -20,11 +22,10 @@ if IsServer() then
 		end
 		if stacks == 0 then return end
 		local hpPct = self:GetParent():GetHealth() / self:GetParent():GetMaxHealth()
-
-		self:SetStackCount( 0 )
 		self:GetParent():CalculateStatBonus()
 		
 		local bonusHP = self:GetParent():GetMaxHealth() * stacks
+		print( math.floor(bonusHP / 1000), stacks, self:GetParent():GetMaxHealth() )
 		if bonusHP < 0 then
 			bonusHP = math.abs( bonusHP * 10 ) + 1
 		else
@@ -32,11 +33,20 @@ if IsServer() then
 		end
 		
 		self:SetStackCount( bonusHP )
-		self:GetParent():CalculateStatBonus()
 		
+		print( self:GetParent():GetMaxHealth(), "maxhealth?" )
 		self:GetParent():SetHealth( hpPct * self:GetParent():GetMaxHealth() )
+		
+		-- self:GetParent():CalculateStatBonus()
+	end
+	
+	function modifier_hp_pct_handler:OnDestroy()
+		self:SetStackCount( 0 )
+		self:GetParent():CalculateStatBonus()
 	end
 end
+
+
 function modifier_hp_pct_handler:DeclareFunctions()
 	return {MODIFIER_PROPERTY_EXTRA_HEALTH_BONUS}
 end
@@ -50,4 +60,28 @@ function modifier_hp_pct_handler:GetModifierExtraHealthBonus(params)
 	else
 		return math.floor(bonusHP / 1000) * (-1)
 	end
+end
+
+function modifier_hp_pct_handler:IsHidden()
+	return true
+end
+
+function modifier_hp_pct_handler:IsPurgable()
+	return false
+end
+
+function modifier_hp_pct_handler:RemoveOnDeath()
+	return false
+end
+
+function modifier_hp_pct_handler:IsPermanent()
+	return true
+end
+
+function modifier_hp_pct_handler:AllowIllusionDuplicate()
+	return true
+end
+
+function modifier_hp_pct_handler:GetAttributes()
+	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_PERMANENT
 end

@@ -85,7 +85,7 @@ if IsServer() then
 		and caster:IsAlive() 
 		and ability:GetManaCost(-1) <= caster:GetMana() 
 		and not caster:HasActiveAbility() then
-			caster:CastSpell()
+			ability:CastSpell()
 		elseif caster:GetMana() < ability:GetManaCost(-1) and ability:GetAutoCastState() then
 			ability:ToggleAutoCast()
 		end

@@ -24,6 +24,7 @@ function modifier_obsidian_destroyer_avatar_of_power_active:DeclareFunctions()
 end
 
 function modifier_obsidian_destroyer_avatar_of_power_active:GetModifierIncomingDamage_Percentage(params)
+	if HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_HPLOSS) then return end
 	if params.damage < self:GetParent():GetMana() then
 		self:GetParent():SpendMana(params.damage, self:GetAbility() )
 		return -100
@@ -99,7 +100,7 @@ end
 
 function modifier_obsidian_destroyer_avatar_of_power_passive:OnSpentMana(params)
 	if IsServer() and self:IsActive() then
-		if params.unit == self:GetCaster() and RollPercentage( self.chance ) then
+		if params.unit == self:GetCaster() and self:PRNG( self.chance ) and params.cost > 0 then
 			local manaGain = self:GetCaster():GetMaxMana() * self.essence
 			ParticleManager:FireParticle("particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_essence_effect.vpcf", PATTACH_POINT_FOLLOW, self:GetCaster() )
 			EmitSoundOn("Hero_ObsidianDestroyer.EssenceAura", self:GetCaster() )

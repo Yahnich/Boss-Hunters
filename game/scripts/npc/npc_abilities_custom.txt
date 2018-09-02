@@ -4177,7 +4177,7 @@
 			"04"
 			{
 				"var_type"							"FIELD_FLOAT"
-				"bonus_attack_range"				"400"
+				"bonus_attack_range"				"200"
 			}
 			"05"
 			{

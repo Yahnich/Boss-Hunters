@@ -27,10 +27,11 @@ function lycan_summon_wolves_bh:OnSpellStart()
 		local fv = caster:GetForwardVector()*((-1)^( math.ceil( i/2 ) -1 ) )
 		local spawnOrigin = startPos + fv * distance
 		local position = RotatePosition(startPos, angPoint, spawnOrigin)
-		if #caster.summonedWolves < wolfCount or caster.summonedWolves[1]:IsNull() then
+		print( caster.summonedWolves[i]:IsNull() )
+		local wolf = caster.summonedWolves[i]
+		if #caster.summonedWolves < wolfCount or wolf:IsNull() or ( caster:HasTalent("special_bonus_unique_lycan_summon_wolves_2") and  not wolf:UnitCanRespawn() ) then
 			self:CreateWolf(position)
 		else
-			local wolf = caster.summonedWolves[i]
 			wolf:RespawnUnit()
 			FindClearSpaceForUnit( wolf, position, true )
 			wolf:AddNewModifier(caster, self, "modifier_kill", {duration = self:GetTalentSpecialValueFor("wolf_duration")})

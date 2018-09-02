@@ -82,6 +82,7 @@ function modifier_item_gauntlet_of_the_void:OnCreated()
 	self.mr = self:GetSpecialValueFor("bonus_mana_regen")
 	self.intellect = self:GetSpecialValueFor("bonus_intellect")
 	self.lifesteal = self:GetSpecialValueFor("lifesteal") / 100
+	self.mLifesteal = self:GetSpecialValueFor("mob_lifesteal") / 100
 end
 
 function modifier_item_gauntlet_of_the_void:OnDestroy()
@@ -96,8 +97,14 @@ end
 
 function modifier_item_gauntlet_of_the_void:OnTakeDamage(params)
 	if params.attacker == self:GetParent() and params.unit ~= self:GetParent() and self:GetParent():GetHealth() > 0 and not ( HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_HPLOSS) or HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION) or HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_NO_SPELL_LIFESTEAL) ) then
-		local flHeal = params.damage * self.lifesteal
-		if params.inflictor then ParticleManager:FireParticle("particles/items3_fx/octarine_core_lifesteal.vpcf", PATTACH_ABSORIGIN_FOLLOW, self) end
+		local lifesteal = self.lifesteal
+		if params.inflictor then 
+			ParticleManager:FireParticle("particles/items3_fx/octarine_core_lifesteal.vpcf", PATTACH_ABSORIGIN_FOLLOW, self)
+			if not params.unit:IsRoundBoss() then
+				lifesteal = self.mLifesteal
+			end
+		end
+		local flHeal = params.damage * lifesteal
 		params.attacker:HealEvent(flHeal, self:GetAbility(), params.attacker)
 	end
 end

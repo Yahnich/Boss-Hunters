@@ -28,10 +28,14 @@ end
 
 function modifier_boss18b_frenzy_thinker:OnIntervalThink()
 	local caster = self:GetCaster()
+	
 	if caster:GetHealth() < self.initHP - caster:GetMaxHealth() * 0.1 then
 		self:Destroy()
 		return
 	end
+	
+	if caster:IsStunned() or caster:IsDisarmed() then return end
+	
 	local enemies = caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), caster:GetAttackRange() )
 	AddFOWViewer(DOTA_TEAM_GOODGUYS, self:GetParent():GetAbsOrigin(), caster:GetAttackRange(), self:GetParent():GetSecondsPerAttack() + 0.1, false)
 	for _, enemy in ipairs(enemies) do

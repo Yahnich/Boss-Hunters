@@ -13,7 +13,9 @@ function relic_cursed_iron_maiden:OnTakeDamage(params)
 	if params.unit == parent then
 		local ability = self:GetAbility()
 		for _, ally in ipairs( parent:FindFriendlyUnitsInRadius( parent:GetAbsOrigin(), 900 ) ) do
-			ally:HealEvent( params.damage, ability, parent )
+			if ally ~= parent then
+				ally:HealEvent( params.damage, ability, parent )
+			end
 		end
 	end
 end

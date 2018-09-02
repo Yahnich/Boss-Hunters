@@ -91,7 +91,12 @@
 			"07"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"lifesteal"				"25"
+				"lifesteal"				"20"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mob_lifesteal"			"5"
 			}
 		}
 	}

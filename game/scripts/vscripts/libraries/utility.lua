@@ -1830,6 +1830,7 @@ function CDOTA_BaseNPC:SmoothFindClearSpace(position)
 end
 
 function CDOTABaseAbility:Stun(target, duration, bDelay)
+	if not target or target:IsNull() then return end
 	local delay = false
 	if bDelay then delay = Bdelay end
 	target:AddNewModifier(self:GetCaster(), self, "modifier_stunned_generic", {duration = duration, delay = delay})
@@ -2571,4 +2572,8 @@ function CDOTA_BaseNPC:AddBlessing( blessingName )
 	local blessing = self:AddNewModifier(self, nil, blessingName, {})
 	if blessing then blessing.isBlessing = true end
 	return blessing
+end
+
+function CDOTA_BaseNPC:HasActiveAbility()
+	return self:GetCurrentActiveAbility() ~= nil or self:IsChanneling()
 end

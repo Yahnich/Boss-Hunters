@@ -19,15 +19,16 @@ if IsServer() then
 		thisEntity.bigBearsTable = thisEntity.bigBearsTable or {}
 		thisEntity.smallBearsTable = thisEntity.smallBearsTable or {}
 		
-		thisEntity.GetBigBears = function(self) return self.bigBearsTable or {} end
-		thisEntity.GetSmallBears = function(self) return self.smallBearsTable or {} end
+		thisEntity.GetBigBears = function(thisEntity) return thisEntity.bigBearsTable or {} end
+		thisEntity.GetSmallBears = function(thisEntity) return thisEntity.smallBearsTable or {} end
 		
-		thisEntity.GetBigBearCount = function(self) return #self.bigBearsTable or 0 end
-		thisEntity.GetSmallBearCount = function(self) return #self.smallBearsTable or 0 end
+		thisEntity.GetBigBearCount = function(thisEntity) return #thisEntity.bigBearsTable or 0 end
+		thisEntity.GetSmallBearCount = function(thisEntity) return #thisEntity.smallBearsTable or 0 end
 		
-		thisEntity.GetTotalBearCount = function(self) return self:GetBigBearCount() + self:GetSmallBearCount() end
+		thisEntity.GetTotalBearCount = function(thisEntity) return thisEntity:GetBigBearCount() + thisEntity:GetSmallBearCount() end
 		
 		AITimers:CreateTimer(1, function()
+			if thisEntity:IsNull() then return end
 			for id, bear in pairs( thisEntity.bigBearsTable ) do
 				if bear:IsNull() or not bear:IsAlive() then
 					table.remove(thisEntity.bigBearsTable, id)

@@ -97,14 +97,19 @@
 			"07"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"active_channel"		"1.5"
+				"mob_lifesteal"			"3.75"
 			}
 			"08"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"active_duration"		"6.0"
+				"active_channel"		"1.5"
 			}
 			"09"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"active_duration"		"6.0"
+			}
+			"10"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"active_radius"			"600"

@@ -59,6 +59,11 @@
 				"var_type"				"FIELD_INTEGER"
 				"lifesteal"				"15"
 			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mob_lifesteal"			"3.75"
+			}
 		}
 	}
 }

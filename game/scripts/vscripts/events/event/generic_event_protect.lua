@@ -21,7 +21,7 @@ local function StartCombat(self)
 	
 	self.timeRemaining = 60
 	
-	self.totemUnit = CreateUnitByName("npc_dota_event_totem", self:GetHeroSpawnPosition(), true, nil, nil, DOTA_TEAM_GOODGUYS)
+	self.totemUnit = CreateUnitByName("npc_dota_event_totem", RoundManager:GetHeroSpawnPosition(), true, nil, nil, DOTA_TEAM_GOODGUYS)
 	local ability = self.totemUnit:AddAbility("generic_hp_limiter")
 	self.totemUnit:SetThreat(5000)
 	AddFOWViewer(DOTA_TEAM_BADGUYS, self.totemUnit:GetAbsOrigin(), 312, self.timeRemaining, false)

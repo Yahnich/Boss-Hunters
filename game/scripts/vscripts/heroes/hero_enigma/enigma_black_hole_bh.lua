@@ -81,7 +81,15 @@ function modifier_enigma_black_hole_bh_aura:OnCreated()
 	self.radius = self:GetTalentSpecialValueFor("radius")
 	self.tick = self:GetTalentSpecialValueFor("tick_rate")
 	self.animation = self:GetTalentSpecialValueFor("animation_rate")
+	
 	if IsServer() then
+	
+		if self:GetCaster():HasScepter() then
+			local midnight = self:GetCaster():FindAbilityByName("enigma_midnight_pulse_bh")
+			if midnight then
+				self.midnightDamage = self:GetTalentSpecialValueFor("damage_percent") / 100
+			end
+		end
 		self.centerPos = self:GetAbility():GetCursorPosition()
 		self:StartIntervalThink( self.tick )
 		self:StartMotionController()
@@ -89,7 +97,14 @@ function modifier_enigma_black_hole_bh_aura:OnCreated()
 end
 
 function modifier_enigma_black_hole_bh_aura:OnIntervalThink()
-	self:GetAbility():DealDamage( self:GetCaster(), self:GetParent(), self.damage * self.tick )
+	local caster = self:GetCaster()
+	local parent = self:GetParent()
+	local ability = self:GetAbility()
+	
+	ability:DealDamage( caster, parent, self.damage * self.tick )
+	if self.midnightDamage then
+		ability:DealDamage( caster, parent, parent:GetMaxHealth() * self.midnightDamage, {damage_type = DAMAGE_TYPE_PURE, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION} )
+	end
 end
 
 function modifier_enigma_black_hole_bh_aura:DoControlledMotion()

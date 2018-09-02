@@ -36,7 +36,7 @@ end
 
 function modifier_item_rising_salt_passive:OnAbilityFullyCast(params)
 	if IsServer() then
-		if params.unit == self:GetParent() and self:GetAbility():IsCooldownReady() then
+		if params.unit == self:GetParent() and self:GetAbility():IsCooldownReady() and not params.ability:IsOrbAbility() then
 			self:GetParent():AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_item_rising_salt_attack", {})
 			self:GetAbility():StartCooldown(self:GetSpecialValueFor("cooldown"))
 		end

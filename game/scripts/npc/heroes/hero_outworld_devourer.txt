@@ -20,7 +20,6 @@
 		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
 		"AbilityTextureName"			"obsidian_destroyer_arcane_orb"
 		"AbilityCastRange"				"450"
-		"AbilityCastPoint"				"0.3"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------

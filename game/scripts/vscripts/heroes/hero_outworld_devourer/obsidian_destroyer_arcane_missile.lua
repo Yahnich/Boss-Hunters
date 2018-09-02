@@ -6,9 +6,8 @@ end
 
 function obsidian_destroyer_arcane_missile:OnSpellStart()
 	local target = self:GetCursorTarget()
-	self:LaunchArcaneOrb(target, true)
-	self:SetOverrideCastPoint(self:GetCaster():GetCastPoint(true))
-	self:StartCooldown( self:GetCaster():GetSecondsPerAttack() - self:GetCastPoint() )
+	self.forceCast = true
+	self:GetCaster():MoveToTargetToAttack( target )
 end
 
 function obsidian_destroyer_arcane_missile:IsStealable()
@@ -80,7 +79,7 @@ if IsServer() then
 	
 	function modifier_obsidian_destroyer_arcane_missile_autocast:OnIntervalThink()
 		local caster = self:GetCaster()
-		if self:GetAbility():GetAutoCastState() and params.attacker:GetMana() > self:GetAbility():GetManaCost(-1) then
+		if self:GetAbility():GetAutoCastState() and self:GetParent():GetMana() > self:GetAbility():GetManaCost(-1) then
 			caster:SetProjectileModel("particles/empty_projectile.vcpf")
 		else
 			caster:SetProjectileModel("particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_base_attack.vpcf")
@@ -92,9 +91,10 @@ if IsServer() then
 	end
 	
 	function modifier_obsidian_destroyer_arcane_missile_autocast:OnAttack(params)
-		if params.attacker == self:GetParent() and params.target and self:GetAbility():GetAutoCastState() and params.attacker:GetMana() > self:GetAbility():GetManaCost(-1) then
+		if params.attacker == self:GetParent() and params.target and self:GetAbility():GetAutoCastState() and params.attacker:GetMana() > self:GetAbility():GetManaCost(-1) or self:GetAbility().forceCast then
 			self:GetAbility():LaunchArcaneOrb(params.target)
 			params.attacker:SpendMana(self:GetAbility():GetManaCost(-1), self:GetAbility())
+			self:GetAbility().forceCast = false
 		end
 	end
 end

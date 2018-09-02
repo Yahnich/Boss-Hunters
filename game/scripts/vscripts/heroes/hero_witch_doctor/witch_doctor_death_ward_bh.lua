@@ -17,7 +17,12 @@ function witch_doctor_death_ward_bh:OnSpellStart()
 		self.death_ward:SetControllableByPlayer(caster:GetPlayerID(), true)
 		self.death_ward:SetOwner(caster)
 		self.death_ward:SetBaseAttackTime( self:GetTalentSpecialValueFor("base_attack_time") )
-		self.deathModifier = self.death_ward:AddNewModifier(caster, self, "modifier_death_ward_handling", {duration = self:GetTalentSpecialValueFor("total_duration")})
+		
+		duration = -1
+		if caster:HasTalent("special_bonus_unique_witch_doctor_death_ward_2") then
+			duration = self:GetTalentSpecialValueFor("total_duration")
+		end
+		self.deathModifier = self.death_ward:AddNewModifier(caster, self, "modifier_death_ward_handling", {duration = duration})
 		EmitSoundOn("Hero_WitchDoctor.Death_WardBuild", self.death_ward)
 
 		self.death_ward:SetAverageBaseDamage( self.wardDamage, 25)

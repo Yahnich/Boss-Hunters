@@ -148,6 +148,7 @@ function StatsScreen:RespecAll(userid, event)
 				end
 			end
 		end
+		hero:CalculateStatBonus()
 		hero.bonusAbilityPoints = hero.bonusAbilityPoints or 0
 		hero:SetAbilityPoints( hero:GetLevel() + math.floor(hero:GetLevel() / GameRules.gameDifficulty) + hero.bonusAbilityPoints) -- give back ability points
 		CustomGameEventManager:Send_ServerToAllClients("dota_player_upgraded_stats", {playerID = hero:GetPlayerID()} )
