@@ -1,0 +1,57 @@
+boss_sloth_demon_slime_hide = class({})
+
+function boss_sloth_demon_slime_hide:GetIntrinsicModifierName()
+	return "modifier_boss_sloth_demon_slime_hide"
+end
+
+modifier_boss_sloth_demon_slime_hide = class({})
+LinkLuaModiifier( "modifier_boss_sloth_demon_slime_hide", "bosses/boss_sloth_demon/boss_sloth_demon_slime_hide", LUA_MODIFIER_MOTION_NONE )
+
+function modifier_boss_sloth_demon_slime_hide:OnCreated()
+	self.duration = self:GetSpecialValueFor("duration")
+end
+
+function modifier_boss_sloth_demon_slime_hide:OnRefresh()
+	self.duration = self:GetSpecialValueFor("duration")
+end
+
+function modifier_boss_sloth_demon_slime_hide:DeclareFunctions()
+	return {MODIFIER_EVENT_ON_TAKE_DAMAGE}
+end
+
+function modifier_boss_sloth_demon_slime_hide:OnTakeDamage(params)
+	if params.unit == self:GetParent() then
+		params.attacker:AddNewModifier( params.unit, self:GetAbility(), "modifier_boss_sloth_demon_slime_hide_debuff", {duration = self.duration} )
+	end
+end
+
+modifier_boss_sloth_demon_slime_hide_debuff = class({})
+LinkLuaModiifier( "modifier_boss_sloth_demon_slime_hide_debuff", "bosses/boss_sloth_demon/boss_sloth_demon_slime_hide", LUA_MODIFIER_MOTION_NONE )
+
+function modifier_boss_sloth_demon_slime_hide_debuff:OnCreated()
+	self.as = self:GetSpecialValueFor("attack_slow")
+	self.cdr = self:GetSpecialValueFor("cdr_slow")
+	if IsServer() then
+		self:SetStackCount(1)
+	end
+end
+
+function modifier_boss_sloth_demon_slime_hide_debuff:OnRefresh()
+	self.as = self:GetSpecialValueFor("attack_slow")
+	self.cdr = self:GetSpecialValueFor("cdr_slow")
+	if IsServer() then
+		self:IncrementStackCount()
+	end
+end
+
+function modifier_boss_sloth_demon_slime_hide_debuff:DeclareFunctions()
+	return {ATTACKSLOW}
+end
+
+function modifier_boss_sloth_demon_slime_hide_debuff:DeclareFunctions()
+	return self.as
+end
+
+function modifier_boss_sloth_demon_slime_hide_debuff:GetCooldownReduction()
+	return self.cdr
+end

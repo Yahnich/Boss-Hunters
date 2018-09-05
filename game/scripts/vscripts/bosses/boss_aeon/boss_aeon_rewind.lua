@@ -45,7 +45,7 @@ function boss_aeon_rewind:OnSpellStart()
 		
 		spawnedUnit:AddNewModifier(self:GetCaster(), self, "modifier_spawn_immunity", {duration = 2})
 		spawnedUnit:AddNewModifier(self:GetCaster(), self, "modifier_silence_generic", {duration = 5})
-		
+		spawnedUnit.hasBeenInitialized = true
 		table.insert(self.summons, spawnedUnit)
 	end
 end

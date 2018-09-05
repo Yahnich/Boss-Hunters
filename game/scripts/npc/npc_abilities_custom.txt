@@ -26,6 +26,7 @@
 #base "bosses/boss_aeon.txt"
 #base "bosses/boss_sloth_demon.txt"
 #base "bosses/boss_wolves.txt"
+#base "bosses/boss_genesis.txt"
 
 #base "elites/elite_accurate.txt"
 #base "elites/elite_assassin.txt"
@@ -126,6 +127,7 @@
 #base "heroes/hero_treant_protector.txt"
 #base "heroes/hero_pugna.txt"
 #base "heroes/hero_witch_doctor.txt"
+#base "heroes/hero_crystal_maiden.txt"
 
 "DOTAAbilities"
 {
@@ -2600,136 +2602,6 @@
 				"var_type"				"FIELD_INTEGER"
 				"number_of_zombies"		"3"
 			}
-		}
-	}
-	"crystal_maiden_frozen_field_ebf"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"lua_abilities/heroes/crystal_maiden.lua"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"FightRecapLevel"				"2"
-		"AbilityTextureName"			"crystal_maiden_freezing_field"
-		"MaxLevel"						"6"
-		"HasScepterUpgrade"				"1"
-	
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"1200"
-		"AbilityChannelTime"			"15"
-		"AbilityCastPoint"				"0.3"
-		
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"90"
-		"AbilityDuration"				"15"
-	
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"200 350 500 650 800 950"
-	
-		// Stats
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityModifierSupportValue"	"0.35"	// Primarily about the damage
-	
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"radius"			"1000"
-			}		
-			"02"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"explosion_radius"	"350"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"explosion_interval"	"0.1"
-			}
-			"05"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"movespeed_slow"	"-30"
-			}
-			"06"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"attack_slow"		"-90"
-			}
-			"07"
-			{
-				"var_type"			"FIELD_FLOAT"
-				"slow_duration"		"1.0"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"explosion_min_dist"	"195"
-			}
-			"09"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"explosion_max_dist"	"785"
-			}
-			"10"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"105 170 250 325 405 490"
-				"LinkedSpecialBonus"	"special_bonus_unique_crystal_maiden_3"
-			}
-			"11"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage_scepter"		"120 200 280 360 440 520"
-				"LinkedSpecialBonus"	"special_bonus_unique_crystal_maiden_3"
-			}
-			"12"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"movespeed_slow_scepter" "-50"
-			}
-			"13"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"attack_slow_scepter"	"-150"
-			}
-			"14"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"root_delay_scepter"	"2.5"
-			}
-			"15"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"root_duration_scepter"	"4"
-			}
-			"16"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"duration_tooltip"	"10"
-			}
-		}
-		
-		// Data driven
-		//-------------------------------------------------------------------------------------------------------------
-		"precache"
-		{
-			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_crystalmaiden.vsndevts"
-			"particle"				"particles/units/heroes/hero_crystalmaiden/maiden_freezing_field_snow.vpcf"
-			"particle"				"particles/units/heroes/hero_crystalmaiden/maiden_freezing_field_explosion.vpcf"
-			"particle"				"particles/generic_gameplay/generic_slowed_cold.vpcf"
-			"particle"				"particles/status_fx/status_effect_frost_lich.vpcf"
-			"particle"				"particles/units/heroes/hero_crystalmaiden/maiden_frostbite.vpcf"
-			"particle"				"particles/units/heroes/hero_crystalmaiden/maiden_frostbite_buff.vpcf"
 		}
 	}
 	"custom_ogre_magi_bloodlust"

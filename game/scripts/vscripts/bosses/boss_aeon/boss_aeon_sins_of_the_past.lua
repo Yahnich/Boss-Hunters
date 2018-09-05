@@ -112,7 +112,7 @@ function  boss_aeon_sins_of_the_past:ConjureImage( target )
 		end
 	end
 	
-		
+	illusion.hasBeenInitialized = true	
 	-- Without MakeIllusion the unit counts as a hero, e.g. if it dies to neutrals it says killed by neutrals, it respawns, etc.
 	illusion:MakeIllusion()
 	illusion.isCustomIllusion = true

@@ -1,0 +1,207 @@
+"DOTAAbilities"
+{	
+	"boss_wolves_leap"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_wolves/boss_wolves_leap.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"mirana_leap"
+		"MaxLevel"						"2"
+	
+		"AbilityCastPoint"				"1 0.75"
+		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"8"
+		
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"25"
+	
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_venomancer/venomancer_venomous_gale.vpcf"
+			"particle"  				"particles/units/heroes/hero_venomancer/venomancer_gale_poison_debuff.vpcf"
+			"particle"  				"particles/units/heroes/hero_viper/viper_nethertoxin.vpcf"
+
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_venomancer.vsndevts"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_viper.vsndevts"
+		}
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"distance"				"350 500"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"speed"					"1200"
+			}
+		}
+	}
+	
+	"boss_wolves_critical"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_wolves/boss_wolves_critical.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"alpha_wolf_critical_strike"
+		"MaxLevel"						"2"
+	
+
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_pugna/pugna_decrepify.vpcf"
+			"particle"  				"particles/econ/items/effigies/status_fx_effigies/status_effect_effigy_jade_stone.vpcf"
+			"particle"  				"particles/status_fx/status_effect_ancestral_spirit.vpcf"
+			"particle"  				"particles/status_fx/status_effect_wraithking_ghosts.vpcf"
+
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_venomancer.vsndevts"
+		}
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"chance"				"20 30"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"crit"					"125 150"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"ms"					"-12"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"as"					"-34"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bleed"					"0 10"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"3"
+			}
+		}
+	}
+
+	"boss_alpha_wolf_aura"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_wolves/boss_alpha_wolf_aura.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"lycan_feral_impulse"
+		"MaxLevel"						"2"
+	
+		"precache"
+		{
+			"particle"					"particles/bosses/boss_wolves/boss_boss_alpha_wolf_aura_explosion.vpcf"
+
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_venomancer.vsndevts"
+		}
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"radius"				"900"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"30 35"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"armor"					"2 4"
+			}
+		}
+	}
+
+	"boss_alpha_wolf_howl"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_wolves/boss_alpha_wolf_howl.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityTextureName"			"lycan_howl"
+		"MaxLevel"						"2"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"24 20"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"50"
+	
+		"precache"
+		{
+			"particle"					"particles/bosses/boss_wolves/boss_boss_alpha_wolf_howl.vpcf"
+			"particle"  				"particles/econ/items/viper/viper_ti7_immortal/viper_poison_crimson_debuff_ti7.vpcf"
+
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_venomancer.vsndevts"
+		}
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"12"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"15"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"health"				"15"
+			}
+		}
+	}
+}

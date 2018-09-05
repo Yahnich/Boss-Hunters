@@ -1,0 +1,492 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Ability: Crystal Maiden's Crystal Nova
+	//=================================================================================================================
+	"crystal_maiden_crystal_nova_bh"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_crystal_maiden/crystal_maiden_crystal_nova_bh"
+		"AbilityTextureName"			"crystal_maiden_crystal_nova"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"FightRecapLevel"				"1"
+		"AbilitySound"					"Hero_Crystal.CrystalNova"
+		"MaxLevel"						"7"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"700"
+		"AbilityCastPoint"				"0.3 0.3 0.3 0.3"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"12 11 10 9 8 7 8"
+		
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"100 120 140 160 180 200 220"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"400"
+				"LinkedSpecialBonus"	"special_bonus_unique_crystal_maiden_crystal_nova_1"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"chill"					"10 15 20 25 30 35 40"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"4.5"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"vision_duration"		"6.0"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"nova_damage"			"100 150 200 250 300 350 400"
+				"LinkedSpecialBonus"	"special_bonus_unique_crystal_maiden_crystal_nova_2"
+			}
+		}
+		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
+	}
+	"special_bonus_unique_crystal_maiden_crystal_nova_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"1200"
+			}
+		}
+	}
+	"special_bonus_unique_crystal_maiden_crystal_nova_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"150"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Crystal Maiden's Frostbite
+	//=================================================================================================================
+	"crystal_maiden_frostbite_bh"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_crystal_maiden/crystal_maiden_frostbite_bh"
+		"AbilityTextureName"			"crystal_maiden_frostbite"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"FightRecapLevel"				"1"
+		"AbilitySound"					"hero_Crystal.frostbite"
+		"MaxLevel"						"7"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"525 550 575 600 625 650 675"
+		"AbilityCastPoint"				"0.3 0.3 0.3 0.3"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"12 11.5 11 10.5 10 9.5 9"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"140 145 150 155 160 165 170"
+
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityModifierSupportValue"	"0.5"	// Applies multiple modifiers
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"							"FIELD_INTEGER"
+				"chill_damage"						"2 3 4 5 6 7 8"
+			}
+			"02"
+			{
+				"var_type"							"FIELD_FLOAT"
+				"freeze_duration"					"1.0"
+			}
+			"03"
+			{
+				"var_type"							"FIELD_FLOAT"
+				"root_duration"						"2.0"
+			}
+			"04"
+			{
+				"var_type"							"FIELD_FLOAT"
+				"creep_duration"					"10.0"
+			}
+			"05"
+			{
+				"var_type"							"FIELD_FLOAT"
+				"damage"							"50 66 83 100 116 133 150"
+			}
+			"06"
+			{
+				"var_type"							"FIELD_FLOAT"
+				"cast_range_tooltip"				"525 550 575 600 625 650 675"
+			}
+		}
+		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_2"
+	}
+	"special_bonus_unique_crystal_maiden_frostbite_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"LinkedAbilityName"				"crystal_maiden_frostbite_bh"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"8"
+			}
+		}
+	}
+	"special_bonus_unique_crystal_maiden_frostbite_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"35"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"5"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Crystal Maiden's Brilliance Aura
+	//=================================================================================================================
+	"crystal_maiden_crystalline_aura"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_crystal_maiden/crystal_maiden_crystalline_aura"
+		"AbilityTextureName"			"crystal_maiden_brilliance_aura"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"MaxLevel"						"7"
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.2"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"mana_regen"		"1 1.5 2 2.5 3 3.5 4"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"mana_regen_self"	"2 3 4 5 6 7 8"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"manacost"			"5 7.5 10 12.5 15 17.5 20"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"manacost_self"		"10 15 20 25 30 35 40"
+			}
+		}
+		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
+	}
+	"special_bonus_unique_crystal_maiden_crystalline_aura_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"0.4"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"self"					"0.8"
+			}
+		}
+	}
+	"special_bonus_unique_crystal_maiden_crystalline_aura_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"15"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"self"					"25"
+			}
+		}
+	}
+	"crystal_maiden_arcane_blizzard"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_crystal_maiden/crystal_maiden_arcane_blizzard"
+		"AbilityTextureName"			"crystal_maiden_freezing_field"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"				"2"
+		"MaxLevel"						"6"
+		"HasScepterUpgrade"				"1"
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1200"
+		"AbilityChannelTime"			"15"
+		"AbilityCastPoint"				"0.3"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"90"
+		"AbilityDuration"				"15"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"200 350 500 650 800 950"
+	
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityModifierSupportValue"	"0.35"	// Primarily about the damage
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"1000"
+				"LinkedSpecialBonus"	"special_bonus_unique_crystal_maiden_arcane_blizzard_2"
+			}		
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"explosion_radius"	"350"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"explosion_interval"	"0.1"
+				"LinkedSpecialBonus"	"special_bonus_unique_crystal_maiden_arcane_blizzard_2"
+				"LinkedSpecialBonusField" "value2"
+			}
+			"05"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"movespeed_slow"	"-30"
+			}
+			"06"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"attack_slow"		"-90"
+			}
+			"07"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"slow_duration"		"1.0"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"explosion_min_dist"	"195"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"explosion_max_dist"	"785"
+			}
+			"10"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"105 170 250 325 405 490"
+			}
+			"11"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_scepter"		"120 200 280 360 440 520"
+			}
+			"12"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"movespeed_slow_scepter" "-50"
+			}
+			"13"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"attack_slow_scepter"	"-150"
+			}
+			"14"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"root_delay_scepter"	"2.5"
+			}
+			"15"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"root_duration_scepter"	"4"
+			}
+			"16"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"duration_tooltip"	"10"
+			}
+		}
+		
+		// Data driven
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_crystalmaiden.vsndevts"
+			"particle"				"particles/units/heroes/hero_crystalmaiden/maiden_freezing_field_snow.vpcf"
+			"particle"				"particles/units/heroes/hero_crystalmaiden/maiden_freezing_field_explosion.vpcf"
+			"particle"				"particles/generic_gameplay/generic_slowed_cold.vpcf"
+			"particle"				"particles/status_fx/status_effect_frost_lich.vpcf"
+			"particle"				"particles/units/heroes/hero_crystalmaiden/maiden_frostbite.vpcf"
+			"particle"				"particles/units/heroes/hero_crystalmaiden/maiden_frostbite_buff.vpcf"
+		}
+	}
+	"special_bonus_unique_crystal_maiden_arcane_blizzard_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"1"
+			}
+		}
+	}
+	"special_bonus_unique_crystal_maiden_arcane_blizzard_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"500"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"-0.025"
+			}
+		}
+	}
+}
