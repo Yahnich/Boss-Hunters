@@ -11,13 +11,13 @@
 		"grove_boss_drowsa"					"1"
 		"grove_boss_axe"					"1"
 		"grove_boss_bearmaster"				"1"
+		"grove_boss_troll_warlord"			"1"
+		"grove_boss_dragon"					"1"
+		"generic_boss_golem"				"1"
+		
 		"sepulcher_boss_prophet"			"1"
 		"sepulcher_boss_undying"			"1"
 		"sepulcher_boss_wraith_king"		"1"
-		"generic_boss_golem"				"1"
-		"grove_boss_troll_warlord"			"1"
-		"grove_boss_green_dragon"			"1"
-		"grove_boss_dragon"					"1"
 	}
 	// Gods, spirits, elementals
 	"Elysium"
@@ -25,11 +25,14 @@
 		"elysium_boss_aether"				"1"
 		"elysium_boss_aeon"					"1"
 		"elysium_boss_asura"				"1"
+		"elysium_genesis"					"1"
 		"elysium_boss_broodmother"			"1"
+		"generic_boss_scarab"				"1"
+		
 		"solitude_boss_doom"				"1"
 		"solitude_boss_evil_core"			"1"
 		"solitude_boss_twin_demons"			"1"
-		"generic_boss_scarab"				"1"
+		"grove_boss_green_dragon"			"1"
 		"sepulcher_boss_reaper"				"1"
 	}
 	// Demons, corrupted things

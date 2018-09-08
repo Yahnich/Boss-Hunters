@@ -15,14 +15,20 @@ end
 function naga_siren_water_snare:OnProjectileHit(target, position)
 	if target and not target:IsMagicImmune() then
 		local duration = self:GetTalentSpecialValueFor("duration")
+		local damage = self:GetTalentSpecialValueFor("base_damage")
 		local caster = self:GetCaster()
 		
 		target:EmitSound("Hero_NagaSiren.Ensnare.Target")
-		target:AddNewModifier(caster, self, "modifier_naga_siren_water_snare", {duration = duration})
 		if caster:HasTalent("special_bonus_unique_naga_siren_water_snare_2") then
 			for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( target:GetAbsOrigin(), caster:FindTalentValue("special_bonus_unique_naga_siren_water_snare_2") ) ) do
+				enemy:Interrupt()
+				self:DealDamage( caster, enemy, damage )
 				enemy:AddNewModifier(caster, self, "modifier_naga_siren_water_snare", {duration = duration})
 			end
+		else
+			target:Interrupt()
+			self:DealDamage( caster, target, damage )
+			target:AddNewModifier(caster, self, "modifier_naga_siren_water_snare", {duration = duration})
 		end
 		if caster:HasTalent("special_bonus_unique_naga_siren_water_snare_1") then
 			caster:AddNewModifier(caster, self, "modifier_naga_siren_water_snare_talent", {duration = duration + 0.1})

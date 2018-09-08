@@ -39,8 +39,7 @@ function modifier_accuracy_handler:OnAttackStart(params)
 		if modifier ~= self and modifier.GetAccuracy then
 			local roll = modifier:GetAccuracy(params) 
 			if roll then
-				self.state = self.state or self:RollPRNG( roll )
-				if self.state then break end
+				self.state = self.state or modifier:RollPRNG( roll )
 			end
 		end
 	end

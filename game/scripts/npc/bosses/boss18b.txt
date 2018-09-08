@@ -194,4 +194,43 @@
 			}
 		}
 	}
+	"boss18b_corrupted_huntress"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss18b/boss18b_corrupted_huntress.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"FightRecapLevel"				"2"
+		"AbilityTextureName"			"doom_bringer_doom"
+		"MaxLevel"						"2"
+		
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_juggernaut.vsndevts"
+		}
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{			
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"aura_radius"			"750 900"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"armor_reduction"		"-12 -15"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"damage_per_sec"		"30 40"
+			}
+		}
+	}
 }

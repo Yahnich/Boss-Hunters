@@ -61,7 +61,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"125"
+				"damage"				"50 65"
 			}
 			"04"
 			{
@@ -99,11 +99,11 @@
 		"ScriptFile"					"bosses/boss_green_dragon/green_dragon_etheral_armor.lua"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityTextureName"			"viper_corrosive_skin"
-		"MaxLevel"						"1"
+		"MaxLevel"						"2"
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"10"
+		"AbilityCooldown"				"20"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -128,10 +128,10 @@
 				"var_type"				"FIELD_FLOAT"
 				"cooldown"				"20"
 			}
-			"01"
+			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"20"
+				"duration"				"10 15"
 			}
 		}
 	}
@@ -149,7 +149,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"venomancer_poison_sting"
-		"MaxLevel"						"1"
+		"MaxLevel"						"2"
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -178,7 +178,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"75"
+				"damage"				"45 60"
 			}
 			"02"
 			{
@@ -236,7 +236,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"400"
+				"damage"				"200"
 			}
 			"02"
 			{
@@ -259,7 +259,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"alchemist_acid_spray"
-		"MaxLevel"						"1"
+		"MaxLevel"						"2"
 	
 		"precache"
 		{
@@ -270,7 +270,7 @@
 			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_broodmother.vsndevts"
 		}
 		
-		"AbilityCastPoint"				"1.5"
+		"AbilityCastPoint"				"1.5 1.0"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -279,7 +279,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"400"
+				"damage"				"200 250"
 			}
 			"02"
 			{

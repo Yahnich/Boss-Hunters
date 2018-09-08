@@ -26,7 +26,7 @@ end
 
 function modifier_boss_attackspeed:CheckState()
 	if IsServer() then
-		return {[MODIFIER_STATE_CANNOT_MISS] = self:RollPRNG( 10 + RoundManager:GetZonesFinished() * 5 ) }
+		return {[MODIFIER_STATE_CANNOT_MISS] = self:RollPRNG( math.min( 8 + self:GetStackCount() * 2 + RoundManager:GetZonesFinished() * 2.5, 65 ) ) }
 	end
 end
 

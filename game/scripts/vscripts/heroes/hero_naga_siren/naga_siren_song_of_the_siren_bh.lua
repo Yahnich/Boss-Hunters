@@ -1,14 +1,23 @@
 naga_siren_song_of_the_siren_bh = class({})
 
-function naga_siren_song_of_the_siren_bh:GetCastRange(target, position)
-	return self:GetTalentSpecialValueFor("radius")
-end
 
 function naga_siren_song_of_the_siren_bh:GetAbilityTextureName()
 	if self:GetCaster():HasModifier("modifier_naga_siren_song_of_the_siren_song") then
 		return "naga_siren_song_of_the_siren_cancel"
 	else
 		return "naga_siren_song_of_the_siren"
+	end
+end
+
+function naga_siren_song_of_the_siren_bh:GetCastRange(target, position)
+	return self:GetTalentSpecialValueFor("radius")
+end
+
+function naga_siren_song_of_the_siren_bh:GetManaCost( iLvl )
+	if self:GetCaster():HasModifier("modifier_naga_siren_song_of_the_siren_song") then
+		return 0
+	else
+		return self.BaseClass:GetManaCost( iLvl )
 	end
 end
 
@@ -20,7 +29,6 @@ function naga_siren_song_of_the_siren_bh:OnSpellStart()
 		ParticleManager:FireParticle("particles/units/heroes/hero_siren/naga_siren_siren_song_cast.vpcf", PATTACH_POINT_FOLLOW, caster)
 	else
 		caster:RemoveModifierByName("modifier_naga_siren_song_of_the_siren_song")
-		self:RefundManaCost()
 	end
 end
 

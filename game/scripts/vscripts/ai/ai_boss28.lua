@@ -10,17 +10,26 @@ if IsServer() then
 		thisEntity.swipe = thisEntity:FindAbilityByName("boss18b_swipe")
 		thisEntity.frenzy = thisEntity:FindAbilityByName("boss18b_frenzy")
 		thisEntity.huntress = thisEntity:FindAbilityByName("boss18b_elusive_huntress")
+		thisEntity.corrupt = thisEntity:FindAbilityByName("boss18b_corrupted_huntress")
 		AITimers:CreateTimer(0.1, function()
 			if  math.floor(GameRules.gameDifficulty + 0.5) <= 2 then
 				thisEntity.trample:SetLevel(1)
 				thisEntity.swipe:SetLevel(1)
 				thisEntity.frenzy:SetLevel(1)
-				thisEntity.huntress:SetLevel(1)
+				if thisEntity.huntress then
+					thisEntity.huntress:SetLevel(1)
+				elseif thisEntity.corrupt then
+					thisEntity.corrupt:SetLevel(1)
+				end
 			else
 				thisEntity.trample:SetLevel(2)
 				thisEntity.swipe:SetLevel(2)
 				thisEntity.frenzy:SetLevel(2)
-				thisEntity.huntress:SetLevel(2)
+				if thisEntity.huntress then
+					thisEntity.huntress:SetLevel(2)
+				elseif thisEntity.corrupt then
+					thisEntity.corrupt:SetLevel(2)
+				end
 			end
 		end)
 	end

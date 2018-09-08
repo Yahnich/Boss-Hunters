@@ -9,7 +9,7 @@ function modifier_boss_evasion:DeclareFunctions()
 end
 
 function modifier_boss_evasion:GetModifierEvasion_Constant()
-  return math.max( 10, self:GetStackCount() )
+  return math.min( 75, math.max( 10, self:GetStackCount() ) )
 end
 
 function modifier_boss_evasion:IsHidden()

@@ -18,7 +18,7 @@ function modifier_boss_sloth_demon_slime_cocoon:OnCreated()
 end
 
 function modifier_boss_sloth_demon_slime_cocoon:DeclareFunctions()
-	return {MODIFIER_EVENT_ON_ATTACK_LANDED, HEALTHREGEN}
+	return {MODIFIER_EVENT_ON_ATTACK_LANDED, MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE}
 end
 
 function modifier_boss_sloth_demon_slime_cocoon:OnAttackLanded(params)
@@ -30,6 +30,6 @@ function modifier_boss_sloth_demon_slime_cocoon:OnAttackLanded(params)
 	end
 end
 
-function modifier_boss_sloth_demon_slime_cocoon:DeclareFunctions()
+function modifier_boss_sloth_demon_slime_cocoon:GetModifierHealthRegenPercentage()
 	return self.heal
 end

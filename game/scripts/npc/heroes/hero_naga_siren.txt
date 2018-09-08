@@ -43,21 +43,21 @@
 			"02"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"bonus_evasion"					"50"
+				"bonus_evasion"					"20 25 30 35 40 45 50"
 				"LinkedSpecialBonus"			"special_bonus_unique_naga_siren_liquid_form_2"
 				"LinkedSpecialBonusField"		"evasion"
 			}
 			"03"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"bonus_hp_regen"				"5 10 15 20 25 30 35"
+				"bonus_hp_regen"				"7 10 13 16 19 22 25"
 				"LinkedSpecialBonus"			"special_bonus_unique_naga_siren_liquid_form_2"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
 			"04"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"water_hp_regen"				"10 20 30 40 50 60 70"
+				"water_hp_regen"				"14 20 26 32 38 44 50"
 				"LinkedSpecialBonus"			"special_bonus_unique_naga_siren_liquid_form_2"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
@@ -65,6 +65,26 @@
 			{
 				"var_type"						"FIELD_INTEGER"
 				"water_bonus_ms"				"20"	
+			}
+			"06"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"max_illusions"					"3"	
+			}
+			"07"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"out_damage"					"40"	
+			}
+			"08"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"inc_damage"					"200"	
+			}
+			"09"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"illu_duration"					"30"	
 			}
 		}
 	}
@@ -174,6 +194,11 @@
 			{
 				"var_type"					"FIELD_INTEGER"
 				"agility_damage"			"20"	
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"base_damage"				"100"	
 			}
 		}
 	}
@@ -430,7 +455,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"-3"
+				"value"					"-2"
 			}	
 		}
 	}

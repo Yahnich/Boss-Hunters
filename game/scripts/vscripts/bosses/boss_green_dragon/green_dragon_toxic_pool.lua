@@ -57,7 +57,7 @@ function modifier_green_dragon_toxic_pool_handle:OnIntervalThink()
 	EmitSoundOn("Hero_Viper.Nethertoxin.Cast", caster)
 	caster:StartGesture(ACT_DOTA_CAST_ABILITY_1)
 	local fDir = caster:GetForwardVector()
-	local rndAng = math.rad(RandomInt(-self:GetTalentSpecialValueFor("spread")/2, self:GetTalentSpecialValueFor("spread")/2))
+	local rndAng = math.rad( RandomInt( -self:GetTalentSpecialValueFor("spread"), self:GetTalentSpecialValueFor("spread") ) )
 	local dirX = fDir.x * math.cos(rndAng) - fDir.y * math.sin(rndAng); 
 	local dirY = fDir.x * math.sin(rndAng) + fDir.y * math.cos(rndAng);
 	local direction = Vector( dirX, dirY, 0 )

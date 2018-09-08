@@ -46,7 +46,13 @@ function modifier_boss_sloth_demon_slime_trail_pool:OnIntervalThink()
 	elseif parent.radius >= self.min_radius and CalculateDistance( parent, self:GetCaster() ) > parent.radius then
 		parent.radius = parent.radius - self.growth
 	elseif parent.radius < self.min_radius then
+		for id, pool in ipairs( self:GetAbility().slimePoolTable ) do
+			if pool == self:GetParent() then
+				table.remove( self:GetAbility().slimePoolTable, id)
+			end
+		end
 		self:Destroy()
+		self:GetParent():ForceKill(false)
 	end
 end
 

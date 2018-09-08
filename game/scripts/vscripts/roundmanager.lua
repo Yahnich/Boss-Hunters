@@ -60,6 +60,7 @@ function RoundManager:VoteSkipPrepTime(userid, event)
 end
 
 function RoundManager:VoteNewGame(userid, event)
+	if self.prepTimer == 0 then return end
 	self.votedToNG = (self.votedToNG or 0)
 	self.votedNoNg = (self.votedNoNg or 0)
 	if toboolean(event.vote) then
@@ -624,7 +625,7 @@ function RoundManager:InitializeUnit(unit, bElite)
 	unit:AddNewModifier(unit, nil, "modifier_spawn_immunity", {duration = 4/GameRules.gameDifficulty})
 	if unit:IsRoundBoss() then
 		local evasion = unit:AddNewModifier(unit, nil, "modifier_boss_evasion", {})
-		if evasion then evasion:SetStackCount( RoundManager:GetEventsFinished() ) end
+		if evasion then evasion:SetStackCount( 2.5 * RoundManager:GetRaidsFinished() ) end
 		if RoundManager:GetAscensions() > 0 then unit:AddNewModifier(unit, nil, "modifier_boss_ascension", {}) end
 	end
 	

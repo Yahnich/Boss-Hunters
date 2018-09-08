@@ -4439,6 +4439,121 @@
 			}
 		}
 	}
+	"npc_dota_boss_genesis"
+	{
+		// General
+		//
+		"BaseClass"					"npc_dota_creature"	// Class of entity of link to.
+		"Model"						"models/items/invoker/forge_spirit/sempiternal_revelations_forged_spirits/sempiternal_revelations_forged_spirits.vmdl"	// Model.
+		"SoundSet"					"Hero_Invoker"					// Name of sound set.
+		"GameSoundsFile"			"soundevents/game_sounds_heroes/game_sounds_invoker.vsndevts"
+		"ModelScale"				"1.2"
+		"Level"						"999"
+		"IsCelestial"				"1"
+		"MinimapIcon"				"minimap_roshancamp"
+		"MinimapIconSize"			"180"
+		"vscripts"					"ai/ai_genesis"
+		
+		"precache"
+		{
+			"particle_folder"	"particles/units/heroes/hero_invoker/invoker_forge_spirit_ambient.vpcf"
+			"model"				"models/items/invoker/forge_spirit/sempiternal_revelations_forged_spirits/sempiternal_revelations_forged_spirits.vmdl"
+		}
+	
+		// Abilities
+		//----------------------------------------------------------------
+		
+		"Ability1"					"boss_genesis_reconstruction"					// Ability 1.
+		"Ability2"					"boss_genesis_deconstruction"	// Ability 2
+		"Ability3"					"boss_genesis_pacifism"				// Ability 3.
+		"Ability4"					"boss_genesis_crumple"	// Ability 4.
+		"Ability5"					"boss_genesis_purify"		// Ability 5.
+		"Ability6"					"boss_genesis_strengthen_resolve"			// Ability 6 - Extra.
+		"Ability7"					"boss_genesis_return_to_life"			// Ability 7 - Extra.
+		"Ability8"					"boss_genesis_sanctuary"			// Ability 8 - Extra.
+		"Ability9"					"boss_genesis_dominion"			// Ability 8 - Extra.
+	
+		// Armor
+		//----------------------------------------------------------------
+		"ArmorPhysical"				"15"		// Physical protection.
+		"MagicalResistance"			"25"		// Magical protection.
+	
+		// Attack
+		//----------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"			"80"		// Damage range min.
+		"AttackDamageMax"			"120"		// Damage range max.
+		"AttackRate"				"9"		// Speed of attack.
+		"AttackAnimationPoint"		"1.2"		// Normalized time in animation cycle to attack.
+		"AttackAcquisitionRange"	"8000"		// Range within a target can be acquired.
+		"AttackRange"				"300"		// Range within a target can be attacked.
+		"ProjectileModel"			""			// Particle system model for projectile.
+		"ProjectileSpeed"			""			// Speed of projectile.
+	
+		// Bounty
+		//----------------------------------------------------------------
+		"BountyXP"					"0"		// Experience earn.
+		"BountyGoldMin"				"11"		// Gold earned min.
+		"BountyGoldMax"				"13"		// Gold earned max.
+	
+		// Bounds
+		//----------------------------------------------------------------
+		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"			// Hull type used for navigation/locomotion.
+		"RingRadius"				"120"
+		"HealthBarOffset"			"320"
+	
+		// Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"			// Type of locomotion - ground, air
+		"MovementSpeed"				"200"		// Speed
+		"MovementTurnRate"			"0.3"		// Turning rate.
+	
+		// Status
+		//----------------------------------------------------------------
+		"StatusHealth"				"3800"		// Base health.
+		"StatusHealthRegen"			"1"		// Health regeneration rate.
+		"StatusMana"				"2000"			// Base mana.
+		"StatusManaRegen"			"10"			// Mana regeneration rate.
+	
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"					"DOTA_TEAM_BADGUYS"			// Team name.
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		
+		// Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
+		"VisionNighttimeRange"		"1800"		// Range of vision at night time.
+	
+		//Precache
+		//------------------------------------------------------------------
+		"VoiceFile"				"soundevents/voscripts/game_sounds_vo_broodmother.vsndevts"
+		"GameSoundsFile"		"soundevents/game_sounds_heroes/game_sounds_broodmother.vsndevts"
+	
+		"ShouldDoFlyHeightVisual" "0"
+	
+		// Creature Data
+		//----------------------------------------------------------------------------------------------------------------------
+		"Creature"
+		{
+			//HERO AI State
+			//------------------------------------------------------------
+			"DefaultState"				"Invade"
+			"States"
+			{
+				"Invade"
+				{
+					"Name"				"Invade"
+					"Aggression"		"0.0"
+					"Avoidance"			"0.0"
+					"Support"			"0.0"
+				}
+			}
+			"DefaultState"				"Invade"
+		}
+	}
 	//=================================================================================
 	// Creature: boss 3
 	//=================================================================================

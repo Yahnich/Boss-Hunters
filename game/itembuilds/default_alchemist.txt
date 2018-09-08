@@ -1,44 +1,91 @@
 "itembuilds"
+
 {
-	"author"		"FsB"
+
+	"author"		"Valve"
+
 	"hero"			"npc_dota_hero_alchemist"
+
 	"Title"			"Recommended items for Alchemist"
+
 	
+
 	"Items"
+
 	{	
+
 		"#DOTA_Item_Build_Starting_Items"
+
 		{
+
 			"item"	"item_gauntlet_of_alacrity"
+
 			"item"	"item_pages_buckler"
-			"item"	"item_crystal_of_life"
+
 			"item"	"item_breeze_amulet"
+
 		}
+
 		"#DOTA_Item_Build_Early_Game"
+
 		{	
+
+			"item"	"item_lightningrod"
+
 			"item"	"item_aeon_shard"
+
 			"item"	"item_ringing_rapier"
+
 			"item"	"item_runed_artifact"
-			"item"	"item_mirrors_edge"
+
+			"item"	"item_orb_of_haste"
+
 		}
+
 		"#DOTA_Item_Build_Core_Items"
+
 		{
+
 			"item"	"item_ultimate_scepter"
+
 			"item"	"item_memento"
+
 			"item"	"item_arcane_accelerator"
-			"item"	"item_illusionists_charm"
-		}
-		"#DOTA_Item_Build_Luxury"
-		{
-			"item"	"item_soothslayer"
-			"item"	"item_gauntlet_of_might"
-			"item"	"item_behemoths_heart"
+
 			"item"	"item_blade_of_storm"
-			"item"	"item_thanatos"
-			"item"	"item_headchopper"
-			"item"	"item_ultimate_scepter"
-			"item"	"item_ultimate_scepter"
-			"item"	"item_ultimate_scepter"
-			"item"	"item_ultimate_scepter"
+
+			"item"	"item_voltas_greathammer"
+
+			"item"	"item_behemoths_heart"
+
 		}
+
+		"#DOTA_Item_Build_Luxury"
+
+		{
+
+			"item"	"item_soothslayer"
+
+			"item"	"item_blood_god_mask"
+
+			"item"	"item_leechblade"
+
+			"item"	"item_lifeweavers_clockwork"
+
+			"item"	"item_thanatos"
+
+			"item"	"item_headchopper"
+
+			"item"	"item_ultimate_scepter"
+
+			"item"	"item_ultimate_scepter"
+
+			"item"	"item_ultimate_scepter"
+
+			"item"	"item_ultimate_scepter"
+
+		}
+
 	}
+
 }

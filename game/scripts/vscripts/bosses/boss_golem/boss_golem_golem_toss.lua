@@ -79,6 +79,7 @@ if IsServer() then
 		end
 		EmitSoundOn("Ability.TossImpact", parent)
 		self:StopMotionController()
+		ResolveNPCPositions( self:GetParent():GetAbsOrigin(), 500 ) 
 	end
 	
 	function modifier_boss_golem_golem_toss_movement:DoControlledMotion()

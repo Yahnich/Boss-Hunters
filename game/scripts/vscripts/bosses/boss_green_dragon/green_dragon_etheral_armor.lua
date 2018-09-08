@@ -6,17 +6,25 @@ function green_dragon_etheral_armor:GetIntrinsicModifierName()
 	return "modifier_green_dragon_etheral_armor_handle"
 end
 
+function green_dragon_etheral_armor:ShouldUseResources()
+	return true
+end
+
 modifier_green_dragon_etheral_armor_handle = class({})
 function modifier_green_dragon_etheral_armor_handle:OnCreated(table)
 	if IsServer() then
-		self:StartIntervalThink(self:GetSpecialValueFor("cooldown"))
+		self:StartIntervalThink(1)
 	end
 end
 
 function modifier_green_dragon_etheral_armor_handle:OnIntervalThink()
 	local caster = self:GetCaster()
-	if not caster:HasModifier("modifier_green_dragon_etheral_armor") and caster:GetMana() <= 1 then
+	if not caster:HasModifier("modifier_green_dragon_etheral_armor") 
+	and not caster:HasModifier("modifier_green_dragon_toxic_pool_handle")
+	and self:GetAbility():IsCooldownReady()
+	and caster:GetMana() <= 1 then
 		caster:AddNewModifier(caster, self:GetAbility(), "modifier_green_dragon_etheral_armor", {Duration = self:GetSpecialValueFor("duration")})
+		self:GetAbility():SetCooldown()
 	end
 end
 
@@ -46,7 +54,9 @@ function modifier_green_dragon_etheral_armor:OnIntervalThink()
 
 		if RollPercentage(3) then
 			local pos = self:GetCaster():GetAbsOrigin() + ActualRandomVector(10000, 250)
-			CreateUnitByName("npc_dota_green_dragon_bug", pos, true, caster, caster, caster:GetTeam())
+			local bug CreateUnitByName("npc_dota_green_dragon_bug", pos, true, caster, caster, caster:GetTeam())
+			bug:FindAbilityByName("green_dragon_bug_explode"):SetLevel( self:GetAbility():GetLevel() )
+			
 		end
 	end
 end

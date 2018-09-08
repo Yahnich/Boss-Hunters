@@ -17,7 +17,7 @@ function modifier_boss_golem_split:OnDeath(params)
 		local hp = self:GetParent():GetMaxHealth() * divider
 		local scale = self:GetParent():GetModelScale() * 0.75
 		for i = 1, self:GetSpecialValueFor("split_count") do
-			golem = CreateUnitByName("npc_dota_boss12_golem", self:GetParent():GetAbsOrigin() + RandomVector(250), false, nil, nil, self:GetParent():GetTeamNumber())
+			golem = CreateUnitByName("npc_dota_boss12_golem", self:GetParent():GetAbsOrigin() + RandomVector(250), true, nil, nil, self:GetParent():GetTeamNumber())
 			
 			golem:SetModelScale( scale )
 			golem:SetBaseMoveSpeed( math.min( 300, golem:GetBaseMoveSpeed() / scale ) )
@@ -31,4 +31,5 @@ function modifier_boss_golem_split:OnDeath(params)
 			golem.hasBeenInitialized = true
 		end
 	end
+	ResolveNPCPositions( self:GetParent():GetAbsOrigin(), 500 ) 
 end

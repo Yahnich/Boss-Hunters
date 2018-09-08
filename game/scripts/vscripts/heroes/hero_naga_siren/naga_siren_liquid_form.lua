@@ -30,6 +30,12 @@ function modifier_naga_siren_liquid_form:OnCreated()
 	self.health_regen = self:GetTalentSpecialValueFor("bonus_hp_regen")
 	self.water_regen = self:GetTalentSpecialValueFor("water_hp_regen")
 	self.movespeed = self:GetTalentSpecialValueFor("water_bonus_ms")
+	
+	self.out = self:GetTalentSpecialValueFor("out_damage")
+	self.in = self:GetTalentSpecialValueFor("inc_damage")
+	self.illuDur = self:GetTalentSpecialValueFor("illu_duration")
+	
+	self:GetParent().liquidIllusions = self:GetParent().liquidIllusions or {}
 end
 
 function modifier_naga_siren_liquid_form:OnRefresh()
@@ -37,6 +43,11 @@ function modifier_naga_siren_liquid_form:OnRefresh()
 	self.health_regen = self:GetTalentSpecialValueFor("bonus_hp_regen")
 	self.water_regen = self:GetTalentSpecialValueFor("water_hp_regen")
 	self.movespeed = self:GetTalentSpecialValueFor("water_bonus_ms")
+	
+	self.out = self:GetTalentSpecialValueFor("out_damage")
+	self.in = self:GetTalentSpecialValueFor("inc_damage")
+	self.illuDur = self:GetTalentSpecialValueFor("illu_duration")
+	self:GetParent().liquidIllusions = self:GetParent().liquidIllusions or {}
 end
 
 function modifier_naga_siren_liquid_form:CheckState()
@@ -46,11 +57,30 @@ end
 function modifier_naga_siren_liquid_form:DeclareFunctions()
 	return {MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
 			MODIFIER_PROPERTY_EVASION_CONSTANT,
-			MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE}
+			MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
+			MODIFIER_EVENT_ON_ATTACK_FAILED}
+end
+
+function modifier_naga_siren_liquid_form:OnAttackFailed(params)
+	if params.target == self:GetParent() then
+		for pos, illusion in pairs( self:GetParent().liquidIllusions ) do
+			if illusion:IsNull() or not illusion:IsAlive() then
+				table.remove( self:GetParent().liquidIllusions, pos )
+			end
+		end
+		local illusion = self:GetParent():ConjureImage( self:GetParent():GetAbsOrigin() + RandomVector( 250 ), self.illuDur, self.out - 100, self.in - 100, nil, self:GetAbility() )
+		table.insert( self:GetParent().liquidIllusions, illusion )
+		if #self:GetParent().liquidIllusions > 3 then
+			if not self:GetParent().liquidIllusions[1]:IsNull() and self:GetParent().liquidIllusions[1]:IsAlive() then
+				self:GetParent().liquidIllusions[1]:ForceKill(false)
+			end
+			table.remove( self:GetParent().liquidIllusions, 1 )
+		end
+	end
 end
 
 function modifier_naga_siren_liquid_form:GetModifierConstantHealthRegen()
-	if self:GetParent():HasModifier("modifier_in_water") then
+	if self:GetParent():InWater() then
 		return self.water_regen
 	else
 		return self.health_regen
@@ -62,7 +92,7 @@ function modifier_naga_siren_liquid_form:GetModifierEvasion_Constant()
 end
 
 function modifier_naga_siren_liquid_form:GetModifierMoveSpeedBonus_Percentage()
-	if self:GetParent():HasModifier("modifier_in_water") then
+	if self:GetParent():InWater() then
 		return self.movespeed
 	end
 end

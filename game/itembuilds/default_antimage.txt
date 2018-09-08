@@ -1,6 +1,6 @@
 "itembuilds"
 {
-    "author"        "FsB"
+    "author"        "Valve"
     "hero"          "npc_dota_hero_antimage"
     "Title"         "Recommended items for Antimage"
 
@@ -9,30 +9,35 @@
        "#DOTA_Item_Build_Starting_Items"
 		{
 			"item"	"item_gauntlet_of_alacrity"
-			"item"	"item_mithril_armor"
+			"item"	"item_pages_buckler"
 			"item"	"item_sanguine_mask"
 		}
 		"#DOTA_Item_Build_Early_Game"
 		{	
-			"item"	"item_cultists_veil"
-			"item"	"item_soul_vessel"
+			"item"	"item_breeze_amulet"
 			"item"	"item_lightningrod"
-			"item"	"item_mirrors_edge"
+			"item"	"item_orb_of_haste"
+			"item"	"item_warlocks_reliquary"
+			"item"	"item_aeon_shard"
+			"item"	"item_leechblade"
 		}
 		"#DOTA_Item_Build_Core_Items"
 		{
-			"item"	"item_gauntlet_of_the_void"
+			"item"	"item_blade_of_storm"
 			"item"	"item_voltas_greathammer"
-			"item"	"item_illusionists_charm"
+			"item"	"item_ferrum_ascensus"
+			"item"	"item_anvil"
+			"item"	"item_antique_battlestaff"
 		}
 		"#DOTA_Item_Build_Luxury"
 		{
-			
 			"item"	"item_ultimate_scepter"
 			"item"	"item_soothslayer"
-			"item"	"item_tricksters_blade"
+			"item"	"item_culling_greataxe"
+			"item"	"item_lance_of_longinus"
 			"item"	"item_behemoths_heart"
-			"item"	"item_blade_of_storm"
+			"item"	"item_winters_breath"
+			"item"	"item_guillotine"
 		}
     }
 }

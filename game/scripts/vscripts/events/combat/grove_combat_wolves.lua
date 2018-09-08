@@ -1,6 +1,6 @@
 local function StartEvent(self)
-	local wolves = math.max( 2, math.floor( math.log( RoundManager:GetEventsFinished() + 1 ) ) )
-	local alpha = 1
+	local wolves = 3 + math.floor( math.log( RoundManager:GetEventsFinished() + 1 ) )
+	local alpha = 1 + RoundManager:GetAscensions()
 	
 	self.enemiesToSpawn = 1 + alpha
 	

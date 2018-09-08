@@ -28,11 +28,15 @@
 		"sepulcher_combat_vhouls"				"1"
 		"sepulcher_combat_everything"			"1"
 		"sepulcher_combat_lifestealer"			"1"
+		
 		"solitude_combat_golem"					"1"
 		"solitude_combat_commander"				"1"
 		"solitude_combat_madness_demon"			"1"
 		"solitude_combat_wrath_demon"			"1"
 		// "solitude_combat_sloth_demon"			"1"
+		"solitude_combat_corrupt_drow"			"1"
+		"solitude_combat_angry_wraith"			"1"
+		"solitude_combat_prophets"				"1"
 		"generic_combat_leshrac"				"1"
 		"elysium_combat_spiders"				"1"
 	}
