@@ -13,6 +13,7 @@
 		"grove_boss_bearmaster"				"1"
 		"grove_boss_troll_warlord"			"1"
 		"grove_boss_dragon"					"1"
+		"grove_boss_greymane"				"1"
 		"generic_boss_golem"				"1"
 		
 		"sepulcher_boss_prophet"			"1"
@@ -25,7 +26,7 @@
 		"elysium_boss_aether"				"1"
 		"elysium_boss_aeon"					"1"
 		"elysium_boss_asura"				"1"
-		"elysium_genesis"					"1"
+		"elysium_boss_genesis"				"1"
 		"elysium_boss_broodmother"			"1"
 		"generic_boss_scarab"				"1"
 		

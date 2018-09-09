@@ -205,7 +205,7 @@
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityGoldCost"				"5"
+		"AbilityGoldCost"				"15"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -218,8 +218,8 @@
 			}
 			"02"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"net_worth_bonus_dmg"		"10"
+				"var_type"					"FIELD_FLOAT"
+				"net_worth_bonus_dmg"		"1 1.5 2 2.5 3 3.5 4"
 				"LinkedSpecialBonus"		"special_bonus_unique_alchemist_midas_knuckle_2"
 			}
 			"03"
@@ -270,7 +270,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"10"
+				"value"					"1"
 			}
 		}
 	}

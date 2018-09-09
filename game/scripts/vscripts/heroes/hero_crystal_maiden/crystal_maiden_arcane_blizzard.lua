@@ -25,12 +25,13 @@ if IsServer() then
 		self.minDistance = self:GetAbility():GetTalentSpecialValueFor( "explosion_min_dist" )
 		self.maxDistance = self:GetAbility():GetTalentSpecialValueFor( "explosion_max_dist" )
 		self.radius = self:GetAbility():GetTalentSpecialValueFor( "explosion_radius" )
+		print( self.radius ,"?")
 		self.damage = self:GetAbility():GetTalentSpecialValueFor( "damage" )
 		self.tick = self:GetTalentSpecialValueFor("explosion_interval")
 		if self:GetCaster():HasScepter() then self.damage = self:GetAbility():GetTalentSpecialValueFor( "damage_scepter" ) end
 		self.FXIndex = ParticleManager:CreateParticle( "particles/units/heroes/hero_crystalmaiden/maiden_freezing_field_snow.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetParent() )
 		ParticleManager:SetParticleControl( self.FXIndex, 1, Vector( self.aura_radius, self.aura_radius, self.aura_radius) )
-		self:AddEffect( self.FXIndex )
+
 		self:StartIntervalThink( self.tick )
 	end
 
@@ -49,22 +50,21 @@ if IsServer() then
 		
 		if caster:HasTalent("special_bonus_unique_crystal_maiden_arcane_blizzard_1") then
 			local mousePos = ClientServer:RequestMousePosition( caster:GetPlayerID() )
-			casterLocation = casterLocation + CalculateDirection( mousePos, casterLocation ) * 150 * self.tick
-			dummy:SetAbsOrigin( casterLocation );
-		end
+			casterLocation = casterLocation + CalculateDirection( mousePos, casterLocation ) * 300 * self.tick
 		
+			dummy:SetAbsOrigin( casterLocation )
+		end
+		ParticleManager:SetParticleControl( self.FXIndex, 0, casterLocation )
 		local targetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY
 		local targetType = DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
 		local targetFlag = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
 		
 		local attackPoint = casterLocation + ActualRandomVector( self.maxDistance, self.minDistance )
-		local units = caster:FindEnemyUnitsInRadius( casterLocation, self.radius {flags = targetFlag} )
+		local units = caster:FindEnemyUnitsInRadius( attackPoint, self.radius, {flags = targetFlag} )
 		for _, unit in pairs(units) do
 			ability:DealDamage(caster, unit, self.damage)
 		end
-		local fxIndex = ParticleManager:FireParticle( "particles/units/heroes/hero_crystalmaiden/maiden_freezing_field_explosion.vpcf", PATTACH_CUSTOMORIGIN, caster, {} )
-		ParticleManager:SetParticleControl( fxIndex, 0, attackPoint )
-		ParticleManager:ReleaseParticleIndex(fxIndex)
+		local fxIndex = ParticleManager:FireParticle( "particles/units/heroes/hero_crystalmaiden/maiden_freezing_field_explosion.vpcf", PATTACH_CUSTOMORIGIN, caster, {[0] = attackPoint} )
 		
 		EmitSoundOnLocationWithCaster( attackPoint, "hero_Crystal.freezingField.explosion", caster )
 	end

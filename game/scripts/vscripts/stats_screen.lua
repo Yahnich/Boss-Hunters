@@ -7,6 +7,8 @@ if StatsScreen == nil then
 	LinkLuaModifier( "modifier_base_attack_time_handler", "libraries/modifiers/modifier_base_attack_time_handler.lua", LUA_MODIFIER_MOTION_NONE)
 	LinkLuaModifier( "modifier_accuracy_handler", "libraries/modifiers/modifier_accuracy_handler.lua", LUA_MODIFIER_MOTION_NONE)
 	LinkLuaModifier( "modifier_hp_pct_handler", "libraries/modifiers/modifier_hp_pct_handler.lua", LUA_MODIFIER_MOTION_NONE)
+	LinkLuaModifier( "modifier_mana_regen_throttle", "libraries/modifiers/modifier_mana_regen_throttle.lua", LUA_MODIFIER_MOTION_NONE)
+	
 end
 
 function StatsScreen:new( o )
@@ -89,6 +91,7 @@ function StatsScreen:RegisterPlayer(hero, bRespec)
 	hero:AddNewModifier(hero, nil, "modifier_base_attack_time_handler", {})
 	hero:AddNewModifier(hero, nil, "modifier_accuracy_handler", {})
 	hero:AddNewModifier(hero, nil, "modifier_hp_pct_handler", {})
+	hero:AddNewModifier(hero, nil, "modifier_mana_regen_throttle", {})
 end
 
 function StatsScreen:ProcessStatsUpgrade(userid, event)

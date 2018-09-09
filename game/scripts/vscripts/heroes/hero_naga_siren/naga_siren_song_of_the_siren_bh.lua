@@ -17,7 +17,15 @@ function naga_siren_song_of_the_siren_bh:GetManaCost( iLvl )
 	if self:GetCaster():HasModifier("modifier_naga_siren_song_of_the_siren_song") then
 		return 0
 	else
-		return self.BaseClass:GetManaCost( iLvl )
+		return self.BaseClass.GetManaCost( self, iLvl )
+	end
+end
+
+function naga_siren_song_of_the_siren_bh:GetCastPoint()
+	if self:GetCaster():HasModifier("modifier_naga_siren_song_of_the_siren_song") then
+		return 0
+	else
+		return self.BaseClass.GetCastPoint( self )
 	end
 end
 

@@ -5,7 +5,7 @@ function boss_sloth_demon_slime_tendrils:GetIntrinsicModifierName()
 end
 
 modifier_boss_sloth_demon_slime_tendrils = class({})
-LinkLuaModiifier( "modifier_boss_sloth_demon_slime_tendrils", "bosses/boss_sloth_demon/boss_sloth_demon_slime_tendrils", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_boss_sloth_demon_slime_tendrils", "bosses/boss_sloth_demon/boss_sloth_demon_slime_tendrils", LUA_MODIFIER_MOTION_NONE )
 
 function modifier_boss_sloth_demon_slime_tendrils:OnCreated()
 	self.duration = self:GetSpecialValueFor("duration")
@@ -16,7 +16,7 @@ function modifier_boss_sloth_demon_slime_tendrils:OnRefresh()
 end
 
 function modifier_boss_sloth_demon_slime_tendrils:DeclareFunctions()
-	return {MODIFIER_EVENT_ON_TAKE_DAMAGE}
+	return {MODIFIER_EVENT_ON_TAKEDAMAGE}
 end
 
 function modifier_boss_sloth_demon_slime_tendrils:OnTakeDamage(params)
@@ -25,8 +25,12 @@ function modifier_boss_sloth_demon_slime_tendrils:OnTakeDamage(params)
 	end
 end
 
+function modifier_boss_sloth_demon_slime_tendrils:IsHidden()
+	return true
+end
+
 modifier_boss_sloth_demon_slime_tendrils_debuff = class({})
-LinkLuaModiifier( "modifier_boss_sloth_demon_slime_tendrils_debuff", "bosses/boss_sloth_demon/boss_sloth_demon_slime_tendrils", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_boss_sloth_demon_slime_tendrils_debuff", "bosses/boss_sloth_demon/boss_sloth_demon_slime_tendrils", LUA_MODIFIER_MOTION_NONE )
 
 function modifier_boss_sloth_demon_slime_tendrils_debuff:OnCreated()
 	self.ms = self:GetSpecialValueFor("move_slow")
@@ -45,13 +49,13 @@ function modifier_boss_sloth_demon_slime_tendrils_debuff:OnRefresh()
 end
 
 function modifier_boss_sloth_demon_slime_tendrils_debuff:DeclareFunctions()
-	return {TURNSLOW, MOVESLOW}
+	return {MODIFIER_PROPERTY_TURN_RATE_PERCENTAGE, MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE}
 end
 
-function modifier_boss_sloth_demon_slime_tendrils_debuff:DeclareFunctions()
-	return self.ts
+function modifier_boss_sloth_demon_slime_tendrils_debuff:GetModifierTurnRate_Percentage()
+	return self.ts * self:GetStackCount()
 end
 
-function modifier_boss_sloth_demon_slime_tendrils_debuff:DeclareFunctions()
-	return self.ms
+function modifier_boss_sloth_demon_slime_tendrils_debuff:GetModifierMoveSpeedBonus_Percentage()
+	return self.ms * self:GetStackCount()
 end

@@ -68,21 +68,24 @@ function modifier_crystal_maiden_crystalline_aura_buff:OnIntervalThink()
 end
 
 function modifier_crystal_maiden_crystalline_aura_buff:DeclareFunctions()
-	return {MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS, MODIFIER_PROPERTY_LESS_MANA_PLS, MODIFIER_PROPERTY_MORE_MANA_PLS, MODIFIER_PROPERTY_MORE_DMG_PLS}
+	return {MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS, 
+			MODIFIER_PROPERTY_MANACOST_PERCENTAGE_STACKING, 
+			MODIFIER_PROPERTY_MANA_REGEN_CONSTANT, 
+			MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE}
 end
 
-function modifier_crystal_maiden_crystalline_aura_buff:armor()
-	return self.armor
+function modifier_crystal_maiden_crystalline_aura_buff:GetModifierPhysicalArmorBonus()
+	return self.armor * self:GetCaster():GetMana() / 100
 end
 
-function modifier_crystal_maiden_crystalline_aura_buff:amp()
+function modifier_crystal_maiden_crystalline_aura_buff:GetModifierSpellAmplify_Percentage()
 	return self.amp
 end
 
-function modifier_crystal_maiden_crystalline_aura_buff:manacost()
+function modifier_crystal_maiden_crystalline_aura_buff:GetModifierPercentageManacostStacking()
 	return self.manacost
 end
 
-function modifier_crystal_maiden_crystalline_aura_buff:regen()
+function modifier_crystal_maiden_crystalline_aura_buff:GetModifierConstantManaRegen()
 	return self.regen
 end

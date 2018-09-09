@@ -294,13 +294,13 @@
 			}
 			"02"
 			{
-				"var_type"						"FIELD_INTEGER"
-				"damage_reduction"				"-18 -19 -20 -21 -22 -23 -24"
+				"var_type"						"FIELD_FLOAT"
+				"damage_reduction"				"-10 -12.5 -15 -17.5 -20 -22.5 -25"
 			}
 			"03"
 			{
-				"var_type"						"FIELD_INTEGER"
-				"mr_reduction"					"-18 -19 -20 -21 -22 -23 -24"
+				"var_type"						"FIELD_FLOAT"
+				"mr_reduction"					"-10 -12.5 -15 -17.5 -20 -22.5 -25"
 			}
 			"04"
 			{
@@ -435,7 +435,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"duration"					"8.0"
+				"duration"					"7.0"
 				"LinkedSpecialBonus"		"special_bonus_unique_naga_siren_song_of_the_siren_1"
 			}
 		}

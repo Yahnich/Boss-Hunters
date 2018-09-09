@@ -2,7 +2,7 @@ local function StartEvent(self)
 	local wolves = 3 + math.floor( math.log( RoundManager:GetEventsFinished() + 1 ) )
 	local alpha = 1 + RoundManager:GetAscensions()
 	
-	self.enemiesToSpawn = 1 + alpha
+	self.enemiesToSpawn = wolves + alpha
 	
 	local delay = 10
 	tick = 15 / (GameRules:GetGameDifficulty() + 1)

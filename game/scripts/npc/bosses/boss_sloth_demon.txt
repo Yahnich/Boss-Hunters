@@ -27,12 +27,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"turn_slow"				"-5 -10"
+				"turn_slow"				"-2 -3"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"move_slow"				"-5 -10"
+				"move_slow"				"-2 -3"
 			}
 			"03"
 			{
@@ -68,12 +68,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"attack_slow"			"-15 -30"
+				"attack_slow"			"-10 -15"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cdr_slow"				"-5 -10"
+				"cdr_slow"				"-2.5 -5"
 			}
 			"03"
 			{
@@ -89,6 +89,7 @@
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"bosses/boss_sloth_demon/boss_sloth_demon_slime_trail.lua"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"AbilityTextureName"			"batrider_firefly"
 		"MaxLevel"						"2"
 	
@@ -145,7 +146,7 @@
 	
 		"precache"
 		{
-			"particle"					"particles/units/heroes/hero_venomancer/venomancer_venomous_gale.vpcf"
+			"particle"					"particles/econ/items/winter_wyvern/winter_wyvern_ti7/wyvern_cold_embrace_ti7buff.vpcf"
 			"particle"  				"particles/units/heroes/hero_venomancer/venomancer_gale_poison_debuff.vpcf"
 			"particle"  				"particles/units/heroes/hero_viper/viper_nethertoxin.vpcf"
 

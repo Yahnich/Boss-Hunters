@@ -5,7 +5,7 @@ function boss_sloth_demon_slime_hide:GetIntrinsicModifierName()
 end
 
 modifier_boss_sloth_demon_slime_hide = class({})
-LinkLuaModiifier( "modifier_boss_sloth_demon_slime_hide", "bosses/boss_sloth_demon/boss_sloth_demon_slime_hide", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_boss_sloth_demon_slime_hide", "bosses/boss_sloth_demon/boss_sloth_demon_slime_hide", LUA_MODIFIER_MOTION_NONE )
 
 function modifier_boss_sloth_demon_slime_hide:OnCreated()
 	self.duration = self:GetSpecialValueFor("duration")
@@ -16,7 +16,7 @@ function modifier_boss_sloth_demon_slime_hide:OnRefresh()
 end
 
 function modifier_boss_sloth_demon_slime_hide:DeclareFunctions()
-	return {MODIFIER_EVENT_ON_TAKE_DAMAGE}
+	return {MODIFIER_EVENT_ON_TAKEDAMAGE}
 end
 
 function modifier_boss_sloth_demon_slime_hide:OnTakeDamage(params)
@@ -25,8 +25,12 @@ function modifier_boss_sloth_demon_slime_hide:OnTakeDamage(params)
 	end
 end
 
+function modifier_boss_sloth_demon_slime_hide:IsHidden()
+	return true
+end
+
 modifier_boss_sloth_demon_slime_hide_debuff = class({})
-LinkLuaModiifier( "modifier_boss_sloth_demon_slime_hide_debuff", "bosses/boss_sloth_demon/boss_sloth_demon_slime_hide", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_boss_sloth_demon_slime_hide_debuff", "bosses/boss_sloth_demon/boss_sloth_demon_slime_hide", LUA_MODIFIER_MOTION_NONE )
 
 function modifier_boss_sloth_demon_slime_hide_debuff:OnCreated()
 	self.as = self:GetSpecialValueFor("attack_slow")
@@ -45,13 +49,13 @@ function modifier_boss_sloth_demon_slime_hide_debuff:OnRefresh()
 end
 
 function modifier_boss_sloth_demon_slime_hide_debuff:DeclareFunctions()
-	return {ATTACKSLOW}
+	return {MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT}
 end
 
-function modifier_boss_sloth_demon_slime_hide_debuff:DeclareFunctions()
-	return self.as
+function modifier_boss_sloth_demon_slime_hide_debuff:GetModifierAttackSpeedBonus_Constant()
+	return self.as * self:GetStackCount()
 end
 
 function modifier_boss_sloth_demon_slime_hide_debuff:GetCooldownReduction()
-	return self.cdr
+	return self.cdr * self:GetStackCount()
 end

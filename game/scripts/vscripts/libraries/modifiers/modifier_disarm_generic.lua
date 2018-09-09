@@ -2,9 +2,9 @@ modifier_disarm_generic = class({})
 
 if IsServer() then
 	function modifier_disarm_generic:OnCreated(kv)
-		if kv.delay == nil or toboolean(kv.delay) == true then
+		if toboolean(kv.delay) == true then
 			self.delay = true
-			self:GetAbility():StartDelayedCooldown(self:GetRemainingTime(), false)
+			self:GetAbility():StartDelayedCooldown()
 		end
 	end
 	
@@ -37,4 +37,8 @@ end
 
 function modifier_disarm_generic:IsPurgable()
 	return true
+end
+
+function modifier_disarm_generic:IsHidden()
+	return false
 end

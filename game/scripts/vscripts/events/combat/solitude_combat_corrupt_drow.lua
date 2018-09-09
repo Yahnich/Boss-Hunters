@@ -5,7 +5,8 @@ local function StartEvent(self)
 		local spawn = CreateUnitByName("npc_dota_boss28", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
 		spawn.unitIsRoundBoss = true
 		
-		spawn:FindAbilityByName("boss18b_elusive_huntress"):SetActivated(false)
+		spawn:RemoveAbility("boss18b_elusive_huntress")
+		spawn:AddAbility("boss18b_corrupted_huntress")
 		spawn:SetCoreHealth(2200)
 		
 		self.enemiesToSpawn = self.enemiesToSpawn - 1

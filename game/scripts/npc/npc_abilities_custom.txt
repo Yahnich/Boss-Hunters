@@ -27,6 +27,7 @@
 #base "bosses/boss_sloth_demon.txt"
 #base "bosses/boss_wolves.txt"
 #base "bosses/boss_genesis.txt"
+#base "bosses/boss_greymane.txt"
 
 #base "elites/elite_accurate.txt"
 #base "elites/elite_assassin.txt"

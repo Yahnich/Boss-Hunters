@@ -187,7 +187,7 @@ function UpdateHealthBar(unit)
 			}
 		}
 	}
-	$.Schedule( 0.1, UpdateHealthBar )
+	$.Schedule( 0.33, UpdateHealthBar )
 }
 
 function CreateMainBuff(heroID, buffID, heroName)
@@ -264,7 +264,7 @@ function CreateMainBuff(heroID, buffID, heroName)
 		var buffLabel =  $.CreatePanel( "Label", buff, "BuffLabel"+Buffs.GetName(heroID, buffID )+"Main");
 		buffLabel.AddClass("PlayerMainModifierLabel")
 		buffLabel.text = stacks
-	} else if(stacks > 0) {
+	} else if(stacks > 0 && buffLabel.text != stacks) {
 		buffLabel.text = stacks
 	}
 }

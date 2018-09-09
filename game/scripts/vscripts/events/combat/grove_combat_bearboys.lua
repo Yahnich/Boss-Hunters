@@ -7,6 +7,12 @@ local function StartEvent(self)
 			enemyName = "npc_dota_boss26"
 		end
 		local spawn = CreateUnitByName(enemyName, RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
+		if enemyName == "npc_dota_boss26" then
+			spawn:SetCoreHealth(2200)
+		else
+			spawn:SetCoreHealth(1450)
+		end
+		
 		spawn.unitIsRoundBoss = true
 		
 		self.enemiesToSpawn = self.enemiesToSpawn - 1

@@ -94,7 +94,7 @@ end
 
 function modifier_stats_system_handler:GetModifierMoveSpeedBonus_Constant() return self.ms or 0 end
 function modifier_stats_system_handler:GetModifierManaBonus() return 500 + (self.mp or 0) end
-function modifier_stats_system_handler:GetModifierConstantManaRegen() return 5 + (self.mpr or 0) end
+function modifier_stats_system_handler:GetModifierConstantManaRegen() return 4 + (self.mpr or 0) end
 function modifier_stats_system_handler:GetModifierHealAmplify_Percentage() return self.ha or 0 end
 
 function modifier_stats_system_handler:GetModifierPreAttack_BonusDamage() return 10 + (self.ad or 0) end

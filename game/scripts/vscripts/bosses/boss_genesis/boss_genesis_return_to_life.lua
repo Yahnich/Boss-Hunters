@@ -13,6 +13,7 @@ function boss_genesis_return_to_life:OnSpellStart()
 	
 	for _, hero in ipairs( heroes ) do
 		self:ConjureImage( hero )
+		hero:EmitSound("Hero_Omniknight.Attack.Post")
 	end
 end
 

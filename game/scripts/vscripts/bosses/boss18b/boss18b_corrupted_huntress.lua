@@ -8,11 +8,11 @@ modifier_boss18b_corrupted_huntress_passive = class({})
 LinkLuaModifier("modifier_boss18b_corrupted_huntress_passive", "bosses/boss18b/boss18b_corrupted_huntress.lua", 0)
 
 function modifier_boss18b_corrupted_huntress_passive:OnCreated()
-	self.radius = self:GetSpecialValueFor("radius")
+	self.radius = self:GetSpecialValueFor("aura_radius")
 end
 
 function modifier_boss18b_corrupted_huntress_passive:OnRefresh()
-	self.radius = self:GetSpecialValueFor("radius")
+	self.radius = self:GetSpecialValueFor("aura_radius")
 end
 
 function modifier_boss18b_corrupted_huntress_passive:IsHidden()
@@ -23,32 +23,32 @@ function modifier_boss18b_corrupted_huntress_passive:IsAura()
 	return true
 end
 
-function modifier_boss18b_corrupted_huntress_debuff:GetModifierAura()
+function modifier_boss18b_corrupted_huntress_passive:GetModifierAura()
 	return "modifier_boss18b_corrupted_huntress_debuff"
 end
 
-function modifier_boss18b_corrupted_huntress_debuff:GetAuraRadius()
+function modifier_boss18b_corrupted_huntress_passive:GetAuraRadius()
 	return self.radius
 end
 
-function modifier_boss18b_corrupted_huntress_debuff:GetAuraDuration()
+function modifier_boss18b_corrupted_huntress_passive:GetAuraDuration()
 	return 0.5
 end
 
-function modifier_boss18b_corrupted_huntress_debuff:GetAuraSearchTeam()    
+function modifier_boss18b_corrupted_huntress_passive:GetAuraSearchTeam()    
 	return DOTA_UNIT_TARGET_TEAM_ENEMY
 end
 
-function modifier_boss18b_corrupted_huntress_debuff:GetAuraSearchType()    
+function modifier_boss18b_corrupted_huntress_passive:GetAuraSearchType()    
 	return DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
 end
 
-function modifier_boss18b_corrupted_huntress_debuff:GetAuraSearchFlags()    
+function modifier_boss18b_corrupted_huntress_passive:GetAuraSearchFlags()    
 	return DOTA_UNIT_TARGET_FLAG_NONE
 end
 
 function modifier_boss18b_corrupted_huntress_passive:GetEffectName()
-	return ""
+	return "particles/units/heroes/hero_skeletonking/wraith_king_ambient.vpcf"
 end
 
 function modifier_boss18b_corrupted_huntress_passive:GetStatusEffectName()

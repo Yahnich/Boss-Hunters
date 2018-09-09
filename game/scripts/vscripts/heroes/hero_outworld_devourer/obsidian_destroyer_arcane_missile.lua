@@ -4,6 +4,10 @@ function obsidian_destroyer_arcane_missile:GetIntrinsicModifierName()
 	return "modifier_obsidian_destroyer_arcane_missile_autocast"
 end
 
+function obsidian_destroyer_arcane_missile:OnAbilityPhaseStart()
+	return self:GetCaster():AttackReady()
+end
+
 function obsidian_destroyer_arcane_missile:OnSpellStart()
 	local target = self:GetCursorTarget()
 	self.forceCast = true

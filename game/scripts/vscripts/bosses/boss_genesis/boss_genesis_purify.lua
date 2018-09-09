@@ -10,4 +10,6 @@ function boss_genesis_purify:OnSpellStart()
 	local target = self:GetCursorTarget()
 	
 	target:Dispel(caster, true)
+	ParticleManager:FireParticle("particles/units/heroes/hero_omniknight/omniknight_purification_cast.vpcf", PATTACH_POINT_FOLLOW, target)
+	target:EmitSound("Hero_Omniknight.Purification")
 end

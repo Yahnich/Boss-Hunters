@@ -17,4 +17,6 @@ function boss_genesis_crumple:OnSpellStart()
 		self:DealDamage( caster, enemy, damage )
 		self:Stun( enemy, stunDur )
 	end
+	ParticleManager:FireParticle("particles/test_particle/ogre_melee_smash.vpcf", PATTACH_WORLDORIGIN, nil, {[0] = position, [1] = Vector(radius, 1, 1) })
+	EmitSoundOnLocationWithCaster(position, "Hero_Leshrac.Split_Earth", caster)
 end

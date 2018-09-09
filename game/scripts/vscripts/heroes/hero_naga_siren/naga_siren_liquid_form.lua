@@ -32,7 +32,7 @@ function modifier_naga_siren_liquid_form:OnCreated()
 	self.movespeed = self:GetTalentSpecialValueFor("water_bonus_ms")
 	
 	self.out = self:GetTalentSpecialValueFor("out_damage")
-	self.in = self:GetTalentSpecialValueFor("inc_damage")
+	self.incomingDamage = self:GetTalentSpecialValueFor("inc_damage")
 	self.illuDur = self:GetTalentSpecialValueFor("illu_duration")
 	
 	self:GetParent().liquidIllusions = self:GetParent().liquidIllusions or {}
@@ -45,7 +45,7 @@ function modifier_naga_siren_liquid_form:OnRefresh()
 	self.movespeed = self:GetTalentSpecialValueFor("water_bonus_ms")
 	
 	self.out = self:GetTalentSpecialValueFor("out_damage")
-	self.in = self:GetTalentSpecialValueFor("inc_damage")
+	self.incomingDamage = self:GetTalentSpecialValueFor("inc_damage")
 	self.illuDur = self:GetTalentSpecialValueFor("illu_duration")
 	self:GetParent().liquidIllusions = self:GetParent().liquidIllusions or {}
 end
@@ -58,17 +58,17 @@ function modifier_naga_siren_liquid_form:DeclareFunctions()
 	return {MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
 			MODIFIER_PROPERTY_EVASION_CONSTANT,
 			MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-			MODIFIER_EVENT_ON_ATTACK_FAILED}
+			MODIFIER_EVENT_ON_ATTACK_FAIL}
 end
 
-function modifier_naga_siren_liquid_form:OnAttackFailed(params)
+function modifier_naga_siren_liquid_form:OnAttackFail(params)
 	if params.target == self:GetParent() then
 		for pos, illusion in pairs( self:GetParent().liquidIllusions ) do
 			if illusion:IsNull() or not illusion:IsAlive() then
 				table.remove( self:GetParent().liquidIllusions, pos )
 			end
 		end
-		local illusion = self:GetParent():ConjureImage( self:GetParent():GetAbsOrigin() + RandomVector( 250 ), self.illuDur, self.out - 100, self.in - 100, nil, self:GetAbility() )
+		local illusion = self:GetParent():ConjureImage( self:GetParent():GetAbsOrigin() + RandomVector( 250 ), self.illuDur, self.out - 100, self.incomingDamage - 100, nil, self:GetAbility() )
 		table.insert( self:GetParent().liquidIllusions, illusion )
 		if #self:GetParent().liquidIllusions > 3 then
 			if not self:GetParent().liquidIllusions[1]:IsNull() and self:GetParent().liquidIllusions[1]:IsAlive() then

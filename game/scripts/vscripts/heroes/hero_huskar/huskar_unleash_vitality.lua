@@ -58,9 +58,11 @@ function modifier_huskar_unleash_vitality_talent:OnRefresh()
 end
 
 function modifier_huskar_unleash_vitality_talent:OnIntervalThink()
-	self.total_heal = math.floor(self.heal + self:GetParent():GetPrimaryStatValue() * self.bonus_heal) * self.talentMultiplier
-	self.total_ms = math.floor(self.ms + self:GetParent():GetPrimaryStatValue() * self.bonus_ms) * self.talentMultiplier
-	self.total_as = math.floor(self.as + self:GetParent():GetPrimaryStatValue() * self.bonus_as) * self.talentMultiplier
+	if self:GetParent():IsRealHero() then
+		self.total_heal = math.floor(self.heal + self:GetParent():GetPrimaryStatValue() * self.bonus_heal) * self.talentMultiplier
+		self.total_ms = math.floor(self.ms + self:GetParent():GetPrimaryStatValue() * self.bonus_ms) * self.talentMultiplier
+		self.total_as = math.floor(self.as + self:GetParent():GetPrimaryStatValue() * self.bonus_as) * self.talentMultiplier
+	end
 end
 
 function modifier_huskar_unleash_vitality_talent:DeclareFunctions()

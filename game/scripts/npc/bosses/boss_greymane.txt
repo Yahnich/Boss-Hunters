@@ -1,0 +1,283 @@
+"DOTAAbilities"
+{	
+	"boss_greymane_call_of_the_alpha"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_greymane/boss_greymane_call_of_the_alpha.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"lycan_summon_wolves"
+		"MaxLevel"						"2"
+	
+
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_pugna/pugna_decrepify.vpcf"
+			"particle"  				"particles/econ/items/effigies/status_fx_effigies/status_effect_effigy_jade_stone.vpcf"
+			"particle"  				"particles/status_fx/status_effect_ancestral_spirit.vpcf"
+			"particle"  				"particles/status_fx/status_effect_wraithking_ghosts.vpcf"
+
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_venomancer.vsndevts"
+		}
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"wolf_interval"			"20 15"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"alpha_interval"		"60 45"
+			}
+		}
+	}
+
+	"boss_greymane_leaders_inspiration"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_greymane/boss_greymane_leaders_inspiration.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"lycan_feral_impulse"
+		"MaxLevel"						"2"
+	
+		"precache"
+		{
+			"particle"					"particles/bosses/boss_greymane/boss_boss_alpha_wolf_aura_explosion.vpcf"
+
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_venomancer.vsndevts"
+		}
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"greymane_as_per_hp"	"5 8"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"as_per_hp"				"3 5"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"radius"				"900"
+			}
+		}
+	}
+	"boss_greymane_furious_swipe"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_greymane/boss_greymane_furious_swipe.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"luna_moon_glaive"
+		"MaxLevel"						"2"
+	
+		"AbilityCastPoint"				"1 0.75"
+		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
+		"AbilityCastPoint"				"1.5 1"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"8"
+	
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_riki/riki_backstab.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_riki.vsndevts"
+		}
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cone_angle"			"180 360"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"as_slow"				"-40 -80"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"ms_slow"				"-12 -16"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bleed"					"20 30"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"5"
+			}
+		}
+	}
+	"boss_greymane_battle_cry"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_greymane/boss_greymane_battle_cry.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityTextureName"			"lycan_howl"
+		"MaxLevel"						"2"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"24 20"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+		"AbilityCastPoint"				"1.5 1"
+	
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_lycan/lycan_howl_cast.vpcf"
+			"particle"					"particles/units/heroes/hero_lycan/lycan_howl_buff.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_lycan.vsndevts"
+		}
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bonus_damage"			"20 30"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"dispel_pct"			"10 15"
+			}
+		}
+	}
+	"boss_greymane_pounce"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_greymane/boss_greymane_pounce.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELED"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityTextureName"			"mirana_leap"
+		"MaxLevel"						"2"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"20 16"
+		"AbilityCastPoint"				"1"
+		"AbilityChannelTime"			"6.5 6"
+		"AbilityCastRange"				"1200"
+	
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_riki/riki_backstab_hit_blood.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_mirana.vsndevts"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_riki.vsndevts"
+		}
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"jump_duration"			"1.5 1"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"damage_interval"		"1"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"damage_per_second"		"100 140"
+			}
+		}
+	}
+	"boss_greymane_frenzied_blows"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_greymane/boss_greymane_frenzied_blows.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityTextureName"			"pangolier_swashbuckle"
+		"MaxLevel"						"2"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"12"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCastRange"				"600"
+		"AbilityCastPoint"				"1.5 1"
+	
+		"precache"
+		{
+			"particle"  				"particles/bosses/boss_greymane/boss_greymane_frenzied_blows.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_pangolier.vsndevts"
+		}
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"width"					"125"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"speed"					"900"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"attack_interval"		"0.15 0.1"
+			}
+		}
+	}
+}

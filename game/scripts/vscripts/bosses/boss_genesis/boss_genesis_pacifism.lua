@@ -11,6 +11,17 @@ end
 modifier_boss_genesis_pacifism = class({})
 LinkLuaModifier( "modifier_boss_genesis_pacifism", "bosses/boss_genesis/boss_genesis_pacifism", LUA_MODIFIER_MOTION_NONE )
 
+function modifier_boss_genesis_pacifism:OnCreated()
+	if IsServer() then self:StartIntervalThink(0.5) end
+end
+function modifier_boss_genesis_pacifism:OnIntervalThink()
+	if self:GetAbility():IsCooldownReady() then
+		self:SetStackCount(0)
+	else
+		self:SetStackCount(1)
+	end
+end
+
 function modifier_boss_genesis_pacifism:DeclareFunctions()
 	return {MODIFIER_EVENT_ON_TAKEDAMAGE}
 end
@@ -21,6 +32,10 @@ function modifier_boss_genesis_pacifism:OnTakeDamage(params)
 		local duration = self:GetSpecialValueFor("duration")
 		params.attacker:Disarm( params.unit, ability, duration)
 		params.attacker:Silence( params.unit, ability, duration)
-		ability:SetCooldown
+		ability:SetCooldown()
 	end
+end
+
+function modifier_boss_genesis_pacifism:IsHidden()
+	return self:GetStackCount() == 1
 end

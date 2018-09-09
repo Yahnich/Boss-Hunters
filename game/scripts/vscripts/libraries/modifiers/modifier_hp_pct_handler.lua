@@ -13,8 +13,7 @@ if IsServer() then
 		self:SetStackCount( 0 )
 		for _, modifier in ipairs( self:GetParent():FindAllModifiers() ) do
 			if modifier.GetModifierHealthBonus_Percentage then
-				local roll = modifier:GetModifierHealthBonus_Percentage() 
-				print(modifier:GetName(), stacks)
+				local roll = modifier:GetModifierHealthBonus_Percentage()
 				if roll then
 					stacks = stacks + roll
 				end
@@ -25,19 +24,15 @@ if IsServer() then
 		self:GetParent():CalculateStatBonus()
 		
 		local bonusHP = self:GetParent():GetMaxHealth() * stacks
-		print( math.floor(bonusHP / 1000), stacks, self:GetParent():GetMaxHealth() )
+		bonusHP = math.max( - (self:GetParent():GetMaxHealth() - 1) * 100, bonusHP )
 		if bonusHP < 0 then
 			bonusHP = math.abs( bonusHP * 10 ) + 1
 		else
 			bonusHP = math.abs( bonusHP * 10 )
 		end
-		
 		self:SetStackCount( bonusHP )
-		
-		print( self:GetParent():GetMaxHealth(), "maxhealth?" )
+		self:GetParent():CalculateStatBonus()
 		self:GetParent():SetHealth( hpPct * self:GetParent():GetMaxHealth() )
-		
-		-- self:GetParent():CalculateStatBonus()
 	end
 	
 	function modifier_hp_pct_handler:OnDestroy()

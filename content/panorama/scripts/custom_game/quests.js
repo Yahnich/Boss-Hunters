@@ -166,6 +166,16 @@ function UpdateAccuracyTooltip()
 		}
 		
 	}
+	GameUI.GetScreenWorldPosition
+	
+	
+	var mPos = GameUI.GetCursorPosition()
+    var gamePos = Game.ScreenXYToWorld(mPos[0], mPos[1])
+    if ( gamePos !== null )
+    {
+		GameEvents.SendCustomGameEventToServer( "bh_update_mouse_position", {pID : localID, x : gamePos[0], y : gamePos[1]} )
+    }
+	
 	$.Schedule( 0.33, UpdateAccuracyTooltip );
 }
 

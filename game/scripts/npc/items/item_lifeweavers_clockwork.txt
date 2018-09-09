@@ -64,11 +64,6 @@
 				"var_type"				"FIELD_INTEGER"
 				"bonus_intellect"		"20"
 			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"bonus_mana_regen"		"2"
-			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"

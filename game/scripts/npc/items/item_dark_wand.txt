@@ -165,7 +165,7 @@
 			"particle"					"particles/items_fx/dagon.vpcf"
 		}
 		
-		"AbilityCooldown"				"35 30 25 20 15"
+		"AbilityCooldown"				"20 17.5 15 12.5 10"
 		"AbilitySharedCooldown"			"dagon"
 		"AbilityManaCost"				"300"
 
@@ -200,6 +200,11 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"damage"				"600 600 700 800 900"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cooldown"				"20 17.5 15 12.5 10"
 			}
 		}
 	}
@@ -238,7 +243,7 @@
 			"particle"					"particles/items_fx/dagon.vpcf"
 		}
 		
-		"AbilityCooldown"				"35 30 25 20 15"
+		"AbilityCooldown"				"20 17.5 15 12.5 10"
 		"AbilitySharedCooldown"			"dagon"
 		"AbilityManaCost"				"300"
 
@@ -273,6 +278,11 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"damage"				"600 600 700 800 900"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cooldown"				"20 17.5 15 12.5 10"
 			}
 		}
 	}
@@ -311,7 +321,7 @@
 			"particle"					"particles/items_fx/dagon.vpcf"
 		}
 		
-		"AbilityCooldown"				"35 30 25 20 15"
+		"AbilityCooldown"				"20 17.5 15 12.5 10"
 		"AbilitySharedCooldown"			"dagon"
 		"AbilityManaCost"				"300"
 
@@ -346,6 +356,11 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"damage"				"600 600 700 800 900"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cooldown"				"20 17.5 15 12.5 10"
 			}
 		}
 	}
@@ -384,7 +399,7 @@
 			"particle"					"particles/items_fx/dagon.vpcf"
 		}
 		
-		"AbilityCooldown"				"35 30 25 20 15"
+		"AbilityCooldown"				"20 17.5 15 12.5 10"
 		"AbilitySharedCooldown"			"dagon"
 		"AbilityManaCost"				"300"
 
@@ -419,6 +434,11 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"damage"				"600 600 700 800 900"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cooldown"				"20 17.5 15 12.5 10"
 			}
 		}
 	}
@@ -457,7 +477,7 @@
 			"particle"					"particles/items_fx/dagon.vpcf"
 		}
 		
-		"AbilityCooldown"				"35 30 25 20 15"
+		"AbilityCooldown"				"20 17.5 15 12.5 10"
 		"AbilitySharedCooldown"			"dagon"
 		"AbilityManaCost"				"300"
 
@@ -492,6 +512,11 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"damage"				"600 600 700 800 900"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cooldown"				"20 17.5 15 12.5 10"
 			}
 		}
 	}

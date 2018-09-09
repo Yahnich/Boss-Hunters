@@ -334,6 +334,8 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"1200"
 		"AbilityChannelTime"			"15"
+		"AbilityChannelAnimation"		"ACT_DOTA_CAST_ABILITY_4"
+		"AnimationPlaybackRate"			"0.66"
 		"AbilityCastPoint"				"0.3"
 		
 		// Time		
@@ -361,8 +363,8 @@
 			}		
 			"02"
 			{
-				"var_type"			"FIELD_INTEGER"
-				"explosion_radius"	"350"
+				"var_type"				"FIELD_INTEGER"
+				"explosion_radius"		"350"
 			}
 			"04"
 			{

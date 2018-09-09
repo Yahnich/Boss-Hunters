@@ -33,7 +33,7 @@
 		"solitude_combat_commander"				"1"
 		"solitude_combat_madness_demon"			"1"
 		"solitude_combat_wrath_demon"			"1"
-		// "solitude_combat_sloth_demon"			"1"
+		"solitude_combat_sloth_demon"			"1"
 		"solitude_combat_corrupt_drow"			"1"
 		"solitude_combat_angry_wraith"			"1"
 		"solitude_combat_prophets"				"1"

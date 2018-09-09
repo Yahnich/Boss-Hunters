@@ -8,13 +8,17 @@ modifier_boss_genesis_reconstruction = class({})
 LinkLuaModifier( "modifier_boss_genesis_reconstruction", "bosses/boss_genesis/boss_genesis_reconstruction", LUA_MODIFIER_MOTION_NONE )
 
 function modifier_boss_genesis_reconstruction:DeclareFunctions()
-	return {}
+	return {MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE}
 end
 
-function modifier_boss_genesis_reconstruction:Gethealthregne()
+function modifier_boss_genesis_reconstruction:GetModifierHealthRegenPercentage()
 	if self:GetCaster():HasModifier("modifier_boss_genesis_strengthen_resolve") then
-		return self:GetSpecialValueFor("regen")
-	else
 		return self:GetSpecialValueFor("regen_buff")
+	else
+		return self:GetSpecialValueFor("regen")
 	end
+end
+
+function modifier_boss_genesis_reconstruction:IsHidden()
+	return true
 end

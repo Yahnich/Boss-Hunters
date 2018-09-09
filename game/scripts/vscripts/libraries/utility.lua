@@ -853,6 +853,7 @@ function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, sp
 	
 	illusion:SetOriginalModel( self:GetModelName() )
 	illusion:SetModel( self:GetModelName() )
+	illusion:SetModelScale( self:GetModelScale() )
 	
 	local moveCap = DOTA_UNIT_CAP_MOVE_NONE
 	if self:HasMovementCapability() then
@@ -899,10 +900,15 @@ function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, sp
 	
 	for _, wearable in ipairs( self:GetChildren() ) do
 		if wearable:GetClassname() == "dota_item_wearable" and wearable:GetModelName() ~= "" then
-			local newWearable = SpawnEntityFromTableSynchronous("prop_dynamic", {model=wearable:GetModelName()})
+			local newWearable = CreateUnitByName("wearable_dummy", illusion:GetAbsOrigin(), false, nil, nil, self:GetTeam())
+			newWearable:SetOriginalModel(wearable:GetModelName())
+			newWearable:SetModel(wearable:GetModelName())
+			newWearable:AddNewModifier(nil, nil, "modifier_wearable", {})
+			newWearable:AddNewModifier(self, ability, "modifier_kill", { duration = duration })
+			newWearable:AddNewModifier(self, ability, "modifier_illusion", { duration = duration })
 			newWearable:SetParent(illusion, nil)
 			newWearable:FollowEntity(illusion, true)
-			newWearable:SetRenderColor(100,100,255)
+			-- newWearable:SetRenderColor(100,100,255)
 			Timers:CreateTimer(1, function()
 				if illusion and not illusion:IsNull() and illusion:IsAlive() then
 					return 0.25
@@ -1366,6 +1372,10 @@ function CDOTABaseAbility:GetTrueCooldown()
 end
 
 function CDOTABaseAbility:SetCooldown(fCD)
+	if self:GetCaster():HasRelic("relic_cursed_unchanging_globe") then
+		self:EndCooldown()
+		self:StartCooldown(9)
+	end
 	if fCD then
 		self:EndCooldown()
 		self:StartCooldown(fCD)
