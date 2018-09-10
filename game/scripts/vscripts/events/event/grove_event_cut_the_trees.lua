@@ -109,7 +109,6 @@ local function SecondChoice(self, userid, event)
 end
 
 local function StartEvent(self)	
-	CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_has_started", {event = "grove_event_cut_the_trees", choices = 2})
 	self._vListenerHandles = {
 		CustomGameEventManager:RegisterListener('player_selected_event_choice_1', Context_Wrap( self, 'FirstChoice') ),
 		CustomGameEventManager:RegisterListener('player_selected_event_choice_2', Context_Wrap( self, 'SecondChoice') ),
@@ -121,6 +120,7 @@ local function StartEvent(self)
 	self.timeRemaining = 15
 	self.eventEnded = false
 	if not self.combatStarted then
+		CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_has_started", {event = "grove_event_cut_the_trees", choices = 2})
 		self.waitTimer = Timers:CreateTimer(1, function()
 			CustomGameEventManager:Send_ServerToAllClients("updateQuestPrepTime", {prepTime = self.timeRemaining})
 			if not self.eventEnded and not self.combatStarted then

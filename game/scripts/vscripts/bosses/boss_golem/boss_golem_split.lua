@@ -12,10 +12,10 @@ function modifier_boss_golem_split:DeclareFunctions()
 end
 
 function modifier_boss_golem_split:OnDeath(params)
-	if params.unit == self:GetParent() and self:GetParent():GetModelScale() >= self:GetSpecialValueFor("minimum_scale") then
+	if params.unit == self:GetParent() and self:GetParent():GetModelScale() >= self:GetSpecialValueFor("minimum_scale") and self:GetAbility():IsActivated() then
 		local divider = self:GetSpecialValueFor("golem_hp") / 100
 		local hp = self:GetParent():GetMaxHealth() * divider
-		local scale = self:GetParent():GetModelScale() * 0.75
+		local scale = math.max( self:GetParent():GetModelScale() * 0.75, self:GetSpecialValueFor("minimum_scale") )
 		for i = 1, self:GetSpecialValueFor("split_count") do
 			golem = CreateUnitByName("npc_dota_boss12_golem", self:GetParent():GetAbsOrigin() + RandomVector(250), true, nil, nil, self:GetParent():GetTeamNumber())
 			

@@ -86,6 +86,7 @@ function RoundManager:VoteNewGame(userid, event)
 			RoundManager:ConstructRaids(zoneName)
 		end
 	elseif self.votedNoNg > self.votedToNG then
+		self.ng = false
 		self.prepTimer = 0
 	end
 end
@@ -518,6 +519,8 @@ function RoundManager:GameIsFinished(bWon)
 		if bWon then
 			self.prepTimer = 30
 			self.ng = false
+			self.votedToNG = 0
+			self.votedNoNg = 0
 			CustomGameEventManager:Send_ServerToAllClients("bh_start_ng_vote", {ascLevel = RoundManager:GetAscensions() + 1})
 			GameRules.Winner = DOTA_TEAM_GOODGUYS
 			Timers(1, function()

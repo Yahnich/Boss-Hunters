@@ -17,27 +17,29 @@ function boss_golem_golem_toss:OnSpellStart()
 	local scale = caster:GetModelScale()
 	local golemScale = caster:GetModelScale() * 0.6
 	
-	golem:SetModelScale( math.max(golemScale, 0.4 ) )
+	golem:SetModelScale( math.max(golemScale, self:GetSpecialValueFor("minimum_scale") ) )
 	golem:SetBaseMoveSpeed( math.min( 300, golem:GetBaseMoveSpeed() / scale ) )
 	golem:SetAverageBaseDamage( caster:GetAverageBaseDamage() * 0.8, 25 )
 	golem.unitIsRoundBoss = true
 	golem:SetBaseMaxHealth( golemHP )
 	golem:SetMaxHealth( golemHP )
 	golem:SetHealth( golemHP )
-	if golem:GetModelScale() < 0.5 then
+	if golem:GetModelScale() < self:GetSpecialValueFor("minimum_scale") then
 		golem:FindAbilityByName("boss_golem_golem_toss"):SetActivated(false)
 	else
 		golem:FindAbilityByName("boss_golem_golem_toss"):SetCooldown()
 	end
 	
-	if caster:GetModelScale() < 0.5 then
+	if caster:GetModelScale() < self:GetSpecialValueFor("minimum_scale") then
 		golem:FindAbilityByName("boss_golem_golem_toss"):SetActivated(false)
 	end
+	golem:FindAbilityByName("boss_golem_split"):SetActivated(false)
+	golem:FindAbilityByName("boss_golem_cracked_mass"):SetActivated(false)
 	
 	golem.unitIsRoundBoss = true
 	golem.hasBeenInitialized = true
 	
-	caster:SetModelScale( scale * 0.8 )
+	caster:SetModelScale( math.max( scale * 0.9, self:GetSpecialValueFor("minimum_scale") ) )
 	caster:SetBaseMaxHealth( hp - golemHP )
 	caster:SetMaxHealth( hp - golemHP )
 	caster:SetBaseMoveSpeed( caster:GetBaseMoveSpeed() / scale )

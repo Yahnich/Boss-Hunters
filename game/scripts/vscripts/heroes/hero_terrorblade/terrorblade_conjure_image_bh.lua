@@ -1,0 +1,1 @@
+terrorblade_conjure_image_bh = class({})

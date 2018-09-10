@@ -125,7 +125,6 @@ function UpdateHealthBar(unit)
 		var localAbility = $("#currentlyCastAbility")
 		localAbility.abilityname = "generic_hidden"
 		localAbility.SetHasClass("SpellActiveBorder", false)
-		localAbility.SetPanelEvent("onmouseout", function(){} );
 		localAbility.SetPanelEvent("onmouseover", function(){} );
 		localAbility.SetPanelEvent("onactivate", function(){} );
 		for (var i = 0; i < Entities.GetAbilityCount( sUnit ); i++) {
@@ -161,7 +160,6 @@ function UpdateHealthBar(unit)
 			}
 		}
 		if ( localAbility.abilityname == "generic_hidden" && currBossAbility != "generic_hidden"){
-			$.DispatchEvent("DOTAHideAbilityTooltip", localAbility);
 			currBossAbility = "generic_hidden";
 		}
 		

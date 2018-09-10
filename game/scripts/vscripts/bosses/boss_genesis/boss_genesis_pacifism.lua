@@ -32,7 +32,7 @@ function modifier_boss_genesis_pacifism:OnTakeDamage(params)
 		local duration = self:GetSpecialValueFor("duration")
 		params.attacker:Disarm( params.unit, ability, duration)
 		params.attacker:Silence( params.unit, ability, duration)
-		ability:SetCooldown()
+		ability:SetCooldown( self:GetAbility():GetCooldown(-1) )
 	end
 end
 

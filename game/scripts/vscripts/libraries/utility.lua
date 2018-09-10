@@ -812,8 +812,9 @@ function CDOTA_BaseNPC:IsIllusion()
 end
 
 
-function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, specIllusionModifier, ability, controllable )
-	local player = self:GetPlayerID()
+function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, specIllusionModifier, ability, controllable, caster )
+	local owner = caster or self
+	local player = owner:GetPlayerID()
 
 	local unit_name = self:GetUnitName()
 	local origin = position or self:GetAbsOrigin() + RandomVector(100)
@@ -823,7 +824,7 @@ function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, sp
 	bControl = controllable
 	if bControl == nil then bControl = true end
 	-- handle_UnitOwner needs to be nil, else it will crash the game.
-	local illusion = CreateUnitByName("npc_illusion_template", origin, true, self, self, self:GetTeamNumber())
+	local illusion = CreateUnitByName("npc_illusion_template", origin, true, self, self, owner:GetTeamNumber())
 	if bControl then illusion:SetControllableByPlayer(player, true) end
 		
 	for abilitySlot=0,15 do
@@ -875,7 +876,7 @@ function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, sp
 		end
 	end
 	
-	illusion:AddNewModifier( self, nil, "modifier_illusion_bonuses", { duration = duration })
+	illusion:AddNewModifier( owner, nil, "modifier_illusion_bonuses", { duration = duration })
 	
 	-- Recreate the items of the caster
 	for itemSlot=0,5 do
@@ -886,16 +887,15 @@ function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, sp
 			newItem:SetStacksWithOtherOwners(true)
 			illusion:AddItem(newItem)
 			newItem:SetPurchaser(nil)
-			
 		end
 	end
 
 	-- Set the unit as an illusion
 	-- modifier_illusion controls many illusion properties like +Green damage not adding to the unit damage, not being able to cast spells and the team-only blue particle
-	illusion:AddNewModifier(self, ability, "modifier_kill", { duration = duration })
-	illusion:AddNewModifier(self, ability, "modifier_illusion", { duration = duration, outgoing_damage = outgoingDamage, incoming_damage = incomingDamage })
+	illusion:AddNewModifier(owner, ability, "modifier_kill", { duration = duration })
+	illusion:AddNewModifier(owner, ability, "modifier_illusion", { duration = duration, outgoing_damage = outgoingDamage, incoming_damage = incomingDamage })
 	if specIllusionModifier then
-		illusion:AddNewModifier(self, ability, specIllusionModifier, { duration = duration })
+		illusion:AddNewModifier(owner, ability, specIllusionModifier, { duration = duration })
 	end
 	
 	for _, wearable in ipairs( self:GetChildren() ) do
@@ -904,8 +904,8 @@ function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, sp
 			newWearable:SetOriginalModel(wearable:GetModelName())
 			newWearable:SetModel(wearable:GetModelName())
 			newWearable:AddNewModifier(nil, nil, "modifier_wearable", {})
-			newWearable:AddNewModifier(self, ability, "modifier_kill", { duration = duration })
-			newWearable:AddNewModifier(self, ability, "modifier_illusion", { duration = duration })
+			newWearable:AddNewModifier(owner, ability, "modifier_kill", { duration = duration })
+			newWearable:AddNewModifier(owner, ability, "modifier_illusion", { duration = duration })
 			newWearable:SetParent(illusion, nil)
 			newWearable:FollowEntity(illusion, true)
 			-- newWearable:SetRenderColor(100,100,255)
@@ -1372,12 +1372,10 @@ function CDOTABaseAbility:GetTrueCooldown()
 end
 
 function CDOTABaseAbility:SetCooldown(fCD)
-	if self:GetCaster():HasRelic("relic_cursed_unchanging_globe") then
-		self:EndCooldown()
+	self:EndCooldown()
+	if self:GetCaster():HasModifier("relic_cursed_unchanging_globe") then
 		self:StartCooldown(9)
-	end
-	if fCD then
-		self:EndCooldown()
+	elseif fCD then
 		self:StartCooldown(fCD)
 	else
 		self:UseResources(false, false, true)
@@ -2563,11 +2561,26 @@ function CDOTA_BaseNPC:GetIllusionOwnerEntindex()
 	end
 end
 
+function CDOTA_Modifier_Lua:IsCurse()
+	return self.isCurse
+end
+
+function CDOTA_Modifier_Lua:IsBlessing()
+	return self.isBlessing
+end
+
+function CDOTA_BaseNPC:PurgeCurses( )
+	for _, modifier in ipairs( self:FindAllModifiers() ) do
+		if modifier:IsCurse() then
+			modifier:Destroy()
+		end
+	end
+end
+
 function CDOTA_BaseNPC:AddCurse(curseName)	
 	local curse = self:AddNewModifier(self, nil, curseName, {})
 	if curse then 
 		curse.isCurse = true
-	
 		if self:HasRelic("relic_unique_ofuda") and self:FindModifierByName("relic_unique_ofuda"):GetStackCount() > 0 then
 			local ofuda = self:FindModifierByName("relic_unique_ofuda")
 			ofuda:DecrementStackCount()

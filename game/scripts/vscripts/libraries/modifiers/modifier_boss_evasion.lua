@@ -1,5 +1,16 @@
 modifier_boss_evasion = class({})
 
+function modifier_boss_evasion:OnCreated()
+	if IsServer() then
+		self:StartIntervalThink(210 - GameRules:GetGameDifficulty() * 15)
+	end
+end
+
+function modifier_boss_evasion:OnIntervalThink()
+	self:StartIntervalThink(-1)
+	self:GetParent():AddNewModifier(nil, nil, "modifier_boss_hard_enrage", {})
+end
+
 function modifier_boss_evasion:DeclareFunctions()
     local funcs = {
         MODIFIER_PROPERTY_EVASION_CONSTANT,

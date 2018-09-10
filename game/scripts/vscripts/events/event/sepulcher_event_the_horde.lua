@@ -39,16 +39,16 @@ local function StartCombat(self)
 			if self.timeRemaining >= 0 then
 				for _, hero in ipairs( HeroList:GetActiveHeroes() ) do
 					local roll = RandomInt(1, 12)
-					local hp = 200
+					local hp = 150
 					local zombieType = "npc_dota_mini_boss1"
 					if roll <= 6 then
 						zombieType = "npc_dota_mini_boss1"
 					elseif roll <= 10 then
 						zombieType = "npc_dota_boss3a_b"
-						hp = 350
+						hp = 200
 					elseif roll == 12 then
 						zombieType = "npc_dota_boss3b"
-						hp = 250
+						hp = 175
 					end
 					local zombie = CreateUnitByName(zombieType, RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
 					zombie:SetCoreHealth(hp)

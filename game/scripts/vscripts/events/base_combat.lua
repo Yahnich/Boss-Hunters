@@ -10,8 +10,6 @@ local function OnEntityKilled(self, event)
 				end
 			end
 			Timers:CreateTimer(3, function()
-				print(self)
-				print(self.EndEvent)
 				self:EndEvent(true)
 			end)
 		elseif killedTarget:IsRealHero() then

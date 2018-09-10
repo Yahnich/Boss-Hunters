@@ -140,7 +140,7 @@ function modifier_crystal_maiden_arcane_blizzard_slow_aura:OnCreated()
 end
 
 function modifier_crystal_maiden_arcane_blizzard_slow_aura:OnIntervalThink()
-	local frostbite = self:GetCaster():FindAbilityByName("frostbite")
+	local frostbite = self:GetCaster():FindAbilityByName("crystal_maiden_frostbite_bh")
 	if frostbite then
 		self:GetParent():AddNewModifier(self:GetCaster(), frostbite, "modifier_crystal_maiden_frostbite_bh", {duration = self:GetAbility():GetSpecialValueFor("root_duration_scepter")})
 	end

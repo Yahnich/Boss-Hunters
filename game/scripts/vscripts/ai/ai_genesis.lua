@@ -72,10 +72,16 @@ function AIThink(thisEntity)
 		if thisEntity.tolife:IsFullyCastable() then
 			return CastReturn(thisEntity)
 		end
-		if thisEntity.sanctuary:IsFullyCastable() and ( AICore:TotalEnemyHeroesInRange( thisEntity, 1200 ) > 1 or ( AICore:TotalEnemyHeroesInRange( thisEntity, 1200 ) > 0 and RollPercentage(20) ) ) then
+		if thisEntity.sanctuary:IsFullyCastable() 
+		and ( AICore:TotalEnemyHeroesInRange( thisEntity, 1200 ) > 1 
+		or ( AICore:TotalEnemyHeroesInRange( thisEntity, 1200 ) > 0 
+		and RollPercentage(20) ) )
+		and not thisEntity:HasModifier("modifier_boss_genesis_dominion") then
 			return CastSanctuary(thisEntity)
 		end
-		if thisEntity.dominion:IsFullyCastable() and ( AICore:BeingAttacked( thisEntity ) > 1 ) then
+		if thisEntity.dominion:IsFullyCastable() 
+		and ( AICore:BeingAttacked( thisEntity ) > 1 ) 
+		and not thisEntity:HasModifier("modifier_boss_genesis_sanctuary") then
 			return CastDominion(thisEntity)
 		end
 		return AICore:AttackHighestPriority( thisEntity )

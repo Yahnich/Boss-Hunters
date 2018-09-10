@@ -4562,7 +4562,7 @@
 		"Model"						"models/creeps/knoll_1/werewolf_boss.vmdl"	// Model.
 		"SoundSet"					"Hero_Invoker"					// Name of sound set.
 		"GameSoundsFile"			"soundevents/game_sounds_heroes/game_sounds_invoker.vsndevts"
-		"ModelScale"				"1.35"
+		"ModelScale"				"1.6"
 		"Level"						"20"
 		"IsCelestial"				"1"
 		"MinimapIcon"				"minimap_roshancamp"

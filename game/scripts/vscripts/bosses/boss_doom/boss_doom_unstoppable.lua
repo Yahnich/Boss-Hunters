@@ -20,8 +20,8 @@ end
 
 function modifier_boss_doom_unstoppable:OnIntervalThink()
 	if self:GetParent():IsDisabled(true) and self:GetAbility():IsCooldownReady() and not self:GetParent():HasModifier("modifier_spawn_immunity") then
-		self:GetAbility():SetCooldown()
 		self:GetParent():AddNewModifier(self:GetParent(), self:GetAbility(), "modifier_boss_doom_unstoppable_effect", {duration = self:GetSpecialValueFor("duration")})
+		self:GetParent():AddNewModifier(self:GetParent(), self:GetAbility(), "modifier_status_immunity", {duration = self:GetSpecialValueFor("duration")})
 	end
 end
 function modifier_boss_doom_unstoppable:IsHidden()
@@ -35,23 +35,19 @@ function modifier_boss_doom_unstoppable_effect:OnCreated()
 	self.dmg = self:GetSpecialValueFor("bonus_damage")
 	self.as = self:GetSpecialValueFor("bonus_attackspeed")
 	self.red = self:GetSpecialValueFor("damage_reduction")
+	if IsServer() then
+		self:GetAbility():StartDelayedCooldown()
+	end
+end
+
+function modifier_boss_doom_unstoppable_effect:OnDestroy()
+	if IsServer() then self:GetAbility():EndDelayedCooldown() end
 end
 
 function modifier_boss_doom_unstoppable_effect:DeclareFunctions()
 	return {MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE,
 			MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
 			MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE}
-end
-
-function modifier_boss_doom_unstoppable_effect:CheckState()
-	return {[MODIFIER_STATE_ROOTED] = false,
-			[MODIFIER_STATE_DISARMED] = false,
-			[MODIFIER_STATE_SILENCED] = false,
-			[MODIFIER_STATE_MUTED] = false,
-			[MODIFIER_STATE_STUNNED] = false,
-			[MODIFIER_STATE_HEXED] = false,
-			[MODIFIER_STATE_FROZEN] = false,
-			[MODIFIER_STATE_PASSIVES_DISABLED] = false}
 end
 
 function modifier_boss_doom_unstoppable_effect:GetPriority()
