@@ -1,6 +1,6 @@
 "itembuilds"
 {
-	"author"		"FsB"
+	"author"		"Valve"
 	"hero"			"npc_dota_hero_zuus"
 	"Title"			"Recommended items for Zeus"
 	
@@ -10,26 +10,34 @@
 		{
 			"item"	"item_ring_of_mana"
 			"item"	"item_calming_skull"
+			"item"	"item_sorcerers_staff"
 		}
 
 		"#DOTA_Item_Build_Early_Game"
 		{	
-			"item"	"item_runed_artifact"	
+			"item"	"item_dagger_of_escape"
+			"item"	"item_orb_of_essence"
 			"item"	"item_warlocks_reliquary"
+			"item"	"item_arcane_accelerator"
+			"item"	"item_focused_lens"
 		}
 		"#DOTA_Item_Build_Core_Items"
 		{
 			"item"	"item_lightningbottle"
-			"item"	"item_arcane_accelerator"
+			"item"	"item_warp_staff"
+			"item"	"item_lifeweavers_clockwork"
+			"item"	"item_ferrum_ascensus"
+			"item"	"item_ultimate_scepter"
+			"item"	"item_arcane_piercer"
 		}
 		"#DOTA_Item_Build_Luxury"
 		{
 			"item"	"item_dark_wand_5"
 			"item"	"item_flashback"
-			"item"	"item_warp_staff"
-			"item"	"item_gauntlet_of_the_void"
+			"item"	"item_lucys_ring"
+			"item"	"item_crystalline_staff"
 			"item"	"item_lazarus_rags"
-			"item"	"item_focused_lens"
+			"item"	"item_cultists_veil"
 		}
 	}
 }
