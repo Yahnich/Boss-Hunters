@@ -93,8 +93,8 @@ end
 
 function RoundManager:OnNPCSpawned(event)
 	Timers:CreateTimer(function()
+	
 		local spawnedUnit = EntIndexToHScript( event.entindex )
-		
 		if not spawnedUnit 
 		or spawnedUnit:IsPhantom() 
 		or spawnedUnit:GetClassname() == "npc_dota_thinker" 

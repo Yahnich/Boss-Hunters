@@ -3,19 +3,17 @@ local function StartEvent(self)
 	self.greymane = 1
 	self.alpha = 1 + math.floor( math.log( RoundManager:GetRaidsFinished() + 1 ) + 0.5 )
 	self.wolf = 2 + math.floor( math.log( RoundManager:GetEventsFinished() + 1 ) + 0.5 )
-	self.enemiesToSpawn = self.greymane + self.alpha + self.wolf
+	self.enemiesToSpawn = self.greymane
 	self.eventEnded = false
 	self.eventHandler = Timers:CreateTimer(3, function()
 		if self.alpha > 0 then
 			local alpha = CreateUnitByName("npc_dota_boss_alpha_wolf", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
 			alpha:SetCoreHealth(850)
-			self.enemiesToSpawn = self.enemiesToSpawn - 1
 			self.alpha = self.alpha - 1
 		end
 		if self.wolf > 0 then
 			local wolf = CreateUnitByName("npc_dota_boss_wolf", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
 			wolf:SetCoreHealth(500)
-			self.enemiesToSpawn = self.enemiesToSpawn - 1
 			self.wolf = self.wolf - 1
 		end
 		if self.greymane > 0 then
@@ -24,7 +22,7 @@ local function StartEvent(self)
 			self.enemiesToSpawn = self.enemiesToSpawn - 1
 			self.greymane = self.greymane - 1
 		end
-		if self.enemiesToSpawn > 0 then
+		if self.alpha + self.wolf + self.greymane > 0 then
 			return 10
 		end
 	end)
