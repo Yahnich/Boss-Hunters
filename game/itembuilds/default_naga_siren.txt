@@ -70,6 +70,8 @@
 
 			"item"	"item_lightningbottle"
 
+			"item"	"item_flashback"
+			
 			"item"	"item_inspiring_bongos"
 
 			"item"	"item_echoing_tambourine"
