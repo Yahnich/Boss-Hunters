@@ -721,6 +721,25 @@ function CDOTA_BaseNPC:GetStunResistance()
 	end
 end
 
+function CDOTA_BaseNPC:GetOriginalAttackCapability()
+	if GameRules.UnitKV[self:GetUnitName()] then
+		self.originalAttackCapability = self.originalAttackCapability or GameRules.UnitKV[self:GetUnitName()]["AttackCapabilities"]
+		if self.originalAttackCapability == "DOTA_UNIT_CAP_MELEE_ATTACK" then
+			return DOTA_UNIT_CAP_MELEE_ATTACK
+		elseif self.originalAttackCapability == "DOTA_UNIT_CAP_RANGED_ATTACK" then
+			return DOTA_UNIT_CAP_RANGED_ATTACK
+		else
+			return DOTA_UNIT_CAP_NO_ATTACK
+		end
+	end
+end 
+
+function CDOTA_BaseNPC:GetOriginalModel()
+	if GameRules.UnitKV[self:GetUnitName()] then
+		return GameRules.UnitKV[self:GetUnitName()]["Model"] or nil
+	end
+end
+
 function CDOTA_BaseNPC:GetBaseProjectileModel()
 	if self:IsRangedAttacker() then
 		return GameRules.UnitKV[self:GetUnitName()]["ProjectileModel"] or nil
@@ -824,7 +843,7 @@ function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, sp
 	bControl = controllable
 	if bControl == nil then bControl = true end
 	-- handle_UnitOwner needs to be nil, else it will crash the game.
-	local illusion = CreateUnitByName("npc_illusion_template", origin, true, self, self, owner:GetTeamNumber())
+	local illusion = CreateUnitByName("npc_illusion_template", origin, true, owner, owner, owner:GetTeamNumber())
 	if bControl then illusion:SetControllableByPlayer(player, true) end
 		
 	for abilitySlot=0,15 do
@@ -852,8 +871,8 @@ function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, sp
 	illusion:SetBaseAttackTime( self:GetBaseAttackTime() )
 	illusion:SetBaseMoveSpeed( self:GetBaseMoveSpeed() )
 	
-	illusion:SetOriginalModel( self:GetModelName() )
-	illusion:SetModel( self:GetModelName() )
+	illusion:SetOriginalModel( self:GetOriginalModel() )
+	illusion:SetModel( self:GetOriginalModel() )
 	illusion:SetModelScale( self:GetModelScale() )
 	
 	local moveCap = DOTA_UNIT_CAP_MOVE_NONE
@@ -864,7 +883,7 @@ function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, sp
 		end
 	end
 	illusion:SetMoveCapability( moveCap )
-	illusion:SetAttackCapability( self:GetAttackCapability() )
+	illusion:SetAttackCapability( self:GetOriginalAttackCapability() )
 	illusion:SetUnitName( self:GetUnitName() )
 	if self:IsRangedAttacker() then
 		illusion:SetRangedProjectileName( self:GetRangedProjectileName() )
@@ -906,6 +925,9 @@ function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, sp
 			newWearable:AddNewModifier(nil, nil, "modifier_wearable", {})
 			newWearable:AddNewModifier(owner, ability, "modifier_kill", { duration = duration })
 			newWearable:AddNewModifier(owner, ability, "modifier_illusion", { duration = duration })
+			if specIllusionModifier then
+				newWearable:AddNewModifier(owner, ability, specIllusionModifier, { duration = duration })
+			end
 			newWearable:SetParent(illusion, nil)
 			newWearable:FollowEntity(illusion, true)
 			-- newWearable:SetRenderColor(100,100,255)

@@ -42,8 +42,6 @@ function RoundManager:Initialize(context)
 	
 	self.eventsCreated = nil
 	
-	ListenToGameEvent( "npc_spawned", Dynamic_Wrap( RoundManager, "OnNPCSpawned" ), self )
-	ListenToGameEvent( "dota_holdout_revive_complete", Dynamic_Wrap( RoundManager, 'OnHoldoutReviveComplete' ), self )
 	CustomGameEventManager:RegisterListener('bh_player_voted_to_skip', Context_Wrap( RoundManager, 'VoteSkipPrepTime'))
 	CustomGameEventManager:RegisterListener('bh_player_voted_to_ng', Context_Wrap( RoundManager, 'VoteNewGame'))
 	self:PrecacheRounds(context)
@@ -592,9 +590,11 @@ function RoundManager:InitializeUnit(unit, bElite)
 		unit:SetModelScale(unit:GetModelScale()*1.15)
 		
 		local eliteTypes = {}
-		for eliteType, activated in pairs(GameRules._Elites) do
-			if activated ~= "0" then
-				table.insert(eliteTypes, eliteType)
+		for eliteType, weight in pairs(GameRules._Elites) do
+			if tonumber(weight) > 0 then
+				for i = 1, tonumber(weight) do
+					table.insert(eliteTypes, eliteType)
+				end
 			end
 		end
 		

@@ -3,15 +3,15 @@ modifier_base_attack_time_handler = class({})
 if IsServer() then
 	function modifier_base_attack_time_handler:OnCreated()
 		self.baseAttackTime = self:GetParent():GetBaseAttackTime()
-		self:SetStackCount( self.baseAttackTime * 10 )
+		self:SetStackCount( self.baseAttackTime * 100 )
 		self:StartIntervalThink(0.1)
 	end
 
 	function modifier_base_attack_time_handler:OnIntervalThink()
-		local baseAttackTime = self.baseAttackTime * 10
+		local baseAttackTime = self.baseAttackTime * 100
 		for _, modifier in ipairs( self:GetParent():FindAllModifiers() ) do
 			if modifier.GetBaseAttackTime_Bonus and modifier:GetBaseAttackTime_Bonus() then
-				baseAttackTime = baseAttackTime + (modifier:GetBaseAttackTime_Bonus() * 10) 
+				baseAttackTime = baseAttackTime + (modifier:GetBaseAttackTime_Bonus() * 100) 
 			end
 		end
 		self:SetStackCount( baseAttackTime )
@@ -23,7 +23,7 @@ function modifier_base_attack_time_handler:DeclareFunctions()
 end
 
 function modifier_base_attack_time_handler:GetModifierBaseAttackTimeConstant()
-	return self:GetStackCount() / 10
+	return self:GetStackCount() / 100
 end
 
 function modifier_base_attack_time_handler:IsHidden()

@@ -10,7 +10,7 @@
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_terrorblade/terrorblade_reflection_bh"
 		"AbilityTextureName"			"terrorblade_reflection"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilitySound"					"Hero_Terrorblade.ConjureImage"
 		"MaxLevel"						"7"
 
@@ -32,7 +32,7 @@
 		{
 			"01"
 			{
-				"var_type"							"FIELD_FLOAT"
+				"var_type"							"FIELD_INTEGER"
 				"illusion_count"					"1"
 				"LinkedSpecialBonus"				"special_bonus_unique_terrorblade_reflection_1"
 			}
@@ -43,12 +43,12 @@
 			}
 			"03"
 			{
-				"var_type"							"FIELD_FLOAT"
-				"slow"								"25 25 25 25 50 75 100"
+				"var_type"							"FIELD_INTEGER"
+				"slow"								"-25 -25 -25 -25 -50 -75 -100"
 			}
 			"04"
 			{
-				"var_type"							"FIELD_FLOAT"
+				"var_type"							"FIELD_INTEGER"
 				"radius"							"900"
 			}
 			"05"
@@ -292,7 +292,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"				"1"
+				"value"						"3"
 			}
 		}
 	}
@@ -330,39 +330,39 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"40 44 48 52 56 60"
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"40 44 48 52 56 60"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"transformation_time"	"0.35"
+				"var_type"					"FIELD_FLOAT"
+				"transformation_time"		"0.35"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"base_attack_time"		"1.5"
+				"var_type"					"FIELD_FLOAT"
+				"base_attack_time"			"1.5"
 			}
 			"04"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_range"			"500"
+				"var_type"					"FIELD_INTEGER"
+				"bonus_range"				"500"
 			}
 			"05"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"tooltip_attack_range"	"650"
+				"var_type"					"FIELD_INTEGER"
+				"tooltip_attack_range"		"650"
 			}
 			"06"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"40 70 100 130 160 190"
-				"LinkedSpecialBonus"	"special_bonus_unique_terrorblade_metamorphosis_2"
+				"var_type"					"FIELD_INTEGER"
+				"bonus_damage"				"40 70 100 130 160 190"
+				"LinkedSpecialBonus"		"special_bonus_unique_terrorblade_metamorphosis_2"
 			}
 			"07"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"speed_loss"			"25"
+				"var_type"					"FIELD_INTEGER"
+				"speed_loss"				"-25"
 			}
 			"08"
 			{

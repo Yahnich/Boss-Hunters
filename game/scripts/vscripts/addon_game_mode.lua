@@ -333,6 +333,8 @@ function CHoldoutGameMode:InitGameMode()
     ListenToGameEvent('dota_player_used_ability', Dynamic_Wrap(CHoldoutGameMode, 'OnAbilityUsed'), self)
 	ListenToGameEvent('dota_player_learned_ability', Dynamic_Wrap(CHoldoutGameMode, 'OnAbilityLearned'), self)
 	ListenToGameEvent( "dota_player_gained_level", Dynamic_Wrap( CHoldoutGameMode, "OnHeroLevelUp" ), self )
+	ListenToGameEvent( "npc_spawned", Dynamic_Wrap( RoundManager, "OnNPCSpawned" ), RoundManager )
+	ListenToGameEvent( "dota_holdout_revive_complete", Dynamic_Wrap( RoundManager, 'OnHoldoutReviveComplete' ), RoundManager )
 	
 	CustomGameEventManager:RegisterListener('Tell_Threat', Dynamic_Wrap( CHoldoutGameMode, 'Tell_threat'))
 	CustomGameEventManager:RegisterListener('bh_notify_modifier', Dynamic_Wrap( CHoldoutGameMode, 'NotifyBuffs'))
@@ -865,7 +867,7 @@ function CHoldoutGameMode:OnPlayerDisconnected(keys)
 	if not playerID then return end
 	local hero = PlayerResource:GetSelectedHeroEntity(playerID)
 	if hero then hero.disconnect = GameRules:GetGameTime() end
-	for pID = 0, GameRules.BasePlayers do -- check if game has to die
+	for pID = 0, 24 do -- check if game has to die
 		if PlayerResource:IsValidPlayerID( pID ) and PlayerResource:GetConnectionState() == DOTA_CONNECTION_STATE_CONNECTED then
 			return
 		end

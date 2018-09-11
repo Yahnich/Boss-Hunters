@@ -24,9 +24,9 @@ end
 
 local function ThirdChoice(self, userid, event)
 	local hero = PlayerResource:GetSelectedHeroEntity( event.pID )
-	hero:AddRelic( self:RollRandomGenericRelicForPlayer( event.pID ) )
-	hero:AddRelic( self:RollRandomGenericRelicForPlayer( event.pID ) )
-	hero:AddRelic( self:RollRandomGenericRelicForPlayer( event.pID ) )
+	hero:AddRelic( RelicManager:RollRandomGenericRelicForPlayer( event.pID ) )
+	hero:AddRelic( RelicManager:RollRandomGenericRelicForPlayer( event.pID ) )
+	hero:AddRelic( RelicManager:RollRandomGenericRelicForPlayer( event.pID ) )
 	self._playerChoices[event.pID] = true
 	CheckPlayerChoices(self)
 end

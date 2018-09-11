@@ -10,6 +10,7 @@ end
 function relic_cursed_crimson_gauntlet:OnIntervalThink()
 	if IsServer() then
 		local parent = self:GetParent()
+		if parent:HasRelic("relic_unique_ritual_candle") then return end
 		for _, enemy in ipairs( parent:FindEnemyUnitsInRadius( parent:GetAbsOrigin(), 900 ) ) do
 			enemy:AddNewModifier(parent, self:GetAbility(), "modifier_relic_cursed_crimson_gauntlet", {duration = 0.5})
 		end

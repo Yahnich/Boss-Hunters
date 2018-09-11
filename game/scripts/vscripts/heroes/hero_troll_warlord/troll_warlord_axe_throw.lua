@@ -1,0 +1,1 @@
+troll_warlord_berserk = class({})

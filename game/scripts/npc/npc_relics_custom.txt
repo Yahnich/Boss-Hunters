@@ -103,7 +103,6 @@
 	"relic_type_unique"
 	{
 		"relic_unique_aghanims_amulet"					"1"
-		"relic_unique_ritual_candle"					"1"
 		"relic_unique_frozen_crystal"					"1"
 		"relic_unique_limit_breaker"					"1"
 		"relic_unique_molten_crystal"					"1"

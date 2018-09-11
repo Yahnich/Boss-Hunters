@@ -4447,7 +4447,7 @@
 		"Model"						"models/creeps/omniknight_golem/omniknight_golem.vmdl"	// Model.
 		"SoundSet"					"Hero_Invoker"					// Name of sound set.
 		"GameSoundsFile"			"soundevents/game_sounds_heroes/game_sounds_invoker.vsndevts"
-		"ModelScale"				"1.4"
+		"ModelScale"				"1.65"
 		"Level"						"999"
 		"IsCelestial"				"1"
 		"MinimapIcon"				"minimap_roshancamp"
@@ -8016,6 +8016,8 @@
 		
 		"HasInventory"				"1"
 		"AttackRange"				"0"
+		"AttackAnimationPoint"		"0.3"
+		"AttackAcquisitionRange"	"9999"
 		"ProjectileSpeed"			"0"
 	}
 	"npc_chen_creature_1"

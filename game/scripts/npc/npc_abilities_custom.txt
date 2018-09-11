@@ -130,6 +130,7 @@
 #base "heroes/hero_witch_doctor.txt"
 #base "heroes/hero_crystal_maiden.txt"
 #base "heroes/hero_terrorblade.txt"
+#base "heroes/hero_troll_warlord.txt"
 
 "DOTAAbilities"
 {
