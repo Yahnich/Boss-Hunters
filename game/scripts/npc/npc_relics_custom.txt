@@ -155,5 +155,6 @@
 		"relic_unique_prismarine_blade"					"1"
 		"relic_unique_slayers_skinner"					"1"
 		"relic_unique_drycicle"							"1"
+		"relic_unique_ritual_candle"					"0"
 	}
 }

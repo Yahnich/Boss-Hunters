@@ -26,7 +26,7 @@ function terrorblade_reflection_bh:OnSpellStart()
 end
 
 function terrorblade_reflection_bh:CreateReflection( hero, position, duration, outgoing, caster)
-	local illusion = hero:ConjureImage( position, duration, 100 - outgoing, -100, "modifier_terrorblade_conjureimage", self, false, caster )
+	local illusion = hero:ConjureImage( position, duration, outgoing - 100, -100, "modifier_terrorblade_conjureimage", self, false, caster )
 	illusion:AddNewModifier(caster, self, "modifier_terrorblade_reflection_bh_illusion", {})
 	
 	illusion:AddAbility("terrorblade_zeal")

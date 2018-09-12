@@ -28,7 +28,7 @@ function TableToWeightedArray(t1)
 	local copy = {}
 	for value, weight in pairs( t1 ) do
 		if weight > 0 then
-			for i = 1, weight do
+			for i = 1, weight * 10 do
 				table.insert(copy, value)
 			end
 		end
@@ -856,7 +856,7 @@ function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, sp
 				illusionAbility:SetLevel(abilityLevel)
 			else
 				local illusionAbility = illusion:AddAbility(abilityName)
-				illusionAbility:SetLevel(abilityLevel)
+				if illusionAbility then illusionAbility:SetLevel(abilityLevel) end
 			end
 		end
 	end
@@ -903,9 +903,11 @@ function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, sp
 		if item ~= nil then
 			local itemName = item:GetName()
 			local newItem = CreateItem(itemName, nil, nil)
-			newItem:SetStacksWithOtherOwners(true)
-			illusion:AddItem(newItem)
-			newItem:SetPurchaser(nil)
+			if newItem then
+				newItem:SetStacksWithOtherOwners(true)
+				illusion:AddItem(newItem)
+				newItem:SetPurchaser(nil)
+			end
 		end
 	end
 

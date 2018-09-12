@@ -16,7 +16,7 @@ function terrorblade_conjure_image_bh:CreateImage( position, duration, outgoing,
 	local fOut = outgoing or self:GetTalentSpecialValueFor("illusion_outgoing_damage")
 	local fInc = incoming or self:GetTalentSpecialValueFor("illusion_incoming_damage")
 
-	local illusion = caster:ConjureImage( vPos, fDur, 100 - fOut, 100 - fInc, "modifier_terrorblade_conjureimage", self, true, caster )
+	local illusion = caster:ConjureImage( vPos, fDur, fOut - 100, fInc - 100, "modifier_terrorblade_conjureimage", self, true, caster )
 	illusion:StartGesture( ACT_DOTA_SPAWN )
 	if caster:HasTalent("special_bonus_unique_terrorblade_conjure_image_2") then
 		local heal = caster:GetMaxHealth() * caster:FindTalentValue("special_bonus_unique_terrorblade_conjure_image_2") / 100
