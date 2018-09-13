@@ -49,7 +49,6 @@ function modifier_terrorblade_zeal_passive:OnDeath(params)
 			EmitSoundOn("Hero_Terrorblade.Sunder.Cast", parent)
 			ParticleManager:FireParticle( "particles/units/heroes/hero_terrorblade/terrorblade_death.vpcf", PATTACH_WORLDORIGIN, parent, {[0] = parent:GetAbsOrigin(), [15] = Vector(100,100,255),
 																																		[16] =  Vector(radius,radius,radius) } )
-			ParticleManager:FireParticle("particles/units/heroes/hero_dragon_knight/dragon_knight_transform_blue.vpcf", PATTACH_WORLDORIGIN, parent, {[0] = parent:GetAbsOrigin()} )
 			local units = FindUnitsInRadius(self:GetParent():GetTeamNumber(), self:GetParent():GetAbsOrigin(), nil, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false)
 			for _,unit in pairs(units) do
 				ApplyDamage({victim = unit, attacker = owner, damage = damage, damage_type = self:GetAbility():GetAbilityDamageType(), ability = self:GetAbility()})

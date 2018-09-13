@@ -33,9 +33,6 @@ function ProjectileHandler:ProjectileThink()
 			projectile.distanceTravelled = (projectile.distanceTravelled or 0) + projectile:GetVelocity():Length2D() * FrameTime()
 			if (projectile.aliveTime and projectile.duration and projectile.aliveTime >= projectile.duration) or (projectile.distance and projectile.distanceTravelled and projectile.distance <= projectile.distanceTravelled) then
 				local position = projectile:GetPosition()
-				local radius = projectile:GetRadius()
-				local caster = projectile:GetCaster()
-
 				local status, err, ret = xpcall(projectile.hitBehavior, debug.traceback, projectile, nil, position)
 				projectile:Remove()
 			end

@@ -1,11 +1,11 @@
 relic_cursed_pale_blood = class(relicBaseClass)
 
 function relic_cursed_pale_blood:DeclareFunctions()
-	return {MODIFIER_EVENT_ON_TAKEDAMAGE}
+	return {MODIFIER_EVENT_ON_TAKEDAMAGE, MODIFIER_PROPERTY_EXTRA_HEALTH_PERCENTAGE}
 end
 
-function relic_cursed_pale_blood:GetModifierHealthBonus_Percentage()
-	if not self:GetParent():HasModifier("relic_unique_ritual_candle") then return -35 end
+function relic_cursed_pale_blood:GetModifierExtraHealthPercentage()
+	if not self:GetParent():HasModifier("relic_unique_ritual_candle") then return -0.35 end
 end
 
 function relic_cursed_pale_blood:OnTakeDamage(params)

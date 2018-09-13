@@ -85,7 +85,11 @@ function RelicManager:ConfirmRelicSelection(userid, event)
 	local pID = event.pID
 	local hero = PlayerResource:GetSelectedHeroEntity(pID)
 	local relic = event.relic
-
+	
+	if hero:HasRelic("relic_cursed_red_key") then
+		hero:FindModifierByName("relic_cursed_red_key"):SetStackCount(0)
+	end
+	
 	hero:AddRelic(relic)
 	RelicManager:RemoveDropFromTable(pID, true, relic)
 	hero.internalRelicRNG = BASE_RELIC_CHANCE
@@ -144,6 +148,12 @@ function RelicManager:SkipRelicSelection(userid, event)
 		end
 		return
 	end
+	if hero:HasRelic("relic_cursed_icon_of_envy") then
+		hero:FindModifierByName("relic_cursed_icon_of_envy"):IncrementStackCount()
+	end
+	if hero:HasRelic("relic_cursed_red_key") then
+		hero:FindModifierByName("relic_cursed_red_key"):SetStackCount(1)
+	end
 	-- hero:AddRelic( RelicManager:RollRandomGenericRelicForPlayer(pID) )
 end
 
@@ -195,12 +205,39 @@ function RelicManager:PushCustomRelicDropsForPlayer(pID, relicTable)
 	local greed = hero:HasRelic("relic_cursed_icon_of_greed")
 	local pride = hero:HasRelic("relic_cursed_icon_of_pride")
 	local contract = hero:HasRelic("relic_cursed_forbidden_contract")
+	
+	if hero:HasRelic("relic_cursed_red_key") then
+		local newTable = {}
+		for _, relicOption in ipairs( relicTable ) do
+			table.insert( newTable, relicOption )
+			if RollPercentage( 100 / #relicTable ) then
+				if string.match(relicOption, "unique") then
+					table.insert( newTable, self:RollRandomUniqueRelicForPlayer(pID) )
+				elseif string.match(relicOption, "cursed") then
+					table.insert( newTable, self:RollRandomCursedRelicForPlayer(pID) )
+				else
+					table.insert( newTable, self:RollRandomGenericRelicForPlayer(pID) )
+				end
+				break
+			elseif _ == #relicTable then
+				if string.match(relicOption, "unique") then
+					table.insert( newTable, self:RollRandomUniqueRelicForPlayer(pID) )
+				elseif string.match(relicOption, "cursed") then
+					table.insert( newTable, self:RollRandomCursedRelicForPlayer(pID) )
+				else
+					table.insert( newTable, self:RollRandomGenericRelicForPlayer(pID) )
+				end
+				break
+			end
+		end
+		relicTable = newTable
+	end
+	
 	if ( contract and not hero:HasRelic("relic_unique_ritual_candle") ) then
 		local corruptTable = {}
-		table.insert( corruptTable, self:RollRandomCursedRelicForPlayer(pID) )
-		table.insert( corruptTable, self:RollRandomCursedRelicForPlayer(pID) )
-		table.insert( corruptTable, self:RollRandomCursedRelicForPlayer(pID) )
-		
+		for i = 1, #relicTable do
+			table.insert( corruptTable, self:RollRandomCursedRelicForPlayer(pID) )
+		end
 		table.insert( hero.relicsToSelect, corruptTable )
 	else
 		table.insert( hero.relicsToSelect, relicTable )

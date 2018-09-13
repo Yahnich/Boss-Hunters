@@ -2,6 +2,11 @@ modifier_illusion_bonuses = class({})
 
 function modifier_illusion_bonuses:OnCreated()
 	self:GetParent().illusionOwner = self:GetCaster()
+	self.as = self:GetCaster():GetAgility()
+	if IsServer() then
+		self.ar = self:GetCaster():GetBaseAttackRange()
+		self.ps = self:GetCaster():GetProjectileSpeed()
+	end
 end
 
 function modifier_illusion_bonuses:DeclareFunctions()
@@ -15,15 +20,15 @@ function modifier_illusion_bonuses:DeclareFunctions()
 end
 
 function modifier_illusion_bonuses:GetModifierAttackRangeOverride( params )
-	return self:GetCaster():GetAttackRange()
+	return self.ar
 end
 
 function modifier_illusion_bonuses:GetModifierAttackSpeedBonus_Constant( params )
-    return self:GetCaster():GetAgility()
+    return self.as
 end
 
 function modifier_illusion_bonuses:GetModifierProjectileSpeedBonus()
-	return self:GetCaster():GetProjectileSpeed()
+	return self.ps
 end
 
 function modifier_illusion_bonuses:IsHidden()

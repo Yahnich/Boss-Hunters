@@ -67,6 +67,7 @@ function RoundManager:VoteNewGame(userid, event)
 		self.votedNoNg = (self.votedNoNg or 0) + 1
 	end
 	local noVotes = HeroList:GetActiveHeroCount() - self.votedToNG
+	local nonVotes = HeroList:GetActiveHeroCount() - self.votedToNG
 	CustomGameEventManager:Send_ServerToAllClients("bh_update_votes_prep_time", {yes = self.votedToNG, no = noVotes, ascension = true})
 	if noVotes <= self.votedToNG then	
 		self.ng = true
@@ -83,7 +84,7 @@ function RoundManager:VoteNewGame(userid, event)
 			local zoneName = POSSIBLE_ZONES[i]
 			RoundManager:ConstructRaids(zoneName)
 		end
-	elseif self.votedNoNg > self.votedToNG then
+	elseif self.votedNoNg >= math.floor( HeroList:GetActiveHeroCount() / 2 ) then
 		self.ng = false
 		self.prepTimer = 0
 	end

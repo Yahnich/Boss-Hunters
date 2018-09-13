@@ -208,7 +208,7 @@ function Timers:CreateTimer(name, args, context)
   end
 
   args.context = context
-
+  args.name = name
   Timers.timers[name] = args 
 
   return name

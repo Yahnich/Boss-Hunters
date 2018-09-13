@@ -9,7 +9,6 @@ end
 
 function event_buff_tombstone:OnEventFinished(args)
 	EVENT_TYPE_EVENT = 3
-	print(args.eventType, EVENT_TYPE_EVENT, "it works why it no work")
 	if args.eventType ~= EVENT_TYPE_EVENT then
 		self:DecrementStackCount()
 		if self:GetStackCount() == 0 then

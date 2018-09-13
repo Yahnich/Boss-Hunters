@@ -27,8 +27,8 @@ end
 function TableToWeightedArray(t1)
 	local copy = {}
 	for value, weight in pairs( t1 ) do
-		if weight > 0 then
-			for i = 1, weight * 10 do
+		if tonumber(weight) > 0 then
+			for i = 1, tonumber(weight) * 10 do
 				table.insert(copy, value)
 			end
 		end
@@ -724,9 +724,9 @@ end
 function CDOTA_BaseNPC:GetOriginalAttackCapability()
 	if GameRules.UnitKV[self:GetUnitName()] then
 		self.originalAttackCapability = self.originalAttackCapability or GameRules.UnitKV[self:GetUnitName()]["AttackCapabilities"]
-		if self.originalAttackCapability == "DOTA_UNIT_CAP_MELEE_ATTACK" then
+		if self.originalAttackCapability == "DOTA_UNIT_CAP_MELEE_ATTACK" or self.originalAttackCapability == DOTA_UNIT_CAP_MELEE_ATTACK then
 			return DOTA_UNIT_CAP_MELEE_ATTACK
-		elseif self.originalAttackCapability == "DOTA_UNIT_CAP_RANGED_ATTACK" then
+		elseif self.originalAttackCapability == "DOTA_UNIT_CAP_RANGED_ATTACK" or self.originalAttackCapability == DOTA_UNIT_CAP_RANGED_ATTACK then
 			return DOTA_UNIT_CAP_RANGED_ATTACK
 		else
 			return DOTA_UNIT_CAP_NO_ATTACK
@@ -895,17 +895,16 @@ function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, sp
 		end
 	end
 	
-	illusion:AddNewModifier( owner, nil, "modifier_illusion_bonuses", { duration = duration })
+	illusion:AddNewModifier( self, nil, "modifier_illusion_bonuses", { duration = duration })
 	
 	-- Recreate the items of the caster
 	for itemSlot=0,5 do
 		local item = self:GetItemInSlot(itemSlot)
 		if item ~= nil then
 			local itemName = item:GetName()
-			local newItem = CreateItem(itemName, nil, nil)
+			local newItem = illusion:AddItemByName(itemName)
 			if newItem then
 				newItem:SetStacksWithOtherOwners(true)
-				illusion:AddItem(newItem)
 				newItem:SetPurchaser(nil)
 			end
 		end
@@ -1789,10 +1788,11 @@ function CDOTA_Modifier_Lua:StartMotionController()
 end
 
 function CDOTA_Modifier_Lua:AddIndependentStack(duration, limit, bDestroy)
+	self.stackTimers = self.stackTimers or {}
 	if limit then
 		if  self:GetStackCount() < limit then
 			self:IncrementStackCount()
-		else
+		elseif self.stackTimers[1] and #self.stackTimers >= limit then
 			self:SetStackCount( limit )
 			Timers:RemoveTimer(self.stackTimers[1])
 			table.remove(self.stackTimers, 1)
@@ -1802,13 +1802,18 @@ function CDOTA_Modifier_Lua:AddIndependentStack(duration, limit, bDestroy)
 	end
 	local destroy = bDestroy
 	if bDestroy == nil then destroy = true end
-	local timerID = Timers:CreateTimer(duration or self:GetRemainingTime(), function()
+	local timerID = Timers:CreateTimer(duration or self:GetRemainingTime(), function(timer)
 		if not self:IsNull() then 
 			self:DecrementStackCount()
+			for pos, tTimerID in ipairs( self.stackTimers ) do
+				if timer.name == tTimerID then
+					table.remove(self.stackTimers, pos)
+					break
+				end
+			end
 			if self:GetStackCount() == 0 and self:GetDuration() == -1 and not destroy then self:Destroy() end
 		end
 	end)
-	self.stackTimers = self.stackTimers or {}
 	table.insert(self.stackTimers, timerID)
 end
 
@@ -2586,7 +2591,7 @@ function CDOTA_BaseNPC:GetIllusionOwnerEntindex()
 end
 
 function CDOTA_Modifier_Lua:IsCurse()
-	return self.isCurse
+	return self.modifierIsCurse
 end
 
 function CDOTA_Modifier_Lua:IsBlessing()
@@ -2595,7 +2600,7 @@ end
 
 function CDOTA_BaseNPC:PurgeCurses( )
 	for _, modifier in ipairs( self:FindAllModifiers() ) do
-		if modifier:IsCurse() then
+		if modifier.IsCurse and modifier:IsCurse() then
 			modifier:Destroy()
 		end
 	end
@@ -2604,7 +2609,7 @@ end
 function CDOTA_BaseNPC:AddCurse(curseName)	
 	local curse = self:AddNewModifier(self, nil, curseName, {})
 	if curse then 
-		curse.isCurse = true
+		curse.modifierIsCurse = true
 		if self:HasRelic("relic_unique_ofuda") and self:FindModifierByName("relic_unique_ofuda"):GetStackCount() > 0 then
 			local ofuda = self:FindModifierByName("relic_unique_ofuda")
 			ofuda:DecrementStackCount()

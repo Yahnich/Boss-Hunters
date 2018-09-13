@@ -43,7 +43,8 @@ function modifier_terrorblade_reflection_bh_illusion:CheckState()
 			[MODIFIER_STATE_UNSELECTABLE] = true,
 			[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
 			[MODIFIER_STATE_FLYING_FOR_PATHING_PURPOSES_ONLY] = true,
-			[MODIFIER_STATE_UNTARGETABLE] = true,}
+			[MODIFIER_STATE_UNTARGETABLE] = true,
+			[MODIFIER_STATE_NO_HEALTH_BAR] = true,}
 end
 
 function modifier_terrorblade_reflection_bh_illusion:IsHidden()

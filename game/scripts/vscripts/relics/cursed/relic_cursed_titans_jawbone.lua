@@ -1,11 +1,11 @@
 relic_cursed_titans_jawbone = class(relicBaseClass)
 
 function relic_cursed_titans_jawbone:DeclareFunctions()
-	return {MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE}
+	return {MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE, MODIFIER_PROPERTY_EXTRA_HEALTH_PERCENTAGE}
 end
 
-function relic_cursed_titans_jawbone:GetModifierHealthBonus_Percentage()
-	return 60
+function relic_cursed_titans_jawbone:GetModifierExtraHealthPercentage()
+	return 0.60
 end
 
 function relic_cursed_titans_jawbone:GetModifierTotalDamageOutgoing_Percentage()

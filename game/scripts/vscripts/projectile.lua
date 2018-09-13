@@ -28,7 +28,7 @@ function Projectile:constructor(thinkBehavior, hitBehavior, data)
 		ParticleManager:SetParticleControl( self.FX, 0, self.position )
 		ParticleManager:SetParticleControl( self.FX, 1, self.position )
 		ParticleManager:SetParticleControl( self.FX, 3, self.position )
-	
+		ParticleManager:SetParticleControl( self.FX, 4, Vector(self.duration,0,0) )
 	self.thinkBehavior = thinkBehavior
 	self.hitBehavior = hitBehavior
 end

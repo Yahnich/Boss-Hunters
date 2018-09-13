@@ -9,7 +9,6 @@ end
 
 function event_buff_withered_tree:OnEventFinished(args)
 	EVENT_TYPE_EVENT = 3
-	print(args.eventType)
 	if args.eventType ~= EVENT_TYPE_EVENT then
 		self:DecrementStackCount()
 		if self:GetStackCount() == 0 then

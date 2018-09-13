@@ -9,11 +9,13 @@ LinkLuaModifier( "modifier_antimage_magus_breaker", "heroes/hero_antimage/antima
 
 function modifier_antimage_magus_breaker:OnCreated()
 	self.damage = self:GetTalentSpecialValueFor("damage_on_hit")
+	self.stack_damage = self:GetTalentSpecialValueFor("stack_damage")
 	self.duration = self:GetTalentSpecialValueFor("duration")
 end
 
 function modifier_antimage_magus_breaker:OnRefresh()
 	self.damage = self:GetTalentSpecialValueFor("damage_on_hit")
+	self.stack_damage = self:GetTalentSpecialValueFor("stack_damage")
 	self.duration = self:GetTalentSpecialValueFor("duration")
 end
 
@@ -26,7 +28,7 @@ function modifier_antimage_magus_breaker:GetModifierProcAttack_BonusDamage_Pure(
 	local caster = self:GetCaster()
 	params.target:AddNewModifier(caster, self:GetAbility(), "modifier_antimage_magus_breaker_debuff", {duration = self.duration})
 	if params.target:GetModifierStackCount("modifier_antimage_magus_breaker_debuff", caster) > 0 then
-		damage = damage * params.target:GetModifierStackCount("modifier_antimage_magus_breaker_debuff", caster)
+		damage = damage + self.stack_damage * params.target:GetModifierStackCount("modifier_antimage_magus_breaker_debuff", caster)
 		params.target:EmitSound("Hero_Antimage.ManaBreak")
 		ParticleManager:FireParticle("particles/mage_rage.vpcf", PATTACH_ABSORIGIN_FOLLOW, params.target)
 	end

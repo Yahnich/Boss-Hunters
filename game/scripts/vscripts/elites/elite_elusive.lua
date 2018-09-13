@@ -28,6 +28,7 @@ if IsServer() then
 				self:StartIntervalThink(-1)
 				parent:AddNewModifier( parent, nil, "modifier_elite_elusive_fade", {duration = self.fadeTime} )
 				Timers:CreateTimer( self.fadeTime, function()
+					if parent:IsNull() then return end
 					parent:RemoveModifierByName( "modifier_elite_elusive_fade" )
 					parent:AddNewModifier( parent, nil, "modifier_invisible", {} )
 					self:StartIntervalThink( 3 )

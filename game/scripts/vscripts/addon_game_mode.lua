@@ -1032,17 +1032,17 @@ function CHoldoutGameMode:CheckHP()
 	end
 end
 
-
-DAY_TIME = 0
-NIGHT_TIME = 1
-TEMPORARY_NIGHT = 2
-NIGHT_STALKER_NIGHT = 3
-
 function CHoldoutGameMode:OnThink()
-	local timeofday = tonumber(GameRules:IsDaytime())
+	DAY_TIME = 1
+	NIGHT_TIME = 0
+	TEMPORARY_NIGHT = 2
+	NIGHT_STALKER_NIGHT = 3
+	local timeofday = 1
+	if not GameRules:IsDaytime() then timeofday = NIGHT_TIME end
 	if GameRules:IsTemporaryNight() then timeofday = TEMPORARY_NIGHT end
 	if GameRules:IsNightstalkerNight() then timeofday = NIGHT_STALKER_NIGHT end
 	CustomNetTables:SetTableValue( "game_info", "timeofday", {timeofday = timeofday} )
+
 	if GameRules:State_Get() >= 7 and GameRules:State_Get() <= 8 then
 		local OnPThink = function(self)
 			status, err, ret = xpcall(self.CheckHP, debug.traceback, self)
