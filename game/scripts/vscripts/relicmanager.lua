@@ -86,10 +86,6 @@ function RelicManager:ConfirmRelicSelection(userid, event)
 	local hero = PlayerResource:GetSelectedHeroEntity(pID)
 	local relic = event.relic
 	
-	if hero:HasRelic("relic_cursed_red_key") then
-		hero:FindModifierByName("relic_cursed_red_key"):SetStackCount(0)
-	end
-	
 	hero:AddRelic(relic)
 	RelicManager:RemoveDropFromTable(pID, true, relic)
 	hero.internalRelicRNG = BASE_RELIC_CHANCE
@@ -363,6 +359,10 @@ function CDOTA_BaseNPC_Hero:AddRelic(relic)
 		self.internalRNGPools[2][relic] = nil
 	else
 		self.internalRNGPools[1][relic] = nil
+	end
+	
+	if self:HasRelic("relic_cursed_red_key") then
+		self:FindModifierByName("relic_cursed_red_key"):SetStackCount(0)
 	end
 	
 	local relicEntity = CreateItem("item_relic_handler", nil, nil)
