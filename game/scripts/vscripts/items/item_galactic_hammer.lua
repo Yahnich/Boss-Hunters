@@ -77,7 +77,7 @@ function modifier_item_galactic_hammer_channel:IsHidden()
 	return true
 end
 
-modifier_item_galactic_hammer_passive = class({})
+modifier_item_galactic_hammer_passive = class(itemBaseClass)
 function modifier_item_galactic_hammer_passive:OnCreated(table)
 	self.hp_regen = self:GetSpecialValueFor("hp_regen")
 	self.manaregen = self:GetSpecialValueFor("m_regen")

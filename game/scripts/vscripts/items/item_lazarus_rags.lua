@@ -25,7 +25,7 @@ function item_lazarus_rags:OnSpellStart()
 	EmitSoundOn("DOTA_Item.Mekansm.Activate", caster)
 end
 
-modifier_item_lazarus_rags = class({})
+modifier_item_lazarus_rags = class(itemBaseClass)
 function modifier_item_lazarus_rags:OnCreated()
 	self.block = self:GetAbility():GetSpecialValueFor("damage_block")
 	self.chance = self:GetAbility():GetSpecialValueFor("block_chance")

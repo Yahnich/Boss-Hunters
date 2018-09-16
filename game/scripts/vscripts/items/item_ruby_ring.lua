@@ -5,7 +5,7 @@ function item_ruby_ring:GetIntrinsicModifierName()
 	return "modifier_item_ruby_ring"
 end
 
-modifier_item_ruby_ring = class({})
+modifier_item_ruby_ring = class(itemBaseClass)
 function modifier_item_ruby_ring:OnCreated()
 	self.hp_regen = self:GetSpecialValueFor("hp_regen")
 end
@@ -16,12 +16,4 @@ end
 
 function modifier_item_ruby_ring:GetModifierConstantHealthRegen()
 	return self.hp_regen
-end
-
-function modifier_item_ruby_ring:IsHidden()
-	return true
-end
-
-function modifier_item_ruby_ring:GetAttributes()
-	return MODIFIER_ATTRIBUTE_MULTIPLE
 end

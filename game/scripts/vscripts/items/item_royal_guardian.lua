@@ -20,7 +20,7 @@ function item_royal_guardian:OnSpellStart()
 	end
 end
 
-modifier_item_royal_guardian = class({})
+modifier_item_royal_guardian = class(itemBaseClass)
 LinkLuaModifier( "modifier_item_royal_guardian", "items/item_royal_guardian.lua", LUA_MODIFIER_MOTION_NONE )
 
 function modifier_item_royal_guardian:OnCreated()
@@ -48,12 +48,4 @@ function modifier_item_royal_guardian:GetModifierTotal_ConstantBlock(params)
 	if RollPercentage(self.chance) and params.attacker ~= self:GetParent() then
 		return self.block
 	end
-end
-
-function modifier_item_royal_guardian:IsHidden()
-	return true
-end
-
-function modifier_item_royal_guardian:GetAttributes()
-	return MODIFIER_ATTRIBUTE_MULTIPLE
 end

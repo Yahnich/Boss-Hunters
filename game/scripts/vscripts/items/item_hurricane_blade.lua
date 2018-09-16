@@ -8,7 +8,7 @@ function item_hurricane_blade:GetIntrinsicModifierName()
 	return "modifier_item_hurricane_blade"
 end
 
-modifier_item_hurricane_blade = class({})
+modifier_item_hurricane_blade = class(itemBaseClass)
 LinkLuaModifier( "modifier_item_hurricane_blade", "items/item_hurricane_blade.lua" ,LUA_MODIFIER_MOTION_NONE )
 function modifier_item_hurricane_blade:OnCreated()
 	self.strength = self:GetSpecialValueFor("bonus_strength")

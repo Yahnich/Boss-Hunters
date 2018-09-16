@@ -11,7 +11,7 @@ function item_hunters_hatchet:OnSpellStart()
 	GridNav:DestroyTreesAroundPoint(tree, 20, true)
 end
 
-modifier_item_hunters_hatchet_passive = class({})
+modifier_item_hunters_hatchet_passive = class(itemBaseClass)
 
 function modifier_item_hunters_hatchet_passive:OnCreated()
 	self.bonusDamage = self:GetSpecialValueFor("bonus_damage")

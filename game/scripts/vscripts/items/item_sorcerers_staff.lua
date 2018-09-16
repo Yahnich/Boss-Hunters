@@ -5,7 +5,7 @@ function item_sorcerers_staff:GetIntrinsicModifierName()
 	return "modifier_item_sorcerers_staff_passive"
 end
 
-modifier_item_sorcerers_staff_passive = class({})
+modifier_item_sorcerers_staff_passive = class(itemBaseClass)
 
 function modifier_item_sorcerers_staff_passive:OnCreated()
 	self.spellamp = self:GetSpecialValueFor("bonus_spell_amp")
@@ -17,12 +17,4 @@ end
 
 function modifier_item_sorcerers_staff_passive:GetModifierSpellAmplify_Percentage()
 	return self.spellamp
-end
-
-function modifier_item_sorcerers_staff_passive:IsHidden()
-	return true
-end
-
-function modifier_item_sorcerers_staff_passive:GetAttributes()
-	return MODIFIER_ATTRIBUTE_MULTIPLE
 end

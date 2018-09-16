@@ -14,7 +14,7 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"1800"	
+		"ItemCost"						"275"	
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -23,7 +23,7 @@
 		"ItemResult"					"item_rising_salt"
 		"ItemRequirements"
 		{
-			"01"						"item_strange_trinket;item_runed_artifact"
+			"01"						"item_strange_trinket;item_runed_artifact;item_power_core"
 		}
 	}
 	//=================================================================================================================
@@ -57,7 +57,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"175"
+				"bonus_damage"			"200"
 			}
 			"02"
 			{
@@ -72,7 +72,12 @@
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"bonus_cdr"				"15"
+				"bonus_cdr"				"17.5"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_all"				"10"
 			}
 		}
 	}

@@ -5,7 +5,7 @@ function item_sanguine_mask:GetIntrinsicModifierName()
 	return "modifier_item_sanguine_mask_passive"
 end
 
-modifier_item_sanguine_mask_passive = class({})
+modifier_item_sanguine_mask_passive = class(itemBaseClass)
 
 function modifier_item_sanguine_mask_passive:OnCreated()
 	self.lifesteal = self:GetSpecialValueFor("melee_lifesteal") / 100
@@ -23,12 +23,4 @@ function modifier_item_sanguine_mask_passive:OnTakeDamage(params)
 		local flHeal = params.damage * self.lifesteal
 		params.attacker:HealEvent(flHeal, self:GetAbility(), params.attacker)
 	end
-end
-
-function modifier_item_sanguine_mask_passive:IsHidden()
-	return true
-end
-
-function modifier_item_sanguine_mask_passive:GetAttributes()
-	return MODIFIER_ATTRIBUTE_MULTIPLE
 end

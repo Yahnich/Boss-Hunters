@@ -9,7 +9,7 @@ function item_wings_of_icarus:OnSpellStart()
 	caster:AddNewModifier(caster, self, "modifier_item_wings_of_icarus_active", {duration = self:GetSpecialValueFor("duration")})
 end
 
-modifier_item_wings_of_icarus_passive = class({})
+modifier_item_wings_of_icarus_passive = class(itemBaseClass)
 LinkLuaModifier( "modifier_item_wings_of_icarus_passive", "items/item_wings_of_icarus.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 function modifier_item_wings_of_icarus_passive:OnCreated()
@@ -22,10 +22,6 @@ end
 
 function modifier_item_wings_of_icarus_passive:GetModifierMoveSpeedBonus_Special_Boots()
 	return self.bonus_ms
-end
-
-function modifier_item_wings_of_icarus_passive:IsHidden()
-	return true
 end
 
 modifier_item_wings_of_icarus_active = class({})

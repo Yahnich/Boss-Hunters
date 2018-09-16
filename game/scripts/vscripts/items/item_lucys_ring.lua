@@ -27,7 +27,7 @@ function item_lucys_ring:GetIntrinsicModifierName()
 	return "modifier_item_lucys_ring_passive"
 end
 
-modifier_item_lucys_ring_passive = class({})
+modifier_item_lucys_ring_passive = class(itemBaseClass)
 LinkLuaModifier( "modifier_item_lucys_ring_passive", "items/item_lucys_ring.lua" ,LUA_MODIFIER_MOTION_NONE )
 function modifier_item_lucys_ring_passive:OnCreated()
 	self.agi = self:GetSpecialValueFor("bonus_agi")

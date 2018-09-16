@@ -5,7 +5,7 @@ function item_winters_breath:GetIntrinsicModifierName()
 	return "modifier_item_winters_breath"
 end
 
-modifier_item_winters_breath = class({})
+modifier_item_winters_breath = class(itemBaseClass)
 function modifier_item_winters_breath:OnCreated()
 	self.all = self:GetSpecialValueFor("bonus_all")
 end
@@ -35,14 +35,6 @@ end
 
 function modifier_item_winters_breath:GetModifierBonusStats_Intellect()
 	return self.all
-end
-
-function modifier_item_winters_breath:GetAttributes()
-	return MODIFIER_ATTRIBUTE_MULTIPLE
-end
-
-function modifier_item_winters_breath:IsHidden()
-	return true
 end
 
 LinkLuaModifier( "modifier_winters_breath_debuff", "items/item_winters_breath.lua" ,LUA_MODIFIER_MOTION_NONE )

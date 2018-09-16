@@ -30,8 +30,8 @@ function item_presence_booster:OnSpellStart()
 	caster:ModifyThreat( self:GetSpecialValueFor("active_threat") + consumedThreat )
 end
 
+modifier_item_presence_booster_passive = class(itemBaseClass)
 LinkLuaModifier( "modifier_item_presence_booster_passive", "items/item_presence_booster.lua" ,LUA_MODIFIER_MOTION_NONE )
-modifier_item_presence_booster_passive = class({})
 
 function modifier_item_presence_booster_passive:OnCreated()
 	self.bonusThreat = self:GetSpecialValueFor("bonus_threat")
@@ -56,12 +56,4 @@ end
 
 function modifier_item_presence_booster_passive:Bonus_ThreatGain()
 	return self.bonusThreat
-end
-
-function modifier_item_presence_booster_passive:GetAttributes()
-	return MODIFIER_ATTRIBUTE_MULTIPLE
-end
-
-function modifier_item_presence_booster_passive:IsHidden()
-	return true
 end

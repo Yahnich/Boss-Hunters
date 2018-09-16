@@ -14,7 +14,7 @@ function item_flashback:GetIntrinsicModifierName()
 	return "modifier_item_flashback_passive"
 end
 
-modifier_item_flashback_passive = class({})
+modifier_item_flashback_passive = class(itemBaseClass)
 
 function modifier_item_flashback_passive:OnCreated()
 	self.ultChance = self:GetSpecialValueFor("ult_chance")

@@ -13,7 +13,7 @@ function relic_cursed_unchanging_globe:GetModifierManaBonus()
 end
 
 function relic_cursed_unchanging_globe:OnAbilityFullyCast(params)
-	if params.unit == self:GetParent() and params.ability:GetName() ~= "item_tombstone" then
+	if params.unit == self:GetParent() and params.ability:GetName() ~= "item_tombstone" and params.ability:GetName() ~= "item_creed_of_knowledge" then
 		local delayedCD = params.ability:IsDelayedCooldown()
 		params.ability:Refresh()
 		if delayedCD then

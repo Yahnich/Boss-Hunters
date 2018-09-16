@@ -15,7 +15,7 @@ function item_father_pipe:OnSpellStart()
 	end
 end
 
-modifier_item_father_pipe_passive = class({})
+modifier_item_father_pipe_passive = class(itemBaseClass)
 function modifier_item_father_pipe_passive:OnCreated()
 	self.hp_regen = self:GetSpecialValueFor("hp_regen")
 	self.radius = self:GetSpecialValueFor("radius")

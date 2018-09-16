@@ -5,7 +5,7 @@ function item_orb_of_renewal:GetIntrinsicModifierName()
 	return "modifier_item_orb_of_renewal_passive"
 end
 
-modifier_item_orb_of_renewal_passive = class({})
+modifier_item_orb_of_renewal_passive = class(itemBaseClass)
 
 function modifier_item_orb_of_renewal_passive:OnCreated()
 	self.mRestore = self:GetSpecialValueFor("mana_restore")

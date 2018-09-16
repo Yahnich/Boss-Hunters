@@ -28,7 +28,7 @@ function item_tricksters_blade:GetIntrinsicModifierName()
 	return "modifier_item_tricksters_blade"
 end
 
-modifier_item_tricksters_blade = class({})
+modifier_item_tricksters_blade = class(itemBaseClass)
 LinkLuaModifier("modifier_item_tricksters_blade", "items/item_tricksters_blade", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_item_tricksters_blade:OnCreated()
@@ -48,12 +48,4 @@ end
 
 function modifier_item_tricksters_blade:GetModifierBonusStats_Agility()
 	return self.agility
-end
-
-function modifier_item_tricksters_blade:IsHidden()
-	return true
-end
-
-function modifier_item_tricksters_blade:GetAttributes()
-	return MODIFIER_ATTRIBUTE_MULTIPLE
 end

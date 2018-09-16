@@ -6,7 +6,7 @@ function item_rapture:OnSpellStart()
 	else
 		self:GetCursorTarget():AddNewModifier(self:GetCaster(), self, "modifier_rapture_enemy", {duration = self:GetSpecialValueFor("disarm_duration")})
 	end
-	self:GetCaster():FindModifierByName("modifier_item_rapture"):SetStackCount(0)
+	self:GetCaster():FindModifierByNameAndAbility("modifier_item_rapture", self):SetStackCount(0)
 end
 
 function item_rapture:GetIntrinsicModifierName()
@@ -16,7 +16,7 @@ end
 ------------------------------------------------------------------------
 ------------------------------------------------------------------------
 
-modifier_item_rapture = class({})
+modifier_item_rapture = class(itemBaseClass)
 LinkLuaModifier( "modifier_item_rapture", "items/item_rapture.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 function modifier_item_rapture:OnCreated()
@@ -91,12 +91,11 @@ function modifier_item_rapture_ally:OnCreated()
 	self:SetStackCount(1)
 end
 
-function modifier_item_rapture_ally:OnDestroy()
-	if IsServer() then self:GetCaster():FindModifierByName("modifier_item_rapture"):SetStackCount(1) end
-end
 
-function modifier_item_rapture_ally:IsHidden()
-	return false
+function modifier_item_rapture_ally:OnRemoved()
+	if IsServer() then
+		self:GetCaster():FindModifierByNameAndAbility("modifier_item_rapture", self:GetAbility() ):SetStackCount(1)
+	end
 end
 
 ------------------------------------------------------------------------
@@ -118,7 +117,7 @@ end
 function modifier_rapture_enemy:OnRemoved()
 	if IsServer() then 
 		self:GetAbility():EndDelayedCooldown() 
-		self:GetCaster():FindModifierByName("modifier_item_rapture"):SetStackCount(1)
+		self:GetCaster():FindModifierByNameAndAbility("modifier_item_rapture", self:GetAbility() ):SetStackCount(1)
 	end
 end
 

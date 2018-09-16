@@ -5,7 +5,7 @@ function item_crystal_of_life:GetIntrinsicModifierName()
 	return "modifier_item_crystal_of_life_passive"
 end
 
-modifier_item_crystal_of_life_passive = class({})
+modifier_item_crystal_of_life_passive = class(itemBaseClass)
 
 function modifier_item_crystal_of_life_passive:OnCreated()
 	self.bonusHP = self:GetSpecialValueFor("bonus_health")
@@ -18,12 +18,4 @@ end
 
 function modifier_item_crystal_of_life_passive:GetModifierHealthBonus()
 	return self:GetParent():GetStrength() * self.hpPerStr + self.bonusHP
-end
-
-function modifier_item_crystal_of_life_passive:IsHidden()
-	return true
-end
-
-function modifier_item_crystal_of_life_passive:GetAttributes()
-	return MODIFIER_ATTRIBUTE_MULTIPLE
 end

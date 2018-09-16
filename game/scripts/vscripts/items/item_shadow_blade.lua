@@ -15,7 +15,7 @@ function item_shadow_blade:OnSpellStart()
 	end)
 end
 
-modifier_item_shadow_blade_passive = class({})
+modifier_item_shadow_blade_passive = class(itemBaseClass)
 function modifier_item_shadow_blade_passive:OnCreated()
 	self.as = self:GetSpecialValueFor("attack_speed")
 	self.ad = self:GetSpecialValueFor("attack_damage")
@@ -32,14 +32,6 @@ end
 
 function modifier_item_shadow_blade_passive:GetModifierPreAttack_BonusDamage()
 	return self.ad
-end
-
-function modifier_item_shadow_blade_passive:GetAttributes()
-	return MODIFIER_ATTRIBUTE_MULTIPLE
-end
-
-function modifier_item_shadow_blade_passive:IsHidden()
-	return true
 end
 
 modifier_item_shadow_blade_active = class({})

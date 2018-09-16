@@ -5,7 +5,7 @@ function item_runed_artifact:GetIntrinsicModifierName()
 	return "modifier_item_runed_artifact_passive"
 end
 
-modifier_item_runed_artifact_passive = class({})
+modifier_item_runed_artifact_passive = class(itemBaseClass)
 
 function modifier_item_runed_artifact_passive:OnCreated()
 	self.cdr = self:GetSpecialValueFor("cooldown_reduction")
@@ -17,12 +17,4 @@ end
 
 function modifier_item_runed_artifact_passive:GetCooldownReduction()
 	return self.cdr
-end
-
-function modifier_item_runed_artifact_passive:IsHidden()
-	return true
-end
-
-function modifier_item_runed_artifact_passive:GetAttributes()
-	return MODIFIER_ATTRIBUTE_MULTIPLE
 end

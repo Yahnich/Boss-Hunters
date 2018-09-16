@@ -6,7 +6,7 @@ function item_phantom_staff:OnSpellStart()
 	self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_item_phantom_staff", {Duration = self:GetSpecialValueFor("duration")})	
 end
 
-modifier_item_phantom_staff = class({})
+modifier_item_phantom_staff = class(itemBaseClass)
 function modifier_item_phantom_staff:GetTextureName()
 	return "ghost"
 end

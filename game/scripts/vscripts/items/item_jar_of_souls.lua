@@ -92,7 +92,7 @@ function modifier_item_jar_of_souls_handle_damage:GetDisableHealing()
 	return tonumber(self.disable)
 end
 
-modifier_item_jar_of_souls_passive = class({})
+modifier_item_jar_of_souls_passive = class(itemBaseClass)
 LinkLuaModifier( "modifier_item_jar_of_souls_passive", "items/item_jar_of_souls.lua" ,LUA_MODIFIER_MOTION_NONE )
 function modifier_item_jar_of_souls_passive:OnCreated()
 	self.manaregen = self:GetSpecialValueFor("bonus_mana_regen")

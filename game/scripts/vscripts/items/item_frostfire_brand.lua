@@ -21,7 +21,7 @@ function item_frostfire_brand:OnToggle()
 end
 
 LinkLuaModifier( "modifier_item_frostfire_brand_stats", "items/item_frostfire_brand.lua" ,LUA_MODIFIER_MOTION_NONE )
-modifier_item_frostfire_brand_stats = class({})
+modifier_item_frostfire_brand_stats = class(itemBaseClass)
 
 function modifier_item_frostfire_brand_stats:OnCreated()
 	self.damage = self:GetSpecialValueFor("bonus_damage")
@@ -42,7 +42,7 @@ end
 
 
 LinkLuaModifier( "modifier_item_frostfire_brand", "items/item_frostfire_brand.lua" ,LUA_MODIFIER_MOTION_NONE )
-modifier_item_frostfire_brand = class({})
+modifier_item_frostfire_brand = class(itemBaseClass)
 function modifier_item_frostfire_brand:OnCreated()
 	self.radius = self:GetSpecialValueFor("radius")
 end

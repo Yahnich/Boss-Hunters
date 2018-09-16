@@ -15,7 +15,7 @@ function item_essence_piercer:OnSpellStart()
 end
 
 LinkLuaModifier( "modifier_item_essence_piercer_passive", "items/item_essence_piercer.lua" ,LUA_MODIFIER_MOTION_NONE )
-modifier_item_essence_piercer_passive = class({})
+modifier_item_essence_piercer_passive = class(itemBaseClass)
 function modifier_item_essence_piercer_passive:OnCreated()
 	self.castrange = self:GetAbility():GetSpecialValueFor("bonus_cast_range")
 	self.int = self:GetAbility():GetSpecialValueFor("bonus_intellect")

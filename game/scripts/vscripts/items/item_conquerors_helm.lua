@@ -63,7 +63,7 @@ function modifier_item_conquerors_helm_fear:CheckState()
 			}
 end
 
-modifier_item_conquerors_helm_passive = class({})
+modifier_item_conquerors_helm_passive = class(itemBaseClass)
 LinkLuaModifier("modifier_item_conquerors_helm_passive", "items/item_conquerors_helm", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_item_conquerors_helm_passive:OnCreated()

@@ -27,7 +27,7 @@ function modifier_item_ice_fang:IsHidden()
 end
 
 LinkLuaModifier( "modifier_ice_fang_debuff", "items/item_ice_fang.lua" ,LUA_MODIFIER_MOTION_NONE )
-modifier_ice_fang_debuff = class({})
+modifier_ice_fang_debuff = class(itemBaseClass)
 
 function modifier_ice_fang_debuff:OnCreated()
 	self.slow = self:GetAbility():GetSpecialValueFor("slow")

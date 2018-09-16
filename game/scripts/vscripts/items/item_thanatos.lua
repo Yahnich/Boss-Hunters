@@ -5,7 +5,7 @@ function item_thanatos:GetIntrinsicModifierName()
 	return "modifier_item_thanatos"
 end
 
-modifier_item_thanatos = class({})
+modifier_item_thanatos = class(itemBaseClass)
 function modifier_item_thanatos:DeclareFunctions()
 	return {MODIFIER_EVENT_ON_ATTACK_LANDED,
 			MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE}
@@ -22,14 +22,6 @@ function modifier_item_thanatos:OnAttackLanded(params)
 			params.target:AddNewModifier(params.attacker, self:GetAbility(), "modifier_thanatos_stacking_debuff", {Duration = self:GetAbility():GetSpecialValueFor("stack_duration")})
 		end
 	end
-end
-
-function modifier_item_thanatos:IsHidden()
-	return true
-end
-
-function modifier_item_thanatos:GetAttributes()
-	return MODIFIER_ATTRIBUTE_MULTIPLE
 end
 
 LinkLuaModifier( "modifier_thanatos_debuff", "items/item_thanatos.lua" ,LUA_MODIFIER_MOTION_NONE )

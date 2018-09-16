@@ -9,7 +9,7 @@ function item_ringing_rapier:ShouldUseResources()
 	return true
 end
 
-modifier_item_ringing_rapier = class({})
+modifier_item_ringing_rapier = class(itemBaseClass)
 
 function modifier_item_ringing_rapier:OnCreated()
 	self.delay = self:GetSpecialValueFor("attack_delay")
@@ -33,12 +33,4 @@ function modifier_item_ringing_rapier:OnAttackLanded(params)
 			end)
 		end
 	end
-end
-
-function modifier_item_ringing_rapier:IsHidden()
-	return true
-end
-
-function modifier_item_ringing_rapier:GetAttributes()
-	return MODIFIER_ATTRIBUTE_MULTIPLE
 end

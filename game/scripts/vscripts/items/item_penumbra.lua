@@ -15,7 +15,7 @@ function item_penumbra:OnSpellStart()
 	end)
 end
 
-modifier_item_penumbra_passive = class({})
+modifier_item_penumbra_passive = class(itemBaseClass)
 function modifier_item_penumbra_passive:OnCreated()
 	self.as = self:GetSpecialValueFor("attack_speed")
 	self.ad = self:GetSpecialValueFor("attack_damage")

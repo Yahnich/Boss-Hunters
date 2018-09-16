@@ -16,7 +16,7 @@ function item_illusionists_charm:GetIntrinsicModifierName()
 	return "modifier_item_illusionists_charm"
 end
 
-modifier_item_illusionists_charm = class({})
+modifier_item_illusionists_charm = class(itemBaseClass)
 LinkLuaModifier("modifier_item_illusionists_charm", "items/item_illusionists_charm", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_item_illusionists_charm:OnCreated()

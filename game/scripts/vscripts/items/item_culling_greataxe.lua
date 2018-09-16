@@ -11,7 +11,7 @@ function item_culling_greataxe:OnSpellStart()
 	GridNav:DestroyTreesAroundPoint(tree, 20, true)
 end
 
-modifier_item_culling_greataxe_passive = class({})
+modifier_item_culling_greataxe_passive = class(itemBaseClass)
 
 function modifier_item_culling_greataxe_passive:OnCreated()
 	self.bonusDamage = self:GetSpecialValueFor("bonus_damage")
@@ -37,12 +37,4 @@ end
 
 function modifier_item_culling_greataxe_passive:GetModifierBaseDamageOutgoing_Percentage()
 	return self.bonusDamage
-end
-
-function modifier_item_culling_greataxe_passive:IsHidden()
-	return true
-end
-
-function modifier_item_culling_greataxe_passive:GetAttributes()
-	return MODIFIER_ATTRIBUTE_MULTIPLE
 end

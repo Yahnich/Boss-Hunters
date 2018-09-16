@@ -5,7 +5,7 @@ function item_iron_rod:GetIntrinsicModifierName()
 	return "modifier_item_iron_rod"
 end
 
-modifier_item_iron_rod = class({})
+modifier_item_iron_rod = class(itemBaseClass)
 
 function modifier_item_iron_rod:OnCreated()
 	self.chance = self:GetSpecialValueFor("pierce_chance")

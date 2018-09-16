@@ -15,14 +15,18 @@ function item_rising_salt:OnProjectileHit(hTarget, vLocation)
 	end	
 end
 
-modifier_item_rising_salt_passive = class({})
+modifier_item_rising_salt_passive = class(itemBaseClass)
 function modifier_item_rising_salt_passive:OnCreated()
 	self.bonus_mana = self:GetSpecialValueFor("bonus_mana")
 	self.bonus_cdr = self:GetSpecialValueFor("bonus_cdr")
+	self.stat = self:GetSpecialValueFor("bonus_all")
 end
 
 function modifier_item_rising_salt_passive:DeclareFunctions()
 	return {	MODIFIER_PROPERTY_MANA_BONUS,
+				MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
+				MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
+				MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
 			 	MODIFIER_EVENT_ON_ABILITY_FULLY_CAST}
 end
 
@@ -34,6 +38,18 @@ function modifier_item_rising_salt_passive:GetCooldownReduction()
 	return self.bonus_cdr
 end
 
+function modifier_item_rising_salt_passive:GetModifierBonusStats_Strength()
+	return self.stat
+end
+
+function modifier_item_rising_salt_passive:GetModifierBonusStats_Agility()
+	return self.stat
+end
+
+function modifier_item_rising_salt_passive:GetModifierBonusStats_Intellect()
+	return self.stat
+end
+
 function modifier_item_rising_salt_passive:OnAbilityFullyCast(params)
 	if IsServer() then
 		if params.unit == self:GetParent() and self:GetAbility():IsCooldownReady() and not params.ability:IsOrbAbility() then
@@ -41,14 +57,6 @@ function modifier_item_rising_salt_passive:OnAbilityFullyCast(params)
 			self:GetAbility():StartCooldown(self:GetSpecialValueFor("cooldown"))
 		end
 	end
-end
-
-function modifier_item_rising_salt_passive:IsHidden()
-	return true
-end
-
-function modifier_item_rising_salt_passive:GetAttributes()
-	return MODIFIER_ATTRIBUTE_MULTIPLE
 end
 
 modifier_item_rising_salt_attack = class({})

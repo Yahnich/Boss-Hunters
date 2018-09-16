@@ -29,7 +29,7 @@ function item_warp_staff:OnSpellStart()
 	EmitSoundOn("DOTA_Item.BlinkDagger.NailedIt", caster)
 end
 
-modifier_item_warp_staff_handler = class({})
+modifier_item_warp_staff_handler = class(itemBaseClass)
 LinkLuaModifier("modifier_item_warp_staff_handler", "items/item_warp_staff", LUA_MODIFIER_MOTION_NONE)
 
 if IsServer() then
@@ -99,20 +99,4 @@ end
 
 function modifier_item_warp_staff_handler:DestroyOnExpire()
     return false
-end
-
-function modifier_item_warp_staff_handler:IsPurgable()
-    return false
-end
-
-function modifier_item_warp_staff_handler:RemoveOnDeath()
-    return false
-end
-
-function modifier_item_warp_staff_handler:IsHidden()
-	return true
-end
-
-function modifier_item_warp_staff_handler:GetAttributes()
-	return MODIFIER_ATTRIBUTE_MULTIPLE
 end

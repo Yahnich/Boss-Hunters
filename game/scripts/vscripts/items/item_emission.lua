@@ -21,7 +21,7 @@ function item_emission:GetIntrinsicModifierName()
 end
 
 LinkLuaModifier( "modifier_item_emission", "items/item_emission.lua" ,LUA_MODIFIER_MOTION_NONE )
-modifier_item_emission = class({})
+modifier_item_emission = class(itemBaseClasss)
 function modifier_item_emission:OnCreated()
 	self.radius = self:GetSpecialValueFor("radius")
 end
@@ -103,7 +103,7 @@ function modifier_emission_debuff:GetEffectName()
 end
 
 
-modifier_item_emission_passive = class({})
+modifier_item_emission_passive = class(itemBaseClass)
 LinkLuaModifier( "modifier_item_emission_passive", "items/item_emission.lua", LUA_MODIFIER_MOTION_NONE )
 
 function modifier_item_emission_passive:OnCreated()

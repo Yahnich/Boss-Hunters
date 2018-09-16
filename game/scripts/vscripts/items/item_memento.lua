@@ -9,7 +9,7 @@ function item_memento:ShouldUseResources()
 	return true
 end
 
-modifier_item_memento = class({})
+modifier_item_memento = class(itemBaseClass)
 
 function modifier_item_memento:OnCreated()
 	self.delay = self:GetSpecialValueFor("attack_delay")

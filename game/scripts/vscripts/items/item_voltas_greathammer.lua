@@ -17,14 +17,10 @@ function item_voltas_greathammer:OnSpellStart()
 	end
 end
 
-modifier_item_voltas_greathammer_handle = class({})
+modifier_item_voltas_greathammer_handle = class(itemBaseClass)
 function modifier_item_voltas_greathammer_handle:OnCreated()
 	self.attackspeed = self:GetSpecialValueFor("bonus_attack_speed")
 	self.damage = self:GetSpecialValueFor("bonus_damage")
-end
-
-function modifier_item_voltas_greathammer_handle:GetAttributes()
-	return MODIFIER_ATTRIBUTE_MULTIPLE
 end
 
 function modifier_item_voltas_greathammer_handle:DeclareFunctions()
@@ -69,14 +65,6 @@ function modifier_item_voltas_greathammer_handle:OnAttackLanded(params)
 			target:AddNewModifier(caster, ability, "modifier_item_voltas_greathammer_handle_damage", {})
 		end
 	end
-end
-
-function modifier_item_voltas_greathammer_handle:IsHidden()
-	return true
-end
-
-function modifier_item_voltas_greathammer_handle:GetAttributes()
-	return MODIFIER_ATTRIBUTE_MULTIPLE
 end
 
 modifier_item_voltas_greathammer_handle_damage = class({})

@@ -16,7 +16,7 @@ function item_mirrors_edge:GetIntrinsicModifierName()
 	return "modifier_item_mirrors_edge"
 end
 
-modifier_item_mirrors_edge = class({})
+modifier_item_mirrors_edge = class(itemBaseClass)
 LinkLuaModifier("modifier_item_mirrors_edge", "items/item_mirrors_edge", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_item_mirrors_edge:OnCreated()
@@ -36,12 +36,4 @@ end
 
 function modifier_item_mirrors_edge:GetModifierBonusStats_Agility()
 	return self.agility
-end
-
-function modifier_item_mirrors_edge:IsHidden()
-	return true
-end
-
-function modifier_item_mirrors_edge:GetAttributes()
-	return MODIFIER_ATTRIBUTE_MULTIPLE
 end

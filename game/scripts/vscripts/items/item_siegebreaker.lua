@@ -5,7 +5,7 @@ function item_siegebreaker:GetIntrinsicModifierName()
 	return "modifier_item_siegebreaker"
 end
 
-modifier_item_siegebreaker = class({})
+modifier_item_siegebreaker = class(itemBaseClass)
 
 function modifier_item_siegebreaker:OnCreated()
 	self.range = self:GetSpecialValueFor("bonus_range")
@@ -24,12 +24,4 @@ function modifier_item_siegebreaker:GetModifierAttackRangeBonus()
 	if self:GetParent():IsRangedAttacker() then
 		return self.range
 	end
-end
-
-function modifier_item_siegebreaker:IsHidden()
-	return true
-end
-
-function modifier_item_siegebreaker:GetAttributes()
-	return MODIFIER_ATTRIBUTE_MULTIPLE
 end

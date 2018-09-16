@@ -1299,15 +1299,25 @@ function CDOTABaseAbility:ProvidesModifier(modifiername)
 	return found
 end
 
-function CDOTA_BaseNPC:FindModifierByAbility(abilityname)
+function CDOTA_BaseNPC:FindAllModifiersByAbility(abilityname)
 	local modifiers = self:FindAllModifiers()
 	local returnTable = {}
-	for _,modifier in pairs(modifiers) do
+	for _,modifier in ipairs(modifiers) do
 		if modifier:GetAbility():GetName() == abilityname then
 			table.insert(returnTable, modifier)
 		end
 	end
 	return returnTable
+end
+
+function CDOTA_BaseNPC:FindModifierByNameAndAbility(name, ability)
+	local modifiers = self:FindAllModifiers()
+	local returnTable = {}
+	for _,modifier in ipairs(modifiers) do
+		if ability == modifier:GetAbility() and modifier:GetName() == name then
+			return modifier
+		end
+	end
 end
 
 function CDOTA_BaseNPC:IsFakeHero()
@@ -1431,11 +1441,11 @@ function CDOTABaseAbility:StartDelayedCooldown(flDelay, newCD)
 end
 
 function CDOTABaseAbility:EndDelayedCooldown()
-	self:SetActivated(true)
 	if self.delayedCooldownTimer then
 		Timers:RemoveTimer(self.delayedCooldownTimer)
 		self.delayedCooldownTimer = nil
 	end
+	self:SetActivated(true)
 end
 
 function CDOTA_BaseNPC_Hero:CreateTombstone()

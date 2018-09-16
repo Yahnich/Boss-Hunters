@@ -12,7 +12,7 @@ function item_plate_of_the_unbreakable:OnSpellStart()
 	EmitSoundOn("DOTA_Item.Tango.Activate", caster)
 end
 
-modifier_plate_of_the_unbreakable_passive = class({})
+modifier_plate_of_the_unbreakable_passive = class(itemBaseClass)
 LinkLuaModifier("modifier_plate_of_the_unbreakable_passive", "items/item_plate_of_the_unbreakable", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_plate_of_the_unbreakable_passive:OnCreated()
@@ -44,7 +44,6 @@ end
 function modifier_plate_of_the_unbreakable_passive:GetModifierPhysicalArmorBonus()
 	return self.armor
 end
-
 
 function modifier_plate_of_the_unbreakable_passive:IsAura()
 	return true

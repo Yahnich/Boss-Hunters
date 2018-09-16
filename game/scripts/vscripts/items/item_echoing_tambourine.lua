@@ -18,7 +18,7 @@ function item_echoing_tambourine:OnSpellStart()
 	end
 end
 
-modifier_item_echoing_tambourine_passive = class({})
+modifier_item_echoing_tambourine_passive = class(itemBaseClass)
 function modifier_item_echoing_tambourine_passive:OnCreated()
 	self.bonus_agi = self:GetSpecialValueFor("bonus_agi")
 	self.bonus_int = self:GetSpecialValueFor("bonus_int")
@@ -97,14 +97,6 @@ end
 
 function modifier_item_echoing_tambourine_passive:GetAuraSearchFlags()    
 	return DOTA_UNIT_TARGET_FLAG_NONE
-end
-
-function modifier_item_echoing_tambourine_passive:IsHidden()
-	return true
-end
-
-function modifier_item_echoing_tambourine_passive:GetAttributes()
-	return MODIFIER_ATTRIBUTE_MULTIPLE
 end
 
 modifier_item_echoing_tambourine_passive_aura = class({})

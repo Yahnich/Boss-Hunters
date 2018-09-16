@@ -4,7 +4,7 @@ function item_ferrum_ascensus:GetIntrinsicModifierName()
 	return "modifier_item_ferrum_ascensus"
 end
 
-modifier_item_ferrum_ascensus = class({})
+modifier_item_ferrum_ascensus = class(itemBaseClass)
 LinkLuaModifier( "modifier_item_ferrum_ascensus", "items/item_ferrum_ascensus.lua" ,LUA_MODIFIER_MOTION_NONE )
 function modifier_item_ferrum_ascensus:OnCreated()
 	self.attackSpeed = self:GetSpecialValueFor("bonus_attackspeed")

@@ -5,7 +5,7 @@ function item_lance_of_longinus:GetIntrinsicModifierName()
 	return "modifier_item_lance_of_longinus"
 end
 
-modifier_item_lance_of_longinus = class({})
+modifier_item_lance_of_longinus = class(itemBaseClass)
 
 function modifier_item_lance_of_longinus:OnCreated()
 	self.range = self:GetSpecialValueFor("bonus_attack_range")

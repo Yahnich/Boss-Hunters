@@ -5,7 +5,7 @@ function item_soul_vessel:GetIntrinsicModifierName()
 	return "modifier_item_soul_vessel_passive"
 end
 
-modifier_item_soul_vessel_passive = class({})
+modifier_item_soul_vessel_passive = class(itemBaseClass)
 
 function modifier_item_soul_vessel_passive:OnCreated()
 	self.lifesteal = self:GetSpecialValueFor("lifesteal") / 100
@@ -28,12 +28,4 @@ function modifier_item_soul_vessel_passive:OnTakeDamage(params)
 		local flHeal = params.damage * lifesteal
 		params.attacker:HealEvent(flHeal, self:GetAbility(), params.attacker)
 	end
-end
-
-function modifier_item_soul_vessel_passive:IsHidden()
-	return true
-end
-
-function modifier_item_soul_vessel_passive:GetAttributes()
-	return MODIFIER_ATTRIBUTE_MULTIPLE
 end

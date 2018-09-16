@@ -21,7 +21,7 @@ function item_gauntlet_of_the_void:OnToggle()
 	end
 end
 
-modifier_item_gauntlet_of_the_void_active = class({})
+modifier_item_gauntlet_of_the_void_active = class(itemBaseClass)
 LinkLuaModifier( "modifier_item_gauntlet_of_the_void_active", "items/item_gauntlet_of_the_void.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 function modifier_item_gauntlet_of_the_void_active:GetTexture()
@@ -76,7 +76,7 @@ function modifier_item_gauntlet_of_the_void_debuff:GetModifierMagicalResistanceB
 	return self.mr
 end
 
-modifier_item_gauntlet_of_the_void = class({})
+modifier_item_gauntlet_of_the_void = class(itemBaseClass)
 LinkLuaModifier( "modifier_item_gauntlet_of_the_void", "items/item_gauntlet_of_the_void.lua" ,LUA_MODIFIER_MOTION_NONE )
 function modifier_item_gauntlet_of_the_void:OnCreated()
 	self.mr = self:GetSpecialValueFor("bonus_mana_regen")

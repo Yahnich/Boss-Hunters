@@ -95,14 +95,7 @@ function item_ogre_seal_totem:TryToDamage()
 end
 
 
-modifier_item_ogre_seal_totem = class({})
-function modifier_item_ogre_seal_totem:IsHidden() 
-	return true
-end
-
-function modifier_item_ogre_seal_totem:IsPurgable()
-	return false
-end
+modifier_item_ogre_seal_totem = class(itemBaseClass)
 
 function modifier_item_ogre_seal_totem:OnCreated( kv )
 	self.bonus_strength = self:GetAbility():GetSpecialValueFor( "bonus_strength" )
@@ -138,10 +131,6 @@ end
 
 function modifier_item_ogre_seal_totem:GetModifierHealthBonus( params )
 	return self:GetParent():GetStrength() * self.hpPerStr + self.bonus_hp
-end
-
-function modifier_item_ogre_seal_totem:GetAttributes()
-	return MODIFIER_ATTRIBUTE_MULTIPLE
 end
 
 modifier_ogreseal_flop = class({})

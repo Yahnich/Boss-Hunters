@@ -16,7 +16,7 @@ function item_lightningrod:OnSpellStart()
 	self:DealDamage(caster, target, damage)
 end
 
-modifier_item_lightningrod_handle = class({})
+modifier_item_lightningrod_handle = class(itemBaseClass)
 function modifier_item_lightningrod_handle:OnCreated()
 	self.attackspeed = self:GetSpecialValueFor("bonus_attack_speed")
 end

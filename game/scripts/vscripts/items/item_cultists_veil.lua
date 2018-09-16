@@ -20,7 +20,7 @@ function item_cultists_veil:OnSpellStart()
 end
 
 LinkLuaModifier( "modifier_cultists_veil_debuff", "items/item_cultists_veil.lua" ,LUA_MODIFIER_MOTION_NONE )
-modifier_cultists_veil_debuff = class({})
+modifier_cultists_veil_debuff = class(itemBaseClass)
 
 function modifier_cultists_veil_debuff:OnCreated()
 	self.mr = (-1) * self:GetAbility():GetSpecialValueFor("bonus_magic_damage")
@@ -64,12 +64,4 @@ end
 
 function modifier_item_cultists_veil_passive:GetModifierBonusStats_Intellect()
 	return self.int
-end
-
-function modifier_item_cultists_veil_passive:IsHidden()
-	return true
-end
-
-function modifier_item_cultists_veil_passive:GetAttributes()
-	return MODIFIER_ATTRIBUTE_MULTIPLE
 end

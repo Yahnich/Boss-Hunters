@@ -5,7 +5,7 @@ function item_trebuchet:GetIntrinsicModifierName()
 	return "modifier_item_trebuchet"
 end
 
-modifier_item_trebuchet = class({})
+modifier_item_trebuchet = class(itemBaseClass)
 
 function modifier_item_trebuchet:OnCreated()
 	self.range = self:GetSpecialValueFor("bonus_range")
@@ -42,12 +42,4 @@ function modifier_item_trebuchet:GetModifierAttackRangeBonus()
 	if self:GetParent():IsRangedAttacker() then
 		return self.range
 	end
-end
-
-function modifier_item_trebuchet:IsHidden()
-	return true
-end
-
-function modifier_item_trebuchet:GetAttributes()
-	return MODIFIER_ATTRIBUTE_MULTIPLE
 end

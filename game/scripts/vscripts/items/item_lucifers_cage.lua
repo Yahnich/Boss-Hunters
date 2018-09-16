@@ -97,7 +97,7 @@ function modifier_item_lucifers_cage_handle_damage:GetDisableHealing()
 end
 
 
-modifier_item_lucifers_cage_passive = class({})
+modifier_item_lucifers_cage_passive = class(itemBaseClass)
 LinkLuaModifier( "modifier_item_lucifers_cage_passive", "items/item_lucifers_cage.lua" ,LUA_MODIFIER_MOTION_NONE )
 function modifier_item_lucifers_cage_passive:OnCreated()
 	self.manaregen = self:GetSpecialValueFor("bonus_mana_regen")

@@ -83,36 +83,5 @@ if IsClient() then -- Load clientside utility lib
 												end, "fixing bug",0)
 end
 
-relicBaseClass = class({})
-
-function relicBaseClass:IsHidden()
-	return true
-end
-
-function relicBaseClass:DestroyOnExpire()
-	return false
-end
-
-function relicBaseClass:IsPurgable()
-	return false
-end
-
-function relicBaseClass:IsPurgeException()
-	return false
-end
-
-function relicBaseClass:RemoveOnDeath()
-	return false
-end
-
-function relicBaseClass:IsPermanent()
-	return true
-end
-
-function relicBaseClass:AllowIllusionDuplicate()
-	return false
-end
-
-function relicBaseClass:GetAttributes()
-	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_PERMANENT + MODIFIER_ATTRIBUTE_MULTIPLE
-end
+require("templates/relic_base_class")
+require("templates/item_base_class")

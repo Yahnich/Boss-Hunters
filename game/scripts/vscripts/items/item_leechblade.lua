@@ -9,7 +9,7 @@ function item_leechblade:OnSpellStart()
 	EmitSoundOn( "DOTA_Item.Satanic.Activate", self:GetCaster() )
 end
 
-modifier_item_leechblade_stats = class({})
+modifier_item_leechblade_stats = class(itemBaseClass)
 LinkLuaModifier( "modifier_item_leechblade_stats", "items/item_leechblade.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 function modifier_item_leechblade_stats:OnCreated()

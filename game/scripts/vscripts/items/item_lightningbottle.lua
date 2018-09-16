@@ -14,7 +14,7 @@ function item_lightningbottle:OnSpellStart()
 	target:AddNewModifier(caster, self, "modifier_item_lightningbottle_handle_shield", {Duration = self:GetSpecialValueFor("duration")})
 end
 
-modifier_item_lightningbottle_handle = class({})
+modifier_item_lightningbottle_handle = class(itemBaseClass)
 function modifier_item_lightningbottle_handle:OnCreated()
 	self.attackspeed = self:GetSpecialValueFor("bonus_attack_speed")
 	

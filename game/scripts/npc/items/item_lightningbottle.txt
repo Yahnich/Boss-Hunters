@@ -124,15 +124,20 @@
 				"var_type"				"FIELD_FLOAT"
 				"mana_restore_shield"	"8" //percent
 			}
-			"01"
+			"12"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"duration"				"15"
 			}
-			"01"
+			"13"
 			{
-				"var_type"				"FIELD_INTEGER"
+				"var_type"				"FIELD_FLOAT"
 				"cdr"					"15"
+			}
+			"14"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"paralyze_duration"		"0.25"
 			}
 		}
 	}

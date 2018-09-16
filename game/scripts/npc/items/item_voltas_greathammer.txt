@@ -82,17 +82,22 @@
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"strike_chance"			"20"
+				"strike_chance"			"25"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"strike_damage"			"150"
+				"strike_damage"			"175"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"strike_bounces"		"8"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"paralyze_duration"		"1"
 			}
 		}
 	}

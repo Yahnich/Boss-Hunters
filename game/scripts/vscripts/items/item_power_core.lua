@@ -3,7 +3,7 @@ function item_power_core:GetIntrinsicModifierName()
 	return "modifier_item_power_core_handle"
 end
 
-modifier_item_power_core_handle = class({})
+modifier_item_power_core_handle = class(itemBaseClass)
 LinkLuaModifier( "modifier_item_power_core_handle", "items/item_power_core.lua", LUA_MODIFIER_MOTION_NONE )
 
 function modifier_item_power_core_handle:OnCreated()

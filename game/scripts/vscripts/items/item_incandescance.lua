@@ -21,7 +21,8 @@ function item_incandescance:GetIntrinsicModifierName()
 end
 
 LinkLuaModifier( "modifier_item_incandescance", "items/item_incandescance.lua" ,LUA_MODIFIER_MOTION_NONE )
-modifier_item_incandescance = class({})
+modifier_item_incandescance = class(itemBaseClass)
+
 function modifier_item_incandescance:OnCreated()
 	self.radius = self:GetSpecialValueFor("radius")
 end

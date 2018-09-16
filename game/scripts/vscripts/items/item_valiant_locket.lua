@@ -6,7 +6,7 @@ function item_valiant_locket:OnSpellStart()
 	else
 		self:GetCursorTarget():AddNewModifier(self:GetCaster(), self, "modifier_valiant_locket_enemy", {duration = self:GetSpecialValueFor("disarm_duration")})
 	end
-	self:GetCaster():FindModifierByName("modifier_item_valiant_locket"):SetStackCount(0)
+	self:GetCaster():FindModifierByNameAndAbility("modifier_item_valiant_locket", self ):SetStackCount(0)
 end
 
 function item_valiant_locket:GetIntrinsicModifierName()
@@ -16,7 +16,7 @@ end
 ------------------------------------------------------------------------
 ------------------------------------------------------------------------
 
-modifier_item_valiant_locket = class({})
+modifier_item_valiant_locket = class(itemBaseClass)
 LinkLuaModifier( "modifier_item_valiant_locket", "items/item_valiant_locket.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 function modifier_item_valiant_locket:OnCreated()
@@ -54,14 +54,6 @@ function modifier_item_valiant_locket:GetModifierHealAmplify_Percentage()
 	if self:GetStackCount() ~= 0 then return self.heal_amp end
 end
 
-function modifier_item_valiant_locket:IsHidden()
-	return true
-end
-
-function modifier_item_valiant_locket:GetAttributes()
-	return MODIFIER_ATTRIBUTE_MULTIPLE
-end
-
 ------------------------------------------------------------------------
 ------------------------------------------------------------------------
 
@@ -78,7 +70,7 @@ function modifier_item_valiant_locket_ally:OnCreated()
 end
 
 function modifier_item_valiant_locket_ally:OnDestroy()
-	if IsServer() then self:GetCaster():FindModifierByName("modifier_item_valiant_locket"):SetStackCount(1) end
+	if IsServer() then self:GetCaster():FindModifierByNameAndAbility("modifier_item_valiant_locket", self:GetAbility() ):SetStackCount(1) end
 end
 
 function modifier_item_valiant_locket_ally:GetEffectName()
@@ -111,7 +103,7 @@ end
 function modifier_valiant_locket_enemy:OnRemoved()
 	if IsServer() then 
 		self:GetAbility():EndDelayedCooldown() 
-		self:GetCaster():FindModifierByName("modifier_item_valiant_locket"):SetStackCount(1)
+		self:GetCaster():FindModifierByNameAndAbility("modifier_item_valiant_locket", self:GetAbility() ):SetStackCount(1)
 	end
 end
 

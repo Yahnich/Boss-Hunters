@@ -21,7 +21,7 @@ function item_frostbite:GetIntrinsicModifierName()
 end
 
 LinkLuaModifier( "modifier_item_frostbite", "items/item_frostbite.lua" ,LUA_MODIFIER_MOTION_NONE )
-modifier_item_frostbite = class({})
+modifier_item_frostbite = class(itemBaseClass)
 function modifier_item_frostbite:OnCreated()
 	self.radius = self:GetSpecialValueFor("radius")
 end

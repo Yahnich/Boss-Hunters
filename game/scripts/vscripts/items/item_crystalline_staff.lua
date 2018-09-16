@@ -5,7 +5,7 @@ function item_crystalline_staff:GetIntrinsicModifierName()
 	return "modifier_item_crystalline_staff_passive"
 end
 
-modifier_item_crystalline_staff_passive = class({})
+modifier_item_crystalline_staff_passive = class(itemBaseClass)
 function modifier_item_crystalline_staff_passive:OnCreated()
 	self.castrange = self:GetAbility():GetSpecialValueFor("bonus_cast_range")
 	self.spellamp = self:GetAbility():GetSpecialValueFor("bonus_spell_damage")
@@ -34,12 +34,4 @@ end
 
 function modifier_item_crystalline_staff_passive:GetModifierBonusStats_Intellect()
 	return self.int
-end
-
-function modifier_item_crystalline_staff_passive:GetAttributes()
-	return MODIFIER_ATTRIBUTE_MULTIPLE
-end
-
-function modifier_item_crystalline_staff_passive:IsHidden()
-	return true
 end

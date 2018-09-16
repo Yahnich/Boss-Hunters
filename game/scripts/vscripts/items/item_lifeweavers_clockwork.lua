@@ -5,7 +5,7 @@ function item_lifeweavers_clockwork:GetIntrinsicModifierName()
 	return "modifier_item_lifeweavers_clockwork_passive"
 end
 
-modifier_item_lifeweavers_clockwork_passive = class({})
+modifier_item_lifeweavers_clockwork_passive = class(itemBaseClass)
 
 function modifier_item_lifeweavers_clockwork_passive:OnCreated()
 	self.cdr = self:GetSpecialValueFor("cooldown_reduction")
@@ -17,8 +17,7 @@ function modifier_item_lifeweavers_clockwork_passive:OnCreated()
 end
 
 function modifier_item_lifeweavers_clockwork_passive:DeclareFunctions()
-	return {MODIFIER_PROPERTY_MANA_REGEN_CONSTANT,
-			MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
+	return {MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
 			MODIFIER_PROPERTY_MANA_BONUS,
 			MODIFIER_EVENT_ON_TAKEDAMAGE}
 end
@@ -45,18 +44,6 @@ function modifier_item_lifeweavers_clockwork_passive:GetModifierManaBonus()
 	return self.bonus_mana
 end
 
-function modifier_item_lifeweavers_clockwork_passive:GetModifierConstantManaRegen()
-	return self.mr
-end
-
 function modifier_item_lifeweavers_clockwork_passive:GetModifierBonusStats_Intellect()
 	return self.intellect
-end
-
-function modifier_item_lifeweavers_clockwork_passive:IsHidden()
-	return true
-end
-
-function modifier_item_lifeweavers_clockwork_passive:GetAttributes()
-	return MODIFIER_ATTRIBUTE_MULTIPLE
 end
