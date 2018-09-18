@@ -20,8 +20,8 @@ function modifier_boss_sloth_demon_slime_hide:DeclareFunctions()
 end
 
 function modifier_boss_sloth_demon_slime_hide:OnTakeDamage(params)
-	if params.unit == self:GetParent() then
-		params.attacker:AddNewModifier( params.unit, self:GetAbility(), "modifier_boss_sloth_demon_slime_hide_debuff", {duration = self.duration} )
+	if params.attacker == self:GetParent() then
+		params.unit:AddNewModifier( params.attacker, self:GetAbility(), "modifier_boss_sloth_demon_slime_hide_debuff", {duration = self.duration} )
 	end
 end
 

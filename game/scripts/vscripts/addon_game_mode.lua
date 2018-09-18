@@ -1008,16 +1008,11 @@ function CHoldoutGameMode:CheckHP()
 		for _, hero in ipairs ( HeroList:GetAllHeroes() ) do
 			if not hero:IsFakeHero() then
 				local data = CustomNetTables:GetTableValue("hero_properties", hero:GetUnitName()..hero:entindex() ) or {}
-				local barrier = 0
-				for _, modifier in ipairs( hero:FindAllModifiers() ) do
-					if modifier.ModifierBarrier_Bonus and hero:IsRealHero() then
-						barrier = barrier + modifier:ModifierBarrier_Bonus()
-					end
+				if hero:GetMaxHealth() <= 0 then
+					hero:SetMaxHealth(1)
+					hero:SetHealth(1)
 				end
-				if barrier > 0 or hero:GetBarrier() ~= barrier then
-					hero:SetBarrier(barrier)
-					data.barrier = math.floor(barrier)
-				end
+				
 				data.strength = hero:GetStrength()
 				data.intellect = hero:GetIntellect()
 				data.agility = hero:GetAgility()
@@ -1042,7 +1037,6 @@ function CHoldoutGameMode:OnThink()
 	if GameRules:IsTemporaryNight() then timeofday = TEMPORARY_NIGHT end
 	if GameRules:IsNightstalkerNight() then timeofday = NIGHT_STALKER_NIGHT end
 	CustomNetTables:SetTableValue( "game_info", "timeofday", {timeofday = timeofday} )
-
 	if GameRules:State_Get() >= 7 and GameRules:State_Get() <= 8 then
 		local OnPThink = function(self)
 			status, err, ret = xpcall(self.CheckHP, debug.traceback, self)

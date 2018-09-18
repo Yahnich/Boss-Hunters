@@ -193,17 +193,26 @@ function RoundManager:ConstructRaids(zoneName)
 					zoneCombatPool = TableToWeightedArray( self.combatPool[zoneName] )
 				end
 				
-				local combatPick = RandomInt(1, #zoneCombatPool)
-				raidContent = BaseEvent(zoneName, combatType, zoneCombatPool[combatPick] )
-				table.remove( zoneCombatPool, combatPick )
+				local combatPick = zoneCombatPool[RandomInt(1, #zoneCombatPool)]
+				raidContent = BaseEvent(zoneName, combatType, combatPick )
+				for id = #zoneCombatPool, 1, -1 do
+					local event = zoneCombatPool[id]
+					if event == combatPick then
+						table.remove( zoneCombatPool, id )
+					end
+				end
 			else -- Event
 				if zoneEventPool[1] == nil then
 					zoneEventPool = TableToWeightedArray( self.eventPool[zoneName] )
 				end
-				
-				local eventPick = RandomInt(1, #zoneEventPool)
-				raidContent = BaseEvent(zoneName, EVENT_TYPE_EVENT, zoneEventPool[eventPick])
-				table.remove( zoneEventPool, eventPick )
+				local pickedEvent = zoneEventPool[RandomInt(1, #zoneEventPool)]
+				raidContent = BaseEvent(zoneName, EVENT_TYPE_EVENT, pickedEvent)
+				for id = #zoneEventPool, 1, -1 do
+					local event = zoneEventPool[id]
+					if event == pickedEvent then
+						table.remove( zoneEventPool, id )
+					end
+				end
 			end
 			table.insert( raid, raidContent )
 		end
@@ -211,11 +220,14 @@ function RoundManager:ConstructRaids(zoneName)
 		if zoneBossPool[1] == nil then
 			zoneBossPool = TableToWeightedArray( self.bossPool[zoneName] )
 		end
-		
-		local bossRoll = RandomInt(1, #zoneBossPool)
-		local bossPick = zoneBossPool[bossRoll]
+		local bossPick = zoneBossPool[RandomInt(1, #zoneBossPool)]
 		RoundManager:RemoveEventFromPool(bossPick, "boss")
-		table.remove(zoneBossPool, bossRoll)
+		for id = #zoneBossPool, 1, -1 do
+			local event = zoneBossPool[id]
+			if event == bossPick then
+				table.remove( zoneBossPool, id )
+			end
+		end
 		self.eventsCreated = self.eventsCreated + 1
 		
 		table.insert( raid, BaseEvent(zoneName, EVENT_TYPE_BOSS, bossPick ) )
@@ -580,7 +592,7 @@ function RoundManager:InitializeUnit(unit, bElite)
 	
 	maxPlayerDMGMult = DMGMultiplierFunc( EVENTS_PER_RAID * RAIDS_PER_ZONE * ZONE_COUNT, RAIDS_PER_ZONE * ZONE_COUNT, ZONE_COUNT)
 	effPlayerDMGMult = math.min( effPlayerDMGMult, maxPlayerDMGMult )
-	effPlayerDMGMult = effPlayerDMGMult * ( 1 + RoundManager:GetAscensions() * 1.5 )  * (1 + effective_multiplier * playerDMGMultiplier )
+	effPlayerDMGMult = effPlayerDMGMult * ( 1 + RoundManager:GetAscensions() * 1 )  * (1 + effective_multiplier * playerDMGMultiplier )
 	
 	if bElite then
 		effPlayerHPMult = effPlayerHPMult * 1.35

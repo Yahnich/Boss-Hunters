@@ -68,7 +68,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"attack_slow"			"-10 -15"
+				"attack_slow"			"-20 -30"
 			}
 			"02"
 			{
@@ -110,12 +110,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"base_damage"			"20 30"
+				"base_damage"			"30 50"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"stack_damage"			"10"
+				"stack_damage"			"10 20"
 			}
 			"03"
 			{

@@ -9,7 +9,7 @@ if IsServer() then
 		local caster = self:GetCaster()
 		local point = caster:GetAbsOrigin()
 		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( point, 300 ) ) do
-			self:GetAbility():DealDamage( caster, enemy, caster:GetPrimaryStatValue(), {damage_type = DAMAGE_TYPE_MAGICAL} )
+			self:GetAbility():DealDamage( caster, enemy, caster:GetPrimaryStatValue() * 0.33, {damage_type = DAMAGE_TYPE_MAGICAL} )
 		end
 	end
 end

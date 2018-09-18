@@ -65,7 +65,7 @@ if IsServer() then
 		for _, enemy in ipairs( parent:FindEnemyUnitsInRadius( parent:GetAbsOrigin(), self.radius ) ) do
 			local caster = self:GetCaster()
 			local ability = self:GetAbility()
-			local remainingTime = ability:GetChannelTime() - (ability:GetChannelStartTime() - GameRules:GetGameTime())
+			local remainingTime = math.min( ability:GetChannelTime(), ability:GetChannelTime() - (ability:GetChannelStartTime() - GameRules:GetGameTime()) )
 			enemy:AddNewModifier(caster, ability, "modifier_boss_greymane_pounce_stun", {duration = remainingTime})
 			ability.capturedTarget = enemy
 			EmitSoundOn("Hero_Slark.Pounce.Impact", enemy)
@@ -94,6 +94,7 @@ end
 
 function modifier_boss_greymane_pounce_stun:OnIntervalThink()
 	local caster = self:GetCaster()
+	if not caster:IsAlive() or not caster:IsChanneling() then self:Destroy() end
 	local ability = self:GetAbility()
 	local parent = self:GetParent()
 	ParticleManager:FireParticle("particles/units/heroes/hero_riki/riki_backstab_hit_blood.vpcf", PATTACH_POINT_FOLLOW, parent)

@@ -46,10 +46,11 @@ end
 
 function modifier_item_lightningbottle_handle:OnAbilityFullyCast(params)
 	local caster = params.unit
+	local ability = self:GetAbility()
 	if params.unit == self:GetParent() then
 		self:GetParent():GiveMana(self.mRestore)
 		self:GetParent():HealEvent(self.hRestore, self:GetAbility(), self:GetParent())
-
+		local paralyze = ability:GetSpecialValueFor("paralyze_duration")
 		local enemies = self:GetParent():FindEnemyUnitsInRadius(self:GetParent():GetAbsOrigin(), self:GetSpecialValueFor("radius"))
 		for _,enemy in pairs(enemies) do
 			self:GetParent():GiveMana(self.mRestoreL)
@@ -57,6 +58,8 @@ function modifier_item_lightningbottle_handle:OnAbilityFullyCast(params)
 
 			ParticleManager:FireRopeParticle("particles/items_fx/chain_lightning.vpcf", PATTACH_POINT_FOLLOW, self:GetParent(), enemy, {})
 			self:GetAbility():DealDamage(caster, enemy, self:GetSpecialValueFor("strike_damage"))
+			
+			enemy:Paralyze(ability, caster, paralyze)
 		end
 	end
 end
@@ -90,6 +93,7 @@ function modifier_item_lightningbottle_handle_shield:OnTakeDamage(params)
 			self:GetAbility():DealDamage(caster, attacker, damage)
 			self:GetParent():GiveMana(self.mRestoreS)
 			self:GetParent():HealEvent(self.hRestoreS, self:GetAbility(), self:GetParent())
+			attacker:Paralyze(ability, caster, ability:GetSpecialValueFor("paralyze_duration"))
 		end
 	end
 end

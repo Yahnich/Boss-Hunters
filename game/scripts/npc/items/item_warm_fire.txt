@@ -16,7 +16,7 @@
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
 		
-		"ItemCost"						"400"
+		"ItemCost"						"825"
 		"ItemShopTags"					"aura;damage"
 		"ItemQuality"					"component"
 		"ItemAliases"					"radiance;warm fire"

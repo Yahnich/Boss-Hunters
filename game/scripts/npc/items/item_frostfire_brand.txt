@@ -14,7 +14,7 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"1800"	
+		"ItemCost"						"325"	
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -23,7 +23,7 @@
 		"ItemResult"					"item_frostfire_brand"
 		"ItemRequirements"
 		{
-			"01"						"item_frostbite;item_incandescance;item_broadsword"
+			"01"						"item_ice_fang;item_incandescance;item_broadsword;item_power_core"
 		}
 	}
 	"item_frostfire_brand"
@@ -57,7 +57,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"50"
+				"damage"				"0"
 			}
 			"02"
 			{
@@ -83,6 +83,11 @@
 			{
 				"var_type"				"FIELD_FLOAT"
 				"radius"				"900"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bonus_all"				"12"
 			}
 		}
 	}

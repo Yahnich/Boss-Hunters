@@ -57,13 +57,15 @@ local function StartCombat(self, bFight)
 		end)
 	else
 		self.timeRemaining = 0
-		for _, hero in ipairs( HeroList:GetRealHeroes() ) do
-			hero:AddCurse("event_buff_cultist_ritual")
-			local pID = hero:GetPlayerOwnerID()
-			for i = 1, 2 do
-				RelicManager:PushCustomRelicDropsForPlayer(pID, {RelicManager:RollRandomCursedRelicForPlayer(pID)})
+		Timers:CreateTimer(3, function()
+			for _, hero in ipairs( HeroList:GetRealHeroes() ) do
+				hero:AddCurse("event_buff_cultist_ritual")
+				local pID = hero:GetPlayerOwnerID()
+				for i = 1, 2 do
+					RelicManager:PushCustomRelicDropsForPlayer(pID, {RelicManager:RollRandomCursedRelicForPlayer(pID)})
+				end
 			end
-		end
+		end)
 		CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_reward_given", {event = self:GetEventName(), reward = 1})
 		self:EndEvent(true)
 	end

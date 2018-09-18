@@ -45,6 +45,7 @@ function modifier_boss_attackspeed:DeclareFunctions()
 		MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE,
 		MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE,
 		MODIFIER_EVENT_ON_ABILITY_START,
+		MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS
 	}
 	return funcs
 end
@@ -82,6 +83,10 @@ function modifier_boss_attackspeed:GetModifierPhysicalArmorBonus( params )
 	local bonusarmor = self:GetStackCount()
 	if self:GetParent():IsRangedAttacker() then bonusarmor = bonusarmor / 2 end
 	return self:GetParent():GetPhysicalArmorBaseValue() * 0.08 * self:GetStackCount() + bonusarmor
+end
+
+function modifier_boss_attackspeed:GetModifierMagicalResistanceBonus( params )
+	return 3.5 * self:GetStackCount()
 end
 
 function modifier_boss_attackspeed:GetModifierBaseDamageOutgoing_Percentage( params )

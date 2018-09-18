@@ -20,8 +20,8 @@ function modifier_boss_sloth_demon_slime_tendrils:DeclareFunctions()
 end
 
 function modifier_boss_sloth_demon_slime_tendrils:OnTakeDamage(params)
-	if params.attacker == self:GetParent() then
-		params.unit:AddNewModifier( params.attacker, self:GetAbility(), "modifier_boss_sloth_demon_slime_tendrils_debuff", {duration = self.duration} )
+	if params.unit == self:GetParent() then
+		params.attacker:AddNewModifier( params.unit, self:GetAbility(), "modifier_boss_sloth_demon_slime_tendrils_debuff", {duration = self.duration} )
 	end
 end
 

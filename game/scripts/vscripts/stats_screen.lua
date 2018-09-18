@@ -103,8 +103,8 @@ function StatsScreen:ProcessStatsUpgrade(userid, event)
 	local netTable = CustomNetTables:GetTableValue("stats_panel", tostring(entindex))
 	
 	if (not (netTable[skill] and self[skill]) and hero:GetAbilityPoints() > 0) -- skill doesn't exist or nettable doesn't exist
-	or (hero:GetLevel() < ((netTable[skill]) + 1)*7 and not skill == "all")  -- max level
-	or self[skill][ tonumber( netTable[skill] + 1 ) ] then return end -- frame drop prevention
+	or ( (hero:GetLevel() < ((netTable[skill]) + 1)*7   -- max level 
+	or not self[skill][ tonumber( netTable[skill] + 1 ) ] ) and not skill == "all") then return end -- frame drop prevention
 	
 	netTable[skill] = tostring(tonumber(netTable[skill]) + 1)
 	CustomNetTables:SetTableValue("stats_panel", tostring(entindex), netTable)

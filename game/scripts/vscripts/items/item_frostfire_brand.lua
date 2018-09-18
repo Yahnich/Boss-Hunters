@@ -25,15 +25,28 @@ modifier_item_frostfire_brand_stats = class(itemBaseClass)
 
 function modifier_item_frostfire_brand_stats:OnCreated()
 	self.damage = self:GetSpecialValueFor("bonus_damage")
+	self.all = self:GetSpecialValueFor("bonus_all")
 	if IsServer() then self:GetAbility():OnToggle() end
 end
 
 function modifier_item_frostfire_brand_stats:DeclareFunctions()
-	return {MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE}
+	return {MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE, MODIFIER_PROPERTY_STATS_STRENGTH_BONUS, MODIFIER_PROPERTY_STATS_AGILITY_BONUS, MODIFIER_PROPERTY_STATS_INTELLECT_BONUS}
 end
 
 function modifier_item_frostfire_brand_stats:GetModifierPreAttack_BonusDamage()
 	return self.damage
+end
+
+function modifier_item_frostfire_brand_stats:GetModifierBonusStats_Strength()
+	return self.all
+end
+
+function modifier_item_frostfire_brand_stats:GetModifierBonusStats_Agility()
+	return self.all
+end
+
+function modifier_item_frostfire_brand_stats:GetModifierBonusStats_Intellect()
+	return self.all
 end
 
 function modifier_item_frostfire_brand_stats:IsHidden()

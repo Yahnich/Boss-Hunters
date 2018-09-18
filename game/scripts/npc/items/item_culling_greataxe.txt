@@ -23,7 +23,7 @@
 		"ItemResult"					"item_culling_greataxe"
 		"ItemRequirements"
 		{
-			"01"						"item_hunters_hatchet"
+			"01"						"item_hunters_hatchet;item_blade_of_agility;item_titan_blade"
 		}
 	}
 	//=================================================================================================================
@@ -65,7 +65,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"25"
+				"bonus_damage"			"55"
 			}
 			"02"
 			{
@@ -76,6 +76,16 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"radius"				"350"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_agi"				"15"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_str"				"10"
 			}
 		}
 	}

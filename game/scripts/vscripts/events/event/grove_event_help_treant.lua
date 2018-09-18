@@ -35,14 +35,13 @@ local function StartCombat(self, bFight)
 			ListenToGameEvent( "entity_killed", require("events/base_combat"), self ),
 		}
 		self.timeRemaining = 0
-		self.bossesToSpawn = math.max( 1, math.floor( math.log( RoundManager:GetRaidsFinished() + 1 ) ) )
+		self.bossesToSpawn = math.max( 1, math.floor( math.log( (RoundManager:GetRaidsFinished() + 1) / 2 ) ) )
 		self.mobsToSpawn = math.max( math.floor( math.log( RoundManager:GetEventsFinished() + 1 ) ) )
 		self.helpedTreant = true
 		BOSS_SPAWNS = {"npc_dota_boss21", "npc_dota_boss23_m", "npc_dota_boss_alpha_wolf"}
 		MOB_SPAWNS = {	"npc_dota_boss26_mini", 
 						"npc_dota_boss6", 
-						"npc_dota_creature_broodmother", 
-						"npc_dota_boss10", 
+						"npc_dota_creature_broodmother",
 						"npc_dota_boss_wolf", 
 						-- "npc_dota_boss_greater_centaur", 
 						-- "npc_dota_boss_dire_hellbear"

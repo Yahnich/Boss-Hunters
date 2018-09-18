@@ -14,7 +14,7 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"900"	
+		"ItemCost"						"1150"	
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -23,7 +23,7 @@
 		"ItemResult"					"item_dark_ones_blessing"
 		"ItemRequirements"
 		{
-			"01"						"item_mantle_of_the_fallen;item_hunters_hatchet;item_orb_of_shadows"
+			"01"						"item_mantle_of_the_fallen;item_orb_of_shadows"
 		}
 	}
 	"item_dark_ones_blessing"
