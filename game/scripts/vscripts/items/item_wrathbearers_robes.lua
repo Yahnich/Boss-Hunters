@@ -145,7 +145,7 @@ function modifier_wrathbearers_robes_debuff:OnRefresh()
 end
 
 function modifier_wrathbearers_robes_debuff:OnIntervalThink()
-	self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self:GetCaster():GetHealth() * self.damage, {damage_type = DAMAGE_TYPE_MAGICAL damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
+	self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self:GetCaster():GetHealth() * self.damage, {damage_type = DAMAGE_TYPE_MAGICAL, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
 end
 
 function modifier_wrathbearers_robes_debuff:DeclareFunctions()

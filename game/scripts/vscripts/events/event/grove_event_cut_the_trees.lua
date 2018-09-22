@@ -47,6 +47,7 @@ local function StartCombat(self, bFight)
 	if bFight then
 		self.timeRemaining = 0
 		self.combatStarted = true
+		self.eventType = EVENT_TYPE_COMBAT
 		self.drowsToSpawn = math.ceil( math.log(self.treesCut + 1) )
 		self.treantsToSpawn = (math.ceil( math.log(self.treesCut + 1) ) ) * HeroList:GetActiveHeroCount()
 		self.furionsToSpawn = (1 + math.ceil( math.log(self.treesCut + 1) ) ) * HeroList:GetActiveHeroCount()
@@ -164,7 +165,6 @@ local function HandoutRewards(self, bWon)
 			hero:AddGold( baseGold )
 			hero:AddXP( baseXP )
 			local pID = hero:GetPlayerOwnerID()
-			RelicManager:RollEliteRelicsForPlayer(pID)
 		end
 	end
 end

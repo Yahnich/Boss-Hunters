@@ -50,7 +50,7 @@
 			"precache"					"soundevents/game_sounds_items.vsndevts"
 		}
 		
-		"AbilityCooldown"				"20"
+		"AbilityCooldown"				"25"
 		"AbilityManaCost"				"50"
 
 		"precache"
@@ -74,7 +74,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"max_hp_heal"			"18"
+				"max_hp_heal"			"15"
 			}
 			"04"
 			{

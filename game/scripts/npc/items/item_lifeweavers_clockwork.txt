@@ -72,12 +72,12 @@
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"lifesteal"				"15"
+				"lifesteal"				"10"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"mob_lifesteal"			"3.75"
+				"mob_lifesteal"			"2.5"
 			}
 		}
 	}

@@ -1,7 +1,7 @@
 relic_unique_charons_obol = class(relicBaseClass)
 
 function relic_unique_charons_obol:DeclareFunctions()
-	return {MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE, MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE, MODIFIER_PROPERTY_MIN_HEALTH}
+	return {MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE, MODIFIER_PROPERTY_MIN_HEALTH}
 end
 
 function relic_unique_charons_obol:OnIntervalThink()

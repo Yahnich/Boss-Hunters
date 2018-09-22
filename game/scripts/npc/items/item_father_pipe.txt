@@ -14,7 +14,7 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"3000"	
+		"ItemCost"						"700"	
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -23,7 +23,7 @@
 		"ItemResult"					"item_father_pipe"
 		"ItemRequirements"
 		{
-			"01"						"item_barrier_leaves;item_ruby_ring;item_worn_cloak"
+			"01"						"item_barrier_leaves;item_ruby_ring;item_worn_cloak;item_power_core"
 		}
 	}
 	//=================================================================================================================
@@ -73,9 +73,14 @@
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"aura_magic_resist"		"15"
+				"bonus_all"				"15"
 			}
 			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"aura_magic_resist"		"15"
+			}
+			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"radius"				"900"

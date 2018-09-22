@@ -390,7 +390,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"30"		
+				"duration"				"20"		
 			}
 			"03"
 			{
@@ -400,7 +400,7 @@
 			}
 			"04"
 			{
-				"var_type"				"FIELD_INTEGER"
+				"var_type"				"FIELD_FLOAT"
 				"armor_reduction"		"1"
 				"LinkedSpecialBonus"	"special_bonus_unique_razor_eye_of_the_storm_bh_2"	
 			}
@@ -451,8 +451,8 @@
 		{
 			"01"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"2"
+				"var_type"					"FIELD_FLOAT"
+				"value"						"0.5"
 			}
 		}
 	}

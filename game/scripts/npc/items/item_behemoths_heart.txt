@@ -69,7 +69,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"stack_regen"			"15"
+				"stack_regen"			"10"
 			}
 			"04"
 			{

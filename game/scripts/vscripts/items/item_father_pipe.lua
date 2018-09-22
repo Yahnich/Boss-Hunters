@@ -17,18 +17,27 @@ end
 
 modifier_item_father_pipe_passive = class(itemBaseClass)
 function modifier_item_father_pipe_passive:OnCreated()
-	self.hp_regen = self:GetSpecialValueFor("hp_regen")
+	self.stat = self:GetSpecialValueFor("bonus_all")
 	self.radius = self:GetSpecialValueFor("radius")
 end
 
 function modifier_item_father_pipe_passive:DeclareFunctions()
-	return {MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT}
+	return {MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
+			MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
+			MODIFIER_PROPERTY_STATS_INTELLECT_BONUS}
 end
 
-function modifier_item_father_pipe_passive:GetModifierConstantHealthRegen()
-	return self.hp_regen
+function modifier_item_father_pipe_passive:GetModifierBonusStats_Strength()
+	return self.stat
 end
 
+function modifier_item_father_pipe_passive:GetModifierBonusStats_Agility()
+	return self.stat
+end
+
+function modifier_item_father_pipe_passive:GetModifierBonusStats_Intellect()
+	return self.stat
+end
 
 function modifier_item_father_pipe_passive:IsAura()
 	return true
@@ -72,15 +81,21 @@ LinkLuaModifier( "modifier_item_father_pipe_aura", "items/item_father_pipe.lua" 
 
 function modifier_item_father_pipe_aura:OnCreated()
 	self.magic_resist = self:GetSpecialValueFor("aura_magic_resist")
+	self.hp_regen = self:GetSpecialValueFor("hp_regen")
 end
 
 function modifier_item_father_pipe_aura:DeclareFunctions()
-	return {MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS}
+	return {MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS, MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT}
 end
 
 function modifier_item_father_pipe_aura:GetModifierMagicalResistanceBonus()
 	return self.magic_resist
 end
+
+function modifier_item_father_pipe_aura:GetModifierConstantHealthRegen()
+	return self.hp_regen
+end
+
 
 modifier_item_father_pipe_active = class({})
 function modifier_item_father_pipe_active:OnCreated(table)

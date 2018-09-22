@@ -357,8 +357,8 @@
 		"AbilityTextureName"			"ursa_enrage"
 		"MaxLevel"						"2"
 		
-		"AbilityCooldown"				"40 30"
-		"AbilityChannelTime"			"1.5 1.25"
+		"AbilityCooldown"				"50 40"
+		"AbilityChannelTime"			"3 2"
 		
 		"precache"
 		{
@@ -397,8 +397,8 @@
 		"AbilityTextureName"			"custom/ursa_claw"
 		"MaxLevel"						"2"
 		
-		"AbilityCooldown"				"30 20"
-		"AbilityChannelTime"			"1.5 1.25"
+		"AbilityCooldown"				"40 30"
+		"AbilityChannelTime"			"3 2"
 		
 		"precache"
 		{

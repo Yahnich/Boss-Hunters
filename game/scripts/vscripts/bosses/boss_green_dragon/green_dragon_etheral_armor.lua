@@ -53,8 +53,8 @@ function modifier_green_dragon_etheral_armor:OnIntervalThink()
 		end
 
 		if RollPercentage(3) then
-			local pos = self:GetCaster():GetAbsOrigin() + ActualRandomVector(10000, 250)
-			local bug CreateUnitByName("npc_dota_green_dragon_bug", pos, true, caster, caster, caster:GetTeam())
+			local pos = RoundManager:PickRandomSpawn()
+			local bug = CreateUnitByName("npc_dota_green_dragon_bug", pos, true, caster, caster, caster:GetTeam())
 			bug:FindAbilityByName("green_dragon_bug_explode"):SetLevel( self:GetAbility():GetLevel() )
 			
 		end

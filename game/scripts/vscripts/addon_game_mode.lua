@@ -8,7 +8,7 @@ DOTA_LIFESTEAL_SOURCE_ATTACK = 1
 DOTA_LIFESTEAL_SOURCE_ABILITY = 2
 
 MAP_CENTER = Vector(332, -1545)
-GAME_MAX_LEVEL = 160
+GAME_MAX_LEVEL = 400
 
 GLOBAL_STUN_LIST = {}
 
@@ -464,6 +464,16 @@ function CHoldoutGameMode:FilterHeal( filterTable )
 end
 
 function CHoldoutGameMode:FilterOrders( filterTable )
+	if RoundManager:GetCurrentEvent() and RoundManager:GetCurrentEvent():IsEvent()
+	and (filterTable["order_type"] == DOTA_UNIT_ORDER_DROP_ITEM 
+	or filterTable["order_type"] == DOTA_UNIT_ORDER_GIVE_ITEM
+	or filterTable["order_type"] == DOTA_UNIT_ORDER_PICKUP_ITEM
+	or filterTable["order_type"] == DOTA_UNIT_ORDER_PURCHASE_ITEM 
+	or filterTable["order_type"] == DOTA_UNIT_ORDER_SELL_ITEM 
+	or filterTable["order_type"] == DOTA_UNIT_ORDER_DISASSEMBLE_ITEM
+	or filterTable["order_type"] == DOTA_UNIT_ORDER_EJECT_ITEM_FROM_STASH ) then
+		return false
+	end
 	if filterTable["order_type"] == DOTA_UNIT_ORDER_TRAIN_ABILITY then
 		local talent = EntIndexToHScript( filterTable["entindex_ability"] )
 		if talent and string.match( talent:GetAbilityName(), "special_bonus" ) and hero:GetLevel() < (hero.talentsSkilled + 1) * 10 then
@@ -502,22 +512,13 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 	
 	if attacker:HasModifier("relic_unique_eldritch_rune") and inflictor then
 		if damagetype == DAMAGE_TYPE_PHYSICAL then
-			ApplyDamage({victim = victim, attacker = attacker, damage = damage * (1- victim:GetPhysicalArmorReduction() / 100 ), damage_type = DAMAGE_TYPE_MAGICAL})
+			ApplyDamage({victim = victim, attacker = attacker, damage = damage * (1- victim:GetPhysicalArmorReduction() / 100 ), damage_type = DAMAGE_TYPE_MAGICAL, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
 		elseif damagetype == DAMAGE_TYPE_MAGICAL then
-			ApplyDamage({victim = victim, attacker = attacker, damage = damage * (1 - victim:GetMagicalArmorValue()), damage_type = DAMAGE_TYPE_PHYSICAL})
+			ApplyDamage({victim = victim, attacker = attacker, damage = damage * (1 - victim:GetMagicalArmorValue()), damage_type = DAMAGE_TYPE_PHYSICAL, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
 		end
 		return false
 	end
-	
-	if attacker:IsHero() and not attacker:IsCreature() then
-		if ability then 
-			if attacker:GetName() == "npc_dota_hero_leshrac" and attacker:HasAbility(ability:GetName()) then -- reapply damage in pure after all amp/crit
-				require('lua_abilities/heroes/leshrac')
-				filterTable = InnerTorment(filterTable)
-			end
-		end
-	end
-	
+
 	if original_attacker:GetTeam() == DOTA_TEAM_BADGUYS then
 		AddFOWViewer(DOTA_TEAM_GOODGUYS, original_attacker:GetAbsOrigin(), 256, 1, false)
 	else
@@ -613,10 +614,30 @@ end
 function CHoldoutGameMode:OnHeroLevelUp(event)
 	local playerID = EntIndexToHScript(event.player):GetPlayerID()
 	local hero = PlayerResource:GetSelectedHeroEntity(playerID)
-	if hero:GetLevel() < 32 then
-		if hero:GetLevel() == 17 or hero:GetLevel() == 19 or (hero:GetLevel() > 20 and hero:GetLevel() < 25) then hero:SetAbilityPoints( hero:GetAbilityPoints() + 1) end
-		if hero:GetLevel() % GameRules.gameDifficulty == 0 then
+	if hero:GetLevel() <= 27 then
+		hero.bonusSkillPoints = (hero.bonusSkillPoints or 0) + 1
+		if hero:GetLevel() == 17 or hero:GetLevel() == 19 or (hero:GetLevel() > 20 and hero:GetLevel() < 25) then 
 			hero:SetAbilityPoints( hero:GetAbilityPoints() + 1)
+			hero.bonusSkillPoints = (hero.bonusSkillPoints or 0) + 1
+		end
+		if hero:GetLevel() % GameRules.gameDifficulty == 0 then
+			hero:SetAttributePoints( hero:GetAttributePoints() + 1 )
+			hero.bonusAbilityPoints = (hero.bonusAbilityPoints or 0) + 1
+		end
+	else
+		hero:SetAttributePoints( hero:GetAttributePoints() + 1 )
+		hero.bonusAbilityPoints = (hero.bonusAbilityPoints or 0) + 1
+		if not ( hero:GetLevel() == 30
+		or hero:GetLevel() == 31
+		or hero:GetLevel() == 36
+		or hero:GetLevel() == 40
+		or hero:GetLevel() == 50
+		or hero:GetLevel() == 60
+		or hero:GetLevel() == 70
+		or hero:GetLevel() == 80) then
+			hero:SetAbilityPoints( hero:GetAbilityPoints() - 1)
+		else
+			hero.bonusSkillPoints = (hero.bonusSkillPoints or 0) + 1
 		end
 	end
 end

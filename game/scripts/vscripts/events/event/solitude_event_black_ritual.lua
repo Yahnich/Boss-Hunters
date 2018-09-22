@@ -11,6 +11,10 @@ end
 local function FirstChoice(self, userid, event)
 	local hero = PlayerResource:GetSelectedHeroEntity( event.pID )
 	hero:AddRelic( "relic_unique_ritual_candle" )
+	
+	hero:SetGold( 0, true )
+	hero:SetGold( 0, false )
+	
 	self._playerChoices[event.pID] = true
 	CheckPlayerChoices(self)
 end
@@ -18,6 +22,10 @@ end
 local function SecondChoice(self, userid, event)
 	local hero = PlayerResource:GetSelectedHeroEntity( event.pID )
 	hero:AddRelic( "relic_cursed_forbidden_contract" )
+	
+	hero:SetGold( 0, true )
+	hero:SetGold( 0, false )
+	
 	self._playerChoices[event.pID] = true
 	CheckPlayerChoices(self)
 end
@@ -27,16 +35,27 @@ local function ThirdChoice(self, userid, event)
 	hero:AddRelic( RelicManager:RollRandomGenericRelicForPlayer( event.pID ) )
 	hero:AddRelic( RelicManager:RollRandomGenericRelicForPlayer( event.pID ) )
 	hero:AddRelic( RelicManager:RollRandomGenericRelicForPlayer( event.pID ) )
+	
+	hero:SetGold( 0, true )
+	hero:SetGold( 0, false )
 	self._playerChoices[event.pID] = true
+	
+	CheckPlayerChoices(self)
+end
+
+local function FourthChoice(self, userid, event)
+	self._playerChoices[event.pID] = true
+	
 	CheckPlayerChoices(self)
 end
 
 local function StartEvent(self)
-	CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_has_started", {event = self:GetEventName(), choices = 3})
+	CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_has_started", {event = self:GetEventName(), choices = 4})
 	self._vEventHandles = {
 		CustomGameEventManager:RegisterListener('player_selected_event_choice_1', Context_Wrap( self, 'FirstChoice') ),
 		CustomGameEventManager:RegisterListener('player_selected_event_choice_2', Context_Wrap( self, 'SecondChoice') ),
 		CustomGameEventManager:RegisterListener('player_selected_event_choice_3', Context_Wrap( self, 'ThirdChoice') ),
+		CustomGameEventManager:RegisterListener('player_selected_event_choice_4', Context_Wrap( self, 'FourthChoice') ),
 	}
 	self.timeRemaining = 30
 	self.eventEnded = false
@@ -78,6 +97,7 @@ local funcs = {
 	["FirstChoice"] = FirstChoice,
 	["SecondChoice"] = SecondChoice,
 	["ThirdChoice"] = ThirdChoice,
+	["FourthChoice"] = FourthChoice,
 }
 
 return funcs

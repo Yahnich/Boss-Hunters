@@ -41,10 +41,17 @@ function green_dragon_toxic_pool:OnProjectileHit( hTarget, vLocation )
 	else
 		if RollPercentage(25) then
 			EmitSoundOnLocationWithCaster(vLocation, "soundName", hCaster)
-			CreateModifierThinker(self:GetCaster(), self, "modifier_green_dragon_toxic_pool", {Duration = self:GetSpecialValueFor("pool_duration")}, vLocation, self:GetCaster():GetTeam(), false)
+			self:CreateToxicPool(vLocation)
 		end
 	end
 	return false
+end
+
+function green_dragon_toxic_pool:CreateToxicPool(position)
+	ParticleManager:FireWarningParticle( position, self:GetSpecialValueFor("radius") )
+	Timers:CreateTimer( 0.5, function()
+		CreateModifierThinker(self:GetCaster(), self, "modifier_green_dragon_toxic_pool", {Duration = self:GetSpecialValueFor("pool_duration")}, position, self:GetCaster():GetTeam(), false)
+	end)
 end
 
 modifier_green_dragon_toxic_pool_handle = class({})

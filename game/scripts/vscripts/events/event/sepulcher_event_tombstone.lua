@@ -48,6 +48,8 @@ local function StartCombat(self)
 	
 	self.timeRemaining = 60
 	
+	self.eventType = EVENT_TYPE_COMBAT
+	
 	self.totemUnit = CreateUnitByName("npc_dota_event_totem", RoundManager:GetHeroSpawnPosition(), true, nil, nil, DOTA_TEAM_GOODGUYS)
 	local ability = self.totemUnit:AddAbility("generic_hp_limiter")
 	self.totemUnit:SetThreat(5000)

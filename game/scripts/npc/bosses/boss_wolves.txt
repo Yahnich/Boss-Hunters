@@ -200,7 +200,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"health"				"15"
+				"attack_speed"			"100 150"
 			}
 		}
 	}

@@ -39,7 +39,7 @@ function modifier_green_dragon_bug_explode_handle:OnIntervalThink()
 			end
 			local ability = caster:GetOwner():FindAbilityByName("green_dragon_toxic_pool")
 
-			CreateModifierThinker(caster:GetOwner(), ability, "modifier_green_dragon_toxic_pool", {Duration = ability:GetSpecialValueFor("pool_duration")}, caster:GetAbsOrigin(), caster:GetTeam(), false)
+			ability:CreateToxicPool( caster:GetAbsOrigin() )
 			caster:ForceKill(false)
 			self:Destroy()
 		end)

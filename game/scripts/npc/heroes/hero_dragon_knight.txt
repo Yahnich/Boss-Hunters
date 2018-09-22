@@ -68,7 +68,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"reduction"				"-25"
+				"reduction"				"-15"
 				"LinkedSpecialBonus"	"special_bonus_unique_dragon_knight_dragonbreath_2"
 			}
 			"06"

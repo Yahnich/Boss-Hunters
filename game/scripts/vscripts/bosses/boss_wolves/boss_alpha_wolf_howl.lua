@@ -13,30 +13,20 @@ LinkLuaModifier("modifier_boss_alpha_wolf_howl", "bosses/boss_wolves/boss_alpha_
 
 function modifier_boss_alpha_wolf_howl:OnCreated()
 	self.damage = self:GetSpecialValueFor("damage")
-	self.health = self:GetSpecialValueFor("health") / 100
-	if IsServer() then
-		local bonusHealth = self:GetParent():GetMaxHealth() * self.health
-		self:SetStackCount(bonusHealth)
-		self:GetParent():HealEvent( bonusHealth, self:GetAbility(), self:GetCaster() )
-	end
+	self.as = self:GetSpecialValueFor("attack_speed")
 end
 
 function modifier_boss_alpha_wolf_howl:OnRefresh()
 	self.damage = self:GetSpecialValueFor("damage")
-	self.health = self:GetSpecialValueFor("health") / 100
-	if IsServer() then
-		local bonusHealth = self:GetParent():GetMaxHealth() * self.health
-		self:SetStackCount(bonusHealth)
-		self:GetParent():HealEvent( bonusHealth, self:GetAbility(), self:GetCaster() )
-	end
+	self.as = self:GetSpecialValueFor("attack_speed")
 end
 
 function modifier_boss_alpha_wolf_howl:DeclareFunctions()
-	return { MODIFIER_PROPERTY_EXTRA_HEALTH_BONUS, MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE }
+	return { MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT, MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE }
 end
 
-function modifier_boss_alpha_wolf_howl:GetModifierExtraHealthBonus()
-	return self:GetStackCount()
+function modifier_boss_alpha_wolf_howl:GetModifierAttackSpeedBonus_Constant()
+	return self.as
 end
 
 function modifier_boss_alpha_wolf_howl:GetModifierDamageOutgoing_Percentage()

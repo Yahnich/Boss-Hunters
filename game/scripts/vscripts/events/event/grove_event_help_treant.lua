@@ -35,6 +35,7 @@ local function StartCombat(self, bFight)
 			ListenToGameEvent( "entity_killed", require("events/base_combat"), self ),
 		}
 		self.timeRemaining = 0
+		self.eventType = EVENT_TYPE_COMBAT
 		self.bossesToSpawn = math.max( 1, math.floor( math.log( (RoundManager:GetRaidsFinished() + 1) / 2 ) ) )
 		self.mobsToSpawn = math.max( math.floor( math.log( RoundManager:GetEventsFinished() + 1 ) ) )
 		self.helpedTreant = true

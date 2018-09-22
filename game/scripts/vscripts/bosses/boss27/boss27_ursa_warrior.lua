@@ -11,6 +11,7 @@ end
 function boss27_ursa_warrior:OnChannelFinish(bInterrupted)
 	local caster = self:GetCaster()
 	ParticleManager:ClearParticle(self.warmUpFX)
+	
 	if not bInterrupted then
 		local bearCount = self:GetSpecialValueFor("spawn_count")
 		local bearSpawnRadius = self:GetSpecialValueFor("spawn_radius")

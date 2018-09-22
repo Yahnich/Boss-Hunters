@@ -5,7 +5,7 @@ function item_ice_fang:GetIntrinsicModifierName()
 	return "modifier_item_ice_fang"
 end
 
-modifier_item_ice_fang = class({})
+modifier_item_ice_fang = class(itemBaseClass)
 function modifier_item_ice_fang:DeclareFunctions()
 	return {MODIFIER_EVENT_ON_ATTACK_LANDED}
 end
@@ -27,7 +27,7 @@ function modifier_item_ice_fang:IsHidden()
 end
 
 LinkLuaModifier( "modifier_ice_fang_debuff", "items/item_ice_fang.lua" ,LUA_MODIFIER_MOTION_NONE )
-modifier_ice_fang_debuff = class(itemBaseClass)
+modifier_ice_fang_debuff = class({})
 
 function modifier_ice_fang_debuff:OnCreated()
 	self.slow = self:GetAbility():GetSpecialValueFor("slow")

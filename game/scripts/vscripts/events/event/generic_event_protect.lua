@@ -125,7 +125,7 @@ local function EndEvent(self, bWon)
 	if not self.totemUnit:IsNull() and self.totemUnit:IsAlive() then
 		for _, hero in ipairs( HeroList:GetRealHeroes() ) do
 			hero.bonusAbilityPoints = (hero.bonusAbilityPoints or 0) + 2
-			hero:SetAbilityPoints( hero:GetAbilityPoints() + 2)
+			hero:SetAttributePoints( hero:GetAttributePoints() + 2)
 			CustomGameEventManager:Send_ServerToAllClients("dota_player_upgraded_stats", {playerID = hero:GetPlayerID()} )
 		end
 		reward = 1

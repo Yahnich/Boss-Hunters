@@ -51,7 +51,7 @@ function modifier_pugna_nether_turret_thinker:OnAbilityStart(params)
 		if params and params.unit and not params.unit:IsNull() then
 			local ward = self:GetParent()
 			if params.unit:GetTeam() ~= ward:GetTeam() and CalculateDistance( params.unit, ward ) <= self.radius then
-				ParticleManager:FireRopeParticle("particles/units/heroes/hero_pugna/pugna_ward_attack.vpcf", PATTACH_ABSORIGIN_FOLLOW, params.attacker, ward)
+				ParticleManager:FireRopeParticle("particles/units/heroes/hero_pugna/pugna_ward_attack.vpcf", PATTACH_ABSORIGIN_FOLLOW, params.unit, ward)
 				
 				params.unit:EmitSound("Hero_Pugna.NetherWard.Target")
 				ward:EmitSound("Hero_Pugna.NetherWard.Attack")

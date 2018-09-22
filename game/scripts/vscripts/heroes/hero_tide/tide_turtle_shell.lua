@@ -11,7 +11,7 @@ end
 
 modifier_turtle_shell = class({})
 function modifier_turtle_shell:OnCreated()
-    self.blockPct = self:GetAbility():GetSpecialValueFor("damage_reduction_pct") / 100
+    self.blockPct = self:GetAbility():GetSpecialValueFor("damage_reduction_mult")
     self.crit = self:GetAbility():GetSpecialValueFor("critical_chance")
     self.heal = self:GetAbility():GetSpecialValueFor("critical_heal") / 100
     self.currBlock = 0
@@ -30,7 +30,7 @@ end
 
 function modifier_turtle_shell:GetModifierPhysical_ConstantBlock(params)
     if IsServer() then
-        self.currBlock = params.damage * self.blockPct
+        self.currBlock = self:GetParent():GetPhysicalArmorValue() * self.blockPct
         if RollPercentage(self.crit) and self:GetAbility():IsCooldownReady() then 
             self.currBlock = self.currBlock * 2
             self:GetParent():HealEvent(self:GetParent():GetMaxHealth() * self.heal, self:GetAbility(), self:GetParent())
@@ -38,7 +38,7 @@ function modifier_turtle_shell:GetModifierPhysical_ConstantBlock(params)
                 ParticleManager:SetParticleControl( FXIndex, 0, self:GetParent():GetOrigin() )
             ParticleManager:ReleaseParticleIndex(FXIndex)
             EmitSoundOn("Hero_Tidehunter.KrakenShell", self:GetParent())
-            self:GetParent():Purge(false, true, false, true, true)
+            self:GetParent():Dispel(self:GetParent(), true)
 
             if self:GetParent():HasScepter() then
                 local friends = caster:FindFriendlyUnitsInRadius(point, 350, {})

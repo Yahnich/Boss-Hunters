@@ -2,28 +2,30 @@ modifier_stats_system_handler = class({})
 
 
 -- OTHER
-MOVESPEED_TABLE = {0,10,20,30,40,60,70,80,90,100,120}
-MANA_TABLE = {0,300,600,900,1200,1800,2100,2400,2700,3000,3600}
-MANA_REGEN_TABLE = {0,3,6,9,12,18,21,24,27,30,40}
-HEAL_AMP_TABLE = {0,10,20,30,40,60,70,80,90,100,120}
+MOVESPEED_TABLE = 10
+MANA_TABLE = 200
+MANA_REGEN_TABLE = 1.5
+HEAL_AMP_TABLE = {0,15,30,45,60,75}
 -- OFFENSE
-ATTACK_DAMAGE_TABLE = {0,20,40,60,80,120,140,160,180,200,240}
-SPELL_AMP_TABLE = {0,12,24,36,48,60,72,84,96,108,120}
-COOLDOWN_REDUCTION_TABLE = {0,4,8,12,16,24,28,32,36,40,48}
-ATTACK_SPEED_TABLE = {0,15,30,45,60,90,105,120,135,150,180}
-STATUS_AMP_TABLE = {0,4,8,12,16,24,28,32,36,40,48}
-ACCURACY_TABLE = {0,10,15,20,25,35,40,45,50,55,65}
+ATTACK_DAMAGE_TABLE = 15
+SPELL_AMP_TABLE = 8
+COOLDOWN_REDUCTION_TABLE = {0,10,15,20,25,30}
+ATTACK_SPEED_TABLE = 10
+STATUS_AMP_TABLE = {0,10,15,20,25,30}
+ACCURACY_TABLE = {0,15,30,45,60,75}
 
 -- DEFENSE
-ARMOR_TABLE = {0,2,4,6,8,12,14,16,18,20,24}
-MAGIC_RESIST_TABLE = {0,4,8,12,16,24,28,32,36,40,48}
-ATTACK_RANGEM_TABLE = {0,25,50,75,100,150,175,200,225,250,300}
-ATTACK_RANGE_TABLE = {0,50,100,150,200,300,350,400,450,500,600}
-HEALTH_TABLE = {0,250,500,750,1000,1500,1750,2000,2250,2500,3000}
-HEALTH_REGEN_TABLE = {0,5,10,15,20,30,35,40,45,50,60}
-STATUS_REDUCTION_TABLE = {0,5,10,15,20,30,35,40,45,50,60}
+ARMOR_TABLE = 1
+MAGIC_RESIST_TABLE = {0,10,15,20,25,30}
+ATTACK_RANGEM_TABLE = 25
+ATTACK_RANGE_TABLE = 50
+HEALTH_TABLE = 150
+HEALTH_REGEN_TABLE = 2
+STATUS_REDUCTION_TABLE = {0,10,20,30,40,50}
 
 ALL_STATS = 2
+
+
 
 function modifier_stats_system_handler:OnStackCountChanged(iStacks)
 	self:UpdateStatValues()
@@ -37,31 +39,31 @@ function modifier_stats_system_handler:UpdateStatValues()
 	end
 	
 	local netTable = CustomNetTables:GetTableValue("stats_panel", tostring(entindex) ) or {}
-	self.ms = MOVESPEED_TABLE[tonumber(netTable["ms"]) + 1]
-	self.mp = MANA_TABLE[tonumber(netTable["mp"]) + 1]
-	self.mpr = MANA_REGEN_TABLE[tonumber(netTable["mpr"]) + 1]
+	self.ms = MOVESPEED_TABLE * tonumber(netTable["ms"])
+	self.mp = MANA_TABLE * tonumber(netTable["mp"])
+	self.mpr = MANA_REGEN_TABLE * tonumber(netTable["mpr"])
 	self.ha = HEAL_AMP_TABLE[tonumber(netTable["ha"]) + 1]
 	
 	-- OFFENSE
-	self.ad = ATTACK_DAMAGE_TABLE[tonumber(netTable["ad"]) + 1]
-	self.sa = SPELL_AMP_TABLE[tonumber(netTable["sa"]) + 1]
+	self.ad = ATTACK_DAMAGE_TABLE * tonumber(netTable["ad"])
+	self.sa = SPELL_AMP_TABLE * tonumber(netTable["sa"])
 	self.cdr = COOLDOWN_REDUCTION_TABLE[tonumber(netTable["cdr"]) + 1]
-	self.as = ATTACK_SPEED_TABLE[tonumber(netTable["as"]) + 1]
+	self.as = ATTACK_SPEED_TABLE * tonumber(netTable["as"])
 	self.sta = STATUS_AMP_TABLE[tonumber(netTable["sta"]) + 1]
 	self.acc = ACCURACY_TABLE[tonumber(netTable["acc"]) + 1]
 	
 	-- DEFENSE
-	self.pr = ARMOR_TABLE[tonumber(netTable["pr"]) + 1]
+	self.pr = ARMOR_TABLE * tonumber(netTable["pr"]) + 1
 	self.mr = MAGIC_RESIST_TABLE[tonumber(netTable["mr"]) + 1]
 	
 	if self:GetParent():IsRangedAttacker() then 
-		self.ar = ATTACK_RANGE_TABLE[tonumber(netTable["ar"]) + 1]
+		self.ar = ATTACK_RANGE_TABLE * tonumber(netTable["ar"])
 	else
-		self.ar = ATTACK_RANGEM_TABLE[tonumber(netTable["ar"]) + 1]
+		self.ar = ATTACK_RANGEM_TABLE * tonumber(netTable["ar"])
 	end
 	
-	self.hp = HEALTH_TABLE[tonumber(netTable["hp"]) + 1]
-	self.hpr = HEALTH_REGEN_TABLE[tonumber(netTable["hpr"]) + 1]
+	self.hp = HEALTH_TABLE * tonumber(netTable["hp"])
+	self.hpr = HEALTH_REGEN_TABLE * tonumber(netTable["hpr"])
 	self.sr = STATUS_REDUCTION_TABLE[tonumber(netTable["sr"]) + 1]
 	
 	self.allStats =  ALL_STATS * tonumber(netTable["all"])
@@ -94,7 +96,7 @@ end
 
 function modifier_stats_system_handler:GetModifierMoveSpeedBonus_Constant() return -35 + (self.ms or 0) end
 function modifier_stats_system_handler:GetModifierManaBonus() return 500 + (self.mp or 0) end
-function modifier_stats_system_handler:GetModifierConstantManaRegen() return 4 + (self.mpr or 0) end
+function modifier_stats_system_handler:GetModifierConstantManaRegen() return (self.mpr or 0) end
 function modifier_stats_system_handler:GetModifierHealAmplify_Percentage() return self.ha or 0 end
 
 function modifier_stats_system_handler:GetModifierPreAttack_BonusDamage() return 10 + (self.ad or 0) end
@@ -122,7 +124,7 @@ function modifier_stats_system_handler:GetModifierAttackRangeBonus()
 end
 
 function modifier_stats_system_handler:GetModifierHealthBonus() return 400 + (self.hp or 0) end
-function modifier_stats_system_handler:GetModifierConstantHealthRegen() return 6 + (self.hpr or 0) end
+function modifier_stats_system_handler:GetModifierConstantHealthRegen() return (self.hpr or 0) end
 function modifier_stats_system_handler:GetModifierStatusResistance() return self.sr or 0 end
 
 function modifier_stats_system_handler:GetModifierBonusStats_Strength() return self.allStats or 0 end

@@ -64,6 +64,7 @@ local function StartCombat(self, bFight, bBoss)
 		self.combatStarted = true
 		local mobToSpawn = "npc_dota_boss22b"
 		local spawnRate = 3
+		self.eventType = EVENT_TYPE_COMBAT
 		if bBoss then
 			self.eventType = EVENT_TYPE_ELITE
 			CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_reward_given", {event = self:GetEventName(), reward = 3})

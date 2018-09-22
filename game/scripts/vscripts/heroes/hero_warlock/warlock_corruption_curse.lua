@@ -68,7 +68,6 @@ function modifier_warlock_corruption_curse:OnDeath(params)
 			local enemies = caster:FindAllUnitsInRadius(parent:GetAbsOrigin(), caster:FindTalentValue("special_bonus_unique_warlock_corruption_curse_1"))
 			for _,enemy in pairs(enemies) do
 				enemy:AddNewModifier(caster, self:GetAbility(), "modifier_warlock_corruption_curse", {Duration = self:GetTalentSpecialValueFor("duration")})
-				break
 			end
 		end
 	end

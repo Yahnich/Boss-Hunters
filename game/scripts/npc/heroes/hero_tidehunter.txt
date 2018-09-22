@@ -26,7 +26,7 @@
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"30 40 50 60 70 80 90"
+		"AbilityManaCost"				"90"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -61,6 +61,44 @@
 			"particle"  "particles/units/heroes/hero_tidehunter/tidehunter_anchor_hero.vpcf"
 			
 			"soundfile" "soundevents/game_sounds_heroes/game_sounds_tidehunter.vsndevts"
+		}
+	}
+	"special_bonus_unique_tide_anchor_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"-15"
+			}
+		}
+	}
+	"special_bonus_unique_tide_anchor_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"800"
+			}
 		}
 	}
 	"tide_hydro_cannon"
@@ -298,7 +336,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage_reduction_pct"	"25"
+				"damage_reduction_mult"	"10"
 			}
 			"02"
 			{
@@ -309,44 +347,6 @@
 			{
 				"var_type"				"FIELD_FLOAT"
 				"critical_heal"			"15"
-			}
-		}
-	}
-	"special_bonus_unique_tide_anchor_1" 
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"-15"
-			}
-		}
-	}
-	"special_bonus_unique_tide_anchor_2" 
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"800"
 			}
 		}
 	}

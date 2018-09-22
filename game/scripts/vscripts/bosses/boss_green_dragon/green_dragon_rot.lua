@@ -46,7 +46,7 @@ end
 function modifier_green_dragon_rot:OnIntervalThink()
 	local caster = self:GetCaster()
 	local parent = self:GetParent()
-
+	if not caster or caster:IsNull() then return end
 	EmitSoundOn("Hero_Venomancer.Plague_Ward", parent)
 	local radius = self:GetSpecialValueFor("radius")
 	local nfx = ParticleManager:CreateParticle("particles/bosses/boss_green_dragon/boss_green_dragon_rot_explosion.vpcf", PATTACH_POINT_FOLLOW, parent)
@@ -66,7 +66,7 @@ function modifier_green_dragon_rot:OnRemoved()
     	local caster = self:GetCaster()
     	local parent = self:GetParent()
     	local ability = caster:FindAbilityByName("green_dragon_toxic_pool")
-    	CreateModifierThinker(caster, ability, "modifier_green_dragon_toxic_pool", {Duration = ability:GetSpecialValueFor("pool_duration")}, parent:GetAbsOrigin(), caster:GetTeam(), false)
+    	ability:CreateToxicPool( parent:GetAbsOrigin() )
     end
 end
 

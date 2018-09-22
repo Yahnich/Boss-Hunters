@@ -17,7 +17,7 @@ local function StartCombat(self)
 	self.eventEnded = true
 	self.combatEnded = false
 	local START_VECTOR = self:GetHeroSpawnPosition()
-	
+	self.eventType = EVENT_TYPE_COMBAT
 	self.timeRemaining = 30
 	
 	self.demon = CreateUnitByName("npc_dota_money_roshan", START_VECTOR, true, nil, nil, DOTA_TEAM_BADGUYS)

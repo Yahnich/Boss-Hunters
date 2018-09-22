@@ -32,6 +32,8 @@ local function StartCombat(self, bFight)
 	if bFight then
 		self.timeRemaining = 0
 		self.combatStarted = true
+		self.eventType = EVENT_TYPE_ELITE
+		
 		self.undying = math.min(2, 0 + math.ceil(RoundManager:GetRaidsFinished() / 2))
 		self.zombos = math.floor( (2 + RoundManager:GetRaidsFinished() ) * HeroList:GetActiveHeroCount() / 1.5 )
 		self.enemiesToSpawn = self.undying + self.zombos

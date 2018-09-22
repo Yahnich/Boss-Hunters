@@ -804,7 +804,7 @@
 		"Ability1"				"leshrac_split_earth"
 		"Ability2"				"leshrac_diabolic_edict"
 		"Ability3"				"leshrac_lightning_storm"
-		"Ability4"				"leshrac_inner_torment"
+		"Ability4"				"generic_hidden"
 		"Ability6"				"leshrac_pulse_nova"
 		
 	}

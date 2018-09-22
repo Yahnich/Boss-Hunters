@@ -16,10 +16,10 @@ function modifier_elite_hasted:OnRefresh()
 end
 
 function modifier_elite_hasted:DeclareFunctions()
-	return {MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE_MIN, MODIFIER_PROPERTY_MOVESPEED_LIMIT, MODIFIER_PROPERTY_MOVESPEED_MAX, MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT }
+	return {MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE, MODIFIER_PROPERTY_MOVESPEED_LIMIT, MODIFIER_PROPERTY_MOVESPEED_MAX, MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT }
 end
 
-function modifier_elite_hasted:GetModifierMoveSpeed_AbsoluteMin()
+function modifier_elite_hasted:GetModifierMoveSpeed_Absolute()
 	return self.ms
 end
 

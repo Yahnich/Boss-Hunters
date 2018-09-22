@@ -1756,6 +1756,7 @@ function ParticleManager:FireParticle(effect, attach, owner, cps)
 end
 
 function ParticleManager:FireRopeParticle(effect, attach, owner, target, tCP, sAttachPoint)
+	if not owner or not target or not attach or not effect then return end
 	local FX = ParticleManager:CreateParticle(effect, attach, owner)
 
 	local attachPoint = sAttachPoint or "attach_hitloc"
@@ -2638,4 +2639,15 @@ end
 
 function CDOTA_BaseNPC:HasActiveAbility()
 	return self:GetCurrentActiveAbility() ~= nil or self:IsChanneling()
+end
+
+function CDOTA_BaseNPC_Hero:GetAttributePoints()
+	return self.talentPoints or 0
+end
+
+function CDOTA_BaseNPC_Hero:SetAttributePoints(value)
+	self.talentPoints = value or 0
+	local netTable = CustomNetTables:GetTableValue("hero_properties", self:GetUnitName()..self:entindex()) or {}
+	netTable.attribute_points = self.talentPoints
+	CustomNetTables:SetTableValue("hero_properties", self:GetUnitName()..self:entindex(), netTable)
 end

@@ -20,9 +20,10 @@ LinkLuaModifier("modifier_boss_wolves_leap", "bosses/boss_wolves/boss_wolves_lea
 if IsServer() then
 	function modifier_boss_wolves_leap:OnCreated()
 		local parent = self:GetParent()
-		self.endPos = self:GetAbility():GetCursorPosition()
-		self.distance = math.min( CalculateDistance( self.endPos, parent ), self:GetSpecialValueFor("distance") )
-		self.direction = CalculateDirection( self.endPos, parent )
+		local cursorPos = self:GetAbility():GetCursorPosition()
+		self.distance = math.min( CalculateDistance( cursorPos, parent ), self:GetSpecialValueFor("distance") )
+		self.direction = CalculateDirection( cursorPos, parent )
+		self.endPos = parent:GetAbsOrigin() + self.direction * self.distance
 		self.speed = self:GetSpecialValueFor("speed") * FrameTime()
 		self.initHeight = GetGroundHeight(parent:GetAbsOrigin(), parent)
 		self.height = self.initHeight

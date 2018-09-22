@@ -14,23 +14,12 @@ local function FirstChoice(self, userid, event)
 	
 	if hero then
 		StatsScreen:RegisterPlayer( hero, hero.hasRespecced ) -- Reset stats screen
-		local modifiers = hero:FindAllModifiers()
-		for i = 0, 23 do
-			local ability = hero:GetAbilityByIndex(i)
-			if ability and not ability:IsInnateAbility() then 
-				ability:SetLevel(0)
-			end
-		end
-		for _, modifier in ipairs( modifiers ) do
-			if modifier:GetAbility() then
-				if not modifier:GetAbility():IsInnateAbility() and modifier:GetCaster() == hero and not modifier:GetAbility():IsItem() and modifier:GetAbility():GetName() ~= "item_relic_handler" then -- destroy passive modifiers and any buffs
-					modifier:Destroy()
-				end
-			end
-		end
-		hero.bonusAbilityPoints = hero.bonusAbilityPoints or 0
-		hero:SetAbilityPoints( hero:GetLevel() + math.floor(hero:GetLevel() / GameRules.gameDifficulty) + hero.bonusAbilityPoints) -- give back ability points
-		CustomGameEventManager:Send_ServerToAllClients("dota_player_upgraded_stats", {playerID = hero:GetPlayerID()} )
+		local respec = {
+			pID = event.pID,
+			entindex = hero:entindex(),
+			forced = true,
+		}
+		StatsScreen:RespecAll(userid, respec)
 	end
 	
 	CheckPlayerChoices(self)

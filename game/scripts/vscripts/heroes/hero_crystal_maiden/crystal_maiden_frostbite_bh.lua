@@ -19,7 +19,7 @@ function crystal_maiden_frostbite_bh:OnSpellStart()
 	local freezeDur = self:GetTalentSpecialValueFor("freeze_duration")
 	local rootDur = TernaryOperator( self:GetTalentSpecialValueFor("root_duration"), target:IsRoundBoss(), self:GetTalentSpecialValueFor("creep_duration") )
 	local totDur = rootDur + freezeDur
-	print( rootDur, totDur )
+	
 	local chill = target:GetChillCount()
 	target:Freeze(self, caster, freezeDur)
 
@@ -44,7 +44,6 @@ function modifier_crystal_maiden_frostbite_bh:OnCreated()
 end
 
 function modifier_crystal_maiden_frostbite_bh:OnIntervalThink()
-	print("damaging")
 	self:GetAbility():DealDamage( self:GetCaster(), self:GetParent(), self.damage )
 end
 

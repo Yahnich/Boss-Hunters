@@ -58,7 +58,6 @@ function RoundManager:VoteSkipPrepTime(userid, event)
 end
 
 function RoundManager:VoteNewGame(userid, event)
-	if self.prepTimer == 0 then return end
 	self.votedToNG = (self.votedToNG or 0)
 	self.votedNoNg = (self.votedNoNg or 0)
 	if toboolean(event.vote) then
@@ -69,7 +68,8 @@ function RoundManager:VoteNewGame(userid, event)
 	local noVotes = HeroList:GetActiveHeroCount() - self.votedToNG
 	local nonVotes = HeroList:GetActiveHeroCount() - self.votedToNG
 	CustomGameEventManager:Send_ServerToAllClients("bh_update_votes_prep_time", {yes = self.votedToNG, no = noVotes, ascension = true})
-	if noVotes <= self.votedToNG then	
+	if self.prepTimer <= 0 then return end
+	if noVotes <= self.votedToNG and not self.ng then	
 		self.ng = true
 		self.votedToNG = 0
 		self.votedNoNg = 0
@@ -84,7 +84,7 @@ function RoundManager:VoteNewGame(userid, event)
 			local zoneName = POSSIBLE_ZONES[i]
 			RoundManager:ConstructRaids(zoneName)
 		end
-	elseif self.votedNoNg >= math.floor( HeroList:GetActiveHeroCount() / 2 ) then
+	elseif self.votedNoNg >= math.ceil( HeroList:GetActiveHeroCount() / 2 ) then
 		self.ng = false
 		self.prepTimer = 0
 	end
@@ -423,10 +423,10 @@ function RoundManager:EndEvent(bWonRound)
 				return 0.25
 			end
 		end)
-		local fTime = PREP_TIME
-		-- if RoundManager:GetCurrentEvent():IsEvent() then
-			-- fTime = 5
-		-- end
+		local fTime = ( PREP_TIME * 2 ) / GameRules:GetGameDifficulty()
+		if RoundManager:GetCurrentEvent():IsEvent() then
+			fTime = 5
+		end
 		CustomGameEventManager:Send_ServerToAllClients( "updateQuestLife", { lives = GameRules._lives, maxLives = GameRules._maxLives } )
 		if GameRules._lives == 0 then
 			return RoundManager:GameIsFinished(false)
@@ -567,13 +567,13 @@ function RoundManager:InitializeUnit(unit, bElite)
 	unit.hasBeenInitialized = true
 	local expectedHP = unit:GetBaseMaxHealth() * RandomFloat(0.9, 1.1)
 	local expectedDamage = ( unit:GetAverageBaseDamage() + (RoundManager:GetEventsFinished() * 2) ) * RandomFloat(0.85, 1.15)
-	local playerHPMultiplier = 0.4
+	local playerHPMultiplier = 0.25
 	local playerDMGMultiplier = 0.075
 	local playerArmorMultiplier = 0.05
 	if GameRules:GetGameDifficulty() == 4 then 
 		expectedHP = expectedHP * 1.5
 		expectedDamage = expectedDamage * 1.2
-		playerHPMultiplier = 0.55 
+		playerHPMultiplier = 0.33
 		playerDMGMultiplier = 0.1
 		playerArmorMultiplier = 0.12
 	end
@@ -588,11 +588,20 @@ function RoundManager:InitializeUnit(unit, bElite)
 	
 	maxPlayerHPMult = HPMultiplierFunc( EVENTS_PER_RAID * RAIDS_PER_ZONE * ZONE_COUNT, RAIDS_PER_ZONE * ZONE_COUNT, ZONE_COUNT)
 	effPlayerHPMult = math.min( effPlayerHPMult, maxPlayerHPMult )
-	effPlayerHPMult = effPlayerHPMult * ( 1 + RoundManager:GetAscensions() * 0.5 )  * (1 + effective_multiplier * playerHPMultiplier )
+	effPlayerHPMult = effPlayerHPMult * ( 1 + RoundManager:GetAscensions() * 0.25 )  * (1 + effective_multiplier * playerHPMultiplier )
 	
 	maxPlayerDMGMult = DMGMultiplierFunc( EVENTS_PER_RAID * RAIDS_PER_ZONE * ZONE_COUNT, RAIDS_PER_ZONE * ZONE_COUNT, ZONE_COUNT)
 	effPlayerDMGMult = math.min( effPlayerDMGMult, maxPlayerDMGMult )
 	effPlayerDMGMult = effPlayerDMGMult * ( 1 + RoundManager:GetAscensions() * 1 )  * (1 + effective_multiplier * playerDMGMultiplier )
+	
+	effPlayerArmorMult = effPlayerArmorMult * ( 1 + RoundManager:GetAscensions() * 0.5 )
+	
+	if not unit:IsRoundBoss() then
+		effPlayerHPMult = effPlayerHPMult / 2
+		effPlayerDMGMult = effPlayerDMGMult / 2
+		effPlayerArmorMult = effPlayerArmorMult / 2
+	end
+	
 	
 	if bElite then
 		effPlayerHPMult = effPlayerHPMult * 1.35
@@ -627,7 +636,16 @@ function RoundManager:InitializeUnit(unit, bElite)
 	
 	unit:SetAverageBaseDamage( expectedDamage * effPlayerDMGMult, 33)
 	unit:SetBaseHealthRegen(RoundManager:GetEventsFinished() * RandomFloat(0.85, 1.15) )
-	unit:SetPhysicalArmorBaseValue( (unit:GetPhysicalArmorBaseValue() + (RoundManager:GetRaidsFinished() * 1.5) ) * effPlayerArmorMult )
+	
+	local bonusArmor = math.min( RoundManager:GetRaidsFinished() + RoundManager:GetZonesFinished() * 5, 60 )
+	if not unit:IsRoundBoss() then
+		bonusArmor =  math.min( RoundManager:GetRaidsFinished(), 20 )
+	end
+	if unit:IsRangedAttacker() then
+		bonusArmor = math.floor( bonusArmor * 0.6 )
+	end
+	
+	unit:SetPhysicalArmorBaseValue( (unit:GetPhysicalArmorBaseValue() + bonusArmor ) * effPlayerArmorMult )
 	
 	unit:AddNewModifier(unit, nil, "modifier_boss_attackspeed", {})
 	local powerScale = unit:AddNewModifier(unit, nil, "modifier_power_scaling", {})
@@ -635,7 +653,7 @@ function RoundManager:InitializeUnit(unit, bElite)
 	local SAMultiplierFunc = function( events, raids, zones ) return math.floor( (events * 0.3) * ( (1 + (raids * 2 ) + ( zones * 3 ) ) ) ) end
 	local maxSpellAmpScale = SAMultiplierFunc( (EVENTS_PER_RAID + 1) * RAIDS_PER_ZONE * ZONE_COUNT, RAIDS_PER_ZONE * ZONE_COUNT, ZONE_COUNT)
 	local spellAmpScale = SAMultiplierFunc( RoundManager:GetEventsFinished(), RoundManager:GetRaidsFinished(), RoundManager:GetZonesFinished() )
-	spellAmpScale = math.min( maxSpellAmpScale, spellAmpScale ) * ( (1 +  RoundManager:GetAscensions()) * 1.5)
+	spellAmpScale = math.min( maxSpellAmpScale, spellAmpScale ) * ( (1 +  RoundManager:GetAscensions()) * 3 )
 	
 	if powerScale then powerScale:SetStackCount( spellAmpScale ) end
 	unit:AddNewModifier(unit, nil, "modifier_spawn_immunity", {duration = 4/GameRules.gameDifficulty})
