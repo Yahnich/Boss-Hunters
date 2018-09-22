@@ -19,7 +19,11 @@ function MapHandler:CheckAndResolvePositions(hero)
 		FindClearSpaceForUnit(hero, hero.lastAllowedPosition, true)
 		hero:StopMotionControllers(true)
 		if edgeBox and not edgeBox:IsTouching(hero) then
-			hero.lastAllowedPosition = RoundManager:GetCurrentEvent():GetHeroSpawnPosition()
+			if hero:GetTeamNumber() == DOTA_TEAM_GOODGUYS then
+				hero.lastAllowedPosition = RoundManager:GetCurrentEvent():GetHeroSpawnPosition()
+			else
+				hero.lastAllowedPosition = RoundManager:PickRandomSpawn()
+			end
 			hero:StopMotionControllers(true)
 			if hero and hero.lastAllowedPosition then
 				FindClearSpaceForUnit(hero, hero.lastAllowedPosition, true)

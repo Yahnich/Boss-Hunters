@@ -1,9 +1,12 @@
 local function CheckPlayerChoices(self)
+	local count = 0
 	for pID, choice in pairs( self._playerChoices ) do
 		if not choice then
 			return false
 		end
+		count = count + 1
 	end
+	if count == 0 then return false end
 	if not self.eventEnded then
 		self:StartCombat(true)
 	end
@@ -20,7 +23,7 @@ local function StartCombat(self)
 	self.combatEnded = false
 	
 	self.timeRemaining = 60
-	
+	self.eventType = EVENT_TYPE_COMBAT
 	self.totemUnit = CreateUnitByName("npc_dota_event_totem", RoundManager:GetHeroSpawnPosition(), true, nil, nil, DOTA_TEAM_GOODGUYS)
 	local ability = self.totemUnit:AddAbility("generic_hp_limiter")
 	self.totemUnit:SetThreat(5000)
@@ -101,11 +104,6 @@ local function StartEvent(self)
 	end)
 	
 	self._playerChoices = {}
-	for i = 0, GameRules.BasePlayers do
-		if PlayerResource:IsValidPlayerID(i) and PlayerResource:GetPlayer(i) then
-			self._playerChoices[i] = false
-		end
-	end
 	LinkLuaModifier("event_buff_protect", "events/modifiers/event_buff_protect", LUA_MODIFIER_MOTION_NONE)
 end
 

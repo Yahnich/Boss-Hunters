@@ -1,9 +1,12 @@
 local function CheckPlayerChoices(self)
+	local count = 0
 	for pID, choice in pairs( self._playerChoices ) do
 		if not choice then
 			return false
 		end
+		count = count + 1
 	end
+	if count == 0 then return false end
 	self:EndEvent(true)
 	return true
 end
@@ -50,11 +53,6 @@ local function StartEvent(self)
 	end)
 	
 	self._playerChoices = {}
-	for i = 0, GameRules.BasePlayers do
-		if PlayerResource:IsValidPlayerID(i) and PlayerResource:GetPlayer(i) then
-			self._playerChoices[i] = false
-		end
-	end
 end
 
 local function EndEvent(self, bWon)

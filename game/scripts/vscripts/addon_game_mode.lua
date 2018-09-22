@@ -464,12 +464,13 @@ function CHoldoutGameMode:FilterHeal( filterTable )
 end
 
 function CHoldoutGameMode:FilterOrders( filterTable )
-	if RoundManager:GetCurrentEvent() and RoundManager:GetCurrentEvent():IsEvent()
+	if RoundManager:GetCurrentEvent() 
+	and RoundManager:GetCurrentEvent():IsEvent()
+	and RoundManager:GetCurrentEvent()._playerChoices
+	and RoundManager:GetCurrentEvent()._playerChoices[ filterTable["issuer_player_id_const"] ] == nil
 	and (filterTable["order_type"] == DOTA_UNIT_ORDER_DROP_ITEM 
 	or filterTable["order_type"] == DOTA_UNIT_ORDER_GIVE_ITEM
-	or filterTable["order_type"] == DOTA_UNIT_ORDER_PICKUP_ITEM
-	or filterTable["order_type"] == DOTA_UNIT_ORDER_PURCHASE_ITEM 
-	or filterTable["order_type"] == DOTA_UNIT_ORDER_SELL_ITEM 
+	or filterTable["order_type"] == DOTA_UNIT_ORDER_PURCHASE_ITEM
 	or filterTable["order_type"] == DOTA_UNIT_ORDER_DISASSEMBLE_ITEM
 	or filterTable["order_type"] == DOTA_UNIT_ORDER_EJECT_ITEM_FROM_STASH ) then
 		return false

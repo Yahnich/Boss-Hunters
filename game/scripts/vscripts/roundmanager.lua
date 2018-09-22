@@ -285,6 +285,7 @@ function RoundManager:StartPrepTime(fPrep)
 	local PrepCatch = function( ... )
 		if self.zones[self.currentZone] and self.zones[self.currentZone][1] and not self.prepTimeTimer then
 			local event = RoundManager:GetCurrentEvent()
+			event._playerChoices = {}
 			CustomGameEventManager:Send_ServerToAllClients("bh_start_prep_time", {})
 			
 			for _, hero in ipairs( FindAllUnits({team = DOTA_UNIT_TARGET_TEAM_FRIENDLY}) ) do

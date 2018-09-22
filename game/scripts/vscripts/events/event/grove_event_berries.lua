@@ -1,9 +1,12 @@
 local function CheckPlayerChoices(self)
+	local count = 0
 	for pID, choice in pairs( self._playerChoices ) do
 		if not choice then
 			return false
 		end
+		count = count + 1
 	end
+	if count == 0 then return false end
 	self:EndEvent(true)
 	return true
 end
@@ -54,11 +57,7 @@ local function StartEvent(self)
 	end)
 	
 	self._playerChoices = {}
-	for i = 0, GameRules.BasePlayers do
-		if PlayerResource:IsValidPlayerID(i) and PlayerResource:GetPlayer(i) then
-			self._playerChoices[i] = false
-		end
-	end
+
 	LinkLuaModifier("event_buff_berries_curse", "events/modifiers/event_buff_berries", LUA_MODIFIER_MOTION_NONE)
 	LinkLuaModifier("event_buff_berries_curse_2", "events/modifiers/event_buff_berries", LUA_MODIFIER_MOTION_NONE)
 	LinkLuaModifier("event_buff_berries_blessing", "events/modifiers/event_buff_berries", LUA_MODIFIER_MOTION_NONE)
