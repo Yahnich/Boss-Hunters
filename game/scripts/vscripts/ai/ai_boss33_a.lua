@@ -10,16 +10,6 @@ if IsServer() then
 		thisEntity.orb = thisEntity:FindAbilityByName("boss33a_dark_orb")
 		thisEntity.ward = thisEntity:FindAbilityByName("boss33a_protective_ward")
 		
-		thisEntity.IsTwinAlive = function(thisEntity)
-			local sdCheck = thisEntity:FindFriendlyUnitsInRadius(thisEntity:GetAbsOrigin(),-1)
-			for _, isSD in ipairs(sdCheck) do
-				if isSD:GetUnitName() == "npc_dota_boss33_b" then 
-					return true
-				end
-			end
-			return false
-		end
-		
 		AITimers:CreateTimer(0.1, function()
 			if  math.floor(GameRules.gameDifficulty + 0.5) < 2 then 
 				thisEntity.poison:SetLevel(1)

@@ -7,6 +7,18 @@ local function StartEvent(self)
 		spawn.unitIsRoundBoss = true
 		local spawn2 = CreateUnitByName("npc_dota_boss33_b", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
 		spawn2.unitIsRoundBoss = true
+		
+		spawn.twinDemon = spawn2
+		spawn2.twinDemon = spawn
+		
+		spawn.IsTwinAlive = function(spawn)
+			return spawn.twinDemon and not spawn.twinDemon:IsNull() and spawn.twinDemon:IsAlive()
+		end
+		
+		spawn2.IsTwinAlive = function(spawn2)
+			return spawn2.twinDemon and not spawn2.twinDemon:IsNull() and spawn2.twinDemon:IsAlive()
+		end
+		
 		self.enemiesToSpawn = self.enemiesToSpawn - 1
 		if self.enemiesToSpawn > 0 then
 			return 30
