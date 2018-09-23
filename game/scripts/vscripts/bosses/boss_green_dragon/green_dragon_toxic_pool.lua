@@ -50,6 +50,8 @@ end
 function green_dragon_toxic_pool:CreateToxicPool(position)
 	ParticleManager:FireWarningParticle( position, self:GetSpecialValueFor("radius") )
 	Timers:CreateTimer( 0.5, function()
+		if not self or self:IsNull() then return end
+		if not self:GetCaster() or self:GetCaster():IsNull() then return end
 		CreateModifierThinker(self:GetCaster(), self, "modifier_green_dragon_toxic_pool", {Duration = self:GetSpecialValueFor("pool_duration")}, position, self:GetCaster():GetTeam(), false)
 	end)
 end

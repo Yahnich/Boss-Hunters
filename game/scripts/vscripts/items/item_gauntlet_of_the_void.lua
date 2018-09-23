@@ -48,7 +48,7 @@ function modifier_item_gauntlet_of_the_void:OnCreated()
 end
 
 function modifier_item_gauntlet_of_the_void:OnDestroy()
-	self:GetCaster():RemoveModifierByName("modifier_item_gauntlet_of_the_void_active")
+	if IsServer() then self:GetAbility():OnToggle() end
 end
 
 function modifier_item_gauntlet_of_the_void:DeclareFunctions()

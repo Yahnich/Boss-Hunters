@@ -24,6 +24,7 @@ function modifier_boss_aeon_flashback:DeclareFunctions()
 end
 
 function modifier_boss_aeon_flashback:GetModifierTotal_ConstantBlock(params)
+	if self:GetCaster():PassivesDisabled() then return end
 	if self:GetAbility():IsCooldownReady() and params.damage >= self:GetParent():GetHealth() * self.currHP and params.attacker ~= self:GetParent() then
 		self:GetAbility():SetCooldown()
 		ParticleManager:FireParticle("particles/units/heroes/hero_faceless_void/faceless_void_backtrack.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())

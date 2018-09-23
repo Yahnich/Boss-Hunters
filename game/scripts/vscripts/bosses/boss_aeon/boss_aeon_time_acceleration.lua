@@ -24,6 +24,7 @@ function modifier_boss_aeon_time_acceleration:OnRefresh()
 end
 
 function modifier_boss_aeon_time_acceleration:OnIntervalThink()
+	if self:GetCaster():PassivesDisabled() then return end
 	self:IncrementStackCount()
 end
 

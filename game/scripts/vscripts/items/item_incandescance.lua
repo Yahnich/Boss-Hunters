@@ -32,6 +32,7 @@ function modifier_item_incandescance:OnDestroy()
 		for _, ally in ipairs( self:GetParent():FindEnemyUnitsInRadius( self:GetParent():GetAbsOrigin(), -1 ) ) do
 			ally:RemoveModifierByName("modifier_incandescance_debuff")
 		end
+		self:GetAbility():OnToggle()
 	end
 end
 

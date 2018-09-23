@@ -12,17 +12,17 @@ end
 
 require("events/base_event")
 
-EVENTS_PER_RAID = 3
-RAIDS_PER_ZONE = 4
-ZONE_COUNT = 2
+POSSIBLE_ZONES = {"Grove", "Sepulcher", "Solitude", "Elysium"}
 
-POSSIBLE_ZONES = {"Grove", "Elysium"}
+EVENTS_PER_RAID = 3
+RAIDS_PER_ZONE = 2
+ZONE_COUNT = #POSSIBLE_ZONES
 
 COMBAT_CHANCE = 70
 ELITE_CHANCE = 25
 EVENT_CHANCE = 100 - COMBAT_CHANCE
 
-PREP_TIME = 30
+PREP_TIME = 2
 
 ELITE_ABILITIES_TO_GIVE = 1
 
@@ -78,7 +78,7 @@ function RoundManager:VoteNewGame(userid, event)
 		self.bossPool = LoadKeyValues('scripts/kv/boss_pool.txt')
 		self.eventPool = LoadKeyValues('scripts/kv/event_pool.txt')
 		self.combatPool = LoadKeyValues('scripts/kv/combat_pool.txt')
-		POSSIBLE_ZONES = {"Grove", "Elysium"}
+		POSSIBLE_ZONES = {"Grove", "Sepulcher", "Solitude", "Elysium"}
 		self.prepTimer = 0
 		for i = 1, ZONE_COUNT do
 			local zoneName = POSSIBLE_ZONES[i]
@@ -178,6 +178,7 @@ function RoundManager:ConstructRaids(zoneName)
 	self.eventsCreated = self.eventsCreated or 0
 	
 	for j = 1, RAIDS_PER_ZONE do
+		
 		local raid = {}
 		local raidContent
 		
@@ -231,7 +232,7 @@ function RoundManager:ConstructRaids(zoneName)
 		self.eventsCreated = self.eventsCreated + 1
 		
 		table.insert( raid, BaseEvent(zoneName, EVENT_TYPE_BOSS, bossPick ) )
-		
+		PrintAll( raid )
 		table.insert( self.zones[zoneName], raid )
 	end
 end
@@ -425,7 +426,7 @@ function RoundManager:EndEvent(bWonRound)
 			end
 		end)
 		local fTime = ( PREP_TIME * 2 ) / GameRules:GetGameDifficulty()
-		if RoundManager:GetCurrentEvent():IsEvent() then
+		if RoundManager:GetCurrentEvent() and RoundManager:GetCurrentEvent():IsEvent() then
 			fTime = 5
 		end
 		CustomGameEventManager:Send_ServerToAllClients( "updateQuestLife", { lives = GameRules._lives, maxLives = GameRules._maxLives } )
@@ -580,8 +581,8 @@ function RoundManager:InitializeUnit(unit, bElite)
 	end
 	local effective_multiplier = (HeroList:GetActiveHeroCount() - 1)
 	
-	local HPMultiplierFunc = function( events, raids, zones ) return (0.8 + (events * 0.08)) * ( 1 + raids * 0.33 ) * ( 1 + zones * 0.25 ) end
-	local DMGMultiplierFunc = function( events, raids, zones ) return ( 0.5 + (events * 0.05)) * ( 1 + raids * 0.1) * ( 1 + zones * 0.08 ) end
+	local HPMultiplierFunc = function( events, raids, zones ) return (0.8 + (events * 0.08)) * ( 1 + raids * 0.33 ) * ( 1 + zones * 0.12 ) end
+	local DMGMultiplierFunc = function( events, raids, zones ) return ( 0.5 + (events * 0.05)) * ( 1 + raids * 0.1) * ( 1 + zones * 0.05 ) end
 	
 	local effPlayerHPMult =  HPMultiplierFunc( RoundManager:GetEventsFinished(), RoundManager:GetRaidsFinished(), RoundManager:GetZonesFinished() )
 	local effPlayerDMGMult = DMGMultiplierFunc( RoundManager:GetEventsFinished(), RoundManager:GetRaidsFinished(), RoundManager:GetZonesFinished() )
@@ -631,14 +632,12 @@ function RoundManager:InitializeUnit(unit, bElite)
 	end
 	
 	expectedHP = math.max( 1, expectedHP * effPlayerHPMult )
-	unit:SetBaseMaxHealth(expectedHP)
-	unit:SetMaxHealth(expectedHP)
-	unit:SetHealth(expectedHP)
+	unit:SetCoreHealth(expectedHP)
 	
 	unit:SetAverageBaseDamage( expectedDamage * effPlayerDMGMult, 33)
 	unit:SetBaseHealthRegen(RoundManager:GetEventsFinished() * RandomFloat(0.85, 1.15) )
 	
-	local bonusArmor = math.min( RoundManager:GetRaidsFinished() + RoundManager:GetZonesFinished() * 5, 60 )
+	local bonusArmor = math.min( RoundManager:GetRaidsFinished() + RoundManager:GetZonesFinished() * 2.5, 60 )
 	if not unit:IsRoundBoss() then
 		bonusArmor =  math.min( RoundManager:GetRaidsFinished(), 20 )
 	end
@@ -651,7 +650,7 @@ function RoundManager:InitializeUnit(unit, bElite)
 	unit:AddNewModifier(unit, nil, "modifier_boss_attackspeed", {})
 	local powerScale = unit:AddNewModifier(unit, nil, "modifier_power_scaling", {})
 	
-	local SAMultiplierFunc = function( events, raids, zones ) return math.floor( (events * 0.3) * ( (1 + (raids * 2 ) + ( zones * 3 ) ) ) ) end
+	local SAMultiplierFunc = function( events, raids, zones ) return math.floor( (events * 0.3) * ( (1 + (raids * 2 ) + ( zones * 1.5 ) ) ) ) end
 	local maxSpellAmpScale = SAMultiplierFunc( (EVENTS_PER_RAID + 1) * RAIDS_PER_ZONE * ZONE_COUNT, RAIDS_PER_ZONE * ZONE_COUNT, ZONE_COUNT)
 	local spellAmpScale = SAMultiplierFunc( RoundManager:GetEventsFinished(), RoundManager:GetRaidsFinished(), RoundManager:GetZonesFinished() )
 	spellAmpScale = math.min( maxSpellAmpScale, spellAmpScale ) * ( (1 +  RoundManager:GetAscensions()) * 3 )
@@ -687,7 +686,7 @@ end
 --- UTILITY FUNCTIONS
 
 function RoundManager:GetCurrentEvent()
-	if self.currentZone and self.zones[self.currentZone] and self.zones[self.currentZone][1] then
+	if self.currentZone and self.zones and self.zones[self.currentZone] and self.zones[self.currentZone][1] and self.zones[self.currentZone][1][1] then
 		return self.zones[self.currentZone][1][1]
 	end
 end

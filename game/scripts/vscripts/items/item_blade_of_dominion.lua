@@ -33,6 +33,10 @@ function modifier_item_blade_of_dominion_stats:OnCreated()
 	if IsServer() then self:GetAbility():OnToggle() end
 end
 
+function modifier_item_blade_of_dominion_stats:OnDestroy()
+	if IsServer() then self:GetAbility():OnToggle() end
+end
+
 function modifier_item_blade_of_dominion_stats:DeclareFunctions()
 	return {MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,
 			MODIFIER_PROPERTY_TOTAL_CONSTANT_BLOCK,

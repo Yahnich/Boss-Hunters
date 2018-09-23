@@ -22,7 +22,7 @@ function obsidian_destroyer_astral_isolation:OnSpellStart()
 			ParticleManager:SetParticleControl(endFlash, 0, hTarget:GetAbsOrigin())
 		ParticleManager:ReleaseParticleIndex(endFlash)
 		EmitSoundOn("Hero_ObsidianDestroyer.AstralImprisonment.End", hTarget)
-		hTarget:AddNewModifier(caster, self,"modifier_stunned", {duration = self:GetTalentSpecialValueFor("prison_duration") / 2})
+		self:Stun(hTarget, self:GetTalentSpecialValueFor("prison_duration") / 2, true)
 		local enemies = FindUnitsInRadius(caster:GetTeamNumber(), hTarget:GetAbsOrigin(), nil, self:GetTalentSpecialValueFor("radius"), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false)
 		for _,enemy in pairs(enemies) do
 			ApplyDamage({victim = enemy, attacker = caster, damage = self:GetTalentSpecialValueFor("damage"), damage_type = self:GetAbilityDamageType(), ability = self})

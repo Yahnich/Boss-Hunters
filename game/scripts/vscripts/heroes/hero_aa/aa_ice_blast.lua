@@ -76,7 +76,8 @@ function modifier_aa_ice_blast:GetDisableHealing()
 end
 
 function modifier_aa_ice_blast:OnTakeDamage(params)
-	if params.unit == self:GetParent() and params.unit:GetHealthPercent() <= self.shatter and params.unit:IsAlive() then
+	if params.unit == self:GetParent() and params.unit:GetHealthPercent() <= self.shatter and params.unit:IsAlive() 
+	and not HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_BYPASSES_INVULNERABILITY + DOTA_DAMAGE_FLAG_BYPASSES_BLOCK + DOTA_DAMAGE_FLAG_IGNORES_MAGIC_ARMOR + DOTA_DAMAGE_FLAG_IGNORES_PHYSICAL_ARMOR) then
 		ParticleManager:FireParticle("particles/units/heroes/hero_ancient_apparition/ancient_apparition_ice_blast_death.vpcf", PATTACH_POINT, self:GetParent(), {})
 		self:GetParent():AttemptKill( self:GetAbility(), self:GetCaster() )
 	end

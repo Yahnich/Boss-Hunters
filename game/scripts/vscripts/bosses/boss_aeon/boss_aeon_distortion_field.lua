@@ -16,7 +16,7 @@ function modifier_boss_aeon_distortion_field:OnRefresh()
 end
 
 function modifier_boss_aeon_distortion_field:IsAura()
-	return true
+	return not self:GetCaster():PassivesDisabled()
 end
 
 function modifier_boss_aeon_distortion_field:GetModifierAura()

@@ -219,7 +219,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"crit_chance"				"15"
+				"crit_chance"				"10"
 				"LinkedSpecialBonus"		"special_bonus_unique_phantom_assassin_coup_de_grace_1"
 			}
 			"02"
@@ -325,8 +325,8 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"5"
+				"var_type"				"FIELD_FLOAT"
+				"value"					"2.5"
 			}
 		}
 	}

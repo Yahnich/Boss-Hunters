@@ -142,6 +142,11 @@ function UpgradeAbility(nettableString)
 		hasQueuedAction = true
 		Game.EmitSound( "Button.Click" )
 		GameEvents.SendCustomGameEventToServer( "send_player_upgraded_stats", {pID : localID, entindex : lastRememberedHero,  skill : nettableString} )
+		if( GameUI.IsAltDown() ){
+			for( var i = 1; i < GetAttributePoints(lastRememberedHero); i++ ){
+				GameEvents.SendCustomGameEventToServer( "send_player_upgraded_stats", {pID : localID, entindex : lastRememberedHero,  skill : nettableString} )
+			}
+		}
 	}
 }
 

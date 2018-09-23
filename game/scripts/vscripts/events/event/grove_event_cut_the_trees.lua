@@ -22,7 +22,7 @@ local function CheckPlayerChoices(self)
 			self:GivePlayerGold()
 			self.treesCut = (self.treesCut or 0) + 1
 			Timers:CreateTimer(3, function()
-				if RollPercentage(25) or self.treesCut >= 4 then
+				if RollPercentage(25) then
 					self:StartCombat(true)
 				else
 					self:RetryVote()
@@ -39,7 +39,7 @@ end
 
 local function GivePlayerGold()
 	for _, hero in ipairs ( HeroList:GetRealHeroes() ) do
-		hero:AddGold(500)
+		hero:AddGold(250)
 	end
 end
 
@@ -48,9 +48,9 @@ local function StartCombat(self, bFight)
 		self.timeRemaining = 0
 		self.combatStarted = true
 		self.eventType = EVENT_TYPE_COMBAT
-		self.drowsToSpawn = math.ceil( math.log(self.treesCut + 1) )
-		self.treantsToSpawn = (math.ceil( math.log(self.treesCut + 1) ) ) * HeroList:GetActiveHeroCount()
-		self.furionsToSpawn = (1 + math.ceil( math.log(self.treesCut + 1) ) ) * HeroList:GetActiveHeroCount()
+		self.drowsToSpawn = math.ceil( math.log( self.treesCut/2 + 1 ) )
+		self.treantsToSpawn = math.floor( (math.ceil( math.log(self.treesCut + 1) ) ) * HeroList:GetActiveHeroCount() / 2 )
+		self.furionsToSpawn = math.floor( (1 + math.ceil( math.log(self.treesCut + 1) ) ) * HeroList:GetActiveHeroCount() / 2 )
 		self.enemiesToSpawn = self.drowsToSpawn + self.treantsToSpawn + self.furionsToSpawn
 		Timers:CreateTimer(3, function()
 			local spawn = CreateUnitByName("npc_dota_boss28", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)

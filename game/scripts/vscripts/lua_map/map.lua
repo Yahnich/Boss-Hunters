@@ -15,7 +15,7 @@ function MapHandler:CheckAndResolvePositions(hero)
 	hero.lastAllowedPosition = hero.lastAllowedPosition or hero:GetAbsOrigin()
 	if not RoundManager.boundingBox then return end
 	local edgeBox = Entities:FindByName(nil, RoundManager.boundingBox.."_edge_collider")
-	if MapHandler:IsOutsideMapBounds(hero) or (edgeBox and not edgeBox:IsTouching(hero) and RoundManager:IsRoundGoing() ) then
+	if MapHandler:IsOutsideMapBounds(hero) or (edgeBox and not (edgeBox:IsTouching(hero) or FindRadius(edgeBox) > CalculateDistance(hero, edgeBox) ) and RoundManager:IsRoundGoing() ) then
 		FindClearSpaceForUnit(hero, hero.lastAllowedPosition, true)
 		hero:StopMotionControllers(true)
 		if edgeBox and not edgeBox:IsTouching(hero) then

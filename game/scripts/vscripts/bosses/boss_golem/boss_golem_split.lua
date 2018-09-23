@@ -23,9 +23,7 @@ function modifier_boss_golem_split:OnDeath(params)
 			golem:SetBaseMoveSpeed( math.min( 300, golem:GetBaseMoveSpeed() / scale ) )
 			golem:SetAverageBaseDamage( golem:GetAverageBaseDamage() * math.min(scale * 2, 1), 25 )
 			
-			golem:SetBaseMaxHealth( hp )
-			golem:SetMaxHealth( hp )
-			golem:SetHealth( hp )
+			golem:SetCoreHealth( math.max(1, hp) )
 			
 			golem.unitIsRoundBoss = true
 			golem.hasBeenInitialized = true

@@ -67,7 +67,6 @@
 #base "items/item_wrathbearers_robes.txt"
 
 #base "items/item_arcane_accelerator.txt"
-#base "items/item_mantle_of_fallen.txt"
 #base "items/item_leechblade.txt"
 #base "items/item_lazarus_rags.txt"
 #base "items/item_memento.txt"

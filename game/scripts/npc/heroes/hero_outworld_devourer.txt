@@ -9,7 +9,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_outworld_devourer/obsidian_destroyer_arcane_missile"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
@@ -17,9 +17,7 @@
 		"MaxLevel"						"7"
 		"IsOrb"							"1"
 		
-		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
 		"AbilityTextureName"			"obsidian_destroyer_arcane_orb"
-		"AbilityCastRange"				"450"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -67,7 +65,7 @@
 			"particle"		"particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_prison_start.vpcf"
 		}
 		
-		"AbilityCooldown"				"14.0 13.0 12.0 11.0 10.0 9.0 8.0"
+		"AbilityCooldown"				"12.0 11.0 10.0 9.0 8.0 7.0 6.0"
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -126,13 +124,13 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_outworld_devourer/obsidian_destroyer_avatar_of_power"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
 		"AbilityTextureName"			"obsidian_destroyer_essence_aura"
 		"MaxLevel"						"7"
 		
-		"AbilityCooldown"				"20"
+		"AbilityCooldown"				"5"
 		"AbilityCastPoint"				"0.3"
 		"AbilityCastAnimation"			"ACT_DOTA_VICTORY"
 		
@@ -150,22 +148,23 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_mana"	    	"500 750 1000 1250 1500 1750 2000"
+				"bonus_mana"	    	"150 300 450 600 750 900 1050"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"bonus_mana_regen"		"2 4 8 10 12 14 16"
+				"mana_restore_pct"		"4 5 6 7 8 9 10"
+				"LinkedSpecialBonus"	"special_bonus_unique_obsidian_destroyer_avatar_of_power_2"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_spell_amp"		"20 25 30 35 40 45 50"
+				"var_type"				"FIELD_FLOAT"
+				"mana_restore_chance"	"40"
 			}
 			"04"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"buff_duration"			"5"
+				"var_type"				"FIELD_FLOAT"
+				"bonus_spell_amp"		"9 10 11 12 13 14 15"
 			}
 		}
 	}
@@ -359,12 +358,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"10"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"chance"				"25"
+				"value"					"5"
 			}
 		}
 	}

@@ -4,8 +4,12 @@ function  obsidian_destroyer_avatar_of_power:GetIntrinsicModifierName()
 	return "modifier_obsidian_destroyer_avatar_of_power_passive"
 end
 
-function obsidian_destroyer_avatar_of_power:OnSpellStart()
-	self:GetCaster():AddNewModifier( self:GetCaster(), self, "modifier_obsidian_destroyer_avatar_of_power_active", {duration = self:GetTalentSpecialValueFor("buff_duration")})
+function obsidian_destroyer_avatar_of_power:OnToggle()
+	if self:GetToggleState() then
+		self:GetCaster():AddNewModifier( self:GetCaster(), self, "modifier_obsidian_destroyer_avatar_of_power_active", {})
+	else
+		self:GetCaster():RemoveModifierByName("modifier_obsidian_destroyer_avatar_of_power_active")
+	end
 end
 
 modifier_obsidian_destroyer_avatar_of_power_active = class({})
@@ -20,7 +24,7 @@ end
 
 function modifier_obsidian_destroyer_avatar_of_power_active:DeclareFunctions()
 	return {MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,
-			MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE}
+			MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE}
 end
 
 function modifier_obsidian_destroyer_avatar_of_power_active:GetModifierIncomingDamage_Percentage(params)
@@ -31,11 +35,12 @@ function modifier_obsidian_destroyer_avatar_of_power_active:GetModifierIncomingD
 	else
 		local dmgPct = self:GetParent():GetMana() / params.damage
 		self:GetParent():SpendMana(self:GetParent():GetMana(), self:GetAbility() )
+		self:ToggleAbility()
 		return -(100 - dmgPct*100)
 	end
 end
 
-function modifier_obsidian_destroyer_avatar_of_power_active:GetModifierSpellAmplify_Percentage()
+function modifier_obsidian_destroyer_avatar_of_power_active:GetModifierTotalDamageOutgoing_Percentage()
 	return self.spell_amp
 end
 
@@ -62,8 +67,6 @@ function modifier_obsidian_destroyer_avatar_of_power_passive:OnCreated()
 	
 	self.chance = self:GetCaster():FindTalentValue("special_bonus_unique_obsidian_destroyer_avatar_of_power_2", "chance")
 	self.essence = self:GetCaster():FindTalentValue("special_bonus_unique_obsidian_destroyer_avatar_of_power_2") / 100
-	self:SetStackCount( 1 )
-	if IsServer() then self:StartIntervalThink(0.3) end
 end
 
 function modifier_obsidian_destroyer_avatar_of_power_passive:OnRefresh()
@@ -71,16 +74,8 @@ function modifier_obsidian_destroyer_avatar_of_power_passive:OnRefresh()
 	self.manaregen = self:GetTalentSpecialValueFor("bonus_mana_regen")
 	self.spellamp = self:GetTalentSpecialValueFor("bonus_spell_amp")
 
-	self.chance = self:GetCaster():FindTalentValue("special_bonus_unique_obsidian_destroyer_avatar_of_power_2", "chance")
-	self.essence = self:GetCaster():FindTalentValue("special_bonus_unique_obsidian_destroyer_avatar_of_power_2") / 100
-end
-
-function modifier_obsidian_destroyer_avatar_of_power_passive:OnIntervalThink()
-	if self:GetAbility():IsCooldownReady() then
-		self:SetStackCount( 0 )
-	else
-		self:SetStackCount( 1 )
-	end
+	self.chance = self:GetTalentSpecialValueFor("mana_restore_chance")
+	self.essence = self:GetTalentSpecialValueFor("mana_restore_pct") / 100
 end
 	
 function modifier_obsidian_destroyer_avatar_of_power_passive:IsHidden()
@@ -88,20 +83,19 @@ function modifier_obsidian_destroyer_avatar_of_power_passive:IsHidden()
 end
 
 function modifier_obsidian_destroyer_avatar_of_power_passive:IsActive()
-	return self:GetStackCount() == 0
+	return not self:GetCaster():HasModifier("modifier_obsidian_destroyer_avatar_of_power_active")
 end
 
 function modifier_obsidian_destroyer_avatar_of_power_passive:DeclareFunctions()
 	return {MODIFIER_EVENT_ON_SPENT_MANA,
-			MODIFIER_PROPERTY_MANA_BONUS, 
-			MODIFIER_PROPERTY_MANA_REGEN_CONSTANT, 
-			MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE}
+			MODIFIER_PROPERTY_MANA_BONUS,
+			MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE}
 end
 
 function modifier_obsidian_destroyer_avatar_of_power_passive:OnSpentMana(params)
 	if IsServer() and self:IsActive() then
 		if params.unit == self:GetCaster() and self:RollPRNG( self.chance ) and params.cost > 0 then
-			local manaGain = self:GetCaster():GetMaxMana() * self.essence
+			local manaGain = math.ceil( self:GetCaster():GetMaxMana() * self.essence )
 			ParticleManager:FireParticle("particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_essence_effect.vpcf", PATTACH_POINT_FOLLOW, self:GetCaster() )
 			EmitSoundOn("Hero_ObsidianDestroyer.EssenceAura", self:GetCaster() )
 			self:GetCaster():GiveMana( manaGain )
@@ -121,7 +115,7 @@ function modifier_obsidian_destroyer_avatar_of_power_passive:GetModifierContantM
 	end
 end
 
-function modifier_obsidian_destroyer_avatar_of_power_passive:GetModifierSpellAmplify_Percentage()
+function modifier_obsidian_destroyer_avatar_of_power_passive:GetModifierTotalDamageOutgoing_Percentage()
 	if self:IsActive() then
 		return self.spellamp
 	end

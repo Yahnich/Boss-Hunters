@@ -29,6 +29,10 @@ function modifier_item_frostfire_brand_stats:OnCreated()
 	if IsServer() then self:GetAbility():OnToggle() end
 end
 
+function modifier_item_frostfire_brand_stats:OnDestroy()
+	if IsServer() then self:GetAbility():OnToggle() end
+end
+
 function modifier_item_frostfire_brand_stats:DeclareFunctions()
 	return {MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE, MODIFIER_PROPERTY_STATS_STRENGTH_BONUS, MODIFIER_PROPERTY_STATS_AGILITY_BONUS, MODIFIER_PROPERTY_STATS_INTELLECT_BONUS}
 end

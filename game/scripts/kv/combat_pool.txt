@@ -3,7 +3,15 @@
 	// Undead + Sewer dwellers
 	"Sepulcher"
 	{
+		"sepulcher_combat_zombies"				"1"
+		"sepulcher_combat_bone_boys"			"1"
+		"sepulcher_combat_vhouls"				"1"
+		"sepulcher_combat_everything"			"1"
+		"sepulcher_combat_lifestealer"			"1"
 		
+		"grove_combat_roshan"					"1"
+		"grove_combat_slardar"					"1"
+		"generic_combat_slarks"					"1"
 	}
 	// Regular ass monsters
 	"Grove"
@@ -12,7 +20,6 @@
 		"grove_combat_techies"					"1"
 		"grove_combat_robots"					"1"
 		"grove_combat_roborage"					"1"
-		"grove_combat_roshan"					"1"
 		"grove_combat_bearboys"					"1"
 		"grove_combat_trees"					"1"
 		"grove_combat_slardar"					"1"
@@ -23,12 +30,19 @@
 	// Gods, spirits, elementals
 	"Elysium"
 	{
-		"sepulcher_combat_zombies"				"1"
-		"sepulcher_combat_bone_boys"			"1"
-		"sepulcher_combat_vhouls"				"1"
-		"sepulcher_combat_everything"			"1"
-		"sepulcher_combat_lifestealer"			"1"
+		"generic_combat_leshrac"				"1"
+		"elysium_combat_spiders"				"1"
+		"elysium_combat_warlock"				"1"
+		"elysium_combat_reapers"				"1"
 		
+		"elysium_combat_drowsas"				"1"
+		"solitude_combat_prophets"				"1"
+		"solitude_combat_commander"				"1"
+		"solitude_combat_sloth_demon"			"1"
+	}
+	// Demons, corrupted things
+	"Solitude"
+	{
 		"solitude_combat_golem"					"1"
 		"solitude_combat_commander"				"1"
 		"solitude_combat_madness_demon"			"1"
@@ -36,13 +50,6 @@
 		"solitude_combat_sloth_demon"			"1"
 		"solitude_combat_corrupt_drow"			"1"
 		"solitude_combat_angry_wraith"			"1"
-		"solitude_combat_prophets"				"1"
-		"generic_combat_leshrac"				"1"
-		"elysium_combat_spiders"				"1"
-	}
-	// Demons, corrupted things
-	"Solitude"
-	{
-		
+		"solitude_combat_green_dragon"			"1"
 	}
 }

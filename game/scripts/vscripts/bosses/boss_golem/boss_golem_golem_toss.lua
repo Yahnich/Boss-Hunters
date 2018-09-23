@@ -21,9 +21,7 @@ function boss_golem_golem_toss:OnSpellStart()
 	golem:SetBaseMoveSpeed( math.min( 300, golem:GetBaseMoveSpeed() / scale ) )
 	golem:SetAverageBaseDamage( caster:GetAverageBaseDamage() * 0.8, 25 )
 	golem.unitIsRoundBoss = true
-	golem:SetBaseMaxHealth( golemHP )
-	golem:SetMaxHealth( golemHP )
-	golem:SetHealth( golemHP )
+	golem:SetCoreHealth( math.max(1, golemHP) )
 	if golem:GetModelScale() < self:GetSpecialValueFor("minimum_scale") then
 		golem:FindAbilityByName("boss_golem_golem_toss"):SetActivated(false)
 	else
@@ -40,8 +38,8 @@ function boss_golem_golem_toss:OnSpellStart()
 	golem.hasBeenInitialized = true
 	
 	caster:SetModelScale( math.max( scale * 0.9, self:GetSpecialValueFor("minimum_scale") ) )
-	caster:SetBaseMaxHealth( hp - golemHP )
-	caster:SetMaxHealth( hp - golemHP )
+	caster:SetBaseMaxHealth( math.max(1, hp - golemHP) )
+	caster:SetMaxHealth( math.max(1, hp - golemHP) )
 	caster:SetBaseMoveSpeed( caster:GetBaseMoveSpeed() / scale )
 	caster:SetAverageBaseDamage( caster:GetAverageBaseDamage() * 0.9, 25 )
 end

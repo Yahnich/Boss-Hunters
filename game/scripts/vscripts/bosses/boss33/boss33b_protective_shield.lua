@@ -9,6 +9,10 @@ LinkLuaModifier("modifier_boss33b_protective_shield", "bosses/boss33/boss33b_pro
 
 function modifier_boss33b_protective_shield:OnCreated()
 	self.sdDeathDamageReduction = self:GetSpecialValueFor("sd_death_reduction")
+	local caster = self:GetCaster()
+	caster.IsTwinAlive = function( caster )
+		return caster.twinDemon and not caster.twinDemon:IsNull() and caster.twinDemon:IsAlive()
+	end
 end
 
 function modifier_boss33b_protective_shield:DeclareFunctions()

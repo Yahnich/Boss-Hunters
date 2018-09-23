@@ -21,9 +21,7 @@ function modifier_boss_golem_cracked_mass:OnTakeDamage(params)
 			shardling = CreateUnitByName("npc_dota_boss12_shardling", self:GetParent():GetAbsOrigin() + RandomVector(250), false, nil, nil, self:GetParent():GetTeam())
 			shardling:SetModelScale( math.max(shardling:GetModelScale() * scale, 0.4 ) )
 			shardling:SetAverageBaseDamage( shardling:GetAverageBaseDamage() * math.min(scale * 2, 1), 25 )
-			shardling:SetBaseMaxHealth( hp )
-			shardling:SetMaxHealth( hp )
-			shardling:SetHealth( hp )
+			shardling:SetCoreHealth( math.max(1, hp) )
 			shardling.hasBeenInitialized = true
 			shardling:SetBaseMoveSpeed( math.min( 350, self:GetParent():GetBaseMoveSpeed() / scale ) )
 		end

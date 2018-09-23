@@ -247,7 +247,7 @@ function AICore:BeAHugeCoward( entity, runbuffer )
 	if nearest and not entity:GetTauntTarget() then
 		local direction = (nearest:GetAbsOrigin()-entity:GetAbsOrigin()):Normalized()
 		local distance = (nearest:GetAbsOrigin()-entity:GetAbsOrigin()):Length2D()
-		position = entity:GetAbsOrigin() + (-direction)*RandomInt(100,300)
+		position = entity:GetAbsOrigin() + (-direction)*entity:GetIdealSpeed() * 0.5
 		if distance < runbuffer then
 			ExecuteOrderFromTable({
 				UnitIndex = entity:entindex(),

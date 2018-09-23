@@ -9,6 +9,10 @@ LinkLuaModifier("modifier_boss33a_protective_ward", "bosses/boss33/boss33a_prote
 
 function modifier_boss33a_protective_ward:OnCreated()
 	self.sfDeathDamageReduction = self:GetSpecialValueFor("sf_death_reduction")
+	local caster = self:GetCaster()
+	caster.IsTwinAlive = function( caster )
+		return caster.twinDemon and not caster.twinDemon:IsNull() and caster.twinDemon:IsAlive()
+	end
 end
 
 function modifier_boss33a_protective_ward:DeclareFunctions()

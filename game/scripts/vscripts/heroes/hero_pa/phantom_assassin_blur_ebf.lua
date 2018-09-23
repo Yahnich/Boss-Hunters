@@ -13,6 +13,12 @@ function modifier_phantom_assassin_blur_ebf:OnCreated()
     self.trueEvasion = self:GetAbility():GetSpecialValueFor("true_evasion")
 end
 
+function modifier_phantom_assassin_blur_ebf:OnRefresh()
+    self.evasion = self:GetAbility():GetSpecialValueFor("bonus_evasion_tooltip")
+    self.evasion_stack = self:GetAbility():GetSpecialValueFor("evasion_stacks")
+    self.trueEvasion = self:GetAbility():GetSpecialValueFor("true_evasion")
+end
+
 function modifier_phantom_assassin_blur_ebf:DeclareFunctions()
     funcs = {
                 MODIFIER_EVENT_ON_ATTACK_START,

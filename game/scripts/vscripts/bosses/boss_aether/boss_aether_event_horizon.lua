@@ -90,6 +90,6 @@ function modifier_boss_aether_event_horizon_debuff:OnIntervalThink()
 	if IsServer() then
 		local parent = self:GetParent()
 		local caster = self:GetCaster()
-		self:GetAbility():DealDamage( caster, parent, enemy:GetMaxHealth() * self.damage, {damage_type = DAMAGE_TYPE_PURE, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION} )
+		self:GetAbility():DealDamage( caster, parent, parent:GetMaxHealth() * self.damage, {damage_type = DAMAGE_TYPE_PURE, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION} )
 	end
 end

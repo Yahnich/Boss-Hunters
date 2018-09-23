@@ -121,13 +121,13 @@ modifier_glacier_boots_debuff = class({})
 function modifier_glacier_boots_debuff:OnCreated()
 	self.attackslow = self:GetAbility():GetSpecialValueFor("aura_slow")
 	self.active_attackslow = self:GetAbility():GetSpecialValueFor("active_as")
-	self.active_moveslow = self:GetAbility():GetSpecialValueFor("active_ms")
+	self.active_moveslow = self:GetAbility():GetSpecialValueFor("aura_slow")
 end
 
 function modifier_glacier_boots_debuff:OnRefresh()
 	self.attackslow = self:GetAbility():GetSpecialValueFor("aura_slow")
 	self.active_attackslow = self:GetAbility():GetSpecialValueFor("active_as")
-	self.active_moveslow = self:GetAbility():GetSpecialValueFor("active_ms")
+	self.active_moveslow = self:GetAbility():GetSpecialValueFor("aura_slow")
 end
 
 function modifier_glacier_boots_debuff:DeclareFunctions()

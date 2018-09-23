@@ -46,7 +46,7 @@ end
 function modifier_boss_sloth_demon_slime_trail_pool:OnIntervalThink()
 	local parent = self:GetParent()
 	local caster = self:GetCaster()
-	if caster:IsNull() then
+	if not caster or caster:IsNull() then
 		self:Destroy()
 		parent:ForceKill(false)
 		return
