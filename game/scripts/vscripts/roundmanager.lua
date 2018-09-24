@@ -425,7 +425,7 @@ function RoundManager:EndEvent(bWonRound)
 				return 0.25
 			end
 		end)
-		local fTime = ( PREP_TIME * 2 ) / GameRules:GetGameDifficulty()
+		local fTime = ( (PREP_TIME or 30) * 2 ) / GameRules:GetGameDifficulty()
 		if RoundManager:GetCurrentEvent() and RoundManager:GetCurrentEvent():IsEvent() then
 			fTime = 5
 		end

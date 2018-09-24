@@ -50,7 +50,7 @@ function AIThink(thisEntity)
 		local target = AICore:GetHighestPriorityTarget( thisEntity )
 		if thisEntity.crumple:IsFullyCastable() then
 			if not target or thisEntity.crumple:GetTrueCastRange() < CalculateDistance( target, thisEntity ) then
-				local nearest = AICore:NearestEnemyHeroInRange( thisEntity, thisEntity.crumple:GetTrueCastRange(), false)
+				local nearest = AICore:NearestEnemyHeroInRange( thisEntity, thisEntity.crumple:GetTrueCastRange() + thisEntity:GetIdealSpeed(), false)
 				if nearest then
 					return CastCrumple(nearest:GetAbsOrigin(), thisEntity)
 				end

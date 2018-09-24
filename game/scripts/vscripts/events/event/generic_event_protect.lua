@@ -1,7 +1,8 @@
 local function CheckPlayerChoices(self)
-	for pID = 0, 24 do
-		if self._playerChoices[pID] then	
-			return true
+	for _, hero in ipairs( HeroList:GetActiveHeroes() ) do
+		local pID = hero:GetPlayerID()
+		if pID and not self._playerChoices[pID] then
+			return false
 		end
 	end
 	if not self.eventEnded then
