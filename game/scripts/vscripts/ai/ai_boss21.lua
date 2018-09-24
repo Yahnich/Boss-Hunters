@@ -48,7 +48,7 @@ if IsServer() then
 						end
 					end
 					if thisEntity.execute and thisEntity.execute:IsFullyCastable() then
-						local executeTarget = thisEntity.execute:NearestExecuteableTarget( thisEntity.execute:GetTrueCastRange() + thisEntity:GetIdealSpeed() ) or target
+						local executeTarget = thisEntity.execute:NearestExecuteableTarget( thisEntity.execute:GetTrueCastRange() + thisEntity:GetIdealSpeed() )
 						if executeTarget and not executeTarget:IsNull() then
 							ExecuteOrderFromTable({
 								UnitIndex = thisEntity:entindex(),

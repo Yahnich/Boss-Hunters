@@ -637,6 +637,9 @@ function RoundManager:InitializeUnit(unit, bElite)
 	unit:SetAverageBaseDamage( expectedDamage * effPlayerDMGMult, 33)
 	unit:SetBaseHealthRegen(RoundManager:GetEventsFinished() * RandomFloat(0.85, 1.15) )
 	
+	local msBonus = unit:GetBaseMoveSpeed() * 0.05 * effective_multiplier * (GameRules:GetGameDifficulty() / 2)
+	unit:SetBaseMoveSpeed( unit:GetBaseMoveSpeed() + msBonus )
+	
 	local bonusArmor = math.min( RoundManager:GetRaidsFinished() + RoundManager:GetZonesFinished() * 2.5, 60 )
 	if not unit:IsRoundBoss() then
 		bonusArmor =  math.min( RoundManager:GetRaidsFinished(), 20 )

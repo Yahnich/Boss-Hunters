@@ -1,12 +1,9 @@
 local function CheckPlayerChoices(self)
-	local count = 0
-	for pID, choice in pairs( self._playerChoices ) do
-		if not choice then
-			return false
+	for pID = 0, 24 do
+		if self._playerChoices[pID] then	
+			return true
 		end
-		count = count + 1
 	end
-	if count == 0 then return false end
 	self:StartCombat(true)
 	return true
 end
