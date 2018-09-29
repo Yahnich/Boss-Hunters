@@ -33,7 +33,7 @@ function modifier_item_lazarus_rags:OnCreated()
 	self.manaregen = self:GetSpecialValueFor("mana_regen")
 	self.hp_regen = self:GetAbility():GetSpecialValueFor("bonus_health_regen")
 	self.bonus_mana = self:GetSpecialValueFor("bonus_mana")
-	self.ms = self.bonus_mana = self:GetSpecialValueFor("bonus_ms")
+	self.ms = self:GetSpecialValueFor("bonus_ms")
 end
 
 function modifier_item_lazarus_rags:DeclareFunctions()
@@ -45,7 +45,7 @@ function modifier_item_lazarus_rags:DeclareFunctions()
 			MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE}
 end
 
-function modifier_item_archmages_orb_passive:GetModifierMoveSpeedBonus_Special_Boots()
+function modifier_item_lazarus_rags:GetModifierMoveSpeedBonus_Special_Boots()
 	return self.ms
 end
 

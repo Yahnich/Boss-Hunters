@@ -40,17 +40,15 @@ local function StartCombat(self)
 				for _, hero in ipairs( HeroList:GetActiveHeroes() ) do
 					local roll = RandomInt(1, 13)
 					local demonType = "npc_dota_boss5b"
-					if roll <= 10 then
-						demonType = "npc_dota_boss5b"
-					elseif roll == 11 then
+					if roll == 10 then
 						demonType = "npc_dota_boss33_a"
-					elseif roll == 12 then
+					elseif roll == 11 then
 						demonType = "npc_dota_boss33_b"
-					elseif roll == 13 then
-						demonType = "npc_dota_sloth_demon"
+					elseif roll == 12 then
+						demonType = "npc_dota_boss_sloth_demon"
 					end
 					local demon = CreateUnitByName(demonType, hero:GetAbsOrigin() + ActualRandomVector(1200, 600), true, nil, nil, DOTA_TEAM_BADGUYS)
-					if demon
+					if demon then
 						demon:SetAverageBaseDamage( math.min(7, roll) * 15, 35 )
 						if demonType ~= "npc_dota_boss5b" then
 							demon:SetCoreHealth(250)

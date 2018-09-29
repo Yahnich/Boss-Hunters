@@ -37,6 +37,16 @@ end
 modifier_elite_nimble_buff = class({})
 LinkLuaModifier("modifier_elite_nimble_buff", "elites/elite_nimble", LUA_MODIFIER_MOTION_NONE)
 
+if IsServer() then
+	function modifier_elite_nimble_buff:OnCreated()
+		self:StartDelayedCooldown()
+	end
+	
+	function modifier_elite_nimble_buff:OnDestroy()
+		self:EndDelayedCooldown()
+	end
+end
+
 function modifier_elite_nimble_buff:DeclareFunctions()
 	return {MODIFIER_PROPERTY_AVOID_DAMAGE}
 end

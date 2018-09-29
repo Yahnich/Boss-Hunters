@@ -11,8 +11,10 @@ end
 
 function modifier_mana_regen_throttle:OnIntervalThink()
 	local int = self:GetParent():GetIntellect()
-	local result = (1 - ( (27*int + 2000) / (5 * (9 * int + 400) ) ) ) * 100
-	self:SetStackCount(result * 100)
+	self:SetStackCount( 0 )
+	if IsServer() then self:GetParent():CalculateStatBonus() end
+	local result = ( ( self:GetParent():GetManaRegen() - ( self:GetParent():GetBaseManaRegen() + self:GetParent():GetBonusManaRegen() ) ) * 0.25 ) / self:GetParent():GetManaRegenMultiplier()
+	self:SetStackCount( math.ceil( result * 100 ) )
 	if IsServer() then self:GetParent():CalculateStatBonus() end
 end
 
@@ -23,10 +25,10 @@ end
 
 
 function modifier_mana_regen_throttle:DeclareFunctions()
-	return {MODIFIER_PROPERTY_MP_REGEN_AMPLIFY_PERCENTAGE}
+	return {MODIFIER_PROPERTY_MANA_REGEN_CONSTANT }
 end
 
-function modifier_mana_regen_throttle:GetModifierMPRegenAmplify_Percentage(params)
+function modifier_mana_regen_throttle:GetModifierConstantManaRegen(params)
 	return - self:GetStackCount() / 100
 end
 

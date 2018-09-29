@@ -92,6 +92,16 @@ end
 modifier_item_ward_of_life_cd = class({})
 LinkLuaModifier( "modifier_item_ward_of_life_cd", "items/item_ward_of_life.lua", LUA_MODIFIER_MOTION_NONE )
 
+if IsServer() then
+	function modifier_item_ward_of_life_cd:OnCreated()
+		self:GetAbility():StartDelayedCooldown()
+	end
+	
+	function modifier_item_ward_of_life_cd:OnDestroy()
+		self:GetAbility():EndDelayedCooldown()
+	end
+end
+
 function modifier_item_ward_of_life_cd:IsPurgable()
 	return false
 end
