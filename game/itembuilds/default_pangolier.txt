@@ -19,8 +19,6 @@ itembuilds"
 		{
 
 			"item"	"item_iron_rod"
-
-			"item"	"item_pages_buckler"
 			
 			"item"	"item_gauntlet_of_alacrity"
 
@@ -30,15 +28,15 @@ itembuilds"
 
 		{	
 
+			"item"	"item_ice_fang"
+
 			"item"	"item_lightningrod"
 
 			"item"	"item_visionarys_cutlass"
 
-			"item"	"item_orb_of_haste"
-
 			"item"	"item_executioners_blade"
 			
-			"item"	"item_memento"
+			"item"	"item_titan_blade"
 
 		}
 
@@ -56,6 +54,8 @@ itembuilds"
 
 			"item"	"item_voltas_greathammer"
 
+			"item"	"item_winters_breath"
+
 		}
 
 		"#DOTA_Item_Build_Luxury"
@@ -66,19 +66,13 @@ itembuilds"
 
 			"item"	"item_soothslayer"
 
-			"item"	"item_lightningbottle"
-
-			"item"	"item_pressence_booster"
-
-			"item"	"item_lifeweavers_clockwork"
-
 			"item"	"item_culling_greataxe"
 
 			"item"	"item_behemoths_heart"
 
 			"item"	"item_ferrum_ascensus"
-
-			"item"	"item_winters_breath"
+			
+			"item"	"item_leechblade"
 
 		}
 
