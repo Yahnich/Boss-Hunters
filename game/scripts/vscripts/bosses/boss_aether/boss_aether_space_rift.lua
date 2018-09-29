@@ -24,9 +24,11 @@ function boss_aether_space_rift:OnSpellStart()
 	local enemies = caster:FindEnemyUnitsInRadius(target, suckRad)
 	EmitSoundOn("Hero_Weaver.TimeLapse", caster)
 	for _, enemy in ipairs( enemies ) do
-		enemy:AddNewModifier(caster, self, "modifier_boss_aether_space_rift_motion", {duration = suckDuration})
-		if CalculateDistance(enemy, caster) <= impactRad then
-			self:DealDamage( caster, enemy, damage * enemy:GetHealth(), {damage_type = DAMAGE_TYPE_PURE, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION} )
+		if not enemy:TriggerSpellAbsorb(self) then 
+			enemy:AddNewModifier(caster, self, "modifier_boss_aether_space_rift_motion", {duration = suckDuration})
+			if CalculateDistance(enemy, caster) <= impactRad then
+				self:DealDamage( caster, enemy, damage * enemy:GetHealth(), {damage_type = DAMAGE_TYPE_PURE, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION} )
+			end
 		end
 	end
 	Timers:CreateTimer(suckDuration, function() ParticleManager:ClearParticle(self.riftFX) end)

@@ -141,7 +141,10 @@
 // #base "items/item_tricksters_blade.txt"
 // #base "items/item_mirrors_edge.txt"
 
-// Next ID is 7084
+#base "items/item_protection_sphere.txt"
+#base "items/item_ward_of_life.txt"
+
+// Next ID is 7088
 
 "DOTAAbilities"
 {

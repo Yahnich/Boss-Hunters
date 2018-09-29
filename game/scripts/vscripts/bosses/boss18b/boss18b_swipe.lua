@@ -43,8 +43,10 @@ function boss18b_swipe:OnSpellStart()
 			ParticleManager:FireParticle("particles/dev/library/base_attack_swipe.vpcf", PATTACH_WORLDORIGIN, nil, {[0] = newPos, [1] =  caster:GetAnglesAsVector()})
 			local enemies = caster:FindEnemyUnitsInRadius(newPos, distance/2)
 			for _, enemy in ipairs(enemies) do
-				caster:PerformGenericAttack(enemy, true)
-				enemy:AddNewModifier(caster, self, "modifier_boss18b_swipe_bleed", {duration = self:GetSpecialValueFor("duration")})
+				if not enemy:TriggerSpellAbsorb(self) then
+					caster:PerformGenericAttack(enemy, true)
+					enemy:AddNewModifier(caster, self, "modifier_boss18b_swipe_bleed", {duration = self:GetSpecialValueFor("duration")})
+				end
 			end
 		end
 	end
@@ -56,8 +58,10 @@ function boss18b_swipe:OnSpellStart()
 			ParticleManager:FireParticle("particles/dev/library/base_attack_swipe.vpcf", PATTACH_WORLDORIGIN, nil, {[0] = newPos, [1] =  caster:GetAnglesAsVector()})
 			local enemies = caster:FindEnemyUnitsInRadius(newPos, distance/2)
 			for _, enemy in ipairs(enemies) do
-				caster:PerformGenericAttack(enemy, true)
-				enemy:AddNewModifier(caster, self, "modifier_boss18b_swipe_bleed", {duration = self:GetSpecialValueFor("duration")})
+				if not enemy:TriggerSpellAbsorb(self) then
+					caster:PerformGenericAttack(enemy, true)
+					enemy:AddNewModifier(caster, self, "modifier_boss18b_swipe_bleed", {duration = self:GetSpecialValueFor("duration")})
+				end
 			end
 		end
 	end

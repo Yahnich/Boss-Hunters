@@ -12,7 +12,7 @@ function modifier_boss_necro_deathbringer:DeclareFunctions()
 end
 
 function modifier_boss_necro_deathbringer:OnDeath(params)
-	if params.attacker == self:GetParent() then
+	if params.attacker == self:GetParent() and not params.attacker:PassivesDisabled() then
 		self:GetParent():AddNewModifier( self:GetParent(), self:GetAbility(), "modifier_boss_necro_deathbringer_damage", {} )
 	end
 end

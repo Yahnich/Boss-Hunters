@@ -9,6 +9,7 @@ function boss_aeon_sins_of_the_past:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 	
+	if target:TriggerSpellAbsorb(self) or target:GetHealth() <= 0 then return end
 	local illusion = self:ConjureImage( target )
 	caster:AddNewModifier( caster, self, "modifier_boss_aeon_sins_of_the_past", {})
 	Timers:CreateTimer(function()

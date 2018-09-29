@@ -54,14 +54,17 @@ function modifier_boss_troll_warlord_enrage:DeclareFunctions()
 end
 
 function modifier_boss_troll_warlord_enrage:GetModifierAttackSpeedBonus_Constant()
+	if self:GetParent():PassivesDisabled() then return end
     return self:GetSpecialValueFor("bonus_as")
 end
 
 function modifier_boss_troll_warlord_enrage:GetModifierMoveSpeedBonus_Percentage()
+	if self:GetParent():PassivesDisabled() then return end
     return self:GetSpecialValueFor("bonus_ms")
 end
 
 function modifier_boss_troll_warlord_enrage:GetBaseAttackTime_Bonus()
+	if self:GetParent():PassivesDisabled() then return end
     return self:GetSpecialValueFor("bonus_at")
 end
 

@@ -23,6 +23,7 @@ end
 if IsServer() then
 	function boss19_chasm:OnProjectileHit(target, position)
 		if not target then return end
+		if target:TriggerSpellAbsorb(self) then return true end
 		local caster =  self:GetCaster()
 		local ability = self
 		local knockUpDuration = self:GetSpecialValueFor("knockup_duration")

@@ -15,9 +15,11 @@ function boss_greymane_furious_swipe:OnSpellStart()
 	
 	caster:EmitSound("Hero_Riki.Backstab")
 	for _, enemy in ipairs( caster:FindEnemyUnitsInCone(direction, caster:GetAbsOrigin(), self:GetSpecialValueFor("cone_angle"), self:GetCaster():GetAttackRange() * 2) ) do
-		ParticleManager:FireParticle("particles/units/heroes/hero_riki/riki_backstab.vpcf", PATTACH_POINT_FOLLOW, enemy)
-		caster:PerformGenericAttack( enemy, true )
-		enemy:AddNewModifier( caster, self, "modifier_boss_greymane_furious_swipe", {duration = duration})
+		if not enemy:TriggerSpellAbsorb(self) then
+			ParticleManager:FireParticle("particles/units/heroes/hero_riki/riki_backstab.vpcf", PATTACH_POINT_FOLLOW, enemy)
+			caster:PerformGenericAttack( enemy, true )
+			enemy:AddNewModifier( caster, self, "modifier_boss_greymane_furious_swipe", {duration = duration})
+		end
 	end
 end
 

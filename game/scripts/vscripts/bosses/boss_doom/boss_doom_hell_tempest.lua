@@ -50,5 +50,9 @@ function boss_doom_hell_tempest:OnProjectileHitHandle( target, position, projID 
 	if not target then
 		ParticleManager:ClearParticle( self.tornadoes[projID] )
 		self.tornadoes[projID] = nil
+	if target and target:TriggerSpellAbsorb(self) then
+		ParticleManager:ClearParticle( self.tornadoes[projID] )
+		self.tornadoes[projID] = nil
+		return true
 	end
 end

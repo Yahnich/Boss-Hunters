@@ -50,11 +50,13 @@ local function StartCombat(self)
 						demonType = "npc_dota_sloth_demon"
 					end
 					local demon = CreateUnitByName(demonType, hero:GetAbsOrigin() + ActualRandomVector(1200, 600), true, nil, nil, DOTA_TEAM_BADGUYS)
-					demon:SetAverageBaseDamage( math.min(7, roll) * 15, 35 )
-					if demonType ~= "npc_dota_boss5b" then
-						demon:SetCoreHealth(250)
+					if demon
+						demon:SetAverageBaseDamage( math.min(7, roll) * 15, 35 )
+						if demonType ~= "npc_dota_boss5b" then
+							demon:SetCoreHealth(250)
+						end
+						demon:SetModelScale(1)
 					end
-					demon:SetModelScale(1)
 				end
 					
 				return math.max( 8, (self.timeRemaining or 60) / 5 )

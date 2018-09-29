@@ -10,6 +10,7 @@ function boss_aeon_fetal_syndrome:OnSpellStart()
 	local target = self:GetCursorTarget()
 	
 	target:EmitSound("Hero_Bane.Enfeeble")
+	if enemy:TriggerSpellAbsorb(self) then return end
 	target:AddNewModifier(caster, self, "modifier_boss_aeon_fetal_syndrome", {duration = self:GetSpecialValueFor("duration")})
 end
 

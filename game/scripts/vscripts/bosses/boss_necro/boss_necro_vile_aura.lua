@@ -43,7 +43,7 @@ function modifier_boss_necro_vile_aura:OnIntervalThink()
 end
 
 function modifier_boss_necro_vile_aura:IsAura()
-	return true
+	return self:GetCaster():PassivesDisabled()
 end
 
 function modifier_boss_necro_vile_aura:GetModifierAura()

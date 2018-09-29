@@ -49,7 +49,7 @@ end
 function modifier_boss_genesis_deconstruction_debuff:GetModifierHealthRegenPercentage()
 	if self:GetCaster():HasModifier("modifier_boss_genesis_strengthen_resolve") then
 		return self:GetSpecialValueFor("regen_buff")
-	else
+	elseif not self:GetCaster():PassivesDisabled() then
 		return self:GetSpecialValueFor("regen")
 	end
 end

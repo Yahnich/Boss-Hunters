@@ -19,7 +19,9 @@ function boss19_burrow:OnSpellStart()
 	FindClearSpaceForUnit(caster, position, true)
 	local enemies = caster:FindEnemyUnitsInRadius(position, stunRadius)
 	for _, enemy in ipairs(enemies) do
-		self:DealDamage(caster, enemy, damage)
+		if not enemy:TriggerSpellAbsorb(self) then
+			self:DealDamage(caster, enemy, damage)
+		end
 	end
 	
 	caster:StartGesture(ACT_DOTA_CAST_BURROW_END)

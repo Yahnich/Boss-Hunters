@@ -63,9 +63,11 @@ if IsServer() then
 			local enemies = parent:FindEnemyUnitsInRadius(parent:GetAbsOrigin(), self:GetSpecialValueFor("radius"))
 			for _,enemy in pairs(enemies) do
 				if enemy:IsHero() then
-					self:GetAbility().enemy = enemy
-					parent:AddNewModifier(parent, self:GetAbility(), "modifier_boss_troll_warlord_savage_leap_ride", {Duration = self:GetSpecialValueFor("duration")})
-					self:GetAbility().enemy:Daze(self:GetAbility(), self:GetCaster(), self:GetSpecialValueFor("duration"))
+					if not enemy:TriggerSpellAbsorb(self) then
+						self:GetAbility().enemy = enemy
+						parent:AddNewModifier(parent, self:GetAbility(), "modifier_boss_troll_warlord_savage_leap_ride", {Duration = self:GetSpecialValueFor("duration")})
+						self:GetAbility().enemy:Daze(self:GetAbility(), self:GetCaster(), self:GetSpecialValueFor("duration"))
+					end
 					break
 				end
 			end

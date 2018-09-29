@@ -28,7 +28,7 @@ end
 
 function modifier_boss_genesis_pacifism:OnTakeDamage(params)
 	local ability = self:GetAbility()
-	if params.unit == self:GetParent() and ability:IsCooldownReady() then
+	if params.unit == self:GetParent() and ability:IsCooldownReady() and not self:GetParent():PassivesDisabled() then
 		local duration = self:GetSpecialValueFor("duration")
 		params.attacker:Disarm( params.unit, ability, duration)
 		params.attacker:Silence( params.unit, ability, duration)

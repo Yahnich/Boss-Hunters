@@ -112,12 +112,12 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"max_hp_damage"				"8 12"
+				"max_hp_damage"				"6 8"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"duration"					"6"
+				"duration"					"3 4"
 			}
 			"03"
 			{

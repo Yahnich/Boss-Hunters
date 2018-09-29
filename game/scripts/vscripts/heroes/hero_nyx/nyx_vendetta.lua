@@ -14,8 +14,8 @@ end
 
 modifier_nyx_vendetta = class({})
 function modifier_nyx_vendetta:OnCreated(table)
-    self.move = self:GetSpecialValueFor("movement_speed")
-    self.damage = self:GetSpecialValueFor("damage")
+    self.move = self:GetTalentSpecialValueFor("movement_speed")
+    self.damage = self:GetTalentSpecialValueFor("damage")
 
 	if IsServer() then self:GetCaster():CalculateStatBonus() end
 end
@@ -92,7 +92,7 @@ end
 
 function modifier_nyx_vendetta:GetModifierAttackRangeBonus()
 	if self:GetParent():HasModifier("modifier_nyx_burrow") then
-		return self:GetSpecialValueFor("attack_range")
+		return self:GetTalentSpecialValueFor("attack_range")
 	end
 end
 

@@ -75,6 +75,7 @@ end
 --------------------------------------------------------------------------------
 
 function boss15_exorcise:OnLinearProjectileHit( hTarget )
+	if hTarget:TriggerSpellAbsorb(self) then return true end
 	if hTarget ~= nil and ( not hTarget:IsMagicImmune() ) and ( not hTarget:IsInvulnerable() ) then
 		local damage = {
 			victim = hTarget,

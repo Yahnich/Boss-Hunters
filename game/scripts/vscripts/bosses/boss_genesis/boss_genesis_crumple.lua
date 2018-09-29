@@ -14,8 +14,10 @@ function boss_genesis_crumple:OnSpellStart()
 	local stunDur = self:GetSpecialValueFor("stun")
 	
 	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( position, radius ) ) do
-		self:DealDamage( caster, enemy, damage, {damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION} )
-		self:Stun( enemy, stunDur )
+		if not enemy:TriggerSpellAbsorb(self) then
+			self:DealDamage( caster, enemy, damage, {damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION} )
+			self:Stun( enemy, stunDur )
+		end
 	end
 	ParticleManager:FireParticle("particles/test_particle/ogre_melee_smash.vpcf", PATTACH_WORLDORIGIN, nil, {[0] = position, [1] = Vector(radius, 1, 1) })
 	EmitSoundOnLocationWithCaster(position, "Hero_Leshrac.Split_Earth", caster)

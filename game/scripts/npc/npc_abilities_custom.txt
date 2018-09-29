@@ -1176,7 +1176,7 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"6"
+		"AbilityCooldown"				"12"
 		"AbilityCastPoint"				"0.8 0.5"
 	
 		// Cost
@@ -1231,12 +1231,12 @@
 			"01"
 	        {
 	            "var_type"              "FIELD_FLOAT"
-	            "damage"             	"100"  //The meteor lands on the ground this many seconds after it was cast.
+	            "damage"             	"150 200"  //The meteor lands on the ground this many seconds after it was cast.
 	        }
 	        "02"
 	        {
 	            "var_type"              "FIELD_FLOAT"
-	            "duration"             "1.5"  //The meteor lands on the ground this many seconds after it was cast.
+	            "duration"              "2"  //The meteor lands on the ground this many seconds after it was cast.
 	        }
 		}
 	}

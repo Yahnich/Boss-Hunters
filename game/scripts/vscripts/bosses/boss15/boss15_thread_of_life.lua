@@ -34,10 +34,14 @@ function boss15_thread_of_life:OnSpellStart()
 		local radius = math.max( self:GetTrueCastRange(), CalculateDistance( caster, target ) + caster:GetHullRadius() + target:GetHullRadius() )
 		local enemies = caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), radius )
 		for _, enemy in ipairs(enemies) do
-			self:CreateTether(enemy)
+			if not enemy:TriggerSpellAbsorb(self) then
+				self:CreateTether(enemy)
+			end
 		end
 	else
-		self:CreateTether(target)
+		if not target:TriggerSpellAbsorb(self) then
+			self:CreateTether(target)
+		end
 	end
 end
 

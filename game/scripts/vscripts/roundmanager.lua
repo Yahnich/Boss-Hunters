@@ -111,7 +111,7 @@ function RoundManager:OnNPCSpawned(event)
 					EmitSoundOn("DOTA_Item.BlinkDagger.NailedIt", spawnedUnit)
 				end
 				if not spawnedUnit.hasBeenInitialized then
-					RoundManager:InitializeUnit(spawnedUnit, spawnedUnit:IsRoundBoss() and (RoundManager:GetCurrentEvent():IsElite() or RoundManager:GetAscensions() > 0) )
+					RoundManager:InitializeUnit(spawnedUnit, spawnedUnit:IsRoundBoss() and ( (RoundManager:GetCurrentEvent() and RoundManager:GetCurrentEvent():IsElite()) or RoundManager:GetAscensions() > 0) )
 					GridNav:DestroyTreesAroundPoint(spawnedUnit:GetAbsOrigin(), spawnedUnit:GetHullRadius() + spawnedUnit:GetCollisionPadding() + 350, true)
 					FindClearSpaceForUnit(spawnedUnit, spawnedUnit:GetAbsOrigin(), true)
 				end

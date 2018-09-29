@@ -12,7 +12,9 @@ function boss_aeon_deteriorate:OnSpellStart()
 	local radius = self:GetSpecialValueFor("radius")
 	
 	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( position, radius ) ) do
-		enemy:AddNewModifier(caster, self, "modifier_boss_aeon_deteriorate", {duration = self:GetSpecialValueFor("duration")})
+		if not enemy:TriggerSpellAbsorb(self) then
+			enemy:AddNewModifier(caster, self, "modifier_boss_aeon_deteriorate", {duration = self:GetSpecialValueFor("duration")})
+		end
 	end
 	
 	caster:EmitSound("Hero_Dazzle.Weave")

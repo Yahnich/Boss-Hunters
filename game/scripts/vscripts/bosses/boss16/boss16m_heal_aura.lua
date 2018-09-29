@@ -15,6 +15,7 @@ if IsServer() then
 	
 	function modifier_boss16m_heal_aura:OnIntervalThink()
 		local dragon = self:GetCaster().owningDragon
+		if dragon:PassivesDisabled() then return end
 		if not dragon or dragon:IsNull() then
 			self:StartIntervalThink(-1)
 			return -1

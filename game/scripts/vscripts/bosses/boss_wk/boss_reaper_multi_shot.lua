@@ -29,7 +29,7 @@ function modifier_boss_reaper_multi_shot:DeclareFunctions()
 end
 
 function modifier_boss_reaper_multi_shot:OnAttack(params)
-	if params.attacker == self:GetParent() then
+	if params.attacker == self:GetParent() and not params.attacker:PassivesDisabled() then
 		if self.hits > self.procHit then
 			self.hits = 0
 			for _, enemy in ipairs( params.attacker:FindEnemyUnitsInRadius( params.target:GetAbsOrigin(), self.radius ) ) do

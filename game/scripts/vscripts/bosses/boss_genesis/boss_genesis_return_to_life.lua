@@ -12,8 +12,10 @@ function boss_genesis_return_to_life:OnSpellStart()
 	local heroes = HeroList:GetActiveHeroes()
 	
 	for _, hero in ipairs( heroes ) do
-		self:ConjureImage( hero )
-		hero:EmitSound("Hero_Omniknight.Attack.Post")
+		if not hero:TriggerSpellAbsorb(self) and hero:IsAlive() and hero:GetHealth() > 0 then
+			self:ConjureImage( hero )
+			hero:EmitSound("Hero_Omniknight.Attack.Post")
+		end
 	end
 end
 
@@ -73,20 +75,6 @@ function  boss_genesis_return_to_life:ConjureImage( target )
 	end
 	
 	illusion:AddNewModifier( target, self, "modifier_illusion_bonuses", { duration = duration })
-	
-	-- Recreate the items of the caster
-	for itemSlot=0,5 do
-		local item = target:GetItemInSlot(itemSlot)
-		if item ~= nil then
-			local itemName = item:GetName()
-			local newItem = CreateItem(itemName, nil, nil)
-			newItem:SetStacksWithOtherOwners(true)
-			illusion:AddItem(newItem)
-			newItem:SetPurchaser(nil)
-			
-		end
-	end
-
 	-- Set the unit as an illusion
 	-- modifier_illusion controls many illusion properties like +Green damage not adding to the unit damage, not being able to cast spells and the team-only blue particle
 	illusion:AddNewModifier(target, self, "modifier_illusion", { outgoing_damage = self:GetSpecialValueFor("outgoing") - 100, incoming_damage = self:GetSpecialValueFor("incoming") - 100 })
@@ -109,7 +97,6 @@ function  boss_genesis_return_to_life:ConjureImage( target )
 	
 	illusion.hasBeenInitialized = true	
 	-- Without MakeIllusion the unit counts as a hero, e.g. if it dies to neutrals it says killed by neutrals, it respawns, etc.
-	illusion:MakeIllusion()
 	illusion.isCustomIllusion = true
 	return illusion
 end

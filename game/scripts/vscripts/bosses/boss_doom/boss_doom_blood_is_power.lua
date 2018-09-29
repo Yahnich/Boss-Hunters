@@ -16,6 +16,7 @@ function modifier_boss_doom_blood_is_power:DeclareFunctions()
 end
 
 function modifier_boss_doom_blood_is_power:GetModifierPercentageCooldown()
+	if self:GetParent():PassivesDisabled() then return end
 	return math.min( self.max_cdr, 100 - self:GetParent():GetHealthPercent() )
 end
 

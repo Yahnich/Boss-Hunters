@@ -21,12 +21,14 @@ function modifier_boss_warlock_fatal_bonds_primary:OnCreated(table)
 		local enemies = caster:FindEnemyUnitsInRadius(parent:GetAbsOrigin(), FIND_UNITS_EVERYWHERE, {order = FIND_CLOSEST})
 		for _,enemy in pairs(enemies) do
 			if enemy:IsHero() and currentTargets < maxTargets and enemy ~= parent then
-				local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_warlock/warlock_fatal_bonds_base.vpcf", PATTACH_POINT_FOLLOW, caster)
-							ParticleManager:SetParticleControlEnt(nfx, 0, parent, PATTACH_POINT_FOLLOW, "attach_hitloc", parent:GetAbsOrigin(), true)
-							ParticleManager:SetParticleControlEnt(nfx, 1, enemy, PATTACH_POINT_FOLLOW, "attach_hitloc", enemy:GetAbsOrigin(), true)
-				self:AttachEffect(nfx)
+				if not enemy:TriggerSpellAbsorb(self) then
+					local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_warlock/warlock_fatal_bonds_base.vpcf", PATTACH_POINT_FOLLOW, caster)
+								ParticleManager:SetParticleControlEnt(nfx, 0, parent, PATTACH_POINT_FOLLOW, "attach_hitloc", parent:GetAbsOrigin(), true)
+								ParticleManager:SetParticleControlEnt(nfx, 1, enemy, PATTACH_POINT_FOLLOW, "attach_hitloc", enemy:GetAbsOrigin(), true)
+					self:AttachEffect(nfx)
 
-				enemy:AddNewModifier(caster, self, "modifier_boss_warlock_fatal_bonds_secondary", {Duration = self:GetSpecialValueFor("duration")})
+					enemy:AddNewModifier(caster, self, "modifier_boss_warlock_fatal_bonds_secondary", {Duration = self:GetSpecialValueFor("duration")})
+				end
 				currentTargets = currentTargets + 1
 			end
 		end

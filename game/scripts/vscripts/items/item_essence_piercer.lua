@@ -27,7 +27,7 @@ function modifier_item_essence_piercer_passive:DeclareFunctions()
 	return {MODIFIER_PROPERTY_CAST_RANGE_BONUS,
 			MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
 			MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,
-			MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,}
+			MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT}
 end
 
 function modifier_item_essence_piercer_passive:GetModifierCastRangeBonus()
@@ -41,7 +41,7 @@ end
 function modifier_item_essence_piercer_passive:GetModifierSpellAmplify_Percentage()
 	return self.spellamp
 end
-function modifier_item_essence_piercer_passive:GetModifierCastRangeBonus()
+function modifier_item_essence_piercer_passive:GetModifierAttackSpeedBonus_Constant()
 	return self.as
 end
 

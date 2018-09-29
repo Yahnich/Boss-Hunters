@@ -26,8 +26,12 @@ end
 function boss_warlock_inferno_spikes:OnProjectileHit(hTarget, vLocation)
 	local caster = self:GetCaster()
 	if hTarget then
-		hTarget:AddNewModifier(caster, self, "modifier_boss_warlock_inferno_spikes", {Duration = self:GetSpecialValueFor("duration")})
-		self:DealDamage(caster, hTarget, self:GetSpecialValueFor("damage"), {}, 0)
+		local blocked = enemy:TriggerSpellAbsorb(self)
+		if not blocked then
+			hTarget:AddNewModifier(caster, self, "modifier_boss_warlock_inferno_spikes", {Duration = self:GetSpecialValueFor("duration")})
+			self:DealDamage(caster, hTarget, self:GetSpecialValueFor("damage"), {}, 0)
+			return blocked
+		end
 	end
 end
 

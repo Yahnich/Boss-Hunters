@@ -20,7 +20,9 @@ function modifier_green_dragon_rot_handle:OnIntervalThink()
 	local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), FIND_UNITS_EVERYWHERE)
 	for _,enemy in pairs(enemies) do
 		if enemy:IsHero() and (not enemy:IsMagicImmune()) and (not enemy:IsInvulnerable()) and (not enemy:HasModifier("modifier_green_dragon_rot")) and (not caster:HasModifier("modifier_green_dragon_etheral_armor")) then
-			enemy:AddNewModifier(caster, self:GetAbility(), "modifier_green_dragon_rot", {Duration = self:GetSpecialValueFor("duration")})
+			if not enemy:TriggerSpellAbsorb(self) then
+				enemy:AddNewModifier(caster, self:GetAbility(), "modifier_green_dragon_rot", {Duration = self:GetSpecialValueFor("duration")})
+			end
 			break
 		end
 	end

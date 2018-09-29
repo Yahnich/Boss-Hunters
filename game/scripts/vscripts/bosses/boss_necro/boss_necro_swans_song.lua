@@ -6,6 +6,7 @@ function boss_necro_swans_song:OnAbilityPhaseStart()
 end
 
 function boss_necro_swans_song:OnSpellStart()
+	if self:GetCursorTarget():TriggerSpellAbsorb(self) then return end
 	self:GetCursorTarget():AddNewModifier( self:GetCaster(), self, "modifier_boss_necro_swans_song", {duration = self:GetSpecialValueFor("duration")} )
 end
 

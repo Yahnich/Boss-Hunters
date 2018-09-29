@@ -290,23 +290,24 @@
 		{
 			"01"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"550"
+				"var_type"						"FIELD_INTEGER"
+				"radius"						"550"
 			}
 			"02"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"damage_percent"			"3.5"
+				"var_type"						"FIELD_FLOAT"
+				"damage_percent"				"1.25"
+				"CalculateSpellDamageTooltip"	"0"
 			}
 			"03"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"9 10 11 12 13 14 15"
+				"var_type"						"FIELD_FLOAT"
+				"duration"						"9 10 11 12 13 14 15"
 			}
 			"04"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"tick_rate"					"1"
+				"var_type"						"FIELD_FLOAT"
+				"tick_rate"						"1"
 			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"

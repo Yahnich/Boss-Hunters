@@ -28,7 +28,7 @@ function boss_troll_warlord_axe_fury:OnProjectileHitHandle(hTarget, vLocation, i
 	if hTarget then
 		EmitSoundOn("Hero_TrollWarlord.WhirlingAxes.Target", hTarget)
 		self:DealDamage(caster, hTarget, self:GetSpecialValueFor("damage"), {}, 0)
-		ProjectileManager:DestroyLinearProjectile(iProjectileHandle)
+		return true
 	end
 end
 

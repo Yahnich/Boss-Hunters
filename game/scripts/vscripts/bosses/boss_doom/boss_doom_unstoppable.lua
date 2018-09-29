@@ -19,7 +19,7 @@ function modifier_boss_doom_unstoppable:OnCreated()
 end
 
 function modifier_boss_doom_unstoppable:OnIntervalThink()
-	if self:GetParent():IsDisabled(true) and self:GetAbility():IsCooldownReady() and not self:GetParent():HasModifier("modifier_spawn_immunity") then
+	if self:GetParent():IsDisabled(true) and self:GetAbility():IsCooldownReady() and not self:GetParent():HasModifier("modifier_spawn_immunity") and not self:GetParent():PassivesDisabled() then
 		self:GetParent():AddNewModifier(self:GetParent(), self:GetAbility(), "modifier_boss_doom_unstoppable_effect", {duration = self:GetSpecialValueFor("duration")})
 		self:GetParent():AddNewModifier(self:GetParent(), self:GetAbility(), "modifier_status_immunity", {duration = self:GetSpecialValueFor("duration")})
 	end

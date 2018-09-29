@@ -26,8 +26,10 @@ function boss_reaper_necrotic_hail:OnSpellStart()
 																																			[4] = Vector(radius + 150,1,1),
 																																			[5] = Vector(radius + 150,1,1)} )
 	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( target, radius ) ) do
-		self:DealDamage(caster, enemy, damage, {damage_type = DAMAGE_TYPE_PHYSICAL})
-		enemy:AddNewModifier(caster, self, "modifier_boss_reaper_necrotic_hail", {duration = duration})
+		if not enemy:TriggerSpellAbsorb(self) then
+			self:DealDamage(caster, enemy, damage, {damage_type = DAMAGE_TYPE_PHYSICAL})
+			enemy:AddNewModifier(caster, self, "modifier_boss_reaper_necrotic_hail", {duration = duration})
+		end
 	end
 end
 

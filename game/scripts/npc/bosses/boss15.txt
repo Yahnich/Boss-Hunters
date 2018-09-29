@@ -15,7 +15,7 @@
 	
 		// Stats		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"6"
+		"AbilityCooldown"				"5 3"
 		"AbilityCastPoint"				"1.5 1"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
 	
@@ -31,7 +31,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"speed"					"900"
+				"speed"					"250"
 			}
 			"02"
 			{
@@ -110,17 +110,17 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"ghost_damage"			"8 10"
+				"ghost_damage"			"16 20"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"ghost_health"			"2 3"
+				"ghost_health"			"4 6"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"ghost_count"			"50"
+				"ghost_count"			"25"
 			}
 		}
 		"precache"
@@ -168,17 +168,17 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"20 30 40"
+				"damage"					"5 10 15"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"max_hp_damage"				"20"
+				"max_hp_damage"				"30"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"max_damage_rampup"			"15 12 10"
+				"max_damage_rampup"			"1 2"
 			}
 			"03"
 			{
@@ -188,7 +188,7 @@
 			"04"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"aoe_cooldown_increase"		"5"
+				"aoe_cooldown_increase"		"8 6"
 			}
 			"04"
 			{

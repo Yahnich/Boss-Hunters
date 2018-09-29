@@ -18,6 +18,7 @@ function boss1b_spear_pin:OnSpellStart()
 end
 
 function boss1b_spear_pin:OnProjectileHit(hTarget, vLocation)
+	if hTarget and hTarget:TriggerSpellAbsorb(self) then return true end
 	if hTarget ~= nil and ( not hTarget:IsMagicImmune() ) and ( not hTarget:IsInvulnerable() ) then
 		self:DealDamage(self:GetCaster(), hTarget, self:GetSpecialValueFor("spear_damage"))
 		hTarget:AddNewModifier(self:GetCaster(), self, "modifier_stunned_generic", {duration = self:GetSpecialValueFor("stun_duration")})

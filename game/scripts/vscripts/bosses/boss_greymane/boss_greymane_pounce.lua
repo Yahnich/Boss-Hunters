@@ -63,11 +63,15 @@ if IsServer() then
 			return
 		end
 		for _, enemy in ipairs( parent:FindEnemyUnitsInRadius( parent:GetAbsOrigin(), self.radius ) ) do
-			local caster = self:GetCaster()
-			local ability = self:GetAbility()
-			local remainingTime = math.min( ability:GetChannelTime(), ability:GetChannelTime() - (ability:GetChannelStartTime() - GameRules:GetGameTime()) )
-			enemy:AddNewModifier(caster, ability, "modifier_boss_greymane_pounce_stun", {duration = remainingTime})
-			ability.capturedTarget = enemy
+			if not enemy:TriggerSpellAbsorb(self) then
+				local caster = self:GetCaster()
+				local ability = self:GetAbility()
+				local remainingTime = math.min( ability:GetChannelTime(), ability:GetChannelTime() - (ability:GetChannelStartTime() - GameRules:GetGameTime()) )
+				enemy:AddNewModifier(caster, ability, "modifier_boss_greymane_pounce_stun", {duration = remainingTime})
+				ability.capturedTarget = enemy
+			else
+				parent:Interrupt()
+			end
 			EmitSoundOn("Hero_Slark.Pounce.Impact", enemy)
 			self:Destroy()
 			break

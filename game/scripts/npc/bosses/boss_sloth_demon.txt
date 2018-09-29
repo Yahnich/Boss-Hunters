@@ -144,7 +144,7 @@
 		"AbilityTextureName"			"winter_wyvern_cold_embrace"
 		"MaxLevel"						"2"
 		
-		"AbilityCooldown"				"40 30"
+		"AbilityCooldown"				"50"
 	
 		"precache"
 		{
@@ -163,12 +163,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"heal_per_second"		"5"
+				"heal_per_second"		"3.33 5"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"attacks_per_hero"		"6 10"
+				"attacks_per_hero"		"5 6"
 			}
 			"03"
 			{

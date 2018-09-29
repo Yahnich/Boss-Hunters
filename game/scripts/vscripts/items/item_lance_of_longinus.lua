@@ -9,7 +9,6 @@ modifier_item_lance_of_longinus = class(itemBaseClass)
 
 function modifier_item_lance_of_longinus:OnCreated()
 	self.range = self:GetSpecialValueFor("bonus_attack_range")
-	self.damage = self:GetSpecialValueFor("pierce_damage") / 100
 	self.chance = self:GetSpecialValueFor("pierce_chance")
 end
 
@@ -29,7 +28,7 @@ function modifier_item_lance_of_longinus:OnAttackLanded(params)
 	if IsServer() then
 		if params.attacker == self:GetParent() and self.miss then
 			self.miss = false
-			self:GetAbility():DealDamage(self:GetParent(), params.target, self.damage * self:GetParent():GetAttackDamage(), {damage_type = DAMAGE_TYPE_PURE}, OVERHEAD_ALERT_DAMAGE)
+			params.target:AddNewModifier(params.attacker, self:GetAbility(), "modifier_item_lance_of_longinus_proc", {duration = 0.1})
 		end
 	end
 end
@@ -42,10 +41,16 @@ function modifier_item_lance_of_longinus:IsHidden()
 	return true
 end
 
+modifier_item_lance_of_longinus_proc = class({})
+LinkLuaModifier( "modifier_item_lance_of_longinus_proc", "items/item_lance_of_longinus.lua", LUA_MODIFIER_MOTION_NONE )
 
-item_visionarys_cutlass = class({})
+function modifier_item_lance_of_longinus_proc:OnCreated()
+	if IsServer() then
+		local damage = self:GetSpecialValueFor("pierce_damage") / 100
+		self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), damage * self:GetCaster():GetAttackDamage(), {damage_type = DAMAGE_TYPE_PURE, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION}, OVERHEAD_ALERT_DAMAGE)
+	end
+end
 
-LinkLuaModifier( "modifier_item_visionarys_cutlass", "items/item_visionarys_cutlass.lua" ,LUA_MODIFIER_MOTION_NONE )
-function item_visionarys_cutlass:GetIntrinsicModifierName()
-	return "modifier_item_visionarys_cutlass"
+function modifier_item_lance_of_longinus_proc:IsHidden()
+	return true
 end

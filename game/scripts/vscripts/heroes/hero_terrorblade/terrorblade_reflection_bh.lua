@@ -18,9 +18,11 @@ function terrorblade_reflection_bh:OnSpellStart()
 	end
 	
 	for _, hero in ipairs( HeroList:GetRealHeroes() ) do
-		for i = 1, illusions do
-			local reflection = self:CreateReflection( hero, position + ActualRandomVector( radius, 125 ), duration, outgoing, caster )
-			reflection:MoveToPositionAggressive( position )
+		if hero:IsAlive() and hero:GetHealth() > 0 then
+			for i = 1, illusions do
+				local reflection = self:CreateReflection( hero, position + ActualRandomVector( radius, 125 ), duration, outgoing, caster )
+				reflection:MoveToPositionAggressive( position )
+			end
 		end
 	end
 end
@@ -29,7 +31,7 @@ function terrorblade_reflection_bh:CreateReflection( hero, position, duration, o
 	local illusion = hero:ConjureImage( position, duration, outgoing - 100, -100, "modifier_terrorblade_conjureimage", self, false, caster )
 	illusion:AddNewModifier(caster, self, "modifier_terrorblade_reflection_bh_illusion", {})
 	
-	illusion:AddAbility("terrorblade_zeal")
+	if not illusion:HasAbility("terrorblade_zeal") then illusion:AddAbility("terrorblade_zeal") end
 	return illusion
 end
 

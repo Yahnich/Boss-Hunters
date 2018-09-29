@@ -1,1 +1,0 @@
-boss12a_roll = class({})

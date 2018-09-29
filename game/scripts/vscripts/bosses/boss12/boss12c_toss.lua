@@ -1,1 +1,0 @@
-boss12c_toss = class({})

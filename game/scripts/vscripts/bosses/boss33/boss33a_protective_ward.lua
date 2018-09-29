@@ -21,6 +21,7 @@ end
 
 function modifier_boss33a_protective_ward:GetModifierIncomingDamage_Percentage(params)
 	local sfAlive = self:GetParent():IsTwinAlive()
+	if self:GetParent():PassivesDisabled() then return end
 	if sfAlive and (params.damage_type == DAMAGE_TYPE_PHYSICAL or params.damage_type == DAMAGE_TYPE_PURE) then
 		ParticleManager:FireParticle("particles/bosses/boss33/boss33a_protection_poof.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
 		return -9999

@@ -18,6 +18,7 @@ function modifier_green_dragon_volatile_rot_handle:OnIntervalThink()
 	local caster = self:GetCaster()
 	if caster:GetAttackTarget() and caster:GetAttackTarget():IsAlive() and caster:GetAttackTarget():IsHero() and (not caster:HasModifier("modifier_green_dragon_etheral_armor")) then
 		caster:SpendMana(33, self:GetAbility())
+		if enemy:TriggerSpellAbsorb(self) then return end
 		caster:GetAttackTarget():AddNewModifier(caster, self:GetAbility(), "modifier_green_dragon_volatile_rot", {Duration = self:GetSpecialValueFor("duration")})
 		return self:StartIntervalThink(0.1)
 	end

@@ -32,7 +32,7 @@ function modifier_green_dragon_bug_explode_handle:OnIntervalThink()
 
 			enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), radius)
 			for _,enemy in pairs(enemies) do
-				if not enemy:IsMagicImmune() and not enemy:IsInvulnerable() then
+				if not enemy:IsMagicImmune() and not enemy:IsInvulnerable() and not enemy:TriggerSpellAbsorb(self) then
 					enemy:ApplyKnockBack(caster:GetAbsOrigin(), 0.1, 0.1, 100, 350, caster, self:GetAbility())
 					self:GetAbility():DealDamage(caster, enemy, self:GetSpecialValueFor("damage"), {}, 0)
 				end

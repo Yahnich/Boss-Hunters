@@ -28,10 +28,8 @@ function modifier_boss_vanguard_back_breaker:DeclareFunctions()
 	return {MODIFIER_EVENT_ON_ATTACK}
 end
 
-
-
 function modifier_boss_vanguard_back_breaker:OnAttack(params)
-	if params.attacker == self:GetParent() then
+	if params.attacker == self:GetParent() and not params.attacker:PassivesDisabled() then
 		if self.hits > self.procHit then
 			self.hits = 0
 			params.target:Disarm(self:GetAbility(), params.attacker, self.duration)

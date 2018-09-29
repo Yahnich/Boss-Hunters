@@ -23,23 +23,27 @@ end
 
 
 function boss14_execute:NearestExecuteableTarget(range)
-	local caster = self:GetCaster()
-	local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), range)
+    local caster = self:GetCaster()
+    local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), range)
 
-	local execuTable = {}
-	local bloodLustStacks = 0
-	local modifier = caster:FindModifierByName("modifier_boss14_bloodlust_passive")
-	if modifier then  bloodLustStacks = modifier:GetStackCount() / 100 end
-	for _,enemy in ipairs(enemies) do
-		if enemy:GetHealthPercent() < enemy:GetMaxHealth() * self:GetSpecialValueFor("execution_damage") * (1 + bloodLustStacks) then table.insert(execuTable, enemy) end
-	end
-	local minRange = range or self:GetTrueCastRange()
-	for _, executable in ipairs(execuTable) do
-		local distanceToEnemy = CalculateDistance(caster, executable)
-		if executable:IsAlive() and distanceToEnemy < minRange then
-			minRange = distanceToEnemy
-			target = executable
-		end
-	end
-	return target
+    local execuTable = {}
+    local bloodLustStacks = 0
+    local modifier = caster:FindModifierByName("modifier_boss14_bloodlust_passive")
+    local executeDamage = self:GetSpecialValueFor("execution_damage") / 100
+    if modifier then 
+        local bloodLust = modifier:GetAbility()
+        executeDamage = executeDamage * ( 1 + ( modifier:GetStackCount() * bloodLust:GetSpecialValueFor("damage_amp") )/100 )
+    end
+    for _,enemy in ipairs(enemies) do
+        if enemy:GetHealth() < enemy:GetMaxHealth() * executeDamage then table.insert(execuTable, enemy) end
+    end
+    local minRange = range or self:GetTrueCastRange()
+    for _, executable in ipairs(execuTable) do
+        local distanceToEnemy = CalculateDistance(caster, executable)
+        if executable:IsAlive() and distanceToEnemy < minRange then
+            minRange = distanceToEnemy
+            target = executable
+        end
+    end
+    return target
 end

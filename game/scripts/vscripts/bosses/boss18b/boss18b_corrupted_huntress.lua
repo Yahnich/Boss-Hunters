@@ -20,7 +20,7 @@ function modifier_boss18b_corrupted_huntress_passive:IsHidden()
 end
 
 function modifier_boss18b_corrupted_huntress_passive:IsAura()
-	return true
+	return not self:GetParent():PassivesDisabled()
 end
 
 function modifier_boss18b_corrupted_huntress_passive:GetModifierAura()

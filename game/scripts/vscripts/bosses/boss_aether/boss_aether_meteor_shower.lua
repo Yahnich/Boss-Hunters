@@ -40,8 +40,10 @@ function boss_aether_meteor_shower:CreateMeteor(endPos)
 		ParticleManager:SetParticleControl(meteorFX, 4, Vector(radius, 0, 0))
 		local enemies = caster:FindEnemyUnitsInRadius(endPos, radius)
 		for _, enemy in ipairs( enemies ) do
-			self:DealDamage( caster, enemy, damage )
-			enemy:AddNewModifier( caster, self, "modifier_boss_aether_meteor_shower_debuff", {duration = sDuration})
+			if not enemy:TriggerSpellAbsorb(self) then
+				self:DealDamage( caster, enemy, damage )
+				enemy:AddNewModifier( caster, self, "modifier_boss_aether_meteor_shower_debuff", {duration = sDuration})
+			end
 		end
 	end)
 end

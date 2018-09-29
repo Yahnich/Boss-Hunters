@@ -71,6 +71,8 @@ function boss33b_shadowrazeF:CreateRaze(position, radius, damage)
 	EmitSoundOnLocationWithCaster(position, "Hero_Nevermore.Shadowraze", caster)
 	local nearbyUnits = caster:FindEnemyUnitsInRadius(position, radius)
 	for _, unit in ipairs(nearbyUnits) do
-		self:DealDamage(caster, unit, damage)
+		if not enemy:TriggerSpellAbsorb(self) then
+			self:DealDamage(caster, unit, damage)
+		end
 	end
 end

@@ -18,7 +18,7 @@ end
 
 function modifier_boss19_shield_passive:OnIntervalThink()
 	local caster = self:GetCaster()
-	if self:GetAbility():IsCooldownReady() and caster:IsDisabled() then
+	if self:GetAbility():IsCooldownReady() and caster:IsDisabled() and not caster:PassivesDisabled() and not caster:HasModifier("modifier_boss19_cracked_ground_thinker") then
 		caster:Dispel(caster, true)
 		EmitSoundOn("Hero_NyxAssassin.ManaBurn.Target", caster)
 		self:GetAbility():UseResources(false, false, true)

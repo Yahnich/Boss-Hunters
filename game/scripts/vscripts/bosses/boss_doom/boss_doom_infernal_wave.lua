@@ -58,7 +58,9 @@ function boss_doom_infernal_wave:CreateRazeLine(ogPos, normal)
 		ParticleManager:FireParticle("particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_shadowraze.vpcf", PATTACH_WORLDORIGIN, nil, {[0] = position})
 
 		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius(position, radius) ) do
-			self:DealDamage( caster, enemy, damage )
+			if not enemy:TriggerSpellAbsorb(self) then
+				self:DealDamage( caster, enemy, damage )
+			end
 		end
 	end
 end

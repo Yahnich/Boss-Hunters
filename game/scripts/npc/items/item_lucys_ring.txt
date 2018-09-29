@@ -91,12 +91,12 @@
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"max_mana_cost"			"50"
+				"max_mana_cost"			"65"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"max_hp_damage"			"20"
+				"max_hp_damage"			"15"
 			}
 			"07"
 			{

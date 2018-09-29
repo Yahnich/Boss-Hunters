@@ -15,6 +15,7 @@ if IsServer() then
 	
 	function modifier_boss_sloth_demon_slime_trail:OnIntervalThink()
 		local caster = self:GetCaster()
+		if caster:PassivesDisabled() then return end
 		for _, pool in ipairs( self:GetAbility().slimePoolTable ) do
 			if CalculateDistance( pool, caster ) < pool.radius * 0.9 then
 				return

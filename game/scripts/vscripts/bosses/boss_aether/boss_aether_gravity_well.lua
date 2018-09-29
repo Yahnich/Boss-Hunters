@@ -21,7 +21,7 @@ function modifier_boss_aether_gravity_well:CheckState()
 end
 
 function modifier_boss_aether_gravity_well:IsAura()
-	return true
+	return not self:GetCaster():PassivesDisabled()
 end
 
 function modifier_boss_aether_gravity_well:GetModifierAura()

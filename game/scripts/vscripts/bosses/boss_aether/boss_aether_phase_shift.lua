@@ -15,6 +15,7 @@ if IsServer() then
 	
 	function modifier_boss_aether_phase_shift_passive:OnIntervalThink()
 		local parent = self:GetParent()
+		if parent:PassivesDisabled() then return end
 		ProjectileManager:ProjectileDodge( parent )
 		if parent:GetHealthPercent() < 75 then
 			local belowFifty = parent:GetHealthPercent() < 50

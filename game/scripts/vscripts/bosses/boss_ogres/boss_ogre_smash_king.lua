@@ -17,7 +17,9 @@ function boss_ogre_smash_king:OnSpellStart()
 
 	local enemies = caster:FindEnemyUnitsInRadius(point, radius)
 	for _,enemy in pairs(enemies) do
-		self:Stun(enemy, self:GetSpecialValueFor("duration"), false)
-		self:DealDamage(caster, enemy, self:GetSpecialValueFor("damage"), {}, OVERHEAD_ALERT_DAMAGE)
+		if not enemy:TriggerSpellAbsorb(self) then
+			self:Stun(enemy, self:GetSpecialValueFor("duration"), false)
+			self:DealDamage(caster, enemy, self:GetSpecialValueFor("damage"), {}, OVERHEAD_ALERT_DAMAGE)
+		end
 	end
 end

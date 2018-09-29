@@ -16,7 +16,7 @@ function boss_evil_guardian_rise_of_hell:OnSpellStart()
 	local threatTarget
 	Timers:CreateTimer(0.1, function()
 		for id, enemy in ipairs(enemies) do
-			if enemy and not enemy:IsNull() then
+			if enemy and not enemy:IsNull() and not enemy:TriggerSpellAbsorb(self) then
 				FindClearSpaceForUnit( caster, enemy:GetAbsOrigin() + RandomVector(175), true )
 				caster:PerformGenericAttack(enemy, true)
 				caster:StartGesture(ACT_DOTA_ATTACK)

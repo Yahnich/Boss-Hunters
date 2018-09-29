@@ -16,7 +16,7 @@ function modifier_boss_alpha_wolf_aura:OnRefresh()
 end
 
 function modifier_boss_alpha_wolf_aura:IsAura()
-	return true
+	return not self:GetCaster():PassivesDisabled()
 end
 
 function modifier_boss_alpha_wolf_aura:GetModifierAura()

@@ -2,6 +2,7 @@ boss_doom_ill_fated = class({})
 
 function boss_doom_ill_fated:OnSpellStart()
 	local caster = self:GetCaster()
+	if self:GetCursorTarget():TriggerSpellAbsorb(self) then return end
 	self:GetCursorTarget():AddNewModifier(caster, self, "modifier_boss_doom_ill_fated", {duration = self:GetSpecialValueFor("duration")})
 end
 

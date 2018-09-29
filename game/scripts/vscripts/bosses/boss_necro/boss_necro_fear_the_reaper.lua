@@ -9,12 +9,15 @@ function boss_necro_fear_the_reaper:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorPosition()
 	
-	self:CreateReaper(target)
-	
+	if not target:TriggerSpellAbsorb(self) then
+		self:CreateReaper(target)
+	end
 	Timers:CreateTimer(RandomFloat(0.75, 1.5), function()
 		if caster:GetHealthPercent() <= 50 then
 			for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), self:GetTrueCastRange() ) ) do
-				self:CreateReaper( enemy:GetAbsOrigin() )
+				if not enemy:TriggerSpellAbsorb(self) then
+					self:CreateReaper( enemy:GetAbsOrigin() )
+				end
 				break
 			end
 		end

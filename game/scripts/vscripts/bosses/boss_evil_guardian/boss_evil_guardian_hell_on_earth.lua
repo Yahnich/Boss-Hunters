@@ -42,9 +42,9 @@ end
 
 function modifier_boss_evil_guardian_hell_on_earth_handler:OnIntervalThink()
 	local parent = self:GetParent()
-	if not self:GetAbility():IsActivated() then return end
+	if not self:GetAbility():IsActivated() or parent:PassivesDisabled() then return end
 	for _, enemy in ipairs( parent:FindEnemyUnitsInRadius(parent:GetAbsOrigin(), -1, {type = DOTA_UNIT_TARGET_HERO, flag = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES})) do
-		if not enemy:IsFakeHero() then
+		if not enemy:IsFakeHero() and not enemy:TriggerSpellAbsorb(self) then
 			local position = enemy:GetAbsOrigin()
 			ParticleManager:FireWarningParticle(position, self.radius)
 			Timers:CreateTimer(1, function() self:GetAbility():CreateEvilPool(position, self.radius, self.damagePct, self.duration) end)

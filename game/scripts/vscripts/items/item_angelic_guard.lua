@@ -1,6 +1,6 @@
 item_angelic_guard = class({})
 
-LinkLuaModifier( "modifier_item_angelic_guard", "items/item_angelic_guard.lua" ,LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_item_angelic_guard", "items/item_angelic_guard.lua", LUA_MODIFIER_MOTION_NONE )
 function item_angelic_guard:GetIntrinsicModifierName()
 	return "modifier_item_angelic_guard"
 end

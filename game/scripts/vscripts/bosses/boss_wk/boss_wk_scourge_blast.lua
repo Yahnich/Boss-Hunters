@@ -31,7 +31,7 @@ function boss_wk_scourge_blast:OnSpellStart()
 	if caster:HasModifier("modifier_boss_wk_reincarnation_enrage") then	
 		distance = self:GetTrueCastRange()
 		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), distance ) ) do
-			self:FireTrackingProjectile("particles/units/heroes/hero_skeletonking/skeletonking_hellfireblast.vpcf", enemy, 150, {duration = 20})
+			self:FireTrackingProjectile("particles/units/heroes/hero_skeletonking/skeletonking_hellfireblast.vpcf", enemy, 150, { duration = GameRules:GetGameTime() + 5 })
 		end
 	else
 		self:FireLinearProjectile("particles/frostivus_gameplay/frostivus_skeletonking_hellfireblast.vpcf", direction * 900, distance, width, {origin = caster:GetAbsOrigin() + Vector(0,0,128)})
@@ -47,9 +47,11 @@ function boss_wk_scourge_blast:OnProjectileHit(target, position)
 	local radius = self:GetSpecialValueFor("radius")
 	
 	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( position, radius ) ) do
-		self:DealDamage(caster, enemy, damage)
-		self:Stun(enemy, stunDuration)
-		enemy:AddNewModifier( caster, self, "modifier_boss_wk_scourge_blast_debuff", {duration = totDuration})
+		if not enemy:TriggerSpellAbsorb(self) then
+			self:DealDamage(caster, enemy, damage)
+			self:Stun(enemy, stunDuration)
+			enemy:AddNewModifier( caster, self, "modifier_boss_wk_scourge_blast_debuff", {duration = totDuration})
+		end
 	end
 	EmitSoundOnLocationWithCaster(position, "Hero_SkeletonKing.Hellfire_BlastImpact", caster)
 	return true

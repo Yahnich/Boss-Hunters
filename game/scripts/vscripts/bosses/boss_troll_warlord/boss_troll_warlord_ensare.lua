@@ -34,8 +34,10 @@ function boss_troll_warlord_ensare:OnProjectileHit(hTarget, vLocation)
 
 	local enemies = caster:FindEnemyUnitsInRadius(vLocation, self:GetSpecialValueFor("radius"))
 	for _,enemy in pairs(enemies) do
-		EmitSoundOn("Hero_Meepo.Earthbind.Target", enemy)
-		enemy:AddNewModifier(caster, self, "modifier_boss_troll_warlord_ensare", {Duration = self:GetSpecialValueFor("duration")})
+		if not enemy:TriggerSpellAbsorb(self) then
+			EmitSoundOn("Hero_Meepo.Earthbind.Target", enemy)
+			enemy:AddNewModifier(caster, self, "modifier_boss_troll_warlord_ensare", {Duration = self:GetSpecialValueFor("duration")})
+		end
 	end
 end
 

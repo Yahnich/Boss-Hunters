@@ -26,6 +26,7 @@ function boss26_rend:OnSpellStart()
 	ParticleManager:FireParticle("particles/units/heroes/hero_ursa/ursa_fury_sweep_up_right.vpcf", PATTACH_WORLDORIGIN, nil, {[0] = position, [1] =  caster:GetAnglesAsVector()})
 	local enemies = caster:FindEnemyUnitsInRadius(position, distance)
 	for _, enemy in ipairs(enemies) do
+		if enemy:TriggerSpellAbsorb(self) then return end
 		local stacks = 0
 		if enemy:HasModifier("modifier_boss26_rend_stack") then stacks = enemy:FindModifierByName("modifier_boss26_rend_stack"):GetStackCount() end
 		self:DealDamage(caster, enemy, damage + stacks * damagePerStack)

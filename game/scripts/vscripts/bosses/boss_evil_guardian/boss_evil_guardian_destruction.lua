@@ -46,7 +46,9 @@ function boss_evil_guardian_destruction:CreateRaze(position, damage, radius, del
 	Timers:CreateTimer(delay, function()
 		ParticleManager:ClearParticle( razeFX )
 		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( position, radius ) ) do
-			self:DealDamage(caster, enemy, damage)
+			if not enemy:TriggerSpellAbsorb(self) then
+				self:DealDamage(caster, enemy, damage)
+			end
 		end
 	end)
 end

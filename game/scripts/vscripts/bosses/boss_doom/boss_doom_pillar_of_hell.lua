@@ -20,7 +20,8 @@ function boss_doom_pillar_of_hell:OnSpellStart()
 	local distanceTraveled = 0
 	Timers:CreateTimer(0, function()
 		
-		self:CreateRaze(position, damage)
+		local blocked = self:CreateRaze(position, damage)
+		if blocked then return end
 		position = position + direction * radius / 2
 		distanceTraveled = distanceTraveled + radius / 2
 		if distanceTraveled < range then
@@ -34,7 +35,13 @@ function boss_doom_pillar_of_hell:CreateRaze(position, damage)
 	local radius = self:GetSpecialValueFor("radius")
 	ParticleManager:FireParticle("particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_shadowraze.vpcf", PATTACH_WORLDORIGIN, nil, {[0] = position})
 	EmitSoundOnLocationWithCaster(position, "Hero_Nevermore.RequiemOfSouls.Damage", caster)
+	local blocked = false
 	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius(position, radius) ) do
-		self:DealDamage( caster, enemy, damage )
+		if not enemy:TriggerSpellAbsorb(self) then
+			self:DealDamage( caster, enemy, damage )
+		else
+			blocked = true
+		end
 	end
+	return blocked
 end

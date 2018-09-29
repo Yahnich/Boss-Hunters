@@ -30,6 +30,7 @@ end
 function green_dragon_toxic_pool:OnProjectileHit( hTarget, vLocation )
 	if hTarget ~= nil and ( not hTarget:IsMagicImmune() ) and ( not hTarget:IsInvulnerable() ) then
 		local caster = self:GetCaster()
+		if hTarget:TriggerSpellAbsorb(self) then return true end
 		hTarget:AddNewModifier(self:GetCaster(), self, "modifier_green_dragon_toxic_pool_debuff", {Duration = self:GetSpecialValueFor("debuff_duration")})
 		EmitSoundOn( "Hero_Venomancer.VenomousGaleImpact", hTarget )
 		

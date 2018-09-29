@@ -37,7 +37,9 @@ function boss_warlock_rain_of_fire:OnSpellStart()
 			Timers:CreateTimer(delay, function()
 				local enemies = caster:FindEnemyUnitsInRadius(pos, radius)
 				for _,enemy in pairs(enemies) do
-					self:DealDamage(caster, enemy, damage, {}, 0)
+					if not enemy:TriggerSpellAbsorb(self) then
+						self:DealDamage(caster, enemy, damage, {}, 0)
+					end
 				end
 			end)
 			currentWaves = currentWaves + 1

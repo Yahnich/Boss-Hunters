@@ -1133,7 +1133,7 @@
 			"02"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"damage_pct"					"3.5"
+				"damage_pct"					"2"
 				"LinkedSpecialBonus"			"special_bonus_unique_death_prophet_3"
 			}
 			"03"
@@ -8573,31 +8573,31 @@
 			}
 			"05"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"bonus_damage_per_target"	"16 24 32 40 48 56 74"
-				"LinkedSpecialBonus"		"special_bonus_unique_grimstroke_2"
+				"var_type"						"FIELD_INTEGER"
+				"bonus_damage_per_target"		"16 24 32 40 48 56 74"
+				"LinkedSpecialBonus"			"special_bonus_unique_grimstroke_2"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
 			"06"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"movement_slow_pct"		"50"
+				"var_type"						"FIELD_INTEGER"
+				"movement_slow_pct"				"50"
 			}
 			"07"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"slow_duration"			"1.5"
+				"var_type"						"FIELD_FLOAT"
+				"slow_duration"					"1.5"
 			}
 			"08"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"vision_duration"			"2.0"
+				"var_type"						"FIELD_FLOAT"
+				"vision_duration"				"2.0"
 			}
 			"09"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"range_tooltip"				"1400"
-				"LinkedSpecialBonus"		"special_bonus_unique_grimstroke_3"
+				"var_type"						"FIELD_INTEGER"
+				"range_tooltip"					"1400"
+				"LinkedSpecialBonus"			"special_bonus_unique_grimstroke_3"
 			}
 		}
 	}
@@ -8734,9 +8734,7 @@
 
 		// Time
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"12"
-		"HasPureCooldown"				"1"
-		"AbilityDuration"				"3"
+		"AbilityCooldown"				"15"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -8780,7 +8778,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"max_damage"			"220 280 340 400"
+				"max_damage"			"220 280 340 400 460 520 580"
 			}
 			"06"
 			{
@@ -8817,7 +8815,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"

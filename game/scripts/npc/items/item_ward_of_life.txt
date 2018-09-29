@@ -3,56 +3,61 @@
 	//=================================================================================================================
 	// Recipe: TITAN Armor
 	//=================================================================================================================
-	"item_recipe_lazarus_rags"
+	"item_recipe_ward_of_life"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"3267"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"7086"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"BaseClass"						"item_recipe_arcane_boots"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe_assault"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"1150"	
+		"ItemCost"						"350"	
 		"ItemShopTags"					""
 		
 		// Recipe
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemRecipe"					"1"
-		"ItemResult"					"item_lazarus_rags"
+		"ItemResult"					"item_ward_of_life"
 		"ItemRequirements"
 		{
-			"01"						"item_archmages_orb;item_angelic_guard"
+			"01"						"item_angelic_guard;item_power_core;item_orb_of_vitality"
 		}
 	}
-	"item_lazarus_rags"
+	//=================================================================================================================
+	// TITAN Armor
+	//=================================================================================================================
+	"item_ward_of_life"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"3268"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"7087"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"BaseClass"						"item_lua"
-		"ScriptFile"					"items/item_lazarus_rags"
-		"AbilityTextureName"			"custom/lazarus_rags"
+		"ScriptFile"					"items/item_ward_of_life"
+		"AbilityTextureName"			"item_aeon_disk"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
 		
-		"ItemShopTags"					"heal;mana"
+		"ItemCost"						"1650"
+		"ItemShopTags"					"heal;health;hp;regen"
 		"ItemQuality"					"epic"
-		"ItemAliases"					"guardian greaves;lazarus_rags"
+		"ItemAliases"					"aeon disk;ward of life"
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		
 		
-		"precache"
+		"particle"
 		{
-			"precache"					"soundevents/game_sounds_items.vsndevts"
+			"particle"					"particles/items2_fx/mekanism_recipient.vpcf"
+			"particle"					"particles/items2_fx/mekanism.vpcf"
+			"soundfile"					"soundevents/game_sounds_items.vsndevts"
 		}
+	
+		"AbilityCooldown"				"30"
 		
-		"AbilityCooldown"				"15"
-		"AbilityManaCost"				"60"
-
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
@@ -60,57 +65,67 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"mana_restore"			"16"
+				"bonus_health_regen"	"3"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"heal"					"16"
+				"bonus_hp"				"600"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"mana_regen"			"3.5"
+				"var_type"				"FIELD_INTEGER"
+				"bonus_str"				"25"
 			}
 			"04"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"spell_amp"				"30"
+				"var_type"				"FIELD_INTEGER"
+				"bonus_int"				"10"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_mana"			"800"
+				"bonus_agi"				"10"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_ms"				"60"
+				"heal"					"20"
 			}
 			"07"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"block_chance"			"100"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"damage_block"			"50"
-			}
-			"09"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_health_regen"	"5"
-			}
-			"10"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"radius"				"900"
 			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"block_chance"			"50"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_block"			"50"
+			}
+			"10"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"min_heal"				"350"
+			}
 			"11"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"min_restore"			"275"
+				"max_hp_trigger"		"80"
+			}
+			"12"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"buff_duration"			"5"
+			}
+			"13"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"internal_cooldown"		"20"
 			}
 		}
 	}

@@ -16,7 +16,7 @@ function modifier_boss_greymane_leaders_inspiration:OnRefresh()
 end
 
 function modifier_boss_greymane_leaders_inspiration:IsAura()
-	return true
+	return not self:GetCaster():PassivesDisabled()
 end
 
 function modifier_boss_greymane_leaders_inspiration:GetModifierAura()

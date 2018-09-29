@@ -384,7 +384,7 @@
 			"02"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"damage_health_pct"				"6"
+				"damage_health_pct"				"2"
 				"CalculateSpellDamageTooltip"	"0"
 			}
 			"03"

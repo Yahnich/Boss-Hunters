@@ -10,6 +10,7 @@ function boss27_kill_them:OnSpellStart()
 	local caster = self:GetCaster()
 	
 	local duration = self:GetSpecialValueFor("duration")
+	if self:GetCursorTarget():TriggerSpellAbsorb(self) then return end
 	self:GetCursorTarget():AddNewModifier(caster, self, "modifier_boss27_kill_them_debuff", {duration = duration})
 	
 	caster:FindAbilityByName("boss27_destroy"):UseResources(false, false, true)

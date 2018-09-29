@@ -40,6 +40,10 @@ require( "ai/ai_timers")
 -- Precache resources
 function Precache( context )
 	print("precaching shit")
+	
+	PrecacheResource( "model", "models/props_gameplay/tombstoneb01.vmdl", context )
+	PrecacheModel( "models/props_gameplay/tombstoneb01.vmdl", context ) 
+	
 	PrecacheResource( "particle", "particles/range_ability_line.vpcf", context )
 	PrecacheResource( "particle", "particles/items3_fx/lotus_orb_shield.vpcf", context )
 	PrecacheResource( "particle", "particles/generic_gameplay/generic_stunned.vpcf", context )

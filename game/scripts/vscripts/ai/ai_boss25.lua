@@ -11,22 +11,22 @@ function Spawn( entityKeyValues )
 		end
 	end)
 	
-	thisEntity.vanguard = thisEntity:FindAbilityByName("boss_wk_summon_vanguard")
-	thisEntity.reaper = thisEntity:FindAbilityByName("boss_wk_summon_reaper")
+	thisEntity.vamp = thisEntity:FindAbilityByName("boss_wk_vampirism")
+	thisEntity.mortal = thisEntity:FindAbilityByName("boss_wk_mortal_strike")
 	thisEntity.reincarnation = thisEntity:FindAbilityByName("boss_wk_reincarnation")
 	thisEntity.blast = thisEntity:FindAbilityByName("boss_wk_scourge_blast")
 	thisEntity.cull = thisEntity:FindAbilityByName("boss_wk_culling_blow")
 	
 	AITimers:CreateTimer(function()
 		if  math.floor(GameRules.gameDifficulty + 0.5) <= 2 then 
-			thisEntity.vanguard:SetLevel(1)
-			thisEntity.reaper:SetLevel(1)
+			thisEntity.vamp:SetLevel(1)
+			thisEntity.mortal:SetLevel(1)
 			thisEntity.reincarnation:SetLevel(1)
 			thisEntity.blast:SetLevel(1)
 			thisEntity.cull:SetLevel(1)
 		else
-			thisEntity.vanguard:SetLevel(2)
-			thisEntity.reaper:SetLevel(2)
+			thisEntity.vamp:SetLevel(2)
+			thisEntity.mortal:SetLevel(2)
 			thisEntity.reincarnation:SetLevel(2)
 			thisEntity.blast:SetLevel(2)
 			thisEntity.cull:SetLevel(2)
@@ -38,11 +38,15 @@ function AIThink(thisEntity)
 	if not thisEntity:IsDominated() then
 		if not thisEntity:IsChanneling() then
 			local target =  AICore:GetHighestPriorityTarget(thisEntity)
-			if thisEntity.vanguard:IsCooldownReady() and RollPercentage(50) then
-				return CastVanguard()
-			end
-			if thisEntity.reaper:IsCooldownReady() and RollPercentage(50) then
-				return CastReaper()
+			if thisEntity.mortal:IsCooldownReady() and RollPercentage(50) and target then
+				if not target:HasModifier("modifier_boss_wk_mortal_strike_debuff") then
+					return CastMortalStrike(target)
+				else
+					local newt = AICore:RandomEnemyHeroInRange( thisEntity, thisEntity.mortal:GetTrueCastRange() + thisEntity:GetIdealSpeed(), false )
+					if newT and not newT:HasModifier("modifier_boss_wk_mortal_strike_debuff") then
+						return CastMortalStrike(newT)
+					end
+				end
 			end
 			if thisEntity.cull:IsCooldownReady() and RollPercentage(50) then
 				return CastCulling()
@@ -74,6 +78,16 @@ function CastCulling()
 		AbilityIndex = thisEntity.cull:entindex()
 	})
 	return thisEntity.cull:GetCastPoint() + 0.1
+end
+
+function CastMortalStrike(target)
+	ExecuteOrderFromTable({
+		UnitIndex = thisEntity:entindex(),
+		OrderType = DOTA_UNIT_ORDER_CAST_TARGET ,
+		TargetIndex  = target:entindex(),
+		AbilityIndex = thisEntity.mortal:entindex()
+	})
+	return thisEntity.mortal:GetCastPoint() + 0.1
 end
 
 function CastVanguard()

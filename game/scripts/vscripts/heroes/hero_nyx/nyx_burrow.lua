@@ -56,14 +56,8 @@ function modifier_nyx_burrow:GetTexture()
 end
 
 function modifier_nyx_burrow:CheckState()
-	local state = { [MODIFIER_STATE_DISARMED] = true,
-					[MODIFIER_STATE_ROOTED] = true}
-					
-	if self:GetParent():HasModifier("modifier_nyx_vendetta") then
-		state = {[MODIFIER_STATE_ROOTED] = true}
-	end
-
-	return state
+	return {[MODIFIER_STATE_DISARMED] = not self:GetParent():HasModifier("modifier_nyx_vendetta"),
+			[MODIFIER_STATE_ROOTED] = true}
 end
 
 function modifier_nyx_burrow:DeclareFunctions()
@@ -71,7 +65,7 @@ function modifier_nyx_burrow:DeclareFunctions()
 		MODIFIER_PROPERTY_MODEL_CHANGE,
 		--MODIFIER_PROPERTY_DISABLE_TURNING,
 		MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE,
-		MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE,
+		MODIFIER_PROPERTY_MANA_REGEN_TOTAL_PERCENTAGE,
 		MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE
 	}
 	return funcs
@@ -89,7 +83,7 @@ function modifier_nyx_burrow:GetModifierHealthRegenPercentage()
 	return self:GetSpecialValueFor("regen")
 end
 
-function modifier_nyx_burrow:GetModifierPercentageManaRegen()
+function modifier_nyx_burrow:GetModifierTotalPercentageManaRegen()
 	return self:GetSpecialValueFor("regen")
 end
 

@@ -36,6 +36,7 @@ function boss_necro_guillotine:CreateGuillotine( enemy )
 	
 	Timers:CreateTimer(1.5, function()
 		if CalculateDistance(position, enemy) < radius then
+			if enemy:TriggerSpellAbsorb(self) then return end
 			if enemy:GetHealthPercent() <= kill_threshold then
 				enemy.tombstoneDisabled = true
 				enemy:AttemptKill(self, caster)
