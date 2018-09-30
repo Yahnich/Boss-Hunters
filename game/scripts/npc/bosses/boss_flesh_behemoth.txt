@@ -1,0 +1,102 @@
+"DOTAAbilities"
+{	
+	"boss_flesh_behemoth_meat_pile"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_flesh_behemoth/boss_flesh_behemoth_meat_pile.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"pudge_flesh_heap"
+		"MaxLevel"						"2"
+	
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_venomancer/venomancer_venomous_gale.vpcf"
+			"particle"  				"particles/units/heroes/hero_venomancer/venomancer_gale_poison_debuff.vpcf"
+			"particle"  				"particles/units/heroes/hero_viper/viper_nethertoxin.vpcf"
+
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_venomancer.vsndevts"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_viper.vsndevts"
+		}
+		
+		"AbilityCooldown"				"0.25"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"zombie_chance"			"20 25"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"zombie_health"			"150 200"
+			}
+		}
+	}
+	"boss_flesh_behemoth_decay"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_flesh_behemoth/boss_flesh_behemoth_decay.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"undying_decay"
+		"MaxLevel"						"2"
+	
+		"AbilityCastRange"				"650"
+		"AbilityCastPoint"				"1 0.75"
+		"AbilityCastAnimation"			"ACT_DOTA_UNDYING_DECAY"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"8"
+	
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_venomancer/venomancer_venomous_gale.vpcf"
+			"particle"  				"particles/units/heroes/hero_venomancer/venomancer_gale_poison_debuff.vpcf"
+			"particle"  				"particles/units/heroes/hero_viper/viper_nethertoxin.vpcf"
+
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_venomancer.vsndevts"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_viper.vsndevts"
+		}
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"radius"				"225 250"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"damage"				"40 60"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"str_loss"				"4 6"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"radius"				"325"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"20"
+			}
+		}
+	}
+}

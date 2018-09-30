@@ -13,7 +13,7 @@ function item_frostfire_brand:GetAbilityTextureName()
 end
 
 function item_frostfire_brand:OnToggle()
-	if self:GetToggleState() then
+	if not self:GetToggleState() then
 		self:GetCaster():RemoveModifierByName("modifier_item_frostfire_brand")
 	else
 		self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_item_frostfire_brand", {})
@@ -104,19 +104,19 @@ function modifier_item_frostfire_brand:IsHidden()
 	return false
 end
 
+function modifier_item_frostfire_brand:GetAttributes()
+	return MODIFIER_ATTRIBUTE_PERMANENT 
+end
+
 LinkLuaModifier( "modifier_frostfire_brand_debuff", "items/item_frostfire_brand.lua" ,LUA_MODIFIER_MOTION_NONE )
 modifier_frostfire_brand_debuff = class({})
 
 function modifier_frostfire_brand_debuff:OnCreated()
 	self.slow = self:GetAbility():GetSpecialValueFor("slow")
+	self.blind = self:GetAbility():GetSpecialValueFor("blind")
 	if IsServer() then
 		self:StartIntervalThink(1)
 	end
-end
-
-function modifier_frostfire_brand_debuff:OnRefresh()
-	self.slow = self:GetAbility():GetSpecialValueFor("slow")
-	self.blind = self:GetAbility():GetSpecialValueFor("blind")
 end
 
 function modifier_frostfire_brand_debuff:OnIntervalThink()

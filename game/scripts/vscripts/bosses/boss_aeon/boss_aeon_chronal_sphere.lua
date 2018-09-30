@@ -82,3 +82,15 @@ end
 function modifier_boss_aeon_chronal_sphere_freeze:StatusEffectPriority()
 	return 10
 end
+
+function modifier_boss_aeon_chronal_sphere_freeze:IsPurgable()
+	return true
+end
+
+function modifier_boss_aeon_chronal_sphere_freeze:IsStunDebuff()
+	return true
+end
+
+function modifier_boss_aeon_chronal_sphere_freeze:IsPurgeException()
+	return true
+end

@@ -21,7 +21,7 @@ function modifier_item_orb_of_renewal_passive:GetModifierPercentageCooldownStack
 end
 
 function modifier_item_orb_of_renewal_passive:OnAbilityFullyCast(params)	
-	if params.unit == self:GetParent() then
+	if params.unit == self:GetParent() and params.ability:GetCooldown(-1) > 0 then
 		self:GetParent():GiveMana(self.mRestore)
 		self:GetParent():HealEvent(self.hRestore, self:GetAbility(), self:GetParent())
 	end

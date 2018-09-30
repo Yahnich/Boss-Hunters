@@ -9,9 +9,8 @@ function boss_necro_fear_the_reaper:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorPosition()
 	
-	if not target:TriggerSpellAbsorb(self) then
-		self:CreateReaper(target)
-	end
+	self:CreateReaper(target)
+	
 	Timers:CreateTimer(RandomFloat(0.75, 1.5), function()
 		if caster:GetHealthPercent() <= 50 then
 			for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), self:GetTrueCastRange() ) ) do
@@ -35,7 +34,9 @@ function boss_necro_fear_the_reaper:CreateReaper(target)
 	local radius = self:GetSpecialValueFor("radius")
 	Timers:CreateTimer(1.5, function()
 		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( target, radius ) ) do
-			self:DealDamage(caster, enemy, damage )
+			if not enemy:TriggerSpellAbsorb(self) then
+				self:DealDamage(caster, enemy, damage )
+			end
 		end
 	end)
 end

@@ -8,10 +8,9 @@
 		"sepulcher_combat_vhouls"				"1"
 		"sepulcher_combat_everything"			"1"
 		"sepulcher_combat_lifestealer"			"1"
-		
+		"sepulcher_combat_phantoms"				"1"
+		"sepulcher_combat_flesh_behemoths"		"1"
 		"grove_combat_roshan"					"1"
-		"grove_combat_slardar"					"1"
-		"generic_combat_slarks"					"1"
 	}
 	// Regular ass monsters
 	"Grove"

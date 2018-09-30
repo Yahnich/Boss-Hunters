@@ -28,6 +28,8 @@
 #base "bosses/boss_wolves.txt"
 #base "bosses/boss_genesis.txt"
 #base "bosses/boss_greymane.txt"
+#base "bosses/boss_phantom.txt"
+#base "bosses/boss_flesh_behemoth.txt"
 
 #base "elites/elite_accurate.txt"
 #base "elites/elite_assassin.txt"

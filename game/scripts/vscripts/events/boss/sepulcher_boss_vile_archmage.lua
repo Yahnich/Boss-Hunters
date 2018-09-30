@@ -1,15 +1,17 @@
 local function StartEvent(self)
-	self.enemiesToSpawn = 2 + math.floor( RoundManager:GetCurrentRaidTier() * 1.5 )
+	local spawnPos = RoundManager:PickRandomSpawn()
+	self.enemiesToSpawn = 1 + RoundManager:GetAscensions()
+	self.eventEnded = false
 	self.eventHandler = Timers:CreateTimer(3, function()
-		local spawn = CreateUnitByName("npc_dota_boss10", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
+		local position = RoundManager:PickRandomSpawn()
+		local spawn = CreateUnitByName("npc_dota_boss_vile_archmage", position, true, nil, nil, DOTA_TEAM_BADGUYS)
 		spawn.unitIsRoundBoss = true
-		
 		self.enemiesToSpawn = self.enemiesToSpawn - 1
+		
 		if self.enemiesToSpawn > 0 then
-			return 6
+			return 30
 		end
 	end)
-	
 	self._vEventHandles = {
 		ListenToGameEvent( "entity_killed", require("events/base_combat"), self ),
 	}
@@ -19,11 +21,12 @@ local function EndEvent(self, bWon)
 	for _, eID in pairs( self._vEventHandles ) do
 		StopListeningToGameEvent( eID )
 	end
+	self.eventEnded = true
 	RoundManager:EndEvent(bWon)
 end
 
 local function PrecacheUnits(self, context)
-	PrecacheUnitByNameSync("npc_dota_boss10", context)
+	PrecacheUnitByNameSync("npc_dota_boss_vile_archmage", context)
 	return true
 end
 

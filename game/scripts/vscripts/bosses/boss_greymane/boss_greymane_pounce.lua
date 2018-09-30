@@ -122,3 +122,15 @@ end
 function modifier_boss_greymane_pounce_stun:GetOverrideAnimation()
 	return ACT_DOTA_DISABLED
 end
+
+function modifier_boss_greymane_pounce_stun:IsPurgable()
+	return true
+end
+
+function modifier_boss_greymane_pounce_stun:IsStunDebuff()
+	return true
+end
+
+function modifier_boss_greymane_pounce_stun:IsPurgeException()
+	return true
+end

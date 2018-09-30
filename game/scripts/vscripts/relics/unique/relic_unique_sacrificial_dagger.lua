@@ -23,7 +23,7 @@ function relic_unique_sacrificial_dagger:OnDeath(params)
 end
 
 function relic_unique_sacrificial_dagger:IsHidden()
-	return self:GetStackCount() == 0
+	return false
 end
 
 function relicBaseClass:AllowIllusionDuplicate()

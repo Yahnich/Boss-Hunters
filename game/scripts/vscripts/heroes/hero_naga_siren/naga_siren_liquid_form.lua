@@ -62,7 +62,7 @@ function modifier_naga_siren_liquid_form:DeclareFunctions()
 end
 
 function modifier_naga_siren_liquid_form:OnAttackFail(params)
-	if params.target == self:GetParent() then
+	if params.target == self:GetParent() and self:GetParent():IsRealHero() then
 		for pos, illusion in pairs( self:GetParent().liquidIllusions ) do
 			if illusion:IsNull() or not illusion:IsAlive() then
 				table.remove( self:GetParent().liquidIllusions, pos )

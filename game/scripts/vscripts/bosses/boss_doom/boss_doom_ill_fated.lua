@@ -43,3 +43,15 @@ end
 function modifier_boss_doom_ill_fated:StatusEffectPriority()
 	return 20
 end
+
+function modifier_boss_doom_ill_fated:IsPurgable()
+	return true
+end
+
+function modifier_boss_doom_ill_fated:IsStunDebuff()
+	return true
+end
+
+function modifier_boss_doom_ill_fated:IsPurgeException()
+	return true
+end

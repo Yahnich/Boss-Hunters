@@ -733,6 +733,10 @@ function RoundManager:GetCurrentZone()
 	return self.currentZone
 end
 
+function RoundManager:GetCurrentRaidTier()
+	return RoundManager.raidNumber or 1
+end
+
 function RoundManager:IsRoundGoing()
 	if self:GetCurrentEvent() then
 		return self:GetCurrentEvent():HasStarted()

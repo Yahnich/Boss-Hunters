@@ -14,7 +14,7 @@ function witch_doctor_voodoo_restoration_bh:OnToggle()
 		if caster:HasTalent("special_bonus_unique_witch_doctor_voodoo_restoration_2") then
 			local radius = self:GetTalentSpecialValueFor("radius")
 			for _, unit in ipairs( caster:FindAllUnitsInRadius( caster:GetAbsOrigin(), radius ) ) do
-				unit:Dispel( caster, true )
+				unit:Dispel( caster, false )
 			end
 		end
 	else

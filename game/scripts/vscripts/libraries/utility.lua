@@ -869,7 +869,7 @@ function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, sp
 	illusion:SetAverageBaseDamage( self:GetAverageBaseDamage(), 15 )
 	illusion:SetPhysicalArmorBaseValue( self:GetPhysicalArmorValue() )
 	illusion:SetBaseAttackTime( self:GetBaseAttackTime() )
-	illusion:SetBaseMoveSpeed( self:GetBaseMoveSpeed() )
+	illusion:SetBaseMoveSpeed( self:GetIdealSpeed() )
 	
 	illusion:SetOriginalModel( self:GetOriginalModel() )
 	illusion:SetModel( self:GetOriginalModel() )
@@ -891,7 +891,11 @@ function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, sp
 	
 	for _, modifier in ipairs( self:FindAllModifiers() ) do
 		if modifier.AllowIllusionDuplicate and modifier:AllowIllusionDuplicate() then
-			illusion:AddNewModifier( modifier:GetCaster(), modifier:GetAbility(), modifier:GetName(), { duration = modifier:GetRemainingTime() })
+			local caster = modifier:GetCaster()
+			if caster == self then
+				caster = illusion
+			end
+			illusion:AddNewModifier( caster, modifier:GetAbility(), modifier:GetName(), { duration = modifier:GetRemainingTime() })
 		end
 	end
 	
@@ -1453,6 +1457,7 @@ function CDOTABaseAbility:EndDelayedCooldown()
 end
 
 function CDOTA_BaseNPC_Hero:CreateTombstone()
+	self.tombstoneEntity = nil
 	if not self.tombstoneDisabled then
 		local newItem = CreateItem( "item_tombstone", self, self )
 		newItem:SetPurchaseTime( 0 )
@@ -1531,10 +1536,8 @@ function CDOTA_BaseNPC:Lifesteal(source, lifestealPct, damage, target, damage_ty
 	if bParticles == false then
 		particles = false
 	end
-	if sourceType == DOTA_LIFESTEAL_SOURCE_ABILITY then
-		local oldHP = target:GetHealth()
-		ApplyDamage({victim = target, attacker = self, damage = damage, damage_type = damage_type, ability = source})
-		damageDealt = math.abs(oldHP - target:GetHealth())
+	if sourceType == DOTA_LIFESTEAL_SOURCE_ABILITY and source then
+		damageDealt = source:DealDamage( self, target, damage )
 	elseif sourceType == DOTA_LIFESTEAL_SOURCE_ATTACK then
 		local oldHP = target:GetHealth()
 		self:PerformAttack(target, true, true, true, true, false, false, false)

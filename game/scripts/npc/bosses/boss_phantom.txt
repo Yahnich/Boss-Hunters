@@ -1,0 +1,101 @@
+"DOTAAbilities"
+{	
+	"boss_phantom_cold_touch"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_phantom/boss_phantom_cold_touch.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"ghost_frost_attack"
+		"MaxLevel"						"2"
+	
+		"AbilityCastPoint"				"1 0.75"
+		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
+	
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_venomancer/venomancer_venomous_gale.vpcf"
+			"particle"  				"particles/units/heroes/hero_venomancer/venomancer_gale_poison_debuff.vpcf"
+			"particle"  				"particles/units/heroes/hero_viper/viper_nethertoxin.vpcf"
+
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_venomancer.vsndevts"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_viper.vsndevts"
+		}
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"slow"					"-12 -15"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"5"
+			}
+		}
+	}
+	"boss_phantom_banshee_wail"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_phantom/boss_phantom_banshee_wail.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"queenofpain_scream_of_pain"
+		"MaxLevel"						"2"
+	
+		"AbilityCastPoint"				"1 0.75"
+		"AbilityCastAnimation"			"ACT_DOTA_DIE"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"8"
+		
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"25"
+	
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_venomancer/venomancer_venomous_gale.vpcf"
+			"particle"  				"particles/units/heroes/hero_venomancer/venomancer_gale_poison_debuff.vpcf"
+			"particle"  				"particles/units/heroes/hero_viper/viper_nethertoxin.vpcf"
+
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_venomancer.vsndevts"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_viper.vsndevts"
+		}
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"blind"					"20 25"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"damage"				"20 35"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"5"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"radius"				"325"
+			}
+		}
+	}
+}

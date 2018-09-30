@@ -105,7 +105,7 @@ if IsServer() then
 		if caster:GetHealthPercent() <= 66 and self.hpDmg < self.maxHPDmg then
 			self.hpDmg = math.min(self.hpDmg + (self.maxHPDmg/self.rampup * 0.3), self.maxHPDmg)
 		end
-		local dmg = self:GetAbility():DealDamage(caster,  parent, damage, {damage_flags = DOTA_DAMAGE_FLAG_HPLOSS + DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
+		local dmg = self:GetAbility():DealDamage(caster,  parent, damage * 0.3, {damage_flags = DOTA_DAMAGE_FLAG_HPLOSS + DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
 		caster:HealEvent(dmg, self:GetAbility(), caster)
 	end
 	
