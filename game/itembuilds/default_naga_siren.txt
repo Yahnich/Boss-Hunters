@@ -39,6 +39,8 @@
 			"item"  "item_valiant_locket"
 
 			"item"	"item_hurricane_blade"
+			
+			"item"	"item_incandescance"
 
 		}
 
@@ -48,15 +50,15 @@
 
 			"item"	"item_rapture"
 
-			"item"  "item_ward_of_regeneration"
+			"item"  "item_ward_of_life"
 
-			"item"	"item_barrier_sphere"
+			"item"	"item_protection_sphere"
 
 			"item"  "item_iron_rose"
 
 			"item"  "item_echoing_tambourine"
 
-			"item"  "item_incandescance"
+			"item"  "item_frostfire_brand"
 
 		}
 
@@ -65,8 +67,6 @@
 		{	
 
 			"item"	"item_ultimate_scepter"
-
-			"item"	"item_frostfire_brand"
 			
 			"item"	"item_warp_staff"
 
