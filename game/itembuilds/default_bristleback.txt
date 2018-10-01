@@ -63,6 +63,8 @@
 			
 			"item"	"item_glacier_boots"
 			
+			"item"	"item_ward_of_life"
+			
 		}
 	}
 }
