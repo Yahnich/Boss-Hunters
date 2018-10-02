@@ -1,0 +1,198 @@
+"DOTAAbilities"
+{	
+	//=================================================================================================================
+	// Doom
+	//=================================================================================================================
+	"boss_vile_archmage_vile_archon"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_vile_archmage/boss_vile_archmage_vile_archon"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"abaddon/mistral_fiend_icons/abaddon_aphotic_shield"
+		"MaxLevel"						"3"
+	
+		"precache"
+		{
+			"particle"					"particles/status_fx/status_effect_necrolyte_spirit.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_clinkz.vsndevts"
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"cooldown_reduction"		"50"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"interval"					"40"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"duration"					"20"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Doom
+	//=================================================================================================================
+	"boss_vile_archmage_unstable_wand"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_vile_archmage/boss_vile_archmage_unstable_wand"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"abaddon/mistral_fiend_icons/abaddon_death_coil"
+		"MaxLevel"						"3"
+	
+		"precache"
+		{
+			"particle"					"particles/status_fx/status_effect_necrolyte_spirit.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_clinkz.vsndevts"
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage_pct"				"25"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Doom
+	//=================================================================================================================
+	"boss_vile_archmage_unstable_explosion"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_vile_archmage/boss_vile_archmage_unstable_explosion"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"		
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+		"AbilityTextureName"			"pugna_nether_blast"
+		"MaxLevel"						"2"
+		"AbilityCastPoint"				"1.5 1"
+		"AbilityCooldown"				"12"
+	
+		"precache"
+		{
+			"soundfile"						"soundevents/game_sounds_heroes/game_sounds_skeletonking.vsndevts"
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"325 375"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"120 150"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"delay"						"1.5 1.25"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Doom
+	//=================================================================================================================
+	"boss_vile_archmage_ethereal_blow"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_vile_archmage/boss_vile_archmage_ethereal_blow"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName"			"pugna_decrepify"
+		"MaxLevel"						"3"
+		
+		"AbilityCastRange"				"1200"
+		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
+		"AbilityCastPoint"				"0.5 0.25"
+		"AbilityCooldown"				"18 17"
+	
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_pugna/pugna_decrepify.vpcf"
+			"particle"					"particles/status_fx/status_effect_ghost.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_pugna.vsndevts"	
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"slow"						"-35 -50"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"mr_loss"					"-25 -33"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"4 5"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Doom
+	//=================================================================================================================
+	"boss_vile_archmage_runic_coil"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_vile_archmage/boss_vile_archmage_runic_coil"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName"			"pugna_nether_ward"
+		"MaxLevel"						"3"
+		
+		"AbilityCastRange"				"400"
+		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
+		"AbilityCastPoint"				"1"
+		"AbilityCooldown"				"45 30"
+	
+		"precache"
+		{
+			"particle"					"particles/status_fx/status_effect_necrolyte_spirit.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_clinkz.vsndevts"	
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"1200 1600"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"hits"						"4"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"duration"					"30"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"dmg_mult"					"1.5"
+			}
+		}
+	}
+}

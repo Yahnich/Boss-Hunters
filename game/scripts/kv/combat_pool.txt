@@ -36,8 +36,8 @@
 		
 		"elysium_combat_drowsas"				"1"
 		"solitude_combat_prophets"				"1"
-		"solitude_combat_commander"				"1"
-		"solitude_combat_sloth_demon"			"1"
+		"elysium_combat_archangels"				"1"
+		"elysium_combat_fallen_angels"			"1"
 	}
 	// Demons, corrupted things
 	"Solitude"
@@ -50,5 +50,6 @@
 		"solitude_combat_corrupt_drow"			"1"
 		"solitude_combat_angry_wraith"			"1"
 		"solitude_combat_green_dragon"			"1"
+		"solitude_combat_satyrs"				"1"
 	}
 }

@@ -308,7 +308,7 @@
 		
 		"AbilityCastAnimation"			"ACT_DOTA_VICTORY"
 		"AbilityCastPoint"				"0.5"
-		"AbilityCooldown"				"10 8"
+		"AbilityCooldown"				"16 12"
 	
 		"precache"
 		{
@@ -320,12 +320,17 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"max_hp_damage"				"15 20"
+				"max_hp_damage"				"10 15"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"critical"					"300 400"
+				"critical"					"275 350"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"1 1.5"
 			}
 		}
 	}

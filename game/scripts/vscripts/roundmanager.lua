@@ -582,7 +582,7 @@ function RoundManager:InitializeUnit(unit, bElite)
 	local effective_multiplier = (HeroList:GetActiveHeroCount() - 1)
 	
 	local HPMultiplierFunc = function( events, raids, zones ) return (0.8 + (events * 0.08)) * ( 1 + raids * 0.33 ) * ( 1 + zones * 0.12 ) end
-	local DMGMultiplierFunc = function( events, raids, zones ) return ( 0.5 + (events * 0.05)) * ( 1 + raids * 0.1) * ( 1 + zones * 0.05 ) end
+	local DMGMultiplierFunc = function( events, raids, zones ) return ( 0.5 + (events * 0.05)) * ( 1 + raids * 0.075) * ( 1 + zones * 0.03 ) end
 	
 	local effPlayerHPMult =  HPMultiplierFunc( RoundManager:GetEventsFinished(), RoundManager:GetRaidsFinished(), RoundManager:GetZonesFinished() )
 	local effPlayerDMGMult = DMGMultiplierFunc( RoundManager:GetEventsFinished(), RoundManager:GetRaidsFinished(), RoundManager:GetZonesFinished() )
@@ -637,7 +637,7 @@ function RoundManager:InitializeUnit(unit, bElite)
 	unit:SetAverageBaseDamage( expectedDamage * effPlayerDMGMult, 33)
 	unit:SetBaseHealthRegen(RoundManager:GetEventsFinished() * RandomFloat(0.85, 1.15) )
 	
-	local msBonus = unit:GetBaseMoveSpeed() * 0.05 * effective_multiplier * (GameRules:GetGameDifficulty() / 2)
+	local msBonus = unit:GetBaseMoveSpeed() * 0.035 * effective_multiplier * (GameRules:GetGameDifficulty() / 2)
 	unit:SetBaseMoveSpeed( unit:GetBaseMoveSpeed() + msBonus )
 	
 	local bonusArmor = math.min( RoundManager:GetRaidsFinished() + RoundManager:GetZonesFinished() * 2.5, 60 )
@@ -653,7 +653,7 @@ function RoundManager:InitializeUnit(unit, bElite)
 	unit:AddNewModifier(unit, nil, "modifier_boss_attackspeed", {})
 	local powerScale = unit:AddNewModifier(unit, nil, "modifier_power_scaling", {})
 	
-	local SAMultiplierFunc = function( events, raids, zones ) return math.floor( (events * 0.3) * ( (1 + (raids * 2 ) + ( zones * 1.5 ) ) ) ) end
+	local SAMultiplierFunc = function( events, raids, zones ) return math.floor( (events * 0.3) * ( (1 + (raids * 0.75 ) + ( zones * 1.25 ) ) ) ) end
 	local maxSpellAmpScale = SAMultiplierFunc( (EVENTS_PER_RAID + 1) * RAIDS_PER_ZONE * ZONE_COUNT, RAIDS_PER_ZONE * ZONE_COUNT, ZONE_COUNT)
 	local spellAmpScale = SAMultiplierFunc( RoundManager:GetEventsFinished(), RoundManager:GetRaidsFinished(), RoundManager:GetZonesFinished() )
 	spellAmpScale = math.min( maxSpellAmpScale, spellAmpScale ) * ( (1 +  RoundManager:GetAscensions()) * 3 )

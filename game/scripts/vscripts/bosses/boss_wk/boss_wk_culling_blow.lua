@@ -2,7 +2,7 @@ boss_wk_culling_blow = class({})
 
 function boss_wk_culling_blow:OnSpellStart()
 	local caster = self:GetCaster()
-	caster:AddNewModifier(caster, self, "modifier_boss_wk_culling_blow", {})
+	caster:AddNewModifier(caster, self, "modifier_boss_wk_culling_blow", {duration = self:GetSpecialValueFor("1")})
 end
 
 function boss_wk_culling_blow:OnProjectileHit(target, position)
@@ -22,7 +22,7 @@ function modifier_boss_wk_culling_blow:GetModifierPreAttack_CriticalStrike()
 	local caster = self:GetCaster()
 	caster:EmitSound("Hero_SkeletonKing.CriticalStrike")
 	if caster:HasModifier("modifier_boss_wk_reincarnation_enrage") then
-		self:GetAbility():FireLinearProjectile("particles/heroes/wraith/wraith_life_strikewave.vpcf", caster:GetForwardVector() * 300, 1200, 200)
+		self:GetAbility():FireLinearProjectile("particles/heroes/wraith/wraith_life_strikewave.vpcf", caster:GetForwardVector() * 300, 1200, 350)
 	end
 	self:Destroy()
 	return self:GetSpecialValueFor("critical")

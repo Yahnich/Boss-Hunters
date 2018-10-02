@@ -1,45 +1,34 @@
-pugna_power_vacuum = class({})
+vile_archmage_unstable_wand = class({})
 
-function pugna_power_vacuum:GetIntrinsicModifierName()
-	return "modifier_pugna_power_vacuum"
+function vile_archmage_unstable_wand:GetIntrinsicModifierName()
+	return "modifier_vile_archmage_unstable_wand"
 end
 
-modifier_pugna_power_vacuum = class({})
-LinkLuaModifier("modifier_pugna_power_vacuum", "heroes/hero_pugna/pugna_power_vacuum", LUA_MODIFIER_MOTION_NONE)
+modifier_vile_archmage_unstable_wand = class({})
+LinkLuaModifier("modifier_vile_archmage_unstable_wand", "bosses/boss_vile_archmage/vile_archmage_unstable_wand", LUA_MODIFIER_MOTION_NONE)
 
-function modifier_pugna_power_vacuum:OnCreated()
-	self.boss = self:GetTalentSpecialValueFor("boss_lifesteal") / 100
-	self.mob = self:GetTalentSpecialValueFor("mob_lifesteal") / 100
+function modifier_vile_archmage_unstable_wand:OnCreated()
+	self.dmg = self:GetTalentSpecialValueFor("damage_pct") / 100
 end
 
-function modifier_pugna_power_vacuum:OnRefresh()
-	self.boss = self:GetTalentSpecialValueFor("boss_lifesteal") / 100
-	self.mob = self:GetTalentSpecialValueFor("mob_lifesteal") / 100
+function modifier_vile_archmage_unstable_wand:OnRefresh()
+	self.dmg = self:GetTalentSpecialValueFor("damage_pct") / 100
 end
 
-function modifier_pugna_power_vacuum:DeclareFunctions()
+function modifier_vile_archmage_unstable_wand:DeclareFunctions()
 	return {MODIFIER_EVENT_ON_TAKEDAMAGE}
 end
 
-function modifier_pugna_power_vacuum:OnTakeDamage(params)
+function modifier_vile_archmage_unstable_wand:OnTakeDamage(params)
 	if params.attacker == self:GetParent() 
 	and params.unit ~= self:GetParent() 
 	and self:GetParent():GetHealth() > 0 
 	and not ( HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_HPLOSS) or HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION) or HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_NO_SPELL_LIFESTEAL) )
-	and params.inflictor then
-		local flHeal = params.damage * self.mob
-		if params.unit:IsRoundBoss() then
-			flHeal = params.damage * self.boss
-		end
-		ParticleManager:FireParticle("particles/items3_fx/octarine_core_lifesteal.vpcf", PATTACH_ABSORIGIN_FOLLOW, self)
-		if params.attacker:GetHealth() < params.attacker:GetMaxHealth() then
-			params.attacker:HealEvent(flHeal, self:GetAbility(), params.attacker)
-		else
-			params.attacker:GiveMana( flHeal )
-		end
+	and not params.inflictor then
+		self:GetAbility():DealDamage( params.attacker, params.unit, params.original_damage * self.dmg, {damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION} )
 	end
 end
 
-function modifier_pugna_power_vacuum:IsHidden()
+function modifier_vile_archmage_unstable_wand:IsHidden()
 	return true
 end

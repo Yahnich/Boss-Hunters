@@ -811,6 +811,8 @@ function CHoldoutGameMode:OnHeroPick (event)
 		
 		StatsScreen:RegisterPlayer(hero)
 		RelicManager:RegisterPlayer( hero:GetPlayerID() )
+		hero:AddItemByName("item_potion_of_recovery")
+		hero:AddItemByName("item_potion_of_essence")
 		
 		hero:AddExperience(GameRules.XP_PER_LEVEL[7],false,false)
 		hero:SetBaseMagicalResistanceValue(0)

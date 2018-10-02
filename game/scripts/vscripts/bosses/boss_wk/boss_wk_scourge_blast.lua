@@ -7,8 +7,8 @@ function boss_wk_scourge_blast:OnAbilityPhaseStart()
 		ParticleManager:FireWarningParticle(caster:GetAbsOrigin(), self:GetTrueCastRange())
 	else
 		local direction = CalculateDirection(target, caster)
-		local origPos = caster:GetAbsOrigin() + direction
-		local endPos = self:GetCursorPosition()
+		local origPos = caster:GetAbsOrigin()
+		local endPos = caster:GetAbsOrigin() + direction * 900
 		
 		local width = self:GetSpecialValueFor("width")
 		local radius = self:GetSpecialValueFor("radius")
@@ -24,7 +24,7 @@ function boss_wk_scourge_blast:OnSpellStart()
 	local target = self:GetCursorPosition()
 	
 	local direction = CalculateDirection(target, caster)
-	local distance = CalculateDistance(target, caster)
+	local distance = 900
 	
 	local width = self:GetSpecialValueFor("width")
 	caster:EmitSound("Hero_SkeletonKing.Hellfire_Blast")
