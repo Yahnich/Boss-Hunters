@@ -87,11 +87,13 @@ function boss15_exorcise:OnLinearProjectileHit( hTarget )
 
 		ApplyDamage( damage )
 		EmitSoundOn( "Hero_DeathProphet.CarrionSwarm.Damage.Mortis", self:GetCaster() )
-		if self:GetCaster():GetHealthPercent() > 50 then
+		if self:GetCaster():GetHealthPercent() > 66 then
 			hTarget:AddNewModifier(self:GetCaster(), self, "modifier_boss15_exorcise_damage_debuff", {duration = self:GetSpecialValueFor("debuff_duration")})
-		elseif self:GetCaster():GetHealthPercent() < 50 then
+		elseif self:GetCaster():GetHealthPercent() > 33 then
 			hTarget:AddNewModifier(self:GetCaster(), self, "modifier_silence", {duration = self:GetSpecialValueFor("debuff_duration")})
 			hTarget:AddNewModifier(self:GetCaster(), self, "modifier_disarmed", {duration = self:GetSpecialValueFor("debuff_duration")})
+		else
+			self:Stun( hTarget, self:GetSpecialValueFor("stun_duration"), true )
 		end
 		
 		ParticleManager:FireParticle( "particles/units/heroes/hero_death_prophet/death_prophet_carrion_swarm_impact.vpcf", PATTACH_ABSORIGIN_FOLLOW, hTarget )
