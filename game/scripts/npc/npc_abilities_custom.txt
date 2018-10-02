@@ -30,6 +30,10 @@
 #base "bosses/boss_greymane.txt"
 #base "bosses/boss_phantom.txt"
 #base "bosses/boss_flesh_behemoth.txt"
+#base "bosses/boss_vile_archmage.txt"
+#base "bosses/boss_satyrs.txt"
+#base "bosses/boss_archangel.txt"
+#base "bosses/boss_fallen_one.txt"
 
 #base "elites/elite_accurate.txt"
 #base "elites/elite_assassin.txt"
