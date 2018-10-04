@@ -34,9 +34,7 @@ function modifier_turtle_shell:GetModifierPhysical_ConstantBlock(params)
         if RollPercentage(self.crit) and self:GetAbility():IsCooldownReady() then 
             self.currBlock = self.currBlock * 2
             self:GetParent():HealEvent(self:GetParent():GetMaxHealth() * self.heal, self:GetAbility(), self:GetParent())
-            local FXIndex = ParticleManager:CreateParticle( "particles/units/heroes/hero_tidehunter/tidehunter_krakenshell_purge.vpcf", PATTACH_POINT_FOLLOW, self:GetParent() )
-                ParticleManager:SetParticleControl( FXIndex, 0, self:GetParent():GetOrigin() )
-            ParticleManager:ReleaseParticleIndex(FXIndex)
+            ParticleManager:FireParticle( "particles/units/heroes/hero_tidehunter/tidehunter_krakenshell_purge.vpcf", PATTACH_POINT_FOLLOW, self:GetParent() )
             EmitSoundOn("Hero_Tidehunter.KrakenShell", self:GetParent())
             self:GetParent():Dispel(self:GetParent(), true)
 
@@ -44,6 +42,7 @@ function modifier_turtle_shell:GetModifierPhysical_ConstantBlock(params)
                 local friends = caster:FindFriendlyUnitsInRadius(point, 350, {})
                 for _,friend in pairs(friends) do
                     if friend ~= self:GetParent() then
+						ParticleManager:FireParticle( "particles/units/heroes/hero_tidehunter/tidehunter_krakenshell_purge.vpcf", PATTACH_POINT_FOLLOW, friend )
                         self:GetParent():HealEvent(self:GetParent():GetMaxHealth() * self.heal, self:GetAbility(), self:GetParent())
                         self:GetParent():Purge(false, true, false, true, true)
                     end

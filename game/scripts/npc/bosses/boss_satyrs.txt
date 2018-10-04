@@ -1,0 +1,238 @@
+"DOTAAbilities"
+{	
+	"satyr_champion_shockwave"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_satyrs/satyr_champion_shockwave.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"satyr_hellcaller_shockwave"
+		"MaxLevel"						"2"
+	
+		"AbilityCastPoint"				"1.5 1"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"8"
+		
+	
+		"precache"
+		{
+			"particle"					"particles/neutral_fx/satyr_hellcaller_cast.vpcf"
+			"particle"  				"particles/neutral_fx/satyr_hellcaller.vpcf"
+
+			"soundfile"					"soundevents/game_sounds_creeps.vsndevts"
+		}
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"distance"				"500 800"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"speed"					"1200"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"width"					"125 150"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"150 175"
+			}
+		}
+	}
+	"satyr_champion_mana_combustion"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_satyrs/satyr_champion_mana_combustion.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+		"AbilityTextureName"			"invoker_emp"
+		"MaxLevel"						"2"
+		
+		"AbilityCooldown"				"24 20"
+		"AbilityCastRange"				"350"
+		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
+	
+
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_invoker/invoker_emp_charge.vpcf"
+			"particle"  				"particles/units/heroes/hero_invoker/invoker_emp_explode.vpcf"
+
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_invoker.vsndevts"
+		}
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"delay"					"1.5"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"mana_burn"				"300 450"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"burn_damage"			"33"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"450 600"
+			}
+		}
+	}
+
+	"satyr_champion_occult_aura"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_satyrs/satyr_champion_occult_aura.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"satyr_hellcaller_unholy_aura"
+		"MaxLevel"						"2"
+	
+		"precache"
+		{
+			"particle"					"particles/bosses/boss_satyrs/boss_satyr_champion_occult_aura_explosion.vpcf"
+
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_venomancer.vsndevts"
+		}
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"hp_regen"				"30 40"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"900"
+			}
+		}
+	}
+
+	"satyr_mage_lightning"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_satyrs/satyr_mage_lightning.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityTextureName"			"harpy_storm_chain_lightning"
+		"MaxLevel"						"2"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"5 3.5"
+		"AbilityCastRange"				"450 600"
+		"AbilityManaCost"				"5 3"
+		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
+
+	
+		"precache"
+		{
+			"particle"					"particles/neutral_fx/harpy_chain_lightning.vpcf"
+
+			"soundfile"					"soundevents/game_sounds_creeps.vsndevts"
+		}
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"35"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bounces"				"3"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"search_radius"			"350 500"
+			}
+		}
+	}
+	"satyr_mage_revitalize"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_satyrs/satyr_mage_revitalize.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET |DOTA_ABILITY_BEHAVIOR_CHANNELED"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityTextureName"			"forest_troll_high_priest_heal"
+		"MaxLevel"						"2"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"50"
+		"AbilityCastPoint"				"0.5"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityChannelTime"			"4"
+		"AbilityChannelAnimation"		"ACT_DOTA_INTRO"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"100"
+	
+		"precache"
+		{
+			"particle"					"particles/neutral_fx/troll_heal.vpcf"
+			"particle"  				"particles/units/heroes/hero_witchdoctor/witchdoctor_voodoo_restoration.vpcf"
+			"particle"  				"particles/units/bosses/boss_satyrs/satyr_mage_revitalize_charge.vpcf"
+
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_venomancer.vsndevts"
+		}
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"heal_pct"				"30 45"
+			}
+		}
+	}
+}

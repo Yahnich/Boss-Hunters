@@ -113,7 +113,7 @@
 	{										
 		// General
 		//----------------------------------------------------------------
-		"Model"						"models/creeps/neutral_creeps/n_creep_kobold/kobold_c/n_creep_kobold_frost.vmdl"	// Model.
+		"Model"						"models/creeps/neutral_creeps/n_creep_satyr_a/n_creep_satyr_a.vmdl"	// Model.
 		"BaseClass"					"npc_dota_creature"
 		"SoundSet"					"n_creep_Melee"
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
@@ -127,7 +127,7 @@
 		"precache"
 		{
 			"soundfile"	"soundevents/game_sounds_creeps.vsndevts"
-			"model"	"models/creeps/neutral_creeps/n_creep_kobold/kobold_c/n_creep_kobold_frost.vmdl"
+			"model"	"models/creeps/neutral_creeps/n_creep_satyr_a/n_creep_satyr_a.vmdl"
 		}
 	
 		// Abilities
@@ -218,7 +218,7 @@
 	{										
 		// General
 		//----------------------------------------------------------------
-		"Model"						"models/creeps/neutral_creeps/n_creep_kobold/kobold_c/n_creep_kobold_frost.vmdl"	// Model.
+		"Model"						"models/creeps/neutral_creeps/n_creep_satyr_b/n_creep_satyr_b.vmdl"	// Model.
 		"BaseClass"					"npc_dota_creature"
 		"SoundSet"					"n_creep_Melee"
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
@@ -227,12 +227,12 @@
 		"IsAncient"					"0"
 		"IsDemon"					"1"
 		"IsWild"					"1"
-		"vscripts"					"ai/ai_satyr_champion.lua"
+		"vscripts"					"ai/ai_satyr_mage.lua"
 		
 		"precache"
 		{
 			"soundfile"	"soundevents/game_sounds_creeps.vsndevts"
-			"model"	"models/creeps/neutral_creeps/n_creep_kobold/kobold_c/n_creep_kobold_frost.vmdl"
+			"model"	"models/creeps/neutral_creeps/n_creep_satyr_b/n_creep_satyr_b.vmdl"
 		}
 	
 		// Abilities
@@ -278,8 +278,8 @@
 		//----------------------------------------------------------------
 		"StatusHealth"				"1250"		// Base health.
 		"StatusHealthRegen"			"10"		// Health regeneration rate.
-		"StatusMana"				"0"			// Base mana.
-		"StatusManaRegen"			"0.0"		// Mana regeneration rate.		 
+		"StatusMana"				"200"		// Base mana.
+		"StatusManaRegen"			"1.0"		// Mana regeneration rate.		 
 		
 		// Vision
 		//----------------------------------------------------------------
@@ -322,7 +322,7 @@
 	{										
 		// General
 		//----------------------------------------------------------------
-		"Model"						"models/creeps/neutral_creeps/n_creep_kobold/kobold_c/n_creep_kobold_frost.vmdl"	// Model.
+		"Model"						"models/creeps/neutral_creeps/n_creep_satyr_c/n_creep_satyr_c.vmdl"	// Model.
 		"BaseClass"					"npc_dota_creature"
 		"SoundSet"					"n_creep_Melee"
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
@@ -331,12 +331,12 @@
 		"IsAncient"					"0"
 		"IsDemon"					"1"
 		"IsWild"					"1"
-		"vscripts"					"ai/ai_satyr_champion.lua"
+		"vscripts"					"ai/ai_generic.lua"
 		
 		"precache"
 		{
 			"soundfile"	"soundevents/game_sounds_creeps.vsndevts"
-			"model"	"models/creeps/neutral_creeps/n_creep_kobold/kobold_c/n_creep_kobold_frost.vmdl"
+			"model"	"models/creeps/neutral_creeps/n_creep_satyr_c/n_creep_satyr_c.vmdl"
 		}
 	
 		// Abilities
@@ -424,7 +424,7 @@
 	{										
 		// General
 		//----------------------------------------------------------------
-		"Model"						"models/creeps/neutral_creeps/n_creep_kobold/kobold_c/n_creep_kobold_frost.vmdl"	// Model.
+		"Model"						"models/heroes/skywrath_mage/skywrath_mage.vmdl"	// Model.
 		"BaseClass"					"npc_dota_creature"
 		"SoundSet"					"n_creep_Melee"
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
@@ -437,7 +437,7 @@
 		"precache"
 		{
 			"soundfile"	"soundevents/game_sounds_creeps.vsndevts"
-			"model"	"models/creeps/neutral_creeps/n_creep_kobold/kobold_c/n_creep_kobold_frost.vmdl"
+			"model"	"models/heroes/skywrath_mage/skywrath_mage.vmdl"
 		}
 	
 		// Abilities
@@ -455,7 +455,7 @@
 	
 		// Attack
 		//----------------------------------------------------------------
-		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
 		"AttackDamageMin"			"80"		// Damage range min.
 		"AttackDamageMax"			"120"		// Damage range max.	
 		"AttackRate"				"6"		// Speed of attack.
@@ -521,6 +521,16 @@
 					"Support"			"0.0"
 				}
 			}
+			
+			"AttachWearables" // Default npc_dota_hero_omniknight
+			{
+				"1" { "ItemDef" "5832" } 
+				"2" { "ItemDef" "5859" } 
+				"3" { "ItemDef" "5870" } 
+				"4" { "ItemDef" "5871" } 
+				"5" { "ItemDef" "6128" } //FX
+				"5" { "ItemDef" "4673" } //FX
+			}
 		}
 	}
 	//=================================================================================
@@ -530,7 +540,7 @@
 	{										
 		// General
 		//----------------------------------------------------------------
-		"Model"						"models/creeps/neutral_creeps/n_creep_kobold/kobold_c/n_creep_kobold_frost.vmdl"	// Model.
+		"Model"						"models/heroes/vengeful/vengeful.vmdl"	// Model.
 		"BaseClass"					"npc_dota_creature"
 		"SoundSet"					"n_creep_Melee"
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
@@ -544,7 +554,7 @@
 		"precache"
 		{
 			"soundfile"	"soundevents/game_sounds_creeps.vsndevts"
-			"model"	"models/creeps/neutral_creeps/n_creep_kobold/kobold_c/n_creep_kobold_frost.vmdl"
+			"model"	"models/heroes/vengeful/vengeful.vmdl"
 		}
 	
 		// Abilities
@@ -626,6 +636,14 @@
 					"Avoidance"			"0.0"
 					"Support"			"0.0"
 				}
+			}
+			
+			"AttachWearables" // Default npc_dota_hero_omniknight
+			{
+				"1" { "ItemDef" "7799" } 
+				"2" { "ItemDef" "5344" } 
+				"3" { "ItemDef" "8617" } 
+				"4" { "ItemDef" "8619" } 
 			}
 		}
 	}
@@ -2704,17 +2722,18 @@
 		"MinimapIcon"				"minimap_enemyicon"
 		"MinimapIconSize"			"275"
 		"IsUndead"					"1"
+		"IsDemon"					"1"
 		"vscripts"					"ai/ai_vile_archmage.lua"
 	
 		// Abilities
 		//----------------------------------------------------------------
 		"AbilityLayout"				"6"
-		"Ability1"					"boss_vile_archmage_vile_archon"
-		"Ability2"					"boss_vile_archmage_unstable_wand"
+		"Ability1"					"vile_archmage_vile_archon"
+		"Ability2"					"vile_archmage_unstable_wand"
 		
-		"Ability3"					"boss_vile_archmage_vile_explosion"	
-		"Ability4"					"boss_vile_archmage_ethereal_blow"
-		"Ability5"					"boss_vile_archmage_runic_coil"	
+		"Ability3"					"vile_archmage_vile_explosion"	
+		"Ability4"					"vile_archmage_ethereal_blow"
+		"Ability5"					"vile_archmage_runic_coil"	
 	
 		// Armor
 		//----------------------------------------------------------------
@@ -2723,13 +2742,13 @@
 		
 		// Attack
 		//----------------------------------------------------------------
-		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
 		"AttackDamageMin"			"60"		// Damage range min.
 		"AttackDamageMax"			"80"		// Damage range max.
 		"AttackRate"				"3.2"		// Speed of attack.
 		"AttackAnimationPoint"		"0.9"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
-		"AttackRange"				"150"		// Range within a target can be attacked.
+		"AttackRange"				"600"		// Range within a target can be attacked.
 		"ProjectileModel"			"particles/units/heroes/hero_pugna/pugna_base_attack.vpcf"			// Particle system model for projectile.
 		"ProjectileSpeed"			"900"			// Speed of projectile.		   
 	

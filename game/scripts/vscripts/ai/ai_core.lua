@@ -213,12 +213,19 @@ function AICore:AttackHighestPriority( entity )
 			entity.AIprevioustargetPosition = nil
 		end
 		if target and not target:IsNull() and RollPercentage(80) then
-			if entity:GetAttackCapability() == DOTA_UNIT_CAP_NO_ATTACK and CalculateDistance(target, entity) > entity:GetAttackRange() * 0.95 then
-				ExecuteOrderFromTable({
-					UnitIndex = entity:entindex(),
-					OrderType = DOTA_UNIT_ORDER_MOVE_TO_POSITION,
-					Position = entity:GetAbsOrigin() + CalculateDirection(target, entity) * math.min(entity:GetIdealSpeed() * AI_THINK_RATE, CalculateDistance(target, entity) - entity:GetAttackRange() * 0.95)
-				})
+			if entity:GetAttackCapability() == DOTA_UNIT_CAP_NO_ATTACK then
+				if CalculateDistance(target, entity) > entity:GetAttackRange() * 0.95 then
+					ExecuteOrderFromTable({
+						UnitIndex = entity:entindex(),
+						OrderType = DOTA_UNIT_ORDER_MOVE_TO_POSITION,
+						Position = entity:GetAbsOrigin() + CalculateDirection(target, entity) * math.min(entity:GetIdealSpeed() * AI_THINK_RATE, CalculateDistance(target, entity) - entity:GetAttackRange() * 0.95)
+					})
+				elseif RollPercentage(20 * (AICore:BeingAttacked( entity ) + 1) ) then
+					AICore:BeAHugeCoward( entity, 300 )
+				elseif RollPercentage(20) then
+					AICore:RunToRandomPosition( entity, 100, true )
+				end
+				return AI_THINK_RATE
 			elseif entity:CanEntityBeSeenByMyTeam(target) and not entity:IsAttackingEntity( target ) then
 				ExecuteOrderFromTable({
 					UnitIndex = entity:entindex(),
@@ -413,12 +420,12 @@ function AICore:FindFarthestEnemyInLine(entity, range, width, magic_immune)
 end
 
 function AICore:FindNearestEnemyInLine(entity, range, width, magic_immune)
-	local flags = DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE + DOTA_UNIT_TARGET_FLAG_NO_INVIS
+	local flags = DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE
 	if magic_immune then
 		flags = flags + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
 	end
-	local enemies = FindUnitsInLine(entity:GetTeamNumber(), entity:GetAbsOrigin(),  entity:GetAbsOrigin() + entity:GetForwardVector()*range, nil, width, DOTA_UNIT_TARGET_TEAM_ENEMY,DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, flags)
-	local distance = 0
+	local enemies = FindUnitsInLine(entity:GetTeamNumber(), entity:GetAbsOrigin(),  entity:GetAbsOrigin() + entity:GetForwardVector()*(range + width), nil, width, DOTA_UNIT_TARGET_TEAM_ENEMY,DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, flags)
+	local distance = 99999
 	local target
 	for _, enemy in ipairs(enemies) do
 		if CalculateDistance(enemy, entity) < distance then

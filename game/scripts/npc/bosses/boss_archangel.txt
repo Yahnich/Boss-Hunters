@@ -1,202 +1,204 @@
 "DOTAAbilities"
 {	
 	//=================================================================================================================
-	// Doom
+	// aeon: Phase Shift
 	//=================================================================================================================
-	"vile_archmage_vile_archon"
+	"archangel_imperium_vici"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"bosses/boss_vile_archmage/vile_archmage_vile_archon"
+		"ScriptFile"					"bosses/boss_archangel/archangel_imperium_vici"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityTextureName"			"abaddon/mistral_fiend_icons/abaddon_aphotic_shield"
+		"AbilityTextureName"			"skywrath_mage/crested_dawn_icons/skywrath_mage_mystic_flare"
 		"MaxLevel"						"3"
 	
 		"precache"
 		{
-			"particle"					"particles/status_fx/status_effect_necrolyte_spirit.vpcf"
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_clinkz.vsndevts"
+			"particle"					"particles/units/heroes/hero_puck/puck_phase_shift.vpcf"
 		}
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"cooldown_reduction"		"50"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"interval"					"40"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"duration"					"20"
-			}
-		}
-	}
-	//=================================================================================================================
-	// Doom
-	//=================================================================================================================
-	"vile_archmage_unstable_wand"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"bosses/boss_vile_archmage/vile_archmage_unstable_wand"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityTextureName"			"abaddon/mistral_fiend_icons/abaddon_death_coil"
-		"MaxLevel"						"3"
-	
-		"precache"
-		{
-			"particle"					"particles/status_fx/status_effect_necrolyte_spirit.vpcf"
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_clinkz.vsndevts"
-		}
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage_pct"				"25"
-			}
-		}
-	}
-	//=================================================================================================================
-	// Doom
-	//=================================================================================================================
-	"vile_archmage_vile_explosion"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"bosses/boss_vile_archmage/vile_archmage_vile_explosion"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"		
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"AbilityTextureName"			"pugna_nether_blast"
-		"MaxLevel"						"2"
-		"AbilityCastPoint"				"1.5 1"
-		"AbilityCooldown"				"12"
 		
-		"AbilityCastRange"				"325"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"neg_sr"				"-50 -33"
+			}
+		}
+	}
+	//=================================================================================================================
+	// aeon: Phase Shift
+	//=================================================================================================================
+	"archangel_fraternitas"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_archangel/archangel_fraternitas"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+		"AbilityTextureName"			"skywrath_mage_concussive_shot"
+		"MaxLevel"						"3"
+		
 	
 		"precache"
 		{
-			"soundfile"						"soundevents/game_sounds_heroes/game_sounds_skeletonking.vsndevts"
+			"particle"					"particles/units/heroes/hero_dark_seer/dark_seer_vacuum.vpcf"
+			"particle"					"particles/units/heroes/hero_puck/puck_illusory_orb.vpcf"
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cdr"					"33 50"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"duration"				"10"
+			}
+		}
+	}
+	//=================================================================================================================
+	// aeon: Phase Shift
+	//=================================================================================================================
+	"archangel_smite_the_earth"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_archangel/archangel_smite_the_earth"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName"			"skywrath_mage_mystic_flare"
+		"MaxLevel"						"3"
+		
+		"AbilityCastRange"				"900"
+		"AbilityCastAnimation"			"ACT_DOTA_GENERIC_CHANNEL_1"
+		"AbilityCastPoint"				"0.8 0.5"
+		"AbilityCooldown"				"18"
+	
+		"precache"
+		{
+			"particle"					"particles/units/heroes/heroes_underlord/abyssal_underlord_darkrift_target.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_weaver.vsndevts"
 		}
 		"AbilitySpecial"
 		{
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"radius"					"325 375"
+				"radius"					"325 350"
 			}
-			"02"
+			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"120 150"
+				"damage"					"25 30"
 			}
-			"03"
+			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"delay"						"1.5 1.25"
+				"tick_interval"				"0.1"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"duration"					"10"
 			}
 		}
 	}
 	//=================================================================================================================
-	// Doom
+	// aeon: Phase Shift
 	//=================================================================================================================
-	"vile_archmage_ethereal_blow"
+	"archangel_divine_judgement"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"bosses/boss_vile_archmage/vile_archmage_ethereal_blow"
+		"ScriptFile"					"bosses/boss_archangel/archangel_divine_judgement"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"		
-		"AbilityTextureName"			"pugna_decrepify"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"skywrath_mage_ancient_seal"
 		"MaxLevel"						"3"
 		
-		"AbilityCastRange"				"1200"
-		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
-		"AbilityCastPoint"				"0.5 0.25"
-		"AbilityCooldown"				"18 17"
+		"AbilityCastAnimation"			"ACT_DOTA_SPAWN"
+		"AbilityCastPoint"				"2 1.5"
+		"AbilityCooldown"				"20 19"
+		"AbilityCastRange"				"550"
 	
 		"precache"
 		{
-			"particle"					"particles/units/heroes/hero_pugna/pugna_decrepify.vpcf"
-			"particle"					"particles/status_fx/status_effect_ghost.vpcf"
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_pugna.vsndevts"	
+			"particle"					"particles/units/heroes/heroes_underlord/abyssal_underlord_firestorm_wave.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_abyssal_underlord.vsndevts"
 		}
 		"AbilitySpecial"
 		{
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"slow"						"-35 -50"
+				"duration"					"4 5"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"mr_loss"					"-25 -33"
+				"bonus_magic_damage"		"25 33"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"duration"					"4 5"
+				"slow"						"-25 -30"
 			}
 		}
 	}
 	//=================================================================================================================
-	// Doom
+	// aeon: Phase Shift
 	//=================================================================================================================
-	"vile_archmage_runic_coil"
+	"archangel_holy_bolt"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"bosses/boss_vile_archmage/vile_archmage_runic_coil"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
-		"AbilityTextureName"			"pugna_nether_ward"
+		"ScriptFile"					"bosses/boss_archangel/archangel_holy_bolt"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName"			"skywrath_mage_arcane_bolt"
 		"MaxLevel"						"3"
 		
-		"AbilityCastRange"				"400"
-		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
-		"AbilityCastPoint"				"1"
-		"AbilityCooldown"				"45 30"
+		"AbilityCastAnimation"			"ACT_DOTA_DIE"
+		"AbilityCastPoint"				"0.35"
+		"AbilityCooldown"				"6"
 	
 		"precache"
 		{
-			"particle"					"particles/status_fx/status_effect_necrolyte_spirit.vpcf"
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_clinkz.vsndevts"	
+			"particle"					"particles/units/heroes/heroes_underlord/abbysal_underlord_darkrift_ambient.vpcf"
+			"particle"					"particles/units/heroes/heroes_underlord/abbysal_underlord_darkrift_ambient_end.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_abyssal_underlord.vsndevts"
 		}
+		
 		"AbilitySpecial"
 		{
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"radius"					"1200 1600"
+				"extra_bolt_treshold"		"25 20"
 			}
-			"02"
+			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"hits"						"4"
+				"speed"						"500"
 			}
-			"03"
+			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"duration"					"30"
+				"width"						"125"
 			}
-			"04"
+			"01"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"dmg_mult"					"1.5"
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"35 50"
 			}
 		}
 	}
