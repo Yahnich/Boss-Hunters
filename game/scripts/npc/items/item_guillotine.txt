@@ -23,7 +23,7 @@
 		"ItemResult"					"item_guillotine"
 		"ItemRequirements"
 		{
-			"01"						"item_executioners_blade"
+			"01"						"item_executioners_blade;item_broadsword"
 		}
 	}
 	"item_guillotine"

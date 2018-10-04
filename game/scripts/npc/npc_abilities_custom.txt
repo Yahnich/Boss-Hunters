@@ -4118,38 +4118,38 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"stat_increase"			"140 150 160 170 180 190"
-				"LinkedSpecialBonus"	"special_bonus_unique_morphling_2"
+				"var_type"						"FIELD_INTEGER"
+				"stat_increase"					"140 150 160 170 180 190"
+				"LinkedSpecialBonus"			"special_bonus_unique_morphling_2"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"25"
+				"var_type"						"FIELD_FLOAT"
+				"duration"						"25"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"attack_slow"			"-20 -30 -40 -50 -60 -70"
+				"var_type"						"FIELD_INTEGER"
+				"attack_slow"					"-20 -30 -40 -50 -60 -70"
 			}
 			"04"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"move_slow"				"-5 -10 -15 -20 -25 -30"
+				"var_type"						"FIELD_INTEGER"
+				"move_slow"						"-5 -10 -15 -20 -25 -30"
 			}
 			"05"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"aura_radius"			"900"
+				"var_type"						"FIELD_INTEGER"
+				"aura_radius"					"900"
 			}
 			"06"
 			{
-				"var_type"				"FIELD_FLOAT"
+				"var_type"						"FIELD_INTEGER"
 				"threat_generation_attack"		"7"
 			}
 			"07"
 			{
-				"var_type"				"FIELD_FLOAT"
+				"var_type"						"FIELD_INTEGER"
 				"threat_generation_ability"		"10 20 30 40 50 60"
 			}			
 		}
