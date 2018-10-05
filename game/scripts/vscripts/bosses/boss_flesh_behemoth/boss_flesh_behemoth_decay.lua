@@ -16,7 +16,7 @@ function boss_flesh_behemoth_decay:OnSpellStart()
 	ParticleManager:FireParticle("particles/units/heroes/hero_undying/undying_decay.vpcf", PATTACH_WORLDORIGIN, nil, {[0] = position, [1] = Vector(radius,radius,radius)})
 	
 	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( position, radius ) ) do
-		if not enemy:TriggerSpellReflect( self ) then
+		if not enemy:TriggerSpellAbsorb( self ) then
 			caster:Lifesteal(self, 100, damage, enemy, damage_type, 2, true)
 			enemy:AddNewModifier( caster, self, "modifier_boss_flesh_behemoth_decay_debuff", {duration = duration})
 			local hpPct = caster:GetHealth() / caster:GetMaxHealth()

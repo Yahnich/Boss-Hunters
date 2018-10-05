@@ -15,7 +15,7 @@ function modifier_satyr_champion_occult_aura:OnRefresh()
 end
 
 function modifier_satyr_champion_occult_aura:IsAura()
-	return true
+	return not self:GetParent():PassivesDisabled()
 end
 
 function modifier_satyr_champion_occult_aura:GetAuraEntityReject(entity)

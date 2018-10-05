@@ -19,7 +19,9 @@ function vile_archmage_vile_explosion:OnSpellStart()
 		ParticleManager:FireParticle("particles/units/heroes/hero_pugna/pugna_netherblast.vpcf", PATTACH_WORLDORIGIN, nil, {[0] = position, [1] = Vector(radius,1,1)})
 		EmitSoundOnLocationWithCaster(position, "Hero_Pugna.NetherBlast", caster)
 		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( position, radius ) ) do
-			self:DealDamage( caster, enemy, damage )
+			if not enemy:TriggerSpellAbsorb(self) then
+				self:DealDamage( caster, enemy, damage )
+			end
 		end
 	end)
 end

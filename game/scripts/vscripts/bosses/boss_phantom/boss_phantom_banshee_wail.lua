@@ -12,7 +12,7 @@ function boss_phantom_banshee_wail:OnSpellStart()
 	local damage = self:GetSpecialValueFor("damage")
 	ParticleManager:FireParticle("particles/units/bosses/boss_phantom/boss_phantom_banshee_wailpain_owner.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
 	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), self:GetSpecialValueFor("radius") ) ) do
-		if not enemy:TriggerSpellReflect( self ) then
+		if not enemy:TriggerSpellAbsorb( self ) then
 			self:DealDamage( caster, enemy, damage )
 			enemy:AddNewModifier( caster, self, "modifier_boss_phantom_banshee_wail", {duration = duration})
 		end

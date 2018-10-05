@@ -28,7 +28,7 @@ function AIThink(thisEntity)
 			})
 			return AI_THINK_RATE
 		end
-		if ((thisEntity:IsAttackingEntity(target) and thisEntity:IsAttacking()) or thisEntity:IsDisabled()) and thisEntity.rage:IsFullyCastable()  then
+		if ((thisEntity:IsAttackingEntity(target) and thisEntity:IsAttacking()) or thisEntity:IsDisabled()) and thisEntity.rage:IsFullyCastable() and RollPercentage(25) then
 			ExecuteOrderFromTable({
 				UnitIndex = thisEntity:entindex(),
 				OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,

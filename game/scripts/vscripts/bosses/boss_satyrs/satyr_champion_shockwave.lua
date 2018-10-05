@@ -21,6 +21,7 @@ end
 
 function satyr_champion_shockwave:OnProjectileHit(target, position)
 	if target then
+		if target:TriggerSpellAbsorb(self) then return true end
 		local caster = self:GetCaster()
 		local damage = self:GetSpecialValueFor("damage")
 		self:DealDamage( caster, target, damage )

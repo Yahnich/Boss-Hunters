@@ -26,8 +26,10 @@ function satyr_champion_mana_combustion:OnSpellStart()
 			EmitSoundOnLocationWithCaster(position, "Hero_Invoker.EMP.Discharge", caster)
 			ParticleManager:FireParticle("particles/units/heroes/hero_invoker/invoker_emp_explode.vpcf", PATTACH_WORLDORIGIN, nil, {[0] = position, [1] = Vector(radius,radius,radius)})
 			for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( position, radius ) ) do
-				enemy:ReduceMana( burn )
-				self:DealDamage( caster, enemy, burn * damage )
+				if not enemy:TriggerSpellAbsorb(self) then
+					enemy:ReduceMana( burn )
+					self:DealDamage( caster, enemy, burn * damage )
+				end
 			end
 		end
 	)

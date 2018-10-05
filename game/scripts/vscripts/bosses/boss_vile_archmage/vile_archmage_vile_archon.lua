@@ -24,7 +24,9 @@ function modifier_vile_archmage_vile_archon:OnRefresh()
 end
 
 function modifier_vile_archmage_vile_archon:OnIntervalThink()
-	self:GetCaster():AddNewModifier( self:GetCaster(), self:GetAbility(), "modifier_vile_archmage_vile_archon_buff", {duration = self.duration} )
+	if not self:GetCaster():PassivesDisabled() then
+		self:GetCaster():AddNewModifier( self:GetCaster(), self:GetAbility(), "modifier_vile_archmage_vile_archon_buff", {duration = self.duration} )
+	end
 end
 
 function modifier_vile_archmage_vile_archon:IsHidden()

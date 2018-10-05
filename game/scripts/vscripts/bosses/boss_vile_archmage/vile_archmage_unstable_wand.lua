@@ -22,6 +22,7 @@ end
 function modifier_vile_archmage_unstable_wand:OnTakeDamage(params)
 	if params.attacker == self:GetParent() 
 	and params.unit ~= self:GetParent() 
+	and not params.unit:PassivesDisabled()
 	and self:GetParent():GetHealth() > 0 
 	and not ( HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_HPLOSS) or HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION) or HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_NO_SPELL_LIFESTEAL) )
 	and not params.inflictor then

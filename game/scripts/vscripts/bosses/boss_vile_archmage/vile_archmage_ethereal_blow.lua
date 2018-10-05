@@ -3,6 +3,7 @@ vile_archmage_ethereal_blow = class({})
 function vile_archmage_ethereal_blow:OnSpellStart()
 	local caster = self:GetCaster()
 	local hTarget = self:GetCursorTarget()
+	if hTarget:TriggerSpellAbsorb(self) then return end
 	hTarget:AddNewModifier(caster, self, "modifier_vile_archmage_ethereal_blow", {duration = self:GetTalentSpecialValueFor("duration")})
 	EmitSoundOn("Hero_Pugna.Decrepify", hTarget)
 end

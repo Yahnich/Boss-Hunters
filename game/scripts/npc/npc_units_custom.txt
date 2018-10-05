@@ -432,7 +432,7 @@
 		"ModelScale" 				"1.2"
 		"IsAncient"					"0"
 		"IsCelestial"				"1"
-		"vscripts"					"ai/ai_satyr_champion.lua"
+		"vscripts"					"ai/ai_archangel.lua"
 		
 		"precache"
 		{
@@ -452,18 +452,19 @@
 		// Armor
 		//----------------------------------------------------------------
 		"ArmorPhysical"				"2"			// Physical protection.
+		"MagicalResistance"			"40"
 	
 		// Attack
 		//----------------------------------------------------------------
-		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
-		"AttackDamageMin"			"80"		// Damage range min.
-		"AttackDamageMax"			"120"		// Damage range max.	
-		"AttackRate"				"6"		// Speed of attack.
+		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"			"35"		// Damage range min.
+		"AttackDamageMax"			"45"		// Damage range max.	
+		"AttackRate"				"3"		// Speed of attack.
 		"AttackAnimationPoint"		"0.38"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
-		"AttackRange"				"150"		// Range within a target can be attacked.
-		"ProjectileModel"			""			// Particle system model for projectile.
-		"ProjectileSpeed"			"0"			// Speed of projectile.		   
+		"AttackRange"				"900"		// Range within a target can be attacked.
+		"ProjectileModel"			"skywrath_mage_base_attack.vpcf"			// Particle system model for projectile.
+		"ProjectileSpeed"			"900"			// Speed of projectile.		   
 	
 		// Bounds
 		//----------------------------------------------------------------
@@ -484,7 +485,7 @@
 	
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"800"		// Base health.
+		"StatusHealth"				"1500"		// Base health.
 		"StatusHealthRegen"			"10"		// Health regeneration rate.
 		"StatusMana"				"0"			// Base mana.
 		"StatusManaRegen"			"0.0"		// Mana regeneration rate.		 
@@ -549,7 +550,7 @@
 		"IsAncient"					"0"
 		"IsDemon"					"1"
 		"IsCelestial"				"1"
-		"vscripts"					"ai/ai_satyr_champion.lua"
+		"vscripts"					"ai/ai_fallen_one.lua"
 		
 		"precache"
 		{
@@ -567,7 +568,7 @@
 	
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"2"			// Physical protection.
+		"ArmorPhysical"				"15"			// Physical protection.
 	
 		// Attack
 		//----------------------------------------------------------------
@@ -600,7 +601,7 @@
 	
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"800"		// Base health.
+		"StatusHealth"				"1800"		// Base health.
 		"StatusHealthRegen"			"10"		// Health regeneration rate.
 		"StatusMana"				"0"			// Base mana.
 		"StatusManaRegen"			"0.0"		// Mana regeneration rate.		 

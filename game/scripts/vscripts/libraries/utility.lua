@@ -1186,7 +1186,7 @@ function CDOTA_BaseNPC:get_aether_range()
 end
 
 function CDOTA_BaseNPC:IsSlowed()
-	if self:GetIdealSpeed() < self:GetBaseMoveSpeed() then return true
+	if self:GetIdealSpeed() < self:GetIdealSpeedNoSlows() then return true
 	else return false end
 end
 
