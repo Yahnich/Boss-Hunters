@@ -1,29 +1,52 @@
 spectre_echo_scream = class({})
 
-function ScreamApply(keys)
-	local modifierName = "modifier_echo_scream_daze"
-    local caster = keys.caster
-    local target = keys.target
-    local ability = keys.ability
-	ability:ApplyDataDrivenModifier( caster, target, modifierName, {duration = ability:GetDuration()} )
-	ApplyDamage({ victim = target, attacker = caster, damage = ability:GetAbilityDamage(), damage_type = ability:GetAbilityDamageType(), ability = ability })
-	if caster:HasScepter() then
-		local stacks = ability:GetTalentSpecialValueFor("scepter_scream_attacks")
-		for i = 1, stacks do
-			caster:PerformAttack(target, true, true, true, false, false, false, true)
+function spectre_echo_scream:OnSpellStart()
+    local caster = self:GetCaster()
+	
+	local radius = self:GetTalentSpecialValueFor("scream_radius")
+	local duration = self:GetTalentSpecialValueFor("scream_duration")
+	local damage = self:GetTalentSpecialValueFor("scream_damage")
+	
+	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), radius ) ) do
+		enemy:AddNewModifier( caster, self, "modifier_spectre_echo_scream", {duration = duration})
+		self:DealDamage( caster, enemy, damage )
+		if caster:HasScepter() then
+			local attacks = ability:GetTalentSpecialValueFor("scepter_scream_attacks")
+			for i = 1, attacks do
+				caster:PerformAttack(target, true, true, true, false, false, false, true)
+			end
+		end
+		if caster:HasTalent("special_bonus_unique_spectre_echo_scream_1") then
+			enemy:Daze(self, caster, duration)
 		end
 	end
+	
+	caster:EmitSound("Hero_Spectre.HauntCast")
+	caster:EmitSound("Hero_Spectre.Haunt")
+	ParticleManager:FireParticle("particles/spectre_echo_scream.vpcf", PATTACH_POINT_FOLLOW, caster)
 end
 
+modifier_spectre_echo_scream = class({})
+LinkLuaModifier( "modifier_spectre_echo_scream", "heroes/hero_spectre/spectre_echo_scream", LUA_MODIFIER_MOTION_NONE )
 
-"FireSound"
-			{
-				"EffectName"	"Hero_Spectre.Reality"
-				"Target"		"CASTER"
-			}
-			"AttachEffect"
-			{
-				"EffectName"	"particles/spectre_echo_scream.vpcf"
-				"EffectAttachType"	"attach_origin"
-				"Target"		"CASTER"
-			}
+function modifier_spectre_echo_scream:OnCreated()
+	self.miss = self:GetTalentSpecialValueFor("scream_miss")
+	self.slow = self:GetTalentSpecialValueFor("scream_slow")
+end
+
+function modifier_spectre_echo_scream:OnCreated()
+	self.miss = self:GetTalentSpecialValueFor("scream_miss")
+	self.slow = self:GetTalentSpecialValueFor("scream_slow")
+end
+
+function modifier_spectre_echo_scream:DeclareFunctions()
+	return {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE, MODIFIER_PROPERTY_MISS_PERCENTAGE}
+end
+
+function modifier_spectre_echo_scream:GetModifierMoveSpeedBonus_Percentage()
+	return self.slow
+end
+
+function modifier_spectre_echo_scream:GetModifierMiss_Percentage()
+	return self.miss
+end

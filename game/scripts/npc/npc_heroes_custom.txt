@@ -1639,12 +1639,23 @@
 	{
 		"override_hero"			"npc_dota_hero_spectre"
 		"AbilityLayout"				"4"
-		"Ability1"					"spectre_spectral_dagger"					// Ability 1
-		"Ability2"					"spectre_echo_scream"					// Ability 2
-		"Ability3"					"spectre_dispersion_ebf"						// Ability 3
-		"Ability4"					"generic_hidden"
+		"Ability1"					"spectre_spectral_dagger_bh"					// Ability 1
+		"Ability2"					"spectre_echo_scream"	
+		"Ability3"					"spectre_desolate_bh"		// Ability 2
+		"Ability4"					"spectre_dimensional_interjection"
 		"Ability5"					"generic_hidden"
-		"Ability6"					"spectre_ebf_haunt"
+		"Ability6"					"spectre_dispersion_bh"						// Ability 3
+		
+		"Ability10"					"special_bonus_unique_spectre_spectral_dagger_1"
+		"Ability11"					"special_bonus_unique_spectre_spectral_dagger_2"
+		"Ability12"					"special_bonus_unique_spectre_echo_scream_1"
+		"Ability13"					"special_bonus_unique_spectre_echo_scream_2"
+		"Ability14"					"special_bonus_unique_spectre_desolate_1"
+		"Ability15"					"special_bonus_unique_spectre_desolate_2"
+		"Ability16"					"special_bonus_unique_spectre_dispersion_1"
+		"Ability17"					"special_bonus_unique_spectre_dispersion_2"
+		
+		
 	}
 	"npc_dota_hero_spirit_breaker"
 	{

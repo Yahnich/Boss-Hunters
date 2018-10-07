@@ -307,6 +307,28 @@ function CHoldoutGameMode:InitGameMode()
 												hero:ForceKill(true)
 											end
 										end, "fixing bug",0)
+	Convars:RegisterCommand( "reload_modifiers", function()
+											if Convars:GetDOTACommandClient() then
+												local player = Convars:GetDOTACommandClient()
+												local hero = player:GetAssignedHero() 
+												if hero then
+													local modifierTable = {}
+													for _, modifier in ipairs( hero:FindAllModifiers() ) do
+														local modifierInfo = {}
+														modifierInfo.caster = modifier:GetCaster()
+														modifierInfo.ability = modifier:GetAbility()
+														modifierInfo.name = modifier:GetName()
+														modifierInfo.duration = modifier:GetDuration()
+														
+														table.insert( modifierTable, modifierInfo )
+														modifier:Destroy()
+													end
+													for _, modifierInfo in ipairs ( modifierTable ) do
+														hero:AddNewModifier( modifierInfo.caster, modifierInfo.ability, modifierInfo.name, {duration = modifierInfo.duration})
+													end
+												end
+											end
+										end, "fixing bug",0)									
 	Convars:RegisterCommand( "deepdebugging", function()
 													if not GameRules.DebugCalls then
 														print("Starting DebugCalls")
