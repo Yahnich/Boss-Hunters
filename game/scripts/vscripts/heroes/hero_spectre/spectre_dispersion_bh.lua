@@ -1,20 +1,29 @@
-modifier_spectre_dispersion_ebf = class({})
+spectre_dispersion_bh = class({})
+LinkLuaModifier( "modifier_spectre_dispersion_bh", "heroes/hero_spectre/spectre_dispersion_bh.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 --------------------------------------------------------------------------------
-function modifier_spectre_dispersion_ebf:DeclareFunctions(params)
+
+function spectre_dispersion_bh:GetIntrinsicModifierName()
+    return "modifier_spectre_dispersion_bh"
+end
+
+modifier_spectre_dispersion_bh = class({})
+
+--------------------------------------------------------------------------------
+function modifier_spectre_dispersion_bh:DeclareFunctions(params)
 local funcs = {
     MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,
     }
     return funcs
 end
 
-function modifier_spectre_dispersion_ebf:IsHidden()
+function modifier_spectre_dispersion_bh:IsHidden()
 	return true
 end
 
 --------------------------------------------------------------------------------
 
-function modifier_spectre_dispersion_ebf:OnCreated( kv )
+function modifier_spectre_dispersion_bh:OnCreated( kv )
     self.reflect = self:GetAbility():GetSpecialValueFor( "damage_reflection_pct" )
 	self.max_range = self:GetAbility():GetSpecialValueFor( "max_radius" )
 	self.min_range = self:GetAbility():GetSpecialValueFor( "min_radius" )
@@ -22,7 +31,7 @@ end
 
 --------------------------------------------------------------------------------
 
-function modifier_spectre_dispersion_ebf:OnRefresh( kv )
+function modifier_spectre_dispersion_bh:OnRefresh( kv )
     self.reflect = self:GetAbility():GetSpecialValueFor( "damage_reflection_pct" )
 	self.max_range = self:GetAbility():GetSpecialValueFor( "max_radius" )
 	self.min_range = self:GetAbility():GetSpecialValueFor( "min_radius" )
@@ -30,7 +39,7 @@ end
 
 --------------------------------------------------------------------------------
 
-function modifier_spectre_dispersion_ebf:GetModifierIncomingDamage_Percentage(params)
+function modifier_spectre_dispersion_bh:GetModifierIncomingDamage_Percentage(params)
     local hero = self:GetParent()
 	local dmgtype = params.damage_type
 	local attacker = params.attacker

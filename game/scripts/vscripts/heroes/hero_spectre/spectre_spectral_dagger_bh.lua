@@ -1,0 +1,1 @@
+spectre_spectral_dagger_bh = class({})

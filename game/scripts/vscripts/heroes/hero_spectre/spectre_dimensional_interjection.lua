@@ -1,0 +1,1 @@
+spectre_dimensional_interjection = class({})
