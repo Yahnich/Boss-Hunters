@@ -49,7 +49,7 @@ function modifier_item_dark_ones_blessing_stats:GetAuraSearchTeam()
 end
 
 function modifier_item_dark_ones_blessing_stats:GetAuraSearchType()    
-	return DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
+	return DOTA_UNIT_TARGET_ALL
 end
 
 function modifier_item_dark_ones_blessing_stats:GetAuraSearchFlags()    

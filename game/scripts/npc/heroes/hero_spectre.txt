@@ -268,6 +268,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilitySound"					"Hero_Spectre.Desolate"
+		"MaxLevel"						"7"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------

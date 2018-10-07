@@ -44,7 +44,7 @@ function modifier_item_mantle_of_the_fallen_stats:GetAuraSearchTeam()
 end
 
 function modifier_item_mantle_of_the_fallen_stats:GetAuraSearchType()    
-	return DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
+	return DOTA_UNIT_TARGET_ALL
 end
 
 function modifier_item_mantle_of_the_fallen_stats:GetAuraSearchFlags()    

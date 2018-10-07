@@ -15,7 +15,7 @@ function spectre_echo_scream:OnSpellStart()
 		enemy:AddNewModifier( caster, self, "modifier_spectre_echo_scream", {duration = duration})
 		self:DealDamage( caster, enemy, damage )
 		if caster:HasScepter() then
-			local attacks = ability:GetTalentSpecialValueFor("scepter_scream_attacks")
+			local attacks = self:GetTalentSpecialValueFor("scepter_scream_attacks")
 			for i = 1, attacks do
 				caster:PerformAttack(target, true, true, true, false, false, false, true)
 			end

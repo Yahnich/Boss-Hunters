@@ -30,6 +30,11 @@ function modifier_spectre_desolate_bh:OnAttackLanded(params)
 		end
 		if solo then
 			params.target:EmitSound("Hero_Spectre.Desolate")
+			local vDir = params.attacker:GetForwardVector() * (-1)
+			local hitFX = ParticleManager:CreateParticle("particles/units/heroes/hero_spectre/spectre_desolate.vpcf", PATTACH_ABSORIGIN, params.attacker)
+			ParticleManager:SetParticleControl( hitFX, 0, params.target:GetAbsOrigin() )
+			ParticleManager:SetParticleControlForward( hitFX, 0, vDir )
+			ParticleManager:ReleaseParticleIndex( hitFX )
 			if params.attacker:HasTalent("special_bonus_unique_spectre_desolate_2") then
 				local cdr = params.attacker:FindTalentValue("special_bonus_unique_spectre_desolate_2") * params.attacker:GetCooldownReduction()
 				for i = 0, 23 do
@@ -46,11 +51,6 @@ function modifier_spectre_desolate_bh:OnAttackLanded(params)
 			params.target:Paralyze(self:GetAbility(), params.attacker, params.attacker:FindTalentValue("special_bonus_unique_spectre_desolate_1"))
 		end
 		self:GetAbility():DealDamage( params.attacker, params.target, damage )
-		local vDir = params.attacker:GetForwardVector() * (-1)
-		local hitFX = ParticleManager:CreateParticle("particles/units/heroes/hero_spectre/spectre_desolate.vpcf", PATTACH_ABSORIGIN, params.attacker)
-		ParticleManager:SetParticleControl( hitFX, 0, params.target:GetAbsOrigin() )
-		ParticleManager:SetParticleControlForward( hitFX, 0, vDir )
-		ParticleManager:ReleaseParticleIndex( hitFX )
 	end
 end
 
