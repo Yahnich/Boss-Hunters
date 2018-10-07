@@ -16,7 +16,8 @@ function fallen_one_debilitate:OnSpellStart()
 	local speed = self:GetSpecialValueFor("speed")
 	local width = self:GetSpecialValueFor("radius")
 	local distance = self:GetSpecialValueFor("distance")
-	self:FireLinearProjectile("", direction * speed, distance, width)
+	caster:EmitSound("Hero_VengefulSpirit.WaveOfTerror")
+	self:FireLinearProjectile("particles/units/heroes/hero_vengeful/vengeful_wave_of_terror.vpcf", direction * speed, distance, width)
 end
 
 function fallen_one_debilitate:OnProjectileHit( target, position )

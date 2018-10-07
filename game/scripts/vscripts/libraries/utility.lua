@@ -933,6 +933,7 @@ function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, sp
 			if specIllusionModifier then
 				newWearable:AddNewModifier(owner, ability, specIllusionModifier, { duration = duration })
 			end
+			newWearable:MakeIllusion()
 			newWearable:SetParent(illusion, nil)
 			newWearable:FollowEntity(illusion, true)
 			-- newWearable:SetRenderColor(100,100,255)
@@ -1850,6 +1851,12 @@ function CDOTA_BaseNPC:StopMotionControllers(bForceDestroy)
 		end
 	end
 end
+
+function CDOTA_BaseNPC:GetAbsOriginCenter()
+	return GetGroundPosition( self:GetAbsOrigin(), self ) + Vector(0,0,self:GetBoundingMaxs( ).z/2)
+end
+
+
 
 function CDOTA_Modifier_Lua:AddEffect(id)
 	self:AddParticle(id, false, false, 0, false, false)

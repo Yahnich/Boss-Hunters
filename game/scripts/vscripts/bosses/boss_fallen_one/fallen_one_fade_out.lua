@@ -8,8 +8,9 @@ end
 function fallen_one_fade_out:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
+	caster:EmitSound("Hero_VengefulSpirit.NetherSwap")
 	if target:TriggerSpellAbsorb( self ) then return end
-	local duration = self:GetSpecialValueFor("duration")
+	local duration = self:GetSpecialValueFor("illu_duration")
 	local illusion = target:ConjureImage( caster:GetAbsOrigin(), duration, self:GetSpecialValueFor("illu_out") - 100, self:GetSpecialValueFor("illu_inc") - 100, nil, self, false, caster )
 	local invuln = caster:AddNewModifier(caster, self, "modifier_fallen_one_fade_out", {duration = duration})
 	Timers:CreateTimer(0.5, function()
@@ -30,6 +31,7 @@ if IsServer() then
 	end
 	
 	function modifier_fallen_one_fade_out:OnDestroy()
+		self:GetParent():StartGesture( ACT_DOTA_CHANNEL_END_ABILITY_4 )
 		self:GetParent():RemoveNoDraw( )
 	end
 end

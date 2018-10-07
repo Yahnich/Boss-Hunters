@@ -5,7 +5,7 @@ function archangel_imperium_vici:GetIntrinsicModifierName()
 end
 
 modifier_archangel_imperium_vici = class({})
-LinkLuaModifier("modifier_archangel_imperium_vici", "bosses/boss_archangel/archangel_imperium_vici", LUA_MODIFIER_MOTION)
+LinkLuaModifier("modifier_archangel_imperium_vici", "bosses/boss_archangel/archangel_imperium_vici", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_archangel_imperium_vici:OnCreated()
 	self.negSr = self:GetSpecialValueFor("neg_sr")

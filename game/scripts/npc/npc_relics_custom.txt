@@ -48,6 +48,10 @@
 		"relic_generic_dull_razor"						"1"
 		"relic_generic_torn_muscle"						"1"
 		"relic_generic_pickled_brain"					"1"
+		"relic_generic_drop_of_all"						"1"
+		"relic_generic_scrap_of_paper"					"1"
+		"relic_generic_dry_quill"						"1"
+		"relic_generic_leather_buckler"					"1"
 	}
 	"relic_type_cursed"
 	{
@@ -99,6 +103,9 @@
 		"relic_cursed_olive_branch"						"1"
 		"relic_cursed_eye_of_the_oligarch"				"1"
 		"relic_cursed_forbidden_contract"				"1"
+		"relic_cursed_unbridled_power"					"1"
+		"relic_cursed_evil_eye_amulet"					"1"
+		"relic_cursed_mimic_chest"						"1"
 	}
 	"relic_type_unique"
 	{

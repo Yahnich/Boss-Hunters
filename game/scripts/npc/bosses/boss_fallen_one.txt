@@ -11,7 +11,7 @@
 		"ScriptFile"					"bosses/boss_fallen_one/fallen_one_aura_of_war"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
-		"AbilityTextureName"			"skywrath_mage_concussive_shot"
+		"AbilityTextureName"			"vengefulspirit_command_aura"
 		"MaxLevel"						"3"
 		
 	
@@ -44,18 +44,20 @@
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"bosses/boss_fallen_one/fallen_one_sinister_bolt"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityTextureName"			"skywrath_mage_mystic_flare"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"AbilityTextureName"			"vengefulspirit_magic_missile"
 		"MaxLevel"						"3"
 		
-		"AbilityCastRange"				"900"
-		"AbilityCastAnimation"			"ACT_DOTA_GENERIC_CHANNEL_1"
-		"AbilityCastPoint"				"0.8 0.5"
+		"AbilityCastRange"				"600 900"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+
+		"AbilityCastPoint"				"1.5 1"
 		"AbilityCooldown"				"24 20"
 	
 		"precache"
 		{
 			"particle"					"particles/units/heroes/heroes_underlord/abyssal_underlord_darkrift_target.vpcf"
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_weaver.vsndevts"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_vengefulspirit.vsndevts"
 		}
 		"AbilitySpecial"
 		{
@@ -100,18 +102,16 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"bosses/boss_fallen_one/fallen_one_debilitate"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
-		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"AbilityTextureName"			"skywrath_mage_ancient_seal"
-		"MaxLevel"						"3"
 		
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"vengefulspirit_wave_of_terror"
+		"MaxLevel"						"3"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
 		"AbilityCastAnimation"			"ACT_DOTA_SPAWN"
-		"AbilityCastPoint"				"2 1.5"
+		"AbilityCastPoint"				"1.5 1"
 		"AbilityCooldown"				"12"
-		"AbilityCastRange"				"550"
+		"AbilityCastRange"				"1200 1500"
 	
 		"precache"
 		{
@@ -161,11 +161,15 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"bosses/boss_fallen_one/fallen_one_fade_out"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityTextureName"			"skywrath_mage_arcane_bolt"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityTextureName"			"vengefulspirit_nether_swap"
 		"MaxLevel"						"3"
 		
-		"AbilityCastAnimation"			"ACT_DOTA_DIE"
+		"AbilityCastAnimation"			"ACT_DOTA_CHANNEL_START_ABILITY_4"
+		"AbilityCastRange"				"600"
 		"AbilityCastPoint"				"0.35"
 		"AbilityCooldown"				"40"
 	
@@ -191,7 +195,7 @@
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"illu_ou"					"75"
+				"illu_out"					"75"
 			}
 		}
 	}

@@ -47,14 +47,14 @@
 			"03"	
 			{
 				"var_type"						"FIELD_INTEGER"
-				"laser_damage"					"80 160 240 320 400 480 560"
+				"laser_damage"					"60 120 180 240 300 360 420"
 				"LinkedSpecialBonus"			"special_bonus_unique_tinker_laser_ebf_1"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
 		}
 	}
 
-	"special_bonus_unique_tinker_laser_ebf_1" 
+	"special_bonus_unique_tinker_laser_ebf_1"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -69,7 +69,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"1.5"
+				"value"					"1.25"
 			}
 		}
 	}

@@ -5,7 +5,7 @@ function archangel_fraternitas:GetIntrinsicModifierName()
 end
 
 modifier_archangel_fraternitas = class({})
-LinkLuaModifier("modifier_archangel_fraternitas", "bosses/boss_archangel/archangel_fraternitas", LUA_MODIFIER_MOTION)
+LinkLuaModifier("modifier_archangel_fraternitas", "bosses/boss_archangel/archangel_fraternitas", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_archangel_fraternitas:OnCreated()
 	self.duration = self:GetSpecialValueFor("duration")
@@ -35,7 +35,7 @@ function modifier_archangel_fraternitas:IsHidden()
 end
 
 modifier_archangel_fraternitas_buff = class({})
-LinkLuaModifier("modifier_archangel_fraternitas_buff", "bosses/boss_archangel/archangel_fraternitas", LUA_MODIFIER_MOTION)
+LinkLuaModifier("modifier_archangel_fraternitas_buff", "bosses/boss_archangel/archangel_fraternitas", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_archangel_fraternitas_buff:OnCreated()
 	self.cdr = self:GetSpecialValueFor("cdr")

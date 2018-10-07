@@ -429,7 +429,7 @@
 		"SoundSet"					"n_creep_Melee"
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
 		"Level"						"1"
-		"ModelScale" 				"1.2"
+		"ModelScale" 				"1"
 		"IsAncient"					"0"
 		"IsCelestial"				"1"
 		"vscripts"					"ai/ai_archangel.lua"
@@ -463,13 +463,13 @@
 		"AttackAnimationPoint"		"0.38"		// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"15000"		// Range within a target can be acquired.
 		"AttackRange"				"900"		// Range within a target can be attacked.
-		"ProjectileModel"			"skywrath_mage_base_attack.vpcf"			// Particle system model for projectile.
+		"ProjectileModel"			"particles/units/heroes/hero_skywrath_mage/skywrath_mage_base_attack.vpcf"			// Particle system model for projectile.
 		"ProjectileSpeed"			"900"			// Speed of projectile.		   
 	
 		// Bounds
 		//----------------------------------------------------------------
 		"RingRadius"				"40"
-		"HealthBarOffset"			"200"
+		"HealthBarOffset"			"600"
 		"BoundsHullName"			"DOTA_HULL_SIZE_REGULAR"
 	
 		// Bounty

@@ -20,23 +20,26 @@ function fallen_one_sinister_bolt:OnSpellStart()
 		local caster = self:GetCaster()
 		local ability = self:GetAbility()
 		if target then
-			if target:TriggerSpellAbsorb(self) then return false end
-			EmitSoundOn("Hero_SkywrathMage.ArcaneBolt.Impact", target)
+			if target:TriggerSpellAbsorb(ability) then return false end
+			EmitSoundOn("Hero_VengefulSpirit.MagicMissileImpact", target)
 			ability:Stun( target, ability:GetSpecialValueFor("stun_duration") )
 		end
 		local expRadius = ability:GetSpecialValueFor("explosion_radius") 
-		ParticleManager:FireWarningParticle( target:GetAbsOrigin(), expRadius )
+		ParticleManager:FireWarningParticle( position, expRadius )
 		Timers:CreateTimer( 0.5, function()
+			ParticleManager:FireParticle("particles/units/heroes/hero_dark_seer/dark_seer_vacuum.vpcf", PATTACH_WORLDORIGIN, nil, {[0] = position, [1] = Vector(expRadius,1,1)})
 			local damage = ability:GetSpecialValueFor("damage")
-			for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( position, expRadius ) do
-				ability:DealDamage( caster, enemy, damage )
+			for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( position, expRadius ) ) do
+				if not enemy:TriggerSpellAbsorb(ability) then
+					ability:DealDamage( caster, enemy, damage )
+				end
 			end
 		end)
 		return false
 	end
-	caster:EmitSound("Hero_SkywrathMage.ArcaneBolt.Cast")
-	ProjectileHandler:CreateProjectile(PROJECTILE_LINEAR, ProjectileHit, {  FX = "skywrath_mage_arcane_bolt.vpcf",
-																		  position = caster:GetAbsOrigin(),
+	caster:EmitSound(""Hero_VengefulSpirit.MagicMissile"")
+	ProjectileHandler:CreateProjectile(PROJECTILE_LINEAR, ProjectileHit, {  FX = "particles/econ/items/vengeful/vs_ti8_immortal_shoulder/vs_ti8_immortal_magic_missle.vpcf",
+																		  position = caster:GetAbsOriginCenter(),
 																		  caster = caster,
 																		  ability = self,
 																		  speed = speed,

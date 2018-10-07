@@ -503,7 +503,6 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 	local ability = (inflictor ~= nil) and EntIndexToHScript( inflictor )
 	local original_attacker = attacker -- make a copy for threat
     local damagetype = filterTable["damagetype_const"]
-
 	if damage <= 0 then return true end
 	
 	-- VVVVVVVVVVVVVV REMOVE THIS SHIT IN THE FUTURE VVVVVVVVVVV --
@@ -529,7 +528,6 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 	else
 		AddFOWViewer(DOTA_TEAM_BADGUYS, original_attacker:GetAbsOrigin(), 256, 1, false)
 	end
-
 	--- THREAT AND UI NO MORE DAMAGE MANIPULATION ---
 	local damage = filterTable["damage"]
 	local attacker = original_attacker
@@ -607,7 +605,6 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 			end
 		end
     end
-	
     return true
 end
 

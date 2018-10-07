@@ -45,5 +45,9 @@ function modifier_archangel_divine_judgement:GetModifierMoveSpeedBonus_Percentag
 end
 
 function modifier_archangel_divine_judgement:GetEffectName()
-	return "skywrath_mage_ancient_seal_debuff.vpcf"
+	return "particles/units/heroes/hero_skywrath_mage/skywrath_mage_ancient_seal_debuff.vpcf"
+end
+
+function modifier_archangel_divine_judgement:GetEffectAttachType()
+	return PATTACH_OVERHEAD_FOLLOW
 end
