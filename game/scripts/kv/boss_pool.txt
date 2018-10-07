@@ -8,6 +8,7 @@
 		"sepulcher_boss_wraith_king"		"1"
 		"grove_boss_green_dragon"			"1"
 		"sepulcher_boss_reaper"				"1"
+		"sepulcher_boss_vile_archmage"		"1"
 	}
 	// Regular ass monsters
 	"Grove"

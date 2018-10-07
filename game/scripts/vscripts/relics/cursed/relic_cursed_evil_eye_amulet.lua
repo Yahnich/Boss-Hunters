@@ -11,6 +11,6 @@ function relic_cursed_evil_eye_amulet:OnIntervalThink()
 		AddFOWViewer( DOTA_TEAM_BADGUYS, self:GetParent():GetAbsOrigin(), 128, 0.03, false )
 	end
 	for _, enemy in ipairs( self:GetParent():FindEnemyUnitsInRadius( self:GetParent():GetAbsOrigin(), 3000 ) ) do
-		AddFOWViewer( DOTA_TEAM_GOODGUYS, self:GetParent():GetAbsOrigin(), 128, 0.03, false )
+		AddFOWViewer( DOTA_TEAM_GOODGUYS, enemy:GetAbsOrigin(), 128, 0.03, false )
 	end
 end

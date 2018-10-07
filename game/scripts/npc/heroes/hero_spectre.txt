@@ -10,9 +10,9 @@
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_spectre/spectre_spectral_dagger_bh"
 		"AbilityTextureName"			"spectre_spectral_dagger"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
@@ -90,6 +90,11 @@
 			"09"
 			{
 				"var_type"				"FIELD_FLOAT"
+				"distance"				"2000"
+			}
+			"10"
+			{
+				"var_type"				"FIELD_FLOAT"
 				"dagger_grace_period"	"2.0"
 			}
 		}
@@ -105,6 +110,7 @@
 		"BaseClass"						"special_bonus_undefined"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"LinkedAbilityName"				"spectre_spectral_dagger_bh"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -173,7 +179,7 @@
 			"01"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"scream_radius"					"800"
+				"scream_radius"					"475"
 				"LinkedSpecialBonus"			"special_bonus_unique_spectre_echo_scream_2"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
@@ -325,7 +331,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"						"-1"
+				"value"						"-0.25"
 			}
 		}
 	}
@@ -401,7 +407,7 @@
 			"03"
 			{
 				"var_type"							"FIELD_INTEGER"
-				"damage_reflection_pct"				"22 24 26 28 30 32 34"
+				"damage_reflection_pct"				"20 23 26 29 32 35"
 				"LinkedSpecialBonus"				"special_bonus_unique_spectre_dispersion_1"
 				"CalculateSpellDamageTooltip"		"0"
 			}

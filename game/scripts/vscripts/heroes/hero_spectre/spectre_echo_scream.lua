@@ -1,5 +1,9 @@
 spectre_echo_scream = class({})
 
+function spectre_echo_scream:GetCastRange()
+	return self:GetTalentSpecialValueFor("scream_radius")
+end
+
 function spectre_echo_scream:OnSpellStart()
     local caster = self:GetCaster()
 	

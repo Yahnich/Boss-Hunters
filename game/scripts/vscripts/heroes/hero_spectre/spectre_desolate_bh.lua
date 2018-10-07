@@ -20,12 +20,30 @@ end
 function modifier_spectre_desolate_bh:OnAttackLanded(params)
 	if params.attacker == self:GetParent() then
 		local damage = self.solo_damage
+		local solo = true
 		for _, ally in ipairs( params.attacker:FindEnemyUnitsInRadius( params.target:GetAbsOrigin(), self.radius) ) do
 			if params.target ~= ally then
 				damage = self.damage
-				params.target:EmitSound("Hero_Spectre.Desolate")
+				solo = false
 				break
 			end
+		end
+		if solo then
+			params.target:EmitSound("Hero_Spectre.Desolate")
+			if params.attacker:HasTalent("special_bonus_unique_spectre_desolate_2") then
+				local cdr = params.attacker:FindTalentValue("special_bonus_unique_spectre_desolate_2") * params.attacker:GetCooldownReduction()
+				for i = 0, 23 do
+					local ability = params.attacker:GetAbilityByIndex( i )
+					if ability and not ability:IsCooldownReady() then
+						local cdRemaining = ability:GetCooldownTimeRemaining()
+						ability:EndCooldown()
+						ability:StartCooldown( cdRemaining + cdr )
+					end
+				end
+			end
+		end
+		if params.attacker:HasTalent("special_bonus_unique_spectre_desolate_1") then
+			params.target:Paralyze(self:GetAbility(), params.attacker, params.attacker:FindTalentValue("special_bonus_unique_spectre_desolate_1"))
 		end
 		self:GetAbility():DealDamage( params.attacker, params.target, damage )
 		local vDir = params.attacker:GetForwardVector() * (-1)
@@ -34,4 +52,8 @@ function modifier_spectre_desolate_bh:OnAttackLanded(params)
 		ParticleManager:SetParticleControlForward( hitFX, 0, vDir )
 		ParticleManager:ReleaseParticleIndex( hitFX )
 	end
+end
+
+function modifier_spectre_desolate_bh:IsHidden()
+	return true
 end

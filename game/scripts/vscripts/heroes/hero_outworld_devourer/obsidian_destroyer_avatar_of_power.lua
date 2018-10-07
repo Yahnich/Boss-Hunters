@@ -31,7 +31,7 @@ function modifier_obsidian_destroyer_avatar_of_power_active:GetModifierIncomingD
 	if HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_HPLOSS) then return end
 	if params.damage < self:GetParent():GetMana() then
 		self:GetParent():SpendMana(params.damage, self:GetAbility() )
-		return -100
+		return -999
 	else
 		local dmgPct = self:GetParent():GetMana() / params.damage
 		self:GetParent():SpendMana(self:GetParent():GetMana(), self:GetAbility() )

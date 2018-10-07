@@ -27,8 +27,9 @@ function satyr_champion_mana_combustion:OnSpellStart()
 			ParticleManager:FireParticle("particles/units/heroes/hero_invoker/invoker_emp_explode.vpcf", PATTACH_WORLDORIGIN, nil, {[0] = position, [1] = Vector(radius,radius,radius)})
 			for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( position, radius ) ) do
 				if not enemy:TriggerSpellAbsorb(self) then
-					enemy:ReduceMana( burn )
-					self:DealDamage( caster, enemy, burn * damage )
+					local manaLoss = math.min( burn, enemy:GetMana() )
+					enemy:ReduceMana( manaLoss )
+					self:DealDamage( caster, enemy, manaLoss * damage )
 				end
 			end
 		end

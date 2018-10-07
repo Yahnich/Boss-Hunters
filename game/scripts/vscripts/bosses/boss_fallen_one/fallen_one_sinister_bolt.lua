@@ -37,7 +37,7 @@ function fallen_one_sinister_bolt:OnSpellStart()
 		end)
 		return false
 	end
-	caster:EmitSound(""Hero_VengefulSpirit.MagicMissile"")
+	caster:EmitSound("Hero_VengefulSpirit.MagicMissile")
 	ProjectileHandler:CreateProjectile(PROJECTILE_LINEAR, ProjectileHit, {  FX = "particles/econ/items/vengeful/vs_ti8_immortal_shoulder/vs_ti8_immortal_magic_missle.vpcf",
 																		  position = caster:GetAbsOriginCenter(),
 																		  caster = caster,
