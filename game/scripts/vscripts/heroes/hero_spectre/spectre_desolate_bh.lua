@@ -27,7 +27,6 @@ function modifier_spectre_desolate_bh:OnAttackLanded(params)
 				break
 			end
 		end
-		print(damage)
 		self:GetAbility():DealDamage( params.attacker, params.target, damage )
 		local vDir = params.attacker:GetForwardVector() * (-1)
 		local hitFX = ParticleManager:CreateParticle("particles/units/heroes/hero_spectre/spectre_desolate.vpcf", PATTACH_ABSORIGIN, params.attacker)
