@@ -1128,12 +1128,12 @@
 			"01"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"damage"						"14 28 42 56 70 84 98"
+				"damage"						"28 42 56 70 84 98 112"
 			}
 			"02"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"damage_pct"					"2"
+				"damage_pct"					"0.4"
 				"LinkedSpecialBonus"			"special_bonus_unique_death_prophet_3"
 			}
 			"03"
@@ -1154,7 +1154,7 @@
 			"06"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"max_charges"					"1 2 3 4 5 6 7"
+				"max_charges"					"6"
 			}
 			"07"
 			{
@@ -2016,192 +2016,6 @@
 				"cast_range_scepter"	"850 850 850"
 			}
 		}			
-	}
-	//=================================================================================================================
-	// Necrolyte: Death Pulse
-	//=================================================================================================================
-	"necrolyte_death_pulse"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"					"5158"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"FightRecapLevel"				"1"
-		"AbilitySound"					"Hero_Necrolyte.DeathPulse"
-		"MaxLevel"						"7"
-
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"0"
-		"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
-
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"5"
-
-		// Damage.
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"					"80 120 160 200 240 280 320"
-
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"125 145 165 185 205 225 245"
-
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"area_of_effect"		"475"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"heal"					"60 80 100 120 140 160 180"
-				"LinkedSpecialBonus"		"special_bonus_unique_necrophos_4"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"projectile_speed"		"400"
-			}
-			"04"
-			{
-				"var_type"		"FIELD_INTEGER"
-				"health_regen"	"2 3 4 5 6 7 8"
-			}		
-			"05"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"mana_regen"	"2 2.25 2.5 2.75 3 3.25 3.5"
-			}	
-			"06"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"regen_duration"		"6"
-			}			
-			"07"
-			{
-				"var_type"		"FIELD_INTEGER"
-				"hero_multiplier" "6"
-			}
-		}
-		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
-	}
-	
-	//=================================================================================================================
-	// Ability: Necrolyte's Heartstopper Aura
-	//=================================================================================================================
-	"necrolyte_heartstopper_aura"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"					"5159"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
-		"MaxLevel"						"7"
-		
-				
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"700"
-
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"aura_radius"			"700"		// If you change this, also change the AbilityCastRange above
-			}
-			"02"
-			{
-				"var_type"			"FIELD_FLOAT"
-				"aura_damage"		"0.5 0.55 0.6 0.65 0.7 0.75 0.8" 
-				"LinkedSpecialBonus"		"special_bonus_unique_necrophos_2"
-			} 	
-		}
-		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
-	}
-	
-	//=================================================================================================================
-	// Ability: Necrolyte's Sadist
-	//=================================================================================================================
-	"necrolyte_sadist"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"					"5160"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-		"AbilitySound"					"Hero_Necrolyte.SpiritForm.Cast"
-		"MaxLevel"						"7"
-
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0"
-
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"28 24 20 16 12 8 4"
-		"HasPureCooldown"				"1"
-		"AbilityDuration"				"4.5"
-		
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"50"
-		
-		
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"duration"		"4.5"
-			}				
-			"02"
-			{
-				"var_type"		"FIELD_INTEGER"
-				"heal_bonus"	"75"
-			}			
-			"03"
-			{
-				"var_type"		"FIELD_INTEGER"
-				"movement_speed"			"6 12 18 24 30 36 42"
-				"LinkedSpecialBonus"		"special_bonus_unique_necrophos_3"
-			}			
-			"04"
-			{
-				"var_type"		"FIELD_INTEGER"
-				"slow_aoe"		"750"
-			}		
-			"05"
-			{
-				"var_type"		"FIELD_INTEGER"
-				"bonus_damage" "-30"
-			}
-		}
-		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_2"
-	}
-		
-	//=================================================================================================================
-	// Aether Form Stop
-	//=================================================================================================================
-	"necrolyte_sadist_stop"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"					"6316"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE"
-		"MaxLevel"						"7"
-		
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
 	}
 	//=================================================================================================================
 	// Beastmaster: Wild Axes
@@ -8783,98 +8597,6 @@
 			}
 		}
 	}
-
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_necrophos"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"					"6010"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"				"1.5"
-			}
-		}
-	}
-
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_necrophos_2"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"					"6703"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"				"0.6"
-			}
-		}
-	}
-
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_necrophos_3"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"					"7110"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"				"16"
-			}
-		}
-	}
-
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_necrophos_4"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"					"7111"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"				"40"
-			}
-		}
-	}
 	//=================================================================================================================
 	// Ability: Special Bonus
 	//=================================================================================================================
@@ -11475,7 +11197,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"				"1.0"
+				"value"				"0.1"
 			}
 		}
 	}
