@@ -3,10 +3,10 @@ necrophos_ghost_shroud_bh = class({})
 function necrophos_ghost_shroud_bh:OnSpellStart()
 	local caster = self:GetCaster()
 	if caster:HasModifier("modifier_necrophos_ghost_shroud_bh") then
-		self:SetCooldown()
 		caster:RemoveModifierByName("modifier_necrophos_ghost_shroud_bh")
 	else
 		caster:AddNewModifier( caster, self, "modifier_necrophos_ghost_shroud_bh", {duration = self:GetTalentSpecialValueFor("duration")})
+		caster:EmitSound("Hero_Necrolyte.SpiritForm.Cast")
 		ProjectileManager:ProjectileDodge( caster )
 		self:EndCooldown()
 	end
@@ -22,13 +22,17 @@ function modifier_necrophos_ghost_shroud_bh:OnCreated()
 	
 	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_necrophos_ghost_shroud_1")
 	if self.talent1 then
-		self.duration = self:GetTalentSpecialValueFor("special_bonus_unique_necrophos_ghost_shroud_1")
+		self.duration = self:GetCaster():FindTalentValue("special_bonus_unique_necrophos_ghost_shroud_1")
 	end
+end
+
+function modifier_necrophos_ghost_shroud_bh:OnDestroy()
+	if IsServer() then self:GetAbility():SetCooldown() end
 end
 
 function modifier_necrophos_ghost_shroud_bh:CheckState()
 	return {[MODIFIER_STATE_DISARMED] = not self.talent1,
-			[MODIFIER_STATE_ATTACK_IMMUNE] = not self.talent1,}
+			[MODIFIER_STATE_ATTACK_IMMUNE] = true}
 end
 
 function modifier_necrophos_ghost_shroud_bh:DeclareFunctions()
@@ -81,18 +85,41 @@ function modifier_necrophos_ghost_shroud_bh:GetAuraSearchFlags()
 	return DOTA_UNIT_TARGET_FLAG_NONE
 end
 
+function modifier_necrophos_ghost_shroud_bh:GetEffectName()
+	return "particles/units/heroes/hero_necrolyte/necrolyte_spirit.vpcf"
+end
+
+function modifier_necrophos_ghost_shroud_bh:GetStatusEffectName()
+	return "particles/status_fx/status_effect_necrolyte_spirit.vpcf"
+end
+
+function modifier_necrophos_ghost_shroud_bh:StatusEffectPriority()
+	return 15
+end
+
 modifier_necrophos_ghost_shroud_bh_slow = class({})
 LinkLuaModifier( "modifier_necrophos_ghost_shroud_bh_slow", "heroes/hero_necrophos/necrophos_ghost_shroud_bh", LUA_MODIFIER_MOTION_NONE )
 
 function modifier_necrophos_ghost_shroud_bh_slow:OnCreated()
 	self.slow = self:GetTalentSpecialValueFor("movement_speed") * (-1)
-	self.talent2 = self:GetCaster():HasTalent("special_bonus_unique_necrophos_ghost_shroud_2")
-	if self.talent2 then
-		self.dmg = self:GetCaster:FindTalentValue("special_bonus_unique_necrophos_ghost_shroud_2") / 100
+	if IsServer() and self:GetCaster():HasTalent("special_bonus_unique_necrophos_ghost_shroud_2") then
+		self.dmg = self:GetCaster():FindTalentValue("special_bonus_unique_necrophos_ghost_shroud_2") / 100
 		self:StartIntervalThink(1)
 	end
 end
 
 function modifier_necrophos_ghost_shroud_bh_slow:OnIntervalThink()
-	self:GetAbility():DealDamage( self:GetCaster(), self:GetParent(), self:GetCaster():GetIntellect() * self.dmg, {damage_type = DAMAGE_TYPE_MAGICAL damage_flags = DOTA_DAMAGE_FLAGS_NO_SPELL_AMPLIFICATION} )
+	self:GetAbility():DealDamage( self:GetCaster(), self:GetParent(), self:GetCaster():GetIntellect() * self.dmg, {damage_type = DAMAGE_TYPE_MAGICAL, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION } )
+end
+
+function modifier_necrophos_ghost_shroud_bh_slow:DeclareFunctions()
+	return {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE}
+end
+
+function modifier_necrophos_ghost_shroud_bh_slow:GetModifierMoveSpeedBonus_Percentage()
+	return self.slow
+end
+
+function modifier_necrophos_ghost_shroud_bh_slow:GetEffectName()
+	return "particles/units/heroes/hero_necrolyte/necrolyte_spirit_debuff.vpcf"
 end

@@ -127,8 +127,6 @@
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"				"28 24 20 16 12 8 4"
-		"HasPureCooldown"				"1"
-		"AbilityDuration"				"4.5"
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -264,7 +262,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"50"
+				"value"						"-50"
 			}
 		}
 	}
@@ -343,13 +341,13 @@
 	//=================================================================================================================
 	// Ability: Necrolyte's Reaper's Scythe
 	//=================================================================================================================
-	"necrolyte_reapers_scythe"
+	"necrophos_reapers_scythe_bh"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_necrophos/necrophos_sadist_bh"
-		"AbilityTextureName"			"custom/necrophos_sadist"
+		"ScriptFile"					"heroes/hero_necrophos/necrophos_reapers_scythe_bh"
+		"AbilityTextureName"			"necrolyte_reapers_scythe"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"		
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"

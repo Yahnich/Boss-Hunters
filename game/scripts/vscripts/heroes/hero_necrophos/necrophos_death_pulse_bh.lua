@@ -8,7 +8,11 @@ function necrophos_death_pulse_bh:GetBehavior()
 	end
 end
 
-function necrophos_death_pulse_bh:GetBehavior()
+function necrophos_death_pulse_bh:GetCastRange( target, position )
+	return self:GetTalentSpecialValueFor("area_of_effect")
+end
+
+function necrophos_death_pulse_bh:GetManaCost(iLvl)
 	return self.BaseClass.GetManaCost(self, iLvl) * self:GetCaster():FindTalentValue("special_bonus_unique_necrophos_death_pulse_1") / 100
 end
 
@@ -16,23 +20,26 @@ function necrophos_death_pulse_bh:OnToggle()
 	if self:GetToggleState() then
 		self:GetCaster():AddNewModifier( self:GetCaster(), self, "modifier_necrophos_death_pulse_bh_talent", {} )
 	else
-		self:GetCaster():RemoveModifierByName( self:GetCaster() )
+		self:GetCaster():RemoveModifierByName( "modifier_necrophos_death_pulse_bh_talent" )
 	end
 end
 
-function necrophos_death_pulse_bh:OnSpellStart()
+function necrophos_death_pulse_bh:ShouldUseResources()
+	return true
+end
+
+function necrophos_death_pulse_bh:OnSpellStart(bDisableSound)
 	local caster = self:GetCaster()
 	
-	local speed = self:GetTalentSpecialValueFor("speed")
-	for _, unit in ipairs( caster:FindAllUnitsInRadius( caster:GetAbsOrigin, self:GetTalentSpecialValueFor("area_of_effect") ) ) do
-		if caster ~= unit then
-			local fxName = ""
-			if caster:IsSameTeam(target) then
-				fxName = ""
-			end
-			self:FireTrackingProjectile(fxName, unit, speed)
+	local speed = self:GetTalentSpecialValueFor("projectile_speed")
+	for _, unit in ipairs( caster:FindAllUnitsInRadius( caster:GetAbsOrigin(), self:GetTalentSpecialValueFor("area_of_effect") ) ) do
+		local fxName = "particles/units/heroes/hero_necrolyte/necrolyte_pulse_enemy.vpcf"
+		if caster:IsSameTeam(unit) then
+			fxName = "particles/units/heroes/hero_necrolyte/necrolyte_pulse_friend.vpcf"
 		end
+		self:FireTrackingProjectile(fxName, unit, speed)
 	end
+	if not bDisableSound then caster:EmitSound("Hero_Necrolyte.DeathPulse") end
 end
 
 function necrophos_death_pulse_bh:OnProjectileHit( target, position )
@@ -41,14 +48,15 @@ function necrophos_death_pulse_bh:OnProjectileHit( target, position )
 		if caster:IsSameTeam(target) then
 			target:HealEvent( self:GetTalentSpecialValueFor("heal"), self, caster )
 			if caster:HasTalent("special_bonus_unique_necrophos_death_pulse_2") then
-				local speed = self:GetTalentSpecialValueFor("speed")
-				for _, unit in ipairs( caster:FindAllUnitsInRadius( target:GetAbsOrigin(), self:GetTalentSpecialValueFor("area_of_effect") ) ) do
-					self:FireTrackingProjectile("", enemy, speed, {origin = target:GetAbsOrigin(), source = target})
+				local speed = self:GetTalentSpecialValueFor("projectile_speed")
+				for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( target:GetAbsOrigin(), self:GetTalentSpecialValueFor("area_of_effect") ) ) do
+					self:FireTrackingProjectile("particles/units/heroes/hero_necrolyte/necrolyte_pulse_enemy.vpcf", enemy, speed, {origin = target:GetAbsOrigin(), source = target})
 				end
 			end
 		else
 			self:DealDamage( caster, target, self:GetTalentSpecialValueFor("damage") )
 		end
+		target:EmitSound("Hero_Necrolyte.ProjectileImpact")
 	end
 end
 
@@ -62,8 +70,8 @@ if IsServer() then
 	end
 	
 	function modifier_necrophos_death_pulse_bh_talent:OnIntervalThink()
-		self:GetAbility():OnSpellStart()
-		self:GetAbility():SpendMana()
+		self:GetAbility():OnSpellStart(true)
+		self:GetAbility():PayManaCost()
 		if self:GetParent():GetMana() <= 0 then self:GetAbility():ToggleAbility() end
 	end
 end

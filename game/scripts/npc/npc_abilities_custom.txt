@@ -138,6 +138,7 @@
 #base "heroes/hero_terrorblade.txt"
 #base "heroes/hero_troll_warlord.txt"
 #base "heroes/hero_spectre.txt"
+#base "heroes/hero_necrophos.txt"
 
 "DOTAAbilities"
 {
