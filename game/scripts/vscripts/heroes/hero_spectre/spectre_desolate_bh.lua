@@ -30,7 +30,7 @@ function modifier_spectre_desolate_bh:OnAttackLanded(params)
 		end
 		if solo then
 			params.target:EmitSound("Hero_Spectre.Desolate")
-			local vDir = params.attacker:GetForwardVector() * (-1)
+			local vDir = CalculateDirection( params.attacker, params.target )
 			local hitFX = ParticleManager:CreateParticle("particles/units/heroes/hero_spectre/spectre_desolate.vpcf", PATTACH_ABSORIGIN, params.attacker)
 			ParticleManager:SetParticleControl( hitFX, 0, params.target:GetAbsOrigin() )
 			ParticleManager:SetParticleControlForward( hitFX, 0, vDir )

@@ -9,11 +9,11 @@ function disruptor_tesla_field:GetBehavior()
 end
 
 function disruptor_tesla_field:GetCooldown( iLvl )
-	return self:GetCaster():HasTalent("special_bonus_unique_disruptor_tesla_field_2", "cd")
+	return self:GetCaster():FindTalentValue("special_bonus_unique_disruptor_tesla_field_2", "cd")
 end
 
 function disruptor_tesla_field:GetManaCost( iLvl )
-	return self:GetCaster():HasTalent("special_bonus_unique_disruptor_tesla_field_2", "mana")
+	return self:GetCaster():FindTalentValue("special_bonus_unique_disruptor_tesla_field_2", "mana")
 end
 
 function disruptor_tesla_field:OnSpellStart()
@@ -27,14 +27,14 @@ modifier_disruptor_tesla_field = class({})
 LinkLuaModifier("modifier_disruptor_tesla_field", "heroes/hero_disruptor/disruptor_tesla_field", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_disruptor_tesla_field:OnCreated()
-	self.radius = self:GetTalentSpecialValueFor("chance")
+	self.radius = self:GetTalentSpecialValueFor("radius")
 	self.duration = self:GetTalentSpecialValueFor("silence_duration")
 	self.damage = self:GetTalentSpecialValueFor("damage")
 	self.chance = self:GetTalentSpecialValueFor("chance")
 end
 
 function modifier_disruptor_tesla_field:OnRefresh()
-	self.radius = self:GetTalentSpecialValueFor("chance")
+	self.radius = self:GetTalentSpecialValueFor("radius")
 	self.duration = self:GetTalentSpecialValueFor("silence_duration")
 	self.damage = self:GetTalentSpecialValueFor("damage")
 	self.chance = self:GetTalentSpecialValueFor("chance")
@@ -45,10 +45,20 @@ function modifier_disruptor_tesla_field:DeclareFunctions()
 end
 
 function modifier_disruptor_tesla_field:OnTakeDamage(params)
-	if params.attacker == self:GetParent() and ( RollPercentage( self.chance ) or ( self:GetParent():HasTalent("special_bonus_unique_disruptor_kinetic_charge_1") and params.unit:HasModifier("modifier_disruptor_kinetic_charge_pull") ) ) then
-		ability:DealDamage( caster, enemy, self.damage )
-		enemy:Silence(ability, caster, self.duration)
-		ParticleManager:FireRopeParticle("particles/units/heroes/hero_rhasta/rhasta_spell_forked_lightning.vpcf", PATTACH_POINT_FOLLOW , caster, target)
+	if params.attacker == self:GetParent() then
+		local talentActivated = ( self:GetParent():HasTalent("special_bonus_unique_disruptor_kinetic_charge_1") and params.unit:HasModifier("modifier_disruptor_kinetic_charge_pull") )
+		local roll = RollPercentage( self.chance )
+		local talent1 = self:GetCaster():HasTalent("special_bonus_unique_disruptor_tesla_field_1")
+		if ( ( CalculateDistance( params.attacker, params.unit ) < self.radius or talent1) and roll ) or talentActivated then
+			local caster = self:GetCaster()
+			local ability = self:GetAbility()
+			if params.inflictor == ability then return end
+			local enemy = params.unit
+			ability:DealDamage( caster, enemy, self.damage )
+			enemy:Silence(ability, caster, self.duration)
+			enemy:Root(ability, caster, self.duration)
+			ParticleManager:FireRopeParticle("particles/units/heroes/hero_rhasta/rhasta_spell_forked_lightning.vpcf", PATTACH_POINT_FOLLOW , caster, enemy)
+		end
 	end
 end
 
@@ -59,6 +69,7 @@ function modifier_disruptor_tesla_field:OnAbilityFullyCast(params)
 		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), self.radius ) ) do
 			ability:DealDamage( caster, enemy, self.damage )
 			enemy:Silence(ability, caster, self.duration)
+			enemy:Root(ability, caster, self.duration)
 			ParticleManager:FireRopeParticle("particles/units/heroes/hero_rhasta/rhasta_spell_forked_lightning.vpcf", PATTACH_POINT_FOLLOW , caster, enemy)
 		end
 	end

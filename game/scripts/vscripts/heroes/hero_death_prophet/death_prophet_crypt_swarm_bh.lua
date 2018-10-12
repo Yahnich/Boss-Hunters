@@ -1,7 +1,7 @@
 death_prophet_crypt_swarm_bh = class({})
 
 function death_prophet_crypt_swarm_bh:GetBehavior()
-	if self:GetCaster():HasTalent("special_bonus_unique_death_prophet_crypt_swarm_2") then
+	if not self:GetCaster():HasTalent("special_bonus_unique_death_prophet_crypt_swarm_2") then
 		return DOTA_ABILITY_BEHAVIOR_UNIT_TARGET + DOTA_ABILITY_BEHAVIOR_POINT
 	else
 		return DOTA_ABILITY_BEHAVIOR_NO_TARGET
@@ -11,36 +11,37 @@ end
 function death_prophet_crypt_swarm_bh:OnSpellStart()
 	local caster = self:GetCaster()
 	local position = self:GetCursorPosition()
-	if not position or caster:HasTalent("special_bonus_unique_death_prophet_crypt_swarm_2") then
-		position = caster:GetForwardVector()
-	end
 	local direction = CalculateDirection( position, caster )
-	
+	if caster:HasTalent("special_bonus_unique_death_prophet_crypt_swarm_2") then
+		direction = caster:GetForwardVector()
+	end
 	local speed = self:GetTalentSpecialValueFor("speed")
 	local distance = self:GetTalentSpecialValueFor("range")
 	local width = self:GetTalentSpecialValueFor("start_radius")
 	local endWidth = self:GetTalentSpecialValueFor("end_radius")
 	
-	self:FireLinearProjectile("", direction * speed, distance, width, {width_end = endWidth})
+	
 	if caster:HasTalent("special_bonus_unique_death_prophet_crypt_swarm_2") then
-		local angle = 360 / 8
-		for i = 7 do
-			direction = RotateVector2D( direction, ToRadians( angle ) )
-			self:FireLinearProjectile("", direction * speed, distance, width, {width_end = endWidth})
+		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), distance ) ) do
+			self:OnProjectileHit( enemy, enemy:GetAbsOrigin() )
 		end
+		ParticleManager:FireParticle( "particles/units/heroes/hero_death_prophet/death_prophet_carrion_nova.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster )
+	else
+		self:FireLinearProjectile("particles/units/heroes/hero_death_prophet/death_prophet_carrion_swarm.vpcf", direction * speed, distance, width, {width_end = endWidth})
 	end
+	caster:EmitSound("Hero_DeathProphet.CarrionSwarm")
 end
 
 function death_prophet_crypt_swarm_bh:OnProjectileHit( target, position )
 	if target then
 		local caster = self:GetCaster()
-		if caster:HasTalent("special_bonus_unique_death_prophet_crypt_swarm_2") then
+		if caster:HasTalent("special_bonus_unique_death_prophet_crypt_swarm_1") then
 			target:AddNewModifier( caster, self, "modifier_death_prophet_crypt_swarm_talent", {duration = caster:FindTalentValue("special_bonus_unique_death_prophet_crypt_swarm_1", "duration")})
 		else
 			local damage = self:GetTalentSpecialValueFor("damage")
 			self:DealDamage( caster, target, damage )
 		end
-		
+		target:EmitSound("Hero_DeathProphet.CarrionSwarm.Damage")
 	end
 end
 

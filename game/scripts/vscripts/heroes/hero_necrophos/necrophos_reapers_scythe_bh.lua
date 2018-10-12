@@ -22,7 +22,7 @@ function necrophos_reapers_scythe_bh:OnSpellStart()
 	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( position, radius ) ) do
 		local modifier = self:Stun(enemy, duration)
 		if modifier then
-			local nFX = ParticleManager:CreateParticle("particles/units/heroes/hero_necrolyte/necrolyte_scythe_start.vpcf", PATTACH_POINT_FOLLOW, enemy)
+			local nFX = ParticleManager:CreateParticle("particles/units/heroes/hero_necrolyte/necrolyte_scythe.vpcf", PATTACH_POINT_FOLLOW, enemy)
 			modifier:AddEffect(nFX)
 		end
 	end
@@ -50,7 +50,7 @@ function necrophos_reapers_scythe_bh:OnSpellStart()
 			
 			heal = heal / #allies
 			for _, ally in ipairs( allies ) do
-				ally:HealEvent( heal, self, )
+				ally:HealEvent( heal, self, caster )
 			end
 		end
 	end)

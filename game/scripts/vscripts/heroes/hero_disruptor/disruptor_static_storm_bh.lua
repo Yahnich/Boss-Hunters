@@ -6,6 +6,7 @@ function disruptor_static_storm_bh:OnSpellStart()
 	
 	local duration = TernaryOperator( self:GetTalentSpecialValueFor("duration_scepter"), caster:HasScepter(), self:GetTalentSpecialValueFor("duration") )
 	CreateModifierThinker(caster, self, "modifier_disruptor_static_storm_bh", {duration = duration}, target, caster:GetTeam(), false)
+	caster:EmitSound("Hero_Disruptor.StaticStorm.Cast")
 end
 
 modifier_disruptor_static_storm_bh = class({})
@@ -22,6 +23,12 @@ function modifier_disruptor_static_storm_bh:OnCreated()
 	
 	self.talent1 = self:GetCaster():HasTalent("special_bonus_unique_disruptor_static_storm_1")
 	if IsServer() then
+		local caster = self:GetCaster()
+		self:GetParent():EmitSound("Hero_Disruptor.StaticStorm")
+		local nFX = ParticleManager:CreateParticle("particles/units/heroes/hero_disruptor/disruptor_static_storm.vpcf", PATTACH_ABSORIGIN, self:GetParent() )
+		ParticleManager:SetParticleControl( nFX, 1, Vector(self.radius, 0, 0) )
+		ParticleManager:SetParticleControl( nFX, 2, Vector( self:GetRemainingTime(), 0, 0 ) )
+		self:AddEffect(nFX)
 		self:StartIntervalThink( self.tick )
 		if self.talent1 then
 			local thunderstruck = self:GetCaster():FindAbilityByName("disruptor_thunder_strike_bh")
@@ -29,7 +36,7 @@ function modifier_disruptor_static_storm_bh:OnCreated()
 				for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( self:GetParent():GetAbsOrigin(), self.radius ) ) do
 					if enemy:HasModifier("modifier_disruptor_thunder_strike_bh_visual") then
 						for _, newTarget in ipairs( caster:FindEnemyUnitsInRadius( self:GetParent():GetAbsOrigin(), self.radius ) ) do
-							if newTarget ~= enemy then
+							if newTarget ~= enemy and not enemy:HasModifier("modifier_disruptor_thunder_strike_bh_visual") then
 								thunderstruck:OnSpellStart(newTarget)
 							end
 						end
@@ -41,11 +48,18 @@ function modifier_disruptor_static_storm_bh:OnCreated()
 	end
 end
 
+function modifier_disruptor_static_storm_bh:OnDestroy()
+	if IsServer() then
+		self:GetParent():StopSound("Hero_Disruptor.StaticStorm")
+		self:GetParent():EmitSound("Hero_Disruptor.StaticStorm.End")
+	end
+end
+
 function modifier_disruptor_static_storm_bh:OnIntervalThink()
 	local caster = self:GetCaster()
 	local ability = self:GetAbility()
 	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( self:GetParent():GetAbsOrigin(), self.radius ) ) do
-		ability:DealDamage( caster, enemy, self.damage )
+		ability:DealDamage( caster, enemy, self.damage * self.tick )
 		if self.talent1 and enemy:HasModifier("modifier_disruptor_kinetic_charge_pull") then
 			local charge = enemy:FindModifierByName("modifier_disruptor_kinetic_charge_pull")
 			if charge then

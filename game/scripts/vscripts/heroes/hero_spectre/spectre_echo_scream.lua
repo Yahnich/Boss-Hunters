@@ -17,7 +17,7 @@ function spectre_echo_scream:OnSpellStart()
 		if caster:HasScepter() then
 			local attacks = self:GetTalentSpecialValueFor("scepter_scream_attacks")
 			for i = 1, attacks do
-				caster:PerformAttack(target, true, true, true, false, false, false, true)
+				caster:PerformAttack(enemy, true, true, true, false, true, false, false)
 			end
 		end
 		if caster:HasTalent("special_bonus_unique_spectre_echo_scream_1") then

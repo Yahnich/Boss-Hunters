@@ -143,6 +143,7 @@
 		"precache"
 		{
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_items"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_disruptor.vsndevts"
 			"particle"	"particles/items_fx/chain_lightning.vpcf"
 			"particle"	"particles/disruptor_kinetic_charge_debuff.vpcf"
 		}
@@ -158,7 +159,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"pull_speed"			"200 250 300 350 400 450 500"
+				"pull_speed"			"100 150 200 250 300 350 400"
 			}
 			"02"
 			{

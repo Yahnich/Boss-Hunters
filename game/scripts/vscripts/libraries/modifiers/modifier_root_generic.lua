@@ -2,7 +2,7 @@ modifier_root_generic = class({})
 
 if IsServer() then
 	function modifier_root_generic:OnCreated(kv)
-		if kv.delay == nil or toboolean(kv.delay) == true then
+		if kv.delay ~= nil or toboolean(kv.delay) == true then
 			self.delay = true
 			self:GetAbility():StartDelayedCooldown(self:GetRemainingTime(), false)
 		end
@@ -14,11 +14,7 @@ if IsServer() then
 end
 
 function modifier_root_generic:GetEffectName()
-	return "particles/units/heroes/hero_dark_willow/dark_willow_bramble_root.vpcf"
-end
-
-function modifier_root_generic:GetEffectAttachType()
-	return PATTACH_OVERHEAD_FOLLOW
+	return "particles/units/heroes/hero_oracle/oracle_fortune_purge_root_pnt.vpcf"
 end
 
 function modifier_root_generic:GetAttributes()

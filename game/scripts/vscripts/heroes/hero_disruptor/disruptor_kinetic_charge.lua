@@ -4,16 +4,16 @@ function disruptor_kinetic_charge:CastFilterResultTarget( target )
 	if self:GetCaster():HasTalent("special_bonus_unique_disruptor_kinetic_charge_2") then
 		return UnitFilter(target, DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_CHECK_DISABLE_HELP, target:GetTeamNumber())
 	else
-		return UnitFilter(target, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, target:GetTeamNumber())
+		return UnitFilter(target, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, self:GetCaster():GetTeamNumber())
 	end
 end
-
-	return UF_FAIL_DISABLE_HELP 
 
 function disruptor_kinetic_charge:OnSpellStart()
 	local hTarget = self:GetCursorTarget()
 	local caster = self:GetCaster()
 	ApplyDamage({ victim = hTarget, attacker = caster, damage = self:GetAbilityDamage(), damage_type = self:GetAbilityDamageType(), ability = self })
+	hTarget:EmitSound("Hero_Disruptor.Glimpse.Target")
+	caster:EmitSound("Hero_Disruptor.Glimpse.End")
 	if hTarget:IsSameTeam( caster ) then
 		hTarget:AddNewModifier(caster, self, "modifier_disruptor_kinetic_charge_push", {duration = self:GetTalentSpecialValueFor("pull_duration")})
 	else
@@ -21,7 +21,7 @@ function disruptor_kinetic_charge:OnSpellStart()
 	end
 end
 
-LinkLuaModifier( "modifier_disruptor_kinetic_charge_push", "lua_abilities/heroes/disruptor.lua" ,LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_disruptor_kinetic_charge_push", "heroes/hero_disruptor/disruptor_kinetic_charge", LUA_MODIFIER_MOTION_NONE )
 modifier_disruptor_kinetic_charge_push = class({})
 
 function modifier_disruptor_kinetic_charge_push:OnCreated()
@@ -78,10 +78,6 @@ function modifier_disruptor_kinetic_charge_push:GetModifierAura()
 	return "modifier_disruptor_kinetic_charge_pull_aura"
 end
 
-function modifier_disruptor_kinetic_charge_push:IsHidden()
-	return true
-end
-
 --------------------------------------------------------------------------------
 
 function modifier_disruptor_kinetic_charge_push:GetAuraSearchTeam()
@@ -100,7 +96,7 @@ function modifier_disruptor_kinetic_charge_push:GetAuraRadius()
 	return self.aura_radius
 end
 
-LinkLuaModifier( "modifier_disruptor_kinetic_charge_pull", "lua_abilities/heroes/disruptor.lua" ,LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_disruptor_kinetic_charge_pull", "heroes/hero_disruptor/disruptor_kinetic_charge", LUA_MODIFIER_MOTION_NONE )
 modifier_disruptor_kinetic_charge_pull = class({})
 
 function modifier_disruptor_kinetic_charge_pull:OnCreated()
@@ -110,20 +106,25 @@ function modifier_disruptor_kinetic_charge_pull:OnCreated()
 	self.pullRadius = self:GetAbility():GetSpecialValueFor("pull_radius")
 	if IsServer() then
 		self:StartIntervalThink(0.03)
+		if self:GetCaster():HasTalent("special_bonus_unique_disruptor_kinetic_charge_1") then self:GetAbility():StartDelayedCooldown() end
 	end
+end
+
+function modifier_disruptor_kinetic_charge_pull:OnDestroy()
+	if IsServer and self:GetCaster():HasTalent("special_bonus_unique_disruptor_kinetic_charge_1") then self:GetAbility():EndDelayedCooldown() end
 end
 
 function modifier_disruptor_kinetic_charge_pull:OnIntervalThink()
 	local units = FindUnitsInRadius( self:GetCaster():GetTeamNumber(), self:GetParent():GetAbsOrigin(), nil, self.aura_radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO, 0, 0, false )
 	for _, unit in pairs(units) do
-		if unit:HasModifier("modifier_disruptor_kinetic_charge_pull_aura") then
+		if unit:HasModifier("modifier_disruptor_kinetic_charge_pull_aura") and unit ~= self:GetParent() then
 			local casterPos = self:GetParent():GetAbsOrigin()
-			local casterPos = unit:GetAbsOrigin()
+			local targetPos = unit:GetAbsOrigin()
 			local direction = targetPos - casterPos
 			local vec = direction:Normalized() * self.pullTick
-			if direction:Length2D() <= self.pullRadius and direction:Length2D() >= 200 then
-				unit:SetAbsOrigin(targetPos - vec)
-			end
+			
+			unit:SetAbsOrigin(targetPos - vec)
+			
 			if RollPercentage(3) then
 				EmitSoundOn("Item.Maelstrom.Chain_Lightning", unit)
 				local AOE_effect = ParticleManager:CreateParticle("particles/items_fx/chain_lightning.vpcf", PATTACH_POINT_FOLLOW  , self:GetParent())
@@ -157,14 +158,10 @@ function modifier_disruptor_kinetic_charge_pull:GetModifierAura()
 	return "modifier_disruptor_kinetic_charge_pull_aura"
 end
 
-function modifier_disruptor_kinetic_charge_pull:IsHidden()
-	return true
-end
-
 --------------------------------------------------------------------------------
 
 function modifier_disruptor_kinetic_charge_pull:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_ENEMY
+	return DOTA_UNIT_TARGET_TEAM_FRIENDLY
 end
 
 --------------------------------------------------------------------------------
@@ -179,7 +176,7 @@ function modifier_disruptor_kinetic_charge_pull:GetAuraRadius()
 	return self.aura_radius
 end
 
-LinkLuaModifier( "modifier_disruptor_kinetic_charge_pull_aura", "lua_abilities/heroes/disruptor.lua" ,LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_disruptor_kinetic_charge_pull_aura", "heroes/hero_disruptor/disruptor_kinetic_charge", LUA_MODIFIER_MOTION_NONE )
 modifier_disruptor_kinetic_charge_pull_aura = class({})
 
 function modifier_disruptor_kinetic_charge_pull_aura:OnCreated()

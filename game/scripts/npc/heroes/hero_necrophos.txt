@@ -301,7 +301,8 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
-		"MaxLevel"						"7"
+		"MaxLevel"						"1"
+		"InnateAbility"					"1"
 		
 				
 		// Casting
@@ -333,7 +334,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"kill_multiplier" 		"10"
+				"kill_multiplier" 		"5"
 			}
 			"06"
 			{
@@ -361,6 +362,7 @@
 		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"FightRecapLevel"				"2"
+		"MaxLevel"						"6"
 		"AbilitySound"					"Hero_Necrolyte.ReapersScythe.Target"
 
 		"HasScepterUpgrade"				"1"

@@ -1,6 +1,6 @@
 necrophos_sadist_bh = class({})
 
-function necrophos_sadist_bh:GetIntriniscModifierName()
+function necrophos_sadist_bh:GetIntrinsicModifierName()
 	return "modifier_necrophos_sadist_bh"
 end
 
@@ -25,20 +25,24 @@ function modifier_necrophos_sadist_bh:DeclareFunctions()
 	return {MODIFIER_EVENT_ON_DEATH}
 end
 
-function modifier_necrophos_sadist_bh:OnDeath()
+function modifier_necrophos_sadist_bh:OnDeath(params)
 	if CalculateDistance( params.unit, self:GetParent() ) <= self.radius or params.attacker == self:GetParent() then
 		local stacks = 1
-		if not params.unit:IsFakeHero() or params.unit:IsRoundBoss() then
-			stacks = stacks * sefl.big_mult
+		if params.unit:IsRealHero() or params.unit:IsRoundBoss() then
+			stacks = stacks * self.big_mult
 		end
 		if params.attacker == self:GetParent() then
-			stacks = stacks * sefl.kill_mult
+			stacks = stacks * self.kill_mult
 		end
-		ParticleManager:FireRopeParticle("particles/units/heroes/hero_necrolyte/necrolyte_sadist.vpcf", PATTACH_POINT_FOLLOW, self:GetParent(), params.unit)
+		ParticleManager:FireRopeParticle("particles/units/heroes/hero_necrolyte/necrolyte_sadist.vpcf", PATTACH_POINT_FOLLOW, params.unit, self:GetParent())
 		for i = 1, stacks do
 			self:GetParent():AddNewModifier(self:GetParent(), self:GetAbility(), "modifier_necrophos_sadist_bh_buff", {duration = self.duration})
 		end
 	end
+end
+
+function modifier_necrophos_sadist_bh:IsHidden()
+	return true
 end
 
 modifier_necrophos_sadist_bh_buff = class({})

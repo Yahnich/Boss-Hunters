@@ -31,7 +31,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"speed"					"250"
+				"speed"					"400"
 			}
 			"02"
 			{

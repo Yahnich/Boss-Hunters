@@ -1754,7 +1754,7 @@ function ParticleManager:FireParticle(effect, attach, owner, cps)
 			if type(value) == "userdata" then
 				ParticleManager:SetParticleControl(FX, tonumber(cp), value)
 			elseif type(value) == "table" then
-				ParticleManager:SetParticleControlEnt(FX, cp, owner, value.attach, value.point, owner:GetAbsOrigin(), true)
+				ParticleManager:SetParticleControlEnt(FX, cp, value.owner or owner, value.attach or attach, value.point or "attach_hitloc", owner:GetAbsOrigin(), true)
 			else
 				ParticleManager:SetParticleControlEnt(FX, cp, owner, attach, value, owner:GetAbsOrigin(), true)
 			end
@@ -1911,7 +1911,7 @@ function CDOTABaseAbility:FireLinearProjectile(FX, velocity, distance, width, da
 		fStartRadius = width,
 		fEndRadius = internalData.width_end or width,
 		vVelocity = velocity,
-		fDistance = distance,
+		fDistance = distance or 1000,
 		Source = internalData.source or self:GetCaster(),
 		iUnitTargetTeam = internalData.team or DOTA_UNIT_TARGET_TEAM_ENEMY,
 		iUnitTargetType = internalData.type or DOTA_UNIT_TARGET_ALL,
@@ -2667,4 +2667,5 @@ function CDOTA_BaseNPC_Hero:SetAttributePoints(value)
 	local netTable = CustomNetTables:GetTableValue("hero_properties", self:GetUnitName()..self:entindex()) or {}
 	netTable.attribute_points = self.talentPoints
 	CustomNetTables:SetTableValue("hero_properties", self:GetUnitName()..self:entindex(), netTable)
+	CustomGameEventManager:Send_ServerToAllClients("dota_player_upgraded_stats", { playerID = self:GetPlayerID() } )
 end
