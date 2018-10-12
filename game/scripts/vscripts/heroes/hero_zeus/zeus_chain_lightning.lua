@@ -23,7 +23,7 @@ function zeus_chain_lightning:OnSpellStart()
 		else
 			ParticleManager:FireRopeParticle("particles/units/heroes/hero_zuus/zuus_arc_lightning_.vpcf", PATTACH_POINT_FOLLOW, caster, spawn_point, {}, "attach_attack2")
 		end
-        self:FireLinearProjectile("", direction*speed, self:GetTrueCastRange(), 100, {}, false, true, 500)
+        self:FireLinearProjectile("", direction*speed, self:GetTrueCastRange(), 125, {}, false, true, 500)
 
         --Right Side
         local right_QAngle = QAngle(0, -self:GetTalentSpecialValueFor("angle"), 0) 
@@ -34,7 +34,7 @@ function zeus_chain_lightning:OnSpellStart()
 		else
 			ParticleManager:FireRopeParticle("particles/units/heroes/hero_zuus/zuus_arc_lightning_.vpcf", PATTACH_POINT_FOLLOW, caster, right_spawn_point, {}, "attach_attack2")
 		end
-        self:FireLinearProjectile("", right_direction*speed, self:GetTrueCastRange(), 100, {}, false, true, 500)
+        self:FireLinearProjectile("", right_direction*speed, self:GetTrueCastRange(), 125, {}, false, true, 500)
 
         --Left Side
         local left_QAngle = QAngle(0, self:GetTalentSpecialValueFor("angle"), 0)
@@ -45,7 +45,7 @@ function zeus_chain_lightning:OnSpellStart()
 		else
 			ParticleManager:FireRopeParticle("particles/units/heroes/hero_zuus/zuus_arc_lightning_.vpcf", PATTACH_POINT_FOLLOW, caster, left_spawn_point, {}, "attach_attack2")
 		end
-        self:FireLinearProjectile("", left_direction*speed, self:GetTrueCastRange(), 100, {}, false, true, 500)
+        self:FireLinearProjectile("", left_direction*speed, self:GetTrueCastRange(), 125, {}, false, true, 500)
 	else
 		local target = self:GetCursorTarget()
 		-- Keeps track of the total number of instances of the ability (increments on cast)

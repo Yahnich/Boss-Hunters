@@ -50,7 +50,7 @@
 			"precache"					"soundevents/game_sounds_items.vsndevts"
 		}
 		
-		"AbilityCooldown"				"14"
+		"AbilityCooldown"				"35"
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
@@ -69,7 +69,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"stack_regen"			"15"
+				"stack_regen"			"10"
 			}
 			"04"
 			{

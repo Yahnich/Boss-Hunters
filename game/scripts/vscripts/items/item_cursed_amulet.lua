@@ -5,7 +5,7 @@ function item_cursed_amulet:GetIntrinsicModifierName()
 	return "modifier_item_cursed_amulet"
 end
 
-modifier_item_cursed_amulet = class({})
+modifier_item_cursed_amulet = class(itemBaseClass)
 function modifier_item_cursed_amulet:DeclareFunctions()
 	return {MODIFIER_EVENT_ON_ATTACK_LANDED}
 end
@@ -16,12 +16,4 @@ function modifier_item_cursed_amulet:OnAttackLanded(params)
 			params.target:DisableHealing(self:GetSpecialValueFor("duration"))
 		end
 	end
-end
-
-function modifier_item_cursed_amulet:IsHidden()
-	return true
-end
-
-function modifier_item_cursed_amulet:GetAttributes()
-	return MODIFIER_ATTRIBUTE_MULTIPLE
 end

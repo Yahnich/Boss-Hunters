@@ -49,12 +49,7 @@ function modifier_dragon_knight_elder_dragon_berserker_active:OnIntervalThink()
 	local caster = self:GetParent()
 	if not caster:IsRealHero() then return end
 	local threat = self.threat * self.tick
-	caster:ModifyThreat( threat )
-	for _, hero in pairs ( caster:FindFriendlyUnitsInRadius( caster:GetAbsOrigin(), 1200 ) ) do
-		if hero:IsRealHero() and hero ~= caster and hero.threat > caster.threat then
-			hero:ModifyThreat( -threat )
-		end
-	end
+	if not caster:HasTalent("special_bonus_unique_dragon_knight_elder_dragon_berserker_2") then caster:ModifyThreat( threat ) end
 end
 
 function modifier_dragon_knight_elder_dragon_berserker_active:OnDestroy()

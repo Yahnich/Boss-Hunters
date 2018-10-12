@@ -1,11 +1,14 @@
 relic_cursed_cursed_dice = class(relicBaseClass)
 
 function relic_cursed_cursed_dice:OnCreated()
-	if IsServer() then
+	if IsServer() and not self:GetAbility().diceHasBeenRolled then
 		local pID = self:GetParent():GetPlayerID()
+		if self:GetParent():HasModifier("relic_unique_ritual_candle") then
+			self:GetAbility().diceHasBeenRolled = true
+			return
+		end
 		local rerolls = RelicManager:ClearRelics( pID )
 		local bonusRolls = RandomInt(0, math.floor(rerolls/2) )
-		if self:GetParent():HasModifier("relic_unique_ritual_candle") then return end
 		for i = 1, rerolls + bonusRolls do
 			local roll = RandomInt( 1, 3 )
 			if roll == 1 then
@@ -16,5 +19,6 @@ function relic_cursed_cursed_dice:OnCreated()
 				self:GetParent():AddRelic( RelicManager:RollRandomUniqueRelicForPlayer(pID), "relic_cursed_cursed_dice" )
 			end
 		end
+		self:GetAbility().diceHasBeenRolled = true
 	end
 end

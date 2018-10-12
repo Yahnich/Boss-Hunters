@@ -66,11 +66,13 @@ end
 
 function modifier_espirit_rock_remnant:OnIntervalThink()
 	local parent = self:GetParent()
-	if parent:HasTalent("special_bonus_unique_espirit_rock_1") then
-		local allies = parent:FindFriendlyUnitsInRadius( parent:GetAbsOrigin(), parent:FindTalentValue("special_bonus_unique_espirit_rock_1", "radius"), {type = DOTA_UNIT_TARGET_ALL})
+	local caster = self:GetCaster()
+	if caster:HasTalent("special_bonus_unique_espirit_rock_1") then
+		local heal = caster:FindTalentValue("special_bonus_unique_espirit_rock_1")
+		local allies = caster:FindFriendlyUnitsInRadius( parent:GetAbsOrigin(), caster:FindTalentValue("special_bonus_unique_espirit_rock_1", "radius"), {type = DOTA_UNIT_TARGET_ALL})
 		for _,ally in pairs(allies) do
 			if ally:GetUnitName() ~= "npc_dota_earth_spirit_stone" then
-				ally:HealEvent(  parent:FindTalentValue("special_bonus_unique_espirit_rock_1") , self:GetAbility(), parent)
+				ally:HealEvent( heal, self:GetAbility(), caster)
 			end
 		end
 	end
@@ -115,7 +117,7 @@ if IsServer() then
 			self:SetDuration(-1, true)
 			self:SetStackCount(self.kv.max_count)
 		elseif self:GetStackCount() < self.kv.max_count then
-			local duration = self.kv.replenish_time* get_octarine_multiplier( self:GetCaster() )
+			local duration = self.kv.replenish_time * get_octarine_multiplier( self:GetCaster() )
             self:SetDuration(duration, true)
             self:StartIntervalThink(duration)
 		end

@@ -13,7 +13,7 @@ function item_ghost_saber:OnSpellStart()
 	end
 end
 
-modifier_item_ghost_saber_passive = class({})
+modifier_item_ghost_saber_passive = class(itemBaseClass)
 function modifier_item_ghost_saber_passive:OnCreated()
 	self.bonus_agi = self:GetSpecialValueFor("bonus_stats")
 	self.bonus_int = self:GetSpecialValueFor("bonus_stats")

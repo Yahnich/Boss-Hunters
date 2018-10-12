@@ -28,10 +28,14 @@ end
 
 function modifier_boss18b_frenzy_thinker:OnIntervalThink()
 	local caster = self:GetCaster()
+	
 	if caster:GetHealth() < self.initHP - caster:GetMaxHealth() * 0.1 then
 		self:Destroy()
 		return
 	end
+	
+	if caster:IsStunned() or caster:IsDisarmed() or caster:IsRooted() then return end
+	
 	local enemies = caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), caster:GetAttackRange() )
 	AddFOWViewer(DOTA_TEAM_GOODGUYS, self:GetParent():GetAbsOrigin(), caster:GetAttackRange(), self:GetParent():GetSecondsPerAttack() + 0.1, false)
 	for _, enemy in ipairs(enemies) do
@@ -42,6 +46,10 @@ end
 
 function modifier_boss18b_frenzy_thinker:DeclareFunctions()
 	return {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE, MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT}
+end
+
+function modifier_boss18b_frenzy_thinker:CheckState()
+	return {[MODIFIER_STATE_SILENCED] = true}
 end
 
 function modifier_boss18b_frenzy_thinker:GetModifierMoveSpeedBonus_Percentage()

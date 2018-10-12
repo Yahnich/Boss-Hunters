@@ -33,9 +33,9 @@ function modifier_boss_doom_sacrificial_rite:DeclareFunctions()
 end
 
 function modifier_boss_doom_sacrificial_rite:OnTakeDamage(params)
-	if params.unit == self:GetParent() then
+	if params.unit == self:GetParent() and self:GetAbility():IsActivated() then
 		self.dmgTaken = (self.dmgTaken or 0) + params.damage
-		if self.dmgTaken > params.unit:GetMaxHealth() * self.threshold then
+		if self.dmgTaken > params.unit:GetMaxHealth() * self.threshold and not self:GetParent():PassivesDisabled() then
 			self.dmgTaken = 0
 			local caster = self:GetCaster()
 			local ability = self:GetAbility()
@@ -50,11 +50,13 @@ function modifier_boss_doom_sacrificial_rite:OnTakeDamage(params)
 				ParticleManager:ClearParticle(doomFX)
 				EmitSoundOn("hero_bloodseeker.bloodRite", caster)
 				for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( position, self.radius ) ) do
-					ability:DealDamage( caster, enemy, self.damage )
-					ability:Stun( enemy, self.duration )
-					caster:RefreshAllCooldowns()
-					EmitSoundOn("hero_bloodseeker.bloodRite.silence", enemy)
-					ParticleManager:FireParticle("particles/units/heroes/hero_bloodseeker/bloodseeker_bloodritual_impact.vpcf", PATTACH_POINT_FOLLOW, enemy)
+					if not enemy:TriggerSpellAbsorb(self) then
+						ability:DealDamage( caster, enemy, self.damage )
+						ability:Stun( enemy, self.duration )
+						caster:RefreshAllCooldowns()
+						EmitSoundOn("hero_bloodseeker.bloodRite.silence", enemy)
+						ParticleManager:FireParticle("particles/units/heroes/hero_bloodseeker/bloodseeker_bloodritual_impact.vpcf", PATTACH_POINT_FOLLOW, enemy)
+					end
 				end
 			end)
 		end

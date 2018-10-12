@@ -65,7 +65,7 @@ function AIThink(thisEntity)
 				return AI_THINK_RATE
 			end
 		else
-			AICore:AttackHighestPriority( thisEntity )
+			return AICore:AttackHighestPriority( thisEntity )
 		end
 		return AI_THINK_RATE
 	else return AI_THINK_RATE end

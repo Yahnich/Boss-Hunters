@@ -1,89 +1,21 @@
-# Windows image file caches
-Thumbs.db
-ehthumbs.db
-
-# Folder config file
-Desktop.ini
-
-# Recycle Bin used on file shares
-$RECYCLE.BIN/
-
-# Windows Installer files
-*.cab
-*.msi
-*.msm
-*.msp
-
-# Compiled assets
-*.vpcf_c
-*.vsndevts_c
-*.vtex_c
-*.vjs_c
-*.vxml_c
-*.vcss_c
-*.bin
-
-# Game key
-settings.kv
-ebf2.txt
-
-# Windows shortcuts
-*.lnk
-
-# =========================
-# Operating System Files
-# =========================
-
-# OSX
-# =========================
-
-.DS_Store
-.AppleDouble
-.LSOverride
-
-# Thumbnails
-._*
-
-# Files that might appear in the root of a volume
-.DocumentRevisions-V100
-.fseventsd
-.Spotlight-V100
-.TemporaryItems
-.Trashes
-.VolumeIcon.icns
-
-# Directories potentially created on remote AFP share
-.AppleDB
-.AppleDesktop
-Network Trash Folder
-Temporary Items
-.apdisk
-game/cache_36111451.soc
-game/demoheader.tmp
-game/rich_presence_persistent_data.txt
-game/server_log.txt
-*.vsnd_c
-game/screenshots/
-game/flashsource/optionsmodule.as
-game/flashsource/optionsmodule.fla
-game/network_measurement.txt
-game/panorama_debugger.cfg
+game/particles/
+game/sounds/
+game/soundevents/
+game/panorama/styles/
+game/scripts/vscripts/statcollection/settings.kv
+game/panorama/scripts/
+game/panorama/layout/
+game/panorama/images/
 game/materials/
-game/panorama/images
-game/panorama/layout
-game/panorama/scripts
-game/panorama/styles
-content/maps/epic_boss_fight_boss_master.vmap
-content/maps/epic_boss_fight_challenger.vmap
-content/maps/epic_boss_fight_hard.vmap
-content/maps/epic_boss_fight_impossible.vmap
-content/panorama/images/custom_game/loading_screen/donator.png
-content/panorama/images/custom_game/loading_screen/EBF_Special_Thank.png
 game/ideas.txt
-content/materials/earthshaker.vmat
 game/ebf2_bosses.txt
-game/bosshuntersskills.txt
-game/bosshuntersheroes.txt
-game/bosshuntersitems.txt
+game/tools_asset_info.bin
+game/panorama_debugger.cfg
+game/network_measurement.txt
+game/tools_thumbnail_cache.bin
+game/server_log.txt
+game/rich_presence_persistent_data.txt
+game/maps/bh_adventure_hardcore.vpk
+game/maps/bh_adventure_casual.vpk
 game/models/
 game/maps/

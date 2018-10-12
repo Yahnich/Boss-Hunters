@@ -55,9 +55,10 @@ function furion_sprout_tp:OnSpellStart()
 		StopSoundOn("Hero_Furion.Teleport_Disappear", caster)
 		StopSoundOn("Hero_Furion.Teleport_Appear", caster)
 	end)
-
-	local enemies = caster:FindEnemyUnitsInRadius(point, 500, {})
-	for _,enemy in pairs(enemies) do
-		enemy:AddNewModifier(caster, caster:FindAbilityByName("furion_entangle"), "modifier_entangle_enemy", {Duration = caster:FindAbilityByName("furion_entangle"):GetTalentSpecialValueFor("duration")})
+	if caster:HasTalent("special_bonus_unique_furion_sprout_tp_2") then
+		local enemies = caster:FindEnemyUnitsInRadius(point, 500, {})
+		for _,enemy in pairs(enemies) do
+			enemy:AddNewModifier(caster, caster:FindAbilityByName("furion_entangle"), "modifier_entangle_enemy", {Duration = caster:FindAbilityByName("furion_entangle"):GetTalentSpecialValueFor("duration")})
+		end
 	end
 end

@@ -4,7 +4,7 @@ function item_orb_of_essence:GetIntrinsicModifierName()
 	return "modifier_item_orb_of_essence"
 end
 
-modifier_item_orb_of_essence = class({})
+modifier_item_orb_of_essence = class(itemBaseClass)
 LinkLuaModifier( "modifier_item_orb_of_essence", "items/item_orb_of_essence.lua" ,LUA_MODIFIER_MOTION_NONE )
 function modifier_item_orb_of_essence:OnCreated()
 	self.mr = self:GetSpecialValueFor("bonus_mana_regen")
@@ -23,12 +23,4 @@ end
 
 function modifier_item_orb_of_essence:GetModifierBonusStats_Intellect()
 	return self.intellect
-end
-
-function modifier_item_orb_of_essence:IsHidden()
-	return true
-end
-
-function modifier_item_orb_of_essence:GetAttributes()
-	return MODIFIER_ATTRIBUTE_MULTIPLE
 end

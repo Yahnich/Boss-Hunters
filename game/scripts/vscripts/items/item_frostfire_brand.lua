@@ -13,7 +13,7 @@ function item_frostfire_brand:GetAbilityTextureName()
 end
 
 function item_frostfire_brand:OnToggle()
-	if self:GetToggleState() then
+	if not self:GetToggleState() then
 		self:GetCaster():RemoveModifierByName("modifier_item_frostfire_brand")
 	else
 		self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_item_frostfire_brand", {})
@@ -21,19 +21,36 @@ function item_frostfire_brand:OnToggle()
 end
 
 LinkLuaModifier( "modifier_item_frostfire_brand_stats", "items/item_frostfire_brand.lua" ,LUA_MODIFIER_MOTION_NONE )
-modifier_item_frostfire_brand_stats = class({})
+modifier_item_frostfire_brand_stats = class(itemBaseClass)
 
 function modifier_item_frostfire_brand_stats:OnCreated()
 	self.damage = self:GetSpecialValueFor("bonus_damage")
+	self.all = self:GetSpecialValueFor("bonus_all")
+	if IsServer() then self:GetAbility():OnToggle() end
+end
+
+function modifier_item_frostfire_brand_stats:OnDestroy()
 	if IsServer() then self:GetAbility():OnToggle() end
 end
 
 function modifier_item_frostfire_brand_stats:DeclareFunctions()
-	return {MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE}
+	return {MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE, MODIFIER_PROPERTY_STATS_STRENGTH_BONUS, MODIFIER_PROPERTY_STATS_AGILITY_BONUS, MODIFIER_PROPERTY_STATS_INTELLECT_BONUS}
 end
 
 function modifier_item_frostfire_brand_stats:GetModifierPreAttack_BonusDamage()
 	return self.damage
+end
+
+function modifier_item_frostfire_brand_stats:GetModifierBonusStats_Strength()
+	return self.all
+end
+
+function modifier_item_frostfire_brand_stats:GetModifierBonusStats_Agility()
+	return self.all
+end
+
+function modifier_item_frostfire_brand_stats:GetModifierBonusStats_Intellect()
+	return self.all
 end
 
 function modifier_item_frostfire_brand_stats:IsHidden()
@@ -42,7 +59,7 @@ end
 
 
 LinkLuaModifier( "modifier_item_frostfire_brand", "items/item_frostfire_brand.lua" ,LUA_MODIFIER_MOTION_NONE )
-modifier_item_frostfire_brand = class({})
+modifier_item_frostfire_brand = class(itemBaseClass)
 function modifier_item_frostfire_brand:OnCreated()
 	self.radius = self:GetSpecialValueFor("radius")
 end
@@ -87,23 +104,27 @@ function modifier_item_frostfire_brand:IsHidden()
 	return false
 end
 
+function modifier_item_frostfire_brand:GetAttributes()
+	return MODIFIER_ATTRIBUTE_PERMANENT 
+end
+
 LinkLuaModifier( "modifier_frostfire_brand_debuff", "items/item_frostfire_brand.lua" ,LUA_MODIFIER_MOTION_NONE )
 modifier_frostfire_brand_debuff = class({})
 
 function modifier_frostfire_brand_debuff:OnCreated()
 	self.slow = self:GetAbility():GetSpecialValueFor("slow")
+	self.blind = self:GetAbility():GetSpecialValueFor("blind")
 	if IsServer() then
 		self:StartIntervalThink(1)
 	end
 end
 
-function modifier_frostfire_brand_debuff:OnRefresh()
-	self.slow = self:GetAbility():GetSpecialValueFor("slow")
-	self.blind = self:GetAbility():GetSpecialValueFor("blind")
-end
-
 function modifier_frostfire_brand_debuff:OnIntervalThink()
-	self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self:GetAbility():GetSpecialValueFor("base_damage") + self:GetCaster():GetPrimaryStatValue() * self:GetAbility():GetSpecialValueFor("damage") / 100, {damage_type = DAMAGE_TYPE_MAGICAL})
+	local statOwner = self:GetCaster()
+	if statOwner:IsIllusion() then
+		statOwner = statOwner:GetOwnerEntity()
+	end
+	self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self:GetAbility():GetSpecialValueFor("base_damage") + statOwner:GetPrimaryStatValue() * self:GetAbility():GetSpecialValueFor("damage") / 100, {damage_type = DAMAGE_TYPE_MAGICAL})
 end
 
 function modifier_frostfire_brand_debuff:DeclareFunctions()

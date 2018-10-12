@@ -1,5 +1,6 @@
 arc_warden_spark_wrath_bh = class({})
 LinkLuaModifier( "arc_warden_spark_wrath_bh_thinker", "heroes/hero_arc_warden/arc_warden_spark_wrath_bh.lua", LUA_MODIFIER_MOTION_HORIZONTAL )
+LinkLuaModifier( "modifier_arc_warden_spark_wrath_talent", "heroes/hero_arc_warden/arc_warden_spark_wrath_bh.lua", LUA_MODIFIER_MOTION_HORIZONTAL )
 
 function arc_warden_spark_wrath_bh:IsStealable()
 	return true
@@ -11,13 +12,22 @@ end
 
 function arc_warden_spark_wrath_bh:GetCooldown(iLvl)
     local cooldown = self.BaseClass.GetCooldown(self, iLvl)
-    if self:GetCaster():HasTalent("special_bonus_unique_arc_warden_spark_wrath_bh_2") then cooldown = cooldown + self:GetCaster():FindTalentValue("special_bonus_unique_arc_warden_spark_wrath_bh_2") end
     return cooldown
 end
 
 function arc_warden_spark_wrath_bh:OnAbilityPhaseStart()
 	EmitSoundOn("Hero_ArcWarden.SparkWraith.Cast", self:GetCaster())
 	return true
+end
+
+function arc_warden_spark_wrath_bh:GetIntrinsicModifierName()
+	if self:GetCaster():HasTalent("special_bonus_unique_arc_warden_spark_wrath_bh_2") then return "modifier_arc_warden_spark_wrath_talent" end
+end
+
+function arc_warden_spark_wrath_bh:OnTalentLearned()
+	if self:GetCaster():HasTalent("special_bonus_unique_arc_warden_spark_wrath_bh_2") then 
+		self:GetCaster():AddNewModifier( self:GetCaster(), self, "modifier_arc_warden_spark_wrath_talent", {} )
+	end
 end
 
 function arc_warden_spark_wrath_bh:OnSpellStart()
@@ -121,4 +131,36 @@ function arc_warden_spark_wrath_bh_thinker:CheckState()
 		return {[MODIFIER_STATE_PROVIDES_VISION] = true}
 	end
 	return nil
+end
+
+modifier_arc_warden_spark_wrath_talent = class({})
+
+if IsServer() then
+	function modifier_arc_warden_spark_wrath_talent:OnCreated()
+		self.interval = self:GetCaster():FindTalentValue("special_bonus_unique_arc_warden_spark_wrath_bh_2")
+		self:StartIntervalThink(0)
+	end
+	
+	function modifier_arc_warden_spark_wrath_talent:OnIntervalThink()
+		local caster = self:GetCaster()
+		if caster:IsAlive() then
+			self:GetAbility():Spark( caster:GetAbsOrigin() )
+			self:StartIntervalThink(self.interval)
+			self:SetDuration( self.interval + 1 )
+		else
+			self:StartIntervalThink(0.1)
+		end
+	end
+end
+
+function modifier_arc_warden_spark_wrath_talent:IsPermanent()
+	return true
+end
+
+function modifier_arc_warden_spark_wrath_talent:RemoveOnDeath()
+	return false
+end
+
+function modifier_arc_warden_spark_wrath_talent:DestroyOnExpire()
+	return false
 end

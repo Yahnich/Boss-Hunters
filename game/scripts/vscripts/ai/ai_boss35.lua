@@ -67,8 +67,7 @@ function AIThink(thisEntity)
 		if thisEntity.pillar:IsFullyCastable() and ( AICore:NumEnemiesInLine(thisEntity, 1200, 250, false) > 1 or ( AICore:NumEnemiesInLine(thisEntity, 1200, 250, false) > 0 and RollPercentage(20) ) ) then
 			return CastPillar(target:GetAbsOrigin(), thisEntity)
 		end
-		AICore:AttackHighestPriority( thisEntity )
-		return AI_THINK_RATE
+		return AICore:AttackHighestPriority( thisEntity )
 	else
 		return AI_THINK_RATE
 	end

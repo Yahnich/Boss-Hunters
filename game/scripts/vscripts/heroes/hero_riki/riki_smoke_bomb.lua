@@ -15,10 +15,11 @@ function riki_smoke_bomb:OnSpellStart()
     local point = self:GetCursorPosition()
 
     if caster:HasTalent("special_bonus_unique_riki_smoke_bomb_2") then
+		local damage = self:GetTalentSpecialValueFor("damage")
+		local dmgMultiplier = caster:FindTalentValue("special_bonus_unique_riki_smoke_bomb_2")
         local enemies = caster:FindEnemyUnitsInRadius(point, self:GetTalentSpecialValueFor("radius"), {})
         for _,enemy in pairs(enemies) do
-            enemy:AddNewModifier(caster, self, "modifier_smoke_bomb_enemy", {Duration = 1.0})
-            self:DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage")*2, {}, 0)
+            self:DealDamage(caster, enemy, damage * dmgMultiplier, {}, 0)
         end
     end
 
@@ -41,12 +42,14 @@ end
 
 function modifier_smoke_bomb:OnIntervalThink()
     local enemies = self:GetCaster():FindEnemyUnitsInRadius(self:GetParent():GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"), {})
+	local hasTalent1 = self:GetCaster():HasTalent("special_bonus_unique_riki_smoke_bomb_1")
+	local damage = self:GetTalentSpecialValueFor("damage")
     for _,enemy in pairs(enemies) do
         enemy:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_smoke_bomb_enemy", {Duration = 1.0})
-		if self:GetCaster():HasTalent("special_bonus_unique_riki_smoke_bomb_1") then
+		if hasTalent1 then
 			enemy:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_silence", {Duration = 1.0})
 		end
-        self:GetAbility():DealDamage(self:GetCaster(), enemy, self:GetTalentSpecialValueFor("damage"), {}, OVERHEAD_ALERT_BONUS_POISON_DAMAGE)
+        self:GetAbility():DealDamage(self:GetCaster(), enemy, damage, {}, OVERHEAD_ALERT_BONUS_POISON_DAMAGE)
     end
 end
 

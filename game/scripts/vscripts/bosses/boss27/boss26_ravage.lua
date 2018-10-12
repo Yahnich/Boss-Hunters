@@ -28,6 +28,7 @@ function boss26_ravage:OnSpellStart()
 		local newPos = GetGroundPosition(caster:GetAbsOrigin(), caster) + vDir * speed
 		local enemies = caster:FindEnemyUnitsInLine(caster:GetAbsOrigin(), newPos, 100)
 		for _, enemy in ipairs(enemies) do
+			if enemy:TriggerSpellAbsorb(self) then return end
 			ability:DealDamage(caster, enemy, damage)
 			enemy:AddNewModifier(caster, ability, "modifier_stunned_generic", {duration = duration, delay = false})
 			caster:StartGesture(ACT_DOTA_CAST_ABILITY_1)

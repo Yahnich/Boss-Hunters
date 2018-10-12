@@ -9,5 +9,6 @@ function relic_cursed_paupers_finger:GetBonusExp()
 end
 
 function relic_cursed_paupers_finger:GetBonusGold()
+	if not self then return end
 	if not self:GetParent():HasModifier("relic_unique_ritual_candle") then return -50 end
 end

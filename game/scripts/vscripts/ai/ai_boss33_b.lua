@@ -11,16 +11,6 @@ if IsServer() then
 		thisEntity.raze3 = thisEntity:FindAbilityByName("boss33b_shadowrazeF")
 		thisEntity.shield = thisEntity:FindAbilityByName("boss33b_protective_shield")
 		
-		thisEntity.IsTwinAlive = function(thisEntity)
-			local sdCheck = thisEntity:FindFriendlyUnitsInRadius(thisEntity:GetAbsOrigin(),-1)
-			for _, isSD in ipairs(sdCheck) do
-				if isSD:GetUnitName() == "npc_dota_boss33_a" then 
-					return true
-				end
-			end
-			return false
-		end
-		
 		AITimers:CreateTimer(function()
 			if  math.floor(GameRules.gameDifficulty + 0.5) < 2 then 
 				thisEntity.raze1:SetLevel(1)
@@ -119,8 +109,7 @@ if IsServer() then
 					return thisEntity.raze3:GetCastPoint() + 0.1
 				end
 			end
-			AICore:AttackHighestPriority( thisEntity )
-			return AI_THINK_RATE
+			return AICore:AttackHighestPriority( thisEntity )
 		else return AI_THINK_RATE end
 	end
 end

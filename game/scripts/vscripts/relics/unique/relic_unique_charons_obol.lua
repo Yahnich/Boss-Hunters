@@ -1,7 +1,7 @@
 relic_unique_charons_obol = class(relicBaseClass)
 
 function relic_unique_charons_obol:DeclareFunctions()
-	return {MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE, MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE}
+	return {MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE, MODIFIER_PROPERTY_MIN_HEALTH}
 end
 
 function relic_unique_charons_obol:OnIntervalThink()
@@ -10,12 +10,18 @@ function relic_unique_charons_obol:OnIntervalThink()
 end
 
 function relic_unique_charons_obol:GetModifierIncomingDamage_Percentage(params)
-	if params.damage > self:GetParent():GetHealth() and self:GetDuration() == -1 then
+	if params.damage >= self:GetParent():GetHealth() and self:GetDuration() == -1 then
 		self:GetParent():SetHealth(1)
 		self:GetParent():AddNewModifier(self:GetParent(), self:GetAbility(), "modifier_invulnerable", {duration = 5})
 		self:SetDuration(35.1, true)
 		self:StartIntervalThink(35)
 		return -999
+	end
+end
+
+function relic_unique_charons_obol:GetMinHealth()
+	if self:GetDuration() == -1 then
+		return 1
 	end
 end
 

@@ -18,8 +18,7 @@ end
 function AIThink(thisEntity)
 	if thisEntity and not thisEntity:IsNull() then
 		if not thisEntity:IsDominated() then
-			AICore:AttackHighestPriority( thisEntity )
-			return 1
+			return AICore:AttackHighestPriority( thisEntity )
 		else return 1 end
 	end
 end

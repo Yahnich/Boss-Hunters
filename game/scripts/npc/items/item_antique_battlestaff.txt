@@ -1,0 +1,94 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Recipe: TITAN Armor
+	//=================================================================================================================
+	"item_recipe_antique_battlestaff"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"7061"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"1500"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_antique_battlestaff"
+		"ItemRequirements"
+		{
+			"01"						"item_visionarys_cutlass;item_orb_of_haste"
+		}
+	}
+	//=================================================================================================================
+	// Barrier Leaves
+	//=================================================================================================================
+	"item_antique_battlestaff"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"7062"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_antique_battlestaff"
+		"AbilityTextureName"			"monkey_king_bar"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"525"
+		"ItemShopTags"					"damage;mkb"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"mkb;monkey king bar"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_damage"			"80"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_agility"			"10"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_attack_speed"	"40"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_move_speed"		"10"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"pierce_chance"			"80"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"pierce_damage"			"100"
+			}
+		}
+
+		"precache"
+		{
+			"particle"  "particles/items2_fx/pipe_of_insight.vpcf"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_HERO.vsndevts"
+		}
+	}
+}

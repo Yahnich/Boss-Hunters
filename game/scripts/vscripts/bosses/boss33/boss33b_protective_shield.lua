@@ -9,6 +9,10 @@ LinkLuaModifier("modifier_boss33b_protective_shield", "bosses/boss33/boss33b_pro
 
 function modifier_boss33b_protective_shield:OnCreated()
 	self.sdDeathDamageReduction = self:GetSpecialValueFor("sd_death_reduction")
+	local caster = self:GetCaster()
+	caster.IsTwinAlive = function( caster )
+		return caster.twinDemon and not caster.twinDemon:IsNull() and caster.twinDemon:IsAlive()
+	end
 end
 
 function modifier_boss33b_protective_shield:DeclareFunctions()
@@ -17,6 +21,7 @@ end
 
 function modifier_boss33b_protective_shield:GetModifierIncomingDamage_Percentage(params)
 	local sdAlive = self:GetParent():IsTwinAlive()
+	if self:GetParent():PassivesDisabled() then return end
 	if sdAlive and params.damage_type == DAMAGE_TYPE_MAGICAL then
 		ParticleManager:FireParticle("particles/bosses/boss33/boss33b_protection_poof.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
 		return -9999

@@ -22,7 +22,7 @@ function modifier_boss26b_wound_passive:DeclareFunctions()
 end
 
 function modifier_boss26b_wound_passive:OnAttackLanded(params)
-	if self:GetParent() == params.attacker then
+	if self:GetParent() == params.attacker and not params.attacker:PassivesDisabled() then
 		params.target:AddNewModifier(self:GetParent(), self:GetAbility(), "modifier_boss26b_wound_stack", {duration = self.duration})
 		self:GetAbility():DealDamage(params.attacker, params.target, params.attacker:GetAttackDamage() * self.stack_damage * params.target:FindModifierByName("modifier_boss26b_wound_stack"):GetStackCount(), {damage_type = DAMAGE_TYPE_PHYSICAL, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION} )
 	end

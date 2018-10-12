@@ -69,7 +69,7 @@ function modifier_homing_missile:LaunchMissile(hTarget)
 		if fuse then
 			ParticleManager:DestroyParticle(fuse,false)
 		end
-
+		if homingMissile:IsNull() or target:IsNull() then return end
 		--if the missile is alive. If the missile gets destoryed before reaching the target location, remove the fire particle
 		if homingMissile:IsAlive() then
 			--if we dont have the particles
@@ -108,8 +108,8 @@ function modifier_homing_missile:LaunchMissile(hTarget)
 				end
  	  			
  	  			--Checks to see if missile has reached destination, fail safe
- 	  			if homingMissile:GetAbsOrigin() == target:GetAbsOrigin() and homingMissile:IsAlive() then
-					local explosion = ParticleManager:CreateParticle(keys.particle2, PATTACH_ABSORIGIN_FOLLOW, target) 
+ 	  			if CalculateDistance(homingMissile, target) <= 50 and homingMissile:IsAlive() then
+					local explosion = ParticleManager:CreateParticle("particles/units/heroes/hero_gyrocopter/gyro_guided_missile_explosion.vpcf", PATTACH_ABSORIGIN_FOLLOW, target) 
 					ParticleManager:SetParticleControlEnt(explosion, 1, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
 
 					ParticleManager:DestroyParticle(fire,false)

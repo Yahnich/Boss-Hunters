@@ -95,14 +95,12 @@ function modifier_item_cloak_of_the_hunter_passive_aura:OnCreated()
 	self.accuracy = self:GetSpecialValueFor("bonus_accuracy")
 end
 
-function modifier_item_cloak_of_the_hunter_passive_aura:CheckState()
-	local state = { [MODIFIER_STATE_CANNOT_MISS] = self:RollPRNG( self.accuracy ),}
-	
-	return state
-end
-
 function modifier_item_cloak_of_the_hunter_passive_aura:DeclareFunctions()
 	return {MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT}
+end
+
+function modifier_item_cloak_of_the_hunter_passive_aura:GetAccuracy()
+	return self.accuracy
 end
 
 function modifier_item_cloak_of_the_hunter_passive_aura:GetModifierAttackSpeedBonus_Constant()
@@ -116,7 +114,7 @@ function modifier_item_cloak_of_the_hunter_active:DeclareFunctions()
         MODIFIER_PROPERTY_INVISIBILITY_LEVEL,
         MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
         MODIFIER_EVENT_ON_ATTACK_LANDED,
-        MODIFIER_EVENT_ON_ABILITY_START
+        MODIFIER_EVENT_ON_ABILITY_EXECUTED
     }
 
     return funcs
@@ -129,7 +127,7 @@ function modifier_item_cloak_of_the_hunter_active:CheckState()
 	return state
 end
 
-function modifier_item_cloak_of_the_hunter_active:OnAbilityStart(params)
+function modifier_item_cloak_of_the_hunter_active:OnAbilityExecuted(params)
 	if IsServer() then
 		if params.unit == self:GetParent() then
 			self:Destroy()

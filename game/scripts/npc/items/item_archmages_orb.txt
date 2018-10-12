@@ -14,7 +14,7 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"1050"	
+		"ItemCost"						"800"	
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -23,7 +23,7 @@
 		"ItemResult"					"item_archmages_orb"
 		"ItemRequirements"
 		{
-			"01"						"item_sorcerers_staff;item_ring_of_mana;item_strange_trinket"
+			"01"						"item_sorcerers_staff;item_ring_of_mana;item_strange_trinket;item_elven_boots"
 		}
 	}
 	//=================================================================================================================
@@ -37,7 +37,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"BaseClass"						"item_lua"
 		"ScriptFile"					"items/item_archmages_orb"
-		"AbilityTextureName"			"item_sphere"
+		"AbilityTextureName"			"item_arcane_boots"
 		"ItemKillable"					"1"
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
@@ -85,9 +85,14 @@
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius"				"900"
+				"bonus_ms"				"50"
 			}
 			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"900"
+			}
+			"07"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"min_restore"			"250"

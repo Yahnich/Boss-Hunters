@@ -49,8 +49,8 @@ function riki_dance:OnSpellStart()
             caster:PerformAttack(target, true, true, true, true, false, false, true)
             self:DealDamage(caster, target, caster:GetAttackDamage()*(self:GetTalentSpecialValueFor("damage")-100)/100, {}, 0)
 
-            if caster:HasTalent("special_bonus_unique_riki_dance_2") and RollPercentage(25) then
-                self:Stun(target, 0.5, false)
+            if caster:HasTalent("special_bonus_unique_riki_dance_2") then
+                self:Stun(target, 0.35, false)
             end
             
             Timers:CreateTimer(0.3, function()  

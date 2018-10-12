@@ -1,6 +1,7 @@
 local function CheckPlayerChoices(self)
-	for pID, choice in pairs( self._playerChoices ) do
-		if not choice then
+	for _, hero in ipairs( HeroList:GetActiveHeroes() ) do
+		local pID = hero:GetPlayerID()
+		if pID and not self._playerChoices[pID] then
 			return false
 		end
 	end
@@ -19,7 +20,7 @@ local function StartCombat(self)
 	local START_VECTOR = Vector(949, 130)
 	
 	self.timeRemaining = 60
-	
+	self.eventType = EVENT_TYPE_COMBAT
 	local activeHeroes = HeroList:GetActiveHeroCount()
 	Timers:CreateTimer(function()
 		CustomGameEventManager:Send_ServerToAllClients("updateQuestPrepTime", {prepTime = self.timeRemaining})
@@ -37,18 +38,23 @@ local function StartCombat(self)
 		if not self.combatEnded then
 			if self.timeRemaining >= 0 then
 				for _, hero in ipairs( HeroList:GetActiveHeroes() ) do
-					local roll = RandomInt(1, 12)
+					local roll = RandomInt(1, 13)
 					local demonType = "npc_dota_boss5b"
-					if roll <= 10 then
-						demonType = "npc_dota_boss5b"
-					elseif roll == 11 then
+					if roll == 10 then
 						demonType = "npc_dota_boss33_a"
-					elseif roll == 12 then
+					elseif roll == 11 then
 						demonType = "npc_dota_boss33_b"
+					elseif roll == 12 then
+						demonType = "npc_dota_boss_sloth_demon"
 					end
-					local zombie = CreateUnitByName(demonType, hero:GetAbsOrigin() + ActualRandomVector(1200, 600), true, nil, nil, DOTA_TEAM_BADGUYS)
-					zombie:SetAverageBaseDamage( math.min(7, roll) * 15, 35 )
-					zombie:SetModelScale(1)
+					local demon = CreateUnitByName(demonType, hero:GetAbsOrigin() + ActualRandomVector(1200, 600), true, nil, nil, DOTA_TEAM_BADGUYS)
+					if demon then
+						demon:SetAverageBaseDamage( math.min(7, roll) * 15, 35 )
+						if demonType ~= "npc_dota_boss5b" then
+							demon:SetCoreHealth(250)
+						end
+						demon:SetModelScale(1)
+					end
 				end
 					
 				return math.max( 8, (self.timeRemaining or 60) / 5 )
@@ -110,9 +116,11 @@ local function EndEvent(self, bWon)
 	self.combatEnded = true
 	self.timeRemaining = -1
 	
-	CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_reward_given", {event = self:GetEventName(), reward = 1})
-	for _, hero in ipairs( HeroList:GetRealHeroes() ) do
-		hero:AddBlessing("event_buff_demonic_horde")
+	if bWon then
+		CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_reward_given", {event = self:GetEventName(), reward = 1})
+		for _, hero in ipairs( HeroList:GetRealHeroes() ) do
+			hero:AddBlessing("event_buff_demonic_horde")
+		end
 	end
 	Timers:CreateTimer(3, function() RoundManager:EndEvent(bWon) end)
 end

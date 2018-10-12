@@ -7,6 +7,12 @@ EVENT_TYPE_BOSS = 4
 
 ROUND_END_DELAY = 3
 
+function SendErrorReport(err, context)
+	Notifications:BottomToAll({text="An error has occurred! Please screenshot this: "..err, duration=15.0})
+	print(err)
+	if context then context.gameHasBeenBroken = true end
+end
+
 function BaseEvent:constructor(zoneName, eventType, eventName)
 	self.eventType = tonumber(eventType)
 	self.eventName = eventName
@@ -23,9 +29,18 @@ function BaseEvent:constructor(zoneName, eventType, eventName)
 	local funcs = require("events/"..eventFolder.."/"..eventName)
 	self["HandoutRewards"] = BaseEvent.HandoutRewards
 	for functionName, functionMethod in pairs( funcs ) do
-		self[functionName] = functionMethod
+		-- Precaching really doesn't like it when you change context
+		if functionName ~= 'PrecacheUnits' then
+			self[functionName] = function( self, optArg1, optArg2, optArg3  )
+									status, err, ret = xpcall(functionMethod, debug.traceback, self, optArg1, optArg2, optArg3 ) -- optArg1 to 3 should just be nil and ignored if empty
+									if not status  and not self.gameHasBeenBroken then
+										SendErrorReport(err)
+									end
+								end
+		else
+			self[functionName] = functionMethod
+		end
 	end
-	print(zoneName, eventName, RoundManager.eventsCreated,"created")
 end
 
 function BaseEvent:StartEvent()
@@ -70,7 +85,7 @@ function BaseEvent:LoadSpawns()
 end
 
 function BaseEvent:GetHeroSpawnPosition()
-	return self.heroSpawnPosition
+	return RoundManager.heroSpawnPosition
 end
 
 function BaseEvent:HandoutRewards(bWon)
@@ -78,8 +93,8 @@ function BaseEvent:HandoutRewards(bWon)
 		local eventScaling = RoundManager:GetEventsFinished()
 		local raidScaling = 1 + RoundManager:GetRaidsFinished() * 0.2
 		local playerScaling = GameRules.BasePlayers - HeroList:GetActiveHeroCount()
-		local baseXP = ( 700 + ( (50 + 10 * playerScaling) * eventScaling ) ) + (350 * raidScaling)
-		local baseGold = ( 250 + ( (20 + 3 * playerScaling) * eventScaling ) ) + (100 * raidScaling)
+		local baseXP = ( 800 + ( (35 + 10 * playerScaling) * eventScaling ) ) + (300 * raidScaling)
+		local baseGold = ( 200 + ( (20 + 5 * playerScaling) * eventScaling ) ) + (80 * raidScaling)
 		if not bWon then
 			baseXP = baseXP / 4
 			baseGold = baseGold / 4
@@ -93,9 +108,9 @@ function BaseEvent:HandoutRewards(bWon)
 			hero:AddXP( baseXP )
 			local pID = hero:GetPlayerOwnerID()
 			if bWon then
-				if self:IsElite() then
+				if self:IsElite() and RoundManager:GetAscensions() < 1 then
 					RelicManager:RollEliteRelicsForPlayer(pID)
-				elseif self:IsBoss() then
+				elseif self:IsBoss() and RoundManager:GetAscensions() < 2 then
 					RelicManager:RollBossRelicsForPlayer(pID)
 				end
 			end

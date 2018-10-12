@@ -1,4 +1,5 @@
 item_galactic_hammer = class({})
+
 LinkLuaModifier( "modifier_item_galactic_hammer_passive", "items/item_galactic_hammer.lua" ,LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_item_galactic_hammer_burn", "items/item_galactic_hammer.lua" ,LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_item_galactic_hammer_channel", "items/item_galactic_hammer.lua" ,LUA_MODIFIER_MOTION_NONE )
@@ -76,7 +77,7 @@ function modifier_item_galactic_hammer_channel:IsHidden()
 	return true
 end
 
-modifier_item_galactic_hammer_passive = class({})
+modifier_item_galactic_hammer_passive = class(itemBaseClass)
 function modifier_item_galactic_hammer_passive:OnCreated(table)
 	self.hp_regen = self:GetSpecialValueFor("hp_regen")
 	self.manaregen = self:GetSpecialValueFor("m_regen")
@@ -143,3 +144,8 @@ end
 function modifier_item_galactic_hammer_burn:GetEffectName()
 	return "particles/items4_fx/meteor_hammer_spell_debuff.vpcf"
 end
+
+item_galactic_hammer_2 = class(item_galactic_hammer)
+item_galactic_hammer_3 = class(item_galactic_hammer)
+item_galactic_hammer_4 = class(item_galactic_hammer)
+item_galactic_hammer_5 = class(item_galactic_hammer)

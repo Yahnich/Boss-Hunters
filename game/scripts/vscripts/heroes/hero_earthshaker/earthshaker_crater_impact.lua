@@ -115,6 +115,7 @@ function modifier_earthshaker_crater_impact_talent:OnCreated()
 end
 
 function modifier_earthshaker_crater_impact_talent:OnRefresh()
+	self.armor = 0
 	self.armor = self:GetParent():GetPhysicalArmorValue() * self:GetParent():FindTalentValue("special_bonus_unique_earthshaker_crater_impact_2")
 end
 

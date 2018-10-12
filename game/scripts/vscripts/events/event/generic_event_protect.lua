@@ -1,6 +1,7 @@
 local function CheckPlayerChoices(self)
-	for pID, choice in pairs( self._playerChoices ) do
-		if not choice then
+	for _, hero in ipairs( HeroList:GetActiveHeroes() ) do
+		local pID = hero:GetPlayerID()
+		if pID and not self._playerChoices[pID] then
 			return false
 		end
 	end
@@ -20,8 +21,8 @@ local function StartCombat(self)
 	self.combatEnded = false
 	
 	self.timeRemaining = 60
-	
-	self.totemUnit = CreateUnitByName("npc_dota_event_totem", self:GetHeroSpawnPosition(), true, nil, nil, DOTA_TEAM_GOODGUYS)
+	self.eventType = EVENT_TYPE_COMBAT
+	self.totemUnit = CreateUnitByName("npc_dota_event_totem", RoundManager:GetHeroSpawnPosition(), true, nil, nil, DOTA_TEAM_GOODGUYS)
 	local ability = self.totemUnit:AddAbility("generic_hp_limiter")
 	self.totemUnit:SetThreat(5000)
 	AddFOWViewer(DOTA_TEAM_BADGUYS, self.totemUnit:GetAbsOrigin(), 312, self.timeRemaining, false)
@@ -101,11 +102,6 @@ local function StartEvent(self)
 	end)
 	
 	self._playerChoices = {}
-	for i = 0, GameRules.BasePlayers do
-		if PlayerResource:IsValidPlayerID(i) and PlayerResource:GetPlayer(i) then
-			self._playerChoices[i] = false
-		end
-	end
 	LinkLuaModifier("event_buff_protect", "events/modifiers/event_buff_protect", LUA_MODIFIER_MOTION_NONE)
 end
 
@@ -125,7 +121,7 @@ local function EndEvent(self, bWon)
 	if not self.totemUnit:IsNull() and self.totemUnit:IsAlive() then
 		for _, hero in ipairs( HeroList:GetRealHeroes() ) do
 			hero.bonusAbilityPoints = (hero.bonusAbilityPoints or 0) + 2
-			hero:SetAbilityPoints( hero:GetAbilityPoints() + 2)
+			hero:SetAttributePoints( hero:GetAttributePoints() + 2)
 			CustomGameEventManager:Send_ServerToAllClients("dota_player_upgraded_stats", {playerID = hero:GetPlayerID()} )
 		end
 		reward = 1

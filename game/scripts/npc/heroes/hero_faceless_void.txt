@@ -117,6 +117,7 @@
 		"ScriptFile"					"heroes/hero_faceless_void/faceless_clock_stopper.lua"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST"
 		"AbilityTextureName"			"custom/faceless_clock_stopper"
+		"HasScepterUpgrade"				"1"
 		"MaxLevel"						"7"
 		
 		// Time		
@@ -148,6 +149,11 @@
 			{
 				"var_type"				"FIELD_FLOAT"
 				"duration"				"1 1.25 1.5 1.75 2 2.25 2.5"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"scepter_radius"		"900"
 			}
 		}
 	}

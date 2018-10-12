@@ -1,85 +1,97 @@
-chaos_knight_chaos_bolt_ebf = class({})
+chaos_knight_phantasm_ebf = class({})
 
-function chaos_knight_chaos_bolt_ebf:IsStealable()
+function chaos_knight_phantasm_ebf:IsStealable()
 	return true
 end
 
-function chaos_knight_chaos_bolt_ebf:IsHiddenWhenStolen()
+function chaos_knight_phantasm_ebf:IsHiddenWhenStolen()
 	return false
 end
 
-if IsServer() then
-	function chaos_knight_chaos_bolt_ebf:OnSpellStart()
-		local projectile = {
-			Target = self:GetCursorTarget(),
-			Source = self:GetCaster(),
-			Ability = self,
-			EffectName = "particles/units/heroes/hero_chaos_knight/chaos_knight_chaos_bolt.vpcf",
-			bDodgable = true,
-			bProvidesVision = false,
-			iMoveSpeed = self:GetTalentSpecialValueFor("chaos_bolt_speed"),
-			iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_ATTACK_1,
-		}
-		ProjectileManager:CreateTrackingProjectile(projectile)
-		EmitSoundOn("Hero_ChaosKnight.ChaosBolt.Cast", self:GetCaster())
-	end
+function chaos_knight_phantasm_ebf:GetCastAnimation()
+	return ACT_DOTA_CAST_ABILITY_4
+end
 
-	function chaos_knight_chaos_bolt_ebf:OnProjectileHit(target, position)
-		local caster = self:GetCaster()
-		local target_location = target:GetAbsOrigin()
-		EmitSoundOn("Hero_ChaosKnight.ChaosBolt.Impact", target)
-		-- Ability variables
-		local stun_min = self:GetTalentSpecialValueFor("stun_min")
-		local stun_max = self:GetTalentSpecialValueFor("stun_max") 
-		local damage_min = self:GetTalentSpecialValueFor("damage_min") 
-		local damage_max = self:GetTalentSpecialValueFor("damage_max")
-		local chaos_bolt_particle = "particles/units/heroes/hero_chaos_knight/chaos_knight_bolt_msg.vpcf"
-
-		-- Calculate the stun and damage values
-		local random = RandomFloat(0, 1)
-		local stun = stun_min + (stun_max - stun_min) * random
-		local damage = damage_min + (damage_max - damage_min) * (1 - random)
-
-		-- Calculate the number of digits needed for the particle
-		local stun_digits = string.len(tostring(math.floor(stun))) + 1
-		local damage_digits = string.len(tostring(math.floor(damage))) + 1
-
-		-- Create the stun and damage particle for the spell
-		local particle = ParticleManager:CreateParticle(chaos_bolt_particle, PATTACH_OVERHEAD_FOLLOW, target)
-		ParticleManager:SetParticleControl(particle, 0, target_location) 
-
-		-- Damage particle
-		ParticleManager:SetParticleControl(particle, 1, Vector(9,damage,4)) -- prefix symbol, number, postfix symbol
-		ParticleManager:SetParticleControl(particle, 2, Vector(2,damage_digits,0)) -- duration, digits, 0
-
-		-- Stun particle
-		ParticleManager:SetParticleControl(particle, 3, Vector(8,stun,0)) -- prefix symbol, number, postfix symbol
-		ParticleManager:SetParticleControl(particle, 4, Vector(2,stun_digits,0)) -- duration, digits, 0
-		ParticleManager:ReleaseParticleIndex(particle)
-
-		-- Apply the stun duration
-		target:AddNewModifier(caster, self, "modifier_stunned", {duration = stun})
-
-		-- Initialize the damage table and deal the damage
-		ApplyDamage({victim = target, attacker = caster, damage = damage, damage_type = self:GetAbilityDamageType(), ability = self})
-		if RollPercentage(self:GetTalentSpecialValueFor("bounce_chance")) then
-			local units = FindUnitsInRadius(caster:GetTeamNumber(), target:GetAbsOrigin(), nil, self:GetCastRange(target:GetAbsOrigin(), target), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false)
-			if #units > 0 then
-				for _,unit in pairs(units) do
-					local projectile = {
-						Target = unit,
-						Source = target,
-						Ability = self,
-						EffectName = "particles/units/heroes/hero_chaos_knight/chaos_knight_chaos_bolt.vpcf",
-						bDodgable = true,
-						bProvidesVision = false,
-						iMoveSpeed = self:GetTalentSpecialValueFor("chaos_bolt_speed"),
-						iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_ATTACK_1,
-					}
-					ProjectileManager:CreateTrackingProjectile(projectile)
-					break
-				end
-			end
-		end
+function chaos_knight_phantasm_ebf:GetBehavior()
+	if self:GetCaster():HasScepter() then
+		return DOTA_ABILITY_BEHAVIOR_UNIT_TARGET
+	else
+		return DOTA_ABILITY_BEHAVIOR_NO_TARGET
 	end
 end
+
+function chaos_knight_phantasm_ebf:GetCooldown(iLvl)
+	if self:GetCaster():HasScepter() then
+		return self:GetTalentSpecialValueFor("cooldown_scepter")
+	else
+		return self.BaseClass.GetCooldown(self, iLvl)
+	end
+end
+
+if IsServer() then
+	function chaos_knight_phantasm_ebf:OnSpellStart()
+		local caster = self:GetCaster()
+		local target = self:GetCursorTarget() or caster
+		
+		local illusions = self:GetTalentSpecialValueFor("images_count")
+		local chance = self:GetTalentSpecialValueFor("extra_phantasm_chance_pct_tooltip")
+		local bonusIllusion = RollPercentage( chance )
+		if bonusIllusion then
+			illusions = illusions + 1
+			if caster:HasTalent("special_bonus_unique_chaos_knight_phantasm_2") then
+				while (bonusIllusion) do
+					chance = chance - 5
+					bonusIllusion = RollPercentage(chance)
+					illusions = illusions + 1
+				end
+			end
+			target:EmitSound("Hero_ChaosKnight.Phantasm.Plus")
+		end
+		
+		local firstDir = -target:GetForwardVector()
+		local duration = self:GetTalentSpecialValueFor("illusion_duration")
+		local outDmg = self:GetTalentSpecialValueFor("outgoing_damage")
+		local inDmg = self:GetTalentSpecialValueFor("incoming_damage")
+		
+		local delay = self:GetTalentSpecialValueFor("invuln_duration")
+		target:Dispel(caster)
+		
+		local cFX = ParticleManager:CreateParticle("particles/units/heroes/hero_chaos_knight/chaos_knight_phantasm.vpcf", PATTACH_POINT_FOLLOW, target)
+		target:EmitSound("Hero_ChaosKnight.Phantasm")
+		
+		target:AddNewModifier(caster, self, "modifier_invulnerable", {duration = delay})
+		Timers:CreateTimer(delay, function()
+			ParticleManager:ClearParticle(cFX)
+			if caster:HasTalent("special_bonus_unique_chaos_knight_phantasm_1") then
+				local cBolt = caster:FindAbilityByName("chaos_knight_chaos_bolt_ebf")
+				local cStrike = caster:FindAbilityByName("chaos_knight_chaos_strike_ebf")
+				if cStrike then
+					caster:AddNewModifier( caster, cStrike, "modifier_chaos_knight_chaos_strike_actCrit", {} )
+				end
+				if cBolt then
+					local enemy = caster:FindRandomEnemyInRadius( caster:GetAbsOrigin(), cBolt:GetTrueCastRange() )
+					if enemy then 
+						cBolt:ThrowChaosBolt(enemy, target)
+					end
+				end
+			end
+			for i = 1, illusions do
+				local illusion = target:ConjureImage( position, duration, outDmg, inDmg, nil, self )
+				if caster:HasTalent("special_bonus_unique_chaos_knight_phantasm_1") then
+					local cBolt = caster:FindAbilityByName("chaos_knight_chaos_bolt_ebf")
+					local cStrike = caster:FindAbilityByName("chaos_knight_chaos_strike_ebf")
+					if cStrike then
+						illusion:AddNewModifier( caster, cStrike, "modifier_chaos_knight_chaos_strike_actCrit", {} )
+					end
+					if cBolt then
+						local enemy = caster:FindRandomEnemyInRadius( illusion:GetAbsOrigin(), cBolt:GetTrueCastRange() )
+						if enemy then 
+							cBolt:ThrowChaosBolt(enemy, illusion)
+						end
+					end
+				end
+			end
+		end)
+	end
+end
+

@@ -390,6 +390,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"AbilityTextureName"			"sniper_assassinate"
+		"HasScepterUpgrade"				"1"
 		"MaxLevel"						"6"
 		
 		// Casting

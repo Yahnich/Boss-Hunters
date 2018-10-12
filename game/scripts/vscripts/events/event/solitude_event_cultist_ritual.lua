@@ -21,7 +21,6 @@
 	end
 	local nonVotes = (players - voted)
 	if not self.eventEnded and not self.foughtElites then
-		print("checking votes", votedStop, votedLeave, votedJoin, nonVotes)
 		if votedStop > votedLeave + votedJoin + nonVotes then
 			self:StartCombat(true)
 		elseif votedJoin > votedLeave + votedStop + nonVotes then
@@ -41,12 +40,11 @@ end
 
 local function StartCombat(self, bFight)
 	if bFight then
-		print("FDIGHT")
 		self.foughtElites = true
 		self.eventType = EVENT_TYPE_ELITE
 
 		self.timeRemaining = 0
-		self.enemiesToSpawn = math.max( 1, math.floor(RoundManager:GetRaidsFinished() / 2) )
+		self.enemiesToSpawn = math.max( 1, math.floor(RoundManager:GetRaidsFinished() / 3) )
 		Timers:CreateTimer(5, function()
 			for i = 1, self.enemiesToSpawn do
 				local spawn = CreateUnitByName("npc_dota_boss_warlock", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
@@ -59,13 +57,15 @@ local function StartCombat(self, bFight)
 		end)
 	else
 		self.timeRemaining = 0
-		for _, hero in ipairs( HeroList:GetRealHeroes() ) do
-			hero:AddCurse("event_buff_cultist_ritual")
-			local pID = hero:GetPlayerOwnerID()
-			for i = 1, 2 do
-				RelicManager:PushCustomRelicDropsForPlayer(pID, {RelicManager:RollRandomCursedRelicForPlayer(pID)})
+		Timers:CreateTimer(3, function()
+			for _, hero in ipairs( HeroList:GetRealHeroes() ) do
+				hero:AddCurse("event_buff_cultist_ritual")
+				local pID = hero:GetPlayerOwnerID()
+				for i = 1, 2 do
+					RelicManager:PushCustomRelicDropsForPlayer(pID, {RelicManager:RollRandomCursedRelicForPlayer(pID)})
+				end
 			end
-		end
+		end)
 		CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_reward_given", {event = self:GetEventName(), reward = 1})
 		self:EndEvent(true)
 	end

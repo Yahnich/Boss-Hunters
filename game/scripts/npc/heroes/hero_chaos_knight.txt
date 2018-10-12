@@ -73,6 +73,44 @@
 			}
 		}
 	}
+	"special_bonus_unique_chaos_knight_chaos_bolt_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"25"
+			}
+		}
+	}
+	"special_bonus_unique_chaos_knight_chaos_bolt_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"25"
+			}
+		}
+	}
 	//=================================================================================================================
 	// Chaos Knight: Reality Rift
 	//=================================================================================================================
@@ -134,6 +172,44 @@
 			}
 		}
 	}
+	"special_bonus_unique_chaos_knight_reality_rift_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"-4"
+			}	
+		}
+	}
+	"special_bonus_unique_chaos_knight_reality_rift_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"900"
+			}
+		}
+	}
 	//=================================================================================================================
 	// Chaos Knight: Chaos Strike
 	//=================================================================================================================
@@ -175,96 +251,6 @@
 			}		
 		}
 	}
-	//=================================================================================================================
-	// Chaos Knight: Phantasm
-	//=================================================================================================================
-	"chaos_knight_phantasm_ebf"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_chaos_knight/chaos_knight_phantasm_ebf"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
-		"FightRecapLevel"				"2"
-		"LevelsBetweenUpgrades"			"7"
-		"MaxLevel"						"7"
-		"HasScepterUpgrade"				"1"
-		
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
-		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO"
-		"AbilityCastRange"				"1200"
-		"HasScepterUpgrade"				"1"
-		
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0.4 0.4 0.4"
-
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"100"
-
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"125 200 275 350 425 500"
-
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"images_count"				"1 1 1 2 2 2 3"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"extra_phantasm_chance_pct_tooltip"			"50"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"illusion_duration"			"20 24 28 32 36 40"
-			}	
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"outgoing_damage"			"0"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"outgoing_damage_tooltip"			"100"
-			}	
-			"06"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"incoming_damage"			"0"
-			}
-			"07"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"incoming_damage_tooltip"			"100"
-			}			
-			"08"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"invuln_duration"		"0.5"
-			}
-			"09"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"vision_radius"			"400"
-			}			
-			"10"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"cooldown_scepter"		"60"
-			}
-		}
-	}
 	"special_bonus_unique_chaos_knight_chaos_strike_1" 
 	{
 		// General
@@ -303,7 +289,103 @@
 			}
 		}
 	}
-	"special_bonus_unique_chaos_knight_chaos_bolt_1" 
+	//=================================================================================================================
+	// Chaos Knight: Phantasm
+	//=================================================================================================================
+	"chaos_knight_phantasm_ebf"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_chaos_knight/chaos_knight_phantasm_ebf"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"FightRecapLevel"				"2"
+		"MaxLevel"						"6"
+		"HasScepterUpgrade"				"1"
+		
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO"
+		"AbilityCastRange"				"1200"
+		"HasScepterUpgrade"				"1"
+		"AbilityTextureName"			"chaos_knight_phantasm"
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.4 0.4 0.4"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"100"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"125 200 275 350 425 500"
+
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_chaos_knight/chaos_knight_phantasm.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_chaos_knight.vsndevts"
+		}
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"								"FIELD_INTEGER"
+				"images_count"							"1 1 1 2 2 2 3"
+			}
+			"02"
+			{
+				"var_type"								"FIELD_INTEGER"
+				"extra_phantasm_chance_pct_tooltip"		"50"
+				"LinkedSpecialBonus"					"special_bonus_unique_chaos_knight_phantasm_2"
+			}
+			"03"
+			{
+				"var_type"								"FIELD_FLOAT"
+				"illusion_duration"						"20 24 28 32 36 40"
+			}	
+			"04"
+			{
+				"var_type"								"FIELD_INTEGER"
+				"outgoing_damage"						"0"
+			}
+			"05"
+			{
+				"var_type"								"FIELD_INTEGER"
+				"outgoing_damage_tooltip"				"100"
+			}	
+			"06"
+			{
+				"var_type"								"FIELD_INTEGER"
+				"incoming_damage"						"0"
+			}
+			"07"
+			{
+				"var_type"								"FIELD_INTEGER"
+				"incoming_damage_tooltip"				"100"
+			}			
+			"08"
+			{
+				"var_type"								"FIELD_FLOAT"
+				"invuln_duration"						"0.5"
+			}
+			"09"
+			{
+				"var_type"								"FIELD_INTEGER"
+				"vision_radius"							"400"
+			}			
+			"10"
+			{
+				"var_type"								"FIELD_INTEGER"
+				"cooldown_scepter"						"60"
+			}
+		}
+	}
+	"special_bonus_unique_chaos_knight_phantasm_1" 
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -318,49 +400,11 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"25"
-			}
-		}
-	}
-	"special_bonus_unique_chaos_knight_chaos_bolt_2" 
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"25"
-			}
-		}
-	}
-	"special_bonus_unique_chaos_knight_reality_rift_1" 
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"-4"
+				"value"					"1"
 			}	
 		}
 	}
-	"special_bonus_unique_chaos_knight_reality_rift_2" 
+	"special_bonus_unique_chaos_knight_phantasm_2" 
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -375,7 +419,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"900"
+				"value"					"-10"
 			}
 		}
 	}

@@ -21,17 +21,32 @@ end
 function aa_ice_blast:OnProjectileHit_ExtraData(target, position, extraData)
 	local caster = self:GetCaster()
 	local duration = self:GetTalentSpecialValueFor("duration")
+	local coldFeet = caster:FindAbilityByName("aa_cold_feet")
 	if target then
 		target:AddNewModifier(caster, self, "modifier_aa_ice_blast", {duration = duration})
+		if caster:HasScepter() and coldFeet then
+			target:AddNewModifier(caster, coldFeet, "modifier_aa_cold_feet", {Duration = coldFeet:GetSpecialValueFor("duration")})
+		end
 	else
+		if caster:HasScepter() then
+			local vortex = caster:FindAbilityByName("aa_ice_vortex")
+			if vortex then
+				CreateModifierThinker(caster, vortex, "modifier_aa_ice_vortex", {Duration = vortex:GetSpecialValueFor("duration")}, position, caster:GetTeam(), false)
+			end
+		end
 		EmitSoundOnLocationWithCaster(position, "Hero_Ancient_Apparition.IceBlast.Target", self:GetCaster())
 		local groundPos = GetGroundPosition(position, caster) + Vector(0,0,10)
 		ParticleManager:FireParticle("particles/units/heroes/hero_ancient_apparition/ancient_apparition_ice_blast_explode.vpcf", PATTACH_POINT, caster, {[0]=groundPos,[3]=groundPos})
 		local targets = caster:FindEnemyUnitsInRadius(position, tonumber(extraData["endWidth"]))
-		for _, target in ipairs(targets) do
-			target:AddNewModifier(caster, self, "modifier_aa_ice_blast", {duration = duration})
-			self:DealDamage(caster, target, self:GetTalentSpecialValueFor("damage"))
+		for _, enemy in ipairs(targets) do
+			enemy:AddNewModifier(caster, self, "modifier_aa_ice_blast", {duration = duration})
+			self:DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage"))
+			if caster:HasScepter() and coldFeet then
+				enemy:AddNewModifier(caster, coldFeet, "modifier_aa_cold_feet", {Duration = coldFeet:GetSpecialValueFor("duration")})
+			end
 		end
+		
+		
 	end
 end
 
@@ -61,7 +76,8 @@ function modifier_aa_ice_blast:GetDisableHealing()
 end
 
 function modifier_aa_ice_blast:OnTakeDamage(params)
-	if params.unit == self:GetParent() and params.unit:GetHealthPercent() <= self.shatter and params.unit:IsAlive() then
+	if params.unit == self:GetParent() and params.unit:GetHealthPercent() <= self.shatter and params.unit:IsAlive() 
+	and not HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_BYPASSES_INVULNERABILITY + DOTA_DAMAGE_FLAG_BYPASSES_BLOCK + DOTA_DAMAGE_FLAG_IGNORES_MAGIC_ARMOR + DOTA_DAMAGE_FLAG_IGNORES_PHYSICAL_ARMOR) then
 		ParticleManager:FireParticle("particles/units/heroes/hero_ancient_apparition/ancient_apparition_ice_blast_death.vpcf", PATTACH_POINT, self:GetParent(), {})
 		self:GetParent():AttemptKill( self:GetAbility(), self:GetCaster() )
 	end

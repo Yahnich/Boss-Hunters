@@ -15,7 +15,7 @@ end
 
 function AIThink(thisEntity)
 	if not thisEntity:IsDominated() then
-		AICore:BeAHugeCoward( thisEntity, 300 )
+		AICore:BeAHugeCoward( thisEntity, 600 )
 		return 0.25
 	else return 0.25 end
 end

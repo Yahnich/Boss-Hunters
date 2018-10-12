@@ -5,7 +5,7 @@ function item_warlocks_reliquary:GetIntrinsicModifierName()
 	return "modifier_item_warlocks_reliquary_passive"
 end
 
-modifier_item_warlocks_reliquary_passive = class({})
+modifier_item_warlocks_reliquary_passive = class(itemBaseClass)
 
 function modifier_item_warlocks_reliquary_passive:OnCreated()
 	self.spellamp = self:GetSpecialValueFor("bonus_spell_amp")
@@ -23,13 +23,4 @@ end
 
 function modifier_item_warlocks_reliquary_passive:GetModifierPercentageManacost()
 	return self.manacost
-end
-
-
-function modifier_item_warlocks_reliquary_passive:IsHidden()
-	return true
-end
-
-function modifier_item_warlocks_reliquary_passive:GetAttributes()
-	return MODIFIER_ATTRIBUTE_MULTIPLE
 end

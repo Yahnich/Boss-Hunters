@@ -32,14 +32,14 @@ function modifier_green_dragon_bug_explode_handle:OnIntervalThink()
 
 			enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), radius)
 			for _,enemy in pairs(enemies) do
-				if not enemy:IsMagicImmune() and not enemy:IsInvulnerable() then
+				if not enemy:IsMagicImmune() and not enemy:IsInvulnerable() and not enemy:TriggerSpellAbsorb(self) then
 					enemy:ApplyKnockBack(caster:GetAbsOrigin(), 0.1, 0.1, 100, 350, caster, self:GetAbility())
 					self:GetAbility():DealDamage(caster, enemy, self:GetSpecialValueFor("damage"), {}, 0)
 				end
 			end
 			local ability = caster:GetOwner():FindAbilityByName("green_dragon_toxic_pool")
 
-			CreateModifierThinker(caster:GetOwner(), ability, "modifier_green_dragon_toxic_pool", {Duration = ability:GetSpecialValueFor("pool_duration")}, caster:GetAbsOrigin(), caster:GetTeam(), false)
+			ability:CreateToxicPool( caster:GetAbsOrigin() )
 			caster:ForceKill(false)
 			self:Destroy()
 		end)

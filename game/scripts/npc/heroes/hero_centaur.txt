@@ -67,6 +67,25 @@
 			"particle"	"particles/axe_taunt/axe_taunt_mark_base.vpcf"
 		}
 	}
+	"special_bonus_unique_centaur_champions_presence_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"1"
+			}
+		}
+	}
 	"centaur_great_edge"
 	{
 		// General
@@ -81,8 +100,6 @@
 		"FightRecapLevel"				"1"
 		"AbilityTextureName"			"centaur_double_edge"
 		"MaxLevel"						"7"
-		"LevelsBetweenUpgrades"			"5"
-		"RequiredLevel"					"6"
 	
 		// Stats		
 		//-------------------------------------------------------------------------------------------------------------
@@ -113,12 +130,55 @@
 				"var_type"						"FIELD_INTEGER"
 				"radius"						"350"
 			}
+			"04"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"self_damage"					"75"
+			}
 		}
 	
 		"precache"
 		{
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_centaur.vsndevts"
 			"particle"	"particles/units/heroes/hero_centaur/centaur_double_edge.vpcf"
+		}
+	}
+	"special_bonus_unique_centaur_great_edge_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"1.5"
+			}
+		}
+	}
+	"special_bonus_unique_centaur_great_edge_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"1"
+			}
 		}
 	}
 	//=================================================================================================================
@@ -169,6 +229,54 @@
 			}
 		}
 	}
+	"special_bonus_unique_centaur_hoof_stomp_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"-6"
+			}
+		}
+	}
+	"special_bonus_unique_centaur_hoof_stomp_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"5"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"ms"					"-50"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"as"					"-180"
+			}
+		}
+	}
 	//=================================================================================================================
 	// Centaur: Stampede
 	//=================================================================================================================
@@ -184,6 +292,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"centaur_stampede"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+		"HasScepterUpgrade"				"1"
 		"FightRecapLevel"				"2"
 		"MaxLevel"						"6"
 	
@@ -257,6 +366,25 @@
 			"particle"					"particles/status_fx/status_effect_monkey_king_spring_slow.vpcf"
 		}
 	}
+	"special_bonus_unique_centaur_stampede_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"1.5"
+			}
+		}
+	}
 	//=================================================================================================================
 	// Centaur Warrunner: Return
 	//=================================================================================================================
@@ -289,6 +417,8 @@
 			{
 				"var_type"					"FIELD_FLOAT"
 				"str_to_block"				"40"
+				"LinkedSpecialBonus"		"special_bonus_unique_centaur_warchiefs_aegis_1"
+				"LinkedSpecialBonusField"	"value2"
 				
 			}
 			"03"
@@ -302,130 +432,6 @@
 		"precache"
 		{
 			"particle"	"particles/units/heroes/hero_centaur/centaur_return.vpcf"
-		}
-	}
-	"special_bonus_unique_centaur_stampede_1" 
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"1.5"
-			}
-		}
-	}
-	"special_bonus_unique_centaur_champions_presence_1" 
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"1"
-			}
-		}
-	}
-	"special_bonus_unique_centaur_hoof_stomp_1" 
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"-6"
-			}
-		}
-	}
-	"special_bonus_unique_centaur_hoof_stomp_2" 
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"5"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"ms"					"-33"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"as"					"-120"
-			}
-		}
-	}
-	"special_bonus_unique_centaur_great_edge_1" 
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"1.5"
-			}
-		}
-	}
-	"special_bonus_unique_centaur_great_edge_2" 
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"value"					"1"
-			}
 		}
 	}
 	"special_bonus_unique_centaur_warchiefs_aegis_1" 
@@ -444,6 +450,11 @@
 			{
 				"var_type"				"FIELD_FLOAT"
 				"value"					"900"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value2"				"15"
 			}
 		}
 	}

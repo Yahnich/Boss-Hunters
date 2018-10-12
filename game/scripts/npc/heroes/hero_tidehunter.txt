@@ -26,7 +26,7 @@
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"30 40 50 60 70 80 90"
+		"AbilityManaCost"				"90"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -40,7 +40,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage_reduction"		"-35"
+				"damage_reduction"		"-25"
 				"LinkedSpecialBonus"	"special_bonus_unique_tide_anchor_1"
 			}
 			"03"
@@ -63,6 +63,44 @@
 			"soundfile" "soundevents/game_sounds_heroes/game_sounds_tidehunter.vsndevts"
 		}
 	}
+	"special_bonus_unique_tide_anchor_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"-15"
+			}
+		}
+	}
+	"special_bonus_unique_tide_anchor_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"800"
+			}
+		}
+	}
 	"tide_hydro_cannon"
 	{
 		// General
@@ -73,7 +111,7 @@
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
 	    "AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
 	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
-		"AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
+		"AbilityUnitDamageType"         "DAMAGE_TYPE_PHYSICAL"   
 		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"tidehunter_gush"
 		"MaxLevel"						"7"
@@ -139,7 +177,7 @@
 		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
 	    "AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
 	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
-		"AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
+		"AbilityUnitDamageType"         "DAMAGE_TYPE_PHYSICAL"
 		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityTextureName"			"tidehunter_ravage"
@@ -165,7 +203,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"200 290 380 470 560 650"
+				"damage"				"300 420 540 660 680 800"
 			}
 			"02"
 			{	
@@ -298,7 +336,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage_reduction_pct"	"25"
+				"damage_reduction_mult"	"10"
 			}
 			"02"
 			{
@@ -309,44 +347,6 @@
 			{
 				"var_type"				"FIELD_FLOAT"
 				"critical_heal"			"15"
-			}
-		}
-	}
-	"special_bonus_unique_tide_anchor_1" 
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"-15"
-			}
-		}
-	}
-	"special_bonus_unique_tide_anchor_2" 
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"800"
 			}
 		}
 	}

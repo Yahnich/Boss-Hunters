@@ -21,7 +21,7 @@ function item_frostbite:GetIntrinsicModifierName()
 end
 
 LinkLuaModifier( "modifier_item_frostbite", "items/item_frostbite.lua" ,LUA_MODIFIER_MOTION_NONE )
-modifier_item_frostbite = class({})
+modifier_item_frostbite = class(itemBaseClass)
 function modifier_item_frostbite:OnCreated()
 	self.radius = self:GetSpecialValueFor("radius")
 end
@@ -81,7 +81,11 @@ function modifier_frostbite_debuff:OnRefresh()
 end
 
 function modifier_frostbite_debuff:OnIntervalThink()
-	self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self:GetAbility():GetSpecialValueFor("base_damage") + self:GetCaster():GetPrimaryStatValue() * self:GetAbility():GetSpecialValueFor("damage") / 100, {damage_type = DAMAGE_TYPE_MAGICAL})
+	local statOwner = self:GetCaster()
+	if statOwner:IsIllusion() then
+		statOwner = statOwner:GetOwnerEntity()
+	end
+	self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self:GetAbility():GetSpecialValueFor("base_damage") + statOwner:GetPrimaryStatValue() * self:GetAbility():GetSpecialValueFor("damage") / 100, {damage_type = DAMAGE_TYPE_MAGICAL})
 end
 
 function modifier_frostbite_debuff:DeclareFunctions()

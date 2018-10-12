@@ -9,7 +9,7 @@ function item_dark_ones_blessing:OnSpellStart()
 	self:GetCaster():SetThreat(0)
 end
 
-modifier_item_dark_ones_blessing_stats = class({})
+modifier_item_dark_ones_blessing_stats = class(itemBaseClass)
 LinkLuaModifier( "modifier_item_dark_ones_blessing_stats", "items/item_dark_ones_blessing.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 function modifier_item_dark_ones_blessing_stats:OnCreated()
@@ -49,15 +49,11 @@ function modifier_item_dark_ones_blessing_stats:GetAuraSearchTeam()
 end
 
 function modifier_item_dark_ones_blessing_stats:GetAuraSearchType()    
-	return DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
+	return DOTA_UNIT_TARGET_ALL
 end
 
 function modifier_item_dark_ones_blessing_stats:GetAuraSearchFlags()    
 	return DOTA_UNIT_TARGET_FLAG_NONE
-end
-
-function modifier_item_dark_ones_blessing_stats:IsHidden()
-	return true
 end
 
 modifier_item_dark_ones_blessing_aura = class({})

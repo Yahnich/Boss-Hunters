@@ -46,7 +46,6 @@ function lifestealer_infest_bh:OnSpellStart()
     if caster:HasModifier("modifier_lifestealer_infest_bh") then
         caster:RemoveModifierByName("modifier_lifestealer_infest_bh")
         self:RefundManaCost()
-        self:SetCooldown()
     else
         self.target = self:GetCursorTarget()
         if self.target ~= caster and not self.target:HasModifier("modifier_lifestealer_assimilate_bh_ally") then
@@ -84,11 +83,16 @@ function modifier_lifestealer_infest_bh:OnRemoved()
             self:GetAbility():DealDamage(self:GetParent(), enemy, self:GetTalentSpecialValueFor("damage"), {damage_flags=DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION}, 0)
         end
         self:GetAbility().target:RemoveModifierByName("modifier_lifestealer_infest_bh_ally")
+		self:GetAbility():SetCooldown()
     end
 end
 
 function modifier_lifestealer_infest_bh:OnIntervalThink()
-    self:GetCaster():SetAbsOrigin(self:GetAbility().target:GetAbsOrigin())
+	if self:GetAbility().target and self:GetAbility().target:IsAlive() then
+		self:GetCaster():SetAbsOrigin(self:GetAbility().target:GetAbsOrigin())
+	else
+		self:Destroy()
+	end
 end
 
 function modifier_lifestealer_infest_bh:CheckState()

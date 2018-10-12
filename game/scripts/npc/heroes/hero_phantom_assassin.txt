@@ -110,7 +110,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"40 65 90 115 130 155 180"
+				"damage"				"40 70 100 130 160 190 220"
 				"LinkedSpecialBonus"	"special_bonus_unique_pa_kunai_toss_2"
 			}
 			"02"
@@ -218,8 +218,8 @@
 		{
 			"01"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"crit_chance"				"15"
+				"var_type"					"FIELD_FLOAT"
+				"crit_chance"				"10"
 				"LinkedSpecialBonus"		"special_bonus_unique_phantom_assassin_coup_de_grace_1"
 			}
 			"02"
@@ -307,7 +307,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"50"
+				"value"					"100"
 			}
 		}
 	}
@@ -325,8 +325,8 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"5"
+				"var_type"				"FIELD_FLOAT"
+				"value"					"2.5"
 			}
 		}
 	}

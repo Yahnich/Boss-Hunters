@@ -44,7 +44,7 @@
 			{
 				"var_type"						"FIELD_INTEGER"
 				"quill_stack_damage"			"30 32 34 36 38 40 42"
-				"LinkedSpecialBonus"			"special_bonus_unique_bristleback_2"
+				"LinkedSpecialBonus"			"special_bonus_unique_bristleback_quills_2"
 			}
 			"03"
 			{
@@ -102,7 +102,7 @@
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"25"
+		"AbilityManaCost"				"25 30 35 40 45 50 55"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -218,7 +218,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_strength"		"2 3 4 5 6 7"
+				"bonus_strength"		"1 2 2 3 3 4"
 			}
 			"02"
 			{
@@ -401,6 +401,50 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"value"					"20"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_bristleback_quills_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"15"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_bristleback_quills_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"25"
 			}
 		}
 	}

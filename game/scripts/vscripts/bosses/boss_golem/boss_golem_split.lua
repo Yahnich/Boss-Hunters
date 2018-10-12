@@ -12,23 +12,22 @@ function modifier_boss_golem_split:DeclareFunctions()
 end
 
 function modifier_boss_golem_split:OnDeath(params)
-	if params.unit == self:GetParent() and self:GetParent():GetModelScale() >= self:GetSpecialValueFor("minimum_scale") then
+	if params.unit == self:GetParent() and self:GetParent():GetModelScale() > self:GetSpecialValueFor("minimum_scale") and self:GetAbility():IsActivated() then
 		local divider = self:GetSpecialValueFor("golem_hp") / 100
 		local hp = self:GetParent():GetMaxHealth() * divider
-		local scale = self:GetParent():GetModelScale() * 0.75
+		local scale = math.max( self:GetParent():GetModelScale() * 0.75, self:GetSpecialValueFor("minimum_scale") - 0.01 )
 		for i = 1, self:GetSpecialValueFor("split_count") do
-			golem = CreateUnitByName("npc_dota_boss12_golem", self:GetParent():GetAbsOrigin() + RandomVector(250), false, nil, nil, self:GetParent():GetTeamNumber())
+			golem = CreateUnitByName("npc_dota_boss12_golem", self:GetParent():GetAbsOrigin() + RandomVector(250), true, nil, nil, self:GetParent():GetTeamNumber())
 			
 			golem:SetModelScale( scale )
 			golem:SetBaseMoveSpeed( math.min( 300, golem:GetBaseMoveSpeed() / scale ) )
 			golem:SetAverageBaseDamage( golem:GetAverageBaseDamage() * math.min(scale * 2, 1), 25 )
 			
-			golem:SetBaseMaxHealth( hp )
-			golem:SetMaxHealth( hp )
-			golem:SetHealth( hp )
+			golem:SetCoreHealth( math.max(1, hp) )
 			
 			golem.unitIsRoundBoss = true
 			golem.hasBeenInitialized = true
 		end
 	end
+	ResolveNPCPositions( self:GetParent():GetAbsOrigin(), 500 ) 
 end

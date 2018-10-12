@@ -134,7 +134,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"eggs"						"3 5 10 15 20 25 30"
+				"eggs"						"3 5 7 9 11 13 15"
 			}
 			"02"
 			{
@@ -189,7 +189,7 @@
 			"05"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"spiders_on_hit"			"2 3 4 5 8"
+				"spiders_on_hit"			"2 3 4 5 6"
 			}
 			"06"
 			{

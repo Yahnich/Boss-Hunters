@@ -4,6 +4,7 @@ LinkLuaModifier( "modifier_boss_warlock_inferno_spikes", "bosses/boss_warlock/bo
 function boss_warlock_inferno_spikes:OnAbilityPhaseStart()
 	local caster = self:GetCaster()
 	ParticleManager:FireWarningParticle(caster:GetAbsOrigin(), 1000)
+	caster:EmitSound("Creature.Laugh")
 	return true
 end
 
@@ -25,8 +26,12 @@ end
 function boss_warlock_inferno_spikes:OnProjectileHit(hTarget, vLocation)
 	local caster = self:GetCaster()
 	if hTarget then
-		hTarget:AddNewModifier(caster, self, "modifier_boss_warlock_inferno_spikes", {Duration = self:GetSpecialValueFor("duration")})
-		self:DealDamage(caster, hTarget, self:GetSpecialValueFor("damage"), {}, 0)
+		local blocked = hTarget:TriggerSpellAbsorb(self)
+		if not blocked then
+			hTarget:AddNewModifier(caster, self, "modifier_boss_warlock_inferno_spikes", {Duration = self:GetSpecialValueFor("duration")})
+			self:DealDamage(caster, hTarget, self:GetSpecialValueFor("damage"), {}, 0)
+		end
+		return blocked
 	end
 end
 

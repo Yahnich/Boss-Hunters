@@ -1,0 +1,29 @@
+"DOTAAbilities"
+{
+	"elite_parrying"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"elites/elite_parrying"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName"			"nyx_assassin_spiked_carapace"
+		"MaxLevel"						"1"
+		"AbilityCooldown"				"12"
+		
+		"precache"
+		{
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_juggernaut.vsndevts"
+			"particle"			"particles/units/heroes/hero_centaur/centaur_return.vpcf"
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"              "FIELD_FLOAT"
+				"duration"              "2"
+			}
+		}
+	}
+}

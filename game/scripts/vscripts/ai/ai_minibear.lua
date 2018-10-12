@@ -38,16 +38,15 @@ function AIThink(thisEntity)
 			return thisEntity.ankle:GetCastPoint() + 0.1
 		end
 		
-		if not target then
-			AICore:AttackHighestPriority( thisEntity )
-		else
+		if target then
 			ExecuteOrderFromTable({
 				UnitIndex = thisEntity:entindex(),
 				OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
 				TargetIndex = target:entindex(),
 			})
+			return thisEntity:GetSecondsPerAttack()
 		end
-		return 0.25
+		return AICore:AttackHighestPriority( thisEntity )
 	else return 0.25 end
 end
 

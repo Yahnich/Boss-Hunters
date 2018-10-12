@@ -56,7 +56,7 @@ function AddHover(panelID)
 	var buttonPanel = $("#"+panelID)
 	buttonPanel.SetHasClass("ButtonHover", true)
 	if(panelID == "SkipButton"){
-		$.DispatchEvent("DOTAShowTextTooltip", buttonPanel, "Skipping a relic removes the relics from your pool and gives you 1 random generic relic.")
+		$.DispatchEvent("DOTAShowTextTooltip", buttonPanel, "Skipping a relic removes the skipped relics from your pool, preventing them from showing up again.")
 	}
 }
 

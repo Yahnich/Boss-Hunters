@@ -21,6 +21,21 @@ function item_arcane_reaver:OnToggle()
 	end
 end
 
+modifier_item_arcane_reaver_debuff = class({})
+LinkLuaModifier( "modifier_item_arcane_reaver_debuff", "items/item_arcane_reaver.lua" ,LUA_MODIFIER_MOTION_NONE )
+
+function modifier_item_arcane_reaver_debuff:OnCreated()
+	self.mr = self:GetSpecialValueFor("magic_resistance")
+end
+
+function modifier_item_arcane_reaver_debuff:DeclareFunctions()
+	return {MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,}
+end
+
+function modifier_item_arcane_reaver_debuff:GetModifierMagicalResistanceBonus()
+	return self.mr
+end
+
 modifier_item_arcane_reaver_active = class({})
 LinkLuaModifier( "modifier_item_arcane_reaver_active", "items/item_arcane_reaver.lua" ,LUA_MODIFIER_MOTION_NONE )
 
@@ -61,21 +76,6 @@ function modifier_item_arcane_reaver_active:OnAttack(params)
 	end
 end
 
-modifier_item_arcane_reaver_debuff = class({})
-LinkLuaModifier( "modifier_item_arcane_reaver_debuff", "items/item_arcane_reaver.lua" ,LUA_MODIFIER_MOTION_NONE )
-
-function modifier_item_arcane_reaver_debuff:OnCreated()
-	self.mr = self:GetSpecialValueFor("magic_resistance")
-end
-
-function modifier_item_arcane_reaver_debuff:DeclareFunctions()
-	return {MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,}
-end
-
-function modifier_item_arcane_reaver_debuff:GetModifierMagicalResistanceBonus()
-	return self.mr
-end
-
 modifier_item_arcane_reaver = class({})
 LinkLuaModifier( "modifier_item_arcane_reaver", "items/item_arcane_reaver.lua" ,LUA_MODIFIER_MOTION_NONE )
 function modifier_item_arcane_reaver:OnCreated()
@@ -84,7 +84,7 @@ function modifier_item_arcane_reaver:OnCreated()
 end
 
 function modifier_item_arcane_reaver:OnDestroy()
-	if IsServer() then self:GetCaster():RemoveModifierByName("modifier_item_arcane_reaver_active") end
+	if IsServer() then self:GetAbility():OnToggle() end
 end
 
 function modifier_item_arcane_reaver:DeclareFunctions()

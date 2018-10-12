@@ -40,26 +40,32 @@ end
 modifier_zeus_olympus_calls = class({})
 function modifier_zeus_olympus_calls:OnCreated(table)
 	self.amp = self:GetTalentSpecialValueFor("bonus_spell_amp")
+	self.interval = self:GetTalentSpecialValueFor("tick_rate")
+	self.damage = TernaryOperator( self:GetTalentSpecialValueFor("scepter_damage"), self:GetCaster():HasScepter(), self:GetTalentSpecialValueFor("damage") ) * self.interval
+	self.radius = TernaryOperator( self:GetTalentSpecialValueFor("scepter_radius"), self:GetCaster():HasScepter(), self:GetTalentSpecialValueFor("radius") )
 	if IsServer() then
-		self:StartIntervalThink(self:GetTalentSpecialValueFor("tick_rate"))
+		self:StartIntervalThink(self.interval)
 	end
 end
 
 function modifier_zeus_olympus_calls:OnRefresh(table)
 	self.amp = self:GetTalentSpecialValueFor("bonus_spell_amp")
+	self.interval = self:GetTalentSpecialValueFor("tick_rate")
+	self.damage = TernaryOperator( self:GetTalentSpecialValueFor("scepter_damage"), self:GetCaster():HasScepter(), self:GetTalentSpecialValueFor("damage") ) * self.interval
+	self.radius = TernaryOperator( self:GetTalentSpecialValueFor("scepter_radius"), self:GetCaster():HasScepter(), self:GetTalentSpecialValueFor("radius") )
 end
 
 function modifier_zeus_olympus_calls:OnIntervalThink()
 	local caster = self:GetCaster()
 	local point = caster:GetAbsOrigin()
-	local pointRando = point + ActualRandomVector(self:GetTalentSpecialValueFor("radius"), -self:GetTalentSpecialValueFor("radius"))
+	local pointRando = point + ActualRandomVector( self.radius )
 
-	local enemies = caster:FindEnemyUnitsInRadius(point, self:GetTalentSpecialValueFor("radius"), {})
+	local enemies = caster:FindEnemyUnitsInRadius(point, self.radius, {})
 	if #enemies > 0 then
 		for _,enemy in pairs(enemies) do
 			EmitSoundOn("Hero_Zuus.GodsWrath.Target", enemy)
 			ParticleManager:FireRopeParticle("particles/units/heroes/hero_zeus/zeus_olympus_calls.vpcf", PATTACH_POINT_FOLLOW, caster, enemy, {})
-			self:GetAbility():DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage")*self:GetTalentSpecialValueFor("tick_rate"), {}, 0)
+			self:GetAbility():DealDamage(caster, enemy, self.damage, {}, 0)
 			break
 		end
 	else

@@ -8,7 +8,7 @@ DOTA_LIFESTEAL_SOURCE_ATTACK = 1
 DOTA_LIFESTEAL_SOURCE_ABILITY = 2
 
 MAP_CENTER = Vector(332, -1545)
-GAME_MAX_LEVEL = 160
+GAME_MAX_LEVEL = 400
 
 GLOBAL_STUN_LIST = {}
 
@@ -16,14 +16,18 @@ if CHoldoutGameMode == nil then
 	CHoldoutGameMode = class({})
 end
 
+function SendErrorReport(err, context)
+	Notifications:BottomToAll({text="An error has occurred! Please screenshot this: "..err, duration=15.0})
+	print(err)
+	if context then context.gameHasBeenBroken = true end
+end
 
 require("lua_map/map")
-require("lua_boss/boss_32_meteor")
-
 require( "libraries/Timers" )
 require( "libraries/notifications" )
 require( "statcollection/init" )
 require("libraries/utility")
+require( "libraries/clientserver" )
 require("libraries/animations")
 require("stats_screen")
 require("relicmanager")
@@ -32,43 +36,13 @@ require("eventmanager")
 require( "ai/ai_core" )
 require( "ai/ai_timers")
 
-LinkLuaModifier( "modifier_illusion_tag", "libraries/modifiers/illusions/modifier_illusion_tag.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier( "modifier_illusion_bonuses", "libraries/modifiers/illusions/modifier_illusion_bonuses.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier( "modifier_stats_system_handler", "libraries/modifiers/modifier_stats_system_handler.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier( "modifier_blind_generic", "libraries/modifiers/modifier_blind_generic.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier( "modifier_wearable", "libraries/modifiers/modifier_wearable.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier( "modifier_status_immunity", "libraries/modifiers/modifier_status_immunity.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier( "modifier_paralyze", "libraries/modifiers/modifier_paralyze.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier( "modifier_in_water", "libraries/modifiers/modifier_in_water.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier( "modifier_healing_disable", "libraries/modifiers/modifier_healing_disable.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier( "modifier_summon_handler", "libraries/modifiers/modifier_summon_handler.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier( "modifier_stunned_generic", "libraries/modifiers/modifier_stunned_generic.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier( "modifier_silence_generic", "libraries/modifiers/modifier_silence_generic.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier( "modifier_disarm_generic", "libraries/modifiers/modifier_disarm_generic.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier( "modifier_break_generic", "libraries/modifiers/modifier_break_generic.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier( "modifier_daze_generic", "libraries/modifiers/modifier_daze_generic.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier( "modifier_generic_barrier", "libraries/modifiers/modifier_generic_barrier.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier( "modifier_taunt_generic", "libraries/modifiers/modifier_taunt_generic.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier( "modifier_chill_generic", "libraries/modifiers/modifier_chill_generic.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier( "modifier_frozen_generic", "libraries/modifiers/modifier_frozen_generic.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier( "modifier_hidden_generic", "libraries/modifiers/modifier_hidden_generic.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier( "modifier_necrolyte_sadist_aura_reduction", "lua_abilities/heroes/modifiers/modifier_necrolyte_sadist_aura_reduction", LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "modifier_skeleton_king_reincarnation_cooldown", "lua_abilities/heroes/modifiers/modifier_skeleton_king_reincarnation_cooldown.lua", LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "modifier_boss_attackspeed", "lua_abilities/heroes/modifiers/modifier_boss_attackspeed.lua", LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "modifier_boss_damagedecrease", "lua_abilities/heroes/modifiers/modifier_boss_damagedecrease.lua", LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "modifier_spawn_immunity", "libraries/modifiers/modifier_spawn_immunity.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier( "modifier_tombstone_respawn_immunity", "libraries/modifiers/modifier_tombstone_respawn_immunity.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier( "modifier_generic_attack_bonus", "libraries/modifiers/modifier_generic_attack_bonus.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier( "modifier_generic_attack_bonus_pct", "libraries/modifiers/modifier_generic_attack_bonus.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier( "modifier_cooldown_reduction_handler", "libraries/modifiers/modifier_cooldown_reduction_handler.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier( "modifier_base_attack_time_handler", "libraries/modifiers/modifier_base_attack_time_handler.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier( "modifier_power_scaling", "libraries/modifiers/modifier_power_scaling.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier( "modifier_boss_evasion", "libraries/modifiers/modifier_boss_evasion.lua", LUA_MODIFIER_MOTION_NONE)
-
-
 -- Precache resources
 function Precache( context )
 	print("precaching shit")
+	
+	PrecacheResource( "model", "models/props_gameplay/tombstoneb01.vmdl", context )
+	PrecacheModel( "models/props_gameplay/tombstoneb01.vmdl", context ) 
+	
 	PrecacheResource( "particle", "particles/range_ability_line.vpcf", context )
 	PrecacheResource( "particle", "particles/items3_fx/lotus_orb_shield.vpcf", context )
 	PrecacheResource( "particle", "particles/generic_gameplay/generic_stunned.vpcf", context )
@@ -192,7 +166,7 @@ function CHoldoutGameMode:InitGameMode()
 	
 	GameRules:SetHeroSelectionTime( 80.0 )
 	if IsInToolsMode() then
-		GameRules:SetPreGameTime( 999.0 )
+		GameRules:SetPreGameTime( 9999.0 )
 	else
 		GameRules:SetPreGameTime( 30.0 )
 	end
@@ -250,13 +224,34 @@ function CHoldoutGameMode:InitGameMode()
 																	return 1
 																end)
 															end, "test",0)
-	Convars:RegisterCommand( "bh_test_round", function( zone, roundName, roundType )
+	Convars:RegisterCommand( "bh_test_round", function( command, zone, roundName, roundType )
+											print( command, zone, roundName, roundType )
 											if Convars:GetDOTACommandClient() and IsInToolsMode() then
-												RoundManager.zones[RoundManager.currentZone][1][1] = BaseEvent(zone, roundType, roundName )
 												RoundManager:EndEvent(false)
 												RoundManager:EndPrepTime(true)
+												local event = BaseEvent(zone, roundType, roundName )
+												RoundManager.zones[RoundManager.currentZone][1][1] = event
 												GameRules:SetLives(3)
 												RoundManager:StartPrepTime()
+											end
+										end, "adding relics",0)
+	Convars:RegisterCommand( "bh_unit_stress_test", function( command, units )
+											if Convars:GetDOTACommandClient() and IsInToolsMode() then
+												local hero = Convars:GetDOTACommandClient():GetAssignedHero()
+												units = units or 10
+												for i = 1, units do 
+													CreateUnitByNameAsync(
+														"npc_dota_creature_spiderling",
+														hero:GetAbsOrigin() + RandomVector(600),
+														false,
+														nil,
+														nil,
+														DOTA_TEAM_BADGUYS,
+														function(unit)
+															
+														end
+													)
+												end
 											end
 										end, "adding relics",0)
 	Convars:RegisterCommand( "clear_relics", function()
@@ -266,11 +261,31 @@ function CHoldoutGameMode:InitGameMode()
 											end
 										end, "adding relics",0)
 	Convars:RegisterCommand( "add_relic", function(command, relicName)
+											if Convars:GetDOTACommandClient() then
+												local player = Convars:GetDOTACommandClient()
+												if not ( PlayerResource:IsDeveloper( player:GetPlayerID() ) or PlayerResource:IsManager( player:GetPlayerID() ) ) then return end
+												local hero = player:GetAssignedHero()
+												hero:AddRelic(relicName)
+											end
+										end, "adding relics",0)
+	Convars:RegisterCommand( "team_add_relic", function(command, relicName)
+											if Convars:GetDOTACommandClient() then
+												local player = Convars:GetDOTACommandClient()
+												if not ( PlayerResource:IsDeveloper( player:GetPlayerID() ) or PlayerResource:IsManager( player:GetPlayerID() ) ) then return end
+												for _, hero in ipairs( HeroList:GetRealHeroes() ) do
+													hero:AddRelic(relicName)
+												end
+											end
+										end, "adding relics",0)
+	Convars:RegisterCommand( "add_all_relics", function(command)
 											if Convars:GetDOTACommandClient() and IsInToolsMode() then
 												local player = Convars:GetDOTACommandClient()
 												local hero = player:GetAssignedHero()
-												print(relicName, "ok")
-												hero:AddRelic(relicName)
+												for id, relicPool in ipairs( hero.internalRNGPools ) do
+													for relicName, weight in pairs(relicPool) do
+														hero:AddRelic(relicName)
+													end
+												end
 											end
 										end, "adding relics",0)
 	Convars:RegisterCommand( "roll_relics", function(command, fBoss)
@@ -291,6 +306,28 @@ function CHoldoutGameMode:InitGameMode()
 												hero:ForceKill(true)
 											end
 										end, "fixing bug",0)
+	Convars:RegisterCommand( "reload_modifiers", function()
+											if Convars:GetDOTACommandClient() then
+												local player = Convars:GetDOTACommandClient()
+												local hero = player:GetAssignedHero() 
+												if hero then
+													local modifierTable = {}
+													for _, modifier in ipairs( hero:FindAllModifiers() ) do
+														local modifierInfo = {}
+														modifierInfo.caster = modifier:GetCaster()
+														modifierInfo.ability = modifier:GetAbility()
+														modifierInfo.name = modifier:GetName()
+														modifierInfo.duration = modifier:GetDuration()
+														
+														table.insert( modifierTable, modifierInfo )
+														modifier:Destroy()
+													end
+													for _, modifierInfo in ipairs ( modifierTable ) do
+														hero:AddNewModifier( modifierInfo.caster, modifierInfo.ability, modifierInfo.name, {duration = modifierInfo.duration})
+													end
+												end
+											end
+										end, "fixing bug",0)									
 	Convars:RegisterCommand( "deepdebugging", function()
 													if not GameRules.DebugCalls then
 														print("Starting DebugCalls")
@@ -321,8 +358,11 @@ function CHoldoutGameMode:InitGameMode()
     ListenToGameEvent('dota_player_used_ability', Dynamic_Wrap(CHoldoutGameMode, 'OnAbilityUsed'), self)
 	ListenToGameEvent('dota_player_learned_ability', Dynamic_Wrap(CHoldoutGameMode, 'OnAbilityLearned'), self)
 	ListenToGameEvent( "dota_player_gained_level", Dynamic_Wrap( CHoldoutGameMode, "OnHeroLevelUp" ), self )
+	ListenToGameEvent( "npc_spawned", Dynamic_Wrap( RoundManager, "OnNPCSpawned" ), RoundManager )
+	ListenToGameEvent( "dota_holdout_revive_complete", Dynamic_Wrap( RoundManager, 'OnHoldoutReviveComplete' ), RoundManager )
 	
 	CustomGameEventManager:RegisterListener('Tell_Threat', Dynamic_Wrap( CHoldoutGameMode, 'Tell_threat'))
+	CustomGameEventManager:RegisterListener('bh_notify_modifier', Dynamic_Wrap( CHoldoutGameMode, 'NotifyBuffs'))
 	CustomGameEventManager:RegisterListener('playerUILoaded', Dynamic_Wrap( CHoldoutGameMode, 'OnPlayerUIInitialized'))
 
 	-- Register OnThink with the game engine so it is called every 0.25 seconds
@@ -335,6 +375,40 @@ function CHoldoutGameMode:InitGameMode()
 	
 	StatsScreen:StartStatsScreen()
 	RelicManager:Initialize()
+	
+	
+		
+	LinkLuaModifier( "modifier_boss_ascension", "lua_abilities/heroes/modifiers/modifier_boss_ascension.lua", LUA_MODIFIER_MOTION_NONE )
+	LinkLuaModifier( "modifier_illusion_tag", "libraries/modifiers/illusions/modifier_illusion_tag.lua", LUA_MODIFIER_MOTION_NONE)
+	LinkLuaModifier( "modifier_illusion_bonuses", "libraries/modifiers/illusions/modifier_illusion_bonuses.lua", LUA_MODIFIER_MOTION_NONE)
+	LinkLuaModifier( "modifier_blind_generic", "libraries/modifiers/modifier_blind_generic.lua", LUA_MODIFIER_MOTION_NONE)
+	LinkLuaModifier( "modifier_wearable", "libraries/modifiers/modifier_wearable.lua", LUA_MODIFIER_MOTION_NONE)
+	LinkLuaModifier( "modifier_status_immunity", "libraries/modifiers/modifier_status_immunity.lua", LUA_MODIFIER_MOTION_NONE)
+	LinkLuaModifier( "modifier_paralyze", "libraries/modifiers/modifier_paralyze.lua", LUA_MODIFIER_MOTION_NONE)
+	LinkLuaModifier( "modifier_in_water", "libraries/modifiers/modifier_in_water.lua", LUA_MODIFIER_MOTION_NONE)
+	LinkLuaModifier( "modifier_healing_disable", "libraries/modifiers/modifier_healing_disable.lua", LUA_MODIFIER_MOTION_NONE)
+	LinkLuaModifier( "modifier_summon_handler", "libraries/modifiers/modifier_summon_handler.lua", LUA_MODIFIER_MOTION_NONE)
+	LinkLuaModifier( "modifier_stunned_generic", "libraries/modifiers/modifier_stunned_generic.lua", LUA_MODIFIER_MOTION_NONE)
+	LinkLuaModifier( "modifier_silence_generic", "libraries/modifiers/modifier_silence_generic.lua", LUA_MODIFIER_MOTION_NONE)
+	LinkLuaModifier( "modifier_disarm_generic", "libraries/modifiers/modifier_disarm_generic.lua", LUA_MODIFIER_MOTION_NONE)
+	LinkLuaModifier( "modifier_break_generic", "libraries/modifiers/modifier_break_generic.lua", LUA_MODIFIER_MOTION_NONE)
+	LinkLuaModifier( "modifier_daze_generic", "libraries/modifiers/modifier_daze_generic.lua", LUA_MODIFIER_MOTION_NONE)
+	LinkLuaModifier( "modifier_root_generic", "libraries/modifiers/modifier_root_generic.lua", LUA_MODIFIER_MOTION_NONE)
+	LinkLuaModifier( "modifier_generic_barrier", "libraries/modifiers/modifier_generic_barrier.lua", LUA_MODIFIER_MOTION_NONE)
+	LinkLuaModifier( "modifier_taunt_generic", "libraries/modifiers/modifier_taunt_generic.lua", LUA_MODIFIER_MOTION_NONE)
+	LinkLuaModifier( "modifier_fear_generic", "libraries/modifiers/modifier_fear_generic.lua", LUA_MODIFIER_MOTION_NONE)
+	LinkLuaModifier( "modifier_chill_generic", "libraries/modifiers/modifier_chill_generic.lua", LUA_MODIFIER_MOTION_NONE)
+	LinkLuaModifier( "modifier_frozen_generic", "libraries/modifiers/modifier_frozen_generic.lua", LUA_MODIFIER_MOTION_NONE)
+	LinkLuaModifier( "modifier_hidden_generic", "libraries/modifiers/modifier_hidden_generic.lua", LUA_MODIFIER_MOTION_NONE)
+	LinkLuaModifier( "modifier_boss_attackspeed", "lua_abilities/heroes/modifiers/modifier_boss_attackspeed.lua", LUA_MODIFIER_MOTION_NONE )
+	LinkLuaModifier( "modifier_boss_damagedecrease", "lua_abilities/heroes/modifiers/modifier_boss_damagedecrease.lua", LUA_MODIFIER_MOTION_NONE )
+	LinkLuaModifier( "modifier_spawn_immunity", "libraries/modifiers/modifier_spawn_immunity.lua", LUA_MODIFIER_MOTION_NONE)
+	LinkLuaModifier( "modifier_tombstone_respawn_immunity", "libraries/modifiers/modifier_tombstone_respawn_immunity.lua", LUA_MODIFIER_MOTION_NONE)
+	LinkLuaModifier( "modifier_generic_attack_bonus", "libraries/modifiers/modifier_generic_attack_bonus.lua", LUA_MODIFIER_MOTION_NONE)
+	LinkLuaModifier( "modifier_generic_attack_bonus_pct", "libraries/modifiers/modifier_generic_attack_bonus.lua", LUA_MODIFIER_MOTION_NONE)
+	LinkLuaModifier( "modifier_power_scaling", "libraries/modifiers/modifier_power_scaling.lua", LUA_MODIFIER_MOTION_NONE)
+	LinkLuaModifier( "modifier_boss_evasion", "libraries/modifiers/modifier_boss_evasion.lua", LUA_MODIFIER_MOTION_NONE)
+	LinkLuaModifier( "modifier_boss_hard_enrage", "libraries/modifiers/modifier_boss_hard_enrage.lua", LUA_MODIFIER_MOTION_NONE)
 end
 
 function CHoldoutGameMode:FilterModifiers( filterTable )
@@ -351,14 +425,13 @@ function CHoldoutGameMode:FilterModifiers( filterTable )
 	local name = filterTable["name_const"]
 	if parent and caster and duration ~= -1 then
 		local params = {caster = caster, target = parent, duration = duration, ability = ability, modifier_name = name}
+		local amp = 0
 		for _, modifier in ipairs( caster:FindAllModifiers() ) do
 			if modifier.GetModifierStatusAmplify_Percentage then
-				filterTable["duration"] = filterTable["duration"] * (1 + modifier:GetModifierStatusAmplify_Percentage( params )/100)
-			end
-			if modifier.OnModifierAdded then
-				modifier:GetModifierStatusAmplify_Percentage( params )
+				amp = amp + modifier:GetModifierStatusAmplify_Percentage( params )
 			end
 		end
+		filterTable["duration"] = filterTable["duration"] * math.max( 0.25, 1 + (amp / 100) )
 		if parent:GetTeam() ~= caster:GetTeam() then
 			local resistance = 0
 			local stackResist = 0
@@ -370,7 +443,7 @@ function CHoldoutGameMode:FilterModifiers( filterTable )
 					resistance = modifier:GetModifierStatusResistance( params )
 				end
 			end
-			filterTable["duration"] = filterTable["duration"] * (1 - resistance/100) * (1 - stackResist/100)
+			filterTable["duration"] = filterTable["duration"] * math.max(0, (1 - resistance/100)) * math.max(0, (1 - stackResist/100))
 		end
 	end
 	if filterTable["duration"] == 0 then return false end
@@ -405,25 +478,32 @@ function CHoldoutGameMode:FilterHeal( filterTable )
 	if source_index then source = EntIndexToHScript( source_index ) end
 	
 	-- if no caster then source is regen
-	if source then
-		local params = {healer = healer, target = target, heal = heal, ability = source}
-		if target then
-			for _, modifier in ipairs( target:FindAllModifiers() ) do
-				if modifier.GetModifierHealAmplify_Percentage then
-					filterTable["heal"] = filterTable["heal"] * math.max(0, (1 + ( modifier:GetModifierHealAmplify_Percentage( params ) or 0 )/100) )
-				end
+	local params = {healer = healer, target = target, heal = heal, ability = source}
+	healFactorSelf = 1
+	healFactorAllied = 1
+	if target then
+		for _, modifier in ipairs( target:FindAllModifiers() ) do
+			if modifier.GetModifierHealAmplify_Percentage then
+				healFactorSelf = healFactorSelf + (modifier:GetModifierHealAmplify_Percentage( params ) or 0 )/100
 			end
 		end
-		if healer and healer ~= target then
-			for _, modifier in ipairs( healer:FindAllModifiers() ) do
-				if modifier.GetModifierHealAmplify_Percentage then
-					filterTable["heal"] = filterTable["heal"] * math.max(0, (1 + ( modifier:GetModifierHealAmplify_Percentage( params ) or 0 )/100) )
-				end
-			end
+		if RoundManager:GetAscensions() >= 3 then
+			healFactorSelf = healFactorSelf - 0.75
 		end
 	end
-
+	if healer and healer ~= target then
+		for _, modifier in ipairs( healer:FindAllModifiers() ) do
+			if modifier.GetModifierHealAmplify_Percentage then
+				healFactorAllied = healFactorAllied + ( modifier:GetModifierHealAmplify_Percentage( params ) or 0 )/100
+			end
+		end
+		if RoundManager:GetAscensions() >= 3 then
+			healFactorAllied = healFactorAllied - 0.75
+		end
+	end
+	
 	if not healer_index or not heal then return true end
+	filterTable["heal"] = math.max(0, heal * healFactorSelf * healFactorAllied)
 	healer.statsDamageHealed = (healer.statsDamageHealed or 0) + filterTable["heal"]
 	
 	if healer and healer:IsRealHero() and target and healer ~= target and healer:HasRelic("relic_cursed_bloody_silk") then
@@ -443,6 +523,17 @@ function CHoldoutGameMode:FilterHeal( filterTable )
 end
 
 function CHoldoutGameMode:FilterOrders( filterTable )
+	if RoundManager:GetCurrentEvent() 
+	and RoundManager:GetCurrentEvent():IsEvent()
+	and RoundManager:GetCurrentEvent()._playerChoices
+	and RoundManager:GetCurrentEvent()._playerChoices[ filterTable["issuer_player_id_const"] ] == nil
+	and (filterTable["order_type"] == DOTA_UNIT_ORDER_DROP_ITEM 
+	or filterTable["order_type"] == DOTA_UNIT_ORDER_GIVE_ITEM
+	or filterTable["order_type"] == DOTA_UNIT_ORDER_PURCHASE_ITEM
+	or filterTable["order_type"] == DOTA_UNIT_ORDER_DISASSEMBLE_ITEM
+	or filterTable["order_type"] == DOTA_UNIT_ORDER_EJECT_ITEM_FROM_STASH ) then
+		return false
+	end
 	if filterTable["order_type"] == DOTA_UNIT_ORDER_TRAIN_ABILITY then
 		local talent = EntIndexToHScript( filterTable["entindex_ability"] )
 		if talent and string.match( talent:GetAbilityName(), "special_bonus" ) and hero:GetLevel() < (hero.talentsSkilled + 1) * 10 then
@@ -460,7 +551,6 @@ function CHoldoutGameMode:FilterDamage( filterTable )
     if not victim_index or not attacker_index then
         return true
     end
-	
 	local damage = filterTable["damage"] --Post reduction
 	local inflictor = filterTable["entindex_inflictor_const"]
     local victim = EntIndexToHScript( victim_index )
@@ -468,7 +558,6 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 	local ability = (inflictor ~= nil) and EntIndexToHScript( inflictor )
 	local original_attacker = attacker -- make a copy for threat
     local damagetype = filterTable["damagetype_const"]
-
 	if damage <= 0 then return true end
 	
 	-- VVVVVVVVVVVVVV REMOVE THIS SHIT IN THE FUTURE VVVVVVVVVVV --
@@ -482,34 +571,24 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 	
 	if attacker:HasModifier("relic_unique_eldritch_rune") and inflictor then
 		if damagetype == DAMAGE_TYPE_PHYSICAL then
-			ApplyDamage({victim = victim, attacker = attacker, damage = damage * (1- victim:GetPhysicalArmorReduction() / 100 ), damage_type = DAMAGE_TYPE_MAGICAL})
+			ApplyDamage({victim = victim, attacker = attacker, damage = damage * (1- victim:GetPhysicalArmorReduction() / 100 ), damage_type = DAMAGE_TYPE_MAGICAL, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
 		elseif damagetype == DAMAGE_TYPE_MAGICAL then
-			ApplyDamage({victim = victim, attacker = attacker, damage = damage * (1 - victim:GetMagicalArmorValue()), damage_type = DAMAGE_TYPE_PHYSICAL})
+			ApplyDamage({victim = victim, attacker = attacker, damage = damage * (1 - victim:GetMagicalArmorValue()), damage_type = DAMAGE_TYPE_PHYSICAL, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
 		end
 		return false
 	end
-	
-	if attacker:IsHero() and not attacker:IsCreature() then
-		if ability then 
-			if attacker:GetName() == "npc_dota_hero_leshrac" and attacker:HasAbility(ability:GetName()) then -- reapply damage in pure after all amp/crit
-				require('lua_abilities/heroes/leshrac')
-				filterTable = InnerTorment(filterTable)
-			end
-		end
-	end
-	
+
 	if original_attacker:GetTeam() == DOTA_TEAM_BADGUYS then
 		AddFOWViewer(DOTA_TEAM_GOODGUYS, original_attacker:GetAbsOrigin(), 256, 1, false)
 	else
 		AddFOWViewer(DOTA_TEAM_BADGUYS, original_attacker:GetAbsOrigin(), 256, 1, false)
 	end
-
 	--- THREAT AND UI NO MORE DAMAGE MANIPULATION ---
 	local damage = filterTable["damage"]
 	local attacker = original_attacker
 	if attacker:GetPlayerOwnerID() then 
 		local mainHero = PlayerResource:GetSelectedHeroEntity( attacker:GetPlayerOwnerID() )
-		if mainHero then 
+		if mainHero and mainHero ~= attacker then 
 			mainHero.statsDamageDealt = (mainHero.statsDamageDealt or 0) + math.min(victim:GetHealth(), damage)
 		end
 	end
@@ -518,37 +597,30 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 		return true 
 	end
 	if not victim:IsHero() and victim ~= attacker then
-		local ability
-		if inflictor then
-			ability = EntIndexToHScript( inflictor )
-		end
-		if not inflictor or (ability and not ability:HasNoThreatFlag()) then
-			if not victim.threatTable then victim.threatTable = {} end
+		if not ability or (ability and not ability:HasNoThreatFlag()) then
+			-- if not victim.threatTable then victim.threatTable = {} end
 			if not attacker.threat then attacker.threat = 0 end
 			local roundCurrTotalHP = 0
-			local threatCounter = 0
-			for _,unit in pairs(FindAllEntitiesByClassname("npc_dota_creature")) do
+			local enemies = FindAllUnits({team = DOTA_UNIT_TARGET_TEAM_ENEMY})
+			for _,unit in ipairs( enemies ) do
 				roundCurrTotalHP = roundCurrTotalHP + unit:GetMaxHealth()
-				if threatCounter < 3 then
-					threatCounter = threatCounter + 1
-				end
 			end
-			local addedthreat = (damage / roundCurrTotalHP)*threatCounter*100
-			local threatcheck = (victim:GetHealth() * threatCounter * 100) / roundCurrTotalHP
-			if addedthreat > threatcheck then addedthreat = threatcheck end -- remove threat from overkill damage
-			attacker:ModifyThreat( addedthreat )
-			attacker.lastHit = GameRules:GetGameTime()
-			attacker.statsDamageDealt = (attacker.statsDamageDealt or 0) + math.min(victim:GetHealth(), damage)
-			PlayerResource:SortThreat()
-			local event_data =
-			{
-				threat = attacker.threat,
-				lastHit = attacker.lastHit,
-				aggro = attacker.aggro
-			}
-			local player = attacker:GetPlayerOwner()
-			if player then
-				CustomGameEventManager:Send_ServerToPlayer( player, "Update_threat", event_data )
+			local addedthreat = math.min( (damage / roundCurrTotalHP)*#enemies*100, (victim:GetHealth() * #enemies * 100) / roundCurrTotalHP )
+			if addedthreat > 0.15 then
+				attacker:ModifyThreat( addedthreat )
+				attacker.lastHit = GameRules:GetGameTime()
+				attacker.statsDamageDealt = (attacker.statsDamageDealt or 0) + math.min(victim:GetHealth(), damage)
+				PlayerResource:SortThreat()
+				local event_data =
+				{
+					threat = attacker.threat,
+					lastHit = attacker.lastHit,
+					aggro = attacker.aggro
+				}
+				local player = attacker:GetPlayerOwner()
+				if player then
+					CustomGameEventManager:Send_ServerToPlayer( player, "Update_threat", event_data )
+				end
 			end
 		end
 	end
@@ -588,7 +660,6 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 			end
 		end
     end
-	
     return true
 end
 
@@ -600,10 +671,30 @@ end
 function CHoldoutGameMode:OnHeroLevelUp(event)
 	local playerID = EntIndexToHScript(event.player):GetPlayerID()
 	local hero = PlayerResource:GetSelectedHeroEntity(playerID)
-	if hero:GetLevel() < 32 then
-		if hero:GetLevel() == 17 or hero:GetLevel() == 19 or (hero:GetLevel() > 20 and hero:GetLevel() < 25) then hero:SetAbilityPoints( hero:GetAbilityPoints() + 1) end
-		if hero:GetLevel() % GameRules.gameDifficulty == 0 then
+	if hero:GetLevel() <= 27 then
+		hero.bonusSkillPoints = (hero.bonusSkillPoints or 0) + 1
+		if hero:GetLevel() == 17 or hero:GetLevel() == 19 or (hero:GetLevel() > 20 and hero:GetLevel() < 25) then 
 			hero:SetAbilityPoints( hero:GetAbilityPoints() + 1)
+			hero.bonusSkillPoints = (hero.bonusSkillPoints or 0) + 1
+		end
+		if hero:GetLevel() % GameRules.gameDifficulty == 0 then
+			hero:SetAttributePoints( hero:GetAttributePoints() + 1 )
+			hero.bonusAbilityPoints = (hero.bonusAbilityPoints or 0) + 1
+		end
+	else
+		hero:SetAttributePoints( hero:GetAttributePoints() + 1 )
+		hero.bonusAbilityPoints = (hero.bonusAbilityPoints or 0) + 1
+		if not ( hero:GetLevel() == 30
+		or hero:GetLevel() == 31
+		or hero:GetLevel() == 36
+		or hero:GetLevel() == 40
+		or hero:GetLevel() == 50
+		or hero:GetLevel() == 60
+		or hero:GetLevel() == 70
+		or hero:GetLevel() == 80) then
+			hero:SetAbilityPoints( hero:GetAbilityPoints() - 1)
+		else
+			hero.bonusSkillPoints = (hero.bonusSkillPoints or 0) + 1
 		end
 	end
 end
@@ -661,8 +752,8 @@ function CHoldoutGameMode:OnAbilityUsed(event)
 	--will be used in future :p
     local PlayerID = event.PlayerID
     local abilityname = event.abilityname
-		
-	local hero = PlayerResource:GetSelectedHeroEntity(PlayerID)
+	local hero = EntIndexToHScript( event.caster_entindex )
+	
 	if not hero then return end
 	if not abilityname then return end
 	AddFOWViewer(DOTA_TEAM_BADGUYS, hero:GetAbsOrigin(), 256, 3, false)
@@ -705,7 +796,6 @@ function CHoldoutGameMode:OnAbilityUsed(event)
 		abilityused:EndCooldown()
 		if abilityused:GetDuration() > 0 then
 			local duration = abilityused:GetDuration()
-			if abilityname == "night_stalker_crippling_fear" and not GameRules:IsDaytime() then duration = abilityused:GetTalentSpecialValueFor("duration_night") end
 			for _, modifier in ipairs( hero:FindAllModifiers() ) do
 				if modifier.GetModifierStatusAmplify_Percentage then
 					duration = duration * (1 + modifier:GetModifierStatusAmplify_Percentage( params )/100)
@@ -719,26 +809,6 @@ function CHoldoutGameMode:OnAbilityUsed(event)
 	if abilityname == "pangolier_shield_crash" then
 		hero:AddNewModifier(hero, abilityused, "modifier_pangolier_shield_crash_buff", {duration = abilityused:GetTalentSpecialValueFor("duration")}):SetStackCount( abilityused:GetTalentSpecialValueFor("hero_stacks") )
 	end
-	if hero:GetName() == "npc_dota_hero_rubick"  and abilityname ~= "rubick_spell_steal" and hero:IsRealHero() then
-		local spell_echo = hero:FindAbilityByName("rubick_spell_echo")
-		if spell_echo:GetLevel()-1 >= 0 then
-			if hero:FindAbilityByName(abilityname) then
-				local ability = hero:FindAbilityByName(abilityname)
-				spell_echo.echo = ability
-				spell_echo.echotime = GameRules:GetGameTime()
-				if ability:GetCursorTarget() then
-					spell_echo.echotarget = ability:GetCursorTarget()
-					spell_echo.type = DOTA_ABILITY_BEHAVIOR_UNIT_TARGET
-				elseif ability:GetCursorTargetingNothing() then
-					spell_echo.echotarget = ability:GetCursorTargetingNothing()
-					spell_echo.type = DOTA_ABILITY_BEHAVIOR_NO_TARGET
-				elseif ability:GetCursorPosition() then
-					spell_echo.echotarget = ability:GetCursorPosition()
-					spell_echo.type = DOTA_ABILITY_BEHAVIOR_POINT
-				end
-			end
-		end
-	end
 end
 
 function CHoldoutGameMode:Tell_threat(event)
@@ -750,12 +820,29 @@ function CHoldoutGameMode:Tell_threat(event)
 	local result = math.floor( hero.threat*10 + 0.5 ) / 10
 	if result == 0 then result = "no" end
 	local message = "I have "..result.." threat!"
-	hero.tellThreatDelayTimer = hero.tellThreatDelayTimer or GameRules:GetGameTime()
+	hero.tellThreatDelayTimer = hero.tellThreatDelayTimer or 0
 	if GameRules:GetGameTime() > hero.tellThreatDelayTimer + 1 then
 		Say(player, message, true)
 		hero.tellThreatDelayTimer = GameRules:GetGameTime()
 	end
 end
+
+function CHoldoutGameMode:NotifyBuffs(event)
+	--print ("show asura core count")
+	local pID = event.pID
+	local player = PlayerResource:GetPlayer(pID)
+	local hero = player:GetAssignedHero() 
+	if not hero.threat then hero.threat = 0 end
+	local result = math.floor( hero.threat*10 + 0.5 ) / 10
+	if result == 0 then result = "no" end
+	local message = "Enemy "..event.unitname.." is affected by: "..event.buffname.." - "..event.duration.." seconds remaining!"
+	hero.tellBuffDelayTimer = hero.tellBuffDelayTimer or 0
+	if GameRules:GetGameTime() > hero.tellBuffDelayTimer + 1 then
+		Say(player, message, true)
+		hero.tellBuffDelayTimer = GameRules:GetGameTime()
+	end
+end
+
 
 function CHoldoutGameMode:OnHeroPick (event)
  	local hero = EntIndexToHScript(event.heroindex)
@@ -776,6 +863,8 @@ function CHoldoutGameMode:OnHeroPick (event)
 		
 		StatsScreen:RegisterPlayer(hero)
 		RelicManager:RegisterPlayer( hero:GetPlayerID() )
+		hero:AddItemByName("item_potion_of_recovery")
+		hero:AddItemByName("item_potion_of_essence")
 		
 		hero:AddExperience(GameRules.XP_PER_LEVEL[7],false,false)
 		hero:SetBaseMagicalResistanceValue(0)
@@ -858,9 +947,12 @@ function CHoldoutGameMode:OnPlayerDisconnected(keys)
 	if not playerID then return end
 	local hero = PlayerResource:GetSelectedHeroEntity(playerID)
 	if hero then hero.disconnect = GameRules:GetGameTime() end
-	if HeroList:GetActiveHeroCount() == 0 then
-		RoundManager:GameIsFinished(false)
+	for pID = 0, 24 do -- check if game has to die
+		if PlayerResource:IsValidPlayerID( pID ) and PlayerResource:GetConnectionState() == DOTA_CONNECTION_STATE_CONNECTED then
+			return
+		end
 	end
+	RoundManager:GameIsFinished(false)
 end
 
 -- When game state changes set state in script
@@ -876,6 +968,19 @@ function CHoldoutGameMode:OnGameRulesStateChange()
 		print("setup")
 	elseif nNewState == 3 then
 		print("pregame")
+		
+		RoundManager.spawnPositions = {}
+		RoundManager.boundingBox = "grove_raid_1"
+		for _,spawnPos in ipairs( Entities:FindAllByName( RoundManager.boundingBox.."_spawner" ) ) do
+			table.insert( RoundManager.spawnPositions, spawnPos:GetAbsOrigin() )
+		end
+		RoundManager.heroSpawnPosition = RoundManager.heroSpawnPosition or nil
+		for _,spawnPos in ipairs( Entities:FindAllByName( RoundManager.boundingBox.."_heroes") ) do
+			RoundManager.heroSpawnPosition = spawnPos:GetAbsOrigin()
+			break
+		end
+		
+		ClientServer:Initialize()
 		Timers:CreateTimer(79,function()
 			if GameRules:State_Get() == 3 then
 				for nPlayerID = 0, DOTA_MAX_TEAM_PLAYERS-1 do
@@ -891,14 +996,6 @@ function CHoldoutGameMode:OnGameRulesStateChange()
 		
 		-- Voting system handler
 		-- CHoldoutGameMode:InitializeRoundSystem()
-		for _,dummy_target in ipairs(Entities:FindAllByName("dummy_target")) do
-			local dummy = CreateUnitByName("npc_dummy_vision", dummy_target:GetAbsOrigin(), true, nil, nil, DOTA_TEAM_BADGUYS)
-			dummy:FindAbilityByName("hide_hero"):SetLevel(1)
-			if GameRules.gameDifficulty <= 2 then
-				local dummy = CreateUnitByName("npc_dummy_vision", dummy_target:GetAbsOrigin(), true, nil, nil, DOTA_TEAM_GOODGUYS)
-				dummy:FindAbilityByName("hide_hero"):SetLevel(1)
-			end
-		end
 		Timers:CreateTimer(0.1,function()
 			CustomGameEventManager:Send_ServerToAllClients( "updateQuestLife", { lives = GameRules._lives, maxLives = GameRules._maxLives } )
 			CustomGameEventManager:Send_ServerToAllClients("heroLoadIn", {})
@@ -991,19 +1088,17 @@ function CHoldoutGameMode:CheckHP()
 		for _, hero in ipairs ( HeroList:GetAllHeroes() ) do
 			if not hero:IsFakeHero() then
 				local data = CustomNetTables:GetTableValue("hero_properties", hero:GetUnitName()..hero:entindex() ) or {}
-				local barrier = 0
-				for _, modifier in ipairs( hero:FindAllModifiers() ) do
-					if modifier.ModifierBarrier_Bonus and hero:IsRealHero() then
-						barrier = barrier + modifier:ModifierBarrier_Bonus()
-					end
+				if hero:GetMaxHealth() <= 0 then
+					hero:SetMaxHealth(1)
+					hero:SetHealth(1)
 				end
-				if barrier > 0 or hero:GetBarrier() ~= barrier then
-					hero:SetBarrier(barrier)
-					data.barrier = math.floor(barrier)
-				end
+				
 				data.strength = hero:GetStrength()
 				data.intellect = hero:GetIntellect()
 				data.agility = hero:GetAgility()
+				if hero:GetPlayerOwner() and hero:GetAttackTarget() then
+					CustomGameEventManager:Send_ServerToPlayer( hero:GetPlayerOwner(), "bh_update_attack_target", {entindex = hero:GetAttackTarget():entindex()} )
+				end
 				CustomNetTables:SetTableValue("hero_properties", hero:GetUnitName()..hero:entindex(), data )
 				playerData[hero:GetPlayerID()] = {DT = hero.statsDamageTaken or 0, DD = hero.statsDamageDealt or 0, DH = hero.statsDamageHealed or 0}
 			end
@@ -1012,40 +1107,30 @@ function CHoldoutGameMode:CheckHP()
 	end
 end
 
-
-DAY_TIME = 0
-NIGHT_TIME = 1
-TEMPORARY_NIGHT = 2
-NIGHT_STALKER_NIGHT = 3
-
-function CHoldoutGameMode:SendErrorReport(err)
-	if not self.gameHasBeenBroken then 
-		self.gameHasBeenBroken = true
-		Notifications:BottomToAll({text="An error has occurred! Please screenshot this: "..err, duration=15.0})
-		print(err)
-	end
-end
-
-
 function CHoldoutGameMode:OnThink()
+	DAY_TIME = 1
+	NIGHT_TIME = 0
+	TEMPORARY_NIGHT = 2
+	NIGHT_STALKER_NIGHT = 3
+	local timeofday = 1
+	if not GameRules:IsDaytime() then timeofday = NIGHT_TIME end
+	if GameRules:IsTemporaryNight() then timeofday = TEMPORARY_NIGHT end
+	if GameRules:IsNightstalkerNight() then timeofday = NIGHT_STALKER_NIGHT end
+	CustomNetTables:SetTableValue( "game_info", "timeofday", {timeofday = timeofday} )
 	if GameRules:State_Get() >= 7 and GameRules:State_Get() <= 8 then
 		local OnPThink = function(self)
 			status, err, ret = xpcall(self.CheckHP, debug.traceback, self)
 			if not status  and not self.gameHasBeenBroken then
-				self:SendErrorReport(err)
+				SendErrorReport(err, self)
 			end
 			status, err, ret = xpcall(self.DegradeThreat, debug.traceback, self)
 			if not status  and not self.gameHasBeenBroken then
-				self:SendErrorReport(err)
+				SendErrorReport(err, self)
 			end
-			local timeofday = GameRules:IsDaytime()
-			if GameRules:IsTemporaryNight() then timeofday = TEMPORARY_NIGHT end
-			if GameRules:IsNightstalkerNight() then timeofday = NIGHT_STALKER_NIGHT end
-			CustomNetTables:SetTableValue( "game_info", "timeofday", {timeofday = timeofday} )
 		end
 		status, err, ret = xpcall(OnPThink, debug.traceback, self)
 		if not status  and not self.gameHasBeenBroken then
-			self:SendErrorReport(err)
+			SendErrorReport(err, self)
 		end
 	elseif GameRules:State_Get() >= DOTA_GAMERULES_STATE_POST_GAME then		-- Safe guard catching any state that may exist beyond DOTA_GAMERULES_STATE_POST_GAME
 		return nil

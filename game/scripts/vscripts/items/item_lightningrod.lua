@@ -14,9 +14,10 @@ function item_lightningrod:OnSpellStart()
 	ParticleManager:FireParticle("particles/units/heroes/hero_zuus/zuus_lightning_bolt.vpcf", PATTACH_ABSORIGIN, target, {[1] = target:GetAbsOrigin(), [0] = caster:GetAbsOrigin() + Vector(0,0,1600)})
 	EmitSoundOn("Hero_Zuus.LightningBolt", target)
 	self:DealDamage(caster, target, damage)
+	target:Paralyze(self, caster, self:GetSpecialValueFor("paralyze_duration"))
 end
 
-modifier_item_lightningrod_handle = class({})
+modifier_item_lightningrod_handle = class(itemBaseClass)
 function modifier_item_lightningrod_handle:OnCreated()
 	self.attackspeed = self:GetSpecialValueFor("bonus_attack_speed")
 end
@@ -82,9 +83,11 @@ function modifier_item_lightningrod_handle_damage:OnCreated()
 		local jump_delay = 0.25
 		local radius = ability:GetSpecialValueFor("radius")
 		local strike_damage = ability:GetSpecialValueFor("strike_damage")
+		
 		ability:DealDamage(caster, target, strike_damage, {damage_type = DAMAGE_TYPE_MAGICAL}, 0)	
 		target:RemoveModifierByName("modifier_item_lightningrod_handle_damage")
-
+		local paralyze = ability:GetSpecialValueFor("paralyze_duration")
+		target:Paralyze(ability, caster, paralyze)
 		EmitSoundOn("Item.Maelstrom.Chain_Lightning.Jump", target)
 
 		-- Waits on the jump delay

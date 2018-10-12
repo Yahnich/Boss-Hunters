@@ -8,6 +8,7 @@ function item_kitteh_amulet:OnSpellStart()
 	local distance = CalculateDistance( targetPos, caster )
 	local direction = CalculateDirection( targetPos, caster )
 	if distance > 9999 then
+		print( 9999 )
 		targetPos = caster:GetAbsOrigin() + direction * 9999
 	end
 
@@ -49,7 +50,6 @@ function modifier_item_kitteh_amulet_passive:DeclareFunctions()
 			MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
 			MODIFIER_PROPERTY_TOTAL_CONSTANT_BLOCK,
 			MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE,
-			MODIFIER_EVENT_ON_ATTACK_LANDED,
 			MODIFIER_PROPERTY_HEALTH_BONUS,
 			MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE,
 			MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE,
@@ -63,6 +63,11 @@ function modifier_item_kitteh_amulet_passive:DeclareFunctions()
 			MODIFIER_PROPERTY_CAST_RANGE_BONUS_STACKING,
 			MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE}
 
+end
+
+
+function modifier_item_kitteh_amulet_passive:OnCreated()
+    self:GetParent():AddNewModifier( self:GetParent(), self:GetAbility(), "modifier_item_ultimate_scepter", {})
 end
 
 function modifier_item_kitteh_amulet_passive:GetModifierSpellAmplify_Percentage()
@@ -113,45 +118,29 @@ function modifier_item_kitteh_amulet_passive:GetModifierMoveSpeed_Max()
 	return 5000
 end
 
-function modifier_item_kitteh_amulet_passive:OnAttackLanded(params)
-	if IsServer() then
-		if params.attacker == self:GetParent() then
-			local parent = self:GetParent()
-			parent:StartGestureWithPlaybackRate(ACT_DOTA_ATTACK, 1)
-				Timers:CreateTimer(0.1, function()
-				EmitSoundOn("DOTA_Item.SkullBasher", params.target)
-				parent:PerformGenericAttack(params.target, true, 0, false, true)  
-				self:GetAbility():Stun(params.target, 1, true)
-				GetAbility():DealDamage(self:GetParent(), params.target, 100, {damage_type = DAMAGE_TYPE_PURE})
-				params.target:DisableHealing(8)
-			end)
-		end
-	end
-
-end
 
 function modifier_item_kitteh_amulet_passive:GetModifierAttackRangeBonusUnique()
-		return 800
+	return 800
 end
 
 
 function modifier_item_kitteh_amulet_passive:GetModifierPercentageCooldownStacking()
-		return 95
+	return 95
 end
 
 
 function modifier_item_kitteh_amulet_passive:GetModifierPercentageCooldown()
-		return 95
+	return 95
 end
 
 
 function modifier_item_kitteh_amulet_passive:GetModifierTotal_ConstantBlock()
-		return 500
+	return 500
 end
 
 
 function modifier_item_kitteh_amulet_passive:GetModifierAttackRangeBonus()
-		return 500
+	return 500
 end
 
 function modifier_item_kitteh_amulet_passive:GetModifierPreAttack_CriticalStrike()

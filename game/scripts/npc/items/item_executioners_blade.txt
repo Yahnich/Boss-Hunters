@@ -23,7 +23,7 @@
 		"ItemResult"					"item_executioners_blade"
 		"ItemRequirements"
 		{
-			"01"						"item_hunters_hatchet"
+			"01"						"item_broadsword"
 		}
 	}
 	"item_executioners_blade"
@@ -68,7 +68,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"15"
+				"bonus_damage"			"25"
 			}
 		}
 	}

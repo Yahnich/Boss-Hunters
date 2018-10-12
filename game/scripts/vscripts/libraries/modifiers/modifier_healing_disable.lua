@@ -1,5 +1,7 @@
 modifier_healing_disable = class({})
 
+function modifier_healing_disable:OnCreated() print("ok boss") end
+
 function modifier_healing_disable:DeclareFunctions()
     local funcs = {
         MODIFIER_PROPERTY_DISABLE_HEALING

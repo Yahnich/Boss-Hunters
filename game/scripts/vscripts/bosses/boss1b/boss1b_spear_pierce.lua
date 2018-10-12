@@ -16,6 +16,7 @@ function boss1b_spear_pierce:OnSpellStart()
 end
 
 function boss1b_spear_pierce:OnProjectileHit(hTarget, vLocation)
+	if hTarget and hTarget:TriggerSpellAbsorb(self) then return true end
 	if hTarget ~= nil and ( not hTarget:IsMagicImmune() ) and ( not hTarget:IsInvulnerable() ) then
 		self:DealDamage(self:GetCaster(), hTarget, self:GetCaster():GetAttackDamage())
 		return false

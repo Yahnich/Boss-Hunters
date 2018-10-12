@@ -1,0 +1,91 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Recipe: TITAN Armor
+	//=================================================================================================================
+	"item_recipe_essence_piercer"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"7059"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe_assault"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"1250"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_essence_piercer"
+		"ItemRequirements"
+		{
+			"01"						"item_focused_lens;item_staff_of_magi;item_sorcerers_staff;item_gauntlet_of_alacrity"
+		}
+	}
+	"item_essence_piercer"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"7060"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_essence_piercer"
+		"AbilityTextureName"			"orchid"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemShopTags"					"cast range;damage"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"orchid;bloodthorn"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		"AbilityCooldown"				"12"
+		"AbilityManaCost"				"35"
+		"AbilityCastRange"				"625"
+		
+		
+		"precache"
+		{
+			"precache"					"soundevents/game_sounds_items.vsndevts"
+		}
+
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_cast_range"		"500"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"target_amp"			"30"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bonus_spell_amp"		"25"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bonus_attack_speed"	"25"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bonus_intellect"		"25"
+			}
+		}
+	}
+}

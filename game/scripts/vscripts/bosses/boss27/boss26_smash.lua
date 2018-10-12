@@ -16,8 +16,10 @@ function boss26_smash:OnSpellStart()
 	EmitSoundOn("Hero_Ursa.Earthshock", caster)
 	
 	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), radius) ) do
-		self:DealDamage(caster, enemy, damage)
-		enemy:AddNewModifier(caster, self, "modifier_boss26_smash_slow", {duration = duration})
+		if not enemy:TriggerSpellAbsorb(self) then
+			self:DealDamage(caster, enemy, damage)
+			enemy:AddNewModifier(caster, self, "modifier_boss26_smash_slow", {duration = duration})
+		end
 	end
 end
 

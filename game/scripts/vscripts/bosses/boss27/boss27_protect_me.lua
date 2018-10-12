@@ -42,12 +42,6 @@ function modifier_boss27_protect_me_buff:OnCreated()
 				ParticleManager:SetParticleControlEnt(linkFX, 0, parent, PATTACH_POINT_FOLLOW, "attach_hitloc", parent:GetAbsOrigin(), true)
 				ParticleManager:SetParticleControlEnt(linkFX, 1, bear, PATTACH_POINT_FOLLOW, "attach_hitloc", bear:GetAbsOrigin(), true)
 				self:AddEffect(linkFX)
-				Timers:CreateTimer(0.25, function()
-					if not bear:IsAlive() then
-						ParticleManager:ClearParticle(linkFX)
-					end
-					return 0.25
-				end)
 			end
 		end
 		for id, bear in pairs( caster.smallBearsTable ) do
@@ -56,12 +50,6 @@ function modifier_boss27_protect_me_buff:OnCreated()
 				ParticleManager:SetParticleControlEnt(linkFX, 0, parent, PATTACH_POINT_FOLLOW, "attach_hitloc", parent:GetAbsOrigin(), true)
 				ParticleManager:SetParticleControlEnt(linkFX, 1, bear, PATTACH_POINT_FOLLOW, "attach_hitloc", bear:GetAbsOrigin(), true)
 				self:AddEffect(linkFX)
-				Timers:CreateTimer(0.25, function()
-					if not bear:IsAlive() then
-						ParticleManager:ClearParticle(linkFX)
-					end
-					return 0.25
-				end)
 			end
 		end
 	end

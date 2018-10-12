@@ -1,35 +1,83 @@
 "itembuilds"
+
 {
-	"author"		"FsB"
+
+	"author"		"Valve"
+
 	"hero"			"npc_dota_hero_ancient_apparition"
+
 	"Title"			"Recommended items for Ancient Apparition"
 
+
+
 	"Items"
+
 	{	
+
 		"#DOTA_Item_Build_Starting_Items"
+
 		{
+
+			"item"	"item_sorcerers_staff"
+
 			"item"	"item_ring_of_mana"
+
 			"item"	"item_calming_skull"
+
 		}
 
+
+
 		"#DOTA_Item_Build_Early_Game"
-		{	
-			"item"	"item_archmages_orb"	
+
+		{		
+
 			"item"	"item_warlocks_reliquary"
-		}
-		"#DOTA_Item_Build_Core_Items"
-		{
-			"item"	"item_lazarus_rags"
+
+			"item"	"item_dark_wand"
+
 			"item"	"item_arcane_accelerator"
-		}
-		"#DOTA_Item_Build_Luxury"
-		{
-			"item"	"item_dark_wand_5"
-			"item"	"item_flashback"
-			"item"	"item_warp_staff"
-			"item"	"item_gauntlet_of_the_void"
-			"item"	"item_lightningbottle"
+
 			"item"	"item_focused_lens"
+
+			"item"	"item_cultists_veil"
 		}
+
+		"#DOTA_Item_Build_Core_Items"
+
+		{
+
+			"item"	"item_lifeweavers_clockwork"
+
+			"item"	"item_lucys_ring"
+
+			"item"	"item_ferrum_ascensus"
+
+			"item"	"item_arcane_piercer"
+
+			"item"	"item_galactic_hammer_5"
+
+
+		}
+
+		"#DOTA_Item_Build_Luxury"
+
+		{
+
+			"item"	"item_ultimate_scepter"
+
+			"item"	"item_warp_staff"
+
+			"item"	"item_lightningbottle"
+
+			"item"	"item_flashback"
+
+			"item"	"item_crystalline_staff"
+
+			"item"	"item_echoing_tambourine"
+
+		}
+
 	}
+
 }

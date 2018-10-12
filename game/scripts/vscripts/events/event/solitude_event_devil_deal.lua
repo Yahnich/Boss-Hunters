@@ -1,6 +1,7 @@
 local function CheckPlayerChoices(self)
-	for pID, choice in pairs( self._playerChoices ) do
-		if not choice then
+	for _, hero in ipairs( HeroList:GetActiveHeroes() ) do
+		local pID = hero:GetPlayerID()
+		if pID and not self._playerChoices[pID] then
 			return false
 		end
 	end
@@ -21,7 +22,7 @@ end
 
 local function SecondChoice(self, userid, event)
 	local hero = PlayerResource:GetSelectedHeroEntity( event.pID )
-	
+	if not hero then return end
 	hero:AddCurse("event_buff_devil_deal")
 	local relicTable = {}
 	table.insert(relicTable, RelicManager:RollRandomCursedRelicForPlayer(event.pID))
@@ -71,11 +72,7 @@ local function StartEvent(self)
 	end)
 	
 	self._playerChoices = {}
-	for i = 0, GameRules.BasePlayers do
-		if PlayerResource:IsValidPlayerID(i) and PlayerResource:GetPlayer(i) then
-			self._playerChoices[i] = false
-		end
-	end
+	
 	LinkLuaModifier("event_buff_devil_deal", "events/modifiers/event_buff_devil_deal", LUA_MODIFIER_MOTION_NONE)
 end
 

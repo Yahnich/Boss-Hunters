@@ -398,7 +398,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"passive_cooldown"		"2"
+				"passive_cooldown"		"2.5"
 			}
 			"02"
 			{
@@ -415,11 +415,11 @@
 				"var_type"				"FIELD_INTEGER"
 				"pierce_pct"			"40"
 			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"base_damage"			"50"
-			}
+			// "06"
+			// {
+			// 	"var_type"				"FIELD_INTEGER"
+			// 	"base_damage"			"0"
+			// }
 		}
 	}
 
@@ -436,6 +436,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityTextureName"			"windrunner_focusfire"
+		"HasScepterUpgrade"				"1"
 		"MaxLevel"						"6"
 		
 		"precache"
@@ -453,7 +454,7 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-    "AbilityCooldown"				"30"
+		"AbilityCooldown"				"30"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -472,8 +473,18 @@
 			{
 				"var_type"						"FIELD_FLOAT"
 				"bonus_at"						"-0.2"
-			}					
+			}
 			"03"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"dmg_reduction"					"-25"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"scepter_dmg_reduction"			"0"
+			}
+			"05"
 			{
 				"var_type"						"FIELD_INTEGER"
 				"duration"						"8 9 10 11 12 13"

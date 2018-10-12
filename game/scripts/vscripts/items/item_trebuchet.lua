@@ -5,7 +5,7 @@ function item_trebuchet:GetIntrinsicModifierName()
 	return "modifier_item_trebuchet"
 end
 
-modifier_item_trebuchet = class({})
+modifier_item_trebuchet = class(itemBaseClass)
 
 function modifier_item_trebuchet:OnCreated()
 	self.range = self:GetSpecialValueFor("bonus_range")
@@ -14,15 +14,15 @@ function modifier_item_trebuchet:OnCreated()
 	self.stat = self:GetSpecialValueFor("bonus_all")
 end
 
-function modifier_item_trebuchet:CheckState()
-	return {[MODIFIER_STATE_CANNOT_MISS] = self:RollPRNG(self.chance)}
-end
-
 function modifier_item_trebuchet:DeclareFunctions()
 	return {MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
 			MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
 			MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
 			MODIFIER_PROPERTY_STATS_INTELLECT_BONUS}
+end
+
+function modifier_item_trebuchet:GetAccuracy()
+	return self.chance
 end
 
 function modifier_item_trebuchet:GetModifierBonusStats_Strength()
@@ -42,12 +42,4 @@ function modifier_item_trebuchet:GetModifierAttackRangeBonus()
 	if self:GetParent():IsRangedAttacker() then
 		return self.range
 	end
-end
-
-function modifier_item_trebuchet:IsHidden()
-	return true
-end
-
-function modifier_item_trebuchet:GetAttributes()
-	return MODIFIER_ATTRIBUTE_MULTIPLE
 end

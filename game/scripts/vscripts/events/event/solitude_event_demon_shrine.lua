@@ -47,10 +47,10 @@ local function StartCombat(self, bFight)
 			ListenToGameEvent( "entity_killed", require("events/base_combat"), self ),
 		}
 		self.timeRemaining = 0
-		self.enemiesToSpawn = 3 + RoundManager:GetRaidsFinished()
+		self.enemiesToSpawn = math.min( 7, 3 + RoundManager:GetAscensions() )
 		Timers:CreateTimer(5, function()
 			local enemyType = "npc_dota_boss_warlock_demon"
-			if RollPercentage(20) then
+			if RollPercentage(35) then
 				enemyType = "npc_dota_boss_warlock_true_form"
 			end
 			local spawn = CreateUnitByName(enemyType, RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)

@@ -84,7 +84,7 @@ function AIThink(thisEntity)
 					return AI_THINK_RATE
 				end
 			else
-				AICore:AttackHighestPriority( thisEntity )
+				return AICore:AttackHighestPriority( thisEntity )
 			end
 		thisEntity.prevHP = thisEntity:GetHealth()
 		return AI_THINK_RATE

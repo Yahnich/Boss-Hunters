@@ -10,7 +10,7 @@ function relic_cursed_hushpuppy:DeclareFunctions()
 end
 
 function relic_cursed_hushpuppy:OnAbilityStart(params)
-	if params.target == self:GetParent() and self:GetDuration() == -1 and params.unit:GetTeam() ~= params.target:GetTeam() then
+	if params.unit ~= self:GetParent() and self:GetDuration() == -1 and params.unit:GetTeam() ~= self:GetParent():GetTeam() then
 		params.unit:RemoveModifierByName("modifier_status_immunity")
 		params.unit:Silence(nil, self:GetParent(), 3)
 		self:SetDuration(15.1, true)

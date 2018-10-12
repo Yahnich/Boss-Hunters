@@ -17,6 +17,9 @@ end
 
 modifier_windrunner_focusfire_bh = class({})
 function modifier_windrunner_focusfire_bh:OnCreated(table)
+	self.as = self:GetTalentSpecialValueFor("bonus_as")
+	self.bat = self:GetTalentSpecialValueFor("bonus_at")
+	self.dmg = TernaryOperator( self:GetTalentSpecialValueFor("scepter_dmg_reduction"), self:GetCaster():HasScepter(), self:GetTalentSpecialValueFor("dmg_reduction") )
     if IsServer() then
         self:StartIntervalThink(self:GetCaster():GetSecondsPerAttack())
     end
@@ -52,17 +55,22 @@ end
 
 function modifier_windrunner_focusfire_bh:DeclareFunctions()
     local funcs = {
-        MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT
+        MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+		MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE
     }
     return funcs
 end
 
 function modifier_windrunner_focusfire_bh:GetModifierAttackSpeedBonus_Constant()
-    return self:GetTalentSpecialValueFor("bonus_as")
+    return self.as
+end
+
+function modifier_windrunner_focusfire_bh:GetModifierDamageOutgoing_Percentage()
+    return self.dmg
 end
 
 function modifier_windrunner_focusfire_bh:GetBaseAttackTime_Bonus()
-    return self:GetTalentSpecialValueFor("bonus_at")
+    return self.bat
 end
 
 function modifier_windrunner_focusfire_bh:IsDebuff()

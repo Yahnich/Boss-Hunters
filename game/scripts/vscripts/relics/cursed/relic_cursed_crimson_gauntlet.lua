@@ -2,8 +2,6 @@ relic_cursed_crimson_gauntlet = class(relicBaseClass)
 
 function relic_cursed_crimson_gauntlet:OnCreated()
 	if IsServer() then
-		self:SetStackCount( self:GetParent():GetMaxHealth() * 0.75 )
-		self:GetParent():CalculateStatBonus()
 		self:StartIntervalThink(0.33)
 		LinkLuaModifier( "modifier_relic_cursed_crimson_gauntlet", "relics/cursed/relic_cursed_crimson_gauntlet", LUA_MODIFIER_MOTION_NONE)
 	end
@@ -12,26 +10,19 @@ end
 function relic_cursed_crimson_gauntlet:OnIntervalThink()
 	if IsServer() then
 		local parent = self:GetParent()
+		if parent:HasRelic("relic_unique_ritual_candle") then return end
 		for _, enemy in ipairs( parent:FindEnemyUnitsInRadius( parent:GetAbsOrigin(), 900 ) ) do
 			enemy:AddNewModifier(parent, self:GetAbility(), "modifier_relic_cursed_crimson_gauntlet", {duration = 0.5})
 		end
-	
-		local hpPct = self:GetParent():GetHealth() / self:GetParent():GetMaxHealth()
-
-		self:SetStackCount( 0 )
-		self:GetParent():CalculateStatBonus()
-		self:SetStackCount( self:GetParent():GetMaxHealth() * 0.75 )
-		self:GetParent():CalculateStatBonus()
-		self:GetParent():SetHealth( hpPct * self:GetParent():GetMaxHealth() )
 	end
 end
 
 function relic_cursed_crimson_gauntlet:DeclareFunctions()
-	return {MODIFIER_PROPERTY_EXTRA_HEALTH_BONUS}
+	return {MODIFIER_PROPERTY_EXTRA_HEALTH_PERCENTAGE}
 end
 
-function relic_cursed_crimson_gauntlet:GetModifierExtraHealthBonus()
-	return self:GetStackCount()
+function relic_cursed_crimson_gauntlet:GetModifierExtraHealthPercentage()
+	return 0.75
 end
 
 modifier_relic_cursed_crimson_gauntlet = class({})

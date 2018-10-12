@@ -83,7 +83,6 @@ function et_elder_spirit:OnSpellStart()
 		spirit:AddNewModifier(caster, self, "modifier_elder_spirit", {})
 		spirit:SetBaseMoveSpeed(caster:GetIdealSpeed())
 		
-		print(point, spirit:GetAbsOrigin() )
 		self:EndCooldown()
 	end
 end
@@ -125,6 +124,10 @@ end
 
 function modifier_elder_spirit_check_out:IsDebuff()
 	return true
+end
+
+function modifier_elder_spirit_check_out:IsPurgable()
+	return false
 end
 
 modifier_elder_spirit = class({})
@@ -210,6 +213,7 @@ function modifier_elder_spirit:OnAbilityExecuted(params)
 	if params.unit == self:GetCaster() and self:GetAbility().truePull then
 		if params.ability:GetAbilityName() == "et_earth_splitter" then
 			Timers:CreateTimer(3.14, function()
+				if self:IsNull() or self:GetAbility():IsNull() then return end
 				self:GetAbility().spiritPull = true
 			end)
 		else

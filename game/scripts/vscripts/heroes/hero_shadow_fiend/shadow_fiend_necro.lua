@@ -7,6 +7,14 @@ function shadow_fiend_necro:GetCastRange(vLocation, hTarget)
 	return self:GetCaster():GetAttackRange()
 end
 
+function shadow_fiend_necro:GetBehavior()
+	if self:GetCaster():HasScepter() then
+		return DOTA_ABILITY_BEHAVIOR_PASSIVE
+	else
+		return DOTA_ABILITY_BEHAVIOR_TOGGLE
+	end
+end
+
 function shadow_fiend_necro:GetIntrinsicModifierName()
 	return "modifier_shadow_fiend_necro_handle"
 end
@@ -44,8 +52,8 @@ function modifier_shadow_fiend_necro_handle:OnDeath(params)
 			local necroStacks = params.unit:FindModifierByName("modifier_shadow_fiend_necro")
 			if necroStacks then
 				local requiem = self:GetCaster():FindAbilityByName("shadow_fiend_requiem")
+				necroStacks:SetStackCount( math.ceil(necroStacks:GetStackCount() * self.deathLoss) )
 				if requiem and requiem:GetLevel() > 0 then requiem:ReleaseSouls(true) end
-    		 	necroStacks:SetStackCount( math.ceil(necroStacks:GetStackCount() * self.deathLoss) )
 			end
     	end
     end

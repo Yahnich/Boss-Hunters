@@ -23,7 +23,7 @@ function modifier_item_blade_of_storm:DeclareFunctions()
 	return {MODIFIER_EVENT_ON_ATTACK_LANDED,
 			MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
 			MODIFIER_PROPERTY_EVASION_CONSTANT,
-			MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE,
+			MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
 			MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
 			MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE
 			}
@@ -50,7 +50,7 @@ function modifier_item_blade_of_storm:GetModifierEvasion_Constant()
 	return self.evasion
 end
 
-function modifier_item_blade_of_storm:GetModifierBaseDamageOutgoing_Percentage()
+function modifier_item_blade_of_storm:GetModifierPreAttack_BonusDamage()
 	return self.bonusDamage
 end
 

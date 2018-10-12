@@ -48,7 +48,7 @@ if IsServer() then
 						end
 					end
 					if thisEntity.execute and thisEntity.execute:IsFullyCastable() then
-						local executeTarget = thisEntity.execute:NearestExecuteableTarget( thisEntity.execute:GetTrueCastRange() + thisEntity:GetIdealSpeed() ) or target
+						local executeTarget = thisEntity.execute:NearestExecuteableTarget( thisEntity.execute:GetTrueCastRange() + thisEntity:GetIdealSpeed() )
 						if executeTarget and not executeTarget:IsNull() then
 							ExecuteOrderFromTable({
 								UnitIndex = thisEntity:entindex(),
@@ -102,8 +102,7 @@ if IsServer() then
 					end
 				end
 			end
-			AICore:AttackHighestPriority( thisEntity )
-			return AI_THINK_RATE
+			return AICore:AttackHighestPriority( thisEntity )
 		else return AI_THINK_RATE end
 	end
 end

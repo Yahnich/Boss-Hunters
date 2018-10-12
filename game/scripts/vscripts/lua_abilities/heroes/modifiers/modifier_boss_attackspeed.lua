@@ -6,7 +6,7 @@ end
 
 function modifier_boss_attackspeed:OnCreated()
 	if IsServer() then
-		self:SetStackCount(math.floor(GameRules.gameDifficulty + 0.5))
+		self:SetStackCount(math.floor(GameRules.gameDifficulty + 0.5) + RoundManager:GetAscensions())
 		self.thinkTime = 0
 		self:StartIntervalThink(0.1)
 	end
@@ -24,6 +24,16 @@ function modifier_boss_attackspeed:OnIntervalThink()
 	end
 end
 
+function modifier_boss_attackspeed:CheckState()
+	if IsServer() then
+		return {[MODIFIER_STATE_CANNOT_MISS] = self:RollPRNG( math.min( 8 + self:GetStackCount() * 2 + RoundManager:GetZonesFinished() * 2.5, 65 ) ) }
+	end
+end
+
+function modifier_boss_attackspeed:GetPriority()
+	return MODIFIER_PRIORITY_LOW
+end
+
 function modifier_boss_attackspeed:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
@@ -34,13 +44,14 @@ function modifier_boss_attackspeed:DeclareFunctions()
 		MODIFIER_EVENT_ON_ABILITY_FULLY_CAST,
 		MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE,
 		MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE,
-		MODIFIER_EVENT_ON_ABILITY_START
+		MODIFIER_EVENT_ON_ABILITY_START,
+		MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS
 	}
 	return funcs
 end
 --------------------------------------------------------------------------------
 function modifier_boss_attackspeed:GetModifierAttackSpeedBonus_Constant( params )
-	return 50 * self:GetStackCount()
+	return 100 + self:GetStackCount() * 25
 end
 
 function modifier_boss_attackspeed:GetModifierMoveSpeedBonus_Constant( params )
@@ -56,8 +67,15 @@ function modifier_boss_attackspeed:GetModifierManaBonus( params )
 end]]
 
 function modifier_boss_attackspeed:GetModifierPreAttack_CriticalStrike( params )
-	if self:RollPRNG( 5 * self:GetStackCount() ) then
-		return 175
+	local maxTick = math.floor( 100 / ( 5 * self:GetStackCount() ) + 0.5 )
+	self.ticks = (self.ticks or 0) + 1
+	if self.ticks >= maxTick then	
+		self.ticks = 0
+		if self:GetParent():HasModifier("modifier_elite_assassin") then
+			return 250
+		else
+			return 175
+		end
 	end
 end
 
@@ -67,8 +85,12 @@ function modifier_boss_attackspeed:GetModifierPhysicalArmorBonus( params )
 	return self:GetParent():GetPhysicalArmorBaseValue() * 0.08 * self:GetStackCount() + bonusarmor
 end
 
+function modifier_boss_attackspeed:GetModifierMagicalResistanceBonus( params )
+	return 3.5 * self:GetStackCount()
+end
+
 function modifier_boss_attackspeed:GetModifierBaseDamageOutgoing_Percentage( params )
-	return 5 * self:GetStackCount()
+	return 10 + 2.5 * self:GetStackCount()
 end
 
 function modifier_boss_attackspeed:OnAbilityStart( params )
@@ -82,4 +104,8 @@ function modifier_boss_attackspeed:OnAbilityFullyCast( params )
 	if params.unit == self:GetParent() then
 		AddFOWViewer(DOTA_TEAM_GOODGUYS, self:GetParent():GetAbsOrigin(), 516, 3, false)
 	end
+end
+
+function modifier_boss_attackspeed:IsPurgable()
+	return false
 end

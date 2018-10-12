@@ -57,7 +57,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"50"
+				"damage"				"100"
 			}
 			"02"
 			{
@@ -67,7 +67,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"heal_per_second"		"50"
+				"heal_per_second"		"75"
 			}
 			"04"
 			{

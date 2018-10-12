@@ -19,6 +19,14 @@ function AddTableToTable( t1, t2)
 	end
 end
 
+function TernaryOperator(value, bCheck, default)
+	if bCheck then 
+		return value 
+	else 
+		return default
+	end
+end
+
 function GetTableLength(rndTable)
 	local counter = 0
 	for k,v in pairs(rndTable) do
@@ -52,7 +60,7 @@ end
 
 function C_DOTA_BaseNPC:HasTalent(talentName)
 	local data = CustomNetTables:GetTableValue("talents", tostring(self:entindex())) or {}
-	if data[talentName] then
+	if data and data[talentName] then
 		return true 
 	end
 	return false
@@ -84,11 +92,14 @@ function C_DOTABaseAbility:GetTalentSpecialValueFor(value)
 	local kv = AbilityKV[self:GetName()]["AbilitySpecial"]
 	local valname = "value"
 	local multiply = false
-	for k,v in pairs(kv) do -- trawl through keyvalues
-		if v[value] then
-			talentName = v["LinkedSpecialBonus"]
-			if v["LinkedSpecialBonusField"] then valname = v["LinkedSpecialBonusField"] end
-			if v["LinkedSpecialBonusOperation"] and v["LinkedSpecialBonusOperation"] == "SPECIAL_BONUS_MULTIPLY" then multiply = true end
+	if kv then
+		for k,v in pairs(kv) do -- trawl through keyvalues
+			if v[value] then
+				talentName = v["LinkedSpecialBonus"]
+				if v["LinkedSpecialBonusField"] then valname = v["LinkedSpecialBonusField"] end
+				if v["LinkedSpecialBonusOperation"] and v["LinkedSpecialBonusOperation"] == "SPECIAL_BONUS_MULTIPLY" then multiply = true end
+				break
+			end
 		end
 	end
 	if talentName and self:GetCaster():HasTalent(talentName) then 
@@ -187,19 +198,12 @@ function C_DOTA_BaseNPC:GetIllusionOwnerEntindex()
 	end
 end
 
-function GameRules:IsDaytime()
-	local timeofday = CustomNetTables:GetTableValue( "game_info", "timeofday")
-	return timeofday["timeofday"] == 1
+function C_DOTA_BaseNPC:InWater()
+	return self:HasModifier("modifier_in_water")
 end
 
-function GameRules:IsTemporaryNight()
-	local timeofday = CustomNetTables:GetTableValue( "game_info", "timeofday")
-	return timeofday["timeofday"] == 2
-end
-
-function GameRules:IsNightstalkerNight()
-	local timeofday = CustomNetTables:GetTableValue( "game_info", "timeofday")
-	return timeofday["timeofday"] == 3
+function C_DOTA_BaseNPC:IsRoundBoss()
+	return self:HasModifier("modifier_boss_evasion")
 end
 
 function C_BaseEntity:RollPRNG( percentage )

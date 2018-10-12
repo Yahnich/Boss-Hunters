@@ -38,7 +38,7 @@
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"115 130 145 160 175 190 205"
+		"AbilityManaCost"				"120"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -47,17 +47,17 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"100 125 150 175 200 225 250"
+				"damage"				"100 130 160 190 220 250 280"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"chance"				"25"
+				"chance"				"30"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"crit_mult"				"200"
+				"crit_mult"				"300"
 			}
 		}
 	}
@@ -79,7 +79,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"damage"					"50"
+				"damage"					"80"
 			}
 			"02"
 			{
@@ -118,7 +118,7 @@
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_warlock/warlock_corruption_curse.lua"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
 		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
@@ -180,7 +180,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"300"
+				"value"						"600"
 			}
 		}
 	}
@@ -202,7 +202,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"						"10"
+				"value"						"15"
 			}
 		}
 	}
@@ -213,7 +213,10 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_warlock/warlock_sacrifice.lua"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_PLAYER_CONTROLLED"
 		"AbilityTextureName"			"warlock_fatal_bonds"
 		"MaxLevel"						"7"
 		
@@ -250,15 +253,25 @@
 				"var_type"				"FIELD_FLOAT"
 				"spell_amp"				"15 25 35 45 55 65 75"
 			}
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"health_regen"			"10 13 16 18 21 24 27"
-			}
 			"02"
 			{
+				"var_type"				"FIELD_INTEGER"
+				"health_regen"			"9 12 15 18 21 24 27"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"golem_health_regen"	"27 36 45 54 63 72 81"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"golem_bonus_damage"	"15 25 35 45 55 65 75"
+			}
+			"05"
+			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"5"
+				"duration"				"8"
 			}
 		}
 	}
@@ -280,7 +293,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"						"15"
+				"value"						"0.5"
 			}
 		}
 	}
@@ -304,10 +317,15 @@
 				"var_type"					"FIELD_FLOAT"
 				"damage"					"100"
 			}
-			"01"
+			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
 				"radius"					"500"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"golem_mult"				"3"
 			}
 		}
 	}
@@ -392,7 +410,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"damage"				"75"
+				"damage"				"80"
 			}
 		}
 	}
@@ -455,20 +473,30 @@
 				"var_type"				"FIELD_INTEGER"
 				"stun_radius"			"600"
 			}
-			"03"
+			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"golem_number"			"1"
 				"LinkedSpecialBonus"	"special_bonus_unique_warlock_demonic_summons_1"
 			}
-			"03"
+			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"golem_duration"		"60"
 				"LinkedSpecialBonus"	"special_bonus_unique_warlock_demonic_summons_2"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
-			"03"
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"golem_damage"			"250 375 500 625 750 875"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"golem_hp"				"250 375 500 625 750 875"
+			}
+			"06"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"delay"					"0.5"
@@ -493,7 +521,17 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
+				"mr"						"100"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"hp"						"1.5"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"dmg"						"1.5"
 			}
 		}
 	}
@@ -553,7 +591,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"40 50 60 70 80 90"
+				"damage"				"50 60 80 100 120 160"
 			}
 			"02"
 			{
@@ -596,7 +634,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"30 50 70 90 110 130"
+				"damage"				"30 60 90 120 150 180"
 			}
 			"02"
 			{

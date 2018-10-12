@@ -21,12 +21,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"movespeed"				"2 2.5"
+				"movespeed"				"7.5 10"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"damage_amp"			"0.3 0.4"
+				"damage_amp"			"0.5 0.8"
 			}	
 		}
 	}

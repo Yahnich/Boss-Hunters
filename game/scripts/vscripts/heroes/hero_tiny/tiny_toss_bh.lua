@@ -211,14 +211,13 @@ if IsServer() then
     function modifier_tiny_toss_bh_charge_handle:Update()
 		self.kv.replenish_time = self:GetAbility():GetTrueCooldown()
 		self.kv.max_count = self:GetCaster():FindTalentValue("special_bonus_unique_tiny_toss_bh_2")
-
 		if self:GetStackCount() == self.kv.max_count then
 			self:SetDuration(-1, true)
 		elseif self:GetStackCount() > self.kv.max_count then
 			self:SetDuration(-1, true)
 			self:SetStackCount(self.kv.max_count)
 		elseif self:GetStackCount() < self.kv.max_count then
-			local duration = self.kv.replenish_time* get_octarine_multiplier( self:GetCaster() )
+			local duration = self.kv.replenish_time
             self:SetDuration(duration, true)
             self:StartIntervalThink(duration)
 		end
@@ -264,7 +263,7 @@ if IsServer() then
 			self.kv.max_count = self:GetCaster():FindTalentValue("special_bonus_unique_tiny_toss_bh_2")
 			
             local ability = params.ability
-            if params.ability == self:GetAbility() then
+            if ability == self:GetAbility() then
                 self:DecrementStackCount()
 				ability:EndCooldown()
                 self:Update()

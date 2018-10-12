@@ -57,17 +57,17 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage_over_time"		"30"
+				"damage_over_time"		"0"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"base_damage"			"20"
+				"base_damage"			"100"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"slow"					"-20"
+				"slow"					"-35"
 			}
 			"04"
 			{
@@ -77,7 +77,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"bonus_all"				"20"
+				"bonus_all"				"25"
 			}
 		}
 	}

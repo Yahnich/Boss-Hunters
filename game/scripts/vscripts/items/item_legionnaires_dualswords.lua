@@ -4,7 +4,7 @@ function item_legionnaires_dualswords:GetIntrinsicModifierName()
 	return "modifier_item_legionnaires_dualswords"
 end
 
-modifier_item_legionnaires_dualswords = class({})
+modifier_item_legionnaires_dualswords = class(itemBaseClass)
 LinkLuaModifier( "modifier_item_legionnaires_dualswords", "items/item_legionnaires_dualswords.lua" ,LUA_MODIFIER_MOTION_NONE )
 function modifier_item_legionnaires_dualswords:OnCreated()
 	self.attackSpeed = self:GetSpecialValueFor("bonus_attackspeed")

@@ -22,7 +22,7 @@ item_dark_wand_3 = class(item_dark_wand)
 item_dark_wand_4 = class(item_dark_wand)
 item_dark_wand_5 = class(item_dark_wand)
 
-modifier_item_dark_wand_passive = class({})
+modifier_item_dark_wand_passive = class(itemBaseClass)
 function modifier_item_dark_wand_passive:OnCreated()
 	self.agi = self:GetSpecialValueFor("bonus_agi")
 	self.int = self:GetSpecialValueFor("bonus_int")
@@ -45,12 +45,4 @@ end
 
 function modifier_item_dark_wand_passive:GetModifierBonusStats_Intellect()
 	return self.int
-end
-
-function modifier_item_dark_wand_passive:IsHidden()
-	return true
-end
-
-function modifier_item_dark_wand_passive:GetAttributes()
-	return MODIFIER_ATTRIBUTE_MULTIPLE
 end

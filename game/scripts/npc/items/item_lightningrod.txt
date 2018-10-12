@@ -92,6 +92,11 @@
 				"var_type"				"FIELD_FLOAT"
 				"strike_bounces"		"4"
 			}
+			"07"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"paralyze_duration"		"0.25"
+			}
 		}
 	}
 }

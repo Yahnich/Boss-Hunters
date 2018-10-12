@@ -18,7 +18,15 @@ function faceless_clock_stopper:OnSpellStart()
 	local caster = self:GetCaster()
 
 	EmitSoundOn("Hero_FacelessVoid.TimeDilation.Cast", caster)
-	caster:AddNewModifier(caster, self, "modifier_faceless_clock_stopper_buff", {Duration = self:GetTalentSpecialValueFor("duration")})
+	local duration = self:GetTalentSpecialValueFor("duration")
+	
+	if caster:HasScepter() then
+		for _, ally in ipairs( caster:FindFriendlyUnitsInRadius( caster:GetAbsOrigin(), self:GetTalentSpecialValueFor("scepter_radius") ) ) do
+			ally:AddNewModifier(caster, self, "modifier_faceless_clock_stopper_buff", {Duration = duration})
+		end
+	else
+		caster:AddNewModifier(caster, self, "modifier_faceless_clock_stopper_buff", {Duration = duration})
+	end
 end
 
 modifier_faceless_clock_stopper_handle = class({})

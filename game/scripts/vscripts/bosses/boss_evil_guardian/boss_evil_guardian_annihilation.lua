@@ -23,7 +23,7 @@ function boss_evil_guardian_annihilation:OnSpellStart()
 	local ogPos = caster:GetAbsOrigin() + distance * direction
 	Timers:CreateTimer(1, function() 
 		local circumference = 2 * math.pi * distance
-		local razes = math.ceil(circumference / radius)
+		local razes = math.min( math.ceil(circumference / radius), 15 )
 		local radVel = 360/razes
 		for i = 0, razes - 1 do
 			local newPos =  caster:GetAbsOrigin() + RotateVector2D(direction, ToRadians(radVel)*i) * distance
@@ -47,7 +47,9 @@ function boss_evil_guardian_annihilation:CreateRaze(position, damage, radius, de
 	Timers:CreateTimer(delay, function()
 		ParticleManager:ClearParticle( razeFX )
 		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( position, radius ) ) do
-			self:DealDamage(caster, enemy, damage)
+			if not enemy:TriggerSpellAbsorb(self) then
+				self:DealDamage(caster, enemy, damage)
+			end
 		end
 	end)
 end

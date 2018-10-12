@@ -44,8 +44,9 @@
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"burn"							"3.5 4 4.5 5 5.5 6 6.5"
+				"burn"							"3.0 3.25 3.5 3.75 4 4.25 4.5"
 				"CalculateSpellDamageTooltip"	"0"
+				"LinkedSpecialBonus"			"special_bonus_unique_winterw_arctic_sting_1"
 			}
 			"04"
 			{
@@ -66,7 +67,6 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"move_slow"				"-20 -25 -30 -35 -40 -45 -50"
-				"LinkedSpecialBonus"	"special_bonus_unique_winterw_arctic_sting_1"
 			}
 			"08"
 			{
@@ -313,8 +313,8 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"-65"
+				"var_type"				"FIELD_FLOAT"
+				"value"					"1"
 			}
 		}
 	}
@@ -333,7 +333,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"5"
+				"value"					"6"
 			}
 		}
 	}
@@ -371,7 +371,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"5.0"
+				"value"					"8.0"
 			}
 		}
 	}

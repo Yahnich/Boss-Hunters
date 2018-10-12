@@ -25,22 +25,22 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"evasion"				"25 33"
+				"evasion"				"15 25"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"hits_to_stun"			"7"
+				"hits_to_stun"			"9 8"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"stun_duration"			"0.3 0.5"
+				"stun_duration"			"0.15 0.2"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"critical_damage"		"200"
+				"critical_damage"		"175"
 			}
 		}
 	}
@@ -76,7 +76,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"duration"				"4 5"
+				"duration"				"3"
 			}
 			"02"
 			{
@@ -103,7 +103,7 @@
 		"AbilityTextureName"			"ursa_overpower"
 		"MaxLevel"						"2"
 		
-		"AbilityCooldown"				"8 7"
+		"AbilityCooldown"				"7 6"
 		"AbilityCastPoint"				"1.5 1"
 		"AbilityCastRange"				"350"
 		
@@ -121,7 +121,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"3"
+				"duration"				"2"
 			}
 			"02"
 			{
@@ -131,7 +131,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"attackslow"			"-600"
+				"attackslow"			"-150 -200"
 			}
 		}
 	}
@@ -185,12 +185,51 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"200 225"
+				"damage"				"150 175"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"stun_duration"			"1"
+			}
+		}
+	}
+	"boss18b_corrupted_huntress"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss18b/boss18b_corrupted_huntress.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"FightRecapLevel"				"2"
+		"AbilityTextureName"			"doom_bringer_doom"
+		"MaxLevel"						"2"
+		
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_juggernaut.vsndevts"
+		}
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{			
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"aura_radius"			"750 900"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"armor_reduction"		"-12 -15"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"damage_per_sec"		"30 40"
 			}
 		}
 	}

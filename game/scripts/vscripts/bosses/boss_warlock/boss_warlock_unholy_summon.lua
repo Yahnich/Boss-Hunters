@@ -10,9 +10,11 @@ function boss_warlock_unholy_summon:OnAbilityPhaseStart()
 	local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), FIND_UNITS_EVERYWHERE)
 	for _,enemy in pairs(enemies) do
 		if enemy:IsHero() and currentTargets < maxTargets then
-			ParticleManager:FireWarningParticle(enemy:GetAbsOrigin(), self:GetSpecialValueFor("radius"))
-			ParticleManager:FireParticle("particles/units/heroes/hero_warlock/warlock_rain_of_chaos_start.vpcf", PATTACH_POINT, caster, {[0]=enemy:GetAbsOrigin()})
-			table.insert(self.locations, enemy:GetAbsOrigin())
+			if not enemy:TriggerSpellAbsorb(self) then
+				ParticleManager:FireWarningParticle(enemy:GetAbsOrigin(), self:GetSpecialValueFor("radius"))
+				ParticleManager:FireParticle("particles/units/heroes/hero_warlock/warlock_rain_of_chaos_start.vpcf", PATTACH_POINT, caster, {[0]=enemy:GetAbsOrigin()})
+				table.insert(self.locations, enemy:GetAbsOrigin())
+			end
 			currentTargets = currentTargets + 1
 		end
 	end
@@ -35,7 +37,7 @@ function boss_warlock_unholy_summon:OnSpellStart()
 
 		local enemies = caster:FindEnemyUnitsInRadius(location, self:GetSpecialValueFor("radius"))
 		for _,enemy in pairs(enemies) do
-			if not enemy:IsMagicImmune() and not enemy:IsInvulnerable() then
+			if not enemy:IsMagicImmune() and not enemy:IsInvulnerable() and not enemy:TriggerSpellAbsorb(self) then
 				self:Stun(enemy, 1)
 				self:DealDamage(caster, enemy, self:GetSpecialValueFor("damage"))
 			end

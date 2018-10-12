@@ -19,23 +19,25 @@ if IsServer() then
 		thisEntity.bigBearsTable = thisEntity.bigBearsTable or {}
 		thisEntity.smallBearsTable = thisEntity.smallBearsTable or {}
 		
-		thisEntity.GetBigBears = function(self) return self.bigBearsTable or {} end
-		thisEntity.GetSmallBears = function(self) return self.smallBearsTable or {} end
+		thisEntity.GetBigBears = function(thisEntity) return thisEntity.bigBearsTable or {} end
+		thisEntity.GetSmallBears = function(thisEntity) return thisEntity.smallBearsTable or {} end
 		
-		thisEntity.GetBigBearCount = function(self) return #self.bigBearsTable or 0 end
-		thisEntity.GetSmallBearCount = function(self) return #self.smallBearsTable or 0 end
+		thisEntity.GetBigBearCount = function(thisEntity) return #thisEntity.bigBearsTable or 0 end
+		thisEntity.GetSmallBearCount = function(thisEntity) return #thisEntity.smallBearsTable or 0 end
 		
-		thisEntity.GetTotalBearCount = function(self) return self:GetBigBearCount() + self:GetSmallBearCount() end
+		thisEntity.GetMaxBigBearCount = function(thisEntity) return math.ceil(#HeroList:GetActiveHeroes() / 2) end
+		thisEntity.GetMaxSmallBearCount = function(thisEntity) return math.ceil(#HeroList:GetActiveHeroes() * 2) end
+		
+		thisEntity.GetTotalBearCount = function(thisEntity) return thisEntity:GetBigBearCount() + thisEntity:GetSmallBearCount() end
+		thisEntity.GetMaxTotalBearCount = function(thisEntity) return thisEntity:GetMaxBigBearCount() + thisEntity:GetMaxSmallBearCount() end
 		
 		AITimers:CreateTimer(1, function()
-			for id, bear in pairs( thisEntity.bigBearsTable ) do
-				if bear:IsNull() or not bear:IsAlive() then
-					table.remove(thisEntity.bigBearsTable, id)
+			for i = 30, 1, -1 do
+				if thisEntity.bigBearsTable[ì] and ( thisEntity.bigBearsTable[ì]:IsNull() or not thisEntity.bigBearsTable[ì]:IsAlive() ) then
+					table.remove( thisEntity.bigBearsTable, i )
 				end
-			end
-			for id, bear in pairs( thisEntity.smallBearsTable ) do
-				if bear:IsNull() or not bear:IsAlive() then
-					table.remove(thisEntity.smallBearsTable, id)
+				if thisEntity.smallBearsTable[ì] and ( thisEntity.smallBearsTable[ì]:IsNull() or not thisEntity.smallBearsTable[ì]:IsAlive() ) then
+					table.remove( thisEntity.smallBearsTable, i )
 				end
 			end
 			return 1
@@ -136,7 +138,7 @@ if IsServer() then
 						})
 						return thisEntity.protect:GetCastPoint() + 0.1
 					end
-					if thisEntity.bigbear:IsFullyCastable() and thisEntity:GetBigBearCount() <= 3 and RollPercentage(50 / thisEntity:GetBigBearCount()) then
+					if thisEntity.bigbear:IsFullyCastable() and thisEntity:GetBigBearCount() <= thisEntity:GetMaxBigBearCount() and RollPercentage( 50 / math.min(thisEntity:GetBigBearCount(), 1) ) then
 						ExecuteOrderFromTable({
 							UnitIndex = thisEntity:entindex(),
 							OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
@@ -144,7 +146,7 @@ if IsServer() then
 						})
 						return AI_THINK_RATE
 					end
-					if thisEntity.smallbear:IsFullyCastable() and thisEntity:GetSmallBearCount() <= 6  and RollPercentage(50 / thisEntity:GetSmallBearCount()) then
+					if thisEntity.smallbear:IsFullyCastable() and thisEntity:GetSmallBearCount() <= thisEntity:GetMaxSmallBearCount()  and RollPercentage(50 / math.min(thisEntity:GetSmallBearCount(), 1)) then
 						ExecuteOrderFromTable({
 							UnitIndex = thisEntity:entindex(),
 							OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
@@ -154,11 +156,10 @@ if IsServer() then
 
 					end
 				end
-				AICore:AttackHighestPriority( thisEntity )
-				return AI_THINK_RATE
+				return AICore:AttackHighestPriority( thisEntity )
 			else
-				if thisEntity:GetTotalBearCount() == 0 and thisEntity:GetTotalBearCount() < 9 then
-					if thisEntity.bigbear:IsFullyCastable() and thisEntity:GetBigBearCount() <= 3 then
+				if thisEntity:GetTotalBearCount() < thisEntity:GetMaxTotalBearCount() then
+					if thisEntity.bigbear:IsFullyCastable() and thisEntity:GetBigBearCount() <= thisEntity:GetMaxBigBearCount() then
 						ExecuteOrderFromTable({
 							UnitIndex = thisEntity:entindex(),
 							OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
@@ -166,7 +167,7 @@ if IsServer() then
 						})
 						return AI_THINK_RATE
 					end
-					if thisEntity.smallbear:IsFullyCastable() and thisEntity:GetSmallBearCount() <= 6 then
+					if thisEntity.smallbear:IsFullyCastable() and thisEntity:GetSmallBearCount() <= thisEntity:GetMaxSmallBearCount() then
 						ExecuteOrderFromTable({
 							UnitIndex = thisEntity:entindex(),
 							OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
@@ -214,22 +215,6 @@ if IsServer() then
 							AbilityIndex = thisEntity.destroy:entindex()
 						})
 						return thisEntity.destroy:GetCastPoint() + 0.1
-					end
-					if thisEntity.bigbear:IsFullyCastable() and thisEntity:GetBigBearCount() <= 5 and RollPercentage(100 / thisEntity:GetBigBearCount()) then
-						ExecuteOrderFromTable({
-							UnitIndex = thisEntity:entindex(),
-							OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
-							AbilityIndex = thisEntity.bigbear:entindex()
-						})
-						return AI_THINK_RATE
-					end
-					if thisEntity.smallbear:IsFullyCastable() and thisEntity:GetSmallBearCount() <= 10  and RollPercentage(100 / thisEntity:GetSmallBearCount()) then
-						ExecuteOrderFromTable({
-							UnitIndex = thisEntity:entindex(),
-							OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
-							AbilityIndex = thisEntity.smallbear:entindex()
-						})
-						return AI_THINK_RATE
 					end
 				end
 				AICore:BeAHugeCoward( thisEntity, 900 )

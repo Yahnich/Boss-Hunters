@@ -34,10 +34,14 @@ function boss15_thread_of_life:OnSpellStart()
 		local radius = math.max( self:GetTrueCastRange(), CalculateDistance( caster, target ) + caster:GetHullRadius() + target:GetHullRadius() )
 		local enemies = caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), radius )
 		for _, enemy in ipairs(enemies) do
-			self:CreateTether(enemy)
+			if not enemy:TriggerSpellAbsorb(self) then
+				self:CreateTether(enemy)
+			end
 		end
 	else
-		self:CreateTether(target)
+		if not target:TriggerSpellAbsorb(self) then
+			self:CreateTether(target)
+		end
 	end
 end
 
@@ -101,7 +105,7 @@ if IsServer() then
 		if caster:GetHealthPercent() <= 66 and self.hpDmg < self.maxHPDmg then
 			self.hpDmg = math.min(self.hpDmg + (self.maxHPDmg/self.rampup * 0.3), self.maxHPDmg)
 		end
-		local dmg = self:GetAbility():DealDamage(caster,  parent, damage, {damage_flags = DOTA_DAMAGE_FLAG_HPLOSS + DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
+		local dmg = self:GetAbility():DealDamage(caster,  parent, damage * 0.3, {damage_flags = DOTA_DAMAGE_FLAG_HPLOSS + DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
 		caster:HealEvent(dmg, self:GetAbility(), caster)
 	end
 	

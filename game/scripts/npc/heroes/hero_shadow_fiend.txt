@@ -16,7 +16,7 @@
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0.55"
+		"AbilityCastPoint"				"0.4"
 		"AbilityCastAnimation"			"ACT_DOTA_RAZE_1"
 
 		// Time		
@@ -141,7 +141,7 @@
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0.55"
+		"AbilityCastPoint"				"0.4"
 		"AbilityCastAnimation"			"ACT_DOTA_RAZE_2"
 
 		// Time		
@@ -213,7 +213,7 @@
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0.55"
+		"AbilityCastPoint"				"0.4"
 		"AbilityCastAnimation"			"ACT_DOTA_RAZE_3"
 
 		// Time		
@@ -277,6 +277,7 @@
 		"ScriptFile"					"heroes/hero_shadow_fiend/shadow_fiend_necro.lua"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_TOGGLE"
 		"AbilityTextureName"			"nevermore_necromastery"
+		"HasScepterUpgrade"				"1"
 		"MaxLevel"						"7"
 	
 		// Special
@@ -305,12 +306,12 @@
 			"04"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"death_soul_loss"				"50"
+				"death_soul_loss"				"60"
 			}
 			"05"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"excess_loss_rate"				"30"
+				"excess_loss_rate"				"40"
 			}
 		}
 	

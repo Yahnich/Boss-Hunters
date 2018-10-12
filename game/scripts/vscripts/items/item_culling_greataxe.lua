@@ -11,21 +11,24 @@ function item_culling_greataxe:OnSpellStart()
 	GridNav:DestroyTreesAroundPoint(tree, 20, true)
 end
 
-modifier_item_culling_greataxe_passive = class({})
+modifier_item_culling_greataxe_passive = class(itemBaseClass)
 
 function modifier_item_culling_greataxe_passive:OnCreated()
 	self.bonusDamage = self:GetSpecialValueFor("bonus_damage")
+	self.agi = self:GetSpecialValueFor("bonus_agi")
+	self.str = self:GetSpecialValueFor("bonus_str")
 	self.radius = self:GetSpecialValueFor("radius")
 	self.splash = self:GetSpecialValueFor("splash_damage") / 100
 end
 
 function modifier_item_culling_greataxe_passive:DeclareFunctions()
-	return {MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE, MODIFIER_EVENT_ON_ATTACK_LANDED}
+	return {MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE, MODIFIER_EVENT_ON_ATTACK_LANDED, MODIFIER_PROPERTY_STATS_AGILITY_BONUS, MODIFIER_PROPERTY_STATS_STRENGTH_BONUS}
 end
 
 function modifier_item_culling_greataxe_passive:OnAttackLanded(params)
 	if IsServer() then
 		if params.attacker == self:GetParent() then
+			ParticleManager:FireParticle("particles/units/heroes/hero_sven/sven_spell_great_cleave.vpcf", PATTACH_POINT_FOLLOW, params.target )
 			for _, enemy in ipairs( self:GetParent():FindEnemyUnitsInRadius( params.target:GetAbsOrigin(), self.radius) ) do
 				if enemy ~= params.target then
 					self:GetAbility():DealDamage( self:GetParent(), enemy, params.original_damage * self.splash, {damage_type = DAMAGE_TYPE_PHYSICAL, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_NO_SPELL_LIFESTEAL})
@@ -35,14 +38,14 @@ function modifier_item_culling_greataxe_passive:OnAttackLanded(params)
 	end
 end
 
-function modifier_item_culling_greataxe_passive:GetModifierBaseDamageOutgoing_Percentage()
+function modifier_item_culling_greataxe_passive:GetModifierPreAttack_BonusDamage()
 	return self.bonusDamage
 end
 
-function modifier_item_culling_greataxe_passive:IsHidden()
-	return true
+function modifier_item_culling_greataxe_passive:GetModifierBonusStats_Agility()
+	return self.agi
 end
 
-function modifier_item_culling_greataxe_passive:GetAttributes()
-	return MODIFIER_ATTRIBUTE_MULTIPLE
+function modifier_item_culling_greataxe_passive:GetModifierBonusStats_Strength()
+	return self.str
 end

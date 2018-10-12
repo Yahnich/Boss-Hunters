@@ -38,6 +38,7 @@ end
 
 function modifier_mag_charge:DoControlledMotion()
 	local parent = self:GetParent()
+	local ability = self:GetAbility()
 	if self.distance > 0 then
 		self.distance = self.distance - 50
 		GridNav:DestroyTreesAroundPoint(parent:GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"), true)
@@ -46,7 +47,7 @@ function modifier_mag_charge:DoControlledMotion()
 		local magnets = parent:FindFriendlyUnitsInRadius(parent:GetAbsOrigin(),self:GetTalentSpecialValueFor("radius"))
 		for _,magnet in pairs(magnets) do
 			if magnet:HasModifier("modifier_mag_magnet") then
-				magnet:AddNewModifier(parent, self:GetAbility(), "modifier_mag_charge_enemy", {Duration = 0.1})
+				magnet:AddNewModifier(parent, ability, "modifier_mag_charge_enemy", {Duration = 0.1})
 				magnet:SetAbsOrigin(GetGroundPosition(parent:GetAbsOrigin(), parent) + self.dir*200)
 			end
 		end
@@ -54,15 +55,24 @@ function modifier_mag_charge:DoControlledMotion()
 		local enemies = parent:FindEnemyUnitsInRadius(parent:GetAbsOrigin(),self:GetTalentSpecialValueFor("radius"))
 		for _,enemy in pairs(enemies) do
 			
-			enemy:AddNewModifier(parent, self:GetAbility(), "modifier_mag_charge_enemy", {Duration = 0.1})
+			enemy:AddNewModifier(parent, ability, "modifier_mag_charge_enemy", {Duration = 0.1})
 			enemy:SetAbsOrigin(GetGroundPosition(parent:GetAbsOrigin(), parent) + self.dir*200)
 		end
 	else
 		FindClearSpaceForUnit(parent, parent:GetAbsOrigin(), true)
-
 		local enemies = parent:FindEnemyUnitsInRadius(parent:GetAbsOrigin(),self:GetTalentSpecialValueFor("radius")+200)
 		for _,enemy in pairs(enemies) do
 			FindClearSpaceForUnit(enemy, enemy:GetAbsOrigin(), true)
+			
+			if parent:HasTalent("special_bonus_unique_mag_charge_1") then
+				local duration = parent:FindTalentValue("special_bonus_unique_mag_charge_1")
+				ability:Stun(enemy, duration)
+				ability:StartDelayedCooldown(duration)
+			end
+			if parent:HasTalent("special_bonus_unique_mag_charge_2") then
+				local damage = parent:GetStrength() * parent:FindTalentValue("special_bonus_unique_mag_charge_2") / 100
+				ability:DealDamage( parent, enemy, damage )
+			end
 		end
 
 		local magnets = parent:FindFriendlyUnitsInRadius(parent:GetAbsOrigin(),self:GetTalentSpecialValueFor("radius")+200)

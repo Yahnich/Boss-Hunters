@@ -6,7 +6,7 @@ function item_iron_rose:GetIntrinsicModifierName()
 	return "modifier_item_iron_rose_passive"
 end
 
-modifier_item_iron_rose_passive = class({})
+modifier_item_iron_rose_passive = class(itemBaseClass)
 function modifier_item_iron_rose_passive:OnCreated(table)
 	self.mana = self:GetSpecialValueFor("bonus_mana")
 	self.int = self:GetSpecialValueFor("bonus_int")

@@ -16,7 +16,7 @@
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
 		
-		"ItemCost"						"300"
+		"ItemCost"						"250"
 		"ItemShopTags"					"regen"
 		"ItemQuality"					"component"
 		"ItemAliases"					"ring of regen"
@@ -29,7 +29,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"hp_regen"				"2.5"
+				"hp_regen"				"1.5"
 			}
 		}
 	}

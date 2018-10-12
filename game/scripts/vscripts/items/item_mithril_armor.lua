@@ -5,7 +5,7 @@ function item_mithril_armor:GetIntrinsicModifierName()
 	return "modifier_item_mithril_armor_passive"
 end
 
-modifier_item_mithril_armor_passive = class({})
+modifier_item_mithril_armor_passive = class(itemBaseClass)
 
 function modifier_item_mithril_armor_passive:OnCreated()
 	self.armor = self:GetSpecialValueFor("bonus_armor")
@@ -17,12 +17,4 @@ end
 
 function modifier_item_mithril_armor_passive:GetModifierPhysicalArmorBonus()
 	return self.armor
-end
-
-function modifier_item_mithril_armor_passive:IsHidden()
-	return true
-end
-
-function modifier_item_mithril_armor_passive:GetAttributes()
-	return MODIFIER_ATTRIBUTE_MULTIPLE
 end

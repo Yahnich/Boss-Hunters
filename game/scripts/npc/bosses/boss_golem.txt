@@ -136,7 +136,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"base_damage"			"250 300"
+				"base_damage"			"150 200"
 			}
 			"05"
 			{
@@ -148,6 +148,11 @@
 				"var_type"				"FIELD_INTEGER"
 				"duration"				"5"
 			}
+			"02"
+	        {
+	            "var_type"              "FIELD_FLOAT"
+	            "minimum_scale"       	"0.8 0.6"
+	        }
 		}
 	}
 	"boss_golem_golem_leap"
@@ -201,7 +206,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"base_damage"			"250 300"
+				"base_damage"			"150 200"
 			}
 			"04"
 			{
@@ -242,7 +247,7 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"12"
+		"AbilityCooldown"				"8"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -260,7 +265,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"base_damage"			"300 350"
+				"base_damage"			"125 150"
 			}
 			"04"
 			{

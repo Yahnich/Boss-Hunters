@@ -170,6 +170,16 @@
 				"var_type"				"FIELD_FLOAT"
 				"duration"				"5.0"
 			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"scepter_crit"			"1000"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"scepter_cd"			"60.0"
+			}
 		}
 	
 		// Precache

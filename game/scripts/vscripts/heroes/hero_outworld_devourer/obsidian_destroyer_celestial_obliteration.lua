@@ -9,6 +9,7 @@ function obsidian_destroyer_celestial_obliteration:OnSpellStart()
 	EmitSoundOn("Hero_ObsidianDestroyer.SanityEclipse.Cast", caster)
 	local vTarget = self:GetCursorPosition()
 	local radius = self:GetTalentSpecialValueFor("radius")
+	
 	local enemies = FindUnitsInRadius(caster:GetTeamNumber(), vTarget, nil, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false)
 	if caster:HasScepter() then
 		local imprison = caster:FindAbilityByName("obsidian_destroyer_astral_isolation")
@@ -30,7 +31,7 @@ function obsidian_destroyer_celestial_obliteration:OnSpellStart()
 	end
 	local intDamage = self:GetTalentSpecialValueFor("damage_multiplier") * caster:GetIntellect()
 	for _,enemy in pairs(enemies) do
-		ApplyDamage({victim = enemy, attacker = caster, damage = intDamage, damage_type = self:GetAbilityDamageType(), ability = self})
+		self:DealDamage( caster, enemy, intDamage, {damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION} )
 		enemy:AddNewModifier(caster, self, "modifier_obsidian_destroyer_celestial_obliteration_mindbreak", {duration = self:GetTalentSpecialValueFor("debuff_duration")})
 	end
 	local eclipse = ParticleManager:CreateParticle("particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_sanity_eclipse_area.vpcf", PATTACH_ABSORIGIN, caster)

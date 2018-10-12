@@ -20,7 +20,7 @@ function modifier_boss_broodmother_clipped_fate_passive:DeclareFunctions()
 end
 
 function modifier_boss_broodmother_clipped_fate_passive:OnAttackLanded(params)
-	if params.attacker == self:GetParent() and params.target and params.target.AddAbility then
+	if params.attacker == self:GetParent() and params.target and params.target.AddAbility and not params.attacker:PassivesDisabled() then
 		params.target:AddNewModifier(params.attacker, self:GetAbility(), "modifier_boss_broodmother_clipped_fate_debuff", {duration = self.duration})
 	end
 end

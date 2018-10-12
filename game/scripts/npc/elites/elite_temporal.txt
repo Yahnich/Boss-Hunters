@@ -1,0 +1,45 @@
+"DOTAAbilities"
+{
+	"elite_temporal"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"elites/elite_temporal"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"MaxLevel"						"1"
+		
+		"AbilityCooldown"				"16"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityTextureName"			"faceless_void_chronosphere"
+		
+		"precache"
+		{
+			"particle"					"particles/econ/courier/courier_onibi/courier_onibi_yellow_ambient_smoke_lvl21.vpcf"
+			"particle"					"particles/units/heroes/hero_faceless_void/faceless_void_chronosphere.vpcf"
+		}
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bubble_radius"			"250"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cd_increase_per_sec"	"0.5"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bubble_duration"		"8"
+			}
+		}
+	}
+}

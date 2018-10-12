@@ -38,10 +38,15 @@ end
 
 function phenx_ray:GetCooldown(iLvl)
 	local caster = self:GetCaster()
-	if caster:HasModifier("modifier_phenx_ray") then
+	if IsServer() then
+		if iLvl == -1 then return self.BaseClass.GetCooldown(self, iLvl) end
+		if caster:HasModifier("modifier_phenx_ray") then
+			return self.BaseClass.GetCooldown(self, iLvl)
+		else
+			return 0
+		end
+	elseif not caster:HasModifier("modifier_phenx_ray") then
 		return self.BaseClass.GetCooldown(self, iLvl)
-	else
-		return 0
 	end
 end
 
@@ -62,7 +67,6 @@ function phenx_ray:OnSpellStart()
         
         ParticleManager:DestroyParticle(pfx, false)
         caster:RemoveModifierByName("modifier_phenx_ray")
-		self:SetCooldown()
     else
         EmitSoundOn("Hero_Phoenix.SunRay.Cast", caster)
 
@@ -132,7 +136,7 @@ end
 
 function modifier_phenx_ray:OnRemoved()
     if IsServer() then
-		self:GetAbility():SetCooldown()
+		self:GetAbility():SetCooldown( self:GetAbility():GetTrueCooldown() )
         EndAnimation(self:GetCaster())
     end
 end

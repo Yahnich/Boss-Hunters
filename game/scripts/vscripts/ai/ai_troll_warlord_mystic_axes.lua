@@ -12,7 +12,7 @@ if IsServer() then
 
 		thisEntity.charge = thisEntity:FindAbilityByName("boss_troll_warlord_mystic_axes_charge")
 		if thisEntity.charge then
-			thisEntity.charge:SetLevel(1)
+			thisEntity.charge:SetLevel( math.ceil(GameRules:GetGameDifficulty() / 2) )
 		end
 
 	end
@@ -20,18 +20,13 @@ if IsServer() then
 	function AIThink(thisEntity)
 		if not thisEntity:IsDominated() and not thisEntity:IsChanneling() then
 			local target = AICore:RandomEnemyHeroInRange( thisEntity, 3000, true)
+			thisEntity.thinks = (thisEntity.thinks or 0) + 1
 			if target then
 				if thisEntity.charge and thisEntity.charge:IsFullyCastable() then
-					ExecuteOrderFromTable({
-						UnitIndex = thisEntity:entindex(),
-						OrderType = DOTA_UNIT_ORDER_CAST_TARGET,
-						TargetIndex = target:entindex(),
-						AbilityIndex = thisEntity.charge:entindex()
-					})
-					return thisEntity.charge:GetCastPoint() + 0.1
+					thisEntity:CastAbilityOnTarget(target, thisEntity.charge, -1)
+					return 8 / GameRules:GetGameDifficulty()
 				end
 			end
-			AICore:AttackHighestPriority( thisEntity )
 			return 0.25
 		else return 0.25 end
 	end

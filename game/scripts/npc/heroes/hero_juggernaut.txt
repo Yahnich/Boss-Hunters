@@ -33,7 +33,7 @@
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"8.0"
+		"AbilityCooldown"				"6.0"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -56,20 +56,6 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"speed"					"8000"
-			}
-		}
-		
-		"OnSpellStart"
-		{
-			"FireSound"
-			{
-				"EffectName"        "Hero_Juggernaut.PreAttack"
-				"EffectAttachType"  "CASTER"
-			}
-			"FireSound"
-			{
-				"EffectName"        "Hero_EarthShaker.Attack"
-				"EffectAttachType"  "CASTER"
 			}
 		}
 	}
@@ -297,14 +283,14 @@
 			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_juggernaut.vsndevts"
 		}
 		
-		"AbilityCooldown"				"0.5"
+		"AbilityCooldown"				"0.9 0.8 0.7 0.6 0.5 0.4 0.3"
 	
 		"AbilitySpecial"
 	    {
 	        "01"
 	        {
 	            "var_type"              "FIELD_FLOAT"
-	            "parry_chance"          "45 47.5 50 52.5 55 57.5 60"
+	            "parry_chance"          "60"
 	        }
 			"02"
 	        {
@@ -411,7 +397,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"omni_slash_damage"			"200"
+				"omni_slash_damage"			"225"
 			}
 			"02"
 			{

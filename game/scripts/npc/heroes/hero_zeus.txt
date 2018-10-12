@@ -341,7 +341,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"						"1"
+				"value"						"5"
 			}
 		}
 	}
@@ -384,13 +384,13 @@
 			"02"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"damage_health_pct"				"6"
+				"damage_health_pct"				"2"
 				"CalculateSpellDamageTooltip"	"0"
 			}
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"pct_per_stack"					"0"
+				"pct_per_stack"					"0.2"
 				"CalculateSpellDamageTooltip"	"0"
 				"LinkedSpecialBonus"			"special_bonus_unique_zeus_static_field_1"
 			}
@@ -438,6 +438,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"	
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityTextureName"			"zuus_thundergods_wrath"
+		"HasScepterUpgrade"				"1"
 		"MaxLevel"						"6"
 	
 		// Casting
@@ -467,7 +468,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"113 168 225 275 325 375"
+				"damage"				"75 125 175 225 275 325"
 			}
 			"03"
 			{
@@ -483,6 +484,16 @@
 			{
 				"var_type"				"FIELD_FLOAT"
 				"tick_rate"				"0.33"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"scepter_damage"		"135 185 245 305 365 425"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"1500"
 			}
 		}
 	

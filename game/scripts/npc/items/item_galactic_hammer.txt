@@ -14,7 +14,7 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"500"	
+		"ItemCost"						"800"	
 		"ItemShopTags"					""
 		
 		// Recipe
@@ -24,6 +24,110 @@
 		"ItemRequirements"
 		{
 			"01"						"item_ogre_club;item_staff_of_magi;item_ruby_ring;item_ring_of_mana"
+		}
+	}
+	//=================================================================================================================
+	// Recipe: TITAN Armor
+	//=================================================================================================================
+	"item_recipe_galactic_hammer_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"7065"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_galactic_hammer_2"
+		"ItemRequirements"
+		{
+			"01"						"item_galactic_hammer;item_recipe_galactic_hammer"
+		}
+	}
+	//=================================================================================================================
+	// Recipe: TITAN Armor
+	//=================================================================================================================
+	"item_recipe_galactic_hammer_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"7066"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_galactic_hammer_3"
+		"ItemRequirements"
+		{
+			"01"						"item_galactic_hammer_2;item_recipe_galactic_hammer"
+		}
+	}
+	//=================================================================================================================
+	// Recipe: TITAN Armor
+	//=================================================================================================================
+	"item_recipe_galactic_hammer_4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"7067"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_galactic_hammer_4"
+		"ItemRequirements"
+		{
+			"01"						"item_galactic_hammer_3;item_recipe_galactic_hammer"
+		}
+	}
+	//=================================================================================================================
+	// Recipe: TITAN Armor
+	//=================================================================================================================
+	"item_recipe_galactic_hammer_5"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"7068"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_galactic_hammer_5"
+		"ItemRequirements"
+		{
+			"01"						"item_galactic_hammer_4;item_recipe_galactic_hammer"
 		}
 	}
 	"item_galactic_hammer"
@@ -39,6 +143,11 @@
 		"ItemSellable"					"1"
 		"ItemDroppable"					"1"
 		
+		"MaxUpgradeLevel"				"5"
+		"ItemBaseLevel"					"1"
+		
+		"UpgradesItems"					"item_galactic_hammer;item_galactic_hammer_2;item_galactic_hammer_3;item_galactic_hammer_4;item_galactic_hammer_5"
+		"UpgradeRecipe"					"item_recipe_galactic_hammer"
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
 		//"ItemCost"						"425"	
@@ -71,17 +180,17 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_int"				"12"
+				"bonus_int"				"12 14 16 18 20"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_str"				"12"
+				"bonus_str"				"12 14 16 18 20"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"hp_regen"				"4"
+				"hp_regen"				"1.5 2 2.5 3 3.5"
 			}
 			"04"
 			{
@@ -91,7 +200,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"200"
+				"damage"				"200 250 300 350 400"
 			}
 			"06"
 			{
@@ -101,7 +210,7 @@
 			"07"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"6"
+				"duration"				"6 7 8 9 10"
 			}
 			"08"
 			{
@@ -116,7 +225,403 @@
 			"10"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius"				"300"
+				"radius"				"300 350 400 450 500"
+			}
+		}
+	}
+	"item_galactic_hammer_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"7069"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_galactic_hammer"
+		"AbilityTextureName"			"meteor_hammer"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"MaxUpgradeLevel"				"5"
+		"ItemBaseLevel"					"2"
+		
+		"UpgradesItems"					"item_galactic_hammer;item_galactic_hammer_2;item_galactic_hammer_3;item_galactic_hammer_4;item_galactic_hammer_5"
+		"UpgradeRecipe"					"item_recipe_galactic_hammer"
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		//"ItemCost"						"425"	
+		"ItemShopTags"					"meteor hammer"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"meteor hammer"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_items.vsndevts"
+			"particle"					"particles/items4_fx/meteor_hammer_spell.vpcf"
+			"particle"  				"particles/items4_fx/meteor_hammer_spell_debuff.vpcf"
+			"particle"  				"particles/items4_fx/meteor_hammer_cast.vpcf"
+			"particle"  				"particles/items4_fx/meteor_hammer_aoe.vpcf"
+		}
+		
+		"AbilityCastRange"				"600"
+		"AbilityCooldown"				"28"
+		"AbilityManaCost"				"200"
+
+		"AbilityCastRange"				"600"
+		"AbilityCastAnimation"			"ACT_DOTA_GENERIC_CHANNEL_1"
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_int"				"12 14 16 18 20"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_str"				"12 14 16 18 20"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"hp_regen"				"1.5 2 2.5 3 3.5"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"m_regen"				"6"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"200 250 300 350 400"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_per_sec"		"100"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"6 7 8 9 10"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"stun_duration"			"0.25"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"channel"				"1.25"
+			}
+			"10"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"300 350 400 450 500"
+			}
+		}
+	}
+	"item_galactic_hammer_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"7070"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_galactic_hammer"
+		"AbilityTextureName"			"meteor_hammer"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"MaxUpgradeLevel"				"5"
+		"ItemBaseLevel"					"3"
+		
+		"UpgradesItems"					"item_galactic_hammer;item_galactic_hammer_2;item_galactic_hammer_3;item_galactic_hammer_4;item_galactic_hammer_5"
+		"UpgradeRecipe"					"item_recipe_galactic_hammer"
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		//"ItemCost"						"425"	
+		"ItemShopTags"					"meteor hammer"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"meteor hammer"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_items.vsndevts"
+			"particle"					"particles/items4_fx/meteor_hammer_spell.vpcf"
+			"particle"  				"particles/items4_fx/meteor_hammer_spell_debuff.vpcf"
+			"particle"  				"particles/items4_fx/meteor_hammer_cast.vpcf"
+			"particle"  				"particles/items4_fx/meteor_hammer_aoe.vpcf"
+		}
+		
+		"AbilityCastRange"				"600"
+		"AbilityCooldown"				"28"
+		"AbilityManaCost"				"200"
+
+		"AbilityCastRange"				"600"
+		"AbilityCastAnimation"			"ACT_DOTA_GENERIC_CHANNEL_1"
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_int"				"12 14 16 18 20"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_str"				"12 14 16 18 20"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"hp_regen"				"1.5 2 2.5 3 3.5"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"m_regen"				"6"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"200 250 300 350 400"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_per_sec"		"100"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"6 7 8 9 10"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"stun_duration"			"0.25"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"channel"				"1.25"
+			}
+			"10"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"300 350 400 450 500"
+			}
+		}
+	}
+	"item_galactic_hammer_4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"7071"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_galactic_hammer"
+		"AbilityTextureName"			"meteor_hammer"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"MaxUpgradeLevel"				"5"
+		"ItemBaseLevel"					"4"
+		
+		"UpgradesItems"					"item_galactic_hammer;item_galactic_hammer_2;item_galactic_hammer_3;item_galactic_hammer_4;item_galactic_hammer_5"
+		"UpgradeRecipe"					"item_recipe_galactic_hammer"
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		//"ItemCost"						"425"	
+		"ItemShopTags"					"meteor hammer"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"meteor hammer"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_items.vsndevts"
+			"particle"					"particles/items4_fx/meteor_hammer_spell.vpcf"
+			"particle"  				"particles/items4_fx/meteor_hammer_spell_debuff.vpcf"
+			"particle"  				"particles/items4_fx/meteor_hammer_cast.vpcf"
+			"particle"  				"particles/items4_fx/meteor_hammer_aoe.vpcf"
+		}
+		
+		"AbilityCastRange"				"600"
+		"AbilityCooldown"				"28"
+		"AbilityManaCost"				"200"
+
+		"AbilityCastRange"				"600"
+		"AbilityCastAnimation"			"ACT_DOTA_GENERIC_CHANNEL_1"
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_int"				"12 14 16 18 20"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_str"				"12 14 16 18 20"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"hp_regen"				"1.5 2 2.5 3 3.5"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"m_regen"				"6"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"200 250 300 350 400"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_per_sec"		"100"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"6 7 8 9 10"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"stun_duration"			"0.25"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"channel"				"1.25"
+			}
+			"10"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"300 350 400 450 500"
+			}
+		}
+	}
+	"item_galactic_hammer_5"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"7072"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_galactic_hammer"
+		"AbilityTextureName"			"meteor_hammer"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"MaxUpgradeLevel"				"5"
+		"ItemBaseLevel"					"5"
+		
+		"UpgradesItems"					"item_galactic_hammer;item_galactic_hammer_2;item_galactic_hammer_3;item_galactic_hammer_4;item_galactic_hammer_5"
+		"UpgradeRecipe"					"item_recipe_galactic_hammer"
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		//"ItemCost"						"425"	
+		"ItemShopTags"					"meteor hammer"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"meteor hammer"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_items.vsndevts"
+			"particle"					"particles/items4_fx/meteor_hammer_spell.vpcf"
+			"particle"  				"particles/items4_fx/meteor_hammer_spell_debuff.vpcf"
+			"particle"  				"particles/items4_fx/meteor_hammer_cast.vpcf"
+			"particle"  				"particles/items4_fx/meteor_hammer_aoe.vpcf"
+		}
+		
+		"AbilityCastRange"				"600"
+		"AbilityCooldown"				"28"
+		"AbilityManaCost"				"200"
+
+		"AbilityCastRange"				"600"
+		"AbilityCastAnimation"			"ACT_DOTA_GENERIC_CHANNEL_1"
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_int"				"12 14 16 18 20"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_str"				"12 14 16 18 20"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"hp_regen"				"1.5 2 2.5 3 3.5"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"m_regen"				"6"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"200 250 300 350 400"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_per_sec"		"100"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"6 7 8 9 10"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"stun_duration"			"0.25"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"channel"				"1.25"
+			}
+			"10"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"300 350 400 450 500"
 			}
 		}
 	}

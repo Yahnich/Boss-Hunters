@@ -70,6 +70,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityTextureName"			"abaddon_borrowed_time"
+		"HasScepterUpgrade"				"1"
 		"FightRecapLevel"				"2"
 		"MaxLevel"						"6"
 		
@@ -128,7 +129,7 @@
 		"AbilityTextureName"		"custom/abaddon_brume_weaver"
 		"MaxLevel"					"7"
 		
-		"AbilityCooldown"		"15"
+		"AbilityCooldown"			"15"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -137,25 +138,25 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"heal_duration"				"4"
+				"heal_duration"				"10"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"heal_pct"					"10 15 20 25 30 35 40"
+				"heal_pct"					"20"
 			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"base_heal"					"10 15 20 25 30 35 40"
-			}
+			// "03"
+			// {
+				// "var_type"					"FIELD_FLOAT"
+				// "base_heal"					"10 15 20 25 30 35 40"
+			// }
 			"04"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"evasion"					"10"
+				"evasion"					"10 12.5 15 17.5 20 22.5 25"
 				"LinkedSpecialBonus"		"special_bonus_unique_abaddon_brume_weaver_2"
 			}
-			"04"
+			"05"
 			{
 				"var_type"					"FIELD_FLOAT"
 				"buff_duration"				"10"

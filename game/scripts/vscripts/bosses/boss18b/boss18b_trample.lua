@@ -21,7 +21,8 @@ function boss18b_trample:OnSpellStart()
 	local growth = self:GetSpecialValueFor("radius_growth")
 	Timers:CreateTimer(function()
 		position = caster:GetAbsOrigin() + vDir * jump_distance
-		self:BlinkAndBreak(position, radius)
+		local blocked = self:BlinkAndBreak(position, radius)
+		if blocked then return end
 		jumps = jumps - 1
 		if jumps > 0 then
 			self:OnAbilityPhaseStart(vDir, radius)
@@ -42,8 +43,12 @@ function boss18b_trample:BlinkAndBreak(newPos, radius)
 	local damage = self:GetSpecialValueFor("damage")
 	
 	for _, enemy in ipairs(enemies) do
-		self:Stun(enemy, stunDuration)
-		self:DealDamage(caster, enemy, damage)
+		if not enemy:TriggerSpellAbsorb(self) then
+			self:Stun(enemy, stunDuration)
+			self:DealDamage(caster, enemy, damage)
+		else
+			return true
+		end
 	end
 	
 	ParticleManager:FireParticle("particles/test_particle/ogre_melee_smash.vpcf", PATTACH_WORLDORIGIN, nil, {[0] = newPos, [1] = Vector(radius, radius, radius)})

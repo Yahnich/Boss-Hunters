@@ -1,0 +1,107 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Recipe: TITAN Armor
+	//=================================================================================================================
+	"item_recipe_presence_booster"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"7073"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"250"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_presence_booster"
+		"ItemRequirements"
+		{
+			"01"						"item_dagger_of_escape;item_anvil;item_amulet_of_aggression"
+		}
+	}
+	//=================================================================================================================
+	// TITAN Armor
+	//=================================================================================================================
+	"item_presence_booster"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"7074"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_presence_booster"
+		"AbilityTextureName"			"abyssal_blade"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		"ItemStackable"					"1"
+		"ItemPermanent"					"1"
+		
+		"ItemShopTags"					"blink;mobility;stun;tank"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"blink dagger;stun"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		"AbilityCooldown"				"12"
+		
+		"particle"
+		{
+			"particle"					"particles/items_fx/blink_dagger_start.vpcf"
+			"particle"					"particles/items_fx/blink_dagger_end.vpcf"
+			"particle"					"particles/econ/items/axe/axe_helm_shoutmask/axe_beserkers_call_owner_shoutmask.vpcf"
+		}
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"blink_range"			"1200"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_strength"		"25"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_damage"			"25"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bash_duration"			"2"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_threat"			"50"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"active_threat"			"50"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"threat_consume"		"15"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"active_radius"			"600"
+			}
+		}
+	}
+}

@@ -28,7 +28,7 @@ function mirana_celestial_jump:OnSpellStart()
 
 	EmitSoundOn("Ability.Leap", caster)
 
-	caster:AddNewModifier(caster, self, "modifier_mirana_celestial_jump_movement", {duration = self:GetTalentSpecialValueFor("jump_duration") + 0.01})
+	caster:AddNewModifier(caster, self, "modifier_mirana_celestial_jump_movement", {})
 end
 
 modifier_mirana_celestial_jump_movement = class({})

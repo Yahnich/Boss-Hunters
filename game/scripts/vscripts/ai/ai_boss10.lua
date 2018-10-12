@@ -68,8 +68,7 @@ function AIThink(thisEntity)
 					return thisEntity.fire:GetChannelTime()
 				end
 			end
-			AICore:AttackHighestPriority( thisEntity )
-			return AI_THINK_RATE
+			return AICore:AttackHighestPriority( thisEntity )
 		else
 			return 0.5
 		end

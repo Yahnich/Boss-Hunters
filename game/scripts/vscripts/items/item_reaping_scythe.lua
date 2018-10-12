@@ -5,7 +5,7 @@ function item_reaping_scythe:GetIntrinsicModifierName()
 	return "modifier_item_reaping_scythe"
 end
 
-modifier_item_reaping_scythe = class({})
+modifier_item_reaping_scythe = class(itemBaseClass)
 function modifier_item_reaping_scythe:OnCreated(table)
 	self.bonus_damage = self:GetSpecialValueFor("bonus_damage")
 end
@@ -29,14 +29,6 @@ function modifier_item_reaping_scythe:OnAttackLanded(params)
 			params.target:AddNewModifier(params.attacker, self:GetAbility(), "modifier_reaping_scythe_debuff", {Duration = self:GetAbility():GetSpecialValueFor("duration")})
 		end
 	end
-end
-
-function modifier_item_reaping_scythe:IsHidden()
-	return true
-end
-
-function modifier_item_reaping_scythe:GetAttributes()
-	return MODIFIER_ATTRIBUTE_MULTIPLE
 end
 
 LinkLuaModifier( "modifier_reaping_scythe_debuff", "items/item_reaping_scythe.lua" ,LUA_MODIFIER_MOTION_NONE )

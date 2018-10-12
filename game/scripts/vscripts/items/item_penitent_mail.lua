@@ -19,7 +19,7 @@ function item_penitent_mail:OnSpellStart()
 	EmitSoundOn("DOTA_Item.BladeMail.Activate", caster)
 end
 
-modifier_item_penitent_mail_passive = class({})
+modifier_item_penitent_mail_passive = class(itemBaseClass)
 LinkLuaModifier( "modifier_item_penitent_mail_passive", "items/item_penitent_mail.lua" ,LUA_MODIFIER_MOTION_NONE )
 function modifier_item_penitent_mail_passive:OnCreated()
 	self.reflect = self:GetSpecialValueFor("reflect")
@@ -44,6 +44,7 @@ end
 
 function modifier_item_penitent_mail_passive:OnTakeDamage(params)
 	local hero = self:GetParent()
+	if hero:IsIllusion() then return end
     local dmg = params.original_damage
 	local dmgtype = params.damage_type
 	local attacker = params.attacker

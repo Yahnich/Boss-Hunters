@@ -5,7 +5,7 @@ function item_visionarys_cutlass:GetIntrinsicModifierName()
 	return "modifier_item_visionarys_cutlass"
 end
 
-modifier_item_visionarys_cutlass = class({})
+modifier_item_visionarys_cutlass = class(class(itemBaseClass))
 
 function modifier_item_visionarys_cutlass:OnCreated()
 	self.chance = self:GetSpecialValueFor("pierce_chance")
@@ -14,14 +14,16 @@ function modifier_item_visionarys_cutlass:OnCreated()
 	self.bonus_damage = self:GetSpecialValueFor("bonus_damage")
 end
 
-function modifier_item_visionarys_cutlass:CheckState()
-	self.miss = self:RollPRNG(self.chance)
-	return {[MODIFIER_STATE_CANNOT_MISS] = self.miss}
-end
-
 function modifier_item_visionarys_cutlass:DeclareFunctions()
 	return {MODIFIER_EVENT_ON_ATTACK_LANDED,
 			MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE}
+end
+
+function modifier_item_visionarys_cutlass:GetAccuracy()
+	self.miss = self:RollPRNG(self.chance)
+	if self.miss then
+		return 100
+	end
 end
 
 function modifier_item_visionarys_cutlass:OnAttackLanded(params)
@@ -33,12 +35,4 @@ end
 
 function modifier_item_visionarys_cutlass:GetModifierPreAttack_BonusDamage()
 	return self.bonus_damage
-end
-
-function modifier_item_visionarys_cutlass:IsHidden()
-	return true
-end
-
-function modifier_item_visionarys_cutlass:GetAttributes()
-	return MODIFIER_ATTRIBUTE_MULTIPLE
 end

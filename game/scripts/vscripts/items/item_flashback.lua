@@ -1,6 +1,10 @@
 item_flashback = class({})
 LinkLuaModifier( "modifier_item_flashback_passive", "items/item_flashback.lua" ,LUA_MODIFIER_MOTION_NONE )
 
+function item_flashback:IsRefreshable()
+	return false
+end
+
 function item_flashback:OnSpellStart()
 	local caster = self:GetCaster()
 	caster:RefreshAllCooldowns(true)
@@ -10,7 +14,7 @@ function item_flashback:GetIntrinsicModifierName()
 	return "modifier_item_flashback_passive"
 end
 
-modifier_item_flashback_passive = class({})
+modifier_item_flashback_passive = class(itemBaseClass)
 
 function modifier_item_flashback_passive:OnCreated()
 	self.ultChance = self:GetSpecialValueFor("ult_chance")

@@ -1,45 +1,91 @@
 "itembuilds/default_naga_siren.txt"
+
 {
+
 	"author"		"Valve"
+
 	"hero"			"npc_dota_hero_naga_siren"
+
 	"Title"			"Recommended items for Naga Siren"
+
 	
+
 	"Items"
+
 	{	
+
 		"#DOTA_Item_Build_Starting_Items"
+
 		{
-			"item"	"item_warm_fire"
+
+			"item"	"item_pages_buckler"
+
+			"item"	"item_elven_boots"
+			
 			"item"	"item_ring_of_mana"
-            "item"  "item_page_buckler"
+
 		}
+
 		"#DOTA_Item_Build_Early_Game"
+
 		{
-			"item"	"item_frostbite"
-			"item"	"item_daggers_of_escape"
-			"item"	"item_war_drum"
+
+			"item"	"item_war_drum"			
+
 			"item"	"item_angelic_guard"
+
+			"item"	"item_archmages_orb"
+
+			"item"  "item_valiant_locket"
+
+			"item"	"item_hurricane_blade"
+			
+			"item"	"item_incandescance"
+
 		}
+
 		"#DOTA_Item_Build_Core_Items"
+
 		{
-			"item"	"item_mighty_timpani"
-	        "item"  "item_frostfire_brand"
-			"item"	"item_blade_of_dominion"
-            "item"  "item_warp_staff"
-            "item"  "item_behemoths_heart"
+
+			"item"	"item_rapture"
+
+			"item"  "item_ward_of_life"
+
+			"item"	"item_protection_sphere"
+
+			"item"  "item_iron_rose"
+
+			"item"  "item_echoing_tambourine"
+
+			"item"  "item_frostfire_brand"
+
 		}
+
 		"#DOTA_Item_Build_Luxury"
+
 		{	
+
 			"item"	"item_ultimate_scepter"
-			"item"	"item_emission"
-			"item"	"item_cloak_of_the_hunter"
+			
+			"item"	"item_warp_staff"
+
 			"item"	"item_lightningbottle"
+
 			"item"	"item_flashback"
-			"item"	"item_crystalline_staff"
+			
 			"item"	"item_inspiring_bongos"
-			"item"	"item_echoing_tambourine"
-			"item"	"item_lucifers_cage"
-			"item"	"item_winters_breath"
-            "item"  "item_galactic_hammer"
+
+			"item"	"item_father_pipe"
+
+			"item"  "item_galactic_hammer"
+
+			"item"  "item_keshas_booze_barrel"
+			
+			"item"	"item_lucys_ring"
+			
+			"item"	"item_presence_booster"
+			
 		}
 	}
 }

@@ -5,7 +5,7 @@ function modifier_chill_generic:OnCreated(table)
 			self:GetParent():Freeze(self:GetAbility(), self:GetCaster(), 1)
 			self:Destroy()
 		end
-		self:StartIntervalThink(FrameTime())
+		self:StartIntervalThink(0.33)
 	end
 end
 

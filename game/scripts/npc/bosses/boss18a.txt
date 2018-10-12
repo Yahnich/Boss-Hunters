@@ -16,7 +16,7 @@
 		"AbilityTextureName"			"ursa_enrage"
 		"MaxLevel"						"2"
 		
-		"AbilityCooldown"				"16"
+		"AbilityCooldown"				"20"
 		"AbilityCastRange"				"350"
 		"AbilityCastPoint"				"1.5 1"
 		
@@ -91,7 +91,7 @@
 		"AbilityTextureName"			"ursa_enrage"
 		"MaxLevel"						"2"
 		
-		"AbilityCooldown"				"16"
+		"AbilityCooldown"				"20 18"
 		"AbilityCastPoint"				"1.5 1"
 		"AbilityCastRange"				"500"
 		"AbilityCastAnimation"			"ACT_DOTA_OVERRIDE_ABILITY_4"
@@ -357,8 +357,8 @@
 		"AbilityTextureName"			"ursa_enrage"
 		"MaxLevel"						"2"
 		
-		"AbilityCooldown"				"40 30"
-		"AbilityChannelTime"			"1.5 1.25"
+		"AbilityCooldown"				"50 40"
+		"AbilityChannelTime"			"3 2"
 		
 		"precache"
 		{
@@ -375,7 +375,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"spawn_count"			"1 2"
+				"spawn_count"			"1"
 			}
 			"02"
 			{
@@ -397,8 +397,8 @@
 		"AbilityTextureName"			"custom/ursa_claw"
 		"MaxLevel"						"2"
 		
-		"AbilityCooldown"				"30 25"
-		"AbilityChannelTime"			"1.5 1.25"
+		"AbilityCooldown"				"40 30"
+		"AbilityChannelTime"			"3 2"
 		
 		"precache"
 		{
@@ -415,7 +415,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"spawn_count"			"3 4"
+				"spawn_count"			"2 3"
 			}
 			"02"
 			{

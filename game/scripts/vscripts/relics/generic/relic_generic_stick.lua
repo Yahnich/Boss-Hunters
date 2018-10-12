@@ -9,8 +9,19 @@ end
 
 function relic_generic_stick:OnEventFinished(args)
 	EVENT_TYPE_EVENT = 3
-	if args.eventType ~= EVENT_TYPE_EVENT and RoundManager:GetEventsFinished() % 2 == 0 then
-		self:SetStackCount( math.ceil(self:GetStackCount() * 1.4) )
+	if args.eventType ~= EVENT_TYPE_EVENT then
+		self:SetStackCount( math.ceil(self:GetStackCount() * 1.6) )
+		if self:GetStackCount() >= 75 then
+			local parent = self:GetParent()
+			local ability = self:GetAbility()
+			parent.ownedRelics[ability:entindex()] = "relic_generic_stick2"
+			LinkLuaModifier("relic_generic_stick2", "relics/generic/relic_generic_stick2", LUA_MODIFIER_MOTION_NONE)
+			parent:AddNewModifier( parent, ability, "relic_generic_stick2", {})
+			if parent:GetPlayerOwner() then
+				CustomGameEventManager:Send_ServerToAllClients( "dota_player_update_relic_inventory", { hero = parent:entindex(), relics = parent.ownedRelics } )
+			end
+			self:Destroy()
+		end
 	end
 end
 

@@ -172,6 +172,7 @@ function Timers:HandleEventError(name, event, err)
   if not self.errorHandled then
     -- Store that we handled an error
     self.errorHandled = true
+	SendErrorReport(err)
   end
 end
 
@@ -207,7 +208,7 @@ function Timers:CreateTimer(name, args, context)
   end
 
   args.context = context
-
+  args.name = name
   Timers.timers[name] = args 
 
   return name

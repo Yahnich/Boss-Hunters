@@ -237,6 +237,8 @@
 			{
 				"var_type"					"FIELD_FLOAT"
 				"duration"					"10.0 12.0 14.0 16.0 18.0 20.0 22.0"
+				"LinkedSpecialBonus"		"special_bonus_unique_doom_scorched_earth_ebf_2"
+				"LinkedSpecialBonusField"	"duration"
 			}
 		}
 	}
@@ -255,7 +257,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"1.5"
+				"value"					"2"
 			}
 		}
 	}
@@ -274,7 +276,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"10"
+				"value"					"15"
 			}
 		}
 	}
@@ -313,6 +315,11 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"value"					"1200"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"duration"				"5"
 			}
 		}
 	}

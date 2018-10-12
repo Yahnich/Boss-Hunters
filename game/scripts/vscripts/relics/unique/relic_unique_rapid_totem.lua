@@ -9,7 +9,7 @@ function relic_unique_rapid_totem:DeclareFunctions()
 end
 
 function relic_unique_rapid_totem:GetCooldownReduction()
-	return 50
+	return 60
 end
 
 function relic_unique_rapid_totem:GetModifierTotalDamageOutgoing_Percentage(params)

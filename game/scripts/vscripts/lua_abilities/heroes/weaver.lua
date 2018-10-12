@@ -11,6 +11,9 @@ POSITION_INDEX = 3
 if IsServer() then
 	function weaver_timelapse_ebf:OnSpellStart()
 		local caster = self:GetCaster()
+		if caster:HasScepter() then
+			caster:RefreshAllCooldowns(true, true)
+		end
 		local allies = FindUnitsInRadius(caster:GetTeam(),
                                     caster:GetAbsOrigin(),
                                     nil,

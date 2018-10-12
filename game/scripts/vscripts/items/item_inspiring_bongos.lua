@@ -18,7 +18,7 @@ function item_inspiring_bongos:OnSpellStart()
 	end
 end
 
-modifier_item_inspiring_bongos_passive = class({})
+modifier_item_inspiring_bongos_passive = class(itemBaseClass)
 function modifier_item_inspiring_bongos_passive:OnCreated()
 	self.bonus_agi = self:GetSpecialValueFor("bonus_agi")
 	self.bonus_int = self:GetSpecialValueFor("bonus_int")

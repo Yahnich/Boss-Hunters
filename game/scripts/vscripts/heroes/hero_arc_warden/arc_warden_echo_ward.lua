@@ -21,7 +21,7 @@ function modifier_arc_warden_echo_ward:OnAbilityFullyCast(params)
 			local tick_rate = self:GetTalentSpecialValueFor("delay")
 			local ability = params.ability
 			local currentCasts = 0
-			local maxCasts = 1
+			local maxCasts = TernaryOperator( self:GetTalentSpecialValueFor("scepter_casts"), caster:HasScepter(), self:GetTalentSpecialValueFor("bonus_casts") )
 
 			local cursorPos = ability:GetCursorPosition()
 
@@ -32,8 +32,7 @@ function modifier_arc_warden_echo_ward:OnAbilityFullyCast(params)
 					if currentCasts < maxCasts then
 						local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), ability:GetTrueCastRange()+caster:GetModelRadius(), {})
 						for _,enemy in pairs(enemies) do
-							caster:SetCursorCastTarget(enemy)
-							ability:Flux()
+							ability:Flux(enemy)
 							break
 						end
 						currentCasts = currentCasts + 1

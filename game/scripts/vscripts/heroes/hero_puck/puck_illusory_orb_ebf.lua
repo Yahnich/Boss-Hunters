@@ -22,17 +22,19 @@ function puck_illusory_orb_ebf:OnSpellStart()
 		self:CreateOrb(-velocity)
 	end
 	
-	self.jaunt = caster:FindAbilityByName( self:GetAssociatedPrimaryAbilities() )
-	self.jaunt:SetActivated(true)
 	EmitSoundOn("Hero_Puck.Illusory_Orb", caster)
 end
 
-function puck_illusory_orb_ebf:CreateOrb(velocity)
+function puck_illusory_orb_ebf:CreateOrb(velocity, position)
+	local caster = self:GetCaster()
 	local distance = self:GetTalentSpecialValueFor("max_distance")
 	local width = self:GetTalentSpecialValueFor("radius")
 	local vision = self:GetTalentSpecialValueFor("orb_vision")
-	local projID = self:FireLinearProjectile("particles/units/heroes/hero_puck/puck_illusory_orb.vpcf", velocity, distance, width, {}, false, true, vision)
+	local projID = self:FireLinearProjectile("particles/units/heroes/hero_puck/puck_illusory_orb.vpcf", velocity, distance, width, {origin = position or caster:GetAbsOrigin()}, false, true, vision)
 	self.orbProjectiles[projID] = true
+	
+	self.jaunt = caster:FindAbilityByName( self:GetAssociatedPrimaryAbilities() )
+	self.jaunt:SetActivated(true)
 end
 
 function puck_illusory_orb_ebf:OnProjectileHitHandle( target, position, projID )	

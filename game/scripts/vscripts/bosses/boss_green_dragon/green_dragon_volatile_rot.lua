@@ -18,6 +18,7 @@ function modifier_green_dragon_volatile_rot_handle:OnIntervalThink()
 	local caster = self:GetCaster()
 	if caster:GetAttackTarget() and caster:GetAttackTarget():IsAlive() and caster:GetAttackTarget():IsHero() and (not caster:HasModifier("modifier_green_dragon_etheral_armor")) then
 		caster:SpendMana(33, self:GetAbility())
+		if enemy:TriggerSpellAbsorb(self) then return end
 		caster:GetAttackTarget():AddNewModifier(caster, self:GetAbility(), "modifier_green_dragon_volatile_rot", {Duration = self:GetSpecialValueFor("duration")})
 		return self:StartIntervalThink(0.1)
 	end
@@ -29,17 +30,25 @@ function modifier_green_dragon_volatile_rot_handle:IsHidden()
 end
 
 modifier_green_dragon_volatile_rot = class({})
-function modifier_green_dragon_volatile_rot:OnRemoved()
+
+function modifier_green_dragon_volatile_rot:OnCreated()
+	if IsServer() then
+		self:StartIntervalThink( self:GetRemainingTime() - 0.05 )
+	end
+end
+
+function modifier_green_dragon_volatile_rot:OnIntervalThink()
     if IsServer() then
     	local caster = self:GetCaster()
     	local parent = self:GetParent()
     	local ability = caster:FindAbilityByName("green_dragon_toxic_pool")
 
     	EmitSoundOn("Hero_Venomancer.PoisonNova", parent)
-    	for i=1,2 do
-    		local pos = parent:GetAbsOrigin() + ActualRandomVector(500, 250)
-    		CreateModifierThinker(caster, ability, "modifier_green_dragon_toxic_pool", {Duration = ability:GetSpecialValueFor("pool_duration")}, pos, caster:GetTeam(), false)
-    	end
+		for i=1,2 do
+			local pos = parent:GetAbsOrigin() + ActualRandomVector(500, 250)
+			ability:CreateToxicPool(pos)
+		end
+    	
     	
     	local enemies = caster:FindEnemyUnitsInRadius(parent:GetAbsOrigin(), FIND_UNITS_EVERYWHERE)
     	for _,enemy in pairs(enemies) do

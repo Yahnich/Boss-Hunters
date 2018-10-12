@@ -1,6 +1,6 @@
 item_angelic_guard = class({})
 
-LinkLuaModifier( "modifier_item_angelic_guard", "items/item_angelic_guard.lua" ,LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_item_angelic_guard", "items/item_angelic_guard.lua", LUA_MODIFIER_MOTION_NONE )
 function item_angelic_guard:GetIntrinsicModifierName()
 	return "modifier_item_angelic_guard"
 end
@@ -13,6 +13,7 @@ function item_angelic_guard:OnSpellStart()
 		ParticleManager:FireParticle("particles/items2_fx/mekanism_recipient.vpcf", PATTACH_POINT_FOLLOW, ally)
 		EmitSoundOn("DOTA_Item.Mekansm.Target", ally)
 		ally:HealEvent( math.max(minRestore, healPct * ally:GetMaxHealth()), self, caster)
+		ally:Dispel(caster, false)
 	end
 	ParticleManager:FireParticle("particles/items2_fx/mekanism.vpcf", PATTACH_POINT_FOLLOW, caster)
 	EmitSoundOn("DOTA_Item.Mekansm.Activate", caster)

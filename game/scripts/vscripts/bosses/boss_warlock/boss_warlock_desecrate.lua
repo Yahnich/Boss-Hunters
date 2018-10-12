@@ -22,19 +22,18 @@ function boss_warlock_desecrate:OnSpellStart()
 	local caster = self:GetCaster()
 
 	caster:AddNewModifier(caster, self, "modifier_status_immunity", {Duration = self:GetSpecialValueFor("duration")})
-	FindClearSpaceForUnit(caster, Vector(0,0,0), true)
 
 	self.newRadius = 0
 
 	EmitSoundOn("Hero_ShadowDemon.DemonicPurge.Cast", self.caster)
 
-	self.nfx = ParticleManager:CreateParticle("particles/bosses/boss_warlock/boss_warlock_desecrate.vpcf", PATTACH_POINT, caster)
+	self.nfx = ParticleManager:CreateParticle("particles/bosses/boss_warlock/boss_warlock_desecrate.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
 	ParticleManager:SetParticleControl(self.nfx, 0, caster:GetAbsOrigin()+Vector(0,0,100) )
 	ParticleManager:SetParticleControl(self.nfx, 1, Vector(self.newRadius,self.newRadius,self.newRadius))
 end
 
 function boss_warlock_desecrate:OnChannelThink(flInterval)
-	self.newRadius = self.newRadius + 10
+	self.newRadius = self.newRadius + 100 * FrameTime()
 	ParticleManager:SetParticleControl(self.nfx, 1, Vector(self.newRadius,self.newRadius,self.newRadius))
 	local enemies = self:GetCaster():FindEnemyUnitsInRadius(self:GetCaster():GetAbsOrigin(), self.newRadius)
 	for _,enemy in pairs(enemies) do

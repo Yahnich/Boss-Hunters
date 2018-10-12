@@ -97,12 +97,9 @@ if IsServer() then
 						return thisEntity.burrow:GetCastPoint() + 0.1
 					end
 				end
-				
-				AICore:AttackHighestPriority( thisEntity )
-				return AI_THINK_RATE
+				return AICore:AttackHighestPriority( thisEntity )
 			else
-				AICore:AttackHighestPriority( thisEntity )
-				return AI_THINK_RATE
+				return AICore:AttackHighestPriority( thisEntity )
 			end
 		end
 		return AI_THINK_RATE

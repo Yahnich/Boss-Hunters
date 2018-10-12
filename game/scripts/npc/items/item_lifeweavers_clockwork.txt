@@ -1,0 +1,84 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Recipe: TITAN Armor
+	//=================================================================================================================
+	"item_recipe_lifeweavers_clockwork"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"7075"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe_assault"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"900"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_lifeweavers_clockwork"
+		"ItemRequirements"
+		{
+			"01"						"item_arcane_accelerator;item_soul_vessel"
+		}
+	}
+	"item_lifeweavers_clockwork"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"7076"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_lifeweavers_clockwork"
+		"AbilityTextureName"			"custom/lifeweavers_clockwork"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemShopTags"					"cooldown;reduction"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"octarine core;lifeweavers_clockwork"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"precache"
+		{
+			"precache"					"soundevents/game_sounds_items.vsndevts"
+		}
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"cooldown_reduction"	"15"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_intellect"		"20"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_mana"			"650"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"lifesteal"				"10"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mob_lifesteal"			"2.5"
+			}
+		}
+	}
+}

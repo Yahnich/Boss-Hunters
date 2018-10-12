@@ -75,7 +75,7 @@ function modifier_night_stalker_void_ebf:GetEffectName()
 	return "particles/units/heroes/hero_night_stalker/nightstalker_void.vpcf"
 end
 
-modifier_night_stalker_void_talent = class({})
+modifier_night_stalker_void_talent = class(relicBaseClass)
 LinkLuaModifier("modifier_night_stalker_void_talent", "heroes/hero_night_stalker/night_stalker_void_ebf", LUA_MODIFIER_MOTION_NONE)
 
 if IsServer() then

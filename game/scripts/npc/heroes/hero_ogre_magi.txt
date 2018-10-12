@@ -43,7 +43,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"1.5"
+				"duration"				"1.0"
 				"LinkedSpecialBonus"	"special_bonus_unique_ogre_magi_fireblast_bh_2"
 			}
 			"03"
@@ -94,7 +94,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"						"1"
+				"value"						"0.5"
 			}
 		}
 	}
@@ -365,12 +365,14 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"1.5"
+				"duration"				"1.0"
+				"LinkedSpecialBonus"	"special_bonus_unique_ogre_magi_fireblast_bh_2"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"damage"				"275"
+				"LinkedSpecialBonus"	"special_bonus_unique_ogre_magi_fireblast_bh_1"
 			}
 			"02"
 			{

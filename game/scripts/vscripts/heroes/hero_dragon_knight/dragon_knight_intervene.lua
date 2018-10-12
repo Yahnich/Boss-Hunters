@@ -13,7 +13,7 @@ function dragon_knight_intervene:OnSpellStart()
 	local target = self:GetCursorTarget()
 	self.interveneTarget = target
 	caster:MoveToTargetToAttack(target)
-	caster:AddNewModifier(caster, self, "modifier_dragon_knight_intervene_movement", {})
+	caster:AddNewModifier(caster, self, "modifier_dragon_knight_intervene_movement", {duration = 10})
 	
 	ParticleManager:FireParticle("particles/units/heroes/hero_dragon_knight/dragon_knight_dragon_tail.vpcf", PATTACH_ABSORIGIN, caster)
 	ParticleManager:FireParticle("particles/units/heroes/hero_phantom_lancer/phantom_lancer_dying.vpcf", PATTACH_POINT_FOLLOW, caster)
@@ -68,6 +68,7 @@ function modifier_dragon_knight_intervene_movement:OnIntervalThink()
 			EmitSoundOn("Hero_DragonKnight.DragonTail.Target", target)
 			ability:DealDamage( caster, target, self.damage )
 		else
+			caster:ModifyThreat( target:GetThreat() )
 			target:SetThreat(0)
 		end
 	end

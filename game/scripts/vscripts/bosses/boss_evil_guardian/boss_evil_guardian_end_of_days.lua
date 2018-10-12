@@ -28,7 +28,9 @@ function boss_evil_guardian_end_of_days:CreateTrap(position)
 	Timers:CreateTimer(delay, function()
 		ParticleManager:ClearParticle( razeFX )
 		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( vPos, radius ) ) do
-			enemy:AddNewModifier(caster, self, "modifier_boss_evil_guardian_end_of_days_stun", {duration = duration})
+			if not enemy:TriggerSpellAbsorb(self) then
+				enemy:AddNewModifier(caster, self, "modifier_boss_evil_guardian_end_of_days_stun", {duration = duration})
+			end
 		end
 	end)
 end

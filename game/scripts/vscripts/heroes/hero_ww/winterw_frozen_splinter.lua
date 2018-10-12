@@ -43,6 +43,7 @@ function winterw_frozen_splinter:OnSpellStart()
 
 	if caster:HasTalent("special_bonus_unique_winterw_frozen_splinter_2") then
 		local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), self:GetTrueCastRange(), {})
+		local bonusTargets = caster:FindTalentValue("special_bonus_unique_winterw_frozen_splinter_2")
 		for _,enemy in pairs(enemies) do
 			local info =
 			{
@@ -64,7 +65,8 @@ function winterw_frozen_splinter:OnSpellStart()
 				ExtraData = {name = "firstProj"}
 			}
 			ProjectileManager:CreateTrackingProjectile(info)
-			break
+			bonusTargets = bonusTargets - 1
+			if bonusTargets <= 0 then return end
 		end
 	end
 end

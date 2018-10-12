@@ -31,18 +31,18 @@ function modifier_boss18b_elusive_huntress_passive:DeclareFunctions()
 end
 
 function modifier_boss18b_elusive_huntress_passive:GetModifierEvasion_Constant()
-	return self.evasion
+	if not self:GetParent():PassivesDisabled() then return self.evasion end
 end
 
 function modifier_boss18b_elusive_huntress_passive:GetModifierPreAttack_CriticalStrike(params)
-	if self.hitsApplied >= self.hitsToEffect then
+	if self.hitsApplied >= self.hitsToEffect and not self:GetParent():PassivesDisabled() then
 		return self.critical
 	end
 end	
 
 function modifier_boss18b_elusive_huntress_passive:OnAttackLanded(params)
 	if self:GetParent() == params.attacker then
-		if self.target == params.target then
+		if self.target == params.target and not self:GetParent():PassivesDisabled() then
 			if self.hitsApplied >= self.hitsToEffect then
 				self.hitsApplied = 0
 				self:GetAbility():Stun(params.target, self.stunDuration, false)

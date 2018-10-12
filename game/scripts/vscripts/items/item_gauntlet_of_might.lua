@@ -21,7 +21,7 @@ function item_gauntlet_of_might:OnSpellStart()
 	EmitSoundOn("DOTA_Item.Tango.Activate", caster)
 end
 
-modifier_gauntlet_of_might_passive = class({})
+modifier_gauntlet_of_might_passive = class(itemBaseClass)
 LinkLuaModifier("modifier_gauntlet_of_might_passive", "items/item_gauntlet_of_might", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_gauntlet_of_might_passive:OnCreated()

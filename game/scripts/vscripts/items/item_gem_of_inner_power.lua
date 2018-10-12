@@ -18,7 +18,7 @@ function item_gem_of_inner_power:GetIntrinsicModifierName()
 	return "modifier_item_gem_of_inner_power_passive"
 end
 
-modifier_item_gem_of_inner_power_passive = class({})
+modifier_item_gem_of_inner_power_passive = class(itemBaseClass)
 
 function modifier_item_gem_of_inner_power_passive:OnCreated()
 	self.hpBonus = self:GetSpecialValueFor("bonus_health")

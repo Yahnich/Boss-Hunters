@@ -8,23 +8,20 @@ end
 
 function item_voltas_greathammer:OnSpellStart()
 	local caster = self:GetCaster()
-
+	local paralyze = self:GetSpecialValueFor("paralyze_duration")
 	local damage = caster:GetPrimaryStatValue() * self:GetSpecialValueFor("primary_to_damage") / 100
 	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), -1 ) ) do
 		ParticleManager:FireParticle("particles/units/heroes/hero_zuus/zuus_lightning_bolt.vpcf", PATTACH_ABSORIGIN, enemy, {[1] = enemy:GetAbsOrigin(), [0] = caster:GetAbsOrigin() + Vector(0,0,1600)})
 		EmitSoundOn("Hero_Zuus.LightningBolt", enemy)
 		self:DealDamage(caster, enemy, damage)
+		enemy:Paralyze(self, caster, paralyze)
 	end
 end
 
-modifier_item_voltas_greathammer_handle = class({})
+modifier_item_voltas_greathammer_handle = class(itemBaseClass)
 function modifier_item_voltas_greathammer_handle:OnCreated()
 	self.attackspeed = self:GetSpecialValueFor("bonus_attack_speed")
 	self.damage = self:GetSpecialValueFor("bonus_damage")
-end
-
-function modifier_item_voltas_greathammer_handle:GetAttributes()
-	return MODIFIER_ATTRIBUTE_MULTIPLE
 end
 
 function modifier_item_voltas_greathammer_handle:DeclareFunctions()
@@ -71,14 +68,6 @@ function modifier_item_voltas_greathammer_handle:OnAttackLanded(params)
 	end
 end
 
-function modifier_item_voltas_greathammer_handle:IsHidden()
-	return true
-end
-
-function modifier_item_voltas_greathammer_handle:GetAttributes()
-	return MODIFIER_ATTRIBUTE_MULTIPLE
-end
-
 modifier_item_voltas_greathammer_handle_damage = class({})
 function modifier_item_voltas_greathammer_handle_damage:OnCreated()
 	if IsServer() then
@@ -91,7 +80,7 @@ function modifier_item_voltas_greathammer_handle_damage:OnCreated()
 		local strike_damage = ability:GetSpecialValueFor("strike_damage")
 		ability:DealDamage(caster, target, strike_damage, {damage_type = DAMAGE_TYPE_MAGICAL}, 0)	
 		target:RemoveModifierByName("modifier_item_voltas_greathammer_handle_damage")
-
+		target:Paralyze(ability, caster, ability:GetSpecialValueFor("paralyze_duration"))
 		EmitSoundOn("Item.Maelstrom.Chain_Lightning.Jump", target)
 
 		-- Waits on the jump delay

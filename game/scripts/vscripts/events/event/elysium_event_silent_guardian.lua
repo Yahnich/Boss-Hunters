@@ -1,6 +1,7 @@
 local function CheckPlayerChoices(self)
-	for pID, choice in pairs( self._playerChoices ) do
-		if not choice then
+	for _, hero in ipairs( HeroList:GetActiveHeroes() ) do
+		local pID = hero:GetPlayerID()
+		if pID and not self._playerChoices[pID] then
 			return false
 		end
 	end

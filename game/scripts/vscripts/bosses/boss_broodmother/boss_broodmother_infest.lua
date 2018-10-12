@@ -29,6 +29,7 @@ function boss_broodmother_infest:OnSpellStart()
 		distTraveled = distTraveled + speedTick
 		position = position + vDir * speedTick
 		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius(position, width) ) do
+			if enemy:TriggerSpellAbsorb(self) then return end
 			self:OnInfestHit(enemy)
 			ParticleManager:ClearParticle(projFX)
 			return nil

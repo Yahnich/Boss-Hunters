@@ -9,6 +9,10 @@ LinkLuaModifier("modifier_boss33a_protective_ward", "bosses/boss33/boss33a_prote
 
 function modifier_boss33a_protective_ward:OnCreated()
 	self.sfDeathDamageReduction = self:GetSpecialValueFor("sf_death_reduction")
+	local caster = self:GetCaster()
+	caster.IsTwinAlive = function( caster )
+		return caster.twinDemon and not caster.twinDemon:IsNull() and caster.twinDemon:IsAlive()
+	end
 end
 
 function modifier_boss33a_protective_ward:DeclareFunctions()
@@ -17,6 +21,7 @@ end
 
 function modifier_boss33a_protective_ward:GetModifierIncomingDamage_Percentage(params)
 	local sfAlive = self:GetParent():IsTwinAlive()
+	if self:GetParent():PassivesDisabled() then return end
 	if sfAlive and (params.damage_type == DAMAGE_TYPE_PHYSICAL or params.damage_type == DAMAGE_TYPE_PURE) then
 		ParticleManager:FireParticle("particles/bosses/boss33/boss33a_protection_poof.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
 		return -9999

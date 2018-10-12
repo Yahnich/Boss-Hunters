@@ -27,8 +27,10 @@ function boss_aether_neutron_density:OnProjectileHit(target, position)
 		
 		local enemies = caster:FindEnemyUnitsInRadius(position, radius)
 		for _, enemy in ipairs( enemies ) do
-			self:DealDamage(caster, enemy, damage)
-			self:Stun(enemy, stun, false)
+			if not enemy:TriggerSpellAbsorb(self) then
+				self:DealDamage(caster, enemy, damage)
+				self:Stun(enemy, stun, false)
+			end
 		end
 		
 		ParticleManager:FireParticle("particles/units/heroes/hero_dark_seer/dark_seer_vacuum.vpcf", PATTACH_WORLDORIGIN, nil, {[0] = position, [1] = Vector(radius, 0, 0)})
@@ -47,7 +49,7 @@ function modifier_boss_aether_neutron_density_passive:IsHidden()
 end
 
 function modifier_boss_aether_neutron_density_passive:OnAttackStart( params )
-	if params.attacker == self:GetParent() and params.target and self:GetAbility():IsCooldownReady() then
+	if params.attacker == self:GetParent() and params.target and self:GetAbility():IsCooldownReady() and not self:GetParent():PassivesDisabled() then
 		self:GetAbility():LaunchOrb( params.target:GetAbsOrigin() )
 		self:GetAbility():SetCooldown()
 	end

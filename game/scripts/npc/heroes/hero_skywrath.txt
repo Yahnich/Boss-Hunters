@@ -81,7 +81,12 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"						"0.5"
+				"value"						"66"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"radius"					"325"
 			}
 		}
 	}

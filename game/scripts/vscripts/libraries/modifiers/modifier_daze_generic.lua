@@ -8,11 +8,11 @@ end
 
 function modifier_daze_generic:OnIntervalThink()
 	if IsServer() then
-		if RollPercentage(25) then
+		if RollPercentage(20) then
 			self:GetParent():SetInitialGoalEntity(nil)
 			self:GetParent():Stop()
 			self:GetParent():Interrupt()
-			self:GetParent():MoveToPosition(self:GetParent():GetAbsOrigin()+ActualRandomVector(500, -500))
+			if RollPercentage(20) then self:GetParent():MoveToPosition(self:GetParent():GetAbsOrigin()+ActualRandomVector(500, 125)) end
 		end
 	end
 end

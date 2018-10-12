@@ -1,6 +1,7 @@
 local function CheckPlayerChoices(self)
-	for pID, choice in pairs( self._playerChoices ) do
-		if not choice then
+	for _, hero in ipairs( HeroList:GetActiveHeroes() ) do
+		local pID = hero:GetPlayerID()
+		if pID and not self._playerChoices[pID] then
 			return false
 		end
 	end
@@ -10,15 +11,15 @@ end
 
 local function FirstChoice(self, userid, event)
 	local hero = PlayerResource:GetSelectedHeroEntity( event.pID )
-	
+	if not hero then return end
 	hero:AddGold(-800)
 	if RollPercentage(33) then
 		hero:AddRelic( RelicManager:RollRandomUniqueRelicForPlayer( event.pID ) )
+		if hero:GetPlayerOwner() then
+			Timers:CreateTimer(0.5, function() CustomGameEventManager:Send_ServerToPlayer(hero:GetPlayerOwner(), "boss_hunters_event_reward_given", {event = self:GetEventName(), reward = 1}) end)
+		end
 	end
 	
-	if hero:GetPlayerOwner() then
-		Timers:CreateTimer(0.5, function() CustomGameEventManager:Send_ServerToPlayer(hero:GetPlayerOwner(), "boss_hunters_event_reward_given", {event = self:GetEventName(), reward = 1}) end)
-	end
 	
 	self._playerChoices[event.pID] = true
 	CheckPlayerChoices(self)
@@ -71,11 +72,6 @@ local function StartEvent(self)
 	end)
 	
 	self._playerChoices = {}
-	for i = 0, GameRules.BasePlayers do
-		if PlayerResource:IsValidPlayerID(i) and PlayerResource:GetPlayer(i) then
-			self._playerChoices[i] = false
-		end
-	end
 end
 
 local function EndEvent(self, bWon)

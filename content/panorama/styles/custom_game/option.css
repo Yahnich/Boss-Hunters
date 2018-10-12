@@ -416,31 +416,45 @@ margin-right: 300px;
 }
 .targetPanelRoot
 {
-	flow-children: down;
-    width: 25%;
-	height: 15%;
+	flow-children: right;
+    width: 30%;
+	height: 100%;
 	vertical-align: top;
 	margin-top: 3.5%;
+	margin-left: -32px;
 	horizontal-align: center;
+}
+
+#currentlyCastAbility
+{
+	width: 64px;
+	height: 64px;
+	margin-top: 29px;
+	visibility: visible;
+}
+
+.SpellActiveBorder
+{
+	border: 1px solid #B8860B;
 }
 
 #bossNameContainer
 {
 	flow-children: down;
 	vertical-align: top;
-	horizontal-align: center;
+	horizontal-align: left;
 	z-index: 1;
-	margin-bottom: -12px;
+	margin-bottom: -10px;
+	margin-left: 5px;
 }
 #bossNameLabel
 {
 	align: center top;
 	font-family: TH Sarabun New,YDYGO 540,Gulim,MingLiU;
 	text-shadow: 2px 2px 1px 3.0 #333333b0;
-	text-transform: uppercase;
 	font-weight: bold;
 	color: #FFFFFF;
-	font-size: 28px;	
+	font-size: 24px;	
 }
 #targetPanelMain
 {
@@ -452,7 +466,8 @@ margin-right: 300px;
 {
 	horizontal-align: middle;
 	flow-children: down;
-	margin-top: -4px;
+	margin-top: -3px;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #111111FF ), to( #222222FF ) );
 }
 #threatLabel
 {
@@ -460,44 +475,35 @@ margin-right: 300px;
 	font-family: Radiance;
 	text-transform: uppercase;
 	color: #FFFFFF;
-	font-size: 20px;
+	font-size: 16px;
+	text-align: center;
+	padding-left: 5px;
+	padding-right: 5px;
 }
 #hpBarRoot
 {
-	width: 95%;
-	height: 18%;
+	width: 100%;
+	height: 24px;
 	horizontal-align: center;
 	background-color: gradient( linear, 0% 0%, 0% 100%, from( #111111FF ), to( #222222FF ) );
-	border: 2px solid #003300;
-	border-bottom-left-radius: 5px;
-	border-top-left-radius: 5px;
-	border-bottom-right-radius: 5px;
-	border-top-right-radius: 5px;
+	border: 1px solid #111111;
 }
 
 #mpBarRoot
 {
-	width: 95%;
-	height: 18%;
+	width: 100%;
+	height: 24px;
 	horizontal-align: center;
 	background-color: gradient( linear, 0% 0%, 0% 100%, from( #111111 ), to( #222222 ) );
-	border: 2px solid #003399;
-	border-bottom-left-radius: 5px;
-	border-top-left-radius: 5px;
-	border-bottom-right-radius: 5px;
-	border-top-right-radius: 5px;
+	border: 1px solid #111111;
 }
 
 #hpBarCurrent
 {
 	width: fill-parent-flow( 1.0 );
 	height: fill-parent-flow( 1.0 );
-	background-color: gradient( linear, 0% 0%, 0% 100%, from( #53c653 ), to( #003300 ) );
-	border: 2px solid #003300;
-	border-bottom-left-radius: 5px;
-	border-top-left-radius: 5px;
-	border-bottom-right-radius: 5px;
-	border-top-right-radius: 5px;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #c65353 ), to( #330000 ) );
+	border: 2px solid #330000;
 }
 
 #mpBarCurrent
@@ -506,22 +512,18 @@ margin-right: 300px;
 	height: fill-parent-flow( 1.0 );
 	horizontal-align: center;
 	background-color: gradient( linear, 0% 0%, 0% 100%, from( #3494D8 ), to( #003399 ) );
-	border: 2px solid #003399;
-	border-bottom-left-radius: 5px;
-	border-top-left-radius: 5px;
-	border-bottom-right-radius: 5px;
-	border-top-right-radius: 5px;
+	border: 2px solid #333399;
 }
 
 .barCurrentText
 {
 	align: center center;
 	font-family: Radiance;
-	text-shadow: 2px 2px 1px 0.0 #333333b0;
+	text-shadow: 2px 2px 1px 2.0 #333333b0;
 	text-transform: uppercase;
-	font-weight: bold;
+
 	color: #FFFFFF;
-	font-size: 20px;	
+	font-size: 16px;	
 }
 .verticalSeperator
 {
@@ -534,13 +536,59 @@ margin-right: 300px;
 	background-color: #FFFFFFFF;
 }
 
-#eliteSpecsText
+#informationRoot
 {
-	align: center top;
-	font-family: Radiance;
-	text-shadow: 2px 2px 1px 3.0 #333333b0;
-	text-transform: uppercase;
-	color: #edcd3b;
-	font-size: 24px;
-	font-style: italic;
+	width: 100%;
+	flow-children: right;
+}
+
+
+#buffBar
+{
+	flow-children: left-wrap;
+	horizontal-align: right;
+}
+
+
+#debuffBar
+{
+	flow-children: right-wrap;
+	horizontal-align: left;
+}
+
+.PlayerMainModifier {
+	width: 32px;
+	height: 32px;
+}
+
+.PlayerInfoModifierHolder {
+	margin-left: 4px;
+	margin-bottom: 2px;
+}
+
+.IsBuff
+{
+	width: 100%;
+	height: 100%;
+	border: 3px solid #00cc00FF;
+}
+
+.IsDebuff 
+{
+	width: 100%;
+	height: 100%;
+	border: 3px solid #e50000FF;
+}
+
+.PlayerMainModifierLabel
+{
+	vertical-align: center;
+	horizontal-align: center;
+	text-align: center;
+	color: #FFFFFF;
+	font-size: 16px;
+	font-family: "Radiance";
+	text-align: center;
+	text-shadow: 1px 1px 1px 2 #000000d0;
+	z-index: 5;
 }

@@ -7,8 +7,10 @@ function boss_warlock_conflagration:OnSpellStart()
 	local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), FIND_UNITS_EVERYWHERE)
 	for _,enemy in pairs(enemies) do
 		if enemy:IsHero() then
-			enemy:AddNewModifier(caster, self, "modifier_boss_warlock_conflagration", {Duration = self:GetSpecialValueFor("duration")})
-			enemy:Daze(self, caster, self:GetSpecialValueFor("duration"))
+			if not enemy:TriggerSpellAbsorb(self) then
+				enemy:AddNewModifier(caster, self, "modifier_boss_warlock_conflagration", {Duration = self:GetSpecialValueFor("duration")})
+				enemy:Daze(self, caster, self:GetSpecialValueFor("duration"))
+			end
 			break
 		end
 	end

@@ -1,0 +1,85 @@
+"itembuilds"
+
+{
+
+	"author"		"Valve"
+
+	"hero"			"npc_dota_hero_dark_willow"
+
+	"Title"			"Recommended items for Dark Willow"
+
+	
+
+	"Items"
+
+	{	
+
+		"#DOTA_Item_Build_Starting_Items"
+
+		{
+
+			"item"	"item_ring_of_mana"
+
+			"item"	"item_mithril_armor"
+
+			"item"	"item_dagger_of_escape"
+
+		}
+
+		"#DOTA_Item_Build_Early_Game"
+
+		{	
+
+			"item"	"item_dark_wand"
+
+			"item"	"item_iron_rose"
+
+			"item"	"item_galactic_hammer"
+
+			"item"	"item_runed_artifact"
+
+			"item"	"item_valiant_locket"
+     
+		}
+
+		"#DOTA_Item_Build_Core_Items"
+
+		{
+
+			"item"	"item_lucys_ring"
+
+			"item"	"item_lightningbottle"
+
+			"item"	"item_presence_booster"
+
+			"item"	"item_keshas_booze_barrel"
+
+   			"item"	"item_conquerors_helm"
+
+			"item"	"item_galactic_hammer_5"
+
+		}
+
+		"#DOTA_Item_Build_Luxury"
+
+		{
+
+			"item"	"item_rapture"
+
+			"item"	"item_echoing_tambourine"
+
+			"item"	"item_lifeweavers_clockwork"
+
+			"item"	"item_essence_piercer"
+
+			"item"	"item_ghost_saber"
+
+			"item"	"item_blade_of_dominion"
+
+			"item"	"item_frostfire_brand"
+
+		}
+
+	}
+
+}

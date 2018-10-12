@@ -148,8 +148,7 @@ function AIThink(thisEntity)
 			})
 			return thisEntity.rift:GetCastPoint() + 0.1
 		end
-		AICore:AttackHighestPriority( thisEntity )
-		return AI_THINK_RATE
+		return AICore:AttackHighestPriority( thisEntity )
 	else 
 		return AI_THINK_RATE 
 	end

@@ -4,7 +4,7 @@ function item_orb_of_haste:GetIntrinsicModifierName()
 	return "modifier_item_orb_of_haste"
 end
 
-modifier_item_orb_of_haste = class({})
+modifier_item_orb_of_haste = class(itemBaseClass)
 LinkLuaModifier( "modifier_item_orb_of_haste", "items/item_orb_of_haste.lua" ,LUA_MODIFIER_MOTION_NONE )
 function modifier_item_orb_of_haste:OnCreated()
 	self.attackSpeed = self:GetSpecialValueFor("bonus_attackspeed")
@@ -29,12 +29,4 @@ end
 
 function modifier_item_orb_of_haste:GetModifierBonusStats_Agility()
 	return self.agility
-end
-
-function modifier_item_orb_of_haste:IsHidden()
-	return true
-end
-
-function modifier_item_orb_of_haste:GetAttributes()
-	return MODIFIER_ATTRIBUTE_MULTIPLE
 end

@@ -5,7 +5,7 @@ function item_fortress_shield:GetIntrinsicModifierName()
 	return "modifier_item_fortress_shield"
 end
 
-modifier_item_fortress_shield = class({})
+modifier_item_fortress_shield = class(itemBaseClass)
 function modifier_item_fortress_shield:OnCreated()
 	self.block = self:GetAbility():GetSpecialValueFor("damage_block")
 	self.chance = self:GetAbility():GetSpecialValueFor("block_chance")

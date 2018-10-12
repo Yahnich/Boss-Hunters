@@ -3,18 +3,39 @@ LinkLuaModifier("modifier_razor_static_link_bh", "heroes/hero_razor/razor_static
 LinkLuaModifier("modifier_razor_static_link_bh_enemy", "heroes/hero_razor/razor_static_link_bh", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_razor_static_link_bh_buff", "heroes/hero_razor/razor_static_link_bh", LUA_MODIFIER_MOTION_NONE)
 
+function razor_static_link_bh:CastFilterResultTarget(target)
+	if target:IsRoundBoss() then
+		return UnitFilter(target, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, self:GetCaster():GetTeamNumber() )
+	else
+		return UF_FAIL_CUSTOM
+	end
+end
+
+function razor_static_link_bh:GetCustomCastErrorTarget(target)
+	return "Link can only be cast on bosses."
+end
+
 function razor_static_link_bh:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 
-	caster:AddNewModifier(caster, self, "modifier_razor_static_link_bh", {Duration = self:GetTalentSpecialValueFor("link_duration")})
+	
+	if caster:HasTalent("special_bonus_unique_razor_static_link_bh_2") then
+		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( target:GetAbsOrigin(), caster:FindTalentValue("special_bonus_unique_razor_static_link_bh_2") ) ) do
+			if enemy:IsRoundBoss() then
+				caster:AddNewModifier(caster, self, "modifier_razor_static_link_bh", {Duration = self:GetTalentSpecialValueFor("link_duration"), target = enemy:entindex() })
+			end
+		end
+	else
+		caster:AddNewModifier(caster, self, "modifier_razor_static_link_bh", {Duration = self:GetTalentSpecialValueFor("link_duration"), target = target:entindex()})
+	end
 end
 
 modifier_razor_static_link_bh = class({})
-function modifier_razor_static_link_bh:OnCreated(table)
+function modifier_razor_static_link_bh:OnCreated(kv)
 	if IsServer() then
 		local caster = self:GetCaster()
-		self.target = self:GetAbility():GetCursorTarget()
+		self.target = EntIndexToHScript( tonumber(kv.target) )
 		EmitSoundOn("Ability.static.start", caster)
 		EmitSoundOn("Ability.static.loop", caster)
 		local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_razor/razor_static_link.vpcf", PATTACH_POINT_FOLLOW, caster)
@@ -79,10 +100,6 @@ end
 
 function modifier_razor_static_link_bh_buff:GetModifierPreAttack_BonusDamage()
 	return self:GetStackCount()
-end
-
-function modifier_razor_static_link_bh_buff:GetAttributes()
-	return MODIFIER_ATTRIBUTE_NONE
 end
 
 function modifier_razor_static_link_bh_buff:IsDebuff()

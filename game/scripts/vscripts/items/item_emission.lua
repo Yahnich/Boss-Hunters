@@ -21,7 +21,7 @@ function item_emission:GetIntrinsicModifierName()
 end
 
 LinkLuaModifier( "modifier_item_emission", "items/item_emission.lua" ,LUA_MODIFIER_MOTION_NONE )
-modifier_item_emission = class({})
+modifier_item_emission = class(itemBaseClasss)
 function modifier_item_emission:OnCreated()
 	self.radius = self:GetSpecialValueFor("radius")
 end
@@ -79,12 +79,14 @@ end
 
 function modifier_emission_debuff:OnRefresh()
 	self.slow = self:GetAbility():GetSpecialValueFor("slow")
-	if IsServer() then
-		self.damage = self:GetAbility():GetSpecialValueFor("base_damage") + self:GetCaster():GetPrimaryStatValue() * self:GetAbility():GetSpecialValueFor("damage") / 100
-	end
 end
 
 function modifier_emission_debuff:OnIntervalThink()
+	local statOwner = self:GetCaster()
+	if not statOwner:IsRealHero() then
+		statOwner = PlayerResource:GetSelectedHeroEntity( statOwner:GetPlayerID() )
+	end
+	self.damage = self:GetAbility():GetSpecialValueFor("base_damage") + statOwner:GetPrimaryStatValue() * self:GetAbility():GetSpecialValueFor("damage") / 100
 	self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self.damage, {damage_type = DAMAGE_TYPE_MAGICAL})
 end
 
@@ -101,7 +103,7 @@ function modifier_emission_debuff:GetEffectName()
 end
 
 
-modifier_item_emission_passive = class({})
+modifier_item_emission_passive = class(itemBaseClass)
 LinkLuaModifier( "modifier_item_emission_passive", "items/item_emission.lua", LUA_MODIFIER_MOTION_NONE )
 
 function modifier_item_emission_passive:OnCreated()

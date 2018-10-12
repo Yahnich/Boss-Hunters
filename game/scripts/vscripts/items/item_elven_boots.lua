@@ -11,7 +11,7 @@ function item_elven_boots:OnSpellStart()
 	GridNavDestroyTreesAroundPoint(tree, 20, true)
 end
 
-modifier_item_elven_boots_passive = class({})
+modifier_item_elven_boots_passive = class(itemBaseClass)
 
 function modifier_item_elven_boots_passive:OnCreated()
 	self.bonus_ms = self:GetSpecialValueFor("bonus_ms")

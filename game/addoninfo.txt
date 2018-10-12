@@ -1,16 +1,16 @@
 "AddonInfo"
 {
-	maps			"bh_adventure_casual bh_adventure_hardcore"
+	maps			"bh_raid_casual bh_raid_hardcore"
 	"IsPlayable"	"1"
 	"ShouldForceDefaultGuide"	"1"
 
-	"bh_adventure_casual"
+	"bh_raid_casual"
 	{
 		"MaxPlayers"                    "5"
 		"Lives"							"5"
 		"Difficulty"					"2"
 	}
-	"bh_adventure_hardcore"
+	"bh_raid_hardcore"
 	{
 		"MaxPlayers"                    "5"
 		"Lives"							"3"

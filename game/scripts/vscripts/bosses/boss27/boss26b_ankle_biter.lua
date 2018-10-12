@@ -25,7 +25,9 @@ function boss26b_ankle_biter:OnSpellStart()
 			self.distance = self.distance - speed
 			return FrameTime()
 		elseif enemies[1] then
-			self:Grab(enemies[1])
+			if not enemies[1]:TriggerSpellAbsorb(self) then
+				self:Grab(enemies[1])
+			end
 		end
 	end)
 	self.channel = 0
@@ -37,11 +39,13 @@ function boss26b_ankle_biter:Grab(target)
 	
 	caster:AddNewModifier(caster, ability, "modifier_phased", {duration = 0.1})
 	caster:SetAbsOrigin(target:GetAbsOrigin())
+	self.initialDistance = CalculateDistance(caster, target)
 	Timers:CreateTimer(FrameTime(), function()
-		if CalculateDistance(caster, target) < ( caster:GetHullRadius() + target:GetHullRadius() + ability:GetSpecialValueFor("break_distance") ) * FrameTime() and not (caster:IsStunned() or caster:IsSilenced() or caster:IsHexed()) and ability.channel < 5 then
+		if (CalculateDistance(caster, target) - self.initialDistance) < ( caster:GetHullRadius() + target:GetHullRadius() + ability:GetSpecialValueFor("break_distance") ) * FrameTime() and not (caster:IsStunned() or caster:IsSilenced() or caster:IsHexed()) and ability.channel < 5 then
 			ability.channel = (ability.channel or 0) + FrameTime()
 			caster:AddNewModifier(caster, ability, "modifier_phased", {duration = FrameTime() + 0.1})
 			caster:SetAbsOrigin(target:GetAbsOrigin())
+			self.initialDistance = CalculateDistance(caster, target)
 			return FrameTime()
 		else 
 			caster:Stop()

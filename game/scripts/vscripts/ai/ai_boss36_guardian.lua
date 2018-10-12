@@ -86,8 +86,7 @@ function AIThink(thisEntity)
 				return thisEntity.stun:GetCastPoint() + 0.1
 			end
 		end
-		AICore:AttackHighestPriority( thisEntity )
-		return 1
+		return AICore:AttackHighestPriority( thisEntity )
 	else
 		return 1
 	end

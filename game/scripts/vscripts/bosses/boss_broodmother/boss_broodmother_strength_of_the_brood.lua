@@ -30,5 +30,6 @@ function modifier_boss_broodmother_strength_of_the_brood_passive:DeclareFunction
 end
 
 function modifier_boss_broodmother_strength_of_the_brood_passive:GetModifierDamageOutgoing_Percentage(params)
+	if self:GetParent():PassivesDisabled() then return end
 	return self.bonusdamage * (self:GetStackCount() - 1)
 end

@@ -3,15 +3,11 @@ function item_ogre_club:GetIntrinsicModifierName()
 	return "modifier_item_ogre_club_handle"
 end
 
-modifier_item_ogre_club_handle = class({})
+modifier_item_ogre_club_handle = class(itemBaseClass)
 LinkLuaModifier( "modifier_item_ogre_club_handle", "items/item_ogre_club.lua", LUA_MODIFIER_MOTION_NONE )
 
 function modifier_item_ogre_club_handle:OnCreated()
 	self.stat = self:GetSpecialValueFor("bonus_strength")
-end
-
-function modifier_item_ogre_club_handle:GetAttributes()
-	return MODIFIER_ATTRIBUTE_MULTIPLE
 end
 
 function modifier_item_ogre_club_handle:DeclareFunctions()
@@ -20,8 +16,4 @@ end
 
 function modifier_item_ogre_club_handle:GetModifierBonusStats_Strength()
 	return self.stat
-end
-
-function modifier_item_ogre_club_handle:IsHidden()
-	return true
 end

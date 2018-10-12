@@ -14,15 +14,11 @@ if IsServer() then
 	function bounty_hunter_jinada_ebf:OnSpellStart()
 		local caster = self:GetCaster()
 		local target = self:GetCursorTarget()
-		ExecuteOrderFromTable({
-			UnitIndex = caster:entindex(),
-			OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
-			TargetIndex = target:entindex()
-		})
+		
+		caster:MoveToTargetToAttack(target)
 		self:EndCooldown()
 		self:SetActivated(false)
-		caster:AddNewModifier(caster, self, "modifier_bounty_hunter_jinada_dash", {})
-		self:GetCaster():SetForceAttackTarget(target)
+		caster:AddNewModifier(caster, self, "modifier_bounty_hunter_jinada_dash", {duration = CalculateDistance(target, caster) / self:GetSpecialValueFor("dash_speed") + 0.1 })
 	end
 end
 
@@ -101,24 +97,18 @@ function modifier_bounty_hunter_jinada_crit:OnAttackLanded(params)
 					params.attacker:RemoveModifierByName("modifier_bounty_hunter_jinada_dash")
 					params.attacker:SetForceAttackTarget(nil)
 				else
+					local caster = self:GetCaster()
 					local units = FindUnitsInRadius(params.attacker:GetTeam(), params.target:GetAbsOrigin(), nil, self:GetAbility():GetTrueCastRange(), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_CLOSEST, false)
 					if #units > 1 then
 						for _,unit in ipairs(units) do
 							if unit ~= params.target then
-								self:GetCaster():SetForceAttackTarget(nil)
-								ExecuteOrderFromTable({
-									UnitIndex = params.attacker:entindex(),
-									OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
-									TargetIndex = unit:entindex()
-								})
-								self:GetCaster():SetForceAttackTarget(unit)
+								caster:MoveToTargetToAttack(unit)
+								caster:AddNewModifier(caster, self:GetAbility(), "modifier_bounty_hunter_jinada_dash", {duration = CalculateDistance(unit, caster) / self:GetAbility():GetSpecialValueFor("dash_speed") + 0.1 })
 								return
 							end
 						end
-						params.attacker:SetForceAttackTarget(nil)
 					else
 						params.attacker:RemoveModifierByName("modifier_bounty_hunter_jinada_dash")
-						params.attacker:SetForceAttackTarget(nil)
 					end
 				end
 			end

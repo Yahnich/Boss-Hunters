@@ -15,7 +15,7 @@ function item_focused_lens:OnSpellStart()
 end
 
 LinkLuaModifier( "modifier_item_focused_lens_passive", "items/item_focused_lens.lua" ,LUA_MODIFIER_MOTION_NONE )
-modifier_item_focused_lens_passive = class({})
+modifier_item_focused_lens_passive = class(itemBaseClass)
 function modifier_item_focused_lens_passive:OnCreated()
 	self.castrange = self:GetAbility():GetSpecialValueFor("bonus_cast_range")
 	self.targetrange = self:GetAbility():GetSpecialValueFor("target_cast_range")

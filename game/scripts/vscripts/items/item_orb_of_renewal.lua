@@ -5,10 +5,11 @@ function item_orb_of_renewal:GetIntrinsicModifierName()
 	return "modifier_item_orb_of_renewal_passive"
 end
 
-modifier_item_orb_of_renewal_passive = class({})
+modifier_item_orb_of_renewal_passive = class(itemBaseClass)
 
 function modifier_item_orb_of_renewal_passive:OnCreated()
-	self.reduction = self:GetSpecialValueFor("ult_chance")
+	self.mRestore = self:GetSpecialValueFor("mana_restore")
+	self.hRestore = self:GetSpecialValueFor("heal_restore")
 end
 
 function modifier_item_orb_of_renewal_passive:DeclareFunctions()
@@ -20,22 +21,9 @@ function modifier_item_orb_of_renewal_passive:GetModifierPercentageCooldownStack
 end
 
 function modifier_item_orb_of_renewal_passive:OnAbilityFullyCast(params)	
-	local cdReduction = self.reduction * ( 1 - self:GetParent():GetCooldownReduction() / 100 )
-	if params.ability and params.ability:GetCooldownTimeRemaining() > cdReduction and params.unit == self:GetParent() then
-		for i = 0, params.unit:GetAbilityCount() - 1 do
-			local ability = params.unit:GetAbilityByIndex( i )
-			if ability and params.ability ~= ability then
-				ability:ModifyCooldown(-cdReduction)
-			end
-		end
-		if bItems then
-			for i=0, 5, 1 do
-				local current_item = params.unit:GetItemInSlot(i)
-				if current_item ~= nil and params.ability ~= current_item then
-					current_item:ModifyCooldown(-cdReduction)
-				end
-			end
-		end
+	if params.unit == self:GetParent() and params.ability:GetCooldown(-1) > 0 then
+		self:GetParent():GiveMana(self.mRestore)
+		self:GetParent():HealEvent(self.hRestore, self:GetAbility(), self:GetParent())
 	end
 end
 

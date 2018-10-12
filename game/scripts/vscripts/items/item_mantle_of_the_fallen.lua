@@ -4,7 +4,7 @@ function item_mantle_of_the_fallen:GetIntrinsicModifierName()
 	return "modifier_item_mantle_of_the_fallen_stats"
 end
 
-modifier_item_mantle_of_the_fallen_stats = class({})
+modifier_item_mantle_of_the_fallen_stats = class(itemBaseClass)
 LinkLuaModifier( "modifier_item_mantle_of_the_fallen_stats", "items/item_mantle_of_the_fallen.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 function modifier_item_mantle_of_the_fallen_stats:OnCreated()
@@ -44,7 +44,7 @@ function modifier_item_mantle_of_the_fallen_stats:GetAuraSearchTeam()
 end
 
 function modifier_item_mantle_of_the_fallen_stats:GetAuraSearchType()    
-	return DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
+	return DOTA_UNIT_TARGET_ALL
 end
 
 function modifier_item_mantle_of_the_fallen_stats:GetAuraSearchFlags()    

@@ -29,15 +29,15 @@ function boss_necro_guillotine:CreateGuillotine( enemy )
 	local kill_threshold = self:GetSpecialValueFor("kill_threshold")
 	local duration = self:GetSpecialValueFor("duration")
 	
-	local sFX = ParticleManager:CreateParticle("particles/units/heroes/hero_necrolyte/necrolyte_scythe_start.vpcf", PATTACH_WORLDORIGIN, caster)
-	ParticleManager:SetParticleControl(sFX, 1, position)
-	
+	ParticleManager:FireParticle("particles/units/heroes/hero_necrolyte/necrolyte_scythe_start.vpcf", PATTACH_WORLDORIGIN, caster, {[1] = position})
+
 	ParticleManager:FireWarningParticle(position, radius)
 	
 	Timers:CreateTimer(1.5, function()
 		if CalculateDistance(position, enemy) < radius then
+			if enemy:TriggerSpellAbsorb(self) then return end
 			if enemy:GetHealthPercent() <= kill_threshold then
-				enemy.NoTombStone = true
+				enemy.tombstoneDisabled = true
 				enemy:AttemptKill(self, caster)
 			else
 				self:DealDamage( caster, enemy, enemy:GetHealth() * damage, {damage_type = DAMAGE_TYPE_PURE, damage_flags = DOTA_DAMAGE_FLAG_HPLOSS + DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION} )

@@ -28,12 +28,13 @@ function modifier_ogre_magi_multicast_bh:OnAbilityFullyCast(params)
 			local bonusCastRange = 0
 
 			local ability = params.ability
-			if RollPercentage(two_times) then
-				multiCast = 2
-			elseif RollPercentage(three_times) then
-				multiCast = 3
-			elseif RollPercentage(four_times) then
+			local roll = RandomInt(1, 100)
+			if roll <= four_times then
 				multiCast = 4
+			elseif roll <= three_times then
+				multiCast = 3
+			elseif roll <= two_times then
+				multiCast = 2
 			end
 			--print(multiCast)
 			if multiCast > 1 then

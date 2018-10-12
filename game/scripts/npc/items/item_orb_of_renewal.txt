@@ -32,7 +32,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cd_reduction"			"0.75"
+				"heal_restore"			"30" //percent
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mana_restore"			"10" //percent
 			}
 		}
 	}

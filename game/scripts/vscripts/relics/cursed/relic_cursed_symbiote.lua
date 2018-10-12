@@ -9,6 +9,7 @@ end
 
 function relic_cursed_symbiote:OnIntervalThink()
 	self:SetStackCount( self:GetParent():GetBonusManaRegen() + self:GetParent():GetBaseManaRegen( ) )
+	self:GetParent():CalculateStatBonus()
 end
 
 function relic_cursed_symbiote:DeclareFunctions()

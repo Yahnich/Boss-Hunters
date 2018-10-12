@@ -5,7 +5,7 @@ function item_gem_of_corruption:GetIntrinsicModifierName()
 	return "modifier_item_gem_of_corruption"
 end
 
-modifier_item_gem_of_corruption = class({})
+modifier_item_gem_of_corruption = class(itemBaseClass)
 function modifier_item_gem_of_corruption:OnCreated(table)
 	self.bonus_damage = self:GetSpecialValueFor("bonus_damage")
 end
@@ -29,14 +29,6 @@ function modifier_item_gem_of_corruption:OnAttackLanded(params)
 			params.target:AddNewModifier(params.attacker, self:GetAbility(), "modifier_gem_of_corruption_debuff", {Duration = self:GetAbility():GetSpecialValueFor("duration")})
 		end
 	end
-end
-
-function modifier_item_gem_of_corruption:GetAttributes()
-	return MODIFIER_ATTRIBUTE_MULTIPLE
-end
-
-function modifier_item_gem_of_corruption:IsHidden()
-	return true
 end
 
 LinkLuaModifier( "modifier_gem_of_corruption_debuff", "items/item_gem_of_corruption.lua" ,LUA_MODIFIER_MOTION_NONE )

@@ -8,7 +8,7 @@ function boss16_conflagration:OnAbilityPhaseStart()
 	if caster:GetHealthPercent() < 66 then
 		local startPos = caster:GetAbsOrigin() + direction * 128
 		local endPos = startPos + direction * self:GetSpecialValueFor("length") 
-		ParticleManager:FireLinearWarningParticle(startPos, endPos)
+		ParticleManager:FireLinearWarningParticle(startPos, endPos, self:GetSpecialValueFor("radius"))
 	else
 		ParticleManager:FireWarningParticle(self:GetCursorPosition(), self:GetSpecialValueFor("radius"))
 	end
@@ -56,7 +56,11 @@ function boss16_conflagration:CreateFirePath(direction)
 		if not caster or caster:IsNull() then return nil end
 		local enemies = caster:FindEnemyUnitsInLine(initialPosition, endPos, radius)
 		for _, enemy in ipairs(enemies) do
-			ability:DealDamage(caster, enemy, damage)
+			print( enemy.lastDamageInstance, GameRules:GetGameTime() )
+			if not enemy.lastDamageInstance or ( enemy.lastDamageInstance < GameRules:GetGameTime() ) then
+				ability:DealDamage(caster, enemy, damage)
+				enemy.lastDamageInstance = GameRules:GetGameTime() + FrameTime()
+			end
 		end
 		timer = timer + 1
 		if timer < duration then

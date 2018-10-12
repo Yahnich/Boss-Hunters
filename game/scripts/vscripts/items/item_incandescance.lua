@@ -9,7 +9,7 @@ function item_incandescance:GetAbilityTextureName()
 end
 
 function item_incandescance:OnToggle()
-	if self:GetToggleState() then
+	if not self:GetToggleState() then
 		self:GetCaster():RemoveModifierByName("modifier_item_incandescance")
 	else
 		self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_item_incandescance", {})
@@ -21,15 +21,19 @@ function item_incandescance:GetIntrinsicModifierName()
 end
 
 LinkLuaModifier( "modifier_item_incandescance", "items/item_incandescance.lua" ,LUA_MODIFIER_MOTION_NONE )
-modifier_item_incandescance = class({})
+modifier_item_incandescance = class(itemBaseClass)
+
 function modifier_item_incandescance:OnCreated()
 	self.radius = self:GetSpecialValueFor("radius")
 end
 
 function modifier_item_incandescance:OnDestroy()
-	if IsServer() then
+	if IsServer() and self:GetAbility() then
 		for _, ally in ipairs( self:GetParent():FindEnemyUnitsInRadius( self:GetParent():GetAbsOrigin(), -1 ) ) do
 			ally:RemoveModifierByName("modifier_incandescance_debuff")
+		end
+		if self:GetAbility():GetToggleState() then
+			self:GetAbility():OnToggle()
 		end
 	end
 end
@@ -64,6 +68,10 @@ end
 
 function modifier_item_incandescance:IsHidden()    
 	return true
+end
+
+function modifier_item_incandescance:GetAttributes()
+	return MODIFIER_ATTRIBUTE_PERMANENT 
 end
 
 LinkLuaModifier( "modifier_incandescance_debuff", "items/item_incandescance.lua" ,LUA_MODIFIER_MOTION_NONE )

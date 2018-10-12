@@ -23,7 +23,7 @@
 		"ItemResult"					"item_blade_of_storm"
 		"ItemRequirements"
 		{
-			"01"						"item_hunters_hatchet;item_breeze_amulet;item_orb_of_haste"
+			"01"						"item_broadsword;item_breeze_amulet;item_orb_of_haste"
 		}
 	}
 	"item_blade_of_storm"

@@ -141,6 +141,11 @@
 	text-align: center;
 }
 
+.Warning
+{
+	color: #FF0000;
+}
+
 #QuestRewardsHolder
 {
 	height: 30%;
@@ -198,7 +203,7 @@
 	background-repeat: no-repeat;
 	opacity: 0.9;
 	background-size: 100% 100%;
-	visibility: visible;
+	visibility: collapse;
 	z-index: 5;
 	vertical-align: bottom;
 	horizontal-align: center;
@@ -240,6 +245,7 @@
 	padding: 15px;
 }
 
+
 #QuestPrepVoteConfirmButton
 {
 	margin-bottom: 12px;
@@ -251,6 +257,79 @@
 	height: 40px;	
 	width: 60%;
 	z-index: 5;
+}
+
+
+#QuestsAscensionVoteHolder
+{
+	height: 180px;
+	width: 360px;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #121218FF ), color-stop( .2, #25282aFF), color-stop( .8, #25282aFF), to( #121218FF ) );
+	background-image: url("s2r://panorama/images/hud/reborn/ability_bg_psd.vtex");
+	background-repeat: no-repeat;
+	opacity: 0.9;
+	background-size: 100% 100%;
+	visibility: collapse ;
+	z-index: 5;
+	vertical-align: bottom;
+	horizontal-align: center;
+	margin-bottom: 200px;
+	
+	flow-children: down;
+}
+
+#QuestsAscensionVoteCountHolder
+{
+	flow-children: left;
+	horizontal-align: center;
+}
+
+.QuestsAscensionVoteText
+{
+	font-family: TH Sarabun New,YDYGO 540,Gulim,MingLiU;
+	text-shadow: 2px 2px 1px 3.0 #333333b0;
+	font-weight: bold;
+	color: #FFFFFF;
+	font-size: 20px;
+	vertical-align: center;
+	horizontal-align: center;
+	text-align: center;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+#QuestsAscensionVoteDescriptionLabel
+{
+	vertical-align: top;
+	horizontal-align: center;
+	
+	font-family: TH Sarabun New,YDYGO 540,Gulim,MingLiU;
+	text-shadow: 2px 2px 1px 3.0 #333333b0;
+	font-weight: bold;
+	color: #FFFFFF;
+	font-size: 28px;
+	padding: 15px;
+}
+
+#QuestsAscensionVoteButtonHolder
+{
+	margin-bottom: 12px;
+	horizontal-align: center;
+	vertical-align: bottom;
+	
+	flow-children: right;
+}
+
+.QuestAscensionVoteButton
+{
+	
+	background-image: url("s2r://panorama/images/hud/reborn/shop_launcher_button_psd.vtex");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	height: 40px;	
+	width: 80px;
+	z-index: 5;
+	margin: 5px;
 }
 
 @keyframes 'FadeInText'

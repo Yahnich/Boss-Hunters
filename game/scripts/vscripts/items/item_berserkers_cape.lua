@@ -9,7 +9,7 @@ function item_berserkers_cape:GetAbilityTextureName()
 end
 
 function item_berserkers_cape:OnToggle()
-	if self:GetToggleState() then
+	if not self:GetToggleState() then
 		self:GetCaster():RemoveModifierByName("modifier_item_berserkers_cape_active")
 		self:GetCaster():RemoveModifierByName("modifier_item_berserkers_cape_visual")
 	else
@@ -69,6 +69,17 @@ modifier_item_berserkers_cape = class({})
 function modifier_item_berserkers_cape:OnCreated()
 	self.attackspeed = self:GetSpecialValueFor("bonus_attack_speed")
 	self.armor = self:GetSpecialValueFor("bonus_armor")
+end
+
+function modifier_item_berserkers_cape:OnDestroy()
+	self:GetParent():RemoveModifierByName("modifier_item_berserkers_cape_active")
+end
+
+function modifier_item_berserkers_cape:OnDestroy()
+	if IsServer() then
+		self:GetParent():RemoveModifierByName("modifier_item_berserkers_cape_active")
+		self:GetParent():RemoveModifierByName("modifier_item_berserkers_cape_visual")
+	end
 end
 
 function modifier_item_berserkers_cape:DeclareFunctions()

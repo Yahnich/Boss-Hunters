@@ -1,0 +1,70 @@
+"DOTAAbilities"
+{
+	"elite_freezing"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"elites/elite_freezing"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"						"1"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityTextureName"			"crystal_maiden_freezing_field"
+		
+		"precache"
+		{
+			"particle"					"particles/econ/courier/courier_onibi/courier_onibi_yellow_ambient_smoke_lvl21.vpcf"
+			"particle"					"particles/status_fx/status_effect_repel.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_crystalmaiden.vsndevts"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_ancient_apparition.vsndevts" 
+		}
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"225"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"25"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"snap_duration"			"1.5"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"slow_duration"			"5"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"tick_rate"				"4"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"growth_duration"		"5"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"move_slow"				"-100"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"attack_slow"			"-700"
+			}
+		}
+	}
+}

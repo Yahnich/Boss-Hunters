@@ -31,10 +31,6 @@ function windrunner_skillshot:OnSpellStart()
 
 	caster:PerformAttack(target, true, true, true, true, true, false, false)
 	self:FireTrackingProjectile("particles/skillshot.vpcf", target, caster:GetProjectileSpeed(), {}, DOTA_PROJECTILE_ATTACHMENT_ATTACK_1)
-
-	if caster:HasTalent("special_bonus_unique_windrunner_focusfire_bh_1") and caster:HasModifier("modifier_windrunner_focusfire_bh") then
-    	self:EndCooldown()
-    end
 end
 
 function windrunner_skillshot:OnProjectileHit(hTarget, vLocation)
@@ -46,6 +42,15 @@ function windrunner_skillshot:OnProjectileHit(hTarget, vLocation)
 end
 
 modifier_windrunner_skillshot_handle = class({})
+
+function modifier_windrunner_skillshot_handle:OnCreated()
+	if IsServer() then
+		self.lastAttack = 0
+		self.cd = self:GetTalentSpecialValueFor("passive_cooldown")
+		self.chance = self:GetTalentSpecialValueFor("chance")
+	end
+end
+
 function modifier_windrunner_skillshot_handle:DeclareFunctions()
     local funcs = {
         MODIFIER_EVENT_ON_ATTACK_RECORD
@@ -54,11 +59,11 @@ function modifier_windrunner_skillshot_handle:DeclareFunctions()
 end
 
 function modifier_windrunner_skillshot_handle:OnAttackRecord(params)
-    if IsServer() and params.attacker == self:GetParent() and params.target and params.target:GetTeam() ~= self:GetCaster():GetTeam() and self:GetAbility():IsCooldownReady() then
-    	if self:RollPRNG( self:GetTalentSpecialValueFor("chance") ) then
+    if IsServer() and params.attacker == self:GetParent() and params.target and params.target:GetTeam() ~= self:GetCaster():GetTeam()  then
+    	if self.lastAttack + self.cd < GameRules:GetGameTime() and self:RollPRNG( self.chance ) then
     		self:GetAbility():FireTrackingProjectile("particles/skillshot.vpcf", params.target, params.attacker:GetProjectileSpeed(), {}, DOTA_PROJECTILE_ATTACHMENT_ATTACK_1)
     		if not self:GetCaster():HasTalent("special_bonus_unique_windrunner_focusfire_bh_1") and not self:GetCaster():HasModifier("modifier_windrunner_focusfire_bh") then
-    			self:GetAbility():SetCooldown(self:GetTalentSpecialValueFor("passive_cooldown"))
+    			self.lastAttack = GameRules:GetGameTime()
     		end
     	end
     end

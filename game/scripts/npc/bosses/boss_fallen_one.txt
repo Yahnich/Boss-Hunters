@@ -1,0 +1,202 @@
+"DOTAAbilities"
+{	
+	//=================================================================================================================
+	// aeon: Phase Shift
+	//=================================================================================================================
+	"fallen_one_aura_of_war"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_fallen_one/fallen_one_aura_of_war"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+		"AbilityTextureName"			"vengefulspirit_command_aura"
+		"MaxLevel"						"3"
+		
+	
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_dark_seer/dark_seer_vacuum.vpcf"
+			"particle"					"particles/units/heroes/hero_puck/puck_illusory_orb.vpcf"
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bonus_damage"			"15 20"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"600"
+			}
+		}
+	}
+	//=================================================================================================================
+	// aeon: Phase Shift
+	//=================================================================================================================
+	"fallen_one_sinister_bolt"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_fallen_one/fallen_one_sinister_bolt"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"AbilityTextureName"			"vengefulspirit_magic_missile"
+		"MaxLevel"						"3"
+		
+		"AbilityCastRange"				"600 900"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+
+		"AbilityCastPoint"				"1.5 1"
+		"AbilityCooldown"				"24 20"
+	
+		"precache"
+		{
+			"particle"					"particles/units/heroes/heroes_underlord/abyssal_underlord_darkrift_target.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_vengefulspirit.vsndevts"
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"explosion_radius"			"325"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"250 300"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"stun_duration"				"1.5"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"speed"						"600"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"63 75"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"distance"					"600 900"
+			}
+		}
+	}
+	//=================================================================================================================
+	// aeon: Phase Shift
+	//=================================================================================================================
+	"fallen_one_debilitate"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_fallen_one/fallen_one_debilitate"
+		
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"vengefulspirit_wave_of_terror"
+		"MaxLevel"						"3"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+		"AbilityCastAnimation"			"ACT_DOTA_SPAWN"
+		"AbilityCastPoint"				"1.5 1"
+		"AbilityCooldown"				"12"
+		"AbilityCastRange"				"1200 1500"
+	
+		"precache"
+		{
+			"particle"					"particles/units/heroes/heroes_underlord/abyssal_underlord_firestorm_wave.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_abyssal_underlord.vsndevts"
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"30 45"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"minus_armor"				"-6 -9"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"10 15"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"speed"						"900"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"150"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"distance"					"1200 1500"
+			}
+		}
+	}
+	//=================================================================================================================
+	// aeon: Phase Shift
+	//=================================================================================================================
+	"fallen_one_fade_out"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_fallen_one/fallen_one_fade_out"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityTextureName"			"vengefulspirit_nether_swap"
+		"MaxLevel"						"3"
+		
+		"AbilityCastAnimation"			"ACT_DOTA_CHANNEL_START_ABILITY_4"
+		"AbilityCastRange"				"600"
+		"AbilityCastPoint"				"0.35"
+		"AbilityCooldown"				"40"
+	
+		"precache"
+		{
+			"particle"					"particles/units/heroes/heroes_underlord/abbysal_underlord_darkrift_ambient.vpcf"
+			"particle"					"particles/units/heroes/heroes_underlord/abbysal_underlord_darkrift_ambient_end.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_abyssal_underlord.vsndevts"
+		}
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"illu_duration"				"10"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"illu_inc"					"250"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"illu_out"					"75"
+			}
+		}
+	}
+}

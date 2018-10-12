@@ -41,7 +41,7 @@ if IsServer() then
 		if not thisEntity:IsDominated() and not thisEntity:IsChanneling() then
 			local target = AICore:GetHighestPriorityTarget(thisEntity)
 			if target then
-				if thisEntity.axe_fury and thisEntity.axe_fury:IsFullyCastable() then
+				if thisEntity.axe_fury and thisEntity.axe_fury:IsFullyCastable() and not thisEntity:HasModifier("modifier_boss_troll_warlord_enrage") then
 					ExecuteOrderFromTable({
 						UnitIndex = thisEntity:entindex(),
 						OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
@@ -50,7 +50,7 @@ if IsServer() then
 					return thisEntity.axe_fury:GetCastPoint() + 0.1
 				end
 
-				if thisEntity.ensare and thisEntity.ensare:IsFullyCastable() then
+				if thisEntity.ensare and thisEntity.ensare:IsFullyCastable() and not thisEntity:HasModifier("modifier_boss_troll_warlord_enrage")then
 					ExecuteOrderFromTable({
 						UnitIndex = thisEntity:entindex(),
 						OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
@@ -58,7 +58,6 @@ if IsServer() then
 					})
 					return thisEntity.ensare:GetCastPoint() + 0.1
 				end
-
 				if thisEntity.mystic_axes and thisEntity.mystic_axes:IsFullyCastable() then
 					ExecuteOrderFromTable({
 						UnitIndex = thisEntity:entindex(),
@@ -78,8 +77,7 @@ if IsServer() then
 					return thisEntity.leap:GetCastPoint() + 0.1
 				end
 			end
-			AICore:AttackHighestPriority( thisEntity )
-			return 0.25
+			return AICore:AttackHighestPriority( thisEntity )
 		else return 0.25 end
 	end
 end

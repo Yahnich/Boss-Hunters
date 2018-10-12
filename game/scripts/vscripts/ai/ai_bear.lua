@@ -61,7 +61,7 @@ function AIThink(thisEntity)
 			return thisEntity.smash:GetCastPoint() + 0.1
 		end
 		if not target then
-			AICore:AttackHighestPriority( thisEntity )
+			return AICore:AttackHighestPriority( thisEntity )
 		else
 			ExecuteOrderFromTable({
 				UnitIndex = thisEntity:entindex(),

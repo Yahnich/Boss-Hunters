@@ -42,10 +42,13 @@ if IsServer() then
 		
 		ParticleManager:FireParticle("particles/units/heroes/hero_centaur/centaur_warstomp.vpcf", PATTACH_ABSORIGIN, parent, {[1] = Vector(radius, 1, 1)})
 		for _, enemy in ipairs( parent:FindEnemyUnitsInRadius( parentPos, radius ) ) do
-			ability:DealDamage(parent, enemy, damage)
+			if not enemy:TriggerSpellAbsorb(self) then
+				ability:DealDamage(parent, enemy, damage)
+			end
 		end
 		EmitSoundOn("Ability.TossImpact", parent)
 		self:StopMotionController()
+		ResolveNPCPositions( self:GetParent():GetAbsOrigin(), 500 ) 
 	end
 	
 	function modifier_boss_golem_golem_leap_movement:DoControlledMotion()

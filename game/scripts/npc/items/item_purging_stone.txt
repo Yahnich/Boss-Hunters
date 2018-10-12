@@ -27,7 +27,7 @@
 			"precache"					"soundevents/game_sounds_items.vsndevts"
 		}
 		
-		"AbilityCooldown"				"15"
+		"AbilityCooldown"				"25"
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------

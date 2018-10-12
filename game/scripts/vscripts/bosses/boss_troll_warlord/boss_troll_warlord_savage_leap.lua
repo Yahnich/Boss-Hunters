@@ -63,9 +63,11 @@ if IsServer() then
 			local enemies = parent:FindEnemyUnitsInRadius(parent:GetAbsOrigin(), self:GetSpecialValueFor("radius"))
 			for _,enemy in pairs(enemies) do
 				if enemy:IsHero() then
-					self:GetAbility().enemy = enemy
-					parent:AddNewModifier(parent, self:GetAbility(), "modifier_boss_troll_warlord_savage_leap_ride", {Duration = self:GetSpecialValueFor("duration")})
-					self:GetAbility().enemy:Daze(self:GetAbility(), self:GetCaster(), self:GetSpecialValueFor("duration"))
+					if not enemy:TriggerSpellAbsorb(self) then
+						self:GetAbility().enemy = enemy
+						parent:AddNewModifier(parent, self:GetAbility(), "modifier_boss_troll_warlord_savage_leap_ride", {Duration = self:GetSpecialValueFor("duration")})
+						self:GetAbility().enemy:Daze(self:GetAbility(), self:GetCaster(), self:GetSpecialValueFor("duration"))
+					end
 					break
 				end
 			end
@@ -95,7 +97,10 @@ end
 
 modifier_boss_troll_warlord_savage_leap_ride = class({})
 function modifier_boss_troll_warlord_savage_leap_ride:OnCreated(table)
-	if IsServer() then self:StartIntervalThink(FrameTime()) end
+	if IsServer() then 
+		self:StartIntervalThink(FrameTime())
+		self:GetParent():FindAbilityByName("boss_troll_warlord_axe_fury"):SetActivated(true)
+	end
 end
 
 function modifier_boss_troll_warlord_savage_leap_ride:OnIntervalThink()
@@ -111,6 +116,8 @@ function modifier_boss_troll_warlord_savage_leap_ride:OnRemoved()
 	if IsServer() then
 		FindClearSpaceForUnit(self:GetParent(), self:GetParent():GetAbsOrigin(), false)
 		self:GetAbility().enemy = nil
+		self:GetParent():SetForceAttackTarget(nil)
+		self:GetParent():FindAbilityByName("boss_troll_warlord_axe_fury"):SetActivated(false)
 	end
 end
 

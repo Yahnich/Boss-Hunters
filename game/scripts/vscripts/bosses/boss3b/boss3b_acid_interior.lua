@@ -25,19 +25,23 @@ function modifier_boss3b_acid_interior_passive:DeclareFunctions()
 end
 
 function modifier_boss3b_acid_interior_passive:OnDeath(params)
-	if params.unit == self:GetParent() then
-		ParticleManager:FireParticle("particles/econ/items/viper/viper_ti7_immortal/viper_poison_attack_ti7_explosion.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
-		local enemies = self:GetParent():FindEnemyUnitsInRadius(self:GetParent():GetAbsOrigin(), self.aoe_radius)
-		for _, enemy in ipairs(enemies) do
-			self:GetAbility():DealDamage(self:GetParent(), enemy, self.aoe_damage)
-			enemy:ApplyKnockBack(self:GetParent():GetAbsOrigin(), 0.5, 0.5, 250, 250, self:GetParent(), self:GetAbility())
-			enemy:AddNewModifier(self:GetParent(), self:GetAbility(), "modifier_boss3b_acid_interior_boom", {duration = self.stack_duration * 1.5})
-		end
+	if params.unit == self:GetParent() and not params.unit:PassivesDisabled() then
+		local position = params.unit:GetAbsOrigin()
+		ParticleManager:FireWarningParticle(position, self.aoe_radius)
+		Timers:CreateTimer(0.75, function()
+			ParticleManager:FireParticle("particles/bosses/boss_green_dragon/boss_green_dragon_rot_explosion.vpcf", PATTACH_ABSORIGIN, params.unit, {[1] = Vector(self.aoe_radius,self.aoe_radius,self.aoe_radius)})
+			local enemies = self:GetParent():FindEnemyUnitsInRadius(position, self.aoe_radius)
+			for _, enemy in ipairs(enemies) do
+				self:GetAbility():DealDamage(self:GetParent(), enemy, self.aoe_damage)
+				enemy:ApplyKnockBack(position, 0.5, 0.5, 250, 250, self:GetParent(), self:GetAbility())
+				enemy:AddNewModifier(self:GetParent(), self:GetAbility(), "modifier_boss3b_acid_interior_boom", {duration = self.stack_duration * 1.5})
+			end
+		end)
 	end
 end
 
 function modifier_boss3b_acid_interior_passive:OnAttackLanded(params)
-	if params.attacker == self:GetParent() then
+	if params.attacker == self:GetParent() and not params.attacker:PassivesDisabled() then
 		params.target:AddNewModifier(self:GetParent(), self:GetAbility(), "modifier_boss3b_acid_interior_attack", {duration = self.stack_duration})
 	end
 end

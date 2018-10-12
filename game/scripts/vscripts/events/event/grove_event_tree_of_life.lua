@@ -1,6 +1,7 @@
 local function CheckPlayerChoices(self)
-	for pID, choice in pairs( self._playerChoices ) do
-		if not choice then
+	for _, hero in ipairs( HeroList:GetActiveHeroes() ) do
+		local pID = hero:GetPlayerID()
+		if pID and not self._playerChoices[pID] then
 			return false
 		end
 	end
@@ -26,7 +27,7 @@ end
 
 local function ThirdChoice(self, userid, event)
 	local hero = PlayerResource:GetSelectedHeroEntity( event.pID )
-	hero:AddBlessing("event_buff_tree_of_life_blessing_2")
+	hero:AddBlessing("event_buff_tree_of_life_blessing_3")
 	self._playerChoices[event.pID] = true
 	CheckPlayerChoices(self)
 end
@@ -51,11 +52,7 @@ local function StartEvent(self)
 	end)
 	
 	self._playerChoices = {}
-	for i = 0, GameRules.BasePlayers do
-		if PlayerResource:IsValidPlayerID(i) and PlayerResource:GetPlayer(i) then
-			self._playerChoices[i] = false
-		end
-	end
+
 	LinkLuaModifier("event_buff_tree_of_life_blessing_3", "events/modifiers/event_buff_tree_of_life", LUA_MODIFIER_MOTION_NONE)
 	LinkLuaModifier("event_buff_tree_of_life_blessing_1", "events/modifiers/event_buff_tree_of_life", LUA_MODIFIER_MOTION_NONE)
 	LinkLuaModifier("event_buff_tree_of_life_blessing_2", "events/modifiers/event_buff_tree_of_life", LUA_MODIFIER_MOTION_NONE)

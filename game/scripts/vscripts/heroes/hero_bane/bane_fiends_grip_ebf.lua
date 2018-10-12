@@ -21,7 +21,7 @@ modifier_bane_fiends_grip_ebf_channel = class({})
 LinkLuaModifier("modifier_bane_fiends_grip_ebf_channel", "heroes/hero_bane/bane_fiends_grip_ebf", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_bane_fiends_grip_ebf_channel:DeclareFunctions()
-	return {MODIFIER_EVENT_ON_ATTACK_START,
+	return {
 			MODIFIER_PROPERTY_OVERRIDE_ANIMATION,
 			}
 end

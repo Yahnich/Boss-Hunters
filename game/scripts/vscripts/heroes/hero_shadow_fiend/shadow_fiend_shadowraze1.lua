@@ -52,8 +52,8 @@ function shadow_fiend_shadowraze1:singleRaze()
 	local damage = self:GetTalentSpecialValueFor("damage")
 
 	local modifier = caster:FindModifierByName("modifier_shadow_fiend_necro")
-	if modifier and caster:FindAbilityByName("shadow_fiend_necro"):GetToggleState() and modifier:GetStackCount() >= self:GetTalentSpecialValueFor("soul_cost") then
-		local newStackCount = modifier:GetStackCount() - self:GetTalentSpecialValueFor("soul_cost")
+	if modifier and ( caster:FindAbilityByName("shadow_fiend_necro"):GetToggleState() and modifier:GetStackCount() >= self:GetTalentSpecialValueFor("soul_cost") or caster:HasScepter() ) then
+		local newStackCount = modifier:GetStackCount() - TernaryOperator( 0, caster:HasScepter(), self:GetTalentSpecialValueFor("soul_cost") )
 		caster:FindModifierByName("modifier_shadow_fiend_necro"):SetStackCount(newStackCount)
 		if modifier:GetStackCount() < 1 then modifier:Destroy() end
 

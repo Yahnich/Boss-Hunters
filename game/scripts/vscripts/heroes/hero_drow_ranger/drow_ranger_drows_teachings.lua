@@ -49,8 +49,8 @@ function modifier_ranged_drows_teachings_aura:OnCreated()
 	local damage = self:GetTalentSpecialValueFor("trueshot_melee_damage")
 	if self:GetParent():IsRangedAttacker() then damage = self:GetTalentSpecialValueFor("trueshot_ranged_damage") end
 	self.damage = self:GetCaster():GetAgility() * damage / 100
+	self:StartIntervalThink(0.33)
 end
-
 function modifier_ranged_drows_teachings_aura:OnIntervalThink()
 	local damage = self:GetTalentSpecialValueFor("trueshot_melee_damage")
 	if self:GetParent():IsRangedAttacker() then damage = self:GetTalentSpecialValueFor("trueshot_ranged_damage") end

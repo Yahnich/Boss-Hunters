@@ -28,6 +28,7 @@ function boss_broodmother_web_shot:OnSpellStart()
 			position = position + direction * speed
 			ParticleManager:SetParticleControl( hookFX, 0, position )
 			for _, enemy in ipairs( caster:FindEnemyUnitsInRadius(position, radius) ) do
+				if enemy:TriggerSpellAbsorb(self) then return end
 				grabTarget = enemy
 				grabTarget:SetAbsOrigin( position )
 				grabTarget:AddNewModifier(caster, self, "modifier_boss_broodmother_web_shot_pull", {duration = CalculateDistance(grabTarget, caster) / (speed / FrameTime()) + 0.5 })

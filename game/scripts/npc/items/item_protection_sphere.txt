@@ -1,0 +1,112 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Recipe: TITAN Armor
+	//=================================================================================================================
+	"item_recipe_protection_sphere"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"7085"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe_assault"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"250"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_protection_sphere"
+		"ItemRequirements"
+		{
+			"01"						"item_archmages_orb;item_power_core"
+		}
+	}
+	//=================================================================================================================
+	// TITAN Armor
+	//=================================================================================================================
+	"item_protection_sphere"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"7086"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_protection_sphere"
+		"AbilityTextureName"			"item_sphere"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"400"
+		"ItemShopTags"					"mana;spell amp;mr;mana regen"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"protection sphere;linken's sphere;linkens"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"particle"
+		{
+			"particle"					"particles/items3_fx/warmage_recipient.vpcf"
+			"particle"					"particles/units/heroes/hero_nyx_assassin/nyx_assassin_mana_burn.vpcf"
+			"soundfile"					"soundevents/game_sounds_items.vsndevts"
+		}
+	
+		"AbilityCooldown"				"15"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mana_regen"			"3.5"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"spell_amp"				"25"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_mana"			"600"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"mana_restore"			"20"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_ms"				"50"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_all"				"10"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"900"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"min_restore"			"350"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"internal_cooldown"		"12"
+			}
+		}
+	}
+}

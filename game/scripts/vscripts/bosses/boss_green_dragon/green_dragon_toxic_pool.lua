@@ -30,6 +30,7 @@ end
 function green_dragon_toxic_pool:OnProjectileHit( hTarget, vLocation )
 	if hTarget ~= nil and ( not hTarget:IsMagicImmune() ) and ( not hTarget:IsInvulnerable() ) then
 		local caster = self:GetCaster()
+		if hTarget:TriggerSpellAbsorb(self) then return true end
 		hTarget:AddNewModifier(self:GetCaster(), self, "modifier_green_dragon_toxic_pool_debuff", {Duration = self:GetSpecialValueFor("debuff_duration")})
 		EmitSoundOn( "Hero_Venomancer.VenomousGaleImpact", hTarget )
 		
@@ -41,10 +42,19 @@ function green_dragon_toxic_pool:OnProjectileHit( hTarget, vLocation )
 	else
 		if RollPercentage(25) then
 			EmitSoundOnLocationWithCaster(vLocation, "soundName", hCaster)
-			CreateModifierThinker(self:GetCaster(), self, "modifier_green_dragon_toxic_pool", {Duration = self:GetSpecialValueFor("pool_duration")}, vLocation, self:GetCaster():GetTeam(), false)
+			self:CreateToxicPool(vLocation)
 		end
 	end
 	return false
+end
+
+function green_dragon_toxic_pool:CreateToxicPool(position)
+	ParticleManager:FireWarningParticle( position, self:GetSpecialValueFor("radius") )
+	Timers:CreateTimer( 0.5, function()
+		if not self or self:IsNull() then return end
+		if not self:GetCaster() or self:GetCaster():IsNull() then return end
+		CreateModifierThinker(self:GetCaster(), self, "modifier_green_dragon_toxic_pool", {Duration = self:GetSpecialValueFor("pool_duration")}, position, self:GetCaster():GetTeam(), false)
+	end)
 end
 
 modifier_green_dragon_toxic_pool_handle = class({})
@@ -57,7 +67,7 @@ function modifier_green_dragon_toxic_pool_handle:OnIntervalThink()
 	EmitSoundOn("Hero_Viper.Nethertoxin.Cast", caster)
 	caster:StartGesture(ACT_DOTA_CAST_ABILITY_1)
 	local fDir = caster:GetForwardVector()
-	local rndAng = math.rad(RandomInt(-self:GetTalentSpecialValueFor("spread")/2, self:GetTalentSpecialValueFor("spread")/2))
+	local rndAng = math.rad( RandomInt( -self:GetTalentSpecialValueFor("spread"), self:GetTalentSpecialValueFor("spread") ) )
 	local dirX = fDir.x * math.cos(rndAng) - fDir.y * math.sin(rndAng); 
 	local dirY = fDir.x * math.sin(rndAng) + fDir.y * math.cos(rndAng);
 	local direction = Vector( dirX, dirY, 0 )

@@ -19,7 +19,7 @@ function item_everbright_shield:OnSpellStart()
 	caster:AddNewModifier(caster, self, "modifier_item_everbright_shield_on", {duration = self:GetSpecialValueFor("duration")})
 end
 
-modifier_item_everbright_shield_off = class({})
+modifier_item_everbright_shield_off = class(itemBaseClass)
 
 function modifier_item_everbright_shield_off:OnCreated()
 	self.block = self:GetAbility():GetSpecialValueFor("damage_block")

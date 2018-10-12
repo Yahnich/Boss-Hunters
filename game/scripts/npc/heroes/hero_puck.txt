@@ -304,6 +304,11 @@
 				"var_type"					"FIELD_FLOAT"
 				"suck_radius"				"4000"
 			}
+			"10"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"scepter_orbs"				"6"
+			}
 		}
 	}
 	"special_bonus_unique_puck_illusory_orb_1" 

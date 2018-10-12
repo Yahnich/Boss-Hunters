@@ -30,34 +30,36 @@ GameEvents.Subscribe("dota_player_update_selected_unit", UpdateStatsPanel);
 GameEvents.Subscribe("dota_player_upgraded_stats", UpdateStatsPanel);
 
 // OTHER
-MOVESPEED_TABLE = [0,25,50,75,100,150,175,200,225,250,300]
-MANA_TABLE = [0,300,600,900,1200,1800,2100,2400,2700,3000,3600]
-MANA_REGEN_TABLE = [0,3,6,9,12,18,21,24,27,30,40]
-HEAL_AMP_TABLE = [0,10,20,30,40,60,70,80,90,100,120]
+MOVESPEED_TABLE = 10
+MANA_TABLE = 200
+MANA_REGEN_TABLE = 1.5
+HEAL_AMP_TABLE = [0,15,30,45,60,75]
 
 // OFFENSE
-ATTACK_DAMAGE_TABLE = [0,25,50,75,100,150,175,200,225,250,300]
-SPELL_AMP_TABLE = [0,12,24,36,48,60,72,84,96,108,120]
-COOLDOWN_REDUCTION_TABLE = [0,4,8,12,16,24,28,32,36,40,48]
-ATTACK_SPEED_TABLE = [0,25,50,75,100,150,175,200,225,250,300]
-STATUS_AMP_TABLE = [0,4,8,12,16,24,28,32,36,40,48]
-ACCURACY_TABLE = [0,10,15,20,25,35,40,45,50,55,65]
+ATTACK_DAMAGE_TABLE = 15
+SPELL_AMP_TABLE = 8
+COOLDOWN_REDUCTION_TABLE = [0,10,15,20,25,30]
+ATTACK_SPEED_TABLE = 10
+STATUS_AMP_TABLE = [0,10,15,20,25,30]
+ACCURACY_TABLE = [0,15,30,45,60,75]
 
 // DEFENSE
-ARMOR_TABLE = [0,2,4,6,8,12,14,16,18,20,24]
-MAGIC_RESIST_TABLE = [0,4,8,12,16,24,28,32,36,40,48]
-ATTACK_RANGEM_TABLE = [0,25,50,75,100,150,175,200,225,250,300]
-ATTACK_RANGE_TABLE = [0,50,100,150,200,300,350,400,450,500,600]
-HEALTH_TABLE = [0,250,500,750,1000,1500,1750,2000,2250,2500,3000]
-HEALTH_REGEN_TABLE = [0,5,10,15,20,30,35,40,45,50,60]
-STATUS_REDUCTION_TABLE = [0,5,10,15,20,30,35,40,45,50,60]
+ARMOR_TABLE = 1
+MAGIC_RESIST_TABLE = [0,10,15,20,25,30]
+ATTACK_RANGEM_TABLE = 25
+ATTACK_RANGE_TABLE = 50
+HEALTH_TABLE = 150
+HEALTH_REGEN_TABLE = 2
+STATUS_REDUCTION_TABLE = [0,10,20,30,40,50]
+
+ALL_STATS = 2
 
 STATS_STATE_OFFENSE = 1
 STATS_STATE_DEFENSE = 2
 STATS_STATE_OTHER = 3
 STATS_STATE_UNIQUE = 4
 
-LEVELS_BETWEEN_TALENT_UPGRADES = 7
+LEVELS_BETWEEN_TALENT_UPGRADES = 1
 
 var lastRememberedState = STATS_STATE_OFFENSE
 var lastRememberedHero = Players.GetPlayerHeroEntityIndex( localID )
@@ -105,7 +107,7 @@ function UpdateStatsPanel()
 	lastRememberedHero = Players.GetLocalPlayerPortraitUnit()
 	if ( Entities.IsRealHero( lastRememberedHero ) ){
 		if ( lastRememberedHero == Players.GetPlayerHeroEntityIndex( localID ) ){
-			if( Entities.GetAbilityPoints( lastRememberedHero ) > 0){
+			if( GetAttributePoints( lastRememberedHero ) + Entities.GetAbilityPoints( lastRememberedHero ) > 0){
 				levelUp.style.visibility = "visible";
 			} else {
 				levelUp.style.visibility = "collapse";
@@ -120,7 +122,7 @@ function UpdateStatsPanel()
 	if( !($("#RootContainer").BHasClass("IsHidden")) ){
 		RefreshStatsPanel()
 	}
-	levelLabel.text = Entities.GetAbilityPoints( lastRememberedHero )
+	levelLabel.text = GetAttributePoints( lastRememberedHero ) + "/" + Entities.GetAbilityPoints( lastRememberedHero )
 	hasQueuedAction = false
 }
 
@@ -140,65 +142,88 @@ function UpgradeAbility(nettableString)
 		hasQueuedAction = true
 		Game.EmitSound( "Button.Click" )
 		GameEvents.SendCustomGameEventToServer( "send_player_upgraded_stats", {pID : localID, entindex : lastRememberedHero,  skill : nettableString} )
+		if( GameUI.IsAltDown() ){
+			for( var i = 1; i < GetAttributePoints(lastRememberedHero); i++ ){
+				GameEvents.SendCustomGameEventToServer( "send_player_upgraded_stats", {pID : localID, entindex : lastRememberedHero,  skill : nettableString} )
+			}
+		}
 	}
 }
 
 function CreateAttributePanel( valueLvl, valueTable, valueSignifier, valueText, adder ){
 	var statsTypeContainer = $("#StatsTypeContainer")
-	var talentPanel = $.CreatePanel("Panel", statsTypeContainer, "");
-	talentPanel.BLoadLayoutSnippet("StatsContainer")
-	talentPanel.FindChildTraverse("StatsTypeLabel").text = $.Localize( "#" + valueText, talentPanel) + " (+ " + valueTable[valueLvl] + adder + " )"
-	talentPanel.FindChildTraverse("StatsTypeLevel").text = valueLvl + "/" + (valueTable.length - 1)
-	if( Entities.GetAbilityPoints( lastRememberedHero ) == 0 || lastRememberedHero != Players.GetPlayerHeroEntityIndex( localID ) || valueLvl >= valueTable.length - 1 || Entities.GetLevel( lastRememberedHero ) < (parseInt(valueLvl) + 1) * LEVELS_BETWEEN_TALENT_UPGRADES){
-		talentPanel.FindChildTraverse("StatsTypeButton").SetHasClass("ButtonInactive", true)
+	if( typeof(valueTable) == 'object' ) 
+	{
+		var talentPanel = $.CreatePanel("Panel", statsTypeContainer, "");
+		talentPanel.BLoadLayoutSnippet("StatsContainer")
+		talentPanel.FindChildTraverse("StatsTypeLabel").text = $.Localize( "#" + valueText, talentPanel) + " (+ " + valueTable[valueLvl] + adder + " )"
+		talentPanel.FindChildTraverse("StatsTypeLevel").text = valueLvl + "/" + (valueTable.length - 1)
+		if( GetAttributePoints( lastRememberedHero ) == 0 || lastRememberedHero != Players.GetPlayerHeroEntityIndex( localID ) || valueLvl >= valueTable.length - 1 || Entities.GetLevel( lastRememberedHero ) < (parseInt(valueLvl) + 1) * LEVELS_BETWEEN_TALENT_UPGRADES){
+			talentPanel.FindChildTraverse("StatsTypeButton").SetHasClass("ButtonInactive", true)
+			talentPanel.FindChildTraverse("StatsTypeButton").SetPanelEvent("onactivate", function(){});
+		} else {
+			talentPanel.FindChildTraverse("StatsTypeButton").SetPanelEvent("onactivate", function(){UpgradeAbility(valueSignifier)});
+		}
+		var description = "<br>" + $.Localize( "#" + valueText + "_Description", talentPanel)
+		if( Entities.GetLevel( lastRememberedHero ) < (parseInt(valueLvl) + 1) * LEVELS_BETWEEN_TALENT_UPGRADES ){ // max level
+			var infoText = ""
+			for(var i = 1; i < valueTable.length; i++){
+				if(valueTable[i] != null){
+					if(i == valueLvl){
+						infoText = infoText + "<b>" + valueTable[i] + adder + "</b>"
+					} else {
+						infoText = infoText + valueTable[i] + adder
+					}
+					if(valueTable[i+1] != null)
+					{
+						infoText = infoText + "/"
+					}
+					if(i % 5 == 0){
+						infoText = infoText + "\n"
+					}
+				}
+			}
+			
+			talentPanel.SetPanelEvent("onmouseover", function(){$.DispatchEvent("DOTAShowTextTooltip", talentPanel, "Next level - " + (parseInt(valueLvl) + 1) * LEVELS_BETWEEN_TALENT_UPGRADES + "<br>" + infoText + description)});
+			talentPanel.SetPanelEvent("onmouseout", function(){$.DispatchEvent("DOTAHideTextTooltip", talentPanel);});
+		} else if( valueTable[parseInt(valueLvl) + 1] == null ){
+			talentPanel.SetPanelEvent("onmouseover", function(){$.DispatchEvent("DOTAShowTextTooltip", talentPanel, "Stat maxed!" + description)});
+			talentPanel.SetPanelEvent("onmouseout", function(){$.DispatchEvent("DOTAHideTextTooltip", talentPanel);});
+		} else { // can be leveled
+			var infoText = ""
+			for(var i = 1; i < valueTable.length; i++){
+				if(valueTable[i] != null){
+					if(i == valueLvl){
+						infoText = infoText + "<b>" + valueTable[i] + adder + "</b>"
+					} else {
+						infoText = infoText + valueTable[i] + adder
+					}
+					if(valueTable[i+1] != null)
+					{
+						infoText = infoText + "/"
+					}
+					if(i % 5 == 0){
+						infoText = infoText + "<br>"
+					}
+				}
+			}
+			talentPanel.SetPanelEvent("onmouseover", function(){$.DispatchEvent("DOTAShowTextTooltip", talentPanel, infoText + description)});
+			talentPanel.SetPanelEvent("onmouseout", function(){$.DispatchEvent("DOTAHideTextTooltip", talentPanel);});
+		}
 	} else {
-		talentPanel.FindChildTraverse("StatsTypeButton").SetPanelEvent("onactivate", function(){UpgradeAbility(valueSignifier)});
-	}
-	var description = "<br>" + $.Localize( "#" + valueText + "_Description", talentPanel)
-	if( Entities.GetLevel( lastRememberedHero ) < (parseInt(valueLvl) + 1) * LEVELS_BETWEEN_TALENT_UPGRADES ){ // max level
-		var infoText = ""
-		for(var i = 1; i < valueTable.length; i++){
-			if(valueTable[i] != null){
-				if(i == valueLvl){
-					infoText = infoText + "<b>" + valueTable[i] + adder + "</b>"
-				} else {
-					infoText = infoText + valueTable[i] + adder
-				}
-				if(valueTable[i+1] != null)
-				{
-					infoText = infoText + "/"
-				}
-				if(i % 5 == 0){
-					infoText = infoText + "\n"
-				}
-			}
+		var stats = $.CreatePanel("Panel", statsTypeContainer, "");
+		stats.BLoadLayoutSnippet("StatsContainer")
+		stats.FindChildTraverse("StatsTypeLabel").text = $.Localize( "#" + valueText, stats)
+		stats.FindChildTraverse("StatsTypeLevel").text = "+ " + valueLvl * valueTable + adder
+
+		stats.SetPanelEvent("onmouseover", function(){$.DispatchEvent("DOTAShowTextTooltip", stats, $.Localize( "#" + valueText + "_Description", stats) + "<br>" + $.Localize( "#STATS_GENERIC_UNCAPPED", stats) + " " + valueTable + adder + " " + $.Localize( "#" + valueText, stats));});
+		stats.SetPanelEvent("onmouseout", function(){$.DispatchEvent("DOTAHideTextTooltip", stats);});
+
+		if( GetAttributePoints( lastRememberedHero ) == 0 || lastRememberedHero != Players.GetPlayerHeroEntityIndex( localID ) ){
+			stats.FindChildTraverse("StatsTypeButton").SetHasClass("ButtonInactive", true)
+		} else {
+			stats.FindChildTraverse("StatsTypeButton").SetPanelEvent("onactivate", function(){UpgradeAbility(valueSignifier)});
 		}
-		
-		talentPanel.SetPanelEvent("onmouseover", function(){$.DispatchEvent("DOTAShowTextTooltip", talentPanel, "Next level - " + (parseInt(valueLvl) + 1) * LEVELS_BETWEEN_TALENT_UPGRADES + "<br>" + infoText + description)});
-		talentPanel.SetPanelEvent("onmouseout", function(){$.DispatchEvent("DOTAHideTextTooltip", talentPanel);});
-	} else if( valueTable[parseInt(valueLvl) + 1] == null ){
-		talentPanel.SetPanelEvent("onmouseover", function(){$.DispatchEvent("DOTAShowTextTooltip", talentPanel, "Stat maxed!" + description)});
-		talentPanel.SetPanelEvent("onmouseout", function(){$.DispatchEvent("DOTAHideTextTooltip", talentPanel);});
-	} else { // can be leveled
-		var infoText = ""
-		for(var i = 1; i < valueTable.length; i++){
-			if(valueTable[i] != null){
-				if(i == valueLvl){
-					infoText = infoText + "<b>" + valueTable[i] + adder + "</b>"
-				} else {
-					infoText = infoText + valueTable[i] + adder
-				}
-				if(valueTable[i+1] != null)
-				{
-					infoText = infoText + "/"
-				}
-				if(i % 5 == 0){
-					infoText = infoText + "<br>"
-				}
-			}
-		}
-		talentPanel.SetPanelEvent("onmouseover", function(){$.DispatchEvent("DOTAShowTextTooltip", talentPanel, infoText + description)});
-		talentPanel.SetPanelEvent("onmouseout", function(){$.DispatchEvent("DOTAHideTextTooltip", talentPanel);});
 	}
 }
 
@@ -260,21 +285,7 @@ function LoadOtherLayout()
 	CreateAttributePanel( statsNetTable.mp, MANA_TABLE, "mp", "STATS_TYPE_MANA", "" )
 	CreateAttributePanel( statsNetTable.mpr, MANA_REGEN_TABLE, "mpr", "STATS_TYPE_MANA_REGEN", "" )
 	CreateAttributePanel( statsNetTable.ha, HEAL_AMP_TABLE, "ha", "STATS_TYPE_HEAL_AMP", "%" )
-	
-	var allStats = $.CreatePanel("Panel", statsTypeContainer, "StatsTypeContainerAllStats");
-	allStats.BLoadLayoutSnippet("StatsContainer")
-	var bonusAll = statsNetTable["all"]
-	allStats.FindChildTraverse("StatsTypeLabel").text = $.Localize( "#STATS_TYPE_ALL_STATS", allStats)
-	allStats.FindChildTraverse("StatsTypeLevel").text = "+ " + bonusAll * 2
-
-	allStats.SetPanelEvent("onmouseover", function(){$.DispatchEvent("DOTAShowTextTooltip", allStats, $.Localize( "#STATS_TYPE_ALL_STATS_Description", allStats));});
-	allStats.SetPanelEvent("onmouseout", function(){$.DispatchEvent("DOTAHideTextTooltip", allStats);});
-	
-	if( Entities.GetAbilityPoints( lastRememberedHero ) == 0 || lastRememberedHero != Players.GetPlayerHeroEntityIndex( localID ) ){
-		allStats.FindChildTraverse("StatsTypeButton").SetHasClass("ButtonInactive", true)
-	} else {
-		allStats.FindChildTraverse("StatsTypeButton").SetPanelEvent("onactivate", function(){UpgradeAbility("all")});
-	}
+	CreateAttributePanel( statsNetTable["all"], ALL_STATS, "all", "STATS_TYPE_ALL_STATS", "" )
 }
 
 function LoadUniqueLayout()
@@ -350,12 +361,12 @@ function CreateTalentContainer(levelRequirement, statsTypeContainer, talentsSkil
 	var talent1HasDescription = false
 	var talent2HasDescription = false
 	
-	if( talentRight.talentdescr != ("#DOTA_Tooltip_Ability_" + talent2Name + "_Description") ){
+	if( talentRight.talentdescr != ("DOTA_Tooltip_Ability_" + talent2Name + "_Description") ){
 		talentRight.SetPanelEvent("onmouseover", function(){$.DispatchEvent("DOTAShowTitleTextTooltip", talentRight, talentRight.talentname, talentRight.talentdescr);});
 		talentRight.SetPanelEvent("onmouseout", function(){$.DispatchEvent("DOTAHideTitleTextTooltip", talentRight);});
 		talent2HasDescription = true
 	}
-	if ( talentLeft.talentdescr != ("#DOTA_Tooltip_Ability_" + talent1Name + "_Description") ){
+	if ( talentLeft.talentdescr != ("DOTA_Tooltip_Ability_" + talent1Name + "_Description") ){
 		talentLeft.SetPanelEvent("onmouseover", function(){$.DispatchEvent("DOTAShowTitleTextTooltip", talentLeft, talentLeft.talentname, talentLeft.talentdescr);});
 		talentLeft.SetPanelEvent("onmouseout", function(){$.DispatchEvent("DOTAHideTitleTextTooltip", talentLeft);});
 		talent1HasDescription = true
@@ -415,4 +426,17 @@ function SelectTalent(talent)
 function NotifyTalent(talentInformation)
 {
 	GameEvents.SendCustomGameEventToServer( "notify_selected_talent", {pID : localID, text : talentInformation} )
+}
+
+function GetAttributePoints( entindex )
+{	
+	if(lastRememberedHero == -1 || lastRememberedHero == null){
+		lastRememberedHero = Players.GetPlayerHeroEntityIndex( localID )
+	}
+	var netTable = CustomNetTables.GetTableValue("hero_properties", Entities.GetUnitName( lastRememberedHero ) + lastRememberedHero)
+	if(netTable != null && netTable.attribute_points != null){
+		return netTable.attribute_points
+	} else {
+		return 0
+	}
 }

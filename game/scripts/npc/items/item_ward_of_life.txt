@@ -1,0 +1,132 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Recipe: TITAN Armor
+	//=================================================================================================================
+	"item_recipe_ward_of_life"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"7087"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe_assault"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"350"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_ward_of_life"
+		"ItemRequirements"
+		{
+			"01"						"item_angelic_guard;item_power_core;item_orb_of_vitality"
+		}
+	}
+	//=================================================================================================================
+	// TITAN Armor
+	//=================================================================================================================
+	"item_ward_of_life"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"7088"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_ward_of_life"
+		"AbilityTextureName"			"item_aeon_disk"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemCost"						"1650"
+		"ItemShopTags"					"heal;health;hp;regen"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"aeon disk;ward of life"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		
+		"particle"
+		{
+			"particle"					"particles/items2_fx/mekanism_recipient.vpcf"
+			"particle"					"particles/items2_fx/mekanism.vpcf"
+			"soundfile"					"soundevents/game_sounds_items.vsndevts"
+		}
+	
+		"AbilityCooldown"				"30"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_health_regen"	"3"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_hp"				"600"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_str"				"25"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_int"				"10"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_agi"				"10"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"heal"					"20"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"900"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"block_chance"			"50"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_block"			"50"
+			}
+			"10"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"min_heal"				"350"
+			}
+			"11"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"max_hp_trigger"		"80"
+			}
+			"12"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"buff_duration"			"5"
+			}
+			"13"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"internal_cooldown"		"20"
+			}
+		}
+	}
+}

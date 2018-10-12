@@ -123,11 +123,11 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"40 35 30 25 20 15 10"
+		"AbilityCooldown"				"25"
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"65"
+		"AbilityManaCost"				"65 70 75 80 85 90 95"
 		
 		"precache"
 		{
@@ -144,8 +144,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"link_duration"			"8"
-				"LinkedSpecialBonus"	"special_bonus_unique_razor_static_link_bh_2"
+				"link_duration"			"5"
 			}
 			"02"
 			{
@@ -200,7 +199,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"						"3"
+				"value"						"350"
 			}
 		}
 	}
@@ -248,13 +247,13 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"hit_interval"			"5"
+				"hit_interval"			"7"
 				"LinkedSpecialBonus"	"special_bonus_unique_razor_unstable_current_bh_2"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"slow_duration"			"1 1.25 1.5 1.75 2 2.25 2.5"
+				"slow_duration"			"1.5"
 			}
 		}
 	}
@@ -276,7 +275,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"4"
+				"value"						"16"
 			}
 		}
 	}
@@ -357,6 +356,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"MaxLevel"						"6"
 		"AbilityTextureName"			"razor_eye_of_the_storm"
+		"HasScepterUpgrade"				"1"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -365,7 +365,7 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"80 70 60 50 40 30"
+		"AbilityCooldown"				"50"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -390,7 +390,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"30"		
+				"duration"				"20"		
 			}
 			"03"
 			{
@@ -400,9 +400,15 @@
 			}
 			"04"
 			{
-				"var_type"				"FIELD_INTEGER"
+				"var_type"				"FIELD_FLOAT"
 				"armor_reduction"		"1"
 				"LinkedSpecialBonus"	"special_bonus_unique_razor_eye_of_the_storm_bh_2"	
+			}
+			"03"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"scepter_strike_interval"		"0.8 0.7 0.6 0.5 0.4 0.3"	
+				"LinkedSpecialBonus"			"special_bonus_unique_razor_eye_of_the_storm_bh_1"
 			}
 		}
 	}
@@ -445,8 +451,8 @@
 		{
 			"01"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"2"
+				"var_type"					"FIELD_FLOAT"
+				"value"						"0.5"
 			}
 		}
 	}

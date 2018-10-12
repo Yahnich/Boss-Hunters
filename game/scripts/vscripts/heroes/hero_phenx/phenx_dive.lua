@@ -34,6 +34,14 @@ function phenx_dive:GetCastPoint()
     return self.BaseClass.GetCastPoint(self)
 end
 
+function phenx_dive:GetCooldown(iLvl)
+    if self:GetCaster():HasModifier("modifier_phenx_dive_caster") or self:GetCaster():HasTalent("special_bonus_unique_phenx_dive_1") then
+        return 0
+    end
+
+    return self.BaseClass.GetCooldown(self, iLvl)
+end
+
 function phenx_dive:OnSpellStart()
     local caster = self:GetCaster()
     local point = self:GetCursorPosition()
@@ -42,7 +50,6 @@ function phenx_dive:OnSpellStart()
 
     if caster:HasModifier("modifier_phenx_dive_caster") then
         caster:RemoveModifierByName("modifier_phenx_dive_caster")
-        self:StartCooldown(self:GetTrueCooldown())
         self:RefundManaCost()
     else
         caster:AddNewModifier(caster, self, "modifier_phenx_dive_caster", {Duration = self:GetTalentSpecialValueFor("dash_duration")})
@@ -71,9 +78,9 @@ function modifier_phenx_dive_caster:OnCreated(table)
     end
 end
 
-function modifier_phenx_dive_caster:OnRemoved()
+function modifier_phenx_dive_caster:OnDestroy()
     if IsServer() then
-        self:GetAbility():StartCooldown(self:GetAbility():GetTrueCooldown())
+        self:GetAbility():SetCooldown()
     end
 end
 

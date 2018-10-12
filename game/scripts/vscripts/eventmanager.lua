@@ -23,6 +23,7 @@ function EventManager:SubscribeListener(event, callback)
 end
 
 function EventManager:FireEvent(event, args)
+	print("raid is finished")
 	for id, callback in pairs( PUBLIC_EVENTS[event] ) do
 		status, err, ret = xpcall(callback, debug.traceback, args)
 		if not status  and not self.gameHasBeenBroken then

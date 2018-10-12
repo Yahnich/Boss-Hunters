@@ -1,0 +1,117 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Recipe: TITAN Armor
+	//=================================================================================================================
+	"item_recipe_royal_guardian"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"7057"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"						"item_recipe_arcane_boots"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"425"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_royal_guardian"
+		"ItemRequirements"
+		{
+			"01"						"item_fortress_shield;item_mithril_armor;item_crystal_of_life;item_strange_trinket"
+		}
+	}
+	"item_royal_guardian"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"7058"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/item_royal_guardian"
+		"AbilityTextureName"			"vanguard"
+		"ItemKillable"					"1"
+		"ItemSellable"					"1"
+		"ItemDroppable"					"1"
+		
+		"ItemShopTags"					"damage block;blind;tank;survivability;armor"
+		"ItemQuality"					"epic"
+		"ItemAliases"					"vanguard;royal guardian"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		
+		"AbilityCooldown"				"12"
+		"AbilityManaCost"				"100"
+		
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_items.vsndevts"
+			"particle"					"particles/econ/items/centaur/centaur_ti6_gold/centaur_ti6_warstomp_gold.vpcf"
+		}
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_block"			"150"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"block_chance"			"50"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_health_regen"	"5"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_armor"			"5"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_health"			"500"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_mana"			"500"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"blind"					"40"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"slam_radius"			"250"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"slam_distance"			"400"
+			}
+			"10"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"slam_duration"			"5"
+			}
+			"11"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"armor_damage"			"10"
+			}
+		}
+	}
+}

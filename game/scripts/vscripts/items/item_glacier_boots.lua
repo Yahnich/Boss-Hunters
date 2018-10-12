@@ -21,7 +21,7 @@ function item_glacier_boots:GetIntrinsicModifierName()
 end
 
 LinkLuaModifier( "modifier_item_glacier_boots_toggle", "items/item_glacier_boots.lua" ,LUA_MODIFIER_MOTION_NONE )
-modifier_item_glacier_boots_toggle = class({})
+modifier_item_glacier_boots_toggle = class(itemBaseClass)
 
 function modifier_item_glacier_boots_toggle:OnCreated()
 	self.slow = self:GetSpecialValueFor("active_ms")
@@ -54,7 +54,7 @@ function modifier_item_glacier_boots_toggle:StatusEffectPriority()
 end
 
 LinkLuaModifier( "modifier_item_glacier_boots", "items/item_glacier_boots.lua" ,LUA_MODIFIER_MOTION_NONE )
-modifier_item_glacier_boots = class({})
+modifier_item_glacier_boots = class(itemBaseClass)
 function modifier_item_glacier_boots:OnCreated()
 	self.radius = self:GetSpecialValueFor("radius")
 	self.ms = self:GetSpecialValueFor("bonus_ms")
@@ -121,13 +121,13 @@ modifier_glacier_boots_debuff = class({})
 function modifier_glacier_boots_debuff:OnCreated()
 	self.attackslow = self:GetAbility():GetSpecialValueFor("aura_slow")
 	self.active_attackslow = self:GetAbility():GetSpecialValueFor("active_as")
-	self.active_moveslow = self:GetAbility():GetSpecialValueFor("active_ms")
+	self.active_moveslow = self:GetAbility():GetSpecialValueFor("aura_slow")
 end
 
 function modifier_glacier_boots_debuff:OnRefresh()
 	self.attackslow = self:GetAbility():GetSpecialValueFor("aura_slow")
 	self.active_attackslow = self:GetAbility():GetSpecialValueFor("active_as")
-	self.active_moveslow = self:GetAbility():GetSpecialValueFor("active_ms")
+	self.active_moveslow = self:GetAbility():GetSpecialValueFor("aura_slow")
 end
 
 function modifier_glacier_boots_debuff:DeclareFunctions()

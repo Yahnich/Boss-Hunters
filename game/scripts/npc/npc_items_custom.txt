@@ -47,7 +47,7 @@
 #base "items/item_dark_ones_blessing.txt"
 #base "items/item_gem_of_inner_power.txt"
 #base "items/item_incandescance.txt"
-#base "items/item_frostbite.txt"
+// #base "items/item_frostbite.txt"
 #base "items/item_glacier_boots.txt"
 #base "items/item_blade_of_agility.txt"
 #base "items/item_ogre_club.txt"
@@ -67,7 +67,6 @@
 #base "items/item_wrathbearers_robes.txt"
 
 #base "items/item_arcane_accelerator.txt"
-#base "items/item_mantle_of_fallen.txt"
 #base "items/item_leechblade.txt"
 #base "items/item_lazarus_rags.txt"
 #base "items/item_memento.txt"
@@ -87,7 +86,7 @@
 #base "items/item_flashback.txt"
 #base "items/item_gauntlet_of_the_void.txt"
 #base "items/item_warp_staff.txt"
-#base "items/item_emission.txt"
+// #base "items/item_emission.txt"
 #base "items/item_thanatos.txt"
 #base "items/item_trebuchet.txt"
 
@@ -124,12 +123,28 @@
 #base "items/item_winters_breath.txt"
 #base "items/item_blade_of_dominion.txt"
 
+#base "items/item_essence_piercer.txt"
+#base "items/item_penumbra.txt"
+#base "items/item_royal_guardian.txt"
+#base "items/item_valiant_locket.txt"
+#base "items/item_rapture.txt"
+#base "items/item_antique_battlestaff.txt"
+
+#base "items/item_keshas_booze_barrel.txt"
+#base "items/item_presence_booster.txt"
+#base "items/item_lifeweavers_clockwork.txt"
+#base "items/item_lucys_ring.txt"
+#base "items/item_boomstick.txt"
+#base "items/item_ferrum_ascensus.txt"
 
 // #base "items/item_illusionists_charm.txt"
 // #base "items/item_tricksters_blade.txt"
 // #base "items/item_mirrors_edge.txt"
 
-// Next ID is 7053
+#base "items/item_protection_sphere.txt"
+#base "items/item_ward_of_life.txt"
+
+// Next ID is 7089
 
 "DOTAAbilities"
 {

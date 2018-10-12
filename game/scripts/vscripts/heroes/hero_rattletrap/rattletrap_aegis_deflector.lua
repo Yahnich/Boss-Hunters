@@ -47,9 +47,21 @@ end
 function modifier_rattletrap_aegis_deflector_passive:OnTakeDamage( params )
 	if params.attacker and params.unit == self:GetParent() and RollPercentage( self.chance ) then
 		self:GetAbility():AegisProc(params.attacker, true)
+		if self:GetParent():HasScepter() then
+			local nade = self:GetParent():FindAbilityByName("rattletrap_rocket_flare_ebf")
+			if nade then
+				nade:FireFlashbang( params.attacker:GetAbsOrigin() )
+			end
+		end
 	end
 	if not params.inflictor and self:GetParent():HasTalent("special_bonus_unique_rattletrap_aegis_deflector_1") and params.attacker == self:GetParent() and RollPercentage( self:GetParent():FindTalentValue("special_bonus_unique_rattletrap_aegis_deflector_1") ) then
 		self:GetAbility():AegisProc(params.unit, false)
+		if self:GetParent():HasScepter() then
+			local nade = self:GetParent():FindAbilityByName("rattletrap_rocket_flare_ebf")
+			if nade then
+				nade:FireFlashbang( params.unit:GetAbsOrigin() )
+			end
+		end
 	end
 end
 

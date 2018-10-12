@@ -5,7 +5,7 @@ function item_soldiers_pike:GetIntrinsicModifierName()
 	return "modifier_item_soldiers_pike"
 end
 
-modifier_item_soldiers_pike = class({})
+modifier_item_soldiers_pike = class(itemBaseClass)
 
 function modifier_item_soldiers_pike:OnCreated()
 	self.range = self:GetSpecialValueFor("bonus_range")
@@ -30,12 +30,4 @@ function modifier_item_soldiers_pike:GetModifierAttackRangeBonus()
 	if self:GetParent():IsRangedAttacker() then
 		return self.range
 	end
-end
-
-function modifier_item_soldiers_pike:IsHidden()
-	return true
-end
-
-function modifier_item_soldiers_pike:GetAttributes()
-	return MODIFIER_ATTRIBUTE_MULTIPLE
 end

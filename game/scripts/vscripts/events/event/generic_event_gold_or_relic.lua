@@ -1,6 +1,7 @@
 local function CheckPlayerChoices(self)
-	for pID, choice in pairs( self._playerChoices ) do
-		if not choice then
+	for _, hero in ipairs( HeroList:GetActiveHeroes() ) do
+		local pID = hero:GetPlayerID()
+		if pID and not self._playerChoices[pID] then
 			return false
 		end
 	end
@@ -39,15 +40,16 @@ local function ThirdChoice(self, userid, event)
 		local relic = ""
 		local roll = RandomInt(1, 5)
 		if roll == 1 then
-			relic = self:RollRandomUniqueRelicForPlayer(event.pID)
+			relic = RelicManager:RollRandomUniqueRelicForPlayer(event.pID)
 		elseif roll == 2 then
-			relic = self:RollRandomCursedRelicForPlayer(event.pID)
+			relic = RelicManager:RollRandomCursedRelicForPlayer(event.pID)
 		else
-			relic = self:RollRandomGenericRelicForPlayer(event.pID)
+			relic = RelicManager:RollRandomGenericRelicForPlayer(event.pID)
 		end
 		table.insert(relicTable, relic)
-		
-		RelicManager:PushCustomRelicDropsForPlayer(event.pID, relicTable)
+		if #relicTable > 0 then
+			RelicManager:PushCustomRelicDropsForPlayer(event.pID, relicTable)
+		end
 		hero:AddGold(1500)
 	end
 	self._playerChoices[event.pID] = true
@@ -74,11 +76,7 @@ local function StartEvent(self)
 	end)
 	
 	self._playerChoices = {}
-	for i = 0, GameRules.BasePlayers do
-		if PlayerResource:IsValidPlayerID(i) and PlayerResource:GetPlayer(i) then
-			self._playerChoices[i] = false
-		end
-	end
+
 	LinkLuaModifier("event_buff_divine_knowledge_1", "events/modifiers/event_buff_divine_knowledge", LUA_MODIFIER_MOTION_NONE)
 	LinkLuaModifier("event_buff_divine_knowledge_2", "events/modifiers/event_buff_divine_knowledge", LUA_MODIFIER_MOTION_NONE)
 	LinkLuaModifier("event_buff_divine_knowledge_3", "events/modifiers/event_buff_divine_knowledge", LUA_MODIFIER_MOTION_NONE)

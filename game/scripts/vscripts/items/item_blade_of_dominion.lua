@@ -29,6 +29,11 @@ function modifier_item_blade_of_dominion_stats:OnCreated()
 	self.chance = self:GetAbility():GetSpecialValueFor("block_chance")
 	self.hp_regen = self:GetAbility():GetSpecialValueFor("bonus_health_regen")
 	self.spell_amp = self:GetAbility():GetSpecialValueFor("bonus_spell_amp")
+	self.radius = self:GetAbility():GetSpecialValueFor("radius")
+	if IsServer() then self:GetAbility():OnToggle() end
+end
+
+function modifier_item_blade_of_dominion_stats:OnDestroy()
 	if IsServer() then self:GetAbility():OnToggle() end
 end
 
@@ -173,7 +178,7 @@ end
 
 function modifier_blade_of_dominion_buff:OnIntervalThink()
 	local heal = self:GetParent():HealEvent( self.heal, self:GetAbility(), self:GetCaster() )
-	if heal > 0 then self:GetCaster():SpendMana( self.cost, self:GetParent()) end
+	if heal > 0 then self:GetCaster():SpendMana( self.cost, self:GetAbility()) end
 end
 
 function modifier_blade_of_dominion_buff:GetEffectName()

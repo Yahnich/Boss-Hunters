@@ -44,7 +44,7 @@
 			"03"
 	        {
 	            "var_type"                      "FIELD_INTEGER"
-	            "damage"     					"40"
+	            "damage"     					"35"
 	        }
 	        "02"
 	        {
@@ -140,7 +140,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"bosses/boss_troll_warlord/boss_troll_warlord_mystic_axes.lua"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
 		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
@@ -162,7 +162,7 @@
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"50"
+		"AbilityManaCost"				"25"
 	
 		"precache"
 		{
@@ -176,27 +176,27 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
-	        "02"
+	        "01"
 	        {
 	            "var_type"                      "FIELD_INTEGER"
 	            "spin_radius"     				"350"
 	        }
-	        "04"
+	        "02"
 	        {
 	            "var_type"                      "FIELD_INTEGER"
 	            "axe_radius"     				"100"
 	        }
-	        "05"
+	        "03"
 	        {
 	            "var_type"                      "FIELD_INTEGER"
-	            "damage"     					"200"
+	            "damage"     					"400"
 	        }
-	        "02"
+	        "04"
 	        {
 	            "var_type"                      "FIELD_FLOAT"
-	            "duration"     					"40"
+	            "duration"     					"60"
 	        }
-	        "02"
+	        "05"
 	        {
 	            "var_type"                      "FIELD_INTEGER"
 	            "axe_number"     				"2"
@@ -237,12 +237,12 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
-	        "02"
+	        "01"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"radius"				"100"
 			}
-			"03"
+			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"range"					"1500"
@@ -251,6 +251,11 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"speed"					"1500 2000"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"200"
 			}
 		}
 	}

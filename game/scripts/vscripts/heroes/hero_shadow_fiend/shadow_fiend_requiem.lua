@@ -1,6 +1,5 @@
 shadow_fiend_requiem = class({})
 LinkLuaModifier( "modifier_shadow_fiend_requiem","heroes/hero_shadow_fiend/shadow_fiend_requiem.lua",LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "modifier_shadow_fiend_requiem_passive","heroes/hero_shadow_fiend/shadow_fiend_requiem.lua",LUA_MODIFIER_MOTION_NONE )
 
 function shadow_fiend_requiem:OnAbilityPhaseStart()
 	EmitSoundOn("Hero_Nevermore.RequiemOfSoulsCast", self:GetCaster())
@@ -15,8 +14,6 @@ function shadow_fiend_requiem:OnSpellStart()
 	StopSoundOn("Hero_Nevermore.RequiemOfSoulsCast", caster)
 
 	caster:RemoveModifierByName("modifier_phased")
-
-	self.damage = self:GetTalentSpecialValueFor("damage")
 
 	self:ReleaseSouls()
 end
@@ -39,8 +36,8 @@ function shadow_fiend_requiem:ReleaseSouls(bDeath)
 		souls = modifier:GetStackCount()
 	end
 	
-	self.damage = ( self.damage or self:GetTalentSpecialValueFor("damage") ) * souls
-	local projectiles = math.floor(necromastery:GetTalentSpecialValueFor("max_souls") / 2)
+	self.damage = self:GetTalentSpecialValueFor("damage") * souls
+	local projectiles = 18
 	if bDeath then projectiles = math.floor(projectiles) / 2 end
 	
 	ParticleManager:FireParticle("particles/units/heroes/hero_nevermore/nevermore_requiemofsouls_a.vpcf", PATTACH_ABSORIGIN, caster, {[1]=Vector(projectiles, 0, 0),[2]=caster:GetAbsOrigin()})
@@ -48,8 +45,8 @@ function shadow_fiend_requiem:ReleaseSouls(bDeath)
 
 	local angle = 360/projectiles
 
-	if caster:FindAbilityByName("shadow_fiend_necro"):GetToggleState() then
-		local cost = self:GetTalentSpecialValueFor("soul_cost")
+	if caster:FindAbilityByName("shadow_fiend_necro"):GetToggleState() or caster:HasScepter() then
+		local cost = TernaryOperator( 0, caster:HasScepter(), self:GetTalentSpecialValueFor("soul_cost") )
 		local newStackCount = modifier:GetStackCount() - cost
 		modifier:SetStackCount(newStackCount)
 		if modifier:GetStackCount() < 1 then caster:RemoveModifierByName("modifier_shadow_fiend_necro") end

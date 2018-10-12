@@ -60,6 +60,10 @@ function modifier_item_dust_of_stasis_stasis:IsDebuff()
 	return true
 end
 
+function modifier_item_dust_of_stasis_stasis:IsPurgable()
+	return false
+end
+
 function modifier_item_dust_of_stasis_stasis:GetTexture()
 	return "item_dust"
 end

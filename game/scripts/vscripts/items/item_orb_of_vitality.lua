@@ -8,7 +8,7 @@ function item_orb_of_vitality:OnSpellStart()
 	self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_item_orb_of_vitality_active", {duration = self:GetSpecialValueFor("duration")})
 end
 
-modifier_item_orb_of_vitality_passive = class({})
+modifier_item_orb_of_vitality_passive = class(itemBaseClass)
 LinkLuaModifier("modifier_item_orb_of_vitality_passive", "items/item_orb_of_vitality", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_item_orb_of_vitality_passive:OnCreated()
@@ -16,10 +16,6 @@ function modifier_item_orb_of_vitality_passive:OnCreated()
 	self.hpPerStr = self:GetSpecialValueFor("hp_per_str")
 	self.bonusHP = self:GetSpecialValueFor("bonus_health")
 	self.stat = self:GetSpecialValueFor("bonus_strength")
-end
-
-function modifier_item_orb_of_vitality_passive:IsHidden()
-	return true
 end
 
 function modifier_item_orb_of_vitality_passive:DeclareFunctions()
@@ -39,8 +35,4 @@ end
 
 function modifier_item_orb_of_vitality_passive:GetModifierConstantHealthRegen()
 	return self.regen
-end
-
-function modifier_item_orb_of_vitality_passive:GetAttributes()
-	return MODIFIER_ATTRIBUTE_MULTIPLE
 end

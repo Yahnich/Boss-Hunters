@@ -5,7 +5,7 @@ function item_ice_fang:GetIntrinsicModifierName()
 	return "modifier_item_ice_fang"
 end
 
-modifier_item_ice_fang = class({})
+modifier_item_ice_fang = class(itemBaseClass)
 function modifier_item_ice_fang:DeclareFunctions()
 	return {MODIFIER_EVENT_ON_ATTACK_LANDED}
 end

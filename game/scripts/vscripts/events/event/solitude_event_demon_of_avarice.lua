@@ -1,6 +1,7 @@
 local function CheckPlayerChoices(self)
-	for pID, choice in pairs( self._playerChoices ) do
-		if not choice then
+	for _, hero in ipairs( HeroList:GetActiveHeroes() ) do
+		local pID = hero:GetPlayerID()
+		if pID and not self._playerChoices[pID] then
 			return false
 		end
 	end
@@ -17,7 +18,7 @@ local function StartCombat(self)
 	self.eventEnded = true
 	self.combatEnded = false
 	local START_VECTOR = self:GetHeroSpawnPosition()
-	
+	self.eventType = EVENT_TYPE_COMBAT
 	self.timeRemaining = 30
 	
 	self.demon = CreateUnitByName("npc_dota_money_roshan", START_VECTOR, true, nil, nil, DOTA_TEAM_BADGUYS)
@@ -57,11 +58,6 @@ local function StartEvent(self)
 	end)
 	
 	self._playerChoices = {}
-	for i = 0, GameRules.BasePlayers do
-		if PlayerResource:IsValidPlayerID(i) and PlayerResource:GetPlayer(i) then
-			self._playerChoices[i] = false
-		end
-	end
 end
 
 local function EndEvent(self, bWon)

@@ -2,9 +2,9 @@ modifier_silence_generic = class({})
 
 if IsServer() then
 	function modifier_silence_generic:OnCreated(kv)
-		if kv.delay ~= nil or toboolean(kv.delay) == true then
+		if toboolean(kv.delay) == true then
 			self.delay = true
-			self:GetAbility():StartDelayedCooldown(self:GetRemainingTime(), false)
+			self:GetAbility():StartDelayedCooldown()
 		end
 	end
 	
@@ -29,6 +29,9 @@ function modifier_silence_generic:GetAttributes()
 	return MODIFIER_ATTRIBUTE_MULTIPLE
 end
 
+function modifier_silence_generic:IsHidden()
+	return false
+end
 
 function modifier_silence_generic:CheckState()
 	local state = { [MODIFIER_STATE_SILENCED] = true}

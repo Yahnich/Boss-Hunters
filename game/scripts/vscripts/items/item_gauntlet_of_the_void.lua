@@ -1,7 +1,9 @@
 item_gauntlet_of_the_void = class({})
+LinkLuaModifier( "modifier_item_arcane_reaver_active", "items/item_arcane_reaver.lua" ,LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_item_arcane_reaver_debuff", "items/item_arcane_reaver.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 function item_gauntlet_of_the_void:GetAbilityTextureName()
-	if self:GetCaster():HasModifier("modifier_item_gauntlet_of_the_void_active") then
+	if self:GetCaster():HasModifier("modifier_item_arcane_reaver_active") then
 		return "custom/gauntlet_of_the_void_on"
 	else
 		return "custom/gauntlet_of_the_void_off"
@@ -15,49 +17,9 @@ end
 function item_gauntlet_of_the_void:OnToggle()
 	local caster = self:GetCaster()
 	if self:GetToggleState() then
-		caster:AddNewModifier(caster, self, "modifier_item_gauntlet_of_the_void_active", {})
+		caster:AddNewModifier(caster, self, "modifier_item_arcane_reaver_active", {})
 	else
-		caster:RemoveModifierByName("modifier_item_gauntlet_of_the_void_active")
-	end
-end
-
-modifier_item_gauntlet_of_the_void_active = class({})
-LinkLuaModifier( "modifier_item_gauntlet_of_the_void_active", "items/item_gauntlet_of_the_void.lua" ,LUA_MODIFIER_MOTION_NONE )
-
-function modifier_item_gauntlet_of_the_void_active:GetTexture()
-	return "custom/gauntlet_of_the_void_on"
-end
-
-function modifier_item_gauntlet_of_the_void_active:OnCreated()
-	self.dmgPct = self:GetSpecialValueFor("minus_damage")
-	
-	self.onHitDmg = self:GetSpecialValueFor("damage_pct") / 100
-	self.manaBurn = self:GetSpecialValueFor("mana_on_hit")
-	self.duration = self:GetSpecialValueFor("debuff_duration")
-end
-
-function modifier_item_gauntlet_of_the_void_active:DeclareFunctions()
-	return {MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE,
-			MODIFIER_EVENT_ON_ATTACK_LANDED,
-			MODIFIER_EVENT_ON_ATTACK,
-			
-			}
-end
-
-function modifier_item_gauntlet_of_the_void_active:GetModifierDamageOutgoing_Percentage()
-	return self.dmgPct
-end
-
-function modifier_item_gauntlet_of_the_void_active:OnAttackLanded(params)
-	if params.attacker == self:GetParent() then
-		self:GetAbility():DealDamage(params.attacker, params.target, self.onHitDmg * params.attacker:GetPrimaryStatValue(), {damage_type = DAMAGE_TYPE_MAGICAL} )
-		params.target:AddNewModifier(params.attacker, self:GetAbility(), "modifier_item_gauntlet_of_the_void_debuff", {duration = self.duration})
-	end
-end
-
-function modifier_item_gauntlet_of_the_void_active:OnAttack(params)
-	if params.attacker == self:GetParent() then
-		params.attacker:SpendMana(self.manaBurn, self:GetAbility())
+		caster:RemoveModifierByName("modifier_item_arcane_reaver_active")
 	end
 end
 
@@ -76,16 +38,17 @@ function modifier_item_gauntlet_of_the_void_debuff:GetModifierMagicalResistanceB
 	return self.mr
 end
 
-modifier_item_gauntlet_of_the_void = class({})
+modifier_item_gauntlet_of_the_void = class(itemBaseClass)
 LinkLuaModifier( "modifier_item_gauntlet_of_the_void", "items/item_gauntlet_of_the_void.lua" ,LUA_MODIFIER_MOTION_NONE )
 function modifier_item_gauntlet_of_the_void:OnCreated()
 	self.mr = self:GetSpecialValueFor("bonus_mana_regen")
 	self.intellect = self:GetSpecialValueFor("bonus_intellect")
 	self.lifesteal = self:GetSpecialValueFor("lifesteal") / 100
+	self.mLifesteal = self:GetSpecialValueFor("mob_lifesteal") / 100
 end
 
 function modifier_item_gauntlet_of_the_void:OnDestroy()
-	self:GetCaster():RemoveModifierByName("modifier_item_gauntlet_of_the_void_active")
+	if IsServer() then self:GetAbility():OnToggle() end
 end
 
 function modifier_item_gauntlet_of_the_void:DeclareFunctions()
@@ -95,9 +58,15 @@ function modifier_item_gauntlet_of_the_void:DeclareFunctions()
 end
 
 function modifier_item_gauntlet_of_the_void:OnTakeDamage(params)
-	if params.attacker == self:GetParent() and params.unit ~= self:GetParent() and self:GetParent():GetHealth() > params.damage and not ( HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_HPLOSS) or HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION) or HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_NO_SPELL_LIFESTEAL) ) then
-		local flHeal = params.damage * self.lifesteal
-		if params.inflictor then ParticleManager:FireParticle("particles/items3_fx/octarine_core_lifesteal.vpcf", PATTACH_ABSORIGIN_FOLLOW, self) end
+	if params.attacker == self:GetParent() and params.unit ~= self:GetParent() and self:GetParent():GetHealth() > 0 and not ( HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_HPLOSS) or HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION) or HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_NO_SPELL_LIFESTEAL) ) then
+		local lifesteal = self.lifesteal
+		if params.inflictor then 
+			ParticleManager:FireParticle("particles/items3_fx/octarine_core_lifesteal.vpcf", PATTACH_ABSORIGIN_FOLLOW, self)
+			if not params.unit:IsRoundBoss() then
+				lifesteal = self.mLifesteal
+			end
+		end
+		local flHeal = params.damage * lifesteal
 		params.attacker:HealEvent(flHeal, self:GetAbility(), params.attacker)
 	end
 end

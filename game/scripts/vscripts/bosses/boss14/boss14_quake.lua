@@ -14,6 +14,8 @@ function boss14_quake:OnSpellStart()
 	EmitSoundOn("Hero_Axe.BerserkersCall.Item.Shoutmask", caster)
 	local enemies = caster:FindEnemyUnitsInRadius(position, radius)
 	for _, enemy in ipairs(enemies) do
-		enemy:AddNewModifier(caster, self, "modifier_stunned_generic", {duration = self:GetSpecialValueFor("duration")})
+		if not enemy:TriggerSpellAbsorb(self) then
+			enemy:AddNewModifier(caster, self, "modifier_stunned_generic", {duration = self:GetSpecialValueFor("duration")})
+		end
 	end
 end

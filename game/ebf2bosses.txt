@@ -1,5 +1,3 @@
-rework priorities: necro, wk, ogres, doom
-
 Wave3 - Legion Commander
 mostly unchanged but turn all abilities to lua and add following
 Dueling Zone - Small AOE, buffs LC's damage and armor
@@ -49,8 +47,6 @@ Ogre King - Has the big AOE smash, cooldown lowered but radius also massively lo
 
 Baby Oges - Fodder, no abilities
 
-12b:
-Troll Warlord - mostly unchanged
 
 boss13 - Trees
 
@@ -61,35 +57,3 @@ Leech seed would only deal damage if they heal
 
 Treants - Purely fodder
 
-
-round17 - skellington man
-
-Wraith King: Has AOE wraithfire blast (linear projectiles ofc), upon death will turn into a tombstone that needs to be attacked 16 times in 10 seconds or he'll resurrect, can spawn Clinkz and big skeletons
-can no longer turn himself magic immune
-Clinkz - Same as before, but focus fire is changed to be like Sylph's rapid fire, instead of boosting attackspeed will send a flurry of linear projectiles towards the target point (no spread)
-Skeleton Heavy - Can stomp the ground around them, radius decreased significantly, no longer spawn mini skeletons
-
-round20 - Warlock golem
-
-Hellkeeper: Removed, is the same as warlock just without having to be spawned in or the meteor
-
-Warlock: Same as before, but can cast some actual spells holy shit i know
-can curse the ground, making anyone that stands in it take damage, can channel upheaval, but his upheaval deals minor damage as well as a slow (tries to combo curse + upheaval)
-Warlock Golem, mostly the same; but this time the heal disable meteor is a dodgeable ability and the fire wave no longer instakills you, just deal massive damage and also disables healing
-
-
--------------------------------------------------------------------------
-Aeon:
-Passives:
-Time Acceleration - Every second, Aeon gains 1% bonus movement speed and 1 attack speed.
-Distortion Field - After casting 5 abilities, all of your abilities will be put on a 20 second cooldown.
-Flashback - Upon taking more than 5% current hp in damage, Aeon will evade that instance of damage. This effect can only happen once every 13/12s
-
-Actives:
-Chronal Sphere - Aeon creates a growing bubble, stunning any enemy units caught in the sphere.
-Sins of the Past - Aeon creates an illusion of an enemy hero, as long as this illusion exists Aeon takes no damage. Illusion deals 100% damage and takes 100% damage.
-Rewind - Summons 3 random previous bosses; only 3 bosses can exist; Aeon is invulnerable during that time and is silenced
-Fetal Syndrome - Targets the person dealing the most damage, this unit will deal 75% less damage for 10 seconds.
-Deteriorate - Applies a debuff that makes all enemies in the aoe lose 1 armor per second for 60 seconds, 160s cooldown. Unpurgeable
-
-All of these to lua

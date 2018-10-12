@@ -1,6 +1,7 @@
 local function CheckPlayerChoices(self)
-	for pID, choice in pairs( self._playerChoices ) do
-		if not choice then
+	for _, hero in ipairs( HeroList:GetActiveHeroes() ) do
+		local pID = hero:GetPlayerID()
+		if pID and not self._playerChoices[pID] then
 			return false
 		end
 	end
@@ -49,11 +50,7 @@ local function StartEvent(self)
 	end)
 	
 	self._playerChoices = {}
-	for i = 0, GameRules.BasePlayers do
-		if PlayerResource:IsValidPlayerID(i) and PlayerResource:GetPlayer(i) then
-			self._playerChoices[i] = false
-		end
-	end
+	
 	LinkLuaModifier("event_buff_divine_knowledge_1", "events/modifiers/event_buff_divine_knowledge", LUA_MODIFIER_MOTION_NONE)
 	LinkLuaModifier("event_buff_divine_knowledge_2", "events/modifiers/event_buff_divine_knowledge", LUA_MODIFIER_MOTION_NONE)
 	LinkLuaModifier("event_buff_divine_knowledge_3", "events/modifiers/event_buff_divine_knowledge", LUA_MODIFIER_MOTION_NONE)

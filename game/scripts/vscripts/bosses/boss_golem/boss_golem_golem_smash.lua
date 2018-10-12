@@ -13,7 +13,9 @@ function boss_golem_golem_smash:OnSpellStart()
 	ParticleManager:FireParticle("particles/units/heroes/hero_centaur/centaur_warstomp.vpcf", PATTACH_ABSORIGIN, caster, {[1] = Vector(radius, 1, 1)})
 	EmitSoundOn("Ability.TossImpact", caster)
 	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), radius ) ) do
-		self:DealDamage(caster, enemy, damage)
+		if not enemy:TriggerSpellAbsorb(self) then
+			self:DealDamage(caster, enemy, damage)
+		end
 	end
 end
 

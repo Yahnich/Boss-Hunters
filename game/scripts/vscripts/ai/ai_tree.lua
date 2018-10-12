@@ -28,9 +28,8 @@ function AIThink(thisEntity)
 				TargetIndex = thisEntity:entindex(),
 				AbilityIndex = thisEntity.armor:entindex()
 			})
-			return 0.25
+			return thisEntity.armor:GetCastPoint()
 		end
-		AICore:AttackHighestPriority( thisEntity )
-		return 0.25
-	else return 0.25 end
+		return AICore:AttackHighestPriority( thisEntity )
+	else return AI_THINK_RATE end
 end
