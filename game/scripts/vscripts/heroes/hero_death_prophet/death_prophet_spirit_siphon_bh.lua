@@ -1,0 +1,1 @@
+death_prophet_spirit_siphon_bh = class({})

@@ -29,9 +29,8 @@ function boss_necro_guillotine:CreateGuillotine( enemy )
 	local kill_threshold = self:GetSpecialValueFor("kill_threshold")
 	local duration = self:GetSpecialValueFor("duration")
 	
-	local sFX = ParticleManager:CreateParticle("particles/units/heroes/hero_necrolyte/necrolyte_scythe_start.vpcf", PATTACH_WORLDORIGIN, caster)
-	ParticleManager:SetParticleControl(sFX, 1, position)
-	
+	ParticleManager:FireParticle("particles/units/heroes/hero_necrolyte/necrolyte_scythe_start.vpcf", PATTACH_WORLDORIGIN, caster, {[1] = position})
+
 	ParticleManager:FireWarningParticle(position, radius)
 	
 	Timers:CreateTimer(1.5, function()

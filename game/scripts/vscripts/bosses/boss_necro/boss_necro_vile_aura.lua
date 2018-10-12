@@ -20,6 +20,10 @@ end
 function modifier_boss_necro_vile_aura:OnIntervalThink()
 	local parent = self:GetParent()
 	local position = parent:GetAbsOrigin() + ActualRandomVector(600, 250)
+	if parent:IsStunned() or parent:IsSilenced() or parent:IsRooted() then
+		self:StartIntervalThink( 0.5 )
+		return
+	end
 	if RollPercentage(50) then -- random position
 		if parent:GetTauntTarget() then
 			position = parent:GetTauntTarget():GetAbsOrigin() + ActualRandomVector(600, 250)

@@ -36,7 +36,11 @@ function modifier_necrophos_ghost_shroud_bh:CheckState()
 end
 
 function modifier_necrophos_ghost_shroud_bh:DeclareFunctions()
-	return {MODIFIER_EVENT_ON_ATTACK_LANDED, MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL, MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS}
+	return {MODIFIER_EVENT_ON_ATTACK_LANDED, 
+			MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL, 
+			MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
+			MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE,
+			MODIFIER_PROPERTY_MP_REGEN_AMPLIFY_PERCENTAGE,}
 end
 
 function modifier_necrophos_ghost_shroud_bh:OnAttackLanded(params)
@@ -54,6 +58,14 @@ function modifier_necrophos_ghost_shroud_bh:GetModifierMagicalResistanceBonus()
 end
 
 function modifier_necrophos_ghost_shroud_bh:GetModifierHealAmplify_Percentage()
+	return self.heal_amp
+end
+
+function modifier_necrophos_ghost_shroud_bh:GetModifierHPRegenAmplify_Percentage()
+	return self.heal_amp
+end
+
+function modifier_necrophos_ghost_shroud_bh:GetModifierMPRegenAmplify_Percentage()
 	return self.heal_amp
 end
 

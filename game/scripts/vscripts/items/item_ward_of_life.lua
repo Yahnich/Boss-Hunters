@@ -67,8 +67,12 @@ end
 function modifier_item_ward_of_life:GetModifierTotal_ConstantBlock(params)
 	local trigger = self:GetParent():GetMaxHealth() * self.trigger / 100
 	if not self:GetParent():HasModifier("modifier_item_ward_of_life_cd") and self:GetParent():GetHealth() - params.damage <= trigger then
-		self:GetParent():AddNewModifier( self:GetParent(), self:GetAbility(), "modifier_item_ward_of_life_cd", {duration = self.cd * self:GetParent():GetCooldownReduction()} )
-		self:GetParent():AddNewModifier( self:GetParent(), self:GetAbility(), "modifier_item_ward_of_life_protection", {duration = self.duration } )
+		local buff = self:GetParent():AddNewModifier( self:GetParent(), self:GetAbility(), "modifier_item_ward_of_life_protection", {duration = self.duration } )
+		local cd = self:GetParent():AddNewModifier( self:GetParent(), self:GetAbility(), "modifier_item_ward_of_life_cd", {duration = self.duration + self.cd * self:GetParent():GetCooldownReduction() } )
+		if cd and buff then
+			cd:SetDuration( buff:GetRemainingTime + self.cd * self:GetParent():GetCooldownReduction(), true )
+		end
+		
 		local difference = trigger - ( self:GetParent():GetHealth() - params.damage )
 		return difference
 	end
@@ -91,16 +95,6 @@ end
 
 modifier_item_ward_of_life_cd = class({})
 LinkLuaModifier( "modifier_item_ward_of_life_cd", "items/item_ward_of_life.lua", LUA_MODIFIER_MOTION_NONE )
-
-if IsServer() then
-	function modifier_item_ward_of_life_cd:OnCreated()
-		self:GetAbility():StartDelayedCooldown()
-	end
-	
-	function modifier_item_ward_of_life_cd:OnDestroy()
-		self:GetAbility():EndDelayedCooldown()
-	end
-end
 
 function modifier_item_ward_of_life_cd:IsPurgable()
 	return false

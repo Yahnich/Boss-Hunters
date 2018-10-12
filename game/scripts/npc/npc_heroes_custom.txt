@@ -384,27 +384,40 @@
 	//=================================================================================================================
 	"npc_dota_hero_death_prophet_ebf"
 	{
-		"override_hero"			"npc_dota_hero_death_prophet"
-		"Ability2"					"death_prophet_weaken_silence"
+		"override_hero"					"npc_dota_hero_death_prophet"
+		"Ability1"						"death_prophet_crypt_swarm_bh"
+		"Ability2"						"death_prophet_ghastly_haunting"
+		"Ability3"						"death_prophet_spirit_siphon_bh"					// Ability 3
+		"Ability4"						"death_prophet_exorcism_bh"
 		
+		"Ability10"						"special_bonus_unique_death_prophet_crypt_swarm_1"
+		"Ability11"						"special_bonus_unique_death_prophet_crypt_swarm_2"
+		"Ability12"						"special_bonus_unique_death_prophet_ghastly_haunting_1"
+		"Ability13"						"special_bonus_unique_death_prophet_ghastly_haunting_2"
+		"Ability14"						"special_bonus_unique_death_prophet_spirit_siphon_1"
+		"Ability15"						"special_bonus_unique_death_prophet_spirit_siphon_2"
+		"Ability16"						"special_bonus_unique_death_prophet_exorcism_1"
+		"Ability17"						"special_bonus_unique_death_prophet_exorcism_2"
 	}
 	//=================================================================================================================
 	// HERO: Disraptor
 	//=================================================================================================================
 	"npc_dota_hero_disruptor_ebf"
 	{
-		"override_hero"			"npc_dota_hero_disruptor"
-		"Ability2"					"disruptor_tesla_field"					// Ability 3
-		"Ability3"					"disruptor_kinetic_charge"
+		"override_hero"					"npc_dota_hero_disruptor"
+		"Ability1"						"disruptor_thunder_strike_bh"
+		"Ability2"						"disruptor_kinetic_charge"
+		"Ability3"						"disruptor_tesla_field"					// Ability 3
+		"Ability4"						"disruptor_static_storm_bh"
 		
-		"Ability10"		"special_bonus_hp_200"
-		"Ability11"		"special_bonus_unique_disruptor_3"
-		"Ability12"		"special_bonus_cast_range_150"
-		"Ability13"		"special_bonus_cooldown_reduction_12"
-		"Ability14"		"special_bonus_spell_amplify_8"
-		"Ability15"		"special_bonus_unique_disruptor"
-		"Ability16"		"special_bonus_unique_disruptor_4"
-		"Ability17"		"special_bonus_unique_disruptor_5"
+		"Ability10"						"special_bonus_unique_disruptor_thunder_strike_1"
+		"Ability11"						"special_bonus_unique_disruptor_thunder_strike_2"
+		"Ability12"						"special_bonus_unique_disruptor_kinetic_charge_1"
+		"Ability13"						"special_bonus_unique_disruptor_kinetic_charge_2"
+		"Ability14"						"special_bonus_unique_disruptor_tesla_field_1"
+		"Ability15"						"special_bonus_unique_disruptor_tesla_field_2"
+		"Ability16"						"special_bonus_unique_disruptor_static_storm_1"
+		"Ability17"						"special_bonus_unique_disruptor_static_storm_2"
 		
 	}
 	// =================================================================================================================

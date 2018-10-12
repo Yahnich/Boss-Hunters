@@ -1,0 +1,1 @@
+death_prophet_exorcism_bh = class({})

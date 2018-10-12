@@ -229,7 +229,7 @@ function CDOTABaseAbility:DealDamage(attacker, victim, damage, data, spellText)
 	local internalData = data or {}
 	local damageType =  internalData.damage_type or self:GetAbilityDamageType() or DAMAGE_TYPE_MAGICAL
 	local damageFlags = internalData.damage_flags or DOTA_DAMAGE_FLAG_NONE
-	local localdamage = damage
+	local localdamage = damage or self:GetAbilityDamage() or 0
 	local spellText = spellText or 0
 	local ability = self or internalData.ability
 	local returnDamage = ApplyDamage({victim = victim, attacker = attacker, ability = ability, damage_type = damageType, damage = localdamage, damage_flags = damageFlags})
@@ -1895,7 +1895,7 @@ function CDOTABaseAbility:Stun(target, duration, bDelay)
 	if not target or target:IsNull() then return end
 	local delay = false
 	if bDelay then delay = Bdelay end
-	target:AddNewModifier(self:GetCaster(), self, "modifier_stunned_generic", {duration = duration, delay = delay})
+	return target:AddNewModifier(self:GetCaster(), self, "modifier_stunned_generic", {duration = duration, delay = delay})
 end
 
 function CDOTABaseAbility:FireLinearProjectile(FX, velocity, distance, width, data, bDelete, bVision, vision)
@@ -2427,7 +2427,7 @@ function CDOTA_BaseNPC:Silence(hAbility, hCaster, duration, bDelay)
 end
 
 function CDOTA_BaseNPC:IsSilenced()
-	if self:HasModifier("modifier_silence") then
+	if self:HasModifier("modifier_silence_generic") then
 		return true
 	else
 		return false
@@ -2435,13 +2435,17 @@ function CDOTA_BaseNPC:IsSilenced()
 end
 
 function CDOTA_BaseNPC:RemoveSilence()
-	if self:HasModifier("modifier_silence") then
-		self:RemoveModifierByName("modifier_silence")
+	if self:HasModifier("modifier_silence_generic") then
+		self:RemoveModifierByName("modifier_silence_generic")
 	end
 end
 
 function CDOTA_BaseNPC:Fear(hAbility, hCaster, duration)
 	self:AddNewModifier(hCaster, hAbility, "modifier_fear_generic", {Duration = duration})
+end
+
+function CDOTA_BaseNPC:Root(hAbility, hCaster, duration)
+	self:AddNewModifier(hCaster, hAbility, "modifier_root_generic", {Duration = duration})
 end
 
 function CDOTA_BaseNPC:Blind(missChance, hAbility, hCaster, duration)

@@ -6,75 +6,26 @@ function boss15_exorcise:OnAbilityPhaseStart()
 end
 
 function boss15_exorcise:OnSpellStart()
+	local caster = self:GetCaster()
+	local vPos = self:GetCursorPosition()
+	if self:GetCursorTarget() then
+		vPos = self:GetCursorTarget():GetAbsOrigin()
+	end
+	
 	local speed = self:GetSpecialValueFor( "speed" )
 	local width_initial = self:GetSpecialValueFor( "width_initial" )
 	local width_end = self:GetSpecialValueFor( "width_end" )
 	local distance = self:GetSpecialValueFor( "distance" )
 	local damage = self:GetSpecialValueFor( "damage" ) 
+	local velocity = CalculateDirection( vPos, caster ) * speed
 	
-	local caster = self:GetCaster()
-	local ability = self
-
+	self:FireLinearProjectile("particles/units/heroes/hero_death_prophet/death_prophet_carrion_swarm.vpcf", velocity, distance, width_initial, {width_end = width_end})
 	EmitSoundOn( "Hero_DeathProphet.CarrionSwarm.Mortis", self:GetCaster() )
-
-	local vPos = nil
-	if self:GetCursorTarget() then
-		vPos = self:GetCursorTarget():GetAbsOrigin()
-	else
-		vPos = self:GetCursorPosition()
-	end
-
-	local vDirection = vPos - self:GetCaster():GetAbsOrigin()
-	vDirection.z = 0.0
-	vDirection = vDirection:Normalized()
-	
-	local vPerpend = GetPerpendicularVector(vDirection)
-
-	speed = speed * ( distance / ( distance - width_initial ) ) * FrameTime()
-	local width_growth = (width_end - width_initial) / (distance / speed) * FrameTime()
-	local width = width_initial
-	local position = self:GetCaster():GetAbsOrigin()
-	local velocity = vDirection * speed
-	local distTravelled = 0
-	local hitTable = {}
-	
-	local exorciseProj = ParticleManager:CreateParticle("particles/units/heroes/hero_death_prophet/death_prophet_carrion_swarm.vpcf", PATTACH_CUSTOMORIGIN, nil)
-	ParticleManager:SetParticleControl( exorciseProj, 0, position )
-	ParticleManager:SetParticleControl( exorciseProj, 3, position )
-	ParticleManager:SetParticleControl( exorciseProj, 5, position )
-	ParticleManager:SetParticleControl( exorciseProj, 1, velocity / FrameTime() )
-	ParticleManager:SetParticleControl( exorciseProj, 2, Vector(0,width,0) )
-
-	Timers:CreateTimer(FrameTime(), function()
-		local startPos = position + vPerpend * width/2
-		local endPos = position - vPerpend * width/2
-		local enemies = caster:FindEnemyUnitsInLine(startPos, endPos, width)
-		for _, enemy in ipairs(enemies) do
-			if not hitTable[enemy:entindex()] then
-				ability:OnLinearProjectileHit(enemy)
-				hitTable[enemy:entindex()] = true
-			end
-		end
-		
-		if width < width_end then width = math.min( width + width_growth, width_end ) end
-		position = position + velocity
-		distTravelled = distTravelled + speed
-
-		ParticleManager:SetParticleControl( exorciseProj, 2, Vector(0,width,0) )
-		
-		if distTravelled < distance then
-			return FrameTime()
-		else
-			ParticleManager:DestroyParticle(exorciseProj, false)
-			ParticleManager:ReleaseParticleIndex(exorciseProj)
-		end
-	end)
-	
 end
 
 --------------------------------------------------------------------------------
 
-function boss15_exorcise:OnLinearProjectileHit( hTarget )
+function boss15_exorcise:OnProjectileHit( hTarget, vPosition )
 	if hTarget:TriggerSpellAbsorb(self) then return true end
 	if hTarget ~= nil and ( not hTarget:IsMagicImmune() ) and ( not hTarget:IsInvulnerable() ) then
 		local damage = {
