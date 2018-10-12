@@ -79,6 +79,12 @@
 				"var_type"				"FIELD_FLOAT"
 				"critical_damage"		"225"
 			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"curse_duration"		"3"
+			}
+			
 		}
 	}
 }

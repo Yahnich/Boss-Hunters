@@ -33,8 +33,9 @@ function modifier_item_headchopper_handle:GetModifierBaseAttack_BonusDamage()
 	return self.damage
 end
 
-function modifier_item_headchopper_handle:GetModifierPreAttack_CriticalStrike()
+function modifier_item_headchopper_handle:GetModifierPreAttack_CriticalStrike(params)
 	if RollPercentage( self.crit_chance ) then
+		params.target:DisableHealing(self:GetSpecialValueFor("curse_duration"))
 		return self.crit_damage
 	end
 end

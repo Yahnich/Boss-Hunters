@@ -5,6 +5,7 @@ if ProjectileHandler == nil then
   print ( 'creating projectile manager' )
   ProjectileHandler = {}
   ProjectileHandler.__index = ProjectileHandler
+  ProjectileHandler.__mode = 'v'
 end
 
 function ProjectileHandler:new( o )

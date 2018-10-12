@@ -78,7 +78,7 @@ function modifier_gyro_calldown:OnCreated(table)
 end
 
 function modifier_gyro_calldown:OnIntervalThink()
-	if self:GetParent():HasScepter() then
+	if self:GetParent():HasScepter() and self:GetParent():IsAlive() then
 		local enemies = self:GetParent():FindEnemyUnitsInRadius(self:GetParent():GetAbsOrigin(), self:GetParent():GetAttackRange())
 		for _,enemy in pairs(enemies) do
 			self:GetAbility():FireTrackingProjectile(self:GetParent():GetRangedProjectileName(), enemy, self:GetParent():GetProjectileSpeed(), {}, 0, true, false, 0)

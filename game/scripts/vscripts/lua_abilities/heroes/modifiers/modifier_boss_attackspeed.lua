@@ -16,7 +16,7 @@ function modifier_boss_attackspeed:OnIntervalThink()
 	local parent = self:GetParent()
 	if not parent:IsInvisible() then
 		self.thinkTime = self.thinkTime + 0.1
-		if self.thinkTime >= 5 then
+		if self.thinkTime >= 2.5 * self:GetStackCount() then
 			self.thinkTime = 0
 			AddFOWViewer(DOTA_TEAM_GOODGUYS, self:GetParent():GetAbsOrigin(), 516, 1, false)
 		end
@@ -86,7 +86,7 @@ function modifier_boss_attackspeed:GetModifierPhysicalArmorBonus( params )
 end
 
 function modifier_boss_attackspeed:GetModifierMagicalResistanceBonus( params )
-	return 3.5 * self:GetStackCount()
+	return math.min( 3.5 * self:GetStackCount(), 60 )
 end
 
 function modifier_boss_attackspeed:GetModifierBaseDamageOutgoing_Percentage( params )
@@ -96,7 +96,6 @@ end
 function modifier_boss_attackspeed:OnAbilityStart( params )
 	if params.unit == self:GetParent() then
 		AddFOWViewer(DOTA_TEAM_GOODGUYS, self:GetParent():GetAbsOrigin(), 516, 3, false)
-		params.unit:AddNewModifier(params.unit, params.ability, "modifier_status_immunity", {duration = params.ability:GetCastPoint() + 0.1})
 	end
 end
 
