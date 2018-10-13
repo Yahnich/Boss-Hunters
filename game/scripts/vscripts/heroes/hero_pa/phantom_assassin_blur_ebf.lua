@@ -34,6 +34,14 @@ function modifier_phantom_assassin_blur_ebf:OnAttackStart(params)
         if params.target == self:GetParent() then
             if RollPercentage(self:GetModifierEvasion_Constant()/2) then
                 params.attacker:AddNewModifier(params.target, self:GetAbility(), "modifier_phantom_assassin_blur_true_evasion", {})
+				if self:GetParent():HasTalent("special_bonus_unique_pa_blur_1") then
+					local kunai = self:GetParent():FindAbilityByName("pa_kunai_toss")
+					if kunai then
+						for _, enemy in ipairs( self:GetParent():FindEnemyUnitsInRadius( self:GetParent():GetAbsOrigin(), self:GetParent():FindTalentValue("special_bonus_unique_pa_blur_1") ) ) do
+							kunai:tossKunai(enemy)
+						end
+					end
+				end
             end
         else
             params.attacker:RemoveModifierByName("modifier_phantom_assassin_blur_true_evasion")

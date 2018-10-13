@@ -380,7 +380,6 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"spirits"				"8 16 24 32 40 48"
-				"LinkedSpecialBonus"	"special_bonus_unique_death_prophet"
 			}
 			"03"
 			{
@@ -456,6 +455,7 @@
 		"BaseClass"						"special_bonus_undefined"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"LinkedAbilityName"				"death_prophet_exorcism_bh"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------

@@ -173,6 +173,10 @@ function CDOTA_BaseNPC:IsBeingAttacked()
 	return false
 end
 
+function CDOTA_BaseNPC:IsInAbilityAttackMode()
+	return self.autoAttackFromAbilityState ~= nil
+end
+
 function CDOTA_BaseNPC:PerformAbilityAttack(target, bProcs, ability, flBonusDamage, bDamagePct, bNeverMiss)
 	self.autoAttackFromAbilityState = {} -- basically the same as setting it to true
 	self.autoAttackFromAbilityState.ability = ability

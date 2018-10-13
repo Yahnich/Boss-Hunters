@@ -102,7 +102,7 @@
 	        "08"
 	        {
 	            "var_type"                  "FIELD_FLOAT"
-	            "stun_duration"             "0.5"
+	            "stun_duration"             "1"
 	        }
 	    }
 

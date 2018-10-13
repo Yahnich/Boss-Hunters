@@ -82,7 +82,7 @@ function modifier_flash_step:OnIntervalThink()
     local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), caster:GetAttackRange(), {})
     for _,enemy in pairs(enemies) do
         if not enemy:HasModifier("modifier_flash_step_enemy") then
-            caster:PerformAttack(enemy, true, true, true, true, false, false, false)
+            caster:PerformAbilityAttack( enemy, true, self:GetAbility() )
             self:GetAbility():DealDamage(caster, enemy, caster:GetAttackDamage()*(self:GetTalentSpecialValueFor("damage")-100)/100, {damage_type = DAMAGE_TYPE_PHYSICAL}, 0)
             enemy:AddNewModifier(caster, self:GetAbility(), "modifier_flash_step_enemy", {Duration = self:GetTalentSpecialValueFor("duration")})
             caster:AddNewModifier(caster, self:GetAbility(), "modifier_flash_step_as", {Duration = self:GetTalentSpecialValueFor("duration")}):IncrementStackCount()
