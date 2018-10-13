@@ -23,10 +23,10 @@ function death_prophet_exorcism_bh:CreateGhost(position, duration)
 	local give_up_distance = self:GetTalentSpecialValueFor("give_up_distance")
 	local max_distance = self:GetTalentSpecialValueFor("max_distance")
 	local damage = self:GetTalentSpecialValueFor("average_damage")
-	local turnSpeed = 15
+	local turnSpeed = 150
 	local stateList = {ORBITING = 1, SEEKING = 2, RETURNING = 3}
 	local direction = TernaryOperator( caster:GetRightVector(), RollPercentage(50), caster:GetRightVector() * (-1) )
-	local position = caster:GetAbsOrigin() + direction * 150
+	local position = caster:GetAbsOrigin() + direction * 180
 	
 	local ProjectileThink = function(self)
 		local position = self:GetPosition()
@@ -45,27 +45,48 @@ function death_prophet_exorcism_bh:CreateGhost(position, duration)
 				self.state = stateList.SEEKING
 			end
 		elseif self.state == stateList.SEEKING then
-			if self.seekTarget and not self.seekTarget:IsNull() then
+			if self.seekTarget and self.seekTarget:IsAlive() and not self.seekTarget:IsNull() then
 				local distance = CalculateDistance( position, self.seekTarget )
+				local targetPos = self.seekTarget:GetAbsOrigin()
 				local direction = CalculateDirection( self.seekTarget, position)
-				if distance >= self.giveUpDistance then
-					self.state = stateList.RETURNING
-					return
-				end
+				local distVect = distance * direction
+				local comparator = velocity - distVect
 				
-				-- direction = RotateVector2D( direction, self.turn_speed )
-
-				self:SetVelocity( direction * speed )
+				local angle = math.deg( math.atan2(distVect.y, distVect.x) - math.atan2(velocity.y, velocity.x) )
+				if angle > 360 then
+					angle = angle - 360
+				end
+				local sign = -1
+				if angle > 0 then
+					sign = 1
+				end
+				angle = math.abs( angle )
+				local direction = RotateVector2D( velocity, ToRadians( math.min( self.turn_speed, angle ) ) * FrameTime() )
+				self:SetVelocity( direction * speed + CalculateDirection( self.seekTarget, position ) * 100 )
 				self:SetPosition( position + (velocity*FrameTime()) )
 			else
 				self.state = stateList.RETURNING
 			end
 		elseif self.state == stateList.RETURNING then
-			velocity = velocity + CalculateDirection( caster, position ) * self.turn_speed + CalculateDirection( caster, position ) * self.turn_speed * (casterDistance / self.maxRadius)
+			local distance = CalculateDistance( position, caster )
+			local targetPos = caster:GetAbsOrigin()
+			local direction = CalculateDirection( caster, position)
+			local distVect = distance * direction
+			local comparator = velocity - distVect
 			
-			self:SetVelocity( velocity )
+			local angle = math.deg( math.atan2(distVect.y, distVect.x) - math.atan2(velocity.y, velocity.x) )
+			if angle > 360 then
+				angle = angle - 360
+			end
+			local sign = -1
+			if angle > 0 then
+				sign = 1
+			end
+			angle = math.abs( angle )
+			local direction = RotateVector2D( velocity, math.min( self.turn_speed, angle ) * sign * FrameTime() )
+			self:SetVelocity( direction * speed + CalculateDirection( caster, position ) * 100 )
 			self:SetPosition( position + (velocity*FrameTime()) )
-			if casterDistance < ( self.radius + caster:GetHullRadius() ) * 2 then
+			if casterDistance < ( self.radius + caster:GetHullRadius() ) then
 				self.state = stateList.ORBITING
 			end
 		end
@@ -77,7 +98,7 @@ function death_prophet_exorcism_bh:CreateGhost(position, duration)
 	local ProjectileHit = function(self, target, position)
 		local caster = self:GetCaster()
 		local ability = self:GetAbility()
-		if target == self.seekTarget then
+		if self.seekTarget then
 			self.state = stateList.RETURNING
 			self.damageDealt = self.damageDealt + ability:DealDamage( caster, target, self.damage )
 			self.seekTarget = nil
@@ -89,7 +110,7 @@ function death_prophet_exorcism_bh:CreateGhost(position, duration)
 																		  caster = caster,
 																		  ability = self,
 																		  speed = speed,
-																		  radius = 50,
+																		  radius = 10,
 																		  velocity = speed * caster:GetForwardVector(),
 																		  turn_speed = turnSpeed,
 																		  state = stateList.ORBITING,
@@ -99,7 +120,7 @@ function death_prophet_exorcism_bh:CreateGhost(position, duration)
 																		  damage = damage,
 																		  giveUpDistance = give_up_distance,
 																		  orientation = RandomInt(1,10),
-																		  damageDealt = 0
+																		  damageDealt = 0,
 																		  duration = duration})
 	return projectile
 end
@@ -130,18 +151,20 @@ if IsServer() then
 		local caster = self:GetCaster()
 		local ability = self:GetAbility()
 		caster:StopSound("Hero_DeathProphet.Exorcism")
-		if caster:HasTalent("special_bonus_unique_death_prophet_exorcism_1") then
+		if not caster:IsAlive() and caster:HasTalent("special_bonus_unique_death_prophet_exorcism_1") then
 			local respawnPosition = caster:GetAbsOrigin()
 			caster:RespawnHero(false, false)
 			caster:SetHealth(1)
 			caster:SetAbsOrigin( respawnPosition )
 		end
-		local heal = 0
-		for _, ghost in ipairs( self:GetGhosts() ) do
-			heal = heal + ghost.damageDealt
-			ghost:Remove()
+		if caster:IsAlive() then
+			local heal = 0
+			for _, ghost in ipairs( self:GetGhosts() ) do
+				heal = heal + ghost.damageDealt
+				ghost:Remove()
+			end
+			caster:HealEvent( heal, ability, caster )
 		end
-		caster:HealEvent( heal, ability, caster )
 	end
 	
 	function modifier_death_prophet_exorcism_bh:GetGhosts()
@@ -165,9 +188,9 @@ function modifier_death_prophet_exorcism_bh_talent:DeclareFunctions()
 	return {MODIFIER_EVENT_ON_DEATH}
 end
 
-function modifier_death_prophet_exorcism_bh_talent:OnDeath()
+function modifier_death_prophet_exorcism_bh_talent:OnDeath(params)
 	if params.attacker == self:GetParent() and self:GetParent():HasTalent("special_bonus_unique_death_prophet_exorcism_2") then
-		local ghost = 1
+		local ghosts = 1
 		if params.unit:IsRoundBoss() then
 			ghosts = 4
 		end

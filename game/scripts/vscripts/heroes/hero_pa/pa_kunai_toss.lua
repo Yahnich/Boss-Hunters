@@ -37,12 +37,12 @@ function pa_kunai_toss:OnProjectileHit(hTarget, vLocation)
     if hTarget ~= nil and hTarget:IsAlive() then
         EmitSoundOn("Hero_PhantomAssassin.Dagger.Target", caster)
 
-        caster:PerformGenericAttack(hTarget, true, 0, false, true)
+        caster:PerformAbilityAttack( hTarget, true, self:GetAbility() )
         self:DealDamage(caster, hTarget, self:GetSpecialValueFor("damage"), {}, 0)
         hTarget:AddNewModifier(caster, self, "modifier_kunai_toss_slow", {Duration = self:GetSpecialValueFor("slow_duration")})
         
         if caster:HasTalent("special_bonus_unique_pa_kunai_toss_1") then
-            local enemies = caster:FindEnemyUnitsInRadius(vLocation, self:GetSpecialValueFor("radius"), {})
+            local enemies = caster:FindEnemyUnitsInRadius(vLocation or hTarget:GetAbsOrigin(), self:GetSpecialValueFor("radius"), {})
             for _,enemy in pairs(enemies) do
                 if enemy ~= hTarget and self.CurrentBounces < self.TotesBounces then
                     self:FireTrackingProjectile("particles/units/heroes/hero_phantom_assassin/phantom_assassin_stifling_dagger.vpcf", hTarget, 1200, {}, 0, true, true, 100)
