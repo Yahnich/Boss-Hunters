@@ -170,11 +170,27 @@
 		"Ability16"				"special_bonus_unique_beast_roar_1"
 		"Ability17"				"special_bonus_unique_beast_roar_2"
 	}
+
+	//=================================================================================================================
+	// HERO: Bloodseeker
+	//=================================================================================================================
 	"npc_dota_hero_bloodseeker_ebf"
 	{
 		"override_hero"			"npc_dota_hero_bloodseeker"
-		"Ability3"				"Blood_Seeker_Blood_Smell"
-		"Ability6"				"rupture_datadriven"
+		"Ability1"				"bs_bloodrage"
+		"Ability2"				"bs_blood_rite"
+		"Ability3"				"bs_devils_blood"
+		"Ability4"				"bs_thirst"
+		"Ability6"				"bs_rupture"
+
+		"Ability10"				"special_bonus_unique_bs_bloodrage_1"
+		"Ability11"				"special_bonus_unique_bs_bloodrage_2"
+		"Ability12"				"special_bonus_unique_bs_blood_rite_1"
+		"Ability13"				"special_bonus_unique_bs_blood_rite_2"
+		"Ability14"				"special_bonus_unique_bs_devils_blood_1"
+		"Ability15"				"special_bonus_unique_bs_devils_blood_2"
+		"Ability16"				"special_bonus_unique_bs_rupture_1"
+		"Ability17"				"special_bonus_unique_bs_rupture_2"
 		
 	}
 	"npc_dota_hero_bounty_hunter_ebf"
@@ -709,19 +725,29 @@
 		"Ability23"		"special_bonus_unique_invoker_2"
 		"Ability24"		"special_bonus_unique_invoker_3"
 	}
+
+	//=================================================================================================================
+	// HERO: Jakiro
+	//=================================================================================================================
 	"npc_dota_hero_jakiro"
 	{
 		"override_hero"			"npc_dota_hero_jakiro"
 		
-		"Ability10"		"special_bonus_cooldown_reduction_12"
-		"Ability11"		"special_bonus_spell_amplify_8"
-		"Ability12"		"special_bonus_attack_range_250"
-		"Ability13"		"special_bonus_unique_jakiro_2"
-		"Ability14"		"special_bonus_unique_jakiro_4"
-		"Ability15"		"special_bonus_all_stats_12"
-		"Ability16"		"special_bonus_unique_jakiro_3"
-		"Ability17"		"special_bonus_unique_jakiro"
+		"Ability1"		"jakiro_dual_breath"
+		"Ability2"		"jakiro_ice_path_bh"
+		"Ability3"		"jakiro_liquid_fire_bh"
+		"Ability6"		"jakiro_macropyre_bh"
+
+		"Ability10"		"special_bonus_unique_jakiro_dual_breath_1"
+		"Ability11"		"special_bonus_unique_jakiro_dual_breath_2"
+		"Ability12"		"special_bonus_unique_jakiro_ice_path_bh_1"
+		"Ability13"		"special_bonus_unique_jakiro_ice_path_bh_2"
+		"Ability14"		"special_bonus_unique_jakiro_liquid_fire_bh_1"
+		"Ability15"		"special_bonus_unique_jakiro_liquid_fire_bh_2"
+		"Ability16"		"special_bonus_unique_jakiro_macropyre_bh_1"
+		"Ability17"		"special_bonus_unique_jakiro_macropyre_bh_2"
 	}
+
 	"npc_dota_hero_juggernaut_ebf"
 	{
 		"override_hero"			"npc_dota_hero_juggernaut"
@@ -1479,6 +1505,29 @@
 		"Ability16"					"special_bonus_unique_sand_tremors_1"
 		"Ability17"					"special_bonus_unique_sand_tremors_2"
 	}
+
+	//=================================================================================================================
+	// HERO: Shadow Demon
+	//=================================================================================================================
+	"npc_dota_hero_shadow_demon_ebf"
+	{
+		"override_hero"					"npc_dota_hero_shadow_demon"
+		"Ability1"						"sd_disruption"
+		"Ability2"						"sd_soul_catcher"
+		"Ability3"						"sd_shadow_poison"
+		"Ability4"						"sd_void_release"
+		"Ability6"						"sd_demonic_purge"
+
+		"Ability10"						"special_bonus_unique_sd_disruption_1"
+		"Ability11"						"special_bonus_unique_sd_disruption_2"
+		"Ability12"						"special_bonus_unique_sd_soul_catcher_1"
+		"Ability13"						"special_bonus_unique_sd_soul_catcher_2"
+		"Ability14"						"special_bonus_unique_sd_shadow_poison_1"
+		"Ability15"						"special_bonus_unique_sd_shadow_poison_2"
+		"Ability16"						"special_bonus_unique_sd_demonic_purge_1"
+		"Ability17"						"special_bonus_unique_sd_demonic_purge_2"
+	}
+
 	//=================================================================================================================
 	// HERO: Rhastafarian
 	//=================================================================================================================
