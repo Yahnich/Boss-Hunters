@@ -144,6 +144,7 @@
 #base "heroes/hero_jakiro.txt"
 #base "heroes/hero_shadow_demon.txt"
 #base "heroes/hero_bloodseeker.txt"
+#base "heroes/hero_ursa.txt"
 
 "DOTAAbilities"
 {
