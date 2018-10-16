@@ -74,7 +74,7 @@ if IsServer() then
 	function modifier_death_prophet_crypt_swarm_talent:OnIntervalThink()
 		local caster = self:GetCaster()
 		local ability = self:GetAbility()
-		local damage = ability:DealDamage( caster, self:GetParent(), self.damage )
+		local damage = ability:DealDamage( caster, self:GetParent(), self.damage * self.tick )
 		caster:HealEvent( damage * self.lifesteal, ability, caster )
 	end
 end
