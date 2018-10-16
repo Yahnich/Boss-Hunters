@@ -141,6 +141,10 @@
 #base "heroes/hero_necrophos.txt"
 #base "heroes/hero_disruptor.txt"
 #base "heroes/hero_death_prophet.txt"
+#base "heroes/hero_jakiro.txt"
+#base "heroes/hero_shadow_demon.txt"
+#base "heroes/hero_bloodseeker.txt"
+#base "heroes/hero_ursa.txt"
 
 "DOTAAbilities"
 {

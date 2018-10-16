@@ -1,0 +1,68 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf10:version{b5ef673d-0450-4fb0-a91b-bacae6864827} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 1
+	m_nInitialParticles = 1
+	m_flConstantRadius = 0.0
+	m_ConstantColor = [ 0, 0, 0, 255 ]
+	m_nConstantSequenceNumber = 1
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_RampScalarLinearSimple"
+			m_Rate = 400.0
+			m_flEndTime = 340282346638528859811704183484516925440.0
+			m_nField = "5"
+		},
+		{
+			_class = "C_OP_EndCapTimedDecay"
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_StatusEffect"
+			m_nDetail2Combo = "DETAIL_2_COMBO_ADD_SELF_ILLUM"
+			m_flDetail2Scale = 1.0
+			m_flDetail2BlendFactor = 0.5
+			m_flColorWarpIntensity = 0.65
+			m_flEnvMapIntensity = 1.0
+			m_flAmbientScale = 0.0
+			m_specularColor = [ 139, 0, 0, 255 ]
+			m_flSpecularScale = 0.5
+			m_flSpecularExponent = 0.05
+			m_flSpecularExponentBlendToFull = 1.0
+			m_flSpecularBlendToFull = 1.0
+			m_rimLightColor = [ 255, 0, 0, 255 ]
+			m_flRimLightScale = 10.0
+			m_flReflectionsTintByBaseBlendToNone = 2.0
+			m_flMetalnessBlendToFull = 1.0
+		},
+		{
+			_class = "C_INIT_RandomColor"
+			m_ColorMin = [ 252, 216, 15, 0 ]
+			m_ColorMax = [ 252, 182, 15, 0 ]
+			m_nFieldOutput = "22"
+		},
+		{
+			_class = "C_INIT_RandomColor"
+			m_ColorMin = [ 220, 20, 60, 255 ]
+			m_ColorMax = [ 255, 0, 0, 255 ]
+		},
+	]
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderStatusEffect"
+			m_pTextureColorWarp = resource:"materials/models/heroes/statuseffects/colorwarp_c2015_lvl2_radiant.vtex"
+		},
+	]
+	m_nBehaviorVersion = 6
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+		},
+	]
+}
