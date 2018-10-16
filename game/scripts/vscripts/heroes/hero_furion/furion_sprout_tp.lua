@@ -38,8 +38,22 @@ end
 
 function furion_sprout_tp:OnSpellStart()
 	local caster = self:GetCaster()
+	local ogPos = caster:GetAbsOrigin()
 	local point = self:GetCursorPosition()
-
+	
+	if caster:HasTalent("special_bonus_unique_furion_sprout_tp_2") then
+		local entangle = caster:FindAbilityByName("furion_entangle")
+		local entangleDur = entangle:GetTalentSpecialValueFor("duration")
+		for _,enemy in pairs(caster:FindEnemyUnitsInRadius(ogPos, 500, {})) do
+			enemy:AddNewModifier(caster, entangle, "modifier_entangle_enemy", {Duration = entangleDur})
+		end
+		
+		for _,enemy in pairs(caster:FindEnemyUnitsInRadius(point, 500, {})) do
+			enemy:AddNewModifier(caster, entangle, "modifier_entangle_enemy", {Duration = entangleDur})
+		end
+	end
+	
+	ProjectileManager:ProjectileDodge( caster )
 	FindClearSpaceForUnit(caster, point, true)
 
 	GridNav:DestroyTreesAroundPoint(point, 150, true)
@@ -55,10 +69,4 @@ function furion_sprout_tp:OnSpellStart()
 		StopSoundOn("Hero_Furion.Teleport_Disappear", caster)
 		StopSoundOn("Hero_Furion.Teleport_Appear", caster)
 	end)
-	if caster:HasTalent("special_bonus_unique_furion_sprout_tp_2") then
-		local enemies = caster:FindEnemyUnitsInRadius(point, 500, {})
-		for _,enemy in pairs(enemies) do
-			enemy:AddNewModifier(caster, caster:FindAbilityByName("furion_entangle"), "modifier_entangle_enemy", {Duration = caster:FindAbilityByName("furion_entangle"):GetTalentSpecialValueFor("duration")})
-		end
-	end
 end

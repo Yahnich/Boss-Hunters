@@ -1,6 +1,6 @@
 item_ward_of_life = class({})
-
 LinkLuaModifier( "modifier_item_ward_of_life", "items/item_ward_of_life.lua", LUA_MODIFIER_MOTION_NONE )
+
 function item_ward_of_life:GetIntrinsicModifierName()
 	return "modifier_item_ward_of_life"
 end

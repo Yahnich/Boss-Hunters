@@ -45,10 +45,14 @@ end
 
 function phenx_spirits:GetCooldown(iLvl)
 	local caster = self:GetCaster()
-	if caster:HasModifier("modifier_phenx_spirits_caster") then
-		return self.BaseClass.GetCooldown(self, iLvl)
+	if IsServer() then
+		if caster:HasModifier("modifier_phenx_spirits_caster") then
+			return self.BaseClass.GetCooldown(self, iLvl)
+		else
+			return 0
+		end
 	else
-		return 0
+		return self.BaseClass.GetCooldown(self, iLvl)
 	end
 end
 
@@ -140,11 +144,9 @@ function phenx_spirits:OnProjectileHit(hTarget, vLocation)
 end
 
 modifier_phenx_spirits_caster = class({})
-function modifier_phenx_spirits_caster:OnRemoved()
+function modifier_phenx_spirits_caster:OnDestroy()
 	if IsServer() then
-		if self:GetStackCount() < 1 then
-			self:GetAbility():StartCooldown(self:GetAbility():GetCooldown(self:GetAbility():GetLevel()))
-		end
+		Timers:CreateTimer(function() self:GetAbility():SetCooldown() end)
 		ParticleManager:ClearParticle( self.pfx )
 	end
 end

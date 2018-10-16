@@ -2663,13 +2663,13 @@ function CDOTA_BaseNPC:HasActiveAbility()
 end
 
 function CDOTA_BaseNPC_Hero:GetAttributePoints()
-	return self.talentPoints or 0
+	return self.bonusTalentPoints or 0
 end
 
 function CDOTA_BaseNPC_Hero:SetAttributePoints(value)
-	self.talentPoints = value or 0
+	self.bonusTalentPoints = value or 0
 	local netTable = CustomNetTables:GetTableValue("hero_properties", self:GetUnitName()..self:entindex()) or {}
-	netTable.attribute_points = self.talentPoints
+	netTable.attribute_points = self.bonusTalentPoints
 	CustomNetTables:SetTableValue("hero_properties", self:GetUnitName()..self:entindex(), netTable)
 	CustomGameEventManager:Send_ServerToAllClients("dota_player_upgraded_stats", { playerID = self:GetPlayerID() } )
 end

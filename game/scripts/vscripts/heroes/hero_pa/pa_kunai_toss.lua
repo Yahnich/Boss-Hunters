@@ -13,17 +13,17 @@ function pa_kunai_toss:OnSpellStart()
     local caster = self:GetCaster()
     local target = self:GetCursorTarget()
 
-    local maxTargets = self:GetSpecialValueFor("max_targets")-1
+    local maxTargets = self:GetTalentSpecialValueFor("max_targets")-1
     local currentTargets = 0
 
-    self.TotesBounces = self:GetSpecialValueFor("bounces")*self:GetSpecialValueFor("max_targets")
+    self.TotesBounces = self:GetTalentSpecialValueFor("bounces")*self:GetTalentSpecialValueFor("max_targets")
     self.CurrentBounces = 0
 
     self:tossKunai(target)
 
     EmitSoundOn("Hero_PhantomAssassin.Dagger.Cast", caster)
 
-    local enemies = caster:FindEnemyUnitsInRadius(target:GetAbsOrigin(), self:GetSpecialValueFor("radius"), {})
+    local enemies = caster:FindEnemyUnitsInRadius(target:GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"), {})
     for _,enemy in pairs(enemies) do
         if enemy ~= target and currentTargets < maxTargets then
             self:tossKunai(enemy)
@@ -38,11 +38,11 @@ function pa_kunai_toss:OnProjectileHit(hTarget, vLocation)
         EmitSoundOn("Hero_PhantomAssassin.Dagger.Target", caster)
 
         caster:PerformAbilityAttack( hTarget, true, self:GetAbility() )
-        self:DealDamage(caster, hTarget, self:GetSpecialValueFor("damage"), {}, 0)
-        hTarget:AddNewModifier(caster, self, "modifier_kunai_toss_slow", {Duration = self:GetSpecialValueFor("slow_duration")})
+        self:DealDamage(caster, hTarget, self:GetTalentSpecialValueFor("damage"), {}, 0)
+        hTarget:AddNewModifier(caster, self, "modifier_kunai_toss_slow", {Duration = self:GetTalentSpecialValueFor("slow_duration")})
         
         if caster:HasTalent("special_bonus_unique_pa_kunai_toss_1") then
-            local enemies = caster:FindEnemyUnitsInRadius(vLocation or hTarget:GetAbsOrigin(), self:GetSpecialValueFor("radius"), {})
+            local enemies = caster:FindEnemyUnitsInRadius(vLocation or hTarget:GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"), {})
             for _,enemy in pairs(enemies) do
                 if enemy ~= hTarget and self.CurrentBounces < self.TotesBounces then
                     self:FireTrackingProjectile("particles/units/heroes/hero_phantom_assassin/phantom_assassin_stifling_dagger.vpcf", hTarget, 1200, {}, 0, true, true, 100)

@@ -1,0 +1,1 @@
+queenofpain_sonic_wave_bh = class({})

@@ -13,7 +13,7 @@ function necrophos_death_pulse_bh:GetCastRange( target, position )
 end
 
 function necrophos_death_pulse_bh:GetManaCost(iLvl)
-	return self.BaseClass.GetManaCost(self, iLvl) * self:GetCaster():FindTalentValue("special_bonus_unique_necrophos_death_pulse_1") / 100
+	return self.BaseClass.GetManaCost(self, iLvl)
 end
 
 function necrophos_death_pulse_bh:OnToggle()
