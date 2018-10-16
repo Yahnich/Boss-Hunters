@@ -8,6 +8,7 @@ end
 
 function relic_cursed_unbridled_power:GetModifierTotalDamageOutgoing_Percentage(params)
 	if params.attacker == self:GetParent() and params.damage > 0 then
+		print( params.damage_type ~= DAMAGE_TYPE_PURE, params.inflictor ~= self:GetAbility(), "unbridled" )
 		if params.damage_type ~= DAMAGE_TYPE_PURE and params.inflictor ~= self:GetAbility() then
 			if params.damage_category == DOTA_DAMAGE_CATEGORY_ATTACK then
 				params.damage_flags = bit.bor(params.damage_flags, DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION)

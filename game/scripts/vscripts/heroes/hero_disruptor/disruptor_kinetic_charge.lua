@@ -11,13 +11,13 @@ end
 function disruptor_kinetic_charge:OnSpellStart()
 	local hTarget = self:GetCursorTarget()
 	local caster = self:GetCaster()
-	ApplyDamage({ victim = hTarget, attacker = caster, damage = self:GetAbilityDamage(), damage_type = self:GetAbilityDamageType(), ability = self })
 	hTarget:EmitSound("Hero_Disruptor.Glimpse.Target")
 	caster:EmitSound("Hero_Disruptor.Glimpse.End")
 	if hTarget:IsSameTeam( caster ) then
 		hTarget:AddNewModifier(caster, self, "modifier_disruptor_kinetic_charge_push", {duration = self:GetTalentSpecialValueFor("pull_duration")})
 	else
 		hTarget:AddNewModifier(caster, self, "modifier_disruptor_kinetic_charge_pull", {duration = self:GetTalentSpecialValueFor("pull_duration")})
+		ApplyDamage({ victim = hTarget, attacker = caster, damage = self:GetAbilityDamage(), damage_type = self:GetAbilityDamageType(), ability = self })
 	end
 end
 
@@ -96,6 +96,10 @@ function modifier_disruptor_kinetic_charge_push:GetAuraRadius()
 	return self.aura_radius
 end
 
+function modifier_disruptor_kinetic_charge_push:GetEffectName()
+	return "particles/disruptor_kinetic_charge_debuff.vpcf"
+end
+
 LinkLuaModifier( "modifier_disruptor_kinetic_charge_pull", "heroes/hero_disruptor/disruptor_kinetic_charge", LUA_MODIFIER_MOTION_NONE )
 modifier_disruptor_kinetic_charge_pull = class({})
 
@@ -106,7 +110,7 @@ function modifier_disruptor_kinetic_charge_pull:OnCreated()
 	self.pullRadius = self:GetAbility():GetSpecialValueFor("pull_radius")
 	if IsServer() then
 		self:StartIntervalThink(0.03)
-		if self:GetCaster():HasTalent("special_bonus_unique_disruptor_kinetic_charge_1") then self:GetAbility():StartDelayedCooldown() end
+		if self:GetCaster():HasTalent("special_bonus_unique_disruptor_kinetic_charge_1") then self:GetAbility():StartDelayedCooldown( self:GetRemainingTime() + 7 ) end
 	end
 end
 

@@ -1993,10 +1993,10 @@
 	{
 		"override_hero"					"npc_dota_hero_ursa"
 		"Ability1"						"ursa_earthshock_bh"
-		"Ability1"						"ursa_overpower_bh"
-		"Ability1"						"ursa_lunge"
-		"Ability1"						"ursa_fury_swipes_bh"
-		"Ability1"						"ursa_enrage_bh"
+		"Ability2"						"ursa_overpower_bh"
+		"Ability3"						"ursa_lunge"
+		"Ability4"						"ursa_fury_swipes_bh"
+		"Ability6"						"ursa_enrage_bh"
 		
 		"Ability10"						"special_bonus_unique_ursa_earthshock_bh_1"
 		"Ability11"						"special_bonus_unique_ursa_earthshock_bh_2"  

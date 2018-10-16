@@ -421,13 +421,13 @@ function CHoldoutGameMode:FilterModifiers( filterTable )
     local parent = EntIndexToHScript( parent_index )
     local caster = EntIndexToHScript( caster_index )
 	local ability = EntIndexToHScript( ability_index )
-	local name = filterTable["name_const"]
+	local name = filterTable["name_const"]	
 	if parent and caster and duration ~= -1 then
 		local params = {caster = caster, target = parent, duration = duration, ability = ability, modifier_name = name}
 		local amp = 0
 		for _, modifier in ipairs( caster:FindAllModifiers() ) do
 			if modifier.GetModifierStatusAmplify_Percentage then
-				amp = amp + modifier:GetModifierStatusAmplify_Percentage( params )
+				amp = amp + (modifier:GetModifierStatusAmplify_Percentage( params ) or 0)
 			end
 		end
 		filterTable["duration"] = filterTable["duration"] * math.max( 0.25, 1 + (amp / 100) )
@@ -435,8 +435,8 @@ function CHoldoutGameMode:FilterModifiers( filterTable )
 			local resistance = 0
 			local stackResist = 0
 			for _, modifier in ipairs( parent:FindAllModifiers() ) do
-				if modifier.GetModifierStatusResistanceStacking and modifier:GetModifierStatusResistanceStacking(params) then
-					stackResist = stackResist + modifier:GetModifierStatusResistanceStacking(params)
+				if modifier.GetModifierStatusResistanceStacking then
+					stackResist = stackResist + (modifier:GetModifierStatusResistanceStacking(params) or 0)
 				end
 				if modifier.GetModifierStatusResistance and modifier:GetModifierStatusResistance(params) and modifier:GetModifierStatusResistance(params) > resistance then
 					resistance = modifier:GetModifierStatusResistance( params )

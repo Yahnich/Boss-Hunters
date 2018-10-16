@@ -46,6 +46,8 @@ end
 
 function modifier_disruptor_tesla_field:OnTakeDamage(params)
 	if params.attacker == self:GetParent() then
+		print( params.damage, "tesla field" )
+		if params.damage <= 0 then return end
 		local talentActivated = ( self:GetParent():HasTalent("special_bonus_unique_disruptor_kinetic_charge_1") and params.unit:HasModifier("modifier_disruptor_kinetic_charge_pull") )
 		local roll = RollPercentage( self.chance )
 		local talent1 = self:GetCaster():HasTalent("special_bonus_unique_disruptor_tesla_field_1")
@@ -73,4 +75,8 @@ function modifier_disruptor_tesla_field:OnAbilityFullyCast(params)
 			ParticleManager:FireRopeParticle("particles/units/heroes/hero_rhasta/rhasta_spell_forked_lightning.vpcf", PATTACH_POINT_FOLLOW , caster, enemy)
 		end
 	end
+end
+
+function modifier_disruptor_tesla_field:IsHidden()
+	return true
 end

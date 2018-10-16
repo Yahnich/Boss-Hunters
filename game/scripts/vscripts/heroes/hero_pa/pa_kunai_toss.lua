@@ -37,7 +37,7 @@ function pa_kunai_toss:OnProjectileHit(hTarget, vLocation)
     if hTarget ~= nil and hTarget:IsAlive() then
         EmitSoundOn("Hero_PhantomAssassin.Dagger.Target", caster)
 
-        caster:PerformAbilityAttack( hTarget, true, self:GetAbility() )
+        caster:PerformAbilityAttack( hTarget, true, self )
         self:DealDamage(caster, hTarget, self:GetTalentSpecialValueFor("damage"), {}, 0)
         hTarget:AddNewModifier(caster, self, "modifier_kunai_toss_slow", {Duration = self:GetTalentSpecialValueFor("slow_duration")})
         
