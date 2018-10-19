@@ -196,10 +196,20 @@
 	"npc_dota_hero_bounty_hunter_ebf"
 	{
 		"override_hero"			"npc_dota_hero_bounty_hunter"
-		"Ability2"				"bounty_hunter_jinada_ebf"
-		"Ability3"				"bounty_hunter_veteran_hunter"
+		"Ability1"				"bh_shuriken"
+		"Ability2"				"bh_tree_hook"
+		"Ability3"				"bh_shadow_walk"
+		"Ability4"				"bh_jinada"
+		"Ability6"				"bh_track"
 	
-		"Ability11"		"special_bonus_attack_damage_15"
+		"Ability10"				"special_bonus_unique_bh_shuriken_1"
+		"Ability11"				"special_bonus_unique_bh_shuriken_2"
+		"Ability12"				"special_bonus_unique_bh_jinada_1"
+		"Ability13"				"special_bonus_unique_bh_tree_hook_1"
+		"Ability14"				"special_bonus_unique_bh_shadow_walk_1"
+		"Ability15"				"special_bonus_unique_bh_shadow_walk_2"
+		"Ability16"				"special_bonus_unique_bh_track_1"
+		"Ability17"				"special_bonus_unique_bh_track_2"
 	}
 	//=================================================================================================================
 	// HERO: Brewmaster

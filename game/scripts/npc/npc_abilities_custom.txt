@@ -146,6 +146,7 @@
 #base "heroes/hero_bloodseeker.txt"
 #base "heroes/hero_ursa.txt"
 #base "heroes/hero_queenofpain.txt"
+#base "heroes/hero_bounty_hunter.txt"
 
 "DOTAAbilities"
 {
