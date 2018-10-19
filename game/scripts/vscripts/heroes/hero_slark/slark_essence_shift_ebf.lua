@@ -32,7 +32,7 @@ function modifier_slark_essence_shift_handler:OnAttackLanded(params)
 			caster:AddNewModifier(caster, ability, "modifier_slark_essence_shift_talent", {duration = duration})
 		end
 		if caster:HasTalent("special_bonus_unique_slark_essence_shift_2") then
-			ability:DealDamage( caster, params.target, caster:GetPrimaryStatValue() * caster:FindTalentValue("special_bonus_unique_slark_essence_shift_2") / 100, {damage_type = DAMAGE_TYPE_PURE})
+			ability:DealDamage( caster, params.target, caster:GetPrimaryStatValue() * caster:FindTalentValue("special_bonus_unique_slark_essence_shift_2") / 100, {damage_type = DAMAGE_TYPE_PURE, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
 		end
 		caster:CalculateStatBonus()
 	end
@@ -110,12 +110,12 @@ modifier_slark_essence_shift_talent = class({})
 LinkLuaModifier("modifier_slark_essence_shift_talent", "heroes/hero_slark/slark_essence_shift_ebf", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_slark_essence_shift_talent:OnCreated()
-	self.all = self:GetTalentSpecialValueFor("agi_gain") / 3
+	self.all = self:GetCaster():FindTalentValue("special_bonus_unique_slark_essence_shift_1")
 	self:AddIndependentStack(self:GetRemainingTime())
 end
 
 function modifier_slark_essence_shift_talent:OnRefresh()
-	self.all = self:GetTalentSpecialValueFor("agi_gain") / 3
+	self.all = self:GetCaster():FindTalentValue("special_bonus_unique_slark_essence_shift_1")
 	self:AddIndependentStack(self:GetRemainingTime())
 end
 

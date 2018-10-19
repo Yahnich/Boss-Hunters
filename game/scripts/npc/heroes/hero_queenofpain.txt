@@ -1,93 +1,83 @@
 "DOTAAbilities"
 {	
 	//=================================================================================================================
-	// Necrolyte: Death Pulse
+	// Queen of Pain: Shadow Strike
 	//=================================================================================================================
-	"necrophos_death_pulse_bh"
+	"queenofpain_shadow_strike_bh"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_necrophos/necrophos_death_pulse_bh"
-		"AbilityTextureName"			"necrolyte_death_pulse"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"FightRecapLevel"				"1"
-		"AbilitySound"					"Hero_Necrolyte.DeathPulse"
-		"MaxLevel"						"7"
+		"BaseClass"							"ability_lua"
+		"ScriptFile"						"heroes/hero_queenofpain/queenofpain_shadow_strike_bh"
+		"AbilityTextureName"				"queenofpain_shadow_strike"
+		"AbilityBehavior"					"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"				"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"				"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"				"DAMAGE_TYPE_MAGICAL"	
+		"SpellImmunityType"					"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"				"SPELL_DISPELLABLE_YES"
+		"FightRecapLevel"					"1"
+		"AbilitySound"						"Hero_QueenOfPain.ShadowStrike"
+		"MaxLevel"							"7"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"0"
-		"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
-
+		"AbilityCastRange"					"450 500 550 600 650 700 750"
+		"AbilityCastPoint"					"0.4"
+		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"3.25"
-
+		"AbilityCooldown"					"4.0"
+		"AbilityDuration"					"15.0 15.0 15.0 15.0"
+	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"65 85 105 125 145 165 185"
-
-		// Special
+		"AbilityManaCost"					"80 90 100 110 120 130 140"
+	
+		
+		// Special	
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"area_of_effect"		"475"
+				"var_type"						"FIELD_INTEGER"
+				"strike_damage"					"100 125 150 175 200 225 250"
+				"LinkedSpecialBonus"			"special_bonus_unique_queenofpain_shadow_strike_2"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"heal"					"60 80 100 120 140 160 180"
+				"var_type"						"FIELD_INTEGER"
+				"duration_damage"				"30 45 60 75 90 105 120"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"100 140 180 220 260 300 340"
+				"var_type"						"FIELD_INTEGER"
+				"movement_slow"					"-60"
 			}
-			"03"
+			"04"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"projectile_speed"		"400"
-			}
+				"var_type"						"FIELD_INTEGER"
+				"projectile_speed"				"900"
+			}			
+			"05"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"cast_range_tooltip"			"450 500 550 600 650 700 750"
+			}	
+			"06"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"duration_tooltip"				"15"
+			}			
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
 	}
 	//=================================================================================================================
 	// Ability: Special Bonus
 	//=================================================================================================================
-	"special_bonus_unique_necrophos_death_pulse_1"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"50"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"tick"						"0.5"
-			}
-		}
-	}
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_necrophos_death_pulse_2"
+	"special_bonus_unique_queenofpain_shadow_strike_1"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -107,67 +97,9 @@
 		}
 	}
 	//=================================================================================================================
-	// Ability: Necrolyte's Sadist
-	//=================================================================================================================
-	"necrophos_ghost_shroud_bh"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_necrophos/necrophos_ghost_shroud_bh"
-		"AbilityTextureName"			"necrolyte_sadist"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-		"AbilitySound"					"Hero_Necrolyte.SpiritForm.Cast"
-		"MaxLevel"						"7"
-
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0"
-
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"28 24 20 16 12 8 4"
-		
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"50"
-		
-		
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"duration"		"4.5"
-			}				
-			"02"
-			{
-				"var_type"		"FIELD_INTEGER"
-				"heal_bonus"	"75"
-			}			
-			"03"
-			{
-				"var_type"		"FIELD_INTEGER"
-				"movement_speed"			"6 12 18 24 30 36 42"
-				"LinkedSpecialBonus"		"special_bonus_unique_necrophos_3"
-			}			
-			"04"
-			{
-				"var_type"		"FIELD_INTEGER"
-				"slow_aoe"		"750"
-			}		
-			"05"
-			{
-				"var_type"		"FIELD_INTEGER"
-				"bonus_damage" "-30"
-			}
-		}
-		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_2"
-	}
-	//=================================================================================================================
 	// Ability: Special Bonus
 	//=================================================================================================================
-	"special_bonus_unique_necrophos_ghost_shroud_1"
+	"special_bonus_unique_queenofpain_shadow_strike_2"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -187,9 +119,54 @@
 		}
 	}
 	//=================================================================================================================
+	// Queen of Pain: Blink
+	//=================================================================================================================
+	"queenofpain_blink_bh"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_queenofpain/queenofpain_blink_bh"
+		"AbilityTextureName"			"queenofpain_blink"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+		"AbilitySound"					"Hero_QueenOfPain.Blink_in"
+		"MaxLevel"						"7"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"0"
+		"AbilityCastPoint"				"0.33 0.33 0.33 0.33"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"13.0 11.5 10.0 8.5 7.0 5.5 4.0"
+		
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"60 60 60 60"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"blink_range"			"1300"
+			}
+			
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"min_blink_range"		"200"
+			}
+		}
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
+	}
+	//=================================================================================================================
 	// Ability: Special Bonus
 	//=================================================================================================================
-	"special_bonus_unique_necrophos_ghost_shroud_2"
+	"special_bonus_unique_queenofpain_blink_1"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -204,72 +181,91 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"25"
+				"as"						"80"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"cdr"						"10"
 			}
 		}
 	}
 	//=================================================================================================================
-	// Ability: Necrolyte's Heartstopper Aura
+	// Ability: Special Bonus
 	//=================================================================================================================
-	"necrophos_heartstopper_aura_bh"
+	"special_bonus_unique_queenofpain_blink_2"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_necrophos/necrophos_heartstopper_aura_bh"
-		"AbilityTextureName"			"necrolyte_heartstopper_aura"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
-		"MaxLevel"						"7"
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		
-				
-		// Casting
+		// Special
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"700"
-
 		"AbilitySpecial"
 		{
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"aura_radius"				"700"		// If you change this, also change the AbilityCastRange above
+				"value"						"3"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Queen of Pain: Scream of Pain
+	//=================================================================================================================
+	"queenofpain_scream_of_pain_bh"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_queenofpain/queenofpain_scream_of_pain_bh"
+		"AbilityTextureName"			"queenofpain_scream_of_pain"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilitySound"					"Hero_QueenOfPain.ScreamOfPain"
+		"MaxLevel"						"7"
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"0"
+		"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"7.0 7.0 7.0 7.0"
+
+		// Damage.
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityDamage"					"75 150 225 300 375 450 525"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"60 70 80 90 100 110 120"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"area_of_effect"		"475"
 			}
 			"02"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"aura_damage"				"0.5 0.55 0.6 0.65 0.7 0.75 0.8" 
-				"LinkedSpecialBonus"		"special_bonus_unique_necrophos_heartstopper_aura_2"
-			} 	
+				"var_type"				"FIELD_INTEGER"
+				"projectile_speed"		"900"
+			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
 	}
 	//=================================================================================================================
 	// Ability: Special Bonus
 	//=================================================================================================================
-	"special_bonus_unique_necrophos_heartstopper_aura_1"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"-50"
-			}
-		}
-	}
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_necrophos_heartstopper_aura_2"
+	"special_bonus_unique_queenofpain_scream_of_pain_1"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -284,135 +280,139 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"						"0.4"
+				"value"						"50"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"value2"					"12.5"
 			}
 		}
 	}
 	//=================================================================================================================
-	// Ability: Necrolyte's Heartstopper Aura
+	// Ability: Special Bonus
 	//=================================================================================================================
-	"necrophos_sadist_bh"
+	"special_bonus_unique_queenofpain_scream_of_pain_2"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_necrophos/necrophos_sadist_bh"
-		"AbilityTextureName"			"custom/necrophos_sadist"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
-		"MaxLevel"						"1"
-		"InnateAbility"					"1"
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		
-				
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"-35"
+			}
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"duration"					"10"
+			}
+		}
+	}
+	"queenofpain_sadomasochism"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"							"ability_lua"
+		"ScriptFile"						"heroes/hero_queenofpain/queenofpain_sadomasochism"
+		"AbilityTextureName"				"custom/queenofpain_sadomasochism"
+		"AbilityBehavior"					"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetType"				"DOTA_UNIT_TARGET_HERO"
+		"MaxLevel"							"1"
+		"InnateAbility"						"1"
+		
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"damage_amp"				"25"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Queen of Pain: Sonic Wave
+	//=================================================================================================================
+	"queenofpain_sonic_wave_bh"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"							"ability_lua"
+		"ScriptFile"						"heroes/hero_queenofpain/queenofpain_sonic_wave_bh"
+		"AbilityTextureName"				"queenofpain_sonic_wave"
+		"AbilityType"						"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"					"DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_POINT"				   
+		"SpellImmunityType"					"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityUnitDamageType"				"DAMAGE_TYPE_PURE"	
+		"FightRecapLevel"					"2"
+		"HasScepterUpgrade"					"1"
+		"AbilitySound"						"Hero_QueenOfPain.SonicWave"
+		"MaxLevel"							"6"
+
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"700"
+		"AbilityCastRange"					"700"
+		"AbilityCastPoint"					"0.452 0.452 0.452"
+		"AbilityCastAnimation"				"ACT_DOTA_CAST_ABILITY_4"
 
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"					"120"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"					"250 360 470 580 690 800"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"health_regen"			"2"
-			}		
+				"starting_aoe"			"100"
+			}
 			"02"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"mana_regen"			"0.5"
-			}	
+				"var_type"				"FIELD_INTEGER"
+				"distance"				"900"
+			}
 			"03"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"regen_duration"		"6"
+				"var_type"				"FIELD_INTEGER"
+				"final_aoe"				"450"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"big_multiplier" 		"2"
-			}			
+				"speed"					"900"
+			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"kill_multiplier" 		"5"
+				"damage"				"300 425 550 675 800 925"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius" 				"900"
-			}
-		}
-		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
-	}
-	//=================================================================================================================
-	// Ability: Necrolyte's Reaper's Scythe
-	//=================================================================================================================
-	"necrophos_reapers_scythe_bh"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_necrophos/necrophos_reapers_scythe_bh"
-		"AbilityTextureName"			"necrolyte_reapers_scythe"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"		
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
-		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
-		"FightRecapLevel"				"2"
-		"MaxLevel"						"6"
-		"AbilitySound"					"Hero_Necrolyte.ReapersScythe.Target"
-
-		"HasScepterUpgrade"				"1"
-
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0.55"
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
-
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"120"
-
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"200 350 500 650 800 950"		
-		
-		// Cast Range
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"600"
-
-		// Stats
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityModifierSupportValue"	"0.1"	// Primarily about the damage
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"450"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"delay"						"1.5 1.5 1.5"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"curr_hp_damage"			"15 16 17 18 19 20"
+				"damage_scepter"		"325 475 625 775 925 1075"
 			}
 		}
 	}
 	//=================================================================================================================
 	// Ability: Special Bonus
 	//=================================================================================================================
-	"special_bonus_unique_necrophos_reapers_scythe_1"
+	"special_bonus_unique_queenofpain_sonic_wave_1"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -427,14 +427,19 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"15"
+				"value"						"-100"
+			}
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"duration"					"6"
 			}
 		}
 	}
 	//=================================================================================================================
 	// Ability: Special Bonus
 	//=================================================================================================================
-	"special_bonus_unique_necrophos_reapers_scythe_2"
+	"special_bonus_unique_queenofpain_sonic_wave_2"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -449,7 +454,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"25"
+				"value"						"-60"
 			}
 		}
 	}

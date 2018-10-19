@@ -45,11 +45,7 @@ end
 
 function phenx_spirits:GetCooldown(iLvl)
 	local caster = self:GetCaster()
-	if caster:HasModifier("modifier_phenx_spirits_caster") then
-		return self.BaseClass.GetCooldown(self, iLvl)
-	else
-		return 0
-	end
+	return self.BaseClass.GetCooldown(self, iLvl)
 end
 
 function phenx_spirits:GetCastPoint()
@@ -93,13 +89,9 @@ function phenx_spirits:OnSpellStart()
         -- Remove the stack modifier if all the spirits has been launched.
         if currentStack == 0 then
             modifier:Destroy()
+			return
         end
-        if caster:FindModifierByName("modifier_phenx_spirits_caster") and caster:FindModifierByName("modifier_phenx_spirits_caster"):GetStackCount() > 0 then
-            self:EndCooldown()
-        else
-            self:SetCooldown()
-        end
-        
+        self:EndCooldown()
     else
         EmitSoundOn("Hero_Phoenix.FireSpirits.Cast", caster)
     
@@ -142,9 +134,7 @@ end
 modifier_phenx_spirits_caster = class({})
 function modifier_phenx_spirits_caster:OnRemoved()
 	if IsServer() then
-		if self:GetStackCount() < 1 then
-			self:GetAbility():StartCooldown(self:GetAbility():GetCooldown(self:GetAbility():GetLevel()))
-		end
+		self:GetAbility():SetCooldown()
 		ParticleManager:ClearParticle( self.pfx )
 	end
 end

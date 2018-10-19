@@ -11,7 +11,6 @@ function item_shadow_blade:OnSpellStart()
 		ParticleManager:FireParticle("particles/generic_hero_status/status_invisibility_start.vpcf", PATTACH_POINT_FOLLOW, self:GetCaster(), {})
 		self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_item_shadow_blade_active", {duration = self:GetSpecialValueFor("duration")})
 		self:GetCaster():SetThreat(0)
-		self:StartDelayedCooldown(self:GetSpecialValueFor("duration"))
 	end)
 end
 
@@ -38,7 +37,17 @@ modifier_item_shadow_blade_active = class({})
 function modifier_item_shadow_blade_active:OnCreated(table)
     self.move = self:GetSpecialValueFor("move_speed")
     self.damage = self:GetSpecialValueFor("damage")
+	if IsServer() then
+		self:GetAbility():StartDelayedCooldown()
+	end
 end
+
+function modifier_item_shadow_blade_active:OnDestroy(table)
+    if IsServer() then
+		self:GetAbility():EndDelayedCooldown()
+	end
+end
+
 
 function modifier_item_shadow_blade_active:GetTextureName()
 	return "invis_sword"

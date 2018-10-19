@@ -1,0 +1,1 @@
+queenofpain_blink_bh = class({})

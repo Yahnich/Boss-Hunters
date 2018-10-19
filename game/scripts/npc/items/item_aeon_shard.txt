@@ -64,7 +64,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_attackspeed"		"80"
+				"bonus_attackspeed"		"100"
 			}
 			"02"
 			{

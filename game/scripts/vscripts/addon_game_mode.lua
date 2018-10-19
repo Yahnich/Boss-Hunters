@@ -370,7 +370,6 @@ function CHoldoutGameMode:InitGameMode()
 	GameRules:GetGameModeEntity():SetExecuteOrderFilter( Dynamic_Wrap( CHoldoutGameMode, "FilterOrders" ), self )
 	GameRules:GetGameModeEntity():SetHealingFilter( Dynamic_Wrap( CHoldoutGameMode, "FilterHeal" ), self )
 	GameRules:GetGameModeEntity():SetModifierGainedFilter( Dynamic_Wrap( CHoldoutGameMode, "FilterModifiers" ), self )
-	GameRules:GetGameModeEntity():SetAbilityTuningValueFilter( Dynamic_Wrap( CHoldoutGameMode, "FilterAbilityValues" ), self )
 	GameRules:GetGameModeEntity():SetThink( "OnThink", self, 1 )
 	
 	StatsScreen:StartStatsScreen()
@@ -422,13 +421,13 @@ function CHoldoutGameMode:FilterModifiers( filterTable )
     local parent = EntIndexToHScript( parent_index )
     local caster = EntIndexToHScript( caster_index )
 	local ability = EntIndexToHScript( ability_index )
-	local name = filterTable["name_const"]
+	local name = filterTable["name_const"]	
 	if parent and caster and duration ~= -1 then
 		local params = {caster = caster, target = parent, duration = duration, ability = ability, modifier_name = name}
 		local amp = 0
 		for _, modifier in ipairs( caster:FindAllModifiers() ) do
 			if modifier.GetModifierStatusAmplify_Percentage then
-				amp = amp + modifier:GetModifierStatusAmplify_Percentage( params )
+				amp = amp + (modifier:GetModifierStatusAmplify_Percentage( params ) or 0)
 			end
 		end
 		filterTable["duration"] = filterTable["duration"] * math.max( 0.25, 1 + (amp / 100) )
@@ -436,33 +435,17 @@ function CHoldoutGameMode:FilterModifiers( filterTable )
 			local resistance = 0
 			local stackResist = 0
 			for _, modifier in ipairs( parent:FindAllModifiers() ) do
-				if modifier.GetModifierStatusResistanceStacking and modifier:GetModifierStatusResistanceStacking(params) then
-					stackResist = stackResist + modifier:GetModifierStatusResistanceStacking(params)
+				if modifier.GetModifierStatusResistanceStacking then
+					stackResist = stackResist + (modifier:GetModifierStatusResistanceStacking(params) or 0)
 				end
 				if modifier.GetModifierStatusResistance and modifier:GetModifierStatusResistance(params) and modifier:GetModifierStatusResistance(params) > resistance then
 					resistance = modifier:GetModifierStatusResistance( params )
 				end
 			end
-			filterTable["duration"] = filterTable["duration"] * math.max(0, (1 - resistance/100)) * math.max(0, (1 - stackResist/100))
+			filterTable["duration"] = filterTable["duration"] * math.max(0.10, (1 - resistance/100)) * math.max(0.10, (1 - stackResist/100))
 		end
 	end
 	if filterTable["duration"] == 0 then return false end
-	return true
-end
-
-function CHoldoutGameMode:FilterAbilityValues( filterTable )
-    local caster_index = filterTable["entindex_caster_const"]	
-	local ability_index = filterTable["entindex_ability_const"]
-    if not caster_index or not ability_index then
-        return true
-    end
-	local caster = EntIndexToHScript( caster_index )
-    local ability = EntIndexToHScript( ability_index )
-	
-	if caster:GetName() == "npc_dota_hero_queenofpain" and caster:HasAbility(ability:GetName()) then
-		require('lua_abilities/heroes/queenofpain')
-		filterTable = SadoMasochism(filterTable)
-	end
 	return true
 end
 
@@ -568,15 +551,6 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 			attacker = attacker:GetOwner()
 		end
 	end
-	
-	if attacker:HasModifier("relic_unique_eldritch_rune") and inflictor then
-		if damagetype == DAMAGE_TYPE_PHYSICAL then
-			ApplyDamage({victim = victim, attacker = attacker, damage = damage * (1- victim:GetPhysicalArmorReduction() / 100 ), damage_type = DAMAGE_TYPE_MAGICAL, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
-		elseif damagetype == DAMAGE_TYPE_MAGICAL then
-			ApplyDamage({victim = victim, attacker = attacker, damage = damage * (1 - victim:GetMagicalArmorValue()), damage_type = DAMAGE_TYPE_PHYSICAL, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
-		end
-		return false
-	end
 
 	if original_attacker:GetTeam() == DOTA_TEAM_BADGUYS then
 		AddFOWViewer(DOTA_TEAM_GOODGUYS, original_attacker:GetAbsOrigin(), 256, 1, false)
@@ -679,11 +653,9 @@ function CHoldoutGameMode:OnHeroLevelUp(event)
 		end
 		if hero:GetLevel() % GameRules.gameDifficulty == 0 then
 			hero:SetAttributePoints( hero:GetAttributePoints() + 1 )
-			hero.bonusAbilityPoints = (hero.bonusAbilityPoints or 0) + 1
 		end
 	else
 		hero:SetAttributePoints( hero:GetAttributePoints() + 1 )
-		hero.bonusAbilityPoints = (hero.bonusAbilityPoints or 0) + 1
 		if not ( hero:GetLevel() == 30
 		or hero:GetLevel() == 31
 		or hero:GetLevel() == 36

@@ -4,146 +4,6 @@
 {
 	"Version"		"1"
 	//=================================================================================================================
-	// Ability: Bloodseeker's Bloodrage
-	//=================================================================================================================
-	"bloodseeker_bloodrage"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"					"5015"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
-		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
-		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
-		"FightRecapLevel"				"1"
-		"AbilitySound"					"hero_bloodseeker.bloodRage"
-		"MaxLevel"						"7"
-
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0.2"
-
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"6 5.5 5 4.5 4 3.5 3"
-
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"0"		
-		
-		// Cast Range
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"800"
-		
-		// Stats
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityModifierSupportValue"	"0.1"	// Primarily about the damage
-
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"6"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage_increase_pct"		"25 30 35 40 45 50 55"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"health_bonus_pct"			"19 21 23 25 27 29 31"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"health_bonus_creep_pct"	"19 21 23 25 27 29 31"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"health_bonus_aoe"			"300"
-			}
-			"06"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"health_bonus_share_percent"	"50"
-			}
-		}
-		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
-	}
-	
-	//=================================================================================================================
-	// Ability: Bloodseeker's Blood Rite/Bath
-	//=================================================================================================================
-	"bloodseeker_blood_bath"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"					"5016"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"	
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
-		"AbilitySound"					"hero_bloodseeker.bloodRite"
-		"MaxLevel"						"7"
-
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"1500"
-		"AbilityCastPoint"				"0.3"
-		
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"8"
-		"HasPureCooldown"				"1"
-		"AbilityDuration"				"3.5"
-	
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"100"
-
-
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"600"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"silence_duration"			"3.5"
-			}			
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"120 160 200 240 280 320 360"
-				"LinkedSpecialBonus"		"special_bonus_unique_bloodseeker_2"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"delay"						"0"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"delay_plus_castpoint_tooltip"						"0.3"
-			}
-		}
-		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_2"
-	}
-	//=================================================================================================================
 	// Morphling: Waveform
 	//=================================================================================================================
 	"morphling_waveform"
@@ -1861,242 +1721,6 @@
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
 	}
 	//=================================================================================================================
-	// Queen of Pain: Shadow Strike
-	//=================================================================================================================
-	"queenofpain_shadow_strike"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"5173"		// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
-		"FightRecapLevel"				"1"
-		"AbilitySound"					"Hero_QueenOfPain.ShadowStrike"
-		"MaxLevel"						"7"
-
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"450 500 550 600 650 700 750"
-		"AbilityCastPoint"				"0.4"
-		
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"4.0"
-		"AbilityDuration"				"15.0 15.0 15.0 15.0"
-	
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"80 90 100 110 120 130 140"
-	
-		
-		// Special	
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"strike_damage"			"100 150 200 250 300 350 400"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"duration_damage"		"30 45 60 75 90 105 120"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"movement_slow"			"-60"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"projectile_speed"		"900"
-			}			
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"cast_range_tooltip"	"450 500 550 600 650 700 750"
-			}	
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"duration_tooltip"		"15"
-			}			
-		}
-		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
-	}
-	
-	//=================================================================================================================
-	// Queen of Pain: Blink
-	//=================================================================================================================
-	"queenofpain_blink"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"					"5174"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
-		"AbilitySound"					"Hero_QueenOfPain.Blink_in"
-		"MaxLevel"						"7"
-
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"0"
-		"AbilityCastPoint"				"0.33 0.33 0.33 0.33"
-
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"13.0 11.5 10.0 8.5 7.0 5.5 4.0"
-		
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"60 60 60 60"
-		
-		// Special	
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"blink_range"			"1300"
-			}
-			
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"min_blink_range"		"200"
-			}
-		}
-		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_2"
-	}
-	
-	//=================================================================================================================
-	// Queen of Pain: Scream of Pain
-	//=================================================================================================================
-	"queenofpain_scream_of_pain"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"					"5175"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilitySound"					"Hero_QueenOfPain.ScreamOfPain"
-		"MaxLevel"						"7"
-		
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"0"
-		"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
-
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"7.0 7.0 7.0 7.0"
-
-		// Damage.
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"					"75 150 225 300 375 450 525"
-
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"60 70 80 90 100 110 120"
-
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"area_of_effect"		"475"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"projectile_speed"		"900"
-			}
-		}
-		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
-	}
-
-	//=================================================================================================================
-	// Queen of Pain: Sonic Wave
-	//=================================================================================================================
-	"queenofpain_sonic_wave"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"					"5176"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_POINT"				   
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"	
-		"FightRecapLevel"				"2"
-		"HasScepterUpgrade"			"1"
-		"AbilitySound"					"Hero_QueenOfPain.SonicWave"
-		"MaxLevel"						"6"
-
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"700"
-		"AbilityCastPoint"				"0.452 0.452 0.452"
-		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_4"
-
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"120"
-
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"250 360 470 580 690 800"
-
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"starting_aoe"		"100"
-			}
-			"02"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"distance"			"900"
-			}
-			"03"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"final_aoe"			"450"
-			}
-			"04"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"speed"				"900"
-			}
-			"05"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"damage"			"300 425 550 675 800 925"
-			}
-			"06"
-			{
-				"var_type"			"FIELD_FLOAT"
-				"cooldown_scepter"	"40"
-			}
-			"07"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"damage_scepter"	"325 475 625 775 925 1075"
-			}
-		}
-	}
-	//=================================================================================================================
 	// Viper: Poison Attack
 	//=================================================================================================================
 	"viper_poison_attack"
@@ -3680,311 +3304,6 @@
 		}		
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
 	}
-
-	//=================================================================================================================
-	// Ability: Jakiro's Dual Breath
-	//=================================================================================================================
-	"jakiro_dual_breath"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"5297"								// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
-		"FightRecapLevel"				"1"
-		"AbilitySound"					"Hero_Jakiro.DualBreath"
-		"MaxLevel"						"7"
-
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"750"
-		"AbilityCastPoint"				"0.55"
-
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"10.0 10.0 10.0 10.0"
-		"AbilityDuration"				"5.0"
-
-		
-		// Damage.
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"					"0"
-		
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"135 140 155 170 185 200 215"
-
-		// Stats
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityModifierSupportValue"	"0.25"	// Applies two modifiers 
-		
-		// Special	
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"start_radius"			"225"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"end_radius"			"250 265 280 295 310 325 340"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"range"					"750"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"speed"					"1050"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"fire_delay"			"0.3 0.3 0.3 0.3"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"burn_damage"			"30 55 80 105 130 155 180"
-				"LinkedSpecialBonus"	"special_bonus_unique_jakiro_2"
-			}
-			"07"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"slow_movement_speed_pct"	"-40"
-			}
-			"08"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"slow_attack_speed_pct"		"-40"
-			}
-			"09"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"tooltip_duration"		"5"
-			}
-			"10"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"speed_fire"			"1050"
-			}
-		}		
-		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
-	}
-
-	//=================================================================================================================
-	// Ability: Jakiro's Ice Path
-	//=================================================================================================================
-	"jakiro_ice_path"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"5298"									// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"SpellDispellableType"			"SPELL_DISPELLABLE_YES_STRONG"
-		"FightRecapLevel"				"1"
-		"AbilitySound"					"Hero_Jakiro.IcePath"
-		"MaxLevel"						"7"
-
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"1200"
-		"AbilityCastPoint"				"0.65"
-
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"12.0 11.5 11.0 10.5 10.0 9.5 9.0"
-
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"90"		
-
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"path_delay"				"0.5"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"1.5"
-				"LinkedSpecialBonus"		"special_bonus_unique_jakiro"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"path_radius"				"150"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"50 100 150 200 250 300 350 400"
-			}
-		}		
-		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_2"
-	}
-
-	//=================================================================================================================
-	// Ability: Jakiro's Liquid Fire
-	//=================================================================================================================
-	"jakiro_liquid_fire"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"5299"											// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_ATTACK"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
-		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
-		"AbilitySound"					"Hero_Jakiro.LiquidFire"
-		"MaxLevel"						"7"
-
-		// Stats
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"15 12.5 10 7.5 5 2.5 0"
-		"AbilityDuration"				"5.0 5.0 5.0 5.0"
-		"AbilityCastRange"				"600"
-		"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
-		
-		// Stats
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityModifierSupportBonus"		"35"
-			
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"slow_attack_speed_pct" "-60"
-				"LinkedSpecialBonus"	"special_bonus_unique_jakiro_4"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"250 275 300 325 350 375 400"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"36"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"tooltip_duration"			"5 5 5 5"
-			}
-		}		
-		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
-	}
-
-	//=================================================================================================================
-	// Ability: Jakiro's Macropyre
-	//=================================================================================================================
-	"jakiro_macropyre"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"					"5300"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"FightRecapLevel"				"2"
-		"AbilitySound"					"Hero_Jakiro.Macropyre.Cast"
-		"MaxLevel"						"6"
-
-		"HasScepterUpgrade"			"1"
-
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"1400"
-		"AbilityCastPoint"				"0.55"
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
-
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"60 60 60"
-
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"220 330 440 550 660 770"		
-
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"125 175 225 275 325 375"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"cast_range"				"1400"					
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"path_radius"				"260"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"tooltip_duration"			"10"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"duration"					"10"
-			}	
-			"06"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"burn_interval"				"0.5 0.5 0.5"
-			}
-			"07"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage_scepter"			"150 225 300 375 450 525"
-			}
-			"08"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"cast_range_scepter"		"1800"
-			}
-			"09"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"duration_scepter"			"30"
-			}
-		}	
-	}
-
 	//=================================================================================================================
 	// Batrider: Sticky Napalm
 	//=================================================================================================================
@@ -4421,209 +3740,6 @@
 			{
 				"var_type"				"FIELD_FLOAT"
 				"cooldown_scepter"		"15.0"
-			}
-		}
-	}
-
-	//=================================================================================================================
-	// Ursa: Earthshock
-	//=================================================================================================================
-	"ursa_earthshock"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"5357"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
-		"FightRecapLevel"				"1"
-		"AbilitySound"					"Hero_Ursa.Earthshock"
-		"MaxLevel"						"7"
-
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"0"
-		"AbilityCastPoint"				"0.3 0.3 0.3 0.3"
-
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"5"
-		"AbilityDuration"				"4.0 4.0 4.0 4.0"
-
-		// Damage.
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"					"100 160 320 380 440 500 560"
-
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"75 75 75 75"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"shock_radius"				"385"
-				"LinkedSpecialBonus"		"special_bonus_unique_ursa_5"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"movement_slow"				"-25 -35 -45 -55 -65 -75 -85"
-			}
-		}
-		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
-	}	
-
-	//=================================================================================================================
-	// Ursa: Overpower
-	//=================================================================================================================
-	"ursa_overpower"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"5358"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
-		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
-		"AbilitySound"					"Hero_Ursa.Overpower"
-		"MaxLevel"						"7"
-
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"0"
-		"AbilityCastPoint"				"0.3 0.3 0.3 0.3"
-
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"12 11 10 9 8 7 6"
-		"AbilityDuration"				"15.0 15.0 15.0 15.0"
-
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"45 55 65 75 85 95 105"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"max_attacks"				"6"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"attack_speed_bonus_pct"	"400 400 400 400"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"duration_tooltip"			"15"
-			}
-		}
-		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_2"
-	}
-	
-	//=================================================================================================================
-	// Ursa: Fury Swipes
-	//=================================================================================================================
-	"ursa_fury_swipes"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"5359"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
-		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
-		"MaxLevel"						"7"
-				
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"bonus_reset_time"				"10"
-				"LinkedSpecialBonus"			"special_bonus_unique_ursa_4"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"bonus_reset_time_roshan"		"7"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"damage_per_stack"				"5 8 11 14 17 20 23"
-				"LinkedSpecialBonus"			"special_bonus_unique_ursa"
-			}
-		}
-		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
-	}	
-
-	//=================================================================================================================
-	// Ursa: Enrage
-	//=================================================================================================================
-	"ursa_enrage"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"5360"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
-		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
-		"FightRecapLevel"				"1"
-		"AbilitySound"					"Hero_Ursa.Enrage"
-		"MaxLevel"						"6"
-
-		"HasScepterUpgrade"			"1"
-		
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"0"
-		"AbilityCastAnimation"			"ACT_INVALID"
-
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"15"
-		"HasPureCooldown"				"1"
-		"AbilityDuration"				"4"
-
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"0 0 0"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{			
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"enrage_multiplier"			"1.4 1.6 1.8 2.0 2.2 2.4"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage_reduction"			"80"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"4.0"
-				"LinkedSpecialBonus"		"special_bonus_unique_ursa_3"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"cooldown_scepter"			"5"
 			}
 		}
 	}
@@ -9084,98 +8200,6 @@
 			}
 		}
 	}
-
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_jakiro"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"					"6064"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"				"1.25"
-			}
-		}
-	}
-
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_jakiro_2"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"					"6381"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"	
-		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"				"40"
-			}
-		}
-	}
-
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_jakiro_3"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"					"6538"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"	
-		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"				"1"
-			}
-		}
-	}
-
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_jakiro_4"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"					"6661"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"	
-		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"				"-60"
-			}
-		}
-	}
 	//=================================================================================================================
 	// Ability: Special Bonus
 	//=================================================================================================================
@@ -9945,122 +8969,6 @@
 			}
 		}
 	}
-
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_ursa"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"					"6132"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"				"14"
-			}
-		}
-	}
-
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_ursa_2"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"					"6973"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"				"1"
-			}
-		}
-	}
-
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_ursa_3"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"					"6974"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"				"1"
-			}
-		}
-	}
-
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_ursa_4"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"					"6975"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"				"25"
-			}
-		}
-	}
-
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_ursa_5"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"					"6976"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"				"600"
-			}
-		}
-	}
-	
 	//=================================================================================================================
 	// Ability: Special Bonus
 	//=================================================================================================================
@@ -10861,167 +9769,6 @@
 	//=================================================================================================================
 	// Ability: Special Bonus
 	//=================================================================================================================
-	"special_bonus_unique_shadow_demon_1"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"					"6208"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"				"500"
-			}
-		}
-	}
-
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_shadow_demon_2"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"					"6293"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"				"6"
-			}
-		}
-	}
-
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_shadow_demon_3"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"					"6542"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"				"1.5"
-			}
-		}
-	}
-
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_shadow_demon_4"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"					"6873"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"				"25"
-			}
-		}
-	}
-
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_shadow_demon_5"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"					"7002"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"				"5"
-			}
-		}
-	}
-
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_shadow_demon_6"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"					"7061"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"				"0"
-			}
-		}
-	}
-
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_shadow_demon_7"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"					"7118"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"				"2"
-			}
-		}
-	}
-
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
 	"special_bonus_unique_slardar"
 	{
 		// General
@@ -11084,97 +9831,6 @@
 			{
 				"var_type"					"FIELD_INTEGER"
 				"value"				"0"
-			}
-		}
-	}
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_bloodseeker"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"					"6230"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"				"6"
-			}
-		}
-	}
-
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_bloodseeker_2"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"					"6356"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"				"75"
-			}
-		}
-	}
-
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_bloodseeker_3"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"					"6357"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"8"
-			}
-		}
-	}
-
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_bloodseeker_4"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"					"6809"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"				"0.3"
 			}
 		}
 	}
@@ -11521,7 +10177,6 @@
 			}
 		}
 	}
-
 	//=================================================================================================================
 	// Ability: Special Bonus
 	//=================================================================================================================
@@ -11544,7 +10199,6 @@
 			}
 		}
 	}
-
 	//=================================================================================================================
 	// Ability: Special Bonus
 	//=================================================================================================================
@@ -11567,7 +10221,6 @@
 			}
 		}
 	}
-
 	//=================================================================================================================
 	// Ability: Special Bonus
 	//=================================================================================================================
@@ -11590,7 +10243,6 @@
 			}
 		}
 	}
-
 	//=================================================================================================================
 	// Ability: Special Bonus
 	//=================================================================================================================
@@ -11613,7 +10265,6 @@
 			}
 		}
 	}
-
 	//=================================================================================================================
 	// Ability: Special Bonus
 	//=================================================================================================================
@@ -11636,7 +10287,6 @@
 			}
 		}
 	}
-
 	//=================================================================================================================
 	// Ability: Special Bonus
 	//=================================================================================================================
@@ -11659,7 +10309,6 @@
 			}
 		}
 	}
-
 	//=================================================================================================================
 	// Ability: Special Bonus
 	//=================================================================================================================
@@ -11682,7 +10331,6 @@
 			}
 		}
 	}
-
 	//=================================================================================================================
 	// Ability: Special Bonus
 	//=================================================================================================================
@@ -11705,7 +10353,6 @@
 			}
 		}
 	}
-
 	//=================================================================================================================
 	// Ability: Special Bonus
 	//=================================================================================================================
@@ -11728,7 +10375,6 @@
 			}
 		}
 	}
-
 	//=================================================================================================================
 	// Ability: Special Bonus
 	//=================================================================================================================
@@ -11751,11 +10397,9 @@
 			}
 		}
 	}
-	
 	//=================================================================================================================
 	// Ability: Special Bonus
 	//=================================================================================================================
-
 	"special_bonus_unique_pangolier_2"
 	{
 		// General
@@ -11775,11 +10419,9 @@
 			}
 		}
 	}
-	
 	//=================================================================================================================
 	// Ability: Special Bonus
 	//=================================================================================================================
-
 	"special_bonus_unique_pangolier_3"
 	{
 		// General
@@ -11799,11 +10441,9 @@
 			}
 		}
 	}
-	
 	//=================================================================================================================
 	// Ability: Special Bonus
 	//=================================================================================================================
-
 	"special_bonus_unique_pangolier_4"
 	{
 		// General
@@ -11823,11 +10463,9 @@
 			}
 		}
 	}
-	
 	//=================================================================================================================
 	// Ability: Special Bonus
 	//=================================================================================================================
-
 	"special_bonus_unique_pangolier_5"
 	{
 		// General
@@ -11847,7 +10485,6 @@
 			}
 		}
 	}
-
 	//=================================================================================================================
 	// Ability: Special Bonus
 	//=================================================================================================================
@@ -11870,7 +10507,6 @@
 			}
 		}
 	}
-
 	//=================================================================================================================
 	// Ability: Special Bonus
 	//=================================================================================================================

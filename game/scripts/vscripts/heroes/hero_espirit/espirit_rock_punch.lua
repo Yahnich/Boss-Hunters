@@ -21,8 +21,6 @@ function espirit_rock_punch:OnSpellStart()
     if self:GetCursorTarget() then
     	point = self:GetCursorTarget():GetAbsOrigin()
     end
-
-    self.rockCount = {}
 	
 	if caster:HasTalent("special_bonus_unique_espirit_rock_punch_2") then
 		if caster:FindAbilityByName("espirit_rock") then
@@ -68,28 +66,21 @@ function espirit_rock_punch:OnProjectileHit(hTarget, vLocation)
 		ParticleManager:SetParticleControl(nfx2, 1, vLocation)
 		ParticleManager:ReleaseParticleIndex(nfx2)
 
-		local i = 0
+		local rocks = 1
 
 		local stones = caster:FindFriendlyUnitsInRadius(vLocation, self:GetTalentSpecialValueFor("radius"), {type = DOTA_UNIT_TARGET_ALL})
 		for _,stone in pairs(stones) do
 			if stone:GetUnitName() == "npc_dota_earth_spirit_stone" then
-				self.rockCount[i] = stone
-				i = i + 1
+				rocks = rocks + 1
 				stone:ForceKill(false)
 			end
 		end
 		
-		--local numberRock = #self.rockCount + 1
-
 		local enemies = caster:FindEnemyUnitsInRadius(vLocation, self:GetTalentSpecialValueFor("radius"), {})
+		local damage = self:GetTalentSpecialValueFor("rock_damage") * rocks
 		for _,enemy in pairs(enemies) do
 			if caster:HasTalent("special_bonus_unique_espirit_rock_punch_1") then
 				self:Stun(enemy, caster:FindTalentValue("special_bonus_unique_espirit_rock_punch_1"), false)
-			end
-
-			local damage = self:GetTalentSpecialValueFor("rock_damage")
-			if #self.rockCount > 0 then
-				damage = self:GetTalentSpecialValueFor("rock_damage") * (#self.rockCount)
 			end
 			self:DealDamage(caster, enemy, damage, {}, 0)
 		end
@@ -106,9 +97,6 @@ function espirit_rock_punch:OnProjectileHit(hTarget, vLocation)
 				caster:FindAbilityByName("espirit_rock"):CreateStoneRemnant(pointRando)
 			end
 		end
-
-		
-
 		hTarget:ForceKill(false)
 	end
 end

@@ -1,6 +1,6 @@
 item_ward_of_life = class({})
-
 LinkLuaModifier( "modifier_item_ward_of_life", "items/item_ward_of_life.lua", LUA_MODIFIER_MOTION_NONE )
+
 function item_ward_of_life:GetIntrinsicModifierName()
 	return "modifier_item_ward_of_life"
 end
@@ -70,7 +70,7 @@ function modifier_item_ward_of_life:GetModifierTotal_ConstantBlock(params)
 		local buff = self:GetParent():AddNewModifier( self:GetParent(), self:GetAbility(), "modifier_item_ward_of_life_protection", {duration = self.duration } )
 		local cd = self:GetParent():AddNewModifier( self:GetParent(), self:GetAbility(), "modifier_item_ward_of_life_cd", {duration = self.duration + self.cd * self:GetParent():GetCooldownReduction() } )
 		if cd and buff then
-			cd:SetDuration( buff:GetRemainingTime + self.cd * self:GetParent():GetCooldownReduction(), true )
+			cd:SetDuration( buff:GetRemainingTime() + self.cd * self:GetParent():GetCooldownReduction(), true )
 		end
 		
 		local difference = trigger - ( self:GetParent():GetHealth() - params.damage )

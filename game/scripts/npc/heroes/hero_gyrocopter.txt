@@ -347,6 +347,7 @@
 			{
 				"var_type"					"FIELD_INTEGER"
 				"damage_second"				"100 150 200 250 300 350"
+				"LinkedSpecialBonus"		"special_bonus_unique_gyrocopter_calldown_2"
 			}
 			"05"
 			{
@@ -476,6 +477,44 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"value"					"1"
+			}
+		}
+	}
+	"special_bonus_unique_gyrocopter_calldown_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"15"
+			}
+		}
+	}
+	"special_bonus_unique_gyrocopter_calldown_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"75"
 			}
 		}
 	}

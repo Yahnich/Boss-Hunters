@@ -1,0 +1,1 @@
+queenofpain_scream_of_pain_bh = class({})

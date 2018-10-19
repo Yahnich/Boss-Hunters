@@ -24,7 +24,7 @@ function phenx_egg:OnSpellStart()
 	
     EmitSoundOn("Hero_Phoenix.SuperNova.Cast", caster)
 
-    local egg = caster:CreateSummon("npc_dota_phoenix_sun", caster:GetAbsOrigin(), self:GetTalentSpecialValueFor("duration"))
+    local egg = caster:CreateSummon( "npc_dota_phoenix_sun", caster:GetAbsOrigin() )
 	
 	local hp = self:GetTalentSpecialValueFor("max_hero_attacks")
 	egg:SetCoreHealth(hp * 2)
@@ -33,13 +33,13 @@ function phenx_egg:OnSpellStart()
 	egg.owners = {}
     EmitSoundOn("Hero_Phoenix.SuperNova.Begin", egg)
 
-    caster:AddNewModifier(caster, self, "modifier_phenx_egg_caster", {Duration = self:GetTalentSpecialValueFor("duration")})
+    caster:AddNewModifier(caster, self, "modifier_phenx_egg_caster", {})
     egg:ModifyThreat(caster:GetThreat())
     caster:SetThreat(0)
 	table.insert(egg.owners, caster)
 	if self:GetCursorTarget() then
 		local target = self:GetCursorTarget()
-		target:AddNewModifier(caster, self, "modifier_phenx_egg_caster", {Duration = self:GetTalentSpecialValueFor("duration")})
+		target:AddNewModifier(caster, self, "modifier_phenx_egg_caster", {})
 		table.insert(egg.owners, target)
 		target:SetAbsOrigin(egg:GetAbsOrigin())
 	end
@@ -146,7 +146,6 @@ function modifier_phenx_egg_form:GetModifierIncomingDamage_Percentage(params)
 	if numAttacked >= self.maxAttacks then
 		-- Now the egg has been killed.
 		egg.supernova_lastAttacker = attacker
-		self:GetCaster():RemoveModifierByName("modifier_phenx_egg_caster")
 		egg:RemoveModifierByName("modifier_phenx_egg_form")
 		egg:ForceKill(true)
 	else
@@ -163,7 +162,10 @@ function modifier_phenx_egg_form:OnRemoved()
 
         ParticleManager:DestroyParticle(self.nfx, false)
         local isDead = egg.supernova_numAttacked >= self.maxAttacks
-
+		for _, hero in ipairs( egg.owners ) do
+			local invuln = hero:FindModifierByName("modifier_phenx_egg_caster")
+			if invuln then invuln:Destroy() end
+		end
         if isDead then
             for _, hero in ipairs( egg.owners ) do
 				hero:ForceKill(true)
@@ -175,7 +177,7 @@ function modifier_phenx_egg_form:OnRemoved()
 				hero:Dispel(caster, true)
 
 				for i=0,6 do
-					local abil = self:GetCaster():GetAbilityByIndex(i)
+					local abil = hero:GetAbilityByIndex(i)
 					if abil:GetAbilityType() ~= 1 then
 						abil:EndCooldown()
 					end

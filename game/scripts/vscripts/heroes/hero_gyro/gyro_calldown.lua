@@ -3,6 +3,18 @@ LinkLuaModifier( "modifier_gyro_calldown", "heroes/hero_gyro/gyro_calldown.lua",
 LinkLuaModifier( "modifier_gyro_calldown_slow", "heroes/hero_gyro/gyro_calldown.lua",LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_gyro_calldown_slow2", "heroes/hero_gyro/gyro_calldown.lua",LUA_MODIFIER_MOTION_NONE )
 
+function gyro_calldown:GetCastRange( target, position )
+	if self:GetCaster():HasTalent("special_bonus_unique_gyrocopter_calldown_2") then
+		return -1
+	else
+		return self.BaseClass.GetCastRange( self, target, position )
+	end
+end
+
+function gyro_calldown:GetCooldown( iLvl )
+	return self.BaseClass.GetCooldown( self, iLvl ) - self:GetCaster():FindTalentValue("special_bonus_unique_gyrocopter_calldown_1")
+end
+
 function gyro_calldown:IsStealable()
 	return true
 end
@@ -16,14 +28,14 @@ function gyro_calldown:GetIntrinsicModifierName()
 end
 
 function gyro_calldown:GetAOERadius()
-	return self:GetSpecialValueFor("radius")
+	return self:GetTalentSpecialValueFor("radius")
 end
 
 function gyro_calldown:OnSpellStart()
 	local caster = self:GetCaster()
 	local point = self:GetCursorPosition()
 
-	local radius = self:GetSpecialValueFor("radius")
+	local radius = self:GetTalentSpecialValueFor("radius")
 
 	EmitSoundOn("Hero_Gyrocopter.CallDown.Fire", caster)
 
@@ -43,8 +55,8 @@ function gyro_calldown:OnSpellStart()
 		EmitSoundOnLocationWithCaster(point, "Hero_Gyrocopter.CallDown.Damage", caster)
 		local enemies = caster:FindEnemyUnitsInRadius(point, radius)
 		for _,enemy in pairs(enemies) do
-			enemy:AddNewModifier(caster, self, "modifier_gyro_calldown_slow", {Duration = self:GetSpecialValueFor("duration_first")})
-			self:DealDamage(caster, enemy, self:GetSpecialValueFor("damage_first"), {}, 0)
+			enemy:AddNewModifier(caster, self, "modifier_gyro_calldown_slow", {Duration = self:GetTalentSpecialValueFor("duration_first")})
+			self:DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage_first"), {}, 0)
 		end
 	end)
 
@@ -59,8 +71,8 @@ function gyro_calldown:OnSpellStart()
 		EmitSoundOnLocationWithCaster(point, "Hero_Gyrocopter.CallDown.Damage", caster)
 		local enemies = caster:FindEnemyUnitsInRadius(point, radius)
 		for _,enemy in pairs(enemies) do
-			enemy:AddNewModifier(caster, self, "modifier_gyro_calldown_slow2", {Duration = self:GetSpecialValueFor("duration_second")})
-			self:DealDamage(caster, enemy, self:GetSpecialValueFor("damage_second"), {}, 0)
+			enemy:AddNewModifier(caster, self, "modifier_gyro_calldown_slow2", {Duration = self:GetTalentSpecialValueFor("duration_second")})
+			self:DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage_second"), {}, 0)
 		end
 	end)
 end

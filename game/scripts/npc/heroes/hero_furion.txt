@@ -151,7 +151,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cast_point_tooltip"	"3.0 2.5 2.0 1.5 1.0 0.5 0"
+				"cast_point_tooltip"	"3.0 2.5 2.0 1.5 1.0 0.5 0.2"
 			}
 		}
 	
@@ -216,13 +216,11 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"treant_health_pct"		"35"
-				"LinkedSpecialBonus"	"special_bonus_unique_furion_tree_ant_1"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"treant_damage"			"24 25 26 27 28 29 30"
-				"LinkedSpecialBonus"	"special_bonus_unique_furion_tree_ant_1"
 			}
 		}
 	
@@ -431,7 +429,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"25"
+				"value"					"100"
 			}
 		}
 	}
