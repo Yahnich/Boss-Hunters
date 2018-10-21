@@ -1677,16 +1677,21 @@
 	}
 	"npc_dota_hero_slardar_ebf"
 	{
-		"override_hero"			"npc_dota_hero_slardar"
-		"Ability10"				"special_bonus_hp_regen_5"
-		"Ability11"				"special_bonus_attack_damage_20"
-		"Ability12"				"special_bonus_hp_300"
-		"Ability13"				"special_bonus_armor_4"
-		"Ability14"				"special_bonus_attack_speed_50"
-		"Ability15"				"special_bonus_night_vision_1000"
-		"Ability16"				"special_bonus_unique_slardar"
-		"Ability17"				"special_bonus_all_stats_20"
+		"override_hero"					"npc_dota_hero_slardar"
+		"Ability1"						"slardar_sprint_bh"
+		"Ability2"						"slardar_slithereen_crush_bh"
+		"Ability3"						"slardar_oathbreaker"
+		"Ability4"						"slardar_oatkeeper"
+		"Ability6"						"slardar_amplify_damage_bh"
 		
+		"Ability10"						"special_bonus_unique_slardar_sprint_1"
+		"Ability11"						"special_bonus_unique_slardar_sprint_2"
+		"Ability12"						"special_bonus_unique_slardar_slithereen_crush_1"
+		"Ability13"						"special_bonus_unique_slardar_slithereen_crush_2"
+		"Ability14"						"special_bonus_unique_slardar_oathbreaker_1"
+		"Ability15"						"special_bonus_unique_slardar_oatkeeper_1"
+		"Ability16"						"special_bonus_unique_slardar_amplify_damage_1"
+		"Ability17"						"special_bonus_unique_slardar_amplify_damage_2"
 	}
 	//=================================================================================================================
 	// HERO: slark
