@@ -39,11 +39,11 @@ LinkLuaModifier("modifier_elite_nimble_buff", "elites/elite_nimble", LUA_MODIFIE
 
 if IsServer() then
 	function modifier_elite_nimble_buff:OnCreated()
-		self:StartDelayedCooldown()
+		self:GetAbility():StartDelayedCooldown()
 	end
 	
 	function modifier_elite_nimble_buff:OnDestroy()
-		self:EndDelayedCooldown()
+		self:GetAbility():EndDelayedCooldown()
 	end
 end
 

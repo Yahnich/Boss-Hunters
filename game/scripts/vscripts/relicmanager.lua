@@ -228,7 +228,7 @@ function RelicManager:PushCustomRelicDropsForPlayer(pID, relicTable)
 		end
 		relicTable = newTable
 	end
-	
+	hero.relicsToSelect = hero.relicsToSelect or {}
 	if ( contract and not hero:HasRelic("relic_unique_ritual_candle") ) then
 		local corruptTable = {}
 		for i = 1, #relicTable do

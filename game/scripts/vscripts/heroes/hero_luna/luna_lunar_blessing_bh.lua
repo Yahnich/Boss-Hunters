@@ -102,6 +102,26 @@ function modifier_luna_lunar_blessing_bh_aura:DeclareFunctions()
 	return funcs
 end
 
+if GameRules == nil and IsClient() then
+	GameRules = class({})
+	
+	GameRules.IsDaytime = function()
+		local timeofday = CustomNetTables:GetTableValue( "game_info", "timeofday")
+		return tonumber(timeofday["timeofday"]) == 1
+	end
+	
+	GameRules.IsTemporaryNight = function()
+		local timeofday = CustomNetTables:GetTableValue( "game_info", "timeofday")
+		return tonumber(timeofday["timeofday"]) == 2
+	end
+	
+	GameRules.IsNightstalkerNight = function()
+		local timeofday = CustomNetTables:GetTableValue( "game_info", "timeofday")
+		return tonumber(timeofday["timeofday"]) == 3
+	end
+end
+	
+
 function modifier_luna_lunar_blessing_bh_aura:GetModifierPreAttack_BonusDamage()
 	local damage = self.damage
 	if self:GetCaster():HasModifier("modifier_luna_lunar_blessing_active") then damage = damage * self:GetCaster():FindTalentValue("special_bonus_unique_luna_lunar_blessing_1") end

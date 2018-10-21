@@ -79,6 +79,6 @@ end
 function modifier_furion_natures_wrath_revive:OnDeath(params)
 	if params.unit == self:GetParent() then
 		local treants = self:GetCaster():FindAbilityByName("furion_tree_ant")
-		if treants then treants:SpawnTreant( self:GetParent():GetAbsOrigin() ) end
+		if treants then treants:SpawnTreant( self:GetParent():GetAbsOrigin(), params.unit:IsRoundBoss() ) end
 	end
 end

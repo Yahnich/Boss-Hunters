@@ -7,6 +7,8 @@
 		"item"		"item_potion_of_essence"
 		"item"		"item_dust_of_stasis"
 		"item"		"item_creed_of_knowledge"
+		"item"		"item_tome_of_immense_knowledge"
+		"item"		"item_vaudevilles_mystery_box"
     }
     "attributes"
     {

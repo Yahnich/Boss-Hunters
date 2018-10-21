@@ -42,10 +42,11 @@ function jakiro_macropyre_bh:OnSpellStart()
     -- Left arrow variables
    	local left_spawn_point = RotatePosition(caster:GetAbsOrigin(), left_QAngle, spawn_point)
     local left_direction = CalculateDirection(left_spawn_point, caster:GetAbsOrigin())  
-
-    Timers:CreateTimer(0.3, function()
-		CreateModifierThinker(caster, self, "modifier_jakiro_macropyre_bh_talent", {Duration = self:GetTalentSpecialValueFor("duration")}, left_spawn_point + left_direction * 500, caster:GetTeam(), false)
-	end)
+	if caster:HasTalent("special_bonus_unique_jakiro_macropyre_bh_2") then
+		Timers:CreateTimer(0.3, function()
+			CreateModifierThinker(caster, self, "modifier_jakiro_macropyre_bh_talent", {Duration = self:GetTalentSpecialValueFor("duration")}, left_spawn_point + left_direction * 500, caster:GetTeam(), false)
+		end)
+	end
 end
 
 modifier_jakiro_macropyre_bh = class({})

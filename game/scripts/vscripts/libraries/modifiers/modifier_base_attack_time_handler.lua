@@ -14,7 +14,7 @@ if IsServer() then
 				baseAttackTime = baseAttackTime + (modifier:GetBaseAttackTime_Bonus() * 100) 
 			end
 		end
-		self:SetStackCount( math.floor(baseAttackTime) )
+		self:SetStackCount( math.max( math.floor(baseAttackTime), 10 ) )
 	end
 end
 	

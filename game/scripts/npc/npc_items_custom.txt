@@ -94,6 +94,8 @@
 #base "items/item_potion_of_essence.txt"
 #base "items/item_dust_of_stasis.txt"
 #base "items/item_creed_of_knowledge.txt"
+#base "items/item_tome_of_immense_knowledge.txt"
+#base "items/item_vaudevilles_mystery_box.txt"
 
 #base "items/item_shadow_blade.txt"
 #base "items/item_dark_wand.txt"

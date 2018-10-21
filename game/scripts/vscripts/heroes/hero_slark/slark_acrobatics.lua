@@ -17,7 +17,7 @@ function modifier_slark_acrobatics:DeclareFunctions()
 end
 
 function modifier_slark_acrobatics:GetAbsorbSpell(params)
-	if self:GetAbility:IsCooldownReady() and params.ability:GetCaster():GetTeam() ~= self:GetParent():GetTeam() then
+	if self:GetAbility():IsCooldownReady() and params.ability:GetCaster():GetTeam() ~= self:GetParent():GetTeam() then
 		self:GetAbility():SetCooldown()
 		self:GetCaster():StartGesture( ACT_DOTA_SLARK_POUNCE )
 		self:GetCaster():PerformGenericAttack(params.ability:GetCaster(), true)

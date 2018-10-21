@@ -36,7 +36,7 @@ end
 function Projectile:ProjectileThink()
 	self:thinkBehavior()
 	ParticleManager:SetParticleControl( self.FX, 0, self:GetPosition() )
-	ParticleManager:SetParticleControl( self.FX, 1, self:GetPosition() + self:GetVelocity() )
+	ParticleManager:SetParticleControl( self.FX, 1, self:GetPosition() )
 	ParticleManager:SetParticleControl( self.FX, 2, Vector( self:GetSpeed(), 0, 0 ) )
 	ParticleManager:SetParticleControl( self.FX, 3, self:GetPosition() )
 	

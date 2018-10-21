@@ -24,7 +24,7 @@ end
 
 function modifier_item_hunters_hatchet_passive:OnAttackLanded(params)
 	if IsServer() then
-		if params.attacker == self:GetParent() then
+		if params.attacker == self:GetParent() and not self:GetParent():IsRangedAttacker() then
 			ParticleManager:FireParticle("particles/units/heroes/hero_sven/sven_spell_great_cleave.vpcf", PATTACH_POINT_FOLLOW, params.target )
 			for _, enemy in ipairs( self:GetParent():FindEnemyUnitsInRadius( params.target:GetAbsOrigin(), self.radius) ) do
 				if enemy ~= params.target then

@@ -3,21 +3,21 @@
 	//=================================================================================================================
 	// TITAN Armor
 	//=================================================================================================================
-	"item_creed_of_knowledge"
+	"item_vaudevilles_mystery_box"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"9999"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"							"9997"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"BaseClass"						"item_lua"
-		"ScriptFile"					"items/item_creed_of_knowledge"
-		"AbilityTextureName"			"custom/creed_of_omniscience"
+		"ScriptFile"					"items/item_vaudevilles_mystery_box"
+		"AbilityTextureName"			"custom/treasure_box"
 		"ItemKillable"					"1"
 		"ItemSellable"					"0"
 		"ItemDroppable"					"1"
 		"Model"							"models/props_gameplay/clarity.vmdl"	
 		
-		"ItemCost"						"1000"
+		"ItemCost"						"20000"
 		"ItemShopTags"					"xp;experience"
 		"ItemQuality"					"consumable"
 		"ItemAliases"					"tome of knowledge;creed of knowledge"
@@ -35,7 +35,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"bonus_xp"				"1500"
+				"bonus_xp"				"15000"
 			}
 		}
 	}

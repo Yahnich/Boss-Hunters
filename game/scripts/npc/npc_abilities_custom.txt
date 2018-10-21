@@ -972,7 +972,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"50 60 75 80"
+				"damage"				"30 40 50 60"
 			}
 		}
 	}

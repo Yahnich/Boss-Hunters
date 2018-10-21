@@ -738,8 +738,8 @@
 		"Ability3"		"jakiro_liquid_fire_bh"
 		"Ability6"		"jakiro_macropyre_bh"
 
-		"Ability10"		"special_bonus_unique_jakiro_dual_breath_1"
-		"Ability11"		"special_bonus_unique_jakiro_dual_breath_2"
+		"Ability10"		"special_bonus_unique_jakiro_dual_breath_bh_1"
+		"Ability11"		"special_bonus_unique_jakiro_dual_breath_bh_2"
 		"Ability12"		"special_bonus_unique_jakiro_ice_path_bh_1"
 		"Ability13"		"special_bonus_unique_jakiro_ice_path_bh_2"
 		"Ability14"		"special_bonus_unique_jakiro_liquid_fire_bh_1"
@@ -1393,6 +1393,15 @@
 		"Ability3"				"queenofpain_scream_of_pain_bh"
 		"Ability4"				"queenofpain_sadomasochism"
 		"Ability6"				"queenofpain_sonic_wave_bh"
+		
+		"Ability10"				"special_bonus_unique_queenofpain_shadow_strike_1"
+		"Ability11"				"special_bonus_unique_queenofpain_shadow_strike_2"
+		"Ability12"				"special_bonus_unique_queenofpain_blink_1"
+		"Ability13"				"special_bonus_unique_queenofpain_blink_2"
+		"Ability14"				"special_bonus_unique_queenofpain_scream_of_pain_1"
+		"Ability15"				"special_bonus_unique_queenofpain_scream_of_pain_2"
+		"Ability16"				"special_bonus_unique_queenofpain_sonic_wave_1"
+		"Ability17"				"special_bonus_unique_queenofpain_sonic_wave_2"
 	}
 	//=================================================================================================================
 	// HERO: Cockwerk
