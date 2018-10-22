@@ -1,6 +1,7 @@
 sd_demonic_purge = class({})
 LinkLuaModifier("modifier_sd_demonic_purge", "heroes/hero_shadow_demon/sd_demonic_purge", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_sd_demonic_purge_charges", "heroes/hero_shadow_demon/sd_demonic_purge", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_sd_demonic_purge_charges_handle", "heroes/hero_shadow_demon/sd_demonic_purge", LUA_MODIFIER_MOTION_NONE)
 
 function sd_demonic_purge:IsStealable()
 	return true
@@ -11,7 +12,7 @@ function sd_demonic_purge:IsHiddenWhenStolen()
 end
 
 function sd_demonic_purge:GetIntrinsicModifierName()
-	return "modifier_sd_demonic_purge_charges"
+	return "modifier_sd_demonic_purge_charges_handle"
 end
 
 function sd_demonic_purge:HasCharges()
@@ -81,6 +82,45 @@ end
 
 function modifier_sd_demonic_purge:GetAttributes()
 	return MODIFIER_ATTRIBUTE_MULTIPLE
+end
+
+modifier_sd_demonic_purge_charges_handle = class({})
+
+function modifier_sd_demonic_purge_charges_handle:OnCreated()
+    if IsServer() then
+        self:StartIntervalThink(0.1)
+    end
+end
+
+function modifier_sd_demonic_purge_charges_handle:OnIntervalThink()
+    local caster = self:GetCaster()
+
+    if self:GetCaster():HasScepter() then
+        if not caster:HasModifier("modifier_sd_demonic_purge_charges") then
+            self:GetAbility():EndCooldown()
+            caster:AddNewModifier(caster, self:GetAbility(), "modifier_sd_demonic_purge_charges", {})
+        end
+    else
+    	if caster:HasModifier("modifier_sd_demonic_purge_charges") then
+    		caster:RemoveModifierByName("modifier_sd_demonic_purge_charges")
+    	end
+    end
+end
+
+function modifier_sd_demonic_purge_charges_handle:DestroyOnExpire()
+    return false
+end
+
+function modifier_sd_demonic_purge_charges_handle:IsPurgable()
+    return false
+end
+
+function modifier_sd_demonic_purge_charges_handle:RemoveOnDeath()
+    return false
+end
+
+function modifier_sd_demonic_purge_charges_handle:IsHidden()
+    return true
 end
 
 modifier_sd_demonic_purge_charges = class({})

@@ -1,259 +1,41 @@
 "DOTAAbilities"
 {	
-	"sd_disruption"
+	"sb_charge"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_shadow_demon/SD_disruption.lua"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
-		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityTextureName"			"shadow_demon_disruption"
-		"MaxLevel"						"7"
-		
-		"precache"
-		{
-			"particle"					"particles/units/heroes/hero_shadow_demon/shadow_demon_disruption.vpcf"
-			"particle"  				"particles/units/heroes/hero_dark_seer/dark_seer_ion_shell_damage.vpcf"
-			"particle" 	 				"particles/units/heroes/hero_shadow_demon/shadow_demon_distruption_orb.vpcf"
-
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_shadow_demon.vsndevts"
-		}
-	
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"600"
-		"AbilityCastPoint"				"0.3"
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
-		
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"13 12 11 10 9 8 7"
-
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"120"
-	
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"25 35 45 55 65 75 85"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"4"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"450"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"tick_rate"				"0.2"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"charges"				"0"
-				"LinkedSpecialBonus"	"special_bonus_unique_sd_disruption_1"
-			}
-		}
-	}
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_sd_disruption_1"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"2"
-			}
-		}
-	}
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_sd_disruption_2"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
-		}
-	}
-
-	"sd_soul_catcher"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_shadow_demon/sd_soul_catcher.lua"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
-		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityTextureName"			"shadow_demon_soul_catcher"
-		"MaxLevel"						"7"
-		
-		"precache"
-		{
-			"particle"					"particles/units/heroes/hero_shadow_demon/shadow_demon_soul_catcher.vpcf"
-			"particle"  				"particles/units/heroes/hero_shadow_demon/shadow_demon_soul_catcher_debuff.vpcf"
-
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_shadow_demon.vsndevts"
-		}
-	
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"600"
-		"AbilityCastPoint"				"0.3"
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
-		
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"45 44 43 42 41 40 39"
-
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"50 60 70 80 90 100 110"
-	
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"amp"					"20 30 40 50 60 70 80"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"12"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"450"
-			}
-		}
-	}
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_sd_soul_catcher_1"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"-10"
-			}
-		}
-	}
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_sd_soul_catcher_2"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
-		}
-	}
-
-	"sd_shadow_poison"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_shadow_demon/sd_shadow_poison.lua"
+		"ScriptFile"					"heroes/hero_spirit_breaker/sb_charge"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
 		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityTextureName"			"shadow_demon_shadow_poison"
+		"AbilityTextureName"			"spirit_breaker_charge_of_darkness"
 		"MaxLevel"						"7"
-		
-		"precache"
-		{
-			"particle"					"particles/units/heroes/hero_shadow_demon/shadow_demon_shadow_poison_projectile.vpcf"
-			"particle"  				"particles/units/heroes/hero_shadow_demon/shadow_demon_loadout.vpcf"
-
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_shadow_demon.vsndevts"
-		}
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"1500"
+		"AbilityCastRange"				"1000"
 		"AbilityCastPoint"				"0.25"
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_3"
+		"AbilityCastAnimation"			"ACT_DOTA_SPIRIT_BREAKER_CHARGE_POSE"
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"2.5"
-
+		"AbilityCooldown"				"12"
+		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"75"
+		"AbilityManaCost"				"100"
 	
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_spirit_breaker/spirit_breaker_charge.vpcf"
+			"particle"  				"particles/units/heroes/hero_ursa/ursa_earthshock_modifier.vpcf"
+
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_spirit_breaker.vsndevts"
+		}
+		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
@@ -261,46 +43,31 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage_impact"			"26 34 42 50 58 66 74"
-				"LinkedSpecialBonus"	"special_bonus_unique_sd_shadow_poison_2"
-			}
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage_time"			"20 35 50 65 80 95 110"
-				"LinkedSpecialBonus"	"special_bonus_unique_sd_shadow_poison_2"
+				"movement_speed"		"600 650 700 750 800 850 900"
+				"LinkedSpecialBonus"	"special_bonus_unique_sb_charge_1"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"5"
+				"var_type"				"FIELD_INTEGER"
+				"bash_radius"			"300"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"speed"					"1000"
+				"vision_radius"			"400"
 			}
 			"04"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"distance"				"1500"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"width"					"200"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"stacks"				"5"
+				"var_type"				"FIELD_FLOAT"
+				"vision_duration"		"0.94"
 			}
 		}
 	}
+	
 	//=================================================================================================================
 	// Ability: Special Bonus
 	//=================================================================================================================
-	"special_bonus_unique_sd_shadow_poison_1"
+	"special_bonus_unique_sb_charge_1"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -322,7 +89,7 @@
 	//=================================================================================================================
 	// Ability: Special Bonus
 	//=================================================================================================================
-	"special_bonus_unique_sd_shadow_poison_2"
+	"special_bonus_unique_sb_charge_2"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -337,91 +104,48 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"35"
+				"value"						"1"
 			}
 		}
 	}
 
-	"sd_void_release"
+	"sb_haste"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_shadow_demon/sd_void_release.lua"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"ScriptFile"					"heroes/hero_spirit_breaker/sb_haste"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_AURA"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
-		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityTextureName"			"custom/ms_shadow_walk"
-		"MaxLevel"						"1"
-		"InnateAbility"					"1"
-		
-		"precache"
-		{
-			"particle"					"particles/units/heroes/hero_shadow_demon/shadow_demon_void_form_status_effect.vpcf"
-			"particle"  				"particles/units/heros/hero_shadow_demon/shadow_demon_projection.vpcf"
-
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_shadow_demon.vsndevts"
-		}
-	
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"chance"				"10"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"100"
-			}
-		}
-	}
-
-	"sd_demonic_purge"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_shadow_demon/sd_demonic_purge.lua"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
-		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityTextureName"			"shadow_demon_demonic_purge"
-		"MaxLevel"						"6"
-		"HasScepterUpgrade"				"1"
-		
-		"precache"
-		{
-			"particle"					"particles/units/heroes/hero_shadow_demon/shadow_demon_demonic_purge.vpcf"
-			"particle"					"particles/units/heroes/hero_shadow_demon/shadow_demon_demonic_purge_cast.vpcf"
-
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_shadow_demon.vsndevts"
-		}
+		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+		"AbilityTextureName"			"spirit_breaker_empowering_haste"
+		"MaxLevel"						"7"
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"800"
-		"AbilityCastPoint"				"0.3"
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_5"
+		"AbilityCastRange"				"0"
+		"AbilityCastPoint"				"0"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"60"
-
+		"AbilityCooldown"				"20"
+		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"200"
+		"AbilityManaCost"				"0"
 	
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_spirit_breaker/spirit_breaker_haste_owner.vpcf"
+			"particle"  				"particles/units/heroes/hero_dark_seer/dark_seer_vacuum.vpcf"
+
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_shredder.vsndevts"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_pudge.vsndevts"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_meepo.vsndevts"
+		}
+		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
@@ -429,31 +153,35 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"200 300 400 500 600 700"
-				"LinkedSpecialBonus"	"special_bonus_unique_sd_demonic_purge_1"
+				"bonus_ms_self"			"8 12 16 20 24 28 32"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"7"
-				"LinkedSpecialBonus"	"special_bonus_unique_sd_demonic_purge_1"
+				"var_type"				"FIELD_INTEGER"
+				"bonus_ms_allies"		"4 6 8 10 12 14 16"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"max_slow"				"-100"
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"900"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"charges"				"3"
+				"bonus_ms_extra"		"30 40 50 60 70 80 90"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"6"
 			}
 		}
 	}
+	
 	//=================================================================================================================
 	// Ability: Special Bonus
 	//=================================================================================================================
-	"special_bonus_unique_sd_demonic_purge_1"
+	"special_bonus_unique_sb_haste_1"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -468,14 +196,15 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"500"
+				"value"						"1"
 			}
 		}
 	}
+
 	//=================================================================================================================
 	// Ability: Special Bonus
 	//=================================================================================================================
-	"special_bonus_unique_sd_demonic_purge_2"
+	"special_bonus_unique_sb_haste_2"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -489,8 +218,281 @@
 		{
 			"01"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"3"
+				"var_type"					"FIELD_INTEGER"
+				"value"						"1"
+			}
+		}
+	}
+	
+	"sb_bash"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_spirit_breaker/sb_bash"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"spirit_breaker_greater_bash"
+		"MaxLevel"						"7"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"1.5"
+
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_spirit_breaker/spirit_breaker_greater_bash.vpcf"
+			"particle"  				"particles/units/heroes/hero_spirit_breaker/spirit_breaker_jinda_slow.vpcf"
+
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_spirit_breaker.vsndevts"
+		}
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"chance"				"17"
+				"LinkedSpecialBonus"	"special_bonus_unique_spirit_breaker_1"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"damage"				"12 24 36 48 60 72 84"
+				"CalculateSpellDamageTooltip"	"1"
+				"LinkedSpecialBonus"	"special_bonus_unique_spirit_breaker_3"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"1.2 1.4 1.6 1.8"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"knockback_duration"	"0.5"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"knockback_distance"	"143 153 163 173 183 193 203"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"knockback_height"		"50"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_ms"				"17"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"ms_duration"			"3"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_sb_bash_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"1"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_sb_bash_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"1"
+			}
+		}
+	}
+
+	"sb_armor"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_spirit_breaker/sb_armor"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"spirit_breaker_charge_of_darkness_alt"
+		"MaxLevel"						"1"
+		"InnateAbility"					"1"
+
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_spirit_breaker/spirit_breaker_greater_bash.vpcf"
+			"particle"  				"particles/units/heroes/hero_spirit_breaker/spirit_breaker_jinda_slow.vpcf"
+
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_spirit_breaker.vsndevts"
+		}
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"ms_to_armor"			"8"
+			}
+		}
+	}
+
+	"sb_nether_strike"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_spirit_breaker/sb_nether_strike"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"spirit_breaker_nether_strike"
+		"MaxLevel"						"6"
+		"HasScepterUpgrade"				"1"
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"700"
+		"AbilityCastRangeBuffer"		"500"
+		"AbilityCastPoint"				"1.2"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"100 90 80 70 60 50"
+		
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"125 150 175 200 225 250"
+	
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_spirit_breaker/spirit_breaker_nether_strike_start.vpcf"
+			"particle"					"particles/units/heroes/hero_spirit_breaker/spirit_breaker_nether_strike_end.vpcf"
+			"particle"					"particles/units/heroes/hero_spirit_breaker/spirit_breaker_nether_strike_begin.vpcf"
+			"particle"					"particles/units/heroes/hero_spirit_breaker/spirit_breaker_track_trail.vpcf"
+
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_spirit_breaker.vsndevts"
+		}
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"150 200 250 300 350 400"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"range"					"700"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"range_scepter"			"850"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bash_radius_scepter"	"250"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cooldown_scepter"		"20"
+			}
+		}
+	}
+	
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_sb_nether_strike_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"1"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_sb_nether_strike_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"1"
 			}
 		}
 	}
