@@ -1,5 +1,6 @@
 sd_shadow_poison = class({})
 LinkLuaModifier("modifier_sd_shadow_poison", "heroes/hero_shadow_demon/sd_shadow_poison", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_sd_soul_catcher", "heroes/hero_shadow_demon/sd_soul_catcher", LUA_MODIFIER_MOTION_NONE)
 
 function sd_shadow_poison:IsStealable()
 	return true
@@ -7,12 +8,6 @@ end
 
 function sd_shadow_poison:IsHiddenWhenStolen()
 	return false
-end
-
-function sd_shadow_poison:GetCooldown(iLvl)
-    local cooldown = self.BaseClass.GetCooldown(self, iLvl)
-    if self:GetCaster():HasTalent("special_bonus_unique_sd_shadow_poison_1") then cooldown = cooldown + self:GetCaster():FindTalentValue("special_bonus_unique_sd_shadow_poison_1") end
-    return cooldown
 end
 
 function sd_shadow_poison:OnSpellStart()
@@ -42,29 +37,57 @@ function sd_shadow_poison:OnProjectileHit(hTarget, vLocation)
 					ParticleManager:SetParticleControl(nfx, 3, Vector(1,0,0))
 					ParticleManager:ReleaseParticleIndex(nfx)
 
-		hTarget:AddNewModifier(caster, self, "modifier_sd_shadow_poison", {Duration = self:GetSpecialValueFor("duration")})
+		local impactDamage = self:GetSpecialValueFor("damage_impact")
+
+		if hTarget:HasModifier("modifier_sd_shadow_poison") then
+			local stackDamage = hTarget:FindModifierByName("modifier_sd_shadow_poison"):GetStackCount()
+			if stackDamage < 1 then stackDamage = 1 end
+			impactDamage = impactDamage * stackDamage
+
+			if hTarget:FindModifierByName("modifier_sd_shadow_poison"):GetStackCount() < self:GetSpecialValueFor("stacks") then
+				hTarget:AddNewModifier(caster, self, "modifier_sd_shadow_poison", {Duration = self:GetSpecialValueFor("duration")}):IncrementStackCount()
+			else
+				hTarget:AddNewModifier(caster, self, "modifier_sd_shadow_poison", {Duration = self:GetSpecialValueFor("duration")})
+			end
+		else
+			hTarget:AddNewModifier(caster, self, "modifier_sd_shadow_poison", {Duration = self:GetSpecialValueFor("duration")}):IncrementStackCount()
+		end
+
+		self:DealDamage(caster, hTarget, impactDamage, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
 	end
 end
 
 modifier_sd_shadow_poison = class({})
 function modifier_sd_shadow_poison:OnCreated(table)
 	if IsServer() then
-		self:StartIntervalThink(FrameTime())
+		self:StartIntervalThink(1)
 	end
 end
 
 function modifier_sd_shadow_poison:OnRefresh(table)
 	if IsServer() then
-		self:StartIntervalThink(FrameTime())
+		self:StartIntervalThink(1)
 	end
 end
 
 function modifier_sd_shadow_poison:OnIntervalThink()
 	local caster = self:GetCaster()
 
-	self:GetAbility():DealDamage(caster, self:GetParent(), self:GetSpecialValueFor("damage"), {}, OVERHEAD_ALERT_BONUS_POISON_DAMAGE)
+	self:GetAbility():DealDamage(caster, self:GetParent(), self:GetSpecialValueFor("damage_time") * self:GetStackCount(), {}, OVERHEAD_ALERT_BONUS_POISON_DAMAGE)
+end
 
-	self:StartIntervalThink(1)
+function modifier_sd_shadow_poison:OnRemoved()
+	if IsServer() then
+		local caster = self:GetCaster()
+		local parent = self:GetParent()
+		local ability = caster:FindAbilityByName("sd_soul_catcher")
+
+		if caster:HasTalent("special_bonus_unique_sd_shadow_poison_1") then
+			if RollPercentage(25) then
+				parent:AddNewModifier(caster, ability, "modifier_sd_soul_catcher", {Duration = ability:GetSpecialValueFor("duration")})
+			end
+		end
+	end
 end
 
 function modifier_sd_shadow_poison:IsDebuff()

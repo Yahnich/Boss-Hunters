@@ -1765,14 +1765,20 @@
 	"npc_dota_hero_spirit_breaker"
 	{
 		"override_hero"			"npc_dota_hero_spirit_breaker"
-		"Ability1"				"spirit_breaker_ground_smash"
-		"Ability2"				"spirit_breaker_haste_armor"
+		"Ability1"				"sb_charge"
+		"Ability2"				"sb_haste"
+		"Ability3"				"sb_bash"
+		"Ability4"				"sb_armor"
+		"Ability6"				"sb_nether_strike"
 	
-		"Ability10"		"special_bonus_strength_8"
-		"Ability15"		"special_bonus_movement_speed_100"
-	
-	
-		
+		"Ability10"				"special_bonus_unique_sb_charge_1"
+		"Ability11"				"special_bonus_unique_sb_charge_2"
+		"Ability12"				"special_bonus_unique_sb_haste_1"
+		"Ability13"				"special_bonus_unique_sb_haste_2"
+		"Ability14"				"special_bonus_unique_sb_bash_1"
+		"Ability15"				"special_bonus_unique_sb_bash_2"
+		"Ability16"				"special_bonus_unique_sb_nether_strike_1"
+		"Ability17"				"special_bonus_unique_sb_nether_strike_2"
 	}
 	//=================================================================================================================
 	// HERO: Storm

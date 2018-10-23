@@ -22,33 +22,26 @@ end
 function sd_soul_catcher:OnSpellStart()
 	local caster = self:GetCaster()
 	local point = self:GetCursorPosition()
+	local target = point
 
 	EmitSoundOn("Hero_ShadowDemon.Soul_Catcher.Cast", caster)
-
-	local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_shadow_demon/shadow_demon_soul_catcher.vpcf", PATTACH_POINT, caster)
-				ParticleManager:SetParticleControl(nfx, 0, point)
-				ParticleManager:SetParticleControl(nfx, 1, point)
-				ParticleManager:SetParticleControl(nfx, 2, point)
-				ParticleManager:SetParticleControl(nfx, 3, Vector(self:GetSpecialValueFor("radius"), 0, 0))
-				ParticleManager:SetParticleControl(nfx, 4, point)
-				ParticleManager:ReleaseParticleIndex(nfx)
 
 	local enemies = caster:FindEnemyUnitsInRadius(point, self:GetSpecialValueFor("radius"))
 	for _,enemy in pairs(enemies) do
 		EmitSoundOn("Hero_ShadowDemon.Soul_Catcher", enemy)
 		enemy:AddNewModifier(caster, self, "modifier_sd_soul_catcher", {Duration = self:GetSpecialValueFor("duration")})
+		target = enemy:GetAbsOrigin()
 		break
 	end
 
-	local enemies = caster:FindEnemyUnitsInRadius(point, self:GetSpecialValueFor("radius"))
-	for _,enemy in pairs(enemies) do
-		if enemy:HasModifier("modifier_sd_shadow_poison") then
-			if RollPercentage(10) then
-				EmitSoundOn("Hero_ShadowDemon.Soul_Catcher", enemy)
-			end
-			enemy:AddNewModifier(caster, self, "modifier_sd_soul_catcher", {Duration = self:GetSpecialValueFor("duration")})
-		end
-	end
+	local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_shadow_demon/shadow_demon_soul_catcher.vpcf", PATTACH_POINT, caster)
+				ParticleManager:SetParticleControl(nfx, 0, point)
+				ParticleManager:SetParticleControl(nfx, 1, target)
+				ParticleManager:SetParticleControl(nfx, 2, point)
+				ParticleManager:SetParticleControl(nfx, 3, Vector(self:GetSpecialValueFor("radius"), 0, 0))
+				ParticleManager:SetParticleControl(nfx, 4, point)
+				ParticleManager:ReleaseParticleIndex(nfx)
+
 end
 
 modifier_sd_soul_catcher = class({})
