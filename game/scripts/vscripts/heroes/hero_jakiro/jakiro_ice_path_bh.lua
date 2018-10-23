@@ -98,21 +98,13 @@ function modifier_jakiro_ice_path_bh:OnIntervalThink()
 
 	local enemies = caster:FindEnemyUnitsInLine(self.start_pos, self.end_pos, width, {})
 	for _,enemy in pairs(enemies) do
-		if #self.hitUnits > 0 then
-			for _,unit in pairs(self.hitUnits) do
-				if enemy ~= unit then
-					local damage = self:GetTalentSpecialValueFor("damage")
-					if caster:HasTalent("special_bonus_unique_jakiro_ice_path_bh_2") then
-						damage = damage * caster:FindTalentValue("special_bonus_unique_jakiro_ice_path_bh_2")
-					end
-					enemy:Freeze(self:GetAbility(), caster, self:GetRemainingTime())
-					self:GetAbility():DealDamage(caster, enemy, damage, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
-					table.insert(self.hitUnits, enemy)
-				end
+		if not self.hitUnits[enemy] then
+			local damage = self:GetTalentSpecialValueFor("damage")
+			if caster:HasTalent("special_bonus_unique_jakiro_ice_path_bh_2") and ( enemy:IsChilled() or enemy:IsFrozenGeneric) then
+				damage = damage * caster:FindTalentValue("special_bonus_unique_jakiro_ice_path_bh_2")
 			end
-		else
 			enemy:Freeze(self:GetAbility(), caster, self:GetRemainingTime())
-			self:GetAbility():DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage"), {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
+			self:GetAbility():DealDamage(caster, enemy, damage, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
 			table.insert(self.hitUnits, enemy)
 		end
 	end
