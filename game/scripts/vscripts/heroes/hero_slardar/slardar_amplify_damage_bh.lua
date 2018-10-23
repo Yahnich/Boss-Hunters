@@ -12,7 +12,7 @@ function slardar_amplify_damage_bh:OnSpellStart()
 	else
 		self:ApplyHaze( target, duration )
 	end
-	caster:EmitSoundOn("Hero_Slardar.Amplify_Damage")
+	caster:EmitSound("Hero_Slardar.Amplify_Damage")
 end
 
 function slardar_amplify_damage_bh:ApplyHaze( target, duration )
@@ -25,10 +25,21 @@ LinkLuaModifier( "modifier_slardar_amplify_damage_bh", "heroes/hero_slardar/slar
 
 function modifier_slardar_amplify_damage_bh:OnCreated()
 	self.armor = self:GetTalentSpecialValueFor("armor_reduction") - self:GetCaster():GetPhysicalArmorBaseValue() * self:GetCaster():FindTalentValue("special_bonus_unique_slardar_amplify_damage_2") / 100
+	if IsServer() then
+		self:StartIntervalThink(0)
+	end
 end
 
 function modifier_slardar_amplify_damage_bh:OnRefresh()
 	self.armor = self:GetTalentSpecialValueFor("armor_reduction") - self:GetCaster():GetPhysicalArmorBaseValue() * self:GetCaster():FindTalentValue("special_bonus_unique_slardar_amplify_damage_2") / 100
+end
+
+function modifier_slardar_amplify_damage_bh:OnIntervalThink()
+	AddFOWViewer( DOTA_TEAM_GOODGUYS, self:GetParent():GetAbsOrigin(), 128, 0.03, false )
+end
+
+function modifier_slardar_amplify_damage_bh:CheckState()
+	return {[MODIFIER_STATE_INVISIBLE] = false}
 end
 
 function modifier_slardar_amplify_damage_bh:DeclareFunctions()
@@ -41,4 +52,8 @@ end
 
 function modifier_slardar_amplify_damage_bh:GetEffectName()
 	return "particles/units/heroes/hero_slardar/slardar_amp_damage.vpcf"
+end
+
+function modifier_slardar_amplify_damage_bh:GetEffectAttachType()
+	return PATTACH_OVERHEAD_FOLLOW
 end

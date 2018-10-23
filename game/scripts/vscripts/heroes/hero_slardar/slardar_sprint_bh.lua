@@ -15,14 +15,14 @@ function modifier_slardar_sprint_bh:OnCreated()
 	self.movespeed = self:GetTalentSpecialValueFor("bonus_speed")
 	self.red = self:GetCaster():FindTalentValue("special_bonus_unique_slardar_sprint_1")
 	self.as = self:GetCaster():FindTalentValue("special_bonus_unique_slardar_sprint_2")
-	self.dmg = self:GetCaster():FindTalentValue("special_bonus_unique_slardar_sprint_2", "dmg")
+	self.dmg = self:GetCaster():FindTalentValue("special_bonus_unique_slardar_sprint_2", "value2")
 end
 
 function modifier_slardar_sprint_bh:OnRefresh()
 	self.movespeed = self:GetTalentSpecialValueFor("bonus_speed")
 	self.red = self:GetCaster():FindTalentValue("special_bonus_unique_slardar_sprint_1")
 	self.as = self:GetCaster():FindTalentValue("special_bonus_unique_slardar_sprint_2")
-	self.dmg = self:GetCaster():FindTalentValue("special_bonus_unique_slardar_sprint_2", "dmg")
+	self.dmg = self:GetCaster():FindTalentValue("special_bonus_unique_slardar_sprint_2", "value2")
 end
 
 function modifier_slardar_sprint_bh:DeclareFunctions()
@@ -79,5 +79,5 @@ function modifier_slardar_sprint_bh:GetActivityTranslationModifiers()
 end
 
 function modifier_slardar_sprint_bh:GetEffectName()
-	return "articles/units/heroes/hero_slardar/slardar_sprint.vpcf"
+	return "particles/units/heroes/hero_slardar/slardar_sprint.vpcf"
 end

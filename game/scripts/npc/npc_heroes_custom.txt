@@ -751,7 +751,7 @@
 	{
 		"override_hero"			"npc_dota_hero_jakiro"
 		
-		"Ability1"		"jakiro_dual_breath"
+		"Ability1"		"jakiro_dual_breath_bh"
 		"Ability2"		"jakiro_ice_path_bh"
 		"Ability3"		"jakiro_liquid_fire_bh"
 		"Ability6"		"jakiro_macropyre_bh"
@@ -1689,7 +1689,7 @@
 		"Ability1"						"slardar_sprint_bh"
 		"Ability2"						"slardar_slithereen_crush_bh"
 		"Ability3"						"slardar_oathbreaker"
-		"Ability4"						"slardar_oatkeeper"
+		"Ability4"						"slardar_oathkeeper"
 		"Ability6"						"slardar_amplify_damage_bh"
 		
 		"Ability10"						"special_bonus_unique_slardar_sprint_1"
@@ -1697,7 +1697,7 @@
 		"Ability12"						"special_bonus_unique_slardar_slithereen_crush_1"
 		"Ability13"						"special_bonus_unique_slardar_slithereen_crush_2"
 		"Ability14"						"special_bonus_unique_slardar_oathbreaker_1"
-		"Ability15"						"special_bonus_unique_slardar_oatkeeper_1"
+		"Ability15"						"special_bonus_unique_slardar_oathkeeper_1"
 		"Ability16"						"special_bonus_unique_slardar_amplify_damage_1"
 		"Ability17"						"special_bonus_unique_slardar_amplify_damage_2"
 	}

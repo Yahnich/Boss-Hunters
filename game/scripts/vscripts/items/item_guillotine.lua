@@ -18,10 +18,10 @@ end
 
 function modifier_item_guillotine_handle:DeclareFunctions()
 	return {MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE,
-			MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE}
+			MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE}
 end
 
-function modifier_item_guillotine_handle:GetModifierBaseAttack_BonusDamage()
+function modifier_item_guillotine_handle:GetModifierPreAttack_BonusDamage()
 	return self.damage
 end
 

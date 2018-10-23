@@ -1,6 +1,6 @@
 slardar_oathkeeper = class({})
 
-function slardar_oathbreaker:GetIntrinsicModifierName()
+function slardar_oathkeeper:GetIntrinsicModifierName()
 	if not self:IsHidden() then
 		return "modifier_slardar_oathkeeper"
 	end
@@ -17,12 +17,12 @@ modifier_slardar_oathkeeper = class({})
 LinkLuaModifier( "modifier_slardar_oathkeeper", "heroes/hero_slardar/slardar_oathkeeper", LUA_MODIFIER_MOTION_NONE )
 
 function modifier_slardar_oathkeeper:OnCreated()
-	self.armor = self:GetTalentSpecialValueFor("chance")
+	self.armor = self:GetTalentSpecialValueFor("bonus_armor")
 	self.mr = self:GetCaster():FindTalentValue("special_bonus_unique_slardar_oathkeeper_1")
 end
 
 function modifier_slardar_oathkeeper:OnRefresh()
-	self.armor = self:GetTalentSpecialValueFor("chance")
+	self.armor = self:GetTalentSpecialValueFor("bonus_armor")
 	self.mr = self:GetCaster():FindTalentValue("special_bonus_unique_slardar_oathkeeper_1")
 end
 

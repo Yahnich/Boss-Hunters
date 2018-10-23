@@ -91,13 +91,13 @@
 	//=================================================================================================================
 	// Ability: Slardar Slithereen Crush
 	//=================================================================================================================
-	"slardar_slithereen_crush"
+	"slardar_slithereen_crush_bh"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_slardar/slardar_sprint_bh"
-		"AbilityTextureName"			"slardar_sprint"
+		"ScriptFile"					"heroes/hero_slardar/slardar_slithereen_crush_bh"
+		"AbilityTextureName"			"slardar_slithereen_crush"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"	
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
@@ -115,10 +115,6 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"				"8"
 		"AbilityDuration"				"1.25 1.5 1.75 2.0"
-
-		// Damage.
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"					
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -229,7 +225,7 @@
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_slardar/slardar_oathbreaker"
 		"AbilityTextureName"			"slardar_bash"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"	
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES_STRONG"
@@ -347,15 +343,13 @@
 	//=================================================================================================================
 	// Ability: Slardar Amplify Damage
 	//=================================================================================================================
-	"slardar_amplify_damage_bh
+	"slardar_amplify_damage_bh"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_slardar/slardar_amplify_damage_bh"
 		"AbilityTextureName"			"slardar_amplify_damage"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
-		"AbilityTextureName"			"abyssal_underlord_firestorm"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"

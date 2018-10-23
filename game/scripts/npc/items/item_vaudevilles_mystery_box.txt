@@ -24,9 +24,6 @@
 		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		"ItemPermanent"					"0"
-		"ItemStackable"					"1"
-		"ItemInitialCharges"			"1"
-		"ItemDisplayCharges"			"1"
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------

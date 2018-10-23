@@ -6,7 +6,7 @@ end
 
 function slardar_slithereen_crush_bh:GetBehavior()
 	if self:GetCaster():HasTalent("special_bonus_unique_slardar_slithereen_crush_1") then
-		return DOTA_ABILITY_BEHAVIOR_POINT + DOTA_ABILITY_BEHAVIOR_AOE
+		return DOTA_ABILITY_BEHAVIOR_POINT + DOTA_ABILITY_BEHAVIOR_UNIT_TARGET + DOTA_ABILITY_BEHAVIOR_AOE
 	else
 		return DOTA_ABILITY_BEHAVIOR_NO_TARGET
 	end
@@ -23,7 +23,7 @@ end
 function slardar_slithereen_crush_bh:OnSpellStart(bForced)
 	local caster = self:GetCaster()
 
-	if not caster:HasTalent("special_bonus_unique_slardar_slithereen_crush_1") or bForced then
+	if not caster:HasTalent("special_bonus_unique_slardar_slithereen_crush_1") or bForced or ( caster:HasTalent("special_bonus_unique_slardar_slithereen_crush_1") and CalculateDistance( caster, self:GetCursorPosition() ) < 300 ) then
 		local radius = self:GetTalentSpecialValueFor("crush_radius")
 		local damage = self:GetTalentSpecialValueFor("damage")
 		local stunDur = self:GetTalentSpecialValueFor("stun_duration")
@@ -34,11 +34,13 @@ function slardar_slithereen_crush_bh:OnSpellStart(bForced)
 			self:Stun(enemy, stunDur)
 			enemy:AddNewModifier( caster, self, "modifier_slardar_slithereen_crush_bh", {duration = stunDur + slowDur} )
 		end
+		
+		caster:EmitSound("Hero_Slardar.Slithereen_Crush")
+		ParticleManager:FireParticle("particles/units/heroes/hero_slardar/slardar_crush.vpcf", PATTACH_ABSORIGIN, caster, {[0] = caster:GetAbsOrigin(), [1] = Vector(radius, radius, radius)} )
 	else
 		caster:AddNewModifier( caster, self, "modifier_slardar_slithereen_crush_bh_movement", {} )
 	end
-	caster:EmitSound("Hero_Slardar.Slithereen_Crush")
-	ParticleManager:FireParticle("particles/units/heroes/hero_slardar/slardar_crush.vpcf", PATTACH_ABSORIGIN, caster, {[0] = caster:GetAbsOrigin(), [1] = Vector(radius, radius, radius)} )
+	
 end
 
 modifier_slardar_slithereen_crush_bh = class({})
@@ -73,7 +75,7 @@ function modifier_slardar_slithereen_crush_bh_movement:OnCreated(table)
 	if IsServer() then
 		local parent = self:GetParent()
 		local position = self:GetAbility():GetCursorPosition()
-		
+		self.endPos = position
 		self.dir = CalculateDirection( position, parent )
 		self.distance = CalculateDistance( position, parent )
 		self.speed = self:GetCaster():FindTalentValue("special_bonus_unique_slardar_slithereen_crush_1")
@@ -92,9 +94,11 @@ end
 function modifier_slardar_slithereen_crush_bh_movement:DoControlledMotion()
 	local parent = self:GetParent()
 	if self.distance > 0 then
-		parent:SetAbsOrigin(GetGroundPosition(parent:GetAbsOrigin(), parent) + self.dir*self.speed)
+		self.distance = self.distance - self.speed * FrameTime()
+		parent:SetAbsOrigin(GetGroundPosition(parent:GetAbsOrigin(), parent) + self.dir*self.speed * FrameTime() )
 	else
-		FindClearSpaceForUnit(parent, parent:GetAbsOrigin(), true)
+		parent:SetAbsOrigin(GetGroundPosition(self.endPos, parent) )
+		FindClearSpaceForUnit(parent, self.endPos, true)
 		self:StopMotionController(true)
 		parent:StartGesture( ACT_DOTA_CAST_ABILITY_2 )
 		Timers:CreateTimer( self:GetAbility():GetCastPoint(), self:Destroy() )
