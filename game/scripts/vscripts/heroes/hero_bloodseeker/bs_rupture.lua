@@ -1,6 +1,7 @@
 bs_rupture = class({})
 LinkLuaModifier("modifier_bs_rupture", "heroes/hero_bloodseeker/bs_rupture", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_bs_rupture_charges", "heroes/hero_bloodseeker/bs_rupture", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_bs_rupture_charges_handle", "heroes/hero_bloodseeker/bs_rupture", LUA_MODIFIER_MOTION_NONE)
 
 function bs_rupture:IsStealable()
 	return true
@@ -11,11 +12,17 @@ function bs_rupture:IsHiddenWhenStolen()
 end
 
 function bs_rupture:GetIntrinsicModifierName()
-	return "modifier_bs_rupture_charges"
+	return "modifier_bs_rupture_charges_handle"
 end
 
 function bs_rupture:HasCharges()
 	return true
+end
+
+function bs_rupture:GetCooldown(iLvl)
+    local cooldown = self.BaseClass.GetCooldown(self, iLvl)
+    if self:GetCaster():HasScepter() then cooldown = cooldown - 20 end
+    return cooldown
 end
 
 function bs_rupture:OnSpellStart()
@@ -78,6 +85,45 @@ end
 
 function modifier_bs_rupture:IsDebuff()
 	return true
+end
+
+modifier_bs_rupture_charges_handle = class({})
+
+function modifier_bs_rupture_charges_handle:OnCreated()
+    if IsServer() then
+        self:StartIntervalThink(0.1)
+    end
+end
+
+function modifier_bs_rupture_charges_handle:OnIntervalThink()
+    local caster = self:GetCaster()
+
+    if self:GetCaster():HasScepter() then
+        if not caster:HasModifier("modifier_bs_rupture_charges") then
+            self:GetAbility():EndCooldown()
+            caster:AddNewModifier(caster, self:GetAbility(), "modifier_bs_rupture_charges", {})
+        end
+    else
+    	if caster:HasModifier("modifier_bs_rupture_charges") then
+    		caster:RemoveModifierByName("modifier_bs_rupture_charges")
+    	end
+    end
+end
+
+function modifier_bs_rupture_charges_handle:DestroyOnExpire()
+    return false
+end
+
+function modifier_bs_rupture_charges_handle:IsPurgable()
+    return false
+end
+
+function modifier_bs_rupture_charges_handle:RemoveOnDeath()
+    return false
+end
+
+function modifier_bs_rupture_charges_handle:IsHidden()
+    return true
 end
 
 modifier_bs_rupture_charges = class({})

@@ -231,6 +231,10 @@ function modifier_bh_tree_charges_handle:OnIntervalThink()
             self:GetAbility():EndCooldown()
             caster:AddNewModifier(caster, self:GetAbility(), "modifier_bh_tree_charges", {})
         end
+    else
+        if caster:HasModifier("modifier_bh_tree_charges") then
+            caster:RemoveModifierByName("modifier_bh_tree_charges")
+        end
     end
 end
 

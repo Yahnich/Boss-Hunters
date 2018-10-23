@@ -149,6 +149,8 @@
 #base "heroes/hero_bounty_hunter.txt"
 #base "heroes/hero_slardar.txt"
 #base "heroes/hero_abyssal_underlord.txt"
+#base "heroes/hero_spirit_breaker.txt"
+#base "heroes/hero_wraith_king.txt"
 
 "DOTAAbilities"
 {

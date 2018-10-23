@@ -1,5 +1,6 @@
 bs_blood_rite = class({})
 LinkLuaModifier("modifier_bs_blood_rite", "heroes/hero_bloodseeker/bs_blood_rite", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_bs_bloodrage", "heroes/hero_bloodseeker/bs_bloodrage", LUA_MODIFIER_MOTION_NONE)
 
 function bs_blood_rite:IsStealable()
 	return true
@@ -45,8 +46,12 @@ function modifier_bs_blood_rite:OnRemoved()
 		end
 		for _,enemy in pairs(enemies) do
 			EmitSoundOn("hero_bloodseeker.bloodRite.silence", enemy)
-			self:GetAbility():DealDamage(self:GetCaster(), enemy, self:GetTalentSpecialValueFor("damage"), {}, 0)
 			enemy:Silence(self:GetAbility(), self:GetCaster(), self:GetTalentSpecialValueFor("duration"), false)
+			if self:GetCaster():HasTalent("special_bonus_unique_bs_blood_rite_1") then
+				local ability = self:GetCaster():FindAbilityByName("bs_bloodrage")
+				enemy:AddNewModifier(self:GetCaster(), ability, "modifier_bs_bloodrage", {Duration = ability:GetTalentSpecialValueFor("duration")})
+			end
+			self:GetAbility():DealDamage(self:GetCaster(), enemy, self:GetTalentSpecialValueFor("damage"), {}, 0)
 		end
 	end
 end

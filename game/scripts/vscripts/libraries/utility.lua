@@ -122,9 +122,13 @@ function CDOTABaseAbility:CreateDummy(position, duration)
 	return dummy
 end
 
-function CDOTA_BaseNPC_Hero:CreateSummon(unitName, position, duration)
+function CDOTA_BaseNPC_Hero:CreateSummon(unitName, position, duration, bControllable)
+	local controllable = true
+	if not bControllable then controllable = bControllable end
 	local summon = CreateUnitByName(unitName, position, true, self, nil, self:GetTeam())
-	summon:SetControllableByPlayer(self:GetPlayerID(), true)
+	if controllable then
+		summon:SetControllableByPlayer(self:GetPlayerID(), controllable)
+	end
 	self.summonTable = self.summonTable or {}
 	table.insert(self.summonTable, summon)
 	summon:SetOwner(self)
@@ -2672,4 +2676,8 @@ function CDOTA_BaseNPC_Hero:SetAttributePoints(value)
 	netTable.attribute_points = self.bonusTalentPoints
 	CustomNetTables:SetTableValue("hero_properties", self:GetUnitName()..self:entindex(), netTable)
 	CustomGameEventManager:Send_ServerToAllClients("dota_player_upgraded_stats", { playerID = self:GetPlayerID() } )
+end
+
+function CDOTA_Ability_Lua:Cleave(target, damage, startRadius, endRadius, distance, effect )
+	DoCleaveAttack(self:GetCaster(), target, self, damage, startRadius, endRadius, distance, effect )
 end
