@@ -9,12 +9,14 @@ if IsServer() then
 
 	function modifier_base_attack_time_handler:OnIntervalThink()
 		local baseAttackTime = self.baseAttackTime * 100
+		self:SetStackCount( baseAttackTime )
+		self:GetParent():CalculateStatBonus()
 		for _, modifier in ipairs( self:GetParent():FindAllModifiers() ) do
 			if modifier.GetBaseAttackTime_Bonus and modifier:GetBaseAttackTime_Bonus() then
 				baseAttackTime = baseAttackTime + (modifier:GetBaseAttackTime_Bonus() * 100) 
 			end
 		end
-		self:SetStackCount( math.max( math.floor(baseAttackTime), 10 ) )
+		self:SetStackCount( math.min( math.max( math.floor(baseAttackTime), 10 ), 1000 ) )
 	end
 end
 	
