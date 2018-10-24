@@ -25,7 +25,7 @@ function modifier_juggernaut_mirror_blades:OnCreated()
 	self.cost = self:GetTalentSpecialValueFor("active_momentum_cost")
 	
 	self.disarmed = not caster:HasTalent("special_bonus_unique_juggernaut_mirror_blades_2")
-
+	self.bat = self:GetParent():GetBaseAttackTime()
 	self:MirrorBladeCycle()
 	self:StartIntervalThink(self.tick)
 	if IsServer() then
@@ -55,6 +55,7 @@ function modifier_juggernaut_mirror_blades:OnIntervalThink()
 	if IsServer() then
 		self:MirrorBladeDamage(self.radius, self.damage)
 	end
+	self.bat = self:GetParent():GetBaseAttackTime()
 end
 
 function modifier_juggernaut_mirror_blades:MirrorBladeCycle()
@@ -80,7 +81,7 @@ end
 
 function modifier_juggernaut_mirror_blades:GetBaseAttackTime_Bonus()
 	if not self.disarmed then
-		return self:GetParent():GetBaseAttackTime()
+		return self.bat
 	end
 end
 

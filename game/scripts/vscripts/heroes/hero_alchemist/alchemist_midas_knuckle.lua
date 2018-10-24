@@ -56,7 +56,7 @@ end
 function modifier_alchemist_midas_knuckle_autocast:OnAttackLanded(params)
 	if self:GetAbility():GetAutoCastState() and self:GetAbility():IsCooldownReady() and params.attacker == self:GetParent() then
 		self:GetAbility():MidasKnuckle(params.target)
-		self:GetAbility():SetCooldown()
+		self:GetAbility():UseResources(true, true, true)
 	end
 end
 
