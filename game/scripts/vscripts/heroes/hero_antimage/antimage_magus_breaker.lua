@@ -58,10 +58,10 @@ function modifier_antimage_magus_breaker_debuff:OnRefresh()
 end
 
 function modifier_antimage_magus_breaker_debuff:DeclareFunctions()
-	return {MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS, MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS, MODIFIER_EVENT_ON_ABILITY_EXECUTED}
+	return {MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS, MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS, MODIFIER_EVENT_ON_ABILITY_START}
 end
 
-function modifier_antimage_magus_breaker_debuff:OnAbilityExecuted(params)
+function modifier_antimage_magus_breaker_debuff:OnAbilityStart(params)
 	if params.unit == self:GetParent() then
 		self:IncrementStackCount()
 	end

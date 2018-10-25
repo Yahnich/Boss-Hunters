@@ -29,7 +29,7 @@
 		"Ability1"					"abyssal_underlord_firestorm_bh"
 		"Ability2"					"abyssal_underlord_pit_of_malice_bh"	
 		"Ability3"					"abyssal_underlord_atrophy_aura_bh"					// Ability 4
-		"Ability6"					"abyssal_underlord_abyssal_underlord"
+		"Ability6"					"abyssal_underlord_abyssal_expulsion"
 		
 		"Ability10"					"special_bonus_unique_abyssal_underlord_firestorm_1"
 		"Ability11"					"special_bonus_unique_abyssal_underlord_firestorm_2"
@@ -37,8 +37,8 @@
 		"Ability13"					"special_bonus_unique_abyssal_underlord_pit_of_malice_2"
 		"Ability14"					"special_bonus_unique_abyssal_underlord_atrophy_aura_1"
 		"Ability15"					"special_bonus_unique_abyssal_underlord_atrophy_aura_2"
-		"Ability16"					"special_bonus_unique_abyssal_underlord_abyssal_underlord_1"
-		"Ability17"					"special_bonus_unique_abyssal_underlord_abyssal_underlord_2"
+		"Ability16"					"special_bonus_unique_abyssal_underlord_abyssal_expulsion_1"
+		"Ability17"					"special_bonus_unique_abyssal_underlord_abyssal_expulsion_2"
 	}
 	//=================================================================================================================
 	// HERO: Alchemist
@@ -1581,38 +1581,43 @@
 	}
 	"npc_dota_hero_shredder"
 	{
-		"override_hero"			"npc_dota_hero_shredder"
-		"Ability1"				"timbersaw_bonesplitter"
-		"Ability2"				"timbersaw_claw"
-		"Ability3"				"timbersaw_reactive"
-		"Ability4"				"timbersaw_hylophobia"
-		"Ability5"				"timbersaw_chak2"
-		"Ability6"				"timbersaw_chak"
+		"override_hero"					"npc_dota_hero_shredder"
+		"Ability1"						"timbersaw_bonesplitter"
+		"Ability2"						"timbersaw_claw"
+		"Ability3"						"timbersaw_reactive"
+		"Ability4"						"timbersaw_hylophobia"
+		"Ability5"						"timbersaw_chak2"
+		"Ability6"						"timbersaw_chak"
 	
-		"Ability10"					"special_bonus_unique_timbersaw_bonesplitter_1"
-		"Ability11"					"special_bonus_unique_timbersaw_bonesplitter_2"
-		"Ability12"					"special_bonus_unique_timbersaw_claw_1"
-		"Ability13"					"special_bonus_unique_timbersaw_claw_2"
-		"Ability14"					"special_bonus_unique_timbersaw_reactive_1"
-		"Ability15"					"special_bonus_unique_timbersaw_reactive_2"
-		"Ability16"					"special_bonus_unique_timbersaw_chak_1"
-		"Ability17"					"special_bonus_unique_timbersaw_chak_2"
+		"Ability10"						"special_bonus_unique_timbersaw_bonesplitter_1"
+		"Ability11"						"special_bonus_unique_timbersaw_bonesplitter_2"
+		"Ability12"						"special_bonus_unique_timbersaw_claw_1"
+		"Ability13"						"special_bonus_unique_timbersaw_claw_2"
+		"Ability14"						"special_bonus_unique_timbersaw_reactive_1"
+		"Ability15"						"special_bonus_unique_timbersaw_reactive_2"
+		"Ability16"						"special_bonus_unique_timbersaw_chak_1"
+		"Ability17"						"special_bonus_unique_timbersaw_chak_2"
 	}
 	//=================================================================================================================
 	// HERO: Rhastafarian
 	//=================================================================================================================
 	"npc_dota_hero_silencer"
 	{
-		"override_hero"				"npc_dota_hero_silencer"
-		
-		"Ability10"		"special_bonus_armor_5"
-		"Ability11"		"special_bonus_attack_speed_25"
-		"Ability12"		"special_bonus_attack_damage_10"
-		"Ability13"		"special_bonus_cooldown_reduction_20"
-		"Ability14"		"special_bonus_attack_range_125"
-		"Ability15"		"special_bonus_unique_silencer"
-		"Ability16"		"special_bonus_unique_silencer_3"
-		"Ability17"		"special_bonus_unique_silencer_4"
+		"override_hero"					"npc_dota_hero_silencer"
+		"Ability1"						"silencer_arcane_curse_bh"
+		"Ability2"						"silencer_glaives_of_wisdom_bh"
+		"Ability3"						"silencer_last_word_bh"
+		"Ability4"						"silencer_feed_the_mind"
+		"Ability6"						"silencer_global_silence_bh"
+	
+		"Ability10"						"special_bonus_unique_silencer_arcane_curse_1"
+		"Ability11"						"special_bonus_unique_silencer_arcane_curse_2"
+		"Ability12"						"special_bonus_unique_silencer_glaives_of_wisdom_1"
+		"Ability13"						"special_bonus_unique_silencer_glaives_of_wisdom_2"
+		"Ability14"						"special_bonus_unique_silencer_last_word_1"
+		"Ability15"						"special_bonus_unique_silencer_last_word_2"
+		"Ability16"						"special_bonus_unique_silencer_global_silence_1"
+		"Ability17"						"special_bonus_unique_silencer_global_silence_2"
 	}
 	"npc_dota_hero_skeleton_king" // Wraith
 	{

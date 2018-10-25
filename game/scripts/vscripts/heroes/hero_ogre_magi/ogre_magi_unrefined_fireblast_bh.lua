@@ -10,11 +10,9 @@ end
 
 function ogre_magi_unrefined_fireblast_bh:OnInventoryContentsChanged()
 	if self:GetCaster():HasScepter() then
-		self:SetLevel(1)
 		self:SetHidden(false)
 		self:SetActivated(true)
 	else
-		self:SetLevel(0)
 		self:SetHidden(true)
 		self:SetActivated(false)
 	end
