@@ -9,29 +9,34 @@
        "#DOTA_Item_Build_Starting_Items"
 		{
 			"item"	"item_gauntlet_of_alacrity"
-			"item"	"item_iron_rod"
+			"item"	"item_gem_of_corruption"
 			"item"	"item_sanguine_mask"
 		}
 		"#DOTA_Item_Build_Early_Game"
 		{	
-			"item"	"item_reaping_scythe"
-			"item"	"item_visionarys_cutlass"
 			"item"	"item_lightningrod"
-			"item"	"item_mirrors_edge"
+			"item"	"item_siegebreaker"
+			"item"	"item_leechblade"
+			"item"	"item_orb_of_haste"
+			"item"	"item_executioners_blade"
+			"item"	"item_visionarys_cutlass"
 		}
 		"#DOTA_Item_Build_Core_Items"
 		{
-			"item"	"item_thanatos"
+			"item"	"item_boomstick"
 			"item"	"item_voltas_greathammer"
-			"item"	"item_illusionists_charm"
+			"item"	"item_legionnaires_dualswords"
+			"item"	"item_blade_of_storm"
+			"item"	"item_antique_battlestaff"
 		}
 		"#DOTA_Item_Build_Luxury"
 		{
-			
 			"item"	"item_ultimate_scepter"
-			"item"	"item_tricksters_blade"
-			"item"	"item_behemoths_heart"
-			"item"	"item_blade_of_storm"
+			"item"	"item_ferrum_ascensus"
+			"item"	"item_lance_of_longinus"
+			"item"	"item_trebuchet"
+			"item"	"item_winters_breath"
+			"item"	"item_thanatos"
 		}
     }
 }
