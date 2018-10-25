@@ -1,0 +1,1 @@
+viper_venombringer = class({})

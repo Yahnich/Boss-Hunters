@@ -2089,17 +2089,21 @@
 	}
 	"npc_dota_hero_viper_ebf"
 	{
-		"override_hero"			"npc_dota_hero_viper"
-		"Ability6"				"viper_viper_strike_ebf"
+		"override_hero"					"npc_dota_hero_viper"
+		"Ability1"						"viper_poison_attack_bh"
+		"Ability2"						"viper_nethertoxin_bh"
+		"Ability3"						"viper_corrosive_skin_bh"
+		"Ability4"						"viper_venombringer"
+		"Ability6"						"viper_viper_strike_bh"
 		
-		"Ability10"		"special_bonus_attack_speed_20"
-		"Ability11"		"special_bonus_spell_lifesteal_8"
-		"Ability12"		"special_bonus_attack_range_100"
-		"Ability13"		"special_bonus_unique_viper_1"
-		"Ability14"		"special_bonus_unique_viper_2"
-		"Ability15"		"special_bonus_agility_16"
-		"Ability16"		"special_bonus_unique_viper_3"
-		"Ability17"		"special_bonus_attack_damage_120"
+		"Ability10"						"special_bonus_unique_viper_poison_attack_1"
+		"Ability11"						"special_bonus_unique_viper_poison_attack_2"
+		"Ability12"						"special_bonus_unique_viper_nethertoxin_1"
+		"Ability13"						"special_bonus_unique_viper_nethertoxin_2"
+		"Ability14"						"special_bonus_unique_viper_corrosive_skin_1"
+		"Ability15"						"special_bonus_unique_viper_corrosive_skin_2"
+		"Ability16"						"special_bonus_unique_viper_viper_strike_1"
+		"Ability17"						"special_bonus_unique_viper_viper_strike_2"
 	}
 	"npc_dota_hero_visage_ebf"
 	{

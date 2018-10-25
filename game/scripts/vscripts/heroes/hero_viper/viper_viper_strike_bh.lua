@@ -1,0 +1,1 @@
+viper_viper_strike_bh = class({})

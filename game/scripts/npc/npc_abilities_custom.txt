@@ -153,6 +153,7 @@
 #base "heroes/hero_wraith_king.txt"
 #base "heroes/hero_silencer.txt"
 #base "heroes/hero_lich.txt"
+#base "heroes/hero_viper.txt"
 
 "DOTAAbilities"
 {
@@ -6339,106 +6340,6 @@
 					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%overload_move_slow"
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%overload_attack_slow"
 				}
-			}
-		}
-	}
-	"viper_viper_strike_ebf"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"lua_abilities/heroes/viper"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
-		"FightRecapLevel"				"2"
-		"AbilityTextureName"			"viper_viper_strike"
-		"MaxLevel"						"7"
-		"HasScepterUpgrade"				"1"
-	
-		// Precache
-		//-------------------------------------------------------------------------------------------------------------
-		"precache"
-		{
-			"particle"		"particles/units/heroes/hero_viper/viper_viper_strike_beam.vpcf" // Wonky projectile
-			"particle"		"particles/units/heroes/hero_viper/viper_viper_strike_debuff.vpcf" // ?
-			"particle"		"particles/units/heroes/hero_viper/viper_viper_strike_warmup.vpcf" //- Seems to be like a "link" meaning it needs the caster #0 and target #1
-			"particle"		"particles/status_fx/status_effect_poison_viper.vpcf"
-			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_viper.vsndevts"
-		}
-	
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"500"
-		"AbilityCastPoint"				"0.3 0.3 0.3"
-		
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"70.0 65.0 60.0 55.0 50.0 45.0 40.0"
-	
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"125 175 225 275 325 375"
-		
-		// Special	
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"5.1 5.1 5.1"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"60 100 145 195 250 310"
-				"LinkedSpecialBonus"	"special_bonus_unique_viper_2"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_movement_speed"	"-40 -50 -60 -70 -80 -90 -100"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_attack_speed"	"-150 -175 -200 -225 -250 -275 -300"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius_scepter"		"500"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"cooldown_scepter"		"20.0"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"cast_range_scepter"	"900"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"projectile_speed"	"1200"
-			}
-			// These are for the dissipating attack and movement slow over time
-			"09"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_movement_speed_small"	"-8 -12 -16"
-			}
-			"10"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_attack_speed_small"	"-8 -12 -16"
 			}
 		}
 	}

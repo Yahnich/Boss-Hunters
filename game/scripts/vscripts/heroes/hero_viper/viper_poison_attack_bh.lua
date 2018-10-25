@@ -1,0 +1,1 @@
+viper_poison_attack_bh = class({})
