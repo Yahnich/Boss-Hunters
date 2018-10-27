@@ -35,6 +35,7 @@ end
 
 function modifier_viper_corrosive_skin_bh:OnTakeDamage(params)
 	if params.unit == self:GetParent() then
+		params.attacker:EmitSound("hero_viper.CorrosiveSkin")
 		params.attacker:AddNewModifier( params.unit, self:GetAbility(), "modifier_viper_corrosive_skin_bh_debuff", {duration = self.duration} )
 	end
 end
@@ -71,6 +72,10 @@ function modifier_viper_corrosive_skin_bh:GetAuraSearchFlags()
 	return DOTA_UNIT_TARGET_FLAG_NONE
 end
 
+function modifier_viper_corrosive_skin_bh:IsHidden()
+	return true
+end
+
 modifier_viper_corrosive_skin_bh_debuff = class({})
 LinkLuaModifier("modifier_viper_corrosive_skin_bh_debuff", "heroes/hero_viper/viper_corrosive_skin_bh", LUA_MODIFIER_MOTION_NONE )
 
@@ -105,4 +110,8 @@ end
 
 function modifier_viper_corrosive_skin_bh_debuff:GetModifierAttackSpeedBonus_Constant()
 	return self.as
+end
+
+function modifier_viper_corrosive_skin_bh_debuff:GetEffectName()
+	return "particles/units/heroes/hero_viper/viper_poison_debuff.vpcf"
 end

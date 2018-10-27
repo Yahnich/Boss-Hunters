@@ -43,7 +43,7 @@
 			"01"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"duration"						"3.1"
+				"duration"						"3"
 			}
 			"02"
 			{
@@ -81,7 +81,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"						"0.2"
+				"value"						"0.5"
 			}
 		}
 	}
@@ -344,7 +344,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"bonus_damage"			"10"
+				"bonus_damage"			"15"
 			}
 		}
 	}
@@ -379,6 +379,7 @@
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
 		"AbilityCastRange"				"500"
 		"AbilityCastPoint"				"0.3 0.3 0.3"
 		

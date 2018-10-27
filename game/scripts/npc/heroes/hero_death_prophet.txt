@@ -379,7 +379,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"spirits"				"8 16 24 32 40 48"
+				"spirits"				"4 8 12 16 20 24"
 			}
 			"03"
 			{
@@ -399,12 +399,12 @@
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"min_damage"			"56"
+				"min_damage"			"112"
 			}
 			"07"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"max_damage"			"61"
+				"max_damage"			"122"
 			}
 			"08"
 			{
@@ -414,12 +414,12 @@
 			"09"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"average_damage"		"58"
+				"average_damage"		"116"
 			}
 			"10"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"ghost_spawn_rate"	"0.3"
+				"ghost_spawn_rate"		"0.3"
 			}
 		}
 	}	
