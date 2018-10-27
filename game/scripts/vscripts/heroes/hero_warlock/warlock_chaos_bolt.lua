@@ -30,7 +30,9 @@ function warlock_chaos_bolt:OnProjectileHit(hTarget, vLocation)
 
 			--Corruption Check
 			if hTarget:HasModifier("modifier_warlock_corruption_curse") then
-				hTarget:FindModifierByName("modifier_warlock_corruption_curse"):ForceRefresh()
+				local curse = hTarget:FindModifierByName("modifier_warlock_corruption_curse")
+				curse:SetDuration( curse:GetDuration(), true )
+				curse:ForceRefresh()
 			end
 
 			--Talent 1 Check
@@ -42,9 +44,7 @@ function warlock_chaos_bolt:OnProjectileHit(hTarget, vLocation)
 			end
 
 			--Talent 2 Check
-			if caster:HasTalent("special_bonus_unique_warlock_chaos_bolt_2") then
-				hTarget:AddNewModifier(caster, self, "modifier_warlock_chaos_bolt", {Duration = caster:FindTalentValue("special_bonus_unique_warlock_chaos_bolt_2")})
-			end
+			hTarget:AddNewModifier(caster, self, "modifier_warlock_chaos_bolt", {Duration = self:GetTalentSpecialValueFor("debuff_duration")})
 
 			local newDamage = self:DealDamage(caster, hTarget, damage, {}, 0)
 			
@@ -63,14 +63,35 @@ end
 
 modifier_warlock_chaos_bolt = class({})
 function modifier_warlock_chaos_bolt:OnCreated(table)
+	self.damage_amp = self:GetTalentSpecialValueFor("damage_amp")
+	self.damage = self:GetTalentSpecialValueFor("damage_over_time")
+	self.slow = self:GetCaster():FindTalentValue("special_bonus_unique_warlock_chaos_bolt_2")
 	if IsServer() then
-		self.duration = self:GetDuration()
-		self:StartIntervalThink(1)
+		self:StartIntervalThink( self:GetDuration() / self:GetTalentSpecialValueFor("debuff_duration") * 1)
 	end
 end
 
+function modifier_warlock_chaos_bolt:OnRefresh(table)
+	self.damage_amp = self:GetTalentSpecialValueFor("damage_amp")
+	self.damage = self:GetTalentSpecialValueFor("damage_over_time")
+	self.slow = self:GetCaster():FindTalentValue("special_bonus_unique_warlock_chaos_bolt_2")
+end
+
 function modifier_warlock_chaos_bolt:OnIntervalThink()
-	self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self:GetTalentSpecialValueFor("damage")/self.duration, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
+	self:GetAbility():DealDamage(self:GetCaster(), self:GetParent(), self.damage, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
+	self:StartIntervalThink( self:GetDuration() / self:GetTalentSpecialValueFor("debuff_duration") * 1 )
+end
+
+function modifier_warlock_chaos_bolt:DeclareFunctions()
+	return { MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE, MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE }
+end
+
+function modifier_warlock_chaos_bolt:GetModifierIncomingDamage_Percentage()
+	return self.damage_amp
+end
+
+function modifier_warlock_chaos_bolt:GetModifierMoveSpeedBonus_Percentage()
+	return self.slow
 end
 
 function modifier_warlock_chaos_bolt:GetEffectName()

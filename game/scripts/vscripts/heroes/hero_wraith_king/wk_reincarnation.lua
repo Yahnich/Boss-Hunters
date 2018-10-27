@@ -93,6 +93,7 @@ end
 function modifier_wk_reincarnation:ReincarnateTime()
 	if IsServer() then  
 		if not self.can_die and self.caster:IsRealHero() then
+			self:GetCaster():EmitSound("Hero_SkeletonKing.Reincarnate")
 			return self.reincarnate_delay
 		end
 
@@ -112,10 +113,10 @@ function modifier_wk_reincarnation:OnDeath(keys)
 	if IsServer() then
 		local unit = keys.unit
 		local reincarnate = keys.reincarnate
-
+		
 		if unit == self.caster and self.ability:IsCooldownReady() and self.ability:IsOwnersManaEnough() then
 			self.ability:UseResources(true, false, true)
-			
+			unit:EmitSound("Hero_SkeletonKing.Reincarnate.Stinger")
 			local enemies = self.caster:FindEnemyUnitsInRadius(self.caster:GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"))
 			for _,enemy in pairs(enemies) do
 				enemy:AddNewModifier(self.caster, self.ability, "modifier_wk_reincarnation_slow", {Duration = self:GetTalentSpecialValueFor("duration")})
@@ -219,7 +220,7 @@ function modifier_wk_reincarnation_wraith_form_buff:OnTakeDamage(keys)
 						end
 					end
 				end
-
+				self.parent:EmitSound("Hero_SkeletonKing.Reincarnate.Ghost")
 				self.parent:AddNewModifier(self.caster, self.ability, self.modifier_wraith_form, {duration = self.scepter_wraith_form_duration})              
 			end
 		end

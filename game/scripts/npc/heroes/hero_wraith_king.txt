@@ -264,7 +264,8 @@
 			"particle"  				"particles/units/heroes/hero_undying/undying_tombstone_spawn.vpcf"
 			"particle"  				"particles/items2_fx/ward_spawn_generic.vpcf"
 
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_spirit_breaker.vsndevts"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_skeletonking.vsndevts"
+			"soundfile"					"soundevents/game_sounds_creeps.vsndevts"
 		}
 
 		// Special

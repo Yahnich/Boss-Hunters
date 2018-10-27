@@ -18,22 +18,47 @@ function warlock_summon_imp:OnSpellStart()
 	local caster = self:GetCaster()
 	
 	EmitSoundOn("Hero_Furion.TreantSpawn", caster)
-	local units = caster:FindAllUnitsInRadius(caster:GetAbsOrigin(), FIND_UNITS_EVERYWHERE, {})
-	for _,unit in pairs(units) do
-		if unit:GetTeam() == caster:GetTeam() and unit:GetUnitName() == "npc_dota_warlock_imp" then
-			unit:ForceKill(false)
-		end
+	self.impTable = self.impTable or {}
+	
+	if self.impTable[1] then
+		self.impTable[1]:ForceKill()
+		table.remove(self.impTable, 1)
 	end
+	
+	self:SummonImp( caster:GetAbsOrigin() )
+end
 
-	local imp = CreateUnitByName("npc_dota_warlock_imp", caster:GetAbsOrigin(), true, caster, caster, self:GetTeam())
+function warlock_summon_imp:SummonImp( position )
+	local caster = self:GetCaster()
+	local imp = CreateUnitByName("npc_dota_warlock_imp", position or caster:GetAbsOrigin(), true, caster, caster, self:GetTeam())
 	ParticleManager:FireParticle("particles/units/heroes/hero_lycan/lycan_summon_wolves_spawn.vpcf", PATTACH_POINT_FOLLOW, imp, {})
 	imp:AddNewModifier(caster, self, "modifier_warlock_summon_imp", {})
+	table.insert( self.impTable, imp )
+	return imp
 end
 
 modifier_warlock_summon_imp = class({})
 function modifier_warlock_summon_imp:CheckState()
 	local state = { [MODIFIER_STATE_NO_TEAM_SELECT] = true}
 	return state
+end
+
+function modifier_warlock_summon_imp:DeclareFunctions()
+    local funcs = {
+        MODIFIER_EVENT_ON_DEATH
+    }
+    return funcs
+end
+
+function modifier_warlock_summon_imp:OnDeath(params)
+	if params.unit == self:GetParent() then
+		for index, imp in ipairs( self.impTable ) do
+			if imp == self:GetParent() then
+				table.remove(self.impTable, index)
+				break
+			end
+		end		
+	end
 end
 
 function modifier_warlock_summon_imp:IsHidden()

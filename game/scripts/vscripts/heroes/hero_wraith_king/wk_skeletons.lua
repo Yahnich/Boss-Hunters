@@ -24,7 +24,7 @@ function wk_skeletons:OnSpellStart()
     local point = caster:GetAbsOrigin()
 
     local tick_rate = self:GetTalentSpecialValueFor("spawn_interval")
-
+	caster:EmitSound("n_creep_TrollWarlord.RaiseDead")
     if caster:HasModifier("modifier_wk_skeletons_charges") then
     	self.stacks = caster:FindModifierByName("modifier_wk_skeletons_charges"):GetStackCount()
     	local i = 0
@@ -92,6 +92,7 @@ function wk_skeletons:SpawnSkeleton(position)
 	skeleton:SetMaxHealth( health )
 	skeleton:SetHealth( health )
 	skeleton:SetAverageBaseDamage( damage, 15 )
+	skeleton:EmitSound("n_creep_Skeleton.Spawn")
 end
 
 modifier_wk_skeletons_passive = class({})

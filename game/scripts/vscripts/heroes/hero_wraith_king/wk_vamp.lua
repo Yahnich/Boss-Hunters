@@ -28,9 +28,7 @@ function wk_vamp:OnChannelThink(flInterval)
         local caster = self:GetCaster()
 
         local healthDamage = caster:GetMaxHealth() * self:GetTalentSpecialValueFor("life_drain")/100
-        print(healthDamage)
         healthDamage = healthDamage * (0.5 + flInterval)
-        print(healthDamage)
 
         caster:ModifyHealth(caster:GetHealth() - healthDamage, self, false, 0)
 
