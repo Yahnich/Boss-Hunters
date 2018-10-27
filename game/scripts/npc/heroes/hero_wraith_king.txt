@@ -1,0 +1,521 @@
+"DOTAAbilities"
+{	
+	"wk_blast"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_wraith_king/wk_blast"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"skeleton_king_hellfire_blast"
+		"MaxLevel"						"7"
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"525"
+		"AbilityCastPoint"				"0.35"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"14 12 10 8 6 4 2"
+		
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"95 110 125 140 155 170 185"
+	
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_skeletonking/skeletonking_hellfireblast_warmup.vpcf"
+			"particle"  				"particles/units/heroes/hero_skeletonking/skeletonking_hellfireblast_debuff.vpcf"
+			"particle"  				"particles/units/heroes/hero_skeletonking/skeletonking_hellfireblast.vpcf"
+
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_spirit_breaker.vsndevts"
+		}
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"100"
+				"LinkedSpecialBonus"	"special_bonus_unique_wraith_king_3"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"dot_damage"			"10 30 50 70 90 110 130"
+				"LinkedSpecialBonus"	"special_bonus_unique_wraith_king_3"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"speed"					"1000"
+			}			
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"stun_duration"			"1"
+			}			
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"dot_duration"			"2"
+			}			
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"slow"					"-20 -25 -30 -35 -40 -45 -50"
+			}			
+		}
+	}
+	
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_wk_blast_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"1"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_wk_blast_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"1"
+			}
+		}
+	}
+
+	"wk_vamp"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_wraith_king/wk_vamp"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_AURA"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"skeleton_king_vampiric_aura"
+		"MaxLevel"						"7"
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"900"
+		"AbilityCastPoint"				"0.2"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"30"
+		
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"
+	
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_undying/undying_soul_rip_damage.vpcf"
+			"particle"  				"particles/units/heroes/hero_undying/undying_fg_heal.vpcf"
+
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_shredder.vsndevts"
+		}
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"900"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"lifesteal"				"18 22 26 30 34 38 42"
+				"LinkedSpecialBonus"	"special_bonus_unique_wk_vamp_1"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"life_drain"			"10"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"channel_duration"		"2.5"
+			}
+		}
+	}
+	
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_wk_vamp_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"25"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_wk_vamp_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"1"
+			}
+		}
+	}
+	
+	"wk_skeletons"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_wraith_king/wk_skeletons"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName"			"custom/skeleton_king_summon_skeletons"
+		"MaxLevel"						"7"
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"0"
+		"AbilityCastPoint"				"1"
+		"AbilityCastAnimation"			"ACT_DOTA_VICTORY"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"50"
+		
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"30 45 60 75 90 105 120"
+
+		"precache"
+		{
+			"particle"					"particles/status_fx/status_effect_wraithking_ghosts.vpcf"
+			"particle"  				"particles/units/heroes/hero_skeletonking/wraith_king_ghosts_ambient.vpcf"
+			"particle"  				"particles/units/heroes/hero_undying/undying_tombstone_spawn.vpcf"
+			"particle"  				"particles/items2_fx/ward_spawn_generic.vpcf"
+
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_spirit_breaker.vsndevts"
+		}
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"skeleton_duration"			"90"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"max_skeleton_charges"		"1 2 3 4 5 6 7"
+				"LinkedSpecialBonus"		"special_bonus_unique_wraith_king_5"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"spawn_interval"			"0.25"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"skeleton_damage"			"50"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"skeleton_health"			"25"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_wk_skeletons_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"1"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_wk_skeletons_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"1"
+			}
+		}
+	}
+
+	"wk_crit"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_wraith_king/wk_crit"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityTextureName"			"skeleton_king_mortal_strike"
+		"MaxLevel"						"1"
+		"InnateAbility"					"1"
+
+
+		"precache"
+		{
+			"particle"					"particles/vampiric_shockwave.vpcf"
+			"particle"  				"particles/units/heroes/hero_spirit_breaker/spirit_breaker_jinda_slow.vpcf"
+
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_spirit_breaker.vsndevts"
+		}
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"crit_mult"					"300"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"crit_chance"				"15"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"cleave_damage"				"75"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"cleave_width"				"100"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"cleave_distance"			"500"
+			}
+		}
+	}
+
+	"wk_reincarnation"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_wraith_king/wk_reincarnation"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityTextureName"			"skeleton_king_reincarnation"
+		"MaxLevel"						"6"
+		"HasScepterUpgrade"				"1"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"200 180 160 140 120 40"
+		
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"160"
+	
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_skeletonking/wraith_king_reincarnate.vpcf"
+			"particle"					"particles/status_fx/status_effect_wraithking_ghosts.vpcf"
+			"particle"  				"particles/units/heroes/hero_skeletonking/wraith_king_ghosts_ambient.vpcf"
+
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_spirit_breaker.vsndevts"
+		}
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"reincarnate_time"		"3"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"900"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"slow_ms"				"-75"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"slow_as"				"-75"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"5"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"scepter_duration"		"7"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"aura_radius"			"1200"
+			}
+		}
+	}
+	
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_wk_reincarnation_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"1"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_wk_reincarnation_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"value"						"-10"
+			}
+		}
+	}
+}
