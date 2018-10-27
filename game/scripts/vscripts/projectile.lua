@@ -23,7 +23,7 @@ function Projectile:constructor(thinkBehavior, hitBehavior, data)
 	self.distanceTravelled = data.distanceTravelled or 0
 	self.distance = data.distance
 	
-	self.FX = ParticleManager:CreateParticle(data.FX, PATTACH_CUSTOMORIGIN, nil)
+	self.FX = ParticleManager:CreateParticle(data.FX, PATTACH_POINT, self.currentCaster)
 		ParticleManager:SetParticleControl( self.FX, 2, Vector(self.speed,0,0) )
 		ParticleManager:SetParticleControl( self.FX, 0, self.position + self.velocity * FrameTime() )
 		ParticleManager:SetParticleControl( self.FX, 1, self.position )
@@ -36,7 +36,7 @@ end
 function Projectile:ProjectileThink()
 	self:thinkBehavior()
 	ParticleManager:SetParticleControl( self.FX, 0, self:GetPosition() )
-	ParticleManager:SetParticleControl( self.FX, 1, self:GetPosition() )
+	ParticleManager:SetParticleControl( self.FX, 1, self:GetPosition() + self:GetVelocity() )
 	ParticleManager:SetParticleControl( self.FX, 2, Vector( self:GetSpeed(), 0, 0 ) )
 	ParticleManager:SetParticleControl( self.FX, 3, self:GetPosition() )
 	
