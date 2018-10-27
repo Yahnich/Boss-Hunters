@@ -22,7 +22,7 @@ function jakiro_ice_path_bh:OnSpellStart()
 
 	EmitSoundOn("Hero_Jakiro.IcePath.Cast", caster)
 
-	CreateModifierThinker(caster, self, "modifier_jakiro_ice_path_bh", {Duration = self:GetTalentSpecialValueFor("duration")}, caster:GetAbsOrigin() + direction * 12, caster:GetTeam(), false)
+	CreateModifierThinker(caster, self, "modifier_jakiro_ice_path_bh", {Duration = self:GetTalentSpecialValueFor("duration") + self:GetTalentSpecialValueFor("delay")}, caster:GetAbsOrigin() + direction * 12, caster:GetTeam(), false)
 end
 
 
@@ -81,7 +81,8 @@ function modifier_jakiro_ice_path_bh:OnCreated(table)
 			--self:OnIntervalThink()
 			-- Run applying effects on interval
 			EmitSoundOnLocationWithCaster(self.end_pos, "Hero_Jakiro.IcePath", caster)
-			self:StartIntervalThink( 0.1 )
+			self:OnIntervalThink()
+			self:StartIntervalThink( 0.5 )
 		end)
 	end
 end
@@ -95,25 +96,12 @@ end
 function modifier_jakiro_ice_path_bh:OnIntervalThink()
 	local caster = self:GetCaster()
 	local width = self:GetTalentSpecialValueFor("width")
-
 	local enemies = caster:FindEnemyUnitsInLine(self.start_pos, self.end_pos, width, {})
 	for _,enemy in pairs(enemies) do
-		if #self.hitUnits > 0 then
-			for _,unit in pairs(self.hitUnits) do
-				if enemy ~= unit then
-					local damage = self:GetTalentSpecialValueFor("damage")
-					if caster:HasTalent("special_bonus_unique_jakiro_ice_path_bh_2") then
-						damage = damage * caster:FindTalentValue("special_bonus_unique_jakiro_ice_path_bh_2")
-					end
-					enemy:Freeze(self:GetAbility(), caster, self:GetRemainingTime())
-					self:GetAbility():DealDamage(caster, enemy, damage, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
-					table.insert(self.hitUnits, enemy)
-				end
-			end
-		else
+		if not self.hitUnits[enemy] then
 			enemy:Freeze(self:GetAbility(), caster, self:GetRemainingTime())
-			self:GetAbility():DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage"), {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
-			table.insert(self.hitUnits, enemy)
 		end
+		local damage = self:GetTalentSpecialValueFor("damage") * 0.5 
+		self:GetAbility():DealDamage(caster, enemy, damage, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
 	end
 end

@@ -332,8 +332,9 @@
 		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"MaxLevel"						"1"
+		"MaxLevel"						"6"
 		"AbilityTextureName"			"ogre_magi_unrefined_fireblast"
+		"LinkedAbility"					"ogre_magi_immolate"
 		"IsGrantedByScepter"			"1"
 		"HasScepterUpgrade"				"1"
 	
@@ -371,7 +372,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"275"
+				"damage"				"225 275 325 375 425 475"
 				"LinkedSpecialBonus"	"special_bonus_unique_ogre_magi_fireblast_bh_1"
 			}
 			"02"
@@ -474,6 +475,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"MaxLevel"						"6"
 		"AbilityTextureName"			"custom/ogre_magi_ignite_antipodean"
+		"LinkedAbility"					"ogre_magi_unrefined_fireblast_bh"
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------

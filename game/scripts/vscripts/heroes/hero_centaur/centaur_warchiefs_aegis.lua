@@ -38,7 +38,7 @@ function modifier_centaur_warchiefs_aegis_return:ProcReturn(target)
 	if not target:IsSameTeam( self:GetCaster() ) then
 		local strength = self:GetCaster():GetStrength()
 		local damage = strength * self:GetTalentSpecialValueFor("strength_pct") / 100 + self:GetTalentSpecialValueFor("return_damage")
-		self:GetAbility():DealDamage( self:GetCaster(), target, damage)
+		self:GetAbility():DealDamage( self:GetCaster(), target, damage, {damage_flags = DOTA_DAMAGE_FLAG_REFLECTION})
 		ParticleManager:FireRopeParticle("particles/units/heroes/hero_centaur/centaur_return.vpcf", PATTACH_POINT_FOLLOW, self:GetParent(), target)
 	end
 end

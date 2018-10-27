@@ -154,7 +154,7 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"12 11 10 9 8 7 6"
+		"AbilityCooldown"				"12"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -166,29 +166,31 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"length"				"1200"
+				"var_type"						"FIELD_INTEGER"
+				"length"						"1200"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"width"					"150"
+				"var_type"						"FIELD_INTEGER"
+				"width"							"150"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"delay"					"0.5"
+				"var_type"						"FIELD_FLOAT"
+				"delay"							"0.5"
 			}
 			"04"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"50"
+				"var_type"						"FIELD_INTEGER"
+				"damage"						"50"
+				"LinkedSpecialBonus"			"special_bonus_unique_jakiro_ice_path_bh_2"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
 			"05"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"1 1.5 2 2.5 3 3.5 4"
-				"LinkedSpecialBonus"	"special_bonus_unique_jakiro_ice_path_bh_1"
+				"var_type"						"FIELD_FLOAT"
+				"duration"						"1 1.5 2 2.5 3 3.5 4"
+				"LinkedSpecialBonus"			"special_bonus_unique_jakiro_ice_path_bh_1"
 			}
 		}
 	}

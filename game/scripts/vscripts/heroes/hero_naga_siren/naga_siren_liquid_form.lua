@@ -16,7 +16,7 @@ function naga_siren_liquid_form:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget() or caster
 	target:AddNewModifier(caster, self, "modifier_naga_siren_liquid_form", {duration = self:GetSpecialValueFor("duration")})
-	
+	caster:Dispel(caster, false)
 	target:EmitSound("Hero_NagaSiren.MirrorImage")
 	local nFX = ParticleManager:CreateParticle("particles/units/heroes/hero_siren/naga_siren_mirror_image.vpcf", PATTACH_POINT_FOLLOW, target)
 	Timers:CreateTimer(0.5, function() ParticleManager:ClearParticle(nFX) end)

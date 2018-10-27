@@ -4702,7 +4702,7 @@
 	{
 		// General
 		//----------------------------------------------------------------
-		"Model"						"models/props_structures/dire_barracks_melee001.vmdl"	// Model.
+		"Model"						"models/props_structures/dire_ancient_base001.vmdl"	// Model.
 		"BaseClass"					"npc_dota_creature"
 		"IsSpawner"					"1"
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"

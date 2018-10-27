@@ -1960,7 +1960,7 @@ function CDOTABaseAbility:FireTrackingProjectile(FX, target, speed, data, iAttac
 		iSourceAttachment = iAttach or 0,
 		ExtraData = internalData.extraData
 	}
-	ProjectileManager:CreateTrackingProjectile(projectile)
+	return ProjectileManager:CreateTrackingProjectile(projectile)
 end
 
 function CDOTA_BaseNPC:FireAbilityAutoAttack( target, ability, FX )

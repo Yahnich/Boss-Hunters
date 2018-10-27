@@ -1,6 +1,11 @@
 item_boomstick = class({})
+
 function item_boomstick:GetIntrinsicModifierName()
 	return "modifier_item_boomstick_handle"
+end
+
+function item_boomstick:GetCastRange( target, position )
+	return self:GetSpecialValueFor("active_distance")
 end
 
 function item_boomstick:OnSpellStart()
@@ -8,7 +13,7 @@ function item_boomstick:OnSpellStart()
 	local target = self:GetCursorPosition()
 	
 	local direction = CalculateDirection(target, caster)
-	local distance = self:GetSpecialValueFor("active_distance")
+	local distance = self:GetTrueCastRange()
 	local duration = self:GetSpecialValueFor("active_duration")
 	local speed = 3000
 	local startPos = caster:GetAbsOrigin()

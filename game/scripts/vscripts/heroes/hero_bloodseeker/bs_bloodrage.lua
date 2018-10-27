@@ -26,7 +26,7 @@ modifier_bs_bloodrage = class({})
 function modifier_bs_bloodrage:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,
-		MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE,
+		MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE,
 		MODIFIER_EVENT_ON_DEATH
 	}
 	return funcs
@@ -36,7 +36,7 @@ function modifier_bs_bloodrage:GetModifierIncomingDamage_Percentage()
 	return self:GetTalentSpecialValueFor("amp")
 end
 
-function modifier_bs_bloodrage:GetModifierDamageOutgoing_Percentage()
+function modifier_bs_bloodrage:GetModifierTotalDamageOutgoing_Percentage()
 	return self:GetTalentSpecialValueFor("amp")
 end
 

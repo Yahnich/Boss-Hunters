@@ -91,6 +91,7 @@ end
 --------------------------------------------------------------------------------
 
 function modifier_spectre_dispersion_buff:GetModifierIncomingDamage_Percentage(params)
+	if HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_HPLOSS) or HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION) then return end
     local hero = self:GetParent()
 	local dmgtype = params.damage_type
 	local attacker = params.attacker

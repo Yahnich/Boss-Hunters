@@ -8,33 +8,34 @@
 	{	
 		"#DOTA_Item_Build_Starting_Items"
 		{
-			"item"	"item_hunters_hatchet"
-			"item"	"item_dagger_of_escape"
+			"item"	"item_gauntlet_of_alacrity"
+			"item"	"item_ice_fang"
 		}
 		"#DOTA_Item_Build_Early_Game"
 		{	
-			"item"	"item_mirror_blade"
-			"item"	"item_item_legionnaires_dualswords"
+			"item"	"item_orb_of_haste"
+			"item"	"item_legionnaires_dualswords"
+			"item"	"item_executioners_blade"
+			"item"	"item_leechblade"
+			"item"	"item_siegebreaker"
 		}
-		"#DOTA_Item_Build_Mid_Game"
+		"#DOTA_Item_Build_Core_items"
 		{
 			"item"	"item_blade_of_storm"
-			"item"	"item_illusionists_charm"
-			"item"	"item_gem_of_inner_power"
+			"item"	"item_ferrum_ascensus"
+			"item"	"item_guillotine"
+			"item"	"item_trebuchet"
+			"item"	"item_winters_breath"
 		}
-		"#DOTA_Item_Build_Late_Game"
-		{
-			"item"	"item_soothslayer"
-		}
-		"#DOTA_Item_Build_Other_Items"
+		"#DOTA_Item_Build_Situational_Items"
 		{
 			"item"	"item_dark_ones_blessing"
-			"item"	"item_berserkers_cape"
+			"item"	"item_berserkers_pelt"
+			"item"	"item_behemoths_heart"
+			"item"	"item_boomstick"
+			"item"	"item_lifeweavers_clockwork"
 			"item"	"item_lightningbottle"
-			"item"	"item_ogre_seal_totem"
-			"item"	"item_hurricane_blade"
-			"item"	"item_arcane_accelerator"
-			"item"	"item_blood_gods_mask"
+			"item"	"item_culling_greataxe"
 		}
 	}
 }

@@ -1,4 +1,4 @@
-<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf10:version{b5ef673d-0450-4fb0-a91b-bacae6864827} -->
 {
 	_class = "CParticleSystemDefinition"
 	m_bShouldHitboxesFallbackToRenderBounds = false
@@ -51,11 +51,6 @@
 			_class = "C_INIT_CreateWithinSphere"
 		},
 		{
-			_class = "C_INIT_PositionOffset"
-			m_OffsetMin = [ 0.0, 0.0, 10.0 ]
-			m_OffsetMax = [ 0.0, 0.0, 10.0 ]
-		},
-		{
 			_class = "C_INIT_RandomLifeTime"
 			m_fLifetimeMin = 1.0
 			m_fLifetimeMax = 2.0
@@ -72,6 +67,11 @@
 			_class = "C_INIT_RandomRadius"
 		},
 		{
+			_class = "C_INIT_PositionOffset"
+			m_OffsetMin = [ 0.0, 0.0, 10.0 ]
+			m_OffsetMax = [ 0.0, 0.0, 10.0 ]
+		},
+		{
 			_class = "C_INIT_RemapCPtoScalar"
 			m_nCPInput = 1
 			m_flInputMax = 9999.0
@@ -82,7 +82,32 @@
 	[
 		{
 			_class = "C_OP_ContinuousEmitter"
-			m_flEmitRate = 20.0
+			m_flEmitRate = 50.0
+			m_flEmissionDuration = 0.5
+		},
+	]
+	m_nBehaviorVersion = 5
+	m_nFirstMultipleOverride_BackwardCompat = 5
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 0.0, 0.0, 0.0 ]
+					m_angOffset = [ null, null, null ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 1.0, 0.0, 0.0 ]
+					m_angOffset = [ null, null, null ]
+					m_entityName = "self"
+				},
+			]
 		},
 	]
 }

@@ -12,6 +12,7 @@ function fallen_one_fade_out:OnSpellStart()
 	if target:TriggerSpellAbsorb( self ) then return end
 	local duration = self:GetSpecialValueFor("illu_duration")
 	local illusion = target:ConjureImage( caster:GetAbsOrigin(), duration, self:GetSpecialValueFor("illu_out") - 100, self:GetSpecialValueFor("illu_inc") - 100, nil, self, false, caster )
+	illusion.hasBeenInitialized = true
 	local invuln = caster:AddNewModifier(caster, self, "modifier_fallen_one_fade_out", {duration = duration})
 	Timers:CreateTimer(0.5, function()
 		illusion:MoveToPositionAggressive( target:GetAbsOrigin() )
