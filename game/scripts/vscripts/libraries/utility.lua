@@ -123,12 +123,8 @@ function CDOTABaseAbility:CreateDummy(position, duration)
 end
 
 function CDOTA_BaseNPC_Hero:CreateSummon(unitName, position, duration, bControllable)
-	local controllable = true
-	if not bControllable then controllable = bControllable end
 	local summon = CreateUnitByName(unitName, position, true, self, nil, self:GetTeam())
-	if controllable then
-		summon:SetControllableByPlayer(self:GetPlayerID(), controllable)
-	end
+	summon:SetControllableByPlayer(self:GetPlayerID(), true)
 	self.summonTable = self.summonTable or {}
 	table.insert(self.summonTable, summon)
 	summon:SetOwner(self)
