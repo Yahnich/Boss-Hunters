@@ -35,7 +35,7 @@ function modifier_wk_crit_passive:GetModifierPreAttack_CriticalStrike(params)
 		local width = self:GetTalentSpecialValueFor("cleave_width")
 
 		self:GetAbility().target = params.target
-
+		params.target:EmitSound( "Hero_SkeletonKing.CriticalStrike" )
 		self:GetAbility():FireLinearProjectile("particles/vampiric_shockwave.vpcf", velocity, distance, width, {}, false, false, 0)
 		return self:GetTalentSpecialValueFor("crit_mult")
 	end

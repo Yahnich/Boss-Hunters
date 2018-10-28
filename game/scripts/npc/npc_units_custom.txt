@@ -4702,7 +4702,7 @@
 	{
 		// General
 		//----------------------------------------------------------------
-		"Model"						"models/props_structures/dire_barracks_melee001.vmdl"	// Model.
+		"Model"						"models/props_structures/dire_ancient_base001.vmdl"	// Model.
 		"BaseClass"					"npc_dota_creature"
 		"IsSpawner"					"1"
 		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
@@ -8674,8 +8674,8 @@
 	    // Attack
 	    //----------------------------------------------------------------
 	    "AttackCapabilities"    "DOTA_UNIT_CAP_MELEE_ATTACK"     // Type of attack - melee, ranged, etc.
-	    "AttackDamageMin"     "5000"     // Damage range min.
-	    "AttackDamageMax"     "10000"     // Damage range max.
+	    "AttackDamageMin"     "1"     // Damage range min.
+	    "AttackDamageMax"     "5"     // Damage range max.
 	    "AttackDamageType"      "DAMAGE_TYPE_ArmorPhysical"
 	    "AttackRate"        "1"     // Speed of attack.
 	    "AttackAnimationPoint"    "0.5"   // Normalized time in animation cycle to attack.

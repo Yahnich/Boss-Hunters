@@ -30,7 +30,7 @@ end
 
 function wk_blast:OnSpellStart()
 	local caster = self:GetCaster()
-
+	caster:EmitSound("Hero_SkeletonKing.Hellfire_Blast")
     if caster:HasTalent("special_bonus_unique_wk_blast_1") then
         self:floatyOrb(self:GetCursorPosition())
     else
@@ -76,6 +76,7 @@ function wk_blast:floatyOrb(pos)
             ability:DealDamage(caster, target, damage, {}, 0)
             ability:Stun(target, stun_duration, false)
             target:AddNewModifier(caster, ability, "modifier_wk_blast", {Duration = dot_duration})
+			target:EmitSound("Hero_SkeletonKing.Hellfire_BlastImpact")
             self.hitUnits[target:entindex()] = true
         end
             
@@ -104,6 +105,7 @@ function wk_blast:OnProjectileHit(hTarget, vLocation)
         self:DealDamage(caster, hTarget, damage, {}, 0)
         self:Stun(hTarget, stun_duration, false)
         hTarget:AddNewModifier(caster, self, "modifier_wk_blast", {Duration = dot_duration})
+		hTarget:EmitSound("Hero_SkeletonKing.Hellfire_BlastImpact")
     end
 end
 

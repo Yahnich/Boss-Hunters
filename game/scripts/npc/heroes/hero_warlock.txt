@@ -56,8 +56,23 @@
 			}
 			"03"
 			{
-				"var_type"				"FIELD_FLOAT"
+				"var_type"				"FIELD_INTEGER"
 				"crit_mult"				"300"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"debuff_duration"		"3"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_over_time"		"15 30 45 60 75 100 125"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"damage_amp"			"12.5 15 17.5 20 22.5 25"
 			}
 		}
 	}
@@ -106,7 +121,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"value"						"3"
+				"value"						"-80"
 			}
 		}
 	}
@@ -159,6 +174,11 @@
 			{
 				"var_type"				"FIELD_FLOAT"
 				"duration"				"12"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"boss_hp_mult"			"3"
 			}
 		}
 	}
