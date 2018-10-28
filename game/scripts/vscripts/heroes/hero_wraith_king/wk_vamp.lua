@@ -40,7 +40,7 @@ function wk_vamp:OnChannelThink(flInterval)
                         ParticleManager:SetParticleControl(nfx, 2, caster:GetAbsOrigin())
                         ParticleManager:ReleaseParticleIndex(nfx)
 
-            self:DealDamage(caster, enemy, healthDamage, {}, 0)
+            self:DealDamage(caster, enemy, healthDamage, {damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION}, 0)
         end
 
         if caster:HasTalent("special_bonus_unique_wk_vamp_2") then

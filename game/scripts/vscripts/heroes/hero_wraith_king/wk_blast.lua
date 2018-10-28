@@ -74,7 +74,7 @@ function wk_blast:floatyOrb(pos)
 
         if not self.hitUnits[target:entindex()] then
             ability:DealDamage(caster, target, damage, {}, 0)
-            ability:Stun(target, stun_duration, false)
+            ability:Stun(target, stun_duration, true)
             target:AddNewModifier(caster, ability, "modifier_wk_blast", {Duration = dot_duration})
 			target:EmitSound("Hero_SkeletonKing.Hellfire_BlastImpact")
             self.hitUnits[target:entindex()] = true
@@ -103,7 +103,7 @@ function wk_blast:OnProjectileHit(hTarget, vLocation)
 
     if hTarget then
         self:DealDamage(caster, hTarget, damage, {}, 0)
-        self:Stun(hTarget, stun_duration, false)
+        self:Stun(hTarget, stun_duration, true)
         hTarget:AddNewModifier(caster, self, "modifier_wk_blast", {Duration = dot_duration})
 		hTarget:EmitSound("Hero_SkeletonKing.Hellfire_BlastImpact")
     end

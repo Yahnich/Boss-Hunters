@@ -46,13 +46,11 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"damage"				"100"
-				"LinkedSpecialBonus"	"special_bonus_unique_wraith_king_3"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"dot_damage"			"10 30 50 70 90 110 130"
-				"LinkedSpecialBonus"	"special_bonus_unique_wraith_king_3"
 			}
 			"03"
 			{
@@ -63,11 +61,13 @@
 			{
 				"var_type"				"FIELD_FLOAT"
 				"stun_duration"			"1"
+				"LinkedSpecialBonus"	"special_bonus_unique_wk_blast_2"
 			}			
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"dot_duration"			"2"
+				"LinkedSpecialBonus"	"special_bonus_unique_wk_blast_2"
 			}			
 			"06"
 			{

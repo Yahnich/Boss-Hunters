@@ -18,7 +18,7 @@ end
 
 local function SecondChoice(self, userid, event)
 	local hero = PlayerResource:GetSelectedHeroEntity( event.pID )
-	hero:SetAttributePoints( hero:GetAttributePoints() + 2)
+	hero:ModifyAttributePoints( 2 )
 	CustomGameEventManager:Send_ServerToAllClients("dota_player_upgraded_stats", {playerID = hero:GetPlayerID()} )
 	hero:AddCurse("event_buff_berries_curse_2")
 	

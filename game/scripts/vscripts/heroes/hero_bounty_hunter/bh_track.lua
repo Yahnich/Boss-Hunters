@@ -74,22 +74,22 @@ function modifier_bh_track:OnDeath(params)
 	if IsServer() then
 		local caster = self:GetCaster()
 		if params.unit == self:GetParent() and params.unit:HasModifier("modifier_bh_track") then
+			local gold = self:GetTalentSpecialValueFor("bonus_gold")
+			if not params.unit:IsRoundBoss() then
+				gold = gold * self:GetSpecialValueFor("trash_gold_reduc")/100
+			end
 			local allies = caster:FindFriendlyUnitsInRadius(self:GetParent():GetAbsOrigin(), FIND_UNITS_EVERYWHERE)
 			for _,ally in pairs(allies) do
 				if ally:IsHero() and ally ~= self:GetCaster() then
-					local gold = self:GetTalentSpecialValueFor("bonus_gold")
-					if not params.unit:IsRoundBoss() then
-						gold = gold * self:GetSpecialValueFor("trash_gold_reduc")/100
-					end
 					ally:AddGold(gold)
 				end
 			end
 
-			local gold = self:GetTalentSpecialValueFor("bonus_gold_self")
+			local selfGold = self:GetTalentSpecialValueFor("bonus_gold_self")
 			if not params.unit:IsRoundBoss() then
-				gold = gold * ( 100 - self:GetSpecialValueFor("trash_gold_reduc"))/100
+				selfGold = selfGold * self:GetSpecialValueFor("trash_gold_reduc")/100
 			end
-			caster:AddGold(self:GetTalentSpecialValueFor("bonus_gold_self"))
+			caster:AddGold(selfGold)
 		end
 	end
 end

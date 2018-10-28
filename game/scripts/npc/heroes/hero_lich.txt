@@ -399,7 +399,7 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"						"110 100 90 80 70 60"
+		"AbilityCooldown"						"100"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -419,7 +419,7 @@
 			"01"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"curr_health_dmg"				"30"
+				"curr_health_dmg"				"20 21 22 23 24 25"
 				"CalculateSpellDamageTooltip"	"0"
 			}
 			"02"
@@ -431,6 +431,11 @@
 			{
 				"var_type"						"FIELD_INTEGER"
 				"duration"						"50"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"scepter_cooldown"				"65"
 			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"

@@ -108,7 +108,7 @@ function StatsScreen:ProcessStatsUpgrade(userid, event)
 	
 	netTable[skill] = tostring(tonumber(netTable[skill]) + 1)
 	CustomNetTables:SetTableValue("stats_panel", tostring(entindex), netTable)
-	hero:SetAttributePoints( math.max(0, hero:GetAttributePoints() - 1) )
+	hero:ModifyAttributePoints( -1 )
 	hero:FindModifierByName("modifier_stats_system_handler"):IncrementStackCount()
 	CustomGameEventManager:Send_ServerToAllClients("dota_player_upgraded_stats", {playerID = pID} )
 end
@@ -155,10 +155,10 @@ function StatsScreen:RespecAll(userid, event)
 			end
 		end
 		hero:CalculateStatBonus()
-		hero.bonusTalentPoints = hero.bonusTalentPoints or 0
+		hero.totalGainedTalentPoints = hero.totalGainedTalentPoints or 0
 		hero.bonusSkillPoints = hero.bonusSkillPoints or hero:GetLevel()
 		hero:SetAbilityPoints( hero.bonusSkillPoints + 1 )
-		hero:SetAttributePoints( hero.bonusTalentPoints )
+		hero:SetAttributePoints( hero.totalGainedTalentPoints)
 		CustomGameEventManager:Send_ServerToAllClients("dota_player_upgraded_stats", {playerID = hero:GetPlayerID()} )
 	end
 end
