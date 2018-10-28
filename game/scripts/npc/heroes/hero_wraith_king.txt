@@ -240,7 +240,7 @@
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_wraith_king/wk_skeletons"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityTextureName"			"custom/skeleton_king_summon_skeletons"
+		"AbilityTextureName"			"custom/wraith_king_summon_skeletons"
 		"MaxLevel"						"7"
 		
 		// Casting

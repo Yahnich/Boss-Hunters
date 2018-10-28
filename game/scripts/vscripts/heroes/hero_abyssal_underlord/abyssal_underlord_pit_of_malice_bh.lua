@@ -144,11 +144,11 @@ function modifier_abyssal_underlord_pit_of_malice_bh_root:OnCreated(table)
 		parent:EmitSound("Hero_AbyssalUnderlord.Pit.TargetHero")
         ability:DealDamage(caster, parent, damage, {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
 		if caster:HasTalent("special_bonus_unique_abyssal_underlord_pit_of_malice_2") then
-			self.dmg = caster:GetAverageTrueAttackDamage(caster) * caster:FIndTalentValue("special_bonus_unique_abyssal_underlord_pit_of_malice_2") / 100
-			local ticks = math.floor( self:GetRemainingTime() / 0.99 )
-			self.dmg = self.dmg / ticks
+			self.dmg = caster:GetAverageTrueAttackDamage(caster) * caster:FindTalentValue("special_bonus_unique_abyssal_underlord_pit_of_malice_2") / 100
+			local ticks = math.floor( self:GetRemainingTime() / 0.49 )
+			self.dmg = self.dmg / math.max( ticks, 1 )
 			if ticks > 0 then
-				self:StartIntervalThink(0.99)
+				self:StartIntervalThink(0.49)
 			else
 				self:OnIntervalThink()
 			end
@@ -161,7 +161,7 @@ function modifier_abyssal_underlord_pit_of_malice_bh_root:OnIntervalThink()
 	local parent = self:GetParent()
 	local ability = self:GetAbility()
 	
-	ability:DealDamage( caster, parent, self.dmg )
+	ability:DealDamage( caster, parent, self.dmg, {damage_type = DAMAGE_TYPE_PHYSICAL, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION} )
 end
 
 function modifier_abyssal_underlord_pit_of_malice_bh_root:IsDebuff()
@@ -181,7 +181,7 @@ modifier_abyssal_underlord_pit_of_malice_bh_talent = class({})
 
 function modifier_abyssal_underlord_pit_of_malice_bh_talent:OnCreated()
 	self.as = self:GetCaster():FindTalentValue("special_bonus_unique_abyssal_underlord_pit_of_malice_1", "as")
-	self.dmg = self:GetCaster():FIndTalentValue("special_bonus_unique_abyssal_underlord_pit_of_malice_1", "dmg")
+	self.dmg = self:GetCaster():FindTalentValue("special_bonus_unique_abyssal_underlord_pit_of_malice_1", "dmg")
 end
 
 function modifier_abyssal_underlord_pit_of_malice_bh_talent:DeclareFunctions()
@@ -193,5 +193,5 @@ function modifier_abyssal_underlord_pit_of_malice_bh_talent:GetModifierAttackSpe
 end
 
 function modifier_abyssal_underlord_pit_of_malice_bh_talent:GetModifierBaseDamageOutgoing_Percentage()
-	return self.ms
+	return self.dmg
 end
