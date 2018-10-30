@@ -1,12 +1,16 @@
 slardar_amplify_damage_bh = class({})
 
+function slardar_amplify_damage_bh:GetAOERadius()
+	return caster:FindTalentValue("special_bonus_unique_slardar_amplify_damage_1")
+end
+
 function slardar_amplify_damage_bh:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 	
 	local duration = self:GetTalentSpecialValueFor("duration")
 	if caster:HasTalent("special_bonus_unique_slardar_amplify_damage_1") then
-		for _, enemy in ipairs( target:GetAbsOrigin(), caster:FindTalentValue("special_bonus_unique_slardar_amplify_damage_1") ) do
+		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( target:GetAbsOrigin(), caster:FindTalentValue("special_bonus_unique_slardar_amplify_damage_1") ) ) do
 			self:ApplyHaze( enemy, duration )
 		end
 	else

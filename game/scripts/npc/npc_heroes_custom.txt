@@ -1622,17 +1622,21 @@
 	}
 	"npc_dota_hero_skeleton_king" // Wraith
 	{
-		"override_hero"			"npc_dota_hero_skeleton_king"
-		"Ability3"				"skeleton_king_mortal_strike_ebf"
+		"override_hero"					"npc_dota_hero_skeleton_king"
+		"Ability1"						"wk_blast"
+		"Ability2"						"wk_vamp"
+		"Ability3"						"wk_skeletons"
+		"Ability4"						"wk_crit"
+		"Ability6"						"wk_reincarnation"
 	
-		"Ability10"		"special_bonus_unique_wraith_king_3"
-		"Ability11"		"special_bonus_attack_speed_20"
-		"Ability12"		"special_bonus_strength_15"
-		"Ability13"		"special_bonus_armor_4"
-		"Ability14"		"special_bonus_hp_150"
-		"Ability15"		"special_bonus_attack_damage_35"
-		"Ability16"		"special_bonus_unique_wraith_king_2"
-		"Ability17"		"special_bonus_unique_wraith_king_4"
+		"Ability10"						"special_bonus_unique_wk_blast_1"
+		"Ability11"						"special_bonus_unique_wk_blast_2"
+		"Ability12"						"special_bonus_unique_wk_vamp_1"
+		"Ability13"						"special_bonus_unique_wk_vamp_2"
+		"Ability14"						"special_bonus_unique_wk_skeletons_1"
+		"Ability15"						"special_bonus_unique_wk_skeletons_2"
+		"Ability16"						"special_bonus_unique_wk_reincarnation_1"
+		"Ability17"						"special_bonus_unique_wk_reincarnation_2"
 	}
 	"npc_dota_hero_skinwalker"
 	{

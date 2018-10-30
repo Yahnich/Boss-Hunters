@@ -1,5 +1,9 @@
 slardar_oathbreaker = class({})
 
+function slardar_oathbreaker:IsStealable()
+	return false
+end
+
 function slardar_oathbreaker:GetIntrinsicModifierName()
 	if not self:IsHidden() then
 		return "modifier_slardar_oathbreaker"
@@ -10,7 +14,7 @@ function slardar_oathbreaker:OnSpellStart()
 	local caster = self:GetCaster()
 	caster:SwapAbilities( "slardar_oathkeeper", "slardar_oathbreaker", true, false )
 	caster:RemoveModifierByName("modifier_slardar_oathbreaker")
-	caster:AddNewModifier( caster, self, "modifier_slardar_oathkeeper", {} )
+	caster:AddNewModifier( caster, caster:FindAbilityByName("slardar_oathkeeper"), "modifier_slardar_oathkeeper", {} )
 end
 
 modifier_slardar_oathbreaker = class({})

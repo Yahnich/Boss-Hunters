@@ -29,7 +29,7 @@ end
 
 function abyssal_underlord_firestorm_bh:OnAbilityPhaseInterrupted()
 	ParticleManager:ClearParticle( self.nfx )
-	caster:StopSound("Hero_AbyssalUnderlord.Firestorm.Start")
+	self:GetCaster():StopSound("Hero_AbyssalUnderlord.Firestorm.Start")
 end
 
 function abyssal_underlord_firestorm_bh:OnSpellStart()

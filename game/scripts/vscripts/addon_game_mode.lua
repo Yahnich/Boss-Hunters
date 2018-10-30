@@ -652,10 +652,10 @@ function CHoldoutGameMode:OnHeroLevelUp(event)
 			hero.bonusSkillPoints = (hero.bonusSkillPoints or 0) + 1
 		end
 		if hero:GetLevel() % GameRules.gameDifficulty == 0 then
-			hero:SetAttributePoints( hero:GetAttributePoints() + 1 )
+			hero:ModifyAttributePoints( 1 )
 		end
 	else
-		hero:SetAttributePoints( hero:GetAttributePoints() + 1 )
+		hero:ModifyAttributePoints( 1 )
 		if not ( hero:GetLevel() == 30
 		or hero:GetLevel() == 31
 		or hero:GetLevel() == 36

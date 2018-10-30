@@ -1,5 +1,21 @@
 lich_dark_sacrifice = class({})
 
+function lich_dark_sacrifice:GetCooldown( iLvl )
+	if self:GetCaster():HasScepter() then
+		return self:GetTalentSpecialValueFor("scepter_cooldown")
+	else
+		return self.BaseClass.GetCooldown( self, iLvl )
+	end
+end
+
+function lich_dark_sacrifice:GetManaCost( iLvl )
+	if self:GetCaster():HasScepter() then
+		return 0
+	else
+		return self.BaseClass.GetManaCost( self, iLvl )
+	end
+end
+
 function lich_dark_sacrifice:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()

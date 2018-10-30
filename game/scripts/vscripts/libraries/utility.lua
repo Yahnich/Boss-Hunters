@@ -1810,26 +1810,39 @@ function CDOTA_Modifier_Lua:StartMotionController()
 	end
 end
 
-function CDOTA_Modifier_Lua:AddIndependentStack(duration, limit, bDestroy)
+function CDOTA_Modifier_Lua:AddIndependentStack(duration, limit, bDontDestroy, tTimerTable)
+	local timerTable = tTimerTable or {}
 	self.stackTimers = self.stackTimers or {}
 	if limit then
 		if  self:GetStackCount() < limit then
-			self:IncrementStackCount()
+			if timerTable.stacks then
+				self:SetStackCount( math.min( limit, self:GetStackCount() + timerTable.stacks ) )
+			else
+				self:IncrementStackCount()
+			end
 		elseif self.stackTimers[1] and #self.stackTimers >= limit then
 			self:SetStackCount( limit )
 			Timers:RemoveTimer(self.stackTimers[1])
 			table.remove(self.stackTimers, 1)
 		end
 	else
-		self:IncrementStackCount()
+		if timerTable.stacks then
+			self:SetStackCount( self:GetStackCount() + timerTable.stacks )
+		else
+			self:IncrementStackCount()
+		end
 	end
-	local destroy = bDestroy
-	if bDestroy == nil then destroy = true end
-	local timerID = Timers:CreateTimer(duration or self:GetRemainingTime(), function(timer)
-		if not self:IsNull() then 
-			self:DecrementStackCount()
-			for pos, tTimerID in ipairs( self.stackTimers ) do
-				if timer.name == tTimerID then
+	local destroy = bDontDestroy
+	if bDontDestroy == nil then destroy = true end
+	timerTable.ID = Timers:CreateTimer(duration or self:GetRemainingTime(), function(timer)
+		if not self:IsNull() then
+			if timerTable.stacks then	
+				self:SetStackCount( math.max( 0, self:GetStackCount() - timerTable.stacks ) )
+			else
+				self:DecrementStackCount()
+			end
+			for pos, timerInfo in ipairs( self.stackTimers ) do
+				if timer.name == timerInfo.ID then
 					table.remove(self.stackTimers, pos)
 					break
 				end
@@ -1837,7 +1850,8 @@ function CDOTA_Modifier_Lua:AddIndependentStack(duration, limit, bDestroy)
 			if self:GetStackCount() == 0 and self:GetDuration() == -1 and not destroy then self:Destroy() end
 		end
 	end)
-	table.insert(self.stackTimers, timerID)
+	
+	table.insert(self.stackTimers, timerTable or {})
 end
 
 
@@ -2664,6 +2678,18 @@ end
 
 function CDOTA_BaseNPC_Hero:GetAttributePoints()
 	return self.bonusTalentPoints or 0
+end
+
+function CDOTA_BaseNPC_Hero:ModifyAttributePoints(value)
+	self.totalGainedTalentPoints = self.totalGainedTalentPoints or 0
+	if value > 0 then
+		self.totalGainedTalentPoints = self.totalGainedTalentPoints + value
+	end
+	self.bonusTalentPoints = self.bonusTalentPoints + value
+	local netTable = CustomNetTables:GetTableValue("hero_properties", self:GetUnitName()..self:entindex()) or {}
+	netTable.attribute_points = self.bonusTalentPoints
+	CustomNetTables:SetTableValue("hero_properties", self:GetUnitName()..self:entindex(), netTable)
+	CustomGameEventManager:Send_ServerToAllClients("dota_player_upgraded_stats", { playerID = self:GetPlayerID() } )
 end
 
 function CDOTA_BaseNPC_Hero:SetAttributePoints(value)

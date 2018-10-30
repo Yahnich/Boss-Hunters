@@ -37,7 +37,7 @@ function lich_chain_frost_bh:OnProjectileHit_ExtraData( target, position, extraD
 		if caster:HasTalent("special_bonus_unique_lich_chain_frost_2") then
 			target:AddChill(self, caster, duration, math.abs( self:GetTalentSpecialValueFor("slow_movement_speed") ) )
 		else
-			target:AddNewModidifier( caster, self, "modifier_lich_chain_frost_bh", {duration = duration})
+			target:AddNewModifier( caster, self, "modifier_lich_chain_frost_bh", {duration = duration})
 		end
 		target:EmitSound("Hero_Lich.ChainFrostImpact.Hero")
 		if bounces > 0 or caster:HasTalent("special_bonus_unique_lich_chain_frost_1") then
