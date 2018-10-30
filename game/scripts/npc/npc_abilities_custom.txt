@@ -154,6 +154,7 @@
 #base "heroes/hero_silencer.txt"
 #base "heroes/hero_lich.txt"
 #base "heroes/hero_viper.txt"
+#base "heroes/hero_clinkz.txt"
 
 "DOTAAbilities"
 {
