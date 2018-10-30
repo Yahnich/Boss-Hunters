@@ -30,7 +30,6 @@ function boss27_destroy:OnSpellStart()
 			bear:AddNewModifier(caster, self, "modifier_boss27_destroy_buff", {duration = duration})
 		end
 	end
-	
 	caster:FindAbilityByName("boss27_kill_them"):UseResources(false, false, true)
 	caster:FindAbilityByName("boss27_protect_me"):UseResources(false, false, true)
 end

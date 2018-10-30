@@ -22,7 +22,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"reincarnation_cd"			"90 60"
+				"reincarnation_cd"			"60 45"
 			}
 			"02"
 			{
@@ -37,32 +37,32 @@
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"enrage_as"					"200 300"
+				"enrage_as"					"300 400"
 			}
 			"05"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"enrage_ms"					"10 15"
+				"enrage_ms"					"30 50"
 			}
 			"06"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"enrage_dmg"				"15 20"
+				"enrage_dmg"				"80 120"
 			}
 			"07"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"enrage_radius"				"350"
+				"enrage_radius"				"350 500"
 			}
 			"06"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"revive_bonus_as"			"50 100"
+				"revive_bonus_as"			"100 200"
 			}
 			"07"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"revive_bonus_dmg"			"5 10"
+				"revive_bonus_dmg"			"5 20"
 			}
 		}
 	}
@@ -189,7 +189,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"lifesteal"					"20 25"
+				"lifesteal"					"25 40"
 			}
 		}
 	}
@@ -209,7 +209,7 @@
 		"AbilityTextureName"			"custom/warlock_transfer_power"
 		"MaxLevel"						"2"
 		"AbilityCastPoint"				"1.5 1"
-		"AbilityCooldown"				"60"
+		"AbilityCooldown"				"60 40"
 	
 		"precache"
 		{
@@ -220,12 +220,12 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"max_hp_steal"				"20 25"
+				"max_hp_steal"				"20"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"duration"					"20 25"
+				"duration"					"20"
 			}
 		}
 	}
@@ -258,17 +258,17 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"impact_damage"				"70 80"
+				"impact_damage"				"140 160"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"burn_damage"				"20 30"
+				"burn_damage"				"40 60"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"slow"						"-15 -20"
+				"slow"						"-20 -35"
 			}
 			"04"
 			{
@@ -410,7 +410,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"20 35"
+				"damage"					"40 70"
 			}
 			"03"
 			{
@@ -479,12 +479,12 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"radius"					"325 375"
+				"radius"					"325"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"120 150"
+				"damage"					"240 300"
 			}
 			"03"
 			{

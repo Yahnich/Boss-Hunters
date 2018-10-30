@@ -35,7 +35,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"zombie_health"			"150 200"
+				"zombie_health"			"200 300"
 			}
 		}
 	}

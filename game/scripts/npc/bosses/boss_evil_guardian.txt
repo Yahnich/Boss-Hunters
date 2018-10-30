@@ -76,7 +76,7 @@
 			"02"
 	        {
 	            "var_type"              	"FIELD_INTEGER"
-	            "hp_pct_damage"				"10"
+	            "hp_pct_damage"				"6 8"
 	        }
 	        "03"
 	        {
@@ -155,7 +155,7 @@
 	        "01"
 	        {
 	            "var_type"              "FIELD_INTEGER"
-	            "raze_damage"         	"200 250"
+	            "raze_damage"         	"300 500"
 	        }
 			"02"
 	        {
@@ -197,7 +197,7 @@
 	        "01"
 	        {
 	            "var_type"              "FIELD_INTEGER"
-	            "raze_damage"         	"80 120"
+	            "raze_damage"         	"250 300"
 	        }
 			"02"
 	        {
@@ -250,7 +250,7 @@
 	        "01"
 	        {
 	            "var_type"              "FIELD_INTEGER"
-	            "raze_damage"         	"180 220"
+	            "raze_damage"         	"260 340"
 	        }
 			"02"
 	        {

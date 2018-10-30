@@ -23,17 +23,17 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"growth_rate"			"1.5 1.0"
+				"growth_rate"			"1.0"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"1"
+				"bonus_damage"			"0.75 1"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_ms"				"1"
+				"bonus_ms"				"1 2"
 			}
 		}
 	}
@@ -62,7 +62,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"as_slow"				"-35 -60"
+				"as_slow"				"-90 -120"
 			}
 			"02"
 			{
@@ -89,7 +89,7 @@
 		"AbilityTextureName"			"weaver_time_lapse"
 		"MaxLevel"						"3"
 		
-		"AbilityCooldown"				"14 12"
+		"AbilityCooldown"				"14 10"
 	
 		"precache"
 		{
@@ -216,12 +216,12 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"spawns"					"2"
+				"spawns"					"2 3"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"curr_hp_mult"				"25 33"
+				"curr_hp_mult"				"33"
 			}
 		}
 	}

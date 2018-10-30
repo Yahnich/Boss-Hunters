@@ -653,7 +653,7 @@ function RoundManager:InitializeUnit(unit, bElite)
 	unit:AddNewModifier(unit, nil, "modifier_boss_attackspeed", {})
 	local powerScale = unit:AddNewModifier(unit, nil, "modifier_power_scaling", {})
 	
-	local SAMultiplierFunc = function( events, raids, zones ) return math.floor( (events * 0.3) * ( (1 + (raids * 0.75 ) + ( zones * 1.25 ) ) ) ) end
+	local SAMultiplierFunc = function( events, raids, zones ) return 2 * math.floor( (events) * (1 + (raids * 0.25 ) * ( zones * 0.25 ) ) ) end
 	local maxSpellAmpScale = SAMultiplierFunc( (EVENTS_PER_RAID + 1) * RAIDS_PER_ZONE * ZONE_COUNT, RAIDS_PER_ZONE * ZONE_COUNT, ZONE_COUNT)
 	local spellAmpScale = SAMultiplierFunc( RoundManager:GetEventsFinished(), RoundManager:GetRaidsFinished(), RoundManager:GetZonesFinished() )
 	spellAmpScale = math.min( maxSpellAmpScale, spellAmpScale ) * ( (1 +  RoundManager:GetAscensions()) * 3 )

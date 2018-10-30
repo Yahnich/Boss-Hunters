@@ -185,7 +185,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"150 175"
+				"damage"				"300 350"
 			}
 			"04"
 			{
@@ -229,7 +229,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"damage_per_sec"		"30 40"
+				"damage_per_sec"		"60 80"
 			}
 		}
 	}

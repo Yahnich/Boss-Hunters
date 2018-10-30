@@ -2,7 +2,7 @@ boss_broodmother_arachnids_hunger = class({})
 
 function boss_broodmother_arachnids_hunger:OnAbilityPhaseStart()
 	local caster = self:GetCaster()
-	caster:AddNewModifier(caster, self, "modifier_status_immunity", {duration = self:GetCastPoint() - 0.01})
+	caster:AddNewModifier(caster, self, "modifier_status_immunity", {duration = self:GetCastPoint() + 0.01})
 	caster:AddNewModifier(caster, self, "modifier_boss_broodmother_arachnids_hunger_active", {duration = self:GetCastPoint()})
 	ParticleManager:FireTargetWarningParticle(caster)
 	return true

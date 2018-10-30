@@ -46,7 +46,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"leap_damage"			"200 250"
+				"leap_damage"			"250 300"
 			}
 			"05"
 			{
@@ -111,7 +111,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"spear_damage"			"60 80"
+				"spear_damage"			"100 150"
 			}
 		}
 		"precache"
@@ -170,7 +170,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"spear_damage"			"200 300"
+				"spear_damage"			"250 400"
 			}
 			"05"
 			{

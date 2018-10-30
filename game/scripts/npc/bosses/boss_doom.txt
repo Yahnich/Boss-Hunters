@@ -172,7 +172,7 @@
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"bosses/boss_doom/boss_doom_infernal_wave"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
 		"AbilityTextureName"			"nevermore_shadowraze1"
 		"MaxLevel"						"3"
 		
@@ -283,7 +283,7 @@
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"bosses/boss_doom/boss_doom_hell_tempest"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
 		"AbilityTextureName"			"nevermore_necromastery_demon"
 		"MaxLevel"						"3"
 		
@@ -358,12 +358,12 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"max_damage_reduction"		"20"
+				"max_damage_reduction"		"25 33"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"max_bonus_damage"			"200 250"
+				"max_bonus_damage"			"300 500"
 			}
 			"04"
 			{

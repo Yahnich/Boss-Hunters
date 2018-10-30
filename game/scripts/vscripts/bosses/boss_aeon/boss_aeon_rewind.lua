@@ -4,9 +4,10 @@ POSSIBLE_BOSS_TABLE = {	"npc_dota_boss28",
 						"npc_dota_boss21", 
 						"npc_dota_boss4", 
 						"npc_dota_boss22", 
-						"npc_dota_boss_troll_warlord", 
-						"npc_dota_green_dragon",
-						"npc_dota_boss23"}
+						"npc_dota_boss_troll_warlord",
+						"npc_dota_boss23",
+						"npc_dota_greymane",
+						"npc_dota_boss16",}
 						
 function boss_aeon_rewind:OnAbilityPhaseStart()
 	self.positions = {}

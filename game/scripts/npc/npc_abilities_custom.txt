@@ -154,6 +154,8 @@
 #base "heroes/hero_silencer.txt"
 #base "heroes/hero_lich.txt"
 #base "heroes/hero_viper.txt"
+#base "heroes/hero_leshrac.txt"
+#base "heroes/hero_clinkz.txt"
 
 "DOTAAbilities"
 {
@@ -433,11 +435,11 @@
 		"AbilityCastRange"				"0"
 		"AbilityCastPoint"				"0.5 0.5 0.5 0.5"
 		"FightRecapLevel"				"1"
-		"MaxLevel"						"12"
+		"MaxLevel"						"2"
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"20 18 18 18 18 15 15 15 15 12 12 10"
+		"AbilityCooldown"				"20 18"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -448,7 +450,7 @@
 			"01"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"damage_count"		"1 1 2 2 3 3 4 5 6 7 8 10"
+				"damage_count"		"4 6"
 			}
 			"02"
 			{
@@ -458,14 +460,13 @@
 			"03"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"damage_block"		"40 50 50 60 60 70 80 90 90 90 100 100"
+				"damage_block"		"80"
 			}
 			"04"
 			{
 				"var_type"			"FIELD_FLOAT"
 				"duration"			"10.0"
 			}
-	
 		}
 	}
 	"boss_march"
@@ -488,7 +489,7 @@
 	
 		// Damage.
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"					"9 12 15 18"
+		"AbilityDamage"					"25 40"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -516,7 +517,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"6.0 6.0 6.0 6.0"
+				"duration"				"20"
 			}
 			"05"
 			{
@@ -890,6 +891,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"				"1"
+		"MaxLevel"						"2"
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -910,7 +912,7 @@
 			"01"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"damage"			"35 40 45 50"
+				"damage"			"80 120"
 			}
 			"02"
 			{
@@ -920,7 +922,7 @@
 			"03"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"targets"			"2 3 4"
+				"targets"			"2"
 			}
 			"04"
 			{
@@ -957,7 +959,7 @@
 	
 		// Damage.
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"					"50 60 75 80"
+		"AbilityDamage"					"70 80 90 120"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -980,7 +982,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"30 40 50 60"
+				"damage"				"70 80 90 120"
 			}
 		}
 	}
@@ -1022,12 +1024,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"strike_damage"			"25"
+				"strike_damage"			"50 80"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"duration_damage"		"8 12 16 18"
+				"duration_damage"		"20 30"
 			}
 			"03"
 			{
@@ -1135,13 +1137,12 @@
 		"AbilityCastRange"				"1000"
 		
 		"AbilityCastAnimation"			"ACT_DOTA_SPAWN"	// Activity
-		"AnimationPlaybackRate"			"0.4"						// Animation speed multiplier
-		"AnimationIgnoresModelScale"	"1"
+		"AnimationPlaybackRate"			"0.5"
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"				"12"
-		"AbilityCastPoint"				"0.8 0.5"
+		"AbilityCastPoint"				"1.5 1"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -1195,7 +1196,7 @@
 			"01"
 	        {
 	            "var_type"              "FIELD_FLOAT"
-	            "damage"             	"150 200"  //The meteor lands on the ground this many seconds after it was cast.
+	            "damage"             	"200 300"  //The meteor lands on the ground this many seconds after it was cast.
 	        }
 	        "02"
 	        {
@@ -1294,7 +1295,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"350 400 450 500"
+				"damage"					"500 600 700 800"
 			}
 			"03"
 			{
@@ -1362,185 +1363,12 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"duration"				"8"
+				"duration"				"10"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"tooltip_range"			"400"
-			}
-		}
-	}
-	"clinkz_death_pact_custom"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"				"ability_datadriven"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
-		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityTextureName"			"clinkz_death_pact"
-		"MaxLevel"						"6"
-	
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"800"
-		"AbilityCastPoint"				"0.5 0.5 0.5"
-		
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"20"
-		
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"100 100 100"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"hp_percent"			"6"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"damage_percent"		"0.6"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"max_hp"				"200"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"max_dmg"				"200"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"duration"				"10 12 14 16 18 20"
-			}
-	
-		}
-	
-		"precache"
-		{
-			"particle" 	"particles/units/heroes/hero_clinkz/clinkz_death_pact.vpcf"
-			"particle"  "particles/units/heroes/hero_clinkz/clinkz_death_pact_buff.vpcf"
-			"soundfile" "soundevents/game_sounds_heroes/game_sounds_clinkz.vsndevts"
-		}
-	
-		"OnSpellStart"
-		{
-			"FireSound"
-			{
-				"EffectName"	"Hero_Clinkz.DeathPact.Cast"
-				"Target" 		"CASTER"
-			}
-	
-			"FireEffect"
-			{
-				"EffectName"        "particles/units/heroes/hero_clinkz/clinkz_death_pact.vpcf"
-				"EffectAttachType"  "follow_origin"
-				"Target"            "TARGET"
-				"ControlPointEntities"
-				{
-					"TARGET"	"attach_origin"
-					"CASTER"	"attach_origin"
-				}
-			}
-			
-			"FireSound"
-			{
-				"EffectName"	"Hero_Clinkz.DeathPact"
-				"Target" 		"TARGET"
-			}
-	
-			"RemoveModifier"
-			{
-				"ModifierName"	"modifier_death_pact"
-				"Target" 		"CASTER"
-			}
-	
-			"RemoveModifier"
-			{
-				"ModifierName"	"modifier_death_pact_damage"
-				"Target" 		"CASTER"
-			}
-	
-			"RemoveModifier"
-			{
-				"ModifierName"	"modifier_death_pact_health"
-				"Target" 		"CASTER"
-			}
-	
-			"ApplyModifier"
-			{
-				"ModifierName"	"modifier_death_pact"
-				"Target" 		"CASTER"
-				"Duration"		"%duration"
-			}
-	
-			"RunScript"
-			{
-				"ScriptFile"	"lua_abilities/heroes/clinkz.lua"
-				"Function"		"DeathPact"
-			}	
-		}
-	
-		"Modifiers"
-		{
-			"modifier_death_pact"
-			{	
-				"EffectName"		"particles/units/heroes/hero_clinkz/clinkz_death_pact_buff.vpcf"
-				"EffectAttachType"	"follow_origin"
-	
-				"ThinkInterval"  "0.03"
-				"OnIntervalThink"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"lua_abilities/heroes/clinkz.lua"
-						"Function"		"DeathPactHealth"
-					}
-				}
-			}
-	
-			"modifier_death_pact_damage"
-			{
-				"IsHidden"			"1"
-				"Attributes"		"MODIFIER_ATTRIBUTE_MULTIPLE"
-			
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "1"
-				}
-			}
-	
-			"modifier_death_pact_health"
-			{
-				"IsHidden"			"1"
-				"Attributes"		"MODIFIER_ATTRIBUTE_MULTIPLE"
-			
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_HEALTH_BONUS" "1"
-				}
-	
-				"OnDestroy"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"lua_abilities/heroes/clinkz.lua"
-						"Function"		"SetCurrentHealth"
-					}
-				}
 			}
 		}
 	}
@@ -1693,7 +1521,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"350 450"
+				"damage"				"400 500"
 			}
 			"04"
 			{
@@ -1932,7 +1760,7 @@
 	
 		// Damage.
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"					"150 180"
+		"AbilityDamage"					"175 250"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -2473,64 +2301,6 @@
 			}
 		}
 	}
-	"custom_ogre_magi_bloodlust"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ogre_magi_bloodlust"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NOT_MAGIC_IMMUNE_ALLIES"
-	
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"600"
-		"AbilityCastPoint"				"0.56"
-		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
-		
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"20"
-	
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"75"
-	
-		"precache"
-		{
-			"particle_folder"				"particles/units/heroes/hero_ogre_magi"
-		}
-	
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"30"
-			}
-	
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"modelscale"			"25"
-			}	
-	
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_movement_speed"	"10 12 14 16"
-			}
-	
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_attack_speed"	"20 40 60 80"
-			}
-		}
-	}
 	//=================================================================================================================
 	// Dark Seer: Adamantium Shielding
 	//=================================================================================================================
@@ -2931,30 +2701,6 @@
 				}
 			}
 		}		
-	}
-	"leshrac_inner_torment"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"							"ability_lua"
-		"AbilityBehavior"					"DOTA_ABILITY_BEHAVIOR_TOGGLE"
-		"AbilityUnitTargetType"				"DOTA_UNIT_TARGET_HERO"
-		"ScriptFile"						"lua_abilities/heroes/leshrac.lua"
-		"MaxLevel"							"1"
-		"InnateAbility"						"1"
-		"IsAetherAmplified"					"0" //Otherwise amp would be applied multiple times
-		"AbilityTextureName"				"custom/leshrac_inner_torment"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"pure_damage_per_level"		"1"
-			}
-		}
 	}
 	"lesser_nightcrawler_pounce"
 	{

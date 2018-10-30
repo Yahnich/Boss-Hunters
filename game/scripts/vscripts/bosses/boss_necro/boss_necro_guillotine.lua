@@ -34,14 +34,15 @@ function boss_necro_guillotine:CreateGuillotine( enemy )
 	ParticleManager:FireWarningParticle(position, radius)
 	
 	Timers:CreateTimer(1.5, function()
-		if CalculateDistance(position, enemy) < radius then
-			if enemy:TriggerSpellAbsorb(self) then return end
-			if enemy:GetHealthPercent() <= kill_threshold then
-				enemy.tombstoneDisabled = true
-				enemy:AttemptKill(self, caster)
-			else
-				self:DealDamage( caster, enemy, enemy:GetHealth() * damage, {damage_type = DAMAGE_TYPE_PURE, damage_flags = DOTA_DAMAGE_FLAG_HPLOSS + DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION} )
-				enemy:DisableHealing( duration )
+		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( position, radius, {type = DOTA_UNIT_TARGET_HERO} ) ) do
+			if not enemy:TriggerSpellAbsorb(self) then
+				if enemy:GetHealthPercent() <= kill_threshold then
+					enemy.tombstoneDisabled = true
+					enemy:AttemptKill(self, caster)
+				else
+					self:DealDamage( caster, enemy, enemy:GetHealth() * damage, {damage_type = DAMAGE_TYPE_PURE, damage_flags = DOTA_DAMAGE_FLAG_HPLOSS + DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION} )
+					enemy:DisableHealing( duration )
+				end
 			end
 		end
 	end)

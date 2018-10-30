@@ -110,17 +110,17 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"base_damage"			"30 50"
+				"base_damage"			"65 100"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"stack_damage"			"10 20"
+				"stack_damage"			"35 50"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"max_radius"			"350 500"
+				"max_radius"			"450 600"
 			}
 			"04"
 			{

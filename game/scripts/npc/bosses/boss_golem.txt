@@ -90,7 +90,7 @@
 		"ScriptFile"					"bosses/boss_golem/boss_golem_golem_toss"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
 		"AbilityTextureName" 			"mud_golem_hurl_boulder"
 		
 		"precache"
@@ -136,7 +136,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"base_damage"			"150 200"
+				"base_damage"			"200 300"
 			}
 			"05"
 			{
@@ -163,7 +163,7 @@
 		"ScriptFile"					"bosses/boss_golem/boss_golem_golem_leap"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
 		"AbilityTextureName" 			"tiny_toss"
 		"MaxLevel"						"2"
 		
@@ -206,7 +206,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"base_damage"			"150 200"
+				"base_damage"			"350 500"
 			}
 			"04"
 			{
@@ -228,7 +228,7 @@
 		"ScriptFile"					"bosses/boss_golem/boss_golem_golem_smash"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
 		"AbilityTextureName" 			"tiny_grow"
 		"MaxLevel"						"2"
 		
@@ -265,7 +265,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"base_damage"			"125 150"
+				"base_damage"			"350 500"
 			}
 			"04"
 			{

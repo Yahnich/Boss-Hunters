@@ -6,7 +6,7 @@ local function StartEvent(self)
 		
 		self.enemiesToSpawn = self.enemiesToSpawn - 1
 		if self.enemiesToSpawn > 0 then
-			return 10
+			return 10 / GameRules:GetGameDifficulty()
 		end
 	end)
 	

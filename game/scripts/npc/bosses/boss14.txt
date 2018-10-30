@@ -140,7 +140,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"				"7"
 		"AbilityCastPoint"				"1.5 1.25"
-		"AbilityCastRange"				"650"
+		"AbilityCastRange"				"300"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_3"
 	
 		// Cost
@@ -155,17 +155,17 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"3"
+				"duration"				"4"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"suck_power"			"10"
+				"suck_power"			"10 15"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"spin_damage"			"20 25"
+				"spin_damage"			"25 30"
 			}		
 			"03"
 			{

@@ -170,7 +170,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"400"
+				"damage"					"600"
 			}
 			"02"
 			{
@@ -210,7 +210,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"max_hp_damage"				"2.0 2.25"
+				"max_hp_damage"				"2.5 3"
 			}
 			"02"
 			{
