@@ -1,5 +1,6 @@
 wk_crit = class({})
 LinkLuaModifier("modifier_wk_crit_passive", "heroes/hero_wraith_king/wk_crit", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_wk_skeletons_charges", "heroes/hero_wraith_king/wk_skeletons", LUA_MODIFIER_MOTION_NONE)
 
 function wk_crit:IsStealable()
     return false
@@ -33,6 +34,11 @@ function modifier_wk_crit_passive:GetModifierPreAttack_CriticalStrike(params)
 		local velocity = caster:GetForwardVector() * 1000
 		local distance = self:GetTalentSpecialValueFor("cleave_distance")
 		local width = self:GetTalentSpecialValueFor("cleave_width")
+
+		local ability = caster:FindAbilityByName("wk_skeletons")
+		if ability and ability:IsTrained() then
+			ability:IncrementCharge()
+		end
 
 		self:GetAbility().target = params.target
 		params.target:EmitSound( "Hero_SkeletonKing.CriticalStrike" )

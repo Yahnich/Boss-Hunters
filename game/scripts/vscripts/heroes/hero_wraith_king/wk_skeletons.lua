@@ -4,7 +4,7 @@ LinkLuaModifier("modifier_wk_skeletons_charges", "heroes/hero_wraith_king/wk_ske
 LinkLuaModifier("modifier_wk_skeletons_ai", "heroes/hero_wraith_king/wk_skeletons", LUA_MODIFIER_MOTION_NONE)
 
 function wk_skeletons:IsStealable()
-    return false
+    return true
 end
 
 function wk_skeletons:IsHiddenWhenStolen()
@@ -24,7 +24,7 @@ function wk_skeletons:OnSpellStart()
     local point = caster:GetAbsOrigin()
 
     local tick_rate = self:GetTalentSpecialValueFor("spawn_interval")
-	caster:EmitSound("n_creep_TrollWarlord.RaiseDead")
+    caster:EmitSound("n_creep_TrollWarlord.RaiseDead")
     if caster:HasModifier("modifier_wk_skeletons_charges") then
     	self.stacks = caster:FindModifierByName("modifier_wk_skeletons_charges"):GetStackCount()
     	local i = 0
@@ -59,9 +59,16 @@ function wk_skeletons:SpawnSkeleton(position)
 
 	local unit = nil
 
+	--Skeleton Knights----------------------------
 	if caster:HasTalent("special_bonus_unique_wk_skeletons_2") then
 		health = health * self.stacks
 		damage = damage * self.stacks
+		local mana = caster:GetMaxMana()
+		local armor = caster:GetPhysicalArmorValue()
+		local attackTime = caster:GetSecondsPerAttack()
+
+		local ability1 = caster:FindAbilityByName("wk_blast")
+		local ability2 = caster:FindAbilityByName("wk_crit")
 
 		local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_undying/undying_tombstone_spawn.vpcf", PATTACH_POINT, caster)
 					ParticleManager:SetParticleControl(nfx, 0, position)
@@ -75,11 +82,18 @@ function wk_skeletons:SpawnSkeleton(position)
 		local glove = SpawnEntityFromTableSynchronous("prop_dynamic", {model = "models/items/skeleton_king/sk_dreadknight_arms/sk_dreadknight_arms.vmdl"})
 		glove:FollowEntity(skeleton, true)
 		skeleton:AddNewModifier(caster, self, "modifier_wk_skeletons_ai", {})
+
+		skeleton:SetMana(mana)
+		skeleton:SetPhysicalArmorBaseValue(armor)
+		skeleton:SetBaseAttackTime(attackTime)
+
+		skeleton:AddAbility("wk_blast"):SetLevel(ability1:GetLevel())
+		skeleton:AddAbility("wk_crit"):SetLevel(ability2:GetLevel())
+
+	--Skeleton Warriors----------------------------
 	else
 		local nfx = ParticleManager:CreateParticle("particles/items2_fx/ward_spawn_generic.vpcf", PATTACH_POINT, caster)
 					ParticleManager:SetParticleControl(nfx, 0, position)
-					--ParticleManager:SetParticleControl(nfx, 1, position)
-					--ParticleManager:SetParticleControl(nfx, 2, position)
 					ParticleManager:ReleaseParticleIndex(nfx)
 
 		skeleton = caster:CreateSummon("npc_dota_wraith_king_skeleton_warrior", position, duration, true)
@@ -92,7 +106,22 @@ function wk_skeletons:SpawnSkeleton(position)
 	skeleton:SetMaxHealth( health )
 	skeleton:SetHealth( health )
 	skeleton:SetAverageBaseDamage( damage, 15 )
+	skeleton:SetBaseMoveSpeed(caster:GetIdealSpeedNoSlows())
 	skeleton:EmitSound("n_creep_Skeleton.Spawn")
+end
+
+function wk_skeletons:IncrementCharge()
+	local caster = self:GetCaster()
+
+	if caster:HasModifier("modifier_wk_skeletons_charges") then
+		if caster:FindModifierByName("modifier_wk_skeletons_charges"):GetStackCount() < self:GetTalentSpecialValueFor("max_skeleton_charges") then
+			caster:AddNewModifier(caster, self, "modifier_wk_skeletons_charges", {}):IncrementStackCount()
+		else
+			caster:AddNewModifier(caster, self, "modifier_wk_skeletons_charges", {})
+		end
+	else
+		caster:AddNewModifier(caster, self, "modifier_wk_skeletons_charges", {}):IncrementStackCount()
+	end
 end
 
 modifier_wk_skeletons_passive = class({})
@@ -107,15 +136,7 @@ function modifier_wk_skeletons_passive:OnDeath(params)
 		local unit = params.unit
 
 		if attacker == caster and unit ~= caster then
-			if caster:HasModifier("modifier_wk_skeletons_charges") then
-				if caster:FindModifierByName("modifier_wk_skeletons_charges"):GetStackCount() < self:GetTalentSpecialValueFor("max_skeleton_charges") then
-					caster:AddNewModifier(caster, self:GetAbility(), "modifier_wk_skeletons_charges", {}):IncrementStackCount()
-				else
-					caster:AddNewModifier(caster, self:GetAbility(), "modifier_wk_skeletons_charges", {})
-				end
-			else
-				caster:AddNewModifier(caster, self:GetAbility(), "modifier_wk_skeletons_charges", {}):IncrementStackCount()
-			end
+			self:GetAbility():IncrementCharge()
 		end
 	end
 end
@@ -168,6 +189,6 @@ function modifier_wk_skeletons_ai:StatusEffectPriority()
 end
 
 function modifier_wk_skeletons_ai:IsHidden()
-	return false
+	return true
 end
 
