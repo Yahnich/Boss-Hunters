@@ -31,7 +31,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_attack_speed"	"150 200"
+				"bonus_attack_speed"	"200 300"
 			}
 			"02"
 			{
@@ -117,7 +117,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"stack_dot"				"10 15"
+				"stack_dot"				"15 20"
 			}
 			"03"
 			{
@@ -181,7 +181,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"dot"					"40 50"
+				"dot"					"50 75"
 			}
 			"03"
 			{

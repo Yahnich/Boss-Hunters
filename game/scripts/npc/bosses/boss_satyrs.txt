@@ -50,7 +50,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"150 175"
+				"damage"				"200 250"
 			}
 		}
 	}
@@ -85,7 +85,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"delay"					"1.5"
+				"delay"					"2 1.5"
 			}
 			"02"
 			{
@@ -95,7 +95,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"burn_damage"			"33"
+				"burn_damage"			"33 50"
 			}
 			"04"
 			{
@@ -129,7 +129,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"hp_regen"				"30 40"
+				"hp_regen"				"30 50"
 			}
 			"02"
 			{
@@ -206,7 +206,6 @@
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"				"50"
-		"AbilityCastPoint"				"0.5"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
 		"AbilityChannelTime"			"4"
 		"AbilityChannelAnimation"		"ACT_DOTA_INTRO"

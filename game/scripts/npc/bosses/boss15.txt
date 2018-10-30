@@ -51,7 +51,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"200 225"
+				"damage"				"300 400"
 			}
 			"06"
 			{
@@ -61,7 +61,7 @@
 			"07"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"stun_duration"			"2 3"
+				"stun_duration"			"1.5 2"
 			}
 			"08"
 			{
@@ -110,17 +110,17 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"ghost_damage"			"16 20"
+				"ghost_damage"			"20 25"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"ghost_health"			"4 6"
+				"ghost_health"			"6 9"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"ghost_count"			"25"
+				"ghost_count"			"15"
 			}
 		}
 		"precache"

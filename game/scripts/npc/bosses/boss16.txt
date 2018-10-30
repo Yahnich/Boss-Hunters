@@ -70,7 +70,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage_over_time"		"33 50 66 75"
+				"damage_over_time"		"50 75 100 150"
 			}
 			"03"
 			{
@@ -145,12 +145,12 @@
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"initial_damage"		"125 150 175 200"
+				"initial_damage"		"200 250 400 500"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage_over_time"		"0 0 33 50"
+				"damage_over_time"		"0 0 50 80"
 			}
 		}
 		"precache"
@@ -193,7 +193,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"drake_health"			"25 35"
+				"drake_health"			"25 30"
 			}
 			"02"
 			{

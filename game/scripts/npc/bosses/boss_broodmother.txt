@@ -13,7 +13,7 @@
 		"ScriptFile"					"bosses/boss_broodmother/boss_broodmother_clipped_fate"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityTextureName"			"broodmother_incapacitating_bite"
-		"MaxLevel"						"3"
+		"MaxLevel"						"2"
 	
 		"precache"
 		{
@@ -49,7 +49,7 @@
 		"ScriptFile"					"bosses/boss_broodmother/boss_broodmother_parasitic_injection"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityTextureName"			"broodmother_poison_sting"
-		"MaxLevel"						"3"
+		"MaxLevel"						"2"
 		
 		"precache"
 		{
@@ -86,7 +86,7 @@
 		"ScriptFile"					"bosses/boss_broodmother/boss_broodmother_strength_of_the_brood"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
 		"AbilityTextureName"			"broodmother_spawn_spiderlings"
-		"MaxLevel"						"3"
+		"MaxLevel"						"2"
 	
 		"precache"
 		{
@@ -102,7 +102,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"str_per_unit"			"1.4 1.8"
+				"str_per_unit"			"2 3"
 			}
 		}
 	}
@@ -117,7 +117,7 @@
 		"ScriptFile"					"bosses/boss_broodmother/boss_broodmother_egg_sack"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName"			"broodmother_spawn_spiderite"
-		"MaxLevel"						"7"
+		"MaxLevel"						"2"
 		
 		"AbilityCastRange"				"350"
 		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
@@ -134,7 +134,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"eggs"						"3 5 7 9 11 13 15"
+				"eggs"						"6 12"
 			}
 			"02"
 			{
@@ -152,7 +152,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"AbilityTextureName"			"life_stealer_assimilate"
-		"MaxLevel"						"5"
+		"MaxLevel"						"2"
 		
 		"AbilityCastRange"				"900"
 		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
@@ -189,12 +189,12 @@
 			"05"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"spiders_on_hit"			"2 3 4 5 6"
+				"spiders_on_hit"			"4 8"
 			}
 			"06"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"spiders_on_miss"			"0 0 1 1 2"
+				"spiders_on_miss"			"2 4"
 			}
 		}
 	}
@@ -239,7 +239,7 @@
 			"04"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"duration"					"5"
+				"duration"					"8 10"
 			}
 		}
 	}
@@ -284,7 +284,7 @@
 			"04"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"hits_to_kill"				"2 3 4 5 6 7 8"
+				"hits_to_kill"				"6 8"
 			}
 		}
 	}
@@ -385,7 +385,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"2 3"
+				"damage"					"10 15"
 			}
 			"03"
 			{

@@ -67,12 +67,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"greymane_as_per_hp"	"5 8"
+				"greymane_as_per_hp"	"7.5 10"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"as_per_hp"				"3 5"
+				"as_per_hp"				"4 6"
 			}
 			"02"
 			{
@@ -118,17 +118,17 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"as_slow"				"-40 -80"
+				"as_slow"				"-80 -120"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"ms_slow"				"-12 -16"
+				"ms_slow"				"-20 -33"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"bleed"					"20 30"
+				"bleed"					"40 60"
 			}
 			"05"
 			{
@@ -154,7 +154,7 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"24 20"
+		"AbilityCooldown"				"36 30"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
 		"AbilityCastPoint"				"1.5 1"
 	
@@ -172,12 +172,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"bonus_damage"			"20 30"
+				"bonus_damage"			"25 35"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"dispel_pct"			"10 15"
+				"dispel_pct"			"15 20"
 			}
 		}
 	}
@@ -227,7 +227,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"damage_per_second"		"100 140"
+				"damage_per_second"		"120 180"
 			}
 		}
 	}

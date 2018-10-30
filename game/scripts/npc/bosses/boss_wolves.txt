@@ -97,7 +97,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"bleed"					"0 10"
+				"bleed"					"10 25"
 			}
 			"06"
 			{
@@ -141,12 +141,12 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"30 35"
+				"damage"				"30 40"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"armor"					"2 4"
+				"armor"					"2 5"
 			}
 		}
 	}
@@ -200,7 +200,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"attack_speed"			"100 150"
+				"attack_speed"			"100 200"
 			}
 		}
 	}

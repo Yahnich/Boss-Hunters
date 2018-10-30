@@ -31,7 +31,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage_per_unit"		"45 60"
+				"damage_per_unit"		"40 60"
 			}
 			"01"
 			{
@@ -147,7 +147,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"zombie_count"			"6 10"
+				"zombie_count"			"10 15"
 			}
 			"02"
 			{
@@ -187,7 +187,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"break_distance"			"600 750"
+				"break_distance"			"750 1000"
 			}
 		}
 	}

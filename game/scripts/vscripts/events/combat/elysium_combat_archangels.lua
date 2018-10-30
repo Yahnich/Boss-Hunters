@@ -7,7 +7,7 @@ local function StartEvent(self)
 		spawn.unitIsRoundBoss = true
 		self.enemiesToSpawn = self.enemiesToSpawn - 1
 		if self.enemiesToSpawn > 0 then
-			return 10
+			return 2
 		end
 	end)
 	self._vEventHandles = {

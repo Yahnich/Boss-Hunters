@@ -65,7 +65,7 @@ end
 
 function modifier_item_arcane_reaver_active:OnAttackLanded(params)
 	if params.attacker == self:GetParent() then
-		self:GetAbility():DealDamage(params.attacker, params.target, self.onHitDmg * params.attacker:GetPrimaryStatValue(), {damage_type = DAMAGE_TYPE_MAGICAL} )
+		self:GetAbility():DealDamage(params.attacker, params.target, self.onHitDmg * params.attacker:GetPrimaryStatValue(), {damage_type = DAMAGE_TYPE_MAGICAL, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION} )
 		params.target:AddNewModifier(params.attacker, self:GetAbility(), "modifier_item_arcane_reaver_debuff", {duration = self.duration})
 	end
 end

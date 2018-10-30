@@ -14,7 +14,7 @@ function Spawn( entityKeyValues )
 	thisEntity.summon = thisEntity:FindAbilityByName("creature_summon_tree")
 	
 	AITimers:CreateTimer(0.1, function() 
-		thisEntity.armor:SetLevel( math.min(thisEntity.armor:GetMaxLevel(), math.floor(GameRules:GetGameDifficulty()/2) + RoundManager:GetRaidsFinished() ) )
+		thisEntity.armor:SetLevel( math.floor(GameRules:GetGameDifficulty()/2) )
 	end)
 end
 

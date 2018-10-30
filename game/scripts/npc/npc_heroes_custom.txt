@@ -868,14 +868,22 @@
 	//=================================================================================================================
 	"npc_dota_hero_leshrac_ebf"
 	{
-		"override_hero"			"npc_dota_hero_leshrac"
-		"AbilityLayout"			"5"
-		"Ability1"				"leshrac_split_earth"
-		"Ability2"				"leshrac_diabolic_edict"
-		"Ability3"				"leshrac_lightning_storm"
-		"Ability4"				"generic_hidden"
-		"Ability6"				"leshrac_pulse_nova"
+		"override_hero"					"npc_dota_hero_leshrac"
+		"AbilityLayout"					"5"
+		"Ability1"						"leshrac_split_earth"
+		"Ability2"						"leshrac_diabolic_edict"
+		"Ability3"						"leshrac_lightning_storm"
+		"Ability4"						"generic_hidden"
+		"Ability6"						"leshrac_pulse_nova"
 		
+		"Ability10"						"special_bonus_unique_leshrac_split_earth_1"
+		"Ability11"						"special_bonus_unique_leshrac_split_earth_2"
+		"Ability12"						"special_bonus_unique_leshrac_diabolic_edict_1"
+		"Ability13"						"special_bonus_unique_leshrac_diabolic_edict_2"
+		"Ability14"						"special_bonus_unique_leshrac_lightning_storm_1"
+		"Ability15"						"special_bonus_unique_leshrac_lightning_storm_2"
+		"Ability16"						"special_bonus_unique_leshrac_pulse_nova_1"
+		"Ability17"						"special_bonus_unique_leshrac_pulse_nova_2"
 	}
 	//=================================================================================================================
 	// HERO: Gyrochopter

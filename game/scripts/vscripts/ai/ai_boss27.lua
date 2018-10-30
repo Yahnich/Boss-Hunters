@@ -64,6 +64,7 @@ if IsServer() then
 	function AIThink(thisEntity)
 		if not thisEntity:IsDominated() and not thisEntity:IsChanneling() then
 			if AICore:BeingAttacked( thisEntity ) > 0 then
+				local nearest = AICore:NearestEnemyHeroInRange( thisEntity, thisEntity:GetIdealSpeed() * 1.5 + thisEntity:GetAttackRange(), true )
 				if thisEntity:GetTotalBearCount() == 0 then
 					if thisEntity.bigbear:IsFullyCastable() then
 						ExecuteOrderFromTable({
@@ -81,19 +82,23 @@ if IsServer() then
 						})
 						return AI_THINK_RATE
 					end
-					if thisEntity.mark:IsFullyCastable() and RollPercentage(45) then
-						local target = thisEntity:GetTauntTarget() or AICore:RandomEnemyHeroInRange( thisEntity, 8000 , true)
-						if target then
-							ExecuteOrderFromTable({
-								UnitIndex = thisEntity:entindex(),
-								OrderType = DOTA_UNIT_ORDER_CAST_TARGET,
-								TargetIndex = target:entindex(),
-								AbilityIndex = thisEntity.mark:entindex()
-							})
-							return thisEntity.mark:GetCastPoint() + 0.1
+					if nearest then
+						if thisEntity.mark:IsFullyCastable() and RollPercentage(45) then
+							local target = thisEntity:GetTauntTarget() or nearest
+							if target then
+								ExecuteOrderFromTable({
+									UnitIndex = thisEntity:entindex(),
+									OrderType = DOTA_UNIT_ORDER_CAST_TARGET,
+									TargetIndex = target:entindex(),
+									AbilityIndex = thisEntity.mark:entindex()
+								})
+								return thisEntity.mark:GetCastPoint() + 0.1
+							end
 						end
+						return AICore:AttackHighestPriority( thisEntity )
 					end
-					if thisEntity.protect:IsFullyCastable() and thisEntity:GetTotalBearCount() < 4 and RollPercentage(20) then
+				else
+					if thisEntity.protect:IsFullyCastable() and RollPercentage(65) then
 						ExecuteOrderFromTable({
 							UnitIndex = thisEntity:entindex(),
 							OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
@@ -101,15 +106,6 @@ if IsServer() then
 						})
 						return thisEntity.protect:GetCastPoint() + 0.1
 					end
-					if thisEntity.destroy:IsFullyCastable() and thisEntity:GetTotalBearCount() > 6 and RollPercentage(20) then
-						ExecuteOrderFromTable({
-							UnitIndex = thisEntity:entindex(),
-							OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
-							AbilityIndex = thisEntity.destroy:entindex()
-						})
-						return thisEntity.destroy:GetCastPoint() + 0.1
-					end
-				else
 					if thisEntity.mark:IsFullyCastable() and RollPercentage(60) then
 						local target = thisEntity:GetTauntTarget() or AICore:RandomEnemyHeroInRange( thisEntity, 8000 , true)
 						if target then
@@ -122,21 +118,13 @@ if IsServer() then
 							return thisEntity.mark:GetCastPoint() + 0.1
 						end
 					end
-					if thisEntity.destroy:IsFullyCastable() and thisEntity:GetTotalBearCount() > 6 and RollPercentage(80) then
+					if thisEntity.destroy:IsFullyCastable() and RollPercentage(80) then
 						ExecuteOrderFromTable({
 							UnitIndex = thisEntity:entindex(),
 							OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
 							AbilityIndex = thisEntity.destroy:entindex()
 						})
 						return thisEntity.destroy:GetCastPoint() + 0.1
-					end
-					if thisEntity.protect:IsFullyCastable() and thisEntity:GetTotalBearCount() < 4 and RollPercentage(20) then
-						ExecuteOrderFromTable({
-							UnitIndex = thisEntity:entindex(),
-							OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
-							AbilityIndex = thisEntity.protect:entindex()
-						})
-						return thisEntity.protect:GetCastPoint() + 0.1
 					end
 					if thisEntity.bigbear:IsFullyCastable() and thisEntity:GetBigBearCount() <= thisEntity:GetMaxBigBearCount() and RollPercentage( 50 / math.min(thisEntity:GetBigBearCount(), 1) ) then
 						ExecuteOrderFromTable({
@@ -158,64 +146,41 @@ if IsServer() then
 				end
 				return AICore:AttackHighestPriority( thisEntity )
 			else
-				if thisEntity:GetTotalBearCount() < thisEntity:GetMaxTotalBearCount() then
-					if thisEntity.bigbear:IsFullyCastable() and thisEntity:GetBigBearCount() <= thisEntity:GetMaxBigBearCount() then
+				if thisEntity.bigbear:IsFullyCastable() and thisEntity:GetBigBearCount() <= thisEntity:GetMaxBigBearCount() then
+					ExecuteOrderFromTable({
+						UnitIndex = thisEntity:entindex(),
+						OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
+						AbilityIndex = thisEntity.bigbear:entindex()
+					})
+					return AI_THINK_RATE
+				end
+				if thisEntity.smallbear:IsFullyCastable() and thisEntity:GetSmallBearCount() <= thisEntity:GetMaxSmallBearCount() then
+					ExecuteOrderFromTable({
+						UnitIndex = thisEntity:entindex(),
+						OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
+						AbilityIndex = thisEntity.smallbear:entindex()
+					})
+					return AI_THINK_RATE
+				end
+				if thisEntity.mark:IsFullyCastable() and RollPercentage(35) then
+					local target = thisEntity:GetTauntTarget() or AICore:RandomEnemyHeroInRange( thisEntity, 8000 , true)
+					if target then
 						ExecuteOrderFromTable({
 							UnitIndex = thisEntity:entindex(),
-							OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
-							AbilityIndex = thisEntity.bigbear:entindex()
+							OrderType = DOTA_UNIT_ORDER_CAST_TARGET,
+							TargetIndex = target:entindex(),
+							AbilityIndex = thisEntity.mark:entindex()
 						})
-						return AI_THINK_RATE
+						return thisEntity.mark:GetCastPoint() + 0.1
 					end
-					if thisEntity.smallbear:IsFullyCastable() and thisEntity:GetSmallBearCount() <= thisEntity:GetMaxSmallBearCount() then
-						ExecuteOrderFromTable({
-							UnitIndex = thisEntity:entindex(),
-							OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
-							AbilityIndex = thisEntity.smallbear:entindex()
-						})
-						return AI_THINK_RATE
-					end
-					if thisEntity.mark:IsFullyCastable() and RollPercentage(35) then
-						local target = thisEntity:GetTauntTarget() or AICore:RandomEnemyHeroInRange( thisEntity, 8000 , true)
-						if target then
-							ExecuteOrderFromTable({
-								UnitIndex = thisEntity:entindex(),
-								OrderType = DOTA_UNIT_ORDER_CAST_TARGET,
-								TargetIndex = target:entindex(),
-								AbilityIndex = thisEntity.mark:entindex()
-							})
-							return thisEntity.mark:GetCastPoint() + 0.1
-						end
-					end				
-					if thisEntity.destroy:IsFullyCastable() and (thisEntity:GetTotalBearCount() > 5 or RollPercentage(35)) then
-						ExecuteOrderFromTable({
-							UnitIndex = thisEntity:entindex(),
-							OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
-							AbilityIndex = thisEntity.destroy:entindex()
-						})
-						return thisEntity.destroy:GetCastPoint() + 0.1
-					end
-				else
-					if thisEntity.mark:IsFullyCastable() and RollPercentage(45) then
-						local target = thisEntity:GetTauntTarget() or AICore:RandomEnemyHeroInRange( thisEntity, 8000 , true)
-						if target then
-							ExecuteOrderFromTable({
-								UnitIndex = thisEntity:entindex(),
-								OrderType = DOTA_UNIT_ORDER_CAST_TARGET,
-								TargetIndex = target:entindex(),
-								AbilityIndex = thisEntity.mark:entindex()
-							})
-							return thisEntity.mark:GetCastPoint() + 0.1
-						end
-					end
-					if thisEntity.destroy:IsFullyCastable() and (thisEntity:GetTotalBearCount() > 6 or RollPercentage(20)) then
-						ExecuteOrderFromTable({
-							UnitIndex = thisEntity:entindex(),
-							OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
-							AbilityIndex = thisEntity.destroy:entindex()
-						})
-						return thisEntity.destroy:GetCastPoint() + 0.1
-					end
+				end				
+				if thisEntity.destroy:IsFullyCastable() and ( thisEntity:GetTotalBearCount() >= math.floor( GetMaxTotalBearCount / 2 ) or RollPercentage(15) ) then
+					ExecuteOrderFromTable({
+						UnitIndex = thisEntity:entindex(),
+						OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
+						AbilityIndex = thisEntity.destroy:entindex()
+					})
+					return thisEntity.destroy:GetCastPoint() + 0.1
 				end
 				AICore:BeAHugeCoward( thisEntity, 900 )
 				return AI_THINK_RATE

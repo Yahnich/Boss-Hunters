@@ -55,7 +55,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"magic_damage"			"100 150"
+				"magic_damage"			"200 300"
 			}
 			"01"
 			{
@@ -79,6 +79,7 @@
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"bosses/boss_aether/boss_aether_gravity_well"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
 		"AbilityTextureName"			"enigma_midnight_pulse"
 		"MaxLevel"						"3"
 	
@@ -134,7 +135,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"pull_radius"				"450"
+				"pull_radius"				"450 600"
 			}
 			"02"
 			{
@@ -319,7 +320,7 @@
 			"01"
             {
                 "var_type"                      "FIELD_FLOAT"
-                "damage_amp"     				"40 50"
+                "damage_amp"     				"35 60"
             }
     		"03"
             {
@@ -378,7 +379,7 @@
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"pull"						"2"
+				"pull"						"2 3"
 			}
 		}
 	}
