@@ -22,6 +22,7 @@ function boss_evil_guardian_annihilation:OnSpellStart()
 	
 	local ogPos = caster:GetAbsOrigin() + distance * direction
 	Timers:CreateTimer(1, function() 
+		if not caster or caster:IsNull() then return end
 		local circumference = 2 * math.pi * distance
 		local razes = math.min( math.ceil(circumference / radius), 15 )
 		local radVel = 360/razes
