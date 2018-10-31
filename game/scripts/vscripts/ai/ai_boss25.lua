@@ -42,7 +42,7 @@ function AIThink(thisEntity)
 				if not target:HasModifier("modifier_boss_wk_mortal_strike_debuff") then
 					return CastMortalStrike(target)
 				else
-					local newt = AICore:RandomEnemyHeroInRange( thisEntity, thisEntity.mortal:GetTrueCastRange() + thisEntity:GetIdealSpeed(), false )
+					local newT = AICore:RandomEnemyHeroInRange( thisEntity, thisEntity.mortal:GetTrueCastRange() + thisEntity:GetIdealSpeed(), false )
 					if newT and not newT:HasModifier("modifier_boss_wk_mortal_strike_debuff") then
 						return CastMortalStrike(newT)
 					end
