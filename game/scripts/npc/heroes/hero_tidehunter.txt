@@ -1,5 +1,228 @@
 "DOTAAbilities"
 {
+	"tide_hydro_cannon"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_tide/tide_hydro_cannon.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	    "AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
+	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityUnitDamageType"         "DAMAGE_TYPE_PHYSICAL"   
+		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"tidehunter_gush"
+		"MaxLevel"						"7"
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1800"
+		"AbilityCastPoint"				"0.3"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"12"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"90 100 110 120 130 140 150"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"110 160 210 260 310 360 410"
+				"LinkedSpecialBonus"	"special_bonus_unique_tide_hydro_cannon_1"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"4"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"move_speed"			"-40"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"reduc_armor"			"-3 -4 -5 -6 -7 -8 -9"
+				"LinkedSpecialBonus"	"special_bonus_unique_tide_hydro_cannon_2"
+			}
+		}
+	
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_tidehunter/tidehunter_gush_upgrade.vpcf"
+			"particle"  "particles/units/heroes/hero_tidehunter/tidehunter_gush_slow.vpcf"
+			"particle"  "particles/units/heroes/hero_tidehunter/tidehunter_gush_splash.vpcf"
+			
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_tidehunter.vsndevts"
+		}
+	}
+	"special_bonus_unique_tide_hydro_cannon_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"-5"
+			}
+		}
+	}
+	"special_bonus_unique_tide_hydro_cannon_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"-6"
+			}
+		}
+	}
+	"tide_tongue_whip"
+	{
+		// General
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_tide/tide_tongue_whip.lua"	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
+		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"custom/tide_tongue_whip"
+		"LevelsBetweenUpgrades"			"5"
+		"MaxLevel"						"7"
+		"RequiredLevel"					"6"								
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.2"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastRange"				"1000 1100 1200 1300 1400 1500 1600"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"12"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"110 120 130 140 150 160 170"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"damage"						"160 210 260 310 360 410 460"
+				"LinkedSpecialBonus"			"special_bonus_unique_tide_tongue_whip_1"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"distance"				"1000 1100 1200 1300 1400 1500 1600"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"speed"					"3200"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"width"					"75"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"eat_threshold"			"15"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"eat_health"			"100"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"threat_gain"			"25"
+			}
+		}
+
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_pudge/pudge_meathook_impact.vpcf"
+			"particle"  "particles/units/heroes/hero_tide/tide_tongue_whip/tide_tongue_whip_b.vpcf"
+
+			"soundfile" "soundevents/tide_tongue_whip.vsndevts"
+		}
+	}
+	"special_bonus_unique_tide_tongue_whip_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"value"					"1.35"
+			}
+		}
+	}
+	"special_bonus_unique_tide_tongue_whip_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"-40"
+			}
+		}
+	}
 	"tide_anchor"
 	{
 		// General
@@ -78,7 +301,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"-15"
+				"value"					"-10"
 			}
 		}
 	}
@@ -101,34 +324,25 @@
 			}
 		}
 	}
-	"tide_hydro_cannon"
+	"tide_turtle_shell"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_tide/tide_hydro_cannon.lua"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL"
-		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-	    "AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
-	    "AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
-		"AbilityUnitDamageType"         "DAMAGE_TYPE_PHYSICAL"   
-		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityTextureName"			"tidehunter_gush"
-		"MaxLevel"						"7"
-	
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"1800"
-		"AbilityCastPoint"				"0.3"
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+		"ScriptFile"					"heroes/hero_tide/tide_turtle_shell.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"tidehunter_kraken_shell"
+		"InnateAbility" 				"1"
+		"MaxLevel"						"1"
+		"HasScepterUpgrade"				"1"
 		
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"12"
-	
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"90 100 110 120 130 140 150"
+		"precache"
+		{
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_tidehunter.vsndevts"
+			"particle"			"particles/units/heroes/hero_tidehunter/tidehunter_krakenshell_purge.vpcf"
+		}
+		
+		"AbilityCooldown"				"3"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -137,34 +351,18 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"110 160 210 260 310 360 410"
-				"LinkedSpecialBonus"	"special_bonus_unique_tide_hydro_cannon_1"
+				"damage_reduction_mult"	"10"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"4"
+				"critical_chance"		"30"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"move_speed"			"-40"
+				"var_type"				"FIELD_FLOAT"
+				"critical_heal"			"15"
 			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"reduc_armor"			"-3 -4 -5 -6 -7 -8 -9"
-				"LinkedSpecialBonus"	"special_bonus_unique_tide_hydro_cannon_2"
-			}
-		}
-	
-		"precache"
-		{
-			"particle"  "particles/units/heroes/hero_tidehunter/tidehunter_gush_upgrade.vpcf"
-			"particle"  "particles/units/heroes/hero_tidehunter/tidehunter_gush_slow.vpcf"
-			"particle"  "particles/units/heroes/hero_tidehunter/tidehunter_gush_splash.vpcf"
-			
-			"soundfile" "soundevents/game_sounds_heroes/game_sounds_tidehunter.vsndevts"
 		}
 	}
 	"tide_the_kraken"
@@ -228,166 +426,6 @@
 			"soundfile" "soundevents/game_sounds_heroes/game_sounds_tidehunter.vsndevts"
 		}
 	}
-	"tide_tongue_whip"
-	{
-		// General
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_tide/tide_tongue_whip.lua"	
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
-		"AbilityUnitTargetTeam"  		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"  		"DOTA_UNIT_TARGET_ALL"
-		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
-		"AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
-		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityTextureName"			"custom/tide_tongue_whip"
-		"LevelsBetweenUpgrades"			"5"
-		"MaxLevel"						"7"
-		"RequiredLevel"					"6"								
-		
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0.2"
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
-		"AbilityCastRange"				"1000 1100 1200 1300 1400 1500 1600"
-
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"12"
-
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"110 120 130 140 150 160 170"
-
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"160 210 260 310 360 410 460"
-				"LinkedSpecialBonus"	"special_bonus_unique_tide_tongue_whip_1"
-				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"distance"				"1000 1100 1200 1300 1400 1500 1600"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"speed"					"3200"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"width"					"75"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"eat_threshold"			"15"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"eat_health"			"100"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"threat_gain"			"25"
-			}
-		}
-
-		"precache"
-		{
-			"particle"  "particles/units/heroes/hero_pudge/pudge_meathook_impact.vpcf"
-			"particle"  "particles/units/heroes/hero_tide/tide_tongue_whip/tide_tongue_whip_b.vpcf"
-
-			"soundfile" "soundevents/tide_tongue_whip.vsndevts"
-		}
-	}
-	"tide_turtle_shell"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_tide/tide_turtle_shell.lua"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityTextureName"			"tidehunter_kraken_shell"
-		"InnateAbility" 				"1"
-		"MaxLevel"						"1"
-		"HasScepterUpgrade"				"1"
-		
-		"precache"
-		{
-			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_tidehunter.vsndevts"
-			"particle"			"particles/units/heroes/hero_tidehunter/tidehunter_krakenshell_purge.vpcf"
-		}
-		
-		"AbilityCooldown"				"2"
-	
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage_reduction_mult"	"10"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"critical_chance"		"30"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"critical_heal"			"15"
-			}
-		}
-	}
-	"special_bonus_unique_tide_hydro_cannon_1" 
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"-5"
-			}
-		}
-	}
-	"special_bonus_unique_tide_hydro_cannon_2" 
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"-8"
-			}
-		}
-	}
 	"special_bonus_unique_tide_the_kraken_1" 
 	{
 		// General
@@ -407,7 +445,7 @@
 			}
 		}
 	}
-	"special_bonus_unique_tide_tongue_whip_1" 
+	"special_bonus_unique_tide_the_kraken_2" 
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -422,26 +460,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"1.5"
-			}
-		}
-	}
-	"special_bonus_unique_tide_tongue_whip_2" 
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"-40"
+				"value"					"1000"
 			}
 		}
 	}

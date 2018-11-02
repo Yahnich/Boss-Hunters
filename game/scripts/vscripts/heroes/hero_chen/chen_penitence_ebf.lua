@@ -38,7 +38,7 @@ function chen_penitence_ebf:OnProjectileHit(hTarget, vLocation)
 
 		if caster:HasTalent("special_bonus_unique_chen_penitence_ebf_2") then
 			local damage = caster:GetAttackDamage()*caster:FindTalentValue("special_bonus_unique_chen_penitence_ebf_2")/100
-			self:DealDamage(caster, hTarget, damage, {damage_type=DAMAGE_TYPE_PURE}, OVERHEAD_ALERT_DAMAGE)
+			self:DealDamage(caster, hTarget, damage, {damage_type=DAMAGE_TYPE_PURE damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION}, OVERHEAD_ALERT_DAMAGE)
 		end
 	end
 end

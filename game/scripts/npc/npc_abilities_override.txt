@@ -3096,8 +3096,8 @@
 			}
 			"02"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"jump_damage_reduction_pct"	"0"
+				"var_type"						"FIELD_INTEGER"
+				"jump_damage_reduction_pct"		"4"
 				"CalculateSpellDamageTooltip"	"0"
 			}
 			"03"
@@ -3153,7 +3153,7 @@
 			"01"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"magic_damage_reduction_pct"	"10 14 18 22 26 30 34"
+				"magic_damage_reduction_pct"	"10 12 14 16 18 20 22"
 				"LinkedSpecialBonus"			"special_bonus_unique_rubick_3"
 			}
 			"02"
