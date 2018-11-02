@@ -156,6 +156,7 @@
 #base "heroes/hero_viper.txt"
 #base "heroes/hero_leshrac.txt"
 #base "heroes/hero_clinkz.txt"
+#base "heroes/hero_ember_spirit.txt"
 
 "DOTAAbilities"
 {
