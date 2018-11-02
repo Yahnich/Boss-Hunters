@@ -610,6 +610,25 @@
 		"Ability16"						"special_bonus_unique_et_earth_splitter_1"
 		"Ability17"						"special_bonus_unique_et_earth_splitter_2"
 	}
+	"npc_dota_hero_ember_spirit_ebf"
+	{
+		"override_hero"					"npc_dota_hero_ember_spirit"
+		
+		"Ability1"						"ember_chains"
+		"Ability2"						"ember_fist"
+		"Ability3"						"ember_shield"
+		"Ability4"						"ember_remnant"
+		"Ability6"						"ember_remnant_jump"
+		
+		"Ability10"						"special_bonus_unique_ember_chains_1"
+		"Ability11"						"special_bonus_unique_ember_chains_2"
+		"Ability12"						"special_bonus_unique_ember_fist_1"
+		"Ability13"						"special_bonus_unique_ember_fist_2"
+		"Ability14"						"special_bonus_unique_ember_shield_1"
+		"Ability15"						"special_bonus_unique_ember_shield_2"
+		"Ability16"						"special_bonus_unique_ember_remnant_jump_1"
+		"Ability17"						"special_bonus_unique_ember_remnant_1"
+	}
 	"npc_dota_hero_enchantress_ebf"
 	{
 		"override_hero"					"npc_dota_hero_enchantress"
