@@ -2350,19 +2350,23 @@ function CDOTA_BaseNPC:AttemptKill(sourceAb, attacker)
 	end
 end
 
-function CDOTA_BaseNPC:ApplyKnockBack(position, stunDuration, knockbackDuration, distance, height, caster, ability)
+function CDOTA_BaseNPC:ApplyKnockBack(position, stunDuration, knockbackDuration, distance, height, caster, ability, bStun)
 	local caster = caster or nil
 	local ability = ability or nil
-
+	self:StopMotionControllers(false)
 	local modifierKnockback = {
 		center_x = position.x,
 		center_y = position.y,
 		center_z = position.z,
-		duration = stunDuration,
+		should_stun = 0,
+		duration = knockbackDuration,
 		knockback_duration = knockbackDuration,
 		knockback_distance = distance,
 		knockback_height = height or 0,
 	}
+	if bStun == nil or bStun == true then
+		ability:Stun(self, stunDuration)
+	end
 	self:AddNewModifier(caster, ability, "modifier_knockback", modifierKnockback )
 end
 

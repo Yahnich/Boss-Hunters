@@ -66,13 +66,15 @@ function sb_nether_strike:OnSpellStart()
 
 	if target and target:IsAlive() then
 		local ability = caster:FindAbilityByName("sb_bash")
-		if caster:HasScepter() then
-			local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), self:GetTalentSpecialValueFor("bash_radius_scepter"))
-			for _,enemy in pairs(enemies) do
-				ability:Bash(enemy, ability:GetTalentSpecialValueFor("knockback_distance")*2)
+		if ability and ability:IsTrained() then
+			if caster:HasScepter() then
+				local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), self:GetTalentSpecialValueFor("bash_radius_scepter"))
+				for _,enemy in pairs(enemies) do
+					ability:Bash(enemy, ability:GetTalentSpecialValueFor("knockback_distance")*2)
+				end
+			else
+				ability:Bash(target, ability:GetTalentSpecialValueFor("knockback_distance")*2)
 			end
-		else
-			ability:Bash(target, ability:GetTalentSpecialValueFor("knockback_distance")*2)
 		end
 	end
 end

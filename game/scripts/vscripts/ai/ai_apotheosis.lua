@@ -2,14 +2,13 @@
 Broodking AI
 ]]
 
-require( "ai/ai_core" )
-
 function Spawn( entityKeyValues )
 	AITimers:CreateTimer(function()
 		if thisEntity and not thisEntity:IsNull() then
 			return AIThink(thisEntity)
 		end
 	end)
+	
 	thisEntity.impervious = thisEntity:FindAbilityByName("boss_apotheosis_impervious")
 	thisEntity.blessed = thisEntity:FindAbilityByName("boss_apotheosis_blessed_being")
 	thisEntity.purifier = thisEntity:FindAbilityByName("boss_apotheosis_purifier")
@@ -21,7 +20,7 @@ function Spawn( entityKeyValues )
 	thisEntity.hunter = thisEntity:FindAbilityByName("boss_apotheosis_ruthless_hunter")
 	thisEntity.shield = thisEntity:FindAbilityByName("boss_apotheosis_shield_of_valhalla")
 	thisEntity.judge = thisEntity:FindAbilityByName("boss_apotheosis_judge_the_cowards")
-	thisEntity.end = thisEntity:FindAbilityByName("boss_apotheosis_the_end")
+	thisEntity.kill = thisEntity:FindAbilityByName("boss_apotheosis_the_end")
 	
 	AITimers:CreateTimer(0.1, 	function()
 		if  math.floor(GameRules.gameDifficulty + 0.5) < 2 then 
@@ -36,7 +35,7 @@ function Spawn( entityKeyValues )
 			thisEntity.hunter:SetLevel(1)
 			thisEntity.shield:SetLevel(1)
 			thisEntity.judge:SetLevel(1)
-			thisEntity.end:SetLevel(1)
+			thisEntity.kill:SetLevel(1)
 		elseif  math.floor(GameRules.gameDifficulty + 0.5) > 2 then
 			thisEntity.impervious:SetLevel(2)
 			thisEntity.blessed:SetLevel(2)
@@ -49,7 +48,7 @@ function Spawn( entityKeyValues )
 			thisEntity.hunter:SetLevel(2)
 			thisEntity.shield:SetLevel(2)
 			thisEntity.judge:SetLevel(2)
-			thisEntity.end:SetLevel(2)
+			thisEntity.kill:SetLevel(2)
 		end
 	end)
 end
@@ -59,16 +58,15 @@ function AIThink(thisEntity)
 	if not thisEntity:IsDominated() and not thisEntity:IsChanneling() then
 		local target = AICore:GetHighestPriorityTarget(thisEntity)
 		
-		return AI_THINK_RATE
 		-- return AICore:AttackHighestPriority( thisEntity )
+		return AI_THINK_RATE
 	else return AI_THINK_RATE end
 end
 
 function CastFocusedBeam(thisEntity)
 	ExecuteOrderFromTable({
 		UnitIndex = thisEntity:entindex(),
-		OrderType = DOTA_UNIT_ORDER_CAST_POSITION,
-		Position = position,
+		OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
 		AbilityIndex = thisEntity.beam:entindex()
 	})
 	return thisEntity.beam:GetCastPoint() + 0.1
@@ -92,11 +90,12 @@ function CastDecimate(thisEntity)
 	return thisEntity.decimate:GetCastPoint() + 0.1
 end
 
-function CastRelentlessHunter(thisEntity)
+function CastRelentlessHunter(thisEntity, position)
 	ExecuteOrderFromTable({
 		UnitIndex = thisEntity:entindex(),
-		OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
-		AbilityIndex = thisEntity.hunter:entindex()
+		OrderType = DOTA_UNIT_ORDER_CAST_POSITION,
+		Position = position,
+		AbilityIndex = thisEntity.beam:entindex()
 	})
 	return thisEntity.hunter:GetCastPoint() + 0.1
 end
@@ -119,11 +118,12 @@ function CastJudgeTheCowards(thisEntity)
 	return thisEntity.judge:GetCastPoint() + 0.1
 end
 
-function CastTheEnd(thisEntity)
+function CastTheEnd(thisEntity, target)
 	ExecuteOrderFromTable({
 		UnitIndex = thisEntity:entindex(),
-		OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
-		AbilityIndex = thisEntity.end:entindex()
+		OrderType = DOTA_UNIT_ORDER_CAST_TARGET,
+		TargetIndex = target:entindex(),
+		AbilityIndex = thisEntity.kill:entindex()
 	})
-	return thisEntity.end:GetCastPoint() + 0.1
+	return thisEntity.kill:GetCastPoint() + 0.1
 end

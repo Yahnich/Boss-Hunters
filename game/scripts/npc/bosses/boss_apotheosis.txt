@@ -20,17 +20,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"growth_rate"			"1.0"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"0.75 1"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_ms"				"1 2"
+				"max_hp_dmg"			"2 1.5"
 			}
 		}
 	}
@@ -54,17 +44,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"growth_rate"			"1.0"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"0.75 1"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_ms"				"1 2"
+				"debuff_limit"			"12.0 8.0"
 			}
 		}
 	}
@@ -88,17 +68,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"growth_rate"			"1.0"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"0.75 1"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_ms"				"1 2"
+				"purge_interval"		"30.0 20.0"
 			}
 		}
 	}
@@ -122,30 +92,23 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"growth_rate"			"1.0"
+				"double_timer"			"15.0 10"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"0.75 1"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_ms"				"1 2"
+				"damage_amp"			"1"
 			}
 		}
 	}
-	//=================================================================================================================
-	// apotheosis: Phase Shift
-	//=================================================================================================================
+
 	"boss_apotheosis_focused_beam"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"bosses/boss_apotheosis/boss_apotheosis_focused_beam"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityTextureName"			"phoenix_sun_ray"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"MaxLevel"						"3"
@@ -153,7 +116,7 @@
 		"AbilityCastRange"				"900"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
 		"AbilityCastPoint"				"0.8 0.5"
-		"AbilityCooldown"				"24 20"
+		"AbilityCooldown"				"30 22"
 	
 		"precache"
 		{
@@ -165,41 +128,39 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"radius"					"325 350"
-			}
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"60 80"
-			}
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"tick_interval"				"0.1"
+				"width"						"200 250"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"duration"					"16"
+				"damage"					"10 15"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"tick_interval"				"0.25"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"duration"					"10"
 			}
 		}
 	}
-	//=================================================================================================================
-	// apotheosis: Phase Shift
-	//=================================================================================================================
+
 	"boss_apotheosis_rampage"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"bosses/boss_apotheosis/boss_apotheosis_rampage"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityTextureName"			"ursa_enrage"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
 		"MaxLevel"						"3"
 		
 		"AbilityCastRange"				"900"
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
 		"AbilityCastPoint"				"0.8 0.5"
 		"AbilityCooldown"				"24 20"
 	
@@ -213,43 +174,35 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"radius"					"325 350"
+				"radius"					"250 300"
 			}
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"60 80"
+				"damage"					"500 750"
 			}
-			"01"
+			"03"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"tick_interval"				"0.1"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"duration"					"16"
+				"jump_duration"				"1.5 1"
 			}
 		}
 	}
-	//=================================================================================================================
-	// apotheosis: Phase Shift
-	//=================================================================================================================
 	"boss_apotheosis_decimate"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"bosses/boss_apotheosis/boss_apotheosis_decimate"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
 		"AbilityTextureName"			"invoker_sun_strike"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
 		"MaxLevel"						"3"
 		
-		"AbilityCastRange"				"900"
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
-		"AbilityCastPoint"				"0.8 0.5"
-		"AbilityCooldown"				"24 20"
+		"AbilityChannelTime"			"3 2"
+		"AbilityChannelAnimation"		"ACT_DOTA_TELEPORT"
+		"AbilityCastPoint"				"0"
+		"AbilityCooldown"				"60 45"
 	
 		"precache"
 		{
@@ -260,29 +213,37 @@
 		{
 			"01"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"325 350"
-			}
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"60 80"
-			}
-			"01"
-			{
 				"var_type"					"FIELD_FLOAT"
-				"tick_interval"				"0.1"
+				"channel_time"				"3 2"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"duration"					"16"
+				"radius"					"125"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"350 500"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"min_sunstrikes"			"10 15"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"sunstrikes_per_hero"		"1 2"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"delay"						"1.5 1"
 			}
 		}
 	}
-	//=================================================================================================================
-	// apotheosis: Phase Shift
-	//=================================================================================================================
+
 	"boss_apotheosis_ruthless_hunter"
 	{
 		// General
@@ -291,103 +252,93 @@
 		"ScriptFile"					"bosses/boss_apotheosis/boss_apotheosis_ruthless_hunter"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName"			"lycan_feral_impulse"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
 		"MaxLevel"						"3"
 		
-		"AbilityCastRange"				"900"
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+		"AbilityCastRange"				"750 900"
+		"AbilityCastAnimation"			"ACT_DOTA_SPAWN"
 		"AbilityCastPoint"				"0.8 0.5"
-		"AbilityCooldown"				"24 20"
+		"AbilityCooldown"				"16 12"
 	
 		"precache"
 		{
 			"particle"					"particles/units/heroes/heroes_underlord/abyssal_underlord_darkrift_target.vpcf"
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_weaver.vsndevts"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_spirit_breaker.vsndevts"
 		}
 		"AbilitySpecial"
 		{
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"radius"					"325 350"
-			}
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"60 80"
-			}
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"tick_interval"				"0.1"
+				"distance"					"750 900"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"duration"					"16"
+				"speed"						"500 600"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"knockback"					"300"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"300"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"duration"					"2 3"
 			}
 		}
 	}
-	//=================================================================================================================
-	// apotheosis: Phase Shift
-	//=================================================================================================================
 	"boss_apotheosis_shield_of_valhalla"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"bosses/boss_apotheosis/boss_apotheosis_shield_of_valhalla"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityTextureName"			"dark_willow_shadow_realm"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"MaxLevel"						"3"
 		
 		"AbilityCastRange"				"900"
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+		"AbilityCastAnimation"			"ACT_DOTA_GENERIC_CHANNEL_1"
 		"AbilityCastPoint"				"0.8 0.5"
-		"AbilityCooldown"				"24 20"
+		"AbilityCooldown"				"38 32"
 	
 		"precache"
 		{
-			"particle"					"particles/units/heroes/heroes_underlord/abyssal_underlord_darkrift_target.vpcf"
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_weaver.vsndevts"
+			"particle"					"particles/items_fx/black_king_bar_avatar.vpcf"
+			"particle"					"particles/status_fx/status_effect_avatar.vpcf"
+			"soundfile"					"soundevents/game_sounds_items.vsndevts"
 		}
 		"AbilitySpecial"
 		{
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"radius"					"325 350"
-			}
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"60 80"
-			}
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"tick_interval"				"0.1"
+				"curr_hp_limit"				"95 98"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"duration"					"16"
+				"duration"					"5 6"
 			}
 		}
 	}
-	//=================================================================================================================
-	// apotheosis: Phase Shift
-	//=================================================================================================================
+
 	"boss_apotheosis_judge_the_cowards"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"bosses/boss_apotheosis/boss_apotheosis_judge_the_cowards"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityTextureName"			"dark_seer_vacuum"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"MaxLevel"						"3"
 		
 		"AbilityCastRange"				"900"
@@ -397,78 +348,64 @@
 	
 		"precache"
 		{
-			"particle"					"particles/units/heroes/heroes_underlord/abyssal_underlord_darkrift_target.vpcf"
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_weaver.vsndevts"
+			"particle"					"particles/units/bosses/boss_apotheosis/boss_apotheosis_judge_the_cowards.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_dark_seer.vsndevts"
 		}
 		"AbilitySpecial"
 		{
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"radius"					"325 350"
-			}
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"60 80"
-			}
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"tick_interval"				"0.1"
+				"radius"					"900 1200"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"duration"					"16"
+				"speed"						"300 450"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"slow"						"-60"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"duration"					"5"
 			}
 		}
 	}
-	//=================================================================================================================
-	// apotheosis: Phase Shift
-	//=================================================================================================================
+
 	"boss_apotheosis_the_end"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"bosses/boss_apotheosis/boss_apotheosis_the_end"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
 		"AbilityTextureName"			"necrolyte_heartstopper_aura"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
 		"MaxLevel"						"3"
 		
 		"AbilityCastRange"				"900"
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
-		"AbilityCastPoint"				"0.8 0.5"
-		"AbilityCooldown"				"24 20"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCastPoint"				"1.5 1"
+		"AbilityCooldown"				"80 60"
 	
 		"precache"
 		{
-			"particle"					"particles/units/heroes/heroes_underlord/abyssal_underlord_darkrift_target.vpcf"
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_weaver.vsndevts"
+			"particle"					"particles/bosses/boss_apotheosis/boss_apotheosis_the_end_effect.vpcf"
+			"particle"					"particles/units/bosses/boss_apotheosis/boss_apotheosis_the_end_debufftrack_scroll.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_necrolyte.vsndevts"
 		}
 		"AbilitySpecial"
 		{
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"radius"					"325 350"
-			}
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"60 80"
-			}
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"tick_interval"				"0.1"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"duration"					"16"
+				"death_timer"				"10"
 			}
 		}
 	}
