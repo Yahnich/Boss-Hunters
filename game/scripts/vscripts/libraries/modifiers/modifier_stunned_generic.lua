@@ -2,7 +2,7 @@ modifier_stunned_generic = class({})
 
 if IsServer() then
 	function modifier_stunned_generic:OnCreated(kv)
-		if kv.delay == nil or toboolean(kv.delay) == true then
+		if kv.delay == nil or toboolean(kv.delay) == true and not self:GetParent():IsRoundBoss() then
 			self.delay = true
 			self:GetAbility():StartDelayedCooldown(self:GetRemainingTime(), false)
 		end
@@ -31,8 +31,10 @@ end
 
 
 function modifier_stunned_generic:CheckState()
-	local state = { [MODIFIER_STATE_STUNNED] = true}
-	return state
+	if not self:GetParent():IsRoundBoss() then
+		local state = { [MODIFIER_STATE_STUNNED] = true}
+		return state
+	end
 end
 
 function modifier_stunned_generic:IsPurgable()
@@ -54,11 +56,55 @@ end
 function modifier_stunned_generic:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_OVERRIDE_ANIMATION,
+		MODIFIER_PROPERTY_MOVESPEED_BASE_OVERRIDE,
+		MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE,
+		MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE_MIN,
+		MODIFIER_PROPERTY_MOVESPEED_LIMIT,
+		MODIFIER_PROPERTY_MOVESPEED_MAX,
+		MODIFIER_PROPERTY_FIXED_ATTACK_RATE
 	}
 
 	return funcs
 end
 
 function modifier_stunned_generic:GetOverrideAnimation( params )
-	return ACT_DOTA_DISABLED
+	if not self:GetParent():IsRoundBoss() then
+		return ACT_DOTA_DISABLED
+	end
+end
+
+function modifier_stunned_generic:GetModifierFixedAttackRate( params )
+	if self:GetParent():IsRoundBoss() then
+		return self:GetParent():GetBaseAttackTime()
+	end
+end
+
+function modifier_stunned_generic:GetModifierMoveSpeedOverride( params )
+	if self:GetParent():IsRoundBoss() then
+		return 100
+	end
+end
+
+function modifier_stunned_generic:GetModifierMoveSpeed_Absolute( params )
+	if self:GetParent():IsRoundBoss() then
+		return 100
+	end
+end
+
+function modifier_stunned_generic:GetModifierMoveSpeed_AbsoluteMin( params )
+	if self:GetParent():IsRoundBoss() then
+		return 100
+	end
+end
+
+function modifier_stunned_generic:GetModifierMoveSpeed_Limit( params )
+	if self:GetParent():IsRoundBoss() then
+		return 100
+	end
+end
+
+function modifier_stunned_generic:GetModifierMoveSpeed_Max( params )
+	if self:GetParent():IsRoundBoss() then
+		return 100
+	end
 end

@@ -16,37 +16,38 @@ function modifier_juggernaut_momentum_strike_passive:OnCreated()
 	self.momentumHits = 0
 	self.momentum_chance = self:GetTalentSpecialValueFor("crit_chance_momentum")
 	
-	if not self:GetCaster().GetMomentum then 
-		self:GetCaster().GetMomentum = function( self ) 
-			return self:GetModifierStackCount("modifier_juggernaut_momentum_strike_momentum", self ) 
+	local caster = self:GetCaster()
+	if not caster.GetMomentum then 
+		caster.GetMomentum = function( caster ) 
+			return caster:GetModifierStackCount("modifier_juggernaut_momentum_strike_momentum", caster ) 
 		end 
 	end
-	if not self:GetCaster().SetMomentum then 
-		self:GetCaster().SetMomentum = function(self, amount) 
-			self:SetModifierStackCount("modifier_juggernaut_momentum_strike_momentum", self, amount ) 
+	if not caster.SetMomentum then 
+		caster.SetMomentum = function(caster, amount) 
+			caster:SetModifierStackCount("modifier_juggernaut_momentum_strike_momentum", caster, amount ) 
 			if IsServer() and amount == 0 then
-				self:RemoveModifierByName("modifier_juggernaut_momentum_strike_momentum")
+				caster:RemoveModifierByName("modifier_juggernaut_momentum_strike_momentum")
 			end
 		end 
 	end
-	if not self:GetCaster().AddMomentum then 
-		self:GetCaster().AddMomentum = function(self, amount)
+	if not caster.AddMomentum then 
+		caster.AddMomentum = function(caster, amount)
 			if IsServer() then
 				for i = 1, amount do
-					self:AddNewModifier(self, self:FindAbilityByName("juggernaut_momentum_strike"), "modifier_juggernaut_momentum_strike_momentum", {})
+					caster:AddNewModifier(caster, caster:FindAbilityByName("juggernaut_momentum_strike"), "modifier_juggernaut_momentum_strike_momentum", {})
 				end
 			end
 		end 
 	end
-	if not self:GetCaster().AttemptDecrementMomentum then 
-		self:GetCaster().AttemptDecrementMomentum = function(self, amount)
-			local momentum = self:GetMomentum()
+	if not caster.AttemptDecrementMomentum then 
+		caster.AttemptDecrementMomentum = function(caster, amount)
+			local momentum = caster:GetMomentum()
 			if momentum > amount then
-				self:SetModifierStackCount("modifier_juggernaut_momentum_strike_momentum", self, momentum - amount )
+				caster:SetModifierStackCount("modifier_juggernaut_momentum_strike_momentum", caster, momentum - amount )
 				return true
 			elseif momentum == amount then
 				if IsServer() then
-					self:RemoveModifierByName("modifier_juggernaut_momentum_strike_momentum")
+					caster:RemoveModifierByName("modifier_juggernaut_momentum_strike_momentum")
 				end
 				return true
 			end

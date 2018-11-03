@@ -37,6 +37,7 @@ end
 modifier_bs_rupture = class({})
 function modifier_bs_rupture:OnCreated(table)
 	if IsServer() then
+		StopSoundOn("hero_bloodseeker.rupture_FP", self:GetParent())
 		EmitSoundOn("hero_bloodseeker.rupture_FP", self:GetParent())
 		self:StartIntervalThink(self:GetTalentSpecialValueFor("tick_rate"))
 	end

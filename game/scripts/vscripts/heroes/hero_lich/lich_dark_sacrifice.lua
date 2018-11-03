@@ -24,8 +24,11 @@ function lich_dark_sacrifice:OnSpellStart()
 	local convHp = self:GetTalentSpecialValueFor("health_conversion") / 100
 	local duration = self:GetTalentSpecialValueFor("duration")
 	
-	local target_damage = target:GetHealth() * hpPct
-	local damage = self:DealDamage( caster, target, target_damage, {damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
+	local targetHealth = target:GetHealth()
+	local target_damage = targetHealth * hpPct
+	local damage = 0
+	self:DealDamage( caster, target, target_damage, {damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
+	damage = targetHealth - target:GetHealth()
 	ParticleManager:FireParticle("particles/units/heroes/hero_lich/lich_dark_sacrifice_target.vpcf", PATTACH_POINT_FOLLOW, target)
 	ParticleManager:FireRopeParticle("particles/units/heroes/hero_lich/lich_dark_ritual.vpcf", PATTACH_POINT_FOLLOW, target, caster)
 	target:EmitSound("Ability.DarkRitual")

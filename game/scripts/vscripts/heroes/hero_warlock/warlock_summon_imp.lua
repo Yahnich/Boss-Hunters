@@ -20,8 +20,10 @@ function warlock_summon_imp:OnSpellStart()
 	EmitSoundOn("Hero_Furion.TreantSpawn", caster)
 	self.impTable = self.impTable or {}
 	
-	if self.impTable[1] then
-		self.impTable[1]:ForceKill()
+	if self.impTable[1] and not self.impTable[1]:IsNull() then
+		self.impTable[1]:ForceKill(false)
+		table.remove(self.impTable, 1)
+	elseif self.impTable[1] and self.impTable[1]:IsNull() then
 		table.remove(self.impTable, 1)
 	end
 	
@@ -30,6 +32,7 @@ end
 
 function warlock_summon_imp:SummonImp( position )
 	local caster = self:GetCaster()
+	self.impTable = self.impTable or {}
 	local imp = CreateUnitByName("npc_dota_warlock_imp", position or caster:GetAbsOrigin(), true, caster, caster, self:GetTeam())
 	ParticleManager:FireParticle("particles/units/heroes/hero_lycan/lycan_summon_wolves_spawn.vpcf", PATTACH_POINT_FOLLOW, imp, {})
 	imp:AddNewModifier(caster, self, "modifier_warlock_summon_imp", {})
@@ -51,10 +54,10 @@ function modifier_warlock_summon_imp:DeclareFunctions()
 end
 
 function modifier_warlock_summon_imp:OnDeath(params)
-	if params.unit == self:GetParent() then
-		for index, imp in ipairs( self.impTable ) do
+	if params.unit == self:GetParent() and self:GetAbility().impTable and IsServer() then
+		for index, imp in ipairs( self:GetAbility().impTable ) do
 			if imp == self:GetParent() then
-				table.remove(self.impTable, index)
+				table.remove(self:GetAbility().impTable, index)
 				break
 			end
 		end		

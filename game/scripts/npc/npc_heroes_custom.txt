@@ -889,11 +889,11 @@
 	{
 		"override_hero"					"npc_dota_hero_leshrac"
 		"AbilityLayout"					"5"
-		"Ability1"						"leshrac_split_earth"
-		"Ability2"						"leshrac_diabolic_edict"
-		"Ability3"						"leshrac_lightning_storm"
+		"Ability1"						"leshrac_split_earth_bh"
+		"Ability2"						"leshrac_diabolic_edict_bh"
+		"Ability3"						"leshrac_lightning_storm_bh"
 		"Ability4"						"generic_hidden"
-		"Ability6"						"leshrac_pulse_nova"
+		"Ability6"						"leshrac_pulse_nova_bh"
 		
 		"Ability10"						"special_bonus_unique_leshrac_split_earth_1"
 		"Ability11"						"special_bonus_unique_leshrac_split_earth_2"

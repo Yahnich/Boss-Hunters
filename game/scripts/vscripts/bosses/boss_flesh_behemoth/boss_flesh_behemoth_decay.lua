@@ -14,14 +14,15 @@ function boss_flesh_behemoth_decay:OnSpellStart()
 	local duration = self:GetSpecialValueFor("duration")
 	
 	ParticleManager:FireParticle("particles/units/heroes/hero_undying/undying_decay.vpcf", PATTACH_WORLDORIGIN, nil, {[0] = position, [1] = Vector(radius,radius,radius)})
-	
-	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( position, radius ) ) do
+	caster:EmitSound("Hero_Undying.Decay.Cast")
+	for _,enemy in ipairs( caster:FindEnemyUnitsInRadius( position, radius ) ) do
 		if not enemy:TriggerSpellAbsorb( self ) then
-			caster:Lifesteal(self, 100, damage, enemy, damage_type, 2, true)
+			caster:Lifesteal(self, 100, damage, enemy, DAMAGE_TYPE_MAGICAL, 2, true)
 			enemy:AddNewModifier( caster, self, "modifier_boss_flesh_behemoth_decay_debuff", {duration = duration})
 			local hpPct = caster:GetHealth() / caster:GetMaxHealth()
-			caster:AddNewModifier( caster, self, "modifier_boss_flesh_behemoth_decay_buff", {duration = duration})
+			caster:AddNewModifier( caster, self, "modifier_boss_flesh_behemoth_decay_buff", {duration = duration} )
 			caster:SetHealth( hpPct * caster:GetMaxHealth() )
+			enemy:EmitSound("Hero_Undying.Decay.Target")
 		end
 	end
 end
@@ -58,7 +59,7 @@ LinkLuaModifier("modifier_boss_flesh_behemoth_decay_buff", "bosses/boss_flesh_be
 function modifier_boss_flesh_behemoth_decay_buff:OnCreated()
 	self.loss = self:GetSpecialValueFor("str_loss") * 20
 	if IsServer() then
-		self:SetStackCount(1)
+		self:AddIndependentStack()
 	end
 end
 
@@ -67,6 +68,10 @@ function modifier_boss_flesh_behemoth_decay_buff:OnRefresh()
 	if IsServer() then
 		self:AddIndependentStack()
 	end
+end
+
+function modifier_boss_flesh_behemoth_decay_buff:OnStackCountChanged(stacks)
+
 end
 
 function modifier_boss_flesh_behemoth_decay_buff:DeclareFunctions()

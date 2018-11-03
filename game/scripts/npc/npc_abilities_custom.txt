@@ -2707,9 +2707,14 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityName"					"lesser_nightcrawler_pounce"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"BaseClass"						"slark_pounce"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"FightRecapLevel"				"1"
+		"AbilitySound"					"Hero_Slark.Pounce.Cast"
 		"AbilityTextureName"			"slark_pounce"
 	
 		// Time		
@@ -2732,12 +2737,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"pounce_distance"		"500"
+				"pounce_distance"		"700"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"pounce_speed"			"600"
+				"pounce_speed"			"933.33"
 			}
 			"03"
 			{
@@ -2747,17 +2752,18 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"pounce_radius"			"60"
+				"pounce_radius"			"95"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"pounce_damage"			"50"
+				"pounce_damage"			"50 75 100 125"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"leash_duration"		"3.5"
+				"leash_duration"		"0"
+				"LinkedSpecialBonus"	"special_bonus_unique_slark"
 			}
 			"07"
 			{
@@ -2765,6 +2771,7 @@
 				"leash_radius"			"325"
 			}
 		}
+		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_2"
 	}
 	"mana_fiend_arcane_infusion"
 	{

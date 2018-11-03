@@ -164,23 +164,16 @@ function modifier_elder_spirit:OnIntervalThink()
 			end
 		else
 			FindClearSpaceForUnit(parent, parent:GetAbsOrigin(), true)
-		end
-	
-
-		local units = caster:FindFriendlyUnitsInRadius(parent:GetAbsOrigin(), 150, {})
-		for _,unit in pairs(units) do
-			if unit == caster then
-				caster:RemoveModifierByName("modifier_elder_spirit_check_out")
-				unit:AddNewModifier(caster, self:GetAbility(), "modifier_elder_spirit_check", {})
-				self:GetAbility().spirit = false
-				self.distance = nil
-				if self:GetAbility():IsCooldownReady() then
-					self:GetAbility():SetCooldown()
-				end
-
-				parent:AddNoDraw()
-				parent:ForceKill(false)
+			caster:RemoveModifierByName("modifier_elder_spirit_check_out")
+			unit:AddNewModifier(caster, self:GetAbility(), "modifier_elder_spirit_check", {})
+			self:GetAbility().spirit = false
+			self.distance = nil
+			if self:GetAbility():IsCooldownReady() then
+				self:GetAbility():SetCooldown()
 			end
+
+			parent:AddNoDraw()
+			parent:ForceKill(false)
 		end
 	end
 end

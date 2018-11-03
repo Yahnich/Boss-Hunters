@@ -1549,7 +1549,7 @@ function CDOTA_BaseNPC:Lifesteal(source, lifestealPct, damage, target, damage_ty
 		particles = false
 	end
 	if sourceType == DOTA_LIFESTEAL_SOURCE_ABILITY and source then
-		damageDealt = source:DealDamage( self, target, damage )
+		damageDealt = source:DealDamage( self, target, damage, {damage_type = damage_type} )
 	elseif sourceType == DOTA_LIFESTEAL_SOURCE_ATTACK then
 		local oldHP = target:GetHealth()
 		self:PerformAttack(target, true, true, true, true, false, false, false)

@@ -3,11 +3,17 @@ relic_unique_sacrificial_dagger = class(relicBaseClass)
 function relic_unique_sacrificial_dagger:OnCreated()
 	self:SetStackCount(1)
 	if IsServer() then
-		self.funcID = EventManager:SubscribeListener("boss_hunters_raid_finished", function(args) self:OnEventFinished(args) end)
+		self.funcID = EventManager:SubscribeListener("boss_hunters_raid_finished", function(args) self:OnRaidFinished(args) end)
 	end
 end
 
-function relic_unique_sacrificial_dagger:OnEventFinished(args)
+function relic_unique_sacrificial_dagger:OnDestroy()
+	if IsServer() then
+		EventManager:UnsubscribeListener("boss_hunters_raid_finished", self.funcID)
+	end
+end
+
+function relic_unique_sacrificial_dagger:OnRaidFinished(args)
 	self:SetStackCount(1)
 end
 
@@ -23,9 +29,5 @@ function relic_unique_sacrificial_dagger:OnDeath(params)
 end
 
 function relic_unique_sacrificial_dagger:IsHidden()
-	return false
-end
-
-function relicBaseClass:AllowIllusionDuplicate()
-	return false
+	return self:GetStackCount() == 0
 end

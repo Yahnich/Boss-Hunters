@@ -22,7 +22,7 @@ COMBAT_CHANCE = 70
 ELITE_CHANCE = 25
 EVENT_CHANCE = 100 - COMBAT_CHANCE
 
-PREP_TIME = 30
+PREP_TIME = 60
 
 ELITE_ABILITIES_TO_GIVE = 1
 
@@ -104,6 +104,7 @@ function RoundManager:OnNPCSpawned(event)
 			return
 		end
 		if spawnedUnit then
+			spawnedUnit:AddNewModifier( spawnedUnit, nil, "modifier_stun_immunity", {} )
 			if spawnedUnit:IsAlive() and spawnedUnit:IsCreature() and spawnedUnit:GetTeam() == DOTA_TEAM_BADGUYS then
 				AddFOWViewer(DOTA_TEAM_GOODGUYS, spawnedUnit:GetAbsOrigin(), 516, 3, false) -- show spawns
 				if spawnedUnit:IsRoundBoss() then
@@ -116,10 +117,7 @@ function RoundManager:OnNPCSpawned(event)
 					FindClearSpaceForUnit(spawnedUnit, spawnedUnit:GetAbsOrigin(), true)
 				end
 			elseif spawnedUnit:IsRealHero() then
-				spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_tombstone_respawn_immunity", {duration = 3})
-				if self:GetCurrentEvent() and self:GetCurrentEvent():GetHeroSpawnPosition() then
-					FindClearSpaceForUnit(spawnedUnit, self:GetCurrentEvent():GetHeroSpawnPosition(), true)
-				end
+				Timers:CreateTimer(0.1, function() spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_tombstone_respawn_immunity", {duration = 2.9}) end)
 			elseif spawnedUnit:IsIllusion() and spawnedUnit:GetPlayerOwnerID() and PlayerResource:GetSelectedHeroEntity( spawnedUnit:GetPlayerOwnerID() ) and spawnedUnit:FindModifierByName("modifier_stats_system_handler") then
 				spawnedUnit:FindModifierByName("modifier_stats_system_handler"):SetStackCount( PlayerResource:GetSelectedHeroEntity( spawnedUnit:GetPlayerOwnerID() ):entindex() )
 			end
@@ -144,7 +142,6 @@ function RoundManager:OnHoldoutReviveComplete( event )
 		target:AddNewModifier(target, nil, "modifier_tombstone_respawn_immunity", {duration = 3})
 		castingHero:AddGold(self._nRoundNumber)
 		local position = target:GetAbsOrigin()
-		Timers:CreateTimer(0.1, function() FindClearSpaceForUnit(target, position, true) end)
 	end
 	target.tombstoneEntity = nil
 end
@@ -232,9 +229,11 @@ function RoundManager:ConstructRaids(zoneName)
 		self.eventsCreated = self.eventsCreated + 1
 		
 		table.insert( raid, BaseEvent(zoneName, EVENT_TYPE_BOSS, bossPick ) )
-		PrintAll( raid )
 		table.insert( self.zones[zoneName], raid )
 	end
+	-- Final Boss bruh
+	local finalBoss = BaseEvent(zoneName, EVENT_TYPE_BOSS, "elysium_boss_apotheosis" )
+	table.insert( self.zones[zoneName][#self.zones[zoneName]], finalBoss )
 end
 
 function RoundManager:RemoveEventFromPool(eventToRemove, pool)	
@@ -293,6 +292,7 @@ function RoundManager:StartPrepTime(fPrep)
 				if hero:IsRealHero() then
 					PlayerResource:SetCustomBuybackCost(hero:GetPlayerID(), 100 + RoundManager:GetEventsFinished() * 25)
 				end
+				hero:AddNewModifier( hero, nil, "modifier_restoration_disable", {} )
 			end
 			ResolveNPCPositions( event:GetHeroSpawnPosition(), 150 )
 			for _, hero in ipairs( HeroList:GetRealHeroes() ) do
@@ -345,6 +345,10 @@ function RoundManager:EndPrepTime(bReset)
 		
 		self.votedToSkipPrep = 0
 		CustomGameEventManager:Send_ServerToAllClients("bh_end_prep_time", {})
+		
+		for _, hero in ipairs( FindAllUnits({team = DOTA_UNIT_TARGET_TEAM_FRIENDLY}) ) do
+			hero:RemoveModifierByName( "modifier_restoration_disable" )
+		end
 		
 		if not bReset then
 			RoundManager:StartEvent()
@@ -425,7 +429,7 @@ function RoundManager:EndEvent(bWonRound)
 				return 0.25
 			end
 		end)
-		local fTime = ( (PREP_TIME or 30) * 2 ) / GameRules:GetGameDifficulty()
+		local fTime = (PREP_TIME or 30) / math.ceil( (GameRules:GetGameDifficulty() - 1) / 2 )
 		if RoundManager:GetCurrentEvent() and RoundManager:GetCurrentEvent():IsEvent() then
 			fTime = 5
 		end

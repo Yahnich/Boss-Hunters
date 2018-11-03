@@ -46,8 +46,25 @@ function AIThink(thisEntity)
 					AbilityIndex = thisEntity.march:entindex()
 				})
 				return AI_THINK_RATE
+			elseif thisEntity.rearm:IsCooldownReady() then
+				ExecuteOrderFromTable({
+					UnitIndex = thisEntity:entindex(),
+					OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
+					AbilityIndex = thisEntity.rearm:entindex()
+				})
+				return thisEntity.rearm:GetCastPoint() + 0.1
+			elseif RollPercentage(50) then
+				AICore:BeAHugeCoward ( thisEntity, 900 )
+				return AI_THINK_RATE
+			elseif thisEntity.rockets:IsFullyCastable() then
+				ExecuteOrderFromTable({
+					UnitIndex = thisEntity:entindex(),
+					OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
+					AbilityIndex = thisEntity.rockets:entindex()
+				})
+				return AI_THINK_RATE
 			else
-				AICore:BeAHugeCoward( thisEntity, 900 )
+				AICore:RunToRandomPosition( thisEntity, 10 )
 				return AI_THINK_RATE
 			end
 		else
@@ -58,13 +75,13 @@ function AIThink(thisEntity)
 					AbilityIndex = thisEntity.rockets:entindex()
 				})
 				return AI_THINK_RATE
-			elseif not thisEntity.rockets:IsCooldownReady() then
+			elseif not thisEntity.rockets:IsCooldownReady() and thisEntity.rearm:IsCooldownReady() then
 				ExecuteOrderFromTable({
 					UnitIndex = thisEntity:entindex(),
 					OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
 					AbilityIndex = thisEntity.rearm:entindex()
 				})
-				return thisEntity.rearm:GetChannelTime() + 0.1
+				return thisEntity.rearm:GetCastPoint() + 0.1
 			else
 				AICore:RunToRandomPosition( thisEntity, 10 )
 				return AI_THINK_RATE
