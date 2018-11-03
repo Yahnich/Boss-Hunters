@@ -1,0 +1,1 @@
+boss_apotheosis_decimate = class({})

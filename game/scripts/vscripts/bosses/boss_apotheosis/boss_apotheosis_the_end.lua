@@ -1,0 +1,1 @@
+boss_apotheosis_the_end = class({})

@@ -1,0 +1,1 @@
+boss_apotheosis_shield_of_valhalla = class({})

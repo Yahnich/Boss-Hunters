@@ -1,0 +1,1 @@
+boss_apotheosis_ruthless_hunter = class({})

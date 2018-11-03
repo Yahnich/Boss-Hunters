@@ -1,0 +1,1 @@
+boss_apotheosis_judge_the_cowards = class({})

@@ -34,6 +34,7 @@
 #base "bosses/boss_satyrs.txt"
 #base "bosses/boss_archangel.txt"
 #base "bosses/boss_fallen_one.txt"
+#base "bosses/boss_apotheosis.txt"
 
 #base "elites/elite_accurate.txt"
 #base "elites/elite_assassin.txt"
