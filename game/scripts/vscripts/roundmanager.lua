@@ -104,7 +104,7 @@ function RoundManager:OnNPCSpawned(event)
 			return
 		end
 		if spawnedUnit then
-			spawnedUnit:AddNewModifier( spawnedUnit, nil, "modifier_stun_immunity", {} )
+			spawnedUnit.unitIsRoundBoss = true
 			if spawnedUnit:IsAlive() and spawnedUnit:IsCreature() and spawnedUnit:GetTeam() == DOTA_TEAM_BADGUYS then
 				AddFOWViewer(DOTA_TEAM_GOODGUYS, spawnedUnit:GetAbsOrigin(), 516, 3, false) -- show spawns
 				if spawnedUnit:IsRoundBoss() then

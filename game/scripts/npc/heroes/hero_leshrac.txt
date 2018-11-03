@@ -150,7 +150,6 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"num_explosions"		"40"
-				"LinkedSpecialBonus"	"special_bonus_unique_leshrac_1"
 			}
 			
 			"02"
@@ -159,11 +158,6 @@
 				"radius"				"500 550 600 650 700 750 800"
 			}
 			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"tower_bonus"			"40"
-			}
-			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"duration_tooltip"		"10"
@@ -189,7 +183,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"350"
+				"value"						"1"
 			}
 		}
 	}
@@ -211,7 +205,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"50"
+				"value"						"10"
 			}
 		}
 	}
@@ -282,18 +276,18 @@
 			}
 			"06"
 			{
-				"var_type"					"FIELD_FLOAT"
+				"var_type"					"FIELD_INTEGER"
 				"damage"					"100 150 200 250 300 350 400"
 			}
 			"07"
 			{
-				"var_type"				"FIELD_FLOAT"
+				"var_type"					"FIELD_FLOAT"
 				"interval_scepter"			"1.75"
 			}
 			"08"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"radius_scepter"	"750"
+				"var_type"					"FIELD_INTEGER"
+				"radius_scepter"			"750"
 			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
@@ -386,7 +380,7 @@
 			
 			"02"
 			{
-				"var_type"				"FIELD_INTEGER"
+				"var_type"				"FIELD_FLOAT"
 				"radius"				"700"
 				"LinkedSpecialBonus"	"special_bonus_unique_leshrac_pulse_nova_2"
 			}
@@ -394,11 +388,6 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"damage"				"100 140 180 220 260 300"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage_scepter"		"150 200 250 300 350 400"
 			}
 		}
 	}

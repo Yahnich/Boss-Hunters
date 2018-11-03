@@ -25,23 +25,26 @@ end
 
 function leshrac_lightning_storm_bh:Zap( target )
 	local caster = self:GetCaster()
-	
+	local ability = self
 	local currTarget = target
 	local damage = self:GetTalentSpecialValueFor("damage")
 	local searchRadius = self:GetTalentSpecialValueFor("radius")
 	local jumpDelay = self:GetTalentSpecialValueFor("jump_delay")
 	local jumps = self:GetTalentSpecialValueFor("jump_count")
 	local slowDur = self:GetTalentSpecialValueFor("slow_duration")
+	local hitUnits = {}
 	Timers:CreateTimer( function()
 		ability:DealDamage( caster, currTarget, damage )
 		currTarget:AddNewModifier( caster, ability, "modifier_leshrac_lightning_storm_bh", {duration = slowDur} )
 		
-		ParticleManager:FireParticle("", PATTACH_POINT_FOLLOW, currTarget)
-		currTarget:EmitSound("")
+		ParticleManager:FireParticle("particles/units/heroes/hero_leshrac/leshrac_lightning_bolt.vpcf", PATTACH_ABSORIGIN, currTarget, { [0] = currTarget:GetAbsOrigin() + Vector(0,0,2000),
+																																			[1] = "attach_hitloc"})
+		currTarget:EmitSound("Hero_Leshrac.Lightning_Storm")
+		hitUnits[currTarget] = true
 		if jumps > 0 then
 			jumps = jumps - 1
 			for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( currTarget:GetAbsOrigin(), searchRadius ) ) do
-				if currTarget ~= enemy then
+				if not hitUnits[enemy] then
 					currTarget = enemy
 					return jumpDelay
 				end
@@ -62,11 +65,15 @@ function modifier_leshrac_lightning_storm_bh:OnCreated()
 end
 
 function modifier_leshrac_lightning_storm_bh:DeclareFunctions()
-	return {}
+	return {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE}
 end
 
-function modifier_leshrac_lightning_storm_bh:OnCreated()
+function modifier_leshrac_lightning_storm_bh:GetModifierMoveSpeedBonus_Percentage()
 	return self.slow
+end
+
+function modifier_leshrac_lightning_storm_bh:GetEffectName()
+	return "particles/units/heroes/hero_leshrac/leshrac_lightning_slow.vpcf"
 end
 
 modifier_leshrac_lightning_storm_bh_handler = class({})
@@ -97,7 +104,7 @@ function modifier_leshrac_lightning_storm_bh_handler:DeclareFunctions()
 	return {MODIFIER_EVENT_ON_DEATH}
 end
 
-function modifier_leshrac_lightning_storm_bh_handler:OnDeath()
+function modifier_leshrac_lightning_storm_bh_handler:OnDeath(params)
 	local caster = self:GetParent()
 	if params.unit == self:GetParent() and self:GetParent():HasTalent("special_bonus_unique_leshrac_lightning_storm_2") then
 		local ability = self:GetAbility()
@@ -105,4 +112,8 @@ function modifier_leshrac_lightning_storm_bh_handler:OnDeath()
 			ability:Zap( enemy )
 		end
 	end
+end
+
+function modifier_leshrac_lightning_storm_bh_handler:IsHidden()
+	return true
 end
