@@ -1,0 +1,412 @@
+"DOTAAbilities"
+{	
+	"boss_apotheosis_impervious"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_apotheosis/boss_apotheosis_impervious"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"centaur_return"
+		"MaxLevel"						"3"
+	
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_puck/puck_phase_shift.vpcf"
+		}
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"max_hp_dmg"			"2 1.5"
+			}
+		}
+	}
+	"boss_apotheosis_blessed_being"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_apotheosis/boss_apotheosis_blessed_being"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"omniknight_guardian_angel"
+		"MaxLevel"						"3"
+	
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_puck/puck_phase_shift.vpcf"
+		}
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"debuff_limit"			"12.0 8.0"
+			}
+		}
+	}
+	"boss_apotheosis_purifier"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_apotheosis/boss_apotheosis_purifier"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"omniknight_purification"
+		"MaxLevel"						"3"
+	
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_puck/puck_phase_shift.vpcf"
+		}
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"purge_interval"		"30.0 20.0"
+			}
+		}
+	}
+	"boss_apotheosis_latent_potential"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_apotheosis/boss_apotheosis_latent_potential"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"ogre_magi_bloodlust"
+		"MaxLevel"						"3"
+	
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_puck/puck_phase_shift.vpcf"
+		}
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"double_timer"			"15.0 10"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_amp"			"1"
+			}
+		}
+	}
+
+	"boss_apotheosis_focused_beam"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_apotheosis/boss_apotheosis_focused_beam"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName"			"phoenix_sun_ray"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"MaxLevel"						"3"
+		
+		"AbilityCastRange"				"900"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+		"AbilityCastPoint"				"0.8 0.5"
+		"AbilityCooldown"				"30 22"
+	
+		"precache"
+		{
+			"particle"					"particles/units/heroes/heroes_underlord/abyssal_underlord_darkrift_target.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_weaver.vsndevts"
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"width"						"200 250"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"10 15"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"tick_interval"				"0.25"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"duration"					"10"
+			}
+		}
+	}
+
+	"boss_apotheosis_rampage"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_apotheosis/boss_apotheosis_rampage"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName"			"ursa_enrage"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"MaxLevel"						"3"
+		
+		"AbilityCastRange"				"900"
+		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
+		"AbilityCastPoint"				"0.8 0.5"
+		"AbilityCooldown"				"24 20"
+	
+		"precache"
+		{
+			"particle"					"particles/units/heroes/heroes_underlord/abyssal_underlord_darkrift_target.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_weaver.vsndevts"
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"250 300"
+			}
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"500 750"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"jump_duration"				"1.5 1"
+			}
+		}
+	}
+	"boss_apotheosis_decimate"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_apotheosis/boss_apotheosis_decimate"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityTextureName"			"invoker_sun_strike"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+		"MaxLevel"						"3"
+		
+		"AbilityChannelTime"			"3 2"
+		"AbilityChannelAnimation"		"ACT_DOTA_TELEPORT"
+		"AbilityCastPoint"				"0"
+		"AbilityCooldown"				"60 45"
+	
+		"precache"
+		{
+			"particle"					"particles/units/heroes/heroes_underlord/abyssal_underlord_darkrift_target.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_weaver.vsndevts"
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"channel_time"				"3 2"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"125"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"350 500"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"min_sunstrikes"			"10 15"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"sunstrikes_per_hero"		"1 2"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"delay"						"1.5 1"
+			}
+		}
+	}
+
+	"boss_apotheosis_ruthless_hunter"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_apotheosis/boss_apotheosis_ruthless_hunter"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName"			"lycan_feral_impulse"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"MaxLevel"						"3"
+		
+		"AbilityCastRange"				"750 900"
+		"AbilityCastAnimation"			"ACT_DOTA_SPAWN"
+		"AbilityCastPoint"				"0.8 0.5"
+		"AbilityCooldown"				"16 12"
+	
+		"precache"
+		{
+			"particle"					"particles/units/heroes/heroes_underlord/abyssal_underlord_darkrift_target.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_spirit_breaker.vsndevts"
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"distance"					"750 900"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"speed"						"500 600"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"knockback"					"300"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"300"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"duration"					"2 3"
+			}
+		}
+	}
+	"boss_apotheosis_shield_of_valhalla"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_apotheosis/boss_apotheosis_shield_of_valhalla"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName"			"dark_willow_shadow_realm"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"MaxLevel"						"3"
+		
+		"AbilityCastRange"				"900"
+		"AbilityCastAnimation"			"ACT_DOTA_GENERIC_CHANNEL_1"
+		"AbilityCastPoint"				"0.8 0.5"
+		"AbilityCooldown"				"38 32"
+	
+		"precache"
+		{
+			"particle"					"particles/items_fx/black_king_bar_avatar.vpcf"
+			"particle"					"particles/status_fx/status_effect_avatar.vpcf"
+			"soundfile"					"soundevents/game_sounds_items.vsndevts"
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"curr_hp_limit"				"95 98"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"duration"					"5 6"
+			}
+		}
+	}
+
+	"boss_apotheosis_judge_the_cowards"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_apotheosis/boss_apotheosis_judge_the_cowards"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName"			"dark_seer_vacuum"
+		"MaxLevel"						"3"
+		
+		"AbilityCastRange"				"900"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+		"AbilityCastPoint"				"0.8 0.5"
+		"AbilityCooldown"				"24 20"
+	
+		"precache"
+		{
+			"particle"					"particles/units/bosses/boss_apotheosis/boss_apotheosis_judge_the_cowards.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_dark_seer.vsndevts"
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"900 1200"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"speed"						"300 450"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"slow"						"-60"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"duration"					"5"
+			}
+		}
+	}
+
+	"boss_apotheosis_the_end"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_apotheosis/boss_apotheosis_the_end"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"AbilityTextureName"			"necrolyte_heartstopper_aura"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+		"MaxLevel"						"3"
+		
+		"AbilityCastRange"				"900"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCastPoint"				"1.5 1"
+		"AbilityCooldown"				"80 60"
+	
+		"precache"
+		{
+			"particle"					"particles/bosses/boss_apotheosis/boss_apotheosis_the_end_effect.vpcf"
+			"particle"					"particles/units/bosses/boss_apotheosis/boss_apotheosis_the_end_debufftrack_scroll.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_necrolyte.vsndevts"
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"death_timer"				"10"
+			}
+		}
+	}
+}

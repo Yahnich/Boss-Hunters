@@ -56,7 +56,9 @@ function modifier_sb_charge:DoControlledMotion()
 				end
 
 				local ability2 = parent:FindAbilityByName("sb_bash")
-				ability2:Bash(enemy, ability2:GetTalentSpecialValueFor("knockback_distance"))
+				if ability2 and ability2:IsTrained() then
+					ability2:Bash(enemy, ability2:GetTalentSpecialValueFor("knockback_distance"))
+				end
 				self.hitUnits[enemy:entindex()] = true
 			end
 		end

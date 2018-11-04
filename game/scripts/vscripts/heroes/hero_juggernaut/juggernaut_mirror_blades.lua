@@ -52,17 +52,19 @@ function modifier_juggernaut_mirror_blades:OnIntervalThink()
 		self.cycleDur = self:GetTalentSpecialValueFor("cycle_duration")
 		self:MirrorBladeCycle()
 	end
+	self.bat = self:GetParent():GetBaseAttackTime()
 	if IsServer() then
 		self:MirrorBladeDamage(self.radius, self.damage)
 	end
-	self.bat = self:GetParent():GetBaseAttackTime()
 end
 
 function modifier_juggernaut_mirror_blades:MirrorBladeCycle()
 	local caster = self:GetCaster()
 	self:SetDuration( self.cycleDur + 0.1, true )
-	self.momentumUsed = caster:AttemptDecrementMomentum( self.cost )
-	if self.momentumUsed then caster:Dispel(caster, false) end
+	if IsServer() then
+		self.momentumUsed = caster:AttemptDecrementMomentum( self.cost )
+		if self.momentumUsed then caster:Dispel(caster, false) end
+	end
 end
 
 function modifier_juggernaut_mirror_blades:MirrorBladeDamage(radius, damage)
@@ -76,10 +78,10 @@ function modifier_juggernaut_mirror_blades:MirrorBladeDamage(radius, damage)
 end
 
 function modifier_juggernaut_mirror_blades:DeclareFunctions()
-	return {MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT}
+	return {MODIFIER_PROPERTY_FIXED_ATTACK_RATE}
 end
 
-function modifier_juggernaut_mirror_blades:GetBaseAttackTime_Bonus()
+function modifier_juggernaut_mirror_blades:GetModifierFixedAttackRate()
 	if not self.disarmed then
 		return self.bat
 	end

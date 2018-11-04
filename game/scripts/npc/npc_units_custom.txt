@@ -5414,6 +5414,121 @@
 			"DefaultState"				"Invade"
 		}
 	}
+	"npc_dota_boss_apotheosis"
+	{
+		// General
+		//
+		"BaseClass"					"npc_dota_creature"	// Class of entity of link to.
+		"Model"						"models/heroes/obsidian_destroyer/obsidian_destroyer.vmdl"	// Model.
+		"SoundSet"					"Hero_Invoker"					// Name of sound set.
+		"GameSoundsFile"			"soundevents/game_sounds_heroes/game_sounds_obsidian_destroyer.vsndevts"
+		"ModelScale"				"1.2"
+		"Level"						"200"
+		"IsCelestial"				"1"
+		"IsDemon"					"1"
+		"IsWild"					"1"
+		"IsUndead"					"1"
+		"MinimapIcon"				"minimap_roshancamp"
+		"MinimapIconSize"			"180"
+		"vscripts"					"ai/ai_apotheosis"
+		
+		"precache"
+		{
+			"particle_folder"	"particles/units/heroes/hero_invoker/invoker_forge_spirit_ambient.vpcf"
+			"model"				"models/heroes/obsidian_destroyer/obsidian_destroyer.vmdl"
+		}
+	
+		// Abilities
+		//----------------------------------------------------------------
+		
+		"Ability1"					"boss_apotheosis_the_end"
+		"Ability2"					"boss_apotheosis_judge_the_cowards"
+		"Ability3"					"boss_apotheosis_shield_of_valhalla"
+		"Ability4"					"boss_apotheosis_ruthless_hunter"
+		"Ability5"					"boss_apotheosis_decimate"
+		"Ability6"					"boss_apotheosis_rampage"
+		"Ability7"					"boss_apotheosis_focused_beam"
+		"Ability8"					"boss_apotheosis_latent_potential"
+		"Ability9"					"boss_apotheosis_purifier"
+		"Ability10"					"boss_apotheosis_blessed_being"
+		"Ability11"					"boss_apotheosis_impervious"
+	
+		// Armor
+		//----------------------------------------------------------------
+		"ArmorPhysical"				"35"		// Physical protection.
+		"MagicalResistance"			"50"		// Magical protection.
+	
+		// Attack
+		//----------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"			"100"		// Damage range min.
+		"AttackDamageMax"			"150"		// Damage range max.
+		"AttackRate"				"9"		// Speed of attack.
+		"AttackAnimationPoint"		"1.2"		// Normalized time in animation cycle to attack.
+		"AnimationPlaybackRate"		"0.33"
+		"AttackAcquisitionRange"	"8000"		// Range within a target can be acquired.
+		"AttackRange"				"600"		// Range within a target can be attacked.
+		"ProjectileModel"			"particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_arcane_orb.vpcf"			// Particle system model for projectile.
+		"ProjectileSpeed"			"900"			// Speed of projectile.
+	
+		// Bounty
+		//----------------------------------------------------------------
+		"BountyXP"					"0"		// Experience earn.
+		"BountyGoldMin"				"11"		// Gold earned min.
+		"BountyGoldMax"				"13"		// Gold earned max.
+	
+		// Bounds
+		//----------------------------------------------------------------
+		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"			// Hull type used for navigation/locomotion.
+		"RingRadius"				"120"
+		"HealthBarOffset"			"600"
+	
+		// Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"			// Type of locomotion - ground, air
+		"MovementSpeed"				"350"		// Speed
+		"MovementTurnRate"			"0.25"		// Turning rate.
+	
+		// Status
+		//----------------------------------------------------------------
+		"StatusHealth"				"4000"		// Base health.
+		"StatusHealthRegen"			"1"		// Health regeneration rate.
+		"StatusMana"				"2000"			// Base mana.
+		"StatusManaRegen"			"10"			// Mana regeneration rate.
+	
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"					"DOTA_TEAM_BADGUYS"			// Team name.
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		
+		// Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange"		"1800"		// Range of vision during day HERO.
+		"VisionNighttimeRange"		"1800"		// Range of vision at night time.
+	
+		//Precache
+		//------------------------------------------------------------------
+		"VoiceFile"				"soundevents/voscripts/game_sounds_vo_broodmother.vsndevts"
+		"GameSoundsFile"		"soundevents/game_sounds_heroes/game_sounds_broodmother.vsndevts"
+	
+		"ShouldDoFlyHeightVisual" "0"
+	
+		// Creature Data
+		//----------------------------------------------------------------------------------------------------------------------
+		"Creature"
+		{
+			"AttachWearables"
+			{
+				"Wearable1"{"ItemDef"			"9795"}
+				"Wearable2"{"ItemDef"			"9369"}
+				"Wearable3"{"ItemDef"			"9367"}
+				"Wearable4"{"ItemDef"			"9370"}
+				"Wearable4"{"ItemDef"			"533"}
+			}
+		}
+	}
 	"npc_dota_boss_greymane"
 	{
 		// General

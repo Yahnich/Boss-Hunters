@@ -63,7 +63,7 @@ function modifier_warlock_corruption_curse:OnDeath(params)
 	if IsServer() then
 		local caster = self:GetCaster()
 		local parent = self:GetParent()
-		if and params.unit == parent then
+		if params.unit == parent then
 			local summon = caster:FindAbilityByName("warlock_summon_imp")
 			if summon then
 				local imp = summon:SummonImp( parent:GetAbsOrigin() )

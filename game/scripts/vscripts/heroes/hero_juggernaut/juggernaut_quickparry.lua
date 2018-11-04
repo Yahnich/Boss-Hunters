@@ -38,21 +38,19 @@ function modifier_juggernaut_quickparry_passive:GetModifierTotal_ConstantBlock(p
 	local ability = self:GetAbility()
 	local caster = self:GetCaster()
 	if params.attacker == self:GetParent() then return end
-	if ability:IsCooldownReady() then
-		if RollPercentage(self.chance) then
-			ability:SetCooldown( ability:GetTrueCooldown() )
-			self:QuickParry(caster, params.attacker, ability)
-			if caster:HasTalent("special_bonus_unique_juggernaut_quickparry_1") then
-				caster:AddMomentum(caster:FindTalentValue("special_bonus_unique_juggernaut_quickparry_1"))
-			end
-			return params.damage
+	if RollPercentage(self.chance) and ability:IsCooldownReady() then
+		ability:SetCooldown( ability:GetTrueCooldown() )
+		self:QuickParry(caster, params.attacker, ability)
+		if caster:HasTalent("special_bonus_unique_juggernaut_quickparry_1") then
+			caster:AddMomentum(caster:FindTalentValue("special_bonus_unique_juggernaut_quickparry_1"))
 		end
-		if ability:GetToggleState() then
-			local result = caster:AttemptDecrementMomentum(self.cost)
-			if result then
-				self:QuickParry(caster, params.attacker, ability)
-				return params.damage
-			end
+		return params.damage
+	end
+	if ability:GetToggleState() then
+		local result = caster:AttemptDecrementMomentum(self.cost)
+		if result then
+			self:QuickParry(caster, params.attacker, ability)
+			return params.damage
 		end
 	end
 end

@@ -7,35 +7,46 @@ function bh_shadow_walk:OnSpellStart()
 
 	if caster:HasTalent("special_bonus_unique_bh_shadow_walk_2") then
 		fadeTime = 0
-
+		
+		local blindVal = caster:FindTalentValue("special_bonus_unique_bh_shadow_walk_2", "blind")
+		local blindDur = caster:FindTalentValue("special_bonus_unique_bh_shadow_walk_2")
 		local enemies = caster:FindEnemyUnitsInRadius(caster:GetAbsOrigin(), 300)
 		for _,enemy in pairs(enemies) do
-			enemy:Blind(50, self, caster, 3)
+			enemy:Blind(blindVal, self, caster, blindDur)
 		end
 	end
 
 	EmitSoundOn("Hero_BountyHunter.WindWalk", caster)
 
 	ParticleManager:FireParticle("particles/units/heroes/hero_bounty_hunter/bounty_hunter_windwalk.vpcf", PATTACH_POINT, caster, {})
-
+	
+	self:StartDelayedCooldown()
 	Timers:CreateTimer(fadeTime, function()
 		caster:AddNewModifier(caster, self, "modifier_bh_shadow_walk", {Duration = self:GetTalentSpecialValueFor("duration")})
 	end)
-
-	self:StartDelayedCooldown(self:GetTalentSpecialValueFor("duration"))
+	
 end
 
 modifier_bh_shadow_walk = class({})
 function modifier_bh_shadow_walk:OnCreated(table)
     self.damage = self:GetTalentSpecialValueFor("damage")
 
-	if IsServer() then self:GetCaster():CalculateStatBonus() end
+	if IsServer() then 
+		self:GetCaster():CalculateStatBonus()
+		self:GetAbility():StartDelayedCooldown( self:GetRemainingTime() )
+	end
 end
 
 function modifier_bh_shadow_walk:OnRefresh(table)
     self.damage = self:GetTalentSpecialValueFor("damage")
 
 	if IsServer() then self:GetCaster():CalculateStatBonus() end
+end
+
+function modifier_bh_shadow_walk:OnDestroy()
+	if IsServer() then
+		self:GetAbility():EndDelayedCooldown()
+	end
 end
 
 function modifier_bh_shadow_walk:DeclareFunctions()
@@ -65,7 +76,6 @@ function modifier_bh_shadow_walk:OnAbilityExecuted(params)
 				self:GetAbility():DealDamage(parent, ability:GetCursorTarget(), self.damage, {}, OVERHEAD_ALERT_DAMAGE)
 			end
 
-			self:GetAbility():EndDelayedCooldown()
 			self:Destroy()
 		end
 	end
@@ -75,7 +85,6 @@ function modifier_bh_shadow_walk:OnAttackLanded(params)
 	if IsServer() then
 		if params.attacker == self:GetParent() then
 			self:GetAbility():DealDamage(self:GetParent(), params.target, self.damage, {}, OVERHEAD_ALERT_DAMAGE)
-			self:GetAbility():EndDelayedCooldown()
 			self:Destroy()
 		end
 	end

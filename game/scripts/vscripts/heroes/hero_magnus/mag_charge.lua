@@ -118,8 +118,29 @@ function modifier_mag_charge_enemy:OnCreated(table)
 end
 
 function modifier_mag_charge_enemy:CheckState()
-	local state = { [MODIFIER_STATE_STUNNED] = true}
-	return state
+	if unit:IsRoundBoss() then
+		local state = { [MODIFIER_STATE_ROOTED] = true}
+		return state
+	else
+		local state = { [MODIFIER_STATE_STUNNED] = true}
+		return state
+	end
+end
+
+function modifier_mag_charge_enemy:DeclareFunctions()
+	return { MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT, MODIFIER_PROPERTY_CASTTIME_PERCENTAGE, MODIFIER_PROPERTY_TURN_RATE_PERCENTAGE }
+end
+
+function modifier_mag_charge_enemy:GetModifierAttackSpeedBonus_Constant()
+	return -1000
+end
+
+function modifier_mag_charge_enemy:GetModifierPercentageCasttime()
+	return -80
+end
+
+function modifier_mag_charge_enemy:GetModifierTurnRate_Percentage()
+	return -80
 end
 
 function modifier_mag_charge_enemy:OnIntervalThink()

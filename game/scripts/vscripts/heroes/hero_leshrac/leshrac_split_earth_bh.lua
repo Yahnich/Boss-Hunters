@@ -32,8 +32,8 @@ function leshrac_split_earth_bh:OnSpellStart()
 			end
 		end
 	
-		ParticleManager:FireParticle("", PATTACH_WORLDORIGIN, nil)
-		EmitSoundOnLocationWithCaster( position, "", caster )
+		ParticleManager:FireParticle("particles/units/heroes/hero_leshrac/leshrac_split_earth.vpcf", PATTACH_WORLDORIGIN, nil, {[0] = position, [1] = Vector(radius,1,1)})
+		EmitSoundOnLocationWithCaster( position, "Hero_Leshrac.Split_Earth", caster )
 		
 		if talent1 then
 			talent1 = false

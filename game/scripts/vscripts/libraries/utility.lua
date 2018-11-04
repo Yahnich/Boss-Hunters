@@ -177,6 +177,13 @@ function CDOTA_BaseNPC:IsInAbilityAttackMode()
 	return self.autoAttackFromAbilityState ~= nil
 end
 
+function CDOTA_BaseNPC:GetCurrentAttackSource()
+	if self.autoAttackFromAbilityState then
+		return self.autoAttackFromAbilityState.ability
+	end
+	return nil
+end
+
 function CDOTA_BaseNPC:PerformAbilityAttack(target, bProcs, ability, flBonusDamage, bDamagePct, bNeverMiss)
 	self.autoAttackFromAbilityState = {} -- basically the same as setting it to true
 	self.autoAttackFromAbilityState.ability = ability
@@ -1542,7 +1549,7 @@ function CDOTA_BaseNPC:Lifesteal(source, lifestealPct, damage, target, damage_ty
 		particles = false
 	end
 	if sourceType == DOTA_LIFESTEAL_SOURCE_ABILITY and source then
-		damageDealt = source:DealDamage( self, target, damage )
+		damageDealt = source:DealDamage( self, target, damage, {damage_type = damage_type} )
 	elseif sourceType == DOTA_LIFESTEAL_SOURCE_ATTACK then
 		local oldHP = target:GetHealth()
 		self:PerformAttack(target, true, true, true, true, false, false, false)
@@ -2343,19 +2350,23 @@ function CDOTA_BaseNPC:AttemptKill(sourceAb, attacker)
 	end
 end
 
-function CDOTA_BaseNPC:ApplyKnockBack(position, stunDuration, knockbackDuration, distance, height, caster, ability)
+function CDOTA_BaseNPC:ApplyKnockBack(position, stunDuration, knockbackDuration, distance, height, caster, ability, bStun)
 	local caster = caster or nil
 	local ability = ability or nil
-
+	self:StopMotionControllers(false)
 	local modifierKnockback = {
 		center_x = position.x,
 		center_y = position.y,
 		center_z = position.z,
-		duration = stunDuration,
+		should_stun = 0,
+		duration = knockbackDuration,
 		knockback_duration = knockbackDuration,
 		knockback_distance = distance,
 		knockback_height = height or 0,
 	}
+	if bStun == nil or bStun == true then
+		ability:Stun(self, stunDuration)
+	end
 	self:AddNewModifier(caster, ability, "modifier_knockback", modifierKnockback )
 end
 

@@ -100,11 +100,12 @@ function modifier_viper_nethertoxin_bh_debuff:CheckState()
 	return state
 end
 
-function modifier_viper_nethertoxin_bh_debuff:DeclareFuntions()
+function modifier_viper_nethertoxin_bh_debuff:DeclareFunctions()
 	return {MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS}
 end
 
 function modifier_viper_nethertoxin_bh_debuff:GetModifierMagicalResistanceBonus()
+	print(self.mr, "magic resist")
 	return self.mr
 end
 

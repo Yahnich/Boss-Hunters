@@ -44,7 +44,6 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"movement_speed"		"600 650 700 750 800 850 900"
-				"LinkedSpecialBonus"	"special_bonus_unique_sb_charge_1"
 			}
 			"02"
 			{

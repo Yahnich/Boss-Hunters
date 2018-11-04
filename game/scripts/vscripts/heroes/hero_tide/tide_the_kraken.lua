@@ -70,7 +70,12 @@ function modifier_the_kraken:OnCreated()
         ParticleManager:ReleaseParticleIndex(nfx)
 
         self:StartIntervalThink(0.5)
-        self:GetParent():ApplyKnockBack(self:GetParent():GetAbsOrigin(), 0.5, 0.5, 0, 350, self:GetCaster(), self:GetAbility())
+		
+		local distance = 0
+		if caster:HasTalent("special_bonus_unique_tide_the_kraken_2") then
+			distance = math.min( caster:FindTalentValue("special_bonus_unique_tide_the_kraken_2"), CalculateDistance(caster, target) - 150 )
+		end
+        self:GetParent():ApplyKnockBack(self:GetParent():GetAbsOrigin(), 0.5, 0.5, distance, 350, self:GetCaster(), self:GetAbility())
     end
 end
 

@@ -165,7 +165,7 @@ end
 
 function modifier_furion_sprout_sleep:OnTakeDamage(params)
 	if IsServer() then
-		if params.unit == self:GetParent() and params.inflictor ~= self:GetAbility() then
+		if params.unit == self:GetParent() and params.inflictor ~= self:GetAbility() and self:GetElapsedTime() > 1 then
 			if params.inflictor and params.inflictor:GetName() == "furion_entangle" then return end
 			self:Destroy()
 		end

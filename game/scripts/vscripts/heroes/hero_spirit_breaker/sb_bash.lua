@@ -21,7 +21,7 @@ function sb_bash:Bash(target, distance)
     local knockbackDuration = self:GetTalentSpecialValueFor("knockback_duration")
     local height = self:GetTalentSpecialValueFor("knockback_height")
 
-    local dist = distance
+    local dist = distance or self:GetTalentSpecialValueFor("knockback_distance")
 
     local damage = caster:GetMoveSpeedModifier(caster:GetBaseMoveSpeed()) * self:GetTalentSpecialValueFor("damage")/100
 

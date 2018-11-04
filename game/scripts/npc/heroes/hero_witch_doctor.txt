@@ -79,7 +79,7 @@
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bounces"				"6 8 10 12 14 16 18"
+				"bounces"				"6"
 			}
 			"07"
 			{
@@ -144,12 +144,12 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
-		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
-		"AbilityTextureName"			"witch_doctor_voodoo_restoration"
-		"ScriptFile"					"heroes/hero_witch_doctor/witch_doctor_voodoo_restoration_bh"
-		"MaxLevel"						"7"
+		"BaseClass"							"ability_lua"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"					"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"SpellDispellableType"				"SPELL_DISPELLABLE_NO"
+		"AbilityTextureName"				"witch_doctor_voodoo_restoration"
+		"ScriptFile"						"heroes/hero_witch_doctor/witch_doctor_voodoo_restoration_bh"
+		"MaxLevel"							"7"
 		
 		"precache"
 		{
@@ -162,11 +162,11 @@
 		}
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"0.0 0.0 0.0 0.0"
+		"AbilityCooldown"					"0.0 0.0 0.0 0.0"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"					"20 30 40 50 60 70 80"	
+		"AbilityManaCost"					"80 100 120 140 160 180 200"	
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -175,7 +175,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"mana_per_second"			"8 12 16 20 24 28 32"
+				"mana_per_second"			"8 16 24 32 40 48 56"
 			}
 			"02"
 			{
@@ -186,12 +186,11 @@
 			{
 				"var_type"					"FIELD_INTEGER"
 				"heal"						"16 24 32 40 48 56 64"
-				"LinkedSpecialBonus"		"special_bonus_unique_witch_doctor_2"
 			}
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"int_to_heal"				"35"
+				"int_to_heal"				"20"
 			}
 			"05"
 			{
@@ -447,7 +446,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"total_duration"		"8"
+				"total_duration"		"6"
 				"LinkedSpecialBonus"	"special_bonus_unique_witch_doctor_death_ward_2"
 			}
 		}
@@ -492,7 +491,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"-4"
+				"value"						"-3"
 			}
 		}
 	}

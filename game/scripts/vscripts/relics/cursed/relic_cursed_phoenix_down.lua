@@ -21,8 +21,8 @@ function relic_cursed_phoenix_down:OnDeath(params)
 			PlayerResource:SetCustomBuybackCost(self:GetParent():GetPlayerID(), 0)
 		else
 			PlayerResource:SetCustomBuybackCost(self:GetParent():GetPlayerID(), 100 + RoundManager:GetEventsFinished() * 25)
-			PlayerResource:SetCustomBuybackCooldown(self:GetParent():GetPlayerID(), self:GetParent():GetBuybackCooldownTime( )  )
-			self:GetParent():SetBuybackCooldownTime( 120  )
+			PlayerResource:SetCustomBuybackCooldown(self:GetParent():GetPlayerID(), 60  )
+			self:GetParent():SetBuybackCooldownTime( 60  )
 		end
 	end
 end
@@ -46,8 +46,8 @@ function relic_cursed_phoenix_down:OnAbilityEndChannel(params)
 			PlayerResource:SetCustomBuybackCost(self:GetParent():GetPlayerID(), 0)
 		else
 			PlayerResource:SetCustomBuybackCost(self:GetParent():GetPlayerID(), 100 + RoundManager:GetEventsFinished() * 25)
-			PlayerResource:SetCustomBuybackCooldown(self:GetParent():GetPlayerID(), self:GetParent():GetBuybackCooldownTime( )  )
-			self:GetParent():SetBuybackCooldownTime( 120 )
+			PlayerResource:SetCustomBuybackCooldown(self:GetParent():GetPlayerID(), 60  )
+			self:GetParent():SetBuybackCooldownTime( 60 )
 		end
 	end
 end

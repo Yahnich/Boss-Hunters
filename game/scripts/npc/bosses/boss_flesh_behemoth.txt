@@ -64,8 +64,7 @@
 			"particle"  				"particles/units/heroes/hero_venomancer/venomancer_gale_poison_debuff.vpcf"
 			"particle"  				"particles/units/heroes/hero_viper/viper_nethertoxin.vpcf"
 
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_venomancer.vsndevts"
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_viper.vsndevts"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_undying.vsndevts"
 		}
 		
 		// Special

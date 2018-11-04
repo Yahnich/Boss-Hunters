@@ -4,7 +4,7 @@ function event_buff_crossroads:DeclareFunctions()
 	return {MODIFIER_PROPERTY_EXTRA_HEALTH_PERCENTAGE}
 end
 
-function event_buff_crossroads:GetModifierHealthBonus_Percentage()
+function event_buff_crossroads:GetModifierExtraHealthPercentage()
 	return -0.2
 end
 

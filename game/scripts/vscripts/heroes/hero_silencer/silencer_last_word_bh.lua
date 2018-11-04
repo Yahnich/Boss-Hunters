@@ -38,6 +38,7 @@ if IsServer() then
 		parent:EmitSound("Hero_Silencer.LastWord.Damage")
 		ParticleManager:FireParticle("particles/units/heroes/hero_silencer/silencer_last_word_dmg.vpcf", PATTACH_POINT_FOLLOW, parent)
 		ability:DealDamage( caster, parent, self.damage )
+		self:GetAbility():EndDelayedCooldown()
 		parent:Silence(ability, caster, self.silenceDuration, true)
 		if caster:HasTalent("special_bonus_unique_silencer_last_word_1") then
 			parent:Paralyze(ability, caster, self.silenceDuration)

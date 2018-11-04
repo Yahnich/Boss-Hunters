@@ -14,6 +14,10 @@ function furion_sprout_tp:GetCooldown(iLevel)
 	return cooldown
 end
 
+function furion_sprout_tp:GetCastPoint()
+	return self:GetTalentSpecialValueFor("cast_point_tooltip")
+end
+
 function furion_sprout_tp:OnAbilityPhaseStart()
 	local caster = self:GetCaster()
 	local point = self:GetCursorPosition()

@@ -27,19 +27,20 @@ function modifier_windrunner_bolas_primary:OnCreated(table)
     if IsServer() then
     	local caster = self:GetCaster()
     	local parent = self:GetParent()
+		local ability = self:GetAbility()
     	local enemies = caster:FindEnemyUnitsInRadius(parent:GetAbsOrigin(), self:GetTalentSpecialValueFor("radius"), {order = FIND_CLOSEST})
     	if #enemies > 1 then
     		for _,enemy in pairs(enemies) do
     			if enemy ~= parent then
     				EmitSoundOn("Hero_Windrunner.ShackleshotBind", parent)
+					local stun = ability:Stun(parent, self:GetTalentSpecialValueFor("duration") )
 	    			local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_windrunner/windrunner_shackleshot_pair.vpcf", PATTACH_POINT, caster)
 	    						ParticleManager:SetParticleControlEnt(nfx, 0, parent, PATTACH_POINT, "attach_hitloc", parent:GetAbsOrigin(), true)
 	    						ParticleManager:SetParticleControlEnt(nfx, 1, enemy, PATTACH_POINT, "attach_hitloc", enemy:GetAbsOrigin(), true)
 	    						ParticleManager:SetParticleControl(nfx, 2, Vector(self:GetTalentSpecialValueFor("duration"), 0, 0))
-	    			self:AttachEffect(nfx)
+	    			stun:AttachEffect(nfx)
 
-	    			enemy:AddNewModifier(caster, self:GetAbility(), "modifier_windrunner_bolas_secondary", {Duration = self:GetDuration()})
-
+					ability:Stun(enemy, self:GetTalentSpecialValueFor("duration") )
 	    			if caster:HasTalent("special_bonus_unique_windrunner_bolas_2") then
 	    				self:GetAbility():DealDamage(caster, enemy, self:GetTalentSpecialValueFor("damage"), {}, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE)
 	    			end
@@ -48,58 +49,14 @@ function modifier_windrunner_bolas_primary:OnCreated(table)
     		end
     	else
     		local newDuration = self:GetTalentSpecialValueFor("duration")/10
-    		self:SetDuration(newDuration, true)
     		EmitSoundOn("Hero_Windrunner.ShackleshotStun", parent)
+			local stun = ability:Stun(parent, newDuration)
     		local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_windrunner/windrunner_shackleshot_single.vpcf", PATTACH_POINT, caster)
     					ParticleManager:SetParticleControlEnt(nfx, 0, parent, PATTACH_POINT, "attach_hitloc", parent:GetAbsOrigin(), true)
     					ParticleManager:SetParticleControlEnt(nfx, 1, parent, PATTACH_POINT, "attach_hitloc", parent:GetAbsOrigin(), true)
-    					ParticleManager:SetParticleControlForward(nfx, 2, self:GetAbility().direction)
-    		self:AttachEffect(nfx)
-
-    		self:GetAbility():Stun(parent, newDuration)
+    					ParticleManager:SetParticleControlForward(nfx, 2, ability.direction)
+    		stun:AttachEffect(nfx)
     	end
+		self:Destroy()
     end
-end
-
-function modifier_windrunner_bolas_primary:IsDebuff()
-	return true
-end
-
-function modifier_windrunner_bolas_primary:CheckState()
-	local state = { [MODIFIER_STATE_STUNNED] = true}
-	return state
-end
-
-function modifier_windrunner_bolas_primary:DeclareFunctions()
-	local funcs = {
-		MODIFIER_PROPERTY_OVERRIDE_ANIMATION,
-	}
-
-	return funcs
-end
-
-function modifier_windrunner_bolas_primary:GetOverrideAnimation()
-	return ACT_DOTA_DISABLED
-end
-
-modifier_windrunner_bolas_secondary = class({})
-function modifier_windrunner_bolas_secondary:IsDebuff()
-	return true
-end
-
-function modifier_windrunner_bolas_secondary:CheckState()
-	local state = { [MODIFIER_STATE_STUNNED] = true}
-	return state
-end
-
-function modifier_windrunner_bolas_secondary:DeclareFunctions()
-	local funcs = {
-		MODIFIER_PROPERTY_OVERRIDE_ANIMATION,
-	}
-
-	return funcs
-end
-
-function modifier_windrunner_bolas_secondary:GetOverrideAnimation()
-	return ACT_DOTA_DISABLED
 end

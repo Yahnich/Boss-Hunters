@@ -1,0 +1,1 @@
+boss_apotheosis_focused_beam = class({})
