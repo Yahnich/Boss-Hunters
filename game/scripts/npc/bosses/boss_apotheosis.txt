@@ -61,6 +61,7 @@
 		"precache"
 		{
 			"particle"					"particles/units/heroes/hero_puck/puck_phase_shift.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_omniknight.vsndevts"
 		}
 		
 		"AbilitySpecial"
@@ -92,7 +93,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"double_timer"			"15.0 10"
+				"double_timer"			"22.5 15"
 			}
 			"02"
 			{
@@ -162,29 +163,39 @@
 		"AbilityCastRange"				"900"
 		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
 		"AbilityCastPoint"				"0.8 0.5"
-		"AbilityCooldown"				"24 20"
+		"AbilityCooldown"				"40"
 	
 		"precache"
 		{
-			"particle"					"particles/units/heroes/heroes_underlord/abyssal_underlord_darkrift_target.vpcf"
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_weaver.vsndevts"
+			"particle"					"particles/units/bosses/boss_apotheosis/boss_apotheosis_rampage.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_obsidian_destroyer.vsndevts"
 		}
 		"AbilitySpecial"
 		{
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"radius"					"250 300"
+				"radius"					"150 175"
 			}
-			"01"
+			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"500 750"
+				"damage"					"175 250"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"jump_duration"				"1.5 1"
+				"duration"					"5 8"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"orb_interval"				"0.33"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"orb_duration"				"1.5 1.0"
 			}
 		}
 	}
@@ -207,7 +218,7 @@
 		"precache"
 		{
 			"particle"					"particles/units/heroes/heroes_underlord/abyssal_underlord_darkrift_target.vpcf"
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_weaver.vsndevts"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_invoker.vsndevts"
 		}
 		"AbilitySpecial"
 		{
