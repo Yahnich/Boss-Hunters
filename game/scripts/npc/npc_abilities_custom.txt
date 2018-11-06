@@ -159,6 +159,7 @@
 #base "heroes/hero_clinkz.txt"
 #base "heroes/hero_ember_spirit.txt"
 #base "heroes/hero_medusa.txt"
+#base "heroes/hero_monkey_king.txt"
 
 "DOTAAbilities"
 {
