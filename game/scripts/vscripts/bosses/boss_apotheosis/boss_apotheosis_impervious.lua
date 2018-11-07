@@ -20,7 +20,7 @@ function modifier_boss_apotheosis_impervious:DeclareFunctions()
 end
 
 function modifier_boss_apotheosis_impervious:GetModifierTotal_ConstantBlock(params)
-	if params.damage > self:GetParent():GetMaxHealth() * self.limit and not self:GetParent():PassivesDisabled() then
+	if params.damage > self:GetParent():GetMaxHealth() * self.limit * ( GameRules.BasePlayers - HeroList:GetActiveHeroCount() ) and not self:GetParent():PassivesDisabled() then
 		return params.damage - self:GetParent():GetMaxHealth() * self.limit
 	end
 end

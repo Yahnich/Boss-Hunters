@@ -36,7 +36,7 @@ end
 function AIThink(thisEntity)
 	if not thisEntity:IsDominated() then
 		if thisEntity:IsChanneling() then return AI_THINK_RATE end
-		local danger = AICore:NearestEnemyHeroInRange( thisEntity, 900, true )
+		local danger = AICore:NearestEnemyHeroInRange( thisEntity, 600, true )
 		if danger then 
 			if thisEntity.march:IsFullyCastable() then
 				ExecuteOrderFromTable({
@@ -54,7 +54,7 @@ function AIThink(thisEntity)
 				})
 				return thisEntity.rearm:GetCastPoint() + 0.1
 			elseif RollPercentage(50) then
-				AICore:BeAHugeCoward ( thisEntity, 900 )
+				AICore:BeAHugeCoward ( thisEntity, 600 )
 				return AI_THINK_RATE
 			elseif thisEntity.rockets:IsFullyCastable() then
 				ExecuteOrderFromTable({

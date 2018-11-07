@@ -3,7 +3,7 @@ modifier_restoration_disable = class({})
 function modifier_restoration_disable:OnCreated()
 	if IsServer() then
 		self.mana = self:GetParent():GetMana()
-		sel:StartIntervalThink(0.1)
+		self:StartIntervalThink(0)
 	end
 end
 

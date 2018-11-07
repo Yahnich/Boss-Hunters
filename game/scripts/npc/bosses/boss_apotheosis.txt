@@ -93,7 +93,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"double_timer"			"22.5 15"
+				"double_timer"			"24 18"
 			}
 			"02"
 			{
@@ -121,8 +121,8 @@
 	
 		"precache"
 		{
-			"particle"					"particles/units/heroes/heroes_underlord/abyssal_underlord_darkrift_target.vpcf"
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_weaver.vsndevts"
+			"particle"					"particles/units/heroes/hero_phoenix/phoenix_sunray.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_phoenix.vsndevts"
 		}
 		"AbilitySpecial"
 		{
@@ -144,7 +144,7 @@
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"duration"					"10"
+				"duration"					"14"
 			}
 		}
 	}
@@ -175,7 +175,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"radius"					"150 175"
+				"radius"					"175"
 			}
 			"02"
 			{
@@ -190,12 +190,12 @@
 			"04"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"orb_interval"				"0.33"
+				"orb_interval"				"0.25"
 			}
 			"05"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"orb_duration"				"1.5 1.0"
+				"orb_duration"				"2 1.5"
 			}
 		}
 	}
@@ -268,7 +268,7 @@
 		
 		"AbilityCastRange"				"750 900"
 		"AbilityCastAnimation"			"ACT_DOTA_SPAWN"
-		"AbilityCastPoint"				"0.8 0.5"
+		"AbilityCastPoint"				"1.5 1"
 		"AbilityCooldown"				"16 12"
 	
 		"precache"
@@ -352,10 +352,10 @@
 		"AbilityTextureName"			"dark_seer_vacuum"
 		"MaxLevel"						"3"
 		
-		"AbilityCastRange"				"900"
+		"AbilityCastRange"				"900 1200"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
-		"AbilityCastPoint"				"0.8 0.5"
-		"AbilityCooldown"				"24 20"
+		"AbilityCastPoint"				"1.5 1.0"
+		"AbilityCooldown"				"32"
 	
 		"precache"
 		{
@@ -400,7 +400,6 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
 		"MaxLevel"						"3"
 		
-		"AbilityCastRange"				"900"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
 		"AbilityCastPoint"				"1.5 1"
 		"AbilityCooldown"				"80 60"

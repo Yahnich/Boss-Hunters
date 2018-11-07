@@ -454,7 +454,7 @@
 			"01"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"damage_count"		"4 6"
+				"damage_count"		"2 3"
 			}
 			"02"
 			{

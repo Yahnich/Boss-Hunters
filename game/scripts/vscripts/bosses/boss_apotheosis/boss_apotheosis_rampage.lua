@@ -28,7 +28,7 @@ function boss_apotheosis_rampage:FireOrb(position)
 		EffectName = "particles/units/bosses/boss_apotheosis/boss_apotheosis_rampage.vpcf",
 		bDodgable = false,
 		bProvidesVision = false,
-		iMoveSpeed = CalculateDistance( self:GetCaster(), position ) / self:GetSpecialValueFor("orb_duration"),
+		iMoveSpeed = math.max( 100, CalculateDistance( self:GetCaster(), position ) / self:GetSpecialValueFor("orb_duration") ),
 		iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_ATTACK_1,
 	}
 	ProjectileManager:CreateTrackingProjectile(projectile)

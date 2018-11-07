@@ -2599,7 +2599,7 @@ function CDOTA_BaseNPC:FindEnemyUnitsInCone(vDirection, vPosition, flSideRadius,
 	else return {} end
 end
 
-function GameRules:RefreshPlayers()
+function GameRules:RefreshPlayers(bDontHeal)
 	for nPlayerID = 0, DOTA_MAX_TEAM_PLAYERS-1 do
 		if PlayerResource:GetTeam( nPlayerID ) == DOTA_TEAM_GOODGUYS then
 			if PlayerResource:HasSelectedHero( nPlayerID ) then
@@ -2607,9 +2607,13 @@ function GameRules:RefreshPlayers()
 				if hero ~=nil then
 					if not hero:IsAlive() then
 						hero:RespawnHero(false, false)
+						hero:SetHealth( hero:GetMaxHealth() * 0.25 )
+						hero:SetMana( hero:GetMaxMana() * 0.25 )
 					end
-					hero:SetHealth( hero:GetMaxHealth() )
-					hero:SetMana( hero:GetMaxMana() )
+					if not bDontHeal then
+						hero:SetHealth( hero:GetMaxHealth() )
+						hero:SetMana( hero:GetMaxMana() )
+					end
 					hero.threat = 0
 					ResolveNPCPositions( hero:GetAbsOrigin(), hero:GetHullRadius() + hero:GetCollisionPadding() )
 				end
