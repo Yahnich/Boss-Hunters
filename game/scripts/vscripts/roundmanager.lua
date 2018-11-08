@@ -231,8 +231,10 @@ function RoundManager:ConstructRaids(zoneName)
 		table.insert( self.zones[zoneName], raid )
 	end
 	-- Final Boss bruh
-	if zoneName == "Elysium" then local finalBoss = BaseEvent(zoneName, EVENT_TYPE_BOSS, "elysium_boss_apotheosis" ) end
-	table.insert( self.zones[zoneName][#self.zones[zoneName]], finalBoss )
+	if zoneName == "Elysium" then 
+		local finalBoss = BaseEvent(zoneName, EVENT_TYPE_BOSS, "elysium_boss_apotheosis" )
+		table.insert( self.zones[zoneName][#self.zones[zoneName]], finalBoss )
+	end
 end
 
 function RoundManager:RemoveEventFromPool(eventToRemove, pool)	
@@ -361,7 +363,7 @@ end
 
 function RoundManager:StartEvent()
 	local StartEventCatch = function( ... )
-		GameRules:RefreshPlayers( GameRules:GetGameDifficulty() < 3 ) 
+		GameRules:RefreshPlayers( GameRules:GetGameDifficulty() >= 3 ) 
 		EmitGlobalSound("Round.Start")
 		
 		local playerData = {}
@@ -391,7 +393,7 @@ end
 
 function RoundManager:EndEvent(bWonRound)
 	local EndEventCatch = function(  )
-		GameRules:RefreshPlayers( GameRules:GetGameDifficulty() < 3 ) 
+		GameRules:RefreshPlayers( GameRules:GetGameDifficulty() >= 3 ) 
 		CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_has_ended", {})
 		local event = self.zones[self.currentZone][1][1]
 		event.eventEnded = true

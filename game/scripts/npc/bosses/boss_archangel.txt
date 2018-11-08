@@ -95,7 +95,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"60 80"
+				"damage"					"60 75"
 			}
 			"01"
 			{

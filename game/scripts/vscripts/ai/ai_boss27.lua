@@ -72,7 +72,7 @@ if IsServer() then
 							OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
 							AbilityIndex = thisEntity.bigbear:entindex()
 						})
-						return AI_THINK_RATE
+						return thisEntity.bigbear:GetCastPoint() + 0.1
 					end
 					if thisEntity.smallbear:IsFullyCastable() then
 						ExecuteOrderFromTable({
@@ -80,7 +80,7 @@ if IsServer() then
 							OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
 							AbilityIndex = thisEntity.smallbear:entindex()
 						})
-						return AI_THINK_RATE
+						return thisEntity.smallbear:GetCastPoint() + 0.1
 					end
 					if nearest then
 						if thisEntity.mark:IsFullyCastable() and RollPercentage(45) then
@@ -132,7 +132,7 @@ if IsServer() then
 							OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
 							AbilityIndex = thisEntity.bigbear:entindex()
 						})
-						return AI_THINK_RATE
+						return thisEntity.bigbear:GetCastPoint() + 0.1
 					end
 					if thisEntity.smallbear:IsFullyCastable() and thisEntity:GetSmallBearCount() <= thisEntity:GetMaxSmallBearCount()  and RollPercentage(50 / math.min(thisEntity:GetSmallBearCount(), 1)) then
 						ExecuteOrderFromTable({
@@ -140,7 +140,7 @@ if IsServer() then
 							OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
 							AbilityIndex = thisEntity.smallbear:entindex()
 						})
-						return AI_THINK_RATE
+						return thisEntity.smallbear:GetCastPoint() + 0.1
 
 					end
 				end
@@ -152,7 +152,7 @@ if IsServer() then
 						OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
 						AbilityIndex = thisEntity.bigbear:entindex()
 					})
-					return AI_THINK_RATE
+					return thisEntity.bigbear:GetCastPoint() + 0.1
 				end
 				if thisEntity.smallbear:IsFullyCastable() and thisEntity:GetSmallBearCount() <= thisEntity:GetMaxSmallBearCount() then
 					ExecuteOrderFromTable({
@@ -160,7 +160,7 @@ if IsServer() then
 						OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
 						AbilityIndex = thisEntity.smallbear:entindex()
 					})
-					return AI_THINK_RATE
+					return thisEntity.smallbear:GetCastPoint() + 0.1
 				end
 				if thisEntity.mark:IsFullyCastable() and RollPercentage(35) then
 					local target = thisEntity:GetTauntTarget() or AICore:RandomEnemyHeroInRange( thisEntity, 8000 , true)
