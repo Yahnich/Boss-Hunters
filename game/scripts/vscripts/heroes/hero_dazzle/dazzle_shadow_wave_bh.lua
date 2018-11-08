@@ -15,16 +15,21 @@ function dazzle_shadow_wave_bh:OnSpellStart()
 	local talent1 = caster:HasTalent("special_bonus_unique_dazzle_shadow_wave_1")
 	local talent2 = caster:HasTalent("special_bonus_unique_dazzle_shadow_wave_2")
 	
-	caster:ApplyEffects( target, healdamage, radius )
+	self:ApplyEffects( caster, healdamage, radius )
 	hitUnits[caster:entindex()] = true
 	Timers:CreateTimer(function()
 		target:EmitSound("Hero_Dazzle.Shadow_Wave")
 		hitUnits[target:entindex()] = true
-		target:ApplyEffects( target, healdamage, radius )
+		self:ApplyEffects( target, healdamage, radius )
 		ParticleManager:FireRopeParticle("particles/units/heroes/hero_dazzle/dazzle_shadow_wave.vpcf", PATTACH_POINT_FOLLOW, prevTarget, target)
 		prevTarget = target
+		bounces = bounces - 1
+		if bounces <= 0 then
+			return
+		end
 		for _, unit in ipairs( caster:FindAllUnitsInRadius( target:GetAbsOrigin(), bounceRadius ) ) do
-			if (unit:IsSameTeam() or talent1) and (not hitUnits[unit] or talent2) then
+			if (unit:IsSameTeam(caster) or talent1) and (not hitUnits[unit:entindex()] or talent2) then
+				target = unit
 				return delay
 			end
 		end

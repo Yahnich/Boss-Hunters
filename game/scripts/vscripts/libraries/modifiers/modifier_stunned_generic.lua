@@ -2,6 +2,7 @@ modifier_stunned_generic = class({})
 
 if IsServer() then
 	function modifier_stunned_generic:OnCreated(kv)
+		self:GetParent():InterruptChannel()
 		if kv.delay == nil or toboolean(kv.delay) == true and not self:GetParent():IsRoundBoss() then
 			self.delay = true
 			self:GetAbility():StartDelayedCooldown(self:GetRemainingTime(), false)

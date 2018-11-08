@@ -15,7 +15,7 @@ function dazzle_weave_bh:OnSpellStart()
 end
 
 modifier_dazzle_weave_bh = class({})
-LinkLuaModifier("modifier_dazzle_weave_bh", "lua_abilities/heroes/dazzle", 0)
+LinkLuaModifier("modifier_dazzle_weave_bh", "heroes/hero_dazzle/dazzle_weave_bh", 0)
 
 function modifier_dazzle_weave_bh:OnCreated()
 	self.armor_per_tick = self:GetTalentSpecialValueFor("armor_per_second")

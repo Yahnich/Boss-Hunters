@@ -5,8 +5,9 @@ function dazzle_poison_touch_bh:OnSpellStart()
 	local target = self:GetCursorTarget()
 	
 	local endRadius = self:GetTalentSpecialValueFor("end_radius")
-	local length = self:GetTalentSpecialValueFor("end_distance")
+	local length = self:GetTalentSpecialValueFor("end_distance") + caster:GetHullRadius() + caster:GetCollisionPadding()
 	local speed = self:GetTalentSpecialValueFor("projectile_speed")
+	local direction = CalculateDirection( target, caster )
 	for _, enemy in ipairs( caster:FindEnemyUnitsInCone(direction, caster:GetAbsOrigin(), endRadius, length) ) do
 		self:FireTrackingProjectile("particles/units/heroes/hero_dazzle/dazzle_poison_touch.vpcf", enemy, speed)
 	end
@@ -14,6 +15,7 @@ end
 
 function dazzle_poison_touch_bh:OnProjectileHit( target, position )
 	if target then
+		local caster = self:GetCaster()
 		target:AddNewModifier( caster, self, "modifier_dazzle_poison_touch_bh", {duration = self:GetTalentSpecialValueFor("duration")} )
 	end
 end

@@ -20,7 +20,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"max_hp_dmg"			"2 1.5"
+				"max_hp_dmg"			"1.5 1"
 			}
 		}
 	}
@@ -44,7 +44,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"debuff_limit"			"12.0 8.0"
+				"debuff_limit"			"5.0 3.0"
 			}
 		}
 	}
@@ -69,7 +69,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"purge_interval"		"30.0 20.0"
+				"purge_interval"		"20.0 15.0"
 			}
 		}
 	}
@@ -134,7 +134,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"15 20"
+				"damage"					"20 25"
 			}
 			"03"
 			{
@@ -163,7 +163,7 @@
 		"AbilityCastRange"				"900"
 		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
 		"AbilityCastPoint"				"0.8 0.5"
-		"AbilityCooldown"				"40"
+		"AbilityCooldown"				"30"
 	
 		"precache"
 		{
@@ -185,17 +185,17 @@
 			"03"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"duration"					"5 8"
+				"duration"					"5"
 			}
 			"04"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"orb_interval"				"0.25"
+				"orb_interval"				"0.25 0.2"
 			}
 			"05"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"orb_duration"				"2 1.5"
+				"orb_duration"				"1.5 1"
 			}
 		}
 	}
@@ -210,9 +210,9 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
 		"MaxLevel"						"3"
 		
-		"AbilityChannelTime"			"3 2"
+		"AbilityChannelTime"			"2 1"
 		"AbilityChannelAnimation"		"ACT_DOTA_TELEPORT"
-		"AbilityCastPoint"				"0"
+		"AbilityCastPoint"				"1"
 		"AbilityCooldown"				"60 45"
 	
 		"precache"
@@ -225,7 +225,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"channel_time"				"3 2"
+				"channel_time"				"2 1"
 			}
 			"02"
 			{
@@ -245,7 +245,7 @@
 			"05"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"sunstrikes_per_hero"		"1 2"
+				"sunstrikes_per_hero"		"2 3"
 			}
 			"06"
 			{
@@ -319,7 +319,7 @@
 		"AbilityCastRange"				"900"
 		"AbilityCastAnimation"			"ACT_DOTA_GENERIC_CHANNEL_1"
 		"AbilityCastPoint"				"0.8 0.5"
-		"AbilityCooldown"				"38 32"
+		"AbilityCooldown"				"32 24"
 	
 		"precache"
 		{
@@ -382,7 +382,7 @@
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"duration"					"5"
+				"duration"					"6 10"
 			}
 		}
 	}
@@ -415,7 +415,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"death_timer"				"10"
+				"death_timer"				"10 8"
 			}
 		}
 	}

@@ -1141,7 +1141,7 @@ function CDOTA_BaseNPC:IsRoundBoss()
 end
 
 function CDOTA_BaseNPC:IsMinion()
-	return self.unitIsRoundBoss ~= true
+	return self.unitIsRoundBoss ~= true or self.unitIsMinion
 end
 
 function CDOTA_BaseNPC:ModifyThreat(val)

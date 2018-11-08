@@ -38,12 +38,12 @@ function modifier_dazzle_shallow_grave_bh:DeclareFunctions()
 end
 
 function modifier_dazzle_shallow_grave_bh:OnDeath(params)
-	if self.talent1 then params.unit == self:GetParent() then
+	if self.talent1 and params.unit == self:GetParent() then
 		local caster = self:GetCaster()
 		local parent = self:GetParent()
 		local ability = self:GetAbility()
 		
-		local damage = parent:GetMaxHealth * self.damagePct
+		local damage = parent:GetMaxHealth() * self.damagePct
 		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( parent:GetAbsOrigin(), self.radius ) ) do
 			ability:DealDamage( caster, enemy, damage, {damage_type = DAMAGE_TYPE_PHYSICAL, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION} )
 		end
@@ -73,5 +73,5 @@ function modifier_dazzle_shallow_grave_bh:GetModifierIncomingDamage_Percentage()
 end
 
 function modifier_dazzle_shallow_grave_bh:GetEffectName()
-	return "particles/units/heroes/hero_dazzle/dazzle_shallow_grave"
+	return "particles/units/heroes/hero_dazzle/dazzle_shallow_grave.vpcf"
 end
