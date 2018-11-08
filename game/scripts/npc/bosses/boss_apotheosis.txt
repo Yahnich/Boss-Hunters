@@ -93,7 +93,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"double_timer"			"24 18"
+				"double_timer"			"24 17.5"
 			}
 			"02"
 			{
@@ -134,7 +134,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"10 15"
+				"damage"					"15 20"
 			}
 			"03"
 			{

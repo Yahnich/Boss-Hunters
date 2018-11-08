@@ -29,7 +29,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"fade_time"				"1.5"
+				"fade_time"				"2"
 			}
 		}
 	}

@@ -63,13 +63,10 @@ function modifier_warlock_corruption_curse:OnDeath(params)
 	if IsServer() then
 		local caster = self:GetCaster()
 		local parent = self:GetParent()
-		if params.unit == parent then
+		if params.unit == parent and ( parent:IsRoundBoss() or parent:IsRealHero() ) then
 			local summon = caster:FindAbilityByName("warlock_summon_imp")
 			if summon then
 				local imp = summon:SummonImp( parent:GetAbsOrigin() )
-				if parent:IsRoundBoss() or parent:IsRealHero() then
-					imp:SetCoreHealth( imp:GetMaxHealth() * self:GetTalentSpecialValueFor("boss_hp_mult") )
-				end
 			end
 			if caster:HasTalent("special_bonus_unique_warlock_corruption_curse_1") then
 				local enemies = caster:FindAllUnitsInRadius(parent:GetAbsOrigin(), caster:FindTalentValue("special_bonus_unique_warlock_corruption_curse_1"))

@@ -420,10 +420,20 @@
 	}
 	"npc_dota_hero_dazzle" // Mystic -> need to do it like this for mergetables
 	{
-		"override_hero"			"npc_dota_hero_dazzle"
+		"override_hero"					"npc_dota_hero_dazzle"
+		"Ability1"						"dazzle_poison_touch_bh"
+		"Ability2"						"dazzle_weave_bh"
+		"Ability3"						"dazzle_shadow_wave_bh"					// Ability 3
+		"Ability6"						"dazzle_shallow_grave_bh"
 		
-		"Ability6"				"dazzle_weave_ebf"
-	
+		"Ability10"						"special_bonus_unique_dazzle_poison_touch_1"
+		"Ability11"						"special_bonus_unique_dazzle_poison_touch_2"
+		"Ability12"						"special_bonus_unique_dazzle_weave_1"
+		"Ability13"						"special_bonus_unique_dazzle_weave_2"
+		"Ability14"						"special_bonus_unique_dazzle_shadow_wave_1"
+		"Ability15"						"special_bonus_unique_dazzle_shadow_wave_2"
+		"Ability16"						"special_bonus_unique_dazzle_shallow_grave_1"
+		"Ability17"						"special_bonus_unique_dazzle_shallow_grave_2"
 	}
 	//=================================================================================================================
 	// HERO: Death Prophet
@@ -433,7 +443,7 @@
 		"override_hero"					"npc_dota_hero_death_prophet"
 		"Ability1"						"death_prophet_crypt_swarm_bh"
 		"Ability2"						"death_prophet_ghastly_haunting"
-		"Ability3"						"death_prophet_spirit_siphon_bh"					// Ability 3
+		"Ability3"						"dazzle_shadow_wave_bh"					// Ability 3
 		"Ability6"						"death_prophet_exorcism_bh"
 		
 		"Ability10"						"special_bonus_unique_death_prophet_crypt_swarm_1"
@@ -1115,38 +1125,38 @@
 	}
 	"npc_dota_hero_monkey_king"
 	{
-		"override_hero"			"npc_dota_hero_monkey_king"
-		"Ability1"				"mk_boundless"
-		"Ability2"				"mk_spring"
-		"Ability3"				"mk_mastery"
-		"Ability4"				"mk_mischief"
-		"Ability5"				"mk_tree"
-		"Ability6"				"mk_command"
+		"override_hero"					"npc_dota_hero_monkey_king"
+		"Ability1"						"mk_boundless"
+		"Ability2"						"mk_spring"
+		"Ability3"						"mk_mastery"
+		"Ability4"						"mk_mischief"
+		"Ability5"						"mk_tree"
+		"Ability6"						"mk_command"
 			
-		"Ability10"				"special_bonus_unique_mk_boundless_1"
-		"Ability11"				"special_bonus_unique_mk_boundless_2"
-		"Ability12"				"special_bonus_unique_mk_spring_1"
-		"Ability13"				"special_bonus_unique_mk_spring_2"
-		"Ability14"				"special_bonus_unique_mk_mastery_1"
-		"Ability15"				"special_bonus_unique_mk_mastery_2"
-		"Ability16"				"special_bonus_unique_mk_command_1"
-		"Ability17"				"special_bonus_unique_mk_command_2"
+		"Ability10"						"special_bonus_unique_mk_boundless_1"
+		"Ability11"						"special_bonus_unique_mk_boundless_2"
+		"Ability12"						"special_bonus_unique_mk_spring_1"
+		"Ability13"						"special_bonus_unique_mk_spring_2"
+		"Ability14"						"special_bonus_unique_mk_mastery_1"
+		"Ability15"						"special_bonus_unique_mk_mastery_2"
+		"Ability16"						"special_bonus_unique_mk_command_1"
+		"Ability17"						"special_bonus_unique_mk_command_2"
 	}
 	"npc_dota_hero_morphling_ebf"
 	{
-		"override_hero"			"npc_dota_hero_morphling"
-		// "Ability1"				"morph_wave"
-		// "Ability2"				"morph_agi_strike"
-		// "Ability3"				"morph_str_strike"
+		"override_hero"					"npc_dota_hero_morphling"
+		// "Ability1"					"morph_wave"
+		// "Ability2"					"morph_agi_strike"
+		// "Ability3"					"morph_str_strike"
 	
-		"Ability15"		"special_bonus_all_stats_8"
-		"Ability16"		"special_bonus_unique_morphling_1"
-		"Ability17"		"special_bonus_unique_morphling_4"
-		"Ability18"		"special_bonus_attack_speed_30"
-		"Ability19"		"special_bonus_agility_20"
-		"Ability20"		"special_bonus_strength_20"
-		"Ability21"		"special_bonus_unique_morphling_6"
-		"Ability22"		"special_bonus_unique_morphling_3"
+		"Ability15"						"special_bonus_all_stats_8"
+		"Ability16"						"special_bonus_unique_morphling_1"
+		"Ability17"						"special_bonus_unique_morphling_4"
+		"Ability18"						"special_bonus_attack_speed_30"
+		"Ability19"						"special_bonus_agility_20"
+		"Ability20"						"special_bonus_strength_20"
+		"Ability21"						"special_bonus_unique_morphling_6"
+		"Ability22"						"special_bonus_unique_morphling_3"
 		
 	}
 	"npc_dota_hero_naga_siren_ebf"

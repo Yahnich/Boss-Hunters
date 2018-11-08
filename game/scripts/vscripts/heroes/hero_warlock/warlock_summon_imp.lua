@@ -86,7 +86,7 @@ function modifier_warlock_summon_imp_aghs:OnDeath(params)
 				if params.unit == caster then
 					ability:CreateGolem(position)
 				elseif params.unit:GetUnitName() == "npc_dota_warlock_imp" then
-					local golem = ability:CreateGolem(position)
+					local golem = ability:CreateGolem(position, ability:GetTalentSpecialValueFor("golem_duration") / 2)
 					golem:SetCoreHealth( golem:GetBaseMaxHealth() * 0.33 )
 					golem:SetModelScale( golem:GetModelScale() * 0.66 )
 				end
