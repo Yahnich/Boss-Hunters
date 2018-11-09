@@ -26,7 +26,6 @@ end
 function modifier_boss_apotheosis_blessed_being:OnIntervalThink()
 	local debuffFound = false
 	local parent = self:GetParent()
-	if parent:PassivesDisabled() then return end
 	for _, modifier in ipairs( parent:FindAllModifiers() ) do
 		if not modifier.IsDebuff then
 			if modifier:GetCaster() and not modifier:GetCaster():IsSameTeam( parent ) then

@@ -33,7 +33,7 @@ function boss_apotheosis_focused_beam:OnSpellStart()
 			ParticleManager:SetParticleControl( pfx, 1, endPos )
 			if thinker >= interval then
 				for _,enemy in pairs(caster:FindEnemyUnitsInLine(caster:GetAbsOrigin(), endPos, width, {})) do
-					self:DealDamage( caster, enemy, damage )
+					self:DealDamage( caster, enemy, damage * interval )
 				end
 				thinker = 0
 			end
