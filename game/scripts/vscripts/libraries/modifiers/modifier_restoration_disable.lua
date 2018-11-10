@@ -34,3 +34,7 @@ end
 function modifier_restoration_disable:IsHidden()
 	return false
 end
+
+function modifier_restoration_disable:IsPurgable()
+	return false
+end

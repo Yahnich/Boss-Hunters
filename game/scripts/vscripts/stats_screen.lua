@@ -89,9 +89,6 @@ function StatsScreen:RegisterPlayer(hero, bRespec)
 	hero:SetAttributePoints( 0 )
 	
 	hero:AddNewModifier(hero, nil, "modifier_stats_system_handler", {})
-	hero:AddNewModifier(hero, nil, "modifier_cooldown_reduction_handler", {})
-	hero:AddNewModifier(hero, nil, "modifier_base_attack_time_handler", {})
-	hero:AddNewModifier(hero, nil, "modifier_accuracy_handler", {})
 	hero:AddNewModifier(hero, nil, "modifier_mana_regen_throttle", {})
 end
 

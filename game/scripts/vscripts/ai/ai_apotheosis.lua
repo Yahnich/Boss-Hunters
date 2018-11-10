@@ -64,6 +64,29 @@ end
 function AIThink(thisEntity)
 	if not thisEntity:IsDominated() and not thisEntity:IsChanneling() then
 		local target = AICore:GetHighestPriorityTarget(thisEntity)
+		local totalHeroes = thisEntity:FindEnemyUnitsInRadius( thisEntity:GetAbsOrigin(), -1, {type = DOTA_UNIT_TARGET_HERO} )
+		if thisEntity.kill:IsFullyCastable() and #totalHeroes > 1 then
+			local killTarget = totalHeroes[RandomInt( #totalHeroes, 1 )]
+			return CastTheEnd(thisEntity, killTarget )
+		end
+		if thisEntity.shield:IsFullyCastable() then
+			if thisEntity:PassivesDisabled() or AICore:BeingAttacked( thisEntity ) >= math.ceil(#HeroList:GetActiveHeroes() / 2) then
+				return CastShieldOfValhalla( thisEntity )
+			end
+		end
+		if thisEntity.judge:IsFullyCastable() then
+			local judgeHeroes = AICore:TotalEnemyHeroesInRange( thisEntity, thisEntity.judge:GetTrueCastRange() )
+			if judgeHeroes > AICore:TotalEnemyHeroesInRange( thisEntity, thisEntity:GetAttackRange() )
+			or judgeHeroes > AICore:BeingAttacked( thisEntity ) then
+				return CastJudgeTheCowards( thisEntity )
+			end
+		end
+		if thisEntity.rampage:IsFullyCastable() and RollPercentage(35) then
+			return CastRampage(thisEntity)
+		end
+		if thisEntity.decimate:IsFullyCastable() and RollPercentage( 25 ) then
+			return CastDecimate(thisEntity)
+		end
 		if thisEntity.beam:IsFullyCastable() then
 			return CastFocusedBeam(thisEntity)
 		end
@@ -78,29 +101,6 @@ function AIThink(thisEntity)
 					return CastRelentlessHunter(thisEntity, position)
 				end
 			end
-		end
-		if thisEntity.rampage:IsFullyCastable() and RollPercentage(35) then
-			return CastRampage(thisEntity)
-		end
-		if thisEntity.shield:IsFullyCastable() then
-			if thisEntity:PassivesDisabled() or AICore:BeingAttacked( thisEntity ) >= math.ceil(#HeroList:GetActiveHeroes() / 2) then
-				return CastShieldOfValhalla( thisEntity )
-			end
-		end
-		local totalHeroes = FindUnitsInRadius( thisEntity:GetTeamNumber(), thisEntity:GetAbsOrigin(), nil, -1, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, 0, 0, false )
-		if thisEntity.judge:IsFullyCastable() then
-			local judgeHeroes = AICore:TotalEnemyHeroesInRange( thisEntity, thisEntity.judge:GetTrueCastRange() )
-			if judgeHeroes > AICore:TotalEnemyHeroesInRange( thisEntity, thisEntity:GetAttackRange() )
-			or judgeHeroes > AICore:BeingAttacked( thisEntity ) then
-				return CastJudgeTheCowards( thisEntity )
-			end
-		end
-		if thisEntity.kill:IsFullyCastable() and #totalHeroes > 1 then
-			local killTarget = totalHeroes[RandomInt( #totalHeroes, 1 )]
-			return CastTheEnd(thisEntity, killTarget )
-		end
-		if thisEntity.decimate:IsFullyCastable() and RollPercentage( 25 ) then
-			return CastDecimate(thisEntity)
 		end
 		return AICore:AttackHighestPriority( thisEntity )
 	else return AI_THINK_RATE end

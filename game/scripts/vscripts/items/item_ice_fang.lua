@@ -32,16 +32,17 @@ modifier_ice_fang_debuff = class({})
 function modifier_ice_fang_debuff:OnCreated()
 	self.slow = self:GetAbility():GetSpecialValueFor("slow")
 	if IsServer() then
-		self.damage = self:GetAbility():GetSpecialValueFor("base_damage") + self:GetCaster():GetPrimaryStatValue() * self:GetAbility():GetSpecialValueFor("damage_over_time") / 100
+		if self:GetCaster():IsRealHero() then
+			self.damage = self:GetAbility():GetSpecialValueFor("base_damage") + self:GetCaster():GetPrimaryStatValue() * self:GetAbility():GetSpecialValueFor("damage_over_time") / 100
+		else
+			self.damage = self:GetAbility():GetSpecialValueFor("base_damage") + self:GetCaster():GetPlayerOwner():GetAssignedHero():GetPrimaryStatValue() * self:GetAbility():GetSpecialValueFor("damage_over_time") / 100
+		end
 		self:StartIntervalThink(1)
 	end
 end
 
 function modifier_ice_fang_debuff:OnRefresh()
-	self.slow = self:GetAbility():GetSpecialValueFor("slow")
-	if IsServer() then
-		self.damage = math.max( self.damage, self:GetAbility():GetSpecialValueFor("base_damage") + self:GetCaster():GetPrimaryStatValue() * self:GetAbility():GetSpecialValueFor("damage_over_time") / 100 )
-	end
+	self:OnCreated()
 end
 
 function modifier_ice_fang_debuff:OnIntervalThink()

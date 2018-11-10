@@ -68,7 +68,7 @@ function modifier_sd_soul_catcher:OnDeath(params)
 	if IsServer() then
 		local caster = self:GetCaster()
 		if caster:HasTalent("special_bonus_unique_sd_soul_catcher_2") and params.unit == self:GetParent() and params.unit:HasModifier("modifier_sd_soul_catcher") then
-			caster:ConjureImage( params.unit:GetAbsOrigin(), 5, 75, 200, "", self:GetAbility(), false, caster )
+			caster:ConjureImage( params.unit:GetAbsOrigin(), 5, 75, 200, nil, self:GetAbility(), false, caster )
 		end
 	end
 end

@@ -33,7 +33,9 @@ function lycan_summon_wolves_bh:OnSpellStart()
 			self:CreateWolf(position)
 		else
 			wolf:RespawnUnit()
+			self:ScaleWolf( wolf )
 			FindClearSpaceForUnit( wolf, position, true )
+			wolf:SetForwardVector(caster:GetForwardVector())
 			wolf:AddNewModifier(caster, self, "modifier_kill", {duration = self:GetTalentSpecialValueFor("wolf_duration")})
 			
 		end
@@ -47,17 +49,21 @@ function lycan_summon_wolves_bh:CreateWolf(position, duration)
 	wolf:SetForwardVector(caster:GetForwardVector())
 	table.insert(caster.summonedWolves, wolf)
 	-- health handling
-	local wolfHP = self:GetTalentSpecialValueFor("wolf_hp")
-	local wolfDamage = self:GetTalentSpecialValueFor("wolf_damage")
-	wolf:SetCoreHealth(wolfHP)
-	wolf:SetAverageBaseDamage(wolfDamage, 15)
-	wolf:SetModelScale(0.8 + (self:GetLevel()/2)/10)
-	
 	if caster:HasTalent("special_bonus_unique_lycan_summon_wolves_2") then
 		wolf:SetHasInventory(true)
 		wolf:SetUnitCanRespawn(true)
 		wolf:SetCanSellItems(true)
 	end
+	
+	self:ScaleWolf( wolf )
+end
+
+function lycan_summon_wolves_bh:ScaleWolf( wolf )
+	local wolfHP = self:GetTalentSpecialValueFor("wolf_hp")
+	local wolfDamage = self:GetTalentSpecialValueFor("wolf_damage")
+	wolf:SetCoreHealth(wolfHP)
+	wolf:SetAverageBaseDamage(wolfDamage, 15)
+	wolf:SetModelScale(0.8 + (self:GetLevel()/2)/10)
 	
 	if self:GetLevel() > 1 then
 		wolf:AddAbility("lycan_summon_wolves_critical_strike"):SetLevel( self:GetLevel() - 1 )

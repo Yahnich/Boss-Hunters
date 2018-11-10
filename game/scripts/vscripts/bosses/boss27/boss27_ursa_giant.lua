@@ -5,6 +5,7 @@ function boss27_ursa_giant:OnAbilityPhaseStart()
 	EmitSoundOn("Hero_Ursa.Enrage", caster)
 	self.warmUpFX = ParticleManager:CreateParticle("particles/bosses/boss27/boss27_summon_bigbears_summon.vpcf", PATTACH_POINT_FOLLOW, caster)
 	caster.bigBearsTable = caster.bigBearsTable or {}
+	return true
 end
 
 function boss27_ursa_giant:OnAbilityPhaseInterrupted()

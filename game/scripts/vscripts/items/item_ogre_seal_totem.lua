@@ -37,8 +37,7 @@ function item_ogre_seal_totem:OnSpellStart()
 		self.stun_duration = self:GetSpecialValueFor("stun_duration")
 
 		local vToTarget = self:GetCursorPosition() - self:GetCaster():GetOrigin()
-		vToTarget = vToTarget:Normalized()
-		local vLocation = self:GetCaster():GetOrigin() + vToTarget * 25
+		local vLocation = self:GetCaster():GetOrigin() + vToTarget:Normalized() * vToTarget:Length2D() / 3
 		local kv =
 		{
 			vLocX = vLocation.x,

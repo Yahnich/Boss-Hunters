@@ -67,12 +67,7 @@ if IsServer() then
 				local nearest = AICore:NearestEnemyHeroInRange( thisEntity, thisEntity:GetIdealSpeed() * 1.5 + thisEntity:GetAttackRange(), true )
 				if thisEntity:GetTotalBearCount() == 0 then
 					if thisEntity.bigbear:IsFullyCastable() then
-						ExecuteOrderFromTable({
-							UnitIndex = thisEntity:entindex(),
-							OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
-							AbilityIndex = thisEntity.bigbear:entindex()
-						})
-						return thisEntity.bigbear:GetCastPoint() + 0.1
+						return SummonBearGiant(thisEntity)
 					end
 					if thisEntity.smallbear:IsFullyCastable() then
 						ExecuteOrderFromTable({
@@ -127,12 +122,7 @@ if IsServer() then
 						return thisEntity.destroy:GetCastPoint() + 0.1
 					end
 					if thisEntity.bigbear:IsFullyCastable() and thisEntity:GetBigBearCount() <= thisEntity:GetMaxBigBearCount() and RollPercentage( 50 / math.min(thisEntity:GetBigBearCount(), 1) ) then
-						ExecuteOrderFromTable({
-							UnitIndex = thisEntity:entindex(),
-							OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
-							AbilityIndex = thisEntity.bigbear:entindex()
-						})
-						return thisEntity.bigbear:GetCastPoint() + 0.1
+						return SummonBearGiant(thisEntity)
 					end
 					if thisEntity.smallbear:IsFullyCastable() and thisEntity:GetSmallBearCount() <= thisEntity:GetMaxSmallBearCount()  and RollPercentage(50 / math.min(thisEntity:GetSmallBearCount(), 1)) then
 						ExecuteOrderFromTable({
@@ -147,12 +137,7 @@ if IsServer() then
 				return AICore:AttackHighestPriority( thisEntity )
 			else
 				if thisEntity.bigbear:IsFullyCastable() and thisEntity:GetBigBearCount() <= thisEntity:GetMaxBigBearCount() then
-					ExecuteOrderFromTable({
-						UnitIndex = thisEntity:entindex(),
-						OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
-						AbilityIndex = thisEntity.bigbear:entindex()
-					})
-					return thisEntity.bigbear:GetCastPoint() + 0.1
+					return SummonBearGiant(thisEntity)
 				end
 				if thisEntity.smallbear:IsFullyCastable() and thisEntity:GetSmallBearCount() <= thisEntity:GetMaxSmallBearCount() then
 					ExecuteOrderFromTable({
@@ -189,4 +174,14 @@ if IsServer() then
 		else return AI_THINK_RATE end
 		return AI_THINK_RATE
 	end
+end
+
+function SummonBearGiant(thisEntity)
+	print( thisEntity.bigbear:GetCastPoint() )
+	ExecuteOrderFromTable({
+		UnitIndex = thisEntity:entindex(),
+		OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
+		AbilityIndex = thisEntity.bigbear:entindex()
+	})
+	return thisEntity.bigbear:GetCastPoint() + 0.1
 end

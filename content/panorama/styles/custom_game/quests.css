@@ -262,16 +262,16 @@
 
 #QuestsAscensionVoteHolder
 {
-	height: 180px;
-	width: 360px;
+	height: 480px;
+	width: 560px;
 	background-color: gradient( linear, 0% 0%, 100% 0%, from( #121218FF ), color-stop( .2, #25282aFF), color-stop( .8, #25282aFF), to( #121218FF ) );
 	background-image: url("s2r://panorama/images/hud/reborn/ability_bg_psd.vtex");
 	background-repeat: no-repeat;
 	opacity: 0.9;
 	background-size: 100% 100%;
-	visibility: collapse ;
+	visibility: collapse;
 	z-index: 5;
-	vertical-align: bottom;
+	vertical-align: center;
 	horizontal-align: center;
 	margin-bottom: 200px;
 	

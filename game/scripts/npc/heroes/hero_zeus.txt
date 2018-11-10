@@ -493,7 +493,7 @@
 			"07"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius"				"1500"
+				"scepter_radius"		"1500"
 			}
 		}
 	

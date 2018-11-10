@@ -17,7 +17,7 @@ function item_protection_sphere:OnSpellStart()
 	end
 end
 
-modifier_item_protection_sphere_passive = class({})
+modifier_item_protection_sphere_passive = class(itemBaseClass)
 LinkLuaModifier( "modifier_item_protection_sphere_passive", "items/item_protection_sphere.lua", LUA_MODIFIER_MOTION_NONE )
 function modifier_item_protection_sphere_passive:OnCreated()
 	self.spellamp = self:GetSpecialValueFor("spell_amp")
@@ -85,11 +85,7 @@ function modifier_item_protection_sphere_passive:IsHidden()
 	return true
 end
 
-function modifier_item_protection_sphere_passive:GetAttributes()
-	return MODIFIER_ATTRIBUTE_MULTIPLE
-end
-
-modifier_item_protection_sphere_block = class(itemBaseClass)
+modifier_item_protection_sphere_block = class({})
 LinkLuaModifier( "modifier_item_protection_sphere_block", "items/item_protection_sphere.lua", LUA_MODIFIER_MOTION_NONE )
 
 function modifier_item_protection_sphere_block:OnCreated()
@@ -116,6 +112,6 @@ function modifier_item_protection_sphere_block:GetAbsorbSpell(params)
 	end
 end
 
-function modifier_item_protection_sphere_block:IsHidden()
+function modifier_item_protection_sphere_block:IsPurgable()
 	return false
 end

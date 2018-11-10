@@ -65,7 +65,7 @@ function et_earth_splitter:OnSpellStart()
 
 		direction = CalculateDirection(point, caster:GetAbsOrigin())
 
-		endPos = caster:GetAbsOrigin() + direction * (self:GetTrueCastRange()+get_aether_range(caster:GetOwner()))
+		endPos = caster:GetAbsOrigin() + direction * self:GetTrueCastRange()
 		ParticleManager:FireParticle("particles/units/heroes/hero_elder_titan/elder_titan_earth_splitter.vpcf", PATTACH_POINT, caster:GetOwner(), {[0]=startPos, [1]=endPos, [3]=Vector(0,self:GetTalentSpecialValueFor("crack_time"),0)})
 	end
 

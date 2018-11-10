@@ -1,6 +1,10 @@
 kunkka_torrent_bh = class({})
 LinkLuaModifier("modifier_kunkka_torrent_bh", "heroes/hero_kunkka/kunkka_torrent_bh", LUA_MODIFIER_MOTION_NONE)
 
+function kunkka_torrent_bh:GetAOERadius()
+	return self:GetTalentSpecialValueFor("radius")
+end
+
 function kunkka_torrent_bh:IsStealable()
     return true
 end
@@ -21,7 +25,7 @@ function kunkka_torrent_bh:CreateTorrent(position)
 
     local bubbles = ParticleManager:CreateParticle("particles/units/heroes/hero_kunkka/kunkka_spell_torrent_bubbles.vpcf", PATTACH_POINT, caster)
                     ParticleManager:SetParticleControl(bubbles, 0, position)
-
+	
     Timers:CreateTimer(self:GetTalentSpecialValueFor("delay"), function()
         ParticleManager:ClearParticle(bubbles)
         StopSoundOn("Ability.pre.Torrent", caster)

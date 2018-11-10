@@ -115,12 +115,12 @@
 			"11"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"max_hp_trigger"		"80"
+				"max_hp_trigger"		"20"
 			}
 			"12"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"buff_duration"			"5"
+				"var_type"				"FIELD_FLOAT"
+				"buff_duration"			"3.5"
 			}
 			"13"
 			{

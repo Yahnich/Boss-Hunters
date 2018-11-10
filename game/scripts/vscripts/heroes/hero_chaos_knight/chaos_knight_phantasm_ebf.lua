@@ -75,8 +75,7 @@ if IsServer() then
 					end
 				end
 			end
-			for i = 1, illusions do
-				local illusion = target:ConjureImage( position, duration, outDmg, inDmg, nil, self )
+			local callback = ( function( illusion, self, caster, ability )
 				if caster:HasTalent("special_bonus_unique_chaos_knight_phantasm_1") then
 					local cBolt = caster:FindAbilityByName("chaos_knight_chaos_bolt_ebf")
 					local cStrike = caster:FindAbilityByName("chaos_knight_chaos_strike_ebf")
@@ -90,6 +89,9 @@ if IsServer() then
 						end
 					end
 				end
+			end)
+			for i = 1, illusions do
+				local illusion = target:ConjureImage( position, duration, outDmg, inDmg, nil, self, true, caster, callback )
 			end
 		end)
 	end

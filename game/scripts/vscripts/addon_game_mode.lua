@@ -738,12 +738,7 @@ function CHoldoutGameMode:OnAbilityUsed(event)
 		local escapemod = 0
 		local talentmodifier = 0
 		local negtalentmodifier = 0
-		if hero:HasTalentType("mp_regen") then
-			talentmodifier = hero:HighestTalentTypeValue("mp_regen")
-		end
-		if hero:HasTalentType("mp") then
-			negtalentmodifier = hero:HighestTalentTypeValue("mp")
-		end
+		
 		if addedthreat < 0 then
 			escapemod = 2
 		end
