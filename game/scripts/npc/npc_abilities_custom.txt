@@ -165,6 +165,8 @@
 #base "heroes/hero_medusa.txt"
 #base "heroes/hero_monkey_king.txt"
 #base "heroes/hero_dazzle.txt"
+#base "heroes/hero_morphling.txt"
+#base "heroes/hero_visage.txt"
 
 "DOTAAbilities"
 {

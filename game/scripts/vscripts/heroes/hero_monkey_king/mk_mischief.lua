@@ -19,6 +19,7 @@ function mk_mischief:OnSpellStart()
 		caster:RemoveModifierByName("modifier_mk_mischief")
 	else
 		EmitSoundOn("Hero_MonkeyKing.Transform.On", caster)
+		caster:RemoveModifierByName("modifier_mk_tree_perch")
 		caster:AddNewModifier(caster, self, "modifier_mk_mischief", {Duration = 30})
 		self:EndCooldown()
 	end

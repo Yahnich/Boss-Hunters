@@ -98,6 +98,7 @@ function modifier_medusa_viper:OnAttack(params)
 					self:GetAbility():FireTrackingProjectile("particles/units/heroes/hero_medusa/medusa_mystic_snake_projectile.vpcf", enemy, caster:GetProjectileSpeed(), {}, DOTA_PROJECTILE_ATTACHMENT_ATTACK_1, true, false, 0)
 					self:DecrementStackCount()
 					if self:GetStackCount() < 1 then
+						self:GetAbility():SetCooldown()
 						self:Destroy()
 					end
 					break
