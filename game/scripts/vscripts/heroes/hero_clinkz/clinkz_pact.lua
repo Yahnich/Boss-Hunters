@@ -61,7 +61,7 @@ end
 
 function modifier_clinkz_pact:OnCreated(table)
     self.hpPercent = table.hpPercent
-    self.dmgPercent = table.hpPercent
+    self.dmgPercent = table.dmgPercent
 
     if self:GetCaster():HasTalent("special_bonus_unique_clinkz_pact_2") then
         self.min_health = 1
@@ -75,7 +75,7 @@ end
 
 function modifier_clinkz_pact:OnRefresh(table)
     self.hpPercent = table.hpPercent
-    self.dmgPercent = table.hpPercent
+    self.dmgPercent = table.dmgPercent
 
     if self:GetCaster():HasTalent("special_bonus_unique_clinkz_pact_2") then
         self.min_health = 1

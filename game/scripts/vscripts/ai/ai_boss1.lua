@@ -106,7 +106,7 @@ if IsServer() then
 						if hasBothSpells then
 							local distance = CalculateDistance(thisEntity, target)
 							local pathLength = GridNav:FindPathLength(thisEntity:GetAbsOrigin(), target:GetAbsOrigin())
-							if (pathLength < 0 or AICore:NumEnemiesInLine(thisEntity, thisEntity.rush:GetTrueCastRange(), 175, true) <= math.min(PlayerResource:FindActivePlayerCount(), 2)) and thisEntity.blink:IsFullyCastable() then
+							if (pathLength < 0 or AICore:NumEnemiesInLine(thisEntity, thisEntity.rush:GetTrueCastRange(), 175, true) <= math.min(HeroList:GetActiveHeroCount(), 2)) and thisEntity.blink:IsFullyCastable() then
 								local targetPos = AICore:OptimalHitPosition(thisEntity, distance, thisEntity.blink:GetSpecialValueFor("strike_radius"), true)
 								ExecuteOrderFromTable({
 									UnitIndex = thisEntity:entindex(),

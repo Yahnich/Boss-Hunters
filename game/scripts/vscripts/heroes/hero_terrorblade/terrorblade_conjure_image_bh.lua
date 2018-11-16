@@ -16,17 +16,19 @@ function terrorblade_conjure_image_bh:CreateImage( position, duration, outgoing,
 	local fOut = outgoing or self:GetTalentSpecialValueFor("illusion_outgoing_damage")
 	local fInc = incoming or self:GetTalentSpecialValueFor("illusion_incoming_damage")
 
-	local illusion = caster:ConjureImage( vPos, fDur, fOut - 100, fInc - 100, "modifier_terrorblade_conjureimage", self, true, caster )
-	illusion:StartGesture( ACT_DOTA_SPAWN )
-	if caster:HasTalent("special_bonus_unique_terrorblade_conjure_image_2") then
-		local heal = caster:GetMaxHealth() * caster:FindTalentValue("special_bonus_unique_terrorblade_conjure_image_2") / 100
-		Timers:CreateTimer(function()
-			if not illusion:IsNull() and illusion:IsAlive() then
-				return 0.33
-			else
-				caster:HealEvent( heal, self, caster )
-			end
-		end)
-	end
+	local callback = ( function(illusion)
+		illusion:StartGesture( ACT_DOTA_SPAWN )
+		if caster:HasTalent("special_bonus_unique_terrorblade_conjure_image_2") then
+			local heal = caster:GetMaxHealth() * caster:FindTalentValue("special_bonus_unique_terrorblade_conjure_image_2") / 100
+			Timers:CreateTimer(function()
+				if not illusion:IsNull() and illusion:IsAlive() then
+					return 0.33
+				else
+					caster:HealEvent( heal, self, caster )
+				end
+			end)
+		end
+	end )
+	local illusion = caster:ConjureImage( vPos, fDur, fOut - 100, fInc - 100, "modifier_terrorblade_conjureimage", self, true, caster, callback )
 	return illusion
 end

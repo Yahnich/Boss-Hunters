@@ -18,7 +18,6 @@ local function StartEvent(self)
 			return 5
 		end
 	end)
-	
 	self._vEventHandles = {
 		ListenToGameEvent( "entity_killed", require("events/base_combat"), self ),
 	}

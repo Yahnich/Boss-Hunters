@@ -17,7 +17,7 @@ function clinkz_strafe_bh:OnSpellStart()
     caster:AddNewModifier(caster, self, "modifier_clinkz_strafe_bh", {Duration = self:GetTalentSpecialValueFor("duration")})
 
     if caster:HasTalent("special_bonus_unique_clinkz_strafe_bh_2") then
-        caster:ConjureImage( caster:GetAbsOrigin(), self:GetTalentSpecialValueFor("duration"), 100, 300, "", self, false, caster )
+        caster:ConjureImage( caster:GetAbsOrigin(), self:GetTalentSpecialValueFor("duration"), 100, 300, nil, self, false, caster )
     end
 end
 

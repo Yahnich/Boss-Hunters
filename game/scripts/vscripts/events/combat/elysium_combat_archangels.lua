@@ -1,13 +1,13 @@
 local function StartEvent(self)
 	local spawnPos = RoundManager:PickRandomSpawn()
-	self.enemiesToSpawn = 2 + RoundManager:GetCurrentRaidTier() * 3
+	self.enemiesToSpawn = 1 + RoundManager:GetCurrentRaidTier() * 2
 	self.eventEnded = false
 	self.eventHandler = Timers:CreateTimer(3, function()
 		local spawn = CreateUnitByName("npc_dota_boss_archangel", RoundManager:PickRandomSpawn(), true, nil, nil, DOTA_TEAM_BADGUYS)
 		spawn.unitIsRoundBoss = true
 		self.enemiesToSpawn = self.enemiesToSpawn - 1
 		if self.enemiesToSpawn > 0 then
-			return 2
+			return 10 / GameRules:GetGameDifficulty()
 		end
 	end)
 	self._vEventHandles = {

@@ -358,6 +358,7 @@
 		"MaxLevel"						"2"
 		
 		"AbilityCooldown"				"50 40"
+		"AbilityCastAnimation"			"ACT_DOTA_VICTORY"
 		"AbilityCastPoint"				"1.5 1"
 		
 		"precache"
@@ -398,6 +399,7 @@
 		"MaxLevel"						"2"
 		
 		"AbilityCooldown"				"40 30"
+		"AbilityCastAnimation"			"ACT_DOTA_VICTORY"
 		"AbilityCastPoint"				"1.5 1"
 		
 		"precache"

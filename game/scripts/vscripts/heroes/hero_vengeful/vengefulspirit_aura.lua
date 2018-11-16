@@ -89,8 +89,11 @@ function modifier_vengefulspirit_aura_buff:OnDeath(params)
             if self:GetCaster():HasScepter() then
                 damage = self:GetTalentSpecialValueFor("scepter_image_damage_out")
             end
-    		local illusion = self:GetParent():ConjureImage( self:GetParent():GetAbsOrigin(), self:GetTalentSpecialValueFor("image_duration"), damage, self:GetTalentSpecialValueFor("image_damage_in"))
-    		illusion:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_vengefulspirit_aura_illusion", {})
+			local callback (function( illusion, self, caster, ability )
+				illusion:AddNewModifier(caster, ability, "modifier_vengefulspirit_aura_illusion", {})
+			end)
+    		local illusion = self:GetParent():ConjureImage( self:GetParent():GetAbsOrigin(), self:GetTalentSpecialValueFor("image_duration"), damage, self:GetTalentSpecialValueFor("image_damage_in"), self, true, self:GetCaster(), callback)
+    		
     	end
     end
 end

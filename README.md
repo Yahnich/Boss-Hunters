@@ -1,3 +1,2 @@
-# Epic Boss Fight: Houthakker Edition
-
-Please no stealerino
+# Boss Hunters
+Everything is visible but please no stealerino

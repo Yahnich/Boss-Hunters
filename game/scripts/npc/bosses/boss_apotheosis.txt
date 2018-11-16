@@ -20,7 +20,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"max_hp_dmg"			"2 1.5"
+				"max_hp_dmg"			"1.5 1"
 			}
 		}
 	}
@@ -44,7 +44,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"debuff_limit"			"12.0 8.0"
+				"debuff_limit"			"7.5 5.0"
 			}
 		}
 	}
@@ -69,7 +69,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"purge_interval"		"30.0 20.0"
+				"purge_interval"		"20.0 15.0"
 			}
 		}
 	}
@@ -93,7 +93,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"double_timer"			"22.5 15"
+				"double_timer"			"24 17.5"
 			}
 			"02"
 			{
@@ -114,15 +114,15 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"MaxLevel"						"3"
 		
-		"AbilityCastRange"				"900"
+		"AbilityCastRange"				"900 1800"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
 		"AbilityCastPoint"				"0.8 0.5"
 		"AbilityCooldown"				"30 22"
 	
 		"precache"
 		{
-			"particle"					"particles/units/heroes/heroes_underlord/abyssal_underlord_darkrift_target.vpcf"
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_weaver.vsndevts"
+			"particle"					"particles/units/heroes/hero_phoenix/phoenix_sunray.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_phoenix.vsndevts"
 		}
 		"AbilitySpecial"
 		{
@@ -134,7 +134,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"10 15"
+				"damage"					"80 100"
 			}
 			"03"
 			{
@@ -144,7 +144,7 @@
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"duration"					"10"
+				"duration"					"14"
 			}
 		}
 	}
@@ -163,7 +163,7 @@
 		"AbilityCastRange"				"900"
 		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
 		"AbilityCastPoint"				"0.8 0.5"
-		"AbilityCooldown"				"40"
+		"AbilityCooldown"				"30"
 	
 		"precache"
 		{
@@ -175,27 +175,27 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"radius"					"150 175"
+				"radius"					"175"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"175 250"
+				"damage"					"250 350"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"duration"					"5 8"
+				"duration"					"5"
 			}
 			"04"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"orb_interval"				"0.33"
+				"orb_interval"				"0.25 0.2"
 			}
 			"05"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"orb_duration"				"1.5 1.0"
+				"orb_duration"				"1.5 1"
 			}
 		}
 	}
@@ -210,9 +210,9 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
 		"MaxLevel"						"3"
 		
-		"AbilityChannelTime"			"3 2"
+		"AbilityChannelTime"			"2 1"
 		"AbilityChannelAnimation"		"ACT_DOTA_TELEPORT"
-		"AbilityCastPoint"				"0"
+		"AbilityCastPoint"				"1"
 		"AbilityCooldown"				"60 45"
 	
 		"precache"
@@ -225,7 +225,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"channel_time"				"3 2"
+				"channel_time"				"2 1"
 			}
 			"02"
 			{
@@ -245,7 +245,7 @@
 			"05"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"sunstrikes_per_hero"		"1 2"
+				"sunstrikes_per_hero"		"2 3"
 			}
 			"06"
 			{
@@ -268,7 +268,7 @@
 		
 		"AbilityCastRange"				"750 900"
 		"AbilityCastAnimation"			"ACT_DOTA_SPAWN"
-		"AbilityCastPoint"				"0.8 0.5"
+		"AbilityCastPoint"				"1.5 1"
 		"AbilityCooldown"				"16 12"
 	
 		"precache"
@@ -319,7 +319,7 @@
 		"AbilityCastRange"				"900"
 		"AbilityCastAnimation"			"ACT_DOTA_GENERIC_CHANNEL_1"
 		"AbilityCastPoint"				"0.8 0.5"
-		"AbilityCooldown"				"38 32"
+		"AbilityCooldown"				"26 20"
 	
 		"precache"
 		{
@@ -352,10 +352,10 @@
 		"AbilityTextureName"			"dark_seer_vacuum"
 		"MaxLevel"						"3"
 		
-		"AbilityCastRange"				"900"
+		"AbilityCastRange"				"900 1200"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
-		"AbilityCastPoint"				"0.8 0.5"
-		"AbilityCooldown"				"24 20"
+		"AbilityCastPoint"				"1.5 1.0"
+		"AbilityCooldown"				"26"
 	
 		"precache"
 		{
@@ -382,7 +382,7 @@
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"duration"					"5"
+				"duration"					"6 10"
 			}
 		}
 	}
@@ -400,9 +400,8 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
 		"MaxLevel"						"3"
 		
-		"AbilityCastRange"				"900"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
-		"AbilityCastPoint"				"1.5 1"
+		"AbilityCastPoint"				"30.5 0.1"
 		"AbilityCooldown"				"80 60"
 	
 		"precache"
@@ -416,7 +415,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"death_timer"				"10"
+				"death_timer"				"10 8"
 			}
 		}
 	}

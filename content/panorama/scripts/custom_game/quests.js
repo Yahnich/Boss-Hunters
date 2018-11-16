@@ -28,7 +28,6 @@ GameEvents.Subscribe( "bh_start_ng_vote", StartNGVote)
 Initialize()
 
 var pressed = false
-
 function StartNGVote(args)
 {
 	$("#QuestsAscensionVoteHolder").visible =  true
@@ -36,13 +35,13 @@ function StartNGVote(args)
 	var voteYes = $("#QuestAscensionVoteConfirmButton")
 	var voteNo = $("#QuestAscensionVoteDeclineButton")
 	var voteHolder = $("#QuestsAscensionVoteHolder")
+	var ascensionDescription = $("#QuestAscensionDescriptionLabel")
 	
-	var ascDescription = $.Localize( "#ascension_Generic_Description", voteHolder );
+	var ascDescription = $.Localize( "#ascension_Generic_Description", ascensionDescription );
 	for(var i = 1; i <= Math.min(args.ascLevel,4); i++ ){
-		ascDescription = ascDescription + " \n<br> " + $.Localize( "#ascension_" + i + "_Description", voteHolder );
+		ascDescription = ascDescription + " \n" + $.Localize( "#ascension_" + i + "_Description", ascensionDescription );
 	}
-	voteHolder.SetPanelEvent("onmouseover", function(){$.DispatchEvent("DOTAShowTextTooltip", voteHolder, ascDescription);});
-	voteHolder.SetPanelEvent("onmouseout", function(){$.DispatchEvent("DOTAHideTextTooltip", voteHolder);});
+	ascensionDescription.text = ascDescription
 	
 	$("#QuestAscensionVoteNoLabel").text =  "No: " + 0
 	$("#QuestAscensionVoteYesLabel").text =  "Yes: " + 0

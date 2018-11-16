@@ -10,6 +10,72 @@ function Context_Wrap(o, funcname)
 	return function(...) o[funcname](o, ...) end
 end
 
+function GetTableLength(rndTable)
+	local counter = 0
+	for k,v in pairs(rndTable) do
+		counter = counter + 1
+	end
+	return counter
+end
+
+function MergeTables( t1, t2 )
+	local copyTable = {}
+	for name, info in pairs(t1) do
+		copyTable[name] = info
+	end
+    for name,info in pairs(t2) do
+		if type(info) == "table"  and type(copyTable[name]) == "table" then
+			MergeTables(copyTable[name], info)
+		else
+			copyTable[name] = info
+		end
+	end
+	return copyTable
+end
+
+function PrintAll(t)
+	for k,v in pairs(t) do
+		print(k,v)
+	end
+end
+
+function table.removekey(t1, key)
+    for k,v in pairs(t1) do
+		if k == key then
+			table.remove(t1,k)
+		end
+	end
+end
+
+function table.removeval(t1, val)
+    for k,v in pairs(t1) do
+		if t1[k] == val then
+			table.remove(t1,k)
+		end
+	end
+end
+
+function table.copy(t1)
+	copy = {}
+	for k,v in pairs(t1) do
+		copy[k] = v
+	end
+	return copy
+end
+
+function RotateVector2D(vector, theta)
+    local xp = vector.x*math.cos(theta)-vector.y*math.sin(theta)
+    local yp = vector.x*math.sin(theta)+vector.y*math.cos(theta)
+    return Vector(xp,yp,vector.z):Normalized()
+end
+
+function ToRadians(degrees)
+	return degrees * math.pi / 180
+end
+
+function ToDegrees(radians)
+	return radians * 180 / math.pi 
+end
 
 function GetClientSync(key)
  	local value = CustomNetTables:GetTableValue( "syncing_purposes", key).value
@@ -105,14 +171,6 @@ function CDOTA_BaseNPC:CreateDummy(position, duration)
 	return dummy
 end
 
-function CDOTA_BaseNPC:CalculateStatBonus()
-	return false
-end
-
-function CDOTA_BaseNPC:GetPlayerID()
-	return self:GetPlayerOwnerID()
-end
-
 function CDOTABaseAbility:CreateDummy(position, duration)
 	local dummy = CreateUnitByName("npc_dummy_unit", position, false, nil, nil, self:GetCaster():GetTeam())
 	if duration and duration > 0 then
@@ -120,6 +178,14 @@ function CDOTABaseAbility:CreateDummy(position, duration)
 	end
 	dummy:AddNewModifier(self:GetCaster(), nil, "modifier_hidden_generic", {})
 	return dummy
+end
+
+function CDOTA_BaseNPC:CalculateStatBonus()
+	return false
+end
+
+function CDOTA_BaseNPC:GetPlayerID()
+	return self:GetPlayerOwnerID()
 end
 
 function CDOTA_BaseNPC_Hero:CreateSummon(unitName, position, duration, bControllable)
@@ -146,23 +212,6 @@ end
 
 function CDOTA_BaseNPC_Hero:GetSummons()
 	return self.summonTable or {}
-end
-
-function CDOTA_BaseNPC_Hero:GetBarrier()
-	return self._barrierHP or 0
-end
-
-function CDOTA_BaseNPC_Hero:SetBarrier(amt)
-	self._barrierHP = amt
-end
-
-function CDOTA_BaseNPC_Hero:SetRelic(relicEntity)
-	if self.equippedRelic then self.equippedRelic:Destroy() end
-	self.equippedRelic = relicEntity
-end
-
-function CDOTA_BaseNPC_Hero:GetRelic()
-	return self.equippedRelic
 end
 
 function CDOTA_BaseNPC:IsBeingAttacked()
@@ -227,13 +276,6 @@ function CDOTA_Modifier_Lua:GetSpecialValueFor(specVal)
 	end
 end
 
-function CDOTABaseAbility:GetAbilityTextureName()
-	if GameRules.AbilityKV[self:GetName()] and GameRules.AbilityKV[self:GetName()]["AbilityTextureName"] then
-		return GameRules.AbilityKV[self:GetName()]["AbilityTextureName"]
-	end
-	return nil
-end
-
 function CDOTABaseAbility:DealDamage(attacker, victim, damage, data, spellText)
 	--OVERHEAD_ALERT_BONUS_SPELL_DAMAGE, OVERHEAD_ALERT_DAMAGE, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, OVERHEAD_ALERT_MANA_LOSS
 	if self:IsNull() or victim:IsNull() or attacker:IsNull() then return end
@@ -249,31 +291,6 @@ function CDOTABaseAbility:DealDamage(attacker, victim, damage, data, spellText)
 	end
 	return returnDamage
 end
-
-function CDOTA_BaseNPC:DealAOEDamage(position, radius, damageTable)
-	local team = self:GetTeamNumber()
-	local iTeam = DOTA_UNIT_TARGET_TEAM_ENEMY
-	local iType = DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
-	local iFlag = DOTA_UNIT_TARGET_FLAG_NONE
-	local iOrder = FIND_ANY_ORDER
-	local AOETargets = FindUnitsInRadius(team, position, nil, radius, iTeam, iType, iFlag, iOrder, false)
-	for _, target in pairs(AOETargets) do
-		ApplyDamage({ victim = target, attacker = self, damage = damageTable.damage, damage_type = damageTable.damage_type, ability = damageTable.ability})
-	end
-end
-
-function CDOTA_BaseNPC:DealMaxHPAOEDamage(position, radius, damage_pct, damage_type)
-	local team = self:GetTeamNumber()
-	local iTeam = DOTA_UNIT_TARGET_TEAM_ENEMY
-	local iType = DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
-	local iFlag = DOTA_UNIT_TARGET_FLAG_NONE
-	local iOrder = FIND_ANY_ORDER
-	local AOETargets = FindUnitsInRadius(team, position, nil, radius, iTeam, iType, iFlag, iOrder, false)
-	for _, target in pairs(AOETargets) do
-		ApplyDamage({ victim = target, attacker = self, damage = target:GetMaxHealth() * damage_pct / 100, damage_type = damage_type})
-	end
-end
-
 
 function FindUnitsInCone(teamNumber, vDirection, vPosition, flSideRadius, flLength, hCacheUnit, targetTeam, targetUnit, targetFlags, findOrder, bCache)
 	local vDirectionCone = Vector( vDirection.y, -vDirection.x, 0.0 )
@@ -328,67 +345,6 @@ function CDOTA_BaseNPC:SetCoreHealth(newHP)
 	self:SetHealth(newHP)
 end
 
-function get_aether_multiplier(caster)
-    local aether_multiplier = 1
-    for itemSlot = 0, 5, 1 do
-        local Item = caster:GetItemInSlot( itemSlot )
-		if Item ~= nil then
-			local itemAmp = Item:GetSpecialValueFor("spell_amp")/100
-			aether_multiplier = aether_multiplier + itemAmp
-		end
-    end
-    return aether_multiplier
-end
-
-function AllPlayersAbandoned()
-	local playerCounter = 0
-	local dcCounter = 0
-	for nPlayerID = 0, DOTA_MAX_TEAM_PLAYERS-1 do
-		if PlayerResource:GetTeam( nPlayerID ) == DOTA_TEAM_GOODGUYS then
-			playerCounter = playerCounter + 1
-			local hero = PlayerResource:GetSelectedHeroEntity( nPlayerID )
-			if hero then
-				if hero:HasOwnerAbandoned() then
-					dcCounter = dcCounter + 1
-				end
-				if PlayerResource:GetConnectionState(hero:GetPlayerID()) == 3 then
-					if not hero.lastActiveTime then hero.lastActiveTime = GameRules:GetGameTime() end
-					if hero.lastActiveTime + 60*3 < GameRules:GetGameTime() then
-						dcCounter = dcCounter + 1
-					end
-				else
-					hero.lastActiveTime = GameRules:GetGameTime()
-				end
-			else
-				dcCounter = dcCounter + 1
-			end
-		end
-	end
-	if dcCounter >= playerCounter then
-		return true
-	else
-		return false
-	end
-end
-
-function CDOTA_PlayerResource:FindActivePlayerCount()
-	local playerCounter = 0
-	for nPlayerID = 0, DOTA_MAX_TEAM_PLAYERS-1 do
-		if PlayerResource:GetTeam( nPlayerID ) == DOTA_TEAM_GOODGUYS then
-			local hero = PlayerResource:GetSelectedHeroEntity( nPlayerID )
-			if hero then
-				if PlayerResource:GetConnectionState(hero:GetPlayerID()) == 2 then
-					if not hero.lastActiveTime then hero.lastActiveTime = GameRules:GetGameTime() end
-					if hero.lastActiveTime + 60*3 > GameRules:GetGameTime() then
-						playerCounter = playerCounter + 1
-					end
-				end
-			end
-		end
-	end
-	return playerCounter
-end
-
 function CDOTA_PlayerResource:IsDeveloper(id)
 	self.VIP = self.VIP or LoadKeyValues( "scripts/kv/vip.kv" )
 	local steamID = self:GetSteamID(id)
@@ -411,119 +367,6 @@ function CDOTA_PlayerResource:IsVIP(id)
 	local tag = self.VIP[tostring(steamID)]
 
 	return (tag and tag == "vip") or false
-end
-
-function MergeTables( t1, t2 )
-	local copyTable = {}
-	for name, info in pairs(t1) do
-		copyTable[name] = info
-	end
-    for name,info in pairs(t2) do
-		if type(info) == "table"  and type(copyTable[name]) == "table" then
-			MergeTables(copyTable[name], info)
-		else
-			copyTable[name] = info
-		end
-	end
-	return copyTable
-end
-
-function PrintAll(t)
-	for k,v in pairs(t) do
-		print(k,v)
-	end
-end
-
-function table.removekey(t1, key)
-    for k,v in pairs(t1) do
-		if k == key then
-			table.remove(t1,k)
-		end
-	end
-end
-
-function table.removeval(t1, val)
-    for k,v in pairs(t1) do
-		if t1[k] == val then
-			table.remove(t1,k)
-		end
-	end
-end
-
-function table.copy(t1)
-	copy = {}
-	for k,v in pairs(t1) do
-		copy[k] = v
-	end
-	return copy
-end
-
-function GetAllPlayers()
-	local counter = 0
-	local abandon = 0
-	local currtime = GameRules:GetGameTime()
-	
-	local base = 5
-	
-	if GetMapName() ~= "epic_boss_fight_normal" then
-		base = 7
-	end
-	
-	local challengemult = base
-
-	for nPlayerID = 0, DOTA_MAX_TEAM_PLAYERS-1 do
-		if PlayerResource:GetTeam( nPlayerID ) == DOTA_TEAM_GOODGUYS then
-			if PlayerResource:HasSelectedHero( nPlayerID ) then
-				local hero = PlayerResource:GetSelectedHeroEntity(nPlayerID)
-				counter = counter + 1
-				if hero then
-					if not hero.disconnect then hero.disconnect = 0 end
-					challengemult = challengemult - 1
-					if PlayerResource:GetConnectionState(nPlayerID) == 3 then
-						abandon = abandon + 0.3
-						if hero.disconnect + 300 < GameRules:GetGameTime() then
-							abandon = abandon + 0.7
-						elseif hero:HasOwnerAbandoned() then
-							abandon = abandon + 0.7
-							challengemult = challengemult - 1
-						end
-					elseif hero:HasOwnerAbandoned() then
-							abandon = abandon + 1
-							challengemult = challengemult - 1
-					end
-				end
-			else
-				abandon = abandon + 1
-				challengemult = challengemult - 1
-			end
-		end
-	end
-	challengemult = (challengemult/base)/3
-	if counter - 1 <= abandon then abandon = counter - 1 end
-	abandon = abandon / 3
-	counter = (counter*(counter/(counter-abandon)))*(1 + challengemult)
-	return counter
-end
-
-function CDOTA_BaseNPC:GetAttackDamageType()
-	-- 1: DAMAGE_TYPE_ArmorPhysical
-	-- 2: DAMAGE_TYPE_ArmorMagical
-	-- 4: DAMAGE_TYPE_ArmorPure
-	local resourceType = GameRules.UnitKV[self:GetUnitName()]["StatusResource"]
-	if damagetype then
-		return damagetype
-	else
-		return "Mana"
-	end
-end
-
-function CDOTA_BaseNPC:IsSpawner()
-	local resourceType = GameRules.UnitKV[self:GetUnitName()]["IsSpawner"]
-	if resourceType then
-		return true
-	else
-		return false
-	end
 end
 
 function CDOTA_BaseNPC:IsUndead()
@@ -574,18 +417,6 @@ function CDOTA_BaseNPC:HasTalent(talentName)
 	return false
 end
 
-function CDOTA_BaseNPC:HasTalentType(talentType)
-	for i = 0, 23 do
-		local talent = self:GetAbilityByIndex(i)
-		if talent and string.match(talent:GetName(), "special_bonus_"..talentType.."_(%d+)") then
-			if talent:GetLevel() > 0 then
-				return true
-			end
-		end
-	end
-	return false
-end
-
 function FindAllEntitiesByClassname(name)
 	local entList = {}
 	local sortList = FindUnitsInRadius(DOTA_TEAM_GOODGUYS, Vector(0,0,0), nil, 99999, 3, 63, DOTA_UNIT_TARGET_FLAG_DEAD + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD, -1, false)
@@ -595,52 +426,6 @@ function FindAllEntitiesByClassname(name)
 		end
 	end
 	return entList
-end
-
-function GetRandomUnselectedHero()
-	local heroList = GameRules.HeroList
-	local sortList = {}
-	for hero, activated in pairs(heroList) do
-		if activated == 1 then
-			sortList[hero] = true
-		end
-	end
-	for nPlayerID = 0, DOTA_MAX_TEAM_PLAYERS-1 do
-		local player = PlayerResource:GetPlayer(nPlayerID)
-		if player and PlayerResource:HasSelectedHero(nPlayerID) then
-			local pickedHero = PlayerResource:GetSelectedHeroName(nPlayerID)
-			if sortList[pickedHero] then
-				sortList[pickedHero] = nil
-			end
-		end
-	end
-	local randomList = {}
-	for hero, activated in pairs(sortList) do
-		if activated then
-			table.insert(randomList, hero)
-		end
-	end
-	local rndReturn = randomList[math.random(#randomList)]
-	return rndReturn
-end
-
-function GetTableLength(rndTable)
-	local counter = 0
-	for k,v in pairs(rndTable) do
-		counter = counter + 1
-	end
-	return counter
-end
-
-function CDOTA_BaseNPC:HighestTalentTypeValue(talentType)
-	local value = 0
-	for i = 0, 23 do
-		local talent = self:GetAbilityByIndex(i)
-		if talent and string.match(talent:GetName(), "special_bonus_"..talentType.."_(%d+)") and self:FindTalentValue(talent:GetName()) > value then
-			value = self:FindTalentValue(talent:GetName())
-		end
-	end
-	return value
 end
 
 function CDOTA_BaseNPC:FindTalentValue(talentName, value)
@@ -687,49 +472,32 @@ function CDOTABaseAbility:Refresh()
 end
 
 function CDOTABaseAbility:GetTrueCastRange()
+	local caster = self:GetCaster()
 	local castrange = self:GetCastRange()
-	castrange = castrange + get_aether_range(self:GetCaster())
+	castrange = castrange + caster:GetBonusCastRange()
 	return castrange
 end
 
 function CDOTA_Ability_Lua:GetTrueCastRange()
-	local castrange = self:GetCastRange(self:GetCaster():GetAbsOrigin(), self:GetCaster())
-	castrange = castrange + get_aether_range(self:GetCaster())
+	local caster = self:GetCaster()
+	local castrange = self:GetCastRange(caster:GetAbsOrigin(), caster)
+	castrange = castrange + caster:GetBonusCastRange()
 	return castrange
 end
 
-function CDOTA_BaseNPC:KillTarget()
-	if not ( self:IsInvulnerable() or self:IsOutOfGame() or self:IsUnselectable() or self:NoHealthBar() ) then
-		self:AttemptKill(nil, self)
-	end
-end
-
-function CDOTA_BaseNPC:HealDisabled()
-	if self:HasModifier("Disabled_silence") or 
-	   self:HasModifier("primal_avatar_miss_aura") or 
-	   self:HasModifier("modifier_reflection_invulnerability") or 
-	   self:HasModifier("modifier_elite_burning_health_regen_block") or 
-	   self:HasModifier("modifier_elite_entangling_health_regen_block") or 
-	   self:HasModifier("modifier_plague_damage") or 
-	   self:HasModifier("modifier_rupture_datadriven") or 
-	   self:HasModifier("fire_aura_debuff") or 
-	   self:HasModifier("modifier_hawk_spirit_enemy") or 
-	   self:HasModifier("item_sange_and_yasha_4_debuff") or 
-	   self:HasModifier("cursed_effect") then
-	return true
-	else return false end
-end
-
-function CDOTA_BaseNPC:GetStunResistance()
-	if self:IsCreature() then
-		local stunResist = GameRules.UnitKV[self:GetUnitName()]["Creature"]["StunResistance"] or 0
-		for _, modifier in pairs( self:FindAllModifiers() ) do
-			if modifier.GetModifierBonusStunResistance_Constant then stunResist = stunResist + modifier:GetModifierBonusStunResistance_Constant() end
+function CDOTA_BaseNPC:GetBonusCastRange()
+	local staticRange = 0
+	local stackingRange = 0
+	for _, modifier in ipairs( self:FindAllModifiers() ) do
+		if modifier.GetModifierCastRangeBonus and modifier:GetModifierCastRangeBonus() and modifier:GetModifierCastRangeBonus() > staticRange then
+			staticRange = modifier:GetModifierCastRangeBonus()
 		end
-		return  math.min(100, math.max(0, stunResist))
-	else
-		return 0
+		if modifier.GetModifierCastRangeBonusStacking and modifier:GetModifierCastRangeBonusStacking() then
+			stackingRange = stackingRange + modifier:GetModifierCastRangeBonusStacking()
+		end
 	end
+	local aether_range = staticRange + stackingRange
+    return aether_range
 end
 
 function CDOTA_BaseNPC:GetOriginalAttackCapability()
@@ -809,7 +577,6 @@ function CDOTA_BaseNPC:IsAtAngleWithEntity(hEntity, flDesiredAngle)
 		return false
 	end
 end
-	
 
 function CDOTA_BaseNPC:RefreshAllCooldowns(bItems, bNoUltimate)
     for i = 0, self:GetAbilityCount() - 1 do
@@ -836,13 +603,12 @@ end
 function CDOTA_BaseNPC:IsIllusion()
 	local isIllusion = false
 	if self:GetPlayerOwnerID() ~= -1 then
-		isIllusion = PlayerResource:GetSelectedHeroEntity( self:GetPlayerOwnerID() ) ~= self and PlayerResource:GetSelectedHeroEntity( self:GetPlayerOwnerID() ) ~= nil
+		isIllusion = PlayerResource:GetSelectedHeroName( self:GetPlayerOwnerID() ) == self:GetUnitName() and PlayerResource:GetSelectedHeroEntity( self:GetPlayerOwnerID() ) ~= self and PlayerResource:GetSelectedHeroEntity( self:GetPlayerOwnerID() ) ~= nil
 	end
 	return isIllusion
 end
 
-
-function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, specIllusionModifier, ability, controllable, caster )
+function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, specIllusionModifier, ability, controllable, caster, callback )
 	local owner = caster or self
 	local player = owner:GetPlayerID()
 
@@ -854,139 +620,138 @@ function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, sp
 	bControl = controllable
 	if bControl == nil then bControl = true end
 	-- handle_UnitOwner needs to be nil, else it will crash the game.
-	local illusion = CreateUnitByName("npc_illusion_template", origin, true, owner, owner, owner:GetTeamNumber())
-	if bControl then illusion:SetControllableByPlayer(player, true) end
-		
-	for abilitySlot=0,15 do
-		local abilityillu = self:GetAbilityByIndex(abilitySlot)
-		if abilityillu ~= nil then
-			local abilityLevel = abilityillu:GetLevel()
-			local abilityName = abilityillu:GetAbilityName()
-			if illusion:FindAbilityByName(abilityName) ~= nil then
-				local illusionAbility = illusion:FindAbilityByName(abilityName)
-				illusionAbility:SetLevel(abilityLevel)
-			else
-				local illusionAbility = illusion:AddAbility(abilityName)
-				if illusionAbility then illusionAbility:SetLevel(abilityLevel) end
-			end
-		end
-	end
-	
-	-- Make illusion look like owner
-	illusion:SetBaseMaxHealth( self:GetMaxHealth() )
-	illusion:SetMaxHealth( self:GetMaxHealth() )
-	illusion:SetHealth( self:GetHealth() )
-	
-	illusion:SetAverageBaseDamage( self:GetAverageBaseDamage(), 15 )
-	illusion:SetPhysicalArmorBaseValue( self:GetPhysicalArmorValue() )
-	illusion:SetBaseAttackTime( self:GetBaseAttackTime() )
-	illusion:SetBaseMoveSpeed( self:GetIdealSpeed() )
-	
-	illusion:SetOriginalModel( self:GetOriginalModel() )
-	illusion:SetModel( self:GetOriginalModel() )
-	illusion:SetModelScale( self:GetModelScale() )
-	
-	local moveCap = DOTA_UNIT_CAP_MOVE_NONE
-	if self:HasMovementCapability() then
-		moveCap = DOTA_UNIT_CAP_MOVE_GROUND
-		if self:HasFlyMovementCapability() then
-			moveCap = DOTA_UNIT_CAP_MOVE_FLY
-		end
-	end
-	illusion:SetMoveCapability( moveCap )
-	illusion:SetAttackCapability( self:GetOriginalAttackCapability() )
-	illusion:SetUnitName( self:GetUnitName() )
-	if self:IsRangedAttacker() then
-		illusion:SetRangedProjectileName( self:GetRangedProjectileName() )
-	end
-	
-	for _, modifier in ipairs( self:FindAllModifiers() ) do
-		if modifier.AllowIllusionDuplicate and modifier:AllowIllusionDuplicate() then
-			local caster = modifier:GetCaster()
-			if caster == self then
-				caster = illusion
-			end
-			illusion:AddNewModifier( caster, modifier:GetAbility(), modifier:GetName(), { duration = modifier:GetRemainingTime() })
-		end
-	end
-	
-	illusion:AddNewModifier( self, nil, "modifier_illusion_bonuses", { duration = duration })
-	
-	-- Recreate the items of the caster
-	for itemSlot=0,5 do
-		local item = self:GetItemInSlot(itemSlot)
-		if item ~= nil then
-			local itemName = item:GetName()
-			local newItem = illusion:AddItemByName(itemName)
-			if newItem then
-				newItem:SetStacksWithOtherOwners(true)
-				newItem:SetPurchaser(nil)
-			end
-		end
-	end
-
-	-- Set the unit as an illusion
-	-- modifier_illusion controls many illusion properties like +Green damage not adding to the unit damage, not being able to cast spells and the team-only blue particle
-	illusion:AddNewModifier(owner, ability, "modifier_kill", { duration = duration })
-	illusion:AddNewModifier(owner, ability, "modifier_illusion", { duration = duration, outgoing_damage = outgoingDamage, incoming_damage = incomingDamage })
-	if specIllusionModifier then
-		illusion:AddNewModifier(owner, ability, specIllusionModifier, { duration = duration })
-	end
-	
-	for _, wearable in ipairs( self:GetChildren() ) do
-		if wearable:GetClassname() == "dota_item_wearable" and wearable:GetModelName() ~= "" then
-			local newWearable = CreateUnitByName("wearable_dummy", illusion:GetAbsOrigin(), false, nil, nil, self:GetTeam())
-			newWearable:SetOriginalModel(wearable:GetModelName())
-			newWearable:SetModel(wearable:GetModelName())
-			newWearable:AddNewModifier(nil, nil, "modifier_wearable", {})
-			newWearable:AddNewModifier(owner, ability, "modifier_kill", { duration = duration })
-			newWearable:AddNewModifier(owner, ability, "modifier_illusion", { duration = duration })
-			if specIllusionModifier then
-				newWearable:AddNewModifier(owner, ability, specIllusionModifier, { duration = duration })
-			end
-			newWearable:MakeIllusion()
-			newWearable:SetParent(illusion, nil)
-			newWearable:FollowEntity(illusion, true)
-			-- newWearable:SetRenderColor(100,100,255)
-			Timers:CreateTimer(1, function()
-				if illusion and not illusion:IsNull() and illusion:IsAlive() then
-					return 0.25
+	local illusionIndex = CreateUnitByNameAsync("npc_illusion_template", origin, true, owner, owner, owner:GetTeamNumber(), function( illusion )
+		if bControl then illusion:SetControllableByPlayer(player, true) end
+		for abilitySlot=0,15 do
+			local abilityillu = self:GetAbilityByIndex(abilitySlot)
+			if abilityillu ~= nil then
+				local abilityLevel = abilityillu:GetLevel()
+				local abilityName = abilityillu:GetAbilityName()
+				if illusion:FindAbilityByName(abilityName) ~= nil then
+					local illusionAbility = illusion:FindAbilityByName(abilityName)
+					illusionAbility:SetLevel(abilityLevel)
 				else
-					UTIL_Remove( newWearable )
+					local illusionAbility = illusion:AddAbility(abilityName)
+					if illusionAbility then illusionAbility:SetLevel(abilityLevel) end
 				end
-			end)
+			end
 		end
-	end
-	
 		
-	-- Without MakeIllusion the unit counts as a hero, e.g. if it dies to neutrals it says killed by neutrals, it respawns, etc.
-	illusion:MakeIllusion()
-	illusion.isCustomIllusion = true
-	return illusion
+		-- Make illusion look like owner
+		illusion:SetBaseMaxHealth( self:GetMaxHealth() )
+		illusion:SetMaxHealth( self:GetMaxHealth() )
+		illusion:SetHealth( self:GetHealth() )
+		
+		illusion:SetAverageBaseDamage( self:GetAverageBaseDamage(), 15 )
+		illusion:SetPhysicalArmorBaseValue( self:GetPhysicalArmorValue() )
+		illusion:SetBaseAttackTime( self:GetBaseAttackTime() )
+		illusion:SetBaseMoveSpeed( self:GetIdealSpeed() )
+		
+		illusion:SetOriginalModel( self:GetOriginalModel() )
+		illusion:SetModel( self:GetOriginalModel() )
+		illusion:SetModelScale( self:GetModelScale() )
+		
+		local moveCap = DOTA_UNIT_CAP_MOVE_NONE
+		if self:HasMovementCapability() then
+			moveCap = DOTA_UNIT_CAP_MOVE_GROUND
+			if self:HasFlyMovementCapability() then
+				moveCap = DOTA_UNIT_CAP_MOVE_FLY
+			end
+		end
+		illusion:SetMoveCapability( moveCap )
+		illusion:SetAttackCapability( self:GetOriginalAttackCapability() )
+		illusion:SetUnitName( self:GetUnitName() )
+		if self:IsRangedAttacker() then
+			illusion:SetRangedProjectileName( self:GetRangedProjectileName() )
+		end
+		
+		for _, modifier in ipairs( self:FindAllModifiers() ) do
+			if modifier.AllowIllusionDuplicate and modifier:AllowIllusionDuplicate() then
+				local caster = modifier:GetCaster()
+				if caster == self then
+					caster = illusion
+				end
+				illusion:AddNewModifier( caster, modifier:GetAbility(), modifier:GetName(), { duration = modifier:GetRemainingTime() })
+			end
+		end
+		
+		illusion:AddNewModifier( self, nil, "modifier_illusion_bonuses", { duration = duration })
+		
+		-- Recreate the items of the caster
+		for itemSlot=0,5 do
+			local item = self:GetItemInSlot(itemSlot)
+			if item ~= nil then
+				local itemName = item:GetName()
+				local newItem = illusion:AddItemByName(itemName)
+				if newItem then
+					newItem:SetStacksWithOtherOwners(true)
+					newItem:SetPurchaser(nil)
+				end
+			end
+		end
+
+		-- Set the unit as an illusion
+		-- modifier_illusion controls many illusion properties like +Green damage not adding to the unit damage, not being able to cast spells and the team-only blue particle
+		illusion:AddNewModifier(owner, ability, "modifier_kill", { duration = duration })
+		illusion:AddNewModifier(owner, ability, "modifier_illusion", { duration = duration, outgoing_damage = outgoingDamage, incoming_damage = incomingDamage })
+		if specIllusionModifier then
+			illusion:AddNewModifier(owner, ability, specIllusionModifier, { duration = duration })
+		end
+		
+		for _, wearable in ipairs( self:GetChildren() ) do
+			if wearable:GetClassname() == "dota_item_wearable" and wearable:GetModelName() ~= "" then
+				local newWearable = CreateUnitByName("wearable_dummy", illusion:GetAbsOrigin(), false, nil, nil, self:GetTeam())
+				newWearable:SetOriginalModel(wearable:GetModelName())
+				newWearable:SetModel(wearable:GetModelName())
+				newWearable:AddNewModifier(nil, nil, "modifier_wearable", {})
+				newWearable:AddNewModifier(owner, ability, "modifier_kill", { duration = duration })
+				newWearable:AddNewModifier(owner, ability, "modifier_illusion", { duration = duration })
+				if specIllusionModifier then
+					newWearable:AddNewModifier(owner, ability, specIllusionModifier, { duration = duration })
+				end
+				newWearable:MakeIllusion()
+				newWearable:SetParent(illusion, nil)
+				newWearable:FollowEntity(illusion, true)
+				-- newWearable:SetRenderColor(100,100,255)
+				Timers:CreateTimer(1, function()
+					if illusion and not illusion:IsNull() and illusion:IsAlive() then
+						return 0.25
+					else
+						UTIL_Remove( newWearable )
+					end
+				end)
+			end
+		end
+		if callback then
+			callback( illusion, self, caster, ability )
+		end
+		-- Without MakeIllusion the unit counts as a hero, e.g. if it dies to neutrals it says killed by neutrals, it respawns, etc.
+		illusion:MakeIllusion()
+		illusion.isCustomIllusion = true
+	end )
 end
 
 function CDOTA_BaseNPC:GetAgility()
-	return 0
+	if self:GetPlayerID() >= 0 and PlayerResource:GetSelectedHeroEntity( self:GetPlayerID() ) then
+		return PlayerResource:GetSelectedHeroEntity( self:GetPlayerID() ):GetAgility()
+	else
+		return 0
+	end
 end
 
 function CDOTA_BaseNPC:GetStrength()
-	return 0
+	if self:GetPlayerID() >= 0 and PlayerResource:GetSelectedHeroEntity( self:GetPlayerID() ) then
+		return PlayerResource:GetSelectedHeroEntity( self:GetPlayerID() ):GetStrength()
+	else
+		return 0
+	end
 end
 
 function CDOTA_BaseNPC:GetIntellect()
-	return 0
-end
-
-function CDOTABaseAbility:PiercesDisableResistance()
-	if GameRules.AbilityKV[self:GetName()] then
-		local truefalse = GameRules.AbilityKV[self:GetName()]["PiercesDisableReduction"] or 0
-		if truefalse == 1 then
-			return true
-		else
-			return false
-		end
+	if self:GetPlayerID() >= 0 and PlayerResource:GetSelectedHeroEntity( self:GetPlayerID() ) then
+		return PlayerResource:GetSelectedHeroEntity( self:GetPlayerID() ):GetIntellect()
 	else
-		return false
+		return 0
 	end
 end
 
@@ -1016,32 +781,6 @@ function CDOTABaseAbility:IsInnateAbility()
 	end
 end
 
-function CDOTABaseAbility:IsAetherAmplified()
-	if GameRules.AbilityKV[self:GetName()] then
-		local truefalse = GameRules.AbilityKV[self:GetName()]["IsAetherAmplified"] or 1
-		if truefalse == 1 then
-			return true
-		else
-			return false
-		end
-	else
-		return true
-	end
-end
-
-function CDOTABaseAbility:IgnoresDamageFilterOverride()
-	if GameRules.AbilityKV[self:GetName()] and not (self:GetClassname() == "ability_datadriven" or self:GetClassname() == "ability_lua" or self:GetClassname() == "item_datadriven")  then
-		local truefalse = GameRules.AbilityKV[self:GetName()]["IgnoresDamageFilterOverride"] or 0
-		if truefalse == 1 then
-			return true
-		else
-			return false
-		end
-	else
-		return false
-	end
-end
-
 function CDOTABaseAbility:HasPureCooldown()
 	if GameRules.AbilityKV[self:GetName()] then
 		local truefalse = GameRules.AbilityKV[self:GetName()]["HasPureCooldown"] or 0
@@ -1054,49 +793,6 @@ function CDOTABaseAbility:HasPureCooldown()
 		return false
 	end
 end
-
-function CDOTABaseAbility:AbilityScepterDamageType()
-	if GameRules.AbilityKV[self:GetName()] then
-		local damagetype = GameRules.AbilityKV[self:GetName()]["AbilityScepterUnitDamageType"] or self:GetAbilityDamageType()
-		if damagetype == "DAMAGE_TYPE_PHYSICAL" then
-			damagetype = 1
-		elseif damagetype == "DAMAGE_TYPE_MAGICAL" then
-			damagetype = 2
-		elseif damagetype == "DAMAGE_TYPE_PURE" then
-			damagetype = 4
-		end
-		return damagetype
-	else
-		return self:GetAbilityDamageType()
-	end
-end
-
-function CDOTABaseAbility:HasNoThreatFlag()
-	if GameRules.AbilityKV[self:GetName()] then
-		local truefalse = GameRules.AbilityKV[self:GetName()]["NoThreatFlag"] or 0
-		if truefalse == 1 then
-			return true
-		else
-			return false
-		end
-	else
-		return false
-	end
-end
-
-function CDOTABaseAbility:AbilityPierces()
-	if GameRules.AbilityKV[self:GetName()] then
-		local truefalse = GameRules.AbilityKV[self:GetName()]["AbilityPierces"] or 0
-		if truefalse == 1 then
-			return true
-		else
-			return false
-		end
-	else
-		return false
-	end
-end
-
 
 function CDOTABaseAbility:GetThreat()
 	if GameRules.AbilityKV[self:GetName()] then
@@ -1136,14 +832,6 @@ function CDOTA_BaseNPC:SetThreat(val)
 	end
 end
 
-function CDOTA_BaseNPC:IsRoundBoss()
-	return self.unitIsRoundBoss == true
-end
-
-function CDOTA_BaseNPC:IsMinion()
-	return self.unitIsRoundBoss ~= true
-end
-
 function CDOTA_BaseNPC:ModifyThreat(val)
 	self.lastHit = GameRules:GetGameTime()
 	local newVal = val
@@ -1169,32 +857,13 @@ function CDOTA_BaseNPC:ModifyThreat(val)
 	end
 end
 
-function CDOTA_BaseNPC:GetLastHitTime()
-	return self.lastHit
+
+function CDOTA_BaseNPC:IsRoundBoss()
+	return self.unitIsRoundBoss == true
 end
 
-function get_aether_range(caster)
-    local staticRange = 0
-	local stackingRange = 0
-	for _, modifier in ipairs( caster:FindAllModifiers() ) do
-		if modifier.GetModifierCastRangeBonus and modifier:GetModifierCastRangeBonus() and modifier:GetModifierCastRangeBonus() > staticRange then
-			staticRange = modifier:GetModifierCastRangeBonus()
-		end
-		if modifier.GetModifierCastRangeBonusStacking and modifier:GetModifierCastRangeBonusStacking() then
-			stackingRange = stackingRange + modifier:GetModifierCastRangeBonusStacking()
-		end
-	end
-	local talentMult = caster:HighestTalentTypeValue("cast_range")
-	local aether_range = staticRange + stackingRange + talentMult
-    return aether_range
-end
-
-function CDOTA_BaseNPC:GetCastRangeBonus()
-	return get_aether_range(self)
-end
-
-function CDOTA_BaseNPC:get_aether_range()
-    return get_aether_range(self)
+function CDOTA_BaseNPC:IsMinion()
+	return self.unitIsRoundBoss ~= true or self.unitIsMinion
 end
 
 function CDOTA_BaseNPC:IsSlowed()
@@ -1211,13 +880,6 @@ end
 function CDOTA_BaseNPC:GetPhysicalArmorReduction()
 	local armornpc = self:GetPhysicalArmorValue()
 	local armor_reduction = 1 - (0.05 * armornpc) / (1 + (0.05 * math.abs(armornpc)))
-	armor_reduction = 100 - (armor_reduction * 100)
-	return armor_reduction
-end
-
-function CDOTA_BaseNPC:GetRealPhysicalArmorReduction()
-	local armornpc = self:GetPhysicalArmorValue()
-	local armor_reduction = 1 - (EHP_PER_ARMOR * armornpc) / (1 + (EHP_PER_ARMOR * math.abs(armornpc)))
 	armor_reduction = 100 - (armor_reduction * 100)
 	return armor_reduction
 end
@@ -1267,54 +929,6 @@ function CDOTA_BaseNPC:ShowPopup( data )
     ParticleManager:SetParticleControl( particle, 3, color )
 end
 
-function CDOTA_BaseNPC:IsTargeted()
-	if self == GameRules.focusedUnit then
-		return true
-	else
-		return false
-	end
-end
-
-function CDOTABaseAbility:GetAbilityLifeTime()
-    local kv = self:GetAbilityKeyValues()
-    local duration = self:GetDuration()
-	if not duration or duration == 0 then
-		local check = 0
-		for k,v in pairs(kv) do -- trawl through keyvalues
-			if k == "AbilitySpecial" then
-				for l,m in pairs(v) do
-					for o,p in pairs(m) do
-						if string.match(o, "duration") then -- look for the highest duration keyvalue
-							local checkDuration = self:GetSpecialValueFor(o)
-							if checkDuration > check then check = checkDuration end
-						end
-					end
-				end
-			end
-		end
-		duration = check
-	end
-	
-	if not duration then duration = 0 end
-    return duration
-end
-
-function CDOTABaseAbility:ProvidesModifier(modifiername)
-    local kv = self:GetAbilityKeyValues()
-	local found = false
-	for k,v in pairs(kv) do -- trawl through keyvalues
-		if k == "Modifiers" then
-			for l,m in pairs(v) do
-				if l == modifiername then
-					found = true
-					break
-				end
-			end
-		end
-	end
-	return found
-end
-
 function CDOTA_BaseNPC:FindAllModifiersByAbility(abilityname)
 	local modifiers = self:FindAllModifiers()
 	local returnTable = {}
@@ -1337,7 +951,7 @@ function CDOTA_BaseNPC:FindModifierByNameAndAbility(name, ability)
 end
 
 function CDOTA_BaseNPC:IsFakeHero()
-	if (self:HasModifier("modifier_monkey_king_fur_army_soldier") or self:HasModifier("modifier_monkey_king_fur_army_soldier_hidden")) or self:IsTempestDouble() or self:IsClone() then
+	if self:IsIllusion() or (self:HasModifier("modifier_monkey_king_fur_army_soldier") or self:HasModifier("modifier_monkey_king_fur_army_soldier_hidden")) or self:IsTempestDouble() or self:IsClone() then
 		return true
 	else return false end
 end
@@ -1346,10 +960,6 @@ function CDOTA_BaseNPC:IsRealHero()
 	if not self:IsNull() then
 		return self:IsHero() and not ( self:IsIllusion() or self:IsClone() ) and not self:IsFakeHero()
 	end
-end
-
-function CDOTA_Buff:IsStun()
-	if GLOBAL_STUN_LIST[self:GetName()] then return true else return false end
 end
 
 function CDOTABaseAbility:GetTalentSpecialValueFor(value)
@@ -1387,15 +997,6 @@ end
 
 function CDOTA_Modifier_Lua:GetTalentSpecialValueFor(value)
 	return self:GetAbility():GetTalentSpecialValueFor(value)
-end
-
-
-function CDOTA_Buff:HasBeenRefreshed()
-	if self:GetCreationTime() + self:GetDuration() < self:GetDieTime() then -- if original destroy time is smaller than new destroy time
-		return true
-	else
-		return false
-	end
 end
 
 function CDOTA_BaseNPC:IncreaseStrength(amount)
@@ -1468,6 +1069,12 @@ function CDOTABaseAbility:EndDelayedCooldown()
 	self:SetActivated(true)
 end
 
+function CDOTABaseAbility:ModifyCooldown(amt)
+	local currCD = self:GetCooldownTimeRemaining()
+	self:EndCooldown()
+	if currCD + amt > 0 then self:StartCooldown( math.max(0, currCD + amt) ) end
+end
+
 function CDOTA_BaseNPC_Hero:CreateTombstone()
 	self.tombstoneEntity = nil
 	if not self.tombstoneDisabled then
@@ -1481,12 +1088,6 @@ function CDOTA_BaseNPC_Hero:CreateTombstone()
 		self.tombstoneEntity = newItem
 	end
 	self.tombstoneDisabled = false
-end
-
-function CDOTABaseAbility:ModifyCooldown(amt)
-	local currCD = self:GetCooldownTimeRemaining()
-	self:EndCooldown()
-	if currCD + amt > 0 then self:StartCooldown( math.max(0, currCD + amt) ) end
 end
 
 function CScriptHeroList:GetRealHeroes()
@@ -1519,26 +1120,8 @@ function CScriptHeroList:GetActiveHeroCount()
 	return #self:GetActiveHeroes()
 end
 
-function RotateVector2D(vector, theta)
-    local xp = vector.x*math.cos(theta)-vector.y*math.sin(theta)
-    local yp = vector.x*math.sin(theta)+vector.y*math.cos(theta)
-    return Vector(xp,yp,vector.z):Normalized()
-end
-
-function ToRadians(degrees)
-	return degrees * math.pi / 180
-end
-
-function ToDegrees(radians)
-	return radians * 180 / math.pi 
-end
-
 function CDOTA_BaseNPC:IsSameTeam(unit)
 	return (self:GetTeamNumber() == unit:GetTeamNumber())
-end
-
-function CDOTA_BaseNPC:AddBarrier(amount, caster, ability, duration)
-	self:AddNewModifier(caster, ability, "modifier_generic_barrier", {duration = duration, barrier = amount})
 end
 
 function CDOTA_BaseNPC:Lifesteal(source, lifestealPct, damage, target, damage_type, iSource, bParticles)
@@ -1619,32 +1202,12 @@ function CDOTA_BaseNPC:SwapAbilityIndexes(index, swapname)
 	swapability:SetAbilityIndex(index)
 end
 
-function CDOTA_BaseNPC:ApplyLinearKnockback(distance, strength, source)
-	local direction = (self:GetAbsOrigin() - source:GetAbsOrigin()):Normalized()
-	self.isInKnockbackState = true
-	local distance_traveled = 0
-	local distAdded = (distance/0.2)*FrameTime() * strength
-	StartAnimation(self, {activity = ACT_DOTA_FLAIL, rate = 1, duration = distAdded/distance})
-	Timers:CreateTimer(function ()
-		if not self:GetParent():HasMovementCapability() then return end
-		if distance_traveled < distance and self:IsAlive() and not self:IsNull() then
-			self:SetAbsOrigin(self:GetAbsOrigin() + direction * distAdded)
-			distance_traveled = distance_traveled + distAdded
-			return FrameTime()
-		else
-			FindClearSpaceForUnit(self, self:GetAbsOrigin(), true)
-			self.isInKnockbackState = false
-			return nil
-		end 
-	end)
-end
-
 function FindAllUnits(hData)
 	local team = DOTA_TEAM_GOODGUYS
 	local data = hData or {}
 	local iTeam = data.team or DOTA_UNIT_TARGET_TEAM_BOTH
 	local iType = data.type or DOTA_UNIT_TARGET_ALL
-	local iFlag = data.flag or DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_INVULNERABLE
+	local iFlag = data.flag or DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD
 	local iOrder = data.order or FIND_ANY_ORDER
 	return FindUnitsInRadius(team, Vector(0,0), nil, -1, iTeam, iType, iFlag, iOrder, false)
 end
@@ -1751,7 +1314,7 @@ function ParticleManager:FireLinearWarningParticle(vStartPos, vEndPos, vWidth)
 	local width = Vector(fWidth, fWidth, fWidth)
 	local fx = ParticleManager:FireParticle("particles/range_ability_line.vpcf", PATTACH_WORLDORIGIN, nil, {[0] = GetGroundPosition(vStartPos, nil),
 																											[1] = GetGroundPosition(vEndPos, nil),
-																											[2] = width} )																						
+																											[2] = width} )
 end
 
 function ParticleManager:FireTargetWarningParticle(target)
@@ -1881,8 +1444,6 @@ function CDOTA_BaseNPC:GetAbsOriginCenter()
 	return GetGroundPosition( self:GetAbsOrigin(), self ) + Vector(0,0,self:GetBoundingMaxs( ).z/2)
 end
 
-
-
 function CDOTA_Modifier_Lua:AddEffect(id)
 	self:AddParticle(id, false, false, 0, false, false)
 end
@@ -1913,7 +1474,6 @@ end
 function CDOTA_BaseNPC:SmoothFindClearSpace(position)
 	self:SetAbsOrigin(position)
 	ResolveNPCPositions(position, self:GetHullRadius() + self:GetCollisionPadding())
-	FindClearSpaceForUnit(self, position, true)
 end
 
 function CDOTABaseAbility:Stun(target, duration, bDelay)
@@ -1980,6 +1540,7 @@ function CDOTABaseAbility:FireTrackingProjectile(FX, target, speed, data, iAttac
 	return ProjectileManager:CreateTrackingProjectile(projectile)
 end
 
+-- FX is optional
 function CDOTA_BaseNPC:FireAbilityAutoAttack( target, ability, FX )
 	ability:FireTrackingProjectile( FX or self:GetProjectileModel(), target, self:GetProjectileSpeed() )
 end
@@ -2052,10 +1613,6 @@ function CDOTABaseAbility:ApplyAOE(eventTable)
 	end)
 end
 
-function get_octarine_multiplier(caster)
-    return caster:GetCooldownReduction()
-end
-
 function CDOTA_BaseNPC:GetCooldownReduction(bReduced)
 	local cdr = self:FindModifierByName("modifier_cooldown_reduction_handler")
 	if bReduced then
@@ -2073,158 +1630,6 @@ function CDOTA_BaseNPC:GetCooldownReduction(bReduced)
 		
 		return 1
 	end
-end
-
-
-function get_core_cdr(caster)
-    return get_octarine_multiplier(caster)
-end
-
-function ApplyKnockback( keys )
-	keys.ability:ApplyDataDrivenModifier(keys.caster, keys.target, keys.modifier, {duration = keys.duration})
-	if keys.target:IsInvulnerable() or keys.target:IsMagicImmune() then return end
-    local caster = keys.caster
-    local target = keys.target
-    local ability = keys.ability
-
-    -- Position variables
-    local target_origin = target:GetAbsOrigin()
-    local target_initial_x = target_origin.x
-    local target_initial_y = target_origin.y
-    local target_initial_z = target_origin.z
-    local position = Vector(target_initial_x, target_initial_y, target_initial_z)  --This is updated whenever the target has their position changed.
-    
-    local duration = keys.duration
-    local begin_time = GameRules:GetGameTime()
-   	if keys.distance > 0 then
-   		local len = ( target:GetAbsOrigin() - caster:GetAbsOrigin() ):Length2D()
-   		local vector = ( target:GetAbsOrigin() - caster:GetAbsOrigin() )/len
-   		local travel_distance = vector * keys.distance
-   		local number_of_frame = duration*(1/.03)
-   		local travel_distance_per_frame = travel_distance/number_of_frame
-   		Timers:CreateTimer(duration,function()
-   			FindClearSpaceForUnit(target, position, true)
-			for i = 0, 23 do
-				local sourceAb = caster:GetAbilityByIndex(i)
-				if sourceAb and sourceAb.onKnockBack then
-					sourceAb:onKnockBack()
-				end
-				local victimAb = target:GetAbilityByIndex(i)
-				if victimAb and victimAb.onKnockedBack then
-					victimAb:onKnockedBack()
-				end
-			end
-   		end)
-   		Timers:CreateTimer(0.03 ,function()
-			if target and not target:IsNull() and not target:HasMovementCapability() then return end
-   			if GameRules:GetGameTime() <= begin_time+duration then
-	   			position = position+travel_distance_per_frame
-	   			target:SetAbsOrigin(position)
-	   			return 0.03
-	   		else
-	   			return
-	   		end
-   		end)
-
-    elseif keys.height > 0 then
-    	keys.target:EmitSound("Hero_Invoker.Tornado.Target")
-   		local turnado_effect = ParticleManager:CreateParticle("particles/units/heroes/hero_invoker/invoker_tornado_child.vpcf", PATTACH_ABSORIGIN , target)
-		ParticleManager:SetParticleControl(turnado_effect, 0, target:GetAbsOrigin())
-		ParticleManager:SetParticleControl(turnado_effect, 1, target:GetAbsOrigin())
-		ParticleManager:SetParticleControl(turnado_effect, 2, target:GetAbsOrigin())
-		ParticleManager:SetParticleControl(turnado_effect, 3, target:GetAbsOrigin())
-
-		Timers:CreateTimer(keys.duration,function()
-   			keys.target:StopSound("Hero_Invoker.Tornado.Target")
-   			ParticleManager:DestroyParticle(turnado_effect, false)
-   			target:RemoveModifierByName( "item_sheepstick_2_effect" )
-   		end)
-   		
-
-	    local ground_position = GetGroundPosition(position, target)
-	    local cyclone_initial_height = keys.height + ground_position.z
-	    local cyclone_min_height = keys.height + ground_position.z + 10
-	    local cyclone_max_height = keys.height + ground_position.z + 110
-	    local tornado_start = GameRules:GetGameTime()
-
-	    -- Height per time calculation
-	    local time_to_reach_initial_height = duration / 10  --1/10th of the total cyclone duration will be spent ascending and descending to and from the initial height.
-	    local initial_ascent_height_per_frame = ((cyclone_initial_height - position.z) / time_to_reach_initial_height) * .03  --This is the height to add every frame when the unit is first cycloned, and applies until the caster reaches their max height.
-	    
-	    local up_down_cycle_height_per_frame = initial_ascent_height_per_frame / 3  --This is the height to add or remove every frame while the caster is in up/down cycle mode.
-	    if up_down_cycle_height_per_frame > 7.5 then  --Cap this value so the unit doesn't jerk up and down for short-duration cyclones.
-	        up_down_cycle_height_per_frame = 7.5
-	    end
-	    
-	    local final_descent_height_per_frame = nil  --This is calculated when the unit begins descending.
-
-	    -- Time to go down
-	    local time_to_stop_fly = duration - time_to_reach_initial_height
-
-	    -- Loop up and down
-	    local going_up = true
-
-	    -- Loop every frame for the duration
-	    Timers:CreateTimer(function()
-	        local time_in_air = GameRules:GetGameTime() - tornado_start
-	        
-	        -- First send the target to the cyclone's initial height.
-	        if position.z < cyclone_initial_height and time_in_air <= time_to_reach_initial_height then
-	            position.z = position.z + initial_ascent_height_per_frame
-	            target:SetAbsOrigin(position)
-	            return 0.03
-
-	        -- Go down until the target reaches the ground.
-	        elseif time_in_air > time_to_stop_fly and time_in_air <= duration then
-	            --Since the unit may be anywhere between the cyclone's min and max height values when they start descending to the ground,
-	            --the descending height per frame must be calculated when that begins, so the unit will end up right on the ground when the duration is supposed to end.
-	            if final_descent_height_per_frame == nil then
-	                local descent_initial_height_above_ground = position.z - ground_position.z
-	                final_descent_height_per_frame = (descent_initial_height_above_ground / time_to_reach_initial_height) * .03
-	            end
-	            
-	            position.z = position.z - final_descent_height_per_frame
-	            target:SetAbsOrigin(position)
-	            return 0.03
-
-	        -- Do Up and down cycles
-	        elseif time_in_air <= duration then
-	            -- Up
-	            if position.z < cyclone_max_height and going_up then 
-	                position.z = position.z + up_down_cycle_height_per_frame
-	                target:SetAbsOrigin(position)
-	                return 0.03
-
-	            -- Down
-	            elseif position.z >= cyclone_min_height then
-	                going_up = false
-	                position.z = position.z - up_down_cycle_height_per_frame
-	                target:SetAbsOrigin(position)
-	                return 0.03
-
-	            -- Go up again
-	            else
-	                going_up = true
-	                return 0.03
-	            end
-	        end
-	    end)
-	end
-end
-
-function CDOTA_BaseNPC_Hero:GetEpicBossFightName()
-	local nameTable = {
-		["npc_dota_hero_treant_protector"] = "forest",
-		["npc_dota_hero_sven"] = "guardian",
-		["npc_dota_hero_windrunner"] = "windrunner",
-		["npc_dota_hero_omniknight"] = "omniknight",
-		["npc_dota_hero_phantom_assassin"] = "forest",
-		["npc_dota_hero_necrolyte"] = "puppeteer",
-		["npc_dota_hero_treant_lina"] = "ifrit",
-		["npc_dota_hero_treant_legion_commander"] = "forest",
-		["npc_dota_hero_treant_dazzle"] = "mystic",
-	}
-	return nameTable[self:GetUnitName()] or self:GetUnitName()
 end
 
 function CDOTA_BaseNPC:AddChill(hAbility, hCaster, chillDuration, chillAmount)
@@ -2599,7 +2004,7 @@ function CDOTA_BaseNPC:FindEnemyUnitsInCone(vDirection, vPosition, flSideRadius,
 	else return {} end
 end
 
-function GameRules:RefreshPlayers()
+function GameRules:RefreshPlayers(bDontHeal)
 	for nPlayerID = 0, DOTA_MAX_TEAM_PLAYERS-1 do
 		if PlayerResource:GetTeam( nPlayerID ) == DOTA_TEAM_GOODGUYS then
 			if PlayerResource:HasSelectedHero( nPlayerID ) then
@@ -2607,9 +2012,13 @@ function GameRules:RefreshPlayers()
 				if hero ~=nil then
 					if not hero:IsAlive() then
 						hero:RespawnHero(false, false)
+						hero:SetHealth( hero:GetMaxHealth() * 0.25 )
+						hero:SetMana( hero:GetMaxMana() * 0.25 )
 					end
-					hero:SetHealth( hero:GetMaxHealth() )
-					hero:SetMana( hero:GetMaxMana() )
+					if not bDontHeal then
+						hero:SetHealth( hero:GetMaxHealth() )
+						hero:SetMana( hero:GetMaxMana() )
+					end
 					hero.threat = 0
 					ResolveNPCPositions( hero:GetAbsOrigin(), hero:GetHullRadius() + hero:GetCollisionPadding() )
 				end
@@ -2652,7 +2061,7 @@ function CDOTA_Modifier_Lua:IsCurse()
 end
 
 function CDOTA_Modifier_Lua:IsBlessing()
-	return self.isBlessing
+	return self.modifierIsBlessing
 end
 
 function CDOTA_BaseNPC:PurgeCurses( )
@@ -2679,7 +2088,7 @@ end
 
 function CDOTA_BaseNPC:AddBlessing( blessingName )
 	local blessing = self:AddNewModifier(self, nil, blessingName, {})
-	if blessing then blessing.isBlessing = true end
+	if blessing then blessing.modifierIsBlessing = true end
 	return blessing
 end
 

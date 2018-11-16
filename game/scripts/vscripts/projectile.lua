@@ -39,7 +39,6 @@ function Projectile:ProjectileThink()
 	ParticleManager:SetParticleControl( self.FX, 1, self:GetPosition() )
 	ParticleManager:SetParticleControl( self.FX, 2, Vector( self:GetSpeed(), 0, 0 ) )
 	ParticleManager:SetParticleControl( self.FX, 3, self:GetPosition() )
-	
 	local position = self:GetPosition()
 	local radius = self:GetRadius()
 	local caster = self:GetCaster()

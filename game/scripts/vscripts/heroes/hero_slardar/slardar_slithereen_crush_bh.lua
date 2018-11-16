@@ -29,10 +29,14 @@ function slardar_slithereen_crush_bh:OnSpellStart(bForced)
 		local stunDur = self:GetTalentSpecialValueFor("stun_duration")
 		local slowDur = self:GetTalentSpecialValueFor("crush_extra_slow_duration")
 		
+		local haze = caster:FindAbilityByName("slardar_amplify_damage_bh")
 		for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), radius ) ) do
 			self:DealDamage( caster, enemy, damage )
 			self:Stun(enemy, stunDur)
 			enemy:AddNewModifier( caster, self, "modifier_slardar_slithereen_crush_bh", {duration = stunDur + slowDur} )
+			if caster:HasScepter() and haze then
+				haze:ApplyHaze( enemy )
+			end
 		end
 		
 		caster:EmitSound("Hero_Slardar.Slithereen_Crush")

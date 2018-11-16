@@ -33,7 +33,7 @@ function modifier_boss_genesis_pacifism:OnTakeDamage(params)
 		params.attacker:Disarm( params.unit, ability, duration)
 		params.attacker:Silence( params.unit, ability, duration)
 		ability:SetCooldown( self:GetAbility():GetCooldown(-1) )
-		params.unit:Dispel( params.unit, true 
+		params.unit:Dispel( params.unit, true )
 	end
 end
 

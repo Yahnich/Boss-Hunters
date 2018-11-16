@@ -66,20 +66,18 @@ function modifier_item_ward_of_life:GetModifierConstantHealthRegen()
 end
 
 function modifier_item_ward_of_life:GetModifierTotal_ConstantBlock(params)
-	local trigger = self:GetParent():GetMaxHealth() * self.trigger / 100
-	if not self:GetParent():HasModifier("modifier_item_ward_of_life_cd") and self:GetParent():GetHealth() - params.damage <= trigger then
+	if HasBit( params.damage_flags, DOTA_DAMAGE_FLAG_HPLOSS ) then return 0 end
+	local trigger = self:GetParent():GetHealth() * self.trigger / 100
+	if not self:GetParent():HasModifier("modifier_item_ward_of_life_cd") and params.damage >= trigger then
 		local buff = self:GetParent():AddNewModifier( self:GetParent(), self:GetAbility(), "modifier_item_ward_of_life_protection", {duration = self.duration } )
 		local cd = self:GetParent():AddNewModifier( self:GetParent(), self:GetAbility(), "modifier_item_ward_of_life_cd", {duration = self.duration + self.cd * self:GetParent():GetCooldownReduction() } )
 		if cd and buff then
 			cd:SetDuration( buff:GetRemainingTime() + self.cd * self:GetParent():GetCooldownReduction(), true )
 		end
-		
-		local difference = trigger - ( self:GetParent():GetHealth() - params.damage )
-		return difference
+		return params.damage
 	end
-	if self:GetParent():HasModifier("modifier_item_ward_of_life_protection") and self:GetParent():GetHealth() - params.damage <= trigger then
-		local difference = trigger - ( self:GetParent():GetHealth() - params.damage )
-		return difference
+	if self:GetParent():HasModifier("modifier_item_ward_of_life_protection") then
+		return params.damage
 	end
 	if RollPercentage(self.chance) and params.attacker ~= self:GetParent() then
 		return self.block

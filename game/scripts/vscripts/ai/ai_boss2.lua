@@ -81,7 +81,7 @@ if IsServer() then
 							return AI_THINK_RATE					
 						end
 					end
-					if thisEntity.pierce:IsFullyCastable() and (AICore:NumEnemiesInLine(thisEntity, thisEntity.pierce:GetSpecialValueFor("spear_distance"), thisEntity.pierce:GetSpecialValueFor("spear_width"), true) <= math.min(PlayerResource:FindActivePlayerCount(), 2) or thisEntity:GetAIBehavior() == AI_BEHAVIOR_AGGRESSIVE) then
+					if thisEntity.pierce:IsFullyCastable() and (AICore:NumEnemiesInLine(thisEntity, thisEntity.pierce:GetSpecialValueFor("spear_distance"), thisEntity.pierce:GetSpecialValueFor("spear_width"), true) <= math.min(HeroList:GetActiveHeroCount(), 2) or thisEntity:GetAIBehavior() == AI_BEHAVIOR_AGGRESSIVE) then
 						ExecuteOrderFromTable({
 							UnitIndex = thisEntity:entindex(),
 							OrderType = DOTA_UNIT_ORDER_CAST_POSITION,

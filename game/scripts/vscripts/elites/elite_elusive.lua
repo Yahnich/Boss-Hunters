@@ -25,13 +25,12 @@ if IsServer() then
 			if #enemies > 0 then
 				parent:RemoveModifierByName("modifier_invisible")
 			else
-				self:StartIntervalThink(-1)
+				self:StartIntervalThink(self.fadeTime)
 				parent:AddNewModifier( parent, nil, "modifier_elite_elusive_fade", {duration = self.fadeTime} )
 				Timers:CreateTimer( self.fadeTime, function()
 					if parent:IsNull() then return end
 					parent:RemoveModifierByName( "modifier_elite_elusive_fade" )
 					parent:AddNewModifier( parent, nil, "modifier_invisible", {} )
-					self:StartIntervalThink( 3 )
 				end)
 			end
 		end

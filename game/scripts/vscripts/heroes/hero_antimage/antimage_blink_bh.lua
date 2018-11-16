@@ -11,8 +11,8 @@ function antimage_blink_bh:OnSpellStart()
 	EmitSoundOn("Hero_Antimage.Blink_out", caster)
 	ParticleManager:FireParticle("particles/units/heroes/hero_antimage/antimage_blink_start.vpcf", PATTACH_ABSORIGIN, caster, {[0] = startPos})
 	if caster:HasTalent("special_bonus_unique_antimage_blink_1") then
-		local illusion = caster:ConjureImage( startPos, caster:FindTalentValue("special_bonus_unique_antimage_blink_1", "duration"), caster:FindTalentValue("special_bonus_unique_antimage_blink_1", "outgoing"), caster:FindTalentValue("special_bonus_unique_antimage_blink_1", "incoming"), nil, self, false )
-		illusion:MoveToPositionAggressive(startPos)
+		local illusion = caster:ConjureImage( startPos, caster:FindTalentValue("special_bonus_unique_antimage_blink_1", "duration"), caster:FindTalentValue("special_bonus_unique_antimage_blink_1", "outgoing"), caster:FindTalentValue("special_bonus_unique_antimage_blink_1", "incoming"), nil, self, false, caster, function(illusion) illusion:MoveToPositionAggressive(startPos) end )
+		
 	end
 	FindClearSpaceForUnit(caster, endPos, true)
 	ProjectileManager:ProjectileDodge( caster )

@@ -51,17 +51,18 @@
 			</Button>
 		</Panel>
 		<Panel id="QuestsAscensionVoteHolder" hittest="true" hittestchildren="true">
-			<Label id="QuestsAscensionVoteDescriptionLabel" text="Ascend?"/>
+			<Label id="QuestsAscensionVoteDescriptionLabel" text="#ascension_overhead"/>
 			<Panel id="QuestsAscensionVoteCountHolder" hittest="true" hittestchildren="true">
 				<Label class="QuestsPrepVoteText" id="QuestAscensionVoteNoLabel" text="No: 0"/>
 				<Label class="QuestsPrepVoteText" id="QuestAscensionVoteYesLabel" text="Yes: 0"/>
 			</Panel>
+			<Label class="QuestsPrepVoteText" id="QuestAscensionDescriptionLabel" text="#ascension_Generic_Description"/>
 			<Panel id="QuestsAscensionVoteButtonHolder" hittest="true" hittestchildren="true">
 				<Button class="QuestAscensionVoteButton" id="QuestAscensionVoteConfirmButton" hittest="true">
-					<Label class="QuestsEventChoiceText" id="QuestAscensionVoteConfirmButtonLabel" text="Yes"/>
+					<Label class="QuestsEventChoiceText" id="QuestAscensionVoteConfirmButtonLabel" text="#generic_yes"/>
 				</Button>
 				<Button class="QuestAscensionVoteButton" id="QuestAscensionVoteDeclineButton" hittest="true">
-					<Label class="QuestsEventChoiceText" id="QuestAscensionVoteDeclineButtonLabel" text="No"/>
+					<Label class="QuestsEventChoiceText" id="QuestAscensionVoteDeclineButtonLabel" text="#generic_no"/>
 				</Button>
 			</Panel>
 		</Panel>

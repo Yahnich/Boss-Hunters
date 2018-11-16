@@ -165,7 +165,7 @@ function modifier_elder_spirit:OnIntervalThink()
 		else
 			FindClearSpaceForUnit(parent, parent:GetAbsOrigin(), true)
 			caster:RemoveModifierByName("modifier_elder_spirit_check_out")
-			unit:AddNewModifier(caster, self:GetAbility(), "modifier_elder_spirit_check", {})
+			caster:AddNewModifier(caster, self:GetAbility(), "modifier_elder_spirit_check", {})
 			self:GetAbility().spirit = false
 			self.distance = nil
 			if self:GetAbility():IsCooldownReady() then

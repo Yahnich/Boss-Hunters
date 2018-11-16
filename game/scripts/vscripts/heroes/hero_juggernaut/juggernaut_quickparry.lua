@@ -40,7 +40,7 @@ function modifier_juggernaut_quickparry_passive:GetModifierTotal_ConstantBlock(p
 	if params.attacker == self:GetParent() then return end
 	if RollPercentage(self.chance) and ability:IsCooldownReady() then
 		ability:SetCooldown( ability:GetTrueCooldown() )
-		self:QuickParry(caster, params.attacker, ability)
+		ability:QuickParry(caster, params.attacker)
 		if caster:HasTalent("special_bonus_unique_juggernaut_quickparry_1") then
 			caster:AddMomentum(caster:FindTalentValue("special_bonus_unique_juggernaut_quickparry_1"))
 		end
@@ -49,17 +49,18 @@ function modifier_juggernaut_quickparry_passive:GetModifierTotal_ConstantBlock(p
 	if ability:GetToggleState() then
 		local result = caster:AttemptDecrementMomentum(self.cost)
 		if result then
-			self:QuickParry(caster, params.attacker, ability)
+			ability:QuickParry(caster, params.attacker)
 			return params.damage
 		end
 	end
 end
 
-function modifier_juggernaut_quickparry_passive:QuickParry(caster, target, ability)
-	caster:StartGestureWithPlaybackRate( ACT_DOTA_ATTACK_STATUE , 5 )
-	ability:DealDamage(caster, target, self.damage )
+function juggernaut_quickparry:QuickParry(caster, target)
+	print(ACT_DOTA_ATTACK_EVENT, ACT_DOTA_ATTACK, ACT_DOTA_ATTACK_EVENT)
+	caster:StartGestureWithPlaybackRate( ACT_DOTA_ATTACK_EVENT, 5 )
+	self:DealDamage(caster, target, self.damage )
 	if caster:HasTalent("special_bonus_unique_juggernaut_quickparry_2") then
-		caster:AddNewModifier(caster, ability, "modifier_juggernaut_quickparry_talent", {duration = caster:FindTalentValue("special_bonus_unique_juggernaut_quickparry_2", "duration")})
+		caster:AddNewModifier(caster, self, "modifier_juggernaut_quickparry_talent", {duration = caster:FindTalentValue("special_bonus_unique_juggernaut_quickparry_2", "duration")})
 	end
 end
 

@@ -3,7 +3,7 @@ local function OnEntityKilled(self, event)
 		if not event.entindex_killed then return end
 		local killedTarget = EntIndexToHScript(event.entindex_killed)
 		if not killedTarget or not self or self.eventEnded then return end
-		if killedTarget:IsRoundBoss() and self.enemiesToSpawn <= 0 then
+		if not killedTarget:IsRealHero() and killedTarget:IsRoundBoss() and self.enemiesToSpawn <= 0 then
 			for _, unit in ipairs( FindAllUnits({team = DOTA_UNIT_TARGET_TEAM_ENEMY}) ) do
 				if unit:IsRoundBoss() and unit:IsAlive() then
 					return
@@ -30,5 +30,4 @@ local function OnEntityKilled(self, event)
 		SendErrorReport(err)
 	end
 end
-
 return OnEntityKilled

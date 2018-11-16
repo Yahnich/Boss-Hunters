@@ -16,7 +16,7 @@
 		"precache"
 		{
 			"particle"					"particles/status_fx/status_effect_necrolyte_spirit.vpcf"
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_clinkz.vsndevts"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_pugna.vsndevts"
 		}
 		"AbilitySpecial"
 		{

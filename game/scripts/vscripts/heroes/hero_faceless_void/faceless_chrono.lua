@@ -16,7 +16,7 @@ function faceless_chrono:OnSpellStart()
     local point = self:GetCursorPosition()
 
     EmitSoundOn("Hero_FacelessVoid.Chronosphere", caster)
-
+	
     CreateModifierThinker(caster, self, "modifier_faceless_chrono", {Duration = self:GetTalentSpecialValueFor("duration")}, point, caster:GetTeam(), false)
     AddFOWViewer(caster:GetTeam(), point, self:GetTalentSpecialValueFor("radius"), self:GetTalentSpecialValueFor("duration"), true)
 end
@@ -45,7 +45,14 @@ function modifier_faceless_chrono:OnCreated(table)
 
         self:StartIntervalThink(FrameTime())
         self:StartMotionController()
+		self:GetAbility():StartDelayedCooldown()
     end
+end
+
+function modifier_faceless_chrono:OnDestroy()
+	if IsServer() then 
+		self:GetAbility():EndDelayedCooldown()
+	end
 end
 
 function modifier_faceless_chrono:OnIntervalThink()

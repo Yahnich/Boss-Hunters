@@ -262,7 +262,7 @@ if IsServer() then
     function modifier_sd_disruption_charges:OnIntervalThink()
         local stacks = self:GetStackCount()
 		local caster = self:GetCaster()
-		local octarine = get_octarine_multiplier(caster)
+		local octarine = caster:GetCooldownReduction()
 		
 		self.kv.replenish_time = self:GetAbility():GetTrueCooldown()
 		self.kv.max_count = self:GetTalentSpecialValueFor("charges")

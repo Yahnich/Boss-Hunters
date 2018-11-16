@@ -58,6 +58,7 @@ function RoundManager:VoteSkipPrepTime(userid, event)
 end
 
 function RoundManager:VoteNewGame(userid, event)
+	if self.ng then return end
 	self.votedToNG = (self.votedToNG or 0)
 	self.votedNoNg = (self.votedNoNg or 0)
 	if toboolean(event.vote) then
@@ -104,6 +105,9 @@ function RoundManager:OnNPCSpawned(event)
 			return
 		end
 		if spawnedUnit then
+			spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_cooldown_reduction_handler", {})
+			spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_base_attack_time_handler", {})
+			spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_accuracy_handler", {})
 			if spawnedUnit:IsAlive() and spawnedUnit:IsCreature() and spawnedUnit:GetTeam() == DOTA_TEAM_BADGUYS then
 				AddFOWViewer(DOTA_TEAM_GOODGUYS, spawnedUnit:GetAbsOrigin(), 516, 3, false) -- show spawns
 				if spawnedUnit:IsRoundBoss() then
@@ -139,7 +143,11 @@ function RoundManager:OnHoldoutReviveComplete( event )
 	if castingHero then
 		castingHero.Resurrections = (castingHero.Resurrections or 0) + 1
 		target:AddNewModifier(target, nil, "modifier_tombstone_respawn_immunity", {duration = 3})
-		castingHero:AddGold(self._nRoundNumber)
+		castingHero:AddGold( math.max( 10, RoundManager:GetEventsFinished() * 2 ) )
+		if GameRules:GetGameDifficulty() >= 3 then
+			target:SetHealth( target:GetMaxHealth() * 0.25 )
+			target:SetMana( target:GetMaxMana() * 0.25 )
+		end
 		local position = target:GetAbsOrigin()
 	end
 	target.tombstoneEntity = nil
@@ -231,8 +239,10 @@ function RoundManager:ConstructRaids(zoneName)
 		table.insert( self.zones[zoneName], raid )
 	end
 	-- Final Boss bruh
-	local finalBoss = BaseEvent(zoneName, EVENT_TYPE_BOSS, "elysium_boss_apotheosis" )
-	table.insert( self.zones[zoneName][#self.zones[zoneName]], finalBoss )
+	if zoneName == "Elysium" then 
+		local finalBoss = BaseEvent(zoneName, EVENT_TYPE_BOSS, "elysium_boss_apotheosis" )
+		table.insert( self.zones[zoneName][#self.zones[zoneName]], finalBoss )
+	end
 end
 
 function RoundManager:RemoveEventFromPool(eventToRemove, pool)	
@@ -361,7 +371,7 @@ end
 
 function RoundManager:StartEvent()
 	local StartEventCatch = function( ... )
-		GameRules:RefreshPlayers()
+		GameRules:RefreshPlayers( GameRules:GetGameDifficulty() >= 3 ) 
 		EmitGlobalSound("Round.Start")
 		
 		local playerData = {}
@@ -391,7 +401,7 @@ end
 
 function RoundManager:EndEvent(bWonRound)
 	local EndEventCatch = function(  )
-		GameRules:RefreshPlayers()
+		GameRules:RefreshPlayers( GameRules:GetGameDifficulty() >= 3 and bWonRound ) 
 		CustomGameEventManager:Send_ServerToAllClients("boss_hunters_event_has_ended", {})
 		local event = self.zones[self.currentZone][1][1]
 		event.eventEnded = true
@@ -570,6 +580,7 @@ end
 
 function RoundManager:InitializeUnit(unit, bElite)
 	unit.hasBeenInitialized = true
+	unit.NPCIsElite = bElite
 	local expectedHP = unit:GetBaseMaxHealth() * RandomFloat(0.9, 1.1)
 	local expectedDamage = ( unit:GetAverageBaseDamage() + (RoundManager:GetEventsFinished() * 2) ) * RandomFloat(0.85, 1.15)
 	local playerHPMultiplier = 0.25
@@ -703,6 +714,7 @@ end
 
 function RoundManager:EvaluateLoss()
 	for _, hero in ipairs( HeroList:GetRealHeroes() ) do
+		print("u dead bruh? ", hero:NotDead())
 		if hero:NotDead() then return false end
 	end
 	return true

@@ -21,7 +21,7 @@ end
 function modifier_item_anvil_handle:DeclareFunctions()
 	return {MODIFIER_EVENT_ON_ATTACK_LANDED,
 			MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
-			MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE
+			MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE 
 			}
 end
 
@@ -29,7 +29,7 @@ function modifier_item_anvil_handle:GetModifierBonusStats_Strength()
 	return self.strength
 end
 
-function modifier_item_anvil_handle:GetModifierBaseAttack_BonusDamage()
+function modifier_item_anvil_handle:GetModifierPreAttack_BonusDamage()
 	return self.damage
 end
 

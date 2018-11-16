@@ -40,19 +40,21 @@ end
 LinkLuaModifier( "modifier_winters_breath_debuff", "items/item_winters_breath.lua" ,LUA_MODIFIER_MOTION_NONE )
 modifier_winters_breath_debuff = class({})
 
+
 function modifier_winters_breath_debuff:OnCreated()
 	self.slow = self:GetAbility():GetSpecialValueFor("slow")
 	if IsServer() then
-		self.damage = self:GetAbility():GetSpecialValueFor("base_damage") + self:GetCaster():GetPrimaryStatValue() * self:GetAbility():GetSpecialValueFor("damage_over_time") / 100
+		if self:GetCaster():IsRealHero() then
+			self.damage = self:GetAbility():GetSpecialValueFor("base_damage") + self:GetCaster():GetPrimaryStatValue() * self:GetAbility():GetSpecialValueFor("damage_over_time") / 100
+		else
+			self.damage = self:GetAbility():GetSpecialValueFor("base_damage") + self:GetCaster():GetPlayerOwner():GetAssignedHero():GetPrimaryStatValue() * self:GetAbility():GetSpecialValueFor("damage_over_time") / 100
+		end
 		self:StartIntervalThink(1)
 	end
 end
 
 function modifier_winters_breath_debuff:OnRefresh()
-	self.slow = self:GetAbility():GetSpecialValueFor("slow")
-	if IsServer() then
-		self.damage = math.max( self.damage, self:GetAbility():GetSpecialValueFor("base_damage") + self:GetCaster():GetPrimaryStatValue() * self:GetAbility():GetSpecialValueFor("damage_over_time") / 100 )
-	end
+	self:OnCreated()
 end
 
 function modifier_winters_breath_debuff:OnIntervalThink()

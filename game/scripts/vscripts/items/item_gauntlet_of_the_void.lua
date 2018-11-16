@@ -48,7 +48,7 @@ function modifier_item_gauntlet_of_the_void:OnCreated()
 end
 
 function modifier_item_gauntlet_of_the_void:OnDestroy()
-	if IsServer() then self:GetAbility():OnToggle() end
+	if IsServer() then self:GetCaster():RemoveModifierByName("modifier_item_arcane_reaver_active") end
 end
 
 function modifier_item_gauntlet_of_the_void:DeclareFunctions()

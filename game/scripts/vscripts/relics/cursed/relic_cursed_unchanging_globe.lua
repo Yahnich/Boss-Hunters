@@ -6,6 +6,11 @@ function relic_cursed_unchanging_globe:OnCreated()
 	if IsServer() then 
 		self:GetParent():CalculateStatBonus()
 		local result = ( ( self:GetParent():GetManaRegen() - ( self:GetParent():GetBaseManaRegen() + self:GetParent():GetBonusManaRegen() ) ) * 0.5 ) / self:GetParent():GetManaRegenMultiplier()
+		for _, modifier in ipairs( params.unit:FindAllModifiers() ) do
+			if modifier.GetModifierTotalPercentageManaRegen and modifier:GetModifierTotalPercentageManaRegen() then
+				result = result - (params.unit:GetMaxMana() - self.mana) * modifier:GetModifierTotalPercentageManaRegen() / 100
+			end
+		end
 		self:SetStackCount( math.ceil( result * 100 ) )
 		self:GetParent():CalculateStatBonus()
 	end
@@ -20,7 +25,7 @@ function relic_cursed_unchanging_globe:GetModifierManaBonus()
 end
 
 function relic_cursed_unchanging_globe:GetModifierConstantManaRegen(params)
-	return - self:GetStackCount() / 100
+	if not self:GetParent():HasModifier("relic_unique_ritual_candle") then return - self:GetStackCount() / 100 end
 end
 
 function relic_cursed_unchanging_globe:OnAbilityFullyCast(params)
@@ -39,12 +44,17 @@ function relic_cursed_unchanging_globe:OnModifierAdded(params)
 	if params.unit == self:GetParent() then
 		self.mana = 0
 		self:SetStackCount( 0 )
+		self.mana = -(self:GetParent():GetMaxMana() * 0.8)
 		if IsServer() then 
 			self:GetParent():CalculateStatBonus()
 			local result = ( ( self:GetParent():GetManaRegen() - ( self:GetParent():GetBaseManaRegen() + self:GetParent():GetBonusManaRegen() ) ) * 0.5 ) / self:GetParent():GetManaRegenMultiplier()
+			for _, modifier in ipairs( params.unit:FindAllModifiers() ) do
+				if modifier.GetModifierTotalPercentageManaRegen and modifier:GetModifierTotalPercentageManaRegen() then
+					result = result - (params.unit:GetMaxMana() - self.mana) * modifier:GetModifierTotalPercentageManaRegen() / 100
+				end
+			end
 			self:SetStackCount( math.ceil( result * 100 ) )
 		end
-		self.mana = -(self:GetParent():GetMaxMana() * 0.8)
 		if IsServer() then self:GetParent():CalculateStatBonus() end
 	end
 end

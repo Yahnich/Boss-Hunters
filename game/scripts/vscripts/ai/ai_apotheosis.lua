@@ -22,6 +22,8 @@ function Spawn( entityKeyValues )
 	thisEntity.judge = thisEntity:FindAbilityByName("boss_apotheosis_judge_the_cowards")
 	thisEntity.kill = thisEntity:FindAbilityByName("boss_apotheosis_the_end")
 	
+	AddFOWViewer( DOTA_TEAM_BADGUYS, thisEntity:GetAbsOrigin(), 3000, 10, true )
+	
 	AITimers:CreateTimer(0.1, 	function()
 		if  math.floor(GameRules.gameDifficulty + 0.5) < 2 then 
 			thisEntity.impervious:SetLevel(1)
@@ -50,6 +52,11 @@ function Spawn( entityKeyValues )
 			thisEntity.judge:SetLevel(2)
 			thisEntity.kill:SetLevel(2)
 		end
+		thisEntity.beam:StartCooldown(10)
+		thisEntity.rampage:StartCooldown(15)
+		thisEntity.decimate:StartCooldown(20)
+		thisEntity.judge:StartCooldown(10)
+		thisEntity.kill:StartCooldown(25)
 	end)
 end
 
@@ -57,9 +64,45 @@ end
 function AIThink(thisEntity)
 	if not thisEntity:IsDominated() and not thisEntity:IsChanneling() then
 		local target = AICore:GetHighestPriorityTarget(thisEntity)
-		
-		-- return AICore:AttackHighestPriority( thisEntity )
-		return AI_THINK_RATE
+		local totalHeroes = thisEntity:FindEnemyUnitsInRadius( thisEntity:GetAbsOrigin(), -1, {type = DOTA_UNIT_TARGET_HERO} )
+		if thisEntity.kill:IsFullyCastable() and #totalHeroes > 1 then
+			local killTarget = totalHeroes[RandomInt( #totalHeroes, 1 )]
+			return CastTheEnd(thisEntity, killTarget )
+		end
+		if thisEntity.shield:IsFullyCastable() then
+			if thisEntity:PassivesDisabled() or AICore:BeingAttacked( thisEntity ) >= math.ceil(#HeroList:GetActiveHeroes() / 2) then
+				return CastShieldOfValhalla( thisEntity )
+			end
+		end
+		if thisEntity.judge:IsFullyCastable() then
+			local judgeHeroes = AICore:TotalEnemyHeroesInRange( thisEntity, thisEntity.judge:GetTrueCastRange() )
+			if judgeHeroes > AICore:TotalEnemyHeroesInRange( thisEntity, thisEntity:GetAttackRange() )
+			or judgeHeroes > AICore:BeingAttacked( thisEntity ) then
+				return CastJudgeTheCowards( thisEntity )
+			end
+		end
+		if thisEntity.rampage:IsFullyCastable() and RollPercentage(35) then
+			return CastRampage(thisEntity)
+		end
+		if thisEntity.decimate:IsFullyCastable() and RollPercentage( 25 ) then
+			return CastDecimate(thisEntity)
+		end
+		if thisEntity.beam:IsFullyCastable() then
+			return CastFocusedBeam(thisEntity)
+		end
+		if thisEntity.hunter:IsFullyCastable() then
+			if target and CalculateDistance( target, thisEntity ) <= thisEntity:GetIdealSpeed() + thisEntity.hunter:GetTrueCastRange() then
+				local position = thisEntity:GetAbsOrigin() + CalculateDirection( target, thisEntity ) * math.min( CalculateDistance( target, thisEntity ) * 2, thisEntity.hunter:GetTrueCastRange() )
+				return CastRelentlessHunter(thisEntity, position)
+			else
+				local hunterTarget = AICore:RandomEnemyHeroInRange( thisEntity, thisEntity.hunter:GetTrueCastRange() )
+				if hunterTarget then
+					local position = thisEntity:GetAbsOrigin() + CalculateDirection( hunterTarget, thisEntity ) * math.min( CalculateDistance( hunterTarget, thisEntity ) * 2, thisEntity.hunter:GetTrueCastRange() )
+					return CastRelentlessHunter(thisEntity, position)
+				end
+			end
+		end
+		return AICore:AttackHighestPriority( thisEntity )
 	else return AI_THINK_RATE end
 end
 
@@ -95,7 +138,7 @@ function CastRelentlessHunter(thisEntity, position)
 		UnitIndex = thisEntity:entindex(),
 		OrderType = DOTA_UNIT_ORDER_CAST_POSITION,
 		Position = position,
-		AbilityIndex = thisEntity.beam:entindex()
+		AbilityIndex = thisEntity.hunter:entindex()
 	})
 	return thisEntity.hunter:GetCastPoint() + 0.1
 end
