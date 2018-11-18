@@ -3,7 +3,7 @@ function item_staff_of_magi:GetIntrinsicModifierName()
 	return "modifier_item_staff_of_magi_handle"
 end
 
-modifier_item_staff_of_magi_handle = class(itemBaseClass)
+modifier_item_staff_of_magi_handle = class(itemBasicBaseClass)
 LinkLuaModifier( "modifier_item_staff_of_magi_handle", "items/item_staff_of_magi.lua", LUA_MODIFIER_MOTION_NONE )
 
 function modifier_item_staff_of_magi_handle:OnCreated()

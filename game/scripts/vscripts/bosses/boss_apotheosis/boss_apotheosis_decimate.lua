@@ -7,6 +7,7 @@ function boss_apotheosis_decimate:OnSpellStart()
 	ParticleManager:SetParticleControl( self.nFX, 1, caster:GetAbsOrigin() + Vector(0,0,125) )
 	ParticleManager:SetParticleControl( self.nFX, 9, Vector(150,1,1) )
 	ParticleManager:SetParticleControl( self.nFX, 11, Vector( self:GetChannelTime() + 0.1,0,10 ) )
+	ParticleManager:FireWarningParticle( caster:GetAbsOrigin(), 600 )
 	caster:EmitSound("Hero_Invoker.SunStrike.Charge")
 end
 
@@ -18,11 +19,15 @@ function boss_apotheosis_decimate:OnChannelFinish(bInterrupt)
 		local min_beams = self:GetSpecialValueFor("min_sunstrikes")
 		local radius = self:GetSpecialValueFor("radius")
 		local hero_beams = self:GetSpecialValueFor("sunstrikes_per_hero")
-		for i = 1, min_beams do
+		Timers:CreateTimer(0.1, function()	
 			self:CreateFlare( casterPos + ActualRandomVector(1200, 150), radius )
-		end
+			min_beams = min_beams - 1
+			if min_beams > 0 then
+				return 0.1
+			end
+		end)
 		
-		for _, hero in ipairs( caster:FindEnemyUnitsInRadius( casterPos, -1 ) ) do
+		for _, hero in ipairs( caster:FindEnemyUnitsInRadius( casterPos, -1, {type = DOTA_UNIT_TARGET_HERO} ) ) do
 			local heroPos = hero:GetAbsOrigin()
 			for i = 1, hero_beams do
 				self:CreateFlare( heroPos + ActualRandomVector(radius * 1.5), radius )

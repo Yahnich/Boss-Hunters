@@ -5,7 +5,7 @@ function item_strange_trinket:GetIntrinsicModifierName()
 	return "modifier_item_strange_trinket_passive"
 end
 
-modifier_item_strange_trinket_passive = class(itemBaseClass)
+modifier_item_strange_trinket_passive = class(itemBasicBaseClass)
 
 function modifier_item_strange_trinket_passive:OnCreated()
 	self.bonus_mana = self:GetSpecialValueFor("bonus_mana")

@@ -150,6 +150,7 @@
 		"AbilityTextureName"			"custom/mirana_mooneye_2"
 		"InnateAbility"					"1"
 		"MaxLevel"						"1"
+		"HasScepterUpgrade"				"1"
 	
 		// Special
 		//-------------------------------------------------------------------------------------------------------------

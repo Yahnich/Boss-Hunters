@@ -5,7 +5,7 @@ function item_sorcerers_staff:GetIntrinsicModifierName()
 	return "modifier_item_sorcerers_staff_passive"
 end
 
-modifier_item_sorcerers_staff_passive = class(itemBaseClass)
+modifier_item_sorcerers_staff_passive = class(itemBasicBaseClass)
 
 function modifier_item_sorcerers_staff_passive:OnCreated()
 	self.spellamp = self:GetSpecialValueFor("bonus_spell_amp")

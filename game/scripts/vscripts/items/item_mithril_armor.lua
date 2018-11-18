@@ -5,7 +5,7 @@ function item_mithril_armor:GetIntrinsicModifierName()
 	return "modifier_item_mithril_armor_passive"
 end
 
-modifier_item_mithril_armor_passive = class(itemBaseClass)
+modifier_item_mithril_armor_passive = class(itemBasicBaseClass)
 
 function modifier_item_mithril_armor_passive:OnCreated()
 	self.armor = self:GetSpecialValueFor("bonus_armor")

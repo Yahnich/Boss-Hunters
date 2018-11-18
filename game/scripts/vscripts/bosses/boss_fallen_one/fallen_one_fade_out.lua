@@ -11,16 +11,20 @@ function fallen_one_fade_out:OnSpellStart()
 	caster:EmitSound("Hero_VengefulSpirit.NetherSwap")
 	if target:TriggerSpellAbsorb( self ) then return end
 	local duration = self:GetSpecialValueFor("illu_duration")
-	local illusion = target:ConjureImage( caster:GetAbsOrigin(), duration, self:GetSpecialValueFor("illu_out") - 100, self:GetSpecialValueFor("illu_inc") - 100, nil, self, false, caster )
-	illusion.hasBeenInitialized = true
-	local invuln = caster:AddNewModifier(caster, self, "modifier_fallen_one_fade_out", {duration = duration})
-	Timers:CreateTimer(0.5, function()
-		illusion:MoveToPositionAggressive( target:GetAbsOrigin() )
-		caster:SetAbsOrigin( illusion:GetAbsOrigin() )
-		if not illusion or illusion:IsNull() or not illusion:IsAlive() and invuln then
-			invuln:Destroy()
-		end
+	
+	local callback = (function( illusion, parent, caster, ability )
+		illusion.hasBeenInitialized = true
+		Timers:CreateTimer(0.5, function()
+			illusion:MoveToPositionAggressive( parent:GetAbsOrigin() )
+			caster:SetAbsOrigin( illusion:GetAbsOrigin() )
+			if not illusion or illusion:IsNull() or not illusion:IsAlive() and invuln then
+				invuln:Destroy()
+			end
+		end)
 	end)
+	
+	local illusion = target:ConjureImage( caster:GetAbsOrigin(), duration, self:GetSpecialValueFor("illu_out") - 100, self:GetSpecialValueFor("illu_inc") - 100, nil, self, false, callback )
+	local invuln = caster:AddNewModifier(caster, self, "modifier_fallen_one_fade_out", {duration = duration})
 end
 
 modifier_fallen_one_fade_out = class({})

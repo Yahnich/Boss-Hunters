@@ -10,7 +10,7 @@ function item_aeon_shard:GetIntrinsicModifierName()
 end
 
 LinkLuaModifier( "modifier_item_aeon_shard_passive", "items/item_aeon_shard.lua" ,LUA_MODIFIER_MOTION_NONE )
-modifier_item_aeon_shard_passive = class({})
+modifier_item_aeon_shard_passive = class(itemBasicBaseClass)
 
 function modifier_item_aeon_shard_passive:OnCreated()
 	self.bonus_attack_speed = self:GetSpecialValueFor("bonus_attackspeed")
@@ -27,11 +27,6 @@ end
 function modifier_item_aeon_shard_passive:IsHidden()
 	return true
 end
-
-function modifier_item_aeon_shard_passive:GetAttributes()
-	return MODIFIER_ATTRIBUTE_MULTIPLE
-end
-
 
 LinkLuaModifier( "modifier_item_aeon_shard_consumed", "items/item_aeon_shard.lua" ,LUA_MODIFIER_MOTION_NONE )
 modifier_item_aeon_shard_consumed = class({})

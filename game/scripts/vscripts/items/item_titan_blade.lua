@@ -3,7 +3,7 @@ function item_titan_blade:GetIntrinsicModifierName()
 	return "modifier_item_titan_blade_handle"
 end
 
-modifier_item_titan_blade_handle = class(itemBaseClass)
+modifier_item_titan_blade_handle = class(itemBasicBaseClass)
 LinkLuaModifier( "modifier_item_titan_blade_handle", "items/item_titan_blade.lua", LUA_MODIFIER_MOTION_NONE )
 
 function modifier_item_titan_blade_handle:OnCreated()
