@@ -580,7 +580,7 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 				roundCurrTotalHP = roundCurrTotalHP + unit:GetMaxHealth()
 			end
 			local addedthreat = math.min( (damage / roundCurrTotalHP)*#enemies*100, (victim:GetHealth() * #enemies * 100) / roundCurrTotalHP )
-			if addedthreat > 0.15 then
+			if addedthreat > 0.01 then
 				attacker:ModifyThreat( addedthreat )
 				attacker.lastHit = GameRules:GetGameTime()
 				attacker.statsDamageDealt = (attacker.statsDamageDealt or 0) + math.min(victim:GetHealth(), damage)
@@ -646,7 +646,7 @@ function CHoldoutGameMode:OnHeroLevelUp(event)
 	local playerID = EntIndexToHScript(event.player):GetPlayerID()
 	local hero = PlayerResource:GetSelectedHeroEntity(playerID)
 	if hero:GetLevel() <= 27 then
-		hero.bonusSkillPoints = (hero.bonusSkillPoints or 0) + 1
+		hero.bonusSkillPoints = ( hero.bonusSkillPoints or ( hero:GetAbilityPoints() - 1 ) ) + 1
 		if hero:GetLevel() == 17 or hero:GetLevel() == 19 or (hero:GetLevel() > 20 and hero:GetLevel() < 25) then 
 			hero:SetAbilityPoints( hero:GetAbilityPoints() + 1)
 			hero.bonusSkillPoints = (hero.bonusSkillPoints or 0) + 1

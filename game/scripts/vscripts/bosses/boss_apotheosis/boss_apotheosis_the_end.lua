@@ -10,11 +10,11 @@ function boss_apotheosis_the_end:OnSpellStart()
 	local target = self:GetCursorTarget()
 	
 	target:AddNewModifier( caster, self, "modifier_boss_apotheosis_the_end", {duration = self:GetSpecialValueFor("death_timer") + 0.1})
-	ParticleManager:FireParticle("particles/bosses/boss_apotheosis/boss_apotheosis_the_end_effect.vpcf", PATTACH_POINT_FOLLOW, target)
+	ParticleManager:FireParticle("particles/bosses/boss_apotheosis/boss_apotheosis_the_end_effect.vpcf", PATTACH_POINT_FOLLOW, target, {[1] = Vector(900,1,1)})
 	target:EmitSound("Hero_Necrolyte.ReapersScythe.Cast")
 end
 
-modifier_boss_apotheosis_the_end = class({})
+modifier_boss_apotheosis_the_end = class({})	
 LinkLuaModifier( "modifier_boss_apotheosis_the_end", "bosses/boss_apotheosis/boss_apotheosis_the_end", LUA_MODIFIER_MOTION_NONE )
 
 if IsServer() then
@@ -52,6 +52,14 @@ end
 
 function modifier_boss_apotheosis_the_end:GetEffectAttachType()
 	return PATTACH_OVERHEAD_FOLLOW
+end
+
+function modifier_boss_apotheosis_the_end:GetStatusEffectName()
+	return "particles/status_fx/status_effect_wraithking_ghosts.vpcf"
+end
+
+function modifier_boss_apotheosis_the_end:GetStatusEffectPriority()
+	return 20
 end
 
 function modifier_boss_apotheosis_the_end:IsPurgable()
