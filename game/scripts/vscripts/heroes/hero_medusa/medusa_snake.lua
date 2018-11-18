@@ -64,7 +64,7 @@ function medusa_snake:OnProjectileHit( hTarget, vLocation )
 				self.nTotalMana = self.nTotalMana + flManaSteal
 			end
 
-			local iDamageType = self:GetAbility():GetAbilityDamageType()
+			local iDamageType = self:GetAbilityDamageType()
 
 			if hTarget:FindModifierByName( "modifier_medusa_gaze_stun" ) or hTarget:FindModifierByName( "modifier_medusa_gaze_stun_lesser" ) then
 				iDamageType = DAMAGE_TYPE_PURE
@@ -111,7 +111,7 @@ function medusa_snake:LaunchNextProjectile( hTarget )
 		local hJumpTarget
 		while #enemies > 0 do
 			local hPotentialJumpTarget = enemies[ 1 ]
-			if hPotentialJumpTarget == nil or TableContainsValue( self.hHitEntities, hPotentialJumpTarget ) then
+			if hPotentialJumpTarget == nil or HasValInTable(self.hHitEntities, hPotentialJumpTarget) then
 				table.remove( enemies, 1 )
 			else
 				hJumpTarget = hPotentialJumpTarget

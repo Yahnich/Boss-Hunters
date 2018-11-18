@@ -1,40 +1,39 @@
 "DOTAAbilities"
 {	
-	"medusa_split"
+	"morph_wave"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_medusa/medusa_split"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"ScriptFile"					"heroes/hero_morphling/morph_wave"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
-		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
-		"AbilityTextureName"			"medusa_split_shot"
+		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"morphling_waveform"
 		"MaxLevel"						"7"
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"0"
-		"AbilityCastPoint"				"0.0"
+		"AbilityCastRange"				"1000"
+		"AbilityCastPoint"				"0.25"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"0"
+		"AbilityCooldown"				"14 13 12 11 10 9 8"
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"0"
+		"AbilityManaCost"				"140 155 160 165 180 185 190"
 	
 		"precache"
 		{
-			"particle"					"particles/units/heroes/hero_medusa/medusa_bow_split_shot.vpcf"
-			"particle"  				"particles/units/heroes/hero_medusa/medusa_basic_attack_linear.vpcf"
+			"particle"  				"particles/units/heroes/hero_morphling/morphling_waveform.vpcf"
 
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_medusa.vsndevts"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_morphling.vsndevts"
 		}
 		
 		// Special
@@ -43,37 +42,37 @@
 		{
 			"01"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"damage_mod"				"30 37.5 45 52.5 60 67.5 75"
-				"CalculateSpellDamageTooltip"	"0"
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"75 150 225 300 375 450 525"
 			}
 			"02"
-			{	
-				"var_type"					"FIELD_INTEGER"
-				"arrow_count"				"3"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"speed"					"1250"
 			}
 			"03"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"split_shot_bonus_range"	"100"
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"200"
 			}
 			"04"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"cone_spread"				"90"
+				"var_type"				"FIELD_INTEGER"
+				"range"					"1000"
+				"LinkedSpecialBonus"	"special_bonus_unique_morph_wave_1"
 			}
 			"05"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"width"						"25"
-			}		
+				"var_type"				"FIELD_INTEGER"
+				"charges"				"2"
+			}
 		}
 	}
 	
 	//=================================================================================================================
 	// Ability: Special Bonus
 	//=================================================================================================================
-	"special_bonus_unique_medusa_split_1"
+	"special_bonus_unique_morph_wave_1"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -88,14 +87,14 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
+				"value"						"350"
 			}
 		}
 	}
 	//=================================================================================================================
 	// Ability: Special Bonus
 	//=================================================================================================================
-	"special_bonus_unique_medusa_split_2"
+	"special_bonus_unique_morph_wave_2"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -115,44 +114,42 @@
 		}
 	}
 
-	"medusa_snake"
+	"morph_agi_strike"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_medusa/medusa_snake"
+		"ScriptFile"					"heroes/hero_morphling/morph_agi_strike"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
 		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityTextureName"			"medusa_mystic_snake"
+		"AbilityTextureName"			"morphling_adaptive_strike_agi"
 		"MaxLevel"						"7"
-		"HasScepterUpgrade"				"1"
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"700"
-		"AbilityCastPoint"				"0.4"
+		"AbilityCastRange"				"600 700 800 900 1000 1100 1200"
+		"AbilityCastPoint"				"0.25"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"11"
+		"AbilityCooldown"				"10"
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"140 150 160 170 180 190 200"
+		"AbilityManaCost"				"80"
 	
 		"precache"
 		{
-			"particle"					"particles/units/heroes/hero_medusa/medusa_mystic_snake_projectile_initial.vpcf"
-			"particle"  				"particles/units/heroes/hero_medusa/medusa_mystic_snake_cast.vpcf"
-			"particle"  				"particles/units/heroes/hero_medusa/medusa_mystic_snake_projectile_return.vpcf"
-			"particle"  				"particles/units/heroes/hero_medusa/medusa_mystic_snake_projectile.vpcf"
+			"particle"					"particles/units/heroes/hero_morphling/morphling_adaptive_strike_agi_proj.vpcf"
+			"particle"  				"particles/units/heroes/hero_morphling/morphling_adaptive_strike.vpcf"
+			"particle"  				"particles/units/heroes/hero_monkey_king/mk_spring_blone.vpcf"
 
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_medusa.vsndevts"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_morphling.vsndevts"
 		}
 		
 		// Special
@@ -161,44 +158,14 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"80 120 160 200 240 280 320"
+				"var_type"						"FIELD_INTEGER"
+				"damage"						"100"
+				
 			}
 			"02"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"snake_scale"			"35"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"mana_steal"			"20 35 50 65 90 105 130"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"475"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"jumps"					"3 4 5 6 7 8 9"
-				"LinkedSpecialBonus"	"special_bonus_unique_medusa_snake_1"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"jump_delay"			"0.25"
-			}			
-			"09"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"stone_form_scepter_base"		"1.0"
-			}
-			"10"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"stone_form_scepter_increment"		"0.3"
+				"var_type"						"FIELD_FLOAT"
+				"agi_max"						"1 1.25 1.5 1.75 2 2.25 2.5"
 			}
 		}
 	}
@@ -206,7 +173,7 @@
 	//=================================================================================================================
 	// Ability: Special Bonus
 	//=================================================================================================================
-	"special_bonus_unique_medusa_snake_1"
+	"special_bonus_unique_morph_agi_strike_1"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -220,16 +187,136 @@
 		{
 			"01"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"5"
+				"var_type"					"FIELD_INTEGER"
+				"value"						"3"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_morph_agi_strike_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"300"
 			}
 		}
 	}
 
+	"morph_str_strike"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_morphling/morph_str_strike"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"morphling_adaptive_strike_str"
+		"MaxLevel"						"7"
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"600 700 800 900 1000 1100 1200"
+		"AbilityCastPoint"				"0.25"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_3"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"10"
+		
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"80"
+	
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_morphling/morphling_invis_linear_projectile.vpcf"
+			"particle"  				"particles/units/heroes/hero_morphling/morphling_adaptive_strike_str_proj_end.vpcf"
+			"particle"  				"particles/units/heroes/hero_morphling/morphling_hydro_cannon.vpcf"
+
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_morphling.vsndevts"
+		}
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"damage"						"100"
+				"LinkedSpecialBonus"			"special_bonus_unique_morph_str_strike_1"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"str_mult"						"0.5"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"stun_min"						"0.5"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"stun_max"						"1.5 1.75 2 2.25 2.5 2.75 3"
+			}
+			"05"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"knockback_min"					"100"
+			}
+			"06"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"knockback_max"					"500"
+			}
+		}
+	}
+	
 	//=================================================================================================================
 	// Ability: Special Bonus
 	//=================================================================================================================
-	"special_bonus_unique_medusa_snake_2"
+	"special_bonus_unique_morph_str_strike_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"300"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_morph_str_strike_2"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -248,31 +335,104 @@
 			}
 		}
 	}
-
-	"medusa_viper"
+	
+	"morph_agi_morph"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_medusa/medusa_viper"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"ScriptFile"					"heroes/hero_morphling/morph_agi_morph"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE"
+		"AbilityTextureName"			"morphling_morph_agi"
+		"MaxLevel"						"1"
+		"InnateAbility"					"1"
+
+	
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_morphling/morphling_morph_agi.vpcf"
+
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_morphling.vsndevts"
+		}
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_agi"				"2"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"morph_rate"			"1"
+			}
+		}
+	}
+
+	"morph_str_morph"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_morphling/morph_str_morph"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE"
+		"AbilityTextureName"			"morphling_morph_str"
+		"MaxLevel"						"1"
+		"InnateAbility"					"1"
+
+	
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_morphling/morphling_morph_str.vpcf"
+			
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_morphling.vsndevts"
+		}
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_str"				"2"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"morph_rate"			"1"
+			}
+		}
+	}
+
+	"morph_morph"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_morphling/morph_morph"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
-		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NO"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityTextureName"			"custom/medusa_mana_shield_daughters"
-		"MaxLevel"						"7"
+		"AbilityTextureName"			"morphling_replicate"
+		"MaxLevel"						"6"
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"0"
-		"AbilityCastPoint"				"0.0"
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastRange"				"2000"
+		"AbilityCastPoint"				"0.25"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_5"
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"25"
+		"AbilityCooldown"				"160 130 100 70 40 10"
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -280,11 +440,10 @@
 	
 		"precache"
 		{
-			"particle"					"particles/units/heroes/hero_medusa/medusa_mystic_snake_projectile.vpcf"
-			"particle"  				"particles/units/heroes/hero_medusa/medusa_viper.vpcf"
-			"particle"  				"particles/units/heroes/hero_venomancer/venomancer_poison_debuff_nova.vpcf"
+			"particle"					"particles/econ/items/kunkka/divine_anchor/hero_kunkka_dafx_skills/kunkka_spell_torrent_splash_fxset.vpcf"
+			"particle"  				"particles/econ/items/kunkka/divine_anchor/hero_kunkka_dafx_skills/kunkka_spell_torrent_bubbles_fxset.vpcf"
 
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_medusa.vsndevts"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_morphling.vsndevts"
 		}
 		
 		// Special
@@ -293,64 +452,31 @@
 		{
 			"01"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"arrow_count"				"3"
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"50"
 			}
 			"02"
-			{	
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"10 40 70 100 130 160 190"
-				"LinkedSpecialBonus"		"special_bonus_unique_medusa_split_2"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"outgoing"				"260"
 			}
 			"03"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"5"
+				"var_type"				"FIELD_INTEGER"
+				"incoming"				"100"
 			}
 			"04"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"move_slow"					"-11 -12 -13 -14 -15 -16 -17"
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"350"
 			}
-			"05"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"cone_spread"				"45"
-			}
-			"06"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"width"						"25"
-			}		
 		}
 	}
 	
 	//=================================================================================================================
 	// Ability: Special Bonus
 	//=================================================================================================================
-	"special_bonus_unique_medusa_viper_1"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"value"						"5"
-			}
-		}
-	}
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_medusa_viper_2"
+	"special_bonus_unique_morph_morph_1"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -369,169 +495,10 @@
 			}
 		}
 	}
-	
-	"medusa_shield"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_medusa/medusa_shield"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-		"AbilityTextureName"			"medusa_mana_shield"
-		"MaxLevel"						"1"
-		"InnateAbility"					"1"
-		
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"0"
-		"AbilityCastPoint"				"0"
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_3"
-		
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"0"
-		
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"0"
-
-		"precache"
-		{
-			"particle"					"particles/units/heroes/hero_medusa/medusa_mana_shield.vpcf"
-
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_medusa.vsndevts"
-		}
-
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"damage_per_mana"		"1"
-				"CalculateSpellDamageTooltip"	"0"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"absorb"				"60"
-			}
-		}
-	}
-
-	"medusa_gaze"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_medusa/medusa_gaze"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
-		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityTextureName"			"medusa_stone_gaze"
-		"MaxLevel"						"6"
-		
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"1000"
-		"AbilityCastPoint"				"0.4"
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
-
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"90"
-		
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"200"
-	
-		"precache"
-		{
-			"particle"					"particles/units/heroes/hero_medusa/medusa_stone_gaze_facing.vpcf"
-			"particle"  				"particles/units/heroes/hero_medusa/medusa_stone_gaze_debuff_stoned.vpcf"
-			"particle"  				"particles/units/heroes/hero_medusa/medusa_stone_gaze_debuff.vpcf"
-			"particle"  				"particles/status_fx/status_effect_medusa_stone_gaze.vpcf"
-			"particle"  				"particles/units/heroes/hero_medusa/medusa_stone_gaze_active.vpcf"
-
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_medusa.vsndevts"
-		}
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"5 6 7 8 9 10"
-				"LinkedSpecialBonus"		"special_bonus_unique_medusa"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"face_duration"				"2.0"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"stone_duration"			"3.0"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"bonus_physical"			"50"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"1000"
-			}
-			"06"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"length"					"1000"
-			}
-			"07"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"mr_reduc"					"-50"
-			}			
-		}
-	}
-
 	//=================================================================================================================
 	// Ability: Special Bonus
 	//=================================================================================================================
-	"special_bonus_unique_medusa_gaze_1"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"1"
-			}
-		}
-	}
-
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_medusa_gaze_2"
+	"special_bonus_unique_morph_morph_2"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------

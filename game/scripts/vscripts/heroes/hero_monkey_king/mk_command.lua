@@ -14,21 +14,36 @@ function mk_command:OnSpellStart()
 
 	local point = self:GetCursorPosition()
 	local startPos = caster:GetAbsOrigin()
-	local dir = CalculateDirection(point, startPos)	
+	local dir = CalculateDirection(point, startPos)
 
-	local max_monkeys = self:GetTalentSpecialValueFor("number_of_monkeys")
+	local distance = self:GetTrueCastRange()	
+
+	local rightVector = caster:GetRightVector()
+
+	local radius = caster:GetModelRadius()
+
+	local maxWaves = self:GetTalentSpecialValueFor("number_of_monkeys")
+	local monkeysPerWave = 4
 	local current = 0
 
 	EmitSoundOn("Hero_MonkeyKing.FurArmy", caster)
 
-	Timers:CreateTimer(function()
-		local radius = caster:GetAttackRange() * 2
-		local randoVect = ActualRandomVector(radius,-radius)
-        pointRando = startPos + randoVect
-		if current < max_monkeys then
-			self:FireLinearProjectile("particles/units/heroes/hero_monkey_king/mk_command_projectile.vpcf", dir*caster:GetIdealSpeedNoSlows(), 1000, caster:GetModelRadius(), {origin=pointRando}, false, true, 200)
+	Timers:CreateTimer(function()        
+		if current < maxWaves then
+			self:FireLinearProjectile("particles/units/heroes/hero_monkey_king/mk_command_projectile.vpcf", dir*caster:GetIdealSpeedNoSlows(), distance, radius, {origin=startPos}, false, true, 200)
+			
+			for i=1,monkeysPerWave/2 do
+				local pos = startPos + rightVector * radius * i
+				self:FireLinearProjectile("particles/units/heroes/hero_monkey_king/mk_command_projectile.vpcf", dir*caster:GetIdealSpeedNoSlows(), distance, radius, {origin=pos}, false, true, 200)
+			end
+
+			for i=1,monkeysPerWave/2 do
+				local pos = startPos - rightVector * radius * i
+				self:FireLinearProjectile("particles/units/heroes/hero_monkey_king/mk_command_projectile.vpcf", dir*caster:GetIdealSpeedNoSlows(), distance, radius, {origin=pos}, false, true, 200)
+			end
+			
 			current = current + 1
-			return 0.25
+			return 1
 		else
 			return nil
 		end
