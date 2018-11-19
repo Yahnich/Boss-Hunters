@@ -1,11 +1,11 @@
 "DOTAAbilities"
 {	
-	"boss_ammetot_time_acceleration"
+	"boss_ammetot_see_all"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"bosses/boss_ammetot/boss_ammetot_time_acceleration"
+		"ScriptFile"					"bosses/boss_ammetot/boss_ammetot_see_all"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityTextureName"			"faceless_void_time_walk"
 		"MaxLevel"						"3"
@@ -34,12 +34,232 @@
 			}
 		}
 	}
-	"boss_ammetot_deteriorate"
+	"boss_ammetot_gatekeeper"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"bosses/boss_ammetot/boss_ammetot_deteriorate"
+		"ScriptFile"					"bosses/boss_ammetot/boss_ammetot_gatekeeper"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"faceless_void_time_walk"
+		"MaxLevel"						"3"
+	
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_puck/puck_phase_shift.vpcf"
+		}
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"growth_rate"			"1.0"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_damage"			"0.75 1"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_ms"				"1 2"
+			}
+		}
+	}
+	"boss_ammetot_unbound"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_ammetot/boss_ammetot_unbound"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"faceless_void_time_walk"
+		"MaxLevel"						"3"
+	
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_puck/puck_phase_shift.vpcf"
+		}
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"growth_rate"			"1.0"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_damage"			"0.75 1"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_ms"				"1 2"
+			}
+		}
+	}
+	"boss_ammetot_fate_acceptance"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_ammetot/boss_ammetot_fate_acceptance"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"faceless_void_time_walk"
+		"MaxLevel"						"3"
+	
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_puck/puck_phase_shift.vpcf"
+		}
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"growth_rate"			"1.0"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_damage"			"0.75 1"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_ms"				"1 2"
+			}
+		}
+	}
+	
+	"boss_ammetot_restless_warden"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_ammetot/boss_ammetot_restless_warden"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName"			"dazzle_weave"
+		"MaxLevel"						"3"
+		
+		"AbilityCastRange"				"800"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastPoint"				"1.5 1"
+		"AbilityCooldown"				"160"
+	
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_dazzle/dazzle_weave.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_dazzle.vsndevts"
+		}
+		"AbilitySpecial"
+		{
+			"01"
+            {
+                "var_type"                      "FIELD_FLOAT"
+                "total_armor_reduction"     	"60 80"
+            }
+    		"02"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "duration"     					"60 80"
+            }
+    		"03"
+            {
+                "var_type"                      "FIELD_FLOAT"
+                "radius"     					"350 500"
+            }
+		}
+	}
+	"boss_ammetot_illusion_of_inevitability"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_ammetot/boss_ammetot_illusion_of_inevitability"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName"			"dazzle_weave"
+		"MaxLevel"						"3"
+		
+		"AbilityCastRange"				"800"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastPoint"				"1.5 1"
+		"AbilityCooldown"				"160"
+	
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_dazzle/dazzle_weave.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_dazzle.vsndevts"
+		}
+		"AbilitySpecial"
+		{
+			"01"
+            {
+                "var_type"                      "FIELD_FLOAT"
+                "total_armor_reduction"     	"60 80"
+            }
+    		"02"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "duration"     					"60 80"
+            }
+    		"03"
+            {
+                "var_type"                      "FIELD_FLOAT"
+                "radius"     					"350 500"
+            }
+		}
+	}
+	"boss_ammetot_willing_prisoner"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_ammetot/boss_ammetot_willing_prisoner"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName"			"dazzle_weave"
+		"MaxLevel"						"3"
+		
+		"AbilityCastRange"				"800"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastPoint"				"1.5 1"
+		"AbilityCooldown"				"160"
+	
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_dazzle/dazzle_weave.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_dazzle.vsndevts"
+		}
+		"AbilitySpecial"
+		{
+			"01"
+            {
+                "var_type"                      "FIELD_FLOAT"
+                "total_armor_reduction"     	"60 80"
+            }
+    		"02"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "duration"     					"60 80"
+            }
+    		"03"
+            {
+                "var_type"                      "FIELD_FLOAT"
+                "radius"     					"350 500"
+            }
+		}
+	}
+	"boss_ammetot_death_is_lonely"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_ammetot/boss_ammetot_death_is_lonely"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName"			"dazzle_weave"
 		"MaxLevel"						"3"

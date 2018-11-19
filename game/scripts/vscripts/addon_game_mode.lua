@@ -571,30 +571,28 @@ function CHoldoutGameMode:FilterDamage( filterTable )
 		return true 
 	end
 	if not victim:IsHero() and victim ~= attacker then
-		if not ability or (ability and not ability:HasNoThreatFlag()) then
-			-- if not victim.threatTable then victim.threatTable = {} end
-			if not attacker.threat then attacker.threat = 0 end
-			local roundCurrTotalHP = 0
-			local enemies = FindAllUnits({team = DOTA_UNIT_TARGET_TEAM_ENEMY})
-			for _,unit in ipairs( enemies ) do
-				roundCurrTotalHP = roundCurrTotalHP + unit:GetMaxHealth()
-			end
-			local addedthreat = math.min( (damage / roundCurrTotalHP)*#enemies*100, (victim:GetHealth() * #enemies * 100) / roundCurrTotalHP )
-			if addedthreat > 0.15 then
-				attacker:ModifyThreat( addedthreat )
-				attacker.lastHit = GameRules:GetGameTime()
-				attacker.statsDamageDealt = (attacker.statsDamageDealt or 0) + math.min(victim:GetHealth(), damage)
-				PlayerResource:SortThreat()
-				local event_data =
-				{
-					threat = attacker.threat,
-					lastHit = attacker.lastHit,
-					aggro = attacker.aggro
-				}
-				local player = attacker:GetPlayerOwner()
-				if player then
-					CustomGameEventManager:Send_ServerToPlayer( player, "Update_threat", event_data )
-				end
+		-- if not victim.threatTable then victim.threatTable = {} end
+		if not attacker.threat then attacker.threat = 0 end
+		local roundCurrTotalHP = 0
+		local enemies = FindAllUnits({team = DOTA_UNIT_TARGET_TEAM_ENEMY})
+		for _,unit in ipairs( enemies ) do
+			roundCurrTotalHP = roundCurrTotalHP + unit:GetMaxHealth()
+		end
+		local addedthreat = math.min( (damage / roundCurrTotalHP)*#enemies*100, (victim:GetHealth() * #enemies * 100) / roundCurrTotalHP )
+		if addedthreat > 0.01 then
+			attacker:ModifyThreat( addedthreat )
+			attacker.lastHit = GameRules:GetGameTime()
+			attacker.statsDamageDealt = (attacker.statsDamageDealt or 0) + math.min(victim:GetHealth(), damage)
+			PlayerResource:SortThreat()
+			local event_data =
+			{
+				threat = attacker.threat,
+				lastHit = attacker.lastHit,
+				aggro = attacker.aggro
+			}
+			local player = attacker:GetPlayerOwner()
+			if player then
+				CustomGameEventManager:Send_ServerToPlayer( player, "Update_threat", event_data )
 			end
 		end
 	end
@@ -646,7 +644,7 @@ function CHoldoutGameMode:OnHeroLevelUp(event)
 	local playerID = EntIndexToHScript(event.player):GetPlayerID()
 	local hero = PlayerResource:GetSelectedHeroEntity(playerID)
 	if hero:GetLevel() <= 27 then
-		hero.bonusSkillPoints = (hero.bonusSkillPoints or 0) + 1
+		hero.bonusSkillPoints = ( hero.bonusSkillPoints or ( hero:GetAbilityPoints() - 1 ) ) + 1
 		if hero:GetLevel() == 17 or hero:GetLevel() == 19 or (hero:GetLevel() > 20 and hero:GetLevel() < 25) then 
 			hero:SetAbilityPoints( hero:GetAbilityPoints() + 1)
 			hero.bonusSkillPoints = (hero.bonusSkillPoints or 0) + 1

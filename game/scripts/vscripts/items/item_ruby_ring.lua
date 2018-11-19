@@ -5,7 +5,7 @@ function item_ruby_ring:GetIntrinsicModifierName()
 	return "modifier_item_ruby_ring"
 end
 
-modifier_item_ruby_ring = class(itemBaseClass)
+modifier_item_ruby_ring = class(itemBasicBaseClass)
 function modifier_item_ruby_ring:OnCreated()
 	self.hp_regen = self:GetSpecialValueFor("hp_regen")
 end

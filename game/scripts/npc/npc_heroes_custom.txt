@@ -1145,19 +1145,21 @@
 	"npc_dota_hero_morphling_ebf"
 	{
 		"override_hero"					"npc_dota_hero_morphling"
-		// "Ability1"					"morph_wave"
-		// "Ability2"					"morph_agi_strike"
-		// "Ability3"					"morph_str_strike"
-	
-		"Ability15"						"special_bonus_all_stats_8"
-		"Ability16"						"special_bonus_unique_morphling_1"
-		"Ability17"						"special_bonus_unique_morphling_4"
-		"Ability18"						"special_bonus_attack_speed_30"
-		"Ability19"						"special_bonus_agility_20"
-		"Ability20"						"special_bonus_strength_20"
-		"Ability21"						"special_bonus_unique_morphling_6"
-		"Ability22"						"special_bonus_unique_morphling_3"
-		
+		"Ability1"						"morph_wave"
+		"Ability2"						"morph_agi_strike"
+		"Ability3"						"morph_str_strike"
+		"Ability4"						"morph_agi_morph"
+		"Ability5"						"morph_str_morph"
+		"Ability6"						"morph_morph"
+			
+		"Ability10"						"special_bonus_unique_morph_wave_1"
+		"Ability11"						"special_bonus_unique_morph_wave_2"
+		"Ability12"						"special_bonus_unique_morph_agi_strike_1"
+		"Ability13"						"special_bonus_unique_morph_agi_strike_2"
+		"Ability14"						"special_bonus_unique_morph_str_strike_1"
+		"Ability15"						"special_bonus_unique_morph_str_strike_2"
+		"Ability16"						"special_bonus_unique_morph_morph_1"
+		"Ability17"						"special_bonus_unique_morph_morph_2"
 	}
 	"npc_dota_hero_naga_siren_ebf"
 	{
@@ -2189,20 +2191,20 @@
 	"npc_dota_hero_visage_ebf"
 	{
 		"override_hero"					"npc_dota_hero_visage"
-		"Ability1"						"mana_fiend_aura_spike"
-		"Ability2"						"mana_fiend_arcane_infusion"
-		"Ability3"				"mana_fiend_essence_amp"
-		"Ability6"				"mana_fiend_mana_lance"
+		"Ability1"						"visage_chill"
+		"Ability2"						"visage_soul"
+		"Ability3"						"visage_cloak"
+		"Ability4"						"visage_familiars"
+		"Ability6"						"visage_stone"
 		
-		"Ability10"		"special_bonus_cast_range_125"
-		"Ability11"		"special_bonus_attack_damage_30"
-		"Ability12"		"special_bonus_spell_amplify_10"
-		"Ability13"		"special_bonus_unique_visage_3"
-		"Ability14"		"special_bonus_unique_visage_4"
-		"Ability15"		"special_bonus_unique_visage_2"
-		"Ability16"		"special_bonus_unique_visage_5"
-		"Ability17"		"special_bonus_unique_visage_6"
-		
+		"Ability10"						"special_bonus_unique_visage_chill_1"
+		"Ability11"						"special_bonus_unique_viper_poison_attack_2"
+		"Ability12"						"special_bonus_unique_visage_soul_1"
+		"Ability13"						"special_bonus_unique_visage_soul_2"
+		"Ability14"						"special_bonus_unique_visage_cloak_1"
+		"Ability15"						"special_bonus_unique_visage_cloak_2"
+		"Ability16"						"special_bonus_unique_visage_stone_1"
+		"Ability17"						"special_bonus_unique_visage_stone_2"
 	}
 	"npc_dota_hero_warlock_ebf"
 	{

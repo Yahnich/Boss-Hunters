@@ -181,6 +181,14 @@ function modifier_mk_mastery_hits:GetModifierPreAttack_BonusDamage()
 	return self.bonus_Ad
 end
 
+function modifier_mk_mastery_hits:GetAccuracy()
+	if self:GetCaster():HasTalent("special_bonus_unique_mk_mastery_1") then
+		return 100
+	else
+		return 0
+	end
+end
+
 function modifier_mk_mastery_hits:IsDebuff()
 	return false
 end
@@ -191,10 +199,4 @@ end
 
 function modifier_mk_mastery_hits:GetEffectAttachType()
 	return PATTACH_OVERHEAD_FOLLOW
-end
-
-function modifier_mk_mastery_hits:CheckState()
-	if self:GetCaster():HasTalent("special_bonus_unique_mk_mastery_1") then
-		return {[MODIFIER_STATE_CANNOT_MISS ] = true}
-	end
 end

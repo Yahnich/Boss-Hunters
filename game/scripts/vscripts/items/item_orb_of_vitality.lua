@@ -8,7 +8,7 @@ function item_orb_of_vitality:OnSpellStart()
 	self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_item_orb_of_vitality_active", {duration = self:GetSpecialValueFor("duration")})
 end
 
-modifier_item_orb_of_vitality_passive = class(itemBaseClass)
+modifier_item_orb_of_vitality_passive = class(itemBasicBaseClass)
 LinkLuaModifier("modifier_item_orb_of_vitality_passive", "items/item_orb_of_vitality", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_item_orb_of_vitality_passive:OnCreated()

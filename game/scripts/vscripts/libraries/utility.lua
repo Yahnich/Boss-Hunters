@@ -1900,30 +1900,40 @@ function CDOTA_BaseNPC:RemoveBlind()
 	end
 end
 
-function CDOTA_BaseNPC_Hero:AddGold(val)
-	local gold = val or 0
-	if gold >= 0 then
-		for _, modifier in pairs(self:FindAllModifiers()) do
-			if modifier.GetBonusGold and modifier:GetBonusGold() then
-				gold = gold * math.max( 0, (1 + (modifier:GetBonusGold() / 100)) )
+function CDOTA_BaseNPC:AddGold(val)
+	if self:GetPlayerID() >= 0 then
+		local hero = PlayerResource:GetSelectedHeroEntity( self:GetPlayerID() )
+		if hero then
+			local gold = val or 0
+			if gold >= 0 then
+				for _, modifier in pairs(hero:FindAllModifiers()) do
+					if modifier.GetBonusGold and modifier:GetBonusGold() then
+						gold = gold * math.max( 0, (1 + (modifier:GetBonusGold() / 100)) )
+					end
+				end
 			end
+			local gold = hero:GetGold() + gold
+			hero:SetGold(0, false)
+			hero:SetGold(gold, true)
 		end
 	end
-	local gold = self:GetGold() + gold
-	self:SetGold(0, false)
-	self:SetGold(gold, true)
 end
 
-function CDOTA_BaseNPC_Hero:AddXP( val )
-	local xp = val or 0
-	if xp >= 0 then
-		for _, modifier in pairs(self:FindAllModifiers()) do
-			if modifier.GetBonusExp and modifier:GetBonusExp() then
-				xp = xp * math.max( 0, (1 + (modifier.GetBonusExp() / 100)) )
+function CDOTA_BaseNPC:AddXP( val )
+	if self:GetPlayerID() >= 0 then
+		local hero = PlayerResource:GetSelectedHeroEntity( self:GetPlayerID() )
+		if hero then
+			local xp = val or 0
+			if xp >= 0 then
+				for _, modifier in pairs(hero:FindAllModifiers()) do
+					if modifier.GetBonusExp and modifier:GetBonusExp() then
+						xp = xp * math.max( 0, (1 + (modifier.GetBonusExp() / 100)) )
+					end
+				end
 			end
+			hero:AddExperience(xp, DOTA_ModifyXP_Unspecified , false, true)
 		end
 	end
-	self:AddExperience(xp, DOTA_ModifyXP_Unspecified , false, true)
 end
 
 function CutTreesInRadius(vloc, radius)

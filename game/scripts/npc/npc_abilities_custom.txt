@@ -3348,7 +3348,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"max_hp_block"			"40 50 60 70 80 90 100"
+				"block"					"70 80 90 100 110 120 130"
 			}
 			"02"
 			{
@@ -3356,7 +3356,7 @@
 				"duration"				"6.0"
 				"LinkedSpecialBonus"	"special_bonus_unique_oracle_3"
 			}
-			"02"
+			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"radius"				"900"
@@ -3392,7 +3392,7 @@
 				"IsHidden"	"1"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_TOTAL_CONSTANT_BLOCK_UNAVOIDABLE_PRE_ARMOR"		"1"
+					"MODIFIER_PROPERTY_TOTAL_CONSTANT_BLOCK "		"%block"
 				}
 			}
 		}

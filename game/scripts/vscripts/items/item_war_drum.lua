@@ -18,7 +18,7 @@ function item_war_drum:OnSpellStart()
 	end
 end
 
-modifier_item_war_drum_passive = class(itemBaseClass)
+modifier_item_war_drum_passive = class(itemBasicBaseClass)
 function modifier_item_war_drum_passive:OnCreated()
 	self.bonus_agi = self:GetSpecialValueFor("bonus_agi")
 	self.bonus_int = self:GetSpecialValueFor("bonus_int")

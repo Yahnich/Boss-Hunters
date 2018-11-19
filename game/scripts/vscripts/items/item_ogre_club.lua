@@ -3,7 +3,7 @@ function item_ogre_club:GetIntrinsicModifierName()
 	return "modifier_item_ogre_club_handle"
 end
 
-modifier_item_ogre_club_handle = class(itemBaseClass)
+modifier_item_ogre_club_handle = class(itemBasicBaseClass)
 LinkLuaModifier( "modifier_item_ogre_club_handle", "items/item_ogre_club.lua", LUA_MODIFIER_MOTION_NONE )
 
 function modifier_item_ogre_club_handle:OnCreated()

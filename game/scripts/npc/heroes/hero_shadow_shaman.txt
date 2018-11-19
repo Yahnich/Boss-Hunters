@@ -242,6 +242,7 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"damage"				"50 90 130 170 210 250"
+				"CalculateSpellDamageTooltip"	"0"
 			}
 			"03"
 			{

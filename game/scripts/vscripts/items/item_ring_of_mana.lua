@@ -5,7 +5,7 @@ function item_ring_of_mana:GetIntrinsicModifierName()
 	return "modifier_item_ring_of_mana_passive"
 end
 
-modifier_item_ring_of_mana_passive = class(itemBaseClass)
+modifier_item_ring_of_mana_passive = class(itemBasicBaseClass)
 
 function modifier_item_ring_of_mana_passive:OnCreated()
 	self.manaregen = self:GetSpecialValueFor("bonus_mana_regen")

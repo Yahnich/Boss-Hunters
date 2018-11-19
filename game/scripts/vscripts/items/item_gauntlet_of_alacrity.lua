@@ -5,7 +5,7 @@ function item_gauntlet_of_alacrity:GetIntrinsicModifierName()
 	return "modifier_item_gauntlet_of_alacrity_passive"
 end
 
-modifier_item_gauntlet_of_alacrity_passive = class(itemBaseClass)
+modifier_item_gauntlet_of_alacrity_passive = class(itemBasicBaseClass)
 
 function modifier_item_gauntlet_of_alacrity_passive:OnCreated()
 	self.bonus_attack_speed = self:GetSpecialValueFor("bonus_attackspeed")

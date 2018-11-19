@@ -5,7 +5,7 @@ function item_worn_cloak:GetIntrinsicModifierName()
 	return "modifier_item_worn_cloak"
 end
 
-modifier_item_worn_cloak = class(itemBaseClass)
+modifier_item_worn_cloak = class(itemBasicBaseClass)
 function modifier_item_worn_cloak:OnCreated()
 	self.magic_resist = self:GetAbility():GetSpecialValueFor("bonus_magic_resist")
 end

@@ -5,7 +5,7 @@ function item_gem_of_corruption:GetIntrinsicModifierName()
 	return "modifier_item_gem_of_corruption"
 end
 
-modifier_item_gem_of_corruption = class(itemBaseClass)
+modifier_item_gem_of_corruption = class(itemBasicBaseClass)
 function modifier_item_gem_of_corruption:OnCreated(table)
 	self.bonus_damage = self:GetSpecialValueFor("bonus_damage")
 end

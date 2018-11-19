@@ -1,11 +1,11 @@
 "DOTAAbilities"
 {	
-	"boss_arthromos_time_acceleration"
+	"boss_arthromos_touch_of_decay"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"bosses/boss_arthromos/boss_arthromos_time_acceleration"
+		"ScriptFile"					"bosses/boss_arthromos/boss_arthromos_touch_of_decay"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityTextureName"			"faceless_void_time_walk"
 		"MaxLevel"						"3"
@@ -34,12 +34,160 @@
 			}
 		}
 	}
-	"boss_arthromos_deteriorate"
+	"boss_arthromos_hellraiser"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"bosses/boss_arthromos/boss_arthromos_deteriorate"
+		"ScriptFile"					"bosses/boss_arthromos/boss_arthromos_hellraiser"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"faceless_void_time_walk"
+		"MaxLevel"						"3"
+	
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_puck/puck_phase_shift.vpcf"
+		}
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"growth_rate"			"1.0"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_damage"			"0.75 1"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_ms"				"1 2"
+			}
+		}
+	}
+	"boss_arthromos_plague_aura"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_arthromos/boss_arthromos_plague_aura"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"faceless_void_time_walk"
+		"MaxLevel"						"3"
+	
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_puck/puck_phase_shift.vpcf"
+		}
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"growth_rate"			"1.0"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_damage"			"0.75 1"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_ms"				"1 2"
+			}
+		}
+	}
+	
+	
+	"boss_arthromos_locust_swarm"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_arthromos/boss_arthromos_pestilence"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName"			"dazzle_weave"
+		"MaxLevel"						"3"
+		
+		"AbilityCastRange"				"800"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastPoint"				"1.5 1"
+		"AbilityCooldown"				"160"
+	
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_dazzle/dazzle_weave.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_dazzle.vsndevts"
+		}
+		"AbilitySpecial"
+		{
+			"01"
+            {
+                "var_type"                      "FIELD_FLOAT"
+                "total_armor_reduction"     	"60 80"
+            }
+    		"02"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "duration"     					"60 80"
+            }
+    		"03"
+            {
+                "var_type"                      "FIELD_FLOAT"
+                "radius"     					"350 500"
+            }
+		}
+	}
+	"boss_arthromos_pestilence"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_arthromos/boss_arthromos_pestilence"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName"			"dazzle_weave"
+		"MaxLevel"						"3"
+		
+		"AbilityCastRange"				"800"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastPoint"				"1.5 1"
+		"AbilityCooldown"				"160"
+	
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_dazzle/dazzle_weave.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_dazzle.vsndevts"
+		}
+		"AbilitySpecial"
+		{
+			"01"
+            {
+                "var_type"                      "FIELD_FLOAT"
+                "total_armor_reduction"     	"60 80"
+            }
+    		"02"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "duration"     					"60 80"
+            }
+    		"03"
+            {
+                "var_type"                      "FIELD_FLOAT"
+                "radius"     					"350 500"
+            }
+		}
+	}
+	"boss_arthromos_dessicate"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"bosses/boss_arthromos/boss_arthromos_dessicate"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName"			"dazzle_weave"
 		"MaxLevel"						"3"
