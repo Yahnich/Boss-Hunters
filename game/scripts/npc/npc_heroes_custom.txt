@@ -1297,22 +1297,24 @@
 	}
 		"npc_dota_hero_ogre_magi"
 	{
-		"override_hero"			"npc_dota_hero_ogre_magi"
-		"Ability1"				"ogre_magi_fireblast_bh"
-		"Ability2"				"ogre_magi_ignite_bh"
-		"Ability3"				"ogre_magi_bloodlust_bh"
-		"Ability4"				"ogre_magi_multicast_bh"
-		"Ability5"				"ogre_magi_unrefined_fireblast_bh"
-		"Ability6"				"ogre_magi_immolate"					// Ability 2
-
-		"Ability10"		"special_bonus_unique_ogre_magi_fireblast_bh_1"
-		"Ability11"		"special_bonus_unique_ogre_magi_fireblast_bh_2"
-		"Ability12"		"special_bonus_unique_ogre_magi_ignite_bh_1"
-		"Ability13"		"special_bonus_unique_ogre_magi_ignite_bh_2"
-		"Ability14"		"special_bonus_unique_ogre_magi_bloodlust_bh_1"
-		"Ability15"		"special_bonus_unique_ogre_magi_bloodlust_bh_2"
-		"Ability16"		"special_bonus_unique_ogre_magi_immolate_1"
-		"Ability17"		"special_bonus_unique_ogre_magi_immolate_2"
+		"override_hero"					"npc_dota_hero_ogre_magi"
+		"Ability1"						"ogre_magi_fireblast_bh"
+		"Ability2"						"ogre_magi_ignite_bh"
+		"Ability3"						"ogre_magi_bloodlust_bh"
+		"Ability4"						"ogre_magi_multicast_bh"
+		"Ability5"						"ogre_magi_unrefined_fireblast_bh"
+		"Ability6"						"ogre_magi_immolate"					// Ability 2
+		
+		"Ability10"						"special_bonus_unique_ogre_magi_fireblast_bh_1"
+		"Ability11"						"special_bonus_unique_ogre_magi_fireblast_bh_2"
+		"Ability12"						"special_bonus_unique_ogre_magi_ignite_bh_1"
+		"Ability13"						"special_bonus_unique_ogre_magi_ignite_bh_2"
+		"Ability14"						"special_bonus_unique_ogre_magi_bloodlust_bh_1"
+		"Ability15"						"special_bonus_unique_ogre_magi_bloodlust_bh_2"
+		"Ability16"						"special_bonus_unique_ogre_magi_immolate_1"
+		"Ability17"						"special_bonus_unique_ogre_magi_immolate_2"
+		
+		"AttributePrimary"				"DOTA_ATTRIBUTE_STRENGTH"
 	}
 	"npc_dota_hero_omniknight" // Justicar
 	{
@@ -2198,7 +2200,7 @@
 		"Ability6"						"visage_stone"
 		
 		"Ability10"						"special_bonus_unique_visage_chill_1"
-		"Ability11"						"special_bonus_unique_viper_poison_attack_2"
+		"Ability11"						"special_bonus_unique_visage_chill_2"
 		"Ability12"						"special_bonus_unique_visage_soul_1"
 		"Ability13"						"special_bonus_unique_visage_soul_2"
 		"Ability14"						"special_bonus_unique_visage_cloak_1"

@@ -35,8 +35,9 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"mana_pool_damage_pct"	"6 6.5 7 7.5 8 8.5 9"
+				"var_type"						"FIELD_FLOAT"
+				"mana_pool_damage_pct"			"6 6.5 7 7.5 8 8.5 9"
+				"CalculateSpellDamageTooltip"	"0"
 			}
 		}
 	}	
@@ -223,6 +224,7 @@
 				"damage_multiplier"				"14 16 18 20 22 24"
 				"LinkedSpecialBonus"			"special_bonus_unique_obsidian_destroyer_celestial_obliteration_1"
 				"LinkedSpecialBonusField"		"damage"
+				"CalculateSpellDamageTooltip"	"0"
 			}
 			"02"
 			{

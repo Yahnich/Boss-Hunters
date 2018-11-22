@@ -188,6 +188,10 @@ function CDOTA_BaseNPC:GetPlayerID()
 	return self:GetPlayerOwnerID()
 end
 
+function CDOTA_BaseNPC:GetAttackRange()
+	return self:Script_GetAttackRange()
+end
+
 function CDOTA_BaseNPC_Hero:CreateSummon(unitName, position, duration, bControllable)
 	local summon = CreateUnitByName(unitName, position, true, self, nil, self:GetTeam())
 	summon:SetControllableByPlayer(self:GetPlayerID(), true)

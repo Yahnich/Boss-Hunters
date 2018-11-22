@@ -43,4 +43,9 @@
         "playerID"          "short"      // The ID of the player who should get stats
         "command"           "string"    // The command to send to the website
     }
+	"custom_error_show"
+	{
+		"player_ID"		"short"
+		"_error"		"string"
+	}
 }

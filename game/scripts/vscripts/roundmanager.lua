@@ -500,6 +500,7 @@ function RoundManager:RaidIsFinished()
 				CustomGameEventManager:Send_ServerToAllClients( "bh_move_camera_position", { position = RoundManager:GetHeroSpawnPosition() } )
 				local position = RoundManager:GetHeroSpawnPosition() + RandomVector(64)
 				FindClearSpaceForUnit(hero, position, true)
+				hero:SetRespawnPosition( hero:GetAbsOrigin() )
 			end
 		end
 		

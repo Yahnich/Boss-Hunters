@@ -89,7 +89,6 @@ function StatsScreen:RegisterPlayer(hero, bRespec)
 	hero:SetAttributePoints( 0 )
 	
 	hero:AddNewModifier(hero, nil, "modifier_stats_system_handler", {})
-	hero:AddNewModifier(hero, nil, "modifier_mana_regen_throttle", {})
 end
 
 function StatsScreen:ProcessStatsUpgrade(userid, event)
