@@ -242,7 +242,6 @@ if IsServer() then
     function modifier_morph_wave_charges:OnIntervalThink()
         local stacks = self:GetStackCount()
 		local caster = self:GetCaster()
-		local octarine = get_octarine_multiplier(caster)
 		
 		self.kv.replenish_time = self:GetAbility():GetTrueCooldown()
 		self.kv.max_count = self:GetTalentSpecialValueFor("charges")

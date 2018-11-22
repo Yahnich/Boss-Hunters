@@ -178,7 +178,6 @@ if IsServer() then
     function modifier_espirit_rock_charges:OnIntervalThink()
         local stacks = self:GetStackCount()
 		local caster = self:GetCaster()
-		local octarine = get_octarine_multiplier(caster)
 		
 		self.kv.replenish_time = self:GetTalentSpecialValueFor("charge_time")
 		self.kv.max_count = self:GetTalentSpecialValueFor("charges")
