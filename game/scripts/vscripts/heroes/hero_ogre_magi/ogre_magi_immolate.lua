@@ -53,7 +53,7 @@ end
 function modifier_ogre_magi_immolate:OnIntervalThink()
 	local caster = self:GetCaster()
 	local ability = self:GetAbility()
-	if ability:GetAutoCastState() and caster:IsAlive() and ability:IsCooldownReady() and ability:IsOwnersManaEnough() and not ability:IsInAbilityPhase() then
+	if ability:GetAutoCastState() and caster:IsAlive() and ability:IsCooldownReady() and ability:IsOwnersManaEnough() and not caster:HasActiveAbility() then
 		local friends = caster:FindFriendlyUnitsInRadius(caster:GetAbsOrigin(), self:GetAbility():GetCastRange(caster:GetAbsOrigin(), caster), {order = FIND_CLOSEST})
 		for _,friend in pairs(friends) do
 			if not friend:HasModifier("modifier_ogre_magi_immolate_buff") then

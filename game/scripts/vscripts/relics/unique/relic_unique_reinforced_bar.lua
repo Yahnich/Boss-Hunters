@@ -8,7 +8,7 @@ if IsServer() then
 	function relic_unique_reinforced_bar:OnIntervalThink()
 		stacks = 0
 		for _, modifier in ipairs( self:GetParent():FindAllModifiers() ) do
-			if modifier.GetModifierPhysicalArmorBonus and (modifier:GetModifierPhysicalArmorBonus() or 0) ~= 0 and modifier ~= self then
+			if modifier.GetModifierPhysicalArmorBonus and (modifier:GetModifierPhysicalArmorBonus() or 0) > 0 and modifier ~= self then
 				stacks = stacks + 1
 			end
 		end

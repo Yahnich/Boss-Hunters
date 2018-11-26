@@ -108,6 +108,9 @@ function RoundManager:OnNPCSpawned(event)
 			spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_cooldown_reduction_handler", {})
 			spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_base_attack_time_handler", {})
 			spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_accuracy_handler", {})
+			spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_attack_speed_handler", {})
+			spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_move_speed_handler", {})
+			spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_health_handler", {})
 			if spawnedUnit:IsAlive() and spawnedUnit:IsCreature() and spawnedUnit:GetTeam() == DOTA_TEAM_BADGUYS then
 				AddFOWViewer(DOTA_TEAM_GOODGUYS, spawnedUnit:GetAbsOrigin(), 516, 3, false) -- show spawns
 				if spawnedUnit:IsRoundBoss() then

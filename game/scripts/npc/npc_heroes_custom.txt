@@ -1152,7 +1152,8 @@
 		"Ability4"						"morph_agi_morph"
 		"Ability5"						"morph_str_morph"
 		"Ability6"						"morph_morph"
-			
+		"Ability7"						""
+		"Ability8"						""
 		"Ability10"						"special_bonus_unique_morph_wave_1"
 		"Ability11"						"special_bonus_unique_morph_wave_2"
 		"Ability12"						"special_bonus_unique_morph_agi_strike_1"
@@ -1161,6 +1162,11 @@
 		"Ability15"						"special_bonus_unique_morph_str_strike_2"
 		"Ability16"						"special_bonus_unique_morph_morph_1"
 		"Ability17"						"special_bonus_unique_morph_morph_2"
+		"Ability18"						"special_bonus_attack_speed_30"
+		"Ability19"						""
+		"Ability20"						""
+		"Ability21"						""
+		"Ability22"						""
 	}
 	"npc_dota_hero_naga_siren_ebf"
 	{

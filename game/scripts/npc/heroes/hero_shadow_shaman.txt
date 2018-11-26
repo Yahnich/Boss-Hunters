@@ -214,6 +214,7 @@
 		"AbilityTextureName"			"shadow_shaman_mass_serpent_ward"
 		"FightRecapLevel"				"2"
 		"MaxLevel"						"6"
+		"HasScepterUpgrade"				"1"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
