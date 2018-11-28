@@ -87,7 +87,6 @@ function visage_cloak:OnSpellStart()
     local caster = self:GetCaster()
     local target = self:GetCursorTarget()
 
-
     for i=1,4 do
 		target:AddNewModifier(caster, self, "modifier_visage_cloak", {}):IncrementStackCount()
 	end
@@ -98,9 +97,10 @@ modifier_visage_cloak_handle = class({})
 function modifier_visage_cloak_handle:OnCreated()
 	if IsServer() then
 		local caster = self:GetCaster()
+		local parent = self:GetParent()
 
 		for i=1,4 do
-			caster:AddNewModifier(caster, self:GetAbility(), "modifier_visage_cloak", {}):IncrementStackCount()
+			parent:AddNewModifier(caster, self:GetAbility(), "modifier_visage_cloak", {}):IncrementStackCount()
 		end
 		
 		self:StartIntervalThink(self:GetTalentSpecialValueFor("recovery_time"))
@@ -109,14 +109,15 @@ end
 
 function modifier_visage_cloak_handle:OnIntervalThink()
 	local caster = self:GetCaster()
+	local parent = self:GetParent()
 
-	if caster:IsAlive() then
-		if caster:HasModifier("modifier_visage_cloak") then
-			if caster:FindModifierByName("modifier_visage_cloak"):GetStackCount() < self:GetTalentSpecialValueFor("max_layers") then
-				caster:AddNewModifier(caster, self:GetAbility(), "modifier_visage_cloak", {}):IncrementStackCount()
+	if parent:IsAlive() then
+		if parent:HasModifier("modifier_visage_cloak") then
+			if parent:FindModifierByName("modifier_visage_cloak"):GetStackCount() < self:GetTalentSpecialValueFor("max_layers") then
+				parent:AddNewModifier(caster, self:GetAbility(), "modifier_visage_cloak", {}):IncrementStackCount()
 			end
 		else
-			caster:AddNewModifier(caster, self:GetAbility(), "modifier_visage_cloak", {}):IncrementStackCount()
+			parent:AddNewModifier(caster, self:GetAbility(), "modifier_visage_cloak", {}):IncrementStackCount()
 		end
 	end
 	self:StartIntervalThink(self:GetTalentSpecialValueFor("recovery_time"))
@@ -188,46 +189,16 @@ function modifier_visage_cloak:OnStackCountChanged(iStackCount)
 	if self:GetStackCount() < iStackCount then
 		if self:GetStackCount() < 4 then
 			if self.nfx then
-				--[[ParticleManager:DestroyParticle(self.nfx, true)
-				self.nfx =  ParticleManager:CreateParticle("particles/units/heroes/hero_visage/visage_cloak_ambient.vpcf", PATTACH_ABSORIGIN, caster)
-							ParticleManager:SetParticleAlwaysSimulate(self.nfx)
-							ParticleManager:SetParticleControlEnt(self.nfx, 0, parent, PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", parent:GetAbsOrigin(), true)
-							ParticleManager:SetParticleControlEnt(self.nfx, 1, parent, PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", parent:GetAbsOrigin(), true)
-							ParticleManager:SetParticleControl(self.nfx, 2, Vector(1,1,0))
-							ParticleManager:SetParticleControl(self.nfx, 3, Vector(1,0,0))
-							ParticleManager:SetParticleControl(self.nfx, 4, Vector(1,0,0))
-							ParticleManager:SetParticleControl(self.nfx, 5, Vector(0,0,0))
-				self:AddEffect(self.nfx)]]
 				ParticleManager:SetParticleControl(self.nfx, 5, Vector(0,0,0))
 			end
 
 			if self:GetStackCount() < 3 then
 				if self.nfx then
-					--[[ParticleManager:DestroyParticle(self.nfx, true)
-					self.nfx =  ParticleManager:CreateParticle("particles/units/heroes/hero_visage/visage_cloak_ambient.vpcf", PATTACH_ABSORIGIN, caster)
-								ParticleManager:SetParticleAlwaysSimulate(self.nfx)
-								ParticleManager:SetParticleControlEnt(self.nfx, 0, parent, PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", parent:GetAbsOrigin(), true)
-								ParticleManager:SetParticleControlEnt(self.nfx, 1, parent, PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", parent:GetAbsOrigin(), true)
-								ParticleManager:SetParticleControl(self.nfx, 2, Vector(1,1,0))
-								ParticleManager:SetParticleControl(self.nfx, 3, Vector(1,0,0))
-								ParticleManager:SetParticleControl(self.nfx, 4, Vector(0,0,0))
-								ParticleManager:SetParticleControl(self.nfx, 5, Vector(0,0,0))
-					self:AddEffect(self.nfx)]]
 					ParticleManager:SetParticleControl(self.nfx, 4, Vector(0,0,0))
 				end
 
 				if self:GetStackCount() < 2 then
 					if self.nfx then
-						--[[ParticleManager:DestroyParticle(self.nfx, true)
-						self.nfx =  ParticleManager:CreateParticle("particles/units/heroes/hero_visage/visage_cloak_ambient.vpcf", PATTACH_ABSORIGIN, caster)
-									ParticleManager:SetParticleAlwaysSimulate(self.nfx)
-									ParticleManager:SetParticleControlEnt(self.nfx, 0, parent, PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", parent:GetAbsOrigin(), true)
-									ParticleManager:SetParticleControlEnt(self.nfx, 1, parent, PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", parent:GetAbsOrigin(), true)
-									ParticleManager:SetParticleControl(self.nfx, 2, Vector(1,1,0))
-									ParticleManager:SetParticleControl(self.nfx, 3, Vector(0,0,0))
-									ParticleManager:SetParticleControl(self.nfx, 4, Vector(0,0,0))
-									ParticleManager:SetParticleControl(self.nfx, 5, Vector(0,0,0))
-						self:AddEffect(self.nfx)]]
 						ParticleManager:SetParticleControl(self.nfx, 3, Vector(0,0,0))
 					end
 				end
@@ -250,9 +221,10 @@ end
 function modifier_visage_cloak:OnAbilityExecuted(params)
 	if IsServer() then
 		local caster = self:GetCaster()
+		local parent = self:GetParent()
 		local unit = params.unit
 
-		if unit == caster and caster:HasTalent("special_bonus_unique_visage_cloak_1") then
+		if unit == parent and caster:HasTalent("special_bonus_unique_visage_cloak_1") then
 			if self:GetStackCount() > 1 then
 				self:DecrementStackCount()
 			else
@@ -265,9 +237,10 @@ end
 function modifier_visage_cloak:OnTakeDamage(params)
 	if IsServer() then
 		local caster = self:GetCaster()
+		local parent = self:GetParent()
 		local unit = params.unit
 		
-		if unit:GetTeam() == caster:GetTeam() then
+		if unit == parent then
 			if self:GetStackCount() > 1 then
 				self:DecrementStackCount()
 			else
