@@ -115,6 +115,19 @@ function modifier_liquid_fire_caster:OnCreated()
 	-- { target(key) : times_to_apply_liquid_fire_on_attack_lands (value)}
 	-- This is done to allow attacking with liquid fire on correct targets if refresher orb is used
 	self.apply_aoe_modifier_debuff_on_hit = {}
+	if IsServer() then
+		self:StartIntervalThink(0.25)
+	end
+end
+
+function modifier_liquid_fire_caster:OnIntervalThink()
+	if self.particleFX and not self:GetAbility():IsCooldownReady() then
+		ParticleManager:ClearParticle( self.particleFX )
+		self.particleFX = nil
+	elseif not self.particleFX and self:GetAbility():IsCooldownReady() then
+		self.particleFX = ParticleManager:CreateParticle("particles/units/heroes/hero_jakiro/jakiro_liquid_fire_ready.vpcf", PATTACH_POINT_FOLLOW, self:GetCaster() )
+		ParticleManager:SetParticleControlEnt(self.particleFX, 0, self:GetCaster(), PATTACH_POINT_FOLLOW, "attach_attack2", self:GetCaster():GetAbsOrigin(), true)
+	end
 end
 
 function modifier_liquid_fire_caster:_IsLiquidFireProjectile()
@@ -230,14 +243,6 @@ function modifier_liquid_fire_caster:OnOrder(keys)
 	if order_type ~= DOTA_UNIT_ORDER_ATTACK_TARGET then
 		self.ability.cast_liquid_fire = false
 	end
-end
-
-function modifier_liquid_fire_caster:GetEffectName()
-	--if IsServer() then
-		--if self:GetAbility():IsCooldownReady() then
-			return "particles/units/heroes/hero_jakiro/jakiro_liquid_fire_ready.vpcf"
-		--end
-	--end
 end
 
 -- Modifier to play animation for jakiro's other head

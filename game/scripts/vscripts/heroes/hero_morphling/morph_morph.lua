@@ -62,7 +62,6 @@ function morph_morph:OnSpellStart()
 			self:Torrent(pos)
 		end
 		caster:RemoveModifierByName("modifier_morph_morph")
-		self:RefundManaCost()
 	else
 		local duration = self:GetTalentSpecialValueFor("duration")
 		local outgoing = self:GetTalentSpecialValueFor("outgoing")

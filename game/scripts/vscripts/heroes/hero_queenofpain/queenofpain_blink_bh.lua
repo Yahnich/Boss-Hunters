@@ -137,7 +137,7 @@ if IsServer() then
 		
 		self:StartIntervalThink(-1)
 		
-		local duration = self.kv.replenish_time * get_octarine_multiplier( self:GetCaster() )
+		local duration = self.kv.replenish_time * self:GetCaster():GetCooldownReduction()
 		self:SetDuration(duration, true)
         if stacks < self.kv.max_count then
             self:IncrementStackCount()

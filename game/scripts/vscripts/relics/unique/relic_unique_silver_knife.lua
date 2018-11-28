@@ -9,10 +9,10 @@ if IsServer() then
 		stacks = 0
 		for _, modifier in ipairs( self:GetParent():FindAllModifiers() ) do
 			-- check if exists and if returns nil default to 0 value
-			if ( modifier.GetModifierPreAttack_BonusDamage 			and (modifier:GetModifierPreAttack_BonusDamage() or 0) ~= 0 )
-			or ( modifier.GetModifierBaseAttack_BonusDamage 		and (modifier:GetModifierBaseAttack_BonusDamage() or 0) ~= 0 )
-			or ( modifier.GetModifierBaseDamageOutgoing_Percentage 	and (modifier:GetModifierBaseDamageOutgoing_Percentage() or 0) ~= 0 )
-			or ( modifier.GetModifierDamageOutgoing_Percentage 		and (modifier:GetModifierDamageOutgoing_Percentage() or 0) ~= 0 )
+			if ( modifier.GetModifierPreAttack_BonusDamage 			and (modifier:GetModifierPreAttack_BonusDamage() or 0) > 0 )
+			or ( modifier.GetModifierBaseAttack_BonusDamage 		and (modifier:GetModifierBaseAttack_BonusDamage() or 0) > 0 )
+			or ( modifier.GetModifierBaseDamageOutgoing_Percentage 	and (modifier:GetModifierBaseDamageOutgoing_Percentage() or 0) > 0 )
+			or ( modifier.GetModifierDamageOutgoing_Percentage 		and (modifier:GetModifierDamageOutgoing_Percentage() or 0) > 0 )
 			and modifier ~= self then
 				stacks = stacks + 1
 			end

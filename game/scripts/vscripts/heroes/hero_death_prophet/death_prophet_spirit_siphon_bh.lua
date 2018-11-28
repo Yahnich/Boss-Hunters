@@ -118,6 +118,7 @@ LinkLuaModifier( "modifier_death_prophet_spirit_siphon_bh_charges", "heroes/hero
 
 if IsServer() then
     function modifier_death_prophet_spirit_siphon_bh_charges:Update()
+		local caster = self:GetCaster()
 		self.kv.replenish_time = self:GetTalentSpecialValueFor("charge_restore_time")
 		self.kv.max_count = math.floor( self:GetTalentSpecialValueFor("max_charges") )
 		
@@ -195,7 +196,7 @@ if IsServer() then
 		
 		self:StartIntervalThink(-1)
 		
-		local duration = self.kv.replenish_time * get_octarine_multiplier( self:GetCaster() )
+		local duration = self.kv.replenish_time * caster:GetCooldownReduction() 
 		self:SetDuration(duration, true)
         if stacks < self.kv.max_count then
             self:IncrementStackCount()

@@ -1,13 +1,13 @@
-modifier_base_attack_time_handler = class({})
+modifier_health_handler = class({})
 
 if IsServer() then
-	function modifier_base_attack_time_handler:OnCreated()
+	function modifier_health_handler:OnCreated()
 		self.baseAttackTime = self:GetParent():GetBaseAttackTime()
 		self:SetStackCount( self.baseAttackTime * 100 )
 		self:StartIntervalThink(0.1)
 	end
 
-	function modifier_base_attack_time_handler:OnIntervalThink()
+	function modifier_health_handler:OnIntervalThink()
 		local baseAttackTime = self.baseAttackTime * 100
 		self:SetStackCount( baseAttackTime )
 		self:GetParent():CalculateStatBonus()
@@ -20,34 +20,34 @@ if IsServer() then
 	end
 end
 	
-function modifier_base_attack_time_handler:DeclareFunctions()
+function modifier_health_handler:DeclareFunctions()
 	return {MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT}
 end
 
-function modifier_base_attack_time_handler:GetModifierBaseAttackTimeConstant()
+function modifier_health_handler:GetModifierBaseAttackTimeConstant()
 	return self:GetStackCount() / 100
 end
 
-function modifier_base_attack_time_handler:IsHidden()
+function modifier_health_handler:IsHidden()
 	return true
 end
 
-function modifier_base_attack_time_handler:IsPurgable()
+function modifier_health_handler:IsPurgable()
 	return false
 end
 
-function modifier_base_attack_time_handler:RemoveOnDeath()
+function modifier_health_handler:RemoveOnDeath()
 	return false
 end
 
-function modifier_base_attack_time_handler:IsPermanent()
+function modifier_health_handler:IsPermanent()
 	return true
 end
 
-function modifier_base_attack_time_handler:AllowIllusionDuplicate()
+function modifier_health_handler:AllowIllusionDuplicate()
 	return true
 end
 
-function modifier_base_attack_time_handler:GetAttributes()
+function modifier_health_handler:GetAttributes()
 	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_PERMANENT
 end

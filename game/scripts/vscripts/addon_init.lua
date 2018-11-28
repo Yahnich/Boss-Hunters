@@ -55,3 +55,4 @@ end
 
 require("templates/relic_base_class")
 require("templates/item_base_class")
+require("templates/item_basic_base_class")
