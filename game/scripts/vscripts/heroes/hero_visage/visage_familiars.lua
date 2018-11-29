@@ -31,12 +31,12 @@ function visage_familiars:OnSpellStart()
 		end
 	end
 
+	health = health + 400
+	damage = damage + 30
+
 	for i=1,totalCount do
 		local familiar = caster:CreateSummon("npc_dota_visage_familiar1", caster:GetAbsOrigin())
 		familiar:RemoveAbility("visage_summon_familiars_stone_form")
-
-		health = health + familiar:GetMaxHealth()
-		damage = damage + familiar:GetAttackDamage()
 
 		if caster:FindAbilityByName("visage_stone"):IsTrained() then
 			familiar:AddAbility("visage_stone"):SetLevel(caster:FindAbilityByName("visage_stone"):GetLevel())
@@ -67,7 +67,7 @@ end
 modifier_visage_familiars = class({})
 
 function modifier_visage_familiars:OnCreated(table)
-	self.range = self:GetCaster():GetAttackRange()
+	self.range = self:GetCaster():Script_GetAttackRange()
 end
 
 function modifier_visage_familiars:CheckState()

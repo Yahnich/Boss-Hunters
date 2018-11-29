@@ -167,6 +167,8 @@
 #base "heroes/hero_dazzle.txt"
 #base "heroes/hero_morphling.txt"
 #base "heroes/hero_visage.txt"
+#base "heroes/hero_dark_seer.txt"
+#base "heroes/hero_weaver.txt"
 
 "DOTAAbilities"
 {

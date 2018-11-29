@@ -1,42 +1,44 @@
 "DOTAAbilities"
 {
 	//=================================================================================================================
-	// Swashbuckler
+	// The Swarm
 	//=================================================================================================================
-	"pango_swashbuckler"
+	"weaver_swarm"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_pango/pango_swashbuckler"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"ScriptFile"					"heroes/hero_weaver/weaver_swarm"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
-		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityTextureName"			"pangolier_swashbuckle"
+		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityTextureName"			"weaver_the_swarm"
 		"MaxLevel"						"7"
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0.0"
-		"AbilityCastRange"				"900"
+		"AbilityCastPoint"				"0.3"
+		"AbilityCastRange"				"3000"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"20 18 16 14 12 10 8"
+		"AbilityCooldown"				"44 40 34 30 24 20 14"
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"70 80 90 100 110 120 130"
+		"AbilityManaCost"				"110"
 		
 		"precache"
 		{
-			"particle"					"particles/units/heroes/hero_pangolier/pangolier_swashbuckler.vpcf"
+			"particle"					"particles/units/heroes/hero_weaver/weaver_swarm_projectile.vpcf"
 			"particle"					"particles/generic_gameplay/generic_hit_blood.vpcf"
+			"particle"					"particles/units/heroes/hero_weaver/weaver_swarm_debuff.vpcf"
 
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_pangolier.vsndevts"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_weaver.vsndevts"
 		}
 		
 		// Special	
@@ -45,29 +47,49 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"range"					"900"
+				"var_type"			"FIELD_INTEGER"
+				"damage"			"18 20 22 24 26 28 30"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"24 42 60 78 96 114 132"
-				"LinkedSpecialBonus"	"special_bonus_unique_pango_swashbuckler_1"
+				"var_type"			"FIELD_FLOAT"
+				"attack_rate"		"1.25 1.1 0.95 0.8 0.65 0.5 0.35"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"attack_interval"		"0.1"
+				"var_type"			"FIELD_INTEGER"
+				"count"				"12"
 			}
 			"04"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"width"					"125"
+				"var_type"			"FIELD_FLOAT"
+				"armor_reduction"	"1"
+				"LinkedSpecialBonus"	"special_bonus_unique_weaver_swarm_1"
 			}
 			"05"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"strikes"				"4"
+				"var_type"			"FIELD_FLOAT"
+				"duration"			"16"
+			}
+			"06"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"destroy_attacks"	"8"
+			}
+			"07"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"radius"			"100"
+			}
+			"08"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"speed"				"600"
+			}
+			"09"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"spawn_radius"		"300"
 			}
 		}
 	}
@@ -75,7 +97,29 @@
 	//=================================================================================================================
 	// Ability: Special Bonus
 	//=================================================================================================================
-	"special_bonus_unique_pango_swashbuckler_1"
+	"special_bonus_unique_weaver_swarm_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"value"						"0.5"
+			}
+		}
+	}
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_weaver_swarm_2"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -90,64 +134,41 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"50"
-			}
-		}
-	}
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_pango_swashbuckler_2"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"15"
+				"value"						"1"
 			}
 		}
 	}
 
-	"pango_shield"
+	"weaver_shukuchi_bh"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_pango/pango_shield"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"ScriptFile"					"heroes/hero_weaver/weaver_shukuchi_bh"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
 		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityTextureName"			"pangolier_shield_crash"
+		"AbilityTextureName"			"weaver_shukuchi"
 		"MaxLevel"						"7"
 		"HasScepterUpgrade"				"1"
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"25 23 21 19 17 15 13"
+		"AbilityCooldown"				"18 16 14 12 10 8 6"
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"90 100 110 120 130 140 150"
+		"AbilityManaCost"				"70"
 		
 		"precache"
 		{
-			"particle"					"particles/units/heroes/hero_pangolier/pangolier_tailthump.vpcf"
-			"particle"					"particles/units/heroes/hero_pangolier/pangolier_tailthump_cast.vpcf"
-			"particle"  				"particles/units/heroes/hero_pangolier/pangolier_tailthump_buff.vpcf"
+			"particle"					"particles/units/heroes/hero_weaver/weaver_shukuchi.vpcf"
+			"particle"					"particles/units/heroes/hero_weaver/weaver_shukuchi_damage.vpcf"
 
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_pangolier.vsndevts"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_weaver.vsndevts"
 		}
 		
 		// Special	
@@ -157,49 +178,29 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"75 150 225 300 375 450 525"
+				"damage"				"100 125 150 175 200 225 250"
+				"LinkedSpecialBonus"	"special_bonus_unique_weaver_shukuchi_bh_1"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"reduction"				"14 17 20 23 26 29 32"
-				"LinkedSpecialBonus"	"special_bonus_unique_pango_shield_1"
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"4.0"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"5"
+				"var_type"				"FIELD_INTEGER"
+				"speed"					"150"
+				"LinkedSpecialBonus"	"special_bonus_unique_weaver_shukuchi_bh_2"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius"				"500"
+				"radius"				"175"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"jump_duration"			"0.4"
-			}
-			"06"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"jump_duration_gyroshell"	"0.75"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"height"				"250"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"height_gyroshell"		"350"
-			}
-			"09"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"distance"				"225"
-				"LinkedSpecialBonus"	"special_bonus_unique_pango_shield_2"
+				"fade_time"				"0.25"
 			}
 		}
 	}
@@ -207,7 +208,7 @@
 	//=================================================================================================================
 	// Ability: Special Bonus
 	//=================================================================================================================
-	"special_bonus_unique_pango_shield_1"
+	"special_bonus_unique_weaver_shukuchi_bh_1"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -222,14 +223,14 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"20"
+				"value"						"75"
 			}
 		}
 	}
 	//=================================================================================================================
 	// Ability: Special Bonus
 	//=================================================================================================================
-	"special_bonus_unique_pango_shield_2"
+	"special_bonus_unique_weaver_shukuchi_bh_2"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -250,55 +251,124 @@
 	}
 
 	//=================================================================================================================
-	// Swift Dash
+	// Fabric Tear
 	//=================================================================================================================
-	"pango_swift_dash"
+	"weaver_fabric_tear"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_pango/pango_swift_dash"
+		"ScriptFile"					"heroes/hero_weaver/weaver_fabric_tear"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
-		"AbilityTextureName"			"pangolier_gyroshell_stop"
+		"AbilityTextureName"			"greevil_time_lock"
 		"MaxLevel"						"7"
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0.0"
-		"AbilityCastRange"				"400 500 600 700 800 900 1000"
+		"AbilityCastPoint"				"0.3"
+		"AbilityCastRange"				"900"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
 	
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"20 18 16 14 12 10 8"
+		"AbilityCooldown"				"20"
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"35 40 45 50 55 60 65"
+		"AbilityManaCost"				"50 70 90 110 120 130 140"
 		
 		"precache"
 		{
-			"particle"					"particles/units/heroes/hero_pangolier/pangolier_swashbuckler_dash.vpcf"
+			"particle"					"particles/units/heroes/hero_weaver/weaver_fabric_tear.vpcf"
 			
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_pangolier.vsndevts"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_arc_warden.vsndevts"
 		}
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
-			"02"
+			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"range"					"400 500 600 700 800 900 1000"
+				"outgoing"				"100 125 150 175 200 225 250"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"10"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"300"
+			}
+			
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_weaver_fabric_tear_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"1"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Geminate Attack
+	//=================================================================================================================
+	"weaver_geminate"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_weaver/weaver_geminate"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"weaver_geminate_attack"
+		"MaxLevel"						"1"
+		"InnateAbility"					"1"
+		
+		"AbilityCooldown"				"3"
+
+		"precache"
+		{			
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_weaver.vsndevts"
+		}
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"delay"					"0.25"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"speed"					"2000"
+				"max_attacks"			"1"
+				"LinkedSpecialBonus"	"special_bonus_unique_weaver_geminate_1"
 			}
 		}
 	}
@@ -306,7 +376,80 @@
 	//=================================================================================================================
 	// Ability: Special Bonus
 	//=================================================================================================================
-	"special_bonus_unique_pango_swift_dash_1"
+	"special_bonus_unique_weaver_geminate_1"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"						"1"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Time Lapse
+	//=================================================================================================================
+	"weaver_time"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"heroes/hero_weaver/weaver_time"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_MOVEMENT | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetFlags" 		"DOTA_UNIT_TARGET_FLAG_NONE"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityTextureName"			"weaver_time_lapse"
+		"MaxLevel"						"6"
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.3"
+		"AbilityCastRange"				"0"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+	
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"150 130 110 90 70 50"
+		
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"70 62 55 46 40 30"
+		
+		"precache"
+		{
+			"particle"					"particles/units/heroes/hero_weaver/weaver_timelapse.vpcf"
+			
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_weaver.vsndevts"
+		}
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{	
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"time"					"5"
+			}							
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_weaver_time_1"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -328,7 +471,7 @@
 	//=================================================================================================================
 	// Ability: Special Bonus
 	//=================================================================================================================
-	"special_bonus_unique_pango_swift_dash_2"
+	"special_bonus_unique_weaver_time_2"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -343,191 +486,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"400"
-			}
-		}
-	}
-
-	//=================================================================================================================
-	// Heartpiercer
-	//=================================================================================================================
-	"pango_heart"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_pango/pango_heart"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityTextureName"			"pangolier_heartpiercer"
-		"MaxLevel"						"1"
-		"InnateAbility"					"1"
-		
-		"precache"
-		{
-			"particle"					"particles/units/heroes/hero_pangolier/pangolier_heartpiercer_cast.vpcf"
-			"particle"  				"particles/units/heroes/hero_pangolier/pangolier_heartpiercer_debuff.vpcf"
-			"particle"  				"particles/units/heroes/hero_pangolier/pangolier_heartpiercer_delay.vpcf"
-			"particle"  				"particles/status_fx/status_effect_pangolier_heartpiercer.vpcf"
-			
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_pangolier.vsndevts"
-		}
-		
-		// Special	
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"armor_reduc"			"-25"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"chance"				"15"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"5"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"slow_pct"				"-40"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"debuff_delay"			"2"
-			}
-		}
-	}
-
-	//=================================================================================================================
-	// Rolling Thunder
-	//=================================================================================================================
-	"pango_ball"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_pango/pango_ball"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityTextureName"			"pangolier_gyroshell"
-		"MaxLevel"						"6"
-	
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"1.2"
-		"AbilityCastRange"				"0"
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
-	
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"70"
-		
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"100"
-		
-		"precache"
-		{
-			"particle"					"particles/units/heroes/hero_pangolier/pangolier_gyroshell.vpcf"
-			"particle"  				"particles/units/heroes/hero_pangolier/pangolier_gyroshell_cast.vpcf"
-			
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_pangolier.vsndevts"
-		}
-		
-		// Special	
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{	
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"200 275 350 425 500 575"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"8"
-				"LinkedSpecialBonus"	"special_bonus_unique_pango_ball_1"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"stun_duration"			"1.0 1.25 1.5 1.75 2.0 2.25"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"speed"					"600"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"turn_rate"				"-120"
-			}			
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"150"
-			}			
-			"07"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"bounce_duration"		"0.4"
-			}								
-		}
-	}
-
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_pango_ball_1"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"5"
-			}
-		}
-	}
-	//=================================================================================================================
-	// Ability: Special Bonus
-	//=================================================================================================================
-	"special_bonus_unique_pango_ball_2"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"value"						"-35"
+				"value"						"1"
 			}
 		}
 	}

@@ -32,7 +32,7 @@ function ember_remnant_jump:OnSpellStart()
 	end
 
 	ProjectileManager:ProjectileDodge(caster)
-	caster:AddNewModifier(caster, self, "modifier_ember_remnant_jump", {})
+	caster:AddNewModifier(caster, self, "modifier_ember_remnant_jump", {Duration = 10})
 end
 
 modifier_ember_remnant_jump = class({})
@@ -74,8 +74,9 @@ function modifier_ember_remnant_jump:OnRemoved()
 		EmitSoundOn("Hero_EmberSpirit.FireRemnant.Stop", caster)
 
 		if #ability.totesRems > 0 then
-			caster:AddNewModifier(caster, ability, "modifier_ember_remnant_jump", {})
+			caster:AddNewModifier(caster, ability, "modifier_ember_remnant_jump", {Duration = 10})
 		end
+		self:StopMotionController(true)
 	end
 end
 
@@ -107,7 +108,7 @@ function modifier_ember_remnant_jump:DoControlledMotion()
 			ability:DealDamage(parent, enemy, self.damage, {}, 0)
 		end
 
-		self:StopMotionController(true)
+		self:Destroy()
 	end
 end
 

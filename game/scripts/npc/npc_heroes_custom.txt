@@ -389,8 +389,20 @@
 	"npc_dota_hero_dark_seer_ebf"
 	{
 		"override_hero"			"npc_dota_hero_dark_seer"
-		"Ability3"				"dark_seer_adamantium_shell"
-		"Ability6"				"dark_seer_battlemaster_command"
+		"Ability1"				"ds_vacuum"
+		"Ability2"				"ds_shell"
+		"Ability3"				"ds_surge"
+		"Ability4"				"ds_command"
+		"Ability6"				"ds_replica"
+
+		"Ability10"				"special_bonus_unique_ds_vacuum_1"
+		"Ability11"				"special_bonus_unique_ds_vacuum_2"
+		"Ability12"				"special_bonus_unique_ds_shell_1"
+		"Ability13"				"special_bonus_unique_ds_shell_2"
+		"Ability14"				"special_bonus_unique_ds_surge_1"
+		"Ability15"				"special_bonus_unique_ds_surge_2"
+		"Ability16"				"special_bonus_unique_ds_replica_1"
+		"Ability17"				"special_bonus_unique_ds_replica_2"
 		
 	}
 	//=================================================================================================================
@@ -1369,18 +1381,19 @@
 	{
 		"override_hero"				"npc_dota_hero_pangolier"
 		"Ability1"					"pango_swashbuckler"
-		"Ability2"					"pango_swift_dash"
-		"Ability3"					"pangolier_shield_crash"
-		"Ability4"					"pangolier_heartpiercer"
+		"Ability2"					"pango_shield"
+		"Ability3"					"pango_swift_dash"
+		"Ability4"					"pango_heart"
+		"Ability6"					"pango_ball"
 		
-		"Ability10"					"special_bonus_mp_regen_150"
-		"Ability11"					"special_bonus_movement_speed_25"
-		"Ability12"					"special_bonus_unique_pangolier_2"
-		"Ability13"					"special_bonus_attack_speed_30"
-		"Ability14"					"special_bonus_unique_pangolier_3"
-		"Ability15"					"special_bonus_unique_pangolier_4"
-		"Ability16"					"special_bonus_strength_20"
-		"Ability17"					"special_bonus_unique_pangolier_5"
+		"Ability10"					"special_bonus_unique_pango_swashbuckler_1"
+		"Ability11"					"special_bonus_unique_pango_swashbuckler_2"
+		"Ability12"					"special_bonus_unique_pango_shield_1"
+		"Ability13"					"special_bonus_unique_pango_shield_2"
+		"Ability14"					"special_bonus_unique_pango_swift_dash_1"
+		"Ability15"					"special_bonus_unique_pango_swift_dash_2"
+		"Ability16"					"special_bonus_unique_pango_ball_1"
+		"Ability17"					"special_bonus_unique_pango_ball_2"
 	}
 
 	//=================================================================================================================
@@ -2236,18 +2249,20 @@
 	"npc_dota_hero_weaver_ebf"
 	{
 		"override_hero"					"npc_dota_hero_weaver"
-		"Ability6"						"weaver_timelapse_ebf"
+		"Ability1"						"weaver_swarm"
+		"Ability2"						"weaver_shukuchi_bh"
+		"Ability3"						"weaver_fabric_tear"
+		"Ability4"						"weaver_geminate"
+		"Ability6"						"weaver_time"
 		
-		"Ability10"						"special_bonus_strength_12"
-		"Ability11"						"special_bonus_agility_8"
-		"Ability12"		"special_bonus_attack_range_125"
-		"Ability13"		"special_bonus_unique_weaver_1"
-		"Ability14"		"special_bonus_cooldown_reduction_15"
-		"Ability15"		"special_bonus_unique_weaver_3"
-		"Ability16"		"special_bonus_unique_weaver_2"
-		"Ability17"		"special_bonus_unique_weaver_5"
-		
-		"AttackRate"				"1.9"
+		"Ability10"						"special_bonus_unique_weaver_swarm_1"
+		"Ability11"						"special_bonus_unique_weaver_swarm_2"
+		"Ability12"						"special_bonus_unique_weaver_shukuchi_bh_1"
+		"Ability13"						"special_bonus_unique_weaver_shukuchi_bh_2"
+		"Ability14"						"special_bonus_unique_weaver_fabric_tear_1"
+		"Ability15"						"special_bonus_unique_weaver_geminate_1"
+		"Ability16"						"special_bonus_unique_weaver_time_1"
+		"Ability17"						"special_bonus_unique_weaver_time_2"
 	}
 	"npc_dota_hero_windrunner" // Windranger WindRunner
 	{
