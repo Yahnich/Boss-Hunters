@@ -42,7 +42,7 @@ end
 
 function modifier_omniknight_seven_blessings:DeclareFunctions()
 	return {MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
-			MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+			
 			MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
 			MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
 			MODIFIER_PROPERTY_HEALTH_BONUS,
@@ -55,7 +55,7 @@ function modifier_omniknight_seven_blessings:GetModifierPreAttack_BonusDamage()
 	return self.ad
 end
 
-function modifier_omniknight_seven_blessings:GetModifierAttackSpeedBonus_Constant()
+function modifier_omniknight_seven_blessings:GetModifierAttackSpeedBonus()
 	return self.as
 end
 

@@ -25,12 +25,12 @@ function modifier_item_mirrors_edge:OnCreated()
 end
 
 function modifier_item_mirrors_edge:DeclareFunctions()
-	return {MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+	return {
 			MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
 			}
 end
 
-function modifier_item_mirrors_edge:GetModifierAttackSpeedBonus_Constant()
+function modifier_item_mirrors_edge:GetModifierAttackSpeedBonus()
 	return self.attackSpeed
 end
 

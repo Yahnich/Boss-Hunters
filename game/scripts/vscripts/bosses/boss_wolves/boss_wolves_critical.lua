@@ -51,14 +51,14 @@ function modifier_boss_wolves_critical_cripple:OnIntervalThink()
 end
 
 function modifier_boss_wolves_critical_cripple:DeclareFunctions()
-	return {MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT, MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE}
+	return { MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE}
 end
 
 function modifier_boss_wolves_critical_cripple:GetModifierMoveSpeedBonus_Percentage()
 	return self.ms
 end
 
-function modifier_boss_wolves_critical_cripple:GetModifierAttackSpeedBonus_Constant()
+function modifier_boss_wolves_critical_cripple:GetModifierAttackSpeedBonus()
 	return self.as
 end
 

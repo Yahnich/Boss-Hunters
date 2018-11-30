@@ -49,10 +49,10 @@ function modifier_boss_sloth_demon_slime_hide_debuff:OnRefresh()
 end
 
 function modifier_boss_sloth_demon_slime_hide_debuff:DeclareFunctions()
-	return {MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT}
+	return {}
 end
 
-function modifier_boss_sloth_demon_slime_hide_debuff:GetModifierAttackSpeedBonus_Constant()
+function modifier_boss_sloth_demon_slime_hide_debuff:GetModifierAttackSpeedBonus()
 	return self.as * self:GetStackCount()
 end
 

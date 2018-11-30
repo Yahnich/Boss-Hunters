@@ -36,7 +36,7 @@ function modifier_ursa_overpower_bh:OnCreated(table)
 end
 
 function modifier_ursa_overpower_bh:DeclareFunctions()
-	return {MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+	return {
 			MODIFIER_EVENT_ON_ATTACK,
 			MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS
 			}
@@ -46,7 +46,7 @@ function modifier_ursa_overpower_bh:GetActivityTranslationModifiers()
 	return "overpower" .. self:GetStackCount()
 end
 
-function modifier_ursa_overpower_bh:GetModifierAttackSpeedBonus_Constant()
+function modifier_ursa_overpower_bh:GetModifierAttackSpeedBonus()
 	return self:GetTalentSpecialValueFor("attack_speed_bonus_pct")
 end
 

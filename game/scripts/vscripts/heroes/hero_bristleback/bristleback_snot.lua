@@ -100,7 +100,7 @@ function modifier_snot:DeclareFunctions()
     local funcs = {
         MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
         MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
-		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+		
     }
     return funcs
 end
@@ -113,7 +113,7 @@ function modifier_snot:GetModifierPhysicalArmorBonus()
     return self:GetTalentSpecialValueFor("armor_per_stack") * self:GetStackCount()
 end
 
-function modifier_snot:GetModifierAttackSpeedBonus_Constant()
+function modifier_snot:GetModifierAttackSpeedBonus()
     return self:GetTalentSpecialValueFor("attackspeed_loss") * self:GetStackCount()
 end
 

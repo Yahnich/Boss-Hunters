@@ -89,7 +89,7 @@ end
 
 function modifier_legion_commander_unbreakable_morale_buff:DeclareFunctions()
 	funcs = {
-				MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+				
 				MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
 			}
 	return funcs
@@ -112,7 +112,7 @@ function modifier_legion_commander_unbreakable_morale_buff:GetPriority()
 	return MODIFIER_PRIORITY_SUPER_ULTRA
 end
 
-function modifier_legion_commander_unbreakable_morale_buff:GetModifierAttackSpeedBonus_Constant()
+function modifier_legion_commander_unbreakable_morale_buff:GetModifierAttackSpeedBonus()
 	return self.attackSpeed
 end
 

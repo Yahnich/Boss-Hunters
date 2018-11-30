@@ -107,14 +107,14 @@ end
 
 function modifier_item_war_drum_active:DeclareFunctions()
 	return {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-			MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT}
+			}
 end
 
 function modifier_item_war_drum_active:GetModifierMoveSpeedBonus_Percentage()
 	return self.bonus_ms_buff
 end
 
-function modifier_item_war_drum_active:GetModifierAttackSpeedBonus_Constant()
+function modifier_item_war_drum_active:GetModifierAttackSpeedBonus()
 	return self.bonus_as
 end
 

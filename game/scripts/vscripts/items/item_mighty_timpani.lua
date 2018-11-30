@@ -108,7 +108,7 @@ end
 
 function modifier_item_mighty_timpani_active:DeclareFunctions()
 	return {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-			MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+			
 			MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE}
 end
 
@@ -116,7 +116,7 @@ function modifier_item_mighty_timpani_active:GetModifierMoveSpeedBonus_Percentag
 	return self.bonus_ms_buff
 end
 
-function modifier_item_mighty_timpani_active:GetModifierAttackSpeedBonus_Constant()
+function modifier_item_mighty_timpani_active:GetModifierAttackSpeedBonus()
 	return self.bonus_as
 end
 

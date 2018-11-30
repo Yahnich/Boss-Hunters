@@ -67,7 +67,7 @@ end
 modifier_tremors_enemy = class({})
 function modifier_tremors_enemy:DeclareFunctions()
     return {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-            MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT
+            
             }
 end
 
@@ -75,7 +75,7 @@ function modifier_tremors_enemy:GetModifierMoveSpeedBonus_Percentage()
     return self:GetTalentSpecialValueFor("slow_move")
 end
 
-function modifier_tremors_enemy:GetModifierAttackSpeedBonus_Constant()
+function modifier_tremors_enemy:GetModifierAttackSpeedBonus()
     return self:GetTalentSpecialValueFor("slow_as")
 end
 

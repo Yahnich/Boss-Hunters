@@ -187,7 +187,7 @@ end
 
 function modifier_skinwalker_predator_form:DeclareFunctions()
 	local funcs = {
-		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+		
 		MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
 		MODIFIER_PROPERTY_MODEL_CHANGE,
 		MODIFIER_EVENT_ON_ATTACK_LANDED,
@@ -196,7 +196,7 @@ function modifier_skinwalker_predator_form:DeclareFunctions()
 	return funcs
 end
 
-function modifier_skinwalker_predator_form:GetModifierAttackSpeedBonus_Constant()
+function modifier_skinwalker_predator_form:GetModifierAttackSpeedBonus()
 	return self.attackspeed
 end
 

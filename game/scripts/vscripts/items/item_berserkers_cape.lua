@@ -84,14 +84,14 @@ end
 
 function modifier_item_berserkers_cape:DeclareFunctions()
 	return {MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
-			MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT}
+			}
 end
 
 function modifier_item_berserkers_cape:GetModifierPhysicalArmorBonus()
 	return self.armor
 end
 
-function modifier_item_berserkers_cape:GetModifierAttackSpeedBonus_Constant()
+function modifier_item_berserkers_cape:GetModifierAttackSpeedBonus()
 	return self.attackspeed
 end
 

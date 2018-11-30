@@ -81,13 +81,13 @@ function arc_warden_magnetic_field_bh_modifier:OnCreated( event )
 end
 
 function arc_warden_magnetic_field_bh_modifier:DeclareFunctions()
-	return {MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT, MODIFIER_PROPERTY_EVASION_CONSTANT}
+	return { MODIFIER_PROPERTY_EVASION_CONSTANT}
 end
 
 function arc_warden_magnetic_field_bh_modifier:GetModifierEvasion_Constant()
 	return self.evasion
 end
 
-function arc_warden_magnetic_field_bh_modifier:GetModifierAttackSpeedBonus_Constant()
+function arc_warden_magnetic_field_bh_modifier:GetModifierAttackSpeedBonus()
 	return self.as
 end

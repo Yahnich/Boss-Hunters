@@ -118,7 +118,7 @@ end
 function modifier_medusa_gaze_slow:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+		
 		MODIFIER_PROPERTY_TURN_RATE_PERCENTAGE
 	}
 	return funcs
@@ -128,7 +128,7 @@ function modifier_medusa_gaze_slow:GetModifierMoveSpeedBonus_Percentage()
 	return -1 * self:GetStackCount()
 end
 
-function modifier_medusa_gaze_slow:GetModifierAttackSpeedBonus_Constant()
+function modifier_medusa_gaze_slow:GetModifierAttackSpeedBonus()
 	return -1 * self:GetStackCount()
 end
 

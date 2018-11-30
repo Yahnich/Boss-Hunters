@@ -10,12 +10,12 @@ end
 modifier_boss_warlock_demon_lust = class({})
 function modifier_boss_warlock_demon_lust:DeclareFunctions()
     local funcs = {
-        MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT
+        
     }
     return funcs
 end
 
-function modifier_boss_warlock_demon_lust:GetModifierAttackSpeedBonus_Constant()
+function modifier_boss_warlock_demon_lust:GetModifierAttackSpeedBonus()
     return self:GetSpecialValueFor("bonus_as")
 end
 

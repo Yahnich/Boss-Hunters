@@ -36,7 +36,7 @@ end
 
 function modifier_frozen_generic:DeclareFunctions()
 	local funcs = {
-		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT, 
+		 
 		MODIFIER_PROPERTY_CASTTIME_PERCENTAGE, 
 		MODIFIER_PROPERTY_TURN_RATE_PERCENTAGE
 	}
@@ -44,7 +44,7 @@ function modifier_frozen_generic:DeclareFunctions()
 	return funcs
 end
 
-function modifier_frozen_generic:GetModifierAttackSpeedBonus_Constant( params )
+function modifier_frozen_generic:GetModifierAttackSpeedBonus( params )
 	if self:GetParent():IsRoundBoss() then
 		return -1000
 	end

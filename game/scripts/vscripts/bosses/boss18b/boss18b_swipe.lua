@@ -80,14 +80,14 @@ end
 
 
 function modifier_boss18b_swipe_bleed:DeclareFunctions()
-	return {MODIFIER_PROPERTY_DISABLE_HEALING, MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT, MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT}
+	return {MODIFIER_PROPERTY_DISABLE_HEALING, MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT, }
 end
 
 function modifier_boss18b_swipe_bleed:GetModifierMoveSpeedBonus_Constant()
 	return self.moveslow
 end
 
-function modifier_boss18b_swipe_bleed:GetModifierAttackSpeedBonus_Constant()
+function modifier_boss18b_swipe_bleed:GetModifierAttackSpeedBonus()
 	return self.attackslow
 end
 

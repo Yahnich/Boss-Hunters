@@ -16,14 +16,14 @@ end
 
 modifier_relic_unique_cold_heart = class({})
 function modifier_relic_unique_cold_heart:DeclareFunctions()
-	return {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE, MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT}
+	return {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE, }
 end
 
 function modifier_relic_unique_cold_heart:GetModifierMoveSpeedBonus_Percentage()
 	return -20
 end
 
-function modifier_relic_unique_cold_heart:GetModifierAttackSpeedBonus_Constant()
+function modifier_relic_unique_cold_heart:GetModifierAttackSpeedBonus()
 	return -50
 end
 

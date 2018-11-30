@@ -54,14 +54,14 @@ end
 
 function modifier_centaur_hoof_stomp_slow:DeclareFunctions()
 	return {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-			MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT}
+			}
 end
 
 function modifier_centaur_hoof_stomp_slow:GetModifierMoveSpeedBonus_Percentage()
 	return self.ms
 end
 
-function modifier_centaur_hoof_stomp_slow:GetModifierAttackSpeedBonus_Constant()
+function modifier_centaur_hoof_stomp_slow:GetModifierAttackSpeedBonus()
 	return self.as
 end
 

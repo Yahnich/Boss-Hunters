@@ -94,7 +94,7 @@ end
 function modifier_tiny_grow_bh:DeclareFunctions()
 	return {MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
 			MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
-			MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+			
 			MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
 			MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS}
 end
@@ -107,7 +107,7 @@ function modifier_tiny_grow_bh:GetModifierPhysicalArmorBonus()
 	return self.bonus_armor
 end
 
-function modifier_tiny_grow_bh:GetModifierAttackSpeedBonus_Constant()
+function modifier_tiny_grow_bh:GetModifierAttackSpeedBonus()
 	return self.attack_speed_reduction
 end
 

@@ -31,12 +31,12 @@ function modifier_item_lightningbottle_handle:GetAttributes()
 end
 
 function modifier_item_lightningbottle_handle:DeclareFunctions()
-	return {MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+	return {
 			MODIFIER_EVENT_ON_ABILITY_FULLY_CAST
 		}
 end
 
-function modifier_item_lightningbottle_handle:GetModifierAttackSpeedBonus_Constant()
+function modifier_item_lightningbottle_handle:GetModifierAttackSpeedBonus()
 	return self.attackspeed
 end
 

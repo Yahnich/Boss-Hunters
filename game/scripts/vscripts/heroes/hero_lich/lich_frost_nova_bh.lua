@@ -47,10 +47,10 @@ function modifier_lich_frost_nova_bh:OnRefresh()
 end
 
 function modifier_lich_frost_nova_bh:DeclareFunctions()
-	return {MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT, MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE}
+	return { MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE}
 end
 
-function modifier_lich_frost_nova_bh:GetModifierAttackSpeedBonus_Constant()
+function modifier_lich_frost_nova_bh:GetModifierAttackSpeedBonus()
 	return self.as
 end
 

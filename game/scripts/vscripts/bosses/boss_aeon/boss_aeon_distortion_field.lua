@@ -61,13 +61,13 @@ function modifier_boss_aeon_distortion_field_aura:OnRefresh()
 end
 
 function modifier_boss_aeon_distortion_field_aura:DeclareFunctions()
-	return {MODIFIER_PROPERTY_TOOLTIP, MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT}
+	return {MODIFIER_PROPERTY_TOOLTIP, }
 end
 
 function modifier_boss_aeon_distortion_field_aura:OnTooltip()
 	return self.cdr
 end
 
-function modifier_boss_aeon_distortion_field_aura:GetModifierAttackSpeedBonus_Constant()
+function modifier_boss_aeon_distortion_field_aura:GetModifierAttackSpeedBonus()
 	return self.as
 end

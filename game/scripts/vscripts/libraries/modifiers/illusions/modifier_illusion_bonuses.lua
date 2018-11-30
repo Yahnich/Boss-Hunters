@@ -11,7 +11,7 @@ end
 
 function modifier_illusion_bonuses:DeclareFunctions()
     local funcs = {
-        MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+        
 		MODIFIER_PROPERTY_ATTACK_RANGE_BASE_OVERRIDE,
 		MODIFIER_PROPERTY_PROJECTILE_SPEED_BONUS,
     }
@@ -23,7 +23,7 @@ function modifier_illusion_bonuses:GetModifierAttackRangeOverride( params )
 	return self.ar
 end
 
-function modifier_illusion_bonuses:GetModifierAttackSpeedBonus_Constant( params )
+function modifier_illusion_bonuses:GetModifierAttackSpeedBonus( params )
     return self.as
 end
 

@@ -20,7 +20,7 @@ if IsServer() then
 				pctBAT = pctBAT + ( modifier:GetBaseAttackTime_Bonus() or 0 ) / 100
 			end
 		end
-		local pctBAT = math.max(0.1, pctBat)
+		pctBAT = math.max(0.1, pctBAT)
 		local newBAT =  math.min( math.max( self.baseAttackTime + bonusBAT, 10 ), 1000 )
 		self:SetStackCount( math.floor( newBAT * pctBAT ) )
 	end

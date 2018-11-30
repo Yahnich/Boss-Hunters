@@ -45,7 +45,7 @@ end
 function modifier_abaddon_curse_buff:DeclareFunctions()
 	funcs = {
 				MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-				MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+				
 			}
 	return funcs
 end
@@ -54,7 +54,7 @@ function modifier_abaddon_curse_buff:GetModifierMoveSpeedBonus_Percentage()
 	return self.movespeed
 end
 
-function modifier_abaddon_curse_buff:GetModifierAttackSpeedBonus_Constant()
+function modifier_abaddon_curse_buff:GetModifierAttackSpeedBonus()
 	return self.attackspeed
 end
 
@@ -73,7 +73,7 @@ end
 function modifier_abaddon_curse_debuff:DeclareFunctions()
 	funcs = {
 				MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-				MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+				
 			}
 	return funcs
 end
@@ -82,6 +82,6 @@ function modifier_abaddon_curse_debuff:GetModifierMoveSpeedBonus_Percentage()
 	return self.movespeed
 end
 
-function modifier_abaddon_curse_debuff:GetModifierAttackSpeedBonus_Constant()
+function modifier_abaddon_curse_debuff:GetModifierAttackSpeedBonus()
 	return self.attackspeed
 end

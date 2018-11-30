@@ -127,7 +127,7 @@ modifier_sb_haste_self = class({})
 function modifier_sb_haste_self:DeclareFunctions()
     local funcs = {
         MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-        MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT
+        
     }
     return funcs
 end
@@ -136,7 +136,7 @@ function modifier_sb_haste_self:GetModifierMoveSpeedBonus_Percentage()
     return self:GetTalentSpecialValueFor("bonus_ms_extra")
 end
 
-function modifier_sb_haste_self:GetModifierAttackSpeedBonus_Constant()
+function modifier_sb_haste_self:GetModifierAttackSpeedBonus()
 	if self:GetCaster():HasTalent("special_bonus_unique_sb_haste_1") then
     	return self:GetTalentSpecialValueFor("bonus_ms_extra")
     end

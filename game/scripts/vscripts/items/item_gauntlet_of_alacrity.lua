@@ -12,10 +12,10 @@ function modifier_item_gauntlet_of_alacrity_passive:OnCreated()
 end
 
 function modifier_item_gauntlet_of_alacrity_passive:DeclareFunctions()
-	return {MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT}
+	return {}
 end
 
-function modifier_item_gauntlet_of_alacrity_passive:GetModifierAttackSpeedBonus_Constant()
+function modifier_item_gauntlet_of_alacrity_passive:GetModifierAttackSpeedBonus()
 	return self.bonus_attack_speed
 end
 

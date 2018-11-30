@@ -70,7 +70,7 @@ modifier_sniper_headshot_bh_slow = class({})
 function modifier_sniper_headshot_bh_slow:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+		
 		MODIFIER_PROPERTY_MISS_PERCENTAGE
 	}
 	return funcs
@@ -80,7 +80,7 @@ function modifier_sniper_headshot_bh_slow:GetModifierMoveSpeedBonus_Percentage()
 	return self:GetTalentSpecialValueFor("movespeed_slow")
 end
 
-function modifier_sniper_headshot_bh_slow:GetModifierAttackSpeedBonus_Constant()
+function modifier_sniper_headshot_bh_slow:GetModifierAttackSpeedBonus()
 	return self:GetTalentSpecialValueFor("attackspeed_slow")
 end
 

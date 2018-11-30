@@ -27,14 +27,14 @@ function modifier_troll_warlord_battle_trance_bh:OnRefresh()
 end
 
 function modifier_troll_warlord_battle_trance_bh:DeclareFunctions()
-	return {MODIFIER_PROPERTY_STATUS_RESISTANCE, MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT}
+	return {MODIFIER_PROPERTY_STATUS_RESISTANCE, }
 end
 
 function modifier_troll_warlord_battle_trance_bh:GetModifierStatusResistance()
 	return self.sr
 end
 
-function modifier_troll_warlord_battle_trance_bh:GetModifierAttackSpeedBonus_Constant()
+function modifier_troll_warlord_battle_trance_bh:GetModifierAttackSpeedBonus()
 	return self.attackspeed
 end
 

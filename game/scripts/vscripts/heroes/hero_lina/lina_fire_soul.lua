@@ -36,7 +36,7 @@ end
 
 function modifier_lina_fire_soul:DeclareFunctions()
     local funcs = {
-        MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+        
         MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE,
         MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE
     }
@@ -48,7 +48,7 @@ function modifier_lina_fire_soul:GetModifierDamageOutgoing_Percentage()
     return self.damage * self:GetStackCount()
 end
 
-function modifier_lina_fire_soul:GetModifierAttackSpeedBonus_Constant()
+function modifier_lina_fire_soul:GetModifierAttackSpeedBonus()
     return self:GetSpecialValueFor("attack_speed_bonus") * self:GetStackCount()
 end
 

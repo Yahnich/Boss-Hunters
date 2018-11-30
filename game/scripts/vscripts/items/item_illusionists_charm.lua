@@ -29,7 +29,7 @@ function modifier_item_illusionists_charm:OnCreated()
 end
 
 function modifier_item_illusionists_charm:DeclareFunctions()
-	return {MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+	return {
 			MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
 			MODIFIER_PROPERTY_HEALTH_BONUS,
 			MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,	
@@ -37,7 +37,7 @@ function modifier_item_illusionists_charm:DeclareFunctions()
 			}
 end
 
-function modifier_item_illusionists_charm:GetModifierAttackSpeedBonus_Constant()
+function modifier_item_illusionists_charm:GetModifierAttackSpeedBonus()
 	return self.attackSpeed
 end
 

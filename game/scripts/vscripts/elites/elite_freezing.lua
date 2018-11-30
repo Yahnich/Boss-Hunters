@@ -70,13 +70,13 @@ function modifier_elite_freezing_slow:OnIntervalThink()
 end
 
 function modifier_elite_freezing_slow:DeclareFunctions()
-	return {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE, MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT}
+	return {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE, }
 end
 
 function modifier_elite_freezing_slow:GetModifierMoveSpeedBonus_Percentage()
 	return self.ms_slow
 end
 
-function modifier_elite_freezing_slow:GetModifierAttackSpeedBonus_Constant()
+function modifier_elite_freezing_slow:GetModifierAttackSpeedBonus()
 	return self.as_slow
 end

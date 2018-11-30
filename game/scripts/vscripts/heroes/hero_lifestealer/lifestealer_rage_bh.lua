@@ -29,7 +29,7 @@ end
 function modifier_lifestealer_rage_bh:DeclareFunctions()
     funcs = {
                 MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
-                MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+                
             }
     return funcs
 end
@@ -43,7 +43,7 @@ function modifier_lifestealer_rage_bh:GetModifierMagicalResistanceBonus()
     return 1000
 end
 
-function modifier_lifestealer_rage_bh:GetModifierAttackSpeedBonus_Constant()
+function modifier_lifestealer_rage_bh:GetModifierAttackSpeedBonus()
     return self:GetTalentSpecialValueFor("attack_speed_bonus")
 end
 

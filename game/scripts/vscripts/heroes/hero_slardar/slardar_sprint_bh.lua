@@ -31,7 +31,7 @@ function modifier_slardar_sprint_bh:DeclareFunctions()
         MODIFIER_PROPERTY_MOVESPEED_LIMIT,
         MODIFIER_PROPERTY_MOVESPEED_MAX,
 		MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,
-		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+		
 		MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE,
 		MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS
     }
@@ -59,7 +59,7 @@ function modifier_slardar_sprint_bh:GetModifierIncomingDamage_Percentage()
     return red
 end
 
-function modifier_slardar_sprint_bh:GetModifierAttackSpeedBonus_Constant()
+function modifier_slardar_sprint_bh:GetModifierAttackSpeedBonus()
 	if self.as <= 0 then return end
 	local as = self.as
 	if self:GetCaster():InWater() then as = as * 2 end

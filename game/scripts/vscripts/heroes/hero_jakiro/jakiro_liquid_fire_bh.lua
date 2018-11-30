@@ -286,12 +286,12 @@ end
 
 function modifier_liquid_fire_debuff:DeclareFunctions()
 	local funcs = {
-		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT
+		
 	}
 	return funcs
 end
 
-function modifier_liquid_fire_debuff:GetModifierAttackSpeedBonus_Constant()
+function modifier_liquid_fire_debuff:GetModifierAttackSpeedBonus()
 	return self:GetTalentSpecialValueFor("slow_as")
 end
 

@@ -52,7 +52,7 @@ end
 
 function modifier_clinkz_strafe_bh:DeclareFunctions()
     local funcs = {
-        MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+        
         MODIFIER_EVENT_ON_PROJECTILE_DODGE
     }
     return funcs
@@ -68,7 +68,7 @@ function modifier_clinkz_strafe_bh:OnProjectileDodge(params)
     end
 end
 
-function modifier_clinkz_strafe_bh:GetModifierAttackSpeedBonus_Constant()
+function modifier_clinkz_strafe_bh:GetModifierAttackSpeedBonus()
     return self.as
 end
 

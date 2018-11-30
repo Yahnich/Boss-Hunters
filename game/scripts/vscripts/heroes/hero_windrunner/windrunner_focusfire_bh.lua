@@ -55,13 +55,13 @@ end
 
 function modifier_windrunner_focusfire_bh:DeclareFunctions()
     local funcs = {
-        MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+        
 		MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE
     }
     return funcs
 end
 
-function modifier_windrunner_focusfire_bh:GetModifierAttackSpeedBonus_Constant()
+function modifier_windrunner_focusfire_bh:GetModifierAttackSpeedBonus()
     return self.as
 end
 

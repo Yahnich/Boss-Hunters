@@ -1,10 +1,10 @@
 relic_generic_beast_fang = class(relicBaseClass)
 
 function relic_generic_beast_fang:DeclareFunctions()
-	return {MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE}
+	return {MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE}
 end
 
-function relic_generic_beast_fang:GetModifierAttackSpeedBonus_Constant()
+function relic_generic_beast_fang:GetModifierAttackSpeedBonus()
 	return 40
 end
 

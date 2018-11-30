@@ -66,7 +66,7 @@ function modifier_huskar_unleash_vitality_talent:OnIntervalThink()
 end
 
 function modifier_huskar_unleash_vitality_talent:DeclareFunctions()
-	return {MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT, MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT, MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT}
+	return {MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT, MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT, }
 end
 
 function modifier_huskar_unleash_vitality_talent:GetModifierConstantHealthRegen()
@@ -75,7 +75,7 @@ end
 function modifier_huskar_unleash_vitality_talent:GetModifierMoveSpeedBonus_Constant()
 	return self.total_ms
 end
-function modifier_huskar_unleash_vitality_talent:GetModifierAttackSpeedBonus_Constant()
+function modifier_huskar_unleash_vitality_talent:GetModifierAttackSpeedBonus()
 	return self.total_as
 end
 
@@ -126,7 +126,7 @@ end
 
 
 function modifier_huskar_unleash_vitality_buff:DeclareFunctions()
-	return {MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT, MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT, MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT}
+	return {MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT, MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT, }
 end
 
 function modifier_huskar_unleash_vitality_buff:GetModifierConstantHealthRegen()
@@ -137,7 +137,7 @@ function modifier_huskar_unleash_vitality_buff:GetModifierMoveSpeedBonus_Constan
 	return self.total_ms
 end
 
-function modifier_huskar_unleash_vitality_buff:GetModifierAttackSpeedBonus_Constant()
+function modifier_huskar_unleash_vitality_buff:GetModifierAttackSpeedBonus()
 	return self.total_as
 end
 

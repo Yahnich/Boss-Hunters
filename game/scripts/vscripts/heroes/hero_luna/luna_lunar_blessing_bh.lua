@@ -95,7 +95,7 @@ function modifier_luna_lunar_blessing_bh_aura:DeclareFunctions()
 	funcs = {
 				MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
 				MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE,
-				MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+				
 				MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE
 				,
 			}
@@ -136,7 +136,7 @@ function modifier_luna_lunar_blessing_bh_aura:GetModifierBaseDamageOutgoing_Perc
 	end
 end
 
-function modifier_luna_lunar_blessing_bh_aura:GetModifierAttackSpeedBonus_Constant()
+function modifier_luna_lunar_blessing_bh_aura:GetModifierAttackSpeedBonus()
 	if not GameRules:IsDaytime() and self:GetCaster():HasTalent("special_bonus_unique_luna_lunar_blessing_2") then
 		local as = self:GetCaster():FindTalentValue("special_bonus_unique_luna_lunar_blessing_2", "as")
 		if self:GetCaster():HasModifier("modifier_luna_lunar_blessing_active") then as = as * self:GetCaster():FindTalentValue("special_bonus_unique_luna_lunar_blessing_1") end

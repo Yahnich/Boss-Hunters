@@ -20,7 +20,7 @@ end
 function modifier_terrorblade_zeal_passive:DeclareFunctions()
 	funcs = {
 				MODIFIER_EVENT_ON_DEATH,
-				MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+				
 				MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
 			}
 	return funcs
@@ -65,6 +65,6 @@ function modifier_terrorblade_zeal_passive:GetModifierConstantHealthRegen()
 	return self.healthregen
 end
 
-function modifier_terrorblade_zeal_passive:GetModifierAttackSpeedBonus_Constant()
+function modifier_terrorblade_zeal_passive:GetModifierAttackSpeedBonus()
 	return self.attackspeed
 end

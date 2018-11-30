@@ -46,14 +46,14 @@ end
 
 function modifier_brewmaster_thunder_clap_ebf_debuff:DeclareFunctions()
 	return {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-			MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT}
+			}
 end
 
 function modifier_brewmaster_thunder_clap_ebf_debuff:GetModifierMoveSpeedBonus_Percentage()
 	return self.ms
 end
 
-function modifier_brewmaster_thunder_clap_ebf_debuff:GetModifierAttackSpeedBonus_Constant()
+function modifier_brewmaster_thunder_clap_ebf_debuff:GetModifierAttackSpeedBonus()
 	return self.as
 end
 

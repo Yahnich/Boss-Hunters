@@ -21,11 +21,11 @@ function modifier_item_shadow_blade_passive:OnCreated()
 end
 
 function modifier_item_shadow_blade_passive:DeclareFunctions()
-	return {MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+	return {
 			MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE}
 end
 
-function modifier_item_shadow_blade_passive:GetModifierAttackSpeedBonus_Constant()
+function modifier_item_shadow_blade_passive:GetModifierAttackSpeedBonus()
 	return self.as
 end
 

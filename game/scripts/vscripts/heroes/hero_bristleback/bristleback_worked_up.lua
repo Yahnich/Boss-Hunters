@@ -59,7 +59,7 @@ function modifier_worked_up_stack:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
 		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+		
 		MODIFIER_PROPERTY_MODEL_SCALE
 	}	
 	return funcs
@@ -73,7 +73,7 @@ function modifier_worked_up_stack:GetModifierMoveSpeedBonus_Percentage()
 	return self:GetTalentSpecialValueFor("bonus_ms") * self:GetStackCount()
 end
 
-function modifier_worked_up_stack:GetModifierAttackSpeedBonus_Constant()
+function modifier_worked_up_stack:GetModifierAttackSpeedBonus()
 	return self:GetTalentSpecialValueFor("bonus_as") * self:GetStackCount()
 end
 

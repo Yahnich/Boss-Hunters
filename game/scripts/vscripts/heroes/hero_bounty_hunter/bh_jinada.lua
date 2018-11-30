@@ -62,14 +62,14 @@ end
 modifier_bh_jinada_maim = class({})
 function modifier_bh_jinada_maim:DeclareFunctions()
 	return {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-			MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT}
+			}
 end
 
 function modifier_bh_jinada_maim:GetModifierMoveSpeedBonus_Percentage()
 	return self:GetTalentSpecialValueFor("slow_ms")
 end
 
-function modifier_bh_jinada_maim:GetModifierAttackSpeedBonus_Constant()
+function modifier_bh_jinada_maim:GetModifierAttackSpeedBonus()
 	return self:GetTalentSpecialValueFor("slow_as")
 end
 

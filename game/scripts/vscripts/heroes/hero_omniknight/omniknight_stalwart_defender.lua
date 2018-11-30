@@ -91,7 +91,7 @@ function modifier_omniknight_stalwart_defender_aura:OnRefresh()
 end
 
 function modifier_omniknight_stalwart_defender_aura:DeclareFunctions()
-	return {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE, MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT}
+	return {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE, }
 end
 
 function modifier_omniknight_stalwart_defender_aura:GetModifierMoveSpeedBonus_Percentage()
@@ -100,7 +100,7 @@ function modifier_omniknight_stalwart_defender_aura:GetModifierMoveSpeedBonus_Pe
 	return slow
 end
 
-function modifier_omniknight_stalwart_defender_aura:GetModifierAttackSpeedBonus_Constant()
+function modifier_omniknight_stalwart_defender_aura:GetModifierAttackSpeedBonus()
 	local slow = self.as
 	if self:GetCaster():HasScepter() then slow = slow + self.scepter_as * self:GetCaster():GetModifierStackCount("modifier_omniknight_stalwart_defender", self:GetCaster() ) end
 	return slow

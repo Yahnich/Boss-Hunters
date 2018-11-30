@@ -18,7 +18,7 @@ end
 
 function modifier_item_legionnaires_dualswords:DeclareFunctions()
 	return {MODIFIER_EVENT_ON_ATTACK_LANDED,
-			MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+			
 			MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
 			MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
 			MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
@@ -34,7 +34,7 @@ function modifier_item_legionnaires_dualswords:OnAttackLanded(params)
 	end
 end
 
-function modifier_item_legionnaires_dualswords:GetModifierAttackSpeedBonus_Constant()
+function modifier_item_legionnaires_dualswords:GetModifierAttackSpeedBonus()
 	return self.attackSpeed
 end
 
@@ -71,12 +71,12 @@ function modifier_legionnaires_dualswords_debuff:OnRefresh()
 end
 
 function modifier_legionnaires_dualswords_debuff:DeclareFunctions()
-	return {MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+	return {
 			MODIFIER_PROPERTY_DISABLE_HEALING
 			}
 end
 
-function modifier_legionnaires_dualswords_debuff:GetModifierAttackSpeedBonus_Constant()
+function modifier_legionnaires_dualswords_debuff:GetModifierAttackSpeedBonus()
 	return self.slow
 end
 

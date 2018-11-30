@@ -43,7 +43,7 @@ end
 function modifier_aa_chilling_touch:DeclareFunctions()
     local funcs = {
         MODIFIER_EVENT_ON_ATTACK_LANDED,
-        MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT
+        
     }
     return funcs
 end
@@ -55,7 +55,7 @@ function modifier_aa_chilling_touch:OnAttackLanded(params)
     end
 end
 
-function modifier_aa_chilling_touch:GetModifierAttackSpeedBonus_Constant()
+function modifier_aa_chilling_touch:GetModifierAttackSpeedBonus()
     return self.as
 end
 

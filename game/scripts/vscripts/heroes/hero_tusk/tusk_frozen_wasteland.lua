@@ -96,7 +96,7 @@ end
 modifier_tusk_frozen_wasteland_effect = class({})
 function modifier_tusk_frozen_wasteland_effect:DeclareFunctions()
     local funcs = {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-                    MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT}
+                    }
     return funcs
 end
 
@@ -104,7 +104,7 @@ function modifier_tusk_frozen_wasteland_effect:GetModifierMoveSpeedBonus_Percent
     return self:GetTalentSpecialValueFor("slow_move")
 end
 
-function modifier_tusk_frozen_wasteland_effect:GetModifierAttackSpeedBonus_Constant()
+function modifier_tusk_frozen_wasteland_effect:GetModifierAttackSpeedBonus()
     return self:GetTalentSpecialValueFor("slow_attack")
 end
 

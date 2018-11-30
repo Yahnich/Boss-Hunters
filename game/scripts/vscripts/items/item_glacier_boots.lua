@@ -132,7 +132,7 @@ end
 
 function modifier_glacier_boots_debuff:DeclareFunctions()
 	return {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-			MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT}
+			}
 end
 
 function modifier_glacier_boots_debuff:GetModifierMoveSpeedBonus_Percentage()
@@ -143,7 +143,7 @@ function modifier_glacier_boots_debuff:GetModifierMoveSpeedBonus_Percentage()
 	end
 end
 
-function modifier_glacier_boots_debuff:GetModifierAttackSpeedBonus_Constant()
+function modifier_glacier_boots_debuff:GetModifierAttackSpeedBonus()
 	if self:GetCaster():HasModifier("modifier_item_glacier_boots_toggle") then
 		return self.active_attackslow
 	else
