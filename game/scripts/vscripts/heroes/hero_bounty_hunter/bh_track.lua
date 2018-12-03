@@ -43,6 +43,7 @@ end
 
 modifier_bh_track = class({})
 function modifier_bh_track:OnCreated(table)
+	self.crit = self:GetTalentSpecialValueFor("critical_strike")
     if IsServer() then
     	local caster = self:GetCaster()
     	local parent = self:GetParent()
@@ -65,31 +66,29 @@ function modifier_bh_track:OnIntervalThink()
 end
 
 function modifier_bh_track:DeclareFunctions()
-    local funcs = {MODIFIER_EVENT_ON_DEATH}
+    local funcs = {MODIFIER_EVENT_ON_DEATH,
+				   MODIFIER_PROPERTY_PREATTACK_TARGET_CRITICALSTRIKE}
     return funcs
 end
 
----Houth says to reduce gold from nonbosses, IsRoundBoss()
+function modifier_bh_track:GetModifierPreAttack_Target_CriticalStrike( params )
+	return self.crit
+end
+
 function modifier_bh_track:OnDeath(params)
 	if IsServer() then
 		local caster = self:GetCaster()
-		if params.unit == self:GetParent() and params.unit:HasModifier("modifier_bh_track") then
+		if params.unit == self:GetParent() then
 			local gold = self:GetTalentSpecialValueFor("bonus_gold")
 			if not params.unit:IsRoundBoss() then
 				gold = gold * self:GetSpecialValueFor("trash_gold_reduc")/100
 			end
 			local allies = caster:FindFriendlyUnitsInRadius(self:GetParent():GetAbsOrigin(), FIND_UNITS_EVERYWHERE)
 			for _,ally in pairs(allies) do
-				if ally:IsHero() and ally ~= self:GetCaster() then
+				if ally:IsHero() then
 					ally:AddGold(gold)
 				end
 			end
-
-			local selfGold = self:GetTalentSpecialValueFor("bonus_gold_self")
-			if not params.unit:IsRoundBoss() then
-				selfGold = selfGold * self:GetSpecialValueFor("trash_gold_reduc")/100
-			end
-			caster:AddGold(selfGold)
 		end
 	end
 end

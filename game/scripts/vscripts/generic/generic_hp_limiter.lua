@@ -18,7 +18,7 @@ function modifier_generic_hp_limiter:GetModifierIncomingDamage_Percentage(params
 	else
 		local hp = parent:GetHealth()
 		local damage = 4
-		if not params.attacker:IsRealHero() then damage = 1 end
+		if not ( params.attacker:IsRealHero() or params.attacker:IsRoundBoss() ) then damage = 1 end
 		if damage < hp and params.inflictor ~= self:GetAbility() then
 			parent:SetHealth( hp - damage )
 			return -999

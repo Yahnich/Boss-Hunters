@@ -1,5 +1,6 @@
 bh_shadow_walk = class({})
 LinkLuaModifier( "modifier_bh_shadow_walk", "heroes/hero_bounty_hunter/bh_shadow_walk.lua" ,LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_bh_shadow_walk_slow", "heroes/hero_bounty_hunter/bh_shadow_walk.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 function bh_shadow_walk:OnSpellStart()
 	local caster = self:GetCaster()
@@ -53,7 +54,8 @@ function modifier_bh_shadow_walk:DeclareFunctions()
     local funcs = {
         MODIFIER_PROPERTY_INVISIBILITY_LEVEL,
         MODIFIER_EVENT_ON_ATTACK_LANDED,
-        MODIFIER_EVENT_ON_ABILITY_EXECUTED
+        MODIFIER_EVENT_ON_ABILITY_EXECUTED,
+		MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
     }
 
     return funcs
@@ -73,7 +75,8 @@ function modifier_bh_shadow_walk:OnAbilityExecuted(params)
 
 		if unit == parent then
 			if parent:HasTalent("special_bonus_unique_bh_shadow_walk_1") and ability:GetAbilityName() == "bh_shuriken" then
-				self:GetAbility():DealDamage(parent, ability:GetCursorTarget(), self.damage, {}, OVERHEAD_ALERT_DAMAGE)
+				ability:GetCursorTarget():AddNewModifier( unit, self:GetAbility(), "modifier_bh_shadow_walk_slow", {duration = self:GetTalentSpecialValueFor("slow_duration")} )
+				self:GetAbility():DealDamage(parent, ability:GetCursorTarget(), self.damage, {damage_type = DAMAGE_TYPE_MAGICAL}, OVERHEAD_ALERT_DAMAGE)
 			end
 
 			self:Destroy()
@@ -84,7 +87,7 @@ end
 function modifier_bh_shadow_walk:OnAttackLanded(params)
 	if IsServer() then
 		if params.attacker == self:GetParent() then
-			self:GetAbility():DealDamage(self:GetParent(), params.target, self.damage, {}, OVERHEAD_ALERT_DAMAGE)
+			params.target:AddNewModifier( params.attacker, self:GetAbility(), "modifier_bh_shadow_walk_slow", {duration = self:GetTalentSpecialValueFor("slow_duration")} )
 			self:Destroy()
 		end
 	end
@@ -92,6 +95,10 @@ end
 
 function modifier_bh_shadow_walk:GetModifierInvisibilityLevel()
     return 1
+end
+
+function modifier_bh_shadow_walk:GetModifierPreAttack_BonusDamage()
+	return self.damage
 end
 
 function modifier_bh_shadow_walk:IsHidden()
@@ -112,4 +119,34 @@ end
 
 function modifier_bh_shadow_walk:GetEffectName()
     return "particles/generic_hero_status/status_invisibility_start.vpcf"
+end
+
+
+modifier_bh_shadow_walk_slow = class({})
+function modifier_bh_shadow_walk_slow:OnCreated()
+	self.slow = self:GetTalentSpecialValueFor("slow")
+end
+
+function modifier_bh_shadow_walk_slow:DeclareFunctions()
+    local funcs = {
+        MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE
+    }
+
+    return funcs
+end
+
+function modifier_bh_shadow_walk_slow:GetModifierMoveSpeedBonus_Percentage()
+	return self.slow
+end
+
+function modifier_bh_shadow_walk_slow:GetStatusEffectName()
+	return "particles/units/heroes/hero_bounty_hunter/status_effect_bounty_hunter_jinda_slow.vpcf"
+end
+
+function modifier_bh_shadow_walk_slow:StatusEffectPriority()
+	return 10
+end
+
+function modifier_bh_shadow_walk_slow:IsDebuff()
+	return true
 end

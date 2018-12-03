@@ -14,6 +14,7 @@ function modifier_boss_sloth_demon_slime_cocoon:OnCreated()
 	self.heal = self:GetSpecialValueFor("heal_per_second")
 	if IsServer() then
 		self.attacks = self:GetSpecialValueFor("attacks_per_hero") * HeroList:GetActiveHeroCount()
+		self:SetStackCount( self.attacks )
 	end
 end
 
@@ -32,6 +33,7 @@ end
 function modifier_boss_sloth_demon_slime_cocoon:OnAttackLanded(params)
 	if params.target == self:GetParent() then
 		self.attacks = self.attacks - 1
+		self:SetStackCount( self.attacks )
 		if self.attacks <= 0 then
 			self:Destroy()
 		end

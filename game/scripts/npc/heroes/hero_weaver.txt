@@ -189,7 +189,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"speed"					"150"
+				"speed"					"50"
 				"LinkedSpecialBonus"	"special_bonus_unique_weaver_shukuchi_bh_2"
 			}
 			"04"
@@ -223,7 +223,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"75"
+				"value"						"150"
 			}
 		}
 	}
@@ -245,7 +245,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"value"						"200"
+				"value"						"50"
 			}
 		}
 	}

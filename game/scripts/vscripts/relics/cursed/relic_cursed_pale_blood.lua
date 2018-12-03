@@ -4,8 +4,8 @@ function relic_cursed_pale_blood:DeclareFunctions()
 	return {MODIFIER_EVENT_ON_TAKEDAMAGE, MODIFIER_PROPERTY_EXTRA_HEALTH_PERCENTAGE}
 end
 
-function relic_cursed_pale_blood:GetModifierExtraHealthPercentage()
-	if not self:GetParent():HasModifier("relic_unique_ritual_candle") then return -0.35 end
+function relic_cursed_pale_blood:GetModifierExtraHealthBonusPercentage()
+	if not self:GetParent():HasModifier("relic_unique_ritual_candle") then return -25 end
 end
 
 function relic_cursed_pale_blood:OnTakeDamage(params)

@@ -50,7 +50,7 @@ function modifier_item_kitteh_amulet_passive:DeclareFunctions()
 			MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
 			MODIFIER_PROPERTY_TOTAL_CONSTANT_BLOCK,
 			MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE,
-			MODIFIER_PROPERTY_HEALTH_BONUS,
+			MODIFIER_PROPERTY_EXTRA_HEALTH_BONUS,
 			MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE,
 			MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE,
 			MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE,
@@ -149,7 +149,7 @@ function modifier_item_kitteh_amulet_passive:GetModifierPreAttack_CriticalStrike
 	end
 end
 
-function modifier_item_kitteh_amulet_passive:GetModifierHealthBonus()
+function modifier_item_kitteh_amulet_passive:GetModifierExtraHealthBonus()
 	return self:GetParent():GetStrength() * 50
 end
 

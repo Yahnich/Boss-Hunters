@@ -89,8 +89,6 @@ end
 
 function modifier_ds_surge:DeclareFunctions()
 	return {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-			MODIFIER_PROPERTY_MOVESPEED_MAX,
-        	MODIFIER_PROPERTY_MOVESPEED_LIMIT,
         	}
 end
 
@@ -102,11 +100,7 @@ function modifier_ds_surge:GetModifierMoveSpeedBonus_Percentage()
 	return self.bonusMs
 end
 
-function modifier_ds_surge:GetModifierMoveSpeed_Max( params )
-    return 999999
-end
-
-function modifier_ds_surge:GetModifierMoveSpeed_Limit( params )
+function modifier_ds_surge:GetMoveSpeedLimitBonus( params )
     return 999999
 end
 

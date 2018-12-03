@@ -99,7 +99,6 @@ function modifier_treant_great_protector:DeclareFunctions()
 		MODIFIER_EVENT_ON_ATTACK_LANDED,
 		MODIFIER_PROPERTY_MODEL_SCALE,
 		MODIFIER_PROPERTY_EXTRA_STRENGTH_BONUS,
-		MODIFIER_PROPERTY_MOVESPEED_LIMIT,
 		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS
 	}
 
@@ -137,7 +136,7 @@ end
 
 --------------------------------------------------------------------------------
 
-function modifier_treant_great_protector:GetModifierMoveSpeed_Limit( params )
+function modifier_treant_great_protector:GetMoveSpeedLimitBonus( params )
 	return self.move_speed
 end
 

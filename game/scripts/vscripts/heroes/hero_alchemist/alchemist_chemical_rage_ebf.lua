@@ -40,7 +40,7 @@ end
 
 function modifier_alchemist_chemical_rage_ebf:DeclareFunctions()
 	return {MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT,
-			MODIFIER_PROPERTY_HEALTH_BONUS,
+			MODIFIER_PROPERTY_EXTRA_HEALTH_BONUS,
 			MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
 			MODIFIER_PROPERTY_MANA_REGEN_CONSTANT,
 			MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,
@@ -52,7 +52,7 @@ function modifier_alchemist_chemical_rage_ebf:GetBaseAttackTime_Bonus()
 	return self.bat
 end
 
-function modifier_alchemist_chemical_rage_ebf:GetModifierHealthBonus()
+function modifier_alchemist_chemical_rage_ebf:GetModifierExtraHealthBonus()
 	return self.hp
 end
 

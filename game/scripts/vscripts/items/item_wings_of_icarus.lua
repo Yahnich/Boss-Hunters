@@ -43,25 +43,10 @@ function modifier_item_wings_of_icarus_active:CheckState()
 end
 
 function modifier_item_wings_of_icarus_active:DeclareFunctions()
-	return {MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE_MIN,
-			MODIFIER_PROPERTY_MOVESPEED_LIMIT,
-			MODIFIER_PROPERTY_MOVESPEED_MAX,
-			MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE}
+	return {MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE_MIN}
 end
 
 function modifier_item_wings_of_icarus_active:GetModifierMoveSpeed_AbsoluteMin()
-	return self.bonus_ms
-end
-
-function modifier_item_wings_of_icarus_active:GetModifierMoveSpeed_Limit()
-	return self.bonus_ms
-end
-
-function modifier_item_wings_of_icarus_active:GetModifierMoveSpeedBonus_Special_Boots()
-	return self.bonus_ms
-end
-
-function modifier_item_wings_of_icarus_active:GetModifierMoveSpeed_Max()
 	return self.bonus_ms
 end
 

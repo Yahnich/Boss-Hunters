@@ -57,7 +57,7 @@ function modifier_weaver_fabric_tear:OnIntervalThink()
 		local enemies = caster:FindEnemyUnitsInRadius(point, radius)
 		for _,enemy in pairs(enemies) do
 			if not enemy:HasModifier("modifier_weaver_fabric_tear_debuff") then
-				enemy:AddNewModifier(caster, self:GetAbility(), "modifier_weaver_fabric_tear_debuff", {Duration = 1})
+				enemy:AddNewModifier(caster, self:GetAbility(), "modifier_weaver_fabric_tear_debuff", {Duration = 1.1})
 				break
 			end
 		end
@@ -97,12 +97,16 @@ function modifier_weaver_fabric_tear_debuff:OnCreated(table)
 		local caster = self:GetCaster()
 		local parent = self:GetParent()
 		local ability = self:GetAbility()
+		
+		local callback = (function(image)
+			if image ~= nil then
+				image:AddNewModifier(caster, ability, "modifier_weaver_fabric_tear_bug", {Duration = 1})
+				image:SetForceAttackTarget(parent)
+			end
+		end)
 
-		local image = caster:ConjureImage( parent:GetAbsOrigin(), 1, 100, 100, "modifier_weaver_fabric_tear_bug", ability, false, caster )
-		if image ~= nil then
-			image:AddNewModifier(caster, ability, "modifier_weaver_fabric_tear_bug", {Duration = 1})
-			image:SetForceAttackTarget(parent)
-		end
+		local image = caster:ConjureImage( parent:GetAbsOrigin() + RandomVector( 350 ), 1, 100, 100, "modifier_weaver_fabric_tear_bug", ability, false, caster, callback )
+		
 	end
 end
 

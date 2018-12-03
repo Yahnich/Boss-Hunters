@@ -27,10 +27,6 @@ function modifier_stunned_generic:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_OVERRIDE_ANIMATION,
 		MODIFIER_PROPERTY_MOVESPEED_BASE_OVERRIDE,
-		MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE,
-		MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE_MIN,
-		MODIFIER_PROPERTY_MOVESPEED_LIMIT,
-		MODIFIER_PROPERTY_MOVESPEED_MAX,
 		MODIFIER_PROPERTY_FIXED_ATTACK_RATE,
 		MODIFIER_PROPERTY_CASTTIME_PERCENTAGE, 
 		MODIFIER_PROPERTY_TURN_RATE_PERCENTAGE
@@ -59,36 +55,18 @@ function modifier_stunned_generic:GetModifierMoveSpeedOverride( params )
 	end
 end
 
-function modifier_stunned_generic:GetModifierMoveSpeed_Absolute( params )
+function modifier_stunned_generic:GetMoveSpeedLimitBonus( params )
 	if self:GetParent():IsRoundBoss() then
-		return 100
-	end
-end
-
-function modifier_stunned_generic:GetModifierMoveSpeed_AbsoluteMin( params )
-	if self:GetParent():IsRoundBoss() then
-		return 100
-	end
-end
-
-function modifier_stunned_generic:GetModifierMoveSpeed_Limit( params )
-	if self:GetParent():IsRoundBoss() then
-		return 100
-	end
-end
-
-function modifier_stunned_generic:GetModifierMoveSpeed_Max( params )
-	if self:GetParent():IsRoundBoss() then
-		return 100
+		return -450
 	end
 end
 
 function modifier_stunned_generic:GetModifierPercentageCasttime()
-	return -50
+	return -100
 end
 
 function modifier_stunned_generic:GetModifierTurnRate_Percentage()
-	return -80
+	return -95
 end
 
 function modifier_stunned_generic:IsPurgable()

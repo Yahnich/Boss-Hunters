@@ -28,7 +28,7 @@ function modifier_obsidian_destroyer_avatar_of_power_active:DeclareFunctions()
 end
 
 function modifier_obsidian_destroyer_avatar_of_power_active:GetModifierIncomingDamage_Percentage(params)
-	if HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_HPLOSS) then return end
+	if HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_HPLOSS) or HasBit(params.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION) then return end
 	if params.damage < self:GetParent():GetMana() then
 		self:GetParent():SpendMana(params.damage, self:GetAbility() )
 		return -999

@@ -2,13 +2,13 @@ event_buff_blighted_land_blessing_1 = class(relicBaseClass)
 
 function event_buff_blighted_land_blessing_1:DeclareFunctions()
     local funcs = {
-        MODIFIER_PROPERTY_HEALTH_BONUS,
+        MODIFIER_PROPERTY_EXTRA_HEALTH_BONUS,
     }
 
     return funcs
 end
 
-function event_buff_blighted_land_blessing_1:GetModifierHealthBonus( params )
+function event_buff_blighted_land_blessing_1:GetModifierExtraHealthBonus( params )
     return 800
 end
 

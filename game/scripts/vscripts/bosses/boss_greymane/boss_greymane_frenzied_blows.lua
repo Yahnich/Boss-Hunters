@@ -52,18 +52,10 @@ function modifier_boss_greymane_frenzied_blows:CheckState()
 end
 
 function modifier_boss_greymane_frenzied_blows:DeclareFunctions()
-	return {MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE, MODIFIER_PROPERTY_MOVESPEED_MAX, MODIFIER_PROPERTY_MOVESPEED_LIMIT}
+	return {MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE_MIN}
 end
 
-function modifier_boss_greymane_frenzied_blows:GetModifierMoveSpeed_Absolute()
-	return self.speed
-end
-
-function modifier_boss_greymane_frenzied_blows:GetModifierMoveSpeed_Limit()
-	return self.speed
-end
-
-function modifier_boss_greymane_frenzied_blows:GetModifierMoveSpeed_Max()
+function modifier_boss_greymane_frenzied_blows:GetModifierMoveSpeed_AbsoluteMin()
 	return self.speed
 end
 

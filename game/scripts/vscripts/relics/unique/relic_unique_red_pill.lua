@@ -1,6 +1,6 @@
-modifier_status_immunity = class({})
+relic_unique_red_pill = class(relicBaseClass)
 
-function modifier_status_immunity:OnCreated()
+function relic_unique_red_pill:OnCreated()
 	if IsServer() then
 		local fx = ParticleManager:CreateParticle("particles/items_fx/glyph.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
 		ParticleManager:SetParticleControl(fx, 1, Vector( (self:GetParent():GetHullRadius() * 2 + 50) * self:GetParent():GetModelScale(), 1, 1) )
@@ -8,7 +8,7 @@ function modifier_status_immunity:OnCreated()
 	end
 end
 
-function modifier_status_immunity:CheckState()
+function relic_unique_red_pill:CheckState()
 	return {[MODIFIER_STATE_ROOTED] = false,
 			[MODIFIER_STATE_DISARMED] = false,
 			[MODIFIER_STATE_SILENCED] = false,
@@ -20,10 +20,6 @@ function modifier_status_immunity:CheckState()
 			[MODIFIER_STATE_UNSLOWABLE] = true}
 end
 
-function modifier_status_immunity:GetPriority()
+function relic_unique_red_pill:GetPriority()
 	return MODIFIER_PRIORITY_ULTRA
-end
-
-function modifier_status_immunity:GetAttributes()
-	return
 end

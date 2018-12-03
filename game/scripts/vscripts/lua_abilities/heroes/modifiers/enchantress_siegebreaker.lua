@@ -24,7 +24,6 @@ function modifier_enchantress_siegebreaker:DeclareFunctions()
 		MODIFIER_PROPERTY_PROJECTILE_SPEED_BONUS,
 		MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
 		MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE,
-		MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE,
 	}
 	return funcs
 end
@@ -49,7 +48,7 @@ end
 
 ------------------------------------------------------------------------------
 
-function modifier_enchantress_siegebreaker:GetModifierMoveSpeed_Absolute( params )
+function modifier_enchantress_siegebreaker:GetMoveSpeedLimitBonus( params )
 	return self.selfslow
 end
 

@@ -92,18 +92,17 @@ function RoundManager:VoteNewGame(userid, event)
 end
 
 function RoundManager:OnNPCSpawned(event)
+	local spawnedUnit = EntIndexToHScript( event.entindex )
+	if not spawnedUnit 
+	or spawnedUnit:IsPhantom() 
+	or spawnedUnit:GetClassname() == "npc_dota_thinker" 
+	or spawnedUnit:GetUnitName() == "" 
+	or spawnedUnit:IsFakeHero() 
+	or spawnedUnit:GetUnitName() == "npc_dummy_unit" 
+	or spawnedUnit:GetUnitName() == "npc_dummy_blank" then
+		return
+	end
 	Timers:CreateTimer(function()
-	
-		local spawnedUnit = EntIndexToHScript( event.entindex )
-		if not spawnedUnit 
-		or spawnedUnit:IsPhantom() 
-		or spawnedUnit:GetClassname() == "npc_dota_thinker" 
-		or spawnedUnit:GetUnitName() == "" 
-		or spawnedUnit:IsFakeHero() 
-		or spawnedUnit:GetUnitName() == "npc_dummy_unit" 
-		or spawnedUnit:GetUnitName() == "npc_dummy_blank" then
-			return
-		end
 		if spawnedUnit then
 			spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_cooldown_reduction_handler", {})
 			spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_base_attack_time_handler", {})

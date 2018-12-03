@@ -284,7 +284,7 @@
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"movespeed_bonus_limit"		"750"		
+				"movespeed_bonus_limit"		"200"		
 			}
 			"04"
 			{

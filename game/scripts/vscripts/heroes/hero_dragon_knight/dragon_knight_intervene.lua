@@ -82,9 +82,7 @@ end
 
 function modifier_dragon_knight_intervene_movement:DeclareFunctions()
 	local funcs = {
-		MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE,
-		MODIFIER_PROPERTY_MOVESPEED_LIMIT,
-		MODIFIER_PROPERTY_MOVESPEED_MAX,
+		MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE_MIN,
 		MODIFIER_EVENT_ON_ORDER,
 		MODIFIER_EVENT_ON_ATTACK_START,
 		MODIFIER_EVENT_ON_ABILITY_FULLY_CAST,
@@ -114,19 +112,7 @@ function modifier_dragon_knight_intervene_movement:OnAbilityFullyCast(params)
 	end
 end
 
-function modifier_dragon_knight_intervene_movement:GetModifierMoveSpeed_Absolute()
-	local speed = self.speed
-	if self:GetCaster():HasScepter() then speed = speed * 2 end
-	return speed
-end
-
-function modifier_dragon_knight_intervene_movement:GetModifierMoveSpeed_Max()
-	local speed = self.speed
-	if self:GetCaster():HasScepter() then speed = speed * 2 end
-	return speed
-end
-
-function modifier_dragon_knight_intervene_movement:GetModifierMoveSpeed_Limit()
+function modifier_dragon_knight_intervene_movement:GetModifierMoveSpeed_AbsoluteMin()
 	local speed = self.speed
 	if self:GetCaster():HasScepter() then speed = speed * 2 end
 	return speed

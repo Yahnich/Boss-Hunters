@@ -104,18 +104,12 @@ function modifier_clinkz_walk:DeclareFunctions()
         MODIFIER_EVENT_ON_ATTACK_LANDED,
         MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
         MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS,
-        MODIFIER_PROPERTY_MOVESPEED_LIMIT,
-        MODIFIER_PROPERTY_MOVESPEED_MAX
     }
 
     return funcs
 end
 
-function modifier_clinkz_walk:GetModifierMoveSpeed_Limit()
-    return 99999
-end
-
-function modifier_clinkz_walk:GetModifierMoveSpeed_Max()
+function modifier_clinkz_walk:GetMoveSpeedLimitBonus()
     return 99999
 end
 

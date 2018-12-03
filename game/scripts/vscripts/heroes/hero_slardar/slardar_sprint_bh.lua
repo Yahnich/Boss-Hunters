@@ -28,8 +28,6 @@ end
 function modifier_slardar_sprint_bh:DeclareFunctions()
     local funcs = {
         MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-        MODIFIER_PROPERTY_MOVESPEED_LIMIT,
-        MODIFIER_PROPERTY_MOVESPEED_MAX,
 		MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,
 		
 		MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE,
@@ -44,11 +42,7 @@ function modifier_slardar_sprint_bh:GetModifierMoveSpeedBonus_Percentage()
     return ms
 end
 
-function modifier_slardar_sprint_bh:GetModifierMoveSpeed_Limit()
-	if self:GetCaster():InWater() then return 99999 end
-end
-
-function modifier_slardar_sprint_bh:GetModifierMoveSpeed_Max()
+function modifier_slardar_sprint_bh:GetMoveSpeedLimitBonus()
 	if self:GetCaster():InWater() then return 99999 end
 end
 

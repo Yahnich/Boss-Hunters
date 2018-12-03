@@ -194,16 +194,17 @@ end
 
 function CDOTA_BaseNPC_Hero:CreateSummon(unitName, position, duration, bControllable)
 	local summon = CreateUnitByName(unitName, position, true, self, nil, self:GetTeam())
-	summon:SetControllableByPlayer(self:GetPlayerID(), true)
+	if bControllable then summon:SetControllableByPlayer( self:GetPlayerID(),  true ) end
 	self.summonTable = self.summonTable or {}
 	table.insert(self.summonTable, summon)
 	summon:SetOwner(self)
-	summon:AddNewModifier(self, nil, "modifier_summon_handler", {duration = duration})
+	local summonMod = summon:AddNewModifier(self, nil, "modifier_summon_handler", {duration = duration})
 	if duration and duration > 0 then
 		summon:AddNewModifier(self, nil, "modifier_kill", {duration = duration})
 	end
 	StartAnimation(summon, {activity = ACT_DOTA_SPAWN, rate = 1.5, duration = 2})
-	return summon
+	local endDur = summonMod:GetRemainingTime()
+	return summon, endDur
 end
 
 function CDOTA_BaseNPC_Hero:RemoveSummon(entity)
@@ -415,8 +416,12 @@ function CDOTA_BaseNPC:IsElite()
 end
 
 function CDOTA_BaseNPC:HasTalent(talentName)
-	if self:HasAbility(talentName) then
-		if self:FindAbilityByName(talentName):GetLevel() > 0 then return true end
+	local unit = self
+	if self:GetParentUnit() then
+		unit = self:GetParentUnit()
+	end
+	if unit:HasAbility(talentName) then
+		if unit:FindAbilityByName(talentName):GetLevel() > 0 then return true end
 	end
 	return false
 end
@@ -432,16 +437,24 @@ function FindAllEntitiesByClassname(name)
 	return entList
 end
 
-function CDOTA_BaseNPC:FindTalentValue(talentName, value)
-	if self:HasAbility(talentName) then
-		return self:FindAbilityByName(talentName):GetSpecialValueFor(value or "value")
+function CDOTA_BaseNPC:FindTalentValue(talentName, value)	
+	local unit = self
+	if self:GetParentUnit() then
+		unit = self:GetParentUnit()
+	end
+	if unit:HasAbility(talentName) then
+		return unit:FindAbilityByName(talentName):GetSpecialValueFor(value or "value")
 	end
 	return 0
 end
 
 function CDOTA_BaseNPC:FindSpecificTalentValue(talentName, value)
-	if self:HasAbility(talentName) then
-		return self:FindAbilityByName(talentName):GetSpecialValueFor(value)
+	local unit = self
+	if self:GetParentUnit() then
+		unit = self:GetParentUnit()
+	end
+	if unit:HasAbility(talentName) then
+		return unit:FindAbilityByName(talentName):GetSpecialValueFor(value)
 	end
 	return 0
 end
@@ -680,7 +693,12 @@ function  CDOTA_BaseNPC:ConjureImage( position, duration, outgoing, incoming, sp
 		end
 		
 		illusion:AddNewModifier( self, nil, "modifier_illusion_bonuses", { duration = duration })
-		
+		illusion:AddNewModifier( illusion, nil, "modifier_cooldown_reduction_handler", {})
+		illusion:AddNewModifier( illusion, nil, "modifier_base_attack_time_handler", {})
+		illusion:AddNewModifier( illusion, nil, "modifier_accuracy_handler", {})
+		illusion:AddNewModifier( illusion, nil, "modifier_attack_speed_handler", {})
+		illusion:AddNewModifier( illusion, nil, "modifier_move_speed_handler", {})
+		illusion:AddNewModifier( illusion, nil, "modifier_health_handler", {})
 		-- Recreate the items of the caster
 		for itemSlot=0,5 do
 			local item = self:GetItemInSlot(itemSlot)
@@ -985,6 +1003,10 @@ function CDOTABaseAbility:GetTalentSpecialValueFor(value)
 		end
 	end
 	if talentName then 
+		local unit = self:GetCaster()
+		if unit:GetParentUnit() then
+			unit = unit:GetParentUnit()
+		end
 		local talent = self:GetCaster():FindAbilityByName(talentName)
 		if talent and talent:GetLevel() > 0 then 
 			if multiply then
@@ -1919,6 +1941,7 @@ function CDOTA_BaseNPC:AddGold(val)
 			local gold = hero:GetGold() + gold
 			hero:SetGold(0, false)
 			hero:SetGold(gold, true)
+			SendOverheadEventMessage(self:GetPlayerOwner(), OVERHEAD_ALERT_GOLD, self, val, self:GetPlayerOwner())
 		end
 	end
 end
@@ -2136,4 +2159,8 @@ end
 
 function CDOTA_Ability_Lua:Cleave(target, damage, startRadius, endRadius, distance, effect )
 	DoCleaveAttack(self:GetCaster(), target, self, damage, startRadius, endRadius, distance, effect )
+end
+
+function CDOTA_BaseNPC:GetParentUnit()
+	return self.unitOwnerEntity
 end

@@ -31,7 +31,7 @@ end
 function modifier_item_illusionists_charm:DeclareFunctions()
 	return {
 			MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
-			MODIFIER_PROPERTY_HEALTH_BONUS,
+			MODIFIER_PROPERTY_EXTRA_HEALTH_BONUS,
 			MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,	
 			MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
 			}
@@ -49,7 +49,7 @@ function modifier_item_illusionists_charm:GetModifierBonusStats_Strength()
 	return self.stat
 end
 
-function modifier_item_illusionists_charm:GetModifierHealthBonus()
+function modifier_item_illusionists_charm:GetModifierExtraHealthBonus()
 	return self:GetParent():GetStrength() * self.hpPerStr + self.hpBonus
 end
 

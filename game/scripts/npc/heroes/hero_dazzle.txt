@@ -136,7 +136,7 @@
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"heroes/hero_dazzle/dazzle_weave_bh"
 		"AbilityTextureName"			"dazzle_weave"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
@@ -146,15 +146,6 @@
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"1200"
-		"AbilityCastPoint"				"0.3 0.3 0.3"
-		
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"20"
-	
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"100"
 		
 		"precache"
 		{
@@ -170,12 +161,27 @@
 			"01"
 			{	
 				"var_type"					"FIELD_FLOAT"
-				"armor_per_second"			"0.5 0.75 1 1.25 1.5 1.75 2.0"
+				"armor_per_second"			"1 1.25 1.5 1.75 2 2.25 2.5"
 			}
 			"02"
 			{	
 				"var_type"					"FIELD_FLOAT"
-				"duration"					"12"
+				"duration"					"8"
+			}
+			"03"
+			{	
+				"var_type"					"FIELD_FLOAT"
+				"radius"					"1200"
+			}
+			"04"
+			{	
+				"var_type"					"FIELD_FLOAT"
+				"cdr"						"10 15 20 25 30 35 40"
+			}
+			"05"
+			{	
+				"var_type"					"FIELD_FLOAT"
+				"mana_cost"					"10 30 50 70 90 110 130"
 			}
 		}
 	}
@@ -213,7 +219,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"1"
+				"value"					"25"
 			}
 		}
 	}

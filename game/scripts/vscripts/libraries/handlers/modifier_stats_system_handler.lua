@@ -84,7 +84,7 @@ function modifier_stats_system_handler:DeclareFunctions()
 		MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
 		-- MODIFIER_PROPERTY_TOTAL_CONSTANT_BLOCK,
 		MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
-		MODIFIER_PROPERTY_HEALTH_BONUS,
+		MODIFIER_PROPERTY_EXTRA_HEALTH_BONUS,
 		MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
 		MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
 		MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
@@ -123,7 +123,7 @@ function modifier_stats_system_handler:GetModifierAttackRangeBonus()
 	return self.ar or 0
 end
 
-function modifier_stats_system_handler:GetModifierHealthBonus() return 400 + (self.hp or 0) end
+function modifier_stats_system_handler:GetModifierExtraHealthBonus() return 400 + (self.hp or 0) end
 function modifier_stats_system_handler:GetModifierConstantHealthRegen() return (self.hpr or 0) end
 function modifier_stats_system_handler:GetModifierStatusResistance() return self.sr or 0 end
 

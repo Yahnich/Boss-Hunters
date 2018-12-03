@@ -2,8 +2,8 @@ modifier_base_attack_time_handler = class({})
 
 if IsServer() then
 	function modifier_base_attack_time_handler:OnCreated()
-		self.baseAttackTime = self:GetParent():GetBaseAttackTime()
-		self:SetStackCount( self.baseAttackTime * 100 )
+		self.baseAttackTime = self:GetParent():GetBaseAttackTime() * 100
+		self:SetStackCount( self.baseAttackTime )
 		self:StartIntervalThink(0.1)
 	end
 

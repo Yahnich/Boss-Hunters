@@ -1,7 +1,7 @@
 modifier_illusion_bonuses = class({})
 
 function modifier_illusion_bonuses:OnCreated()
-	self:GetParent().illusionOwner = self:GetCaster()
+	self:GetParent().unitOwnerEntity = self:GetCaster()
 	self.as = self:GetCaster():GetAgility()
 	if IsServer() then
 		self.ar = self:GetCaster():GetBaseAttackRange()

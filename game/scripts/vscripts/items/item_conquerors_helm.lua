@@ -81,7 +81,7 @@ function modifier_item_conquerors_helm_passive:IsHidden()
 end
 
 function modifier_item_conquerors_helm_passive:DeclareFunctions()
-	return {MODIFIER_PROPERTY_HEALTH_BONUS,
+	return {MODIFIER_PROPERTY_EXTRA_HEALTH_BONUS,
 			MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,	
 			MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
 			MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
@@ -111,7 +111,7 @@ function modifier_item_conquerors_helm_passive:GetModifierPhysicalArmorBonus()
 	return self.armor
 end
 
-function modifier_item_conquerors_helm_passive:GetModifierHealthBonus()
+function modifier_item_conquerors_helm_passive:GetModifierExtraHealthBonus()
 	return self:GetParent():GetStrength() * self.hpPerStr + self.bonusHP
 end
 

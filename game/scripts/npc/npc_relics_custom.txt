@@ -52,6 +52,8 @@
 		"relic_generic_scrap_of_paper"					"1"
 		"relic_generic_dry_quill"						"1"
 		"relic_generic_leather_buckler"					"1"
+		"relic_generic_weighted_gloves"					"1"
+		"relic_generic_feathered_boots"					"1"
 	}
 	"relic_type_cursed"
 	{
@@ -164,5 +166,6 @@
 		"relic_unique_drycicle"							"1"
 		"relic_unique_ritual_candle"					"0"
 		"relic_unique_greased_wheel"					"1"
+		"relic_unique_red_pill"							"1"
 	}
 }

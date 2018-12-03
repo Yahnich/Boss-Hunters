@@ -13,14 +13,14 @@ function relic_cursed_symbiote:OnIntervalThink()
 end
 
 function relic_cursed_symbiote:DeclareFunctions()
-	return {MODIFIER_PROPERTY_SPELLS_REQUIRE_HP, MODIFIER_PROPERTY_HEALTH_BONUS, MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT}
+	return {MODIFIER_PROPERTY_SPELLS_REQUIRE_HP, MODIFIER_PROPERTY_EXTRA_HEALTH_BONUS, MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT}
 end
 
 function relic_cursed_symbiote:GetModifierSpellsRequireHP()
 	if not self:GetParent():HasModifier("relic_unique_ritual_candle") then return 1 end
 end
 
-function relic_cursed_symbiote:GetModifierHealthBonus()
+function relic_cursed_symbiote:GetModifierExtraHealthBonus()
 	return self:GetParent():GetMaxMana()
 end
 

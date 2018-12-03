@@ -65,24 +65,12 @@ function bh_shuriken:OnProjectileHit_ExtraData( target, position, extraData )
 		if caster:HasTalent("special_bonus_unique_bh_jinada_1") then
 			local ability = caster:FindAbilityByName("bh_jinada")
 			if ability:IsCooldownReady() then
-				damage = damage * ability:GetTalentSpecialValueFor("crit_multiplier")/100
-
-				target:AddNewModifier(caster, ability, "modifier_bh_jinada_maim", {Duration = ability:GetTalentSpecialValueFor("duration")})
-
-				ability:SetCooldown()
+				ability:TriggerJinada(target)
 			end
 		end
 
 		local refDamage = self:DealDamage(caster, target, damage, {})
-		
-		if caster:HasTalent("special_bonus_unique_bh_jinada_1") then
-			target:ShowPopup( {
-						PostSymbol = 4,
-						Color = Vector( 125, 125, 255 ),
-						Duration = 0.7,
-						Number = refDamage,
-						pfx = "spell"} )
-		end
+
 
 		if shadow_walk then
 			local ability = caster:FindAbilityByName("bh_shadow_walk")

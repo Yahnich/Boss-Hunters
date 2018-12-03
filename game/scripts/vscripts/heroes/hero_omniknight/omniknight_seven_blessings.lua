@@ -45,7 +45,7 @@ function modifier_omniknight_seven_blessings:DeclareFunctions()
 			
 			MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
 			MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
-			MODIFIER_PROPERTY_HEALTH_BONUS,
+			MODIFIER_PROPERTY_EXTRA_HEALTH_BONUS,
 			MODIFIER_PROPERTY_MANA_BONUS,
 			MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,
 			}
@@ -67,7 +67,7 @@ function modifier_omniknight_seven_blessings:GetModifierMagicalResistanceBonus()
 	return self.mr
 end
 
-function modifier_omniknight_seven_blessings:GetModifierHealthBonus()
+function modifier_omniknight_seven_blessings:GetModifierExtraHealthBonus()
 	return self.hp
 end
 

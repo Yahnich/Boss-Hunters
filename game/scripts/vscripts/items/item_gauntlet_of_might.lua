@@ -27,19 +27,13 @@ LinkLuaModifier("modifier_gauntlet_of_might_passive", "items/item_gauntlet_of_mi
 function modifier_gauntlet_of_might_passive:OnCreated()
 	self.armor = self:GetSpecialValueFor("armor")
 	self.radius = self:GetSpecialValueFor("radius")
-	self.ms = self:GetParent():GetIdealSpeedNoSlows()
 	self.bonusHP = self:GetSpecialValueFor("bonus_health")
 	self.hpPerStr = self:GetSpecialValueFor("hp_per_str")
-	self:StartIntervalThink(0.5)
-end
-
-function modifier_gauntlet_of_might_passive:OnIntervalThink()
-	self.ms = 0
-	self.ms = self:GetParent():GetIdealSpeedNoSlows()
 end
 
 function modifier_gauntlet_of_might_passive:CheckState()
-	return {[MODIFIER_STATE_ROOTED] = false}
+	return {[MODIFIER_STATE_ROOTED] = false,
+			[MODIFIER_STATE_UNSLOWABLE] = true}
 end
 
 function modifier_gauntlet_of_might_passive:GetPriority()
@@ -47,21 +41,16 @@ function modifier_gauntlet_of_might_passive:GetPriority()
 end
 
 function modifier_gauntlet_of_might_passive:DeclareFunctions()
-	funcs = {MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE_MIN,
-			 MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
-			 MODIFIER_PROPERTY_HEALTH_BONUS}
+	funcs = {MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
+			 MODIFIER_PROPERTY_EXTRA_HEALTH_BONUS}
 	return funcs
-end
-
-function modifier_gauntlet_of_might_passive:GetModifierMoveSpeed_AbsoluteMin()
-	return self.ms
 end
 
 function modifier_gauntlet_of_might_passive:GetModifierPhysicalArmorBonus()
 	return self.armor
 end
 
-function modifier_gauntlet_of_might_passive:GetModifierHealthBonus()
+function modifier_gauntlet_of_might_passive:GetModifierExtraHealthBonus()
 	return self:GetParent():GetStrength() * self.hpPerStr + self.bonusHP
 end
 

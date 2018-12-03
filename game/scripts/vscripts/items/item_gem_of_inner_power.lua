@@ -26,10 +26,10 @@ function modifier_item_gem_of_inner_power_passive:OnCreated()
 end
 
 function modifier_item_gem_of_inner_power_passive:DeclareFunctions()
-	return {MODIFIER_PROPERTY_HEALTH_BONUS}
+	return {MODIFIER_PROPERTY_EXTRA_HEALTH_BONUS}
 end
 
-function modifier_item_gem_of_inner_power_passive:GetModifierHealthBonus()
+function modifier_item_gem_of_inner_power_passive:GetModifierExtraHealthBonus()
 	return self:GetParent():GetStrength() * self.hpPerStr + self.hpBonus
 end
 

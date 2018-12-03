@@ -85,8 +85,6 @@ end
 function modifier_sb_haste_aura:DeclareFunctions()
     local funcs = {
         MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-        MODIFIER_PROPERTY_MOVESPEED_LIMIT,
-        MODIFIER_PROPERTY_MOVESPEED_MAX
     }
     return funcs
 end
@@ -95,11 +93,7 @@ function modifier_sb_haste_aura:GetModifierMoveSpeedBonus_Percentage()
     return self:GetTalentSpecialValueFor("bonus_ms_self")
 end
 
-function modifier_sb_haste_aura:GetModifierMoveSpeed_Limit()
-    return 99999
-end
-
-function modifier_sb_haste_aura:GetModifierMoveSpeed_Max()
+function modifier_sb_haste_aura:GetMoveSpeedLimitBonus()
     return 99999
 end
 

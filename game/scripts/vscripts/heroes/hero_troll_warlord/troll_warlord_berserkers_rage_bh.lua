@@ -41,7 +41,7 @@ modifier_troll_warlord_berserkers_rage_bh_melee = class({})
 LinkLuaModifier("modifier_troll_warlord_berserkers_rage_bh_melee", "heroes/hero_troll_warlord/troll_warlord_berserkers_rage_bh", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_troll_warlord_berserkers_rage_bh_melee:OnCreated()
-	self.hp = self:GetTalentSpecialValueFor("bonus_hp") / 100
+	self.hp = self:GetTalentSpecialValueFor("bonus_hp")
 	self.armor = self:GetTalentSpecialValueFor("bonus_armor")
 	self.bat = self:GetTalentSpecialValueFor("base_attack_time") - 1.7
 
@@ -62,7 +62,7 @@ function modifier_troll_warlord_berserkers_rage_bh_melee:DeclareFunctions()
 	return {MODIFIER_PROPERTY_EXTRA_HEALTH_PERCENTAGE, MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS, MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS, MODIFIER_PROPERTY_ATTACK_RANGE_BASE_OVERRIDE }
 end
 
-function modifier_troll_warlord_berserkers_rage_bh_melee:GetModifierExtraHealthPercentage()
+function modifier_troll_warlord_berserkers_rage_bh_melee:GetModifierExtraHealthBonusPercentage()
 	return self.hp
 end
 
