@@ -24,7 +24,7 @@ if IsServer() then
 				attackSpeedPct = attackSpeedPct + (modifier:GetModifierAttackSpeedBonusPercentage() or 0) / 100
 			end
 			if modifier.GetModifierAttackSpeedLimitBonus and modifier:GetModifierAttackSpeedLimitBonus() then
-				bonusAttackSpeedCap = bonusAttackSpeedCap + (modifier:GetModifierAttackSpeedLimitBonus() or 0) / 100
+				bonusAttackSpeedCap = bonusAttackSpeedCap + (modifier:GetModifierAttackSpeedLimitBonus() or 0)
 			end
 		end
 		local maxAttackSpeed = (INTERNAL_ATTACK_SPEED_CAP + bonusAttackSpeedCap ) - attackSpeed
