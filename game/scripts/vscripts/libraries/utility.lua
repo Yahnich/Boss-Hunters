@@ -261,8 +261,12 @@ function CDOTA_BaseNPC:PerformGenericAttack(target, immediate, flBonusDamage, bD
 	if bNeverMiss == true then neverMiss = true end
 	if flBonusDamage then
 		if bDamagePct then
-			self:AddNewModifier(caster, nil, "modifier_generic_attack_bonus_pct", {damage = flBonusDamage})
-		else
+			if type(bDamagePct) ~= 'number' then
+				bDamagePct = flBonusDamage
+			end
+			self:AddNewModifier(caster, nil, "modifier_generic_attack_bonus_pct", {damage = bDamagePct})
+		end
+		if flBonusDamage and (not bDamagePct or type(bDamagePct) == 'number') then
 			self:AddNewModifier(caster, nil, "modifier_generic_attack_bonus", {damage = flBonusDamage})
 		end
 	end
@@ -1874,7 +1878,8 @@ function CDOTA_BaseNPC:RemoveParalyze()
 end
 
 function CDOTA_BaseNPC:Disarm(hAbility, hCaster, duration, bDelay)
-	self:AddNewModifier(hCaster, hAbility, "modifier_disarm_generic", {Duration = duration, delay = bDelay})
+	local modifier = self:AddNewModifier(hCaster, hAbility, "modifier_disarm_generic", {Duration = duration, delay = bDelay})
+	return modifier
 end
 
 function CDOTA_BaseNPC:Break(hAbility, hCaster, duration, bDelay)
@@ -2041,7 +2046,7 @@ function CDOTA_BaseNPC:FindEnemyUnitsInCone(vDirection, vPosition, flSideRadius,
 	else return {} end
 end
 
-function GameRules:RefreshPlayers(bDontHeal)
+function GameRules:RefreshPlayers(bDontHealFull)
 	for nPlayerID = 0, DOTA_MAX_TEAM_PLAYERS-1 do
 		if PlayerResource:GetTeam( nPlayerID ) == DOTA_TEAM_GOODGUYS then
 			if PlayerResource:HasSelectedHero( nPlayerID ) then
@@ -2049,12 +2054,15 @@ function GameRules:RefreshPlayers(bDontHeal)
 				if hero ~=nil then
 					if not hero:IsAlive() then
 						hero:RespawnHero(false, false)
-						hero:SetHealth( hero:GetMaxHealth() * 0.25 )
-						hero:SetMana( hero:GetMaxMana() * 0.25 )
+						hero:SetHealth( 1 )
+						hero:SetMana( 1 )
 					end
-					if not bDontHeal then
+					if not bDontHealFull then
 						hero:SetHealth( hero:GetMaxHealth() )
 						hero:SetMana( hero:GetMaxMana() )
+					else
+						hero:HealEvent( hero:GetMaxHealth() * 0.25, nil, hero )
+						hero:GiveMana( hero:GetMaxMana() * 0.25 )
 					end
 					hero.threat = 0
 					ResolveNPCPositions( hero:GetAbsOrigin(), hero:GetHullRadius() + hero:GetCollisionPadding() )

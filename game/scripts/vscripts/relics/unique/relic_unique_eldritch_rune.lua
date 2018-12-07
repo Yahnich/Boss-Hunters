@@ -6,7 +6,7 @@ function relic_unique_eldritch_rune:DeclareFunctions()
 end
 
 function relic_unique_eldritch_rune:GetModifierTotalDamageOutgoing_Percentage(params)
-	if params.attacker == self:GetParent() and params.damage > 0 then
+	if params.attacker == self:GetParent() and params.original_damage > 0 then
 		local ability = params.inflictor or self:GetAbility()
 		if params.damage_type == DAMAGE_TYPE_PURE or ability.eldritchRunePreventLoop then return end
 		if params.damage_category == DOTA_DAMAGE_CATEGORY_ATTACK then

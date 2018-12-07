@@ -41,14 +41,13 @@
 			"02"
 			{
 				"var_type"							"FIELD_INTEGER"
-				"death_perc"						"9 12 15 18 21 24 27"
+				"regen"								"4 8 13 18 24 30 40"
 				"LinkedSpecialBonus"				"special_bonus_unique_doom_demons_bargain_2"
 			}
 			"03"
 			{
 				"var_type"							"FIELD_INTEGER"
-				"death_chance"						"9 12 15 18 21 24 27"
-				"LinkedSpecialBonus"				"special_bonus_unique_doom_demons_bargain_2"
+				"duration"							"10"
 			}
 		}
 	}
@@ -235,10 +234,58 @@
 			}
 			"04"
 			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_attack_speed"		"30 45 60 75 90 105 120"
+			}
+			"04"
+			{
 				"var_type"					"FIELD_FLOAT"
-				"duration"					"10.0 12.0 14.0 16.0 18.0 20.0 22.0"
+				"duration"					"22.0"
 				"LinkedSpecialBonus"		"special_bonus_unique_doom_scorched_earth_ebf_2"
 				"LinkedSpecialBonusField"	"duration"
+			}
+		}
+	}
+	"special_bonus_unique_doom_scorched_earth_ebf_1" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"50"
+			}
+		}
+	}
+	"special_bonus_unique_doom_scorched_earth_ebf_2" 
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"special_bonus_undefined"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"value"					"1200"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"duration"				"5"
 			}
 		}
 	}
@@ -277,49 +324,6 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"value"					"15"
-			}
-		}
-	}
-	"special_bonus_unique_doom_scorched_earth_ebf_1" 
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"25"
-			}
-		}
-	}
-	"special_bonus_unique_doom_scorched_earth_ebf_2" 
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"special_bonus_undefined"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"value"					"1200"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"duration"				"5"
 			}
 		}
 	}

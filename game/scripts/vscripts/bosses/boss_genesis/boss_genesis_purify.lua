@@ -11,6 +11,6 @@ function boss_genesis_purify:OnSpellStart()
 	
 	if not target:TriggerSpellAbsorb(self) then return end
 	target:Dispel(caster, true)
-	ParticleManager:FireParticle("particles/units/heroes/hero_omniknight/omniknight_purification_cast.vpcf", PATTACH_POINT_FOLLOW, target)
+	ParticleManager:FireParticle("particles/units/heroes/hero_omniknight/omniknight_purification.vpcf", PATTACH_POINT_FOLLOW, target)
 	target:EmitSound("Hero_Omniknight.Purification")
 end

@@ -383,12 +383,12 @@
 	//=================================================================================================================
 	// Ability: Drow Ranger's Marksmanship
 	//=================================================================================================================
-	"drow_ranger_marksmanship"
+	"drow_ranger_marksmanship_bh"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_drow_ranger/drow_ranger_marksmanship"
+		"ScriptFile"					"heroes/hero_drow_ranger/drow_ranger_marksmanship_bh"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityCastRange"				"400"

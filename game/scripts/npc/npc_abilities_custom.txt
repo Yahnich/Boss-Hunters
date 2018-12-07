@@ -477,7 +477,7 @@
 			}
 			"04"
 			{
-				"var_type"			"FIELD_FLOAT"
+				"var_type"			"FIELD_INTEGER"
 				"duration"			"10.0"
 			}
 		}
@@ -529,7 +529,7 @@
 			}
 			"04"
 			{
-				"var_type"				"FIELD_FLOAT"
+				"var_type"				"FIELD_INTEGER"
 				"duration"				"20"
 			}
 			"05"
@@ -577,7 +577,7 @@
 			}
 			"02"
 			{
-				"var_type"					"FIELD_FLOAT"
+				"var_type"					"FIELD_INTEGER"
 				"buff_duration"				"1.0"
 			}
 			"03"
@@ -663,7 +663,7 @@
 			}
 			"08"
 			{
-				"var_type"				"FIELD_FLOAT"
+				"var_type"				"FIELD_INTEGER"
 				"duration"				"4.0"
 			}
 		}
@@ -749,7 +749,7 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_FLOAT"
+				"var_type"				"FIELD_INTEGER"
 				"duration"				"10.0"
 			}
 			"02"
@@ -798,7 +798,7 @@
 			}
 			"02"
 			{
-				"var_type"					"FIELD_FLOAT"
+				"var_type"					"FIELD_INTEGER"
 				"proximity_threshold"		"1.6"
 			}
 			"03"
@@ -808,7 +808,7 @@
 			}
 			"04"
 			{
-				"var_type"					"FIELD_FLOAT"
+				"var_type"					"FIELD_INTEGER"
 				"burn_duration"				"5"
 			}	
 			"05"
@@ -818,7 +818,7 @@
 			}	
 			"06"
 			{
-				"var_type"					"FIELD_FLOAT"
+				"var_type"					"FIELD_INTEGER"
 				"activation_delay"			"2"
 			}
 		}
@@ -859,7 +859,7 @@
 			}
 			"02"
 			{
-				"var_type"				"FIELD_FLOAT"
+				"var_type"				"FIELD_INTEGER"
 				"duration"				"3.0"
 			}
 		}
@@ -1208,12 +1208,12 @@
 		{
 			"01"
 	        {
-	            "var_type"              "FIELD_FLOAT"
+	            "var_type"              "FIELD_INTEGER"
 	            "damage"             	"200 300"  //The meteor lands on the ground this many seconds after it was cast.
 	        }
 	        "02"
 	        {
-	            "var_type"              "FIELD_FLOAT"
+	            "var_type"              "FIELD_INTEGER"
 	            "duration"              "2"  //The meteor lands on the ground this many seconds after it was cast.
 	        }
 		}
@@ -1312,7 +1312,7 @@
 			}
 			"03"
 			{
-				"var_type"					"FIELD_FLOAT"
+				"var_type"					"FIELD_INTEGER"
 				"silence_duration"			"6"
 			} 
 			"04"
@@ -1322,7 +1322,7 @@
 			} 
 			"05"
 			{
-				"var_type"					"FIELD_FLOAT"
+				"var_type"					"FIELD_INTEGER"
 				"duration"					"0.8"
 			}
 		}
@@ -1528,7 +1528,7 @@
 			}
 			"02"
 			{
-				"var_type"				"FIELD_FLOAT"
+				"var_type"				"FIELD_INTEGER"
 				"duration_stun"			"2.0"
 			}
 			"03"
@@ -1538,12 +1538,12 @@
 			}
 			"04"
 			{
-				"var_type"				"FIELD_FLOAT"
+				"var_type"				"FIELD_INTEGER"
 				"think_time"			"0.5"
 			}
 			"05"
 			{
-				"var_type"				"FIELD_FLOAT"
+				"var_type"				"FIELD_INTEGER"
 				"think_time_extra"		"1.5"
 			}
 		}
@@ -1581,7 +1581,7 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_FLOAT"
+				"var_type"				"FIELD_INTEGER"
 				"radius"				"200.0"
 			}
 			"02"
@@ -1591,12 +1591,12 @@
 			}
 			"03"
 			{
-				"var_type"				"FIELD_FLOAT"
+				"var_type"				"FIELD_INTEGER"
 				"damage"				"70 90"
 			}
 			"04"
 			{
-				"var_type"				"FIELD_FLOAT"
+				"var_type"				"FIELD_INTEGER"
 				"rotation_angle"		"90.0"
 			}
 			"05"
@@ -1658,7 +1658,7 @@
 			}
 			"03"
 			{
-				"var_type"				"FIELD_FLOAT"
+				"var_type"				"FIELD_INTEGER"
 				"jump_delay"			"0.9"
 			}
 			"04"
@@ -1668,7 +1668,7 @@
 			}
 			"05"
 			{
-				"var_type"				"FIELD_FLOAT"
+				"var_type"				"FIELD_INTEGER"
 				"slow_duration"			"0.35"
 			}
 		}
@@ -1714,7 +1714,7 @@
 		{
 			"01"
 			{
-				"var_type"					"FIELD_FLOAT"
+				"var_type"					"FIELD_INTEGER"
 				"duration"					"12.0"
 			}
 			"02"
@@ -1729,7 +1729,7 @@
 			}
 			"04"
 			{
-				"var_type"					"FIELD_FLOAT"
+				"var_type"					"FIELD_INTEGER"
 				"damage_cap_interval"		"0.25"
 			}
 			"05"
@@ -1890,12 +1890,12 @@
 			}
 			"03"
 			{
-				"var_type"						"FIELD_FLOAT"
+				"var_type"						"FIELD_INTEGER"
 				"slow_duration"					"3.0 3.5 4.0 4.5"
 			}
 			"04"
 			{
-				"var_type"						"FIELD_FLOAT"
+				"var_type"						"FIELD_INTEGER"
 				"stun_duration"					"1.0"
 			}
 		}
@@ -2531,7 +2531,7 @@
 			}
 			"05"
 			{
-				"var_type"				"FIELD_FLOAT"
+				"var_type"				"FIELD_INTEGER"
 				"bonus_armor_aura"		"1 2 3 4 5 6 7"
 			}
 		}
@@ -2695,12 +2695,12 @@
 			}
 			"02"
 			{
-				"var_type"				"FIELD_FLOAT"
+				"var_type"				"FIELD_INTEGER"
 				"pounce_speed"			"933.33"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_FLOAT"
+				"var_type"				"FIELD_INTEGER"
 				"pounce_acceleration"	"7000.0"
 			}
 			"04"
@@ -2715,7 +2715,7 @@
 			}
 			"06"
 			{
-				"var_type"				"FIELD_FLOAT"
+				"var_type"				"FIELD_INTEGER"
 				"leash_duration"		"0"
 				"LinkedSpecialBonus"	"special_bonus_unique_slark"
 			}
@@ -2766,13 +2766,13 @@
 			}
 			"02"
 			{
-				"var_type"				"FIELD_FLOAT"
+				"var_type"				"FIELD_INTEGER"
 				"life_efficiency"		"80 100 120 140 160 180 200"
 				"LinkedSpecialBonus"	"special_bonus_unique_visage_1"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_FLOAT"
+				"var_type"				"FIELD_INTEGER"
 				"channel_tooltip"		"0.5"
 			}
 		}
@@ -2853,7 +2853,7 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_FLOAT"
+				"var_type"				"FIELD_INTEGER"
 				"damage_to_magic"		"70 75 80 85 90 95 100"
 				"LinkedSpecialBonus"	"special_bonus_unique_visage_4"
 			}
@@ -3021,13 +3021,13 @@
 			}
 			"03"
 			{
-				"var_type"				"FIELD_FLOAT"
+				"var_type"				"FIELD_INTEGER"
 				"mana_to_damage"		"1 1.1 1.2 1.4 1.6 1.8 2.0"
 				"LinkedSpecialBonus"	"special_bonus_unique_visage_2"
 			}
 			"04"
 			{
-				"var_type"				"FIELD_FLOAT"
+				"var_type"				"FIELD_INTEGER"
 				"channel_tooltip_old"		"2.0 1.75 1.5 1.25 1.0 0.75 0.5"
 			}
 		}
@@ -3115,7 +3115,7 @@
 			}
 			"02"
 			{
-				"var_type"						"FIELD_FLOAT"
+				"var_type"						"FIELD_INTEGER"
 				"duration"						"45"
 			}
 			"03"
@@ -3267,12 +3267,12 @@
 			
 			"01"
 			{
-				"var_type"					"FIELD_FLOAT"
+				"var_type"					"FIELD_INTEGER"
 				"duration"					"2.0"
 			}
 			"02"
 			{
-				"var_type"					"FIELD_FLOAT"
+				"var_type"					"FIELD_INTEGER"
 				"fade_time"					"0.0 0.0 0.0"
 			}
 			"03"
@@ -3287,12 +3287,12 @@
 			}
 			"05"
 			{
-				"var_type"					"FIELD_FLOAT"
+				"var_type"					"FIELD_INTEGER"
 				"activation_delay"			"0.5 0.5 0.5"
 			}
 			"06"
 			{
-				"var_type"					"FIELD_FLOAT"
+				"var_type"					"FIELD_INTEGER"
 				"neutral_disable"			"2.0 2.0 2.0"
 			}
 			"07"
@@ -3354,13 +3354,13 @@
 			}
 			"02"
 			{
-				"var_type"				"FIELD_FLOAT"
+				"var_type"				"FIELD_INTEGER"
 				"duration"				"6.0"
 				"LinkedSpecialBonus"	"special_bonus_unique_oracle_3"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_FLOAT"
+				"var_type"				"FIELD_INTEGER"
 				"radius"				"900"
 			}
 		}
@@ -3437,7 +3437,7 @@
 		{		
 			"01"
 			{
-				"var_type"					"FIELD_FLOAT"
+				"var_type"					"FIELD_INTEGER"
 				"damage"					"90 180 270 360 450 540 630"
 			}
 			"02"
@@ -3447,7 +3447,7 @@
 			}
 			"03"
 			{
-				"var_type"					"FIELD_FLOAT"
+				"var_type"					"FIELD_INTEGER"
 				"duration_scepter"			"9.0"
 			}
 		}
@@ -3570,12 +3570,12 @@
 			}			
 			"02"
 			{
-				"var_type"				"FIELD_FLOAT"
+				"var_type"				"FIELD_INTEGER"
 				"duration"				"9.0"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_FLOAT"
+				"var_type"				"FIELD_INTEGER"
 				"tick_rate"				"1.0"
 			}
 			"04"
@@ -3720,17 +3720,17 @@
 		{
 			"01"
 			{
-				"var_type"					"FIELD_FLOAT"
+				"var_type"					"FIELD_INTEGER"
 				"stun_duration"				"2.0"
 			}
 			"02"
 			{
-				"var_type"					"FIELD_FLOAT"
+				"var_type"					"FIELD_INTEGER"
 				"slam_damage"				"100 150 200 250 300 350 400"
 			}
 			"02"
 			{
-				"var_type"					"FIELD_FLOAT"
+				"var_type"					"FIELD_INTEGER"
 				"slam_radius"				"400"
 				"LinkedSpecialBonus"		"special_bonus_unique_rubick"
 			}
@@ -3803,12 +3803,12 @@
 			}
 			"03"
 			{
-				"var_type"				"FIELD_FLOAT"
+				"var_type"				"FIELD_INTEGER"
 				"duration"				"0.6 0.6 0.6 0.6"
 			}
 			"04"
 			{
-				"var_type"				"FIELD_FLOAT"
+				"var_type"				"FIELD_INTEGER"
 				"bonus_armor"			"4.5 9 13.5 18 24 32"
 			}
 		}
@@ -3985,7 +3985,7 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_FLOAT"
+				"var_type"				"FIELD_INTEGER"
 				"root_duration"			"5"
 			}
 			"02"
@@ -4163,17 +4163,17 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_FLOAT"
+				"var_type"				"FIELD_INTEGER"
 				"critical_damage"		"350 375 400 425 450 475 500"
 			}
 			"01"
 			{
-				"var_type"				"FIELD_FLOAT"
+				"var_type"				"FIELD_INTEGER"
 				"bleed_stacks"			"10"
 			}
 			"01"
 			{
-				"var_type"				"FIELD_FLOAT"
+				"var_type"				"FIELD_INTEGER"
 				"movespeed_bonus"		"15 20 25 30 35 40 45"
 			}
 		}
@@ -4475,7 +4475,7 @@
 		{
 			"01"
 			{
-				"var_type"					"FIELD_FLOAT"
+				"var_type"					"FIELD_INTEGER"
 				"bonus_hp"					"300 600 900 1200 1500 1800 2100"
 			}
 			"02"
@@ -4485,7 +4485,7 @@
 			}
 			"02"
 			{
-				"var_type"					"FIELD_FLOAT"
+				"var_type"					"FIELD_INTEGER"
 				"transformation_time"		"1.933"
 			}
 		}
@@ -4529,17 +4529,17 @@
 		{
 			"01"
 			{
-				"var_type"					"FIELD_FLOAT"
+				"var_type"					"FIELD_INTEGER"
 				"base_mana_regen"			"2 4 6 8 10 12 14"
 			}
 			"02"
 			{
-				"var_type"					"FIELD_FLOAT"
+				"var_type"					"FIELD_INTEGER"
 				"bonus_range"				"200 250 300 350 400 450 500"
 			}
 			"03"
 			{
-				"var_type"					"FIELD_FLOAT"
+				"var_type"					"FIELD_INTEGER"
 				"transformation_time"		"1.933"
 			}
 		}
@@ -4693,12 +4693,12 @@
 			}
 			"02"
 			{
-				"var_type"				"FIELD_FLOAT"
+				"var_type"				"FIELD_INTEGER"
 				"leap_speed"			"1600.0"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_FLOAT"
+				"var_type"				"FIELD_INTEGER"
 				"leap_acceleration"		"7000.0"
 			}
 			"04"
@@ -4713,7 +4713,7 @@
 			}
 			"06"
 			{
-				"var_type"				"FIELD_FLOAT"
+				"var_type"				"FIELD_INTEGER"
 				"leap_duration"			"10.0"
 			}
 			"07"
@@ -5083,7 +5083,7 @@
 			}
 			"02"
 			{
-				"var_type"			"FIELD_FLOAT"
+				"var_type"			"FIELD_INTEGER"
 				"starfall_delay"	"0.57"
 			}
 			"03"
@@ -5208,7 +5208,7 @@
 		{
 			"01"
 			{
-				"var_type"					"FIELD_FLOAT"
+				"var_type"					"FIELD_INTEGER"
 				"bonus_attackspeed"			"60 100 140 180 220 260 300"
 			}
 			"02"
@@ -5223,12 +5223,12 @@
 			}
 			"04"
 			{
-				"var_type"					"FIELD_FLOAT"
+				"var_type"					"FIELD_INTEGER"
 				"bleed_chance"				"30"
 			}
 			"04"
 			{
-				"var_type"					"FIELD_FLOAT"
+				"var_type"					"FIELD_INTEGER"
 				"transformation_time"		"1.933"
 			}
 		}
@@ -5290,17 +5290,17 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_FLOAT"
+				"var_type"				"FIELD_INTEGER"
 				"healdamage"			"180 260 340 420 500 580 660"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_FLOAT"
+				"var_type"				"FIELD_INTEGER"
 				"moon_bonus"			"40"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_FLOAT"
+				"var_type"				"FIELD_INTEGER"
 				"duration"				"15"
 			}
 		}
@@ -5423,22 +5423,22 @@
 	    {
 	        "01"
 	        {
-	            "var_type"                      "FIELD_FLOAT"
+	            "var_type"                      "FIELD_INTEGER"
 	            "damage"     					"100 150 200 250 300 350 400"
 	        }
 	        "02"
 	        {
-	            "var_type"                      "FIELD_FLOAT"
+	            "var_type"                      "FIELD_INTEGER"
 	            "slow_movement_speed"     		"-40 -50 -60 -70 -80 -90 -100"
 	        }
 			"03"
 	        {
-	            "var_type"                      "FIELD_FLOAT"
+	            "var_type"                      "FIELD_INTEGER"
 	            "bonus_movement_speed"    		"10 12.5 15 17.5 20 22.5 25"
 	        }
 	        "04"
 	        {
-	            "var_type"                      "FIELD_FLOAT"
+	            "var_type"                      "FIELD_INTEGER"
 	            "radius"     					"500 575 650 725 800 875 950"
 	        }
 	    }
@@ -5508,12 +5508,12 @@
 	    {
 	        "01"
 	        {
-	            "var_type"                      	"FIELD_FLOAT"
+	            "var_type"                      	"FIELD_INTEGER"
 	            "speed_to_armor_percent_tooltip"    "4.4 5 5.6 6.2 6.8 7.4 8"
 	        }
 	        "01"
 	        {
-	            "var_type"                      "FIELD_FLOAT"
+	            "var_type"                      "FIELD_INTEGER"
 	            "speed_to_armor"     			"0.045 0.05 0.055 0.06 0.065 0.07"
 	        }
 	    }
@@ -5617,7 +5617,7 @@
 			}
 			"03"
 			{
-				"var_type"						"FIELD_FLOAT"
+				"var_type"						"FIELD_INTEGER"
 				"tick_rate"						"1 0.86 0.73 0.6 0.46 0.33 0.2"
 			}
 			
@@ -5725,7 +5725,7 @@
 			}
 			"04"
 			{
-				"var_type"						"FIELD_FLOAT"
+				"var_type"						"FIELD_INTEGER"
 				"tooltip_duration"				"1 1.25 1.5 1.75 2.0 2.25 2.5"
 			}
 		}
@@ -5881,7 +5881,7 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_FLOAT"
+				"var_type"				"FIELD_INTEGER"
 				"backtrack_time"		"5.0"
 			}
 			"02"
@@ -5891,7 +5891,7 @@
 			}
 			"03"
 			{
-				"var_type"				"FIELD_FLOAT"
+				"var_type"				"FIELD_INTEGER"
 				"remember_interval"		"0.2"
 			}
 		}
@@ -5951,22 +5951,22 @@
 		{
 			"01"
 			{
-				"var_type"						"FIELD_FLOAT"
+				"var_type"						"FIELD_INTEGER"
 				"total_duration"					"6.0"
 			}
 			"02"
 			{
-				"var_type"						"FIELD_FLOAT"
+				"var_type"						"FIELD_INTEGER"
 				"invul_duration"					"3.5 4.0 4.5 5.0 5.5 6.0"
 			}
 			"03"
 			{
-				"var_type"						"FIELD_FLOAT"
+				"var_type"						"FIELD_INTEGER"
 				"regen_duration"					"2.5 2.0 1.5 1.0 0.5 0"
 			}
 			"03"
 			{
-				"var_type"						"FIELD_FLOAT"
+				"var_type"						"FIELD_INTEGER"
 				"regen_amount"					"10"
 			}
 		}

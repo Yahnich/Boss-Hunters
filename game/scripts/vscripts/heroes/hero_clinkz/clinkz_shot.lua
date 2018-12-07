@@ -26,7 +26,6 @@ modifier_clinkz_shot_caster = class({
 	IsPurgable	  			= function(self) return false end,
 	IsDebuff	  			= function(self) return false end,
 	RemoveOnDeath 			= function(self) return false end,
-	AllowIllusionDuplicate	= function(self) return true end
 })
 
 function modifier_clinkz_shot_caster:OnCreated(table)

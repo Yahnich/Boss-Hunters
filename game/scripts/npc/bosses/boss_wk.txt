@@ -47,7 +47,7 @@
 			"06"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"enrage_dmg"				"80 120"
+				"enrage_dmg"				"50 75"
 			}
 			"07"
 			{

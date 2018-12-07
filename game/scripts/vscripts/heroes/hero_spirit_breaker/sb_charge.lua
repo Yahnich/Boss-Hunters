@@ -15,12 +15,13 @@ end
 
 function sb_charge:OnSpellStart()
 	EmitSoundOn("Hero_Spirit_Breaker.ChargeOfDarkness", self:GetCaster())
-    self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_sb_charge", {})
+	local duration = 1000 / ( self:GetTalentSpecialValueFor("movement_speed") + self:GetParent():GetIdealSpeed() )
+    self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_sb_charge", {duration =  duration + 0.1})
 end
 
 modifier_sb_charge = class({})
 function modifier_sb_charge:OnCreated(table)
-	self.ms = self:GetTalentSpecialValueFor("movement_speed")
+	self.ms = 
 	self.basems = self:GetParent():GetIdealSpeed()
 	if IsServer() then
 		local parent = self:GetParent()

@@ -380,7 +380,7 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"90"
+		"AbilityCooldown"				"70"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -396,23 +396,29 @@
 		{
 			"01"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"omni_slash_damage"			"225"
+				"var_type"						"FIELD_INTEGER"
+				"bonus_damage"					"30 45 60 75 90 105"
+				"CalculateSpellDamageTooltip"	"0"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"jumps"						"3 6 9 12 15 18"
+				"duration"					"2.25 2.5 2.75 3 3.25 3.5"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"radius"					"600"
+				"bonus_duration"			"0.125"
 			}
 			"04"
 			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"600"
+			}
+			"05"
+			{
 				"var_type"					"FIELD_FLOAT"
-				"bounce_tick"				"0.4"
+				"bounce_rate"				"140"
 			}
 		}
 	}
@@ -431,7 +437,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"value"					"20"
+				"value"					"100"
 			}
 		}
 	}

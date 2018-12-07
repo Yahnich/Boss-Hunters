@@ -23,6 +23,8 @@ function boss_apotheosis_focused_beam:OnSpellStart()
 	pfx = ParticleManager:CreateParticle( "particles/units/heroes/hero_phoenix/phoenix_sunray.vpcf", PATTACH_ABSORIGIN, caster )
 	ParticleManager:SetParticleControlEnt( pfx, 0, caster, PATTACH_POINT_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), true )
 	ParticleManager:SetParticleControl( pfx, 1, endPos )
+	caster:Root(self, caster, duration)
+	caster:Disarm(self, caster, duration)
 	Timers:CreateTimer(0, function()
 		if duration > 0 and caster:IsAlive() then
 			duration = duration - FrameTime()

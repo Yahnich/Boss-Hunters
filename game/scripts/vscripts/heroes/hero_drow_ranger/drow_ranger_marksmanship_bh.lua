@@ -1,48 +1,48 @@
-drow_ranger_marksmanship = class({})
+drow_ranger_marksmanship_bh = class({})
 
-function drow_ranger_marksmanship:GetIntrinsicModifierName()
-	return "modifier_drow_ranger_marksmanship_handler"
+function drow_ranger_marksmanship_bh:GetIntrinsicModifierName()
+	return "modifier_drow_ranger_marksmanship_bh_handler"
 end
 
-function drow_ranger_marksmanship:OnProjectileHit( target, position )
+function drow_ranger_marksmanship_bh:OnProjectileHit( target, position )
 	if target then
 		local caster = self:GetCaster()
 		caster:PerformAbilityAttack(target, true, self, (caster:GetAttackDamage() * self:GetTalentSpecialValueFor("damage_reduction_scepter")/100) * (-1))
 	end
 end
 
-modifier_drow_ranger_marksmanship_handler = class({})
-LinkLuaModifier("modifier_drow_ranger_marksmanship_handler", "heroes/hero_drow_ranger/drow_ranger_marksmanship", LUA_MODIFIER_MOTION_NONE)
+modifier_drow_ranger_marksmanship_bh_handler = class({})
+LinkLuaModifier("modifier_drow_ranger_marksmanship_bh_handler", "heroes/hero_drow_ranger/drow_ranger_marksmanship_bh", LUA_MODIFIER_MOTION_NONE)
 
 if IsServer() then
-	function modifier_drow_ranger_marksmanship_handler:OnCreated()
+	function modifier_drow_ranger_marksmanship_bh_handler:OnCreated()
 		self.radius = self:GetTalentSpecialValueFor("radius")
 		self:StartIntervalThink(0)
 	end
 	
-	function modifier_drow_ranger_marksmanship_handler:OnIntervalThink()
+	function modifier_drow_ranger_marksmanship_bh_handler:OnIntervalThink()
 		local caster = self:GetCaster()
-		if caster:HasModifier("modifier_drow_ranger_marksmanship_agility") and caster:HasTalent("special_bonus_unique_drow_ranger_marksmanship_2") then
+		if caster:HasModifier("modifier_drow_ranger_marksmanship_bh_agility") and caster:HasTalent("special_bonus_unique_drow_ranger_marksmanship_2") then
 			AddFOWViewer(caster:GetTeamNumber(), caster:GetAbsOrigin(), caster:FindTalentValue("special_bonus_unique_drow_ranger_marksmanship_2"), 0.05, false)
 		end
 		if not caster:HasTalent("special_bonus_unique_drow_ranger_marksmanship_1") then
 			local enemies = caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), self.radius )
 			if #enemies > 0 then
-				caster:RemoveModifierByName("modifier_drow_ranger_marksmanship_agility")
+				caster:RemoveModifierByName("modifier_drow_ranger_marksmanship_bh_agility")
 			else
-				caster:AddNewModifier(caster, self:GetAbility(), "modifier_drow_ranger_marksmanship_agility", {})
+				caster:AddNewModifier(caster, self:GetAbility(), "modifier_drow_ranger_marksmanship_bh_agility", {})
 			end
 		else
-			caster:AddNewModifier(caster, self:GetAbility(), "modifier_drow_ranger_marksmanship_agility", {})
+			caster:AddNewModifier(caster, self:GetAbility(), "modifier_drow_ranger_marksmanship_bh_agility", {})
 		end
 	end
 end
 
-function modifier_drow_ranger_marksmanship_handler:DeclareFunctions()
+function modifier_drow_ranger_marksmanship_bh_handler:DeclareFunctions()
 	return {MODIFIER_EVENT_ON_ATTACK_LANDED}
 end
 
-function modifier_drow_ranger_marksmanship_handler:OnAttackLanded(params)
+function modifier_drow_ranger_marksmanship_bh_handler:OnAttackLanded(params)
 	if params.attacker == self:GetParent() and not params.attacker.autoAttackFromAbilityState and params.attacker:HasScepter() then
 		local caster = self:GetCaster()
 		local count = self:GetTalentSpecialValueFor("split_count_scepter")
@@ -84,29 +84,29 @@ function modifier_drow_ranger_marksmanship_handler:OnAttackLanded(params)
 	end
 end
 
-function modifier_drow_ranger_marksmanship_handler:IsHidden()
+function modifier_drow_ranger_marksmanship_bh_handler:IsHidden()
 	return true
 end
 
-modifier_drow_ranger_marksmanship_agility = class({})
-LinkLuaModifier("modifier_drow_ranger_marksmanship_agility", "heroes/hero_drow_ranger/drow_ranger_marksmanship", LUA_MODIFIER_MOTION_NONE)
+modifier_drow_ranger_marksmanship_bh_agility = class({})
+LinkLuaModifier("modifier_drow_ranger_marksmanship_bh_agility", "heroes/hero_drow_ranger/drow_ranger_marksmanship_bh", LUA_MODIFIER_MOTION_NONE)
 
-function modifier_drow_ranger_marksmanship_agility:OnCreated()
+function modifier_drow_ranger_marksmanship_bh_agility:OnCreated()
 	self.agility = self:GetTalentSpecialValueFor("marksmanship_agility_bonus")
 end
 
-function modifier_drow_ranger_marksmanship_agility:OnRefresh()
+function modifier_drow_ranger_marksmanship_bh_agility:OnRefresh()
 	self.agility = self:GetTalentSpecialValueFor("marksmanship_agility_bonus")
 end
 
-function modifier_drow_ranger_marksmanship_agility:DeclareFunctions()
+function modifier_drow_ranger_marksmanship_bh_agility:DeclareFunctions()
 	return {MODIFIER_PROPERTY_STATS_AGILITY_BONUS}
 end
 
-function modifier_drow_ranger_marksmanship_agility:GetModifierBonusStats_Agility()
+function modifier_drow_ranger_marksmanship_bh_agility:GetModifierBonusStats_Agility()
 	return self.agility
 end
 
-function modifier_drow_ranger_marksmanship_agility:GetEffectName()
+function modifier_drow_ranger_marksmanship_bh_agility:GetEffectName()
 	return "particles/units/heroes/hero_drow/drow_marksmanship.vpcf"
 end
