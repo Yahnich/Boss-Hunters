@@ -376,6 +376,7 @@ function CHoldoutGameMode:InitGameMode()
 	RelicManager:Initialize()
 	
 	
+	LinkLuaModifier( "modifier_charm_generic", "libraries/modifiers/modifier_charm_generic.lua", LUA_MODIFIER_MOTION_NONE )
 	LinkLuaModifier( "modifier_stun_immunity", "libraries/modifiers/modifier_stun_immunity.lua", LUA_MODIFIER_MOTION_NONE )
 	LinkLuaModifier( "modifier_restoration_disable", "libraries/modifiers/modifier_restoration_disable.lua", LUA_MODIFIER_MOTION_NONE )
 	LinkLuaModifier( "modifier_boss_ascension", "libraries/modifiers/modifier_boss_ascension.lua", LUA_MODIFIER_MOTION_NONE )

@@ -1,4 +1,4 @@
-<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf1:version{d47d07e6-072c-49cb-9718-5bfd8d6c3d21} -->
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf13:version{10b35a8e-b1ee-4f14-87a6-a7b6aae37699} -->
 {
 	_class = "CParticleSystemDefinition"
 	m_bShouldHitboxesFallbackToRenderBounds = false
@@ -19,78 +19,46 @@
 	m_Operators = 
 	[
 		{
-			_class = "C_OP_FadeIn"
-			m_flFadeInTimeMin = 0.35
-			m_flFadeInTimeMax = 0.35
-		},
-		{
 			_class = "C_OP_InterpolateRadius"
 			m_flStartScale = 0.0
 			m_flBias = 0.85
 			m_nOpEndCapState = 0
-		},
-		{
-			_class = "C_OP_ColorInterpolate"
-			m_flFadeStartTime = 0.3
-		},
-		{
-			_class = "C_OP_AlphaDecay"
-			m_nOpEndCapState = 1
-		},
-		{
-			_class = "C_OP_RampScalarLinearSimple"
-			m_flEndTime = 99999.0
-			m_Rate = -1.5
-			m_nField = 16
-			m_nOpEndCapState = 1
+			m_bDisableOperator = true
 		},
 		{
 			_class = "C_OP_RampScalarLinearSimple"
 			m_nOpEndCapState = 1
 			m_Rate = 200.0
 			m_flEndTime = 999999.0
-		},
-		{
-			_class = "C_OP_SetToCP"
-			m_vecOffset = [ 0.0, 0.0, 16.0 ]
-		},
-		{
-			_class = "C_OP_EndCapTimedDecay"
-			m_flDecayTime = 0.2
+			m_bDisableOperator = true
 		},
 		{
 			_class = "C_OP_BasicMovement"
 		},
 		{
-			_class = "C_OP_ClampScalar"
-			m_flOutputMax = 0.85
-			m_flOutputMin = 0.5
-			m_nFieldOutput = 13
-		},
-		{
 			_class = "C_OP_RampScalarLinear"
 			m_RateMax = 0.01
 			m_RateMin = -0.01
-			m_nField = 4
+			m_nField = "4"
+			m_bDisableOperator = true
 		},
 		{
 			_class = "C_OP_Decay"
-			m_bDisableOperator = true
+			m_nOpEndCapState = 1
+		},
+		{
+			_class = "C_OP_FadeOutSimple"
 		},
 	]
 	m_Initializers = 
 	[
 		{
-			_class = "C_INIT_RandomYawFlip"
-		},
-		{
 			_class = "C_INIT_RandomRotation"
-			m_flDegreesMin = -360.0
 		},
 		{
 			_class = "C_INIT_RandomLifeTime"
-			m_fLifetimeMin = 0.5
-			m_fLifetimeMax = 0.5
+			m_fLifetimeMin = 1.0
+			m_fLifetimeMax = 1.0
 		},
 		{
 			_class = "C_INIT_RandomRadius"
@@ -98,29 +66,33 @@
 			m_flRadiusMin = 45.0
 		},
 		{
-			_class = "C_INIT_RemapCPtoScalar"
-			m_bScaleInitialRange = true
-			m_flOutputMax = 1.1
-			m_flInputMax = 10000.0
-			m_nCPInput = 1
-		},
-		{
 			_class = "C_INIT_CreateWithinSphere"
-			m_fRadiusMax = 150.0
 			m_fRadiusMin = 150.0
+			m_fRadiusMax = 150.0
 		},
 		{
 			_class = "C_INIT_RandomAlpha"
 			m_nAlphaMax = 65
 			m_nAlphaMin = 45
+			m_bDisableOperator = true
+		},
+		{
+			_class = "C_INIT_RandomYawFlip"
+		},
+		{
+			_class = "C_INIT_RemapCPtoScalar"
+			m_flOutputMax = 1.1
+			m_flInputMax = 10000.0
+			m_nCPInput = 1
 		},
 		{
 			_class = "C_INIT_RemapCPtoVector"
 			m_vOutputMax = [ 1.0, 1.0, 1.0 ]
-			m_nFieldOutput = 6
+			m_nFieldOutput = "6"
 			m_vInputMax = [ 255.0, 255.0, 255.0 ]
 			m_nCPInput = 15
 			m_nOpScaleCP = 16
+			m_bDisableOperator = true
 		},
 	]
 	m_Emitters = 
@@ -166,4 +138,6 @@
 			]
 		},
 	]
+	m_nBehaviorVersion = 7
+	m_nFirstMultipleOverride_BackwardCompat = 5
 }

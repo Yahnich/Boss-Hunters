@@ -161,6 +161,24 @@
 		"Ability16"				"special_bonus_unique_bane_fiends_grip_ebf_1"
 		"Ability17"				"special_bonus_unique_bane_fiends_grip_ebf_2"
 	}
+	"npc_dota_hero_batrider_ebf"
+	{
+		"override_hero"			"npc_dota_hero_batrider"
+		"Ability1"				"batrider_napalm"
+		"Ability2"				"batrider_flamebreak_bh"
+		"Ability3"				"batrider_fly"
+		"Ability4"				"batrider_concoction"
+		"Ability6"				"batrider_lasso"
+		
+		"Ability10"				"special_bonus_unique_batrider_napalm_1"
+		"Ability11"				"special_bonus_unique_batrider_napalm_2"
+		"Ability12"				"special_bonus_unique_batrider_flamebreak_bh_1"
+		"Ability13"				"special_bonus_unique_batrider_flamebreak_bh_2"
+		"Ability14"				"special_bonus_unique_batrider_fly_1"
+		"Ability15"				"special_bonus_unique_batrider_fly_2"
+		"Ability16"				"special_bonus_unique_batrider_lasso_1"
+		"Ability17"				"special_bonus_unique_batrider_lasso_2"
+	}
 	"npc_dota_hero_beastmaster_ebf"
 	{
 		"override_hero"			"npc_dota_hero_beastmaster"
@@ -406,29 +424,25 @@
 		
 	}
 	//=================================================================================================================
-	// HERO: Darude
+	// HERO: Dark Willow
 	//=================================================================================================================
 	"npc_dota_hero_dark_willow"
 	{
 		"override_hero"					"npc_dota_hero_dark_willow"
+		"Ability1"						"dw_bramble"
+		"Ability2"						"dw_shadow"
+		"Ability3"						"dw_crown"
+		"Ability4"						"dw_bedlam"
+		"Ability6"						"dw_terrorize"
 		
-		"Ability10"						"special_bonus_attack_damage_20"
-		"Ability11"						"special_bonus_cast_range_125"
-		"Ability12"						"special_bonus_cooldown_reduction_12"
-		"Ability13"						"special_bonus_movement_speed_40"
-		"Ability14"						"special_bonus_spell_lifesteal_10"
-		"Ability15"						"special_bonus_unique_dark_willow_1"
-		"Ability16"						"special_bonus_attack_speed_200"
-		"Ability17"						"special_bonus_unique_dark_willow_2"
-		
-		"ArmorPhysical"					"1"
-		"AttributeBaseStrength"			"22"
-		"AttributeStrengthGain"			"1.9"
-		"AttributeBaseAgility"			"18"
-		"AttributeAgilityGain"			"1.600000"
-		"AttributeBaseIntelligence"		"18"
-		"AttributeIntelligenceGain"		"3.000000"
-		"MovementSpeed"					"325"
+		"Ability10"						"special_bonus_unique_dw_bramble_1"
+		"Ability11"						"special_bonus_unique_dw_bramble_2"
+		"Ability12"						"special_bonus_unique_dw_shadow_1"
+		"Ability13"						"special_bonus_unique_dw_shadow_2"
+		"Ability14"						"special_bonus_unique_dw_crown_1"
+		"Ability15"						"special_bonus_unique_dw_crown_2"
+		"Ability16"						"special_bonus_unique_dw_terrorize_1"
+		"Ability17"						"special_bonus_unique_dw_terrorize_2"
 	}
 	"npc_dota_hero_dazzle" // Mystic -> need to do it like this for mergetables
 	{
@@ -654,7 +668,20 @@
 	"npc_dota_hero_enchantress_ebf"
 	{
 		"override_hero"					"npc_dota_hero_enchantress"
-		"Ability2"						"enchantress_siegebreaker"
+		"Ability1"						"enchantress_untouchable_bh"
+		"Ability2"						"enchantress_enchant_bh"
+		"Ability3"						"enchantress_attendants"
+		"Ability4"						"enchantress_take_root"
+		"Ability6"						"enchantress_impetus_bh"
+		
+		"Ability10"						"special_bonus_unique_enchantress_untouchable_bh_1"
+		"Ability11"						"special_bonus_unique_enchantress_untouchable_bh_2"
+		"Ability12"						"special_bonus_unique_enchantress_enchant_bh_1"
+		"Ability13"						"special_bonus_unique_enchantress_enchant_bh_2"
+		"Ability14"						"special_bonus_unique_enchantress_attendants_1"
+		"Ability15"						"special_bonus_unique_enchantress_attendants_2"
+		"Ability16"						"special_bonus_unique_enchantress_impetus_bh_1"
+		"Ability17"						"special_bonus_unique_enchantress_impetus_bh_2"
 		
 	}
 	"npc_dota_hero_enigma_ebf"
