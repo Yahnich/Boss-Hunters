@@ -38,8 +38,6 @@ end
 function modifier_windrunner_windrun_bh_handle:DeclareFunctions()
     local funcs = {
         MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-        MODIFIER_PROPERTY_MOVESPEED_LIMIT,
-        MODIFIER_PROPERTY_MOVESPEED_MAX,
         MODIFIER_PROPERTY_EVASION_CONSTANT,
         MODIFIER_PROPERTY_INVISIBILITY_LEVEL
     }
@@ -54,11 +52,7 @@ function modifier_windrunner_windrun_bh_handle:GetModifierMoveSpeedBonus_Percent
     return self:GetTalentSpecialValueFor("movespeed_bonus_pct")
 end
 
-function modifier_windrunner_windrun_bh_handle:GetModifierMoveSpeed_Limit()
-    return self:GetTalentSpecialValueFor("movespeed_bonus_limit")
-end
-
-function modifier_windrunner_windrun_bh_handle:GetModifierMoveSpeed_Max()
+function modifier_windrunner_windrun_bh_handle:GetMoveSpeedLimitBonus()
     return self:GetTalentSpecialValueFor("movespeed_bonus_limit")
 end
 

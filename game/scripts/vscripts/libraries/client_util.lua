@@ -19,6 +19,10 @@ function AddTableToTable( t1, t2)
 	end
 end
 
+function C_DOTA_BaseNPC:GetAttackRange()
+	return self:Script_GetAttackRange()
+end
+
 function TernaryOperator(value, bCheck, default)
 	if bCheck then 
 		return value 
@@ -59,7 +63,11 @@ function C_DOTA_BaseNPC:GetThreat()
 end
 
 function C_DOTA_BaseNPC:HasTalent(talentName)
-	local data = CustomNetTables:GetTableValue("talents", tostring(self:entindex())) or {}
+	local unit = self
+	if unit:GetParentUnit() then
+		unit = unit:GetParentUnit()
+	end
+	local data = CustomNetTables:GetTableValue("talents", tostring(unit:entindex())) or {}
 	if data and data[talentName] then
 		return true 
 	end
@@ -68,7 +76,11 @@ end
 
 function C_DOTA_BaseNPC:FindTalentValue(talentName, valname)
 	local value = valname or "value"
-	if self:HasTalent(talentName) and AbilityKV[talentName] then  
+	local unit = self
+	if unit:GetParentUnit() then
+		unit = unit:GetParentUnit()
+	end
+	if unit:HasTalent(talentName) and AbilityKV[talentName] then  
 		local specialVal = AbilityKV[talentName]["AbilitySpecial"]
 		for l,m in pairs(specialVal) do
 			if m[value] then
@@ -102,11 +114,15 @@ function C_DOTABaseAbility:GetTalentSpecialValueFor(value)
 			end
 		end
 	end
-	if talentName and self:GetCaster():HasTalent(talentName) then 
+	local unit = self:GetCaster()
+	if unit:GetParentUnit() then
+		unit = unit:GetParentUnit()
+	end
+	if talentName and unit:HasTalent(talentName) then 
 		if multiply then
-			base = base * self:GetCaster():FindTalentValue(talentName, valname) 
+			base = base * unit:FindTalentValue(talentName, valname) 
 		else
-			base = base + self:GetCaster():FindTalentValue(talentName, valname) 
+			base = base + unit:FindTalentValue(talentName, valname) 
 		end
 	end
 	return base
@@ -145,26 +161,42 @@ end
 
 
 function C_DOTA_BaseNPC:GetStrength()
-	local netTable = CustomNetTables:GetTableValue("hero_properties", self:GetUnitName()..self:entindex())
+	local unit = self
+	if self:GetParentUnit() then
+		unit = self:GetParentUnit()
+	end
+	local netTable = CustomNetTables:GetTableValue("hero_properties", unit:GetUnitName()..unit:entindex())
 	if netTable and netTable.strength then return  math.floor(tonumber(netTable.strength)) end
 	return 0
 end
 
 function C_DOTA_BaseNPC:GetIntellect()
-	local netTable = CustomNetTables:GetTableValue("hero_properties", self:GetUnitName()..self:entindex())
+	local unit = self
+	if self:GetParentUnit() then
+		unit = self:GetParentUnit()
+	end
+	local netTable = CustomNetTables:GetTableValue("hero_properties", unit:GetUnitName()..unit:entindex())
 	if netTable and netTable.intellect then return  math.floor(tonumber(netTable.intellect)) end
 	return 0
 end
 
 function C_DOTA_BaseNPC:GetAgility()
-	local netTable = CustomNetTables:GetTableValue("hero_properties", self:GetUnitName()..self:entindex())
+	local unit = self
+	if self:GetParentUnit() then
+		unit = self:GetParentUnit()
+	end
+	local netTable = CustomNetTables:GetTableValue("hero_properties", unit:GetUnitName()..unit:entindex())
 	if netTable and netTable.agility then return math.floor(tonumber(netTable.agility)) end
 	return 0
 end
 
 function C_DOTA_BaseNPC:GetPrimaryAttribute()
-	if UnitKV[self:GetUnitName()] then
-		attribute = UnitKV[self:GetUnitName()]["AttributePrimary"]
+	local unit = self
+	if self:GetParentUnit() then
+		unit = self:GetParentUnit()
+	end
+	if UnitKV[unit:GetUnitName()] then
+		attribute = UnitKV[unit:GetUnitName()]["AttributePrimary"]
 		if attribute then
 			if attribute == "DOTA_ATTRIBUTE_STRENGTH" then
 				return DOTA_ATTRIBUTE_STRENGTH
@@ -179,23 +211,19 @@ function C_DOTA_BaseNPC:GetPrimaryAttribute()
 end
 
 function C_DOTA_BaseNPC:GetPrimaryStatValue()
-	local nPrim = self:GetPrimaryAttribute()
+	local unit = self
+	if self:GetParentUnit() then
+		unit = self:GetParentUnit()
+	end
+	local nPrim = unit:GetPrimaryAttribute()
 	if nPrim == DOTA_ATTRIBUTE_STRENGTH then
-		return self:GetStrength()
+		return unit:GetStrength()
 	elseif nPrim == DOTA_ATTRIBUTE_AGILITY then
-		return self:GetAgility()
+		return unit:GetAgility()
 	elseif nPrim == DOTA_ATTRIBUTE_INTELLECT then
-		return self:GetIntellect()
+		return unit:GetIntellect()
 	end
 	return 0
-end
-
-function C_DOTA_BaseNPC:GetIllusionOwnerEntindex()
-	if self:HasModifier("modifier_illusion_tag") then
-		return self:GetModifierStackCount("modifier_illusion_tag", self)
-	else
-		error("Not an illusion!")
-	end
 end
 
 function C_DOTA_BaseNPC:InWater()
@@ -251,3 +279,9 @@ function C_DOTA_Modifier_Lua:RollPRNG( percentage )
 		return false
 	end
 end
+
+
+function C_DOTA_BaseNPC:GetParentUnit()
+	return self.unitOwnerEntity
+end
+

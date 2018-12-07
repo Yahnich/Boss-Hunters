@@ -58,10 +58,10 @@ end
 
 modifier_lina_dragon = class({})
 function modifier_lina_dragon:DeclareFunctions()
-    local funcs = {MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT}
+    local funcs = {}
     return funcs
 end
 
-function modifier_lina_dragon:GetModifierAttackSpeedBonus_Constant()
+function modifier_lina_dragon:GetModifierAttackSpeedBonus()
     return self:GetCaster():FindTalentValue("special_bonus_unique_lina_dragon_2")
 end

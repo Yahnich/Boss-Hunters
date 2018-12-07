@@ -46,10 +46,10 @@ function modifier_antimage_ender_of_magic_buff:OnRefresh()
 end
 
 function modifier_antimage_ender_of_magic_buff:DeclareFunctions()
-	return {MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT, MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE}
+	return { MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE}
 end
 
-function modifier_antimage_ender_of_magic_buff:GetModifierAttackSpeedBonus_Constant()
+function modifier_antimage_ender_of_magic_buff:GetModifierAttackSpeedBonus()
 	return self.as * self:GetStackCount()
 end
 

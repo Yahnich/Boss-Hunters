@@ -108,12 +108,12 @@ end
 
 function modifier_pango_swift_dash_as:DeclareFunctions()
     local funcs = {
-        MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT
+        
     }
     return funcs
 end
 
-function modifier_pango_swift_dash_as:GetModifierAttackSpeedBonus_Constant()
+function modifier_pango_swift_dash_as:GetModifierAttackSpeedBonus()
 	return self.bonus_as
 end
 

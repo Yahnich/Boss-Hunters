@@ -259,7 +259,7 @@
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"65"
+		"AbilityManaCost"				"75"
 	
 		"precache"
 		{
@@ -278,15 +278,26 @@
 				"var_type"					"FIELD_INTEGER"
 				"damage"					"30 60 90 120 150 180 210"
 			}
-			"02"
+			"03"
 			{
 				"var_type"					"FIELD_FLOAT"
 				"duration"					"10"
 			}
-			"03"
+			"04"
 			{
 				"var_type"					"FIELD_FLOAT"
 				"fade_time"					"0.5"
+			}
+			
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"slow"						"-50"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"slow_duration"				"3"
 			}
 			
 		}
@@ -356,7 +367,7 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"10"
+		"AbilityCooldown"				"6"
 
 		"precache"
 		{
@@ -373,7 +384,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"crit_multiplier"		"375"
+				"gold_steal"			"12"
 			}
 			"02"
 			{
@@ -383,7 +394,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"slow_ms"				"-30"
+				"sr_red"				"-30"
 			}
 			"04"
 			{
@@ -460,29 +471,23 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"critical_strike"		"130 135 140 145 150"
+			}
 			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_move_speed_pct"	"16 18 20 22 24 26"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_gold_self"		"150 250 350 450 550 650"
-				"LinkedSpecialBonus"	"special_bonus_unique_bh_track_1"
-			}
-			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"bonus_gold"			"40 80 120 160 200 240"
 				"LinkedSpecialBonus"	"special_bonus_unique_bh_track_1"
 			}
-			"06"
+			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"trash_gold_reduc"		"10"
 			}
-			"07"
+			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"duration"				"30"

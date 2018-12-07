@@ -44,10 +44,10 @@ function modifier_queenofpain_blink_bh_talent:OnRefresh()
 end
 
 function modifier_queenofpain_blink_bh_talent:DeclareFunctions()
-	return {MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT}
+	return {}
 end
 
-function modifier_queenofpain_blink_bh_talent:GetModifierAttackSpeedBonus_Constant()
+function modifier_queenofpain_blink_bh_talent:GetModifierAttackSpeedBonus()
 	return self.as
 end
 

@@ -101,7 +101,7 @@ end
 modifier_winters_kiss_enemy = ({})
 function modifier_winters_kiss_enemy:DeclareFunctions()
     local funcs = {
-        MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+        
     }
     return funcs
 end
@@ -127,7 +127,7 @@ if IsServer() then
 	end
 end
 
-function modifier_winters_kiss_enemy:GetModifierAttackSpeedBonus_Constant()
+function modifier_winters_kiss_enemy:GetModifierAttackSpeedBonus()
     return self:GetSpecialValueFor("bonus_as")
 end
 

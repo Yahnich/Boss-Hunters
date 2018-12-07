@@ -27,11 +27,11 @@ function modifier_item_lightningrod_handle:GetAttributes()
 end
 
 function modifier_item_lightningrod_handle:DeclareFunctions()
-	return {MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+	return {
 			MODIFIER_EVENT_ON_ATTACK_LANDED}
 end
 
-function modifier_item_lightningrod_handle:GetModifierAttackSpeedBonus_Constant()
+function modifier_item_lightningrod_handle:GetModifierAttackSpeedBonus()
 	return self.attackspeed
 end
 

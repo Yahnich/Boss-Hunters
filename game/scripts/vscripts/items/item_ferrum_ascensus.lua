@@ -20,7 +20,7 @@ end
 
 function modifier_item_ferrum_ascensus:DeclareFunctions()
 	return {MODIFIER_EVENT_ON_ATTACK_LANDED,
-			MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+			
 			MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
 			MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
 			MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
@@ -46,7 +46,7 @@ function modifier_item_ferrum_ascensus:GetModifierPercentageManacost()
 	return self.manacost
 end
 
-function modifier_item_ferrum_ascensus:GetModifierAttackSpeedBonus_Constant()
+function modifier_item_ferrum_ascensus:GetModifierAttackSpeedBonus()
 	return self.attackSpeed
 end
 
@@ -83,12 +83,12 @@ function modifier_ferrum_ascensus_debuff:OnRefresh()
 end
 
 function modifier_ferrum_ascensus_debuff:DeclareFunctions()
-	return {MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+	return {
 			MODIFIER_PROPERTY_DISABLE_HEALING
 			}
 end
 
-function modifier_ferrum_ascensus_debuff:GetModifierAttackSpeedBonus_Constant()
+function modifier_ferrum_ascensus_debuff:GetModifierAttackSpeedBonus()
 	return self.slow
 end
 

@@ -16,13 +16,13 @@ event_buff_ominous_tome_curse = class(relicBaseClass)
 
 function event_buff_ominous_tome_curse:DeclareFunctions()
     local funcs = {
-        MODIFIER_PROPERTY_HEALTH_BONUS
+        MODIFIER_PROPERTY_EXTRA_HEALTH_BONUS
     }
 
     return funcs
 end
 
-function event_buff_ominous_tome_curse:GetModifierHealthBonus( params )
+function event_buff_ominous_tome_curse:GetModifierExtraHealthBonus( params )
     return -600
 end
 

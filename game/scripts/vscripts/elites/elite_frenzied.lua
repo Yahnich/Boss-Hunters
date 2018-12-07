@@ -35,10 +35,10 @@ function modifier_elite_frenzied_buff:OnCreated()
 end
 
 function modifier_elite_frenzied_buff:DeclareFunctions()
-	return {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE, MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT}
+	return {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE, }
 end
 
-function modifier_elite_frenzied_buff:GetModifierAttackSpeedBonus_Constant()
+function modifier_elite_frenzied_buff:GetModifierAttackSpeedBonus()
 	return self.as
 end
 

@@ -70,8 +70,6 @@ function modifier_lion_frogger:DeclareFunctions()
     local funcs = {
         MODIFIER_PROPERTY_MOVESPEED_BASE_OVERRIDE,
         MODIFIER_PROPERTY_MODEL_CHANGE,
-        MODIFIER_PROPERTY_MOVESPEED_MAX,
-        MODIFIER_PROPERTY_MOVESPEED_LIMIT,
         MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE
     }
     return funcs
@@ -84,13 +82,8 @@ end
 function modifier_lion_frogger:GetModifierModelChange()
     return "models/props_gameplay/frog.vmdl"
 end
-
-function modifier_lion_frogger:GetModifierMoveSpeed_Max()
-    return 140
-end
-
-function modifier_lion_frogger:GetModifierMoveSpeed_Limit()
-    return 140
+function modifier_lion_frogger:GetMoveSpeedLimitBonus()
+    return -410
 end
 
 function modifier_lion_frogger:GetModifierIncomingDamage_Percentage()

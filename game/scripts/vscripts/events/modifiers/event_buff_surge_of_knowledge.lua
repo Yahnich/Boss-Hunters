@@ -16,7 +16,7 @@ event_buff_surge_of_knowledge_2 = class(relicBaseClass)
 
 function event_buff_surge_of_knowledge_2:DeclareFunctions()
     local funcs = {
-        MODIFIER_PROPERTY_HEALTH_BONUS,
+        MODIFIER_PROPERTY_EXTRA_HEALTH_BONUS,
 		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
 		MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
     }
@@ -24,7 +24,7 @@ function event_buff_surge_of_knowledge_2:DeclareFunctions()
     return funcs
 end
 
-function event_buff_surge_of_knowledge_2:GetModifierHealthBonus( params )
+function event_buff_surge_of_knowledge_2:GetModifierExtraHealthBonus( params )
     return 350
 end
 

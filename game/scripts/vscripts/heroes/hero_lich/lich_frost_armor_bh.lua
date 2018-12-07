@@ -78,10 +78,10 @@ function modifier_lich_frost_armor_bh_slow:OnRefresh()
 end
 
 function modifier_lich_frost_armor_bh_slow:DeclareFunctions()
-	return {MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT, MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE}
+	return { MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE}
 end
 
-function modifier_lich_frost_armor_bh_slow:GetModifierAttackSpeedBonus_Constant()
+function modifier_lich_frost_armor_bh_slow:GetModifierAttackSpeedBonus()
 	return self.as
 end
 

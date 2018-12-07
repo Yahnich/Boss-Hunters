@@ -60,10 +60,10 @@ function modifier_night_stalker_void_ebf:OnRefresh()
 end
 
 function modifier_night_stalker_void_ebf:DeclareFunctions()
-	return {MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT, MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE}
+	return { MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE}
 end
 
-function modifier_night_stalker_void_ebf:GetModifierAttackSpeedBonus_Constant()
+function modifier_night_stalker_void_ebf:GetModifierAttackSpeedBonus()
 	return self.ms
 end
 

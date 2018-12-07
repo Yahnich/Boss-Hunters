@@ -21,8 +21,8 @@ function relic_cursed_crimson_gauntlet:DeclareFunctions()
 	return {MODIFIER_PROPERTY_EXTRA_HEALTH_PERCENTAGE}
 end
 
-function relic_cursed_crimson_gauntlet:GetModifierExtraHealthPercentage()
-	return 0.75
+function relic_cursed_crimson_gauntlet:GetModifierExtraHealthBonusPercentage()
+	return 60
 end
 
 modifier_relic_cursed_crimson_gauntlet = class({})

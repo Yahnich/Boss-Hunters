@@ -44,7 +44,7 @@ function modifier_bh_tree_hook_pull:OnCreated(table)
         local parent = self:GetParent()
         local target = self:GetAbility().hook_dummy
         local ability = self:GetAbility()
-
+		self.hitUnits = {}
         -- Set the global hook_launched variable
         self.hook_launched = true
         
@@ -142,9 +142,6 @@ function modifier_bh_tree_hook_pull:OnCreated(table)
                     self.hook_launched = false
 
                     self:Destroy()
-                    ability:RefundManaCost()
-                    ability:EndCooldown()
-
                 -- If this is not the final step, keep reeling the hook in
                 else
                     -- Move the hook
@@ -161,14 +158,13 @@ function modifier_bh_tree_hook_pull:OnIntervalThink()
     local caster = self:GetCaster()
     local enemies = caster:FindEnemyUnitsInLine(self.tree, caster:GetAbsOrigin(), self:GetTalentSpecialValueFor("width")/2, {})
     for _,enemy in pairs(enemies) do
-        local enemies2 = caster:FindEnemyUnitsInLine(self.tree, caster:GetAbsOrigin(), self:GetTalentSpecialValueFor("width"), {})
-        for _,enemy2 in pairs(enemies2) do
-            EmitSoundOn("Hero_Meepo.Earthbind.Target", enemy2)
-            self:GetAbility():DealDamage(caster, enemy2, self:GetSpecialValueFor("damage"), {}, OVERHEAD_ALERT_DAMAGE)
-            enemy2:AddNewModifier(caster, self:GetAbility(), "modifier_bh_tree_root", {Duration = self:GetTalentSpecialValueFor("root_duration")})
+		if not self.hitUnits[enemy] then
+			EmitSoundOn("Hero_Meepo.Earthbind.Target", enemy)
+            self:GetAbility():DealDamage(caster, enemy, self:GetSpecialValueFor("damage"), {}, OVERHEAD_ALERT_DAMAGE)
+            enemy:AddNewModifier(caster, self:GetAbility(), "modifier_bh_tree_root", {Duration = self:GetTalentSpecialValueFor("root_duration")})
+			caster:AddNewModifier(caster, self:GetAbility(), "modifier_bh_tree_ms", {Duration = self:GetTalentSpecialValueFor("root_duration")})
+			self.hitUnits[enemy] = true
         end
-        caster:AddNewModifier(caster, self:GetAbility(), "modifier_bh_tree_ms", {Duration = self:GetTalentSpecialValueFor("root_duration")})
-        self:Destroy()
     end
 
     if CalculateDistance(self.tree, caster:GetAbsOrigin()) > self:GetTalentSpecialValueFor("max_distance") then

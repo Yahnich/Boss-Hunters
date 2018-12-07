@@ -52,7 +52,7 @@ end
 
 function wk_skeletons:SpawnSkeleton(position)
 	local caster = self:GetCaster()
-
+ 
 	local duration = self:GetTalentSpecialValueFor("skeleton_duration")
 	local damage = caster:GetAttackDamage() * self:GetTalentSpecialValueFor("skeleton_damage")/100
 	local health = caster:GetMaxHealth() * self:GetTalentSpecialValueFor("skeleton_health")/100
@@ -107,6 +107,7 @@ function wk_skeletons:SpawnSkeleton(position)
 	skeleton:SetHealth( health )
 	skeleton:SetAverageBaseDamage( damage, 15 )
 	skeleton:SetBaseMoveSpeed(caster:GetIdealSpeedNoSlows())
+	skeleton:SetHullRadius(2)
 	skeleton:EmitSound("n_creep_Skeleton.Spawn")
 end
 

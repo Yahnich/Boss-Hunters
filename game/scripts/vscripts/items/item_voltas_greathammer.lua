@@ -25,12 +25,12 @@ function modifier_item_voltas_greathammer_handle:OnCreated()
 end
 
 function modifier_item_voltas_greathammer_handle:DeclareFunctions()
-	return {MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+	return {
 			MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
 			MODIFIER_EVENT_ON_ATTACK_LANDED}
 end
 
-function modifier_item_voltas_greathammer_handle:GetModifierAttackSpeedBonus_Constant()
+function modifier_item_voltas_greathammer_handle:GetModifierAttackSpeedBonus()
 	return self.attackspeed
 end
 

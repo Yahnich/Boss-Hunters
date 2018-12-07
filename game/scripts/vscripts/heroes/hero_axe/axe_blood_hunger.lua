@@ -70,7 +70,7 @@ end
 function modifier_blood_hunger:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+		
 		MODIFIER_PROPERTY_MISS_PERCENTAGE
 	}
 	return funcs
@@ -80,7 +80,7 @@ function modifier_blood_hunger:GetModifierMoveSpeedBonus_Percentage()
 	return self:GetSpecialValueFor("move_slow")
 end
 
-function modifier_blood_hunger:GetModifierAttackSpeedBonus_Constant()
+function modifier_blood_hunger:GetModifierAttackSpeedBonus()
 	return self:GetSpecialValueFor("bonus_as")
 end
 

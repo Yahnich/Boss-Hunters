@@ -308,6 +308,7 @@
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"AbilitySound"					"Hero_Treant.LeechSeed.Cast"
 		"MaxLevel"						"1"
+		"InnateAbility"					"1"
 
 		"AbilityCastRange"				"350"
 		"AbilityCastPoint"				"0.5 0.5 0.5 0.5"
@@ -414,7 +415,7 @@
 			"03"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"move_speed"					"150"
+				"move_speed"					"-400"
 				"LinkedSpecialBonus"			"special_bonus_unique_treant_great_protector_2"
 			}	
 			"04"

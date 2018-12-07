@@ -21,10 +21,10 @@ function modifier_boss3a_berserk:OnCreated()
 end
 
 function modifier_boss3a_berserk:DeclareFunctions()
-	return {MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT, MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT}
+	return {MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT, }
 end
 
-function modifier_boss3a_berserk:GetModifierAttackSpeedBonus_Constant()
+function modifier_boss3a_berserk:GetModifierAttackSpeedBonus()
 	return self.as
 end
 

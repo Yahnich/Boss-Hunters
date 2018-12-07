@@ -40,14 +40,14 @@ function modifier_boss_greymane_furious_swipe:OnIntervalThink()
 end
 
 function modifier_boss_greymane_furious_swipe:DeclareFunctions()
-	return {MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT, MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE}
+	return { MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE}
 end
 
 function modifier_boss_greymane_furious_swipe:GetModifierMoveSpeedBonus_Percentage()
 	return self.ms
 end
 
-function modifier_boss_greymane_furious_swipe:GetModifierAttackSpeedBonus_Constant()
+function modifier_boss_greymane_furious_swipe:GetModifierAttackSpeedBonus()
 	return self.as
 end
 

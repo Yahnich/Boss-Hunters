@@ -355,7 +355,7 @@
 		"Ability2"					"clinkz_arrows"
 		"Ability3"					"clinkz_walk"
 		"Ability4"					"clinkz_shot"
-		"Ability6"					"clinkz_pact"
+		"Ability6"					"clinkz_burning_army_bh"
 		
 		"Ability10"					"special_bonus_unique_clinkz_strafe_bh_1"
 		"Ability11"					"special_bonus_unique_clinkz_strafe_bh_2"
@@ -363,8 +363,8 @@
 		"Ability13"					"special_bonus_unique_clinkz_arrows_2"
 		"Ability14"					"special_bonus_unique_clinkz_walk_1"
 		"Ability15"					"special_bonus_unique_clinkz_walk_2"
-		"Ability16"					"special_bonus_unique_clinkz_pact_1"
-		"Ability17"					"special_bonus_unique_clinkz_pact_2"
+		"Ability16"					"special_bonus_unique_clinkz_burning_army_1"
+		"Ability17"					"special_bonus_unique_clinkz_burning_army_2"
 	}
 	"npc_dota_hero_crystal_maiden_ebf"
 	{

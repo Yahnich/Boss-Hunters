@@ -13,9 +13,9 @@ function modifier_item_crystal_of_life_passive:OnCreated()
 end
 
 function modifier_item_crystal_of_life_passive:DeclareFunctions()
-	return {MODIFIER_PROPERTY_HEALTH_BONUS}
+	return {MODIFIER_PROPERTY_EXTRA_HEALTH_BONUS}
 end
 
-function modifier_item_crystal_of_life_passive:GetModifierHealthBonus()
+function modifier_item_crystal_of_life_passive:GetModifierExtraHealthBonus()
 	return self:GetParent():GetStrength() * self.hpPerStr + self.bonusHP
 end

@@ -110,12 +110,12 @@ end
 modifier_flash_step_as = class({})
 function modifier_flash_step_as:DeclareFunctions()
     local funcs = {
-        MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT
+        
     }   
     return funcs
 end
 
-function modifier_flash_step_as:GetModifierAttackSpeedBonus_Constant()
+function modifier_flash_step_as:GetModifierAttackSpeedBonus()
     return self:GetTalentSpecialValueFor("bonus_as") * self:GetStackCount()
 end
 
@@ -126,12 +126,12 @@ end
 modifier_flash_step_enemy = class({})
 function modifier_flash_step_enemy:DeclareFunctions()
     local funcs = {
-        MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT
+        
     }   
     return funcs
 end
 
-function modifier_flash_step_enemy:GetModifierAttackSpeedBonus_Constant()
+function modifier_flash_step_enemy:GetModifierAttackSpeedBonus()
     return -self:GetTalentSpecialValueFor("bonus_as")
 end
 

@@ -90,7 +90,7 @@ end
 function modifier_clinkz_pact:DeclareFunctions()
     local funcs = {
         MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE,
-        MODIFIER_PROPERTY_HEALTH_BONUS,
+        MODIFIER_PROPERTY_EXTRA_HEALTH_BONUS,
         MODIFIER_EVENT_ON_TAKEDAMAGE,
         MODIFIER_PROPERTY_MIN_HEALTH
     }
@@ -101,7 +101,7 @@ function modifier_clinkz_pact:GetModifierBaseAttack_BonusDamage()
     return self.dmgPercent
 end
 
-function modifier_clinkz_pact:GetModifierHealthBonus()
+function modifier_clinkz_pact:GetModifierExtraHealthBonus()
     return self.hpPercent
 end
 

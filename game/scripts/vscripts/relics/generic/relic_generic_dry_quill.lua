@@ -1,10 +1,10 @@
 relic_generic_dry_quill = class(relicBaseClass)
 
 function relic_generic_dry_quill:DeclareFunctions()
-	return {MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT, MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE}
+	return { MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE}
 end
 
-function relic_generic_dry_quill:GetModifierAttackSpeedBonus_Constant()
+function relic_generic_dry_quill:GetModifierAttackSpeedBonus()
 	return 15
 end
 

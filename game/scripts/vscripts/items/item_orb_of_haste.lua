@@ -13,13 +13,13 @@ function modifier_item_orb_of_haste:OnCreated()
 end
 
 function modifier_item_orb_of_haste:DeclareFunctions()
-	return {MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+	return {
 			MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
 			MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
 			}
 end
 
-function modifier_item_orb_of_haste:GetModifierAttackSpeedBonus_Constant()
+function modifier_item_orb_of_haste:GetModifierAttackSpeedBonus()
 	return self.attackSpeed
 end
 

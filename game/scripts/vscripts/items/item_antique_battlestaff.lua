@@ -21,7 +21,7 @@ function modifier_item_antique_battlestaff:DeclareFunctions()
 	return {MODIFIER_EVENT_ON_ATTACK_LANDED,
 			MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
 			MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
-			MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+			
 			MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,}
 end
 
@@ -47,7 +47,7 @@ function modifier_item_antique_battlestaff:GetModifierBonusStats_Agility()
 	return self.bonus_agility
 end
 
-function modifier_item_antique_battlestaff:GetModifierAttackSpeedBonus_Constant()
+function modifier_item_antique_battlestaff:GetModifierAttackSpeedBonus()
 	return self.bonus_attack_speed
 end
 

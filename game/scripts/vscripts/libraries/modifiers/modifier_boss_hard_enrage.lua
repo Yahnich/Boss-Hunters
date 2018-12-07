@@ -3,7 +3,7 @@ modifier_boss_hard_enrage = class({})
 function modifier_boss_hard_enrage:DeclareFunctions()
     local funcs = {
         MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE,
-		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+		
 		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE
     }
 
@@ -14,7 +14,7 @@ function modifier_boss_hard_enrage:GetModifierPercentageCooldown()
   return 50
 end
 
-function modifier_boss_hard_enrage:GetModifierAttackSpeedBonus_Constant()
+function modifier_boss_hard_enrage:GetModifierAttackSpeedBonus()
 	return 200
 end
 

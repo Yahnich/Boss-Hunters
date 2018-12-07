@@ -67,7 +67,7 @@ function modifier_vile_archmage_runic_coil_thinker:OnSpentMana(params)
 				
 				params.unit:EmitSound("Hero_Pugna.NetherWard.Target")
 				ward:EmitSound("Hero_Pugna.NetherWard.Attack")
-				self:GetAbility():DealDamage( self:GetCaster(), params.unit, params.cost*self.dmg_mult, {damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION })
+				self:GetAbility():DealDamage( self:GetCaster(), params.unit, params.cost*self.dmg_mult, {damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_REFLECTION })
 			end
 		end
 	end

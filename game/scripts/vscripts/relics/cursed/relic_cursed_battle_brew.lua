@@ -1,7 +1,7 @@
 relic_cursed_battle_brew = class(relicBaseClass)
 
 function relic_cursed_battle_brew:DeclareFunctions()
-	return {MODIFIER_PROPERTY_STATS_STRENGTH_BONUS, MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT, MODIFIER_PROPERTY_MISS_PERCENTAGE}
+	return {MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,  MODIFIER_PROPERTY_MISS_PERCENTAGE}
 end
 
 function relic_cursed_battle_brew:Bonus_ThreatGain()
@@ -12,7 +12,7 @@ function relic_cursed_battle_brew:GetModifierBonusStats_Strength()
 	return 30
 end
 
-function relic_cursed_battle_brew:GetModifierAttackSpeedBonus_Constant()
+function relic_cursed_battle_brew:GetModifierAttackSpeedBonus()
 	return 80
 end
 

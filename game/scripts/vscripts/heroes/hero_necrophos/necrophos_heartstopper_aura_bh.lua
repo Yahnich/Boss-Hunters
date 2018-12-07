@@ -47,13 +47,13 @@ modifier_necrophos_heart_stopper_bh_degen = class({})
 LinkLuaModifier( "modifier_necrophos_heart_stopper_bh_degen", "heroes/hero_necrophos/necrophos_heartstopper_aura_bh", LUA_MODIFIER_MOTION_NONE )
 
 function modifier_necrophos_heart_stopper_bh_degen:DeclareFunctions()
-	return {MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE, MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT}
+	return {MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE, }
 end
 
 function modifier_necrophos_heart_stopper_bh_degen:GetModifierHealthRegenPercentage()
 	return self:GetTalentSpecialValueFor("aura_damage") * (-1)
 end
 
-function modifier_necrophos_heart_stopper_bh_degen:GetModifierAttackSpeedBonus_Constant()
+function modifier_necrophos_heart_stopper_bh_degen:GetModifierAttackSpeedBonus()
 	return self:GetCaster():FindTalentValue("special_bonus_unique_necrophos_heartstopper_aura_1")
 end

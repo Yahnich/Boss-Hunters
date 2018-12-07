@@ -41,7 +41,7 @@ function modifier_item_ward_of_life:DeclareFunctions()
 			MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
 			MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
 			MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
-			MODIFIER_PROPERTY_HEALTH_BONUS}
+			MODIFIER_PROPERTY_EXTRA_HEALTH_BONUS}
 end
 
 
@@ -57,7 +57,7 @@ function modifier_item_ward_of_life:GetModifierBonusStats_Intellect()
 	return self.int
 end
 
-function modifier_item_ward_of_life:GetModifierHealthBonus()
+function modifier_item_ward_of_life:GetModifierExtraHealthBonus()
 	return self.hp
 end
 

@@ -42,19 +42,9 @@ function modifier_boss1a_rushdown_attack_thinker:CheckState()
 end
 
 function modifier_boss1a_rushdown_attack_thinker:DeclareFunctions()
-	return {MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE,
-			MODIFIER_PROPERTY_MOVESPEED_LIMIT,
-			MODIFIER_PROPERTY_MOVESPEED_MAX}
+	return {MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE_MIN}
 end
 
-function modifier_boss1a_rushdown_attack_thinker:GetModifierMoveSpeed_Max()
-	return self.ms
-end
-
-function modifier_boss1a_rushdown_attack_thinker:GetModifierMoveSpeed_Limit()
-	return self.ms
-end
-
-function modifier_boss1a_rushdown_attack_thinker:GetModifierMoveSpeed_Absolute()
+function modifier_boss1a_rushdown_attack_thinker:GetModifierMoveSpeed_AbsoluteMin()
 	return self.ms
 end

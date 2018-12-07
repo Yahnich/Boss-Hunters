@@ -46,14 +46,14 @@ end
 
 function modifier_boss_troll_warlord_enrage:DeclareFunctions()
     local funcs = {
-        MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+        
         MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
         MODIFIER_PROPERTY_MODEL_SCALE
     }
     return funcs
 end
 
-function modifier_boss_troll_warlord_enrage:GetModifierAttackSpeedBonus_Constant()
+function modifier_boss_troll_warlord_enrage:GetModifierAttackSpeedBonus()
 	if self:GetParent():PassivesDisabled() then return end
     return self:GetSpecialValueFor("bonus_as")
 end

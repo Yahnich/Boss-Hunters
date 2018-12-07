@@ -57,14 +57,14 @@ function modifier_dragon_knight_elder_dragon_berserker_active:OnDestroy()
 end
 
 function modifier_dragon_knight_elder_dragon_berserker_active:DeclareFunctions()
-	return {MODIFIER_EVENT_ON_ATTACK_LANDED, MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE, MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT, MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE }
+	return {MODIFIER_EVENT_ON_ATTACK_LANDED, MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,  MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE }
 end
 
 function modifier_dragon_knight_elder_dragon_berserker_active:GetModifierMoveSpeedBonus_Percentage()
 	return self.ms
 end
 
-function modifier_dragon_knight_elder_dragon_berserker_active:GetModifierAttackSpeedBonus_Constant()
+function modifier_dragon_knight_elder_dragon_berserker_active:GetModifierAttackSpeedBonus()
 	return self.as
 end
 

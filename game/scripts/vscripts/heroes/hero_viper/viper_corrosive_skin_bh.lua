@@ -105,10 +105,10 @@ function modifier_viper_corrosive_skin_bh_debuff:OnIntervalThink()
 end
 
 function modifier_viper_corrosive_skin_bh_debuff:DeclareFunctions()
-	return {MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT}
+	return {}
 end
 
-function modifier_viper_corrosive_skin_bh_debuff:GetModifierAttackSpeedBonus_Constant()
+function modifier_viper_corrosive_skin_bh_debuff:GetModifierAttackSpeedBonus()
 	return self.as
 end
 

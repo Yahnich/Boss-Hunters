@@ -18,27 +18,18 @@ LinkLuaModifier("modifier_plate_of_the_unbreakable_passive", "items/item_plate_o
 function modifier_plate_of_the_unbreakable_passive:OnCreated()
 	self.armor = self:GetSpecialValueFor("armor")
 	self.radius = self:GetSpecialValueFor("radius")
-	self.ms = self:GetParent():GetIdealSpeedNoSlows()
-	self:StartIntervalThink(0.5)
 end
-
-function modifier_plate_of_the_unbreakable_passive:OnIntervalThink()
-	self.ms = 0
-	self.ms = self:GetParent():GetIdealSpeedNoSlows()
-end
-
 function modifier_plate_of_the_unbreakable_passive:GetPriority()
 	return MODIFIER_PRIORITY_SUPER_ULTRA
 end
 
-function modifier_plate_of_the_unbreakable_passive:DeclareFunctions()
-	funcs = {MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE_MIN,
-			 MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS}
-	return funcs
+function modifier_plate_of_the_unbreakable_passive:CheckState()
+	return {[MODIFIER_STATE_UNSLOWABLE] = true}
 end
 
-function modifier_plate_of_the_unbreakable_passive:GetModifierMoveSpeed_AbsoluteMin()
-	return self.ms
+function modifier_plate_of_the_unbreakable_passive:DeclareFunctions()
+	funcs = {MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS}
+	return funcs
 end
 
 function modifier_plate_of_the_unbreakable_passive:GetModifierPhysicalArmorBonus()

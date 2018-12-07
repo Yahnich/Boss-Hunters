@@ -36,7 +36,7 @@ end
 
 function modifier_boss_attackspeed:DeclareFunctions()
 	local funcs = {
-		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+		
 		MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,
 		MODIFIER_PROPERTY_MANA_REGEN_CONSTANT,
 		MODIFIER_PROPERTY_MANA_BONUS,
@@ -50,7 +50,7 @@ function modifier_boss_attackspeed:DeclareFunctions()
 	return funcs
 end
 --------------------------------------------------------------------------------
-function modifier_boss_attackspeed:GetModifierAttackSpeedBonus_Constant( params )
+function modifier_boss_attackspeed:GetModifierAttackSpeedBonus( params )
 	return 100 + self:GetStackCount() * 25
 end
 

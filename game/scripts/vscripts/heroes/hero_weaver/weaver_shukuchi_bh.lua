@@ -20,13 +20,11 @@ function weaver_shukuchi_bh:OnSpellStart()
         ProjectileManager:ProjectileDodge(caster)
 		caster:AddNewModifier(caster, self, "modifier_weaver_shukuchi_bh", {Duration = self:GetTalentSpecialValueFor("duration")})
 	end)
-
-	self:StartDelayedCooldown(self:GetTalentSpecialValueFor("duration"))
 end
 
 modifier_weaver_shukuchi_bh = class({})
 function modifier_weaver_shukuchi_bh:OnCreated(table)
-    self.bonus_ms = self:GetTalentSpecialValueFor("speed")/100 * self:GetParent():GetIdealSpeed()
+    self.bonus_ms = self:GetTalentSpecialValueFor("speed")
 
 	if IsServer() then
         local caster = self:GetCaster()
@@ -46,11 +44,12 @@ function modifier_weaver_shukuchi_bh:OnCreated(table)
 
 		self:GetCaster():CalculateStatBonus()
 		self:StartIntervalThink(0.05)
+		self:GetAbility():StartDelayedCooldown()
 	end
 end
 
 function modifier_weaver_shukuchi_bh:OnRefresh(table)
-    self.bonus_ms = self:GetTalentSpecialValueFor("speed")/100 * self:GetParent():GetIdealSpeed()
+    self.bonus_ms = self:GetTalentSpecialValueFor("speed")
 
 	if IsServer() then 
         local caster = self:GetCaster()
@@ -66,6 +65,7 @@ function modifier_weaver_shukuchi_bh:OnRefresh(table)
 
 		self:GetCaster():CalculateStatBonus()
 		self:StartIntervalThink(0.05)
+		self:GetAbility():StartDelayedCooldown()
 	end
 end
 
@@ -99,19 +99,18 @@ function modifier_weaver_shukuchi_bh:DeclareFunctions()
         MODIFIER_EVENT_ON_ATTACK,
         MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS,
         MODIFIER_EVENT_ON_ABILITY_EXECUTED,
-        MODIFIER_PROPERTY_IGNORE_MOVESPEED_LIMIT,
-        MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE
+        MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE
     }
 
     return funcs
 end
 
-function modifier_weaver_shukuchi_bh:GetModifierIgnoreMovespeedLimit()
-    return 1
+function modifier_weaver_shukuchi_bh:GetModifierMoveSpeedBonus_Percentage()
+    return self.bonus_ms
 end
 
-function modifier_weaver_shukuchi_bh:GetModifierMoveSpeed_Absolute()
-    return self.bonus_ms
+function modifier_weaver_shukuchi_bh:GetMoveSpeedLimitBonus()
+    return 9999 - 550
 end
 
 function modifier_weaver_shukuchi_bh:CheckState()

@@ -2,13 +2,13 @@ event_buff_safe_haven_1 = class(relicBaseClass)
 
 function event_buff_safe_haven_1:DeclareFunctions()
     local funcs = {
-        MODIFIER_PROPERTY_HEALTH_BONUS,
+        MODIFIER_PROPERTY_EXTRA_HEALTH_BONUS,
     }
 
     return funcs
 end
 
-function event_buff_safe_haven_1:GetModifierHealthBonus( params )
+function event_buff_safe_haven_1:GetModifierExtraHealthBonus( params )
     return 500
 end
 
@@ -16,14 +16,14 @@ event_buff_safe_haven_2 = class(relicBaseClass)
 
 function event_buff_safe_haven_2:DeclareFunctions()
     local funcs = {
-        MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+        
 		MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE
     }
 
     return funcs
 end
 
-function event_buff_safe_haven_2:GetModifierAttackSpeedBonus_Constant( params )
+function event_buff_safe_haven_2:GetModifierAttackSpeedBonus( params )
     return 30
 end
 

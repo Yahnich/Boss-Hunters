@@ -37,12 +37,12 @@ function modifier_item_tricksters_blade:OnCreated()
 end
 
 function modifier_item_tricksters_blade:DeclareFunctions()
-	return {MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+	return {
 			MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
 			}
 end
 
-function modifier_item_tricksters_blade:GetModifierAttackSpeedBonus_Constant()
+function modifier_item_tricksters_blade:GetModifierAttackSpeedBonus()
 	return self.attackSpeed
 end
 

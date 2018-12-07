@@ -117,7 +117,7 @@ end
 
 function modifier_skinwalker_fortress_form:DeclareFunctions()
 	local funcs = {
-		MODIFIER_PROPERTY_HEALTH_BONUS,
+		MODIFIER_PROPERTY_EXTRA_HEALTH_BONUS,
 		MODIFIER_PROPERTY_MODEL_CHANGE,
 		MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,
 		MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
@@ -130,7 +130,7 @@ function modifier_skinwalker_fortress_form:GetModifierAttackRangeBonus()
 	return -400
 end
 
-function modifier_skinwalker_fortress_form:GetModifierHealthBonus()
+function modifier_skinwalker_fortress_form:GetModifierExtraHealthBonus()
 	return self.bonushp
 end
 
@@ -187,7 +187,7 @@ end
 
 function modifier_skinwalker_predator_form:DeclareFunctions()
 	local funcs = {
-		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+		
 		MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
 		MODIFIER_PROPERTY_MODEL_CHANGE,
 		MODIFIER_EVENT_ON_ATTACK_LANDED,
@@ -196,7 +196,7 @@ function modifier_skinwalker_predator_form:DeclareFunctions()
 	return funcs
 end
 
-function modifier_skinwalker_predator_form:GetModifierAttackSpeedBonus_Constant()
+function modifier_skinwalker_predator_form:GetModifierAttackSpeedBonus()
 	return self.attackspeed
 end
 

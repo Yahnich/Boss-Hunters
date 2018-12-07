@@ -1,5 +1,5 @@
 modifier_attack_speed_handler = class({})
-INTERNAL_ATTACK_SPEED_CAP = 500
+INTERNAL_ATTACK_SPEED_CAP = 600
 
 if IsServer() then
 	function modifier_attack_speed_handler:OnCreated()
@@ -15,7 +15,7 @@ if IsServer() then
 		self:SetStackCount( 0 )
 		parent:CalculateStatBonus()
 		-- Get attack speed from agility and check if it needs to be capped
-		local attackSpeed = parent:GetAttackSpeed()
+		local attackSpeed = math.floor( parent:GetAttackSpeed() * 100 )
 		for _, modifier in ipairs( parent:FindAllModifiers() ) do
 			if modifier.GetModifierAttackSpeedBonus and modifier:GetModifierAttackSpeedBonus() then
 				returnAttackSpeed = returnAttackSpeed + (modifier:GetModifierAttackSpeedBonus() or 0)
@@ -24,20 +24,20 @@ if IsServer() then
 				attackSpeedPct = attackSpeedPct + (modifier:GetModifierAttackSpeedBonusPercentage() or 0) / 100
 			end
 			if modifier.GetModifierAttackSpeedLimitBonus and modifier:GetModifierAttackSpeedLimitBonus() then
-				bonusAttackSpeedCap = bonusAttackSpeedCap + (modifier:GetModifierAttackSpeedLimitBonus() or 0) / 100
+				bonusAttackSpeedCap = bonusAttackSpeedCap + (modifier:GetModifierAttackSpeedLimitBonus() or 0)
 			end
 		end
 		local maxAttackSpeed = (INTERNAL_ATTACK_SPEED_CAP + bonusAttackSpeedCap ) - attackSpeed
-		returnAttackSpeed = math.min( returnAttackSpeed * attackSpeedPct, maxAttackSpeed )
+		returnAttackSpeed = math.floor( math.min( returnAttackSpeed * attackSpeedPct, maxAttackSpeed ) )
 		-- attach sign value at the end so we can modulo subtract it
 		if returnAttackSpeed > 0 then
-			returnAttackSpeed = returnAttackSpeed.."0"
+			returnAttackSpeed = math.abs(returnAttackSpeed).."0"
 		else
-			returnAttackSpeed = returnAttackSpeed.."1"
+			returnAttackSpeed = math.abs(returnAttackSpeed).."1"
 		end
 		self:SetStackCount( tonumber(returnAttackSpeed) )
 		parent:CalculateStatBonus()
-	end
+	end	
 end
 	
 function modifier_attack_speed_handler:DeclareFunctions()

@@ -23,14 +23,14 @@ function modifier_item_penumbra_passive:OnCreated()
 end
 
 function modifier_item_penumbra_passive:DeclareFunctions()
-	return {MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+	return {
 			MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
 			MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
 			MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
 			MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,}
 end
 
-function modifier_item_penumbra_passive:GetModifierAttackSpeedBonus_Constant()
+function modifier_item_penumbra_passive:GetModifierAttackSpeedBonus()
 	return self.as
 end
 

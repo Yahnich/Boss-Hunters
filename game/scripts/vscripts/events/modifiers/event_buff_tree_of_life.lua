@@ -2,14 +2,14 @@ event_buff_tree_of_life_blessing_1 = class(relicBaseClass)
 
 function event_buff_tree_of_life_blessing_1:DeclareFunctions()
     local funcs = {
-        MODIFIER_PROPERTY_HEALTH_BONUS,
+        MODIFIER_PROPERTY_EXTRA_HEALTH_BONUS,
 		MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT
     }
 
     return funcs
 end
 
-function event_buff_tree_of_life_blessing_1:GetModifierHealthBonus( params )
+function event_buff_tree_of_life_blessing_1:GetModifierExtraHealthBonus( params )
     return 400
 end
 

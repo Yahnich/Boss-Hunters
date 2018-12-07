@@ -56,7 +56,7 @@ modifier_roar_slow = class({})
 function modifier_roar_slow:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT
+		
 	}
 	return funcs
 end
@@ -65,6 +65,6 @@ function modifier_roar_slow:GetModifierMoveSpeedBonus_Percentage()
 	return self:GetTalentSpecialValueFor("slow")
 end
 
-function modifier_roar_slow:GetModifierAttackSpeedBonus_Constant()
+function modifier_roar_slow:GetModifierAttackSpeedBonus()
 	return self:GetTalentSpecialValueFor("slow")
 end

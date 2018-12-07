@@ -108,7 +108,7 @@ function modifier_item_ogre_seal_totem:DeclareFunctions()
 	local funcs = 
 	{
 		MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
-		MODIFIER_PROPERTY_HEALTH_BONUS,
+		MODIFIER_PROPERTY_EXTRA_HEALTH_BONUS,
 		MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
 		MODIFIER_PROPERTY_MANA_BONUS,
 	}
@@ -128,7 +128,7 @@ function modifier_item_ogre_seal_totem:GetModifierConstantHealthRegen()
 	return self.regen
 end
 
-function modifier_item_ogre_seal_totem:GetModifierHealthBonus( params )
+function modifier_item_ogre_seal_totem:GetModifierExtraHealthBonus( params )
 	return self:GetParent():GetStrength() * self.hpPerStr + self.bonus_hp
 end
 

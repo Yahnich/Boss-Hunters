@@ -2601,7 +2601,7 @@
 			"05"
 			{
 				"var_type"								"FIELD_INTEGER"
-				"moveslow"								"50"
+				"moveslow"								"-500"
 				"LinkedSpecialBonus"					"special_bonus_unique_enchantress_1"
 			}
 		}

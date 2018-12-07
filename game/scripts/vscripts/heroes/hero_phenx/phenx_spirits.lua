@@ -157,11 +157,11 @@ end
 
 function modifier_phenx_spirits_burn:DeclareFunctions()
     local funcs = {
-        MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT
+        
     }
     return funcs
 end
 
-function modifier_phenx_spirits_burn:GetModifierAttackSpeedBonus_Constant()
+function modifier_phenx_spirits_burn:GetModifierAttackSpeedBonus()
     return self:GetTalentSpecialValueFor("attackspeed_slow")
 end

@@ -65,7 +65,7 @@ function modifier_item_behemoths_heart_passive:IsHidden()
 end
 
 function modifier_item_behemoths_heart_passive:DeclareFunctions()
-	return {MODIFIER_PROPERTY_HEALTH_BONUS,
+	return {MODIFIER_PROPERTY_EXTRA_HEALTH_BONUS,
 			MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
 			}
 end
@@ -74,7 +74,7 @@ function modifier_item_behemoths_heart_passive:GetModifierBonusStats_Strength()
 	return self.stat
 end
 
-function modifier_item_behemoths_heart_passive:GetModifierHealthBonus()
+function modifier_item_behemoths_heart_passive:GetModifierExtraHealthBonus()
 	return self:GetParent():GetStrength() * self.hpPerStr + self.bonusHP
 end
 

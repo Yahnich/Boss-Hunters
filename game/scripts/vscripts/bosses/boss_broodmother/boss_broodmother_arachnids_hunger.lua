@@ -57,7 +57,7 @@ end
 function modifier_boss_broodmother_arachnids_hunger_active:DeclareFunctions()
 	funcs = {
 				MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE,
-				MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+				
 				MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE_MIN,
 				MODIFIER_EVENT_ON_TAKEDAMAGE
 			}
@@ -68,7 +68,7 @@ function modifier_boss_broodmother_arachnids_hunger_active:GetModifierDamageOutg
 	return self.dmg
 end
 
-function modifier_boss_broodmother_arachnids_hunger_active:GetModifierAttackSpeedBonus_Constant()
+function modifier_boss_broodmother_arachnids_hunger_active:GetModifierAttackSpeedBonus()
 	return self.as
 end
 

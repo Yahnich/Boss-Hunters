@@ -19,7 +19,7 @@ function modifier_item_orb_of_vitality_passive:OnCreated()
 end
 
 function modifier_item_orb_of_vitality_passive:DeclareFunctions()
-	return {MODIFIER_PROPERTY_HEALTH_BONUS,
+	return {MODIFIER_PROPERTY_EXTRA_HEALTH_BONUS,
 			MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,	
 			MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
 			}
@@ -29,7 +29,7 @@ function modifier_item_orb_of_vitality_passive:GetModifierBonusStats_Strength()
 	return self.stat
 end
 
-function modifier_item_orb_of_vitality_passive:GetModifierHealthBonus()
+function modifier_item_orb_of_vitality_passive:GetModifierExtraHealthBonus()
 	return self:GetParent():GetStrength() * self.hpPerStr + self.bonusHP
 end
 

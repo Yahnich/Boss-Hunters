@@ -11,10 +11,10 @@ function relic_cursed_giants_cudgel:OnIntervalThink()
 end
 
 function relic_cursed_giants_cudgel:DeclareFunctions()
-	return {MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT, MODIFIER_EVENT_ON_ATTACK_LANDED}
+	return { MODIFIER_EVENT_ON_ATTACK_LANDED}
 end
 
-function relic_cursed_giants_cudgel:GetModifierAttackSpeedBonus_Constant()
+function relic_cursed_giants_cudgel:GetModifierAttackSpeedBonus()
 	if not self:GetParent():HasModifier("relic_unique_ritual_candle") then return self.as end
 end
 

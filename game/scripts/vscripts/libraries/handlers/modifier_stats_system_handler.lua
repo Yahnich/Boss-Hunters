@@ -79,12 +79,12 @@ function modifier_stats_system_handler:DeclareFunctions()
 		MODIFIER_PROPERTY_MANA_REGEN_CONSTANT,
 		MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
 		MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,
-		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+		
 		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
 		MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
 		-- MODIFIER_PROPERTY_TOTAL_CONSTANT_BLOCK,
 		MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
-		MODIFIER_PROPERTY_HEALTH_BONUS,
+		MODIFIER_PROPERTY_EXTRA_HEALTH_BONUS,
 		MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
 		MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
 		MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
@@ -102,7 +102,7 @@ function modifier_stats_system_handler:GetModifierHealAmplify_Percentage() retur
 function modifier_stats_system_handler:GetModifierPreAttack_BonusDamage() return 10 + (self.ad or 0) end
 function modifier_stats_system_handler:GetModifierSpellAmplify_Percentage() return self:GetParent():GetIntellect() * 0.13333 + (self.sa or 0) end
 function modifier_stats_system_handler:GetCooldownReduction() return self.cdr or 0 end
-function modifier_stats_system_handler:GetModifierAttackSpeedBonus_Constant() return self.as or 0 end
+function modifier_stats_system_handler:GetModifierAttackSpeedBonus() return self.as or 0 end
 function modifier_stats_system_handler:GetModifierStatusAmplify_Percentage() return self.sta or 0 end
 function modifier_stats_system_handler:GetAccuracy() return self.acc or 0 end
 
@@ -123,7 +123,7 @@ function modifier_stats_system_handler:GetModifierAttackRangeBonus()
 	return self.ar or 0
 end
 
-function modifier_stats_system_handler:GetModifierHealthBonus() return 400 + (self.hp or 0) end
+function modifier_stats_system_handler:GetModifierExtraHealthBonus() return 400 + (self.hp or 0) end
 function modifier_stats_system_handler:GetModifierConstantHealthRegen() return (self.hpr or 0) end
 function modifier_stats_system_handler:GetModifierStatusResistance() return self.sr or 0 end
 

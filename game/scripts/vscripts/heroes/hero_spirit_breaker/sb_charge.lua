@@ -20,6 +20,8 @@ end
 
 modifier_sb_charge = class({})
 function modifier_sb_charge:OnCreated(table)
+	self.ms = self:GetTalentSpecialValueFor("movement_speed")
+	self.basems = self:GetParent():GetIdealSpeed()
 	if IsServer() then
 		local parent = self:GetParent()
 
@@ -40,7 +42,7 @@ function modifier_sb_charge:DoControlledMotion()
 	local parent = self:GetParent()
 	local ability = self:GetAbility()
 	if self.distance > 0 then
-		local speed = self:GetTalentSpecialValueFor("movement_speed")
+		local speed = self.ms
 		speed = (speed + parent:GetMoveSpeedModifier(parent:GetBaseMoveSpeed())) * FrameTime()
 		local radius = 100
 		self.distance = self.distance - speed
@@ -80,9 +82,14 @@ function modifier_sb_charge:DeclareFunctions()
     local funcs = {
         MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS,
         MODIFIER_PROPERTY_OVERRIDE_ANIMATION,
-        MODIFIER_PROPERTY_EVASION_CONSTANT
+        MODIFIER_PROPERTY_EVASION_CONSTANT,
+		MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE_MIN,
     }
     return funcs
+end
+
+function modifier_sb_charge:GetModifierMoveSpeed_AbsoluteMin()
+	return self.basems + self.ms
 end
 
 function modifier_sb_charge:GetActivityTranslationModifiers()

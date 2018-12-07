@@ -119,27 +119,13 @@ function modifier_faceless_chrono_buff:CheckState()
 end
 
 function modifier_faceless_chrono_buff:DeclareFunctions()
-    local funcs = { MODIFIER_PROPERTY_MOVESPEED_MAX,
-                    MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE,
+    local funcs = { MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE,
                     MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-                    MODIFIER_PROPERTY_MOVESPEED_LIMIT,
                     MODIFIER_PROPERTY_EVASION_CONSTANT}
     return funcs
 end
 
-function modifier_faceless_chrono_buff:GetModifierMoveSpeed_Max()
-    return 2000
-end
-
-function modifier_faceless_chrono_buff:GetModifierMoveSpeed_Absolute()
-    return 2000
-end
-
-function modifier_faceless_chrono_buff:GetModifierMoveSpeedBonus_Percentage()
-    return 2000
-end
-
-function modifier_faceless_chrono_buff:GetModifierMoveSpeed_Limit()
+function modifier_faceless_chrono_buff:GetModifierMoveSpeed_AbsoluteMin()
     return 2000
 end
 

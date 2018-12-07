@@ -38,8 +38,6 @@ end
 
 function modifier_lycan_shapeshift_bh:DeclareFunctions()
 	return {MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE_MIN,
-			MODIFIER_PROPERTY_MOVESPEED_LIMIT,
-			MODIFIER_PROPERTY_MOVESPEED_MAX,
 			MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE,
 			MODIFIER_PROPERTY_BONUS_NIGHT_VISION}
 end
@@ -48,16 +46,8 @@ function modifier_lycan_shapeshift_bh:GetModifierMoveSpeed_AbsoluteMin()
 	return self.bonus_ms
 end
 
-function modifier_lycan_shapeshift_bh:GetModifierMoveSpeed_Limit()
-	return self.bonus_ms
-end
-
-function modifier_lycan_shapeshift_bh:GetModifierMoveSpeedBonus_Special_Boots()
-	return self.bonus_ms
-end
-
-function modifier_lycan_shapeshift_bh:GetModifierMoveSpeed_Max()
-	return self.bonus_ms
+function modifier_lycan_shapeshift_bh:GetMoveSpeedLimitBonus()
+	return self.bonus_ms - 550
 end
 
 function modifier_lycan_shapeshift_bh:GetBonusNightVision()

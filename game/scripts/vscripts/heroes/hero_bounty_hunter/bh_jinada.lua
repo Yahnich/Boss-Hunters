@@ -14,29 +14,29 @@ function bh_jinada:GetIntrinsicModifierName()
 	return "modifier_bh_jinada_handler"
 end
 
+function bh_jinada:TriggerJinada(target)
+	local caster = self:GetCaster()
+	EmitSoundOn("Hero_BountyHunter.Jinada", target)
+
+	local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_bounty_hunter/bounty_hunter_jinda_slow.vpcf", PATTACH_POINT, caster)
+				ParticleManager:SetParticleControl(nfx, 0, target:GetAbsOrigin())
+				ParticleManager:ReleaseParticleIndex(nfx)
+
+	target:AddNewModifier(caster, self, "modifier_bh_jinada_maim", {Duration = self:GetTalentSpecialValueFor("duration")})
+	caster:AddGold( self:GetTalentSpecialValueFor("gold_steal") )
+	self:SetCooldown()
+end
+
 modifier_bh_jinada_handler = class({})
 
 function modifier_bh_jinada_handler:IsHidden() return true end
 
-function modifier_bh_jinada_handler:OnCreated()
-	self.crit_damage = self:GetTalentSpecialValueFor("crit_multiplier")
-end
-
 function modifier_bh_jinada_handler:OnRefresh()
-	self.crit_damage = 0
+	self:OnCreated()
 end
 
 function modifier_bh_jinada_handler:DeclareFunctions()
-	return {MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE,
-			MODIFIER_EVENT_ON_ATTACK_LANDED}
-end
-
-function modifier_bh_jinada_handler:GetModifierPreAttack_CriticalStrike(params)
-	if IsServer() then
-		if self:GetAbility():IsCooldownReady() then
-			return self:GetTalentSpecialValueFor("crit_multiplier")
-		end
-	end
+	return {MODIFIER_EVENT_ON_ATTACK_LANDED}
 end
 
 function modifier_bh_jinada_handler:OnAttackLanded(params)
@@ -47,29 +47,18 @@ function modifier_bh_jinada_handler:OnAttackLanded(params)
 		local ability = self:GetAbility()
 
 		if attacker == caster and ability:IsCooldownReady() then
-			EmitSoundOn("Hero_BountyHunter.Jinada", target)
-
-			local nfx = ParticleManager:CreateParticle("particles/units/heroes/hero_bounty_hunter/bounty_hunter_jinda_slow.vpcf", PATTACH_POINT, caster)
-						ParticleManager:SetParticleControl(nfx, 0, target:GetAbsOrigin())
-						ParticleManager:ReleaseParticleIndex(nfx)
-
-			target:AddNewModifier(caster, ability, "modifier_bh_jinada_maim", {Duration = self:GetTalentSpecialValueFor("duration")})
-			ability:SetCooldown()
+			ability:TriggerJinada(target)
 		end
 	end
 end
 
 modifier_bh_jinada_maim = class({})
-function modifier_bh_jinada_maim:DeclareFunctions()
-	return {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-			MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT}
+
+function modifier_bh_jinada_maim:GetModifierStatusResistanceStacking()
+	return self:GetTalentSpecialValueFor("sr_red")
 end
 
-function modifier_bh_jinada_maim:GetModifierMoveSpeedBonus_Percentage()
-	return self:GetTalentSpecialValueFor("slow_ms")
-end
-
-function modifier_bh_jinada_maim:GetModifierAttackSpeedBonus_Constant()
+function modifier_bh_jinada_maim:GetModifierAttackSpeedBonus()
 	return self:GetTalentSpecialValueFor("slow_as")
 end
 

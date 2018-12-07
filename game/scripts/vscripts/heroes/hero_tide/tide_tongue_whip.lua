@@ -195,7 +195,7 @@ end
 
 modifier_tongue_whip_health = class({})
 function modifier_tongue_whip_health:DeclareFunctions()
-    funcs = { MODIFIER_PROPERTY_HEALTH_BONUS }
+    funcs = { MODIFIER_PROPERTY_EXTRA_HEALTH_BONUS }
     return funcs
 end
 
@@ -207,7 +207,7 @@ function modifier_tongue_whip_health:OnRefresh()
 	self.bonus_hp = self:GetTalentSpecialValueFor("eat_health")
 end
 
-function modifier_tongue_whip_health:GetModifierHealthBonus()
+function modifier_tongue_whip_health:GetModifierExtraHealthBonus()
     return self.bonus_hp * self:GetStackCount()
 end
 

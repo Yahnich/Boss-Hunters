@@ -26,13 +26,13 @@ function modifier_item_blood_gods_mask_active:OnCreated()
 end
 
 function modifier_item_blood_gods_mask_active:DeclareFunctions()
-	return {MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+	return {
 			MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE,
 			MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,
 			MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE}
 end
 
-function modifier_item_blood_gods_mask_active:GetModifierAttackSpeedBonus_Constant()
+function modifier_item_blood_gods_mask_active:GetModifierAttackSpeedBonus()
 	return self.as
 end
 
@@ -72,7 +72,7 @@ end
 
 function modifier_item_blood_gods_mask:DeclareFunctions()
 	return {MODIFIER_EVENT_ON_TAKEDAMAGE,
-			MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT}
+			}
 end
 
 function modifier_item_blood_gods_mask:OnTakeDamage(params)
@@ -82,7 +82,7 @@ function modifier_item_blood_gods_mask:OnTakeDamage(params)
 	end
 end
 
-function modifier_item_blood_gods_mask:GetModifierAttackSpeedBonus_Constant()
+function modifier_item_blood_gods_mask:GetModifierAttackSpeedBonus()
 	return self.attackSpeed
 end
 

@@ -100,8 +100,8 @@ end
 
 function modifier_item_inspiring_bongos_passive_aura:DeclareFunctions()
 	return {MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,
-			MODIFIER_PROPERTY_HEALTH_BONUS,
-			MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+			MODIFIER_PROPERTY_EXTRA_HEALTH_BONUS,
+			
 			MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,}
 end
 
@@ -109,14 +109,14 @@ function modifier_item_inspiring_bongos_passive_aura:GetModifierMoveSpeedBonus_C
 	return self.bonus_ms_aura
 end
 
-function modifier_item_inspiring_bongos_passive_aura:GetModifierHealthBonus()
+function modifier_item_inspiring_bongos_passive_aura:GetModifierExtraHealthBonus()
 	return self.bonus_hp_aura
 end
 
 function modifier_item_inspiring_bongos_passive_aura:GetModifierConstantHealthRegen()
 	return self.bonus_regen_aura
 end
-function modifier_item_inspiring_bongos_passive_aura:GetModifierAttackSpeedBonus_Constant()
+function modifier_item_inspiring_bongos_passive_aura:GetModifierAttackSpeedBonus()
 	return self.bonus_as_aura
 end
 
@@ -130,19 +130,19 @@ end
 
 function modifier_item_inspiring_bongos_active:DeclareFunctions()
 	return {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-			MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
-			MODIFIER_PROPERTY_HEALTH_BONUS}
+			
+			MODIFIER_PROPERTY_EXTRA_HEALTH_BONUS}
 end
 
 function modifier_item_inspiring_bongos_active:GetModifierMoveSpeedBonus_Percentage()
 	return self.bonus_ms_buff
 end
 
-function modifier_item_inspiring_bongos_active:GetModifierAttackSpeedBonus_Constant()
+function modifier_item_inspiring_bongos_active:GetModifierAttackSpeedBonus()
 	return self.bonus_as
 end
 
-function modifier_item_inspiring_bongos_active:GetModifierHealthBonus()
+function modifier_item_inspiring_bongos_active:GetModifierExtraHealthBonus()
 	return self.bonus_health
 end
 

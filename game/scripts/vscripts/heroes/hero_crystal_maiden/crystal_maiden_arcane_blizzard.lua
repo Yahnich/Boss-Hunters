@@ -150,7 +150,7 @@ end
 function modifier_crystal_maiden_arcane_blizzard_slow_aura:DeclareFunctions()
 	funcs = {
 				MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-				MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+				
 			}
 	return funcs
 end
@@ -159,7 +159,7 @@ function modifier_crystal_maiden_arcane_blizzard_slow_aura:GetModifierMoveSpeedB
 	return self.movespeed
 end
 
-function modifier_crystal_maiden_arcane_blizzard_slow_aura:GetModifierAttackSpeedBonus_Constant()
+function modifier_crystal_maiden_arcane_blizzard_slow_aura:GetModifierAttackSpeedBonus()
 	return self.attackspeed
 end
 

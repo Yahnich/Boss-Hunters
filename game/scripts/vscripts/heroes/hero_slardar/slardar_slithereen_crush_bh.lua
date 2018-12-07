@@ -59,7 +59,7 @@ end
 function modifier_slardar_slithereen_crush_bh:DeclareFunctions()
     local funcs = {
         MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+		
     }
     return funcs
 end
@@ -68,7 +68,7 @@ function modifier_slardar_slithereen_crush_bh:GetModifierMoveSpeedBonus_Percenta
     return self.ms
 end
 
-function modifier_slardar_slithereen_crush_bh:GetModifierAttackSpeedBonus_Constant()
+function modifier_slardar_slithereen_crush_bh:GetModifierAttackSpeedBonus()
 	return self.as
 end
 
