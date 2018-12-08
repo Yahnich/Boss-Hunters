@@ -169,6 +169,9 @@
 #base "heroes/hero_visage.txt"
 #base "heroes/hero_dark_seer.txt"
 #base "heroes/hero_weaver.txt"
+#base "heroes/hero_batrider.txt"
+#base "heroes/hero_dark_willow.txt"
+#base "heroes/hero_enchantress.txt"
 
 "DOTAAbilities"
 {

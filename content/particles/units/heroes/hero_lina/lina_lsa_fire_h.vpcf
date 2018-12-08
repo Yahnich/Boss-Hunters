@@ -1,4 +1,4 @@
-<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf1:version{d47d07e6-072c-49cb-9718-5bfd8d6c3d21} -->
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf13:version{10b35a8e-b1ee-4f14-87a6-a7b6aae37699} -->
 {
 	_class = "CParticleSystemDefinition"
 	m_bShouldHitboxesFallbackToRenderBounds = false
@@ -18,11 +18,10 @@
 			}
 			m_nSequenceCombineMode = "SEQUENCE_COMBINE_MODE_USE_SEQUENCE_0"
 			m_flOverbrightFactor = 5.0
-			m_flAddSelfAmount = 1.0
-			m_bSaturateColorPreAlphaBlend = false
 			m_hTexture = resource:"materials/particle/lava_blasts/lava_blast.vtex"
 			m_flAnimationRate2 = 0.1
 			m_flAnimationRate = 1.0
+			m_bFitCycleToLifetime = true
 		},
 	]
 	m_Operators = 
@@ -62,7 +61,7 @@
 		{
 			_class = "C_OP_RampScalarLinearSimple"
 			m_nOpEndCapState = 1
-			m_nField = 16
+			m_nField = "16"
 			m_Rate = -2.0
 			m_flEndTime = 99999.0
 		},
@@ -77,37 +76,19 @@
 	m_Initializers = 
 	[
 		{
-			_class = "C_INIT_RandomSecondSequence"
-			m_nSequenceMax = 1
-		},
-		{
 			_class = "C_INIT_RandomSequence"
-			m_nSequenceMax = 1
-		},
-		{
-			_class = "C_INIT_RandomYawFlip"
-		},
-		{
-			_class = "C_INIT_RandomRotation"
-			m_bDisableOperator = true
-			m_flDegreesMin = -60.0
-			m_flDegreesMax = 60.0
+			m_nSequenceMax = 3
 		},
 		{
 			_class = "C_INIT_RandomAlpha"
 			m_nAlphaMax = 128
 			m_nAlphaMin = 110
+			m_bDisableOperator = true
 		},
 		{
 			_class = "C_INIT_RandomLifeTime"
 			m_fLifetimeMax = 1.0
 			m_fLifetimeMin = 0.7
-		},
-		{
-			_class = "C_INIT_RandomColor"
-			m_ColorMax = [ 2, 76, 85, 255 ]
-			m_ColorMin = [ 0, 37, 76, 255 ]
-			m_TintMin = [ 21, 27, 15, 255 ]
 		},
 		{
 			_class = "C_INIT_RandomRadius"
@@ -122,9 +103,12 @@
 			m_vecDistanceBiasAbs = [ 0.0, 0.0, 1.0 ]
 		},
 		{
+			_class = "C_INIT_RandomYawFlip"
+		},
+		{
 			_class = "C_INIT_RemapCPtoVector"
 			m_vOutputMax = [ 1.0, 1.0, 1.0 ]
-			m_nFieldOutput = 6
+			m_nFieldOutput = "6"
 			m_vInputMax = [ 255.0, 255.0, 255.0 ]
 			m_nCPInput = 15
 			m_nOpScaleCP = 16
@@ -141,7 +125,10 @@
 	[
 		{
 			_class = "C_OP_AttractToControlPoint"
-			m_fForceAmount = -100.0
+			m_fForceAmount = 
+			{
+				m_flLiteralValue = -100.0
+			}
 			m_fFalloffPower = 0.0
 		},
 	]
@@ -174,4 +161,6 @@
 			]
 		},
 	]
+	m_nBehaviorVersion = 7
+	m_nFirstMultipleOverride_BackwardCompat = 8
 }

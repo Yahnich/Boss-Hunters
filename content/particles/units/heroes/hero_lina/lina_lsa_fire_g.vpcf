@@ -1,4 +1,4 @@
-<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf1:version{d47d07e6-072c-49cb-9718-5bfd8d6c3d21} -->
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf13:version{10b35a8e-b1ee-4f14-87a6-a7b6aae37699} -->
 {
 	_class = "CParticleSystemDefinition"
 	m_bShouldHitboxesFallbackToRenderBounds = false
@@ -30,7 +30,7 @@
 		{
 			_class = "C_OP_RampScalarLinearSimple"
 			m_nOpEndCapState = 1
-			m_nField = 16
+			m_nField = "16"
 			m_Rate = -1.5
 			m_flEndTime = 99999.0
 		},
@@ -53,22 +53,19 @@
 		},
 		{
 			_class = "C_OP_RampScalarLinearSimple"
-			m_nField = 4
+			m_nField = "4"
 			m_Rate = 0.025
 			m_flEndTime = 1000000020040877211648.0
 		},
 		{
 			_class = "C_OP_ClampScalar"
-			m_nFieldOutput = 13
+			m_nFieldOutput = "13"
 			m_flOutputMin = 0.5
 			m_flOutputMax = 0.85
 		},
 	]
 	m_Initializers = 
 	[
-		{
-			_class = "C_INIT_RandomYawFlip"
-		},
 		{
 			_class = "C_INIT_RandomRotation"
 		},
@@ -78,18 +75,21 @@
 			m_fLifetimeMin = 0.5
 		},
 		{
+			_class = "C_INIT_CreateWithinSphere"
+		},
+		{
+			_class = "C_INIT_RandomYawFlip"
+		},
+		{
 			_class = "C_INIT_RemapCPtoScalar"
 			m_nCPInput = 1
 			m_flInputMax = 10000.0
 			m_flOutputMax = 11000.0
 		},
 		{
-			_class = "C_INIT_CreateWithinSphere"
-		},
-		{
 			_class = "C_INIT_RemapCPtoVector"
 			m_vOutputMax = [ 1.0, 1.0, 1.0 ]
-			m_nFieldOutput = 6
+			m_nFieldOutput = "6"
 			m_vInputMax = [ 255.0, 255.0, 255.0 ]
 			m_nCPInput = 15
 			m_nOpScaleCP = 16
@@ -138,4 +138,6 @@
 			]
 		},
 	]
+	m_nBehaviorVersion = 7
+	m_nFirstMultipleOverride_BackwardCompat = 3
 }

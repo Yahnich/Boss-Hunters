@@ -2172,3 +2172,21 @@ end
 function CDOTA_BaseNPC:GetParentUnit()
 	return self.unitOwnerEntity
 end
+
+function CDOTA_BaseNPC:Charm(hAbility, hCaster, charmDuration)
+	self:AddNewModifier(hCaster, hAbility, "modifier_charm_generic", {Duration = charmDuration})
+end
+
+function CDOTA_BaseNPC:IsCharmed()
+	if self:HasModifier("modifier_charm_generic") then
+		return true
+	else
+		return false
+	end
+end
+
+function CDOTA_BaseNPC:RemoveCharm()
+	if self:HasModifier("modifier_charm_generic") then
+		self:RemoveModifierByName("modifier_charm_generic")
+	end
+end
