@@ -13,7 +13,7 @@ function item_voltas_greathammer:OnSpellStart()
 	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( caster:GetAbsOrigin(), -1 ) ) do
 		ParticleManager:FireParticle("particles/units/heroes/hero_zuus/zuus_lightning_bolt.vpcf", PATTACH_ABSORIGIN, enemy, {[1] = enemy:GetAbsOrigin(), [0] = caster:GetAbsOrigin() + Vector(0,0,1600)})
 		EmitSoundOn("Hero_Zuus.LightningBolt", enemy)
-		self:DealDamage(caster, enemy, damage)
+		self:DealDamage(caster, enemy, damage, {damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
 		enemy:Paralyze(self, caster, paralyze)
 	end
 end

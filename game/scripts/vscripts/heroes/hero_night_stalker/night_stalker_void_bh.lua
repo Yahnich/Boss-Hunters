@@ -1,20 +1,20 @@
-night_stalker_void_ebf = class({})
+night_stalker_void_bh = class({})
 
-function night_stalker_void_ebf:GetIntriniscModifierName()
+function night_stalker_void_bh:GetIntriniscModifierName()
 	if self:GetCaster():HasTalent("special_bonus_unique_night_stalker_void_1") then
 		return "modifier_night_stalker_void_talent"
 	end
 end
 
-function night_stalker_void_ebf:GetAOERadius()
+function night_stalker_void_bh:GetAOERadius()
 	return self:GetTalentSpecialValueFor("aoe")
 end
 
-function night_stalker_void_ebf:OnSpellStart()
+function night_stalker_void_bh:OnSpellStart()
 	self:Void(self:GetCursorTarget())
 end
 
-function night_stalker_void_ebf:Void(target)
+function night_stalker_void_bh:Void(target)
 	local caster = self:GetCaster()
 	local damage = self:GetAbilityDamage()
 	local radius = self:GetTalentSpecialValueFor("aoe")
@@ -29,7 +29,7 @@ function night_stalker_void_ebf:Void(target)
 	end
 	
 	self:Stun( target, self:GetTalentSpecialValueFor("mini_stun"), false )
-	target:AddNewModifier(caster, self, "modifier_night_stalker_void_ebf", {duration = duration})
+	target:AddNewModifier(caster, self, "modifier_night_stalker_void_bh", {duration = duration})
 	
 	ParticleManager:FireParticle("particles/units/heroes/hero_night_stalker/nightstalker_loadout.vpcf", PATTACH_POINT_FOLLOW, target)
 	EmitSoundOn( "Hero_Nightstalker.Void", target )
@@ -40,43 +40,43 @@ function night_stalker_void_ebf:Void(target)
 	end
 end
 
-function night_stalker_void_ebf:OnTalentLearned(talent)
+function night_stalker_void_bh:OnTalentLearned(talent)
 	if talent == "special_bonus_unique_night_stalker_void_1" then
 		self:GetCaster():AddNewModifier( self:GetCaster(), self, "modifier_night_stalker_void_talent", {})
 	end
 end
 
-modifier_night_stalker_void_ebf = class({})
-LinkLuaModifier("modifier_night_stalker_void_ebf", "heroes/hero_night_stalker/night_stalker_void_ebf", LUA_MODIFIER_MOTION_NONE)
+modifier_night_stalker_void_bh = class({})
+LinkLuaModifier("modifier_night_stalker_void_bh", "heroes/hero_night_stalker/night_stalker_void_bh", LUA_MODIFIER_MOTION_NONE)
 
-function modifier_night_stalker_void_ebf:OnCreated()
+function modifier_night_stalker_void_bh:OnCreated()
 	self.ms = self:GetTalentSpecialValueFor("movespeed_slow")
 	self.as = self:GetTalentSpecialValueFor("attackspeed_slow")
 end
 
-function modifier_night_stalker_void_ebf:OnRefresh()
+function modifier_night_stalker_void_bh:OnRefresh()
 	self.ms = self:GetTalentSpecialValueFor("movespeed_slow")
 	self.as = self:GetTalentSpecialValueFor("attackspeed_slow")
 end
 
-function modifier_night_stalker_void_ebf:DeclareFunctions()
+function modifier_night_stalker_void_bh:DeclareFunctions()
 	return { MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE}
 end
 
-function modifier_night_stalker_void_ebf:GetModifierAttackSpeedBonus()
+function modifier_night_stalker_void_bh:GetModifierAttackSpeedBonus()
 	return self.ms
 end
 
-function modifier_night_stalker_void_ebf:GetModifierMoveSpeedBonus_Percentage()
+function modifier_night_stalker_void_bh:GetModifierMoveSpeedBonus_Percentage()
 	return self.ms
 end
 
-function modifier_night_stalker_void_ebf:GetEffectName()
+function modifier_night_stalker_void_bh:GetEffectName()
 	return "particles/units/heroes/hero_night_stalker/nightstalker_void.vpcf"
 end
 
 modifier_night_stalker_void_talent = class(relicBaseClass)
-LinkLuaModifier("modifier_night_stalker_void_talent", "heroes/hero_night_stalker/night_stalker_void_ebf", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_night_stalker_void_talent", "heroes/hero_night_stalker/night_stalker_void_bh", LUA_MODIFIER_MOTION_NONE)
 
 if IsServer() then
 	function modifier_night_stalker_void_talent:OnCreated()

@@ -64,22 +64,18 @@ end
 function modifier_naga_siren_liquid_form:OnAttackFail(params)
 	if params.target == self:GetParent() and self:GetParent():IsRealHero() then
 		local parent = self:GetParent()
-		for pos, illusion in pairs( parent.liquidIllusions ) do
-			if illusion:IsNull() or not illusion:IsAlive() then
-				table.remove( parent.liquidIllusions, pos )
+		for i = #parent.liquidIllusions, 1, -1 do
+			local illusion = parent.liquidIllusions[i]
+			if not illusion or illusion:IsNull() or not illusion:IsAlive() then
+				table.remove( parent.liquidIllusions, i )
 			end
 		end
-		
-		if #parent.liquidIllusions + 1 > 3 then
-			if not parent.liquidIllusions[1]:IsNull() and parent.liquidIllusions[1]:IsAlive() then
-				parent.liquidIllusions[1]:ForceKill(false)
-			end
-			table.remove( parent.liquidIllusions, 1 )
+		if #parent.liquidIllusions < 3 then
+				local callback = (function(illusion, parent)
+				table.insert( parent.liquidIllusions, illusion )
+			end)
+			local illusion = parent:ConjureImage( params.attacker:GetAbsOrigin() + RandomVector( 150 ), self.illuDur, self.out - 100, self.incomingDamage - 100, nil, self:GetAbility(), true, parent, callback )
 		end
-		local callback = (function(illusion, parent)
-			table.insert( parent.liquidIllusions, illusion ) 
-		end)
-		local illusion = parent:ConjureImage( params.attacker:GetAbsOrigin() + RandomVector( 150 ), self.illuDur, self.out - 100, self.incomingDamage - 100, nil, self:GetAbility(), true, parent, callback )
 	end
 end
 

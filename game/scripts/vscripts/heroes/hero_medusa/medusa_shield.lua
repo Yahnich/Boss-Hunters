@@ -57,7 +57,7 @@ function modifier_medusa_shield:GetModifierIncomingDamage_Percentage(params)
 		if target == caster then
 			if caster:GetMana() > self.damageMana then
 				EmitSoundOn("Hero_Medusa.ManaShield.Proc", caster)
-				caster:SpendMana(ogDamage/self.damageMana, self:GetAbility())
+				caster:ReduceMana(ogDamage/self.damageMana)
 			else
 				self:GetAbility():ToggleAbility()
 			end

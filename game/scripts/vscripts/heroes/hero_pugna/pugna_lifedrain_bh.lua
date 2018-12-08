@@ -9,7 +9,7 @@ end
 
 function pugna_lifedrain_bh:GetBehavior()
 	local baseFlags = DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING
-	if self.drain then
+	if self.drain and not self.drain:IsNull() then
 		return DOTA_ABILITY_BEHAVIOR_NO_TARGET + baseFlags
 	else
 		if not self:GetCaster():HasTalent("special_bonus_unique_pugna_lifedrain_1") then
@@ -37,7 +37,7 @@ end
 function pugna_lifedrain_bh:OnSpellStart()
 	local caster = self:GetCaster()
 	local hTarget = self:GetCursorTarget()
-	
+	print( caster:GetName(), self )
 	if self.drain and not self.drain:IsNull() then
 		self.drain:Destroy()
 	else
@@ -148,6 +148,10 @@ end
 
 function modifier_pugna_life_drain_bh:GetModifierMoveSpeedBonus_Percentage()
 	return self.slow
+end
+
+function modifier_pugna_life_drain_bh:GetAttributes()
+	return MODIFIER_ATTRIBUTE_MULTIPLE
 end
 
 modifier_pugna_life_drain_bh_channel = class({})

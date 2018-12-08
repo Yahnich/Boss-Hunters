@@ -1,10 +1,10 @@
-omniknight_purification_ebf = class({})
+omniknight_purification_bh = class({})
 
-function omniknight_purification_ebf:GetAOERadius()
+function omniknight_purification_bh:GetAOERadius()
 	return self:GetTalentSpecialValueFor("area_of_effect")
 end
 
-function omniknight_purification_ebf:OnSpellStart()
+function omniknight_purification_bh:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 	

@@ -45,7 +45,7 @@
 			"02"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"duration"			"1.5"
+				"duration"			"2.2"
 			}
 			"03"
 			{
@@ -162,7 +162,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"2"
+				"duration"				"3.5"
 			}
 		}
 	}
@@ -172,7 +172,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"                     "ability_lua"
 		"ScriptFile"                    "heroes/hero_sand/sand_sandstorm.lua"
-		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
@@ -183,12 +183,11 @@
 
 		// Time     
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"               "5"
-		"AbilityChannelTime"            "10"
+		"AbilityCooldown"               "40 36 32 28 24 20 16"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"               "60 50 40 30 20 10 0"
+		"AbilityManaCost"               "60"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -207,12 +206,12 @@
 			"03"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"sandstorm_base_radius"			"400"
+				"sandstorm_base_radius"			"200"
 			}
 			"04"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"sandstorm_radius_grow"			"10 20 30 40 50 60 70"
+				"sandstorm_radius_grow"			"10 15 20 25 30 35 40"
 			}
 			"05"
 			{
@@ -227,7 +226,7 @@
 			"07"
 			{
 				"var_type"                      "FIELD_FLOAT"
-				"tornado_lifetime"     			"5.0"
+				"tornado_lifetime"     			"3.5"
 			}
 			"08"
 			{
@@ -237,7 +236,7 @@
 			"09"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"tornado_rate"					"0.5"
+				"tornado_rate"					"1.5"
 			}
 			"10"
 			{
@@ -259,6 +258,11 @@
 				"var_type"						"FIELD_INTEGER"
 				"slow_blind"					"0"
 				"LinkedSpecialBonus"			"special_bonus_unique_sand_sandstorm_1"
+			}
+			"14"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"grace_period"					"1.25"
 			}
 		}
 

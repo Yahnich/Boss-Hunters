@@ -15,13 +15,13 @@ end
 
 function sb_charge:OnSpellStart()
 	EmitSoundOn("Hero_Spirit_Breaker.ChargeOfDarkness", self:GetCaster())
-	local duration = 1000 / ( self:GetTalentSpecialValueFor("movement_speed") + self:GetParent():GetIdealSpeed() )
+	local duration = 1000 / ( self:GetTalentSpecialValueFor("movement_speed") + self:GetCaster():GetIdealSpeed() )
     self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_sb_charge", {duration =  duration + 0.1})
 end
 
 modifier_sb_charge = class({})
 function modifier_sb_charge:OnCreated(table)
-	self.ms = 
+	self.ms = self:GetTalentSpecialValueFor("movement_speed")
 	self.basems = self:GetParent():GetIdealSpeed()
 	if IsServer() then
 		local parent = self:GetParent()
@@ -44,7 +44,7 @@ function modifier_sb_charge:DoControlledMotion()
 	local ability = self:GetAbility()
 	if self.distance > 0 then
 		local speed = self.ms
-		speed = (speed + parent:GetMoveSpeedModifier(parent:GetBaseMoveSpeed())) * FrameTime()
+		speed = self:GetParent():GetIdealSpeed() * FrameTime()
 		local radius = 100
 		self.distance = self.distance - speed
 		GridNav:DestroyTreesAroundPoint(parent:GetAbsOrigin(), radius, true)
@@ -66,7 +66,7 @@ function modifier_sb_charge:DoControlledMotion()
 			end
 		end
 	else
-		FindClearSpaceForUnit(parent, parent:GetAbsOrigin(), true)
+		ResolveNPCPositions(parent:GetAbsOrigin(), parent:GetHullRadius() + parent:GetCollisionPadding() )
 		self:StopMotionController(true)
 		self:Destroy()
 	end
@@ -90,7 +90,9 @@ function modifier_sb_charge:DeclareFunctions()
 end
 
 function modifier_sb_charge:GetModifierMoveSpeed_AbsoluteMin()
-	return self.basems + self.ms
+	if self.basems then
+		return self.basems + self.ms
+	end
 end
 
 function modifier_sb_charge:GetActivityTranslationModifiers()

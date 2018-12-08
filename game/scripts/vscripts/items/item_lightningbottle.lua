@@ -90,7 +90,7 @@ function modifier_item_lightningbottle_handle_shield:OnTakeDamage(params)
 			ParticleManager:FireRopeParticle("particles/items_fx/chain_lightning.vpcf", PATTACH_POINT_FOLLOW, attacker, caster, {})
 
 			local damage = caster:GetPrimaryStatValue() * self:GetSpecialValueFor("primary_to_damage") / 100
-			self:GetAbility():DealDamage(caster, attacker, damage)
+			self:GetAbility():DealDamage(caster, attacker, damage, {damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
 			self:GetParent():GiveMana(self.mRestoreS)
 			self:GetParent():HealEvent(self.hRestoreS, self:GetAbility(), self:GetParent())
 			attacker:Paralyze(ability, caster, ability:GetSpecialValueFor("paralyze_duration"))

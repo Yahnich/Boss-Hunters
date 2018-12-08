@@ -470,12 +470,22 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"trance_duration"		"7.0"		
+				"trance_duration"		"6.5"		
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"attack_speed"			"60 120 180 240 300 360"
+				"attack_speed"			"140 170 200 230 260 290"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"move_speed"			"30 35 40 45 50 55"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"lifesteal"				"50"
 			}
 		}
 	}

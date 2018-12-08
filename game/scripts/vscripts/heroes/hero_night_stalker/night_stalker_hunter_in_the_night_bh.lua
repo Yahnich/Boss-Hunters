@@ -1,4 +1,4 @@
-night_stalker_hunter_in_the_night_ebf = class({})
+night_stalker_hunter_in_the_night_bh = class({})
 
 
 if IsClient() then -- thanks valve
@@ -24,39 +24,18 @@ if IsClient() then -- thanks valve
 	end
 end
 
-function night_stalker_hunter_in_the_night_ebf:GetBehavior()
-	if GameRules:IsDaytime() then
-		return DOTA_ABILITY_BEHAVIOR_PASSIVE
-	else
-		return DOTA_ABILITY_BEHAVIOR_NO_TARGET + DOTA_ABILITY_BEHAVIOR_IMMEDIATE
-	end
+function night_stalker_hunter_in_the_night_bh:GetBehavior()
+	return DOTA_ABILITY_BEHAVIOR_PASSIVE
 end
 
-function night_stalker_hunter_in_the_night_ebf:GetCooldown(nLvl)
-	if not GameRules:IsDaytime() then
-		return self.BaseClass.GetCooldown(self, nLvl)
-	end
+function night_stalker_hunter_in_the_night_bh:GetIntrinsicModifierName()
+	return "modifier_night_stalker_hunter_in_the_night_bh"
 end
 
-function night_stalker_hunter_in_the_night_ebf:GetManaCost(nLvl)
-	if not GameRules:IsDaytime() then
-		return self.BaseClass.GetManaCost(self, nLvl)
-	end
-end
+modifier_night_stalker_hunter_in_the_night_bh = class({})
+LinkLuaModifier("modifier_night_stalker_hunter_in_the_night_bh", "heroes/hero_night_stalker/night_stalker_hunter_in_the_night_bh", LUA_MODIFIER_MOTION_NONE)
 
-function night_stalker_hunter_in_the_night_ebf:OnSpellStart()
-	local caster = self:GetCaster()
-	caster:AddNewModifier(caster, self, "modifier_night_stalker_hunter_in_the_night_flying", {duration = self:GetTalentSpecialValueFor("duration")})
-end
-
-function night_stalker_hunter_in_the_night_ebf:GetIntrinsicModifierName()
-	return "modifier_night_stalker_hunter_in_the_night_ebf"
-end
-
-modifier_night_stalker_hunter_in_the_night_ebf = class({})
-LinkLuaModifier("modifier_night_stalker_hunter_in_the_night_ebf", "heroes/hero_night_stalker/night_stalker_hunter_in_the_night_ebf", LUA_MODIFIER_MOTION_NONE)
-
-function modifier_night_stalker_hunter_in_the_night_ebf:OnCreated()
+function modifier_night_stalker_hunter_in_the_night_bh:OnCreated()
 	self.ms = self:GetTalentSpecialValueFor("bonus_movement_speed_pct_night")
 	self.as = self:GetTalentSpecialValueFor("bonus_attack_speed_night")
 	self.amp = self:GetParent():FindTalentValue("special_bonus_unique_night_stalker_hunter_in_the_night_1")
@@ -65,7 +44,7 @@ function modifier_night_stalker_hunter_in_the_night_ebf:OnCreated()
 	self.scepter_pct = self:GetTalentSpecialValueFor("scepter_pct") / 100
 end
 
-function modifier_night_stalker_hunter_in_the_night_ebf:OnRefresh()
+function modifier_night_stalker_hunter_in_the_night_bh:OnRefresh()
 	self.ms = self:GetTalentSpecialValueFor("bonus_movement_speed_pct_night")
 	self.as = self:GetTalentSpecialValueFor("bonus_attack_speed_night")
 	self.amp = self:GetParent():FindTalentValue("special_bonus_unique_night_stalker_hunter_in_the_night_1")
@@ -74,11 +53,11 @@ function modifier_night_stalker_hunter_in_the_night_ebf:OnRefresh()
 	self.scepter_pct = self:GetTalentSpecialValueFor("scepter_pct") / 100
 end
 
-function modifier_night_stalker_hunter_in_the_night_ebf:DeclareFunctions()
+function modifier_night_stalker_hunter_in_the_night_bh:DeclareFunctions()
 	return {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,  MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE, MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS}
 end
 
-function modifier_night_stalker_hunter_in_the_night_ebf:GetModifierMoveSpeedBonus_Percentage()
+function modifier_night_stalker_hunter_in_the_night_bh:GetModifierMoveSpeedBonus_Percentage()
 	local ms = self.ms
 	local caster = self:GetParent()
 	local multiplier = 1
@@ -94,7 +73,7 @@ function modifier_night_stalker_hunter_in_the_night_ebf:GetModifierMoveSpeedBonu
 	return ms * multiplier
 end
 
-function modifier_night_stalker_hunter_in_the_night_ebf:GetModifierAttackSpeedBonus()
+function modifier_night_stalker_hunter_in_the_night_bh:GetModifierAttackSpeedBonus()
 	local as = self.as
 	local caster = self:GetParent()
 	local multiplier = 1
@@ -110,7 +89,7 @@ function modifier_night_stalker_hunter_in_the_night_ebf:GetModifierAttackSpeedBo
 	return as * multiplier
 end
 
-function modifier_night_stalker_hunter_in_the_night_ebf:GetModifierSpellAmplify_Percentage()
+function modifier_night_stalker_hunter_in_the_night_bh:GetModifierSpellAmplify_Percentage()
 	local amp = self.amp
 	local caster = self:GetParent()
 	local multiplier = 1
@@ -126,7 +105,7 @@ function modifier_night_stalker_hunter_in_the_night_ebf:GetModifierSpellAmplify_
 	return amp * multiplier
 end
 
-function modifier_night_stalker_hunter_in_the_night_ebf:GetModifierPhysicalArmorBonus()
+function modifier_night_stalker_hunter_in_the_night_bh:GetModifierPhysicalArmorBonus()
 	local armor = self.armor
 	local caster = self:GetParent()
 	local multiplier = 1
@@ -142,21 +121,6 @@ function modifier_night_stalker_hunter_in_the_night_ebf:GetModifierPhysicalArmor
 	return armor * multiplier
 end
 
-function modifier_night_stalker_hunter_in_the_night_ebf:IsHidden()
+function modifier_night_stalker_hunter_in_the_night_bh:IsHidden()
 	return true
-end
-
-modifier_night_stalker_hunter_in_the_night_flying = class({})
-LinkLuaModifier("modifier_night_stalker_hunter_in_the_night_flying", "heroes/hero_night_stalker/night_stalker_hunter_in_the_night_ebf", LUA_MODIFIER_MOTION_NONE)
-
-function modifier_night_stalker_hunter_in_the_night_flying:CheckState()
-	return {[MODIFIER_STATE_FLYING_FOR_PATHING_PURPOSES_ONLY] = true}
-end
-
-function modifier_night_stalker_hunter_in_the_night_flying:DeclareFunctions()
-	return {MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS}
-end
-
-function modifier_night_stalker_hunter_in_the_night_flying:GetActivityTranslationModifiers()
-	return "haste"
 end

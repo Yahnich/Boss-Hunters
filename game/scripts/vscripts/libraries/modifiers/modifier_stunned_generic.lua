@@ -9,9 +9,6 @@ if IsServer() then
 			self.delay = true
 			self:GetAbility():StartDelayedCooldown(self:GetRemainingTime(), false)
 		end
-		if self:GetParent():HasModifier("modifier_status_immunity") then
-			self:Destroy()
-		end
 	end
 	function modifier_stunned_generic:OnDestroy()
 		if self.delay then self:GetAbility():EndDelayedCooldown() end
@@ -44,7 +41,7 @@ end
 
 function modifier_stunned_generic:GetModifierFixedAttackRate( params )
 	if self:GetParent():IsRoundBoss() then
-		return self:GetParent():GetBaseAttackTime()
+		return self:GetParent():GetBaseAttackTime() * 2
 	end
 end
 
@@ -61,11 +58,11 @@ function modifier_stunned_generic:GetMoveSpeedLimitBonus( params )
 end
 
 function modifier_stunned_generic:GetModifierPercentageCasttime()
-	return 100
+	return -100
 end
 
 function modifier_stunned_generic:GetModifierTurnRate_Percentage()
-	return 66
+	return -100
 end
 
 function modifier_stunned_generic:IsPurgable()

@@ -254,18 +254,23 @@
 				"var_type"					"FIELD_INTEGER"
 				"duration"					"30"
 			}			
-			"04"
+			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
 				"slow_attack"				"-90"
 			}
-			"06"
+			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
 				"slow_move"					"-40"
 				"LinkedSpecialBonus"		"special_bonus_unique_tusk_frozen_wasteland_1"
 			}
-			"01"
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_damage_taken"		"10 20 30 40 50 60 70"
+			}
+			"05"
 			{
 				"var_type"					"FIELD_INTEGER"
 				"radius"					"600"

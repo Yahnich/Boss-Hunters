@@ -21,7 +21,6 @@ end
 function naga_siren_tidal_waves:OnSpellStart()
 	local caster = self:GetCaster()
 	self.state = self.state or "rip"
-	self.hit = {}
 	if caster:HasTalent("special_bonus_unique_naga_siren_tidal_waves_1") then
 		self.cooldownTracker = self.cooldownTracker or {}
 		self.cooldownTracker[self.state] = GameRules:GetGameTime() + self:GetCooldownTimeRemaining()
@@ -46,53 +45,54 @@ function naga_siren_tidal_waves:OnSpellStart()
 	end
 end
 
-function naga_siren_tidal_waves:FireTidal( origin )
+function naga_siren_tidal_waves:FireTidal( origin, fProcValue )
 	local caster = self:GetCaster()
+	local ability = self
 	
-	local radius = self:GetTalentSpecialValueFor("radius")
-	local duration = self:GetTalentSpecialValueFor("duration")
-	local damage = self:GetAbilityDamage()
+	local radius = ability:GetTalentSpecialValueFor("radius")
+	local duration = ability:GetTalentSpecialValueFor("duration") * (fProcValue or 100) / 100
+	local damage = ability:GetAbilityDamage() * (fProcValue or 100) / 100
 	
+	local hitUnits = {}
 	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( origin:GetAbsOrigin(), radius ) ) do
-		if not self.hit[enemy] then
-			self:DealDamage(caster, enemy, damage)
-			if self.state == "rip" then
-				enemy:AddNewModifier(caster, self, "modifier_naga_siren_tidal_waves_rip_tide_debuff", {duration = duration})
-			elseif self.state == "dead" then
-				enemy:AddNewModifier(caster, self, "modifier_naga_siren_tidal_waves_dead_tide_debuff", {duration = duration})
-			elseif self.state == "spring" then
-				enemy:AddNewModifier(caster, self, "modifier_naga_siren_tidal_waves_spring_tide_debuff", {duration = duration})
+		if not hitUnits[enemy] then
+			ability:DealDamage(caster, enemy, damage)
+			if ability.state == "rip" then
+				enemy:AddNewModifier(caster, ability, "modifier_naga_siren_tidal_waves_rip_tide_debuff", {duration = duration})
+			elseif ability.state == "dead" then
+				enemy:AddNewModifier(caster, ability, "modifier_naga_siren_tidal_waves_dead_tide_debuff", {duration = duration})
+			elseif ability.state == "spring" then
+				enemy:AddNewModifier(caster, ability, "modifier_naga_siren_tidal_waves_spring_tide_debuff", {duration = duration})
 			end
-			self.hit[enemy] = true
+			hitUnits[enemy] = true
 		end
 	end
 	
-	if self.state == "dead" then
-		if caster == origin then
+	if ability.state == "dead" then
+		if caster:IsRealHero() and not fProcValue then
 			caster:RemoveModifierByName("modifier_naga_siren_tidal_waves_dead_tide")
-			caster:AddNewModifier(caster, self, "modifier_naga_siren_tidal_waves_spring_tide", {})
-			self.state = "spring"
+			caster:AddNewModifier(caster, ability, "modifier_naga_siren_tidal_waves_spring_tide", {})
+			ability.state = "spring"
 		end
 		ParticleManager:FireParticle("particles/naga_siren_deadtide.vpcf", PATTACH_POINT_FOLLOW, origin, {[1] = Vector(radius, 1, 1)})
-	elseif self.state == "spring" then
-		if caster == origin then
+	elseif ability.state == "spring" then
+		if caster == origin and not fProcValue then
 			caster:RemoveModifierByName("modifier_naga_siren_tidal_waves_spring_tide")
-			caster:AddNewModifier(caster, self, "modifier_naga_siren_tidal_waves_rip_tide", {})
-			self.state = "rip"
+			caster:AddNewModifier(caster, ability, "modifier_naga_siren_tidal_waves_rip_tide", {})
+			ability.state = "rip"
 		end
 		ParticleManager:FireParticle("particles/naga_siren_springtide.vpcf", PATTACH_POINT_FOLLOW, origin, {[1] = Vector(radius, 1, 1)})
-	elseif self.state == "rip" then
-		if caster == origin then
+	elseif ability.state == "rip" then
+		if caster == origin and not fProcValue then
 			caster:RemoveModifierByName("modifier_naga_siren_tidal_waves_rip_tide")
-			caster:AddNewModifier(caster, self, "modifier_naga_siren_tidal_waves_dead_tide", {})
-			self.state = "dead"
+			caster:AddNewModifier(caster, ability, "modifier_naga_siren_tidal_waves_dead_tide", {})
+			ability.state = "dead"
 		end
 		ParticleManager:FireParticle("particles/units/heroes/hero_siren/naga_siren_riptide.vpcf", PATTACH_POINT_FOLLOW, origin, {[1] = Vector(radius, 1, 1)})
-		
-		
 	end
-	caster:EmitSound("Hero_NagaSiren.Riptide.Cast")
-	caster:StartGesture(ACT_DOTA_CAST_ABILITY_3)
+	
+	origin:EmitSound("Hero_NagaSiren.Riptide.Cast")
+	origin:StartGesture(ACT_DOTA_CAST_ABILITY_3)
 end
 
 modifier_naga_siren_tidal_waves_dead_tide = class({})
