@@ -42,7 +42,7 @@ function puck_reverie_snap:ReverieSnap(position)
 	ParticleManager:FireParticle("particles/reverie_snap_pull.vpcf", PATTACH_WORLDORIGIN, nil, {[0] = vPos, [1] = Vector(radius,0,0)})
 	
 	for _, enemy in ipairs( caster:FindEnemyUnitsInRadius( vPos, radius ) ) do
-		enemy:ApplyKnockBack(vPos, suckDur, suckDur, -(CalculateDistance(enemy, caster) - 150), 0, caster, self)
+		enemy:ApplyKnockBack(vPos, suckDur, suckDur, -(CalculateDistance(enemy, vPos) - 150), 0, caster, self)
 		enemy:AddNewModifier(caster, self, "modifier_puck_reverie_snap_pull", {duration = suckDur})
 	end
 	
@@ -170,4 +170,8 @@ end
 
 function modifier_puck_reverie_snap_talent:GetEffectName()
 	return "particles/units/heroes/hero_puck/puck_phase_shift.vpcf"
+end
+
+function modifier_puck_reverie_snap_talent:IsPurgable()
+	return false
 end

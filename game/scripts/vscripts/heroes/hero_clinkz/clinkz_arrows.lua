@@ -22,6 +22,14 @@ function clinkz_arrows:GetCastPoint()
 	return self:GetCaster():GetSecondsPerAttack()
 end
 
+function clinkz_arrows:GetManaCost(iLvl)
+	if self:GetCaster():GetClassname() == "npc_dota_clinkz_skeleton_archer" then
+		return 0
+	else
+		return self.BaseClass.GetManaCost( self, iLvl )
+	end
+end
+
 function clinkz_arrows:OnAbilityPhaseStart()
 	local caster = self:GetCaster()
 	caster:StartGestureWithPlaybackRate(ACT_DOTA_ATTACK, 1/caster:GetSecondsPerAttack())

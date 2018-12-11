@@ -2,16 +2,14 @@ modifier_stunned_generic = class({})
 
 if IsServer() then
 	function modifier_stunned_generic:OnCreated(kv)
-		self:GetParent():InterruptChannel()
+		self:GetParent():Interrupt()
+		self:GetParent():Stop()
+		self:GetParent():StopMotionControllers(false)
 		if kv.delay == nil or toboolean(kv.delay) == true and not self:GetParent():IsRoundBoss() then
 			self.delay = true
 			self:GetAbility():StartDelayedCooldown(self:GetRemainingTime(), false)
 		end
-		if self:GetParent():HasModifier("modifier_status_immunity") then
-			self:Destroy()
-		end
 	end
-	
 	function modifier_stunned_generic:OnDestroy()
 		if self.delay then self:GetAbility():EndDelayedCooldown() end
 	end
@@ -38,14 +36,12 @@ end
 function modifier_stunned_generic:GetOverrideAnimation( params )
 	if not self:GetParent():IsRoundBoss() then
 		return ACT_DOTA_DISABLED
-	else
-		return
 	end
 end
 
 function modifier_stunned_generic:GetModifierFixedAttackRate( params )
 	if self:GetParent():IsRoundBoss() then
-		return self:GetParent():GetBaseAttackTime()
+		return self:GetParent():GetBaseAttackTime() * 2
 	end
 end
 
@@ -66,7 +62,7 @@ function modifier_stunned_generic:GetModifierPercentageCasttime()
 end
 
 function modifier_stunned_generic:GetModifierTurnRate_Percentage()
-	return -95
+	return -100
 end
 
 function modifier_stunned_generic:IsPurgable()

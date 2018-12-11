@@ -372,7 +372,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"slow_as"				"-50"
+				"slow_as"				"-25"
 			}
 		}
 	}

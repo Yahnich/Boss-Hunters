@@ -17,6 +17,7 @@ function queenofpain_sonic_wave_bh:OnSpellStart()
 	local distance = self:GetTalentSpecialValueFor("distance")
 	local speed = self:GetTalentSpecialValueFor("speed")
 	
+	caster:EmitSound("Hero_QueenOfPain.SonicWave")
 	self:FireLinearProjectile("particles/units/heroes/hero_queenofpain/queen_sonic_wave.vpcf", speed * direction, distance, width, {width_end = width_end} )
 end
 
@@ -24,7 +25,10 @@ function queenofpain_sonic_wave_bh:OnProjectileHit( target, position )
 	if target then
 		local caster = self:GetCaster()
 		local damage = TernaryOperator( self:GetTalentSpecialValueFor("damage_scepter"), caster:HasScepter(), self:GetTalentSpecialValueFor("damage") )
+		local kbDistance = self:GetTalentSpecialValueFor("knockback_distance")
+		local kbDuration = self:GetTalentSpecialValueFor("knockback_duration")
 		self:DealDamage( caster, target, damage )
+		target:ApplyKnockBack( caster:GetAbsOrigin(), kbDuration, kbDuration, kbDistance, 0, caster, self, false)
 		if caster:HasTalent("special_bonus_unique_queenofpain_sonic_wave_1") then
 			target:MoveToNPC( caster )
 			target:AddNewModifier( caster, self, "modifier_queenofpain_sonic_wave_bh_talent", {duration = caster:FindTalentValue("special_bonus_unique_queenofpain_sonic_wave_1", "duration")})

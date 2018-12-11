@@ -6,7 +6,11 @@ if IsServer() then
 		self:StartIntervalThink(0.33)
 		self:GetParent():AddNewModifier(self:GetParent(), nil, "modifier_bloodseeker_thirst", {})
 	end
-
+	
+	function modifier_move_speed_handler:OnRefresh()
+		self:GetParent():AddNewModifier(self:GetParent(), nil, "modifier_bloodseeker_thirst", {})
+	end
+	
 	function modifier_move_speed_handler:OnIntervalThink()
 		local parent = self:GetParent()
 		local msLimitMod = 0

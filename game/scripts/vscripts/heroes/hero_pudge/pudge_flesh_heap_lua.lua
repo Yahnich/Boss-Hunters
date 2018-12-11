@@ -40,20 +40,28 @@ function modifier_pudge_flesh_heap_lua:IsHidden()
 end
 
 modifier_pudge_flesh_heap_lua_effect = class({})
-function modifier_pudge_flesh_heap_lua_effect:DeclareFunctions()
-    funcs = { MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
-            MODIFIER_PROPERTY_MODEL_SCALE }
-    return funcs
-end
 
 function modifier_pudge_flesh_heap_lua_effect:OnCreated()
     self.bonus_str = self:GetTalentSpecialValueFor("str_bonus")
+    self.bonus_regen = self:GetTalentSpecialValueFor("health_regen")
     if IsServer() then self:GetParent():CalculateStatBonus() end
 end
 
 function modifier_pudge_flesh_heap_lua_effect:OnRefresh()
     self.bonus_str = self:GetTalentSpecialValueFor("str_bonus")
+    self.bonus_regen = self:GetTalentSpecialValueFor("health_regen")
     if IsServer() then self:GetParent():CalculateStatBonus() end
+end
+
+function modifier_pudge_flesh_heap_lua_effect:DeclareFunctions()
+    funcs = { MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
+			  MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
+			  MODIFIER_PROPERTY_MODEL_SCALE }
+    return funcs
+end
+
+function modifier_pudge_flesh_heap_lua_effect:GetModifierConstantHealthRegen()
+    return self.bonus_regen * self:GetStackCount()
 end
 
 function modifier_pudge_flesh_heap_lua_effect:GetModifierBonusStats_Strength()

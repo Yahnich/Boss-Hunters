@@ -416,9 +416,19 @@
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
+				"knockback_distance"	"350"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"knockback_duration"	"1.4"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
 				"damage_scepter"		"325 475 625 775 925 1075"
 			}
-			"06"
+			"09"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"scepter_cd_reduction"	"50"

@@ -13,7 +13,7 @@ function item_lightningrod:OnSpellStart()
 	local damage = caster:GetPrimaryStatValue() * self:GetSpecialValueFor("primary_to_damage") / 100
 	ParticleManager:FireParticle("particles/units/heroes/hero_zuus/zuus_lightning_bolt.vpcf", PATTACH_ABSORIGIN, target, {[1] = target:GetAbsOrigin(), [0] = caster:GetAbsOrigin() + Vector(0,0,1600)})
 	EmitSoundOn("Hero_Zuus.LightningBolt", target)
-	self:DealDamage(caster, target, damage)
+	self:DealDamage(caster, target, damage, {damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
 	target:Paralyze(self, caster, self:GetSpecialValueFor("paralyze_duration"))
 end
 

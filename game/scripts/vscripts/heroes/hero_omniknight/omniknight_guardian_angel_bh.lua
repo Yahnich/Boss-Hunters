@@ -1,18 +1,18 @@
-omniknight_guardian_angel_ebf = class({})
+omniknight_guardian_angel_bh = class({})
 
-function omniknight_guardian_angel_ebf:OnSpellStart()
+function omniknight_guardian_angel_bh:OnSpellStart()
 	local caster = self:GetCaster()
 	
 	local duration = self:GetTalentSpecialValueFor("duration")
 	for _, ally in ipairs( caster:FindFriendlyUnitsInRadius( caster:GetAbsOrigin(), self:GetTalentSpecialValueFor("radius") ) ) do
-		ally:AddNewModifier(caster, self, "modifier_omniknight_guardian_angel_ebf", {duration = duration})
+		ally:AddNewModifier(caster, self, "modifier_omniknight_guardian_angel_bh", {duration = duration})
 	end
 end
 
-modifier_omniknight_guardian_angel_ebf = class({})
-LinkLuaModifier("modifier_omniknight_guardian_angel_ebf", "heroes/hero_omniknight/omniknight_guardian_angel_ebf", LUA_MODIFIER_MOTION_NONE )
+modifier_omniknight_guardian_angel_bh = class({})
+LinkLuaModifier("modifier_omniknight_guardian_angel_bh", "heroes/hero_omniknight/omniknight_guardian_angel_bh", LUA_MODIFIER_MOTION_NONE )
 
-function modifier_omniknight_guardian_angel_ebf:OnCreated()
+function modifier_omniknight_guardian_angel_bh:OnCreated()
 	self.health_regen = self:GetCaster():FindTalentValue("special_bonus_unique_omniknight_guardian_angel_1")
 	self.damage = self:GetCaster():FindTalentValue("special_bonus_unique_omniknight_guardian_angel_2")
 	if IsServer() then
@@ -20,7 +20,7 @@ function modifier_omniknight_guardian_angel_ebf:OnCreated()
 	end
 end
 
-function modifier_omniknight_guardian_angel_ebf:OnRefresh()
+function modifier_omniknight_guardian_angel_bh:OnRefresh()
 	self.health_regen = self:GetCaster():FindTalentValue("special_bonus_unique_omniknight_guardian_angel_1")
 	self.damage = self:GetCaster():FindTalentValue("special_bonus_unique_omniknight_guardian_angel_2")
 	if IsServer() then
@@ -28,29 +28,29 @@ function modifier_omniknight_guardian_angel_ebf:OnRefresh()
 	end
 end
 
-function modifier_omniknight_guardian_angel_ebf:OnDestroy()
+function modifier_omniknight_guardian_angel_bh:OnDestroy()
 	if IsServer() then
 		self:GetAbility():EndDelayedCooldown()
 	end
 end
 
-function modifier_omniknight_guardian_angel_ebf:DeclareFunctions()
+function modifier_omniknight_guardian_angel_bh:DeclareFunctions()
 	return {MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE, MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL, MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE}
 end
 
-function modifier_omniknight_guardian_angel_ebf:GetAbsoluteNoDamagePhysical()
+function modifier_omniknight_guardian_angel_bh:GetAbsoluteNoDamagePhysical()
 	return 1
 end
 
-function modifier_omniknight_guardian_angel_ebf:GetModifierHealthRegenPercentage()
+function modifier_omniknight_guardian_angel_bh:GetModifierHealthRegenPercentage()
 	return self.health_regen
 end
 
-function modifier_omniknight_guardian_angel_ebf:GetModifierDamageOutgoing_Percentage()
+function modifier_omniknight_guardian_angel_bh:GetModifierDamageOutgoing_Percentage()
 	return self.damage
 end
 
-function modifier_omniknight_guardian_angel_ebf:GetEffectName()
+function modifier_omniknight_guardian_angel_bh:GetEffectName()
 	if self:GetParent() == self:GetCaster() then
 		return "particles/units/heroes/hero_omniknight/omniknight_guardian_angel_omni.vpcf"
 	else
@@ -58,10 +58,10 @@ function modifier_omniknight_guardian_angel_ebf:GetEffectName()
 	end
 end
 
-function modifier_omniknight_guardian_angel_ebf:GetStatusEffectName()
+function modifier_omniknight_guardian_angel_bh:GetStatusEffectName()
 	return "particles/status_fx/status_effect_guardian_angel.vpcf"
 end
 
-function modifier_omniknight_guardian_angel_ebf:StatusEffectPriority()
+function modifier_omniknight_guardian_angel_bh:StatusEffectPriority()
 	return 10
 end

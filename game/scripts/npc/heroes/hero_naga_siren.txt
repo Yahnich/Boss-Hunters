@@ -50,14 +50,14 @@
 			"03"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"bonus_hp_regen"				"7 10 13 16 19 22 25"
+				"bonus_hp_regen"				"8 12 16 20 24 28 32"
 				"LinkedSpecialBonus"			"special_bonus_unique_naga_siren_liquid_form_2"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
 			"04"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"water_hp_regen"				"14 20 26 32 38 44 50"
+				"water_hp_regen"				"16 24 32 40 48 56 64"
 				"LinkedSpecialBonus"			"special_bonus_unique_naga_siren_liquid_form_2"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
@@ -374,17 +374,12 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"health_regeneration"		"0.25"
+				"proc_chance"				"17"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"duration"					"30"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"scepter_radius"			"900"
+				"proc_value"				"35"
 			}
 		}
 	}

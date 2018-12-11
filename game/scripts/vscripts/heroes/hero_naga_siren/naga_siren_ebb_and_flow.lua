@@ -7,24 +7,6 @@ end
 modifier_naga_siren_ebb_and_flow_handler = class({})
 LinkLuaModifier("modifier_naga_siren_ebb_and_flow_handler", "heroes/hero_naga_siren/naga_siren_ebb_and_flow", LUA_MODIFIER_MOTION_NONE)
 
-function modifier_naga_siren_ebb_and_flow_handler:OnCreated()
-	self.duration = self:GetTalentSpecialValueFor("duration")
-end
-
-function modifier_naga_siren_ebb_and_flow_handler:OnRefresh()
-	self.duration = self:GetTalentSpecialValueFor("duration")
-end
-
-function modifier_naga_siren_ebb_and_flow_handler:DeclareFunctions()
-	return {MODIFIER_EVENT_ON_ABILITY_FULLY_CAST}
-end
-
-function modifier_naga_siren_ebb_and_flow_handler:OnAbilityFullyCast(params)
-	if params.unit == self:GetParent() then
-		self:AddIndependentStack(self.duration)
-	end
-end
-
 function modifier_naga_siren_ebb_and_flow_handler:IsAura()
 	return true
 end
@@ -63,24 +45,37 @@ modifier_naga_siren_ebb_and_flow_buff = class({})
 LinkLuaModifier("modifier_naga_siren_ebb_and_flow_buff", "heroes/hero_naga_siren/naga_siren_ebb_and_flow", LUA_MODIFIER_MOTION_NONE)
 
 function modifier_naga_siren_ebb_and_flow_buff:OnCreated()
-	self.hp_regen = self:GetTalentSpecialValueFor("health_regeneration")
+	self.chance = self:GetTalentSpecialValueFor("proc_chance")
+	self.value = self:GetTalentSpecialValueFor("proc_value")
 	if IsServer() then
 		self:StartIntervalThink(0.33)
 	end
 end
 
 function modifier_naga_siren_ebb_and_flow_buff:OnRefresh()
-	self.hp_regen = self:GetTalentSpecialValueFor("health_regeneration")
-end
-
-function modifier_naga_siren_ebb_and_flow_buff:OnIntervalThink()
-	self:SetStackCount( self:GetCaster():GetModifierStackCount( "modifier_naga_siren_ebb_and_flow_handler", self:GetCaster() ) )
+	self.chance = self:GetTalentSpecialValueFor("proc_chance")
+	self.value = self:GetTalentSpecialValueFor("proc_value")
 end
 
 function modifier_naga_siren_ebb_and_flow_buff:DeclareFunctions()
-	return {MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE}
+	return {MODIFIER_EVENT_ON_ATTACK_LANDED}
 end
 
-function modifier_naga_siren_ebb_and_flow_buff:GetModifierHealthRegenPercentage()
-	return self.hp_regen * self:GetStackCount()
+function modifier_naga_siren_ebb_and_flow_buff:OnAttackLanded(params)
+	if params.attacker == self:GetParent() then
+		if self:RollPRNG( self.chance ) then
+			local caster = self:GetCaster()
+			if not caster:IsRealHero() then
+				caster = caster:GetParentUnit()
+			end
+			local wave = caster:FindAbilityByName("naga_siren_tidal_waves")
+			if wave then
+				wave:FireTidal( params.attacker, self.value )
+			end
+		end
+	end
+end
+
+function modifier_naga_siren_ebb_and_flow_buff:IsHidden()
+	return true
 end

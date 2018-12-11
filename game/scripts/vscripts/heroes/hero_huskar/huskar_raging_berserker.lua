@@ -85,7 +85,7 @@ LinkLuaModifier("modifier_huskar_raging_berserker_effect", "heroes/hero_huskar/h
 function modifier_huskar_raging_berserker_effect:OnCreated()
 	self.damage = self:GetTalentSpecialValueFor("maximum_damage")
 	self.mr = self:GetTalentSpecialValueFor("maximum_resistance")
-	self.armor = self:GetTalentSpecialValueFor("maximum_armor")
+	self.regen = self:GetTalentSpecialValueFor("maximum_armor")
 	self.hpThreshold = self:GetTalentSpecialValueFor("hp_threshold_max")
 	self.hpPct = math.min(1, (100 - self:GetParent():GetHealthPercent()) / (100 - self.hpThreshold) )
 	self:StartIntervalThink(0.3)
@@ -97,7 +97,7 @@ end
 function modifier_huskar_raging_berserker_effect:OnRefresh()
 	self.damage = self:GetTalentSpecialValueFor("maximum_damage")
 	self.mr = self:GetTalentSpecialValueFor("maximum_resistance")
-	self.armor = self:GetTalentSpecialValueFor("maximum_armor")
+	self.regen = self:GetTalentSpecialValueFor("maximum_armor")
 	self.hpThreshold = self:GetTalentSpecialValueFor("hp_threshold_max")
 	self.hpPct = math.min(1, (100 - self:GetParent():GetHealthPercent()) / (100 - self.hpThreshold) )
 end
@@ -116,18 +116,18 @@ function modifier_huskar_raging_berserker_effect:OnIntervalThink()
 	end
 	self.total_dmg = self.damage * self.hpPct 
 	self.total_mr = self.mr * self.hpPct 
-	self.total_armor = self.armor * self.hpPct 
+	self.total_regen = self.regen * self.hpPct 
 end
 
 function modifier_huskar_raging_berserker_effect:DeclareFunctions()
-	return {MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE, MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS, MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS, MODIFIER_PROPERTY_MODEL_SCALE}
+	return {MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE, MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT, MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS, MODIFIER_PROPERTY_MODEL_SCALE}
 end
 
 function modifier_huskar_raging_berserker_effect:GetModifierPreAttack_BonusDamage()
 	return self.total_dmg
 end
-function modifier_huskar_raging_berserker_effect:GetModifierPhysicalArmorBonus()
-	return self.total_armor
+function modifier_huskar_raging_berserker_effect:GetModifierConstantHealthRegen()
+	return self.total_regen
 end
 function modifier_huskar_raging_berserker_effect:GetModifierMagicalResistanceBonus()
 	return self.total_mr

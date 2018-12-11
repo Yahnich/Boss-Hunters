@@ -3,12 +3,12 @@
 	//=================================================================================================================
 	// Night Stalker: Void
 	//=================================================================================================================
-	"night_stalker_void_ebf"
+	"night_stalker_void_bh"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_night_stalker/night_stalker_void_ebf"
+		"ScriptFile"					"heroes/hero_night_stalker/night_stalker_void_bh"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
 		
 		// Unit Targeting
@@ -88,7 +88,7 @@
 		"BaseClass"						"special_bonus_undefined"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"LinkedAbilityName"				"night_stalker_void_ebf"
+		"LinkedAbilityName"				"night_stalker_void_bh"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -123,13 +123,13 @@
 	//=================================================================================================================
 	// Night Stalker: Crippling Fear
 	//=================================================================================================================
-	"night_stalker_crippling_fear_ebf"
+	"night_stalker_crippling_fear_bh"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_night_stalker/night_stalker_crippling_fear_ebf"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"ScriptFile"					"heroes/hero_night_stalker/night_stalker_crippling_fear_bh"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityTextureName"			"night_stalker_crippling_fear"
 		"AbilitySound"					"Hero_Nightstalker.Trickling_Fear"
 		"MaxLevel"						"7"
@@ -146,7 +146,6 @@
 		"AbilityCastRange"				"500"
 		"AbilityCastPoint"				"0.3 0.3 0.3 0.3"
 		"AbilityCooldown"				"12 12 12 12"
-		"HasPureCooldown"				"1"
 		"AbilityManaCost"				"50"
 			
 		// Special
@@ -165,13 +164,15 @@
 			}
 			"03"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"miss_rate_day"				"10 12.5 15 17.5 20 22.5 25"
+				"var_type"					"FIELD_INTEGER"
+				"radius_day"				"250"
+				"LinkedSpecialBonus"		"special_bonus_unique_night_stalker_crippling_fear_1"
 			}
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"miss_rate_night"			"50 55 60 65 70 75 80"
+				"radius_night"				"500"
+				"LinkedSpecialBonus"		"special_bonus_unique_night_stalker_crippling_fear_1"
 			}
 			"05"
 			{
@@ -215,26 +216,23 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"value"					"2"
+				"value"					"-140"
 			}
 		}
 	}
 	//=================================================================================================================
 	// Night Stalker: Hunter in the Night
 	//=================================================================================================================
-	"night_stalker_hunter_in_the_night_ebf"
+	"night_stalker_hunter_in_the_night_bh"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_night_stalker/night_stalker_hunter_in_the_night_ebf"
+		"ScriptFile"					"heroes/hero_night_stalker/night_stalker_hunter_in_the_night_bh"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityTextureName"			"night_stalker_hunter_in_the_night"
 		"MaxLevel"						"7"
 		"HasScepterUpgrade"				"1"
-
-		"AbilityCooldown"				"30 26 22 18 14 10 6"
-		"AbilityManaCost"				"80"
 			
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -253,11 +251,6 @@
 			"03"
 			{
 				"var_type"							"FIELD_FLOAT"
-				"duration"							"5"
-			}
-			"04"
-			{
-				"var_type"							"FIELD_FLOAT"
 				"scepter_pct"						"50"
 			}
 		}
@@ -270,7 +263,7 @@
 		"BaseClass"						"special_bonus_undefined"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"LinkedModifierName"			"modifier_night_stalker_hunter_in_the_night_ebf"
+		"LinkedModifierName"			"modifier_night_stalker_hunter_in_the_night_bh"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -290,7 +283,7 @@
 		"BaseClass"						"special_bonus_undefined"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"LinkedModifierName"			"modifier_night_stalker_hunter_in_the_night_ebf"
+		"LinkedModifierName"			"modifier_night_stalker_hunter_in_the_night_bh"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -318,14 +311,14 @@
 		"InnateAbility"					"1"
 	}
 	//=================================================================================================================
-	// Night Stalker: Darkness
+	// Night Stalker: dark_ascension
 	//=================================================================================================================
-	"night_stalker_darkness_ebf"
+	"night_stalker_dark_ascension_bh"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"heroes/hero_night_stalker/night_stalker_darkness_ebf"
+		"ScriptFile"					"heroes/hero_night_stalker/night_stalker_dark_ascension_bh"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
@@ -339,7 +332,7 @@
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
 
 		"AbilityCooldown"				"160 140 120 100 80 60"
-		"AbilityManaCost"				"0 0 0"
+		"AbilityManaCost"				"125 175 225 275 325 375"
 			
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -348,18 +341,18 @@
 			"01"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"duration"						"40.0"
-				"LinkedSpecialBonus"			"special_bonus_unique_night_stalker_darkness_1"
+				"duration"						"30.0"
+				"LinkedSpecialBonus"			"special_bonus_unique_night_stalker_dark_ascension_1"
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
 			"02"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"blind_percentage"				"25"
+				"bonus_damage"					"50 100 150 200 250 300"
 			}
 		}
 	}
-	"special_bonus_unique_night_stalker_darkness_1" 
+	"special_bonus_unique_night_stalker_dark_ascension_1" 
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -378,7 +371,7 @@
 			}
 		}
 	}
-	"special_bonus_unique_night_stalker_darkness_2" 
+	"special_bonus_unique_night_stalker_dark_ascension_2" 
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------

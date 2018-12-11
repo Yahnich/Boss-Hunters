@@ -932,6 +932,11 @@ function CHoldoutGameMode:OnGameRulesStateChange()
     end
 	if nNewState == DOTA_GAMERULES_STATE_CUSTOM_GAME_SETUP then
 		print("setup")
+		for nPlayerID = 0, DOTA_MAX_TEAM_PLAYERS-1 do
+			if PlayerResource:IsValidPlayerID( nPlayerID ) then
+				PlayerResource:SetCustomTeamAssignment(nPlayerID, DOTA_TEAM_GOODGUYS)
+			end
+		end
 	elseif nNewState == 3 then
 		print("pregame")
 		

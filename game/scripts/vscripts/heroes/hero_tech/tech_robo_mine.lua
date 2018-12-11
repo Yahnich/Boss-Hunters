@@ -18,7 +18,7 @@ function tech_robo_mine:OnSpellStart()
 	mine:SetControllableByPlayer(caster:GetPlayerID(), true)
 	mine:SetOwner(caster)
 	mine:AddNewModifier(caster, self, "modifier_robo_mine", {})
-	mine:AddNewModifier(caster, self, "modifier_movespeed_cap", {})
+	mine:AddNewModifier(caster, self, "modifier_kill", {duration = 120})
 	mine:SetMoveCapability(DOTA_UNIT_CAP_MOVE_GROUND)
 end
 

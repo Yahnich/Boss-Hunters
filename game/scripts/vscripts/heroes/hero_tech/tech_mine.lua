@@ -15,10 +15,12 @@ function tech_mine:OnSpellStart()
 	EmitSoundOn("Hero_Techies.LandMine.Plant", caster)
 	local mine = CreateUnitByName("npc_dota_techies_land_mine", caster:GetAbsOrigin(), true, caster, caster, caster:GetTeam())
 	mine:AddNewModifier(caster, self, "modifier_mine", {})
+	mine:AddNewModifier(caster, self, "modifier_kill", {duration = 120})
 
 	if caster:HasTalent("special_bonus_unique_tech_mine_1") then
 		local mine2 = CreateUnitByName("npc_dota_techies_land_mine", caster:GetAbsOrigin(), true, caster, caster, caster:GetTeam())
 		mine2:AddNewModifier(caster, self, "modifier_mine", {})
+	mine:AddNewModifier(caster, self, "modifier_kill", {duration = 120})
 	end
 end
 

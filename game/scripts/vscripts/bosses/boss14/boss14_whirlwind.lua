@@ -80,6 +80,7 @@ function modifier_boss14_whirlwind:DeclareFunctions()
 	return {MODIFIER_EVENT_ON_ABILITY_START, 
 			MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE,
 			MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE_MIN,
+			MODIFIER_PROPERTY_TURN_RATE_PERCENTAGE 
 			}
 end
 
@@ -89,6 +90,10 @@ end
 
 function modifier_boss14_whirlwind:GetModifierBaseDamageOutgoing_Percentage()
 	return self.damage
+end
+
+function modifier_boss14_whirlwind:GetModifierTurnRate_Percentage()
+	return 99
 end
 
 function modifier_boss14_whirlwind:GetModifierMoveSpeed_AbsoluteMin()

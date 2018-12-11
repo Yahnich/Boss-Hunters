@@ -22,14 +22,7 @@ end
 
 function doom_demons_bargain:OnSpellStart()
     local gold = self:GetTalentSpecialValueFor("total_gold")
-	local deathChance = self:GetTalentSpecialValueFor("death_perc")
-	local deathThreshold = self:GetTalentSpecialValueFor("death_chance")
-    local kill_rand = math.random(100)
-	local boss_curr = self.target:GetHealth()
-	local boss_max = self.target:GetMaxHealth()
-	local boss_perc = (boss_curr/boss_max)*100
-	local mod_perc = deathThreshold*(deathThreshold/boss_perc) -- Scale chance up as HP goes down
-	
+    local duration = self:GetTalentSpecialValueFor("duration")
 	ParticleManager:FireParticle("particles/units/heroes/hero_doom_bringer/doom_bringer_devour.vpcf", PATTACH_POINT_FOLLOW, self.target)
 	EmitSoundOn("Hero_DoomBringer.Devour", self.target)
 	
@@ -45,7 +38,24 @@ function doom_demons_bargain:OnSpellStart()
             unit:AddGold(gold_per_player)
         end
     end
-	if RollPercentage(mod_perc) and boss_perc <= deathThreshold  then
-		self.target:AttemptKill(self, self.caster)
-	end
+	self.caster:AddNewModifier(self.caster, self, "modifier_doom_demons_bargain_devour", {duration = duration})
+end
+
+modifier_doom_demons_bargain_devour = class({})
+LinkLuaModifier("modifier_doom_demons_bargain_devour", "heroes/hero_doom/doom_demons_bargain", LUA_MODIFIER_MOTION_NONE	)
+
+function modifier_doom_demons_bargain_devour:OnCreated()
+	self.hp_regen = self:GetTalentSpecialValueFor("regen")
+end
+
+function modifier_doom_demons_bargain_devour:OnRefresh()
+	self.hp_regen = self:GetTalentSpecialValueFor("regen")
+end
+
+function modifier_doom_demons_bargain_devour:DeclareFunctions()
+	return {MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT}
+end
+
+function modifier_doom_demons_bargain_devour:GetModifierConstantHealthRegen()
+	return self.hp_regen
 end

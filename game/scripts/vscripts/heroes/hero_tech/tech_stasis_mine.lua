@@ -21,6 +21,7 @@ function tech_stasis_mine:OnSpellStart()
 	EmitSoundOn("Hero_Techies.StasisTrap.Plant", caster)
 	local mine = CreateUnitByName("npc_dota_techies_stasis_trap", caster:GetAbsOrigin(), true, caster, caster, caster:GetTeam())
 	mine:AddNewModifier(caster, self, "modifier_stasis_mine", {})
+	mine:AddNewModifier(caster, self, "modifier_kill", {duration = 120})
 end
 
 modifier_stasis_mine_root = class({})
